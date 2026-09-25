@@ -49,7 +49,7 @@
 | D6 | 云端攻坚 | 难构图/多参考：Nano Banana Pro / GPT Image 2；国风审美与中文字：Seedream 5.0（即梦）；图生 3D：Tripo H3.x / Hunyuan3D 3.x（多视图输入）；视频：可灵 3.0 / Seedance 2.x / Veo 3.1 | §4 |
 | D7 | 视频策略 | 能用 **2.5D 视差分层动画**（确定性、低成本、最贴水墨）就不用 AI 图生视频；AI I2V 只用于人物动作镜头；全部视频约 27 分钟、47 条 | §5.7 |
 | D8 | 音频 | 音乐：ACE-Step 1.5（MIT，本地批量）+ Suno Pro（主题曲精品）；语音：Qwen3-TTS / CosyVoice 3（Apache-2.0，声音设计而非克隆真人）；音效：素材库优先 + AI 补缺 | §4.8–4.10、§5.8 |
-| D9 | 工程化 | `tools/asset-gen`（Python 包 `tsgen`，uv 管理）+ `tools/comfy/workflows/*.api.json` + `tools/prompts/*.yaml` + `registry/*.yaml`（资产登记库，JSON Schema 为与 `tech/06` 的契约） | §6 |
+| D9 | 工程化 | `tools/aigc`（Python 包 `tsgen`，uv 管理；tech/01 预留目录）+ `tools/comfy/workflows/*.api.json` + `tools/aigc/prompts/*.yaml` + `content/assets/registry/**/*.yaml`（资产登记库；schema 定义在 `packages/data`，是与 `tech/06` 的契约） | §6 |
 | D10 | 存储三层 | `source`（可编辑源文件）/ `master`（审定母版，无损）→ 私有对象存储 + 本地盘；`runtime`（压缩产物）由 `tech/06` 构建上 CDN | §6.2 |
 | D11 | 品阶边框 | **运行时合成**（不烘焙进图标），因为外来压制会改变"显示品阶" | §5.6 |
 | D12 | 法律底线 | 仅个人自娱、不分发、不公开部署；禁演员肖像/声音、禁影视造型与配乐参考、禁在世画师风格名与具体受版权画作做图生图源；全部 AI 资产带溯源元数据 | §9 |
@@ -76,7 +76,7 @@ flowchart LR
   end
   subgraph T07[tech/07 本文]
     AB[美术圣经]
-    REQ[需求清单 registry/*.yaml]
+    REQ[资产登记库<br/>content/assets/registry]
     PIPE[生成管线 tsgen]
     MASTER[(master 母版<br/>私有存储)]
   end
@@ -99,15 +99,15 @@ flowchart LR
 
 | 契约文件 | 所有者 | 消费者 | 内容 |
 |---|---|---|---|
-| `packages/spec/iso-camera.json` | tech/02 | 本文 Blender 脚本、运行时相机 | 俯仰角、方位角、方向索引约定、是否允许镜头旋转 |
-| `packages/spec/sprite-spec.json` | tech/02（本文提初值） | 渲染脚本、图集打包、运行时精灵加载器 | ppm（像素/米）、帧格尺寸、锚点、法线编码、镜像规则 |
-| `registry/schema/asset.schema.json` | 本文 | tech/06 构建脚本（TS） | 资产登记条目结构（§6.4） |
-| `registry/*.yaml` | 本文 | tech/06 | 每个资产的状态、母版路径、哈希、溯源 |
-| `packages/spec/anim-events.schema.json` | 本文 + tech/05（玩法引擎） | 运行时 | 动作帧事件（命中帧、音效帧、刀光起止） |
+| `packages/data/spec/iso-camera.json` | tech/02 | 本文 Blender 脚本、运行时相机 | 俯仰角、方位角、方向索引约定、是否允许镜头旋转 |
+| `packages/data/spec/sprite-spec.json` | tech/02（本文提初值） | 渲染脚本、图集打包、运行时精灵加载器 | ppm（像素/米）、帧格尺寸、锚点、法线编码、镜像规则 |
+| `packages/data` 中的 `AssetEntry`（Zod）→ 导出 `content/assets/registry/asset.schema.json` | 本文（字段）/ tech/01（schema 机制） | tech/06 `tools/asset-pipeline`（TS）、`tsgen`（Python） | 资产登记条目结构（§6.4） |
+| `content/assets/registry/**/*.yaml` | 本文 | tech/06 | 每个资产的状态、母版路径、哈希、溯源 |
+| `packages/data/spec/anim-events.schema.json` | 本文 + tech/05（玩法引擎） | 运行时 | 动作帧事件（命中帧、音效帧、刀光起止） |
 
 ### 1.3 规格初值（在 tech/02、tech/06 定稿前使用）
 
-> 以下数值集中写在 `packages/spec/sprite-spec.json` 与 `tools/asset-gen/specs/*.yaml`，**脚本只读配置、不写死**，下游定稿后改配置即可全量重渲。
+> 以下数值集中写在 `packages/data/spec/sprite-spec.json` 与 `tools/aigc/specs/*.yaml`，**脚本只读配置、不写死**，下游定稿后改配置即可全量重渲。
 
 | 项 | 初值 | 说明 |
 |---|---|---|
@@ -138,11 +138,25 @@ flowchart LR
 | `tex_` | 地形材质 | `tex_tr_shenshui__song` |
 | `bld_` / `prp_` | 建筑 / 物件 | `bld_kit_song_gate_01`、`prp_song_lantern_01` |
 | `ico_` | 图标（沿用对象 ID） | `ico_sk_xianglong18`、`ico_eq_yitianjian`、`ico_bf_zhongdu` |
+| `ill_` | 武学图鉴插画（秘籍图谱） | `ill_sk_tieshazhang` |
+| `cin_` | 绝招切入题名层（书法题名 + 墨韵底纹） | `cin_sk_xianglong18` |
 | `vfx_` / `ui_` / `map_` | 特效 / UI / 地图 | `vfx_sk_liumai_beam`、`ui_frame_scroll_9s`、`map_ch01_world` |
 | `vid_` | 视频 | `vid_opening`、`vid_ch01_intro`、`vid_ch01_tianshu`、`vid_sleep_01_02`、`vid_end_canon` |
 | `bgm_` / `sfx_` / `vo_` | 音乐 / 音效 / 配音 | `bgm_ch01_theme`、`sfx_hit_blade_02`、`vo_shuling_0001` |
 
 变体键约定：书界 `chNN`、年龄 `youth/prime/elder`、伤残/状态 `onearm/blind`、表情 `e_<情绪>`，可组合：`por_npc_yangguo__ch03_prime_onearm_base`。
+
+**与内容数据中素材键的对应**：策划数据（`design/05` 招式 `anim: {clip, vfx, sfx, cutin}`、武学 `assets: {icon, art}`，`design/06` Buff `ui.icon`）已使用逻辑素材键。登记库条目以 `keys` 字段声明自己服务的逻辑键，映射规则如下（逻辑键的最终格式与 manifest 解析归 `tech/06`）：
+
+| 内容数据中的键（示例） | 登记库 ID | 说明 |
+|---|---|---|
+| `assets.icon: skill/xianglong18` | `ico_sk_xianglong18` | 武学图标 |
+| `assets.art: illus/skill/tieshazhang` | `ill_sk_tieshazhang` | 武学图鉴插画（§5.6.5） |
+| `ui.icon: buff/zhongdu` | `ico_bf_zhongdu` | Buff 图标 |
+| `anim.clip: palm_heavy` | `anm_hum_palm_heavy`（渲染进各角色 `spr_*` 的对应动作） | 通用动作（§5.4.4） |
+| `anim.vfx: fx_sand_burst` | `vfx_sand_burst` | 特效 |
+| `anim.sfx: sfx_palm_hard` | `sfx_palm_hard` | 音效（同名） |
+| `anim.cutin: cutin/xianglong18` | `cin_sk_xianglong18` | 绝招切入题名层；运行时与施放者 `e_battle` 立绘合成 |
 
 ---
 
@@ -336,6 +350,8 @@ flowchart LR
 | 地标建筑 | 8 | ≈ 110 | S/A | 少林寺、天龙寺、灵鹫宫、桃花岛、襄阳城、古墓、光明顶、黑木崖、侠客岛石室、紫禁城…… |
 | 道具物件 `prp_` | 30 | ≈ 450 | B/C | 大量复用 |
 | 图标 `ico_` | ≈ 150 | ≈ 2,000（独立绘制 ≈ 1,000，其余模板变体） | A/B/C | 见下表拆分 |
+| 武学图鉴插画 `ill_` | 天/地级武学 ≈ 15 | ≈ 200（天级 51 + 地级 ≈ 150） | A/B | 秘籍图谱风格，由 3D 模型关键姿势渲染线稿再风格化（§5.6.5） |
+| 绝招切入题名 `cin_` | ≈ 15 | ≈ 200 | B | 书法题名 + 墨韵底纹，字形管线生成（§5.6.3） |
 | 特效贴图 `vfx_` | 天级武学签名特效 3–8 | 通用 ≈ 80 纹理/序列 + 签名 ≈ 51 | A | 天级武学（基准 §13 共 51 部）每部一个签名特效 |
 | UI 框体 `ui_` | 书界主题皮肤 5–10 件 | 通用 ≈ 150 件 | A | 九宫格框、卷轴、按钮、品阶边框 12 级 |
 | 地图 `map_` | 1 大地图 + 6–10 区域图 | 15 大地图 + ≈ 120 区域图 | A/C | 区域小地图由 3D 场景俯视自动渲染 + 水墨化 |
@@ -590,7 +606,7 @@ flowchart LR
 | 工具 | ComfyUI（`cg_compose.api.json`、`edit_multiref.api.json`、`inpaint_fix.api.json`、`upscale_seedvr2.api.json`）；Blender（摆位）；Krita（手修） |
 | 质检 | 通用清单 + CG 专项：人物识别锚一致（与设定卡并排比对）；人数与分镜一致；视线/动作逻辑；时代服饰；无画内文字；**未水平翻转**；留白区满足 UI 文本需求 |
 | 输出规格 | 母版 3840×2160 PNG（sRGB），另存 `layers/`（若经 Qwen-Image-Layered 分层，供视频视差复用）；概念图 2560×1440 即可 |
-| 入库 | `registry/ch01/cg.yaml` 条目；母版写入 `master/cg/ch01/`；`provenance` 记录每步模型/LoRA/种子/参考图 ID |
+| 入库 | `content/assets/registry/ch01/cg.yaml` 条目；母版写入 `master/cg/ch01/`；`provenance` 记录每步模型/LoRA/种子/参考图 ID |
 
 **CG 数量控制**：同一幕优先"一张 CG + 立绘演出"，只有锚点事件、改命、羁绊高潮才配 CG。
 
@@ -613,14 +629,14 @@ flowchart TD
 
 | 环节 | 内容 |
 |---|---|
-| 输入 | 角色卡 `tools/prompts/characters/<npc_id>.yaml`（§7.1）；`design/chapters` 的人物描述；时代服饰表（§2.7） |
+| 输入 | 角色卡 `tools/aigc/prompts/characters/<npc_id>.yaml`（§7.1）；`design/chapters` 的人物描述；时代服饰表（§2.7） |
 | 步骤 1 设定卡 | 生成 **turnaround 设定卡**：同一画布上正面/侧面/背面/3/4 全身 + 面部特写 + 兵器特写，纯白底，S1 风格但线条更清晰。先用云端（Nano Banana Pro 或 Seedream）出 8–16 张候选，人工挑 1 张；再用编辑模型修正至满足角色卡全部识别锚。审定后登记为 `ref_<id>__<variant>_sheet`，**此后不再修改**（修改即新版本号） |
 | 步骤 2 一致性控制 | S 级：以设定卡为源，用多参考编辑派生 30–60 张不同姿势/光照/景别图，人工筛 20–40 张训练角色 LoRA（§7.3）；A 级：不训 LoRA，直接多参考编辑 |
 | 步骤 3 基础立绘 | 统一姿势模板：站姿 3/4 侧、重心稳定、兵器位置按角色卡；构图 2:3，脚底留 4% 边距；背景纯色（便于抠图） |
 | 步骤 4 表情差分 | 只重绘**脸部区域**（蒙版：发际线至下颌，含耳）：平静 `e_neutral`、喜 `e_joy`、怒 `e_angry`、哀 `e_sad`、惊 `e_surprise`、战斗 `e_battle` + 角色特有（如段誉的"痴"、韦小宝的"贼笑"）。固定种子与蒙版，逐个修改情绪词；输出为**脸部补丁**（含偏移坐标），不存整张 |
 | 步骤 5 分层（可选） | 为呼吸/眨眼轻量动画拆层：`body`、`hair_back`、`hair_front`、`face_base`、`eyes_open`、`eyes_closed`、`mouth_*`、`accessory`（飘带/披风）。Qwen-Image-Layered 自动初分，再人工修层边。运行时用 tech/02 的"网格变形 + 正弦呼吸"实现；**不强制 Spine/Live2D**（许可与工时成本高），只对书灵和主角考虑 Live2D 级动画（待 Phase 1 评估） |
 | 步骤 6 抠图与规格化 | BiRefNet 抠图 → 边缘 1 px 收缩 + 去白边（去预乘） → 统一画布 2048×3072、人物脚底对齐基线 y=2950 → 线条色校正到 `ink.nong` |
-| 工具 | ComfyUI（`sheet_gen.api.json`、`edit_multiref.api.json`、`lora_dataset_expand.api.json`、`face_inpaint_expr.api.json`、`layer_decompose.api.json`、`bg_remove_birefnet.api.json`）；LoRA 训练器（ai-toolkit / musubi-tuner 类，配置存 `tools/train/`）；Krita |
+| 工具 | ComfyUI（`sheet_gen.api.json`、`edit_multiref.api.json`、`lora_dataset_expand.api.json`、`face_inpaint_expr.api.json`、`layer_decompose.api.json`、`bg_remove_birefnet.api.json`）；LoRA 训练器（ai-toolkit / musubi-tuner 类，配置存 `tools/aigc/train/`）；Krita |
 | 质检 | 设定卡识别锚逐项勾选；手指数量/关节；兵器握持方向；右衽；表情差分**与基础脸同一人**（并排闪烁对比）；补丁接缝不可见；透明边无白边；64 px 剪影可辨 |
 | 输出规格 | `por_<id>__<variant>_base.png` 2048×3072 RGBA；`por_<id>__<variant>_e_<emo>.png` 脸部补丁（典型 640×640）+ `…_patches.json`（偏移、尺寸）；可选 `…_layers/`（PSD 或分层 PNG + `layers.json`） |
 | 入库 | 立绘与每个补丁各自一条登记；补丁条目 `parent` 指向基础立绘；`tech/06` 负责运行时降采样（建议 1024×1536）与压缩 |
@@ -738,10 +754,10 @@ flowchart LR
 | 通用移动 | `idle`（呼吸循环）8、`walk` 8、`run` 8 | 24 | `foot_l`、`foot_r`（脚步音效） |
 | 轻功 | `jump_up` 6、`jump_land` 4、`glide`（凌空循环）4 | 14 | `takeoff`、`land` |
 | 战斗通用 | `hit` 3、`parry` 4、`dodge` 4、`down`（倒地/死亡）8、`cast_inner`（运功循环）6、`item_use` 6、`throw`（暗器）6 | 37 | `impact`、`release` |
-| 兵器类（每类 3 片段） | `<cls>_light` 6、`<cls>_heavy` 8、`<cls>_ult`（绝招关键姿势）4；`cls` ∈ sword/blade/staff/spear/whip/exotic/fist/finger/leg/grapple | 18/类 | `hit`（伤害结算帧）、`trail_on/off`（刀光）、`sfx` |
+| 兵器类（每类 3 片段） | `<cls>_light` 6、`<cls>_heavy` 8、`<cls>_ult`（绝招关键姿势）4；`cls` ∈ sword/blade/staff/spear/whip/exotic/fist/palm/finger/leg/grapple（`palm` 与 `fist` 同属基准 `fist` 拳掌子类，但动作不同） | 18/类 | `hit`（伤害结算帧）、`trail_on/off`（刀光）、`sfx` |
 | 演出 | `victory` 8、`meditate` 4、`talk` 4 | 16 | — |
 
-- **招式不单独做动作**：每个招式在数据中指定 `anim: "<cls>_light|heavy|ult"` + 特效 + 镜头震动（`design/05` 招式表增加 `anim` 字段的建议）。天级武学的签名表现主要靠特效与立绘切入（cut-in），而非专属骨骼动作。
+- **招式不单独做动作**：`design/05` 招式的 `anim.clip` 取值限定为 `<cls>_light|heavy|ult` 与通用片段名（如 `palm_heavy`），再配 `anim.vfx`/`anim.sfx`/`anim.cutin` 与镜头震动。天级武学的签名表现主要靠特效与立绘切入（cut-in，≤ 1.2 秒，design/05 §4.8），而非专属骨骼动作。
 - 书界特有动作（如打狗棒法的"绊"字诀、左右互搏双手不同招、神雕的扑击）作为扩展片段按需添加。
 
 #### 5.4.5 渲染风格化
@@ -783,15 +799,15 @@ flowchart LR
 调用方式（无界面批处理，Blender 4.5 LTS 基线）：
 
 ```bash
-blender -b tools/blender/stage.blend -P tools/blender/render_sprites.py -- \
+blender -b tools/aigc/blender/stage.blend -P tools/aigc/blender/render_sprites.py -- \
   --model  /art/master/mdl/ch01/mdl_npc_duanyu__ch01.blend \
-  --job    tools/blender/jobs/spr_npc_duanyu__ch01.yaml \
-  --camera packages/spec/iso-camera.json \
-  --spec   packages/spec/sprite-spec.json \
+  --job    tools/aigc/blender/jobs/spr_npc_duanyu__ch01.yaml \
+  --camera packages/data/spec/iso-camera.json \
+  --spec   packages/data/spec/sprite-spec.json \
   --out    /art/work/spr/spr_npc_duanyu__ch01/
 ```
 
-`packages/spec/iso-camera.json`（tech/02 所有，初值）：
+`packages/data/spec/iso-camera.json`（tech/02 所有，初值）：
 
 ```json
 {
@@ -805,7 +821,7 @@ blender -b tools/blender/stage.blend -P tools/blender/render_sprites.py -- \
 }
 ```
 
-`packages/spec/sprite-spec.json`（本文提初值，tech/02 定稿）：
+`packages/data/spec/sprite-spec.json`（本文提初值，tech/02 定稿）：
 
 ```json
 {
@@ -818,7 +834,7 @@ blender -b tools/blender/stage.blend -P tools/blender/render_sprites.py -- \
 }
 ```
 
-`tools/blender/render_sprites.py`（关键片段，省略参数解析与日志）：
+`tools/aigc/blender/render_sprites.py`（关键片段，省略参数解析与日志）：
 
 ```python
 import bpy, json, math, os, sys
@@ -992,7 +1008,7 @@ def render_job(job, cam_cfg, spec, out_dir):
 | 输入 | 时代建筑套件清单（宋/元/明/清 + 毡帐/回疆/藏式）；地标清单（`design/chapters`）；概念图 `art_*` |
 | 步骤（套件部件） | ① 概念图/参考 → 编辑模型出"部件设定图"（正/侧/顶视，白底）→ ② 本地 Hunyuan3D 2.1（或 TRELLIS.2）生成网格 → ③ Blender：减面到 ≤ 3k 三角/部件、对齐 1 m 网格、枢轴放在底面中心 → ④ 贴图：重绘为平涂分阶 + 墨线（可用"3D 视图投射绘制"：在 Blender 中从 30° 俯视渲染线稿 → 编辑模型上色 → 投射回 UV）→ ⑤ 描边：反向外壳或 tech/02 的屏幕空间描边（二选一，与角色一致性优先） |
 | 步骤（地标） | 用套件拼装主体 + 地标特有部件单独生成；S 级地标（少林山门、光明顶圣火坛、侠客岛石壁）逐个手工精修 |
-| 工具 | Hunyuan3D 2.1 / TRELLIS.2（本地）、Tripo（复杂地标）、Blender（`tools/blender/kit_import.py`：统一尺度、命名、碰撞盒导出） |
+| 工具 | Hunyuan3D 2.1 / TRELLIS.2（本地）、Tripo（复杂地标）、Blender（`tools/aigc/blender/kit_import.py`：统一尺度、命名、碰撞盒导出） |
 | 质检 | 时代特征（§2.7 建筑列）；屋顶坡度与斗拱比例；可行走区域与碰撞盒匹配；轻功门禁高度（屋檐 = 2 级高差，`qg2`）在模型上准确体现；正交视角下不出现遮挡死角（必要时屋顶可半透明/剖切，tech/02） |
 | 输出规格 | `.blend` 源 + `.glb`（Draco/Meshopt 压缩由 tech/06 决定）；贴图 1024²（部件图集化）；元数据：占格尺寸、高度级、碰撞体、可剖切层 |
 | 入库 | `bld_kit_<时代>_<部件>`、`bld_lm_<书界>_<地标>`、`prp_<时代>_<物件>` |
@@ -1007,7 +1023,7 @@ def render_job(job, cam_cfg, spec, out_dir):
 
 #### 5.6.2 模板与批处理
 
-`tools/prompts/icons/skill.yaml`（节选）：
+`tools/aigc/prompts/icons/skill.yaml`（节选）：
 
 ```yaml
 template: icon.skill
@@ -1039,6 +1055,7 @@ tier_mood:            # 仅影响本体气质，不画边框
 #### 5.6.3 招式与 Buff 的字形图标
 
 - 招式：取招式名中的关键字（如"亢龙有悔"取"亢"），用 OFL 许可的开源字体（思源宋体、霞鹜文楷等）渲染成 SVG → ComfyUI 低重绘幅度（denoise 0.3–0.45）+ 线稿控制，加"飞白、枯笔、晕染"质感（字形不变）→ 叠加所属武学图标缩略于角落。**零错字风险**、风格统一、成本极低。
+- 绝招切入题名（`cin_`）：武学名全称用同一字形管线生成竖排书法题名 + 墨韵/泼墨底纹（按内力性质 阳/阴/调和 选暖金/冷银/中性墨三套底纹），运行时与施放者 `e_battle` 立绘、速度线遮罩合成为 ≤ 1.2 秒的切入演出。
 - Buff：`符号（毒=蛇/蝎、蛊=虫、穴=点、内伤=裂纹、流血=血滴、寒=冰花、热=火苗、控制=锁链、护体=金钟、心神=眼、破兵=断刃、架势=山）` + 标签字 + 极性底色（增益暖金、减益冷紫墨）。图标数 = 标签数 × 变体，远少于 Buff 条目数；特殊 Buff（如"无敌""锁血"）单独绘制。
 
 #### 5.6.4 质检、输出、入库
@@ -1048,6 +1065,12 @@ tier_mood:            # 仅影响本体气质，不画边框
 | 质检 | 缩到 48 px 仍可辨（自动生成缩略联系表）；同子类图标风格一致（并排 5×5 网格审）；无文字/伪字；主体居中占 70–80%；天级与低品阶在"本体气质"上可区分 |
 | 输出 | 母版 512² RGBA；运行时 128²/64² 图集（tech/06）；边框素材 `ui_frame_grade_{1..12}`（九宫格或固定尺寸） |
 | 入库 | `ico_<对象ID>`；模板族条目记录 `family` 与 `tint` 参数，运行时或构建时合成 |
+
+#### 5.6.5 武学图鉴插画（秘籍图谱，`ill_`）
+
+- 风格：仿古代武学图谱/经络图——白描人形 + 动势箭头 + 经络线，S2 纸本淡设色，**不写字**（招式口诀由 UI 排版）。
+- 生产：取该武学代表招式的 `anim.clip` → 在 Blender 中用中性人形模型摆出关键帧姿势 → 渲染 Line Art 线稿（正/侧两个角度）→ ComfyUI 以线稿为控制、`style_shuimo_scene` 低强度风格化 → 叠加经络/气流纹样层。姿势来自动作库，保证"图谱与战斗动作一致"。
+- 数量与等级：天级 51（A，可逐张精修）、地级 ≈ 150（B，批量）；玄/黄级复用子类通用图谱。
 
 ### 5.7 视频（`vid_`）
 
@@ -1081,9 +1104,9 @@ flowchart LR
 
 | 环节 | 内容 |
 |---|---|
-| 输入 | 分镜 YAML（`tools/prompts/video/<vid_id>.yaml`）：每镜头 `id`、`dur`、`technique`（parallax / i2v / flf（首尾帧）/ procedural）、`subjects`（角色 ID + 变体）、`camera`（推/拉/摇/移/升）、`action`、`mood`、`audio`（音乐段落、音效、旁白行 ID） |
+| 输入 | 分镜 YAML（`tools/aigc/prompts/video/<vid_id>.yaml`）：每镜头 `id`、`dur`、`technique`（parallax / i2v / flf（首尾帧）/ procedural）、`subjects`（角色 ID + 变体）、`camera`（推/拉/摇/移/升）、`action`、`mood`、`audio`（音乐段落、音效、旁白行 ID） |
 | 步骤 | ① 文本分镜 → 由 LLM 辅助扩写，人工定稿；② 关键帧：走 §5.1 CG 管线，分辨率 2K，**每个人物镜头都以设定卡为参考**；③ 按技法生成动态：视差镜头 = 分层 + Blender 正交/透视相机缓动 + 墨晕转场着色器；I2V 镜头 = 可灵 3.0（人物动作）或 Veo 3.1 首尾帧（过渡），每镜头 3–5 次尝试取最佳；④ 剪辑、统一调色（书界 LUT + 纸纹叠加 + 轻微颗粒）；⑤ 必要时 SeedVR2 超分到 1080p、RIFE 仅用于慢动作；⑥ 混音：BGM + 音效（含 HunyuanVideo-Foley 拟音）+ 旁白（§5.8）；⑦ **字幕不压进画面**，输出 WebVTT，由 UI 叠加（便于修改文本） |
-| 工具 | ComfyUI（关键帧、分层、超分、补帧）、可灵/Veo/Seedance 适配器（`providers/*`）、Blender（`tools/blender/parallax.py`、`procedural_ink.py`）、DaVinci Resolve、FFmpeg |
+| 工具 | ComfyUI（关键帧、分层、超分、补帧）、可灵/Veo/Seedance 适配器（`providers/*`）、Blender（`tools/aigc/blender/parallax.py`、`procedural_ink.py`）、DaVinci Resolve、FFmpeg |
 | 质检 | 角色一致（逐镜头与设定卡比对）；无画面文字/伪字；时代服饰；无闪烁与肢体畸变（AI 视频常见的手指融合、兵器变形——**必拒**）；转场节奏与音乐拍点对齐；总时长符合清单 |
 | 输出规格 | 母版 1920×1080、24 fps、ProRes 422 HQ（或 FFV1）+ 48 kHz 立体声；另出 `poster.png`（首帧封面）与 `*.vtt`；发布编码（H.264/HEVC/AV1、码率阶梯、是否 HLS）以 **tech/06** 为准 |
 | 入库 | `vid_*` 条目；`inputs` 列出全部镜头素材 ID（关键帧、分层、生成片段），便于替换单镜头后重剪 |
@@ -1108,7 +1131,7 @@ ffmpeg -i vid_ch01_intro.master.mov -c:v libx264 -profile:v high -preset slow -c
 
 | 环节 | 内容 |
 |---|---|
-| 输入 | 每书界音乐简报（`tools/prompts/music/chNN.yaml`）：乐器调色板、调式（宫商角徵羽五声调式为主）、速度、情绪、循环长度、禁止项（不得引用影视剧配乐旋律） |
+| 输入 | 每书界音乐简报（`tools/aigc/prompts/music/chNN.yaml`）：乐器调色板、调式（宫商角徵羽五声调式为主）、速度、情绪、循环长度、禁止项（不得引用影视剧配乐旋律） |
 | 步骤 | ① ACE-Step 1.5 本地每曲批量 12–24 个候选（提示词 = 书界简报 + 曲目用途模板）→ ② 人工试听挑 2–3 → ③ 主题曲/开场/结局走 Suno Pro 精修或多轮延展 → ④ Demucs 分轨，必要时替换/去除不合时代的乐器（合成器、电吉他等）→ ⑤ DAW 中剪出**无缝循环**（`loopStart`/`loopEnd` 采样点写入元数据），结尾淡出版另存 → ⑥ 响度标准化 |
 | 工具 | ACE-Step 1.5、Suno、Demucs、Audacity/Reaper、FFmpeg `loudnorm` |
 | 质检 | 旋律不与知名影视配乐雷同（人耳比对 + 可选音频指纹比对自检）；国风乐器为主体；循环点无爆音、无节拍错位；与书界情绪匹配 |
@@ -1149,33 +1172,24 @@ ffmpeg -i vid_ch01_intro.master.mov -c:v libx264 -profile:v high -preset slow -c
 ### 6.1 仓库布局
 
 ```
-tianshu/                          # 主仓库（代码 + 文本类工具资产；不放二进制）
+jinyongqunxia/                    # 主仓库（代码 + 文本类工具资产；二进制素材不入库，见 tech/01 §4、tech/06）
 ├─ packages/
-│  └─ spec/                       # 跨"工具 ↔ 运行时"的契约（tech/02、tech/06、本文共同维护）
-│     ├─ iso-camera.json
-│     ├─ sprite-spec.json
-│     └─ anim-events.schema.json
-├─ registry/                      # 资产登记库（文本，按书界/类型分片）
-│  ├─ schema/asset.schema.json    # 由 Pydantic 模型导出；tech/06 的 TS 构建脚本据此生成类型
-│  ├─ global/{ui,vfx,anim,kit}.yaml
-│  ├─ ch01/{ref,model,portrait,sprite,cg,icon,terrain,building,audio,video}.yaml
-│  └─ ...
+│  └─ data/                       # tech/01：内容 schema 的唯一定义处（Zod）
+│     ├─ src/schemas/asset-entry.ts   # 资产登记条目 AssetEntry（本文 §6.4 提议字段）
+│     └─ spec/                    # 跨"工具 ↔ 运行时"的契约 JSON（tech/02、tech/06、本文共同维护）
+│        ├─ iso-camera.json
+│        ├─ sprite-spec.json
+│        └─ anim-events.schema.json
+├─ content/
+│  └─ assets/
+│     └─ registry/                # 资产登记库（文本，按书界/类型分片，CI 校验）
+│        ├─ asset.schema.json     # 由 packages/data 的 Zod schema 经 toJsonSchema() 导出（生成物）
+│        ├─ global/{ui,vfx,anim,kit}.yaml
+│        ├─ ch01/{ref,model,portrait,sprite,cg,icon,terrain,building,audio,video}.yaml
+│        └─ ...
 └─ tools/
-   ├─ asset-gen/                  # Python 包 tsgen（uv 管理，Python ≥ 3.11）
-   │  ├─ pyproject.toml
-   │  ├─ specs/                   # 各资产类型的规格与质检阈值（portrait.v1.yaml …）
-   │  └─ tsgen/
-   │     ├─ cli.py                # typer：plan / gen / review / approve / render-sprites / pack / publish …
-   │     ├─ registry/             # 读写、校验（pydantic）、状态机、stale 传播
-   │     ├─ prompts/              # jinja2 模板渲染、黑名单校验
-   │     ├─ providers/            # comfy.py, openai_img.py, gemini_img.py, seedream.py, tripo.py,
-   │     │                        # hunyuan3d.py, kling.py, veo.py, suno.py, tts_qwen3.py …（统一接口）
-   │     ├─ blender/              # blender -b 调用封装、并行调度
-   │     ├─ image/                # trim, pack(rectpack), normals, contact-sheet, tile-check
-   │     ├─ audio/  video/        # loudnorm, loop, ffmpeg 封装
-   │     ├─ provenance.py         # 写 PNG iTXt/XMP、MP4/WAV 元数据
-   │     └─ review/               # 本地审核页后端（FastAPI）+ 静态前端
-   ├─ comfy/
+   ├─ asset-pipeline/             # tech/06：母版 → KTX2/图集/音频转码 → manifest → 上传（消费本登记库）
+   ├─ comfy/                      # ComfyUI 工作流与环境锁定
    │  ├─ README.md                # 安装与启动说明
    │  ├─ custom_nodes.lock.yaml   # 自定义节点：git URL + commit
    │  ├─ models.lock.yaml         # 模型：文件名、sha256、来源 URL、许可证、用途
@@ -1188,20 +1202,36 @@ tianshu/                          # 主仓库（代码 + 文本类工具资产�
    │     ├─ icon_template.api.json      glyph_brush.api.json
    │     ├─ tile_seamless.api.json      upscale_seedvr2.api.json
    │     └─ vfi_rife.api.json
-   ├─ blender/
-   │  ├─ render_sprites.py  parallax.py  procedural_ink.py  kit_import.py
-   │  ├─ lib/ (iso_camera.py, passes.py, outline.py, events.py, retarget.py)
-   │  └─ jobs/ (spr_*.yaml，由 tsgen 生成)
-   ├─ prompts/                    # 提示词模板库（YAML）
-   │  ├─ style.yaml  era.yaml  negatives.yaml  blacklist.yaml
-   │  ├─ characters/<npc_id>.yaml  scenes/<rg_id>.yaml
-   │  ├─ icons/*.yaml  music/*.yaml  video/<vid_id>.yaml
-   ├─ train/
-   │  ├─ lora/<name>.toml         # LoRA 训练配置（数据集路径、步数、rank、基模 sha）
-   │  └─ datasets/<name>.yaml     # 训练集清单：每张图的资产 ID/来源/许可
-   └─ review/checklists/*.yaml    # 人工审核清单
+   └─ aigc/                       # tech/01 预留的"素材生成批处理"目录 = Python 包 tsgen（uv 管理，Python ≥ 3.11）
+      ├─ package.json             # 仅含脚本别名（"tsgen": "uv run tsgen"），便于 pnpm --filter 调用
+      ├─ pyproject.toml
+      ├─ specs/                   # 各资产类型的规格与质检阈值（portrait.v1.yaml …）
+      ├─ tsgen/
+      │  ├─ cli.py                # typer：plan / gen / review / approve / render-sprites / pack / publish …
+      │  ├─ registry/             # 读写、状态机、stale 传播（Pydantic 模型由 asset.schema.json 生成）
+      │  ├─ prompts/              # jinja2 模板渲染、黑名单校验
+      │  ├─ providers/            # comfy.py, openai_img.py, gemini_img.py, seedream.py, tripo.py,
+      │  │                        # hunyuan3d.py, kling.py, veo.py, suno.py, tts_qwen3.py …（统一接口）
+      │  ├─ blender_runner.py     # blender -b 调用封装、并行调度
+      │  ├─ image/                # trim, pack(rectpack), normals, contact-sheet, tile-check
+      │  ├─ audio/  video/        # loudnorm, loop, ffmpeg 封装
+      │  ├─ provenance.py         # 写 PNG iTXt/XMP、MP4/WAV 元数据
+      │  └─ review/               # 本地审核页后端（FastAPI）+ 静态前端
+      ├─ blender/
+      │  ├─ render_sprites.py  parallax.py  procedural_ink.py  kit_import.py
+      │  ├─ lib/ (iso_camera.py, passes.py, outline.py, events.py, retarget.py)
+      │  └─ jobs/ (spr_*.yaml，由 tsgen 生成，不入库)
+      ├─ prompts/                 # 提示词模板库（YAML）
+      │  ├─ style.yaml  era.yaml  negatives.yaml  blacklist.yaml
+      │  ├─ characters/<npc_id>.yaml  scenes/<rg_id>.yaml
+      │  └─ icons/*.yaml  music/*.yaml  video/<vid_id>.yaml
+      ├─ train/
+      │  ├─ lora/<name>.toml      # LoRA 训练配置（数据集路径、步数、rank、基模 sha）
+      │  └─ datasets/<name>.yaml  # 训练集清单：每张图的资产 ID/来源/许可
+      └─ review/checklists/*.yaml # 人工审核清单
 ```
 
+- **为何素材生成用 Python**（其余 `tools/*` 为 TypeScript，见 tech/01）：Blender（bpy）、ComfyUI、LoRA 训练器、图像/音频科学计算库都是 Python 生态；`tsgen` 与 TS 工具链只通过**文件契约**（`asset.schema.json`、登记库 YAML、`packages/data/spec/*.json`）交互，不共享代码。
 - **ComfyUI 工作流约定**：只提交 API 格式 JSON 供脚本调用（`POST /prompt`，轮询 `/history/{prompt_id}` 或监听 `/ws`）；在 JSON 中用固定 `_meta.title` 标记可替换节点（如 `IN_PROMPT`、`IN_NEG`、`IN_SEED`、`IN_REF_1`、`IN_LORA_CHAR`、`OUT_IMAGE`），适配器按标题注入参数，避免依赖易变的节点 ID。
 - **环境锁定**：ComfyUI 版本、自定义节点 commit、模型 sha256 全部锁定；`tsgen doctor` 校验本机环境与锁文件一致。
 
@@ -1222,7 +1252,7 @@ tianshu/                          # 主仓库（代码 + 文本类工具资产�
 
 **片段组合模型**：`最终提示词 = 风格片段 + 时代片段 + 角色片段（识别锚、服饰）+ 场景/动作片段 + 用途模板`，负面词同理合并；所有片段带版本号，渲染结果连同各片段版本写入 `provenance`。
 
-`tools/prompts/style.yaml`（节选）：
+`tools/aigc/prompts/style.yaml`（节选）：
 
 ```yaml
 version: 1.3.0
@@ -1246,7 +1276,7 @@ negatives:
     modern clothing, text, watermark, signature, calligraphy, extra fingers, fused fingers, deformed hands
 ```
 
-`tools/prompts/era.yaml`（节选）：
+`tools/aigc/prompts/era.yaml`（节选）：
 
 ```yaml
 version: 1.1.0
@@ -1258,24 +1288,25 @@ era.qing.han_male:         "Qing dynasty, long single braid queue with shaved fo
 era.qing.manchu_female:    "early Qing Manchu woman, liangbatou two-handle hairstyle (NOT the late-Qing dalachi headdress)"
 ```
 
-`tools/prompts/blacklist.yaml`：演员姓名、剧集版本名（如"83版""94版""张纪中版"等）、在世/近现代画师与插画师姓名、"in the style of <人名>"句式、影视剧名 + "剧照/造型"。`tsgen` 渲染提示词后强制扫描黑名单，命中即拒绝提交（§9）。
+`tools/aigc/prompts/blacklist.yaml`：演员姓名、剧集版本名（如"83版""94版""张纪中版"等）、在世/近现代画师与插画师姓名、"in the style of <人名>"句式、影视剧名 + "剧照/造型"。`tsgen` 渲染提示词后强制扫描黑名单，命中即拒绝提交（§9）。
 
 ### 6.4 资产登记库（对接 tech/06）
 
 **定位**：登记库是"**每个资产是什么、处于什么状态、从何而来、母版在哪**"的唯一事实来源。tech/06 的构建脚本只消费 `status ∈ {approved}` 的条目生成 runtime 产物与 manifest；未审定的资产在开发构建中以占位图替代。
 
-条目结构（Pydantic 模型导出 JSON Schema，字段为提议）：
+条目结构（唯一定义为 `packages/data` 的 Zod schema `AssetEntry`，经 `toJsonSchema()` 导出 JSON Schema，Python 侧用 datamodel-code-generator 生成 Pydantic 模型；字段为提议）：
 
 ```yaml
-# registry/ch01/portrait.yaml
+# content/assets/registry/ch01/portrait.yaml
 - id: por_npc_duanyu__ch01_base
   type: portrait            # portrait|portrait_patch|avatar|cg|concept|ref|model|anim|sprite|terrain|building|prop|icon|vfx|ui|map|video|bgm|sfx|vo
   chapter: ch01_tianlong    # 或 global
   subject: npc_duanyu       # 对应基准 §12 的对象 ID
+  keys: [portrait/npc_duanyu/ch01]   # 服务的逻辑素材键（格式归 tech/06）
   variant: ch01
   tier: S
   status: approved          # 见 §6.5
-  spec: portrait.v1         # tools/asset-gen/specs/portrait.v1.yaml
+  spec: portrait.v1         # tools/aigc/specs/portrait.v1.yaml
   owner: me
   inputs:                   # 上游依赖（用于 stale 传播）
     - ref_npc_duanyu__ch01_sheet@3
@@ -1311,7 +1342,7 @@ era.qing.manchu_female:    "early Qing Manchu woman, liangbatou two-handle hairs
 1. tech/06 以 `id` 为逻辑键，产物文件名用内容哈希；manifest 中保留 `id → 哈希文件` 映射；
 2. `files.master.sha256` 变化即触发该资产重新构建；
 3. 登记库的 `chapter` 字段决定分包；`global` 进公共包；
-4. JSON Schema 放 `registry/schema/asset.schema.json`，TS 侧用 `json-schema-to-typescript` 生成类型、Zod 做运行时校验（与基准 §19"YAML + Zod"一致）。
+4. Schema 唯一定义在 `packages/data`（Zod，符合 tech/01"内容 schema 唯一定义"的原则与基准 §19"YAML + Zod"），导出的 `asset.schema.json` 供 Python 侧生成模型；CI 的内容校验（`content:validate`）同时校验登记库。
 
 ### 6.5 状态机与溯源
 
@@ -1350,7 +1381,7 @@ stateDiagram-v2
 ComfyUI 适配器（按节点标题注入参数）：
 
 ```python
-# tools/asset-gen/tsgen/providers/comfy.py
+# tools/aigc/tsgen/providers/comfy.py
 import json, time, uuid, requests
 from pathlib import Path
 
@@ -1381,7 +1412,7 @@ class ComfyProvider:
 生成命令（登记库驱动）：
 
 ```python
-# tools/asset-gen/tsgen/cli.py（节选）
+# tools/aigc/tsgen/cli.py（节选）
 @app.command()
 def gen(type: str, chapter: str = "ch01", status: str = "todo", n: int = 4, dry_run: bool = False):
     for item in registry.query(type=type, chapter=chapter, status=status):
@@ -1410,11 +1441,11 @@ def gen(type: str, chapter: str = "ch01", status: str = "todo", n: int = 4, dry_
 | `tsgen registry check` | Schema 校验、stale 传播、孤儿文件与缺失母版检查 |
 | `tsgen regen <id> --from-provenance` | 按溯源记录复现（本地开源模型可逐像素复现；闭源服务不保证） |
 | `tsgen budget --chapter ch01` | 按等级与状态汇总剩余工时/GPU 时/云费用估算 |
-| `tsgen publish --chapter ch01` | 调用 tech/06 构建（approved → runtime + manifest） |
+| `tsgen publish --chapter ch01` | 调用 tech/06 的 `tools/asset-pipeline` 构建（approved → runtime + manifest） |
 
 ### 6.7 人工审核清单
 
-`tools/review/checklists/common.v1.yaml` + 各类型专项清单；审核页逐项勾选，结果写入 `review`。
+`tools/aigc/review/checklists/common.v1.yaml` + 各类型专项清单；审核页逐项勾选，结果写入 `review`。
 
 | 类别 | 检查项 | 适用 |
 |---|---|---|
@@ -1449,7 +1480,7 @@ flowchart LR
   M1 & M2 --> S[精灵]
 ```
 
-角色卡示例（`tools/prompts/characters/npc_guojing.yaml`）：
+角色卡示例（`tools/aigc/prompts/characters/npc_guojing.yaml`）：
 
 ```yaml
 id: npc_guojing
@@ -1663,7 +1694,7 @@ variants:
 | 公有领域古代书画的**技法研究**（如宋画衣纹、山水皴法的局部），且不以单幅作品为复制源 | 博物馆有使用限制的高清图像（遵守其条款；有疑问则不用） |
 | 明确 CC0 / 许可允许训练的素材 | 来源不明的网图、"XX 风格合集"、他人 LoRA 的训练集 |
 
-每个训练集在 `tools/train/datasets/<name>.yaml` 逐图登记：资产 ID 或来源 URL、许可证、用途说明；`tsgen` 训练前校验无未登记图片。
+每个训练集在 `tools/aigc/train/datasets/<name>.yaml` 逐图登记：资产 ID 或来源 URL、许可证、用途说明；`tsgen` 训练前校验无未登记图片。
 
 ### 9.5 生成内容标注
 
@@ -1780,7 +1811,8 @@ variants:
 | 识别锚 `identity_anchors` | 角色跨年龄/跨媒介必须保持的 3 条面部体态特征 + 配色 + 剪影特征（§7.2） |
 | 资产等级 S/A/B/C | 控制人工投入的分级（§3.1） |
 | 精简档 / 标准档 | 每书界素材数量与工时的两个完成线（§8.3），默认精简档 |
-| 资产 ID 前缀与变体后缀 `__` | `ref_ art_ por_ ava_ cg_ mdl_ anm_ spr_ tex_ bld_ prp_ ico_ vfx_ ui_ map_ vid_ bgm_ sfx_ vo_`（§1.4） |
+| 资产 ID 前缀与变体后缀 `__` | `ref_ art_ por_ ava_ cg_ mdl_ anm_ spr_ tex_ bld_ prp_ ico_ ill_ cin_ vfx_ ui_ map_ vid_ bgm_ sfx_ vo_`（§1.4）；版本引用 `<id>@<版本>` |
+| 逻辑素材键 `keys` | 登记库条目声明其服务的内容数据素材键（如 `skill/xianglong18`、`cutin/xianglong18`），映射规则见 §1.4 |
 | 方向索引 | 0=S（正对观者）按屏幕顺时针至 7=SE；战斗四邻朝向 {1,3,5,7}；镜像对 1↔7、2↔6、3↔5（§5.4.3） |
 | 动作集 | `loco8` / `loco5m` / `battle4` / `battle2m` / `static2`（§5.4.3） |
 | 兵器类动作 `<cls>_light/heavy/ult` | 招式通过数据字段 `anim` 映射到兵器类通用动作，不为每招单做骨骼动画（§5.4.4） |
@@ -1794,8 +1826,8 @@ variants:
 | 资产状态 | `todo / generating / draft / review / approved / stale / deprecated`（§6.5） |
 | stale 传播 | 上游 `inputs@版本` 变化使下游资产自动进入 `stale`（§6.5） |
 | 金样本集 | 30 条固定提示词+种子的风格回归集（§7.4） |
-| `tsgen` | 素材生成 CLI（Python 包 `tools/asset-gen`）（§6） |
-| 契约文件 | `packages/spec/iso-camera.json`、`sprite-spec.json`、`anim-events.schema.json`、`registry/schema/asset.schema.json`（§1.2） |
+| `tsgen` | 素材生成 CLI（Python 包，位于 tech/01 预留的 `tools/aigc`）（§6） |
+| 契约文件 | `packages/data/spec/iso-camera.json`、`sprite-spec.json`、`anim-events.schema.json`；`AssetEntry` schema → `content/assets/registry/asset.schema.json`（§1.2） |
 
 ---
 
@@ -1819,3 +1851,4 @@ variants:
 | 14 | Blender 5.2 LTS 上 EEVEE 引擎枚举名、材质覆盖等 API 回归 | 本文（Phase 0 验证） | 以 4.5 LTS 为基线 | 渲染脚本 |
 | 15 | 大地图是否参考真实高程数据及其数据源条款 | design/11 + 本文 | 仅取山势、待核实 | 地图制作方式 |
 | 16 | 立绘是否上 Live2D/Spine 级动画（书灵、主角） | design/14 + 本文（Phase 1 评估） | 默认轻量网格变形 | 工时 +3–5 h/角色 |
+| 17 | 契约文件与登记库的仓库路径（`packages/data/spec/`、`content/assets/registry/`）及 `AssetEntry` 纳入 `packages/data` | tech/01、tech/06 | 按 tech/01 目录约定提议 | 目录结构 |
