@@ -287,15 +287,15 @@ flowchart TB
   TOOLS["tools/*（内容构建、素材管线、数值模拟、字体子集、AIGC）"]
 
   INPUT --> BOOT
-  HUD -- "命令" --> BRIDGE
-  CAM -- "拾取结果→命令" --> BRIDGE
+  HUD -->|命令| BRIDGE
+  CAM -->|拾取结果→命令| BRIDGE
   BRIDGE --> CMD --> SYS --> STATE
-  SYS -- "领域事件" --> BRIDGE
-  BRIDGE -- "事件批" --> PQ
+  SYS -->|领域事件| BRIDGE
+  BRIDGE -->|事件批| PQ
   PQ --> SCN
   PQ --> UIST --> HUD
-  Q -. "只读" .-> HUD
-  Q -. "只读" .-> SCN
+  Q -.->|只读| HUD
+  Q -.->|只读| SCN
   CORE --> DATA
   CORE --> SHARED
   DATA --> SHARED

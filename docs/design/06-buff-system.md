@@ -208,13 +208,13 @@
 | 类别 | 可用符号 | 说明 |
 |---|---|---|
 | 品阶 | `g`、`G`、`tier`（可比较：`tier >= di`）、`g0` | `G = G_TABLE[g]`（基准 §4） |
-| 层与叠层 | `Lb`（=`snap.Lb`）、`stacks`、`maxStacks`、`turnsLeft`、`charges`、`pen` | |
+| 层与叠层 | `Lb`（=`snap.Lb`）、`Ls`（=来源武学 05 的层数系数 `L = 0.5 + 0.1 × layerEff`，快照）、`n`（来源武学有效层数）、`stacks`、`maxStacks`、`turnsLeft`、`charges`、`pen` | `Ls`/`n` 仅供 05 已规定数值的 Buff（破 X）使用 |
 | 参数 | `p.<name>` | 本定义 `params` 的值（先求值） |
 | 持有者 | `holder.<attr>`、`holder.hpPct`、`holder.lostHp`、`holder.isBoss`、`holder.isElite` | 实时值；属性 ID 同基准 §6 |
 | 施加者 | `src.<attr>`（快照）、`srcLive.<attr>`（实时，施加者已死亡时为 0） | 默认用快照 |
 | 事件上下文 | `ctx.damage`、`ctx.hpDamage`（实际扣血）、`ctx.shieldDamage`、`ctx.move.{id,cat,subType,grade,delivery,wIn,wOut,ultimate,range}`、`ctx.dist`、`ctx.direction`（`front`/`side`/`back`）、`ctx.isCrit`、`ctx.attacker`、`ctx.defender`、`ctx.buff`、`ctx.tile.{terrain,h}`、`ctx.steps` | 可用字段由钩子决定（§6.1 表"上下文"列） |
 | 世界 | `world.shichen`、`world.day`、`world.festival`、`world.weather`、`world.region`、`world.chapterTier` | 只在战斗外钩子与 `when` 中可用 |
-| 函数 | `min` `max` `clamp` `floor` `ceil` `round` `abs` `has(u, tagOrId)` `stacksOf(u, id)` `count(selector)` `dist(a, b)` `stanceCat(u)` `isBoss(u)` `sameSide(a, b)` `rho(delta)` | `rho` 即 §3.5 的 ρ(Δ) |
+| 函数 | `min` `max` `clamp` `floor` `ceil` `round` `abs` `has(u, tagOrId)` `stacksOf(u, id)` `count(selector)` `dist(a, b)` `mainCat(u)` `poMatch(cat, u, move?)` `isBoss(u)` `sameSide(a, b)` `rho(delta)` | `rho` 即 §3.5 的 ρ(Δ)；`mainCat` = 主武器类别（空手为 `unarmed`）；`poMatch` 见 §8.6.1 |
 
 约束：表达式无副作用、无循环；比较大阶用枚举序 `huang < xuan < di < tian`；百分数一律写小数（`0.08` = 8%）；百分点写"pp"数值（`3` = 3pp）并在字段名上以 `Pp` 结尾（如 `parryPp`）。
 
@@ -306,13 +306,17 @@
   priority: 150
   params:
     cat: sword                             # 基准 §7 兵器类别
-    dmgUp: "0.04 * G"                      # Z5 相性
-    parryUpPct: "0.04 * G"                 # 对 X 类招式时招架评级 +%
+    dmgUp: "(0.05 + 0.02 * g) * Ls / 1.5"  # Z5 相性；数值由 05 §9.4 poBonus 规定（天上 10 重 29%）
+    parryMult: "1 - 0.30 - 0.03 * (n - 1)" # 05 §9.4 poParry：匹配目标对持有者攻击的招架率乘数
+    parryUpPct: "0.04 * G"                 # 本文：玄阶起，招架来袭 X 类招式时招架评级 +%
     negateChance: "tier == tian ? 0.10 + 0.05 * (g - 10) : 0"
   mods:
-    - { op: modZone, zone: Z5, value: "p.dmgUp", when: "stanceCat(ctx.defender) == p.cat" }
-    - { op: modStat, stat: parry, kind: pct, value: "p.parryUpPct", when: "ctx.move.cat == p.cat" }
+    - { op: modZone, zone: Z5, value: "p.dmgUp", when: "poMatch(p.cat, ctx.defender)" }
+    - { op: modJudge, key: targetParryMult, value: "p.parryMult", when: "poMatch(p.cat, ctx.defender)" }   # 04 接口，§15
   tierTraits:
+    xuan:
+      mods:
+        - { op: modStat, stat: parry, kind: pct, value: "p.parryUpPct", when: "ctx.move.cat == p.cat" }
     di:
       triggers:
         - on: onBeforeCrit                  # X 类招式对持有者不能暴击
@@ -325,7 +329,7 @@
           ops: [ { op: triggerMove, move: basic, powerMul: 0.5, target: attacker, tag: counter } ]
     tian:
       mods:
-        - { op: modJudge, key: skipParry, value: true, when: "stanceCat(ctx.defender) == p.cat" }   # 主动攻击 X 类目标时无视其招架
+        - { op: modJudge, key: skipParry, value: true, when: "poMatch(p.cat, ctx.defender)" }   # 主动攻击 X 类目标时无视其招架
       triggers:
         - on: onBeforeHit                   # 命中判定后、招架判定前（§5.3 P3）
           when: "ctx.move.cat == p.cat && (!ctx.move.ultimate || ctx.move.grade <= g)"   # 高品阶绝招不可被破
@@ -333,12 +337,12 @@
           limitPerTurn: 1
           ops:
             - { op: negateAttack, as: parried }                 # 视为招架成功且伤害为 0
-            - { op: applyBuff, id: bf_bingpo, target: attacker, grade: g, duration: 2, params: { cat: sword } }
+            - { op: applyBuff, id: bf_pozhao, target: attacker, grade: g, duration: 1 }             # 破招（§8.6）
             - { op: applyBuff, id: bf_shiheng, target: attacker, grade: g, duration: 1 }
   ui: { icon: buff/pojian, frame: auto, sortGroup: passive }
   text:
     short: "克制剑法"
-    desc: "对用剑者伤害 +{p.dmgUp:%}（相性）；招架剑招时招架 +{p.parryUpPct:%}。{if tier>=di}剑招对你不能暴击；招架剑招后 50% 反击。{/if}{if tier==tian}受剑招攻击时 {p.negateChance:%} 破其招式（无伤并令其兵破、失衡）；攻击用剑者时无视其招架。{/if}"
+    desc: "对用剑者伤害 +{p.dmgUp:%}（相性），其招架你的概率 ×{p.parryMult}。{if tier>=xuan}招架剑招时招架 +{p.parryUpPct:%}。{/if}{if tier>=di}剑招对你不能暴击；招架剑招后 50% 反击。{/if}{if tier==tian}受剑招攻击时 {p.negateChance:%} 破其招式（无伤并令其破招、失衡）；攻击用剑者时无视其招架。{/if}"
     log: "{holder} 以【破剑】破去 {attacker} 的〈{move}〉"
   aiValue: "0.8 * G"
 ```
@@ -382,7 +386,18 @@
   aiValue: "1.2 * G"
 ```
 
-> 示例中的 `bf_bingpo`（兵破）、`bf_shiheng`（失衡）见 §8.6、§8.7；`stanceCat()` 的定义见 §8.6.1；`rho()` 见 §3.5。
+> 示例中的 `bf_pozhao`（破招）、`bf_shiheng`（失衡）见 §8.6、§8.7；`poMatch()` 的定义见 §8.6.1；`rho()` 见 §3.5。破 X 的 Z5 增伤与招架乘数由 05 §9.4 规定，本文只定义 Buff 结构与大阶质变。
+
+### 2.5 与 05 `BuffApply` / `CleanseSpec` 的对接
+
+| 05 字段 | 本文语义 |
+|---|---|
+| `BuffApply{id, chance, dur, stacks, max, grade, to, cond}` | = 原语 `applyBuff`：`dur` 覆写 `duration.value`（仍加 `tierBonus`，除非写 `durFixed: true`）；`stacks`/`max` 覆写本次叠层数与上限；`grade: inherit` 取来源 `effGrade`；`to` ∈ `self`/`target`/`allies`/`enemies` 映射到 §6.3 选择器 |
+| `BuffApply.value` / `PassiveDef.value` | **覆写 `params` 中同名参数**（如 `bf_hutizhenqi` 的 `shieldPctHpMax`）。05 已给出具体数值的，以 05 为准；本文目录中的公式是未覆写时的默认值 |
+| `CleanseSpec{side, tags, count, maxGrade}` | = 原语 `dispel`：`type: skill`、`strength = maxGrade`（`inherit` 取招式 `effGrade`）、`tags` 按 §7.4 匹配主/子标签、`count` 为处理效果数（`all` 不限）；品阶高于 `strength` 的效果按 §3.5.3 削品 |
+| `PassiveDef.trigger.on` | 见 §6.1 末"对应"段 |
+| `PassiveDef.kind` 为 `mechanic` 的免疫值（如 `immuneTags`、`immune: [bf_…]`） | = 原语 `immune`（按标签或按 Buff ID），品阶 = `maxGrade` |
+
 
 ---
 
@@ -549,7 +564,7 @@ resEff        = res × (1 − ρ(Δr))          （res < 0 时不削减：负抗
 
 #### 3.5.5 新获免疫对已有减益
 
-获得免疫实例（主动或被动）的瞬间，对持有者身上所有被其标签覆盖的减益执行一次"免疫净化"：`E.g ≤ I.g` 者移除；更高者 `pen = ρ(Δ)`。蛊与受制类（`untilCured`）例外：只**压制发作**（§9.3），不移除。
+获得免疫实例（主动或被动）的瞬间，对持有者身上所有被其标签覆盖的减益执行一次"免疫净化"：`E.g ≤ I.g` 者移除；更高者 `pen = ρ(Δ)`。例外：`dispel.types` 只含 `special` 的效果（蛊、受制、生死符、情花毒等）不会被免疫净化移除——对蛊与受制只**压制发作**（§9.3），对情花毒只按 ρ 削弱其发作伤害。
 
 ---
 
@@ -793,8 +808,8 @@ bossF    = 以 hpMax 比例为 raw 时：Boss 0.25 / 精英 0.50 / 普通 1.00�
 | 内伤 `bf_neishang` | 玄阶起 | 体力上限 −3%/层；每 5 层轻功值 −10 | 每 12 时辰 −1 层 | −3 层 | −2 层/次 | 品阶足够则全清 | 九花玉露丸、天香断续胶等 | 一阳指疗伤、九阴真经疗伤篇 |
 | 寒毒 `bf_handu` | 全部 | 夜间/雪原 −1%×G 气血；阳性内功主运时不掉血 | 无 | 无效 | 仅阳性内功：压制 12 时辰 | 压制 24 时辰 | 暖阳丹（压制） | 九阳神功（天上）根治 |
 | 化骨 `bf_huagu` | 全部 | 外功防御 −3%×G/层（持续） | 无 | −1 层 | 无效 | 地阶以上医者 −2 层 | 黑玉断续膏 | — |
-| 异种真气 `bf_yizhong` | 全部 | 不能闭关修炼内功；每日 10% 真气逆行（战斗外为"晕眩 2 时辰"） | 无 | 无 | 易筋经：−3 层/次 | 无效 | 无 | 易筋经、少林方丈任务 |
-| 走火入魔（经脉紊乱） | 全部 | 不能修炼；内力上限 −10% | 3 日后消退 | 缩短 1 日 | 无效 | 地阶以上医者清除 | 定神丹（原创扩展） | 易筋经 |
+| 异种真气 `bf_yizhongzhenqi` | 全部 | 不能闭关修炼内功；层数 ≥ 10 时每日按 05 §9.1.3 反噬判定（战斗外表现为昏沉 2 时辰） | 每日 −1 层（05） | 无 | 行动"运功化解"−3 层（05） | 无效 | 无 | 易筋经 ≥ 5 重（每回合 −2 层，05）；北冥作主运（05）；少林方丈任务 |
+| 走火入魔 1–3 级 `bf_neixiwenluan` / `bf_jingmainixing` / `bf_zouhuorumo` | 全部 | 按 05 §10.1：闭关收益 −50% / 不能闭关与冲关 / 不能使用内功招式 | 1 级 1 日；2 级 5 日后每日自愈判定；3 级不自愈（05） | 无 | 无效 | 品阶足够则降 1 级 | 定神丹（原创扩展，降 1 级） | 易筋经·洗髓（05：移除 ≤ 自身品阶的 1–2 级） |
 | 骨伤 `bf_gushang` | 全部 | 移动速度 −20%；不能使用 qg2 以上轻功门禁 | 7 日 | 缩短 1 日 | 无效 | 缩短 2 日 | 黑玉断续膏（立愈） | — |
 | 情花毒 / 蛊 / 受制 / 生死符 / 三尸脑神丹 | 全部 | 见 §8.5、§8.9、§9 | 无 | 无 | 无效（至多压制） | 至多压制 | 仅专属解药 | 见条目 |
 
@@ -1045,12 +1060,12 @@ P冲穴 = clamp(5%, 95%, 25% + 15% × (g主运内功 − g点穴) + 0.3% × (con
 | 武功 | 处理 | 规则 | 原著依据 |
 |---|---|---|---|
 | 九阳神功 `sk_jiuyang` | `cold`（含寒毒根治） | 主运时 S5 段自动 `circulate`，对 `cold` 标签难度 −1；寒毒只有九阳可根治 | 倚天·张无忌以九阳神功驱尽玄冥寒毒 |
-| 易筋经 `sk_yijinjing` | `injury.qi`（异种真气、走火入魔）、`mind` | 运功疗伤时额外处理 1 个上述效果；异种真气 −3 层/次 | 笑傲·方证欲以易筋经为令狐冲化解异种真气 |
+| 易筋经 `sk_yijinjing` | `injury.qi`（异种真气、走火入魔）、`poison`、`injury`、`mind` | 以 05 §13 为准：被动"伐毛洗髓"每回合驱散 1 个中毒/内伤；"化异种真气"每回合 −2 层（10 重 −5）；招式"洗髓"驱散多类减益并可移除走火 1–2 级 | 笑傲·方证欲以易筋经为令狐冲化解异种真气 |
 | 一阳指 `sk_yiyangzhi` | `injury`、`seal` | 解穴与疗伤；以一阳指疗伤时施术者获得虚弱（Z3 −5%×G）3 回合并损内力 30% | 射雕·一灯大师以一阳指救黄蓉，功力大损 |
 | 九阴真经·疗伤篇（`sk_jiuyin` 附属被动） | `injury` | 战斗外：两人同在 6 时辰，清除一方全部内伤 | 射雕·郭靖黄蓉牛家村密室疗伤七日七夜 |
 | 天山六阳掌 `sk_liuyangzhang` | `bind.shengsi` | 唯一可拔除生死符的武学（品阶 ≥ 符品阶） | 天龙·虚竹以天山六阳掌为群豪拔除生死符 |
 | 清心普善咒（杂学·音律，地中，原创扩展定级） | `mind` | 音律招式：半径 3 内友方每回合 `medicine` 等效驱散 1 个 `mind` 效果 | 笑傲·任盈盈抚琴为令狐冲调理内息 |
-| 北冥神功 `sk_beiming` | `injury.qi` | 北冥主运时异种真气不会产生（吸来的内力皆为己用） | 天龙·北冥神功与吸星大法之别（原创扩展数值化） |
+| 北冥神功 `sk_beiming` | `injury.qi` | 北冥作主运时，异种真气每层转化为 2% 当前内力并移除，不反噬（05 §9.1.3，原创设定） | 二者渊源原著未明言（待考） |
 
 ### 7.2 免疫、抵抗、驱散、无敌、净化的区别
 
@@ -1099,3 +1114,160 @@ P冲穴 = clamp(5%, 95%, 25% + 15% × (g主运内功 − g点穴) + 0.3% × (con
 | `weaken` ★ | 削弱 | `weaken.<stat>`、`weaken.mark`（锁定/易伤）、`weaken.sight`（失明） | —（`effRes`） | 运/医/药 |
 
 > ★ = 本文提案的新主标签（基准 §10 未列，见 §15 P1）。在基准采纳前，数据层以子标签形式挂在 `guard`/`mind` 等之下不可行，故先在本文使用并登记。
+
+---
+
+## 8. Buff 目录
+
+### 8.0 读表约定
+
+| 列 | 记法 |
+|---|---|
+| 类极 | `S+` 数值增益 / `S−` 数值减益 / `E+` 效果增益 / `E−` 效果减益 / `M+` 机制增益 / `M−` 机制减益 |
+| 品阶 | 允许的 `gradeRange`；"系统"= 定值 |
+| 数值 | **先写作用位置**（§4.7 记法），再写按品阶公式；`G` 见 §3.4；武功来源另乘 `Lb`（§3.2）；"玄+/地+/天"为大阶质变 |
+| 持续 | `3` = 3 回合；`3⁺` = 地/天阶 +1；`∞` 永久（被动/装备）；`战` 本场战斗；`×n` 次数；`瞬` 瞬时；`治` 直到解除；`光r` 光环半径 r；`世n` 世界时间 n 时辰；后缀 `·界` 跨战斗，`·界地`/`·界玄` 指该大阶起跨战斗 |
+| 叠加 | `R` 刷新 / `S5` 叠 5 层 / `I3` 独立至多 3 个 / `H` 取高；括号内为 `key` 非默认时的说明 |
+| 驱散 | `运` circulate / `穴` acupoint / `医` medicine / `药` antidote / `武` skill / `破` purge / `专` special / `休` rest / `✗` 不可驱散（书眠净化对所有非永久实例恒有效，不再列出） |
+| 来源 | 典型武功/物品/地形；原著出处与"（原创扩展）""（待考）"标注 |
+
+### 8.1 数值类 · 增益（41 条）
+
+| ID | 名称 | 类极 | 品阶 | 数值（作用位置 · 按品阶） | 持续 | 叠加 | 标签 | 驱散 | 典型来源 |
+|---|---|---|---|---|---|---|---|---|---|
+| `bf_waigong_sheng` | 外攻提升 | S+ | 1–12 | `attr:atkOut pct +6%×G` | 3⁺ | R | boost.atk | 破 | 大力丸（原创扩展）；少林罗汉拳"怒目"（招名原创扩展） |
+| `bf_neijin_sheng` | 内劲提升 | S+ | 1–12 | `attr:atkIn pct +6%×G` | 3⁺ | R | boost.atk | 破 | 紫霞神功运功（笑傲·华山，地上）；九转丹（原创扩展） |
+| `bf_quanli` | 全力 | S+ | 1–12 | `attr:atkOut pct +4%×G`、`attr:atkIn pct +4%×G` | 2⁺ | R | boost.atk | 破 | 运功蓄力类招式；战鼓（原创扩展） |
+| `bf_waifang_sheng` | 外防提升 | S+ | 1–12 | `attr:defOut pct +8%×G` | 3⁺ | R | boost.def | 破 | 铁布衫、金钟罩（少林横练，地下–地中） |
+| `bf_neifang_sheng` | 内防提升 | S+ | 1–12 | `attr:defIn pct +8%×G` | 3⁺ | R | boost.def | 破 | 峨眉"佛光护体"、武当"真武守一"（均原创扩展） |
+| `bf_jiangu` | 坚固 | S+ | 1–12 | `attr:defOut pct +5%×G`、`attr:defIn pct +5%×G` | 3⁺ | R | boost.def | 破 | 防御行动（09，品阶=主运内功）；龟甲丹（原创扩展） |
+| `bf_ningshen` | 凝神 | S+ | 1–12 | `attr:hit pct +4%×G` | 3⁺ | R | boost.hit | 破 | 弹指神通瞄势（射雕·桃花岛）；鹰目散（原创扩展） |
+| `bf_piaohu` | 飘忽 | S+ | 1–12 | `attr:eva pct +4%×G` | 3⁺ | R | boost.eva | 破 | 各派轻功招式（梯云纵、踏雪无痕等） |
+| `bf_yuanzhuan` | 圆转 | S+ | 1–12 | `attr:parry pct +4%×G`；玄+：`Z9 +1×G pp` | 3⁺ | R | boost.parry | 破 | 太极剑剑意（倚天·武当；招名原创扩展） |
+| `bf_dongxi` | 洞隙 | S+ | 1–12 | `attr:pierce pct +4%×G` | 3⁺ | R | boost.pierce | 破 | 独孤九剑总诀式（被动）；庖丁解牛掌（书剑·陈家洛） |
+| `bf_huixin` | 会心 | S+ | 1–12 | `attr:crit pct +4%×G` | 3⁺ | R | boost.crit | 破 | 悟性类心法；醉意（`bf_zuiyi`） |
+| `bf_shichen` | 势沉 | S+ | 1–12 | `attr:critDmg pp +10×G`（即 Z6 倍率） | 3⁺ | R | boost.critDmg | 破 | 降龙十八掌蓄劲（射雕）；胡家刀法（飞狐） |
+| `bf_renjin` | 韧劲 | S+ | 1–12 | `attr:tough pct +4%×G` | 3⁺ | R | boost.tough | 破 | 横练类被动 |
+| `bf_jisu` | 疾速 | S+ | 1–12 | `attr:spd pct +3%×G`；天：施加时额外 `ct +100` | 3⁺ | R | boost.spd | 破 | 辟邪剑法、葵花宝典（笑傲）；神行丹（原创扩展） |
+| `bf_jixing` | 疾行 | S+ | 1–12 | `attr:mov flat +1`（1–6）/ `+2`（7–12） | 3 | R | boost.mov | 破 | 轻功招式 |
+| `bf_tengyue` | 腾跃 | S+ | 1–12 | `attr:jump flat +1`（1–6）/ `+2`（7–12） | 3 | R | boost.mov | 破 | 轻功招式；八步赶蝉（原创扩展） |
+| `bf_shenqing` | 身轻如燕 | S+ | 1–12 | `attr:qinggong flat +10×G`（可临时达到更高轻功境界，跨越地形门禁，基准 §11） | 战斗 3；探索 世6 | R | boost.mov | 破 | 梯云纵（倚天·武当）；轻身丹（原创扩展） |
+| `bf_jingzhun` | 精准 | S+ | 1–12 | `attr:effHit pct +5%×G` | 3⁺ | R | boost.effHit | 破 | 毒术、点穴类心法 |
+| `bf_shouyi` | 守一 | S+ | 1–12 | `attr:effRes pct +5%×G` | 3⁺ | R | boost.effRes | 破 | 道家心法；定心丸（原创扩展） |
+| `bf_bidu` | 辟毒 | S+ | 1–12 | `attr:resPoison pp +5×G` | 3⁺；装备 ∞ | R | boost.res | 破 | 辟毒丹、雄黄（原创扩展） |
+| `bf_bigu` | 辟蛊 | S+ | 1–12 | `attr:resGu pp +5×G` | 同上 | R | boost.res | 破 | 五仙教秘药（原创扩展） |
+| `bf_huxue` | 护穴 | S+ | 1–12 | `attr:resSeal pp +5×G` | 同上 | R | boost.res | 破 | 闭穴功（原创扩展） |
+| `bf_guben` | 固本 | S+ | 1–12 | `attr:resInjury pp +5×G` | 同上 | R | boost.res | 破 | 内功护体被动 |
+| `bf_yuhan` | 御寒 | S+ | 1–12 | `attr:resCold pp +5×G` | 同上 | R | boost.res | 破 | 烈酒、狐裘（10） |
+| `bf_bihuo` | 避火 | S+ | 1–12 | `attr:resHeat pp +5×G` | 同上 | R | boost.res | 破 | 冰蚕衣（原创扩展） |
+| `bf_dingxin` | 定心 | S+ | 1–12 | `attr:resMind pp +5×G` | 同上 | R | boost.res | 破 | 清心普善咒（笑傲）；佛门心法 |
+| `bf_wenzhong` | 稳重 | S+ | 1–12 | `attr:resCC pp +5×G` | 同上 | R | boost.res | 破 | 千斤坠（通用武侠，原创扩展） |
+| `bf_miaoshou` | 妙手 | S+ | 1–12 | `attr:healPower pp +5×G` | 3⁺ | R | boost.heal | 破 | 医术杂学被动 |
+| `bf_huoluo` | 活络 | S+ | 1–12 | `attr:healRecv pp +8×G` | 3⁺ | R | boost.heal | 破 | 推宫过血（原创扩展）；天香断续胶（笑傲·恒山） |
+| `bf_ruiyi` | 锐意 | S+ | 1–12 | `Z3 +5%×G` | 3⁺ | R | boost.dmg | 破 | 鼓舞类（原创扩展）；天书之力（13） |
+| `bf_xieli` | 卸力 | S+ | 1–12 | `Z4 +5%×G` | 3⁺ | R | boost.dmgDown | 破 | 太极拳"卸劲"（倚天）；防御行动 |
+| `bf_toujin` | 透劲 | S+ | 1–12 | `Z2 防御穿透 +5%×G` | 3⁺ | R | boost.pierceDef | 破 | 隔山打牛（原创扩展） |
+| `bf_sici` | 伺机 | S+ | 1–12 | `attr:counter pp +2×G` | 3⁺ | R | boost.counter | 破 | 后发类武学被动 |
+| `bf_lianhuan` | 连环 | S+ | 1–12 | `attr:combo pp +2×G` | 3⁺ | R | boost.combo | 破 | 快剑快刀类（辟邪剑法等） |
+| `bf_renxue` | 认穴 | S+ | 1–12 | `attr:seal pp +3×G` | 3⁺ | R | boost.seal | 破 | 一阳指（天龙/射雕）、兰花拂穴手（射雕·桃花岛） |
+| `bf_juqi` | 聚气 | S+ | 1–12 | `attr:rageGain pp +10×G`；施加时 `rage +5` | 3 | R | boost.rage | 破 | 呐喊（原创扩展） |
+| `bf_jienei` | 节内 | S+ | 1–12 | `cost mp −4%×G` | 3⁺ | R | boost.cost | 破 | 内功圆融类被动 |
+| `bf_tiebi` | 铁臂 | S+ | 1–12 | 下一次**拳掌**招式 `Z3 +10%×G`（玄中 ≈ 15%） | ×1（至多 2 回合） | R | boost.dmg | 破 | 铁砂掌·铁臂（05 §2.8 示例，招架后触发） |
+| `bf_longxiang` | 龙象之力 | S+ | 7–11 | 每层 `attr:atkOut pct +1%×G`、`attr:atkIn pct +1%×G`；主运时每回合开始 +1 层；层数上限 = 龙象般若功有效层数 | 战 | S10 | boost.atk | ✗（被动） | 龙象般若功（神雕·金轮法王，天中）："每层一龙一象之力"（数值化为原创扩展） |
+| `bf_zhanyi` | 战意 | S+ | 1–12 | 每层 `Z3 +2%×G`；击杀或暴击时 +1 层 | 3 | S5（latest） | boost.dmg | 破 | 胡家刀法（飞狐/雪山，解释为原创扩展） |
+| `bf_anran` | 黯然 | S+ | 10–11 | `Z3 +8%×G × (1 − hpPct)`；本方羁绊队友倒地或未上阵时 ×1.5 | ∞（装配时） | H | boost.dmg | ✗ | 黯然销魂掌（神雕·杨过）：心有所感方显威力（原著设定意涵；数值原创扩展） |
+
+### 8.2 数值类 · 减益（22 条）
+
+| ID | 名称 | 类极 | 品阶 | 数值（作用位置 · 按品阶） | 持续 | 叠加 | 标签 | 驱散 | 典型来源 |
+|---|---|---|---|---|---|---|---|---|---|
+| `bf_waigong_jiang` | 脱力 | S− | 1–12 | `attr:atkOut pct −5%×G` | 2⁺ | R | weaken.atk | 运医药 | 太极拳借力卸劲；擒拿卸劲 |
+| `bf_neijin_jiang` | 气散 | S− | 1–12 | `attr:atkIn pct −5%×G` | 2⁺ | R | weaken.atk | 运医药 | 化功大法、独孤九剑破气式（附带） |
+| `bf_pojia` | 破甲 | S− | 1–12 | `attr:defOut pct −6%×G` | 2⁺ | R | weaken.def | 医药 | 铁砂掌·开碑手（05 §2.8）；重兵器 |
+| `bf_sangong` | 散功 | S− | 1–12 | `attr:defIn pct −6%×G` | 2⁺ | R | weaken.def | 运医药 | 破气式；化功大法 |
+| `bf_muxuan` | 目眩 | S− | 1–9 | `attr:hit pct −4%×G` | 2 | R | weaken.hit | 医药 | 强光、烟尘（原创扩展） |
+| `bf_chizhi` | 迟滞 | S− | 1–12 | `attr:eva pct −4%×G` | 2⁺ | R | weaken.eva | 运医 | 缠丝劲（原创扩展）；泥沼地形 |
+| `bf_polu` | 破绽 | S− | 1–12 | `attr:parry pct −4%×G` | 2⁺ | R | weaken.parry | 医 | 打狗棒法"挑字诀"（射雕）；料敌机先（原创扩展） |
+| `bf_qinei` | 气馁 | S− | 1–12 | `attr:crit pct −4%×G` | 2⁺ | R | weaken.crit | 医 | 震慑附带 |
+| `bf_luqie` | 露怯 | S− | 1–12 | `attr:tough pct −4%×G` | 2⁺ | R | weaken.tough | 医 | 被暴击后（原创扩展） |
+| `bf_panshan` | 蹒跚 | S− | 1–12 | `attr:mov flat −1`（1–6）/ `−2`（7–12），最低 1 | 2 | R | weaken.mov | 医药 | 扫堂腿；绊马索（10） |
+| `bf_dongyao` | 动摇 | S− | 1–12 | `attr:effRes pct −5%×G` | 2⁺ | R | weaken.effRes | 医 | 碧海潮生曲前奏（射雕·黄药师）；摄心术（原创扩展） |
+| `bf_kangxing_jiang` | 抗性削弱 | S− | 1–12 | `attr:res<tag> pp −5×G`（参数 `tag`） | 3⁺ | R（defParam） | weaken.res | 医药 | 五毒教"毒引"（原创扩展）；寒冰真气削 `resCold` |
+| `bf_nanyu` | 创口难愈 | S− | 1–12 | `attr:healRecv pp −8×G` | 3⁺ | R | weaken.heal | 医药 | 血刀（连城·血刀老祖）；剧毒附带 |
+| `bf_yishang` | 易伤 | S− | 1–12 | `Z4 −5%×G`（受到伤害增加） | 2⁺ | R | weaken.mark | 医 | 罩门暴露；合围（09） |
+| `bf_xuruo` | 虚弱 | S− | 1–12 | `Z3 −5%×G` | 2⁺ | R | weaken.dmg | 运医药 | 一阳指疗伤的代价；十香软筋散附带 |
+| `bf_xieqi` | 泄气 | S− | 1–12 | 施加时 `rage −10×G`（取整，最低 0）；`attr:rageGain pp −30` | 2 | R | weaken.rage | 医 | 狮子吼附带；辱骂（口才，原创扩展） |
+| `bf_haonei` | 耗内 | S− | 1–12 | `cost mp +5%×G` | 3⁺ | R | weaken.cost | 运医 | 化功侵体、内伤附带 |
+| `bf_shimang` | 失明 | S− | 1–6 | `attr:hit pct −8%×G`；`range −2`（最低 1）；不能选择 3 格外目标 | 1⁺ | R | weaken.sight | 医药；入水格解除 | 石灰粉（鹿鼎·韦小宝惯用下三滥手段，细节待考）；毒粉 |
+| `bf_poyin` | 破隐 | S− | 1–12 | 不能获得 `veil` 类增益；`attr:eva pct −2%×G` | 3 | R | weaken | 医 | 听风辨器附带；火把、洒灰（原创扩展） |
+| `bf_suoding` | 锁定 | S− | 1–12 | 受到**施加者阵营**的伤害 `Z4 −3%×G`；每个施加者一个实例 | 2⁺ | R（defSource） | weaken.mark | 医 | 天罡北斗阵合围（射雕·全真；合击细则 09） |
+| `bf_zhongchuang` | 重创 | S− | 系统 | `attr:hpMax mult ×0.80` | 战 | R | weaken | ✗ | 复活、锁血、诈死生效后的系统代价（§8.9） |
+| `bf_gushang` | 骨伤 | S− | 4–12 | `attr:mov flat −1`、`attr:atkOut pct −4%×G`、不能跃上 ≥ 2 级高差 | 5·界 | R | injury.bone | 医药休 | 大力金刚指（倚天·俞岱岩所受之伤，细节待考）；坠落（08） |
+
+### 8.3 效果类 · 恢复与吸取（12 条）
+
+| ID | 名称 | 类极 | 品阶 | 数值（作用位置 · 按品阶） | 持续 | 叠加 | 标签 | 驱散 | 典型来源 |
+|---|---|---|---|---|---|---|---|---|---|
+| `bf_huichun` | 回春 | E+ | 1–12 | S4：回复 `hpMax × 1%×G`（"每回合回血 X 点"：施加时即算出 X 并显示） | 3⁺；被动 ∞ | R | boost.regen | 破 | 医者"回春术"（原创扩展）；九阳神功常驻（天上：生生不息，数值原创扩展） |
+| `bf_xuming` | 续命 | E+ | 1–12 | S4：回复**已损失**气血的 `3%×G`（`healLostPct`；天上 10.5%） | 3⁺ | R | boost.regen | 破 | 九花玉露丸（射雕·桃花岛）；大还丹（少林，品阶由 10 定） |
+| `bf_huinei` | 回内 | E+ | 1–12 | S4：回复 `mpMax × 1.5%×G` | 3⁺ | R | boost.regen | 破 | 运功调息的延续；玉蜂浆（神雕·古墓，功效细节待考） |
+| `bf_yangshi` | 养势 | E+ | 1–12 | S4：`rage +3×G` | 3 | R | boost.rage | 破 | 静坐守势（原创扩展） |
+| `bf_tiaoxi` | 调息 | E+ | 1–12 | 行动"运功调息"后获得：下一回合 S4 回复 `mpMax × 3%×G`；期间 `attr:defOut/defIn pct +10%` | 1 | R | boost.regen | 破 | 行动"运功调息"（09），品阶 = 主运内功 |
+| `bf_qingxin` | 清心 | E+ | 1–12 | S5：对自身执行等效 `medicine`（品阶 = 本 Buff）驱散 1 个 `mind` 效果；S4 回复 `mpMax × 1%×G` | 3 | R | boost.regen | 破 | 清心普善咒（笑傲·任盈盈；音律，原创定级地中） |
+| `bf_shixue` | 嗜血 | E+ | 1–12 | settle：回复本次**气血伤害**的 `3%×G`（`drainHp`，合计 ≤ 25%） | 3⁺ | R | boost.drain | 破 | 血刀经（连城·血刀门）；嗜血魔功（原创扩展） |
+| `bf_beiming` | 北冥真气 | E+ | 7–12 | 吸内·**纳**（`drainMp mode: absorb`），规则见下表 | ∞（北冥主运/辅运） | H | boost.drain | ✗ | 北冥神功（天龙·逍遥派，天上） |
+| `bf_xixing` | 吸星 | E+ | 7–11 | 吸内·**夺**（`mode: seize`），规则见下表 | ∞（吸星主运/辅运） | H | boost.drain | ✗ | 吸星大法（笑傲·日月神教·任我行，天中） |
+| `bf_huagong` | 化功 | E+ | 4–9 | 吸内·**化**（`mode: dissolve`），规则见下表 | ∞（化功大法装配时） | H | boost.drain | ✗ | 化功大法（天龙·星宿派·丁春秋，地上） |
+| `bf_huagong_qin` | 化功侵体 | E− | 4–9 | 每层：S4 前内力再生 −20%、`attr:mpMax pct −2%×G`；满 5 层 → 封内力 1 回合并降为 3 层 | 3⁺ | S5 | poison.huagong | 运医药 | 被化功命中 |
+| `bf_yizhongzhenqi` | 异种真气 | E− | 7–11 | 每层 `attr:mpMax pct −1%`；获得规则（每吸取量达自身 mpMax 5% +1 层）、反噬判定（≥10/15/20 层 → 走火 1/2/3 级，概率 10/20/30%）、化解以 05 §9.1.3 为准；反噬发作时同时触发 `bf_nixing` | 治·界（战斗外每日 −1 层） | S20 | injury.qi | 武（易筋经、北冥）；行动"运功化解"（05） | 吸星大法反噬（笑傲·任我行、令狐冲为此所苦） |
+
+**三种吸内的区别**（原著：北冥神功吸人内力尽为己用；吸星大法所吸各家真气驳杂、难以融合而成大患；化功大法只化散对方内力、不为己用，星宿派以毒为引。三者渊源原著未明言，本作设定为"一纳、一夺、一化"）：
+
+| 项 | 北冥 `absorb`（纳） | 吸星 `seize`（夺） | 化功 `dissolve`（化） |
+|---|---|---|---|
+| 触发 | `onHit`：本方**拳脚**招式命中（接触）；`onHurt`：被敌方拳脚近战命中（对方打在你身上）——两者各每回合 1 次 | 招式"吸星"命中（05）；被动"反吸"：被拳脚或 `wIn ≥ 0.5` 的近身招式命中（05） | `onHit`：拳脚或兵器近战命中 |
+| 吸取量 | `min(目标当前内力, 目标 mpMax × 1.5%×G)` | 以 05 §9.1.3 为准：招式 = 伤害 × 30%（不超过目标当前内力）；反吸 = 攻方 3% mpMax | 焚毁目标内力 `mpMax × 2.5%×G`，**自己不得** |
+| 去向 | 加入自身内力；溢出上限部分的 50% 转为护体真气（受 `shieldMax`） | 加入自身内力；溢出部分转为**本战临时内力上限**（`attr:mpMax flat`，至多 +30%） | 目标获得"化功侵体"1 层（同品阶） |
+| 代价 | 无 | 异种真气（`bf_yizhongzhenqi`，数值见 05 §9.1.3）；北冥作主运时不产生 | 无；但化功大法本身标签含毒，**百毒不侵**者对其"化功侵体"按 §3.5.1 免疫 |
+| 被反制 | 目标有寒冰真气类 `cold` 护体 → 反应 `rx_hanbingxixing`（§4.6） | 同左 | 不受寒冰反制 |
+| 对 Boss | 吸取量 ×0.5 | 吸取量 ×0.5 | 焚毁量 ×0.5 |
+| 手感定位 | 越打越稳（内力与护体） | 爆发高、需管理反噬 | 专克内功高手，削弱敌人续航 |
+
+### 8.4 效果类 · 攻防反制（11 条）
+
+| ID | 名称 | 类极 | 品阶 | 数值（作用位置 · 按品阶） | 持续 | 叠加 | 标签 | 驱散 | 典型来源 |
+|---|---|---|---|---|---|---|---|---|---|
+| `bf_fanzhen` | 反震 | E+ | 1–12 | P7：受到近战（距离 1）伤害后，攻击者受 `实受伤害 × 8%×G`（上限 40%）内劲伤害（`reflect`：不可闪避/招架，计攻击者 Z4） | 3⁺；被动 ∞ | H | guard.reflect | 破 | 九阳神功（倚天：受击时真气自然反震）；金钟罩（外功近战） |
+| `bf_weici` | 猬刺 | E+ | 10 | P7：被**拳脚**类招式命中时，攻击者受 `攻击者 hpMax × 1%×G` 伤害 + 流血 1 层（同品阶） | ∞（装备） | R | guard.reflect | ✗ | 软猬甲（射雕/神雕·黄蓉，天下） |
+| `bf_houfa` | 后发制人 | E+ | 4–12 | `onAttacked`：受近战攻击后（命中、招架、闪避均可）以当前装配基础招式反击 ×0.6（`counter`，每回合 1 次） | 2⁺ | R | boost.counter | 破 | 太极拳"以静制动、后发先至"（倚天·武当；招名原创扩展） |
+| `bf_lianzhao` | 连招 | E+ | 1–12 | 下一次单体攻击命中后追加一段 ×0.5（地+ ×0.6；天阶追加两段） | ×1（天 ×2） | R | boost.combo | 破 | 快剑快刀；辟邪剑法 |
+| `bf_hutizhenqi` | 护体真气 | E+ | 1–12 | 施加时获得护体 `hpMax × 5%×G`（默认；05 以 `value: {shieldPctHpMax}` / `{shieldPctCasterHpMax}` 覆写，如九阳护体 15%），进入 `shield` 池（上限 `shieldMax`，03）；到期时剩余护体消散 | 3⁺ | I3 | guard.shield | 破 | 九阳护体、九阳真气（05）；易筋经"金刚不坏之基"（05）；运功护体行动（09） |
+| `bf_yiqiyushang` | 以气御伤 | E+ | 4–12 | P5（护体之后）：伤害的 25%（玄）/ 30%（地）/ 35%（天）改由内力代扣，1 内力抵 2 气血；内力不足部分照扣气血 | 3⁺；被动 ∞ | H | guard | 破 | 九阳神功、易筋经、混元功（地上）被动 |
+| `bf_zhuiji` | 追击 | E+ | 1–12 | `onAllyHit`：友方命中距持有者 ≤ 2 格的敌人后，持有者对其追加一次基础招式 ×0.4（`followup`，每回合 1 次） | 3⁺ | R | boost | 破 | 天罡北斗阵（射雕·全真；合击细则 09）；双剑合璧 |
+| `bf_jieji` | 截击 | E+ | 1–12 | `onEnemyEnterAdjacent`：敌方进入相邻格即终止其移动，并受一次基础招式 ×0.5（每回合 1 次） | 2⁺ | R | boost | 破 | 打狗棒法"封字诀"（射雕/神雕·丐帮）；长枪拒马（原创扩展） |
+| `bf_xianji` | 先机 | E+ | 1–12 | `onBattleStart`：`ct +100×G`（天上 +350） | ∞（被动） | H | boost.tempo | ✗ | 独孤九剑"料敌机先"；神行百变（数值原创扩展） |
+| `bf_zhenqiwaifang` | 真气外放 | E+ | 7–12 | 拳脚/兵器招式射程 +1（天阶 +2）；以延伸射程命中时该击 `Z3 −10%` | 3⁺；被动 ∞ | R | boost | 破 | 六脉神剑（天龙·段誉，常驻）；剑气（原创扩展） |
+| `bf_zhuanjin` | 转劲 | E+ | 4–12 | Z1 前：招式外劲部分的 `5%×G` 转为内劲（`convertDamage`），用于破高外防目标 | 3 | R | boost | 破 | 空明拳"以柔克刚"（射雕·周伯通；机制解释为原创扩展） |
+
+### 8.5 效果类 · 持续伤害与毒（14 条）
+
+> 所有 DOT 走 §5.3.2 管线（抗性、半额通用减伤、境界差、Boss 系数 0.25）；每回合 DOT 合计 ≤ 12% `hpMax`。
+
+| ID | 名称 | 类极 | 品阶 | 数值（每回合 S2 · 按品阶） | 持续 | 叠加 | 标签 | 驱散 | 典型来源 |
+|---|---|---|---|---|---|---|---|---|---|
+| `bf_zhongdu` | 中毒（黄"轻毒"/玄"中毒"/地"深毒"/天"奇毒"） | E− | 1–10 | 每层 `hpMax × 0.8%×G`（绕过护体）；玄+：受疗 −10pp | 3⁺·界地 | S5 | poison.common | 运医药武休 | 五毒掌；千蛛万毒手（倚天·殷离）；玉蜂针（神雕·古墓，附麻痹）；毒沼地形 |
+| `bf_judu` | 剧毒 | E− | 4–12 | `hpMax × 2%×G`（绕过护体）；受疗 −20pp（地+ −30pp）；天：另损内力 `mpMax × 1%×G` | 3⁺·界 | H | poison.severe | 运医药武 | 冰魄银针、赤练神掌（神雕·李莫愁）；淬毒兵刃（雪山·田归农淬毒于苗人凤之剑，待考） |
+| `bf_shedu` | 蛇毒 | E− | 2–9 | 每层 `hpMax × 1%×G`、`attr:spd pct −2%`；满 3 层时每回合开始 30% 失去行动 | 3⁺·界地 | S3 | poison.snake | 运医药 | 白驼山蛇杖（射雕·欧阳锋）；毒蛇（野外，驭兽） |
+| `bf_huagu` | 化骨 | E− | 7–10 | 每层 `hpMax × 0.5%×G`（绕过护体）；每层 `attr:defOut pct −3%×G` | 5⁺·界 | S5 | injury.bone | 医药武 | 化骨绵掌（鹿鼎·海大富，地上；中者骨骼渐软，细节待考） |
+| `bf_liuxue` | 流血 | E− | 1–12 | 每层 `hpMax × 1%×G`（护体先吸收）；E1：本回合移动 ≥ 1 格，再结算 50% | 3⁺ | S3 | bleed | 医药休 | 刀法、爪法；血刀（连城）；九阴白骨爪（射雕·梅超风，附内伤） |
+| `bf_zhuoshao` | 灼烧 | E− | 1–12 | `hpMax × 1.2%×G`（护体先吸收）；地+：受疗 −15pp；进入水格立即解除 | 2⁺ | H | heat.burn | 运医；入水 | 火焰刀（天龙·鸠摩智，天下）；五行旗烈火旗（倚天·明教，数值原创扩展）；火场地形 |
+| `bf_hanqi` | 寒气 | E− | 1–12 | 每层 `attr:spd pct −1.5%×G`；满 5 层 → 冰冻 1 回合并清空（`onMax`） | 3 | S5 | cold.chill | 运医；灼烧抵消 2 层 | 寒冰真气（笑傲·左冷禅，地上）；雪原、冰窟地形 |
+| `bf_handu` | 寒毒 | E− | 7–11 | `hpMax × 1%×G`（绕过护体）+ 内力 `mpMax × 1%×G`；受疗 −20pp；S6：15% "寒战"（本回合不能移动） | 治·界 | H | cold.poison, injury | 运（阳性/调和主运内功：压制 2 回合）；医（压制）；专：九阳神功根治 | 玄冥神掌（倚天·玄冥二老，天下）——张无忌幼年所中 |
+| `bf_neishang` | 内伤 | E− | 1–12 | 每层 `hpMax × 0.4%×G`（绕过护体）；每层内力消耗 +2%；满 10 层另 `attr:atkIn pct −10%` | 4⁺·界玄 | S10 | injury.internal | 运医药武休 | 铁掌（射雕·裘千仞）、摧心掌、大力金刚掌；铁砂掌·金刚掌印（05）；七伤拳自伤（倚天·"先伤己后伤人"） |
+| `bf_qinghuadu` | 情花毒 | E− | 8–9 | 平时无伤；**动情**时（本方羁绊 ≥ 3 级的队友受伤/倒地，或自身施放合璧/双人招式）立即受 `hpMax × 3%×G` 并定身 1 回合（每回合至多 1 次） | 治·界 | R | poison.qinghua | 专：绝情丹、断肠草；医：压制 3 日 | 情花（神雕·绝情谷：动情则痛，原著设定） |
+| `bf_beisu` | 悲酥清风 | E− | 5–8 | `attr:atkOut/atkIn pct −6%×G`、`attr:spd pct −4%×G`、不能施放绝招 | 3⁺·界（战斗外 世8） | R | poison.gas | 药（悲酥清风解药）、医 | 西夏一品堂（天龙·赫连铁树；中者泪下如雨、四肢酸软，细节待考） |
+| `bf_shixiang` | 十香软筋散 | E− | 7–9 | 内力无法调用（等同 `seal.mp`，并暂停内功 effect/mechanic 被动，§5.5）；`attr:atkIn pct −50%` | 3⁺·界（战斗外 3 日） | R | poison.gas, seal.mp | 药（专属解药）；医（难度 +1） | 倚天·赵敏以之擒六大派高手囚于万安寺 |
+| `bf_qixin` | 七心海棠 | E− | 8–10 | **隐藏**潜伏 2 回合（持有方不可见，队伍中 `med` 或 `poi` ≥ 60 者自动识破）；潜伏结束转为同品阶剧毒 + 失明 1 回合 | 2 → 转化 | R | poison.qixin | 识破后：医药 | 飞狐·程灵素（七心海棠，无色无味） |
+| `bf_ningxue` | 凝血 | E− | 10 | `hpMax × 1%×G`；每回合 `attr:spd pct −5%`（累计至 −40%）；受疗 −50pp | 5·界（战斗外 3 日未治 → 获得重创直至治愈） | R | injury.blood | 医（天下+）；专（原创扩展：天地会秘传解法） | 凝血神爪（鹿鼎·陈近南，天下；"凝血"效果细节待考） |
+
+> **情花毒是毒，不是蛊**：它是植物之毒（`poison` 标签），**免疫中毒**按品阶可阻挡新的感染，但已中者只能用专属解药根治（免疫净化对它无效，因其 `dispel.types` 仅 `special`，§3.5.5 的"免疫净化"只移除 `dispellable` 的效果）。与蛊的系统区别见 §9.1。

@@ -1529,3 +1529,588 @@ special:
 - 完成时走火判定 `0.15 × (1 − wil/120)`（2 级），武学照常生成。
 - **平衡检验**：独孤九剑（天上）＋玄铁剑法（天中）→ 地上（9）剑法，5 重起步；在低武书界它与降龙十八掌同受 −4 压制，但一个兵器携带位承载了两门武学的精华招式。降龙十八掌＋太祖长拳 → 黄中（2），系统自然惩罚"凑数"。
 
+---
+
+## 13. 完整示例武学
+
+> 9 门示例覆盖：天上掌法（降龙十八掌）、天上剑法（独孤九剑）、天上内功 ×2（易筋经、九阳神功）、黄上"人强则强"（太祖长拳）、玄阶（全真剑法）、地阶（龙爪手）、黄阶入门（罗汉拳），以及 §2.8 的铁砂掌（玄中）。
+> 招式效果设计为**原创扩展**（原著只给招名与意象）；招名出处有疑者标"待考"。所有 `power` 已按 §4.2 预算公式核算，核算过程写在行尾注释。
+
+### 13.1 降龙十八掌 `sk_xianglong18`（天上 · 拳脚·掌 · 丐帮）
+
+**招名核对**：十八掌名采用通行列表：亢龙有悔、飞龙在天、见龙在田、鸿渐于陆、潜龙勿用、利涉大川、突如其来、震惊百里、或跃在渊、双龙取水、鱼跃于渊、时乘六龙、密云不雨、损则有孚、龙战于野、履霜冰至、羝羊触藩、神龙摆尾。多数名目见于《射雕》洪七公授郭靖诸回，名目多取自《易经》卦爻辞；**逐字出处与传授顺序待考**（尤其"鱼跃于渊""双龙取水""突如其来"三式在修订版正文中的出现位置）。另：新修版《天龙》有"降龙廿八掌"删繁为十八掌之说，本作以修订版为基线，不采用。
+
+```yaml
+id: sk_xianglong18
+name: 降龙十八掌
+category: unarmed
+subType: fist
+grade: 12
+origin: canon
+sect: sect_gaibang
+lineage: 丐帮历代帮主（萧峰 … 洪七公 → 郭靖）
+sourceChapters: [ch01_tianlong, ch02_shediao, ch03_shendiao, ch04_yitian]
+canonRef: 天龙（萧峰）；射雕（洪七公授郭靖）；神雕；倚天（丐帮仅存残缺，待考）
+nature: yang
+wOut: 0.45
+wIn: 0.55
+reqs:
+  attrs: { str: 55, con: 50 }
+  aptitude: { apFist: 55 }
+  morality: { min: 10 }
+  hard: [morality]
+layerStats: { defOut: [2, 8], resCC: [2, 12] }          # 合计 20（天阶上限）
+moveSlots: 5                                             # 10 重"降龙大成"后 6
+layers:
+  - { n: 1,  unlock: [mv_xianglong18_kanglong, mv_xianglong18_jianlong, ps_xianglong18_gangmeng] }
+  - { n: 2,  unlock: [mv_xianglong18_qianlong, mv_xianglong18_hongjian] }
+  - { n: 3,  unlock: [mv_xianglong18_lishe, mv_xianglong18_turu, ps_xianglong18_longyin] }
+  - { n: 4,  unlock: [mv_xianglong18_zhenjing, mv_xianglong18_huoyue] }
+  - { n: 5,  unlock: [mv_xianglong18_shuanglong, mv_xianglong18_yuyue, ps_xianglong18_youyu] }
+  - { n: 6,  unlock: [mv_xianglong18_feilong, mv_xianglong18_shicheng] }
+  - { n: 7,  unlock: [mv_xianglong18_miyun, mv_xianglong18_sunze] }
+  - { n: 8,  unlock: [mv_xianglong18_longzhan, mv_xianglong18_lvshuang, ps_xianglong18_zhigang] }
+  - { n: 9,  unlock: [mv_xianglong18_diyang, mv_xianglong18_shenlong] }
+  - { n: 10, unlock: [mv_xianglong18_lianhuan, ps_xianglong18_dacheng] }
+moves:   # 天阶耗内基准 8%
+  - { id: mv_xianglong18_kanglong,  name: 亢龙有悔, unlock: 1, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.10, cd: 1, recovery: 1100, power: 1.20, parryable: true,
+      buffs: [ {id: bf_liuli, chance: 1.0, dur: 1, grade: inherit, to: self, cond: notKill} ],
+      note: "有悔：击杀则返还 50% 耗内；未击杀则得'留力'（下一降龙招式 +15%，Z3）" }      # 1+0.12+0.10+0.07=1.29 −0.10(自增益)≈1.20
+  - { id: mv_xianglong18_jianlong,  name: 见龙在田, unlock: 1, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_line, n: 2}, delivery: melee, mpCost: 0.08, cd: 0, recovery: 1000, power: 0.80, parryable: true,
+      displacement: {type: knock, n: 1} }                                                  # 0.85 −0.05
+  - { id: mv_xianglong18_qianlong,  name: 潜龙勿用, unlock: 2, kind: stance, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_self}, delivery: self, mpCost: 0.04, cd: 2, recovery: 700, power: 0,
+      buffs: [ {id: bf_xuli, dur: 1, grade: inherit, to: self}, {id: bf_qianlong, dur: 1, grade: inherit, to: self} ],
+      note: "蓄力：下一降龙招式 +40%（Z3）；至下次行动前受到伤害 −15%（Z4）" }
+  - { id: mv_xianglong18_hongjian,  name: 鸿渐于陆, unlock: 2, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_dash, n: 3}, delivery: melee, mpCost: 0.09, cd: 1, recovery: 1000, power: 1.05, parryable: true }  # 1+0.12+0.05 −0.10
+  - { id: mv_xianglong18_lishe,     name: 利涉大川, unlock: 3, kind: attack, target: enemy, range: {min: 1, max: 4}, aoe: {tpl: aoe_line, n: 4}, delivery: ranged, mpCost: 0.09, cd: 1, recovery: 1000, power: 0.75, parryable: true,
+      tags: [qigong], note: "掌风越过深水/浅水格不衰减" }                                   # 0.75×1.17×0.85
+  - { id: mv_xianglong18_turu,      name: 突如其来, unlock: 3, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.07, cd: 1, recovery: 750, power: 0.90, parryable: true,
+      note: "若为本场自身首次出手：暴击 +20" }                                               # 1+0.12−0.05−0.175
+  - { id: mv_xianglong18_zhenjing,  name: 震惊百里, unlock: 4, kind: attack, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_around}, delivery: melee, mpCost: 0.10, cd: 3, recovery: 1000, power: 0.85, parryable: true,
+      buffs: [ {id: bf_xuanyun, chance: 0.3, dur: 1, grade: inherit, to: target} ] }      # §4.2 例
+  - { id: mv_xianglong18_huoyue,    name: 或跃在渊, unlock: 4, kind: stance, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_self}, delivery: self, mpCost: 0.05, cd: 2, recovery: 900, power: 0,
+      displacement: {type: retreat, n: 2},
+      trigger: {on: meleeAttacked, chance: 1.0, perRound: 1, counterPower: 1.00, expires: nextOwnAction} }
+  - { id: mv_xianglong18_shuanglong, name: 双龙取水, unlock: 5, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.09, cd: 2, recovery: 1000, power: 1.30, hits: 2, parryable: true }  # 1+0.24+0.05
+  - { id: mv_xianglong18_yuyue,     name: 鱼跃于渊, unlock: 5, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_leap, splash: none}, delivery: melee, mpCost: 0.08, cd: 2, recovery: 1000, power: 1.00, parryable: true,
+      note: "跃起高差上限 jump+3；仰攻不受 Z7 低打高惩罚" }                               # 0.9×1.24 −0.10
+  - { id: mv_xianglong18_feilong,   name: 飞龙在天, unlock: 6, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_leap, splash: sq3}, delivery: melee, mpCost: 0.11, cd: 3, recovery: 1050, power: 1.25, parryable: true,
+      note: "主目标 1.25、溅射 ×0.5；自高处下击时 Z7 高低差加成 ×2" }                     # 0.9×1.51 −0.10 ≈1.26
+  - { id: mv_xianglong18_shicheng,  name: 时乘六龙, unlock: 6, kind: attack, target: tile, range: {min: 1, max: 2}, aoe: {tpl: aoe_multi, n: 6, r: 2}, delivery: ranged, mpCost: 0.12, cd: 3, recovery: 1050, power: 1.30, hits: 6, parryable: true }  # 0.85×1.56（远程已含于乱击 AF）
+  - { id: mv_xianglong18_miyun,     name: 密云不雨, unlock: 7, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.09, cd: 3, recovery: 1000, power: 0.80, parryable: true,
+      buffs: [ {id: bf_miyun, chance: 1.0, dur: 2, grade: inherit, to: target} ],
+      note: "封绝：2 回合不能施放绝招；目标气势 −30" }                                   # 1.41 −0.40 −0.20
+  - { id: mv_xianglong18_sunze,     name: 损则有孚, unlock: 7, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, hpCost: 0.08, cd: 2, recovery: 1000, power: 1.70, parryable: true,
+      note: "有孚：击杀目标时返还所损气血" }                                               # 1+0.48+0.24
+  - { id: mv_xianglong18_longzhan,  name: 龙战于野, unlock: 8, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_cone, n: 3}, delivery: melee, mpCost: 0.11, cd: 3, recovery: 1100, power: 0.90, parryable: true,
+      displacement: {type: knock, n: 1} }                                                  # 0.65×1.58 −0.05
+  - { id: mv_xianglong18_lvshuang,  name: 履霜冰至, unlock: 8, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 0, recovery: 1000, power: 0.90, parryable: true,
+      buffs: [ {id: bf_lvshuang, chance: 1.0, dur: 3, stacks: 1, grade: inherit, to: target} ],
+      note: "履霜：每层速度 −5%（上限 4 层）；满 4 层时'冰至'：清空层数，追加一段 0.8 倍伤害并定身 1 回合" }
+  - { id: mv_xianglong18_diyang,    name: 羝羊触藩, unlock: 9, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_dash, n: 3}, delivery: melee, mpCost: 0.09, cd: 2, recovery: 1000, power: 1.05, parryable: true,
+      buffs: [ {id: bf_dingshen, chance: 0.6, dur: 1, grade: inherit, to: target} ] }      # 1.29 −0.10 −0.15
+  - { id: mv_xianglong18_shenlong,  name: 神龙摆尾, unlock: 9, kind: attack, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_sweep, facing: back}, delivery: melee, mpCost: 0.08, cd: 1, recovery: 1000, power: 0.85, parryable: true,
+      trigger: {on: backAttacked, chance: 0.5, perRound: 1, counterPower: 1.20},
+      note: "主动：横扫身后三格；被动：遭背击时 50% 反身一掌" }                               # 0.75×1.12
+  - { id: mv_xianglong18_lianhuan,  name: 十八掌连环, unlock: 10, kind: attack, ultimate: true, rageCost: 100, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_cone, n: 3}, delivery: melee, mpCost: 0.10, cd: 0, recovery: 1200, power: 2.25, hits: 6, parryable: true,
+      displacement: {type: knock, n: 2}, anim: {cutin: cutin/xianglong18},
+      note: "（原创扩展命名）十八掌一气呵成：演出依次打出十八掌意象" }                     # 3.0×1.2×0.65 −0.10
+passives:
+  - { id: ps_xianglong18_gangmeng, name: 刚猛, unlock: 1, kind: stat, zone: Z2, value: [0.08, 0.20], scope: self, text: "降龙招式无视目标 {v} 外功防御" }
+  - { id: ps_xianglong18_longyin,  name: 龙吟, unlock: 3, kind: trigger, trigger: {on: skillUsed, cond: differentMoveThanLast}, buff: {id: bf_longyin, stacks: 1, max: 5, grade: inherit, dur: 2}, zone: Z3, value: 0.04, scope: self,
+      text: "连续使用不同的降龙掌：每层降龙招式伤害 +4%，至多 5 层" }
+  - { id: ps_xianglong18_youyu,    name: 有余不尽, unlock: 5, kind: effect, value: {mpCostMult: 0.9, killRefund: 0.3}, scope: self, text: "降龙招式耗内 −10%；击杀时返还 30% 耗内（亢龙有悔为 50%）" }
+  - { id: ps_xianglong18_zhigang,  name: 至刚至阳, unlock: 8, kind: stat, zone: Z0, value: 15, scope: self, cond: {mainInnerNature: yang}, text: "主运为阳时，降龙招式破招 +15" }
+  - { id: ps_xianglong18_dacheng,  name: 降龙大成, unlock: 10, kind: mechanic, value: {cdMinus: 1, moveSlotsPlus: 1}, scope: self, text: "所有降龙招式冷却 −1（最低 0）；招式栏 +1" }
+setTags: [set_gaibang_bangzhu]            # 建议 ID，套装本体归 design/07
+conflicts: []
+weaponReq: null
+learnSources:
+  - { type: master, chapter: ch01_tianlong,  ref: npc_xiaofeng,     maxLayer: 10, note: "与萧峰结义后的羁绊传授（原创扩展）" }
+  - { type: master, chapter: ch02_shediao,   ref: npc_hongqigong,   maxLayer: 10, note: "以美食换武功（原著洪七公授郭靖情节的致敬）" }
+  - { type: master, chapter: ch03_shendiao,  ref: npc_guojing,      maxLayer: 10, note: "襄阳线（原创扩展）" }
+  - { type: manual, chapter: ch04_yitian,    ref: it_miji_xianglong18_can, maxLayer: 6, note: "丐帮残本：前十二掌（倚天丐帮帮主只会部分掌法，掌数待考）" }
+special: { fusible: true }
+observable: false
+hiddenMoves: []
+description: >-
+  丐帮镇帮绝学，天下至刚至阳的掌法。十八掌名多出《易经》，发掌留有余力，"亢龙有悔"之"悔"字为
+  全套精要。招式效果为本作原创设计。
+```
+
+### 13.2 独孤九剑 `sk_dugu9`（天上 · 兵器·剑 · 独孤求败→风清扬）
+
+设计要点：九式中"破 X"八式由被动常驻（持有即得对应破 X），主动"破招"按钮自动解析为对应的破 X 式（`autoGroup`），手机上只占一个招式栏位。"有进无退"：本武学不提供招架，改为反击。
+
+```yaml
+id: sk_dugu9
+name: 独孤九剑
+category: weapon
+subType: sword
+grade: 12
+origin: canon
+sect: null
+lineage: 独孤求败 → 风清扬 → 令狐冲
+sourceChapters: [ch05_xiaoao]
+canonRef: 笑傲（风清扬于华山思过崖授令狐冲）；神雕剑冢仅存剑意（不可习得本武学）
+nature: neutral
+wOut: 0.80
+wIn: 0.20
+reqs:
+  attrs: { wis: 70 }
+  aptitude: { apSword: 50 }
+  morality: { min: 0 }
+  hard: [morality]
+layerStats: { counter: [5, 15], hit: [1, 5] }            # 合计 20
+moveSlots: 5
+weaponReq: { category: sword, altCategories: { unlockLayer: 9, categories: [staff, exotic], mult: 0.9 } }
+layers:
+  - { n: 1,  unlock: [mv_dugu9_zongjue, mv_dugu9_pojian, ps_dugu9_pojin, ps_dugu9_liaodi] }
+  - { n: 2,  unlock: [mv_dugu9_podao] }
+  - { n: 3,  unlock: [mv_dugu9_poqiang, ps_dugu9_youjin] }
+  - { n: 4,  unlock: [mv_dugu9_pobian] }
+  - { n: 5,  unlock: [mv_dugu9_posuo] }
+  - { n: 6,  unlock: [mv_dugu9_pozhang] }
+  - { n: 7,  unlock: [mv_dugu9_poanqi] }
+  - { n: 8,  unlock: [mv_dugu9_poqi] }
+  - { n: 9,  unlock: [ps_dugu9_yiwu] }
+  - { n: 10, unlock: [mv_dugu9_wuzhao, ps_dugu9_wuzhao] }
+moves:
+  - { id: mv_dugu9_zongjue, name: 总诀式, unlock: 1, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.07, cd: 0, recovery: 900, power: 0.90, parryable: true,
+      buffs: [ {id: bf_duguyi, chance: 1.0, stacks: 1, max: 9, dur: 99, grade: inherit, to: self} ],
+      note: "剑意：每层本武学暴击 +2，战斗内保留" }                                         # 1−0.05−0.07≈0.88
+  # 破招组：UI 只显示一个"破招"按钮，按目标自动解析；条件不满足的式不可选
+  - { id: mv_dugu9_pojian,  name: 破剑式, unlock: 1, autoGroup: dugu_po, condition: {targetWeapon: [sword]},          kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 1, recovery: 1000, power: 1.10, parryable: false,
+      buffs: [ {id: bf_pozhao, chance: 0.6, dur: 1, grade: inherit, to: target} ] }        # (1+0.12+0.15)×0.85 −0.06
+  - { id: mv_dugu9_podao,   name: 破刀式, unlock: 2, autoGroup: dugu_po, condition: {targetWeapon: [blade]},          kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 1, recovery: 1000, power: 1.10, parryable: false,
+      buffs: [ {id: bf_pozhao, chance: 0.6, dur: 1, grade: inherit, to: target} ] }
+  - { id: mv_dugu9_poqiang, name: 破枪式, unlock: 3, autoGroup: dugu_po, condition: {targetWeapon: [spear, staff]},   kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 1, recovery: 1000, power: 1.10, parryable: false,
+      buffs: [ {id: bf_pozhao, chance: 0.6, dur: 1, grade: inherit, to: target} ], note: "近身贴打长兵：本招射程内无视长兵的'拒敌'效果" }
+  - { id: mv_dugu9_pobian,  name: 破鞭式, unlock: 4, autoGroup: dugu_po, condition: {targetWeapon: [exotic]},         kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 1, recovery: 1000, power: 1.10, parryable: false,
+      buffs: [ {id: bf_pozhao, chance: 0.6, dur: 1, grade: inherit, to: target} ] }
+  - { id: mv_dugu9_posuo,   name: 破索式, unlock: 5, autoGroup: dugu_po, condition: {targetWeapon: [whip]},           kind: attack, target: enemy, range: {min: 1, max: 2}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 1, recovery: 1000, power: 1.05, parryable: false,
+      buffs: [ {id: bf_jiaoxie, chance: 0.3, dur: 1, grade: inherit, to: target} ] }       # 缴械替代破招
+  - { id: mv_dugu9_pozhang, name: 破掌式, unlock: 6, autoGroup: dugu_po, condition: {targetWeapon: [unarmed]},        kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 1, recovery: 1000, power: 1.10, parryable: false,
+      buffs: [ {id: bf_pozhao, chance: 0.6, dur: 1, grade: inherit, to: target} ] }
+  - { id: mv_dugu9_poanqi,  name: 破箭式, unlock: 7, autoGroup: dugu_po, condition: {targetHasSkill: [hidden]},       kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 1, recovery: 1000, power: 1.10, parryable: false,
+      trigger: {on: projectileIncoming, chance: [0.35, 0.60], perRound: 2, effect: deflect, reflectFromLayer: 9, reflectPct: 0.5},
+      note: "主动：对装配暗器者；被动：拨开来袭暗器（35%→60%），9 重起反射 50% 伤害" }
+  - { id: mv_dugu9_poqi,    name: 破气式, unlock: 8, autoGroup: dugu_po, condition: {any: [{targetMainInnerEffGradeGte: 7}, {targetShieldGt: 0}]}, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.10, cd: 2, recovery: 1000, power: 1.25, parryable: false,
+      note: "对护体真气伤害 ×2；无视目标 20% 内劲防御" }                                     # (1+0.24+0.10+0.15)×0.85 −0.02
+  - { id: mv_dugu9_wuzhao,  name: 无招胜有招, unlock: 10, kind: attack, ultimate: true, rageCost: 100, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.10, cd: 0, recovery: 1100, power: 3.00, parryable: false, counterable: false,
+      cleanse: {side: target, tags: [stance, guard], count: 1, maxGrade: inherit}, anim: {cutin: cutin/dugu9} }   # 3.0×1.2×0.85 −0.07
+passives:
+  - { id: ps_dugu9_pojin,  name: 破尽天下, unlock: 1, kind: effect, zone: Z5, scope: unit,
+      value: { grantsByLayer: {1: bf_pojian, 2: bf_podao, 3: bf_poqiang, 4: bf_pobian, 5: bf_posuo, 6: bf_pozhang, 7: bf_poanqi, 8: bf_poqi}, bonus: poBonus, parryMult: poParry },
+      cond: { mainHandUsable: true },
+      text: "持剑（9 重起含代剑之物）时获得已解锁的全部破 X（数值见 §9.4）" }
+  - { id: ps_dugu9_liaodi, name: 料敌机先, unlock: 1, kind: trigger, trigger: {on: meleeAttacked, cond: attackerMatchesPoX, chance: [0.15, 0.35], perRound: 1, timing: beforeHit},
+      text: "来袭者兵器为已破之类时，{v} 概率后发先至：在其命中前先行反击（总诀式 ×1.0）；反击致其死亡或受控则来招作废" }
+  - { id: ps_dugu9_youjin, name: 有进无退, unlock: 3, kind: mechanic, scope: self,
+      value: { parryFromSkill: 0, recoveryAfterCounter: -50 }, text: "本武学不提供招架；每次反击后本武学下一招收招 −50" }
+  - { id: ps_dugu9_yiwu,   name: 以物代剑, unlock: 9, kind: mechanic, scope: self, text: "可持棍杖或奇门兵器施展本武学（威力 ×0.9）" }
+  - { id: ps_dugu9_wuzhao, name: 无招, unlock: 10, kind: mechanic, scope: self,
+      value: { immuneToPoX: true, uncounterable: true }, text: "本武学招式不受敌方任何破 X 克制、不可被反击" }
+setTags: []
+conflicts: []
+learnSources:
+  - { type: master, chapter: ch05_xiaoao, ref: npc_fengqingyang, maxLayer: 10, note: "思过崖事件链（与令狐冲同行或以华山弟子身份），chapters/05 定" }
+special: { fusible: true }
+observable: false
+description: >-
+  独孤求败所创、风清扬所传的剑法，"以无招胜有招"。总诀为本，八式分破剑、刀、枪、鞭、索、掌、箭、气，
+  有进无退、后发先至。本作以"破 X"克制系统实现其精神。
+```
+
+### 13.3 易筋经 `sk_yijinjing`（天上 · 内功 · 少林）
+
+设计要点：以"根基"定位——少攻击、强续航、化解一切"内伤与异气"，是其他武学（尤其代价型）的保险；辅运亦能化解异种真气。运功招式借用民间传统"易筋经十二势"之名（**原创扩展借名**，非金庸原著内容）。
+
+```yaml
+id: sk_yijinjing
+name: 易筋经
+category: inner
+subType: inner
+grade: 12
+origin: canon
+sect: sect_shaolin
+lineage: 达摩祖师所传（少林）
+sourceChapters: [ch01_tianlong, ch02_shediao, ch04_yitian, ch05_xiaoao]
+canonRef: 天龙（游坦之误打误撞练成）；射雕/倚天（少林至宝，待考）；笑傲（方证欲传令狐冲）
+nature: harmony
+wOut: 0
+wIn: 1
+reqs:
+  attrs: { wil: 70 }
+  morality: { min: 20 }
+  sect: { id: sect_shaolin, rank: 4 }
+  hard: [sect, morality]
+inner:
+  contribution: { mpMaxPct: 56, hpMaxPct: 40, attrs: { con: 10, str: 4, wil: 8 }, mpRegen: 3.0, stats: { resInjury: 20 } }   # IP 155
+  bridge: true
+  seclusionCap: 10
+  auxUsableMoves: []
+moveSlots: 5
+layers:
+  - { n: 1,  unlock: [ps_yijinjing_yijin] }
+  - { n: 3,  unlock: [mv_yijinjing_xisui, ps_yijinjing_famao] }
+  - { n: 5,  unlock: [mv_yijinjing_weituo, ps_yijinjing_huayi] }
+  - { n: 6,  unlock: [mv_yijinjing_daozhuai] }
+  - { n: 7,  unlock: [ps_yijinjing_jingang] }
+  - { n: 8,  unlock: [ps_yijinjing_baibing] }
+  - { n: 10, unlock: [mv_yijinjing_huangu, ps_yijinjing_dacheng] }
+moves:
+  - { id: mv_yijinjing_xisui,   name: 洗髓, unlock: 3, kind: support, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_self}, delivery: self, mpCost: 0.10, cd: 4, recovery: 900, power: 0,
+      cleanse: {side: self, tags: [poison, injury, seal, cold, heat], count: all, maxGrade: inherit}, heal: {base: targetHpMax, pct: 0.10},
+      note: "亦可移除品阶 ≤ 自身的走火入魔 1–2 级" }
+  - { id: mv_yijinjing_weituo,  name: 韦陀献杵, unlock: 5, kind: stance, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_self}, delivery: self, mpCost: 0.08, cd: 3, recovery: 800, power: 0,
+      buffs: [ {id: bf_weituo, dur: 2, grade: inherit, to: self} ], note: "受到伤害 −25%（Z4），控制抗性 resCC +30" }
+  - { id: mv_yijinjing_daozhuai, name: 倒拽九牛尾, unlock: 6, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_pull, n: 2}, delivery: ranged, mpCost: 0.09, cd: 2, recovery: 1000, power: 1.10, parryable: true, nature: harmony }   # 0.95×1.29 −0.10（气劲拉拽视作近身接触判定）
+  - { id: mv_yijinjing_huangu,  name: 易筋换骨, unlock: 10, kind: support, ultimate: true, rageCost: 100, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_allies, r: 2}, delivery: self, mpCost: 0, cd: 0, recovery: 1000, power: 0,
+      cleanse: {side: allies, tags: all, count: 2, maxGrade: inherit, selfCount: all}, heal: {base: targetHpMax, pct: 0.35, selfOnly: true},
+      buffs: [ {id: bf_wudi, dur: 1, grade: inherit, to: self} ],
+      note: "（原创扩展命名）自身：驱散全部减益、回复 35% 气血与 50% 内力、无敌 1 回合；2 格内友方：各驱散 2 个减益" }
+passives:
+  - { id: ps_yijinjing_yijin,   name: 易筋, unlock: 1, kind: stat, value: {resInjury: [0.10, 0.30]}, scope: unit, auxMode: scaled }
+  - { id: ps_yijinjing_famao,   name: 伐毛洗髓, unlock: 3, kind: effect, trigger: {on: turnStart}, value: {dispel: 1, tags: [poison, injury], maxGradeOffset: [-2, 0]}, scope: unit, auxMode: none,
+      text: "每回合开始驱散 1 个品阶 ≤（本功有效品阶 −2，8 重起 −0）的中毒/内伤" }
+  - { id: ps_yijinjing_huayi,   name: 化异种真气, unlock: 5, kind: effect, trigger: {on: turnStart}, value: {removeStacks: {buff: bf_yizhongzhenqi, n: [2, 5]}}, scope: unit, auxMode: full }
+  - { id: ps_yijinjing_jingang, name: 金刚不坏之基, unlock: 7, kind: trigger, trigger: {on: hpBelow, cond: 0.30, perBattle: 1}, buff: {id: bf_hutizhenqi, value: {shieldPctHpMax: 0.15}, grade: inherit, dur: 3}, scope: unit, auxMode: none }
+  - { id: ps_yijinjing_baibing,  name: 百病不侵, unlock: 8, kind: mechanic, value: {immune: [bf_neixiwenluan, bf_jingmainixing], maxGrade: inherit, resMind: 0.20}, scope: unit, auxMode: none }
+  - { id: ps_yijinjing_dacheng, name: 易筋大成, unlock: 10, kind: mechanic, value: {sxpBonus: 0.15, auxRatioPlus: 0.10}, scope: unit, auxMode: none,
+      text: "所有武学修炼 +15%；辅运比例 +0.10（上限 0.60）；闭关可至 10 重" }
+setTags: [set_shaolin_jingang]
+conflicts:
+  - { with: sk_xixing, type: counter, note: 化解异种真气 }
+  - { with: sk_qishangquan, type: counter, note: 七伤拳不伤己（≥ 5 重） }
+learnSources:
+  - { type: master, chapter: ch01_tianlong, ref: npc_shaolin_fangzhang, maxLayer: 10, note: "少林职级 4（执事）以上，方丈许可" }
+  - { type: qiyu,   chapter: ch01_tianlong, ref: q_01_qiyu_yijin, maxLayer: 8, reqsOverride: { sect: null },
+      note: "无心插柳：不求武功者偶得梵文经书（致敬游坦之情节，原创扩展）；需 wil ≥ 70 且从未主动询问易筋经" }
+  - { type: master, chapter: ch05_xiaoao,   ref: npc_fangzheng, maxLayer: 10, note: "笑傲本土印证途径（§7.8）" }
+special: { fusible: true }
+observable: false
+description: >-
+  少林至高内功，易筋锻骨、洗髓伐毛，内力浑厚绵长，能化解各路异种真气与内伤。修习者须心无挂碍，
+  求之愈切，得之愈难。
+```
+
+### 13.4 九阳神功 `sk_jiuyang`（天上 · 内功 · 阳）
+
+设计要点："他强由他强，清风拂山岗；他横由他横，明月照大江"（原著九阳真经口诀）→ 对强敌减伤与反震；寒毒克星；"触类旁通"加速其他武学（原著张无忌凭九阳根基速成乾坤大挪移与太极，速度细节待考）。
+
+```yaml
+id: sk_jiuyang
+name: 九阳神功
+alias: [九阳真经]
+category: inner
+subType: inner
+grade: 12
+origin: canon
+sect: null
+lineage: 觉远 → 张三丰/郭襄/无色（各得部分）；张无忌得猿腹经书全本
+sourceChapters: [ch04_yitian]
+canonRef: 神雕末回觉远临终诵经（伏笔）；倚天张无忌于昆仑山谷白猿腹中得经
+nature: yang
+wOut: 0
+wIn: 1
+reqs:
+  attrs: { con: 50 }
+  aptitude: { apInner: 55 }
+  hard: []
+inner:
+  contribution: { mpMaxPct: 60, hpMaxPct: 36, attrs: { con: 8, str: 6, wil: 6 }, mpRegen: 3.6, stats: { resCold: 20 } }   # IP 154
+  seclusionCap: 8
+  auxUsableMoves: [mv_jiuyang_liaoshang]
+moveSlots: 5
+layers:
+  - { n: 2,  unlock: [ps_jiuyang_taqiang] }
+  - { n: 3,  unlock: [mv_jiuyang_huti] }
+  - { n: 4,  unlock: [ps_jiuyang_taheng] }
+  - { n: 5,  unlock: [mv_jiuyang_liaoshang, ps_jiuyang_hutizhenqi] }
+  - { n: 6,  unlock: [ps_jiuyang_hanbuqin] }
+  - { n: 7,  unlock: [ps_jiuyang_shengsheng] }
+  - { n: 8,  unlock: [ps_jiuyang_chulei] }
+  - { n: 10, unlock: [mv_jiuyang_puzhao, ps_jiuyang_dacheng] }
+moves:
+  - { id: mv_jiuyang_huti, name: 九阳护体, unlock: 3, kind: support, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_self}, delivery: self, mpCost: 0.12, cd: 3, recovery: 900, power: 0,
+      buffs: [ {id: bf_hutizhenqi, value: {shieldPctHpMax: 0.15}, dur: 3, grade: inherit, to: self} ], cleanse: {side: self, tags: [cold], count: 1, maxGrade: inherit} }
+  - { id: mv_jiuyang_liaoshang, name: 九阳疗伤, unlock: 5, kind: support, target: ally, range: {min: 0, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.14, cd: 3, recovery: 1000, power: 0,
+      heal: {base: targetHpMax, pct: 0.18}, cleanse: {side: target, tags: [injury, cold], count: 2, maxGrade: inherit} }     # 标准治疗 18%；可作辅运使用
+  - { id: mv_jiuyang_puzhao, name: 九阳普照, unlock: 10, kind: support, ultimate: true, rageCost: 100, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_allies, r: 3}, delivery: self, mpCost: 0.10, cd: 0, recovery: 1200, power: 1.50,
+      buffs: [ {id: bf_hutizhenqi, value: {shieldPctCasterHpMax: 0.20}, dur: 3, grade: inherit, to: allies} ], cleanse: {side: allies, tags: [cold, poison], count: 2, maxGrade: inherit},
+      note: "（原创扩展命名）友方护盾与驱散；同时对周身八格敌人造成 1.5 倍内劲伤害（aoe_around，wIn 1）" }
+passives:
+  - { id: ps_jiuyang_taqiang,     name: 他强由他强, unlock: 2, kind: stat, zone: Z4, value: [0.08, 0.20], cond: {attackerAtkSumGtSelf: true}, scope: unit, auxMode: scaled }
+  - { id: ps_jiuyang_taheng,      name: 他横由他横, unlock: 4, kind: effect, zone: settle, value: {reflectMeleePct: [0.05, 0.12], asInner: true}, scope: unit, auxMode: scaled }
+  - { id: ps_jiuyang_hutizhenqi,  name: 九阳真气, unlock: 5, kind: trigger, trigger: {on: battleStart}, buff: {id: bf_hutizhenqi, value: {shieldPctHpMax: [0.08, 0.20]}, grade: inherit, dur: 99}, scope: unit, auxMode: none }
+  - { id: ps_jiuyang_hanbuqin,    name: 寒毒不侵, unlock: 6, kind: mechanic, value: {immuneTags: [cold], maxGrade: inherit}, scope: unit, auxMode: full }
+  - { id: ps_jiuyang_shengsheng,  name: 生生不息, unlock: 7, kind: effect, value: {mpRegenMultWhenBelow: {mpPct: 0.20, mult: 2}}, scope: unit, auxMode: none }
+  - { id: ps_jiuyang_chulei,      name: 触类旁通, unlock: 8, kind: mechanic, value: {sxpBonus: {categories: [inner, unarmed, weapon], value: 0.25}, expCostMult: {skill: sk_qiankun, mult: 0.2}}, scope: unit, auxMode: none }
+  - { id: ps_jiuyang_dacheng,     name: 九阳大成, unlock: 10, kind: stat, zone: Z4, value: {innerDmgTaken: -0.10, poisonDurMult: 0.5}, scope: unit, auxMode: scaled }
+setTags: []
+conflicts:
+  - { with: sk_xuanming, type: counter, note: 6 重起免疫玄冥寒毒（品阶 ≤ 自身） }
+  - { with: sk_qishangquan, type: counter, note: 七伤拳不伤己（≥ 5 重） }
+learnSources:
+  - { type: qiyu, chapter: ch03_shendiao, ref: q_03_qiyu_jiuyangecho, maxLayer: 0, note: "闻经：图鉴'听闻'，并记 flag jiuyang_echo（倚天习得后 5 重前修炼 ×1.5，原创扩展）" }
+  - { type: qiyu, chapter: ch04_yitian,   ref: q_04_qiyu_yuanfu,     maxLayer: 10, note: "昆仑山谷白猿腹中经书（原著）" }
+special: { fusible: true }
+observable: false
+description: >-
+  《九阳真经》所载内功，至刚至阳，内力生生不息，百脉通畅，寒毒不侵。"他强由他强，清风拂山岗"——
+  对手越强，越难撼动其根基。
+```
+
+### 13.5 太祖长拳 `sk_taizuchangquan`（黄上 · 拳脚·拳 · 通行）——"招式平凡，人强则强"
+
+原著依据：宋太祖所传、天下通行的寻常拳法；聚贤庄一役萧峰以太祖长拳应对群雄，平平无奇的招式在他手中威力无俦，群雄叹服（天龙，交手对象与招名细节待考）。
+
+**核心规则"人强则强"**：本武学的品阶系数不取固定 G，而取
+
+```
+G_eff = max( G(effGrade), min( 2.40, 1.20 × (1 + 0.012 × max(0, 显示等级 − 10)) ) )
+```
+
+| 显示等级 | 10 | 20 | 30 | 35 | 44 | 50 | 60 | 70 |
+|---|---|---|---|---|---|---|---|---|
+| G_eff | 1.20（黄上） | 1.34 | 1.49 | 1.56（≈玄中） | 1.69 | 1.78（玄上+） | 1.92 | 2.06（≈地下） |
+
+- 上限 2.40（地上），永远到不了天阶；不受外来压制影响（公式不依赖品阶），但显示等级本身被书界等级上限截断——低武书界 Lv 44、8 重时 `G_eff × L = 1.69 × 1.30 = 2.20`，约为"天上外来武学压成地中、8 重"（2.86）的 77%，而携带与修炼成本低得多，是衰败书界里可靠的"保底拳法"。
+- 学习与修炼按黄上计价（便宜），10 重累计仅 6,120 sxp。
+
+```yaml
+id: sk_taizuchangquan
+name: 太祖长拳
+category: unarmed
+subType: fist
+grade: 3
+origin: canonExpanded
+sect: null
+lineage: 宋太祖所传，军中与民间通行
+sourceChapters: [ch01_tianlong, ch02_shediao, ch03_shendiao, ch04_yitian]
+canonRef: 天龙·聚贤庄（萧峰），招名待考
+nature: neutral
+wOut: 0.80
+wIn: 0.20
+reqs: { hard: [] }
+layerStats: { parry: [1, 3], hit: [1, 3] }                 # 合计 6（黄阶上限）
+moveSlots: 3
+layers:
+  - { n: 1,  unlock: [mv_taizuchangquan_chongzhen] }
+  - { n: 3,  unlock: [mv_taizuchangquan_qianli] }
+  - { n: 4,  unlock: [ps_taizuchangquan_tangtang] }
+  - { n: 6,  unlock: [mv_taizuchangquan_guanri] }
+  - { n: 10, unlock: [ps_taizuchangquan_fanpu] }
+moves:   # 黄阶耗内基准 5%
+  - { id: mv_taizuchangquan_chongzhen, name: 冲阵斩将, unlock: 1, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.05, cd: 1, recovery: 1000, power: 1.10, parryable: true,
+      note: "招名待考" }                                                                     # 1+0.12
+  - { id: mv_taizuchangquan_qianli,    name: 千里横行, unlock: 3, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_dash, n: 3, then: aoe_sweep}, delivery: melee, mpCost: 0.06, cd: 2, recovery: 1000, power: 0.85, parryable: true,
+      note: "突进后横扫前方三格；招名待考" }                                                 # 0.75×1.29 −0.10 ≈0.87
+  - { id: mv_taizuchangquan_guanri,    name: 长拳贯日, unlock: 6, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.05, cd: 2, recovery: 1100, power: 1.30, parryable: true,
+      note: "（原创扩展命名）" }                                                             # 1+0.24+0.07
+passives:
+  - { id: ps_taizuchangquan_tangtang, name: 堂堂正正, unlock: 4, kind: mechanic, value: {immuneToPoX: [bf_pozhang], parry: [5, 15]}, scope: self,
+      text: "招式平正无破绽：本武学不受'破掌'克制（品阶对抗照常）；装配时招架 +{v}" }
+  - { id: ps_taizuchangquan_fanpu,    name: 返璞归真, unlock: 10, kind: stat, value: {crit: 10, vsSameSkillLowerLevel: {zone: Z3, value: 0.15}}, scope: self,
+      text: "暴击 +10；对同样使用太祖长拳且显示等级低于自己的对手伤害 +15%" }
+special:
+  gOverride: { formula: taizu, cap: 2.40, base: 1.20, perLevel: 0.012, fromLevel: 10 }
+  fusible: true
+setTags: []
+conflicts: []
+weaponReq: null
+learnSources:
+  - { type: master, chapter: ch01_tianlong, ref: npc_generic_jiaotou, maxLayer: 10, note: "任一军中教头/镖师/武馆师父" }
+  - { type: manual, chapter: ch02_shediao,  ref: it_miji_taizuchangquan, maxLayer: 10 }
+  - { type: observe, maxLayer: 6 }
+observable: true
+description: >-
+  宋太祖传下的长拳，天下习武之人人人会打。招式寻常，却因此毫无破绽；功力越深之人使来越是威猛——
+  拳法不改，人已不同。
+```
+
+### 13.6 全真剑法 `sk_quanzhenjian`（玄中 · 兵器·剑 · 全真教）
+
+```yaml
+id: sk_quanzhenjian
+name: 全真剑法
+category: weapon
+subType: sword
+grade: 5
+origin: canonExpanded
+sect: sect_quanzhen
+lineage: 王重阳 → 全真七子 → 三代弟子
+sourceChapters: [ch02_shediao, ch03_shendiao]
+canonRef: 射雕、神雕（全真派基本剑法；玉女素心剑法的一半）
+nature: yang
+wOut: 0.60
+wIn: 0.40
+reqs:
+  aptitude: { apSword: 30 }
+  sect: { id: sect_quanzhen, rank: 1 }
+  hard: [sect]
+layerStats: { parry: [1, 6], hit: [1, 4] }                 # 合计 10（玄阶上限）
+moveSlots: 3
+weaponReq: { category: sword }
+layers:
+  - { n: 1,  unlock: [mv_quanzhenjian_dingyang] }
+  - { n: 2,  unlock: [ps_quanzhenjian_xuanmen] }
+  - { n: 4,  unlock: [mv_quanzhenjian_qixing] }
+  - { n: 5,  unlock: [ps_quanzhenjian_jiansui] }
+  - { n: 7,  unlock: [mv_quanzhenjian_sanqing] }
+  - { n: 8,  unlock: [ps_quanzhenjian_tongqi] }
+  - { n: 10, unlock: [mv_quanzhenjian_chongyang] }
+moves:   # 玄阶耗内基准 6%
+  - { id: mv_quanzhenjian_dingyang, name: 定阳针, unlock: 1, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.06, cd: 0, recovery: 1000, power: 1.00, parryable: true,
+      note: "招名见于原著全真剑法（待考出处回目）" }
+  - { id: mv_quanzhenjian_qixing,   name: 七星聚会, unlock: 4, kind: attack, target: tile, range: {min: 1, max: 1}, aoe: {tpl: aoe_multi, n: 7, r: 1}, delivery: melee, mpCost: 0.07, cd: 2, recovery: 1000, power: 1.10, hits: 7, parryable: true,
+      note: "（原创扩展命名）" }                                                             # 0.85×1.29
+  - { id: mv_quanzhenjian_sanqing,  name: 三清朝元, unlock: 7, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_line, n: 3}, delivery: melee, mpCost: 0.08, cd: 2, recovery: 1000, power: 0.95, parryable: true,
+      buffs: [ {id: bf_jianshi, dur: 2, grade: inherit, to: self} ], note: "（原创扩展命名）剑势：自身暴击 +10，2 回合" }   # 0.8×1.34 −0.10
+  - { id: mv_quanzhenjian_chongyang, name: 重阳遗意, unlock: 10, kind: attack, ultimate: true, rageCost: 100, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 0, recovery: 1200, power: 3.00, parryable: true,
+      note: "（原创扩展命名）" }
+passives:
+  - { id: ps_quanzhenjian_xuanmen, name: 玄门正宗, unlock: 2, kind: stat, zone: Z3, value: 0.08, cond: {mainInnerSect: sect_quanzhen}, scope: self }
+  - { id: ps_quanzhenjian_jiansui, name: 剑随身走, unlock: 5, kind: trigger, trigger: {on: turnStart, cond: movedTilesGte2ThisAction}, value: {hit: 10}, scope: self,
+      text: "本次行动已移动 ≥ 2 格时，本武学招式命中 +10" }
+  - { id: ps_quanzhenjian_tongqi,  name: 同气连枝, unlock: 8, kind: stat, value: {parryPerAdjacentAlly: 3, max: 9, allyCond: {hasSkillOfSect: sect_quanzhen}}, scope: unit }
+setTags: [set_quanzhen_beidou]            # 建议 ID（与天罡北斗阵、先天功等组套），design/07
+conflicts: []
+learnSources:
+  - { type: master, chapter: ch02_shediao,  ref: npc_quanzhen_sandai, maxLayer: 10 }
+  - { type: master, chapter: ch03_shendiao, ref: npc_quanzhen_sandai, maxLayer: 10 }
+  - { type: puzzle, chapter: ch03_shendiao, ref: q_03_side_gumushike, maxLayer: 10, reqsOverride: { sect: null },
+      note: "古墓石室所刻全真武功（原著杨过、小龙女据以修习，细节待考）" }
+  - { type: observe, maxLayer: 6 }
+special: { fusible: true }
+observable: true
+description: >-
+  全真派入门至中乘的剑法，端凝正大、攻守兼备。与古墓玉女剑法招招相克，二人分使则合为玉女素心剑法。
+  招式效果与大部分招名为本作原创扩展。
+```
+
+### 13.7 龙爪手 `sk_longzhaoshou`（地中 · 拳脚·擒拿 · 少林七十二绝技）
+
+原著依据：少林七十二绝技之一；倚天光明顶一役，空性神僧以龙爪手对张无忌，张无忌观而学之、以同一路龙爪手胜之。招名"捕风、捉影、抚琴、鼓瑟、批亢、捣虚、抱残、守缺"诸式见于该回（**逐字与完整路数待考**；原著称龙爪手共三十六招，亦待考）。本武学即用户所举"少林金刚套装"中的"金刚龙爪手"。
+
+```yaml
+id: sk_longzhaoshou
+name: 龙爪手
+alias: [金刚龙爪手, 少林龙爪手]
+category: unarmed
+subType: grapple
+grade: 8
+origin: canon
+sect: sect_shaolin
+lineage: 少林七十二绝技
+sourceChapters: [ch01_tianlong, ch04_yitian, ch05_xiaoao]
+canonRef: 倚天·光明顶（空性 vs 张无忌），招名待考
+nature: yang
+wOut: 0.70
+wIn: 0.30
+reqs:
+  attrs: { str: 45 }
+  aptitude: { apGrapple: 45 }
+  prereq: [ { skill: sk_shaolinqinna, layer: 5 } ]       # 少林擒拿手（catalog 定义）
+  sect: { id: sect_shaolin, rank: 3 }
+  hard: [sect, prereq]
+layerStats: { seal: [3, 10], crit: [1, 5] }               # 合计 15（地阶上限）
+moveSlots: 4
+layers:
+  - { n: 1,  unlock: [mv_longzhaoshou_bufeng, ps_longzhaoshou_naxue] }
+  - { n: 2,  unlock: [mv_longzhaoshou_zhuoying] }
+  - { n: 3,  unlock: [mv_longzhaoshou_fuqin] }
+  - { n: 4,  unlock: [mv_longzhaoshou_guse] }
+  - { n: 5,  unlock: [mv_longzhaoshou_pikang, ps_longzhaoshou_fenjin] }
+  - { n: 6,  unlock: [mv_longzhaoshou_daoxu] }
+  - { n: 7,  unlock: [mv_longzhaoshou_sanshiliu] }
+  - { n: 8,  unlock: [mv_longzhaoshou_baocan, ps_longzhaoshou_zhili] }
+  - { n: 9,  unlock: [mv_longzhaoshou_shouque] }
+  - { n: 10, unlock: [ps_longzhaoshou_dacheng] }
+moves:   # 地阶耗内基准 7%；原著定数 8 式，超出"地阶 4–7 招"规范，按原著例外
+  - { id: mv_longzhaoshou_bufeng,  name: 捕风式, unlock: 1, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.07, cd: 0, recovery: 1000, power: 0.95, parryable: true,
+      buffs: [ {id: bf_fengxue, chance: 0.2, dur: 1, grade: inherit, to: target} ] }       # 1 −0.04
+  - { id: mv_longzhaoshou_zhuoying, name: 捉影式, unlock: 2, kind: attack, target: enemy, range: {min: 1, max: 2}, aoe: {tpl: aoe_pull, n: 1}, delivery: melee, mpCost: 0.07, cd: 1, recovery: 1000, power: 0.95, parryable: true }   # 0.95×1.12 −0.10
+  - { id: mv_longzhaoshou_fuqin,   name: 抚琴式, unlock: 3, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 1, recovery: 1000, power: 1.10, hits: 2, parryable: true,
+      buffs: [ {id: bf_jiaoxie, chance: 0.25, dur: 1, grade: inherit, to: target, cond: targetArmed} ] }   # 1.17 −0.06
+  - { id: mv_longzhaoshou_guse,    name: 鼓瑟式, unlock: 4, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_sweep}, delivery: melee, mpCost: 0.08, cd: 1, recovery: 1000, power: 0.85, parryable: true,
+      buffs: [ {id: bf_fengxue, chance: 0.15, dur: 1, grade: inherit, to: target} ] }      # 0.75×1.17 −0.03
+  - { id: mv_longzhaoshou_pikang,  name: 批亢式, unlock: 5, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 2, recovery: 1000, power: 1.20, parryable: true,
+      note: "攻其要害：本招暴击 +15" }                                                       # 1.29 −0.10
+  - { id: mv_longzhaoshou_daoxu,   name: 捣虚式, unlock: 6, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 2, recovery: 1000, power: 1.15, parryable: true,
+      cleanse: {side: target, tags: [stance], count: 1, maxGrade: inherit}, note: "无视目标 20% 外功防御（Z2）" }   # 1.29 −0.15
+  - { id: mv_longzhaoshou_sanshiliu, name: 龙爪三十六路, unlock: 7, kind: attack, ultimate: true, rageCost: 100, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.09, cd: 0, recovery: 1200, power: 2.70, hits: 6, parryable: true,
+      buffs: [ {id: bf_fengxue, chance: 1.0, dur: 2, grade: inherit, to: target}, {id: bf_jiaoxie, chance: 0.5, dur: 1, grade: inherit, to: target, cond: targetArmed} ],
+      note: "（原创扩展命名）三十六爪连环" }                                                 # 3.0 −0.20 −0.10
+  - { id: mv_longzhaoshou_baocan,  name: 抱残式, unlock: 8, kind: stance, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_self}, delivery: self, mpCost: 0.06, cd: 2, recovery: 850, power: 0,
+      trigger: {on: meleeAttacked, chance: 1.0, perRound: 1, counterPower: 1.00, expires: nextOwnAction, applyBuff: {id: bf_dingshen, dur: 1}} }
+  - { id: mv_longzhaoshou_shouque, name: 守缺式, unlock: 9, kind: stance, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_self}, delivery: self, mpCost: 0.07, cd: 3, recovery: 800, power: 0,
+      buffs: [ {id: bf_shouque, dur: 2, grade: inherit, to: self} ], note: "招架 +20、受到伤害 −15%（Z4）、免疫品阶 ≤ 自身的封穴，2 回合" }
+passives:
+  - { id: ps_longzhaoshou_naxue,  name: 拿穴, unlock: 1, kind: trigger, trigger: {on: onHit}, buff: {id: bf_fengxue, chance: [0.10, 0.25], dur: 1, grade: inherit}, scope: self }
+  - { id: ps_longzhaoshou_fenjin, name: 分筋错骨, unlock: 5, kind: stat, zone: Z3, value: 0.12, cond: {targetHasTag: seal}, scope: self }
+  - { id: ps_longzhaoshou_zhili,  name: 金刚指力, unlock: 8, kind: stat, zone: Z0, value: {pierce: 10}, scope: self }
+  - { id: ps_longzhaoshou_dacheng, name: 龙爪大成, unlock: 10, kind: mechanic, value: {unparryableVsTag: seal}, scope: self, text: "对被封穴的目标，龙爪招式不可招架" }
+setTags: [set_shaolin_jingang]            # 用户示例：金刚龙爪手＋易筋经＋铁砂掌＋铜人横练（套装本体归 design/07）
+conflicts: []
+weaponReq: null
+learnSources:
+  - { type: master,  chapter: ch01_tianlong, ref: npc_shaolin_banruotang, maxLayer: 10, note: "少林般若堂（原创扩展）" }
+  - { type: observe, chapter: ch04_yitian,   ref: npc_kongxing, maxLayer: 6, reqsOverride: { sect: null, prereq: [] },
+      note: "光明顶观空性出手：该战观摩领悟 ×10（剧情事件）" }
+  - { type: manual,  chapter: ch05_xiaoao,   ref: it_miji_longzhaoshou, maxLayer: 10, note: "少林藏经阁" }
+special: { fusible: true }
+observable: true
+description: >-
+  少林七十二绝技之一，爪势如龙，专拿关节穴道。一招一式皆有法度，攻守相连，"抱残守缺"两式守中带擒。
+```
+
+### 13.8 罗汉拳 `sk_luohanquan`（黄下 · 拳脚·拳 · 少林入门）
+
+```yaml
+id: sk_luohanquan
+name: 罗汉拳
+category: unarmed
+subType: fist
+grade: 1
+origin: canonExpanded
+sect: sect_shaolin
+lineage: 少林入门拳法（俗家亦传）
+sourceChapters: [ch01_tianlong, ch03_shendiao, ch04_yitian, ch05_xiaoao, ch08_luding]
+canonRef: 少林入门拳法之名多见于原著（出处待考）；招名为原创扩展
+nature: yang
+wOut: 0.90
+wIn: 0.10
+reqs: { hard: [] }
+layerStats: { parry: [1, 3], hit: [1, 3] }                 # 合计 6
+moveSlots: 3
+layers:
+  - { n: 1,  unlock: [mv_luohanquan_baifo] }
+  - { n: 4,  unlock: [mv_luohanquan_zhuangzhong] }
+  - { n: 5,  unlock: [ps_luohanquan_quanjia] }
+  - { n: 7,  unlock: [mv_luohanquan_tuishan] }
+  - { n: 10, unlock: [ps_luohanquan_yuanman] }
+moves:   # 黄阶耗内基准 5%
+  - { id: mv_luohanquan_baifo,      name: 罗汉拜佛, unlock: 1, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.04, cd: 0, recovery: 950, power: 0.90, parryable: true }   # 1 −0.05 −0.035
+  - { id: mv_luohanquan_zhuangzhong, name: 罗汉撞钟, unlock: 4, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.05, cd: 1, recovery: 1000, power: 1.05, parryable: true,
+      displacement: {type: knock, n: 1} }                                                    # 1.12 −0.05
+  - { id: mv_luohanquan_tuishan,    name: 罗汉推山, unlock: 7, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_line, n: 2}, delivery: melee, mpCost: 0.05, cd: 1, recovery: 1000, power: 0.95, parryable: true }  # 0.85×1.12
+passives:
+  - { id: ps_luohanquan_quanjia, name: 拳架扎实, unlock: 5, kind: stat, value: {resCC: 10}, scope: unit }
+  - { id: ps_luohanquan_yuanman, name: 入门圆满, unlock: 10, kind: mechanic, value: {oneTimeAptitude: {apFist: 1}, softReqRelief: {sect: sect_shaolin, category: unarmed, aptitude: -10}},
+      text: "首次练满时拳掌资质永久 +1（全游戏一次）；此后学习少林拳脚武学的资质软门槛 −10" }
+setTags: [set_shaolin_luohan]             # 建议 ID（少林入门套），design/07
+conflicts: []
+weaponReq: null
+learnSources:
+  - { type: master, chapter: ch01_tianlong, ref: npc_shaolin_wuseng, maxLayer: 10 }
+  - { type: manual, chapter: ch08_luding,   ref: it_miji_luohanquan, maxLayer: 10 }
+  - { type: pages,  ref: it_canye_luohanquan, pagesTotal: 3, maxLayer: 10 }
+  - { type: observe, maxLayer: 6 }
+special: { fusible: true }
+observable: true
+description: >-
+  少林寺入门第一路拳法，架子端正、发力朴实。练到圆满，打下的是一辈子的根基。招名为本作原创扩展。
+```
+
