@@ -203,6 +203,20 @@ MOCK_FAIL_ONCE=B1 MOCK_TRUNCATE=B2 MOCK_STRAY=C1a python tools/agents/run.py run
 | `mock_agent.py` | 测试用模拟代理 |
 | `.agents/`（仓库根，已忽略） | 工作区、日志、运行状态 |
 
-## 11. 为什么不在云端会话里直接跑
+## 11. 监督代理模式（`step.py`，本机实际采用）
+
+2026-09-26 起改为：不由 `run.py run` 全自动调度，而是由本机 Claude Code 派出的**监督代理**逐任务驱动，每个监督代理只负责一个任务（及其审校 `<ID>.R`），用 `step.py` 分步执行，并自行判断日志、决定续作或换模型：
+
+```bash
+python tools/agents/step.py start  B1            # 建工作区、渲染提示词、后台启动 traex exec（GPT-6-Astra，effort=max）
+python tools/agents/step.py wait   B1            # 等待结束（≤25 分钟一次，可反复）；打印退出码、日志末尾、最后消息
+python tools/agents/step.py finish B1            # 与 run.py 相同的校验；通过则在工作区提交（Agent-Task 尾注）
+python tools/agents/step.py merge  B1            # cherry-pick 到当前分支（文件锁串行化）并清理工作区
+python tools/agents/step.py status B1 / kill B1  # 查看状态 / 终止运行
+```
+
+实测参数（traecli 0.205.1 internal）：模型名以 `traex models` 为准（`GPT-6-Astra`、`GPT-5.6-Sol` …）；推理强度 `-c model_reasoning_effort=` 取 `none/minimal/low/medium/high/xhigh/max/ultra`；`--search` 开启联网搜索（模型自带 `web_search` 工具）。任务图、提示词、校验规则、`Agent-Task` 尾注与 `run.py` 完全一致，`run.py list` 仍可查看进度，作者闸门仍用 `run.py approve`。
+
+## 12. 为什么不在云端会话里直接跑
 
 这个仓库目前所在的 Claude 云端会话里没有安装 TraeX，网络策略也拦截了 Trae 的域名（`trae.ai`、`api.trae.ai` 等）和 `api.openai.com`，而且 TraeX 需要你的账号登录。所以要在你本机运行。

@@ -6,8 +6,8 @@
       "traex",
       "traecli"
     ],
-    "model": "gpt-6-max",
-    "effort": "",
+    "model": "GPT-6-Astra",
+    "effort": "max",
     "jobs": 3,
     "timeout_min": 180,
     "retries": 1,
@@ -25,9 +25,12 @@
       "-c",
       "model_reasoning_effort={effort}"
     ],
-    "web_args": [],
-    "prompt_via": "arg",
-    "shrink_guard": 0.85
+    "web_args": [
+      "--search"
+    ],
+    "prompt_via": "stdin",
+    "shrink_guard": 0.85,
+    "comment_model": "模型名以 `traex models` 输出为准（GPT-6-Astra / GPT-5.6-Sol 等）；effort 取 none/minimal/low/medium/high/xhigh/max/ultra；--search 开启联网搜索。"
   },
   "tasks": [
     {
