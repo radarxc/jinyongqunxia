@@ -7,7 +7,7 @@ run.py 是全自动调度器；本脚本把同一套机制拆成可单独调用�
 提示词渲染、校验与提交逻辑；不做依赖调度，也不阻塞等待代理结束。
 
     python tools/agents/step.py start  <ID> [--model M] [--effort E] [--search] [--note FILE]
-        建工作区（.agents/wt/<ID>，不存在时从当前分支 HEAD 建）、渲染提示词、后台启动
+        建工作区（.agents/wt/<ID>，不存在时从当前分支 HEAD 建）、渲染提示词、探测模型应答（无响应自动换备用模型）、后台启动
         `traex exec`，立即返回。工作区已存在（续作）时自动附上上次失败原因。
     python tools/agents/step.py wait   <ID> [--max-min 25]
         等待本次运行结束：结束打印 FINISHED 与退出码、日志末尾、最后消息；超过 --max-min 打印
@@ -113,6 +113,21 @@ def build_argv(binary: str, model: str, effort: str, wt: Path, last: Path, searc
 
 
 WRAPPER = '"$@" < "$TS_PROMPT" >> "$TS_LOG" 2>&1; rc=$?; echo "$rc" > "$TS_EXIT"; exit $rc'
+FALLBACK_MODELS = ["GPT-5.6-Sol"]
+
+
+def probe_model(binary: str, model: str, effort: str, timeout_s: int = 90) -> bool:
+    """用极小提示词探测模型是否在 timeout_s 内应答（GPT-6-Astra 曾出现整段时间无响应）。"""
+    with tempfile.TemporaryDirectory(prefix="tianshu-probe-") as d:
+        argv = build_argv(binary, model, effort, Path(d), Path(d) / "last.md", False)
+        try:
+            p = subprocess.run(argv, input=R.PREFLIGHT_PROMPT, cwd=d, capture_output=True, text=True,
+                               encoding="utf-8", errors="replace", timeout=timeout_s, start_new_session=True)
+        except subprocess.TimeoutExpired:
+            return False
+        except OSError:
+            return False
+        return p.returncode == 0 and R.PREFLIGHT_ANSWER in (p.stdout or "") + (p.stderr or "")
 
 
 def launch(argv: list, prompt_file: Path, log: Path, exit_file: Path, cwd: Path, extra_env: dict) -> int:
@@ -178,6 +193,16 @@ def cmd_start(a) -> int:
     model = a.model or os.environ.get("TRAEX_MODEL") or g.defaults.get("model") or DEFAULT_MODEL
     effort = a.effort if a.effort is not None else (os.environ.get("TRAEX_EFFORT") or g.defaults.get("effort") or DEFAULT_EFFORT)
     binary = find_bin(a.bin, g.defaults)
+    if not a.no_probe:
+        for cand in [model] + [m for m in FALLBACK_MODELS if m != model]:
+            print(f"… 探测模型 {cand}（≤ {a.probe_sec:g} 秒）", flush=True)
+            if probe_model(binary, cand, effort, int(a.probe_sec)):
+                if cand != model:
+                    print(f"⚠ {model} 无响应，改用 {cand}")
+                model = cand
+                break
+        else:
+            raise R.Fatal("所有候选模型都无响应（探测超时），请稍后再试或用 --no-probe 强制启动")
     argv = build_argv(binary, model, effort, wt, lastf, t.web or a.search, t.agent_args)
     logf.write_text(f"# {t.id} · {t.title}\n# 开始：{now_s()}\n# 命令：{shlex.join(argv)} < {pf}\n"
                     f"# 工作区：{wt}\n# 基点：{base}\n\n", encoding="utf-8")
@@ -426,6 +451,8 @@ def build_parser():
     p.add_argument("--search", action="store_true", help="开启联网搜索（web 任务自动开启）")
     p.add_argument("--note", help="续作说明文件（附在提示词末尾；默认用上次校验失败原因）")
     p.add_argument("--force", action="store_true", help="任务已在分支历史中完成时仍启动")
+    p.add_argument("--no-probe", action="store_true", help="启动前不探测模型是否应答（默认探测，无响应时自动换备用模型）")
+    p.add_argument("--probe-sec", type=float, default=90, help="探测超时秒数（默认 90）")
     p.set_defaults(func=cmd_start)
 
     p = sub.add_parser("wait", help="等待本次运行结束")
