@@ -178,7 +178,6 @@ def cmd_start(a) -> int:
         st.update(t.id, base=base, attempts=0, last_failure=None)
         failure = note
     attempt = int(st.get(t.id).get("attempts", 0)) + 1
-    st.update(t.id, attempts=attempt)
     prompt = R.render_prompt(t, attempt, failure)
 
     ld = logdir(root, t.id)
@@ -202,6 +201,7 @@ def cmd_start(a) -> int:
                 break
         else:
             raise R.Fatal("所有候选模型都无响应（探测超时），请稍后再试或用 --no-probe 强制启动")
+    st.update(t.id, attempts=attempt)  # 探针通过、确定启动后才计入运行次数
     argv = build_argv(binary, model, effort, wt, lastf, t.web or a.search, t.agent_args)
     logf.write_text(f"# {t.id} · {t.title}\n# 开始：{now_s()}\n# 命令：{shlex.join(argv)} < {pf}\n"
                     f"# 工作区：{wt}\n# 基点：{base}\n\n", encoding="utf-8")
@@ -451,7 +451,7 @@ def build_parser():
     p.add_argument("--note", help="续作说明文件（附在提示词末尾；默认用上次校验失败原因）")
     p.add_argument("--force", action="store_true", help="任务已在分支历史中完成时仍启动")
     p.add_argument("--no-probe", action="store_true", help="启动前不探测模型是否应答（默认探测，无响应时自动换备用模型）")
-    p.add_argument("--probe-sec", type=float, default=90, help="探测超时秒数（默认 90）")
+    p.add_argument("--probe-sec", type=float, default=150, help="探测超时秒数（默认 150）")
     p.set_defaults(func=cmd_start)
 
     p = sub.add_parser("wait", help="等待本次运行结束")
