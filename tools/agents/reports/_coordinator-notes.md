@@ -12,3 +12,6 @@
 | CN-06 | `dualWield` 应收敛为 `int[0,10]`（X0-P01）、左右互搏归杂学·心神、弓箭归暗器不可携带（X0-P02） | RCw、X0 | R05（05）、A3（基准） |
 | CN-07 | 各图鉴 `mer_*`（专精经脉）均为预留 ID，待 `design/15` 定稿后按迁移表替换 | C1a–C1e 报告 | M1（定义）、F2（回写） |
 | CN-08 | `tools/lint/check_ids.py` 完成前，各审校以只读脚本替代；L1 合入后 F2 需对全部图鉴复跑 | 各审校报告 | L1、F2 |
+| CN-09 | R03 重算了合法 STD（普通装备 ≤ 地上 9）：Lv70 hp 40,409 / mp 28,887，MPREF(35) 4,697；但 `tools/balance/damage_sim.py` 仍用旧 STD（36/36 PASS 只证明旧脚本自洽）。需把玩家装备改 `min(grade,9)` 后重生 04 §9 节奏表与金标准 | R03 报告 | F2（或 A3 后的补充任务；需同时更新 04 文档表格） |
+| CN-10 | 09 v2.0 新增 5 个 Buff（`bf_hunmi`/`bf_kangfen`/`bf_minjie`/`bf_zhuanzhu`/`bf_muguangruju`）与 `bf_mabi` 补 `str −3×G`；06 §8.11 `bf_pibei` 按 C11 改 20% 阈值；`bf_shangshi` 与 `bf_tsp_*` 正式收录 | R09.R、R03 报告 | R06（若已开跑未覆盖则 F2 补） |
+| CN-11 | 08 §1.2 邻距 1 m 与 09 六角邻距 √3R ≈ 1.1547 m 的尺度冲突（09 D-08-1）未解决 | R09.R 报告 | F2（裁定后回写 08 或 09） |
