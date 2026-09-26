@@ -23,3 +23,6 @@
 8. 开发工作流、测试、MVP 与演进、风险、参考资料、本文新增术语/约定、待决事项 / 依赖。
 
 代码片段用 TypeScript（strict）。篇幅参考：1,100–1,800 行。
+
+## 作者新增需求（2026-09-26，见 `docs/decisions/author-requirements.md`，优先级高于基准与上文）
+Schema 与内容管线需预留：全局区域 / 城市表与时代图层（design/11）、经脉 / 穴道 / 周天（design/15）、资源品级 / 资源点 / 家丁 / 营生场所（design/16）、门派五级职级与月钱（design/12）。这些文档尚未写成时，按 author-requirements 的 ID 前缀与字段草案预留 schema 位置并标【建议值】。

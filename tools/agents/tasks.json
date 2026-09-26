@@ -683,7 +683,7 @@
         "doc_name": "02 书界时间线与境界",
         "conflicts": "C04、C05、C07、C19",
         "marker_rule": "本文当前约有 24 处（待考）（用 `grep -c 待考 docs/design/02-timeline-and-world-tiers.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
-        "extra": "C04：§2.5 注明修为突破分配点按显示等级生效（03 §14.1 D-20）。C05：等级封顶后的经验去向以 design/13 为准（转为余韵），改写 02 中“继续累积”的表述并改为引用 13。C07：外来九阳的免疫范围按裁定统一。C19：书眠视频的命名与时长按裁定统一。另核对 §3 难度与等级曲线与 13 的经验曲线、各书界等级上限一致。"
+        "extra": "C04：§2.5 注明修为突破分配点按显示等级生效（03 §14.1 D-20）。C05：等级封顶后的经验去向以 design/13 为准（转为余韵），改写 02 中“继续累积”的表述并改为引用 13。C07：外来九阳的免疫范围按裁定统一。C19：书眠视频的命名与时长按裁定统一。另核对 §3 难度与等级曲线与 13 的经验曲线、各书界等级上限一致。 AR-04：书眠流程（§4）补一句\"书眠 = 切换时代图层 + 苏醒地点\"，各书界年代表增加对应朝代（供 design/11 的历史城市表引用）；只写接口，不定义地图。"
       },
       "writes": [
         "docs/design/02-timeline-and-world-tiers.md"
@@ -757,7 +757,7 @@
         "doc_name": "13 成长、多周目与结局",
         "conflicts": "C05、C06、C23",
         "marker_rule": "本文当前约有 18 处（待考）（用 `grep -c 待考 docs/design/13-progression-and-endings.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
-        "extra": "C05：本文是等级封顶后经验去向（余韵）的权威，确认表述完整清晰，可供 02 直接引用。C06：本文是经验公式、Boss 经验系数、难度名的权威（D13-11），确认 09 可以直接引用。C23：把本文引用的 `bf_tsp_*` 等尚未入 06 目录的 Buff 在报告中列出完整定义摘要，供 06 收录。§12.5 的 O1–O6 按作者决定更新。"
+        "extra": "C05：本文是等级封顶后经验去向（余韵）的权威，确认表述完整清晰，可供 02 直接引用。C06：本文是经验公式、Boss 经验系数、难度名的权威（D13-11），确认 09 可以直接引用。C23：把本文引用的 `bf_tsp_*` 等尚未入 06 目录的 Buff 在报告中列出完整定义摘要，供 06 收录。§12.5 的 O1–O6 按作者决定更新。 AR-03：把冲穴进度 / 周天 / 九转登记为跨书界保留的永久增益（规则归 design/15）；AR-05：家丁与资源库存默认不跨书界、资源点随时代图层重置（细则归 design/16）；把两者纳入多周目与成就的框架（只写接口）。"
       },
       "writes": [
         "docs/design/13-progression-and-endings.md"
@@ -794,7 +794,7 @@
         "doc_name": "图鉴 skills-shaolin",
         "conflicts": "C12、C14、C17、C22、C23",
         "marker_rule": "本文当前约有 61 处（待考）（用 `grep -c 待考 docs/design/catalog/skills-shaolin.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
-        "extra": "C14：数量（规划 48、实际 70）按裁定的总量方案处理（保留或压缩）。C12：`sk_jingangfumo`→`sk_jingangfumoquan` 等按重命名表替换。C17：`reqs` 改用裁定后的字段（技艺门槛、二选一前置）。C22：跨组套装成员（太祖长拳等）双向登记 `setTags`。C23：Buff 引用改为 06 已有 ID 或裁定已收录的 ID。抽查招式核算式（05 §4.2）。"
+        "extra": "C14：数量（规划 48、实际 70）按裁定的总量方案处理（保留或压缩）。C12：`sk_jingangfumo`→`sk_jingangfumoquan` 等按重命名表替换。C17：`reqs` 改用裁定后的字段（技艺门槛、二选一前置）。C22：跨组套装成员（太祖长拳等）双向登记 `setTags`。C23：Buff 引用改为 06 已有 ID 或裁定已收录的 ID。抽查招式核算式（05 §4.2）。 AR-02：每门内功标 `nature`（yin/yang/harmony）。AR-07：§0.4 职级建议改为五级（外门弟子 / 入门弟子 / 亲传闭门弟子 / 长老 / 掌门）。AR-01 的数量扩充**不在本任务做**（由后续 CX 任务按 05 §14 的缺口补齐），本任务只统计并在报告中写出本图鉴各品阶现有数量。"
       },
       "writes": [
         "docs/design/catalog/skills-shaolin.md"
@@ -831,7 +831,7 @@
         "doc_name": "图鉴 skills-wujue",
         "conflicts": "C14、C17、C22、C23",
         "marker_rule": "本文当前约有 97 处（待考）（用 `grep -c 待考 docs/design/catalog/skills-wujue.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
-        "extra": "C14：射雕天级 12 门超出单周目预算的处理按裁定。C17：`reqs` 新字段。C22：降龙十八掌等跨组套装成员双向登记 `setTags`。C23：Buff 引用。抽查招式核算式（05 §4.2）。"
+        "extra": "C14：射雕天级 12 门超出单周目预算的处理按裁定。C17：`reqs` 新字段。C22：降龙十八掌等跨组套装成员双向登记 `setTags`。C23：Buff 引用。抽查招式核算式（05 §4.2）。 AR-02：每门内功标 `nature`（yin/yang/harmony）。AR-07：§0.4 职级建议改为五级（外门弟子 / 入门弟子 / 亲传闭门弟子 / 长老 / 掌门）。AR-01 的数量扩充**不在本任务做**（由后续 CX 任务按 05 §14 的缺口补齐），本任务只统计并在报告中写出本图鉴各品阶现有数量。"
       },
       "writes": [
         "docs/design/catalog/skills-wujue.md"
@@ -868,7 +868,7 @@
         "doc_name": "图鉴 skills-daojia",
         "conflicts": "C13、C14、C15、C17、C22、C23",
         "marker_rule": "本文当前约有 102 处（待考）（用 `grep -c 待考 docs/design/catalog/skills-daojia.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
-        "extra": "C13：天罡北斗阵、真武七截阵改为 4 人起阵，写明原著人数与缺员规则（与 09 一致）。C14：神雕首现玄阶超标按裁定处理。C15：神雕原生天级 16 部，以基准 v1.1 的上限为准。C17、C22（独孤九剑、武当九阳功等）、C23 同上。§10 的 O-1–O-4 按作者决定更新。"
+        "extra": "C13：天罡北斗阵、真武七截阵改为 4 人起阵，写明原著人数与缺员规则（与 09 一致）。C14：神雕首现玄阶超标按裁定处理。C15：神雕原生天级 16 部，以基准 v1.1 的上限为准。C17、C22（独孤九剑、武当九阳功等）、C23 同上。§10 的 O-1–O-4 按作者决定更新。 AR-02：每门内功标 `nature`（yin/yang/harmony）。AR-07：§0.4 职级建议改为五级（外门弟子 / 入门弟子 / 亲传闭门弟子 / 长老 / 掌门）。AR-01 的数量扩充**不在本任务做**（由后续 CX 任务按 05 §14 的缺口补齐），本任务只统计并在报告中写出本图鉴各品阶现有数量。"
       },
       "writes": [
         "docs/design/catalog/skills-daojia.md"
@@ -905,7 +905,7 @@
         "doc_name": "图鉴 skills-xiaoyao",
         "conflicts": "C14、C17、C22、C23",
         "marker_rule": "本文当前约有 68 处（待考）（用 `grep -c 待考 docs/design/catalog/skills-xiaoyao.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
-        "extra": "C14：逍遥组（规划 26、实际 72）数量按裁定处理。C17：六脉神剑需“一阳指或北冥神功”的二选一前置，用新字段表达。C22、C23 同上。§16 的 O-1–O-6 按作者决定更新。"
+        "extra": "C14：逍遥组（规划 26、实际 72）数量按裁定处理。C17：六脉神剑需“一阳指或北冥神功”的二选一前置，用新字段表达。C22、C23 同上。§16 的 O-1–O-6 按作者决定更新。 AR-02：每门内功标 `nature`（yin/yang/harmony）。AR-07：§0.4 职级建议改为五级（外门弟子 / 入门弟子 / 亲传闭门弟子 / 长老 / 掌门）。AR-01 的数量扩充**不在本任务做**（由后续 CX 任务按 05 §14 的缺口补齐），本任务只统计并在报告中写出本图鉴各品阶现有数量。"
       },
       "writes": [
         "docs/design/catalog/skills-xiaoyao.md"
@@ -1016,7 +1016,7 @@
         "doc_name": "tech/06 素材分离存储与分发",
         "conflicts": "C18、C19",
         "marker_rule": "本文当前约有 23 处（待核实）、1 处（待实测）。逐条处理（待核实）：核实版本号、API 与浏览器支持、价格、限额，在“参考资料”补来源与访问日期；确认有误的改正，并检查受影响的结论与数值；无法核实的保留标记。（待实测）项保留，若公开资料能缩小不确定性就补充说明。报告中给出处理前后的数量与剩余清单。",
-        "extra": "C18：契约目录按裁定。C19：书眠视频的素材键命名与时长按裁定。同步 tech/03 F9（对话字体改为按书界用字的两文件子集，不用通用 unicode-range 切片）。会话 Cookie `ts_s` 与素材闸门的描述与 tech/08 一致。"
+        "extra": "C18：契约目录按裁定。C19：书眠视频的素材键命名与时长按裁定。同步 tech/03 F9（对话字体改为按书界用字的两文件子集，不用通用 unicode-range 切片）。会话 Cookie `ts_s` 与素材闸门的描述与 tech/08 一致。 AR-04：统一大地图 + 时代图层——分包改为\"区域基础包（地形、建筑、通用 NPC）+ 时代状态包（各书界的势力 / NPC / 资源点 / 营生场所 / 城市名称）\"，更新分包表、清单结构与\"进入新书界必需部分 ≤ 60 MB\"的预算核算；写清与 design/11 的接口。"
       },
       "writes": [
         "docs/tech/06-asset-storage.md"
@@ -1127,7 +1127,7 @@
         "doc_name": "05 武学体系",
         "conflicts": "C01、C02、C03、C07、C11、C16、C17",
         "marker_rule": "本文当前约有 32 处（待考）（用 `grep -c 待考 docs/design/05-martial-arts-system.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
-        "extra": "对齐 design/04：§4.2 招式预算、§5 内功相性（Z5）与 04 一致。C01、C02（`MPREF` 引用 03）。C03：§5 内功预算写入 `mpRegen` 上限 6%。C07：九阳。C11：撞击伤害与疲惫阈值。C16：定 `dualWield`（与 03 统一）、左右互搏的子类、弓箭归暗器还是兵器。C17：`Reqs` 增加技艺门槛字段与二选一前置（`anyOf`），同步更新 §2 字段表、YAML、TS 类型与 §15 校验规则。§14 数量规划本任务不改（由 C3 按图鉴实际数量重定）。"
+        "extra": "对齐 design/04：§4.2 招式预算、§5 内功相性（Z5）与 04 一致。C01、C02（`MPREF` 引用 03）。C03：§5 内功预算写入 `mpRegen` 上限 6%。C07：九阳。C11：撞击伤害与疲惫阈值。C16：定 `dualWield`（与 03 统一）、左右互搏的子类、弓箭归暗器还是兵器。C17：`Reqs` 增加技艺门槛字段与二选一前置（`anyOf`），同步更新 §2 字段表、YAML、TS 类型与 §15 校验规则。§14 数量规划本任务不改（由 C3 按图鉴实际数量重定）。 AR-02：§5 写明每门内功必须标 `nature`，调和内功的规则（无相性惩罚、增益减半，或按作者决定）。AR-03：为冲穴系统预留接口——§5 增加\"内劲\"定义（冲穴速率由内功品阶、层数、mpMax、相性折算，公式归 design/15）与内功字段 `meridians:`（专精经脉）；不要在本文定义穴道与周天。AR-01：§14 的数量本任务仍不改（C3 按 1:3:9:9 重定）。"
       },
       "writes": [
         "docs/design/05-martial-arts-system.md"
@@ -1322,7 +1322,8 @@
         "B2",
         "R02",
         "R10",
-        "R13"
+        "R13",
+        "B3"
       ],
       "writes": [
         "docs/design/12-quests-npc-factions.md"
@@ -1366,7 +1367,9 @@
         "R09",
         "R10",
         "RT2",
-        "B6a"
+        "B6a",
+        "M1",
+        "B7"
       ],
       "writes": [
         "docs/design/14-ui-ux-mobile.md"
@@ -1440,6 +1443,234 @@
       "web": false
     },
     {
+      "id": "M1",
+      "phase": "B",
+      "wave": 2,
+      "title": "15 冲穴、经脉与周天（作者需求 AR-03）",
+      "prompt": "M1-meridians.md",
+      "deps": [
+        "G1",
+        "R03",
+        "R05"
+      ],
+      "writes": [
+        "docs/design/15-meridians-and-acupoints.md"
+      ],
+      "review": true,
+      "review_focus": "复算冲穴速率公式与加成上限的算例（Lv35 / Lv70 / 低武压制三档）；核对术语（通脉 / 小周天 / 大周天 / 十二经周流 / 九转）与 author-requirements AR-03 及作者决定一致；穴道总数与每脉穴数满足校验规则；加成不越过 03 / 04 上限且不破坏 04 的 TTK 节奏；与 05 内功字段（nature、meridians）、06 原语一致；YAML / TS 可用。",
+      "validate": {
+        "exists": [
+          "docs/design/15-meridians-and-acupoints.md"
+        ],
+        "fences": [
+          "docs/design/15-meridians-and-acupoints.md"
+        ],
+        "min_lines": {
+          "docs/design/15-meridians-and-acupoints.md": 800
+        },
+        "contains": [
+          [
+            "docs/design/15-meridians-and-acupoints.md",
+            "小周天"
+          ],
+          [
+            "docs/design/15-meridians-and-acupoints.md",
+            "九转"
+          ],
+          [
+            "docs/design/15-meridians-and-acupoints.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {},
+      "web": false
+    },
+    {
+      "id": "B7",
+      "phase": "B",
+      "wave": 2,
+      "title": "16 资源、家业与营生（作者需求 AR-05/06/07）",
+      "prompt": "B7-resources.md",
+      "deps": [
+        "G1",
+        "B3",
+        "B4",
+        "R10",
+        "R13"
+      ],
+      "writes": [
+        "docs/design/16-resources-and-estates.md"
+      ],
+      "review": true,
+      "review_focus": "核对 36 级资源品级表完整、九品方向与作者决定一致；客卿全局唯一规则可执行；月钱 / 营生报酬与 12 的经济曲线一致（复算每书界收入汇总表）；资源点预算与 11 一致；家丁与队友边界清晰；YAML / TS 可用。",
+      "validate": {
+        "exists": [
+          "docs/design/16-resources-and-estates.md"
+        ],
+        "fences": [
+          "docs/design/16-resources-and-estates.md"
+        ],
+        "min_lines": {
+          "docs/design/16-resources-and-estates.md": 800
+        },
+        "contains": [
+          [
+            "docs/design/16-resources-and-estates.md",
+            "客卿"
+          ],
+          [
+            "docs/design/16-resources-and-estates.md",
+            "九品"
+          ],
+          [
+            "docs/design/16-resources-and-estates.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {},
+      "web": false
+    },
+    {
+      "id": "CXs",
+      "phase": "C",
+      "wave": 2,
+      "title": "扩充 图鉴 skills-shaolin 至 1:3:9:9（AR-01）",
+      "prompt": "CX-expand.md",
+      "deps": [
+        "C3"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-shaolin.md"
+      ],
+      "review": false,
+      "kind": "revise",
+      "vars": {
+        "doc": "docs/design/catalog/skills-shaolin.md",
+        "doc_name": "图鉴 skills-shaolin"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md"
+        ],
+        "contains": [
+          [
+            "docs/design/catalog/skills-shaolin.md",
+            "本组统计"
+          ]
+        ]
+      },
+      "web": false
+    },
+    {
+      "id": "CXw",
+      "phase": "C",
+      "wave": 2,
+      "title": "扩充 图鉴 skills-wujue 至 1:3:9:9（AR-01）",
+      "prompt": "CX-expand.md",
+      "deps": [
+        "C3"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-wujue.md"
+      ],
+      "review": false,
+      "kind": "revise",
+      "vars": {
+        "doc": "docs/design/catalog/skills-wujue.md",
+        "doc_name": "图鉴 skills-wujue"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wujue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wujue.md"
+        ],
+        "contains": [
+          [
+            "docs/design/catalog/skills-wujue.md",
+            "本组统计"
+          ]
+        ]
+      },
+      "web": false
+    },
+    {
+      "id": "CXd",
+      "phase": "C",
+      "wave": 2,
+      "title": "扩充 图鉴 skills-daojia 至 1:3:9:9（AR-01）",
+      "prompt": "CX-expand.md",
+      "deps": [
+        "C3"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-daojia.md"
+      ],
+      "review": false,
+      "kind": "revise",
+      "vars": {
+        "doc": "docs/design/catalog/skills-daojia.md",
+        "doc_name": "图鉴 skills-daojia"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-daojia.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-daojia.md"
+        ],
+        "contains": [
+          [
+            "docs/design/catalog/skills-daojia.md",
+            "本组统计"
+          ]
+        ]
+      },
+      "web": false
+    },
+    {
+      "id": "CXx",
+      "phase": "C",
+      "wave": 2,
+      "title": "扩充 图鉴 skills-xiaoyao 至 1:3:9:9（AR-01）",
+      "prompt": "CX-expand.md",
+      "deps": [
+        "C3"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-xiaoyao.md"
+      ],
+      "review": false,
+      "kind": "revise",
+      "vars": {
+        "doc": "docs/design/catalog/skills-xiaoyao.md",
+        "doc_name": "图鉴 skills-xiaoyao"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "contains": [
+          [
+            "docs/design/catalog/skills-xiaoyao.md",
+            "本组统计"
+          ]
+        ]
+      },
+      "web": false
+    },
+    {
       "id": "C2",
       "phase": "C",
       "wave": 2,
@@ -1448,7 +1679,11 @@
       "deps": [
         "C3",
         "R06",
-        "B1"
+        "B1",
+        "CXs",
+        "CXw",
+        "CXd",
+        "CXx"
       ],
       "writes": [
         "docs/design/07-set-system.md",
@@ -1493,7 +1728,9 @@
         "R09",
         "B4",
         "E1",
-        "R13"
+        "R13",
+        "M1",
+        "B7"
       ],
       "writes": [
         "docs/tech/05-gameplay-engine.md"
@@ -1556,7 +1793,13 @@
         "C1c",
         "C1d",
         "C1e",
-        "C1f"
+        "C1f",
+        "M1",
+        "B7",
+        "CXs",
+        "CXw",
+        "CXd",
+        "CXx"
       ],
       "note": "书界文档（28 次运行）是最大的一笔开销。建议先抽查 01、11、12、14、07 与 04 的模拟结果；确认无误后运行 `python tools/agents/run.py approve G2`。想不停顿地跑完，可以提前运行 `python tools/agents/run.py approve G2 --force`（前置任务全部完成后才生效）。",
       "vars": {},

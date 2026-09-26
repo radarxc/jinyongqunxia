@@ -7,7 +7,7 @@
 ## 一、规则（必须遵守）
 
 1. **事实优先级**（冲突时从高到低；文件不存在就跳过该层）：
-   1. `docs/decisions/author-decisions.md` 中作者已填写的决定；
+   1. `docs/decisions/author-decisions.md` 中作者已填写的决定，以及 `docs/decisions/author-requirements.md` 中的作者新增需求（两者同级，均高于基准）；
    2. `docs/00-canon.md`（设计基准，唯一事实来源；注意文首的变更记录）；
    3. `docs/decisions/rulings-v1.md`（跨文档冲突裁定、重命名表、图鉴分工表、Buff 缺口清单）；
    4. 各文档按基准 §18 的唯一归属：概念只在归属文档中定义，其他文档只引用（写"见 `design/05` §4.2"），不重定义。
@@ -51,7 +51,7 @@ WRITES>>>
 ## 四、开始前先了解现状
 
 - `TODO.md`：进度、已定结论（§2）、跨文档冲突 C01–C23（§3）、基准修订提案（§4）、需作者拍板的问题（§5）、用户原始需求（§7）。
-- `docs/00-canon.md`：设计基准。`docs/decisions/`：冲突裁定与作者决定（存在时）。
+- `docs/00-canon.md`：设计基准。`docs/decisions/`：作者新增需求（`author-requirements.md`，必读）、冲突裁定与作者决定（存在时）。
 - `tools/agents/reports/`：其他代理的报告，记录了它们的改动和遗留问题。与你的任务相关的要读。
 - 文档都很长（1,000–2,700 行）。先用 `grep -n '^#' <文件>` 看目录，再读需要的章节；用 `grep -rn <关键词> docs` 查找定义和引用。
 
