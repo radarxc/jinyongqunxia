@@ -251,6 +251,58 @@
       "web": false
     },
     {
+      "id": "S1",
+      "phase": "B",
+      "wave": 1,
+      "priority": 50,
+      "title": "17 门派总览：历史、驻地、时代开放、职级称谓与武学参考（AR-08）",
+      "prompt": "S1-sects.md",
+      "deps": [
+        "G1"
+      ],
+      "writes": [
+        "docs/design/17-sects-compendium.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "抽查 ≥ 15 个门派的史实与参考（联网核对创立年代、地点、人物）；开放矩阵 14 × 门派无空格且与基准 §2 年代一致；职级称谓模板覆盖全部门派分类且与 AR-07 五级一一对应；每派武学表的 `sk_*` 在图鉴中存在或标为待收录，且每条有小说出处与历史参考；跨书界同名门派的 `sect_*` 处理与裁定 A3 一致；古龙门派的融入不改动金庸主线。",
+      "validate": {
+        "exists": [
+          "docs/design/17-sects-compendium.md"
+        ],
+        "fences": [
+          "docs/design/17-sects-compendium.md"
+        ],
+        "min_lines": {
+          "docs/design/17-sects-compendium.md": 1500
+        },
+        "contains": [
+          [
+            "docs/design/17-sects-compendium.md",
+            "开放矩阵"
+          ],
+          [
+            "docs/design/17-sects-compendium.md",
+            "方丈"
+          ],
+          [
+            "docs/design/17-sects-compendium.md",
+            "古龙"
+          ],
+          [
+            "docs/design/17-sects-compendium.md",
+            "参考"
+          ],
+          [
+            "docs/design/17-sects-compendium.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {}
+    },
+    {
       "id": "B6a",
       "phase": "B",
       "wave": 1,
@@ -668,6 +720,50 @@
       "web": false
     },
     {
+      "id": "C1g",
+      "phase": "C",
+      "wave": 2,
+      "title": "图鉴 skills-gulong（古龙门派武学，AR-08）",
+      "prompt": "C1-catalog.md",
+      "deps": [
+        "S1"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-gulong.md"
+      ],
+      "review": true,
+      "web": false,
+      "vars": {
+        "slug": "gulong",
+        "title": "古龙门派武学",
+        "coverage": "`docs/design/17-sects-compendium.md` 中古龙门派条目下全部“待收录”武学（移花宫、恶人谷、大旗门、神水宫、无争山庄、青龙会、唐门等，以 17 的取舍为准），按 17 给出的品阶建议、类别、效果与参考撰写；目标 40–70 门，不含天级；地阶 ≤ 12 门；每门写（古龙·书名）出处与（原创扩展）标注",
+        "books": "按 design/17 §4 古龙门派融入方案分配到的书界"
+      },
+      "review_focus": "逐条核对与 design/17 待收录清单一致（ID、名称、品阶建议）；不得新增天阶；招式预算核算；每门有（古龙·书名）出处；`nature` 与 `setTags` 齐全；所属书界的可习得池比例不被破坏。",
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "min_lines": {
+          "docs/design/catalog/skills-gulong.md": 600
+        },
+        "contains": [
+          [
+            "docs/design/catalog/skills-gulong.md",
+            "本组统计"
+          ],
+          [
+            "docs/design/catalog/skills-gulong.md",
+            "古龙"
+          ]
+        ]
+      },
+      "kind": "draft"
+    },
+    {
       "id": "R02",
       "phase": "F",
       "wave": 1,
@@ -794,7 +890,7 @@
         "doc_name": "图鉴 skills-shaolin",
         "conflicts": "C12、C14、C17、C22、C23",
         "marker_rule": "本文当前约有 61 处（待考）（用 `grep -c 待考 docs/design/catalog/skills-shaolin.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
-        "extra": "C14：数量（规划 48、实际 70）按裁定的总量方案处理（保留或压缩）。C12：`sk_jingangfumo`→`sk_jingangfumoquan` 等按重命名表替换。C17：`reqs` 改用裁定后的字段（技艺门槛、二选一前置）。C22：跨组套装成员（太祖长拳等）双向登记 `setTags`。C23：Buff 引用改为 06 已有 ID 或裁定已收录的 ID。抽查招式核算式（05 §4.2）。 AR-02：每门内功标 `nature`（yin/yang/harmony）。AR-07：§0.4 职级建议改为五级（外门弟子 / 入门弟子 / 亲传闭门弟子 / 长老 / 掌门）。AR-01 的数量扩充**不在本任务做**（由后续 CX 任务按 05 §14 的缺口补齐），本任务只统计并在报告中写出本图鉴各品阶现有数量。"
+        "extra": "C14：数量（规划 48、实际 70）按裁定的总量方案处理（保留或压缩）。C12：`sk_jingangfumo`→`sk_jingangfumoquan` 等按重命名表替换。C17：`reqs` 改用裁定后的字段（技艺门槛、二选一前置）。C22：跨组套装成员（太祖长拳等）双向登记 `setTags`。C23：Buff 引用改为 06 已有 ID 或裁定已收录的 ID。抽查招式核算式（05 §4.2）。 AR-02：每门内功标 `nature`（yin/yang/harmony）。AR-07：§0.4 职级建议改为五级（外门弟子 / 入门弟子 / 亲传闭门弟子 / 长老 / 掌门）。AR-01 的数量扩充**不在本任务做**（由后续 CX 任务按 05 §14 的缺口补齐），本任务只统计并在报告中写出本图鉴各品阶现有数量。 AR-08：若 `docs/design/17-sects-compendium.md` 已写成，本组门派的 `sect_*` ID、名称与职级称谓与之对齐（只改本文）；否则在报告中列出本组门派与现用职级称谓供 17 对齐。"
       },
       "writes": [
         "docs/design/catalog/skills-shaolin.md"
@@ -831,7 +927,7 @@
         "doc_name": "图鉴 skills-wujue",
         "conflicts": "C14、C17、C22、C23",
         "marker_rule": "本文当前约有 97 处（待考）（用 `grep -c 待考 docs/design/catalog/skills-wujue.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
-        "extra": "C14：射雕天级 12 门超出单周目预算的处理按裁定。C17：`reqs` 新字段。C22：降龙十八掌等跨组套装成员双向登记 `setTags`。C23：Buff 引用。抽查招式核算式（05 §4.2）。 AR-02：每门内功标 `nature`（yin/yang/harmony）。AR-07：§0.4 职级建议改为五级（外门弟子 / 入门弟子 / 亲传闭门弟子 / 长老 / 掌门）。AR-01 的数量扩充**不在本任务做**（由后续 CX 任务按 05 §14 的缺口补齐），本任务只统计并在报告中写出本图鉴各品阶现有数量。"
+        "extra": "C14：射雕天级 12 门超出单周目预算的处理按裁定。C17：`reqs` 新字段。C22：降龙十八掌等跨组套装成员双向登记 `setTags`。C23：Buff 引用。抽查招式核算式（05 §4.2）。 AR-02：每门内功标 `nature`（yin/yang/harmony）。AR-07：§0.4 职级建议改为五级（外门弟子 / 入门弟子 / 亲传闭门弟子 / 长老 / 掌门）。AR-01 的数量扩充**不在本任务做**（由后续 CX 任务按 05 §14 的缺口补齐），本任务只统计并在报告中写出本图鉴各品阶现有数量。 AR-08：若 `docs/design/17-sects-compendium.md` 已写成，本组门派的 `sect_*` ID、名称与职级称谓与之对齐（只改本文）；否则在报告中列出本组门派与现用职级称谓供 17 对齐。"
       },
       "writes": [
         "docs/design/catalog/skills-wujue.md"
@@ -868,7 +964,7 @@
         "doc_name": "图鉴 skills-daojia",
         "conflicts": "C13、C14、C15、C17、C22、C23",
         "marker_rule": "本文当前约有 102 处（待考）（用 `grep -c 待考 docs/design/catalog/skills-daojia.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
-        "extra": "C13：天罡北斗阵、真武七截阵改为 4 人起阵，写明原著人数与缺员规则（与 09 一致）。C14：神雕首现玄阶超标按裁定处理。C15：神雕原生天级 16 部，以基准 v1.1 的上限为准。C17、C22（独孤九剑、武当九阳功等）、C23 同上。§10 的 O-1–O-4 按作者决定更新。 AR-02：每门内功标 `nature`（yin/yang/harmony）。AR-07：§0.4 职级建议改为五级（外门弟子 / 入门弟子 / 亲传闭门弟子 / 长老 / 掌门）。AR-01 的数量扩充**不在本任务做**（由后续 CX 任务按 05 §14 的缺口补齐），本任务只统计并在报告中写出本图鉴各品阶现有数量。"
+        "extra": "C13：天罡北斗阵、真武七截阵改为 4 人起阵，写明原著人数与缺员规则（与 09 一致）。C14：神雕首现玄阶超标按裁定处理。C15：神雕原生天级 16 部，以基准 v1.1 的上限为准。C17、C22（独孤九剑、武当九阳功等）、C23 同上。§10 的 O-1–O-4 按作者决定更新。 AR-02：每门内功标 `nature`（yin/yang/harmony）。AR-07：§0.4 职级建议改为五级（外门弟子 / 入门弟子 / 亲传闭门弟子 / 长老 / 掌门）。AR-01 的数量扩充**不在本任务做**（由后续 CX 任务按 05 §14 的缺口补齐），本任务只统计并在报告中写出本图鉴各品阶现有数量。 AR-08：若 `docs/design/17-sects-compendium.md` 已写成，本组门派的 `sect_*` ID、名称与职级称谓与之对齐（只改本文）；否则在报告中列出本组门派与现用职级称谓供 17 对齐。"
       },
       "writes": [
         "docs/design/catalog/skills-daojia.md"
@@ -905,7 +1001,7 @@
         "doc_name": "图鉴 skills-xiaoyao",
         "conflicts": "C14、C17、C22、C23",
         "marker_rule": "本文当前约有 68 处（待考）（用 `grep -c 待考 docs/design/catalog/skills-xiaoyao.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
-        "extra": "C14：逍遥组（规划 26、实际 72）数量按裁定处理。C17：六脉神剑需“一阳指或北冥神功”的二选一前置，用新字段表达。C22、C23 同上。§16 的 O-1–O-6 按作者决定更新。 AR-02：每门内功标 `nature`（yin/yang/harmony）。AR-07：§0.4 职级建议改为五级（外门弟子 / 入门弟子 / 亲传闭门弟子 / 长老 / 掌门）。AR-01 的数量扩充**不在本任务做**（由后续 CX 任务按 05 §14 的缺口补齐），本任务只统计并在报告中写出本图鉴各品阶现有数量。"
+        "extra": "C14：逍遥组（规划 26、实际 72）数量按裁定处理。C17：六脉神剑需“一阳指或北冥神功”的二选一前置，用新字段表达。C22、C23 同上。§16 的 O-1–O-6 按作者决定更新。 AR-02：每门内功标 `nature`（yin/yang/harmony）。AR-07：§0.4 职级建议改为五级（外门弟子 / 入门弟子 / 亲传闭门弟子 / 长老 / 掌门）。AR-01 的数量扩充**不在本任务做**（由后续 CX 任务按 05 §14 的缺口补齐），本任务只统计并在报告中写出本图鉴各品阶现有数量。 AR-08：若 `docs/design/17-sects-compendium.md` 已写成，本组门派的 `sect_*` ID、名称与职级称谓与之对齐（只改本文）；否则在报告中列出本组门派与现用职级称谓供 17 对齐。"
       },
       "writes": [
         "docs/design/catalog/skills-xiaoyao.md"
@@ -1280,7 +1376,8 @@
       "deps": [
         "B2",
         "R02",
-        "R08"
+        "R08",
+        "S1"
       ],
       "writes": [
         "docs/design/11-open-world.md"
@@ -1323,7 +1420,8 @@
         "R02",
         "R10",
         "R13",
-        "B3"
+        "B3",
+        "S1"
       ],
       "writes": [
         "docs/design/12-quests-npc-factions.md"
@@ -1419,7 +1517,8 @@
         "RCs",
         "RCw",
         "RCd",
-        "RCx"
+        "RCx",
+        "C1g"
       ],
       "writes": [
         "docs/design/05-martial-arts-system.md"
@@ -1799,7 +1898,9 @@
         "CXs",
         "CXw",
         "CXd",
-        "CXx"
+        "CXx",
+        "S1",
+        "C1g"
       ],
       "note": "书界文档（28 次运行）是最大的一笔开销。建议先抽查 01、11、12、14、07 与 04 的模拟结果；确认无误后运行 `python tools/agents/run.py approve G2`。想不停顿地跑完，可以提前运行 `python tools/agents/run.py approve G2 --force`（前置任务全部完成后才生效）。",
       "vars": {},

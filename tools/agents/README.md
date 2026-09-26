@@ -56,7 +56,7 @@
 | 4 | **F2** 全局一致性审计 | F2 收尾 | 任意 `docs/` |
 | 4 | **F45** 需求覆盖检查 + 总索引 + 更新 TODO | F4–F5 | `docs/README.md`、`TODO.md` |
 
-**2026-09-26 新增任务（作者新增需求 AR-01–07，见 `docs/decisions/author-requirements.md`）**：M1 (+R) `design/15` 冲穴、经脉与周天（依赖 R03、R05）；B7 (+R) `design/16` 资源、家业与营生（依赖 B3、B4、R10、R13）；CXs/CXw/CXd/CXx 按 1:3:9:9 扩充已有 4 个图鉴（依赖 C3）。B4 增加对 B3 的依赖（城市 ID），B5、E2、C2、G2 的依赖相应增加；B2、B3、B4、B5、C1、C3、D、E1、E2 与全部修订任务的提示词已附需求段落。
+**2026-09-26 新增任务（作者新增需求 AR-01–07，见 `docs/decisions/author-requirements.md`）**：M1 (+R) `design/15` 冲穴、经脉与周天（依赖 R03、R05）；B7 (+R) `design/16` 资源、家业与营生（依赖 B3、B4、R10、R13）；CXs/CXw/CXd/CXx 按 1:3:9:9 扩充已有 4 个图鉴（依赖 C3）；S1 (+R) `design/17` 门派总览（AR-08，联网核实史实，第 1 波）；C1g (+R) 图鉴 `skills-gulong`（依赖 S1）。B3、B4 增加对 S1 的依赖，C3 增加对 C1g 的依赖。B4 增加对 B3 的依赖（城市 ID），B5、E2、C2、G2 的依赖相应增加；B2、B3、B4、B5、C1、C3、D、E1、E2 与全部修订任务的提示词已附需求段落。
 
 TODO 的 F6（推送）由 `run --push` 完成，推送的是**当前检出的分支**。
 
