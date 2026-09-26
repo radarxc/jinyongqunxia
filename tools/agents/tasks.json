@@ -1,0 +1,2496 @@
+{
+  "version": 1,
+  "comment": "任务图：由 tools/agents/run.py 读取。deps 引用基础任务 ID；若被依赖任务有审校（review: true），自动解析为其审校任务 <ID>.R。",
+  "defaults": {
+    "bin": [
+      "traex",
+      "traecli"
+    ],
+    "model": "gpt-6-max",
+    "effort": "",
+    "jobs": 3,
+    "timeout_min": 180,
+    "retries": 1,
+    "exec_args": [
+      "exec",
+      "--sandbox",
+      "workspace-write",
+      "--skip-git-repo-check"
+    ],
+    "model_args": [
+      "--model",
+      "{model}"
+    ],
+    "effort_args": [
+      "-c",
+      "model_reasoning_effort={effort}"
+    ],
+    "web_args": [],
+    "prompt_via": "arg",
+    "shrink_guard": 0.85
+  },
+  "tasks": [
+    {
+      "id": "A2",
+      "phase": "A",
+      "wave": 0,
+      "title": "基准 v1.1：审定并合入约 40 条修订提案",
+      "prompt": "A2-canon-v1.1.md",
+      "writes": [
+        "docs/00-canon.md"
+      ],
+      "review": true,
+      "review_focus": "① TODO §4 的每条提案在变更记录中都有去向；② 正文与变更记录逐条一致；③ 没有误删或改坏 v1.0 的既有定义（用 `git log --oneline -- docs/00-canon.md` 找到 v1.0 提交，`git diff <v1.0提交> -- docs/00-canon.md` 逐处核对）；④ 标“待作者确认”的条目都给了推荐值与理由。",
+      "validate": {
+        "exists": [
+          "docs/00-canon.md"
+        ],
+        "fences": [
+          "docs/00-canon.md"
+        ],
+        "contains": [
+          [
+            "docs/00-canon.md",
+            "v1.1"
+          ],
+          [
+            "docs/00-canon.md",
+            "变更记录"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "deps": [],
+      "vars": {},
+      "web": false
+    },
+    {
+      "id": "X0",
+      "phase": "A",
+      "wave": 0,
+      "title": "冲突裁定 C01–C23、图鉴分工、作者决策单",
+      "prompt": "X0-rulings.md",
+      "deps": [
+        "A2"
+      ],
+      "writes": [
+        "docs/decisions/rulings-v1.md",
+        "docs/decisions/author-decisions.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/decisions/rulings-v1.md",
+          "docs/decisions/author-decisions.md"
+        ],
+        "fences": [
+          "docs/decisions/rulings-v1.md"
+        ],
+        "min_lines": {
+          "docs/decisions/rulings-v1.md": 200,
+          "docs/decisions/author-decisions.md": 40
+        },
+        "contains": [
+          [
+            "docs/decisions/rulings-v1.md",
+            "C01"
+          ],
+          [
+            "docs/decisions/rulings-v1.md",
+            "C23"
+          ],
+          [
+            "docs/decisions/rulings-v1.md",
+            "图鉴分工"
+          ],
+          [
+            "docs/decisions/rulings-v1.md",
+            "重命名"
+          ],
+          [
+            "docs/decisions/author-decisions.md",
+            "作者决定"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {},
+      "review": false,
+      "web": false
+    },
+    {
+      "id": "G1",
+      "phase": "A",
+      "wave": 0,
+      "kind": "gate",
+      "title": "作者确认：基准 v1.1 + 裁定 + 作者决策单",
+      "deps": [
+        "A2",
+        "X0"
+      ],
+      "note": "请审阅 docs/00-canon.md（文首变更记录，尤其“⚠️ 待作者确认”条目）、docs/decisions/rulings-v1.md，并在 docs/decisions/author-decisions.md 的“作者决定”列填写决定（留空 = 采用默认值）后提交，再运行 `python tools/agents/run.py approve G1`。",
+      "vars": {},
+      "writes": [],
+      "review": false,
+      "web": false
+    },
+    {
+      "id": "L1",
+      "phase": "F",
+      "wave": 1,
+      "kind": "tool",
+      "title": "ID 一致性检查脚本 tools/lint/check_ids.py",
+      "prompt": "L1-id-lint.md",
+      "deps": [
+        "G1"
+      ],
+      "writes": [
+        "tools/lint/**"
+      ],
+      "validate": {
+        "exists": [
+          "tools/lint/check_ids.py",
+          "tools/lint/README.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py"
+          ]
+        ]
+      },
+      "vars": {},
+      "review": false,
+      "web": false
+    },
+    {
+      "id": "B1",
+      "phase": "B",
+      "wave": 1,
+      "priority": 100,
+      "title": "04 伤害公式 + tools/balance/damage_sim.py",
+      "prompt": "B1-damage.md",
+      "deps": [
+        "G1"
+      ],
+      "writes": [
+        "docs/design/04-damage-formula.md",
+        "tools/balance/**"
+      ],
+      "review": true,
+      "review_focus": "亲自运行 `python tools/balance/damage_sim.py --report` 与 `--check`，核对文档中的 TTK 表与脚本输出一致；逐区检查公式与 03 §12 符号表、05 §4.2 招式预算、06 ρ(Δ) 的衔接；检查 C01–C03 已落实；检查 03/05/06/09 中指向 04 的待决条目都有回应。",
+      "validate": {
+        "exists": [
+          "docs/design/04-damage-formula.md",
+          "tools/balance/damage_sim.py",
+          "tools/balance/README.md"
+        ],
+        "fences": [
+          "docs/design/04-damage-formula.md"
+        ],
+        "min_lines": {
+          "docs/design/04-damage-formula.md": 700
+        },
+        "contains": [
+          [
+            "docs/design/04-damage-formula.md",
+            "待决事项"
+          ]
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {},
+      "web": false
+    },
+    {
+      "id": "B2",
+      "phase": "B",
+      "wave": 1,
+      "title": "01 世界观与核心循环（含锚点/改命总览、序章）",
+      "prompt": "B2-vision.md",
+      "deps": [
+        "G1"
+      ],
+      "writes": [
+        "docs/design/01-vision-and-core-loop.md"
+      ],
+      "review": true,
+      "review_focus": "十四部锚点/改命总览逐部核对原著事件与基准 §2 年代；序章设计与图鉴分工一致；核心循环的时长估算与 02/13 一致。",
+      "validate": {
+        "exists": [
+          "docs/design/01-vision-and-core-loop.md"
+        ],
+        "fences": [
+          "docs/design/01-vision-and-core-loop.md"
+        ],
+        "min_lines": {
+          "docs/design/01-vision-and-core-loop.md": 600
+        },
+        "contains": [
+          [
+            "docs/design/01-vision-and-core-loop.md",
+            "待决事项"
+          ],
+          [
+            "docs/design/01-vision-and-core-loop.md",
+            "越女剑"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {},
+      "web": false
+    },
+    {
+      "id": "B6a",
+      "phase": "B",
+      "wave": 1,
+      "web": true,
+      "title": "续写 tech/03 手机性能（§6.8 起至文末）",
+      "prompt": "B6a-tech03.md",
+      "deps": [
+        "G1"
+      ],
+      "writes": [
+        "docs/tech/03-mobile-performance.md"
+      ],
+      "review": true,
+      "review_focus": "续写部分与文首 TL;DR、基线核查 F1–F14、§0 决策 D1–D16 逐条一致；联网核实新增技术事实。",
+      "validate": {
+        "exists": [
+          "docs/tech/03-mobile-performance.md"
+        ],
+        "fences": [
+          "docs/tech/03-mobile-performance.md"
+        ],
+        "min_lines": {
+          "docs/tech/03-mobile-performance.md": 2000
+        },
+        "contains": [
+          [
+            "docs/tech/03-mobile-performance.md",
+            "## 10."
+          ],
+          [
+            "docs/tech/03-mobile-performance.md",
+            "## 12."
+          ],
+          [
+            "docs/tech/03-mobile-performance.md",
+            "参考资料"
+          ],
+          [
+            "docs/tech/03-mobile-performance.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {}
+    },
+    {
+      "id": "B6b",
+      "phase": "B",
+      "wave": 1,
+      "web": true,
+      "title": "续写 tech/08 后端与在线服务（§4 起至文末）",
+      "prompt": "B6b-tech08.md",
+      "deps": [
+        "G1"
+      ],
+      "writes": [
+        "docs/tech/08-backend-and-online.md"
+      ],
+      "review": true,
+      "review_focus": "续写部分与文首 TL;DR 1–12、调研要点 1–12 一致；API、D1/R2 数据模型与 §3 存档格式一致；联网核实平台限额与价格。",
+      "validate": {
+        "exists": [
+          "docs/tech/08-backend-and-online.md"
+        ],
+        "fences": [
+          "docs/tech/08-backend-and-online.md"
+        ],
+        "min_lines": {
+          "docs/tech/08-backend-and-online.md": 1400
+        },
+        "contains": [
+          [
+            "docs/tech/08-backend-and-online.md",
+            "## 15."
+          ],
+          [
+            "docs/tech/08-backend-and-online.md",
+            "参考资料"
+          ],
+          [
+            "docs/tech/08-backend-and-online.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {}
+    },
+    {
+      "id": "E1",
+      "phase": "E",
+      "wave": 1,
+      "web": true,
+      "title": "tech/04 数据驱动与内容管线",
+      "prompt": "E1-tech04.md",
+      "deps": [
+        "G1"
+      ],
+      "writes": [
+        "docs/tech/04-data-pipeline.md"
+      ],
+      "review": true,
+      "review_focus": "schema 与各 design 文档的数据结构逐一对应；已被其他文档引用的 content/ 路径保持兼容；C18 契约目录按裁定。",
+      "validate": {
+        "exists": [
+          "docs/tech/04-data-pipeline.md"
+        ],
+        "fences": [
+          "docs/tech/04-data-pipeline.md"
+        ],
+        "min_lines": {
+          "docs/tech/04-data-pipeline.md": 900
+        },
+        "contains": [
+          [
+            "docs/tech/04-data-pipeline.md",
+            "参考资料"
+          ],
+          [
+            "docs/tech/04-data-pipeline.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {}
+    },
+    {
+      "id": "C1a",
+      "phase": "C",
+      "wave": 1,
+      "title": "图鉴 skills-yitian（倚天诸派）",
+      "prompt": "C1-catalog.md",
+      "deps": [
+        "G1"
+      ],
+      "vars": {
+        "slug": "yitian",
+        "title": "倚天诸派",
+        "coverage": "明教（含波斯总教、五行旗、四大护教法王、五散人）、峨眉、昆仑、崆峒、华山（倚天）、玄冥二老与汝阳王府（含番僧）、天鹰教、神拳门/巨鲸帮/海沙派等小帮会；目标约 65 门；天级：九阳神功、乾坤大挪移、圣火令武功、玄冥神掌（基准 §13）",
+        "books": "倚天"
+      },
+      "writes": [
+        "docs/design/catalog/skills-yitian.md"
+      ],
+      "review": true,
+      "review_focus": "抽查至少 15 条招式的核算式（05 §4.2）与内功贡献预算（05 §5.5）；天级与基准 §13 完全一致；中武/低武书界本土三类各 ≥ 3 门的装配可行性表；ID 与其他图鉴不重复；只引用 06 已有或已裁定收录的 Buff。",
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "min_lines": {
+          "docs/design/catalog/skills-yitian.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/catalog/skills-yitian.md",
+            "待决事项"
+          ],
+          [
+            "docs/design/catalog/skills-yitian.md",
+            "套装候选"
+          ],
+          [
+            "docs/design/catalog/skills-yitian.md",
+            "本组统计"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "C1b",
+      "phase": "C",
+      "wave": 1,
+      "title": "图鉴 skills-xiake-bixue（侠客行 / 碧血剑）",
+      "prompt": "C1-catalog.md",
+      "deps": [
+        "G1"
+      ],
+      "vars": {
+        "slug": "xiake-bixue",
+        "title": "侠客行 / 碧血剑",
+        "coverage": "侠客行：侠客岛、雪山派、长乐帮、玄素庄、摩天崖（谢烟客）、金刀寨、上清观；碧血剑：华山（穆人清一脉）、铁剑门（木桑道人）、金蛇郎君、石梁派温家、五毒教（何铁手）、仙都派、闯王军中人物、金龙帮/青竹帮等；目标约 55 门；天级：太玄经、罗汉伏魔神功、金蛇剑法、神行百变（基准 §13）",
+        "books": "侠客、碧血"
+      },
+      "writes": [
+        "docs/design/catalog/skills-xiake-bixue.md"
+      ],
+      "review": true,
+      "review_focus": "抽查至少 15 条招式的核算式（05 §4.2）与内功贡献预算（05 §5.5）；天级与基准 §13 完全一致；中武/低武书界本土三类各 ≥ 3 门的装配可行性表；ID 与其他图鉴不重复；只引用 06 已有或已裁定收录的 Buff。",
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiake-bixue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiake-bixue.md"
+        ],
+        "min_lines": {
+          "docs/design/catalog/skills-xiake-bixue.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "待决事项"
+          ],
+          [
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "套装候选"
+          ],
+          [
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "本组统计"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "C1c",
+      "phase": "C",
+      "wave": 1,
+      "title": "图鉴 skills-wuyue（五岳剑派 / 日月神教）",
+      "prompt": "C1-catalog.md",
+      "deps": [
+        "G1"
+      ],
+      "vars": {
+        "slug": "wuyue",
+        "title": "五岳剑派 / 日月神教",
+        "coverage": "五岳剑派（华山气宗/剑宗、嵩山、泰山、衡山、恒山）、日月神教（含梅庄四友）、福威镖局与林家、青城派、桃谷六仙、不戒和尚一系等；目标约 60 门；天级：独孤九剑、辟邪剑法、吸星大法、葵花宝典（基准 §13）",
+        "books": "笑傲"
+      },
+      "writes": [
+        "docs/design/catalog/skills-wuyue.md"
+      ],
+      "review": true,
+      "review_focus": "抽查至少 15 条招式的核算式（05 §4.2）与内功贡献预算（05 §5.5）；天级与基准 §13 完全一致；中武/低武书界本土三类各 ≥ 3 门的装配可行性表；ID 与其他图鉴不重复；只引用 06 已有或已裁定收录的 Buff。",
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "min_lines": {
+          "docs/design/catalog/skills-wuyue.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/catalog/skills-wuyue.md",
+            "待决事项"
+          ],
+          [
+            "docs/design/catalog/skills-wuyue.md",
+            "套装候选"
+          ],
+          [
+            "docs/design/catalog/skills-wuyue.md",
+            "本组统计"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "C1d",
+      "phase": "C",
+      "wave": 1,
+      "title": "图鉴 skills-kangxi（鹿鼎记 / 连城诀 / 白马啸西风 / 鸳鸯刀）",
+      "prompt": "C1-catalog.md",
+      "deps": [
+        "G1"
+      ],
+      "vars": {
+        "slug": "kangxi",
+        "title": "鹿鼎记 / 连城诀 / 白马啸西风 / 鸳鸯刀",
+        "coverage": "鹿鼎：天地会、神龙教、沐王府、王屋派、清宫大内与满洲武士、平西王府；连城：血刀门、南四奇（落花流水）、梅念笙一门、丁典；白马：高昌遗迹、哈萨克、吕梁三杰、华辉；鸳鸯刀：太岳四侠、林玉龙任飞燕夫妇、威信镖局、大内侍卫；目标约 60 门；天级：凝血神爪、神照经（基准 §13）；白马、鸳鸯无原生天级，顶点为地上",
+        "books": "鹿鼎、连城、白马、鸳鸯"
+      },
+      "writes": [
+        "docs/design/catalog/skills-kangxi.md"
+      ],
+      "review": true,
+      "review_focus": "抽查至少 15 条招式的核算式（05 §4.2）与内功贡献预算（05 §5.5）；天级与基准 §13 完全一致；中武/低武书界本土三类各 ≥ 3 门的装配可行性表；ID 与其他图鉴不重复；只引用 06 已有或已裁定收录的 Buff。",
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-kangxi.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-kangxi.md"
+        ],
+        "min_lines": {
+          "docs/design/catalog/skills-kangxi.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/catalog/skills-kangxi.md",
+            "待决事项"
+          ],
+          [
+            "docs/design/catalog/skills-kangxi.md",
+            "套装候选"
+          ],
+          [
+            "docs/design/catalog/skills-kangxi.md",
+            "本组统计"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "C1e",
+      "phase": "C",
+      "wave": 1,
+      "title": "图鉴 skills-qianlong（书剑恩仇录 / 飞狐外传 / 雪山飞狐）",
+      "prompt": "C1-catalog.md",
+      "deps": [
+        "G1"
+      ],
+      "vars": {
+        "slug": "qianlong",
+        "title": "书剑恩仇录 / 飞狐外传 / 雪山飞狐",
+        "coverage": "书剑：红花会、天池怪侠袁士霄、天山双鹰、关东六魔、回部；飞狐/雪山：辽东胡家、苗家剑、天龙门（南北宗）、商家堡八卦门、毒手药王一门、掌门人大会诸派；目标约 55 门；天级：百花错拳、庖丁解牛掌、胡家刀法（基准 §13）；地阶锚点：苗家剑法",
+        "books": "书剑、飞狐、雪山"
+      },
+      "writes": [
+        "docs/design/catalog/skills-qianlong.md"
+      ],
+      "review": true,
+      "review_focus": "抽查至少 15 条招式的核算式（05 §4.2）与内功贡献预算（05 §5.5）；天级与基准 §13 完全一致；中武/低武书界本土三类各 ≥ 3 门的装配可行性表；ID 与其他图鉴不重复；只引用 06 已有或已裁定收录的 Buff。",
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-qianlong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-qianlong.md"
+        ],
+        "min_lines": {
+          "docs/design/catalog/skills-qianlong.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/catalog/skills-qianlong.md",
+            "待决事项"
+          ],
+          [
+            "docs/design/catalog/skills-qianlong.md",
+            "套装候选"
+          ],
+          [
+            "docs/design/catalog/skills-qianlong.md",
+            "本组统计"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "C1f",
+      "phase": "C",
+      "wave": 1,
+      "title": "图鉴 skills-general（江湖通用武学与杂学总表）",
+      "prompt": "C1-catalog.md",
+      "deps": [
+        "G1"
+      ],
+      "vars": {
+        "slug": "general",
+        "title": "江湖通用武学与杂学总表",
+        "coverage": "各书界通行武学（军中、镖局、武馆、江湖散人；太祖长拳等通行拳剑）、序章《越女剑》教学武学（约 10 门）、不属于任何门派的杂学总表（医/毒/蛊/阵法/音律/书画/棋/易容/驭兽/音功/心神）；目标约 90 门；不含天级",
+        "books": "全部书界（含序章）"
+      },
+      "writes": [
+        "docs/design/catalog/skills-general.md"
+      ],
+      "review": true,
+      "review_focus": "抽查至少 15 条招式的核算式（05 §4.2）与内功贡献预算（05 §5.5）；天级与基准 §13 完全一致；中武/低武书界本土三类各 ≥ 3 门的装配可行性表；ID 与其他图鉴不重复；只引用 06 已有或已裁定收录的 Buff。",
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-general.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-general.md"
+        ],
+        "min_lines": {
+          "docs/design/catalog/skills-general.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/catalog/skills-general.md",
+            "待决事项"
+          ],
+          [
+            "docs/design/catalog/skills-general.md",
+            "套装候选"
+          ],
+          [
+            "docs/design/catalog/skills-general.md",
+            "本组统计"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "R02",
+      "phase": "F",
+      "wave": 1,
+      "kind": "revise",
+      "title": "修订 02 书界时间线与境界（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "G1"
+      ],
+      "web": false,
+      "vars": {
+        "doc": "docs/design/02-timeline-and-world-tiers.md",
+        "doc_name": "02 书界时间线与境界",
+        "conflicts": "C04、C05、C07、C19",
+        "marker_rule": "本文当前约有 24 处（待考）（用 `grep -c 待考 docs/design/02-timeline-and-world-tiers.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
+        "extra": "C04：§2.5 注明修为突破分配点按显示等级生效（03 §14.1 D-20）。C05：等级封顶后的经验去向以 design/13 为准（转为余韵），改写 02 中“继续累积”的表述并改为引用 13。C07：外来九阳的免疫范围按裁定统一。C19：书眠视频的命名与时长按裁定统一。另核对 §3 难度与等级曲线与 13 的经验曲线、各书界等级上限一致。"
+      },
+      "writes": [
+        "docs/design/02-timeline-and-world-tiers.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/design/02-timeline-and-world-tiers.md"
+        ],
+        "fences": [
+          "docs/design/02-timeline-and-world-tiers.md"
+        ],
+        "contains": [
+          [
+            "docs/design/02-timeline-and-world-tiers.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "R08",
+      "phase": "F",
+      "wave": 1,
+      "kind": "revise",
+      "title": "修订 08 地形与轻功（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "G1"
+      ],
+      "web": false,
+      "vars": {
+        "doc": "docs/design/08-terrain-and-qinggong.md",
+        "doc_name": "08 地形与轻功",
+        "conflicts": "C10、C11、C12",
+        "marker_rule": "本文当前约有 70 处（待考）（用 `grep -c 待考 docs/design/08-terrain-and-qinggong.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
+        "extra": "C10：凌波微步的修为门槛与天龙 qg5 可达性按裁定处理，门禁结论随之复核。C11：疲惫恢复阈值（20% / 50%）与撞击伤害算法按裁定统一。C12：`tr_shekou`→`tr_sheku`、“八步赶蝉”→“八步赶蟾”等按重命名表替换。70 处（待考）中与地点、地形、轻功相关的原著事实优先核对。"
+      },
+      "writes": [
+        "docs/design/08-terrain-and-qinggong.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/design/08-terrain-and-qinggong.md"
+        ],
+        "fences": [
+          "docs/design/08-terrain-and-qinggong.md"
+        ],
+        "contains": [
+          [
+            "docs/design/08-terrain-and-qinggong.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "R13",
+      "phase": "F",
+      "wave": 1,
+      "kind": "revise",
+      "title": "修订 13 成长、多周目与结局（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "G1"
+      ],
+      "web": false,
+      "vars": {
+        "doc": "docs/design/13-progression-and-endings.md",
+        "doc_name": "13 成长、多周目与结局",
+        "conflicts": "C05、C06、C23",
+        "marker_rule": "本文当前约有 18 处（待考）（用 `grep -c 待考 docs/design/13-progression-and-endings.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
+        "extra": "C05：本文是等级封顶后经验去向（余韵）的权威，确认表述完整清晰，可供 02 直接引用。C06：本文是经验公式、Boss 经验系数、难度名的权威（D13-11），确认 09 可以直接引用。C23：把本文引用的 `bf_tsp_*` 等尚未入 06 目录的 Buff 在报告中列出完整定义摘要，供 06 收录。§12.5 的 O1–O6 按作者决定更新。"
+      },
+      "writes": [
+        "docs/design/13-progression-and-endings.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/design/13-progression-and-endings.md"
+        ],
+        "fences": [
+          "docs/design/13-progression-and-endings.md"
+        ],
+        "contains": [
+          [
+            "docs/design/13-progression-and-endings.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "RCs",
+      "phase": "F",
+      "wave": 1,
+      "kind": "revise",
+      "title": "修订 图鉴 skills-shaolin（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "G1"
+      ],
+      "web": false,
+      "vars": {
+        "doc": "docs/design/catalog/skills-shaolin.md",
+        "doc_name": "图鉴 skills-shaolin",
+        "conflicts": "C12、C14、C17、C22、C23",
+        "marker_rule": "本文当前约有 61 处（待考）（用 `grep -c 待考 docs/design/catalog/skills-shaolin.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
+        "extra": "C14：数量（规划 48、实际 70）按裁定的总量方案处理（保留或压缩）。C12：`sk_jingangfumo`→`sk_jingangfumoquan` 等按重命名表替换。C17：`reqs` 改用裁定后的字段（技艺门槛、二选一前置）。C22：跨组套装成员（太祖长拳等）双向登记 `setTags`。C23：Buff 引用改为 06 已有 ID 或裁定已收录的 ID。抽查招式核算式（05 §4.2）。"
+      },
+      "writes": [
+        "docs/design/catalog/skills-shaolin.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md"
+        ],
+        "contains": [
+          [
+            "docs/design/catalog/skills-shaolin.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "RCw",
+      "phase": "F",
+      "wave": 1,
+      "kind": "revise",
+      "title": "修订 图鉴 skills-wujue（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "G1"
+      ],
+      "web": false,
+      "vars": {
+        "doc": "docs/design/catalog/skills-wujue.md",
+        "doc_name": "图鉴 skills-wujue",
+        "conflicts": "C14、C17、C22、C23",
+        "marker_rule": "本文当前约有 97 处（待考）（用 `grep -c 待考 docs/design/catalog/skills-wujue.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
+        "extra": "C14：射雕天级 12 门超出单周目预算的处理按裁定。C17：`reqs` 新字段。C22：降龙十八掌等跨组套装成员双向登记 `setTags`。C23：Buff 引用。抽查招式核算式（05 §4.2）。"
+      },
+      "writes": [
+        "docs/design/catalog/skills-wujue.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wujue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wujue.md"
+        ],
+        "contains": [
+          [
+            "docs/design/catalog/skills-wujue.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "RCd",
+      "phase": "F",
+      "wave": 1,
+      "kind": "revise",
+      "title": "修订 图鉴 skills-daojia（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "G1"
+      ],
+      "web": false,
+      "vars": {
+        "doc": "docs/design/catalog/skills-daojia.md",
+        "doc_name": "图鉴 skills-daojia",
+        "conflicts": "C13、C14、C15、C17、C22、C23",
+        "marker_rule": "本文当前约有 102 处（待考）（用 `grep -c 待考 docs/design/catalog/skills-daojia.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
+        "extra": "C13：天罡北斗阵、真武七截阵改为 4 人起阵，写明原著人数与缺员规则（与 09 一致）。C14：神雕首现玄阶超标按裁定处理。C15：神雕原生天级 16 部，以基准 v1.1 的上限为准。C17、C22（独孤九剑、武当九阳功等）、C23 同上。§10 的 O-1–O-4 按作者决定更新。"
+      },
+      "writes": [
+        "docs/design/catalog/skills-daojia.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-daojia.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-daojia.md"
+        ],
+        "contains": [
+          [
+            "docs/design/catalog/skills-daojia.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "RCx",
+      "phase": "F",
+      "wave": 1,
+      "kind": "revise",
+      "title": "修订 图鉴 skills-xiaoyao（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "G1"
+      ],
+      "web": false,
+      "vars": {
+        "doc": "docs/design/catalog/skills-xiaoyao.md",
+        "doc_name": "图鉴 skills-xiaoyao",
+        "conflicts": "C14、C17、C22、C23",
+        "marker_rule": "本文当前约有 68 处（待考）（用 `grep -c 待考 docs/design/catalog/skills-xiaoyao.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
+        "extra": "C14：逍遥组（规划 26、实际 72）数量按裁定处理。C17：六脉神剑需“一阳指或北冥神功”的二选一前置，用新字段表达。C22、C23 同上。§16 的 O-1–O-6 按作者决定更新。"
+      },
+      "writes": [
+        "docs/design/catalog/skills-xiaoyao.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "contains": [
+          [
+            "docs/design/catalog/skills-xiaoyao.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "RT1",
+      "phase": "F",
+      "wave": 1,
+      "kind": "revise",
+      "title": "修订 tech/01 总体架构与选型（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "G1"
+      ],
+      "web": true,
+      "vars": {
+        "doc": "docs/tech/01-architecture.md",
+        "doc_name": "tech/01 总体架构与选型",
+        "conflicts": "C18、C21",
+        "marker_rule": "本文当前约有 11 处（待核实）、0 处（待实测）。逐条处理（待核实）：核实版本号、API 与浏览器支持、价格、限额，在“参考资料”补来源与访问日期；确认有误的改正，并检查受影响的结论与数值；无法核实的保留标记。（待实测）项保留，若公开资料能缩小不确定性就补充说明。报告中给出处理前后的数量与剩余清单。",
+        "extra": "C18：契约文件目录（`packages/spec/` 与 `packages/data/spec/`）按裁定统一，本文是裁定落地的权威位置。C21：`QualityTier` 四档、`RenderWorld` 接口扩展；WebGPU 路线实测 297 KB 超出本文预留的 260 KB，修改预算与相关结论。同步 tech/03 基线核查 F1（`deviceMemory` 取值）、F3（iOS 音量须走 WebAudio）、F11（Worker 解析后回传的成本）以及 tech/08 调研要点 12（Pages 公开部署与“不公开分发”冲突）。"
+      },
+      "writes": [
+        "docs/tech/01-architecture.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/tech/01-architecture.md"
+        ],
+        "fences": [
+          "docs/tech/01-architecture.md"
+        ],
+        "contains": [
+          [
+            "docs/tech/01-architecture.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "RT2",
+      "phase": "F",
+      "wave": 1,
+      "kind": "revise",
+      "title": "修订 tech/02 斜 45° 2.5D 渲染（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "G1"
+      ],
+      "web": true,
+      "vars": {
+        "doc": "docs/tech/02-rendering.md",
+        "doc_name": "tech/02 斜 45° 2.5D 渲染",
+        "conflicts": "C20、C21",
+        "marker_rule": "本文当前约有 3 处（待核实）、0 处（待实测）。逐条处理（待核实）：核实版本号、API 与浏览器支持、价格、限额，在“参考资料”补来源与访问日期；确认有误的改正，并检查受影响的结论与数值；无法核实的保留标记。（待实测）项保留，若公开资料能缩小不确定性就补充说明。报告中给出处理前后的数量与剩余清单。",
+        "extra": "C20：按裁定定稿战斗精灵朝向数（4 或 8）与品阶边框色值（与基准 §4 UI 主色一致），写明对 tech/07、design/09、design/14 的影响。C21：`QualityTier` 四档与 `RenderWorld` 接口扩展与 tech/01 一致。同步 tech/03 F7（安卓安全 GLSL 守则纳入材质约定）、F8（GPU 规则表更新：PowerVR、Maleoon、Mali-G1、Adreno 8xx）。"
+      },
+      "writes": [
+        "docs/tech/02-rendering.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/tech/02-rendering.md"
+        ],
+        "fences": [
+          "docs/tech/02-rendering.md"
+        ],
+        "contains": [
+          [
+            "docs/tech/02-rendering.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "RT6",
+      "phase": "F",
+      "wave": 1,
+      "kind": "revise",
+      "title": "修订 tech/06 素材分离存储与分发（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "G1"
+      ],
+      "web": true,
+      "vars": {
+        "doc": "docs/tech/06-asset-storage.md",
+        "doc_name": "tech/06 素材分离存储与分发",
+        "conflicts": "C18、C19",
+        "marker_rule": "本文当前约有 23 处（待核实）、1 处（待实测）。逐条处理（待核实）：核实版本号、API 与浏览器支持、价格、限额，在“参考资料”补来源与访问日期；确认有误的改正，并检查受影响的结论与数值；无法核实的保留标记。（待实测）项保留，若公开资料能缩小不确定性就补充说明。报告中给出处理前后的数量与剩余清单。",
+        "extra": "C18：契约目录按裁定。C19：书眠视频的素材键命名与时长按裁定。同步 tech/03 F9（对话字体改为按书界用字的两文件子集，不用通用 unicode-range 切片）。会话 Cookie `ts_s` 与素材闸门的描述与 tech/08 一致。"
+      },
+      "writes": [
+        "docs/tech/06-asset-storage.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/tech/06-asset-storage.md"
+        ],
+        "fences": [
+          "docs/tech/06-asset-storage.md"
+        ],
+        "contains": [
+          [
+            "docs/tech/06-asset-storage.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "RT7",
+      "phase": "F",
+      "wave": 1,
+      "kind": "revise",
+      "title": "修订 tech/07 AI 素材生成管线（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "G1"
+      ],
+      "web": true,
+      "vars": {
+        "doc": "docs/tech/07-asset-generation.md",
+        "doc_name": "tech/07 AI 素材生成管线",
+        "conflicts": "C18、C19、C20",
+        "marker_rule": "本文当前约有 19 处（待核实）、0 处（待实测）。逐条处理（待核实）：核实版本号、API 与浏览器支持、价格、限额，在“参考资料”补来源与访问日期；确认有误的改正，并检查受影响的结论与数值；无法核实的保留标记。（待实测）项保留，若公开资料能缩小不确定性就补充说明。报告中给出处理前后的数量与剩余清单。",
+        "extra": "C18：`packages/data/spec/` 改为裁定目录。C19：书眠视频 `vid_*` 命名与时长按裁定。C20：`allowRotation = true` 与精灵朝向数按裁定，重估受影响的渲染张数与工时。§4 工具现状是 2026-09 的调研结果，逐项二次核实（产品是否仍在、版本、价格、许可条款、地区可用性）。"
+      },
+      "writes": [
+        "docs/tech/07-asset-generation.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/tech/07-asset-generation.md"
+        ],
+        "fences": [
+          "docs/tech/07-asset-generation.md"
+        ],
+        "contains": [
+          [
+            "docs/tech/07-asset-generation.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "R03",
+      "phase": "F",
+      "wave": 2,
+      "kind": "revise",
+      "title": "修订 03 属性体系（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "B1"
+      ],
+      "web": false,
+      "vars": {
+        "doc": "docs/design/03-attributes.md",
+        "doc_name": "03 属性体系",
+        "conflicts": "C01、C02、C08、C10",
+        "marker_rule": "本文当前约有 1 处（待考）（用 `grep -c 待考 docs/design/03-attributes.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
+        "extra": "对齐 design/04（已完成并审校）：§4 派生公式、§12 供 04 引用的符号总表与 04 一致。C01：Z1 归一的落地以 04 为准。C02：`MPREF` 的权威定义在本文，确认 04、05 的引用一致。C08：休息与战后清减益改为引用 06 §5.4.2。C10：重算轻功示例表（不存在“天中鞋”，以 10 的装备名录为准；凌波微步门槛与 qg5 可达性按裁定）。§14.1 中已被 04 采纳 / 修改 / 驳回的建议值逐条回填状态。"
+      },
+      "writes": [
+        "docs/design/03-attributes.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/design/03-attributes.md"
+        ],
+        "fences": [
+          "docs/design/03-attributes.md"
+        ],
+        "contains": [
+          [
+            "docs/design/03-attributes.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "R05",
+      "phase": "F",
+      "wave": 2,
+      "kind": "revise",
+      "title": "修订 05 武学体系（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "B1"
+      ],
+      "web": false,
+      "vars": {
+        "doc": "docs/design/05-martial-arts-system.md",
+        "doc_name": "05 武学体系",
+        "conflicts": "C01、C02、C03、C07、C11、C16、C17",
+        "marker_rule": "本文当前约有 32 处（待考）（用 `grep -c 待考 docs/design/05-martial-arts-system.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
+        "extra": "对齐 design/04：§4.2 招式预算、§5 内功相性（Z5）与 04 一致。C01、C02（`MPREF` 引用 03）。C03：§5 内功预算写入 `mpRegen` 上限 6%。C07：九阳。C11：撞击伤害与疲惫阈值。C16：定 `dualWield`（与 03 统一）、左右互搏的子类、弓箭归暗器还是兵器。C17：`Reqs` 增加技艺门槛字段与二选一前置（`anyOf`），同步更新 §2 字段表、YAML、TS 类型与 §15 校验规则。§14 数量规划本任务不改（由 C3 按图鉴实际数量重定）。"
+      },
+      "writes": [
+        "docs/design/05-martial-arts-system.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/design/05-martial-arts-system.md"
+        ],
+        "fences": [
+          "docs/design/05-martial-arts-system.md"
+        ],
+        "contains": [
+          [
+            "docs/design/05-martial-arts-system.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "R10",
+      "phase": "F",
+      "wave": 2,
+      "kind": "revise",
+      "title": "修订 10 物品与装备（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "B1"
+      ],
+      "web": false,
+      "vars": {
+        "doc": "docs/design/10-items-and-equipment.md",
+        "doc_name": "10 物品与装备",
+        "conflicts": "C09、C10",
+        "marker_rule": "本文当前约有 93 处（待考）（用 `grep -c 待考 docs/design/10-items-and-equipment.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
+        "extra": "对齐 design/04：兵器攻击、装备主属性系数（03 §14.1 D-02）在 04 中的落点。C09：若本文引用 `bf_weici` / `bf_daoqiang`，按 06 放宽后的品阶范围 [4, 12] 调整。C10：确认装备名录没有“天中鞋”；给出 03 轻功示例可用的正确鞋类名器 ID（写进报告第 6 节）。93 处（待考）优先核对神兵、宝甲、丹药的原著出处。"
+      },
+      "writes": [
+        "docs/design/10-items-and-equipment.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/design/10-items-and-equipment.md"
+        ],
+        "fences": [
+          "docs/design/10-items-and-equipment.md"
+        ],
+        "contains": [
+          [
+            "docs/design/10-items-and-equipment.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "R09",
+      "phase": "F",
+      "wave": 2,
+      "kind": "revise",
+      "title": "修订 09 战斗系统（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "B1",
+        "R13"
+      ],
+      "web": false,
+      "vars": {
+        "doc": "docs/design/09-combat-system.md",
+        "doc_name": "09 战斗系统",
+        "conflicts": "C06、C12、C13",
+        "marker_rule": "本文当前约有 29 处（待考）（用 `grep -c 待考 docs/design/09-combat-system.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
+        "extra": "对齐 design/04（§5 施放、§6 反应中的伤害与倍率以 04 为准）与 design/13（C06：经验公式、Boss 经验系数、难度名以 13 为准，删除本文自拟版本，改为引用）。C12：`sk_jingangfumo`→`sk_jingangfumoquan` 等按重命名表替换。C13：天罡北斗阵、真武七截阵改为 4 人起阵，写明原著人数与缺员规则。**确认结尾完整**：撰写代理曾在收尾时被中断——检查 §13–§16 是否完整、§0 目录与正文一致、所有表格与代码块闭合。"
+      },
+      "writes": [
+        "docs/design/09-combat-system.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/design/09-combat-system.md"
+        ],
+        "fences": [
+          "docs/design/09-combat-system.md"
+        ],
+        "contains": [
+          [
+            "docs/design/09-combat-system.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "R06",
+      "phase": "F",
+      "wave": 2,
+      "kind": "revise",
+      "title": "修订 06 Buff 体系（评审 + 冲突 + 考据）",
+      "prompt": "revise.md",
+      "deps": [
+        "B1",
+        "R13",
+        "C1a",
+        "C1b",
+        "C1c",
+        "C1d",
+        "C1e",
+        "C1f",
+        "RCs",
+        "RCw",
+        "RCd",
+        "RCx"
+      ],
+      "web": false,
+      "vars": {
+        "doc": "docs/design/06-buff-system.md",
+        "doc_name": "06 Buff 体系",
+        "conflicts": "C07、C08、C09、C11、C12、C23",
+        "marker_rule": "本文当前约有 27 处（待考）（用 `grep -c 待考 docs/design/06-buff-system.md` 复核）。逐条处理：能用你掌握的原著知识确认的，改成确定表述并去掉标记；确认有误的改正；仍无把握的保留（待考），并写清要核对什么（书名·回目·人物/情节）。优先处理影响规则、数值或任务设计的条目。报告中给出处理前后的数量，以及剩余清单（分“影响规则”与“仅影响文本”两类）。",
+        "extra": "对齐 design/04（各类 Buff 数值落在哪个乘区；DOT、护体、反震公式以 04 为准）。C07：九阳相关免疫。C08：休息与战后清减益以本文 §5.4.2 为准。C09：`bf_weici`、`bf_daoqiang` 品阶下限放宽到 [4, 12]。C11：撞击伤害与疲惫阈值。C12：重命名。C23：按裁定的 Buff 缺口清单收录全部缺失 Buff；此时 10 个图鉴与 13 都已完成，再全仓库 grep 一遍 `bf_` 引用补齐新缺口（13 的 `bf_tsp_*` 见 R13 报告），目录数量与统计表同步更新。"
+      },
+      "writes": [
+        "docs/design/06-buff-system.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/design/06-buff-system.md"
+        ],
+        "fences": [
+          "docs/design/06-buff-system.md"
+        ],
+        "contains": [
+          [
+            "docs/design/06-buff-system.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "review": false
+    },
+    {
+      "id": "B3",
+      "phase": "B",
+      "wave": 2,
+      "title": "11 开放世界（含每书界内容预算表、天龙区域示例）",
+      "prompt": "B3-open-world.md",
+      "deps": [
+        "B2",
+        "R02",
+        "R08"
+      ],
+      "writes": [
+        "docs/design/11-open-world.md"
+      ],
+      "review": true,
+      "review_focus": "每书界内容预算表与基准 §2 难度曲线、§17 模板下限（区域 6–10、支线 ≥ 20、队友 ≥ 6）一致；天龙区域示例的原著考据；区域规模与 tech/02、tech/03 预算一致。",
+      "validate": {
+        "exists": [
+          "docs/design/11-open-world.md"
+        ],
+        "fences": [
+          "docs/design/11-open-world.md"
+        ],
+        "min_lines": {
+          "docs/design/11-open-world.md": 800
+        },
+        "contains": [
+          [
+            "docs/design/11-open-world.md",
+            "待决事项"
+          ],
+          [
+            "docs/design/11-open-world.md",
+            "内容预算"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {},
+      "web": false
+    },
+    {
+      "id": "B4",
+      "phase": "B",
+      "wave": 2,
+      "title": "12 任务、人物、门派、经济、生活技能（含全书界门派总表）",
+      "prompt": "B4-quests-npc.md",
+      "deps": [
+        "B2",
+        "R02",
+        "R10",
+        "R13"
+      ],
+      "writes": [
+        "docs/design/12-quests-npc-factions.md"
+      ],
+      "review": true,
+      "review_focus": "全书界门派总表与 rulings 图鉴分工、各图鉴的 `sect_*` ID 一致；经济数值与 10 §13 锚点一致；任务奖励经验与 13 一致。",
+      "validate": {
+        "exists": [
+          "docs/design/12-quests-npc-factions.md"
+        ],
+        "fences": [
+          "docs/design/12-quests-npc-factions.md"
+        ],
+        "min_lines": {
+          "docs/design/12-quests-npc-factions.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/12-quests-npc-factions.md",
+            "待决事项"
+          ],
+          [
+            "docs/design/12-quests-npc-factions.md",
+            "门派总表"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {},
+      "web": false
+    },
+    {
+      "id": "B5",
+      "phase": "B",
+      "wave": 2,
+      "title": "14 手机端 UI/UX（≥ 8 张线框图，含书眠携带界面）",
+      "prompt": "B5-ui-ux.md",
+      "deps": [
+        "B2",
+        "R05",
+        "R09",
+        "R10",
+        "RT2",
+        "B6a"
+      ],
+      "writes": [
+        "docs/design/14-ui-ux-mobile.md"
+      ],
+      "review": true,
+      "review_focus": "线框图 ≥ 8 张且覆盖任务要求的界面；逐条回应 tech/03 §6.5 DOM 性能契约；品阶色与基准 §4、tech/02 C20 裁定一致。",
+      "validate": {
+        "exists": [
+          "docs/design/14-ui-ux-mobile.md"
+        ],
+        "fences": [
+          "docs/design/14-ui-ux-mobile.md"
+        ],
+        "min_lines": {
+          "docs/design/14-ui-ux-mobile.md": 700
+        },
+        "contains": [
+          [
+            "docs/design/14-ui-ux-mobile.md",
+            "待决事项"
+          ],
+          [
+            "docs/design/14-ui-ux-mobile.md",
+            "书眠"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {},
+      "web": false
+    },
+    {
+      "id": "C3",
+      "phase": "C",
+      "wave": 2,
+      "kind": "revise",
+      "title": "按图鉴实际数量重定 05 §14（C14）",
+      "prompt": "C3-skill-plan.md",
+      "deps": [
+        "R05",
+        "C1a",
+        "C1b",
+        "C1c",
+        "C1d",
+        "C1e",
+        "C1f",
+        "RCs",
+        "RCw",
+        "RCd",
+        "RCx"
+      ],
+      "writes": [
+        "docs/design/05-martial-arts-system.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/design/05-martial-arts-system.md"
+        ],
+        "fences": [
+          "docs/design/05-martial-arts-system.md"
+        ],
+        "contains": [
+          [
+            "docs/design/05-martial-arts-system.md",
+            "14.7"
+          ]
+        ]
+      },
+      "vars": {},
+      "review": false,
+      "web": false
+    },
+    {
+      "id": "C2",
+      "phase": "C",
+      "wave": 2,
+      "title": "07 套装体系（规则 + 收敛约 50 个候选）",
+      "prompt": "C2-sets.md",
+      "deps": [
+        "C3",
+        "R06",
+        "B1"
+      ],
+      "writes": [
+        "docs/design/07-set-system.md",
+        "docs/design/catalog/*.md"
+      ],
+      "review": true,
+      "review_focus": "逐套核对成员 ID 在图鉴中存在且 `setTags` 双向登记；低武可达性路径可行（按携带上限与本土可学成员）；`set_shaolin_jingang` 与用户示例一致；对图鉴的改动只限 `setTags` 与“套装候选”一节。",
+      "validate": {
+        "exists": [
+          "docs/design/07-set-system.md"
+        ],
+        "fences": [
+          "docs/design/07-set-system.md"
+        ],
+        "min_lines": {
+          "docs/design/07-set-system.md": 800
+        },
+        "contains": [
+          [
+            "docs/design/07-set-system.md",
+            "待决事项"
+          ],
+          [
+            "docs/design/07-set-system.md",
+            "set_shaolin_jingang"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {},
+      "web": false
+    },
+    {
+      "id": "E2",
+      "phase": "E",
+      "wave": 2,
+      "title": "tech/05 玩法引擎",
+      "prompt": "E2-tech05.md",
+      "deps": [
+        "B1",
+        "R06",
+        "R09",
+        "B4",
+        "E1",
+        "R13"
+      ],
+      "writes": [
+        "docs/tech/05-gameplay-engine.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "伤害管线与 04 逐区一致（含取整点）；Buff DSL 与 06 的钩子、原语清单一致；确定性规则与 tech/01 §8.3 一致；存档与回放接口与 tech/08 §3 一致。",
+      "validate": {
+        "exists": [
+          "docs/tech/05-gameplay-engine.md"
+        ],
+        "fences": [
+          "docs/tech/05-gameplay-engine.md"
+        ],
+        "min_lines": {
+          "docs/tech/05-gameplay-engine.md": 1000
+        },
+        "contains": [
+          [
+            "docs/tech/05-gameplay-engine.md",
+            "参考资料"
+          ],
+          [
+            "docs/tech/05-gameplay-engine.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {}
+    },
+    {
+      "id": "G2",
+      "phase": "D",
+      "wave": 3,
+      "kind": "gate",
+      "title": "作者抽查：系统文档定稿后再开写十四书界",
+      "deps": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C2",
+        "C3",
+        "R02",
+        "R03",
+        "R05",
+        "R06",
+        "R08",
+        "R09",
+        "R10",
+        "R13",
+        "RCs",
+        "RCw",
+        "RCd",
+        "RCx",
+        "C1a",
+        "C1b",
+        "C1c",
+        "C1d",
+        "C1e",
+        "C1f"
+      ],
+      "note": "书界文档（28 次运行）是最大的一笔开销。建议先抽查 01、11、12、14、07 与 04 的模拟结果；确认无误后运行 `python tools/agents/run.py approve G2`。想不停顿地跑完，可以提前运行 `python tools/agents/run.py approve G2 --force`（前置任务全部完成后才生效）。",
+      "vars": {},
+      "writes": [],
+      "review": false,
+      "web": false
+    },
+    {
+      "id": "D01",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 01 天龙八部",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "G2"
+      ],
+      "vars": {
+        "nn": "01",
+        "slug": "tianlong",
+        "book": "天龙八部",
+        "chid": "ch01_tianlong",
+        "features": "珍珑棋局、八部众支线、带头大哥谜案",
+        "catalogs": "skills-shaolin、skills-xiaoyao、skills-wujue（丐帮、大理段氏/天龙寺）、skills-general",
+        "prev": "序章《越女剑》（ch00_yuenv）",
+        "next": "射雕英雄传（ch02_shediao）",
+        "pilot_note": "你写的是第一部书界文档，它将作为其余 13 部的格式范例：结构清晰、各节表格列固定、YAML 示例规范、ID 用法示范完整。"
+      },
+      "writes": [
+        "docs/design/chapters/01-tianlong.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/01-tianlong.md"
+        ],
+        "fences": [
+          "docs/design/chapters/01-tianlong.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/01-tianlong.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/01-tianlong.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "D02",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 02 射雕英雄传",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "D01"
+      ],
+      "vars": {
+        "nn": "02",
+        "slug": "shediao",
+        "book": "射雕英雄传",
+        "chid": "ch02_shediao",
+        "features": "华山论剑、九阴真经收集、黄蓉厨艺、西征大战",
+        "catalogs": "skills-wujue、skills-daojia（全真）、skills-general",
+        "prev": "天龙八部（ch01_tianlong）",
+        "next": "神雕侠侣（ch03_shendiao）",
+        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《射雕英雄传》原著撰写，不要照抄范例。"
+      },
+      "writes": [
+        "docs/design/chapters/02-shediao.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/02-shediao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/02-shediao.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/02-shediao.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/02-shediao.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "D03",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 03 神雕侠侣",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "D01"
+      ],
+      "vars": {
+        "nn": "03",
+        "slug": "shendiao",
+        "book": "神雕侠侣",
+        "chid": "ch03_shendiao",
+        "features": "情花毒、剑冢练剑、襄阳守城",
+        "catalogs": "skills-daojia（古墓、杨过、全真、绝情谷）、skills-wujue（丐帮、桃花岛、蒙古、九阴）、skills-xiaoyao（吐蕃密宗）、skills-general",
+        "prev": "射雕英雄传（ch02_shediao）",
+        "next": "倚天屠龙记（ch04_yitian）",
+        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《神雕侠侣》原著撰写，不要照抄范例。"
+      },
+      "writes": [
+        "docs/design/chapters/03-shendiao.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/03-shendiao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/03-shendiao.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/03-shendiao.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/03-shendiao.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "D04",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 04 倚天屠龙记",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "D01"
+      ],
+      "vars": {
+        "nn": "04",
+        "slug": "yitian",
+        "book": "倚天屠龙记",
+        "chid": "ch04_yitian",
+        "features": "光明顶以一敌六派、屠龙刀秘密、统御明教",
+        "catalogs": "skills-yitian、skills-daojia（武当）、skills-shaolin、skills-wujue（丐帮）、skills-general",
+        "prev": "神雕侠侣（ch03_shendiao）",
+        "next": "笑傲江湖（ch05_xiaoao）",
+        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《倚天屠龙记》原著撰写，不要照抄范例。"
+      },
+      "writes": [
+        "docs/design/chapters/04-yitian.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/04-yitian.md"
+        ],
+        "fences": [
+          "docs/design/chapters/04-yitian.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/04-yitian.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/04-yitian.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "D05",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 05 笑傲江湖",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "D01"
+      ],
+      "vars": {
+        "nn": "05",
+        "slug": "xiaoao",
+        "book": "笑傲江湖",
+        "chid": "ch05_xiaoao",
+        "features": "琴箫合奏、五岳并派投票、吸星异种真气",
+        "catalogs": "skills-wuyue、skills-shaolin、skills-daojia（武当）、skills-general",
+        "prev": "倚天屠龙记（ch04_yitian）",
+        "next": "侠客行（ch06_xiake）",
+        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《笑傲江湖》原著撰写，不要照抄范例。"
+      },
+      "writes": [
+        "docs/design/chapters/05-xiaoao.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/05-xiaoao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/05-xiaoao.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/05-xiaoao.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/05-xiaoao.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "D06",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 06 侠客行",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "D01"
+      ],
+      "vars": {
+        "nn": "06",
+        "slug": "xiake",
+        "book": "侠客行",
+        "chid": "ch06_xiake",
+        "features": "石壁“不识字”解谜、赏善罚恶使清算跨书界品德",
+        "catalogs": "skills-xiake-bixue、skills-general",
+        "prev": "笑傲江湖（ch05_xiaoao）",
+        "next": "碧血剑（ch07_bixue）",
+        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《侠客行》原著撰写，不要照抄范例。"
+      },
+      "writes": [
+        "docs/design/chapters/06-xiake.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/06-xiake.md"
+        ],
+        "fences": [
+          "docs/design/chapters/06-xiake.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/06-xiake.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/06-xiake.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "D07",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 07 碧血剑",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "D01"
+      ],
+      "vars": {
+        "nn": "07",
+        "slug": "bixue",
+        "book": "碧血剑",
+        "chid": "ch07_bixue",
+        "features": "金蛇秘籍解谜、闯王宝藏",
+        "catalogs": "skills-xiake-bixue、skills-general",
+        "prev": "侠客行（ch06_xiake）",
+        "next": "鹿鼎记（ch08_luding）",
+        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《碧血剑》原著撰写，不要照抄范例。"
+      },
+      "writes": [
+        "docs/design/chapters/07-bixue.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/07-bixue.md"
+        ],
+        "fences": [
+          "docs/design/chapters/07-bixue.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/07-bixue.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/07-bixue.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "D08",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 08 鹿鼎记",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "D01"
+      ],
+      "vars": {
+        "nn": "08",
+        "slug": "luding",
+        "book": "鹿鼎记",
+        "chid": "ch08_luding",
+        "features": "宫廷权谋与口才、四十二章经、洪安通 Boss（全作局部难度峰值）",
+        "catalogs": "skills-kangxi、skills-shaolin、skills-xiake-bixue（铁剑门·神行百变）、skills-general",
+        "prev": "碧血剑（ch07_bixue）",
+        "next": "连城诀（ch09_liancheng）",
+        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《鹿鼎记》原著撰写，不要照抄范例。"
+      },
+      "writes": [
+        "docs/design/chapters/08-luding.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/08-luding.md"
+        ],
+        "fences": [
+          "docs/design/chapters/08-luding.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/08-luding.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/08-luding.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "D09",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 09 连城诀",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "D01"
+      ],
+      "vars": {
+        "nn": "09",
+        "slug": "liancheng",
+        "book": "连城诀",
+        "chid": "ch09_liancheng",
+        "features": "狱中与雪谷生存、识破谎言、唐诗剑法密码",
+        "catalogs": "skills-kangxi、skills-general",
+        "prev": "鹿鼎记（ch08_luding）",
+        "next": "白马啸西风（ch10_baima）",
+        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《连城诀》原著撰写，不要照抄范例。"
+      },
+      "writes": [
+        "docs/design/chapters/09-liancheng.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/09-liancheng.md"
+        ],
+        "fences": [
+          "docs/design/chapters/09-liancheng.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/09-liancheng.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/09-liancheng.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "D10",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 10 白马啸西风",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "D01"
+      ],
+      "vars": {
+        "nn": "10",
+        "slug": "baima",
+        "book": "白马啸西风",
+        "chid": "ch10_baima",
+        "features": "高昌迷宫",
+        "catalogs": "skills-kangxi、skills-general",
+        "prev": "连城诀（ch09_liancheng）",
+        "next": "鸳鸯刀（ch11_yuanyang）",
+        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《白马啸西风》原著撰写，不要照抄范例。"
+      },
+      "writes": [
+        "docs/design/chapters/10-baima.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/10-baima.md"
+        ],
+        "fences": [
+          "docs/design/chapters/10-baima.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/10-baima.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/10-baima.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "D11",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 11 鸳鸯刀",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "D01"
+      ],
+      "vars": {
+        "nn": "11",
+        "slug": "yuanyang",
+        "book": "鸳鸯刀",
+        "chid": "ch11_yuanyang",
+        "features": "喜剧夺刀、“仁者无敌”非致命解决",
+        "catalogs": "skills-kangxi、skills-general",
+        "prev": "白马啸西风（ch10_baima）",
+        "next": "书剑恩仇录（ch12_shujian）",
+        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《鸳鸯刀》原著撰写，不要照抄范例。"
+      },
+      "writes": [
+        "docs/design/chapters/11-yuanyang.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/11-yuanyang.md"
+        ],
+        "fences": [
+          "docs/design/chapters/11-yuanyang.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/11-yuanyang.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/11-yuanyang.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "D12",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 12 书剑恩仇录",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "D01"
+      ],
+      "vars": {
+        "nn": "12",
+        "slug": "shujian",
+        "book": "书剑恩仇录",
+        "chid": "ch12_shujian",
+        "features": "红花会群像、乾隆身世",
+        "catalogs": "skills-qianlong、skills-shaolin（南少林）、skills-daojia（武当）、skills-general",
+        "prev": "鸳鸯刀（ch11_yuanyang）",
+        "next": "飞狐外传（ch13_feihu）",
+        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《书剑恩仇录》原著撰写，不要照抄范例。"
+      },
+      "writes": [
+        "docs/design/chapters/12-shujian.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/12-shujian.md"
+        ],
+        "fences": [
+          "docs/design/chapters/12-shujian.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/12-shujian.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/12-shujian.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "D13",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 13 飞狐外传",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "D01"
+      ],
+      "vars": {
+        "nn": "13",
+        "slug": "feihu",
+        "book": "飞狐外传",
+        "chid": "ch13_feihu",
+        "features": "承诺系统、掌门人大会",
+        "catalogs": "skills-qianlong、skills-general",
+        "prev": "书剑恩仇录（ch12_shujian）",
+        "next": "雪山飞狐（ch14_xueshan）",
+        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《飞狐外传》原著撰写，不要照抄范例。"
+      },
+      "writes": [
+        "docs/design/chapters/13-feihu.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/13-feihu.md"
+        ],
+        "fences": [
+          "docs/design/chapters/13-feihu.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/13-feihu.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/13-feihu.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "D14",
+      "phase": "D",
+      "wave": 3,
+      "title": "书界 DLC · 14 雪山飞狐",
+      "prompt": "D-chapter.md",
+      "deps": [
+        "D01"
+      ],
+      "vars": {
+        "nn": "14",
+        "slug": "xueshan",
+        "book": "雪山飞狐",
+        "chid": "ch14_xueshan",
+        "features": "罗生门叙事、劈刀终局（终章；之后接终局“天书守卷人”决战，见 design/13）",
+        "catalogs": "skills-qianlong、skills-general",
+        "prev": "飞狐外传（ch13_feihu）",
+        "next": "终局（design/13 §7）",
+        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《雪山飞狐》原著撰写，不要照抄范例。"
+      },
+      "writes": [
+        "docs/design/chapters/14-xueshan.md"
+      ],
+      "review": true,
+      "review_focus": "13 节模板齐全且满足数量下限；锚点与 01 总览、天书之力与 13 一致；可学武功 ID 都在图鉴中存在；Boss 数值按 03 §10 与 04 核算；原著考据。",
+      "validate": {
+        "exists": [
+          "docs/design/chapters/14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/chapters/14-xueshan.md"
+        ],
+        "min_lines": {
+          "docs/design/chapters/14-xueshan.md": 900
+        },
+        "headings": {
+          "docs/design/chapters/14-xueshan.md": [
+            "^##\\s*1[.．、\\s]",
+            "^##\\s*2[.．、\\s]",
+            "^##\\s*3[.．、\\s]",
+            "^##\\s*4[.．、\\s]",
+            "^##\\s*5[.．、\\s]",
+            "^##\\s*6[.．、\\s]",
+            "^##\\s*7[.．、\\s]",
+            "^##\\s*8[.．、\\s]",
+            "^##\\s*9[.．、\\s]",
+            "^##\\s*10[.．、\\s]",
+            "^##\\s*11[.．、\\s]",
+            "^##\\s*12[.．、\\s]",
+            "^##\\s*13[.．、\\s]"
+          ]
+        }
+      },
+      "kind": "draft",
+      "web": false
+    },
+    {
+      "id": "E3",
+      "phase": "E",
+      "wave": 4,
+      "title": "tech/09 路线图（bench-iso 闸门 → 天龙垂直切片 → 逐书界扩展）",
+      "prompt": "E3-tech09.md",
+      "deps": [
+        "E2",
+        "B6a",
+        "B6b",
+        "E1",
+        "RT1",
+        "RT2",
+        "RT6",
+        "RT7",
+        "D01"
+      ],
+      "writes": [
+        "docs/tech/09-roadmap.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "各阶段闸门可量化、与 tech/02 §12、tech/03 §8 一致；工时估算的假设写清、三档估算自洽；垂直切片范围与 chapters/01 一致。",
+      "validate": {
+        "exists": [
+          "docs/tech/09-roadmap.md"
+        ],
+        "fences": [
+          "docs/tech/09-roadmap.md"
+        ],
+        "min_lines": {
+          "docs/tech/09-roadmap.md": 500
+        },
+        "contains": [
+          [
+            "docs/tech/09-roadmap.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {}
+    },
+    {
+      "id": "A3",
+      "phase": "A",
+      "wave": 4,
+      "title": "基准 v1.2：合并全部报告中的基准修订提案",
+      "prompt": "A3-canon-v1.2.md",
+      "deps": [
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12",
+        "D13",
+        "D14",
+        "E3"
+      ],
+      "writes": [
+        "docs/00-canon.md",
+        "docs/decisions/canon-proposals-v1.2.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/00-canon.md",
+          "docs/decisions/canon-proposals-v1.2.md"
+        ],
+        "contains": [
+          [
+            "docs/00-canon.md",
+            "v1.2"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {},
+      "review": false,
+      "web": false
+    },
+    {
+      "id": "F2",
+      "phase": "F",
+      "wave": 4,
+      "kind": "revise",
+      "title": "全局一致性审计（ID、冲突落实、基准同步、数值链）",
+      "prompt": "F2-audit.md",
+      "deps": [
+        "A3",
+        "L1"
+      ],
+      "writes": [
+        "docs/**",
+        "tools/lint/**"
+      ],
+      "validate": {
+        "exists": [
+          "tools/lint/check_ids.py"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py"
+          ]
+        ]
+      },
+      "vars": {},
+      "review": false,
+      "web": false
+    },
+    {
+      "id": "F45",
+      "phase": "F",
+      "wave": 4,
+      "title": "需求覆盖检查 + docs/README.md 总索引 + 更新 TODO 状态",
+      "prompt": "F45-readme.md",
+      "deps": [
+        "F2"
+      ],
+      "writes": [
+        "docs/README.md",
+        "TODO.md"
+      ],
+      "validate": {
+        "exists": [
+          "docs/README.md",
+          "TODO.md"
+        ],
+        "min_lines": {
+          "docs/README.md": 120
+        },
+        "fences": [
+          "docs/README.md"
+        ]
+      },
+      "kind": "draft",
+      "vars": {},
+      "review": false,
+      "web": false
+    }
+  ]
+}
