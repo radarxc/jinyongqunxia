@@ -1,7 +1,7 @@
 # 09 · 战斗系统（Combat System）
 
 > **归属**（基准 §18）：战斗流程、六角格战场与范围模板、集气时间轴、行动经济、招式施放流程、反应机制（招架/反击/连击/援护/合击）、阵法、倒地与伤势、AI、Boss 机制、大规模战斗、战斗奖励流程、战斗难度与失败保护。
-> **版本**：v2.0（六角格重构 + 审校修订，2026-09-26）。
+> **版本**：v2.0（六角格重构 + 审校修订，2026-09-26）；审校 R09.R（2026-09-26）。
 > **上游**：`decisions/author-requirements.md`（AR-02 阴阳、AR-03 冲穴、AR-12 六角格战棋）、`decisions/author-decisions.md`（G1、P42–P47）、`00-canon.md`（§1 就地开战、§3 境界、§5 节奏目标、§6 属性、§8 战斗模型、§9 乘区、§10 Buff 基础、§11 轻功阈值、§20 装配栏）。AR-12 高于基准 §8 的旧方格描述。
 > **引用而不重定义**：属性、轻功值、体力、气势、护体真气与社交检定 → `design/03-attributes.md`；伤害/命中/招架/暴击/效果命中/治疗公式、Z0–Z10 与逐乘区取整 → `design/04-damage-formula.md`；招式字段、收招 `recovery`、蓄招、绝招、位移、易运、分心二用、合击武学、实战武学经验 → `design/05-martial-arts-system.md`（六角范围模板及枚举唯一归本文 §5）；Buff 钩子、原语、叠加、结算段 S/A/E、攻击管线 P1–P8、控制递减与 Boss 豁免 → `design/06-buff-system.md`；套装 → `design/07`；六角地形、通行成本、高差、坠落/落水、轻功门禁 → `design/08-terrain-and-qinggong.md`；物品、暗器、弹药、丹药、毒药、机关与投掷物 → `design/10-items-and-equipment.md`；巡逻、昼夜天气、区域等级 → `design/11`；羁绊、门派、声望/品德 → `design/12`；角色经验、Boss 经验系数、难度模式与结局 → `design/13-progression-and-endings.md`；手机 UI 布局 → `design/14`；武运、敌人品阶骰、掉落池、难度 D 映射 → `design/02-timeline-and-world-tiers.md`；渲染与精灵朝向 → `tech/02-rendering.md`；命令/事件、RNG 分流、Worker 与存档 → `tech/01`、`tech/05`。尚未落盘的规划文档只用短编号引用，不伪造文件路径。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术版本、API 或限额尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖他文档、本文先给出可用数值并在 §16 登记。
@@ -308,7 +308,7 @@ D_local   = 区域局部难度（02 §3.3 localDifficulty；缺省为书界 D）
 
 战斗规则使用 **pointy-top 轴坐标** `Hex(q,r)`；需要旋转、插值或距离时转换为立方坐标 `Cube(q,r,s)`，且 `s = -q-r`。地形格保留 `h`（高度层，0–10）与 `terrain`，格子身份始终由 `(q,r)` 决定，不使用屏幕像素或世界浮点数比较。
 
-六邻方向 `HexDir` 固定如下；数组顺序也是寻路扩展、环枚举与同分裁决的顺序：
+六邻方向 `HexDir` 固定如下；数组顺序也是寻路扩展、环枚举与同分裁决的顺序。它与 `design/08` §1.4 是同一套 **core 枚举**：
 
 | `dir` | 轴坐标增量 `(dq,dr)` | 反向 | 世界平面角（与 §4.5 的单位朝向同轴） |
 |---:|---:|---:|---|
@@ -321,7 +321,7 @@ D_local   = 区域局部难度（02 §3.3 localDifficulty；缺省为书界 D）
 
 “前/后”只是随相机旋转的显示称呼；存档、AI 和伤害判定只认 `dir=0..5`。六角距离为：
 
-> 与 `tech/02` 的方向编号对照：本文 `dir0..5` 的世界角依次为 `0°/300°/240°/180°/120°/60°`；`tech/02` 的展示表按逆时针编号，因此映射为本文 `[0,5,4,3,2,1] → tech H[0,1,2,3,4,5]`。坐标增量完全相同，只有枚举编号手性不同；实现层须以本文 `DIR` 数组为规则真值，再交 tech/02 的角度函数映射 `Dir8`，不得直接互拷数字枚举。
+> 与 `tech/02` 的方向表对照：本文 `dir0..5` 的世界角依次为 `0°/300°/240°/180°/120°/60°`；该表的 `H0..H5` 是按世界角逆时针排列的**展示标签**，不是另一套可持久化枚举，因此对应关系为本文 `dir [0,5,4,3,2,1] → tech H[0,1,2,3,4,5]`。坐标增量完全相同；实现层只持久化本文 / 08 的 `HexDir`，再以世界角交给 tech/02 的 `spriteDir` 映射 `Dir8`，不得序列化 `H*` 标签或直接互拷数字。
 
 ```text
 dq = q2-q1; dr = r2-r1; ds = -dq-dr
@@ -473,7 +473,7 @@ ctGain = spd
 ```
 
 - `qinggong` 本身已综合身法、等级、轻功武学、资质、装备、主运内功和装备负重（03 §4.5），在可成长项中贡献最大；不得再把 `Q_skill` 单独加进 `spd`，否则同一轻功被计算两次。
-- 取整点只有一次：先合成所有 flat 与 pct，最后向下取整并钳制；Buff 变化后重算缓存。Lv1 / Lv35 / Lv70 的 STD 约为 92 / 106 / 125–127，与 03 旧锚点 92 / 106 / 125 的偏差不超过 2，避免全局节奏突变。
+- 取整点只有一次：先合成所有 flat 与 pct，最后向下取整并钳制；Buff 变化后重算缓存。按 03 §3.5 / §4.9 的现行 **STD 高武线**表值重算：Lv1 `agi=50+2/5=50.4,qinggong=31`，得 `floor(91.56)=91`；Lv35 `agi=55.1+17.4/5=58.58,qinggong=98`，得 `floor(106.794)=106`；Lv70 以未四舍五入先天 `agi=60.35+45/5=69.35,qinggong=199`，得 `floor(127.665)=127`。这些数值不是 03 §4.5.1 的“天龙开局 / 天龙末”代表时点（其轻功值为 8.6 / 115.6），两套口径不得混算。03 同步 P-09-6 时必须重跑 STD 表，并以新值 **91 / 106 / 127**（相对旧锚点 92 / 106 / 125 的偏差 1 / 0 / 2）为验收条件。
 - `spd` 决定首轮之后的长期行动频率；首轮则严格用有效 `qinggong` 排序（§3.3）。因此“轻功高”同时体现为走得远、先出手、后续集气快，收招仍能让重招变慢。
 
 > **为什么允许负集气**：05 的收招 700–1500 要求“收招 1500 的重招比 1000 更慢”。若把 `ct` 钳在 0，超过 1000 的部分会被吞掉。允许负值后，后续行动间隔约为 `rec_eff / spd` tick。基准“集气 0→1000”描述 UI 区间；内部负值是收招债务。
@@ -483,23 +483,38 @@ ctGain = spd
 ```ts
 // 返回下一个行动者；无 RNG 消耗；全部整数运算（tech/01 §8.3 D3/D4）
 // 同一 tick 内的结算顺序：定时事件 → 环境行动 → 单位（§3.3 tie-break）
-function nextActor(b: BattleState): UnitId | TimedEventId | 'env' {
-  while (b.openingOrder.length) {
+type TimelineEntry = UnitId | TimedEventId | 'env' | 'stalled';
+function nextActor(b: BattleState): TimelineEntry {
+  for (;;) {
     const id = b.openingOrder[0];
-    const u = b.unitsById[id];
+    if (id === undefined) break;
+    const u = b.units.find(candidate => candidate.id === id);         // BattleState 只持久化 units[]
     if (!u || !isOpeningEligible(u)) { b.openingOrder.shift(); continue; }
     return id;                                                       // 首轮不推进 battleTick
   }
   const due = b.timedEvents.filter(e => e.atTick <= b.tick);        // 预警延时、援军（§5.8、§9.2）
-  if (due.length) return sortEvents(due)[0].id;                     // 结算后从 timedEvents 移除
+  if (due.length) {
+    const event = sortEvents(due)[0];
+    if (!event) throw new Error('INVALID_EVENT_SORT');
+    return event.id;                                                // 结算后从 timedEvents 移除
+  }
   if (b.env && b.env.ct >= 1000) return 'env';                      // 环境时钟（08 §7.4）
   const A = b.units.filter(u => (u.state === 'active' || u.state === 'hidden') && !u.ctFrozen);
   const ready = A.filter(u => u.ct >= 1000);
-  if (ready.length) return sortByTieBreak(ready, b)[0];             // §3.3：已有就绪者，不推进
-  let dt = Infinity;                                                // 此时 dt ≥ 1 必然成立
+  if (ready.length) {
+    const actor = sortByTieBreak(ready, b)[0];
+    if (!actor) throw new Error('INVALID_ACTOR_SORT');
+    return actor.id;                                                // §3.3：已有就绪者，不推进
+  }
+  let dt = Number.POSITIVE_INFINITY;
   for (const u of A) dt = Math.min(dt, Math.ceil((1000 - u.ct) / gain(u)));
   if (b.env) dt = Math.min(dt, Math.ceil((1000 - b.env.ct) / 100));
-  for (const e of b.timedEvents) dt = Math.min(dt, e.atTick - b.tick);
+  for (const e of b.timedEvents) {
+    const wait = e.atTick - b.tick;
+    if (wait > 0) dt = Math.min(dt, wait);                           // 过期事件已在 due 分支返回
+  }
+  if (!Number.isFinite(dt)) return 'stalled';                       // 全冻结 / 无单位且无未来时间源
+  if (!Number.isSafeInteger(dt) || dt < 1) throw new Error('INVALID_TIMELINE_DELTA');
   for (const u of A) u.ct += gain(u) * dt;
   if (b.env) b.env.ct += 100 * dt;
   b.tick += dt;
@@ -512,6 +527,7 @@ function nextActor(b: BattleState): UnitId | TimedEventId | 'env' {
 - `openingOrder` 非空时只弹出其首个合法单位：完成或被硬控跳过一次正常行动后移除该槽；倒地、离场者直接移除。首轮中召唤或入场者不插队。全部开场单位处理一次后，才启动定时事件、环境与 CT 推进。反击、援护、合击搭档等反应不是正常行动，不消耗自己的首轮槽。
 - 每次行动（含其反应队列）结算完后**重新调用** `nextActor`：就绪队列不预先锁定，因为本次行动可能让别人被迟缓出就绪区（如 `ct` 从 1040 被打到 730）。
 - 定时事件（预警招的延时释放、定时援军）作为时间轴上的"伪单位"，同刻时最先结算（§5.8）。
+- `stalled` 不推进状态，只表示当前没有可推进的单位、环境行动或未来定时事件；调用方必须转入 §12.5 的僵局 / 胜负检查，禁止把 `Infinity` 写入 `ct` 或 `tick`。任何全场 `ctFrozen` 的阶段演出都必须同时登记解除冻结的 `TimedEvent`；`held` 由未被冻结的擒拿者行动计数解除。构建期与回放测试覆盖这两个不变量。
 - **环境时钟 `envTick`**（采纳 08 §7.4 的建议）：战场存在可演化的地形或地表状态（可燃物、燃烧、烟雾毒雾、冰封、急流 / 大江中的游水者、摇晃的桥与甲板、机关、剧情节拍）时，`b.env = { ct: 500 }`，否则为 `null`。环境 `spd` 恒为 100，不受任何 Buff、难度、`ctShift` 影响，行动后 `ct −= 1000`（无收招波动），其行动内容按 08 §7.4 的 N1–N6 顺序确定性执行。环境行动不是"回合"：不推进任何单位的 Buff 持续与冷却，不计入 `round`。时间轴上以一枚小的"环境"图标显示其下一次行动位置（§3.7）。
 - 08 中以"tick"为单位的地形时长（燃烧计时、冰封 `2 + ⌊g/3⌋`、机关 5 次复位、余烬 1）在战斗中一律指**环境行动次数**；探索中环境时钟按实时 2 秒一跳（08 §7.4）。
 
@@ -643,7 +659,7 @@ E6：ct := clamp(ct − rec_eff + pendingShift, −1000, 999)      // pendingShi
 
 **例 2：迟缓**：打狗棒法（天中 11，G 3.10）的"绊字诀"施加 `bf_chihuan`：`ct −310`。若目标在 `ct` 900 时被命中 → 590，`tta` 由 1 变为 5（spd 100）。若目标正处于收招中 `ct −400` → −710（下限 −1000）。
 
-**例 3：极速**：东方不败 `spd` 216（§8.11）对主角 121（Lv60 STD）：东方每 ⌈1000/216⌉ ≈ 5 tick 行动一次，主角每 ⌈1000/121⌉ = 9 tick → 主角每行动一次，东方约行动 1.8 次。
+**例 3：极速**：东方不败 `spd` 216（§8.11）对主角 121（Lv60 STD）。若两者都用标准收招 1000，首次从 0 集满分别需 `ceil(1000/216)=5` 与 `ceil(1000/121)=9` tick；长期忽略溢出离散误差时，频率比为 `216/121≈1.785`，即主角每行动一次，东方约行动 1.8 次。实际招式收招不同则按 `rec_eff/spd` 重算，不能固定套用 5/9。
 
 ---
 
@@ -1008,13 +1024,13 @@ AR-12 将范围归本文。所有模板先在无限六角平面枚举，再依�
 | 环 | `aoe_ring` | 自身或目标格 | `r≥1` | `6r` | 周身一圈、外圈预警 |
 | 环 | `aoe_around` | 自身 | 固定 `r=1` | 6 | 周身六格；不含自身 |
 | 面·圆盘 | `aoe_disk` | 目标格或自身 | `r≥0`、`includeCenter=true` | `1+3r(r+1)` | r1=7、r2=19、r3=37 |
-| 面·直线 | `aoe_line` | 自身 | `n=1..6,dir` | `n` | 六向贯穿，不含自身 |
-| 面·首中射线 | `aoe_bolt` | 自身 | `r,dir` | 至多 1 个单位 | 暗器/箭，几何路径为 `r` 格 |
+| 面·直线 | `aoe_line` | 自身 | `n=1..6`；运行时 `aim` | `n` | 六向贯穿，不含自身 |
+| 面·首中射线 | `aoe_bolt` | 自身 | `r`；运行时 `aim` | 至多 1 个单位 | 暗器/箭，几何路径为 `r` 格 |
 | 面·六芒射线 | `aoe_spokes` | 原点 | `r=1..3` | `6r+1`（含中心） | 六方向同时延伸 |
 | 扇形 | `aoe_cone` | 自身 | `r`；`angle∈{60,120}`；`dirCount∈{6,12}` | 见下表 | 掌风、横扫、吐息 |
-| 面·地表 | `aoe_zone` | 目标格 | `shape∈{disk,ring,line,cone}` + 对应参数，`t` | 按内层模板 | 持续火场、毒雾、机关 |
+| 面·地表 | `aoe_zone` | 目标格 | `inner` 为 disk/ring/line/cone 完整模板；`duration` | 按内层模板 | 持续火场、毒雾、机关 |
 | 面·友方 | `aoe_allies` | 自身 | `r` | 圆盘内友方 | 群疗、光环；几何同 `aoe_disk` |
-| 面·全场 | `aoe_field` / `aoe_ally_all` | 战场 | `side` | 合法单位数 | 剧情/绝招；预算按最大目标数另审 |
+| 面·全场 | `aoe_field` / `aoe_ally_all` | 战场 | `aoe_field.side∈{enemy,all}`；友方全场模板无参数 | 合法单位数 | 剧情/绝招；预算按最大目标数另审 |
 
 圆盘含中心，环不含内层。例如 `aoe_disk r=2` 是 19 格，`aoe_ring r=2` 是恰好距离 2 的 12 格。`aoe_around` 是为旧数据保留的生产别名，语义固定等于 `ring r=1`。
 
@@ -1027,15 +1043,24 @@ AR-12 将范围归本文。所有模板先在无限六角平面枚举，再依�
 | 3 | 7 | 15 |
 | 4 | 12 | 24 |
 
-默认 `dirCount=6`，中心线就是 `HexDir`。`dirCount=12` 时使用独立的 `HexAim12Index=0..11`：索引 `2d` 与 `HexDir d` 的中心线重合，索引 `2d+1` 是 `d` 与 `(d+1) mod 6` 之间的半向；不能把同一个数字同时解释成两套角度。12 向仅提供瞄准吸附，最终仍按几何判定枚举；因晶格离散导致不同方向可能格数不同，预算必须取该模板所有允许方向的**最大 N**。常规武学优先 6 向，12 向只用于明确需要精细瞄准的远程招。
+十二向瞄准的主向 / 半向格数（不含施术者；六个同类方向各自旋转对称）：
+
+| 半径 `r` | 60° 主向（偶数索引） | 60° 半向（奇数索引） | 120° 主向（偶数索引） | 120° 半向（奇数索引） | 预算 `Nmax`（60° / 120°） |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1 | 2 | 3 | 2 | 2 / 3 |
+| 2 | 4 | 5 | 8 | 7 | 5 / 8 |
+| 3 | 7 | 9 | 15 | 13 | 9 / 15 |
+| 4 | 12 | 14 | 24 | 22 | 14 / 24 |
+
+默认 `dirCount=6`，中心线就是 `HexDir`。`dirCount=12` 时使用独立的 `HexAim12Index=0..11`：索引 `2d` 与 `HexDir d` 的中心线重合，索引 `2d+1` 是 `d` 与 `(d+1) mod 6` 之间的半向；不能把同一个数字同时解释成两套角度。上表由 §5.3.2 的同一中心点几何判定枚举；半向不是把主向格数旋转照抄。12 向仅提供瞄准吸附，最终仍按几何判定枚举；因晶格离散导致主向和半向格数不同，预算必须取该模板所有 12 个方向的**最大 N**。常规武学优先 6 向，12 向只用于明确需要精细瞄准的远程招。
 
 #### 5.3.2 确定性枚举算法
 
 ```ts
-const DIR: Hex[] = [
+const DIR = [
   {q:1,r:0}, {q:1,r:-1}, {q:0,r:-1},
   {q:-1,r:0}, {q:-1,r:1}, {q:0,r:1}
-];
+] as const satisfies readonly Hex[];
 
 function disk(c: Hex, radius: number): Hex[] {
   const out: Hex[] = [];
@@ -1049,7 +1074,7 @@ function ring(c: Hex, radius: number): Hex[] {
   if (radius === 0) return [c];
   let p = add(c, scale(DIR[4], radius));
   const out: Hex[] = [];
-  for (let side=0; side<6; side++)
+  for (const side of [0,1,2,3,4,5] as const)
     for (let k=0; k<radius; k++) { out.push(p); p=add(p,DIR[side]); }
   return stableRQ(out);
 }
@@ -1068,8 +1093,11 @@ function line(o: Hex, dir: HexDir, n: number): Hex[] {
 05 §4.2 的招式预算公式继续使用，但其中 `AF(tpl)` 改为按**最大可命中格数** `Nmax` 查本文。构建工具可生成：
 
 ```text
-AF(N) = clamp(roundToStep(1/sqrt(1+0.18*(N-1)),0.05),0.35,1.00)
+rawAF(N) = 1/sqrt(1+0.18*(N-1))
+AF(N) = clamp(floor(rawAF(N)*20 + 0.5)/20,0.35,1.00)
 ```
+
+这里的 `floor(x*20+0.5)/20` 明确定义为**正数半入（half-up）到 0.05**；禁止直接调用各语言语义不一的 `round`。构建器应以同一有理输入和固定精度实现，并把结果写入派生数据；运行时不重新开平方。
 
 | `Nmax` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 13 | 15 | 19 | 25 | 37+ |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -1088,10 +1116,12 @@ AF(N) = clamp(roundToStep(1/sqrt(1+0.18*(N-1)),0.05),0.35,1.00)
 | `aoe_cross` / `aoe_x` | `aoe_spokes {r}` | 两个历史别名合一；不再存在四向/斜四向差别 |
 | `aoe_sweep` | `aoe_cone {angle:120,r:1,dirCount:6}` | 保留只读别名 |
 | `aoe_cone {n}` | `aoe_cone {r:n,angle:60,dirCount:6}` | 参数 `n→r`；横扫须显式 120° |
-| `aoe_zone {shape:sq3}` | `shape:disk,r:1` | 构建时改写 |
-| `aoe_zone {shape:diamond2}` | `shape:disk,r:2` | 构建时改写 |
-| `aoe_wave {d,w}` | 以目标中心沿朝向距离 `d` 放置一条与朝向垂直的 cube-line；`w` 必须为奇数 | 兼容组合模板，最大格数 `w` |
-| `aoe_pierce`、`aoe_leap`、`aoe_dash`、`aoe_pull`、`aoe_knock`、`aoe_chain`、`aoe_multi`、`aoe_behind`、`aoe_swap`、`aoe_boomerang` | 保留行为 ID；路径、距离、溅射调用本文 line/disk/cone | 非基础几何，不重复定义格形 |
+| `aoe_zone {shape:sq3,t}` | `{inner:{tpl:aoe_disk,r:1},duration:t}` | 构建时改写 |
+| `aoe_zone {shape:diamond2,t}` | `{inner:{tpl:aoe_disk,r:2},duration:t}` | 构建时改写 |
+| `aoe_wave {d,w}` | 以目标中心沿朝向距离 `d` 放置一条与朝向垂直的 cube-line；`w` 必须为奇数 | 生产行为模板，最大格数 `w`；几何仍由基础 line 生成 |
+| `aoe_pierce`、`aoe_leap`、`aoe_dash`、`aoe_pull`、`aoe_knock`、`aoe_chain`、`aoe_multi`、`aoe_behind`、`aoe_swap`、`aoe_boomerang` | 保留生产行为 ID；路径、距离、溅射调用本文 line/disk/cone | 非基础几何；字段契约见 §13.1 `HexBehaviorShape` |
+
+组合行为不是“无法校验的字符串别名”：新内容必须写成 §13.1 的 `HexBehaviorShape`。多段范围使用显式 `aoe_sequence.steps[]`，每段都是完整 `HexShape`，按数组顺序各自生成目标集合、结算伤害与 Buff；禁止沿用未定型的 `then: aoe_*` 单字段。`aoe_pierce` 固定取首目标及其正后相邻格中的首个合法单位（最多 2 个目标），其余行为字段保持 05 既有含义，几何筛选以本文为准。
 
 新配表禁止写 `sq`、`diamond`、`cross`、`x` 形状。兼容层只负责旧存档/旧内容装载并打警告；05、10、Boss 与图鉴内容须迁移到生产 ID。
 
@@ -1342,7 +1372,7 @@ AF(N) = clamp(roundToStep(1/sqrt(1+0.18*(N-1)),0.05),0.35,1.00)
 
 | 项 | 内容 |
 |---|---|
-| 成员 | 双方装配杂学·音律《笑傲江湖》曲谱 `sk_xiaoaojianghuqu`（建议 ID，catalog 定）≥ 3 重；一方持琴（`exotic`/`qin`）、一方持箫（`exotic`/`flute`，05 §6.2 细类）；羁绊 ≥ 3；相距 ≤ 3 |
+| 成员 | 双方装配杂学·音律《笑傲江湖》曲谱 `sk_xiaoaojianghuqu`（已由 catalog/skills-wuyue 定义）≥ 3 重；一方持琴（`exotic`/`qin`）、一方持箫（`exotic`/`flute`，05 §6.2 细类）；羁绊 ≥ 3；相距 ≤ 3 |
 | 类型 | 持续合奏（非攻击）：进入"合奏"状态，至多 3 轮 |
 | 效果 | 每轮开始：两人任一周围 4 格内的友方获得清心 `bf_qingxin`（06：驱散 1 个 `mind` 效果并回内），品阶 = 曲谱 `effGrade`；两人任一周围 3 格内的敌人以 40% 基础概率受乱心 `bf_luanxin`（效果命中含 03 §8.2 音律加成） |
 | 代价 | 合奏期间两人每次行动只能"续奏"（等同待机，收招 800，另耗 5% `mpMax`）或"收曲"（结束合奏后本次正常行动）；任一人单次受伤 ≥ 10% `hpMax` 或被硬控 → 合奏中断 |
@@ -1352,7 +1382,7 @@ AF(N) = clamp(roundToStep(1/sqrt(1+0.18*(N-1)),0.05),0.35,1.00)
 
 | 项 | 内容 |
 |---|---|
-| 成员 | 双方装配夫妻刀法 `sk_fuqidaofa`（建议 ID，catalog 定）≥ 4 重，分任"夫""妻"两位（与角色性别无关）；情缘羁绊 ≥ 3；相距 ≤ 2 |
+| 成员 | 双方装配夫妻刀法 `sk_fuqidaofa`（已由 catalog/skills-kangxi 定义）≥ 4 重，分任"夫""妻"两位（与角色性别无关）；情缘羁绊 ≥ 3；相距 ≤ 2 |
 | 类型 | 发动后进入"刀意相连"，持续 3 轮 |
 | 效果 | 一方攻击与另一方相邻的敌人后，另一方以 `counterMove` ×0.5 追击（每回合 1 次）；一方被单体攻击且另一方相邻时，另一方 50% 援护 |
 | 拌嘴 | 羁绊 < 4 时，每次追击 / 援护触发有 20% 改为"拌嘴"：该次不协助，协助者获失衡 `bf_shiheng` 1 回合（取原著林玉龙、任飞燕夫妇时常争吵、刀法难合之趣，细节待考） |
@@ -1431,7 +1461,7 @@ AF(N) = clamp(roundToStep(1/sqrt(1+0.18*(N-1)),0.05),0.35,1.00)
   - 以挪移 `bf_nuoyi` 把伤害转嫁给某阵员：该伤害带 `redirected` 旗标，不能再被三力一心分摊（06 §5.3.1 已保证），即"以彼之力，攻彼之阵"。
 - 原著：少林渡厄、渡劫、渡难三僧以长索于后山三株松树间布"金刚伏魔圈"，看守谢逊（倚天，细节待考）。
 
-#### 6.8.4 五行旗阵 `sk_wuxingqizhen`（建议 ID · 地中 8 原创定级 · 倚天 · 明教五行旗 · 5 人或 5 个战阵单位）
+#### 6.8.4 五行旗阵 `sk_wuxingqizhen`（地中 8 · 倚天图鉴已定义 · 明教五行旗 · 5 人或 5 个战阵单位）
 
 阵型（五边形，顺时针恰为相生序"金生水、水生木、木生火、火生土、土生金"）：
 
@@ -1447,14 +1477,14 @@ AF(N) = clamp(roundToStep(1/sqrt(1+0.18*(N-1)),0.05),0.35,1.00)
 | 锐金 | 标枪齐射：`aoe_line n=5`、投射物、附破甲 `bf_pojia` | 土生金：`hit +20` | 以标枪 / 短枪攻敌 |
 | 洪水 | 喷筒毒水：`aoe_cone {r:3,angle:60,dirCount:6}`、中毒 `bf_zhongdu` 2 层；覆盖的火场格变为浅水 | 金生水：`Z3 +10%` | 以喷筒射毒水 |
 | 巨木 | 巨木冲撞：`aoe_dash n=4 through`、击退 2 | 水生木：`Z4 +10%` | 以巨木撞击 |
-| 烈火 | 火攻：`aoe_zone {shape:disk,r:1,t:2}` 生成火场、灼烧 `bf_zhuoshao` | 木生火：灼烧持续 +1 | 以火器火攻 |
+| 烈火 | 火攻：`aoe_zone {inner:{tpl:aoe_disk,r:1},duration:2}` 生成火场、灼烧 `bf_zhuoshao` | 木生火：灼烧持续 +1 | 以火器火攻 |
 | 厚土 | 地遁：进入 `hidden`，下一行动在 5 格内任一可站立格现身出手（视为背击） | 火生土：坚固 `bf_jiangu` | 掘地道奇袭 |
 
 - **阵眼 = 中宫大旗**（场景物件，`hp` = 一个战阵单位的 10%，`destroyObject`）：大旗倒 → 阵破。
 - **专属破法（以克破阵）**：某旗出局 → 其所"生"之旗失去相生加成；在相生环上**不相邻**的两旗出局 → 阵破。
 - 原著：明教锐金、巨木、洪水、烈火、厚土五行旗于光明顶一役与六大派交锋（各旗战法细节待考）。
 
-#### 6.8.5 两仪剑阵 / 两仪化四象（正两仪剑法 `sk_zhengliangyi`、反两仪刀法 `sk_fanliangyi`，建议 ID，地中–地上由 catalog 定级 · 倚天）
+#### 6.8.5 两仪剑阵 / 两仪化四象（正两仪剑法 `sk_zhengliangyi` 地上 9、反两仪刀法 `sk_fanliangyi` 地中 8，倚天图鉴已定义）
 
 阵型不固定于地面，而是**针对一名敌人**：两名成员占据该敌人的一对相反六邻，三者沿一条六向轴线共线，即“夹击”。
 
@@ -1897,9 +1927,9 @@ combatScore  ：下表，本文所有
 | 项 | 规则 |
 |---|---|
 | 初值 | 40；完成支线"离间五龙使"（chapters/08）→ 30；完成"神龙教内乱"（02 §7.3 N2）→ 0 并**锁定**（宝训机制整体失效、P2 援军取消） |
-| 颂圣 | 教众战阵专属招式 `mv_baoxun_songsheng`（属武学「神龙教宝训」`sk_baoxun`，杂学·心神，原创扩展，仅教众装配；建议 ID）：收招 800，宝训 +8。AI：宝训 < 60，或洪安通气血 < 50% 且宝训 < 90 时优先颂圣，否则攻击 |
+| 颂圣 | 教众战阵专属脚本行动 `mv_baoxun_songsheng`（原创扩展，建议 ID；不是可学习武学，不建立 `sk_baoxun`）：收招 800，宝训 +8。AI：宝训 < 60，或洪安通气血 < 50% 且宝训 < 90 时优先颂圣，否则攻击 |
 | 教主神威 | 洪安通击倒一名玩家单位 +5 |
-| 下降 | 教众战阵出局 −10；五龙使出局 −4；颂圣中的战阵被 `sonic` 招式（狮子吼等）命中或被施加泄气 `bf_xieqi` → −10 且该次颂圣作废；**离间**（§4.8.8，对任一教众战阵，DC 55）成功 −15；对战阵使用豹胎易筋丸解药（`it_baotai_jieyao`，建议 ID，10 定）→ 该阵解除受制并倒戈撤离，−20 |
+| 下降 | 教众战阵出局 −10；五龙使出局 −4；颂圣中的战阵被 `sonic` 招式（狮子吼等）命中或被施加泄气 `bf_xieqi` → −10 且该次颂圣作废；**离间**（§4.8.8，对任一教众战阵，DC 55）成功 −15；对战阵使用豹胎易筋丸解药（`it_baotai_jieyao`，已由 10 定义）→ 该阵解除受制并倒戈撤离，−20 |
 | 奉承 | 对洪安通使用口舌"奉承"：`DC = 60 + 10 × 本场已成功次数`。成功：宝训 +10、洪安通 `ct −200`、获破绽 `bf_polu`（品阶 12，招架 −14%）1 回合（台词"说得好！"）；失败：宝训 +5、洪安通获锐意 `bf_ruiyi` 1 回合（"拍到马腿上"）。以涨宝训换一次喘息与破绽（原创扩展机制） |
 
 宝训档位效果（系统光环，品阶 12，以 06 `applyBuff.params` 覆写基准值）：
@@ -1912,7 +1942,7 @@ combatScore  ：下表，本文所有
 
 UI：顶部宝训条标出 30 / 60 / 90 三条线；每次颂圣飘字"洪教主仙福永享，寿与天齐！"
 
-**英雄三招**（`sk_yingxiongsanzhao`，地中 8 · 8 重，基准 §13 注；建议 ID）——洪安通的被动反制，**每阶段各 1 次**：
+**英雄三招**（`sk_yingxiongsanzhao`，地中 8 · 8 重，已由 catalog/skills-kangxi 定义）——洪安通的被动反制，**每阶段各 1 次**：
 
 | 招 | 招式 ID（建议） | 触发 | 效果 |
 |---|---|---|---|
@@ -1924,11 +1954,11 @@ UI：顶部宝训条标出 30 / 60 / 90 三条线；每次颂圣飘字"洪教主
 - 三招改判的"抵抗"不计入 06 的 `ccCount`。三招用尽后，控制照常生效（受 06 递减）。
 - **设计意图**：控制在他身上是陷阱——先用廉价控制（战阵的缠绕、暗器的定身、击退）把三招骗出来，再上真正的硬控与爆发。
 
-**美人三招**（`sk_meirensanzhao`，地中 8，苏荃；建议 ID），每阶段各 1 次：贵妃回眸（被背击：反身一击 ×1.0，40% 迷惑 `bf_mihuo` 1 回合）；小怜横陈（受致死伤害：锁血 `bf_suoxue` 并后撤 2 格）；飞燕回翔（被近身攻击后：后跃 3 格、回身暗器 ×0.8，30% 麻痹 `bf_mabi`）。
+**美人三招**（`sk_meirensanzhao`，地中 8，苏荃；已由 catalog/skills-kangxi 定义），每阶段各 1 次：贵妃回眸（被背击：反身一击 ×1.0，40% 迷惑 `bf_mihuo` 1 回合）；小怜横陈（受致死伤害：锁血 `bf_suoxue` 并后撤 2 格）；飞燕回翔（被近身攻击后：后跃 3 格、回身暗器 ×0.8，30% 麻痹 `bf_mabi`）。
 
 **苏荃倒戈**（原创扩展）：若苏荃好感 ≥ 60 且主角在支线中揭破"洪安通屠戮老兄弟"一事（chapters/08 标记），P2 开始时她"袖手"（转 `neutral` 离场）；好感 ≥ 85 则倒戈为 `ally`。否则她死战；她倒地时宝训 −10（"教主失色"）。
 
-**洪安通招式**（原创扩展招名；主运建议 `sk_shenlongxinfa`、主力 `sk_shenlongzhang`，均地上 9，由 catalog / chapters 定义）：
+**洪安通招式**（原创扩展招名；主运 `sk_shenlongxinfa` 为地上 9，主力 `sk_shenlongzhang` 为玄上 6，均已由 catalog/skills-kangxi 定义；Boss 脚本可作专属强化）：
 
 | 招式（建议 ID） | 范围 | 要点 | 阶段 |
 |---|---|---|---|
@@ -2025,8 +2055,8 @@ UI：顶部宝训条标出 30 / 60 / 90 三条线；每次颂圣飘字"洪教主
 | 机制 | 规则 |
 |---|---|
 | 鬼魅身法（被动） | ① 残影 `bf_canying` 上限 3 层，**每次自身行动开始 +1 层**（覆写 06 的"移动 ≥ 3 格回复"）；② 每次行动可在出手前或后免费**瞬移**至 6 格内任一可站立格（无视控制区、单位与 ≤ 4 级高差）；③ `spd` 216 对主角 121：主角每行动一次，他约行动 1.8 次（§3.8 例 3） |
-| 飞针 `mv_kuihua_feizhen`（建议 ID） | `aoe_chain n=3`（05），`projectile`，每跳 ×0.8；失明 `bf_shimang` 30%、点穴 `bf_fengxue` 15%（品阶 11）。**被屏风与单位阻挡**（§5.5） |
-| 刺目 `mv_kuihua_cimu`（建议 ID） | 近身单体，`cd 4`，×1.6，必定失明 2 回合；目标为威胁最高者（取原著任我行伤目之事） |
+| 飞针 `mv_kuihua_feizhen`（已由 catalog/skills-wuyue 定义） | `aoe_chain n=3`，`projectile`，每跳 ×0.8；失明 `bf_shimang` 30%（图鉴本体）。Boss 若另加点穴 15%，必须作为脚本覆写显式登记。**被屏风与单位阻挡**（§5.5） |
+| 刺目 `mv_kuihua_cimu`（已由 catalog/skills-wuyue 定义） | 图鉴本体为近身单体、`cd 4`、×1.30、必定失明 2 回合；目标为威胁最高者。Boss 若改倍率必须显式写入脚本，不能在本文暗改图鉴数值（“伤目”对应情节待考） |
 | 万针归宗 `tg_wanzhenguizong`（预警，原创扩展招名） | 以目标所在格为心标出 `aoe_disk {r:2}` 的 19 格圆盘（定点）；释放时按东方当时位置判视线，被屏风挡住的格不受伤；×1.2、点穴 30%。因其极速，适用 §5.8 公平性规则（至少让玩家方行动一次） |
 | 以针应招 | P1 中反击率 +40pp，且可以远程针反击近身者 |
 
@@ -2481,20 +2511,45 @@ export interface BattleGridRef {
   qSpan: number; rSpan: number; tileCount: number; tiles: BattleTile[];
 }
 export type HexPrimitiveShape =
-  | { tpl: 'aoe_single' | 'aoe_self' }
+  | { tpl: 'aoe_single'; includeEmpty?: boolean }
+  | { tpl: 'aoe_self' }
   | { tpl: 'aoe_ring' | 'aoe_disk' | 'aoe_spokes'; r: number }
   | { tpl: 'aoe_around' }
-  | { tpl: 'aoe_line'; n: number; dir: HexDir }
-  | { tpl: 'aoe_bolt'; r: number; dir: HexDir }
-  | ({ tpl: 'aoe_cone'; r: number; angle: 60 | 120 } & HexAim)
+  | { tpl: 'aoe_line'; n: number }
+  | { tpl: 'aoe_bolt'; r: number }
+  | { tpl: 'aoe_cone'; r: number; angle: 60 | 120; dirCount: 6 | 12 }
   | { tpl: 'aoe_allies'; r: number }
-  | { tpl: 'aoe_field' | 'aoe_ally_all'; side: SideId };
-export type HexShape = HexPrimitiveShape
-  | { tpl: 'aoe_zone'; inner: HexPrimitiveShape; duration: number };
+  | { tpl: 'aoe_field'; side: 'enemy' | 'all' }
+  | { tpl: 'aoe_ally_all' };
+export type HexZoneInner =
+  | { tpl: 'aoe_ring' | 'aoe_disk'; r: number }
+  | { tpl: 'aoe_line'; n: number }
+  | { tpl: 'aoe_cone'; r: number; angle: 60 | 120; dirCount: 6 | 12 };
+export type HexBehaviorShape =
+  | { tpl: 'aoe_wave'; d: 1 | 2 | 3; w: 3 | 5 }
+  | { tpl: 'aoe_pierce' }
+  | { tpl: 'aoe_leap'; r?: number; splash?: { tpl: 'aoe_disk'; r: number } }
+  | { tpl: 'aoe_dash'; n: number; through?: boolean }
+  | { tpl: 'aoe_pull' | 'aoe_knock'; n: 1 | 2 | 3 }
+  | { tpl: 'aoe_chain'; n: number; jumpRange?: number }
+  | { tpl: 'aoe_multi'; n: number; r: number }
+  | { tpl: 'aoe_behind' | 'aoe_swap'; r?: number }
+  | { tpl: 'aoe_boomerang'; n: number };
+export type HexShape = HexPrimitiveShape | HexBehaviorShape
+  | { tpl: 'aoe_zone'; inner: HexZoneInner; duration: number }
+  | { tpl: 'aoe_sequence'; steps: HexShape[] };
+
+// HexPrimitiveShape 是点/环/面/扇形的确定性几何；HexBehaviorShape 复用该几何并增加
+// 位移、选敌或多段语义。这里是招式静态定义，方向只写允许的 dirCount；实际 dir
+// 由 BattleAction.aim 携带，未携带时从目标格吸附。line/bolt/wave/boomerang 只接受
+// dirCount=6，cone 的 aim.dirCount 必须与模板一致。aoe_sequence 只负责有序组合，
+// 禁止空 steps 或递归自循环；其中所有有向步骤共享本次行动的 aim。
+// leap / behind / swap 的 r 省略时取招式 range.max；leap 的旧 splash:none 省略 splash，
+// 旧 splash:sq3 迁为 {tpl:'aoe_disk',r:1}。新内容不得继续写 none / sq3 字符串。
 
 export interface BattleState {
   id: string; encounterId: `enc_${string}`; kind: EncounterKind;
-  seed: number; tick: number; round: number;             // tick 全局刻；round 主角行动次数
+  seed: number; tick: number; round: number;             // tick 全局刻；round 计数者见 §1.3（主角离场后切换）
   grid: BattleGridRef;                                   // pointy-top 六角窗口 + overlay（§2.9.5）
   openingOrder: UnitId[];                                // 首轮尚未行动者，按 §3.3 固定
   units: BattleUnit[];                                     // 按 unitIndex 升序（D5 确定性）
@@ -2547,8 +2602,13 @@ export type BattleAction =
   | { t: 'capture'; target: UnitId } | { t: 'discern'; target: Target }
   | { t: 'unseal'; target: UnitId } | { t: 'struggle' } | { t: 'rescue'; target: UnitId; item?: ItemUid }
   | { t: 'yiyun'; aux: SkillId } | { t: 'swapWeapon' } | { t: 'drawWeapon'; item: ItemUid } | { t: 'pickup'; tile: TilePos }
-  | { t: 'dual'; a: { move: MoveId; target: Target }; b: { move: MoveId; target: Target } }
-  | { t: 'combo'; combo: `cmb_${string}`; partner: UnitId; target: Target };
+  | { t: 'dual';
+      a: { move: MoveId; target: Target; aim?: HexAim };
+      b: { move: MoveId; target: Target; aim?: HexAim } }
+  | { t: 'combo'; combo: `cmb_${string}`; partner: UnitId; target: Target; aim?: HexAim };
+
+// 左右互搏的两招分别校验各自模板与 aim；合击由 combo 定义决定模板，但本次落点和
+// 六角朝向仍由命令携带。缺省 aim 时均按各自 target 从施术者所在格确定性吸附。
 
 // 对 tech/01 §3.6 Command 联合的扩展（本文提案）
 export type BattleCommand =
@@ -2651,8 +2711,16 @@ phases:
 telegraphs:
   - { id: tg_shenlongyaojiao, move: mv_shenlongzhang_yaojiao, shape: { tpl: aoe_spokes, r: 2 }, anchor: tile, cadence: 4,
       interrupt: { damagePct: 0.08, tags: [ seal.point ] } }
-  - { id: tg_kunlongjiubian, move: mv_shenlongzhang_kunlong, shape: { tpl: aoe_ring, r: 2, then: aoe_around }, anchor: self,
-      cadence: 3, interrupt: null }
+  - id: tg_kunlongjiubian
+    move: mv_shenlongzhang_kunlong
+    shape:
+      tpl: aoe_sequence
+      steps:
+        - { tpl: aoe_ring, r: 2 }
+        - { tpl: aoe_around }
+    anchor: self
+    cadence: 3
+    interrupt: null
 weakness:
   - { id: wk_baoxun, trigger: "gauge.gauge_baoxun < 30", effect: [ { op: applyBuff, id: bf_yishang, grade: 12 } ], hint: hint_hat_baoxun }
   - { id: wk_gaotai, trigger: { phase: p1, displacedFrom: dais }, effect: [ { op: gotoPhase, phase: p2, skipEvent: bossWave } ] }
@@ -2849,14 +2917,15 @@ behaviors:
 | 资源槽（4） | `gauge_baoxun` `gauge_haoqi` `gauge_lijie` `gauge_xingxiu` | §8.9、§8.10、§9.6 |
 | 预警招（4） | `tg_shenlongyaojiao` `tg_kunlongjiubian` `tg_feilongzaitian` `tg_wanzhenguizong` | §8.9–8.11 |
 | 弱点（4） | `wk_baoxun` `wk_yingxiong` `wk_gaotai` `wk_yanglianting` | §8.9、§8.11 |
-| 范围模板（本文生产 ID） | `aoe_single` `aoe_self` `aoe_ring` `aoe_around` `aoe_disk` `aoe_line` `aoe_bolt` `aoe_spokes` `aoe_cone` `aoe_zone` `aoe_allies` `aoe_field` `aoe_ally_all` | §5.3；组合行为模板另见该节 |
-| 武学（catalog 已定义，本文引用） | `sk_zhenwuqijie` 真武七截阵（skills-daojia）、`sk_jingangfumoquan` 金刚伏魔圈（skills-shaolin，采纳其改名提案 P-9）、`sk_qinlonggong` 擒龙功（skills-xiaoyao）、`sk_dabeidouzhen` 北斗大阵、`sk_luohanzhen` 罗汉阵 | §6.8、§8.10 |
-| 武学（**建议 ID**，定义归 05 / catalog） | `sk_wuxingqizhen` 五行旗阵、`sk_zhengliangyi` 正两仪剑法、`sk_fanliangyi` 反两仪刀法、`sk_yingxiongsanzhao` 英雄三招、`sk_meirensanzhao` 美人三招、`sk_shenlongxinfa` 神龙心法、`sk_shenlongzhang` 神龙掌、`sk_baoxun` 神龙教宝训、`sk_xiaoaojianghuqu` 笑傲江湖曲、`sk_fuqidaofa` 夫妻刀法 | 基准 §13 已有：`sk_tiangang` `sk_suxin` `sk_dagou` `sk_xianglong18` `sk_kuihua` |
+| 范围模板（本文生产 ID） | 基础几何：`aoe_single` `aoe_self` `aoe_ring` `aoe_around` `aoe_disk` `aoe_line` `aoe_bolt` `aoe_spokes` `aoe_cone` `aoe_zone` `aoe_allies` `aoe_field` `aoe_ally_all`；行为 / 组合：`aoe_wave` `aoe_pierce` `aoe_leap` `aoe_dash` `aoe_pull` `aoe_knock` `aoe_chain` `aoe_multi` `aoe_behind` `aoe_swap` `aoe_boomerang` `aoe_sequence` | §5.3、§13.1 |
+| 武学（catalog 已定义，本文引用） | `sk_zhenwuqijie` 真武七截阵、`sk_tiangang` 天罡北斗阵、`sk_wuxingqizhen` 五行旗阵、`sk_zhengliangyi` 正两仪剑法、`sk_fanliangyi` 反两仪刀法（skills-daojia / skills-yitian）；`sk_jingangfumoquan` 金刚伏魔圈（skills-shaolin，C12）；`sk_qinlonggong` 擒龙功（skills-xiaoyao）；`sk_yingxiongsanzhao` 英雄三招、`sk_meirensanzhao` 美人三招、`sk_shenlongxinfa` 神龙心法、`sk_shenlongzhang` 神龙掌、`sk_fuqidaofa` 夫妻刀法（skills-kangxi）；`sk_xiaoaojianghuqu` 笑傲江湖曲（skills-wuyue）；另引用 `sk_dabeidouzhen` `sk_luohanzhen` | §6.7–§6.8、§8.9–§8.10 |
+| 剧情脚本概念（不建武学 ID） | 神龙教“宝训”只用资源槽 `gauge_baoxun` 与脚本行动 `mv_baoxun_songsheng`；废止本文旧建议 `sk_baoxun` | §8.9；与 catalog/skills-kangxi 的归属一致 |
 | 招式（catalog 已定义，本文引用） | `mv_suxin_hebi`（skills-daojia）`mv_dagou_ban`（skills-wujue）`mv_qinlonggong_qinlong`（skills-xiaoyao，Boss 脚本强化）`mv_tiangang_buzhen` `mv_zhenwuqijie_jiezhen`（skills-daojia）`mv_jingangfumoquan_buquan` `mv_jingangfumoquan_fumo`（skills-shaolin） | §6.7–6.8、§8.10 |
-| 招式（**建议 ID**） | `mv_yingxiongsanzhao_zixu` `mv_yingxiongsanzhao_luda` `mv_yingxiongsanzhao_diqing` `mv_shenlongzhang_zhangfeng` `mv_shenlongzhang_longyin` `mv_shenlongzhang_chuhai` `mv_shenlongzhang_yaojiao` `mv_shenlongzhang_kunlong` `mv_baoxun_songsheng` `mv_kuihua_feizhen` `mv_kuihua_cimu` | 05 已有：`mv_basic_strike` `mv_xianglong18_*` |
+| 招式（catalog 已定义，本文引用） | `mv_yingxiongsanzhao_zixu` `mv_yingxiongsanzhao_luda` `mv_yingxiongsanzhao_diqing`（skills-kangxi）；`mv_kuihua_feizhen` `mv_kuihua_cimu`（skills-wuyue）；另有 `mv_basic_strike` `mv_xianglong18_*` | §6.7、§8.9、§8.11 |
+| 招式（**建议 ID**，仅 Boss / 脚本） | `mv_shenlongzhang_zhangfeng` `mv_shenlongzhang_longyin` `mv_shenlongzhang_chuhai` `mv_shenlongzhang_yaojiao` `mv_shenlongzhang_kunlong` `mv_baoxun_songsheng` | catalog/skills-kangxi 已把玩家版 `sk_shenlongzhang` 定为玄上 6；这些脚本强化招仍需 chapters/08 或图鉴核名 |
 | Buff（rulings-v1 已裁定收录） | `bf_shangshi` 伤势 | §7.4；定义以 rulings-v1 §5.3 与 06 后续目录为准 |
 | Buff（**建议给 06 收录/补字段**） | `bf_hunmi` 昏迷、`bf_kangfen` 亢奋、`bf_minjie` 敏捷、`bf_zhuanzhu` 专注、`bf_muguangruju` 目光如炬；`bf_mabi` 补臂力降低 | §7.0；发布前必须进入 06 目录 |
-| 物品（**建议 ID**，归 10） | `it_baotai_jieyao` 豹胎易筋丸解药 | §8.9 |
+| 物品（10 已定义，本文引用） | `it_baotai_jieyao` 豹胎易筋丸解药 | §8.9 |
 | NPC（跨文档建议 ID） | `npc_hongantong` `npc_suquan` `npc_dongfangbubai` `npc_yanglianting` `npc_renwoxing` `npc_xiangwentian` `npc_linghuchong` `npc_renyingying` `npc_xueshenyi`；基准已有 `npc_xiaofeng` | 由 chapters 核名；本文不建立人物定义 |
 | 任务 / 区域（跨文档建议 ID） | `q_08_side_91`（神龙教内乱）`q_08_side_92`（离间五龙使）`rg_08_shenlongdao` | 由 chapters/08 核名；本文只登记引用 |
 | 行动类型（`BattleAction.t`） | `skill` `hidden` `item` `yunjin` `guard` `wait` `cover` `flee` `talk` `capture` `discern` `unseal` `struggle` `rescue` `yiyun` `swapWeapon` `drawWeapon` `pickup` `dual` `combo`；免费动作 `order`（号令）与 `battle/free`（天书之力 / 书契技） | §4.7；旧 `meditate` 仅为读档别名 |
@@ -2889,7 +2958,7 @@ behaviors:
 | V14 | 口舌 `flatter`、`withdraw` 只能由脚本开放 | 错误 |
 | V15 | 群战每个出生区至少 2 格可站立；波次入场不超过阵营 `maxOnField` | 错误 |
 | V16 | 网格必须 `topology: hex-pointy`，每格 `(q,r)` 为整数且唯一；`s=-q-r`；`tileCount≤400`、`qSpan≤20`、`rSpan≤20`；战场可用格满足遭遇要求的连通性 | 错误 |
-| V17 | `facing∈0..5`；`HexAim` 必须由 `dirCount` 判别，6 向只接受 `HexDir`，12 向偶数 `2d` 对齐 `HexDir d`、奇数才是半向；移动、直线和射线只能用六个 `HexDir` | 错误 |
+| V17 | `facing∈0..5`；静态 `HexShape` 不得持久化运行时 `dir`；`BattleAction`（含 `dual.a/b` 与 `combo`）的 `aim` 必须由 `dirCount` 判别，6 向只接受 `HexDir`，12 向偶数 `2d` 对齐 `HexDir d`、奇数才是半向；line / bolt / wave / boomerang 只能用六向，cone 的 `aim.dirCount` 必须与模板一致 | 错误 |
 | V18 | 新内容范围只接受 §5.3 生产模板；`aoe_sq3/sq5/diamond/cross/x/sweep` 仅迁移器可读并必须输出警告；`AF` 用允许方向中的 `Nmax` 构建 | 错误 |
 | V19 | 开场单位的 `openingOrder` 严格由 `qinggong→spd→agi→initiativeSideRank→unitIndex` 排序；禁用随机 `CT0` 与未注明原因的 `openingSlot` | 错误 |
 | V20 | `move` 依 §4.2.1 计算并钳在 1–10；负重只经 `qinggong` 扣一次，重甲 `−1` 另算；路径每步必须六邻且成本引用 08 | 错误 |
@@ -2897,6 +2966,8 @@ behaviors:
 | V22 | 运行态 Buff ID 必须存在于 06 目录；在 R06 同步完成前，§7.0 标为缺项的建议 ID 只能进入迁移/联调白名单，发布构建不得静默放行 | 错误 |
 | V23 | 天罡北斗阵与真武七截阵均 `minMembers=4,dissolveBelow=4`；虚拟阵位仅在 6 名真实阵员且阵主有效 10 重时补 1，且不得生成单位/CT/反应 | 错误 |
 | V24 | 带慈悲 / 戒杀被动的少林武学在单场开关开启时，击倒非 Boss、非野兽目标必须产出来源为 `mercy` 的 `surrendered`；脚本禁制服目标不得被改写 | 错误 |
+| V25 | 时间轴推进量 `dt` 必须为正安全整数；若所有可行动单位均 `ctFrozen` 且无环境 / 未来事件，返回 `stalled` 并转僵局检查；全场冻结演出必须登记解除事件 | 错误 |
+| V26 | `HexShape` 必须匹配 §13.1 判别联合；多段范围只用非空 `aoe_sequence.steps[]`，禁止未定义的 `then`；`aoe_zone.inner` 只接受 disk / ring / line / cone 且不得递归；`aoe_field.side` 仅接受 enemy / all，`aoe_ally_all` 不得带 side | 错误 |
 
 ### 15.2 测试用例（玩法核心单元测试，期望值精确）
 
@@ -2938,6 +3009,7 @@ behaviors:
 | T32 | 六角距离与六邻 | A `(0,0)`；B `(2,-1)`；枚举 A 六邻 | `dq=2,dr=-1,ds=-1`，距离 2；六邻严格等于 §2.9.1 的 6 个坐标且均距 A 为 1 |
 | T33 | 圆盘与环枚举 | 中心 `(0,0)`，`r=1/2/3` | `disk` 格数 7/19/37；`ring` 格数 6/12/18；无重复，按 `(distance,r,q)` 稳定排序 |
 | T34 | 六向扇形枚举 | 中心 `(0,0)`，面向 `dir0`，`r=3`，分别 60°/120° | 分别 7/15 格；旋转 0–5 后格数不变，反向旋转六次回到原集合 |
+| T34b | 十二向扇形枚举 | 中心 `(0,0)`，`r=1/2/3/4`，遍历 `HexAim12Index=0..11`，分别 60°/120° | 偶数主向分别为 1/4/7/12 与 3/8/15/24；奇数半向分别为 2/5/9/14 与 2/7/13/22；同类六向旋转对称，预算各取 2/5/9/14 与 3/8/15/24 |
 | T35 | 范围预算 | `Nmax=1/6/7/19/37` | 依公式并按 0.05 取整得 `AF=1.00/0.75/0.70/0.50/0.35` |
 | T36 | 轻功移动力 | `qinggong=98`、无加减；再施 `bf_minjie G=1`；另测重甲使有效轻功 88 且重甲惩罚 1 | 依次 `tier3,baseMove=6,move=6`；敏捷后有效轻功 104 且 `move=7`；重甲例 `tier2,baseMove=6,move=5` |
 | T37 | 首轮同值裁决 | 两单位有效轻功均 90，`spd` 100/98；另两单位三项全同但偷袭方不同 | 前者 `spd=100` 先；后者先机阵营先；全程不抽 RNG |
@@ -2947,6 +3019,10 @@ behaviors:
 | T41 | C13 七人阵 | 天罡/真武分别以 3/4/6 个真实阵员测试；6 人时阵主 9/10 重 | 3 人不起阵；4 人可起阵且低于 4 立即散；6 人 + 10 重才补 1 虚位，虚位无单位、CT、攻击、追击、援护 |
 | T42 | 旧范围迁移 | 装载 `aoe_sq3`、`aoe_cross r=2` 新内容与旧存档 | 新内容构建失败；旧存档分别迁为 `aoe_disk r=1`（7 格）、`aoe_spokes r=2`（13 格）并记迁移警告 |
 | T43 | P47 慈悲制服 | 开启单场慈悲开关，以带慈悲被动的武学分别击倒普通敌人、Boss；再关闭开关击倒普通敌人 | 开启：普通敌人进入 `surrendered(source=mercy)`，Boss 仍走脚本 / 倒地；关闭：普通敌人走正常倒地链；三者经验均按 13 |
+| T44 | 时间轴无推进源 | 两个活动单位均 `ctFrozen=true`，无 `env`、无未来事件；再测全场冻结但 t+3 有解除事件 | 前者返回 `stalled` 且 `tick/ct` 不变；后者推进 3 tick、先返回解除事件，绝不产生 `Infinity` / `NaN` |
+| T45 | 组合范围 schema | 解析“困龙九变” `aoe_sequence`（ring r2 → around）；另输入旧 `{tpl:aoe_ring,r:2,then:aoe_around}` | 前者按 steps 顺序生成 12 格、再 6 格两段并通过 schema；后者 V26 构建失败 |
+| T46 | 静态范围与运行时朝向 | `{tpl:aoe_line,n:3}` 配 `{dirCount:6,dir:2}`；12 向 cone 分别配匹配 / 不匹配 `aim`；`dual.a/b` 给不同方向，`combo` 给定向扇形；另给静态 line 写 `dir` | 第一组枚举 3 格；匹配 cone、两段 dual 与 combo 各自按其 `aim` 枚举；不匹配被 V17 拒绝；静态 line 的多余 `dir` 被严格 schema 拒绝 |
+| T47 | 全场与地表范围 schema | `{tpl:aoe_field,side:all}`、`{tpl:aoe_ally_all}`、zone 内层 disk；另测 ally_all 带 side、zone 内层 field | 前三者通过；后二者被 V26 拒绝 |
 
 
 ## 16. 待决事项 / 依赖
@@ -2966,15 +3042,15 @@ behaviors:
 | D-06-2 | design/06 | **已解决**：`bf_shangshi` 已由 `rulings-v1.md` §5.3 正式收录；06 仍需落实其跨战斗清理与恢复接口 | §7.4 |
 | D-06-3 | design/06 | 收录 `bf_hunmi`、`bf_kangfen`、`bf_minjie`、`bf_zhuanzhu`、`bf_muguangruju`，并给 `bf_mabi` 补“力气 −3×G”原语；阶段转换驱散与阶段门截断属于系统操作 | §7.9、§8.8 |
 | D-06-4 | design/06 | Boss 脚本可按实例覆写 Buff：东方不败残影“每次自身行动 +1 层”；英雄三招的改判抵抗不增加控制递减计数 | §8.9、§8.11 |
-| D-08-1 | design/08 | **已对齐六角格**；后续只需核对飞越边、出生区 / 窄场模板、坠崖失败接口与地形 AI 分值的交叉引用 | §2.9、§4.2、§7.7、§8.6 |
+| D-08-1 | design/08 | **六角拓扑已对齐，尺度尚待同步**：08 §1.2 仍把“相邻中心距”写成 1 m；应按本文与 tech/02 改为 `R=2/3 m`、轴坐标行距 `3R/2=1 m`、相邻中心距 `sqrt(3)R≈1.1547 m`。另核对飞越边、出生区 / 窄场模板、坠崖失败接口与地形 AI 分值的交叉引用 | §2.9.1、§4.2、§7.7、§8.6 |
 | D-05-1 | design/05、各武学图鉴 | 删除方格曼哈顿距离、8 向和 28 个旧范围模板的生产定义；招式只引用本文的六角范围模板与 `aoe_*` ID | §5.1–§5.7、§14.2 |
-| D-05-2 | design/05 | 蓄招起手 / 收招与释放时移动限制仍归 05；若涉及范围，只传本文的 `RangeSpec` | §4.8.5、§5.8 |
+| D-05-2 | design/05 | 蓄招起手 / 收招与释放时移动限制仍归 05；若涉及范围，只传本文 §13.1 的 `HexShape` | §4.8.5、§5.8 |
 | D-05-3 | design/05 | 把 Lv35 `MPREF` 从 4,559 订正为 03 §3.5 的 4,697 | §5.7 |
 | D-05-4 | design/05、各武学图鉴 | 核对本文示例所用武学、招式、内功与范围 ID；招式本体和定级归 05 / 图鉴，战斗执行只归本文 | §6.7–§6.8、§8.9–§8.11 |
 | D-03-1 | design/03 | 将旧 `spd` 派生和随机 `CT0` 首轮规则切换为本文 P-09-6；03 的气势、体力、轻功值来源与反击 / 连击接口仍为上游 | §3、§4.1、§7.1 |
 | D-03-2 | design/03 | 口舌战斗检定建议复用 `speech' = speech + (cha - 50) / 5`；若 03 更改属性口径，本文只消费最终派生值 | §4.8.8 |
 | D-02-1 | design/02 | AI 档位、精英占比和 Boss 阶段数继续以 02 为准；02 可把能力定义交叉引用到本文 §8.3 | §2.4、§8.3 |
-| D-10-1 | design/10 | **已对齐**：道具类别、携带、次数、同 ID 冷却、敌人用药与缴获均引用 10；`it_baotai_jieyao` 仍是建议 ID，待 10 / 图鉴核名 | §4.8.2–§4.8.3、§8.9 |
+| D-10-1 | design/10 | **已解决**：道具类别、携带、次数、同 ID 冷却、敌人用药与缴获均引用 10；`it_baotai_jieyao` 已由 10 定义 | §4.8.2–§4.8.3、§8.9 |
 | D-10-2 | design/10 | 鸳鸯刀“弃械投降”的经验应改为引用 13：降服与击杀均 ×1.0；不要在 10 另定经验 | §4.8.8、§11.2 |
 | D-11-1 | design/11 | 提供敌群感知、昼夜天气视距、`battleAnchor`、伏兵刷新点、区域等级带与 `battleProfile: narrow`；本文只消费战场截取输入 | §2.2、§2.9 |
 | D-12-1 | design/12 | 提供羁绊等级 / 类型、品德声望后果、俘虏处置及“了断 / 放生”；本文只定义战斗命令和结果事件 | §6.7、§7.8、§11.5 |
@@ -2999,7 +3075,7 @@ behaviors:
 | 基准 §9、design/04 | Z0–Z10、10000 bp、逐乘区取整、Z7 与反击 / 连击 / 追击倍率是伤害唯一口径，本文不复制另一套伤害公式 |
 | 基准 §10、design/06 | Buff 生命周期、钩子、原语、叠加与品阶对抗归 06；本文只定义战斗时机与 `bf_*` 接入 |
 | 基准 §11 | 轻功境界阈值为 20 / 50 / 90 / 140 / 200；本文据此计算五阶移动力区间 |
-| design/08 | 六角地形、每格 `h` / `terrain`、移动成本、跳跃 / 攀爬 / 跨越门禁、视线、高差与坠崖均为上游 |
+| design/08 | 六角地形、每格 `h` / `terrain`、移动成本、跳跃 / 攀爬 / 跨越门禁、视线、高差与坠崖均为上游；其 §1.2 尺度口径尚须按 D-08-1 同步，本文暂以 tech/02 与 §2.9.1 的 `R=2/3 m` 为准 |
 | design/10 | 丹药、暗器、毒药、机关、投掷物的类别、堆叠、携带和战斗可用性为上游 |
 | C06 / design/13 | **已解决**：`expVal(L)=10+5L`；普通 / 精英 / 头目 / Boss 系数 1 / 3 / 5 / 10；难度 ID 为 `diff_jianghu` / `diff_xiake` / `diff_zongshi` / `diff_tianjie`；速战角色经验 ×0.8、武学经验 ×0.5 |
 | C12 / rulings-v1 | **已解决**：生产引用使用 `tr_sheku`、`sk_babuganchan`、`sk_jingangfumoquan`；Boss 脚本用 `bsc_*`，`bs_*` 留给书眠 Ink 节点 |
@@ -3018,7 +3094,7 @@ behaviors:
 | P-09-3 | **已采纳（v1.1 §8）** | CT 内部允许负值表达收招，下限 −1000；界面仍显示 0–1000 | 否则收招超过 1000 的重招无法与普通重招区分 |
 | P-09-4 | **已采纳（v1.1 §8）** | 行动列表引用本文 §4.7；号令、明确标为免费的天书之力 / 书契技不占行动、不耗集气并各有限次 | 避免基准短表被误作封闭枚举 |
 | P-09-5 | **已采纳（v1.1 §8）** | 气血归零为重伤倒地而非永久死亡；主角倒地即战败，剧情可覆写；坠崖离场不算倒地 | 统一 03 / 06 / 08 / 12 / 13 的战斗结果语义 |
-| P-09-6 | **待合入** | 基准 §6 / §8 把 `spd` 改为 `Base_spd = 72 + 0.30*agi + 0.10*Ld + 0.14*qinggong`；flat / pct 后一次向下取整并钳制 30–300；首轮按有效轻功确定顺序，之后进入 CT | AR-12 要求在场按轻功出手；Lv1 / 35 / 70 标准锚点附近仍保持约 92 / 106 / 125–127，减少全局节奏漂移 |
+| P-09-6 | **待合入** | 基准 §6 / §8 把 `spd` 改为 `Base_spd = 72 + 0.30*agi + 0.10*Ld + 0.14*qinggong`；flat / pct 后一次向下取整并钳制 30–300；首轮按有效轻功确定顺序，之后进入 CT | AR-12 要求在场按轻功出手；以 03 §3.5 / §4.9 STD 的 `qinggong=31/98/199` 与最终 `agi` 重算为 91 / 106 / 127，相对旧锚点偏差 1 / 0 / 2 |
 | P-09-7 | **待合入** | 基准 §8 的“斜 45°等距网格 / 约 20×20”改为 pointy-top 六角格：持久化轴坐标 `(q,r)`，`tileCount≤400` 且 `qSpan≤20`、`rSpan≤20`；范围模板唯一归本文 | 落实 AR-12，并消除方格范围继续扩散的来源 |
 | P-09-8 | **待合入** | 基准 §8 的朝向改为 6 个 `HexDir`；动画资源完整旋转使用 `battle8`，固定镜头运行时只驻留 6 个映射视图 | AR-12 覆盖 C20 的旧四向前提，并与 tech/02 的资源方案闭合 |
 
