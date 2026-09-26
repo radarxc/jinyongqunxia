@@ -1967,13 +1967,868 @@
       "web": false
     },
     {
+      "id": "P01",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 01 天龙八部（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "G2"
+      ],
+      "writes": [
+        "docs/design/story/01-tianlong.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/01-tianlong.md"
+        ],
+        "fences": [
+          "docs/design/story/01-tianlong.md"
+        ],
+        "min_lines": {
+          "docs/design/story/01-tianlong.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/01-tianlong.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/01-tianlong.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/01-tianlong.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/01-tianlong.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/01-tianlong.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "01",
+        "slug": "tianlong",
+        "book": "天龙八部",
+        "chid": "ch01_tianlong",
+        "features": "珍珑棋局、八部众支线、带头大哥谜案",
+        "catalogs": "skills-shaolin、skills-xiaoyao、skills-wujue（丐帮、大理段氏/天龙寺）、skills-general",
+        "prev": "序章《越女剑》（ch00_yuenv）",
+        "next": "射雕英雄传（ch02_shediao）",
+        "pilot_note": "你写的是第一部剧情文档，它将作为其余 13 部的格式范例：结构清晰、各节表格列固定、YAML 示例规范、ID 用法示范完整。"
+      }
+    },
+    {
+      "id": "P02",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 02 射雕英雄传（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "P01"
+      ],
+      "writes": [
+        "docs/design/story/02-shediao.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/02-shediao.md"
+        ],
+        "fences": [
+          "docs/design/story/02-shediao.md"
+        ],
+        "min_lines": {
+          "docs/design/story/02-shediao.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/02-shediao.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/02-shediao.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/02-shediao.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/02-shediao.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/02-shediao.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "02",
+        "slug": "shediao",
+        "book": "射雕英雄传",
+        "chid": "ch02_shediao",
+        "features": "华山论剑、九阴真经收集、黄蓉厨艺、西征大战",
+        "catalogs": "skills-wujue、skills-daojia（全真）、skills-general",
+        "prev": "天龙八部（ch01_tianlong）",
+        "next": "神雕侠侣（ch03_shendiao）",
+        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+      }
+    },
+    {
+      "id": "P03",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 03 神雕侠侣（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "P01"
+      ],
+      "writes": [
+        "docs/design/story/03-shendiao.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/03-shendiao.md"
+        ],
+        "fences": [
+          "docs/design/story/03-shendiao.md"
+        ],
+        "min_lines": {
+          "docs/design/story/03-shendiao.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/03-shendiao.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/03-shendiao.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/03-shendiao.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/03-shendiao.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/03-shendiao.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "03",
+        "slug": "shendiao",
+        "book": "神雕侠侣",
+        "chid": "ch03_shendiao",
+        "features": "情花毒、剑冢练剑、襄阳守城",
+        "catalogs": "skills-daojia（古墓、杨过、全真、绝情谷）、skills-wujue（丐帮、桃花岛、蒙古、九阴）、skills-xiaoyao（吐蕃密宗）、skills-general",
+        "prev": "射雕英雄传（ch02_shediao）",
+        "next": "倚天屠龙记（ch04_yitian）",
+        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+      }
+    },
+    {
+      "id": "P04",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 04 倚天屠龙记（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "P01"
+      ],
+      "writes": [
+        "docs/design/story/04-yitian.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/04-yitian.md"
+        ],
+        "fences": [
+          "docs/design/story/04-yitian.md"
+        ],
+        "min_lines": {
+          "docs/design/story/04-yitian.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/04-yitian.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/04-yitian.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/04-yitian.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/04-yitian.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/04-yitian.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "04",
+        "slug": "yitian",
+        "book": "倚天屠龙记",
+        "chid": "ch04_yitian",
+        "features": "光明顶以一敌六派、屠龙刀秘密、统御明教",
+        "catalogs": "skills-yitian、skills-daojia（武当）、skills-shaolin、skills-wujue（丐帮）、skills-general",
+        "prev": "神雕侠侣（ch03_shendiao）",
+        "next": "笑傲江湖（ch05_xiaoao）",
+        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+      }
+    },
+    {
+      "id": "P05",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 05 笑傲江湖（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "P01"
+      ],
+      "writes": [
+        "docs/design/story/05-xiaoao.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/05-xiaoao.md"
+        ],
+        "fences": [
+          "docs/design/story/05-xiaoao.md"
+        ],
+        "min_lines": {
+          "docs/design/story/05-xiaoao.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/05-xiaoao.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/05-xiaoao.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/05-xiaoao.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/05-xiaoao.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/05-xiaoao.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "05",
+        "slug": "xiaoao",
+        "book": "笑傲江湖",
+        "chid": "ch05_xiaoao",
+        "features": "琴箫合奏、五岳并派投票、吸星异种真气",
+        "catalogs": "skills-wuyue、skills-shaolin、skills-daojia（武当）、skills-general",
+        "prev": "倚天屠龙记（ch04_yitian）",
+        "next": "侠客行（ch06_xiake）",
+        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+      }
+    },
+    {
+      "id": "P06",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 06 侠客行（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "P01"
+      ],
+      "writes": [
+        "docs/design/story/06-xiake.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/06-xiake.md"
+        ],
+        "fences": [
+          "docs/design/story/06-xiake.md"
+        ],
+        "min_lines": {
+          "docs/design/story/06-xiake.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/06-xiake.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/06-xiake.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/06-xiake.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/06-xiake.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/06-xiake.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "06",
+        "slug": "xiake",
+        "book": "侠客行",
+        "chid": "ch06_xiake",
+        "features": "石壁“不识字”解谜、赏善罚恶使清算跨书界品德",
+        "catalogs": "skills-xiake-bixue、skills-general",
+        "prev": "笑傲江湖（ch05_xiaoao）",
+        "next": "碧血剑（ch07_bixue）",
+        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+      }
+    },
+    {
+      "id": "P07",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 07 碧血剑（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "P01"
+      ],
+      "writes": [
+        "docs/design/story/07-bixue.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/07-bixue.md"
+        ],
+        "fences": [
+          "docs/design/story/07-bixue.md"
+        ],
+        "min_lines": {
+          "docs/design/story/07-bixue.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/07-bixue.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/07-bixue.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/07-bixue.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/07-bixue.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/07-bixue.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "07",
+        "slug": "bixue",
+        "book": "碧血剑",
+        "chid": "ch07_bixue",
+        "features": "金蛇秘籍解谜、闯王宝藏",
+        "catalogs": "skills-xiake-bixue、skills-general",
+        "prev": "侠客行（ch06_xiake）",
+        "next": "鹿鼎记（ch08_luding）",
+        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+      }
+    },
+    {
+      "id": "P08",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 08 鹿鼎记（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "P01"
+      ],
+      "writes": [
+        "docs/design/story/08-luding.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/08-luding.md"
+        ],
+        "fences": [
+          "docs/design/story/08-luding.md"
+        ],
+        "min_lines": {
+          "docs/design/story/08-luding.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/08-luding.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/08-luding.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/08-luding.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/08-luding.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/08-luding.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "08",
+        "slug": "luding",
+        "book": "鹿鼎记",
+        "chid": "ch08_luding",
+        "features": "宫廷权谋与口才、四十二章经、洪安通 Boss（全作局部难度峰值）",
+        "catalogs": "skills-kangxi、skills-shaolin、skills-xiake-bixue（铁剑门·神行百变）、skills-general",
+        "prev": "碧血剑（ch07_bixue）",
+        "next": "连城诀（ch09_liancheng）",
+        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+      }
+    },
+    {
+      "id": "P09",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 09 连城诀（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "P01"
+      ],
+      "writes": [
+        "docs/design/story/09-liancheng.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/09-liancheng.md"
+        ],
+        "fences": [
+          "docs/design/story/09-liancheng.md"
+        ],
+        "min_lines": {
+          "docs/design/story/09-liancheng.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/09-liancheng.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/09-liancheng.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/09-liancheng.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/09-liancheng.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/09-liancheng.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "09",
+        "slug": "liancheng",
+        "book": "连城诀",
+        "chid": "ch09_liancheng",
+        "features": "狱中与雪谷生存、识破谎言、唐诗剑法密码",
+        "catalogs": "skills-kangxi、skills-general",
+        "prev": "鹿鼎记（ch08_luding）",
+        "next": "白马啸西风（ch10_baima）",
+        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+      }
+    },
+    {
+      "id": "P10",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 10 白马啸西风（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "P01"
+      ],
+      "writes": [
+        "docs/design/story/10-baima.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/10-baima.md"
+        ],
+        "fences": [
+          "docs/design/story/10-baima.md"
+        ],
+        "min_lines": {
+          "docs/design/story/10-baima.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/10-baima.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/10-baima.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/10-baima.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/10-baima.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/10-baima.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "10",
+        "slug": "baima",
+        "book": "白马啸西风",
+        "chid": "ch10_baima",
+        "features": "高昌迷宫",
+        "catalogs": "skills-kangxi、skills-general",
+        "prev": "连城诀（ch09_liancheng）",
+        "next": "鸳鸯刀（ch11_yuanyang）",
+        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+      }
+    },
+    {
+      "id": "P11",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 11 鸳鸯刀（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "P01"
+      ],
+      "writes": [
+        "docs/design/story/11-yuanyang.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/11-yuanyang.md"
+        ],
+        "fences": [
+          "docs/design/story/11-yuanyang.md"
+        ],
+        "min_lines": {
+          "docs/design/story/11-yuanyang.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/11-yuanyang.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/11-yuanyang.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/11-yuanyang.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/11-yuanyang.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/11-yuanyang.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "11",
+        "slug": "yuanyang",
+        "book": "鸳鸯刀",
+        "chid": "ch11_yuanyang",
+        "features": "喜剧夺刀、“仁者无敌”非致命解决",
+        "catalogs": "skills-kangxi、skills-general",
+        "prev": "白马啸西风（ch10_baima）",
+        "next": "书剑恩仇录（ch12_shujian）",
+        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+      }
+    },
+    {
+      "id": "P12",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 12 书剑恩仇录（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "P01"
+      ],
+      "writes": [
+        "docs/design/story/12-shujian.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/12-shujian.md"
+        ],
+        "fences": [
+          "docs/design/story/12-shujian.md"
+        ],
+        "min_lines": {
+          "docs/design/story/12-shujian.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/12-shujian.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/12-shujian.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/12-shujian.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/12-shujian.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/12-shujian.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "12",
+        "slug": "shujian",
+        "book": "书剑恩仇录",
+        "chid": "ch12_shujian",
+        "features": "红花会群像、乾隆身世",
+        "catalogs": "skills-qianlong、skills-shaolin（南少林）、skills-daojia（武当）、skills-general",
+        "prev": "鸳鸯刀（ch11_yuanyang）",
+        "next": "飞狐外传（ch13_feihu）",
+        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+      }
+    },
+    {
+      "id": "P13",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 13 飞狐外传（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "P01"
+      ],
+      "writes": [
+        "docs/design/story/13-feihu.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/13-feihu.md"
+        ],
+        "fences": [
+          "docs/design/story/13-feihu.md"
+        ],
+        "min_lines": {
+          "docs/design/story/13-feihu.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/13-feihu.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/13-feihu.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/13-feihu.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/13-feihu.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/13-feihu.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "13",
+        "slug": "feihu",
+        "book": "飞狐外传",
+        "chid": "ch13_feihu",
+        "features": "承诺系统、掌门人大会",
+        "catalogs": "skills-qianlong、skills-general",
+        "prev": "书剑恩仇录（ch12_shujian）",
+        "next": "雪山飞狐（ch14_xueshan）",
+        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+      }
+    },
+    {
+      "id": "P14",
+      "phase": "D",
+      "wave": 3,
+      "title": "剧情 · 14 雪山飞狐（正邪两条主线与选择节点，AR-10）",
+      "prompt": "P-story.md",
+      "deps": [
+        "P01"
+      ],
+      "writes": [
+        "docs/design/story/14-xueshan.md"
+      ],
+      "review": true,
+      "web": true,
+      "review_focus": "逐条核对原著关键事件清单的回目与人物（联网核对），覆盖率表无遗漏；正线、邪线各自从开局到结局连通且幕数达标；选择节点 ≥ 6 且条件可满足、后果与锚点 / 18 的 NPC 生卒一致；锚点与 design/01 逐条一致；结局 ≥ 4 且天书条件引用 13；ID 规范；YAML 与 12 的任务 DSL 兼容。",
+      "validate": {
+        "exists": [
+          "docs/design/story/14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/story/14-xueshan.md"
+        ],
+        "min_lines": {
+          "docs/design/story/14-xueshan.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/story/14-xueshan.md",
+            "正线"
+          ],
+          [
+            "docs/design/story/14-xueshan.md",
+            "邪线"
+          ],
+          [
+            "docs/design/story/14-xueshan.md",
+            "选择节点"
+          ],
+          [
+            "docs/design/story/14-xueshan.md",
+            "覆盖率"
+          ],
+          [
+            "docs/design/story/14-xueshan.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {
+        "nn": "14",
+        "slug": "xueshan",
+        "book": "雪山飞狐",
+        "chid": "ch14_xueshan",
+        "features": "罗生门叙事、劈刀终局（终章；之后接终局“天书守卷人”决战，见 design/13）",
+        "catalogs": "skills-qianlong、skills-general",
+        "prev": "飞狐外传（ch13_feihu）",
+        "next": "终局（design/13 §7）",
+        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+      }
+    },
+    {
       "id": "D01",
       "phase": "D",
       "wave": 3,
       "title": "书界 DLC · 01 天龙八部",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2"
+        "G2",
+        "P01"
       ],
       "vars": {
         "nn": "01",
@@ -2029,7 +2884,8 @@
       "title": "书界 DLC · 02 射雕英雄传",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01"
+        "D01",
+        "P02"
       ],
       "vars": {
         "nn": "02",
@@ -2085,7 +2941,8 @@
       "title": "书界 DLC · 03 神雕侠侣",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01"
+        "D01",
+        "P03"
       ],
       "vars": {
         "nn": "03",
@@ -2141,7 +2998,8 @@
       "title": "书界 DLC · 04 倚天屠龙记",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01"
+        "D01",
+        "P04"
       ],
       "vars": {
         "nn": "04",
@@ -2197,7 +3055,8 @@
       "title": "书界 DLC · 05 笑傲江湖",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01"
+        "D01",
+        "P05"
       ],
       "vars": {
         "nn": "05",
@@ -2253,7 +3112,8 @@
       "title": "书界 DLC · 06 侠客行",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01"
+        "D01",
+        "P06"
       ],
       "vars": {
         "nn": "06",
@@ -2309,7 +3169,8 @@
       "title": "书界 DLC · 07 碧血剑",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01"
+        "D01",
+        "P07"
       ],
       "vars": {
         "nn": "07",
@@ -2365,7 +3226,8 @@
       "title": "书界 DLC · 08 鹿鼎记",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01"
+        "D01",
+        "P08"
       ],
       "vars": {
         "nn": "08",
@@ -2421,7 +3283,8 @@
       "title": "书界 DLC · 09 连城诀",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01"
+        "D01",
+        "P09"
       ],
       "vars": {
         "nn": "09",
@@ -2477,7 +3340,8 @@
       "title": "书界 DLC · 10 白马啸西风",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01"
+        "D01",
+        "P10"
       ],
       "vars": {
         "nn": "10",
@@ -2533,7 +3397,8 @@
       "title": "书界 DLC · 11 鸳鸯刀",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01"
+        "D01",
+        "P11"
       ],
       "vars": {
         "nn": "11",
@@ -2589,7 +3454,8 @@
       "title": "书界 DLC · 12 书剑恩仇录",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01"
+        "D01",
+        "P12"
       ],
       "vars": {
         "nn": "12",
@@ -2645,7 +3511,8 @@
       "title": "书界 DLC · 13 飞狐外传",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01"
+        "D01",
+        "P13"
       ],
       "vars": {
         "nn": "13",
@@ -2701,7 +3568,8 @@
       "title": "书界 DLC · 14 雪山飞狐",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01"
+        "D01",
+        "P14"
       ],
       "vars": {
         "nn": "14",
