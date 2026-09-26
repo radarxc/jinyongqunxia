@@ -3,7 +3,7 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/08-backend-and-online.md` |
-| 版本 | v1.0（2026-09-26）。库版本、平台限额、云服务与模型价格均于 2026-09-26 联网核实，来源见文末"参考资料"；无法核实处标"（待核实）"，需真机/真账号验证处标"（待实测）" |
+| 版本 | v1.0（2026-09-26）；审校 B6b.R（2026-09-26）。库版本、平台限额、云服务与模型价格均于 2026-09-26 联网核实，来源见文末"参考资料"；无法核实处标"（待核实）"，需真机/真账号验证处标"（待实测）" |
 | 作者决定覆盖 | `docs/decisions/author-decisions.md` P03：暂不备案，不做国内 / 香港镜像；当前只规划 Cloudflare 方案 |
 | 上游基准 | `docs/00-canon.md` §0（"Online" = 随时随地在浏览器中继续同一份存档；非商业、**不公开分发**）、§8（确定性战斗）、§18（文档归属）、§19（存档：IndexedDB 本地优先 + 云端同步；后端：轻量 Serverless，国内/海外两套部署方案） |
 | 强依赖 | `tech/01`（monorepo、`services/api`、`packages/platform`、存档时机 §6.9、确定性 §8.3、CI §7.6）；`tech/06`（同一 Worker 托管应用 + API + 素材闸门、会话 Cookie `ts_s` 由本文签发；其国内 / 香港镜像旧规划须按作者 P03 收口）；`design/13` §9（存档槽、回档规则、`MetaProfile` 合并规则）；`design/02` §4.5（书眠永久存档）；`tech/05`（战斗开局快照与状态哈希，撰写中）；`tech/04`（书界包 `contentHash` 与 ID 重映射，撰写中） |
@@ -15,13 +15,13 @@
 >
 > 1. **维持基准 §19 的本地优先 + 轻量 Serverless 方向，但部署地域按作者 P03 收口**：本地 IndexedDB 是权威副本，云端只做备份与跨设备同步。当前只实施**一个 Cloudflare Worker（Hono）**——与 tech/06 的应用托管、素材闸门是同一个 Worker、同一个会话 Cookie——外加 **D1（元数据）+ R2（存档 blob）**；不并行建设国内 / 香港镜像。个人用量下 Cloudflare 免费版即可，月费约 **$0**（启用 AI NPC 时建议升 Workers Paid，$5/月）。
 > 2. **服务端不懂游戏规则**：存档对服务端是不透明 blob，服务端只读容器外壳的明文头；不做权威校验、不做反作弊（作弊只标 `debugTainted`）。
-> 3. **存档容器 `TSAV v1`**：魔数 + 明文头 JSON + gzip 负载，双 SHA-256（负载原文 / 压缩体）；`saveSchema` 整数版本 + 迁移函数链，**懒迁移、原件保留**。估算单档原文 0.4–3 MB、压缩后 60–500 KB；服务端硬上限 8 MB。
+> 3. **存档容器 `TSAV v1`**：魔数 + 明文头 JSON + gzip 负载，双 SHA-256（负载原文 / 压缩体）；`saveSchema` 整数版本 + 迁移函数链，**懒迁移、原件保留**。估算单档原文 0.4–3 MiB、压缩后 60–500 KiB；服务端硬上限 8 MiB。
 > 4. **同步 = 整快照 + 服务端修订号 CAS（`If-Match`）**，不做 CRDT 合并（两条平行时间线的游戏状态没有语义上的"合并"）。**自动存档按设备分命名空间**，不会发生设备间覆盖；具名槽冲突时让玩家选，**落选版本自动进历史 30 天**，任何路径都不丢档。
 > 5. **认证分两步走**：MVP 用"**主配对密钥 + 临时配对码** → HttpOnly 会话 Cookie `ts_s`（30 天滚动）"；Phase 3 加 **Passkey 为主、邮箱验证码为恢复**（发往作者已验证的邮箱，Cloudflare 免费）。**不用魔法链接**：iOS 主屏 PWA 与 Safari 不共享 Cookie，点邮件里的链接会登录到 Safari 而不是游戏里。
 > 6. **部署决策矩阵结论**：方案 A（Cloudflare）加权 92 分，高于国内函数计算（阿里云 FC / 腾讯云 SCF 均为 75 分；中国内地节点需 ICP 备案，且选定 AI 上游不支持当地使用）和轻量服务器（65–68 分，运维最重）。后两类保留为备选：服务端代码用 Hono + 存储适配器，可原样跑在 Node 上。
 > 7. **中国大陆访问 Cloudflare 不稳，对本架构影响有限**：游戏离线可玩，云同步是异步后台任务，慢一点只是晚几分钟备份到云端。
-> 8. **AI NPC 自由对话（可选，默认关闭）**：独立的 AI Worker（placement 靠近上游 API）；`claude-opus-5`、`effort: "low"`、流式输出；人设卡 + 按幕截止的原著知识 + 分层提示缓存；AI 只能**提出**好感/旗标变化，由 core 规则校验、封顶后生效；会话分段而不删改历史；失败时回退到预写台词。**Anthropic 支持地区不含中国大陆、香港、澳门**：作者常驻上述地区时不得启用这条路线（不借代理规避地区限制），改为关闭，或另选当地可合规使用的模型服务。
-> 9. **已默认开启服务端回退**：AI 请求带 `fallbacks: "default"`（beta `server-side-fallback-2026-07-01`），安全分类器拒答时由服务端改用推荐模型重跑。不想要可在配置里关掉。
+> 8. **AI NPC 自由对话（可选，默认关闭）**：独立的 AI Worker（placement 靠近上游 API）；原评测基线为 `claude-opus-5` + `effort: "low"` + 流式输出，但该模型截至 2026-09-26 已被官方列为 **Legacy**，因此生产配置不设默认模型，启用前必须重新选型并重跑金标评测；人设卡 + 按幕截止的原著知识 + 分层提示缓存；AI 只能**提出**好感/旗标变化，由 core 规则校验、封顶后生效；会话分段而不删改历史；失败时回退到预写台词。**Anthropic 支持地区不含中国大陆、香港、澳门**：作者常驻上述地区时不得启用这条路线（不借代理规避地区限制），改为关闭，或另选当地可合规使用的模型服务。
+> 9. **启用 AI 时默认请求服务端回退**：通过 §9.0 全部门槛后，请求带 `fallbacks: "default"`（beta `server-side-fallback-2026-07-01`），安全分类器拒答时由服务端改用推荐模型重跑；beta 撤回或语义变化则关闭。AI 功能本身仍默认关闭。
 > 10. **离线 AI 辅助内容生产**：Batches API（五折）+ Zod 结构化输出 → 草稿区 → `content:validate` → 人工审核 → 入库。全项目文本起草估算不超过 $150。
 > 11. **遥测（可选）**：战斗日志 = 开局快照 + 命令序列 + 终局哈希（可离线重放，与 tech/05 对接），以 NDJSON.gz 存入 R2，用 DuckDB 分析；只采作者本人数据。
 > 12. **运维（个人级）**：D1 Time Travel（免费版 7 天）+ 每日导出加密备份 + R2 每周同步到第二家存储；UptimeRobot / Healthchecks.io 免费告警；玩家随时可导出完整存档（JSON / TSAV / ZIP）。
@@ -29,8 +29,8 @@
 > **调研要点（均非致命，但改变了若干细节决策；来源见文末）**
 >
 > 1. **Workers 免费版每次调用只有 10 ms CPU**（付费版默认 30 s、最多 5 min）→ 服务端不解压存档、不做重计算，压缩与哈希都在客户端 `io.worker` 完成；AI 流式代理放到付费版。
-> 2. **D1 单行 / BLOB 上限 2 MB**，免费版单库 500 MB、每日 500 万行读 / 10 万行写 → 存档 blob 放 R2，D1 只存头部与索引。
-> 3. **D1 Time Travel 常开、不额外收费**（免费版 7 天、付费版 30 天），但还原是破坏性的原地覆盖 → 仍需每日逻辑导出。
+> 2. **D1 单行 / BLOB 上限 2,000,000 bytes**，免费版单库 500 MB、每日 500 万行读 / 10 万行写 → 存档 blob 放 R2，D1 只存头部与索引。
+> 3. **D1 Time Travel 常开、不额外收费**（免费版 7 天、付费版 30 天；精确到任一分钟），但还原是破坏性的原地覆盖 → 仍需每日逻辑导出。
 > 4. **`@cloudflare/vitest-pool-workers@0.22.0` 的 peer 依赖是 `vitest ^4.1`**，与 tech/01 统一的 Vitest ^5.0.2 冲突 → `services/*` 单独锁 Vitest 4.x，或改用 wrangler 的 `getPlatformProxy()` 在 Node 中测（待决 #3）。
 > 5. **Background Sync 只有 Chromium 支持**（Safari、Firefox、Android WebView 均不支持），**`fetch` 的 `keepalive` 请求体上限 64 KiB**（WHATWG Fetch 规范）→ 离线队列必须在应用层实现；关页那一刻上传不了存档，只能先落本地。
 > 6. **iOS 主屏 Web App 与 Safari 不共享 Cookie 与存储** → 邮件魔法链接不可用 → 改用邮箱验证码。
@@ -75,7 +75,7 @@
 |---|---|---|---|
 | D1 | 权威副本 | 本地 IndexedDB 为权威；云端是备份 + 跨设备中转 | 基准 §19；离线可玩；§2 |
 | D2 | 后端形态 | 单个 Cloudflare Worker（Hono），同时承担应用托管、会话闸门、素材代理（tech/06）、API、定时任务 | 同源、零 CORS、单一鉴权点；§2.2 |
-| D3 | 元数据 / blob 存储 | D1 存槽位头、修订、设备、会话；R2 桶 `ts-saves` 存 TSAV blob | D1 行上限 2 MB；§7 |
+| D3 | 元数据 / blob 存储 | D1 存槽位头、修订、设备、会话；R2 桶 `ts-saves` 存 TSAV blob | D1 行上限 2,000,000 bytes；§7 |
 | D4 | 服务端职责 | 不含游戏规则、不解压存档、不做权威校验；只做鉴权、CAS、存取、配额 | Workers 免费版 10 ms CPU；§2.4 |
 | D5 | 存档容器 | `TSAV v1`：魔数 + 明文头 + gzip 负载；双 SHA-256 | 服务端免解压读头；§3.3 |
 | D6 | 版本与迁移 | `saveSchema` 整数；`migrations[n]` 纯函数链；读档时内存中懒迁移，槽内原件在下次保存前不改 | 迁移失败可回退；§3.5 |
@@ -90,7 +90,7 @@
 | D15 | API 风格 | REST，前缀 `/api/v1`；RFC 9457 错误体；ETag = 修订号；覆盖 / 删除存档与版本化设置强制带条件请求头，其余可重试写用幂等键 | §6 |
 | D16 | 部署 | 只实施方案 A（Cloudflare）；国内函数计算与 Node + SQLite / S3 仅作迁移备选，不部署镜像 | 作者 P03；决策矩阵见 §8 |
 | D17 | 可移植性 | `SaveRepo` / `BlobStore` / `Mailer` / `RateLimiter` 四个接口；Hono 同一套路由在 Workers 与 Node 上都能跑 | §8.7 |
-| D18 | AI NPC | 默认关闭；独立 Worker；`claude-opus-5` + `effort: "low"` + 流式 + `fallbacks: "default"`；可选闲聊轻量路由 `claude-haiku-4-5` | §9 |
+| D18 | AI NPC | 默认关闭；独立 Worker；`claude-opus-5` 只保留为 Legacy 评测 / 费用基线，生产不设默认模型；启用前选定当前模型并复测 `effort: "low"`、流式与 `fallbacks: "default"`；可选轻量模型同样须过金标 | §9 |
 | D19 | AI 效果 | 只以工具调用 `propose_effects` 提出建议；core 按白名单与封顶校验后以命令落地（可录像重放） | 不破坏确定性与平衡；§9.7 |
 | D20 | AI 成本 | 分层提示缓存 + 会话分段 + 日 / 月美元上限（默认 $0.8 / $10）+ Console 花费上限兜底 | §9.9 |
 | D21 | 离线内容 AI | `tools/content-ai`（TS）+ Batches API + Zod 结构化输出 → 草稿区 → 人工审核 | §9.13 |
@@ -273,7 +273,7 @@ sequenceDiagram
   E->>DB: 取 outbox 中优先级最高、已到期的项
   E->>API: PUT /saves/{slot}（If-Match: "r{baseRev}"，X-TS-Write-Id）
   API->>R2: put saves/{slot}/{rev+1}-{reqId}.tsav
-  API->>D: batch：登记候选 → CAS 更新 save_slots → change_seq+1 → insert slot_changes / receipt
+  API->>D: batch：登记冲突候选 → CAS 更新 save_slots → 条件发布版本 / change_seq / receipt
   alt CAS 成功
     API-->>E: 200 {rev: rev+1}
     E->>DB: sync.baseRev = rev+1；syncedGen = localGen；删除该 outbox 项
@@ -468,11 +468,11 @@ async function sha256Hex(b: Uint8Array): Promise<string> {
 |---|---|---|---|
 | `JSON.stringify` | 主线程（core 所在线程） | 5–15 ms | 若 core 在主线程，序列化后把字节 `transfer` 给 io.worker |
 | gzip level 6 | io.worker | 20–60 ms | fflate；不阻塞主线程（待实测） |
-| SHA-256 ×2 | io.worker | < 5 ms | WebCrypto 原生实现 |
+| SHA-256 ×2 | io.worker | < 5 ms**（待实测）** | WebCrypto `digest()` 一次性处理有界字节，不阻塞主线程 |
 | IndexedDB 写入 | io.worker / 主线程 | 5–30 ms | Blob 存储；iOS Safari 偏慢（待实测） |
-| 服务端 | Worker | < 1 ms CPU | 只解析外壳 + 压缩体一次 SHA-256，不解压 |
+| 服务端 | Worker | 目标 < 10 ms CPU**（待实测）** | 只解析外壳 + 压缩体一次 SHA-256，不解压；8 MiB 边界另压测 |
 
-浏览器原生 `CompressionStream('gzip')`（Safari 16.4+、Chrome 80+）可以替代 fflate 的 gzip；但导出 ZIP 仍需要 fflate（§12.6），所以统一用 fflate，原生 API 留作包体优化的备选。
+浏览器原生 `CompressionStream('gzip')` 自 2023 年 5 月起已达到 MDN Baseline“广泛可用”，可以替代 fflate 的 gzip；但精确最低版本仍应由目标矩阵验证，且导出 ZIP 仍需要 fflate（§12.6），所以统一用 fflate，原生 API 留作包体优化的备选。
 
 ### 3.5 schema 版本与迁移链
 
@@ -568,7 +568,7 @@ export function cloudSlotKey(slotId: SlotId, deviceId: DeviceId): string {
 | 终局 / 通关 | `save_finale_j2`、`save_clear_3` | 是 | 玩家选择；通关档仍只允许其归属文档规定的用途 |
 | 一命 | `save_ironman` | 是 | 发生分叉时只能保全两份并要求明确处置；任何候选都不能借冲突 / 历史接口绕过归属文档的读档限制 |
 
-自动档列表默认只展示本设备三槽；“其他设备的自动存档”折叠展示，可**复制**到一个手动槽再读取，不能把远端设备的自动槽改名成当前设备槽。设备删除后，其自动档进入 30 天宽限期；宽限期内重新配对同一设备 ID 可恢复，逾期才按 GC 规则清理。
+自动档列表默认只展示本设备三槽；“其他设备的自动存档”折叠展示，可**复制**到一个手动槽再读取，不能把远端设备的自动槽改名成当前设备槽。设备删除后，其自动档进入 30 天宽限期；重新配对默认得到新 `deviceId`，宽限期内只能由已登录 UI 明确“接管旧设备自动档”并留下审计记录，不能重新签发或冒充已撤销 ID；逾期才按 GC 规则清理。
 
 `slotId` 与 `cloudSlotKey` 都必须通过白名单解析器，禁止任意路径字符。服务器不把客户端字符串直接拼入 R2 键：
 
@@ -582,12 +582,12 @@ const SLOT = /^(save_manual_(0[1-9]|1[0-2])|save_quick|save_auto_[1-3]|save_book
 
 1. 校验会话、CSRF、设备状态、`Content-Type: application/vnd.tianshu.save`、条件头与 `X-TS-Write-Id`。
 2. 读取并校验 12 字节外壳与最多 **64 KiB** 的头；总流量硬停在 **8 MiB**。校验槽、设备、`baseRev`、整数范围与声明长度；不解压 JSON。
-3. 重复 `writeId` 先查原回执并直接返回；新请求以 `versionId = sv_ + ULID` 流式写 R2 唯一键，同时累计总大小与 gzip body SHA-256。流结束后核对 `sizes.gz` / `bodySha256`，失败即删未发布对象。
-4. 在一个 D1 `batch()` 事务中先登记候选版本，再执行 `UPDATE save_slots … WHERE rev = :baseRev`；第二条影响 1 行才算 CAS 成功。D1 文档保证 batch 内语句按顺序执行，任一失败时整批回滚。
-5. 成功返回新 ETag；失败返回 412 和云端当前头。候选对象标为 `conflict`，至少保留 30 天供玩家取回。若 R2 成功而 D1 整批失败，得到的是不可达孤儿对象，每日扫描 24 小时前且无 D1 引用的键后删除。
+3. 重复 `writeId` 先查原回执并直接返回；新请求以 `versionId = sv_ + ULID` 写 R2 唯一键。MVP 在 **8 MiB** 应用硬限内做一次有界缓冲，用 WebCrypto 对 gzip body 计算 SHA-256 后核对 `sizes.gz` / `bodySha256`，再 `put`；失败不写对象。原生 `SubtleCrypto.digest()` 不是增量 / 流式接口，不能把它描述成边写边算。若 Phase 0 证明双份有界缓冲越过 CPU / 内存预算，才引入经审计的增量 SHA-256 实现并用 `ReadableStream.tee()` 接 R2；仍须先验证 hash 再登记 D1 候选。
+4. 在一个 D1 `batch()` 事务中先以 `state='conflict'` 登记候选，再执行 `UPDATE save_slots … WHERE rev = :baseRev`；第二条影响 1 行才算 CAS 成功。其后的旧 current→history、新候选→current、`change_seq`、`slot_changes` 与成功 / 冲突回执都用“槽当前指针是否已等于本候选”的条件 SQL 分支，**CAS 失败时不主动抛错**，否则会把需要保留的冲突候选一并回滚。D1 文档保证 batch 内语句按顺序执行，任一 SQL 真正失败时整批回滚。
+5. 批次回执显示成功则返回新 ETag；显示冲突则返回 412 和云端当前头，候选保持 `conflict` 并至少保留 30 天。若 R2 成功而 D1 整批失败，得到的是不可达孤儿对象，每日扫描 24 小时前且无 D1 引用的键后删除。
 
 ```ts
-// services/api/src/routes/saves.ts（状态机伪码；生产流式实现见 §13.5）
+// services/api/src/routes/saves.ts（状态机伪码；生产有界读取实现见 §13.5）
 const baseRev = parsePrecondition(c.req.header('If-Match'), c.req.header('If-None-Match'));
 const writeId = parseWriteId(c.req.header('X-TS-Write-Id'));
 const prior = await repo.findWrite(accountId, writeId);
@@ -702,7 +702,7 @@ export interface OutboxRow {
 
 | 优先级 | 内容 | 在线目标 | 可否被同槽后续版本合并 |
 |---:|---|---:|---|
-| P0 | 书眠前 / 苏醒 / 终局卷间 / 通关档；迁移码所需快照 | 30 秒内 | 否（各自是语义检查点） |
+| P0 | 书眠前 / 苏醒 / 终局卷间 / 通关档；跨容器迁移前所选快照 | 30 秒内 | 否（各自是语义检查点） |
 | P1 | 手动档、快速档、`MetaProfile` | 30 秒内 | 同槽只传最新；本地历史仍保留 |
 | P2 | 自动档 | 5 分钟内 | 是 |
 | P3 | 战斗遥测、错误报告 | 空闲时 | 战斗按 `battleId`；错误按 `writeId` 幂等并按 fingerprint 聚合 |
@@ -722,7 +722,7 @@ export interface OutboxRow {
 | 冲突落选 / 未解决候选 | 冲突解决或产生之日起至少 30 天 | 一般槽允许复制到手动槽；受限槽只走归属文档许可的恢复动作 |
 | 删除墓碑 | 30 天 | 期间恢复会产生新 `rev`，不倒退修订号 |
 
-永久性不是从可变槽名临时猜测：创建版本时根据经白名单解析的槽类写 `save_versions.retention_class`，并在恢复 / 复制时按目标槽重新计算；客户端不能提交该字段。每日 cron 先在 D1 标 `gc_pending_at`，隔 24 小时再次确认对象不是任何当前指针、`retention_class='permanent'`、未过期冲突或备份保留对象，再删元数据；只有同一 `object_key` 已无任何版本行引用时才删 R2。每批最多 100 个对象；失败留标记下次重试。这样即使 cron 在 D1 / R2 两步之间中断，也只会留下可诊断记录，不会误删当前档。
+永久性不是从可变槽名临时猜测：创建版本时根据经白名单解析的槽类写 `save_versions.retention_class`，并在恢复 / 复制时按目标槽重新计算；客户端不能提交该字段。每日 cron 先在 D1 标 `gc_pending_at`，隔 24 小时再次确认对象**不是任何当前指针、`retention_class != 'permanent'`、`preserve_until` 已到期或为空，且不在备份保留集中**，才删元数据；只有同一 `object_key` 已无任何版本行引用时才删 R2。每批最多 100 个对象；失败留标记下次重试。这样即使 cron 在 D1 / R2 两步之间中断，也只会留下可诊断记录，不会误删当前档。
 
 ### 4.9 启动与“继续游戏”的判定
 
@@ -755,15 +755,15 @@ export interface OutboxRow {
 
 ### 4.11 新设备与 iOS 主屏 Web App 迁移
 
-新设备正常路径是：配对 / Passkey 登录 → 拉 `sync` → 下载当前档与 `MetaProfile`。`tech/03` §3.8（F14）指出 iOS 主屏 Web App 与 Safari 是隔离容器，因此另提供一次性迁移码：
+新设备正常路径是：配对 / Passkey 登录 → 拉 `sync` → 下载当前档与 `MetaProfile`。`tech/03` §3.8（F14）指出 iOS 主屏 Web App 与 Safari 是隔离容器；跨容器迁移**复用 §5.3 的 8 位、5 分钟临时配对码**，不另造第二套码、路由或数据库类型：
 
-1. 在仍有存档和会话的 Safari 页面点“迁移到主屏”；先把所选本地档以 P0 上传。
-2. `POST /api/v1/transfers` 返回 **6 位数字、10 分钟有效、仅可使用一次**的迁移码；D1 只存 HMAC，不存明码。
-3. 主屏 App 首次启动发现本地为空且无会话时，允许输入迁移码；成功后签发该主屏实例自己的 `deviceId` 与 `ts_s`，返回刚才快照的下载清单。
-4. 兑换接口按 IP 每 10 分钟 5 次、账号全局 20 次限流；五次错误后该码作废。日志永不记录输入码。
-5. 若 Safari 会话已失效，则改用主配对密钥 / 已登录设备生成的 8 位配对码；完全离线时在 Safari 导出 `.tsav` 或全部 ZIP，再由主屏 App 的文件选择器导入。
+1. 在仍有存档和会话的 Safari 页面点“迁移到主屏”；先把所选本地档以 P0 正常上传，等界面确认“已上云”。
+2. Safari 调用现有 `POST /api/v1/auth/pair-codes`，取得 **8 位数字、5 分钟、仅可使用一次**的临时配对码；D1 仍只存 peppered HMAC，不存明码。
+3. 主屏 App 首次启动发现本地为空且无会话时，显示“从 Safari 继续”，用现有 `POST /api/v1/auth/pair` 兑换。成功后签发该容器自己的 `deviceId` 与 `ts_s`，再走普通 `/sync` 和存档下载；配对码本身不绑定、复制或返回某个 blob。
+4. 兑换沿用配对码限流：每 IP 每 10 分钟 5 次、单码最多 5 次错误，之后作废；日志永不记录输入码。因为账号只有作者一人，登录后拉同一账号的云端槽已足以完成迁移。
+5. 若 Safari 会话已失效，则用主配对密钥恢复；完全离线时在 Safari 导出 `.tsav` 或全部 ZIP，再由主屏 App 的文件选择器导入。
 
-6 位迁移码是短时同设备交接，不替代 §5 的长期认证。Apple 对不同安装时机 / 版本的 Cookie 复制行为可能变化，Safari → 主屏与反向迁移都列入真机矩阵**（待实测）**。
+该流程与普通新设备配对使用同一安全边界，避免两个短码协议漂移。Apple 对不同安装时机 / 版本的 Cookie 复制行为可能变化，Safari → 主屏与反向迁移都列入真机矩阵**（待实测）**；无论系统是否偶尔复制 Cookie，客户端都按两个独立存储容器设计。
 
 ### 4.12 同步验收用例
 
@@ -778,7 +778,7 @@ export interface OutboxRow {
 | S07 | 冲突选择云端 | 本地候选仍在本地历史与云端冲突历史 ≥ 30 天 |
 | S08 | 删除槽后离线旧设备上传 | 旧设备以过期 rev 得 412，不复活墓碑；玩家可显式选择恢复 |
 | S09 | Meta 两端分别解锁不同成就 | 合并为并集；轮回点只由合并后事实计算一次 |
-| S10 | 主屏 App 首启迁移码被兑换两次 | 第一次成功，第二次 410 `transfer_consumed` |
+| S10 | 主屏 App 首启用同一临时配对码兑换两次 | 第一次成功，第二次 410 `pair_code_expired`；不会生成第二个设备 / 会话 |
 
 ---
 
@@ -843,7 +843,7 @@ sequenceDiagram
 | 项 | 规则 |
 |---|---|
 | 临时配对码 | 8 位数字，共 `10^8` 种；CSPRNG 拒绝取模偏差；5 分钟；一次性；最多 5 次错误 |
-| 迁移码 | §4.11 的 6 位 / 10 分钟专用码，只能领取指定临时快照；不可拿它创建任意远端设备 |
+| 跨容器迁移 | 复用同一临时配对码登录；所选快照须先正常上云，兑换后再走 `/sync` 拉取（§4.11） |
 | 主密钥登录 | `POST /auth/master`；IP 每小时 5 次、全局每小时 20 次；失败响应一律相同 |
 | 设备名 | 客户端建议值，1–40 个 Unicode 字符；服务端转义显示，不信任 UA；可重复 |
 | 成功登录 | 总是新建 session，轮换任何登录前临时标识，避免 session fixation |
@@ -901,12 +901,15 @@ CSRF token 为 `base64url(HMAC-SHA256(CSRF_HMAC_KEY, sid || "\0csrf"))`，由 `/
 
 WebAuthn 只在 HTTPS 安全上下文启用；`rpId` 固定为主域名，`origin` 只接受精确的 `https://ts.<主域名>`。采用 `@simplewebauthn/server` 与浏览器包，文档编写日 npm 最新版为 14.0.3；实施时锁精确版本并复核 Workers 兼容性**（待实测）**。
 
-注册和登录 challenge 都是 32 bytes CSPRNG、5 分钟有效、一次性，D1 只存哈希；验证必须包含 challenge、origin、RP ID、用户验证标志与签名计数。`attestationType: 'none'`，不收集设备证明。同步型 Passkey 的 counter 可能恒为 0，只有在新计数非零且不大于旧非零计数时告警，不能据此误封。
+注册和登录 challenge 都是 32 bytes CSPRNG、5 分钟有效、一次性，D1 只存哈希；`generateRegistrationOptions()` 返回后必须先把 challenge 哈希、账号、用途、到期时间以及**剔除 challenge 后**的验证策略写入 `webauthn_challenges`，再把完整 options 返回浏览器，完成验证时原子消费。验证端对响应中的 challenge 做 SHA-256 后恒定时间比对，并同时检查 origin、RP ID、用户验证标志与签名计数。`attestationType: 'none'`，不收集设备证明。同步型 Passkey 的 counter 可能恒为 0，只有在新计数非零且不大于旧非零计数时告警，不能据此误封。
 
 ```ts
+// accountHandleBytes 是账号创建时生成并持久化的 32-byte 随机 user handle；
+// 它不是邮箱、显示名或可变 accountId，且同一账号的所有 Passkey 注册都复用它。
 const options = await generateRegistrationOptions({
   rpName: '天书录（私人）',
   rpID: env.WEBAUTHN_RP_ID,
+  userID: accountHandleBytes,
   userName: 'author',
   attestationType: 'none',
   authenticatorSelection: {
@@ -920,7 +923,7 @@ Passkey 注册必须已有有效会话并重新验证主密钥或现有 Passkey�
 
 ### 5.7 邮箱验证码恢复
 
-Cloudflare 文档确认：Email Routing 账号中已验证目的地址可由 Worker 免费发送，且 `send_email` binding 可用 `destination_address` 锁死收件人；本项目只有作者一个固定收件人。更广泛的 Email Service 外发仍是 beta / Paid 范畴，本方案不依赖它。
+Cloudflare Email Service 文档确认：账号内已验证目的地址可由 Worker 免费发送，且 `send_email` binding 可用 `destination_address` 锁死收件人；本项目只有作者一个固定收件人。面向任意收件人的 Email Sending 仍是 beta 且要求 Workers Paid，本方案不依赖它。
 
 | 项 | 值 |
 |---|---|
@@ -944,13 +947,13 @@ Cloudflare 文档确认：Email Routing 账号中已验证目的地址可由 Wor
 | 端点族 | 默认限额 | 超限 |
 |---|---:|---|
 | 主密钥 | IP 5 / 小时；全局 20 / 小时 | 429 + `Retry-After`，失败体一致 |
-| 配对 / 迁移码兑换 | IP 5 / 10 分钟；单码 5 次 | 429；单码作废 |
+| 配对码兑换（含跨容器迁移） | IP 5 / 10 分钟；单码 5 次 | 429；单码作废 |
 | 邮箱发码 / 验码 | 见 §5.7 | 202 或 429，不枚举账号 |
 | 普通 API | 设备 120 / 分钟 | 429；同步客户端退避 |
 | 存档上传 | 设备 30 / 10 分钟 | 429；P0 也排队，不绕过 |
 | AI | 账号并发 1、10 请求 / 10 分钟，另受美元预算 | 429 / 402 `ai_budget_exhausted` |
 
-Cloudflare Rate Limiting binding 的窗口与持久性语义可能变化，不能拿它承担一次性码的正确性：边缘限流只挡洪峰，`one_time_codes.attempts` 仍在 D1 原子递增。所有 429 带 `Retry-After`。
+Cloudflare Rate Limiting binding 当前只允许 10 秒或 60 秒周期，且计数是最终一致的近似值，不能拿它承担一次性码的正确性。表中的 10 分钟 / 小时窗口必须由 D1 固定窗口计数实现，binding 只叠加 10 秒或 60 秒边缘洪峰保护；`one_time_codes.attempts` 仍在 D1 原子递增。所有 429 带 `Retry-After`。
 
 ### 5.9 与 tech/06 共用的会话闸门
 
@@ -962,7 +965,7 @@ Cloudflare Rate Limiting binding 的窗口与持久性语义可能变化，不�
 - `GET /manifest.webmanifest` 与 `/icons/*`（中性名称和图标）；
 - `GET /robots.txt`；
 - `GET /api/v1/health`；
-- 明确列出的 `POST /api/v1/auth/master|pair|email/request|email/verify|passkey/options|passkey/verify|transfer/redeem`。
+- 明确列出的 `POST /api/v1/auth/master|pair|email/request|email/verify|passkey/options|passkey/verify`。
 
 其他路径包括 `/`、`/sw.js`、Vite `/assets/*`、Basis、`/a/*`、`/m/*`、`/c/*` 均需会话。HTML 导航无会话时 302 到 `/login?next=<站内相对路径>`；API / 素材请求返回 401，不返回登录 HTML。`next` 只接受以单 `/` 开头且不以 `//` 开头的站内路径，防开放重定向。
 
@@ -1043,7 +1046,6 @@ API 不提供 CORS。来自浏览器的写请求还必须满足 §5.8 的 Origin
 | POST | `/auth/email/verify` | 否 | 一次性 challenge | 201 | 验证恢复码并建会话 |
 | POST | `/auth/passkey/options` | 否 | challenge | 200 | 登录 assertion options |
 | POST | `/auth/passkey/verify` | 否 | challenge | 201 | 验证 assertion 并建会话 |
-| POST | `/auth/transfer/redeem` | 否 | 6 位一次性码 | 201 | iOS 容器迁移并建会话 |
 | GET | `/auth/session` | 是 | — | 200 | 当前设备、CSRF、到期时间、能力 |
 | POST | `/auth/logout` | 是 | CSRF；天然幂等 | 204 | 撤销当前 session；重复调用仍成功 |
 | POST | `/auth/pair-codes` | 是 | CSRF + writeId | 201 | 生成 8 位临时配对码 |
@@ -1063,7 +1065,6 @@ API 不提供 CORS。来自浏览器的写请求还必须满足 §5.8 的 Origin
 | GET | `/devices` | 是 | — | 200 | 设备与会话摘要 |
 | PATCH | `/devices/:deviceId` | 是 | CSRF + writeId | 200 | 改设备名 |
 | DELETE | `/devices/:deviceId` | 是 + 再确认 | CSRF + writeId | 204 | 撤销设备 |
-| POST | `/transfers` | 是 | CSRF + writeId | 201 | 生成 §4.11 的主屏迁移码 |
 | GET | `/config` | 是 | `channel` + ETag | 200/304 | 远程配置、版本通知；响应 `no-cache` |
 | POST | `/telemetry/battles` | 是 | writeId | 202 | 可选战斗日志 |
 | POST | `/errors` | 是 | writeId | 202 | 可选客户端错误摘要 |
@@ -1135,7 +1136,7 @@ POST /api/v1/saves/save_manual_03/restore
 | 403 | `csrf_failed` / `device_revoked` / `device_namespace` | 刷新 session 或人工处理；不自动重复 |
 | 404 | `slot_not_found` / `version_not_found` | 与 tombstone 分开处理；不把服务故障当不存在 |
 | 409 | `idempotency_mismatch` / `challenge_state` | 同 writeId 带了不同内容，视作客户端 bug |
-| 410 | `pair_code_expired` / `transfer_consumed` / `export_expired` | 重新发起流程 |
+| 410 | `pair_code_expired` / `export_expired` | 重新发起流程 |
 | 412 | `rev_conflict` | 打开冲突卡；候选已保留 |
 | 412 | `schema_downgrade` | 提示更新客户端 / 导出，不覆盖 |
 | 413 | `save_too_large` | 本地保留并导出诊断；不上云 |
@@ -1170,7 +1171,7 @@ POST /api/v1/saves/save_manual_03/restore
 
 ```text
 event: meta
-data: {"requestId":"rq_…","turnId":"ait_…","model":"claude-opus-5"}
+data: {"requestId":"rq_…","turnId":"ait_…","model":"<selected-model-id>"}
 
 event: delta
 data: {"text":"少侠，"}
@@ -1214,6 +1215,7 @@ PRAGMA foreign_keys = ON;
 CREATE TABLE accounts (
   account_id        TEXT PRIMARY KEY,
   master_key_hash   BLOB NOT NULL CHECK (length(master_key_hash) = 32),
+  webauthn_user_handle BLOB NOT NULL UNIQUE CHECK (length(webauthn_user_handle) = 32),
   email             TEXT,
   email_verified_at INTEGER,
   change_seq        INTEGER NOT NULL DEFAULT 0 CHECK (change_seq >= 0),
@@ -1252,25 +1254,33 @@ CREATE INDEX idx_sessions_replacement ON sessions(replacement_until) WHERE repla
 CREATE TABLE one_time_codes (
   challenge_id       TEXT PRIMARY KEY,
   account_id         TEXT REFERENCES accounts(account_id) ON DELETE CASCADE,
-  kind               TEXT NOT NULL CHECK (kind IN ('pair', 'transfer', 'email')),
+  kind               TEXT NOT NULL CHECK (kind IN ('pair', 'email')),
   write_id           TEXT,
   code_hmac          BLOB NOT NULL CHECK (length(code_hmac) = 32),
-  version_id         TEXT,
   attempts           INTEGER NOT NULL DEFAULT 0 CHECK (attempts BETWEEN 0 AND 5),
   expires_at         INTEGER NOT NULL,
   consumed_at        INTEGER,
   created_at         INTEGER NOT NULL,
-  CHECK ((kind = 'transfer' AND version_id IS NOT NULL AND write_id IS NOT NULL) OR
-         (kind = 'pair' AND version_id IS NULL AND write_id IS NOT NULL) OR
-         (kind = 'email' AND version_id IS NULL))
+  CHECK ((kind = 'pair' AND write_id IS NOT NULL) OR
+         (kind = 'email' AND write_id IS NULL))
 );
 CREATE INDEX idx_codes_lookup ON one_time_codes(kind, code_hmac, expires_at);
 CREATE INDEX idx_codes_expiry ON one_time_codes(expires_at);
 CREATE UNIQUE INDEX idx_codes_write_id
   ON one_time_codes(account_id, write_id) WHERE write_id IS NOT NULL;
 
--- transfer 的 version_id 保存待迁移的版本 ID，但不声明跨顺序外键；pair / transfer
--- 创建接口以 write_id 幂等。消费码时在同一事务里确认版本归属并校验 kind、过期、attempts 与 consumed_at。
+-- pair 创建接口以 write_id 幂等；Safari ↔ 主屏迁移复用 pair，不绑定版本。
+-- 消费码时在同一事务里校验 kind、过期、attempts 与 consumed_at，并创建 device / session。
+
+CREATE TABLE rate_limit_windows (
+  bucket             TEXT NOT NULL,
+  subject_hash       BLOB NOT NULL CHECK (length(subject_hash) = 32),
+  window_started_at  INTEGER NOT NULL,
+  count              INTEGER NOT NULL CHECK (count >= 1),
+  expires_at         INTEGER NOT NULL,
+  PRIMARY KEY (bucket, subject_hash, window_started_at)
+);
+CREATE INDEX idx_rate_windows_expiry ON rate_limit_windows(expires_at);
 
 CREATE TABLE webauthn_challenges (
   challenge_id       TEXT PRIMARY KEY,
@@ -1278,19 +1288,21 @@ CREATE TABLE webauthn_challenges (
   session_hash       BLOB,
   kind               TEXT NOT NULL CHECK (kind IN ('authenticate', 'register')),
   challenge_hash     BLOB NOT NULL CHECK (length(challenge_hash) = 32),
-  options_json       TEXT NOT NULL CHECK (length(options_json) <= 65536),
+  verification_json  TEXT NOT NULL CHECK (length(CAST(verification_json AS BLOB)) <= 65536),
   expires_at         INTEGER NOT NULL,
   consumed_at        INTEGER,
   created_at         INTEGER NOT NULL
 );
 CREATE INDEX idx_webauthn_challenge_expiry ON webauthn_challenges(expires_at);
 
+-- verification_json 只保存 origin / RP ID / userVerification 等验证策略，不含 challenge 明文。
+
 CREATE TABLE passkeys (
   credential_id      TEXT PRIMARY KEY,
   account_id         TEXT NOT NULL REFERENCES accounts(account_id) ON DELETE CASCADE,
   public_key          BLOB NOT NULL CHECK (length(public_key) <= 4096),
   counter             INTEGER NOT NULL DEFAULT 0 CHECK (counter >= 0),
-  transports_json    TEXT NOT NULL DEFAULT '[]' CHECK (length(transports_json) <= 1024),
+  transports_json    TEXT NOT NULL DEFAULT '[]' CHECK (length(CAST(transports_json AS BLOB)) <= 1024),
   label               TEXT NOT NULL CHECK (length(label) BETWEEN 1 AND 40),
   created_at          INTEGER NOT NULL,
   last_used_at        INTEGER,
@@ -1324,7 +1336,7 @@ CREATE TABLE save_versions (
   body_sha256         TEXT NOT NULL CHECK (length(body_sha256) = 64),
   payload_sha256      TEXT NOT NULL CHECK (length(payload_sha256) = 64),
   byte_size           INTEGER NOT NULL CHECK (byte_size BETWEEN 12 AND 8388608),
-  header_json         TEXT NOT NULL CHECK (length(header_json) <= 65536),
+  header_json         TEXT NOT NULL CHECK (length(CAST(header_json AS BLOB)) <= 65536),
   origin              TEXT NOT NULL CHECK (origin IN ('play', 'import', 'restore', 'migration')),
   retention_class     TEXT NOT NULL CHECK (retention_class IN ('rolling', 'permanent', 'ironman_recovery')),
   created_at          INTEGER NOT NULL,
@@ -1356,7 +1368,7 @@ CREATE TABLE write_receipts (
   write_id            TEXT NOT NULL,
   request_hash        TEXT NOT NULL CHECK (length(request_hash) = 64),
   status              INTEGER NOT NULL,
-  response_json       TEXT NOT NULL CHECK (length(response_json) <= 65536),
+  response_json       TEXT NOT NULL CHECK (length(CAST(response_json AS BLOB)) <= 65536),
   expires_at          INTEGER NOT NULL,
   PRIMARY KEY (account_id, write_id)
 );
@@ -1366,7 +1378,7 @@ CREATE TABLE meta_profiles (
   account_id         TEXT PRIMARY KEY REFERENCES accounts(account_id) ON DELETE CASCADE,
   rev                INTEGER NOT NULL CHECK (rev >= 0),
   schema_version     INTEGER NOT NULL CHECK (schema_version >= 1),
-  profile_json       TEXT NOT NULL CHECK (length(profile_json) <= 524288),
+  profile_json       TEXT NOT NULL CHECK (length(CAST(profile_json AS BLOB)) <= 524288),
   profile_sha256     TEXT NOT NULL CHECK (length(profile_sha256) = 64),
   updated_at         INTEGER NOT NULL
 );
@@ -1376,7 +1388,7 @@ CREATE TABLE meta_events (
   event_id           TEXT NOT NULL,
   kind               TEXT NOT NULL,
   subject_id         TEXT NOT NULL,
-  event_json         TEXT NOT NULL CHECK (length(event_json) <= 16384),
+  event_json         TEXT NOT NULL CHECK (length(CAST(event_json AS BLOB)) <= 16384),
   accepted_at        INTEGER NOT NULL,
   PRIMARY KEY (account_id, event_id)
 );
@@ -1433,7 +1445,7 @@ CREATE TABLE ai_usage_daily (
 CREATE TABLE remote_config (
   channel            TEXT PRIMARY KEY CHECK (channel IN ('stable', 'preview')),
   revision           INTEGER NOT NULL CHECK (revision >= 1),
-  config_json        TEXT NOT NULL CHECK (length(config_json) <= 65536),
+  config_json        TEXT NOT NULL CHECK (length(CAST(config_json AS BLOB)) <= 65536),
   signature          TEXT NOT NULL,
   updated_at         INTEGER NOT NULL
 );
@@ -1481,14 +1493,14 @@ CREATE TABLE audit_events (
   request_id          TEXT NOT NULL,
   country             TEXT,
   asn                 INTEGER,
-  detail_json         TEXT NOT NULL DEFAULT '{}' CHECK (length(detail_json) <= 8192),
+  detail_json         TEXT NOT NULL DEFAULT '{}' CHECK (length(CAST(detail_json AS BLOB)) <= 8192),
   created_at          INTEGER NOT NULL
 );
 CREATE INDEX idx_audit_account_time ON audit_events(account_id, created_at DESC);
 CREATE INDEX idx_audit_expiry ON audit_events(created_at);
 ```
 
-`save_slots.current_version_id` 不能在建表时直接外键到稍后定义的版本并同时解决循环插入，故不声明循环外键，而由应用级事务与一致性查询保证：任何槽指针都必须能查到同账号、同槽版本。部署后 smoke test 与每日备份任务同时执行 `PRAGMA foreign_key_check` 和槽指针查询；发现孤立立即停止 GC 并报警。
+JSON 上限均按 **UTF-8 bytes** 而非 Unicode 字符数计，因此 DDL 使用 `length(CAST(json AS BLOB))`；名称的 1–40 限制仍故意按字符数计。`save_slots.current_version_id` 不能在建表时直接外键到稍后定义的版本并同时解决循环插入，故不声明循环外键，而由应用级事务与一致性查询保证：任何槽指针都必须能查到同账号、同槽版本。部署后 smoke test 与每日备份任务同时执行 `PRAGMA foreign_key_check` 和槽指针查询；发现孤立立即停止 GC 并报警。
 
 ### 7.3 CAS SQL 与变化序列
 
@@ -1508,7 +1520,7 @@ WHERE account_id = ?5
   AND current_schema <= ?2;
 ```
 
-`meta.changes === 1` 才接受。候选版本先以 `state='conflict'` 登记；同一 `batch()` 中后续 SQL 用 `EXISTS (SELECT 1 FROM save_slots WHERE current_version_id=?1)` 作发布条件：先把旧 current 转为 `history`，再把候选转为 `current`，并仅在该条件成立时令 `accounts.change_seq += 1`、插入 `slot_changes`。`idx_versions_one_current` 从数据库层阻止同槽出现两个 current。创建槽使用 `INSERT … SELECT … WHERE NOT EXISTS`，受复合主键保护。D1 的 batch 是事务：任一句失败整批回滚；业务条件不成立本身不抛错，所以代码必须检查**每条条件语句**的影响行数并断言“CAS 成功 ⇔ 旧 current 变 history ⇔ 候选变 current ⇔ change / receipt 各一条”。若 D1 binding 不能可靠返回这些结果，直接采用本节末的 Durable Object 串行化备选，不能只检查第一条 UPDATE 后冒险提交。
+`meta.changes === 1` 才进入成功分支。候选版本先以 `state='conflict'` 登记；同一 `batch()` 中后续 SQL 用 `EXISTS (SELECT 1 FROM save_slots WHERE current_version_id=?1)` 作发布条件：先把旧 current 转为 `history`，再把候选转为 `current`，并仅在该条件成立时令 `accounts.change_seq += 1`、插入 `slot_changes`。成功回执用同一 `EXISTS` 条件插入，冲突回执用互斥的 `NOT EXISTS` 条件插入；CAS 零行不是异常，候选因此能随冲突回执一起提交。`idx_versions_one_current` 从数据库层阻止同槽出现两个 current。创建槽使用 `INSERT … SELECT … WHERE NOT EXISTS`，受复合主键保护。D1 的 batch 是事务：任一句真正失败整批回滚；业务条件不成立本身不抛错，所以代码必须检查**每条条件语句**的影响行数，并在提交后断言“成功回执 ⇔ CAS 一行 ⇔ 旧 current 变 history ⇔ 候选变 current ⇔ change 各一条；冲突回执 ⇔ CAS 零行且候选仍为 conflict”。发现任何不可能组合即冻结云写、停止 GC 并报警；若 preview 并发测试不能证明这些关系，直接采用本节末的 Durable Object 串行化备选，不能只检查第一条 UPDATE 后冒险提交。
 
 删除同样是 `UPDATE … WHERE rev=?`，将 `deleted_at` 置值并把 `rev + 1`；保留 `current_version_id` 指向删除前版本以便 30 天内恢复。恢复历史不是把 `rev` 倒回去，而是创建新的版本行、复用同一不可变 blob（或按迁移需要写新 blob）并继续加一；共享 `object_key` 只有在最后一行引用消失后才可 GC。
 
@@ -1560,7 +1572,7 @@ D1 元数据按每版本 8 KiB（头部通常远小于 64 KiB）粗估，5,000 �
 1. D1 当前指针找不到版本；这是 P0，立即停 GC、从备份恢复元数据。
 2. D1 版本找不到 R2 对象；当前 / 永久版本为 P0，普通过期历史为 P1。
 3. R2 24 小时以上却无 D1 版本引用；标记孤儿，第二次巡检仍存在才删除。
-4. D1 `byte_size` / SHA 与 R2 元数据不一致；重新流式哈希，不能仅修数据库数字。
+4. D1 `byte_size` / SHA 与 R2 元数据不一致；重新读取对象并计算哈希，不能仅修数据库数字。
 
 由于存档内容对服务端不透明，巡检只证明“对象存在且压缩体未变”，完整可读性由客户端夹具与季度恢复演练验证。
 
@@ -1620,7 +1632,7 @@ D1 元数据按每版本 8 KiB（头部通常远小于 64 KiB）粗估，5,000 �
     { "binding": "RUNTIME", "bucket_name": "ts-runtime" }
   ],
   "send_email": [{ "name": "MAIL", "destination_address": "<verified-author-email>" }],
-  "triggers": { "crons": ["17 19 * * *"] },
+  "triggers": { "crons": ["17 4 * * *"] },
   "routes": [{ "pattern": "ts.<主域名>/*", "zone_name": "<主域名>" }]
 }
 ```
@@ -1643,7 +1655,7 @@ Cloudflare 官方当前价格 / 免费量：Workers Free 每日 100,000 请求�
 | 手动 / 检查点 | `5 × 30` | 150 PUT | 同上 |
 | 素材 / 配置 / 其他 | 假设 | 5,000 请求 | 同上 |
 | **合计** | `1,440 + 1,440 + 150 + 5,000` | **8,030 请求 / 月** | 约 0.27% |
-| R2 存档 | §7.5 常态 157.5 MiB | 0.154 GB-month | 1.54% |
+| R2 存档 | `157.5 MiB × 2^20 / 10^9` | 0.165 GB-month | 约 1.65% |
 
 即使每个 PUT 写 6 行 D1，`1,590 × 6 / 30 ≈ 318 行写 / 日`，只占 10 万日免费量约 0.32%；读同样有几个数量级余量。因此 **AI 关闭时增量云服务费为 $0/月**（域名年费、第二家备份和作者已有 GitHub 资源不算入 Cloudflare 用量）。若启用 AI 流式代理，为避开 Free 的 10 ms CPU 风险并获得付费用量，预算为 Workers Paid **$5/月 + AI 实耗，上限 $10/月**；总上限默认 $15/月。
 
@@ -1681,6 +1693,7 @@ Caddy（TLS / 静态文件 / 反代）
 export interface SaveRepo {
   getSlot(accountId: string, slotKey: string): Promise<SlotRow | null>;
   listChanges(accountId: string, after: number, limit: number): Promise<ChangePage>;
+  findWrite(accountId: string, writeId: string): Promise<WriteReceipt | null>;
   casPut(input: CasPut): Promise<CasResult>;
   tombstone(input: CasDelete): Promise<CasResult>;
   mergeMeta(input: MetaMerge): Promise<MetaResult>;
@@ -1698,7 +1711,7 @@ export interface Mailer { sendCode(input: RecoveryMail): Promise<void> }
 export interface RateLimiter { check(bucket: string, key: string, cost?: number): Promise<RateDecision> }
 ```
 
-Cloudflare 实现是 D1 / R2 / Email binding / edge rate limit；Node 实现是 SQLite / S3 / SMTP / 内存 + SQLite 计数。契约测试对两套实现运行同一组 CAS、幂等、墓碑、GC 与码兑换用例。R2 键不进入领域接口响应，因此换存储不会改变客户端 API。
+Cloudflare 实现是 D1 / R2 / Email binding / edge rate limit，其中 10 分钟 / 小时精确窗口落 `rate_limit_windows`；Node 实现是 SQLite / S3 / SMTP / 内存 + SQLite 计数。契约测试对两套实现运行同一组 CAS、幂等、墓碑、GC 与码兑换用例。R2 键不进入领域接口响应，因此换存储不会改变客户端 API。
 
 ### 8.8 部署闸门与回滚
 
@@ -1762,12 +1775,12 @@ AI Worker 使用 `placement: { host: "api.anthropic.com:443" }` 或经实测选�
 
 ### 9.3 模型与请求参数
 
-默认运行时模型固定为 `claude-opus-5`、`output_config.effort="low"`、`max_tokens=600`、SSE 流式。官方在 2026-09-26 列出的 Opus 5 基础价为输入 $5 / MTok、输出 $25 / MTok；模型与价格都由带生效日期的服务端配置维护，上线前重跑人物质量评测，不能只因出现新模型就自动换 alias。
+原任务指定的评测基线是 `claude-opus-5`、`output_config.effort="low"`、`max_tokens=600`、SSE 流式；官方在 2026-09-26 仍列出该模型 ID 与输入 $5 / MTok、输出 $25 / MTok，但已把 **Opus 5 标为 Legacy**，并列 Opus 5.5 为当前 Opus。因此生产配置默认 `AI_ENABLED=false` 且**不预填模型**；真正启用时必须从官方当前模型中明确选定一个不可变 ID，重跑 §9.10 金标、流式 / effort / fallback 契约和成本核算后才发布。下方请求保留 Opus 5 只是可复现的 Legacy 示例与费用基线，不能原样当生产默认。
 
-闲聊可选路由 `claude-haiku-4-5`（$1 / MTok 输入、$5 / MTok 输出）只在同一金标集上满足角色一致性、知识截止和工具准确率后打开**（待实测）**。模型名称永远由服务器枚举，客户端不能指定。
+闲聊可选以 Haiku 4.5（本次核实价 $1 / MTok 输入、$5 / MTok 输出）为候选，但同样只在当前不可变模型 ID 经同一金标集验证角色一致性、知识截止和工具准确率后打开**（待实测）**。模型名称永远由服务器枚举，客户端不能指定。
 
 ```ts
-// services/ai/src/anthropic.ts（按 2026-09 API；升级 SDK 时以契约测试复核）
+// services/ai/src/anthropic.ts（Legacy 评测示例；生产从已评测配置读不可变 model ID）
 const upstream = await fetch('https://api.anthropic.com/v1/messages', {
   method: 'POST',
   headers: {
@@ -1777,18 +1790,19 @@ const upstream = await fetch('https://api.anthropic.com/v1/messages', {
     'anthropic-beta': 'server-side-fallback-2026-07-01',
   },
   body: JSON.stringify({
-    model: 'claude-opus-5',
+    model: env.AI_MODEL, // 禁止客户端指定；不得在未复测时默认为 claude-opus-5
     max_tokens: 600,
     stream: true,
     output_config: { effort: 'low' },
     fallbacks: 'default',
-    cache_control: { type: 'ephemeral', ttl: '5m' },
     system: systemBlocks,
     messages,
     tools: [proposeEffectsTool],
   }),
 });
 ```
+
+`systemBlocks` 必须把 `cache_control` 标在 S0–S2 中**最后一个仍会跨目标请求保持相同的 content block** 上；上例不使用顶层 automatic caching，是为了避免把每轮变化的 S3 / S4 一并设为断点而持续 miss。1 小时断点写 `{ type: 'ephemeral', ttl: '1h' }`，5 分钟断点写 `{ type: 'ephemeral' }`；同一请求混用 TTL 时，较长 TTL 的断点必须出现在较短 TTL 之前。
 
 `fallbacks: "default"` 是 beta：当请求模型因策略拒绝时，服务端按拒绝类别使用 Anthropic 推荐的回退模型；它**不保证**处理 429、529、网络断线、余额不足或所有内容拒绝。`usage.iterations` 中的 fallback 记录与最终模型都计入用量审计；若 beta 撤回或语义变化，服务端关闭该字段，仍保留本地预写回退。
 
@@ -1889,7 +1903,7 @@ core 接受前再检查：当前 NPC / 节点一致、`proposalId` 未用过、�
 
 ### 9.9 费用预算与封顶
 
-以 Opus 5 当前价格估算一次 20 轮长谈：S0–S2 稳定前缀 12k token，首轮 5 分钟缓存写；每轮另有 2k 未缓存输入、300 输出。则首轮约 `12k × $5/M × 1.25 + 2k × $5/M + 300 × $25/M = $0.0925`；后 19 轮每轮约 `12k × $0.5/M + 2k × $5/M + 300 × $25/M = $0.0235`，合计 `$0.0925 + 19 × $0.0235 ≈ $0.54`。这是高估示例，不是报价；实际以响应 usage 结算。
+以 Legacy Opus 5 的 2026-09-26 官方价格作保守、可复算的基线，估算一次 20 轮长谈：S0–S2 稳定前缀 12k token，首轮 5 分钟缓存写；每轮另有 2k 未缓存输入、300 输出。则首轮约 `12k × $5/M × 1.25 + 2k × $5/M + 300 × $25/M = $0.0925`；后 19 轮每轮约 `12k × $0.5/M + 2k × $5/M + 300 × $25/M = $0.0235`，合计 `$0.0925 + 19 × $0.0235 = $0.539 ≈ $0.54`。这是旧模型的预算尺，不是生产选型或报价；选定当前模型后必须按其实际 usage 与价格重算。
 
 | 闸门 | 默认 | 行为 |
 |---|---:|---|
@@ -1941,7 +1955,7 @@ content/drafts/ai/<jobId>/*.json
 
 任何工具不得直接写正式内容目录；每条草稿带模型 ID、prompt hash、来源 ID、生成时间与人工审核状态。结构化输出只保证 JSON 合 schema，不保证原著事实 / 数值平衡，仍须按基准与原著考据人工审查。
 
-预算上界按 Opus 5 当前价计算：批量阶段最多 20M 输入 + 6M 输出，`(20 × $5 + 6 × $25) × 50% = $125`；另留 $25 给非批量抽检 / 失败重跑，**全项目文本起草封顶 $150**。工具达到 $120 警告、$150 停止；改变模型 / 单价先重算，不把这个数字当平台承诺。
+预算上界按 Legacy Opus 5 的 2026-09-26 价格计算：批量阶段最多 20M 输入 + 6M 输出，`(20 × $5 + 6 × $25) × 50% = $125`；另留 $25 给非批量抽检 / 失败重跑，**全项目文本起草封顶 $150**。工具达到 $120 警告、$150 停止；改变模型 / 单价先重算，不把这个数字当平台承诺。
 
 ---
 
@@ -2263,7 +2277,7 @@ R2 周备份使用官方支持的 S3-compatible endpoint 与 rclone；必须用 
 
 ### 12.5 告警、看板与故障分级
 
-外部存活探测使用 UptimeRobot 免费计划的 5 分钟间隔（官方 2026-09-26 页面仍列 50 个免费 monitor）；只访问 `/api/v1/health`，不携带账号凭据。备份 / GC / 周同步完成后 ping Healthchecks.io；其免费计划具体 check 数与宽限期以开通账号为准**（待实测）**，若不满足就改为作者邮箱 / GitHub Actions failure 通知，不改变系统架构。
+外部存活探测使用 UptimeRobot 免费计划的 5 分钟间隔（官方 2026-09-26 页面仍列 50 个免费 monitor）；只访问 `/api/v1/health`，不携带账号凭据。备份 / GC / 周同步完成后 ping Healthchecks.io；其 Hobbyist 免费计划当前允许 **20 个 job、每 job 100 条日志**，具体宽限期与通知集成以开通账号为准**（待实测）**，若不满足就改为作者邮箱 / GitHub Actions failure 通知，不改变系统架构。
 
 | 严重度 | 触发 | 通知与首要动作 |
 |---|---|---|
@@ -2417,7 +2431,6 @@ tools/
     { "binding": "RUNTIME", "bucket_name": "ts-runtime" }
   ],
   "send_email": [{ "name": "MAIL", "destination_address": "<author-verified-address>" }],
-  "services": [{ "binding": "AI", "service": "tianshu-ai" }],
   "triggers": { "crons": ["17 4 * * *"] },
   "vars": {
     "APP_ENV": "production",
@@ -2438,7 +2451,6 @@ export type Bindings = {
   RUNTIME: R2Bucket;
   ASSETS: Fetcher;
   MAIL: SendEmail;
-  AI?: Fetcher;
   APP_ENV: 'preview' | 'production';
   COOKIE_NAME: 'ts_s';
   PUBLIC_ORIGIN: string;
@@ -2454,6 +2466,8 @@ export type Variables = {
   deps: AppDeps;
 };
 ```
+
+基础配置故意不声明 `AI` service binding：AI 默认关闭时，部署不应要求 `tianshu-ai` 服务已存在。Phase 4+ 通过独立环境配置追加 `{ "binding": "AI", "service": "tianshu-ai" }`，并使用带必选 `AI: Fetcher` 的 `AiEnabledBindings`；不要把运行时可选类型误当成 Wrangler 可选 binding。
 
 生产、preview、local 使用不同 D1、R2、Cookie secret 和自定义域；preview 绝不复制生产正文。`.dev.vars`、`.wrangler/state`、备份与遥测目录必须 gitignored；CI 用 secret scanner 断言仓库中没有生产 ID / key。
 
@@ -2472,11 +2486,13 @@ export function createApp(makeDeps: (env: Bindings) => AppDeps) {
   app.use('/api/v1/*', bindDeps(makeDeps));
 
   app.get('/api/v1/health', healthRoute);
+  app.use('/api/v1/*', verifyWriteOriginAndFetchMetadata());
   app.route('/api/v1/auth', publicAuthRoutes());
 
   app.use('/api/v1/*', requireSession());
-  app.use('/api/v1/*', verifySameOriginAndCsrf());
+  app.use('/api/v1/*', verifySessionCsrf());
   app.route('/api/v1', authenticatedApiRoutes());
+  app.all('/api/*', (c) => problem(c, 404, 'not_found'));
 
   app.use('*', requirePageSessionExceptAllowlist());
   app.route('/a', runtimeAssetRoutes());
@@ -2490,7 +2506,7 @@ export function createApp(makeDeps: (env: Bindings) => AppDeps) {
 }
 ```
 
-次序是安全契约：request ID / 响应头覆盖所有路径；只有明确列出的健康与建会话端点在会话中间件之前；静态文件也在闸门之后。`verifySameOriginAndCsrf` 对 GET / HEAD 不要求 CSRF token，但仍不放宽 Cookie；对写请求按 §5.8 同时检查 `Origin`、Fetch Metadata 与双提交 token。错误处理统一生成 §6.4 的 problem，不能把 Hono / D1 原始异常返回浏览器。
+次序是安全契约：request ID / 响应头覆盖所有路径；`verifyWriteOriginAndFetchMetadata` 在公开建会话路由**之前**检查所有浏览器写请求，健康 GET 不受影响，缺 `Origin` 只允许已经验证短期管理 bearer 的 CLI。建会话端点不要求 CSRF；其余 API 先验 session，再由 `verifySessionCsrf` 校验**由 session `sid` 派生、经 `/auth/session` 返回的请求头 token**。`/api/*` 的兜底必须先返回 Problem 404，不能落入 SPA Static Assets；静态文件也在会话闸门之后。这不是“双提交 Cookie”模式，因为 token 不存入第二枚 Cookie。错误处理统一生成 §6.4 的 problem，不能把 Hono / D1 原始异常返回浏览器。
 
 入口同时导出 fetch 与 cron：
 
@@ -2545,7 +2561,7 @@ async function verifySession(raw: string, env: Bindings): Promise<SessionPrincip
   }
   const payload = SessionPayloadSchema.safeParse(decoded);
   if (!payload.success || payload.data.exp <= unixSeconds()) return null;
-  return lookupActiveSession(env.DB, sha256Bytes(payload.data.sid), payload.data);
+  return lookupActiveSession(env.DB, await sha256Bytes(payload.data.sid), payload.data);
 }
 ```
 
@@ -2565,17 +2581,18 @@ type PutSaveResult =
   | { kind: 'schemaDowngrade'; currentSchema: number };
 
 export async function putSave(input: PutSave, deps: AppDeps): Promise<PutSaveResult> {
-  const receipt = await deps.saves.findReceipt(input.accountId, input.writeId);
+  const receipt = await deps.saves.findWrite(input.accountId, input.writeId);
   if (receipt) return replayIfSameRequestHash(receipt, input.requestHash);
 
   const versionId = deps.ids.version();
   const key = saveObjectKey(input.accountId, input.slotKey, versionId);
+  // input.body 已由入口在 8 MiB 上限内完整读取并以 WebCrypto 校验 body hash。
   await deps.blobs.put(key, input.body, input.blobMeta);           // 不可变候选
 
   try {
     return await deps.saves.casPut({ ...input, versionId, objectKey: key });
   } catch (error) {
-    await deps.saves.noteOrphan({ objectKey: key, deleteAfter: deps.clock.now() + DAY });
+    // D1 不可用时不能可靠登记 orphan；每日任务按 R2 uploaded 时间与 D1 引用差集发现它。
     throw error;
   }
 }
@@ -2583,8 +2600,8 @@ export async function putSave(input: PutSave, deps: AppDeps): Promise<PutSaveRes
 
 完整实现还必须做到：
 
-- 在读取 body 前拒绝缺失 / 非法条件头和超大 `Content-Length`；实现以流式计数器硬停在 8 MiB + 1 byte，不因缺少 `Content-Length` 放宽。§4.3 为状态机易读使用有界缓冲伪码；生产 adapter 应把“前导 / 头部有界缓冲 + body 流式哈希 + R2 put”串成背压管线，避免同时复制两份 8 MiB。
-- 先读完整 12-byte 固定前导，再从偏移 8–11 取得头长，按 §3.3 解析至多 64 KiB 明文头；不解 gzip。后续压缩体边写 R2 边流式算 SHA-256，完成后核对头内 `bodySha256`；不一致则删除该未发布对象，绝不进入 D1 候选。
+- 在读取 body 前拒绝缺失 / 非法条件头和超大 `Content-Length`；读取器以计数器硬停在 8 MiB + 1 byte，不因缺少 `Content-Length` 放宽。§4.3 与上述代码都采用 MVP 的**一次有界缓冲**：完整对象最多 8 MiB，解析时以视图切片，不把同一字节再复制成多份。
+- 先读完整 12-byte 固定前导，再从偏移 8–11 取得头长，按 §3.3 解析至多 64 KiB 明文头；不解 gzip。对剩余压缩体调用 WebCrypto `subtle.digest()`，核对头内 `bodySha256` 后才 `R2.put`。Workers 原生 WebCrypto 没有增量 `DigestStream`；不得一边声称使用原生 API、一边假定可流式哈希。只有 Phase 0 实测证明 8 MiB 有界缓冲不可接受时，才引入经依赖审计和测试向量验证的增量 SHA-256，并用 `ReadableStream.tee()` 把同一字节流送入哈希与 R2。
 - `requestHash` 覆盖 method、账号、slot、条件修订、头和 body hash；同 writeId 换任何一项都返回 409 `idempotency_mismatch`。
 - R2 成功、D1 CAS 失败不是丢档：合法冲突候选登记为 `conflict` 并返回 412；D1 暂时不可用产生的无索引对象进入 orphan 清单，至少 24 小时后且确认无 D1 引用才删除**【建议值】**。
 - D1 成功后若响应丢失，客户端重试由 receipt 返回原响应；receipt 与 CAS / change row 必须在同一个事务批次提交。
@@ -2709,7 +2726,7 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 
 | # | 风险 | 可能性 / 影响 | 触发信号 | 预防与当前方案 | 回退 / 恢复 |
 |---|---|---|---|---|---|
-| R1 | iOS 主屏 Web App 与 Safari 存储 / Cookie 隔离，作者以为“已登录 / 已有档”却看到空白 | 高 / 高 | 同机 Safari 有档而主屏无档；`/auth/session` 401 | §4.11 6 位、10 分钟一次性迁移码；两个容器都先导出；文案明确“新设备” | 用主密钥 / 8 位配对码登录；从云端拉取；最后用本地 TSAV 导入 |
+| R1 | iOS 主屏 Web App 与 Safari 存储 / Cookie 隔离，作者以为“已登录 / 已有档”却看到空白 | 高 / 高 | 同机 Safari 有档而主屏无档；`/auth/session` 401 | §4.11 复用 8 位、5 分钟一次性配对码；Safari 先确认所选档已上云；文案明确“新设备” | 用主密钥 / 配对码登录；从云端拉取；最后用本地 TSAV 导入 |
 | R2 | iOS / WebView 清理 IndexedDB、后台杀页或存储配额不足 | 中 / 极高 | 启动时本地槽消失；QuotaExceeded；写事务失败 | 每次存档事务校验；主屏安装建议；高频自动档；云同步 + 文件导出；tech/03 真机测试 | 不再写旧库；从云 current / history 或作者导出恢复；保留损坏数据库供诊断 |
 | R3 | 两设备用旧基线覆盖新进度 | 中 / 极高 | 412 激增；同槽出现两条候选 | 强制 If-Match / If-None-Match；自动档按设备隔离；落选版 ≥ 30 天 | 冲突 UI 人工选；两版都下载；选择只产生新 rev，不原地覆写 |
 | R4 | R2 成功而 D1 失败，或 D1 成功但响应丢失 | 中 / 高 | orphan 巡检；客户端同 writeId 重试 | R2 不可变候选先写；D1 条件事务；receipt 幂等；24 小时 orphan 宽限 | 巡检补索引或安全清 orphan；客户端重试拿原响应，不生成第二个 current |
@@ -2740,13 +2757,13 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 | 同步 | 整 TSAV + rev CAS | 手工加密导出；分块上传 | 常态档 > 8 MiB 或线路使整包长期失败 | 先分析膨胀；分块也以完整 manifest 原子发布，绝不字段级合并 / CRDT |
 | 配置验签 | Ed25519 + JCS | build 内置配置；纯 JS verifier | 目标 WebView 无可靠 Ed25519 且 fallback 审计不通过 | 直接关闭远程配置，不使用未验签 payload；服务端闸门保留 |
 | 监控 | UptimeRobot + Healthchecks.io + Cloudflare 日志 | GitHub Actions 定时探测、自托管 Healthchecks | 免费计划变化、隐私或地区可达性不满足 | 探测只访问 health / ping，不带玩家数据；更换不影响 API |
-| 运行时 AI | Anthropic Opus 5 + server-side fallback | 完全关闭；合规的其他模型服务 | 地区不支持、费用 / 质量 / 隐私门槛失败 | 预写台词始终完整；provider adapter 重新做 30 题 / NPC 金标，不直接复用价格 / schema 假设 |
+| 运行时 AI | 生产模型待启用前选定；Opus 5 仅为 Legacy 评测 / 费用基线 | 完全关闭；合规的其他模型服务 | 地区不支持、Legacy 模型不可用、费用 / 质量 / 隐私门槛失败 | 预写台词始终完整；provider adapter 重新做 30 题 / NPC 金标，不直接复用价格 / schema 假设 |
 | 分析 | NDJSON.gz + 本地 DuckDB | 只留本地开发录像；Parquet + Python | 遥测上传收益低于隐私 / 运维成本 | 不影响玩法；原始日志格式和终局 hash 保持可离线验证 |
 
 ### 15.3 明确排除的“看似省事”方案
 
 - **last-write-wins**：实现短，但静默丢掉一条时间线；不采用。
-- **把整个存档放 D1 BLOB**：会撞 2 MB 行上限，也放大行读 / 备份；不采用。
+- **把整个存档放 D1 BLOB**：会撞 2,000,000-byte 行上限，也放大行读 / 备份；不采用。
 - **公开 R2 URL / 公开静态站点 + 难猜地址**：不等于鉴权，违反“不公开分发”；不采用。
 - **把主配对密钥存在 localStorage 或日志**：XSS / 诊断导出即可泄露；只换取一次输入便利，不采用。
 - **邮件魔法链接**：Safari 打开的会话不保证进入 iOS 主屏容器；采用验证码。
@@ -2794,7 +2811,7 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 13. R2 S3 compatibility（S3-compatible endpoint 与 API 覆盖）：https://developers.cloudflare.com/r2/api/s3/api/
 14. R2 Workers API（`put/get/head/list`、custom metadata 与整对象 checksum）：https://developers.cloudflare.com/r2/api/workers/workers-api-reference/
 15. Cloudflare Email Service Pricing（发往已验证目的地址的邮件免费且不计发送额度）：https://developers.cloudflare.com/email-service/platform/pricing/
-16. Send Email from Workers（`send_email` binding、`destination_address` 约束）：https://developers.cloudflare.com/email-routing/email-workers/send-email-workers/
+16. Email Service Workers API 与 send binding 限制（`send_email`、`destination_address`）：https://developers.cloudflare.com/email-service/api/send-emails/workers-api/；https://developers.cloudflare.com/email-service/configuration/send-bindings/
 17. R2 与 rclone（S3 endpoint 配置与备份工具接入）：https://developers.cloudflare.com/r2/examples/rclone/
 
 **Web 平台、PWA 与认证**
@@ -2808,46 +2825,47 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 24. Apple Supporting Passkeys（关联域、RP 与 Apple 平台接入约束）：https://developer.apple.com/documentation/authenticationservices/supporting-passkeys
 25. W3C Web Authentication Level 3（RP ID、origin、challenge 与凭据模型）：https://www.w3.org/TR/webauthn-3/
 26. MDN `SubtleCrypto.verify()`（浏览器验签接口；具体目标设备仍按 §11.2 真机验收）：https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/verify
-27. SimpleWebAuthn 文档（服务端注册 / 认证流程与运行时要求）：https://simplewebauthn.dev/docs/
+27. MDN `SubtleCrypto.digest()`（必须一次性读取完整输入，不支持流式哈希）：https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest
+28. SimpleWebAuthn 文档（服务端注册 / 认证流程与运行时要求）：https://simplewebauthn.dev/docs/
 
 **HTTP、签名与 Web 安全**
 
-28. RFC 9110, HTTP Semantics（ETag、`If-Match`、`If-None-Match` 与条件请求）：https://www.rfc-editor.org/rfc/rfc9110.html
-29. RFC 6585（428 Precondition Required、429 Too Many Requests）：https://www.rfc-editor.org/rfc/rfc6585.html
-30. RFC 9457（Problem Details for HTTP APIs）：https://www.rfc-editor.org/rfc/rfc9457.html
-31. RFC 8785（JSON Canonicalization Scheme，用于远程配置签名输入）：https://www.rfc-editor.org/rfc/rfc8785.html
-32. RFC 8032（Ed25519 与测试向量）：https://www.rfc-editor.org/rfc/rfc8032.html
-33. RFC 1952（GZIP 文件格式）：https://www.rfc-editor.org/rfc/rfc1952.html
-34. OWASP CSRF Prevention Cheat Sheet（SameSite、custom header、Origin / Fetch Metadata 的组合防护）：https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
+29. RFC 9110, HTTP Semantics（ETag、`If-Match`、`If-None-Match` 与条件请求）：https://www.rfc-editor.org/rfc/rfc9110.html
+30. RFC 6585（428 Precondition Required、429 Too Many Requests）：https://www.rfc-editor.org/rfc/rfc6585.html
+31. RFC 9457（Problem Details for HTTP APIs）：https://www.rfc-editor.org/rfc/rfc9457.html
+32. RFC 8785（JSON Canonicalization Scheme，用于远程配置签名输入）：https://www.rfc-editor.org/rfc/rfc8785.html
+33. RFC 8032（Ed25519 与测试向量）：https://www.rfc-editor.org/rfc/rfc8032.html
+34. RFC 1952（GZIP 文件格式）：https://www.rfc-editor.org/rfc/rfc1952.html
+35. OWASP CSRF Prevention Cheat Sheet（SameSite、custom header、Origin / Fetch Metadata 的组合防护）：https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
 
 **Anthropic API、模型、价格与隐私**
 
-35. Claude Opus 5 overview（模型 ID、能力与上下文）：https://platform.claude.com/docs/en/models/opus-5/overview
-36. Anthropic Pricing（Opus 5 / Haiku 4.5、prompt caching、Batch 折扣）：https://platform.claude.com/docs/en/about-claude/pricing
-37. Effort（`output_config.effort`）：https://platform.claude.com/docs/en/build-with-claude/effort
-38. Refusals and server-side fallback（`fallbacks: "default"`、beta 头与 `usage.iterations`）：https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback
-39. Prompt caching（5 分钟 / 1 小时 TTL、写入与命中倍率）：https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-40. Structured outputs（`output_config.format` 与 strict tool use）：https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-41. Message Batches（异步批处理、50% 价格与最长处理窗口）：https://platform.claude.com/docs/en/build-with-claude/batch-processing
-42. Messages API（请求、流式事件与 usage）：https://docs.anthropic.com/en/api/messages
-43. API errors（状态码、429 / 529 与错误体）：https://platform.claude.com/docs/en/api/errors
-44. Supported countries and regions（正文 §9.0 的地区开关依据）：https://www.anthropic.com/supported-countries
-45. Anthropic 隐私中心：商业 API 数据默认是否用于训练：https://privacy.anthropic.com/en/articles/7996868-is-my-data-used-for-model-training
-46. Anthropic 隐私中心：商业产品数据保留期限及 ZDR 例外：https://privacy.anthropic.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data
+36. Claude Opus 5 overview（模型 ID、能力与上下文；页面已将其标为 Legacy，并指向当前 Opus 5.5）：https://platform.claude.com/docs/en/models/opus-5/overview
+37. Anthropic Pricing（Opus 5 / Haiku 4.5、prompt caching、Batch 折扣）：https://platform.claude.com/docs/en/about-claude/pricing
+38. Effort（`output_config.effort`）：https://platform.claude.com/docs/en/build-with-claude/effort
+39. Refusals and server-side fallback（`fallbacks: "default"`、beta 头与 `usage.iterations`）：https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback
+40. Prompt caching（5 分钟 / 1 小时 TTL、写入与命中倍率）：https://platform.claude.com/docs/en/build-with-claude/prompt-caching
+41. Structured outputs（`output_config.format` 与 strict tool use）：https://platform.claude.com/docs/en/build-with-claude/structured-outputs
+42. Message Batches（异步批处理、50% 价格与最长处理窗口）：https://platform.claude.com/docs/en/build-with-claude/batch-processing
+43. Messages API（请求、流式事件与 usage）：https://docs.anthropic.com/en/api/messages
+44. API errors（状态码、429 / 529 与错误体）：https://platform.claude.com/docs/en/api/errors
+45. Supported countries and regions（正文 §9.0 的地区开关依据）：https://www.anthropic.com/supported-countries
+46. Anthropic 隐私中心：商业 API 数据默认是否用于训练：https://privacy.anthropic.com/en/articles/7996868-is-my-data-used-for-model-training
+47. Anthropic 隐私中心：商业产品数据保留期限及 ZDR 例外：https://privacy.anthropic.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data
 
 **国内云、备案、监控与分析工具**
 
-47. 阿里云函数计算计费概述（CU、按量计费与试用入口）：https://help.aliyun.com/zh/functioncompute/fc/product-overview/billing-overview-of-fc
-48. 腾讯云云函数计费概述（按量后付费与套餐页面口径）：https://cloud.tencent.com/document/product/583/71468
-49. 工信部《非经营性互联网信息服务备案管理办法》（第五条）：https://www.miit.gov.cn/zcfg/xxtxl/art/2024/art_7e48434c08c24131b4b7eecfca5b2b6c.html
-50. Cloudflare China Network 的 ICP 要求：https://developers.cloudflare.com/china-network/concepts/icp/
-51. UptimeRobot Pricing（Free：50 monitors、5 分钟间隔）：https://uptimerobot.com/pricing/
-52. Healthchecks.io Pricing（免费计划；实际 check 数与宽限期在开通时复核）：https://healthchecks.io/pricing/
-53. DuckDB JSON overview（NDJSON 读取）：https://duckdb.org/docs/stable/data/json/overview.html
-54. DuckDB Parquet overview（本地分析结果落盘）：https://duckdb.org/docs/stable/data/parquet/overview.html
-55. Hono on Cloudflare Workers：https://hono.dev/docs/getting-started/cloudflare-workers
-56. Hono on Node.js（同一路由配 Node adapter）：https://hono.dev/docs/getting-started/nodejs
-57. npm registry（2026-09-26 分别查询 `hono`、`wrangler`、`zod`、`@simplewebauthn/server`、`@anthropic-ai/sdk`、`@cloudflare/vitest-pool-workers`、`@cloudflare/vitest-plugin` 的 `dist-tags.latest`、`engines` 与 `peerDependencies`）：https://registry.npmjs.org/
+48. 阿里云函数计算计费概述（CU、按量计费与试用入口）：https://help.aliyun.com/zh/functioncompute/fc/product-overview/billing-overview-of-fc
+49. 腾讯云云函数计费概述（按量后付费与套餐页面口径）：https://cloud.tencent.com/document/product/583/71468
+50. 工信部《非经营性互联网信息服务备案管理办法》（第五条）：https://www.miit.gov.cn/zcfg/xxtxl/art/2024/art_7e48434c08c24131b4b7eecfca5b2b6c.html
+51. Cloudflare China Network 的 ICP 要求：https://developers.cloudflare.com/china-network/concepts/icp/
+52. UptimeRobot Pricing（Free：50 monitors、5 分钟间隔）：https://uptimerobot.com/pricing/
+53. Healthchecks.io Pricing（Hobbyist Free：20 个 job、每 job 100 条日志；宽限期与集成开通时复核）：https://healthchecks.io/pricing/
+54. DuckDB JSON overview（NDJSON 读取）：https://duckdb.org/docs/stable/data/json/overview.html
+55. DuckDB Parquet overview（本地分析结果落盘）：https://duckdb.org/docs/stable/data/parquet/overview.html
+56. Hono on Cloudflare Workers：https://hono.dev/docs/getting-started/cloudflare-workers
+57. Hono on Node.js（同一路由配 Node adapter）：https://hono.dev/docs/getting-started/nodejs
+58. npm registry（2026-09-26 分别查询 `hono`、`wrangler`、`zod`、`@simplewebauthn/server`、`@anthropic-ai/sdk`、`@cloudflare/vitest-pool-workers`、`@cloudflare/vitest-plugin`、`vitest` 的 `dist-tags.latest`、`engines` 与 `peerDependencies`）：https://registry.npmjs.org/
 
 ---
 
@@ -2867,14 +2885,14 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 | 冲突历史 | CAS 失败或人工解决后未被选中的候选；至少保留 30 天；一般槽可下载或复制到手动槽，受限槽仍服从 `design/13` 的回档规则，绝不静默丢弃 |
 | 本地同步 outbox | IndexedDB / Dexie 中的持久应用层队列；保存先落本地，启动、前台、联网等时机再上传，不依赖 Background Sync 或 unload `keepalive` |
 | 主配对密钥 | 初始化时 CSPRNG 生成的 128-bit 根凭据；只显示一次，服务端只存带域分隔的 SHA-256，不是普通口令 |
-| 临时配对码 / 容器迁移码 | 前者为 8 位、5 分钟的新设备登录码；后者为 6 位、10 分钟的 Safari ↔ iOS 主屏容器交接码；二者均一次性且限试 |
+| 临时配对码 / 跨容器迁移 | 唯一短码协议为 8 位、5 分钟、一次性且限试；Safari ↔ iOS 主屏先将所选档正常上云，再用同一码登录并走 `/sync`，不另设迁移码或 blob 绑定 |
 | 会话 Cookie `ts_s` | `<base64url(payload)>.<base64url(HMAC-SHA256)>`；HttpOnly、Secure、SameSite=Lax、host-only，30 天滚动，服务端 D1 支持撤销（§5.4） |
 | 会话 replacement window | 滚动续期时新建 `sid`；旧 session 最多 60 秒只承接并发读与带幂等键写，然后撤销，不原地延长旧 Cookie |
 | 静态闸门 | 同一 Worker 在返回 app shell、素材或 API 前校验 `ts_s`；应用 / 素材的 D1 活跃结果最多缓存 60 秒；只有登录、健康检查与 PWA 必需元数据免检，R2 不公开 |
 | Problem Details | API 错误采用 RFC 9457 `application/problem+json`；`type` 使用稳定错误代码，附 `requestId` 便于脱敏排障 |
 | 存储 ports | `SaveRepo`、`BlobStore`、`Mailer`、`RateLimiter` 四个边界；Cloudflare 与 Node 仅替换 adapter，不改 REST / TSAV / CAS |
 | `bodySha256` / `objectSha256` | 前者只覆盖 TSAV 内 gzip body；后者若实现则覆盖整个 TSAV 对象。只有后者可作为 R2 整对象 checksum |
-| 写入回执 / 端点幂等行 | 存档 CAS 用 `write_receipts` 保存 30 天原响应；遥测、错误、导出和一次性迁移码由各自表的 `(account_id, write_id)` 或等价唯一键保存状态并重放结果 |
+| 写入回执 / 端点幂等行 | 存档 CAS 用 `write_receipts` 保存 30 天原响应；配对码、遥测、错误和导出由通用回执或各自表的 `(account_id, write_id)` / 等价唯一键保存状态并重放结果 |
 | 签名配置 revision | 远程配置的单调版本；JCS 规范化后用 Ed25519 签名，客户端拒绝过期、倒退、错频道、未知 key 或验签失败的信封 |
 | `releaseSeq` | CI 为可部署 app shell 分配的单调发布序列；用于比较 `latest` / `minCloudWrite`，人读 `appBuild` 哈希不参与大小比较 |
 | AI 人设卡 `NpcAiCard` | 只承载 AI 适配所需的语气、分幕已知事实、禁区、回退台词与效果白名单；NPC 性格和好感刻度仍归 `design/12` |
@@ -2909,13 +2927,13 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 | O-01 | D1 多语句 `batch()` + 影响行数检查能否在真实并发下持续守住“每槽恰一 current” | 先用 D1 条件事务；若属性测试出现一次不变量失败，改为每账号 Durable Object 串行写，REST / ETag 不变 | Phase 0 preview 压测；Phase 2 上线前 |
 | O-02 | 8 MiB TSAV 在 Workers Free 10 ms CPU 内做外壳解析与 gzip body SHA-256 是否稳定 | 典型档继续整包；极限样本若超 CPU，先升 Paid 或做上传流式 / 分块候选，仍以完整 manifest 原子发布，不抬上限 | Phase 0；目标设备 + preview 各跑边界样本 |
 | O-03 | 独立 Vitest 4 project 在 workspace 中的隔离方式 | 已决定使用独立 Vitest 4；只剩 workspace 配置、类型隔离与根命令聚合的实现验证，失败才退回 `getPlatformProxy()` | 服务端骨架合入前 |
-| O-04 | 主屏 Web App、Safari、微信 / QQ WebView 的 Cookie、IndexedDB、迁移码与 Passkey 行为 | 不承诺容器共享或内置 WebView Passkey；配对码永久保留，Safari ↔ 主屏用 6 位迁移码 | 按作者 P01 的主力手机 + 中端 Android + iPad 真机矩阵，Phase 0 / 3 |
+| O-04 | 主屏 Web App、Safari、微信 / QQ WebView 的 Cookie、IndexedDB、配对迁移与 Passkey 行为 | 不承诺容器共享或内置 WebView Passkey；配对码永久保留，Safari ↔ 主屏复用 8 位、5 分钟临时配对码并从云端拉档 | 按作者 P01 的主力手机 + 中端 Android + iPad 真机矩阵，Phase 0 / 3 |
 | O-05 | D1 `apac` hint、默认 Worker placement 与 AI `host` placement 的实际延迟 | 主 D1 用 `apac` hint；AI Worker 用 `host: "api.anthropic.com:443"`；各跑 30 次首 token / 总时延后才改 region | 真账号 preview 与 AI 启用前 |
 | O-06 | Passkey、Ed25519 WebCrypto、`@simplewebauthn/server` 在锁定 Workers compatibility date 下的兼容性 | 能力探测；Passkey 不可用则配对码 / 邮箱码，Ed25519 不可用则用带 RFC 向量的固定纯 JS verifier；绝不跳过验签 | Phase 3 前，目标浏览器逐项实测 |
 | O-07 | Healthchecks.io 免费计划、Cloudflare 日志 / 预算通知、Anthropic Console spend limit 的真账号能力 | 能设则按 §9 / §12；不能设时用应用硬拒绝 + GitHub Actions / 邮件通知，绝不依赖控制台软提示 | 开通相应账号时 |
 | O-08 | 第二家私有备份存储、版本控制 / 不可变保留与月成本 | 默认作者现有 NAS 或非 Cloudflare S3-compatible 私有桶；`rclone copy`，90 天版本 + 12 个月快照；不得变成公开镜像 | Phase 2 恢复闸门前 |
 | O-09 | 浏览器能否稳定流式生成完整云导出 ZIP | 并发 3 下载；失败则每卷 ≤ 128 MiB 或逐文件下载，不在 Worker 端压 ZIP | Phase 2，以 256 MiB 清单边界实测 |
-| O-10 | AI 当前模型、fallback beta、价格、地区与数据保留是否仍满足约束 | AI 保持关闭；只有 §9.0 五项前置全过才开。模型默认 `claude-opus-5`、effort low、600 token、server fallback；任一政策不符即用预写文本 | 每次启用 / 模型升级及每季度 |
+| O-10 | AI 当前模型、fallback beta、价格、地区与数据保留是否仍满足约束 | AI 保持关闭；只有 §9.0 五项前置全过才开。`claude-opus-5` 已是 Legacy，只作评测 / 费用基线；生产模型不预填，选定后复测 effort low、600 token、server fallback，任一政策不符即用预写文本 | 每次启用 / 模型升级及每季度 |
 | O-11 | 单人遥测采样是否有足够收益 | 本地总开关关闭；启用时摘要 100%、可重放 10%、云端 180 天 / 1 GiB，所有改数值决定人工审阅 | Phase 3 连续一个内容迭代后复盘 |
 | O-12 | 未选择的轻量服务器月价、带宽与备案资格 | 不为退出方案写死价格；P03 不变时不采购。只有切换条件成立后，按目标地区与当日官方价重做 ADR | 作者重开 P03 或 Cloudflare 退出评审时 |
 
@@ -2959,13 +2977,13 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 
 | 文档 | 位置 | 需要同步 |
 |---|---|---|
-| `docs/tech/01-architecture.md` | §7.6、§11–§12、待决 P6 | 删除 Cloudflare Pages / GitHub Pages 公开部署路径；改成同一 Worker 私有 Static Assets；接受 `services/api` 独立 Vitest 4；P6 标为由本文解决 |
-| `docs/tech/03-mobile-performance.md` | F14、真机矩阵、存储 / Worker 预算 | 加入 Safari ↔ iOS 主屏迁移码、Cookie / IndexedDB 独立容器、8 MiB 哈希 / 上传、Ed25519 / Passkey、流式 ZIP 与 outbox 验收 |
+| `docs/tech/01-architecture.md` | §6.9、§7.6、§11–§12、待决 P6 | §6.9 的“版本号 + 时间 + 设备 ID”冲突仲裁改为本文 §4 的服务端 `rev` CAS + 玩家选择；删除 Cloudflare Pages / GitHub Pages 公开部署路径，改成同一 Worker 私有 Static Assets；接受 `services/api` 独立 Vitest 4；P6 标为由本文解决 |
+| `docs/tech/03-mobile-performance.md` | F14、真机矩阵、存储 / Worker 预算 | **已对齐：**Safari ↔ iOS 主屏复用 8 位、5 分钟临时配对码；仍需协同验收 Cookie / IndexedDB 独立容器、8 MiB 哈希 / 上传、Ed25519 / Passkey、流式 ZIP 与 outbox |
 | `docs/tech/04-*` | manifest、内容版本与迁移 | 固定 `contentHash` 与 `idRemaps` 数据契约；保留可按 hash 取回的旧书界包，供旧档修复与录像复放 |
 | `docs/tech/05-*` | 战斗录像与确定性 | 导出 `BattleReplayV1`、规范序列化 / hash 与跨 V8/JSC fixture；不要在服务端重放或重定义战斗公式 |
 | `docs/tech/06-asset-storage.md` | §7、§9、§12–§13、待决 7/8/15 | 会话格式与免检路由引用本文 §5；app / API / 素材同 Worker；按 P03 删除 Phase 3 国内 / 香港镜像计划、`ts-runtime-cn` 现行桶命名及相关风险回退 |
 | `docs/design/12-quests-npc-factions.md` | NPC 人设、好感、台词 / 节点接口 | 定义 `NpcAiCard` 的内容来源与稳定 ID；裁定好感每轮 / 每段封顶终值；每个启用 NPC 至少提供普通 / 网络 / 拒绝三类预写回退 |
 | `docs/design/13-progression-and-endings.md` | §9 存档与 Meta | 引用本文 `cloudSlotKey`、ETag / CAS、冲突历史和 `POST /meta/merge`；确认 Meta 事件稳定 ID 与 512 KiB 上限 |
-| `docs/design/14-*` | 登录、读档、设置与更新 UI | 展示“已存本机 / 待上云 / 已上云 / 冲突”四态、冲突双版本、迁移码、设备撤销、遥测 / AI 同意、Passkey 回退及安全点更新 |
+| `docs/design/14-*` | 登录、读档、设置与更新 UI | 展示“已存本机 / 待上云 / 已上云 / 冲突”四态、冲突双版本、8 位临时配对码迁移、设备撤销、遥测 / AI 同意、Passkey 回退及安全点更新 |
 | `docs/tech/09-*` | 路线图 / 闸门 | 采用 §14 阶段和验收：Phase 1 私有托管，Phase 2 同步 / 恢复，Phase 3 Passkey / 遥测，Phase 4+ AI；登记建议值收口时点 |
 | `TODO.md` | §2、§4–§6 | 登记 P-08-01 / P-08-02、P03 落实情况与上述同步债；待归属文档修订后再标全仓解决 |
