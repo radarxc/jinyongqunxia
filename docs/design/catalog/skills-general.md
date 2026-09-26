@@ -1,7 +1,7 @@
 # 门派武学图鉴 · 江湖通用武学与杂学总表（`skills-general`）
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 门派武学图鉴之一。本文唯一收录无门派通行武学、军中／镖局／武馆传承、序章《越女剑》教学武学、蓬莱派，以及不属于任何门派的医、毒、蛊、阵法、音律、书画、棋、易容、驭兽、音功与心神杂学。
-> **上游**：`docs/decisions/author-requirements.md` AR-01～AR-03、AR-07～AR-08；`docs/decisions/author-decisions.md` P33、P35；`docs/00-canon.md` §3～§7、§12～§13、§16、§20；`docs/decisions/rulings-v1.md` C12、C14～C17、C22～C23、§3～§5。
+> **上游**：`docs/decisions/author-requirements.md` AR-01～AR-03、AR-07～AR-08、AR-12；`docs/decisions/author-decisions.md` P33、P35；`docs/00-canon.md` §3～§7、§12～§13、§16、§20；`docs/decisions/rulings-v1.md` C12、C14～C17、C22～C23、§3～§5。
 > **引用而不重定义**：字段、层数、招式与内功预算见 `design/05`；Buff 定义见 `design/06`；属性与技艺见 `design/03`；书界、压制、残篇与印证见 `design/02`；轻功门禁见 `design/08`；套装规则及最终数值交 `design/07`；门派历史、开放时代与职级称谓见 `design/17`。门派内杂学仍归各门派图鉴，本文 §1.4 只作 ID 索引。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或投放；**（原创扩展命名）**为原著有其人其事而无正式武学名；**（待考）**为须以三联／广州修订版逐字核对的原著事实；【建议值】在 §14 登记。
 
@@ -13,7 +13,7 @@
 
 - 本组没有基准 §13 天阶名录。AR-01 对“0～1 门天级”规定按旧目标 `90×1.5=135` 取整，并保持地／玄／黄约 `1:3:3`；本文固定为 **天 0／地 19／玄 58／黄 58，共 135 门**，即 `19:58:58≈1:3.05:3.05`。
 - 地阶 19 门全部使用完整条目卡；玄阶 58 门使用紧凑卡，其中 21 门逐招展示核算，`21/58=36.21%≥30%`；黄阶 58 门按 AR-01 使用八列表格一行一门，并在各节给整体预算核对。
-- `sk_yuenvjian` 是序章阿青／剑源教学版，固定地上 9；与五绝图鉴的韩小莹版 `sk_yuenvjian02` 分立。离开序章前者强制化残篇，不可直接携入天龙。
+- `sk_yuenvjian` 是序章阿青／剑源教学版，固定地上 9；与五绝图鉴的韩小莹版 `sk_yuenvjian02` 分立。正常序章来源上限为 3 重，跳过序章仅得 1 重残篇，轮回《越女剑·全本》来源上限为 6 重；离开序章前者强制化残篇，不可直接携入天龙。
 - `sk_taizuchangquan` 的玩法权威定义在 `design/05` §13.5；本文只登记归属、全书界来源与套装候选。`sk_liuheqiang` 唯一定义归 `skills-wujue`，军中表只引用，不计入 135 门。
 - `ALL14` 是本文排版别名，落库时展开为 `[ch01_tianlong,ch02_shediao,ch03_shendiao,ch04_yitian,ch05_xiaoao,ch06_xiake,ch07_bixue,ch08_luding,ch09_liancheng,ch10_baima,ch11_yuanyang,ch12_shujian,ch13_feihu,ch14_xueshan]`，不是新 ID。
 - “首现”只用于唯一 ID 的统计归档；同一门通行武学在后世重新学习仍是本土来源，不重复计为新武学。军营、镖局、武馆是获取场景，均保持 `sect:null`；不可为了职级系统虚造“通用门派”。
@@ -40,6 +40,8 @@ power = AF × (1 + Σadj) × Kd × Kp − Σcost_buff − Σcost_disp
 | 绝招 | `3.00×AF×Kd×Kp−成本`；气势100、耗内=大阶基准+2pp、收招1200 |
 
 表内结果按 0.05 取整，允许误差 ±0.05。支援招 `power:0`，按标准单体治疗 18% `hpMax`、护体真气等价量或状态价值核对。玄阶未展示核算的条目仍采用同一模板，数据化时必须逐招跑 lint；黄阶整体核对见各节。
+
+> AR-12 已把战斗改为六角格，并把点／环／面／扇形的最终范围语义交 `design/09`。本文保留现有“单体、线、横扫、周身、锥、十字”等名称作为待迁移的逻辑模板，只用 `design/05` §4.2 的暂行面积因子复算倍率；旧方格“十字”等不得解释为最终六角坐标或覆盖格数，须由 K1／R05 统一映射并重算后再落实现。
 
 ### 0.3 内功贡献与经脉预留
 
@@ -146,10 +148,10 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 基础 | `category:weapon`；`subType:sword`；`grade:9`；`origin:canonExpanded`；`sect:null`；`lineage:阿青／剑源`；`sourceChapters:[ch00_yuenv]` |
 | 性质／内外／兵器 | `nature:harmony`；`wOut/wIn:0.35/0.65`；`weaponReq:{category:sword}`；竹枝教学按剧情临时视作剑 |
 | reqs | `attrs {agi:48,wis:45}`；`aptitude {apSword:50}`；`prereq:[{skill:sk_zhuzhijianfa,layer:6}]`；`hard:[prereq]`；阿青直授来源以 `reqsOverride {prereq:[],hard:[]}` 放开 |
-| layerStats | `hit:[3,8]`、`eva:[3,7]`，第10重合计15；序章最多7重，离章后残篇只保留真实已学层数 |
-| 层数要点 | 1重竹影；3重猿跃；5重一剑越甲；**7重绝招剑意无痕**；8～10重只作图鉴远景，序章不可达 |
+| layerStats | `hit:[3,8]`、`eva:[3,7]`，第10重合计15；正常序章最多3重，轮回《越女剑·全本》最多6重，离章后残篇只保留真实已学层数 |
+| 层数要点 | 1重竹影；3重猿跃；5重一剑越甲；**7重绝招剑意无痕**（现行两种序章来源均不可达）；8～10重只作完整武学数据远景 |
 | setTags／冲突 | `[set_yuenv_jianyuan]`；无冲突；与 `sk_yuenvjian02` 只是套装候选关联，不合并同源记录 |
-| 获取 | 序章随阿青观剑的主线节点【建议值：由 `chapters/00` 分配正式 `q_00_*`】，`maxLayer:7`；离开序章强制转 `it_canye_yuenvjian`，天龙不可直接装配，规则见 `design/02` §1.2 |
+| 获取 | 正常序章随阿青观剑的主线节点【建议值：由 `chapters/00` 分配正式 `q_00_*`】，`maxLayer:3`；跳过序章直接得 `maxLayer:1` 残篇；轮回《越女剑·全本》按 `design/13` §6.4.3 最多6重。离开任一序章均转 `it_canye_yuenvjian`，天龙不可直接装配，规则见 `design/02` §1.2 |
 | special／图鉴 | `{fusible:false,prologueSeal:true}`；“竹枝所指，剑理先于招名；这是玩家第一次看见地阶威力，也是不可带走的剑源一梦。” |
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -519,8 +521,8 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 地中8 | `sk_kaimenpiguaquan` | 开门劈挂拳 | 拳脚／拳掌 | 射雕；后世武馆 | `sk_tongbeijin`≥5 | `set_wuguan_jiben` |
 | 地下7 | `sk_tongbeijian` | 通背剑 | 兵器／剑 | 笑傲；后世武馆 | `sk_lianhuanjian`≥5 | `set_wuguan_jiben` |
 | 地下7 | `sk_hunyuanfangzhuang` | 混元方桩 | 内功 | 射雕；后世武馆 | `sk_wuguanxinfa`≥6 | `set_wuguan_jiben` |
-| 玄上6 | `sk_tongbeijin` | 通背劲 | 拳脚／拳掌 | 射雕；后世武馆 | `sk_changquanrumen`≥4 | `set_wuguan_jiben` |
-| 玄上6 | `sk_tantui_tongxing` | 弹腿（通行） | 拳脚／腿法 | 天龙；后世武馆 | `sk_tantuirumen`≥4 | `set_wuguan_jiben` |
+| 玄上6 | `sk_tongbeijin` | 通背劲 | 拳脚／拳掌 | 射雕；ALL14 | `sk_changquanrumen`≥4 | `set_wuguan_jiben` |
+| 玄上6 | `sk_tantui_tongxing` | 弹腿（通行） | 拳脚／腿法 | 天龙；ALL14 | `sk_tantuirumen`≥4 | `set_wuguan_jiben` |
 | 玄中5 | `sk_wuhuduandandao` | 五虎断门刀（民间式） | 兵器／刀 | 笑傲；后世武馆 | `sk_wuguandao`≥4 | `set_wuguan_jiben` |
 | 玄中5 | `sk_qimeigun` | 齐眉棍 | 兵器／棍杖 | 天龙；后世武馆 | `sk_wuguangun`≥4 | `set_wuguan_jiben` |
 | 玄下4 | `sk_wuguanxinfa` | 武馆心法 | 内功 | 天龙；ALL14 | `sk_zhamabu`≥4 | `set_wuguan_jiben` |
@@ -590,11 +592,11 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 
 #### `sk_tongbeijin` 通背劲（6 玄上 · 拳脚／拳掌 · 阳）**（原创扩展）**——核算抽样
 
-- `reqs {prereq:[sk_changquanrumen≥4],hard:[prereq]}`；`.80/.20`；`layerStats {hit:[2,6],crit:[2,4]}`；甩掌 `_shuaizhang`（单体 **1.10**，6%/1；`1.12≈1.10`）、探背 `_tanbei`（线2 **1.00**，7%/1；`.85×1.17=.99≈1.00`）、通臂 `_tongbi`（单体 **1.35**，8%/2；`1×1.34≈1.35`）；被动“放长击远” `_fangchang`（单体射程2）；`set_wuguan_jiben`。
+- `sourceChapters:ALL14`；`reqs {prereq:[sk_changquanrumen≥4],hard:[prereq]}`；`.80/.20`；`layerStats {hit:[2,6],crit:[2,4]}`；甩掌 `_shuaizhang`（单体 **1.10**，6%/1；`1.12≈1.10`）、探背 `_tanbei`（线2 **1.00**，7%/1；`.85×1.17=.99≈1.00`）、通臂 `_tongbi`（单体 **1.35**，8%/2；`1×1.34≈1.35`）；被动“放长击远” `_fangchang`（单体射程2）；`set_wuguan_jiben`。
 
 #### `sk_tantui_tongxing` 弹腿（通行）（6 玄上 · 拳脚／腿法 · 阳）**（原创扩展）**
 
-- `reqs {prereq:[sk_tantuirumen≥4],hard:[prereq]}`；`.85/.15`；`layerStats {crit:[2,6],spd:[2,4]}`；弹踢 `_tanti`（单体1.10）、连环腿 `_lianhuan`（乱击n3 1.05）、踹门 `_chuaimen`（单体1.15、击退1）；被动“腿长” `_tuichang`（持械不降效，引用05）；`set_wuguan_jiben`。
+- `sourceChapters:ALL14`；`reqs {prereq:[sk_tantuirumen≥4],hard:[prereq]}`；`.85/.15`；`layerStats {crit:[2,6],spd:[2,4]}`；弹踢 `_tanti`（单体1.10）、连环腿 `_lianhuan`（乱击n3 1.05）、踹门 `_chuaimen`（单体1.15、击退1）；被动“腿长” `_tuichang`（持械不降效，引用05）；`set_wuguan_jiben`。
 
 #### `sk_wuhuduandandao` 五虎断门刀（民间式）（5 玄中 · 兵器／刀 · 阳）**（原创扩展命名）**
 
@@ -683,7 +685,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 |---|---|
 | 基础 | `category:movement`；`subType:movement`；`grade:7`；`origin:expanded`；`sect:null`；`lineage:水乡舟户与游侠`；`sourceChapters:[ch01_tianlong,ch09_liancheng,ch10_baima,ch12_shujian]`；`nature:harmony`；`wOut/wIn:.30/.70`；`Q_skill=QS(7)=92` |
 | reqs | `attrs {agi:44,con:36}`；`aptitude {apLight:44}`；`prereq:[{anyOf:[{skill:sk_dengpingdushui,layer:4},{skill:sk_caoshangfei,layer:6}]}]`；`hard:[prereq]` |
-| movement | `{actionBonus:{waterwalk:[8,15]},specials:[threeSkim],staMul:{waterwalk:.8}}`；qg2 可踏水≤3格，完整门禁语义见 `design/08` |
+| movement | `{actionBonus:{waterwalk:[8,15]},specials:[threeSkim]}`；qg2 可踏水≤3格、每次移动限1次且起止须为陆地；完整门禁语义见 `design/08` §4.5～§4.6 |
 | layerStats／层数 | `eva:[3,8],spd:[2,7]`；1掠水、3一抄、5回燕、7绝招三抄渡流、10踏波不惊 |
 | setTags／获取 | `[set_jianghu_baijia]`；水乡竞渡、船户救援或散人秘笈，`learnSources` 只可出现在四个原生书界 |
 | special／图鉴 | `{fusible:true}`；本土最高轻功：连城／白马恰为地下7，不抬高其他书界上限 |
@@ -695,7 +697,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 回燕 `mv_yanzisanchaoshui_huiyan` | 5 | 自身·支援 | 0 | 8%/3/900 | `bf_youshi`2；向来路退2格 | — | 支援；游势与位移不另造成伤害 |
 | 三抄渡流 `mv_yanzisanchaoshui_sanchao` | 7 | 自身·绝招支援 | 0 | 9%/绝/1200 | `bf_shenqing`2、`bf_tengyue`2；本回合可踏水6格 | — | 每战1次的移动绝招；无伤害 |
 
-被动：点波 `ps_yanzisanchaoshui_dianbo`（L2，水面 eva+3→8）；三抄 `ps_yanzisanchaoshui_sanchao`（L6，每回合前三格踏水体力−10%→25%）；归岸 `ps_yanzisanchaoshui_guian`（L10，从水面登岸后 ct+120，每回合1次）。
+被动：点波 `ps_yanzisanchaoshui_dianbo`（L2，水面 `eva pct +5%`，固定值）；三抄 `ps_yanzisanchaoshui_sanchao`（L6，明确 `threeSkim` 每次移动限1次、起止须为陆地，不另减踏水体力）；归岸 `ps_yanzisanchaoshui_guian`（L10，从水面登岸后 ct+120，每回合1次）。
 
 ### 7.4 玄阶紧凑卡（12 门；4 门核算抽样）
 
@@ -751,7 +753,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 
 | ID | 名称 | 门派／来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_taizuchangquan` | 太祖长拳 | 军民通行 | 拳脚／拳掌（3 黄上·neutral） | ALL14 | `G_eff` 人强则强；`set_jianghu_baijia`；完整规则见 `design/05` §13.5 | 无 | 《天龙八部》聚贤庄萧峰施展，招式细节**（待考）** |
+| `sk_taizuchangquan` | 太祖长拳 | 军民通行 | 拳脚／拳掌（3 黄上·neutral） | ALL14 | `G_eff` 人强则强；`setTags:[set_jianghu_baijia,set_qidan_xiaofeng]`；完整规则见 `design/05` §13.5 | 无 | 《天龙八部》聚贤庄萧峰施展，招式细节**（待考）** |
 | `sk_jianghurumenjian` | 江湖入门剑 | 游方武师 | 兵器／剑（3 黄上·neutral） | ALL14 | 单体1.10、线2 .95；`set_jianghu_baijia` | 无 | **（原创扩展）** |
 | `sk_pingfengjian` | 平锋剑 | 江湖散人 | 兵器／剑（2 黄中·harmony） | ALL14 | 单体1.10、招架+2→6；`set_jianghu_baijia` | 无 | **（原创扩展）** |
 | `sk_hengdaorumenzhao` | 横刀入门招 | 行脚刀客 | 兵器／刀（3 黄上·yang） | ALL14 | 单体1.10、横扫.85；`set_jianghu_baijia` | 无 | **（原创扩展）** |
@@ -765,7 +767,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | `sk_tongxingfeishi` | 通行飞石 | 牧童／猎户 | 暗器（1 黄下·neutral） | ALL14 | 投射1.05、石地补弹；`set_jianghu_baijia` | 无 | **（原创扩展）**；区别五绝 `sk_feishi` |
 | `sk_tiexiu` | 铁袖功 | 江湖卖艺人 | 拳脚／拳掌（1 黄下·yang） | ALL14 | 单体1.05、自身招架+2；`set_jianghu_baijia` | 无 | **（原创扩展）** |
 | `sk_jianghuchangquan` | 江湖长拳 | 乡勇／散人 | 拳脚／拳掌（1 黄下·neutral） | ALL14 | 单体1.10；`set_jianghu_baijia` | 无 | **（原创扩展）** |
-| `sk_caoshangfei` | 草上飞 | 江湖通行 | 轻功（2 黄中·neutral） | ALL14 | `Q_skill=38`、植被格移动−1；`set_jianghu_baijia` | 无 | 武侠通称；定级与规则**（原创扩展）**，见 `design/08` §4.6 |
+| `sk_caoshangfei` | 草上飞 | 江湖通行 | 轻功（2 黄中·neutral） | ALL14 | `Q_skill=38`；`movement {staMul:{sprint:.8},moveCostByTag:{veg:-1}}`；草地不留足迹；`set_jianghu_baijia` | 无 | 武侠通称；定级与规则**（原创扩展）**，见 `design/08` §4.5～§4.6 |
 
 **黄阶预算核对**：攻击招按黄阶基准 5%：单体 cd1 为 `1+.12=1.12→1.10`，投射为 `1.12×.92=1.03→1.05`，线2为 `.85×1.12=.95`，横扫为 `.75×1.12=.84→.85`；散手封经20%时 `1.12−.20×.20=1.08→1.05`。三门内功分别精确命中 IP 30／24／19；轻功只引用 QS，不添加越阶门禁。
 
@@ -987,7 +989,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 
 ## 9. 套装候选（交 `design/07` 定稿）
 
-> 本节只冻结候选 ID、武学成员与主题，不定义 2／3／4 件阈值、奖励或数值。计件、有效品阶中位数及最终效果服从裁定 C22 与 `design/07`。下表成员均已在 §2～§8 反向登记相同 `setTags`；不在成员表中的基础补位武学可以无套装标签。
+> 本节只冻结候选 ID、武学成员与主题，不定义 2／3／4 件阈值、奖励或数值。计件、有效品阶中位数及最终效果服从裁定 C22 与 `design/07`。下表成员均已在 §2～§8 反向登记相同 `setTags`；不在成员表中的基础补位武学可以无套装标签。另按 C22 为 `sk_taizuchangquan` 反向登记外部候选 `set_qidan_xiaofeng`；其成员表归 `skills-xiaoyao`，不重复列为本文候选。
 
 | 候选套装 | ID | 武学成员 | 主题与边界 |
 |---|---|---|---|
@@ -1011,11 +1013,11 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 
 | 检查 | 结果 |
 |---|---|
-| 成员反向登记 | 上表 15 个候选的 125 个成员关系，逐项在条目卡或黄阶核心效果列登记同名 `setTags`；同一武学不跨候选重复计件 |
+| 成员反向登记 | 上表 15 个本文候选的 125 个成员关系，逐项在条目卡或黄阶核心效果列登记同名 `setTags`；另有 `sk_taizuchangquan → set_qidan_xiaofeng` 1 个跨组关系，由 `skills-xiaoyao` §13.8 的成员表闭合 |
 | 黄→玄→地成长 | 越女、蓬莱、军伍、镖局、武馆、江湖、医、毒、阵、音、易容、驭兽均可由本组条目形成三阶链；蛊与翰墨主动止于玄阶，不虚造地阶 |
 | 早期可达 | 每个主要候选至少有一门黄阶成员；`set_guchong_mifa`、`set_huanyirong` 恰为黄／玄／地或黄／玄成长，不依赖跨组武学起套 |
 | 大集合边界 | `set_jianghu_baijia` 只表示公共传承标签；07 不得按 29 件逐件无限叠加，应采用封顶档位 |
-| 跨组成员 | 本节没有新增跨组成员；`sk_yuenvjian02` 仅作剑源叙事关联，不列成员，故无需修改五绝图鉴 |
+| 跨组成员 | `sk_taizuchangquan` 反向登记 `set_qidan_xiaofeng`（裁定 C22；成员正向表见 `skills-xiaoyao` §13.8）；`sk_yuenvjian02` 仅作剑源叙事关联，不列成员 |
 
 ---
 
@@ -1166,7 +1168,7 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 |---|---|---|
 | 明写完整 ID 的招式 `mv_*` | 78 | 来自 19 张地阶完整卡；玄阶紧凑卡以 `mv_<武学拼音>_<文内后缀>` 展开，短后缀不是独立 ID |
 | 明写完整 ID 的被动 `ps_*` | 56 | 来自地阶完整卡；玄阶紧凑卡以 `ps_<武学拼音>_<文内后缀>` 展开 |
-| 套装候选 `set_*` | 15 | `set_yuenv_jianyuan` `set_penglai_chaosheng` `set_junwu_baizhan` `set_junwu_yanmeng` `set_biaoju_sihai` `set_wuguan_jiben` `set_jianghu_baijia` `set_xinglin_qihuang` `set_dujia_baicao` `set_guchong_mifa` `set_qimen_jianghu` `set_yayue_qingxin` `set_hanmo_yiqi` `set_huanyirong` `set_baishou_xunyuan` |
+| 套装候选 `set_*` | 本文 15；跨组引用 1 | 本文：`set_yuenv_jianyuan` `set_penglai_chaosheng` `set_junwu_baizhan` `set_junwu_yanmeng` `set_biaoju_sihai` `set_wuguan_jiben` `set_jianghu_baijia` `set_xinglin_qihuang` `set_dujia_baicao` `set_guchong_mifa` `set_qimen_jianghu` `set_yayue_qingxin` `set_hanmo_yiqi` `set_huanyirong` `set_baishou_xunyuan`；跨组只引用 `set_qidan_xiaofeng` |
 | 经脉预留 `mer_*` | 8 | `mer_renmai` `mer_dumai` `mer_chongmai` `mer_daimai` `mer_yinqiao` `mer_yangqiao` `mer_yinwei` `mer_yangwei`；由未来 `design/15` 定稿 |
 | 正式门派 `sect_*` | 0 新增 | 只复用 `sect_penglai`；名称、时代与五级模板均服从 `design/17` |
 | 新 Buff | 0 | 共引用 44 个 `bf_*`，均须由 §13 的白名单测试验证 |
@@ -1211,11 +1213,11 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | # | 输入 | 期望 |
 |---|---|---|
 | GEN-T01 | 扫描 §2～§8 的正式定义行 | 135 个唯一 `sk_*`；大阶 `0/19/58/58`；十二品 `11/25/22/19/22/17/8/9/2/0/0/0` |
-| GEN-T02 | 序章结束，玩家已把 `sk_yuenvjian` 练到7重 | 完整武学转 `it_canye_yuenvjian`；后续书界不可直接装配，真实进度按 `design/02` 保留 |
+| GEN-T02 | 正常序章／跳过序章／轮回《越女剑·全本》结束 | `sk_yuenvjian` 来源上限依次为3／1／6重；均转 `it_canye_yuenvjian`，后续书界不可直接装配，残篇保留实际所达层数 |
 | GEN-T03 | `sk_yuenvjian`“剑意无痕” | 预算 `3×0.85−0.10×0.50=2.50`，显示 2.50 |
 | GEN-T04 | `sk_pojunqiangfa`“陷阵” | 预算 `1×(1+.36+.10+.07)−.10−.10×.40=1.39`，显示 1.40，误差 .01 |
 | GEN-T05 | `sk_yanmengqishe`“雁落长空” | 预算 `3×.65×.92−.10=1.694`，显示 1.70，误差 .006 |
-| GEN-T06 | `sk_qimenbuzhen`“伏门” | 预算 `.65×1.46×.85−.10=.70675`，显示 .70，误差 .00675 |
+| GEN-T06 | `sk_qimenbuzhen`“伏门” | 预算 `.65×1.46×.85−.10=.70665`，显示 .70，误差 .00665 |
 | GEN-T07 | `sk_baishouyujue`“蛇扰” | 预算 `1×1.29×.92−.10×.30=1.1568`，显示 1.15，误差 .0068 |
 | GEN-T08 | 百战心法／混元方桩／三门玄中内功满层 | IP 分别 `83`／`72`／`48.5`，精确命中 8／7／5 品预算 |
 | GEN-T09 | 任取黄上内功 `sk_tunaqianjue` | `10+6+2×4+5×1.2=30`，且 `nature:harmony` |
@@ -1247,7 +1249,7 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | D-1 | 未来 `design/07-*` | 收录 §9 的 15 个套装候选，成员以本表为唯一迁移输入；大集合采用封顶档位，`g_set` 按 C22 取已计件成员 `effGrade` 中位数向下取整 | 本文只登记成员与主题，不写任何奖励值 |
 | D-2 | 未来 `design/15-*` | 正式经脉枚举优先沿用 `mer_renmai`、`mer_dumai`、`mer_chongmai`、`mer_daimai`、`mer_yinqiao`、`mer_yangqiao`、`mer_yinwei`、`mer_yangwei` | 本文只在内功上标专精建议，不定义穴位、周天与收益 |
 | D-3 | `chapters/01`～`14` | 每界至少把军旅吐纳／武馆心法／江湖吐纳、通背劲／通行弹腿／短打手、江湖三阶剑链安排为三路非互斥本土来源 | §11 用这组最低集合证明装配可行；具体 NPC、任务 ID 与幕次归章节 |
-| D-4 | `chapters/00`／`design/02` | 序章越女剑最多7重，离章时转 `it_canye_yuenvjian`；后续只能由既定印证／复原流程处理 | 沿用 P35 与基准，不让套装或图鉴收藏绕过 |
+| D-4 | `chapters/00`／`design/02`／`design/13` | 正常序章越女剑来源上限3重，跳过为1重残篇，轮回《越女剑·全本》最多6重；离章时均转 `it_canye_yuenvjian`，后续只能由既定印证／复原流程处理 | 沿用 `design/01` §8.4～§8.5、`design/02` §1.2 与 `design/13` §6.4.3，不让套装或图鉴收藏绕过 |
 | D-5 | `design/18` | 百兽御诀的友方兽、宠物／召唤上限、死亡与跨书界保留 | 本文默认只强化已合法存在的友方兽，不凭空召唤，不控制首领 |
 | D-6 | `design/16` | 蓬莱 L1～L5 及军伍 T08 的月钱、禄米、器械、训练资源 | 按 AR-07 留空；本文只列可学武学 |
 | D-7 | `design/10` | 琴、箫、笔、弓箭与普通石弹的装备／耗材标签；套装若收装备，再补反向 `setTags` | 本文不创建装备 ID，武学预算按已有装备检查接口描述 |
@@ -1258,7 +1260,7 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | # | 上游事实 | 依赖方式 |
 |---|---|---|
 | U-1 | 作者 AR-01 与 P33 | 旧目标90扩为135，固定 `0/19/58/58`；不新增天阶 |
-| U-2 | 作者 P35、基准 §13 | `sk_yuenvjian` 固定地上9，序章结束强制化残篇；与 `sk_yuenvjian02` 分立 |
+| U-2 | 作者 P35、基准 §13；`design/01` §8.4～§8.5、`design/02` §1.2、`design/13` §6.4.3 | `sk_yuenvjian` 固定地上9；正常／跳过／全本来源上限为3／1／6重，离章强制化残篇；与 `sk_yuenvjian02` 分立 |
 | U-3 | `design/05` §2、§4.2、§5.5、§14.4、§14.6 | 字段枚举、倍率、IP、逐界比例与 catalog 验收口径 |
 | U-4 | 裁定 C16、C17、C22 | 弓箭计暗器；新 `reqs.skills`／`anyOf`；套装成员双向闭合 |
 | U-5 | `design/06` 目录与裁定 A5／C23 | 本文 44 个 `bf_*` 只作引用；状态语义、叠加、免疫及品阶对抗归 06 |
