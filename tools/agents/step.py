@@ -39,7 +39,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import run as R  # noqa: E402  复用 run.py
 
-DEFAULT_MODEL = "GPT-6-Astra"
+DEFAULT_MODEL = "GPT-5.6-Sol"   # GPT-6-Astra 2026-09-26 全天反复静默挂死，改为备用
 DEFAULT_EFFORT = "max"
 
 
@@ -158,7 +158,7 @@ def build_argv(binary: str, model: str, effort: str, wt: Path, last: Path, searc
 
 
 WRAPPER = '"$@" < "$TS_PROMPT" >> "$TS_LOG" 2>&1; rc=$?; echo "$rc" > "$TS_EXIT"; exit $rc'
-FALLBACK_MODELS = ["GPT-5.6-Sol"]
+FALLBACK_MODELS = ["GPT-6-Astra"]
 
 
 def probe_model(binary: str, model: str, effort: str, timeout_s: int = 90) -> bool:
