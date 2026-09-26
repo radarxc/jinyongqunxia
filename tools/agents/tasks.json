@@ -164,6 +164,41 @@
       "web": false
     },
     {
+      "id": "L1b",
+      "phase": "F",
+      "wave": 2,
+      "kind": "tool",
+      "title": "修复 check_ids.py 在当前仓库的崩溃并重跑",
+      "prompt": "L1b-fix.md",
+      "deps": [
+        "L1"
+      ],
+      "writes": [
+        "tools/lint/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/lint/check_ids.py",
+          "tools/lint/test_check_ids.py"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "tools/lint/test_check_ids.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py"
+          ]
+        ]
+      }
+    },
+    {
       "id": "B1",
       "phase": "B",
       "wave": 1,
@@ -3802,7 +3837,8 @@
       "prompt": "F2-audit.md",
       "deps": [
         "A3",
-        "L1"
+        "L1",
+        "L1b"
       ],
       "writes": [
         "docs/**",
