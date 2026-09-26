@@ -12,7 +12,7 @@ python3 tools/balance/damage_sim.py --check
 ```
 
 - `--report` 向标准输出生成 Markdown：十四书界 × 普通/精英/Boss，共 42 行；每行同时包含主角→敌人和敌人→主角的命中次数、行动轮、命中率与代表招式耗内比例。其完整输出（含 `### 9.3` 汇总标题）就是 `docs/design/04-damage-formula.md` §9.2 起的生成段。
-- `--check` 检查普通敌人双方击杀命中数、普通/精英/Boss 轮数、普通招式耗内，以及护体、破盾倍率、以气御伤、Z4、概率、DOT、撞击和坠落等公式不变量。全部通过时退出码为 0，否则列出失败项并返回 1。
+- `--check` 检查普通敌人双方击杀命中数、普通/精英/Boss 轮数、普通招式耗内，以及 `ρ(Δ)` / 有效抗性、护体、破盾倍率、以气御伤、过量伤害、治疗、Z0 硬开关与几何覆写、Z4、概率、多段威力、DOT 的 `bypassShield`、撞击和坠落等公式不变量。全部通过时退出码为 0，否则列出失败项并返回 1。
 
 只检查退出码：
 
@@ -21,7 +21,7 @@ python3 tools/balance/damage_sim.py --check >/dev/null
 echo $?
 ```
 
-当前预期为 `All 18 checks passed; known deviations: 0.`。
+当前预期为 `All 36 checks passed; known deviations: 0.`。
 
 ## 模型口径
 
@@ -34,15 +34,18 @@ echo $?
 | 洪安通 `hpMax ×0.75` 专属覆盖 | `docs/design/03-attributes.md` §10.9 | `BOSS_HP_OVERRIDE_BP` |
 | `STD(L)`、面板曲线、参考品阶/层数 | `docs/design/03-attributes.md` §3.1、§3.5 | `level_curves`、`g_main`、`g_ref`、`layer_ref`、`player_std` |
 | 敌人模板与 `enemyStatMul` | `docs/design/03-attributes.md` §10 | `TEMPLATE`、`enemy_std` |
+| 治疗效果（含 `0.5×med`） | `docs/design/03-attributes.md` §4.7 | `_sheet`、`healing` |
 | `P_ref` 与境界系数 | `docs/design/03-attributes.md` §3.5；裁定 C01 | `TIER_TAU_BP`、`p_ref_bp` |
 | 内功贡献预算 | `docs/design/05-martial-arts-system.md` §5.5 | `INNER_BUDGET` |
 | 普通招式耗内 | `docs/design/05-martial-arts-system.md` §4.2 | `MP_COST_BP` |
 | Z1–Z10、护体/以气御伤结算与遭遇校准 | `docs/design/04-damage-formula.md` §2–§9 | 文件顶部常量及对应函数 |
-| DOT/HOT 与模板比例系数 | `docs/design/06-buff-system.md` §5.3.2、§11 | `dot_damage` |
+| `ρ(Δ)`、有效抗性、DOT/HOT 与模板比例系数 | `docs/design/03-attributes.md` §6.3；`docs/design/06-buff-system.md` §3.5.0、§5.3.2、§11 | `rho_bp`、`effective_resistance_bp`、`effect_chance_bp`、`dot_damage` |
 | 坠落 | `docs/design/08-terrain-and-qinggong.md` §5.3 | `fall_damage` |
 | Boss 四人队输出口径 | `docs/design/03-attributes.md` §10.8 | `PARTY_HIT_EQUIVALENTS` |
 
 `ENCOUNTER_DURABILITY_BP` 与 `TEMPLATE_ATTACK_BUDGET_BP` 是伤害文档 §9.1 的遭遇层校准。前者只改变节奏评估所用的有效耐久，后者只改变模板敌人代表普攻；两者不修改角色面板，也不用于具名 `full` NPC。所有百分比常量使用 bp（10000 = 100%），注释标出来源章节。
+
+`effect_chance_bp` 与 `dot_damage` 可接收已经计算好的 `res_eff_bp`；若传原始抗性，必须改用命名参数并同时提供 `resistance_bp`、`effect_grade`、`resistance_grade`，由脚本先执行完整的 `ρ(Δ) → res_eff` 链路。两种入口混用或遗漏任一原始参数都会抛出 `ValueError`，防止调用方静默漏算或重复计算穿透。`DamageTrace` 只承载 Z1–Z10；护体阻挡量、护体资源消耗、以气御伤、气血损失与过量伤害都由 `Settlement` 承载。DOT/环境跳伤通过 `settle_periodic(..., bypass_shield=...)` 明确选择是否绕过护体。
 
 ## 修改数值后的重跑流程
 

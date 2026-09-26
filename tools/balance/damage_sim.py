@@ -103,6 +103,7 @@ CRIT_DMG_BASE = 150.0
 CRIT_DMG_STR_PER_POINT = 0.5
 CRIT_DMG_RANGE = (120.0, 300.0)
 HEAL_POWER_BASE = 100.0
+HEAL_POWER_MED_PER_POINT = 0.5
 HEAL_POWER_WIS_PER_POINT = 0.2
 HEAL_POWER_RANGE = (0.0, 300.0)
 HEAL_RECV_BASE = 100.0
@@ -331,9 +332,10 @@ def inner_scale(layer: int) -> float:
 
 def p_ref_bp(level: int, tier: str) -> int:
     """docs/design/03 §3.5, represented as a bp-scale power index."""
-    value = GRADE_BP[g_main(level)]
-    value = mul_bp(value, layer_bp(layer_ref(level)))
-    return mul_bp(value, TIER_TAU_BP[tier])
+    return (
+        GRADE_BP[g_main(level)] * layer_bp(layer_ref(level)) * TIER_TAU_BP[tier]
+        // (BP ** 2)
+    )
 
 
 def boss_hp_multiplier(level: int) -> float:
@@ -362,6 +364,7 @@ class Combatant:
     eff_res: int
     aptitude: int
     ap_inner: int
+    mp_regen_bp: int
     heal_power: int
     heal_recv: int
     shield: int = 0
@@ -374,6 +377,9 @@ class Attack:
     move_power_bp: int = BP
     armed_bp: int = BP
     special_bp: int = BP
+    hit_mod: int = 0
+    cover_hit: int = 0
+    los_hit_penalty: int = 0
     dmg_up_bp: int = 0
     dmg_down_bp: int = 0
     def_pierce_bp: int = 0
@@ -382,6 +388,7 @@ class Attack:
     ignore_def: bool = False
     nature_add_bp: int = 0
     break_add_bp: int = 0
+    synergy_add_bp: int = 0
     position: str = "front"
     height_delta: int = 0
     delivery: str = "melee"
@@ -392,6 +399,8 @@ class Attack:
     must_crit: bool = False
     skip_parry: bool = False
     no_crit: bool = False
+    as_back: bool = False
+    as_high: bool = False
     target_parry_mult_bp: int = BP
     shield_dmg_mult_bp: int = BP
     variance_bp: int = BP
@@ -416,8 +425,6 @@ class DamageTrace:
     z8: int
     z9: int
     z10: int
-    shield_absorb: int
-    hp_damage: int
 
 
 @dataclass(frozen=True)
@@ -425,11 +432,15 @@ class Settlement:
     """Post-Z10 resource changes for one direct-damage segment."""
 
     incoming: int
+    shield_blocked: int
     shield_spent: int
     shield_after: int
+    guarded_hp: int
     mp_guard_spent: int
     mp_after: int
+    uncapped_hp_damage: int
     hp_loss: int
+    overkill: int
     hp_after: int
     injury_bleed_allowed: bool
     life_steal: int
@@ -456,7 +467,7 @@ class ReportRow:
 def _sheet(
     name: str, level: int, grade_main: int, grade_aux: int, layer: int,
     innate_base: float, aptitude: float, template_kind: Optional[str] = None,
-    difficulty: int = 3,
+    difficulty: int = 3, medicine: float = 0.0,
 ) -> Combatant:
     """Reproduce the data formulas in design/03 §§3.4–4.9 and §10."""
     hp_lv, mp_lv, atk_lv, def_lv = level_curves(level)
@@ -529,9 +540,13 @@ def _sheet(
         *CRIT_DMG_RANGE
     )
     heal_power = clamp(
-        HEAL_POWER_BASE + HEAL_POWER_WIS_PER_POINT * max(0.0, wis - 50),
+        HEAL_POWER_BASE + HEAL_POWER_MED_PER_POINT * max(0.0, medicine)
+        + HEAL_POWER_WIS_PER_POINT * max(0.0, wis - 50),
         *HEAL_POWER_RANGE
     )
+    mp_regen_bp = round_half_up(100 * clamp(
+        1.0 + scale * (main[3] + STD_AUX_TOTAL_RATIO * aux[3]), 0.0, 6.0
+    ))
     heal_recv = clamp(
         HEAL_RECV_BASE + HEAL_RECV_CON_PER_POINT * (con - 50),
         *HEAL_RECV_RANGE
@@ -565,18 +580,19 @@ def _sheet(
         crit=round_half_up(max(0, crit)), crit_dmg=round_half_up(crit_dmg),
         tough=round_half_up(max(0, tough)), eff_hit=round_half_up(max(0, eff_hit)),
         eff_res=round_half_up(max(0, eff_res)), aptitude=round_half_up(aptitude),
-        ap_inner=round_half_up(aptitude), heal_power=round_half_up(heal_power),
+        ap_inner=round_half_up(aptitude), mp_regen_bp=mp_regen_bp,
+        heal_power=round_half_up(heal_power),
         heal_recv=round_half_up(heal_recv),
     )
 
 
-def player_std(level: int) -> Combatant:
-    """docs/design/03 §3.5 standard player model."""
+def player_std(level: int, medicine: float = 0.0) -> Combatant:
+    """docs/design/03 §3.5 standard player model; med defaults to zero."""
     innate = STD_INNATE_BASE + STD_INNATE_PER_LEVEL * (level - 1)
     aptitude = STD_APTITUDE_BASE + STD_APTITUDE_PER_LEVEL * (level - 1)
     return _sheet(
         "STD({})".format(level), level, g_main(level), g_ref(level),
-        layer_ref(level), innate, aptitude,
+        layer_ref(level), innate, aptitude, medicine=medicine,
     )
 
 
@@ -610,13 +626,27 @@ def mixed_stat(out_value: int, in_value: int, w_in_bp: int) -> int:
     return (out_value * (BP - w_in_bp) + in_value * w_in_bp) // BP
 
 
+def resolved_position(attack: Attack) -> str:
+    """Apply the Z0 ``asBack`` geometry override."""
+    return "back" if attack.as_back else attack.position
+
+
+def resolved_height_delta(attack: Attack) -> int:
+    """Apply ``asHigh``; an omitted/non-positive level defaults to +1."""
+    return max(1, attack.height_delta) if attack.as_high else attack.height_delta
+
+
 def chance_hit_bp(attacker: Combatant, defender: Combatant, attack: Attack) -> int:
     if attack.must_hit:
         return BP
     height_hit = int(clamp(
-        HEIGHT_HIT_PER_LEVEL * attack.height_delta, *HEIGHT_HIT_RANGE
+        HEIGHT_HIT_PER_LEVEL * resolved_height_delta(attack), *HEIGHT_HIT_RANGE
     ))
-    value = HIT_BASE_BP + HIT_PER_RATING_BP * (attacker.hit + height_hit - defender.eva)
+    hit_eff = (
+        attacker.hit + attack.hit_mod + height_hit
+        + attack.cover_hit + attack.los_hit_penalty
+    )
+    value = HIT_BASE_BP + HIT_PER_RATING_BP * (hit_eff - defender.eva)
     return int(clamp(value, *HIT_RANGE_BP))
 
 
@@ -627,9 +657,10 @@ def chance_parry_bp(attacker: Combatant, defender: Combatant, attack: Attack) ->
         PARRY_BASE_BP + PARRY_PER_RATING_BP * (defender.parry - attacker.pierce),
         *PARRY_RANGE_BP
     ))
-    direction_mult = DIRECTION_PARRY_BP[attack.position]
-    value = mul_bp(value, direction_mult)
-    return mul_bp(value, int(clamp(attack.target_parry_mult_bp, 0, BP)))
+    direction_mult = DIRECTION_PARRY_BP[resolved_position(attack)]
+    target_mult = int(clamp(attack.target_parry_mult_bp, 0, BP))
+    # P_parry has one final probability boundary; retain both factors until it.
+    return value * direction_mult * target_mult // (BP ** 2)
 
 
 def chance_crit_bp(attacker: Combatant, defender: Combatant, attack: Attack) -> int:
@@ -651,35 +682,78 @@ def chances(attacker: Combatant, defender: Combatant, attack: Attack) -> Chances
     )
 
 
+def rho_bp(effect_grade: int, resistance_grade: int) -> int:
+    """design/06 §3.5.0 penetration coefficient rho(delta), in bp."""
+    if not 1 <= effect_grade <= 12 or not 1 <= resistance_grade <= 12:
+        raise ValueError("effect_grade and resistance_grade must be in [1, 12]")
+    delta = effect_grade - resistance_grade
+    if delta <= 0:
+        return 0
+    return min(9_000, 1_500 + 1_500 * delta)
+
+
+def effective_resistance_bp(
+    resistance_bp: int, effect_grade: int, resistance_grade: int,
+) -> int:
+    """design/03 §6.3: apply grade penetration to one resistance."""
+    penetration_bp = rho_bp(effect_grade, resistance_grade)
+    resistance = int(clamp(resistance_bp, *RES_EFF_RANGE_BP))
+    if resistance <= 0:
+        return resistance
+    return mul_bp(resistance, BP - penetration_bp)
+
+
 def effect_chance_bp(
     base_chance_bp: int, attacker: Combatant, defender: Combatant,
-    res_eff_bp: int, extra_factor_bp: int = BP,
+    res_eff_bp: Optional[int] = None, extra_factor_bp: int = BP,
+    *, resistance_bp: Optional[int] = None, effect_grade: Optional[int] = None,
+    resistance_grade: Optional[int] = None,
 ) -> int:
-    """design/03 §4.2 and §6.3; final result is clamped to [0, 100%]."""
+    """design/04 §3.1 effect chance, including optional grade penetration.
+
+    Pass either the precomputed ``res_eff_bp`` or all three raw-resistance
+    arguments. The explicit names prevent callers from silently confusing raw
+    and effective resistance while retaining the original positional API.
+    """
+    raw_chain = (resistance_bp, effect_grade, resistance_grade)
+    if res_eff_bp is not None and any(value is not None for value in raw_chain):
+        raise ValueError("pass res_eff_bp or the complete raw resistance chain, not both")
+    if res_eff_bp is None:
+        if resistance_bp is None or effect_grade is None or resistance_grade is None:
+            raise ValueError("raw resistance requires resistance_bp and both grades")
+        res_eff_bp = effective_resistance_bp(
+            resistance_bp, effect_grade, resistance_grade
+        )
+    else:
+        res_eff_bp = int(clamp(res_eff_bp, *RES_EFF_RANGE_BP))
     rating_factor = int(clamp(
         BP + EFFECT_PER_RATING_BP * (attacker.eff_hit - defender.eff_res),
         *EFFECT_RATING_FACTOR_RANGE_BP
     ))
-    result = mul_bp(base_chance_bp, rating_factor)
-    result = mul_bp(result, BP - int(clamp(res_eff_bp, *RES_EFF_RANGE_BP)))
-    result = mul_bp(result, extra_factor_bp)
+    # P_eff is one formula, so retain the exact product until its final floor.
+    resistance_factor = BP - int(clamp(res_eff_bp, *RES_EFF_RANGE_BP))
+    result = (
+        max(0, base_chance_bp) * rating_factor * resistance_factor
+        * max(0, extra_factor_bp) // (BP ** 3)
+    )
     return int(clamp(result, 0, BP))
 
 
 def position_bp(attack: Attack) -> int:
     """design/04 §4.7 and design/08 §5.5: direction * height * terrain."""
-    direction = DIRECTION_DAMAGE_BP[attack.position]
+    direction = DIRECTION_DAMAGE_BP[resolved_position(attack)]
+    height_delta = resolved_height_delta(attack)
     if attack.delivery == "melee":
         height_add = int(clamp(
-            MELEE_HEIGHT_PER_LEVEL_BP * attack.height_delta, *MELEE_HEIGHT_RANGE_BP
+            MELEE_HEIGHT_PER_LEVEL_BP * height_delta, *MELEE_HEIGHT_RANGE_BP
         ))
     else:
         height_add = int(clamp(
-            RANGED_HEIGHT_PER_LEVEL_BP * attack.height_delta, *RANGED_HEIGHT_RANGE_BP
+            RANGED_HEIGHT_PER_LEVEL_BP * height_delta, *RANGED_HEIGHT_RANGE_BP
         ))
     terrain_add = int(clamp(attack.terrain_add_bp, *TERRAIN_ADD_RANGE_BP))
-    result = mul_bp(direction, BP + height_add)
-    result = mul_bp(result, BP + terrain_add)
+    # F7 is composed first; do not floor between its three factors.
+    result = direction * (BP + height_add) * (BP + terrain_add) // (BP ** 2)
     return int(clamp(result, *POSITION_FACTOR_RANGE_BP))
 
 
@@ -695,9 +769,18 @@ def aptitude_bp(attacker: Combatant, attack: Attack) -> int:
 
 def damage_pipeline(
     attacker: Combatant, defender: Combatant, attack: Attack, tier: str,
-    *, crit: bool = False, parried: bool = False, shield: Optional[int] = None,
+    *, crit: bool = False, parried: bool = False,
 ) -> DamageTrace:
-    """Resolve one already-hit damage segment through Z1..Z10 and settle."""
+    """Resolve one already-hit damage segment through Z1..Z10."""
+    # Callers may pass pre-rolled outcomes, but attack hard switches remain
+    # authoritative.  Normalizing here prevents direct API use from bypassing Z0.
+    if attack.no_crit:
+        crit = False
+    elif attack.must_crit:
+        crit = True
+    if attack.skip_parry or not attack.parryable:
+        parried = False
+
     atk_mix = max(1, mixed_stat(attacker.atk_out, attacker.atk_in, attack.w_in_bp))
     pierce_out_bp = int(clamp(
         attack.def_pierce_bp + attack.def_pierce_out_bp, *DEF_PIERCE_RANGE_BP
@@ -709,18 +792,24 @@ def damage_pipeline(
     def_in_eff = mul_bp(defender.def_in, BP - pierce_in_bp)
     def_mix = max(0, mixed_stat(def_out_eff, def_in_eff, attack.w_in_bp))
 
-    # Z1: one and only one division by the attacker's P_ref.
-    z1 = mul_bp(atk_mix, DAMAGE_SCALE_BP)
-    move_index = mul_bp(attack.power_bp, attack.move_power_bp)
-    move_index = mul_bp(move_index, attack.armed_bp)
-    move_index = mul_bp(move_index, attack.special_bp)
-    z1 = z1 * move_index // max(1, p_ref_bp(attacker.level, tier))
+    # Z1: combine all factors exactly, then floor once at the zone boundary.
+    power_factors = (
+        attack.power_bp, attack.move_power_bp, attack.armed_bp, attack.special_bp,
+    )
+    if attack.power_bp <= 0 or attack.move_power_bp <= 0:
+        raise ValueError("power_bp and move_power_bp must be positive")
+    if attack.armed_bp < 0 or attack.special_bp < 0:
+        raise ValueError("armed_bp and special_bp must be non-negative")
+    z1 = (
+        atk_mix * DAMAGE_SCALE_BP * power_factors[0] * power_factors[1]
+        * power_factors[2] * power_factors[3]
+        // (BP ** 4 * max(1, p_ref_bp(attacker.level, tier)))
+    )
 
     # Z2: ratio defense; penetration reduces DEF, ignoreDef sets it to zero.
     effective_def = 0 if attack.ignore_def else def_mix
     numerator = DEFENSE_K_BP * atk_mix
-    defense_factor_bp = numerator * BP // max(1, effective_def * BP + numerator)
-    z2 = mul_bp(z1, defense_factor_bp)
+    z2 = z1 * numerator // max(1, effective_def * BP + numerator)
 
     # Z3 and Z4 are each additive internally, then applied as separate zones.
     z3 = mul_bp(z2, int(clamp(BP + attack.dmg_up_bp, *Z3_FACTOR_RANGE_BP)))
@@ -728,10 +817,10 @@ def damage_pipeline(
 
     # Z5: aptitude is multiplicative; nature and break-X are one additive pool.
     affinity_add = int(clamp(
-        attack.nature_add_bp + attack.break_add_bp, *Z5_AFFINITY_ADD_RANGE_BP
+        attack.nature_add_bp + attack.break_add_bp + attack.synergy_add_bp,
+        *Z5_AFFINITY_ADD_RANGE_BP
     ))
-    z5 = mul_bp(z4, aptitude_bp(attacker, attack))
-    z5 = mul_bp(z5, BP + affinity_add)
+    z5 = z4 * aptitude_bp(attacker, attack) * (BP + affinity_add) // (BP ** 2)
 
     # Z6: toughness already opposes crit chance in Z0, so it does not double-dip.
     z6 = mul_bp(z5, attacker.crit_dmg * 100) if crit else z5
@@ -746,16 +835,7 @@ def damage_pipeline(
         z9 = z8
     z10 = mul_bp(z9, int(clamp(attack.variance_bp, *VARIANCE_RANGE_BP)))
 
-    shield_now = defender.shield if shield is None else max(0, shield)
-    shield_spent = min(
-        shield_now,
-        mul_bp(z10, max(SHIELD_DMG_MULT_MIN_BP, attack.shield_dmg_mult_bp)),
-    )
-    hp_damage = z10 - min(shield_now, z10)
-    return DamageTrace(
-        z1, z2, z3, z4, z5, z6, z7, z8, z9, z10,
-        shield_spent, hp_damage,
-    )
+    return DamageTrace(z1, z2, z3, z4, z5, z6, z7, z8, z9, z10)
 
 
 def expected_damage(
@@ -769,8 +849,8 @@ def expected_damage(
         for crit, p_crit in ((False, BP - c.crit_bp), (True, c.crit_bp)):
             probability = (p_parry / BP) * (p_crit / BP)
             total += probability * damage_pipeline(
-                attacker, defender, attack, tier, crit=crit, parried=parried, shield=0
-            ).hp_damage
+                attacker, defender, attack, tier, crit=crit, parried=parried
+            ).z10
     if conditional_on_hit:
         return total
     return total * c.hit_bp / BP
@@ -778,13 +858,18 @@ def expected_damage(
 
 def healing(caster: Combatant, target: Combatant, base: int) -> int:
     """design/04 §6.4 direct heal, before missing-hp cap."""
-    value = mul_bp(base, caster.heal_power * 100)
-    return mul_bp(value, target.heal_recv * 100)
+    return (
+        max(0, base) * caster.heal_power * 100 * target.heal_recv * 100
+        // (BP ** 2)
+    )
 
 
 def shield_gain(caster: Combatant, target: Combatant, base: int) -> int:
     """design/05 §4.2: shield has 1.2x healing-value equivalence."""
-    return mul_bp(healing(caster, target, base), SHIELD_HEAL_EQUIVALENT_BP)
+    return (
+        max(0, base) * caster.heal_power * 100 * target.heal_recv * 100
+        * SHIELD_HEAL_EQUIVALENT_BP // (BP ** 3)
+    )
 
 
 def apply_healing(caster: Combatant, target: Combatant, base: int, hp_now: int) -> int:
@@ -814,8 +899,9 @@ def settle_direct(
     incoming = max(0, trace.z10)
     shield_now = max(0, defender_shield)
     shield_mult = max(SHIELD_DMG_MULT_MIN_BP, shield_dmg_mult_bp)
+    shield_blocked = min(shield_now, incoming)
     shield_spent = min(shield_now, mul_bp(incoming, shield_mult))
-    post_shield = max(0, incoming - shield_now)
+    post_shield = incoming - shield_blocked
 
     guard_pct = int(clamp(mp_guard_pct_bp, *MP_GUARD_PCT_RANGE_BP))
     guard_ratio = max(1, mp_guard_ratio_bp)
@@ -825,7 +911,9 @@ def settle_direct(
         (requested_guard * BP + guard_ratio - 1) // guard_ratio,
     )
     guarded_hp = min(requested_guard, mp_guard_spent * guard_ratio // BP)
-    hp_loss = min(max(0, defender_hp), post_shield - guarded_hp)
+    uncapped_hp_damage = post_shield - guarded_hp
+    hp_loss = min(max(0, defender_hp), uncapped_hp_damage)
+    overkill = uncapped_hp_damage - hp_loss
 
     life_bp = int(clamp(life_steal_bp, *LIFE_STEAL_RANGE_BP))
     life_steal = min(max(0, attacker_missing_hp), mul_bp(hp_loss, life_bp))
@@ -834,15 +922,17 @@ def settle_direct(
         mp_after_guard,
         mul_bp(hp_loss, int(clamp(mp_drain_bp, *MP_DRAIN_RANGE_BP))),
     )
-    reflected = mul_bp(hp_loss, int(clamp(reflect_bp, *REFLECT_RANGE_BP)))
-    reflected = mul_bp(
-        reflected, BP - int(clamp(attacker_dmg_down_bp, *Z4_REDUCTION_RANGE_BP))
+    reflected = (
+        hp_loss * int(clamp(reflect_bp, *REFLECT_RANGE_BP))
+        * (BP - int(clamp(attacker_dmg_down_bp, *Z4_REDUCTION_RANGE_BP)))
+        // (BP ** 2)
     )
     return Settlement(
-        incoming=incoming, shield_spent=shield_spent,
+        incoming=incoming, shield_blocked=shield_blocked, shield_spent=shield_spent,
         shield_after=max(0, shield_now - shield_spent),
-        mp_guard_spent=mp_guard_spent, mp_after=mp_after_guard - mp_drained,
-        hp_loss=hp_loss,
+        guarded_hp=guarded_hp, mp_guard_spent=mp_guard_spent,
+        mp_after=mp_after_guard - mp_drained,
+        uncapped_hp_damage=uncapped_hp_damage, hp_loss=hp_loss, overkill=overkill,
         hp_after=max(0, defender_hp - hp_loss),
         injury_bleed_allowed=hp_loss > 0, life_steal=life_steal,
         mp_drained=mp_drained, reflected=reflected,
@@ -860,7 +950,6 @@ def resolve_direct(
     """Run one already-hit direct segment through Z1-Z10 and P5/P7."""
     trace = damage_pipeline(
         attacker, defender, attack, tier, crit=crit, parried=parried,
-        shield=defender.shield,
     )
     settlement = settle_direct(
         trace, defender_hp=defender_hp, defender_shield=defender.shield,
@@ -873,11 +962,32 @@ def resolve_direct(
     return trace, settlement
 
 
+def settle_periodic(
+    damage: int, defender_hp: int, defender_shield: int, defender_mp: int,
+    *, bypass_shield: bool,
+) -> Settlement:
+    """Settle one DOT/environment tick with the design/06 bypass flag."""
+    amount = max(0, damage)
+    trace = DamageTrace(0, 0, 0, 0, 0, 0, 0, 0, 0, amount)
+    if not bypass_shield:
+        return settle_direct(
+            trace, defender_hp=defender_hp, defender_shield=defender_shield,
+            defender_mp=defender_mp,
+        )
+    result = settle_direct(
+        trace, defender_hp=defender_hp, defender_shield=0,
+        defender_mp=defender_mp,
+    )
+    return replace(result, shield_after=max(0, defender_shield))
+
+
 def split_power_bp(power_bp: int, hits: int) -> Tuple[int, ...]:
     """design/04 §7.1: stable integer split for a multi-hit move."""
     if not 1 <= hits <= 6:
         raise ValueError("hits must be in [1, 6]")
-    quotient, remainder = divmod(max(0, power_bp), hits)
+    if power_bp <= 0:
+        raise ValueError("power_bp must be positive")
+    quotient, remainder = divmod(power_bp, hits)
     return tuple(quotient + (1 if index < remainder else 0) for index in range(hits))
 
 
@@ -901,28 +1011,55 @@ def fall_damage(
         FALL_QINGGONG_MIN_BP, BP - FALL_QINGGONG_PER_POINT_BP * max(0, qinggong)
     )
     kind_bp = TARGET_PROPORTIONAL_BP[target_kind]
-    result = mul_bp(hp_max, fall_pct_bp)
-    result = mul_bp(result, int(clamp(land_mul_bp, *LAND_MULT_RANGE_BP)))
-    result = mul_bp(result, qinggong_bp)
-    return mul_bp(result, kind_bp)
+    return (
+        max(0, hp_max) * fall_pct_bp
+        * int(clamp(land_mul_bp, *LAND_MULT_RANGE_BP))
+        * qinggong_bp * kind_bp // (BP ** 4)
+    )
 
 
 def dot_damage(
-    raw: int, res_eff_bp: int, z4_general_bp: int, z4_dot_bp: int,
+    raw: int, res_eff_bp: Optional[int], z4_general_bp: int, z4_dot_bp: int,
     source_level: int, holder_level: int, target_kind: str, proportional: bool,
+    *, resistance_bp: Optional[int] = None, effect_grade: Optional[int] = None,
+    resistance_grade: Optional[int] = None,
 ) -> int:
-    """docs/design/06 §5.3.2 deterministic DOT pipeline."""
-    result = mul_bp(raw, BP - int(clamp(res_eff_bp, *RES_EFF_RANGE_BP)))
+    """docs/design/06 §5.3.2 deterministic DOT pipeline.
+
+    Pass either the precomputed ``res_eff_bp`` or all three raw-resistance
+    arguments.
+    """
+    raw_chain = (resistance_bp, effect_grade, resistance_grade)
+    if res_eff_bp is not None and any(value is not None for value in raw_chain):
+        raise ValueError("pass res_eff_bp or the complete raw resistance chain, not both")
+    if res_eff_bp is None:
+        if resistance_bp is None or effect_grade is None or resistance_grade is None:
+            raise ValueError("raw resistance requires resistance_bp and both grades")
+        res_eff_bp = effective_resistance_bp(
+            resistance_bp, effect_grade, resistance_grade
+        )
+    else:
+        res_eff_bp = int(clamp(res_eff_bp, *RES_EFF_RANGE_BP))
     reduction = int(clamp(
         mul_bp(z4_general_bp, DOT_GENERAL_Z4_WEIGHT_BP) + z4_dot_bp,
         *Z4_REDUCTION_RANGE_BP
     ))
-    result = mul_bp(result, BP - reduction)
     gap_add = int(clamp((source_level - holder_level) * REALM_PER_LEVEL_BP, -REALM_CAP_BP, REALM_CAP_BP))
-    result = mul_bp(result, BP + gap_add)
-    if proportional:
-        result = mul_bp(result, TARGET_PROPORTIONAL_BP[target_kind])
-    return result
+    kind_bp = TARGET_PROPORTIONAL_BP[target_kind] if proportional else BP
+    return (
+        max(0, raw) * (BP - res_eff_bp) * (BP - reduction)
+        * (BP + gap_add) * kind_bp // (BP ** 4)
+    )
+
+
+def move_mp_cost(level: int, cost_bp: int) -> int:
+    """C02: round a move cost against MPREF(level) = STD(level).mpMax."""
+    if cost_bp < 0:
+        raise ValueError("cost_bp must be non-negative")
+    if cost_bp == 0:
+        return 0
+    numerator = player_std(level).mp_max * cost_bp
+    return max(1, (numerator + BP // 2) // BP)
 
 
 def standard_attack(attacker: Combatant, tier: str, template_power: float = 1.0) -> Attack:
@@ -953,7 +1090,7 @@ def report_rows() -> List[ReportRow]:
             ec = chances(enemy, player, e_attack)
             p_rounds = p_hit_count / (pc.hit_bp / BP) / PARTY_HIT_EQUIVALENTS[kind]
             e_rounds = e_hit_count / (ec.hit_bp / BP)
-            mp_use = round_half_up(MP_COST_BP[tier] / BP * player.mp_max)
+            mp_use = move_mp_cost(cap, MP_COST_BP[tier])
             rows.append(ReportRow(
                 chapter, tier, kind, cap, enemy_level, p_hit_count, p_rounds,
                 e_hit_count, e_rounds, mp_use / player.mp_max,
@@ -1052,26 +1189,138 @@ def run_checks(rows: Sequence[ReportRow]) -> Tuple[List[str], List[str]]:
     a = player_std(35)
     d = replace(player_std(35), shield=1_000)
     basic = standard_attack(a, "HIGH")
-    trace = damage_pipeline(a, d, basic, "HIGH", shield=1_000)
-    check("护体结算守恒", trace.shield_absorb + trace.hp_damage == trace.z10, str(trace))
+    trace = damage_pipeline(a, d, basic, "HIGH")
     check("Z4 75% 上限", damage_pipeline(a, replace(d, shield=0), replace(basic, dmg_down_bp=9_000), "HIGH").z4 == damage_pipeline(a, replace(d, shield=0), basic, "HIGH").z3 // 4, "75% 后保留 25%（允许整数下取整）")
     check("概率上下限", chance_hit_bp(a, d, replace(basic, must_hit=True)) == BP and chance_crit_bp(a, d, replace(basic, no_crit=True)) == 0, "必中=100%，禁暴=0%")
+    check(
+        "命中完整评级输入",
+        chance_hit_bp(
+            a, d, replace(
+                basic, hit_mod=5, height_delta=1, cover_hit=-4,
+                los_hit_penalty=-3,
+            ),
+        ) == 9_420,
+        "8500 + 40×(124+5+4-4-3-103) = 9420 bp",
+    )
+    geometry_override = replace(basic, as_back=True, as_high=True)
+    check(
+        "asBack/asHigh 覆写几何",
+        chance_hit_bp(a, d, geometry_override)
+        == chance_hit_bp(a, d, replace(basic, height_delta=1))
+        and chance_parry_bp(a, d, geometry_override)
+        == chance_parry_bp(a, d, replace(basic, position="back"))
+        and position_bp(geometry_override) == 13_650,
+        "默认按背击 ×1.30、攻方高 1 级 ×1.05，F7=1.365",
+    )
+    no_crit_trace = damage_pipeline(
+        a, d, replace(basic, no_crit=True), "HIGH", crit=True,
+    )
+    must_crit_trace = damage_pipeline(
+        a, d, replace(basic, must_crit=True), "HIGH", crit=False,
+    )
+    skip_parry_trace = damage_pipeline(
+        a, d, replace(basic, skip_parry=True), "HIGH", parried=True,
+    )
+    unparryable_trace = damage_pipeline(
+        a, d, replace(basic, parryable=False), "HIGH", parried=True,
+    )
+    check(
+        "Z0 硬开关约束已决参数",
+        no_crit_trace.z6 == no_crit_trace.z5
+        and must_crit_trace.z6 == mul_bp(must_crit_trace.z5, a.crit_dmg * 100)
+        and skip_parry_trace.z9 == skip_parry_trace.z8
+        and unparryable_trace.z9 == unparryable_trace.z8,
+        "noCrit/mustCrit/skipParry/parryable 均不可由调用参数绕过",
+    )
+    parry_floor_attacker = replace(a, pierce=a.pierce)
+    parry_floor_defender = replace(d, parry=a.pierce - 29)
+    check(
+        "招架概率只在完整公式末取整",
+        chance_parry_bp(
+            parry_floor_attacker, parry_floor_defender,
+            replace(basic, position="side", target_parry_mult_bp=6_667),
+        ) == 20,
+        "base 40 bp × side 75% × 66.67% -> 20 bp",
+    )
+    zero_move_power_rejected = False
+    try:
+        damage_pipeline(a, d, replace(basic, move_power_bp=0), "HIGH")
+    except ValueError:
+        zero_move_power_rejected = True
+    check(
+        "Z1 拒绝零招式倍率",
+        zero_move_power_rejected,
+        "move_power_bp=0 raises ValueError",
+    )
+    synergy_trace = damage_pipeline(
+        a, d, replace(basic, synergy_add_bp=400), "HIGH",
+    )
+    check(
+        "Z5 同源加算接入",
+        synergy_trace.z5 == (synergy_trace.z4 * aptitude_bp(a, basic) * 10_400
+                             // (BP ** 2)),
+        "synergyAdd=4% enters the nature/break/synergy additive pool",
+    )
     check("效果命中截断", effect_chance_bp(BP, a, d, -5_000) == BP, "最终概率不超过 100%")
+    rho_values = tuple(rho_bp(grade, 5) for grade in (5, 6, 7, 8, 9, 10))
+    check(
+        "rho(delta) 分段与封顶",
+        rho_values == (0, 3_000, 4_500, 6_000, 7_500, 9_000)
+        and rho_bp(12, 1) == 9_000,
+        "delta=0..5 -> {}；delta>=5 -> 9,000 bp".format(rho_values),
+    )
+    check(
+        "有效抗性正抗削减、负抗保留",
+        effective_resistance_bp(4_000, 8, 5) == 1_600
+        and effective_resistance_bp(-2_000, 12, 1) == -2_000,
+        "40% at delta=3 -> 16%；-20% remains -20%",
+    )
+    check(
+        "效果命中接入品阶抗性",
+        effect_chance_bp(
+            6_000, a, d, resistance_bp=4_000,
+            effect_grade=8, resistance_grade=5,
+        )
+        == 5_040,
+        "60% × (1 - 16%) = 50.4%",
+    )
     check(
         "DOT 比例伤害目标系数",
         dot_damage(10_000, 0, 0, 0, 35, 35, "boss", True) == 2_500
         and dot_damage(10_000, 0, 0, 0, 35, 35, "wardkeeper", True) == 1_500,
         "Boss 10,000 -> 2,500；守卷人 -> 1,500",
     )
+    check(
+        "DOT 接入品阶抗性",
+        dot_damage(
+            10_000, None, 0, 0, 35, 35, "normal", False,
+            resistance_bp=4_000, effect_grade=8, resistance_grade=5,
+        ) == 8_400,
+        "40% at delta=3 -> res_eff 16%；10,000 -> 8,400",
+    )
+    dot_shielded = settle_periodic(600, 2_000, 800, 500, bypass_shield=False)
+    dot_bypassed = settle_periodic(600, 2_000, 800, 500, bypass_shield=True)
+    check(
+        "DOT bypassShield 结算",
+        dot_shielded.shield_after == 200 and dot_shielded.hp_loss == 0
+        and dot_bypassed.shield_after == 800 and dot_bypassed.hp_loss == 600,
+        "流血：盾 800->200、HP 0；中毒：盾不变、HP -600",
+    )
     settled = settle_direct(trace, defender_hp=d.hp_max, defender_shield=1_000, defender_mp=d.mp_max)
-    check("完全吸收阻断伤势/流血", not settled.injury_bleed_allowed and settled.hp_loss == 0, str(settled))
+    check(
+        "完全吸收阻断伤势/流血",
+        not settled.injury_bleed_allowed and settled.hp_loss == 0
+        and settled.shield_blocked == trace.z10,
+        str(settled),
+    )
     shield_break = settle_direct(
         replace(trace, z10=800), defender_hp=2_000, defender_shield=500,
         defender_mp=0, shield_dmg_mult_bp=20_000,
     )
     check(
         "破盾倍率不放大气血溢出",
-        shield_break.shield_spent == 500 and shield_break.hp_loss == 300,
+        shield_break.shield_blocked == 500 and shield_break.shield_spent == 500
+        and shield_break.hp_loss == 300,
         str(shield_break),
     )
     mp_guard = settle_direct(
@@ -1082,8 +1331,25 @@ def run_checks(rows: Sequence[ReportRow]) -> Tuple[List[str], List[str]]:
     check(
         "以气御伤不足部分回落气血",
         mp_guard.shield_spent == 200 and mp_guard.mp_guard_spent == 100
-        and mp_guard.hp_loss == 600 and mp_guard.mp_after == 0,
+        and mp_guard.guarded_hp == 200 and mp_guard.hp_loss == 600
+        and mp_guard.mp_after == 0,
         str(mp_guard),
+    )
+    check(
+        "伤害结算守恒",
+        mp_guard.incoming == (mp_guard.shield_blocked + mp_guard.guarded_hp
+                              + mp_guard.uncapped_hp_damage),
+        str(mp_guard),
+    )
+    overkill = settle_direct(
+        replace(trace, z10=1_000), defender_hp=300, defender_shield=200,
+        defender_mp=0,
+    )
+    check(
+        "气血封顶与过量伤害分离",
+        overkill.uncapped_hp_damage == 800 and overkill.hp_loss == 300
+        and overkill.overkill == 500 and overkill.hp_after == 0,
+        str(overkill),
     )
     healer = replace(a, heal_power=102)
     patient = replace(d, heal_recv=103, shield=0)
@@ -1094,12 +1360,54 @@ def run_checks(rows: Sequence[ReportRow]) -> Tuple[List[str], List[str]]:
         "base 1,000 -> heal 1,050 / shield 1,260",
     )
     check(
+        "医术计入 healPower",
+        player_std(35, medicine=20).heal_power == a.heal_power + 10,
+        "med 20 contributes +10 pp",
+    )
+    check(
+        "治疗与护盾各自只在公式末取整",
+        healing(replace(a, heal_power=116), replace(d, heal_recv=130), 2) == 3
+        and shield_gain(replace(a, heal_power=129), replace(d, heal_recv=130), 1) == 2,
+        "heal floor(2×1.16×1.30)=3；shield floor(1×1.29×1.30×1.20)=2",
+    )
+    check(
+        "C02 耗内使用 MPREF 并四舍五入",
+        a.mp_max == 4_697 and move_mp_cost(35, 800) == 376
+        and move_mp_cost(35, 0) == 0,
+        "MPREF(35)=4,697；8%=375.76 -> 376；零成本保持 0",
+    )
+    regen_values = tuple(player_std(level).mp_regen_bp for level in range(1, 71))
+    check(
+        "C03 mpRegen 全等级不超过 6%",
+        max(regen_values) == 600 and a.mp_regen_bp == 440,
+        "STD(35)=4.40%；Lv1-70 max=6.00%",
+    )
+    check(
         "多段威力整数守恒",
         split_power_bp(10_001, 3) == (3_334, 3_334, 3_333),
         "10,001 bp -> 3,334 / 3,334 / 3,333",
     )
+    zero_split_power_rejected = False
+    try:
+        split_power_bp(0, 3)
+    except ValueError:
+        zero_split_power_rejected = True
+    check(
+        "多段拆分拒绝零威力", zero_split_power_rejected,
+        "power_bp=0 raises ValueError",
+    )
     check("C11 撞击只取本段 20%/10%", collision_damage(1_000) == 200 and collision_damage(1_000, True) == 100, "1,000 -> 200 / 100")
     check("08 坠落算例", fall_damage(6_000, 9, 3, 100, 12_000, "normal", False) == 1_512, "6,000 hp -> 1,512")
+    overlevel = enemy_std(40, 35, 85, "HIGH", "elite", 4)
+    overlevel_trace = damage_pipeline(a, overlevel, basic, "HIGH")
+    check(
+        "文档算例 8.2 越级逐区值",
+        mixed_stat(overlevel.def_out, overlevel.def_in, basic.w_in_bp) == 1_059
+        and (overlevel_trace.z1, overlevel_trace.z2, overlevel_trace.z5,
+             overlevel_trace.z8, overlevel_trace.z10)
+        == (1_289, 697, 683, 631, 631),
+        str(overlevel_trace),
+    )
     return passes, failures
 
 

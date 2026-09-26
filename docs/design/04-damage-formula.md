@@ -4,6 +4,7 @@
 > **上游**：`00-canon.md`（§3 境界、§4 品阶、§5 节奏、§6 属性 ID、§8 战斗模型、§9 乘区）；`decisions/author-requirements.md`（AR-02 阴阳相性、AR-12 六角格）；`decisions/rulings-v1.md`（C01、C02、C03、C11）；`design/02`（书界、压制、等级带）；`design/03`（属性、`STD`、敌人模板）；`design/05`（武学威力与招式字段）；`design/06`（Buff 时序与 DOT/HOT）；`design/08`（地形、高差、坠落）；`design/09`（行动、反应、合击）。
 > **引用而不重定义**：属性成长与敌人生成 → `design/03-attributes.md`；武学层数、绝招、代价、招式与范围模板 → `design/05-martial-arts-system.md`；Buff 目录、叠加、品阶对抗与时序 → `design/06-buff-system.md`；六角格距、方向枚举、范围格集合与战斗时序 → `design/09-combat-system.md`；地形目录、坠落与火势 → `design/08-terrain-and-qinggong.md`。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖他文档、本文先给可用数值并在 §13 登记。
+> **版本**：B1 初稿；审校 B1.R（2026-09-26）。
 
 ---
 
@@ -53,7 +54,7 @@
 
 非负伤害使用 `mulBp(x,b)=floor(x×b/10000)`。顺序如下：
 
-1. `design/03` 面板属性在属性表的最终边界四舍五入为整数；`MPREF`、招式内力消耗也按非负数四舍五入，最低 1。
+1. `design/03` 面板属性在属性表的最终边界四舍五入为整数；`MPREF`、招式内力消耗也按非负数四舍五入；正成本最低 1，显式零成本保持 0。
 2. `ATK_mix`、穿透后的 `DEF_out/DEF_in`、`DEF_mix` 均向下取整。
 3. `D1` 至 `D10` 每个乘区结束各向下取整；一个区内部先合并其加法项。禁止只在结算末尾取整。
 4. 护体吸收、气血伤害、吸取、反震、DOT/HOT、环境伤害分别在各自公式末向下取整。
@@ -76,9 +77,9 @@ D1  = floor(ATK_mix × 1.24 × P_actual / P_ref(Ld_attacker,tier))
 D2  = floor(D1 × F_def)
 D3  = floor(D2 × clamp(1 + sumZ3, 0.50, 2.00))
 D4  = floor(D3 × (1 - clamp(sumZ4, -0.50, 0.75)))
-D5  = floor(floor(D4 × A_ap) × (1 + clamp(affinity + breakX + synergy, -0.30, 0.50)))
+D5  = floor(D4 × A_ap × (1 + clamp(affinity + breakX + synergy, -0.30, 0.50)))
 D6  = crit ? floor(D5 × critDmg/100) : D5
-F7  = floorBp(floorBp(F_dir × F_height) × F_terrain)
+F7  = floorBp(F_dir × F_height × F_terrain)
 D7  = floor(D6 × F7)
 D8  = floor(D7 × (1 + clamp(0.015 × (Ld_attacker-Ld_defender), -0.15, 0.15)))
 D9  = parried ? floor(D8 × F_parry) : D8
@@ -120,7 +121,19 @@ P_eff   = clamp(baseChance × clamp(1+(effHit-effRes)/100,0.3,2.0)
                 × (1-res_eff) × extraFactor,          0.00, 1.00)
 ```
 
-`hit_eff = hit + move.hitMod + heightHit + cover.hit + LOS.hitPenalty`。高差命中每级 ±4 点、封顶 ±12；遮蔽、冠层、烟雾值引用 `design/08` §3、§5.5–§5.6。`res_eff` 按 `design/03` §6.3 先完成品阶穿透。拿穴等专门强度（例如 `seal`）作为 `extraFactor`，不得同时改 `effHit`。
+`hit_eff = hit + move.hitMod + heightHit + cover.hit + LOS.hitPenalty`。高差命中每级 ±4 点、封顶 ±12；遮蔽、冠层、烟雾值引用 `design/08` §3、§5.5–§5.6。拿穴等专门强度（例如 `seal`）作为 `extraFactor`，不得同时改 `effHit`。
+
+`resGrade(tag)` 的来源与下限归 `design/03` §6.3，穿透系数归 `design/06` §3.5.0；进入本文效果命中或 DOT 前，必须完整执行以下衔接，不能把原始 `res_X` 直接当 `res_eff`：
+
+```text
+Δr = effectGrade - resGrade(tag)
+ρ(Δr) = 0                                  , Δr <= 0
+ρ(Δr) = min(0.90, 0.15 + 0.15×Δr)          , Δr >= 1
+res_eff = res_X                             , res_X <= 0
+res_eff = res_X × (1-ρ(Δr))                 , res_X > 0
+```
+
+所以 `Δr=1/2/3/4/≥5` 时 `ρ=30%/45%/60%/75%/90%`；负抗性不被高品阶削弱。例：原始抗性 40%、效果品阶 8、`resGrade=5`，则 `Δr=3`、`ρ=60%`、`res_eff=40%×40%=16%`；若基础概率 60% 且 `effHit=effRes`，最终施加率为 `60%×(1-16%)=50.4%`。
 
 ### 3.2 开关、乘数与六向方位
 
@@ -156,11 +169,11 @@ AR-12 六角格下，守方朝向六邻方向之一：攻方位于正后方 1 �
 ```text
 hitBp   = clampInt(8500 + 40×(hitEff-eva),        4000, 9900)
 parryBp = clampInt(1200 + 40×(parry-pierce),         0, 6000)
-parryBp = mulBp(mulBp(parryBp, dirParryBp), targetParryMultBp)
+parryBp = floor(parryBp × dirParryBp × targetParryMultBp / 10000²)
 critBp  = clampInt(1000 + 40×(crit-tough),         200, 7500)
 ratingBp = clampInt(10000 + 100×(effHit-effRes),  3000, 20000)
-effBp   = clampInt(mulBp(mulBp(mulBp(baseBp, ratingBp),
-                   10000-resEffBp), extraFactorBp), 0, 10000)
+effBp   = clampInt(floor(baseBp × ratingBp × (10000-resEffBp)
+                   × extraFactorBp / 10000³), 0, 10000)
 ```
 
 开关在公式外按 §3.2 覆盖：`mustHit` 可把 9900 的普通上限改成 10000；`mustCrit` 可把 7500 改成 10000；`noCrit` 最后覆写为 0；`skipParry` 最后覆写为 0。实现不得先把评级差截为正数，否则弱势方的概率下限与负抗收益都会错误。
@@ -220,7 +233,7 @@ D4 = floor(D3 × (1-R4))
 apFactor(ap) = 0.80 + 0.004×ap
 A_ap = (1-r_in)×apFactor(ap_cat) + r_in×apFactor(apInner)
 F_aff = 1 + clamp(natureAdd + breakAdd + synergyAdd, -0.30, 0.50)
-D5 = floor(floor(D4×A_ap)×F_aff)
+D5 = floor(D4×A_ap×F_aff)
 ```
 
 杂学主动以 `artFactor=0.80+0.004×value` 替代 `A_ap`；音功按 `apInner`，详见 `design/03` §7.4。`A_ap` 范围 0.80–1.20。
@@ -239,11 +252,11 @@ D5 = floor(floor(D4×A_ap)×F_aff)
 F_dir     = 正面 1.00 / 侧击 1.10 / 背击 1.30
 F_height  = 1 + heightAdd
 F_terrain = 1 + clamp(attacker.dealt + defender.taken + cover.dmg, -0.30, 0.30)
-F7 = floorBp(floorBp(F_dir×F_height)×F_terrain)
+F7 = floorBp(F_dir×F_height×F_terrain)
 D7 = floor(D6×F7)
 ```
 
-`floorBp(a×b)` 表示把两个 bp 系数相乘并向下取整回 bp；先合成唯一 `F7`，再只在 Z7 的伤害边界取整一次。近身每级高差 ±5%，封顶 ±10%；远程/投射每级 ±4%，高处封顶 +16%、低处封底 −12%，采纳 `design/08` §5.5。三项彼此相乘；整体安全钳制 0.50–2.00。`asBack` 令方向视为背击；`asHigh` 缺省视为攻方高 1 级，若效果明确给级数则取其值。
+`floorBp(a×b×c)` 表示三个 bp 系数先精确相乘，再向下取整回 bp；先合成唯一 `F7`，再只在 Z7 的伤害边界取整一次。近身每级高差 ±5%，封顶 ±10%；远程/投射每级 ±4%，高处封顶 +16%、低处封底 −12%，采纳 `design/08` §5.5。三项彼此相乘；整体安全钳制 0.50–2.00。`asBack` 令方向视为背击；`asHigh` 缺省视为攻方高 1 级，若效果明确给级数则取其值。
 
 战斗为六角格、六向朝向。本文只定义倍率；方位解析与范围模板格集合归 `design/09`。范围、多段、溅射中的每个目标都按“该伤害段来源格 → 该目标朝向”独立计算 Z7。
 
@@ -297,15 +310,19 @@ E[D]       = P_hit × E[D | hit]
 ### 6.2 护体、气血与附加效果
 
 ```text
-shieldDamage = min(shield, D10)
-hpDamage     = min(hp, D10-shieldDamage)
-shield'      = shield-shieldDamage
-hp'          = hp-hpDamage
+shieldBlocked   = min(shield, D10)
+shieldSpent     = min(shield, floor(D10×shieldDmgMult))
+postShield      = D10-shieldBlocked
+uncappedHpDamage = postShield
+hpDamage        = min(hp, uncappedHpDamage)
+overkill        = uncappedHpDamage-hpDamage
+shield'         = shield-shieldSpent
+hp'             = hp-hpDamage
 ```
 
-护体不改变“命中/暴击/招架成功”事件，但若 `hpDamage=0`，本次攻击附带的 `injury`、`bleed` 不施加；其他标签仍按各自规则判定。若仅部分穿盾，伤势/流血可施加且其概率不按穿盾比例缩放。`shieldDmgMult≥1.00` 只放大对护体资源的消耗，溢出气血伤害仍以原 `D10` 扣除：先算 `shieldSpent=min(shield,floor(D10×shieldDmgMult))`，再算 `postShield=max(0,D10-shield)`，避免“破盾倍率”凭空放大穿透后的气血伤害。
+护体不改变“命中/暴击/招架成功”事件，但若 `hpDamage=0`，本次攻击附带的 `injury`、`bleed` 不施加；其他标签仍按各自规则判定。若仅部分穿盾，伤势/流血可施加且其概率不按穿盾比例缩放。`shieldDmgMult≥1.00` 只放大对护体资源的消耗；`shieldBlocked` 始终只取原 `D10` 能被当前护体挡下的部分，因此破盾倍率不能放大穿透后的气血伤害。普通攻击 `shieldDmgMult=1.00` 时，`shieldBlocked=shieldSpent`。
 
-护体之后若有 `mpGuard{pct,ratio}`，取最高优先级的一项：`guardWant=floor(postShield×clamp(pct,0,1))`，`mpSpent=min(mp,ceil(guardWant/ratio))`，`guardActual=min(guardWant,floor(mpSpent×ratio))`，最终 `hpDamage=min(hp,postShield-guardActual)`。`ratio` 表示每 1 内力抵消的气血伤害；“以气御伤”固定 `ratio=2`，玄/地/天阶 `pct=25%/30%/35%`，内力不足部分照扣气血（见 `design/06` §8.4）。
+护体之后若有 `mpGuard{pct,ratio}`，取最高优先级的一项：`guardWant=floor(postShield×clamp(pct,0,1))`，`mpSpent=min(mp,ceil(guardWant/ratio))`，`guardedHp=min(guardWant,floor(mpSpent×ratio))`，`uncappedHpDamage=postShield-guardedHp`，最终 `hpDamage=min(hp,uncappedHpDamage)`、`overkill=uncappedHpDamage-hpDamage`。`ratio` 表示每 1 内力抵消的气血伤害；“以气御伤”固定 `ratio=2`，玄/地/天阶 `pct=25%/30%/35%`，内力不足部分照扣气血（见 `design/06` §8.4）。
 
 ### 6.3 吸血、吸内与反震
 
@@ -346,8 +363,10 @@ bossF   = 比例型伤害：普通 1.00 / 精英 0.50 / Boss 0.25 / 守卷人 0.
 | 字段 | 定义 | 主要使用者 |
 |---|---|---|
 | `incoming` | Z10 后、任何资源吸收前的本段伤害 | 撞击的 `D_hit`、伤害上限前的调试日志 |
+| `shieldBlocked` | 当前护体从 `incoming` 中实际挡住的伤害；不受破盾倍率放大 | 伤害守恒、双色飘字 |
 | `shieldSpent` | 本段实际扣除的护体资源 | 破盾触发、护体条表现 |
 | `guardedHp` | 护体之后由内力等资源抵消的气血伤害 | 以气御伤表现与资源守恒 |
+| `uncappedHpDamage` | 资源吸收后、当前气血/锁血/阶段门截断前的伤害 | 伤害守恒、过量伤害计算 |
 | `hpDamage` | 钳制到目标现有气血后的实际损失 | 吸血、伤害型吸内、反震、受伤阈值 |
 | `overkill` | `max(0, postGuard-target.hp)` | 仅统计/演出；不得增加吸血、反震或击杀次数 |
 | `displayDamage` | UI 组合数字，可拆为护体/气血两色 | 纯表现，不得返回核心参与后续结算 |
@@ -477,7 +496,7 @@ Lv44 主角携天上 10 重外功进入鹿鼎低武：`g_eff=8`、`layer_eff=8`�
 
 ### 8.7 护体完全吸收与附加伤势
 
-例 1 的 `D10=849`，目标护体 1000：`shieldDamage=849`、`hpDamage=0`、剩余护体 151。因此本段仍记命中，可触发非伤势类 onHit，但其 `injury`、`bleed` 均跳过；若护体只有 800，则 `hpDamage=49`，二者可按各自 `P_eff` 判定。
+例 1 的 `D10=849`，目标护体 1000、`shieldDmgMult=1.00`：`shieldBlocked=shieldSpent=849`、`hpDamage=0`、剩余护体 151。因此本段仍记命中，可触发非伤势类 onHit，但其 `injury`、`bleed` 均跳过；若护体只有 800，则 `hpDamage=49`，二者可按各自 `P_eff` 判定。
 
 ---
 
@@ -590,7 +609,7 @@ python3 tools/balance/damage_sim.py --check
 | 02 → 04 | `tier`、`Ld`、`g_eff`、`layer_eff`、书界表 | 先压制再进 Z1；Boss 超限用自身 `Ld` |
 | 03 → 04 | 面板属性、`STD`、`MPREF`、`P_ref`、模板 | 04 不重算属性定义；C02 `MPREF=STD.mpMax` |
 | 05 → 04 | `power`、`wIn/wOut`、性质、招式开关、`hits` | 每段 `power/hits`；耗内先验；相性表原样采用 |
-| 06 ↔ 04 | Z0 旗标、`modZone`、P1–P8、`res_eff`、DOT/HOT | 开关 OR、`targetParryMult` 取最小；数值族先按 06 合并 |
+| 06 ↔ 04 | Z0 旗标、`modZone`、P1–P8、`ρ(Δr)` / `res_eff`、DOT/HOT | 开关 OR、`targetParryMult` 取最小；数值族先按 06 合并；效果品阶与 `resGrade` 必须成对传入 |
 | 08 → 04 | 高差、地形 Z7、坠落与环境参数 | 04 只算倍率/伤害，不定义地形内容 |
 | 09 ↔ 04 | 六角方位、范围目标、反应/合击、预测 | 04 返回判定概率、逐区 trace 与结算结果；09 决定调用次数/顺序 |
 | tech/05 | 整数 bp 实现 | 每区 trace 可记录；查询不得消耗 RNG |
@@ -601,6 +620,9 @@ python3 tools/balance/damage_sim.py --check
 ```ts
 type DamageTrace = { z1:number; z2:number; z3:number; z4:number; z5:number;
   z6:number; z7:number; z8:number; z9:number; z10:number };
+type Settlement = { incoming:number; shieldBlocked:number; shieldSpent:number;
+  shieldAfter:number; guardedHp:number; mpGuardSpent:number; mpAfter:number;
+  uncappedHpDamage:number; hpDamage:number; overkill:number; hpAfter:number };
 resolveJudge(ctx): { hitBp:number; parryBp:number; critBp:number; flags:JudgeFlags };
 calcDamage(ctx, outcomes): DamageTrace;
 settleDamage(ctx, trace): Settlement;
@@ -619,8 +641,9 @@ calcEffectChance(ctx, effect): number;
 | `D1`…`D10` | 每个伤害乘区结束时的整数快照 |
 | `P_actual` | 有效品阶、层数、招式与特殊倍率合成的实际威力指数 |
 | `F_def` `F_dir` `F_height` `F_terrain` `F_parry` | Z2/Z7/Z9 的乘数 |
-| `DamageTrace` | 记录 Z1–Z10、护体吸收与气血伤害的调试结构 |
-| `Settlement` | 一段伤害后的护体、气血、吸取、反震结果 |
+| `DamageTrace` | 只记录 Z1–Z10 的纯计算调试结构；不混入可变资源状态 |
+| `Settlement` | 一段伤害后的护体阻挡/消耗、代扣、气血、过量伤害、吸取与反震结果 |
+| `shieldBlocked` / `shieldSpent` | 护体挡住的伤害 / 实际扣除的护体资源；破盾倍率 >1 时二者可不同 |
 | `encounterDurability` | 遭遇层有效耐久校准，不改角色 `hpMax` |
 | `templateAttackBudget` | 模板普通招节奏校准，不改面板攻击或具名 NPC |
 
@@ -644,6 +667,7 @@ calcEffectChance(ctx, effect): number;
 | V10 | 伤害来源旗标阻断反震/转移/镜返/反击的同类递归 | 错误 |
 | V11 | `MPREF` 读取 `STD(Ld).mpMax`；`mpRegen≤6%` | 错误 |
 | V12 | 十四书界模拟表与脚本 `--report` 完全一致，`--check` 退出 0 | CI 错误 |
+| V13 | 原始抗性进入效果命中/DOT 时，`effectGrade` 与 `resGrade` 必须成对提供并先计算 `ρ(Δr)`；不得只传其中之一 | 错误 |
 
 ### 12.2 核心测试
 
@@ -663,7 +687,24 @@ calcEffectChance(ctx, effect): number;
 | T12 | 破盾：`D10=800`、护体 500、`shieldDmgMult=2` | 护体消耗 500、气血伤害 300，不把破盾倍率带入气血 |
 | T13 | 以气御伤：盾后 800、`pct=25%`、内力 100、`ratio=2` | 内力 −100、气血伤害 600，不足代扣部分回落气血 |
 | T14 | `powerBp=10001`、`hits=3` | 分为 3334 / 3334 / 3333，总威力守恒 |
-| T15 | `python3 tools/balance/damage_sim.py --check` | 18 项全 PASS、已知偏差 0 |
+| T15 | `ρ(Δr)`，Δr=0/1/2/3/4/≥5 | 0% / 30% / 45% / 60% / 75% / 90% |
+| T16 | 原抗性 40%，效果品阶 8、`resGrade=5` | `res_eff=16%`；负抗性不削减 |
+| T17 | T16 且基础效果率 60%、`effHit=effRes` | `P_eff=50.4%` |
+| T18 | `incoming=1000`、护体 200、以气御伤 200 | `shieldBlocked+guardedHp+uncappedHpDamage=200+200+600=1000` |
+| T19 | `uncappedHpDamage=800`、当前气血 300 | `hpDamage=300`、`overkill=500` |
+| T20 | 标准模型额外 `med=20` | `healPower` 比 `med=0` 高 10 pp |
+| T21 | 治疗 `base=2`、`healPower=116`、`healRecv=130`；护盾 `base=1`、`healPower=129`、`healRecv=130` | 分别按完整公式末取整为 3 / 2；逐因子提前取整会误得 2 / 1 |
+| T22 | Lv35 普通招式 `costBp=800` | C02：`MPREF=STD(35).mpMax=4697`，`round(4697×8%)=376` |
+| T23 | `STD(L)`，L=1…70；另查 Lv35 | C03：`mpRegen` 最大 6.00%，Lv35 为 4.40% |
+| T24 | `python3 tools/balance/damage_sim.py --check` | 36 项全 PASS、已知偏差 0 |
+| T25 | 向 Z1 传 `movePowerBp=0` | 构建/运行均拒绝，不静默生成 0 伤害招式 |
+| T26 | 已决参数与硬开关矛盾：`noCrit+crit`、`skipParry+parried`、`parryable=false+parried` | `noCrit` 禁暴；后两者均令 Z9 不生效；`mustCrit` 仅在未 `noCrit` 时强制暴击 |
+| T27 | 招架基准 40 bp、侧击 75%、`targetParryMult=66.67%` | 完整公式末取整为 20 bp |
+| T28 | `splitPowerBp(powerBp=0,hits=3)` | 按 V2 拒绝，而非静默产生三段 0 威力 |
+| T29 | Lv35 同属性双方，`hitMod=+5`、高差 +1、遮蔽 −4、视线 −3 | `P_hit=8500+40×(124+5+4−4−3−103)=9420 bp` |
+| T30 | Z5 `synergyAdd=+4%` | 与性质、破 X 进入同一加算池，再与 `A_ap` 一次连乘取整 |
+| T31 | `asBack=true`、`asHigh=true`，未另给正高度级数 | 背击且默认高 1 级；近战 `F7=1.30×1.05=1.365` |
+| T32 | §8.6 的 DOT 600、护体 800，分别 `bypassShield=false/true` | 前者护体剩 200、气血不变；后者护体不变、气血 −600 |
 
 ---
 
