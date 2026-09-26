@@ -1,0 +1,2102 @@
+# tech/05 · 玩法引擎（Gameplay Engine）
+
+| 项 | 内容 |
+|---|---|
+| 文档 | `docs/tech/05-gameplay-engine.md` |
+| 版本 | v1.0（2026-09-26） |
+| 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03（冲穴）、AR-04（统一大地图与时代图层）、AR-05（资源与家丁）、AR-06（营生职位）、AR-07（门派职级与月钱）、AR-09（NPC 与跨书界同伴）、AR-12（六角战棋） |
+| 上游基准 | `docs/00-canon.md` §3–§5（成长、数值、节奏）、§8–§10（战斗、伤害乘区、Buff）、§12（ID）、§18（唯一归属）、§19（技术基线） |
+| 强依赖 | `tech/01` §3、§6、§8.3（架构、运行时、确定性 D1–D9）；`tech/03` §2、§6、§8（性能与 Worker）；`tech/04` §3、§6–§8（schema、书界包、Ink 桥）；`tech/08` §3（TSAV 与迁移）；`design/04`（Z0–Z10）；`design/05`（武学）；`design/06` §2、§4–§6（Buff DSL）；`design/08`（地形）；`design/09` §2–§8、§13（战斗）；`design/13`（成长与规则开关）；`design/18`（NPC/同伴）；`design/19`（全国地图） |
+| 尚未定稿的上游 | `design/11`（区域玩法）、`design/12`（任务、门派）、`design/15`（经脉）、`design/16`（资源与营生）在本文撰写时不存在；相关结构统一标 `【建议值】`，由 F2 在这些文档定稿后同步 |
+| 下游 | `apps/game` 的 `CoreHost`；`packages/ui`、`packages/render` 的只读投影与事件消费；`tools/balance`；`tech/09` 路线图；F2 同步任务 |
+| 读者 | 作者本人（单人开发）＋ AI 编码助手 |
+| 本文职责 | `packages/core` 的纯 TypeScript、无 DOM、确定性内部设计：状态、命令事务、探索 tick、六角格、战斗、伤害执行器、Buff/任务 DSL 运行时、AI、存档状态、录像与测试 |
+| 引用而不重定义 | 数值公式、武学内容、Buff 语义、地形规则、战斗平衡、任务剧情、NPC 事实、存档容器分别归上述设计/技术文档；本文只固定实现契约、执行顺序与确定性护栏 |
+| 标注约定 | **（待核实）**版本/API/限额未联网确认；**（待实测）**需真机或真账号验证；**【建议值】**等待上游定稿替换；**（原创扩展）**仅在涉及玩法内容提案时使用 |
+
+> **结论先行（TL;DR）**
+>
+> 1. `packages/core` 是同步、纯 TypeScript、无 DOM 的唯一玩法权威。依赖只能是 `shared ← data ← core`；UI、渲染、平台与 Worker 只能发可序列化命令、调用纯查询、消费领域事件，不能直接写状态或重算规则。
+> 2. `GameState` 是单一、版本化、纯 JSON 状态树。生产环境在一个命令事务内原地更新并用写入日志回滚；命令成功才一次性递增 `meta.stateVersion`、提交 RNG 和事件。外部只拿深只读快照或裁剪投影。
+> 3. 更新模型固定为 **Command → validate → apply → DomainEvent[] → 新状态**。拒绝的命令不改状态、不消耗 RNG、不产生领域事件；表现事件不是事实，不能参与下一次结算。
+> 4. 确定性沿用 `tech/01` D1–D9：固定 `sfc32 + splitmix32`、五条随机流、整数/10000 bp、固定取整点、全序遍历、禁墙钟与实现近似数学函数。区间随机改用 rejection sampling，避免 `% n` 偏差。
+> 5. 探索逻辑终值为 **10 Hz，即 100 ms/tick**；页面后台、暂停、对话停时均不补跑。世界日历只由已提交 tick 推进。`WORLD_TICKS_PER_SHICHEN=3000`（实时 5 分钟/时辰、12 时辰即 60 分钟/日）为 **【建议值】**，等待 `design/11` 定稿。
+> 6. 战斗使用 AR-12 的 pointy-top 六角轴坐标。距离、六邻 A*、LOS、点/环/面/扇形模板均以整数和固定枚举序实现；全国导航坐标、区域六角坐标、战场局部坐标是三个不同坐标域。
+> 7. 战斗首轮严格按有效轻功全序排列，之后使用 `design/09` 的事件驱动 CT；行动含移动与一个动作，运劲和道具都是正式动作。反应为 FIFO，嵌套深度最多 3，并继承来源位集阻断反震/转移/镜返/反击递归。
+> 8. 伤害执行器逐字实现 `design/04` 的 Z0–Z10：每区只在规定边界取整；每段产生完整 `DamageTrace` 与 `Settlement`，可回答“哪一乘区把 1289 变成 867”，而非只输出最终数字。
+> 9. Buff 构建为受限字节码，接入59 hooks/50原语；按 priority/iid 派发，复用 scratch。零临时容器是派发性能目标，BigInt/事件仍有分配。叠加、互斥、驱散与 ρ(Δ) 引用 design/06。
+> 10. 任务 DSL、Ink、经营、门派、经脉都只能产生意图，再由 core 校验。任务/经脉/资源/营生/门派结构在其归属文档未定稿前均为 **【建议值】**；正式化时必须升 schema、写迁移和重放回归。
+> 11. 当前周目跨书界永久状态包括冲穴/周天/九转与同伴履历；新周目仍按 `design/13` 重置其运行态，只保留账号级里程碑。资源点归属、普通库存、家丁、营生职位和当前门派身份默认随书眠清除；跨书同伴按 `design/18` 做健在判定，以离队快照为下限合并后世新增能力。
+> 12. AI 采用09的 Utility AI，Boss 用阶段状态机约束。固定工作预算和5/15/40/80ms调度预算并用，2倍超时取当前最优；AI选择可随设备变化，录像记录最终命令，core重放结果不变。
+> 13. 存档复用tech/08的TSAV v1；录像固定coreBuild/规则/RNG/内容版本，含封闭战斗快照、全部已接受战斗命令与终局SHA-256。战后finalize单独提交世界奖励，Node/WebKit验收见§15。
+> 14. MVP 先交付单线程 core、六角战斗、伤害/Buff、任务基本式、存读档与录像；AI Worker、复杂世界周期、正式经脉/经营在上游定稿和基线实测后递进，不以未定 schema 阻塞核心闭环。
+
+---
+
+## 目录
+
+- [0. 关键决策一览](#0-关键决策一览)
+- [1. 目标、边界与依赖](#1-目标边界与依赖)
+- [2. packages/core 模块划分](#2-packagescore-模块划分)
+- [3. GameState、快照与事务](#3-gamestate快照与事务)
+- [4. 确定性、随机数与规范哈希](#4-确定性随机数与规范哈希)
+- [5. 世界 tick、时代图层与探索](#5-世界-tick时代图层与探索)
+- [6. 六角格、构网、寻路、LOS 与范围](#6-六角格构网寻路los-与范围)
+- [7. 战斗时间轴、行动与反应](#7-战斗时间轴行动与反应)
+- [8. Z0–Z10 伤害管线](#8-z0z10-伤害管线)
+- [9. Buff DSL 编译与运行时](#9-buff-dsl-编译与运行时)
+- [10. 任务 DSL、旗标与 Ink 桥](#10-任务-dsl旗标与-ink-桥)
+- [11. 经脉、资源、营生与门派预留](#11-经脉资源营生与门派预留)
+- [12. NPC、同伴与年代状态](#12-npc同伴与年代状态)
+- [13. Utility AI 与 Worker](#13-utility-ai-与-worker)
+- [14. 存档、迁移、录像与重放](#14-存档迁移录像与重放)
+- [15. 测试与 CI](#15-测试与-ci)
+- [16. 性能预算与观测](#16-性能预算与观测)
+- [17. MVP、演进与风险](#17-mvp演进与风险)
+- [参考资料](#参考资料)
+- [本文新增术语/约定](#本文新增术语约定)
+- [待决事项 / 依赖](#待决事项--依赖)
+
+---
+
+## 0. 关键决策一览
+
+| # | 决策 | 结论 | 主要依据 |
+|---|---|---|---|
+| E-01 | core 形态 | 同步纯函数边界；主线程默认、可整体迁 Worker；无 DOM/网络/存储/渲染 | `tech/01` §3.6–§3.7 |
+| E-02 | 状态写法 | 单一 JSON 树；事务内原地写 + journal 回滚；外部深只读 | 本文 §3 |
+| E-03 | 更新协议 | 可序列化 Command → 领域事件；拒绝零副作用 | 本文 §3.4 |
+| E-04 | RNG | `sfc32`，`splitmix32` 派生五流；区间抽样拒绝法 | `tech/01` §8.3；本文 §4.2 |
+| E-05 | 数值 | 安全整数 + 10000 bp；跨乘区用瞬时 BigInt 保精确，状态不存 BigInt | `design/04`；本文 §4.3 |
+| E-06 | 状态哈希 | 规范 JSON UTF-8 → SHA-256；墙钟/表现/缓存不入哈希 | `tech/04` §8；`tech/08` §3 |
+| E-07 | 探索 tick | 10 Hz；不补后台时间；每时辰 3000 tick **【建议值】** | `tech/01` P3；本文 §5 |
+| E-08 | 战斗格 | pointy-top 轴坐标；六向 A*；全序 tie-break | AR-12；`design/09` §2、§5 |
+| E-09 | 战斗推进 | 首轮轻功固定序，随后事件驱动 CT；环境先于单位 | `design/09` §3 |
+| E-10 | 反应 | FIFO、深度 ≤3、来源位集继承、每个入队项先校验 | `design/06` §5.3；`design/09` §6 |
+| E-11 | 伤害 | 一目标一段调用；Z0 后 Z1–Z10；每区 trace | `design/04` §2–§7 |
+| E-12 | Buff | 构建期表达式字节码；59 hook bucket；热路径复用内存 | `design/06` §6 |
+| E-13 | 任务/Ink | 查询只读；Ink 只产意图；写操作重新校验 | `tech/04` §7 |
+| E-14 | 周期产出 | 跨越日历边界时补结算；`lastSettledPeriod` 幂等；绝不读墙钟 | AR-05–07；本文 §11 |
+| E-15 | 同伴跨书 | `design/18` 正式契约；离队快照为能力下限，后世画像只增不减 | AR-09；`design/18` §6–§7 |
+| E-16 | AI | Utility AI + Boss 状态机；确定性候选预算，Worker 仅回命令 | `design/09` §8；`tech/03` |
+| E-17 | 存档 | GameState 负载交给 TSAV v1；纯迁移 + 内容 fixup | `tech/08` §3 |
+| E-18 | 录像 | 开局快照、命令、RNG、每 10 命令中间哈希 **【建议值】**、终局哈希 | `tech/08` §10；本文 §14 |
+
+## 1. 目标、边界与依赖
+
+### 1.1 目标
+
+玩法核心要同时满足四件事：
+
+1. **规则唯一**：同一命令在 UI、AI、录像、平衡脚本中走同一套校验与结算。
+2. **可复放**：给定内容哈希、初态和命令序列，Node 与 WebKit 得到逐步一致的状态。
+3. **可诊断**：任何伤害、Buff、任务跳转和周期产出都能说明输入、规则来源和结果。
+4. **可演进**：尚未定稿的任务、经脉、资源、营生与门派 schema 可以显式 provisional 接入，而不污染正式状态。
+
+本文的“确定性”是**同一内容版本与同一合法输入序列得到同一规则状态**，不是网络锁步，也不表示动画帧、Worker 完成时间或日志墙钟相同。
+
+### 1.2 明确不做
+
+| 不在 core 的事项 | 负责层 | 原因 |
+|---|---|---|
+| Canvas/WebGL、Three 对象、动画、特效、镜头 | `render` | 表现不能反向决定规则 |
+| Vue/DOM、输入手势、无障碍、文案排版 | `ui` / `apps/game` | UI 只把意图译成命令 |
+| IndexedDB、gzip、云同步、网络请求、Cookie | `platform` / `tech/08` | I/O 非确定且异步 |
+| YAML/Zod 全量验证、Ink 编译 | `data` / `tools/content-build` | 发布运行时只消费已编译 IR |
+| 武学、Buff、地形、任务、NPC 的内容定义 | 对应 `design/*` | 遵守基准 §18 唯一归属 |
+| 真实经纬度到战场格换算 | 不提供 | 全国地图、区域图、战场截取不是同一坐标系 |
+| 服务器权威、反作弊、多人同步 | 不做 | 单人、本地优先；见 `tech/08` §2.4 |
+
+### 1.3 依赖方向
+
+```text
+@tianshu/shared  ←  @tianshu/data  ←  @tianshu/core
+       ↑                    ↑               ↑
+       └──────── render / ui / platform / apps/game / tools（只向左依赖）
+```
+
+核心规则：
+
+- `core` 可运行时依赖 `shared`，对 `data` 以生成类型与只读 registry 为主；不得反向 import `render/ui/platform/apps`。
+- `data` 定义内容结构，不调用玩法函数；派生值若需要复杂规则，由构建工具调用 `core` 的纯函数生成。
+- `render` 与 `ui` 可以依赖 `core` 的公开类型、查询与 DTO，但不能取得可写的 `GameState` 引用。
+- `tools/balance` 直接装配 `createCore()`，从而与游戏走同一命令入口。
+- `inkjs` 只包在 `core/dialogue` 适配层；任何第三方对象都不得进入 `GameState`。
+
+### 1.4 对外端口
+
+```ts
+export interface GameplayCore {
+  dispatch(command: Command): DispatchResult;
+  tick(): DispatchResult;
+  readonly query: CoreQueries;
+  snapshot(): DeepReadonly<GameState>;
+  project(scope: ProjectionScope): StateProjection;
+  serialize(): JsonValue;
+}
+
+export interface CorePorts {
+  readonly content: ContentRegistry;
+  readonly diagnostics?: DiagnosticSink;
+}
+```
+
+`dispatch()` 和 `tick()` 同步返回；`tick()` 等价于提交一条 `world/tick`。批量追帧由 host 逐条调用（§5.2），不改变事务粒度。主线程/Worker 差异由 `CoreHost` 封成 Promise，不把异步传染给规则层。哈希、压缩、持久化由外层接收规范负载后处理。
+
+### 1.5 不变量
+
+每次成功命令结束必须同时满足：
+
+- `GameState` 可被严格 JSON 编解码；不存在 `undefined`、非有限数、稀疏数组、class、`Map`、`Set`、函数、TypedArray 或循环引用。
+- 所有内容引用能在当前 `ContentRegistry` 或明确的 legacy tombstone 中解析。
+- `meta.stateVersion` 恰增 1；事件 `seq` 严格连续且都携带该版本。
+- 非战斗时 `battle=null`；战斗时 `world.mountedRegion` 与 `battle.sourceRegion` 一致或有显式剧情战例外。
+- RNG 状态只因已提交的规则随机而前进；查询、预览、校验失败和表现不前进。
+- 资源与计数为安全整数；比例为整数 bp；所有数组符合各自稳定排序或带显式顺序字段。
+- 任务、对话、同伴、NPC 的跨域变更要么全提交，要么全回滚。
+
+## 2. `packages/core` 模块划分
+
+### 2.1 目录建议
+
+```text
+packages/core/src/
+├── api/                 # createCore、公开 Command/Event/Query 类型
+├── state/               # GameState、事务、规范序列化、迁移/fixup
+├── command/             # registry；每个命令一个 handler
+├── event/               # event sink、因果链、投影补丁
+├── world/               # tick、时代层、旅行、区域挂载、日历
+├── hex/                 # 坐标、邻居、范围、A*、LOS
+├── battle/
+│   ├── timeline/        # openingOrder、CT、环境行动者
+│   ├── action/          # 位移、招式、运劲、道具等
+│   ├── reaction/        # 招架、反击、连击、合击、援护
+│   ├── damage/          # Z0–Z10、Settlement、DamageTrace
+│   ├── formation/       # 阵法成员/阵眼/生门投影
+│   └── encounter/       # 就地构网、胜负、战后提交
+├── buff/                # IR、表达式 VM、hook router、叠加/驱散
+├── quest/               # 条件 VM、阶段机、任务动作
+├── dialogue/            # inkjs 适配与 DialogueIntent
+├── progression/         # 等级、书眠、经脉 provisional 接口
+├── economy/             # 资源/家丁/职位/月钱 provisional 接口
+├── npc/                 # 年代、存在性、同伴快照/重逢
+├── ai/                  # 快照、候选、评分、确定性搜索
+├── replay/              # 录像信封、逐步校验、diff
+└── testing/             # fixture builder、golden harness
+```
+
+### 2.2 模块依赖图
+
+```text
+                    ┌──────── queries ────────┐
+content → state → command → world / battle → event → projection
+                 ↘ quest ← dialogue          ↑
+                  ↘ npc / economy            │
+                   ↘ battle → damage → buff ─┘
+                               ↑
+                         hex ← ai（只读）
+```
+
+依赖约束：
+
+- `damage` 可调用 Buff 的已编译修饰器/钩子端口，但不解析 YAML，也不认识具体 `bf_*`。
+- `buff` 可请求伤害、位移等受控原语端口，不能直接递归调用任意 command handler。
+- `ai` 只依赖只读战斗视图、`hex` 与预测接口；不能 import 事务写接口。
+- `quest` 与 `dialogue` 通过 `DialogueIntent` 单向连接，避免 Ink 直接写任务状态。
+- `world` 产生日历边界事件；`economy`、任务、Buff 订阅这些事件，不读取墙钟。
+- 跨模块调用形成的派生事件都携带同一个 `causeId`，便于回放定位。
+
+### 2.3 公开与内部类型
+
+公开 API 只导出：
+
+- `GameplayCore`、`Command`、`DomainEvent`、`DispatchResult`；
+- `CoreQueries` 与裁剪后的 `*View`；
+- `GameState` 的存档 schema 类型和迁移入口；
+- `BattleAiRequest/Response`、`ReplayEnvelope`；
+- 无副作用的六角坐标工具。
+
+内部事务、可写状态、Buff VM 栈、A* 节点池、索引 cache、内容对象引用不从包入口导出。TypeScript 的 `readonly` 只提供编译期约束；开发构建还应对公开快照递归冻结，以捕获越界写入。
+
+### 2.4 Registry 与 cache
+
+`ContentRegistry` 是装载完毕后冻结的只读索引；`RuntimeCache` 是可丢弃、不可存档的派生结构：
+
+```ts
+interface RuntimeCache {
+  readonly buffHooks: BuffHookBuckets;
+  readonly questPrograms: Readonly<Record<QuestId, QuestProgram>>;
+  readonly regionNav: RegionNavigationIndex | null;
+  readonly battle: BattleCache | null;
+  readonly npcEra: NpcEraIndex;
+}
+```
+
+cache 必须可由 `(GameState, ContentRegistry)` 重建；清 cache 不得改变结果。任何 cache key 必须包含足以反映输入变更的版本，如 `stateVersion`、`battle.revision`、`buffRevision` 或 `contentHash`，禁止只凭对象身份。
+
+## 3. `GameState`、快照与事务
+
+### 3.1 根状态
+
+下面是运行时/存档边界，不是替 `tech/04` 重写内容 schema。标为 provisional 的子树必须在归属文档定稿后迁移。
+
+```ts
+export interface GameState {
+  meta: MetaState;
+  profile: ProfileState;
+  chapter: ChapterState;
+  party: PartyState;
+  world: WorldState;
+  battle: BattleState | null;
+  dialogue: DialogueState | null;
+}
+
+export interface MetaState {
+  saveSchema: number;
+  masterSeed: number;
+  runId: string;
+  nextRuntimeOrdinal: number;
+  contentHash: string;
+  rulesProtocol: number;
+  rngProtocol: number;
+  coreBuild: string;
+  stateVersion: number;
+  worldTick: number;
+  nextEventSeq: number;
+  rng: Record<RngStreamId, RngStateJson>;
+  debugTainted: boolean;
+}
+
+export type RngStreamId = 'battle' | 'loot' | 'world' | 'ai' | 'qiyu';
+export type RngStateJson = readonly [number, number, number, number];
+```
+
+`worldTick` 是全局已游玩逻辑时间；战斗另有 `battle.tick`，两者不混加。存档创建时间、设备名和云端 revision 属 TSAV 头或平台数据库，不进入 `GameState`。
+
+### 3.2 长期、书界与临时状态
+
+```ts
+interface ProfileState {
+  protagonist: PersistentCharacterState;
+  progression: PersistentProgressionState;
+  createdMartialArts: CreatedMartialArtState[]; // 当前周目，作者决定 P08（G1）
+  equippedTitleIds: TitleId[];                 // 0–2；第二枚仅按 design/13 的特例生效
+  metaBridge: MetaBridgeState;                 // MetaProfile 的确定性规则投影与待提交意图
+  meridians: ProvisionalMeridianState;          // 【建议值】，AR-03
+  companionLedger: CompanionLedgerState;        // 正式，design/18 §7
+  tianshu: TianshuProgressState;
+  codex: CodexState;
+  replayRules: RuleSwitchState;
+  flags: FlagEntry[];                           // profile scope；仅获 design/13 授权的账号事实可跨周目
+  runFlags: FlagEntry[];                        // run scope，跨书界、不自动跨周目
+  counters: ScopedCounterEntry[];              // 显式 profile/run scope
+}
+
+interface CreatedMartialArtState {
+  id: 'sk_zichuang01' | 'sk_zichuang02' | 'sk_zichuang03';
+  name: string;
+  sourceSkillIds: readonly [SkillId, SkillId];
+  definition: RuntimeMartialArtDef;             // 05 §12 规则归一化后的完整 JSON 定义
+  createdAtChapterId: ChapterId;
+  createdAtVersion: number;
+}
+
+interface MetaBridgeState {
+  projection: MetaRuleProjection;
+  pending: MetaProfileIntent[];                 // 无墙钟；由平台幂等提交后显式 ack；按 intentId 全序
+}
+interface MetaRuleProjection {
+  sourceRevision: number;
+  titleStatsEnabled: boolean;                    // P14，缺字段迁移为 true
+  pastKeeperEnabled: boolean;                   // P16，缺字段迁移为 true
+  titlesUnlocked: TitleId[];
+  lastKeeperAppearance: { appearanceRef: string; vow: string; sourceLunhui: number } | null;
+}
+interface MetaProfileIntent {
+  intentId: string; kind: 'keeper_snapshot';
+  appearanceRef: string; vow: string; lunhui: number;
+}
+
+interface ChapterState {
+  chapterId: ChapterId;
+  eraLayerId: string;                            // 【建议值】，最终键归 design/11
+  worldYear: number;
+  worldTier: 'HIGH' | 'MID' | 'LOW';
+  flags: FlagEntry[];                           // 仅 chapter scope
+  counters: CounterEntry[];
+  quests: ProvisionalQuestState[];               // 【建议值】，design/12 待定
+  npcs: NpcRuntimeState[];
+  sects: ProvisionalSectMembershipState[];       // 【建议值】，design/12 待定
+  economy: ProvisionalEconomyState;              // 【建议值】，design/16 待定
+  calendar: WorldCalendarState;                  // 【建议值】，design/11 待定
+}
+
+interface PartyState {
+  active: CharacterRef[];                       // 阵位顺序，不复制角色能力
+  companions: CompanionCharacterState[];       // 在册同伴，按 runtimeId
+  reserveNpcIds: NpcRuntimeId[];
+  inventory: InventoryStack[];
+  equipment: EquipmentInstance[];
+  money: number;
+  formationPresets: FormationPresetState[];
+}
+```
+
+`MetaRuleProjection` 是载入本周目后的确定性副本，不是第二份账号事实源；`sourceRevision` 仅用于拒绝旧投影覆盖新投影。`titlesUnlocked` 与 `equippedTitleIds` 均按 ID 全序，`pending` 按 `intentId` 全序；投影、装备和待提交意图都进入状态 hash。
+
+`CharacterRef` 为主角引用或同伴 `runtimeId`；主角能力唯一写入 `profile.protagonist`，同伴在队能力唯一写入 `party.companions`。战斗初始化复制有效能力与活体资源，战后只经一次 finalize 写回；ledger 保存离队快照，不与在队对象双写。旗标必须显式指定 scope，禁止同名跨域回退；周目继承只按 `design/13` 的继承清单执行。
+
+角色武学持久字段遵循05 §2.6及tech/04 §3.10：skillId、sourceGrade/sourceCap、trueLayer/sxp/latentExp、nativeTo/learnedIn、attunedGrade/attunedIn、movesEquipped、pages/insight/flags。effective grade/layer 只重算，不双存；sourceGrade 不等于层上限。调用05 resolver后才冻结攻击，绝对品阶用于修炼门槛、有效品阶用于战斗。
+
+归属与保留边界：
+
+| 子树 | 生命周期 | 书眠默认 | 依据 |
+|---|---|---|---|
+| `profile.progression/tianshu/codex` | 跨书界/周目 | 保留或按 `design/13` 转换 | `design/13` |
+| `profile.createdMartialArts` | 当前周目、跨书界 | 本周目保留；新周目清空，图鉴事实另入 `MetaProfile` | `design/05` §12、`design/13` §6.1 |
+| `profile.metaBridge` / 已装备称号 | 本周目规则投影 | 以显式命令刷新；新周目从 `MetaProfile` 再投影 | `design/13` §8.3、§9.4 |
+| `profile.meridians` | 跨书界、当前周目永久 | 书眠全量保留；新周目按 `design/13` 重置运行态，只向 `MetaProfile` 写里程碑 | AR-03、`design/13` §6.1/§9.4 |
+| `profile.companionLedger` | 跨书界 | 保留快照与履历 | AR-09、`design/18` |
+| `profile.flags/runFlags` | 账号授权事实/当前周目 | 两者均跨书保留；新周目仅从 `MetaProfile` 重建获 design/13 授权的 profile facts，并清空 runFlags | §10 **【建议值】** |
+| `chapter.flags/quests/npcs` | 当前书界 | 归档摘要后重建 | `design/12` **【建议值】** |
+| `chapter.sects` | 当前书界 | 默认清除 | AR-07 **【建议值】** |
+| 资源点/普通资源/家丁/职位 | 当前书界 | 默认清除；显式天书/成就例外才转换 | AR-05/06 **【建议值】** |
+| `party.active/reserve` | 当前队伍 | 写入同伴 ledger 后清理/重邀 | `design/18` §6 |
+| `battle/dialogue` | 临时 | 书眠前必须为空 | 本文 |
+
+### 3.3 世界与战斗状态
+
+```ts
+interface WorldState {
+  navigation: {
+    locationId: CityId | RegionId | OffmapId;
+    selectedDestinationId: string | null;
+    journey: JourneyState | null;
+  };
+  eraRevision: number;                          // layerId 唯一取 chapter.eraLayerId
+  regions: RegionRuntimeState[];                // 【建议值】，按 regionId
+  cities: CityRuntimeState[];                   // 【建议值】，按 cityId
+  mountedRegion: {
+    regionId: RegionId;
+    spawnId: string;
+    playerHex: HexCoord;
+    facing: HexDir;
+    dynamicTiles: DynamicTileState[];
+    entities: WorldEntityState[];
+  } | null;
+  explored: ExploredRegionState[];
+  scheduled: ScheduledWorldEvent[];
+  pendingTimeAdvance: { remainingTicks: number; reason: 'rest'|'story' } | null;
+  lastTickSettlement: number;
+}
+
+interface BattleState {
+  battleId: string;
+  encounterId: EncounterId;
+  kind: EncounterKind;
+  seed: number;
+  sourceRegion: RegionId | null;
+  phase: 'deploy' | 'running' | 'ended';          // design/09 §13.1
+  tick: number;
+  round: number;
+  revision: number;
+  grid: BattleGridState;
+  units: BattleUnitState[];
+  openingOrder: UnitId[];
+  turn: TurnFrame | null;
+  sides: Record<SideId, SideState>;              // 士气、号令、黑板
+  gauges: Record<string, number>;
+  telegraphs: TelegraphState[];
+  timedEvents: BattleTimedEvent[];
+  environment: EnvironmentActorState | null;
+  reactions: ReactionQueueState;
+  profile: 'normal' | 'narrow';
+  winCond: BattleCond[]; loseCond: BattleCond[];
+  onDefeat: 'retry' | `branch:${string}` | 'continue';
+  boss: BossRuntimeState | null;
+  formations: FormationRuntime[]; waves: WaveRuntime[]; fronts: FrontState[];
+  lastActions: LastActionEntry[];
+  stats: BattleStats;
+  retry: { count: number; assistTier: 0 | 1 | 2 | 3; undoLeft: number };
+  control: BattleControlState;                  // 自动模式、策略与决策号
+  inventory: BattleInventoryState;              // 消耗品、ItemUid 与所有权锁的战内副本
+  ruleSwitches: RuleSwitchState;
+  titleRules: { statsEnabled: boolean; equippedTitleIds: TitleId[] }; // P14 入场冻结
+  predicates: BattlePredicateInputs;            // 入场时任务/时代/剧情只读事实
+  nextLocalEventSeq: number;
+  checkpoints: BattleCheckpointStore;           // §14.3 非递归状态片段
+  nextBuffIid: number;
+  nextDamageSeq: number;
+  outcome: BattleOutcome | null;
+}
+
+interface BattleUnitActionState {
+  itemState: { uses: number; maxUses: number; byId: ItemUseEntry[]; cooldowns: CooldownEntry[] };
+  moves: MoveUseEntry[];                        // moveId、uses、charges、cd、freshTurnToken
+  yunjin: { lastMode: YunjinMode | null; sourceInner: SkillId | null; resolvedAtTurnToken: number | null };
+}
+```
+
+`RegionRuntimeState/CityRuntimeState` **【建议值】** 各含稳定地理 ID、`open`、`controllerFactionId|null`、入口/场所覆盖、资源点实例引用与任务改动 revision；时代默认值在 registry，状态只存动态覆盖，切书重建。
+
+`BattleUnitState` 继承 `design/09` §13.1 的身份、unitIndex、阵营/控制、格位/朝向、CT/冻结/待移位、五资源、Buff、反击招、被擒/倒地、AI/仇恨与 flags，全部必须存档。本文统一 optional 规则状态为显式 null/空数组，adapter 映射 `id→battleId`、`env→environment` 等字段，不维护两份值。道具以 `ItemUid` 选择实例、以 `ItemId` 累计次数和冷却。运劲实际效果进入资源/Buff，最近模式供后续查询。`revision` 在预测输入改变时递增；寻路 open set、可达格与动画不保存。
+
+### 3.4 命令、事件与结果
+
+```ts
+type Command =
+  | BattleCommand                              // design/09 §13.2，§7 映射
+  | { readonly t: 'world/tick' }
+  | { readonly t: 'world/walkTo'; readonly to: HexCoord }
+  | { readonly t: 'world/travel'; readonly destinationId: string; readonly routeId: RouteId }
+  | { readonly t: 'world/mountRegion'; readonly regionId: RegionId; readonly spawnId: string }
+  | { readonly t: 'world/interact'; readonly targetId: string }
+  | { readonly t: 'world/rest'; readonly shichen: number }
+  | { readonly t: 'dialogue/choose'; readonly choiceIndex: number }
+  | { readonly t: 'quest/choose'; readonly questId: QuestId; readonly optionId: string }
+  | { readonly t: 'meridian/attempt'; readonly acupointId: AcupointId; readonly invest: number }
+  | { readonly t: 'meridian/practice'; readonly sessionId: string }
+  | EconomyCommand | SectCommand               // §11，【建议值】，受门禁校验
+  | { readonly t: 'martial/fuse'; readonly sourceSkillIds: readonly [SkillId, SkillId]; readonly name: string; readonly selection: MartialFusionSelection; readonly replaceId: CreatedMartialArtState['id'] | null }
+  | { readonly t: 'title/equip'; readonly titleIds: readonly TitleId[] }
+  | { readonly t: 'meta/applyRuleProjection'; readonly projection: MetaRuleProjection }
+  | { readonly t: 'meta/ackIntent'; readonly intentId: string }
+  | { readonly t: 'companion/rejoin'; readonly npcId: NpcRuntimeId }
+  | { readonly t: 'battle/finalize' }
+  | { readonly t: 'rules/setDifficulty'; readonly difficulty: DifficultyId }
+  | { readonly t: 'rules/setSwitch'; readonly id: RuleSwitchId; readonly enabled: boolean }
+  | { readonly t: 'chapter/bookSleep'; readonly carry: CarrySelection };
+
+interface DomainEvent<T extends string = string, P extends JsonValue = JsonValue> {
+  readonly t: T;
+  readonly seq: number;
+  readonly stateVersion: number;
+  readonly causeId: string;
+  readonly parentSeq: number | null;
+  readonly payload: P;
+}
+
+type DispatchResult =
+  | { readonly ok: true; readonly version: number; readonly events: readonly DomainEvent[] }
+  | { readonly ok: false; readonly reason: RejectReason; readonly at?: string };
+```
+
+命令不携带预计伤害、已算出的可达格或墙钟；提交时重算路径、费用与目标。所有战斗命令覆盖 `act/deploy/order/free/setAuto/concede/retry/undo`；AI 的 `act` 另带 §13 的 decision token/aiSeed 并重新验证。任意 giveItem、写旗标和发奖励不作为公共命令，只能由已授权的内容程序产生内部 intent；UI 仅选择内容中存在的 option。
+
+领域事件命名采用 `域/过去式`，例如 `battle/damageResolved`、`world/periodSettled`。事件是已提交事实和表现输入，不是 event sourcing 的唯一持久层；存档仍保存完整状态。
+
+`martial/fuse` 按 `design/05` §12 与作者决定 P08（G1 采用默认）校验“倚天后开放”、两门材料、每类/每书界/全局上限和替换槽。handler 只接受玩家选择，不接受调用方拼好的结果；在同一事务中派生 `sk_zichuang01`–`03` 的完整 `RuntimeMartialArtDef`、消费两门材料为残篇、写入角色武学并发 `martial/fused`。任一步失败全部回滚。运行时定义与普通内容定义走同一个只读 resolver，但不得写回静态 registry；跨书保留、本周目结束清空，符合 `design/13` 的继承边界。
+
+`MetaProfile` 本体仍由 `design/13` §9.4 / `tech/08` 管理，core 只保存会改变规则的确定性投影与玩法产生的待提交事实。新建/载入 run 及平台设置成功后，host 以内部 `meta/applyRuleProjection` 明确注入一个已校验版本并发 `meta/ruleProjectionChanged`；不能让查询直接读取 IndexedDB/云端，也不由 core 重定义 `PATCH /meta/settings`。`meta/applyRuleProjection` 与 `meta/ackIntent` 只由 `CoreHost` 调用，不暴露给 UI/Ink，并只在 `battle=null` 的安全点接受；战斗期间到达的云同步/ack 由 host 排队，防止外部完成时序改变战斗版本或 AI decision token。P14 的 `titleStatsEnabled` 与已装备称号在入战时冻结到 `battle.titleRules`；关闭只取消属性，不取消称呼。装备两个称号时其中一个必须是 `design/13` 指定的双称号特例，否则拒绝。P16 的 `pastKeeperEnabled` 决定新周目实例化 `npc_shoujuanren` 时是否采用投影中的最近一次外观与誓言，不在战中热切换。缺字段的旧 Meta 投影按作者决定迁移为 `true`。
+
+守卷结局提交时，core 以当时已冻结的主角外观引用、校验后的誓言和周目序号生成 `keeper_snapshot`，其 `intentId` 由 `(runId, 'keeper_snapshot', endingReceiptId)` 确定性派生；同一事务写入 `profile.metaBridge.pending` 并发 `meta/intentQueued`。平台按 `intentId` 幂等合并后回送 `meta/ackIntent` 删除待提交项；回档重发同一结局收据仍是同一 ID。平台生成的墙钟时间只进 `MetaProfile` 审计字段，不回流规则。`debugTainted` 状态不生成该意图。
+
+### 3.5 命令事务
+
+```ts
+interface CommandHandler<C extends Command> {
+  validate(read: ReadContext, command: C): RejectReason | null;
+  apply(tx: CoreTransaction, command: C): void;
+}
+
+interface CoreTransaction {
+  readonly state: DeepReadonly<GameState>;
+  readonly content: ContentRegistry;
+  set<P extends StatePath>(path: P, value: ValueAtPath<P>): void;
+  splice<P extends ArrayStatePath>(path: P, start: number, deleteCount: number, values: ItemsAtPath<P>): void;
+  rng(stream: RngStreamId): Rng;
+  emit<T extends DomainEvent>(event: Omit<T, 'seq' | 'stateVersion' | 'causeId'>): void;
+  abort(reason: RejectReason, at?: string): never;
+}
+```
+
+事务流程固定为：
+
+1. 按命令判别字段找到唯一 handler；未知命令拒绝。
+2. 对当前只读状态执行 `validate`；该阶段不能拿 RNG。
+3. 创建 mutation journal、事件暂存区和五流 RNG 的局部副本。
+4. `apply` 只经事务 helper 写状态；跨模块动作仍处于同一事务。
+5. 执行根不变量、局部数值边界和事件载荷断言。
+6. 成功：提交 RNG、`stateVersion += 1`、为暂存事件分配连续 `seq`，返回事件批。
+7. 异常或 `abort`：逆序应用 journal；丢弃 RNG 副本和事件；版本不变。
+
+生产环境不为每个命令深拷贝整棵状态。journal 记录第一次写入的 `(owner, key, oldValue)` 以及数组 splice 逆操作；战斗开始、存档和 debug 模式才做完整快照。开发构建可在事务前后做 canonical clone/deep-freeze，对照 journal 回滚结果。
+
+### 3.6 可变与不可变策略
+
+| 场景 | 策略 |
+|---|---|
+| handler 内部 | 事务 helper 独占写入，journal 记录原地变更 |
+| query | `DeepReadonly<GameState>`，纯函数；不得保存可写引用 |
+| UI/render 同线程 | 输出裁剪 DTO；开发模式冻结 |
+| core Worker | 事件批 + 版本化 projection patch；主线程副本只读 |
+| AI Worker | 裁剪 `BattleAiSnapshot`，不发送整棵 GameState |
+| 存档/战斗录像 | 完整规范快照 |
+| 回滚 | mutation journal；跨书眠等大事务额外保存完整 checkpoint |
+
+不采用 Immer/Proxy 作为生产状态层：它会增加热路径分配、隐藏写放大，并使 Worker 克隆成本难预估。它可作为测试 oracle，对小状态执行同一命令并比较结果，但不进入发布包。
+
+### 3.7 快照与投影
+
+快照分四种，名称不能混用：
+
+| 名称 | 内容 | 用途 |
+|---|---|---|
+| `SaveSnapshot` | 完整 `GameState` | TSAV 负载 |
+| `BattleStartSnapshot` | 战斗规则态 + 必需角色/内容引用摘要 + RNG | 录像与重试 |
+| `StateProjection` | UI/render 所需子集 | 展示、Worker 镜像 |
+| `BattleAiSnapshot` | AI 可见信息、候选所需规则字段 | AI Worker |
+
+投影 patch 只是一种传输优化，不进入状态哈希。主线程发现 patch 的 `fromVersion` 不等于本地版本时，必须丢弃 patch 并请求完整投影；禁止“尽量套上”造成幽灵状态。
+
+### 3.8 事件因果与错误
+
+同一根命令生成稳定 `causeId = stateVersion:commandOrdinal`；派生事件以 `parentSeq` 连接。错误分三类：
+
+- **合法拒绝**：资源不足、目标失效、不是行动者；返回稳定 `RejectReason`，不报警。
+- **内容错误**：缺 ID、非法字节码、未穷尽原语；构建期应阻断，运行时中止事务并标诊断。
+- **引擎不变量错误**：溢出、事件深度越界、状态不可序列化；中止事务，开发环境抛出，发布环境写最小诊断并保留上一个可存状态。
+
+错误文本属于 UI；core 只返回代码和可安全展示的参数，避免本地化文本进入录像。
+
+## 4. 确定性、随机数与规范哈希
+
+### 4.1 D1–D9 的落地
+
+本文实现而不改写 `tech/01` §8.3 的规则：
+
+| 规则 | core 落地 | 负向用例 |
+|---|---|---|
+| D1 随机 | 只能 `tx.rng(stream)` | `Math.random()` lint error |
+| D2 时间 | 只能读 `worldTick/battle.tick` | `Date`、`performance.now`、计时器 lint error |
+| D3 数学 | 整数、查表、允许的基础算术 | `Math.pow`、`**`、三角/指数/对数 lint error |
+| D4 取整 | 每个公式 helper 命名体现 floor/ceil/half-up | 隐式 `Math.round` 替换 Z 区 floor 测试失败 |
+| D5 顺序 | 有结果影响的集合先全序 | 无 comparator 的 `sort()`、`for…in` lint error |
+| D6 分流 | battle/loot/world/ai/qiyu | 预览消耗 RNG 的测试失败 |
+| D7 inkjs | 创建 Story 后立即覆盖 `storySeed` | 默认墙钟种子断言失败 |
+| D8 JSON | 边界递归校验 | Map/Set/undefined/NaN 拒绝 |
+| D9 golden | Node + WebKit 重放比 hash | 任一步首差异报告 |
+
+### 4.2 RNG 算法、分流与无偏区间
+
+状态推进与播种逐位沿用 `tech/01` §8.3：每流为四个 uint32 的 sfc32；master 与 ASCII 流名逐字符 `imul(h ^ char,0x9e3779b1)`，再用加量 `0x9e3779b9`、混合量 `0x85ebca6b/0xc2b2ae35` 的 splitmix32 连取四值。无额外 warm-up；源码常量与运算次序是规范，不以同名第三方算法替换。它是游戏 PRNG，不用于密钥。
+
+`rngProtocol=2` 区别于 tech/01 草案的缩放/取模抽样：本文改用拒绝抽样和概率端点免抽，不与旧录像混跑。旧协议保留对应 runner；不得仅替换 RNG 状态而宣称旧录像兼容。主种子 `1` 的执行锚点如下，完整四字状态和更多输出由 fixture 锁定：
+
+| 流 | 初始化四字状态 | 前四个 nextU32 |
+|---|---|---|
+| battle | 410886986,3948248343,382199180,4192204983 | 4256373016,2986861133,4029091281,3160275602 |
+| loot | 4115970839,3352329225,1349892310,292111708 | 3465444476,2906675482,433035362,4145665435 |
+| world | 3203807750,1498997830,4207607716,3767632768 | 4175471052,187222137,190563775,801057572 |
+| ai | 3247949964,3666686332,38919984,3728629043 | 2053330747,3456085448,1453962039,622417602 |
+| qiyu | 1852199331,2694540512,859364783,1535345410 | 1787117957,3377360768,1273374054,1195569528 |
+
+```ts
+export function intInclusive(rng: Rng, lo: number, hi: number): number {
+  assertSafeInt(lo);
+  assertSafeInt(hi);
+  if (hi < lo) throw new RangeError('RNG_RANGE');
+  const span = hi - lo + 1;
+  if (!Number.isSafeInteger(span) || span < 1 || span > 0x1_0000_0000) throw new RangeError('RNG_SPAN');
+  const limit = Math.floor(0x1_0000_0000 / span) * span;
+  let x: number;
+  do x = rng.nextU32(); while (x >= limit);
+  return lo + (x % span);
+}
+
+export function chanceBp(rng: Rng, chance: number): boolean {
+  const bp = clampInt(chance, 0, 10_000);
+  return bp === 10_000 || (bp !== 0 && intInclusive(rng, 0, 9_999) < bp);
+}
+```
+
+拒绝抽样可能为一次判定消费多个 uint32，但给定状态仍完全确定；它消除了 `% 10000` 与 `2^32` 不整除产生的轻微偏差。0 bp 不消费 RNG且必败，10000 bp 不消费 RNG且必成；这条优化固定为协议，golden 会锁定消费位置。
+
+随机流使用边界：
+
+| 流 | 允许 | 禁止 |
+|---|---|---|
+| `battle` | 命中、招架、暴击、浮动、战斗效果、撤退 | 战利品、AI tie-break |
+| `loot` | 掉落表、奖励随机品质 | 战斗判定 |
+| `world` | Ink seed、世界事件、资源受扰、天气 | UI 装饰 |
+| `ai` | 明确配置的等分候选破同分 | 模拟命中；AI 预测用期望值 |
+| `qiyu` | 奇遇池抽取 | 普通旅行事件 |
+
+新增流会改变存档 schema，不能临时用字符串创建。随机选择前必须把候选按稳定 ID 排序；权重累计使用整数，禁止浮点 alias table。
+
+### 4.3 整数、bp 与溢出
+
+| 量 | 表示 | 规则 |
+|---|---|---|
+| 气血、内力、tick、计数、最终属性 | JS safe integer | 写入时 `Number.isSafeInteger` |
+| 先天/混合资质等未取整输入 | 精确分子/分母，或构建期定点整数 | 不把 58.58 等先天输入提前取整；超精度构建失败 |
+| 比例/概率 | bp，10000 = 100% | 状态和 IR 都是整数 |
+| 金钱/资源 | 非负 safe integer | 饱和/拒绝由归属规则决定，不静默环绕 |
+| 临时精确乘积 | `bigint` | 不进 GameState/事件/JSON |
+| UI 小数 | 由 UI 格式化 | 不回传参与结算 |
+
+```ts
+export function mulDivFloor(a: number, b: number, d: number): number {
+  assertSafeInt(a); assertSafeInt(b); assertSafeInt(d);
+  if (a < 0 || b < 0 || d <= 0) throw new RangeError('MULDIV_DOMAIN');
+  return floorRatio(BigInt(a) * BigInt(b), BigInt(d));
+}
+export function floorRatio(n: bigint, d: bigint): number {
+  if (d <= 0n) throw new RangeError('DIV_DOMAIN');
+  const q = n / d - (n < 0n && n % d !== 0n ? 1n : 0n);
+  const out = Number(q);
+  if (!Number.isSafeInteger(out)) throw new RangeError('INT_OVERFLOW');
+  return out;
+}
+
+export const mulBpFloor = (value: number, bp: number): number =>
+  mulDivFloor(value, bp, 10_000);
+
+export function mulBp3Floor(value: number, a: number, b: number, c: number): number {
+  for (const n of [value, a, b, c]) assertSafeInt(n);
+  return floorRatio(BigInt(value) * BigInt(a) * BigInt(b) * BigInt(c), 1_000_000_000_000n);
+}
+```
+
+BigInt 只作精确中间数，会产生分配；不承诺整条伤害路径零堆分配。上例数组校验是可读版本，优化版逐参数校验。资源成本正数 half-up 用 `floorRatio(2n*n+d,2n*d)`（变量 n/d 为 bigint），signed floor 必须处理负余数；世界/坐标模用 `((a%m)+m)%m`。优化成 Number 或约分版本前，须证明中间积不越安全整数且与此 oracle 等价。
+
+### 4.4 禁用 API 与 lint
+
+`packages/core` 的 tsconfig 固定 `strict:true, noUncheckedIndexedAccess:true, exactOptionalPropertyTypes:true, target:ES2023, lib:[ES2023], types:[]`，阻断 DOM/Node ambient 泄入。测试和 host 用独立配置。ESLint 至少阻断：
+
+```text
+Math.random, Date, Date.now, performance.now
+setTimeout, setInterval, requestAnimationFrame, queueMicrotask
+crypto.getRandomValues, Intl.*, localeCompare
+Math.pow, **, exp/expm1/log/log1p/log2/log10
+sin/cos/tan/asin/acos/atan/atan2/sinh/cosh/tanh/hypot/cbrt
+Array.prototype.sort()（无参数）
+for...in（规则集合）
+eval, Function, WebAssembly.compile（DSL）
+window, document, navigator, localStorage, indexedDB, fetch
+```
+
+可执行 ESLint flat-config 片段（禁用表由脚本展开为 `no-restricted-properties`，此处列结构规则）：
+
+```ts
+const coreRules = {
+  'no-restricted-globals': ['error', 'Date', 'performance', 'window', 'document', 'fetch', 'crypto', 'Intl'],
+  'no-restricted-syntax': ['error',
+    { selector: 'BinaryExpression[operator="**"]', message: 'Use exact integer arithmetic' },
+    { selector: 'ForInStatement', message: 'Use a total order' },
+    { selector: 'CallExpression[callee.property.name="sort"][arguments.length=0]', message: 'Comparator required' }],
+  'no-restricted-imports': ['error', { patterns: ['node:*', '@tianshu/render*', '@tianshu/ui*', '@tianshu/platform*'] }],
+  'no-eval': 'error', 'no-new-func': 'error'
+} as const;
+```
+
+补充自定义 lint/代码审查规则：
+
+- 不依赖对象键的插入顺序；`Object.keys` 后必须用明确比较器，或改用已有稳定数组。
+- 不用 `localeCompare`，因为 locale/ICU 可变；ID 用 ASCII 全序比较。
+- 不让 `Map/Set` 的迭代顺序决定结果；它们只可作瞬时查找索引。
+- 不以 Promise 完成先后、Worker 返回先后或墙钟超时决定规则分支。
+- 不把异常栈、文件路径、设备信息写进状态或哈希域。
+- 禁别名/解构绕开 Math、全局 API；DSL 编译器拒绝任意 property path。为每个禁例提供 lint fixture，不能仅靠字符串搜索。
+
+### 4.5 规范序列化与哈希域
+
+`canonicalStateJson(state)` 采用 `tech/04` 的 UTF-8、无 BOM/空白规范；对象键按 Unicode code point 全序，数组保留语义顺序，拒绝非有限数/孤立 surrogate，`-0→0`。用 `Array.from(key)` 按 `codePointAt(0)` 比较，不能用默认 UTF-16 sort 或 localeCompare。递归直接拼 `JSON.stringify(key)+':'+encode(value)`；不能先重建对象再 stringify，否则整数形键会再次被 JS 重排。字符串值的换行编码为 JSON escape；摘要前不另加尾换行。
+
+状态哈希：
+
+```text
+stateBytes = UTF8(canonicalStateJson(GameState))
+stateHash  = lowercaseHex(SHA-256(stateBytes))
+```
+
+SHA-256 由外层 `HashPort` 执行：浏览器/Worker 用 `crypto.subtle.digest('SHA-256', bytes)`，Node 测试用 `node:crypto`。两者输入同一字节串。Web Crypto 不因哈希需求进入 core 的规则代码。
+
+进入哈希：完整 `GameState`、战斗 RNG、规则开关、任务/同伴/周期结算游标。排除哈希：TSAV 头的保存时间/设备、表现队列、诊断耗时、AI 搜索统计、cache、压缩字节。
+
+### 4.6 跨引擎 golden
+
+每份 golden fixture 固定：
+
+```ts
+interface GoldenReplayFixture {
+  fixtureVersion: 1;
+  contentHash: string;
+  coreBuild: string; rulesProtocol: number; rngProtocol: number;
+  initialState: JsonValue;
+  commands: Command[];
+  checkpoints: Array<{ afterAccepted: number; stateHash: string }>;
+  finalStateHash: string;
+}
+```
+
+CI 在 Node/V8 与 Playwright WebKit/JSC 各执行同一 fixture，输出首个不同的命令、事件、RNG 五流及 JSON Pointer。官方 WebKit 带 Playwright 补丁，不等同真机 Safari；CI 锁 runner 版本/浏览器二进制，升级重跑旧 golden，只有经审阅的规则变更才重建预期值。iOS Safari 另做发布抽验（待实测）。
+
+### 4.7 确定性验收用例
+
+| # | 场景 | 断言 |
+|---|---|---|
+| DET-01 | 相同 seed/状态/命令运行 100 次 | 事件字节与终态 hash 完全一致 |
+| DET-02 | 在每条命令前调用全部 query/预览 | 与不调用时 RNG 和结果一致 |
+| DET-03 | 合法命令后插入一个非法命令 | 后续结果不变；非法命令零 RNG/零事件 |
+| DET-04 | 候选输入打乱 | 排序后选择、A* 路径、Buff 顺序不变 |
+| DET-05 | Node 与 WebKit | 所有 checkpoint hash 相同 |
+| DET-06 | `chanceBp` 0/10000 | 恒假/恒真，且不推进 RNG |
+| DET-07 | `intInclusive(0,9999)` 大样本 | 值域完整；无越界；统计仅作非阻断烟测 |
+| DET-08 | 事务中途抛内容错误 | 状态/RNG/version 与命令前逐字相同 |
+| DET-09 | JSON 键插入次序不同 | canonical bytes 与 SHA-256 相同 |
+| DET-10 | 状态含 NaN/Infinity/-0/undefined | 前三者按规则拒绝或归一；undefined 拒绝，不静默丢键 |
+
+## 5. 世界 tick、时代图层与探索
+
+### 5.1 固定逻辑步终值
+
+```ts
+export const TICK_HZ = 10;
+export const TICK_MS = 100;
+export const WORLD_TICKS_PER_SHICHEN = 3_000; // 【建议值】：5 分钟实玩
+export const WORLD_TICKS_PER_DAY = 12 * WORLD_TICKS_PER_SHICHEN;
+```
+
+`design/06` 已固定“一日 = 12 时辰”，故建议值核算为：
+
+```text
+3000 tick ÷ 10 tick/s = 300 s = 5 min / 时辰
+12 时辰 × 3000 tick = 36000 tick = 3600 s = 60 min / 日
+```
+
+日历固定使用 **12 时辰/日**；时辰对应多少实玩 tick 尚待 `design/11` 定稿。`tech/02` 的“24 分钟一昼夜”不能直接用作玩法常量；F2 需同步表现时钟。尺度变更必须迁移日历余数并重跑 Buff、经济 golden，不改变 10 Hz。
+
+### 5.2 单 tick 事务与批量调用
+
+`world/tick` 的 validate 检查可推进探索状态，停时返回 `WORLD_PAUSED`，不改版本或事件序号。每条命令只推进一个逻辑 tick；以下为 apply 顺序：
+
+```ts
+function applyWorldTick(tx: CoreTransaction): void {
+  advanceCalendarTo(tx, tx.state.chapter.calendar.elapsedTicks + 1);
+  tx.set('meta.worldTick', tx.state.meta.worldTick + 1);
+  stepNpcSchedules(tx);
+  if (canAdvanceWorld(tx.state)) stepRegionHazardsIfDue(tx);
+  if (canAdvanceWorld(tx.state)) stepWorldMovement(tx);
+  if (canAdvanceWorld(tx.state)) detectEncounters(tx);
+}
+```
+
+| 状态 | 是否推进 | 说明 |
+|---|---|---|
+| 区域探索/旅程结算 | 是 | 由前台固定步累计器调用 |
+| 战斗 | 否 | 战斗用事件驱动 `battle.tick` |
+| 对话/全屏菜单/暂停 | 否 | 默认停时；剧情主动耗时用显式命令 |
+| 页面 hidden/系统挂起 | 否 | 恢复时丢弃积压，不离线挂机 |
+| 加载/迁移/存档 | 否 | I/O 用时不等于世界时间 |
+| 调试跳时 | 显式 | 走 `debug/advanceTime` 并置 `debugTainted` |
+
+主循环每帧最多调用 5 次 `tick()`；每次重新 validate，遇停时立即停止，仍有积压即丢弃。`tick(5)` 不作为独立事务或录像输入；host 连调五次与五帧各调一次得到相同版本、RNG、事件和 hash。第一个 tick 开战时，后四个不被接受。core 不接收帧 dt；相同已接受 tick 序列的结果相同，卡顿丢积压会减少实玩推进量，不能宣称相同墙钟时长也一致。暂停/hidden 由 host 停发，规则停时由 core 再校验。
+
+### 5.3 日历与边界事件
+
+日历状态 **【建议值】** 只存归属层能解释的稳定索引，不从现实日期推导：
+
+```ts
+interface WorldCalendarState {
+  epochId: string;
+  calendarSpecId: string;
+  epochYear: number;
+  elapsedTicks: number;
+  shichenIndex: number;       // 自本书界 epoch 起，单调递增
+  dayIndex: number;
+  monthIndex: number;
+  yearOffset: number;
+  slotInDay: 0|1|2|3|4|5|6|7|8|9|10|11;
+}
+```
+
+`CalendarSpec` **【建议值】** 暂定每月 30 日、每年 12 月、每年 360 日，无闰月；这是游戏日历默认，不声称符合历史历法。`chapter.worldYear = epochYear + yearOffset`，其余 index 是 `elapsedTicks` 的校验缓存。书眠直接更换 epoch/时代，绝不把跨越的数十年当作已游玩周期发工资。已有周期账本以 epoch 分区。
+
+从旧 tick `a` 推进至 `b` 时，合并所有时辰/日/月/年边界：
+
+```text
+各 period 枚举 floor(a/period)+1 .. floor(b/period)
+按 (boundaryTick, boundaryKindRank, handlerId, ownerId) 全序归并
+每个边界先结算刚结束的 [periodStart,boundaryTick)
+再应用同刻的职级/归属/排程变更，最后进入下一周期
+```
+
+同刻顺序固定为时辰→日→月→年，处理器 ID 按 ASCII；任务通知在该边界经济/Buff 写入后发布。显式休息跨 12 时辰也逐边界结算，遇遭遇/对话则保存 `pendingTimeAdvance` 的剩余量，停在触发边界，不能提前跳到终点。同一处理器以 `(epochId, periodKind, periodIndex, handlerId, ownerId)` 幂等，保存游标；禁止按资源点逐个扫完整历史，避免用新任职/新归属结算旧周期。
+
+### 5.4 大地图、时代层与区域挂载
+
+遵守作者 P53：大地图是目的地/路线选择，不是第二张可行走网格。三个坐标域严格分离：
+
+| 域 | 身份 | 用途 | 禁止转换 |
+|---|---|---|---|
+| 全国导航 | `city_*`/`rg_*`/`route_*` + WGS84/SVG | 选目的地、路线、时代名 | 不从经纬度生成战场格 |
+| 区域地图 | `RegionId + HexCoord` | 探索、实体、地形 | 不把 SVG 像素当轴坐标 |
+| 战场局部 | `battleId + HexCoord` | 截取后的战斗规则 | 战后只按映射表写回区域 |
+
+时代合成顺序 **【建议值】**：
+
+```text
+design/19 基础地理
+→ 当前 chapter/eraLayer 的历史开放状态
+→ design/11 势力、NPC、门派、资源点、营生状态
+→ 当前 GameState 的任务/占领/破坏覆盖
+→ 只读 WorldLocationView
+```
+
+`world/eraChanged` 必须在书眠大事务内发出；切层后按稳定 ID 重建 NPC 存在性、城市/区域覆盖、路线与入口，再选择合法出生点。依赖的规则包先由 host 预载和校验；事务内不发网络请求。素材异步挂载失败保持“待挂载”态，重试不重复书眠/扣费。动态结果只写 GameState，不回写 registry 或 SVG。
+
+### 5.5 旅行与区域探索
+
+旅行命令只提交目的地和玩家选择的路线：
+
+1. 查询当前时代开放且条件满足的路线；按 `(cost, routeId)` 排序展示。
+2. `world/travel` 重新校验端点、专线、资源与任务门禁。
+3. 建立 `JourneyState`，含已选择路线、固定路段、剩余逻辑 tick、已触发事件槽位与预抽取内容（如有）；禁止预抽一次、触发时再抽一次。
+4. 每次 tick 推进整数距离；越过事件槽时用 `world`/`qiyu` 对应流结算。
+5. 抵达后发 `world/journeyCompleted`，再由 host 加载区域包；加载成功后提交 `world/mountRegion`。
+
+图外专线只有两端，中途不能插入城市。若内容包加载失败，旅程仍停在“已抵达、待挂载”，不能回滚随机事件或重复扣费。
+
+### 5.6 世界 Buff 与计划事件
+
+`design/06` 的 `onWorldTick` **每时辰一次**；`onCalendar/onAreaEnter/onRest/onBookSleep` 按其事件发出，不能把 10 Hz 当作 Buff 触发频率。`design/08` 的探索环境步为每 2 实玩秒，即 `2×10=20 tick`；战斗环境改用 CT。为避免每 tick 扫描全状态：
+
+- 短时按 tick 的事件进最小堆；键为 `(dueTick, priority, scheduleSeq)`。
+- 时辰/日/月事件挂到边界 bucket；只有跨边界才访问。
+- 世界 Buff 维护 `nextDueShichen`；处理后算下次，不逐 tick 递减。
+- 区域外 NPC 不做连续位移模拟，只在日程边界按规则更新抽象 location。
+- 任何计划项必须有稳定 `scheduleSeq`，不得用数组当前索引作永久身份。
+
+### 5.7 探索命令与碰撞
+
+探索移动可以在 UI 表现为连续行走，但规则提交的是离散目的格。host 可缓存输入，在下一逻辑 tick 提交至多一条 `world/walkTo`；core 求出并逐步重验六邻路径、通行、高差、体力、交互锁和实体占用。路径在中途失效时停在最后合法格，发 `world/pathInterrupted`，不瞬移到终点。
+
+每进入一格的固定顺序：
+
+1. 离开旧格钩子；
+2. 扣移动/体力成本；
+3. 更新坐标与朝向；
+4. 地形 `onEnter` 与世界 Buff；
+5. 拾取/触发区/脚步噪声；
+6. NPC 警觉、遭遇检测；
+7. 任务位置条件；
+8. 发出合并后的投影事件。
+
+触发战斗后本 tick 不再推进其余路径。地形危险若使主角倒下，先结算其失败/救回规则，再判断遭遇，避免“死亡后开战”。
+
+### 5.8 世界时间测试
+
+| # | 场景 | 断言 |
+|---|---|---|
+| W-01 | 前台 3000 tick | 恰跨 1 时辰；`worldTick += 3000` |
+| W-02 | hidden 30 分钟再恢复 | 0 个补跑 tick、0 次产出 |
+| W-03 | 显式休息跨 13 时辰 | 13 个时辰边界、1 或 2 个日边界按起点计算 |
+| W-04 | 同一周期事件重放两次 | 幂等键使第二次无产出 |
+| W-05 | 旅程结束后区域包加载失败并重试 | 费用/随机事件只结一次 |
+| W-06 | 对话停时 10 分钟 | 世界 tick 不变 |
+| W-07 | 从时代 A 切 B | 地理 ID 不变；显示名/开放/势力按 B 投影 |
+| W-08 | 全国坐标相同的两城时代名 | 以 `cityId+chapterId` 求值，不以显示名作键 |
+| W-09 | 五次单 tick 与 host 一帧追五次 | 版本/事件/RNG/hash 相同；中途开战立即停止 |
+| W-10 | 任职、升职、占领恰逢月界 | 旧周期按旧资格；新资格只影响下周期 |
+| W-11 | 书眠跨百年 / 满 20 tick / 满 3000 tick | 不补百年产出 / 环境一步 / 世界 Buff 一时辰 |
+
+## 6. 六角格、构网、寻路、LOS 与范围
+
+### 6.1 坐标与稳定序
+
+```ts
+export interface HexCoord { readonly q: number; readonly r: number }
+export type HexDir = 0 | 1 | 2 | 3 | 4 | 5;
+
+export const HEX_DIRS = [
+  { q: 1, r: 0 }, { q: 1, r: -1 }, { q: 0, r: -1 },
+  { q: -1, r: 0 }, { q: -1, r: 1 }, { q: 0, r: 1 },
+] as const;
+
+export function hexDistance(a: HexCoord, b: HexCoord): number {
+  const dq = b.q - a.q;
+  const dr = b.r - a.r;
+  const ds = -dq - dr;
+  return Math.max(Math.abs(dq), Math.abs(dr), Math.abs(ds));
+}
+
+export const compareHexRQ = (a: HexCoord, b: HexCoord): number =>
+  a.r - b.r || a.q - b.q;
+```
+
+坐标均为 safe integer；立方坐标 `(q,r,s=-q-r)` 满足和为 0，绕原点转一步为 `(q+r,-q)`，六次还原。索引 key `${q},${r}` 不用作坐标排序。六邻扩展 dir=0..5，格集合按各模板要求的 `(distance,r,q)`，存档格按 `(r,q)`；伤害目标另按 `unitIndex`（04 §7.5），不能混用。
+
+### 6.2 战场格与构网
+
+```ts
+interface BattleTileState {
+  q: number; r: number;
+  sourceQ: number; sourceR: number;
+  height: number;
+  terrainId: TerrainId;
+  overlays: TerrainOverlayState[];
+  objectId: string | null;
+}
+
+interface BattleGridState {
+  tiles: BattleTileState[];          // 按 r,q 持久化
+  qMin: number; qMax: number;
+  rMin: number; rMax: number;
+  sourceRevision: number;
+  writeBack: BattleWriteBackEntry[];
+}
+```
+
+就地开战完全消费 `design/09` §2.9：普通场目标 120–150 格、含精英 150–200、Boss 200–300、群战 320–400，且 `tileCount≤400`、`qSpan≤20`、`rSpan≤20`。算法：
+
+1. 把主角和领头敌人的中点 cube-round 为遭遇中心。
+2. 枚举中心三格内 37 个候选，按 `(distance,r,q)`。
+3. 逐环取区域真实格直至目标数量或跨度上限。
+4. 检查单位边距、可站立比例、三行动攻击位连通、退路。
+5. 计算 `S=2*standRatio+reachScore+0.3*min(1,sigma(h)/2)-0.05*distance`，使用下述定点精度。
+6. 同分取中心偏移小、`r` 小、`q` 小；不耗 RNG。
+7. 失败依次扩大 15%、尝试窄场、再使用内容预设 `battleAnchor`；没有合法锚点即拒绝开战并报内容错误。
+
+战场只复制区域事实和写回映射。火烧、冰封、物件损毁等可持久变化在战后按映射事务写回；临时 `aoe_zone`、战斗 Buff 和动画印记不写回。
+
+评分精度 **【建议值】**：`standBp=floor(10000*standable/N)`，`reachBp=floor(10000*reachable/unitCount)`；`V=N*sum(h*h)-sum(h)*sum(h)`，`sigmaBp=isqrt(V*10000²)/N` 向下取整。`scoreBp=2*standBp+reachBp+floor(3000*min(20000,sigmaBp)/20000)-500*distance`。`isqrt` 为 BigInt 整数平方根；精度与同分规则锁 `rulesProtocol`，不会由 `Math.sqrt` 末位误差改变战场。空样本拒绝。
+
+### 6.3 通行图与 A*
+
+寻路状态不仅是格：
+
+```ts
+interface PathNodeKey {
+  q: number; r: number;
+  mode: MoveMode;
+  waterRun: number;
+  staminaLeft: number;
+  flyoverUsed: boolean;
+  lowClimbUsed: boolean;
+  movementSegment: number;
+}
+```
+
+每一步只走六邻；飞越是 `design/09` §4.2.2 定义的一条特殊直线边。边合法性和地形成本引用 `design/08` §5.2、§7.2；战斗再叠加 ZOC。A* 使用：
+
+```text
+g' = g + moveCost08 + zocCost + specialActionCost
+h  = 已证明每边 cost >= hexDistance(edge)*minStepCost 时的距离下界
+否则 h=0（退化 Dijkstra；飞越/跨沟/特殊低成本边的默认）
+f  = g' + h
+```
+
+open heap 的全序键为：
+
+```text
+(f, actionCount, dangerCount, fullPathRank, nodeStateRank, insertionSeq)
+```
+
+到达目标后继续处理 `f≤bestCost` 的节点，再按 `(totalCost,actionCount,dangerCount,fullPathRank)` 选解；不能因第一个等价目标先出堆就结束。完整路径用逐格 `(r,q)` 字典序，nodeStateRank 包含上述所有状态。只有同状态且总成本/次级键均不优的标签才能剪枝；少体力、已用飞越的标签不能覆盖更可行的标签。“任一攻击位”使用目标集合的可采纳距离下界，默认 h=0。
+
+可达集用 Dijkstra，不为每个候选格重复跑 A*。预览结果包含 `path`, `cost`, `staminaCost`, `hazards`, `interrupts`；提交仍重算。
+
+### 6.4 占用、ZOC 与强制位移
+
+- 普通格可穿过友方、不可停在占用格；`narrow` 格连友方也不可穿。
+- 敌方/中立单位阻挡；满足轻功条件时每段移动最多飞越 1 个非 `bulk` 单位。
+- ZOC 进入/离开成本及截击由 `design/09` §4.4 定；路径搜索与逐步提交使用同一个 helper。
+- 强制位移不调用普通 A*，沿确定 `HexDir` 逐格解析：合法空格 → 移动；占用/障碍 → 撞击；虚空/水 → `design/08` 坠落；边界外按真实源区域格判断。
+- 同时位移按事件队列顺序，不做“物理同时”；后处理者看到前处理者的新位置。
+
+### 6.5 六角范围模板
+
+运行时只实现 `design/09` §5.3 的生产模板。基础族与格数校验：
+
+| 族 | 核心形式 | 最大格数检查 |
+|---|---|---|
+| 点 | `aoe_single/aoe_self` | 1 |
+| 环 | `aoe_ring(r)` | `r=0` 为 1，否则 `6r` |
+| 面·圆盘 | `aoe_disk(r)` | `1+3r(r+1)` |
+| 面·直线/射线 | `line/bolt/spokes` | 按定义的 `n/r` |
+| 扇形 | `aoe_cone(r,60\|120,6\|12)` | 与 `design/09` 表的 `Nmax` 一致 |
+| 地表/友方/全场 | 内层几何或单位筛选 | 按最大合法目标数 |
+
+```ts
+export function disk(center: HexCoord, radius: number, out: HexCoord[]): number {
+  let n = 0;
+  for (let dq = -radius; dq <= radius; dq++) {
+    const lo = Math.max(-radius, -dq - radius);
+    const hi = Math.min(radius, -dq + radius);
+    for (let dr = lo; dr <= hi; dr++) out[n++] = { q: center.q + dq, r: center.r + dr };
+  }
+  stableSortPrefix(out, n, compareHexRQ);
+  return n;
+}
+```
+
+上例为语义版，热路径写调用方预分配坐标槽。扇形把位移变为 `U=2*dq+dr,V=dr`；六主向 `(u,v)` 取 `(2,0),(1,-1),(-1,-1),(-2,0),(-1,1),(1,1)`，十二向的奇数方向取相邻主向之和。令 `D=U*u+3*V*v,C=U*v-V*u`，60° 保留 `D>0 && 9*C*C<=D*D`，120° 为 `D>0 && C*C<=D*D`，并限制六角半径、排除原点。无需 atan2/sqrt/epsilon。r=3 主向为 7/15 格，半向为 9/13 格（09 T34b）。
+
+过滤场外、高差、阻断后按模板格序显示；普通范围映射单位、去重后按 `unitIndex` 结算并消费 RNG。同目标按段序；链式/溅射的主次顺序由内容行为定义。09 §5.3 中“格序稳定 RNG”的文字需 F2 改成格序与目标序分别规定，以 04 §7.5 的伤害归属裁定为准。
+
+旧 `sq/diamond/cross/x` 只在 `tech/04` 构建迁移层改写；运行时 IR 不接受旧模板。范围预览直接返回 core 格集合，render 不得再次算几何。
+
+### 6.6 LOS 与可见性
+
+LOS 语义完全引用 `design/08` §5.6 与 `design/09` §5.5：
+
+1. `sonic` 直接通过；`melee` 只校验高差。
+2. 其余按 `cube lerp + cubeRound` 取得不含两端的单条格线。
+3. 以有理数比较视线高度，避免中间浮点：距离为 `N`、第 `i` 格时比较 `cellHeight*N - (eyeA*(N-i)+eyeT*i)`。
+4. `los=full` 或实体高出视线至少 2 级阻断。
+5. `projectile` 另被路径单位阻断，穿过至少 2 格有效 partial 阻断；其余 partial 每格 `hit -10`、至多 2 格。仅当 `cell.h+canopy>=lineHeight` 才计冠层/烟雾。
+6. lerp 使用整数分子、分母 N；cubeRound 选平方距离最小的整数 cube，完全等距按 `(r,q)` 选一个，不额外检查另一侧格。可枚举 q/r 各 floor/ceil 的四组合，再令 s=-q-r，以三轴整数误差平方和比较。
+
+可见性再要求视野半径内、LOS 可通且 partial≤1，并叠加隐身/听风规则。AI 只读可见集合和最后已知位置；改变未被观测敌人的真实坐标不得改变其输入/输出。
+
+### 6.7 构网与几何测试
+
+| # | 场景 | 断言 |
+|---|---|---|
+| H-01 | `(0,0)` 到 `(3,-2)` | 距离 `max(3,2,1)=3` |
+| H-02 | disk r=0/1/2/3 | 1/7/19/37，全部唯一 |
+| H-03 | ring r=1/2/3 | 6/12/18，闭环且稳定序 |
+| H-04 | 对称地图两条等价路 | 取完整 tie-break 指定路径 |
+| H-05 | 输入 tiles 随机排列 100 次 | 构网、路径、范围、LOS 字节相同 |
+| H-06 | 400 格群战窗口 | 不越 tile/span 上限；构建在预算内 |
+| H-07 | 两队隔河、一方不能踏水 | 候选失败后移至桥/锚点，不生成无解战 |
+| H-08 | 六种朝向旋转同一 cone | 命中格数符合 `design/09` 表，旋转对称 |
+| H-09 | 射线恰过两格边界 | 等距按(r,q)取一个；正反方向格集相同，Node/WebKit 一致 |
+| H-10 | 战场火烧草地、临时 zone | 焦土写回；zone 不写回 |
+| H-11 | 预览后单位移位再提交 | 重验后拒绝或按新状态求值，不信任旧路径 |
+| H-12 | 全国经纬度与区域格都为零 | 类型/命名空间隔离，不能误传编译 |
+
+## 7. 战斗时间轴、行动与反应
+
+### 7.1 战斗状态机与初始化
+
+战斗规则唯一归属仍是 `design/09`；本节把其状态机落实为可重放的 core 过程。阶段只能按下列边前进：
+
+```text
+deploy → running（openingOrder → CT，S/A/E 游标）→ ended
+ended → battle/finalize → 世界状态与奖励提交，battle=null
+```
+
+`deploy` 不推进 CT；确认布阵后运行开场钩子并生成首轮，全部放在 `running` 内。一条命令及其派生段、反应、倒地检查同事务完成。`ended` 的纯战斗终局可录像、重试；世界奖励由独立幂等 `battle/finalize` 提交（§14），防止录像调用任务/掉落等未封闭输入。
+
+初始化顺序固定：
+
+1. 按遭遇配置解析参战者，并以 `(sideRank, spawnSlot, characterId)` 分配永不复用的 `unitIndex`。
+2. 按 `design/09` §2.9 从区域格生成局部六角网；复制可写回地形的来源映射。
+3. 应用难度规则开关、敌人模板、装备、武学与永久被动，得到基础属性快照。
+4. 挂载跨战斗 Buff，再实例化战斗被动；每一步都按定义 ID 升序。
+5. 派发 59-hook 表中的 `onBattleStart`，重算脏属性与阵法。
+6. 冻结轻功/速度/身法降序键，生成 `openingOrder`；前三项相等时先比 openingPriority 降序，再阵营 rank、unitIndex。
+7. 有环境演化时创建 `{ct:500, spd:100}` 的环境行动者；否则为 `null`。
+8. 进入 `running`，执行首位 S 段到 `awaitAction`；不使用随机 CT0。
+
+先机须在第 6 步前就绪，冻结后不重排。09 §3.3 文字含 openingPriority、公式漏列，本文按文字实现并登记同步，默认 priority=0。剧情 openingSlot 仅接受带非空理由、槽位唯一的构建批准覆盖，其余槽按全序填充。首轮援军不插队，以 entryCT（默认 500）进入后续 CT。
+
+### 7.2 事件驱动 CT
+
+`battle.tick` 只在时间轴跨到下一个规则事件时跳变，不按渲染帧逐 tick 循环。CT 内部允许 `[-1000,1299]`，行动阈值 1000，缓存后的 `spd` 必须在 `[30,300]`。
+
+按 09 §3.1，`spd=clamp(floor((72+0.30*agi+0.10*Ld+0.14*qinggong+flat)*(1+pct)),30,300)`；小数先天用精确分数输入，最后 floor 一次。STD Lv1/35/70 为 `floor(91.56/106.794/127.665)=91/106/127`；禁止提前取整先天或重复加入轻功贡献。
+
+```ts
+type TimelinePick =
+  | { readonly t: 'opening'; readonly unit: UnitId }
+  | { readonly t: 'timed'; readonly event: BattleTimedEventId }
+  | { readonly t: 'environment' }
+  | { readonly t: 'unit'; readonly unit: UnitId }
+  | { readonly t: 'stalled' };
+
+function ticksToReady(ct: number, gain: number): number {
+  if (ct >= 1000) return 0;
+  return Math.trunc((1000 - ct + gain - 1) / gain);
+}
+```
+
+选择顺序严格为：尚未消费的首轮槽 → 当前 tick 到期的定时事件 → 已就绪环境行动者 → 已就绪单位 → 跳到最近事件。首轮结束后的单位全序是 `ct` 高、`spd` 高、有效轻功高、阵营 rank 小、`unitIndex` 小；同 tick 的定时事件在环境与单位之前，按 `(atTick,registerSeq)`。
+
+寻找跳变量时，对所有可推进单位取 `ceil((1000-ct)/spd)`，并与环境及未来定时事件的距离取最小正整数 `dt`。随后一次性执行 `ct += spd*dt`、环境 `ct += 100*dt`、`battle.tick += dt`。全部单位被冻结且没有环境或未来事件时返回 `stalled`，转胜负/僵局判断；严禁把 `Infinity` 写入状态。
+
+正常行动结束的收招实现为：
+
+```text
+recEff = clamp(halfUp(recBase × (10000 + recPctBp) / 10000) + recFlat, 500, 2000)
+ct'    = clamp(ct - recEff + pendingShift, -1000, 999)
+```
+
+首轮单位不是先得到 1000 CT 再行动；其行动后直接置为 `clamp(1000-recEff+pendingShift,-1000,999)`。当前行动者受到 `ctShift` 时累积进 `pendingShift`，避免被 E6 收招覆盖；其他单位立即修改。正向位移不把已就绪单位推得更高，负向位移可把它拉出就绪区。
+
+### 7.3 S/A/E 行动执行器
+
+一次正常行动完全采用 `design/06` §5.2 的 S1–S7、A、E1–E6；core 只维护执行游标和“本次是否为额外行动”。
+
+```ts
+interface TurnFrame {
+  actor: UnitId;
+  turnToken: number;
+  cursor: TurnPhase;                           // S1…S7 / awaitAction / A / E1…E6
+  extra: boolean;
+  movedSteps: number;
+  usedFreeOrder: boolean;
+  usedFreeTianshu: boolean;
+  reactionBudget: number;
+  normalRecovery: number | null;
+  originalAction: LastAction | null;
+}
+```
+
+- S1 周期发作（0–99），地形停留 priority 150 先于 S2 DOT（200–299）；S3 倒地，S4 回复（300–399），S5 驱散（400–449），S6 控制（450–499），S7 其余（500–899）；同段按 priority/iid。
+- S 执行一次后保存 awaitAction；免费号令/天书在此提交限次，不重跑 S。普通 act 从此游标起算移动+一个动作；只有游势允许移—动—移。
+- E1 onTurnEnd；E2 持续与适用冷却递减；E3 到期 onExpire/onRemove；E4 expire:one 衰减一层并重置持续；E5 最多一次不可连锁再动；E6 收招与胜负检查。
+- 额外行动只执行 S6、A、E1，不递减持续或冷却，不重置 `limitPerTurn`，结束后回到原正常行动的 E6。
+- 硬控跳过 A 段仍执行完整 E 段并用 1000 收招；因此“1 次行动”不会因控制而永久挂住。
+
+turnToken 只在新正常行动开始时递增；反应、免费、再动不重置 limitPerTurn。提交边界停在 deploy/awaitAction/ended，内部 S/E 游标用于执行，半个伤害段不能存档。招式/道具新 CD 用 freshTurnToken 跳过施放当次；普通 trigger cooldown 在持有者 E2 递减，机制 limits.cooldown 从机制结束后起算（06 §11.3）。journalMark 留在事务内，不能存进 TurnFrame。
+
+### 7.4 行动计划、运劲与道具
+
+```ts
+type BattleAction =
+  | { readonly t: 'skill' | 'hidden'; readonly move: MoveId; readonly target: Target; readonly aim?: HexAim }
+  | { readonly t: 'item'; readonly item: ItemUid; readonly target: Target; readonly aim?: HexAim }
+  | { readonly t: 'yunjin'; readonly mode: YunjinMode; readonly sourceInner?: SkillId; readonly investBp?: 1000|2000|3000; readonly buffIid?: number }
+  | { readonly t: 'guard' | 'wait' | 'flee' | 'struggle' | 'cover' | 'swapWeapon' }
+  | { readonly t: 'unseal' | 'capture'; readonly target: UnitId }
+  | { readonly t: 'rescue'; readonly target: UnitId; readonly item?: ItemUid }
+  | { readonly t: 'talk'; readonly mode: TalkMode; readonly target?: UnitId }
+  | { readonly t: 'discern'; readonly target: Target }
+  | { readonly t: 'combo'; readonly combo: ComboId; readonly partner: UnitId; readonly target: Target; readonly aim?: HexAim }
+  | { readonly t: 'yiyun'; readonly aux: SkillId }
+  | { readonly t: 'drawWeapon'; readonly item: ItemUid }
+  | { readonly t: 'pickup'; readonly tile: HexCoord }
+  | { readonly t: 'dual'; readonly a: MoveTarget; readonly b: MoveTarget };
+interface MoveTarget { readonly move: MoveId; readonly target: Target; readonly aim?: HexAim }
+
+interface BattleActionPlan {
+  readonly walkTo?: HexCoord;
+  readonly action: BattleAction;
+  readonly order?: 'moveFirst' | 'actFirst';
+  readonly walkAfter?: HexCoord;
+  readonly facing?: HexDir;
+}
+```
+
+验证顺序为：行动权 → 单位状态 → 路径与移动预算 → 行动类别未被禁 → 内容 ID/装配/冷却 → 目标/范围/LOS → 资源与本场限次 → 反应/脚本门禁。通过后才扣资源；命中失败、被招架或被抵抗均不退款。资源扣除、弹药数、物品数、冷却和事件属于同一事务。
+
+耗内基数引用MPREF而非当前mpMax：Lv35 MPREF=4697，天阶基准8%为half-up(375.76)=376。主/辅运收益、性质、辅运被动可用性严格用05 §5.1–5.5，持续与触发率不因auxRatio一起折扣；易运重建被动并保留合法实例计数。gateCap按绝对品阶与显示等级，解锁按effLayer，避免低武压制解锁更高层。
+
+BattleCommand 从 09 §13.2 的生成契约导入，act 的平铺移动字段对应 BattleActionPlan；分支分别校验，不用 JsonValue payload 兜底。左右互搏 a/b 各有目标与朝向。运劲七模式及成本见 09 §4.8.4；invest 的 0.1/0.2/0.3 在边界转为精确 investBp，化解 buffIid 必须存在。它不推进冲穴/周天/九转；旧 meditate 仅在 adapter 迁为 yunjin:tiaoxi。
+
+道具命令只含背包实例与目标，不含效果值。普通道具本场次数、同 ID 冷却、擂台/切磋禁用和收招引用 `design/09` §4.8.3；core 从内容表解释效果。数量先进入事务 journal，再派发 `onItemUse`，使任何后续不变量失败都能完整回滚。统一事件序为 `battle/actionDeclared` → 资源/背包变化 → `battle/itemUsed` 或 `battle/yunjinResolved` → Buff/治疗等派生事实 → `battle/actionEnded`；拒绝时这一串均不产生。事件只存模式、来源/目标、消耗和实际结果，不嵌内容文案。
+
+### 7.5 招式、多段与反应队列
+
+一招解析为 AttackFrame 序列：普通范围按 target.unitIndex，同目标按 segmentIndex；每段完整调用 §8。默认最后一段后每目标判一次附加 Buff，perHit 才逐段判；正常段之后依次连击、位移、P8 反应入队。
+
+```ts
+interface ReactionItem {
+  seq: number;
+  depth: 1 | 2 | 3;
+  kind: 'beforeHit' | 'counter' | 'formationCounter' | 'followup';
+  actor: UnitId;
+  target: UnitId;
+  move: MoveId;
+  powerBp: number;
+  sourceFlags: AttackFlags;
+}
+
+interface AttackFlags {
+  reflected: boolean;
+  redirected: boolean;
+  mirrored: boolean;
+  countered: boolean;
+  followup: boolean;
+}
+```
+
+P8 队列 FIFO；入队继承来源位并设自身位，出队重验存活、距离、高差、控制、武器和资源。深度>3、单单位对同一敌方行动反应>1、同攻击反击>2 则不入队。reflected/redirected/mirrored 任一为真，三类反震/转移/镜返全部禁止再次生成；countered/followup 阻止反击/连击链，不能只检查同名位。
+
+beforeHit 是判定前的同步中断帧，区别于 P8 FIFO，仍计入同一深度/次数预算。攻击者因此倒地、硬控或离开射程则按 09 §6.3 取消普通招，绝招霸体只豁免规定的打断。反震属于 P7 即时伤害，带 reflected；simultaneous 的反震延至整批资源应用后。
+
+连击仅在合法单体类招式最后一段命中、未招架且主目标仍站立时判定；追加段沿用攻击快照、`powerMul=5000bp`、不耗内、不再连击。通用反击与追击分别使用 `5000bp`、`4000bp`，特殊条目由上游给值。core 不把这些倍率编码进 Buff 原语。
+
+### 7.6 合击、阵法与环境行动者
+
+合击提交时重新验证 `ComboDef`、羁绊、双方武学、距离、状态与搭档 `ct>=300`。成功后：
+
+1. 冻结两人的招式与属性输入；扣两段各自资源，搭档 `ct-=300`。
+2. 按 `ComboDef.order` 结算两段；第一段命中时第二段带 `mustHit`。
+3. 两段分别走完整 Z0–Z10；Z3 加成和情缘加成读取 `design/09` §6.7。
+4. 守方全合击至多反击一次且目标为发起者；合击不触发连击。
+5. 发起者以两招较大收招，双方记录合击次数并各加气势。
+
+阵法不是每帧扫描。仅在开场、阵员移动/位移/控制/倒地、阵员 E1、阵法时限变化时把 `formationRevision` 置脏；事务提交前按阵法 ID、候选阵主 `unitIndex` 重算。模板的六次旋转及可选镜像按固定次序枚举；多个合法匹配取 `(totalDeviation,rotation,mirrorRank,memberIndices)` 最小者。阵散、阵破、阵滞和虚拟阵位完全引用 `design/09` §6.8；虚位绝不创建单位或 CT。
+
+环境行动者的 N1–N6 处理顺序引用 `design/08` §7.4；每行动一次 `ct-=1000`。它不推进任何单位持续、冷却或轮数。环境产生的新着火格、冰裂和机关事件按格 `(r,q)` 再按注册序处理；持久地形变化通过来源映射写回区域，临时 zone 丢弃。
+
+### 7.7 倒地、化险与战斗结束
+
+气血降至 0 时严格走 `design/09` §7.1 的十级拦截链：非死斗 → Boss 阶段门 → 剧情锁定 → 锁血 → 书灵护佑 → 化险为夷 → 诈死 → 复活 → 慈悲制服 → 倒地。不得把多个保命机制都消费。
+
+化险为夷采用作者决定 P56（G1 采用默认）：每战至多 1 次，仅玩家方、友方和具名 NPC，切磋/擂台禁用；`chanceBp=clamp((luk-60)*75,0,3000)`，成功留 1 HP。0 bp 不取 RNG；其他值按 §4.2 拒绝抽样。
+
+倒地移出时间轴与占格，保留救护记录。段/同时批后记候选结局；按 09 规定在 S3 致死、反应队列清空或 E6 安全点提交，不能中途跳过尚应结算的反应。终局冻结 outcome，发 battle/ended；其后 finalize 才执行 onBattleEnd→Buff 清理/转世界→伤势→调息→奖励和区域写回。重试前不得写入世界奖励，finalize 失败可重试而不重复结算（§14）。
+
+### 7.8 战斗执行测试
+
+| # | 场景 | 断言 |
+|---|---|---|
+| B-01 | 轻功 98/82/75/55 四人开场 | 首轮固定同序，不耗 RNG |
+| B-02 | 首轮收招 1100/1000/900 | CT 为 -100/0/100，后续按整数跳时 |
+| B-03 | 同 tick 定时、环境、三单位就绪 | 定时 → 环境 → CT 全序单位 |
+| B-04 | 当前行动者同时受 -310 与 +100 CT | E6 合并后只钳制一次 |
+| B-05 | 硬控 1 行动 | A 跳过、E2 递减、收招 1000 |
+| B-06 | 反击触发追击再触发反击 | 来源位与深度阻断递归 |
+| B-07 | 合击段 1 命中、段 2 原命中率 40% | 段 2 必中；搭档扣 300 CT |
+| B-08 | 阵眼被推离模板 | 同事务阵破、光环失效、失衡生效 |
+| B-09 | 环境与 Buff 都写“1 tick” | 环境只推进环境次数，不递减单位 Buff |
+| B-10 | 致死且锁血、化险、复活同时可用 | 只消费优先链第一项 |
+| B-11 | 命令验证失败/派生不变量失败 | 前者零写入；后者 journal 完整回滚 |
+| B-12 | 同一战斗输入运行 100 次 | 事件、RNG、状态哈希逐字相同 |
+
+## 8. Z0–Z10 伤害管线
+
+### 8.1 输入、输出与不可变快照
+
+每个“来源—目标—段”调用一次伤害管线。区域、多段、合击、连击和反击只是生成多个调用，不得在外层复制一套简化公式。
+
+```ts
+interface DamageInput {
+  readonly attackSeq: number;
+  readonly segmentIndex: number;
+  readonly attacker: UnitId;
+  readonly defender: UnitId;
+  readonly move: MoveId;
+  readonly sourceHex: HexCoord;
+  readonly targetHex: HexCoord;
+  readonly powerBp: number;
+  readonly flags: Readonly<AttackFlags>;
+  readonly prediction: boolean;
+}
+
+interface DamageResult {
+  readonly judge: JudgeResult;
+  readonly incoming: number;
+  readonly settlement: Settlement;
+  readonly trace?: DamageTrace;
+}
+```
+
+整招 P1 创建 AttackSnapshot，冻结攻方面板、有效品阶/层数、招式和攻方乘区；不是每段重新冻结攻方。每段在援护/同步 beforeHit 完成后读取最新守方、资源与几何，按对应掷骰前钩子合并开关。P2 的 powerMul/旗标可修改本攻击帧，P3 的 noCrit 等仍可覆写判定；禁止把“快照”误解为跳过钩子。已经结算的区不追溯重算；新守方 Buff/破盾影响后段。simultaneous 按 §8.6 单独冻结。
+
+### 8.2 判定顺序与 RNG 预算
+
+Z0 固定执行：合法性/援护 → 命中 → 命中后整招反制 → 招架 → 暴击。概率统一为 `roll∈[0,9999] && roll<chanceBp`；0 或 10000 bp 走常量分支，不消费 RNG。正常实际段按命中、机制概率、招架、暴击的发生次序从 `battle` 流取数，不为未到达的分支预抽。
+
+```ts
+const rollBp = chanceBp; // 唯一实现为 §4.2，禁止复制一套取模概率函数
+```
+
+命中失败或整招作废时，不执行 Z1–Z10，也不抽浮动。招架与暴击可同时为真。附加效果的免疫/抵抗在伤害结算后按定义序独立取 RNG；它们不能借用命中 roll。预测模式绝不调用 RNG，而是返回分支概率、各分支 9500/10000/10500 bp 的区间与期望。
+
+### 8.3 逐区执行与取整
+
+公式唯一来源为 `design/04` §4；实现用生成的 zone registry 固定顺序，不能按对象键枚举。
+
+| 区 | 输入与实现动作 | 唯一取整点 | trace 关键字段 |
+|---|---|---|---|
+| Z0 `judge` | hit=`clamp(8500+40*(hit-eva),4000,9900)`；parry=`clamp(1200+40*(parry-pierce),0,6000)`；crit=`clamp(1000+40*(crit-tough),200,7500)`，最后应用开关 | parry×方位×targetParryMult 全式末 floor，不能先除一次 | 概率、roll、开关来源 |
+| Z1 `base` | `ATKmix=floor((atkOut*(10000-wIn)+atkIn*wIn)/10000)`；`D1=floor(ATKmix*124*Pactual/(100*Pref))` | 仅 ATKmix 与 D1；Pref 取攻方显示等级/书界，只除一次 | 内外比、G/L/倍率与参考威力 |
+| Z2 `defense` | 各侧穿透钳 0..6000bp，floor 后混合再 floor；`D2=floor(D1*120*ATKmix/(100*DEFmix+120*ATKmix))` | 不先把 K 或 Fdef 化为舍入 bp | 防御、穿透与精确分式 |
+| Z3 `dmgUp` | 攻方适用增伤先加后钳 `[0.5,2.0]` | `D3=floor(D2*F3)` | 每来源 bp、合计 |
+| Z4 `dmgDown` | 守方减伤/易伤加法，钳 `[-0.5,0.75]` | `D4` | 标签筛选与合计 |
+| Z5 `affinity` | `Aap=(1-wIn)*(.80+.004*apCat)+wIn*(.80+.004*apInner)`；相性加法池钳 -3000..5000bp | Aap 保留分数，与相性相乘后只取 D5 | Aap 分子/分母、相性来源 |
+| Z6 `crit` | 暴击才乘 `critDmg` | `D6` | 暴击倍率 |
+| Z7 `position` | 方位10000/11000/13000；高差按08；地形加法池±3000bp；三因子合成 F7 后钳5000..20000 | `F7=floor(dirBp*heightBp*terrainBp/10000²)`，再 D7 | 三因子与方向 |
+| Z8 `realmGap` | 显示等级差，每级 150 bp、封顶 ±1500 bp | `D8` | 等级差与钳制 |
+| Z9 `parry` | 普通招被招架 ×0.50；绝招 ×0.75 | `D9` | 招架类型与倍率 |
+| Z10 `variance` | 实战均匀整数 `[9500,10500]`；预测 10000 | `D10` | roll 值 |
+
+以下函数为 Z1/Z2 的可执行算术核，输入已由轻量边界检查验证为安全整数/正分母；Pactual/Pref 保留分数，避免 power 被重复归一化。其余区沿表使用 §4.3 helper 和 trace sink，所有表达式常量从 04/05 的生成表取。
+
+```ts
+interface Ratio { readonly n: number; readonly d: number }
+interface BaseDefenseInput {
+  readonly atkOut: number; readonly atkIn: number; readonly wInBp: number;
+  readonly defOut: number; readonly defIn: number;
+  readonly pierceOutBp: number; readonly pierceInBp: number;
+  readonly actual: Ratio; readonly reference: Ratio; readonly ignoreDef: boolean;
+}
+function baseDefense(x: BaseDefenseInput): readonly [number, number, number] {
+  const w = BigInt(x.wInBp), o = 10_000n - w;
+  const attack = floorRatio(BigInt(x.atkOut)*o + BigInt(x.atkIn)*w, 10_000n);
+  const d1 = floorRatio(BigInt(attack)*124n*BigInt(x.actual.n)*BigInt(x.reference.d),
+    100n*BigInt(x.actual.d)*BigInt(x.reference.n));
+  const out = mulBpFloor(x.defOut, 10000-clampInt(x.pierceOutBp,0,6000));
+  const inn = mulBpFloor(x.defIn, 10000-clampInt(x.pierceInBp,0,6000));
+  const defense = x.ignoreDef ? 0 : floorRatio(BigInt(out)*o + BigInt(inn)*w, 10_000n);
+  const k = 120n*BigInt(attack);
+  const d2 = attack === 0 ? 0 : floorRatio(BigInt(d1)*k, 100n*BigInt(defense)+k);
+  return [attack, d1, d2];
+}
+```
+
+Lv35 锚点：ATKmix=1040、DEFmix=607、Pactual=Pref=2.88，`D1=floor(1040*124/100)=1289`；`D2=floor(1289*124800/(60700+124800))=867`；Z3/Z4 中性、Aap=9800bp 时 `D5=floor(867*.98)=849`。区值非负；incoming=D10 是 P5 前事实，不等于飘字。
+
+### 8.4 `DamageTrace` 与来源归因
+
+```ts
+interface ZoneTrace {
+  zone: 'Z0'|'Z1'|'Z2'|'Z3'|'Z4'|'Z5'|'Z6'|'Z7'|'Z8'|'Z9'|'Z10';
+  before: number | null;
+  after: number | null;
+  factorBp?: number;
+  terms: readonly TraceTerm[];
+}
+interface TraceTerm { sourceId: string; key: string; value: number | boolean | string }
+interface DamageTrace {
+  damageSeq: number; attackSeq: number; segmentIndex: number;
+  zones: readonly ZoneTrace[]; settlement: Settlement;
+  rngBefore: RngStateJson; rngAfter: RngStateJson; drawCount: number;
+}
+```
+
+`sourceId` 必须指向招式、Buff 实例 `iid`、装备、阵法或规则开关；不存本地化文案。release 默认只保留紧凑 `DamageResolved`，开发、录像诊断或玩家展开战斗日志时开启完整 trace。开启 trace 只能增加旁路记录，不能走不同公式或改变分配顺序。
+
+为控制分配，`DamageTraceBuilder` 从 battle scratch pool 借固定容量数组；容量不足时报 `TRACE_TRUNCATED` 并保留各区汇总，不能影响伤害。日志可据此回答：输入值、每区前后值、哪个来源加入、在哪一次取整，而不是从最终伤害逆推。
+
+### 8.5 伤害后结算
+
+Settlement 完整采用 `design/04` §6 的 P5–P8 顺序：
+
+1. `onBeforeHurt`：无敌、转移、单击上限等机制防护；整招镜返已在 Z0/P3b 决定。
+2. 护体吸收：`shieldBlocked=min(shield,incoming)`；破盾倍率只影响 `shieldSpent`。
+3. `mpGuard` 等资源代扣。
+4. 扣气血并区分 `uncappedHpDamage/hpDamage/overkill`。
+5. 气血为 0 时执行 §7.7 倒地拦截链。
+6. 仅以 `hpDamage` 计算吸血、伤害型吸内、反震。
+7. 判附加效果；`hpDamage=0` 时阻断伤势/流血，其他按自身标签。
+8. 发事件并完成本段。
+
+```ts
+interface Settlement {
+  incoming: number;             // Z10，P5 机制处理前
+  settledIncoming: number;      // 无敌/转移/单击上限处理后，进入资源吸收
+  shieldBlocked: number;
+  shieldSpent: number;
+  shieldAfter: number;
+  guardedHp: number;
+  mpGuardSpent: number;
+  uncappedHpDamage: number;
+  hpDamage: number;
+  overkill: number;
+  hpAfter: number;
+  mpAfter: number;
+  downed: boolean;
+}
+```
+
+`incoming` 始终保留 Z10 原值，`settledIncoming` 则是 P5 依优先级执行无敌、转移与单击上限后的本目标伤害；被机制归零、转出或截下的份额另记带来源的 `prevented/redirected/capped` trace term，不混入资源守恒。守恒断言采用 `settledIncoming = shieldBlocked + guardedHp + uncappedHpDamage`。当前气血、剧情阶段门或锁血再把 `uncappedHpDamage` 截为 `hpDamage`，差额计入 `overkill` 类诊断，不得增加吸血、反震或击杀。事件顺序为 `damageResolved` → 发生变化的 `shieldChanged/mpChanged/hpChanged` → `downed/phaseChanged` → drain/reflect → `effectApplied`。
+
+DOT/HOT 不伪装成普通招式：DOT 按 `design/04` §6.5 的抗性、半额通用 Z4、专属 Z4、Z8 与 Boss 系数公式执行，不跑 Z0–Z10、暴击或浮动；HOT 走治疗公式。每次持有者行动 DOT/HOT 合计上限分别为 12%/8% `hpMax`，按 `design/06` 指定优先级裁剪。
+
+治疗/护盾也不能逐乘取整：T21 的 `floor(2*1.16*1.30)=3`，`floor(1*1.29*1.30*1.2)=2`。HOT 快照施治 healPower、每跳读持有者 healRecv；DOT 整式只末尾 floor，比例因子普通/精英/Boss/守卷=10000/5000/2500/1500bp。回内每行动总量上限为 mpMax 的 6%（06 §11.1）。
+
+### 8.6 多目标、同时批与预测
+
+普通范围按稳定目标序逐个结算，因此前一目标死亡导致的光环消失可以影响后一目标。只有内容明确 `simultaneous:true` 才：
+
+1. 冻结所有目标、攻方规则与资源前值；
+2. 在批次 reservation ledger 中按 unitIndex 分配共享护体/代伤者 MP、机制限次，目标不读取别人的伤害结果；
+3. 对同一资源地址累计 delta，校验总支出不超过冻结余额后按稳定序一次应用；不能独立算两份“尚有1次复活”；
+4. 批全部应用后才排反震/反应并判胜负。共享稀缺资源按上述序仲裁为实现默认，需同步 04 §7.5；不允许负余额或机制重复消费。
+
+多段将 `powerBp` 的商余数分给前 `powerBp % hits` 段，保证段威力之和不丢 1 bp。逐段取整造成总伤略低是规则结果，不能把尾差偷偷加回最后一段。溅射、连锁、反击、合击各自生成独立 `DamageInput`，不可共用判定。
+
+`queryDamagePreview` 调用同一 evaluator 的纯分支模式，输出命中/招架/暴击概率、条件最小/期望/最大伤害、可见 modifier。隐藏敌方属性按 UI 已知区间或 `unknown`，不得泄露真实值。查询不改 cache 以外状态、不耗 RNG、不触发 hook，也不把预测 trace 写入战斗日志。
+
+### 8.7 伤害测试与 golden
+
+除逐字复用 `design/04` §12 向量外，core 增加：
+
+| # | 场景 | 断言 |
+|---|---|---|
+| D-01 | 0/10000 bp 判定 | 都不耗 RNG，结果恒假/真 |
+| D-02 | 暴击且招架 | 先 Z6 后 Z9，trace 顺序固定 |
+| D-03 | 三个 Z7 因子 | 先合为 bp，再只取整一次 |
+| D-04 | 护体 100、incoming 150、破盾 ×2 | blocked 100、spent≤100、气血前伤 50 |
+| D-05 | `hp=30`、资源后伤害 50 | hpDamage 30、overkill 20；吸血基数 30 |
+| D-06 | 3 段总 `powerBp=10000` | 3334/3333/3333 |
+| D-07 | simultaneous 双方致死 | 两段都应用后才按胜负规则裁决 |
+| D-08 | trace 开/关 | 状态、事件事实字段、RNG 状态一致 |
+| D-09 | 预测查询 1000 次 | 状态与全部 RNG 流完全不变 |
+| D-10 | Node 与 WebKit 重放 | 每段 zone 值、settlement、终局哈希一致 |
+
+## 9. Buff DSL 编译与运行时
+
+### 9.1 构建期 IR，不在运行时解释 YAML
+
+`packages/data` 负责把 `design/06` 的 `BuffDef` schema 编译为只读 `BuffProgram`；core 不解析 YAML、不执行任意字符串、不替上游定义第五种叠加或新原语。
+
+```ts
+interface BuffProgram {
+  readonly defIndex: number;
+  readonly id: BuffId;
+  readonly stack: CompiledStackSpec;
+  readonly duration: CompiledDurationSpec;
+  readonly mods: readonly CompiledMod[];
+  readonly hooks: readonly CompiledTrigger[];
+  readonly onApply: readonly OpCode[];
+  readonly onRemove: readonly OpCode[];
+  readonly staticTags: readonly number[];
+}
+
+interface CompiledTrigger {
+  readonly hookIndex: number;
+  readonly priority: number;
+  readonly whenPc: number;
+  readonly chancePc: number;
+  readonly opsStart: number;
+  readonly opsLength: number;
+  readonly limitPerTurn: number;
+  readonly limitPerBattle: number;
+  readonly cooldown: number;
+}
+```
+
+构建器从 06 对应 schema 的 HOOK_IDS/OP_IDS 生成 TS、Zod enum、文档快照与穷尽检查。本次逐项核对 06 §6.1/6.4 为 **59 hooks、50 原语**；下表仅登记接入点，不重复定义语义。未知 hook/op 构建失败，新增时显式升 DSL 协议。
+
+| 分组/数量 | 接入 hook（按上游登记，编译时分配稳定 index） |
+|---|---|
+| 生命周期 2 | onBattleStart, onBattleEnd |
+| 行动 3 | onTurnStart, onTurnEnd, onExtraAction |
+| 移动地形 6 | onMove, onMoveEnd, onTerrainEnter, onTerrainStay, onDisplaced, onEnemyEnterAdjacent |
+| 攻击 22 | onTargeted, onAllyTargeted, onBeforeAttack, onBeforeHit, onDodge, onMiss, onParry, onParried, onBeforeCrit, onCrit, onCritted, onAttacked, onBeforeHurt, onHit, onHurt, onShieldBroken, onKill, onDeath, onAllyDeath, onAllyHit, onAllyHurt, onAfterAttack |
+| 资源 9 | onSkillCast, onUltimate, onHeal, onHealed, onMpSpent, onMpDrained, onRageFull, onItemUse, onHpBelow |
+| 实例 11 | onApply, onRefresh, onStack, onStackMax, onRemove, onExpire, onDispelled, onBuffApplied, onBuffApply, onImmuneBlocked, onResisted |
+| 世界 6 | onWorldTick, onRest, onAreaEnter, onCalendar, onTalk, onBookSleep |
+
+### 9.2 表达式字节码
+
+表达式只允许字面量、白名单上下文字段、整数/定点运算、比较、布尔运算、条件选择和白名单查询函数。禁止赋值、循环、递归、属性动态索引、对象构造、正则、`eval`、`Function`、宿主函数和隐式字符串转数字。
+
+```ts
+type ExprOp =
+  | 'PUSH_CONST' | 'LOAD_CTX' | 'LOAD_PARAM' | 'LOAD_SNAPSHOT'
+  | 'ADD' | 'SUB' | 'MUL_EXACT' | 'DIV_EXACT' | 'MIN' | 'MAX' | 'CLAMP'
+  | 'FLOOR' | 'CEIL' | 'HALF_UP' | 'ABS' | 'NEGATE'
+  | 'EQ' | 'LT' | 'LTE' | 'GT' | 'GTE' | 'NOT' | 'JUMP_IF_FALSE' | 'JUMP_FORWARD'
+  | 'COUNT_TARGETS' | 'HEX_DISTANCE' | 'HAS' | 'STACKS_OF' | 'STAT'
+  | 'MAIN_CAT' | 'PO_MATCH' | 'IS_BOSS' | 'SAME_SIDE' | 'RHO' | 'DAYS_SINCE';
+type ExprConstant = string | boolean | null | { readonly n: number; readonly d: number };
+
+interface ExprProgram {
+  readonly code: Uint16Array;
+  readonly constants: readonly ExprConstant[];
+  readonly maxStack: number;
+}
+```
+
+复用 tech/04 §4.6 ExprNode，经版本化扩展补 string/enum/null 与 06 白名单函数；字符串不是任意路径，enum 仅在同域可比。小数字面量从源码十进制词法精确转 n/d；MUL/DIV 保留有理数至显式 floor/ceil/round 或所属公式最终边界，不能每乘一次就取 bp。round 明确 half-up，负数为 floor(x+1/2)。
+
+栈用预分配类型 tag + Float64Array 存 safe integer/池索引，复杂分数走 BigInt 临时 lane；不能把安全整数塞 Int32Array。编译器校验类型、字段的 hook 可用域、零分母、最大栈深与中间值边界；动态除零回滚命令。布尔短路用仅前向跳转，每程序≤256 指令 **【建议值】**；`world.*` 只在允许的世界上下文使用。
+
+### 9.3 实例、索引与派发
+
+```ts
+interface BuffInstanceState {
+  iid: number;
+  def: BuffId;
+  source: UnitId | null;
+  holder: UnitId;
+  origin: { type: BuffOriginType; id: string };
+  g0: number; g: number;
+  stacks: number;
+  turnsLeft: number | null;
+  charges: number | null;
+  penBp: number;
+  dormant: boolean;
+  freshTurnToken: number | null;
+  lastErodedTurnToken: number | null;
+  triggers: Array<{ key: string; cooldownLeft: number; usedThisTurn: number; usedThisBattle: number; turnToken: number }>;
+  snapshot: Record<string, ExprConstant>;
+  params: Record<string, ExprConstant>;
+  phase: 'latent'|'active'|'terminal'|null;
+  worldClock: { appliedAt: number; nextTickAt: number|null; nextFlareAt: number|null; phaseChangedAt: number } | null;
+  revealed: SideId[];
+}
+```
+
+`iid` 在单场严格递增且不复用。持久世界 Buff 另用 profile/chapter 范围实例 ID；挂入战斗时分配新的 battle `iid`，同时保留 `originIid` 供回写。`defIndex`、属性、标签和原语均为构建产物的密集 index，存档仍写稳定字符串 ID。
+
+每单位建 59 个 hook bucket，元素为 iid/triggerIndex；变更仅更新相关 bucket。派发全序为 `(priority,iid,triggerIndex)`，全场也按该序归并，主体顺序作为最终 tie。入派发时复制活跃引用至该嵌套深度独占 scratch；新增实例不进入当前快照，已移除实例跳过。嵌套派发不能覆盖父层目标/VM 栈；同实例同 trigger 同 event 仅执行一次。
+
+性能目标是稳态事件分发/目标枚举零临时数组与闭包分配；预分配按深度分层的 scratch、实例索引和 op 队列。BigInt、journal 和外发事件仍分配，GC/上限性能须实测。增益10、减益10、其中机制合4及全场360上限按06执行；360以上拒新非机制。永久10–25/单位不计极性上限却可能先占满360，保留规则并报告上游容量冲突，不静默扩容或丢永久被动。
+
+### 9.4 施加、叠加、互斥与品阶对抗
+
+施加流程必须调用同一个入口：免疫 → 效果命中/抵抗 → Boss 调整 → 叠加键 → 四种叠加规则 → 数量上限 → 钩子 → cache 置脏。剧情强制来源跳过免疫命中骰，但仍计算免疫压制。
+
+四种叠加语义直接解释 `design/06` §4.1：
+
+- `refresh`：延长到较大剩余值；只有更高品阶替换来源与快照。
+- `stack`：层数封顶、整池取高品阶，快照按 `max/latest`。
+- `independent`：每次新实例；超上限淘汰剩余最短、再 `iid` 最小者。
+- `highest`：多来源并存，仅数值/品阶/剩余/`iid` 全序最高者 active；其他仍计时。
+
+互斥组在建实例前解析；替换也必须执行旧实例 `onRemove`，再执行新实例 `onApply`。族加成先按正负各自上限聚合，再求净值；数值缓存 key 包含 `buffRevision`。
+
+品阶穿透使用整数 bp：
+
+```ts
+function rhoBp(delta: number): number {
+  if (delta <= 0) return 0;
+  return Math.min(9000, 1500 + 1500 * delta);
+}
+```
+
+故 `Δ=1/2/3/4/≥5` 为 3000/4500/6000/7500/9000 bp。免疫、抵抗、驱散、机制防护和新免疫净化的具体解释只引用 `design/06` §3.5；负抗性不被削弱。驱散同一效果每持有者行动至多削品一次，需记录 `lastErodedTurnToken`。
+
+penBp 每次结算按当前免疫重算，移除免疫后可恢复；静态 mods 自动乘 pen，trigger 中的 amount/chance 必须按上游表达式显式引用 pen，禁止两边都乘。免疫提升会按06执行净化/削弱与层数调整；g0 原生品阶不变，g/pen/快照各司其职。
+
+作者决定 P41（G1 采用默认）的两个天道规则在载入 run 时互斥：天道劫第6重起中/低武压制3/5；无天道关闭品阶压制并把层上限设10。它们不取消等级、修为或来源门槛，作用于 effective resolver，不改 Buff g0。
+
+### 9.5 原语执行器与递归护栏
+
+每个 op 先解析稳定目标列表，再依序执行；一个目标失败默认不阻断下一个 op，只有 `stopOnFail` 结束当前 trigger。运行时 switch 对生成的 `OpId` 穷尽，`default` 分支是不可达内容错误，不做静默忽略。
+
+原语按职责调用既有子系统：
+
+| 类别 / 原语（本次共50） | 调用目标 | 护栏 |
+|---|---|---|
+| 修饰5：modStat, modZone, modJudge, modCost, modRange | modifier aggregator | 只置脏，不改基础属性 |
+| 伤疗10：dealDamage, heal, healLostPct, restoreMp, burnMp, drainHp, drainMp, modRage, shield, mpGuard | §8 settlement | 来源位、实际扣血口径 |
+| 实例6：applyBuff, removeBuff, dispel, erodeGrade, immune, reveal | 统一入口 | removeBuff 不代替需对抗的 dispel |
+| 防护9：invulnerable, damageCap, lockHp, revive, redirect, reflect, mirror, guard, negateAttack | P1/P3/P5/P6/P7 | 品阶/次数/来源位 |
+| 行动8：extraAction, ctShift, skipAction, disableAction, disableSkillType, forceTarget, aiOverride, triggerMove | §7 timeline/queue | 深度、每行动/每战次数 |
+| 位移隐匿3：displace, stealth, summon；兵器1：weaponBreak | grid/unit/equipment | 路径/召唤上限/所有权 |
+| 杂项8：setFlag, clearFlag, setPhase, convertDamage, modTerrain, log, vfx, sfx | 事务 helper/事件 | Buff flag 仅 attack/turn/battle scope；表现不反写 |
+
+全局派生事件深度上限 32 **【建议值】**，单根命令触发 op 上限 4096 **【建议值】**。到限即中止并回滚整个命令，而不是截断成一个看似成功的不同结果。反应深度 3 是更窄的战斗规则限制，两者同时生效。
+
+06 的 disableAction.types 仍含旧 meditate，构建 adapter 明确映为 yunjin，所有派生禁用清单也迁移；新 IR 禁别名。hook 对可写 ctx 字段逐项校验（例如 onBeforeHurt 可写伤害、onDeath 可拦截死亡），其他字段只读。任务的永久 flag API 与 Buff 临时 setFlag 分开。
+
+### 9.6 世界钩子与持久化
+
+59 个 hook 中的 `onWorldTick/onRest/onAreaEnter/onCalendar/onTalk/onBookSleep` 由 §5 调度，不能把全体 Buff 每 100 ms 扫一遍。编译期为每个持久实例计算所需世界 bucket；日历事件携带稳定 period index，重复派发由实例的 `lastHandledPeriod` 幂等挡住。
+
+战斗结束时，带 `persist` 的实例序列化为世界形态：保存定义 ID、品阶、层数、来源身份、剩余世界时长、快照和必要 params，不保存 battle `iid`、hook bucket 或属性 cache。再次入战时重建索引。书眠先派发 `onBookSleep`，再按 `design/06` 清除非永久实例；迁移不能因未知 Buff ID 而把整个存档判废，交 §14 fixup 处理。
+
+### 9.7 Buff 测试矩阵
+
+| # | 场景 | 断言 |
+|---|---|---|
+| BF-01 | 生成 hook 表 | 恰 59 个且与 schema/登记表集合一致 |
+| BF-02 | 每个生成 `OpId` 最小合法 fixture | switch 全覆盖，无未知原语 |
+| BF-03 | 同优先级 20 个实例乱序插入 | 派发始终按 `iid,triggerIndex` |
+| BF-04 | trigger 中移除自身并添加同 hook Buff | 当前快照不重入；下次派发可见 |
+| BF-05 | refresh 低品阶覆盖高品阶 | 只延时，不换来源/快照 |
+| BF-06 | independent 超实例上限 | 淘汰剩余最短、再 iid 最小 |
+| BF-07 | Δ=-1/0/1/2/5/20 | rho 为 0/0/3000/4500/9000/9000 bp |
+| BF-08 | 40% 正抗与更高 3 品效果 | 有效抗性 16%；负抗不削 |
+| BF-09 | 额外行动 | 不递减 turns/cd，不重置触发次数 |
+| BF-10 | DOT 触发反震链 | 来源位阻断递归且守恒 |
+| BF-11 | 世界事件重复派发同 period | 第二次无效果、无 RNG 消耗 |
+| BF-12 | 表达式畸形/超指令/除零 | 构建期失败，不进入发布包 |
+
+## 10. 任务 DSL、旗标与 Ink 桥
+
+### 10.1 Provisional 任务状态与条件
+
+`design/12` 尚未定稿，以下字段为 **【建议值】**，实现前由 F2 对齐正式任务 DSL。本文只固定一个底线：任务内容声明条件与动作，core 解释并原子提交；脚本不能持有可写状态。
+
+```ts
+interface ProvisionalQuestState {
+  questId: QuestId;
+  status: 'inactive' | 'active' | 'succeeded' | 'failed' | 'obsolete';
+  stageKey: string;                    // 任务内局部键，不新建全局 ID
+  revision: number;
+  variables: ScalarEntry[];            // 按 key ASCII 升序
+  activatedAtTick: number | null;
+  completedAtTick: number | null;
+  consumedOneShots: string[];
+}
+type QuestScalar = string | number | boolean | null;
+interface ScalarEntry { key: string; value: QuestScalar }
+```
+
+条件编译为无副作用字节码，最小白名单包括 `all/any/not`、标量比较、旗标/计数器、任务阶段、物品数量、地点/时代、门派职级、NPC 存在/生命态、同伴好感/羁绊与日历区间。求值只能返回 bool 或带稳定错误码的 unknown；未知内容引用不能被当成 false 悄悄吞掉。`all/any` 按源顺序短路，不消费 RNG。
+
+```ts
+type QuestCondition =
+  | { readonly k: 'all'|'any'; readonly children: readonly QuestCondition[] }
+  | { readonly k: 'not'; readonly child: QuestCondition }
+  | { readonly k: 'expr'; readonly expression: ExprProgram }
+  | { readonly k: 'fact'; readonly ref: QuestFactRef; readonly op: 'eq'|'gte'|'lte'; readonly value: QuestScalar };
+type QuestFactRef =
+  | { readonly t: 'flag'|'counter'; readonly scope: 'chapter'|'run'|'profile'; readonly key: string }
+  | { readonly t: 'quest'; readonly id: QuestId; readonly field: 'status'|'stage' }
+  | { readonly t: 'item'; readonly id: ItemId }
+  | { readonly t: 'npc'; readonly id: NpcRuntimeId; readonly field: 'presence'|'alive'|'ageBand'|'affinity'|'bond' }
+  | { readonly t: 'world'; readonly field: 'location'|'era'|'shichen'|'day'|'month' }
+  | { readonly t: 'sect'; readonly id: SectId; readonly field: 'rank'|'contribution' };
+interface QuestTransition {
+  readonly key: string; readonly from: string; readonly to: string;
+  readonly on: string; readonly when: QuestCondition;
+  readonly effects: readonly QuestIntent[]; readonly oneShot: boolean;
+}
+```
+
+fact 的字段与值类型在 schema 判别联合中收窄，enum 只能相同枚举域比较；非法类型构建失败。transition 先校验 from/condition，再在同一事务写 stage、one-shot 收据和 effects；无自动回边，循环须经新的外部事件。任务状态挂 chapter，跨书任务须在12明确生命周期后迁往 run 域，不能靠读同名旗标暗中续接。
+
+任务动作不直接操作对象字段，而是编译为 `QuestIntent[]`：推进阶段、设置旗标/计数器、增减库存、发奖励、切 NPC 状态、开始遭遇、移动实体、安排日历事件等。每个 intent 调用对应领域 helper 重新校验；整个阶段迁移共用一个事务。一次性节点以 `questId#stageKey#actionKey` 记入 `consumedOneShots`，重复事件不得重复给奖。
+
+### 10.2 世界事实、旗标与事件
+
+```ts
+interface FlagEntry { scope: 'chapter'|'run'|'profile'; key: string; value: QuestScalar; revision: number }
+interface CounterEntry { scope: 'chapter'|'run'|'profile'; key: string; value: number; revision: number }
+```
+
+chapter 写 chapter.flags/counters，run 写 profile.runFlags 和 scoped counters，profile 写 profile.flags；scope 与容器不一致拒绝。仅明确为跨周目元进度的事实可写 profile，书眠不清 run。数组按 scope/key 唯一；计数 safe integer。事件索引为 eventType→transition，按 questId/stageKey/sourceOrder，避免扫全部任务。
+
+每个事件批结束后运行任务队列至稳定点；同一 transition 在同一根因中至多执行一次。任务派生事件再触发任务时进入 FIFO，并受 §9.5 深度/op 上限保护。阶段变化发 `quest/advanced`，终态发 `quest/succeeded|failed`，旗标写入发 `world/flagChanged`；载荷包含旧/新值和来源，不含本地化文本。
+
+### 10.3 Ink 变量桥接
+
+沿用 tech/04 §7：Ink VAR 只保存故事局部态；长期事实经 get_flag/quest_stage/has_item/affinity 白名单查询。标签解为 DialogueIntent（quest/advance、party/giveItem、battle/start），连同 storyHash/knot/tagOrdinal 交内部 bridge.commit；来源必须在该故事批准的命令标签中，不接受外部伪造 intent。选择后状态改变则重新校验并原子拒绝。
+
+```ts
+interface DialogueState {
+  storyId: string; storyHash: string; entryKey: string;
+  storyJsonState: string;               // inkjs 导出，纯 JSON 文本
+  randomSeed: number; pendingIntents: AuthorizedDialogueIntent[];
+  consumedTagKeys: string[];
+}
+```
+
+已核实 inkjs 2.4.0：`new Story(json)` 会间接以 Date 播种，构造后、首次 Continue 前必须覆盖 story.state.storySeed，seed 来自事务 world 流。保存用 state.ToJson()，恢复用 state.LoadJson(text)，恢复已含 seed/previousRandom，不重抽。第三方对象仅存于 adapter cache；事务失败从旧 storyJsonState 重建，不能只回滚 GameState 而留下推进的 Story。
+
+inkjs 2.4.0 的公开 `BindExternalFunction(..., lookaheadSafe = false)` 默认是 false，而底层 `BindExternalFunctionGeneral(..., lookaheadSafe = true)` 默认是 true；adapter 不依赖任一默认值，所有绑定都显式传参。只读且无副作用的查询可显式传 `true`；写意图优先使用提交边界标签，不得把外部函数副作用当提交机制；若兼容旧故事不得不绑定非只读函数，则显式传 `false`，且禁止在选择文案/字符串求值中调用。标签只在确认的 Continue/choice 批末入队，用 storyHash+visitCounter+tagOrdinal 幂等；预读/重绘不能发奖励。故事结构 hash 不兼容先走登记恢复 knot，无恢复点则退出并记录告警。正式构建锁 inkjs 版本，2.4.0 是本次 API 核实样本，不是最新版断言。
+
+### 10.4 任务与对话测试
+
+| # | 场景 | 断言 |
+|---|---|---|
+| Q-01 | 同一任务事件重复投递 | one-shot 奖励只发一次 |
+| Q-02 | 阶段动作第 3 项失败 | 阶段、库存、旗标、RNG 全回滚 |
+| Q-03 | Ink 选项出现后物品被消耗 | commit 被稳定拒绝，不产生半更新 |
+| Q-04 | 重载同一 Ink state | 选择结构与随机分支一致 |
+| Q-05 | 条件引用缺失 NPC/任务 | 构建失败；运行时存档遗留走 fixup |
+| Q-06 | 同一查询分别置于正文与选择文案预读 | 显式 `lookaheadSafe=true` 且结果一致；无事件/RNG/状态变化 |
+
+## 11. 经脉、资源、营生与门派预留
+
+本节消费 AR-03/05/06/07 与 `tech/04` §3.8–§3.9 的 provisional schema；数值和最终字段归 `design/12/15/16`，以下均为 **【建议值】**。
+
+### 11.1 冲穴、周天与九转
+
+```ts
+interface ProvisionalMeridianState {
+  innerForce: number;
+  innerForceRemainder: Ratio;
+  acupoints: Array<{ id: AcupointId; progress: number; thresholdRef: string; opened: boolean; openedAtVersion: number|null; attempts: number; failures: number }>;
+  completedMeridians: MeridianId[];
+  circulation: { small: boolean; large: boolean; twelveRegular: boolean; turn: 0|1|2|3|4|5|6|7|8|9 };
+  permanentEffectRefs: string[];
+  practiceCount: number;
+  fateAttempts: number;                         // 改命类冲穴记录，与剧情改命旗标分域
+}
+```
+
+全部字段在 profile，书眠完整保留；九转0..9，通脉/小周天/大周天/十二经周流引用 AR-03 的20经、每经6–12穴、总约150–200穴结构，不在 core 发明穴名。progress/innerForce 为非负整数，产出余数存精确 Ratio，thresholdRef 指内容阈值。practice 以内容 sessionId 冻结主辅运、品阶层数和相性产内劲；attempt 再扣投入与推进目标穴。默认线性进度、不随机失败，缺正式阈值配置拒绝，不凭空填平衡数值；F2 替换15公式。
+
+跨阈值按穴道顺序发 `meridian/acupointOpened`，继而检查 `meridian/completed`、`meridian/circulationAdvanced`；加成只挂稳定 effect ref，避免读档重复加属性。失败/走火若由正式规则要求，从 `world` 流按固定顺序取数并发 `meridian/deviationTriggered`。迁移应能从 effect ref 重建派生属性，不能把加成既烘进先天又保留引用。
+
+### 11.2 资源点、库存与家丁
+
+```ts
+interface ProvisionalEconomyState {
+  resources: Array<{ id: ResourceId; amount: number }>;
+  points: Array<{ id: ResourcePointId; owner: ResourceOwner; servantIds: ServantId[]; capturedAtTick: number; effectivePeriod: number; lastSettledCycle: number; remainder: Ratio }>;
+  servants: Array<{ id: ServantId; templateId: string; level: number; expFp: number; abilities: ScalarEntry[]; assignment: ResourcePointId|string|null; available: boolean }>;
+  employments: ProvisionalEmploymentState[];
+  periodReceipts: string[];
+}
+type ResourceOwner = { t: 'player'|'neutral' } | { t: 'faction'; factionId: FactionId };
+```
+
+资源 ID 沿用 `res_<类别>_<阶><品>`，一品最高、九品最低；点 `rp_*`、家丁 `sv_*`、场所 `biz_*` 均由 `tech/04` 校验。归属、库存和家丁默认随书眠清除，转换例外必须由天书/成就动作显式列出。时代层切换后不存在的资源点不可结算。
+
+周期只由 §5 驱动，先 boundaryTick，再 pointId→产物ID→家丁ID；每次所有点结完当前周期才走下周期。产量/维护查16内容，未配置时默认不产出、不扣维护；不以未来所有者/家丁能力回算过去。受扰如配置则 world 流；产量分数余数持久化。事件为 economy/pointCaptured、economy/servantAssigned、economy/periodSettled、economy/outputCredited、economy/maintenancePaid。
+
+### 11.3 营生职位与门派月钱
+
+```ts
+interface ProvisionalEmploymentState {
+  businessId: BusinessId;
+  role: 'walker'|'instructor'|'retainer';
+  active: boolean;
+  startedAtPeriod: number;
+  lastPaidPeriod: number;
+  effectiveFromPeriod: number; scheduleSlots: string[]; dutyReceipts: string[];
+}
+interface ProvisionalSectMembershipState {
+  sectId: SectId; rank: 'L1'|'L2'|'L3'|'L4'|'L5';
+  contribution: number; joinedAtTick: number; lastStipendPeriod: number; active: boolean;
+  rankEffectiveFromPeriod: number;
+}
+```
+
+任职验证先检查时代场所、武艺/声望门槛和日程冲突。`retainer` 在全部活动营生中至多一个；教头可多处，仍由任务日程判冲突；行脚按次结。门派每书界至多一个 L5 掌门位，职级只存 L1–L5，显示称谓从门派类型投影。
+
+月薪/月钱按 epoch/owner/kind/periodIndex 幂等，金额查表；默认从下一完整周期开始领取，新任职把 lastPaidPeriod 设为当前周期，升职/占领/派遣先结清到变更时刻，再记录 effectiveFromPeriod。按次行脚用 duty receipt，一次只发一次；职责未完成默认该次不发、无额外惩罚，金额未配置为0。离职保存最终游标/收据后停发，不能删除再任职重领。
+
+EconomyCommand **【建议值】** 为 point/claim、servant/assign、employment/accept|leave、duty/complete，分别带点/家丁/职位/任务 ID；SectCommand 为 sect/join|leave|claimRank，晋级结果由贡献与门禁计算，调用者不传薪酬/强制等级。发 economy/employmentChanged|wageSettled、sect/joined|promoted|stipendSettled；具体流程由12/16与F2定稿。
+
+### 11.4 周期状态验收
+
+| # | 场景 | 断言 |
+|---|---|---|
+| E-01 | 显式休息跨 13 个时辰及多周期 | 每个周期逐一且只结一次 |
+| E-02 | 保存后把设备日期改一年 | 资源、工资、月钱均不变 |
+| E-03 | 两点同周期受扰 | 按 point ID 消耗 RNG，重放一致 |
+| E-04 | 同时申请第二个客卿 | 原子拒绝，旧职位不变 |
+| E-05 | 书眠 | 经脉全保留；资源/家丁/职位/门派按默认清除 |
+| E-06 | effect ref 重建两次 | 永久加成不重复叠加 |
+
+### 11.5 经验、余韵与难度的正式接口
+
+本小节使用已定稿的 design/13 §2/§5，不属于经脉/经济建议规则。profile.progression 持有 `ExpState{realLevel,expFp}`、`YuyunState{points,progressFp,gainedThisChapter,fateDebt,log}` 与 rewardReceipts；`EXP_SCALE=100`，技能积蕴仍归05，禁止与角色经验共用账本。同伴依18成长，不套主角经验分配。
+
+```ts
+function needExp(level: number): number {
+  assertIntRange(level, 1, 69);
+  const l = BigInt(level);
+  return 10 * floorRatio(l*l*l + 32n*l*l + 260n*l + 450n, 100n);
+}
+```
+
+上式等价于13的 `round10(0.1L³+3.2L²+26L+40)`；累计 cum(35/50/62/70)=96040/313260/657310/1006850。奖励在 battle/finalize、任务步骤或事件结束发，receipt 为来源实例+结算序，战斗内不升级。先合并 expScale/dm_exp 后一次 half-up；`expVal=10+5L`、Boss typeMul=10，速战角色×0.8、武学×0.5，仅各用一次。
+
+grantExp 按13 §2.9 逐边界处理：高武且低于入场等级时追赶倍率3/2，用 `ceil((2*roomFp*mulDen-mulDen)/(2*mulNum))` 反求跨级需用原始经验；到达追赶终点立即停倍率，到书界上限后仅余量进余韵。第17点起 unit 翻倍，先偿 fateDebt 再加可花点；书眠按新旧 unit 比例 half-up 迁余数并钳到新 unit−1，保留主角 expFp，不把全部奖励直接转余韵。
+
+RuleSwitchState 保存 difficulty、天劫层、开关、difficultyLog 和 ruleRevision；新周目选定的开关锁定，蒙昧/速决按13允许随时改。江湖/侠客/宗师仅战斗外切换，天劫整周目锁定，切换事件写日志；进入战斗冻结本战规则。dm_hp/dm_atk 与区域 enemyStatMul 独立相乘，评级加 dm_rat，spd 在最终取整前叠 dm_spd；成就读完整难度史。每次变化发 progression/expGranted、progression/levelUp、progression/yuyunChanged 或 rules/changed，来源和取整 trace 可审计。
+
+验收至少涵盖一次奖励越追赶线与封顶线、第16→17点、债务优先、书眠余数、重复 receipt、低难度后切回宗师不恢复成就资格。
+
+## 12. NPC、同伴与年代状态
+
+### 12.1 当前时代的 NPC 投影
+
+NpcDef、CompanionState、CompanionSnapshot 采用18 §7与tech/04 §3.10。具名 NPC 的生卒年对应 registry 中带精度的 `born` / `died` 事实，运行态只保存分支覆盖与年代投影，不复制考据原值；生成/设施实例持久化出生/生成时年龄基点，不能只存当前年龄段：
+
+```ts
+interface NpcRuntimeState {
+  runtimeId: NpcRuntimeId;
+  identity: { t: 'named'; npcId: NpcId } | { t: 'generated'; templateId: string; seed: number };
+  appearanceKey: string | null;
+  lifeOverride: NpcLifeOverride | null;
+  generatedAge: { bornYear: number|null; ageAtEpoch: number; epochYear: number } | null;
+  presence: 'present'|'away'|'reference'|'dead'|'life_unknown';
+  ageBand: AgeBand | null; locationRef: string | null;
+  legacyTimeline: boolean; revision: number;
+}
+interface CompanionLedgerState {
+  companions: CompanionState[];
+  snapshots: CompanionSnapshot[];
+}
+```
+
+具名 NPC 先处理分支 lifeState、明确死亡/显式存活证据，再结合目标 appearance 与 birth/death 精度判定；完整已知年才用 born≤year<died。died=null 仅表示未知，不能推成永久健在；无目标 appearance 不生成，同年死亡无先后证据为 life_unknown，不自动招募。年龄从 bornYear 或 ageAtEpoch+(year−epochYear) 求出再映年龄段；未知年保留 unknown，不编造岁数。
+
+运行时 UUID 默认 RFC9562 UUIDv5：固定项目 namespace、UTF-8 规范名称元组 `(runId,chapterId,templateId,spawnKey,spawnOrdinal)`；ordinal 事务提交才增。namespace 在 shared 的版本化常量登记；snapshot UUID 同理用角色身份+事件序。SHA-1 仅用于标准名称映射、不是存档完整性；纯同步库通过禁 API 审核，禁止 randomUUID/Date。重进相同 spawnKey 复用已有身份与 seed，不重掷。
+
+### 12.2 离队快照、书眠与重逢
+
+离开 `recruited` 及书眠提交前写不可变快照，保存真实等级、先天、武学真实层数、装备引用、永久修正、人格、好感和羁绊；有效品阶/层数是时代投影，不烘入快照。`latestSnapshotId` 指向最新项，历史项只追加。
+
+书眠事务：保存健在已招募者→清活动引用→保留本周目关系/履历/改命→切时代→求 presence/age band→建重逢线索。重逢合并仅对真实等级、先天逐项 max，技能并集且真实层 max，permanentMods 按ID并集；装备 resolveOwnership 防复制。好感/羁绊按18关系规则迁移，不把所有数字都取max；随后套新书界压制。ledger 跨书，不自动跨周目，新周目继承由13决定。
+
+事件名必须保持 `design/18` §7.4 的稳定契约：`companionRecruited/Departed/Betrayed/Died/FateRescued/Rejoined/StationChanged`；这是 §3.4 新事件 slash 命名约定的上游例外。年代投影另发内部 `npc/presenceChanged` 与 `npc/ageBandChanged`。战斗倒地默认不等于剧情死亡，只有 `design/18` §4.3 列出的明确动作能写 `dead`。
+
+### 12.3 同伴确定性测试
+
+| # | 场景 | 断言 |
+|---|---|---|
+| N-01 | `died==wakeYear` 且无事件序 | `life_unknown`，不可自动重邀 |
+| N-02 | `fate_rescued` 且有后世画像 | 采用分支 lifespan，不被原死亡值覆盖 |
+| N-03 | 旧层数 10、新画像 9 | 合并仍为 10；有效层可因书界压制下降 |
+| N-04 | 新画像新增已有 `sk_*` | 并入；未知武学不得临时造 ID |
+| N-05 | 同一永久修正两边都有 | 按稳定 ID 仅保留一次 |
+| N-06 | 书眠规则验证失败 / 书眠后素材加载失败 | 前者全回滚；后者待挂载重试、不重复书眠 |
+| N-07 | died=null但无后世appearance / 生成者跨年 | 不自动长生；年龄按持久基点演进 |
+
+## 13. Utility AI 与 Worker
+
+### 13.1 为什么选择 Utility AI
+
+普通战斗采用 `design/09` §8 的 Utility AI，而不是通用行为树：候选本来就是“落点 × 行动 × 目标”，伤害、控制、治疗、风险、资源、阵法和剧情目标能用同一可解释评分组合；性格只需调权重，不必复制大量树分支。Boss 仍由确定性阶段状态机提供候选禁用、强制轮换和目标修正，再交 Utility AI 在阶段允许集内选招。
+
+评分公式不在本文重定义。实现把上游小数常量在构建期转为 bp，以整数累计 `utilityMicro`；最后按效用降序，再按 `(actionRank,targetUnitIndex,r,q,dir,moveId)` 全序。`ai_basic/adept/expert` 的前三/前二名概率选择使用请求中的 `aiSeed`；`ai_master` 前瞻后取第一。
+
+### 13.2 可见快照与 Worker 协议
+
+```ts
+interface BattleAiRequest {
+  requestId: string; stateVersion: number; battleRevision: number;
+  actor: UnitId; tier: AiTier; personality: string; aiSeed: number;
+  decisionToken: number; snapshot: BattleAiSnapshot; workBudget: number;
+}
+interface BattleAiResponse {
+  requestId: string; stateVersion: number; battleRevision: number;
+  command: Extract<Command, { t: 'battle/act' }>;
+  completedBatch: number; bestSoFar: BattleActionPlan|null;
+  stats: { visited: number; generated: number; elapsedMs?: number };
+}
+```
+
+快照只含本阵营可见单位、最后已知位置、可见地形/预警、行动者招式与资源、公开时间轴、阵营黑板；隐藏单位真实位置和不可见陷阱不得进入。目标 ≤64 KiB、structured clone ≤2 ms 均为 **（待实测）**。Worker 只返回普通命令，core 以当前状态完整重验；版本不匹配直接丢弃并重请求。
+
+`aiSeed` 用 `ai` 流当前状态的下一值纯预览，不先提交；同一 `(stateVersion,battleRevision,actor)` 的重请求必须复用它。Worker 返回的普通 `battle/act` 命令携带该值；core 在同一命令事务内先核对“等于当前流下一值”，命令成功才连同其他写入消费，拒绝/回滚则不消费。超时 fallback 也携带同一值。这样取消、重复或过期响应不改变 RNG；录像中的最终命令自带决策凭证，重放无需重新运行 AI。
+
+### 13.3 节点预算与墙钟预算
+
+workBudget 对路径展开、一次目标评分、一次前瞻展开分别计一工作单元，固定循环和候选序。默认 basic/adept/expert/master=1024/4096/16384/32768 **【建议值】**：48落点×12招×24单位的单体枚举上界为13824，expert 取下一2次幂16384；master 为其2倍容纳前5候选×后2行动，其他档依次1/4、1/16。范围多方向及特殊动作仍吃预算，不保证遍历全部候选；这是起始容量，不代表耗时已满足。无超时时同快照/seed/预算走相同工作序。
+
+tech/03 与09的5/15/40/80ms为每次决策预算，2倍由 host watchdog 执行。Worker 每64工作单元 **【建议值】** 发布完成批次的当前最优合法候选；超时取最新完成批 best，未完成候选不参与，尚无候选则 basic/合法待机。采用上游“当前最优”，不固定取第一个候选。Worker 不可用走主线程 basic；被拒命令不耗 seed，重验后提交待机。
+
+AI 本身按09不要求跨引擎/跨设备同招：超时可能改变最终选择。确定性保证在同一已记录命令序列的 core；录像记录最终命令及任何实际改变控制策略的 setAuto/策略事件。不能让“连续超时整场降档”只留在诊断、却改变未记录规则状态。墙钟仅在 AI host/worker 壳测量，pure evaluator 与 battle core 不读墙钟。
+
+候选生成复用玩家的六角可达集、范围、LOS 和 §8 预测查询。每个合法中心/方向都调用同一模板；不能用方形包围盒估算。`ai_master` 只对固定前 5 个候选模拟后续 2 个行动者。失控 `charm/control/fear/confuse/berserk/obey` 使用 `design/09` §7.9 的专用候选/目标规则，仍从同一入口输出命令。
+
+### 13.4 AI 验收
+
+| # | 场景 | 断言 |
+|---|---|---|
+| AI-01 | 改动不可见敌人的真实坐标 | 候选、分数、命令不变 |
+| AI-02 | Worker 重复/晚到响应 | 仅匹配 request/version 的首个响应可提交；拒绝不耗 ai 流 |
+| AI-03 | 同 seed 与 workBudget 重跑 | visited、命令逐字相同 |
+| AI-04 | 人为触发 2× watchdog | 取最新完整批best；可选招不同，但所录命令可复放 |
+| AI-05 | 候选输入顺序打乱 | 全序后结果不变 |
+| AI-06 | Worker 不可用 | 主线程基础决策或待机，不阻塞战斗 |
+
+## 14. 存档、迁移、录像与重放
+
+### 14.1 序列化边界
+
+`serialize()` 先断言 §1.5 不变量，再输出规范 `GameState` JSON 值；gzip、WebCrypto、IndexedDB、TSAV 头和云同步都在 core 外，容器沿用 `tech/08` §3。TSAV v1 头不超过 64 KiB，声明的解压原文不超过 32 MiB；这两个限额由 I/O 层在解压前后执行，core 不信任反序列化输入。
+
+读档顺序固定为：容器/哈希校验 → JSON 边界校验 → 结构迁移 → `contentHash` 对比与 ID remap/fixup → 全量 GameState 校验 → 重建 cache/index → 运行只读冒烟查询 → 才替换当前实例。任何一步失败都保留原存档和旧运行实例。
+
+### 14.2 纯迁移与内容修复
+
+```ts
+interface MigrationContext { readonly fromContentHash: string; readonly targetSchema: number; readonly remapVersion: string }
+type StateMigration = (old: JsonObject, ctx: MigrationContext) => JsonObject;
+interface FixupIssue { path: string; oldId: string; action: 'remap'|'tombstone'|'refund'|'obsolete' }
+```
+
+迁移链完全采用 `tech/08` §3.5：`SAVE_SCHEMA` 单调递增，`migration[n]` 只做 n→n+1，发布后不可改旧函数；不读墙钟、不取随机、不联网。结构迁移后才按 `tech/04` 的 `idRemaps` 修内容引用。未知物品、武学、任务的退款/残篇/obsolete 规则由 `tech/08` §3.6 执行并留报告，不静默删除。
+
+每个发布 schema 保留至少一个夹具；相同旧输入分别迁移两次应同字节，已在目标schema的输入不再套旧迁移。旧档→迁移→保存→重读保持状态。provisional 转正升 schema；tech/08 示例数字7不是已发布版本。旧战斗中档必须能装对应 core/rules/RNG 协议，否则保留原档并提示退回登记的战前恢复点，不能修补一半战斗继续。
+
+### 14.3 `BattleReplayV1`
+
+录像从已生成战场、尚未确认布阵的 deploy 快照开始，到纯战斗 ended；无布阵战也从相同初始化边界开始并录自动 deploy。战斗 handler 只读写 BattleSession 及锁定 registry，禁止查询外部 party/chapter。入场已把背包副本、角色战斗能力、门禁事实、胜负条件、规则开关复制进 BattleState；战中剧情分支需预编进本战，外部选择须成为记录命令。
+
+```ts
+interface BattleReplayV1 {
+  schema: 1; contentHash: string; coreBuild: string; battleId: string;
+  rulesProtocol: number; rngProtocol: number; openingHash: string;
+  opening: BattleStartSnapshot;
+  commands: Array<{ seq: number; command: BattleCommand; afterHash?: string }>;
+  finish: { outcome: BattleOutcome; commandCount: number; terminalHash: string };
+}
+interface BattleStartSnapshot {
+  session: BattleSession;
+  registryRefs: string[];
+  runtimeMartialArts: CreatedMartialArtState[]; // 本战实际可达的动态定义闭包，按 id 全序
+}
+interface BattleSession {
+  battle: BattleState; battleRng: RngStateJson; aiRng: RngStateJson;
+  acceptedOrdinal: number; decisionOrdinal: number;
+}
+```
+
+BattleCommand 包含 act/deploy/order/free/setAuto/concede/retry/undo，不只录 act。seq 从0连续，每10条中间hash为建议；openingHash 与 afterHash/terminalHash 置于被哈希对象之外。精确摘要输入为规范 JSON 数组 `["tianshu:battle-replay:v1",coreBuild,rulesProtocol,rngProtocol,contentHash,runtimeMartialArts,session]` 的UTF-8；registryRefs 是静态内容传递闭包的核验辅助，不替代 contentHash。P08 的自创武学不属于静态内容包，必须把本战可达的完整运行时定义按 ID 冻结进 `runtimeMartialArts`；重放不得用当前存档同槽定义覆盖。session 自己不含hash，避免自引用。
+
+battle 本地事件序与 acceptedOrdinal 也进入域；外层 GameState 的 event seq/causeId 仅作运输映射，不回传影响战斗。重放不重新跑AI，只验证所录seed并推进ai流；不调用loot/world/qiyu。ended 后停止录像，host 另提交 finalize：用 battleId+outcomeSeq 收据执行 onBattleEnd、Buff/资源/地形写回、伤势/调息、奖励和任务；五流变更同事务提交，成功清 battle。失败回滚全部，不能重复抽掉落。
+
+重试/悔招保留命令历史：checkpoint 只含战斗规则片段与两流，不包含 checkpointStore 自身，避免递归快照。undo 恢复目标片段后扣当前 undoLeft，保留当前重试数/消耗账本，不从旧片段恢复次数；禁止无限悔招。restart 恢复入场快照并保留累计retry/assist，finalize前未写世界资源。完整录像按原序执行undo/retry，而不是删掉历史后拼接。
+
+运输仍是 `tech/08` 的 NDJSON.gz：压缩 ≤2 MiB、声明未压缩 ≤16 MiB；超限降级摘要而非截断录像。信封 schema 与 `BattleReplayV1.schema` 分开演进。
+
+### 14.4 重放与首差异
+
+重放器按 coreBuild+rulesProtocol+rngProtocol+contentHash 装匹配 runner与规则包，校验 opening hash 后逐条走同一 battle handler，检查中间/终局摘要。只锁内容而换规则代码同样不可重放。缺旧工件则标“不可验证”，保留原录像；首差异给命令seq、两流、事件类型、JSON Pointer及双方值。
+
+Node/V8 与 Playwright WebKit/JSC 都跑同一录像。Playwright WebKit 不是实际 iOS 真机替代；发布候选仍需 `tech/03` 真机矩阵 **（待实测）**。
+
+## 15. 测试与 CI
+
+| 层 | 范围 | 必须闸门 |
+|---|---|---|
+| 类型/静态 | strict TS、无 DOM lib、依赖方向、禁用 API | 每次提交 |
+| 单元 | RNG、bp、hex、Z0–Z10、叠加、条件 VM、迁移 | 每次提交 |
+| 属性测试 | 排序扰动、伤害守恒、A* 最优、事务回滚、序列化往返 | 每次提交，固定失败 seed |
+| 模型测试 | CT 与慢速逐 tick oracle；journal 与深拷贝 oracle | 每次提交 |
+| 内容契约 | 59 hooks、全部 OpId、引用与上限、任务图 | 内容构建 |
+| golden | Node + WebKit 的探索/战斗/任务/书眠录像 | 合并与发布 |
+| 迁移 | 每个历史 schema → 最新 → 冒烟命令 | 合并与发布 |
+| 性能 | 600 tick、24 单位群战、最大 Buff、AI、存读档 | 发布候选 **（待实测）** |
+
+确定性 fixture 至少覆盖：普通战、环境战、多段范围、反应深度、合击/阵法、Boss 阶段、跨日周期、任务与 Ink、书眠及同伴重逢。随机测试失败时记录业务 seed 和最小化命令序列，不能只保存测试框架内部 seed。
+
+CI 不通过“重录全部 golden”修失败。先定位规则变化，若属预期，评审逐条事件/数值差异后随内容或 schema 版本更新基线。测试代码不得调用实现私有 helper 复制公式作为唯一 oracle；关键公式用上游算例和独立慢模型交叉验证。
+
+## 16. 性能预算与观测
+
+| 路径 | 预算 | 处置 |
+|---|---:|---|
+| `core.tick()` 探索平摊 P95 | 0.5 ms | 超限先索引/分桶；持续越线评估 core Worker |
+| tick 所在帧 core 峰值 | 2 ms | 大量跨周期按持久时间游标推进；禁止半事务让UI写入 |
+| 可达格/伤害预测 | ≤8 ms/次 | 超出转 Worker，UI 显示推演中 |
+| 中档活动逻辑单位 | ≤24 | 表现 LOD 不得删除规则单位 |
+| AI | 5/15/40/80 ms | workBudget + 2× watchdog取当前最优，最终命令入录像 |
+| AI 快照/克隆 | ≤64 KiB / ≤2 ms | **（待实测）**；裁剪字段/Transferable 索引 |
+| 普通攻击热路径 | 0 临时数组/闭包 | scratch pool；事件批除外 **（待实测）** |
+| 自有 JS / 主线程总预算（中档） | ≤6 ms / ≤8.5 ms | core 与输入、UI、动画共用预算，不能分别各占整帧 |
+
+core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命令类型、计数、分位和 build，不把耗时写进状态/事件/hash。规则层可返回确定性 counters（访问节点、派发 hook、伤害段、分配池溢出），与外层耗时关联定位。
+
+基准固定 seed `0x5449414e`、内容 hash、设备/引擎和场景，预热一次后 3 次取中位；时间较已审阅基线 +10% 告警，越绝对预算阻断发布候选。所有数值是设计预算，不是当前成绩，须按 `tech/03` 三类真机矩阵实测。
+
+## 17. MVP、演进与风险
+
+### 17.1 交付切片
+
+| 阶段 | 纳入 | 推迟/闸门 |
+|---|---|---|
+| Phase 1 MVP | 单线程 core、10 Hz 探索、六角战斗、CT、Z0–Z10、Buff 必需子集、基础任务/Ink、存读档、Node/WebKit 录像 | 正式经营/经脉等待 12/15/16；AI 可主线程 basic |
+| Phase 2 | 全 59 hook/原语、反应/合击/阵法、环境、AI Worker、跨区周期、迁移夹具 | 最大群战和真机预算通过 |
+| Phase 3 | 正式经脉/资源/营生/门派、跨书同伴全链、遥测重放 | F2 对齐 schema；旧档迁移与书眠 golden |
+| Phase 4+ | 更深 Boss/AI 前瞻、工具化 trace、平衡批跑 | 不以在线生成式 AI替代规则 AI |
+
+### 17.2 风险登记
+
+| 风险 | 级别 | 预防 / 降级 |
+|---|---|---|
+| DSL 可表达性演变成任意脚本 | 高 | 白名单字节码、无循环、构建穷尽；缺原语先评审再加 |
+| 乘区/取整漂移 | 高 | 生成 zone 顺序、BigInt 精确边界、04 向量与双引擎 golden |
+| 反应/Buff 递归爆炸 | 高 | 来源位、深度 3、全局深度/op 上限、事务回滚 |
+| provisional schema 先固化 | 高 | 标记 status、F2 同步、正式化升 schema 与迁移 |
+| AI Worker 延迟/不可用 | 中 | 固定 workBudget、watchdog、basic/待机 fallback |
+| 热路径 GC | 中 | bucket/index/scratch pool；超预算先 profile 后迁 Worker |
+| 旧内容无法重放 | 高 | 按 contentHash 保留规则工件；缺失即隔离，不猜修 |
+| 年代考据变化杀死旧档 NPC | 高 | `legacyTimeline` 保留既有分支；新游戏才用新事实 |
+
+---
+
+## 参考资料
+
+### 项目内规范（权威顺序见文首）
+
+- `docs/00-canon.md`；`docs/decisions/author-requirements.md`；`docs/decisions/author-decisions.md`；`docs/decisions/rulings-v1.md`。
+- `docs/design/04-damage-formula.md`、`05-martial-arts-system.md`、`06-buff-system.md`、`08-terrain-and-qinggong.md`、`09-combat-system.md`、`13-progression-and-endings.md`、`18-npc-and-companions.md`、`19-world-map.md`。
+- `docs/tech/01-architecture.md`、`03-mobile-performance.md`、`04-data-pipeline.md`、`08-backend-and-online.md`。
+
+### 外部技术资料（2026-09-26 访问）
+
+1. ECMA International, *ECMAScript Language Specification*：<https://tc39.es/ecma262/> —— 数值、集合排序与标准内建行为的规范基线；项目仍以更窄的确定性子集约束 core。
+2. Playwright, *Browsers*：<https://playwright.dev/docs/browsers> —— 支持 Chromium、Firefox、WebKit；每个 Playwright 版本绑定特定浏览器二进制，CI 因此锁版本并在升级时显式重跑 golden。
+3. MDN, *SubtleCrypto.digest()*：<https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest> —— SHA-256 digest 可在 Web Worker 使用且要求安全上下文；hash 在 core 外执行。
+4. MDN, *Worker.postMessage()*：<https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage> —— Worker 消息按 structured clone 传递；AI 快照体积与克隆耗时仍须真机实测。
+5. inkle, *Ink documentation*：<https://github.com/inkle/ink/tree/master/Documentation> —— Ink 语言与运行时概念参考；本项目另加只读查询/意图提交隔离。
+6. inkjs 2.4.0 固定版本与源码：<https://github.com/y-lohse/inkjs/blob/edccead8700e9f21be9825d87d8645d8c82a9936/package.json>、<https://github.com/y-lohse/inkjs/blob/edccead8700e9f21be9825d87d8645d8c82a9936/src/engine/Story.ts#L1934-L1980>、<https://github.com/y-lohse/inkjs/blob/edccead8700e9f21be9825d87d8645d8c82a9936/src/engine/StoryState.ts#L433-L445> —— 固定本次核实版本；确认两个绑定 API 的 `lookaheadSafe` 默认值不同，且 `StoryState` 构造会读取 `Date` 播种。
+7. IETF, RFC 9562 §5.5, *UUID Version 5*：<https://www.rfc-editor.org/rfc/rfc9562.html#section-5.5> —— UUIDv5 以 namespace、name 与 SHA-1 生成确定性名称 UUID；本文仅用于运行时身份映射，不作完整性或安全摘要。
+
+未找到需要作为安全事实引用的 sfc32 一手标准；本文只把它视为项目版本化的可重放 PRNG，不宣称密码学安全。本文无价格或云配额结论。
+
+## 本文新增术语/约定
+
+| 术语 | 定义 |
+|---|---|
+| 命令事务 | 一条命令的校验、规则写入、RNG 与事件要么整体提交、要么整体回滚 |
+| mutation journal | 记录首次旧值与数组逆操作的事务回滚日志 |
+| 规则快照 | 某次伤害/AI/录像为确定性冻结的最小规则输入；不同于 UI 截图 |
+| 来源位 | `reflected/redirected/mirrored/countered/followup` 的继承位集，用于阻断递归 |
+| hook bucket | 按 hook index 预索引并按 `priority,iid` 排好的触发器数组 |
+| workBudget | AI 固定的确定性工作单元上限；不同于墙钟 SLO |
+| replay hash 域 | `battle + battleRng + aiRng + ruleSwitches` 的规范字节及域前缀 |
+| provisional 子树 | 归属设计未定稿、可运行但必须随正式 schema 升版迁移的状态 |
+
+本文没有新增玩法内容 ID；所有示例均复用既有前缀或使用局部 key。
+
+## 待决事项 / 依赖
+
+### 已解决事项（保留追溯）
+
+- **已解决（tech/01 P2）**：数值统一 10000 bp，Z1–Z10 取整点由 `design/04` 定义、本文 §8 实现。
+- **已解决（tech/01 P3）**：探索 tick 终值为 10 Hz / 100 ms；本文 §5 给出不补跑语义。时辰换算仍是建议值。
+- **已解决（tech/01 P10）**：Buff 目录归 `design/06`；本文实现生成式 59-hook/原语运行时，不另建语义清单。
+- **已解决（AR-12）**：战斗为 pointy-top 六角轴坐标，首轮按轻功；旧方格运行时接口不保留。
+- **已解决（作者 P08/P14/P16/P41/P56，G1 采用默认）**：自创武学倚天后开放且最多 3 门；称号属性默认开启可关闭；最近一次守卷外观与誓言默认启用可关闭；两种天道规则开关互斥；化险为夷按每战一次、指定对象与 0–30% 公式执行（见 §3.2–§3.4、§14.3、§9.4、§7.7）。
+
+### 本文采用的建议值
+
+| 编号 | 建议值 | 回填者 / 时点 |
+|---|---|---|
+| E2-S01 | `WORLD_TICKS_PER_SHICHEN=3000`，即 5 分钟/时辰、12 时辰=60 分钟/日 | `design/11` 定稿后 F2 |
+| E2-S02 | 表达式每段 ≤256 指令；事件深度 ≤32；每根命令 ≤4096 ops | 实现 fuzz/最大 Buff 基准后 |
+| E2-S03 | 录像每 10 条已接受命令写中间 hash | `tech/08` 遥测实测后 |
+| E2-S04 | 任务/经脉/经济/营生/门派的 §10–§11 状态字段与事件 | `design/12/15/16` 定稿后 F2 |
+| E2-S05 | AI 各档 `workBudget` 由基准机标定，墙钟 SLO 不作停止条件 | Phase 1 AI 基准后 |
+
+### 本文依赖的上游事实
+
+| 依赖 | 当前使用 | 变化影响 |
+|---|---|---|
+| `design/04/06/09` | 伤害、Buff、战斗时序唯一规则 | 必须升规则/录像版本并重跑 golden |
+| `design/11` | 尚缺；仅用时代层接口与时间建议值 | 定稿后替换日历/区域字段 |
+| `design/12` | 尚缺；任务、门派为 provisional | 定稿后迁移状态与条件/action opcode |
+| `design/15` | 尚缺；只保留当前周目跨书界的冲穴/周天/九转边界 | 定稿后接公式、失败与走火 |
+| `design/16` | 尚缺；周期、产量、薪资均无最终数值 | 定稿后接周期和经济曲线 |
+| `design/18` | 同伴快照、健在与重逢合并正式契约 | 内容考据修订需 legacy timeline 迁移 |
+| `tech/03/08` | 性能预算、TSAV、录像运输 | 真机实测和限额变化不得反写玩法结果 |
+
+### 对基准的修改提案
+
+| 编号 | 提案 | 理由 |
+|---|---|---|
+| E2-P01 | 基准 §19 补充：玩法 core 使用整数/bp、固定 PRNG 流、规范 hash 与 Node+WebKit golden，禁墙钟参与规则 | 将可重放约束提升为跨文档不变量 |
+| E2-P02 | 基准 §8 明记 CT 内部可为负、首轮按轻功固定序、后续事件驱动；环境行动不算单位回合 | 避免“0→1000”描述吞掉高收招债务，并统一 AR-12 |
+| E2-P03 | 基准 §3 跨书保留项补入当前周目的经脉进度/九转和同伴 ledger，书眠清空项补入普通资源/家丁/职位/门派身份；新周目仍按 `design/13` 重置运行态，仅保留账号里程碑 | 落实 AR-03/05/06/07/09 的生命周期覆盖，同时避免把“跨书界”误读成“跨周目” |
+
+### 需同步到其他文档
+
+| 文档 | 位置 | 需要同步 |
+|---|---|---|
+| `docs/tech/01-architecture.md` | core API / GameState / P3 | 固定 10 Hz 已解决；统一 `Core`/`GameplayCore`、`meta.version`/`meta.stateVersion`、`tick()` 返回型与 load 边界；补 `BattleActionPlan`、负 CT、AI seed 提交与 replay hash 域 |
+| `docs/tech/03-mobile-performance.md` | Worker/预算 | AI 时间只作 SLO，确定性停止用 workBudget；回填 64 KiB/2 ms 真机结果 |
+| `docs/tech/04-data-pipeline.md` | provisional schema / DSL 编译 | 与 12/15/16 正式字段同步；从同一源生成 59 hooks、OpId 和表达式 opcode |
+| `docs/tech/08-backend-and-online.md` | §10 录像 | `BattleReplayV1` 只哈希战斗域，不上传完整 GameState；对齐字段和中间 hash |
+| `docs/tech/08-backend-and-online.md` / `docs/design/13-progression-and-endings.md` | Meta 合并 / §9.4 | 对齐 deterministic `MetaProfileIntent.intentId`、规则投影版本与守卷快照确认边界；平台墙钟不得回流 core |
+| `docs/design/11-*` | 日历 | 若采用本文建议，明确 12 时辰/日、3000 tick/时辰、60 分钟实玩/日；不要写 24 时辰 |
+| `docs/design/12-*` | 任务/门派 | 定稿 Condition/Intent、旗标 scope、L1–L5、月边界和事件后回填 §10–§11 |
+| `docs/design/15-*` | 经脉 | 定稿进度单位、冲穴公式、事件与 effect ref，保持当前周目跨书永久、新周目重置运行态 |
+| `docs/design/16-*` | 资源营生 | 定稿周期、产量/维护/工资/月钱与失败分支，保持逻辑日历结算 |
+| `docs/design/18-npc-and-companions.md` | §7.3 | `CompanionSnapshot` 示例接口重复声明一次 `level/innates`，应去重；事件命名与本文兼容 |
+| `TODO.md` / F2 | Phase F 同步 | 登记 E2-S01–S05、E2-P01–P03，并在 11/12/15/16 定稿后迁移 provisional 契约 |
+
+### 开放问题（附默认值）
+
+| # | 开放问题 | 当前默认值 | 决定时点 |
+|---|---|---|---|
+| O-01 | 世界时辰是否采用 3000 tick | 是；5 分钟/时辰，60 分钟/日 | `design/11` 定稿 |
+| O-02 | provisional 字段与正式 DSL 不同如何处理 | 升 `saveSchema`、纯迁移；不保留双写兼容层 | 12/15/16 合入 |
+| O-03 | core 何时整体迁 Worker | 默认主线程；优化后 P95 仍持续 >4 ms 才启用模式 B | Phase 2 真机基准 |
+| O-04 | AI 固定节点预算各档取值 | 先以墙钟 SLO 标定；发布配置版本化，不能由设备动态改变 | 首个完整 AI 基准 |
+| O-05 | 是否保存完整逐区 DamageTrace | 开发/手动录像开启，release 默认只存汇总 | 日志体积实测 |
+| O-06 | Playwright WebKit 外是否加真机 Safari golden | 默认发布候选人工复放关键录像；自动化不阻塞 MVP | 真机自动化条件具备时 |
+
