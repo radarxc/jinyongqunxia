@@ -47,6 +47,38 @@ def now_s() -> str:
     return _dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
+class LockedState(R.State):
+    """多个监督代理并行运行时共用 state.json：每次 get/update 都在文件锁内重新读盘再写回，
+    避免 run.py 的 State（进程内缓存 + 整文件改写）在跨进程场景下丢失更新。"""
+
+    def _lock_path(self) -> Path:
+        return self.path.with_suffix(".lock")
+
+    def _reload(self) -> None:
+        if self.path.exists():
+            try:
+                self.data = json.loads(self.path.read_text(encoding="utf-8"))
+            except ValueError:
+                self.data = {}
+
+    def get(self, tid: str) -> dict:
+        self._lock_path().parent.mkdir(parents=True, exist_ok=True)
+        with open(self._lock_path(), "w") as lf:
+            fcntl.flock(lf, fcntl.LOCK_SH)
+            self._reload()
+            return dict(self.data.get(tid, {}))
+
+    def update(self, tid: str, **kw) -> None:
+        self._lock_path().parent.mkdir(parents=True, exist_ok=True)
+        with open(self._lock_path(), "w") as lf:
+            fcntl.flock(lf, fcntl.LOCK_EX)
+            self._reload()
+            self.data.setdefault(tid, {}).update(kw)
+            tmp = self.path.with_suffix(".tmp")
+            tmp.write_text(json.dumps(self.data, ensure_ascii=False, indent=1), encoding="utf-8")
+            os.replace(tmp, self.path)
+
+
 def load(tid: str):
     root = R.repo_root()
     g = R.Graph()
@@ -55,8 +87,22 @@ def load(tid: str):
     t = g[tid]
     if t.is_gate:
         raise R.Fatal(f"{tid} 是作者闸门，不发给代理；请用 `python tools/agents/run.py approve {tid}`")
-    st = R.State(root / ".agents" / "state.json")
+    st = LockedState(root / ".agents" / "state.json")
     return root, g, t, st
+
+
+def recover_state(root: Path, t, st) -> dict:
+    """state.json 条目丢失但工作区仍在：从工作区与 current.json 恢复基点，绝不删除有产出的工作区。"""
+    wt = R.wt_path(root, t.id)
+    s = st.get(t.id)
+    if s.get("base") or not R.wt_exists(wt):
+        return s
+    cur = current(root, t.id) or {}
+    base = cur.get("base") or R.git(["rev-parse", "HEAD"], wt).stdout.strip()
+    attempts = int(cur.get("attempt", 1))
+    st.update(t.id, base=base, attempts=attempts, last_failure=s.get("last_failure"))
+    print(f"⚠ {t.id} 的 state.json 条目曾丢失，已从工作区恢复（基点 {base[:12]}，运行次数 {attempts}）")
+    return st.get(t.id)
 
 
 def logdir(root: Path, tid: str) -> Path:
@@ -158,7 +204,7 @@ def cmd_start(a) -> int:
         if not a.force:
             return 0
     wt = R.wt_path(root, t.id)
-    s = st.get(t.id)
+    s = recover_state(root, t, st)
     note = Path(a.note).read_text(encoding="utf-8").strip() if a.note else None
     if R.wt_exists(wt) and s.get("base"):
         if R.head_has_trailer(wt, t.id):
@@ -169,6 +215,9 @@ def cmd_start(a) -> int:
         print(f"… 在保留的工作区中续作（基点 {base[:12]}）")
     else:
         if wt.exists():
+            dirty = R.wt_exists(wt) and R.git(["status", "--porcelain"], wt, check=False).stdout.strip()
+            if dirty and not a.force:
+                raise R.Fatal(f"{t.id} 的工作区 {wt} 有未提交的产出但无状态记录；请先 `status`/`finish` 确认，或加 --force 丢弃重建")
             R.wt_remove(root, wt)
         if not R.main_is_clean(root):
             print("⚠ 主检出有未提交的改动；工作区仍从 HEAD 创建，但 merge 前需要清理")
@@ -277,7 +326,7 @@ def cmd_finish(a) -> int:
     if is_running(root, t.id):
         raise R.Fatal(f"{t.id} 仍在运行，请先 wait")
     wt = R.wt_path(root, t.id)
-    s = st.get(t.id)
+    s = recover_state(root, t, st)
     if not (R.wt_exists(wt) and s.get("base")):
         raise R.Fatal(f"{t.id} 没有工作区，请先 start")
     if R.head_has_trailer(wt, t.id):
