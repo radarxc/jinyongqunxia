@@ -359,6 +359,76 @@
       "vars": {}
     },
     {
+      "id": "W1",
+      "phase": "B",
+      "wave": 2,
+      "priority": 45,
+      "title": "19 江湖大地图：城市 / 门派坐标数据、投影、水墨 SVG 渲染（AR-11）",
+      "prompt": "W1-map.md",
+      "deps": [
+        "G1",
+        "S1",
+        "R02"
+      ],
+      "writes": [
+        "docs/design/19-world-map.md",
+        "docs/design/map/**",
+        "tools/map/**"
+      ],
+      "review": true,
+      "web": true,
+      "agent_args": [
+        "-c",
+        "sandbox_workspace_write.network_access=true"
+      ],
+      "review_focus": "亲自运行 `python3 tools/map/render_map.py --check` 与 `--render`，确认 SVG 生成且确定性；抽查 ≥ 30 座城市的经纬度与各时代名称（联网核对）、≥ 15 个门派驻地；图外节点只连专线且途中无停靠；所有城市落在陆地一侧；投影公式与文档一致；SVG 体积 ≤ 2 MB 且在浏览器中可渲染（检查 XML 合法、滤镜引用存在）；与 17 / 图鉴的 `sect_*` 一致。",
+      "validate": {
+        "exists": [
+          "docs/design/19-world-map.md",
+          "docs/design/map/cities.yaml",
+          "docs/design/map/sects.yaml",
+          "docs/design/map/routes.yaml",
+          "docs/design/map/regions.yaml",
+          "tools/map/render_map.py",
+          "docs/design/map/jianghu-base.svg"
+        ],
+        "fences": [
+          "docs/design/19-world-map.md"
+        ],
+        "min_lines": {
+          "docs/design/19-world-map.md": 500
+        },
+        "contains": [
+          [
+            "docs/design/19-world-map.md",
+            "波斯"
+          ],
+          [
+            "docs/design/19-world-map.md",
+            "投影"
+          ],
+          [
+            "docs/design/19-world-map.md",
+            "待决事项"
+          ]
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/map/render_map.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/map/render_map.py",
+            "--render"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {}
+    },
+    {
       "id": "B6a",
       "phase": "B",
       "wave": 1,
@@ -1433,7 +1503,8 @@
         "B2",
         "R02",
         "R08",
-        "S1"
+        "S1",
+        "W1"
       ],
       "writes": [
         "docs/design/11-open-world.md"
@@ -1524,7 +1595,8 @@
         "RT2",
         "B6a",
         "M1",
-        "B7"
+        "B7",
+        "W1"
       ],
       "writes": [
         "docs/design/14-ui-ux-mobile.md"
@@ -1958,7 +2030,8 @@
         "CXx",
         "S1",
         "C1g",
-        "N1"
+        "N1",
+        "W1"
       ],
       "note": "书界文档（28 次运行）是最大的一笔开销。建议先抽查 01、11、12、14、07 与 04 的模拟结果；确认无误后运行 `python tools/agents/run.py approve G2`。想不停顿地跑完，可以提前运行 `python tools/agents/run.py approve G2 --force`（前置任务全部完成后才生效）。",
       "vars": {},

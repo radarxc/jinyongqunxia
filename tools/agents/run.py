@@ -151,6 +151,7 @@ class Task:
         self.validate = dict(d.get("validate", {}))
         self.note = d.get("note", "")
         self.priority = int(d.get("priority", 0))
+        self.agent_args = list(d.get("agent_args", []))   # 追加给 CLI 的参数（如放开网络）
         self.target: Task | None = None             # 审校任务的被审对象
         self.score = 0                              # 调度优先级：后继任务数 + priority
 
@@ -181,7 +182,7 @@ class Graph:
             if t.review and not t.is_gate:
                 r = Task({"id": t.id + ".R", "title": "审校 · " + t.title, "kind": "review",
                           "wave": t.wave, "phase": t.phase, "writes": t.writes, "web": t.web,
-                          "validate": t.validate, "priority": t.priority})
+                          "validate": t.validate, "priority": t.priority, "agent_args": t.agent_args})
                 r.target, r.raw_deps = t, [t.id]
                 self.tasks[r.id] = r
         for t in self.tasks.values():
@@ -336,6 +337,8 @@ class Config:
                 argv += [a.format(effort=self.effort) for a in self.effort_args]
             if t is not None and t.web:
                 argv += self.web_args
+            if t is not None:
+                argv += t.agent_args
             argv += self.extra_args
         if self.prompt_via == "stdin":
             return argv + ["-"], prompt

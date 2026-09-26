@@ -101,13 +101,14 @@ def find_bin(explicit: str | None, defaults: dict) -> str:
     raise R.Fatal("找不到 traex / traecli，请确认已安装并在 PATH 中（或设置 TRAEX_BIN）")
 
 
-def build_argv(binary: str, model: str, effort: str, wt: Path, last: Path, search: bool) -> list:
+def build_argv(binary: str, model: str, effort: str, wt: Path, last: Path, search: bool, extra: list | None = None) -> list:
     argv = [binary, "exec", "-m", model, "-s", "workspace-write", "--skip-git-repo-check",
             "-C", str(wt), "-o", str(last)]
     if effort:
         argv += ["-c", f'model_reasoning_effort="{effort}"']
     if search:
         argv += ["--search"]
+    argv += list(extra or [])
     return argv + ["-"]  # 提示词经标准输入传入
 
 
@@ -177,7 +178,7 @@ def cmd_start(a) -> int:
     model = a.model or os.environ.get("TRAEX_MODEL") or g.defaults.get("model") or DEFAULT_MODEL
     effort = a.effort if a.effort is not None else (os.environ.get("TRAEX_EFFORT") or g.defaults.get("effort") or DEFAULT_EFFORT)
     binary = find_bin(a.bin, g.defaults)
-    argv = build_argv(binary, model, effort, wt, lastf, t.web or a.search)
+    argv = build_argv(binary, model, effort, wt, lastf, t.web or a.search, t.agent_args)
     logf.write_text(f"# {t.id} · {t.title}\n# 开始：{now_s()}\n# 命令：{shlex.join(argv)} < {pf}\n"
                     f"# 工作区：{wt}\n# 基点：{base}\n\n", encoding="utf-8")
     pid = launch(argv, pf, logf, exitf, wt, {"TIANSHU_TASK_ID": t.id})
