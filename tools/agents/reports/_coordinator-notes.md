@@ -8,7 +8,7 @@
 | CN-02 | `design/17` 药王门候选 `sk_qixinhaitang` 7 地下 vs `skills-qianlong` 定为 8 地中（满足 `bf_qixin` 来源 8–10） | C1e / C1e.R | F2（回写 17） |
 | CN-03 | `design/17` 各派"代表武学 / 待收录"候选 ID 与图鉴实际存在漂移（C1a.R 列出：`sk_qiankun`→11、`sk_shenghuoling`→10 拳脚、`sk_emeijiufa`→`sk_emeijiuyang`、`sk_miejuejian`→6、`sk_liangyijian`→`sk_zhengliangyi` 9；C1c.R 列出 `sk_zixia`→`sk_zixiashengong`、`sk_daiyiruhe`→`sk_daizongruhe` 等） | C1a.R、C1c.R | F2（统一回写 17） |
 | CN-04 | 资源 ID 前缀改为 `res_`（`rs_` 为 02 古迹专用），已写入 author-requirements AR-05 与 B7 提示词 | R02 | A3（登记基准 §12） |
-| CN-05 | `design/05` §4.2 与 §13.2 对独孤九剑六式倍率（1.00 vs 1.10）自相矛盾 | C1c.R | R05 |
+| CN-05 | `design/05` §4.2 与 §13.2 对独孤九剑六式倍率（1.00 vs 1.10）自相矛盾 | C1c.R | R05 未处理 → C3（已写进 C3 提示词） |
 | CN-06 | `dualWield` 应收敛为 `int[0,10]`（X0-P01）、左右互搏归杂学·心神、弓箭归暗器不可携带（X0-P02） | RCw、X0 | R05（05）、A3（基准） |
 | CN-07 | 各图鉴 `mer_*`（专精经脉）均为预留 ID，待 `design/15` 定稿后按迁移表替换 | C1a–C1e 报告 | M1（定义）、F2（回写） |
 | CN-08 | `tools/lint/check_ids.py` 完成前，各审校以只读脚本替代；L1 合入后 F2 需对全部图鉴复跑 | 各审校报告 | L1、F2 |
