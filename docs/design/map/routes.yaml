@@ -1,0 +1,3312 @@
+{
+  "schema_version": "world-map-routes.v1",
+  "generated_on": "2026-09-26",
+  "fee_tiers": {
+    "low": "短途",
+    "medium": "常规",
+    "high": "长途",
+    "very_high": "远域",
+    "special": "剧情定价",
+    "story": "剧情承担"
+  },
+  "posts": [
+    {
+      "id": "post_beijing",
+      "name": "京师驿",
+      "city_id": "city_beijing",
+      "longitude": 116.4,
+      "latitude": 39.91,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_kaifeng",
+      "name": "汴梁驿",
+      "city_id": "city_kaifeng",
+      "longitude": 114.31,
+      "latitude": 34.8,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_luoyang",
+      "name": "洛阳驿",
+      "city_id": "city_luoyang",
+      "longitude": 112.45,
+      "latitude": 34.68,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_xian",
+      "name": "京兆驿",
+      "city_id": "city_xian",
+      "longitude": 108.94,
+      "latitude": 34.26,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_datong",
+      "name": "云中驿",
+      "city_id": "city_datong",
+      "longitude": 113.3,
+      "latitude": 40.09,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_taiyuan",
+      "name": "太原驿",
+      "city_id": "city_taiyuan",
+      "longitude": 112.56,
+      "latitude": 37.87,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_nanjing",
+      "name": "金陵驿",
+      "city_id": "city_nanjing",
+      "longitude": 118.78,
+      "latitude": 32.06,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_hangzhou",
+      "name": "临安驿",
+      "city_id": "city_hangzhou",
+      "longitude": 120.16,
+      "latitude": 30.29,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_fuzhou",
+      "name": "福州驿",
+      "city_id": "city_fuzhou",
+      "longitude": 119.31,
+      "latitude": 26.06,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_wuhan",
+      "name": "鄂州驿",
+      "city_id": "city_wuhan",
+      "longitude": 114.27,
+      "latitude": 30.58,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_xiangyang",
+      "name": "襄阳驿",
+      "city_id": "city_xiangyang",
+      "longitude": 112.14,
+      "latitude": 32.04,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_chengdu",
+      "name": "成都驿",
+      "city_id": "city_chengdu",
+      "longitude": 104.07,
+      "latitude": 30.67,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_dali",
+      "name": "大理驿",
+      "city_id": "city_dali",
+      "longitude": 100.21,
+      "latitude": 25.58,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_kunming",
+      "name": "昆明驿",
+      "city_id": "city_kunming",
+      "longitude": 102.72,
+      "latitude": 25.04,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_lanzhou",
+      "name": "兰州驿",
+      "city_id": "city_lanzhou",
+      "longitude": 103.84,
+      "latitude": 36.06,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_yinchuan",
+      "name": "兴庆驿",
+      "city_id": "city_yinchuan",
+      "longitude": 106.27,
+      "latitude": 38.47,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_dunhuang",
+      "name": "沙州驿",
+      "city_id": "city_dunhuang",
+      "longitude": 94.68,
+      "latitude": 40.17,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_kashgar",
+      "name": "喀什噶尔驿",
+      "city_id": "city_kashgar",
+      "longitude": 75.99,
+      "latitude": 39.47,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_yining",
+      "name": "伊犁驿",
+      "city_id": "city_yining",
+      "longitude": 81.32,
+      "latitude": 43.92,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_shenyang",
+      "name": "盛京驿",
+      "city_id": "city_shenyang",
+      "longitude": 123.43,
+      "latitude": 41.79,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_chengde",
+      "name": "热河驿",
+      "city_id": "city_chengde",
+      "longitude": 117.96,
+      "latitude": 40.95,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "post_yakesa",
+      "name": "雅克萨军驿",
+      "city_id": "city_yakesa",
+      "longitude": 127.53,
+      "latitude": 51.75,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch08"
+      ]
+    },
+    {
+      "id": "post_karakorum",
+      "name": "和林驿",
+      "city_id": "city_karakorum",
+      "longitude": 102.83,
+      "latitude": 47.2,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch02",
+        "ch03",
+        "ch04"
+      ]
+    },
+    {
+      "id": "post_lhasa",
+      "name": "拉萨驿",
+      "city_id": "city_lhasa",
+      "longitude": 91.1,
+      "latitude": 29.65,
+      "kind": "post_station",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port_tianjin",
+      "name": "直沽码头",
+      "city_id": "city_tianjin",
+      "longitude": 117.18,
+      "latitude": 39.14,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_qinhuangdao",
+      "name": "榆关海口",
+      "city_id": "city_qinhuangdao",
+      "longitude": 119.6,
+      "latitude": 39.94,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_yingkou",
+      "name": "辽河口码头",
+      "city_id": "city_yingkou",
+      "longitude": 122.23,
+      "latitude": 40.67,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_dandong",
+      "name": "鸭绿江口码头",
+      "city_id": "city_dandong",
+      "longitude": 124.39,
+      "latitude": 40.13,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_yantai",
+      "name": "登州海舶",
+      "city_id": "city_yantai",
+      "longitude": 121.44,
+      "latitude": 37.48,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_lianyungang",
+      "name": "海州港",
+      "city_id": "city_lianyungang",
+      "longitude": 119.22,
+      "latitude": 34.6,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_yangzhou",
+      "name": "扬州运河码头",
+      "city_id": "city_yangzhou",
+      "longitude": 119.44,
+      "latitude": 32.4,
+      "kind": "river_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_nanjing",
+      "name": "金陵江船码头",
+      "city_id": "city_nanjing",
+      "longitude": 118.78,
+      "latitude": 32.06,
+      "kind": "river_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_wuhu",
+      "name": "芜湖江港",
+      "city_id": "city_wuhu",
+      "longitude": 118.43,
+      "latitude": 31.35,
+      "kind": "river_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_wuhan",
+      "name": "汉口江港",
+      "city_id": "city_wuhan",
+      "longitude": 114.27,
+      "latitude": 30.58,
+      "kind": "river_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_yichang",
+      "name": "夷陵江港",
+      "city_id": "city_yichang",
+      "longitude": 111.29,
+      "latitude": 30.69,
+      "kind": "river_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_chongqing",
+      "name": "渝州江港",
+      "city_id": "city_chongqing",
+      "longitude": 106.56,
+      "latitude": 29.56,
+      "kind": "river_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_hangzhou",
+      "name": "钱塘码头",
+      "city_id": "city_hangzhou",
+      "longitude": 120.16,
+      "latitude": 30.29,
+      "kind": "river_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_ningbo",
+      "name": "明州海舶",
+      "city_id": "city_ningbo",
+      "longitude": 121.55,
+      "latitude": 29.88,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_zhoushan",
+      "name": "舟山海舶",
+      "city_id": "city_zhoushan",
+      "longitude": 122.21,
+      "latitude": 29.99,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_quanzhou",
+      "name": "泉州刺桐港",
+      "city_id": "city_quanzhou",
+      "longitude": 118.59,
+      "latitude": 24.91,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_xiamen",
+      "name": "厦门港",
+      "city_id": "city_xiamen",
+      "longitude": 118.08,
+      "latitude": 24.48,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_guangzhou",
+      "name": "广州海舶",
+      "city_id": "city_guangzhou",
+      "longitude": 113.25,
+      "latitude": 23.12,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_haikou",
+      "name": "琼州海口",
+      "city_id": "city_haikou",
+      "longitude": 110.35,
+      "latitude": 20.03,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_penghu",
+      "name": "澎湖水寨",
+      "city_id": "city_penghu",
+      "longitude": 119.57,
+      "latitude": 23.57,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_tainan",
+      "name": "大员港",
+      "city_id": "city_tainan",
+      "longitude": 120.2,
+      "latitude": 23.0,
+      "kind": "cargo_port",
+      "open_chapters": [
+        "ch08",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ]
+    },
+    {
+      "id": "port_taohuadao",
+      "name": "桃花岛渡口",
+      "city_id": "city_taohuadao",
+      "longitude": 122.26,
+      "latitude": 29.83,
+      "kind": "island_pier",
+      "open_chapters": [
+        "ch02",
+        "ch03"
+      ]
+    },
+    {
+      "id": "port_xiakedao",
+      "name": "侠客岛渡口",
+      "city_id": "city_xiakedao",
+      "longitude": 122.9,
+      "latitude": 26.8,
+      "kind": "island_pier",
+      "open_chapters": [
+        "ch06"
+      ]
+    },
+    {
+      "id": "port_shenlongdao",
+      "name": "神龙岛渡口",
+      "city_id": "city_shenlongdao",
+      "longitude": 122.82,
+      "latitude": 39.1,
+      "kind": "island_pier",
+      "open_chapters": [
+        "ch08"
+      ]
+    },
+    {
+      "id": "port_lingshedao",
+      "name": "灵蛇岛泊点",
+      "city_id": "city_lingshedao",
+      "longitude": 123.2,
+      "latitude": 28.2,
+      "kind": "island_pier",
+      "open_chapters": [
+        "ch04"
+      ]
+    },
+    {
+      "id": "port_binghuodao",
+      "name": "冰火岛泊点",
+      "city_id": "city_binghuodao",
+      "longitude": 131.2,
+      "latitude": 51.2,
+      "kind": "island_pier",
+      "open_chapters": [
+        "ch04"
+      ]
+    },
+    {
+      "id": "port_wangpanshan",
+      "name": "王盘山岛泊点",
+      "city_id": "city_wangpanshan",
+      "longitude": 122.65,
+      "latitude": 29.45,
+      "kind": "island_pier",
+      "open_chapters": [
+        "ch04"
+      ]
+    },
+    {
+      "id": "port_baiyuncheng",
+      "name": "白云城渡口",
+      "city_id": "city_baiyuncheng",
+      "longitude": 112.2,
+      "latitude": 18.7,
+      "kind": "island_pier",
+      "open_chapters": [
+        "ch06",
+        "ch07"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "id": "route_yanjing_kaifeng",
+      "name": "燕汴官道",
+      "kind": "imperial_road",
+      "from": "city_beijing",
+      "to": "city_kaifeng",
+      "via": [
+        "city_baoding",
+        "city_zhengding",
+        "city_anyang",
+        "city_xinxiang"
+      ],
+      "geometry": [
+        [
+          116.4,
+          39.91
+        ],
+        [
+          115.46,
+          38.87
+        ],
+        [
+          114.57,
+          38.15
+        ],
+        [
+          114.35,
+          36.1
+        ],
+        [
+          113.88,
+          35.3
+        ],
+        [
+          114.31,
+          34.8
+        ]
+      ],
+      "duration_days": 6,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_kaifeng_luoyang",
+      "name": "汴洛官道",
+      "kind": "imperial_road",
+      "from": "city_kaifeng",
+      "to": "city_luoyang",
+      "via": [
+        "city_zhengzhou"
+      ],
+      "geometry": [
+        [
+          114.31,
+          34.8
+        ],
+        [
+          113.65,
+          34.76
+        ],
+        [
+          112.45,
+          34.68
+        ]
+      ],
+      "duration_days": 2,
+      "fee_tier": "low",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_luoyang_xian",
+      "name": "崤函驿路",
+      "kind": "imperial_road",
+      "from": "city_luoyang",
+      "to": "city_xian",
+      "via": [
+        "city_huayin",
+        "city_weinan"
+      ],
+      "geometry": [
+        [
+          112.45,
+          34.68
+        ],
+        [
+          110.09,
+          34.57
+        ],
+        [
+          109.51,
+          34.5
+        ],
+        [
+          108.94,
+          34.26
+        ]
+      ],
+      "duration_days": 4,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_xian_lanzhou",
+      "name": "陇坂驿路",
+      "kind": "post_road",
+      "from": "city_xian",
+      "to": "city_lanzhou",
+      "via": [
+        "city_baoji",
+        "city_tianshui"
+      ],
+      "geometry": [
+        [
+          108.94,
+          34.26
+        ],
+        [
+          107.24,
+          34.36
+        ],
+        [
+          105.74,
+          34.58
+        ],
+        [
+          103.84,
+          36.06
+        ]
+      ],
+      "duration_days": 6,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_lanzhou_dunhuang",
+      "name": "河西驿路",
+      "kind": "silk_road",
+      "from": "city_lanzhou",
+      "to": "city_dunhuang",
+      "via": [
+        "city_wuwei",
+        "city_zhangye",
+        "city_jiuquan"
+      ],
+      "geometry": [
+        [
+          103.84,
+          36.06
+        ],
+        [
+          102.63,
+          37.93
+        ],
+        [
+          100.45,
+          38.93
+        ],
+        [
+          98.52,
+          39.74
+        ],
+        [
+          94.68,
+          40.17
+        ]
+      ],
+      "duration_days": 12,
+      "fee_tier": "high",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_dunhuang_kashgar",
+      "name": "西域南北道合线",
+      "kind": "silk_road",
+      "from": "city_dunhuang",
+      "to": "city_kashgar",
+      "via": [
+        "city_hami",
+        "city_turpan",
+        "city_korla",
+        "city_kuqa",
+        "city_aksu"
+      ],
+      "geometry": [
+        [
+          94.68,
+          40.17
+        ],
+        [
+          93.51,
+          42.83
+        ],
+        [
+          89.18,
+          42.95
+        ],
+        [
+          86.15,
+          41.76
+        ],
+        [
+          82.97,
+          41.72
+        ],
+        [
+          80.27,
+          41.17
+        ],
+        [
+          75.99,
+          39.47
+        ]
+      ],
+      "duration_days": 18,
+      "fee_tier": "high",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_kashgar_hotan",
+      "name": "昆仑北麓商道",
+      "kind": "caravan_road",
+      "from": "city_kashgar",
+      "to": "city_hotan",
+      "via": [
+        "city_yarkand"
+      ],
+      "geometry": [
+        [
+          75.99,
+          39.47
+        ],
+        [
+          77.24,
+          38.41
+        ],
+        [
+          79.93,
+          37.11
+        ]
+      ],
+      "duration_days": 6,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_turpan_yining",
+      "name": "天山北路",
+      "kind": "caravan_road",
+      "from": "city_turpan",
+      "to": "city_yining",
+      "via": [
+        "city_urumqi"
+      ],
+      "geometry": [
+        [
+          89.18,
+          42.95
+        ],
+        [
+          87.6,
+          43.8
+        ],
+        [
+          81.32,
+          43.92
+        ]
+      ],
+      "duration_days": 9,
+      "fee_tier": "high",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_yining_karakorum",
+      "name": "漠西—和林草原道",
+      "kind": "steppe_road",
+      "from": "city_yining",
+      "to": "city_karakorum",
+      "via": [
+        "city_altay"
+      ],
+      "geometry": [
+        [
+          81.32,
+          43.92
+        ],
+        [
+          88.13,
+          47.85
+        ],
+        [
+          102.83,
+          47.2
+        ]
+      ],
+      "duration_days": 14,
+      "fee_tier": "high",
+      "open_chapters": [
+        "ch02",
+        "ch03",
+        "ch04"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_beijing_karakorum",
+      "name": "燕京—和林驿路",
+      "kind": "steppe_road",
+      "from": "city_beijing",
+      "to": "city_karakorum",
+      "via": [
+        "city_zhangjiakou",
+        "city_xilinhot"
+      ],
+      "geometry": [
+        [
+          116.4,
+          39.91
+        ],
+        [
+          114.88,
+          40.81
+        ],
+        [
+          116.07,
+          43.94
+        ],
+        [
+          102.83,
+          47.2
+        ]
+      ],
+      "duration_days": 11,
+      "fee_tier": "high",
+      "open_chapters": [
+        "ch02",
+        "ch03",
+        "ch04"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_beijing_shenyang",
+      "name": "京辽驿路",
+      "kind": "post_road",
+      "from": "city_beijing",
+      "to": "city_shenyang",
+      "via": [
+        "city_shanhaiguan",
+        "city_xingcheng",
+        "city_jinzhou"
+      ],
+      "geometry": [
+        [
+          116.4,
+          39.91
+        ],
+        [
+          119.75,
+          40.0
+        ],
+        [
+          120.72,
+          40.62
+        ],
+        [
+          121.13,
+          41.12
+        ],
+        [
+          123.43,
+          41.79
+        ]
+      ],
+      "duration_days": 7,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_shenyang_ningan",
+      "name": "盛京—宁古塔驿路",
+      "kind": "post_road",
+      "from": "city_shenyang",
+      "to": "city_ningan",
+      "via": [
+        "city_jilin"
+      ],
+      "geometry": [
+        [
+          123.43,
+          41.79
+        ],
+        [
+          126.56,
+          43.85
+        ],
+        [
+          129.47,
+          44.34
+        ]
+      ],
+      "duration_days": 8,
+      "fee_tier": "high",
+      "open_chapters": [
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_ningan_yakesa",
+      "name": "宁古塔—雅克萨军驿",
+      "kind": "post_road",
+      "from": "city_ningan",
+      "to": "city_yakesa",
+      "via": [
+        "city_harbin",
+        "city_qiqihar",
+        "city_heihe"
+      ],
+      "geometry": [
+        [
+          129.47,
+          44.34
+        ],
+        [
+          126.65,
+          45.75
+        ],
+        [
+          123.96,
+          47.34
+        ],
+        [
+          127.49,
+          50.24
+        ],
+        [
+          127.53,
+          51.75
+        ]
+      ],
+      "duration_days": 14,
+      "fee_tier": "high",
+      "open_chapters": [
+        "ch08"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_beijing_datong",
+      "name": "京云官道",
+      "kind": "post_road",
+      "from": "city_beijing",
+      "to": "city_datong",
+      "via": [
+        "city_zhangjiakou"
+      ],
+      "geometry": [
+        [
+          116.4,
+          39.91
+        ],
+        [
+          114.88,
+          40.81
+        ],
+        [
+          113.3,
+          40.09
+        ]
+      ],
+      "duration_days": 4,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_datong_taiyuan",
+      "name": "雁门驿路",
+      "kind": "post_road",
+      "from": "city_datong",
+      "to": "city_taiyuan",
+      "via": [
+        "city_shuozhou",
+        "city_xinzhou"
+      ],
+      "geometry": [
+        [
+          113.3,
+          40.09
+        ],
+        [
+          112.43,
+          39.33
+        ],
+        [
+          112.73,
+          38.42
+        ],
+        [
+          112.56,
+          37.87
+        ]
+      ],
+      "duration_days": 5,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_taiyuan_luoyang",
+      "name": "太行南道",
+      "kind": "post_road",
+      "from": "city_taiyuan",
+      "to": "city_luoyang",
+      "via": [
+        "city_changzhi",
+        "city_jincheng",
+        "city_jiaozuo"
+      ],
+      "geometry": [
+        [
+          112.56,
+          37.87
+        ],
+        [
+          113.12,
+          36.19
+        ],
+        [
+          112.85,
+          35.49
+        ],
+        [
+          113.24,
+          35.22
+        ],
+        [
+          112.45,
+          34.68
+        ]
+      ],
+      "duration_days": 6,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_xian_chengdu",
+      "name": "褒斜—金牛道",
+      "kind": "mountain_road",
+      "from": "city_xian",
+      "to": "city_chengdu",
+      "via": [
+        "city_hanzhong",
+        "city_bazhong"
+      ],
+      "geometry": [
+        [
+          108.94,
+          34.26
+        ],
+        [
+          107.02,
+          33.07
+        ],
+        [
+          106.75,
+          31.87
+        ],
+        [
+          104.07,
+          30.67
+        ]
+      ],
+      "duration_days": 9,
+      "fee_tier": "high",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_chengdu_dali",
+      "name": "川滇茶马道",
+      "kind": "caravan_road",
+      "from": "city_chengdu",
+      "to": "city_dali",
+      "via": [
+        "city_yaan",
+        "city_lijiang"
+      ],
+      "geometry": [
+        [
+          104.07,
+          30.67
+        ],
+        [
+          103.0,
+          29.98
+        ],
+        [
+          100.23,
+          26.87
+        ],
+        [
+          100.21,
+          25.58
+        ]
+      ],
+      "duration_days": 12,
+      "fee_tier": "high",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_dali_kunming",
+      "name": "滇西驿路",
+      "kind": "post_road",
+      "from": "city_dali",
+      "to": "city_kunming",
+      "via": [
+        "city_qujing"
+      ],
+      "geometry": [
+        [
+          100.21,
+          25.58
+        ],
+        [
+          103.8,
+          25.49
+        ],
+        [
+          102.72,
+          25.04
+        ]
+      ],
+      "duration_days": 5,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_chengdu_lhasa",
+      "name": "川藏茶马道",
+      "kind": "caravan_road",
+      "from": "city_chengdu",
+      "to": "city_lhasa",
+      "via": [
+        "city_yaan",
+        "city_qamdo"
+      ],
+      "geometry": [
+        [
+          104.07,
+          30.67
+        ],
+        [
+          103.0,
+          29.98
+        ],
+        [
+          97.18,
+          31.13
+        ],
+        [
+          91.1,
+          29.65
+        ]
+      ],
+      "duration_days": 24,
+      "fee_tier": "very_high",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_lanzhou_lhasa",
+      "name": "青藏商道",
+      "kind": "caravan_road",
+      "from": "city_lanzhou",
+      "to": "city_lhasa",
+      "via": [
+        "city_xining",
+        "city_yushu"
+      ],
+      "geometry": [
+        [
+          103.84,
+          36.06
+        ],
+        [
+          101.76,
+          36.63
+        ],
+        [
+          97.01,
+          33.01
+        ],
+        [
+          91.1,
+          29.65
+        ]
+      ],
+      "duration_days": 22,
+      "fee_tier": "very_high",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_luoyang_xiangyang",
+      "name": "南阳驿路",
+      "kind": "post_road",
+      "from": "city_luoyang",
+      "to": "city_xiangyang",
+      "via": [
+        "city_nanyang"
+      ],
+      "geometry": [
+        [
+          112.45,
+          34.68
+        ],
+        [
+          112.53,
+          33.0
+        ],
+        [
+          112.14,
+          32.04
+        ]
+      ],
+      "duration_days": 5,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_xiangyang_wuhan",
+      "name": "荆襄驿路",
+      "kind": "post_road",
+      "from": "city_xiangyang",
+      "to": "city_wuhan",
+      "via": [
+        "city_jingmen"
+      ],
+      "geometry": [
+        [
+          112.14,
+          32.04
+        ],
+        [
+          112.2,
+          31.04
+        ],
+        [
+          114.27,
+          30.58
+        ]
+      ],
+      "duration_days": 4,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_wuhan_changsha",
+      "name": "湖广驿路",
+      "kind": "post_road",
+      "from": "city_wuhan",
+      "to": "city_changsha",
+      "via": [
+        "city_yueyang"
+      ],
+      "geometry": [
+        [
+          114.27,
+          30.58
+        ],
+        [
+          113.13,
+          29.37
+        ],
+        [
+          112.97,
+          28.2
+        ]
+      ],
+      "duration_days": 4,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_changsha_guangzhou",
+      "name": "南岭驿路",
+      "kind": "post_road",
+      "from": "city_changsha",
+      "to": "city_guangzhou",
+      "via": [
+        "city_hengyang",
+        "city_chenzhou",
+        "city_shaoguan"
+      ],
+      "geometry": [
+        [
+          112.97,
+          28.2
+        ],
+        [
+          112.57,
+          26.89
+        ],
+        [
+          113.03,
+          25.8
+        ],
+        [
+          113.6,
+          24.81
+        ],
+        [
+          113.25,
+          23.12
+        ]
+      ],
+      "duration_days": 7,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_guangzhou_guilin",
+      "name": "西江—桂林驿路",
+      "kind": "post_road",
+      "from": "city_guangzhou",
+      "to": "city_guilin",
+      "via": [
+        "city_zhaoqing",
+        "city_liuzhou"
+      ],
+      "geometry": [
+        [
+          113.25,
+          23.12
+        ],
+        [
+          112.46,
+          23.05
+        ],
+        [
+          109.41,
+          24.32
+        ],
+        [
+          110.3,
+          25.28
+        ]
+      ],
+      "duration_days": 7,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_guilin_kunming",
+      "name": "黔桂滇驿路",
+      "kind": "post_road",
+      "from": "city_guilin",
+      "to": "city_kunming",
+      "via": [
+        "city_liuzhou",
+        "city_guiyang",
+        "city_qujing"
+      ],
+      "geometry": [
+        [
+          110.3,
+          25.28
+        ],
+        [
+          109.41,
+          24.32
+        ],
+        [
+          106.72,
+          26.58
+        ],
+        [
+          103.8,
+          25.49
+        ],
+        [
+          102.72,
+          25.04
+        ]
+      ],
+      "duration_days": 10,
+      "fee_tier": "high",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_nanjing_hangzhou",
+      "name": "江南驿路",
+      "kind": "post_road",
+      "from": "city_nanjing",
+      "to": "city_hangzhou",
+      "via": [
+        "city_zhenjiang",
+        "city_changzhou",
+        "city_wuxi",
+        "city_suzhou",
+        "city_jiaxing"
+      ],
+      "geometry": [
+        [
+          118.78,
+          32.06
+        ],
+        [
+          119.46,
+          32.21
+        ],
+        [
+          119.95,
+          31.77
+        ],
+        [
+          120.29,
+          31.57
+        ],
+        [
+          120.6,
+          31.3
+        ],
+        [
+          120.75,
+          30.75
+        ],
+        [
+          120.16,
+          30.29
+        ]
+      ],
+      "duration_days": 5,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_hangzhou_fuzhou",
+      "name": "浙闽驿路",
+      "kind": "post_road",
+      "from": "city_hangzhou",
+      "to": "city_fuzhou",
+      "via": [
+        "city_shaoxing",
+        "city_ningbo",
+        "city_wenzhou"
+      ],
+      "geometry": [
+        [
+          120.16,
+          30.29
+        ],
+        [
+          120.58,
+          30.0
+        ],
+        [
+          121.55,
+          29.88
+        ],
+        [
+          120.67,
+          28.0
+        ],
+        [
+          119.31,
+          26.06
+        ]
+      ],
+      "duration_days": 7,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_fuzhou_guangzhou",
+      "name": "东南沿海驿路",
+      "kind": "post_road",
+      "from": "city_fuzhou",
+      "to": "city_guangzhou",
+      "via": [
+        "city_putian",
+        "city_quanzhou",
+        "city_xiamen",
+        "city_zhangzhou",
+        "city_chaozhou"
+      ],
+      "geometry": [
+        [
+          119.31,
+          26.06
+        ],
+        [
+          119.01,
+          25.44
+        ],
+        [
+          118.59,
+          24.91
+        ],
+        [
+          118.08,
+          24.48
+        ],
+        [
+          117.66,
+          24.51
+        ],
+        [
+          116.62,
+          23.66
+        ],
+        [
+          113.25,
+          23.12
+        ]
+      ],
+      "duration_days": 8,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_nanjing_kaifeng",
+      "name": "江淮官道",
+      "kind": "post_road",
+      "from": "city_nanjing",
+      "to": "city_kaifeng",
+      "via": [
+        "city_hefei",
+        "city_fuyang",
+        "city_shangqiu"
+      ],
+      "geometry": [
+        [
+          118.78,
+          32.06
+        ],
+        [
+          117.28,
+          31.86
+        ],
+        [
+          115.81,
+          32.89
+        ],
+        [
+          115.66,
+          34.41
+        ],
+        [
+          114.31,
+          34.8
+        ]
+      ],
+      "duration_days": 6,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_jinan_beijing",
+      "name": "山东—京师官道",
+      "kind": "post_road",
+      "from": "city_jinan",
+      "to": "city_beijing",
+      "via": [
+        "city_dezhou",
+        "city_cangzhou",
+        "city_tianjin"
+      ],
+      "geometry": [
+        [
+          117.0,
+          36.67
+        ],
+        [
+          116.36,
+          37.44
+        ],
+        [
+          116.85,
+          38.31
+        ],
+        [
+          117.18,
+          39.14
+        ],
+        [
+          116.4,
+          39.91
+        ]
+      ],
+      "duration_days": 5,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_kaifeng_jinan",
+      "name": "汴齐官道",
+      "kind": "post_road",
+      "from": "city_kaifeng",
+      "to": "city_jinan",
+      "via": [
+        "city_dongping",
+        "city_taian"
+      ],
+      "geometry": [
+        [
+          114.31,
+          34.8
+        ],
+        [
+          116.47,
+          35.94
+        ],
+        [
+          117.12,
+          36.2
+        ],
+        [
+          117.0,
+          36.67
+        ]
+      ],
+      "duration_days": 4,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_yangtze_upper",
+      "name": "长江上游水路",
+      "kind": "river",
+      "from": "port_chongqing",
+      "to": "port_wuhan",
+      "via": [
+        "city_fengjie",
+        "port_yichang"
+      ],
+      "geometry": [
+        [
+          106.56,
+          29.56
+        ],
+        [
+          109.46,
+          31.02
+        ],
+        [
+          111.29,
+          30.69
+        ],
+        [
+          114.27,
+          30.58
+        ]
+      ],
+      "duration_days": 7,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_yangtze_lower",
+      "name": "长江下游水路",
+      "kind": "river",
+      "from": "port_wuhan",
+      "to": "port_nanjing",
+      "via": [
+        "city_jiujiang",
+        "city_anqing",
+        "port_wuhu"
+      ],
+      "geometry": [
+        [
+          114.27,
+          30.58
+        ],
+        [
+          116.0,
+          29.7
+        ],
+        [
+          117.05,
+          30.51
+        ],
+        [
+          118.43,
+          31.35
+        ],
+        [
+          118.78,
+          32.06
+        ]
+      ],
+      "duration_days": 6,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_grand_canal_south",
+      "name": "江南运河",
+      "kind": "canal",
+      "from": "port_hangzhou",
+      "to": "port_yangzhou",
+      "via": [
+        "city_jiaxing",
+        "city_suzhou",
+        "city_wuxi",
+        "city_changzhou",
+        "city_zhenjiang"
+      ],
+      "geometry": [
+        [
+          120.16,
+          30.29
+        ],
+        [
+          120.75,
+          30.75
+        ],
+        [
+          120.6,
+          31.3
+        ],
+        [
+          120.29,
+          31.57
+        ],
+        [
+          119.95,
+          31.77
+        ],
+        [
+          119.46,
+          32.21
+        ],
+        [
+          119.44,
+          32.4
+        ]
+      ],
+      "duration_days": 5,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_grand_canal_north",
+      "name": "会通河—御河",
+      "kind": "canal",
+      "from": "port_yangzhou",
+      "to": "port_tianjin",
+      "via": [
+        "city_dezhou",
+        "city_cangzhou"
+      ],
+      "geometry": [
+        [
+          119.44,
+          32.4
+        ],
+        [
+          116.36,
+          37.44
+        ],
+        [
+          116.85,
+          38.31
+        ],
+        [
+          117.18,
+          39.14
+        ]
+      ],
+      "duration_days": 7,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_east_sea",
+      "name": "东海沿岸海路",
+      "kind": "sea",
+      "from": "port_ningbo",
+      "to": "port_quanzhou",
+      "via": [
+        "port_zhoushan"
+      ],
+      "geometry": [
+        [
+          121.55,
+          29.88
+        ],
+        [
+          122.21,
+          29.99
+        ],
+        [
+          118.59,
+          24.91
+        ]
+      ],
+      "duration_days": 5,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_south_sea",
+      "name": "南海沿岸海路",
+      "kind": "sea",
+      "from": "port_quanzhou",
+      "to": "port_guangzhou",
+      "via": [
+        "port_xiamen"
+      ],
+      "geometry": [
+        [
+          118.59,
+          24.91
+        ],
+        [
+          118.08,
+          24.48
+        ],
+        [
+          113.25,
+          23.12
+        ]
+      ],
+      "duration_days": 5,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_bohai",
+      "name": "渤海—辽东海路",
+      "kind": "sea",
+      "from": "port_tianjin",
+      "to": "port_yingkou",
+      "via": [
+        "port_qinhuangdao",
+        "port_yantai"
+      ],
+      "geometry": [
+        [
+          117.18,
+          39.14
+        ],
+        [
+          119.6,
+          39.94
+        ],
+        [
+          121.44,
+          37.48
+        ],
+        [
+          122.23,
+          40.67
+        ]
+      ],
+      "duration_days": 5,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_taiwan",
+      "name": "闽台海路",
+      "kind": "sea",
+      "from": "port_xiamen",
+      "to": "port_tainan",
+      "via": [
+        "port_penghu"
+      ],
+      "geometry": [
+        [
+          118.08,
+          24.48
+        ],
+        [
+          119.57,
+          23.57
+        ],
+        [
+          120.2,
+          23.0
+        ]
+      ],
+      "duration_days": 4,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch08",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_taohuadao",
+      "name": "舟山—桃花岛渡船",
+      "kind": "sea",
+      "from": "port_zhoushan",
+      "to": "port_taohuadao",
+      "via": [],
+      "geometry": [
+        [
+          122.21,
+          29.99
+        ],
+        [
+          122.26,
+          29.83
+        ]
+      ],
+      "duration_days": 1,
+      "fee_tier": "low",
+      "open_chapters": [
+        "ch02",
+        "ch03"
+      ],
+      "service": "scheduled"
+    },
+    {
+      "id": "route_lingshedao",
+      "name": "明州—灵蛇岛剧情船",
+      "kind": "sea",
+      "from": "port_ningbo",
+      "to": "port_lingshedao",
+      "via": [],
+      "geometry": [
+        [
+          121.55,
+          29.88
+        ],
+        [
+          123.2,
+          28.2
+        ]
+      ],
+      "duration_days": 4,
+      "fee_tier": "special",
+      "open_chapters": [
+        "ch04"
+      ],
+      "service": "story_locked"
+    },
+    {
+      "id": "route_binghuodao",
+      "name": "辽东—冰火岛剧情船",
+      "kind": "sea",
+      "from": "port_yingkou",
+      "to": "port_binghuodao",
+      "via": [],
+      "geometry": [
+        [
+          122.23,
+          40.67
+        ],
+        [
+          131.2,
+          51.2
+        ]
+      ],
+      "duration_days": 9,
+      "fee_tier": "special",
+      "open_chapters": [
+        "ch04"
+      ],
+      "service": "story_locked"
+    },
+    {
+      "id": "route_wangpanshan",
+      "name": "舟山—王盘山岛渡船",
+      "kind": "sea",
+      "from": "port_zhoushan",
+      "to": "port_wangpanshan",
+      "via": [],
+      "geometry": [
+        [
+          122.21,
+          29.99
+        ],
+        [
+          122.65,
+          29.45
+        ]
+      ],
+      "duration_days": 1,
+      "fee_tier": "special",
+      "open_chapters": [
+        "ch04"
+      ],
+      "service": "story_locked"
+    },
+    {
+      "id": "route_xiakedao",
+      "name": "侠客岛岛使专船",
+      "kind": "sea",
+      "from": "port_ningbo",
+      "to": "port_xiakedao",
+      "via": [],
+      "geometry": [
+        [
+          121.55,
+          29.88
+        ],
+        [
+          122.9,
+          26.8
+        ]
+      ],
+      "duration_days": 4,
+      "fee_tier": "special",
+      "open_chapters": [
+        "ch06"
+      ],
+      "service": "story_locked"
+    },
+    {
+      "id": "route_shenlongdao",
+      "name": "神龙岛专船",
+      "kind": "sea",
+      "from": "port_yingkou",
+      "to": "port_shenlongdao",
+      "via": [],
+      "geometry": [
+        [
+          122.23,
+          40.67
+        ],
+        [
+          122.82,
+          39.1
+        ]
+      ],
+      "duration_days": 3,
+      "fee_tier": "special",
+      "open_chapters": [
+        "ch08"
+      ],
+      "service": "story_locked"
+    },
+    {
+      "id": "route_baiyuncheng",
+      "name": "白云城专船",
+      "kind": "sea",
+      "from": "port_guangzhou",
+      "to": "port_baiyuncheng",
+      "via": [],
+      "geometry": [
+        [
+          113.25,
+          23.12
+        ],
+        [
+          112.2,
+          18.7
+        ]
+      ],
+      "duration_days": 4,
+      "fee_tier": "special",
+      "open_chapters": [
+        "ch06",
+        "ch07"
+      ],
+      "service": "story_locked"
+    }
+  ],
+  "special_routes": [
+    {
+      "id": "route_offmap_persia",
+      "name": "刺桐港—波斯总教货船专线",
+      "kind": "offmap_special",
+      "from": "port_quanzhou",
+      "to": "offmap_mingjiao_persia",
+      "via": [],
+      "duration_days": 28,
+      "fee_tier": "very_high",
+      "open_chapters": [
+        "ch04"
+      ],
+      "service": "cargo_ship_only",
+      "no_intermediate_stops": true,
+      "rule": "两端直达；途中城市不生成、不可停靠。"
+    },
+    {
+      "id": "route_offmap_luochaguo",
+      "name": "雅克萨—罗刹国军驿专线",
+      "kind": "offmap_special",
+      "from": "post_yakesa",
+      "to": "offmap_luochaguo",
+      "via": [],
+      "duration_days": 18,
+      "fee_tier": "story",
+      "open_chapters": [
+        "ch08"
+      ],
+      "service": "sealed_post_convoy",
+      "no_intermediate_stops": true,
+      "rule": "两端直达；途中城市不生成、不可停靠。"
+    },
+    {
+      "id": "route_offmap_samarkand",
+      "name": "喀什噶尔—撒麻尔罕商队专线",
+      "kind": "offmap_special",
+      "from": "post_kashgar",
+      "to": "offmap_samarkand",
+      "via": [],
+      "duration_days": 20,
+      "fee_tier": "very_high",
+      "open_chapters": [
+        "ch02"
+      ],
+      "service": "sealed_post_caravan",
+      "no_intermediate_stops": true,
+      "rule": "两端直达；途中城市不生成、不可停靠。"
+    }
+  ]
+}
