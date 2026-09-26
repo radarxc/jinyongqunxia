@@ -106,8 +106,7 @@ def build_argv(binary: str, model: str, effort: str, wt: Path, last: Path, searc
             "-C", str(wt), "-o", str(last)]
     if effort:
         argv += ["-c", f'model_reasoning_effort="{effort}"']
-    if search:
-        argv += ["--search"]
+    # 注：`--search` 只是交互式 CLI 的参数，`exec` 不接受；exec 下模型自带 web_search 工具，无需开关
     argv += list(extra or [])
     return argv + ["-"]  # 提示词经标准输入传入
 
