@@ -2090,7 +2090,12 @@
       "title": "剧情 · 01 天龙八部（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/01-tianlong.md"
@@ -2151,7 +2156,12 @@
       "title": "剧情 · 02 射雕英雄传（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/02-shediao.md"
@@ -2212,7 +2222,12 @@
       "title": "剧情 · 03 神雕侠侣（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/03-shendiao.md"
@@ -2273,7 +2288,12 @@
       "title": "剧情 · 04 倚天屠龙记（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/04-yitian.md"
@@ -2334,7 +2354,12 @@
       "title": "剧情 · 05 笑傲江湖（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/05-xiaoao.md"
@@ -2395,7 +2420,12 @@
       "title": "剧情 · 06 侠客行（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/06-xiake.md"
@@ -2456,7 +2486,12 @@
       "title": "剧情 · 07 碧血剑（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/07-bixue.md"
@@ -2517,7 +2552,12 @@
       "title": "剧情 · 08 鹿鼎记（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/08-luding.md"
@@ -2578,7 +2618,12 @@
       "title": "剧情 · 09 连城诀（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/09-liancheng.md"
@@ -2639,7 +2684,12 @@
       "title": "剧情 · 10 白马啸西风（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/10-baima.md"
@@ -2700,7 +2750,12 @@
       "title": "剧情 · 11 鸳鸯刀（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/11-yuanyang.md"
@@ -2761,7 +2816,12 @@
       "title": "剧情 · 12 书剑恩仇录（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/12-shujian.md"
@@ -2822,7 +2882,12 @@
       "title": "剧情 · 13 飞狐外传（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/13-feihu.md"
@@ -2883,7 +2948,12 @@
       "title": "剧情 · 14 雪山飞狐（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "G2"
+        "B2",
+        "R02",
+        "R13",
+        "S1",
+        "N1",
+        "B3"
       ],
       "writes": [
         "docs/design/story/14-xueshan.md"
@@ -2944,8 +3014,11 @@
       "title": "书界 DLC · 01 天龙八部",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P01"
+        "P01",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "01",
@@ -3001,8 +3074,11 @@
       "title": "书界 DLC · 02 射雕英雄传",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P02"
+        "P02",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "02",
@@ -3058,8 +3134,11 @@
       "title": "书界 DLC · 03 神雕侠侣",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P03"
+        "P03",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "03",
@@ -3115,8 +3194,11 @@
       "title": "书界 DLC · 04 倚天屠龙记",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P04"
+        "P04",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "04",
@@ -3172,8 +3254,11 @@
       "title": "书界 DLC · 05 笑傲江湖",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P05"
+        "P05",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "05",
@@ -3229,8 +3314,11 @@
       "title": "书界 DLC · 06 侠客行",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P06"
+        "P06",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "06",
@@ -3286,8 +3374,11 @@
       "title": "书界 DLC · 07 碧血剑",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P07"
+        "P07",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "07",
@@ -3343,8 +3434,11 @@
       "title": "书界 DLC · 08 鹿鼎记",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P08"
+        "P08",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "08",
@@ -3400,8 +3494,11 @@
       "title": "书界 DLC · 09 连城诀",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P09"
+        "P09",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "09",
@@ -3457,8 +3554,11 @@
       "title": "书界 DLC · 10 白马啸西风",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P10"
+        "P10",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "10",
@@ -3514,8 +3614,11 @@
       "title": "书界 DLC · 11 鸳鸯刀",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P11"
+        "P11",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "11",
@@ -3571,8 +3674,11 @@
       "title": "书界 DLC · 12 书剑恩仇录",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P12"
+        "P12",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "12",
@@ -3628,8 +3734,11 @@
       "title": "书界 DLC · 13 飞狐外传",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P13"
+        "P13",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "13",
@@ -3685,8 +3794,11 @@
       "title": "书界 DLC · 14 雪山飞狐",
       "prompt": "D-chapter.md",
       "deps": [
-        "G2",
-        "P14"
+        "P14",
+        "B3",
+        "N1",
+        "R05",
+        "R09"
       ],
       "vars": {
         "nn": "14",
