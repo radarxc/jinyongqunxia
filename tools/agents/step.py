@@ -11,7 +11,7 @@ run.py 是全自动调度器；本脚本把同一套机制拆成可单独调用�
         `traex exec`，立即返回。工作区已存在（续作）时自动附上上次失败原因。
     python tools/agents/step.py wait   <ID> [--max-min 25]
         等待本次运行结束：结束打印 FINISHED 与退出码、日志末尾、最后消息；超过 --max-min 打印
-        RUNNING（退出码 3），可反复调用。
+        RUNNING（退出码 3），可反复调用；日志超过 --stall-min（默认 20）分钟无增长打印 STALLED（退出码 4）。
     python tools/agents/step.py finish <ID> [--no-commit]
         校验产出（与 run.py 相同规则）。通过：只提交声明范围内的文件（带 Agent-Task 尾注），打印
         SHA；不通过：打印问题并写入 .agents/logs/<ID>/last_failure.md，退出码 1。
@@ -204,7 +204,20 @@ def cmd_wait(a) -> int:
     deadline = started + a.max_min * 60
     last_beat = started
     t0 = _dt.datetime.strptime(cur["started"], "%Y-%m-%d %H:%M:%S")
+    # 停滞检测：日志（含代理的推理摘要与工具调用）超过 --stall-min 分钟不增长，视为流式响应挂死
+    stall_size = logf.stat().st_size if logf.exists() else 0
+    stall_since = logf.stat().st_mtime if logf.exists() else started
     while True:
+        if logf.exists():
+            sz = logf.stat().st_size
+            if sz != stall_size:
+                stall_size, stall_since = sz, time.time()
+            elif a.stall_min > 0 and time.time() - stall_since >= a.stall_min * 60 and not exitf.exists():
+                idle = (time.time() - stall_since) / 60
+                mins = (_dt.datetime.now() - t0).total_seconds() / 60
+                print(f"STALLED {t.id}：日志已 {idle:.0f} 分钟无增长（{sz / 1024:.0f} KB，已运行 {mins:.0f} 分钟）。"
+                      f"建议：python tools/agents/step.py kill {t.id} 后重新 start（可换模型 / 推理强度）")
+                return 4
         if exitf.exists():
             rc = exitf.read_text().strip()
             mins = (_dt.datetime.now() - t0).total_seconds() / 60
@@ -419,6 +432,7 @@ def build_parser():
     p.add_argument("id")
     p.add_argument("--max-min", type=float, default=25, help="最多等待分钟数（默认 25；到时打印 RUNNING，退出码 3）")
     p.add_argument("--tail", type=int, default=40, help="结束时打印日志末尾行数")
+    p.add_argument("--stall-min", type=float, default=20, help="日志无增长超过该分钟数即返回 STALLED（退出码 4）；0 关闭")
     p.set_defaults(func=cmd_wait)
 
     p = sub.add_parser("finish", help="校验并在工作区提交")
