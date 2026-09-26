@@ -5,7 +5,7 @@
 > 引用而不重定义：区域玩法、入口状态、资源点与旅行事件 → `design/11`；大地图交互、筛选、可访问性与响应式布局 → `design/14`；门派史、称谓、武学与 `O/H/P/N/D/M` 开放矩阵 → `design/17`；世界层与区域内可行走渲染 → `tech/02` §7；运行时格式、质量档和分包 → `tech/06`。
 > 下游：`design/11` 定稿区域边界与玩法，`design/14` 消费 SVG/数据，`design/chapters/*` 选择 `chNN` 图层，`tech/04` 定 schema，`tech/06` 定生产分包。
 > 标注约定：**（原创扩展）**＝原著没有的内容；**（待考）**＝原著或史实尚需逐字核对；**（待核实）**＝技术事实尚未联网确认；**（待实测）**＝需真机/真浏览器验证；**【建议值】**＝依赖其他文档、先给可用值并在文末登记。
-> 版本：v1.0（W1，2026-09-26）。
+> 版本：v1.0（W1，2026-09-26）；审校 W1.R（2026-09-26）。
 
 ---
 
@@ -18,7 +18,7 @@
 5. 真正超出画布的节点只有 **3 个**：波斯明教总教、罗刹国、撒麻尔罕。它们只由一条两端式 `offmap_special` 专线连接驿站或货船码头，`via=[]`、`no_intermediate_stops=true`，途中城市不可见、不可停。
 6. `routes.yaml` 含 **24 座驿站、28 个码头、48 条常规官道/驿路/水路、3 条图外专线**。时长与费用是大地图建议档，不替代 `design/11` 的旅行事件与经济终值。
 7. `regions.yaml` 给出 **19 个 `rg_*` 草案**、81 个简化陆地多边形、14 组河流和 11 组山脉。海岸与河流基于 Natural Earth 1:50m，写入仓库后渲染不联网。
-8. `tools/map/render_map.py` 仅需 Python 3.9+ 标准库；四个 `.yaml` 使用 JSON-compatible YAML 1.2，故无 PyYAML 也能读。`--check` 已通过，`--render` 已生成底图与 14 张时代图。
+8. `tools/map/render_map.py` 仅需 Python 3.9+ 标准库；四个 `.yaml` 使用 JSON-compatible YAML 1.2，故无 PyYAML 也能读。W1.R 已补严格类型、逐章状态、分舵、路线几何与原子写入校验；`--check` 与全量 `--render` 均须作为提交门禁。
 
 ### 0.1 文件契约
 
@@ -56,25 +56,23 @@
 
 189 条记录取以下并集：AR-04 点名的都城/重镇/商埠/边关；十四书界主支线城市；`design/17` 的驻地与分舵近邻；官道、丝路、茶马道、江河、运河和海路中继；代表性首府、港口；图内小说锚点。它不是历代全部县级名录。9 条 `importance=site` 仅为昆仑或岛屿端点，UI 须用地点符号，不计作城市人口。
 
-### 1.3 坐标与史实置信度
+### 1.3 坐标数值精度与地点置信度
 
-| `coordinate_precision` | 含义 | 展示约束 |
+| 字段 | 适用对象 | 含义 |
 |---|---|---|
-| `known_site` / `known_mountain` | 明确遗址或山体 | 可称实地位置 |
-| `city_anchor` / `regional_anchor` | 城市中心或活动带 | 不声称精确到门址 |
-| `approximate_fictional` | 小说无可证坐标 | 标小说锚点**（原创扩展）** |
-| `approximate_pending_research` | 原著/史料未核完 | 标**（待考）** |
-| `approximate_original_placement` | 古龙内容映入本时间线 | 标**（原创扩展）** |
+| 顶层 `coordinate_decimals=2`；记录 `coordinate_precision="0.01 degree; WGS84"` | 全部城市 | 只声明 WGS84 与按 0.01° 量化，不声明地点真实度 |
+| `location_confidence` | 9 个 `importance=site` 城市/小说地点 | 地点真实性与考据状态 |
+| `coordinate_precision` | 门派总部 | 地点真实性与考据状态；与城市同名字段的旧 schema 语义不同 |
 
-现代坐标以 GeoNames WGS84 为底表并抽检民政部地名库；历史行政名参考 CHGIS 后人工整理。CHGIS 不允许商业再分发，仓库只保留整理结果与来源链接。0.01° 约为南北 `111.2×0.01=1.11 km`、35°N 东西 `111.2×cos35°×0.01≈0.91 km`；适合全国导航，不代表虚构地点具有公里级真实性。
+置信度值以 `known_site/known_historical_site/known_mountain` 表实址或山体，`city_anchor/regional_anchor` 表活动带，`approximate_fictional/approximate_pending_research/approximate_original_placement` 及其组合值表小说锚点、待考或跨作品投放。现代坐标以 GeoNames CN/TW/RU WGS84 数据抽检；0.01° 约为南北 `111.2×0.01=1.11 km`、35°N 东西 `111.2×cos35°×0.01≈0.91 km`，不代表虚构地点具有公里级真实性。
 
 ### 1.4 历史地名与治所迁移原则
 
-1. `city_*` 表示跨时代地理语义；同址易名写 `history.<band>.name`。
-2. 治所确实迁移时写 `seat_moves[]` 的适用时期与 WGS84，渲染点和标签同步迁移。
-3. 后世城市尚未形成时标“未建或废弃”，当期聚落名不确定则标**（待考）**。
-4. “都城”按当期政权赋值；不得因古都身份将西安、成都等误标。
-5. 并立政权可有多个都城，如北宋层的汴梁、辽南京/上京、兴庆与大理。
+1. `city_*` 表示跨时代地理语义；`history.<band>` 只是六期检索摘要，不能直接驱动书界。
+2. `eras[chNN]` 是逐章显示名、行政地位与开放状态的权威值；同属一带的 1217/1259、1755/1769 可分别覆盖。
+3. `chapters[]` 必须严格等于 `eras[chNN].open=true` 的有序投影，不另作一套事实。
+4. 治所确实迁移时写 `seat_moves[]` 的适用时期与 WGS84，渲染点、标签和路线首尾同步迁移。
+5. 后世城市尚未形成时标“未建或废弃”，当期聚落名不确定则标**（待考）**；“都城”只按逐章当期政权赋值。
 
 ---
 
@@ -198,11 +196,11 @@ Y  = offsetY − s·y       // SVG y 轴向下
 | `ch13` 飞狐 | 1769，乾隆 | `qing_middle` |
 | `ch14` 雪山 | 1780，乾隆 | `qing_middle` |
 
-这张映射只复制 `design/02` 的定年，不在本文重定义年代。城市 6 期历史值展开为 14 格，便于单包直接消费。
+这张映射只复制 `design/02` 的定年，不在本文重定义年代。六期 `history` 用于摘要和编辑起点，最终消费 14 格 `eras[chNN]`；关键年份必须逐章覆盖，不能机械复制同一 `band`。
 
 ### 3.3 城市记录
 
-核心字段为 `id/modern_name/longitude/latitude/region/importance/history/eras/chapters/sects/businesses/seat_moves/sources`。`history` 存 6 个时期，`eras` 存展开后的 14 格；`importance` 仅取 `capital/major/secondary/site`，是绘图级别。行政地位只取都城、路府州县、军镇、商埠、边关、未建或废弃。完整实例见 `cities.yaml` 的 `city_beijing`。
+核心字段为 `id/modern_name/longitude/latitude/region/importance/history/eras/chapters/sects/businesses/seat_moves/sources`；小说地点另有 `location_confidence`。`history` 存 6 期摘要，`eras` 存 14 格权威状态，`chapters` 是其 `open` 投影；`importance` 仅取 `capital/major/secondary/site`。行政地位只取都城、路府州县、军镇、商埠、边关、未建或废弃。
 
 ### 3.4 治所迁移
 
@@ -210,11 +208,11 @@ Y  = offsetY − s·y       // SVG y 轴向下
 
 ### 3.5 门派记录
 
-门派仅保留 `id/site_name/city_id/longitude/latitude/coordinate_precision/availability_ref/availability/branches` 等地图字段，不复制武学或人物关系。`availability` 是 `design/17` §3 的机器可读镜像；17 改矩阵时须同步比较，本文不取得开放规则归属权。
+门派仅保留 `id/site_name/city_id/longitude/latitude/coordinate_precision/availability_ref/availability/branches` 等地图字段，不复制武学或人物关系。`availability` 是 `design/17` §3 的机器可读镜像；每个 `branches[]` 另以 `open_chapters` 限定驻点时代，且不得超出父门派 `O/H`。
 
 ### 3.6 路线记录
 
-路线字段为 `id/kind/from/via/to/duration_days/fee_tier/open_chapters/service`；常规路线允许 `via`，图外专线禁止。离散日包含休息、换马、路况与剧情抽样，不是现代驾车时长；费用只给 `low/medium/high/very_high/special/story` 档，金额归 `design/11` / `16`。
+路线字段为 `id/kind/from/to/via/geometry/duration_days/fee_tier/open_chapters/service`。`geometry` 是稳定权威折线，`from/to` 是必达端点，`via` 只是候选停靠节点且不塑形；候选点关闭时不得停靠，但路线几何不消失。图外专线仍强制 `via=[]`。
 
 ### 3.7 区域草案
 
@@ -253,13 +251,13 @@ Y  = offsetY − s·y       // SVG y 轴向下
 | 城市 ID | 今名 | 北宋 | 南宋·金·蒙古 | 元 | 明 | 清初 / 清中 | 地图要点 |
 |---|---|---|---|---|---|---|---|
 | `city_kaifeng` | 开封 | 东京开封府（汴梁），都城 | 南京开封府 / 汴京，都城 | 汴梁路 | 开封府 | 开封府 | 天龙核心都城 |
-| `city_beijing` | 北京 | 辽南京析津府（燕京），都城 | 金中都大兴府 / 燕京，都城 | 大都路，都城 | 北京顺天府，都城 | 京师顺天府，都城 | 四代同点换名 |
+| `city_beijing` | 北京 | 辽南京析津府（燕京），都城 | 1217 中都故城 / 燕京；1259 燕京路 / 大都营建前**（待考）** | 大都路，都城 | 北京顺天府，都城 | 京师顺天府，都城 | 同带按 ch02/ch03 覆盖 |
 | `city_hangzhou` | 杭州 | 杭州 | 临安府（行在），都城 | 杭州路 | 杭州府 | 杭州府 | 射雕/神雕南宋核心 |
 | `city_nanjing` | 南京 | 江宁府 / 升州**（待考）** | 建康府 | 集庆路 | 应天府南京，都城 | 江宁府 | “南京”只在明层为都城 |
 | `city_yinchuan` | 银川 | 兴庆府，西夏都城 | 中兴府/故地**（待考）** | 宁夏府路 | 宁夏镇/卫 | 宁夏府 | 天龙西夏线 |
-| `city_dali` | 大理 | 大理国都（羊苴咩城） | 大理国都 / 大理城 | 大理路 | 大理府 | 大理府 | 天龙段氏与天龙寺 |
+| `city_dali` | 大理 | 大理国都（羊苴咩城） | 1217 大理国都；1259 蒙古辖大理城 | 大理路 | 大理府 | 大理府 | 1253 灭国后不再标都城 |
 | `city_liaoshangjing` | 辽上京遗址 | 上京临潢府，都城 | 故城 | 故城 | 故城 | 故城 | 只在辽层开放 |
-| `city_acheng` | 阿城 | 会宁府（金上京），都城 | 会宁府故城，废弃 | 故城 | 阿勒楚喀一带**（待考）** | 后期军镇 | 金早期都城锚点 |
+| `city_acheng` | 阿城 | 完颜部聚落 / 生女真地**（待考）**，未建 | 会宁府故城，废弃 | 故城 | 阿勒楚喀一带**（待考）** | 后期军镇 | 1093 早于 1115 建国 |
 | `city_datong` | 大同 | 西京大同府，都城 | 金西京大同府，都城 | 大同路 | 大同府军镇 | 大同府军镇 | 雁门/云中轴 |
 | `city_karakorum` | 哈拉和林故址 | 漠北草原，未建 | 和林 / 哈拉和林，都城 | 和林辖境，都城 | 故址 | 故址 | 射雕—倚天蒙古层 |
 | `city_xiangyang` | 襄阳 | 襄阳府军镇 | 襄阳府军镇 | 襄阳路军镇 | 襄阳府军镇 | 襄阳府军镇 | 神雕守城锚点 |
@@ -278,7 +276,7 @@ Y  = offsetY − s·y       // SVG y 轴向下
 | `city_foshan` | 佛山 | 季华乡/未建**（待考）** | 佛山堡/未建**（待考）** | 佛山堡/未建**（待考）** | 佛山镇 | 佛山镇 | 不把后世名倒灌宋元 |
 | `city_tianjin` | 天津 | 直沽寨一带**（待考）** | 直沽寨/海津镇**（待考）** | 海津镇 | 天津卫 | 天津卫/天津府 | 运河北端与渤海港 |
 | `city_chengde` | 承德 | 热河谷地，未建 | 未建 | 未建 | 未建 | 热河行宫/承德府 | 只在清层开放 |
-| `city_urumqi` | 乌鲁木齐 | 北庭以西草原，未建 | 未建 | 未建 | 未建 | 迪化城，1758 后 | 仅 ch12–14 开放 |
+| `city_urumqi` | 乌鲁木齐 | 北庭以西草原，未建 | 未建 | 未建 | 未建 | 迪化城，1758 后**（待考）** | 1755 关闭；仅 ch13–14 开放 |
 | `city_kashgar` | 喀什 | 喀什噶尔/疏勒**（待考）** | 喀什噶尔 | 喀什噶尔 | 喀什噶尔 | 喀什噶尔 | 西域总交通核 |
 | `city_turpan` | 吐鲁番 | 高昌故地 | 高昌故地 | 火州 | 吐鲁番 | 吐鲁番 | 白马迷宫近邻 |
 | `city_yining` | 伊宁 | 伊犁河谷部落 | 部落 | 察合台辖境**（待考）** | 河谷部落 | 固勒扎/伊犁营城**（待考）** | 哈萨克、回部、灵鹫宫交通 |
@@ -287,8 +285,8 @@ Y  = offsetY − s·y       // SVG y 轴向下
 | `city_liaoyang` | 辽阳 | 东京辽阳府，都城 | 东京辽阳府，都城 | 辽阳路 | 辽东都司 | 辽阳州 | 辽金东北都城锚点 |
 | `city_ningan` | 宁安 | 渤海故地 | 上京故城/女真地 | 女真地 | 建州女真北境 | 宁古塔军镇 | 清代东北路线 |
 | `city_qiqihar` | 齐齐哈尔 | 嫩江诸部，未建 | 未建 | 未建 | 未建 | 齐齐哈尔城/将军驻地 | 清层军镇 |
-| `city_yakesa` | 雅克萨故址 | 黑龙江北岸部落地 | 同左 | 同左 | 同左 | 雅克萨城 / 故址 | 仅鹿鼎开放 |
-| `city_tainan` | 台南 | 大员一带，未建 | 未建 | 未建 | 大员一带 | 承天府 / 台湾府 | 鹿鼎台湾线 |
+| `city_yakesa` | 雅克萨故址 | 黑龙江北岸部落地 | 同左 | 同左 | 同左 | 雅克萨城 / 故址 | Albazino 124.08°E, 53.38°N；仅 ch08 |
+| `city_tainan` | 台南 | 大员一带，未建 | 未建 | 未建 | 大员一带 | 承天府 / 台湾府 | ch08、ch11–14 开放 |
 | `city_taipei` | 台北 | 盆地聚落，未建 | 未建 | 未建 | 大佳腊一带 | 台北府未建 / 淡水厅北境 | 避免早期显示“台北府” |
 | `city_penghu` | 澎湖 | 澎湖屿商泊 | 澎湖屿 | 巡检司**（待考）** | 巡检司 | 水师协 | 闽台中继 |
 | `city_taohuadao` | 桃花岛 | 小说岛屿锚点 | 小说岛屿锚点 | — | — | — | 图内，不是图外节点 |
@@ -318,7 +316,7 @@ Y  = offsetY − s·y       // SVG y 轴向下
 | 少林 `sect_shaolin` | 登封少室山 | 现实寺址级 | 南少林独立 ID，不作分院 |
 | 南少林 `sect_nanshaolin` | 莆田候选点 | **（待考）** | 泉州另列候选分支 |
 | 天龙寺 `sect_tianlongsi` | 大理苍山 | 小说近似 | 无外部分舵 |
-| 全真 `sect_quanzhen` | 终南山重阳宫 | 小说近似 | 北京白云观为后世别院 |
+| 全真 `sect_quanzhen` | 鄠邑祖庵重阳宫 | 现实历史遗址级 | 北京白云观仅 ch05 后显示 |
 | 武当 `sect_wudang` | 武当山 | 真实山体 | 北方弟子不等于分舵 |
 | 华山 `sect_huashan` | 华山玉女峰一带 | 真实山体 | 思过崖等为区域内入口 |
 | 峨眉 `sect_emei` | 峨眉山金顶 | 真实山体 | 17 决定前身/开放 |
@@ -350,9 +348,9 @@ Y  = offsetY − s·y       // SVG y 轴向下
 | 灵鹫宫 `sect_lingjiu` | 天山缥缈峰 | 小说近似 | 仍在画布范围内 |
 | 星宿 `sect_xingxiu` | 青海星宿海 | 小说近似 | 中原队伍非分舵 |
 | 明教 `sect_mingjiao` | 昆仑光明顶 | 小说近似 | 波斯总教是图外节点 |
-| 日月神教 `sect_riyue` | 河北黑木崖 | **（待考）** | 洛阳绿竹巷、杭州梅庄 |
+| 日月神教 `sect_riyue` | 平定州西北黑木崖锚点 | 小说近似**（待考）** | 原著行政表述有矛盾；两分支仅 ch05 |
 | 神龙教 `sect_shenlongjiao` | 辽东外海神龙岛 | 小说锚点 | 图内专船 |
-| 侠客岛 `sect_xiakedao` | 东南外海侠客岛 | 小说锚点 | 图内岛使专船 |
+| 侠客岛 `sect_xiakedao` | 画布内南海外海锚点 | 小说锚点**（待考）** | 图内岛使专船 |
 | 吐蕃密宗 `sect_mizong` | 拉萨西北大轮寺锚点 | **（待考）** | 不将现实寺院强等同 |
 | 西夏一品堂 `sect_yipintang` | 兴庆府 | 城市锚点 | 中原使团是临时营地 |
 | 契丹 `sect_qidan` | 辽上京 | 现实遗址级 | 南京析津府为第二军府 |
@@ -386,6 +384,7 @@ Y  = offsetY − s·y       // SVG y 轴向下
 | `mountain_road` | 山道 | 可，耗时较高 | 淡墨虚线 |
 | `river` / `canal` | 江河 / 运河客货船 | 可 | 中墨飞白线 |
 | `sea` | 图内海路 | 可或直达 | 中墨飞白线 |
+| `coastal_mixed` | 沿岸驿路 + 岛屿短渡 | 可，经 `via` | 中淡墨混合虚线 |
 | `offmap_special` | 图外封闭专线 | **不可** | 朱砂虚线 + 题签 |
 
 ### 6.2 核心陆路骨架
@@ -416,7 +415,7 @@ Y  = offsetY − s·y       // SVG y 轴向下
 - 江南运河：杭州 → 嘉兴 → 苏州 → 无锡 → 常州 → 镇江 → 扬州，5 日。
 - 会通河—御河：扬州 → 德州 → 沧州 → 天津，元明清开放，7 日。
 - 东海沿岸：宁波 → 舟山 → 泉州，5 日。
-- 南海沿岸：泉州 → 厦门 → 广州，5 日。
+- 东南沿海混合线：福州 → 厦门 → 广州，5 日；厦门岛段含短渡，不伪装成全陆路。
 - 渤海—辽东：天津 → 榆关海口 → 登州 → 营口，5 日。
 - 闽台：厦门 → 澎湖 → 台南，清层开放，4 日。
 
@@ -503,7 +502,7 @@ SVG 内建三组滤镜：
 | 驿站 | 10 px 方印 | `<title>` |
 | 码头 | 船底弧形符号 | `<title>` |
 
-静态全量图会发生局部标签重叠，脚本只给确定性偏移；正式 UI 应使用 `design/14` 的缩放、避让和选中态。不得为追求单张海报可读而删掉数据点。
+都城符号以当前 `eras[chNN].status=都城` 判定，不因静态 `importance=capital` 把已迁都的故城继续画成都城；其余标签优先级才回退到 `importance`。静态全量图会发生局部标签重叠，正式 UI 应使用 `design/14` 的缩放、避让和选中态。
 
 ### 7.5 竖排与字体回退
 
@@ -580,11 +579,11 @@ H → 显示半透明隐世印（UI 可默认隐藏）
 P/M/N/D → 不显示常驻门派入口
 ```
 
-门派分舵没有独立 `sect_*`；使用 `branches[].id=site_*` 或由 11 的入口实例承载。
+门派分舵没有独立 `sect_*`；使用 `branches[].id=site_*`，仅当父门派为 `O/H` 且当前章列在分舵 `open_chapters` 时显示。
 
 ### 8.6 路线开放判定
 
-路线必须包含当前 `chNN` 才显示。常规路径中的 `via` 既是几何折点也是可停节点；图外专线 `via` 永远为空。若下游要把常规长线拆段，应生成新 `route_*`，而不是给图外专线塞中途点。
+路线必须包含当前 `chNN` 才显示。常规线按 `geometry` 绘制，首尾随当期治所迁移；`via` 仅声明候选停靠点，当前章关闭则不可停但不改变折线。图外专线 `via` 永远为空且只有两端；拆段须新建普通 `route_*`。
 
 ### 8.7 AR-04 的状态合成接口
 
@@ -612,7 +611,7 @@ Natural Earth 1:50m 会省略极小岛屿，也可能让海岸城市中心落在
 
 - `small_island`：厦门、澎湖等小岛；
 - `shore_tolerance`：威海、福州、海口等岸线简化容差；
-- `fictional_anchor`：桃花岛、侠客岛、神龙岛、白云城、蝙蝠岛。
+- `fictional_anchor`：桃花岛、侠客岛、神龙岛、灵蛇岛、冰火岛、王盘山岛、白云城、蝙蝠岛等小说岛屿。
 
 圆形半径只用于渲染和点在陆地侧校验，绝不是实际海岸形状。校验允许城市落入陆地多边形或这些显式掩膜之一。
 
@@ -686,24 +685,11 @@ S1 的地图建议在本文已被正式落点；确址待考并不意味着可�
 
 ### 10.5 `tech/06`：资产格式与分包
 
-当前 SVG 是审查友好的生成源。按 `tech/06`：
+当前 SVG 是 4096×3072 的审查/交互生成源；它尚不是 `tech/06` 定稿的生产资产。`tech/06` 当前要求 DOM 地图转 WebP、母版 4096×4096、low 为 2048 单图、mid/high 为 4096 并切 512² 瓦片，并把“大地图”列在各 `chNN/base`。
 
-- 地图作为 DOM 图像，生产基线转 WebP；
-- low 使用 2048 单图；mid/high 使用 4096 并切 512² 瓦片；
-- SVG 图标可保留矢量，但整张世界图的生产交付仍服从 DOM 地图格式；
-- 共同底图宜进共享“区域基础包”，`chNN` 的时代状态/标签进时代状态包；
-- 当前 `tech/06` 仍写每书界 `base` 含“大地图”，需按 AR-04 去重为共享底图 + 时代增量（报告 §6 登记）。
+AR-04/AR-11 与本任务则要求共享底图、14 个时代层和 4:3 默认画布。下游须在 `tech/06` 统一两项契约：是把 4:3 内容留白装入方形母版还是接受 4096×3072；是共享 base + 时代增量还是各章重复完整大图。同步前不得宣称本 SVG 可直接进生产包。
 
-建议素材键：
-
-```text
-map/jianghu_world/base
-map/jianghu_world/ch01
-...
-map/jianghu_world/ch14
-```
-
-具体键语法与清单仍以 `tech/06` 为准；本文不擅自新增资产 ID。
+建议素材键仅为 `map/jianghu_world/base` 与 `map/jianghu_world/chNN` **【建议值】**；正式 `AssetKey`、切片与 chunk 归 `tech/06`。
 
 ### 10.6 chapters 接口
 
@@ -725,10 +711,7 @@ worldMap:
 
 ### 11.1 环境
 
-- Python 3.9+；当前验证为 Python 3.11.0。
-- 标准库即可。
-- 可选 PyYAML：仅当未来文件不再保持 JSON-compatible YAML 时使用。
-- 无网络运行：所有海岸、河流、城市与门派数据已写入仓库。
+Python 3.9+、标准库即可；本次验证版本见 W1.R 报告。仅当未来文件不再保持 JSON-compatible YAML 时才需要可选 PyYAML；运行渲染器无需联网。
 
 ### 11.2 校验
 
@@ -787,10 +770,10 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 
 | 文件类型 | 本次范围 | 硬上限 |
 |---|---:|---:|
-| `jianghu-base.svg` | 1,035,880 B（约 1012 KiB） | 2 MiB |
-| 单时代 SVG | 167,533–185,243 B | 2 MiB |
+| `jianghu-base.svg` | 1,017,547 B（约 994 KiB） | 2 MiB |
+| 单时代 SVG | 166,941–183,401 B | 2 MiB |
 
-脚本写完每个文件立即检查大小，超过 2 MiB 抛错。
+脚本先在内存预检全部 15 个 UTF-8 payload 均 ≤2 MiB，再逐个用同目录临时文件、`fsync` 与 `os.replace` 原子替换；任一预检超限不会覆盖既有资产。
 
 ### 11.8 更新数据的安全顺序
 
@@ -809,7 +792,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 ## 12. 风险与迁移
 
 - **历史地名**：189 城 × 6 时期中标**（待考）**者仍需历史审校；修订显示名、状态或迁移坐标时保留稳定 `city_*`。Natural Earth 只供海岸，GeoNames 只供现代坐标，CHGIS 只作历史交叉核对。
-- **小说驻地**：黑木崖、凌霄城、绝情谷、侠客岛等没有可证精确 WGS84；UI 必须连同 `coordinate_precision` 展示“小说锚点 / 待考”。
+- **小说驻地**：黑木崖、凌霄城、绝情谷、侠客岛等没有可证精确 WGS84；UI 对城市地点读 `location_confidence`，对门派读 `coordinate_precision`，展示“小说锚点 / 待考”。
 - **标签密度**：所有点保留 DOM ID / `<title>`，静态图只常显都城、`major` 城与 `O` 门派；全国/区域层级避让与聚类归 `design/14`。
 - **滤镜性能**：MDN 记载 `feDisplacementMap`、`feTurbulence` 已广泛可用，但低端 WebView 仍**（待实测）**；低档可用构建期 2048 WebP，无滤镜时仍保留纸色、折线与符号。
 - **区域迁移**：11 若拆 `rg_*`，须给旧→新迁移表，只更新城市 `region`，不改城市、门派、路线 ID，然后重跑校验与渲染。
@@ -829,24 +812,30 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 7. CHGIS Intro，覆盖 221 BCE–1911，访问 2026-09-26：https://chgis.fas.harvard.edu/pages/intro/
 8. 复旦大学中国历史地理研究所，CHGIS 数据说明/下载页，访问 2026-09-26：https://yugong.fudan.edu.cn/CHGIS/sjxz.htm
 9. 中国·国家地名信息库（民政部），现代规范地名抽检，访问 2026-09-26：https://dmfw.mca.gov.cn/
+10. 北京市人民政府《追根溯源话中都》，金中都沿革交叉核对，访问 2026-09-26：https://www.beijing.gov.cn/gate/big5/www.beijing.gov.cn/renwen/sy/bq/qsbj/zxzp/202309/t20230922_3264652.html
+11. 大理州人民政府《元代》，1253 年大理政权变化，访问 2026-09-26：https://www.dali.gov.cn/dlzrmzf/c101711/pc/content/1968886769482043392/content_1968886769482043392.html
+12. 哈尔滨市阿城区人民政府《金太祖完颜阿骨打》，1115 年建国节点，访问 2026-09-26：http://www.acheng.gov.cn/achengqu/rwls/202305/c01_707707.shtml
+13. 台南市历史资料平台，承天府 / 台湾府沿革交叉核对，访问 2026-09-26：https://historic.tainan.gov.tw/index.php?option=module&lang=cht&task=pageinfo&id=89&index=6
+14. 高德地图“重阳宫”，鄠邑祖庵地址与坐标，访问 2026-09-26：https://ditu.amap.com/place/B001D08OX8
+15. 承德市文物局“避暑山庄及周围寺庙”，清代行宫分支交叉核对，访问 2026-09-26：https://wwj.chengde.gov.cn/art/2018/11/8/art_962_753975.html
 
 ### 13.2 投影与 SVG
 
-10. EPSG Guidance Note / EPSG method 9822，Albers Equal Area 正算形式，访问 2026-09-26：https://epsg.io/9822-method
-11. Snyder, J. P., *Map Projections—A Working Manual*, USGS Professional Paper 1395，Albers 等积圆锥公式：https://pubs.usgs.gov/pp/1395/report.pdf
-12. W3C Filter Effects Module Level 1，`feDisplacementMap` / `feTurbulence`，访问 2026-09-26：https://www.w3.org/TR/filter-effects-1/
-13. MDN `<feDisplacementMap>`，Baseline Widely available（2015-07 起），访问 2026-09-26：https://developer.mozilla.org/docs/Web/SVG/Reference/Element/feDisplacementMap
-14. MDN `<feTurbulence>`，SVG 滤镜原语说明与兼容信息，访问 2026-09-26：https://developer.mozilla.org/docs/Web/SVG/Reference/Element/feTurbulence
-15. SVG 2，文本与 `writing-mode` 规范，访问 2026-09-26：https://www.w3.org/TR/SVG2/text.html
+16. EPSG Guidance Note / EPSG method 9822，Albers Equal Area 正算形式，访问 2026-09-26：https://epsg.io/9822-method
+17. Snyder, J. P., *Map Projections—A Working Manual*, USGS Professional Paper 1395，Albers 等积圆锥公式，访问 2026-09-26：https://pubs.usgs.gov/pp/1395/report.pdf
+18. W3C Filter Effects Module Level 1，`feDisplacementMap` / `feTurbulence`，访问 2026-09-26：https://www.w3.org/TR/filter-effects-1/
+19. MDN `<feDisplacementMap>`，Baseline Widely available（2015-07 起），访问 2026-09-26：https://developer.mozilla.org/docs/Web/SVG/Reference/Element/feDisplacementMap
+20. MDN `<feTurbulence>`，SVG 滤镜原语说明与兼容信息，访问 2026-09-26：https://developer.mozilla.org/docs/Web/SVG/Reference/Element/feTurbulence
+21. SVG 2，文本与 `writing-mode` 规范，访问 2026-09-26：https://www.w3.org/TR/SVG2/text.html
 
 ### 13.3 项目内规范与原著基线
 
-16. `docs/00-canon.md` §2、§12、§16、§18。
-17. `docs/decisions/author-requirements.md` AR-04、AR-08、AR-11。
-18. `docs/decisions/author-decisions.md` P53。
-19. `docs/design/02-timeline-and-world-tiers.md` §1。
-20. `docs/design/17-sects-compendium.md` §3、§5–§12。
-21. 金庸三联版 / 广州出版社修订版十四部小说为原著考据基线；本稿没有编造逐字引文或回目号。
+22. `docs/00-canon.md` §2、§12、§16、§18。
+23. `docs/decisions/author-requirements.md` AR-04、AR-08、AR-11。
+24. `docs/decisions/author-decisions.md` P53。
+25. `docs/design/02-timeline-and-world-tiers.md` §1。
+26. `docs/design/17-sects-compendium.md` §3、§5–§12。
+27. 金庸三联版 / 广州出版社修订版十四部小说为原著考据基线；本稿没有编造逐字引文或回目号。
 
 ---
 
@@ -861,6 +850,8 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | 城市地理语义 | 一个跨时代稳定 `city_*`；显示名与治所位置可随时代变 |
 | 治所迁移 | `seat_moves[]` 对特定时期覆盖默认城市投影点 |
 | 小说锚点 | 为不可考虚构地点指定的稳定玩法坐标，不宣称现实确址 |
+| 路线权威几何 | `routes[].geometry`；独立于可停靠点，首尾可随治所迁移 |
+| 候选停靠点 | `routes[].via`；仅当该点与路线在当前章同时开放才可停 |
 | 图外节点 | 超出 73–135°E / 18–54°N 画布、只在题签框出现的目的地 |
 | 图外专线 | 两端式、不含中继、只能从驿站或货船码头登乘的 `offmap_special` 路线 |
 | 岸线容差掩膜 | 为小岛/简化海岸或小说岛屿显式加入的点在陆地侧校验圆 |
@@ -899,13 +890,13 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | 规则 | `--check` 断言 |
 |---|---|
 | `MAP-V001` | 各组 ID 符合前缀且组内、全局唯一 |
-| `MAP-V002` | 城市、门派、驿站、码头在范围内，城市位于陆地环或显式掩膜 |
-| `MAP-V003` | 每城有 `ch01`…`ch14` 名称、合法地位与存在的 `rg_*` |
-| `MAP-V004` | 城市关联门派存在；每派有图内坐标或图外标记及恰好 14 格矩阵 |
-| `MAP-V005` | 驿站/码头绑定城市存在；路线两端和 `via` 均存在 |
-| `MAP-V006` | 图外专线恰有一个图外端，陆上端为 `post_*` / `port_*`，`via=[]` 且不停靠 |
-| `MAP-V007` | 图外节点不孤立，普通路线不接图外节点 |
-| `MAP-V008` | 陆地环闭合且至少四点；输出画布 ≥1024×768、单文件 ≤2 MiB |
+| `MAP-V002` | 城市/治所/门派/分舵/驿站/码头坐标为有限数、在范围与区域 bounds 内，并位于陆地环或合法岛屿掩膜 |
+| `MAP-V003` | 每城恰有六期 `history`、14 格 `eras`、严格布尔 `open`；`chapters` 与开放格一致；城市按 0.01° 量化 |
+| `MAP-V004` | 每派恰有 14 格合法矩阵；分舵章节不超父派 `O/H`，绑定城市当章开放 |
+| `MAP-V005` | 常规路线种类/费用/时长合法；`geometry` 首尾匹配端点、经过 `via`，非水路逐段在陆地侧 |
+| `MAP-V006` | 图外专线恰一图外端 + 一 `post_*`/`port_*`，`via=[]`、布尔 `no_intermediate_stops=true`，章节与节点相同 |
+| `MAP-V007` | 每个图外节点恰接一条专线，普通路线绝不接图外节点；区域邻接对称 |
+| `MAP-V008` | 陆地环、岛屿掩膜、河流/山脉几何合法；画布 ≥1024×768；全部 payload 写前 ≤2 MiB |
 
 ### 15.2 已执行与负向用例
 

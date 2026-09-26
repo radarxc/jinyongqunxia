@@ -20,7 +20,7 @@
   <style>
     .paper{fill:#eee4cc}.fiber{fill:url(#fibers)}.land{fill:#e8ddc2;stroke:#211f1a;stroke-width:5;stroke-linejoin:round}.coast-ghost{fill:none;stroke:#554c3e;stroke-opacity:.28;stroke-width:12}
     .river{fill:none;stroke:#526d6d;stroke-width:7;stroke-opacity:.62;stroke-linecap:round;stroke-dasharray:38 7 11 5}.mount{fill:none;stroke:#3f3b32;stroke-width:5;stroke-opacity:.52;stroke-linecap:round}
-    .road{fill:none;stroke:#655b49;stroke-width:3;stroke-opacity:.35;stroke-dasharray:10 9}.water-route{fill:none;stroke:#4f6968;stroke-width:3.5;stroke-opacity:.5;stroke-dasharray:25 9}
+    .road{fill:none;stroke:#655b49;stroke-width:3;stroke-opacity:.35;stroke-dasharray:10 9}.water-route{fill:none;stroke:#4f6968;stroke-width:3.5;stroke-opacity:.5;stroke-dasharray:25 9}.mixed-route{fill:none;stroke:#5d6259;stroke-width:3.3;stroke-opacity:.48;stroke-dasharray:17 7 3 7}
     .special-route{fill:none;stroke:#9e3b2f;stroke-width:4;stroke-dasharray:13 9}.city-capital{fill:#201d18;stroke:#9e3b2f;stroke-width:5}.city-major{fill:#39342b}.city-secondary{fill:#6a6150}.city-site{fill:none;stroke:#39342b;stroke-width:4}
     .sect{fill:#9e3b2f;stroke:#f0e6cf;stroke-width:2}.post{fill:#6f5940}.port{fill:#526d6d}.label{font-family:"Ma Shan Zheng","Zhi Mang Xing","STKaiti","KaiTi","Noto Serif CJK SC",serif;fill:#211f1a;paint-order:stroke;stroke:#eee4cc;stroke-width:7;stroke-linejoin:round}.minor{font-size:22px}.major{font-size:27px;font-weight:600}.capital{font-size:33px;font-weight:700}.sect-label{font-size:19px;fill:#74281f}
     .vertical{writing-mode:vertical-rl;text-orientation:upright;letter-spacing:.08em}.title{font-family:"Ma Shan Zheng","Zhi Mang Xing","STKaiti",serif;font-size:66px;letter-spacing:.16em}.subtitle{font-family:"STKaiti","KaiTi",serif;font-size:22px}.seal{fill:#9e3b2f;stroke:#7d2a22;stroke-width:4}.seal-text{fill:#eee4cc;font-family:"STKaiti",serif;font-size:20px;font-weight:700}.offmap-box{fill:#eee4cc;fill-opacity:.88;stroke:#9e3b2f;stroke-width:4}.offmap-text{font-family:"STKaiti","KaiTi",serif;fill:#74281f;font-size:23px}.era-layer[display="none"]{display:none}
@@ -117,9 +117,9 @@
 <ellipse class="land" data-kind="small_island" aria-label="澎湖群岛" cx="2959.56" cy="2373.06" rx="10.45" ry="7.53"/>
 <ellipse class="land" data-kind="fictional_anchor" aria-label="桃花岛小说锚点" cx="3046.13" cy="1952.95" rx="7" ry="5.04"/>
 <ellipse class="land" data-kind="fictional_anchor" aria-label="神龙岛小说锚点" cx="2968.97" cy="1356.11" rx="6.7" ry="4.82"/>
-<ellipse class="land" data-kind="fictional_anchor" aria-label="侠客岛小说锚点" cx="3115.51" cy="2138.51" rx="8.91" ry="6.42"/>
+<ellipse class="land" data-kind="fictional_anchor" aria-label="侠客岛小说锚点" cx="2642.02" cy="2624.67" rx="9.7" ry="6.98"/>
 <ellipse class="land" data-kind="fictional_anchor" aria-label="灵蛇岛小说锚点" cx="3115.84" cy="2047.06" rx="8.77" ry="6.31"/>
-<ellipse class="land" data-kind="fictional_anchor" aria-label="冰火岛小说锚点" cx="3164.32" cy="518.84" rx="7.09" ry="5.11"/>
+<ellipse class="land" data-kind="fictional_anchor" aria-label="冰火岛小说锚点" cx="3398.29" cy="1062.46" rx="8.08" ry="5.82"/>
 <ellipse class="land" data-kind="fictional_anchor" aria-label="王盘山岛小说锚点" cx="3071.45" cy="1973.34" rx="7.03" ry="5.06"/>
 <ellipse class="land" data-kind="fictional_anchor" aria-label="白云城小说锚点" cx="2551.77" cy="2726.04" rx="9.86" ry="7.1"/>
 <ellipse class="land" data-kind="fictional_anchor" aria-label="蝙蝠岛小说锚点" cx="3149.85" cy="1988.21" rx="8.67" ry="6.24"/>
@@ -349,7 +349,7 @@
 <path id="ch10-route_lanzhou_dunhuang" data-map-id="route_lanzhou_dunhuang" class="road" d="M2048.52 1630.74 L1990.2 1508.21 L1885.58 1439.59 L1795.11 1381.92 L1613.58 1338.55"><title>河西驿路 · 12日 · high</title></path>
 <path id="ch10-route_dunhuang_kashgar" data-map-id="route_dunhuang_kashgar" class="road" d="M1613.58 1338.55 L1577.73 1161.4 L1380.88 1126.34 L1228.79 1177.6 L1082.28 1149.65 L950.35 1154.61 L723.68 1206.08"><title>西域南北道合线 · 18日 · high</title></path>
 <path id="ch10-route_kashgar_hotan" data-map-id="route_kashgar_hotan" class="road" d="M723.68 1206.08 L762.72 1289.27 L868.98 1405.73"><title>昆仑北麓商道 · 6日 · medium</title></path>
-<path id="ch10-route_turpan_yining" data-map-id="route_turpan_yining" class="road" d="M1380.88 1126.34 L1040.48 993.97"><title>天山北路 · 9日 · high</title></path>
+<path id="ch10-route_turpan_yining" data-map-id="route_turpan_yining" class="road" d="M1380.88 1126.34 L1318.6 1060.23 L1040.48 993.97"><title>天山北路 · 9日 · high</title></path>
 <path id="ch10-route_beijing_shenyang" data-map-id="route_beijing_shenyang" class="road" d="M2654.24 1349.65 L2813.08 1322.72 L2852.78 1275.91 L2866.82 1240.83 L2965.96 1179.37"><title>京辽驿路 · 7日 · medium</title></path>
 <path id="ch10-route_shenyang_ningan" data-map-id="route_shenyang_ningan" class="road" d="M2965.96 1179.37 L3081.02 1020.15 L3202.26 959.13"><title>盛京—宁古塔驿路 · 8日 · high</title></path>
 <path id="ch10-route_beijing_datong" data-map-id="route_beijing_datong" class="road" d="M2654.24 1349.65 L2575.77 1299.41 L2504.93 1352.78"><title>京云官道 · 4日 · medium</title></path>
@@ -367,8 +367,8 @@
 <path id="ch10-route_guangzhou_guilin" data-map-id="route_guangzhou_guilin" class="road" d="M2593.39 2444.04 L2547.27 2452.14 L2363.94 2382.33 L2412.43 2318.7"><title>西江—桂林驿路 · 7日 · medium</title></path>
 <path id="ch10-route_guilin_kunming" data-map-id="route_guilin_kunming" class="road" d="M2412.43 2318.7 L2363.94 2382.33 L2204.88 2242.88 L2038.25 2313.02 L1975.53 2340.65"><title>黔桂滇驿路 · 10日 · high</title></path>
 <path id="ch10-route_nanjing_hangzhou" data-map-id="route_nanjing_hangzhou" class="road" d="M2838.25 1839.79 L2872.67 1825.05 L2902.69 1849.38 L2922.62 1859.41 L2941.75 1874.1 L2955.33 1907.94 L2928.33 1942.26"><title>江南驿路 · 5日 · medium</title></path>
-<path id="ch10-route_hangzhou_fuzhou" data-map-id="route_hangzhou_fuzhou" class="road" d="M2928.33 1942.26 L2953.82 1957.23 L3007.33 1956.34 L2978.91 2083.69 L2921.67 2218.23"><title>浙闽驿路 · 7日 · medium</title></path>
-<path id="ch10-route_fuzhou_guangzhou" data-map-id="route_fuzhou_guangzhou" class="road" d="M2921.67 2218.23 L2910.28 2259.89 L2890.97 2296.73 L2865.33 2327.84 L2840.88 2329.1 L2787.21 2390.15 L2593.39 2444.04"><title>东南沿海驿路 · 8日 · medium</title></path>
+<path id="ch10-route_hangzhou_fuzhou" data-map-id="route_hangzhou_fuzhou" class="road" d="M2928.33 1942.26 L2953.82 1957.23 L3007.33 1956.34 L2978.91 2083.69 L2953.14 2107.23 L2937.56 2135.58 L2925.51 2169.78 L2921.67 2218.23"><title>浙闽驿路 · 7日 · medium</title></path>
+<path id="ch10-route_fuzhou_guangzhou" data-map-id="route_fuzhou_guangzhou" class="mixed-route" d="M2921.67 2218.23 L2910.28 2259.89 L2890.97 2296.73 L2865.33 2327.84 L2840.88 2329.1 L2787.21 2390.15 L2593.39 2444.04"><title>东南沿海驿路 · 8日 · medium</title></path>
 <path id="ch10-route_nanjing_kaifeng" data-map-id="route_nanjing_kaifeng" class="road" d="M2838.25 1839.79 L2760.71 1863.09 L2675.56 1805.86 L2657.14 1708.68 L2585.35 1690.48"><title>江淮官道 · 6日 · medium</title></path>
 <path id="ch10-route_jinan_beijing" data-map-id="route_jinan_beijing" class="road" d="M2708.26 1555.09 L2670.64 1509.17 L2688.1 1450.23 L2697.6 1394.79 L2654.24 1349.65"><title>山东—京师官道 · 5日 · medium</title></path>
 <path id="ch10-route_kaifeng_jinan" data-map-id="route_kaifeng_jinan" class="road" d="M2585.35 1690.48 L2687.3 1605.33 L2717.96 1584.67 L2708.26 1555.09"><title>汴齐官道 · 4日 · medium</title></path>
@@ -436,8 +436,8 @@
 <circle id="ch10-city_shanhaiguan" data-map-id="city_shanhaiguan" class="city-major" cx="2813.08" cy="1322.72" r="7"><title>山海关 · 山海关 · 边关</title></circle>
 <circle id="ch10-city_qinhuangdao" data-map-id="city_qinhuangdao" class="city-secondary" cx="2806.52" cy="1327.63" r="5"><title>临榆海口（待考） · 秦皇岛 · 商埠</title></circle>
 <circle id="ch10-city_tangshan" data-map-id="city_tangshan" class="city-secondary" cx="2741.59" cy="1357.08" r="5"><title>滦州西境所指治所（待考） · 唐山 · 路府州县</title></circle>
-<circle id="ch10-city_kaifeng" data-map-id="city_kaifeng" class="city-capital" cx="2585.35" cy="1690.48" r="10"><title>开封府 · 开封 · 路府州县</title></circle>
-<circle id="ch10-city_luoyang" data-map-id="city_luoyang" class="city-capital" cx="2490.61" cy="1706.31" r="10"><title>河南府 · 洛阳 · 路府州县</title></circle>
+<circle id="ch10-city_kaifeng" data-map-id="city_kaifeng" class="city-major" cx="2585.35" cy="1690.48" r="7"><title>开封府 · 开封 · 路府州县</title></circle>
+<circle id="ch10-city_luoyang" data-map-id="city_luoyang" class="city-major" cx="2490.61" cy="1706.31" r="7"><title>河南府 · 洛阳 · 路府州县</title></circle>
 <circle id="ch10-city_zhengzhou" data-map-id="city_zhengzhou" class="city-major" cx="2551.77" cy="1696.13" r="7"><title>郑州 · 郑州 · 路府州县</title></circle>
 <circle id="ch10-city_dengfeng" data-map-id="city_dengfeng" class="city-major" cx="2522.07" cy="1718.18" r="7"><title>登封县 · 登封 · 路府州县</title></circle>
 <circle id="ch10-city_anyang" data-map-id="city_anyang" class="city-major" cx="2579.46" cy="1606.23" r="7"><title>彰德府 · 安阳 · 路府州县</title></circle>
@@ -458,7 +458,7 @@
 <circle id="ch10-city_yanan" data-map-id="city_yanan" class="city-major" cx="2332.79" cy="1590.9" r="7"><title>延安府 · 延安 · 路府州县</title></circle>
 <circle id="ch10-city_yulin" data-map-id="city_yulin" class="city-major" cx="2340.1" cy="1480.67" r="7"><title>榆林府境 · 榆林 · 边关</title></circle>
 <circle id="ch10-city_shangluo" data-map-id="city_shangluo" class="city-secondary" cx="2364.19" cy="1766.87" r="5"><title>商州 · 商洛 · 路府州县</title></circle>
-<circle id="ch10-city_datong" data-map-id="city_datong" class="city-capital" cx="2504.93" cy="1352.78" r="10"><title>大同府 · 大同 · 军镇</title></circle>
+<circle id="ch10-city_datong" data-map-id="city_datong" class="city-major" cx="2504.93" cy="1352.78" r="7"><title>大同府 · 大同 · 军镇</title></circle>
 <circle id="ch10-city_taiyuan" data-map-id="city_taiyuan" class="city-major" cx="2480.5" cy="1499.29" r="7"><title>太原府 · 太原 · 路府州县</title></circle>
 <circle id="ch10-city_pingyao" data-map-id="city_pingyao" class="city-secondary" cx="2464.92" cy="1544.09" r="5"><title>平遥县 · 平遥 · 路府州县</title></circle>
 <circle id="ch10-city_yuncheng" data-map-id="city_yuncheng" class="city-major" cx="2414.72" cy="1688.68" r="7"><title>解州 · 运城 · 路府州县</title></circle>
@@ -479,7 +479,7 @@
 <circle id="ch10-city_weihai" data-map-id="city_weihai" class="city-secondary" cx="2952.69" cy="1463.87" r="5"><title>威海卫 · 威海 · 军镇</title></circle>
 <circle id="ch10-city_zibo" data-map-id="city_zibo" class="city-secondary" cx="2760.03" cy="1540.67" r="5"><title>淄川 / 临淄诸县所指治所（待考） · 淄博 · 路府州县</title></circle>
 <circle id="ch10-city_dongping" data-map-id="city_dongping" class="city-secondary" cx="2687.3" cy="1605.33" r="5"><title>东平州 · 东平 · 路府州县</title></circle>
-<circle id="ch10-city_nanjing" data-map-id="city_nanjing" class="city-capital" cx="2838.25" cy="1839.79" r="10"><title>江宁府 · 南京 · 路府州县</title></circle>
+<circle id="ch10-city_nanjing" data-map-id="city_nanjing" class="city-major" cx="2838.25" cy="1839.79" r="7"><title>江宁府 · 南京 · 路府州县</title></circle>
 <circle id="ch10-city_yangzhou" data-map-id="city_yangzhou" class="city-major" cx="2869.83" cy="1813.03" r="7"><title>扬州府 · 扬州 · 路府州县</title></circle>
 <circle id="ch10-city_zhenjiang" data-map-id="city_zhenjiang" class="city-major" cx="2872.67" cy="1825.05" r="7"><title>镇江府 · 镇江 · 路府州县</title></circle>
 <circle id="ch10-city_xuzhou" data-map-id="city_xuzhou" class="city-major" cx="2742" cy="1712.55" r="7"><title>徐州府 · 徐州 · 路府州县</title></circle>
@@ -489,7 +489,7 @@
 <circle id="ch10-city_wuhu" data-map-id="city_wuhu" class="city-major" cx="2826" cy="1887.87" r="7"><title>芜湖县 · 芜湖 · 商埠</title></circle>
 <circle id="ch10-city_fuyang" data-map-id="city_fuyang" class="city-secondary" cx="2675.56" cy="1805.86" r="5"><title>颍州 · 阜阳 · 路府州县</title></circle>
 <circle id="ch10-city_huangshan" data-map-id="city_huangshan" class="city-major" cx="2834.23" cy="1993.02" r="7"><title>徽州府 · 黄山（徽州） · 路府州县</title></circle>
-<circle id="ch10-city_hangzhou" data-map-id="city_hangzhou" class="city-capital" cx="2928.33" cy="1942.26" r="10"><title>杭州府 · 杭州 · 路府州县</title></circle>
+<circle id="ch10-city_hangzhou" data-map-id="city_hangzhou" class="city-major" cx="2928.33" cy="1942.26" r="7"><title>杭州府 · 杭州 · 路府州县</title></circle>
 <circle id="ch10-city_suzhou" data-map-id="city_suzhou" class="city-major" cx="2941.75" cy="1874.1" r="7"><title>苏州府 · 苏州 · 路府州县</title></circle>
 <circle id="ch10-city_wuxi" data-map-id="city_wuxi" class="city-major" cx="2922.62" cy="1859.41" r="7"><title>无锡县 · 无锡 · 路府州县</title></circle>
 <circle id="ch10-city_jiaxing" data-map-id="city_jiaxing" class="city-major" cx="2955.33" cy="1907.94" r="7"><title>嘉兴府 · 嘉兴 · 路府州县</title></circle>
@@ -544,8 +544,8 @@
 <circle id="ch10-city_bazhong" data-map-id="city_bazhong" class="city-secondary" cx="2200.57" cy="1902.07" r="5"><title>巴州 · 巴中 · 路府州县</title></circle>
 <circle id="ch10-city_fengjie" data-map-id="city_fengjie" class="city-major" cx="2347.53" cy="1952.49" r="7"><title>夔州府 · 奉节 · 路府州县</title></circle>
 <circle id="ch10-city_langzhong" data-map-id="city_langzhong" class="city-secondary" cx="2159.17" cy="1922.71" r="5"><title>保宁府 · 阆中 · 路府州县</title></circle>
-<circle id="ch10-city_kunming" data-map-id="city_kunming" class="city-capital" cx="1975.53" cy="2340.65" r="10"><title>云南府 · 昆明 · 路府州县</title></circle>
-<circle id="ch10-city_dali" data-map-id="city_dali" class="city-capital" cx="1832.29" cy="2301.06" r="10"><title>大理府 · 大理 · 路府州县</title></circle>
+<circle id="ch10-city_kunming" data-map-id="city_kunming" class="city-major" cx="1975.53" cy="2340.65" r="7"><title>云南府 · 昆明 · 路府州县</title></circle>
+<circle id="ch10-city_dali" data-map-id="city_dali" class="city-major" cx="1832.29" cy="2301.06" r="7"><title>大理府 · 大理 · 路府州县</title></circle>
 <circle id="ch10-city_lijiang" data-map-id="city_lijiang" class="city-major" cx="1837.4" cy="2218.66" r="7"><title>丽江府 · 丽江 · 路府州县</title></circle>
 <circle id="ch10-city_baoshan" data-map-id="city_baoshan" class="city-major" cx="1770.93" cy="2327.18" r="7"><title>永昌府 · 保山 · 路府州县</title></circle>
 <circle id="ch10-city_tengchong" data-map-id="city_tengchong" class="city-major" cx="1731.34" cy="2331.11" r="7"><title>腾越州 · 腾冲 · 边关</title></circle>
@@ -566,10 +566,10 @@
 <circle id="ch10-city_zhangye" data-map-id="city_zhangye" class="city-major" cx="1885.58" cy="1439.59" r="7"><title>甘州府 · 张掖 · 军镇</title></circle>
 <circle id="ch10-city_jiuquan" data-map-id="city_jiuquan" class="city-major" cx="1795.11" cy="1381.92" r="7"><title>肃州 · 酒泉 · 边关</title></circle>
 <circle id="ch10-city_dunhuang" data-map-id="city_dunhuang" class="city-major" cx="1613.58" cy="1338.55" r="7"><title>敦煌县境（待考） · 敦煌 · 边关</title></circle>
-<circle id="ch10-city_yinchuan" data-map-id="city_yinchuan" class="city-capital" cx="2169.49" cy="1474.14" r="10"><title>宁夏府 · 银川 · 路府州县</title></circle>
+<circle id="ch10-city_yinchuan" data-map-id="city_yinchuan" class="city-major" cx="2169.49" cy="1474.14" r="7"><title>宁夏府 · 银川 · 路府州县</title></circle>
 <circle id="ch10-city_zhongwei" data-map-id="city_zhongwei" class="city-major" cx="2116.66" cy="1536.88" r="7"><title>中卫 · 中卫 · 边关</title></circle>
 <circle id="ch10-city_xining" data-map-id="city_xining" class="city-major" cx="1944.5" cy="1591.4" r="7"><title>西宁府 · 西宁 · 边关</title></circle>
-<circle id="ch10-city_kashgar" data-map-id="city_kashgar" class="city-capital" cx="723.68" cy="1206.08" r="10"><title>喀什噶尔 · 喀什 · 商埠</title></circle>
+<circle id="ch10-city_kashgar" data-map-id="city_kashgar" class="city-major" cx="723.68" cy="1206.08" r="7"><title>喀什噶尔 · 喀什 · 商埠</title></circle>
 <circle id="ch10-city_hotan" data-map-id="city_hotan" class="city-major" cx="868.98" cy="1405.73" r="7"><title>和阗 · 和田 · 商埠</title></circle>
 <circle id="ch10-city_yarkand" data-map-id="city_yarkand" class="city-major" cx="762.72" cy="1289.27" r="7"><title>叶尔羌 · 莎车 · 商埠</title></circle>
 <circle id="ch10-city_aksu" data-map-id="city_aksu" class="city-major" cx="950.35" cy="1154.61" r="7"><title>阿克苏 · 阿克苏 · 商埠</title></circle>
@@ -605,8 +605,8 @@
 <text class="label major" x="2736.11" y="1264.43">热河行宫 / 承德州</text>
 <text class="label major vertical" x="2600.77" y="1297.57">张家口堡</text>
 <text class="label major vertical" x="2818.13" y="1311.2">山海关</text>
-<text class="label capital vertical" x="2591.24" y="1679.04">开封府</text>
-<text class="label capital vertical" x="2504.6" y="1709.93">河南府</text>
+<text class="label major vertical" x="2591.24" y="1679.04">开封府</text>
+<text class="label major vertical" x="2504.6" y="1709.93">河南府</text>
 <text class="label major vertical" x="2566.89" y="1683.75">郑州</text>
 <text class="label major vertical" x="2535.4" y="1707.4">登封县</text>
 <text class="label major vertical" x="2588.93" y="1598.56">彰德府</text>
@@ -619,7 +619,7 @@
 <text class="label major vertical" x="2236.23" y="1816.21">汉中府</text>
 <text class="label major vertical" x="2334.35" y="1590.66">延安府</text>
 <text class="label major vertical" x="2362.94" y="1464.24">榆林府境</text>
-<text class="label capital vertical" x="2518.07" y="1350.66">大同府</text>
+<text class="label major vertical" x="2518.07" y="1350.66">大同府</text>
 <text class="label major vertical" x="2494.02" y="1491.52">太原府</text>
 <text class="label major vertical" x="2431.63" y="1678.75">解州</text>
 <text class="label major vertical" x="2444.97" y="1615.15">平阳府</text>
@@ -632,7 +632,7 @@
 <text class="label major vertical" x="2675.87" y="1492.94">德州</text>
 <text class="label major" x="2938.75" y="1454.28">福山县海口（待考）</text>
 <text class="label major vertical" x="2891.07" y="1448.1">登州府</text>
-<text class="label capital vertical" x="2839.54" y="1827.6">江宁府</text>
+<text class="label major vertical" x="2839.54" y="1827.6">江宁府</text>
 <text class="label major vertical" x="2881.38" y="1813.36">扬州府</text>
 <text class="label major vertical" x="2889.01" y="1822.18">镇江府</text>
 <text class="label major vertical" x="2761.91" y="1700.46">徐州府</text>
@@ -640,7 +640,7 @@
 <text class="label major vertical" x="2774.4" y="1948.29">安庆府</text>
 <text class="label major vertical" x="2827.66" y="1875.68">芜湖县</text>
 <text class="label major vertical" x="2855.84" y="1979.89">徽州府</text>
-<text class="label capital vertical" x="2937.61" y="1936.66">杭州府</text>
+<text class="label major vertical" x="2937.61" y="1936.66">杭州府</text>
 <text class="label major vertical" x="2948.21" y="1855.98">苏州府</text>
 <text class="label major vertical" x="2936.61" y="1860.87">无锡县</text>
 <text class="label major vertical" x="2961.6" y="1900.65">嘉兴府</text>
@@ -678,8 +678,8 @@
 <text class="label major vertical" x="2047.1" y="1957.21">灌县</text>
 <text class="label major vertical" x="2045.96" y="2033.63">嘉定府</text>
 <text class="label major vertical" x="2360.3" y="1945.2">夔州府</text>
-<text class="label capital vertical" x="1978.5" y="2331.38">云南府</text>
-<text class="label capital vertical" x="1851.26" y="2301.29">大理府</text>
+<text class="label major vertical" x="1978.5" y="2331.38">云南府</text>
+<text class="label major vertical" x="1851.26" y="2301.29">大理府</text>
 <text class="label major vertical" x="1861.36" y="2206">丽江府</text>
 <text class="label major vertical" x="1785.01" y="2330.24">永昌府</text>
 <text class="label major vertical" x="1754.46" y="2322.12">腾越州</text>
@@ -696,10 +696,10 @@
 <text class="label major vertical" x="1886.86" y="1441.43">甘州府</text>
 <text class="label major vertical" x="1818.88" y="1369.92">肃州</text>
 <text class="label major" x="1634.67" y="1334.99">敦煌县境（待考）</text>
-<text class="label capital vertical" x="2175.1" y="1457.06">宁夏府</text>
+<text class="label major vertical" x="2175.1" y="1457.06">宁夏府</text>
 <text class="label major vertical" x="2134.79" y="1533.82">中卫</text>
 <text class="label major vertical" x="1968.18" y="1588.43">西宁府</text>
-<text class="label capital vertical" x="744.73" y="1202.93">喀什噶尔</text>
+<text class="label major vertical" x="744.73" y="1202.93">喀什噶尔</text>
 <text class="label major vertical" x="878.54" y="1395.71">和阗</text>
 <text class="label major vertical" x="784.52" y="1272.38">叶尔羌</text>
 <text class="label major vertical" x="968.2" y="1153.16">阿克苏</text>
@@ -726,7 +726,7 @@
 <path id="ch10-sect_shaolin" data-map-id="sect_shaolin" class="sect" opacity="0.48" d="M2516.66 1707.36 L2523.66 1715.36 L2516.66 1723.36 L2509.66 1715.36 Z"><title>少林 · 少室山少林寺 · H</title></path>
 <path id="ch10-sect_nanshaolin" data-map-id="sect_nanshaolin" class="sect" opacity="0.48" d="M2908.97 2250.79 L2915.97 2258.79 L2908.97 2266.79 L2901.97 2258.79 Z"><title>南少林 · 南少林候选驻地（莆田说） · H</title></path>
 <path id="ch10-sect_tianlongsi" data-map-id="sect_tianlongsi" class="sect" opacity="0.48" d="M1828.07 2285.18 L1835.07 2293.18 L1828.07 2301.18 L1821.07 2293.18 Z"><title>天龙寺 · 苍山天龙寺小说锚点 · H</title></path>
-<path id="ch10-sect_quanzhen" data-map-id="sect_quanzhen" class="sect" opacity="0.48" d="M2305.96 1747.81 L2312.96 1755.81 L2305.96 1763.81 L2298.96 1755.81 Z"><title>全真教 · 终南山重阳宫小说锚点 · H</title></path>
+<path id="ch10-sect_quanzhen" data-map-id="sect_quanzhen" class="sect" opacity="0.48" d="M2288.26 1746.51 L2295.26 1754.51 L2288.26 1762.51 L2281.26 1754.51 Z"><title>全真教 · 鄠邑祖庵重阳宫历史遗址 · H</title></path>
 <path id="ch10-sect_wudang" data-map-id="sect_wudang" class="sect" opacity="0.48" d="M2425.03 1850.97 L2432.03 1858.97 L2425.03 1866.97 L2418.03 1858.97 Z"><title>武当派 · 武当山宫观群 · H</title></path>
 <path id="ch10-sect_tiejian" data-map-id="sect_tiejian" class="sect" opacity="0.48" d="M2641.28 1333.99 L2648.28 1341.99 L2641.28 1349.99 L2634.28 1341.99 Z"><title>铁剑门 · 华北游方临时据点 · H</title></path>
 <path id="ch10-sect_huashan" data-map-id="sect_huashan" class="sect" opacity="0.48" d="M2369.93 1718.3 L2376.93 1726.3 L2369.93 1734.3 L2362.93 1726.3 Z"><title>华山派 · 华山玉女峰一带 · H</title></path>
@@ -745,7 +745,7 @@
 <path id="ch10-sect_gaibang" data-map-id="sect_gaibang" class="sect" opacity="0.48" d="M2490.61 1698.31 L2497.61 1706.31 L2490.61 1714.31 L2483.61 1706.31 Z"><title>丐帮 · 丐帮流动总舵 · H</title></path>
 <path id="ch10-sect_tiandihui" data-map-id="sect_tiandihui" class="sect" opacity="0.48" d="M2654.24 1341.65 L2661.24 1349.65 L2654.24 1357.65 L2647.24 1349.65 Z"><title>天地会 · 北京青木堂联络锚点 · H</title></path>
 <path id="ch10-sect_lingjiu" data-map-id="sect_lingjiu" class="sect" opacity="0.48" d="M1238.35 1083.26 L1245.35 1091.26 L1238.35 1099.26 L1231.35 1091.26 Z"><title>灵鹫宫 · 天山缥缈峰灵鹫宫小说锚点 · H</title></path>
-<path id="ch10-sect_riyue" data-map-id="sect_riyue" class="sect" opacity="0.48" d="M2546.55 1431.68 L2553.55 1439.68 L2546.55 1447.68 L2539.55 1439.68 Z"><title>日月神教 · 河北黑木崖小说锚点（待考） · H</title></path>
+<path id="ch10-sect_riyue" data-map-id="sect_riyue" class="sect" opacity="0.48" d="M2523.03 1483.95 L2530.03 1491.95 L2523.03 1499.95 L2516.03 1491.95 Z"><title>日月神教 · 河北黑木崖小说锚点（待考） · H</title></path>
 <path id="ch10-sect_wuxian" data-map-id="sect_wuxian" class="sect" opacity="0.48" d="M1991.26 2354.66 L1998.26 2362.66 L1991.26 2370.66 L1984.26 2362.66 Z"><title>五仙教 · 云南五仙教小说锚点 · H</title></path>
 <path id="ch10-sect_mizong" data-map-id="sect_mizong" class="sect" opacity="0.48" d="M1304.61 1942.95 L1311.61 1950.95 L1304.61 1958.95 L1297.61 1950.95 Z"><title>吐蕃密宗 · 大轮寺小说锚点（确址待考） · H</title></path>
 <path id="ch10-sect_menggu" data-map-id="sect_menggu" class="sect" opacity="0.48" d="M2013.14 902.54 L2020.14 910.54 L2013.14 918.54 L2006.14 910.54 Z"><title>蒙古诸部 / 幕府 · 和林与漠北行营 · H</title></path>
@@ -773,17 +773,8 @@
 <g class="sect-branches">
 <circle id="ch10-site_nanshaolin_quanzhou" data-map-id="site_nanshaolin_quanzhou" class="sect" opacity=".55" cx="2890.97" cy="2296.73" r="4"><title>南少林分支 · 泉州候选点</title></circle>
 <circle id="ch10-site_quanzhen_baiyunguan" data-map-id="site_quanzhen_baiyunguan" class="sect" opacity=".55" cx="2651.45" cy="1350.62" r="4"><title>全真教分支 · 北京白云观后世别院</title></circle>
-<circle id="ch10-site_gaibang_wuxi" data-map-id="site_gaibang_wuxi" class="sect" opacity=".55" cx="2922.62" cy="1859.41" r="4"><title>丐帮分支 · 无锡杏子林节点</title></circle>
-<circle id="ch10-site_gaibang_yueyang" data-map-id="site_gaibang_yueyang" class="sect" opacity=".55" cx="2553.64" cy="2046.14" r="4"><title>丐帮分支 · 君山大会节点</title></circle>
-<circle id="ch10-site_gaibang_xiangyang" data-map-id="site_gaibang_xiangyang" class="sect" opacity=".55" cx="2486.99" cy="1878.23" r="4"><title>丐帮分支 · 襄阳分舵</title></circle>
-<circle id="ch10-site_tiandihui_yangzhou" data-map-id="site_tiandihui_yangzhou" class="sect" opacity=".55" cx="2869.83" cy="1813.03" r="4"><title>天地会分支 · 扬州联络点</title></circle>
-<circle id="ch10-site_tiandihui_tainan" data-map-id="site_tiandihui_tainan" class="sect" opacity=".55" cx="3001.65" cy="2403.26" r="4"><title>天地会分支 · 台湾郑氏船线</title></circle>
-<circle id="ch10-site_riyue_luoyang" data-map-id="site_riyue_luoyang" class="sect" opacity=".55" cx="2490.61" cy="1706.31" r="4"><title>日月神教分支 · 洛阳绿竹巷</title></circle>
-<circle id="ch10-site_riyue_meizhuang" data-map-id="site_riyue_meizhuang" class="sect" opacity=".55" cx="2928.33" cy="1942.26" r="4"><title>日月神教分支 · 杭州梅庄</title></circle>
-<circle id="ch10-site_menggu_xiangyang" data-map-id="site_menggu_xiangyang" class="sect" opacity=".55" cx="2495.2" cy="1873.74" r="4"><title>蒙古诸部 / 幕府分支 · 襄阳外蒙古大营</title></circle>
 <circle id="ch10-site_qinggong_chengde" data-map-id="site_qinggong_chengde" class="sect" opacity=".55" cx="2719.93" cy="1273.63" r="4"><title>清宫分支 · 承德行宫</title></circle>
 <circle id="ch10-site_qinggong_shengjing" data-map-id="site_qinggong_shengjing" class="sect" opacity=".55" cx="2965.96" cy="1179.37" r="4"><title>清宫分支 · 盛京</title></circle>
-<circle id="ch10-site_chuangwang_beijing" data-map-id="site_chuangwang_beijing" class="sect" opacity=".55" cx="2654.24" cy="1349.65" r="4"><title>闯王军分支 · 北京进军线</title></circle>
 </g>
 </g>
 <text class="title vertical" x="3978" y="190">江湖万里图</text>

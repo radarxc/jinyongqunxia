@@ -511,8 +511,8 @@
       "id": "post_yakesa",
       "name": "雅克萨军驿",
       "city_id": "city_yakesa",
-      "longitude": 127.53,
-      "latitude": 51.75,
+      "longitude": 124.08,
+      "latitude": 53.38,
       "kind": "post_station",
       "open_chapters": [
         "ch08"
@@ -1057,8 +1057,8 @@
       "id": "port_xiakedao",
       "name": "侠客岛渡口",
       "city_id": "city_xiakedao",
-      "longitude": 122.9,
-      "latitude": 26.8,
+      "longitude": 113.8,
+      "latitude": 20.2,
       "kind": "island_pier",
       "open_chapters": [
         "ch06"
@@ -1090,8 +1090,8 @@
       "id": "port_binghuodao",
       "name": "冰火岛泊点",
       "city_id": "city_binghuodao",
-      "longitude": 131.2,
-      "latitude": 51.2,
+      "longitude": 133.0,
+      "latitude": 42.0,
       "kind": "island_pier",
       "open_chapters": [
         "ch04"
@@ -1686,7 +1686,6 @@
       "from": "city_ningan",
       "to": "city_yakesa",
       "via": [
-        "city_harbin",
         "city_qiqihar",
         "city_heihe"
       ],
@@ -1708,8 +1707,8 @@
           50.24
         ],
         [
-          127.53,
-          51.75
+          124.08,
+          53.38
         ]
       ],
       "duration_days": 14,
@@ -2473,6 +2472,18 @@
           28.0
         ],
         [
+          120.15,
+          27.7
+        ],
+        [
+          119.8,
+          27.3
+        ],
+        [
+          119.5,
+          26.8
+        ],
+        [
           119.31,
           26.06
         ]
@@ -2500,7 +2511,7 @@
     {
       "id": "route_fuzhou_guangzhou",
       "name": "东南沿海驿路",
-      "kind": "post_road",
+      "kind": "coastal_mixed",
       "from": "city_fuzhou",
       "to": "city_guangzhou",
       "via": [
@@ -3150,8 +3161,8 @@
           40.67
         ],
         [
-          131.2,
-          51.2
+          133.0,
+          42.0
         ]
       ],
       "duration_days": 9,
@@ -3198,8 +3209,8 @@
           29.88
         ],
         [
-          122.9,
-          26.8
+          113.8,
+          20.2
         ]
       ],
       "duration_days": 4,

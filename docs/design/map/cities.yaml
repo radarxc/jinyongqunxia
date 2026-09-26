@@ -1,6 +1,7 @@
 {
   "schema_version": "world-map-cities.v1",
   "coordinate_system": "WGS84 (EPSG:4326)",
+  "coordinate_decimals": 2,
   "generated_on": "2026-09-26",
   "chapters": {
     "ch01": {
@@ -104,6 +105,13 @@
       "license": "CC BY 4.0",
       "use": "现代聚落 WGS84 坐标交叉核对；少数同名误匹配已人工排除。"
     },
+    "src_geonames_ru": {
+      "title": "GeoNames Gazetteer RU dump（Albazino, geonameId 2027977）",
+      "url": "https://download.geonames.org/export/dump/RU.zip",
+      "accessed": "2026-09-26",
+      "license": "CC BY 4.0",
+      "use": "雅克萨故址（阿尔巴津）WGS84 坐标核对。"
+    },
     "src_chgis": {
       "title": "China Historical GIS V6",
       "url": "https://chgis.fas.harvard.edu/data/chgis/v6/",
@@ -123,6 +131,30 @@
       "accessed": "2026-09-26",
       "license": "public domain",
       "use": "海岸线陆地侧校验底图。"
+    },
+    "src_beijing_zhongdu": {
+      "title": "北京市人民政府《追根溯源话中都》",
+      "url": "https://www.beijing.gov.cn/gate/big5/www.beijing.gov.cn/renwen/sy/bq/qsbj/zxzp/202309/t20230922_3264652.html",
+      "accessed": "2026-09-26",
+      "use": "金中都沿革交叉核对。"
+    },
+    "src_dali_yuan": {
+      "title": "大理白族自治州人民政府《元代》",
+      "url": "https://www.dali.gov.cn/dlzrmzf/c101711/pc/content/1968886769482043392/content_1968886769482043392.html",
+      "accessed": "2026-09-26",
+      "use": "1253 年大理政权变化交叉核对。"
+    },
+    "src_acheng_jin": {
+      "title": "哈尔滨市阿城区人民政府《金太祖完颜阿骨打》",
+      "url": "http://www.acheng.gov.cn/achengqu/rwls/202305/c01_707707.shtml",
+      "accessed": "2026-09-26",
+      "use": "1115 年建国节点交叉核对。"
+    },
+    "src_tainan_history": {
+      "title": "台南市历史资料平台",
+      "url": "https://historic.tainan.gov.tw/index.php?option=module&lang=cht&task=pageinfo&id=89&index=6",
+      "accessed": "2026-09-26",
+      "use": "承天府与台湾府沿革交叉核对。"
     },
     "src_sect17": {
       "title": "仓库 design/17 门派总览",
@@ -211,15 +243,15 @@
           "open": true
         },
         "ch02": {
-          "name": "中都大兴府 / 燕京",
-          "status": "都城",
-          "note": "",
+          "name": "中都故城 / 燕京",
+          "status": "路府州县",
+          "note": "金于1214年迁都南京开封府，1215年中都失守；1217层不再标都城。",
           "open": true
         },
         "ch03": {
-          "name": "中都大兴府 / 燕京",
-          "status": "都城",
-          "note": "",
+          "name": "燕京路 / 大都城营建前（待考）",
+          "status": "路府州县",
+          "note": "1259层采用逐章覆盖，不沿用1217年的金中都状态。",
           "open": true
         },
         "ch04": {
@@ -291,7 +323,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_beijing_zhongdu"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -15876,7 +15909,6 @@
         }
       },
       "chapters": [
-        "ch04",
         "ch05",
         "ch06",
         "ch07",
@@ -19059,9 +19091,9 @@
           "open": true
         },
         "ch03": {
-          "name": "大理国都 / 大理城",
-          "status": "都城",
-          "note": "",
+          "name": "蒙古辖大理城",
+          "status": "路府州县",
+          "note": "大理国1253年灭亡；1259层不再标国都。",
           "open": true
         },
         "ch04": {
@@ -19133,7 +19165,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_dali_yuan"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -24064,7 +24097,6 @@
         }
       },
       "chapters": [
-        "ch12",
         "ch13",
         "ch14"
       ],
@@ -24148,10 +24180,10 @@
           "open": false
         },
         "ch12": {
-          "name": "迪化州",
-          "status": "军镇",
-          "note": "",
-          "open": true
+          "name": "乌鲁木齐河谷 / 迪化城未建（待考）",
+          "status": "未建或废弃",
+          "note": "ch12代表年1755早于1758年筑城；章内后期若需开放，由剧情阶段状态叠加。",
+          "open": false
         },
         "ch13": {
           "name": "迪化州",
@@ -24499,6 +24531,7 @@
       "latitude": 36.3,
       "region": "rg_xiyu",
       "importance": "site",
+      "location_confidence": "approximate_pending_research",
       "history": {
         "northern_song": {
           "name": "昆仑山道（待考）",
@@ -24533,7 +24566,6 @@
       },
       "chapters": [
         "ch03",
-        "ch04",
         "ch04",
         "ch05",
         "ch06",
@@ -25780,15 +25812,7 @@
           "note": ""
         }
       },
-      "chapters": [
-        "ch08",
-        "ch09",
-        "ch10",
-        "ch11",
-        "ch12",
-        "ch13",
-        "ch14"
-      ],
+      "chapters": [],
       "sects": [],
       "businesses": [
         "inn",
@@ -25929,10 +25953,6 @@
         }
       },
       "chapters": [
-        "ch01",
-        "ch02",
-        "ch03",
-        "ch04",
         "ch05",
         "ch06",
         "ch07",
@@ -26056,9 +26076,9 @@
       "importance": "capital",
       "history": {
         "northern_song": {
-          "name": "会宁府（金上京）",
-          "status": "都城",
-          "note": ""
+          "name": "完颜部聚落 / 生女真地（待考）",
+          "status": "未建或废弃",
+          "note": "1093年早于1115年金建国，不标金上京。"
         },
         "southern_song_jin_mongol": {
           "name": "会宁府故城",
@@ -26087,16 +26107,6 @@
         }
       },
       "chapters": [
-        "ch01",
-        "ch02",
-        "ch03",
-        "ch04",
-        "ch05",
-        "ch06",
-        "ch07",
-        "ch08",
-        "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -26113,10 +26123,10 @@
       "seat_moves": [],
       "eras": {
         "ch01": {
-          "name": "会宁府（金上京）",
-          "status": "都城",
-          "note": "",
-          "open": true
+          "name": "完颜部聚落 / 生女真地（待考）",
+          "status": "未建或废弃",
+          "note": "1093年早于1115年金建国，不标金上京。",
+          "open": false
         },
         "ch02": {
           "name": "会宁府故城",
@@ -26199,7 +26209,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_acheng_jin"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -26653,8 +26664,8 @@
     {
       "id": "city_yakesa",
       "modern_name": "雅克萨故址（阿尔巴津）",
-      "longitude": 127.53,
-      "latitude": 51.75,
+      "longitude": 124.08,
+      "latitude": 53.38,
       "region": "rg_liaodong",
       "importance": "major",
       "history": {
@@ -26701,7 +26712,7 @@
         "post_station",
         "military_supply"
       ],
-      "note": "坐标在黑龙江北岸、现代俄罗斯境内；仍在画布地理范围内，不是图外节点。",
+      "note": "坐标取 GeoNames Albazino（geonameId 2027977）并四舍五入至 0.01°；在黑龙江北岸、现代俄罗斯境内，仍在画布范围内，不是图外节点。",
       "seat_moves": [],
       "eras": {
         "ch01": {
@@ -26790,7 +26801,7 @@
         }
       },
       "sources": [
-        "src_geonames",
+        "src_geonames_ru",
         "src_chgis"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
@@ -26995,8 +27006,7 @@
         }
       },
       "chapters": [
-        "ch01",
-        "ch02"
+        "ch01"
       ],
       "sects": [
         "sect_qidan"
@@ -27917,7 +27927,6 @@
         }
       },
       "chapters": [
-        "ch08",
         "ch11",
         "ch12",
         "ch13",
@@ -28135,13 +28144,13 @@
         },
         "ch09": {
           "name": "承天府 / 台湾府",
-          "status": "都城",
+          "status": "路府州县",
           "note": "",
           "open": false
         },
         "ch10": {
           "name": "承天府 / 台湾府",
-          "status": "都城",
+          "status": "路府州县",
           "note": "",
           "open": false
         },
@@ -28172,7 +28181,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tainan_history"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -28488,6 +28498,7 @@
       "latitude": 29.83,
       "region": "rg_islands",
       "importance": "site",
+      "location_confidence": "approximate_pending_research",
       "history": {
         "northern_song": {
           "name": "桃花岛（小说）",
@@ -28642,6 +28653,7 @@
       "latitude": 39.1,
       "region": "rg_islands",
       "importance": "site",
+      "location_confidence": "approximate_fictional",
       "history": {
         "northern_song": {
           "name": "神龙岛（小说，待考确址）",
@@ -28780,10 +28792,11 @@
     {
       "id": "city_xiakedao",
       "modern_name": "侠客岛（小说）",
-      "longitude": 122.9,
-      "latitude": 26.8,
+      "longitude": 113.8,
+      "latitude": 20.2,
       "region": "rg_islands",
       "importance": "site",
+      "location_confidence": "approximate_fictional",
       "history": {
         "northern_song": {
           "name": "侠客岛（小说，待考确址）",
@@ -28825,7 +28838,7 @@
       "businesses": [
         "island_pier"
       ],
-      "note": "采用东南外海可渲染近似点（原创扩展）；必须乘岛使专船，不作为图外节点。",
+      "note": "《侠客行》从南海之滨出海；采用画布内南海虚构锚点（原创扩展、待考确址），必须乘岛使专船，不作为真正域外节点。",
       "seat_moves": [],
       "eras": {
         "ch01": {
@@ -28926,6 +28939,7 @@
       "latitude": 28.2,
       "region": "rg_islands",
       "importance": "site",
+      "location_confidence": "approximate_fictional",
       "history": {
         "northern_song": {
           "name": "灵蛇岛（小说，待考确址）",
@@ -29062,10 +29076,11 @@
     {
       "id": "city_binghuodao",
       "modern_name": "冰火岛（小说）",
-      "longitude": 131.2,
-      "latitude": 51.2,
+      "longitude": 133.0,
+      "latitude": 42.0,
       "region": "rg_islands",
       "importance": "site",
+      "location_confidence": "approximate_fictional",
       "history": {
         "northern_song": {
           "name": "冰火岛（小说，待考确址）",
@@ -29105,7 +29120,7 @@
       "businesses": [
         "island_pier"
       ],
-      "note": "《倚天屠龙记》北海冰火岛剧情锚点；采用画布东北海域近似点（原创扩展），不宣称现实岛屿。",
+      "note": "《倚天屠龙记》冰火岛剧情锚点；采用画布东北海域虚构点（原创扩展、待考原著方向与确址），不宣称现实岛屿。",
       "seat_moves": [],
       "eras": {
         "ch01": {
@@ -29206,6 +29221,7 @@
       "latitude": 29.45,
       "region": "rg_islands",
       "importance": "site",
+      "location_confidence": "approximate_fictional",
       "history": {
         "northern_song": {
           "name": "王盘山岛（小说，待考确址）",
@@ -29346,6 +29362,7 @@
       "latitude": 18.7,
       "region": "rg_islands",
       "importance": "site",
+      "location_confidence": "approximate_original_placement",
       "history": {
         "northern_song": {
           "name": "南海飞仙岛白云城（待考）",
@@ -29489,6 +29506,7 @@
       "latitude": 29.0,
       "region": "rg_islands",
       "importance": "site",
+      "location_confidence": "approximate_original_placement",
       "history": {
         "northern_song": {
           "name": "蝙蝠岛（待考）",

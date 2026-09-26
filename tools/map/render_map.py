@@ -14,7 +14,9 @@ import hashlib
 import html
 import json
 import math
+import os
 import sys
+import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
@@ -125,6 +127,13 @@ def point_on_land(point: Tuple[float, float], regions: Mapping[str, Any]) -> boo
         if (x-lon)**2 + (y-lat)**2 <= radius**2: return True
     return False
 
+def point_on_raw_land(point: Tuple[float, float], regions: Mapping[str, Any]) -> bool:
+    """Return whether a point is in Natural Earth land, ignoring manual masks."""
+    return any(point_in_ring(point, ring) for ring in regions.get("land_polygons", []))
+
+def is_finite_number(value: Any) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(float(value))
+
 def validate(data: Mapping[str, Any]) -> List[str]:
     issues: List[str] = []
     city_rows = data["cities"].get("cities", [])
@@ -153,41 +162,107 @@ def validate(data: Mapping[str, Any]) -> List[str]:
             if rid in all_ids: issues.append(f"ID-DUP-GLOBAL {rid}: {all_ids[rid]} and {group}")
             all_ids[rid]=group
 
-    west,south,east,north=regions.get("extent",EXTENT)
-    def check_xy(row: Mapping[str,Any], label: str, required: bool=True):
+    extent=regions.get("extent",EXTENT)
+    if not isinstance(extent,list) or len(extent)!=4 or not all(is_finite_number(x) for x in extent):
+        issues.append(f"COORD-EXTENT: expected four finite numbers, got {extent!r}")
+        west,south,east,north=EXTENT
+    else:
+        west,south,east,north=map(float,extent)
+    def check_xy(row: Mapping[str,Any], label: str, required: bool=True) -> bool:
         lon,lat=row.get("longitude"),row.get("latitude")
         if lon is None or lat is None:
             if required: issues.append(f"COORD-MISSING {label}")
-            return
-        if not (west <= lon <= east and south <= lat <= north): issues.append(f"COORD-RANGE {label}: ({lon}, {lat}) outside extent")
+            return False
+        if not is_finite_number(lon) or not is_finite_number(lat):
+            issues.append(f"COORD-TYPE {label}: ({lon!r}, {lat!r}) must be finite numbers")
+            return False
+        if not (west <= float(lon) <= east and south <= float(lat) <= north):
+            issues.append(f"COORD-RANGE {label}: ({lon}, {lat}) outside extent")
+            return False
+        return True
 
-    city_ids={r["id"] for r in city_rows}; sect_ids={r["id"] for r in sect_rows}; offmap_ids={r["id"] for r in offmap_rows}
-    city_by={r["id"]:r for r in city_rows}
-    travel_ids={r["id"] for r in [*posts,*ports]}; endpoints=city_ids|travel_ids|offmap_ids
-    region_ids={r["id"] for r in regions.get("regions",[])}
+    city_ids={r.get("id") for r in city_rows if isinstance(r.get("id"),str)}; sect_ids={r.get("id") for r in sect_rows if isinstance(r.get("id"),str)}; offmap_ids={r.get("id") for r in offmap_rows if isinstance(r.get("id"),str)}
+    city_by={r["id"]:r for r in city_rows if isinstance(r.get("id"),str)}
+    travel_rows=[*posts,*ports]; travel_ids={r.get("id") for r in travel_rows if isinstance(r.get("id"),str)}; travel_by={r["id"]:r for r in travel_rows if isinstance(r.get("id"),str)}; endpoints=city_ids|travel_ids|offmap_ids
+    region_ids={r.get("id") for r in regions.get("regions",[]) if isinstance(r.get("id"),str)}
+    region_by={r["id"]:r for r in regions.get("regions",[]) if isinstance(r.get("id"),str)}
+    city_statuses=set(data["cities"].get("status_values",[]))
+    sect_states=set(data["sects"].get("state_codes",{}))
+    confidence_values={
+        "known_site", "known_historical_site", "known_mountain",
+        "known_mountain_pending_novel", "city_anchor",
+        "city_anchor_fictional", "city_anchor_pending_research",
+        "city_anchor_original_placement", "regional_anchor",
+        "approximate_fictional", "approximate_pending_research",
+        "approximate_original_placement",
+    }
+    expected_bands={m.get("band") for m in data["cities"].get("chapters",{}).values()}
+    route_kinds={"imperial_road","post_road","silk_road","caravan_road","steppe_road","mountain_road","river","canal","sea","coastal_mixed"}
+    fee_tiers=set(data["routes"].get("fee_tiers",{}))
+    source_ids=set(data["cities"].get("sources",{}))|set(data["sects"].get("sources",{}))
+    if data["cities"].get("coordinate_decimals") != 2:
+        issues.append("CITY-PRECISION: coordinate_decimals must equal 2")
     for city in city_rows:
-        cid=city.get("id","?"); check_xy(city,cid)
+        cid=city.get("id","?"); coord_ok=check_xy(city,cid)
         if city.get("region") not in region_ids: issues.append(f"CITY-REGION {cid}: unknown {city.get('region')}")
+        elif coord_ok:
+            bounds=region_by[city["region"]].get("bounds",[])
+            if len(bounds)!=4 or not all(is_finite_number(x) for x in bounds): issues.append(f"REGION-BOUNDS {city['region']}: expected four finite numbers")
+            elif not (bounds[0]<=city["longitude"]<=bounds[2] and bounds[1]<=city["latitude"]<=bounds[3]): issues.append(f"CITY-REGION-BOUNDS {cid}: point outside {city['region']} bounds")
+        if city.get("coordinate_precision") != "0.01 degree; WGS84": issues.append(f"CITY-PRECISION {cid}: expected '0.01 degree; WGS84'")
+        if coord_ok and any(round(float(city[key]),2) != float(city[key]) for key in ("longitude","latitude")): issues.append(f"CITY-PRECISION {cid}: coordinates must use at most two decimal places")
+        if city.get("importance")=="site" and city.get("location_confidence") not in confidence_values: issues.append(f"CITY-CONFIDENCE {cid}: site requires a recognized location_confidence")
+        history=city.get("history",{})
+        if not isinstance(history,Mapping) or set(history)!=expected_bands: issues.append(f"CITY-HISTORY {cid}: must have exactly the six historical bands")
+        else:
+            for band,state in history.items():
+                if not isinstance(state,Mapping) or not isinstance(state.get("name"),str) or not state.get("name") or state.get("status") not in city_statuses:
+                    issues.append(f"CITY-HISTORY {cid}/{band}: requires a name and valid status")
         eras=city.get("eras",{})
-        if not eras: issues.append(f"CITY-ERA {cid}: at least one era name is required")
+        if not isinstance(eras,Mapping):
+            issues.append(f"CITY-ERA {cid}: eras must be an object"); eras={}
+        if set(eras)!=set(CHAPTERS): issues.append(f"CITY-ERA {cid}: must have exactly ch01..ch14")
         for ch in CHAPTERS:
-            if ch not in eras or not eras[ch].get("name"): issues.append(f"CITY-ERA {cid}: missing {ch} name")
-            elif eras[ch].get("status") not in data["cities"].get("status_values",[]): issues.append(f"CITY-STATUS {cid}/{ch}: invalid status")
+            era=eras.get(ch)
+            if not isinstance(era,Mapping): issues.append(f"CITY-ERA {cid}: missing or invalid {ch} object"); continue
+            if not isinstance(era.get("name"),str) or not era.get("name"): issues.append(f"CITY-ERA {cid}: missing {ch} name")
+            if era.get("status") not in city_statuses: issues.append(f"CITY-STATUS {cid}/{ch}: invalid status")
+            if not isinstance(era.get("open"),bool): issues.append(f"CITY-OPEN-TYPE {cid}/{ch}: open must be boolean")
+        declared=city.get("chapters",[])
+        if not isinstance(declared,list): issues.append(f"CITY-CHAPTERS {cid}: chapters must be a list"); declared=[]
+        if len(declared)!=len(set(declared)): issues.append(f"CITY-CHAPTER-DUP {cid}: duplicate chapter")
+        if set(declared)-set(CHAPTERS): issues.append(f"CITY-CHAPTER {cid}: unknown chapters {sorted(set(declared)-set(CHAPTERS))}")
+        opened=[ch for ch in CHAPTERS if isinstance(eras.get(ch),Mapping) and eras[ch].get("open") is True]
+        if declared!=opened: issues.append(f"CITY-CHAPTER-OPEN {cid}: chapters {declared} != open eras {opened}")
         for move in city.get("seat_moves",[]):
-            check_xy(move,f"{cid}/seat_move")
+            move_ok=check_xy(move,f"{cid}/seat_move")
             unknown_bands=set(move.get("eras",[]))-{m.get("band") for m in data["cities"].get("chapters",{}).values()}
             if unknown_bands: issues.append(f"CITY-SEAT-ERA {cid}: unknown bands {sorted(unknown_bands)}")
-        if not point_on_land((city["longitude"],city["latitude"]),regions): issues.append(f"CITY-LAND {cid}: point is not inside land polygon/island mask")
+            if move_ok and not point_on_land((move["longitude"],move["latitude"]),regions): issues.append(f"CITY-SEAT-LAND {cid}: seat move is not on land/island mask")
+        if coord_ok and not point_on_land((city["longitude"],city["latitude"]),regions): issues.append(f"CITY-LAND {cid}: point is not inside land polygon/island mask")
+        if coord_ok and "island_pier" in city.get("businesses",[]):
+            matching=[m for m in regions.get("island_masks",[]) if len(m)>=5 and m[4] in ("small_island","fictional_anchor") and (city["longitude"]-m[0])**2+(city["latitude"]-m[1])**2<=m[2]**2]
+            if not matching: issues.append(f"CITY-ISLAND-MASK {cid}: island_pier requires a matching island mask")
         for sid in city.get("sects",[]):
             if sid not in sect_ids: issues.append(f"CITY-SECT {cid}: unknown {sid}")
+        for source in city.get("sources",[]):
+            if source not in source_ids: issues.append(f"CITY-SOURCE {cid}: unknown {source}")
     for sect in sect_rows:
-        sid=sect.get("id","?"); check_xy(sect,sid)
+        sid=sect.get("id","?"); coord_ok=check_xy(sect,sid)
+        if coord_ok and not point_on_land((sect["longitude"],sect["latitude"]),regions): issues.append(f"SECT-LAND {sid}: point is not inside land polygon/island mask")
         if sect.get("city_id") and sect["city_id"] not in city_ids: issues.append(f"SECT-CITY {sid}: unknown {sect['city_id']}")
+        if sect.get("coordinate_precision") not in confidence_values: issues.append(f"SECT-PRECISION {sid}: unrecognized coordinate_precision")
         av=sect.get("availability",{})
-        if set(av)!=set(CHAPTERS): issues.append(f"SECT-ERA {sid}: must have exactly ch01..ch14")
-        if not sect.get("city_id") and not sect.get("offmap_id"): issues.append(f"SECT-SITE {sid}: coordinate or offmap marker required")
+        if not isinstance(av,Mapping) or set(av)!=set(CHAPTERS): issues.append(f"SECT-ERA {sid}: must have exactly ch01..ch14")
+        elif any(value not in sect_states for value in av.values()): issues.append(f"SECT-STATE {sid}: invalid availability value")
+        if not coord_ok and not sect.get("offmap_id"): issues.append(f"SECT-SITE {sid}: coordinate or offmap marker required")
         for branch in sect.get("branches",[]):
             bid=branch.get("id","?")
+            branch_chapters=branch.get("open_chapters",[])
+            if not isinstance(branch_chapters,list) or len(branch_chapters)!=len(set(branch_chapters)) or set(branch_chapters)-set(CHAPTERS): issues.append(f"BRANCH-ERA {sid}/{bid}: open_chapters must be unique valid chapters")
+            elif isinstance(av,Mapping):
+                hidden=[ch for ch in branch_chapters if av.get(ch) not in ("O","H")]
+                if hidden: issues.append(f"BRANCH-PARENT-ERA {sid}/{bid}: parent unavailable in {hidden}")
             if branch.get("offmap_id"):
                 if branch["offmap_id"] not in offmap_ids: issues.append(f"BRANCH-OFFMAP {sid}/{bid}: unknown {branch['offmap_id']}")
                 if bid != branch["offmap_id"]: issues.append(f"BRANCH-OFFMAP-ID {sid}/{bid}: reference branch id must equal offmap_id")
@@ -196,19 +271,46 @@ def validate(data: Mapping[str, Any]) -> List[str]:
                 all_ids[bid]="branches"
                 if not isinstance(bid,str) or not bid.startswith("site_"): issues.append(f"BRANCH-ID {sid}: {bid!r} must start with site_")
                 if branch.get("city_id") not in city_ids: issues.append(f"BRANCH-CITY {sid}/{bid}: unknown {branch.get('city_id')}")
-                check_xy(branch,f"{sid}/{bid}")
+                elif branch.get("city_id") in city_by:
+                    closed=[ch for ch in branch_chapters if city_by[branch["city_id"]].get("eras",{}).get(ch,{}).get("open") is not True]
+                    if closed: issues.append(f"BRANCH-CITY-ERA {sid}/{bid}: bound city closed in {closed}")
+                branch_ok=check_xy(branch,f"{sid}/{bid}")
+                if branch_ok and not point_on_land((branch["longitude"],branch["latitude"]),regions): issues.append(f"BRANCH-LAND {sid}/{bid}: point is not inside land polygon/island mask")
+        for source in sect.get("sources",[]):
+            if source not in source_ids: issues.append(f"SECT-SOURCE {sid}: unknown {source}")
+    for node in offmap_rows:
+        oid=node.get("id","?")
+        lon,lat=node.get("approx_longitude"),node.get("approx_latitude")
+        if not is_finite_number(lon) or not is_finite_number(lat): issues.append(f"OFFMAP-COORD {oid}: approximate coordinates must be finite numbers")
+        elif west<=float(lon)<=east and south<=float(lat)<=north: issues.append(f"OFFMAP-INSIDE {oid}: approximate point falls inside map extent")
+        chapters=node.get("chapters",[])
+        if not isinstance(chapters,list) or len(chapters)!=len(set(chapters)) or set(chapters)-set(CHAPTERS): issues.append(f"OFFMAP-ERA {oid}: chapters must be unique valid chapter IDs")
+        for source in node.get("sources",[]):
+            if source not in source_ids: issues.append(f"OFFMAP-SOURCE {oid}: unknown {source}")
     for node in [*posts,*ports]:
-        nid=node.get("id","?"); check_xy(node,nid)
+        nid=node.get("id","?"); node_ok=check_xy(node,nid)
+        if node_ok and not point_on_land((node["longitude"],node["latitude"]),regions): issues.append(f"TRAVEL-LAND {nid}: point is not inside land polygon/island mask")
         if node.get("city_id") not in city_ids: issues.append(f"TRAVEL-CITY {nid}: unknown {node.get('city_id')}")
-        unknown_chapters=set(node.get("open_chapters",[]))-set(CHAPTERS)
+        node_chapters=node.get("open_chapters",[])
+        if not isinstance(node_chapters,list): issues.append(f"TRAVEL-ERA {nid}: open_chapters must be a list"); node_chapters=[]
+        if len(node_chapters)!=len(set(node_chapters)): issues.append(f"TRAVEL-ERA-DUP {nid}: duplicate open chapter")
+        unknown_chapters=set(node_chapters)-set(CHAPTERS)
         if unknown_chapters: issues.append(f"TRAVEL-ERA {nid}: unknown chapters {sorted(unknown_chapters)}")
         if node.get("city_id") in city_by:
-            closed=[ch for ch in node.get("open_chapters",[]) if not city_by[node["city_id"]].get("eras",{}).get(ch,{}).get("open")]
+            closed=[ch for ch in node_chapters if not city_by[node["city_id"]].get("eras",{}).get(ch,{}).get("open")]
             if closed: issues.append(f"TRAVEL-CITY-ERA {nid}: bound city closed in {closed}")
     for row in [*routes,*special]:
         rid=row.get("id","?")
-        unknown_chapters=set(row.get("open_chapters",[]))-set(CHAPTERS)
+        open_chapters=row.get("open_chapters",[])
+        if not isinstance(open_chapters,list): issues.append(f"ROUTE-ERA {rid}: open_chapters must be a list"); open_chapters=[]
+        if len(open_chapters)!=len(set(open_chapters)): issues.append(f"ROUTE-ERA-DUP {rid}: duplicate open chapter")
+        unknown_chapters=set(open_chapters)-set(CHAPTERS)
         if unknown_chapters: issues.append(f"ROUTE-ERA {rid}: unknown chapters {sorted(unknown_chapters)}")
+        via=row.get("via",[])
+        if not isinstance(via,list): issues.append(f"ROUTE-VIA {rid}: via must be a list"); via=[]
+        if row in routes and row.get("kind") not in route_kinds: issues.append(f"ROUTE-KIND {rid}: unknown {row.get('kind')!r}")
+        if row.get("fee_tier") not in fee_tiers: issues.append(f"ROUTE-FEE {rid}: unknown {row.get('fee_tier')!r}")
+        if not is_finite_number(row.get("duration_days")) or row.get("duration_days") <= 0: issues.append(f"ROUTE-DURATION {rid}: duration_days must be positive")
         for field in ("from","to"):
             endpoint=row.get(field)
             if endpoint not in endpoints: issues.append(f"ROUTE-ENDPOINT {rid}: unknown {field}={endpoint}")
@@ -219,17 +321,55 @@ def validate(data: Mapping[str, Any]) -> List[str]:
             elif endpoint in city_by:
                 closed=[ch for ch in row.get("open_chapters",[]) if not city_by[endpoint].get("eras",{}).get(ch,{}).get("open")]
                 if closed: issues.append(f"ROUTE-CITY-ERA {rid}/{endpoint}: endpoint closed in {closed}")
-        for mid in row.get("via",[]):
+        for mid in via:
             if mid not in endpoints: issues.append(f"ROUTE-VIA {rid}: unknown {mid}")
-        if row.get("kind")=="offmap_special":
-            if row.get("via"): issues.append(f"OFFMAP-VIA {rid}: special route must have no intermediate stop")
-            if not row.get("no_intermediate_stops"): issues.append(f"OFFMAP-NONSTOP {rid}: flag must be true")
+            elif row in routes:
+                if mid in city_by: active={ch for ch in open_chapters if city_by[mid].get("eras",{}).get(ch,{}).get("open") is True}
+                elif mid in travel_by: active=set(open_chapters)&set(travel_by[mid].get("open_chapters",[]))
+                else: active=set()
+                if not active: issues.append(f"ROUTE-VIA-ERA {rid}/{mid}: candidate stop is never open with route")
+        if row in special:
+            if row.get("kind")!="offmap_special": issues.append(f"OFFMAP-KIND {rid}: special_routes entry must use offmap_special")
+            if via: issues.append(f"OFFMAP-VIA {rid}: special route must have no intermediate stop")
+            if row.get("no_intermediate_stops") is not True: issues.append(f"OFFMAP-NONSTOP {rid}: flag must be boolean true")
             if sum(x in offmap_ids for x in (row.get("from"),row.get("to"))) != 1: issues.append(f"OFFMAP-ENDS {rid}: exactly one endpoint must be offmap")
-            land_end=row["to"] if row["from"] in offmap_ids else row["from"]
-            if land_end not in travel_ids: issues.append(f"OFFMAP-BOARDING {rid}: land endpoint must be post_* or port_*")
-    special_touch={x for r in special for x in (r.get("from"),r.get("to")) if x in offmap_ids}
+            else:
+                offmap_end=row["from"] if row["from"] in offmap_ids else row["to"]; land_end=row["to"] if row["from"] in offmap_ids else row["from"]
+                if land_end not in travel_ids: issues.append(f"OFFMAP-BOARDING {rid}: land endpoint must be post_* or port_*")
+                node=next((x for x in offmap_rows if x.get("id")==offmap_end),{})
+                if set(open_chapters)!=set(node.get("chapters",[])): issues.append(f"OFFMAP-ERA {rid}: route chapters must equal {offmap_end} chapters")
+        elif row.get("kind")=="offmap_special": issues.append(f"OFFMAP-NORMAL-KIND {rid}: offmap_special must be stored in special_routes")
+        if row in routes:
+            geometry=row.get("geometry",[])
+            valid_geometry=isinstance(geometry,list) and len(geometry)>=2
+            if not valid_geometry: issues.append(f"ROUTE-GEOMETRY {rid}: requires at least two coordinate pairs")
+            else:
+                for idx,pair in enumerate(geometry):
+                    if not isinstance(pair,list) or len(pair)!=2 or not all(is_finite_number(x) for x in pair): issues.append(f"ROUTE-GEOMETRY {rid}/{idx}: expected two finite numbers"); valid_geometry=False
+                    elif not (west<=pair[0]<=east and south<=pair[1]<=north): issues.append(f"ROUTE-GEOMETRY-RANGE {rid}/{idx}: outside extent")
+            if valid_geometry:
+                def known_coord(eid: Any) -> Optional[Tuple[float,float]]:
+                    item=city_by.get(eid) or travel_by.get(eid)
+                    return (float(item["longitude"]),float(item["latitude"])) if item and is_finite_number(item.get("longitude")) and is_finite_number(item.get("latitude")) else None
+                for label,eid,pair in (("from",row.get("from"),geometry[0]),("to",row.get("to"),geometry[-1])):
+                    expected=known_coord(eid)
+                    if expected and math.hypot(pair[0]-expected[0],pair[1]-expected[1])>0.02: issues.append(f"ROUTE-GEOMETRY-END {rid}: {label} does not match {eid}")
+                for mid in via:
+                    expected=known_coord(mid)
+                    if expected and min(math.hypot(pair[0]-expected[0],pair[1]-expected[1]) for pair in geometry)>0.02: issues.append(f"ROUTE-GEOMETRY-VIA {rid}: geometry does not pass {mid}")
+                if row.get("kind") not in ("river","canal","sea","coastal_mixed"):
+                    for a,b in zip(geometry,geometry[1:]):
+                        for step in range(21):
+                            t=step/20; point=(a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t)
+                            if not point_on_land(point,regions): issues.append(f"ROUTE-LAND {rid}: non-water geometry crosses water near ({point[0]:.3f}, {point[1]:.3f})"); break
+                        else: continue
+                        break
+    special_touch: Dict[str,int]={oid:0 for oid in offmap_ids}
+    for route in special:
+        for endpoint in (route.get("from"),route.get("to")):
+            if endpoint in special_touch: special_touch[endpoint]+=1
     for oid in offmap_ids:
-        if oid not in special_touch: issues.append(f"OFFMAP-ORPHAN {oid}: no special route")
+        if special_touch.get(oid)!=1: issues.append(f"OFFMAP-DEGREE {oid}: expected exactly one special route, got {special_touch.get(oid,0)}")
     for row in routes:
         if row.get("from") in offmap_ids or row.get("to") in offmap_ids or any(v in offmap_ids for v in row.get("via",[])):
             issues.append(f"OFFMAP-NORMAL-ROUTE {row.get('id')}: offmap node may only use special route")
@@ -237,7 +377,6 @@ def validate(data: Mapping[str, Any]) -> List[str]:
         rid=region.get("id","?")
         for neighbor in region.get("neighbors",[]):
             if neighbor not in region_ids: issues.append(f"REGION-NEIGHBOR {rid}: unknown {neighbor}")
-    region_by={r["id"]:r for r in regions.get("regions",[])}
     for rid,region in region_by.items():
         for neighbor in region.get("neighbors",[]):
             if rid not in region_by.get(neighbor,{}).get("neighbors",[]):
@@ -246,6 +385,9 @@ def validate(data: Mapping[str, Any]) -> List[str]:
     if not regions.get("land_polygons"): issues.append("GEOMETRY: land_polygons empty")
     for ring in regions.get("land_polygons",[]):
         if len(ring)<4 or ring[0]!=ring[-1]: issues.append("GEOMETRY: land polygon must be a closed ring with >=4 points")
+    for idx,mask in enumerate(regions.get("island_masks",[])):
+        if not isinstance(mask,list) or len(mask)!=5 or not all(is_finite_number(x) for x in mask[:3]) or mask[2]<=0: issues.append(f"GEOMETRY: island mask {idx} must be [lon,lat,positive_radius,name,kind]"); continue
+        if mask[4]=="fictional_anchor" and point_on_raw_land((mask[0],mask[1]),regions): issues.append(f"GEOMETRY: fictional island mask {mask[3]} overlaps raw mainland")
     for kind in ("rivers","mountains"):
         for feature in regions.get(kind,[]):
             if not feature.get("lines") or any(len(line)<2 for line in feature.get("lines",[])):
@@ -295,7 +437,7 @@ def svg_header(width:int,height:int,title:str,era:Optional[str]) -> List[str]:
       '  <style>',
       '    .paper{fill:#eee4cc}.fiber{fill:url(#fibers)}.land{fill:#e8ddc2;stroke:#211f1a;stroke-width:5;stroke-linejoin:round}.coast-ghost{fill:none;stroke:#554c3e;stroke-opacity:.28;stroke-width:12}',
       '    .river{fill:none;stroke:#526d6d;stroke-width:7;stroke-opacity:.62;stroke-linecap:round;stroke-dasharray:38 7 11 5}.mount{fill:none;stroke:#3f3b32;stroke-width:5;stroke-opacity:.52;stroke-linecap:round}',
-      '    .road{fill:none;stroke:#655b49;stroke-width:3;stroke-opacity:.35;stroke-dasharray:10 9}.water-route{fill:none;stroke:#4f6968;stroke-width:3.5;stroke-opacity:.5;stroke-dasharray:25 9}',
+      '    .road{fill:none;stroke:#655b49;stroke-width:3;stroke-opacity:.35;stroke-dasharray:10 9}.water-route{fill:none;stroke:#4f6968;stroke-width:3.5;stroke-opacity:.5;stroke-dasharray:25 9}.mixed-route{fill:none;stroke:#5d6259;stroke-width:3.3;stroke-opacity:.48;stroke-dasharray:17 7 3 7}',
       '    .special-route{fill:none;stroke:#9e3b2f;stroke-width:4;stroke-dasharray:13 9}.city-capital{fill:#201d18;stroke:#9e3b2f;stroke-width:5}.city-major{fill:#39342b}.city-secondary{fill:#6a6150}.city-site{fill:none;stroke:#39342b;stroke-width:4}',
       '    .sect{fill:#9e3b2f;stroke:#f0e6cf;stroke-width:2}.post{fill:#6f5940}.port{fill:#526d6d}.label{font-family:"Ma Shan Zheng","Zhi Mang Xing","STKaiti","KaiTi","Noto Serif CJK SC",serif;fill:#211f1a;paint-order:stroke;stroke:#eee4cc;stroke-width:7;stroke-linejoin:round}.minor{font-size:22px}.major{font-size:27px;font-weight:600}.capital{font-size:33px;font-weight:700}.sect-label{font-size:19px;fill:#74281f}',
       '    .vertical{writing-mode:vertical-rl;text-orientation:upright;letter-spacing:.08em}.title{font-family:"Ma Shan Zheng","Zhi Mang Xing","STKaiti",serif;font-size:66px;letter-spacing:.16em}.subtitle{font-family:"STKaiti","KaiTi",serif;font-size:22px}.seal{fill:#9e3b2f;stroke:#7d2a22;stroke-width:4}.seal-text{fill:#eee4cc;font-family:"STKaiti",serif;font-size:20px;font-weight:700}.offmap-box{fill:#eee4cc;fill-opacity:.88;stroke:#9e3b2f;stroke-width:4}.offmap-text{font-family:"STKaiti","KaiTi",serif;fill:#74281f;font-size:23px}.era-layer[display="none"]{display:none}',
@@ -342,21 +484,21 @@ def endpoint_coord(
     return None
 
 def draw_routes(lines:List[str], data:Mapping[str,Any], project:CanvasProjection, ch:str) -> None:
-    city_by={x["id"]:x for x in data["cities"]["cities"]}; travel=[*data["routes"]["posts"],*data["routes"]["ports"]]; travel_by={x["id"]:x for x in travel}
+    city_by={x["id"]:x for x in data["cities"]["cities"]}
+    travel_by={x["id"]:x for x in [*data["routes"]["posts"],*data["routes"]["ports"]]}
     band=data["cities"]["chapters"][ch]["band"]
     lines.append('<g class="travel-routes">')
     for row in data["routes"]["routes"]:
         if ch not in row["open_chapters"]: continue
-        coords=[]
-        for eid in [row["from"],*row.get("via",[]),row["to"]]:
-            if eid in city_by and not city_by[eid]["eras"][ch]["open"]:
-                # A historical road may cross a later city anchor before that
-                # settlement exists.  Keep it as geometry, never as a stop.
-                continue
-            p=endpoint_coord(eid,city_by,travel_by,band)
-            if p: coords.append(p)
+        coords=[list(pair) for pair in row["geometry"]]
+        # Geometry owns the stable path shape.  Only its terminal points follow
+        # a chapter-specific seat relocation; candidate via stops never reshape it.
+        start=endpoint_coord(row["from"],city_by,travel_by,band)
+        end=endpoint_coord(row["to"],city_by,travel_by,band)
+        if start: coords[0]=list(start)
+        if end: coords[-1]=list(end)
         if len(coords)>=2:
-            cls="water-route" if row["kind"] in ("river","canal","sea") else "road"
+            cls="water-route" if row["kind"] in ("river","canal","sea") else ("mixed-route" if row["kind"]=="coastal_mixed" else "road")
             lines.append(f'<path id="{ch}-{esc(row["id"])}" data-map-id="{esc(row["id"])}" class="{cls}" d="{svg_path(coords,project)}"><title>{esc(row["name"])} · {row["duration_days"]}日 · {esc(row["fee_tier"])}</title></path>')
     lines.append('</g>')
 
@@ -376,14 +518,16 @@ def draw_cities(lines:List[str], data:Mapping[str,Any], project:CanvasProjection
     band=data["cities"]["chapters"][ch]["band"]
     for city in open_rows:
         era=city["eras"][ch]; lon,lat=city_coord(city,band)
-        x,y=project(lon,lat); importance=city["importance"]; r={"capital":10,"major":7,"secondary":5,"site":8}.get(importance,5)
-        cls=f"city-{importance}" if importance in ("capital","major","secondary","site") else "city-secondary"
+        x,y=project(lon,lat); importance=city["importance"]
+        display_level="capital" if era["status"]=="都城" else ("site" if importance=="site" else ("major" if importance in ("capital","major") else "secondary"))
+        r={"capital":10,"major":7,"secondary":5,"site":8}[display_level]
+        cls=f"city-{display_level}"
         lines.append(f'<circle id="{ch}-{esc(city["id"])}" data-map-id="{esc(city["id"])}" class="{cls}" cx="{fmt(x)}" cy="{fmt(y)}" r="{r}"><title>{esc(era["name"])} · {esc(city["modern_name"])} · {esc(era["status"])}</title></circle>')
     # Label only priority nodes at full 4096 scale; every city remains accessible by title/id.
     label_rows=[c for c in open_rows if c["importance"] in ("capital","major")]
     for city in label_rows:
         era=city["eras"][ch]; x,y=project(*city_coord(city,band)); jx,jy=stable_jitter(city["id"],12)
-        level="capital" if city["importance"]=="capital" else "major"
+        level="capital" if era["status"]=="都城" else "major"
         vertical=len(era["name"])<=7
         if vertical: lines.append(f'<text class="label {level} vertical" x="{fmt(x+13+jx)}" y="{fmt(y-8+jy)}">{esc(era["name"])}</text>')
         else: lines.append(f'<text class="label {level}" x="{fmt(x+12+jx)}" y="{fmt(y-10+jy)}">{esc(era["name"])}</text>')
@@ -408,6 +552,7 @@ def draw_branches(lines:List[str], data:Mapping[str,Any], project:CanvasProjecti
         if sect["availability"][ch] not in ("O","H"): continue
         for branch in sect.get("branches",[]):
             if branch.get("offmap_id"): continue
+            if ch not in branch.get("open_chapters",[]): continue
             x,y=project(branch["longitude"],branch["latitude"])
             lines.append(f'<circle id="{ch}-{esc(branch["id"])}" data-map-id="{esc(branch["id"])}" class="sect" opacity=".55" cx="{fmt(x)}" cy="{fmt(y)}" r="4"><title>{esc(sect["name"])}分支 · {esc(branch["name"])}</title></circle>')
     lines.append('</g>')
@@ -457,20 +602,36 @@ def render_document(data:Mapping[str,Any], width:int, height:int, era:Optional[s
     lines.append('</svg>')
     return "\n".join(lines)+"\n"
 
+def encoded_svg(content:str, path:Path) -> bytes:
+    payload=content.encode("utf-8")
+    if len(payload)>2*1024*1024: raise ValueError(f"{path}: {len(payload)} bytes exceeds 2 MiB")
+    return payload
+
 def write_deterministic(path:Path, content:str) -> None:
+    payload=encoded_svg(content,path)
     path.parent.mkdir(parents=True,exist_ok=True)
-    path.write_text(content,encoding="utf-8",newline="\n")
-    if path.stat().st_size > 2*1024*1024: raise ValueError(f"{path}: {path.stat().st_size} bytes exceeds 2 MiB")
+    fd,tmp_name=tempfile.mkstemp(prefix=f".{path.name}.",suffix=".tmp",dir=str(path.parent))
+    tmp=Path(tmp_name)
+    try:
+        with os.fdopen(fd,"wb") as stream:
+            stream.write(payload)
+            stream.flush(); os.fsync(stream.fileno())
+        os.replace(tmp,path)
+    finally:
+        if tmp.exists(): tmp.unlink()
 
 def render_all(data:Mapping[str,Any], out_dir:Path, width:int, height:int, era:Optional[str]) -> List[Path]:
-    outputs=[]
+    pending: List[Tuple[Path,str]]=[]
     if era:
-        path=out_dir/f"jianghu-{era}.svg"; write_deterministic(path,render_document(data,width,height,era)); outputs.append(path)
+        path=out_dir/f"jianghu-{era}.svg"; pending.append((path,render_document(data,width,height,era)))
     else:
-        base=out_dir/"jianghu-base.svg"; write_deterministic(base,render_document(data,width,height,None)); outputs.append(base)
+        base=out_dir/"jianghu-base.svg"; pending.append((base,render_document(data,width,height,None)))
         for ch in CHAPTERS:
-            path=out_dir/f"jianghu-{ch}.svg"; write_deterministic(path,render_document(data,width,height,ch)); outputs.append(path)
-    return outputs
+            path=out_dir/f"jianghu-{ch}.svg"; pending.append((path,render_document(data,width,height,ch)))
+    # Preflight every payload before replacing any existing asset.
+    for path,content in pending: encoded_svg(content,path)
+    for path,content in pending: write_deterministic(path,content)
+    return [path for path,_content in pending]
 
 def parse_args(argv:Optional[Sequence[str]]=None) -> argparse.Namespace:
     p=argparse.ArgumentParser(description=__doc__)

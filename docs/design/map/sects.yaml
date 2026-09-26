@@ -16,6 +16,18 @@
       "path": "docs/design/17-sects-compendium.md",
       "accessed": "2026-09-26",
       "use": "小说与古龙支线驻地的上游语义。"
+    },
+    "src_amap_chongyanggong": {
+      "title": "高德地图：重阳宫",
+      "url": "https://ditu.amap.com/place/B001D08OX8",
+      "accessed": "2026-09-26",
+      "use": "鄠邑祖庵街道地址与 WGS84 落点交叉核对。"
+    },
+    "src_chengde_resort": {
+      "title": "承德市文物局：避暑山庄及周围寺庙",
+      "url": "https://wwj.chengde.gov.cn/art/2018/11/8/art_962_753975.html",
+      "accessed": "2026-09-26",
+      "use": "清宫承德行宫分支年代与地点交叉核对。"
     }
   },
   "sects": [
@@ -84,7 +96,19 @@
           "name": "泉州候选点",
           "city_id": "city_quanzhou",
           "longitude": 118.59,
-          "latitude": 24.91
+          "latitude": 24.91,
+          "open_chapters": [
+            "ch05",
+            "ch06",
+            "ch07",
+            "ch08",
+            "ch09",
+            "ch10",
+            "ch11",
+            "ch12",
+            "ch13",
+            "ch14"
+          ]
         }
       ],
       "sources": [
@@ -127,11 +151,11 @@
       "id": "sect_quanzhen",
       "name": "全真教",
       "kind": "headquarters",
-      "site_name": "终南山重阳宫小说锚点",
+      "site_name": "鄠邑祖庵重阳宫历史遗址",
       "city_id": "city_xian",
-      "longitude": 108.83,
-      "latitude": 34.08,
-      "coordinate_precision": "approximate_fictional",
+      "longitude": 108.49,
+      "latitude": 34.11,
+      "coordinate_precision": "known_historical_site",
       "availability_ref": "design/17 §3",
       "availability": {
         "ch01": "N",
@@ -156,11 +180,24 @@
           "name": "北京白云观后世别院",
           "city_id": "city_beijing",
           "longitude": 116.34,
-          "latitude": 39.9
+          "latitude": 39.9,
+          "open_chapters": [
+            "ch05",
+            "ch06",
+            "ch07",
+            "ch08",
+            "ch09",
+            "ch10",
+            "ch11",
+            "ch12",
+            "ch13",
+            "ch14"
+          ]
         }
       ],
       "sources": [
-        "src_sect17"
+        "src_sect17",
+        "src_amap_chongyanggong"
       ]
     },
     {
@@ -1476,7 +1513,10 @@
           "name": "漠北教徒营地",
           "city_id": "city_xilinhot",
           "longitude": 116.07,
-          "latitude": 43.94
+          "latitude": 43.94,
+          "open_chapters": [
+            "ch02"
+          ]
         }
       ],
       "sources": [
@@ -1612,7 +1652,12 @@
           "name": "伊犁营地",
           "city_id": "city_yining",
           "longitude": 81.32,
-          "latitude": 43.92
+          "latitude": 43.92,
+          "open_chapters": [
+            "ch12",
+            "ch13",
+            "ch14"
+          ]
         }
       ],
       "sources": [
@@ -1716,21 +1761,30 @@
           "name": "无锡杏子林节点",
           "city_id": "city_wuxi",
           "longitude": 120.29,
-          "latitude": 31.57
+          "latitude": 31.57,
+          "open_chapters": [
+            "ch01"
+          ]
         },
         {
           "id": "site_gaibang_yueyang",
           "name": "君山大会节点",
           "city_id": "city_yueyang",
           "longitude": 113.13,
-          "latitude": 29.37
+          "latitude": 29.37,
+          "open_chapters": [
+            "ch02"
+          ]
         },
         {
           "id": "site_gaibang_xiangyang",
           "name": "襄阳分舵",
           "city_id": "city_xiangyang",
           "longitude": 112.14,
-          "latitude": 32.04
+          "latitude": 32.04,
+          "open_chapters": [
+            "ch03"
+          ]
         }
       ],
       "sources": [
@@ -1834,7 +1888,10 @@
           "name": "回疆营地",
           "city_id": "city_yarkand",
           "longitude": 77.24,
-          "latitude": 38.41
+          "latitude": 38.41,
+          "open_chapters": [
+            "ch12"
+          ]
         }
       ],
       "sources": [
@@ -1874,14 +1931,20 @@
           "name": "扬州联络点",
           "city_id": "city_yangzhou",
           "longitude": 119.44,
-          "latitude": 32.4
+          "latitude": 32.4,
+          "open_chapters": [
+            "ch08"
+          ]
         },
         {
           "id": "site_tiandihui_tainan",
           "name": "台湾郑氏船线",
           "city_id": "city_tainan",
           "longitude": 120.2,
-          "latitude": 23.0
+          "latitude": 23.0,
+          "open_chapters": [
+            "ch08"
+          ]
         }
       ],
       "sources": [
@@ -2113,7 +2176,10 @@
           "name": "无量山琅嬛福地",
           "city_id": "city_dali",
           "longitude": 100.52,
-          "latitude": 24.82
+          "latitude": 24.82,
+          "open_chapters": [
+            "ch01"
+          ]
         }
       ],
       "sources": [
@@ -2215,7 +2281,10 @@
         {
           "id": "offmap_mingjiao_persia",
           "name": "波斯明教总教",
-          "offmap_id": "offmap_mingjiao_persia"
+          "offmap_id": "offmap_mingjiao_persia",
+          "open_chapters": [
+            "ch04"
+          ]
         }
       ],
       "sources": [
@@ -2228,8 +2297,8 @@
       "kind": "coastal_headquarters",
       "site_name": "天鹰教江南总坛小说锚点（待考）",
       "city_id": "city_ningbo",
-      "longitude": 121.8,
-      "latitude": 29.6,
+      "longitude": 121.75,
+      "latitude": 29.65,
       "coordinate_precision": "approximate_fictional",
       "availability_ref": "design/17 §3",
       "availability": {
@@ -2259,10 +2328,10 @@
       "name": "日月神教",
       "kind": "cliff_headquarters",
       "site_name": "河北黑木崖小说锚点（待考）",
-      "city_id": "city_zhengding",
-      "longitude": 114.0,
-      "latitude": 38.7,
-      "coordinate_precision": "approximate_fictional",
+      "city_id": null,
+      "longitude": 113.43,
+      "latitude": 37.93,
+      "coordinate_precision": "approximate_pending_research",
       "availability_ref": "design/17 §3",
       "availability": {
         "ch01": "N",
@@ -2280,21 +2349,27 @@
         "ch13": "H",
         "ch14": "H"
       },
-      "source_note": "",
+      "source_note": "原著以平定州及其西北四十余里为路线锚点，但又称河北境内；此处按今平定县西北约20 km作小说近似点，历史行政矛盾待考。",
       "branches": [
         {
           "id": "site_riyue_luoyang",
           "name": "洛阳绿竹巷",
           "city_id": "city_luoyang",
           "longitude": 112.45,
-          "latitude": 34.68
+          "latitude": 34.68,
+          "open_chapters": [
+            "ch05"
+          ]
         },
         {
           "id": "site_riyue_meizhuang",
           "name": "杭州梅庄",
           "city_id": "city_hangzhou",
           "longitude": 120.16,
-          "latitude": 30.29
+          "latitude": 30.29,
+          "open_chapters": [
+            "ch05"
+          ]
         }
       ],
       "sources": [
@@ -2499,8 +2574,8 @@
       "kind": "island_headquarters",
       "site_name": "侠客岛石室",
       "city_id": "city_xiakedao",
-      "longitude": 122.9,
-      "latitude": 26.8,
+      "longitude": 113.8,
+      "latitude": 20.2,
       "coordinate_precision": "approximate_fictional",
       "availability_ref": "design/17 §3",
       "availability": {
@@ -2590,7 +2665,10 @@
           "name": "南京析津府",
           "city_id": "city_beijing",
           "longitude": 116.4,
-          "latitude": 39.91
+          "latitude": 39.91,
+          "open_chapters": [
+            "ch01"
+          ]
         }
       ],
       "sources": [
@@ -2630,7 +2708,10 @@
           "name": "襄阳外蒙古大营",
           "city_id": "city_xiangyang",
           "longitude": 112.3,
-          "latitude": 32.1
+          "latitude": 32.1,
+          "open_chapters": [
+            "ch03"
+          ]
         }
       ],
       "sources": [
@@ -2702,18 +2783,36 @@
           "name": "承德行宫",
           "city_id": "city_chengde",
           "longitude": 117.96,
-          "latitude": 40.95
+          "latitude": 40.95,
+          "open_chapters": [
+            "ch09",
+            "ch10",
+            "ch11",
+            "ch12",
+            "ch13",
+            "ch14"
+          ]
         },
         {
           "id": "site_qinggong_shengjing",
           "name": "盛京",
           "city_id": "city_shenyang",
           "longitude": 123.43,
-          "latitude": 41.79
+          "latitude": 41.79,
+          "open_chapters": [
+            "ch08",
+            "ch09",
+            "ch10",
+            "ch11",
+            "ch12",
+            "ch13",
+            "ch14"
+          ]
         }
       ],
       "sources": [
-        "src_sect17"
+        "src_sect17",
+        "src_chengde_resort"
       ]
     },
     {
@@ -2781,7 +2880,10 @@
           "name": "北京进军线",
           "city_id": "city_beijing",
           "longitude": 116.4,
-          "latitude": 39.91
+          "latitude": 39.91,
+          "open_chapters": [
+            "ch07"
+          ]
         }
       ],
       "sources": [
