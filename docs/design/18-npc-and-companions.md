@@ -2,8 +2,9 @@
 
 > 归属（基准 §18，待 A3 补登记）：NPC 身份与生卒年、分层名录、招募难度与任务门槛、好感与羁绊、离队 / 死亡 / 背叛、同伴跨书界重逢及持久化。
 > 上游：`docs/decisions/author-requirements.md` AR-09（高于基准）、`docs/00-canon.md`、`design/01-vision-and-core-loop.md`、`design/02-timeline-and-world-tiers.md`、`design/03-attributes.md`、`design/13-progression-and-endings.md`、`design/17-sects-compendium.md`。
-> 引用而不重定义：任务与门派流程 → `design/12-quests-npc-factions.md`；战斗编组、合击与 AI → `design/09-combat-system.md`；城市 → `design/11`；营生场所与家业 → `design/16`；武学 → `design/05` 与 `design/catalog/skills-*.md`；存档 Schema / 运行时 → `tech/04` / `tech/05`。不存在或尚未定稿的下游文档只作接口约定，不虚构章节号。
+> 引用而不重定义：任务与门派流程 → 未来 `design/12-quests-npc-factions.md`；战斗编组、合击与 AI → `design/09-combat-system.md`；城市 ID / 坐标 / 时代名 → `design/19-world-map.md` 与 `design/map/cities.yaml`，区域玩法 → 未来 `design/11`；营生场所与家业 → 未来 `design/16`；武学 → `design/05` 与 `design/catalog/skills-*.md`；存档 Schema / 运行时 → 未来 `tech/04` / `tech/05`。不存在或尚未定稿的下游文档只作接口约定，不虚构章节号。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（推算）** = 由本文所列原著线索和游戏定年估算；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需真机或完整存档验证；**【建议值】** = 依赖其他文档、先给可运行值并在文末登记。
+> 版本：v1.1（初稿 N1；审校 N1.R，2026-09-26）。
 
 ---
 
@@ -14,7 +15,7 @@
 3. “书眠”是叙事与存档阶段名；主角借《长生诀》沉睡至下一书界。切换时清空活动编组，但保留招募史、羁绊与离队快照。
 4. 旧基准“队友不跨书界”由 AR-09 覆盖：故人若在苏醒年仍健在，可经重逢任务再次加入。能力以旧快照为逐项下限，再按新书形象补入武学、层数和功力，只增不减。
 5. 具名、可招募 NPC 走 `design/03` 的 `full` 数值管线；普通设施 NPC 与路人走 `template` 管线。年龄段只修正输入画像，不另造第二套战斗公式。
-6. 分层名录拆在 `catalog/npcs-*.md`：先列 14 部主线各 20–40 个生产槽，再列 99 个组织、设施和路人模板。名录字段是生产数据候选，不替代原著考据。
+6. 分层名录拆在 `catalog/npcs-*.md`：14 部主线各有 20–40 名带 `npc_*` 的静态 NPC，当前合计 366 条出场索引、343 个唯一人物；另有 11 个无名支持槽，不计入人物下限。其后再列 99 个组织、设施和路人模板。名录字段是生产数据候选，不替代原著考据。
 
 ### 0.1 章节导航
 
@@ -45,7 +46,8 @@
 | 战斗上场、AI、合击、倒地 | `design/09` | 只提供角色引用 |
 | 属性、敌人模板、等级跟随 | `design/03` | 只给画像修正与管线选择 |
 | 武学内容、层数与品阶 | `design/05` / 图鉴 | 只引用已存在 `sk_*` |
-| 城市与时代图层 | `design/11` | 只挂接 `city_*` |
+| 城市 ID、坐标与时代图层 | `design/19` / `design/map/cities.yaml` | 只挂接已登记 `city_*` |
+| 区域探索与城市入口玩法 | 未来 `design/11` | 只提出留守 / 重逢地点需求 |
 | 赌场 / 镖局 / 山庄营生、月钱 | `design/16` | 只定义人员模板与雇佣入口 |
 | 改命消耗、多周目、成就 | `design/13` | 发事件、保存结果 |
 | NPC Schema 与存档迁移 | `tech/04` / `tech/05` | 给出逻辑契约 |
@@ -179,7 +181,7 @@ D2 有两条等价路径：
 1. **关系路径**：好感达到 30【建议值】并完成一个与职业责任有关的小任务，如替掌柜看店、为郎中采药、替镖师完成未竟镖单。
 2. **雇佣路径**：签订合同、支付定金并安排场所代班者；在合同期内可进队，期满自动转 `stationed` 或续约。
 
-设施 NPC 离岗会改变场所状态。若该 NPC 是唯一服务者，必须先生成替班者或把该服务标为暂停，不能出现“人已在队、柜台仍同时营业”的双重存在。
+设施 NPC 离岗会改变场所状态。若该 NPC 是唯一关键服务者，必须先生成替班者；非关键服务才可显式暂停，不能出现“人已在队、柜台仍同时营业”的双重存在。
 
 ### 2.4 D3 · 门派 NPC
 
@@ -188,7 +190,8 @@ D3 至少检查一项门派结构条件：
 - 玩家达到 `design/17` 的抽象 L2–L4；
 - 本派 L5 / 当前主事人出具许可；
 - 完成护送、值守、调解、比武或同门救援任务；
-- NPC 本人处于可离山状态。
+
+以上门派条件至少满足一项，且 NPC 本人必须处于可离山状态；“有空”不能单独替代职级、许可或任务。具名人物即使列为 D3，也必须完成该人物的任务门槛，不能只靠职级直接招募。
 
 默认规则【建议值】：
 
@@ -206,7 +209,7 @@ D3 至少检查一项门派结构条件：
 
 D4 必须同时具备：
 
-1. 唯一 `recruitQuestId`；
+1. 唯一 `questRef`；
 2. 至少一个人物价值观门槛（品德、声望、承诺、阵营行为）；
 3. 至少一个开放 / 关闭窗口；
 4. 至少一次由玩家选择而非战斗胜负决定的关系节点；
@@ -218,12 +221,12 @@ D4 必须同时具备：
 
 D5 在 D4 基础上增加：
 
-- `mainlineGate`：至少一个主线幕 / 锚点 / 正邪分支条件；
-- `availabilityWindows`：明确哪些时段忙于原著事件而不能同行；
-- `canonicalConsequence`：加入是否改变原著事件，若改变须进入改命线；
-- `fallbackAlliance`：无法同行时，是否以援军、情报、庇护或结盟方式兑现关系；
-- `lockWarning`：永久锁定前至少一次可见预警；
-- `fateRule`：若有命定死亡，写明原著线与改命线两种结果。
+- `mainlineGateRef`：至少一个主线幕 / 锚点 / 正邪分支条件引用；
+- `windowKeys`：明确哪些时段忙于原著事件而不能同行；
+- `canonicalConsequenceRef`：加入是否改变原著事件，若改变须指向改命线；
+- `fallbackAllianceRef`：无法同行时，是否以援军、情报、庇护或结盟方式兑现关系；
+- `lockWarningRef`：永久锁定前至少一次可见预警；
+- `fateRuleRef`：若有命定死亡，写明原著线与改命线两种结果引用。
 
 D5 并非“永不加入”。例如一国之君、在位掌门或主线首脑可用短时同行、易装化名、限定副本支援等方式实现 AR-09，同时保持世界可信度。
 
@@ -267,6 +270,8 @@ evaluateRecruitment(npc, world, player):
 - `effect`: 好感 / 羁绊变化、关系状态、加入 / 离队、站点、生死与改命事件；
 - `fail`: 可恢复失败、永久错过、背叛；
 - `emit`: 向 13、成就与遥测发结构化事件。
+
+当前 14 份主线名录是**策划索引**，其“招募要点”用于检查每名 D4 / D5 都有专属事件、价值观 / 主线取舍或时机窗口的语义，不冒充已落盘的任务节点。由于 `design/12` 与各 `story/chapters` 任务清单尚未创建，本文的 `q_02_bond_01`、`q_03_bond_01` 只是格式示例，当前不可解析为正式任务。后续序列化为 `NpcDef` 时，D4 / D5 必须补齐真实 `questRef`、`gateRef`、`valueGateRefs`、非空 `windowKeys`；D5 还必须补齐 `mainlineGateRef`、`canonicalConsequenceRef`、`fallbackAllianceRef`、`lockWarningRef` 与 `fateRuleRef`（允许为空的字段仍须显式给 `null`）。在这些引用可解析前，生产数据构建不得通过。
 
 ### 3.2 D4 / D5 专属任务链模板
 
@@ -344,9 +349,21 @@ recruitment:
 | 20–39 | 相识 | 留守通信、一次重邀 | 基础协同行为权重 |
 | 40–59 | 同行 | 个人任务第二段 | 可配置 `comboCandidate` |
 | 60–79 | 知交 | 跨界重逢线索优先、结局候选 | `comboEligible=true` |
-| 80–100 | 生死 | 命定死亡改命提示、专属后日谈 | 专属合击仍需 09 的站位 / 武学条件 |
+| 80–89 | 生死 | 命定死亡改命提示 | 专属合击仍需 09 的站位 / 武学条件 |
+| 90–100 | 生死与共 | 专属后日谈、终局关系候选 | 可配置终局合击；仍需 09 的站位 / 武学条件 |
 
-本文只给合击资格和关系标签；伤害、触发时机、站位与动画仍由 `design/09` 定义。
+`design/09` 消费的是 **0–5 整数羁绊等级**，本文保存的是 0–100 连续进度；唯一换算如下，避免把 60 点误当成 60 级：
+
+```text
+bondLevel = 0, bond 0–19
+          = 1, bond 20–39
+          = 2, bond 40–59
+          = 3, bond 60–79
+          = 4, bond 80–89
+          = 5, bond 90–100
+```
+
+因此 `bond=40` 只表示可进入合击候选池，`bond=60 → bondLevel=3` 才满足当前通用合击示例的最低等级；`bond≥90 → bondLevel=5` 是终局关系档。本文只给合击资格和关系标签；伤害、触发时机、站位与动画仍由 `design/09` 定义。
 
 ### 3.7 队伍、留守与换编组
 
@@ -422,11 +439,30 @@ npcId: npc_guojing
 chapterId: ch02_shediao
 worldYear: 1227
 reason: book_sleep
-level: 50
-innates: { con: 82, str: 84, agi: 62, wis: 64, wil: 88, luk: 55, cha: 72 }
+realLevel: 50
+permInnates: { con: 82, str: 84, agi: 62, wis: 64, wil: 88, luk: 55, cha: 72 }
+innateCapBreaks: { con: 0, str: 0, agi: 0, wis: 0, wil: 0, luk: 0, cha: 0 }
 skills:
-  - { id: sk_xianglong18, trueLayer: 10 }
-  - { id: sk_jiuyin, trueLayer: 8 }
+  - skillId: sk_xianglong18
+    trueLayer: 10
+    sxp: 0
+    sourceCap: 10
+    learnedIn: ch02_shediao
+    nativeTo: ch02_shediao
+    sourceGrade: 12
+    latentExp: 0
+    movesEquipped: []
+    flags: []
+  - skillId: sk_jiuyin
+    trueLayer: 8
+    sxp: 0
+    sourceCap: 10
+    learnedIn: ch02_shediao
+    nativeTo: ch02_shediao
+    sourceGrade: 12
+    latentExp: 0
+    movesEquipped: []
+    flags: []
 equipmentRefs: []
 permanentMods: []
 aiPersonality: pers_huzhu
@@ -434,7 +470,7 @@ bond: 78
 affinity: 74
 ```
 
-上述数字仅演示结构，不是郭靖最终配表。快照保存 `trueLayer` 和永久值；显示层数、外来压制和有效品阶仍由 `design/02` 在目标书界重新计算。
+上述数字仅演示结构，不是郭靖最终配表。`skills` 保存 `design/05` §2.6 的持久 `SkillState` 必需字段，并补上 `design/02` §2.2 要求随实例保留的 `sourceGrade`；不能只存 `skillId + trueLayer` 后按新书界默认值重建，否则残承会被错误补全。快照只保存永久先天底子 `perm_X`，不冻结装备、内功、Buff 形成的 `temp_X`；显示层数、外来压制、有效品阶与最终先天仍由 `design/02`、`03`、`05` 在目标书界重新计算。
 
 ### 4.3 动态倒地与永久死亡
 
@@ -512,23 +548,28 @@ type YearValue =
 | 待考 | 记得有线索但未逐字核 | `?–?（待考：书名、人物、情节）` |
 | 年龄段 | 设施 / 路人或无定年必要 | `adult` / `elder` |
 
-史实人物也必须区分“历史上的人”和“小说中的艺术形象”：`identity.origin=historical_fictionalized`，史实年可用于存在性，小说行为仍以原著为准。
+史实人物也必须区分“历史上的人”和“小说中的艺术形象”：`identity.origin=historical_fictionalized`。`lifespan` 始终是**小说 / 游戏生命轴**，用于 appearance 与重逢判定；史实生卒另存 `historicalProfile.born` / `historicalProfile.died`，只作考据和冲突告警，不直接裁掉小说中明确出现的人物。若二者一致，可在 `lifespan` 用史实值并把同一 `[Hxx]` 作为依据；若马钰、李自成、郑克塽等小说出场与史实年份冲突，则小说轴写 `unknown / range + explicitAliveAt`，史实精确年只放 `historicalProfile`。
 
 ### 5.2 年份语义与健在判定
 
-年度精度采用半开区间：
+精确生卒采用三态判定，不能用一个半开区间布尔式吞掉“同年死亡但事件先后未知”的边界：
 
 ```text
-presentAt(y) = born <= y AND (died is null OR y < died)
+presenceAt(y):
+  if exact born > y: absent
+  else if died is null/unknown: unknown unless explicitAliveAt proves alive
+  else if exact died > y: alive
+  else if exact died < y: dead
+  else: life_unknown  # died == y，等事件顺序
 ```
 
 - `died > wakeYear`：可自动判断健在；
 - `died < wakeYear`：已故；
 - `died == wakeYear`：年级精度不足，必须看事件先后；未配先后时返回 `life_unknown`，不能自动招募；
-- 原著明确某年 / 某事件仍在世，可用 `explicitAliveAt` 覆盖模糊推算，但不能覆盖已确认史实死亡；
+- 原著明确某年 / 某事件仍在世，可用 `explicitAliveAt` 覆盖**小说生命轴**的模糊推算；它不改写 `historicalProfile` 中的史实死亡，冲突必须显式告警；
 - 改命分支的 `fate_rescued` 优先于原著死亡值。
 
-`born` 晚于书界结束、或 `died` 不晚于书界开始的 NPC，不得在该书界配置实体出现；回忆、碑文和祖师像用 `presenceMode=reference`，不算活 NPC。
+精确 `born` 晚于书界结束、或精确 `died` 早于书界开始的 NPC，不得在该书界配置实体出现；卒年等于入场年时仍按上述同年边界核定事件先后。回忆、碑文和祖师像用 `presenceMode=reference`，不算活体，也不能触发招募。范围 / 约年须比较完整区间；未知寿年不得当作死亡证据。
 
 ### 5.3 年龄段
 
@@ -549,9 +590,13 @@ presentAt(y) = born <= y AND (died is null OR y < died)
 具名 NPC 先手配不含年龄的“人物底稿”，再叠年龄修正，最后进入 `design/03` 的 `full` 管线：
 
 ```text
-innateAged[k] = clamp(innateBase[k] + ageDelta[band,k] + portrayalOverride[k], 1, 100)
-levelTarget = clamp(levelByStoryRole + ageLevelDelta + portrayalLevelOverride, 1, chapterLevelCap + 6)
-finalStats = design03.full(innateAged, levelTarget, skills, equipment, templateRole)
+innateAged[k] = clamp(innateBase[k] + ageDelta[band,k] + portrayalOverride[k], 1, cap_X)
+# cap_X 通常为 100；仅已有 breakCap 记录时按 design/03 §2.1 提高，最高 120
+realLevelTarget = clamp(levelByStoryRole + ageLevelDelta + portrayalLevelOverride, 1, 70)
+displayLevel = min(realLevelTarget, chapterLevelCap)
+# 只有 design/02 登记的 capExempt Boss：
+displayLevelBoss = min(realLevelTarget, 70, chapterLevelCap + capExemptMax[tier])
+finalStats = design03.full(innateAged, displayLevel, skills, equipment, templateRole)
 ```
 
 年龄修正建议表【建议值】：
@@ -569,7 +614,7 @@ finalStats = design03.full(innateAged, levelTarget, skills, equipment, templateR
 说明：
 
 - `luk`、`cha` 不由年龄统一修正；魅力与际遇逐人设定。
-- “等级段修正”加在同一剧情身份的基准等级上，不突破 `chapterLevelCap+6`。例如故事角色基准 Lv30，壮年为 `30+3=33`；仍按 03 完整公式求属性。
+- “等级段修正”只改变真实等级目标且不得超过 70。普通可招募 NPC 的显示等级仍为 `min(realLevelTarget, chapterLevelCap)`；只有 `design/02` 每界显式登记、每界至多 2 名的 `capExempt` Boss 才能按高 / 中 / 低武分别超上限 `+3/+4/+6`，并且不放宽武学层数上限。例：故事角色基准 Lv30、壮年修正 `+3`，得真实等级 33；若本界上限 32，则普通角色显示 32，而不是自动获得 Boss 超限。
 - 武学历史最高层数只增不减；衰老、伤病若要降低战斗表现，用永久创伤 / Buff 或装配变化表达，不改写历史层数。
 - 张三丰、天山童姥等原著明确违背普通年龄体能曲线者，使用 `portrayalOverride`；这是人物刻画，不是所有高龄 NPC 的自动豁免。
 - 模板 NPC 不手配七项先天：先由 `tmpl_normal` / `tmpl_elite` / `tmpl_head` / `tmpl_boss` 生成，再按年龄表改先天输入；可招募后转 `full` 固化，避免重进地图重掷。
@@ -651,12 +696,15 @@ canReunite(npc, wakeYear):
   require everRecruited == true
   require targetAppearance exists
   if lifeState == fate_rescued: use branch lifespan
+  if targetAppearance.presenceMode == reference: absent
+  if exact born > wakeYear: absent
+  if current branch lifeState == dead: dead
   if explicitAliveAt contains wakeYear/event: alive
   else if exact died > wakeYear: alive
   else if exact died < wakeYear: dead
   else if exact died == wakeYear: unknown until event ordering
   else if inferred range spans wakeYear: unknown, open考据分支而非自动招募
-  else dead_or_absent
+  else unknown; keep rumor, do not auto-recruit or confirm death
 ```
 
 “原著明确在世”是强证据，例如同一人物确在目标作品出场；但目标作品只是提及先人时，不算健在。
@@ -679,19 +727,41 @@ canReunite(npc, wakeYear):
 令 `S_old` 为离队快照，`P_new` 为目标书界原著画像，`M` 为合并结果：
 
 ```text
-M.innate[k]       = max(S_old.innate[k], P_new.innate[k])
-M.trueLevel       = max(S_old.trueLevel, P_new.trueLevel)
-M.skills          = union(S_old.skills, P_new.skills)
-M.skillLayer[id]  = max(S_old.skillLayer[id] ?? 0, P_new.skillLayer[id] ?? 0)
+M.permInnates[k]   = max(S_old.permInnates[k], P_new.permInnates[k])
+M.innateCapBreaks[k] = max(S_old.innateCapBreaks[k], P_new.innateCapBreaks[k])
+M.realLevel       = max(S_old.realLevel, P_new.realLevel)
+M.skills          = mergeSkillStates(S_old.skills, P_new.skills)
+M.skills[id].trueLayer = max(S_old.skills[id]?.trueLayer ?? 0,
+                             P_new.skills[id]?.trueLayer ?? 0)
+# 同一武学的来源状态不凭画像猜默认值：
+M.skills[id].sourceCap   = max(old.sourceCap ?? 0, new.sourceCap ?? 0)
+M.skills[id].sourceGrade = max(old.sourceGrade ?? 0, new.sourceGrade ?? 0)
+# learnedIn 保留首次值；sxp / latentExp / insight 取不丢进度的较高值；pages / flags 做集合并集。
+# movesEquipped 保留旧配置；新增招式进入已解锁池，经 05 的 moveSlots / 需求校验后换装，不并集合并装配栏。
+# nativeTo / attuned* 不能简单取 max：若后世画像来自当前书界的完整来源，按
+# design/02 §2.2 的 full 印证把 nativeTo 改为当前书界；若仅 partial，则保留旧
+# nativeTo 并写 attunedGrade / attunedIn；两者都没有时保持旧值。
 M.permanentMods   = unionByStableId(S_old.permanentMods, P_new.permanentMods)
 M.codexKnowledge  = union(S_old.codexKnowledge, P_new.codexKnowledge)
 M.equipment       = resolveOwnership(S_old, P_new, currentWorld)
+M.permInnates[k]   = clamp(M.permInnates[k], 1, cap_X) # cap_X=100+5×M.innateCapBreaks[k]，≤120
+M.realLevel       = clamp(M.realLevel, 1, 70)
+M.skills[id].trueLayer = clamp(M.skills[id].trueLayer, 1,
+                               min(skillDef.maxLayer ?? 10, M.skills[id].sourceCap))
+M.displayLevel    = min(M.realLevel, targetChapter.levelCap)
+M.skills[id].effLayer = min(M.skills[id].trueLayer, tierCapEff,
+                             gateCap(skillDef.grade, M.displayLevel),
+                             skillDef.special?.layerCap ?? 10)
 M.effectiveStats  = design02.applyWorldSuppression(design03.full(M))
 ```
 
 边界：
 
-- “只增不减”约束保存的真实能力，不取消新书界天道压制；因此 UI 可显示有效品阶下降，但 `trueLayer` 与先天不减。
+- 合并前验证旧快照与新画像均满足 03 / 05 上限；若旧数据已越界，应停止重逢提交并进入迁移修复，不能靠 clamp 静默降低旧值。公式中的截断只作为合法输入的防御性边界。
+- “只增不减”约束保存的真实能力，不取消新书界天道压制；因此 UI 可显示有效品阶或有效层数下降，但 `realLevel`、永久先天与 `trueLayer` 不减。
+- `permInnates` 是 `design/03` §2.1 的永久底子；`innateCapBreaks` 同样逐项取旧快照 / 新画像最大值。通常上限 100，只有已有 `breakCap` 记录可把对应 `cap_X` 逐次提高至最多 120；装备、内功、Buff 等 `temp_X` 不写入快照，重算后的最终先天统一截断至 1–120。真实等级始终在 1–70，武学真实层数还受该实例 `sourceCap` 与武学 `maxLayer` 约束。“只增不减”不能凭空突破这些硬上限。
+- 有效层数必须原样走 `design/02` §2.4 / `design/05` §3.4 的权威口径：`min(trueLayer, tierCapEff, gateCap(absGrade, displayLevel), special.layerCap ?? 10)`。`sourceCap` 先约束可保存的 `trueLayer`，不能因跨书重逢消失，但不在有效层数公式里重复列项。普通同伴显示等级仍截断到目标书界 `levelCap`，不继承 Boss `capExempt`。
+- `full` 同伴的 `hpMax` 目标仍须落在 `design/03` §10 的“同级同书界 `tmpl_boss` 气血 ×0.6–1.2”区间；合并只提高输入画像，不绕过该模板上限。
 - 新画像只可引用图鉴已有 `sk_*`；图鉴尚未收录者写“待对应图鉴收录（不预建 ID）”，不得临时造 ID。
 - 原著明确的伤残或疾病不删属性与层数，而以装备限制、永久创伤或状态表现；治愈后可恢复。
 - 同一永久加成按稳定 ID 去重，不得因两份画像重复叠加。
@@ -708,7 +778,7 @@ M.effectiveStats  = design02.applyWorldSuppression(design03.full(M))
 
 射雕离界 1227，神雕入场 1237，沉睡 `1237−1227=10` 年。郭靖在《神雕侠侣》明确在世并为襄阳守城核心，因此健在。
 
-假设旧快照含 `sk_xianglong18` 9 重、`sk_jiuyin` 7 重、`sk_kongming` 8 重；神雕画像含前三者 10 / 9 / 9 重，并新增图鉴已有 `sk_zuoyouhubo`、`sk_wumuyishu`：合并后分别取 10 / 9 / 9 重并加入两项新能力。若旧档某武学已 10 重，则不得被画像的 9 重降级。具体最终层数仍由人物配表审校。
+示例旧快照：真实等级 50，`sk_xianglong18 / sk_jiuyin / sk_kongming / sk_zuoyouhubo / sk_wumuyishu = 9/7/8/8/8` 重；神雕画像：真实等级 62，五项为 `10/9/9/8/10` 重，且五个实例均为完整来源 `sourceCap=10`。后二项在《射雕》阶段已经习得 / 取得，不得误列为神雕新增能力。合并为真实等级 `max(50,62)=62`、五项真实层数 `10/9/9/8/10`。神雕是高武，`levelCap=62、tierCapEff=10`；Lv62 对天 / 地阶的 `gateCap` 都为 10，五项 `special.layerCap` 亦按 10，故显示等级 `min(62,62)=62`，有效层数为 `min(trueLayer,10,10,10)=10/9/9/8/10`，不是把神雕误按 9 重截断。
 
 ### 6.8 算例二：黄蓉 · 射雕 → 神雕
 
@@ -722,15 +792,15 @@ M.effectiveStats  = design02.applyWorldSuppression(design03.full(M))
 
 神雕离界 1259，倚天主体入场 1336，沉睡 77 年。张君宝在《神雕侠侣》末段 / 《倚天屠龙记》楔子后成为张三丰，倚天主体明确健在；同一人物统一为 `npc_zhangsanfeng`，神雕 appearance 显示名“张君宝”。
 
-若少年快照只有少林 / 九阳相关见闻，重逢时保留旧值，再按张三丰画像加入 `sk_taijiquan`、`sk_taijijian` 及更高功力。其精确出生年与寿数按小说线索仍标（待考），不拿民间传说年份冒充小说事实。
+数值例：少年快照真实等级 28、`sk_shaolinxinfa=4`，倚天张三丰画像真实等级 70，含 `sk_taijiquan=10`、`sk_taijijian=10`、`sk_chunyangwuji=10`，各实例均按完整来源 `sourceCap=10`。合并为真实等级 `max(28,70)=70`，技能集合保留 `sk_shaolinxinfa=4` 并加入三门 10 重；倚天 `levelCap=70、tierCapEff=10`，Lv70 对天 / 地 / 黄阶均有 `gateCap=10`，故显示等级 70，有效层数分别为 4 / 10 / 10 / 10。少年听闻九阳的具体可用武学仍待原著 / 图鉴核配，不因此凭空加入全本 `sk_jiuyang`。其精确出生年与寿数按小说线索仍标（待考），不拿民间传说年份冒充小说事实。
 
 ### 6.11 算例五：九难 · 碧血 → 鹿鼎
 
-碧血离界 1645，鹿鼎入场 1669，沉睡 24 年。阿九在后作以九难身份明确出现，故可重逢。旧快照保留；新画像补入年龄、身份与后期武学表现。她对吴三桂、清廷和旧明的立场成为重逢 U4 的责任冲突。若碧血线中改命改变其遭遇，只能改变分支画像，不能删去鹿鼎主线所需接口。
+碧血离界 1645，鹿鼎入场 1669，沉睡 `1669−1645=24` 年。阿九在后作以九难身份明确出现，故可重逢。数值例：旧快照真实等级 54、`sk_shenxing=8`；鹿鼎画像真实等级 58、`sk_shenxing=10`，完整来源 `sourceCap=10`。合并真实等级 `max(54,58)=58`、真实层数 `max(8,10)=10`；鹿鼎 `levelCap=44、tierCapEff=8`，普通同伴显示等级为 `min(58,44)=44`。神行百变是天下 10 品，Lv44 的 `gateCap=9`，故有效层数 `min(10,8,9,10)=8`；存档中的 58 / 10 均不下降，也不借低武 Boss 的 `+6` 超限显示 50。她对吴三桂、清廷和旧明的立场成为重逢 U4 的责任冲突。
 
 ### 6.12 算例六：赵半山 · 书剑 → 飞狐
 
-书剑离界 1759，飞狐入场约 1766，沉睡 7 年。赵半山在两作均出现，若书剑中曾入队即可从红花会旧识线重逢；未曾加入则按飞狐 appearance 重新生成。旧快照与新画像的武学集合并集；相关图鉴未收录的配置写“待对应图鉴收录（不预建 ID）”。
+书剑离界 1759，飞狐入场约 1766，沉睡 `1766−1759=7` 年。赵半山在两作均出现，若书剑中曾入队即可从红花会旧识线重逢；未曾加入则按飞狐 appearance 重新生成。数值例：旧快照真实等级 51、`sk_taijimenquan=8`、`sk_guangpingxinfa=7`；飞狐画像真实等级 55、两门为 9 / 8 重，均为完整来源 `sourceCap=10`。合并为真实等级 `max(51,55)=55`、真实层数 9 / 8；飞狐 `levelCap=55、tierCapEff=9`，显示等级 55。太极门拳为玄上 6 品、广平心法为玄下 4 品，Lv55 的 `gateCap` 均为 10，故有效层数分别为 `min(9,9,10,10)=9` 与 `min(8,9,10,10)=8`。相关图鉴未收录的暗器招法仍写“待对应图鉴收录（不预建 ID）”。
 
 ### 6.13 同书人物成长算例：少年杨过 → 神雕侠
 
@@ -742,7 +812,7 @@ M.effectiveStats  = design02.applyWorldSuppression(design03.full(M))
 
 ### 7.1 YAML 完整示例
 
-以下是结构示例，不是郭靖最终数值表；任务 ID 遵循基准 §12 的 `q_<书界>_<类型>_<nn>`，不会另造 `qst_*` 前缀。城市 ID 在 `design/11` 未定稿前标 `suggested`。
+以下是结构示例，不是郭靖最终数值表；任务 ID 遵循基准 §12 的 `q_<书界>_<类型>_<nn>`，不会另造 `qst_*` 前缀。城市 ID 必须解析到 `design/map/cities.yaml`；无法落到城市的小说地点用 `cityId: null + placeKey`，不得另造未登记的 `city_*`。
 
 ```yaml
 id: npc_guojing
@@ -763,24 +833,32 @@ lifespan:
     note: 神雕结局后至倚天前的襄阳结局线索待考
   explicitAliveAt:
     - { chapterId: ch03_shendiao, from: 1237, to: 1259, source: 神雕出场 }
+# 只有历史人物 / 历史原型才填；不得驱动小说生命轴
+historicalProfile: null
 appearances:
   - key: shediao_late # NPC 记录内局部键
     chapterId: ch02_shediao
     years: { from: 1225, to: 1227, approx: false }
     displayName: 郭靖
+    presenceMode: living
     ageBand: young_adult
     sects:
       - { sectId: sect_gaibang, rank: null, relation: ally }
     location:
-      cityId: null
-      suggestedCityId: city_linan
+      cityId: city_hangzhou
       placeKey: null
     contentLayer: mainline
     recruitment:
-      difficulty: D4
+      difficulty: D5
       questRef: q_02_bond_01
       gateRef: q_02_bond_01#recruit_gate
+      valueGateRefs: [q_02_bond_01#value_gate]
+      mainlineGateRef: q_02_bond_01#mainline_gate
       windowKeys: [mobei, shediao_late]
+      canonicalConsequenceRef: q_02_bond_01#canonical_consequence
+      fallbackAllianceRef: q_02_bond_01#alliance_fallback
+      lockWarningRef: q_02_bond_01#lock_warning
+      fateRuleRef: null
     build:
       pipeline: full
       templateRole: tmpl_elite
@@ -796,19 +874,25 @@ appearances:
     chapterId: ch03_shendiao
     years: { from: 1257, to: 1259, approx: false }
     displayName: 郭靖
+    presenceMode: living
     ageBand: mature
     sects:
-      - { sectId: sect_gaibang, rank: L5, relation: former_leader_ally }
+      - { sectId: sect_gaibang, rank: null, relation: ally }
     location:
-      cityId: null
-      suggestedCityId: city_xiangyang
+      cityId: city_xiangyang
       placeKey: xiangyang_command # 城市记录内局部键
     contentLayer: mainline
     recruitment:
       difficulty: D5
       questRef: q_03_bond_01
       gateRef: q_03_bond_01#recruit_gate
+      valueGateRefs: [q_03_bond_01#value_gate]
+      mainlineGateRef: q_03_bond_01#mainline_gate
       windowKeys: [xiangyang_sortie]
+      canonicalConsequenceRef: q_03_bond_01#canonical_consequence
+      fallbackAllianceRef: q_03_bond_01#alliance_fallback
+      lockWarningRef: q_03_bond_01#lock_warning
+      fateRuleRef: q_03_bond_01#fate_rule
     build:
       pipeline: full
       templateRole: tmpl_head
@@ -846,12 +930,19 @@ sources:
 
 ### 7.2 TypeScript 类型
 
+以下为完整声明；§5.1 的 `YearValue` 是同一定义的节选，汇总编译时只保留此处一份，与 §7.3 联合使用。
+
 ```ts
 type NpcId = `npc_${string}`;
-type ChapterId = `ch${number}_${string}`;
+type Digit = '0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9';
+type TwoDigits = `${Digit}${Digit}`;
+type ChapterId = `ch${TwoDigits}_${string}`;
 type SectId = `sect_${string}`;
 type SkillId = `sk_${string}`;
-type QuestId = `q_${string}`;
+type InnateId = 'con'|'str'|'agi'|'wis'|'wil'|'luk'|'cha';
+type Grade = 1|2|3|4|5|6|7|8|9|10|11|12;
+type QuestKind = 'main'|'side'|'faction'|'bond'|'qiyu';
+type QuestId = `q_${TwoDigits}_${QuestKind}_${TwoDigits}`;
 type CityId = `city_${string}`;
 type TaskNodeRef = `${QuestId}#${string}`;
 type RecruitmentDifficulty = 'D1' | 'D2' | 'D3' | 'D4' | 'D5';
@@ -868,6 +959,12 @@ type YearValue =
   | { kind: 'circa'; year: number; tolerance: number; basis: 'inferred'; note: string }
   | { kind: 'unknown'; ageBand?: AgeBand; note: string };
 
+interface HistoricalProfile {
+  name: string;
+  born: YearValue; died: YearValue | null;
+  refs: string[]; // Hxx / Sxx；只作考据，不参与小说 appearance 存活裁定
+}
+
 interface NpcDef {
   id: NpcId;
   identity: {
@@ -880,6 +977,7 @@ interface NpcDef {
     explicitAliveAt?: Array<{ chapterId: ChapterId; from: number; to: number; source: string }>;
     canonicalDied?: YearValue;
   };
+  historicalProfile?: HistoricalProfile | null;
   appearances: NpcAppearance[];
   recruitment: {
     everRecruitable: boolean; allianceOnly: boolean;
@@ -898,22 +996,46 @@ interface NpcAppearance {
   chapterId: ChapterId;
   years: { from: number; to: number; approx: boolean };
   displayName: string;
+  presenceMode: 'living' | 'reference';
   ageBand: AgeBand;
   sects: Array<{ sectId: SectId; rank: 'L1'|'L2'|'L3'|'L4'|'L5'|null; relation: string }>;
-  location: { cityId: CityId|null; suggestedCityId?: CityId; placeKey: string|null };
+  location: { cityId: CityId|null; placeKey: string|null };
   contentLayer: ContentLayer;
   recruitment: RecruitmentSpec;
   build: FullBuild | TemplateBuild;
   ai: { tier: AiTier; personality: AiPersonality };
 }
 
-interface RecruitmentSpec {
-  difficulty: RecruitmentDifficulty;
+interface RecruitmentD1ToD3 {
+  difficulty: 'D1' | 'D2' | 'D3';
   questRef: QuestId | null;
   contractRef?: string;
   gateRef: TaskNodeRef | null;
   windowKeys: string[]; // 所属 appearance / 任务内局部键
 }
+
+interface RecruitmentD4 {
+  difficulty: 'D4';
+  questRef: QuestId;
+  gateRef: TaskNodeRef;
+  valueGateRefs: [TaskNodeRef, ...TaskNodeRef[]];
+  windowKeys: [string, ...string[]];
+}
+
+interface RecruitmentD5 {
+  difficulty: 'D5';
+  questRef: QuestId;
+  gateRef: TaskNodeRef;
+  valueGateRefs: [TaskNodeRef, ...TaskNodeRef[]];
+  mainlineGateRef: TaskNodeRef;
+  windowKeys: [string, ...string[]];
+  canonicalConsequenceRef: TaskNodeRef;
+  fallbackAllianceRef: TaskNodeRef | null;
+  lockWarningRef: TaskNodeRef;
+  fateRuleRef: TaskNodeRef | null;
+}
+
+type RecruitmentSpec = RecruitmentD1ToD3 | RecruitmentD4 | RecruitmentD5;
 
 interface FullBuild {
   pipeline: 'full'; templateRole: 'tmpl_normal'|'tmpl_elite'|'tmpl_head'|'tmpl_boss';
@@ -933,7 +1055,7 @@ interface SourceRef {
 }
 ```
 
-`NpcAppearance.build.skills` 只保存 `skillId` 与人物真实层数 `trueLayer`；武学名称、类型和品阶统一通过 `skillId → SkillDef.grade` 从 `design/05` 与对应图鉴解析，NPC 数据不得重复存储或覆写品阶。若图鉴尚无该武学，只能写入 `unregisteredSkills` 并标“待对应图鉴收录（不预建 ID）”，在图鉴正式建档前不得伪造 `sk_*`。
+`NpcAppearance.build.skills` 只保存 `skillId` 与人物真实层数 `trueLayer`；武学名称、类型和品阶统一通过 `skillId → SkillDef.grade` 从 `design/05` 与对应图鉴解析，NPC 数据不得重复存储或覆写品阶。该二字段列表只是设计索引：运行时生成 / 重逢前，构建器必须从对应书界的合法来源展开为 §7.3 的完整 `CompanionSkillSnapshot`（含 `sourceCap`、`sourceGrade`、`nativeTo` 等）；找不到来源即报错，不能一律补成完整十重来源。若图鉴尚无该武学，只能写入 `unregisteredSkills` 并标“待对应图鉴收录（不预建 ID）”，在图鉴正式建档前不得伪造 `sk_*`。
 
 ### 7.3 运行时同伴状态
 
@@ -957,10 +1079,23 @@ interface CompanionState {
 interface CompanionSnapshot {
   snapshotId: string; // 运行时 UUID，不是内容 ID
   npcId: NpcId; chapterId: ChapterId; worldYear: number; reason: string;
-  level: number; innates: Record<string, number>;
-  skills: Array<{ id: SkillId; trueLayer: number }>;
+  realLevel: number;
+  permInnates: Record<InnateId, number>;
+  innateCapBreaks: Record<InnateId, number>;
+  skills: CompanionSkillSnapshot[];
   equipmentRefs: string[]; permanentMods: string[];
   aiPersonality: AiPersonality; affinity: number; bond: number;
+}
+
+// 字段语义直接引用 design/02 §2.2、design/05 §2.6；这里仅声明快照所需子集。
+interface CompanionSkillSnapshot {
+  skillId: SkillId;
+  trueLayer: number; sxp: number;
+  sourceCap: number; sourceGrade: Grade;
+  learnedIn: ChapterId; nativeTo: ChapterId;
+  attunedGrade?: Grade; attunedIn?: ChapterId;
+  latentExp: number; movesEquipped: string[]; flags: string[];
+  insight?: number; pages?: number[]; // 05 已有的参悟 / 残页进度，存在时一并保留
 }
 ```
 
@@ -1018,7 +1153,7 @@ interface CompanionSnapshot {
 
 ### 8.3 设施 NPC 字段
 
-设施表按 `场所模板｜职位｜功能｜对话钩子｜D2 路径｜雇佣价公式｜替班规则` 组织。实例表至少覆盖天龙时代的汴梁、大理、辽上京、兴庆、大同、雁门关、洛阳、苏州，均作为 `design/11` 未定稿前的建议城市键。
+设施表按 `场所模板｜职位｜功能｜对话钩子｜D2 路径｜雇佣价公式｜替班规则` 组织。实例表至少覆盖天龙时代的汴梁、大理、辽上京、兴庆、大同、雁门关附近、洛阳、苏州；城市键必须来自 `design/map/cities.yaml`。雁门关没有独立城市 ID，按 `design/19` 的雁门驿路挂到 `city_xinzhou + placeKey=yanmenguan`，不把关隘冒充城市。
 
 不得给普通设施 NPC 安排未经图鉴收录的具名绝学；战斗配置用 `tmpl_normal` / `tmpl_elite` 与职业原型。
 
@@ -1100,7 +1235,8 @@ D2定金 = 3 × D2日佣
 | `design/03` | `full` / `template` 管线与四模板 | 年龄修正输入、NPC 画像选择 |
 | `design/05` / 图鉴 | 已存在 `sk_*`、层数规则 | NPC 武学引用；不定义新武学 |
 | `design/09` | 编组 ≤6、AI 人格、合击运行时 | `ai`、羁绊与合击资格 |
-| `design/11` | 城市 / 时代图层 | `cityId`、留守点、重逢地点（待其创建） |
+| `design/19` / `design/map/cities.yaml` | 正式城市 ID、坐标、时代名称与路线 | `cityId`、雁门关附近锚点 |
+| `design/11` | 区域探索、入口与城市玩法（待创建） | 留守点、重逢地点需求 |
 | `design/12` | 任务 DSL、门派关系 | `questRef`、招募条件与状态动作（待其创建） |
 | `design/13` | 余韵代价、多周目、成就 | `companionFateRescued`、`companionRejoined` |
 | `design/16` | 营生、场所、工资、据点 | 设施角色模板与代班状态（待其创建） |
@@ -1114,7 +1250,7 @@ D2定金 = 3 × D2日佣
 
 ### 10.2 `tech/04` 内容构建接口
 
-构建期应：解析所有静态 NPC、展开 appearance 索引、检查跨文件唯一 ID、解析 `sect_*` / `sk_*` / `q_*` / `city_*` 引用、生成每书界 NPC 包与全局轻量索引。未定稿 `suggestedCityId` 只警告，正式 `cityId` 缺失在地图定稿后升级为错误。
+构建期应：解析所有静态 NPC、展开 appearance 索引、检查跨文件唯一 ID、解析 `sect_*` / `sk_*` / `q_*` / `city_*` 引用、生成每书界 NPC 包与全局轻量索引。地图已定稿，因此任何非空 `cityId` 无法在 `design/map/cities.yaml` 解析都直接报错；无城市归属的小说地点只能使用 `cityId: null + placeKey`。
 
 ### 10.3 `tech/05` 运行时接口
 
@@ -1137,11 +1273,11 @@ D2定金 = 3 × D2日佣
 | 7 | 碧血 | `catalog/npcs-ch07-bixue.md` | 20–40 / 26 |
 | 8 | 鹿鼎 | `catalog/npcs-ch08-luding.md` | 20–40 / 30 |
 | 9 | 连城 | `catalog/npcs-ch09-liancheng.md` | 20–40 / 24 |
-| 10 | 白马 | `catalog/npcs-ch10-baima.md` | 20–40 / 20 个生产槽 |
-| 11 | 鸳鸯 | `catalog/npcs-ch11-yuanyang.md` | 20–40 / 20 个生产槽 |
+| 10 | 白马 | `catalog/npcs-ch10-baima.md` | 20–40 / 20 名静态 NPC（另 3 支持槽） |
+| 11 | 鸳鸯 | `catalog/npcs-ch11-yuanyang.md` | 20–40 / 20 名静态 NPC（另 6 支持槽） |
 | 12 | 书剑 | `catalog/npcs-ch12-shujian.md` | 20–40 / 28 |
 | 13 | 飞狐 | `catalog/npcs-ch13-feihu.md` | 20–40 / 26 |
-| 14 | 雪山 | `catalog/npcs-ch14-xueshan.md` | 20–40 / 25 个生产槽 |
+| 14 | 雪山 | `catalog/npcs-ch14-xueshan.md` | 20–40 / 23 名静态 NPC（另 2 支持槽） |
 
 ### 11.2 其余三层
 
@@ -1151,7 +1287,7 @@ D2定金 = 3 × D2日佣
 | 设施 NPC | `catalog/npcs-facilities.md` | 9 类模板；天龙 8 城、24 场所、96 个生产槽 |
 | 路人甲 | `catalog/npcs-commoners.md` | 16 职业、7 年龄段、D1、持久化与多地域命名闸门 |
 
-以上计数采用 §14 的校验口径：短篇的“原著无名 / 职能槽”计入生产槽，但不生成伪造的静态人物 ID。
+以上主线计数只统计首列带 `npc_*` 的静态人物。白马、鸳鸯与雪山合计另有 11 个“不建静态 ID”的无名支持槽，只用于运行时生成或场景职能，不计入“每部主线 NPC ≥20”的验收下限，也不会被包装成原著具名人物。
 
 ---
 
@@ -1162,7 +1298,7 @@ D2定金 = 3 × D2日佣
 | 来源 | 本文使用范围 | 边界 |
 |---|---|---|
 | `docs/decisions/author-requirements.md` AR-09 | D1–D5、人人可招募、生卒年、《长生诀》沉睡、跨书界重逢、能力只增不减与四层名录 | 作者新增需求，高于基准旧“队友不跨书界” |
-| `docs/00-canon.md` §1–§3、§6、§8、§12、§16–§18 | 术语、年代与压制、江湖属性、六人编组、ID、原著边界、书界人物字段 | 三项需同步的基准修订只登记于 §15.3，不直接修改基准 |
+| `docs/00-canon.md` §1–§3、§6、§8、§12、§16–§18 | 术语、年代与压制、江湖属性、六人编组、ID、原著边界、书界人物字段 | 四项需同步的基准修订只登记于 §15.3，不直接修改基准 |
 | `design/02-timeline-and-world-tiers.md` §1.5、§4、§6 | 书界定年、14 段沉睡、书眠事务与跨界连续性 | 本文消费其权威时间线，不另裁定年代 |
 | `design/03-attributes.md` §10 | `full` / `template` 管线、四档模板与等级上限 | 年龄修正只作用于输入画像，不另建属性公式 |
 | `design/09-combat-system.md` §8 | 上场人数、AI 人格、合击 | 本文只提供同伴资格与羁绊数据 |
@@ -1170,7 +1306,14 @@ D2定金 = 3 × D2日佣
 | `design/17-sects-compendium.md` §1、§3 | L1–L5、99 个组织与时代状态 | `catalog/npcs-sects.md` 必须与其集合一致 |
 | `docs/decisions/rulings-v1.md` | ID 重命名、图鉴归属与现有 `sk_*` | 名录不得抢建新武学 ID |
 
-小说人物的身份、关系和情节定位以三联 / 广州修订版为最终校对基线；本次没有可合法全文检索的指定版本电子文本，因此未逐字核定回目号，名录统一保留“回目待考”而不编造章节。网络人物表只用于发现拼写疑点，不作为史实年份证据。
+小说人物的身份、关系和情节定位以三联 / 广州修订版为最终校对基线。本次没有可合法全文检索的指定纸本版本电子文本，因此其余 13 部名录继续保留“回目待考”，不编造章节。前次修订保留的射雕名录 30 人 [N01] 章号 / 章题，以及本次续检的 27 人 [N02] 逐页定位，均只作**二手交叉核对**；该结果仍须按指定纸本终校，不能据此声称版本逐字一致。网络人物表不作为史实年份证据。
+
+小说在线交叉核查来源（访问 **2026-09-26**）：
+
+| 编号 | 来源 | 使用边界 |
+|---|---|---|
+| N01 | 金庸网，《射雕英雄传》修订版目录及第 01–40 章：<https://jinyongx.com/she/> | 对 `npcs-ch02-shediao.md` 30 人逐章检索姓名，并核对所列情节章号 / 章题；网站版本元数据与文本可靠性不等同三联 / 广州修订版，纸本终校前均视为二手定位 |
+| N02 | 古诗文网，《射雕英雄传》分回转录目录：<https://m.gsw6.com/book/sdyxz/> | N1.R 续检逐页读取第 1–9、12、15、17 回，复核 27 个人名的定位，其中 21 名为非史实原型小说人物；可为提及、命名或实体出场，不据此授予 alive。具体页码链接见射雕名录“审校抽查”。未证明与指定纸本逐字一致 |
 
 ### 12.2 史实人物联网来源
 
@@ -1180,43 +1323,56 @@ D2定金 = 3 × D2日佣
 |---|---|---|
 | H01-1 | 中国道教协会，“丘处机”：<http://www.taoist.org.cn/getDjzsById.do?id=728> | 丘处机 1148–1227 |
 | H01-2 | 中国道教协会，“全真教人物资料”：<http://www.taoist.org.cn/getDjzsById.do?id=370> | 马钰 1123–1183、王处一 1142–1217，并再次列丘处机 1148–1227 |
-| H02-1 | Encyclopaedia Britannica, “Genghis Khan”：<https://www.britannica.com/biography/Genghis-Khan> | 铁木真常见约 1162–1227，且生年存在争议 |
-| H02-2 | 《元史·睿宗传》在线转录：<https://m.gushiwen.cn/guwen/bookv_0d82b5e47bb6.aspx> | 拖雷身份与 1232 年去世线索；该转录非本项目指定史料版本，故生年仍标（待核实） |
-| H02-3 | Cambridge University Press, “The Last Campaign and Death of Jebe Noyan”：<https://www.cambridge.org/core/journals/journal-of-the-royal-asiatic-society/article/abs/last-campaign-and-death-of-jebe-noyan/A9D56DDD3328025ED8C43EBAC2153C52> | 哲别晚年记载有歧义；不足以定唯一卒年，故名录保留约 1223–1225（待核实） |
+| H02-1 | Encyclopaedia Britannica, “Genghis Khan”：<https://www.britannica.com/biography/Genghis-Khan> | 搜索索引摘要列铁木真 1162?–1227；本次正文访问受限，且生年本有争议，故只支持“约 1162–1227（生年待考）” |
+| H02-2 | 《元史·睿宗传》在线转录：<https://m.gushiwen.cn/guwen/bookv_0d82b5e47bb6.aspx> | 正文可定位拖雷壬辰年去世线索；转录非本项目指定史料版本，支持 1232 卒，生年仍（待考） |
+| H02-3 | Cambridge University Press, “The Last Campaign and Death of Jebe Noyan”：<https://www.cambridge.org/core/journals/journal-of-the-royal-asiatic-society/article/abs/last-campaign-and-death-of-jebe-noyan/A9D56DDD3328025ED8C43EBAC2153C52> | 摘要说明哲别最后战役与死亡记载存在歧义；不足以定唯一卒年，故名录保留约 1223–1225（待考） |
 | H03-1 | 故宫博物院，“洪武皇帝”：<https://www.dpm.org.cn/court/lineage/226244.html> | 朱元璋 1328–1398 |
-| H03-2 | 故宫博物院，“明宫所画常遇春像”：<https://www.dpm.org.cn/paints/talk/206030.html> | 常遇春 1330–1369 |
-| H03-3 | 光明日报，“明朝第一开国功臣徐达”：<https://www.gmw.cn/01gmrb/2008-01/01/content_717706.htm> | 徐达 1332–1385 |
-| H03-4 | 中国社会科学院历史研究所，“洪武初年甘肃的地缘政治与明朝西北疆界的形成”：<http://lishisuo.cssn.cn/xsyj/ms/202001/t20200116_5078461.shtml> | 扩廓帖木儿的北元活动背景；卒年 1375/1376 仍（待核实） |
+| H03-2 | 怀远县人民政府，“常遇春”：<https://www.ahhy.gov.cn/zjhy/lswh/lsrw/80744121.html>；蚌埠市人民政府，“常遇春”：<https://www.bengbu.gov.cn/zjbb/lsrw/19413561.html> | 两个地方政府页面分别列 1330–1369、1329–1369；生年有一岁分歧，名录不得写成无争议精确值 |
+| H03-3 | 故宫博物院，“徐达”：<https://www.dpm.org.cn/lemmas/245152.html> | 徐达 1332–1385 |
+| H03-4 | 中国社会科学院历史研究所，“洪武初年甘肃的地缘政治与明朝西北疆界的形成”：<http://lishisuo.cssn.cn/xsyj/ms/202001/t20200116_5078461.shtml> | 扩廓帖木儿的北元活动背景；本次正文访问不稳定，且该文不足以裁定唯一卒年，1375/1376 仍（待考） |
 | H04-1 | CCTV，“袁崇焕”：<https://discovery.cctv.com/special/C20010/20071203/105412.shtml> | 袁崇焕 1584–1630 |
-| H04-2 | 故宫博物院，“崇祯皇帝”：<https://www.dpm.org.cn/court/lineage/226246.html> | 朱由检生于 1610、卒于 1644，并记北京城破相关事件 |
-| H04-3 | 故宫博物院，“清廷迁都北京”：<https://www.dpm.org.cn/court/event/159873.html> | 李自成 1606–1645、皇太极 1592–1643、吴三桂等明清易代背景 |
+| H04-2 | 故宫博物院，“崇祯皇帝”：<https://www.dpm.org.cn/court/lineage/226246.html>；Encyclopaedia Britannica, “Chongzhen”：<http://www.members.eb.com/biography/Chongzhen> | 故宫按明万历纪年写“万历三十八年（1610）十二月廿四日”；换算公历生日落在 1611 年，Britannica 列 1611–1644。名录统一采用公历 1611–1644，并保留历法说明 |
+| H04-3 | 故宫博物院，“李自成”：<https://www.dpm.org.cn/lemmas/243081.html> | 李自成 1606–1645；只支持通行生卒年，小说在鹿鼎时代仍出现须走独立小说生命轴 |
 | H04-4 | 故宫博物院，“吴三桂”：<https://www.dpm.org.cn/lemmas/243080.html> | 吴三桂 1612–1678 |
-| H04-5 | 故宫博物院，“多尔衮”：<https://www.dpm.org.cn/lemmas/243192.html> | 多尔衮 1612–1650 |
+| H04-5 | 故宫博物院，“多尔衮”：<https://www.dpm.org.cn/lemmas/243192.html> | 多尔衮 1612–1650；搜索结果与页面编号已复核 |
 | H04-6 | 故宫博物院，“皇太极”：<https://www.dpm.org.cn/court/lineage/226251.html> | 皇太极 1592–1643 |
-| H05-1 | 故宫博物院，“康熙皇帝”：<https://www.dpm.org.cn/court/lineage/226256.html> | 康熙 1654–1722、鳌拜 ?–1669 |
+| H05-1 | 故宫博物院，“康熙皇帝”：<https://www.dpm.org.cn/court/lineage/226256.html>；“康熙设计擒鳌拜”：<https://www.dpm.org.cn/court/event/162313.html> | 康熙 1654–1722、鳌拜 ?–1669，并核对 1669 年擒鳌拜事件 |
 | H05-2 | 故宫博物院，“郑克塽”：<https://www.dpm.org.cn/lemmas/241767.html> | 郑克塽 1670–1707 |
 | H05-3 | 故宫博物院，“施琅”：<https://www.dpm.org.cn/court/figure/104030.html> | 施琅 1621–1696 |
-| H05-4 | The Presidential Library, “Sophia Alekseevna”：<https://www.prlib.ru/en/history/619576> | 索菲娅 1657–1704；英文机构资料 |
-| H05-5 | 光明网，“经师、人师：一代通儒顾炎武”：<https://news.gmw.cn/2021-08/14/content_35079733.htm> | 顾炎武 1613–1682 |
+| H05-4 | The Presidential Library, “Sophia Alekseevna”：<https://www.prlib.ru/en/history/619576>；馆藏专题：<https://www.prlib.ru/section/682864> | 搜索索引摘要列索菲娅 1657–1704；本次人物正文跳转挑战页，故明确按“机构索引摘要佐证”而非正文直核 |
+| H05-5 | 光明网，“经师、人师：一代通儒顾炎武”：<https://news.gmw.cn/2021-08/14/content_35079733.htm> | 顾炎武 1613–1682；续检正文返回限制页，以同页搜索索引摘要复核 |
 | H05-6 | 浙江档案数据库，“黄宗羲”：<https://zjdy.zjdafw.gov.cn/art/2012/9/12/art_25_8989.html> | 黄宗羲 1610–1695 |
 | H05-7 | 故宫博物院，“颁布《大义觉迷录》”：<https://www.dpm.org.cn/court/event/161109.html> | 吕留良 1629–1683 |
-| H06 | 中华文史网，“刘於义”：<https://www.qinghistory.cn/qsbk/rw/> | 刘於义 1675–1748、雍正十年（1732）署陕西总督；小说“川陕总督”仍按原著称谓 |
+| H06 | 常州市地方志办公室，“刘于义（1675—1748）”：<https://fzg.changzhou.gov.cn/html/fzg/2016/POBKOFQN_0628/32266.html>；《清史稿·列传九十四》在线转录：<https://m.gushiwen.cn/guwen/bookv_a42e74194b3c.aspx> | 地方志正文支持刘於义 / 刘于义 1675–1748；《清史稿》转录可定位“十年，署陕西总督”，即雍正十年（1732）。转录非指定史料版本；小说“川陕总督”仍按原著称谓 |
 | H07-1 | 故宫博物院，“乾隆皇帝”：<https://www.dpm.org.cn/court/lineage/226263.html> | 乾隆 1711–1799；小说身世说不写作史实 |
 | H07-2 | 北京市西城区人民政府，“兆惠府第遗存”：<https://www.bjxch.gov.cn/xcfw/whfw/xxxq/pnidpv959527.html> | 兆惠 1708–1764 |
-| H08-1 | 故宫博物院论文 PDF：<https://www.dpm.org.cn/Uploads/pdf/4024/T00002_00.pdf> | 福康安 1754–1796 的论文口径 |
-| H08-2 | 故宫博物院，“福康安”：<https://www.dpm.org.cn/lemmas/241274.html> | 人物页仅载 ?–1796；用于显式保留来源差异 |
+| H08-1 | 故宫博物院论文 PDF，“福康安、和琳与袁枚的诗文交往”：<https://www.dpm.org.cn/Uploads/pdf/4024/T00002_00.pdf> | 论文正文 / 索引可定位福康安 1754–1796 的口径 |
+| H08-2 | 故宫博物院，“福康安”：<https://www.dpm.org.cn/lemmas/241274.html> | 馆方人物页仅载 ?–1796；与同馆论文精度不同，故名录将 1754 标作待考而不伪装成一致结论 |
+
+#### 史实人物审校抽查（N1.R）
+
+2026-09-26 逐项复核了下列 **27 名**史实人物 / 历史原型的姓名与生卒字段：丘处机、王处一、马钰、铁木真、拖雷、哲别、朱元璋、常遇春、徐达、袁崇焕、崇祯、李自成、吴三桂、多尔衮、皇太极、康熙、鳌拜、郑克塽、施琅、索菲娅、顾炎武、黄宗羲、吕留良、刘於义、乾隆、兆惠、福康安。福康安的两种馆方口径只算一人；崇祯已消除传统纪年与公历年份混写。证据强度分级如下：
+
+- **机构正文直接可核（20 人）**：丘处机、王处一、马钰、朱元璋、徐达、袁崇焕、崇祯、李自成、吴三桂、多尔衮、皇太极、康熙、鳌拜、郑克塽、施琅、黄宗羲、吕留良、刘於义、乾隆、兆惠。该组达到审校门槛“≥20 名”；崇祯原页给传统纪年，公历换算精度单列说明。
+- **正文 / 学术摘要只支持部分字段或来源互有差异（4 人）**：拖雷只落实 1232 卒；哲别只能确认卒年争议；常遇春的两级政府页面分列 1329、1330 生；福康安同馆论文列 1754、人物页不载生年。相应字段均不得序列化为无争议 `exact`。
+- **正文受限、仅机构搜索索引摘要佐证（3 人）**：铁木真、索菲娅、顾炎武。保留链接与访问日，但不据摘要扩写事迹；铁木真生年继续写约年，索菲娅的年份只作历史背景。
+
+上述分级只证明表内所列字段，不等价于对来源全部叙述背书。小说生命轴仍以指定版本原著为准；史实与小说冲突时必须分存。
 
 ### 12.3 已联网但仍不作定论的项目
 
 | 项目 | 原因 | 当前处理 |
 |---|---|---|
-| 哲别卒年 | 现代研究对 1223 战死、约 1224 / 1225 返程去世有不同判断 | `died=unknown`，备注约 1223–1225（待核实）；小说 presence 以原著为准 |
-| 拖雷生年 | 常见 1191、1192、1193 等口径；本任务未取得足以裁定的权威人物页 | 生年写约 1191–1193（待核实），1232 卒可用 |
-| 彭莹玉卒年 | 可见 1352 与 1353 两说，本任务未取得能消除版本差异的一手材料 | 写约 1352/1353（待核实） |
-| 扩廓帖木儿卒年 | 常见 1375 / 1376 两说 | 写约 1375/1376（待核实） |
+| 哲别卒年 | 现代研究对 1223 战死、约 1224 / 1225 返程去世有不同判断 | `died=unknown`，备注约 1223–1225（待考）；小说 presence 以原著为准 |
+| 拖雷生年 | 常见 1191、1192、1193 等口径；本任务未取得足以裁定的权威人物页 | 生年写约 1191–1193（待考），1232 卒可用 |
+| 常遇春生年 | 怀远县与蚌埠市政府页面分别采用 1330、1329 | 写 1329/1330–1369（生年待考），不得静默选一 |
+| 彭莹玉卒年 | 可见 1352 与 1353 两说，本任务未取得能消除版本差异的一手材料 | 写约 1352/1353（待考） |
+| 扩廓帖木儿卒年 | 常见 1375 / 1376 两说 | 写约 1375/1376（待考） |
+| 福康安生年 | 故宫论文采用 1754，故宫人物页只载“？–1796” | 写约 1754–1796（生年待考），保留两种馆方精度 |
+| 崇祯出生年 | 故宫按万历三十八年（1610）十二月廿四日记载，公历换算为 1611 年；直接并列会造成“相差一年”的假冲突 | 名录统一写公历 1611–1644；来源表保留两种历法口径 |
 | 长平公主 | 史料与现代文章常见生于 1629/1630、卒于 1646；小说阿九 / 九难明确活至鹿鼎时代 | 名录把历史原型约年与小说生卒彻底分栏；不让史实死亡覆盖小说 appearance |
 | 陈圆圆 | 生年与卒年资料口径分歧较大 | 保留“约 1623–?（史实生卒有争议）” |
-| 小说人物回目 | 未取得指定三联 / 广州修订版全文逐字校对条件 | 只写情节定位并标“回目待考”，不编回目号或引文 |
+| 小说人物回目 | 未取得指定三联 / 广州修订版全文逐字校对条件；仅射雕完成 [N01] / [N02] 二手在线转录交叉核查 | 射雕 30 人保留 [N01] 章号 / 章题，续检 27 人另附 [N02] 逐页定位，均等待纸本终校；其余 13 部只写情节定位并标“回目待考”，不编回目号或引文 |
 
 ### 12.4 技术参考
 
@@ -1262,11 +1418,11 @@ D2定金 = 3 × D2日佣
 
 ### 13.3 内容 ID 登记方式
 
-- 357 条静态人物行的 `npc_*` 在各 `catalog/npcs-ch*.md` 对应行登记；跨书同一人物复用同一 ID，因此跨文件出现不等于重复定义。
+- 366 条主线静态人物索引行的 `npc_*` 在各 `catalog/npcs-ch*.md` 对应行登记；其中 343 个唯一人物 ID，另 23 行是同一人物的跨书 appearance 索引，故跨文件出现不等于重复定义。
 - 周圻 / 周绮分别为 `npc_zhouqi09` / `npc_zhouqi12`；侠客张三 / 李四分别为 `npc_zhangsan06` / `npc_lisi06`，以书界号消解同名。
 - 99 个 `sect_*` 全部引用 `design/17`，本文未新建组织 ID。
 - 所有 `sk_*` 均引用现有图鉴；“待图鉴”项没有预建 ID。
-- 本文示例任务引用遵循既有 `q_<书界>_<类型>_<nn>`；appearance、窗口、场所、角色、羁绊标签均为父记录内局部键。
+- 本文示例任务引用遵循既有 `q_<书界>_<类型>_<nn>`，但示例 `q_02_bond_01` / `q_03_bond_01` **不登记为已存在内容 ID**；须由 12 / story / chapters 的任务清单正式定义后才能通过引用校验。appearance、窗口、场所、角色、羁绊标签均为父记录内局部键。
 - `npcg_<base32hash>` 只是一项生成 NPC 可读持久 ID 的基准提案，在 §15.3 获采纳前不属于正式内容 ID；当前实现使用运行时 UUID。
 
 ---
@@ -1277,18 +1433,18 @@ D2定金 = 3 × D2日佣
 
 | ID | 检查 | 通过条件 / 失败级别 |
 |---|---|---|
-| NPC-V01 | 静态 ID 格式与唯一性 | 每条正式人物 ID 匹配 `^npc_[a-z0-9]+(?:_[a-z0-9]+)*$`；同一人物跨书允许多 appearance / 索引行，但全局只有一个 `NpcDef`；不同人物不得同 ID。失败 = 构建失败 |
+| NPC-V01 | 静态 ID 格式与唯一性 | 每条正式人物 ID 匹配 `^npc_[a-z0-9]+(?:_[a-z0-9]+)*$`；同一人物跨书允许多 appearance / 索引行，但全局只有一个 `NpcDef`；不同人物不得同 ID。当前 366 条索引行解析为 343 个唯一 ID + 23 条跨书复用。失败 = 构建失败 |
 | NPC-V02 | 同名消歧 | 不同人物经规范化姓名相同或拼音冲突时追加两位书界号；已知周圻 / 周绮、侠客张三 / 李四通过。失败 = 构建失败 |
 | NPC-V03 | 生卒顺序 | exact / range 值满足 `born ≤ died`；appearance 与 lifespan 无交集时，只能是 `presenceMode=reference`。失败 = 构建失败 |
 | NPC-V04 | 出现书界一致性 | 每个活体 appearance 与 `design/02` 年区间有交集；`approx` 书界不得把推定年伪装为精确史实。失败 = 构建失败 |
-| NPC-V05 | D4 / D5 门槛 | 必有 `questRef`、`gateRef`、至少一项价值观 / 主线门槛和一个窗口；`questRef` 可解析。失败 = 构建失败 |
+| NPC-V05 | D4 / D5 门槛（两阶段） | 策划索引阶段：每行“招募要点”非空且明确专属事件 / 取舍 / 窗口语义，失败 = 审校错误。生产数据阶段：D4 / D5 必有可解析 `questRef`、`gateRef`、非空 `valueGateRefs` 与 `windowKeys`；D5 另须有 `mainlineGateRef`、`canonicalConsequenceRef`、`fallbackAllianceRef`、`lockWarningRef`、`fateRuleRef`（可空者显式为 `null`）。任一缺失或引用不可解析 = 构建失败。当前仅通过前一阶段，正式任务清单尚未落盘 |
 | NPC-V06 | D1 / D2 伦理门槛 | 儿童不能进入付费战斗雇佣池；唯一设施服务者招募前必须有替班。失败 = 构建失败 |
-| NPC-V07 | 每书主线下限 | 14 个文件各有 20–40 个生产槽；具名行 + 明示“不建静态 ID”的无名 / 职能槽计数。失败 = 构建失败 |
+| NPC-V07 | 每书主线下限 | 14 个文件各有 20–40 条带 `npc_*` 的静态人物行；无名 / 职能支持槽另计，不得充当下限。失败 = 构建失败 |
 | NPC-V08 | 武学引用 | 每个 `sk_*` 必须在图鉴唯一归属文档存在；未收录武学只写名称与“待对应图鉴收录（不预建 ID）”。失败 = 构建失败 |
 | NPC-V09 | 门派引用 | `catalog/npcs-sects.md` 的首列集合恰等于 `design/17` 的 99 个组织；无多、无少、无重复。失败 = 构建失败 |
 | NPC-V10 | 跨书人物复用 | 跨书同一人必须同 ID；不同人不得因同名误合并；appearance 年份有序且不重叠。失败 = 构建失败 |
 | NPC-V11 | 设施与路人 ID | 未持久实例无静态 `npc_*`；持久实例用 UUID；`facilityKey` / `roleKey` 只在父级唯一。失败 = 构建失败 |
-| NPC-V12 | 来源完整性 | 带“史实”及精确年的行必须有 `[Hxx]` 或门派 `[Sxx]` 可解析来源；仅有弱证据者必须写（待核实）。失败 = 警告，发布版升级为错误 |
+| NPC-V12 | 来源完整性 | 带“史实”及精确年的行必须有可解析的来源组引用 `[H01]`–`[H08]`（解析到 §12.2 同编号前缀的具体来源）或门派 `[Sxx]`；仅有弱证据或史料分歧者必须写（待考）并禁止序列化为无争议 `exact`。失败 = 警告，发布版升级为错误 |
 | NPC-V13 | 任务动作闭合 | `recruit` / `station` / `depart` / `betray` / `confirmDeath` / `fateRescue` 的目标 NPC 存在，动作与生命轴不矛盾。失败 = 构建失败 |
 | NPC-V14 | 代码与表格格式 | YAML 可解析；TS 类型检查；Markdown 围栏成对、表格列数一致、无未完成占位标记。失败 = 构建失败 |
 
@@ -1296,8 +1452,8 @@ D2定金 = 3 × D2日佣
 
 | ID | 输入 / 算式 | 精确期望 |
 |---|---|---|
-| NPC-T01 | 14 部生产槽 | `30+30+30+28+25+26+26+30+24+20+20+28+26+25 = 368` |
-| NPC-T02 | 静态人物表行 | 357 行；短篇另有 11 个不建静态 ID 的槽，`357+11=368` |
+| NPC-T01 | 14 部静态人物行 | `30+30+30+28+25+26+26+30+24+20+20+28+26+23 = 366`；每项均在 20–40 |
+| NPC-T02 | 唯一人物与支持槽 | 366 条静态索引行 = 343 个唯一 `npc_*` + 23 条跨书复用；另有 11 个不建静态 ID 的支持槽，总表行 `366+11=377` |
 | NPC-T03 | 组织分组 | `29+22+33+15 = 99`，集合与 17 完全相等 |
 | NPC-T04 | 设施范例 | `8 城×3 场所×4 槽 = 96`；场所数 `8×3=24` |
 | NPC-T05 | 路人年龄权重 | `5+12+24+34+16+7+2 = 100%` |
@@ -1306,6 +1462,7 @@ D2定金 = 3 × D2日佣
 | NPC-T08 | 命定死亡费用 | 余韵 1、同一事件救 2 名曾入队同伴：需 2、先扣 1、`fateDebt=1`，只计一次事件 |
 | NPC-T09 | 日佣 | 天龙 `I_hour=20`、熟手 D2：`20×0.50×1=10` 两 / 日，三日定金 `3×10=30` 两 |
 | NPC-T10 | 年份同年边界 | `died=1669, wakeYear=1669` → `life_unknown`；只有事件顺序或 `explicitAliveAt` 可裁定，不自动判活 |
+| NPC-T10a | D4 / D5 目录门槛 | 14 份名录所有 D4 / D5 行均有非空“招募要点”；不得据此宣称示例 `q_*` 已可解析，待正式任务清单落盘后再执行 NPC-V05 生产阶段 |
 
 ### 14.3 跨书与状态机测试
 
@@ -1328,7 +1485,7 @@ D2定金 = 3 × D2日佣
 2. 所有“命定死亡”必须在故事文档中有原著线死亡节点；只有记忆、不确定结局的行继续标（待考）。
 3. 史实人物抽查链接、访问日期、姓名与生卒；小说形象和历史人物的冲突必须有分离说明。
 4. 所有“回目待考”不得在下游自动替换成推测的回目号；只有人工校订后才可移除标记。
-5. 白马、鸳鸯与雪山的无名槽不得在生成时固化成“原著人物”；其身份来源必须保留 `origin=expanded` 或无名职能标记。
+5. 白马、鸳鸯与雪山的无名槽不得在生成时固化成“原著人物”；其身份来源必须保留无名职能标记。白马与鸳鸯新增的 9 名静态补员必须保留 `origin=expanded` 与“原创扩展”。
 
 ---
 
@@ -1347,7 +1504,7 @@ D2定金 = 3 × D2日佣
 | N18-D05 | `design/11` / `16` | 单据点床位 `4+据点等级×2`；D1 同时短约 6、D2 同时雇佣 4；设施同屏 3 / 6 / 8 |
 | N18-D06 | `design/16` | D1 / D2 日佣分别为 `I_hour×0.25h×skillMul`、`I_hour×0.50h×skillMul`；`skillMul=0.8/1.0/1.5`，D2 三日定金 |
 | N18-D07 | `tech/05` | 未持久路人离开视野 30 游戏日可回收；单街区 12、单城 48；持久 NPC 不设玩法硬上限但需分页 / 卸载 |
-| N18-D08 | `tech/04` | 本文 §14 的 NPC-V01–V14 作为构建闸门；城市建议 ID 在 11 定稿前为警告、定稿后升级为错误 |
+| N18-D08 | `tech/04` | 本文 §14 的 NPC-V01–V14 作为构建闸门；`design/map/cities.yaml` 已落盘，非空城市 ID 无法解析时直接报错 |
 
 ### 15.2 本文依赖的上游事实
 
@@ -1359,7 +1516,8 @@ D2定金 = 3 × D2日佣
 | `design/03` §10 | **已解决：**具名可招募角色用 `full`，普通设施 / 路人用 `template`；年龄仅修正输入 |
 | `design/09` | **已解决：**活动战斗编组 ≤6、AI 与合击运行规则归 09 |
 | `design/17` | **已解决：**门派名录严格覆盖 99 个组织及其时代状态、L1–L5 抽象层级 |
-| `design/11` | 尚未落稿；八城 `city_*` 仅是建议键，正式城市 ID、坐标、时代名和留守点待回填 |
+| `design/19` / `design/map/cities.yaml` | **已解决：**八个设施范例已使用正式城市 ID；雁门关用 `city_xinzhou + placeKey=yanmenguan` 接入既有雁门驿路 |
+| `design/11` | 尚未落稿；区域探索、城市入口、留守点与重逢地点玩法待定，不能改写 19 的城市 ID / 坐标 |
 | `design/12` | 尚未落稿；`q_*` 示例与 R0–R6 仅定义需求，最终任务 DSL / 动作名待对接 |
 | `design/16` | 尚未落稿；场所 schema、工资、班次与经营影响待覆写建议值 |
 | `tech/04` / `tech/05` | 尚未落稿；Schema、构建器、存档事务与性能预算待实现和实测 |
@@ -1380,13 +1538,13 @@ D2定金 = 3 × D2日佣
 | 范围 | 待办 | 当前不阻断的默认 |
 |---|---|---|
 | 全 14 部 | 逐条核定名录的情节定位与回目，基线为三联 / 广州修订版 | 保留“回目待考”，不得编回目号或引文 |
-| 射雕 | 马钰、王处一、丘处机的小说时间与史实生卒冲突；拖雷、哲别精确生卒 | appearance 采用小说存在事实；史实字段保守标冲突 / 待核实 |
+| 射雕 | 马钰、王处一、丘处机的小说时间与史实生卒冲突；拖雷、哲别精确生卒 | appearance 采用小说存在事实；史实字段保守标冲突 / 待考 |
 | 神雕 / 倚天 | 张君宝至张三丰的年龄线、郭襄少林楔子年距 | 用同一 ID 和 02 定年，精确出生 / 寿数不写死 |
-| 倚天 | 彭莹玉、扩廓帖木儿历史卒年口径；小说与史实身份差异 | 约年带（待核实），小说 appearance 独立 |
+| 倚天 | 彭莹玉、常遇春、扩廓帖木儿历史年份口径；小说与史实身份差异 | 约年 / 双年份带（待考），小说 appearance 独立 |
 | 碧血 / 鹿鼎 | 阿九 / 九难与长平公主历史原型、李自成小说存活、陈圆圆生卒争议 | 历史 / 小说 lifespan 分离；后作明确出场优先决定小说存活 |
 | 白马 | 丁同、桑斯儿、云 / 全 / 宁强盗在指定修订版的准确称谓和行为；瓦耳拉齐 / 华辉用字 | 当前仅采用可检索情节定位，全部回目仍待考 |
 | 鸳鸯 | 刘於义在修订版的“川陕总督”用字与任务时点 | 保留小说称谓；史实栏只写 1732 署陕西总督 |
-| 飞狐 / 雪山 | 福康安生年两种资料口径、胡苗田范相关人物与掌门大会身份 | 展示故宫论文 1754–1796，并注明人物页只载 ?–1796 |
+| 飞狐 / 雪山 | 福康安生年两种馆方资料精度、胡苗田范相关人物与掌门大会身份 | 展示约 1754–1796（生年待考），并注明人物页只载 ?–1796 |
 
 ### 15.5 开放问题（附默认值）
 
@@ -1399,6 +1557,3 @@ D2定金 = 3 × D2日佣
 | N18-O05 | D1 / D2 是否允许永久买断 | 默认不允许“买人”；银两只购买有期限劳动 / 同行服务，长期同伴必须建立关系并取得本人同意 |
 
 至此，旧“待决事项”未被删除：已由 AR-09 / AR-09c 解决者在表中保留追溯，未解决者均带默认值继续完成设计。
-
-
-
