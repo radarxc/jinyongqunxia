@@ -3,8 +3,8 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/01-architecture.md` |
-| 版本 | v1.0（2026-09-25） |
-| 上游基准 | `docs/00-canon.md`（§0 项目定位、§8 战斗模型、§18 文档归属、§19 技术基线） |
+| 版本 | v1.1（审校修订，2026-09-26） |
+| 上游基准 | `docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.1、`docs/decisions/rulings-v1.md` |
 | 下游文档 | `tech/02` 渲染、`tech/03` 性能、`tech/04` 数据管线、`tech/05` 玩法引擎、`tech/06` 素材存储、`tech/07` 素材生成、`tech/08` 后端、`tech/09` 路线图 |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手（Claude Code 等） |
 | 本文职责 | 选型论证、分层与模块边界、monorepo 结构、第三方库清单、核心运行时骨架、开发工作流、代码规范、AI 协作约定、架构级风险 |
@@ -12,15 +12,16 @@
 > **结论先行（TL;DR）**
 >
 > 1. **维持 Canon §19 基线**：Three.js（r186）＋ Vue 3.5 DOM 覆盖层 ＋ 纯 TypeScript 确定性玩法核心 ＋ Vite 8 ＋ pnpm workspace。经实测与调研，**无致命问题**。
-> 2. **渲染器闸门（非致命、须在 Phase 0 验证）**：Three.js 的 `WebGPURenderer` 在 WebGL2 回退后端上有社区报告的明显性能退化；且 TSL 着色器只能用于 `WebGPURenderer`，无法与 `WebGLRenderer` 共用。因此"WebGL2 基线 + WebGPU 渐进增强"**不做双渲染器长期并行**，而是：默认 `WebGLRenderer`（GLSL），Phase 0 用基准场景在作者真机上测三组数据，达标则**整体迁移**到 `WebGPURenderer + TSL` 单一路径（见 §2.6）。
-> 3. **TypeScript 锁定 6.0.x**：TS 7.0（Go 原生编译器，2026-07 发布）尚无稳定编程 API，`typescript-eslint@8.70` 的 peer 仍为 `<6.1.0`，`vue-tsc` 依赖 TS API。待 TS 7.1 生态就绪再整体升级。
+> 2. **渲染器结论**：当前继续 `WebGLRenderer`（GLSL）单一路径。`tech/02` 同功能构建记录为 WebGL 156 KB、WebGPU 297 KB，差 141 KB；WebGPU 加自有代码估约 330 KB，`330 > 300 KB` 独立闸门，故**当前未通过**。Phase 0 仍在作者主力手机、中端 Android 与 iPad 上比较 R1/R2/R3 性能，但不得靠抬高预算把失败改写为通过（见 §2.6、§5.4）。
+> 3. **TypeScript 锁定 6.0.x**：TS 7.0（Go 原生编译器，2026-07 发布）虽已发布，但 `typescript-eslint@8.70` 的 peer 仍为 `<6.1.0`，`vue-tsc`/Volar 也要联调。待 lint、SFC 类型检查、构建与编辑器链全部兼容后再整体升级，不按版本号到期自动切换。
 > 4. **状态管理**：core 采用**单一可序列化状态树 + 命令（Command）事务 + 领域事件（DomainEvent）**，不采用 ECS、不采用 Immer；UI/渲染只消费事件与只读查询。
-> 5. **运行模式**：MVP 中 core 跑在主线程（调试最简单）；战斗 AI、存档压缩、书界包解析进 Web Worker；core 的 API 全部可序列化，随时可整体迁入 Worker。
-> 6. **地图编辑**：采用 **Tiled 1.12（正交视图编辑逻辑网格）+ 自定义属性 + 构建期转换**，由游戏负责 45° 投影与 3D 高度呈现；浏览器内编辑器（`apps/editor`）推迟到 Phase 2，只做"预览与微调回写"。
+> 5. **运行模式**：MVP 中 core 跑在主线程；战斗 AI 与压缩/哈希进 Web Worker。`io.worker` 只把解压后的 UTF-8 `ArrayBuffer` 以 Transferable 交回，主线程在加载遮罩/IdleQueue 中分片 `JSON.parse`，不回传大对象承担结构化克隆成本；core API 保持可序列化，便于未来整体迁入 Worker。
+> 6. **地图编辑**：战斗采用 pointy-top 六角轴坐标。Tiled 1.12 仅作内容编辑前端，源数据在构建期规范化为 `(q,r,h)`；运行时不接受正交方格 `i/j` 契约。浏览器内编辑器（`apps/editor`）推迟到 Phase 2。
 > 7. **Zod / YAML 只在构建期与开发期使用**，运行时不打包完整 Zod（实测 `import { z }` 约 89 KB gzip），存档校验用 `zod/mini`（约 4 KB gzip）或手写校验。
 > 8. **确定性**：core 禁用 `Math.random`/`Date.now`/`performance.now`，并禁用 ECMAScript 规范中"实现近似（implementation-approximated）"的运算（`Math.pow` 与 `**`、`Math.exp/log/sin/cos…`）参与结算，统一用种子 RNG 与整数/万分点结算。
-> 9. **包体预算（初值）**：到标题画面的 entry chunk ≤ 170 KB gzip，entry + render ≤ 350 KB gzip（three 最小场景实测 132 KB、Vue 运行时 24 KB）；Basis 转码器 wasm 约 240 KB gzip 延迟加载。
-> 10. **AI 协作**：根目录与每个包各有 `CLAUDE.md`；"数据驱动优先、schema 即文档、一条命令自检（`pnpm check`）、小步提交"。
+> 9. **包体预算**：WebGL 路线 entry ≤ 170 KB、render ≤ 180 KB，合计 `170 + 180 = 350 KB gzip`。WebGPU 仅以完整 render ≤ 300 KB 独立评估；若未来通过，路线总预算为 `170 + 300 = 470 KB`。Basis 转码器约 240 KB gzip，延迟加载。
+> 10. **私有访问边界**：因项目“不公开分发”，应用外壳、API 与受保护素材统一走 Cloudflare Worker Static Assets + 会话闸门；`workers_dev=false`、`preview_urls=false`。不采用公开 Cloudflare Pages / GitHub Pages，不规划国内或香港镜像（作者决定 P03；见 §7.6）。
+> 11. **AI 协作**：根目录与每个包各有 `CLAUDE.md`；"数据驱动优先、schema 即文档、一条命令自检（`pnpm check`）、小步提交"。
 
 ---
 
@@ -54,10 +55,11 @@
 | PWA 可离线 | Canon §0、§19 | 代码与已下载书界包必须可被 Service Worker 缓存；存档本地优先 |
 | "Online" = 云存档随处继续 | Canon §0 | 需要轻量后端与冲突解决；**不是**实时联网玩法，无权威服务器 |
 | 单人开发 + AI 辅助编码 | 任务约束 | 代码优先（code-first）、文本可 diff、少魔法、少运维；一切可在命令行验证 |
-| 非商业、不公开分发 | Canon §0 | 许可证风险低，但仍优先 MIT/Apache；不引入需付费或需账号的运行时 |
-| 斜 45° 等距战棋、每格高度 0–10、就地开战 ≤ 20×20 | Canon §8 | 需要真实 3D 高度地形 + 深度缓冲遮挡；战斗网格从场景截取，渲染不切场景 |
+| 非商业、不公开分发 | Canon §0、作者决定 P03 | 许可证风险低但仍逐项核许可；线上入口必须有会话闸门，不发布公共 Pages；仅规划 Cloudflare 单线路 |
+| 斜 45° 等距战棋、每格高度 0–10、就地开战 ≤ 20×20 | Canon §8、AR-12 | 需要真实 3D 高度地形 + 深度缓冲遮挡；战斗为 pointy-top 六角轴坐标，`20×20` 表示最多 400 个轴坐标槽，渲染不切场景 |
 | 玩法核心确定性、可在 Worker 运行 | Canon §19 | core 零 DOM / 零渲染依赖；种子随机；命令可序列化 |
 | 素材与代码分离、KTX2、按书界分包 | Canon §19 | 构建与运行时都要有"清单（manifest）+ 内容哈希"的资源寻址层 |
+| 统一大地图 + 时代图层 | AR-04、AR-11、作者决定 P53 | 大地图是导航/UI 层；沿驿路、水路旅行可触发事件，进入目的地区域后才挂载可行走 2.5D 场景；规则见 `design/11`、`design/19` |
 
 ### 1.2 非功能目标（初值，最终以 `tech/03` 为准）
 
@@ -69,14 +71,14 @@
 | 探索帧率 | 60 fps 目标 / 低端档 30 fps | 自适应分辨率 + 按需渲染 |
 | 战斗帧率 | ≥ 30 fps 稳定 | 等待玩家输入时切换为按需渲染以省电 |
 | Draw call（移动端） | ≤ 150 / 帧 | 地形分块合批、精灵实例化 |
-| 纹理显存 | ≤ 256 MB（移动端档） | KTX2 压缩纹理；区域包 LRU |
+| GPU 资源上限 | low/mid/high/ultra = 96/160/256/512 MB | 四档终值来自 `tech/03`；KTX2 压缩纹理、区域包 LRU，ultra 素材仍复用 high |
 | 单命令结算耗时 | ≤ 2 ms（主线程） | 战斗 AI 例外，放 Worker |
 
 ### 1.3 架构原则
 
 1. **逻辑与表现分离**：core 结算"瞬间完成"，渲染/UI 按事件"慢慢播放"；二者之间只有命令、事件、只读查询三种通道。
 2. **core 是纯函数世界**：输入 = 状态 + 命令 + 内容数据 + RNG 状态；输出 = 新状态 + 事件。无时间、无 I/O、无 DOM。
-3. **数据驱动**：武功、Buff、套装、任务、地形等一切可枚举内容都是数据（YAML → 校验 → JSON 包），代码只实现"规则解释器"。
+3. **数据驱动**：约 1,100–1,150 门武学、Buff、套装、任务、地形等一切可枚举内容都是数据（YAML → 校验 → JSON 包），不得逐条写业务代码；每门内功必须有 `nature: yin | yang | harmony`。数量与相性规则分别见 `design/05`、`design/03`，本文只固定架构承载能力。
 4. **schema 即文档**：内容格式以 Zod schema 为唯一定义，自动导出 JSON Schema 供编辑器补全、导出 Tiled 属性类型。
 5. **可观测性内建**：每个伤害事件在开发模式下携带 Canon §9 的 Z0–Z10 乘区明细；每场战斗可导出"种子 + 命令日志"录像复现。
 6. **按书界分包、按区域懒加载**：任何时刻内存中只有"常驻 + 当前书界 + 当前/相邻区域"。
@@ -84,6 +86,7 @@
 8. **可替换的边界**：渲染器、音频、存储、云同步均藏在接口之后，替换实现不影响 core 与内容。
 9. **最少依赖**：能用 200 行自己写清楚的（RNG、A*、事件总线、状态机）不引库；引库必须有明确的体积/维护收益。
 10. **移动端优先的保守默认**：WebGL2、单线程可跑、不依赖 SharedArrayBuffer / 跨源隔离（COOP/COEP）。
+11. **归属边界优先**：冲穴、资源与营生、大地图与时代图层、门派层级、门派资料、NPC/同伴分别由 `design/15`、`16`、`11`、`12`、`17`、`18` 主定义；本文只固定 DTO、事件、存档和包边界。
 
 ---
 
@@ -93,7 +96,7 @@
 
 为避免凭印象比较包体，本文在 2026-09-25 用 `esbuild@0.28.2 --bundle --minify --format=esm` 对各引擎的"最小可用场景"打包并 `gzip -9` 测量（最小场景内容见表最后一列；均为 tree-shaking 后结果，**不含**游戏代码与资源）：
 
-| 候选 | 版本（npm latest，2026-09-25） | 许可证 | 最小场景 min | 最小场景 gzip | 最小场景内容 |
+| 候选 | 版本（npm latest，2026-09-26 复核） | 许可证 | 最小场景 min | 最小场景 gzip | 最小场景内容 |
 |---|---|---|---|---|---|
 | Three.js（`WebGLRenderer`） | `three@0.186.1`（r186） | MIT | 533 KB | **132 KB** | 正交相机 + `MeshStandardMaterial` 平面 + `Sprite` + 方向光 + `InstancedMesh` + `TextureLoader` |
 | Three.js（`WebGPURenderer`，含 WebGL2 回退后端） | `three@0.186.1` `three/webgpu` | MIT | 771 KB | 210 KB | 同上，NodeMaterial 版本 |
@@ -102,11 +105,11 @@
 | Babylon.js 9 | `@babylonjs/core@9.28.0`（ES 模块按需导入） | Apache-2.0 | 1,434 KB | 332 KB | `Engine` + `Scene` + 相机 + 半球光 + 地面 + `StandardMaterial` |
 | PlayCanvas 2 | `playcanvas@2.22.4` | MIT（引擎） | 1,915 KB | 489 KB | `Application` + 相机实体 |
 | Vue 3（参照） | `vue@3.5.43` | MIT | 63 KB | 24 KB | `createApp` + 一个组件 |
-| Cocos Creator 3.8 | 3.8.x（编辑器发布，非 npm） | 引擎 MIT，编辑器免费闭源 | — | —（待核实，按模块裁剪） | Web 发布包含引擎 + 适配层 |
+| Cocos Creator 3.8 | 3.8.x（编辑器发布，非 npm） | 引擎 MIT，编辑器免费闭源 | — | —（待实测）；官方只确认可裁剪引擎模块与未引用场景/Bundle | Web 发布包含引擎 + 适配层 |
 | Godot 4.7 Web 导出 | 4.7（2026-06） | MIT | wasm 约 40 MB 未压缩 | 约 5 MB（Brotli）；自定义裁剪构建约 2.4 MB | 引擎 wasm + pck |
 | Unity 6 Web | 6.x（6.6 起 WebGPU 正式） | 专有（Unity Personal） | — | 空 2D 约 7.7 MB / 空 3D 约 10.7 MB；激进裁剪约 2 MB | 引擎 wasm + data |
 
-> 注：Godot / Unity / Cocos 的数据来自公开资料（见参考资料），未在本环境复测；Three/Pixi/Phaser/Babylon/PlayCanvas/Vue 为本地实测。
+> 注：Godot / Unity 的数据来自公开资料，Cocos 官方资料只证明可按模块与场景裁剪，无法推出本项目最小包体，故保留（待实测）；Three/Pixi/Phaser/Babylon/PlayCanvas/Vue 为 2026-09-25 本地实测。
 > 附：`three/examples/jsm/libs/basis/basis_transcoder.wasm` 实测 527 KB，gzip 后约 240 KB——任何使用 KTX2 的方案都要为它预留预算（延迟加载即可）。
 
 ### 2.2 评估维度与权重
@@ -138,6 +141,8 @@
 | Godot 4.7 Web | 2 | 1 | 4 | 4 | 1 | 4 | 3 | 4 | 5 | 1 | 58 |
 
 加权总分 = Σ(分数 × 权重) / 5。
+
+复算（2026-09-26）：十项权重和为 `100`；逐行重算得到 Three/Pixi/Babylon/Phaser/PlayCanvas/Cocos/Unity/Godot = `90/78/73/69/68/66/64/58`，与表一致。包体比较也按原始字节口径重算：`132 / 332 = 39.8%`，即 Three 比 Babylon 小 `60.2%`；`132 / 489 = 27.0%`，即比 PlayCanvas 小 `73.0%`，正文取整为 60% / 73%。
 
 ### 2.4 逐项点评
 
@@ -198,30 +203,34 @@
 Canon §19 规定"WebGL2 为基线，WebGPU 为渐进增强"。调研发现两点需要细化：
 
 1. **两条路线的材质体系不互通**：`WebGPURenderer` 使用 NodeMaterial/TSL（同一份 TSL 在 WebGPU 后端编译为 WGSL、在 WebGL2 后端编译为 GLSL）；`WebGLRenderer` 使用 GLSL `ShaderMaterial`/`onBeforeCompile`。同时维护两套自定义着色器（地形混合、水面、描边、水墨后处理、战斗格高亮）对单人项目成本过高。
-2. **回退后端性能存疑**：three.js 论坛有报告称 `WebGPURenderer` 的 WebGL2 回退后端在移动端帧率显著低于 `WebGLRenderer`（非实例化网格场景约 2 倍差距，个例更大）；但 2026 年 iOS 26+ Safari 与 Android Chrome 已默认开启 WebGPU，作者自用设备很可能直接走 WebGPU 后端。
+2. **回退后端性能存疑**：three.js 论坛有报告称 `WebGPURenderer` 的 WebGL2 回退后端在移动端帧率显著低于 `WebGLRenderer`（非实例化网格场景约 2 倍差距，个例更大）。WebKit 已正式列出 Safari 26 的 WebGPU，Chromium Android 也已支持；这并不能证明微信 XWeb/iOS 微信宿主已暴露 `navigator.gpu`，该宿主能力仍须核实并真机探测。
+3. **包体闸门已给出当前结论**：`tech/02` 的同功能构建记录为 WebGL **156 KB**、WebGPU **297 KB**，差 `297 − 156 = 141 KB gzip`；加本项目渲染代码后，WebGPU 完整 render 估约 **330 KB**，而独立上限是 **300 KB**，所以当前路线未通过。本文 §2.1 的 132/210 KB 是更小的“引擎最小场景”，不能拿来冒充完整 render chunk。
 
-**决策：单一路径 + Phase 0 实测闸门**
+**决策：当前 WebGL 单一路径；WebGPU 先过包体、再过 Phase 0 真机闸门**
 
 ```text
 Phase 0（第 1–2 周）基准场景 bench-iso：
   64×64 高度地形（分块合批）+ 300 个法线贴图公告板精灵 + 2 盏动态光
   + 1 个全屏后处理（水墨描边）+ 战斗格高亮叠加
-在 3 台设备上测 3 种配置（每种 60 s，记录 P50/P95 帧时间、发热 5 分钟后帧率）：
+前置：完整 WebGPU render 必须 ≤ 300 KB gzip；当前估算约 330 KB，未通过。
+只有经裁剪先通过包体门槛，才在 3 台设备上测 3 种配置
+（每种 60 s，记录 P50/P95 帧时间、发热 5 分钟后帧率）：
   R1 = WebGLRenderer（GLSL）
   R2 = WebGPURenderer（WebGPU 后端）
   R3 = WebGPURenderer（forceWebGL: true，即 WebGL2 回退后端）
-设备：作者主力手机、一台中端 Android、一台 iPad（或旧 iPhone）
+设备：作者主力手机、一台中端 Android、一台 iPad；具体型号、OS、浏览器与入口现场登记（待实测）
 
 判定（"性能"以 P95 帧时间衡量，越低越好）：
-  若 R2 性能不低于 R1，且 R3 的 P95 帧时间 ≤ 1.25 × R1（即不低于 R1 的 80%），全部设备成立
-      → 选 WebGPURenderer + TSL 为唯一路径（render chunk 预算相应上调约 80 KB，见 §5.4）
+  若完整 render ≤ 300 KB，且 R2 性能不低于 R1，且 R3 的 P95 帧时间 ≤ 1.25 × R1
+  （即 R3 吞吐不低于 R1 的 80%），全部设备成立
+      → 才可另写 ADR 选 WebGPURenderer + TSL；该路线 entry + render ≤ 170 + 300 = 470 KB
   否则
       → 选 WebGLRenderer + GLSL 为唯一路径（默认假设）
   两者都把自定义着色器限制在 packages/render/src/materials/ 下（≤ 8 个），
   以便未来整体迁移时改动范围可控。
 ```
 
-- 本文其余部分**按默认假设（`WebGLRenderer`）**展开；渲染细节由 `tech/02` 定义。
+- 本文其余部分**按已定当前路线（`WebGLRenderer`）**展开；渲染细节由 `tech/02` 定义。WebGPU 上限 300 KB 是独立评估线，不是把 WebGL 的 350 KB 路线总预算抬高后宣称“达标”。
 - 无论选哪条，`render` 包对外暴露的接口（§4.3）不变，core/ui 不受影响。
 - 设备能力检测与降级档位（DPR 上限、阴影、后处理开关）由 `platform/device` 提供，见 §6.1。
 
@@ -232,8 +241,8 @@ Phase 0（第 1–2 周）基准场景 bench-iso：
 | 美术方向改为"纯手绘 2D 等距"（放弃 3D 高度地形与动态光照），或目标机型大量为 WebGL2 性能很差的低端机 | **PixiJS v8** | 重写 `render`；core/ui/data 不变 |
 | 需要大量 3D 角色模型、骨骼动画、物理与复杂后处理，且首包预算可放宽到 ≥ 600 KB | **Babylon.js** | 重写 `render` |
 | 决定做原生 App（上架应用商店）或桌面版，且愿意放弃 Vue DOM UI | **Godot 4**（GDScript 重写表现层，core 可经 JS 桥或重写） | 高 |
-| 决定发行微信小游戏 / 抖音小游戏 | **Cocos Creator**（或 Three + 小游戏适配层，待核实） | 高 |
-| Phase 0 闸门结果为 R2/R3 达标 | 仍是 Three.js，但切到 `WebGPURenderer` + TSL | 中（仅 `render/materials`） |
+| 决定发行微信小游戏 / 抖音小游戏 | **Cocos Creator**（官方内置微信小游戏发布适配；Three 自行适配须另做工程评估） | 高 |
+| 完整 WebGPU render 先压到 ≤300 KB，且 Phase 0 的 R2/R3 达标 | 仍是 Three.js，但切到 `WebGPURenderer` + TSL | 中（仅 `render/materials`） |
 | Three.js 出现长期无法绕过的移动端 bug（如 iOS 上下文丢失无法恢复）且 3 个月无修复 | Babylon.js 或 PlayCanvas | 重写 `render` |
 
 ---
@@ -319,12 +328,29 @@ flowchart TB
 | 后端 | `services/api` | 云存档 CRUD 与冲突检测、可选 AI NPC 代理、素材签名 URL（如需） | 游戏规则（无权威服务器） |
 | 工具 | `tools/*` | 内容构建与校验、Tiled 转换、ink 编译、素材管线（KTX2/图集/音频）、字体子集、繁体转换、数值模拟、AIGC 批处理 | 进入运行时包 |
 
+### 3.2.1 作者新增需求的架构接口
+
+下表只固定跨包边界；玩法、数值与内容仍由基准 §18 指定的归属文档定义，本文不建立第二套规则。
+
+| 需求 | 本文提供的承载接口 | 主定义（引用而不重定义） |
+|---|---|---|
+| AR-01 武学扩容 | `packages/data` 的 `SkillDef`/索引和按书界分包支持约 1,100–1,150 门；core 只解释效果原语，禁止按武学逐条分支 | `design/05` 与各武学图鉴 |
+| AR-02 阴/阳/调和 | 每门内功 schema 必填 `nature: 'yin' \| 'yang' \| 'harmony'`，core 把它传给伤害、冲穴与走火规则 | `design/03`、`design/05`、`design/15`；实现见 `tech/04`、`tech/05` |
+| AR-03 冲穴 | 存档保留跨书界的穴道/经脉/周天投影；core 发冲穴事件，UI/render 只消费 DTO/Cue | `design/15` |
+| AR-04、AR-11 大地图 | `WorldState` 区分导航层和已挂载区域；选择路线后记录旅程事件，抵达后才 `mountRegion()`；区域基础包与时代状态包可组合 | `design/11`、`design/19`、`tech/06` |
+| AR-05、AR-06 资源/家丁/营生 | data/core 提供资源点、库存、家丁、职位与周期结算的可序列化 schema/命令/事件；UI/render 只收只读投影 | `design/16`，任务结构接口见 `design/12` |
+| AR-07、AR-08 门派 | 存档以稳定 `sect_*` 与抽象层级记录成员关系；显示称谓、开放时代、驻地与武学均来自数据包 | `design/12`、`design/17` |
+| AR-09 NPC/同伴 | `profile` 增设跨书界 `companionLedger`，记录稳定 NPC ID、最后相遇时代、招募/结盟状态与加入时能力快照；当前队伍仍在 `party`，不得把全部同伴历史只放 `chapter/party` | `design/18` |
+| AR-10 双主线 | 正/邪主线与选择节点继续由 Ink 文本 + YAML 任务 schema 表达；core 只解释条件、旗标和命令，不硬编码逐书剧情 | `docs/design/story/*`、`design/12` |
+| AR-12 六角战棋 | `HexCoord { q, r }`、`HexDir` 与六角集合 DTO 贯穿 shared/core/render；精确几何和渲染接口见 `tech/02` | `design/09`、`tech/02` |
+
 ### 3.3 依赖方向规则（由 lint 强制）
 
 ```text
 shared  ←  data  ←  core  ←┬─ render   （render 只 import type 或调用 core 的只读查询）
                            ├─ ui       （同上）
                            └─ apps/game（唯一可以 new CoreHost 并 dispatch 命令的地方）
+spec（静态 JSON、零代码依赖） ← render / data 构建器 / asset-pipeline / Python·Blender 工具
 platform ← apps/game
 render  ✗→ ui       ui ✗→ render      （二者互不依赖，由 apps/game 协调）
 core    ✗→ render / ui / platform / DOM / three / vue
@@ -386,7 +412,7 @@ sequenceDiagram
 **决策**：采用 A。
 - core 内状态是普通对象/数组（可 `JSON.stringify`，无 class 实例、无 `Map`/`Set` 以便序列化——需要集合时用排序数组或 `Record`）。
 - 变更只发生在 `CommandHandler.apply()` 内；`apply` **不得抛出业务错误**（业务错误必须在 `validate()` 阶段返回）。
-- 开发模式下：每条命令执行前保存结构化快照，`apply` 后运行不变量检查（HP ≤ HPMax、CT ∈ [0,1000]、ID 引用存在……），失败则回滚并在 dev 控制台报错，同时导出复现录像。
+- 开发模式下：每条命令执行前保存结构化快照，`apply` 后运行不变量检查（HP ≤ HPMax、CT 内部值 ∈ [−1000,1000]、UI 投影 ∈ [0,1000]、ID 引用存在……），失败则回滚并在 dev 控制台报错，同时导出复现录像。
 - 对外暴露 `snapshot()`：开发模式下深冻结的只读视图，生产模式下只读类型（`DeepReadonly<GameState>`）不冻结以省开销。
 - UI 不直接绑定 core 状态：`apps/game` 在每个事件批之后运行"选择器（selector）"生成 UI 投影，写入 Pinia store 的 `shallowRef`，Vue 只对投影做响应式。
 - 渲染侧有自己的"视图注册表"（`entityId → Object3D`），是一个很薄的映射，不是 ECS。
@@ -406,7 +432,7 @@ export interface GameState {
     rng: Record<RngStreamId, RngState>; // 分流随机数状态，见 §8.3
     debugTainted: boolean;         // 是否使用过作弊指令
   };
-  profile: ProfileState;           // 跨书界：真实等级、天书、残篇、图鉴、书灵
+  profile: ProfileState;           // 跨书界：真实等级、天书、残篇、图鉴、书灵、companionLedger（AR-09）
   chapter: ChapterState;           // 当前书界：chapterId、worldTier、flags、任务、NPC、势力、时间天气
   party: PartyState;               // 队伍成员、装配、背包、金钱
   world: WorldState;               // 当前区域/场景、坐标、已探索、门禁开启情况
@@ -415,6 +441,10 @@ export interface GameState {
 }
 
 export type RngStreamId = 'battle' | 'loot' | 'world' | 'ai' | 'qiyu';
+
+// packages/shared/src/hex.ts —— pointy-top 六角轴坐标；高度 h 属于地图单元，不塞进坐标键
+export interface HexCoord { readonly q: number; readonly r: number }
+export type TilePos = HexCoord;
 ```
 
 ```ts
@@ -474,7 +504,7 @@ flowchart LR
   end
   subgraph W3["worker: io"]
     ZIP["存档压缩/哈希（fflate）"]
-    PACKP["书界包解压 + JSON.parse"]
+    PACKP["书界包解压 + 哈希"]
   end
   HOST -->|"模式 B"| CORE_B
   CORE_B -->|"事件批 + 状态补丁"| REPLICA
@@ -482,6 +512,7 @@ flowchart LR
   AI -->|"选定的 Command"| HOST
   HOST --> ZIP
   HOST --> PACKP
+  PACKP -->|"Transferable UTF-8 ArrayBuffer"| HOST
 ```
 
 | 模式 | 说明 | 何时使用 |
@@ -494,12 +525,14 @@ Worker 清单（MVP 即启用）：
 | Worker | 输入 | 输出 | 理由 |
 |---|---|---|---|
 | `ai.worker` | 战斗状态快照 + AI 档位 + `aiSeed`（轮到 AI 单位时由 core 从 `ai` 流抽取，随 `battle/aiTurn` 事件下发） | 一条 `battle/act` 命令 | 前瞻搜索（1–2 层）可能耗时 10–100 ms；RNG 状态始终留在 core；结果以普通命令回到 core，录像只记命令，因此 AI 自身不要求跨引擎一致 |
-| `io.worker` | 存档 JSON / 书界包二进制 | 压缩结果 + SHA-256 / 解析后的对象 | `JSON.parse` 数 MB 书界包与压缩会阻塞主线程数十毫秒 |
+| `io.worker` | 存档 JSON / 书界包压缩二进制 | 压缩结果 + SHA-256 / 解压后的 UTF-8 `ArrayBuffer`（Transferable） | 只做压缩、解压与哈希；不把解析后大对象结构化克隆回主线程 |
 | （可选）`path.worker` | 区域通行网格 + 起终点 | 路径 | 仅当区域 ≥ 256×256 且需要长距离自动寻路时启用；战斗 ≤ 20×20 在主线程即可 |
 
 实现约定：
 - 使用 Vite 原生写法 `new Worker(new URL('./ai.worker.ts', import.meta.url), { type: 'module' })`，RPC 用 **Comlink**（约 1 KB gzip）。
 - 只传结构化可克隆数据；大块二进制用 `Transferable`（`ArrayBuffer`）零拷贝。
+- 书界包在主线程加载遮罩/IdleQueue 中按区域分片解析：产物分片目标 ≤300 KB，游戏进行中单次 `JSON.parse` 输入 ≤256 KB。`tech/03` 同机测得 2.1/8.0/15.4 MB 对象的 `structuredClone` 分别约 17.8/82.1/249.5 ms，高于对应 parse 的 7.4/38.6/46.1 ms，故禁止 Worker 解析后回传大对象。若未来把 core 整体迁入 Worker，规则包就在 core Worker 内解析并驻留，不回传对象。
+- 上述三组回传/解析比值复算为 `17.8/7.4=2.41×`、`82.1/38.6=2.13×`、`249.5/46.1=5.41×`；结论不是“Worker 不能解析 JSON”，而是“解析后的大对象不应再跨线程克隆”。
 - **不依赖 SharedArrayBuffer**（需 COOP/COEP 跨源隔离，静态托管与微信内置浏览器下易出问题）。
 - Worker 创建失败（极少数 WebView）时自动降级为主线程同步执行——所有 Worker 模块都导出同名的纯函数实现。
 - `fflate` 的异步 API 本身会使用 Worker；我们仍统一放在 `io.worker`，以便同时计算哈希、少一次数据往返。
@@ -524,6 +557,7 @@ jinyongqunxia/                      # 代码仓库（Git）；二进制素材不
 ├── docs/                           # 规划文档（本目录）+ adr/（架构决策记录）
 │
 ├── packages/
+│   ├── spec/       @tianshu/spec       # 跨 TS/Python/Blender/运行时的静态 JSON 契约（C18 唯一路径）
 │   ├── shared/     @tianshu/shared     # 零依赖基础
 │   ├── data/       @tianshu/data       # schema、类型、书界包格式、加载器
 │   ├── core/       @tianshu/core       # 玩法核心（纯 TS、确定性）
@@ -619,20 +653,21 @@ catalog:
 
 ### 4.3 各包职责、对外接口与依赖
 
-> 版本号为 2026-09-25 npm `latest` 实查结果；`catalog:` 表示引用 §4.2 的统一版本。
+> 版本号为 2026-09-26 再次查询 npm registry 的结果；表中依赖版本与初稿一致，Wrangler 更新为 4.141.0。`catalog:` 表示引用 §4.2 的统一版本。
 
 | 包 | 职责（一句话） | 对外接口（入口导出） | 运行时依赖 | 开发依赖（包内特有） |
 |---|---|---|---|---|
 | `@tianshu/shared` | 所有包共用的零依赖基础设施 | `Brand<T>`、`Result`、`assert`、`Rng`（sfc32，splitmix32 播种，§8.3）、`fx`（整数/定点数学、`powInt`）、`Emitter`、`TilePos`、`DeepReadonly` | 无 | — |
+| `@tianshu/spec` | 跨语言静态契约的唯一目录；包名只用于工作区定位 | `iso-camera.json`、`sprite-spec.json`、资产编码等 JSON/schema；脚本从已确认的仓库根解析 | 无；不得依赖 `@tianshu/data` | JSON Schema 校验器（tools 使用） |
 | `@tianshu/data` | 内容 schema 与书界包格式的唯一定义 | `schemas.*`（Zod）、`type SkillDef/BuffDef/...`（`z.infer`）、`ChapterPack`、`loadChapterPack()`（运行时轻量，不含 Zod）、`toJsonSchema()`、`toTiledPropertyTypes()` | 运行时：无（`zod` 仅在 `./schemas` 子路径被 tools/dev 引用） | `zod@catalog`（^4.6.5） |
 | `@tianshu/core` | 确定性玩法规则 | `createCore()`、`Core`、`Command`、`DomainEvent`、`CoreQueries`、`ContentRegistry`、`migrateSave()` | `@tianshu/shared`、`@tianshu/data`（仅 `import type`）、`inkjs@2.4.0`（对话运行时，纯 JS 无 DOM） | — |
-| `@tianshu/render` | 把状态与事件变成画面 | `createRenderer(canvas, opts)`、`RenderWorld`（`mountRegion/unmountRegion/enterBattle/...`）、`playEvents(batch): Promise<void>`、`pick(screenXY): PickResult`、`setQuality(tier)` | `three@0.186.1`、`@tianshu/shared`；类型：`@tianshu/core` | `@types/three@0.186.0`、`stats-gl@^4.2.3`（dev） |
+| `@tianshu/render` | 把状态与事件变成画面 | `createRenderer(): Promise<RenderWorld>`；完整 `RenderWorld` 见下方，异步入口必须等待资源就绪 | `three@0.186.1`、`@tianshu/shared`；类型：`@tianshu/core` | `@types/three@0.186.0`、`stats-gl@^4.2.3`（dev） |
 | `@tianshu/ui` | Vue 界面与 UI 投影状态 | `GameUi`（根组件）、`useUiStore()`、`uiBus`（发命令意图）、组件库 `Tx*`（水墨风基础组件） | `vue@^3.5.43`、`pinia@^4.0.3`、`vue-i18n@^11.4.12`；类型：`@tianshu/core` | `@vitejs/plugin-vue@^6.0.9`、`vue-tsc@^3.3.11`、`@vue/test-utils@^2.5.1`、`happy-dom@^20.14.5` |
 | `@tianshu/platform` | 浏览器 API 适配，隐藏兼容性差异 | `input`（Pointer/Keyboard/Gesture）、`storage`（Dexie 表：`saves`/`settings`/`packs`）、`audio`（Howler 封装）、`net`（带重试的 fetch、云同步）、`device`（能力检测与画质档）、`lifecycle`（可见性、`pagehide`、上下文丢失）、`pwa`（更新提示） | `dexie@^4.4.6`、`howler@^2.2.4`、`fflate@^0.8.3`、`comlink@^4.4.2`、`workbox-window@^7.4.1` | `fake-indexeddb@^6.2.5` |
 | `@tianshu/devtools` | 开发控制台与作弊（懒加载） | `mountDevtools(ctx)`、`registerDevCommand()` | `lil-gui@^0.21.0`（参数面板）、`zod@catalog`（指令参数）、`eruda@^3.4.3`（按需）、`@tianshu/core`（类型）、`vue` | — |
 | `@tianshu/game` | 装配、发布 | —（应用） | 以上全部包 | `vite@^8.3.1`、`vite-plugin-pwa@^1.3.0`、`@vite-pwa/assets-generator@^1.0.0`（受 vite-plugin-pwa peer 约束，不用 2.x）、`@vitejs/plugin-basic-ssl@^2.3.0`、`rollup-plugin-visualizer@^7.1.1`、`size-limit@^14.0.1` |
 | `@tianshu/editor` | Phase 2 可选 | — | 复用 render/ui/data | 同上 |
-| `@tianshu/api` | 云存档、AI NPC 代理 | HTTP：`GET/PUT /v1/saves/:slot`、`POST /v1/npc-chat` | `hono@^4.13.9`、`@tianshu/data`（存档 schema，服务端可用完整 Zod） | `wrangler@^4.140.0`（若部署 Cloudflare；国内方案见 tech/08） |
+| `@tianshu/api` | 会话闸门、云存档、AI NPC 代理 | 鉴权后 HTTP：`GET/PUT /v1/saves/:slot`、`POST /v1/npc-chat`；同一 Worker 代理受保护静态资产 | `hono@^4.13.9`、`@tianshu/data`（存档 schema，服务端可用完整 Zod） | `wrangler@^4.141.0`（Cloudflare 单方案，见 `tech/08`） |
 | `tools/content-build` | 内容构建与校验 | CLI：`build` / `validate` / `watch` | `zod`、`yaml@^2.9.1`、`inkjs`（含编译器 `inkjs/full`）、`@tianshu/data`、`@tianshu/core` | `tsx@^4.23.15` |
 | `tools/asset-pipeline` | 素材处理与上传 | CLI | `sharp@^0.35.4`、`@gltf-transform/cli@^4.5.0`、KTX-Software `ktx`（系统二进制，版本待 tech/06 锁定） | — |
 | `tools/font-subset` | 中文字体子集化 | CLI | `cn-font-split@^7.4.3` 或 `subset-font@^2.9.0` | — |
@@ -642,19 +677,40 @@ catalog:
 **关键接口片段**
 
 ```ts
-// packages/render/src/index.ts
+// packages/render/src/index.ts；与 tech/02 §11.2 同步
+export type QualityTier = 'low' | 'mid' | 'high' | 'ultra';
+export interface HexCoord { readonly q: number; readonly r: number }
+export type TilePos = HexCoord;
+
 export interface RenderWorld {
-  mountRegion(region: RegionView, assets: AssetScope): Promise<void>;  // 进入区域（异步加载纹理）
-  unmountRegion(regionId: RegionId): void;                              // 释放 GPU 资源
-  enterBattle(grid: BattleGridView): void;                              // 就地开战：相机拉近、叠加网格
+  mountRegion(region: RegionView, assets: AssetScope): Promise<void>;
+  unmountRegion(regionId: RegionId): void;
+  syncWorld(view: WorldSnapshotView): void;
+  render(alpha: number): void;
+  enterBattle(grid: BattleGridView): Promise<void>;
   exitBattle(): void;
-  playEvents(batch: readonly DomainEvent[], speed: 1 | 2 | 4): Promise<void>; // 表现队列调用
-  highlight(tiles: readonly TilePos[], style: HighlightStyle): void;    // 可达格/范围预览（来自 core 查询）
-  pick(screen: { x: number; y: number }): PickResult;                   // 等距拾取（§6.6）
-  setQuality(tier: QualityTier): void;                                  // 'low' | 'mid' | 'high'
-  requestFrame(): void;                                                 // 按需渲染模式下请求一帧
+  playEvents(batch: readonly DomainEvent[], speed: 1 | 2 | 4): Promise<void>;
+  readonly cues: CueApi;
+  highlight(tiles: readonly TilePos[], style: HighlightStyle): void;
+  showPath(path: readonly PathStep[] | null): void;
+  pick(screen: ScreenPos, mode: 'tile' | 'unit' | 'any'): PickResult | null;
+  tileAnchorToScreen(t: TilePos, heightAboveTopM?: number): ScreenPos | null;
+  readonly camera: CameraControl;
+  setQuality(tier: QualityTier, overrides?: Partial<TierSettings>): Promise<void>;
+  requestFrame(): void;
+  readonly stats: RenderStats;
   dispose(): void;
 }
+
+export function createRenderer(
+  canvas: HTMLCanvasElement,
+  opts: {
+    tier: QualityTier;
+    spec: { camera: IsoCameraSpec; sprite: SpriteSpec };
+    onContextLost?: () => void;
+    onContextRestored?: () => void;
+  },
+): Promise<RenderWorld>;
 ```
 
 ```ts
@@ -663,7 +719,7 @@ export interface UiBridge {
   dispatch(cmd: Command): DispatchResult | Promise<DispatchResult>;
   query: CoreQueries;                       // 只读
   onEvents(fn: (batch: readonly DomainEvent[]) => void): () => void;
-  requestPick(mode: 'tile' | 'unit'): Promise<PickResult | null>; // 例：技能选目标时委托 render 拾取
+  requestPick(mode: 'tile' | 'unit' | 'any'): Promise<PickResult | null>; // 委托 render 拾取，再由 core 校验
 }
 ```
 
@@ -675,17 +731,17 @@ export interface UiBridge {
 
 > gzip 体积为本文实测（esbuild minify + gzip -9，最小用法），用于包体预算；"—"表示未单测。
 
-| 类别 | 库 | 版本（2026-09-25） | 许可 | gzip | 用途 | 选择理由 / 备选 |
+| 类别 | 库 | 版本（2026-09-26） | 许可 | gzip | 用途 | 选择理由 / 备选 |
 |---|---|---|---|---|---|---|
 | 渲染 | `three` | 0.186.1（r186，锁精确版本） | MIT | 132 KB（WebGL 最小场景） | 地形、精灵、特效、相机 | §2；备选 Babylon/Pixi（§2.7） |
 | 纹理解码 | three 自带 `KTX2Loader` + `basis_transcoder.wasm` | 随 three | Apache-2.0（Basis） | wasm ≈ 240 KB | KTX2（Basis Universal）→ ASTC/ETC2/BC 实时转码 | Canon §19 指定；首张 KTX2 纹理前懒加载 |
 | UI | `vue` | ^3.5.43 | MIT | 24 KB | DOM 覆盖层 | Canon §19；中文排版交给浏览器 |
 | UI 状态 | `pinia` | ^4.0.3 | MIT | ≈ 3 KB | UI 投影 store、设置 | 官方推荐、Devtools 支持；只存投影，不存规则状态 |
-| 国际化 | `vue-i18n` | ^11.4.12 | MIT | —（待测） | UI 文案键值、复数/插值 | 预留繁体；备选：自写 30 行 `t()`（若包体紧张） |
+| 国际化 | `vue-i18n` | ^11.4.12 | MIT | —（待实测） | UI 文案键值、复数/插值 | 预留繁体；备选：自写 30 行 `t()`（若包体紧张） |
 | 剧情 | `inkjs` | 2.4.0 | MIT | 34 KB（运行时） | ink 对话/分支运行时 | Canon §19；运行时只用 `inkjs/engine/Story`，编译器仅在构建期 |
 | 存储 | `dexie` | ^4.4.6 | Apache-2.0 | 31 KB | IndexedDB：存档槽、设置、已下载书界包索引 | 成熟、事务/版本迁移好用；备选 `idb@8`（约 1/10 体积，但迁移与查询要自己写） |
 | 压缩 | `fflate` | ^0.8.3 | MIT | 4 KB | 存档 deflate、书界包解压（若非 HTTP 压缩）、导出文件 | 最小最快的纯 JS 压缩库之一，异步 API 自带 Worker |
-| 音频 | `howler` | ^2.2.4 | MIT | 9 KB | BGM（HTML5 流式）、SFX（WebAudio 精灵）、iOS 解锁 | 稳定但维护放缓（最后发布 2023-09）；封装在 `platform/audio` 之后，必要时换成直用 WebAudio（§6.7） |
+| 音频 | `howler` | ^2.2.4 | MIT | 9 KB | SFX（WebAudio 精灵）及通用封装；BGM 用流式媒体元素接 WebAudio 增益链 | iOS 的 `<audio>.volume` 无效，`platform/audio` 不得把淡化/duck 建在该属性上（§6.7） |
 | Worker RPC | `comlink` | ^4.4.2 | Apache-2.0 | 1 KB | ai/io Worker 调用 | 极小、类型友好 |
 | PWA | `workbox-window`（经 `vite-plugin-pwa`） | ^7.4.1 | MIT | —（小） | SW 注册、更新提示 | 与 vite-plugin-pwa 配套 |
 | 存档校验 | `zod/mini` | 随 zod ^4.6.5 | MIT | 4 KB | 读档时校验结构、云端存档防损坏 | 完整 `zod` 经典 API 实测 89 KB gzip，**不进运行时** |
@@ -744,12 +800,13 @@ export interface UiBridge {
 | Chunk | 内容 | 预算（gzip） | 实测依据 |
 |---|---|---|---|
 | `entry` | Vue、Pinia、core、platform、ui 骨架、标题画面（到标题画面只需此 chunk） | ≤ 170 KB | Vue 24 + Pinia 3 + Dexie 31 + inkjs 34 + fflate 4 + howler 9 ≈ 105 KB 库 + 自有代码 |
-| `render` | three + render 包（标题画面期间预取） | ≤ 180 KB（若闸门选 `WebGPURenderer` 则 ≤ 260 KB） | three `WebGLRenderer` 132 KB / `WebGPURenderer` 210 KB |
+| `render`（当前 WebGL） | three + render 包（标题画面期间预取） | ≤ 180 KB | 最小场景 132 KB；`tech/02` 同功能构建记录 156 KB，给自有代码预留 `180 − 156 = 24 KB` |
+| `render-webgpu`（未来独立评估，不与上行并存） | 完整 WebGPU render | ≤ 300 KB；通过后路线总预算 ≤470 KB | 同功能构建 297 KB，仅余 `300 − 297 = 3 KB`；加自有代码估约 330 KB，当前超 `330 − 300 = 30 KB`，未通过；须复现（待实测） |
 | `basis` | 转码 wasm + js | ≈ 255 KB（不计入首包） | 实测 240 + 15 KB |
 | `devtools` | 控制台（仅开启时加载，含完整 zod 用于指令参数解析） | ≤ 130 KB | zod 经典 API 89 KB |
 | 书界包 `chNN.rules.json` + `chNN.text.<locale>.json`（§6.8） | 某书界的全部规则数据与文本 | 合计 ≤ 1.5 MB（HTTP 压缩后） | 待 `tech/04` 估算 |
 
-CI 以 `size-limit` 对前三项设门禁，超出即失败（§7.6）。
+CI 对 `entry`、当前 `render`、`basis` 与 `devtools` 分别设 `size-limit` 门禁，禁止以总包拆 chunk 绕过。WebGL 路线总额为 `170 + 180 = 350 KB`；未来 WebGPU 路线若通过则为 `170 + 300 = 470 KB`，两者不得混称同一预算。
 
 ---
 
@@ -763,26 +820,28 @@ flowchart TD
   B --> C["platform/device.probe()：WebGL2 / WebGPU / DPR / deviceMemory / UA（iOS·Android·微信）/ 是否 PWA 独立窗口"]
   C --> D{"WebGL2 可用？"}
   D -- 否 --> X["友好提示页：更换浏览器 / 用系统浏览器打开"]
-  D -- 是 --> E["打开 Dexie；读设置；决定画质档 low/mid/high"]
+  D -- 是 --> E["打开 Dexie；读设置；校准 tier / memClass / fpsMode"]
   E --> F["加载 UI 字体子集 + 文案；挂载 Vue 根组件 → 标题画面"]
   F --> G["后台预取：render chunk、common 包、上次书界包（若已缓存）"]
   F --> H["空闲时注册 Service Worker（首次访问不阻塞）"]
   G --> I{"继续 / 新游戏"}
   I --> J["读档：本地 IndexedDB ⇄ 云端（取较新者，冲突时让玩家选）"]
-  J --> K["io.worker：解压 → migrateSave() → 书界包解析"]
-  K --> L["createCore(content, save) → createRenderer(canvas, tier)"]
-  L --> M["mountRegion(当前区域) → 场景状态机进入 Explore"]
+  J --> K["io.worker：解压/哈希 → Transferable 字节回主线程"]
+  K --> K2["加载遮罩/IdleQueue：按区域分片 parse → migrateSave()"]
+  K2 --> L["createCore(content, save) → await createRenderer(canvas, { tier, spec })"]
+  L --> M["await mountRegion(当前区域) → 场景状态机进入 Explore"]
 ```
 
-画质档（初值，`tech/03` 细化）：
+设备判定分为三条正交轴，终值见 `tech/03`：`tier` 决定 GPU 特效、`memClass` 决定内存上限、`fpsMode` 决定帧率。`navigator.deviceMemory` 只作低熵提示：Chrome 147+ Android 只返回 1/2/4/8，Safari 不实现；因此旧条件 `deviceMemory ≤ 3` 实际只命中 ≤2，不能把 4 GB 设备误判成 M。
 
-| 档位 | 判定（任一） | DPR 上限 | 阴影 | 后处理 | 目标帧率 |
-|---|---|---|---|---|---|
-| `low` | `deviceMemory ≤ 3`、旧 GPU 黑名单、连续 5 s 帧时间 > 40 ms | 1.0 | 关 | 关 | 30 |
-| `mid` | 默认（移动端） | 1.5 | 烘焙/假阴影 | 轻量描边 | 60（战斗 30 保底） |
-| `high` | 桌面或高端移动 GPU | 2.0 | 实时方向光阴影（区域内） | 水墨后处理全开 | 60 |
+| `tier` | 静态初判与运行时校准 | DPR 上限 | 阴影 | 后处理 | GPU 上限 |
+|---|---|---:|---|---|---:|
+| `low` | `deviceMemory ≤ 2`（可玩地板以下）、旧 GPU 黑名单，或活画持续超预算 | 1.0 | 关 | 关 | 96 MB |
+| `mid` | 移动端默认；4 GB 设备可为 mid 画质但 `memClass=S` | 1.5 | 烘焙/假阴影 | 轻量描边 | 160 MB |
+| `high` | 高端移动 GPU 或桌面，经活画通过 | 2.0 | 实时方向光阴影（区域内） | 水墨后处理全开 | 256 MB |
+| `ultra` | 桌面/大内存高端设备且主动启用 | 2.0（可覆盖） | 更高阴影与特效预算 | 全开 | 512 MB |
 
-运行中自适应：连续掉帧自动降一档（可在设置中锁定档位）。
+`memClass`：S ≤4 GB、M 6–8 GB、L ≥12 GB 或桌面；Chrome 报 4 → S、报 8 → M，再结合 GPU/活画决定是否升级；Safari 用设备族 + 启动画面活画基准，不猜 RAM。`fpsMode` 为 `auto | 60 | 30 | battery`。运行中连续掉帧自动降 `tier` 或 `fpsMode`，不得顺带放宽内存预算；素材仅 low/mid/high 三档，ultra 复用 high。
 
 ### 6.2 主循环：渲染帧与逻辑 tick 分离
 
@@ -876,7 +935,7 @@ stateDiagram-v2
 ```
 
 - **Region（区域）**：一个开放世界区域（`rg_NN_*`），地图数据来自 Tiled 转换；**Interior（室内/秘境）**是体量更小的独立地图，与 Region 共用同一套渲染路径。
-- **就地开战**不切换渲染场景：`render.enterBattle()` 在当前区域上截取网格、拉近相机、叠加格线与 CT 条；敌方额外精灵与特效按需加载。
+- **就地开战**不切换渲染场景：调用方 `await render.enterBattle()`，等待其在当前区域上截取网格、拉近相机、叠加格线与 CT 条，并按需加载敌方额外精灵与特效。
 - **菜单（背包/武学/图鉴）**是 Vue 覆盖层，不是场景；全屏菜单打开时渲染切到 `onDemand`。
 
 **资源分级与生命周期**
@@ -892,7 +951,7 @@ stateDiagram-v2
 // apps/game/src/assets/asset-scope.ts —— 引用计数的资源作用域
 const scope = assets.scope(`region:${regionId}`);
 await scope.load(manifest.region(regionId));   // 从 manifest 取内容哈希 URL → 缓存 → KTX2 转码
-render.mountRegion(regionView, scope);
+await render.mountRegion(regionView, scope);
 // ... 离开区域
 render.unmountRegion(regionId);
 scope.release();                               // 引用计数归零 → 进入 LRU → 超预算时 texture.dispose()
@@ -920,28 +979,20 @@ scope.release();                               // 引用计数归零 → 进入 
 | `rotateCam` 旋转 90°（是否开放由 `tech/02` 定） | UI 按钮 | Q / E | Q / E |
 | `skill1..9` | 战斗面板 | 战斗面板 | 1–9 |
 | `speed` 倍速 / `skip` 跳过 | UI 按钮 | UI 按钮 | F / Tab |
-| `devConsole` | 三指长按 1 s（仅开发开关打开时） | — | `` ` `` 或 F1 |
+| `devConsole` | 三指长按 1 s（仅开发开关打开时） | — | 反引号键（&#96;）或 F1 |
 
 移动端细节：视口 `meta` 禁止缩放，iOS Safari 另需对 `gesturestart` 调用 `preventDefault()` 防止页面被捏合缩放；最小可点区域 44×44 CSS px；横屏提示遮罩（iPhone 不支持非视频元素全屏，`screen.orientation.lock()` 在 iOS 上不可依赖——以 PWA 独立窗口 + 旋转提示为准）。
 
 ### 6.6 等距拾取
 
-画面是 3D 高度网格 + 正交相机，所以拾取在**世界空间**里做，而不是用 2D 菱形公式反算（后者在有高度时会错选"被高台挡住的后排格子"）。
+画面是 3D 高度网格 + 正交相机，战斗逻辑格则是 pointy-top 六角轴坐标 `HexCoord(q,r)`。因此不得再用正交方格 `(i,j)` 或 Amanatides–Woo 方格 DDA 作为运行时契约；有高度时也不能只按屏幕菱形反算。算法统一引用 `tech/02` §1.7：
 
-```ts
-// packages/render/src/picking/pick-tile.ts（示意）
-// 正交相机：所有像素的射线方向相同，起点随屏幕坐标平移
-export function pickTile(ray: Ray, grid: HeightGrid): TileHit | null {
-  // 1) 射线与网格包围盒 [0,W] × [0,H_MAX] × [0,D] 求交，得到进入点 p0 与离开点 p1
-  // 2) 在 XZ 平面上用 Amanatides–Woo DDA，沿射线前进方向逐格遍历（由近及远）
-  // 3) 对每个格 (i,j)：射线在该格 XZ 投影区间内的高度范围为 [yOut, yIn]（相机俯视，y 递减）
-  //      若 yOut <= top(i,j)：命中
-  //        yIn  <= top(i,j) → 命中"侧面"（返回 face: 'side'，可视为该格）
-  //        否则           → 命中"顶面"
-  // 4) 遍历出界仍未命中 → null
-  // 复杂度 O(W + D)，20×20 战场 < 0.05 ms；无需三角面射线求交
-}
-```
+1. 从屏幕点生成世界射线，与候选高度层求交；
+2. 把交点转换为分数轴坐标，再以 cube round 得到候选六角；
+3. 对候选格及相邻格做顶面/侧面的精确相交，按射线距离取最近可见命中；
+4. `pick(screen, 'tile' | 'unit' | 'any')` 无命中时返回 `null`。
+
+`20×20` 的容量约束解释为最多 `20 × 20 = 400` 个轴坐标槽，不表示正方形的 400 个 `(i,j)` 单元。拾取正确性与性能门禁归 `tech/02`，本文不重复一套几何实现。
 
 - **单位拾取**优先于格子：按屏幕空间包围矩形（触控时外扩到 ≥ 44 px）命中，多个重叠时取离相机最近者；被建筑遮挡的单位仍可拾取（渲染层会画剪影，`tech/02`）。
 - **可交互物件**（门、宝箱、NPC、轻功门禁点）在地图数据里有逻辑格坐标，拾取格子后查表即可；只有少数不规则大物件才用 `three-mesh-bvh` 做网格射线（按需引入）。
@@ -951,16 +1002,17 @@ export function pickTile(ray: Ray, grid: HeightGrid): TileHit | null {
 
 | 通道 | 实现 | 说明 |
 |---|---|---|
-| BGM | Howler `html5: true`（`<audio>` 流式播放） | 3 分钟立体声解码成 PCM 需数十 MB 内存，BGM 必须流式；区域切换 1.5 s 交叉淡入淡出 |
+| BGM | `<audio>` 流式媒体元素 → `MediaElementAudioSourceNode` → `GainNode` → `AudioContext.destination` | 3 分钟立体声解码成 PCM 需数十 MB，故仍流式；音量、1.5 s 交叉淡化与 duck 全部操作 GainNode |
 | 环境声（风/水/市集） | WebAudio 循环 | 按区域与昼夜切换 |
 | 音效 SFX | Howler 音频精灵（WebAudio 解码） | 每书界一张 SFX 精灵 + 通用精灵；同时发声上限 8–12 |
 | 语音（可选） | 按需加载 | 取决于 `tech/07` 是否生成配音 |
 
-- 格式：通用 **AAC（`.m4a`）**；Opus（`.webm`）作为 Chromium 可选更小版本（iOS 支持度待核实，MVP 只出 m4a）。
-- iOS 解锁：首个用户手势中 `resume()` AudioContext 并预热一个静音缓冲。
-- 静音键：Safari 17+ 支持 `navigator.audioSession.type`。默认 `'ambient'`（尊重静音键，游戏惯例）；设置项"静音模式下仍播放"改为 `'playback'`，须在创建 AudioContext 之前设置，切换后提示重启游戏。
+- 格式：通用 **AAC（`.m4a`）**；Opus/WebM 仅作能力探测后的可选小版本。公开兼容数据确认 iOS Safari 18.4+ 完整支持 Opus，而 17.4–18.3 仍有部分限制，故 MVP 仍必须提供 AAC source，不能只发 Opus。
+- iOS 音量：Apple 文档与 MDN BCD 均明确 `HTMLMediaElement.volume` 在 iOS 读取恒为 1、赋值无效；因此 Howler 的 `html5: true` 可用于流式加载，但 `setVolume`、fade 与 duck 不能依赖媒体元素的 `volume`，必须走上述 GainNode。
+- iOS 解锁：首个用户手势中调用 `AudioContext.resume()` 并启动/预热媒体源；被系统挂起后等待下一次手势恢复。
+- 静音键：Web Audio Audio Session API 自 Safari 16.4 起可用。默认 `navigator.audioSession.type = 'ambient'`（尊重静音键）；设置项“静音模式下仍播放”改为 `'playback'`。不支持该 API 时保留系统行为，不把第三方经验文的版本号当硬门槛。
 - 页面隐藏时全部暂停；恢复时若 AudioContext 被系统挂起，等待下一次手势再恢复。
-- 替换路径：`platform/audio` 只暴露 `playBgm/stopBgm/sfx/setVolume/duck`，若 Howler 出现无法绕过的问题，改为直用 WebAudio + `<audio>`（约 300 行）。
+- `platform/audio` 只暴露 `playBgm/stopBgm/sfx/setVolume/duck`；Howler 可继续封装 SFX 与媒体生命周期，但上述接口的可观察音量语义由 WebAudio 增益链保证。
 
 ### 6.8 本地化（预留繁体）
 
@@ -1007,7 +1059,7 @@ pnpm e2e                        # Playwright：移动视口冒烟
 | 桌面 | Chrome/Edge DevTools（断点、Performance、Memory）；Vue Devtools；`stats-gl` 面板 |
 | Android 真机 | USB + `chrome://inspect` 远程调试 |
 | iOS 真机 | Safari Web 检查器（需要 Mac）；无 Mac 时用 URL 参数 `?eruda=1` 注入 `eruda@3.4.3` 页内控制台（仅 dev 开关） |
-| 微信内置浏览器 | 页内 `eruda`；XWeb 远程调试方式待核实 |
+| 微信内置浏览器 | H5 页默认用仅开发环境启用的 `eruda`；微信开发者工具官方提供小程序/小游戏真机调试，但这不能证明普通 H5 XWeb 可接同一链路，后者保留（待核实），并以目标微信版本真机探测 |
 | WebGL 帧分析 | Spector.js 浏览器扩展（桌面）；GPU 时间见 `stats-gl` |
 
 ### 7.2 热更新（代码与内容）
@@ -1082,10 +1134,10 @@ registerDevCommand({
 
 | 方案 | 优点 | 缺点 | 结论 |
 |---|---|---|---|
-| **A. Tiled 1.12（正交视图）+ 自定义属性 + 构建期转换** | 成熟免费（GPL 编辑器，产出数据不受限）；多图层、对象层、类/枚举/列表型自定义属性（1.12 新增列表属性）；JSON（`.tmj`）文本可 diff；JS 扩展脚本；自动映射（automapping）可批量刷地形 | 看不到最终 3D 效果（靠热更新预览弥补）；高度用"数字瓦片"表达不够直观 | ✅ **MVP 采用** |
-| B. Tiled 等距视图 | 编辑时就是菱形观感 | 有高度时菱形视图会误导；对象坐标存于投影空间，转换复杂；相机旋转后无意义 | ❌ |
+| **A. Tiled 1.12（六角地图或规范化转换）+ 自定义属性 + 构建期转换** | 成熟免费（GPL 编辑器，产出数据不受限）；多图层、对象层、类/枚举/列表型自定义属性；JSON（`.tmj`）文本可 diff；JS 扩展脚本；最终统一输出轴坐标 | 编辑器看不到最终 3D 高度效果；必须以转换器测试保证 offset/像素坐标不泄漏到运行时 | ✅ **MVP 采用** |
+| B. Tiled 等距/正交方格直接作为运行时地图 | 编辑直观 | 与 AR-12 六角拓扑冲突；有高度、旋转时投影坐标也容易误导 | ❌ |
 | C. 自研浏览器内编辑器 | 所见即所得（直接在 3D 中刷高度、刷地形） | 工作量大（撤销/重做、图层、选择、序列化……），容易吞掉数周开发时间 | ⏳ Phase 2 只做"预览 + 微调回写" |
-| D. LDtk | IntGrid 层很适合编码高度与地形；实体字段强类型 | 无等距视图（对本方案不是问题）；脚本扩展与自动化弱于 Tiled（维护状态待核实） | 备选 |
+| D. LDtk 1.5.3 | IntGrid 层很适合编码高度与地形；实体字段强类型 | 官方稳定版仍为 2024-01 的 1.5.3；仓库未归档且 2026-07 仍有提交，但版本发布节奏慢、六角工作流与自动化不优于 Tiled | 备选 |
 
 **Tiled 约定**
 
@@ -1113,17 +1165,17 @@ content/chapters/ch01_tianlong/regions/rg_01_dali.tmj
 
 ```ts
 interface RegionMapJson {
-  id: RegionId; w: number; d: number;            // 宽（x）与深（z）
-  heights: string;                               // base64(Uint8Array[w*d])，0–10
-  terrain: string;                               // base64(Uint16Array[w*d])，指向 terrainTable 下标
+  id: RegionId;
+  bounds: { qMin: number; qMax: number; rMin: number; rMax: number };
+  cells: readonly { q: number; r: number; h: number; terrain: number }[]; // pointy-top 轴坐标，h=0–10
   terrainTable: TerrainId[];
   decos: DecoPlacement[];
-  objects: RegionObject[];                       // 已按 schema 校验、坐标转为逻辑格
+  objects: RegionObject[];                       // 已按 schema 校验，锚点已转为 (q,r,h)
 }
 ```
 
 - 编辑体验闭环：Tiled 保存 → Vite 插件增量转换 → 桌面与手机上的游戏 ≤ 1 s 内重挂载该区域（§7.2）。
-- 为什么用正交视图：逻辑网格 = 编辑网格，一格对一格；45° 投影、高度侧面、相机旋转全部是 `render` 的职责。
+- 编辑器采用 Tiled 的六角能力时要锁定 pointy-top/offset 约定；若某工具环节只能输出 offset 坐标，构建期必须一次性转换为轴坐标 `(q,r)`。45° 观感、高度侧面与相机旋转仍是 `render` 的职责；运行时 schema 和 core 不接收 `(i,j)`。
 - Phase 2 的 `apps/editor`：复用 render，在 3D 视图中用笔刷微调高度/地形、拖放对象，通过 dev server 中间件 `POST /__tianshu/map` 回写 `.tmj`（仅开发模式存在该端点）。
 
 ### 7.5 内容校验（`pnpm content:validate`）
@@ -1134,8 +1186,8 @@ interface RegionMapJson {
 | L2 结构 | 每个文件按 Zod schema 解析；错误定位到"文件:行:列 + 字段路径" | error |
 | L3 命名 | ID 符合 Canon §12 正则（如 `^sk_[a-z0-9_]+$`、`^q_\d{2}_(main\|side\|faction\|bond\|qiyu)_\d{2}$`）；全局唯一；文件名 = ID | error |
 | L4 引用 | 全局符号表：招式→Buff、NPC→武功、套装→成员、门→目标区域与出生点、ink 标签→任务/旗标 ID 均存在；无孤儿 | error（孤儿为 warning） |
-| L5 基准一致 | 品阶 1–12、层数 1–10；Canon §13 天级表与数据品阶一致；§14 神兵一致；书界境界 → 层数上限与原生天级数量区间（高武 6–15 / 中武 1–5 / 低武 0–2）；§20 装配栏数量 | error |
-| L6 地图 | 高度 0–10；地形 ID 合法；`BattleArena` ≤ 20×20；**可达性**：从区域入口出发，按轻功阶 qg0→qg5 逐级计算可达集合，输出"某 NPC/宝箱需要 qgN"报告，与 `design/08` 的门禁意图比对 | error / warning |
+| L5 基准一致 | 品阶 1–12、层数 1–10；Canon §13 天级表与数据品阶一致；§14 神兵一致；书界境界 → 层数上限与完整原生天级数量区间（高武 6–16 / 中武 1–5 / 低武 0–2）；每门内功 `nature` 必填且仅 yin/yang/harmony；§20 装配栏数量 | error |
+| L6 地图 | 高度 0–10；地形 ID 合法；坐标唯一且满足 pointy-top 轴坐标契约；`BattleArena` 最多 `20×20=400` 个轴坐标槽；**可达性**：从区域入口出发，按轻功阶 qg0→qg5 逐级计算可达集合，输出"某 NPC/宝箱需要 qgN"报告，与 `design/08` 的门禁意图比对 | error / warning |
 | L7 文本 | 缺失文本、UI 字段长度（如武功名 ≤ 8 字）、繁体覆盖表冲突、生僻字不在字体子集中 | warning（字体缺字为 error） |
 | L8 数值冒烟 | `tools/balance` 对关键遭遇跑 200 场种子战斗，统计回合数是否落在 Canon §5 节奏区间（普通 3–5 轮、精英 6–10、Boss 12–25） | warning（极端偏离为 error） |
 | L9 预算 | 各书界包体积、区域对象数量上限 | warning |
@@ -1148,9 +1200,9 @@ interface RegionMapJson {
 |---|---|---|---|
 | `ci.yml` | PR、推送到任意分支（`docs/**` 仅改文档时跳过） | `lint` → `typecheck` → `test`（含覆盖率）→ `content` → `build`（含 `size-limit`） | 5–7 min |
 | `e2e.yml` | 推送到 `main`；每晚定时 | Playwright：Chromium（Pixel 7 视口）+ WebKit（iPhone 视口）冒烟 + 截图回归 | 6–10 min |
-| `deploy.yml` | `main` 上 `ci.yml` 成功后 | 构建 → 部署静态站点（海外：Cloudflare Pages / GitHub Pages；国内镜像见 `tech/08`） | 3 min |
+| `deploy.yml` | `main` 上 `ci.yml` 成功后 | 构建 → 部署 Cloudflare Worker Static Assets + API；先部署版本再人工/受保护晋升，禁止公开 Pages | 3 min |
 
-私有仓库在 GitHub Free 计划下每月 2,000 分钟免费额度（Linux 2 核超出部分 $0.006/分钟，2026-01 起价格）；按每次推送约 7 分钟估算，每月约 280 次推送以内免费。用 `concurrency` 取消过时运行、用路径过滤节省额度。
+GitHub 官方 2026-09 配额表确认：个人 GitHub Free 私有仓库包含每月 **2,000 分钟**与 **500 MB Actions artifact 存储**；公开仓库的标准 GitHub-hosted runner 免费。按一次 CI 约 7 分钟的粗算上界，`floor(2000 / 7) = 285` 次/月，不能写成严格的“280 次额度”（矩阵任务、失败重跑与跨 OS 倍率都会改变消耗）。超额单价与账户/runner 规格可能调整，落地时以官方计费页为准；本文不把价格写成长期常量。用 `concurrency` 取消过时运行、路径过滤并把产物保留期设为 7 天以控制额度。
 
 ```yaml
 # .github/workflows/ci.yml
@@ -1159,16 +1211,18 @@ on:
   pull_request:
   push:
     paths-ignore: ['docs/**', '**/*.md']
-concurrency: { group: ci-${{ github.ref }}, cancel-in-progress: true }
+concurrency:
+  group: 'ci-${{ github.ref }}'
+  cancel-in-progress: true
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v6          # 若不支持 pnpm 12（待核实），改为：run: npm i -g pnpm@12.6.0
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
         with: { version: 12.6.0 }
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with: { node-version: 24, cache: pnpm }
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
@@ -1177,12 +1231,10 @@ jobs:
       - run: pnpm content:validate --reporter=github   # 输出 ::error 注解
       - run: pnpm build
       - run: pnpm size                                 # size-limit 门禁（§5.4）
-      - uses: actions/upload-artifact@v4
-        with: { name: dist, path: apps/game/dist, retention-days: 7 }
 ```
 
 ```yaml
-# .github/workflows/deploy.yml（节选）
+# .github/workflows/deploy.yml（节选；生产环境需 GitHub Environment 审批/密钥）
 on:
   workflow_run: { workflows: [ci], types: [completed], branches: [main] }
 jobs:
@@ -1190,11 +1242,24 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      # 下载 ci 产物 → 注入素材清单版本（ASSET_MANIFEST_URL，来自 tech/06 的发布记录）→ 部署
-      - run: echo "deploy apps/game/dist to static hosting (see tech/08)"
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+        with: { version: 12.6.0 }
+      - uses: actions/setup-node@v7
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build # 注入受保护的素材清单版本；构建产物不跨 workflow_run 传递
+      - run: pnpm --filter @tianshu/api deploy
 ```
 
-> Action 主版本：`actions/checkout@v6`、`actions/setup-node@v6`（v7 已发布，v6 仍维护）、`pnpm/action-setup@v6` 经搜索核实存在；`actions/upload-artifact` 主版本落地时以最新为准（待核实）。
+> 2026-09-26 核实：`actions/checkout@v7.0.1`、`actions/setup-node@v7.0.0` 为各仓库最新发布，`pnpm/action-setup@v6.1.0` 的官方 README 明确支持 pnpm v12。`deploy.yml` 重新签出并构建，不依赖跨工作流 artifact，因此不引入 `actions/upload-artifact`/`download-artifact` 的权限与 provenance 处理。工作流引用 major tag 以接收兼容修补；需要供应链完全可复现时再由仓库策略固定完整 SHA。
+
+**私有部署硬约束（承接 `tech/08` 调研要点 12 与作者决定 P03）**：
+
+- 应用外壳、API 与运行时素材统一由同一 Cloudflare Worker Static Assets 入口承载；配置 `assets.run_worker_first`，让 Worker 在返回 `index.html`、JS、CSS 与受保护素材前验证会话。
+- 无有效会话跳转登录；仅登录回调、manifest/icons、health/auth 等最小路径可免检。`workers_dev=false`、`preview_urls=false`，生产只绑定自定义域名；预览环境也必须受同等鉴权保护。
+- Cloudflare 官方说明静态资产请求免费且不限量，但 `run_worker_first` 匹配的请求会计入 Worker：Free 计划每日 100,000 次、每次 CPU 10 ms；超过后返回 429。是否升级 Paid 以实测流量与 CPU 为准（待实测），不削弱会话闸门换额度。
+- 不采用公开 Cloudflare Pages 或 GitHub Pages；暂不备案，不建设国内/香港镜像。GitHub Actions artifact 只是 7 日内部构建产物，不是公开下载渠道。
 
 素材（图片/音频/视频）不在代码仓库，其处理与上传由 `tools/asset-pipeline` 在本地或独立工作流执行（`tech/06`）；代码仓库只保存 `assets.lock.json`（引用的素材清单版本与哈希），CI 构建时据此写入清单 URL。
 
@@ -1205,10 +1270,10 @@ jobs:
 ### 8.1 TypeScript 配置
 
 **版本决策**：锁定 `typescript ~6.0.3`。原因：
-- TS 7.0（Go 原生编译器，2026-07 发布）构建快约 10 倍，但 7.0 **不提供稳定的编程 API**（预计 7.1 提供）；
-- `typescript-eslint@8.70.1` 的 peer 依赖为 `typescript >=4.8.4 <6.1.0`；`vue-tsc` 依赖 TS 语言服务 API；
-- 升级条件：TS 7.1 发布 + `typescript-eslint` 与 `vue-tsc` 宣布支持 → 整体升级（届时 `tsc -b` 时间可显著下降）。
-- 过渡期可在单独的 CI 任务中用 `pnpm dlx typescript@7 tsc -p packages/core --noEmit` 试跑纯 TS 包，仅作信息参考。
+- TS 7.0（Go 原生编译器，2026-07 发布）官方报告完整构建通常快 8–12 倍；但 7.0 的 npm 包、配置/CLI 兼容不等于现有插件链已经兼容；
+- `typescript-eslint@8.70.1` 的 peer 依赖仍为 `typescript >=4.8.4 <6.1.0`；`vue-tsc@3.3.11` 虽声明 `typescript >=5.0.0`，仍通过 Volar 使用 TypeScript 服务能力，必须整体联调；
+- 升级条件：`typescript-eslint` 明确放宽到 TS 7，且 `vue-tsc`、Vite、Vitest 与编辑器语言服务集成测试通过后再整体升级，不预先承诺某个 7.x 小版本。
+- 过渡期可在单独的非阻断 CI 任务中用 `pnpm dlx typescript@7 tsc -p packages/core --noEmit` 试跑纯 TS 包，仅作信息参考。
 
 ```jsonc
 // tsconfig.base.json
@@ -1315,7 +1380,7 @@ export default defineConfig(
 |---|---|---|
 | D1 禁止 `Math.random` | 一律 `ctx.rng(stream)` | ESLint |
 | D2 禁止墙钟 | `Date`、`performance.now()` 不得进入 core；时间 = `worldTick` 整数 | ESLint + 无 DOM lib |
-| D3 禁止"实现近似"数学函数参与结算 | ECMAScript 规范把 `Math.exp/log/sin/cos/atan2/hypot/cbrt…` 以及 `Math.pow` 与 `**` 运算符共用的 `Number::exponentiate` 定为 implementation-approximated（本文已在 tc39/ecma262 规范源码核实），不同引擎（V8 / JavaScriptCore）结果可能差 1 ulp，累积后导致录像与云端校验不一致；`+ − × ÷`、`Math.sqrt`、`Math.floor/round/trunc`、`Math.min/max/abs` 为精确运算，可用 | ESLint（含禁用 `**` 运算符）；需要幂/衰减时用整数幂 `fx.powInt()`（连乘）或预计算查表 |
+| D3 禁止"实现近似"数学函数参与结算 | ECMAScript 规范把 `Math.exp/log/sin/cos/atan2/hypot/cbrt…` 以及 `Math.pow` 与 `**` 运算符共用的 `Number::exponentiate` 定为 implementation-approximated（本文已在 tc39/ecma262 规范源码核实），不同引擎（V8 / JavaScriptCore）结果可能有差异，累积后导致录像与云端校验不一致；`+ − × ÷`、`Math.sqrt`（规范要求 `ℱ(数学平方根)`）、`Math.floor/round/trunc`、`Math.min/max/abs` 可用，但所有结算仍须在 D4 指定边界取整 | ESLint（含禁用 `**` 运算符）；需要幂/衰减时用整数幂 `fx.powInt()`（连乘）或预计算查表 |
 | D4 数值取整点固定 | 结算在约定的乘区边界取整（由 `design/04` 定义取整点，`tech/05` 实现）；百分比加成在 core 内部统一换算为整数万分点（bp） | 单元测试 + golden 录像 |
 | D5 迭代顺序确定 | 影响结果的遍历一律基于排序后的 ID 数组；排序比较器必须是全序（相等时比 ID）；禁止 `for…in` | ESLint + 代码评审 |
 | D6 RNG 分流 | `battle`、`loot`、`world`、`ai`、`qiyu` 各自独立流；新增一次 UI 预览不得消耗任何流 | 查询函数签名不接收 `rng` |
@@ -1408,8 +1473,11 @@ CI 门禁只对 `shared`/`core` 设硬性覆盖率阈值；其余为报告。
 # 天书录 tianshu —— AI 协作约定
 
 ## 事实来源（冲突时按此优先级）
-1. docs/00-canon.md（设计基准，未经作者明确要求不得修改）
-2. docs/design/*（玩法规则）  3. docs/tech/*（技术方案）  4. 代码注释
+1. docs/decisions/author-decisions.md 中作者已填写的决定，与 docs/decisions/author-requirements.md（同级）
+2. docs/00-canon.md（设计基准，未经作者明确要求不得修改）
+3. docs/decisions/rulings-v1.md（跨文档冲突裁定、重命名与缺口清单）
+4. 基准 §18 指定的唯一归属文档；其他文档只引用，不平行定义
+5. 已落地且通过校验的 schema/代码；代码注释不得覆盖上述文档事实
 
 ## 完成的定义
 - `pnpm check` 全绿（lint + typecheck + test + content:validate）
@@ -1442,14 +1510,26 @@ pnpm dev | pnpm check | pnpm vitest run --project core | pnpm content:validate |
 export const Grade = z.number().int().min(1).max(12)
   .describe('品阶 1–12：黄下…天上（Canon §4）');
 
+const Nature = z.enum(['yang', 'yin', 'harmony', 'neutral']);
+
 export const SkillDef = z.strictObject({                  // 未知字段即报错（防拼写错误）
   id: z.string().regex(/^sk_[a-z0-9_]+$/).describe('武功 ID（Canon §12）'),
   category: z.enum(['inner', 'unarmed', 'weapon', 'movement', 'hidden', 'misc'])
     .describe('大类（Canon §7）；仅 inner/unarmed/weapon 可经书眠携带'),
+  // design/05 §2.1 的顶层必填字段；非内功可用 neutral，内功不得用 neutral。
+  nature: Nature.describe('阴 / 阳 / 调和 / 中性；内功不得为 neutral'),
   grade: Grade,
   maxLayer: z.number().int().min(1).max(10).describe('层数上限（受书界境界截断，Canon §3）'),
   original: z.boolean().default(false).describe('是否原创扩展（Canon §16.5）'),
   // moves、passives、setTags …
+}).superRefine((v, ctx) => {
+  if (v.category === 'inner' && v.nature === 'neutral') {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['nature'],
+      message: 'AR-02：内功必须标 yin / yang / harmony，不得使用 neutral',
+    });
+  }
 });
 export type SkillDef = z.infer<typeof SkillDef>;
 ```
@@ -1485,15 +1565,15 @@ export type SkillDef = z.infer<typeof SkillDef>;
 | # | 风险 | 可能性 / 影响 | 证据 / 现状 | 缓解措施 | 负责文档 |
 |---|---|---|---|---|---|
 | R1 | **iOS Safari 7 天清除脚本存储**：非主屏幕 Web App 若 7 天内无交互，IndexedDB、Cache Storage、SW 全部被清 | 高 / 高（丢档） | WebKit 存储策略；iPhone Safari 上 `navigator.storage.persist()` 实际常被拒 | ① 引导"添加到主屏幕"（主屏 Web App 豁免且配额与浏览器相同，约磁盘 60%）；② 云存档为权威备份；③ 存档导出文件；④ 启动时检测存档丢失并提示从云端恢复 | 本文 §6.9、`tech/08` |
-| R2 | iOS 内存上限、后台杀页、WebGL 上下文丢失 | 中 / 高 | 移动 Safari 标签页内存上限未公开（待核实） | 显存预算 ≤ 256 MB、区域 LRU、KTX2；上下文恢复路径（§6.9）；高频自动存档 | `tech/02`、`tech/03` |
-| R3 | iPhone 无元素全屏、方向锁定不可依赖、刘海安全区、`100vh` 跳动 | 高 / 中 | caniuse：iOS 全屏 API 仅 iPad 部分支持 | PWA 独立窗口（`display: fullscreen/standalone`）；旋转提示遮罩；`env(safe-area-inset-*)`；用 `dvh/svh` 单位 | `design/14`、本文 §6.5 |
-| R4 | 音频：iOS 需手势解锁、静音键静音 WebAudio | 高 / 低 | Safari 17+ 提供 `navigator.audioSession` | §6.7：首手势解锁、`audioSession.type` 设置项、BGM 走 `<audio>` 流式 | 本文 §6.7 |
-| R5 | **WebGPU 碎片化** | 中 / 中 | caniuse：iOS Safari 26+、Android Chrome、Samsung Internet 支持；QQ/UC 浏览器不支持；Firefox 仅 Windows/macOS 26 默认开启；微信 XWeb 待核实；three 的 WebGL2 回退后端性能存疑 | 基线 WebGL2；§2.6 闸门；若迁移 WebGPU，按设备能力检测 + 黑名单回退 | 本文 §2.6、`tech/02` |
-| R6 | **中文字体体积** | 高 / 中 | 完整简体中文字库单字重通常数 MB（待按所选字体实测） | 正文用系统字体栈（PingFang SC / Noto Sans CJK / 微软雅黑）；标题/书法字体按"全部内容用字"构建期子集化（`cn-font-split` 按 `unicode-range` 切片，按需加载）；校验器检查缺字；繁体单独子集 | `tech/06` |
+| R2 | iOS 内存上限、后台杀页、WebGL 上下文丢失 | 中 / 高 | Apple 不公开单标签页的固定 jetsam 硬上限；WebKit 只公开基于可用内存的压力策略，不能据此虚构一个通用 GB 数 | 按 `tier × memClass` 双重封顶：四档 96/160/256/512 MB，S 级再封顶 128 MB；区域 LRU、KTX2、恢复路径与高频自动存档；作者三类设备测峰值和杀页（待实测） | `tech/02`、`tech/03` §2.5、§3.1 |
+| R3 | iPhone 无元素全屏、方向锁定不可依赖、刘海安全区、`100vh` 跳动 | 高 / 中 | MDN BCD / caniuse：iPhone 不提供元素 Fullscreen，manifest 的 `fullscreen`/`orientation` 也不可依赖 | manifest 基线写 `display: standalone`，仅 Chromium 可用 `display_override: [fullscreen, standalone]`；旋转提示遮罩；`env(safe-area-inset-*)`；用 `dvh/svh` 单位 | `design/14`、本文 §6.5 |
+| R4 | 音频：iOS 需手势解锁、媒体元素音量不可编程控制、静音键语义不同 | 高 / 低 | Safari 16.4+ 提供 `navigator.audioSession`；Apple 文档明确 iOS 的媒体元素 `volume` 恒为 1 | §6.7：首手势解锁、`audioSession.type` 设置项；BGM 仍由 `<audio>` 流式，但必须接入 `MediaElementAudioSourceNode → GainNode` 控制音量/fade/duck | 本文 §6.7 |
+| R5 | **WebGPU 碎片化** | 中 / 中 | WebKit 官方确认 Safari 26 加入 WebGPU，Chromium Android 已支持；但微信 XWeb / iOS 微信 WKWebView 是否暴露 `navigator.gpu` 无一手证据（待核实），且 three 的 WebGL2 回退后端性能存疑 | 基线 WebGL2；§2.6 闸门；若迁移 WebGPU，逐入口能力探测并保留黑名单回退 | 本文 §2.6、`tech/02` |
+| R6 | **中文字体体积与授权** | 高 / 中 | 完整简体中文字库单字重通常数 MB；作者决定 P04 只允许逐项核实许可的 OFL 标题字体，具体字体与嵌入/子集许可尚未选定（待核实） | 正文先用系统字体栈；标题字体未定前同样系统回退；选定 OFL 字体后保存许可证并按 `tech/03` 的启动/书界预算子集化，校验器检查缺字；繁体单独子集 | `tech/03` §5.5、`tech/06`、`tech/07` |
 | R7 | 包体膨胀 | 中 / 中 | 完整 zod 89 KB、Phaser 360 KB 等实测数据说明"随手引库"代价大 | `size-limit` 门禁；`rollup-plugin-visualizer`；构建期库不进运行时（§5.1）；新增依赖须写体积理由（§9.1） | 本文 §5.4 |
 | R8 | Three.js 月度发布的破坏性变更 | 中 / 中 | r 版本每月发布 | 锁定精确版本；每季度一次有计划升级：跑 bench-iso + 截图回归 + golden 录像 | `tech/02` |
 | R9 | 渲染器路线选错（WebGL vs WebGPU） | 中 / 中 | §2.6 | Phase 0 实测闸门；自定义着色器集中在 `render/materials`（≤ 8 个） | 本文 §2.6 |
-| R10 | 工具链换代（TS 7、Vite 8/Rolldown、ESLint 10、pnpm 12） | 中 / 低 | TS 7 无稳定 API；pnpm 12 发布仅 1 个月 | 锁版本 + catalog；升级走 ADR；pnpm 若遇问题退回 11.x | 本文 §8.1 |
+| R10 | 工具链换代（TS 7、Vite 8/Rolldown、ESLint 10、pnpm 12） | 中 / 低 | TS 7.0 已发布，但 `typescript-eslint@8.70.1` 的 TypeScript peer 仍为 `<6.1.0`；本文已核 `pnpm/action-setup@v6.1.0` 支持 pnpm 12，但不等于所有插件都兼容 | 锁版本 + catalog + lockfile；升级走 ADR；先在独立 CI 联调 lint/SFC 类型检查/构建/编辑器；pnpm 12 若有阻断再回退 11.x | 本文 §4.2、§7.6、§8.1 |
 | R11 | 微信内置浏览器：不能安装 PWA、存储可能被清、UA 怪异 | 中 / 中 | — | 检测微信 UA → 引导"在浏览器中打开"；仍可玩（依赖云存档）；不针对微信做特殊适配 | `tech/08` |
 | R12 | 确定性漂移（跨引擎浮点、库内隐性随机） | 中 / 高（录像/云校验失效） | ECMAScript 规范：超越函数为实现近似；inkjs 用时间播种 | §8.3 D1–D9；Node + WebKit 双引擎 golden 录像 | 本文 §8.3、`tech/05` |
 | R13 | 着色器首次编译卡顿（移动端尤甚） | 高 / 中 | — | 加载画面中预热：`renderer.compileAsync(scene, camera)`；材质变体数量受控 | `tech/02`、`tech/03` |
@@ -1510,10 +1590,10 @@ export type SkillDef = z.infer<typeof SkillDef>;
 
 | 阶段 | 目标 | 新增 / 启用的架构件 | 退出标准 |
 |---|---|---|---|
-| **Phase 0 地基**（约 2 周） | 仓库可跑、可测、可部署 | monorepo 骨架、CI、`shared`（RNG/fx）、`core` 命令/事件骨架、`bench-iso` 基准场景、Tiled→RegionMap 转换打通 1 张图 | 渲染器闸门结论写入 ADR-0001；`pnpm check` 全绿；手机上能看到可拾取的高度地形 |
+| **Phase 0 地基**（约 2 周） | 仓库可跑、可测、可部署 | monorepo 骨架、CI、`shared`（RNG/fx）、`core` 命令/事件骨架、`bench-iso` 基准场景、Tiled 六角/offset→轴坐标→RegionMap 转换打通 1 张图 | WebGL 基线记录写入 ADR-0001；只有完整 WebGPU render 先压到 ≤ 300 KB 才启动 R2/R3 真机闸门；`pnpm check` 全绿；手机上能看到可拾取的高度六角地形 |
 | **Phase 1 MVP**（约 8–10 周） | 序章《越女剑》完整可玩 | 探索（10 Hz tick）、ink 对话、就地开战（CT 时间轴、Z0–Z10 完整、Buff 子集）、表现队列、本地存档、PWA 离线、dev 控制台、内容热更新 | 手机上从新游戏到序章通关无阻断 bug；战斗 ≥ 30 fps；首包达标 |
 | **Phase 2 纵切片** | 《天龙八部》2–3 个区域 | 轻功门禁、套装、区域懒加载 + LRU、书眠流程（携带/压制）、云存档（`services/api`）、`ai.worker`、`apps/editor` 预览 | 跨设备继续同一存档；书眠进入下一书界（用占位内容） |
-| **Phase 3 量产化** | 完整《天龙》 | AIGC 素材管线（`tech/07`）、内容规模化校验（L6 可达性、L8 数值冒烟）、可能的 WebGPU 整体迁移、可能的 core Worker 模式 B | 单书界 8–15 小时内容，全部通过校验 |
+| **Phase 3 量产化** | 完整《天龙》 | AIGC 素材管线（`tech/07`）、内容规模化校验（L6 可达性、L8 数值冒烟）、在完整 render ≤ 300 KB 且 Phase 0 真机条件均通过后才可能整体迁移 WebGPU、可能的 core Worker 模式 B | 单书界 8–15 小时内容，全部通过校验 |
 | **Phase 4+** | 书界 2–14 逐部推进 | 繁体（可选）、AI NPC 代理（可选） | 每部完成即可发布到个人站点 |
 
 ---
@@ -1528,17 +1608,17 @@ export type SkillDef = z.infer<typeof SkillDef>;
 | core 运行位置 | 主线程（模式 A） | 专用 Worker（模式 B） | 主线程 core 耗时 > 4 ms/帧 |
 | 音频 | Howler 封装 | 直用 WebAudio + `<audio>` | Howler 出现无法绕过的 iOS 问题 |
 | 存储 | Dexie 4 | `idb` 8（更小） | 包体紧张且表结构稳定 |
-| 地图编辑 | Tiled 1.12 正交视图 + 转换 | 自研浏览器编辑器 / LDtk | Tiled 无法满足高度编辑效率（Phase 2 起补 `apps/editor`） |
-| 语言版本 | TypeScript 6.0.x | TypeScript 7.x | TS 7.1 + typescript-eslint + vue-tsc 支持 |
+| 地图编辑 | Tiled 1.12 六角地图；受限环节由 offset 一次性转 pointy-top 轴坐标 | 自研浏览器编辑器 / LDtk | Tiled 无法满足高度编辑效率（Phase 2 起补 `apps/editor`） |
+| 语言版本 | TypeScript 6.0.x | TypeScript 7.x | typescript-eslint 放宽 peer，且 vue-tsc/Volar、Vite、Vitest、编辑器链联调通过 |
 | Lint/格式化 | ESLint 10 + Prettier | Biome 2.5 / oxlint | 需要更快的 lint 且不再依赖自定义边界/确定性规则插件 |
 | 包管理 | pnpm 12.6 | pnpm 11.x | pnpm 12 出现阻断性问题 |
-| 部署 | 静态托管 + Serverless | 自建 VPS | 需要长连接或常驻进程（本项目不预期） |
+| 部署 | Cloudflare Worker Static Assets + 会话闸门（仅自定义域，禁公开 Pages） | 自建 VPS | 需要长连接或常驻进程，或受保护静态入口无法满足需求（本项目不预期） |
 
 ---
 
 ## 参考资料
 
-> 访问日期均为 **2026-09-25**。"本地实测/核实"指在本文撰写环境中直接运行或读取源码得到的结论。
+> 联网资料最后访问于 **2026-09-26**。"本地实测/核实"指在本文撰写环境中直接运行、读取包元数据/源码或复核既有构建记录；社区帖子只作风险线索，不作支持性结论。
 
 **版本与包体（一手数据）**
 1. npm registry（各包 `dist-tags.latest`、发布时间、`peerDependencies`、`engines`）：https://registry.npmjs.org/ （逐包查询：`three`、`pixi.js`、`phaser`、`@babylonjs/core`、`playcanvas`、`vue`、`pinia`、`vite`、`vitest`、`typescript`、`typescript-eslint`、`vue-tsc`、`eslint`、`pnpm`、`dexie`、`inkjs`、`zod`、`yaml`、`fflate`、`howler`、`comlink`、`vite-plugin-pwa`、`@playwright/test` 等）
@@ -1550,17 +1630,17 @@ export type SkillDef = z.infer<typeof SkillDef>;
 7. Cocos 引擎许可证（v3.8.6 `LICENSE.md` 为 MIT）：https://github.com/cocos/cocos-engine/blob/v3.8.6/LICENSE.md
 
 **浏览器支持**
-8. caniuse 数据仓库（`webgpu`、`webgl2`、`offscreencanvas`、`sharedarraybuffer`、`fullscreen`、`screen-orientation`、`viewport-unit-variants` 等 features-json）：https://github.com/Fyrd/caniuse/tree/main/features-json
-9. MDN《Storage quotas and eviction criteria》（Safari 浏览器应用约 60% 磁盘、嵌入式 WebView 约 15%、主屏 Web App 同浏览器配额；7 天无交互清除）：https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria （源文件：https://github.com/mdn/content/blob/main/files/en-us/web/api/storage_api/storage_quotas_and_eviction_criteria/index.md ）
-10. WebKit《Updates to Storage Policy》：https://webkit.org/blog/14403/updates-to-storage-policy/ （经搜索摘要）
-11. iOS PWA 限制汇总：https://www.magicbell.com/blog/pwa-ios-limitations-safari-support-complete-guide （经搜索摘要）
-12. iOS Safari Audio Session（`navigator.audioSession.type`，Safari 17+）：https://samueleddy.com/writing/ios-safari-audio-sessions/ ；https://adactio.com/links/19938 （经搜索摘要）
-13. 微信小游戏/内置浏览器 WebGL/WebGPU 概况：https://app.cinevva.com/guides/wechat-mini-game-engines （经搜索摘要；XWeb 细节待核实）
+8. MDN Browser Compatibility Data（`api.Navigator.deviceMemory`、`api.HTMLMediaElement.volume`、`api.Navigator.audioSession`、`webgpu`、`webgl2`、`fullscreen`、`screen-orientation`、Opus 等）：https://github.com/mdn/browser-compat-data/tree/main （并以 MDN 页面呈现复核：https://developer.mozilla.org/en-US/docs/Web/API/Navigator/deviceMemory 、https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume ）
+9. WebKit《WebKit Features in Safari 26.0》（WebGPU 与主屏 Web App）：https://webkit.org/blog/17333/webkit-features-in-safari-26-0/
+10. Apple《iOS-Specific Considerations》（媒体元素音量由用户物理控制，脚本设置无效）：https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html
+11. MDN《Storage quotas and eviction criteria》（Safari 浏览器应用约 60% 磁盘、嵌入式 WebView 约 15%、主屏 Web App 同浏览器配额；7 天无交互清除）：https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria （源文件：https://github.com/mdn/content/blob/main/files/en-us/web/api/storage_api/storage_quotas_and_eviction_criteria/index.md ）
+12. WebKit《Updates to Storage Policy》：https://webkit.org/blog/14403/updates-to-storage-policy/
+13. 微信开放文档仅覆盖开发者工具的小程序/小游戏真机调试，不能据此证明普通 H5 XWeb 的远程调试或 WebGPU：https://developers.weixin.qq.com/miniprogram/dev/devtools/remote-debug.html （故正文保留相应标注）
 
 **引擎与框架**
-14. three.js WebGPURenderer 手册：https://threejs.org/manual/en/webgpurenderer.html （经搜索摘要）
-15. three.js 论坛：WebGPURenderer 性能低于 WebGLRenderer 的讨论：https://discourse.threejs.org/t/why-webgpurenderer-performance-significantly-lower-than-webglrenderer/77629 ；https://discourse.threejs.org/t/webgpu-performance-issue/87939 （经搜索摘要）
-16. Three.js 2026 变化综述：https://www.utsubo.com/blog/threejs-2026-what-changed （经搜索摘要）
+14. three.js WebGPURenderer 手册：https://threejs.org/manual/en/webgpurenderer.html
+15. three.js 论坛：WebGPURenderer 性能低于 WebGLRenderer 的个案（仅为风险线索，需本项目真机复现）：https://discourse.threejs.org/t/why-webgpurenderer-performance-significantly-lower-than-webglrenderer/77629 ；https://discourse.threejs.org/t/webgpu-performance-issue/87939
+16. three.js r186 发布标签与包元数据：https://github.com/mrdoob/three.js/releases/tag/r186 ；https://registry.npmjs.org/three/latest
 17. Phaser 4 渲染器与发布：https://phaser.io/news/2026/04/phaser-4-renderer-faster-cleaner-and-built-for-modern-games ；https://gamefromscratch.com/phaser-4-released/
 18. Babylon.js 9.0 发布：https://blogs.windows.com/windowsdeveloper/2026/03/26/announcing-babylon-js-9-0/
 19. PlayCanvas / Three / Babylon / Unity Web 对比（2026）：https://app.cinevva.com/blog/2026-06-09-web-game-engines-2026-comparison ；https://github.com/playcanvas/engine
@@ -1570,12 +1650,14 @@ export type SkillDef = z.infer<typeof SkillDef>;
 23. Cocos Creator 3.8 手册：https://docs.cocos.com/creator/3.8/manual/en/
 
 **工具链**
-24. TypeScript 7.0 发布（原生编译器、7.0 无稳定编程 API、7.1 预期提供）：https://www.infoq.com/news/2026/08/typescript-7-released/ ；https://www.infoworld.com/article/4196378/go-based-typescript-7-0-arrives.html
+24. TypeScript 官方《Announcing TypeScript 7.0》（Go 原生编译器、典型完整构建快 8–12 倍）：https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/ ；npm 包元数据：https://registry.npmjs.org/typescript/7.0.2
 25. Node.js 发布计划（Node 26 于 2026-10-28 转 Active LTS；自 Node 27 起每年一个大版本）：https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule ；https://endoflife.date/nodejs
 26. Node 25+ 不再内置 Corepack：https://socket.dev/blog/node-js-tsc-votes-to-stop-distributing-corepack
 27. Tiled 1.12 / 1.12.2 发布：https://www.mapeditor.org/2026/03/13/tiled-1-12-released.html ；https://www.mapeditor.org/2026/05/27/tiled-1-12-2-released.html
-28. GitHub Actions 2026 计费：https://github.com/resources/insights/2026-pricing-changes-for-github-actions ；https://github.blog/changelog/2025-12-16-coming-soon-simpler-pricing-and-a-better-experience-for-github-actions/
-29. Actions 主版本：https://github.com/actions/setup-node/releases ；https://github.com/pnpm/action-setup/releases ；https://github.com/pnpm/action-setup/issues/227
+28. GitHub 官方计划额度与 Actions 计费（Free：2,000 分钟/月、500 MB artifact 存储；公开仓库标准 runner 免费）：https://docs.github.com/en/billing/reference/product-usage-included ；https://docs.github.com/en/billing/concepts/product-billing/github-actions
+29. Actions 发布与 `pnpm/action-setup@v6.1.0` README（明确支持 pnpm v12）：https://github.com/actions/checkout/releases ；https://github.com/actions/setup-node/releases ；https://github.com/pnpm/action-setup/blob/v6.1.0/README.md
+30. Cloudflare Workers 官方配额与 Static Assets 计费：Free 为 100,000 requests/day、10 ms CPU；静态资产请求免费且不限量，但 `run_worker_first` 命中会执行 Worker，超 Free 请求额度返回 429：https://developers.cloudflare.com/workers/platform/limits/ ；https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/
+31. Cloudflare Wrangler 配置（`workers_dev`、`preview_urls`、Static Assets / `run_worker_first`）：https://developers.cloudflare.com/workers/wrangler/configuration/
 
 ---
 
@@ -1595,7 +1677,7 @@ export type SkillDef = z.infer<typeof SkillDef>;
 | `AssetScope` | 引用计数的资源作用域，释放后进入 LRU，超显存预算时销毁 |
 | 资源级别 L0–L3 | 常驻 / 书界 / 区域 / 临时 |
 | `RenderScheduler` | 渲染频率调度：`continuous` / `throttled` / `onDemand` |
-| 画质档 `QualityTier` | `low` / `mid` / `high`，决定 DPR 上限、阴影、后处理、目标帧率 |
+| 画质档 `QualityTier` | `low` / `mid` / `high` / `ultra` 四档，决定 DPR 上限、阴影、后处理、目标帧率与 GPU 上限；素材仍只有 low/mid/high，ultra 复用 high |
 | 渲染器闸门 | Phase 0 以 `bench-iso` 基准场景在真机上比较 R1/R2/R3，决定 WebGL 或 WebGPU 单一路径 |
 | `bench-iso` | 渲染基准场景（64×64 高度地形 + 300 精灵 + 2 动态光 + 1 后处理） |
 | RNG 流 | `battle`/`loot`/`world`/`ai`/`qiyu` 五条独立的 sfc32 流，状态存于 `meta.rng` |
@@ -1608,22 +1690,47 @@ export type SkillDef = z.infer<typeof SkillDef>;
 | 确定性规则 D1–D9 | §8.3 定义的 core 编码规则 |
 | 效果原语 | Buff/招式效果的最小可组合单元（如 `modStat`、`dot`、`immune`），清单归 `tech/05`、`design/06` |
 
+**裁定迁移检查（2026-09-26）**：C18 已把跨语言静态契约唯一收敛到根 `packages/spec/`，`packages/data` 不保留副本；C21 已按 §4.3/§5.4/§6.1 与本表收敛。对 `rulings-v1.md` §2 的旧名/旧 ID 全文扫描无命中；本文也没有具体 `bf_*` 实例定义，C23 的 19 个目录缺口及撤回项全部由 `design/06` 唯一定义，故本文无可迁移 Buff ID。运行时校验仍必须拒绝引用不存在的具体 Buff，不允许用 `bf_tsp_*` 通配前缀代替实例。
+
 ---
 
 ## 待决事项 / 依赖
 
-| # | 事项 | 依赖 / 负责 | 截止 |
+### 已解决 / 已采纳追溯
+
+| 原编号 | 状态与落点 |
+|---|---|
+| P1 | **已解决（作者决定 P01、C21）**：测试矩阵固定为作者主力手机 + 一台中端 Android + 一台 iPad；WebGPU 因 `330 > 300 KB` 当前未过包体门。尚待执行的实测见 O1。 |
+| P2 | **已解决**：`design/04` §1.2–§1.3 已定 `10000 bp`、Z1–Z10 各区末取整、资源成本四舍五入与概率比较；本文 §8.3 D4 只引用，实现归 `tech/05`。 |
+| P3 | **已解决架构默认**：本文采用 `10 Hz = 100 ms/tick`；世界时间换算仍由 `design/11`、实现由 `tech/05` 定稿，执行项见 O2。 |
+| P4 | **已解决架构边界**：规则包/文本包分离已写入 §5.4、§6.4、§6.8；字段、分片与增量格式仍归 `tech/04`，不在本文重定义。 |
+| P5 | **已解决架构边界**：内容哈希 URL、manifest、`assets.lock.json` 与缓存入口见 §6.4、§7.6；唯一格式与 CDN 布局归 `tech/06`。 |
+| P6 | **已解决（作者决定 P03）**：暂不备案、不做国内/香港镜像，只规划 Cloudflare；Cloudflare 的会话、云存档冲突与存储细节归 `tech/08`。 |
+| P7 | **已解决（C20、AR-12）**：`tech/02` 已定四个 90° 相机预设、六向规则与 8 方向精灵；本文只消费接口。 |
+| P8 | **已解决终值**：`tech/03` 已定四档 GPU 96/160/256/512 MB、S 级 128 MB 封顶及帧/加载预算；本文 §1.2、§6.1 已同步。 |
+| P9 | **已解决（作者决定 P53、AR-04/11）**：大地图只作导航与路线选择，抵达后才挂载可行走区域，见 §1.1、§3.2.1。 |
+| P10 | **已解决归属**：Buff 完整目录归 `design/06`，运行时效果原语归 `tech/05`；C23 的 19 个缺口不在本文定义，本文只要求引用必须存在。 |
+| P11 | **已解决公开可查部分**：已确认 iOS Safari 的 Opus 支持口径、checkout/setup-node v7、`pnpm/action-setup@v6.1.0` 支持 pnpm 12，以及 Apple 不公开通用标签页内存硬上限；部署改为同一 workflow 内重新构建，不再依赖跨 workflow artifact。Cocos 包体转为实测项，XWeb 两项见 O3。 |
+| P12 | **已解决当前选型**：TS 7.0 已发布，但 `typescript-eslint@8.70.1` peer 仍 `<6.1.0`，继续锁 TS 6.0.x；升级条件见 §8.1，后续按依赖生态复查，不硬编码“7.1 即升级”。 |
+| P13 | **已解决选型原则（作者决定 P04）**：只选逐项核实许可的 OFL 书法字体；具体字体及其嵌入/子集许可是执行项，见 O4。 |
+
+### 对基准的修改提案
+
+| 编号 | 状态 / 提案 | 理由 |
+|---|---|---|
+| Canon v1.1 既有提案 | **已采纳（v1.1）**：本文涉及的 ID 前缀、战斗状态、归属边界与高武 6–16 等事实已由 V11-01～V11-43、V11-R01～R08 提供；本文不重提第二套规则。 | 旧稿依赖的跨文档事实已有 Canon 变更记录，保留追溯。 |
+| RT1-P01 | Canon §19 明确 `QualityTier` 四档、素材仍三档且 ultra 复用 high，并索引 `tech/02` §11.2 的异步 `RenderWorld`。 | C21 已在 tech/01/02 落地；提升到技术基线可防止后续调用方继续复制旧三档/同步签名。 |
+| RT1-P02 | Canon §19 明确全国大地图是导航/UI 资产，区域场景在抵达后挂载。 | 作者决定 P53 与 AR-04/11 已覆盖旧歧义；避免实现第二套可行走世界地形。 |
+| RT1-P03 | Canon §19 增加私有部署约束：应用外壳与受保护素材均先经会话闸门，不采用公开 Pages。 | Canon §0“非商业、不公开分发”与技术托管方式需要同一可验收接口。 |
+
+### 开放问题（附默认值）
+
+| # | 开放问题 | 默认值 / 继续执行方式 | 截止 |
 |---|---|---|---|
-| P1 | 渲染器闸门实测（R1/R2/R3），结论写入 `docs/adr/0001-renderer-gate.md` | 本文 §2.6、`tech/02`；**需要作者提供自用设备清单**（机型、系统版本、常用浏览器） | Phase 0 |
-| P2 | 伤害结算的取整点与百分比的整数化表达（万分点） | `design/04` 定义公式取整点；`tech/05` 实现 | Phase 1 前 |
-| P3 | 探索逻辑 tick 频率终值（暂定 10 Hz）与世界时间换算 | `tech/05`、`design/11` | Phase 1 |
-| P4 | 书界包"规则/文本"拆分格式、包体积估算、增量更新方案 | `tech/04` | Phase 1 |
-| P5 | 素材清单（manifest）格式、`assets.lock.json`、CDN 与缓存策略 | `tech/06` | Phase 1 |
-| P6 | 云存档冲突策略、国内部署（ICP 备案）与海外部署的选择 | `tech/08` | Phase 2 |
-| P7 | 相机是否开放 90° 旋转、遮挡剪影、精灵 8 方向管线 | `tech/02`、`design/14` | Phase 0–1 |
-| P8 | 性能预算终值（帧时间、显存、draw call、加载时间） | `tech/03` | Phase 0 |
-| P9 | 是否需要"世界地图"作为区域间旅行场景 | `design/11` | Phase 2 |
-| P10 | 效果原语清单（Buff/招式） | `design/06`、`tech/05` | Phase 1 |
-| P11 | 待核实：微信 XWeb 的 WebGPU 支持与远程调试方式；iOS Safari 对 Opus 的支持；Cocos 3.8 的 Web 包体与 WebGPU 状态；`pnpm/action-setup@v6` 对 pnpm 12 的支持；`actions/upload-artifact` 当前主版本；移动 Safari 标签页内存上限 | 本文 | Phase 0 |
-| P12 | TypeScript 7.1 发布后的升级评估（typescript-eslint / vue-tsc 支持情况） | 本文 §8.1 | 2027 年初复查 |
-| P13 | 标题/书法字体的选型与授权（个人自用也需确认字体许可） | `tech/06`、`tech/07` | Phase 1 |
+| O1 | 三类实机的具体型号、OS、浏览器/入口；完整 WebGPU render 复现与 R1/R2/R3 性能；`vue-i18n` 最小用法 gzip | 当前固定 WebGL；先把完整 WebGPU render 压到 ≤300 KB，才在作者主力手机 + 中端 Android + iPad 记录 P50/P95、5 分钟发热后帧率和内存；同一包体脚本补测 `vue-i18n`（待实测） | Phase 0 |
+| O2 | 探索 tick 对世界时辰的换算 | 架构继续用 10 Hz；默认世界时间只由 `worldTick` 整数推进，暂停/后台不补跑，具体“多少 tick = 一时辰”由 `design/11` 给出，`tech/05` 实现 | Phase 1 前 |
+| O3 | 普通微信 H5 XWeb 的远程调试链与 XWeb/iOS 微信是否暴露 WebGPU | 默认不依赖：dev 用 eruda，生产走 WebGL2，并引导系统浏览器；只有目标微信版本真机探测通过才改（待核实） | Phase 0 |
+| O4 | 具体 OFL 标题/书法字体及嵌入、子集许可 | 未选定前全部系统字体回退；选定后把许可证原文随素材版本保存并检查保留名称/再分发条款（待核实） | Phase 1 |
+| O5 | Cocos Creator 对本项目裁剪后的最小 Web 包体 | 不影响当前 Three.js 选择；只有切换到小游戏发行时才做等功能样例（待实测） | 触发备选方案时 |
+| O6 | Cloudflare Free 是否满足受保护静态请求量与 CPU | 先按 Free 的 100,000 requests/day、10 ms CPU 运行；以真实请求/CPU 告警决定是否升 Paid，不取消 `run_worker_first` 鉴权（待实测） | 部署前 |
+| O7 | iOS 峰值内存、后台杀页与 BGM 增益链恢复稳定性 | 遵守 S 级 GPU 128 MB 封顶、隐藏即存档；在三类实机记录峰值、切后台 10 次及交叉淡化，失败则 BGM 硬切 + 0.3 s 静音（待实测） | Phase 0–1 |
