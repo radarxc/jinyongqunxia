@@ -26,3 +26,4 @@
 
 ## 作者新增需求（2026-09-26，见 `docs/decisions/author-requirements.md`，优先级高于基准与上文）
 Schema 与内容管线需预留：全局区域 / 城市表与时代图层（design/11）、经脉 / 穴道 / 周天（design/15）、资源品级 / 资源点 / 家丁 / 营生场所（design/16）、门派五级职级与月钱（design/12）。这些文档尚未写成时，按 author-requirements 的 ID 前缀与字段草案预留 schema 位置并标【建议值】。
+NPC 名录（design/18，含生卒年、层级 D1–D5、跨书界标记）的 schema 与校验。
