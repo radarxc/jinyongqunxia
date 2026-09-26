@@ -1209,6 +1209,15 @@ def near_match_issues(
     for occurrence in occurrences:
         if occurrence.active:
             first.setdefault(occurrence.id, occurrence.location)
+    # Definitions can enter ``ids`` even when their source line is not an
+    # active reference (for example a valid table row whose descriptive cells
+    # contain the word "模板").  Preserve active-reference locations when
+    # available, then fall back to the definition site.  The final sentinel
+    # keeps diagnostics total if a future caller supplies an ID from another
+    # source without a corresponding occurrence or definition location.
+    for definition in definitions:
+        first.setdefault(definition.id, definition.location)
+    unknown_location = Location("?", 0, 0)
     result: List[Dict[str, object]] = []
     by_family: Dict[str, List[str]] = {}
     for identifier in ids:
@@ -1253,7 +1262,10 @@ def near_match_issues(
                     "ids": [left, right],
                     "prefix": family,
                     "distance": distance,
-                    "locations": [location_dict(first[left]), location_dict(first[right])],
+                    "locations": [
+                        location_dict(first.get(left, unknown_location)),
+                        location_dict(first.get(right, unknown_location)),
+                    ],
                     "defined": [left in defined_ids, right in defined_ids],
                 })
     return result

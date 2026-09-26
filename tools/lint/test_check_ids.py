@@ -263,6 +263,43 @@ class IssueCategoryTests(unittest.TestCase):
         self.assertEqual(["tr_shekou", "tr_sheku"], issues[0]["ids"])
         self.assertLessEqual(issues[0]["distance"], 2)
 
+    def test_category_3_uses_definition_location_when_id_has_no_active_occurrence(
+        self,
+    ) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/catalog/npcs-test.md",
+                """# NPC 图鉴
+
+## 1. 正式目录
+
+| ID | 名称 | 定位 |
+|---|---|---|
+| `npc_shijian` | 侍剑 | 基础模板 |
+
+活动正文引用 `npc_shixian`。
+""",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        near_matches = report["issues"]["near_matches"]
+        self.assertEqual(1, len(near_matches))
+        self.assertEqual(["npc_shijian", "npc_shixian"], near_matches[0]["ids"])
+        self.assertEqual(
+            {
+                "file": "docs/design/catalog/npcs-test.md",
+                "line": 7,
+                "column": 4,
+            },
+            near_matches[0]["locations"][0],
+        )
+        self.assertEqual(
+            ["npc_shixian"],
+            [item["id"] for item in report["issues"]["undefined_references"]],
+        )
+
     def test_category_4_parses_rename_table_and_ignores_migration_prose(self) -> None:
         with TemporaryRepository() as repo:
             rulings = repo.write(check_ids.RULINGS_REL, RULINGS_WITH_RENAME)
