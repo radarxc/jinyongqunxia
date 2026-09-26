@@ -1644,8 +1644,6 @@
         "R10",
         "RT2",
         "B6a",
-        "M1",
-        "B7",
         "W1"
       ],
       "writes": [
@@ -1774,7 +1772,6 @@
       "deps": [
         "G1",
         "B3",
-        "B4",
         "R10",
         "R13"
       ],
@@ -2004,11 +2001,8 @@
         "B1",
         "R06",
         "R09",
-        "B4",
         "E1",
-        "R13",
-        "M1",
-        "B7"
+        "R13"
       ],
       "writes": [
         "docs/tech/05-gameplay-engine.md"
@@ -2157,7 +2151,7 @@
       "title": "剧情 · 02 射雕英雄传（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "P01"
+        "G2"
       ],
       "writes": [
         "docs/design/story/02-shediao.md"
@@ -2208,7 +2202,7 @@
         "catalogs": "skills-wujue、skills-daojia（全真）、skills-general",
         "prev": "天龙八部（ch01_tianlong）",
         "next": "神雕侠侣（ch03_shendiao）",
-        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+        "pilot_note": "十四部剧情文档并行撰写：若 `docs/design/story/01-tianlong.md` 已存在，参考其结构、表格列与 YAML 写法；不存在就严格按本任务的结构要求写（一级小节顺序固定），后续审计会统一格式。"
       }
     },
     {
@@ -2218,7 +2212,7 @@
       "title": "剧情 · 03 神雕侠侣（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "P01"
+        "G2"
       ],
       "writes": [
         "docs/design/story/03-shendiao.md"
@@ -2269,7 +2263,7 @@
         "catalogs": "skills-daojia（古墓、杨过、全真、绝情谷）、skills-wujue（丐帮、桃花岛、蒙古、九阴）、skills-xiaoyao（吐蕃密宗）、skills-general",
         "prev": "射雕英雄传（ch02_shediao）",
         "next": "倚天屠龙记（ch04_yitian）",
-        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+        "pilot_note": "十四部剧情文档并行撰写：若 `docs/design/story/01-tianlong.md` 已存在，参考其结构、表格列与 YAML 写法；不存在就严格按本任务的结构要求写（一级小节顺序固定），后续审计会统一格式。"
       }
     },
     {
@@ -2279,7 +2273,7 @@
       "title": "剧情 · 04 倚天屠龙记（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "P01"
+        "G2"
       ],
       "writes": [
         "docs/design/story/04-yitian.md"
@@ -2330,7 +2324,7 @@
         "catalogs": "skills-yitian、skills-daojia（武当）、skills-shaolin、skills-wujue（丐帮）、skills-general",
         "prev": "神雕侠侣（ch03_shendiao）",
         "next": "笑傲江湖（ch05_xiaoao）",
-        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+        "pilot_note": "十四部剧情文档并行撰写：若 `docs/design/story/01-tianlong.md` 已存在，参考其结构、表格列与 YAML 写法；不存在就严格按本任务的结构要求写（一级小节顺序固定），后续审计会统一格式。"
       }
     },
     {
@@ -2340,7 +2334,7 @@
       "title": "剧情 · 05 笑傲江湖（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "P01"
+        "G2"
       ],
       "writes": [
         "docs/design/story/05-xiaoao.md"
@@ -2391,7 +2385,7 @@
         "catalogs": "skills-wuyue、skills-shaolin、skills-daojia（武当）、skills-general",
         "prev": "倚天屠龙记（ch04_yitian）",
         "next": "侠客行（ch06_xiake）",
-        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+        "pilot_note": "十四部剧情文档并行撰写：若 `docs/design/story/01-tianlong.md` 已存在，参考其结构、表格列与 YAML 写法；不存在就严格按本任务的结构要求写（一级小节顺序固定），后续审计会统一格式。"
       }
     },
     {
@@ -2401,7 +2395,7 @@
       "title": "剧情 · 06 侠客行（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "P01"
+        "G2"
       ],
       "writes": [
         "docs/design/story/06-xiake.md"
@@ -2452,7 +2446,7 @@
         "catalogs": "skills-xiake-bixue、skills-general",
         "prev": "笑傲江湖（ch05_xiaoao）",
         "next": "碧血剑（ch07_bixue）",
-        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+        "pilot_note": "十四部剧情文档并行撰写：若 `docs/design/story/01-tianlong.md` 已存在，参考其结构、表格列与 YAML 写法；不存在就严格按本任务的结构要求写（一级小节顺序固定），后续审计会统一格式。"
       }
     },
     {
@@ -2462,7 +2456,7 @@
       "title": "剧情 · 07 碧血剑（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "P01"
+        "G2"
       ],
       "writes": [
         "docs/design/story/07-bixue.md"
@@ -2513,7 +2507,7 @@
         "catalogs": "skills-xiake-bixue、skills-general",
         "prev": "侠客行（ch06_xiake）",
         "next": "鹿鼎记（ch08_luding）",
-        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+        "pilot_note": "十四部剧情文档并行撰写：若 `docs/design/story/01-tianlong.md` 已存在，参考其结构、表格列与 YAML 写法；不存在就严格按本任务的结构要求写（一级小节顺序固定），后续审计会统一格式。"
       }
     },
     {
@@ -2523,7 +2517,7 @@
       "title": "剧情 · 08 鹿鼎记（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "P01"
+        "G2"
       ],
       "writes": [
         "docs/design/story/08-luding.md"
@@ -2574,7 +2568,7 @@
         "catalogs": "skills-kangxi、skills-shaolin、skills-xiake-bixue（铁剑门·神行百变）、skills-general",
         "prev": "碧血剑（ch07_bixue）",
         "next": "连城诀（ch09_liancheng）",
-        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+        "pilot_note": "十四部剧情文档并行撰写：若 `docs/design/story/01-tianlong.md` 已存在，参考其结构、表格列与 YAML 写法；不存在就严格按本任务的结构要求写（一级小节顺序固定），后续审计会统一格式。"
       }
     },
     {
@@ -2584,7 +2578,7 @@
       "title": "剧情 · 09 连城诀（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "P01"
+        "G2"
       ],
       "writes": [
         "docs/design/story/09-liancheng.md"
@@ -2635,7 +2629,7 @@
         "catalogs": "skills-kangxi、skills-general",
         "prev": "鹿鼎记（ch08_luding）",
         "next": "白马啸西风（ch10_baima）",
-        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+        "pilot_note": "十四部剧情文档并行撰写：若 `docs/design/story/01-tianlong.md` 已存在，参考其结构、表格列与 YAML 写法；不存在就严格按本任务的结构要求写（一级小节顺序固定），后续审计会统一格式。"
       }
     },
     {
@@ -2645,7 +2639,7 @@
       "title": "剧情 · 10 白马啸西风（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "P01"
+        "G2"
       ],
       "writes": [
         "docs/design/story/10-baima.md"
@@ -2696,7 +2690,7 @@
         "catalogs": "skills-kangxi、skills-general",
         "prev": "连城诀（ch09_liancheng）",
         "next": "鸳鸯刀（ch11_yuanyang）",
-        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+        "pilot_note": "十四部剧情文档并行撰写：若 `docs/design/story/01-tianlong.md` 已存在，参考其结构、表格列与 YAML 写法；不存在就严格按本任务的结构要求写（一级小节顺序固定），后续审计会统一格式。"
       }
     },
     {
@@ -2706,7 +2700,7 @@
       "title": "剧情 · 11 鸳鸯刀（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "P01"
+        "G2"
       ],
       "writes": [
         "docs/design/story/11-yuanyang.md"
@@ -2757,7 +2751,7 @@
         "catalogs": "skills-kangxi、skills-general",
         "prev": "白马啸西风（ch10_baima）",
         "next": "书剑恩仇录（ch12_shujian）",
-        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+        "pilot_note": "十四部剧情文档并行撰写：若 `docs/design/story/01-tianlong.md` 已存在，参考其结构、表格列与 YAML 写法；不存在就严格按本任务的结构要求写（一级小节顺序固定），后续审计会统一格式。"
       }
     },
     {
@@ -2767,7 +2761,7 @@
       "title": "剧情 · 12 书剑恩仇录（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "P01"
+        "G2"
       ],
       "writes": [
         "docs/design/story/12-shujian.md"
@@ -2818,7 +2812,7 @@
         "catalogs": "skills-qianlong、skills-shaolin（南少林）、skills-daojia（武当）、skills-general",
         "prev": "鸳鸯刀（ch11_yuanyang）",
         "next": "飞狐外传（ch13_feihu）",
-        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+        "pilot_note": "十四部剧情文档并行撰写：若 `docs/design/story/01-tianlong.md` 已存在，参考其结构、表格列与 YAML 写法；不存在就严格按本任务的结构要求写（一级小节顺序固定），后续审计会统一格式。"
       }
     },
     {
@@ -2828,7 +2822,7 @@
       "title": "剧情 · 13 飞狐外传（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "P01"
+        "G2"
       ],
       "writes": [
         "docs/design/story/13-feihu.md"
@@ -2879,7 +2873,7 @@
         "catalogs": "skills-qianlong、skills-general",
         "prev": "书剑恩仇录（ch12_shujian）",
         "next": "雪山飞狐（ch14_xueshan）",
-        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+        "pilot_note": "十四部剧情文档并行撰写：若 `docs/design/story/01-tianlong.md` 已存在，参考其结构、表格列与 YAML 写法；不存在就严格按本任务的结构要求写（一级小节顺序固定），后续审计会统一格式。"
       }
     },
     {
@@ -2889,7 +2883,7 @@
       "title": "剧情 · 14 雪山飞狐（正邪两条主线与选择节点，AR-10）",
       "prompt": "P-story.md",
       "deps": [
-        "P01"
+        "G2"
       ],
       "writes": [
         "docs/design/story/14-xueshan.md"
@@ -2940,7 +2934,7 @@
         "catalogs": "skills-qianlong、skills-general",
         "prev": "飞狐外传（ch13_feihu）",
         "next": "终局（design/13 §7）",
-        "pilot_note": "先通读已审校的范例 `docs/design/story/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按原著撰写，不要照抄范例。"
+        "pilot_note": "十四部剧情文档并行撰写：若 `docs/design/story/01-tianlong.md` 已存在，参考其结构、表格列与 YAML 写法；不存在就严格按本任务的结构要求写（一级小节顺序固定），后续审计会统一格式。"
       }
     },
     {
@@ -3007,7 +3001,7 @@
       "title": "书界 DLC · 02 射雕英雄传",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01",
+        "G2",
         "P02"
       ],
       "vars": {
@@ -3019,7 +3013,7 @@
         "catalogs": "skills-wujue、skills-daojia（全真）、skills-general",
         "prev": "天龙八部（ch01_tianlong）",
         "next": "神雕侠侣（ch03_shendiao）",
-        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《射雕英雄传》原著撰写，不要照抄范例。"
+        "pilot_note": "十四部书界文档并行撰写：若 `docs/design/chapters/01-tianlong.md` 已存在，沿用其结构、表格列与 YAML 写法；不存在就严格按基准 §17 的 13 节模板写，后续审计会统一格式。"
       },
       "writes": [
         "docs/design/chapters/02-shediao.md"
@@ -3064,7 +3058,7 @@
       "title": "书界 DLC · 03 神雕侠侣",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01",
+        "G2",
         "P03"
       ],
       "vars": {
@@ -3076,7 +3070,7 @@
         "catalogs": "skills-daojia（古墓、杨过、全真、绝情谷）、skills-wujue（丐帮、桃花岛、蒙古、九阴）、skills-xiaoyao（吐蕃密宗）、skills-general",
         "prev": "射雕英雄传（ch02_shediao）",
         "next": "倚天屠龙记（ch04_yitian）",
-        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《神雕侠侣》原著撰写，不要照抄范例。"
+        "pilot_note": "十四部书界文档并行撰写：若 `docs/design/chapters/01-tianlong.md` 已存在，沿用其结构、表格列与 YAML 写法；不存在就严格按基准 §17 的 13 节模板写，后续审计会统一格式。"
       },
       "writes": [
         "docs/design/chapters/03-shendiao.md"
@@ -3121,7 +3115,7 @@
       "title": "书界 DLC · 04 倚天屠龙记",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01",
+        "G2",
         "P04"
       ],
       "vars": {
@@ -3133,7 +3127,7 @@
         "catalogs": "skills-yitian、skills-daojia（武当）、skills-shaolin、skills-wujue（丐帮）、skills-general",
         "prev": "神雕侠侣（ch03_shendiao）",
         "next": "笑傲江湖（ch05_xiaoao）",
-        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《倚天屠龙记》原著撰写，不要照抄范例。"
+        "pilot_note": "十四部书界文档并行撰写：若 `docs/design/chapters/01-tianlong.md` 已存在，沿用其结构、表格列与 YAML 写法；不存在就严格按基准 §17 的 13 节模板写，后续审计会统一格式。"
       },
       "writes": [
         "docs/design/chapters/04-yitian.md"
@@ -3178,7 +3172,7 @@
       "title": "书界 DLC · 05 笑傲江湖",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01",
+        "G2",
         "P05"
       ],
       "vars": {
@@ -3190,7 +3184,7 @@
         "catalogs": "skills-wuyue、skills-shaolin、skills-daojia（武当）、skills-general",
         "prev": "倚天屠龙记（ch04_yitian）",
         "next": "侠客行（ch06_xiake）",
-        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《笑傲江湖》原著撰写，不要照抄范例。"
+        "pilot_note": "十四部书界文档并行撰写：若 `docs/design/chapters/01-tianlong.md` 已存在，沿用其结构、表格列与 YAML 写法；不存在就严格按基准 §17 的 13 节模板写，后续审计会统一格式。"
       },
       "writes": [
         "docs/design/chapters/05-xiaoao.md"
@@ -3235,7 +3229,7 @@
       "title": "书界 DLC · 06 侠客行",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01",
+        "G2",
         "P06"
       ],
       "vars": {
@@ -3247,7 +3241,7 @@
         "catalogs": "skills-xiake-bixue、skills-general",
         "prev": "笑傲江湖（ch05_xiaoao）",
         "next": "碧血剑（ch07_bixue）",
-        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《侠客行》原著撰写，不要照抄范例。"
+        "pilot_note": "十四部书界文档并行撰写：若 `docs/design/chapters/01-tianlong.md` 已存在，沿用其结构、表格列与 YAML 写法；不存在就严格按基准 §17 的 13 节模板写，后续审计会统一格式。"
       },
       "writes": [
         "docs/design/chapters/06-xiake.md"
@@ -3292,7 +3286,7 @@
       "title": "书界 DLC · 07 碧血剑",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01",
+        "G2",
         "P07"
       ],
       "vars": {
@@ -3304,7 +3298,7 @@
         "catalogs": "skills-xiake-bixue、skills-general",
         "prev": "侠客行（ch06_xiake）",
         "next": "鹿鼎记（ch08_luding）",
-        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《碧血剑》原著撰写，不要照抄范例。"
+        "pilot_note": "十四部书界文档并行撰写：若 `docs/design/chapters/01-tianlong.md` 已存在，沿用其结构、表格列与 YAML 写法；不存在就严格按基准 §17 的 13 节模板写，后续审计会统一格式。"
       },
       "writes": [
         "docs/design/chapters/07-bixue.md"
@@ -3349,7 +3343,7 @@
       "title": "书界 DLC · 08 鹿鼎记",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01",
+        "G2",
         "P08"
       ],
       "vars": {
@@ -3361,7 +3355,7 @@
         "catalogs": "skills-kangxi、skills-shaolin、skills-xiake-bixue（铁剑门·神行百变）、skills-general",
         "prev": "碧血剑（ch07_bixue）",
         "next": "连城诀（ch09_liancheng）",
-        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《鹿鼎记》原著撰写，不要照抄范例。"
+        "pilot_note": "十四部书界文档并行撰写：若 `docs/design/chapters/01-tianlong.md` 已存在，沿用其结构、表格列与 YAML 写法；不存在就严格按基准 §17 的 13 节模板写，后续审计会统一格式。"
       },
       "writes": [
         "docs/design/chapters/08-luding.md"
@@ -3406,7 +3400,7 @@
       "title": "书界 DLC · 09 连城诀",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01",
+        "G2",
         "P09"
       ],
       "vars": {
@@ -3418,7 +3412,7 @@
         "catalogs": "skills-kangxi、skills-general",
         "prev": "鹿鼎记（ch08_luding）",
         "next": "白马啸西风（ch10_baima）",
-        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《连城诀》原著撰写，不要照抄范例。"
+        "pilot_note": "十四部书界文档并行撰写：若 `docs/design/chapters/01-tianlong.md` 已存在，沿用其结构、表格列与 YAML 写法；不存在就严格按基准 §17 的 13 节模板写，后续审计会统一格式。"
       },
       "writes": [
         "docs/design/chapters/09-liancheng.md"
@@ -3463,7 +3457,7 @@
       "title": "书界 DLC · 10 白马啸西风",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01",
+        "G2",
         "P10"
       ],
       "vars": {
@@ -3475,7 +3469,7 @@
         "catalogs": "skills-kangxi、skills-general",
         "prev": "连城诀（ch09_liancheng）",
         "next": "鸳鸯刀（ch11_yuanyang）",
-        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《白马啸西风》原著撰写，不要照抄范例。"
+        "pilot_note": "十四部书界文档并行撰写：若 `docs/design/chapters/01-tianlong.md` 已存在，沿用其结构、表格列与 YAML 写法；不存在就严格按基准 §17 的 13 节模板写，后续审计会统一格式。"
       },
       "writes": [
         "docs/design/chapters/10-baima.md"
@@ -3520,7 +3514,7 @@
       "title": "书界 DLC · 11 鸳鸯刀",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01",
+        "G2",
         "P11"
       ],
       "vars": {
@@ -3532,7 +3526,7 @@
         "catalogs": "skills-kangxi、skills-general",
         "prev": "白马啸西风（ch10_baima）",
         "next": "书剑恩仇录（ch12_shujian）",
-        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《鸳鸯刀》原著撰写，不要照抄范例。"
+        "pilot_note": "十四部书界文档并行撰写：若 `docs/design/chapters/01-tianlong.md` 已存在，沿用其结构、表格列与 YAML 写法；不存在就严格按基准 §17 的 13 节模板写，后续审计会统一格式。"
       },
       "writes": [
         "docs/design/chapters/11-yuanyang.md"
@@ -3577,7 +3571,7 @@
       "title": "书界 DLC · 12 书剑恩仇录",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01",
+        "G2",
         "P12"
       ],
       "vars": {
@@ -3589,7 +3583,7 @@
         "catalogs": "skills-qianlong、skills-shaolin（南少林）、skills-daojia（武当）、skills-general",
         "prev": "鸳鸯刀（ch11_yuanyang）",
         "next": "飞狐外传（ch13_feihu）",
-        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《书剑恩仇录》原著撰写，不要照抄范例。"
+        "pilot_note": "十四部书界文档并行撰写：若 `docs/design/chapters/01-tianlong.md` 已存在，沿用其结构、表格列与 YAML 写法；不存在就严格按基准 §17 的 13 节模板写，后续审计会统一格式。"
       },
       "writes": [
         "docs/design/chapters/12-shujian.md"
@@ -3634,7 +3628,7 @@
       "title": "书界 DLC · 13 飞狐外传",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01",
+        "G2",
         "P13"
       ],
       "vars": {
@@ -3646,7 +3640,7 @@
         "catalogs": "skills-qianlong、skills-general",
         "prev": "书剑恩仇录（ch12_shujian）",
         "next": "雪山飞狐（ch14_xueshan）",
-        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《飞狐外传》原著撰写，不要照抄范例。"
+        "pilot_note": "十四部书界文档并行撰写：若 `docs/design/chapters/01-tianlong.md` 已存在，沿用其结构、表格列与 YAML 写法；不存在就严格按基准 §17 的 13 节模板写，后续审计会统一格式。"
       },
       "writes": [
         "docs/design/chapters/13-feihu.md"
@@ -3691,7 +3685,7 @@
       "title": "书界 DLC · 14 雪山飞狐",
       "prompt": "D-chapter.md",
       "deps": [
-        "D01",
+        "G2",
         "P14"
       ],
       "vars": {
@@ -3703,7 +3697,7 @@
         "catalogs": "skills-qianlong、skills-general",
         "prev": "飞狐外传（ch13_feihu）",
         "next": "终局（design/13 §7）",
-        "pilot_note": "先通读已审校的范例 `docs/design/chapters/01-tianlong.md`，沿用它的结构、表格列与 YAML 写法；内容按《雪山飞狐》原著撰写，不要照抄范例。"
+        "pilot_note": "十四部书界文档并行撰写：若 `docs/design/chapters/01-tianlong.md` 已存在，沿用其结构、表格列与 YAML 写法；不存在就严格按基准 §17 的 13 节模板写，后续审计会统一格式。"
       },
       "writes": [
         "docs/design/chapters/14-xueshan.md"
