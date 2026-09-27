@@ -3,7 +3,7 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/01-architecture.md` |
-| 版本 | v1.1（审校修订，2026-09-26） |
+| 版本 | v1.2（跨文档同步，2026-09-26） |
 | 上游基准 | `docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.1、`docs/decisions/rulings-v1.md` |
 | 下游文档 | `tech/02` 渲染、`tech/03` 性能、`tech/04` 数据管线、`tech/05` 玩法引擎、`tech/06` 素材存储、`tech/07` 素材生成、`tech/08` 后端、`tech/09` 路线图 |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手（Claude Code 等） |
@@ -412,8 +412,8 @@ sequenceDiagram
 **决策**：采用 A。
 - core 内状态是普通对象/数组（可 `JSON.stringify`，无 class 实例、无 `Map`/`Set` 以便序列化——需要集合时用排序数组或 `Record`）。
 - 变更只发生在 `CommandHandler.apply()` 内；`apply` **不得抛出业务错误**（业务错误必须在 `validate()` 阶段返回）。
-- 开发模式下：每条命令执行前保存结构化快照，`apply` 后运行不变量检查（HP ≤ HPMax、CT 内部值 ∈ [−1000,1000]、UI 投影 ∈ [0,1000]、ID 引用存在……），失败则回滚并在 dev 控制台报错，同时导出复现录像。
-- 对外暴露 `snapshot()`：开发模式下深冻结的只读视图，生产模式下只读类型（`DeepReadonly<GameState>`）不冻结以省开销。
+- 开发模式下：每条命令执行前保存结构化快照，`apply` 后运行不变量检查（HP ≤ HPMax、CT 内部值 ∈ [−1000,1299]、UI 投影 ∈ [0,1000]、ID 引用存在……），失败则回滚并在 dev 控制台报错，同时导出复现录像。负 CT 与行动阈值 1000 的最终语义见 `tech/05` §7.1。
+- 对外暴露 `snapshot()`：无论开发或生产环境都返回与 core 内部可写树**脱离引用**的纯 JSON 快照；开发模式可再深冻结，生产模式仅省略冻结，不能退化为共享活引用。
 - UI 不直接绑定 core 状态：`apps/game` 在每个事件批之后运行"选择器（selector）"生成 UI 投影，写入 Pinia store 的 `shallowRef`，Vue 只对投影做响应式。
 - 渲染侧有自己的"视图注册表"（`entityId → Object3D`），是一个很薄的映射，不是 ECS。
 
@@ -427,7 +427,7 @@ export interface GameState {
   meta: {
     saveSchema: number;            // 存档格式版本（迁移用）
     contentHash: string;           // 生成此存档时的书界包哈希（内容热更新/迁移校验）
-    version: number;               // 状态版本号：每条成功命令 +1
+    stateVersion: number;          // 状态版本号：每条成功命令 +1；旧 version 仅由迁移器读取
     worldTick: number;             // 逻辑时钟（整数 tick），不是墙钟
     rng: Record<RngStreamId, RngState>; // 分流随机数状态，见 §8.3
     debugTainted: boolean;         // 是否使用过作弊指令
@@ -451,15 +451,17 @@ export type TilePos = HexCoord;
 // packages/core/src/api.ts —— core 对外唯一入口
 export interface Core {
   dispatch(cmd: Command): DispatchResult;          // 同步；Worker 模式由 CoreHost 包装为 Promise
-  tick(ticks: number): DomainEvent[];              // 推进世界逻辑时钟（探索态）；战斗态为空操作
+  tick(): DispatchResult;                          // 单步提交 world/tick；批量追帧由 CoreHost 逐次调用
   readonly query: CoreQueries;                     // 纯函数只读查询
-  snapshot(): DeepReadonly<GameState>;
-  serialize(): SaveBlob;                           // 纯 JSON（压缩在 platform 层、Worker 中完成）
-  load(blob: SaveBlob, content: ContentRegistry): void;
+  snapshot(): DeepReadonly<GameState>;             // 独立 JSON 快照，不共享内部可写引用
+  serialize(): JsonValue;                          // 纯 JSON；TSAV/压缩/哈希归 I/O 层
 }
 
+/** 仅作语义化别名，不是第二套可调用协议。 */
+export type GameplayCore = Core;
+
 export type DispatchResult =
-  | { ok: true; version: number; events: DomainEvent[] }
+  | { ok: true; stateVersion: number; events: DomainEvent[] }
   | { ok: false; reason: RejectReason };           // 例：'NOT_YOUR_TURN' | 'OUT_OF_RANGE' | 'MP_NOT_ENOUGH'
 
 // 命令：可 JSON 序列化的判别联合（t = type，命名空间/动词）
@@ -467,7 +469,7 @@ export type Command =
   | { t: 'world/walkTo'; to: TilePos }
   | { t: 'world/interact'; target: EntityId }
   | { t: 'dialogue/choose'; choice: number }
-  | { t: 'battle/act'; actor: UnitId; walkTo?: TilePos; action: BattleAction }  // 先位移（可选）再行动
+  | ({ t: 'battle/act'; actor: UnitId; ai?: AiDecisionProof } & BattleActionPlan)
   | { t: 'party/equip'; member: CharId; slot: EquipSlot; item: ItemUid | null }
   | { t: 'party/assignSkill'; member: CharId; slot: SkillSlotRef; skill: SkillId | null }
   | { t: 'chapter/bookSleep'; carry: CarrySelection }      // 书眠：携带核心武功与 6 件装备
@@ -484,7 +486,22 @@ export interface CoreCtx {
   emit(e: DomainEvent): void;
   trace?: DamageTrace;                      // 开发模式：记录 Z0–Z10 乘区明细
 }
+
+export interface BattleActionPlan {
+  readonly walkTo?: TilePos;
+  readonly action: BattleAction;
+  readonly order?: 'moveFirst' | 'actFirst';
+  readonly walkAfter?: TilePos;
+  readonly facing?: HexDir;
+}
+
+export interface AiDecisionProof {
+  readonly decisionToken: number;
+  readonly aiSeed: number;
+}
 ```
+
+读档不在活实例上原地执行：I/O 层按 `tech/05` §14.1 完成 TSAV 头、解压上限、schema migration、内容哈希与 ID remap 全链校验，再以 `createCore(ports, validatedState)` 构造候选实例；只读冒烟查询通过后，`CoreHost` 才原子替换当前引用。任一步失败都保留旧实例，避免半迁移状态污染当前游戏。
 
 ### 3.7 CoreHost 运行模式与 Web Worker
 
@@ -524,14 +541,14 @@ Worker 清单（MVP 即启用）：
 
 | Worker | 输入 | 输出 | 理由 |
 |---|---|---|---|
-| `ai.worker` | 战斗状态快照 + AI 档位 + `aiSeed`（轮到 AI 单位时由 core 从 `ai` 流抽取，随 `battle/aiTurn` 事件下发） | 一条 `battle/act` 命令 | 前瞻搜索（1–2 层）可能耗时 10–100 ms；RNG 状态始终留在 core；结果以普通命令回到 core，录像只记命令，因此 AI 自身不要求跨引擎一致 |
+| `ai.worker` | 战斗状态快照 + AI 档位 + `aiSeed` 预览值 + `decisionToken` + 确定性 `workBudget` | 一条带 `AiDecisionProof` 的 `battle/act` 命令 | `aiSeed` 只预览、不先推进 `ai` 流；core 核对 token/seed 后仅在命令成功提交时消费，拒绝、取消或过期响应不消费。墙钟只作 host SLO/watchdog，不决定搜索停止；见 `tech/05` §13 |
 | `io.worker` | 存档 JSON / 书界包压缩二进制 | 压缩结果 + SHA-256 / 解压后的 UTF-8 `ArrayBuffer`（Transferable） | 只做压缩、解压与哈希；不把解析后大对象结构化克隆回主线程 |
 | （可选）`path.worker` | 区域通行网格 + 起终点 | 路径 | 仅当区域 ≥ 256×256 且需要长距离自动寻路时启用；战斗 ≤ 20×20 在主线程即可 |
 
 实现约定：
 - 使用 Vite 原生写法 `new Worker(new URL('./ai.worker.ts', import.meta.url), { type: 'module' })`，RPC 用 **Comlink**（约 1 KB gzip）。
 - 只传结构化可克隆数据；大块二进制用 `Transferable`（`ArrayBuffer`）零拷贝。
-- 书界包在主线程加载遮罩/IdleQueue 中按区域分片解析：产物分片目标 ≤300 KB，游戏进行中单次 `JSON.parse` 输入 ≤256 KB。`tech/03` 同机测得 2.1/8.0/15.4 MB 对象的 `structuredClone` 分别约 17.8/82.1/249.5 ms，高于对应 parse 的 7.4/38.6/46.1 ms，故禁止 Worker 解析后回传大对象。若未来把 core 整体迁入 Worker，规则包就在 core Worker 内解析并驻留，不回传对象。
+- 书界包在主线程加载遮罩/IdleQueue 中按区域分片解析：原始 JSON 叶片与游戏中单次 `JSON.parse` 输入均 ≤256 KiB。`tech/03` 同机测得 2.1/8.0/15.4 MB 对象的 `structuredClone` 分别约 17.8/82.1/249.5 ms，高于对应 parse 的 7.4/38.6/46.1 ms，故禁止 Worker 解析后回传大对象。若未来把 core 整体迁入 Worker，规则包就在 core Worker 内解析并驻留，不回传对象。
 - 上述三组回传/解析比值复算为 `17.8/7.4=2.41×`、`82.1/38.6=2.13×`、`249.5/46.1=5.41×`；结论不是“Worker 不能解析 JSON”，而是“解析后的大对象不应再跨线程克隆”。
 - **不依赖 SharedArrayBuffer**（需 COOP/COEP 跨源隔离，静态托管与微信内置浏览器下易出问题）。
 - Worker 创建失败（极少数 WebView）时自动降级为主线程同步执行——所有 Worker 模块都导出同名的纯函数实现。
@@ -572,11 +589,12 @@ jinyongqunxia/                      # 代码仓库（Git）；二进制素材不
 │
 ├── content/                        # 文本内容源（入库、可 diff、CI 校验）
 │   ├── common/                     # 跨书界：skills/ buffs/ sets/ items/ terrain/ sects/ realms.yaml
+│   ├── world/regions/              # 全局 30 区可行走数据；如 rg_dali_cangshan.yaml + .tmj
 │   ├── chapters/
 │   │   ├── ch00_yuenv/
 │   │   └── ch01_tianlong/
 │   │       ├── chapter.yaml        # 书界概览（Canon §2 行 + 本书界参数）
-│   │       ├── regions/            # rg_01_dali.yaml + rg_01_dali.tmj（Tiled 地图）
+│   │       ├── era.yaml            # 对全局区域 / 城市的 ch01 时代覆写
 │   │       ├── npcs/  quests/  encounters/  shops/  events/
 │   │       └── dialogue/           # *.ink（inkjs 编译）
 │   ├── locales/zh-Hans/ui.yaml     # UI 文案（源语言）
@@ -760,7 +778,7 @@ export interface UiBridge {
 | Vue 类型检查 | `vue-tsc` | ^3.3.11 | `.vue` 类型检查 | |
 | PWA | `vite-plugin-pwa` | ^1.3.0 | 生成 SW、manifest、预缓存清单 | 书界包走运行时缓存策略（§6.4、tech/06） |
 | 本地 HTTPS | `@vitejs/plugin-basic-ssl` | ^2.3.0 | 局域网真机调试 SW/传感器需要安全上下文 | 或 `vite-plugin-mkcert@^2.1.0`（受信证书） |
-| 单元测试 | Vitest | ^5.0.2 | core/data 在 Node 跑；ui 在 happy-dom 跑；render 在浏览器模式跑 | 需要 Node ^22.12 / ^24；配 `@vitest/coverage-v8`、`@vitest/browser-playwright` |
+| 单元测试 | Vitest | 根工作区 ^5.0.2；`services/api` 独立 ^4.1 | core/data 在 Node 跑；ui 在 happy-dom 跑；render 在浏览器模式跑；Workers 测试隔离为独立 project | 根包需要 Node ^22.12 / ^24；`@cloudflare/vitest-pool-workers@0.22.0` peer 仅接受 Vitest ^4.1，服务端不得被根版本提升（实施时版本待核实） |
 | E2E | `@playwright/test` | ^1.63.0 | 移动视口冒烟、截图回归、性能冒烟 | WebKit 引擎可近似 iOS Safari（非真机） |
 | Lint | ESLint | ^10.11.0 | flat config | |
 | TS Lint | `typescript-eslint` | ^8.70.1 | 类型感知规则 | peer：`typescript <6.1.0`（决定了 TS 版本上限） |
@@ -864,7 +882,7 @@ function frame(now: number): void {
     acc += dt * timeScale;                   // timeScale：dev 控制台可设 0/1/2/4
     let n = 0;
     while (acc >= TICK_MS && n < MAX_CATCHUP) {
-      presentation.enqueue(core.tick(1));
+      presentation.enqueue(core.tick());
       acc -= TICK_MS;
       n++;
     }
@@ -1002,7 +1020,7 @@ scope.release();                               // 引用计数归零 → 进入 
 
 | 通道 | 实现 | 说明 |
 |---|---|---|
-| BGM | `<audio>` 流式媒体元素 → `MediaElementAudioSourceNode` → `GainNode` → `AudioContext.destination` | 3 分钟立体声解码成 PCM 需数十 MB，故仍流式；音量、1.5 s 交叉淡化与 duck 全部操作 GainNode |
+| BGM | `<audio>` 流式媒体元素 → `MediaElementAudioSourceNode` → `GainNode` → `AudioContext.destination` | 3 分钟立体声解码成 PCM 需数十 MB，故仍流式；音量、≤0.8 s 交叉淡化与 duck 全部操作 GainNode |
 | 环境声（风/水/市集） | WebAudio 循环 | 按区域与昼夜切换 |
 | 音效 SFX | Howler 音频精灵（WebAudio 解码） | 每书界一张 SFX 精灵 + 通用精灵；同时发声上限 8–12 |
 | 语音（可选） | 按需加载 | 取决于 `tech/07` 是否生成配音 |
@@ -1030,7 +1048,7 @@ scope.release();                               // 引用计数归零 → 进入 
 |---|---|
 | 自动存档触发 | 进出区域、战斗结束、任务状态变化、书眠前后、`visibilitychange → hidden`、`pagehide`；同类触发 30 s 内去抖 |
 | 写入安全 | "先写新记录、再切换指针"两阶段：`saves` 表保留每槽最近 3 份，读档时取最新且校验通过者 |
-| 云同步 | 本地写入成功后，在线时后台上传（`tech/08` 定义冲突策略：版本号 + 时间 + 设备 ID，冲突让玩家选） |
+| 云同步 | 本地写入成功后后台上传；服务端以槽位单调 `rev` + `If-Match`/CAS 判冲突。自动档按设备命名空间避免互抢；具名槽冲突由玩家选择，不用墙钟或设备 ID 自动判胜；落选版本至少保留 30 天（见 `tech/08` §4） |
 | WebGL 上下文丢失 | `webglcontextlost` 时 `preventDefault()` 并暂停；`webglcontextrestored` 时由各 `AssetScope` 重新上传纹理（CPU 侧保留 KTX2 原始数据或从 Cache Storage 重读） |
 | iOS 后台被杀 | 下次打开从最近自动存档恢复，UI 显示"已从 xx:xx 的自动存档恢复" |
 
@@ -1083,12 +1101,18 @@ export default defineConfig({
   plugins: [
     vue(),
     tianshuContent({ contentDir: '../../content', outDir: 'public/packs' }),
-    VitePWA({ registerType: 'prompt', injectRegister: false /* 空闲时手动注册，见 §6.1 */ }),
+    VitePWA({
+      strategies: 'injectManifest',
+      srcDir: 'src', filename: 'sw.ts',
+      registerType: 'prompt', injectRegister: false /* 空闲时手动注册，见 §6.1 */
+    }),
   ],
   worker: { format: 'es' },
   build: { target: 'es2022', sourcemap: true },
 });
 ```
+
+`injectManifest` 的自定义 SW 只预缓存公开启动壳；受保护规则包与素材必须经同源 Worker 会话闸门成功响应后，按内容哈希键写入运行时缓存。未认证响应、登录跳转和错误页不得入缓存，登出时清理相应受保护缓存。
 
 ### 7.3 游戏内调试面板与作弊指令
 
@@ -1097,7 +1121,7 @@ export default defineConfig({
 | 面板 | 功能 |
 |---|---|
 | 控制台 | 命令行 + 自动补全（ID 从内容注册表补全）；历史记录；输出可点击展开 |
-| 状态树 | `GameState` JSON 树浏览、搜索、按路径复制；显示 `version`、`worldTick`、RNG 各流状态 |
+| 状态树 | `GameState` JSON 树浏览、搜索、按路径复制；显示 `stateVersion`、`worldTick`、RNG 各流状态 |
 | 事件日志 | 最近 N 个事件批；伤害事件可展开 Z0–Z10 乘区明细（Canon §9） |
 | 命令日志 / 录像 | 导出"初始快照 + 种子 + 命令列表"为 `.replay.json`；导入后逐步重放、断点到第 k 条命令 |
 | 性能 | FPS、帧时间分布、draw call、三角面、纹理数与显存估算、JS 堆（Chrome）、当前画质档 |
@@ -1150,7 +1174,7 @@ content/tiled/
 │   └── deco-<theme>.tsx           # 装饰物占位（映射到精灵/模型 ID）
 └── extensions/
     └── tianshu-check.js           # 保存时快速检查：高度越界、空地形、对象缺字段
-content/chapters/ch01_tianlong/regions/rg_01_dali.tmj
+content/world/regions/rg_dali_cangshan.tmj
 ```
 
 | 图层（固定名） | 类型 | 内容 |
@@ -1383,10 +1407,10 @@ export default defineConfig(
 | D3 禁止"实现近似"数学函数参与结算 | ECMAScript 规范把 `Math.exp/log/sin/cos/atan2/hypot/cbrt…` 以及 `Math.pow` 与 `**` 运算符共用的 `Number::exponentiate` 定为 implementation-approximated（本文已在 tc39/ecma262 规范源码核实），不同引擎（V8 / JavaScriptCore）结果可能有差异，累积后导致录像与云端校验不一致；`+ − × ÷`、`Math.sqrt`（规范要求 `ℱ(数学平方根)`）、`Math.floor/round/trunc`、`Math.min/max/abs` 可用，但所有结算仍须在 D4 指定边界取整 | ESLint（含禁用 `**` 运算符）；需要幂/衰减时用整数幂 `fx.powInt()`（连乘）或预计算查表 |
 | D4 数值取整点固定 | 结算在约定的乘区边界取整（由 `design/04` 定义取整点，`tech/05` 实现）；百分比加成在 core 内部统一换算为整数万分点（bp） | 单元测试 + golden 录像 |
 | D5 迭代顺序确定 | 影响结果的遍历一律基于排序后的 ID 数组；排序比较器必须是全序（相等时比 ID）；禁止 `for…in` | ESLint + 代码评审 |
-| D6 RNG 分流 | `battle`、`loot`、`world`、`ai`、`qiyu` 各自独立流；新增一次 UI 预览不得消耗任何流 | 查询函数签名不接收 `rng` |
+| D6 RNG 分流 | `battle`、`loot`、`world`、`ai`、`qiyu` 各自独立流；新增一次 UI 预览不得消耗任何流。AI 请求只预览下一 `aiSeed`，同一状态重请求复用；只有携带匹配 `AiDecisionProof` 的命令成功提交才消费该值 | 查询函数签名不接收 `rng`；拒绝/取消/过期响应的流状态断言 |
 | D7 第三方库的隐性随机 | inkjs 的 `StoryState` 构造时用 `new Date().getTime()` 生成 `storySeed`（本文已在 inkjs 2.4.0 源码核实）→ core 创建 Story 后立即以 `world` 流覆盖 `story.state.storySeed` | 封装 `createStory()` + 单测 |
 | D8 状态可序列化 | `GameState` 只含 JSON 值；无 `Map/Set/class/undefined 字段` | `serialize→parse→deepEqual` 属性测试 |
-| D9 录像回归 | `(初始快照, 主种子, 命令[])` → 最终状态哈希必须稳定；Node（V8）与 Playwright WebKit（JSC）双引擎跑同一录像比对 | CI golden 测试 |
+| D9 录像回归 | 录像只覆盖 `tech/05` §14.3 的战斗域：`BattleSession`、`battle/ai` 两流、战内可达静态引用及动态自创武学闭包；不哈希或上传完整 `GameState`。`openingHash`、每 10 条建议的 `afterHash` 与 `terminalHash` 均对同一规范域计算，hash 字段自身不入域；runner 由 `appBuild + coreVersion + rulesProtocol + rngProtocol + contentHash` 选择 | CI golden 测试；Node（V8）与 Playwright WebKit（JSC）复跑 |
 
 ```ts
 // packages/shared/src/rng.ts —— sfc32 + splitmix32 播种；状态 4×uint32 可直接存档
@@ -1548,7 +1572,7 @@ export type SkillDef = z.infer<typeof SkillDef>;
 | 一类效果原语 | `dot`（中毒/流血）+ 叠加规则测试 |
 | 一个 Cue | `battle/damageDealt` 的表现 |
 | 一个 UI 面板 | 武学装配栏（Canon §20） |
-| 一个区域的内容 | `rg_01_dali` 的 NPC 与支线 YAML |
+| 一个区域的内容 | `rg_dali_cangshan` 的 NPC 与支线 YAML |
 
 任务描述模板（给 AI）：**目标 → 涉及文件 → 引用的设计章节 → 验收（哪些测试/校验要通过）→ 不许改的东西**。
 

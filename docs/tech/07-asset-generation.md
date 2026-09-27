@@ -5,14 +5,14 @@
 | 文档归属 | `docs/tech/07-asset-generation.md`（本文件是"美术圣经、素材清单、生成工具选型、分类型生成管线、资产登记库、一致性与预算、AI 素材法律伦理"的**唯一归属文档**） |
 | 上游基准 | `docs/00-canon.md` §0（非商业、不分发、不得使用演员肖像、国风水墨＋工笔）、§4（品阶色）、§8（斜 45° 等距战棋）、§12（ID 规范）、§19（技术基线：Three.js 正交 2.5D、8 方向精灵公告板＋法线贴图、素材与代码分离、KTX2、按书界分包） |
 | 强依赖 | `tech/02`（相机、六角投影、精灵规格、法线与驻留策略）、`tech/06`（素材存储、manifest、压缩与编码规格）、`tech/03`（移动端显存/内存预算）、`design/05/06/10`（武学/Buff/物品目录）、`design/09`（六角战斗逻辑）、`design/11/12/15/16/17/18/19`（地图、门派、冲穴、资源、NPC 的需求目录）、`design/14`（UI） |
-| 状态 | **v1.1（审校修订，2026-09-26）**。已落实 C18/C19/C20、Canon v1.1、作者决定与 AR-01～AR-12；工具事实访问日期见文末 |
+| 版本 | v1.2（跨文档同步，2026-09-26） |
 | 读者 | 作者本人（单人开发 + AI 辅助编码）；以及后续协助编写管线脚本的 AI 编码代理 |
 
 > **审校后的执行边界**
 > 1. 作者已决定**无本地显卡、不租卡、不运行本地生成模型**；当前 AI 图像入口仅为 TraeX CLI `image_generation` 与 Gemini 网页版。§4 的其余模型/服务是截至 2026-09-26 的候选调研，不构成开通、付费或执行决定。
 > 2. OpenAI 帮助中心已有 Sora discontinuation 页面，但本次无法从页面正文闭合具体停用日；原稿“2026-09-24 API 下线”已撤回，精确日期保留**（待核实）**。云产品的地区、账号额度与输出权利须在实际账号上复核**（待实测）**。
 > 3. 战斗采用 pointy-top 六角规则空间的 6 个 `HexDir`，资产仍为完整 8 个 `Dir8` 视图；镜头允许四个 90° 预设旋转。逻辑方向、资产方向和运行时驻留量不可混写（§5.4）。
-> 4. 统一大地图由 `design/19` 与 `design/map/` 产出；本文只消费、派生预览和压缩素材，不再另建一套地理生成事实源。
+> 4. 统一大地图由 `design/19` 与 `design/map/` 产出；本文只登记 4096×3072 SVG 审查源与派生预览，不再另建一套地理生成事实源。运行时正式键、三档导出和分包均引用 `tech/06`：`map/jianghu_world/base`、`map/jianghu_world/ch01`～`ch14`。
 
 ---
 
@@ -39,7 +39,7 @@
 
 **一句话**：以“**工笔为骨、水墨为气**”定风格；当前 AI 输入只走 TraeX CLI `image_generation` / Gemini 网页版，以“**审定设定卡 → 多视图参考 → 3D 中转 → Blender 脚本化正交渲染**”解决精灵一致性；所有候选都经登记、人工审核与母版哈希入库，先做《天龙八部》垂直切片验证全链路。
 
-执行时必须同时满足四个闸门：`packages/spec/` 是跨语言静态契约唯一目录；书眠成片固定为 13 条 `vid_sleep_NN_MM`、目标 24 秒；关键角色生产完整 `battle8`，固定镜头只驻留 6 视图、旋转瞬时预取至 8；任何预算都不得突破 `tech/03` 的角色精灵 40/105/170/300 MB 硬上限。完整包量与真机峰值仍须 Phase 0 实测。
+执行时必须同时满足五个闸门：`packages/spec/` 是跨语言静态契约唯一目录；书眠成片固定为 13 条 `vid_sleep_NN_MM`、目标 24 秒；关键角色生产完整 `battle8`，固定镜头只驻留 6 视图、旋转瞬时预取至 8；地图、189 城、99 门派与 NPC/变体需求只从归属文档和 `tech/04` 引用图派生、不手抄业务清单；任何预算都不得突破 `tech/03` 的角色精灵 40/105/170/300 MB 硬上限。完整包量与真机峰值仍须 Phase 0 实测。
 
 | # | 决策 | 结论 | 理由（详见章节） |
 |---|---|---|---|
@@ -103,7 +103,7 @@ flowchart LR
 |---|---|---|---|
 | `packages/spec/iso-camera.json` | tech/02 | 本文 Blender 脚本、运行时相机 | 俯仰角、四个偏航预设、六角方向映射、旋转时长 |
 | `packages/spec/sprite-spec.json` | tech/02（v1 已定稿） | 渲染脚本、图集打包、运行时精灵加载器 | 64/96/128 ppm 分档、`battle8` 页组、驻留视图、法线与锚点 |
-| `packages/data` 中的 `AssetEntry`（Zod）→ 导出 `content/assets/registry/asset.schema.json` | 本文（字段提案）/ tech/01、tech/06（落地） | tech/06 `tools/asset-pipeline`（TS）、`tsgen`（Python） | 资产登记条目结构（§6.4）；尚待实现，不把建议字段写成现存代码 |
+| `packages/data` 中的 `AssetEntry`（Zod）→ 导出 `content/assets/registry/asset.schema.json` | 本文（字段）/ tech/01（schema 机制） | tech/06 `tools/asset-pipeline`（TS）、`tsgen`（Python） | 资产登记条目结构（§6.4）；文档契约已定，实际代码仍按路线图实现 |
 | `content/assets/registry/**/*.yaml` | 本文 | tech/06 | 每个资产的状态、母版路径、哈希、溯源 |
 | `packages/spec/anim-events.schema.json` | 本文 + tech/05（玩法引擎） | 运行时 | 动作帧事件（命中帧、音效帧、刀光起止） |
 
@@ -131,7 +131,7 @@ flowchart LR
 | 前缀 | 类型 | 例 |
 |---|---|---|
 | `ref_` | 设定卡/参考图（不进运行时） | `ref_npc_xiaofeng__ch01_sheet` |
-| `art_` | 概念原画 | `art_rg_01_dali_01` |
+| `art_` | 概念原画 | 格式 `art_<subject>_<seq>`；正式主体从引用图派生 |
 | `por_` | 立绘 | `por_npc_guojing__ch03_prime_base`、`por_npc_guojing__ch03_prime_e_angry` |
 | `ava_` | 头像 | `ava_npc_xiaofeng__ch01` |
 | `cg_` | 剧情插图 | `cg_q_01_main_03_01` |
@@ -142,23 +142,23 @@ flowchart LR
 | `ico_` | 图标（沿用对象 ID） | `ico_sk_xianglong18`、`ico_eq_yitianjian`、`ico_bf_zhongdu` |
 | `ill_` | 武学图鉴插画（秘籍图谱） | `ill_sk_tieshazhang` |
 | `cin_` | 绝招切入题名层（书法题名 + 墨韵底纹） | `cin_sk_xianglong18` |
-| `vfx_` / `ui_` / `map_` | 特效 / UI / 地图 | `vfx_sk_liumai_beam`、`ui_frame_scroll_9s`、`map_ch01_world` |
+| `vfx_` / `ui_` / `map_` | 特效 / UI / 地图 | `vfx_sk_liumai_beam`、`ui_frame_scroll_9s`、`map_jianghu_world__ch01` |
 | `vid_` | 视频 | `vid_opening`、`vid_ch01_intro`、`vid_ch01_tianshu`、`vid_sleep_01_02`、`vid_end_guixiang` |
 | `bgm_` / `sfx_` / `vo_` | 音乐 / 音效 / 配音 | `bgm_ch01_theme`、`sfx_hit_blade_02`、`vo_shuling_0001` |
 
 变体键约定：书界 `chNN`、年龄 `youth/prime/elder`、伤残/状态 `onearm/blind`、表情 `e_<情绪>`，可组合：`por_npc_yangguo__ch03_prime_onearm_base`。
 
-**与内容数据中素材键的对应**：策划数据（`design/05` 招式 `anim: {clip, vfx, sfx, cutin}`、武学 `assets: {icon, art}`，`design/06` Buff `ui.icon`）已使用逻辑素材键。登记库条目以 `keys` 字段声明自己服务的逻辑键，映射规则如下（逻辑键的最终格式与 manifest 解析归 `tech/06`）：
+**与内容数据中素材键的对应**：策划数据（`design/05` 招式 `anim: {clip, vfx, sfx, cutin}`、武学 `assets: {icon, art}`，`design/06` Buff `ui.icon`）仍含兼容简写；`tech/04` / `tech/06` 在 IR 边界归一化为三段式 `AssetKey`。登记库 `keys[]` 只保存归一化后的完整键：
 
-| 内容数据中的键（示例） | 登记库 ID | 说明 |
+| 内容数据简写（示例） | 登记库 `keys[]` / ID | 说明 |
 |---|---|---|
-| `assets.icon: skill/xianglong18` | `ico_sk_xianglong18` | 武学图标 |
-| `assets.art: illus/skill/tieshazhang` | `ill_sk_tieshazhang` | 武学图鉴插画（§5.6.5） |
-| `ui.icon: buff/zhongdu` | `ico_bf_zhongdu` | Buff 图标 |
+| `assets.icon: skill/xianglong18` | `icon/sk_xianglong18/default` ⇄ `ico_sk_xianglong18` | 武学图标 |
+| `assets.art: illus/skill/tieshazhang` | `illus/sk_tieshazhang/default` ⇄ `ill_sk_tieshazhang` | 武学图鉴插画（§5.6.5） |
+| `ui.icon: buff/zhongdu` | `icon/bf_zhongdu/default` ⇄ `ico_bf_zhongdu` | Buff 图标 |
 | `anim.clip: palm_heavy` | `anm_hum_palm_heavy`（渲染进各角色 `spr_*` 的对应动作） | 通用动作（§5.4.4） |
-| `anim.vfx: fx_sand_burst` | `vfx_sand_burst` | 特效 |
-| `anim.sfx: sfx_palm_hard` | `sfx_palm_hard` | 音效（同名） |
-| `anim.cutin: cutin/xianglong18` | `cin_sk_xianglong18` | 绝招切入题名层；运行时与施放者 `e_battle` 立绘合成 |
+| `anim.vfx: fx_sand_burst` | `fx_sand_burst` 内容定义再引用 `vfx/<名>/default` | `fx_*` 本身不是素材键 |
+| `anim.sfx: sfx_palm_hard` | `sfx/palm_hard/default` ⇄ `sfx_palm_hard` | 音效 |
+| `anim.cutin: cutin/xianglong18` | `cutin/sk_xianglong18/default` ⇄ `cin_sk_xianglong18` | 绝招切入题名层；运行时与施放者 `e_battle` 立绘合成 |
 
 ---
 
@@ -338,7 +338,7 @@ flowchart LR
 
 | 类型 | 每书界 | 全作合计（14 书界 + 序章 + 全局） | 等级分布 | 说明 |
 |---|---|---|---|---|
-| 概念原画 `art_` | 20（区域 8、地标 6、势力 4、群像 2） | ≈ 300 | A 为主 | 概念图是场景搭建与 CG 的底稿，不一定进游戏 |
+| 概念原画 `art_` | 20（区域 8、地标 6、势力 4、群像 2） | ≈ 300 | A 为主 | 概念图是场景搭建与 CG 的底稿，不一定进游戏；正式主体由引用图导出 |
 | 设定卡 `ref_` | 15–20 套 | ≈ 260 套 | S/A | 每个有立绘或独立模型的角色变体一套（多视图 + 面部特写 + 表情） |
 | 立绘 `por_`（主要） | 12 人 × 1 基础 | 基线 ≈ 170 人；以 `design/18` 的 `characterVariantCount` 重算 | S/A | 队友 6 + 关键 NPC 4 + 主 Boss 2 只是预算样本；跨书年龄/伤残/时代状态按稳定变体计，不按名字去重 |
 | 立绘表情差分 | 12 × 6 | ≈ 1,000 张脸部补丁 | S/A | 平静/喜/怒/哀/惊/战斗（+ 角色特有 1–2 个） |
@@ -358,7 +358,7 @@ flowchart LR
 | 绝招切入题名 `cin_` | 按已登记需要 cut-in 的武学生成 | 上限先按天/地 **204** 预算，实际由 `design/05 assets.cutin` 去重导出 | B | 书法题名 + 墨韵底纹；不默认 1,122 门全部制作 cut-in |
 | 特效贴图 `vfx_` | 天级武学签名特效 3–8 | 通用 ≈ 80 纹理/序列 + 签名 ≈ 51 | A | 天级武学（基准 §13 共 51 部）每部一个签名特效 |
 | UI 框体 `ui_` | 书界主题皮肤 5–10 件 | 通用 ≈ 150 件 | A | 九宫格框、卷轴、按钮、品阶边框 12 级 |
-| 地图 `map_` | 统一底图的当界状态 + 6–10 区域图 | **1 张统一底图 + 14 张时代图层**，另有 ≈ 120 区域图 | A/C | 直接消费 `design/map/jianghu-base.svg`、`jianghu-ch01.svg`～`jianghu-ch14.svg`；不另做 15 张大地图 |
+| 地图 `map_` | 统一底图的当界状态 + 6–10 区域图 | **1 张统一底图 + 14 张时代图层**；区域图数量由 30 区正式场景引用派生 | A/C | 直接消费 4096×3072 的 `design/map/jianghu-base.svg`、`jianghu-ch01.svg`～`jianghu-ch14.svg`；不另做 15 张大地图，也不沿用“≈120 区域图”手工估数 |
 | 视频 `vid_` | 开篇 + 天书现世 + 相邻书眠；结局按 `design/13` §7.10 | **46 条正式成片**；总时长 **19.7–30.2 分钟**，中心 **24.7 分钟【建议值】** | S/A | 书眠严格 13 条、中心值 `13×24=312 s=5.2 min`；结局严格消费三条既定 ID；总长按 §5.7.1 复算 |
 | 音乐 `bgm_` | ≈ 9 | ≈ 140 首 | A/B | 主题 1、探索 3–4、城镇 1、战斗 2、情感 2 |
 | 音效 `sfx_` | 书界特有 ≈ 25 | ≈ 400 | B | 通用库为主 |
@@ -372,8 +372,8 @@ flowchart LR
 - 武学目录按作者 P33 对 AR-01 的覆盖决定，以 `51+153+459+459=1,122` 门落在约 1,100–1,150 区间；图标本体预算为 1,122 个逻辑键，但独立绘制仅天/地 `51+153=204`，玄/黄 `459+459=918` 走模板族。
 - Buff 不在本文定义。资产管线从 `design/06` 正式目录生成 `ico_bf_*`：裁定 C23 的目标为 `208+19=227` 个；被撤回的 `bf_zhenshi` / `bf_cuidu` 不另造图标。
 - AR-02 的阴/阳/调和内力性质只影响上游 `design/05` 内功字段及视觉语义；本文从已审定 `nature` 素材键派生阴/阳/调和三组经络色与气韵，不新增第四种性质，也不重定义相性公式。
-- AR-03 冲穴、AR-05 与 AR-06 的资源/家丁/营生、AR-07 与 AR-08 的门派层级/时代矩阵，只消费 `design/15`、`design/16`、`design/12`、`design/17` 的稳定 ID 和资产键；这些上游尚未给出终值时只预留模板，不在本文反向定义穴道、资源品阶、职位或门派规则。
-- AR-04 与 AR-11 的统一江湖大地图、时代图层直接消费 `design/19` / `design/map/` 产物（见 §5.9）；AR-09 的生卒年、招募等级与跨书变体只决定需生成的角色变体；AR-10 的正邪线与选择节点只决定 CG/视频候选集合。本文均不维护第二份地图、NPC 或剧情事实表。
+- AR-03 冲穴、AR-05 与 AR-06 的资源/家丁/营生、AR-07 与 AR-08 的门派层级/时代矩阵，只消费 `design/15`、`design/16`、`design/12`、`design/17` 的稳定 ID、校验结果和素材引用；不得在本文反向定义穴道、资源品阶、职位或门派规则。
+- AR-04 与 AR-11 的统一江湖大地图、时代图层直接消费 `design/19` / `design/map/` 产物（见 §5.9）；189 城、99 门派与区域 / 场景素材需求由 `tech/04 content:build --emit-refs` 对正式数据生成，不在本表复制清单。AR-09 的生卒年、招募等级与跨书 `appearances` 从 `design/18` 及其 catalog 派生角色变体；AR-10 的正邪线与选择节点只决定 CG/视频候选集合。本文均不维护第二份地图、门派、NPC 或剧情事实表。
 
 **按书界拆分（标准档；体量系数 = 相对"典型书界"的规模，依原著篇幅与人物密度估）**
 
@@ -432,7 +432,7 @@ gantt
 | 阶段 | 目标 | 交付物 | 通过标准 |
 |---|---|---|---|
 | **Phase 0 风格锁定**（基数 `200+40=240 h`；加 5% 为 **≈ 252 h / 16.8 周**） | 证明“风格可控 + 管线可跑通” | 美术圣经与回归集 40 h；`tsgen`/审核页/Blender 管线 200 h；主角男女北宋装、段誉、一个杂兵走完“TraeX/Gemini 候选 → 设定卡 → 立绘 → Blender 中转 → 8 向精灵 → 进引擎”；1 张 CG；1 组图标模板 | 在**主力手机 + 中端 Android + iPad**登记型号、OS、浏览器和 PWA 入口并验证（待实测）；精灵、立绘、图标观感一致；同一角色 10 张不同构图的识别一致性人工评分 ≥ 4/5 |
-| **Phase 1 天龙垂直切片**（表内交付总量 `594 h` 扣 Phase 0 的 `240 h`，增量 `354 h`；加 5% 为 **≈ 372 h / 24.8 周**；含 Phase 0 累计 ≈ 624 h） | 一个完整可玩片段的全部素材 | 区域：大理 + 无量山（`rg_01_dali`、`rg_01_wuliang`）；角色：主角、书灵、段誉、钟灵、木婉清、南海鳄神（Boss）、无量剑派弟子/神农帮帮众（杂兵，模块化）；动物：蛇、闪电貂；共享动作库 v1（通用 + 剑 + 刀 + 指 + 掌）；宋式建筑套件 v1 + 3 地标；地形材质 12；图标 ≈ 120；签名特效 3（一阳指、六脉神剑、凌波微步残影）；BGM 5；音效 ≈ 120；视频 1（`vid_ch01_intro`） | 切片可连续游玩 30–60 分钟无占位图；管线每类资产都有 ≥ 1 次“从登记到入 manifest”的完整记录 |
+| **Phase 1 天龙垂直切片**（表内交付总量 `594 h` 扣 Phase 0 的 `240 h`，增量 `354 h`；加 5% 为 **≈ 372 h / 24.8 周**；含 Phase 0 累计 ≈ 624 h） | 一个完整可玩片段的全部素材 | `rg_dali_cangshan` 区域内的大理、无量山两个场景（不另造书界区域 ID）；角色：主角、书灵、段誉、钟灵、木婉清、南海鳄神（Boss）、无量剑派弟子/神农帮帮众（杂兵，模块化）；动物：蛇、闪电貂；共享动作库 v1（通用 + 剑 + 刀 + 指 + 掌）；宋式建筑套件 v1 + 3 地标；地形材质 12；图标 ≈ 120；签名特效 3（一阳指、六脉神剑、凌波微步残影）；BGM 5；音效 ≈ 120；视频 1（`vid_ch01_intro`） | 切片可连续游玩 30–60 分钟无占位图；管线每类资产都有 ≥ 1 次“从登记到入 manifest”的完整记录 |
 | **Phase 2 天龙全量**（标准书界内容 `491 h` 减切片内容 `354 h`，余 `137 h`；加 5% 为 **≈ 144 h / 9.6 周**；累计 ≈ 768 h） | 首个完整书界 | 其余区域（雁门关、少林、燕子坞、缥缈峰、辽国南京等）、全部队友/Boss、≈ 20 CG、开场视频、天书现世、书眠（天龙→射雕） | 天龙书界可通关；实际 Phase 1 若超出标准档范围，则以登记库差量重算，不出现负工时 |
 | **Phase 3+** | 每书界一个周期 | 逐部复用：射雕/神雕共享宋金蒙古套件与大量人物（年龄变体）；倚天复用神雕部分人物；清代 7 部共享清式套件 | 默认精简档 **≈ 270 h / 18 周**，标准档 **≈ 516 h / 34.4 周**（见 §8.3）；由 `tech/09` 排入总路线图 |
 
@@ -772,7 +772,7 @@ flowchart LR
 | 演出 | `victory` 8、`meditate` 4、`talk` 4 | 16 | — |
 
 - **招式不单独做动作**：`design/05` 招式的 `anim.clip` 取值限定为 `<cls>_light|heavy|ult` 与通用片段名（如 `palm_heavy`），再配 `anim.vfx`/`anim.sfx`/`anim.cutin` 与镜头震动。天级武学的签名表现主要靠特效与立绘切入（cut-in，≤ 1.2 秒，design/05 §4.8），而非专属骨骼动作。
-- 少量无法由通用片段表达的剧情/生物动作可登记 `battle8_act_<id>` 扩展页；具体招名和动作归属以 `design/05`、各章与 `design/18`（存在后）为准，本文不凭印象新增原著招名。
+- 少量无法由通用片段表达的剧情/生物动作可登记 `battle8_act_<id>` 扩展页；具体招名和动作归属以 `design/05`、各章与 `design/18` 为准，本文不凭印象新增原著招名。
 
 #### 5.4.5 渲染风格化
 
@@ -1101,6 +1101,15 @@ tier_mood:            # 仅影响本体气质，不画边框
 
 批处理：`design/05` 武学目录（YAML）→ `tsgen icons plan --catalog design/catalog/skills-*.yaml` 生成 **1,122** 个武学图标需求（`51+153+459+459=1,122`）及模板族映射 → `tsgen generate-request --provider traex --type icon --status todo --n 4` 生成 TraeX 请求；Gemini 网页结果用 `tsgen import-candidate` 导入 → 人工审定。管线只消费现有 `sk_*`，不得自行创建或改名武学 ID。
 
+**物品与装备接口**（只消费 `design/10` §2.3、§5，不在本文重定义装备栏或 `hands` 规则）：
+
+| 上游逻辑简写 | 规范 `AssetKey` / 资产 ID | 生产要求 |
+|---|---|---|
+| `equip/<拼音>` | `icon/eq_<拼音>/default` ⇄ `ico_eq_<拼音>` | 具名装备按目录进入独绘队列，随机/锻造基底按模板族生成 |
+| `item/<拼音>` | `icon/it_<拼音>/default` ⇄ `ico_it_<拼音>` | 物品按子类模板、主体与配色参数生成；特例可提升为独绘 |
+
+`tsgen icons plan` 必须从 `design/10` 的正式目录导出需求；当前容量锚为**约 93 个独立图标、约 40 个基底模板族**，仅用于排产，实际数量以构建时目录去重结果为准。`hands: 'pair'` 的成对兵器仍是一个装备对象，但角色精灵/模型生产必须交付左右两件外观和**双手挂点**元数据；具体占槽与计件语义只引用 `design/10` §3.3。
+
 #### 5.6.3 招式与 Buff 的字形图标
 
 - 招式：取已定稿招式名中的关键字，用**逐字体核验并随包保存 OFL 文本与哈希**的字体渲染 SVG；再由手工笔触蒙版或当前图像入口只处理字外纹理，最终形状必须与 SVG 作像素差异检查。不得仅因字体输入就声称“零错字风险”。
@@ -1212,7 +1221,7 @@ ffmpeg -i vid_ch01_intro.master.mov -c:v libx264 -profile:v high -preset slow -c
 |---|---|---|---|---|
 | **特效贴图** `vfx_` | 需求只从 `design/05` / `design/09` 的资产键导出。静态墨线拖尾、剑气弧、掌印、云纹等先由 TraeX/Gemini 出白底草图，经 Krita 转 alpha；少量序列帧用 Blender 粒子/程序材质渲染，再由 `tsgen flipbook` 装箱。不得在本文新增武学效果或 Buff 规则 | TraeX/Gemini、Blender、Krita、`tsgen flipbook` | 黑夜/雪地/水面可读；不遮挡角色；时长引用 `design/05`，不在本文另设上限 | 静态 512²/1024² 灰度；序列帧按 `tech/02` / `tech/06` 打包；`vfx_<对象ID>_<名>` |
 | **UI 框体** `ui_` | 依 `design/14` 组件清单。TraeX/Gemini 只出纸纹/木纹/锦缎候选，Krita/Figma/Inkscape 规整九宫格、三态与 SVG。12 级边框颜色读取 `packages/spec/palette.json`，不复制色值 | TraeX/Gemini、Krita、Figma/Inkscape | 高 DPI 下不糊；九宫格不变形；与 DOM 文本对比度达 `design/14` 门槛；OFL 字体逐个存许可证 | PNG @3x + 切片元数据；SVG；`ui_<组件>_<状态>` |
-| **统一大地图** | **不在本文生成第二套地图**。按 P53 及 AR-04/AR-11，大地图仅是选目的地、驿路/水路与遭遇的导航层，进入区域后才使用可行走场景。直接消费 W1 已生成的 `docs/design/map/jianghu-base.svg` 与 `jianghu-ch01.svg`～`jianghu-ch14.svg`：前者为 1 张统一底图/全时代组，后者为同源构建出的 14 个时代图层静态输出。区域内小地图才由场景数据自动渲染 | `tools/map/render_map.py`（上游 W1）、`tech/06` 构建器 | 只校验来源哈希、时代层 ID、字体许可与资产引用；城市坐标、史名、门派驻地、图外专线归 `design/19` / `design/map/*`，本文不改图 | 登记 1 个 base + 14 个时代层的映射；运行时键与分包归 `tech/06`；不再创建 `map_chNN_world` 作为独立事实源 |
+| **统一大地图** | **不在本文生成第二套地图**。按 P53 及 AR-04/AR-11，大地图仅是选目的地、驿路/水路与遭遇的导航层，进入区域后才使用可行走场景。直接消费 4096×3072、4:3 的 `docs/design/map/jianghu-base.svg` 与 `jianghu-ch01.svg`～`jianghu-ch14.svg`：前者为共享底图，后者为同源的 14 个时代透明增量。区域内小地图由场景数据自动渲染 | `tools/map/render_map.py`（上游 W1）、`tech/06` 构建器 | 校验来源哈希、`4096×3072` viewBox、时代层 ID、字体许可与资产引用；城市坐标 / 史名、99 门派驻地、3 个图外节点归 `design/19` / `design/map/*`，30 区玩法归 `design/11`，本文不手抄清单 | 登记 `map_jianghu_world__base` 与 `map_jianghu_world__ch01`～`__ch14`，对应 `map/jianghu_world/base` 与 `map/jianghu_world/chNN`；预览 low 为 2048×1536 单图，mid/high 为 4096×3072，运行时 512²、8×6=48 瓦片与分包均归 `tech/06` |
 
 ---
 
@@ -1281,7 +1290,7 @@ jinyongqunxia/                    # 主仓库（代码 + 文本类工具资产�
 
 - 统一 URI：登记库中路径写作 `art://master/portrait/ch01/<file>`，由 `tsgen` 按本机配置解析为实际路径或桶地址；**登记库只存路径 + sha256**，二进制永不进 Git。
 - 不使用 Git LFS（托管配额贵、个人项目没必要）；若需版本化大文件，备选 DVC（远端指向同一私有桶）。
-- 私有桶与 CDN 的选型（国内 OSS/COS vs 海外 R2/S3）由 tech/06 统一；本文只要求 `source`/`master` 桶**不可公开读**（金庸 IP 素材不得外泄，§9）。
+- 私有存储拓扑引用 tech/06：本版为本地离线副本 + Cloudflare R2 私有桶 / 同源 Worker，不备案、不启用国内或香港镜像；本文只额外要求 `source`/`master` **不可公开读**（金庸 IP 素材不得外泄，§9）。
 
 ### 6.3 提示词模板库（YAML）
 
@@ -1329,7 +1338,7 @@ era.qing.manchu_female:    "early Qing Manchu woman, liangbatou two-handle hairs
 
 **定位**：登记库是"**每个资产是什么、处于什么状态、从何而来、母版在哪**"的唯一事实来源。tech/06 的构建脚本只消费 `status ∈ {approved}` 的条目生成 runtime 产物与 manifest；未审定的资产在开发构建中以占位图替代。
 
-条目结构（唯一定义为 `packages/data` 的 Zod schema `AssetEntry`，经 `toJsonSchema()` 导出 JSON Schema，Python 侧用 datamodel-code-generator 生成 Pydantic 模型；字段为提议）：
+条目结构（唯一定义为 `packages/data` 的 Zod schema `AssetEntry`，经 `toJsonSchema()` 导出 JSON Schema，Python 侧用 datamodel-code-generator 生成 Pydantic 模型；以下字段契约已与 `tech/06` 对齐，实际代码仍按路线图实现）：
 
 ```yaml
 # content/assets/registry/ch01/portrait.yaml
@@ -1337,7 +1346,7 @@ era.qing.manchu_female:    "early Qing Manchu woman, liangbatou two-handle hairs
   type: portrait            # portrait|portrait_patch|avatar|cg|concept|ref|model|anim|sprite|terrain|building|prop|icon|vfx|ui|map|video|bgm|sfx|vo
   chapter: ch01_tianlong    # 或 global
   subject: npc_duanyu       # 对应基准 §12 的对象 ID
-  keys: [portrait/npc_duanyu/ch01]   # 服务的逻辑素材键（格式归 tech/06）
+  keys: [portrait/npc_duanyu/ch01_base] # 完整 AssetKey；manifest 主键
   variant: ch01
   tier: S
   status: review            # 见 §6.5；许可/账号实测未闭合前不得 approved
@@ -1370,15 +1379,14 @@ era.qing.manchu_female:    "early Qing Manchu woman, liangbatou two-handle hairs
     license: { tool: "TraeX image_generation", termsSnapshot: null, accountVerified: false, use: private-only }
   review:
     - { at: 2026-09-26, by: me, checklist: portrait.v1, result: hold, notes: "待账号条款与导出规格实测" }
-  runtime:                  # tech/06 回填
-    manifestKey: null
 ```
 
 **与 tech/06 的约定**：
-1. tech/06 以 `id` 为逻辑键，产物文件名用内容哈希；manifest 中保留 `id → 哈希文件` 映射；
+1. 登记库 `keys[]` 的每个 `AssetKey` 才是运行时 manifest 主键，并与资产 `id` 按 `tech/06` §3.2 双射；产物文件名使用内容哈希。`runtime.manifestKey` 若在生成类型中暴露，只能由 `id/keys` 派生，**不得回写 YAML**；
 2. `files.master.sha256` 变化即触发该资产重新构建；
-3. 登记库的 `chapter` 字段决定分包；`global` 进公共包；
+3. `chapter` 只提供时代提示；最终归包由 `tech/04` 的 `refs.json`、`design/11` 区域/时代映射与显式覆盖共同决定，跨时代稳定资产进 `region-<rg_id>` / `common`，时代差量进 `era-chNN`，不能仅凭 `chapter` 猜包；
 4. Schema 唯一定义在 `packages/data`（Zod，符合 tech/01"内容 schema 唯一定义"的原则与基准 §19"YAML + Zod"），导出的 `asset.schema.json` 供 Python 侧生成模型；CI 的内容校验（`content:validate`）同时校验登记库。
+5. `tsgen plan` 只从 `tech/04 content:build --emit-refs` 的引用图和归属文档生成待办：地图读取 `design/11/19` 与 `design/map/*.yaml`，门派读取 `design/17` 的 99 项闭集，NPC/变体读取 `design/18` 与 `design/catalog/npcs-*.md`；不得维护手写的城市、门派或人物生产名单。
 
 ### 6.5 状态机与溯源
 
@@ -1410,7 +1418,7 @@ stateDiagram-v2
 
 **stale 传播**：`tsgen registry check` 构建依赖图（`inputs`），任一上游 `@版本` 变化 → 下游全部标 `stale`。例：修改段誉设定卡（`ref_…@3 → @4`）→ 立绘、头像、3D 模型、精灵、相关 CG 全部标记，并按等级给出重做工时估算。未启用 LoRA 不应出现在当前依赖图中。
 
-**溯源元数据写入文件本身**（冗余于登记库，防丢失）：PNG 写 iTXt/XMP（`tianshu:assetId`、`tianshu:ai=true`、`tianshu:provider`、`tianshu:model`），WAV 写 `INFO` 块，MP4 写 `comment` 元数据；KTX2 运行时产物由 tech/06 在键值数据中保留 `assetId`（可选）。
+**溯源元数据写入文件本身**（冗余于登记库，防丢失）：PNG 写 iTXt/XMP（`tianshu:assetId`、`tianshu:ai=true`、`tianshu:provider`、`tianshu:model`），WAV 写 `INFO` 块，MP4 写 `comment` 元数据。运行时 WebP/AVIF 与 KTX2 默认不回写溯源字段；完整追溯依赖 manifest `src`、登记库与构建记录，见 `tech/06` §10。
 
 ### 6.6 批处理脚本（关键片段）
 
@@ -1636,7 +1644,7 @@ variants:
 | TraeX CLI `image_generation` | 当前自动图像入口 | 只登记账号实际扣量；额度与单次上限**（待实测）** | 每次请求保留请求单、返回原文件与哈希；不可用时暂停该批，不静默切换供应商 |
 | Gemini 网页版 | 当前人工图像入口 | 只登记作者实际套餐与用量；模型、额度、参考图和导出规格**（待实测）** | 手工下载 + `import-candidate`；不可批量模拟网页 API |
 | Blender / Krita / FFmpeg | 本地确定性加工 | 软件成本 0；现有机器的 CPU/GPU 类型与渲染速度**（待实测）** | Phase 0 用 8 向金样本测 `s/frame-pass`；不够快就减角色/动作范围，不租卡 |
-| 私有对象存储 | source/master 备份 | 厂商、地区、容量、请求费归 `tech/06`，本文不预填月费**（待核实）** | 本地离线副本 + 私有桶；不得公开读 |
+| 私有对象存储 | source/master 备份 | Cloudflare R2 私有桶 + 本地离线副本；实际容量与账单按月记录**（待实测）** | 不公开读；运行时只经同源 Worker |
 
 本轮明确排除：购买独显、租 GPU、部署 ComfyUI、下载 Qwen/FLUX/视频/TTS 权重、开通候选供应商付费项。日后若作者改变 P02，必须新建预算版本，不得把 §4 的候选报价混入当前基线。
 
@@ -1703,7 +1711,7 @@ Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实�
 | TraeX CLI `image_generation` | 是 | 用现有环境；登记实际扣量/失败重试，不折算成未经证实的美元单价 | 底层路由、额度、并发、输入留存、输出权利**（待实测）** |
 | Gemini 网页版 | 是 | 只记作者实际套餐增量；若现有套餐无新增费用则记 0 | 展示模型、日限额、参考图与导出规格、SynthID 行为**（待实测）** |
 | Blender/Krita/FFmpeg | 是 | 软件许可费用 0；电费与机器折旧不单列 | 本机耗时**（待实测）** |
-| 私有对象存储 | 待 tech/06 选型 | 按月账单实报；当前不预填 $5–15 | 容量、地域、冷热分层、请求与流量价格**（待核实）** |
+| 私有对象存储 | Cloudflare R2 私有桶（tech/06 已定） | 按月账单实报；当前不预填固定金额 | 实际容量、请求与账单**（待实测）** |
 | Qwen/FLUX/ComfyUI、租卡、图生 3D、I2V、Suno/TTS/Midjourney 等候选 | **否** | **当前预算为 0**；调研价格不构成采购计划 | 只有作者改 P02 后才另立预算与许可闸门 |
 
 因此本版**不能给出可信的全量现金总价**。可执行的预算控制是：每月导出 `provider + requestCount + acceptedCount + actualCharge`；当某入口月度新增支出超过作者设置的上限时停止新请求，已有 source/master 与 Blender 后处理继续工作。月度上限暂取 **0 元自动新增订阅【建议值】**：任何付费升级都需作者主动操作，脚本无购买权限。
@@ -1877,7 +1885,9 @@ Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实�
 | 资产等级 S/A/B/C | 控制人工投入的分级（§3.1） |
 | 精简档 / 标准档 | 每书界素材数量与工时的两个完成线（§8.3），默认精简档 |
 | 资产 ID 前缀与变体后缀 `__` | `ref_ art_ por_ ava_ cg_ mdl_ anm_ spr_ tex_ bld_ prp_ ico_ ill_ cin_ vfx_ ui_ map_ vid_ bgm_ sfx_ vo_`（§1.4）；版本引用 `<id>@<版本>` |
-| 逻辑素材键 `keys` | 登记库条目声明其服务的内容数据素材键（如 `skill/xianglong18`、`cutin/xianglong18`），映射规则见 §1.4 |
+| 逻辑素材键 `keys` | 登记库条目声明其服务的完整三段式 `AssetKey`（如 `icon/sk_xianglong18/default`、`cutin/sk_xianglong18/default`）；旧简写只由 tech/06 归一化（§1.4、§6.4） |
+| 全国地图资产 / 素材键 | `map_jianghu_world__base` / `map/jianghu_world/base` 与 `map_jianghu_world__ch01`～`__ch14` / `map/jianghu_world/ch01`～`ch14`；4096×3072 SVG 审查源的正式登记映射（§5.9） |
+| 引用图驱动需求 | `tsgen plan` 消费 `tech/04 content:build --emit-refs` 的 `refs.json`，再关联 `design/11/17/18/19`；不得手抄 189 城、99 门派或 NPC 生产清单（§3.2、§6.4） |
 | `HexDir` / `Dir8` | 规则空间用 6 个 pointy-top 六角方向；资产空间用 0=S（正对观者）按屏幕顺时针至 7=SE 的 8 视图。固定镜头映射驻留 6 视图，转镜预取另 2 个；镜像对 1↔7、2↔6、3↔5（§5.4.3） |
 | 动作集 | 关键角色 `loco8` / `battle8`；杂兵可用 `loco5m` / `battle5m`，静立 NPC 可用 `static5m`，但运行时仍暴露完整 `Dir8`（§5.4.3） |
 | 兵器类动作 `<cls>_light/heavy/ult` | 招式通过数据字段 `anim` 映射到兵器类通用动作，不为每招单做骨骼动画（§5.4.4） |
@@ -1910,25 +1920,26 @@ Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实�
 | 4 | 战斗朝向为 4 斜向还是 8 向 | tech/02、design/09 | **已解决**：AR-12 覆盖 C20 的旧四向前提；规则 6 个 `HexDir`，资产完整 8 个 `Dir8`，动作集 `battle8`（见 §5.4.3） | 完整 battle 生产量较旧四向 +100% |
 | 5 | 招式数据增加 `anim` 字段（映射兵器类通用动作） | design/05、tech/05 | **已解决**：消费 `design/05` 的 `anim.clip/vfx/sfx/cutin`，本文不重定义（见 §1.4、§5.4.4） | 以共享动作控制规模 |
 | 6 | 12 级品阶边框非锚点色值与纹饰方案 | tech/02、design/14 | **已解决规格、待代码落地**：C20 已采纳 12 色，机器契约落点为 `packages/spec/palette.json`；运行时按显示品阶合成（见 §2.3、§5.6） | UI 应消费同一契约 |
-| 7 | manifest、KTX2、页尺寸、发布编码、存储桶/CDN | tech/06 | **未解决（上游依赖）**：本文只定母版、登记与素材页语义；发布格式和私有分发继续引用 `tech/06` | `tech/06` 尚含旧 `battle4`，须同步 |
-| 8 | 后端访问控制（非公开、鉴权、`noindex`） | tech/08 | **未解决（上游依赖）**：默认私有且禁止公开注册（见 §9.1） | 公开部署前必须法律重审 |
+| 7 | manifest、KTX2、页尺寸、发布编码、存储桶/CDN | tech/06 | **已解决接口**：本文只定母版、登记与素材页语义；`tech/06` 已统一 `battle8`、三档图集、KTX2 / WebP / AAC / H.264、Cloudflare R2 + 同源 Worker 私有分发与正式 `AssetKey`（见 §1.2、§6.4） | 实际包体和编码质量仍待 Phase 0 实测 |
+| 8 | 后端访问控制（非公开、鉴权、`noindex`） | tech/08 | **已解决接口**：应用、API 与素材使用同源 Worker，会话 Cookie 和 `noindex` 由 `tech/08` 定义，`tech/06` 统一调用；本文只维持私用审核边界（见 §9.1） | 任何公开分发仍须另行法律重审 |
 | 9 | 主角性别与书灵形态 | design/01 | **已解决**：P05 为男女两版、每版 15 套；P54 为抽象墨影非战斗书灵；P55 禁止 Spine/Live2D 主线（见 §3.2、§7.5） | 主角共 30 套；书灵不计 3D/战斗精灵 |
-| 10 | 各书界人物/区域/Boss 最终清单 | design/story、design/chapters、design/18 | **未解决（上游依赖）**：§3.2 仅为参数化产能模型；稳定 NPC/变体清单出现后重算 | 影响人物、模型、精灵与预算 |
-| 11 | 动态分层音乐与 iOS 音频封装 | tech/02、tech/06 | **未解决（上游依赖）**：母版 WAV；运行时 Opus/AAC 与动态分层能力由上游定（见 §5.8） | 影响循环点、stem 和发布包 |
+| 10 | 各书界人物/区域/Boss 最终清单 | design/story、design/chapters、design/18 | **已解决接口、数量待内容完成**：NPC 与跨书变体从 `design/18` / catalog，经 `tech/04 refs.json` 参数化生成；§3.2 只保留产能模型，不等待另抄稳定清单 | 正式任务/Boss/章节引用落齐后自动重算人物、模型、精灵与预算 |
+| 11 | 动态分层音乐与 iOS 音频封装 | tech/02、tech/06 | **部分解决**：AAC-LC 为发布基线，Opus 仅能力探测/实测后选用；循环偏移由编码后解码互相关修正（`tech/06` §5.7）。动态 stem 是否启用仍由音频运行时实测决定 | 封装已定；stem 数与播放策略仍开放 |
 | 12 | 显卡与工具账号地区 | 作者 / 本文 | **已解决路线、仍待账号实测**：P02 定无本地显卡、不租卡，只用 TraeX/Gemini；账号地区、额度和条款（待实测）（见 §4、§8.1） | 不再保留租卡默认方案 |
 | 13 | 候选生成工具的许可与输出权利 | 本文 | **不阻塞当前**：候选全部禁用；只有作者改变 P02 时，才按当日 tag/账号逐项重核（见 §4、§9.2） | 不得把调研表视为执行授权 |
 | 14 | Blender 4.5/5.2 LTS API 回归 | 本文 Phase 0 | **版本已核实、端到端待实测**：4.5.14 兼容基线，5.2.2 回归（见 §4.11、§5.4.7） | EEVEE、材质覆盖、EXR、投影 helper |
 | 15 | 大地图高程/地理数据路线 | design/19 | **已解决**：直接消费 W1 已生成的 1 张底图 + 14 张时代 SVG；本文不另采高程或重建事实源（见 §5.9） | 只做派生预览与压缩 |
 | 16 | 是否上 Live2D/Spine 级动画 | design/14、本文 | **已解决**：P55 仅 CSS / 轻量网格；增强方案仍不引入两套运行时（见 §5.2、§10.2） | 删除旧 +3–5 h/角色假设 |
-| 17 | 契约与登记库路径 | tech/01、tech/06 | **部分解决**：C18 定跨语言静态 JSON 在根 `packages/spec/`，`packages/data` 只保留 Zod/schema；登记 YAML 在 `content/assets/registry/`。`AssetEntry` 的实际代码落地仍归 tech/01/06（见 §1.2、§6.1） | 防止双份契约漂移 |
+| 17 | 契约与登记库路径 | tech/01、tech/06 | **已解决接口**：C18 定跨语言静态 JSON 在根 `packages/spec/`，`packages/data` 保留 Zod/schema；登记 YAML 在 `content/assets/registry/`；`runtime.manifestKey` 只派生、不回写（见 §1.2、§6.1、§6.4）。实际代码仍按路线图实现 | 防止双份契约漂移 |
 
 ### 本文依赖的上游事实
 
 - `tech/02`：相机、`HexDir`→`Dir8` 映射、`battle8` 页组、ppm、锚点、法线和转镜预取；本文只消费。
 - `tech/03`：四档精灵显存硬限；本文的估算不可反向提高硬限。
 - `design/05/06/10`：武学、Buff、物品的稳定 ID 与素材键；C23 目录为 227 个 Buff，`bf_zhenshi` / `bf_cuidu` 不产生资产。
-- `design/12/15/16/17/18`：门派层级、冲穴、资源/营生与 NPC 目录；当前 `design/15`、`16`、`18` 尚未落入本工作树，故只预留接口、不造事实。
-- `design/13`：三条结局视频 ID 与 `MetaProfile.lastKeeperAppearance`；`design/19` 与 `design/map/`：统一大地图 SVG。
+- `design/12/15/16/17/18`：门派流程、冲穴、资源/营生、99 门派与 NPC/跨书变体正式目录；本文经 `tech/04 refs.json` 消费，不复制事实表。
+- `design/11/19` 与 `design/map/`：30 区玩法边界、189 城、99 门派落点、3 个图外节点及 4096×3072 的共享底图 + 14 个时代 SVG；当前 `design/map/*.yaml` 的 19→30 数据迁移由设计归属任务完成，本文不自行改源。
+- `design/13`：三条结局视频 ID 与 `MetaProfile.lastKeeperAppearance`。
 
 ### 对基准的修改提案
 
@@ -1954,4 +1965,4 @@ Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实�
 5. **全量工时档**：默认精简档约 4,200 h；标准档约 6,300 h 只作容量上界，首批实际数据出来后以登记库 P50/P80 重估。
 6. **视频中心时长**：默认 24.7 分钟【建议值】；三条结局各以 90 秒作中心值，最终镜头时长由 `design/13` 分镜确认，但不得增加第四条正式结局成片。
 7. **禁用候选的事实缺口**：默认不启用、不计预算、不上传人物卡；作者若改变 P02，再按启用当日逐项闭合 Sora 停用日期、Tripo/Seedance/ACE-Step/Suno 的价格、API、许可、地区与账号权益，不把本轮调研快照当长期授权。
-8. **对象存储选型**：默认本地离线副本 + 私有桶且不预填月费；由 `tech/06` 确定厂商、区域、冷热层、容量、请求与流量价格后关闭。
+8. **已解决：对象存储选型**。采用本地离线副本 + Cloudflare R2 私有桶 / 同源 Worker；不备案、不启用国内或香港镜像，不预填固定月费（见 `tech/06` §7）。

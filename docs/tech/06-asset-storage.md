@@ -3,9 +3,9 @@
 | 项 | 内容 |
 |---|---|
 | 文档归属 | `docs/tech/06-asset-storage.md`：素材**存储分层**、**素材键与清单（manifest）**、**分包与预取**、**运行时格式/编码规范**、**资源构建管线 `tools/asset-pipeline`**、**存储与 CDN 选型**、**缓存/版本/回滚**、**完整性与访问控制**、**运行时侧溯源链**、**占位与回退**的唯一归属文档 |
-| 版本 | v1.1（审校修订，2026-09-26）：落实 Canon v1.1、C18/C19、作者决定 P03/P04/P48/P53、AR-04/AR-11、tech/03 F9 与 tech/08 会话闸门；库版本、浏览器支持、云价格与限额于 2026-09-26 复核，来源见文末“参考资料”，仍需真机或厂商确认处按规则保留标注 |
+| 版本 | v1.2（跨文档同步，2026-09-26） |
 | 上游基准 | `docs/00-canon.md` §0（非商业、**不公开分发**、PWA 离线、云存档）、§2（书界）、§8、§12（ID 规范）、§18（文档归属）、§19（素材基线：与代码分离；对象存储 + CDN；内容哈希命名 + 清单；KTX2（Basis Universal）；按书界分包、懒加载） |
-| 强依赖 | `tech/01`（monorepo、资源分级 L0–L3、`AssetScope`、PWA/Workbox、CI、`assets.lock.json`）；`tech/07`（资产登记库 `AssetEntry`、母版规格、资产 ID 前缀、`art://` URI、状态机）；`tech/02`（`battle8`、精灵加载器、法线编码、相机）；`tech/03`（显存/包体/字体与加载预算终值）；`tech/04`（书界数据包与引用图）；`tech/08`（会话鉴权、应用托管、域名部署）；`design/02` §4（书眠流程）；`design/11`（统一大地图与时代图层，待成稿）；`design/12`、`design/15`、`design/16`（门派、冲穴、资源与营生接口）；`design/05`、`design/06`（内容数据中的素材键） |
+| 强依赖 | `tech/01`（monorepo、资源分级 L0–L3、`AssetScope`、PWA/Workbox、CI、`assets.lock.json`）；`tech/07`（资产登记库 `AssetEntry`、母版规格、资产 ID 前缀、`art://` URI、状态机）；`tech/02`（`battle8`、精灵加载器、法线编码、相机）；`tech/03`（显存/包体/字体与加载预算终值）；`tech/04`（书界数据包与引用图）；`tech/08`（会话鉴权、应用托管、域名部署）；`design/02` §4（书眠流程）；`design/11`（30 个全局区域、统一大地图与时代图层）；`design/12`（任务与门派流程）、`design/15`（冲穴）、`design/16`（资源与营生）、`design/17`（99 门派）、`design/18`（NPC 与同伴）、`design/19` 与 `design/map/*.yaml`（4096×3072 地图源、189 城及门派落点）；`design/05`、`design/06`、`design/10`（内容数据中的素材键及物品/装备资产需求） |
 | 读者 | 作者本人（单人开发 + AI 辅助编码）与编写管线/加载器的 AI 编码代理 |
 | 命名说明 | 任务书中的 `tools/asset-build` 即 `tech/01` §4.1 已定名的 **`tools/asset-pipeline`**，本文沿用后者；其 CLI 命名为 `tsap`（tianshu asset pipeline） |
 
@@ -14,14 +14,15 @@
 > 1. **三层分离**：代码仓库（Git：代码、schema、登记库 YAML、≤ 2 MB 引导资源）｜素材库 `/art`（本地 NVMe + 私有桶镜像 + restic 版本化快照；**不用 Git LFS / DVC**）｜运行时产物（对象存储 + 边缘分发，内容寻址、永久缓存）。
 > 2. **一个键贯穿全链**：`AssetKey = <kind>/<subject>/<variant>`（例 `portrait/npc_xiaofeng/default`），与 tech/07 资产 ID（例 `por_npc_xiaofeng`）**双射**；内容数据只写素材键或按约定推导，**永不写 URL**。
 > 3. **两级清单 + 锁文件**：`m/root.<hash>.json` → `m/<pack>.<hash>.json`；应用构建由 `assets.lock.json` 钉住 root（代码与素材原子一致），开发/预览走 `c/<channel>.json` 指针。
-> 4. **双轴分包**：`core`（到标题画面 ≤ 1.5 MB）→ `common`（常驻）→ **区域基础包** `region-<rg_id>`（地形、建筑、跨时代通用 NPC）+ **时代状态包** `era-chNN`（本时代势力/NPC/资源点/营生场所/城市名称及状态素材）；进入集按“时代公共 + 当前区域基础 + 当前区域时代状态 + 当界字体”组合，mid 档硬上限 60 MB。区域与时代语义只引用 `design/11`。
-> 5. **格式**：WebGL 用 KTX2（精灵/法线/硬边特效 = UASTC + RDO + Zstd，精灵按 tech/02 定稿为 64/96/128 px/m 三档包 + 2 级 mip；地形纹理数组/建筑图集/背景 = ETC1S；不透明贴图去 alpha 以落到 4 bpp）；DOM 用 WebP（AVIF 可选）；音频 AAC-LC 基线（Opus 可选）；视频 H.264 渐进 MP4 基线（HEVC/AV1/HLS 可选）；字体 OFL 字库子集化 WOFF2。
-> 6. **构建本地优先**：母版在作者机器上，`tsap build/publish` 本地运行；CI 只做校验、预算门禁与部署；增量缓存键 = 输入 sha256 + 配方版本 + 参数 + 工具版本。
-> 7. **唯一分发方案**：按作者决定 P03，只规划 Cloudflare R2 + 同源 Worker（`/a/*`、`/m/*`、`/c/*`）；暂不备案，也不建设国内或香港镜像。`bases` 在 v1.1 固定为 `["/"]`，接口保留数组形状但不启用多源。
-> 8. **默认私有**：运行时素材含金庸 IP 衍生内容，按基准 §0“不要公开发布”，**全部素材路径走会话闸门**（同源 Cookie，tech/08 签发）；R2 桶不开公开访问。若未来另立项采用按流量计费 CDN，须先完成费用封顶设计；防盗链不是安全边界。
-> 9. **缓存**：所有经过会话闸门的哈希文件均用 `private, max-age=31536000, immutable`；指针与 HTML `no-cache`；Service Worker（Workbox `injectManifest`）对 `/a/*` 采用“单源 CacheFirst + 入缓存前哈希校验 + Range 支持”；离线下载按“包/块”登记于 Dexie `packs` 表，标记-清除式 GC。
-> 10. **溯源**：运行时文件 → 清单 `src` → 登记库 `provenance` → 母版 XMP → 源文件；`tsap trace <url|hash|key>` 一条命令还原模型、提示词、种子、参考图、人工修改与许可证。
-> 11. **占位优先**：未审定/缺失资源在构建期即替换为分类型占位（木人桩精灵、水墨剪影立绘、字形图标、灰模建筑），游戏始终可玩；书界"完成"门禁 = S/A 级零占位。
+> 4. **双轴分包**：`core`（到标题画面 ≤ 1.5 MB）→ `common`（常驻）→ **30 个区域基础包** `region-<rg_id>`（地形、建筑、跨时代通用 NPC）+ **时代状态包** `era-chNN`（本时代势力/NPC/资源点/营生场所/城市名称及状态素材）；章节剧情只声明对这两轴块的依赖，不复制基础地形。进入集按“时代公共 + 当前区域基础 + 当前区域时代状态 + 当界字体”组合，mid 档硬上限 60 MB。区域与时代语义只引用 `design/11`。
+> 5. **地图生产键已固化**：`design/19` 的 4096×3072 SVG 同源生成 `map/jianghu_world/base` 与 `map/jianghu_world/ch01`～`ch14`；base 只进 `common/map`，14 个时代增量分别进 `era-chNN/era-common`，禁止复制十四份完整底图。
+> 6. **格式**：WebGL 用 KTX2（精灵/法线/硬边特效 = UASTC + RDO + Zstd，精灵按 tech/02 定稿为 64/96/128 px/m 三档包 + 2 级 mip；地形纹理数组/建筑图集/背景 = ETC1S；不透明贴图去 alpha 以落到 4 bpp）；DOM 用 WebP（AVIF 可选）；音频 AAC-LC 基线（Opus 可选）；视频 H.264 渐进 MP4 基线（HEVC/AV1/HLS 可选）；字体 OFL 字库子集化 WOFF2。
+> 7. **构建本地优先**：母版在作者机器上，`tsap build/publish` 本地运行；CI 只做校验、预算门禁与部署；增量缓存键 = 输入 sha256 + 配方版本 + 参数 + 工具版本。
+> 8. **唯一分发方案**：按作者决定 P03，只规划 Cloudflare R2 + 同源 Worker（`/a/*`、`/m/*`、`/c/*`）；暂不备案，也不建设国内或香港镜像。`bases` 在本版固定为 `["/"]`，接口保留数组形状但不启用多源。
+> 9. **默认私有**：运行时素材含金庸 IP 衍生内容，按基准 §0“不要公开发布”，**全部素材路径走会话闸门**（同源 Cookie，tech/08 签发）；R2 桶不开公开访问。若未来另立项采用按流量计费 CDN，须先完成费用封顶设计；防盗链不是安全边界。
+> 10. **缓存**：所有经过会话闸门的哈希文件均用 `private, max-age=31536000, immutable`；指针与 HTML `no-cache`；Service Worker（Workbox `injectManifest`）对 `/a/*` 采用“单源 CacheFirst + 入缓存前哈希校验 + Range 支持”；离线下载按“包/块”登记于 Dexie `packs` 表，标记-清除式 GC。
+> 11. **溯源**：运行时文件 → 清单 `src` → 登记库 `provenance` → 母版 XMP → 源文件；`tsap trace <url|hash|key>` 一条命令还原模型、提示词、种子、参考图、人工修改与许可证。
+> 12. **占位优先**：未审定/缺失资源在构建期即替换为分类型占位（木人桩精灵、水墨剪影立绘、字形图标、灰模建筑），游戏始终可玩；书界"完成"门禁 = S/A 级零占位。
 
 > **调研要点（非致命，但改变了若干细节决策；来源见文末）**
 >
@@ -81,6 +82,7 @@
 | D16 | 访问控制 | 默认 L1 会话闸门（同源 HttpOnly Cookie）；R2 不开 `r2.dev`；P03 下不实现签名 URL 或第二套鉴权 | 基准 §0 不公开发布；§9 |
 | D17 | 缓存 | 哈希资源 private + immutable；SW 同源 CacheFirst + 哈希校验 + Range；离线下载按块；标记-清除 GC；申请 `persist()` | §8 |
 | D18 | 溯源与占位 | 清单 `src` 指向登记库；构建记录存私有桶；分类型占位 + 回退链；S/A 级零占位才算书界完成 | §10、§11 |
+| D19 | 全国地图资产 | 接受 `design/19` 的 4096×3072 SVG 源；正式键为 `map/jianghu_world/base` 与 `map/jianghu_world/ch01`～`ch14`，共享底图只存一份 | AR-04/AR-11；§3.2、§4.1、§5.4 |
 
 ---
 
@@ -90,7 +92,7 @@
 
 | 本文负责 | 不在本文（归属） |
 |---|---|
-| 运行时素材的寻址（素材键、清单）、区域基础包/时代状态包的物理结构、预取、编码格式与参数、构建管线、上传与分发、缓存与离线、完整性校验、素材路由对鉴权接口的调用、运行时侧溯源链、占位与回退 | 素材如何生成、审核、母版规格与登记库字段（`tech/07`）；着色器、精灵加载器内部结构、法线使用方式（`tech/02`）；预算终值（`tech/03`）；书界规则/文本数据包 JSON（`tech/04`，随应用发布，本文只校验其中引用的素材键）；全局区域/城市/时代图层及入口规则（`design/11`）；门派层级（`design/12`）、冲穴（`design/15`）、资源/家丁/营生（`design/16`）；登录、会话格式/签发/校验、应用托管与云存档（`tech/08`）；下载/存储管理界面（`design/14`） |
+| 运行时素材的寻址（素材键、清单）、区域基础包/时代状态包的物理结构、预取、编码格式与参数、构建管线、上传与分发、缓存与离线、完整性校验、素材路由对鉴权接口的调用、运行时侧溯源链、占位与回退 | 素材如何生成、审核、母版规格与登记库字段（`tech/07`）；着色器、精灵加载器内部结构、法线使用方式（`tech/02`）；预算终值（`tech/03`）；书界规则/文本书界包与引用图（`tech/04`，随应用发布，本文只校验其素材依赖）；30 区、城市/时代入口与状态（`design/11`）；任务与门派流程（`design/12`）、冲穴（`design/15`）、资源/家丁/营生（`design/16`）、门派历史/开放矩阵（`design/17`）、NPC/同伴（`design/18`）、全国地图数据与 SVG（`design/19`）；登录、会话格式/签发/校验、应用托管与云存档（`tech/08`）；下载/存储管理界面（`design/14`） |
 
 ### 1.2 上下游接口
 
@@ -135,8 +137,10 @@ flowchart LR
 | `tools/asset-pipeline/tools.lock.json` | 本文 | 管线、`tsap doctor` | 外部工具版本（进入各配方的构建缓存键） |
 | `assets.lock.json`（仓库根） | 本文（生成） | tech/01 CI/部署 | 钉住的 root 清单 |
 | 内容引用图 `refs.json`（`content-build --emit-refs`） | tech/04 | 本文归包 | 每个素材键被哪些书界/全局区域/时代状态对象引用 |
-| 全局区域与时代图层索引 | `design/11` → tech/04 | 本文归包 | 全局 `rg_*`/`city_*`、区域基础资产边界、各 `chNN` 的时代状态引用；本文不重定义其玩法含义 |
-| 资源点/营生/门派/冲穴素材引用 | `design/16` / `design/12` / `design/15` → tech/04 | 本文归包 | 只作为时代状态素材依赖输入；数值与玩法仍由各归属文档定义 |
+| 全局区域与时代图层索引 | `design/11` → tech/04 | 本文归包 | 30 个全局 `rg_*`、189 个 `city_*` 的归区、区域基础资产边界、各 `chNN` 的时代状态与章节剧情依赖；本文不重定义其玩法含义 |
+| 全国地图生成源 | `design/19`、`design/map/*.yaml`、`tools/map/render_map.py` | 本文地图配方 | 4096×3072 共享底图与 14 个时代增量；城市、门派、路线和图外节点仍以源 YAML 为准 |
+| 资源点/营生/门派/NPC/冲穴素材引用 | `design/16` / `design/12` / `design/17` / `design/18` / `design/15` → tech/04 | 本文归包 | 只作为区域基础或时代状态素材依赖输入；数值、人物与玩法仍由各归属文档定义 |
+| 物品/装备图标与挂点需求 | `design/10` → tech/07 → tech/04 | 本文归包 | 接收目录导出的约 93 个独立图标、约 40 个基底模板族及成对兵器双手挂点资产；实际数量以引用图去重结果为准，本文不定义装备规则 |
 | 会话校验接口与 Cookie `ts_s` | tech/08 | 本文边缘路由 | 本文调用共享鉴权函数；不复制会话解析、签名或免检路径规则 |
 
 ### 1.3 设计原则
@@ -292,7 +296,7 @@ restic check --read-data-subset=2%          # 每周抽检 2% 数据块
 
 | 层 | 名称 | 例 | 定义方 | 用途 |
 |---|---|---|---|---|
-| 内容 ID | 游戏对象 ID | `npc_xiaofeng`、`sk_xianglong18`、`rg_dali`（示例，最终见 `design/11`） | 基准 §12 | 规则、存档、剧情 |
+| 内容 ID | 游戏对象 ID | `npc_xiaofeng`、`sk_xianglong18`、`rg_dali_cangshan` | 基准 §12 与 `design/11` §13.2 | 规则、存档、剧情 |
 | 资产 ID | 登记库条目 ID | `por_npc_xiaofeng__ch01_base` | tech/07 §1.4 | 生产、审核、溯源 |
 | **素材键 `AssetKey`** | 运行时逻辑键 | `portrait/npc_xiaofeng/ch01_base` | **本文** | 内容数据引用、运行时寻址、清单主键 |
 | 文件名 | 内容寻址对象名 | `a/por_npc_xiaofeng__ch01_base.mid.3fa9c2e1d04b.webp` | 本文（自动生成） | CDN 与缓存 |
@@ -321,7 +325,7 @@ seg      = [a-z0-9]+ ( "_" [a-z0-9]+ )*   ; 单下划线分词；禁止双下划
 | `cutin` | `cin_` | `image` | DOM 覆盖层 | `common` 按需 | `default` |
 | `icon` | `ico_` | `image`（+ 画布图集定位） | DOM / WebGL | `common` 按需 | `default` |
 | `ui` | `ui_` | `image` / `svg` | DOM（纸纹 `ui/paper_fiber`、墨噪声 `ui/ink_noise` 同时供 WebGL 与 CSS 使用） | `core` / `common` | 状态：`normal`、`pressed`、`disabled` |
-| `map` | `map_` | `image-tiles` / `svg` | DOM | `common/map`（底图）或 `era-chNN/era-common`、`state-<rg_id>`（时代图层） | `base`、`chNN` |
+| `map` | `map_` | `image-tiles` / `svg` | DOM | `common/map`（共享底图）或 `era-chNN/era-common`（全国图时代增量）；区域小图可随 `region-<rg_id>` | `base`、`chNN` |
 | `sprite` | `spr_` | `sprite` | WebGL | `region-<rg_id>/base`（通用 NPC）或 `era-chNN/state-<rg_id>` / `battle`（时代 NPC） | `chNN`（时代装）、`chNN_<年龄>` |
 | `terrain` | `tex_` | 区域纹理数组中的一层（`packedIn` 指向数组容器） | WebGL | `region-<rg_id>/base` | `default`；时代差异另进状态覆盖层 |
 | `building` / `prop` | `bld_` / `prp_` | `model` | WebGL | `region-<rg_id>/base`（稳定套件/地标）或 `era-chNN/state-<rg_id>`（时代差异） | `default` / `chNN` |
@@ -331,7 +335,7 @@ seg      = [a-z0-9]+ ( "_" [a-z0-9]+ )*   ; 单下划线分词；禁止双下划
 | `sfx` | `sfx_` | 音频精灵成员（packed） | WebAudio | `common`、`era-chNN/era-common` | `default` |
 | `font` | `fnt_`（本文新增） | `font` | CSS `@font-face` | `core`、`common/fonts`、`era-chNN/fonts` | subject 为 `dlg_common`、`dlg_chNN`、`title_boot`、`title_chNN`；variant 为 `default` |
 | `lut` | `lut_`（本文新增） | `lut`（32³，存为 1024×32 无损 PNG 条带） | WebGL 后处理（tech/02 §5.4） | `common/ui`（闪回、书眠等通用）、`era-chNN/era-common`（书界基调） | `default` |
-| `sfxbank` / `atlas` | `sfb_` / `atl_`（本文新增，管线生成的容器） | `audio-bank`；`texture-array`（区域地形、崖面）、`sprite`（区域人群图集）、`canvas-atlas`（植被、画布内 Buff 图标） | WebAudio / WebGL | 同成员所在块 | 主体如 `terrain_rg_dali`、`cliff_rg_dali`、`crowd_rg_dali`、`foliage_rg_dali`、`buff_icons` |
+| `sfxbank` / `atlas` | `sfb_` / `atl_`（本文新增，管线生成的容器） | `audio-bank`；`texture-array`（区域地形、崖面）、`sprite`（区域人群图集）、`canvas-atlas`（植被、画布内 Buff 图标） | WebAudio / WebGL | 同成员所在块 | 主体如 `terrain_rg_dali_cangshan`、`cliff_rg_dali_cangshan`、`crowd_rg_dali_cangshan`、`foliage_rg_dali_cangshan`、`buff_icons` |
 
 `ref_`、`mdl_`、`anm_` 是生产中间资产，**永不进入运行时清单**。
 
@@ -350,6 +354,8 @@ seg      = [a-z0-9]+ ( "_" [a-z0-9]+ )*   ; 单下划线分词；禁止双下划
 | `fnt_dlg_common` | `font/dlg_common/default` |
 | `fnt_dlg_ch01` | `font/dlg_ch01/default` |
 | `fnt_title_boot` | `font/title_boot/default` |
+| `map_jianghu_world__base` | `map/jianghu_world/base` |
+| `map_jianghu_world__ch01` | `map/jianghu_world/ch01`（`ch02`～`ch14` 同理） |
 
 ```ts
 // packages/data/src/assets/asset-key.ts
@@ -404,6 +410,7 @@ export function assertKey(s: string): AssetKey {
 | 地形材质 | `terrain/<terrainId>/<书界时代>`（时代取自 `chapter.yaml`） | `terrain/tr_shenshui/song` |
 | 剧情插图 | ink 标签 `#cg:<cg 主体>` → `cg/<主体>/default` | `cg/q_01_main_03_01/default` |
 | BGM、视频、音效 | 在区域/书界/招式数据中**显式**写素材键或简写 | `bgm: bgm/ch01_dali_explore_1/default` |
+| 全国导航地图 | 固定读取共享底图 + 当前时代增量 | `map/jianghu_world/base` + `map/jianghu_world/ch01` |
 
 **显式覆盖**：任何内容对象可带 `assets:` 映射，值必须是完整素材键，例如神雕的蒙古兵直接复用射雕的精灵：`assets: { sprite: sprite/npc_menggubing/ch02 }`。
 
@@ -417,6 +424,8 @@ export function assertKey(s: string): AssetKey {
 | `anim.vfx`（design/05）、`vfx.*`（design/06） | `fx_sand_burst` | **不是素材键**：特效定义 ID（`content/vfx/fx_*.yaml`，tech/02 §6.1）；定义中引用的贴图 `tex: vfx_<名>` 归一化为 `vfx/<名>/default` |
 | `anim.sfx`（design/05）、`sfx.*`（design/06） | `sfx_palm_hard` | `sfx/palm_hard/default` |
 | `ui.icon`（design/06） | `buff/zhongdu` | `icon/bf_zhongdu/default` |
+| `assets.icon`（design/10 装备） | `equip/yitianjian` | `icon/eq_yitianjian/default` |
+| `assets.icon`（design/10 物品） | `item/dahuandan` | `icon/it_dahuandan/default` |
 | `anim.clip`（design/05） | `palm_heavy` | **不是素材键**：精灵元数据内的片段名（tech/02、tech/07 §5.4.4） |
 
 **Buff 图标校验（裁定 §5）**：本文不重定义 Buff 效果，只消费 `design/06` 的目录。构建器须把裁定新增的 19 个具体 ID 视为合法图标主体：`bf_sanxiao`、`bf_luoshui`、`bf_shishen`、`bf_xianluo`、`bf_shangshi`、`bf_tsp_sheshen_aura`、`bf_tsp_aibing`、`bf_tsp_qiyi`、`bf_tsp_qingshang`、`bf_tsp_xiangxu`、`bf_tsp_chou`、`bf_tsp_shixin`、`bf_tsp_pi`、`bf_tsp_bupi`、`bf_tsp_xianying`、`bf_tsp_xianying_fin`、`bf_tsp_weiguang`、`bf_juanshi_ruo`、`bf_fin_zhinian`。`bf_tsp_` 只是模式，不可实例化；`bf_zhenshi`、`bf_cuidu` 已撤回，不得生成对应图标，分别投影阵法状态和复用 `poisonCoat` / 既有毒 Buff。直到 `design/06` 合入前，校验器以 `rulings-v1.md` §5 为临时权威输入；合入后只读取 `design/06` 目录。
@@ -450,10 +459,12 @@ hash12 = hex(SHA-256(文件字节))[0:12]                        ; 48 位，同 
 代码仓库 assets.lock.json ──钉住──▶ m/root.<hash12>.json（每次构建一个）
                                       ├─▶ m/core.<hash12>.json
                                       ├─▶ m/common.<hash12>.json
-                                      ├─▶ m/region-rg_dali.<hash12>.json …（区域基础包）
+                                      ├─▶ m/region-rg_dali_cangshan.<hash12>.json …（30 个区域基础包）
                                       └─▶ m/era-ch01.<hash12>.json … m/era-ch14.<hash12>.json、m/fin.<hash12>.json
 c/preview.json（可变指针，开发/预览用）──▶ m/root.<hash12>.json
 ```
+
+`region-<rg_id>` 对 `design/11` §13.2 的 30 个全局区域逐一生成；例如 `rg_dali_cangshan` 对应 `region-rg_dali_cangshan`。章节内容只声明对所需区域基础包和时代状态块的依赖，不另造第三份基础地形。
 
 **`assets.lock.json`**（仓库根，由 `tsap lock` 写入；tech/01 §7.6 部署时据此注入 `ASSET_MANIFEST_URL = bases[0] + root`）
 
@@ -486,27 +497,27 @@ c/preview.json（可变指针，开发/预览用）──▶ m/root.<hash12>.jso
                 "bytes": { "low": 1100000, "mid": 1300000, "high": 1450000 } },
     "common": { "manifest": "m/common.51aa7c90d2e1.json", "sri": "sha256-…", "deps": ["core"],   "policy": "resident",
                 "bytes": { "low": 52000000, "mid": 71000000, "high": 88000000 } },
-    "region-rg_dali": { "manifest": "m/region-rg_dali.61ab….json", "sri": "sha256-…", "deps": ["common"],
-                "policy": "region-base", "region": "rg_dali", "bytes": { "low": 16000000, "mid": 24000000, "high": 33000000 } },
-    "era-ch01": { "manifest": "m/era-ch01.e7d9….json", "sri": "sha256-…", "deps": ["common", "region-rg_dali"],
+    "region-rg_dali_cangshan": { "manifest": "m/region-rg_dali_cangshan.61ab….json", "sri": "sha256-…", "deps": ["common"],
+                "policy": "region-base", "region": "rg_dali_cangshan", "bytes": { "low": 16000000, "mid": 24000000, "high": 33000000 } },
+    "era-ch01": { "manifest": "m/era-ch01.e7d9….json", "sri": "sha256-…", "deps": ["common", "region-rg_dali_cangshan"],
                 "policy": "era", "chapter": "ch01_tianlong", "bytes": { "low": 110000000, "mid": 210000000, "high": 290000000 } }
   }
 }
 ```
 
-**pack 清单**（节选：`era-ch01`；区域基础包 `region-rg_dali` 另有独立清单）
+**pack 清单**（节选：`era-ch01`；区域基础包 `region-rg_dali_cangshan` 另有独立清单）
 
 ```json
 {
   "format": 1,
   "pack": "era-ch01",
   "build": "20261012-2104-a1b2c3d",
-  "deps": ["common", "region-rg_dali"],
+  "deps": ["common", "region-rg_dali_cangshan"],
   "chunks": {
     "era-common":     { "policy": "enter",    "bytes": { "mid": 18000000 }, "files": { "mid": 145 } },
-    "state-rg_dali": { "policy": "era-state", "region": "rg_dali", "start": true,
-                       "neighbors": ["rg_wuliang"], "bytes": { "mid": 8000000 }, "files": { "mid": 72 } },
-    "state-rg_wuliang": { "policy": "era-state", "region": "rg_wuliang", "bytes": { "mid": 7000000 } },
+    "state-rg_dali_cangshan": { "policy": "era-state", "region": "rg_dali_cangshan", "start": true,
+                       "neighbors": ["rg_bashu", "rg_guangxi", "rg_yundian_qianzhong", "rg_qingzang"],
+                       "bytes": { "mid": 8000000 }, "files": { "mid": 72 } },
     "fonts":         { "policy": "enter",    "bytes": { "mid": 620000 } },
     "battle":        { "policy": "ondemand", "bytes": { "mid": 22000000 } },
     "media":         { "policy": "stream",   "bytes": { "mid": 64000000 } },
@@ -540,7 +551,7 @@ c/preview.json（可变指针，开发/预览用）──▶ m/root.<hash12>.jso
       "src": { "id": "spr_npc_duanyu__ch01", "master": "6e0f11d2a4c8" }, "lic": "ai"
     },
     "bgm/ch01_dali_explore_1/default": {
-      "type": "audio-stream", "chunk": "state-rg_dali",
+      "type": "audio-stream", "chunk": "state-rg_dali_cangshan",
       "meta": { "dur": 182.4, "loop": { "start": 8.0, "end": 176.0 }, "lufs": -18.1 },
       "files": { "mid": [
         { "f": "bgm_ch01_dali_explore_1.4f2a9d1c8e7b.webm", "b": 2210034, "fmt": "webm", "codec": "opus" },
@@ -662,7 +673,7 @@ sequenceDiagram
   S-->>G: Texture / 图片 URL / AudioBuffer（引用计数 +1）
 ```
 
-**启动**：读取构建期注入的锁文件 → 取 root（`fetch(url, { integrity: rootSri })`）→ 取 `core`、`common` 清单 → 书界/时代和区域确定后取 `era-chNN` 与对应 `region-<rg_id>` 清单。清单只在 root 变化时重新获取；已下载的包清单同样进入 Cache Storage，离线可用。
+**启动**：读取构建期注入的锁文件 → 取 root（`fetch(url, { integrity: rootSri })`）→ 取 `core`、`common` 清单 → 书界/时代和区域确定后取 `era-chNN` 与对应 `region-<rg_id>` 清单。清单只在 root 变化时重新获取；已下载的包清单同样进入 Cache Storage，离线可用。区域或时代切换先在候选 `AssetScope` 中完成清单、依赖闭包、hash、解码与预算校验，全部成功后再由 host 一次交换当前 scope 并释放旧时代状态；任一步失败即销毁候选、保留旧 scope 与旧玩法状态。该提交边界与 `design/11` §1.6、`tech/01` 的 `mountRegion()` 生命周期一致，避免混合两时代或半载入区域。
 
 **API**（`packages/platform/src/assets/registry.ts`）
 
@@ -704,13 +715,13 @@ export interface Resolved { key: string; entry: ManifestEntry; pack: PackId; via
 |---|---|---|---|---|---|
 | `core` | （单块） | `boot` | 标题背景、Logo、加载水墨、墨噪声 `ui/ink_noise`、核心占位集（§11）、`fnt_title_boot`、最小 UI | L0 | ≤ 1.5 MB |
 | `common` | `ui` | `resident` | UI 框体、12 级品阶边框、系统图标 SVG、纸纹、通用 LUT、UI 音效 bank、书灵素材、木人桩占位精灵 | L0 | ≤ 40 MB |
-| `common` | `map` | `resident` | AR-11 的统一大地图底图 `jianghu-base.svg`、通用图例、驿路/水路/图外节点符号；不含时代名称与开放状态 | L0/L1 | ≤ 4 MB【建议值】 |
+| `common` | `map` | `resident` | `map/jianghu_world/base`：由 4096×3072 `jianghu-base.svg` 剥离 14 个时代组后派生的共享地理底图、通用图例及路线骨架；不含时代名称、门派开放与剧情状态 | L0/L1 | ≤ 4 MB【建议值】 |
 | `common` | `fx` | `ondemand` | 被全局武学与 `design/06` 已定义具体 `bf_*` 引用的特效贴图、序列帧及通用战斗音效 bank | L0/L3 | ≤ 150 MB（全量；显存另按 tech/02 §8.7） |
 | `common` | `icons` | `ondemand` | 全部武学/物品/Buff 图标（DOM 独立文件）+ 画布内 Buff 图集；实例键必须解析到已定义 `bf_*`，不得把 `bf_tsp_*` 等通配写成实例 | L0/L3 | ≤ 40 MB（全量） |
 | `common` | `codex` | `ondemand` | 武学插画 `illus`、绝招切入 `cutin` | L3 | ≤ 80 MB |
 | `common` | `fonts` | `resident` | 跨书界高频对话字体 `fnt_dlg_common` 一个文件 | L0 | ≤ 260 KB |
 | `region-<rg_id>` | `base` | `region-base` | 跨时代稳定的地形/崖面纹理数组、山川水系、建筑与植被套件、稳定地标、通用 NPC/路人模板、区域小地图底层 | L2 | 开局区域 ≤ 24 MB；普通区域典型 ≤ 20 MB、上限 25 MB【建议值】 |
-| `era-chNN` | `era-common` | `enter` | 本时代公共的主角时代装、书界基调 LUT、主题 BGM、通用势力外观与导航时代图层 | L1 | ≤ 18 MB【建议值】 |
+| `era-chNN` | `era-common` | `enter` | 本时代公共的主角时代装、书界基调 LUT、主题 BGM、通用势力外观与导航增量 `map/jianghu_world/chNN` | L1 | ≤ 18 MB【建议值】 |
 | `era-chNN` | `state-<rg_id>` | `era-state` | 该时代在该区域的势力/NPC/门派、资源点、营生场所、城市名称与地位、入口开闭及差异建筑/道具素材 | L1/L2 | 开局区域 ≤ 8 MB；普通区域 ≤ 12 MB【建议值】 |
 | `era-chNN` | `fonts` | `enter` | `fnt_title_chNN` 与 `fnt_dlg_chNN` 两个当前书界子集 | L1 | ≤ 620 KB（120 + 500） |
 | `era-chNN` | `battle` | `ondemand` | Boss 的 `battle8` 精灵页、书界专属战斗特效；固定镜头只驻留 6 视图，旋转前补 2 视图 | L3 | ≤ 30 MB【建议值】，真实包量待 Phase 0 重测 |
@@ -718,18 +729,18 @@ export interface Resolved { key: string; entry: ManifestEntry; pack: PackId; via
 | `era-chNN` | `vo` | `ondemand` | 配音（若制作） | L3 | ≤ 10 MB |
 | `fin` | 同时代状态包 | `chapter` | 终局“守卷人”战与结局视频（见 `design/13`） | L1–L3 | 同 `era-chNN` |
 
-- **包**（pack）是清单和发布依赖单位；**块**（chunk）是预取、离线与回收单位；**策略**决定何时下载。`region-<rg_id>` 可被 14 个时代共同引用，文件内容寻址后只存、只缓存一份。
-- 区域、城市、时代入口与状态的**语义唯一归 `design/11`**；资源点/家丁与营生分别见 `design/16`，门派层级见 `design/12`，冲穴见 `design/15`。本文仅消费 tech/04 输出的引用图并定义物理包边界，不复制玩法表。
-- 统一大地图是导航/UI 资产；选择目的地后才加载可行走区域（作者决定 P53）。AR-11 的底图进 `common/map`，`chNN` 对应的城市名、开放入口、势力覆盖等 SVG/图块进 `era-chNN/era-common` 或 `state-<rg_id>`。
+- **包**（pack）是清单和发布依赖单位；**块**（chunk）是预取、离线与回收单位；**策略**决定何时下载。`region-<rg_id>` 对应 `design/11` §13.2 的 30 个稳定区域，可被 14 个时代共同引用；文件内容寻址后只存、只缓存一份。章节剧情依赖随 `era-chNN` 清单声明，不复制区域基础资产。
+- 区域、城市、时代入口与状态的**语义唯一归 `design/11`**；任务/门派流程见 `design/12`，冲穴见 `design/15`，资源点/家丁/营生见 `design/16`，门派名录与开放矩阵见 `design/17`，NPC/同伴见 `design/18`，地图坐标、路线与 SVG 见 `design/19`。本文仅消费 tech/04 输出的引用图并定义物理包边界，不复制玩法或人物表。
+- 统一大地图是导航/UI 资产；选择目的地后才加载可行走区域（作者决定 P53）。源文件固定为 4096×3072；共享底图 `map/jianghu_world/base` 进 `common/map`，`map/jianghu_world/chNN` 只承载当前时代的城市名、门派标记、开放/路线等增量并进 `era-chNN/era-common`。不得把完整底图放进每个 `era-chNN`，区域剧情状态仍按需要进入 `state-<rg_id>`。
 - **冷进入集** = `era-chNN/era-common` + 所选开局 `region-<rg_id>/base` + `era-chNN/state-<rg_id>` + `era-chNN/fonts`，硬上限 60 MB；`common` 与 `fnt_dlg_common` 在进入世界前已常驻，不重复计入。候选身份尚未选择时可预取多个状态块，但只有所选区域属于苏醒硬门禁。
 
 ### 4.2 块归属：由内容引用图自动计算
 
-`tools/content-build`（tech/04）以 `--emit-refs` 输出引用索引：每个素材键被谁引用（书界/时代、全局区域、对象类别、是否 Boss 遭遇），并把 `design/11` 的稳定性判定投影为 `scope: global | region-base | era-state`。区域与时代含义仍归 `design/11`；此字段只是构建接口。
+`tools/content-build`（tech/04）以 `--emit-refs` 输出引用索引：每个素材键被谁引用（书界/时代、全局区域、对象类别、是否 Boss 遭遇），并把 `design/11` 的稳定性判定投影为 `scope: global | region-base | era-state`。输入闭集同时消费 `design/11` 的 30 区映射、`design/19` / `design/map/*.yaml` 的 189 城与 99 门派落点，以及 `design/12/15/16/17/18` 的正式对象引用；素材清单由引用图派生，禁止手抄第二份城市、门派或 NPC 业务目录。区域与时代含义仍归各设计文档；这些字段只是构建接口。
 
 ```json
 { "building/kit_city_wall/default": [ { "chapter": null, "region": "rg_zhongyuan", "scope": "region-base", "by": "map:base" } ],
-  "sprite/npc_nanhaieshen/ch01": [ { "chapter": "ch01", "region": "rg_dali", "scope": "era-state", "by": "encounter:enc_01_nanhai", "boss": true } ],
+  "sprite/npc_yuelaosan/ch01": [ { "chapter": "ch01", "region": "rg_dali_cangshan", "scope": "era-state", "by": "npc:npc_yuelaosan", "boss": false } ],
   "portrait/npc_duanyu/ch01_base": [ { "chapter": "ch01", "region": null, "scope": "era-state", "by": "npc:npc_duanyu" } ],
   "vfx/palm_gather/default": [ { "chapter": null, "region": null, "scope": "global", "by": "fx:fx_xianglong_kanglong" } ] }
 ```
@@ -777,7 +788,7 @@ function chunkWithinEra(e: RegistryEntry, r: Ref[]): string {
 `fontPlacement()` 对四类允许主体作穷举校验：`title_boot` 只能进 `core/boot`，`dlg_common` 只能进 `common/fonts`，`title_chNN` / `dlg_chNN` 只能进相同 `era-chNN/fonts`；未知字体主体直接报错。这样不会因 `font` 被误当成全局 kind 而把书界补集塞进 `common`。
 
 - 复用：跨时代不变的城墙、山川、地表进入 `region-<rg_id>`，不会在 `era-chNN` 重复；同一 NPC 的年龄、服饰、势力状态不同则各自保留 `chNN` 变体并进对应时代状态包。
-- **容器不单独归包**：先确定成员所在块，再按“块 × 容器类型”生成容器——例如 `region-rg_dali/base` 的全部稳定地形层 → `atlas/terrain_rg_dali/default`；`era-ch01/state-rg_dali` 的时代路人 → `atlas/crowd_rg_dali/ch01`。不得沿用 `rg_01_*` 这种把书界号烙入全局区域 ID 的结构；最终 `rg_*` 名单以 `design/11` 为准。
+- **容器不单独归包**：先确定成员所在块，再按“块 × 容器类型”生成容器——例如 `region-rg_dali_cangshan/base` 的全部稳定地形层 → `atlas/terrain_rg_dali_cangshan/default`；`era-ch01/state-rg_dali_cangshan` 的时代路人 → `atlas/crowd_rg_dali_cangshan/ch01`。不得沿用 `rg_01_*` 或已废弃粗区；合法闭集与迁移表以 `design/11` §13.2 为准。
 - 若一个素材既含稳定底层又含时代文字/标记（如江湖地图），构建前拆成 `map/.../base` 与 `map/.../chNN` 两个资产；不能因合图方便把整个底图复制到 14 个时代包。
 - 结果写入构建报告（`tsap report`），任何块超预算都能追溯到"是哪个引用把它拉进来的"。
 
@@ -962,7 +973,7 @@ severity: { core: error, enter: error, default: warning }
 ktx create --format R8G8B8_SRGB --assign-tf srgb \
   --encode basis-lz --clevel 2 --qlevel 128 \
   --compare-ssim \
-  backdrop_rg_dali.mid.png backdrop_rg_dali.mid.ktx2
+  backdrop_rg_dali_cangshan.mid.png backdrop_rg_dali_cangshan.mid.ktx2
 
 # 2) 精灵颜色页：UASTC + RDO（确定性单线程 RDO）+ Zstd，生成 mip0 + mip1 两层
 ktx create --format R8G8B8A8_SRGB --assign-tf srgb \
@@ -981,7 +992,7 @@ ktx create --format R8G8B8A8_UNORM --assign-tf linear \
 # 4) 区域地形纹理数组：N 层不透明 ETC1S（输入文件按层号顺序，最后一个参数为输出）
 ktx create --format R8G8B8_SRGB --assign-tf srgb --layers 12 \
   --encode basis-lz --clevel 2 --qlevel 160 --generate-mipmap --mipmap-wrap wrap \
-  layer00.png layer01.png layer02.png … layer11.png atl_terrain_rg_dali.mid.ktx2
+  layer00.png layer01.png layer02.png … layer11.png atl_terrain_rg_dali_cangshan.mid.ktx2
 
 # 产物校验与检查
 ktx validate spr_npc_duanyu__ch01.loco.0.c.mid.ktx2
@@ -998,7 +1009,7 @@ ktx info     spr_npc_duanyu__ch01.loco.0.c.mid.ktx2
 4. 启动与加载画面中的少量画布纹理在 `core` 包中另备 PNG/WebP 版本，保证标题画面不依赖 wasm。
 5. 单个 KTX2 解码失败 → 删除该缓存条目、重新下载一次 → 仍失败则用占位（§11）并写入本地日志。
 
-**演进观察**：KTX-Software 5.0（截至 2026-09-26 最新为 5.0.0-rc2）增加 UASTC HDR 等能力；basis_universal 2.x 另有 XUASTC LDR。three.js r186 `KTX2Loader` 只识别 ETC1S、UASTC 与 UASTC_HDR，**不识别 XUASTC**，因此 v1.1 明确不采用；未来只有加载器正式支持且金样本通过后才重新评估。
+**演进观察**：KTX-Software 5.0（截至 2026-09-26 最新为 5.0.0-rc2）增加 UASTC HDR 等能力；basis_universal 2.x 另有 XUASTC LDR。three.js r186 `KTX2Loader` 只识别 ETC1S、UASTC 与 UASTC_HDR，**不识别 XUASTC**，因此本版明确不采用；未来只有加载器正式支持且金样本通过后才重新评估。
 
 ### 5.3 DOM 图像：WebP 基线，AVIF 可选
 
@@ -1051,10 +1062,12 @@ export async function encodeDomImage(src: string, o: { w: number; h?: number; pr
 | 地形层（区域纹理数组） | 512²（tech/07 §5.5.1） | 256² | 256² | 512² | KTX2 ETC1S 数组（tech/02 §2.3） |
 | 建筑套件图集 | 每套 1–3 张 2048²（tech/02 §2.4） | 1024² | 2048² | 2048² | GLB 内嵌 KTX2 |
 | UI 框体 `ui` | @3x PNG + 九宫格 JSON | @2x | @2x | @3x | WebP 无损 / SVG |
-| 大地图 `map …_world` | 4096×4096 | 2048 单图 | 4096，切 512² 瓦片 | 同 mid | WebP |
+| 全国地图 `map/jianghu_world/*` | 4096×3072 SVG（4:3；`design/19`） | 2048×1536 单图 | 4096×3072，切 512² 瓦片（8×6=48 片） | 同 mid | SVG 为审查源；运行时 WebP |
 | 视频海报 `poster` | 视频首帧 | 854×480 | 1280×720 | 1920×1080 | WebP |
 
 图标采用**独立小文件**而非 DOM 图集：HTTP/2 多路复用下小文件无额外代价，且只加载可见图标、缓存与回收粒度更细；图集只在 WebGL 里有意义（减少纹理切换），因此只为画布内需要的 Buff/状态图标另出 KTX2 图集。
+
+全国图不补成 4096²，也不拉伸 4:3 内容。`low` 使用一张 2048×1536 WebP；`mid/high` 从同一 4096×3072 SVG 逐层导出，按 512×512 得 `ceil(4096/512)×ceil(3072/512)=8×6=48` 片。`map/jianghu_world/base` 只含共享底图；`map/jianghu_world/chNN` 只含对应时代增量，透明瓦片可由清单省略，但逻辑网格仍固定 8×6。
 
 ### 5.5 精灵图集：页尺寸与手机的关系
 
@@ -1320,7 +1333,7 @@ tools/asset-pipeline/
 │   ├── exec/                 # ktx / ffmpeg / pyftsubset 调用、版本探测、并发池
 │   ├── cache/                # 内容寻址构建缓存（§6.4）
 │   ├── manifest/             # 生成、校验、diff、预算检查
-│   ├── upload/               # S3 兼容上传（v1.1 只启用 R2）
+│   ├── upload/               # S3 兼容上传（本版只启用 R2）
 │   ├── publish/              # channel、lock、构建记录
 │   ├── trace/                # §10.6
 │   └── dev/                  # Vite 插件与开发资源服务（§6.8）
@@ -1573,7 +1586,7 @@ if (import.meta.hot) {
 
 ### 7.1 已选方案与边界
 
-作者决定 P03 已关闭原稿决策树：**暂不备案，不做国内或香港镜像，只规划 Cloudflare 方案**。活动拓扑只有 Cloudflare R2 + 同源 Worker + 自定义域名；`assets.lock.json.bases` 保留数组是协议兼容，不代表存在第二源，v1.1 必须为 `["/"]`。中国大陆线路质量纳入 P01 设备/网络实测；不通过时记录为风险与后续变更条件，不能自行部署镜像。PWA 离线包和书眠余韵预取用于减少重复受线路波动影响（§4.5）。
+作者决定 P03 已关闭原稿决策树：**暂不备案，不做国内或香港镜像，只规划 Cloudflare 方案**。活动拓扑只有 Cloudflare R2 + 同源 Worker + 自定义域名；`assets.lock.json.bases` 保留数组是协议兼容，不代表存在第二源，本版必须为 `["/"]`。中国大陆线路质量纳入 P01 设备/网络实测；不通过时记录为风险与后续变更条件，不能自行部署镜像。PWA 离线包和书眠余韵预取用于减少重复受线路波动影响（§4.5）。
 
 ### 7.2 方案 A：Cloudflare R2 + Worker（同源）
 
@@ -1658,7 +1671,7 @@ export async function serveRuntime(req: Request, env: Env): Promise<Response> {
 
 ### 7.3 未采用方案：国内对象存储 + CDN
 
-作者决定 P03 已排除此路线，v1.1 **不保留可执行桶名、域名、CORS、签名或同步配置**，以免旧评估被误当成部署说明。若作者未来改决定，应作为新方案重新完成四项前置：ICP / 域名合规、与 tech/08 会话等价的远程鉴权、费用与用量封顶、目标网络和 PWA 离线实测；届时再按官方现价重算，不复用本版历史报价。
+作者决定 P03 已排除此路线，本版**不保留可执行桶名、域名、CORS、签名或同步配置**，以免旧评估被误当成部署说明。若作者未来改决定，应作为新方案重新完成四项前置：ICP / 域名合规、与 tech/08 会话等价的远程鉴权、费用与用量封顶、目标网络和 PWA 离线实测；届时再按官方现价重算，不复用本版历史报价。
 
 ### 7.4 未采用方案：香港地域折中
 
@@ -1711,7 +1724,7 @@ P03 同样排除香港镜像。其对象存储不能直接复用本站 HttpOnly 
 
 ### 8.2 Service Worker 策略（Workbox）
 
-tech/01 当前配置为 `VitePWA({ registerType: 'prompt', injectRegister: false })`（默认 `generateSW`）。素材路由需要自定义策略，因此本文要求改为 **`injectManifest`**（待决 #6）。HTML 不进 precache，也不能在 `install` 时另行 `cache.add('/')`：无会话时 `/` 会跳转登录页，把该响应缓存为离线 shell 会造成鉴权错乱。
+**已解决（见 tech/01 §6.8）**：应用统一使用 `injectManifest`，由自定义 Service Worker 实现受保护素材策略；不再采用默认 `generateSW`。HTML 不进 precache，也不能在 `install` 时另行 `cache.add('/')`：无会话时 `/` 会跳转登录页，把该响应缓存为离线 shell 会造成鉴权错乱。
 
 ```ts
 // apps/game/vite.config.ts（节选）
@@ -1927,7 +1940,7 @@ flowchart LR
 ### 9.3 防盗链：个人项目需要吗
 
 - **方案 A（R2）**：出口免费、且已有会话闸门 → **不需要**单独的防盗链。
-- **未来若改用按流量计费 CDN**：须重新设计用量封顶、费用告警与私有回源；该条件不构成 v1.1 的备用部署配置。
+- **未来若改用按流量计费 CDN**：须重新设计用量封顶、费用告警与私有回源；该条件不构成本版的备用部署配置。
 - Referer 可伪造、也可能为空（部分 SW 与媒体请求），**不能**作为访问控制手段。
 
 ### 9.4 私有桶 + 签名 URL（可选）
@@ -2019,11 +2032,11 @@ flowchart LR
 | 类型 | 是否内嵌 | 方式 | 理由 |
 |---|---|---|---|
 | 视频 MP4、BGM/配音 M4A | 是 | ffmpeg `-metadata comment="tianshu:assetId=…;ai=true"`（tech/07 §5.7.2 已采用） | 成本为零；视频是最"像作品"的内容，保留隐式标识符合 tech/07 §9.5 的良好实践 |
-| WebP / AVIF | 否 | sharp 产物不保留母版 XMP；v1.1 不向运行时图像回写溯源字段 | 省体积；清单与构建记录已可追溯 |
-| KTX2 | 否 | v1.1 不向运行时纹理写 KTX 键值数据 | 同上；不依赖未采用的写入路径 |
+| WebP / AVIF | 否 | sharp 产物不保留母版 XMP；本版不向运行时图像回写溯源字段 | 省体积；清单与构建记录已可追溯 |
+| KTX2 | 否 | 本版不向运行时纹理写 KTX 键值数据 | 同上；不依赖未采用的写入路径 |
 | GLB | 可选 | `asset.extras.tianshuAssetId` | 零成本，便于调试 |
 
-运行时图像/纹理是否重新内嵌标识不是 v1.1 门槛；若将来确有脱离清单分发文件的需求，再单独评估 sharp 与 KTX-Software 当时版本的写入 API，不在当前管线预留未验证分支。
+运行时图像/纹理是否重新内嵌标识不是本版门槛；若将来确有脱离清单分发文件的需求，再单独评估 sharp 与 KTX-Software 当时版本的写入 API，不在当前管线预留未验证分支。
 
 ### 10.5 许可证代码与 credits
 
@@ -2129,7 +2142,7 @@ S         38       31      7       1     96.2
 A        212      170     42       3    131.5
 B        610      402    208       0     58.9
 C        180      180      0       0     12.0
-cold-enter 50.62 / 60 MB   era-common 18.00 / 18 MB   region-rg_dali 24.00 / 24 MB   state-rg_dali 8.00 / 8 MB   fonts 0.62 / 0.62 MB
+cold-enter 50.62 / 60 MB   era-common 18.00 / 18 MB   region-rg_dali_cangshan 24.00 / 24 MB   state-rg_dali_cangshan 8.00 / 8 MB   fonts 0.62 / 0.62 MB
 ```
 
 | 门禁 | 条件 |
@@ -2247,6 +2260,7 @@ MVP 刻意不做：签名 URL、AVIF/Opus/AV1/HLS 变体、远端构建缓存、
 | 术语 / 约定 | 定义 |
 |---|---|
 | 素材键 `AssetKey` | `<kind>/<subject>/<variant>`，运行时寻址、内容引用与清单主键（§3.2） |
+| 全国地图生产键 | `map/jianghu_world/base` 为共享底图，`map/jianghu_world/ch01`～`ch14` 为时代增量；分别双射到 `map_jianghu_world__base`、`map_jianghu_world__chNN`（§3.2、§4.1、§5.4） |
 | kind / subject / variant | 素材键三段：类别枚举 / 主体（通常为基准 §12 内容 ID）/ 变体（缺省 `default`） |
 | 双射规则 | 资产 ID `<前缀>_<subject>[__<variant>]` ⇄ 素材键（§3.2） |
 | 新增资产前缀 | `fnt_`（字体）、`sfb_`（音效 bank，管线生成）、`atl_`（画布图集，管线生成） |
@@ -2288,19 +2302,19 @@ MVP 刻意不做：签名 URL、AVIF/Opus/AV1/HLS 变体、远端构建缓存、
 | 1 | **已解决**：精灵法线编码、mip、分档包按 tech/02 §2.6 为 UASTC normal mode、2 级 mip + 4 px 帧间距、64 无法线 / 96 / 128 px/m 三包；KTX-Software 4.4.2 官方手册确认 `ktx create --levels 2 --generate-mipmap` 可组合，仍须用真实图集做体积与画质回归（见 §5.2、§5.5） | tech/02 + 本文 | 已同步 | 图集配方 |
 | 2 | **已解决（C18）**：跨语言静态 JSON 契约统一放根 `packages/spec/`；`packages/data` 仅保留 schema/Zod，不复制契约（见 §1.2、§12） | tech/01、tech/02、tech/07 同步 | `packages/spec/` | 文件路径 |
 | 3 | 建筑套件母版按每套 1–3 张 2048² 图集产出；C 级路人在登记库标注以便按区域合装人群图集；LUT 条带（书界基调、闪回、书眠）、纸纹、墨噪声的生产与登记 | tech/07（对应 tech/02 Q5） | 按本文 §5.5–§5.6 | 容器配方、`common/ui` 内容 |
-| 4 | 区域基础包、时代状态包、全时代总量的预算终值与真实纹理/精灵包量 | tech/03、design/11 | §4.6【建议值】；冷进入 mid 硬上限 60 MB | 分包与编码参数 |
-| 5 | 引用图 `refs.json` 与 `--emit-refs`；`chapter.yaml` 的 `startRegions`、区域 `neighbors`、`finaleAct` 旗标；`design/11` 提供全局区域 ID 与时代状态映射 | tech/04、design/11、design/chapters | §4.2、§4.5 接口 | 自动归包、预取 |
-| 6 | vite-plugin-pwa 改用 `injectManifest`，HTML 不进预缓存 | tech/01 | 改 | SW 自定义路由 |
-| 7 | 会话 Cookie 的签发与格式、CI 只读凭据、应用 + API + 素材同一 Worker、`noindex` | tech/08 | §7.2 | 访问控制 |
-| 8 | **已解决（P03）**：暂不备案，不启用国内或香港镜像；v1.1 唯一活动方案为 Cloudflare R2 + 同源 Worker，`bases === ["/"]`（见 §7.1–§7.4） | 作者、tech/08 | Cloudflare 单源 | 部署拓扑 |
-| 9 | 登记库：`runtime.manifestKey` 改为派生值（不回写 YAML）；`type` 枚举补 `illus`、`cutin`、`font`；`ill_`、`cin_` 母版规格 | tech/07 | 按本文 | 登记库 schema |
+| 4 | 区域基础包、时代状态包、全时代总量的预算终值与真实纹理/精灵包量 | tech/03、design/11 | 结构已接收 30 区；§4.6 数值仍为【建议值】，冷进入 mid 硬上限 60 MB，待实包复核 | 分包与编码参数 |
+| 5 | **已解决**：`tech/04` 已定义 `content:build --emit-refs` / `refs.json`；`design/11` 已定 30 区、邻接、时代层与章节依赖接口，本文按 §4.1–§4.3 自动归包。章节正式配置仍须逐界落数据（见 `tech/04` §7、`design/11` §12） | tech/04、design/11、design/story、design/chapters | 已同步接口 | 自动归包、预取 |
+| 6 | **已解决**：vite-plugin-pwa 使用 `injectManifest`，HTML 不进预缓存（见 `tech/01` §6.8、本文 §8.2） | tech/01 | 已同步 | SW 自定义路由 |
+| 7 | **已解决**：会话 Cookie、应用 + API + 素材同一 Worker、`noindex` 与凭据边界均引用 `tech/08`；本文只调用共享鉴权（见 §7.2、§9.2） | tech/08 | 已同步 | 访问控制 |
+| 8 | **已解决（P03）**：暂不备案，不启用国内或香港镜像；本版唯一活动方案为 Cloudflare R2 + 同源 Worker，`bases === ["/"]`（见 §7.1–§7.4） | 作者、tech/08 | Cloudflare 单源 | 部署拓扑 |
+| 9 | **已解决接口**：登记库 `runtime.manifestKey` 为派生值（不回写 YAML），并已登记 `illus`、`cutin`、`font` 与 `ill_` / `cin_` 母版职责（见 `tech/07` §1.4、§5.6.5、§6.4）；实际代码仍按路线图实现 | tech/07 | 已同步文档契约 | 登记库 schema |
 | 10 | **已解决（C19、P48）**：正篇 13 条统一 `vid_sleep_NN_MM` → `video/sleep_NN_MM/default` → 内容寻址文件；20–30 秒、目标 24 秒，首播 10 秒后可跳、重播立即可跳，加载等待独立处理（见 §4.5） | design/02、tech/07 同步 | `13×24=312 s=5.2 min` | 素材键、播放与预算 |
-| 11 | `tsgen approve` 结束时触发 `master` 快照（`restic --tag approve:<id>`） | tech/07 | 触发 | 母版历史可找回 |
+| 11 | **已解决接口**：`tsgen approve` 结束时触发 `master` 快照（`restic --tag approve:<id>`），见 `tech/07` §6.5；实际脚本仍按路线图实现 | tech/07 | 已同步文档契约 | 母版历史可找回 |
 | 12 | design/05、design/06 的素材字段改写为规范素材键，或保留简写 + 归一化 | design/05、design/06 | 归一化并告警 | 内容可读性 |
 | 13 | **已解决**：主角与书灵内容 ID 为 `npc_zhujue`、`npc_shuling`（见 `design/01` §2.1、§2.3）；本文只据此推导素材键（见 §3.3） | design/01 | 已确认 | 素材键推导 |
 | 14 | 下载与存储管理界面、蒙昧模式文案、“素材清晰度”与离线包选择 | design/14 | §4.4、§4.5；P03 下不显示“资源线路” | UI |
 | 15 | **已解决（P01、P03）**：常用网络只进入 P01 真机矩阵，不自动触发镜像；网络失败记录为风险与变更请求（见 §7.1、§13.1 R1） | 作者、tech/03 | Cloudflare 单源先测 | 验收，不改拓扑 |
-| 16 | **已完成公开资料核查**：Cloudflare 定价/限额与 Worker/R2 API、工具版本、KTX 参数、three XUASTC 状态、字体许可证、Storage API、MediaCapabilities 与 Background Fetch 支持均见“参考资料”；未采用的 OSS/COS/Access/XMP/KTX 元数据路线不再作为 v1.1 待办。剩余三项为 AAC edit-list/循环偏移、UASTC 大页并发内存和真实占位包体 **（待实测）**（见 §5.7、§6.4、§11.1） | 本文 + tech/03 真机测试 | 公开事实已收口，运行表现以实测为准 | Phase 0/1 验收 |
+| 16 | **已完成公开资料核查**：Cloudflare 定价/限额与 Worker/R2 API、工具版本、KTX 参数、three XUASTC 状态、字体许可证、Storage API、MediaCapabilities 与 Background Fetch 支持均见“参考资料”；未采用的 OSS/COS/Access/XMP/KTX 元数据路线不再作为本版待办。剩余三项为 AAC edit-list/循环偏移、UASTC 大页并发内存和真实占位包体 **（待实测）**（见 §5.7、§6.4、§11.1） | 本文 + tech/03 真机测试 | 公开事实已收口，运行表现以实测为准 | Phase 0/1 验收 |
 
 ### 替下游给出的建议值
 
@@ -2309,14 +2323,15 @@ MVP 刻意不做：签名 URL、AVIF/Opus/AV1/HLS 变体、远端构建缓存、
 
 ### 本文依赖的上游事实
 
-- `design/11` 尚待成稿：须提供稳定 `rg_*` / `city_*`、区域基础与时代状态边界、入口/邻接映射；本文已只定义物理包接口，未代定义世界规则。
-- `design/12`、`design/15`、`design/16` 的门派、冲穴、资源/家丁/营生只通过 tech/04 引用图进入时代状态包，不在本文重定义。
+- `design/11` 已定稿 30 个全局 `rg_*`、189 城归区、区域基础/时代状态边界与入口/邻接接口；本文按 §4 生成物理包，不代定义世界规则。`design/map/*.yaml` 从 W1 十九粗区迁移至该 30 区仍须由地图归属任务原子完成，本文只消费迁移后的 tech/04 引用图。
+- `design/12`、`design/15`、`design/16`、`design/17`、`design/18` 的任务/门派流程、冲穴、资源/家丁/营生、门派名录与 NPC 只通过 tech/04 引用图进入区域基础或时代状态包，不在本文重定义。
+- `design/19` 与 `design/map/*.yaml` 提供 4096×3072 SVG、189 城、99 门派落点和 3 个图外节点；本文只固化 `map/jianghu_world/base` / `map/jianghu_world/chNN` 与运行时派生规格。
 - tech/03 负责最终存储、加载、显存与真机网络预算；tech/08 负责 `ts_s` 签发、校验、撤销和免检路径。
 
 ### 对基准的修改提案
 
-- **已采纳（v1.1）**：原稿关于素材 ID/内容 ID 命名空间与文档归属的提案，已由 Canon v1.1 §12、§18 及 C18 的 `packages/spec/` 裁定覆盖；本文不再申请第二套规则。
-- **RT6-P01（提议）**：Canon §12 的区域 ID 从 `rg_<书界序号>_<拼音>` 改为全局稳定 `rg_<地理拼音>`，另以 `chNN` 时代状态字段表达同一地点在不同书界的名称、开放与势力；旧 `rg_NN_*` 由 `design/11` 给出迁移表。理由：作者新增需求 AR-04 明确要求一张共用大地图和跨时代共享区域 ID，且优先级高于 Canon v1.1；本文仅以 `rg_dali` 作接口示例，不代替 `design/11` 定最终名单。
+- **已采纳（Canon v1.1）**：原稿关于素材 ID/内容 ID 命名空间与文档归属的提案，已由 Canon v1.1 §12、§18 及 C18 的 `packages/spec/` 裁定覆盖；本文不再申请第二套规则。
+- **RT6-P01（提议，设计侧已定稿）**：Canon §12 的区域 ID 从 `rg_<书界序号>_<拼音>` 改为全局稳定 `rg_<地理拼音>`，另以 `chNN` 时代状态字段表达同一地点在不同书界的名称、开放与势力；30 区闭集与旧 ID 迁移表见 `design/11` §13.2，本文已按其实施。理由：AR-04 明确要求一张共用大地图和跨时代共享区域 ID。
 - **RT6-P02（提议）**：Canon §19 的“按书界分包”扩写为“`core` / `common` + 区域基础包 + 时代状态包，按引用懒加载”；书眠视频逻辑 ID `vid_sleep_NN_MM` 可同时按 `rulings-v1` X0-P03 登记到 §12。理由：AR-04 要求地理资产跨时代去重，C19 又要求逻辑 ID 与内容哈希资源分层；当前正文已按较高优先级决定执行。
 - Cloudflare 单源属于作者决定 P03 的技术落地，不另申请基准修改。
 

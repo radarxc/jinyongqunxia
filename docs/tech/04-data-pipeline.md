@@ -3,10 +3,10 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/04-data-pipeline.md` |
-| 版本 | v1.0（2026-09-26）；审校 E1.R（2026-09-26） |
+| 版本 | v1.2（跨文档同步，2026-09-26） |
 | 上游基准 | `docs/00-canon.md` §3–§5、§9、§12、§18、§19；`docs/decisions/author-requirements.md` AR-03–AR-07、AR-09；`docs/decisions/rulings-v1.md` C12、C18、C22、C23 |
-| 强依赖 | `tech/01` §3.7、§4、§6.8、§8.3、§9；`tech/02` §1–§2、§7；`tech/03` §5.6；`tech/06`；`tech/08` §3.6；`design/02`–`design/10`、`design/13`、`design/17`、`design/18`、`design/19` 的数据契约与校验规则；相关代理报告中的下游交接项 |
-| 下游文档 | `tech/05` 玩法引擎、`tech/09` 路线图；尚待成稿的 `design/11`、`design/12`、`design/15`、`design/16`；各书界内容文档 |
+| 强依赖 | `tech/01` §3.7、§4、§6.8、§8.3、§9；`tech/02` §1–§2、§7；`tech/03` §5.6；`tech/06`；`tech/08` §3.6；`design/02`–`design/19` 已落盘的数据契约与校验规则（`design/20` 尚缺，只预留边界）；相关代理报告中的下游交接项 |
+| 下游文档 | `tech/05` 玩法引擎、`tech/09` 路线图；各书界内容文档 |
 | 读者 | 作者本人、内容编辑者、AI 编码/内容助手 |
 | 本文职责 | `content/` 源数据布局；YAML 与 Zod 契约；ID 注册、重命名与引用图；Tiled/Ink 转换；内容校验器；规则/文本书界包、`contentHash` 与增量更新；AI 草稿审核入库 |
 | 不在本文定义 | 武功/Buff/地形/战斗/经济等玩法语义；素材编码与 CDN；存档结构迁移；云同步。本文只实现其数据入口并引用唯一归属文档 |
@@ -20,7 +20,7 @@
 > 5. **校验不止“能解析”**：`pnpm content:validate` 依次检查语法、结构、ID、引用、设计业务规则、六角地图可达性、Ink 结构与桥接、本地化、数值预算、包体预算和确定性；error 阻断构建，warning 必须出报告。
 > 6. **世界导航与区域六角严格分层**：`design/map/*.yaml` 是 `design/19` 的 WGS84 全国导航源，保留既有 snake_case 与短书界键；Tiled 1.12.2 只编辑区域内逻辑格，编辑坐标 `(x,y)` 直接成为 pointy-top 轴坐标 `(q,r)`。转换器输出 32×32、每块 1,024 个六角槽的 `RegionMapChunk`，与 `tech/02` 合批契约一致。
 > 7. **Ink 不直接改 core**：脚本只能调用只读查询白名单，写操作以声明式命令标签产出，经 core 再校验后提交。每个 locale 独立编译，但节点、选择和变量结构必须同构；结构摘要进入 rules/`contentHash`，字面文本进入 locale/`textHash`；Ink 随机种子由 `world` RNG 覆盖。
-> 8. **书界包规则/文本分离并按区域切片**：稳定逻辑名为 `chNN.rules.base.json`、`chNN.rules.<regionId>.json`、`chNN.text.<locale>.base.json`、`chNN.text.<locale>.<regionId>.json`，例如 `ch01.rules.rg_dali.json`；超过 256 KiB 原始 JSON 时由索引再分 `pNNN` 叶片，主线程在加载遮罩或空闲队列中逐片解析。
+> 8. **书界包规则/文本分离并按区域切片**：稳定逻辑名为 `chNN.rules.base.json`、`chNN.rules.<regionId>.json`、`chNN.text.<locale>.base.json`、`chNN.text.<locale>.<regionId>.json`，例如 `ch01.rules.rg_dali_cangshan.json`；超过 256 KiB 原始 JSON 时由索引再分 `pNNN` 叶片，主线程在加载遮罩或空闲队列中逐片解析。
 > 9. **哈希分三个域**：`contentHash` 覆盖当前书界的完整传递规则依赖闭包，供存档迁移，绝不随玩家当前驻留区域变化；`textHash` 覆盖单语言文本；`releaseHash` 覆盖整份发布清单。三者都基于规范化未压缩字节，排除时间戳、绝对路径和压缩器差异。
 > 10. **P4 预算已落地**：典型书界按本章模型估为约 1,039 KiB gzip；加 25% 余量为 1,298.75 KiB，显示为约 1,299 KiB（约 1.268 MiB）。它低于 1.5 MiB 硬门槛，但已越过 1.25 MiB（1,280 KiB）预警线，故模型结果是 warning；这仍是 **（待实测）** 的容量模型，须以首个完整书界语料校准。
 > 11. **素材与内容分版本**：内容只保存逻辑素材键；`content:build --emit-refs` 生成引用图交给 `tech/06`，二进制和 `assets.lock.json` 不进入 `contentHash`。
@@ -79,14 +79,15 @@
 | 大地图几何、城市、路线与时代投影 | `design/19`；区域玩法与入口状态归 `design/11` | 直接校验 `design/map/*.yaml` 的既有源契约；不把全国 WGS84 坐标转换为区域六角格 |
 | NPC 与跨书界同伴 | `design/18`；任务与门派流程归 `design/12` | `NpcDef`/`NpcAppearance` 镜像 `design/18` §7，执行其 §14 NPC-V01–V14 |
 | 天书之力、成长、结局 | `design/13` | `TianshuPowerDef` 与其 §11 校验 |
-| 经脉、资源经营 | `design/15`、`design/16` | 尚未定稿；本文按 AR-03、AR-05–AR-07 预留 schema【建议值】 |
+| 经脉、资源经营 | `design/15`、`design/16` | 消费其正式 schema、事务与校验规则；不在本文重定义玩法数值 |
+| 跨年代传承 | `design/20`（AR-13） | 文档尚未落盘；仅保留 schema registry 扩展点，不猜字段、不接受生产实例 |
 | 运行时解释器 | `tech/05` | 本文编译数据，不定义效果原语的结算语义 |
 | 素材键、编码、清单与锁 | `tech/06`、`tech/07` | 只抽取逻辑引用，生成 `refs.json`；不复制二进制或清单规则 |
 | 存档结构迁移与云同步 | `tech/08` | 输出 `contentHash` 与 `idRemaps`，供其迁移后修复 |
 
-尚未定稿的 `design/11`、`design/12`、`design/15`、`design/16` 所对应 schema 只是**接口占位**，字段与默认值均标为【建议值】。`design/18`、`design/19` 已有正式逻辑/源数据契约，不再标 provisional；归属文档后续变更时先更新 Zod 与迁移。不得把本文仍属占位的字段反过来当玩法结论。
+`design/11`、`design/12`、`design/15`、`design/16`、`design/17`、`design/18`、`design/19` 已有正式逻辑 / 源数据契约，相关 schema 不再标 provisional；归属文档后续变更时先更新 Zod 与迁移。`design/11` 已定稿 30 区闭集及 `RegionDef` / `EraLayer` / `EraRegionState`，但 `design/map/*.yaml` 的 19→30 区物理数据迁移尚未完成，生产构建必须在迁移完成后才接受。AR-13 指向的 `design/20` 当前不存在，只登记扩展点，绝不凭需求摘要杜撰字段。
 
-`tech/03` §2.8、§5.6 同时保留了早期“单片 ≤300 KB”建议与后续“游戏中单次 `JSON.parse` ≤256 KB”终值；本文采用较严且可直接校验的 **原始 JSON 叶片 ≤256 KiB** 发布门禁。`tech/03` 后续应把 300 KB 旧措辞统一为该终值，避免十进制 KB、二进制 KiB 与“分片/单次解析”三种口径并存。
+**已解决（E1.R）**：`tech/03` §2.8、§5.6 已将早期“单片 ≤300 KB”建议统一为 **原始 UTF-8 JSON 叶片与游戏中单次 `JSON.parse` 输入均 ≤256 KiB**；本文采用同一可直接校验的发布门禁，不再混用十进制 KB、二进制 KiB 与“分片/单次解析”口径。
 
 ### 1.3 总流程
 
@@ -158,12 +159,12 @@ content/
 │   ├── tiers.yaml                   # 保留既有 content/world/tiers.yaml
 │   ├── navigation/                  # 从 design/19 的 design/map/*.yaml 编译，禁止手改
 │   │   ├── cities.json              # WGS84 城市与 14 个时代状态
-│   │   ├── regions.json             # 19 个导航大区草案与几何
+│   │   ├── regions.json             # 迁移后的 30 个正式区域及导航几何
 │   │   ├── routes.json              # 驿站、码头、常规线与图外专线
 │   │   └── sects.json               # 门派落点；开放语义仍归 design/17
 │   └── regions/                     # 区域内可行走 rg_* 数据；与导航几何严格分层
-│       ├── rg_dali.yaml
-│       └── rg_dali.tmj
+│       ├── rg_dali_cangshan.yaml
+│       └── rg_dali_cangshan.tmj
 ├── chapters/
 │   ├── ch00_yuenv/
 │   ├── ch01_tianlong/
@@ -211,7 +212,7 @@ content/
 | `content/ch08_luding/encounters/enc_08_shenlongdao.yaml` | `content/chapters/ch08_luding/encounters/enc_08_shenlongdao.yaml` | 路径重写；一个版本周期 warning，之后旧物理路径为 error |
 | `content/ch08_luding/boss/bsc_hongantong_shenlongdao.yaml` | `content/chapters/ch08_luding/bosses/bsc_hongantong_shenlongdao.yaml` | 保持 `design/09` 已引用路径可迁移读取；只改物理目录，不改 ID |
 | 历史 `content/ch08_luding/boss/bs_hongantong_shenlongdao.yaml` | `content/chapters/ch08_luding/bosses/bsc_hongantong_shenlongdao.yaml` | 路径迁移且 ID 按 C12 重映射；同表也覆盖 `bs_xiaofeng_juxianzhuang`、`bs_dongfangbubai_heimuya`；`bs_` 只留书眠 Ink 节点 |
-| `content/chapters/ch01_tianlong/regions/rg_01_dali.tmj` | `content/world/regions/rg_dali.tmj`【建议值】 | 区域内可行走底图迁移；须与 `design/11` 的区域 ID remap 同批提交。它不是 `design/19` 的全国导航几何；多个旧图汇入同一区域时只报冲突、不自动覆盖 |
+| `content/chapters/ch01_tianlong/regions/rg_01_dali.tmj` | `content/world/regions/rg_dali_cangshan.tmj` | 区域内可行走底图迁移；按 `design/11` §2.3 的 19→30 区表与导航源迁移同批提交。它不是 `design/19` 的全国导航几何；多个旧图汇入同一区域时只报冲突、不自动覆盖 |
 | `docs/design/map/cities.yaml`、`regions.yaml`、`routes.yaml`、`sects.yaml` | 原路径为 `design/19` 权威源；编译镜像进入 `content/world/navigation/*.json` | 保持 snake_case、短键 `ch01`…`ch14` 与 JSON-compatible YAML；发现器只读导入，禁止复制为第二份可编辑 YAML |
 | `content/common/items/divine.yaml` | 原路径 | 允许“一文件多对象”；对象仍逐一注册 |
 | `content/common/tianshu/tsp_*.yaml` | 原路径 | 原路径即规范 |
@@ -256,7 +257,7 @@ pnpm content:validate --no-deprecated-paths
 
 - 默认一份定义一个文件，文件主名等于顶层 `id`；大表只有在归属文档已明确为封闭集合时才允许数组文件，如 `divine.yaml`。
 - 同一 ID 不允许按目录优先级覆盖。开发、书界与本地化都不能重新定义规则对象。
-- 时代差异放入 `EraLayerDef` 的 patch 字段；patch 只允许 schema 明列的可覆写字段，不能任意 JSON Merge Patch。
+- 时代差异放入 `EraLayer.regions[]: EraRegionState[]`；只允许 `design/11` §12.5 明列的时代字段，不能任意 JSON Merge Patch。
 - 本地化只覆盖 `TextKey` 的值；不得改变 ID、条件、选择数量或数值。
 - 测试夹具在 `tools/content-build/test/fixtures/`，必须由发现器显式传入，生产扫描永不递归该目录。
 - 生成物带 `generatedBy` 与格式版本，但这些构建元数据不混入玩法对象，也不参与 `contentHash`。
@@ -293,7 +294,7 @@ export interface RefEdge {
 
 注册顺序固定为规范相对路径的 Unicode code point 升序，再按文件内数组序。重复定义同时报告首处和冲突处；不能“最后一个赢”。嵌套 `MoveDef`、`PassiveDef` 也进入同一全局表，因此跨武功重名会失败。
 
-ID 正则从基准 §12 与已批准作者需求生成，而不是散落在各 schema 中手抄。AR-04 将区域扩为全局 `rg_*`，故兼容正则为 `^rg_[a-z0-9_]+$`：它既接受旧式 `rg_01_dali`，也接受 `design/19` 当前 19 个全局区域 ID。后续 `design/11` 若复核、拆分这些区域，必须给旧→新映射；管线不擅自删掉书界号或改写已发布 ID。
+ID 正则从基准 §12 与已批准作者需求生成，而不是散落在各 schema 中手抄。AR-04 将区域扩为全局 `rg_*`，词法正则为 `^rg_[a-z0-9_]+$`，生产定义还必须属于 `design/11` §13.2 的 30 区闭集。旧 `rg_NN_*` 与 W1 的五个废弃粗区只允许迁移器按 `design/11` §2.3 单向读取，不能进入新内容或发布注册表；未曾发布的旧 ID 直接改正，已发布者才登记 `idRemaps`。
 
 ### 2.6 ID 重映射
 
@@ -301,14 +302,10 @@ ID 正则从基准 §12 与已批准作者需求生成，而不是散落在各 s
 
 ```yaml
 schemaVersion: id-remaps.v1
-remaps:
-  - from: bs_hongantong_shenlongdao
-    to: bsc_hongantong_shenlongdao
-    since: sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
-    reason: rulings-v1 C12；bs_ 专用于书眠 Ink 节点
+remaps: [] # 发布时由 rulings-v1 §2 的已批准重命名表生成，不在示例重复登记旧 ID
 ```
 
-示例中的哈希只展示格式，不是发布值。为避免 `contentHash` 覆盖 `idRemaps` 时形成自引用，正式 `since` 记录**重命名前最后一个可读版本的 `contentHash`**，由发布流程从前一份已验证 manifest 写入；未曾发布的 ID 直接改正，不创建 remap。规则如下：
+每项仍须含 `from / to / since / reason`；其具体映射只从 `rulings-v1` §2 生成，避免技术文档成为第二份可编辑清单。为避免 `contentHash` 覆盖 `idRemaps` 时形成自引用，正式 `since` 记录**重命名前最后一个可读版本的 `contentHash`**，由发布流程从前一份已验证 manifest 写入；未曾发布的 ID 直接改正，不创建 remap。规则如下：
 
 1. `from` 全局唯一，每个旧 ID 只有一个直接去向；
 2. 图必须无环；构建时把历史链压平到当前叶目标，但保留原记录供审计；
@@ -350,8 +347,8 @@ packages/data/
 │   │   ├── inventory/              # item、equip、recipe
 │   │   ├── progression/            # tianshu、achievement、ending
 │   │   ├── society/                # sect、rank、business
-│   │   ├── meridian/               # AR-03 预留【建议值】
-│   │   ├── economy/                # AR-05/06 预留【建议值】
+│   │   ├── meridian/               # design/15 正式 schema
+│   │   ├── economy/                # design/16 正式 schema
 │   │   ├── asset-entry.ts          # 结构与 tech/07 对齐
 │   │   └── index.ts
 │   ├── pack/                       # ChapterPackManifest、轻量加载类型
@@ -383,7 +380,7 @@ packages/spec/                      # C18：跨语言静态 JSON 契约唯一目
 6. **有限数值**：所有 number 先要求 `Number.isFinite`；整数、范围、步长分别检查。
 7. **判别联合**：物品、效果、对象、命令标签等以稳定的 `kind`/`type` 区分，不靠字段猜类型。
 8. **描述可生成**：公共字段必须带 `.describe()`，来源章节写入 metadata，供 JSON Schema 与 AI 字段参考表。
-9. **暂定字段显式化**：未定稿模块导出 `Provisional*` schema，根对象带 `schemaStatus: 'provisional'`；正式构建可接纳，但报告必须列出数量。
+9. **暂定字段显式化**：仅未定稿模块导出 `Provisional*` schema，根对象带 `schemaStatus: 'provisional'`；正式构建可接纳，但报告必须列出数量。已落盘的 11/12/15/16/17/18/19 不得继续沿用 provisional 名称。
 10. **运行时无完整 Zod**：工具入口从 `@tianshu/data/schemas` 导入 Zod；游戏只从 `@tianshu/data` 导入生成类型和轻量边界检查，沿用 `tech/01` §3.2、§5.2。
 
 ### 3.3 公共原语示例
@@ -432,17 +429,17 @@ export type RegionId = z.output<typeof RegionIdSchema>;
 | 物品装备 | `ItemDef`、`EquipDef`、`UseSpec`、`RecipeDef`、`AffixDef`、`UniqueDef` | `it_*`、`eq_*`、`rc_*`、`af_*`、`ue_*` | `design/10` §2、§14 |
 | 地形 | `TerrainDef`、`TerrainStateDef`、`QinggongGate` | `tr_*`、`tst_*`、`gate_*` | `design/08` §2、§6、§12 |
 | 全国导航源 | `WorldMapCitiesSource`、`WorldMapRegionsSource`、`WorldMapRoutesSource`、`WorldMapSectsSource` | `city_*`、`rg_*`、`route_*`、`post_*`、`port_*`、`offmap_*`；`design/map/*.yaml` | `design/19` §3、§10、§15；保留源字段与 WGS84 |
-| 区域内地图 | `PlayableRegionDef`、`RegionMap`、`RegionMapChunk`、`RegionObject` | `rg_*`、`content/world/regions/*.tmj` | `design/11` 玩法【建议值】；本章 §6；渲染消费见 `tech/02` |
-| 时代玩法 patch | `EraLayerDef`、`EraRegionPatch` | `city_*`/`rg_*` 引用 | `design/11` 的入口/势力/资源状态【建议值】；城市历史名称与路线源数据归 `design/19` |
+| 区域内地图 | `RegionDef`、`RegionMap`、`RegionMapChunk`、`RegionObject` | 30 个正式 `rg_*`、`content/world/regions/*.tmj` | `design/11` §2、§12.1、§14；本章 §6；渲染消费见 `tech/02` |
+| 时代玩法层 | `EraLayer`、`EraRegionState` | `chNN_*`、`city_*`、`rg_*` 引用 | `design/11` §1.6、§12.5、§14；城市坐标/历史名称与路线几何归 `design/19` |
 | NPC | `NpcDef`、`YearValue`、`NpcAppearance`、`RecruitmentSpec`、`FullBuild`、`TemplateBuild` | `npc_*` | AR-09；`design/18` §7、§14 |
-| 任务剧情 | `QuestDef`、`QuestStage`、`EventDef`、`ConditionExpr`、`RewardDef` | `q_*`、`ev_*` | 未来 `design/12`；经验字段见 `design/13`【建议值】 |
+| 任务剧情 | `QuestDef`、`QuestInstance`、`NpcInteractionBinding`、`SectProgressionPolicy`、`ConditionExpr`、效果联合 | `q_*`、稳定 stage/effect 局部键 | `design/12` §11；经验字段见 `design/13` |
 | 对话 | `DialogueManifest`、`InkBridgeUse`、`TextIndex` | 逻辑键 `ink.<story>.*` | 本章 §7；剧情语义归各书界与 `design/12` |
 | 遭遇 | `EncounterDef`、`BossScriptDef`、`TelegraphDef`、`ComboDef` | `enc_*`、`bsc_*`、`tg_*`、`cmb_*` | `design/09` §13–§14；C12 |
 | 敌人 AI | `EnemyTemplateDef`、`ArchetypeDef`、`EliteAffixDef`、`AiPersonalityDef` | `tmpl_*`、`arch_*`、`ea_*`、`pers_*`、`ai_*` | `design/09` |
 | 天书成长 | `TianshuPowerDef`、`TspRule`、成就/结局/称号定义 | `tsp_*`、`ach_*`、`end_*`、`ttl_*` | `design/13` §4、§8、§10–§11 |
-| 门派职级 | `SectDef`、`RankTemplateDef`、`SectEraProfile` | `sect_*`；L1–L5 | AR-07、`design/17` §12、§15；未来 `design/12`【建议值】 |
-| 经脉穴道 | `MeridianDef`、`AcupointDef`、`CirculationDef` | `mer_*`、`ap_*` | AR-03；未来 `design/15`【建议值】 |
-| 资源经营 | `ResourceDef`、`ResourcePointDef`、`ServantDef`、`BusinessDef` | `res_*`、`rp_*`、`sv_*`、`biz_*` | AR-05、AR-06；未来 `design/16`【建议值】 |
+| 门派职级 | `SectCompendium`、`SectDef`、`RankTemplateDef`、`SectEraProfile`、`SectProgressionPolicy` | `sect_*`；L1–L5；T01–T12（T05A/T05B 分型） | `design/17` §12、§15；流程字段见 `design/12` §11.3 |
+| 经脉穴道 | `MeridianDef`、`AcupointDef`、`CirculationDef`、`MeridianProgress`、`MeridianSessionSnapshot` | `mer_*`、`ap_*`、`zt_*` | AR-03；`design/15` §11、§14 |
+| 资源经营 | `ResourceDef`、`ResourcePointDef/State`、`ServantDef/ContractState`、`BusinessDef`、`JobContractState`、`EconomyLot`、`SectLedger` | `res_*`、`rp_*`、`sv_*`、`biz_*`、`job_*`、`frag_*`、`lgs_*`、`cache_*` | AR-05–AR-07；`design/16` §14 |
 | 素材登记 | `AssetEntry`、`Provenance` | 素材逻辑键 / `art://` | 字段归 `tech/07`，存储与清单归 `tech/06` |
 | 特效 | `VfxDef`、表现阶段引用 | `fx_*` | 表现契约见 `tech/02`；只引用素材键 |
 
@@ -460,11 +457,20 @@ export type RegionId = z.output<typeof RegionIdSchema>;
 | `design/09` 遭遇与 Boss | `combat/encounter.ts` | 区域出生区解析为六角集合；阶段条件编译为 AST |
 | `design/10` `ItemDef/EquipDef` | `inventory/*.ts` | 按 `kind` 选择判别分支；`price:auto` 保持标记，由 core 公式求值 |
 | `design/13` `TianshuPowerDef` | `progression/tianshu.ts` | `TspRule.kind` 必须在 `tech/05` 原语注册表 |
-| `design/17` 门派矩阵 | `society/sect.ts` | 99×14 与 L1–L5 校验；建议地图 ID 保留 provisional 标志 |
-| `design/19` 四份地图源 | `world/navigation-source.ts` | 保留 snake_case/WGS84/短 `chNN` 键；校验 189 城、99 门派、19 区、24 驿站、28 码头、48 常规线、3 专线，再映射为 camelCase IR |
+| `design/12` 任务 / NPC 绑定 / 门派流程 | `narrative/quest.ts`、`narrative/npc-binding.ts`、`society/sect-progression.ts` | 严格消费 `quest.v1`、`quest-instance.v1`、`quest-npc-binding.v1`、`sect-progression.v1`；stage/effect 稳定键与状态迁移入校验 |
+| `design/15` 经脉 / 穴道 / 周天 | `meridian/*.ts` | 严格消费 `meridian.v1`、`acupoint.v1`、`circulation.v1` 与 `MeridianProgress`；旧短 ID 只进 remap |
+| `design/16` 资源 / 营生 | `economy/*.ts`、`society/business.ts` | 严格消费四阶九品、lot、合同、排班与 DSL；旧英文类别 / 职位键只进迁移器 |
+| `design/17` 门派矩阵 | `society/sect.ts` | 严格消费 `sect-compendium.v1`；校验 99×14、L1–L5 与 T01–T12（含 T05A/T05B） |
+| `design/19` 四份地图源 + `design/11` 迁移表 | `world/navigation-source.ts` | 保留 snake_case/WGS84/短 `chNN` 键；生产校验 189 城、99 门派、30 区、24 驿站、28 码头、48 常规线、3 专线，再映射为 camelCase IR；当前 19 区源只允许迁移模式读取 |
 | `design/18` `NpcDef`/`NpcAppearance` | `narrative/npc.ts` | 年代区间与 `design/02` 交叉检查；推算/待考不可伪装成精确史实；跨书同人只建一个 `NpcDef` |
 | 对话显示文本 | `TextEntrySchema` | 从 Ink 抽取，进入 locale 包，不进入规则对象 |
 | 素材字段 | `AssetKeySchema` + 各字段专用 schema | `assets.*`、`anim.cutin/sfx` 归一后生成素材引用边；`anim.vfx` 是 `fx_*` 内容引用，`anim.clip` 是动作片段名，不能误套 `AssetKeySchema`；简写只在迁移期 warning（见 `tech/06` §3.3） |
+
+#### 正式任务与门派导入门禁
+
+`design/12` §11 的四个版本根 `quest.v1`、`quest-instance.v1`、`quest-npc-binding.v1`、`sect-progression.v1` 均作为 strict schema 入口；任务定义与任务实例分开，`stageId`、transition、check 与 effect 使用稳定局部键，`appliedEffectIds` 保证重试幂等。`NpcInteractionBinding` 只保存任务侧绑定并强引用 `design/18` 的人物 / appearance；`SectProgressionPolicy` 只保存加入、晋升、纪律和 L5 流程，不复制门派名称、史实或时代矩阵。构建器还须加载 `sect-membership-state.v1` 作为存档兼容夹具，但不得把运行态状态误装进内容包。
+
+`design/17` §12 的 `sect-compendium.v1` 是门派名录导入根：四张规范矩阵必须恰有 `99 × 14 = 1,386` 个时代状态格，14 列顺序固定；12 个模板族展开为 T01–T04、T05A、T05B、T06–T12 共 13 个具体模板，每个恰有 L1–L5，合计 `13 × 5 = 65` 行。生产记录禁止裸 `T05`；`RankLevel.level: 1..5` 在 IR 边界显式映射为 `L1..L5`。门派历史、真实性、驻地建议和武学索引仍归 `design/17`，流程阈值引用 `design/12`，月钱 / 资源引用 `design/16`。
 
 ### 3.6 武功 schema 示例
 
@@ -664,75 +670,137 @@ export const TravelRouteSourceSchema = z.strictObject({
 });
 ```
 
-根 schema 还须覆盖 `schema_version`、`coordinate_system`、`generated_on`、来源表、陆地环、河流、山脉、岸线掩膜、驿站、码头、门派落点与图外节点，不能用 `.passthrough()` 省略。`history` 与 `seat_moves[].eras` 使用六个历史时期带，`eras`/`open_chapters`/`availability` 才使用十四个 `chNN` 短键；两套枚举不得混用。`generated_on` 是 authoring 来源元数据，进入可追溯报告但排除 `contentHash`。构建期强校验当前金标准：189 城、99 门派、19 区域、24 驿站、28 码头、48 常规路线与 3 图外专线；各城恰有 `ch01`…`ch14`，故城市时代格为 `189 × 14 = 2,646`。这些数量来自 `design/19` 当前交付，若归属文档有审校变更，以其版本化快照更新 golden。
+根 schema 还须覆盖 `schema_version`、`coordinate_system`、`generated_on`、来源表、陆地环、河流、山脉、岸线掩膜、驿站、码头、门派落点与图外节点，不能用 `.passthrough()` 省略。`history` 与 `seat_moves[].eras` 使用六个历史时期带，`eras`/`open_chapters`/`availability` 才使用十四个 `chNN` 短键；两套枚举不得混用。`generated_on` 是 authoring 来源元数据，进入可追溯报告但排除 `contentHash`。生产构建的金标准为 189 城、99 门派、**30 个 `design/11` §13.2 闭集区域**、24 驿站、28 码头、48 常规路线与 3 图外专线；各城恰有 `ch01`…`ch14`，故城市时代格为 `189 × 14 = 2,646`。当前 `design/map/*.yaml` 仍是 W1 的 19 粗区快照，只允许显式迁移模式按 `design/11` §2.3 读取；普通构建必须报 `TS-CONTENT-MAP-030` 并阻断，直至城市归区、区域几何/邻接、路线索引、门派派生区域与章节引用原子迁移完成。
 
-#### 3.7.2 区域六角与时代玩法 patch【建议值】
+#### 3.7.2 `RegionDef`、`EraLayer` 与 `EraRegionState`（正式消费 `design/11`）
 
 ```ts
 const FullChapterIdSchema = z.string().regex(/^ch(?:0[0-9]|1[0-5])_[a-z0-9_]+$/);
+const SceneIdSchema = z.string().regex(/^scn_[a-z0-9_]+$/);
+const RouteIdSchema = z.string().regex(/^route_[a-z0-9_]+$/);
+// 由 design/11 §13.2 生成 30 项闭集；RegionIdSchema 仍只负责词法与旧档迁移。
+const OpenWorldRegionIdSchema = z.enum(GENERATED_OPEN_WORLD_REGION_IDS);
 
-export const PlayableRegionDefSchema = z.strictObject({
-  schemaStatus: z.literal('provisional'),
-  id: RegionIdSchema,
-  map: z.string().endsWith('.tmj'),
-  entrySpawns: z.array(z.string().min(1)).min(1),
-  navigationRegion: RegionIdSchema,
-  baseAssets: z.array(AssetKeySchema).default([]),
+export const RegionDefSchema = z.strictObject({
+  schemaVersion: z.literal('open_world_region.v1'),
+  id: OpenWorldRegionIdSchema,
+  name: z.string().min(1),
+  kind: z.enum(['land', 'island', 'coastal', 'offmap']),
+  climateProfile: WeatherProfileIdSchema,
+  baseScenes: z.array(SceneIdSchema),
+  neighbors: z.array(OpenWorldRegionIdSchema),
+  packageKey: z.string().regex(/^region_[a-z0-9_]+$/),
+  sourceRefs: z.array(RepoRelativePathSchema).min(1),
 });
 
-export const EraLayerDefSchema = z.strictObject({
-  schemaStatus: z.literal('provisional'),
-  chapter: FullChapterIdSchema,
-  regions: z.record(RegionIdSchema, z.strictObject({
-    state: z.enum(['open', 'closed', 'hidden', 'destroyed']),
-    controllingFaction: z.string().regex(/^sect_[a-z0-9_]+$/).nullable(),
-    entryGates: z.array(z.string().regex(/^gate_[a-z0-9_]+$/)).default([]),
-    resourcePoints: z.array(z.string().regex(/^rp_[a-z0-9_]+$/)).default([]),
-    businesses: z.array(z.string().regex(/^biz_[a-z0-9_]+$/)).default([]),
+export const EraRegionStateSchema = z.strictObject({
+  id: OpenWorldRegionIdSchema,
+  entryState: z.enum(['open', 'guarded', 'blocked', 'hidden', 'closed']),
+  entryGates: z.array(GateExprSchema),
+  openCities: z.array(CityIdSchema),
+  factions: z.array(z.strictObject({ id: SectIdSchema, influence: FactionInfluenceSchema })),
+  sects: z.array(z.strictObject({ id: SectIdSchema, state: SectEraStateSchema })),
+  resourcePoints: z.array(z.strictObject({
+    id: ResourcePointIdSchema, sceneId: SceneIdSchema, state: ResourcePointStateSchema,
   })),
+  businesses: z.array(z.strictObject({
+    id: BusinessIdSchema, cityId: CityIdSchema, state: BusinessStateSchema,
+  })),
+  routes: z.array(z.strictObject({ id: RouteIdSchema, state: EraRouteStateSchema })),
+  weatherProfile: WeatherProfileIdSchema,
+});
+
+export const EraLayerSchema = z.strictObject({
+  schemaVersion: z.literal('open_world_era.v1'),
+  id: FullChapterIdSchema,
+  chapterId: FullChapterIdSchema,
+  baseMapSvg: z.string().regex(/^docs\/design\/map\/jianghu-ch(?:0[1-9]|1[0-4])\.svg$/),
+  packageKey: z.string().regex(/^era_ch(?:0[1-9]|1[0-4])_[a-z0-9_]+$/),
+  regions: z.array(EraRegionStateSchema),
+}).superRefine((v, ctx) => {
+  if (v.id !== v.chapterId) ctx.addIssue({
+    code: 'custom', path: ['chapterId'], message: 'chapterId 必须与 id 相同',
+  });
 });
 ```
 
-此处只有区域玩法 `PlayableRegionDef` 与 `EraLayerDef` 仍为【建议值】，等待 `design/11` 定稿。城市的 WGS84、历史名、地位、治所迁移，门派落点与路线几何已经归 `design/19`；不得另建 `mapAnchor {q,r}` 复制或伪造全国坐标。导航大地图 SVG 是 UI/世界层素材，不进入 `RegionMap` 地形网格。
+`GateExprSchema` 只实例化 `design/08` §6；`ResourcePointStateSchema` / `BusinessStateSchema` 来自 `design/16`，`SectEraStateSchema` 来自 `design/17`，不得在本管线另造枚举。`RegionDef.packageKey` 与 `EraLayer.packageKey` 是设计侧逻辑键；归包时分别确定性映射到 `tech/06` 的 `region-<rg_id>` 与 `era-chNN`，不把任一种写回另一份权威源。`openCities`、门派状态、资源点、营生与路线须执行 `design/11` §14 V-OW01–V-OW26；关闭区域可省略，不能用空对象补满 30 项。城市 WGS84、历史名、地位、治所迁移，门派落点与路线几何仍归 `design/19`；不得另建 `mapAnchor {q,r}` 复制或伪造全国坐标。导航大地图 SVG 是 UI/世界层素材，不进入 `RegionMap` 地形网格。
 
-### 3.8 预留：经脉、穴道与周天【建议值】
+### 3.8 经脉、穴道、周天与进度（正式消费 `design/15`）
 
 ```ts
-import { EffectOpSchema } from '../rules/index.js';
+import { BuffIdSchema, GradeSchema, SkillIdSchema, StatIdSchema } from '../primitives/index.js';
+
+const MeridianIdSchema = z.string().regex(/^mer_[a-z0-9_]+$/).brand<'MeridianId'>();
+const AcupointIdSchema = z.string().regex(/^ap_[a-z0-9_]+$/).brand<'AcupointId'>();
+const CirculationIdSchema = z.string().regex(/^zt_[a-z0-9_]+$/).brand<'CirculationId'>();
+const MeridianNatureSchema = z.enum(['yin', 'yang', 'harmony']);
+const DifficultyTierSchema = z.union([z.literal(1), z.literal(2), z.literal(3),
+  z.literal(4), z.literal(5), z.literal(6)]);
+const MeridianRewardSchema = z.strictObject({
+  modifierId: z.string().min(1), target: StatIdSchema, op: z.enum(['flat', 'pct', 'pp']),
+  valueBp: z.number().int().optional(), valueMilliPp: z.number().int().optional(),
+  valueMilli: z.number().int().optional(),
+}).superRefine(requireExactlyOneValueForOp);
 
 export const MeridianDefSchema = z.strictObject({
-  schemaStatus: z.literal('provisional'),
-  id: z.string().regex(/^mer_[a-z0-9_]+$/),
+  schemaVersion: z.literal('meridian.v1'),
+  id: MeridianIdSchema,
   name: z.string().min(1),
   family: z.enum(['regular12', 'extra8']),
-  acupoints: z.array(z.string().regex(/^ap_[a-z0-9_]+$/)).min(6).max(12),
-  order: z.number().int().nonnegative(),
-  sourceRef: z.string().min(1),
+  nature: MeridianNatureSchema, difficultyTier: DifficultyTierSchema,
+  direction: z.string().min(1), organRelation: z.string().min(1),
+  acupoints: z.array(AcupointIdSchema).min(6).max(12),
+  unlock: z.strictObject({
+    minDisplayLevel: z.number().int().nonnegative(),
+    minMainInnerLayer: z.number().int().min(1).max(10),
+    requiresAnyCompletedMeridian: z.boolean().optional(),
+    requiresMilestones: z.array(CirculationIdSchema).optional(),
+  }),
+  completionRewards: z.array(MeridianRewardSchema),
 });
 
 export const AcupointDefSchema = z.strictObject({
-  schemaStatus: z.literal('provisional'),
-  id: z.string().regex(/^ap_[a-z0-9_]+$/),
+  schemaVersion: z.literal('acupoint.v1'), id: AcupointIdSchema,
   name: z.string().min(1),
-  meridian: z.string().regex(/^mer_[a-z0-9_]+$/),
+  gameMeridian: MeridianIdSchema, standardCode: z.string().min(1),
+  standardMeridian: MeridianIdSchema, routeKind: z.enum(['native', 'intersect', 'borrowed']),
   sequence: z.number().int().positive(),
-  unlockCost: z.number().int().nonnegative(),
-  effects: z.array(EffectOpSchema).default([]),
+  barrierH: z.number().int().nonnegative(),
+  baseRewards: z.array(MeridianRewardSchema), passiveBuffs: z.array(BuffIdSchema),
   sourceRef: z.string().min(1),
 });
 
 export const CirculationDefSchema = z.strictObject({
-  schemaStatus: z.literal('provisional'),
-  stage: z.enum(['meridianComplete', 'small', 'large', 'twelveRegular', 'turn1', 'turn2',
-                 'turn3', 'turn4', 'turn5', 'turn6', 'turn7', 'turn8', 'turn9']),
-  requires: z.array(z.string().regex(/^(?:mer|ap)_[a-z0-9_]+$/)),
-  milestoneEvent: z.string().min(1),
+  schemaVersion: z.literal('circulation.v1'), id: CirculationIdSchema, name: z.string().min(1),
+  kind: z.enum(['milestone', 'turn']),
+  requiresMeridians: z.array(MeridianIdSchema).optional(),
+  requires: z.array(CirculationIdSchema).optional(),
+  turn: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5),
+    z.literal(6), z.literal(7), z.literal(8), z.literal(9)]).optional(),
+  targetNature: MeridianNatureSchema.optional(), difficultyTier: DifficultyTierSchema.optional(),
+  barrierH: z.number().int().nonnegative().optional(), minDisplayLevel: z.number().int().nonnegative().optional(),
+  minMainInnerLayer: z.number().int().min(1).max(10).optional(), minBooks: z.number().int().nonnegative().optional(),
+  requiresFinaleEntered: z.boolean().optional(), acupointScaleBp: z.number().int().optional(),
+  rewards: z.array(MeridianRewardSchema), passiveBuffs: z.array(BuffIdSchema),
+  event: z.enum(['meridian.milestoneReached', 'meridian.turnCompleted']),
+});
+
+export const MeridianProgressSchema = z.strictObject({
+  schemaVersion: z.literal(1), opened: z.array(AcupointIdSchema),
+  targets: z.partialRecord(AcupointIdSchema, z.strictObject({
+    progressH: z.number().int().nonnegative(), attemptOrdinal: z.number().int().nonnegative(),
+  })),
+  turnCompleted: z.number().int().min(0).max(9), turnTarget: CirculationIdSchema.optional(),
+  turnState: z.strictObject({ progressH: z.number().int().nonnegative(),
+    attemptOrdinal: z.number().int().nonnegative() }).optional(),
+  lastAppliedMigration: z.number().int().nonnegative(),
 });
 ```
 
-AR-03 已确定十二正经加奇经八脉共 20 条、每脉默认 6–12 穴、合计约 150–200 穴，以及进度跨书界保留；这些数量检查可先启用。穴位真实名称与归属必须由 `design/15` 核考，本文不创作穴名。`meridianComplete`、`small`、`large`、`twelveRegular`、`turn1..turn9` 分别承载通脉、小周天、大周天、十二经周流与九转；阶段键为【建议值】，不是新增游戏 ID 前缀。
+`requireExactlyOneValueForOp` 按 `op` 强制恰好一个量值字段：`flat → valueMilli`、`pct → valueBp`、`pp → valueMilliPp`，其余两个必须缺省；它是 schema helper，不是第四种数值语义。完整字段、不变量、冲穴原子事务和 `MeridianSessionSnapshot` 直接见 `design/15` §11–§12；上例只展示 schema registry 的严格入口，不重复玩法公式。构建门禁校验 20 经、每经 6–12 穴、总数 150–200、标准穴位代码唯一、周天依赖闭合，以及九转 `acupointScaleBp = 10000 + 500 × turn`。旧短 ID `mer_ren / mer_du / mer_chong / mer_dai` 只允许出现在 `idRemaps`，分别迁往 `mer_renmai / mer_dumai / mer_chongmai / mer_daimai`，新内容引用一律拒绝。
 
-### 3.9 预留：资源、家丁、营生与门派月钱【建议值】
+### 3.9 资源、家丁、营生与门派月钱（正式消费 `design/16`）
 
 ```ts
 import { RequirementExprSchema } from '../rules/index.js';
@@ -740,49 +808,52 @@ import { RequirementExprSchema } from '../rules/index.js';
 const ResourceIdSchema = z.string()
   .regex(/^res_[a-z0-9]+_(?:huang|xuan|di|tian)[1-9]$/)
   .brand<'ResourceId'>();
+const ResourcePointIdSchema = z.string().regex(/^rp_[a-z0-9_]+$/).brand<'ResourcePointId'>();
+const ServantIdSchema = z.string().regex(/^sv_[a-z0-9_]+$/).brand<'ServantId'>();
+const BusinessIdSchema = z.string().regex(/^biz_[a-z0-9_]+$/).brand<'BusinessId'>();
+const JobIdSchema = z.enum(['job_xingjiao', 'job_jiaotou', 'job_keqing']);
+const ScheduleBlockSchema = z.enum(['zi', 'chou', 'yin', 'mao', 'chen', 'si',
+  'wu', 'wei', 'shen', 'you', 'xu', 'hai']);
+const ResourceCategorySchema = z.enum([
+  'kuangshi', 'yaocai', 'ducai', 'mucai', 'mapi', 'liangshi',
+  'sicha', 'tieqi', 'zhenbao', 'picao', 'shoucai', 'shicai', 'mocai',
+]);
 
 export const ResourceDefSchema = z.strictObject({
-  schemaStatus: z.literal('provisional'),
   id: ResourceIdSchema,
   name: z.string().min(1),
-  category: z.enum(['ore', 'herb', 'wood', 'horse', 'grain', 'silkTea', 'ironware', 'treasure']),
-  tier: z.enum(['huang', 'xuan', 'di', 'tian']),
-  rank: z.number().int().min(1).max(9), // 一品最高、九品最低
+  category: ResourceCategorySchema,
+  resourceTier: z.enum(['huang', 'xuan', 'di', 'tian']),
+  resourceRank: z.number().int().min(1).max(9), // 一品最高、九品最低
+  resourceLevel: z.number().int().min(1).max(36),
+  materialGrade: z.number().int().min(1).max(12),
   unit: z.string().min(1),
-});
-
-export const ResourcePointDefSchema = z.strictObject({
-  schemaStatus: z.literal('provisional'),
-  id: z.string().regex(/^rp_[a-z0-9_]+$/),
-  region: RegionIdSchema,
-  location: z.strictObject({ q: z.number().int(), r: z.number().int() }),
-  outputs: z.array(z.strictObject({ resource: ResourceIdSchema, amountPerCycle: z.number().positive() })),
-  captureBy: z.array(z.enum(['battle', 'quest', 'purchase', 'sectGrant'])).min(1),
-  servantSlots: z.number().int().nonnegative(),
-  maintenanceSilver: z.number().int().nonnegative(),
-  eraAvailability: z.array(FullChapterIdSchema),
+  categoryValueMul: z.number().positive(), baseValueWen: z.number().int().nonnegative(),
+  tradePolicy: z.enum(['normal', 'restricted', 'forbidden']),
+  uses: z.array(z.enum(['forge', 'alchemy', 'cooking', 'contribution', 'trade', 'estate_build'])),
+  itemVariantRefs: z.array(z.string()), tags: z.array(z.string()).optional(),
 });
 
 export const ServantDefSchema = z.strictObject({
-  schemaStatus: z.literal('provisional'),
-  id: z.string().regex(/^sv_[a-z0-9_]+$/),
-  name: z.string().min(1),
-  management: z.number().int().min(0).max(100),
-  production: z.number().int().min(0).max(100),
-  defense: z.number().int().min(0).max(100),
-  maxLevel: z.number().int().positive(),
+  id: ServantIdSchema, chapterId: FullChapterIdSchema, displayName: z.string().min(1),
+  npcRef: NpcIdSchema.optional(), generatedNpcRuntimeId: z.string().optional(),
+  abilities: z.strictObject({ management: z.number().int(), production: z.number().int(),
+    martial: z.number().int(), defense: z.number().int(), loyalty: z.number().int() }),
+  specialties: z.record(z.string(), z.number()),
+  skillBand: z.enum(['apprentice', 'skilled', 'master']), combatEligible: z.boolean(),
 });
 
 export const BusinessDefSchema = z.strictObject({
-  schemaStatus: z.literal('provisional'),
-  id: z.string().regex(/^biz_[a-z0-9_]+$/),
-  city: CityIdSchema,
-  kind: z.enum(['casino', 'escortAgency', 'manor']),
-  positions: z.array(z.enum(['walker', 'instructor', 'retainer'])).min(1),
-  rewards: z.partialRecord(z.enum(['walker', 'instructor', 'retainer']), z.strictObject({
-    silverTier: z.number().int().min(1).max(5),
-    resourceTier: z.number().int().min(0).max(5),
-  })),
+  id: BusinessIdSchema, cityRef: CityIdSchema,
+  kind: z.enum(['casino', 'escort', 'manor', 'tavern', 'school']),
+  openChapters: z.array(FullChapterIdSchema), entrancePoiRef: z.string().nullable(),
+  operatorFactionRef: z.string().regex(/^sect_[a-z0-9_]+$/).nullable(),
+  scale: z.enum(['small', 'normal', 'head']), legality: z.enum(['legal', 'gray', 'underground']),
+  openSchedule: z.array(ScheduleBlockSchema),
+  jobs: z.array(z.strictObject({ jobRef: JobIdSchema, localMartialGrade: GradeSchema,
+    minFame: z.number().int(), minRelation: z.number().int(),
+    requiredBlocksPerMonth: z.number().int().nonnegative().optional() })),
+  positionNpcSlots: z.array(z.string()),
 });
 
 export const SectRankSchema = z.strictObject({
@@ -796,7 +867,9 @@ export const SectRankSchema = z.strictObject({
 });
 ```
 
-资源类别枚举、能力上限、周期单位、工资金额和资源档位都是【建议值】；`design/16` 应以经济曲线定稿。`rewards` 用 `z.partialRecord`，因为一个场所不必同时提供全部三种职位；存在的键仍须属于封闭枚举。管线已可强制：资源 ID 四阶九品一致、一品最高；资源点/家丁/库存默认不跨书界；客卿职位全局唯一；每个门派模板恰有 L1–L5，月钱和资源档只引用 1–5 而不在门派表复制金额。`SectRankSchema.level` 保存运行时统一职级 ID（`L1`–`L5`）；导入 `design/17` 的 `RankLevel.level: 1..5` 时显式映射为 `L${level}`，不得把两个表示混用。
+其余正式结构——`ResourceStack` / `EconomyLot`、`ResourcePointDef/State` / `ResourceSettlement`、`ServantContractState`、`JobDef/JobContractState`、`EstateCareerState`、`SectLedger`——逐字段消费 `design/16` §14.1–§14.3；任务条件和动作消费 §14.4–§14.6 的判别联合，不能用开放 `Record<string, unknown>` 兜底。所有内容 ID 前缀统一登记为 `res_ / rp_ / sv_ / biz_ / job_`；AR-13 预留的残本、传承线索与缓存对象命名空间 `frag_ / lgs_ / cache_` 在 `design/20` 落盘前只可进入前缀注册和未知字段拒绝测试，不得据此创造实体 schema。
+
+构建器必须精确重算 `resourceLevel = 9 × T + (10 − resourceRank)` 与 `materialGrade = 3 × T + 1 + floor((9 − resourceRank) / 3)`（`huang/xuan/di/tian` 的 `T=0/1/2/3`），并核对 `baseValueWen`；资源点 lot、家丁合同、职位合同和日程块均保留原子事务所需字段。职位只接受 `job_xingjiao / job_jiaotou / job_keqing`，旧 `walker / instructor / retainer` 只允许在一次性迁移器中出现；客卿活动合同全局至多一个。`SectRankSchema.level` 保存运行时统一职级 ID（`L1`–`L5`）；导入 `design/17` 的 `RankLevel.level: 1..5` 时显式映射为 `L${level}`，不得把两个表示混用。
 
 ### 3.10 NPC 名录与跨书界字段
 
@@ -825,13 +898,26 @@ const YearValueSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('unknown'), ageBand: AgeBandSchema.optional(), note: z.string().min(1) }),
 ]);
 
-const RecruitmentSpecSchema = z.strictObject({
-  difficulty: RecruitmentDifficultySchema,
-  questRef: z.string().regex(/^q_[a-z0-9_]+$/).nullable(),
-  contractRef: z.string().min(1).optional(),
-  gateRef: z.string().regex(/^q_[a-z0-9_]+#[a-z0-9_]+$/).nullable(),
-  windowKeys: z.array(z.string().min(1)),
-});
+const QuestIdSchema = z.string().regex(/^q_[a-z0-9_]+$/).brand<'QuestId'>();
+const TaskNodeRefSchema = z.string().regex(/^q_[a-z0-9_]+#[a-z0-9_]+$/).brand<'TaskNodeRef'>();
+const RecruitmentSpecSchema = z.discriminatedUnion('difficulty', [
+  z.strictObject({
+    difficulty: z.enum(['D1', 'D2', 'D3']), questRef: QuestIdSchema.nullable(),
+    contractRef: z.string().min(1).optional(), gateRef: TaskNodeRefSchema.nullable(),
+    windowKeys: z.array(z.string().min(1)),
+  }),
+  z.strictObject({
+    difficulty: z.literal('D4'), questRef: QuestIdSchema, gateRef: TaskNodeRefSchema,
+    valueGateRefs: z.array(TaskNodeRefSchema).min(1), windowKeys: z.array(z.string().min(1)).min(1),
+  }),
+  z.strictObject({
+    difficulty: z.literal('D5'), questRef: QuestIdSchema, gateRef: TaskNodeRefSchema,
+    valueGateRefs: z.array(TaskNodeRefSchema).min(1), mainlineGateRef: TaskNodeRefSchema,
+    windowKeys: z.array(z.string().min(1)).min(1), canonicalConsequenceRef: TaskNodeRefSchema,
+    fallbackAllianceRef: TaskNodeRefSchema.nullable(), lockWarningRef: TaskNodeRefSchema,
+    fateRuleRef: TaskNodeRefSchema.nullable(),
+  }),
+]);
 
 const NpcAppearanceSchema = z.strictObject({
   key: z.string().regex(/^[a-z0-9_]+$/),
@@ -907,7 +993,7 @@ export const NpcDefSchema = z.strictObject({
 });
 ```
 
-跨对象 pass 执行 `design/18` §14 的 NPC-V01–V14：年份区间有序并与 `design/02` 书界相交；无生命交集的出现只能是 `presenceMode='reference'`；D4/D5 必有任务、门槛与窗口；儿童不进入付费战斗雇佣池；跨书同人复用 ID 且 appearance 有序不重叠；未收录武学只能写“待对应图鉴收录（不预建 ID）”。`presenceMode` 的输入默认值为 `living`，用于兼容 `design/18` §7.1/§7.2 当前省略该字段的正式示例；凡仅作跨时代资料引用的 appearance 必须显式写 `reference`，不能依赖默认值绕过 NPC-V03，构建输出会展开该默认值。该文档后续仍应把字段补进示例与接口。`crossBook.enabled=true` 不是简单等价于出现次数大于一，而是说明允许使用重逢/能力合并流程；实际健在与否仍按 lifespan、`explicitAliveAt` 和改命分支求值。`reunionQuestByChapter` 使用 `z.partialRecord`，对应其 `Partial<Record<ChapterId, QuestId>>`；不能用 Zod 4 对枚举键穷尽检查的 `z.record`。
+跨对象 pass 执行 `design/18` §14 的 NPC-V01–V14：年份区间有序并与 `design/02` 书界相交；无生命交集的出现只能是 `presenceMode='reference'`；D4 必须有可解析的任务、gate、非空 `valueGateRefs/windowKeys`，D5 还必须有 `mainlineGateRef`、`canonicalConsequenceRef`、`lockWarningRef` 以及显式可空的 `fallbackAllianceRef/fateRuleRef`；儿童不进入付费战斗雇佣池；跨书同人复用 ID 且 appearance 有序不重叠；未收录武学只能写“待对应图鉴收录（不预建 ID）”。`presenceMode` 的输入默认值为 `living`，用于兼容 `design/18` §7.1/§7.2 当前省略该字段的正式示例；凡仅作跨时代资料引用的 appearance 必须显式写 `reference`，不能依赖默认值绕过 NPC-V03，构建输出会展开该默认值。`crossBook.enabled=true` 不是简单等价于出现次数大于一，而是说明允许使用重逢/能力合并流程；实际健在与否仍按 lifespan、`explicitAliveAt` 和改命分支求值。`reunionQuestByChapter` 使用 `z.partialRecord`，对应其 `Partial<Record<ChapterId, QuestId>>`；不能用 Zod 4 对枚举键穷尽检查的 `z.record`。
 
 `SkillInstance` 与残篇记录虽属存档/运行状态，而非内容定义，也必须在 `packages/data` 暴露共享 schema：`sourceGrade: Grade` 与 `sourceCap: 1..10` 分列，且 `sourceGrade ≤ SkillDef.grade`；完整来源初始化为绝对品阶，残承来源取其 `lineageGrade`。这条接口来自 `design/02` §2.2–§2.3；`tech/04` 只校验内容与迁移夹具，存取和成长解释归 `tech/08`、`tech/05`。
 
@@ -1053,6 +1139,15 @@ export interface CompiledExpression {
 
 AST 输出键顺序稳定，路径集合排序。除法由运行时在归属乘区规定的取整点处理；表达式编译器不能擅自决定战斗舍入。效果 `op` 必须存在于 `tech/05` 的原语注册表，并按判别联合校验参数；自由文本中的机制关键词只产生提醒，绝不能被自动翻译成规则。
 
+所有 DSL 标识只允许从 `packages/data/src/rules/dsl-registry.ts` 的一份声明生成，禁止在 schema、编译器和 core 各手抄一份枚举。该 registry 逐项镜像 `design/06` §6.1 / §6.4 的语义清单，并由生成器同时产出：
+
+1. 恰好 59 项的 `HookIdSchema`、`HookId` 联合与稳定 hook index；
+2. 恰好 50 项的 `OpIdSchema`、各 op 参数判别联合与 `tech/05` 穷尽 dispatcher 骨架；
+3. 表达式 AST 的 opcode enum、编码 / 解码表与 VM 穷尽 `switch`；
+4. `docs/generated/dsl-registry.md`、协议计数快照和逐项最小正反夹具。
+
+生成物携带同一 `rulesProtocol`；新增、删除或改义必须升级协议并更新录像兼容夹具。CI 比较 registry、Zod、TypeScript 联合、编译器编码表、VM switch 与文档快照的集合和顺序；任一漂移均报 `DSL_REGISTRY_DRIFT`，未知 hook / `OpId` / opcode 一律在构建期失败。
+
 ### 4.7 引用图与素材引用图
 
 完整 `RefGraph` 同时服务四件事：引用完整性、增量重建、孤儿报告、素材归包。业务边保留目标类型；素材边输出 `tech/06` 约定的精简格式：
@@ -1129,6 +1224,8 @@ pnpm schema:gen
 |---|---|---|
 | `SkillDef.moves[].buffs[].id`、被动 `buff.id` | `BuffDef` | 目标存在；`inherit` 与定值品阶合法 |
 | `SkillDef.learnSources[]`、残承字段 | 书界 / NPC / 物品 / 任务 | `sourceGrade ≤ absGrade`，与 `sourceCap` 分离；现影、书眠、终局不得自动补全残承 |
+| `ChapterDef.capExemptMax`、Boss `capExempt` | 书界境界 / Boss 遭遇 | 只按 `design/02` §3.1、§7.5 校验标记资格、每界数量、幅度与显示等级计算入口；该标记不得成为品阶、层数、修为或来源门槛的通用豁免 |
+| `TspRule` 的压制抵消类别 | 武学 / 装备 effective resolver | `off_skill` 与 `off_equip` 必须保留为互斥目标类别，并由 `design/13` §4.5 的同一 resolver 解释；禁止折叠为无类型的 `off_kind` 总和 |
 | `SkillDef.setTags[]` | `SetDef` | C22 双向成员闭合 |
 | `Reqs.prereq[].skill`、`LearnSource.ref` | 武功 / NPC / 物品 / 任务 | 类型与来源 kind 相符；前置图无自环 |
 | `EquipDef.signature` | `NpcDef` | `design/18` 已入库；缺失、类型错误或指向运行时 UUID 一律 error |
@@ -1137,8 +1234,9 @@ pnpm schema:gen
 | `RegionObject` | NPC / 遭遇 / 门禁 / 区域 / 任务 | 对象类决定目标类型；传送目标含合法出生点 |
 | `EncounterDef` | 区域 / NPC / 模板 / Boss / Buff / 招式 | 全部存在；区域窗口与出生区存在 |
 | `QuestStage` | Ink knot / flag / encounter / reward | 图可达，入口与终态存在，奖励类型合法 |
+| 书眠计划 / 迁移夹具 | 装备实例 / 史匣 / 天书匣 | 共同额度、可藏类型、`nativeTo` 保持与天书实物例外只调用 `design/02` §6.6、`design/10` §12.3–§12.4、`design/13` §4.1 的断言；不得把天书计入装备额度或把普通物品写入史匣 |
 | Ink 标签 | 命令、任务、旗标、NPC、物品 | bridge opcode 白名单；强引用存在 |
-| `design/19` 地图源 / `EraLayerDef` | 区域 / 城市 / 门派 / 驿站 / 码头 / 图外节点 / 资源点 / NPC | 导航源按 `design/19` 的 WGS84 契约；玩法 patch 只能覆写全局定义，不得创建隐形对象 |
+| `design/19` 地图源 / `RegionDef` / `EraLayer` | 区域 / 城市 / 门派 / 驿站 / 码头 / 图外节点 / 资源点 / NPC | 导航源按 `design/19` 的 WGS84 契约并完成 `design/11` 19→30 迁移；时代层只能覆写 `design/11` 明列字段，不得创建隐形对象 |
 | `NpcDef.appearances` | 书界 / 城市 / 门派 / 武功 / 任务 / AI | 年代、生卒、D 级门槛与跨书界规则一致；`suggestedCityId` 在城市定稿前可 warning |
 | `ResourcePointDef.outputs` | `ResourceDef` | 资源存在且时代开放；阶品字段与 ID 一致 |
 | 所有素材字段 | `AssetEntry` 逻辑键 | 登记存在且状态允许构建；见 `tech/06`、`tech/07` |
@@ -1151,7 +1249,7 @@ pnpm schema:gen
 
 | 来源 | 应实现的规则族 | 实现 pass / 输出 |
 |---|---|---|
-| `design/02` | 书界 ID/境界、原生投放、压制不变式、天级池与阶段锚点 | `chapter-lint`；封闭名录 error、分布报告 |
+| `design/02` | 书界 ID/境界、原生投放、压制不变式、天级池与阶段锚点；`capExempt` 数量/幅度/显示等级入口；来源品阶与书眠/藏史计划 | `chapter-lint`；封闭名录 error、分布报告；跨 schema 书眠 fixture |
 | `design/03` | 属性 ID、修饰形态、等级表锚点、标准角色派生输入 | `stat-lint`；未知属性与非法单位 error |
 | `design/04` | Z0–Z10 合法挂点、命中/伤害/治疗公式输入与取整契约 | `formula-lint`；公式由共享纯函数调用，不复制 |
 | `design/05` §15 V1–V18 | 武功/招式/被动命名、天级闭集、类别、内功、权重、解锁、绝招、套装、来源、原创标注 | `skill-lint`；沿用各规则 error/warning 级别 |
@@ -1160,13 +1258,14 @@ pnpm schema:gen
 | `design/08` §12 V1–V13 | 地形字段、区别度、Buff、品阶、章节、六角坐标/范围、标准 ID | `terrain-lint` |
 | `design/08` §6.7 V-G1–V-G9 | qg0–qg5 可达集、主线可达、回安全点、门禁预算/替代解/体力/可读性/六邻 | `reachability-lint`；每区域输出热图与最短证据路径 |
 | `design/09` §14 V1–V15 | 遭遇/Boss/合击/阵法/台词 ID、人数、阶段、公平预警、计数单位、出生区 | `encounter-lint`；旧 `bs_*` 直接 error |
-| `design/10` §14 V1–V15 | 物品类型、12 神兵闭集、词条/特效、引用、永久投放、商店、装备约束 | `item-lint`；预算与投放报表 |
-| `design/13` §11 | 经验锚点、任务经验、天书 28 变体、压制组合、终局、结局完备性、成就/称号 | `progression-lint`；穷举结果与锚点 golden |
+| `design/10` §12.3–§12.4、§14 V1–V15 | 物品类型、12 神兵闭集、词条/特效、引用、永久投放、商店、装备约束；天书匣/史匣类型边界、共同额度与 `nativeTo` 保持 | `item-lint`；预算与投放报表；书眠正反例 fixture |
+| `design/12` §13 QST-V01–V22 | `quest.v1` 图可达、稳定局部键、effect 幂等、NPC 绑定、门派加入 / 晋升 / 书眠状态 | `quest-lint` / `sect-progression-lint`；未知 opcode、悬空引用与不可达终态 error |
+| `design/13` §2、§4.1、§4.5–§4.6、§11 | 经验锚点与跨追赶线/封顶线分段、任务经验、天书 28 变体、天书实物例外、`off_skill/off_equip` 分类压制、其余门槛顺序、终局、结局完备性、成就/称号 | `progression-lint`；边界穷举、跨域书眠 fixture 与锚点 golden |
 | `design/17` §15 S17-V001–V020 | 99 门派、1,386 时代格、L1–L5、来源、关系、候选武学与地图建议状态 | `sect-lint`；pending 与 provisional 分列 |
-| AR-03 / 未来 `design/15` | 20 经脉、每脉 6–12 穴、总数 150–200、引用闭合、周天顺序 | `meridian-lint`【建议值】 |
+| `design/15` §14 V15-01–V15-15 | 20 经脉、每脉 6–12 穴、总数 150–200、引用闭合、周天顺序、冲穴事务 | `meridian-lint`；结构、remap 与事务 golden 必须 |
 | `design/19` §15 MAP-V001–V008 | 全国导航 ID、WGS84 范围、14 时代、99 门派落点、路线端点、图外专线与输出边界 | `world-source-lint`；源数据错误阻断；运行 `tools/map/render_map.py --check` |
-| AR-04 / 未来 `design/11` | 区域玩法入口、势力、资源状态与旅行可达 | `world-play-lint`【建议值】 |
-| AR-05–AR-07 / 未来 `design/16` | 四阶九品、资源点产出、家丁槽、营生职位、客卿唯一、L1–L5 月钱档 | `economy-lint`【建议值】 |
+| `design/11` §14 V-OW01–V-OW26 | 30 区闭集、邻接、场景 / 战场上限、入口、势力、资源 / 营生、路线、天气与旅行可达 | `world-play-lint`；错误级别直接服从归属文档 |
+| `design/16` §16 RES/RP/SV/BIZ/SECT/ECO/SLEEP 校验族 | 四阶九品、资源点产出、家丁槽、营生职位、客卿唯一、L1–L5 月钱档、lot / 合同事务 | `economy-lint`；公式、引用与原子结算必须 |
 | `design/18` §14 NPC-V01–V14 | 生卒证据、D1–D5、书界存在、跨书 ID 复用、武学/任务/门派引用、设施与路人实例身份 | `npc-lint`；V01–V11/V13/V14 为 error，V12 按其发布级别执行 |
 
 ### 5.5 招式预算检查
@@ -1247,6 +1346,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | `TS-CONTENT-REF-001` | 硬引用不存在 | error |
 | `TS-CONTENT-SKL-008` | 招式预算偏差 > 0.05 | error / 有批准理由为 warning |
 | `TS-CONTENT-MAP-003` | 主线目标不可达或无安全返回路 | error |
+| `TS-CONTENT-MAP-030` | 全国导航源尚未完成 `design/11` 的 19→30 区原子迁移，或发布数据仍定义旧粗区 | error；只允许显式迁移模式读取旧源 |
 | `TS-CONTENT-INK-004` | locale 结构签名不同 | error |
 | `TS-CONTENT-PACK-001` | 单叶片原始 JSON > 256 KiB | error |
 | `TS-CONTENT-PROV-001` | provisional schema 仍在使用 | warning；发布报告必须列出 |
@@ -1346,8 +1446,8 @@ export interface InkBridge {
 
 稳定逻辑名如下；若单片超过 256 KiB 原始 UTF-8 JSON，再产生 `.<pNNN>.json` 叶片，由同名索引按顺序列出：
 
-- `chNN.rules.base.json`、`chNN.rules.<regionId>.json`，例如 `ch01.rules.rg_dali.json`；
-- `chNN.text.<locale>.base.json`、`chNN.text.<locale>.<regionId>.json`，例如 `ch01.text.zh-Hans.rg_dali.json`；
+- `chNN.rules.base.json`、`chNN.rules.<regionId>.json`，例如 `ch01.rules.rg_dali_cangshan.json`；
+- `chNN.text.<locale>.base.json`、`chNN.text.<locale>.<regionId>.json`，例如 `ch01.text.zh-Hans.rg_dali_cangshan.json`；
 - `DialogueStructureDef` 随其区域 rules 分片；各 locale 的可执行 Ink Story JSON 随文本分片，跨区域主线归 base；
 - `common.rules.base.json` 与 `common.text.<locale>.json` 独立常驻；
 - `world.rules.navigation.json` 保存全国导航 IR，`world.rules.era.<chapter>.json` 保存该书界使用的时代投影；区域内六角规则仍归对应 `chNN.rules.<regionId>.json`。
@@ -1457,9 +1557,10 @@ HTTP `Content-Encoding` 通常由浏览器透明解压；离线预压缩容器�
 | Ink 夹具 | 结构签名、非法 opcode、占位符差异、死链 | 必须 |
 | 包体/确定性 | 双构建逐字节相同；叶片与总包预算 | 必须 |
 | 兼容 | 每个发布 hash 的存档经结构迁移 + remap 后加载 | 必须 |
+| ID 全仓门禁 | `python3 tools/lint/check_ids.py --strict docs`；检查前缀、重复、弃用 ID 与引用 | PR 必须；CN-08 |
 | 真机 | 256 KiB 解析、区域切换峰值与无长任务 | **（待实测）** |
 
-PR CI 跑全量 validate、schema drift、单元测试和指定书界构建；夜间任务构建全部书界、跑数值模拟与跨引擎录像。仅 Markdown 改动可跳内容构建，但本文件本身不证明实现已存在。
+PR CI 先运行 `python3 tools/lint/check_ids.py --strict docs`，再跑全量 validate、schema drift、DSL registry drift、单元测试和指定书界构建；任一失败都不得合并。夜间任务构建全部书界、跑数值模拟与跨引擎录像。仅 Markdown 改动可跳内容构建，但不能跳 ID 门禁；本文件本身不证明实现已存在。
 
 ---
 
@@ -1470,7 +1571,7 @@ PR CI 跑全量 validate、schema drift、单元测试和指定书界构建；�
 | Phase 0 | schema registry、YAML 位置、ID/ref、Tiled 单图、规范 JSON | 一张 32×32+ 高度地图可构建；双构建相同 |
 | Phase 1 | 序章内容、Ink bridge、规则/文本分片、基础 remap | 序章完整通过；叶片 ≤256 KiB；旧档夹具可读 |
 | Phase 2 | 天龙 2–3 区域、区域懒加载、时代层接口、素材 refs | 手机区域切换无阻断；包预算有实测 |
-| Phase 3 | AI 草稿/promote、全业务 lint、经营/经脉正式 schema、NPC 名录量产 | 人工审核链可审计；剩余 provisional 清单收敛；NPC-V01–V14 持续通过 |
+| Phase 3 | AI 草稿/promote、全业务 lint、经营/经脉/NPC/开放世界正式 schema 的量产验证 | 人工审核链可审计；`design/11` V-OW01–V-OW26 与 NPC-V01–V14 持续通过 |
 | Phase 4+ | 十四书界量产、多 locale、兼容窗口治理 | 每书界可独立增量、回滚、迁移 |
 
 ---
@@ -1480,7 +1581,7 @@ PR CI 跑全量 validate、schema drift、单元测试和指定书界构建；�
 | 风险 | 概率/影响 | 对策 |
 |---|---|---|
 | schema 与设计稿漂移 | 高/高 | 字段 metadata 回链章节；generated drift + 归属审阅 |
-| `design/19` 的 19 个全局区域仍待 `design/11` 复核拆分 | 高/高 | 当前 ID 可校验、不可擅改；若拆分必须显式 remap，不自动去书界号 |
+| `design/map/*.yaml` 仍为 19 粗区，尚未按 `design/11` 原子迁移到 30 区 | 高/高 | 迁移模式可读旧源并输出差异；生产构建以 `TS-CONTENT-MAP-030` 阻断，迁移须同时更新城市归区、区域几何/邻接、路线、门派派生区、包名与章节引用 |
 | 规则/文本误分导致哈希漏变 | 中/高 | schema 显式分类；变异测试验证每个 rule 字段改变 hash |
 | ID remap 链腐化 | 中/高 | DAG、目标存在、存档夹具、发布后记录不可改 |
 | Tiled 编辑坐标被误作方格 | 中/高 | 转换 golden 强制六邻与轴坐标；禁止方格距离字段 |
@@ -1538,12 +1639,14 @@ PR CI 跑全量 validate、schema drift、单元测试和指定书界构建；�
 
 - **已解决：tech/01 P4**。规则/文本按 base + region 切片，原始叶片 ≤256 KiB；典型模型约 1.268 MiB（含余量），已触发 1.25 MiB warning、仍低于 1.5 MiB 硬门槛（见 §8）。
 - **已解决：C18**。跨语言静态契约唯一根为 `packages/spec/`；内容 Zod 仍在 `packages/data/src/schemas/`（见 §3.1）。
-- 【建议值】源文件 2 MiB 上限、IP 偏差 >10% 提升 error、P4 的区域数/压缩率、所有 provisional schema 字段，待对应归属文档或实测替换。
+- **已解决：`design/11` / `12` / `15` / `16` / `17` / `18` 的 provisional 接口**。已切换为各归属文档的正式版本根、字段与校验族（见 §3.4–§3.10、§5.4）；`design/map/*.yaml` 的 19→30 数据迁移另列 §16.2，不以 provisional schema 掩盖。
+- 【建议值】源文件 2 MiB 上限、IP 偏差 >10% 提升 error，以及 P4 的压缩率，待实测替换。
 
 ### 16.2 本文依赖的上游事实
 
-- `design/19` 已给出 19 个全局 `rg_*`、189 个 `city_*` 与路线几何；`design/11` 仍须复核区域拆分/邻接，并定稿入口、旅行事件、势力与资源状态。若区域拆分，须同步旧→新 remap。
-- `design/18` 的 NPC 逻辑 schema 已转正；`design/12` 仍须定稿任务与门派流程字段，`design/15`、`design/16` 须替换经脉/经营 provisional schema。
+- `design/11` 已定稿 30 个全局 `rg_*`、邻接及 `RegionDef` / `EraLayer` / `EraRegionState`；`design/19` 已给出 189 个 `city_*`、99 门派落点与路线几何。当前 `design/map/*.yaml` 仍为 W1 的 19 粗区，须按 `design/11` §2.3 一次迁移城市归区、区域几何/邻接、路线索引、门派派生区域、区域包名与章节引用；完成前生产构建阻断。
+- `design/12`、`design/15`、`design/16`、`design/17`、`design/18`、`design/19` 已作为正式上游消费；其 schema 版本或约束变化须同步迁移与 golden，不在本文重定义玩法。
+- AR-13 指向的 `design/20` 尚未落盘；`frag_ / lgs_ / cache_` 仅保留 registry 扩展点，生产内容与存档不得写入未知结构。
 - `tech/05` 须提供效果原语、表达式上下文和内容 registry 的运行时消费者。
 - `tech/06`/`tech/07` 继续拥有素材清单、登记字段与二进制；本文只输出引用图。
 
@@ -1551,7 +1654,7 @@ PR CI 跑全量 validate、schema drift、单元测试和指定书界构建；�
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| E1-P01 | 基准 §12 的区域格式由仅 `rg_<书界序号>_<拼音>` 扩为全局 `rg_<拼音>`，旧 ID 经 remap 迁移 | AR-04 与 `design/19` 已采用共享大地图的 19 个全局区域；旧式仍兼容，若 `design/11` 拆区则由其给出映射 |
+| E1-P01 | 基准 §12 的区域格式由仅 `rg_<书界序号>_<拼音>` 扩为全局 `rg_<拼音>`，旧 ID 经 remap 迁移 | AR-04 与 `design/11` 已定稿共享大地图的 30 个全局区域及 19→30 迁移表；旧式只允许迁移读取 |
 | E1-P02 | 基准 §19 登记三哈希域与原始 JSON 叶片 ≤256 KiB | 避免文本改动触发存档修复，并把 `tech/03` 解析终值变成发布门禁 |
 
 ### 16.4 开放问题（附默认值）
@@ -1559,8 +1662,9 @@ PR CI 跑全量 validate、schema drift、单元测试和指定书界构建；�
 | 编号 | 问题 | 默认值 |
 |---|---|---|
 | O1 | 首个完整书界的真实压缩率和区域数是否符合 P4 模型？ | 先按 §8.4 门禁；天龙纵切片后以实测更新，但不放宽 1.5 MiB |
-| O2 | 剩余 provisional schema 何时升正式？ | `design/11`、`design/12`、`design/15`、`design/16` 对应部分通过审校后，在下一次 schema 版本升级中转正并补迁移；NPC 与全国导航源已转正 |
+| O2 | **已解决**：`design/11` 区域玩法 schema 何时升正式？ | 已按 `design/11` §12 的 `open_world_region.v1` / `open_world_era.v1` 与 §14 校验族转正（见 §3.7.2）；19→30 是数据迁移，不再保留 provisional 接口 |
 | O3 | ID remap 支持窗口多长？ | 单人项目默认永久保留所有已发布映射；仅在明确废弃旧存档版本时压缩 |
 | O4 | 是否采用 RFC 8785 实现规范 JSON？ | 默认采用其对象键/数字规范；若现成实现体积不合适，工具端自实现并以 RFC 向量测试，运行时不携带 |
+| O5 | `design/20` 何时提供跨年代传承 schema？ | 落盘前只保留 `frag_ / lgs_ / cache_` 前缀与拒绝未知字段测试；不生成生产 schema、不猜字段 |
 
 真机解析耗时、内存峰值及 Tiled 热更 ≤1 秒仍为**（待实测）**；技术版本与上述 API 已于参考资料所列日期联网核实。

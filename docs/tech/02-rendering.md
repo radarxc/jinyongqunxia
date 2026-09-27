@@ -3,9 +3,9 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/02-rendering.md` |
-| 版本 | v1.1（审校修订，2026-09-26） |
+| 版本 | v1.2（跨文档同步，2026-09-26） |
 | 上游基准 | `docs/decisions/author-decisions.md` G1/P01/P04/P53、`docs/decisions/author-requirements.md` AR-03–AR-09/AR-11/AR-12；`docs/00-canon.md` v1.1 §0、§8、§11、§19；`docs/decisions/rulings-v1.md` C20/C21 |
-| 平行文档 | `tech/01`（架构：`RenderWorld`、表现队列、渲染器闸门；C21 后续同步）、`tech/03`（性能预算终值、安卓安全 GLSL、GPU 规则）、`tech/07`（精灵“3D 中转”管线）、`tech/06`（KTX2 编码与质量变体）、`design/09`（六角战斗规则唯一归属；K1 后续定稿） |
+| 平行文档 | `tech/01`（架构：`RenderWorld`、表现队列、渲染器闸门；C21 已同步）、`tech/03`（性能预算、稳定帧节拍与 T0–T3 终值）、`tech/07`（精灵“3D 中转”与 `battle8` 管线）、`tech/06`（KTX2、质量变体与大地图正式素材键）、`design/09`（六角战斗规则唯一归属） |
 | 下游文档 | `tech/03`（性能预算终值）、`tech/04`（区域地图数据格式）、`tech/05`（玩法引擎事件）、`tech/06`（KTX2 编码、纹理变体、manifest）、`design/08`（地形目录）、`design/09`（战斗朝向/表现节奏）、`design/11`（昼夜天气规则）、`design/14`（UI） |
 | 本文职责 | 相机与投影数学、场景构成、遮挡排序、光照阴影、水墨风格化与后处理、特效、天气昼夜、渲染管线与帧预算、WebGPU 策略、质量档位、`packages/render` 代码结构、原型验证计划 |
 | 本文拥有的契约文件 | `packages/spec/iso-camera.json`、`packages/spec/sprite-spec.json`（v1 定稿见 §1.3、§2.6）、`packages/spec/vfx.schema.json`（§6.1）、`packages/spec/time-of-day.json`（§7.1）；`packages/spec/palette.json` 只负责文件格式与着色器绑定（色值取自 tech/07 §2.3，UI 终值归 design/14） |
@@ -24,7 +24,7 @@
 > 10. **特效**：数据驱动的 `fx_*` 特效时间轴（引用 tech/07 的 `vfx_*` 贴图）+ 5 类核心原语（面片、条带、序列帧、**无状态 GPU 粒子**、贴花，外加光束/动态光/屏幕特效/精灵着色）；按武学品阶分 F0–F4 预算；**伤害数字与头顶 UI 走 WebGL 叠加层**（位图数字 + 运行时 Canvas2D 烘焙的汉字词条图集，1 个 draw call），HUD/菜单/对话仍是 DOM。
 > 11. **管线**：`WebGLRenderer` + **自写极简后处理**（不引入 `postprocessing`：实测 +18 KB gzip，且其 peer 锁定 three < 0.187）；draw call 目标 低 60 / 中 100 / 高 150 / 极致 250；自定义着色器模块 ≤ 8 个；加载期 `compileAsync` + `initTexture` 预热；完整的上下文丢失恢复路径。
 > 12. **WebGPU**：按 C21 继续 `WebGLRenderer` 单一路径。旧稿记录的同功能最小路线为 WebGPU 297 KB vs WebGL 156 KB（+141 KB），本轮未复测；加入自有代码后估算约 330 KB，超过完整 WebGPU render ≤ 300 KB 的闸门，当前未通过。WebGL entry ≤ 170 KB、render ≤ 180 KB、合计 ≤ 350 KB gzip；若未来通过，WebGPU 路线 entry + render 另计 ≤ 470 KB（§9.3）。
-> 13. **质量档位**扩展为 **低 / 中 / 高 / 极致** 四档；自动检测 = 静态探测 + **标题画面"活画基准"（负载倍增法——移动端没有 GPU 计时查询）** + 运行时动态分辨率与降档。
+> 13. **质量档位**扩展为 **低 / 中 / 高 / 极致** 四档；自动检测 = 静态探测 + **标题画面"活画基准"（负载倍增法——移动端没有 GPU 计时查询）** + 运行时动态分辨率、降档与 T0–T3。实际节拍按 `sourceRefreshHz` 取不超过目标的稳定整数分频 `pacingFps`；同一页面会话的自动逻辑只降不升，手动“重新校准”除外（§10）。
 > 14. **代码**：`packages/render` 按 13 个子模块组织；与 core 只经"只读快照/查询 + DomainEvent（经表现队列）"交互；§11 给出核心 TypeScript 签名。
 > 15. **原型**：7 个 demo（相机拾取 / 地形 / `bench-iso`（64×64 + 200 精灵 + 后处理）/ 遮挡 / 特效压力 / 韧性 / 风格金样），通过标准：中端安卓"中档"探索 P95 帧时间 ≤ 16.7 ms。
 
@@ -32,14 +32,14 @@
 >
 > | # | 发现（证据） | 影响 | 处理 |
 > |---|---|---|---|
-> | F1 | WebGPU 路线包体：本文 esbuild 实测同等功能 297 KB vs 156 KB gzip | tech/01 §5.4 为 WebGPU 路线预留 ≤ 260 KB 偏乐观 | §9.3 闸门增加包体条件；请 tech/01 更新预算 |
+> | F1 | WebGPU 路线包体：本文 esbuild 实测同等功能 297 KB vs 156 KB gzip | tech/01 旧稿为 WebGPU 路线预留 ≤ 260 KB 偏乐观 | **已解决**：本文 §9.3 与 tech/01 §2.6、§5.4 已统一为完整 WebGPU render ≤ 300 KB 的独立闸门；当前估算 330 KB，未通过 |
 > | F2 | three r186 的 `BatchedMesh` 在无 `WEBGL_multi_draw` 时退化为"每个实例一次 draw"（源码核实）；Firefox 不支持该扩展（MDN BCD） | `BatchedMesh` 不能作为跨浏览器的合批基线 | §8.3：基线用"区块合并几何 + InstancedMesh" |
 > | F3 | 移动端无 GPU 计时查询：`EXT_disjoint_timer_query_webgl2` 在 Android Chrome、iOS Safari 均不支持（MDN BCD） | 自动画质只能靠帧时间推断 | §10.2 负载倍增法基准 |
 > | F4 | `navigator.deviceMemory` Safari 不支持（MDN BCD） | tech/01 §6.1 的 `deviceMemory ≤ 3` 判定只对安卓有效 | §10.2 iOS 改用机型/系统版本 + 基准 |
 > | F5 | iPhone 不支持 `OES_texture_float_linear`（仅 iPadOS）（MDN BCD） | 可过滤的浮点 RT 只能用半精度 | §5.3 高档 HDR RT 用 `HalfFloatType` |
-> | F6 | tech/07 的 `iso-camera.json` 初值 `allowRotation: false` | 本文决定允许旋转 | §1.5：自然物（树、草、石）仍可用公告板，方向性物件改 3D；请 tech/07 同步 |
-> | F7 | tech/01 `QualityTier` 与 `RenderWorld` 仍是旧三档/部分同步签名 | C21 已裁定四档与异步资源就绪边界 | §11.2 作为统一目标：四档；五个资源/队列入口返回 `Promise`；补齐 `syncWorld/render/cues/camera/showPath/tileAnchorToScreen/stats`；请 tech/01 同步 |
-> | F8 | tech/06（并行稿）精灵变体为 low = 96 px/m 无法线、mid = high = 128 px/m，且精灵不带 mip | 与各档 DPR 上限不匹配（中档 128 px/m 过采样约 1.9×、显存多 ~75%）；远缩放时无 mip 会闪烁 | §2.6 定稿为 64（无法线）/ 96 / 128 三个 ppm 包 + 2 级 mip；采纳其 UASTC normal mode；`sprite-spec.json` 归本文，请 tech/06 同步 |
+> | F6 | tech/07 的 `iso-camera.json` 旧初值为 `allowRotation: false` | 本文决定允许旋转 | **已解决**：tech/07 §1.3、§5.4 已同步 `allowRotation:true`；自然物可用公告板，方向性物件改 3D |
+> | F7 | tech/01 的旧 `QualityTier` 与 `RenderWorld` 是三档/部分同步签名 | C21 已裁定四档与异步资源就绪边界 | **已解决**：本文 §11.2 与 tech/01 §3.3 已统一四档、完整接口及异步资源入口 |
+> | F8 | tech/06 旧稿精灵变体为 low = 96 px/m、mid = high = 128 px/m，且精灵不带 mip | 与各档 DPR 上限不匹配；远缩放时无 mip 会闪烁 | **已解决**：本文 §2.6 与 tech/06 §5.2、§5.5 已统一 64（无法线）/ 96 / 128 三包、2 级 mip、4 px 帧间距与 UASTC normal mode |
 > | F9 | AR-12 将战斗拓扑由方格改为六角格，优先级高于 C20 的旧四向前提 | 原方格 DDA、菱形覆盖与 `battle4` 均不能直接沿用 | §1–§2 改为 pointy-top 轴坐标、六向逻辑朝向与六角覆盖；规则枚举仍归 `design/09` |
 > | F10 | tech/03 F7/F8 已给出安卓安全 GLSL 与新 GPU 家族规则 | 本文旧材质规则和 GPU 正则漏掉 PowerVR DXT、Maleoon、Mali-G1、Adreno 8xx | §8.5 与 §10.2 同步终值 |
 
@@ -95,10 +95,10 @@
 | 上场 ≤ 6 + 敌方（通常 ≤ 12） | Canon §8 | 战斗中精灵实例 ≤ 约 20；探索时城镇 NPC 可达 50–100 |
 | 轻功门禁：高差 1/2/3/5 级、跨 1–5 格 | Canon §11 | 1 级高度的屏幕高度要足够大（§1.2：1 m = 1.22 个菱形高） |
 | 第三方渲染库 Three.js，WebGL2 基线 | Canon §19、tech/01 §2 | `three@0.186.1` 锁精确版本；`WebGLRenderer` 默认 |
-| 大地图是世界层/UI 资产，不是战斗地形 | AR-11；主定义见 `design/11`、`design/19` | 本文不把江湖大地图 SVG 切成地形 chunk；只渲染“进入区域后”的可行走场景 |
-| 区域基础包 + 时代状态包；单区规模待复核 | AR-04；分包主定义见 `tech/06` | 基础几何按全局 `rg_*` 复用，时代差异作为对象/材质状态；256×256 仅为性能场景【建议值】，不定义世界区域规模 |
+| 大地图是世界层/UI 资产，不是战斗地形 | AR-11；主定义见 `design/19`，运行时键与分包见 `tech/06` | 消费 4096×3072 的水墨 SVG 源及其“共享 base + 14 个 `chNN` 时代增量”；正式 `AssetKey` 为 `map/jianghu_world/base`、`map/jianghu_world/chNN`。本文不把导航 SVG 切成可行走地形 chunk |
+| 30 个全局 `rg_*`：区域基础包 + 时代状态包 | AR-04；规模归 `design/11` §2，分包归 `tech/06` | 同一 `rg_*` 的基础几何跨时代复用，时代差异作为对象/材质状态；常规大型场景 ≤160×160，256×256 仅为压力上限，不得当常规制作目标 |
 | 四档 GPU 显存 96/160/256/512 MB，移动 draw call 分档 | `tech/03` §2（性能终值） | §8.2、§8.7 直接引用，不再称初值 |
-| `RenderWorld`、表现队列、按需渲染三模式 | C21、tech/01 §4.3、§6.2–6.3 | §11.2 给出待各调用方同步的异步统一接口 |
+| `RenderWorld`、表现队列、按需渲染三模式 | C21、tech/01 §4.3、§6.2–6.3 | **已同步**：本文 §11.2 与 tech/01 使用同一异步统一接口；实现调用方据此接线 |
 | 自定义着色器集中在 `render/materials/`（≤ 8） | tech/01 §2.6 | §8.5 列出 8 个模块与全部变体 |
 | 精灵“3D 中转”：8 方向、颜色 + 视空间法线 pass、128 px/m | Canon §19、tech/07 §5.4、C20、AR-12 | 探索 8 向；战斗逻辑 6 向但关键角色仍采 8 视图，不把逻辑枚举与素材索引混为一谈（§1.5） |
 
@@ -134,13 +134,13 @@ flowchart TB
 | 需求 | 唯一归属 / 主定义 | 本文只消费的接口与表现 | 明确不负责 |
 |---|---|---|---|
 | AR-03 冲穴、经脉、周天 | `design/15`；属性/Buff 接口见 `design/03`、`design/06` | 冲穴界面由 `design/14` 的 DOM UI 绘制；场景只通过 `CueApi.playVfx/screenFx` 播放成功、失败或走火反馈，并把已计算的状态图标作为 `BuffIconView` 显示 | 穴位、通脉、周天/九转、冲穴速率与加成计算 |
-| AR-04 统一大地图与时代图层 | `design/11`、`design/19`；分包见 `tech/06` | `mountRegion()` 只装载选定 `rg_*` 的基础包；时代投影以对象显隐、外观变体、材质/LUT 与 `dynamicFlags` 进入区域，不复制基础地形 | 城市史、时代开放条件、入口规则和世界规模 |
+| AR-04 统一大地图与时代图层 | `design/11`、`design/19`；分包见 `tech/06` | 全国导航层消费 `map/jianghu_world/base` + 当前 `map/jianghu_world/chNN`；`mountRegion()` 只装载 30 个全局 `rg_*` 中选定区域的基础包，时代投影以对象显隐、外观变体、材质/LUT 与 `dynamicFlags` 进入区域，不复制基础地形 | 城市史、时代开放条件、入口规则和世界规模 |
 | AR-05 资源点与家丁 | `design/16`；地图落点见 `design/11` | `RegionView` 接收已经筛选的资源点物件/占领外观，叠加层接收名称、阵营与可交互标记；生产结算后只播放事件反馈 | 资源四阶九品、占领、产出、家丁能力与跨书界规则 |
 | AR-06 城市营生 | `design/16`；任务与 NPC 接口见 `design/12` | 建筑入口、雇主 NPC、营业/关闭外观由区域投影提供；受聘与结算仅触发已有 UI/Cue | 赌场、镖局、山庄的职位资格、客卿唯一性、报酬与日程冲突 |
 | AR-07 门派层级与月钱 | `design/12`；资源配给见 `design/16` | `WorldSnapshotView` 可带已计算的称谓/服饰变体/场景权限，晋升与发放月钱只播放表现事件 | 五级抽象职级、门派称谓映射、晋升和月钱规则 |
 | AR-08 门派资料与时代开放 | `design/17`；驻地与时代状态见 `design/11` | 渲染消费已解析的 `sect_*` 驻地、时代可见性和资产引用；缺失资产按 §2.6 的降级路径处理 | 门派史实/原著考据、开放矩阵、武学与组织关系 |
 | AR-09 NPC 与同伴 | `design/18`；战斗内队友规则见 `design/09` | 稳定 NPC ID 映射到 `UnitRenderView`、精灵页组与名牌；重逢、招募或能力变化只以快照和事件结果呈现 | 生卒年、招募难度、书眠重逢、跨书能力继承与队伍合法性 |
-| AR-11 江湖大地图绘制 | `design/11`、`design/19` 与 `design/map/` | 大地图 SVG 在 DOM/UI 导航层显示；选定目的地并进入区域后才调用 `mountRegion()`。图外专线只显示行程转场，不构建沿途 3D 场景 | 地理投影、城市坐标/历史名称、路线和图外节点清单 |
+| AR-11 江湖大地图绘制 | `design/11`、`design/19` 与 `design/map/` | 大地图以 4096×3072 SVG 源生成共享 base 与 14 个时代增量，在 DOM/UI 导航层显示；默认 512×512 切片及正式键见 `tech/06`。选定目的地并进入区域后才调用 `mountRegion()`；图外专线只显示行程转场，不构建沿途 3D 场景 | 地理投影、城市坐标/历史名称、路线和图外节点清单 |
 | AR-12 六角战斗 | `design/09`；地形成本见 `design/08`，Buff 见 `design/06`，道具见 `design/10` | 消费 `(q,r,h)`、合法格/路径/点·环·面·扇形格集合、`HexDir`、事件与 Cue；本文只定义六角几何、高亮、拾取及 `HexDir → Dir8` 映射 | 移动力、集气顺序、范围枚举、Buff、运劲、道具消耗与命中结算 |
 
 其中 AR-12 的点/环/面/60°或120°扇形均由 `design/09` 输出**格集合**；本文 §2.7 只把集合变成面填充、边界环和方向提示。这样玩法模板改变时不必修改 shader，渲染也不会把六向规则误写成八向素材规则。
@@ -159,7 +159,7 @@ flowchart TB
 | 格面积 | `3√3R²/2 = 2√3/3 ≈ 1.1547 m²` | “1 格”仍是离散行动单位，不把不等于 1 m² 误写成规则距离 |
 | 高度 | 顶面 `top = h × heightStepM`，`h ∈ 0..10` | **`heightStepM = 1.0` m**（理由见下表） |
 | 角色尺度 | 身高 1.6–1.8 m，脚底锚点在格中心 | tech/07 §1.3 |
-| 区域尺寸 | 256×256 轴坐标槽仅作性能压力场景【建议值】；终值归 `tech/04`，世界规模归 `design/11` | 超过视野时按 chunk 流式构建（§2.2）；AR-04 时代状态不复制基础网格 |
+| 区域尺寸 | 微型 / 标准 / 大型场景分别 ≤64×64 / 96×96 / 160×160 轴坐标槽；256×256 仅为压力上限（`design/11` §1.3） | 32×32 chunk 分别至多 2×2 / 3×3 / 5×5 / 8×8；AR-04 时代状态不复制基础网格 |
 | 着色器精度 | 世界坐标相关计算一律 `highp` | fp16 在 256 处的间距为 0.25 m，不足以做格线与贴图坐标 |
 
 以上选择把旧 1 m 方格标尺保留为**轴坐标行距与高度级**：不会迫使建筑套件、高度门禁和相机缩放整体换单位；六邻中心距则是 1.1547 m。`tech/04` 应存 `(q,r,h)`，而非继续把 `(i,j)` 当正交方格。
@@ -321,7 +321,7 @@ export function placeIsoCamera(cam: OrthographicCamera, target: Vector3, yawDeg:
 3. 旋转动画期间：公告板每帧重新朝向相机；精灵方向索引每帧重算（每转 90° 至多经历 2 次 `Dir8` 切换）；阴影贴图不重绘、阴影强度先淡出后淡入（§4.5）；拾取暂停。
 4. 太阳方位**相对镜头**（§4.2），因此 4 个预设下明暗构图一致；精灵颜色 pass 里烘焙的 15% 形体明暗（tech/07 §5.4.5）也因此始终与运行时光向一致。
 5. 输入：键盘 WASD / 虚拟摇杆方向是**屏幕相对**的，由 ActionMap 按当前偏航换算成世界方向（tech/01 §6.5）。
-6. 对资产的约束（需 tech/07 同步，修订其"若允许旋转则一律 3D"的规则）：
+6. 对资产的约束已同步至 tech/07 §5.5，`allowRotation=true` 不再解释为“所有物件一律 3D”：
 
 | 物件类型 | 可否用公告板 | 理由 |
 |---|---|---|
@@ -454,7 +454,7 @@ export interface TileHit { hex: HexCoord; face: 'top' | 'side' | 'ramp'; t: numb
 
 ### 2.1 地形网格：按 pointy-top 六角生成
 
-区域地图数据来自地图工具转换后的 `RegionMapJson`（字段终值归 `tech/04`）：`heights/terrain` 按轴坐标槽存储，`decos/objects` 以世界坐标或 `HexCoord` 锚定。渲染层据此在 Worker 中生成 3D 网格；江湖大地图 SVG 属世界层/UI（AR-11），不进入这条构网路径。
+区域地图数据来自地图工具转换后的 `RegionMap`（字段终值归 `tech/04` §6）：高度/地形按轴坐标槽存储，物件以世界坐标或 `HexCoord` 锚定；`rampDir`、`Building`、`Light`、`CameraHint`、水面语义、背板键与可选 `precomputedAo` 均由转换产物显式给出。渲染层据此在 Worker 中生成 3D 网格。江湖大地图 SVG 属世界层/UI（AR-11），其 4096×3072 共享底图与 14 个时代增量由 `tech/06` 构建为 `map/jianghu_world/base`、`map/jianghu_world/chNN`，不进入这条构网路径。
 
 | 面 | 生成规则 | 着色要点 |
 |---|---|---|
@@ -486,6 +486,8 @@ export interface ChunkMeshData {
 ### 2.2 分块（chunk）与流式构建
 
 **决策：32×32 轴坐标槽一个 chunk，即固定 1,024 个六角。** `ci/cj` 分别切 `(q,r)`；轴坐标矩形投到世界 XZ 后是平行四边形，这是正常的数据分块，不强求视觉边界为矩形。
+
+`design/11` §1.3 已把 30 个全局 `rg_*` 与单场景规模分开：标准场景 ≤96×96（3×3 chunk），常规大型场景 ≤160×160（5×5 = 25 chunk），256×256（8×8 = 64 chunk）只作稀疏荒野或性能压力上限。压力场景相对常规大型场景的槽数与 chunk 数均为 `65,536 ÷ 25,600 = 64 ÷ 25 = 2.56` 倍，不能据其峰值反推每个区域的日常驻留量；同一 `rg_*` 可含 3–8 个离散场景，运行时一次只挂载一个主场景及必要室内子场景。
 
 | 候选 | 256×256 轴槽压力场景的 chunk 数 | 手机横屏可见 chunk 数（默认缩放） | 单 chunk 三角面（解析上界） | 评价 |
 |---|---|---|---|---|
@@ -655,7 +657,7 @@ void main() {
 | `normal.resolution = 0.5`、线性色彩空间 | 与 tech/07 一致；法线页与颜色页同布局（UV 共享） |
 | `normal.storage` / `channels` | **采纳 tech/06 的 UASTC normal mode**（RGB = X、A = Y），着色器 `z = sqrt(1 − dot(xy, xy))` 重建（回答 tech/06 待决 #1）；母版仍按 tech/07 的三通道 `n×0.5+0.5` 存，转换在管线中完成 |
 | `billboard.*` | §2.5、§3.2、§3.3 |
-| `tipPx`（每帧，可选） | **新增需求（请 tech/07 输出）**：兵器尖端在帧内的像素坐标（Blender 中投影兵器尖端骨骼），用于运行时生成刀光剑痕条带（§6.3） |
+| `tipPx`（每帧，可选） | **已同步至 tech/07 §5.4.5**：兵器尖端在帧内的像素坐标（Blender 中投影兵器尖端骨骼），用于运行时生成刀光剑痕条带（§6.3） |
 | `hitPx`（每帧，可选） | 命中火花/墨溅的发生点；缺省取 `tipPx` 或包围盒中心 |
 | `depthBiasM`（每片段，可选） | 攻击片段兵器前伸时加大深度偏移（§3.2） |
 | `headPx`（每角色） | 头顶锚点：血条、Buff 图标、名牌、表情气泡的挂点 |
@@ -1555,7 +1557,7 @@ export async function createBackend(pref: 'auto' | 'webgl2' | 'webgpu'): Promise
 
 ### 10.1 四档开关表
 
-`QualityTier = 'low' | 'mid' | 'high' | 'ultra'`（扩展 tech/01 §6.1 的三档）。默认：移动端从"中"起判定，桌面从"高"起判定。
+`QualityTier = 'low' | 'mid' | 'high' | 'ultra'`，已与 tech/01 §3.3 / §6.1 的四档契约统一；素材仍只有 low/mid/high 三档，ultra 复用 high。默认：移动端从"中"起判定，桌面从"高"起判定。
 
 | 类别 | 开关 | 低 | 中 | 高 | 极致 |
 |---|---|---|---|---|---|
@@ -1593,7 +1595,7 @@ flowchart TD
   P["静态探测（启动时，少于 50 ms）"] --> G["初判档位：GPU 规则表 + DPR + 屏幕 + 内存 + UA"]
   G --> C{"本设备有缓存结果？<br/>（指纹一致且 不超过 30 天）"}
   C -- 是 --> USE["使用缓存档位"]
-  C -- 否 --> T["标题画面'活画'基准：负载倍增法（约 4 s）"]
+  C -- 否 --> T["标题画面'活画'基准：负载倍增法（约 3–8 s）"]
   T --> D["定档 + 写缓存（localStorage，try/catch）"]
   USE --> RUN["进入游戏：运行时自适应（§10.3）"]
   D --> RUN
@@ -1636,25 +1638,26 @@ export const GPU_RULES: ReadonlyArray<readonly [RegExp, QualityTier | 'benchmark
 
 （注意 `Mali-G71/G72` 是 2016–2017 年的旧核，而 `Mali-G710/G715/G720` 是 2021 年后的高端核，规则需区分位数。）
 
-**② 标题画面"活画"基准（负载倍增法）**：移动端 rAF 被垂直同步锁在 60/120 Hz，且**没有 GPU 计时查询**（F3），直接测帧时间只能得到"够/不够"。做法：
+**② 标题画面"活画"基准（负载倍增法）**：移动端 rAF 受垂直同步约束，且**没有跨目标平台通用的 GPU 计时查询**（F3），直接测帧时间只能得到“够/不够”。完整状态机与采样污染规则归 `tech/03` §6–§7；本文的渲染侧做法为：
 
 1. 标题画面本身就是用游戏渲染器实时渲染的一幅水墨小景（地形 + 水 + 若干精灵 + 雾 + 候选档位的后处理）——玩家看的是封面，渲染器在做基准。
-2. 依次以负载倍数 m = 1, 2, 3, 4 运行，每档 30 帧：每帧把基准场景额外绘制 (m − 1) 次到离屏 RT。
-3. 记录每档 rAF 间隔的 P90；取 P90 ≤ 17.5 ms 的最大 m 作为"余量分"。
-4. 定档：m ≥ 4 且为桌面 GPU → 极致；m ≥ 3 → 高；m ≥ 2 → 中；m = 1 且 P90 ≤ 17.5 ms → 中（保守）；否则低。
-5. 玩家若在 4 s 内就点击"继续"，先用初判档位，余下的校准交给运行时自适应。
-6. 结果以设备指纹（`UNMASKED_RENDERER` + UA 主版本 + 屏幕 + DPR 的哈希）缓存 30 天；浏览器/系统升级导致指纹变化时重测。
+2. 先以零负载 rAF 探针估算 `sourceRefreshHz`，再按 `tech/03` §6.1 选择不超过场景目标的稳定整数分频 `pacingFps`：120→60、90→45、144→48；源刷新率改变时暂停自动调节 2 s 并重测。
+3. 按 `pacingFps` 预热 15 个实际渲染帧，再依次以负载倍数 m = 1, 2, 3, 4 运行，每档 30 个实际渲染帧：每帧把基准场景额外绘制 (m − 1) 次到复用的离屏 RT。
+4. 记录每档 rAF 间隔 P90、work P90 与 >50 ms 长帧；判定线为 `1000/pacingFps × 1.05`，即 60 / 48 / 45 / 30 节拍分别约 17.5 / 21.9 / 23.3 / 35.0 ms。取不越线且无长帧的最大 m 作为“余量分”。
+5. 定档：m ≥ 4 且为桌面 GPU → 极致；m ≥ 3 → 高；m ≥ 2 → 中；m = 1 且达标 → 中（保守）；否则低；再与能力和内存硬上限取最保守值。
+6. 玩家任意时刻点击“继续”、页面隐藏、旋转或来电都中止基准并记 `aborted`，继续使用静态初判；不得拿半截样本定档。完整基准通常约 3–8 s，不再写死 4 s。
+7. 结果以设备指纹（GPU renderer + 浏览器/OS 主版本 + CSS 尺寸 + DPR + 能力位图的哈希）缓存 30 天；升级、频繁上下文丢失、T3 或玩家手动“重新校准”使缓存失效。
 
 ### 10.3 运行时自适应
 
 | 控制器 | 规则 |
 |---|---|
-| 动态分辨率 | 每 0.5 s 取最近 60 帧间隔的 P90：> 预算 × 1.05 → 渲染比例 −0.05（不低于档位下限）；< 预算 × 0.8 持续 3 s → +0.05。只改 RT/绘制缓冲尺寸，不重编译 |
-| 降档 | 渲染比例已到下限且仍超预算持续 5 s → 降一档（墨染转场下切换）；**同一会话内不自动升档**（避免来回抖动），下次启动再按缓存/基准决定 |
-| 发热 | 记录同类场景（按区域 + 战斗/探索）的 5 分钟滑动平均；相比前 2 分钟升高 > 25% 时，预先把动态分辨率上限下调 0.1 |
+| 动态分辨率 | 每 0.5 s 汇总最近最多 60 个实际渲染帧；经 `tech/03` §7.4 判为像素瓶颈时渲染比例 −0.05（不低于档位下限）。**同一页面会话自动只减不增**，移除旧“连续 3 s 变快则 +0.05”规则；只改 RT/绘制缓冲尺寸，不改 CSS 视口、拾取或相机范围 |
+| 降档 | 渲染比例已到下限且仍超预算持续 5 s → 降一档（墨染转场下切换）；`effectiveTier` 与 `renderScale` 均不因短时变快自动回升，下次启动或玩家显式“重新校准”才可提高 |
+| 温控 | 只消费 `tech/03` §7.6 的推断状态 T0–T3，不读取或声称读取温度：T1 降比例上限并停预取，T2 封顶 30 fps 并减阴影/后处理，T3 强制 low/0.70/30 fps；当前页面会话仅 T0→T1→T2→T3 晋级 |
 | 省电 | 战斗等待输入走 `onDemand`（tech/01）；Chromium 上 `getBattery()` 显示电量 < 20% 且未充电时，提示并可锁 30 fps（iOS 不支持该 API） |
 | 无障碍 | `prefers-reduced-motion` → 关闭震屏与闪屏（§6.4） |
-| 手动 | 设置页可锁定档位与各项开关（锁定后不自动降档，但仍保留动态分辨率，可单独关闭） |
+| 手动 | 设置页可锁定偏好或显式提高档位/比例并立即重跑活画基准；普通自动降档可锁，但 `GpuBudget`、内存回收、上下文恢复与 T3 防崩溃安全线始终可覆盖 |
 
 ---
 
@@ -1714,8 +1717,8 @@ flowchart LR
 - 战斗中一切运动都来自事件 → Cue（瞬时结算、慢慢播放，tech/01 §6.3）；渲染层从不自行推断规则结果（例如不自己算可达格、不自己判定命中）。
 
 ```ts
-// packages/render/src/index.ts（接口定稿；在 tech/01 §4.3 基础上扩展：新增 syncWorld/render/cues/showPath/tileAnchorToScreen/camera/stats；
-// enterBattle、setQuality 改为异步（需加载与重编译），pick 增加模式参数并可返回 null——需 tech/01 同步）
+// packages/render/src/index.ts（接口定稿；已与 tech/01 §3.3 同步：含 syncWorld/render/cues/showPath/tileAnchorToScreen/camera/stats；
+// enterBattle、setQuality 为异步资源边界，pick 含模式参数并可返回 null）
 export type QualityTier = 'low' | 'mid' | 'high' | 'ultra';
 export interface HexCoord { readonly q: number; readonly r: number }
 /** 战斗/区域地形接口的格坐标统一为六角轴坐标；保留别名只为 C21 调用方迁移，不得再解释成方格 i/j。 */
@@ -1850,7 +1853,7 @@ export class AutoTuner {
 | # | Demo | 内容 | 要回答的问题 / 测量项 | 通过标准 |
 |---|---|---|---|---|
 | P0 | `proto-projection` | Vitest（Node）：投影正逆变换往返、`spriteDir` 全表（含 `±22.5°` tie-break）、六角 `pickTile` 对暴力遍历三角形 oracle 的属性测试（fast-check，随机高度图 × 4 偏航）；另有一个手机网页：20×20 轴坐标槽 + 单位，点选并显示命中格 | 数学正确性；触屏点选准确率 | 六角新版至少 20,000 例坐标/面类型 0 差异；手机实点 50 次准确率 ≥ 98%（含吸附）。旧方格原型 18,000 例 0 误差不算通过 |
-| P1 | `proto-terrain` | 256×256 区域：Worker 构网 + 流式、四档配置（splat 采样 1/2/3/3）、AO、崖线、浅/深水（低/中档）、战斗格叠加 | 手机上每 chunk 构网耗时、区域加载时间、地形 GPU 帧时间、顶点内存 | 中端安卓首屏 3×3 chunk ≤ 300 ms；地形 + 水 GPU ≤ 5 ms（中档） |
+| P1 | `proto-terrain` | 160×160 常规大型场景与 256×256 压力场景各跑一轮：Worker 构网 + 流式、四档配置（splat 采样 1/2/3/3）、AO、崖线、浅/深水（低/中档）、战斗格叠加 | 手机上每 chunk 构网耗时、首屏与全场景峰值、地形 GPU 帧时间、顶点内存；不得把压力结果当常规制作目标 | 中端安卓首屏 3×3 chunk ≤ 300 ms；大型场景其余 chunk 每帧上传 ≤2；地形 + 水 GPU ≤ 5 ms（中档）；压力场景只验证不崩溃与可回收（待实测） |
 | P2 | `bench-iso`（= tech/01 闸门场景） | 64×64 高度地形 + **200 个**动画法线精灵（两段式）+ 2 动态光 + 照明网格 + 阴影贴图（中档）+ uber pass（描边/纸纹/LUT）+ 战斗格叠加 + 30 个飘字；另跑 300 精灵的压力版 | ① 渲染器闸门 R1/R2/R3（tech/01 §2.6 + 本文 §9.3）；② 各档位帧时间；③ 10 分钟发热曲线；④ 自动检测的"负载倍增"分数与实际档位是否吻合 | **中端安卓 · 中档：探索 P95 ≤ 16.7 ms，战斗 P99 ≤ 33 ms，10 分钟后 ≥ 45 fps**；低端安卓 · 低档 P95 ≤ 33 ms；作者实际 iPad 按自动校准档位执行对应帧时间上限（高档时 P95 ≤ 16.7 ms），型号与档位随 P01 实测登记 |
 | P3 | `proto-occlusion` | 12 个固定遮挡场景 × 4 偏航的金样截图：屋后、3 级崖后、浅水中、楼梯上、持枪向观者方向攻击、紧贴栅栏、树冠下、进入院落、多单位重叠、夜间灯下、跳跃中、Boss 大体型 | 深度偏移 δ 取值；X 光误报/漏报；透视圈与屋顶淡出手感；是否需要"深度精灵" | 无"脚被吃掉/头被墙切"类穿帮；剪影误报率 < 5%；否则启用 §3.2 的深度精灵并复测 |
 | P4 | `proto-vfx` | 6 名单位同时放 F3 特效 + 1 个 F4 绝招（含 DOM 立绘切入）+ 48 个飘字 + 雨 | 特效期帧时间尖峰、粒子数、draw call、预算裁剪是否生效 | 中档：特效峰值帧 ≤ 33 ms，无 > 50 ms 长帧 |
@@ -1967,7 +1970,7 @@ P01 已把**必测设备**定为“作者主力手机 + 一台中端 Android + �
 22. KTX-Software `ktx create`（`--layers`、basis-lz/uastc 编码）：https://github.khronos.org/KTX-Software/ktxtools/ktx_create.html （经搜索摘要）
 23. Three.js 性能经验（移动端约 100 draw call 量级，二手）：https://www.utsubo.com/blog/threejs-best-practices-100-tips （经搜索摘要）
 
-**上游/平行文档**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/decisions/rulings-v1.md`、`docs/00-canon.md`、`docs/tech/01-architecture.md`、`docs/tech/03-mobile-performance.md`、`docs/tech/07-asset-generation.md`、`docs/tech/06-asset-storage.md`、`docs/design/09-combat-system.md`、`docs/design/05-martial-arts-system.md`、`docs/design/06-buff-system.md`、`docs/design/03-attributes.md`。其中 `tech/07` 与 `design/09` 的旧 `battle4`/四邻正文须按 AR-12 和本文接口后续同步，不能反向覆盖本文。
+**上游/平行文档**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/decisions/rulings-v1.md`、`docs/00-canon.md`、`docs/tech/01-architecture.md`、`docs/tech/03-mobile-performance.md`、`docs/tech/07-asset-generation.md`、`docs/tech/06-asset-storage.md`、`docs/design/09-combat-system.md`、`docs/design/11-open-world.md`、`docs/design/19-world-map.md`、`docs/design/05-martial-arts-system.md`、`docs/design/06-buff-system.md`、`docs/design/03-attributes.md`。`tech/01/03/06/07` 与 `design/09/11/19` 已在 v1.2 同步四档接口、稳定帧节拍、`battle8`、六邻规则、场景规模和大地图生产契约；其中规则、世界与资源事实仍分别以各归属文档为准。
 
 ---
 
@@ -2007,6 +2010,9 @@ P01 已把**必测设备**定为“作者主力手机 + 一台中端 Android + �
 | 运行时词条图集 | 开战/进区域时用 Canvas2D 烘焙的短中文词条纹理 |
 | 区域人群图集 | 同区域 C 级路人合并装箱的精灵图集 |
 | `tierPacks` | 按档位下载的 64/96/128 px/m 精灵图集包 |
+| 大地图生产键 | `map/jianghu_world/base` 为 4096×3072 共享底图，`map/jianghu_world/chNN` 为 14 个时代增量；归 `tech/06`，本文只消费 |
+| `sourceRefreshHz` / `pacingFps` | rAF 源刷新率 / 不超过目标的稳定整数分频节拍；分位门槛按后者计算，归 `tech/03` |
+| T0–T3 | `tech/03` 定义的持续性能推断状态；同一页面会话只晋级，不代表读取真实温度 |
 | 深度精灵 | 附带逐像素深度页、写 `gl_FragDepth` 的精灵（备选 D） |
 | 活画基准 / 负载倍增法 | 标题画面实时渲染兼做基准；通过多倍绘制测余量的档位判定法 |
 | `QualityTier` 四档 | `'low' \| 'mid' \| 'high' \| 'ultra'` |
@@ -2031,19 +2037,19 @@ P01 已把**必测设备**定为“作者主力手机 + 一台中端 Android + �
 
 | # | 事项 | 依赖 / 负责 | 截止 |
 |---|---|---|---|
-| Q1 | **已解决（C21）**：本文已定 `QualityTier` 四档与 `ultra → high` 素材映射；仍须同步 tech/01 §6.1/术语及调用方，tech/06 三档素材变体保持不变 | tech/01、tech/06 | Phase 0 |
-| Q2 | render chunk 包体预算：WebGPU 路线实测 +141 KB（297 vs 156 KB gzip），请更新 §5.4 与闸门条件 | tech/01、tech/03 | Phase 0 |
-| Q3 | **已解决（C21）**：本文 §11.2 已定 Worker/`RenderWorld` 目标接口；tech/01 与调用方仍须迁移并等待五个 Promise 入口 | tech/01 | Phase 0 |
-| Q4 | **已解决（C20 + AR-12）**：本文已定相机/公告板与 `sprite-spec.json`；tech/07 须将旧 `battle4` 改为 `battle8` + `residentViewCount:6`，补齐其余新增字段 | tech/07 | Phase 0 |
-| Q5 | 区域人群图集分组装箱；建筑 AO 烘焙；建筑不再需要反向外壳；按 §6.3 九类配方整理 `vfx_*` 贴图清单 | tech/07 | Phase 1 |
-| Q6 | 精灵变体改为 64 px/m（无法线页）/ 96 / 128 三个包，精灵 2 级 mip + 4 px 帧间距（替代其 `sprite-color.mips: false` 与 low = 96 的方案）；确认采纳 UASTC normal mode（其待决 #1）；KTX2 纹理数组（地形 16 + 崖面 8 层，ETC1S）；LOD1 网格；LUT/纸纹/噪声 | tech/06 | Phase 1 |
-| Q7 | `RegionMapJson` 字段：坡向 `rampDir`、`Light`、`Building`（`interiorRect`、屋顶组、`cutawayWalls`）、`CameraHint`、背板 ID、水面语义、可选预计算 AO | tech/04 | Phase 1 |
+| Q1 | **已解决（C21）**：`QualityTier` 四档、`ultra → high` 素材映射和三档素材变体已同步至 tech/01 §3.3、tech/06 §4.4 | tech/01、tech/06 | 已同步 |
+| Q2 | **已解决**：WebGPU 路线 `297−156=141 KB gzip` 的差额与完整 render ≤300 KB 独立闸门已同步至 tech/01 §2.6/§5.4；tech/03 §2.7 保持当前 WebGL render ≤180 KB | tech/01、tech/03 | 已同步 |
+| Q3 | **已解决（C21）**：本文 §11.2 的 `RenderWorld`、Worker 与异步入口已同步至 tech/01 §3.3 | tech/01 | 已同步 |
+| Q4 | **已解决（C20 + AR-12）**：tech/07 §5.4 已改为 `battle8`、`residentViewCount:6`、旋转前补 2 个视图并采用本文相机/公告板契约 | tech/07 | 已同步 |
+| Q5 | **已解决**：区域 C 级路人合装、建筑 AO/模型描边边界与 §6.3 九类 `vfx_*` 配方已由 tech/07 §3.2、§5.5、§5.9 接收；运行时容器配方见 tech/06 §4–§5 | tech/07、tech/06 | 已同步 |
+| Q6 | **已解决**：64（无法线）/96/128 px/m、2 级 mip、4 px 帧间距、UASTC normal mode、地表 ≤16/崖面 ≤8 层 ETC1S 数组、LOD1、LUT/纸纹/墨噪声均已同步至 tech/06 §5 | tech/06 | 已同步 |
+| Q7 | **已解决**：`RegionMap` 的 `rampDir`、`Light`、`Building`（`interiorRect`、屋顶组、`cutawayWalls`）、`CameraHint`、背板键、水面语义与可选 `precomputedAo` 已同步至 tech/04 §6 | tech/04 | 已同步 |
 | Q8 | 地形 → 崖面材质映射；坡/阶地形 ID；浅水/深水/薄冰/厚冰的视觉语义；涉水下沉量 | design/08 | Phase 1 |
-| Q9 | **已解决（AR-12 覆盖旧四向前提）**：战斗规则改六邻 `HexDir`；design/09 仍须定背击/侧击、动作帧事件 `hit`、60°/120°模板与战斗取景（含备用锚点） | design/09 | Phase 1 |
+| Q9 | **已解决（AR-12 覆盖旧四向前提）**：`design/09` 已定六邻 `HexDir`、背击/侧击、60°/120°模板与战斗取景/备用锚点；动作命中帧由 `anim-events.schema.json` 和资产 `hitPx` 提供，本文只消费 | design/09、tech/07 | 已同步 |
 | Q10 | 时间流速与十二时辰关键帧对齐；天气类型、概率与玩法影响 | design/11 | Phase 2 |
 | Q11 | 世界锚定 UI（血条、头顶 Buff 图标、名牌）由 WebGL 叠加层绘制；色板终值；旋转下小地图朝向；"减少晃动/闪烁"设置 | design/14 | Phase 1 |
 | Q12 | **已解决（tech/03 F2）**：四档帧时间、draw call、显存终值已同步至 §8.2、§8.7、§10.1；实际机型上的发热与稳定帧仍须 P2 按 P01 必测矩阵校准（待实测） | tech/03；本文 P2 | Phase 0 |
-| Q13 | 表现所需的事件字段（命中时刻、击退路径、跃迁轨迹、所用轻功阶）；渲染投影选择器 | tech/05 | Phase 1 |
+| Q13 | **已解决**：tech/05 §3.5/§7/§14 已明确 DomainEvent 是表现输入、离散路径/位移与行动事实；`apps/game` 按本文 §11.2 选择成 `RenderView`，命中时刻来自资产帧事件而非规则状态 | tech/05、本文 | 已同步 |
 | Q14 | **已部分解决（P01）**：测试矩阵为主力手机 + 一台中端 Android + iPad；具体型号在实测时登记。书法字体按 P04 只用逐项核实许可的 OFL 字体，字体终选仍待定 | 作者（tech/01 P1、P04） | Phase 0 |
 | Q15 | **待核实**：微信 XWeb / iOS 微信 WKWebView 的 WebGPU 可用性。**待实测**：Safari 着色器是否跨会话命中缓存、移动 WebGL2 MSAA 解析成本、§8.2 各 pass GPU 毫秒、WebGPU 调试扩展在移动远程调试和 TSL 场景的适配；工具“是否存在”已核实（§9.2、参考资料 20–21） | 本文 P2/P5；指定三台设备 | Phase 0 |
 | Q16 | 深度精灵是否启用；δ 最终取值 | 本文 P3 → ADR-0002 | Phase 0 |

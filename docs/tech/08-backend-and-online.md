@@ -3,11 +3,11 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/08-backend-and-online.md` |
-| 版本 | v1.0（2026-09-26）；审校 B6b.R（2026-09-26）。库版本、平台限额、云服务与模型价格均于 2026-09-26 联网核实，来源见文末"参考资料"；无法核实处标"（待核实）"，需真机/真账号验证处标"（待实测）" |
+| 版本 | v1.2（跨文档同步，2026-09-26） |
 | 作者决定覆盖 | `docs/decisions/author-decisions.md` P03：暂不备案，不做国内 / 香港镜像；当前只规划 Cloudflare 方案 |
 | 上游基准 | `docs/00-canon.md` §0（"Online" = 随时随地在浏览器中继续同一份存档；非商业、**不公开分发**）、§8（确定性战斗）、§18（文档归属）、§19（存档：IndexedDB 本地优先 + 云端同步；后端：轻量 Serverless，国内/海外两套部署方案） |
-| 强依赖 | `tech/01`（monorepo、`services/api`、`packages/platform`、存档时机 §6.9、确定性 §8.3、CI §7.6）；`tech/06`（同一 Worker 托管应用 + API + 素材闸门、会话 Cookie `ts_s` 由本文签发；其国内 / 香港镜像旧规划须按作者 P03 收口）；`design/13` §9（存档槽、回档规则、`MetaProfile` 合并规则）；`design/02` §4.5（书眠永久存档）；`tech/05`（战斗开局快照与状态哈希，撰写中）；`tech/04`（书界包 `contentHash` 与 ID 重映射，撰写中） |
-| 下游 | `tech/09` 路线图；`design/14`（同步状态、冲突、登录界面的视觉细节）；`design/12`（NPC 好感刻度、AI 人设卡字段） |
+| 强依赖 | `tech/01`（monorepo、`services/api`、`packages/platform`、存档时机 §6.9、确定性 §8.3、CI §7.6）；`tech/06`（同一 Worker 托管应用 + API + 素材闸门、会话 Cookie `ts_s` 由本文签发；其国内 / 香港镜像旧规划须按作者 P03 收口）；`design/13` §9（存档槽、回档规则、`MetaProfile` 合并规则）；`design/02` §4.5（书眠永久存档）；`tech/05` §14.3（`BattleReplayV1`、战斗开局快照与状态哈希）；`tech/04`（书界包 `contentHash` 与 ID 重映射） |
+| 下游 | `tech/09` 路线图；`design/14`（同步状态、冲突、登录界面的视觉细节）；`design/18`（NPC 身份、人设、性格与好感）；`design/12` §5.7（任务节点效果封顶与回退台词） |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手 |
 | 本文职责 | 在线服务的需求边界；本地优先架构；REST API；存档容器、校验与迁移；同步与冲突；认证、会话与私有托管（含 tech/06 素材闸门的会话格式与免检路径）；部署选型与成本；可选的 AI NPC 代理与离线 AI 内容生产；可选的战斗遥测；远程配置；运维；服务端目录与关键代码 |
 
@@ -23,7 +23,7 @@
 > 8. **AI NPC 自由对话（可选，默认关闭）**：独立的 AI Worker（placement 靠近上游 API）；原评测基线为 `claude-opus-5` + `effort: "low"` + 流式输出，但该模型截至 2026-09-26 已被官方列为 **Legacy**，因此生产配置不设默认模型，启用前必须重新选型并重跑金标评测；人设卡 + 按幕截止的原著知识 + 分层提示缓存；AI 只能**提出**好感/旗标变化，由 core 规则校验、封顶后生效；会话分段而不删改历史；失败时回退到预写台词。**Anthropic 支持地区不含中国大陆、香港、澳门**：作者常驻上述地区时不得启用这条路线（不借代理规避地区限制），改为关闭，或另选当地可合规使用的模型服务。
 > 9. **启用 AI 时默认请求服务端回退**：通过 §9.0 全部门槛后，请求带 `fallbacks: "default"`（beta `server-side-fallback-2026-07-01`），安全分类器拒答时由服务端改用推荐模型重跑；beta 撤回或语义变化则关闭。AI 功能本身仍默认关闭。
 > 10. **离线 AI 辅助内容生产**：Batches API（五折）+ Zod 结构化输出 → 草稿区 → `content:validate` → 人工审核 → 入库。全项目文本起草估算不超过 $150。
-> 11. **遥测（可选）**：战斗日志 = 开局快照 + 命令序列 + 终局哈希（可离线重放，与 tech/05 对接），以 NDJSON.gz 存入 R2，用 DuckDB 分析；只采作者本人数据。
+> 11. **遥测（可选）**：战斗日志 = 战斗域开局快照 + 动态自创武学闭包 + 命令序列 + 中间 / 终局哈希（可离线重放，与 `tech/05` §14.3 对接），不包含完整 `GameState`；以 NDJSON.gz 存入 R2，用 DuckDB 分析，只采作者本人数据。
 > 12. **运维（个人级）**：D1 Time Travel（免费版 7 天）+ 每日导出加密备份 + R2 每周同步到第二家存储；UptimeRobot / Healthchecks.io 免费告警；玩家随时可导出完整存档（JSON / TSAV / ZIP）。
 
 > **调研要点（均非致命，但改变了若干细节决策；来源见文末）**
@@ -31,7 +31,7 @@
 > 1. **Workers 免费版每次调用只有 10 ms CPU**（付费版默认 30 s、最多 5 min）→ 服务端不解压存档、不做重计算，压缩与哈希都在客户端 `io.worker` 完成；AI 流式代理放到付费版。
 > 2. **D1 单行 / BLOB 上限 2,000,000 bytes**，免费版单库 500 MB、每日 500 万行读 / 10 万行写 → 存档 blob 放 R2，D1 只存头部与索引。
 > 3. **D1 Time Travel 常开、不额外收费**（免费版 7 天、付费版 30 天；精确到任一分钟），但还原是破坏性的原地覆盖 → 仍需每日逻辑导出。
-> 4. **`@cloudflare/vitest-pool-workers@0.22.0` 的 peer 依赖是 `vitest ^4.1`**，与 tech/01 统一的 Vitest ^5.0.2 冲突 → `services/*` 单独锁 Vitest 4.x，或改用 wrangler 的 `getPlatformProxy()` 在 Node 中测（待决 #3）。
+> 4. **`@cloudflare/vitest-pool-workers@0.22.0` 的 peer 依赖是 `vitest ^4.1`**，与根工作区 Vitest ^5.0.2 冲突 → **已解决**：`services/*` 单独锁 Vitest 4.x；若隔离维护成本过高，再改用 wrangler 的 `getPlatformProxy()` 在 Node 中测（见待决 #3）。
 > 5. **Background Sync 只有 Chromium 支持**（Safari、Firefox、Android WebView 均不支持），**`fetch` 的 `keepalive` 请求体上限 64 KiB**（WHATWG Fetch 规范）→ 离线队列必须在应用层实现；关页那一刻上传不了存档，只能先落本地。
 > 6. **iOS 主屏 Web App 与 Safari 不共享 Cookie 与存储** → 邮件魔法链接不可用 → 改用邮箱验证码。
 > 7. **微信等 App 内置浏览器（iOS 上是 WKWebView）通常用不了 Passkey**（待实测）→ 保留配对码作为通用登录方式。
@@ -39,7 +39,7 @@
 > 9. **Cloudflare Email Service**：发往账号内**已验证目的地址**的邮件在任何计划下都免费，且不计入发送配额 → 单用户邮箱验证码零成本；`send_email` 绑定可用 `destination_address` 锁死只发作者本人。
 > 10. **Workers placement** 支持 `region`（如 `aws:us-east-1`）与 `host` 探测 → AI Worker 单独部署、靠近上游，主 Worker 仍在离玩家最近的节点服务素材。
 > 11. **国内 Serverless 的旧价格口径已变化**：腾讯云当前官方页同时给出按量后付费与个人标准套餐（活动价 ¥9.9/月、页面列示价 ¥12.8），不能再写成"强制最低消费"；阿里云 FC 当前仍有首次开通试用额度，但额度与有效期须以开通页为准（待实测）→ 国内部署成本不再用旧免费额度推断，且中国内地节点仍需 ICP 备案。
-> 12. **tech/01 §7.6 写的"Cloudflare Pages / GitHub Pages 部署静态站点"与"不公开分发"冲突**（公开可访问）→ 应用外壳一律走同一 Worker 的 Static Assets + 会话闸门（待决 #1，需同步修订 tech/01）。
+> 12. **tech/01 §7.6 曾写“Cloudflare Pages / GitHub Pages 部署静态站点”，与“不公开分发”冲突**（公开可访问）→ **已解决**：应用外壳一律走同一 Worker 的 Static Assets + 会话闸门，tech/01 §7.6 已同步（见待决 #1）。
 >
 > 结论：本地优先、云同步与轻量 Serverless 基线无需推翻；只有“国内 / 海外两套部署方案”已被更高优先级的作者决定 P03 覆盖，正文按“Cloudflare 单方案 + 可移植退出路径”展开，并在文末提出基准修订。
 
@@ -153,7 +153,7 @@
 
 | 接口 | 提供方 → 使用方 | 内容 | 本文章节 |
 |---|---|---|---|
-| `GameState` 形状、`core.serialize()` / `load()`、`meta.saveSchema` / `contentHash` / `debugTainted` | tech/01 §3.6 → 本文 | 存档负载 | §3.1 |
+| `GameState` 形状、`core.serialize()`、候选实例原子换载、`meta.saveSchema` / `contentHash` / `debugTainted` | tech/01 §3.6、tech/05 §14.1 → 本文 | 存档负载 | §3.1 |
 | `migrateSave()` 挂载点 | tech/01 §4.3（`@tianshu/core` 导出）→ 本文定义迁移链约定 | 迁移 | §3.5 |
 | 自动存档触发与"先写新记录再切指针" | tech/01 §6.9 → 本文补充云端优先级 | 存档时机 | §3.8 |
 | 存档槽与回档规则、`MetaProfile` | design/13 §9 → 本文实现云端键、同步与合并 | 槽位 | §4.2、§4.10 |
@@ -163,7 +163,7 @@
 | `GET /api/v1/asset-sign`（可选 L2 签名 URL） | 本文 → tech/06 §9.4 | 素材签名 | §6.2；当前 L1 默认不调用 |
 | 战斗开局快照、命令、状态哈希 | tech/05 → 本文（遥测） | 可重放日志 | §10.2 |
 | 书界包 `contentHash`、ID 重映射表 | tech/04 → 本文（迁移后修复引用） | 内容版本 | §3.6 |
-| NPC 好感刻度、人设卡字段、预写闲谈台词 | design/12 / chapters ↔ 本文 | AI NPC | §9.5 |
+| NPC 身份、人设、性格与好感；任务节点效果封顶 / 回退台词 | design/18；design/12 §5.7 / chapters → 本文 | AI NPC | §9.5–§9.7 |
 
 ### 1.5 设计原则
 
@@ -509,7 +509,7 @@ export function migrateSave(state: AnyState, ctx: MigrationCtx): { state: AnySta
 | 规则 | 说明 | 强制方式 |
 |---|---|---|
 | 只增不减 | `SAVE_SCHEMA` 单调递增；已发布的 `migrations[n]` 不再修改（有 bug 就追加 `n+1` 修正） | 代码评审 + 夹具测试 |
-| 夹具（fixture） | 每个发布过的 schema 至少保留一份真实存档：`packages/core/test/save-fixtures/v{n}/*.tsav` | CI：逐一迁移到最新 → `zod/mini` 结构校验 → `core.load()` → 跑一条冒烟命令 |
+| 夹具（fixture） | 每个发布过的 schema 至少保留一份真实存档：`packages/core/test/save-fixtures/v{n}/*.tsav` | CI：逐一迁移到最新 → `zod/mini` 结构校验 → `createCore(ports, validatedState)` 建候选实例 → 跑只读冒烟查询；通过后才允许 host 原子换载 |
 | 懒迁移 | 读档时在内存里迁移；槽内原件保持原样，直到玩家下一次保存才写入新版本（旧代仍保留 3 代） | 迁移失败时原件毫发无损 |
 | 服务端不迁移 | 服务端只认 `saveSchema` 整数，不碰负载 | 服务端无 core 依赖（tech/01 §3.3） |
 | 降级保护 | 客户端拒绝打开 `saveSchema > SAVE_SCHEMA` 的档（提示更新）；服务端拒绝用更低 schema 覆盖更高 schema 的当前版本（412 `schema_downgrade`，§6.4） | §4.3 |
@@ -522,7 +522,7 @@ export function migrateSave(state: AnyState, ctx: MigrationCtx): { state: AnySta
 ```ts
 // packages/core/src/save/fixup.ts
 export function fixupContentRefs(s: GameState, reg: ContentRegistry): FixupReport {
-  // 1) 按书界包里的 idRemaps（tech/04 定义：{ from: 'it_xxx', to: 'it_yyy', since: '<contentHash>' }）批量改名
+  // 1) 按书界包里的 idRemaps（tech/04 定义：{ from, to, since }）批量改名；since 是重命名前最后可读的旧 contentHash
   // 2) 找不到定义的引用：物品 → 按估值折成银两；武功 → 转为残篇记录（基准 §3-5）；任务 → 标记 obsolete
   // 3) 报告写入 dev 控制台与 audit（本地），UI 提示"内容更新后有 N 处调整"
 }
@@ -741,7 +741,7 @@ export interface OutboxRow {
 
 ### 4.10 `MetaProfile` 的单调合并
 
-`MetaProfile` 的事实结构归 `design/13` §9.4；本文只实现其同步算法。`POST /api/v1/meta/merge` 在服务端使用共享 schema 校验，并返回规范化后的完整 profile 与 ETag。
+`MetaProfile` 的事实结构归 `design/13` §9.4；本文只实现其同步算法。`POST /api/v1/meta/merge` 在服务端使用共享 schema 校验，并返回规范化后的完整 profile、单调 `metaRev` 与 ETag。core 不直接读取该对象：host 只在 `battle=null` 的安全点把带 `sourceRevision=metaRev` 的 `MetaRuleProjection` 注入 `meta/applyRuleProjection`，旧 revision 不得覆盖新投影。
 
 | 字段类 | 合并 |
 |---|---|
@@ -751,7 +751,7 @@ export interface OutboxRow {
 | `settings.titleStatsEnabled` / `pastKeeperEnabled` | 单独 `settingsPatch`，按服务端接受顺序覆盖；不把布尔值做 OR |
 | 轮回点 | 不接收客户端总数；合并事实后按 `design/13` 公式重算 |
 
-服务端拒绝由 `debugTainted` 档触发的新事实；但它不尝试从 opaque 存档自行判断，而要求客户端提交带稳定事件 ID 的增量，并以 `(eventId, unlockId)` 唯一键幂等。对可疑请求只记录审计并拒绝，不封号——这是个人项目的防误写，不是反作弊系统。
+服务端拒绝由 `debugTainted` 档触发的新事实；但它不尝试从 opaque 存档自行判断，而要求客户端提交带稳定事件 ID 的增量，并以 `(eventId, unlockId)` 唯一键幂等。守卷快照采用 `tech/05` §3.4 的 `MetaProfileIntent`：`intentId` 由 `(runId, 'keeper_snapshot', endingReceiptId)` 确定性派生，服务端按 `intentId` 幂等合并；成功响应后 host 才在安全点提交 `meta/ackIntent`。响应丢失可重发同一 intent，不得生成第二个守卷快照。服务端 `acceptedAt` 等墙钟只用于 Meta 审计和 UI 展示，绝不写回 `GameState`、规则投影或战斗 hash。对可疑请求只记录审计并拒绝，不封号——这是个人项目的防误写，不是反作弊系统。
 
 ### 4.11 新设备与 iOS 主屏 Web App 迁移
 
@@ -1813,7 +1813,7 @@ const upstream = await fetch('https://api.anthropic.com/v1/messages', {
 | 层 | 内容 | 来源 | 缓存 |
 |---|---|---|---|
 | S0 | 安全 / 不剧透 / 不直接改状态 / 不输出长引文的固定系统规则 | 版本化模板 | 1 小时显式 breakpoint**【建议值】** |
-| S1 | NPC 人设卡、说话边界、关系与禁忌 | `design/12` / chapter 数据 | 1 小时；人设 hash 变即失效 |
+| S1 | NPC 人设、说话边界、关系与禁忌投影 | `design/18` 人物定义 / chapter 数据 | 1 小时；人设 hash 变即失效 |
 | S2 | 当前书界、**截至当前幕**的作者摘要与已触发事件 | 构建期知识片段 | 5 分钟或 1 小时 |
 | S3 | 本段对话摘要 + 最近原始轮次 | 本地会话 | 自动 5 分钟缓存 |
 | S4 | 本轮玩家文本、可提议效果白名单 | 运行时 | 不缓存 |
@@ -1824,7 +1824,7 @@ Anthropic 官方缓存默认 TTL 5 分钟；1 小时写入为基础输入价 2 �
 
 ### 9.5 人设卡技术契约
 
-人物设定与好感刻度的唯一归属仍是 `design/12`；本文只规定 AI 适配器所需字段：
+人物身份、人设、性格与好感刻度的唯一归属是 `design/18`；任务节点允许的 AI 效果封顶与三类回退要求见 `design/12` §5.7。本文只规定由二者投影出的 AI 适配器字段，不维护第二份人物定义：
 
 ```ts
 export interface NpcAiCard {
@@ -1887,7 +1887,7 @@ export interface NpcAiCard {
 }
 ```
 
-core 接受前再检查：当前 NPC / 节点一致、`proposalId` 未用过、效果类型和 `reasonCode` 在卡片白名单、旗标正是当前节点预先暴露的 ID、好感每轮至多 ±1 且每段累计绝对值 ≤ 3**【建议值，最终刻度归 `design/12`】**、不发物品 / 经验 / 武学 / 任务推进。接受后转成 `ApplyAiProposalCommand` 进入正常命令日志；拒绝只影响这项效果，不撤回已经显示的闲谈文字。
+core 接受前再检查：当前 NPC / 节点一致、`proposalId` 未用过、效果类型和 `reasonCode` 在卡片白名单、旗标正是当前节点预先暴露的 ID、好感每轮至多 ±1 且每段累计绝对值 ≤ 3（见 `design/12` §5.7；好感总刻度见 `design/18` §3.4）、不发物品 / 经验 / 武学 / 任务推进。接受后转成 `ApplyAiProposalCommand` 进入正常命令日志；拒绝只影响这项效果，不撤回已经显示的闲谈文字。
 
 ### 9.8 输出守卫与失败回退
 
@@ -1970,7 +1970,7 @@ content/drafts/ai/<jobId>/*.json
 | 层 | 默认采样 | 内容 | 用途 |
 |---|---:|---|---|
 | 战斗摘要 | 100% | 遭遇、难度、阵容的内容 ID；回合 / 行动数；胜负；耗时桶；伤害、治疗、倒地、资源收支等聚合值 | 看胜率、战斗长度、武学 / 阵容分布 |
-| 可重放明细 | 10%（`100‰`）**【建议值】** | 开局快照、主种子与 RNG 状态、已接受的命令序列、终局状态哈希；另附同一摘要 | 复现异常、验证确定性、逐步分析数值 |
+| 可重放明细 | 10%（`100‰`）**【建议值】** | `BattleReplayV1` 的战斗域开局快照、`battle` / `ai` RNG、静态引用与动态自创武学闭包、已接受命令、中间 / 终局 hash；另附同一摘要 | 复现异常、验证确定性、逐步分析数值 |
 
 采样只看 `SHA-256(battleId + telemetrySalt)` 的前 32 bit：无符号值 `% 1000 < replaySamplePermille` 即入样。它不看胜负、角色、耗时或异常，因此不会系统性偏向“精彩战斗”。开发构建可显式点“保存本场完整录像”；正式构建不得因战败或崩溃暗中提高采样率。远程配置只能把采样率降到 0 或在本地已同意的前提下调到至多 1000，不能远程替玩家打开总开关。
 
@@ -1978,13 +1978,13 @@ content/drafts/ai/<jobId>/*.json
 
 ### 10.2 NDJSON.gz 录像契约
 
-归属边界：战斗命令联合、开局 `BattleState`、RNG 与规范状态哈希由 `tech/05` 定义；本文只规定其**运输信封、采样和保留**。在 `tech/05` 尚未定稿前，字段名按下列接口占位，实施时以其导出的 `BattleReplayV1` 为准，不在本文另造第二份战斗规则。
+归属边界：战斗命令联合、开局 `BattleStartSnapshot`、`BattleSession`、RNG 与规范状态 hash 均由 `tech/05` §14.3 定义；本文只规定其**运输信封、采样和保留**，逐字段消费其导出的 `BattleReplayV1`，不另造第二份战斗规则。录像只覆盖战斗域，严禁上传完整 `GameState`、世界任务树、对话态、完整背包或其他战外状态。
 
 完整日志是一行一个 JSON 对象，UTF-8，按顺序经 gzip 压成一个不可变对象：
 
 ```json
-{"t":"header","schema":1,"battleId":"btl_01K…","appBuild":"20260926-a1b2c3d","contentHash":"sha256:…","coreVersion":"0.1.0","encounterId":"enc_08_shenlongdao","difficultyId":"diff_xiake","startedAt":"2026-09-26T19:00:00Z","sample":"replay"}
-{"t":"opening","snapshot":{"…":"tech/05 BattleState"},"rng":{"…":"tech/05 RNG state"},"openingHash":"sha256:…"}
+{"t":"header","schema":1,"battleId":"btl_01K…","appBuild":"20260926-a1b2c3d","coreVersion":"0.1.0","rulesProtocol":1,"rngProtocol":1,"contentHash":"sha256:…","encounterId":"enc_08_shenlongdao","difficultyId":"diff_xiake","startedAt":"2026-09-26T19:00:00Z","sample":"replay"}
+{"t":"opening","session":{"battle":{},"battleRng":[],"aiRng":[],"acceptedOrdinal":0,"decisionOrdinal":0},"registryRefs":[],"runtimeMartialArts":[],"openingHash":"sha256:…"}
 {"t":"command","seq":0,"command":{"t":"battle/deploy","placements":[]},"accepted":true,"afterHash":"sha256:…"}
 {"t":"command","seq":1,"command":{"t":"battle/act","actor":"…","action":{"t":"wait"}},"accepted":true,"afterHash":"sha256:…"}
 {"t":"finish","result":"win","commandCount":2,"terminalHash":"sha256:…","summary":{"rounds":1,"actions":2,"damageBySkill":{},"healingBySkill":{},"downs":0},"endedAt":"2026-09-26T19:01:10Z"}
@@ -1994,9 +1994,11 @@ content/drafts/ai/<jobId>/*.json
 
 1. 第一行必须是 `header`、最后一行必须是 `finish`；`seq` 从 0 连续递增。摘要模式只含 `header(sample=summary)` 与 `finish`，不伪装成可重放日志。
 2. 只记录 core **已经接受**的命令；输入层拒绝的点击不影响状态，不进主序列，可在本地开发日志另记。AI 选择最终也必须落成普通确定性命令，录像不记录模型思考或 prompt。
-3. `openingHash`、每步 `afterHash`、`terminalHash` 均调用 `tech/05` 的规范序列化 + SHA-256；墙钟字段在哈希域外。逐步哈希便于二分首个分歧，生产采样可只留每 10 条命令一个 `afterHash` **【建议值】**，终局哈希不可省。
-4. 单对象压缩后 ≤ 2 MiB、声明的未压缩大小 ≤ 16 MiB（§6.5）。超过时不切成语义不完整的分片，而是降级成摘要，并在本地标记 `replay_oversize`。服务端不解压；离线导入器先检查 gzip trailer 与流式解压累计字节，达到 16 MiB 立即中止，防压缩炸弹。
-5. `header.schema` 是遥测信封版本，不等于 `saveSchema`。解析器对未知记录类型跳过但计数；不认识的 schema 整个隔离，不能猜测解释。
+3. runner 由完整五元键 `appBuild + coreVersion + rulesProtocol + rngProtocol + contentHash` 选择；缺任一匹配工件就报 `schema_unsupported` / `content_missing`，不得拿“最新” runner 猜修。`appBuild` 定位可部署应用工件，`coreVersion` 定位玩法 runner，不引入运输字段 `coreBuild`。
+4. `runtimeMartialArts` 必须带上本战实际可达的动态自创武学完整定义闭包，并按 ID 全序；`registryRefs` 只核验静态内容闭包，不能替代 `contentHash`。重放不得用当前存档同槽定义覆盖录像定义。
+5. `openingHash`、采样的 `afterHash`、`terminalHash` 均调用 `tech/05` 的同一规范域：UTF-8 规范 JSON 数组 `["tianshu:battle-replay:v1", appBuild, coreVersion, rulesProtocol, rngProtocol, contentHash, runtimeMartialArts, session]`；hash 字段自身与 `startedAt` / `endedAt` 等墙钟在域外。逐步 hash 便于定位首个分歧，生产采样可只留每 10 条命令一个 `afterHash` **【建议值】**，终局 hash 不可省。
+6. 单对象压缩后 ≤ 2 MiB、声明的未压缩大小 ≤ 16 MiB（§6.5）。超过时不切成语义不完整的分片，而是降级成摘要，并在本地标记 `replay_oversize`。服务端不解压；离线导入器先检查 gzip trailer 与流式解压累计字节，达到 16 MiB 立即中止，防压缩炸弹。
+7. `header.schema` 是遥测信封版本，不等于 `BattleReplayV1.schema` 或 `saveSchema`。解析器对未知记录类型跳过但计数；不认识的 schema 整个隔离，不能猜测解释。
 
 摘要字段只存**原始可加总量**，不上传客户端算好的“强 / 弱”“异常 / 正常”结论。伤害、命中、暴击、破招、治疗等术语和计算口径引用 `design/03`、`design/04`、`design/05`、`design/09`；本文不重定义公式。任何比例由分析脚本以分子 / 分母重算，避免平均数的平均数。
 
@@ -2034,12 +2036,12 @@ pnpm telemetry:replay .local/telemetry --engine node
 pnpm telemetry:replay .local/telemetry --engine webkit
 ```
 
-流程为：校验 gzip / NDJSON schema → 根据 `contentHash` 找到只读书界包 → 以 opening snapshot 与 RNG 初始化 core → 顺序 dispatch 命令 → 每个采样点比对 hash → 比对终局。结果只回写本地派生表，不改原始 R2 对象：
+流程为：校验 gzip / NDJSON schema → 按五元键选择 runner 并根据 `contentHash` 找到只读书界包 → 用 `BattleStartSnapshot`（含 `runtimeMartialArts`）初始化战斗 runner → 顺序 dispatch 命令 → 每个采样点按同一战斗域比对 hash → 比对终局。全程不构造或上传完整 `GameState`；结果只回写本地派生表，不改原始 R2 对象：
 
 | 结果 | 含义 | 动作 |
 |---|---|---|
 | `ok` | 所有 hash 相同 | 标 `replay_ok=1`；可进入数值分析 |
-| `hash_mismatch` | 首个不同 seq 已定位 | 保存 expected / actual、engine、core build；加入回归夹具前先脱敏 |
+| `hash_mismatch` | 首个不同 seq 已定位 | 保存 expected / actual、engine、`coreVersion`；加入回归夹具前先脱敏 |
 | `content_missing` | 找不到当时 `contentHash` 的包 | 不用新内容强行复放；先从构建产物备份恢复 |
 | `schema_unsupported` | 工具不认识日志版本 | 保留原件；升级迁移器 |
 | `invalid` | 越界、截断、hash 或 gzip 错 | 隔离；不进入平衡统计 |
@@ -2895,10 +2897,10 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 | 写入回执 / 端点幂等行 | 存档 CAS 用 `write_receipts` 保存 30 天原响应；配对码、遥测、错误和导出由通用回执或各自表的 `(account_id, write_id)` / 等价唯一键保存状态并重放结果 |
 | 签名配置 revision | 远程配置的单调版本；JCS 规范化后用 Ed25519 签名，客户端拒绝过期、倒退、错频道、未知 key 或验签失败的信封 |
 | `releaseSeq` | CI 为可部署 app shell 分配的单调发布序列；用于比较 `latest` / `minCloudWrite`，人读 `appBuild` 哈希不参与大小比较 |
-| AI 人设卡 `NpcAiCard` | 只承载 AI 适配所需的语气、分幕已知事实、禁区、回退台词与效果白名单；NPC 性格和好感刻度仍归 `design/12` |
+| AI 人设卡 `NpcAiCard` | 只承载 AI 适配所需的语气、分幕已知事实、禁区、回退台词与效果白名单；人物身份、人设、性格与好感归 `design/18`，节点效果封顶与回退要求见 `design/12` §5.7 |
 | AI proposal | 模型通过唯一 strict 工具 `propose_effects` 给出的副作用建议；只有 core 二次校验并转为 `ApplyAiProposalCommand` 后才改变状态 |
 | “即兴闲谈” | AI 生成文本的固定来源标识；它不属于主线 Ink 台词，失败始终可回退作者预写句 |
-| 可重放战斗日志 | 开局快照 + 主种子 / RNG 状态 + 已接受命令序列 + 中间 / 终局状态哈希；服务端只存，不执行 replay |
+| 可重放战斗日志 | `BattleReplayV1` 战斗域快照 + `battle` / `ai` RNG + 动态武学闭包 + 已接受命令 + 中间 / 终局 hash；不含完整 `GameState`，服务端只存、不执行 replay |
 | 三层数据恢复 | L0 D1 Time Travel、L1 每日加密逻辑导出、L2 R2 异地私有副本；Git / 构建工件另为可重建层 L3（§12.2） |
 | 云端完整导出快照 | `export_jobs` + `export_items` 固定 `snapshot_seq` / `meta_rev`、审计截止时间及 save / telemetry 引用；服务端生成清单，客户端流式下载并组 ZIP |
 
@@ -2910,9 +2912,9 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 
 | # | 原事项 | 结论 |
 |---|---|---|
-| 1 | 私有托管是否仍用 Cloudflare Pages / GitHub Pages | **已解决：**基准“不公开分发”优先；app shell、API 与素材统一由同一个 Worker 的 Static Assets + `ts_s` 会话闸门提供，关闭 `workers.dev` / preview URL（见 §5.9、§8.3）。`tech/01` §7.6 的公开静态站示例需同步。 |
+| 1 | 私有托管是否仍用 Cloudflare Pages / GitHub Pages | **已解决：**基准“不公开分发”优先；app shell、API 与素材统一由同一个 Worker 的 Static Assets + `ts_s` 会话闸门提供，关闭 `workers.dev` / preview URL（见 §5.9、§8.3）；`tech/01` §7.6 已同步。 |
 | 2 | 是否备案并增加国内或香港镜像 | **已解决：**作者决定 P03 为“暂不备案，不做国内 / 香港镜像；只规划 Cloudflare 方案”。国内函数计算与 Node 服务器只作退出方案，不能据本文直接部署（见 §8.1–§8.6）。 |
-| 3 | Workers 测试工具与仓库 Vitest 版本冲突 | **已解决（实施默认）：**`services/api` 使用独立 Vitest 4 project，锁 `@cloudflare/vitest-pool-workers@0.22.0` 与 Vitest `^4.1.0`；若隔离导致维护成本过高，再改用 Wrangler `getPlatformProxy()` 测 ports（见 §13.7）。`tech/01` 的统一 Vitest 5 约束需允许服务端例外。 |
+| 3 | Workers 测试工具与仓库 Vitest 版本冲突 | **已解决（实施默认）：**`services/api` 使用独立 Vitest 4 project，锁 `@cloudflare/vitest-pool-workers@0.22.0` 与 Vitest `^4.1.0`；若隔离导致维护成本过高，再改用 Wrangler `getPlatformProxy()` 测 ports（见 §13.7）；`tech/01` §4.2 已登记服务端例外。 |
 | 4 | 存档冲突是否 last-write-wins / 自动合并 | **已解决：**完整 TSAV + `rev` CAS；自动档按设备分区，具名槽让作者选择，落选版保留至少 30 天（见 §4）。 |
 | 5 | MVP 与 Phase 3 的认证方式 | **已解决：**MVP 为 128-bit 主配对密钥 + 8 位临时码；Phase 3 为 Passkey 主登录 + 8 位邮箱验证码恢复，长期保留配对码，不用魔法链接（见 §5.2–§5.7）。 |
 | 6 | AI NPC 是否成为主线依赖、是否默认打开 | **已解决：**AI 是 Phase 4+ 可选项且默认关闭；主线与每个 NPC 都有预写回退，地区、预算或上游失败不影响游戏（见 §9）。 |
@@ -2946,7 +2948,7 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 | 会话与安全 | 设备 180 天无活动才清；邮箱恢复后 24 h 敏感操作保护；HSTS 不 preload；应用 secret 90 天、AI key 180 天；审计 90 天；会话轮换宽限与素材撤销缓存各 60 s | 本文实现与安全演练 |
 | API 与数据 | API 兼容当前 + 前一 stable，弃用提前 30 天；Meta 512 KiB；存档 5,000 对象 / 2 GiB；变化 10,000 条或 90 天；回执 30 天；orphan 宽限 24 h | `tech/01` 版本流程、`design/13` Meta 实测体积 |
 | 遥测与错误 | 2 MiB / 次、16 MiB 解压声明、1 GiB / 180 天；重放 10%，每 10 命令 hash；本地 30 天或 50 MiB；错误报告 32 KiB、明细保留 30 天、每 fingerprint 每 build 每小时 10 条 | `tech/05` 日志契约、`tech/03` 本地存储实测 |
-| AI | 12 轮或 12k token 分段；至少 3 条回退；好感每轮 ±1、每段累计绝对值 ≤3；输入 500 字；8 s 首 token / 30 s 总时长；单请求 $0.15、日 $0.80、月 $10 | 好感终值归 `design/12`；其余由 §9 金标 / 费用实测回填 |
+| AI | 12 轮或 12k token 分段；至少 3 条回退；好感每轮 ±1、每段累计绝对值 ≤3；输入 500 字；8 s 首 token / 30 s 总时长；单请求 $0.15、日 $0.80、月 $10 | 好感总刻度归 `design/18`，节点 AI 封顶见 `design/12` §5.7；其余由 §9 金标 / 费用实测回填 |
 | 配置与发布 | 30 分钟回前台检查、活跃每 6 h、有效期 ≤7 天、waiting 24 h 只提示、签名历史 20 份 | `tech/01` / `tech/06` 发布与 SW 实现 |
 | 备份与运维 | D1 日 14 / 周 8 / 月 12；R2 90 天 + 月 12；误操作 RTO 2 h；账号灾难 RTO 24 h；错误告警 10 分钟 5 个 5xx；当前 / 永久对象 100% 校验、历史 10% | 运维演练实测 |
 | 验收 | 14 天连续备份；100 轮 CAS；20 次离线保存 / 12 h 离线；30 份 V8 / JSC 录像；平台不可用持续 7 天才重评迁移 | `tech/09` 里程碑收口 |
@@ -2961,7 +2963,7 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 | `tech/05` | `BattleReplayV1`、规范序列化、命令与状态 hash | §10 字段仅作运输接口；不得另定义战斗语义 |
 | `tech/06` | Static Assets、素材路由、缓存和 `ts-runtime` 桶 | 本文 `ts_s` 与闸门为鉴权权威；公开 Pages 示例不采用 |
 | `design/13` §9 | 槽 ID、可读 / 回档资格、`MetaProfile` 字段与合并公式 | 本文只定义云键、版本与传输，不扩大玩法可读范围 |
-| `design/12` | NPC 人设、好感刻度、台词 / 节点稳定 ID | AI 效果默认只提议 ±1；无合格卡和 3 条回退就不开该 NPC |
+| `design/18` / `design/12` §5.7 | NPC 人设、性格与好感总刻度 / 节点效果白名单、封顶和三类回退 | AI 效果只提议已登记的 ±1 好感或旗标；无合格投影卡和三类回退就不开该 NPC |
 | `design/14` | 登录、同步状态、冲突选择、历史恢复、更新提示的最终 UI | 先遵循 §4 / §5 状态机与文案信息要求 |
 
 ### 对基准的修改提案
@@ -2977,12 +2979,12 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 
 | 文档 | 位置 | 需要同步 |
 |---|---|---|
-| `docs/tech/01-architecture.md` | §6.9、§7.6、§11–§12、待决 P6 | §6.9 的“版本号 + 时间 + 设备 ID”冲突仲裁改为本文 §4 的服务端 `rev` CAS + 玩家选择；删除 Cloudflare Pages / GitHub Pages 公开部署路径，改成同一 Worker 私有 Static Assets；接受 `services/api` 独立 Vitest 4；P6 标为由本文解决 |
+| `docs/tech/01-architecture.md` | §6.9、§7.6、§11–§12、待决 P6 | **已对齐：**冲突仲裁改为本文 §4 的服务端 `rev` CAS + 玩家选择；删除公开 Pages 路径，改成同一 Worker 私有 Static Assets；接受 `services/api` 独立 Vitest 4；P6 已标为解决 |
 | `docs/tech/03-mobile-performance.md` | F14、真机矩阵、存储 / Worker 预算 | **已对齐：**Safari ↔ iOS 主屏复用 8 位、5 分钟临时配对码；仍需协同验收 Cookie / IndexedDB 独立容器、8 MiB 哈希 / 上传、Ed25519 / Passkey、流式 ZIP 与 outbox |
-| `docs/tech/04-*` | manifest、内容版本与迁移 | 固定 `contentHash` 与 `idRemaps` 数据契约；保留可按 hash 取回的旧书界包，供旧档修复与录像复放 |
-| `docs/tech/05-*` | 战斗录像与确定性 | 导出 `BattleReplayV1`、规范序列化 / hash 与跨 V8/JSC fixture；不要在服务端重放或重定义战斗公式 |
-| `docs/tech/06-asset-storage.md` | §7、§9、§12–§13、待决 7/8/15 | 会话格式与免检路由引用本文 §5；app / API / 素材同 Worker；按 P03 删除 Phase 3 国内 / 香港镜像计划、`ts-runtime-cn` 现行桶命名及相关风险回退 |
-| `docs/design/12-quests-npc-factions.md` | NPC 人设、好感、台词 / 节点接口 | 定义 `NpcAiCard` 的内容来源与稳定 ID；裁定好感每轮 / 每段封顶终值；每个启用 NPC 至少提供普通 / 网络 / 拒绝三类预写回退 |
+| `docs/tech/04-*` | manifest、内容版本与迁移 | **已对齐接口：**固定 `contentHash` 与 `idRemaps` 数据契约；旧书界包须按 hash 保留，供旧档修复与录像复放；实际工件保留由发布实现验收 |
+| `docs/tech/05-*` | 战斗录像与确定性 | **已对齐：**导出 `BattleReplayV1`、规范战斗域 hash 与跨 V8/JSC fixture；服务端不重放或重定义战斗公式 |
+| `docs/tech/06-asset-storage.md` | §7、§9、§12–§13、待决 7/8/15 | **已对齐：**会话格式与免检路由引用本文 §5；app / API / 素材同 Worker；P03 已移除现行国内 / 香港镜像与 `ts-runtime-cn` 规划 |
+| `docs/design/18-npc-and-companions.md` / `docs/design/12-quests-npc-factions.md` §5.7 | NPC 人物投影 / 任务节点接口 | **已对齐：**`NpcAiCard` 的人物事实来自 `design/18`；节点效果封顶与普通 / 网络 / 拒绝三类回退来自 `design/12`，本文仅定义技术投影 |
 | `docs/design/13-progression-and-endings.md` | §9 存档与 Meta | 引用本文 `cloudSlotKey`、ETag / CAS、冲突历史和 `POST /meta/merge`；确认 Meta 事件稳定 ID 与 512 KiB 上限 |
 | `docs/design/14-*` | 登录、读档、设置与更新 UI | 展示“已存本机 / 待上云 / 已上云 / 冲突”四态、冲突双版本、8 位临时配对码迁移、设备撤销、遥测 / AI 同意、Passkey 回退及安全点更新 |
 | `docs/tech/09-*` | 路线图 / 闸门 | 采用 §14 阶段和验收：Phase 1 私有托管，Phase 2 同步 / 恢复，Phase 3 Passkey / 遥测，Phase 4+ AI；登记建议值收口时点 |
