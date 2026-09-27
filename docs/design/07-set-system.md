@@ -4,8 +4,8 @@
 > 上游：`00-canon.md` v1.2（§3～§5、§9、§12、§20）；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：书眠携带与外来压制 → `design/02-timeline-and-world-tiers.md`；属性 → `design/03-attributes.md`；Z0～Z10 → `design/04-damage-formula.md`；武学装配、`effGrade` 与 `setTags` → `design/05-martial-arts-system.md`；Buff DSL、叠加族与上限 → `design/06-buff-system.md`；装备与成对兵器 → `design/10-items-and-equipment.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联／广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v1.1（审校 C2.R，2026-09-26）。
-> 变更记录：v1.0 首次冻结规则与 44 套正式目录；把 11 份技能图鉴的候选收敛为可双向闭合的首发集合。v1.1 对齐 Canon v1.2 与 06 DSL，重校平衡预算、低武路径、古龙投放和全部淘汰候选去向，并补双向关系审计规则。
+> 版本：v1.2（审校 C2.R；全局审计，2026-09-27）。
+> 变更记录：v1.0 首次冻结规则与 44 套正式目录；把 11 份技能图鉴的候选收敛为可双向闭合的首发集合。v1.1 对齐 Canon v1.2 与 06 DSL，重校平衡预算、低武路径、古龙投放和全部淘汰候选去向，并补双向关系审计规则。v1.2 增加机器可读正式成员注册表；§19 保留原 `set_*` 候选键，供检查脚本读取“弃用／并入”映射，且不得进入运行态 `setTags`。
 
 ---
 
@@ -441,6 +441,57 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 ### 8.3 原著标注
 
 “原著主题”只表示成员、人物或门派关系有原著基础；套装组合、阈值与全部数值均为**（原创扩展）**。不确定的具体武学名或传授细节继续沿用所属图鉴的**（待考）**标记。
+
+### 8.4 正式成员注册表（机器可读镜像）
+
+下表是 §9～§17 各条目“武学成员”的机器可读镜像，不是第二份设计定义。两处必须逐字同改；构建与 lint 以本表解析武学侧 `SetDef.members`，正文负责完整成员（含装备）、阈值、可达性和考据说明。表中共 44 套、305 个武学成员关系、292 个唯一武学；唯一装备成员 `eq_yitianjian` 仍以 §13.3 与 `design/10` 的双向登记为准，不在本技能图鉴镜像中重复。
+
+| 套装 ID | 名称 | 成员 |
+|---|---|---|
+| `set_shaolin_jingang` | 少林金刚 | `sk_longzhaoshou`、`sk_yijinjing`、`sk_tieshazhang`、`sk_tongrenhenglian` |
+| `set_shaolin_luohan` | 少林罗汉 | `sk_luohanquan`、`sk_shaolinzhuanggong`、`sk_shaolinxinfa`、`sk_shaolingunfa`、`sk_luohanbu` |
+| `set_shaolin_damo` | 达摩遗风 | `sk_yijinjing`、`sk_xisuijing`、`sk_damoxinjing`、`sk_damojianfa`、`sk_yiweidujiang` |
+| `set_saodiseng` | 扫地僧·藏经阁 | `sk_yijinjing`、`sk_boruoxinjing`、`sk_xumishanzhang`、`sk_nianhuazhi` |
+| `set_fangzheng` | 方证·少林三战 | `sk_yijinjing`、`sk_qianshourulaizhang`、`sk_yizhichan`、`sk_jinzhongzhao` |
+| `set_gaibang_bangzhu` | 丐帮帮主 | `sk_xianglong18`、`sk_dagou`、`sk_dagouzhen`、`sk_canfengyinlugong`、`sk_yunyoubu` |
+| `set_taohuadao` | 桃花岛主 | `sk_tanzhi`、`sk_bihai`、`sk_lanhuafuxueshou`、`sk_yuxiaojianfa`、`sk_luoyingshenjianzhang`、`sk_bitaoxuangong` |
+| `set_baituoshan` | 白驼山主 | `sk_hama`、`sk_lingshezhangfa`、`sk_lingshequan`、`sk_nizhuanjingmai`、`sk_tashaxing`、`sk_shexingdiaoshou` |
+| `set_dali_yiyang` | 一阳 | `sk_yiyangzhi`、`sk_liumai`、`sk_kurongchangong`、`sk_yiyangshuzhi`、`sk_duanjiajianfa`、`sk_tiannanxinfa` |
+| `set_jiuyin_zhengzong` | 九阴正宗 | `sk_jiuyin`、`sk_jiuyinshenzhao`、`sk_yihun`、`sk_dafumoquan`、`sk_yijinduangupian`、`sk_shexinglifan`、`sk_jiuyinliaoshangpian`、`sk_jiuyintiaoxipian`、`sk_shoujinpian`、`sk_biguqipian` |
+| `set_guojing_xiazhe` | 侠之大者 | `sk_xianglong18`、`sk_jiuyin`、`sk_kongming`、`sk_zuoyouhubo`、`sk_zhebiejianshu`、`sk_wumuyishu` |
+| `set_quanzhen_beidou` | 全真·北斗 | `sk_xiantiangong`、`sk_jinguanyusuo`、`sk_quanzhenxinfa`、`sk_quanzhenjian`、`sk_tongguijian`、`sk_tiangang`、`sk_dabeidouzhen` |
+| `set_gumu_yunv` | 古墓·玉女 | `sk_yunvxinjing`、`sk_hanyuxinjue`、`sk_yunvjian`、`sk_suxin`、`sk_meinvquan`、`sk_jinlingsuo`、`sk_gumuqinggong`、`sk_yufengzhen` |
+| `set_shendiao_xialv` | 神雕侠侣 | `sk_suxin`、`sk_anran`、`sk_xuantie`、`sk_yunvxinjing`、`sk_yunvjian`、`sk_quanzhenjian` |
+| `set_dugu_jianzhong` | 独孤剑冢 | `sk_xuantie`、`sk_lijianyi`、`sk_ruanjianyi`、`sk_zhongjianyi`、`sk_mujianyi`、`sk_haichaolianjian`、`sk_jianzhongtuna`、`sk_dugu9` |
+| `set_wudang_taiji` | 武当·太极 | `sk_taijiquan`、`sk_taijijian`、`sk_liangyixinfa`、`sk_taijituishou`、`sk_mianzhang`、`sk_tiyunzong` |
+| `set_wudang_zhenwu` | 武当·真武 | `sk_chunyangwuji`、`sk_wudangjiuyang`、`sk_huzhaojuehushou`、`sk_wujixuangongquan`、`sk_shenmen13`、`sk_yitiantulonggong`、`sk_zhenwuqijie` |
+| `set_xiaoyao_xiaoyaoyou` | 逍遥游 | `sk_beiming`、`sk_lingbo`、`sk_zhemei`、`sk_baihongzhang`、`sk_langhuanjian`、`sk_zuowangxinfa`、`sk_tianjianzhifa`、`sk_fuyaotui` |
+| `set_xingxiu_laoxian` | 星宿老仙 | `sk_huagong`、`sk_chousuizhang`、`sk_sanxiaoxiaoyaosan`、`sk_fushidu`、`sk_huoduozhang`、`sk_lianchongshu`、`sk_chanhunwang`、`sk_bilinzhang`、`sk_xingxiudugong` |
+| `set_murong_huanshi` | 以彼之道 | `sk_douzhuan`、`sk_canhezhi`、`sk_baijiadao`、`sk_murongjian`、`sk_canheqigong`、`sk_shuixiefeidao`、`sk_longchengxinfa`、`sk_yizhenfengdao` |
+| `set_mizong_mingwang` | 大轮明王 | `sk_huoyandao`、`sk_xiaowuxiang`、`sk_dashouyin`、`sk_mizonghufashen`、`sk_zhuohuogong`、`sk_jingangjue`、`sk_wuxiangjiezhi`、`sk_duoluoyezhi`、`sk_ranmudaofa`、`sk_jiashafumogong` |
+| `set_qidan_xiaofeng` | 契丹英雄 | `sk_xianglong18`、`sk_qinlonggong`、`sk_jingedangkouqiang`、`sk_canglangdao`、`sk_tuxiongbohuquan`、`sk_taizuchangquan`、`sk_caoyuanchangqiang`、`sk_liaodongpaochui` |
+| `set_mingjiao_guangming` | 光明圣火 | `sk_qiankun`、`sk_dajiutianshou`、`sk_guangmingxinfa`、`sk_dafengyunfeizhang`、`sk_guangmingquan`、`sk_guangmingduandao` |
+| `set_mingjiao_shenghuo` | 波斯圣火 | `sk_shenghuoling`、`sk_shenghuoxinfa`、`sk_shenghuotunajue`、`sk_mingjiaoduanjian`、`sk_shenghuobu` |
+| `set_yitian_emei` | 倚天·峨眉 | `sk_emeijiuyang`、`sk_emeixinfa`、`sk_jindingmianzhang`、`sk_piaoxuechuanyunzhang`、`sk_jindingjiushi`、`sk_miejuejian`、`sk_emeitunajue`、`sk_emeirumenzhang`、`sk_emeirumenjian`、`sk_liuxujian`、`sk_emeishenfa` |
+| `set_kongtong_qishang` | 崆峒七伤 | `sk_qishangquan`、`sk_qishangchujue`、`sk_kongtongyangshenggong`、`sk_kongtongjian`、`sk_kongtongtunajue`、`sk_kongtongrumenquan`、`sk_kongtongrumenjian` |
+| `set_mingjiao_sida_fawang` | 四大法王 | `sk_hanbingmianzhang`、`sk_lieyanzhang`、`sk_qingyifashen`、`sk_shizihou` |
+| `set_huashan_qijian` | 华山气剑 | `sk_huashanrumenjian`、`sk_huashantuna`、`sk_huashanjianfa`、`sk_yangwujian`、`sk_huashanxinfa`、`sk_kuangfengkuaijian`、`sk_taiyuesanqingfeng`、`sk_zixiashengong` |
+| `set_songshan_hanbing` | 嵩山寒岳 | `sk_songshanrumenjian`、`sk_songyangtuna`、`sk_songshanjianfa`、`sk_songyangxinfa`、`sk_dayinyangshou`、`sk_hanbingzhenqi` |
+| `set_riyue_heimu` | 黑木日月 | `sk_heimuyarumenjian`、`sk_heimutuna`、`sk_riyuejianfa`、`sk_riyuexinfa`、`sk_heimuyajianfa`、`sk_xixing`、`sk_kuihua` |
+| `set_linjia_bixie` | 林家辟邪 | `sk_linjiarumenjian`、`sk_biaojuxinfa`、`sk_linjiajianfa`、`sk_linjiashou`、`sk_fantianzhang`、`sk_bixie`、`sk_kuihua` |
+| `set_xueshan_jinwu` | 雪山金乌 | `sk_taxuewuhen`、`sk_xueshanjianfa`、`sk_wuwangshengong`、`sk_jinwudaofa` |
+| `set_huashan_hunyuan` | 华山混元 | `sk_hunyuangong`、`sk_hunyuanzhang`、`sk_tiezhijue`、`sk_poyuquan` |
+| `set_tiejian_musang` | 铁剑木桑 | `sk_shenxing`、`sk_tiejianjianfa`、`sk_mantianhuayu`、`sk_tiejianqipanjian`、`sk_tiejianxinfa` |
+| `set_shenlong_jiaozhu` | 神龙教·教主武库 | `sk_shenlongrumenquan`、`sk_shenlongshebu`、`sk_shenlongzhang`、`sk_yingxiongsanzhao`、`sk_meirensanzhao`、`sk_shenlongxinfa` |
+| `set_shenzhao_liancheng` | 神照·连城 | `sk_yuzhongduanquan`、`sk_yuzhongduandao`、`sk_yuzhongqinna`、`sk_xiangxituna`、`sk_meinianshengxinfa`、`sk_shenzhao` |
+| `set_yuanyangdao_renzhe` | 鸳鸯刀·仁者 | `sk_yuanyangjibenjian`、`sk_renzhetuna`、`sk_yuanyangshuangdao`、`sk_fuqidaofa` |
+| `set_honghua_shisidangjia` | 红花十四当家 | `sk_baihuacuo`、`sk_paoding`、`sk_honghuahuiheji`、`sk_honghuaxinfa`、`sk_jindifa`、`sk_honghuachangquan`、`sk_honghuajian`、`sk_honghuabu` |
+| `set_hujia_lengyue` | 胡家冷月 | `sk_hujiadao`、`sk_hujiaquan`、`sk_hujiadaoxinfa`、`sk_hujiaxiaolianquan`、`sk_liaodonghushendao` |
+| `set_jianghu_baijia` | 江湖百家 | `sk_jianghubaizhanjian`、`sk_yanzisanchaoshui`、`sk_qingfengjian`、`sk_panlonggun`、`sk_dengpingdushui`、`sk_feishahuangshi`、`sk_luoyedao`、`sk_liuxingchui`、`sk_wuyingshou`、`sk_jianghutuna`、`sk_xingqizhou`、`sk_yexinggong`、`sk_hutiaodaofa`、`sk_huiliuquan`、`sk_taizuchangquan`、`sk_jianghurumenjian`、`sk_pingfengjian`、`sk_hengdaorumenzhao`、`sk_shaobanggun`、`sk_duanqiangfa`、`sk_sanshou`、`sk_yanxingbu`、`sk_tunaqianjue`、`sk_dantianyangqi`、`sk_huxixingqi`、`sk_tongxingfeishi`、`sk_tiexiu`、`sk_jianghuchangquan`、`sk_caoshangfei` |
+| `set_junwu_baizhan` | 军伍百战 | `sk_pojunqiangfa`、`sk_baizhanxinfa`、`sk_shouchengzhen`、`sk_duanzhenqiang`、`sk_junzhongdao`、`sk_zhenqijian`、`sk_jundituna`、`sk_xingjunbu`、`sk_shouchengfa`、`sk_changqiangrumen`、`sk_junwuduandao`、`sk_junwuchangjian` |
+| `set_penglai_chaosheng` | 蓬莱潮生 | `sk_donghaichaoshengzhang`、`sk_tianwangbuxin`、`sk_penglaiquan`、`sk_chaoyinxinfa`、`sk_penglairumenquan`、`sk_haifengbu` |
+| `set_yihua_shuangbi` | 移花双璧 | `sk_yihuagongjian`、`sk_yihuagongqinggong`、`sk_yihuajieyu`、`sk_mingyugong` |
+| `set_baiyun_juezhan` | 白云决战 | `sk_baiyunjichujian`、`sk_baiyunjianwei`、`sk_feixiandao`、`sk_tianwaifeixian`、`sk_ximenjiandao` |
 
 ---
 
@@ -1166,7 +1217,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 
 ### 19.3 删除：成员不足、依赖未闭合或主题重复
 
-以下逐项登记未入选 ID；连同 §19.2 的“主题并入”项，旧 ID 均不进入运行数据。`set_tiezhang_shuishangpiao` 在五绝、道家两册重复出现，所以两表覆盖 120 次图鉴提及、119 个唯一 ID。
+以下逐项登记未入选历史键；统一保留原 `set_*` ID，供 `check_ids.py` 读取“旧候选 → 正式套装／删除”的弃用映射，但不得写入运行态 `setTags`。连同 §19.2 的“主题并入”项，旧键均不进入运行数据。`set_tiezhang_shuishangpiao` 在五绝、道家两册重复出现，所以两表覆盖 120 次图鉴提及、119 个唯一历史键。
 
 | 图鉴 | 未入选候选（逐项） | 去向／理由 |
 |---|---|---|

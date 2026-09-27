@@ -1,6 +1,6 @@
 # 门派武学图鉴 · 道家与神雕诸派（`skills-daojia`）
 
-版本：v1.2（CXd 扩充，2026-09-26）
+版本：v1.2（CXd 扩充；全局审计，2026-09-27）
 
 > **归属**（基准 §18）：`design/catalog/skills-*.md` 门派武学图鉴。本文件覆盖：**全真教、古墓派（含李莫愁一系）、杨过自创与传承（含独孤求败剑冢剑意）、武当派（倚天 → 笑傲 → 侠客 → 书剑 → 飞狐）、绝情谷**。
 > **上游**：`decisions/author-decisions.md`、`decisions/author-requirements.md`、`00-canon.md`、`decisions/rulings-v1.md`。数据结构、层数节奏、招式预算、范围模板、特殊武学规则以 `design/05` 为准；附带效果只引用 `design/06` 目录中已有的 `bf_` ID；属性与资质 ID 见 `design/03`；书界、境界、残篇、再遇、印证见 `design/02`；合击与阵法流程归 `design/09`；兵器与名器归 `design/10`；套装本体归 `design/07`；门派身份、职级和月钱归 `design/12`、门派资料见 `design/17`；冲穴只接入 `design/15`；资源、资源点与营生只接入 `design/16`；大地图与时代图层只接入 `design/11`；NPC 招募、生卒与跨书界同伴归 `design/18`；正邪主线与选择节点归 `design/story/`，本文任务号仅是武学来源接口。
@@ -151,8 +151,8 @@
 | 招式 | ID | 层 | 范围 · 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 | 招架 | 核算 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 先天罡气（原创扩展命名） | `mv_xiantiangong_gangqi` | 3 | `aoe_self` | 0 | 12% | 4 | 900 | `bf_hutizhenqi`·承·100%·3（护体 = 自身 hpMax 15%）；`bf_fanzhen`·承·100%·3 | — | 支援：护体 15% ≈ 治疗 12.5% 当量（05 §4.2 ×1.2 折算）＋反震；以高耗内与 4 回合冷却抵偿 |
-| 一炁贯虹（原创扩展命名） | `mv_xiantiangong_yiqi` | 5 | `aoe_line n3` · 1–3（`ranged`） | 0.80 | 10% | 2 | 1000 | 驱散目标 1 个 `stance` 增益（purge，品阶承） | ✓ | 0.80 ×(1+0.24+0.10)× 0.85 = 0.91，−0.10（驱散）≈ 0.80 |
-| 五气朝元（绝招；原创扩展命名，取道家内丹语） | `mv_xiantiangong_wuqi` | 7 | 对敌 `aoe_around`；对己 `aoe_self` | 1.50 | 10% | — | 1200 | 自身驱散 2 个减益；`bf_neijin_sheng`·承·100%·3 | ✓ | 3.0 × 0.65 = 1.95，−0.45（自身驱散与增益）= 1.50（对照 05 九阳普照） |
+| 一炁贯虹（原创扩展命名） | `mv_xiantiangong_yiqi` | 5 | `aoe_line n3` · 1–3（`ranged`） | 0.85 | 10% | 2 | 1000 | 驱散目标 1 个 `stance` 增益（purge，品阶承） | ✓ | N=3、AF=0.85；0.85 ×(1+0.24+0.10)× 0.85 = 0.97，−0.10（驱散）≈ 0.85 |
+| 五气朝元（绝招；原创扩展命名，取道家内丹语） | `mv_xiantiangong_wuqi` | 7 | 对敌 `aoe_around`；对己 `aoe_self` | 1.80 | 10% | — | 1200 | 自身驱散 2 个减益；`bf_neijin_sheng`·承·100%·3 | ✓ | N=6、AF=0.75；3.0 × 0.75 = 2.25，−0.45（自身驱散与增益）= 1.80（对照 05 九阳普照） |
 
 **被动**
 
@@ -260,7 +260,7 @@
 | 招式 | ID | 层 | 范围 · 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 | 招架 | 核算 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 以命搏命 | `mv_tongguijian_boming` | 1 | `aoe_single` · 1 | 1.20 | 7% | 0 | 1000 | 自损 3% hpMax | ✓ | 1 + 0.18（hp）= 1.18 ≈ 1.20 |
-| 玉石俱焚 | `mv_tongguijian_yushi` | 3 | `aoe_around` | 1.05 | 8% | 2 | 1000 | 自损 5% hpMax | ✓ | 0.65 ×(1+0.24+0.05+0.30)= 1.03 ≈ 1.05 |
+| 玉石俱焚 | `mv_tongguijian_yushi` | 3 | `aoe_around` | 1.20 | 8% | 2 | 1000 | 自损 5% hpMax | ✓ | N=6、AF=0.75；0.75 ×(1+0.24+0.05+0.30)= 1.19 ≈ 1.20 |
 | 两败俱伤 | `mv_tongguijian_liangbai` | 4 | `aoe_self`（架势） | 0 | 5% | 2 | 850 | 至下次行动前被近战攻击：以 1.10 倍反击（反击时自损 2%） | — | 触发型（05 §4.10） |
 | 破釜沉舟 | `mv_tongguijian_pofu` | 5 | `aoe_self` | 0 | 5% | 3 | 800 | `bf_gongshi`·承·100%·3（攻势） | — | 架势 |
 | 同归于尽（绝招） | `mv_tongguijian_tonggui` | 7 | `aoe_single` · 1 | 4.45 | 9% | — | 1200 | 自损 8% hpMax | ✓ | 3.0 ×(1+0.48)= 4.44 ≈ 4.45 |
@@ -278,7 +278,7 @@
 **`sk_quanzhentunajue` 全真吐纳诀**（2 黄中 · 内功 · 阳 · 原创扩展）
 - `nature: yang`。
 - 内功贡献：`mpMaxPct 8, hpMaxPct 5, attrs {con 1, wil 2}, mpRegen 1.0`（IP 24）；`stats {resInjury 3, effRes 3}`；无招式。
-- reqs：`sect {sect_quanzhen, rank 1}`；`hard [sect]`。获取：全真知客道人 `npc_quanzhen_sandai`（射雕、神雕）；鹿鼎★北京白云观道长 `npc_baiyunguan_daozhang`（maxLayer 8）。
+- reqs：`sect {sect_quanzhen, rank 1}`；`hard [sect]`。获取：全真知客道人岗位槽（射雕、神雕）；鹿鼎★北京白云观道长岗位槽（maxLayer 8）。
 - 被动：`ps_quanzhentunajue_tiaoxi` 调息有法（1 重，运功调息回内 +5% → +10%）；`ps_quanzhentunajue_zhoutian` 小周天（5 重，闭关修炼全真武学 +10%）；`ps_quanzhentunajue_yuanman` 入门圆满（10 重，学习全真心法软门槛 −10）。
 
 **`sk_quanzhenxinfa` 全真心法**（5 玄中 · 内功 · 阳 · 原著扩展）
@@ -314,9 +314,9 @@
 |---|---|---|---|---|---|---|---|---|---|
 | 铁脚 | `mv_yuyangtui_tiejiao` | 1 | `aoe_single` · 1 | 1.00 | 5% | 0 | 1000 | — | ✓ |
 | 跂立千仞 | `mv_yuyangtui_qili` | 4 | `aoe_self`（架势） | 0 | 4% | 2 | 850 | `bf_wenzhong`·承·100%·2；至下次行动前被近战攻击以 0.8 倍反击 | — |
-| 扫岳腿 | `mv_yuyangtui_saoyue` | 7 | `aoe_sweep` | 0.85 | 6% | 1 | 1000 | `bf_panshan`·承·30%·2 | ✓ |
+| 扫岳腿 | `mv_yuyangtui_saoyue` | 7 | `aoe_cone {angle:120,r:1,dirCount:6}` | 0.95 | 6% | 1 | 1000 | `bf_panshan`·承·30%·2 | ✓ |
 
-- 核算：扫岳腿 0.75 × 1.17 = 0.88，−0.03 = 0.85。被动：`ps_yuyangtui_pinggao` 凭高（5 重，自身所在格高于目标时本武学 Z7 按高一级计）；`ps_yuyangtui_yuanman` 圆满（10 重，`attr:jump flat +1`）。
+- 核算：扫岳腿以 N=3、AF=0.85 计，0.85 × 1.17 = 0.99，−0.03 = 0.96，取 0.95。被动：`ps_yuyangtui_pinggao` 凭高（5 重，自身所在格高于目标时本武学 Z7 按高一级计）；`ps_yuyangtui_yuanman` 圆满（10 重，`attr:jump flat +1`）。
 
 **`sk_changchunqinna` 长春擒拿手**（4 玄下 · 拳脚/擒拿 · 阳 · 0.75/0.25 · 原创扩展）
 - 依据：丘处机道号长春子，性烈而膂力过人；细节仍须核对**（待考：《射雕英雄传》醉仙楼丘处机与江南七怪相争、托举铜缸的段落）**。
@@ -363,10 +363,10 @@
 | 招式 | ID | 层 | 范围 · 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 | 招架 |
 |---|---|---|---|---|---|---|---|---|---|
 | 樵山问路 | `mv_zhongnanjian_wenlu` | 1 | `aoe_single` · 1 | 1.00 | 5% | 0 | 1000 | — | ✓ |
-| 松涛 | `mv_zhongnanjian_songtao` | 4 | `aoe_sweep` | 0.85 | 5% | 1 | 1000 | — | ✓ |
+| 松涛 | `mv_zhongnanjian_songtao` | 4 | `aoe_cone {angle:120,r:1,dirCount:6}` | 0.95 | 5% | 1 | 1000 | — | ✓ |
 | 白云出岫 | `mv_zhongnanjian_chuxiu` | 7 | `aoe_dash n3` · 1–3 | 1.20 | 6% | 2 | 1000 | — | ✓ |
 
-- 核算：松涛 0.75 × 1.12 = 0.84；白云出岫 1.29 − 0.10。被动：`ps_zhongnanjian_zhonggong` 剑守中宫（5 重，`attr:parry pct +3%`）；`ps_zhongnanjian_yuanman` 入门圆满（10 重，学习全真剑法软门槛 −10）。
+- 核算：松涛以 N=3、AF=0.85 计，0.85 × 1.12 = 0.95；白云出岫 1.29 − 0.10。被动：`ps_zhongnanjian_zhonggong` 剑守中宫（5 重，`attr:parry pct +3%`）；`ps_zhongnanjian_yuanman` 入门圆满（10 重，学习全真剑法软门槛 −10）。
 
 **`sk_quanzhenjian` 全真剑法**（5 玄中 · 兵器/剑 · 阳 · 0.60/0.40）——**完整定义见 05 §13.6**，本文不重述数值。
 - 招式：定阳针 `mv_quanzhenjian_dingyang`（1 重，1.00）、七星聚会 `mv_quanzhenjian_qixing`（4 重，`aoe_multi` 7 段，1.10）、三清朝元 `mv_quanzhenjian_sanqing`（6 重，`aoe_line n3`，0.95，自身 `bf_jianshi`）、重阳遗意 `mv_quanzhenjian_chongyang`（7 重绝招，3.00）；被动玄门正宗 / 剑随身走 / 同气连枝 / 大成。`setTags: [set_quanzhen_beidou, set_shendiao_xialv]`。
@@ -553,9 +553,9 @@
 | 赤练吐信 | `mv_chilianshenzhang_tuxin` | 1 | `aoe_single` · 1 | 0.85 | 6% | 0 | 900 | `bf_zhongdu`·承·30%·3 | ✓ | 1 −0.05（mp）−0.07（rec）−0.03 = 0.85 |
 | 朱砂掌印 | `mv_chilianshenzhang_zhangyin` | 2 | `aoe_single` · 1 | 0.95 | 8% | 1 | 1000 | `bf_zhongdu`·承·100%·3（2 层） | ✓ | 1.17 −0.20 = 0.97 |
 | 赤练缠身 | `mv_chilianshenzhang_chanshen` | 4 | `aoe_single` · 1 | 1.15 | 8% | 2 | 1000 | `bf_chanrao`·承·60%·2 | ✓ | 1.29 −0.12 = 1.17 |
-| 翻鳞掌 | `mv_chilianshenzhang_fanlin` | 5 | `aoe_sweep` | 0.90 | 8% | 2 | 1000 | `bf_zhongdu`·承·50%·3 | ✓ | 0.75 × 1.29 = 0.97，−0.05 = 0.92 |
+| 翻鳞掌 | `mv_chilianshenzhang_fanlin` | 5 | `aoe_cone {angle:120,r:1,dirCount:6}` | 1.05 | 8% | 2 | 1000 | `bf_zhongdu`·承·50%·3 | ✓ | N=3、AF=0.85；0.85 × 1.29 = 1.10，−0.05 = 1.05 |
 | 生死相许（绝招，原创扩展命名） | `mv_chilianshenzhang_xiangxu` | 7 | `aoe_single` · 1 | 2.85 | 9% | — | 1200 | `bf_judu`·承·100%·3 | ✓ | 3.0 −0.15 |
-| 五毒神掌 | `mv_chilianshenzhang_wudu` | 9 | `aoe_cone n2` | 0.95 | 9% | 3 | 1000 | `bf_zhongdu`·承·70%·3（2 层） | ✓ | 0.75 × 1.46 = 1.10，−0.14 = 0.96 |
+| 五毒神掌 | `mv_chilianshenzhang_wudu` | 9 | `aoe_cone {r:2,angle:60,dirCount:6}` | 1.00 | 9% | 3 | 1000 | `bf_zhongdu`·承·70%·3（2 层） | ✓ | N=4、AF=0.80；0.80 × 1.46 = 1.17，−0.14 = 1.03，取 1.00 |
 
 | 被动 | ID | 层 | 类 · 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|
@@ -585,7 +585,7 @@
 | 金铃点穴 | `mv_jinlingsuo_dianxue` | 1 | `aoe_single` · 1–2 | 0.90 | 7% | 0 | 1000 | `bf_fengxue`·承·25%·1 | ✓ | 1 −0.05（射程 2 折算，本文约定）−0.05 = 0.90 |
 | 铃音乱心 | `mv_jinlingsuo_lingyin` | 1 | `aoe_single` · 1–3（`ranged`） | 1.00 | 7% | 2 | 1000 | `bf_luanxin`·承·40%·2 | ✓ | 1.24 × 0.85 = 1.05，−0.06 = 0.99 |
 | 白练缠腕 | `mv_jinlingsuo_chanwan` | 3 | `aoe_single` · 1–2 | 1.10 | 8% | 2 | 1000 | `bf_chanrao`·承·50%·2；`bf_jiaoxie`·承·20% | ✓ | 1.29 −0.05（射程）−0.10 −0.05 = 1.09 |
-| 云袖回风 | `mv_jinlingsuo_huifeng` | 5 | `aoe_sweep` | 0.80 | 7% | 1 | 1000 | 击退 1 | ✓ | 0.75 × 1.12 = 0.84，−0.05 = 0.79 |
+| 云袖回风 | `mv_jinlingsuo_huifeng` | 5 | `aoe_cone {angle:120,r:1,dirCount:6}` | 0.90 | 7% | 1 | 1000 | 击退 1 | ✓ | N=3、AF=0.85；0.85 × 1.12 = 0.95，−0.05 = 0.90 |
 | 金铃摄魄（绝招） | `mv_jinlingsuo_shepo` | 7 | `aoe_chain n3` · 1–2 | 2.25 | 9% | — | 1200 | `bf_fengxue`·承·60%·1（每跳） | ✓ | 3.0 × 0.80 = 2.40，−0.12 = 2.28 |
 | 灵蛇出洞 | `mv_jinlingsuo_lingshe` | 8 | `aoe_pull n2` · 1–3 | 1.00 | 8% | 1 | 1000 | — | ✓ | 0.95 × 1.17 = 1.11，−0.10 = 1.01 |
 
@@ -617,7 +617,7 @@
 |---|---|---|---|---|---|---|---|---|---|---|
 | 单针 | `mv_bingpoyinzhen_danzhen` | 1 | `aoe_bolt` · 1–5 | 0.75 | 7% | 0 | 1000 | `bf_judu`·承·30%·3 | ✗ | 0.92 × 0.85 = 0.78，−0.045 = 0.74 |
 | 三针连发 | `mv_bingpoyinzhen_sanzhen` | 2 | `aoe_multi n3 r1` · 1–4 | 0.75 | 8% | 1 | 1000 | `bf_judu`·承·20%·3（每段） | ✗ | 0.85 × 1.17 × 0.78 = 0.78，−0.03 = 0.75 |
-| 冰魄漫天 | `mv_bingpoyinzhen_mantian` | 4 | `aoe_cone n3` | 0.70 | 9% | 3 | 1000 | `bf_hanqi`·承·50%·3 | ✗ | 0.65 × 1.46 × 0.78 = 0.74，−0.05 = 0.69 |
+| 冰魄漫天 | `mv_bingpoyinzhen_mantian` | 4 | `aoe_cone {r:3,angle:60,dirCount:6}` | 0.75 | 9% | 3 | 1000 | `bf_hanqi`·承·50%·3 | ✗ | N=7、AF=0.70；0.70 × 1.46 × 0.78 = 0.80，−0.05 = 0.75 |
 | 冰魄摄魂（绝招，原创扩展命名） | `mv_bingpoyinzhen_shehun` | 7 | `aoe_bolt` · 1–5 | 2.00 | 9% | — | 1200 | `bf_judu`·承·100%·3；`bf_hanqi`·承·100%·3（2 层） | ✗ | 3.0 × 0.78 = 2.35，−0.15 −0.20 = 2.00 |
 
 | 被动 | ID | 层 | 类 · 乘区 | 数值 | 说明 |
@@ -725,11 +725,11 @@
 |---|---|---|---|---|---|---|---|---|---|
 | 素手摘星 | `mv_yunvjian_zhaixing` | 1 | `aoe_single` · 1 | 1.00 | 6% | 0 | 1000 | — | ✓ |
 | 冷月窥人 | `mv_yunvjian_lengyue` | 2 | `aoe_single` · 1–2（`ranged` 剑气） | 1.00 | 7% | 1 | 1000 | — | ✓ |
-| 素衣回风 | `mv_yunvjian_huifeng` | 4 | `aoe_sweep` | 0.90 | 7% | 1 | 1000 | — | ✓ |
+| 素衣回风 | `mv_yunvjian_huifeng` | 4 | `aoe_cone {angle:120,r:1,dirCount:6}` | 1.00 | 7% | 1 | 1000 | — | ✓ |
 | 破玄式 | `mv_yunvjian_poxuan` | 6 | `aoe_single` · 1 | 1.30 | 7% | 1 | 1000 | 条件：目标主运或所用招式属全真 | ✓ |
 | 玉女投梭（绝招，典出谢鲲邻女投梭） | `mv_yunvjian_tousuo` | 7 | `aoe_single` · 1 | 3.00 | 8% | — | 1200 | — | ✓ |
 
-- 核算：冷月窥人 1.17 × 0.85 = 0.99；素衣回风 0.75 × 1.17 = 0.88；破玄式 1 + 0.12 + 0.05 + 0.15 = 1.32。被动：`ps_yunvjian_kequanzhen` 克全真（2 重，对使用全真武学的目标 Z5 +4% → +10%，与玉女心经同类被动取高）；`ps_yunvjian_qingling` 轻灵（5 重，`attr:eva pct +3%`）；`ps_yunvjian_suxin` 素心前篇（8 重，与装配全真剑法的羁绊队友相距 ≤ 2 时双方 `attr:hit flat +5`）；`ps_yunvjian_dacheng` 大成（10 重，本武学 Z3 +6%）。
+- 核算：冷月窥人 1.17 × 0.85 = 0.99；素衣回风以 N=3、AF=0.85 计，0.85 × 1.17 = 0.99，取 1.00；破玄式 1 + 0.12 + 0.05 + 0.15 = 1.32。被动：`ps_yunvjian_kequanzhen` 克全真（2 重，对使用全真武学的目标 Z5 +4% → +10%，与玉女心经同类被动取高）；`ps_yunvjian_qingling` 轻灵（5 重，`attr:eva pct +3%`）；`ps_yunvjian_suxin` 素心前篇（8 重，与装配全真剑法的羁绊队友相距 ≤ 2 时双方 `attr:hit flat +5`）；`ps_yunvjian_dacheng` 大成（10 重，本武学 Z3 +6%）。
 
 **`sk_sanwusanbushou` 三无三不手**（6 玄上 · 兵器/鞭索（拂尘）· 阴 · 0.55/0.45 · 原著）
 - 原著：李莫愁以拂尘使出的狠辣绝招，共三招：无孔不入、无所不至、无所不为；"三无三不"就是这三招的合称，并不存在另一组三个"三不"招名。拂尘按软兵归 `whip`（建议 `design/10` 将拂尘列为鞭索细项）。
@@ -898,7 +898,7 @@
 | 废寝忘食 | `mv_anran_feiqin` | 5 | `aoe_single` · 1 | 0.85 | 6% | 0 | 900 | —（无冷却连击用） | ✓ | 1 −0.10 −0.07 |
 | 孤形只影 | `mv_anran_guxing` | 6 | `aoe_single` · 1 | 1.25 | 8% | 1 | 1000 | 条件：自身 2 格内无友方 | ✓ | 1 +0.12 +0.15 |
 | 饮恨吞声 | `mv_anran_yinhen` | 6 | `aoe_self` | 0 | 8% | 3 | 800 | `bf_hutizhenqi`·承·100%·2（hpMax 12%）；`bf_xuli`·承·100%（下一本武学招式 Z3 +20%） | — | 蓄力类 |
-| 六神不安 | `mv_anran_liushen` | 7 | `aoe_around` | 0.90 | 10% | 3 | 1000 | `bf_luanxin`·承·30%·2 | ✓ | 0.65 × 1.46 = 0.95，−0.045 |
+| 六神不安 | `mv_anran_liushen` | 7 | `aoe_around` | 1.05 | 10% | 3 | 1000 | `bf_luanxin`·承·30%·2 | ✓ | N=6、AF=0.75；0.75 × 1.46 = 1.095，−0.045 = 1.05 |
 | 穷途末路 | `mv_anran_qiongtu` | 7 | `aoe_single` · 1 | 1.60 | 9% | 2 | 1000 | 条件：自身气血 < 40% | ✓ | 1 +0.24 +0.05 +0.30 |
 | 黯然销魂（绝招；原创扩展命名：十七招一气使完） | `mv_anran_xiaohun` | 7 | `aoe_single` · 1 | 2.45 | 10% | — | 1200 | `bf_zhenshe`·承·100%·1 | ✗ | 3.0 × 0.85 = 2.55，−0.10 |
 | 面无人色 | `mv_anran_mianwu` | 8 | `aoe_single` · 1 | 1.30 | 9% | 3 | 1000 | `bf_kongju`·承·40%·1 | ✓ | 1.41 −0.10 |
@@ -933,9 +933,9 @@
 |---|---|---|---|---|---|---|---|---|---|---|
 | 重剑无锋 | `mv_xuantie_wufeng` | 1 | `aoe_single` · 1 | 1.10 | 9% | 0 | 1100 | — | ✓ | 1 +0.05 +0.07 |
 | 大巧不工 | `mv_xuantie_daqiao` | 1 | `aoe_single` · 1 | 1.20 | 9% | 1 | 1100 | 击退 1 | ✓ | 1.24 −0.05 |
-| 山洪倒卷 | `mv_xuantie_shanhong` | 2 | `aoe_line n3` | 1.10 | 10% | 2 | 1100 | 每目标击退 1 | ✓ | 0.80 × 1.41 = 1.13，−0.05 |
+| 山洪倒卷 | `mv_xuantie_shanhong` | 2 | `aoe_line n3` | 1.15 | 10% | 2 | 1100 | 每目标击退 1 | ✓ | N=3、AF=0.85；0.85 × 1.41 = 1.20，−0.05 ≈ 1.15 |
 | 海潮叠浪 | `mv_xuantie_haichao` | 4 | `aoe_single` · 1（3 段） | 1.35 | 10% | 2 | 1100 | `bf_chihuan`·承·50% | ✓ | 1.41 −0.05 |
-| 雕翼扫（原创扩展，致敬神雕以翅助练） | `mv_xuantie_diaoyi` | 5 | `aoe_sweep` | 0.95 | 9% | 1 | 1100 | — | ✓ | 0.75 × 1.24 = 0.93 |
+| 雕翼扫（原创扩展，致敬神雕以翅助练） | `mv_xuantie_diaoyi` | 5 | `aoe_cone {angle:120,r:1,dirCount:6}` | 1.05 | 9% | 1 | 1100 | — | ✓ | N=3、AF=0.85；0.85 × 1.24 = 1.05 |
 | 剑冢葬锋 | `mv_xuantie_zangfeng` | 6 | `aoe_self`（架势） | 0 | 6% | 3 | 800 | `bf_shoushi`·承·100%·2；被近战攻击以 1.0 倍反击并击退 1 | — | 架势 |
 | 玄铁千钧（绝招） | `mv_xuantie_qianjun` | 7 | `aoe_single` · 1 | 2.35 | 10% | — | 1200 | 击退 2；`bf_xuanyun`·承·50%·1 | ✗ | 3.0 × 0.85 = 2.55，−0.10 −0.125 |
 | 草木为剑（碑文"草木竹石均可为剑"） | `mv_xuantie_caomu` | 9 | `aoe_single` · 1–2（`ranged` 剑气） | 1.10 | 9% | 2 | 1000 | 可持任意兵器或空手施放（×0.9） | ✓ | 1.29 × 0.85 |
@@ -971,7 +971,7 @@
 | 抚琴按箫 | `mv_suxin_fuqin` | 3 | `aoe_single` · 1–3（`ranged`，2 段） | 1.10 | 9% | 2 | 1000 | — | ✓ | 1.29 × 0.85 |
 | 松下对弈 | `mv_suxin_songxia` | 4 | `aoe_self`（架势） | 0 | 7% | 2 | 850 | `bf_ningshen`·承·100%·2；被近战攻击以 1.1 倍反击 | — | 触发型 |
 | 池边调鹤 | `mv_suxin_chibian` | 5 | `aoe_pull n2` · 1–3 | 1.10 | 9% | 2 | 1000 | — | ✓ | 0.95 × 1.29 = 1.23，−0.10 |
-| 扫雪烹茶 | `mv_suxin_saoxue` | 6 | `aoe_sweep` | 0.80 | 8% | 1 | 1000 | `bf_hanqi`·承·30%·3 | ✓ | 0.75 × 1.12 = 0.84，−0.03 |
+| 扫雪烹茶 | `mv_suxin_saoxue` | 6 | `aoe_cone {angle:120,r:1,dirCount:6}` | 0.90 | 8% | 1 | 1000 | `bf_hanqi`·承·30%·3 | ✓ | N=3、AF=0.85；0.85 × 1.12 = 0.95，−0.03 = 0.92，取 0.90 |
 | 双剑合璧（绝招，05 §9.3.1） | `mv_suxin_hebi` | 7 | `aoe_single` · 1 | 3.00 | 10% | — | 1200 | 搭档集气 −300 同时出招（其本武学最高普通招式 ×1.0，流程归 09）；情缘 Z3 +10% | ✓ | 3.0 基准 |
 | 举案齐眉**（待考：《神雕侠侣》玉女素心剑法招名）** | `mv_suxin_juan` | 8 | `aoe_allies r2`（自身与搭档） | 0 | 9% | 4 | 900 | `bf_ruiyi`·承·100%·2；`bf_xieli`·承·100%·2 | — | 支援 |
 
@@ -1176,13 +1176,13 @@
 | 揽雀尾 | `mv_taijiquan_lanque` | 1 | `aoe_single` · 1 | 0.95 | 8% | 0 | 1000 | `bf_shiheng`·承·50%·1 | ✓ | 1 −0.05 |
 | 单鞭 | `mv_taijiquan_danbian` | 1 | `aoe_single` · 1 | 1.05 | 8% | 1 | 1000 | 击退 1 | ✓ | 1.12 −0.05 |
 | 白鹤亮翅 | `mv_taijiquan_baihe` | 2 | `aoe_self`（架势） | 0 | 5% | 2 | 800 | `bf_jingshi`·承·100%；被近战攻击以 1.0 倍反击 | — | 触发型 |
-| 搂膝拗步 | `mv_taijiquan_louxi` | 3 | `aoe_sweep` | 0.85 | 8% | 1 | 1000 | — | ✓ | 0.75 × 1.12 |
+| 搂膝拗步 | `mv_taijiquan_louxi` | 3 | `aoe_cone {angle:120,r:1,dirCount:6}` | 0.95 | 8% | 1 | 1000 | — | ✓ | N=3、AF=0.85；0.85 × 1.12 = 0.95 |
 | 手挥琵琶 | `mv_taijiquan_shouhui` | 4 | `aoe_single` · 1 | 1.05 | 8% | 1 | 1000 | `bf_waigong_jiang`·承·60%·2 | ✓ | 1.12 −0.06 |
 | 进步搬拦捶 | `mv_taijiquan_banlan` | 5 | `aoe_dash n2` · 1–2 | 1.20 | 9% | 2 | 1000 | — | ✓ | 1.29 −0.10 |
 | 如封似闭 | `mv_taijiquan_rufeng` | 6 | `aoe_self` | 0 | 8% | 3 | 800 | `bf_shoushi`·承·100%·2；`bf_xieli`·承·100%·2 | — | 架势 |
 | 十字手 | `mv_taijiquan_shizi` | 7 | `aoe_single` · 1（2 段） | 1.05 | 8% | 1 | 1000 | `bf_fengjingmai`（参数 unarmed）·承·30%·2 | ✓ | 1.12 −0.045 |
 | 抱虎归山（绝招） | `mv_taijiquan_baohu` | 7 | `aoe_single` · 1 | 2.75 | 10% | — | 1200 | 借力摔投：与目标换位（`swap`）；`bf_xuanyun`·承·40%·1 | ✓ | 3.0 −0.15 −0.10 |
-| 云手 | `mv_taijiquan_yunshou` | 9 | `aoe_around` | 0.80 | 9% | 2 | 1000 | `bf_shiheng`·承·40%·1 | ✓ | 0.65 × 1.29 = 0.84，−0.04 |
+| 云手 | `mv_taijiquan_yunshou` | 9 | `aoe_around` | 0.95 | 9% | 2 | 1000 | `bf_shiheng`·承·40%·1 | ✓ | N=6、AF=0.75；0.75 × 1.29 = 0.97，−0.04 ≈ 0.95 |
 
 | 被动 | ID | 层 | 类 · 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|
@@ -1213,9 +1213,9 @@
 | 三环套月 | `mv_taijijian_sanhuan` | 1 | `aoe_single` · 1（3 段） | 1.15 | 9% | 1 | 1000 | — | ✓ | 1.17 |
 | 大魁星 | `mv_taijijian_dakuixing` | 1 | `aoe_single` · 1 | 0.90 | 8% | 0 | 1000 | 自身 `bf_yuanzhuan`·承·100%·2 | ✓ | 1 −0.10 |
 | 燕子抄水 | `mv_taijijian_yanzi` | 2 | `aoe_dash n3` · 1–3 | 1.20 | 9% | 2 | 1000 | — | ✓ | 1.29 −0.10 |
-| 左右拦扫 | `mv_taijijian_lansao` | 3 | `aoe_sweep`（左右 2 段） | 0.90 | 9% | 1 | 1000 | — | ✓ | 0.75 × 1.17 = 0.88 |
+| 左右拦扫 | `mv_taijijian_lansao` | 3 | `aoe_cone {angle:120,r:1,dirCount:6}`（左右 2 段） | 1.00 | 9% | 1 | 1000 | — | ✓ | N=3、AF=0.85；0.85 × 1.17 = 0.99，取 1.00 |
 | 抱剑守中（原创扩展命名） | `mv_taijijian_xiaokuixing` | 4 | `aoe_self`（架势） | 0 | 6% | 2 | 850 | `bf_jingshi`·承·100%；被近战攻击以 1.1 倍反击 | — | 触发型 |
-| 剑圈（原创扩展命名，笑傲"剑圈"之说） | `mv_taijijian_jianquan` | 5 | `aoe_around` | 0.80 | 9% | 2 | 1000 | `bf_chizhi`·承·50%·2 | ✓ | 0.65 × 1.29 = 0.84，−0.05 |
+| 剑圈（原创扩展命名，笑傲"剑圈"之说） | `mv_taijijian_jianquan` | 5 | `aoe_around` | 0.90 | 9% | 2 | 1000 | `bf_chizhi`·承·50%·2 | ✓ | N=6、AF=0.75；0.75 × 1.29 = 0.97，−0.05 ≈ 0.90 |
 | 黏剑卸兵（原创扩展命名） | `mv_taijijian_zhanjian` | 6 | `aoe_single` · 1 | 1.35 | 9% | 2 | 1000 | 条件：目标持兵器；`bf_jiaoxie`·承·40% | ✓ | 1.44 −0.10 |
 | 太极生两仪（绝招，原创扩展命名） | `mv_taijijian_liangyi` | 7 | `aoe_single` · 1 | 2.90 | 10% | — | 1200 | 目标相邻六个六角格内的敌人 `bf_shiheng`·承·100%·1 | ✓ | 3.0 −0.10 |
 
@@ -1249,7 +1249,7 @@
 |---|---|---|---|---|---|---|---|---|---|---|
 | 纯阳驱寒 | `mv_chunyangwuji_quhan` | 2 | `aoe_single` · 0–1（友方） | 0 | 9% | 3 | 1000 | 驱散目标 2 个 `cold` 减益（品阶承；`bf_handu` 仅压制 2 回合）；回复 12% 气血 | — | 支援；可作辅运使用 |
 | 无极归一（原创扩展命名） | `mv_chunyangwuji_guiyi` | 4 | `aoe_self` | 0 | 9% | 4 | 900 | `bf_hutizhenqi`·承·100%·3（hpMax 12%）；`bf_neijin_sheng`·承·100%·2 | — | 支援 |
-| 纯阳真火（绝招，原创扩展命名） | `mv_chunyangwuji_zhenhuo` | 7 | 对敌 `aoe_around`；对友 `aoe_allies r2` | 1.20 | 9% | — | 1200 | 友方各驱散 2 个 `cold` 减益，`bf_yuhan`·承·100%·3 | ✓ | 3.0 × 0.65 = 1.95，−0.75（友方驱散与增益）= 1.20 |
+| 纯阳真火（绝招，原创扩展命名） | `mv_chunyangwuji_zhenhuo` | 7 | 对敌 `aoe_around`；对友 `aoe_allies r2` | 1.50 | 9% | — | 1200 | 友方各驱散 2 个 `cold` 减益，`bf_yuhan`·承·100%·3 | ✓ | N=6、AF=0.75；3.0 × 0.75 = 2.25，−0.75（友方驱散与增益）= 1.50 |
 
 | 被动 | ID | 层 | 类 · 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|
@@ -1308,7 +1308,7 @@
 | 无极起手（原创扩展命名） | `mv_wujixuangongquan_qishou` | 1 | `aoe_single` · 1 | 1.00 | 7% | 0 | 1000 | — | ✓ | 基准 |
 | 玄功贯拳 | `mv_wujixuangongquan_guanquan` | 1 | `aoe_single` · 1 | 1.15 | 8% | 1 | 1000 | `bf_neishang`·承·30%·4 | ✓ | 1.17 −0.03 |
 | 连环三拳 | `mv_wujixuangongquan_lianhuan` | 3 | `aoe_single` · 1（3 段） | 1.30 | 8% | 2 | 1000 | — | ✓ | 1.29 |
-| 震山 | `mv_wujixuangongquan_zhenshan` | 5 | `aoe_cone n2` | 0.90 | 8% | 2 | 1000 | 击退 1 | ✓ | 0.75 × 1.29 = 0.97，−0.05 |
+| 震山 | `mv_wujixuangongquan_zhenshan` | 5 | `aoe_cone {r:2,angle:60,dirCount:6}` | 1.00 | 8% | 2 | 1000 | 击退 1 | ✓ | N=4、AF=0.80；0.80 × 1.29 = 1.03，−0.05 = 0.98，取 1.00 |
 | 火手判官（绝招，取张召重绰号） | `mv_wujixuangongquan_huoshou` | 7 | `aoe_single` · 1 | 2.90 | 9% | — | 1200 | `bf_zhuoshao`·承·100%·2 | ✓ | 3.0 −0.10 |
 
 | 被动 | ID | 层 | 类 · 乘区 | 数值 | 说明 |
@@ -1336,10 +1336,10 @@
 | 招式 | ID | 层 | 范围 · 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 | 招架 | 核算 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 流云 | `mv_rouyunjian_liuyun` | 1 | `aoe_single` · 1 | 1.00 | 7% | 0 | 1000 | — | ✓ | 基准 |
-| 云出无心（取陶渊明"云无心以出岫"） | `mv_rouyunjian_chuxiu` | 1 | `aoe_line n2` | 0.95 | 7% | 1 | 1000 | — | ✓ | 0.85 × 1.12 |
+| 云出无心（取陶渊明"云无心以出岫"） | `mv_rouyunjian_chuxiu` | 1 | `aoe_line n2` | 1.00 | 7% | 1 | 1000 | — | ✓ | N=2、AF=0.90；0.90 × 1.12 = 1.008 ≈ 1.00 |
 | 缠云 | `mv_rouyunjian_chanyun` | 3 | `aoe_single` · 1 | 1.20 | 8% | 2 | 1000 | `bf_chanrao`·承·40%·2 | ✓ | 1.29 −0.08 |
 | 云深不知处（取贾岛诗） | `mv_rouyunjian_yunshen` | 5 | `aoe_behind r2` | 1.00 | 8% | 2 | 1000 | 绕背出招（背击 Z7） | ✓ | 0.90 × 1.29 = 1.16，−0.15 |
-| 柔云万里（绝招） | `mv_rouyunjian_wanli` | 7 | `aoe_cone n3` | 1.90 | 9% | — | 1200 | `bf_chizhi`·承·50%·2 | ✓ | 3.0 × 0.65 = 1.95，−0.05 |
+| 柔云万里（绝招） | `mv_rouyunjian_wanli` | 7 | `aoe_cone {r:3,angle:60,dirCount:6}` | 2.05 | 9% | — | 1200 | `bf_chizhi`·承·50%·2 | ✓ | N=7、AF=0.70；3.0 × 0.70 = 2.10，−0.05 = 2.05 |
 
 | 被动 | ID | 层 | 类 · 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|
@@ -1396,7 +1396,7 @@
 |---|---|---|---|---|---|---|---|---|---|---|
 | 武林至尊 | `mv_yitiantulonggong_wulin` | 1 | `aoe_single` · 1（4 段） | 1.00 | 7% | 0 | 1000 | — | ✓ | 基准 |
 | 宝刀屠龙 | `mv_yitiantulonggong_tulong` | 1 | `aoe_single` · 1 | 1.10 | 8% | 1 | 1000 | `bf_pojia`·承·50%·2 | ✓ | 1.17 −0.05 |
-| 号令天下 | `mv_yitiantulonggong_haoling` | 2 | `aoe_cone n2` | 0.95 | 8% | 2 | 1000 | `bf_zhenshe`·承·30%·1 | ✓ | 0.75 × 1.29 = 0.97，−0.03 |
+| 号令天下 | `mv_yitiantulonggong_haoling` | 2 | `aoe_cone {r:2,angle:60,dirCount:6}` | 1.00 | 8% | 2 | 1000 | `bf_zhenshe`·承·30%·1 | ✓ | N=4、AF=0.80；0.80 × 1.29 = 1.03，−0.03 = 1.00 |
 | 莫敢不从 | `mv_yitiantulonggong_mogan` | 4 | `aoe_single` · 1 | 1.20 | 8% | 2 | 1000 | `bf_kongju`·承·30%·1 | ✓ | 1.29 −0.075 |
 | 倚天不出 | `mv_yitiantulonggong_yitian` | 5 | `aoe_self`（架势） | 0 | 7% | 3 | 850 | `bf_shoushi`·承·100%·2；被近战攻击以 1.0 倍反击 | — | 架势 |
 | 谁与争锋（绝招，二十四字一气呵成） | `mv_yitiantulonggong_zhengfeng` | 7 | `aoe_line n4` | 2.20 | 9% | — | 1200 | `bf_zhenshe`·承·50%·1 | ✓ | 3.0 × 0.75 = 2.25，−0.05 |
@@ -1482,7 +1482,7 @@
 **`sk_taihegong` 太和功**（2 黄中 · 内功 · 调和 · 原创扩展；武当山古称太和山）
 - `nature: harmony`。
 - 内功贡献：`mpMaxPct 8, hpMaxPct 5, attrs {wil 2, con 1}, mpRegen 1.0`（IP 24）；`stats {effRes 3, resInjury 3}`；无招式。
-- reqs：`sect {sect_wudang, rank 1}`；`hard [sect]`。获取：武当拜师；连城★ / 鸳鸯★游方武当道人 `npc_wudang_youfang`（maxLayer 8）。
+- reqs：`sect {sect_wudang, rank 1}`；`hard [sect]`。获取：武当拜师；连城★ / 鸳鸯★游方武当道人岗位槽（maxLayer 8）。
 - 被动：`ps_taihegong_taihe` 太和（1 重，运功调息回内 +5% → +10%）；`ps_taihegong_chonghe` 冲和（5 重，阴阳相冲的"内息相冲"判定概率 −50%，05 §5.4）；`ps_taihegong_yuanman` 圆满（10 重，两仪心法软门槛 −10）。
 
 **`sk_liangyixinfa` 两仪心法**（5 玄中 · 内功 · 调和 · 原创扩展；取"太极生两仪"）
@@ -1739,7 +1739,7 @@
 | 金刀锯骨 | `mv_yinyangdaoluan_jindao` | 3 | `aoe_single` · 1 | 1.15 | 8% | 2 | 1000 | `bf_liuxue`·承·60%·3（2 层） | ✓ | 1.29 −0.12 |
 | 阴阳倒乱 | `mv_yinyangdaoluan_daoluan` | 4 | `aoe_single` · 1 | 1.10 | 8% | 2 | 1000 | — | ✗ | 1.29 × 0.85 |
 | 推入情花（原创扩展命名） | `mv_yinyangdaoluan_qinghua` | 5 | `aoe_knock n2` | 1.10 | 8% | 2 | 1000 | 击退 2；落点为情花丛地形（design/08，建议 `tr_qinghuacong`）时由地形施加 `bf_qinghuadu` | ✓ | 0.95 × 1.29 = 1.23，−0.10 |
-| 两仪倒转（绝招，原创扩展命名） | `mv_yinyangdaoluan_liangyi` | 7 | `aoe_around`（2 段） | 1.90 | 9% | — | 1200 | `bf_shiheng`·承·50%·1 | ✓ | 3.0 × 0.65 = 1.95，−0.05 |
+| 两仪倒转（绝招，原创扩展命名） | `mv_yinyangdaoluan_liangyi` | 7 | `aoe_around`（2 段） | 2.20 | 9% | — | 1200 | `bf_shiheng`·承·50%·1 | ✓ | N=6、AF=0.75；3.0 × 0.75 = 2.25，−0.05 = 2.20 |
 
 | 被动 | ID | 层 | 类 · 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|
@@ -1774,10 +1774,10 @@
 | 招式 | ID | 层 | 范围 · 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 | 招架 |
 |---|---|---|---|---|---|---|---|---|---|
 | 断情 | `mv_jueqingjian_duanqing` | 1 | `aoe_single` · 1 | 1.00 | 5% | 0 | 1000 | — | ✓ |
-| 忘忧 | `mv_jueqingjian_wangyou` | 4 | `aoe_sweep` | 0.85 | 5% | 1 | 1000 | — | ✓ |
+| 忘忧 | `mv_jueqingjian_wangyou` | 4 | `aoe_cone {angle:120,r:1,dirCount:6}` | 0.95 | 5% | 1 | 1000 | — | ✓ |
 | 肠断（呼应断肠草） | `mv_jueqingjian_changduan` | 7 | `aoe_single` · 1 | 1.25 | 6% | 2 | 1000 | `bf_nanyu`·承·30%·3 | ✓ |
 
-- 核算：忘忧 0.75 × 1.12；肠断 1.29 − 0.03。被动：`ps_jueqingjian_lengfeng` 冷锋（5 重，本武学 `attr:crit flat +3`）；`ps_jueqingjian_yuanman` 圆满（10 重，阴阳倒乱刃法软门槛 −10）。
+- 核算：忘忧以 N=3、AF=0.85 计，0.85 × 1.12 = 0.95；肠断 1.29 − 0.03。被动：`ps_jueqingjian_lengfeng` 冷锋（5 重，本武学 `attr:crit flat +3`）；`ps_jueqingjian_yuanman` 圆满（10 重，阴阳倒乱刃法软门槛 −10）。
 
 **`sk_changxuzhang` 长须杖法**（5 玄中 · 兵器/棍杖 · 阳 · 0.80/0.20 · 原创扩展命名）
 - 原著：公孙止大弟子樊一翁身材矮小、长须拖地，以长须作鞭、钢杖为兵；兵刃细节仍须核对**（待考：《神雕侠侣》樊一翁与杨过等交手的段落）**。
@@ -1787,10 +1787,10 @@
 |---|---|---|---|---|---|---|---|---|---|
 | 钢杖 | `mv_changxuzhang_gangzhang` | 1 | `aoe_single` · 1 | 1.00 | 6% | 0 | 1000 | — | ✓ |
 | 长须卷 | `mv_changxuzhang_changxu` | 1 | `aoe_pull n1` · 1–2 | 0.90 | 6% | 1 | 1000 | `bf_chanrao`·承·20%·2 | ✓ |
-| 横扫千军 | `mv_changxuzhang_hengsao` | 4 | `aoe_sweep` | 0.85 | 7% | 1 | 1000 | 击退 1 | ✓ |
+| 横扫千军 | `mv_changxuzhang_hengsao` | 4 | `aoe_cone {angle:120,r:1,dirCount:6}` | 0.95 | 7% | 1 | 1000 | 击退 1 | ✓ |
 | 须杖齐施 | `mv_changxuzhang_qishi` | 7 | `aoe_single` · 1（2 段） | 1.30 | 7% | 2 | 1000 | — | ✓ |
 
-- 核算：长须卷 0.95 × 1.12 = 1.06，−0.10 −0.04；横扫千军 0.75 × 1.17 = 0.88，−0.05；须杖齐施 1.29。被动：`ps_changxuzhang_changxu` 长须（1 重，本武学射程 2 的招式 `attr:hit flat +5`）；`ps_changxuzhang_lishan` 杖立如山（5 重，`attr:resCC pp +8`）；`ps_changxuzhang_dacheng` 大成（10 重，本武学 Z3 +6%）。
+- 核算：长须卷 0.95 × 1.12 = 1.06，−0.10 −0.04；横扫千军以 N=3、AF=0.85 计，0.85 × 1.17 = 0.99，−0.05 = 0.94，取 0.95；须杖齐施 1.29。被动：`ps_changxuzhang_changxu` 长须（1 重，本武学射程 2 的招式 `attr:hit flat +5`）；`ps_changxuzhang_lishan` 杖立如山（5 重，`attr:resCC pp +8`）；`ps_changxuzhang_dacheng` 大成（10 重，本武学 Z3 +6%）。
 
 **`sk_zaoheding` 枣核钉**（6 玄上 · 暗器 · 阴 · 0.60/0.40 · 原著）
 - 原著：裘千尺手足筋脉被挑断、囚于谷底石窟，以口喷射枣核钉伤人；伤公孙止之目等细节仍须核对**（待考：《神雕侠侣》谷底石窟及裘千尺、公孙止最终冲突段落）**。本作保留“口喷”——不需双手（原创规则化）。弹药枣核 `it_zaoheding`（建议 ID）。预算按 §3.4 暗器约定。
@@ -1864,7 +1864,7 @@
 | 武当·太极 | `set_wudang_taiji` | `sk_taijiquan`、`sk_taijijian`、`sk_liangyixinfa`、`sk_taijituishou`、`sk_mianzhang`、`sk_tiyunzong` | 无 |
 | 武当·真武 | `set_wudang_zhenwu` | `sk_chunyangwuji`、`sk_huzhaojuehushou`、`sk_wujixuangongquan`、`sk_shenmen13`、`sk_yitiantulonggong`、`sk_zhenwuqijie` | `sk_wudangjiuyang`（倚天图鉴） |
 
-未采用的 `set_shujian_mianlizhen`、`set_chilian_xianzi`、`set_jueqing_gongsun` 与跨组 `set_tiezhang_shuishangpiao` 已从实际标签移除；原因与合并去向见 `design/07` §19。装备草案不计入 v1 成员。
+未采用的 `legacy-set:shujian_mianlizhen`、`legacy-set:chilian_xianzi`、`legacy-set:jueqing_gongsun` 与跨组 `legacy-set:tiezhang_shuishangpiao` 已从实际标签移除；原因与合并去向见 `design/07` §19。装备草案不计入 v1 成员。
 
 ---
 
@@ -2019,15 +2019,36 @@
 | 武学 `sk_` | **115 个本文定义；116 门本组计数** | 本文定义：全真 26（另含 05 定义的 `sk_quanzhenjian` 1）、古墓 27、杨过传承 11、武当 36、绝情谷 15；另引用 `sk_wudangjiuyang` 等跨组 ID 不计。本轮新增 `sk_` 恰 50 个 |
 | 招式 `mv_` | **303** | 旧稿 250＋本轮玄阶紧凑卡 53；另引用全真剑法 4 个；本轮黄阶采用模板一行卡，不创建招式 ID |
 | 被动 `ps_` | **268** | 旧稿 215＋本轮玄阶紧凑卡 53；前缀按 05 §16 P-4 |
-| 套装候选 `set_` | **9**（新 8 ＋沿用 1） | 新：`set_gumu_yunv` `set_shendiao_xialv` `set_dugu_jianzhong` `set_wudang_taiji` `set_wudang_zhenwu` `set_shujian_mianlizhen` `set_chilian_xianzi` `set_jueqing_gongsun`；沿用 05：`set_quanzhen_beidou` |
+| 套装候选 `set_` | **9**（新 8 ＋沿用 1） | 新：`set_gumu_yunv` `set_shendiao_xialv` `set_dugu_jianzhong` `set_wudang_taiji` `set_wudang_zhenwu` `legacy-set:shujian_mianlizhen` `legacy-set:chilian_xianzi` `legacy-set:jueqing_gongsun`；沿用 05：`set_quanzhen_beidou` |
 | 新提议 Buff | **0** | C23 已解决：不登记 `bf_zhenshi`、`bf_cuidu`。前者由阵法运行状态投影 UI“阵中”，后者复用 `design/10` §6.5 `poisonCoat` 与 `bf_zhongdu` / `bf_judu`；两串旧名只可出现在迁移/裁定说明，不得进入 `applyBuff` |
 | 装备（建议 ID，design/10 定级） | 7 | `eq_chongyangdaopao` 重阳道袍（原创扩展）、`eq_jinlingsuo` 金铃索、`eq_junzijian` 君子剑、`eq_shunvjian` 淑女剑、`eq_chilianfuchen` 赤练拂尘（原创扩展命名）、`eq_juchijindao` 锯齿金刀**（待考：《神雕侠侣》公孙止兵刃描写）**、`eq_heijian` 黑剑；引用基准 §14 `eq_xuantiejian` |
 | 物品（建议 ID，design/10） | 15 | 秘籍 `it_miji_quanzhenxinfa` `it_miji_tongguijian` `it_miji_chilianshenzhang_can` `it_miji_bingpoyinzhen` `it_miji_liangyixinfa` `it_miji_chunyangwuji` `it_miji_huzhaojuehushou` `it_miji_wujixuangongquan` `it_miji_shenmen13`；暗器弹药 `it_bingpoyinzhen` `it_yufengzhen` `it_furongjinzhen` `it_zaoheding`；`it_yufengjiang` 玉蜂浆；引用 `it_jueqingdan` `it_duanchangcao` |
-| NPC（占位） | 21 | `npc_mayu` `npc_qiuchuji` `npc_yideng` `npc_quanzhen_sandai` `npc_baiyunguan_daozhang` `npc_xiaolongnv` `npc_limochou` `npc_zhoubotong` `npc_yangguo` `npc_zhangsanfeng` `npc_songyuanqiao` `npc_yulianzhou` `npc_zhangcuishan` `npc_chongxu` `npc_lufeiqing` `npc_liyuanzhi` `npc_zhangzhaozhong` `npc_wudang_youfang` `npc_gongsunzhi` `npc_qiuqianchi` `npc_fanyiweng` |
+| NPC（引用/岗位槽） | 具名 18；岗位槽 3 | 具名：`npc_mayu` `npc_qiuchuji` `npc_yideng` `npc_xiaolongnv` `npc_limochou` `npc_zhoubotong` `npc_yangguo` `npc_zhangsanfeng` `npc_songyuanqiao` `npc_yulianzhou` `npc_zhangcuishan` `npc_chongxu` `npc_lufeiqing` `npc_liyuanzhi` `npc_zhangzhaozhong` `npc_gongsunzhi` `npc_qiuqianchi` `npc_fanyiweng`；岗位槽：全真知客道人、白云观道长、游方武当道人 |
 | 任务（占位，本文件号段 `_71`–`_96`） | 24 | `q_02_bond_72` `q_02_faction_73` `q_02_qiyu_74` `q_02_bond_75` `q_02_faction_77` `q_03_side_76` `q_03_side_79` `q_03_faction_80` `q_03_qiyu_81` `q_03_bond_82` `q_03_qiyu_83` `q_03_qiyu_84` `q_03_bond_86` `q_03_faction_94` `q_03_side_95` `q_03_qiyu_96` `q_04_bond_85` `q_04_main_87` `q_04_main_88` `q_04_bond_91` `q_04_qiyu_92` `q_04_faction_93` `q_12_faction_89` `q_12_bond_90` |
 | 其他 | 2 | 存档旗标 `anran_bieli`（黯然"别离"门槛）；地形建议 `tr_qinghuacong` 情花丛（design/08） |
 
 ---
+
+### 正式套装反向标签镜像（全局审计）
+
+下表仅镜像 `design/07` §8.4 的正式成员关系，供构建与 lint 读取；不是第二份武学定义。历史候选只以 `legacy-set:<slug>` 保留，不得写入运行态 `setTags`。
+
+| 武学 ID | setTags |
+|---|---|
+| `sk_dabeidouzhen` | `set_quanzhen_beidou` |
+| `sk_haichaolianjian` | `set_dugu_jianzhong` |
+| `sk_hanyuxinjue` | `set_gumu_yunv` |
+| `sk_jianzhongtuna` | `set_dugu_jianzhong` |
+| `sk_liangyixinfa` | `set_wudang_taiji` |
+| `sk_lijianyi` | `set_dugu_jianzhong` |
+| `sk_meinvquan` | `set_gumu_yunv` |
+| `sk_mianzhang` | `set_wudang_taiji` |
+| `sk_quanzhenjian` | `set_quanzhen_beidou`、`set_shendiao_xialv` |
+| `sk_quanzhenxinfa` | `set_quanzhen_beidou` |
+| `sk_ruanjianyi` | `set_dugu_jianzhong` |
+| `sk_taijituishou` | `set_wudang_taiji` |
+| `sk_yufengzhen` | `set_gumu_yunv` |
+| `sk_yunvjian` | `set_gumu_yunv`、`set_shendiao_xialv` |
 
 ## 10. 数据校验规则与测试用例
 
@@ -2042,7 +2063,7 @@
 | DJ-V05 | 前置结构（C17） | `prereq` 外层 AND、`anyOf` 内层 OR；纯阳无极功与玉女心经不得回退为自然语言二选一；倚天屠龙功须有 `skills {art: 40}`；五毒秘传因原稿无数值，不强造 `poi: 40` |
 | DJ-V06 | 套装闭合（C22） | 本文件归属成员的 `setTags` 与 §7 成员表双向一致；跨归属缺口只列 §11 D-12，不在本文复制定义；套装品阶按 `floor(median(effGrade))` |
 | DJ-V07 | Buff 目录（C23） | 活跃规则不得施加 `bf_zhenshi` 或 `bf_cuidu`；运行用 `bf_*` 均能在 `design/06` 找到定义，历史说明中的撤回名不计活跃引用 |
-| DJ-V08 | 六角范围（AR-12） | 活跃招式不得保留 `aoe_cross`、`aoe_sq3`、`aoe_sq5`、旧占位模板或 `aoe_zone shape=sq*`；中心＋六邻格须分别匹配 `aoe_disk {r:1}` 或结构化 `aoe_zone`，并以 N=7、AF=0.70 校验直接伤害 |
+| DJ-V08 | 六角范围（AR-12） | 活跃招式不得保留 `design/09` §5.3.4 所列旧方格、十字、扫掠模板及旧 `cone.n` / `zone.shape` / `leap.splash` 参数；正式 `aoe_disk`、`aoe_spokes`、`aoe_cone` 与结构化 `aoe_zone` 均可使用，并按各自 Nmax 核算 AF |
 | DJ-V09 | 门派与职级（AR-07/08） | `sect_quanzhen`、`sect_wudang`、`sect_gumu`、`sect_jueqinggu` 与 `design/17` 一致；所有 `sect.rank` 为 1–5，不得残留 0–4 旧制 |
 | DJ-V10 | 天级池（C15） | 本文无第 52 个天级 ID；神雕全局完整原生天级池固定 16；笑傲太极拳/剑均为 `partial`、`lineageGrade 10`，不计完整池 |
 | DJ-V11 | 标注与考据 | 原创获取/机制有“原创扩展”；每个保留的“待考”均指出书名与要核对的人物、情节、名目或版本差异；不虚构引文与回目号 |
@@ -2119,7 +2140,7 @@
 | D-1 | C13；基准 §8；05 §7.7、09 §6.8 | **已解决**：天罡北斗阵、真武七截阵均 4 个有效实际单位起阵且低于 4 即散，持续 3 次阵主行动；原著完整阵均为 7 人，游戏中仅“6 实员＋阵主有效 10 重”补 1 虚位。虚位不增单位、CT、追击或反击；北斗大阵 3 人、渔网阵 2 人不套 C13（见 §2.3、§2.5、§5.4） |
 | D-4 | C17；`rulings-v1.md` §4 | **已解决**：玉女心经、纯阳无极功使用 `prereq[].anyOf`；倚天屠龙功使用 `skills {art: 40}`；真武七截阵枚举武当拳脚/兵器 OR 分支。五毒秘传原稿无毒术数值，故只说明 `poi` 参与强度，不臆造门槛（见 §3.3、§3.5、§5.4） |
 | D-11 | C14、AR-01；05 §14 | **已解决（CXd）**：保留 8 天、18 地，新增玄 19、黄 31，使本图鉴由 `8/18/25/15=66` 达到受控配额 `8/18/44/46=116`；未新增天阶、未删改既有品阶。扩充后的十四书界全目录池仍由 F2 / 章节统一重算（见 §8.3） |
-| D-12 | C22；07 | **本文侧已解决**：套装按 `floor(median(effGrade))`，成员与 `setTags` 必须双向闭合；本文给 `sk_zaoheding → set_tiezhang_shuishangpiao`，倚天组已给 `sk_wudangjiuyang → set_wudang_zhenwu`。仍需五岳组给 `sk_dugu9 → set_dugu_jianzhong`、05 给 `sk_quanzhenjian → set_shendiao_xialv`，07 建唯一成员表（见 §7） |
+| D-12 | C22；07 | **本文侧已解决**：套装按 `floor(median(effGrade))`，成员与 `setTags` 必须双向闭合；本文给 `sk_zaoheding → legacy-set:tiezhang_shuishangpiao`，倚天组已给 `sk_wudangjiuyang → set_wudang_zhenwu`。仍需五岳组给 `sk_dugu9 → set_dugu_jianzhong`、05 给 `sk_quanzhenjian → set_shendiao_xialv`，07 建唯一成员表（见 §7） |
 | D-13 | C23；06、09、10 | **已解决**：撤回 `bf_zhenshi`、`bf_cuidu`；前者由阵法状态投影 UI，后者复用 `poisonCoat` 与 `bf_zhongdu` / `bf_judu`。两旧串仅留在迁移说明与禁止性校验中，不得用于运行时 `applyBuff`（见 §9–§10） |
 | D-15 | 03 待决 D-03、05 §14.6 #7 | **已对齐**：神雕最高本土轻功由地上古墓轻功满足；笑傲 / 侠客 / 书剑 / 飞狐由地中梯云纵满足；射雕本组最高仅玄上金雁功 |
 | U-1 | C15；基准 v1.1 V11-17、§13 | **已采纳（v1.1）且作者 G1 确认默认**：高武完整原生天级池允许 6–16；神雕固定 16 = 天上 2＋天中 6＋天下 8。本文神雕行只含本图鉴完整/回想子集，不得用 4 或 5 改写全局 16；笑傲太极拳/剑为 10 品残承，另列且不计完整池 |
