@@ -1,7 +1,7 @@
 # 06 · Buff 体系（Buff System）
 
 > **归属**（基准 §18）：Buff 规则与完整目录——数据结构、品阶强度与品阶对抗、叠加与冲突、持续与结算时机、触发器与效果原语（DSL 语义）、驱散与免疫、蛊毒专章、UI 表现规则、平衡约束。
-> **版本**：v1.2（跨文档同步，2026-09-26）。
+> **版本**：v1.2（跨文档同步、全局审计，2026-09-26）。
 > **上游**：`decisions/author-requirements.md`（AR-03 冲穴接口、AR-12 战斗状态清单）、`decisions/author-decisions.md`（G1、P27、P31、P39）、`00-canon.md`（§4 品阶、§6 属性 ID、§7 兵器类别、§8 战斗模型与"回合"定义、§9 乘区、§10 Buff 基础规则、§12 ID 规范、§13 天级武学、§14 神兵）、`decisions/rulings-v1.md`（C07–C09、C11–C12、C23）。
 > **引用而不重定义**：属性形态与修饰种类（`flat`/`flatLv`/`pct`/`mult`/`pp`）→ `design/03-attributes.md`；伤害、治疗、命中/招架/暴击、效果命中公式 → `design/04-damage-formula.md`；武功被动、招式 `buffs` 字段、层数系数、辅运比例、走火入魔触发条件、"破 X"的获取 → `design/05-martial-arts-system.md`；套装 → `design/07-set-system.md`；地形与轻功 → `design/08-terrain-and-qinggong.md`；集气/反击/合击/AI/Boss 阶段 → `design/09-combat-system.md`；物品与丹药 → `design/10-items-and-equipment.md`；时辰/昼夜/节令 → `design/11-open-world.md`；NPC 与任务 → `design/12-quests-npc-factions.md`；天书之力、难度模式 → `design/13-progression-and-endings.md`；DSL 解释器实现 → `tech/05`（玩法引擎）。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术版本、价格、API 或限额尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖他文档、本文先给出可用数值并在 §15 登记。
@@ -914,7 +914,7 @@ bossF    = 以 hpMax 比例为 raw 时：Boss 0.25 / 精英 0.50 / 普通 1.00�
 | `onApply` / `onRefresh` | 本实例新建 / 被刷新 | 持有者 | `by` | — | 一次性效果 |
 | `onStack` / `onStackMax` | 层数变化 / 叠满 | 持有者 | `delta` | — | 寒气满层→冰冻、异种真气满层→真气逆行 |
 | `onRemove` / `onExpire` / `onDispelled` | 移除（任何原因）/ 到期 / 被驱散 | 持有者 | `reason` | — | 蓄势落空、诈死起身 |
-| `onBuffApplied` | 持有者即将获得或更新任意 Buff（提交前） | 持有者 | 只读 `buff`、`applyMode: 'create'|'stack'|'refresh'` | 可拒绝本次创建/叠层/刷新 | 坚毅、蛊王、九转 |
+| `onBuffApplied` | 持有者即将获得或更新任意 Buff（提交前） | 持有者 | 只读 `buff`、`applyMode: create / stack / refresh` | 可拒绝本次创建/叠层/刷新 | 坚毅、蛊王、九转 |
 | `onBuffApply` | 持有者向他人施加 Buff | 施加者 | `buff` `target` | — | 蛊王催蛊 |
 | `onImmuneBlocked` / `onResisted` | 免疫挡下 / 抵抗成功 | 持有者 | `buff` `delta` | — | 反噬类（原创扩展） |
 | **战斗外（世界）** | | | | | |
@@ -1648,7 +1648,7 @@ AR-12 的第五个新状态昏迷 `bf_hunmi` 已在 §8.7 定义。其余点名�
     types: [special]
     specialCures:
       - { item: it_sanshi_jieyao, effect: resetDeadline }          # 年度解药：重置期限（10）
-      - { quest: q_05_side_sanshi, effect: remove }                 # 根治任务（原创扩展，chapters/05 设计）
+      - { quest: q_05_faction_14, effect: remove }                 # 永久根治；完成条件归 chapters/05 `q_05_faction_14`（原创扩展）
   priority: 20                            # S1 周期发作段
   params:
     deadlineKey: "'sanshi_annual'"       # 由 11/章节日历配置映射到年度期限；未核实前不绑定具体节令
@@ -1685,6 +1685,8 @@ AR-12 的第五个新状态昏迷 `bf_hunmi` 已在 §8.7 定义。其余点名�
     log: "{holder} 的三尸脑神丹 {phaseName}"
   aiValue: "phase == 'latent' ? -1 : -6"
 ```
+
+根治由 `q_05_faction_14` 完成事件对指定服丹者调用 `removeBuff(bf_gu_sanshi)`；任务定义与完成条件归 `chapters/05`，本文只消费完成事件、不重定义。
 
 ### 9.7 开放世界中的用法（交给书界文档）
 
@@ -2027,9 +2029,9 @@ interface BuffLog {
 
 > `bf_zhongdu`、`bf_wudi` 为基准 §12 的示例 ID，本文沿用；其余 245 个在本文登记。C23 的 19 个缺口、AR-12 的 5 个点名缺口及 15 的 15 个经脉永久被动均已收录；`bf_cuidu`、`bf_zhenshi` 按裁定分别复用 `poisonCoat` 与阵法运行态，不作为 Buff ID。
 
-### 13.5 引用的物品/任务建议 ID（定义归 10/12/chapters）
+### 13.5 引用的物品与根治接口（定义归 10/12/chapters）
 
-`it_sanshi_jieyao`（三尸脑神丹年度解药）、`q_05_side_sanshi`（三尸脑神丹根治任务，原创扩展）。其余解药与丹药（辟毒丹、解毒丹、九花玉露丸、大还丹、黑玉断续膏、天香断续胶、绝情丹、断肠草、玉蜂浆、悲酥清风解药、十香软筋散解药、金蚕解药、醒酒汤、定神丹、暖阳丹、护心丹、九转还魂丹、火浣衣、冰蚕衣、夜行衣）只列名称，ID 与品阶由 10 统一分配。
+`it_sanshi_jieyao` 是三尸脑神丹年度解药。永久根治引用 `q_05_faction_14`（定义归 `chapters/05`），由其完成事件调用移除接口。其余解药与丹药（辟毒丹、解毒丹、九花玉露丸、大还丹、黑玉断续膏、天香断续胶、绝情丹、断肠草、玉蜂浆、悲酥清风解药、十香软筋散解药、金蚕解药、醒酒汤、定神丹、暖阳丹、护心丹、九转还魂丹、火浣衣、冰蚕衣、夜行衣）只列名称，ID 与品阶由 10 统一分配。
 
 ---
 
@@ -2130,7 +2132,7 @@ interface BuffLog {
 | P3 | **已采纳（v1.1）**：Z0 统一解析判定开关与判定乘数 | 基准 §9；本文 §4.7、§6.4 | V11-23 |
 | P4 | **已采纳（v1.1）**：固定 `ρ(Δ)` 与 `Δ≤0` 分支 | 基准 §10；本文 §3.5 | V11-26 |
 
-本轮没有新增基准修改提案；正文已按基准 v1.1 收敛。
+本轮没有新增基准修改提案；正文已按基准 v1.2 收敛。
 
 ### 15.4 考据清单（标注"待考"的原著事实，须以三联/广州修订版核对）
 

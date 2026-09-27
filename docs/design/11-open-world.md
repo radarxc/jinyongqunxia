@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：统一江湖大地图的玩法结构、全局区域 ID、时代图层、区域入口、探索、奇遇、世界昼夜天气、旅行、遭遇与休整；资源点与营生场所只定义地图位置及数量预算。
 > 上游：`decisions/author-decisions.md` P52–P53、`decisions/author-requirements.md` AR-03–AR-06/AR-08/AR-11/AR-13、`00-canon.md`、`decisions/rulings-v1.md`、`design/01`–`03`、`design/08`、`design/10`、`design/13`、`design/15`–`19` 与 `design/map/*.yaml`。
-> 引用而不重定义：年代、境界与书眠步骤 → `design/02`；属性、体力与恢复公式 → `design/03`；地形、轻功动作、门禁及战斗天气效果 → `design/08`；就地开战与遭遇战斗流程 → `design/09`；物品、坐骑与永久物品预算 → `design/10`；任务、门派关系与声望 → `design/12`；时长、多周目与结局 → `design/13`；冲穴动作、成本、进度与风险 → `design/15`；资源经营、家丁、营生职位与收益 → `design/16`；门派历史及开放矩阵 → `design/17`；NPC 生卒、招募与跨书重逢 → `design/18`；坐标、投影、路线几何、逐章城市状态与 SVG → `design/19`、`design/map/*.yaml`；跨年代传承源、遗迹资格、残本与信物规则 → 待落稿的 `design/20`；数据格式与运行时实现 → `tech/04`、`tech/05`。
+> 引用而不重定义：年代、境界与书眠步骤 → `design/02`；属性、体力与恢复公式 → `design/03`；地形、轻功动作、门禁及战斗天气效果 → `design/08`；就地开战与遭遇战斗流程 → `design/09`；物品、坐骑与永久物品预算 → `design/10`；任务、门派关系与声望 → `design/12`；时长、多周目与结局 → `design/13`；冲穴动作、成本、进度与风险 → `design/15`；资源经营、家丁、营生职位与收益 → `design/16`；门派历史及开放矩阵 → `design/17`；NPC 生卒、招募与跨书重逢 → `design/18`；坐标、投影、路线几何、逐章城市状态与 SVG → `design/19`、`design/map/*.yaml`；跨年代传承源、遗迹资格、残本与信物规则 → `design/20`；数据格式与运行时实现 → `tech/04`、`tech/05`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖下游或尚待跨文档同步的可用默认值，统一登记于 §15.1。
-> 版本：v1.2（跨文档同步，2026-09-26）。
+> 版本：v1.2（跨文档同步、全局审计，2026-09-26）。
 
 ---
 
@@ -40,7 +40,7 @@
 | 门派 | 将权威驻地映射到本文全局区域；时代层读取状态 | 门派历史、称谓、关系与 `O/H/P/M/N/D` 矩阵；见 `design/17` §3 |
 | 资源点 | `rp_*` 的分布原则和每书界数量 | 资源等级、占领、家丁、产出、维护；见 `design/16` |
 | 营生 | `biz_*` 随城市实例化、每书界数量 | 行脚 / 教头 / 客卿资格、收益与唯一性；见 `design/16` |
-| 跨年代遗迹 | 为未来 `design/20` 选定既有 `rg_* / city_* / scn_* / poi_*` 位置并声明本时代入口状态 | 传承源消隐、遗迹出现概率、残本 / 信物产出与合成；见待落稿的 `design/20` |
+| 跨年代遗迹 | 为 `design/20` 选定既有 `rg_* / city_* / sc_* / poi_*` 位置并声明本时代入口状态 | 传承源消隐、遗迹出现概率、残本 / 信物产出与合成；见 `design/20` |
 | 天气 | 世界层状态、生成、持续、迁移与战斗快照 | 天气对地形和战斗的效果；见 `design/08` §8 |
 | 战斗 | 从区域遭遇点截取现场，锁定天气与时辰快照 | 回合、AI、部署与胜负；见 `design/09` |
 
@@ -54,7 +54,7 @@
 江湖大地图（全作唯一，导航 UI；不可行走）
 └─ 全局玩法区域 rg_*（30 个稳定 ID；跨时代复用基础包）
    ├─ 城市 city_*（189 个稳定地理锚；时代层改名、改地位、改开放）
-   ├─ 野外 / 山门 / 岛屿 / 秘境场景 scn_*（按需加载）
+   ├─ 野外 / 山门 / 岛屿 / 秘境场景 sc_<NN>_*（按需加载）
    └─ 32×32 六角地块 chunk（1,024 个轴坐标槽；渲染与流式单位）
 
 书界 chNN = EraLayer
@@ -86,7 +86,7 @@
 - 每 chunk 固定 `32×32=1,024` 个轴坐标槽，来自 `tech/02` §2.2。槽位包含不可走留白，不能把槽位数等同于实际内容格。
 - 一个 `rg_*` 可含 3–8 个场景；同一时刻只挂载一个主场景及其必要室内子场景。区域不是一张 256×256 的巨图，也不把真实地理距离换算成格数。
 - 标准场景首屏恰为 3×3 chunk；大型场景其余 chunk 每帧最多上传 2 个。单个区域素材块沿用 `tech/03`：mid 典型 ≤20 MB、错误线 25 MB；规则 / 文本单片原始 JSON ≤300 KB，游戏中单次解析 ≤256 KB。
-- 大型城若超预算，按街区拆 `scn_<city>_<district>`，保持同一 `city_*`，不可伪造第二座城市。山体高差超过 10 级时按 `design/08` §5.1 拆段。
+- 大型城若超预算，按章节街区拆 `sc_<NN>_<拼音>`，保持同一 `city_*`，不可伪造第二座城市。山体高差超过 10 级时按 `design/08` §5.1 拆段。
 - 上表是玩法内容边界；`tech/02` / `tech/03` 尚需以 30 区结构复核 256×256 压力场景、区域包和切换峰值，见 §15。
 
 ### 1.4 区域连接
@@ -1076,7 +1076,7 @@ pEncounter = clamp(baseRate
 | 8 | `rg_xiyu_beijiang` | 第 6 幕开放；天山部众、灵鹫宫；北疆题签不代表清代城市建制 | `city_turpan` 高昌故地、`city_yining` 伊犁河谷部落**（待考）** | 23–33 | 缥缈峰、九天九部、洞岛群豪 |
 | 9 | `rg_monan` | 第 7 幕开放；辽上京与漠南军府 / 行营；蒙古诸部仅 `H`，不可称后世幕府 | `city_liaoshangjing` 上京临潢府、`city_chifeng` 上京南境**（待考）**、`city_xilinhot` 漠南营地**（待考）** | 26–35 | 辽国线、萧峰军职、雁门终局的北侧压力 |
 
-开放计数：`2+4+3+1+3+2+2+2+3=22`。其中青唐 / 上京 / 兴庆 / 大理等名称均直接取 `cities.yaml.eras.ch01`；本文没有另起坐标。聚贤庄、擂鼓山、燕子坞、无量山、星宿海、缥缈峰等为区域内 `scn_*` 或小说锚，不伪造为历史城市。
+开放计数：`2+4+3+1+3+2+2+2+3=22`。其中青唐 / 上京 / 兴庆 / 大理等名称均直接取 `cities.yaml.eras.ch01`；本文没有另起坐标。聚贤庄、擂鼓山、燕子坞、无量山、星宿海、缥缈峰等为章节局部 `sc_*` 或小说锚，不伪造为历史城市。
 
 ### 11.2 解锁节奏与跨国入口
 
@@ -1106,7 +1106,7 @@ pEncounter = clamp(baseRate
 | 字段 | 设计 |
 |---|---|
 | 入口与时代状态 | 开局区；大理国稳定，王府与天龙寺按剧情分层开放。无量剑派、神农帮、大理段氏、天龙寺、四大恶人均读 `design/17` 的 TL=`O`。 |
-| 城市 / 场景 | `city_dali` 大理国都、`city_baoshan` 永昌府；`scn_dali_wangfu`、`scn_dali_tianlongsi`、`scn_dali_wuliang_jianhu`、`scn_dali_langhuan_fudi`、万劫谷**（待考）**（具体地望）。 |
+| 城市 / 场景 | `city_dali` 大理国都、`city_baoshan` 永昌府；`sc_01_wuliangyidao`、`sc_01_jianhugong`、`sc_01_langhuanfudi`、`sc_01_wanjiangu`（具体地望待考）；王府与天龙寺作为 `city_dali` 内剧情地点，不另造旧式场景键。 |
 | 地貌与地形特色 | 苍洱高原、城郭、竹林、花丛、密林、无量山峭壁、剑湖深浅水、洞窟；坠崖以 `fallTarget` 接琅嬛福地。 |
 | 轻功门禁 | 主 qg0–qg1 山道；开局学草上飞后开 1 个 qg1 奖励点；中段支 qg2 屋顶；剑湖 / 玉璧支 qg3；回访隐藏 qg4。坠崖落点有 qg0 长隧道出口。 |
 | 主要 NPC | `npc_duanyu`、`npc_duanzhengchun`、`npc_daobaifeng`、`npc_duanyanqing`、`npc_muwanqing`、`npc_zhongling`、`npc_kurong`；仅引用 `design/18` 可用性。 |
@@ -1254,10 +1254,10 @@ name: 大理苍山
 kind: land
 climateProfile: plateau
 baseScenes:
-  - scn_dali_wangfu
-  - scn_dali_tianlongsi
-  - scn_dali_wuliang_jianhu
-  - scn_dali_langhuan_fudi
+  - sc_01_wuliangyidao
+  - sc_01_jianhugong
+  - sc_01_langhuanfudi
+  - sc_01_wanjiangu
 neighbors:
   - rg_bashu
   - rg_guangxi
@@ -1279,7 +1279,7 @@ sourceRefs:
 schemaVersion: open_world_poi.v1
 id: poi_dali_langhuan_entrance_01
 regionId: rg_dali_cangshan
-sceneId: scn_dali_wuliang_jianhu
+sceneId: sc_01_jianhugong
 kind: vista
 cell: {q: 42, r: 19, h: 6}
 gateIntent:
@@ -1298,6 +1298,13 @@ targetRef: q_01_qiyu_71
 
 `kind` 至少覆盖 `entrance/safePoint/vista/inspect/gather/chest/secret/transfer/resourcePoint/business`。`cell` 使用 Tiled 转换后的 pointy-top 轴坐标，必须落在有效六角；`gate` 仅实例化 `design/08` §6 的 `GateExpr`，不在本文发明第二套条件语言。`scope` 取 `save/era/globalKnowledge`：地理见闻可跨书保留，容器、采集和经营状态默认只在当前时代保存。`kind=safePoint` 时必须显式给 `restSpot: boolean` 与 `allowsMeditation: boolean`；两者互不蕴含。可盘坐点可附 `meditationQuality: 0|1|2`，数值含义与投放由 `design/12`、冲穴消费见 `design/15`，本文只提供位置许可。
 
+本节正式登记的 POI 如下；每个 ID 只占一行。`cell` 未定的条目不得凭示意图补坐标，须由 `design/19` / Tiled 数据实测后回填。
+
+| ID | 名称 / 类别 | 区域与场景 | 目标 / 来源 | 六角坐标 |
+|---|---|---|---|---|
+| `poi_dali_langhuan_entrance_01` | 琅嬛福地入口眺望点 / `vista` | `rg_dali_cangshan` / `sc_01_jianhugong` | `q_01_qiyu_71`；上方 `PoiDef` 示例 | `{q: 42, r: 19, h: 6}` |
+| `poi_dali_wuliang_yubi_01` | 无量山玉璧机会点 / `inspect` | `rg_dali_cangshan` / `sc_01_jianhugong` | `q_01_qiyu_71`；下方 `QiyuDef.opportunityIds` | 未定，不虚构 |
+
 ### 12.3 `QiyuDef`：奇遇条件、概率与奖励
 
 ```yaml
@@ -1308,7 +1315,7 @@ regionId: rg_dali_cangshan
 opportunityIds:
   - poi_dali_wuliang_yubi_01
 conditions:
-  location: {sceneId: scn_dali_wuliang_jianhu}
+  location: {sceneId: sc_01_jianhugong}
   phases: [dawn, day, dusk, night]
   weather: [clear, cloudy, rain, fog]
   morality: null
@@ -1326,7 +1333,7 @@ pity:
 rewards:
   - {type: learnSource, ref: sk_beiming, maxLayer: 6}
   - {type: learnSource, ref: sk_lingbo, maxLayer: 10}
-  - {type: unlock, ref: scn_dali_langhuan_fudi}
+  - {type: unlock, ref: sc_01_langhuanfudi}
 persistence: {scope: era, rerollOnLoad: false}
 ```
 
@@ -1381,7 +1388,7 @@ regions:
       - {id: sect_tianlongsi, state: O}
       - {id: sect_wuliang, state: O}
     resourcePoints:
-      - {id: rp_dali_herb_01, sceneId: scn_dali_wuliang_jianhu, state: available}
+      - {id: rp_dali_herb_01, sceneId: sc_01_wuliangyidao, state: available}
     businesses:
       - {id: biz_dali_manor_01, cityId: city_dali, state: open}
     routes:
@@ -1394,7 +1401,7 @@ regions:
 
 `resourcePoints[]` 只投影 `design/16` `ResourcePointDef.id/sceneRef` 与本时代 `mapState`，`businesses[]` 只投影 `BusinessDef.id/cityRef/entrancePoiRef` 与本时代营业状态；资源类别、取得方式、产出、家丁、职位和收益不得在时代层另定义。书眠时卸载旧 `EraLayer` 的采集次数、开发 / 占领投影和刷新计时，下一界只从新时代实例与 `design/16` 的跨界白名单重建；同一地点复用基础地形不等于继承资源状态。全作预算仍严格为 229 个资源点时代实例、280 个赌场 / 镖局 / 山庄时代实例，计算见 §10。
 
-未来 `design/20` 落稿后，跨年代传承遗迹只能引用既有 `regionId/cityId/sceneId/poiId`，并在时代层覆写入口的 `hidden/open/blocked/resolved` 状态；本文与 `design/19` 提供位置及可达性，不决定传承源消隐、出现概率、残本 / 信物掉落或全本合成。`design/20` 未落稿前不得自行创建遗迹专属 schema 或投放 ID。
+跨年代传承遗迹只能引用既有 `regionId/cityId/sceneId/poiId`，并在时代层覆写入口的 `hidden/open/blocked/resolved` 状态；本文与 `design/19` 提供位置及可达性，不决定传承源消隐、出现概率、残本 / 信物掉落或全本合成，这些规则统一见已落稿的 `design/20`。遗迹专属 schema 或投放 ID 也只能由 `design/20` 登记。
 
 完整时代层必须恰含 §10 预算数量的开放区域、城市、资源点和营生；关闭的 21 个天龙区域不必列空对象。基础包 `region-<完整 rg_id>` 可跨十四界复用，`era-chNN` 的 `state-<rg_id>` 块只含本书 NPC / 势力 / 名称 / 入口 / 资源 / 营生差量；物理结构见 `tech/06` §4，书眠原子切换过程见 §1.6。
 
@@ -1431,8 +1438,8 @@ regions:
 |---|---|---|
 | 全局区域 | `rg_<英文地理名>`；不带书界号 | §2.2 的 30 个闭集 ID |
 | 城市 | `city_<英文或既定拼音短名>` | 全部 189 个沿用 `cities.yaml`，本文不新增 |
-| 场景 | `scn_<稳定地点>[_<分区>]`；稳定地貌不带 `chNN` | **示例候选**：`scn_dali_wangfu`、`scn_dali_tianlongsi`、`scn_dali_wuliang_jianhu`、`scn_dali_langhuan_fudi` |
-| POI | `poi_<地点>_<用途>_<nn>` | **示例候选**：`poi_dali_langhuan_entrance_01` |
+| 章节局部场景 | `sc_<NN>_<拼音>` | 正式场景由各 `chapters/NN` 登记；旧 `scn_*` 只作迁移输入 |
+| POI | `poi_<区域短名>_<拼音>` | 正式登记：`poi_dali_langhuan_entrance_01`、`poi_dali_wuliang_yubi_01`（§12.2） |
 | 资源点 | `rp_<区域短名>_<类别>_<nn>` | **示例候选**：`rp_dali_herb_01`；类别与经营属性由 `design/16` 定 |
 | 营生场所 | `biz_<城市短名>_<casino\|escort\|manor>_<nn>` | **示例候选**：`biz_dali_manor_01`；职位和收益由 `design/16` 定 |
 | 奇遇 | `q_<两位书界号>_qiyu_<两位序号>` | 沿用 `q_01_qiyu_71`–`74`、`81`、`82`、`91` |
@@ -1453,7 +1460,7 @@ rg_dongbei rg_monan rg_mobei rg_donghai_islands rg_nanhai_islands
 
 W1 十九区迁移后净增 11 区：新增 `rg_qinba`、`rg_jiangnan_taihu`、`rg_zhedong`、`rg_jingxiang`、`rg_huxiang`、`rg_guangxi`、`rg_dali_cangshan`、`rg_yundian_qianzhong`、`rg_xixia_helan`、`rg_xiyu_nanjiang`、`rg_xiyu_beijiang`、`rg_liaoxi`、`rg_dongbei`、`rg_monan`、`rg_donghai_islands`、`rg_nanhai_islands` 共 16 个，废弃 5 个旧粗区，另有 14 个原 ID 复用。旧 `rg_liangzhe/rg_jingchu/rg_yungui/rg_xiyu/rg_islands` 仅保留迁移别名，不得用于新内容。
 
-`scn_*`、`poi_*`、`rp_*`、`biz_*` 尚未进入基准 §12，故在 §15.3 提案登记；`region-*` / `era-*` 是 `tech/06` 的物理 `PackId` 而非游戏内容 ID，不申请写入基准 §12。示例不意味着对象已经由章节或 `design/16` 完成生产配置。
+基准 v1.2 §12 已登记 `city_*`、`sc_*`、`poi_*`、`rp_*` 与 `biz_*`。旧 `scn_*` 只允许作为迁移读取键；本文生产示例已改用 chapters/01 正式 `sc_01_*`，不得再双写。`region-*` / `era-*` 是 `tech/06` 的物理 `PackId` 而非游戏内容 ID。除 §12.2 明列的两项 POI 外，示例不意味着对象已经由章节或 `design/16` 完成生产配置。
 
 ---
 
@@ -1547,17 +1554,17 @@ W1 十九区迁移后净增 11 区：新增 `rg_qinba`、`rg_jiangnan_taihu`、`
 | `design/02/03/06/08/09/10/12/13/15/16/17/18` | 年代等级、属性恢复、Buff 清理、门禁、战斗、物品、任务、时长、冲穴、经营、门派与 NPC |
 | `design/19`、`map/*.yaml` | 189 城坐标和逐章名称、99 门派驻地 / 状态、路线及十四张时代 SVG |
 
-`design/12`、`14`、`16` 与 `tech/05` 已落盘并由本文引用；未来 `design/20` 尚未落稿，本文仅预留遗迹位置消费边界。仍须同步：`regions.yaml` 从 19 粗区原子迁移到 30 区，并联动 `cities.yaml.region`、`routes.yaml` 区域索引、`sects.yaml` 派生区域索引；`design/08` 的旧 `rg_NN_*` 改成 `{worldRegion, eraLayer, localScene}`；`tech/02/03` 复核 30 区与大型场景预算；`tech/04` 用本节替换 provisional 时代 schema。`tech/06` 的区域基础包 + 时代状态包已落稿，本文 §12.1/§12.5 已接收其 `PackId`。
+`design/12`、`14`、`16`、`20` 与 `tech/05` 已落盘并由本文引用；本文只提供传承遗迹的位置与可达性接口。仍须同步：`regions.yaml` 从 19 粗区原子迁移到 30 区，并联动 `cities.yaml.region`、`routes.yaml` 区域索引、`sects.yaml` 派生区域索引；`design/08` 的旧 `rg_NN_*` 改成 `{worldRegion, eraLayer, localScene}`；`tech/02/03` 复核 30 区与大型场景预算。`tech/04` 已正式消费本节 schema，`tech/06` 的区域基础包 + 时代状态包已落稿，本文 §12.1/§12.5 已接收其 `PackId`。
 
 ### 15.3 对基准的修改提案
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| P-B3-01 | 基准 §12 的区域格式从 `rg_<书界序号>_<拼音>` 改为全局 `rg_<地理名>`；保留终局特例 `rg_15_shuhai` | AR-04 已把书界与地理拆层；否则同一中原被复制十四次 |
-| P-B3-02 | 基准 §12 增列 `city_*`、`scn_*`、`poi_*`、`rp_*`、`biz_*`；包键不列游戏 ID | AR-05/06/11 和权威地图已实际使用，需统一注册和查重 |
-| P-B3-03 | 基准 §17 第 3 项改为“统一大地图上的时代图层（开放 6–10 个全局区域）”，并增加开放城市 / 资源点 / 营生预算字段 | 消除旧“每书一张世界地图”歧义，让十四章消费 §10 同一口径 |
-| P-B3-04 | 基准 §19 的“按书界分包”改为“区域基础包 + 时代状态包，按引用懒加载” | 跨时代复用地貌，避免十四份重复基础资产；`tech/06` §4 已定稿物理结构 |
-| P-B3-05 | 基准 §19 增加世界时钟契约：10 Hz、10 tick/游戏分钟、战斗 / 菜单暂停 | 天气、NPC 日程、旅行与确定性存档需要共同时间单位 |
+| P-B3-01 | **已解决**：基准 v1.2 §12 已采用全局 `rg_<地理名>`，并保留终局特例 `rg_15_shuhai` | AR-04 已把书界与地理拆层；见 Canon V12-02 / V12-09 |
+| P-B3-02 | **已解决并校正**：基准 v1.2 §12 已增列 `city_*`、`sc_*`、`poi_*`、`rp_*`、`biz_*`；不采纳 `scn_*` 双写，包键不列游戏 ID | 见 Canon V12-09 与 CP-06 / CP-37；旧 `scn_*` 只允许迁移读取 |
+| P-B3-03 | **已解决**：基准 v1.2 §17 已采用统一大地图时代图层、每界开放 6–10 区与城市 / 资源点 / 营生预算 | 见 Canon V12-02 |
+| P-B3-04 | **已解决**：基准 v1.2 §19 已采用区域基础包 + 时代状态包 + 按引用懒加载 | 见 Canon V12-13；具体物理结构见 `tech/06` §4 |
+| P-B3-05 | **已解决**：基准 v1.2 §19 已登记 10 Hz、10 tick/游戏分钟及暂停边界 | 见 Canon V12-15；单步实现见 `tech/05` |
 
 ### 15.4 原著考据待办
 

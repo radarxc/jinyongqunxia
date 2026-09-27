@@ -1,8 +1,8 @@
 # 09 · 战斗系统（Combat System）
 
 > **归属**（基准 §18）：战斗流程、六角格战场与范围模板、集气时间轴、行动经济、招式施放流程、反应机制（招架/反击/连击/援护/合击）、阵法、倒地与伤势、AI、Boss 机制、大规模战斗、战斗奖励流程、战斗难度与失败保护。
-> **版本**：v1.2（跨文档同步，2026-09-26）。
-> **上游**：`decisions/author-requirements.md`（AR-02 阴阳、AR-03 冲穴、AR-12 六角格战棋）、`decisions/author-decisions.md`（G1、P42–P47）、`00-canon.md`（§1 就地开战、§3 境界、§5 节奏目标、§6 属性、§8 战斗模型、§9 乘区、§10 Buff 基础、§11 轻功阈值、§20 装配栏）。AR-12 高于基准 §8 的旧方格描述。
+> **版本**：v1.2（跨文档同步、全局审计，2026-09-26）。
+> **上游**：`decisions/author-requirements.md`（AR-02 阴阳、AR-03 冲穴、AR-12 六角格战棋）、`decisions/author-decisions.md`（G1、P42–P47）、`00-canon.md` v1.2（§1 就地开战、§3 境界、§5 节奏目标、§6 属性、§8 战斗模型、§9 乘区、§10 Buff 基础、§11 轻功阈值、§20 装配栏）。AR-12 的六角格要求已由 v1.2 吸收。
 > **引用而不重定义**：属性、轻功值、体力、气势、护体真气与社交检定 → `design/03-attributes.md`；伤害/命中/招架/暴击/效果命中/治疗公式、Z0–Z10 与逐乘区取整 → `design/04-damage-formula.md`；招式字段、收招 `recovery`、蓄招、绝招、位移、易运、分心二用、合击武学、实战武学经验 → `design/05-martial-arts-system.md`（六角范围模板及枚举唯一归本文 §5）；Buff 钩子、原语、叠加、结算段 S/A/E、攻击管线 P1–P8、控制递减与 Boss 豁免 → `design/06-buff-system.md`；套装 → `design/07`；六角地形、通行成本、高差、坠落/落水、轻功门禁 → `design/08-terrain-and-qinggong.md`；物品、暗器、弹药、丹药、毒药、机关与投掷物 → `design/10-items-and-equipment.md`；巡逻、昼夜天气、区域等级 → `design/11`；羁绊、门派、声望/品德 → `design/12`；角色经验、Boss 经验系数、难度模式与结局 → `design/13-progression-and-endings.md`；手机 UI 布局 → `design/14`；武运、敌人品阶骰、掉落池、难度 D 映射 → `design/02-timeline-and-world-tiers.md`；渲染与精灵朝向 → `tech/02-rendering.md`；命令/事件、RNG 分流、Worker 与存档 → `tech/01`、`tech/05`。尚未落盘的规划文档只用短编号引用，不伪造文件路径。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术版本、API 或限额尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖他文档、本文先给出可用数值并在 §16 登记。
 > **v2.0 变更摘要**：依 AR-12 将战场从方格改为 pointy-top 六角格，确立轴/立方坐标、六向朝向、轻功移动力与首轮排序；把点、环、面、扇形范围模板及预算迁入本文；补齐运劲、战斗道具与作者点名 Buff 接口；同时按 C06/C12/C13/C20、`design/04` 定稿和 G1 作者决定审校原有反应、阵法、奖励、难度与数据契约。
@@ -53,7 +53,7 @@
 |---|---|---|
 | pointy-top 六角格战棋；轴坐标 `(q,r)`、立方坐标 `(q,r,s)` 且 `q+r+s=0`；每格保留高度 `h` 与地形 `terrain` | AR-12；作者决定 G1；08 §1；tech/02 §2 | §2.9、§4–§5 |
 | 就地开战：以遭遇点为中心截取可用格 ≤ 400，且 `qSpan≤20`、`rSpan≤20` | 基准 §8 的规模约束；AR-12 | §2.9（中心允许六角距离 ≤3 微调） |
-| 首轮按有效轻功值固定排序；其后 CT 0→1000，每 tick 增加 `spd`，满 1000 行动，行动后按收招扣减 | AR-12；基准 §8；03 §4.3 | §3（03 已同步 `spd` 派生与首轮输入；基准措辞仍见提案 P-09-6） |
+| 首轮按有效轻功值固定排序；其后 CT 0→1000，每 tick 增加 `spd`，满 1000 行动，行动后按收招扣减 | AR-12；基准 §8；03 §4.3 | §3（03 与基准 v1.2 已同步 `spd` 派生与首轮输入；见 P-09-6） |
 | "回合" = 持有者自身一次行动 | 基准 §8；06 §5.1 | §1.3、§3.6 |
 | 每次行动：移动一次 + 一个行动，顺序自由 | 基准 §8 | §4.1 |
 | 上场 ≤ 6（主角 + 5 名队友） | 基准 §8 | §2.10（剧情友军另计，见 §16 提案 P-09-1） |
@@ -1112,10 +1112,10 @@ AF(N) = clamp(floor(rawAF(N)*20 + 0.5)/20,0.35,1.00)
 |---|---|---|
 | `aoe_single`、`aoe_self`、`aoe_line`、`aoe_bolt`、`aoe_ring`、`aoe_around` | 保留 ID，按本文枚举 | 无 |
 | `aoe_sq3` | `aoe_disk {r:1}`，7 格 | 构建时改写；旧 ID 只作读档别名 |
-| `aoe_sq5` | `aoe_disk {r:2}`，19 格 | 同上 |
-| `aoe_diamond {r}` | `aoe_disk {r}` | 同上 |
-| `aoe_cross` / `aoe_x` | `aoe_spokes {r}` | 两个历史别名合一；不再存在四向/斜四向差别 |
-| `aoe_sweep` | `aoe_cone {angle:120,r:1,dirCount:6}` | 保留只读别名 |
+| `aoe_sq5` | `aoe_disk {r:2}`，19 格 | 旧 ID；构建时改写 |
+| `aoe_diamond {r}` | `aoe_disk {r}` | 旧 ID；构建时改写 |
+| `aoe_cross` / `aoe_x` | `aoe_spokes {r}` | 旧 ID；两个历史别名合一，不再存在四向/斜四向差别 |
+| `aoe_sweep` | `aoe_cone {angle:120,r:1,dirCount:6}` | 旧 ID；只允许迁移器读取 |
 | `aoe_cone {n}` | `aoe_cone {r:n,angle:60,dirCount:6}` | 参数 `n→r`；横扫须显式 120° |
 | `aoe_zone {shape:sq3,t}` | `{inner:{tpl:aoe_disk,r:1},duration:t}` | 构建时改写 |
 | `aoe_zone {shape:diamond2,t}` | `{inner:{tpl:aoe_disk,r:2},duration:t}` | 构建时改写 |
@@ -2044,7 +2044,7 @@ UI：顶部宝训条标出 30 / 60 / 90 三条线；每次颂圣飘字"洪教主
 
 | 单位 | 阵营 | 等级 | 要点 |
 |---|---|---|---|
-| 东方不败 | enemy | 64（书界上限 60 + 4，02 §3.1） | Boss，`full`；葵花宝典 `sk_kuihua`（天中 11，中武层数上限 9）；`hpMax` ≈ 108,000（= 同级模板 Boss × 0.6，以速度与闪避代替血厚；建议值，chapters/05 定）；`spd` ≈ 216（身法 120、葵花"鬼魅身法"被动 +30%、Boss 模板 ×1.06 的推算）；`ai_expert`，覆写 `w_pos 1.5`（永远找背击位） |
+| 东方不败 | enemy | 64（书界上限 60 + 4，02 §3.1） | Boss，`full`；葵花宝典 `sk_kuihua`（天中 11，中武层数上限 9）；`hpMax=roundHalfUp(204,377×0.60)=122,626`（同级模板 Boss 的 `full` 合法下沿，以速度与闪避代替堆血；chapters/05 §12.4）；`spd` ≈ 216（身法 120、葵花"鬼魅身法"被动 +30%、Boss 模板 ×1.06 的推算）；`ai_expert`，覆写 `w_pos 1.5`（永远找背击位） |
 | 杨莲亭 | enemy（非战斗） | 40 | `hpMax` ≈ 8,000；谨慎性格，只移动、躲到东方身后或屏风后，不出手 |
 | 任我行、向问天 | ally | — | 剧情友军（AI）；任我行带吸星大法 |
 | 令狐冲、任盈盈 | player 或 ally | — | 已入队则为玩家可控（计入 4 人上限），否则为 AI 友军 |
@@ -2636,7 +2636,8 @@ export type RejectReason = 'NOT_YOUR_TURN' | 'OUT_OF_RANGE' | 'NO_LOS' | 'MP_NOT
 id: enc_08_shenlongdao
 kind: story
 chapter: ch08_luding
-region: rg_08_shenlongdao               # 区域 ID 由 chapters/08 定
+region: rg_islands                      # 全局区域；具体关卡见下行
+scene: sc_08_shenlongdao_dadian         # chapters/08 正式场景
 localDifficulty: 8                      # 02 §3.3
 grid:                              # authored = 场景内预设六角格集合（仍属就地）
   mode: authored
@@ -2663,9 +2664,9 @@ waves:
       units: [ { squad: { template: tmpl_normal, faction: shenlongjiao, nMax: 5, level: 41 }, count: 2, group: jiaozhong } ] }
 winCond: [ { defeatTarget: [ npc_hongantong ] } ]
 loseCond: [ { protagonistDown: true } ]
-flagsIn:                                # 战前抉择对本战的修正（任务 ID 暂定，须由 chapters/08 核名）
-  - { flag: q_08_side_91_done, effect: { gauges: { gauge_baoxun: { init: 0, lock: true } }, removeWaves: [ w_p2_reinforce ] } }  # 神龙教内乱
-  - { flag: q_08_side_92_done, effect: { gauges: { gauge_baoxun: { init: 30 } } } }                                           # 离间五龙使
+flagsIn:                                # 直接读取正式任务完成态；前者优先级更高
+  - { when: q_08_faction_02.completed, priority: 100, effect: { gauges: { gauge_baoxun: { init: 0, lock: true } }, removeWaves: [ w_p2_reinforce ] } } # 教中旧人与新旗
+  - { when: q_08_faction_03.completed, priority: 50, effect: { gauges: { gauge_baoxun: { init: 30 } } } }                                           # 五色令不齐
 ```
 
 ### 13.4 Boss 脚本、合击、阵法、性格（YAML）
@@ -2912,10 +2913,10 @@ behaviors:
 | AI 档位（02 已命名，本文定义能力） | `ai_basic` `ai_adept` `ai_expert` `ai_master` | §8.3 |
 | AI 性格（7） | `pers_mangfu` `pers_jinshen` `pers_jiaozha` `pers_huzhu` `pers_yizhe` `pers_duzhe` `pers_zhenfa` | §8.4 |
 | 精英词条（12） | `ea_jianren` `ea_xunjie` `ea_duren` `ea_fanzhen` `ea_huti` `ea_tongling` `ea_jingzhun` `ea_buqu` `ea_shixue` `ea_poji` `ea_houfa` `ea_yuanjun` | §2.4 |
-| 合击（4） | `cmb_shuangjianhebi` `cmb_longbang` `cmb_qinxiao` `cmb_fuqidao` | §6.7.4 |
+| 合击（8） | `cmb_shuangjianhebi` `cmb_longbang` `cmb_qinxiao` `cmb_fuqidao`；碧血四项见 §14.2.2 | §6.7.4、§14.2.2 |
 | 遭遇（3） | `enc_08_shenlongdao` `enc_01_juxianzhuang` `enc_05_heimuya` | §8.9–8.11 |
-| Boss 脚本（3） | `bsc_hongantong_shenlongdao` `bsc_xiaofeng_juxianzhuang` `bsc_dongfangbubai_heimuya` | §8.9–8.11；旧 `bs_*` 仅作迁移别名 |
-| 资源槽（4） | `gauge_baoxun` `gauge_haoqi` `gauge_lijie` `gauge_xingxiu` | §8.9、§8.10、§9.6 |
+| Boss 脚本（27） | 洪安通 1 项及 §14.2.1 逐项登记的 26 项 | §8.9–§8.11、§14.2.1；`bs_*` 只属于书眠 Ink 节点 |
+| 资源槽（5） | `gauge_baoxun` `gauge_haoqi` `gauge_lijie` `gauge_xingxiu`；封锁值见 §14.2.3 | §8.9、§8.10、§9.6、§14.2.3 |
 | 预警招（4） | `tg_shenlongyaojiao` `tg_kunlongjiubian` `tg_feilongzaitian` `tg_wanzhenguizong` | §8.9–8.11 |
 | 弱点（4） | `wk_baoxun` `wk_yingxiong` `wk_gaotai` `wk_yanglianting` | §8.9、§8.11 |
 | 范围模板（本文生产 ID） | 基础几何：`aoe_single` `aoe_self` `aoe_ring` `aoe_around` `aoe_disk` `aoe_line` `aoe_bolt` `aoe_spokes` `aoe_cone` `aoe_zone` `aoe_allies` `aoe_field` `aoe_ally_all`；行为 / 组合：`aoe_wave` `aoe_pierce` `aoe_leap` `aoe_dash` `aoe_pull` `aoe_knock` `aoe_chain` `aoe_multi` `aoe_behind` `aoe_swap` `aoe_boomerang` `aoe_sequence` | §5.3、§13.1 |
@@ -2928,12 +2929,62 @@ behaviors:
 | Buff（06 已正式收录） | `bf_hunmi` 昏迷、`bf_kangfen` 亢奋、`bf_minjie` 敏捷、`bf_zhuanzhu` 专注、`bf_muguangruju` 目光如炬；`bf_mabi` 已含臂力降低 | §7.0；均已通过 06 目录闭合 |
 | 物品（10 已定义，本文引用） | `it_baotai_jieyao` 豹胎易筋丸解药 | §8.9 |
 | NPC（跨文档建议 ID） | `npc_hongantong` `npc_suquan` `npc_dongfangbubai` `npc_yanglianting` `npc_renwoxing` `npc_xiangwentian` `npc_linghuchong` `npc_renyingying` `npc_xueshenyi`；基准已有 `npc_xiaofeng` | 由 chapters 核名；本文不建立人物定义 |
-| 任务 / 区域（跨文档建议 ID） | `q_08_side_91`（神龙教内乱）`q_08_side_92`（离间五龙使）`rg_08_shenlongdao` | 由 chapters/08 核名；本文只登记引用 |
+| 任务 / 区域 / 场景（跨文档引用） | `q_08_faction_02`（神龙教内乱）`q_08_faction_03`（离间五龙使）`rg_islands` `sc_08_shenlongdao_dadian` | 正式键由 chapters/08 与地图文档定义；本文只读取，不重定义 |
 | 行动类型（`BattleAction.t`） | `skill` `hidden` `item` `yunjin` `guard` `wait` `cover` `flee` `talk` `capture` `discern` `unseal` `struggle` `rescue` `yiyun` `swapWeapon` `drawWeapon` `pickup` `dual` `combo`；免费动作 `order`（号令）与 `battle/free`（天书之力 / 书契技） | §4.7；旧 `meditate` 仅为读档别名 |
 | 运劲分支 | `tiaoxi` `huti` `xuli` `bidu` `liaoshang` `cuiqinggong` `huajie` | §4.8.4 |
 | 命令（扩展 tech/01） | `battle/act`（+ `order` `walkAfter` `facing`）`battle/deploy` `battle/order` `battle/free` `battle/setAuto` `battle/concede` `battle/retry` `battle/undo` | §13.2 |
 | 领域事件 | `battle/started` `battle/deployed` `battle/turnStarted` `battle/moved` `battle/actionDeclared` `battle/telegraphPlaced` `battle/telegraphReleased` `battle/damageDealt` `battle/reaction` `battle/ctShifted` `battle/unitDowned` `battle/unitRescued` `battle/unitYielded` `battle/unitSurrendered` `battle/unitCaptured` `battle/unitFled` `battle/unitPlunged` `battle/envTick` `battle/freeAction` `battle/formationChanged` `battle/comboExecuted` `battle/phaseChanged` `battle/gaugeChanged` `battle/bark` `battle/wave` `battle/frontChanged` `battle/ended` `battle/rewards` | §13.5 |
 | 查询 | `query.reachable` `query.previewPath` `query.forecast` `query.timeline` `query.dangerMap` `query.bestAttack` `query.comboOptions` `query.formationStatus` `query.quickResolveEligible` | §13.6 |
+
+#### 14.2.1 书界 Boss 脚本注册
+
+> 下表是 `BossScript` 的全局注册入口；关卡叙事、人物画像、阶段细节与数值校准仍以“出处”为准，不在本文复制第二套。除原著人物与事件骨架外，脚本机制均属**（原创扩展）**。
+
+| ID | 名称 | 类别 / 难度 | Lv / 阶段 | AI 档 | 出处与最小运行契约 |
+|---|---|---|---|---|---|
+| `bsc_xiaofeng_juxianzhuang` | 萧峰·聚贤庄 | 剧情消耗战 / D3 | 35 / 3 | `ai_expert` | chapters/01 §8.6、本文 §8.10；力竭 100 或气血触及 40% 后由黑衣人救走，非致死结算 |
+| `bsc_yucanghai_fuzhou` | 余沧海·福州 | 多目标首领战 / D7 | 52 / 2–3 | `ai_expert` | chapters/05 §8.5；保护人、货与三份证物，首领不可在此被剧情处决 |
+| `bsc_liuqu_tuilu` | 刘曲退路 | 护送撤离战 / D7 | 54 / 2–3 | `ai_expert` | chapters/05 §8.5；四项准备、两条撤离路，胜利不要求击败左冷禅 |
+| `bsc_huashan_shoumi` | 华山守秘 | 守护战 / D7 | 56 / 2–3 | `ai_expert` | chapters/05 §8.5；保护石洞情报与非战斗者，保留令狐冲核心对决席位 |
+| `bsc_renwoxing_dilao` | 任我行·地牢 | 切磋 / 换囚战 / D7 | 57 / 2–3 | `ai_expert` | chapters/05 §8.5；四艺、牢门与异种真气并行，任我行仍按锚点脱困 |
+| `bsc_sanzhan_shaolin` | 少林三战 | 连续公开战 / D7 | 58 / 2–3 | `ai_expert` | chapters/05 §8.5；保留原定对阵次序，玩家只负责护场与截暗手 |
+| `bsc_hengshan_bianling` | 恒山辨令 | 辨伪撤离战 / D7 | 59 / 2–3 | `ai_expert` | chapters/05 §8.5；双令辨伪、保护门人与索道撤离 |
+| `bsc_dongfangbubai_heimuya` | 东方不败·黑木崖 | 剧情决战 / D7 | 64 / 3 | `ai_expert` | chapters/05 §8.5、本文 §8.11；`full` 高速特例，目标 HP 122,626，杨莲亭命令链必须保留 |
+| `bsc_wuyue_duoshuai` | 五岳夺帅 | 守擂演出战 / D7 | 60 / 2–3 | `ai_expert` | chapters/05 §8.5；自由票改变合法性与保护目标，不替演岳、左核心对决 |
+| `bsc_baizizai_lingxiao` | 白自在·凌霄城 | 非致死机制战 / D6 | 55 / 3 | `ai_adept` | chapters/06 §8.4–§8.5；三阶段“逐客—夸功—见证差距”，以停手并恢复判断结算，模板 HP 129,383 |
+| `bsc_shanzong_zhuibing` | 山宗追兵 | 护送撤离战 / D6 | 48 / 2 | `ai_adept` | chapters/07 §8.8–§8.9；护住两项目标后撤离，不要求全歼 |
+| `bsc_jinshedong_shoushi` | 金蛇洞守势 | 机关目标战 / D6 | 49 / 3 | `ai_adept` | chapters/07 §8.8–§8.9；解出三段机关并护住遗物分配 |
+| `bsc_wenjia_wuxingzhen` | 温家五行阵 | 破阵战 / D6 | 50 / 3 | `ai_adept` | chapters/07 §8.8–§8.9；破阵眼并保护证人，击倒成员不是唯一破法 |
+| `bsc_jiaozhai_zhidou` | 焦宅止斗 | 三方止斗战 / D6 | 52 / 2 | `ai_adept` | chapters/07 §8.8–§8.9；分别计量三方敌意并保住两封信 |
+| `bsc_guixinshu_jiaoyi` | 归辛树较艺 | 非致死较技 / D6 | 54 / 2 | `ai_adept` | chapters/07 §8.8–§8.9；达到较技阈值或展示证据即收手 |
+| `bsc_yuzhenzi_chongzhengdian` | 玉真子·崇政殿 | 目标撤离战 / D6 | 55 / 3 | `ai_adept` | chapters/07 §8.8–§8.9；毁炮后撤离，行刺皇太极不得成功 |
+| `bsc_kuyin_sanfang` | 库银三方 | 三方救援战 / D6 | 56 / 3 | `ai_adept` | chapters/07 §8.8–§8.9；分辨赈济银与私库并带阿九撤离 |
+| `bsc_yuzhenzi_huashan` | 玉真子·华山 | 终幕护翼战 / D6 | 56 / 3 | `ai_adept` | chapters/07 §8.8–§8.9；保护三组侧翼，核心决战由袁承志完成 |
+| `bsc_zhouzhongying_tiedanzhuang` | 周仲英·铁胆庄 | 非致死误会战 / D5 | 42 / 2 | `ai_adept` | chapters/12 §8.5；出示证词、拆除误会或降至 40% 即胜 |
+| `bsc_zhangzhaozhong_chitaodu` | 张召重·赤套渡 | 延时撤离战 / D5 | 44 / 2 | `ai_adept` | chapters/12 §8.5；撑到接应且至少一名船工撤离 |
+| `bsc_zhangzhaozhong_liuheta` | 张召重·六和塔 | 营救撤离战 / D5 | 48 / 2 | `ai_adept` | chapters/12 §8.5；救出文泰来后撤离，击倒只触发张召重撤走 |
+| `bsc_jiaqiduiling_yeerqiang` | 假旗队领·叶尔羌 | 识破目标战 / D5 | 46 / 2 | `ai_adept` | chapters/12 §8.5；辨出伪证并保护两方证人，不要求歼灭 |
+| `bsc_zhaohui_heishuiying` | 兆惠·黑水营 | 指挥节点战 / D5 | 50 / 2 | `ai_adept` | chapters/12 §8.5；破旗 / 截传令或保护民用廊道促成止战 |
+| `bsc_zhangzhaozhong_shacheng` | 张召重·沙城 | 命运终战 / D5 | 52 / 2 | `ai_adept` | chapters/12 §8.5；切断三处诱饵后开放安全收押路径 |
+| `bsc_chenjialuo_tianchishizhao` | 陈家洛·天池试招 | 非致死授艺战 / D5 | 52 / 2 | `ai_adept` | chapters/12 §8.5；识破三次拳理或降至 35% 即胜 |
+| `bsc_qianlong_gongjin` | 乾隆·宫禁 | 目标式 Boss / D5 | 52 / 2 | `ai_adept` | chapters/12 §8.5；乾隆不可击杀且不设 Boss 血条，以封锁值和撤离人数结算 |
+
+#### 14.2.2 碧血合击注册
+
+> 四项均为**（原创扩展）**。解锁、人物关系与合法武学来源归 chapters/07 §8.4；本文登记战斗对象，并统一执行 §6.7 的双段结算、搭档 `ct≥300` 与 `partnerCtCost=300`。
+
+| ID | 名称 | 角色 | 两段武学 | 解锁来源 / 运行约束 |
+|---|---|---|---|---|
+| `cmb_jinshetongxin` | 金蛇同心 | 袁承志 + 温青青 | `sk_jinshejian` + `sk_jinsheyouzhang` | chapters/07 §8.4；双方必须已合法装配对应武学 |
+| `cmb_qipanbaibian` | 棋盘百变 | 木桑 + 阿九 | `sk_tiejianqipanjian` + `sk_shenxing` | chapters/07 §8.4；位移段仍逐格接受 08 的地形门禁 |
+| `cmb_huashanzhige` | 华山止戈 | 黄真 + 归二娘 | `sk_hunyuanzhang` + `sk_poyuquan` | chapters/07 §8.4；护人 / 停战表现不改变伤害与状态结算顺序 |
+| `cmb_zhusuoshuangqiang` | 蛛索双枪 | 何铁手 + 程青竹 | `sk_ruanhongzhusuo` + `sk_shuangqiangqiangfa` | chapters/07 §8.4；不得在演出或描述中展示现实毒方 |
+
+#### 14.2.3 书剑资源槽注册
+
+| ID | 名称 | 作用域 | 范围 / 初值 | 变化与结算 | 来源 |
+|---|---|---|---|---|---|
+| `gauge_fengsuo` | 宫禁封锁值 | `bsc_qianlong_gongjin` 场景实例 | 0–100 / 100 | 四项已验证撤离准备各 −25**【建议值】**；钳制到 0–100，归零后开放群雄撤离结算，不转为乾隆血条 | chapters/12 §8.5、§8.6 |
 
 ---
 
@@ -3087,7 +3138,7 @@ behaviors:
 
 ### 16.3 对基准的修改提案
 
-> 保留 v1.0 原提案编号以便追溯。P-09-1～P-09-5 已全部或主要由基准 v1.1 吸收；P-09-6 已由 03 接收，但基准 §6 尚未写出派生式；P-09-7～P-09-8 仍待下次基准修订合入。本文没有修改 `docs/00-canon.md`。
+> 保留 v1.0 原提案编号以便追溯。P-09-1～P-09-5 已全部或主要由基准 v1.1 吸收；P-09-6～P-09-8 已由基准 v1.2 吸收，以下保留历史编号与落点。本文没有修改 `docs/00-canon.md`。
 
 | # | 状态 | 提案 / 已采纳结论 | 理由 |
 |---|---|---|---|
@@ -3096,9 +3147,9 @@ behaviors:
 | P-09-3 | **已采纳（v1.1 §8）** | CT 内部允许负值表达收招，下限 −1000；界面仍显示 0–1000 | 否则收招超过 1000 的重招无法与普通重招区分 |
 | P-09-4 | **已采纳（v1.1 §8）** | 行动列表引用本文 §4.7；号令、明确标为免费的天书之力 / 书契技不占行动、不耗集气并各有限次 | 避免基准短表被误作封闭枚举 |
 | P-09-5 | **已采纳（v1.1 §8）** | 气血归零为重伤倒地而非永久死亡；主角倒地即战败，剧情可覆写；坠崖离场不算倒地 | 统一 03 / 06 / 08 / 12 / 13 的战斗结果语义 |
-| P-09-6 | **属性文档已落实；基准待合入** | 基准 §6 / §8 补记 03 已采用的 `Base_spd = 72 + 0.30*agi + 0.10*Ld + 0.14*qinggong`；flat / pct / mult 后一次向下取整并钳制 30–300；首轮按有效轻功确定顺序，之后进入 CT | AR-12 要求在场按轻功出手；合法 STD 精确输入重算为 91 / 106 / 126，Lv70 的旧 127 来自违反普通鞋 g9 上限的输入 |
-| P-09-7 | **待合入** | 基准 §8 的“斜 45°等距网格 / 约 20×20”改为 pointy-top 六角格：持久化轴坐标 `(q,r)`，`tileCount≤400` 且 `qSpan≤20`、`rSpan≤20`；范围模板唯一归本文 | 落实 AR-12，并消除方格范围继续扩散的来源 |
-| P-09-8 | **待合入** | 基准 §8 的朝向改为 6 个 `HexDir`；动画资源完整旋转使用 `battle8`，固定镜头运行时只驻留 6 个映射视图 | AR-12 覆盖 C20 的旧四向前提，并与 tech/02 的资源方案闭合 |
+| P-09-6 | **已采纳（v1.2 V12-05）** | 基准 §6 / §8 已登记 `Base_spd = 72 + 0.30*agi + 0.10*Ld + 0.14*qinggong`；flat / pct / mult 后一次向下取整并钳制 30–300；首轮按有效轻功确定顺序，之后进入 CT | AR-12 要求在场按轻功出手；合法 STD 精确输入重算为 91 / 106 / 126，Lv70 的旧 127 来自违反普通鞋 g9 上限的输入 |
+| P-09-7 | **已采纳（v1.2 V12-07）** | 基准 §8 已采用 pointy-top 六角格：持久化轴坐标 `(q,r)`，`tileCount≤400` 且 `qSpan≤20`、`rSpan≤20`；范围模板唯一归本文 | 落实 AR-12，并消除方格范围继续扩散的来源 |
+| P-09-8 | **已采纳（v1.2 V12-07 / V12-13）** | 基准 §8 固定 6 个 `HexDir`；§19 固定动画资源完整旋转使用 `battle8`，固定镜头常驻映射的 6 视图 | AR-12 覆盖 C20 的旧四向前提，并与 tech/02 的资源方案闭合 |
 
 ### 16.4 原著考据待办
 

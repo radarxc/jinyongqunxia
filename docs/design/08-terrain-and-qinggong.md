@@ -1,8 +1,8 @@
 # 08 · 地形与轻功（Terrain & Qinggong）
 
-> **版本**：v1.2（跨文档同步，2026-09-26）。
+> **版本**：v1.2（跨文档同步、全局审计，2026-09-26）。
 > **归属**（基准 §18）：地形目录、轻功（境界能力、动作规格、轻功武学的特技）、探索门禁（类型、节奏、预算、反挫败）、战斗中的地形规则（移动代价、地形效果挂载、互动、坠落）、地形与天气昼夜的换算。
-> **上游**：`00-canon.md` v1.1（§3 境界规则与"轻功不可携带"、§4 品阶、§6 属性 ID、§7 武功分类、§8 战斗模型、§9 乘区、§10 Buff 规则、§11 轻功阈值 20/50/90/140/200、§12 ID 规范、§13 天级武学、§19 技术基线、§20 装配栏）；`decisions/author-requirements.md` AR-01–AR-12，其中 AR-12 的六角格要求高于基准旧方格表述。
+> **上游**：`00-canon.md` v1.2（§3 境界规则与"轻功不可携带"、§4 品阶、§6 属性 ID、§7 武功分类、§8 战斗模型、§9 乘区、§10 Buff 规则、§11 轻功阈值 20/50/90/140/200、§12 ID 规范、§13 天级武学、§19 技术基线、§20 装配栏）；`decisions/author-requirements.md` AR-01–AR-12，其中 AR-12 的六角格要求已由 v1.2 吸收。
 > **引用而不重定义**：轻功值 `qinggong`、`jump`、`mov`、`staMax`、疲惫 → `design/03-attributes.md` §4.4、§4.5、§5.3；Z7 公式本体、命中/伤害计算 → `design/04-damage-formula.md`；武功数据结构、招式 `terrainFx`/`displacement`/`hTol`、修为门槛 `gateCap` → `design/05-martial-arts-system.md`；Buff 定义与钩子 → `design/06-buff-system.md`；移动格数、范围模板、集气、AI、撤退、Boss 阶段 → `design/09-combat-system.md`；鞋与道具 → `design/10-items-and-equipment.md`；统一大地图、时代图层、天气、旅行与坐骑 → `design/11-open-world.md`、`design/19-world-map.md`；门派五级抽象层与称谓 → `design/12-quests-npc-factions.md`、`design/17-sects-compendium.md`；冲穴与经脉永久加成 → `design/15-meridians-and-acupoints.md`；资源点、家丁与营生 → `design/16-resources-and-estates.md`；队友带人及 NPC 时空可用性 → `design/18-npc-and-companions.md`；任务条件 → `design/story/*` 与 `design/chapters/*`；地图编辑与可达性校验 → `tech/01` §7.4–7.5。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 需以三联/广州修订版逐字核对的原著细节，保留时须写明书名与人物/情节；**（待核实）** = 版本、API 等技术事实尚未联网确认；**（待实测）** = 需真机或真账号验证；**【建议值】** = 依赖他文档、本文先给出可用数值并在 §13 登记。
 
@@ -985,7 +985,7 @@ req: { qg: 3, action: climb, height: 9, stages: 3 }        # 三段各 3 级，�
 alt:
   - { expr: { item: it_feizhua }, cost: { item: 1, noise: 3, time: 1 } }      # 飞爪（10）
   - { expr: { companion: { qgMin: 4 } } }                                     # 队友带人
-  - { expr: { quest: q_02_main_07, state: active }, cost: {} }                # 主线演出：被追兵逼上峰顶（一次性，原创扩展）
+  - { expr: { any: [{ quest: q_02_main_z_07, state: active }, { quest: q_02_main_x_07, state: active }] }, cost: {} } # 正 / 邪第 7 幕的峰顶演出（一次性，原创扩展）
 intent: main
 earliest: 0.55                                                                # 射雕主线 qg3 门禁最早进度（§6.5.2）
 hint: hint_gate_02_zhongzhifeng
@@ -1666,7 +1666,7 @@ objHp(k) = k × HP_ref(regionLv)       HP_ref = 03 §10.2 普通敌人模板 STD
 | P-02 | **已采纳（v1.1，V11-27）** | §11 已补安全主动下跳、三阶起攀峭壁、四阶仅免主动踏入陷阱；本文见 §4.2、§5.2。 |
 | P-03 | **已采纳（v1.1，V11-20）** | §6 已登记探索能力 `swimLevel` 0–3，主角默认 1；本文见 §4.2.3。 |
 | P-04 | **已采纳（v1.1，V11-21）** | §8 已登记固定速度环境行动者，并明确其行动不推进单位 Buff/冷却；本文见 §7.4。 |
-| P-05 | **新增提案** | 基准 §8 的旧方格战场表述应按 AR-12 改为 pointy-top 六角格，并把 `≤20×20` 改写为“实际可用格 ≤400，`qSpan/rSpan≤20`”；六角距离与范围模板分别引用本文和 09。 |
+| P-05 | **已采纳（v1.2 V12-07）** | 基准 §8 已按 AR-12 改为 pointy-top 六角格，并采用“实际可用格 ≤400，`qSpan/rSpan≤20`”；六角距离与范围模板分别引用本文和 09。 |
 
 ### 13.4 原著考据待办（需以三联/广州修订版逐字核对）
 

@@ -1,11 +1,11 @@
 # 03 · 属性体系（Attributes）
 
 > 归属（基准 §18）：属性的定义、取值范围、成长曲线、派生公式与叠加顺序。
-> 上游：`00-canon.md` v1.1；`decisions/author-decisions.md`；`decisions/author-requirements.md`；跨文档裁定见 `decisions/rulings-v1.md`。
-> 引用而不重定义：伤害、治疗与 Z0–Z10 → `design/04-damage-formula.md`；武功层数、内功相性与左右互搏 → `design/05-martial-arts-system.md`；Buff 目录、持续类型与跨战清理 → `design/06-buff-system.md`；套装 → 未来 `design/07` 文件落盘后引用；六角地形、轻功门禁与水性行为 → `design/08-terrain-and-qinggong.md`；集气、首轮排序、移动点与战后流程 → `design/09-combat-system.md`；装备数值与合法名录 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务与门派层级 → `design/12-quests-npc-factions.md`；经验、`expFp`、修为余韵、终局与天书之力 → `design/13-progression-and-endings.md`；冲穴、经脉、周天与九转 → `design/15-meridians-and-acupoints.md`；资源、家丁与营生 → `design/16-resources-and-estates.md`；门派历史、称谓与时代矩阵 → `design/17-sects-compendium.md`；NPC 与跨书界同伴 → `design/18-npc-and-companions.md`；地图坐标、区域、城市与路线数据 → `design/19-world-map.md`；后人、宝藏、残本与合成 → 待 `design/20` 落稿。
+> 上游：`00-canon.md` v1.2；`decisions/author-decisions.md`；`decisions/author-requirements.md`；跨文档裁定见 `decisions/rulings-v1.md`。
+> 引用而不重定义：伤害、治疗与 Z0–Z10 → `design/04-damage-formula.md`；武功层数、内功相性与左右互搏 → `design/05-martial-arts-system.md`；Buff 目录、持续类型与跨战清理 → `design/06-buff-system.md`；套装 → 未来 `design/07` 文件落盘后引用；六角地形、轻功门禁与水性行为 → `design/08-terrain-and-qinggong.md`；集气、首轮排序、移动点与战后流程 → `design/09-combat-system.md`；装备数值与合法名录 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务与门派层级 → `design/12-quests-npc-factions.md`；经验、`expFp`、修为余韵、终局与天书之力 → `design/13-progression-and-endings.md`；冲穴、经脉、周天与九转 → `design/15-meridians-and-acupoints.md`；资源、家丁与营生 → `design/16-resources-and-estates.md`；门派历史、称谓与时代矩阵 → `design/17-sects-compendium.md`；NPC 与跨书界同伴 → `design/18-npc-and-companions.md`；地图坐标、区域、城市与路线数据 → `design/19-world-map.md`；后人、宝藏、残本与合成 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他归属文档、先给出可用数值并在文末登记。
 
-> 版本：v1.2（跨文档同步，2026-09-26）。
+> 版本：v1.2（跨文档同步、全局审计，2026-09-26）。
 
 ---
 
@@ -1682,11 +1682,11 @@ declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯�
 | 六角地形、体力动作与门禁可达性 | `design/08` §4–§7 | §4.4–§4.5、§5.3、§11.1 |
 | CT、移动点、反击/连击、调息与战末顺序 | `design/09` §3–§7 | §4.3–§4.6、§5.2、§5.6 |
 | 敌人品阶模型、书界难度、成长余韵、天书与终局 | `design/02` §2–§3；`design/13` §2、§4–§7 | §3.5、§8.4、§9–§10 |
-| AR-03～AR-12 尚未完成的主定义 | `author-requirements`；未来 `design/11`、12、15、16、18 | §11.6 仅保留输入/输出接口，不预定义其系统内部规则 |
+| AR-03～AR-12 的主定义 | `author-requirements`；`design/11`、12、15、16、18 | §11.6 仅保留输入/输出接口，不重定义其系统内部规则 |
 
 ### 15.3 对基准的修改提案
 
-原 P-01～P-05 均已由基准 v1.1 接纳，本轮不把这些旧提案重复登记为新事实；本节末另列本轮发现的两项 v1.2 同步提案。
+原 P-01～P-05 均已由基准 v1.1 接纳；R03-P01～P02 又已由基准 v1.2 接纳。以下保留历史编号与推导，便于追溯。
 
 | 编号 | 状态 | v1.1 落点 / 本文结果 |
 |---|---|---|
@@ -1696,9 +1696,9 @@ declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯�
 | P-04 | **已采纳（v1.1 V11-09）** | 基准 §1、§3、§5 已明确修为及突破分配按显示等级生效；本文 §2.8、§9.1 落实 |
 | P-05 | **已采纳（v1.1 V11-22）** | 基准 §9 已明确 Z1 按攻方 `P_ref` 归一且只除一次；本文 §3.5、§10.6 落实 |
 
-**新增提案 R03-P01**：基准 §6 将“左右互搏 `dualWield`（布尔/等级）”收敛为“整数 0–10；未装配为 0，否则取 `sk_zuoyouhubo` 当前有效层数”。理由：C16 已固定数据类型与迁移口径，继续保留“布尔”会令实现把 `true` 错当 1 或 10。本文已按该定义执行，待下一版基准仅做措辞同步。
+**已采纳 R03-P01（v1.2 V12-06）**：基准 §6 已将左右互搏 `dualWield` 收敛为整数 0–10；未装配为 0，否则取 `sk_zuoyouhubo` 当前有效层数。本文按该定义执行。
 
-**新增提案 R03-P02**：基准 §5 的 `STD(70).hpMax` 由 41,314 同步为 **40,409**，并注明普通装备最高为地上（g9），天级（g10–12）只属于封闭名器。理由：v1.1 V11-18 已要求 `STD` 使用合法典型配装，但旧锚点仍让普通装备品阶超过名录上限。按 `design/10` 封顶 g9 后，`HP_LV(70)=19,820.1`、`con=50+0.15×69+45/5=69.35`，等级与根骨项为 `19,820.1×(1+0.008×19.35)=22,888.25148`，四件小件的气血为 `4×0.01×G(9)×19,820.1=1,902.7296`，再乘内功气血 `+63%`：`roundHalfUp((22,888.25148+1,902.7296)×1.63)=40,409`。本文 §3.2、§3.5 已采用合法口径；基准与平衡脚本待同步。
+**已采纳 R03-P02（v1.2 V12-05）**：基准 §5 的 `STD(70).hpMax` 已由 41,314 同步为 **40,409**，并注明普通装备最高为地上（g9），天级（g10–12）只属于封闭名器。按 `design/10` 封顶 g9 后，`HP_LV(70)=19,820.1`、`con=50+0.15×69+45/5=69.35`，等级与根骨项为 `19,820.1×(1+0.008×19.35)=22,888.25148`，四件小件的气血为 `4×0.01×G(9)×19,820.1=1,902.7296`，再乘内功气血 `+63%`：`roundHalfUp((22,888.25148+1,902.7296)×1.63)=40,409`。本文 §3.2、§3.5 与基准一致。
 
 ### 15.4 原著考据待办
 
