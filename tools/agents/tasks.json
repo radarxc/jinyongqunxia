@@ -4075,7 +4075,8 @@
         "docs/design/19-world-map.md",
         "docs/design/20-legacy-inheritance.md",
         "docs/design/catalog/npcs-*.md",
-        "docs/design/map/**"
+        "docs/design/map/**",
+        "tools/map/**"
       ],
       "review": false,
       "web": false,
@@ -4083,7 +4084,7 @@
         "group_name": "设计核心 B",
         "doc_set": "- `docs/design/12-quests-npc-factions.md`\n- `docs/design/13-progression-and-endings.md`\n- `docs/design/14-ui-ux-mobile.md`\n- `docs/design/15-meridians-and-acupoints.md`\n- `docs/design/16-resources-and-estates.md`\n- `docs/design/17-sects-compendium.md`\n- `docs/design/18-npc-and-companions.md`\n- `docs/design/19-world-map.md`\n- `docs/design/20-legacy-inheritance.md`\n- `docs/design/catalog/npcs-*.md`\n- `docs/design/map/**`",
         "id_scope": "`q_*`（非主线）、`fl_*` / `flag_*`、任务 DSL 键（12）；`end_*`、`ach_*`、`tsp_*`、`echo_*`（13）；`mer_*`、`ap_*`、`zt_*`（15）；`res_*`、`rp_*`、`sv_*`、`biz_*`、`job_*`（16）；`sect_*`（17）；`npc_*`（18 与 `catalog/npcs-*.md`）；地图坐标与城市 / 门派落点数据（19 与 `design/map/**`）；`lgs_*`、`frag_*`、`cache_*`（20）。",
-        "extra": "18 与 `catalog/npcs-*.md` 补录各剧情 / 书界报告点名的缺失 NPC（按 18 的规则写生卒年与招募分级；只需人物卡或名录行，不写长篇）；15 给出 `mer_*` 旧短 ID → 正式 ID 的迁移表（CN-07，图鉴侧由 F2c 回写）；17 回写候选武学 ID 为图鉴实际 ID（CN-02、CN-03，若 F1b 未落实）；13 接收各书界的本地结局键与 `tsp_NN_canon/fate` 映射；`design/map/**` 与 11 的三十区终稿、17 与各剧情的门派驻地一致。"
+        "extra": "18 与 `catalog/npcs-*.md` 补录各剧情 / 书界报告点名的缺失 NPC（按 18 的规则写生卒年与招募分级；只需人物卡或名录行，不写长篇）；15 给出 `mer_*` 旧短 ID → 正式 ID 的迁移表（CN-07，图鉴侧由 F2c 回写）；17 回写候选武学 ID 为图鉴实际 ID（CN-02、CN-03，若 F1b 未落实）；13 接收各书界的本地结局键与 `tsp_NN_canon/fate` 映射；`design/map/**` 与 11 的三十区终稿、17 与各剧情的门派驻地一致。 **地图三十区迁移**：`design/map/*.yaml` 仍是旧 19 粗区（tech/04 已用 `TS-CONTENT-MAP-030` 阻断生产构建）——按 11 的三十区终稿原子迁移 regions / cities / sects / routes 的区域字段，必要时同步修改 `tools/map/render_map.py` 的区域枚举与校验，然后运行 `python tools/map/render_map.py --check` 与 `--render` 重新生成全部 SVG，并在 19 写明迁移表（旧区 → 新区）。"
       },
       "validate": {
         "exists": [
@@ -4107,6 +4108,18 @@
           "docs/design/18-npc-and-companions.md",
           "docs/design/19-world-map.md",
           "docs/design/20-legacy-inheritance.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/map/render_map.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/map/render_map.py",
+            "--render"
+          ]
         ]
       }
     },
@@ -4285,7 +4298,7 @@
         "group_name": "技术与工具",
         "doc_set": "- `docs/tech/*.md（01–09）`\n- `tools/lint/**`",
         "id_scope": "技术文档自有的存档 / 事件 / 协议键（如 `save_*`）；ID 检查脚本本身。",
-        "extra": "修正 `tools/lint/check_ids.py` 的误报：任务内局部键（`tr_*`、`st_*`、`edge_*` 等）与 YAML 局部作用域键、文档中明确标注的示例 ID——给出明确的作用域规则或白名单并说明理由；更新 `tools/lint/test_check_ids.py`，`python -m unittest tools/lint/test_check_ids.py` 必须通过。技术文档中的示例 ID 改为真实 ID 或按脚本约定标为示例；tech/04、tech/05 接收 12 / 15 / 16 / 17 / 18 / 20 的正式 schema 与 v1.2 新前缀（若 F1t 未落实）。"
+        "extra": "修正 `tools/lint/check_ids.py` 的误报：任务内局部键（`tr_*`、`st_*`、`edge_*` 等）与 YAML 局部作用域键、文档中明确标注的示例 ID——给出明确的作用域规则或白名单并说明理由；更新 `tools/lint/test_check_ids.py`，`python -m unittest tools/lint/test_check_ids.py` 必须通过。技术文档中的示例 ID 改为真实 ID 或按脚本约定标为示例；tech/04、tech/05 接收 12 / 15 / 16 / 17 / 18 / 20 的正式 schema 与 v1.2 新前缀（若 F1t 未落实）。 **严格检查门禁**：tech/04 已把 `check_ids.py --strict` 设为 CI 首步门禁，但仓库存量仍有两百多个失败。为脚本增加过渡基线机制（如 `tools/lint/check_ids_baseline.json` 记录已知存量、`--strict` 只阻断基线之外的新增，并提供刷新基线的命令），在 tech/04 写明门禁规则与清零计划；基线文件在 F2 汇总结束后由 F2 刷新。design/20 已存在（`docs/design/20-legacy-inheritance.md`），F1t 报告里 T45 \"design/20 缺失\" 是因其工作区早于 H1 合入——本任务把 `frag_/lgs_/cache_` 与传承 schema 正式接入 tech/04 / tech/05。"
       },
       "validate": {
         "exists": [
