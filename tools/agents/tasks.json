@@ -4125,11 +4125,10 @@
       "phase": "F",
       "wave": 3,
       "kind": "revise",
-      "title": "跨文档同步落实 · 设计 B（12–19 与 NPC 名录）",
+      "title": "跨文档同步落实 · 设计 B（12–14、16–19 与 NPC 名录）",
       "prompt": "F1-sync.md",
       "deps": [
         "B4.R",
-        "M1.R",
         "B7.R",
         "B5.R",
         "R13",
@@ -4139,13 +4138,19 @@
         "E2.R",
         "P04.R",
         "P07.R",
-        "P03.R"
+        "P03.R",
+        "P02.R",
+        "P06.R",
+        "P08.R",
+        "P09.R",
+        "P10.R",
+        "P12.R",
+        "P13.R"
       ],
       "writes": [
         "docs/design/12-quests-npc-factions.md",
         "docs/design/13-progression-and-endings.md",
         "docs/design/14-ui-ux-mobile.md",
-        "docs/design/15-meridians-and-acupoints.md",
         "docs/design/16-resources-and-estates.md",
         "docs/design/17-sects-compendium.md",
         "docs/design/18-npc-and-companions.md",
@@ -4157,16 +4162,15 @@
       "web": false,
       "vars": {
         "group_name": "设计文档 B 组",
-        "doc_set": "- `docs/design/12-quests-npc-factions.md`\n- `docs/design/13-progression-and-endings.md`\n- `docs/design/14-ui-ux-mobile.md`\n- `docs/design/15-meridians-and-acupoints.md`\n- `docs/design/16-resources-and-estates.md`\n- `docs/design/17-sects-compendium.md`\n- `docs/design/18-npc-and-companions.md`\n- `docs/design/19-world-map.md`",
-        "focus": "12 接收各 `story/NN-*.md` 审校后的路线段 / 选择节点约定（`q_NN_main_<c|z|x>_nn`、`dc_NN_nn`、立场值、换线公式、YAML 字段）；18 与 `catalog/npcs-*.md` 补录各剧情审校报告点名的候选 NPC（ID 全仓库查重、生卒年、招募分级）；17 的候选武学 ID 回写为图鉴实际 ID（CN-02、CN-03）；15 的 `mer_*` 迁移表（CN-07）；16 与 12 / 17 的月钱 / 职位接口（`stipendTier` / `resourceTier`）；13 的跨书界保留清单接收 E2-P03 / B7 O16-01 / 15 九转 / 20 残本；14 接收 16 的家业页与 12 时辰冲突；19 / map 数据与 17 / story 的地望双称（石梁衢州—金华、沈阳中卫—盛京等）。",
-        "scope_note": "**协调备忘专项**：CN-02、CN-03 回写 17；CN-07 在 15 中给出 `mer_*` 预留 ID → 正式 ID 的迁移表（图鉴本身由 CX* / F2 改）。已审校的剧情报告（`P*.R.md`）第 6 节针对 12 / 18 / 13 / 17 / 19 的条目逐条处理；尚未审校的剧情只处理其初稿报告中已明确的条目。"
+        "doc_set": "- `docs/design/12-quests-npc-factions.md`\n- `docs/design/13-progression-and-endings.md`\n- `docs/design/14-ui-ux-mobile.md`\n- `docs/design/16-resources-and-estates.md`\n- `docs/design/17-sects-compendium.md`\n- `docs/design/18-npc-and-companions.md`\n- `docs/design/19-world-map.md`",
+        "focus": "12 接收各 `story/NN-*.md` 审校后的路线段 / 选择节点约定（`q_NN_main_<c|z|x>_nn`、`dc_NN_nn`、立场值、换线公式、YAML 字段）；18 与 `catalog/npcs-*.md` 补录各剧情审校报告点名的候选 NPC（ID 全仓库查重、生卒年、招募分级）；17 的候选武学 ID 回写为图鉴实际 ID（CN-02、CN-03）；16 与 12 / 17 的月钱 / 职位接口（`stipendTier` / `resourceTier`）；13 的跨书界保留清单接收 E2-P03 / B7 O16-01 / 15 九转 / 20 残本；14 接收 16 的家业页与 12 时辰冲突；19 / map 数据与 17 / story 的地望双称（石梁衢州—金华、沈阳中卫—盛京等）。",
+        "scope_note": "**协调备忘专项**：CN-02、CN-03 回写 17。`design/15` 正在审校（M1.R），不在本组，目标为 15 的条目只登记到报告第 6 节，由 F2 处理。已审校的剧情报告（`P*.R.md`）第 6 节针对 12 / 18 / 13 / 17 / 19 与 NPC 名录的条目逐条处理（补录 NPC 时 ID 全仓库查重、写生卒年与招募分级，按 18 的规则）；尚未审校的剧情只处理其初稿报告中已明确的条目。"
       },
       "validate": {
         "exists": [
           "docs/design/12-quests-npc-factions.md",
           "docs/design/13-progression-and-endings.md",
           "docs/design/14-ui-ux-mobile.md",
-          "docs/design/15-meridians-and-acupoints.md",
           "docs/design/16-resources-and-estates.md",
           "docs/design/17-sects-compendium.md",
           "docs/design/18-npc-and-companions.md",
@@ -4176,7 +4180,6 @@
           "docs/design/12-quests-npc-factions.md",
           "docs/design/13-progression-and-endings.md",
           "docs/design/14-ui-ux-mobile.md",
-          "docs/design/15-meridians-and-acupoints.md",
           "docs/design/16-resources-and-estates.md",
           "docs/design/17-sects-compendium.md",
           "docs/design/18-npc-and-companions.md",
