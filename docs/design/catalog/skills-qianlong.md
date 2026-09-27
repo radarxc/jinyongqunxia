@@ -52,7 +52,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 ### 0.3 内功贡献、轻功与弓箭
 
 - 内功贡献：`IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen`；本文各内功均在品阶预算 ±5% 内，并逐门标 `nature: yin / yang / harmony`。
-- `design/15-meridians-and-acupoints.md` 尚不存在，本文先用 `mer_<拼音>` 表示专精经脉；这些是接口预留，不在本文定义经脉效果。
+- `design/15-meridians-and-acupoints.md` 已冻结正式 `mer_*`；本文只引用专精经脉 ID，不定义经脉效果。
 - 书剑、飞狐、雪山最高本土轻功均不超过地中 8；`sk_tianshanyingyang` 为三书可取得的地中上限，满层 `QS(8)=104`。
 - 弓箭按 C16 写为 `category:hidden, subType:hidden`，使用 `apHidden`、暗器栏与箭类弹药；`sk_tianshanqishe` 不占兵器栏。
 
@@ -1099,7 +1099,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 招式 `mv_*` | 183 | 天 / 地完整卡 73 个，玄阶紧凑卡 110 个；均以所属武学 ID 为前缀 |
 | 被动 `ps_*` | 139 | 天 / 地 49 个，玄阶 90 个；每个玄阶恰有 3 个具名 ID |
 | 套装 `set_*` | 17 | §7 全表；均为候选，最终规则和数值归 `design/07` |
-| 经脉 `mer_*` | 6 | `mer_renmai`、`mer_dumai`、`mer_shouyangming`、`mer_shoujueyin`、`mer_zuyangming`、`mer_daimai`；均为 `design/15` 尚未存在时的接口预留 |
+| 经脉 `mer_*` | 6 | `mer_renmai`、`mer_dumai`、`mer_shouyangming`、`mer_shoujueyin`、`mer_zuyangming`、`mer_daimai`；均已命中 `design/15` 正式 ID |
 | 新 Buff | 0 | 所有 `bf_*` 均引用 `design/06` 既有目录 |
 
 ### 10.3 上游接口（不归本文定义）
@@ -1145,7 +1145,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | QL-V04 | `category`、`subType`、`nature`、`wOut/wIn` 使用 `design/05` §2 枚举；`wOut+wIn=1`；所有内功 `nature != neutral` | 失败 |
 | QL-V05 | `reqs.skills` 键只取 C17 十项；`prereq[].anyOf` 至少两项、不嵌套、不自依赖，外层仍为 AND | 失败 |
 | QL-V06 | 招式 `power` 与 §0.2 公式差值 ≤0.05；天/地逐招核算，玄阶公式样本率 ≥30%，黄阶只匹配 Y1–Y5 模板 | 失败 / 非样本玄阶为告警 |
-| QL-V07 | 内功 IP 与品阶预算差值 ≤5%；每门有 `nature`，`meridians` 只能引用 §10.2 预留或未来 `design/15` 正式 ID | 失败 |
+| QL-V07 | 内功 IP 与品阶预算差值 ≤5%；每门有 `nature`，`meridians` 只能引用 `design/15` 正式 ID | 失败 |
 | QL-V08 | 所有 `bf_*` 必须存在于 `design/06`，施加品阶一律继承；本文禁止内联重定义 Buff | 失败 |
 | QL-V09 | `setTags` 与 §7 候选成员双向一致；跨文件装备成员允许待 `design/07` / `10` 接入但必须报告 | 失败 / 跨文件暂告警 |
 | QL-V10 | 每个正式门派至少一门黄阶入门拳或剑、一条黄→玄→地链、一组套装；散承只检查链和套装 | 失败 |

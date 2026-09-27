@@ -149,7 +149,7 @@ chapterStart:
   wakeScene: sc_11_xian_dongguan
   nearestCity: city_xian
   fixedIdentity: outsider_wayfarer
-  actionProfile: oneOf [temporary_guard, jianghu_witness, route_examiner]
+  actionProfile: oneOf [temporary_guard, jianghu_witness, road_examiner]
   startRegions: [rg_guanzhong]
   inherited:
     morality: keep
@@ -1481,3 +1481,4 @@ rg -n 'rg_11_|mer_ren\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/design/chapt
 | YY-O10 | `legacyWorldCap=9` 尚未并入基准时采用哪条规则 | 以版本化开关默认执行 AR-13；若提案被否决，回退现行 Canon 的本土完整来源规则，仍限 8 重 |
 | YY-O11 | ch12 对双刀携带、官凭与威信口碑接哪些接口 | 已解决主要接口：ch12 §11.2 已接双刀“有刀 / 无刀”、仁字镖旗 / 无人死亡改命收束及人物重验；官凭不继承官职，未登记的个别口碑只作文本回响 |
 | YY-O12 | 玩法定年是否固定为 1740 | 保留为原创定年，直到纸本考据和时间线归属文档给出更可靠锚点 |
+| YY-O13 | `sk_babuganchan` 是否进入正式可学库存 | 默认不进入、生产禁用；本章现有投放只保留为待实现接口。须由归属图鉴在 1,138 门闭合库存内给出替换项后，才开放 `q_11_qiyu_01` 的武学奖励；未获批时只给四侠关系与文本彩蛋 |

@@ -1007,6 +1007,112 @@ class IssueCategoryTests(unittest.TestCase):
         tags = check_ids.parse_member_set_tags(loaded, definitions, regex)
         self.assertEqual({"set_demo"}, tags["sk_gamma"][0])
 
+    def test_member_tags_read_only_cards_and_explicit_mirror_rows(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            set_path = repo.write(
+                check_ids.SET_SYSTEM_REL,
+                "# 套装\n\n## 8. 正式目录读法\n\n"
+                "### 8.4 正式成员注册表（机器可读镜像）\n\n"
+                "| 套装 ID | 名称 | 成员 |\n|---|---|---|\n"
+                "| `set_demo` | 示例 | `sk_alpha`、`sk_beta` |\n\n"
+                "## 9. 正式目录\n\n### 9.1 `set_demo` 示例套装\n\n"
+                "| 项 | 定稿 |\n|---|---|\n"
+                "| 成员（2） | `sk_alpha`、`sk_beta` |\n",
+            )
+            catalog_path = repo.write(
+                "docs/design/catalog/skills-test.md",
+                "# 图鉴\n\n## 1. 卡片\n\n"
+                "### 1.1 `sk_alpha` 甲\n\n"
+                "| 字段 | 值 |\n|---|---|\n"
+                "| setTags / conflicts | `set_demo` / 无 |\n\n"
+                "## 2. 本文新增术语与 ID\n\n"
+                "| ID | 名称 |\n|---|---|\n"
+                "| `sk_alpha` | 甲 |\n| `sk_beta` | 乙 |\n\n"
+                "### 正式套装反向标签镜像（全局审计）\n\n"
+                "| 武学 ID | setTags |\n|---|---|\n"
+                "| `sk_beta` | `set_demo` |\n",
+            )
+            warnings: List[str] = []
+            prefixes = list(check_ids.DEFAULT_PREFIXES)
+            regex = check_ids.compile_id_regex(prefixes)
+            documents = [
+                check_ids.load_document(path, repo.root, warnings)
+                for path in (set_path, catalog_path)
+            ]
+            loaded = [doc for doc in documents if doc is not None]
+            _, definitions = check_ids.extract_occurrences(loaded, prefixes, regex)
+
+            issues, _ = check_ids.set_symmetry_issues(
+                repo.root, loaded, definitions, regex, warnings
+            )
+            tags = check_ids.parse_member_set_tags(loaded, definitions, regex)
+
+        self.assertEqual([], issues)
+        self.assertEqual({"set_demo"}, tags["sk_alpha"][0])
+        self.assertEqual({"set_demo"}, tags["sk_beta"][0])
+
+    def test_member_tags_ignore_mirror_rows_outside_catalogs(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            set_path = repo.write(
+                check_ids.SET_SYSTEM_REL,
+                "# 套装\n\n## 8. 正式目录读法\n\n"
+                "### 8.4 正式成员注册表（机器可读镜像）\n\n"
+                "| 套装 ID | 名称 | 成员 |\n|---|---|---|\n"
+                "| `set_demo` | 示例 | `sk_alpha` |\n",
+            )
+            catalog_path = repo.write(
+                "docs/design/catalog/skills-test.md",
+                "# 图鉴\n\n## 1. 卡片\n\n"
+                "### 1.1 `sk_alpha` 甲\n\n"
+                "| 字段 | 值 |\n|---|---|\n| setTags | `[]` |\n",
+            )
+            unrelated_path = repo.write(
+                "docs/design/06-buff-system.md",
+                "# Buff\n\n### 正式套装反向标签镜像（全局审计）\n\n"
+                "| 武学 ID | setTags |\n|---|---|\n"
+                "| `sk_alpha` | `set_demo` |\n",
+            )
+            warnings: List[str] = []
+            prefixes = list(check_ids.DEFAULT_PREFIXES)
+            regex = check_ids.compile_id_regex(prefixes)
+            documents = [
+                check_ids.load_document(path, repo.root, warnings)
+                for path in (set_path, catalog_path, unrelated_path)
+            ]
+            loaded = [doc for doc in documents if doc is not None]
+            _, definitions = check_ids.extract_occurrences(loaded, prefixes, regex)
+
+            issues, _ = check_ids.set_symmetry_issues(
+                repo.root, loaded, definitions, regex, warnings
+            )
+
+        self.assertEqual(
+            [("member_missing_setTag", "sk_alpha")],
+            [(item["direction"], item["member_id"]) for item in issues],
+        )
+
+    def test_inventory_line_marked_reference_only_is_not_a_definition(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            path = repo.write(
+                "docs/design/catalog/skills-test.md",
+                "# 图鉴\n\n## 本文新增术语与 ID\n\n"
+                "跨文档只引用、不计为本文定义：`sk_external`。\n",
+            )
+            warnings: List[str] = []
+            prefixes = list(check_ids.DEFAULT_PREFIXES)
+            regex = check_ids.compile_id_regex(prefixes)
+            document = check_ids.load_document(path, repo.root, warnings)
+            self.assertIsNotNone(document)
+            occurrences, definitions = check_ids.extract_occurrences(
+                [document], prefixes, regex  # type: ignore[list-item]
+            )
+
+        self.assertFalse(next(item for item in occurrences if item.id == "sk_external").active)
+        self.assertNotIn("sk_external", {item.id for item in definitions})
+
     def test_real_set_catalog_has_44_sets_and_306_memberships(self) -> None:
         root = Path(__file__).resolve().parents[2]
         warnings: List[str] = []

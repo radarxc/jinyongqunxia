@@ -44,7 +44,7 @@
 
 内功第 10 重主运贡献用 `IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen`。本文采用 05 §5.5 的精确预算：黄下/中/上 `19/24/30`，玄下/中/上 `41.5/48.5/57`，地下/中/上 `72/83/94.5`，天下/中/上 `118/135.5/156`；`stats` 另计且不超过对应大阶层数预算。
 
-每门内功均标 `nature: yin/yang/harmony`。因 `design/15` 尚不存在，`meridians` 先用 AR-03 约定的 `mer_<拼音>` 预留；它只表示冲穴专精，不在本文定义穴位、内劲速度或周天加成。轻功 `QS(g)` 直接引用 `design/03` §4.5，不在本文重复公式。
+每门内功均标 `nature: yin/yang/harmony`。`meridians` 使用 `design/15` 已冻结的正式 `mer_<拼音>`；它只表示冲穴专精，本文不定义穴位、内劲速度或周天加成。轻功 `QS(g)` 直接引用 `design/03` §4.5，不在本文重复公式。
 
 ### 0.4 本组五级职级建议（只列可学武学）
 
@@ -1190,7 +1190,7 @@
 | 被动 `ps_*` | 以条目表为准 | 天/地全部给 ID；玄阶抽样给 ID 或明确名称，黄阶以核心效果概括 |
 | 套装候选 `set_*` | 15 | §14 列出；其中 `legacy-set:jinshe_sanbao` 沿用 `design/10`，其余交 `design/07` 判断是否收录 |
 | 门派 `sect_*` | 0 个新增定义 | 本文引用现行 `design/17` 已定义的 12 个组织 ID，并按其名称、时代开放与职级称谓对齐；`sect_jinwupai` 仅作金乌刀法来源，不另计配额组 |
-| 经脉 `mer_*` | 6 个预留引用 | `mer_renmai`、`mer_dumai`、`mer_chongmai`、`mer_daimai`、`mer_yangqiao`、`mer_yangwei`；定义归未来 `design/15` |
+| 经脉 `mer_*` | 6 个正式引用 | `mer_renmai`、`mer_dumai`、`mer_chongmai`、`mer_daimai`、`mer_yangqiao`、`mer_yangwei`；定义归 `design/15` |
 | Buff `bf_*` | 0 个新增 | 全部运行引用来自 `design/06` 当前目录；本文不提新增 Buff |
 | 装备引用 | 5 | `eq_jinshejian`、`eq_jinshezhui`、`eq_hetieshougou`、`eq_jinsibeixin`、`eq_xuansushuangjian` 均已见 `design/10`；装备侧套装反向标签仍待 07/10 同步 |
 

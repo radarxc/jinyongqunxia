@@ -2165,7 +2165,7 @@ conflicts: []
 learnSources:
   - { type: master, chapter: ch02_shediao,  ref: "全真教·三代弟子授艺岗位槽", maxLayer: 10 }
   - { type: master, chapter: ch03_shendiao, ref: "全真教·三代弟子授艺岗位槽", maxLayer: 10 }
-  - { type: puzzle, chapter: ch03_shendiao, ref: q_03_side_91, maxLayer: 10, reqsOverride: { sect: null },
+  - { type: puzzle, chapter: ch03_shendiao, ref: q_03_qiyu_90, maxLayer: 10, reqsOverride: { sect: null },
       note: "古墓石室所刻全真武功；据《神雕侠侣》杨过、小龙女研习全真与玉女武功的情节，本作据此配置完整学习来源（原创扩展）" }
   - { type: observe, maxLayer: 6 }
 special: { fusible: true }
@@ -2619,7 +2619,7 @@ description: >-
 | 誓约 / 标记 | `vow_duanchen`；存档标记 `jiuyang_echo`、`scar_qishang` | |
 | 门派（引用） | `sect_gaibang` `sect_quanzhen` `sect_kongtong` `sect_riyue` | 正式 ID、历史与时代开放归 design/17；身份玩法归 design/12 |
 | NPC（引用/岗位槽） | 具名引用：`npc_hongqigong` `npc_guojing` `npc_fengqingyang` `npc_fangzheng` `npc_kongxing` `npc_kongwen` `npc_xiaofeng` `npc_xuanci`；岗位槽：少林罗汉堂/般若堂/武僧/当代方丈、全真三代弟子、军营/镖局/武馆教头 | 静态身份归 design/18；无名职能已改为组织/设施岗位槽文字，运行时按 D15 实例化 |
-| 任务（占位编号 91） | `q_01_qiyu_91` `q_04_qiyu_91` `q_03_side_91` | 由对应书界文档替换；神雕九阳闻经不再冒充学习来源 |
+| 任务接口 | `q_01_qiyu_91` `q_04_qiyu_91` `q_03_qiyu_90` | 神雕全真剑法已接正式“石刻正解”来源；神雕九阳闻经不冒充学习来源 |
 | 效果钩子 | `refundMpOnKill` `refundHpCostOnKill` `firstActionBonus` `critBonus` `ignoreDef` `shieldDmgMult` `heightBonusMult` `noLowGroundPenalty` `leapHeightExtra` `terrainNoFalloff` `ignoreReach` `splashMult` `sequenceStage` `secondaryAoe` `stanceCounter` `deflectProjectile` `stackDetonate` `rageDrain` `drainMp` `restoreMp` `cleanseZouhuo` `curveLos` | §4.11；旧 `thenAoe` 不得进入新数据 |
 | 招式条件键 | `targetWeapon` `targetHasSkill` `targetMainInnerEffGradeGte` `targetShieldGt` `fromBehind` `selfHpBelow` `targetArmed` `targetHasTag` `adjacentFallenUnit` `attackedByTargetSinceLastAction` `targetLastMoveCat` `allyAdjacentToTarget` `targetHpBelow` `night` `moonlitTile` `any` | §2.9、§4.1、§4.11；未知键构建失败 |
 
@@ -2701,14 +2701,14 @@ description: >-
 | D3 | design/04 | `P_actual = G × L(n) × move.power × Mod_armed × Mod_special` 是绝对威力；只在 Z1 除一次 `P_ref`；`wOut/wIn` 合成攻击 | **已解决**：04 §4.1 已采用；本文见 §2.7（C01） |
 | D4 | design/04 | Z5：阳/阴主运同性质 `+12%`、异性质 `−12%`；调和主运对阳/阴 `+6%`、调和 `+12%`、中性 `+2%`；破 X 用 `poBonus/poParry` | **已解决**：04 §4.5 已同步调和 `+6%`；本文见 §5.3 |
 | D5 | design/04 | 多段逐段判定；绝招被招架时按 04 的 Z9；撞墙 `floor(0.20×D_hit)`、被撞单位 `floor(0.10×D_hit)`，每次位移至多一次且不免费眩晕 | **已解决**：04 §7.4 已采用 C11；本文见 §4.5、§4.8 |
-| D6 | design/06 | 武学只引用 `bf_*`，Buff 本体归 06；`bf_jianshi`、`bf_shouque` 已正式存在，不是缺口；招式预算的 `cost_buff` 在 06 给出价值表后再校准 | **部分已解决**：目录已闭合；06 的 `bf_jitui` 仍须改用 `D_hit` 撞击且删自动眩晕，`bf_pibei` 须改为 20% 阈值及 C11 效果 |
-| D7 | design/07 | 建立 `set_gaibang_bangzhu`、`set_quanzhen_beidou`、`set_shaolin_luohan` 等唯一成员表，并与本文/图鉴 `setTags` 双向闭合；有效品阶按 C22 取已计件成员中位数 | **待下游落盘**：`design/07-set-system.md` 尚不存在；本文见 §6.5、§13 |
-| D15 | chapters/*、design/18 | 把示例中的 `q_0N_*_91` 与占位 NPC 引用替换为各书界正式任务、静态 NPC 或组织/设施 role slot；神雕九阳只写图鉴 `heard` 与 `jiuyang_echo` | **待下游落盘**：占位项见 §13；无名教头、院堂与“三代弟子”不得继续伪装成静态 `npc_*`，应按 18 §10 与 `catalog/npcs-facilities.md` 的角色槽实例化 |
+| D6 | design/06 | 武学只引用 `bf_*`，Buff 本体归 06；`bf_jianshi`、`bf_shouque` 已正式存在，不是缺口；招式预算的 `cost_buff` 在 06 给出价值表后再校准 | **已解决**：目录已闭合；06 的 `bf_jitui` 已改用 `D_hit` 且不自动眩晕，`bf_pibei` 已统一为 20% 恢复阈值（C11） |
+| D7 | design/07 | 建立 `set_gaibang_bangzhu`、`set_quanzhen_beidou`、`set_shaolin_luohan` 等唯一成员表，并与本文/图鉴 `setTags` 双向闭合；有效品阶按 C22 取已计件成员中位数 | **已解决**：`design/07` 已冻结 44 套，正式关系为 305 条武学成员＋1 条装备成员；成员与图鉴 / 装备 `setTags` 双向不对称为 0 |
+| D15 | chapters/*、design/18 | 把示例中的 `q_0N_*_91` 与占位 NPC 引用替换为各书界正式任务、静态 NPC 或组织/设施 role slot；神雕九阳只写图鉴 `heard` 与 `jiuyang_echo` | **已解决（规划数据）：**任务来源已替换为正式 ID；无名教头、院堂与“三代弟子”均按 18 §10 与 `catalog/npcs-facilities.md` 使用角色槽，不再伪装静态 `npc_*`；具体运行时实例仍由内容构建生成 |
 | D16 | tech/05 | 实现 §4.11 的效果钩子、共享 `HexShape/YunjinMode`、`Reqs.skills/anyOf`、§16 的 Zod/lint 与 T1–T23 金标准 | **部分已解决**：tech/05 已定共享战斗类型和玩法 core 边界；内容 schema、完整效果钩子与本文全部金标准仍待实现，旧“§15 lint”引用已更正为 §16 |
-| D17 | design/03、catalog | `dualWield:int[0,10]` 只取可用左右互搏的 `effLayer`；左右互搏为 `misc/mind`；弓箭、火器武学为 `hidden/hidden` | **本文已定稿，下游部分待同步**：03 仍有 0–3 档；图鉴不得由副手装备赋值，弓箭/火器须迁入 `hiddenKind: bow/gun`（C16；§2.2、§6.2、§9.3.2） |
+| D17 | design/03、catalog | `dualWield:int[0,10]` 只取可用左右互搏的 `effLayer`；左右互搏为 `misc/mind`；弓箭、火器武学为 `hidden/hidden` | **已解决**：03 与图鉴已同步 0–10 整数、`misc/mind` 与 `hiddenKind: bow/gun`；不得由副手装备赋值（C16；§2.2、§6.2、§9.3.2） |
 | D18 | catalog | `Reqs` 使用 `skills` 与 `prereq[].anyOf`；外层 AND、组内 OR，来源覆写按顶层字段整体替换 | **本文已定稿，图鉴迁移继续**：结构与 lint 见 §2.4、§7.3、§16（C17） |
 | D19 | design/15 | `inner.meridians` 的 `mer_renmai/mer_dumai` 是易筋经、九阳示例的专精映射；冲穴读取有效品阶、有效层数、真实 `mpMax`、主运性质与辅运折算 | **已解决**：15 §2、§4 已冻结 20 个正式 ID 和单门自身贡献 ×1.20；05 已收口 `MeridianId` 与 V4/T22，示例映射保持 **【建议值】**，见 §5.7–§5.8、§13.3–§13.4 |
-| D20 | design/20（未来） | 后人、宝藏/遗迹、上中下残本、关键信物与合成全本只可生成或升级 `LearnSource/sourceGrade/sourceCap`，不得与本文 `fragment`（书眠残篇）或 design/02 `partial`（残承）合并 | **待上游落盘**：AR-13 已指定唯一归属但文件尚不存在；暂不把新来源类型写入生产枚举，后续由 20 给出事件载荷与合成结果后再迁移 §7 |
+| D20 | design/20 | 后人、宝藏/遗迹、上中下残本、关键信物与合成全本只可生成或升级 `LearnSource/sourceGrade/sourceCap`，不得与本文 `fragment`（书眠残篇）或 design/02 `partial`（残承）合并 | **已解决**：20 已落盘并冻结三类传承来源、事件载荷与合成结果；本文 §7 已同步消费其接口 |
 | D21 | design/10、catalog | `WeaponReq` 消费 `hands`/成对/副手规则，暗器改用 `hiddenKind`，特殊装备兼容用 `offHand/altItems`；丹药 `sxpGrant.pctNext` 黄/玄/地/天为 `0.10/0.20/0.35/0.50` | **已解决（接口）**：10 §2–§3、§8.2 已定枚举和档位，05 已补 schema/§6.2/V3；具体图鉴条目仍须逐项迁移并解析装备 ID |
 
 ### 17.2 本文依赖的上游事实

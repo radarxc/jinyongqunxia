@@ -69,7 +69,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总数 + 5 × mpRegen
 
 黄阶贡献沿上表同品阶分配；三门的 `attrs` 分别为：大旗吐纳 `{con:1,wis:1,wil:1}`、青龙吐纳 `{con:2,wis:1,wil:1}`、青龙护心功 `{con:2,wil:1}`。所有额外内功属性放在 `inner.contribution.stats`，不新增 `inner.stats` 字段。
 
-AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门内功，全部已标。`design/15` 尚不存在，本文暂用 `mer_renmai`、`mer_dumai`、`mer_yinqiao`、`mer_yangqiao`、`mer_shoutaiyin` 五个拼音 ID；最终映射交 `design/15`。
+AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门内功，全部已标。本文引用 `design/15` 已冻结的 `mer_renmai`、`mer_dumai`、`mer_yinqiao`、`mer_yangqiao`、`mer_shoutaiyin` 五个正式 ID，不在图鉴重定义其效果。
 
 ### 0.4 本组五级职级建议（AR-07）
 

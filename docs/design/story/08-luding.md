@@ -307,7 +307,7 @@ flowchart TD
 |---|---|
 | 原著对应事件 | 第2–7回：扬州结识、入京、小玄子摔跤、擒鳌拜、经书与海大富 / 假太后疑云 |
 | 地点 | 扬州府 `city_yangzhou` → 京师顺天府 `city_beijing` → 紫禁城内廷 |
-| 参与 NPC | `npc_weixiaobao`、`npc_maoshiba`、`npc_kangxi`、`npc_aobai`；海大富、假太后 / 毛东珠（正式 ID 尚待 `design/18` 登记） |
+| 参与 NPC | `npc_weixiaobao`、`npc_maoshiba`、`npc_kangxi`、`npc_aobai`、`npc_haidafu`；假太后 / 毛东珠的正式 ID 尚待 `design/18` 登记 |
 | 本幕目标 | 不取代康熙和韦小宝擒鳌拜，而是在宫门封锁前截断鳌拜党羽、保护见证人并查出经书线索 |
 
 **目标与流程**：
@@ -1411,11 +1411,10 @@ flowchart TD
 
 ### 8.2 主线所需但图鉴缺失的具名角色
 
-下列人物有原著主线功能，但 `npcs-ch08-luding.md` 尚无正式 ID。本文不擅造 `npc_*`，统一以角色槽引用，待 `design/18` 补录：
+下列人物有原著主线功能，但 `npcs-ch08-luding.md` 尚无正式 ID。本文不擅造 `npc_*`，统一以角色槽引用，待 `design/18` 补录；海大富已以 `npc_haidafu` 补入名录，不再列为缺项：
 
 | 角色槽 | 本文位置 | 需要补的最小资料 |
 |---|---|---|
-| 海大富 | `c01`、宫闱经书线 | 正式 ID、生卒 / appearance、D 级、`sk_huagumianzhang` 来源 |
 | 假太后 / 毛东珠 | `c01`、`z01/x01`、`dc_08_03` | 同一人别名关系、神龙教身份、D5 招募窗 |
 | 陶红英 | 宫闱旧案辅助线 | 正式 ID、宫女 / 旧明关系与是否进入主线 |
 | 顺治 / 行痴 | `z02/x02`、`dc_08_04` | 正式 ID、史实与小说 appearance 分离、非战斗同行窗 |

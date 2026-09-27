@@ -328,7 +328,7 @@ dq = q2-q1; dr = r2-r1; ds = -dq-dr
 hexDistance(a,b) = max(abs(dq), abs(dr), abs(ds))
 ```
 
-pointy-top 外接圆半径取 `R = 2/3 m`【建议值】。这保留旧 1 m 标尺为轴坐标的**行距**：`3R/2 = 1 m`；六个相邻格的中心距均为 `sqrt(3)R = 2sqrt(3)/3 ≈ 1.1547 m`，不能把两者混写为“每格 1 m”。规则坐标到水平世界平面的映射为：
+pointy-top 外接圆半径固定为 `R = 2/3 m`（见 `design/08` §1.2–§1.4）。这保留旧 1 m 标尺为轴坐标的**行距**：`3R/2 = 1 m`；六个相邻格的中心距均为 `sqrt(3)R = 2sqrt(3)/3 ≈ 1.1547 m`，不能把两者混写为“每格 1 m”。规则坐标到水平世界平面的映射为：
 
 ```text
 x = sqrt(3) * R * (q + r/2)
@@ -876,7 +876,7 @@ reachable(P) = pathCost(P) <= move
 
 #### 4.8.4 运劲（合并旧“运功调息”）
 
-**运劲**是内功驱动的战斗行动，不等于成长系统的“内劲”资源，也不在战斗中推进穴道。冲穴、内劲与周天只引用未来 `design/15-meridians-and-acupoints.md`（AR-03），本文不得把 MP 消耗当成冲穴进度。旧命令 `meditate` 仅作读档迁移别名，统一转换为 `{t:yunjin,mode:tiaoxi}`。
+**运劲**是内功驱动的战斗行动，不等于成长系统的“内劲”资源，也不在战斗中推进穴道。冲穴、内劲与周天只引用 `design/15-meridians-and-acupoints.md`（AR-03），本文不得把 MP 消耗当成冲穴进度。旧命令 `meditate` 仅作读档迁移别名，统一转换为 `{t:yunjin,mode:tiaoxi}`。
 
 来源内功 `sourceInner` 默认必须是当前主运；辅运只有在 05 的 `inner.auxUsableMoves` 或专属字段明确列出相应运劲分支时可选。强度统一读有效品阶 `g`、有效层数 `n` 与 `innerScale(n)=0.30+0.07n`，不直接读取绝对品阶。无主运内功只能调息，按黄下 1 品、1 重处理。
 
@@ -3131,7 +3131,7 @@ behaviors:
 | design/08 | 六角地形、每格 `h` / `terrain`、移动成本、跳跃 / 攀爬 / 跨越门禁、视线、高差与坠崖均为上游；§1.2–§1.4 已与 tech/02、本文 §2.9.1 同步 `R=2/3 m`、行距 1 m、六邻中心距约 1.1547 m |
 | design/10 | 丹药、暗器、毒药、机关、投掷物的类别、堆叠、携带和战斗可用性为上游 |
 | C06 / design/13 | **已解决**：`expVal(L)=10+5L`；普通 / 精英 / 头目 / Boss 系数 1 / 3 / 5 / 10；难度 ID 为 `diff_jianghu` / `diff_xiake` / `diff_zongshi` / `diff_tianjie`；速战角色经验 ×0.8、武学经验 ×0.5 |
-| C12 / rulings-v1 | **已解决**：生产引用使用 `tr_sheku`、`sk_babuganchan`、`sk_jingangfumoquan`；Boss 脚本用 `bsc_*`，`bs_*` 留给书眠 Ink 节点 |
+| C12 / rulings-v1 | **部分解决**：生产引用使用 `tr_sheku`、`sk_jingangfumoquan`；八步赶蟾标准 ID 固定为 `sk_babuganchan`，但尚无归属图鉴卡，按 `design/08` §4.6 待收录且当前禁用；Boss 脚本用 `bsc_*`，`bs_*` 留给书眠 Ink 节点 |
 | C13 / rulings-v1 | **已解决**：天罡北斗阵、真武七截阵均 `minMembers=4`、`dissolveBelow=4`；虚位无单位、CT、攻击、追击或援护能力 |
 | C20 + AR-12 + tech/02 | **已解决**：旧“战斗四斜向”被六角格覆盖；采用逻辑六向、完整 `battle8`、固定镜头驻留 6 个映射视图 |
 | author-decisions P42–P47 | **已解决**：聚贤庄允许倒戈且保留黑衣人锚点；保留显式“了断”；保留洪安通奉承；速战武学经验 ×0.5；剧情友军默认 AI、剧情可指定可控且占 6 人名额；少林慈悲类武学默认制服且可单场关闭 |

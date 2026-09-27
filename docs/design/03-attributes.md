@@ -2,7 +2,7 @@
 
 > 归属（基准 §18）：属性的定义、取值范围、成长曲线、派生公式与叠加顺序。
 > 上游：`00-canon.md` v1.2；`decisions/author-decisions.md`；`decisions/author-requirements.md`；跨文档裁定见 `decisions/rulings-v1.md`。
-> 引用而不重定义：伤害、治疗与 Z0–Z10 → `design/04-damage-formula.md`；武功层数、内功相性与左右互搏 → `design/05-martial-arts-system.md`；Buff 目录、持续类型与跨战清理 → `design/06-buff-system.md`；套装 → 未来 `design/07` 文件落盘后引用；六角地形、轻功门禁与水性行为 → `design/08-terrain-and-qinggong.md`；集气、首轮排序、移动点与战后流程 → `design/09-combat-system.md`；装备数值与合法名录 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务与门派层级 → `design/12-quests-npc-factions.md`；经验、`expFp`、修为余韵、终局与天书之力 → `design/13-progression-and-endings.md`；冲穴、经脉、周天与九转 → `design/15-meridians-and-acupoints.md`；资源、家丁与营生 → `design/16-resources-and-estates.md`；门派历史、称谓与时代矩阵 → `design/17-sects-compendium.md`；NPC 与跨书界同伴 → `design/18-npc-and-companions.md`；地图坐标、区域、城市与路线数据 → `design/19-world-map.md`；后人、宝藏、残本与合成 → `design/20`。
+> 引用而不重定义：伤害、治疗与 Z0–Z10 → `design/04-damage-formula.md`；武功层数、内功相性与左右互搏 → `design/05-martial-arts-system.md`；Buff 目录、持续类型与跨战清理 → `design/06-buff-system.md`；套装 → `design/07-set-system.md`；六角地形、轻功门禁与水性行为 → `design/08-terrain-and-qinggong.md`；集气、首轮排序、移动点与战后流程 → `design/09-combat-system.md`；装备数值与合法名录 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务与门派层级 → `design/12-quests-npc-factions.md`；经验、`expFp`、修为余韵、终局与天书之力 → `design/13-progression-and-endings.md`；冲穴、经脉、周天与九转 → `design/15-meridians-and-acupoints.md`；资源、家丁与营生 → `design/16-resources-and-estates.md`；门派历史、称谓与时代矩阵 → `design/17-sects-compendium.md`；NPC 与跨书界同伴 → `design/18-npc-and-companions.md`；地图坐标、区域、城市与路线数据 → `design/19-world-map.md`；后人、宝藏、残本与合成 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他归属文档、先给出可用数值并在文末登记。
 
 > 版本：v1.2（跨文档同步、全局审计，2026-09-26）。
@@ -1291,7 +1291,7 @@ python3 tools/balance/damage_sim.py --report
 python3 tools/balance/damage_sim.py --check
 ```
 
-修改本节的 `STD`、敌人模板、`MPREF` 或 `P_ref` 后，必须同步脚本并重新生成 `design/04` §9；不得手改显示值。当前脚本仍须把玩家普通装备拆成 `gWeapon=min(gMain,9)` 与 `gGear=min(gref,9)`，见 §15.3 R03-P02；完成同步前，04 的节奏结论视为旧 STD 基线，不用来反推本文合法装备。
+修改本节的 `STD`、敌人模板、`MPREF` 或 `P_ref` 后，必须同步脚本并重新生成 `design/04` §9；不得手改显示值。**已解决（CN-09）**：脚本已把玩家普通装备拆成 `gWeapon=min(gMain,9)` 与 `gGear=min(gref,9)`，并据此重生 04 §9 的 42 行节奏表及经脉三档回归；现行结果可由 `python3 tools/balance/damage_sim.py --check` 复现。
 
 ### 10.9 越级 Boss 示例：洪安通（鹿鼎，`full` 完整法）
 

@@ -755,7 +755,7 @@ flowchart TD
 | 三件证物交三名不同保管者 | 阿曼、李文秀、车尔库至少两人在场 | `morality +3`、`split_custody=true`【建议值】 | 正线进 z05，邪线进 x06 |
 | 销毁可伤人的筹码，保留口述与摹本 | `old_case_complete=true`；失去相应交易奖励 | `morality +4`、`dangerous_evidence_destroyed=true`【建议值】 | 正线 z05 |
 
-**可逆与汇合**：这是最后一次自由换线。选择公开方案后进入 `q_10_main_z_05`，选择秘密方案后进入 `q_10_main_x_06`；写 `route_locked_at=dc_10_06` 后仍可改变命运轴，却不能再通过菜单跨线。证词始终可在结局档案中查阅。
+**可逆与汇合**：这是最后一次自由换线。选择公开方案后进入 `q_10_main_z_05`，选择秘密方案后进入 `q_10_main_x_06`；写 `routeLockedAt=dc_10_06` 后仍可改变命运轴，却不能再通过菜单跨线。证词始终可在结局档案中查阅。
 
 ### 5.9 `dc_10_07` · 人先于藏
 
@@ -1091,7 +1091,7 @@ NPC 的身份、生卒、D1–D5 招募难度与跨书界资格以 `design/18-np
 | `npc_sangsi` | 桑斯儿；原著 | D3 | 节庆角力、先锋队与假鬼受害者 | C02 完成角力并取得许可；z/x01 抬离毒针现场且存活后可限幕加入 | 原著结果下死亡；救下只属次级救援，不计本书主改命和余韵代价 |
 | `npc_yunqiangdao` | 姓云的强人；原著称谓 | D3 | 追图团独立口供与邪线短约 | x01 / D09 若出现为书页改写：原著第五回已被毒针杀死 **（原创扩展玩法）** | 伤害俘虏、再劫掠或拒绝公议即敌对；不跨书 |
 | `npc_quanqiangdao` | 姓全的强人；原著称谓 | D3 | 同上，承担另一条事实链 | 条件同上；原著第五回在华辉授艺后的交手中被杀，存活到 D09 属 **（原创扩展玩法）** | 条件同上 |
-| `npc_songqiangdao` | 姓宋的强人（姓名不详） | D3 | 同上，负责假图与水源信息 | 条件同上；原著第五回在华辉授艺后的交手中被杀，存活到 D09 属 **（原创扩展玩法）** | 正式 ID；旧 `npc_ningqiangdao` 仅允许由 `design/18` §7.5 读档 alias 迁入 |
+| `npc_songqiangdao` | 姓宋的强人（姓名不详） | D3 | 同上，负责假图与水源信息 | 条件同上；原著第五回在华辉授艺后的交手中被杀，存活到 D09 属 **（原创扩展玩法）** | 正式 ID；旧 ID `npc_ningqiangdao` 仅允许由 `design/18` §7.5 读档 alias 迁入 |
 | `npc_duanshuang10` | 段霜；原创静态人物 | D2 | 晋威旧旗、商路与组织辨误支线 | 找回失落镖旗并确认不再追图；关系路径或正式护路雇佣二选一 | 合同期满离队；主线不强制出现；本文按原任务明令不把其所属映射为威信镖局，并登记上游名录关系字段待迁移 |
 | `npc_shenqinghe10` | 沈青禾；原创静态人物 | D2 | 开局药材商、医药 / 译语和救援补位 | C01 完成辨药与护送病患，或签有代班安排的商队短约 | 商队启程或合同结束离队；可在余韵期续约 |
 | `npc_hanhe10` | 韩禾；原创静态人物 | D2 | 牧马、追踪、引荐部落 | C02 找回走失马群并取得苏鲁克许可，或签季节牧工短约 | 营地迁徙或马群无人照料时离队；安排替手后可续约 |
@@ -1229,7 +1229,7 @@ prerequisites:
   all:
     - flag: baima.old_case_complete
       equals: true
-    - flag: baima.route_locked_at
+    - flag: baima.routeLockedAt
       equals: dc_10_06
 steps:
   - id: inspect_fate_gates
@@ -1319,7 +1319,7 @@ options:
     costs: [lose_public_backing]
     next: q_10_main_x_06
 onResolve:
-  - set: {baima.route_locked_at: dc_10_06}
+  - set: {baima.routeLockedAt: dc_10_06}
 ```
 
 #### 9.4.4 关键状态最小集

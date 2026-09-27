@@ -52,7 +52,7 @@
 - 五锚点与天书：`design/story/07-bixue.md` §6–§7；全局锚点总览见 `design/01` §7.8。
 - 本时代地图：[`../map/jianghu-ch07.svg`](../map/jianghu-ch07.svg)；城市时代名读取 `design/map/cities.yaml`。
 - 地图中的图外节点只由专线到达；本章没有波斯总教等图外自由探索点。
-- 正式人物来源：`design/catalog/npcs-ch07-bixue.md`；正文出现“待名录补录”的 story 角色只作为上游引用，不在本章确认为正式 `npc_*`。
+- 正式人物来源：`design/catalog/npcs-ch07-bixue.md`；原待补的 14 名稳定具名 story 角色已补录，姓名待考的哑巴师兄只使用角色槽，不建静态 `npc_*`。
 
 ---
 
@@ -290,7 +290,7 @@ chapterStart:
 | 1 | `city_guangzhou` | 广州府 | `rg_lingnan` | 商埠；袁党外围、官差与海商并存 | `npc_yuanchengzhi`（阶段） | 驿站、码头、镖局、山庄 |
 | 2 | `city_chaozhou` | 潮州府 | `rg_lingnan` | 路府州县；闽粤线中转 | 山宗联络人**（原创扩展）** | 赌场、药铺 |
 | 3 | `city_huayin` | 华阴县 | `rg_guanzhong` | 华山山门服务城 | `npc_murenqing`、`npc_musang` | 山庄、铁匠 |
-| 4 | `city_xian` | 西安府 | `rg_guanzhong` | 军民与撤离路线汇合 | 李岩 / 红娘子（名录待补） | 镖局、赌场 |
+| 4 | `city_xian` | 西安府 | `rg_guanzhong` | 军民与撤离路线汇合 | 李岩 / 红娘子 | 镖局、赌场 |
 | 5 | `city_yanan` | 延安府 | `rg_guanzhong` | 闯军军需与流民节点 | `npc_lizicheng` | 山庄、义仓 |
 | 6 | `city_jinhua` | 金华府 | `rg_zhedong` | 石梁温家势力圈 | `npc_wenqingqing`、`npc_wenyi` | 山庄、药铺 |
 | 7 | `city_quzhou` | 衢州府 | `rg_zhedong` | 公案访证与商路 | `npc_wenfangda`、`npc_wenfangyi` | 镖局 |
@@ -880,7 +880,7 @@ AND npc_hongniangzi.state == alive
 
 表内精确年份仅用于史实人物存在性与告警；小说行为仍以原著为准。年龄按年份差给区间，不伪造具体生日。
 
-Story 还引用 `npc_liyan`、`npc_hongniangzi`、`npc_yuzhenzi`、`npc_hehongyao`、`npc_sunzhongshou`、`npc_zhangchaotang`、`npc_cuiqiushan`、`npc_yaba`、`npc_caohuachun`、`npc_anjianqing`、`npc_shatianguang`、`npc_anxiaohui`、`npc_cuiximin`、`npc_wenfangshi`、`npc_minzihua`，但这 15 个候选尚未进入 ch07 正式名录。本章只沿用 story 的临时引用并标“待名录补录”，不据此确立生卒、D 级或能力。
+**已解决：**Story 原列的 15 个候选中，`npc_liyan`、`npc_hongniangzi`、`npc_yuzhenzi`、`npc_hehongyao`、`npc_sunzhongshou`、`npc_zhangchaotang`、`npc_cuiqiushan`、`npc_caohuachun`、`npc_anjianqing`、`npc_shatianguang`、`npc_anxiaohui`、`npc_cuiximin`、`npc_wenfangshi`、`npc_minzihua` 已进入 ch07 正式名录；原 `npc_yaba` 改为不建静态 ID 的哑巴师兄角色槽。生卒、D 级与能力只读名录。
 
 ### 8.6 前界可重逢同伴
 
@@ -1326,7 +1326,7 @@ enemyStatMul = 0.85 + 0.05 × D
 | 标准 Boss 模板 | Lv48–52 为玄上 6·7/8；Lv54–56 为地下 7·8 | 7–8 | 模板值只供非具名原型 / 预算 |
 | 具名玉真子 | 地上 9·9 重 | 9 | `full` 手配；具体 `sk_*` 待人物和图鉴补录 |
 
-具名人物用 `full` 管线：先天、武学、装备都须有合法数据，攻击仅乘 D6 的 1.15，不再乘模板的 ×1.25；防御、评级、速度和 Boss 抗性仍可取模板修正，HP 可按同级 Boss 模板的 0.6–1.2 配置。当前玉真子尚未入正式 NPC 名录，故只能锁定预算与威胁品阶，不能用模板值冒充其最终 `full` 面板。
+具名人物用 `full` 管线：先天、武学、装备都须有合法数据，攻击仅乘 D6 的 1.15，不再乘模板的 ×1.25；防御、评级、速度和 Boss 抗性仍可取模板修正，HP 可按同级 Boss 模板的 0.6–1.2 配置。`npc_yuzhenzi` 已进入正式 NPC 名录，但武学、装备与全项画像尚未闭合，故仍只能锁定预算与威胁品阶，不能用模板值冒充其最终 `full` 面板。
 
 ### 12.3 八场 Boss 标准模板核算
 
@@ -1682,7 +1682,7 @@ I(ch07) = 2 × 主武器价 × incomeCoeff
 | `design/03` / `04` / `09` | **已解决：**D6 模板、伤害边界、Boss / 合击 / 大规模战斗规则可用；具名玉真子仍须正式 `full` 数据 |
 | `design/08`、`11`、`19` 与 `design/map/*` | **已解决：**采用全局 7 区、16 城、正式地形 / qg 门禁及 `jianghu-ch07.svg`；不创建 `rg_07_*` |
 | `design/12` / `16` / `17` | **已解决：**任务、五级晋升、资源营生、时代门派矩阵已有规则；本文只登记碧血实例 |
-| `design/18` 与 `catalog/npcs-ch07-bixue.md` | **部分解决：**八名重点队友均在正式名录；`npc_yuzhenzi`、`npc_liyan`、`npc_hongniangzi` 等 story 角色尚未补入名录，暂不生成正式人物资产 |
+| `design/18` 与 `catalog/npcs-ch07-bixue.md` | **已解决名录：**八名重点队友与 14 名原待补具名 story 角色均已登记；哑巴师兄使用角色槽。玉真子最终 `full` 武学 / 装备画像仍待内容实例化 |
 | `catalog/skills-xiake-bixue.md`、`skills-general.md`、`skills-wuyue.md` | **已解决：**44 门本土武学、通行保底和紫霞残承有正式 ID；以图鉴覆盖 `design/17` 的旧候选 |
 | `design/07-set-system.md` | **已解决：**§9.5 已改为两套正式引用；件数、Buff、成员与 ID 所有权均只读 07 |
 | `design/20-legacy-inheritance.md` | **已解决：**§9.7 引用其五条本地预配置候选、既有三卷 / 信物、硬过滤与 4 / 2 / 8 / 4 投放预算；`locationHints` 不作绝对门槛，实际入选与可完成合成依存档确定 |

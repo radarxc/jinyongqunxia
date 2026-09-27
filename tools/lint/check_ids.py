@@ -164,7 +164,7 @@ NON_CONTENT_ID_TOKENS: Set[str] = {
 
 PROVISIONAL_LINE_RE = re.compile(
     r"占位|候选|待收录|待(?:由|在|向|后续|下游|归属文档)?.{0,12}(?:定义|登记|补|定稿|替换)|"
-    r"建议(?:\s*ID|命名|值)?|仅引用|引用而不重定义|示例|样例|格式(?:为|：|:)|模板|"
+    r"建议(?:\s*ID|命名|值)?|仅引用|只引用|引用而不重定义|示例|样例|格式(?:为|：|:)|模板|"
     r"通配|不新增|不创建|不得另造|明确不新增|迁移|重命名|旧(?:\s*ID|名|前缀|规划|稿|口径)|"
     r"须改名|替代旧|定义以.{0,20}为准|补充说明|决定是否采用|采用与否",
     re.IGNORECASE,
@@ -1855,13 +1855,41 @@ def ids_in_cell(cell: str, id_regex: re.Pattern[str], wanted: Set[str]) -> Set[s
 def parse_set_definitions(
     doc: Document, id_regex: re.Pattern[str]
 ) -> Dict[str, Tuple[Set[str], Location]]:
-    """Parse the authoritative heading-plus-table catalog in 07 §§8–18.
+    """Parse the authoritative registry and card catalog in 07 §§8–18.
 
     Section 2's YAML is an explanatory sample, while section 19 is a retired
     candidate ledger. Neither is allowed to overwrite the release catalog.
     """
     result: Dict[str, Tuple[Set[str], Location]] = {}
     wanted = {"sk_", "eq_", "it_"}
+
+    # Section 8.4 is the machine-readable mirror for all skill memberships.
+    # It deliberately omits the one equipment member, which is supplied by
+    # the corresponding §§9–18 card below.
+    for index, row in sorted(doc.tables.items()):
+        if "正式成员注册表" not in doc.sections[index]:
+            continue
+        normalized = [
+            clean_markdown(header).lower().replace(" ", "")
+            for header in row.headers
+        ]
+        try:
+            set_col = normalized.index("套装id")
+            member_col = normalized.index("成员")
+        except ValueError:
+            continue
+        if max(set_col, member_col) >= len(row.cells):
+            continue
+        set_ids = ids_in_cell(row.cells[set_col], id_regex, {"set_"})
+        if len(set_ids) != 1:
+            continue
+        set_id = next(iter(set_ids))
+        members = ids_in_cell(row.cells[member_col], id_regex, wanted)
+        result[set_id] = (
+            members,
+            Location(doc.rel, index + 1, doc.lines[index].find(set_id) + 1),
+        )
+
     heading_re = re.compile(
         r"^###\s+(?P<section>(?:8|9|1[0-8])\.\d+)\s+.*?`(?P<id>set_[a-z0-9_]+)`"
     )
@@ -1881,8 +1909,9 @@ def parse_set_definitions(
             label = clean_markdown(row.cells[0]).replace(" ", "")
             if re.fullmatch(r"成员(?:（\d+）|\(\d+\))?", label):
                 members.update(ids_in_cell(row.cells[1], id_regex, wanted))
+        prior_members, _ = result.get(set_id, (set(), None))
         result[set_id] = (
-            members,
+            prior_members | members,
             Location(doc.rel, index + 1, line.find(set_id) + 1),
         )
     return result
@@ -1897,9 +1926,15 @@ def parse_member_set_tags(
     definitions must not overwrite tags found on the authoritative card.
     """
     result: Dict[str, Tuple[Set[str], Location]] = {}
+    # Only definitions that are themselves cards may own an adjacent
+    # ``setTags`` field.  Inventory/canon/range definitions are summaries;
+    # scanning forward from them incorrectly assigns every later set ID in
+    # the section to every listed member.
+    card_shapes = {"heading", "bold-card", "yaml-id", "table"}
     relevant_defs = [
         definition for definition in definitions
         if definition.id.startswith(("sk_", "eq_", "it_"))
+        and definition.shape in card_shapes
     ]
     known_members = {definition.id for definition in relevant_defs}
     docs_by_rel = {doc.rel: doc for doc in documents}
@@ -1928,7 +1963,13 @@ def parse_member_set_tags(
                     )
                 marker = re.search(r"setTags", cell, re.IGNORECASE)
                 if marker:
-                    tags.update(tags_from_value(cell[marker.end():]))
+                    # Field/value cards put the label in this cell and the
+                    # actual value in the next cell.  Compact cards may keep
+                    # both on one line and need not wrap the value in ``[]``.
+                    value = " ".join(
+                        [cell[marker.end():]] + row.cells[col + 1:]
+                    )
+                    tags.update(ids_in_cell(value, id_regex, {"set_"}))
             return tags
         line = doc.lines[index]
         # A block may embed other SkillDef objects (moves, prerequisites,
@@ -1944,7 +1985,7 @@ def parse_member_set_tags(
             return tags
         marker = re.search(r"setTags", line, re.IGNORECASE)
         if marker:
-            tags.update(tags_from_value(line[marker.end():]))
+            tags.update(ids_in_cell(line[marker.end():], id_regex, {"set_"}))
         return tags
 
     def scan_block(doc: Document, start: int, shape: str, member_id: str) -> Set[str]:
@@ -1987,6 +2028,42 @@ def parse_member_set_tags(
         tags = scan_block(doc, start, definition.shape, definition.id)
         merge(definition.id, tags, definition.location)
         anchored.add((doc.rel, start, definition.id))
+
+    # F2c added one explicit mirror table to every martial-arts catalog.
+    # Read only rows whose section is named accordingly and whose columns are
+    # exactly an ID column plus ``setTags``; no neighboring prose is inherited.
+    for doc in documents:
+        if not fnmatch.fnmatch(doc.rel, "docs/design/catalog/*.md"):
+            continue
+        for index, row in sorted(doc.tables.items()):
+            if "正式套装反向标签镜像" not in doc.sections[index]:
+                continue
+            normalized = [
+                clean_markdown(header).lower().replace(" ", "")
+                for header in row.headers
+            ]
+            tag_cols = [
+                col for col, header in enumerate(normalized)
+                if header == "settags"
+            ]
+            id_cols = [
+                col for col, header in enumerate(normalized)
+                if header in {"id", "武学id", "装备id", "物品id"}
+            ]
+            if len(tag_cols) != 1 or len(id_cols) != 1:
+                continue
+            id_col, tag_col = id_cols[0], tag_cols[0]
+            if max(id_col, tag_col) >= len(row.cells):
+                continue
+            members = ids_in_cell(row.cells[id_col], id_regex, {"sk_", "eq_", "it_"})
+            if len(members) != 1:
+                continue
+            member_id = next(iter(members))
+            member_tags = ids_in_cell(row.cells[tag_col], id_regex, {"set_"})
+            merge(
+                member_id, member_tags,
+                Location(doc.rel, index + 1, doc.lines[index].find(member_id) + 1),
+            )
 
     # A real catalog card can contain words such as "用户示例套装成员", which
     # correctly keeps it from becoming a second definition but must not hide

@@ -520,7 +520,7 @@ flowchart TD
 
 幕内小选择：贺礼用于城防器械或百姓粮药。两者分别使终战城墙段或撤离段更易；选粮药品德 +3，选城防不改品德，均计入守城。
 
-幕末状态变化：从 Z07 的 `1` 段、`1` 屋与 `dc_03_07` 固定登记的 `1` 屋起结算，写 `ch03.evac_route_segments = 3`、`ch03.evac_safehouses = 4`、`ch03.evac_supply_caches = 3`、`ch03.route_archive_sealed = true`、`ch03.yanglong_reunited = true`、`ch03.huo_du_exposed = true`。及时上报暗道或完成本幕公开核验时写 `ch03.guojing_trust = true`；杨康真相原本、路线册与物资账三者均交黄蓉复核时，另写 `ch03.huangrong_trust = true`。公开行侠与祝寿使声望 +200，救灾品德 +5【建议值】。杨过、小龙女 D5 限时同行窗口重开，郭襄 D5 只在生日—守城窗口同行。
+幕末状态变化：从 Z07 的 `1` 段、`1` 屋与 `dc_03_07` 固定登记的 `1` 屋起结算，写 `ch03.evac_route_segments = 3`、`ch03.evac_safehouses = 4`、`ch03.evac_supply_caches = 3`、`ch03.evac_archive_sealed = true`、`ch03.yanglong_reunited = true`、`ch03.huo_du_exposed = true`。及时上报暗道或完成本幕公开核验时写 `ch03.guojing_trust = true`；杨康真相原本、路线册与物资账三者均交黄蓉复核时，另写 `ch03.huangrong_trust = true`。公开行侠与祝寿使声望 +200，救灾品德 +5【建议值】。杨过、小龙女 D5 限时同行窗口重开，郭襄 D5 只在生日—守城窗口同行。
 
 失败与时限：郭襄生日是七日窗口；错过后杨过仍按原著送礼，玩家转入同幕的匿名登记任务，照样补齐本幕两处安全屋，但失去生日公开声望。第 7 幕若只做粗略勘测，则另牺牲一处经营资源完成加固。霍都逃走会在终战多一组敌方内应，不使鲁有脚死亡、耶律齐继任或主线中断。
 
@@ -808,7 +808,7 @@ flowchart TD
 
 幕内小选择：处决霍都、公开交丐帮，或留活口换内应名册。处决品德 −8且达尔巴关系下降；公开交付品德 +3并可切正；换名册品德 −3、终战少一组内应。
 
-幕末状态变化：从 X07 的 `1` 段、`1` 屋与 `dc_03_07` 固定登记的 `1` 屋起结算，写 `ch03.evac_route_segments = 3`、`ch03.evac_safehouses = 4`、`ch03.evac_supply_caches = 3`、`ch03.route_archive_sealed = true`、`ch03.yanglong_reunited = true`、`ch03.huodu_fate = killed|handed_over|bargained`。完成上述郭靖核验时写 `ch03.guojing_trust = true`；再把杨康真相原本、路线册与物资账交黄蓉复核时，写 `ch03.huangrong_trust = true`。灰色网络关系上升，公开声望按选择为 0 或 +100【建议值】。杨过、小龙女与郭襄开启限定同行窗口。
+幕末状态变化：从 X07 的 `1` 段、`1` 屋与 `dc_03_07` 固定登记的 `1` 屋起结算，写 `ch03.evac_route_segments = 3`、`ch03.evac_safehouses = 4`、`ch03.evac_supply_caches = 3`、`ch03.evac_archive_sealed = true`、`ch03.yanglong_reunited = true`、`ch03.huodu_fate = killed|handed_over|bargained`。完成上述郭靖核验时写 `ch03.guojing_trust = true`；再把杨康真相原本、路线册与物资账交黄蓉复核时，写 `ch03.huangrong_trust = true`。灰色网络关系上升，公开声望按选择为 0 或 +100【建议值】。杨过、小龙女与郭襄开启限定同行窗口。
 
 失败与时限：霍都逃脱则终战增加内应遭遇，但不取消丐帮传位结果；郭襄生日七日后礼物仍由杨过完成，玩家转入同幕的匿名登记任务，照样补齐本幕两处安全屋，但失去借寿礼掩护的便利。第 7 幕若只做粗略勘测，则另牺牲一处灰色经营资源完成加固。
 
@@ -945,7 +945,7 @@ routeReady = evac_route_segments >= 3
          and evac_safehouses >= 4
          and evac_supply_caches >= 3
          and guojing_trust
-         and route_archive_sealed
+         and evac_archive_sealed
 ```
 
 三段分别是“内城到城垣、城垣到汉水、汉水到外部安全屋”；三处物资缓存各服务一段；四处安全屋至少覆盖老弱、伤员、典籍与接应人四类载荷。这些是可审计的任务计数，不是战斗数值。
@@ -1359,7 +1359,7 @@ options:
         - { k: fact, ref: { t: counter, scope: chapter, key: ch03.evac_safehouses }, op: gte, value: 4 }
         - { k: fact, ref: { t: counter, scope: chapter, key: ch03.evac_supply_caches }, op: gte, value: 3 }
         - { k: fact, ref: { t: flag, scope: chapter, key: ch03.guojing_trust }, op: eq, value: true }
-        - { k: fact, ref: { t: flag, scope: chapter, key: ch03.route_archive_sealed }, op: eq, value: true }
+        - { k: fact, ref: { t: flag, scope: chapter, key: ch03.evac_archive_sealed }, op: eq, value: true }
     effects:
       - { t: transferResourcePoint, selector: highestYieldOwned, to: evacuationNetwork }
       - { t: setFlag, scope: chapter, key: ch03.estate_sacrificed, value: true }
@@ -1375,7 +1375,7 @@ options:
         - { k: fact, ref: { t: counter, scope: chapter, key: ch03.evac_supply_caches }, op: gte, value: 3 }
         - { k: fact, ref: { t: flag, scope: chapter, key: ch03.guojing_trust }, op: eq, value: true }
         - { k: fact, ref: { t: flag, scope: chapter, key: ch03.huangrong_trust }, op: eq, value: true }
-        - { k: fact, ref: { t: flag, scope: chapter, key: ch03.route_archive_sealed }, op: eq, value: true }
+        - { k: fact, ref: { t: flag, scope: chapter, key: ch03.evac_archive_sealed }, op: eq, value: true }
     effects:
       - { t: surrenderFactionIncome, faction: grayNetwork, scope: chapter }
       - { t: setFlag, scope: chapter, key: ch03.gray_income_surrendered, value: true }

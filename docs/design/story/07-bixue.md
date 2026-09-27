@@ -131,7 +131,7 @@ flowchart TD
 - **标题**：危邦余烬。
 - **原著对应事件（回目）**：1630 年的玩家入场序幕为**原创扩展**；第一至第二回的原著段发生于崇祯六年（1633），包括张朝唐由浡泥入中土所见乱象、袁党在袁崇焕三周年忌辰祭奠，以及幼年袁承志脱险。
 - **地点**：1630 年序幕在广东袁党外围联络点**（原创扩展，具体地点待定）**；1633 年原著路线由原著所称“厦门”上岸，经漳州府、南靖、平和、三河坝、梅州、水口，往广州府方向，至广东东莞附近圣峰嶂。地图显示用中左所 / 嘉禾屿**（待考）** `city_xiamen`、漳州府 `city_zhangzhou`、广州府 `city_guangzhou`；终点转华阴县 `city_huayin`。题名“危邦行蜀道”不能倒推为四川行程。
-- **参与 NPC**：`npc_yuanchonghuan`（追忆）、`npc_zhangchaotang`（待 `design/18` 补录）、`npc_sunzhongshou`（待补）、`npc_cuiqiushan`（待补）、幼年 `npc_yuanchengzhi`。
+- **参与 NPC**：`npc_yuanchonghuan`（追忆）、`npc_zhangchaotang`、`npc_sunzhongshou`、`npc_cuiqiushan`、幼年 `npc_yuanchengzhi`。
 - **目标与流程**：
   1. 穿越者于 1630 年从侠客行书眠苏醒，收到袁崇焕死讯，并替一名死去驿卒送出无法辨认真伪的袁党密信**（原创扩展）**；本段只立“冤案已发生”，不提前搬演第一回。
   2. 以三年年表过场交代玩家作为外围送信人活动；1633 年再接入第一回原著时间。
@@ -167,7 +167,7 @@ flowchart TD
 - **标题**：碧血照书·去国行。
 - **原著对应事件（回目）**：第二十回；袁承志失望离开中原、与张朝唐重逢并筹划赴浡泥附近海岛。具体同行名单和修订版增写须纸本复核**（待考）**。
 - **地点**：华阴县 `city_huayin`；广东海岸 / 浡泥海外为图外演出，不在本文新建地图 ID。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_hetieshou`、`npc_murenqing`、`npc_musang`、`npc_zhangchaotang`（待补），以及依本周目存活 / 结盟的群雄。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_hetieshou`、`npc_murenqing`、`npc_musang`、`npc_zhangchaotang`，以及依本周目存活 / 结盟的群雄。
 - **目标与流程**：
   1. 汇总五个锚点、正邪立场、四份李岩证据和城破救援名单。
   2. 在华山向穆人清告别，确认玉真子威胁已解除，温家与五毒线均有收束。
@@ -301,7 +301,7 @@ flowchart TD
 3. 解释玩家为何能在华山、温家、帮会和军中之间传递消息。
 4. 让开篇张朝唐与结尾出海自然首尾相接。
 
-`design/chapters/07-bixue.md` 当前不存在；后续创建时，其“穿越开局”必须引用本节，不得另写冲突身份。该原创身份不把 1630 年误写为小说第一回：小说张朝唐与山宗段到 1633 年才发生。
+**已解决：**`design/chapters/07-bixue.md` 已落盘，其“穿越开局”引用本节且未另写冲突身份。该原创身份不把 1630 年误写为小说第一回：小说张朝唐与山宗段到 1633 年才发生。
 
 ### 2.2 十五年时间窗与十二年叙事压缩
 
@@ -324,9 +324,9 @@ flowchart TD
 | `npc_wenqingqing` | 对身份与失金均互相怀疑 | 尊重身份、救温仪、坦白证据 | 替其藏遗物、以秘密护她脱身 | 不可把她当作争夺袁承志的奖品 |
 | `npc_murenqing` | 观察中的外线帮手 | 守华山门规 | 结果可靠但须接受问责 | 不得以邪线直接篡掌门位 |
 | `npc_hetieshou` | 敌对势力领袖 | 救人、约法、给予改过空间 | 平等交换毒术情报与退路 | 不用情感欺骗替代政治 / 门派选择 |
-| `npc_liyan`（待补） | 先闻其名，后在军中相识 | 公账、民生、劝谏 | 密报、反间、撤离网 | 不可让其“改命”变成拥立新帝 |
-| `npc_caohuachun`（待补） | 袁党旧敌与宫廷线索源 | 搜证并揭露 | 短暂利用后切断 | 不可洗白其迫害与背叛 |
-| `npc_yuzhenzi`（待补） | 后金宫廷的强敌 | 正面击退 | 误导、借势、最终清算 | 不可成为无代价常驻同伴 |
+| `npc_liyan` | 先闻其名，后在军中相识 | 公账、民生、劝谏 | 密报、反间、撤离网 | 不可让其“改命”变成拥立新帝 |
+| `npc_caohuachun` | 袁党旧敌与宫廷线索源 | 搜证并揭露 | 短暂利用后切断 | 不可洗白其迫害与背叛 |
+| `npc_yuzhenzi` | 后金宫廷的强敌 | 正面击退 | 误导、借势、最终清算 | 不可成为无代价常驻同伴 |
 
 ### 2.4 首个选择节点
 
@@ -360,7 +360,7 @@ flowchart TD
 - **标题**：石梁公案。
 - **原著对应事件（回目）**：第五至第七回；温青青带金回家、袁承志入庄、五老结阵、夏雪宜与温仪旧事。
 - **地点**：衢州府一带 / 石梁**（待考具体地望）**；临时挂接 `city_quzhou`。现有门派地图把 `sect_shiliang` 挂到 `city_jinhua`，待统一，本文不另造城市。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_wenyi`、`npc_wenfangda`、`npc_wenfangyi`、`npc_huangzhen`；温方施等待 `design/18` 补录。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_wenyi`、`npc_wenfangda`、`npc_wenfangyi`、`npc_huangzhen`、`npc_wenfangshi`。
 - **目标与流程**：
   1. 让温青青带玩家以“交还失金、核验遗书”的名义入庄。
   2. 搜集金蛇洞书信、温仪证言、温氏账册三类相互独立的证据。
@@ -378,7 +378,7 @@ flowchart TD
 - **标题**：金陵解怨。
 - **原著对应事件（回目）**：第八至九回；金龙帮、仙都派、孙仲君、焦宛儿与焦公礼 / 闵子华旧怨。焦公礼此时仍然健在；其后来遇害与追凶不得提前到本幕，留待正 07。
 - **地点**：应天府南京 `city_nanjing`。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_jiaowaner`、`npc_jiaogongli`、`npc_sunzhongjun`、`npc_meijianhe`、`npc_liupeisheng`；闵子华等待补。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_jiaowaner`、`npc_jiaogongli`、`npc_sunzhongjun`、`npc_meijianhe`、`npc_liupeisheng`、`npc_minzihua`。
 - **目标与流程**：
   1. 查明闵子华为何邀集群雄向焦公礼寻仇，并听取焦公礼对旧案的说明。
   2. 救治被孙仲君所伤者，留下可验证伤势与兵器痕迹。
@@ -414,7 +414,7 @@ flowchart TD
 - **标题**：饷银见民。
 - **原著对应事件（回目）**：第十一回及金蛇藏宝线；救孙仲寿、截漕银、筹闯军军饷。
 - **地点**：直隶—山东运河沿线，主要节点济南府 `city_jinan`、泰安州 `city_taian`；具体河段待地图文档落地**（待考）**。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_chengqingzhu`、`npc_sunzhongshou`（待补）、`npc_liyan`（待补）、`npc_hongniangzi`（待补）。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_chengqingzhu`、`npc_sunzhongshou`、`npc_liyan`、`npc_hongniangzi`。
 - **目标与流程**：
   1. 查明囚车路线并营救孙仲寿等旧部，优先释放无战斗能力的囚犯。
   2. 识别漕银车与赈粮车，禁止把两者一并洗劫。
@@ -433,7 +433,7 @@ flowchart TD
 - **标题**：泰山举义。
 - **原著对应事件（回目）**：第十一至十三回；泰山群雄会盟、袁承志被推举、李岩提供火器消息。
 - **地点**：泰安州 `city_taian`、泰山区域 `rg_qilu`。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_chengqingzhu`、`npc_jiaowaner`、`npc_liyan`（待补）、`npc_hongniangzi`（待补）、`npc_shatianguang`（待补）。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_chengqingzhu`、`npc_jiaowaner`、`npc_liyan`、`npc_hongniangzi`、`npc_shatianguang`。
 - **目标与流程**：
   1. 展示军饷公账，说明钱粮去向和民间保留份。
   2. 处理反对者挑战：比武可赢，口舌与证人同样可过关。
@@ -451,7 +451,7 @@ flowchart TD
 - **标题**：炮火崇政。
 - **原著对应事件（回目）**：第十三至十四回；毁红夷大炮、潜入后金都城、崇政殿行刺皇太极、玉真子阻截。
 - **地点**：天津卫 `city_tianjin` 至山海关 `city_shanhaiguan` 的炮运线；沈阳中卫（后金方面称盛京）`city_shenyang`**（待考双称显示）**。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_chengqingzhu`、`npc_huangtaiji`、`npc_yuzhenzi`（待补）、`npc_duoergun`。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_chengqingzhu`、`npc_huangtaiji`、`npc_yuzhenzi`、`npc_duoergun`。
 - **目标与流程**：
   1. 先疏散火器营附近民夫，再切断引信与车轴。
   2. 破坏大炮而非引爆整片营地；救下会操作火器但未参与屠杀的工匠。
@@ -469,7 +469,7 @@ flowchart TD
 - **标题**：京师回锋。
 - **原著对应事件（回目）**：第十五至十八回；五毒教从云南来到北京后介入，何铁手与青青、何红药旧怨、焦公礼遇害追凶，以及何铁手离教。
 - **地点**：北京顺天府 `city_beijing`、西城胡同与城外近郊荒冈。五毒教源自云南、黄木道人线提及云南，但本段不把主角队传送到云南府。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_hetieshou`、`npc_hehongyao`（待补）、`npc_jiaowaner`、`npc_jiaogongli`（死亡消息 / 追忆）、`npc_minzihua`（待补）。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_hetieshou`、`npc_hehongyao`、`npc_jiaowaner`、`npc_jiaogongli`（死亡消息 / 追忆）、`npc_minzihua`。
 - **目标与流程**：
   1. 救治北京城内被毒物误伤者，取得并核验解药，不在文档描述现实毒方。
   2. 接到焦宛儿报丧，确认焦公礼在徐州遇害，闵子华的仙都戒杀刀被留在现场。
@@ -488,7 +488,7 @@ flowchart TD
 - **标题**：孤城救臂。
 - **原著对应事件（回目）**：第十八至十九回；北京宫廷内斗、崇祯末局、阿九断臂与城破。
 - **地点**：北京顺天府 `city_beijing`，皇城与外城两层副本。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_ajiu`、`npc_chongzhen`、`npc_caohuachun`（待补）、`npc_anjianqing`（待补）。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_ajiu`、`npc_chongzhen`、`npc_caohuachun`、`npc_anjianqing`。
 - **目标与流程**：
   1. 追查库银与城门密令，发现宫廷派系互相背叛。
   2. 在阿九与袁承志之间传递撤离计划，不替二人决定感情。
@@ -506,7 +506,7 @@ flowchart TD
 - **标题**：入京问纪。
 - **原著对应事件（回目）**：第十九至二十回；闯王入京、军纪败坏、袁承志由希望转为失望，李岩遭谗。
 - **地点**：北京顺天府 `city_beijing`，外城赈济点、闯军军营、原明宫库。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_lizicheng`、`npc_liyan`（待补）、`npc_hongniangzi`（待补）、`npc_chengqingzhu`、`npc_sunzhongshou`（待补）。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_lizicheng`、`npc_liyan`、`npc_hongniangzi`、`npc_chengqingzhu`、`npc_sunzhongshou`。
 - **目标与流程**：
   1. 用泰山盟约和三联账检查军饷是否被克扣。
   2. 救出遭抢掠的百姓，收集三名互不隶属的见证。
@@ -524,7 +524,7 @@ flowchart TD
 - **标题**：华山赴援。
 - **原著对应事件（回目）**：第十九至二十回；青青被何红药带往金蛇洞、何红药旧怨终结、玉真子上华山、红娘子登山求援。
 - **地点**：华阴县 `city_huayin`、华山金蛇洞；本幕止于决定赴西安府救李岩，不把两地事件并行或倒序。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_hetieshou`、`npc_hehongyao`（待补）、`npc_yuzhenzi`（待补）、`npc_hongniangzi`（待补）；李岩本人只在随后 `dc_07_08` 的军营现场出场。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_hetieshou`、`npc_hehongyao`、`npc_yuzhenzi`、`npc_hongniangzi`；李岩本人只在随后 `dc_07_08` 的军营现场出场。
 - **目标与流程**：
   1. 由宛平饭铺和五毒教暗号追出青青去向，赶回华山金蛇洞；此时李岩危局尚未成为本队可执行目标。
   2. 进入金蛇洞救出青青，见证何红药面对夏雪宜遗骨、旧怨反噬并死亡；具体毒物与致死动作待指定纸本核对**（待考）**。
@@ -574,7 +574,7 @@ flowchart TD
 - **标题**：石梁蛇局。
 - **原著对应事件（回目）**：第五至第七回；失金、五行阵、夏雪宜与温仪旧案、遗图。
 - **地点**：衢州府一带 / 石梁**（待考具体地望）**；临时挂接 `city_quzhou`，与 `sect_shiliang` 的 `city_jinhua` 现有挂接待统一。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_wenyi`、`npc_wenfangda`、`npc_wenfangyi`、`npc_huangzhen`；温方施待补。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_wenyi`、`npc_wenfangda`、`npc_wenfangyi`、`npc_huangzhen`、`npc_wenfangshi`。
 - **目标与流程**：
   1. 让青青带伪装过的遗书摘要回庄，原件由玩家封存**（原创扩展）**。
   2. 夜探账房，取得温家内部分赃与囚禁证据。
@@ -592,7 +592,7 @@ flowchart TD
 - **标题**：金陵控信。
 - **原著对应事件（回目）**：第八至九回；金龙帮冲突、孙仲君伤人、焦公礼与闵子华旧怨及两封信。焦公礼此时仍健在；其遇害与追凶留待邪 07。
 - **地点**：应天府南京 `city_nanjing`。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_jiaowaner`、`npc_jiaogongli`、`npc_sunzhongjun`、`npc_meijianhe`、`npc_liupeisheng`；闵子华待补。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_jiaowaner`、`npc_jiaogongli`、`npc_sunzhongjun`、`npc_meijianhe`、`npc_liupeisheng`、`npc_minzihua`。
 - **目标与流程**：
   1. 分别向金龙帮、仙都派和华山同门展示丘道台谢函、张寨主伏辩的不同片段，确认各方反应。
   2. 留下一条可控的假交接路线，引出扣信挑拨的太白三英。
@@ -628,7 +628,7 @@ flowchart TD
 - **标题**：暗饷养网。
 - **原著对应事件（回目）**：第七、十一回；藏宝黄金、救孙仲寿、截漕银与闯王军饷。
 - **地点**：济南府 `city_jinan`、泰安州 `city_taian`、运河沿线**（待考具体河段）**。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_chengqingzhu`、`npc_sunzhongshou`（待补）、`npc_liyan`（待补）、`npc_hongniangzi`（待补）。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_chengqingzhu`、`npc_sunzhongshou`、`npc_liyan`、`npc_hongniangzi`。
 - **目标与流程**：
   1. 用温家把柄换取运输车辆与合法路引。
   2. 伪造漕银换车现场，把追兵引向空车。
@@ -646,7 +646,7 @@ flowchart TD
 - **标题**：泰山挟盟。
 - **原著对应事件（回目）**：第十一至十三回；泰山大会、推举盟主、火器情报。
 - **地点**：泰安州 `city_taian`、泰山区域 `rg_qilu`。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_chengqingzhu`、`npc_jiaowaner`、`npc_liyan`（待补）、`npc_hongniangzi`（待补）、`npc_shatianguang`（待补）。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_chengqingzhu`、`npc_jiaowaner`、`npc_liyan`、`npc_hongniangzi`、`npc_shatianguang`。
 - **目标与流程**：
   1. 在大会前逐一取得三名反对者的债务、把柄或安全需求。
   2. 让他们在公开比武时保持中立，袁承志仍依原著获推盟主。
@@ -664,7 +664,7 @@ flowchart TD
 - **标题**：借炮过关。
 - **原著对应事件（回目）**：第十三至十四回；红夷大炮、火器队伍、后金都城潜入与刺皇太极。
 - **地点**：天津卫 `city_tianjin`、山海关 `city_shanhaiguan`、沈阳中卫（后金方面称盛京）`city_shenyang`**（待考双称显示）**。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_huangtaiji`、`npc_yuzhenzi`（待补）、`npc_duoergun`、`npc_wusangui`。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_huangtaiji`、`npc_yuzhenzi`、`npc_duoergun`、`npc_wusangui`。
 - **目标与流程**：
   1. 劫取炮运关防但暂不毁炮，用车队身份越过第一道关卡。
   2. 把核心火药替换为受潮料，确保大炮最终不能投入战场。
@@ -682,7 +682,7 @@ flowchart TD
 - **标题**：京师毒契。
 - **原著对应事件（回目）**：第十五至十八回；五毒教在北京活动，何铁手、何红药、青青身份、焦公礼遇害追凶与教内冲突。
 - **地点**：北京顺天府 `city_beijing`、西城胡同与城外近郊荒冈。五毒教源自云南、黄木道人线提及云南，但本段没有前往云南府。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_hetieshou`、`npc_hehongyao`（待补）、`npc_jiaowaner`、`npc_jiaogongli`（死亡消息 / 追忆）、`npc_minzihua`（待补）。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_hetieshou`、`npc_hehongyao`、`npc_jiaowaner`、`npc_jiaogongli`（死亡消息 / 追忆）、`npc_minzihua`。
 - **目标与流程**：
   1. 与何铁手交换三项：解药、北上安全路、何红药越权证据。
   2. 接到焦宛儿报丧，故意让金龙帮与仙都派在西城碰面，再在失控前截停双方。
@@ -701,7 +701,7 @@ flowchart TD
 - **标题**：两宫押注。
 - **原著对应事件（回目）**：第十八至十九回；曹化淳、诚王、安剑清等宫廷内斗，库银、阿九与北京城破。
 - **地点**：北京顺天府 `city_beijing`。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_ajiu`、`npc_chongzhen`、`npc_caohuachun`（待补）、`npc_anjianqing`（待补）、`npc_lizicheng`。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_ajiu`、`npc_chongzhen`、`npc_caohuachun`、`npc_anjianqing`、`npc_lizicheng`。
 - **目标与流程**：
   1. 向宫廷内线卖出一份过时的闯军布防，换取宫门腰牌。
   2. 向闯军交出曹化淳准备开门的证据，换取城破后的两条安全街巷。
@@ -720,7 +720,7 @@ flowchart TD
 - **标题**：黑甲分网。
 - **原著对应事件（回目）**：第十九至二十回；闯军入京后的失序、李岩遭谗、吴三桂引清兵入关前后。
 - **地点**：北京顺天府 `city_beijing`；山海关 `city_shanhaiguan` 只作军报镜头，不让玩家改写战局。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_lizicheng`、`npc_liyan`（待补）、`npc_hongniangzi`（待补）、`npc_wusangui`、`npc_duoergun`、`npc_chenyuanyuan`。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_lizicheng`、`npc_liyan`、`npc_hongniangzi`、`npc_wusangui`、`npc_duoergun`、`npc_chenyuanyuan`。
 - **目标与流程**：
   1. 让闯军、旧宫人与民间节点各以为自己掌握蛇网主线，实际只持一段。
   2. 用库银清册换取李岩暂不被解除护卫的一夜窗口。
@@ -738,7 +738,7 @@ flowchart TD
 - **标题**：蛇网赴援。
 - **原著对应事件（回目）**：第十九至二十回；青青被何红药带往金蛇洞、何红药之死、红娘子登华山求援、玉真子华山终战。
 - **地点**：华阴县 `city_huayin`、华山金蛇洞；本幕只准备西向接应，李岩命运留到随后 `dc_07_08`。
-- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_hetieshou`、`npc_hehongyao`（待补）、`npc_yuzhenzi`（待补）、`npc_hongniangzi`（待补）；李岩本人只在随后 `dc_07_08` 的军营现场出场。
+- **参与 NPC**：`npc_yuanchengzhi`、`npc_wenqingqing`、`npc_hetieshou`、`npc_hehongyao`、`npc_yuzhenzi`、`npc_hongniangzi`；李岩本人只在随后 `dc_07_08` 的军营现场出场。
 - **目标与流程**：
   1. 用蛇网假消息遮住返回华山的行踪，沿宛平线索进入金蛇洞救青青。
   2. 何铁手 / 五毒盟友接应中毒者；何红药旧怨按原著大意收束，不以其死亡奖励品德或战利品。
@@ -1008,9 +1008,9 @@ AND 玩家确认关闭闯军军需 / 晋升路线
 | `npc_wenyi` | 第七回死亡 | 可在 `dc_07_03` 救下**（局部改命）** | 若后书引用，按健在分支；需 `design/18` 补死亡 / 改命规则 |
 | `npc_jiaogongli` | 遇害结局及凶手链待纸本核对 | 若在短窗救下，为局部改命 | 存活仅影响金龙帮余韵，不决定天书 |
 | `npc_ajiu` | 断臂存活 | 必须存活；玩家只改变救援与入队窗口 | 24 年后在鹿鼎以九难重逢，见 `design/18` §6.11 |
-| `npc_hehongyao`（待补） | 金蛇洞旧怨中死亡 | 不设救活主分支；具体动作待考 | 无跨书常驻承诺 |
-| `npc_yuzhenzi`（待补） | 华山决战死亡 | 两线均清算；具体死亡动作待考 | 不跨书 |
-| `npc_liyan` / `npc_hongniangzi`（待补） | 第二十回先后自尽 | 主改命同时救下；不能只救一人作为 `tsp_07_fate` 成功 | 鹿鼎时代若出现回响，按健在但已退出权力中心 |
+| `npc_hehongyao` | 金蛇洞旧怨中死亡 | 不设救活主分支；具体动作待考 | 无跨书常驻承诺 |
+| `npc_yuzhenzi` | 华山决战死亡 | 两线均清算；具体死亡动作待考 | 不跨书 |
+| `npc_liyan` / `npc_hongniangzi` | 第二十回先后自尽 | 主改命同时救下；不能只救一人作为 `tsp_07_fate` 成功 | 鹿鼎时代若出现回响，按健在但已退出权力中心 |
 | `npc_chongzhen` | 1644 亡国自缢 | 不可改命 | 无跨书活体 |
 | `npc_huangtaiji` | 1643 死于原著行刺之外的既定节点 | 行刺不得成功；死亡仍按上游时间线 | 无跨书活体 |
 
@@ -1020,7 +1020,7 @@ AND 玩家确认关闭闯军军需 / 晋升路线
 - `A07-4` 必须且只能落在 `canon` 或 `fate` 之一，不能为空、不能同时为真。
 - `明亡已发生 == true` 是 `q_07_main_c_03` 的硬前置；任何分支不得清除。
 - `npc_ajiu` 在终幕前必须是 `alive`；断臂为人物状态，不等于死亡。
-- `A07-4=fate` 时李岩与红娘子（两项 NPC 条目均待补）的生命状态都必须为 `alive`；任一死亡即不能授 `tsp_07_fate`。
+- `A07-4=fate` 时 `npc_liyan` 与 `npc_hongniangzi` 的生命状态都必须为 `alive`；任一死亡即不能授 `tsp_07_fate`。
 - `A07-4=canon` 不得因玩家走邪线扣除天书；两种路线都能以原著锚点完整通关。
 
 ---
@@ -1141,27 +1141,27 @@ A07-4 是本界主改命的唯一剧情真值；书眠适配器按 A07-4=`fate` 
 | `npc_huangtaiji` | 皇太极 | D5 | 崇政殿刺驾目标 | 宫禁副本可在政变 / 护卫段短时成为中立场景单位，非普通邀请 | 行刺不成功；1643 后不得出现为活体 |
 | `npc_chenyuanyuan` | 陈圆圆 | D4 | 山海关局势消息、鹿鼎钩子 | 完成救援 / 身份保护个人线后可非战斗短时同行 | 不作为战争责任替罪者；离开军政冲突区后 `stationed` |
 
-### 8.2 主线必须补入 `design/18` 的 NPC
+### 8.2 已由 `design/18` 补录的主线 NPC 与角色槽
 
-下列 ID 是**待补候选引用**，本故事文档不拥有 NPC 定义。后续 `design/18` 定稿若改名，必须同步本文件并留迁移表。
+**已解决：**原待补候选均已由 `catalog/npcs-ch07-bixue.md` 收口；14 名稳定具名人物沿用下列 `npc_*`，姓名待考的哑巴师兄改为不建静态 ID 的角色槽。本文仍不拥有 NPC 定义；名录后续若改名，必须同步本文件并留迁移表。
 
-| 待补候选 ID | 人物 / 一句设定 | 建议 D 级 | 必须补的主线字段 | 本文出现处 |
+| 正式 ID / 角色槽 | 人物 / 一句设定 | D 级 | 主线字段 | 本文出现处 |
 |---|---|---:|---|---|
-| `npc_liyan`（待补） | 李岩，闯军将领 / 谋士，唯一主改命核心 | D5 | 生卒 / 小说命运、四证据门槛、加入与撤离窗、原著 / 改命状态 | 正 / 邪 04–09、`dc_07_08` |
-| `npc_hongniangzi`（待补） | 红娘子，李岩伴侣与军中行动者，主改命须与李岩同时存活 | D5 | 原著自刎顺序、独立意愿、暗语与撤离窗 | 正 / 邪 04–10、`dc_07_08` |
-| `npc_yuzhenzi`（待补） | 玉真子，后金宫廷护卫强敌与华山终战对手 | D5 | 门派 / 阵营、Boss 超限资格由 `design/02` / `09` 决定、死亡状态 | 正 / 邪 06、10 |
-| `npc_hehongyao`（待补） | 何红药，夏雪宜旧怨与五毒内部冲突核心 | D5 | 生卒、与何铁手关系、金蛇洞死亡规则 | 正 / 邪 07、10 |
-| `npc_sunzhongshou`（待补） | 孙仲寿，袁崇焕旧部 / 山宗骨干 | D4 | 序幕、囚车、护饷和出海 / 留守窗口 | 共享 01、正 / 邪 04、终幕 |
-| `npc_zhangchaotang`（待补） | 张朝唐，浡泥来客，负责开篇与海外尾声首尾相接 | D4 | 年代、非战斗同行、出海信息来源 | 共享 01、共享 03 |
-| `npc_cuiqiushan`（待补） | 崔秋山，保护幼年袁承志并传伏虎掌的袁党友人 | D4 | 序幕招募窗、传承来源与伤势 | 共享 01、华山余韵 |
-| `npc_yaba`（待补） | 哑巴师兄，华山生活与出海同伴；本名 / 身份需纸本核 | D3 / D4 | 显示名、师门关系、加入门槛 | 共享 01、共享 03 |
-| `npc_caohuachun`（待补） | 曹化淳，东厂 / 宫廷阴谋线关键人 | D5 | 历史 / 小说身份分离、敌对与短时受控同行窗口 | 共享 01、正 / 邪 08 |
-| `npc_anjianqing`（待补） | 安剑清，宫廷卫士并与安大娘一家有关 | D4 | 家庭冲突、宫变状态、招募 / 背叛条件 | 正 / 邪 08 |
-| `npc_shatianguang`（待补） | 沙天广，泰山群雄与出海队伍人物 | D4 | 帮会关系、会盟 / 出海窗口 | 正 / 邪 05、终幕 |
-| `npc_anxiaohui`（待补） | 安小慧，押金与袁党联络线人物 | D4 | 与安家、崔希敏关系，押金任务窗口 | 共享 02 / 书界支线 |
-| `npc_cuiximin`（待补） | 崔希敏，黄真弟子，与安小慧押金线相连 | D3 / D4 | 华山师承、个人任务、婚姻状态 | 共享 02 / 书界支线 |
-| `npc_wenfangshi`（待补） | 温方施，温仪死亡事件的直接行动者 | D4 | 温家身份、凶案状态、可俘获 / 审理而非洗白 | 正 / 邪 01、`dc_07_03` |
-| `npc_minzihua`（待补） | 闵子华，金龙帮父仇案对质人物 | D4 | 门派、焦公礼案责任、对质窗口 | 正 / 邪 02 |
+| `npc_liyan` | 李岩，闯军将领 / 谋士，唯一主改命核心 | D5 | 生卒 / 小说命运、四证据门槛、加入与撤离窗、原著 / 改命状态 | 正 / 邪 04–09、`dc_07_08` |
+| `npc_hongniangzi` | 红娘子，李岩伴侣与军中行动者，主改命须与李岩同时存活 | D5 | 原著自刎顺序、独立意愿、暗语与撤离窗 | 正 / 邪 04–10、`dc_07_08` |
+| `npc_yuzhenzi` | 玉真子，后金宫廷护卫强敌与华山终战对手 | D5 | 门派 / 阵营、Boss 超限资格由 `design/02` / `09` 决定、死亡状态 | 正 / 邪 06、10 |
+| `npc_hehongyao` | 何红药，夏雪宜旧怨与五毒内部冲突核心 | D5 | 生卒、与何铁手关系、金蛇洞死亡规则 | 正 / 邪 07、10 |
+| `npc_sunzhongshou` | 孙仲寿，袁崇焕旧部 / 山宗骨干 | D4 | 序幕、囚车、护饷和出海 / 留守窗口 | 共享 01、正 / 邪 04、终幕 |
+| `npc_zhangchaotang` | 张朝唐，浡泥来客，负责开篇与海外尾声首尾相接 | D4 | 年代、非战斗同行、出海信息来源 | 共享 01、共享 03 |
+| `npc_cuiqiushan` | 崔秋山，保护幼年袁承志并传伏虎掌的袁党友人 | D4 | 序幕招募窗、传承来源与伤势 | 共享 01、华山余韵 |
+| 哑巴师兄角色槽（不建静态 ID） | 华山生活与出海同伴；本名 / 身份需纸本核 | D3 | 显示名、师门关系、加入门槛 | 共享 01、共享 03 |
+| `npc_caohuachun` | 曹化淳，东厂 / 宫廷阴谋线关键人 | D5 | 历史 / 小说身份分离、敌对与短时受控同行窗口 | 共享 01、正 / 邪 08 |
+| `npc_anjianqing` | 安剑清，宫廷卫士并与安大娘一家有关 | D4 | 家庭冲突、宫变状态、招募 / 背叛条件 | 正 / 邪 08 |
+| `npc_shatianguang` | 沙天广，泰山群雄与出海队伍人物 | D4 | 帮会关系、会盟 / 出海窗口 | 正 / 邪 05、终幕 |
+| `npc_anxiaohui` | 安小慧，押金与袁党联络线人物 | D4 | 与安家、崔希敏关系，押金任务窗口 | 共享 02 / 书界支线 |
+| `npc_cuiximin` | 崔希敏，黄真弟子，与安小慧押金线相连 | D4 | 华山师承、个人任务、婚姻状态 | 共享 02 / 书界支线 |
+| `npc_wenfangshi` | 温方施，温仪死亡事件的直接行动者 | D4 | 温家身份、凶案状态、可俘获 / 审理而非洗白 | 正 / 邪 01、`dc_07_03` |
+| `npc_minzihua` | 闵子华，金龙帮父仇案对质人物 | D4 | 门派、焦公礼案责任、对质窗口 | 正 / 邪 02 |
 
 > 牛金星、刘宗敏等军中人物虽然影响李岩结局，但本稿不在未核纸本和未定名录前抢建 ID；实现早期可用具名剧情角色占位，正式构建前必须由 `design/18` 决定是否进入主线名录。
 
@@ -1183,8 +1183,8 @@ A07-4 是本界主改命的唯一剧情真值；书眠适配器按 A07-4=`fate` 
 | 孙仲君 | D4 | 正 / 邪 03 后 | 赔偿 / 师门处置 / 关系选择 | `morality >= -9` 或完成高代价修复**【建议值】** | 拒绝问责则敌对 | 结局伤残待考 |
 | 梅剑和 | D3 | 正 / 邪 03 | 同派 L3、掌门许可、专属任务至少一项 | 华山非敌对 | 值守时留山 | 无跨书 |
 | 刘培生 | D3 | 正 / 邪 03 | 同上，独立任务判断 | 华山非敌对 | 值守时留山 | 无跨书 |
-| 李岩（待补） | D5 | 正 / 邪 04 的战役短时同行 | 军饷、证据链、主改命幕后 | 改命须 §5.9 全条件 | 原著死亡；改命后退出军权 | 鹿鼎仅回响；改命分支按健在处理 |
-| 红娘子（待补） | D5 | 正 / 邪 04 的战役短时同行 | 暗语、共同危机、独立取舍 | 不因李岩关系自动加入 | 原著死亡；改命后与李岩撤离 | 鹿鼎仅回响；改命分支按健在处理 |
+| 李岩 | D5 | 正 / 邪 04 的战役短时同行 | 军饷、证据链、主改命幕后 | 改命须 §5.9 全条件 | 原著死亡；改命后退出军权 | 鹿鼎仅回响；改命分支按健在处理 |
+| 红娘子 | D5 | 正 / 邪 04 的战役短时同行 | 暗语、共同危机、独立取舍 | 不因李岩关系自动加入 | 原著死亡；改命后与李岩撤离 | 鹿鼎仅回响；改命分支按健在处理 |
 
 所有 D4 / D5 都必须有拒绝、错过、成功三种结果；“送礼”只能降软门槛，不能替代本表的主线与价值观门槛。
 
@@ -1479,11 +1479,9 @@ next: q_07_main_c_03
 
 > `q_07_main_c/z/x_NN` 与 `dc_07_NN` 已由 Canon v1.2 §12 登记，剧情定义归本文；`dc_*` 迁入生产任务时按 `design/12` §2.6 编译为父任务内阶段，不另建 `DecisionDef`。
 
-### 待补 NPC 候选 ID
+### 上游 NPC 引用闭合
 
-以下均为待补候选：`npc_liyan`、`npc_hongniangzi`、`npc_yuzhenzi`、`npc_hehongyao`、`npc_sunzhongshou`、`npc_zhangchaotang`、`npc_cuiqiushan`、`npc_yaba`、`npc_caohuachun`、`npc_anjianqing`、`npc_shatianguang`、`npc_anxiaohui`、`npc_cuiximin`、`npc_wenfangshi`、`npc_minzihua`。
-
-这些只是在本文中的待补引用，不构成权威定义；正式归属为 `design/18`。
+**已解决：**原候选中的 14 个稳定具名人物已由 `catalog/npcs-ch07-bixue.md` 正式登记；原 `npc_yaba` 不再作为候选 ID，改用“哑巴师兄”角色槽。本文只引用，不构成 NPC 权威定义；正式归属仍为 `design/18`。
 
 ---
 
@@ -1503,7 +1501,7 @@ next: q_07_main_c_03
 | B07-V08 | 结局矩阵 | 正 / 邪 × 原著 / 改命四格均从开局可达并进入共享终幕 | error |
 | B07-V09 | 天书互斥 | `A07-4=canon` 仅授 `tsp_07_canon`；`fate` 仅授 `tsp_07_fate`；同周目不可双授 | error |
 | B07-V10 | 主改命代价 | fate 必关闭闯军军需 / 晋升路线，并只写出一次双人 `companionFateRescued` 事实供 `design/13` §6.6 扣 2 点修为余韵；不得清除明亡或入关事实 | error |
-| B07-V11 | NPC 引用 | 正式 NPC 可解析；§8.2 待补候选在发布数据前必须补入 `design/18` 或迁移 | error（草案 warning） |
+| B07-V11 | NPC 引用 | §8.2 的 14 个正式 `npc_*` 均可在 `design/18` / ch07 名录解析；哑巴师兄只用角色槽，不生成 `NpcDef` | error |
 | B07-V12 | 跨书人物 | 阿九只用 `npc_ajiu`，“九难”只作显示名；改命存活者不得被 canonical death 二次杀死 | error |
 | B07-V13 | 地名时代 | `city_beijing` 显示北京顺天府，`city_nanjing` 显示应天府南京，`city_taian` 显示泰安州，`city_shenyang` 明代层显示沈阳中卫，并可注后金称盛京 | error |
 | B07-V14 | 武学引用 | 所有 `sk_*` 在图鉴存在；剧情不得直接绕过 learnSources / reqs 发武学 | error |
@@ -1575,7 +1573,7 @@ next: q_07_main_c_03
 | `design/02` §1.3.7、§4 | **已采用**：1630–1645、华山书眠、下一界与 24 年过场 |
 | `design/03` §8.3–§8.4 | **已采用**：`morality` −100～100、单次建议 ±1～±15；`fame` 0–9999 和既有阈值 |
 | `design/13` §4.3、§6.6 | **已采用**：天书变体效果不在本文改写；双人主改命只发一次事实并统一支付 2 点修为余韵，不足记债 |
-| `design/17` / `design/18` | **部分待同步**：现有 8 个相关 `sect_*` 可引用；26 名现有 NPC 可引用，15 名主线缺口见 §8.2 |
+| `design/17` / `design/18` | **已解决：**相关 `sect_*` 可引用；本篇所需稳定具名 NPC 已在 ch07 名录闭合，姓名待考的哑巴师兄按角色槽处理 |
 | `design/12` | **已解决：**任务 schema 与故事迁移契约已落盘；本文 YAML 仍为 provisional 迁移草案，须按其 §2.6 逐字段校验 |
 | `design/chapters/07-bixue.md` | **已解决：**章节文档已落盘，“主线”只索引本文，特色系统接收本文触发 / 输出 |
 
@@ -1616,7 +1614,7 @@ next: q_07_main_c_03
 | P07-O06 | 阿九能否避免断臂 | 默认不能；上游 A07-5 允许救援与选择态度，但 `design/18` 鹿鼎画像和传承以断臂存活为稳定接口 |
 | P07-O07 | 温家地图用衢州还是金华 | 默认剧情文字用上游 `design/01` 的“衢州府一带”，任务临挂 `city_quzhou`；待 `design/17` / 地图统一后迁移 |
 | P07-O08 | 沈阳场景的显示名 | 默认“沈阳中卫（后金称盛京）”；既遵守 `ch07` 的 `ming` 地图层，也不抹掉后金政权自称，待历史地名审校 |
-| P07-O09 | 待补 NPC 是否沿用本文候选 ID | 默认沿用拼音 ID；`design/18` 有同名冲突时负责加后缀并提供迁移表 |
+| P07-O09 | **已解决：**原待补 NPC 如何收口 | 14 名稳定具名人物沿用拼音 ID；哑巴师兄不建静态 ID，按角色槽生成；见 §8.2 与 `catalog/npcs-ch07-bixue.md` |
 | P07-O10 | 邪线是否保留蛇网总名册 | 默认终幕给销毁 / 带走选择；带走只生成鹿鼎高风险支线，不提供永久资源优势 |
 
 至此没有删除既有待决事项：上游已有结论均标“已采用”，尚未定稿者均给默认值并允许后续归属文档覆盖。

@@ -1150,7 +1150,7 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | 明写完整 ID 的招式 `mv_*` | 78 | 来自 19 张地阶完整卡；玄阶紧凑卡以 `mv_<武学拼音>_<文内后缀>` 展开，短后缀不是独立 ID |
 | 明写完整 ID 的被动 `ps_*` | 56 | 来自地阶完整卡；玄阶紧凑卡以 `ps_<武学拼音>_<文内后缀>` 展开 |
 | 套装候选 `set_*` | 本文 15；跨组引用 1 | 本文：`legacy-set:yuenv_jianyuan` `set_penglai_chaosheng` `set_junwu_baizhan` `legacy-set:junwu_yanmeng` `legacy-set:biaoju_sihai` `legacy-set:wuguan_jiben` `set_jianghu_baijia` `legacy-set:xinglin_qihuang` `legacy-set:dujia_baicao` `legacy-set:guchong_mifa` `legacy-set:qimen_jianghu` `legacy-set:yayue_qingxin` `legacy-set:hanmo_yiqi` `legacy-set:huanyirong` `legacy-set:baishou_xunyuan`；跨组只引用 `set_qidan_xiaofeng` |
-| 经脉预留 `mer_*` | 8 | `mer_renmai` `mer_dumai` `mer_chongmai` `mer_daimai` `mer_yinqiao` `mer_yangqiao` `mer_yinwei` `mer_yangwei`；由未来 `design/15` 定稿 |
+| 经脉引用 `mer_*` | 8 | `mer_renmai` `mer_dumai` `mer_chongmai` `mer_daimai` `mer_yinqiao` `mer_yangqiao` `mer_yinwei` `mer_yangwei`；均已命中 `design/15` 正式 ID |
 | 正式门派 `sect_*` | 0 新增 | 只复用 `sect_penglai`；名称、时代与五级模板均服从 `design/17` |
 | 新 Buff | 0 | 共引用 44 个 `bf_*`，均须由 §13 的白名单测试验证 |
 
@@ -1277,8 +1277,8 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 
 | # | 下游归属 | 建议值 | 本文处理 |
 |---|---|---|---|
-| D-1 | 未来 `design/07-*` | 收录 §9 的 15 个套装候选，成员以本表为唯一迁移输入；大集合采用封顶档位，`g_set` 按 C22 取已计件成员 `effGrade` 中位数向下取整 | 本文只登记成员与主题，不写任何奖励值 |
-| D-2 | 未来 `design/15-*` | 正式经脉枚举优先沿用 `mer_renmai`、`mer_dumai`、`mer_chongmai`、`mer_daimai`、`mer_yinqiao`、`mer_yangqiao`、`mer_yinwei`、`mer_yangwei` | 本文只在内功上标专精建议，不定义穴位、周天与收益 |
+| D-1 | `design/07-*` | §9 的 15 个原候选已由 07 §19 逐项裁定；运行时只使用 07 §8.4 正式注册表与本文“正式套装反向标签镜像” | **已解决**：本文不定义奖励值，正式成员与 `setTags` 已双向闭合 |
+| D-2 | `design/15-*` | 正式经脉枚举使用 `mer_renmai`、`mer_dumai`、`mer_chongmai`、`mer_daimai`、`mer_yinqiao`、`mer_yangqiao`、`mer_yinwei`、`mer_yangwei` | **已解决**：本文只在内功上标专精建议，不定义穴位、周天与收益 |
 | D-3 | `chapters/01`～`14` | 每界至少把军旅吐纳／武馆心法／江湖吐纳、通背劲／通行弹腿／短打手、江湖三阶剑链安排为三路非互斥本土来源 | §11 用这组最低集合证明装配可行；具体 NPC、任务 ID 与幕次归章节 |
 | D-4 | `chapters/00`／`design/02`／`design/13` | 正常序章越女剑来源上限3重，跳过为1重残篇，轮回《越女剑·全本》最多6重；离章时均转 `it_canye_yuenvjian`，后续只能由既定印证／复原流程处理 | 沿用 `design/01` §8.4～§8.5、`design/02` §1.2 与 `design/13` §6.4.3，不让套装或图鉴收藏绕过 |
 | D-5 | `design/18` | 百兽御诀的友方兽、宠物／召唤上限、死亡与跨书界保留 | 本文默认只强化已合法存在的友方兽，不凭空召唤，不控制首领 |

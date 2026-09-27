@@ -91,7 +91,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | 凝血神爪 | `sk_ningxue` | 10 天下 | 拳脚·擒拿 | 天地会·陈近南 | 鹿鼎 |
 | 神照经 | `sk_shenzhao` | 10 天下 | 内功·调和 | 丁典 → 狄云 | 连城 |
 
-本组不新增任何天级。鹿鼎另可本土习得神行百变 `sk_shenxing`，其唯一武学定义归 `skills-xiake-bixue`；四书的通行轻功 `sk_yanzisanchaoshui`、`sk_dengpingdushui`、`sk_babuganchan`、`sk_caoshangfei` 分别由 `design/08` 的轻功目录定义，通行拳脚 `sk_taizuchangquan` 由 `design/05` §13.5 定义，本文均只引用、不重复定义。
+本组不新增任何天级。鹿鼎另可本土习得神行百变 `sk_shenxing`，其唯一武学定义归 `skills-xiake-bixue`；通行轻功 `sk_yanzisanchaoshui`、`sk_dengpingdushui`、`sk_caoshangfei` 由 `skills-general` 定义，`sk_babuganchan` 仅为 `design/08` 的待收录建议且当前禁用，通行拳脚 `sk_taizuchangquan` 由 `design/05` §13.5 定义，本文均只引用、不重复定义。
 
 ---
 
@@ -1144,7 +1144,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | 内功 | `sk_linrenhexinfa`、`sk_taiyuehuxi`、`sk_renzhetuna`；另有游方武当补位（见 `skills-daojia`） | 本文 3，已满足 |
 | 拳脚 | `sk_taiyueqigong`、`sk_weixinbiaoquan`、`sk_taiyuequan`；另引用 `sk_taizuchangquan` | 本文 3，已满足 |
 | 兵器 | 刀：`sk_fuqidaofa`、`sk_weixinliandao`、`sk_biaojudaofa`、`sk_linyulongdao`、`sk_renfeiyandao`、`sk_yuanyangshuangdao`、`sk_daneishuangdao`、`sk_linrenjichudao`、`sk_yulinjichudao`；另有剑、鞭、奇门 | 刀 9，同类三装充足 |
-| 轻功 | 本文不新定义；引用 `sk_caoshangfei`、`sk_babuganchan`、`sk_dengpingdushui` | 最高原生 `sk_dengpingdushui` 6 玄上，与约束一致 |
+| 轻功 | 本文不新定义；引用 `sk_caoshangfei`、`sk_dengpingdushui`；`sk_babuganchan` 待收录、当前禁用 | 最高原生 `sk_dengpingdushui` 6 玄上，与约束一致 |
 
 **装配例**：镖局路线以太岳呼吸法/威信镖拳/基础剑起步，再取合心诀/太岳奇攻/护镖刀；刀路线则由林任基础刀升任一玄上单刀，最终学夫妻刀法。无须激活组合技也能使用地中刀法。
 
@@ -1179,7 +1179,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | 套装候选 `set_` | 22 个 | 见 §14；其中 `legacy-set:chenjinnan`、`legacy-set:haidafu` 暂作一件式传承标签 |
 | 新 Buff | 0 个 | 全文只引用 `design/06` 已有 ID |
 
-跨文档只引用、不计为本文定义：`sk_shenxing`（`skills-xiake-bixue`）、`sk_yanzisanchaoshui`、`sk_dengpingdushui`、`sk_babuganchan`、`sk_caoshangfei`（`design/08`）、`sk_taizuchangquan`（`design/05` §13.5）。装备只引用 `eq_luochaduanchong`、`eq_changchangfengshibei`、`eq_yuanyangdao`，没有在本文新定义装备。
+跨文档只引用、不计为本文定义：`sk_shenxing`（`skills-xiake-bixue`），`sk_yanzisanchaoshui`、`sk_dengpingdushui`、`sk_caoshangfei`（`skills-general`），`sk_taizuchangquan`（`design/05` §13.5）。`sk_babuganchan` 只保留 C12 标准 ID，`design/08` 仅给待收录建议，当前不计正式库存。装备只引用 `eq_luochaduanchong`、`eq_changchangfengshibei`、`eq_yuanyangdao`，没有在本文新定义装备。
 
 ### 17.2 预留经脉 ID
 
@@ -1322,5 +1322,6 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | O-03 | 高昌守护剑是否应保留地上顶点？ | 保留，明确全原创且不称历史流派 | 若降阶，白马两门地阶与 AR-01 配额需另补 |
 | O-04 | 罗刹火器术是否作为独立武学？ | 保留黄上，装备仍是实际伤害与弹药唯一来源 | 若改成纯装备熟练项，鹿鼎需补 1 门黄阶 |
 | O-05 | 夫妻刀组合技的“夫/妻”显示文案是否改为“双侠甲/乙”？ | 运行规则仍按 09，UI 可显示甲/乙，性别不设门槛 | 只影响本地化和角色槽位文案 |
+| O-06 | 八步赶蟾是否纳入正式武学库存？ | 默认不纳入、生产禁用；保留 `sk_babuganchan` 作为 C12 已定名的待收录接口 | 若采用，须在 90 门本组配额或全局 1,138 门内指定替换项；不得直接增量补卡 |
 
 已有待决追溯：图鉴规模问题已按 AR-01 暂解（见 §0.1、O-01）；弓箭分类已按 C16 解决（见 §0.2）；技艺与 OR 前置已按 C17 解决（见 §0.2、完整卡）；套装双向登记已按 C22 解决到本文范围（见 §14）；Buff 缺口已按 C23 目录核对，本文新增 0 个。

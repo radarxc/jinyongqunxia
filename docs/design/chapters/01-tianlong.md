@@ -193,7 +193,7 @@ chapterStart:
 | `rg_zhongyuan` | 北宋东京 / 西京与河洛；`tr_pingdi`、`tr_taijie`、`tr_shinei`、`tr_wuding`、`tr_chengqiang` | C03 后；庄墙主 qg2 有请柬；藏经阁支 qg3；达摩洞后壁 qg4 | `npc_xiaofeng`、`npc_xuzhu`、`npc_murongfu`、`npc_murongbo`、`npc_suxinghe`、`npc_wuyazi`、`npc_xuemuhua`、`npc_xuanci`、`npc_saodiseng`；少林 / 丐帮 / 聚贤庄 | `sk_taizuchangquan`、`sk_shaolinxinfa`、`sk_luohanquan`、`sk_yiweidujiang`、`sk_xianglong18`、`sk_dagou` | 8–25 | 珍珑、聚贤伤者分流、藏经阁夜影、达摩洞面壁 |
 | `rg_jiangnan_taihu` | 北宋江南水网、姑苏慕容；`tr_qianshui`、`tr_shenshui`、`tr_chuanjiaban`、`tr_huacong`、`tr_shinei` | C03 后；主线乘船；短水面 qg2 有小舟；孤岛 qg3；封闭书库 qg4 | `npc_wangyuyan`、`npc_azhu`、`npc_abi`、`npc_murongfu`、`npc_xiaofeng`；慕容 / 丐帮流动分舵 | `sk_yanzisanchaoshui`、`sk_murongjian`、`sk_canhezhi`、`sk_douzhuan`、`sk_yirongshu` | 8–20 | 杏子林证词、燕子坞迷航、还施水阁残页、曼陀花圃 |
 | `rg_hexilongyou` | 鄯州 / 青唐边地**（待考）**、河西商路、星宿活动；`tr_shadi`、`tr_liusha`、`tr_duzhao`、`tr_suishi` | 中盘商队开；主 qg1 有向导；毒沼孤台 qg3，失败可等向导 | `npc_dingchunqiu`、`npc_azi`；`sect_xingxiu` | `sk_xingxiudugong`、`sk_fushidu`、`sk_sanxiaoxiaoyaosan`、`sk_huagong` | 18–28 | 星宿海毒材、排行之争、失踪商队**（原创扩展）** |
-| `rg_hedong_jinzhong` | 辽西京 / 宋辽边关分治；石岭、`tr_suishi`、`tr_chengqiang`、`tr_xuanya`、`tr_xuedi` | 中盘开；关道 qg0；崖侧主 qg2 有绳索；石刻 qg3；旧烽道无独立门禁 | `npc_xiaofeng`、`npc_murongfu`；秦家寨；萧远山中文名出场但 ID 待补 | `sk_junwuduandao`、`sk_junzhongdao`、`sk_taizuchangquan`、`sk_qinlonggong`、`sk_yanmengqishe` | 18–32 | 雁门旧痕、秦家寨断刀谱、冰蚕旅途节点 |
+| `rg_hedong_jinzhong` | 辽西京 / 宋辽边关分治；石岭、`tr_suishi`、`tr_chengqiang`、`tr_xuanya`、`tr_xuedi` | 中盘开；关道 qg0；崖侧主 qg2 有绳索；石刻 qg3；旧烽道无独立门禁 | `npc_xiaofeng`、`npc_murongfu`、`npc_xiaoyuanshan`；秦家寨 | `sk_junwuduandao`、`sk_junzhongdao`、`sk_taizuchangquan`、`sk_qinlonggong`、`sk_yanmengqishe` | 18–32 | 雁门旧痕、秦家寨断刀谱、冰蚕旅途节点 |
 | `rg_xixia_helan` | 兴庆府与贺兰绿洲、一品堂；`tr_shadi`、`tr_liusha`、`tr_chengqiang`、`tr_bingku` | 中后期开；宫墙主 qg2 有使团身份；崖道 qg3；冰窖井有剧情扶梯 | `npc_tonglao`、`npc_liqiushui`、`npc_murongfu`、`npc_jiumozhi`；`sect_yipintang` | `sk_helanxinfa`、`sk_tieyaozidao`、`sk_xiaowuxiang`、`sk_baihongzhang` | 20–31 | 冰窖密道、沙暴商队、鸠摩智醒悟后续 |
 | `rg_qingzang` | 吐蕃高原与雪岭；`tr_xuedi`、`tr_shenxue`、`tr_bingmian`、`tr_qiaobi` | 吐蕃使团 / 商旅开；主 qg1 有向导；雪岭捷径 qg3；寺后冰谷可绕行 | `npc_jiumozhi`；`sect_mizong` | `sk_dashouyin`、`sk_jingangjue`、`sk_jingangxiangmochu`、`sk_huoyandao` | 20–31 | 大轮寺辩经**（原创扩展，确址待考）**、药谷、雪岭驿队 |
 | `rg_xiyu_beijiang` | 高昌故地、伊犁河谷部落**（待考）**、天山灵鹫宫；`tr_shenxue`、`tr_tiesuoqiao`、`tr_yunhaizhandao`、`tr_bingku` | 逍遥 / 灵鹫线开；主路 qg0；断崖 / 无痕境 qg3；唯一云海 qg5 | `npc_xuzhu`、`npc_tonglao`、`npc_liqiushui`；`sect_lingjiu` | `sk_lingjiuxinfa`、`sk_piaomiaobu`、`sk_bahuang`、`sk_liuyangzhang`、`sk_zhemei`、`sk_shengsifu` | 23–33 | 石壁图谱、九天九部、雪崩与洞岛群豪 |
@@ -240,7 +240,7 @@ chapterStart:
 | 21 | `city_chifeng` | 上京南境 / 松州 **（待考）** | `rg_monan` | 上京南侧商旅节点 | 无稳定具名 NPC | 粮食；山庄 |
 | 22 | `city_xilinhot` | 漠南草原营地 **（待考）** | `rg_monan` | 当代草原营地，不称后世蒙古幕府 | 萧峰（骑猎阶段） | 马匹；镖局 |
 
-开放计数为 `2+4+3+1+3+2+2+2+3=22`。具名 NPC 只列稳定名录对象；康敏、全冠清、萧远山、耶律洪基等 story 必需人物继续用中文名，待 `design/18` 补 ID 后接入数据。
+开放计数为 `2+4+3+1+3+2+2+2+3=22`。具名 NPC 只列稳定名录对象；萧远山已补为 `npc_xiaoyuanshan`，康敏、全冠清、耶律洪基仍只用中文名，待 `design/18` 补 ID 后接入数据。
 
 ### 3.5 四十五道轻功门禁
 
@@ -537,7 +537,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 |---|---|---|---|---|---|
 | `q_01_side_71` 玉璧剑影 | 大理苍山 | 夜间检查玉璧月影；非无量门人也可触发 | 对齐光线、石痕与剑招次序；可从山道、绳索或 qg3 三路抵观察位 | `sk_yubijian` 最多 7 重；中型探索值 1.90 两 | 无量玉璧母题；玩家解谜过程**（原创扩展）** |
 | `q_01_side_72` 灵鹫宫石壁 | 西域北疆 | 完成灵鹫善后且石室许可开放 | 将圆图、人兽图与残文按招式系谱归档；错配只损时间，不毁唯一图谱 | 按图鉴解锁 `sk_liuyangzhang` / `sk_zhemei` / `sk_piaomiaojian` 的受限来源；门派贡献 | 宫中石壁母题；玩家校图**（原创扩展）** |
-| `q_01_side_73` 藏经阁夜影 | 中原 | 少室前取得一份夜行线索；少林非敌对或可潜入 | 跟踪两道身影、保护经架与巡僧，区分“见招”与“学会”；证据交还或密封 | 开萧远山 / 慕容博后续指点资格（其 ID 待补）；小型值 0.95 两 | 藏经阁萧慕容旧事；玩家追踪**（原创扩展）** |
+| `q_01_side_73` 藏经阁夜影 | 中原 | 少室前取得一份夜行线索；少林非敌对或可潜入 | 跟踪两道身影、保护经架与巡僧，区分“见招”与“学会”；证据交还或密封 | 开 `npc_xiaoyuanshan` / `npc_murongbo` 后续指点资格；小型值 0.95 两 | 藏经阁萧慕容旧事；玩家追踪**（原创扩展）** |
 | `q_01_side_74` 生死符之困 | 大理苍山 → 西域北疆 | 开局见司空玄受制线索；灵鹫线后回访 | 找药只是缓解，真正解符须虚竹 / 宫中许可；玩家决定公开受害名单或私下解救 | 神农帮关系、药材配给、跨势力救援候选 | 神农帮受制母题；跨区救援链**（原创扩展）** |
 
 ### 6.3 门派任务（6）
@@ -746,7 +746,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 | `npc_zhongling` | 少女；生卒待考 | 万劫谷少女；C01 与闪电貂线 |
 | `npc_kurong` | 老年；生卒待考 | 天龙寺高僧；护经、指点与传承 |
 
-主线另需康敏、全冠清、萧远山、耶律洪基等人物，但稳定名录尚无对应 `npc_*`；本章不越过 `design/18` 预建 ID。生产包在上游补录前只能用带阻断告警的临时角色槽，不能把中文名当稳定外键。
+主线另需康敏、全冠清、耶律洪基等人物，但稳定名录尚无对应 `npc_*`；萧远山已登记为 `npc_xiaoyuanshan`。其余三人在上游补录前只能用带阻断告警的临时角色槽，不能把中文名当稳定外键。
 
 ### 8.4 前代重逢与跨书能力重设
 
@@ -1098,7 +1098,7 @@ resolution:
 source: canonExpanded
 ```
 
-中文名 `萧远山` 暂不能改成 `npc_*`，因为稳定名录尚未补 ID；YAML 进入正式构建前必须由 `design/18` 补录并替换，否则构建失败。
+`revealActors` 是本章局部叙事示例；进入正式构建时，萧远山必须解析为已登记的 `npc_xiaoyuanshan`，不得继续把中文显示名当持久化外键。
 
 #### 10.3.3 UI、失败保护与隐私
 
@@ -1419,7 +1419,7 @@ B = I × H = 19 × 15 = 285 两
 | TL-X17 | 阿朱、游氏兄弟、岳老三、叶二娘等次级救援窗口 | §5.4、§8 | 救援为改命扩展；不把原著结果标为失败态 |
 | TL-X18 | 十场 Boss 的阶段、地形、目标式胜利与恢复机制 | §8.6、§12.4–§12.5 | 原著人物只作骨架；数值与脚本为本作制作内容 |
 | TL-X19 | 聚贤庄 40% 锁血 / 力竭、冰窖共享止斗槽、藏经阁裁定态 | §8.6、§12.5 | 不允许玩家击杀萧峰、童姥 / 李秋水或扫地僧刷结局 |
-| TL-X20 | 康敏、全冠清、萧远山、耶律洪基的阻断式临时角色槽 | §8.3 | 上游补稳定 `npc_*` 前不可落生产数据 |
+| TL-X20 | 康敏、全冠清、耶律洪基的阻断式临时角色槽 | §8.3 | 萧远山已转正式 `npc_xiaoyuanshan`；其余三人补稳定 `npc_*` 前不可落生产数据 |
 
 ### 13.4 武学、传承、系统与跨书原创
 
@@ -1464,7 +1464,7 @@ B = I × H = 19 × 15 = 285 两
 ### 13.6 技术与制作核对清单
 
 - 主线剧情、选择与锚点只从 `design/story/01-tianlong.md` 生成；本文 §4 的 24 行是索引，不得被编译器当第二份剧情正文。
-- 康敏、全冠清、萧远山、耶律洪基等进入生产前必须先由 `design/18` / 天龙人物名录补稳定 ID、生卒与能力；中文名不得成为持久化外键。
+- 康敏、全冠清、耶律洪基进入生产前仍须由 `design/18` / 天龙人物名录补稳定 ID、生卒与能力；萧远山已补为 `npc_xiaoyuanshan`。中文名不得成为持久化外键。
 - `featureKey:zhenlong / babuzhong / daitoudage` 的 YAML 是章节局部内容接口示例；字段归属 schema 接纳前由章节适配器读取，不得自行扩充任务 opcode。
 - **已解决：**`design/07-set-system.md` 已定稿；§9.4 只引用其正式套装，件数、效果与成员均由 07 提供，本章不重定义。
 - `tools/balance/damage_sim.py` 若仍把 Boss MP 输出成 `×1`，须同步为 `design/03` 的 `×2` 后再用于本章回归；当前 §8 / §12 采用权威文档值。
@@ -1575,7 +1575,7 @@ B = I × H = 19 × 15 = 285 两
 | `lgs_yuenv_aqing`、`cache_yuenv_ruoye`、三个 `frag_yuenv_*`、`it_xinwu_aqingshoujuan` | 复用 `design/20` 的传承目录与合成条件 |
 | `vid_sleep_01_02`、`it_shijian_xiaofeng`、`echo_01_huangshang` | 复用 `design/02` 的过场、史笺与连续性键 |
 | 正式 `set_*` 引用 | 只显示并结算 `design/07` 已收录套装；旧候选不进入运行数据 |
-| 康敏、全冠清、萧远山、耶律洪基 | 仅剧情中文名 / 阻断槽；禁止在上游名录补录前擅造 `npc_*` |
+| 康敏、全冠清、耶律洪基 | 仅剧情中文名 / 阻断槽；禁止在上游名录补录前擅造 `npc_*`；萧远山复用 `npc_xiaoyuanshan` |
 | `clue_01_xingzilin_mifeng`、`clue_01_yanmeng_jiuhen`、`clue_01_shaolin_dangan` | `featureKey:daitoudage` YAML 的局部示例键；正式 schema 接纳前不作为全局资产 |
 
 ---
@@ -1701,7 +1701,7 @@ B = I × H = 19 × 15 = 285 两
 | `design/03` / `04` / `09` | **部分解决：**D4 模板、伤害、Boss / 合击规则可用；具名角色仍须正式 `full` 数据与实跑 |
 | `design/08` / `11` 与 `design/map/*` | **已解决：**使用 9 个全局区域、22 城、36 场景、45 门禁和 `jianghu-ch01.svg`；底表旧区域映射另列同步 |
 | `design/12` / `16` / `17` | **已解决：**任务、L1–L5、资源营生和 TL 时代门派矩阵已有通则；本文只登记天龙实例 |
-| `design/18` 与 `catalog/npcs-ch01-tianlong.md` | **部分解决：**12 名重点队友和 30 名稳定人物可用；康敏、全冠清、萧远山、耶律洪基等仍缺稳定 ID |
+| `design/18` 与 `catalog/npcs-ch01-tianlong.md` | **部分解决：**12 名重点队友和 30 名稳定人物可用；萧远山已补 `npc_xiaoyuanshan`，康敏、全冠清、耶律洪基仍缺稳定 ID |
 | 四份指定武学图鉴 | **已解决：**本章可学武学只取 `skills-shaolin`、`skills-xiaoyao`、`skills-wujue`、`skills-general` 已有 ID |
 | `design/20-legacy-inheritance.md` | **已解决：**阿青剑源、墓藏、三卷、信物与本界可完成校合均直接引用权威目录 |
 | `design/07-set-system.md` | **已解决：**§9.4 已按 07 正式目录收口；本章仅安排来源，不定义效果、掉率或 Buff |

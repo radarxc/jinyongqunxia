@@ -82,7 +82,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | `sk_wuxianbaidugong` | 7 / `yin` | `26; 16; {con:4,wis:3,wil:3}; 2.0` | `26+16+2×10+5×2.0=72` |
 | `sk_wuxiantuna` | 3 / `yin` | `10; 6; {con:1,wis:2,wil:1}; 1.2` | `10+6+2×4+5×1.2=30` |
 
-`design/15-meridians-and-acupoints.md` 尚未存在，本文按 AR-03 预留以下专精经脉 ID；它们只表达“冲穴倾向”，不在本图鉴定义穴位与加成：`mer_renmai`（任脉）、`mer_dumai`（督脉）、`mer_chongmai`（冲脉）、`mer_daimai`（带脉）、`mer_shoutaiyin`（手太阴）、`mer_shoushaoyin`（手少阴）、`mer_zuyangming`（足阳明）、`mer_zushaoyang`（足少阳）、`mer_zutaiyin`（足太阴）、`mer_zujueyin`（足厥阴）。
+本文按 AR-03 引用 `design/15-meridians-and-acupoints.md` 的正式专精经脉 ID；它们只表达“冲穴倾向”，不在本图鉴定义穴位与加成：`mer_renmai`（任脉）、`mer_dumai`（督脉）、`mer_chongmai`（冲脉）、`mer_daimai`（带脉）、`mer_shoutaiyin`（手太阴）、`mer_shoushaoyin`（手少阴）、`mer_zuyangming`（足阳明）、`mer_zushaoyang`（足少阳）、`mer_zutaiyin`（足太阴）、`mer_zujueyin`（足厥阴）。
 
 ### 0.4 门派职级与可学武学（五级建议）
 
