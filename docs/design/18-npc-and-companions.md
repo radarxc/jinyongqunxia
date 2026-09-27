@@ -1,10 +1,10 @@
 # 18 · NPC 与同伴系统（NPC & Companions）
 
 > 归属（基准 §18，待 A3 补登记）：NPC 身份与生卒年、分层名录、招募难度与任务门槛、好感与羁绊、离队 / 死亡 / 背叛、同伴跨书界重逢及持久化。
-> 上游：`docs/decisions/author-requirements.md` AR-09（高于基准）、`docs/00-canon.md`、`design/01-vision-and-core-loop.md`、`design/02-timeline-and-world-tiers.md`、`design/03-attributes.md`、`design/13-progression-and-endings.md`、`design/17-sects-compendium.md`。
-> 引用而不重定义：任务与门派流程 → 未来 `design/12-quests-npc-factions.md`；战斗编组、合击与 AI → `design/09-combat-system.md`；城市 ID / 坐标 / 时代名 → `design/19-world-map.md` 与 `design/map/cities.yaml`，区域玩法 → 未来 `design/11`；营生场所与家业 → 未来 `design/16`；武学 → `design/05` 与 `design/catalog/skills-*.md`；存档 Schema / 运行时 → 未来 `tech/04` / `tech/05`。不存在或尚未定稿的下游文档只作接口约定，不虚构章节号。
+> 上游：`docs/decisions/author-requirements.md` AR-09（高于基准）、`docs/00-canon.md`、`design/01-vision-and-core-loop.md`、`design/02-timeline-and-world-tiers.md`、`design/03-attributes.md`、`design/13-progression-and-endings.md`、`design/17-sects-compendium.md`、`design/20-legacy-inheritance.md`。
+> 引用而不重定义：任务与门派流程 → `design/12-quests-npc-factions.md`；战斗编组、合击与 AI → `design/09-combat-system.md`；城市 ID / 坐标 / 时代名 → `design/19-world-map.md` 与 `design/map/cities.yaml`，区域玩法 → `design/11-open-world.md`；营生场所、家业合同与排班 → `design/16-resources-and-estates.md`；传承来源、残本与载体调度 → `design/20-legacy-inheritance.md`；武学 → `design/05` 与 `design/catalog/skills-*.md`；存档 Schema / 运行时 → `tech/04-data-pipeline.md` / `tech/05-gameplay-engine.md`。本文只定义人物实体、生命轴、招募判断和人物侧互斥。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（推算）** = 由本文所列原著线索和游戏定年估算；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需真机或完整存档验证；**【建议值】** = 依赖其他文档、先给可运行值并在文末登记。
-> 版本：v1.1（初稿 N1；审校 N1.R，2026-09-26）。
+> 版本：v1.2（跨文档同步，2026-09-26）。
 
 ---
 
@@ -15,7 +15,7 @@
 3. “书眠”是叙事与存档阶段名；主角借《长生诀》沉睡至下一书界。切换时清空活动编组，但保留招募史、羁绊与离队快照。
 4. 旧基准“队友不跨书界”由 AR-09 覆盖：故人若在苏醒年仍健在，可经重逢任务再次加入。能力以旧快照为逐项下限，再按新书形象补入武学、层数和功力，只增不减。
 5. 具名、可招募 NPC 走 `design/03` 的 `full` 数值管线；普通设施 NPC 与路人走 `template` 管线。年龄段只修正输入画像，不另造第二套战斗公式。
-6. 分层名录拆在 `catalog/npcs-*.md`：14 部主线各有 20–40 名带 `npc_*` 的静态 NPC，当前合计 366 条出场索引、343 个唯一人物；另有 11 个无名支持槽，不计入人物下限。其后再列 99 个组织、设施和路人模板。名录字段是生产数据候选，不替代原著考据。
+6. 分层名录拆在 `catalog/npcs-*.md`：14 部主线各有 20–40 名带 `npc_*` 的静态 NPC，当前合计 392 条出场索引、369 个唯一人物；另有 13 个不建静态 ID 的角色 / 支持槽，不计入人物下限。其后再列 99 个组织、设施和路人模板。名录字段是生产数据候选，不替代原著考据。
 
 ### 0.1 章节导航
 
@@ -29,7 +29,7 @@
 | §6 | 《长生诀》沉睡与跨书重逢 | 叙事、存档 |
 | §7 | YAML / TypeScript 数据契约 | 客户端、工具链 |
 | §8 | 分层名录生产规则 | 内容团队 |
-| §9 | 设施 NPC 与路人生成接口 | 城市、经济 |
+| §9 | 设施、路人及传承载体生成接口 | 城市、经济、传承 |
 | §10 | 跨文档接口与事件 | 全体 |
 | §11 | 名录索引与覆盖统计 | QA、内容团队 |
 | §12 | 参考资料 | 考据 |
@@ -47,8 +47,9 @@
 | 属性、敌人模板、等级跟随 | `design/03` | 只给画像修正与管线选择 |
 | 武学内容、层数与品阶 | `design/05` / 图鉴 | 只引用已存在 `sk_*` |
 | 城市 ID、坐标与时代图层 | `design/19` / `design/map/cities.yaml` | 只挂接已登记 `city_*` |
-| 区域探索与城市入口玩法 | 未来 `design/11` | 只提出留守 / 重逢地点需求 |
-| 赌场 / 镖局 / 山庄营生、月钱 | `design/16` | 只定义人员模板与雇佣入口 |
+| 区域探索与城市入口玩法 | `design/11` | 只提出留守 / 重逢地点需求 |
+| 赌场 / 镖局 / 山庄营生、月钱 | `design/16` | 只定义人物侧状态与雇佣入口 |
+| 传承源、残本、载体调度与挖掘 | `design/20` | 只生成 / 复用载体 NPC 并判定招募 |
 | 改命消耗、多周目、成就 | `design/13` | 发事件、保存结果 |
 | NPC Schema 与存档迁移 | `tech/04` / `tech/05` | 给出逻辑契约 |
 
@@ -271,7 +272,7 @@ evaluateRecruitment(npc, world, player):
 - `fail`: 可恢复失败、永久错过、背叛；
 - `emit`: 向 13、成就与遥测发结构化事件。
 
-当前 14 份主线名录是**策划索引**，其“招募要点”用于检查每名 D4 / D5 都有专属事件、价值观 / 主线取舍或时机窗口的语义，不冒充已落盘的任务节点。由于 `design/12` 与各 `story/chapters` 任务清单尚未创建，本文的 `q_02_bond_01`、`q_03_bond_01` 只是格式示例，当前不可解析为正式任务。后续序列化为 `NpcDef` 时，D4 / D5 必须补齐真实 `questRef`、`gateRef`、`valueGateRefs`、非空 `windowKeys`；D5 还必须补齐 `mainlineGateRef`、`canonicalConsequenceRef`、`fallbackAllianceRef`、`lockWarningRef` 与 `fateRuleRef`（允许为空的字段仍须显式给 `null`）。在这些引用可解析前，生产数据构建不得通过。
+当前 14 份主线名录是**策划索引**，其“招募要点”用于检查每名 D4 / D5 都有专属事件、价值观 / 主线取舍或时机窗口的语义，不冒充已落盘的任务节点。`design/12` 已定稿任务 DSL 和 `companion/*` 动作；本文的 `q_02_bond_01`、`q_03_bond_01` 仍只是格式示例，未在正式任务 manifest 中定义，当前不可解析。后续序列化为 `NpcDef` 时，D4 / D5 必须补齐真实 `questRef`、`gateRef`、`valueGateRefs`、非空 `windowKeys`；D5 还必须补齐 `mainlineGateRef`、`canonicalConsequenceRef`、`fallbackAllianceRef`、`lockWarningRef` 与 `fateRuleRef`（允许为空的字段仍须显式给 `null`）。在这些引用可解析前，生产数据构建不得通过。
 
 ### 3.2 D4 / D5 专属任务链模板
 
@@ -398,6 +399,15 @@ stationed = roster - activeParty
 
 不上场同伴的武学经验份额默认是同队基准份额的 25%【建议值，引用 `design/13`】；角色等级按 13 的等级跟随，不另存一套角色经验。
 
+#### 3.8.1 家业任职互斥与原子交班
+
+家业岗位及合同状态唯一归 `design/16` §7、§14；本文只维护人物侧排他占用。对同一 `npcId`，`assignmentState=estate` 与关系态 `recruited` / `stationed` 不得同时成立：`stationed` 是可随时换入活动编组的同伴留守态，不等于经营岗位。
+
+- 转随队：先由 16 完成岗位交班、释放排班块并写合同 / 指派收据，再把人物从 `estate` 转为 `stationed` 或 `recruited`；若没有合法副手、交班失败或仍有未结职责，人物状态不变。
+- 转家丁：先从活动编组移除并完成同伴驻点事务，再由 16 建立自愿合同和岗位指派；不得在两个域各写一份“同一人已到岗”。
+- 上层命令以 `npcId + expectedRevision + transitionKey` 幂等；人物占用、岗位 / 排班、合同和 `companionStationChanged` 同事务提交，任一步失败全部回滚。具体工资、能力、合同字段、一个日程块的交接成本及 `assign_servant` 动作见 `design/16` §7、§14。
+- 设施唯一服务者仍须先补替班；生成家丁的经营能力、工资和合同读取 16，人物姓名、年龄、人格、生卒与是否可招募读取本文。
+
 ### 3.9 同伴冲突
 
 NPC 可声明：
@@ -522,7 +532,7 @@ betrayalScore = resentment
 | 遗物 | `legacy.itemRefs` | 由 10 定义物品；不凭空复制唯一器物 |
 | 后人 / 门人 | `legacy.heirNpcRefs` | 新人物须独立 `npc_*`，关系标原创扩展或待考 |
 
-若无可靠后人资料，宁可只留墓、传闻或旧址，不虚构姓名。
+若无可靠后人资料，宁可只留墓、传闻或旧址，不虚构姓名。需要由后人 / 门人承载残本时，来源调度和残本结果归 `design/20`，人物实体按 §9.5 生成；“后人”是载体总称，不自动断言血缘。
 
 ---
 
@@ -1053,6 +1063,25 @@ interface SourceRef {
   kind: 'novel'|'history'|'repository'|'expanded';
   work?: string; locator: string; url?: string; accessed?: string;
 }
+
+type LegacyHeirKind = 'bloodline'|'disciple'|'custodian'|'imitator'|'anonymous';
+interface LegacyHeirSpawnRequest {
+  sourceId: `lgs_${string}`;
+  chapterId: ChapterId;
+  heirKind: LegacyHeirKind;
+  roleTags: string[];
+  difficultyBand: readonly [RecruitmentDifficulty, RecruitmentDifficulty];
+  locationHints: Array<{ regionId: string; cityId?: CityId; placeKey?: string }>;
+  evidenceRefs?: string[]; // heirKind=bloodline 时必填，且须解析到原著、史料或已审校游戏谱系事实
+}
+interface LegacyHeirSpawnResult {
+  sourceId: `lgs_${string}`;
+  npcId?: NpcId;                 // 既有或新增长期具名人物
+  generatedNpcRuntimeId?: string; // 一次性无名人物，运行时 UUID
+  difficulty: RecruitmentDifficulty;
+  recruitable: boolean;
+  fallback: 'none'|'alternate_carrier'|'cache';
+}
 ```
 
 `NpcAppearance.build.skills` 只保存 `skillId` 与人物真实层数 `trueLayer`；武学名称、类型和品阶统一通过 `skillId → SkillDef.grade` 从 `design/05` 与对应图鉴解析，NPC 数据不得重复存储或覆写品阶。该二字段列表只是设计索引：运行时生成 / 重逢前，构建器必须从对应书界的合法来源展开为 §7.3 的完整 `CompanionSkillSnapshot`（含 `sourceCap`、`sourceGrade`、`nativeTo` 等）；找不到来源即报错，不能一律补成完整十重来源。若图鉴尚无该武学，只能写入 `unregisteredSkills` 并标“待对应图鉴收录（不预建 ID）”，在图鉴正式建档前不得伪造 `sk_*`。
@@ -1120,6 +1149,7 @@ interface CompanionSkillSnapshot {
 - 新增武学画像只在下次重逢 / 刷新时合并，不在读档瞬间静默改变当前活动队员。
 - 生卒考据修正若会让存档中的活人变已故，保留该存档既有分支并标 `legacyTimeline=true`，新游戏使用新事实。
 - 任务引用缺失应阻止内容构建；生产环境不得自动把 D4 / D5 降为无门槛 D1。
+- ID 政名通过版本化 alias 表在加载前迁移；本版新增 `npc_ningqiangdao → npc_songqiangdao`。旧 ID 只允许出现在迁移表和旧存档，不得继续写入剧情、名录或新快照。
 
 ---
 
@@ -1183,7 +1213,7 @@ NPC = surname(region, era) + givenName(genderExpression, era)
 
 ### 9.1 设施雇佣定价
 
-经济锚点引用 `design/10`：
+经济锚点读取 `design/16` §12；D1 / D2 冒险同行的风险倍率仍由本文定义：
 
 ```text
 I_hour(ch) ≈ 2 × P(主武器, g_mode) × chapterIncomeMul
@@ -1192,7 +1222,7 @@ D2日佣 = I_hour × 0.50h × skillMul
 D2定金 = 3 × D2日佣
 ```
 
-其中 `skillMul`【建议值】为学徒 0.8、熟手 1.0、名手 1.5。例：天龙 `I_hour≈20 两/时`，熟手 D2 日佣 `20×0.50×1.0=10 两`，定金 `3×10=30 两`；射雕 `I_hour≈94`，同档日佣 `94×0.5=47 两`，定金 `141 两`。最终由 `design/16` 覆写并接受书界收入系数。
+其中 `skillMul`【建议值】为学徒 0.8、熟手 1.0、名手 1.5。例：天龙正式锚 `I_hour=19 两/时`，熟手 D2 日佣 `19×0.50×1.0=9.5 两`，三日定金 `3×9.5=28.5 两`；射雕 `I_hour=94`，同档日佣 `94×0.5=47 两`，定金 `141 两`。不上场家丁的工资、食宿、取整及合同字段另见 `design/16` §7.5，不得沿用冒险日佣。
 
 ### 9.2 招募数量软上限
 
@@ -1224,6 +1254,18 @@ D2定金 = 3 × D2日佣
 - 老年普通人默认不接高危委托；玩家强行带入危险区需二次确认；
 - 原著武林高手按人物画像例外，不用年龄歧视式硬禁。
 
+### 9.5 传承载体生成接口
+
+`design/20` §5.2、§10.3 只提交 `LegacyHeirSpawnRequest`；本文负责把请求解析为人物实体和 D1–D5 招募结果，不反向定义传承源、残本或概率。处理顺序固定：
+
+1. 校验六个请求字段 `sourceId/chapterId/heirKind/roleTags/difficultyBand/locationHints`，并确认 `sourceId` 与书界、地点提示可解析；`difficultyBand` 的上下界必须按 D1→D5 有序。
+2. `heirKind=bloodline` 时必须有非空 `evidenceRefs`，且每条能解析到原著、可靠史料或已审校的游戏谱系事实；缺证据直接拒绝，不能把“后人”玩法名倒推成血缘。其余类型按 20 §5.1 标**（原创扩展）**，默认优先 `disciple/custodian/imitator/anonymous`。
+3. 若有合法既有人物，复用同一 `npc_*` 并验证当界 living appearance；新的长期具名人物须在名录登记独立 `npc_*`、`origin=expanded`。一次性 `anonymous` 使用稳定运行时 UUID，不预建静态 ID。
+4. 无名身份种子读取 `tech/05` 的 `(runId, chapterId, templateId, spawnKey, spawnOrdinal)` UUIDv5 规则；同一 `sourceId + chapterId + spawnKey` 重进必须复用姓名、外观、年龄、人格和能力画像，不得临场重掷。
+5. 从请求区间、人物责任和 §2 规则确定 D1–D5，再独立判断 `recruitable`；获得残本与招募不是同一结果。人物被占用、死亡或路线排斥时使用 20 已写入的确定性备选，返回 `alternate_carrier` 或 `cache`，不得另抽一个更有利结果。
+
+该接口的 `roleTags`、地点提示和难度带只约束生成，不是新的全局 ID；人物出生、死亡、年龄、职业、人格、战斗资格、招募与驻扎仍以本文为准。
+
 ---
 
 ## 10. 与其他文档的接口
@@ -1236,13 +1278,14 @@ D2定金 = 3 × D2日佣
 | `design/05` / 图鉴 | 已存在 `sk_*`、层数规则 | NPC 武学引用；不定义新武学 |
 | `design/09` | 编组 ≤6、AI 人格、合击运行时 | `ai`、羁绊与合击资格 |
 | `design/19` / `design/map/cities.yaml` | 正式城市 ID、坐标、时代名称与路线 | `cityId`、雁门关附近锚点 |
-| `design/11` | 区域探索、入口与城市玩法（待创建） | 留守点、重逢地点需求 |
-| `design/12` | 任务 DSL、门派关系 | `questRef`、招募条件与状态动作（待其创建） |
+| `design/11` | 区域探索、入口与城市玩法 | 留守点、重逢地点需求 |
+| `design/12` | `quest.v1`、门派关系和 `companion/*` 动作 | `questRef`、招募条件与状态事件 |
 | `design/13` | 余韵代价、多周目、成就 | `companionFateRescued`、`companionRejoined` |
-| `design/16` | 营生、场所、工资、据点 | 设施角色模板与代班状态（待其创建） |
+| `design/16` | 营生、场所、家丁合同、工资、排班与据点 | 人物身份、替班条件与排他占用 |
 | `design/17` | 99 组织、时代状态、L1–L5 称谓 | 门派人物槽与招募难度 |
-| `tech/04` | 内容 Schema（待创建） | `NpcDef`、引用校验、版本迁移需求 |
-| `tech/05` | 运行时与存档（待创建） | `CompanionState`、快照、事件幂等需求 |
+| `design/20` | 传承源、载体调度、血缘证据与确定性备选 | `LegacyHeirSpawnRequest` 的人物实体、D1–D5 与招募结果 |
+| `tech/04` | 内容 Schema 与构建管线 | `NpcDef`、引用校验、版本迁移需求 |
+| `tech/05` | 运行时与存档 | `CompanionState`、快照、事件幂等需求 |
 
 ### 10.1 `design/12` 接口
 
@@ -1270,13 +1313,13 @@ D2定金 = 3 × D2日佣
 | 4 | 倚天 | `catalog/npcs-ch04-yitian.md` | 20–40 / 28 |
 | 5 | 笑傲 | `catalog/npcs-ch05-xiaoao.md` | 20–40 / 25 |
 | 6 | 侠客 | `catalog/npcs-ch06-xiake.md` | 20–40 / 26 |
-| 7 | 碧血 | `catalog/npcs-ch07-bixue.md` | 20–40 / 26 |
+| 7 | 碧血 | `catalog/npcs-ch07-bixue.md` | 20–40 / 40 名静态 NPC（另 1 角色槽） |
 | 8 | 鹿鼎 | `catalog/npcs-ch08-luding.md` | 20–40 / 30 |
-| 9 | 连城 | `catalog/npcs-ch09-liancheng.md` | 20–40 / 24 |
-| 10 | 白马 | `catalog/npcs-ch10-baima.md` | 20–40 / 20 名静态 NPC（另 3 支持槽） |
+| 9 | 连城 | `catalog/npcs-ch09-liancheng.md` | 20–40 / 27 |
+| 10 | 白马 | `catalog/npcs-ch10-baima.md` | 20–40 / 21 名静态 NPC（另 3 支持槽） |
 | 11 | 鸳鸯 | `catalog/npcs-ch11-yuanyang.md` | 20–40 / 20 名静态 NPC（另 6 支持槽） |
-| 12 | 书剑 | `catalog/npcs-ch12-shujian.md` | 20–40 / 28 |
-| 13 | 飞狐 | `catalog/npcs-ch13-feihu.md` | 20–40 / 26 |
+| 12 | 书剑 | `catalog/npcs-ch12-shujian.md` | 20–40 / 34 名静态 NPC（另 1 群体槽） |
+| 13 | 飞狐 | `catalog/npcs-ch13-feihu.md` | 20–40 / 28 |
 | 14 | 雪山 | `catalog/npcs-ch14-xueshan.md` | 20–40 / 23 名静态 NPC（另 2 支持槽） |
 
 ### 11.2 其余三层
@@ -1287,7 +1330,7 @@ D2定金 = 3 × D2日佣
 | 设施 NPC | `catalog/npcs-facilities.md` | 9 类模板；天龙 8 城、24 场所、96 个生产槽 |
 | 路人甲 | `catalog/npcs-commoners.md` | 16 职业、7 年龄段、D1、持久化与多地域命名闸门 |
 
-以上主线计数只统计首列带 `npc_*` 的静态人物。白马、鸳鸯与雪山合计另有 11 个“不建静态 ID”的无名支持槽，只用于运行时生成或场景职能，不计入“每部主线 NPC ≥20”的验收下限，也不会被包装成原著具名人物。
+以上主线计数只统计首列带 `npc_*` 的静态人物。碧血、白马、鸳鸯、书剑与雪山合计另有 13 个“不建静态 ID”的角色 / 支持槽，只用于运行时生成、群体叙事或场景职能，不计入“每部主线 NPC ≥20”的验收下限，也不会被包装成原著具名人物。静态索引与角色槽合计 `392+13=405` 行。
 
 ---
 
@@ -1403,6 +1446,8 @@ D2定金 = 3 × D2日佣
 | 角色槽 | 局部数据 | 无可靠姓名时的生产位置；不是内容 ID，不进入静态 NPC 唯一性集合 |
 | `facilityKey` / `roleKey` | 局部键 | 分别只在城市、设施父记录内唯一，不注册全局前缀 |
 | `runtimeId` | 运行时 UUID | 设施 / 路人固化后的实例身份，不写入静态内容命名空间 |
+| `LegacyHeirSpawnRequest` | 跨域请求 | 20 向本文提交的传承载体生成人物约束，见 §9.5 |
+| `assignmentState=estate` | 人物占用态 | 由 16 的家丁合同驱动；与 `recruited/stationed` 互斥，见 §3.8.1 |
 
 ### 13.2 新增或采用的稳定事件名
 
@@ -1418,8 +1463,9 @@ D2定金 = 3 × D2日佣
 
 ### 13.3 内容 ID 登记方式
 
-- 366 条主线静态人物索引行的 `npc_*` 在各 `catalog/npcs-ch*.md` 对应行登记；其中 343 个唯一人物 ID，另 23 行是同一人物的跨书 appearance 索引，故跨文件出现不等于重复定义。
+- 392 条主线静态人物索引行的 `npc_*` 在各 `catalog/npcs-ch*.md` 对应行登记；其中 369 个唯一人物 ID，另 23 行是同一人物的跨书 appearance 索引，故跨文件出现不等于重复定义。
 - 周圻 / 周绮分别为 `npc_zhouqi09` / `npc_zhouqi12`；侠客张三 / 李四分别为 `npc_zhangsan06` / `npc_lisi06`，以书界号消解同名。
+- 白马旧导入键 `npc_ningqiangdao` 已迁为 `npc_songqiangdao`（显示“姓宋的强人”）；旧键只保留作 alias，禁止新内容继续引用。
 - 99 个 `sect_*` 全部引用 `design/17`，本文未新建组织 ID。
 - 所有 `sk_*` 均引用现有图鉴；“待图鉴”项没有预建 ID。
 - 本文示例任务引用遵循既有 `q_<书界>_<类型>_<nn>`，但示例 `q_02_bond_01` / `q_03_bond_01` **不登记为已存在内容 ID**；须由 12 / story / chapters 的任务清单正式定义后才能通过引用校验。appearance、窗口、场所、角色、羁绊标签均为父记录内局部键。
@@ -1433,7 +1479,7 @@ D2定金 = 3 × D2日佣
 
 | ID | 检查 | 通过条件 / 失败级别 |
 |---|---|---|
-| NPC-V01 | 静态 ID 格式与唯一性 | 每条正式人物 ID 匹配 `^npc_[a-z0-9]+(?:_[a-z0-9]+)*$`；同一人物跨书允许多 appearance / 索引行，但全局只有一个 `NpcDef`；不同人物不得同 ID。当前 366 条索引行解析为 343 个唯一 ID + 23 条跨书复用。失败 = 构建失败 |
+| NPC-V01 | 静态 ID 格式与唯一性 | 每条正式人物 ID 匹配 `^npc_[a-z0-9]+(?:_[a-z0-9]+)*$`；同一人物跨书允许多 appearance / 索引行，但全局只有一个 `NpcDef`；不同人物不得同 ID。当前 392 条索引行解析为 369 个唯一 ID + 23 条跨书复用。失败 = 构建失败 |
 | NPC-V02 | 同名消歧 | 不同人物经规范化姓名相同或拼音冲突时追加两位书界号；已知周圻 / 周绮、侠客张三 / 李四通过。失败 = 构建失败 |
 | NPC-V03 | 生卒顺序 | exact / range 值满足 `born ≤ died`；appearance 与 lifespan 无交集时，只能是 `presenceMode=reference`。失败 = 构建失败 |
 | NPC-V04 | 出现书界一致性 | 每个活体 appearance 与 `design/02` 年区间有交集；`approx` 书界不得把推定年伪装为精确史实。失败 = 构建失败 |
@@ -1447,20 +1493,22 @@ D2定金 = 3 × D2日佣
 | NPC-V12 | 来源完整性 | 带“史实”及精确年的行必须有可解析的来源组引用 `[H01]`–`[H08]`（解析到 §12.2 同编号前缀的具体来源）或门派 `[Sxx]`；仅有弱证据或史料分歧者必须写（待考）并禁止序列化为无争议 `exact`。失败 = 警告，发布版升级为错误 |
 | NPC-V13 | 任务动作闭合 | `recruit` / `station` / `depart` / `betray` / `confirmDeath` / `fateRescue` 的目标 NPC 存在，动作与生命轴不矛盾。失败 = 构建失败 |
 | NPC-V14 | 代码与表格格式 | YAML 可解析；TS 类型检查；Markdown 围栏成对、表格列数一致、无未完成占位标记。失败 = 构建失败 |
+| NPC-V15 | 传承载体请求 | 六个基础字段完整；`bloodline` 有可解析 `evidenceRefs`；返回结果恰有一个静态 `npcId` 或运行时 UUID；同一确定性 spawn key 重放不换人。失败 = 构建失败 |
+| NPC-V16 | 家业 / 同伴排他占用 | 同一人物不得同时 `assignmentState=estate` 与 `recruited/stationed`；交班事务同时更新排班、合同、人物占用和事件。失败 = 构建失败 |
 
 ### 14.2 当前目录金标准
 
 | ID | 输入 / 算式 | 精确期望 |
 |---|---|---|
-| NPC-T01 | 14 部静态人物行 | `30+30+30+28+25+26+26+30+24+20+20+28+26+23 = 366`；每项均在 20–40 |
-| NPC-T02 | 唯一人物与支持槽 | 366 条静态索引行 = 343 个唯一 `npc_*` + 23 条跨书复用；另有 11 个不建静态 ID 的支持槽，总表行 `366+11=377` |
+| NPC-T01 | 14 部静态人物行 | `30+30+30+28+25+26+40+30+27+21+20+34+28+23 = 392`；每项均在 20–40 |
+| NPC-T02 | 唯一人物与支持槽 | 392 条静态索引行 = 369 个唯一 `npc_*` + 23 条跨书复用；另有 13 个不建静态 ID 的角色 / 支持槽，总表行 `392+13=405` |
 | NPC-T03 | 组织分组 | `29+22+33+15 = 99`，集合与 17 完全相等 |
 | NPC-T04 | 设施范例 | `8 城×3 场所×4 槽 = 96`；场所数 `8×3=24` |
 | NPC-T05 | 路人年龄权重 | `5+12+24+34+16+7+2 = 100%` |
 | NPC-T06 | 书眠间隔 | `[1575,123,10,77,160,57,47,24,15,13,14,13,7,9]`，逐项等于下一书入场年减本书离场年 |
 | NPC-T07 | 战斗编组 | 主角 1 + 同伴至多 5 = 总上场 ≤6；第 6 名同伴只能转留守 |
 | NPC-T08 | 命定死亡费用 | 余韵 1、同一事件救 2 名曾入队同伴：需 2、先扣 1、`fateDebt=1`，只计一次事件 |
-| NPC-T09 | 日佣 | 天龙 `I_hour=20`、熟手 D2：`20×0.50×1=10` 两 / 日，三日定金 `3×10=30` 两 |
+| NPC-T09 | 日佣 | 天龙 `I_hour=19`、熟手 D2：`19×0.50×1=9.5` 两 / 日，三日定金 `3×9.5=28.5` 两 |
 | NPC-T10 | 年份同年边界 | `died=1669, wakeYear=1669` → `life_unknown`；只有事件顺序或 `explicitAliveAt` 可裁定，不自动判活 |
 | NPC-T10a | D4 / D5 目录门槛 | 14 份名录所有 D4 / D5 行均有非空“招募要点”；不得据此宣称示例 `q_*` 已可解析，待正式任务清单落盘后再执行 NPC-V05 生产阶段 |
 
@@ -1478,6 +1526,12 @@ D2定金 = 3 × D2日佣
 | NPC-T18 | 背叛事务中途失败 | 关系、装备追索清单与事件均回滚；不得出现已发事件但人物仍在队 |
 | NPC-T19 | 招募唯一客栈掌柜 | 先生成 / 调入替班，再把本人转为同伴；住宿与换队入口持续可用 |
 | NPC-T20 | 非汉语地域姓名池未审校 | 使用地域 + 职业称谓并警告，不回退到随机汉名或伪造音译名 |
+| NPC-T21 | `LegacyHeirSpawnRequest.heirKind=bloodline` 但无 `evidenceRefs` | 构建失败；不生成血亲，也不静默改写原著谱系 |
+| NPC-T22 | 同一匿名传承载体请求以相同 spawn key 重放 | 复用相同运行时 UUID、姓名、外观、人格与 D 级；不得换人或重掷招募性 |
+| NPC-T23 | 资源点主管请求转入活动编组，交班步骤中途失败 | 人物仍为家业任职、排班与合同不变，不出现 `recruited/stationed` 双占用；重试只提交一份收据 |
+| NPC-T24 | 读取 `npc_ningqiangdao` 旧存档 | 加载前迁为 `npc_songqiangdao`；后续快照、事件与存档只写新 ID |
+| NPC-T25 | 飞狐程灵素完成唯一主改命，进入雪山 | 飞狐原著轴为 `dead`；改命轴写 `fate_rescued` 后才可进入雪山重逢候选。马春花本版按第 19 章 `dead`，不得随同跨界 |
+| NPC-T26 | 雪山结局键 `pi/bupi/liangquan` | 胡斐生命态依次 `alive/dead/alive`，苗人凤依次 `dead/alive/alive`；三种结果均标原著留白上的**（原创扩展）** |
 
 ### 14.4 人工考据抽查
 
@@ -1485,7 +1539,7 @@ D2定金 = 3 × D2日佣
 2. 所有“命定死亡”必须在故事文档中有原著线死亡节点；只有记忆、不确定结局的行继续标（待考）。
 3. 史实人物抽查链接、访问日期、姓名与生卒；小说形象和历史人物的冲突必须有分离说明。
 4. 所有“回目待考”不得在下游自动替换成推测的回目号；只有人工校订后才可移除标记。
-5. 白马、鸳鸯与雪山的无名槽不得在生成时固化成“原著人物”；其身份来源必须保留无名职能标记。白马与鸳鸯新增的 9 名静态补员必须保留 `origin=expanded` 与“原创扩展”。
+5. 碧血、白马、鸳鸯、书剑与雪山的角色 / 支持槽不得在生成时固化成“原著具名人物”；其身份来源必须保留无名职能或群体标记。原创静态补员必须保留 `origin=expanded` 与“原创扩展”。
 
 ---
 
@@ -1497,14 +1551,14 @@ D2定金 = 3 × D2日佣
 
 | 编号 | 下游 | 本文给出的建议值 |
 |---|---|---|
-| N18-D01 | `design/12` | D1 好感 20 或 3–30 日短约；D2 好感 30 + 小任务或雇佣；重复对话 / 礼物每日好感最多 +5 |
-| N18-D02 | `design/12` | D3 职级矩阵采用 L1→L1、L2→L2、L3→L3、L4→L4 + 许可；L5 一律转 D4 / D5 专属链 |
-| N18-D03 | `design/12` | D4 / D5 招募链采用 R0–R6；好感 / 羁绊变化采用 §3.5；背叛阈值 60 且先发最后通牒 |
+| N18-D01 | `design/12` | **已解决：**D1 / D2 门槛、R0–R6 入口与每日关系收益上限已接入任务条件 / 动作；见 `design/12` §5.1、§5.3–§5.4 |
+| N18-D02 | `design/12` | **已解决：**D3 读取 L1–L5 与许可，L5 不以职级绕过 D4 / D5 专属链；见 `design/12` §5.4、§6.4 |
+| N18-D03 | `design/12` | **已解决：**D4 / D5 使用 R0–R6，任务侧消费本文关系刻度及离队 / 背叛动作；见 `design/12` §5.3–§5.4 |
 | N18-D04 | `design/09` | 羁绊 40 开放候选合击、60 稳定合击、90 角色终局合击；具体倍率和站位仍归 09 |
-| N18-D05 | `design/11` / `16` | 单据点床位 `4+据点等级×2`；D1 同时短约 6、D2 同时雇佣 4；设施同屏 3 / 6 / 8 |
-| N18-D06 | `design/16` | D1 / D2 日佣分别为 `I_hour×0.25h×skillMul`、`I_hour×0.50h×skillMul`；`skillMul=0.8/1.0/1.5`，D2 三日定金 |
+| N18-D05 | `design/11` / `16` | **部分解决：**单据点床位 `4+据点等级×2` 已由 `design/16` §7.6 接纳；D1 同时短约 6、D2 同时雇佣 4 与设施同屏 3 / 6 / 8 仍待运行时 / 性能实测 |
+| N18-D06 | `design/16` | **已解决（边界）：**家丁工资、食宿与取整见 `design/16` §7.5；D1 / D2 冒险同行仍按本文 §9.1 的 `0.25h/0.50h×skillMul`，D2 三日定金 |
 | N18-D07 | `tech/05` | 未持久路人离开视野 30 游戏日可回收；单街区 12、单城 48；持久 NPC 不设玩法硬上限但需分页 / 卸载 |
-| N18-D08 | `tech/04` | 本文 §14 的 NPC-V01–V14 作为构建闸门；`design/map/cities.yaml` 已落盘，非空城市 ID 无法解析时直接报错 |
+| N18-D08 | `tech/04` | 本文 §14 的 NPC-V01–V16 作为构建闸门；`design/map/cities.yaml` 已落盘，非空城市 ID 无法解析时直接报错 |
 
 ### 15.2 本文依赖的上游事实
 
@@ -1517,10 +1571,11 @@ D2定金 = 3 × D2日佣
 | `design/09` | **已解决：**活动战斗编组 ≤6、AI 与合击运行规则归 09 |
 | `design/17` | **已解决：**门派名录严格覆盖 99 个组织及其时代状态、L1–L5 抽象层级 |
 | `design/19` / `design/map/cities.yaml` | **已解决：**八个设施范例已使用正式城市 ID；雁门关用 `city_xinzhou + placeKey=yanmenguan` 接入既有雁门驿路 |
-| `design/11` | 尚未落稿；区域探索、城市入口、留守点与重逢地点玩法待定，不能改写 19 的城市 ID / 坐标 |
-| `design/12` | 尚未落稿；`q_*` 示例与 R0–R6 仅定义需求，最终任务 DSL / 动作名待对接 |
-| `design/16` | 尚未落稿；场所 schema、工资、班次与经营影响待覆写建议值 |
-| `tech/04` / `tech/05` | 尚未落稿；Schema、构建器、存档事务与性能预算待实现和实测 |
+| `design/11` | **已解决（设计接口）：**区域、城市入口、十二时辰、留守 / 重逢位置读取其正式定义；人物不改写 19 的城市 ID / 坐标 |
+| `design/12` | **已解决（设计接口）：**任务使用 `quest.v1` 与 `companion/*` 动作；本文示例 `q_02_bond_01/q_03_bond_01` 仍须在正式 manifest 定义后才能解析 |
+| `design/16` | **已解决（设计接口）：**场所、家丁工资、合同、班次与经营影响读取 16；人物侧排他占用与原子交班见 §3.8.1 |
+| `design/20` | **已解决（设计接口）：**载体调度只提交六字段请求；人物生成、血缘证据闸门、D1–D5 与招募见 §9.5 |
+| `tech/04` / `tech/05` | 文档已落稿；仍需在实现中接入本文补充的 alias、传承载体与跨域原子交班，并做性能 / 真机实测 |
 
 ### 15.3 对基准的修改提案
 

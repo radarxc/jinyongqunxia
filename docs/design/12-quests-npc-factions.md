@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：任务结构与任务 DSL、门派加入 / 门规 / 贡献 / 晋升 / 叛出、品德与声望的事件口径、书界经济循环、生活技能玩法。
 > 上游：`docs/00-canon.md` v1.1；作者新增需求与已采用决定见 `docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`；跨文档裁定见 `docs/decisions/rulings-v1.md`。
-> 引用而不重定义：NPC、同伴、招募难度、生卒、好感 / 羁绊、书眠与重逢 → `design/18-npc-and-companions.md`；NPC 的区域时代层地点日程与 `ScheduleBlock` → `design/11-open-world.md` §6.3；门派史、时代状态、驻地、人物、称谓模板、武学索引与原著依据 → `design/17-sects-compendium.md`；地图 → `design/11-open-world.md`；武学传授 → `design/05-martial-arts-system.md`；战斗队伍与合击 → `design/09-combat-system.md`；物品、配方、丹药、菜肴、锻造和价格基值 → `design/10-items-and-equipment.md`；成长与结局 → `design/13-progression-and-endings.md`；冲穴与打坐 → `design/15-meridians-and-acupoints.md`；资源、家丁与城市营生 → `design/16-resources-and-estates.md`。
+> 引用而不重定义：NPC、同伴、招募难度、生卒、好感 / 羁绊、书眠与重逢 → `design/18-npc-and-companions.md`；NPC 的区域时代层地点日程与 `ScheduleBlock` → `design/11-open-world.md` §6.3；门派史、时代状态、驻地、人物、称谓模板、武学索引与原著依据 → `design/17-sects-compendium.md`；地图 → `design/11-open-world.md`；武学传授 → `design/05-martial-arts-system.md`；战斗队伍与合击 → `design/09-combat-system.md`；物品、配方、丹药、菜肴、锻造和价格基值 → `design/10-items-and-equipment.md`；成长与结局 → `design/13-progression-and-endings.md`；冲穴与打坐 → `design/15-meridians-and-acupoints.md`；资源、家丁与城市营生 → `design/16-resources-and-estates.md`；跨年代传承源、残本、信物、机会收据、缓存与校合 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给可用数值并在文末登记。
-> 版本：v1.1（审校 B4.R，2026-09-26）。
+> 版本：v1.2（跨文档同步，2026-09-26）。
 
 ---
 
@@ -44,6 +44,7 @@
 | 物品估值、配方、成品与制作结算 | `design/10` | 商业修正、技能玩法与任务投放 |
 | 资源点、家丁、行脚 / 教头 / 客卿 / 赌场 | `design/16` | DSL 原语、任务模板和收入汇总接口 |
 | 经脉、穴位、打坐地点加速 | `design/15` | 任务解锁地点 / 师父指点许可 |
+| 传承源、缓存、残本、信物、机会收据与校合 | `design/20` | 只读事实与受控 intent 的任务侧适配 |
 
 ---
 
@@ -158,7 +159,7 @@ conditionExamples:
   - { event: { name: companionRejoined, npcId: npc_zhaobanshan } }
 ```
 
-`compare.left` 白名单为 `level`、`morality`、`fame`、`fameTotal`、十项 `art.<id>`、`sectContribution.<sectId>`、NPC 关系查询和已注册计数器；仅在对应 `onEvent` 处理器内，还可读取该事件 schema 已登记的 `{ eventField: <name> }`。`companion.everRecruited` 与快照来源是 `design/18` 的持久状态查询，不能拿历史事件队列充当数据库。`estate` 的载荷必须逐字段匹配 `design/16` §14.4 `EstateCondition` 判别联合。`op` 仅 `eq/ne/lt/le/gt/ge`。缺失引用不是 `false`，而是构建失败；运行时缺失存档字段经 schema migration 补默认值后才求值。
+`compare.left` 白名单为 `level`、`morality`、`fame`、`fameTotal`、十项 `art.<id>`、`sectContribution.<sectId>`、NPC 关系查询和已注册计数器；仅在对应 `onEvent` 处理器内，还可读取该事件 schema 已登记的 `{ eventField: <name> }`。`companion.everRecruited` 与快照来源是 `design/18` 的持久状态查询，不能拿历史事件队列充当数据库。`estate` 的载荷必须逐字段匹配 `design/16` §14.4 `EstateCondition` 判别联合。传承域只开放两类只读事实：`{ legacy: { sourceId, field, op, value } }` 的 `field` 仅为 `status/fragmentCount/hasKeystone/localMisses`，以及 `{ legacyCache: { cacheId, field, op, value } }` 的 `field` 仅为 `state/progress`；字段含义、状态枚举与生命周期只读 `design/20` §2、§6、§12。`op` 仅 `eq/ne/lt/le/gt/ge`。缺失引用不是 `false`，而是构建失败；运行时缺失存档字段经 schema migration 补默认值后才求值。
 
 ### 2.3 动作语法
 
@@ -184,10 +185,18 @@ conditionExamples:
 | `estate/<kind>` | 与 `design/16` §14.5 同名的 payload 字段 | 去掉 `estate/` 前缀后必须恰为 `EstateAction.kind`；同事务调用 16 的领域 helper |
 | `meridian/unlockPracticeSite` | `locationId, meditationQuality` | `meditationQuality=0/1/2`；转交 `design/15`，不直接加冲穴进度 |
 | `meridian/grantMasterGuidance` | `teacherNpcId, meridianId, charges, guidance` | `guidance` 采用 `MeridianGuidance`；资格与额度归本文，冲穴计算归 `design/15` |
+| `legacy/revealCache` | `cacheId` | 映射 `legacy_reveal_cache`；只显露已由 20 调度的缓存 |
+| `legacy/advanceCache` | `cacheId, work, receiptKey` | 映射 `legacy_advance_cache`；工作量与合法推进由 20 / 16 重验 |
+| `legacy/resolveOpportunity` | `sourceId, opportunityId` | 映射 `legacy_resolve_opportunity`；唯一消费机会收据与 `qiyu` RNG |
+| `legacy/grantFragment` | `fragmentId, receiptKey` | 映射 `legacy_grant_fragment`；卷位、重复与传承匣容量由 20 重验 |
+| `legacy/grantKeystone` | `itemId` | 映射 `legacy_grant_keystone`；唯一物转移而非复制 |
+| `legacy/completeSynthesis` | `recipeId` | 映射 `legacy_complete_synthesis`；门槛、代价、形态与产物由 20 结算 |
 
 技能学习不设通用 `skill/grant`。任务只能发 `learnSource/unlock` 或启动 `master/instruct`，随后由 `design/05` 的 `reqs`、来源品阶、层数上限、师父状态再次校验；天阶观摩默认不可，只有图鉴逐条 `observable=true` 才能走观摩。
 
 经营域不再接受旧 `livelihood/*`、`resource/*`、`household/*` 通配命令。YAML 适配层只做一次机械变换：`op: estate/start_job_contract` 转为 `{kind:'start_job_contract', ...payload}`；条件则原样把 `estate:` 的 map 交给 `EstateCondition`。未知 `kind`、多余字段，或在 `grant_resource` 这类会创造经济价值的动作中缺少 `economySource/sourceId`，均在构建期失败；不创造价值的 `consume/set/assign/start/end/reserve/settle/record` 动作只校验其各自必填字段，不能被错误要求携带这两个字段，也不能降级为任意事件或金额为 0。
+
+传承动作同样只做命名空间适配，不在任务层复制传承算法：六个 `legacy/*` opcode 一一映射上表对应的 `LegacyQuestIntent.kind`。任务 core 在进入传承 helper 前重验当前任务 / 阶段、引用和 payload；阶段推进、物品或武学变化、机会 / 校合收据、RNG 状态与 `effectId` 在同一事务提交，任一动作失败则全回滚。任务效果幂等键仍为 `<questId>/<stageId>/<effectLocalId>`，传承域 `receiptKey` 另按 `design/20` §10.2 校验；二者缺一不可，禁止任务脚本直接写 `fragments[]`、`sourceGrade`、缓存进度或 RNG。
 
 ### 2.4 检定原语
 
@@ -220,6 +229,27 @@ Ink 只读查询 `get_flag`、`quest_stage`、`has_item`、`affinity` 等白名�
 ```
 
 桥接层按 `tech/04` 的 `#ts:<opcode> key=value` 格式把标签解析为候选 intent；自由 JSON、重复参数和未知 opcode 均拒绝。core 复核当前故事、任务、阶段和条件后才提交。已有 `tech/04` 最小 opcode `quest/advance`、`party/giveItem`、`battle/start` 必须兼容；示例使用的 `flag/set` 及本文其他新增 opcode 须先加入同一注册表。Ink 不得直接写 `GameState`，不得把未翻译文本差异变成分支差异。
+
+### 2.6 十四篇剧情草稿迁移契约
+
+`design/story/01`～`14` 的路线图、选择表与 YAML 是正式任务的**策划输入**，不是可直接装载的第二套任务 schema。各篇曾使用 `schemaVersion: 0`、`story_act.v0`、`story-draft-v1`、`quest.provisional.v1` 等不同草稿结构；生产构建只接受本文 `quest.v1`。迁移者须为每章提交显式 manifest，逐项记录“来源标签 → 正式任务 / 阶段 / 出口 / 效果”的映射和原始文档锚点，禁止靠字符串裁剪或数组位置猜测。
+
+| 剧情稿表达 | 迁入 `quest.v1` | 作用域与约束 |
+|---|---|---|
+| `q_NN_main_c_nn` | 显式映射到一个正式 `q_NN_main_nn` 及其共有路线阶段 | `c` 仅表示 `common` 作者侧路线段；不是正式 `QuestId` 的合法片段 |
+| `q_NN_main_z_nn` / `q_NN_main_x_nn` | 显式映射到正式主线任务和 `righteous` / `shadow` 路线阶段 | `z/x` 是人读路线别名，不是永久阵营；同号前后段可映入同一任务的不同阶段，不得机械去字母后碰撞 |
+| `dc_NN_nn` | 所属正式任务内的 `st_dc_NN_nn`（或 manifest 指定的等价稳定阶段） | `dc_*` 只作策划选择标签，不登记为全局内容 ID，也不新增 `kind: decision` |
+| 草稿 `nextByChoice` / `fromChoice` / `choices` | `stages[].transitions[]` | 每个选项生成稳定 `edge_*`、`branchKey`、优先级与明确兜底；目标必须可达 |
+| 草稿 `route` / `routeTone` | 正式任务的 `routeTone` 与稳定 `branchKey` | 只描述当前路径；换线仍由剧情稿已审校的门槛与代价决定 |
+| 草稿 `conditions` / `prerequisites` | `offerWhen`、`showWhen` 或 `transition.when` | 按发生时点显式拆分为单操作符 AST，不能把自由文本当可执行条件 |
+| 草稿 `effects` / 选项后果 | 白名单动作与稳定 `fx_*` | 未能映射的叙事后果保留为文案，不得静默写任意状态；持久效果必须可幂等重放 |
+| 草稿检定 | §2.4 的 `chk_*` | 固定 `rollId`、成功 / 失败出口与结果持久化；不得在条件中隐式掷骰 |
+
+各章立场量（包括 `stance03`、`bx_stance`、`stance_11`、`stance12` 及连城诀的 `stancePoints/stanceScore`）均是**所属书界 / 任务局部状态**：manifest 必须保留该章经审校的公式、阈值、累加序列及 `priorSwitches`、`routeReady`、`routeIntent`、`routeOverride` 等换线语义，不能用一个通用公式重算，也不能覆盖全局 `morality`。书眠时只可把最终路线与关键选择写入历史摘要，运行中的局部计数清零。
+
+迁移 manifest 的最小字段为 `chapterId`、`sourceRef`、`sourceSchema`、`aliases[]`、`decisionLabels[]`、`stateMappings[]`、`formulaNotes[]` 和 `unmapped[]`；`unmapped` 在发布构建中必须为空。每个 `aliases[]` 项至少给出 `sourceAlias`、`questId`、`stageIds[]`，每个 `decisionLabels[]` 项至少给出 `sourceLabel`、`questId`、`stageId`、`choiceToBranchKey`。`story/08` 已使用正式 `q_08_main_01`～`q_08_main_18`，不得二次编号；仍须迁移其 `dc_08_01`～`dc_08_10` 局部标签和严格字段。
+
+以下任一情形都阻断构建：草稿 schema 被生产发现器直接装载；别名自动去掉 `c/z/x` 后生成 ID；未知字段或 opcode；悬空阶段 / 出口；局部 `st_/edge_/fx_/chk_` 或立场键跨任务引用；选择缺少失败 / 中立兜底；持久效果缺稳定局部 ID；迁移丢失剧情稿原有公式、换线代价或不可逆警告。迁移只改变数据表达，不改写各篇已审校的剧情结论。
 
 ---
 
@@ -977,7 +1007,7 @@ outsider ──结识──► associate / ally / guest
 | `sect_baituoshan` 白驼山 | O:SD/SHD；H:— | 邪 | 条件正式/敌对 | `skills-wujue` | `city_kashgar` / `rg_xiyu_nanjiang` | 《射雕》《神雕》；`design/17` §7.5 |
 | `sect_jueqinggu` 绝情谷 | O:SHD；H:— | 邪/多线 | 条件正式/敌对 | `skills-daojia` | `city_xian` / `rg_guanzhong` | 《神雕侠侣》；`design/17` §7.6 |
 | `sect_xuansuzhuang` 玄素庄 | O:XK；H:— | 正 | 客盟/条件正式 | `skills-xiake-bixue` | `city_luoyang` / `rg_zhongyuan` | 《侠客行》；`design/17` §7.7 |
-| `sect_shiliang` 石梁温家 | O:BX；H:— | 多线 | 客盟/条件正式 | `skills-xiake-bixue` | `city_jinhua` / `rg_zhedong` | 《碧血剑》；`design/17` §7.8 |
+| `sect_shiliang` 石梁温家 | O:BX；H:— | 多线 | 客盟/条件正式 | `skills-xiake-bixue` | 衢州府一带；当前邻近挂 `city_jinhua` / `rg_liangzhe` **（待考）** | 《碧血剑》；`design/17` §7.8、`design/19` §5.2 |
 | `sect_hujia` 辽东胡家 | O:FH/XS；H:YY/SJ | 正 | 客盟/传承 | `skills-qianlong` | `city_shenyang` / `rg_liaodong` | 《飞狐外传》《雪山飞狐》；`design/17` §7.9 |
 | `sect_miaojia` 苗家 | O:FH/XS；H:YY/SJ | 正 | 客盟/传承 | `skills-qianlong` | `city_shenyang` / `rg_liaodong` | 《飞狐外传》《雪山飞狐》；`design/17` §7.10 |
 | `sect_shangjiabao` 商家堡 | O:FH；H:SJ | 邪/多线 | 条件正式/敌对 | `skills-qianlong` | `city_baoding` / `rg_yanjing_zhili` | 《飞狐外传》；`design/17` §7.11 |
@@ -994,7 +1024,7 @@ outsider ──结识──► associate / ally / guest
 | `sect_jiulongbian` 九龙鞭 | O:FH；H:SJ/XS | 中 | 正式 | `skills-qianlong` | `city_beijing` / `rg_yanjing_zhili` | 《飞狐外传》；`design/17` §6.8/7.21 |
 | `sect_gaibang` 丐帮 | O:TL/SD/SHD/YT/XA/BX/LD；H:XK/LC/BM/YY/SJ/FH/XS | 正/多线 | 正式 | `skills-wujue` | `city_luoyang` / `rg_zhongyuan` | 金庸多书；`design/17` §8.1 |
 | `sect_tiezhangbang` 铁掌帮 | O:SD；H:— | 邪/多线 | 条件正式/敌对 | `skills-wujue` | `city_chenzhou_yuanling` / `rg_huxiang` | 《射雕英雄传》；`design/17` §8.2 |
-| `sect_changlebang` 长乐帮 | O:XK；H:— | 多线 | 条件正式 | `skills-xiake-bixue` | `city_hangzhou` / `rg_jiangnan_taihu` | 《侠客行》；`design/17` §8.3 |
+| `sect_changlebang` 长乐帮 | O:XK；H:— | 多线 | 条件正式 | `skills-xiake-bixue` | `city_zhenjiang` / `rg_jianghuai`；城内确址**（待考）** | 《侠客行》；`design/17` §8.3、`design/19` §5.2 |
 | `sect_honghuahui` 红花会 | O:SJ；H:FH/XS | 正 | 正式 | `skills-qianlong` | `city_hangzhou` / `rg_jiangnan_taihu` | 《书剑恩仇录》；`design/17` §8.4 |
 | `sect_tiandihui` 天地会 | O:LD/FH/XS；H:LC/BM/YY/SJ | 正/多线 | 正式 | `skills-kangxi` | `city_beijing` / `rg_yanjing_zhili` | 《鹿鼎记》；`design/17` §8.5 |
 | `sect_wangwu` 王屋派 | O:LD；H:— | 正/多线 | 正式 | `skills-kangxi` | `city_jiaozuo` / `rg_zhongyuan` | 《鹿鼎记》；`design/17` §8.6 |
@@ -1173,11 +1203,11 @@ targetIncome(ch) = I(ch) × expectedPlayableHours(ch)
 targetSpend(ch) = targetIncome(ch) × [0.60, 0.80]
 ```
 
-`g_mode` 与 `chapterIncomeMul` 源自 `design/10` §4.4、§13.5；`design/16` §12 已据此按章节内容量定稿 `I` 与 `expectedPlayableHours`，故不再用统一 11.5 小时替代。下表直接投影其正式逐界预算；其中天龙按 `design/16` §12.3 的显示价归一值 10 两计算 `I=20`。开局银两仍按 `design/10` §13.5 的 `4×P` 显示价锚，不受 `chapterIncomeMul` 放大。
+`g_mode` 与 `chapterIncomeMul` 源自 `design/10` §4.4、§13.5；`design/16` §12 已据此按章节内容量定稿 `I` 与 `expectedPlayableHours`，故不再用统一 11.5 小时替代。下表直接投影其正式逐界预算；天龙的普通池众数为 `P=9.5 两`，故 `I=2×9.5×1=19 两/时`。开局银两仍按 `design/10` §13.5 的 `4×P` 显示价锚，不受 `chapterIncomeMul` 放大。
 
 | 书界 | `I` 两/h | `H` h | 总净值 `B=I×H` | 开局银两 | 支出目标 `60%–80%×B` |
 |---|---:|---:|---:|---:|---:|
-| 天龙 | 20 | 15 | 300 | 38 | 180–240 |
+| 天龙 | 19 | 15 | 285 | 38 | 171–228 |
 | 射雕 | 94 | 14 | 1,316 | 188 | 789.6–1,052.8 |
 | 神雕 | 200 | 15 | 3,000 | 400 | 1,800–2,400 |
 | 倚天 | 460 | 15 | 6,900 | 920 | 4,140–5,520 |
@@ -1191,13 +1221,13 @@ targetSpend(ch) = targetIncome(ch) × [0.60, 0.80]
 | 书剑 | 63 | 12 | 756 | 84 | 453.6–604.8 |
 | 飞狐 | 42 | 11 | 462 | 84 | 277.2–369.6 |
 | 雪山 | 42 | 9 | 378 | 84 | 226.8–302.4 |
-| **合计** | — | **162** | **16,641.2** | — | **9,984.72–13,312.96** |
+| **合计** | — | **162** | **16,626.2** | — | **9,975.72–13,300.96** |
 
 十四界基础 `chapterPriceMul` 均为 1.00；时代物价差已由当界 `g_mode` 和供货池表达。灾荒、围城、黑市等剧情波动只能作为带起止事件与类目白名单的局部修正，不能永久改写全界基价。
 
 “每小时建议支出”取净收入的 60%–80%，用于消耗品、旅行 / 食宿、修理强化、情报 / 娱乐与经营维护；保留 20%–40% 购买装备或处理意外。每书界总预算由 `expectedPlayableHours` 相乘得出，章节若调整时长只改时长，不改物价公式。标准玩家在中点的可动现金目标为 2–4 小时收入、结局前为 3–6 小时收入**【建议值】**；超上沿触发钱库和高价服务分析，不直接没收。
 
-收入结构以 `design/16` §12.1 为正式目标：任务 40%、战利品出售 25%、敌人现银 10%、城市营生 10%、资源点 8%、门派 5%、赌场 / 其他 2%。十四界合计 `B=16,641.2` 两，对应七桶为 6,656.5 / 4,160.3 / 1,664.1 / 1,664.1 / 1,331.3 / 832.1 / 332.8 两（显示到 0.1 两）；所有桶恰分完 100%，资产转仓、加工或买回不重复创造价值。
+收入结构以 `design/16` §12.1 为正式目标：任务 40%、战利品出售 25%、敌人现银 10%、城市营生 10%、资源点 8%、门派 5%、赌场 / 其他 2%。十四界合计 `B=16,626.2` 两，对应七桶为 6,650.5 / 4,156.6 / 1,662.6 / 1,662.6 / 1,330.1 / 831.3 / 332.5 两（显示到 0.1 两）；显示值相加仍为 16,626.2 两，各桶原始值按 40/25/10/10/8/5/2 精确分完 100%，资产转仓、加工或买回不重复创造价值。
 
 ### 9.4 商店、刷新与交易
 
@@ -1584,6 +1614,7 @@ appliedMembershipEffects: []
 | `res_*` / `rp_*` / `biz_*` / `sv_*` / `job_*` | 强 | 存在于 `design/16`，地图位置和时代开放闭合 | 不结算经营收益 |
 | 合同、月钱与经营结算 | 强运行态引用 | payload 匹配 `design/16` §14，合同 / 周期存在 | 不以 0 值静默通过 |
 | 经脉地点 / 指点许可 | 强 | payload 符合 `design/15` §5.6；师父、经脉与地点引用存在 | 不增加冲穴进度，记录可修复内容错误 |
+| `lgs_*` / `cache_*` / `frag_*` 与传承 intent | 强 | 引用与 payload 符合 `design/20` §10、§12；任务 effect 与传承收据键均唯一 | 整个阶段 / 物品 / 收据 / RNG 事务回滚 |
 | Ink story / knot | 强 | 编译成功、结构同构、opcode 白名单 | 播放预写回退，不改状态 |
 | AI 人设卡 | 可选 | 存在时符合 `tech/08` §9 | 关闭 AI，继续本地 Ink |
 
@@ -1610,6 +1641,10 @@ appliedMembershipEffects: []
 | `rank5SectId` | 本书界唯一掌门级身份；空值表示尚未到达 L5 | 本文 §6.9、§11.3 |
 | 门议 | L5 每月以有限行动选择传艺、救济、巡防、外交等事务 | 本文 §6.11 **（原创扩展）** |
 | `NpcInteractionBinding` | 任务对 `design/18` 人物 / 关系 / 招募 / 画像及 `design/11` 地点日程的引用层 | 本文 §5、§11.2 |
+| 剧情路线段别名 | `q_NN_main_<c\|z\|x>_nn`；只在 `design/story/*` 与迁移 manifest 中定位共有 / 正 / 邪路线段 | 本文 §2.6；不得进入正式任务注册表 |
+| 策划选择标签 | `dc_NN_nn`；迁移为所属任务内 `st_dc_NN_nn` 或 manifest 指定的等价阶段 | 本文 §2.6；不是全局内容 ID |
+| 剧情迁移 manifest | 逐章保存来源别名、正式任务 / 阶段、选择分支、局部状态公式和未映射项的构建输入 | 本文 §2.6；内容管线消费 |
+| `LegacyQuestFact` / `LegacyQuestIntent` | `design/20` 领域状态的只读查询与六项受控动作；任务层只收口 AST / opcode、事务和幂等适配 | 本文 §2.2–§2.3、§11.4；领域语义见 `design/20` §10 |
 | `moneyWen` | 当界现金的整数文账本；`1 两=1,000 文` | 本文 §9.1 |
 | `recipeMastery` | 每张已学菜谱 1–10 的独立熟练度，不是第十一项技艺 | 本文 §10.4 **（原创扩展）** |
 | `practiceKey` | 生活技能一次可计成长操作的稳定去重键 | 本文 §10.1 |
@@ -1621,6 +1656,7 @@ appliedMembershipEffects: []
 | 对象 | 规范 | 本文状态 |
 |---|---|---|
 | 任务 | `q_<两位书界号>_<main\|side\|faction\|bond\|qiyu>_<两位序号>` | §3 七项均为 `90/91` 测试夹具，不进入生产注册表 |
+| 剧情稿路线段 / 选择标签 | `q_NN_main_<c\|z\|x>_nn` / `dc_NN_nn` | 仅为迁移输入；前者须显式映射正式任务，后者迁为父任务局部 `st_dc_NN_nn` |
 | 阶段 / 转移 / 效果 / 检定 | `st_*` / `edge_*` / `fx_*` / `chk_*` | 只在所属任务内唯一；不是全局游戏对象 ID；转移不用已归地形的全局前缀 `tr_*` |
 | 旗标 / 计数器 | `fl_*` / `cnt_*` | 本文 DSL 局部命名约定；必须由所属任务预登记 |
 | 门规 | 文本键 `rule.<sect>.<name>` 或所属策略局部 `key` | 不新增全局 `rule_*` 开关 |
@@ -1668,6 +1704,9 @@ q_06_qiyu_90
 | QST-V20 | error | 所有 YAML 可无损转 JSON；禁止 anchor、alias、merge、多文档、重复键、未知键、NaN / Infinity 与隐式日期 |
 | QST-V21 | error | 99 个规范 `sect_*` 与 `design/17` 集合相等；每个有 14 个状态；计数矩阵逐格、逐列等于 §7.3 |
 | QST-V22 | warning→发布 error | 原创、待考和建议值有规范标注；正式内容不得含 fixture 名、占位依赖、未完成标记或省略正文的占位语 |
+| QST-V23 | error | 十四篇剧情稿各有显式迁移 manifest；所有 `q_NN_main_<c\|z\|x>_nn` 与 `dc_NN_nn` 均有唯一来源映射，`unmapped=[]`；别名本身不进入生产注册表 |
+| QST-V24 | error | 迁移后保留所属章的立场公式、阈值、换线次数 / 意图 / 覆写、不可逆警告与失败兜底；局部立场键和 `st_/edge_/fx_/chk_` 不得跨任务引用，且不得覆盖全局 `morality` |
+| QST-V25 | error | 传承条件只读两类六字段白名单；六个 `legacy/*` opcode 与 `design/20` §10 一一对应；effect / receipt 双幂等键、阶段、物品、收据与 RNG 必须同事务，禁止直接写领域数组或进度 |
 
 `error` 阻断内容构建。`warning` 只能在策划复核后带负责人、原因和期限豁免；发布候选不接受无期限豁免。`design/15/16` 引用必须按正式判别联合校验；只有 `fixture:true` 可解析测试注册表对象，正式任务引用 fixture 或旧 provisional opcode 一律触发 QST-V15 / V20。
 
@@ -1685,6 +1724,10 @@ q_06_qiyu_90
 | QST-T08 | 当前目标 NPC 因剧情换位 / 死亡 | 前者由 `design/11` 日程解析器按任务覆写优先级更新；后者走继承 / 失败出口，不生成同名替身 |
 | QST-T09 | AI 提案含 `affinity_delta:+2`、发物品或未登记旗标 | 三者分别因超单项、禁用类型、旗标越权被拒；预写 Ink 仍可继续 |
 | QST-T10 | `bond=59/60` 的当界同伴离队 | 59 不写；60 写一次 `anran_bieli`；转留守位置不写 |
+| QST-T10A | 将 `q_12_main_z_09` 的前、后段按字符串去掉 `z` 自动编号 | QST-V23 失败；须由 manifest 将两段显式映射到正式任务的两个稳定阶段 |
+| QST-T10B | 将 `dc_08_08` 注册为全局任务，或让 `stance12` 写入 `morality` | 分别因非法任务 ID、局部状态越权触发 QST-V23 / V24；正确结果为父任务内 `st_dc_08_08` 和独立章内状态 |
+| QST-T10C | `story/08` 输入已有 `q_08_main_01`～`18` | 正式任务 ID 原样保留，不二次编号；十个 `dc_*`、出口、效果和公式仍逐项进入 manifest，且 `unmapped=[]` |
+| QST-T10D | 同一 `legacy/resolveOpportunity` 在奖励提交后以相同 effect / receipt 重放，或在发卷后故障回滚 | 重放不再消费 RNG / 发卷；故障时阶段、卷、机会收据和 RNG 全部恢复到提交前 |
 
 ### 13.3 门派、声望与书眠测试
 
@@ -1715,9 +1758,9 @@ q_06_qiyu_90
 | QST-T28 | 菜谱熟练 1 升 10 | 成功批数 `3+4+…+11=63`；不改变十项技艺中的 `alchemy` |
 | QST-T29 | 菜谱熟练 6，主材 6 品，配方上限 9 | `cookValue=60`；`gCook=min(9,7,8)=7`；`T(7)=52`，成功率 92% |
 | QST-T30 | 书眠时有现金、材料、成品、资源点、家丁、菜谱熟练 | 现金、材料、成品、资源点和家丁五类当界状态清除；菜谱知识与 `recipeMastery` 按建议值保留 |
-| QST-T31 | 汇总十四界 `I×H` | `H=162`，总净值 `B=16,641.2 两`；七桶显示为 6,656.5 / 4,160.3 / 1,664.1 / 1,664.1 / 1,331.3 / 832.1 / 332.8 两，总份额 100% |
-| QST-T32 | 天龙 `I=20,H=15`；倚天 `I=460,H=15` | 总值分别 300 / 6,900 两；新增营生 + 资源点 + 门派 + 其他分别为 75 / 1,725 两，均等于总值的 25% |
-| QST-T33 | L3 月钱，天龙 `I=20`，完成职责 3/4 | 现金 `20×0.10×0.75=1.5 两`；资源额度 `20×0.07×0.75=1.05 两`；总值至多 2.55 两 |
+| QST-T31 | 汇总十四界 `I×H` | `H=162`，总净值 `B=16,626.2 两`；七桶显示为 6,650.5 / 4,156.6 / 1,662.6 / 1,662.6 / 1,330.1 / 831.3 / 332.5 两，总份额 100% |
+| QST-T32 | 天龙 `I=19,H=15`；倚天 `I=460,H=15` | 总值分别 285 / 6,900 两；新增营生 + 资源点 + 门派 + 其他分别为 71.25 / 1,725 两，均等于总值的 25% |
+| QST-T33 | L3 月钱，天龙 `I=19`，完成职责 3/4 | 现金 `round10(19×0.10×0.75×1000)=1.43 两`；资源额度 `floor(19×0.07×0.75×1000)=997 文`；总值至多 2.427 两 |
 | QST-T34 | 师父指点与名门静室同时生效 | 前者 `+1500/+800/+500bp`，后者速率 / 成功 `+1000/+600bp`；不同来源加算后交 `design/15` 各槽上限钳制，不相乘 |
 
 ### 13.5 人工审校清单
@@ -1766,8 +1809,9 @@ q_06_qiyu_90
 | `tech/08` §9 | **已解决：**AI NPC 默认关闭，唯一工具是 `propose_effects`；任何提案都须由 core 二次校验后才写状态 |
 | `design/15` | **已解决：**本文发 `meridian/grantMasterGuidance` / `meridian/unlockPracticeSite`，payload 使用其 §5.6 的 `MeridianGuidance` 与 `meditationQuality`；冲穴、穴位和周天仍只由 15 计算 |
 | `design/16` | **已解决：**经营条件 / 动作使用其 §14 判别联合；月钱读取 §10，七桶与十四界预算读取 §12；本文不重定义工资、产量、职位或家丁成长 |
+| `design/20` | **已解决：**§2.2–§2.3 已正式收口两类传承只读事实、六项 `LegacyQuestIntent` 的任务 opcode、双幂等键与原子回滚；源生命周期、概率、卷位、缓存和校合仍只由 20 定义 |
 | `tech/05` | **已落盘但待同步：**§10 已实现 provisional 任务状态、事务、稳定 RNG 与 Ink 桥，且已冻结 `quest/advanced`、`quest/succeeded` / `quest/failed`；需改为消费本文正式 `QuestDef`、`effectId`、优先级出口和 `estate/<kind>` 适配层，并冻结 Q12-D11 的其余事件 schema |
-| `design/story/*` / `chapters/*` | 正式十四界任务清单尚待落盘；本文七个 `90/91` 号对象仅为 schema 夹具，不得冒充正式剧情任务 |
+| `design/story/*` / `chapters/*` | **已接收迁移接口：**§2.6 已冻结路线段别名、`dc_*`、章内立场值与旧字段迁入 `quest.v1` 的规则；仍须逐章产出显式 manifest 与正式任务文件。本文七个 `90/91` 号对象仅为 schema 夹具，不得冒充正式剧情任务 |
 
 ### 14.3 对基准的修改提案
 

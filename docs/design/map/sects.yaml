@@ -1228,7 +1228,7 @@
       "id": "sect_shiliang",
       "name": "石梁温家",
       "kind": "manor",
-      "site_name": "石梁温家锚点（待考）",
+      "site_name": "衢州府一带石梁温家（当前金华挂接，待考）",
       "city_id": "city_jinhua",
       "longitude": 120.15,
       "latitude": 29.1,
@@ -1250,7 +1250,7 @@
         "ch13": "D",
         "ch14": "D"
       },
-      "source_note": "",
+      "source_note": "剧情口径为衢州府一带；当前保留邻近 city_jinhua 玩法锚，不宣称精确属金华府。",
       "branches": [],
       "sources": [
         "src_sect17"
@@ -1827,11 +1827,11 @@
       "id": "sect_changlebang",
       "name": "长乐帮",
       "kind": "river_headquarters",
-      "site_name": "长乐帮临江总舵（待考）",
-      "city_id": "city_hangzhou",
-      "longitude": 119.4,
-      "latitude": 29.8,
-      "coordinate_precision": "approximate_pending_research",
+      "site_name": "镇江府长乐帮总舵",
+      "city_id": "city_zhenjiang",
+      "longitude": 119.46,
+      "latitude": 32.21,
+      "coordinate_precision": "city_anchor",
       "availability_ref": "design/17 §3",
       "availability": {
         "ch01": "N",
@@ -1849,7 +1849,7 @@
         "ch13": "D",
         "ch14": "D"
       },
-      "source_note": "",
+      "source_note": "《侠客行》第十五回剧情审校确认镇江总舵；总舵在城内的精确位置仍待考。",
       "branches": [],
       "sources": [
         "src_sect17"

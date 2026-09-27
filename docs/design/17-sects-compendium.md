@@ -4,7 +4,7 @@
 > 上游：`docs/decisions/author-requirements.md` AR-04、AR-07、AR-08，`docs/decisions/author-decisions.md`，`docs/00-canon.md` §2、§12–§13、§16、§18，`docs/decisions/rulings-v1.md` §3。
 > 引用而不重定义：加入条件、门规、贡献、晋升机制、叛出、任务链与招募细则 → `design/12`；月钱与资源 → `design/16`；区域/城市正式 ID、坐标与时代地名 → `design/11`、`design/19`；武学条目、数值与招式 → 各 `design/catalog/skills-*.md`；战斗与阵法 → `design/09`。
 > 标注约定：**（史实）** = 有史料或权威机构来源；**（小说）** = 金庸小说设定；**（古龙·书名）** = 古龙小说设定；**（原创扩展）** = 本作为串联时代所加；**（待考）** = 尚须以三联/广州修订版或可靠史料逐字核对；**（待核实）** = 网页可用性或资料版本尚未完全确认；**【建议值】** = 待唯一归属文档定稿。
-> 版本记录：初稿 S1（2026-09-26）；审校 S1.R（2026-09-26，修正史实、矩阵状态、裁定品阶与交叉引用，并补史实抽检）。
+> 版本记录：v1.2（跨文档同步，2026-09-26）；初稿 S1（2026-09-26）；审校 S1.R（2026-09-26，修正史实、矩阵状态、裁定品阶与交叉引用，并补史实抽检）；F1b 对齐正式图鉴 ID、品阶、类别、蓬莱六门授艺与 `design/16` 月钱／资源接口。
 
 ---
 
@@ -423,52 +423,52 @@
 - **身份**：`SWORD`；`HIST(site) + JINYONG`。华山位于陕西华阴，是长期道教圣地，山上宫观为史实 [H15]；倚天、笑傲、碧血中的“华山派”是小说组织，是否一脉相承无原著明证（待考）。本作统一 ID 仅服务数据去重。
 - **驻地**：`rg_guanzhong_huashan` / `city_huayin`；思过崖、玉女峰、正气堂按时代启闭。**时代**：倚天、笑傲、碧血 `O`，侠客/飞狐 `H`；当代代表分别为鲜于通、高矮二老系（待考）；岳不群/风清扬；穆人清/袁承志；掌门大会华山代表（待考）。
 - **职级**：T03；笑傲 `branch: qi|jian`，两宗共享 L1–L2，L3 起分流。
-- **武学**：`sk_dugu9` 独孤九剑（12 天上·剑，`skills-wuyue` 待收录）、`sk_zixia` 紫霞神功（9 地上·内，待收录）、`sk_hunyuan` 混元功（9 地上·内，`skills-xiake-bixue` 待收录）；出处依《笑傲》风清扬/岳不群、《碧血》穆人清/袁承志；现实只参考华山道教地景 [H15]，无可等同武术史。
+- **武学**：`sk_dugu9` 独孤九剑（12 天上·兵器／剑，见 `skills-wuyue`）、`sk_zixiashengong` 紫霞神功（9 地上·内功，见 `skills-wuyue`）、`sk_hunyuangong` 混元功（9 地上·内功，见 `skills-xiake-bixue`）；出处依《笑傲》风清扬/岳不群、《碧血》穆人清/袁承志；现实只参考华山道教地景 [H15]，无可等同武术史。
 - **人物 / 关系 / 招募**：五岳剑派盟友兼竞争者；笑傲与日月神教敌对；碧血与铁剑门、闯王军关系因路线变化。岳灵珊等 D4，风清扬 D5/仅授艺。
 
 ### 6.2 峨眉 `sect_emei`
 
 - **身份**：`SWORD/CHAN`；`HIST(tradition) + JINYONG`。峨眉山是佛教圣地；峨眉武术源于四川峨眉山地区，并于 2008 年列入国家级非遗（史实）[H08]。小说在《倚天》写郭襄创派、灭绝师太与周芷若（小说）；历史武术传统不等于该虚构世系。
 - **驻地**：四川峨眉山金顶一带，建议 `rg_bashu_emei` / `city_jiading`；分院随 `design/11`。**时代**：神雕只作郭襄前身 `P`，倚天 `O`，后世 `H`。**职级**：T01/T03 混合：L1 俗家/小沙弥，L2 入门弟子，L3 掌门亲传，L4 静字辈长老，L5 掌门。
-- **武学**：待 `skills-yitian` 收录 `sk_emeijiufa` 峨眉九阳功（8 地中·内）、`sk_miejuejian` 灭绝剑法（7 地下·剑）、`sk_jindingmianzhang` 金顶绵掌（5 玄中·掌）；小说据《倚天》灭绝/周芷若等（具体回目待考），现实仅以峨眉武术传统为参考 [H08]。
+- **武学**：见 `skills-yitian`：`sk_emeijiuyang` 峨眉九阳功（8 地中·内功）、`sk_miejuejian` 灭剑绝剑（6 玄上·兵器／剑，**（原创扩展命名）**）、`sk_jindingmianzhang` 金顶绵掌（5 玄中·拳脚／拳掌）；小说据《倚天》灭绝/周芷若等（具体回目待考），现实仅以峨眉武术传统为参考 [H08]。
 - **人物 / 关系 / 招募**：倚天六派之一，与明教先敌后和；郭襄与少林、神雕旧人构成前史。周芷若 D5 路线限定。
 
 ### 6.3 昆仑 `sect_kunlun`
 
 - **身份**：`SWORD/DAO`；`JINYONG`。以《倚天》何太冲、班淑娴及正反两仪相关情节为小说锚（待考）；昆仑山是真实地理，但未核到可等同小说门派的历史组织。
 - **驻地**：西域昆仑山，建议 `rg_xiyu_kunlun` / 最近节点 `city_kashgar`；朱武连环庄为外部联系点而非分舵。**时代**：神雕 `P`（何足道个人不等于门派正式开放），倚天 `O`，后世 `H`。**职级**：T03，L4“掌剑/执事”。
-- **武学**：待 `skills-yitian` 收录 `sk_liangyijian` 正两仪剑法（8 地中·剑）、`sk_kunlunxinfa` 昆仑心法（5 玄中·内）、`sk_xunfengbu` 迅风步（3 黄上·轻）；小说人物/比武为参考，无历史原型。
+- **武学**：见 `skills-yitian`：`sk_zhengliangyi` 正两仪剑法（9 地上·兵器／剑）、`sk_kunlunxinfa` 昆仑心法（5 玄中·内功）、`sk_chuanyunbu` 穿云步（6 玄上·轻功）；小说人物/比武为参考，无历史原型。
 - **人物 / 关系 / 招募**：六派同盟；与华山反两仪刀法可组成合击（玩法细则归图鉴/09）。何太冲夫妇 D4。
 
 ### 6.4 崆峒 `sect_kongtong`
 
 - **身份**：`SWORD/DAO`；`JINYONG`。小说《倚天》以崆峒五老和七伤拳登场；甘肃崆峒山是真实道教文化地景，但小说门派世系无史实等同（待考）。
 - **驻地**：甘肃平凉崆峒山，建议 `rg_longyou_kongtong` / `city_pingliang`。**时代**：倚天 `O`，神雕 `P`，后世 `H`。**职级**：T03/T02，L4“五老”是五个席位。
-- **武学**：`sk_qishangquan` 七伤拳（9 地上·拳，`design/05` §9.1.1）、待收录 `sk_kongtongxinfa` 崆峒心法（5 玄中·内）、`sk_feifengshou` 飞凤手（3 黄上·掌）；小说据《倚天》谢逊夺谱与五老线（待考），无历史武术等同。
+- **武学**：`sk_qishangquan` 七伤拳（9 地上·拳脚／拳掌，代价规则见 `design/05` §9.1.1）、`sk_kongtongyangshenggong` 崆峒养生功（5 玄中·内功）、`sk_kongtongjian` 崆峒剑术（5 玄中·兵器／剑），均见 `skills-yitian`；小说据《倚天》谢逊夺谱与五老线（待考），无历史武术等同。
 - **人物 / 关系 / 招募**：六派同盟，与谢逊/明教因七伤拳结仇；五老 D4。
 
 ### 6.5 青城 `sect_qingcheng`
 
 - **身份**：`SWORD/DAO`；`HIST(site) + JINYONG`。青城山被 UNESCO 资料称为道教发源地，142 年张陵在此建立道教教团（史实）[H09]；小说《天龙》青城与蓬莱结怨，《笑傲》余沧海灭福威镖局，《飞狐》亦有青城人物（待考）。三者武林世系不能视为史实。
 - **驻地**：四川灌县青城山，建议 `rg_bashu_qingcheng` / `city_chengdu`。**时代**：天龙、笑傲、飞狐 `O`；其余 `H` 是道门/支派延续。**职级**：T03/T02。
-- **武学**：待相应图鉴唯一收录 `sk_qingchengjian` 青城剑法（5 玄中·剑）、`sk_songfengjian` 松风剑法（6 玄上·剑）、`sk_cuixinzhang_qingcheng` 摧心掌·青城（6 玄上·掌；须与九阴 `sk_cuixinzhang` 分 ID）；小说据《天龙》《笑傲》《飞狐》人物（待考），真实只参考青城道教地景 [H09]。
+- **武学**：见 `skills-wuyue`：`sk_qingchengxinfa` 青城心法（5 玄中·内功）、`sk_songfengjianfa` 松风剑法（6 玄上·兵器／剑）、`sk_qingchengcuixinzhang` 青城摧心掌（7 地下·拳脚／拳；须与九阴 `sk_cuixinzhang` 分 ID）；小说据《天龙》《笑傲》《飞狐》人物（待考），真实只参考青城道教地景 [H09]。
 - **人物 / 关系 / 招募**：天龙世仇蓬莱；笑傲世仇福威林家、与五岳关系紧张。余沧海 D5 邪线。
 
 ### 6.6 五岳其余四派
 
 | ID / 名称 | 身份、历史与驻地 | 时代 / 职级 | 武学（待 `skills-wuyue`）与参考 | 人物、关系、招募 |
 |---|---|---|---|---|
-| `sect_songshan` 嵩山派 | `SWORD · JINYONG`；嵩山真实地理不等于门派；驻太室山胜观峰，`rg_zhongyuan_songshan` | 笑傲 `O`；T03 | `sk_hanbingzhenqi` 寒冰真气（9 地上·内）、`sk_songshanjian`（6 玄上·剑）、`sk_dasongyangzhang`（5 玄中·掌）；《笑傲》左冷禅线，无历史原型 | 左冷禅、十三太保；推动并派，与日月敌对；D4–D5 |
-| `sect_taishan` 泰山派 | `SWORD/DAO · JINYONG`；驻山东泰山玉皇顶一带，`rg_qilu_taishan` / `city_taian` | 笑傲 `O`，后世 `H`；T03/T02 | `sk_taishan18pan` 泰山十八盘（6 玄上·剑）、`sk_daiyiruhe` 岱宗如何（7 地下·杂）、`sk_taishanxinfa`（4 玄下·内）；《笑傲》天门道人等（待考） | 与嵩山政治冲突；天门 D4 |
-| `sect_hengshan_nan` 衡山派 | `SWORD · JINYONG`；驻湖南衡山，建议 `rg_huguang_hengshan` / `city_hengzhou` | 笑傲 `O`，后世 `H`；T03 | `sk_hengshanwushenjian` 衡山五神剑（7 地下·剑）、`sk_huiyanjian` 回风落雁剑（6 玄上·剑）、`sk_baibianqianhuanyunwushijian` 百变千幻云雾十三式（8 地中·剑）；《笑傲》莫大/刘正风线 | 与日月曲洋有私人知交；莫大、刘正风 D4 |
-| `sect_hengshan_bei` 恒山派 | `CHAN/SWORD · JINYONG`；驻山西恒山见性峰，`rg_jinbei_hengshan` / `city_hunyuan` | 笑傲 `O`，后世 `H`；T01/T03 | `sk_wanwushengmie` 万花剑法（6 玄上·剑，名称待考）、`sk_hengshanxinfa`（5 玄中·内）、`sk_hengshanzhen`（5 玄中·阵）；《笑傲》定闲/仪琳线 | 与五岳结盟而反对强并；玩家接掌属剧情特例，细则归 12 |
+| `sect_songshan` 嵩山派 | `SWORD · JINYONG`；嵩山真实地理不等于门派；驻太室山胜观峰，`rg_zhongyuan_songshan` | 笑傲 `O`；T03 | `sk_hanbingzhenqi` 寒冰真气（9 地上·内功）、`sk_songshanjianfa` 嵩山剑法（6 玄上·兵器／剑）、`sk_dasongyangzhang` 大嵩阳掌（5 玄中·拳脚／拳掌），见 `skills-wuyue`；《笑傲》左冷禅线，无历史原型 | 左冷禅、十三太保；推动并派，与日月敌对；D4–D5 |
+| `sect_taishan` 泰山派 | `SWORD/DAO · JINYONG`；驻山东泰山玉皇顶一带，`rg_qilu_taishan` / `city_taian` | 笑傲 `O`，后世 `H`；T03/T02 | `sk_taishan18pan` 泰山十八盘（6 玄上·轻功）、`sk_daizongruhe` 岱宗如何（8 地中·兵器／剑）、`sk_taishanxinfa` 泰山心法（5 玄中·内功），见 `skills-wuyue`；《笑傲》天门道人等（待考） | 与嵩山政治冲突；天门 D4 |
+| `sect_hengshan_nan` 衡山派 | `SWORD · JINYONG`；驻湖南衡山，建议 `rg_huguang_hengshan` / `city_hengzhou` | 笑傲 `O`，后世 `H`；T03 | `sk_hengshanwushenjian` 衡山五神剑（5 玄中·兵器／剑）、`sk_huifengluoyan` 回风落雁剑（6 玄上·兵器／剑）、`sk_baibianqianhuan` 百变千幻衡山云雾十三式（8 地中·兵器／剑），见 `skills-wuyue`；《笑傲》莫大/刘正风线 | 与日月曲洋有私人知交；莫大、刘正风 D4 |
+| `sect_hengshan_bei` 恒山派 | `CHAN/SWORD · JINYONG`；驻山西恒山见性峰，`rg_jinbei_hengshan` / `city_hunyuan` | 笑傲 `O`，后世 `H`；T01/T03 | `sk_wanhuajianfa` 万花剑法（7 地下·兵器／剑）、`sk_hengshanbeixinfa` 恒山心法（5 玄中·内功）、`sk_hengshanbeijianfa` 恒山剑法（6 玄上·兵器／剑），见 `skills-wuyue`；《笑傲》定闲/仪琳线 | 与五岳结盟而反对强并；玩家接掌属剧情特例，细则归 12 |
 
 ### 6.7 雪山、金乌、无量、仙都
 
 | ID / 名称 | 历史、驻地、时代 | 职级 | 至少三门武学与参考 | 人物、关系、招募 |
 |---|---|---|---|---|
-| `sect_xueshan` 雪山派 | `JINYONG`；《侠客行》凌霄城，地理待考，建议 `rg_xibei_lingxiao`；仅侠客 `O` | T03；L4“气寒堂长老” | 待收录 `sk_xueshanjian` 雪山剑法（6 玄上·剑）、`sk_jinwudao` 金乌刀法（7 地下·刀，敌对传承）、`sk_lingxiaoxinfa`（5 玄中·内）；原著人物/招法名待逐字核 | 白自在、白万剑、阿绣；与金乌派家内竞派；阿绣 D4 |
-| `sect_jinwupai` 金乌派 | `JINYONG`；史小翠在紫烟岛另立，小说内新创，无历史原型；侠客 `O` | T03；史小翠即 L5 | `sk_jinwudao` 金乌刀法（7 地下·刀）、`sk_jinwuxinfa`（4 玄下·内，原创）、`sk_rongxuebu`（3 黄上·轻，原创）；《侠客行》史小翠/石破天 | 专克雪山剑法；石破天为开山弟子，D5 |
+| `sect_xueshan` 雪山派 | `JINYONG`；《侠客行》凌霄城，地理待考，建议 `rg_xibei_lingxiao`；仅侠客 `O` | T03；L4“气寒堂长老” | `sk_xueshanjianfa` 雪山剑法（6 玄上·兵器／剑）、`sk_wuwangshengong` 无妄神功（6 玄上·内功）、`sk_taxuewuhen` 踏雪无痕（8 地中·轻功），见 `skills-xiake-bixue`；金乌刀法是史小翠另立传承，不列雪山派普授 | 白自在、白万剑、阿绣；与金乌派家内竞派；阿绣 D4 |
+| `sect_jinwupai` 金乌派 | `JINYONG`；史小翠在紫烟岛另立，小说内新创，无历史原型；侠客 `O` | T03；史小翠即 L5 | `sk_jinwudaofa` 金乌刀法（6 玄上·兵器／刀）、`sk_xueshanquan` 雪山入门拳（2 黄中·拳脚／拳掌）、`sk_lingxiaotuna` 凌霄吐纳（2 黄中·内功），均见 `skills-xiake-bixue`；后两门只是图鉴用于闭合金乌支线前置的共用基础，不表示史小翠另创同名内功 | 专克雪山剑法；石破天为开山弟子，D5 |
 | `sect_wuliang` 无量剑派 | `JINYONG`；大理无量山剑湖宫，天龙 `O` 后 `D`；无历史组织原型 | T03，东/西宗为 branch | `sk_yubijian`（7 地下·剑）、`sk_wuliangxinfa`（4 玄下·内）、`sk_wuliangjian`（3 黄上·剑），见 `skills-xiaoyao` §9；玉壁观剑据《天龙》 | 左子穆、辛双清；与神农帮冲突、受灵鹫宫牵连；D3 |
 | `sect_xiandu` 仙都派 | `JINYONG`；《碧血剑》道门剑派，驻地待考，建议 `rg_jiangnan_xiandu`；碧血 `O` | T02/T03 | 待收录 `sk_xiandujian`（6 玄上·剑）、`sk_lingxujue`（5 玄中·内）、`sk_xianduyunbu`（3 黄上·轻）；原著人物/招名待考 | 与华山、金龙帮线相交（待考）；D3 |
 
@@ -480,7 +480,7 @@
 | `sect_baguamen` 八卦门 | `JINYONG`；北京/河朔，书剑至雪山 `O` | T03 | 待收录 `sk_baguadao`（7 地下·刀）、`sk_baguazhang`（6 玄上·掌）、`sk_youshenbu`（4 玄下·轻）；小说依据王维扬/商剑鸣；现实八卦掌年代关系待考 | 与镇远/威信镖业线相连；D3–D4 |
 | `sect_tianlongmen` 天龙门 | `JINYONG`；辽东/关外，飞狐与雪山 `O`；非大理天龙寺 | T03 | 待收录 `sk_tianlongjian`（6 玄上·剑）、`sk_tianlongbeidao`（5 玄中·刀）、`sk_guanwaixinfa`（4 玄下·内） | 田归农等；与胡苗两家为敌/竞争；D4 |
 | `sect_fuwei` 福威镖局 | `JINYONG`；福建福州向阳巷与各地分局，笑傲 `O` 后 `D` | T05B | 待 `skills-wuyue`：`sk_bixie`（10 天下·剑）、`sk_fanxiejian`（5 玄中·剑）、`sk_fuweibiaoquan`（3 黄上·拳）；《笑傲》林家线 | 青城世仇；林平之 D4，镖师 D2 |
-| `sect_penglai` 蓬莱派 | `JINYONG`；《天龙》都灵子一系，山东蓬莱建议 `rg_qilu_penglai`；天龙 `O` | T03/T02 | 待 general：`sk_tianwangbuxin` 天王补心针（6 玄上·暗，名目待考）、`sk_penglaiquan`（4 玄下·拳）、`sk_haifengbu`（3 黄上·轻） | 与青城世仇；都灵子/海风子名号待考，D3 |
+| `sect_penglai` 蓬莱派 | `JINYONG`；《天龙》都灵子一系，山东蓬莱建议 `rg_qilu_penglai`；天龙 `O` | T03/T02；L1 `sk_penglairumenquan`、`sk_haifengbu`；L2 `sk_penglaiquan`、`sk_chaoyinxinfa`；L3 `sk_tianwangbuxin`；L4 `sk_donghaichaoshengzhang`；L5 只开放镇派目录 | `skills-general` 六门正式目录：`sk_donghaichaoshengzhang` 东海潮生掌（7 地下·拳脚／拳掌）、`sk_tianwangbuxin` 天王补心针（6 玄上·暗器，名目待考）、`sk_penglaiquan` 蓬莱拳（4 玄下·拳脚／拳掌）、`sk_chaoyinxinfa` 潮音心法（5 玄中·内功）、`sk_penglairumenquan` 蓬莱入门拳（2 黄中·拳脚／拳掌）、`sk_haifengbu` 海风步（3 黄上·轻功） | 与青城世仇；都灵子/海风子名号待考，D3 |
 | `sect_taibai` 太白三英 | `JINYONG`；《碧血》小组织，陕西太白山建议 `rg_guanzhong_taibai`；碧血 `O` | T03 | 待 `skills-xiake-bixue`：`sk_taibaijian`（5 玄中·剑）、`sk_sanyingzhen`（4 玄下·阵）、`sk_taibaibu`（2 黄中·轻） | 与金龙帮冲突；人物名与细节待考 |
 | `sect_weituomen` 韦陀门 | `JINYONG`；飞狐掌门大会出现，少林旁门性质待考；建议河南 `rg_zhongyuan_weituo` | T03 | 待 `skills-qianlong`：`sk_weituomenquan`（5 玄中·拳）、`sk_weituomenchu`（5 玄中·奇门）、`sk_luohanbu_weituo`（3 黄上·轻） | 与少林只作武术交流，不共享身份；掌门名待考 |
 | `sect_baxianjian` 八仙剑 | `JINYONG`；广西梧州，飞狐 `O` | T03 | 待收录 `sk_baxianjian`（6 玄上·剑）、`sk_zuibaxianbu`（4 玄下·轻）、`sk_baxianxinfa`（3 黄上·内） | 蓝秦等参加掌门大会（待考）；D3 |
@@ -609,7 +609,7 @@
 | `sk_*` | 名称 / 品阶 / 类别 / 效果方向 | 小说出处 | 历史或武术参考 |
 |---|---|---|---|
 | `sk_xuansujian` | 玄素双剑 / 7 地下 / 双剑 · 双人协击 | 《侠客行》“黑白双剑”石清、闵柔；正式招名待考 | 无历史原型 |
-| `sk_xuansuxinfa` | 玄素心法 / 5 玄中 / 内 · 阴阳协同 | （原创扩展），据夫妇合战 | 无历史原型 |
+| `sk_xuansuxinfa` | 玄素心法 / 4 玄下 / 内 · 阴阳协同 | （原创扩展），据夫妇合战 | 无历史原型 |
 | `sk_shuangjianhebi_xuansu` | 黑白合璧 / 4 玄下 / 阵 · 相邻增益 | （原创扩展），不得与古墓玉女素心剑合并 | 无历史原型 |
 
 - **人物、关系与招募**：与雪山派有婚姻/师门纠纷，与长乐帮因石破天身份相交。石清、闵柔 D4；招募窗口依侠客主线。
@@ -618,7 +618,7 @@
 
 - **身份与真实性**：别名温家堡、石梁派；`CLAN`；`JINYONG`。浙江石梁可以是真实地名，但小说温家五老及家传武艺无史实原型，确址待考。
 - **历史**：《碧血剑》以温家五老、温仪、温青青与金蛇郎君夏雪宜的旧怨为核心；掌门世系没有可延伸的原著记载。
-- **驻地与位置**：江浙石梁大宅，建议 `rg_jiangnan_shiliang` / 最近 `city_hangzhou`；金蛇洞是敌对事件地点，不是温家分舵。
+- **驻地与位置**：剧情口径为衢州府一带；当前仅以邻近 `city_jinhua` / `rg_liangzhe` 作玩法锚，精确地望仍**（待考）**（见 `design/19` §5.2）。金蛇洞是敌对事件地点，不是温家分舵。
 - **时代开放**：仅 BX `O`，其后 `D`。代表温家五老、温仪、温青青；各人名次序与招式需逐字核对（待考）。
 - **职级**：T04；L4“五老”是族老席位而非五个级别，L5 由族议代表。
 - **武学（待 `skills-xiake-bixue` 收录）**：
@@ -779,7 +779,7 @@
 | `sk_*` | 名称 / 品阶 / 类别 / 效果方向 | 小说出处 | 历史或武术参考 |
 |---|---|---|---|
 | `sk_yaowangdujing` | 药王毒经 / 8 地中 / 杂学·医毒 · 辨毒制毒 | 《飞狐外传》毒手药王师门；书名待考 | 传统本草学只作知识参考，不复原毒方 |
-| `sk_qixinhaitang` | 七心海棠法 / 7 地下 / 暗器/毒 · 潜伏 | 《飞狐外传》程灵素与七心海棠 | 植物为小说设定，不作现实可操作毒理 |
+| `sk_qixinhaitang` | 七心海棠法 / 8 地中 / 暗器 · 潜伏 | 《飞狐外传》程灵素与七心海棠 | 植物为小说设定，不作现实可操作毒理 |
 | `sk_yaowangzhenfa` | 药王针法 / 5 玄中 / 暗器 · 解穴/施药 | （原创扩展），据程灵素医毒专长 | 针灸仅文化参考，不提供医疗指引 |
 
 - **人物、关系与招募**：与胡斐同伴线紧密，与同门叛徒敌对；程灵素 D5。医毒玩法只引用 `design/03`/`06`，本文不定义毒方数值。
@@ -883,7 +883,7 @@
 
 - **身份与真实性**：`GUILD`；`JINYONG`。《侠客行》江湖帮会，无历史原型。
 - **历史**：贝海石等迎石破天为帮主，利用其替代失踪的石中玉赴侠客岛（情节细节待考）；本作只在侠客书界存在。
-- **驻地与位置**：长乐帮总舵的州县待考，建议 `rg_jiangnan_changle`，临江总舵与码头为一组场景。
+- **驻地与位置**：已由侠客剧情审校确认总舵在镇江府，地图挂 `city_zhenjiang`；城内精确位置仍**（待考）**。临江总舵与码头为一组场景，30 区归属待地图原子迁移后读取，不再使用旧 `rg_jiangnan_changle` 建议键。
 - **时代开放**：仅 XK `O`，其后 `D`；代表贝海石、石破天（误任帮主）和帮中香主。
 - **职级**：T05B；L1 帮众、L2 香主副手、L3 香主、L4 总管/长老、L5 帮主。代帮主是剧情状态，不改永久职级。
 - **武学（待 `skills-xiake-bixue` 收录）**：
@@ -891,7 +891,7 @@
 | `sk_*` | 名称 / 品阶 / 类别 / 效果方向 | 小说出处 | 历史或武术参考 |
 |---|---|---|---|
 | `sk_changlegangdao` | 长乐帮刀 / 5 玄中 / 刀 · 夹击 | 据《侠客行》帮众交手扩写 | 无历史原型 |
-| `sk_changlexinfa` | 长乐心法 / 4 玄下 / 内 · 坚守 | （原创扩展） | 无历史原型 |
+| `sk_changlexinfa` | 长乐心法 / 5 玄中 / 内 · 坚守 | （原创扩展） | 无历史原型 |
 | `sk_changleyingzhen` | 长乐鹰阵 / 3 黄上 / 阵 · 围捕 | （原创扩展），正式名不冒充原著 | 无历史原型 |
 
 - **人物、关系与招募**：受侠客岛赏善罚恶令威慑，与雪山派、玄素庄因石氏兄弟相交；贝海石 D4，石破天 D5 但门派身份可被揭穿。
@@ -951,9 +951,9 @@
 
 | ID / 名称 | 身份、历史与驻地 | 时代 / 职级 | 三门武学（待 `skills-yitian`）与双参考 | 人物、关系、招募 |
 |---|---|---|---|---|
-| `sect_haisha` 海沙派 | `GUILD · JINYONG`；以盐运/水路为背景的小派（业务性质待考）；建议东南盐场 `rg_jiangnan_haisha` | 仅 YT `O`；T05B | `sk_haishadufa` 海沙毒法（5 玄中·毒）、`sk_yandaohaisha` 盐刀（4 玄下·刀）、`sk_haishabu` 潮退步（2 黄中·轻）；据《倚天》屠龙刀争夺相关人物（待考），均无历史门派原型，后两项原创 | 与天鹰教争夺屠龙刀，和巨鲸/神拳并非稳定联盟；首领 D3 |
-| `sect_jujing` 巨鲸帮 | `GUILD · JINYONG`；水上帮会，真实漕运史不证明小说组织；建议东海港 `rg_donghai_jujing` | 仅 YT `O`；T05B | `sk_jujingdao` 巨鲸刀（5 玄中·刀）、`sk_fenlangzhang` 分浪掌（4 玄下·掌）、`sk_shuixingbu` 水行步（3 黄上·轻）；据屠龙刀/王盘山线（待考），无历史原型 | 与天鹰教冲突；帮主姓名待考，D3 |
-| `sect_shenquan` 神拳门 | `SWORD · JINYONG`；《倚天》具名小门派，驻地待考，建议 `rg_zhongyuan_shenquan` | 仅 YT `O`；T03 | `sk_shenquanquan` 神拳门拳（5 玄中·拳）、`sk_shenquanxinfa`（4 玄下·内）、`sk_shenquanbu`（2 黄中·轻）；原著只作组织锚，其细化均原创，无历史原型 | 同卷入屠龙刀风波；首领/弟子名待考，D3 |
+| `sect_haisha` 海沙派 | `GUILD · JINYONG`；以盐运/水路为背景的小派（业务性质待考）；建议东南盐场 `rg_jiangnan_haisha` | 仅 YT `O`；T05B | `skills-yitian` 正式目录：`sk_duyanfeisha` 毒盐飞沙（7 地下·杂学／毒）、`sk_yanxiaoshou` 盐枭手（5 玄中·拳脚／擒拿）、`sk_chaoxibu` 潮汐步（4 玄下·轻功）；据《倚天》屠龙刀争夺相关人物（待考），细化标注见图鉴 | 与天鹰教争夺屠龙刀，和巨鲸/神拳并非稳定联盟；首领 D3 |
+| `sect_jujing` 巨鲸帮 | `GUILD · JINYONG`；水上帮会，真实漕运史不证明小说组织；建议东海港 `rg_donghai_jujing` | 仅 YT `O`；T05B | `skills-yitian` 正式目录：`sk_fenshuiemeici` 分水峨眉刺（7 地下·兵器／奇门）、`sk_langlifenshuici` 浪里分水刺（5 玄中·兵器／奇门）、`sk_fanzhougong` 翻舟功（4 玄下·轻功）；据屠龙刀/王盘山线（待考），细化标注见图鉴 | 与天鹰教冲突；帮主姓名待考，D3 |
+| `sect_shenquan` 神拳门 | `SWORD · JINYONG`；《倚天》具名小门派，驻地待考，建议 `rg_zhongyuan_shenquan` | 仅 YT `O`；T03 | `skills-yitian` 正式目录：`sk_cuijunshenquan` 摧军神拳（7 地下·拳脚／拳掌）、`sk_sandieshenquan` 三叠神拳（6 玄上·拳脚／拳掌）、`sk_tiequanzhuang` 铁拳桩（5 玄中·内功）；原著只作组织锚，细化标注见图鉴 | 同卷入屠龙刀风波；首领/弟子名待考，D3 |
 
 ### 8.8 威信镖局 `sect_weixinbiaoju`
 
@@ -1055,8 +1055,8 @@
 
 | `sk_*` | 名称 / 品阶 / 类别 / 效果方向 | 小说出处 | 历史或武术参考 |
 |---|---|---|---|
-| `sk_qiankun` | 乾坤大挪移 / 12 天上 / 内 · 挪移 | 《倚天》阳顶天遗书、张无忌 | 无历史原型；天级锚点见基准 §13 |
-| `sk_shenghuoling` | 圣火令武功 / 11 天中 / 拳/奇门 · 诡变 | 《倚天》波斯三使与令上武功 | 摩尼教史只作宗教背景，不证明武学 |
+| `sk_qiankun` | 乾坤大挪移 / 11 天中 / 内功 · 挪移 | 《倚天》阳顶天遗书、张无忌 | 无历史原型；天级锚点见基准 §13 |
+| `sk_shenghuoling` | 圣火令武功 / 10 天下 / 拳脚／拳（诡变） | 《倚天》波斯三使与令上武功 | 摩尼教史只作宗教背景，不证明武学 |
 | `sk_wuxingqizhen` | 五行旗阵 / 8 地中 / 阵 · 五旗协同 | 光明顶五行旗交战（细节待考） | （原创定级），五行是文化分类 |
 
 - **人物、关系与招募**：与六大派先敌后和，与元廷敌对；天鹰教归并前是独立组织。张无忌 D5，四王/使者 D4。
@@ -1072,9 +1072,9 @@
 
 | `sk_*` | 名称 / 品阶 / 类别 / 效果方向 | 小说出处 | 历史或武术参考 |
 |---|---|---|---|
-| `sk_tianyingzhua` | 天鹰爪 / 7 地下 / 擒拿 · 破招 | 《倚天》殷天正鹰爪功（名称待考） | 鹰爪类象形拳是广义参考，不证明同源 |
-| `sk_tianyingdao` | 天鹰刀 / 5 玄中 / 刀 · 船战 | （原创扩展） | 无历史原型 |
-| `sk_wenxuzhen` | 蚊须针 / 6 玄上 / 暗 · 中毒 | 《倚天》殷素素暗器（细节待考） | 真实针形暗器只作器物参考 |
+| `sk_yingzhaoqinna` | 鹰爪擒拿功 / 9 地上 / 拳脚／擒拿 · 破招 | 《倚天》殷天正鹰爪功（名称与细节待考） | 鹰爪类象形拳是广义参考，不证明同源 |
+| `sk_tianyingjian` | 天鹰剑术 / 5 玄中 / 兵器／剑 · 追击 | （原创扩展） | 无历史原型 |
+| `sk_haishangbufa` | 海上步法 / 5 玄中 / 轻功 · 舟战 | 据王盘山线扩写 **（原创扩展命名）** | 无历史原型 |
 
 - **人物、关系与招募**：与明教同源、与海沙/巨鲸等因屠龙刀冲突；殷天正 D5，殷素素 D5 且受早期锚点限制。
 
@@ -1968,9 +1968,9 @@ else:
 
 明确**不新增**：`sect_huashan04`、`sect_jingangmen`、`sect_hengshan`、`sect_tianjilou`。前三者违反 A3 统一/分立裁定；“天机楼”本轮没有足够明确的古龙原作组织依据。
 
-### 14.3 新增武学候选 ID（201）
+### 14.3 S1 新增武学候选快照（201）与正式迁移
 
-这 201 个 ID 均为**索引候选**，不是本文对武学条目的定义；名称、品阶、类别与效果方向见各门派表，最终由 C1a–g/CXs–CXx 对应图鉴去重、定稿。为便于审计，按下游图鉴归组登记：
+下表是 S1 写作时的 **201 个历史索引候选快照**，只用于追溯，不再作为可消费的现行 ID 目录；名称、品阶、类别、效果与最终 ID 均以各 `design/catalog/skills-*.md` 为准。构建器、剧情和数据文件不得从本快照生成武学引用。为保留审校证据，原始候选按当时去向冻结如下：
 
 | 去向 | 候选 ID |
 |---|---|
@@ -1979,7 +1979,21 @@ else:
 | `skills-xiake-bixue / skills-kangxi / skills-qianlong` 候选 | `sk_xueshanjian` `sk_jinwudao` `sk_jinwuxinfa` `sk_rongxuebu` `sk_xiandujian` `sk_lingxujue` `sk_xianduyunbu` `sk_taibaijian` `sk_sanyingzhen` `sk_taibaibu` `sk_bohaijian` `sk_haichaodao` `sk_langxingbu` `sk_jinlongbangfa` `sk_jinlongquan` `sk_shuishangbu` `sk_wudushengong` `sk_wudujin` `sk_wudubian` `sk_tiejianjianfa` `sk_hunyuan` `sk_baguadao` `sk_baguazhang` `sk_youshenbu` `sk_taijimenquan` `sk_taijimenjian` `sk_guangpingxinfa` `sk_tianlongjian` `sk_tianlongbeidao` `sk_guanwaixinfa` `sk_weituomenquan` `sk_weituomenchu` `sk_luohanbu_weituo` `sk_baxianjian` `sk_zuibaxianbu` `sk_baxianxinfa` `sk_bajiquan` `sk_tieshankao` `sk_bajizhuang` `sk_jiulongbian` `sk_chanlongshou` `sk_yijiaxinfa` `sk_weixinbian` `sk_biaojudaofa` `sk_hangzhen` `sk_tiandihuidao` `sk_manchuqishe` `sk_daneishenfa` `sk_bukushuaijiao` `sk_muwangjian` `sk_muwangquan` `sk_muwangbu` `sk_chuangwangdao` `sk_chuangwangqiang` `sk_junzhanzhen` |
 | 其余对应图鉴 / general 候选（63） | `sk_penglaiquan` `sk_haifengbu` `sk_tianwangbuxin` `sk_gaochangjian` `sk_gaochanggong` `sk_migongbu` `sk_hasakeqishe` `sk_hasakeshuai` `sk_tianshanqishe` `sk_huibujianshu` `sk_huibushuaijiao` `sk_caoyuandao` `sk_ruyangdao` `sk_wanansizhen` `sk_changlegangdao` `sk_changlexinfa` `sk_changleyingzhen` `sk_feifengshou` `sk_honghuahuiheji` `sk_hujiadaoxinfa` `sk_hujiaquan` `sk_jindaodaofa` `sk_jindaozhaibu` `sk_jindaozhaiquan` `sk_lianhuanzhuangxinfa` `sk_lingxiaoxinfa` `sk_mangxingqibu` `sk_miaojiajian` `sk_miaojiaquan` `sk_miaojiaxinfa` `sk_qinjiazhaiquan` `sk_qixinhaitang` `sk_shangjiabu` `sk_shangjiadao` `sk_shangjiaquan` `sk_shangqingjian` `sk_shangqingxuanmenxinfa` `sk_shibijianyi` `sk_shuangjianhebi_xuansu` `sk_tangshijian` `sk_wangwujian` `sk_wangwuxinfa` `sk_wangwuzhang` `sk_wanjiajian` `sk_wanjiaquan` `sk_wenjiajian` `sk_wenjiaquan` `sk_wenxuzhen` `sk_wuhuduanmendao` `sk_wuxingzhen_wen` `sk_xiakedaozhang` `sk_xiangtangbu` `sk_xuansujian` `sk_xuansuxinfa` `sk_xuedaofa` `sk_xuedaojing` `sk_xuedaoxinfa` `sk_xunfengbu` `sk_yaowangdujing` `sk_yaowangzhenfa` `sk_yunhexuanbu` `sk_yunzhouzhaibu` `sk_zixia` |
 
-> 完整性算式：45（古龙）+ 38（五岳 / 倚天）+ 55（侠客碧血 / 康熙 / 乾隆）+ 63（其余）= **201**。这是“正文 §5–§11 出现的全部 `sk_*`”与“当前 `HEAD` 的 `docs/**` 已有 `sk_*`”做集合差所得的完整快照；每个 ID 在本表恰出现一次。后续图鉴若先收录，集合差数量自然下降，不能为了维持 201 重复造 ID。
+> 历史完整性算式：45（古龙）+ 38（五岳 / 倚天）+ 55（侠客碧血 / 康熙 / 乾隆）+ 63（其余）= **201**。这是 S1 时点“正文 §5–§11 出现的全部 `sk_*`”与当时 `docs/**` 已有 `sk_*` 的集合差；正式图鉴落地后自然失效，不能为了维持 201 重复造 ID。
+
+F1b 已按 CN-02、CN-03 把正文代表武学同步到正式图鉴。下列旧候选仅保留为迁移记录；未列出的同名候选若已被图鉴收录，也直接消费图鉴定义，不因本快照再建一次：
+
+| S1 旧候选 / 旧代表项 | 现行消费方式 | 依据 |
+|---|---|---|
+| `sk_zixia`、`sk_hunyuan` | `sk_zixiashengong`、`sk_hunyuangong` | `skills-wuyue`、`skills-xiake-bixue` |
+| `sk_songshanjian`、`sk_daiyiruhe`、`sk_huiyanjian`、`sk_baibianqianhuanyunwushijian` | `sk_songshanjianfa`、`sk_daizongruhe`、`sk_huifengluoyan`、`sk_baibianqianhuan` | `skills-wuyue` |
+| `sk_wanwushengmie`、北恒山旧 `sk_hengshanxinfa` / `sk_hengshanzhen` | `sk_wanhuajianfa`、`sk_hengshanbeixinfa`、`sk_hengshanbeijianfa` | `skills-wuyue`；南衡山仍使用正式 `sk_hengshanxinfa` |
+| `sk_qingchengjian`、`sk_songfengjian`、`sk_cuixinzhang_qingcheng` | 正文代表项改引 `sk_qingchengxinfa`、`sk_songfengjianfa`、`sk_qingchengcuixinzhang` | `skills-wuyue`；不是三个 ID 的逐项语义重命名 |
+| `sk_emeijiufa`、`sk_liangyijian`、`sk_kongtongxinfa` / `sk_feifengshou` | `sk_emeijiuyang`、`sk_zhengliangyi`；崆峒代表项改引 `sk_kongtongyangshenggong` / `sk_kongtongjian` | `skills-yitian` |
+| `sk_tianyingzhua`、`sk_tianyingdao`、`sk_wenxuzhen` | 天鹰代表项改引 `sk_yingzhaoqinna`、`sk_tianyingjian`、`sk_haishangbufa` | `skills-yitian`；不是三项逐字重命名 |
+| 海沙 / 巨鲸 / 神拳 S1 三门候选 | 正文分别改引 `sk_duyanfeisha` / `sk_yanxiaoshou` / `sk_chaoxibu`、`sk_fenshuiemeici` / `sk_langlifenshuici` / `sk_fanzhougong`、`sk_cuijunshenquan` / `sk_sandieshenquan` / `sk_tiequanzhuang` | `skills-yitian` 正式配额与授艺链 |
+| `sk_xueshanjian`、`sk_jinwudao`、`sk_jinwuxinfa`、`sk_rongxuebu`、`sk_lingxiaoxinfa` | 雪山 / 金乌正文改引 `sk_xueshanjianfa`、`sk_jinwudaofa`、`sk_wuwangshengong`、`sk_taxuewuhen`、`sk_xueshanquan`、`sk_lingxiaotuna` | `skills-xiake-bixue`；后四项按两派正式目录重选代表，不作一对一 alias |
+| `sk_qixinhaitang` | ID 不变；品阶由 7 地下同步为 8 地中 | `skills-qianlong` 与 `bf_qixin` 来源范围 |
 
 ### 14.4 建议地图与场景 ID
 
@@ -2103,7 +2117,7 @@ for sect in data["sects"]:
 |---|---|---|---|
 | `S17-D01` | `design/11`、`design/19` | 正文所有区域、城市、秘境 ID 及古龙独立实例 | 核对时代地名、坐标、复用/别名；回填正式 ID |
 | `S17-D02` | `design/12` | T01–T12 模板族（含 T05A/T05B）、特殊席位、古龙组织加入/招募提示 | 定贡献阈值、任务、叛出和 L5 可达性，不改五级骨架 |
-| `S17-D03` | `design/16` | 每级仅映射 `stipendTier/resourceTier=1..5` | 给出月钱、食宿、药材、兵器与特殊资源金额/库存 |
+| `S17-D03` | `design/16` | **已解决：**每级只映射 `stipendTier/resourceTier=1..5`，月钱、食宿折算、资源配给与欠发规则均由 `design/16` §10 定义 | 本文保持称谓与档位映射，不复制金额或库存 |
 | `S17-D04` | C1a–f、CXs/w/d/x | 金庸次要门派候选武学：品阶 2–9、类别与方向 | 查重后收录；不采纳者保留 alias/迁移记录 |
 | `S17-D05` | C1g `skills-gulong` | 15 派 × 3 = 45 门候选，最高地上 9 | 逐条核原作、定正式 ID/品阶/招式/获取；不得扩天级闭集 |
 | `S17-D06` | `design/10` | 孔雀翎、天一神水等兼具装备/消耗品性质 | 判定实体资产归属；技能只保留操作接口，不重复造天级装备 |

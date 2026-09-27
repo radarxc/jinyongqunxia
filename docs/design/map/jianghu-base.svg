@@ -2771,7 +2771,7 @@
 <path id="ch06-sect_jindaozhai" data-map-id="sect_jindaozhai" class="sect" opacity="1" d="M2459.35 1731.79 L2466.35 1739.79 L2459.35 1747.79 L2452.35 1739.79 Z"><title>金刀寨 · 金刀寨小说锚点 · O</title></path>
 <path id="ch06-sect_hasake" data-map-id="sect_hasake" class="sect" opacity="0.48" d="M1030.66 965.01 L1037.66 973.01 L1030.66 981.01 L1023.66 973.01 Z"><title>哈萨克部族 · 伊犁草原季节营地 · H</title></path>
 <path id="ch06-sect_gaibang" data-map-id="sect_gaibang" class="sect" opacity="0.48" d="M2490.61 1698.31 L2497.61 1706.31 L2490.61 1714.31 L2483.61 1706.31 Z"><title>丐帮 · 丐帮流动总舵 · H</title></path>
-<path id="ch06-sect_changlebang" data-map-id="sect_changlebang" class="sect" opacity="1" d="M2892.03 1971.69 L2899.03 1979.69 L2892.03 1987.69 L2885.03 1979.69 Z"><title>长乐帮 · 长乐帮临江总舵（待考） · O</title></path>
+<path id="ch06-sect_changlebang" data-map-id="sect_changlebang" class="sect" opacity="1" d="M2872.67 1817.05 L2879.67 1825.05 L2872.67 1833.05 L2865.67 1825.05 Z"><title>长乐帮 · 镇江府长乐帮总舵 · O</title></path>
 <path id="ch06-sect_lingjiu" data-map-id="sect_lingjiu" class="sect" opacity="0.48" d="M1238.35 1083.26 L1245.35 1091.26 L1238.35 1099.26 L1231.35 1091.26 Z"><title>灵鹫宫 · 天山缥缈峰灵鹫宫小说锚点 · H</title></path>
 <path id="ch06-sect_riyue" data-map-id="sect_riyue" class="sect" opacity="0.48" d="M2523.03 1483.95 L2530.03 1491.95 L2523.03 1499.95 L2516.03 1491.95 Z"><title>日月神教 · 河北黑木崖小说锚点（待考） · H</title></path>
 <path id="ch06-sect_wuxian" data-map-id="sect_wuxian" class="sect" opacity="0.48" d="M1991.26 2354.66 L1998.26 2362.66 L1991.26 2370.66 L1984.26 2362.66 Z"><title>五仙教 · 云南五仙教小说锚点 · H</title></path>
@@ -2799,7 +2799,7 @@
 <text class="label sect-label" x="1137.72" y="2033.26">金乌派</text>
 <text class="label sect-label" x="2531.9" y="1769.27">玄素庄</text>
 <text class="label sect-label" x="2470.51" y="1757.35">金刀寨</text>
-<text class="label sect-label" x="2902.63" y="2001.61">长乐帮</text>
+<text class="label sect-label" x="2883.27" y="1846.98">长乐帮</text>
 <text class="label sect-label" x="2659.26" y="2650.27">侠客岛</text>
 <text class="label sect-label" x="2354.46" y="1814.66">移花宫</text>
 <text class="label sect-label" x="726.69" y="1465.04">恶人谷</text>
@@ -3210,7 +3210,7 @@
 <path id="ch07-sect_taibai" data-map-id="sect_taibai" class="sect" opacity="1" d="M2247.04 1757.53 L2254.04 1765.53 L2247.04 1773.53 L2240.04 1765.53 Z"><title>太白三英 · 太白山锚点（待考） · O</title></path>
 <path id="ch07-sect_gumu" data-map-id="sect_gumu" class="sect" opacity="0.48" d="M2304.48 1749.81 L2311.48 1757.81 L2304.48 1765.81 L2297.48 1757.81 Z"><title>古墓派 · 终南山活死人墓小说锚点 · H</title></path>
 <path id="ch07-sect_taohuadao" data-map-id="sect_taohuadao" class="sect" opacity="0.48" d="M3046.13 1944.95 L3053.13 1952.95 L3046.13 1960.95 L3039.13 1952.95 Z"><title>桃花岛 · 桃花岛 · H</title></path>
-<path id="ch07-sect_shiliang" data-map-id="sect_shiliang" class="sect" opacity="1" d="M2939.45 2010.21 L2946.45 2018.21 L2939.45 2026.21 L2932.45 2018.21 Z"><title>石梁温家 · 石梁温家锚点（待考） · O</title></path>
+<path id="ch07-sect_shiliang" data-map-id="sect_shiliang" class="sect" opacity="1" d="M2939.45 2010.21 L2946.45 2018.21 L2939.45 2026.21 L2932.45 2018.21 Z"><title>石梁温家 · 衢州府一带石梁温家（当前金华挂接，待考） · O</title></path>
 <path id="ch07-sect_hasake" data-map-id="sect_hasake" class="sect" opacity="0.48" d="M1030.66 965.01 L1037.66 973.01 L1030.66 981.01 L1023.66 973.01 Z"><title>哈萨克部族 · 伊犁草原季节营地 · H</title></path>
 <path id="ch07-sect_bohai" data-map-id="sect_bohai" class="sect" opacity="1" d="M3202.26 951.13 L3209.26 959.13 L3202.26 967.13 L3195.26 959.13 Z"><title>渤海派 · 渤海故地传承锚点（待考） · O</title></path>
 <path id="ch07-sect_gaibang" data-map-id="sect_gaibang" class="sect" opacity="1" d="M2490.61 1698.31 L2497.61 1706.31 L2490.61 1714.31 L2483.61 1706.31 Z"><title>丐帮 · 丐帮流动总舵 · O</title></path>

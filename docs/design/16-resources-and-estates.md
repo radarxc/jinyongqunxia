@@ -1,10 +1,10 @@
 # 16 · 资源、家业与营生（Resources, Estates & Livelihoods）
 
 > **归属（基准 §18，待 A3 补登记）**：资源类别与四阶九品、资源库存、资源点占领与经营、家丁、家业建设、城市营生、行脚 / 教头 / 客卿职位、赌场玩法，以及门派五级职级对应的月钱和资源配给。
-> **上游**：`docs/decisions/author-requirements.md` AR-04～AR-07、`docs/decisions/author-decisions.md` 的 G1 确认、`docs/00-canon.md` v1.1、`design/02-timeline-and-world-tiers.md`、`design/03-attributes.md`、`design/10-items-and-equipment.md`、`design/11-open-world.md`、`design/13-progression-and-endings.md`、`design/17-sects-compendium.md`、`design/18-npc-and-companions.md`。
-> **引用而不重定义**：区域、城市、时代图层及每书界数量预算 → `design/11`；城市坐标与历史名称 → `design/19` / `design/map/*.yaml`；物品、材料消费、锻造 / 炼丹 / 烹饪及价格 → `design/10`；门派职级、贡献、晋升、任务与经济总结构 → 尚未落盘的 `design/12-quests-npc-factions.md`；属性、技艺、声望与品德 → `design/03`；天书之力、成就与轮回 → `design/13`；NPC 身份与同伴 → `design/18`；界面表现 → `design/14-ui-ux-mobile.md`；数据与运行时实现 → `tech/04`、`tech/05`。当前副本已有 `design/14` 与 `tech/05`；本文以其现有界面 / 运行时接口为对接基线，并在 §17 列明正式 schema 同步项。当前仍无 `design/12`，因此门派晋升、关系与任务结构只给消费接口，不虚构章节号。
-> **标注约定**：**（原创扩展）** = 原著没有的系统或内容；**（待考）** = 原著 / 历史事实须按三联 / 广州修订版或可靠史料核对；**（待核实）** = 版本、价格、API、限额等技术事实尚未联网确认；**（待实测）** = 需真机或完整存档验证；**【建议值】** = 依赖尚未落盘的 `design/12` 或仍待 `design/14` / `tech/05` 同步的接口，先给可运行默认值，并在 §17.1 集中登记。
-> 版本：v1.1（审校 B7.R，2026-09-26）。
+> **上游**：`docs/decisions/author-requirements.md` AR-04～AR-07、AR-13，`docs/decisions/author-decisions.md` 的 G1 确认、`docs/00-canon.md` v1.1、`design/02-timeline-and-world-tiers.md`、`design/03-attributes.md`、`design/10-items-and-equipment.md`、`design/11-open-world.md`、`design/12-quests-npc-factions.md`、`design/13-progression-and-endings.md`、`design/17-sects-compendium.md`、`design/18-npc-and-companions.md`、`design/20-legacy-inheritance.md`。
+> **引用而不重定义**：区域、城市、时代图层及每书界数量预算 → `design/11`；城市坐标与历史名称 → `design/19` / `design/map/*.yaml`；物品、材料消费、锻造 / 炼丹 / 烹饪及价格 → `design/10`；门派职级、贡献、晋升、任务与经济总结构 → `design/12`；属性、技艺、声望与品德 → `design/03`；天书之力、成就与轮回 → `design/13`；NPC 身份与同伴 → `design/18`；跨年代传承源、缓存、残本、信物、挖掘进度与机会收据 → `design/20`，本文只承接家丁合同、排班和工作量；界面表现 → `design/14`；数据与运行时实现 → `tech/04`、`tech/05`。
+> **标注约定**：**（原创扩展）** = 原著没有的系统或内容；**（待考）** = 原著 / 历史事实须按三联 / 广州修订版或可靠史料核对；**（待核实）** = 版本、价格、API、限额等技术事实尚未联网确认；**（待实测）** = 需真机或完整存档验证；**【建议值】** = 依赖其他文档或实测的可运行默认值，并在 §17.1 集中登记。
+> 版本：v1.2（跨文档同步，2026-09-26）。
 
 ---
 
@@ -453,6 +453,10 @@ lost → acquiring → owned
 - 剧情暂时封锁用 `scriptLockedUntil`，不能伪装成玩家维护失败。
 - 取得、失去、重夺均写账簿事件；同一 tick 重复命令必须幂等。
 
+神雕 `dc_03_09` 的“焚契开路”消费本文的家业转交接口，不在剧情脚本里用模糊 selector 临场挑点。确认页先生成 `EstateSacrificeQuote`：候选必须是本界 `owned`、未被剧情锁且能正常产生收益的 `rp_*`；“最高收益”取候选在最近 30 游戏日已入账的净新增价值，未满 30 日则按当前冻结配置预演未来两个成熟周期的净值。并列最高项全部展示，由玩家明确选择一个 `pointRef`，确认后冻结 `quoteId + pointRef + quotedNetValueWen`。
+
+提交时 `sacrifice_resource_point` 与 `ch03.estate_sacrificed=true`、`ch03.anchor_fate=fate`、`ch03.fate_echo=true` 在同一上层任务事务中完成：结清截至确认 tick 的工资与维护，把未领取库存按预览选择转入撤离网络或留在点内，解除全部家丁排班，令该点退出玩家经营并停止余韵期收益，最后写唯一收据。点已不属玩家、报价过期、并列候选发生变化或任一步失败时整笔回滚，三个旗标均不得写入；重复提交只返回原收据。若没有合格候选，B 路不可确认，仍保留原著方案或满足剧情条件后的公开征用方案。该处转交只影响本界运行态，不创造跨书界产权。
+
 ### 5.6 开发五级
 
 | `L` | 名称 | 开放 | 开发倍率 `M_l` | 升到本级的成本 |
@@ -560,7 +564,7 @@ success when defenseScore + checkRoll ≥ riskScore
 
 `BS_COMMIT` 后按原子顺序处理本系统：
 
-1. 停止全部生产、职位与调运订单，不再生成末刻周期；
+1. 停止全部生产、职位与调运订单，先取消传承挖掘订单并释放排班，不再生成末刻周期；
 2. 生成只读“本界家业总账”并记成就里程碑；
 3. 清空银两、普通资源库存、点内暂存货、建筑运行态、家丁合同和未结职位；
 4. 将所有 `rp_*` 运行态卸载，下一界从其时代状态重新生成所有权；
@@ -649,6 +653,19 @@ boardingDiscount = 0 或 0.20（有合格居所与食宿）
 
 批量操作只能做“补齐工资、领取未冲突仓货、复用上一周期投入”；占领、解雇、危险加班、出售稀有资源必须二次确认。所有预估均使用与结算相同函数；不允许 UI 展示一套收益、后台再套隐藏倍率。
 
+### 7.8 传承挖掘订单适配
+
+传承源、缓存、`requiredProgress/progress`、机会结果、残本、信物与源收据唯一归 `design/20` §6、§10～§12；本文只把已生效的家丁合同接入排班并计算每块工作量。玩家须先定位一个 `estateAssist=true` 的缓存，之后才可建立订单；独行玩家始终可按 `design/20` 手挖，家丁不是付费门槛。
+
+```text
+shiftWork = 10 + floor((production + relevantSkill) / 10)  // 每人每块 10..30
+teamWork  = sum(shiftWork)                                 // 至多 1 主管 + 2 助手
+```
+
+`relevantSkill` 只读订单指定的 `mining/carpentry/guarding` 等 §7.3 专业键；最多 3 名合同有效且同地的家丁，并复用十二时辰排班锁。`settle_legacy_excavation` 先用 `chapterId+cacheId+workIndex` 幂等结算每名家丁贡献，再把唯一工作量收据交给 `design/20` helper 推进进度；不得直接发残本 / 信物、重掷机会或替玩家开匣、作道德选择、完成校合。
+
+例：三人 `production/relevantSkill` 为 `60/50`、`40/30`、`30/20` 时，每块分别 `10+floor(110/10)=21`、`17`、`15`，合计 53；`requiredProgress=160` 的建议缓存三块只有 `53×3=159`，仍须第四块至少补 10，不能提前结算。书眠先以 `reason=sleep` 取消所有活动订单、释放排班并通知 `design/20` 清除未完成缓存进度；家丁合同再按 §6.6 清理。已经入匣的残本、信物与源收据仍由 `design/20` 的窄白名单保留，本文不得删除。
+
 ---
 
 ## 8. 城市营生：场所、职位、职责与报酬
@@ -719,6 +736,8 @@ keqingMonth  = round10(I(ch) × 0.35h × F × dutyRatio × 1000)
 dutyRatio    = completedRequiredBlocks / requiredBlocks             // clamp 0..1
 outcomeMul   = 0 / 0.60 / 1.00 / 1.20                               // 失败 / 部分 / 成功 / 额外目标
 ```
+
+`settle_job_contract` 只消费合同域已经冻结的 `outcome`，不由任务终态名称猜结果。映射固定如下：`partial` 按 `outcomeMul=0.60` 支付并把单次合同记为 `completed`，它不是违约；`success/bonus` 分别按 1.00 / 1.20 支付并记 `completed`；只有明确失败、违约或货物不可追索的 `failure` 才记 `breached` 并按 0 支付。`ended` 专供正常解约、到期且无待结职责或书眠关闭，不得把“部分完成”塞入 `ended`。月约按职责比结算当月后仍可保持 `active`；合同最终关闭时再依上述规则转态。
 
 例：天龙 `I=19`，普通镖局一趟预计 20 分钟的危险行脚，成功得 `19×20/60×1×1.25=7.916… 两`，按最近 10 文取整为 7.92 两；同局教头足额月薪 3.80 两，客卿 6.65 两。倚天对应 191.67 / 92 / 161 两；相对游戏时间负担相同。
 
@@ -1186,6 +1205,7 @@ type ResourcePointId = Brand<`rp_${string}`, 'ResourcePointId'>;
 type ServantId = Brand<`sv_${string}`, 'ServantId'>;
 type BusinessId = Brand<`biz_${string}`, 'BusinessId'>;
 type JobId = 'job_xingjiao' | 'job_jiaotou' | 'job_keqing';
+type LegacyCacheId = Brand<`cache_${string}`, 'LegacyCacheId'>; // 定义归 design/20，此处仅作引用
 
 type ResourceTier = 'huang' | 'xuan' | 'di' | 'tian';
 type ResourceRank = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
@@ -1278,6 +1298,7 @@ interface ResourcePointState {
   lastSettlementTick: number;
   investmentTier: 0 | 1 | 2 | 3;
   arrearsWen: number; scriptLockedUntil?: number;
+  beneficiaryKey?: string; sacrificeReceiptKey?: string; // 剧情永久转交后的本界审计字段
   rngCursor: number;
 }
 
@@ -1290,6 +1311,11 @@ interface ResourceSettlement {
   budgetRemainingBeforeWen: number;
   eventMultiplier: number;
   ledgerTransactionId: string;
+}
+
+interface EstateSacrificeQuote {
+  quoteId: string; chapterId: ChapterId; pointRef: ResourcePointId;
+  quotedNetValueWen: number; generatedAtTick: number; expiresAtTick: number;
 }
 ```
 
@@ -1331,11 +1357,17 @@ interface BusinessDef {
 interface JobContractState {
   contractId: string; jobRef: JobId; businessRef: BusinessId; chapterId: ChapterId;
   state: 'active' | 'completed' | 'breached' | 'ended'; requiredBlocks: number; completedBlocks: number;
+  outcome?: 'failure' | 'partial' | 'success' | 'bonus';
   startDay: number; endDay: number; rewardBucket: 'business';
 }
 interface EstateCareerState {
   jobContracts: JobContractState[];
   activeKeqingContractId?: string; estateValueCreatedWen: number; // 均为本书界状态；前者全存档至多一个活动值
+}
+interface LegacyExcavationOrder {
+  orderId: string; chapterId: ChapterId; cacheId: LegacyCacheId;
+  servantRefs: ServantId[]; specialty: string; day: number; blocks: ScheduleBlock[];
+  nextWorkIndex: number; state: 'active' | 'completed' | 'cancelled';
 }
 interface SectStipendTier { tier: 1|2|3|4|5; cashHourEq: number; resourceHourEq: number; requiredBlocks: number; }
 interface SectLedger {
@@ -1350,7 +1382,7 @@ interface SectLedger {
 
 ### 14.4 任务 DSL 条件扩展（交 `tech/05`）
 
-尚未落盘的 `design/12` 定义任务结构；现有 `tech/05` §10 使用 provisional `QuestCondition/QuestIntent`，须按本文联合类型升版迁移。本文只给资源 / 营生域的判别联合；条件必须纯读、无副作用：
+`design/12` 定义任务结构；现有 `tech/05` §10 使用 provisional `QuestCondition/QuestIntent`，须按本文联合类型升版迁移。本文只给资源 / 营生域的判别联合；条件必须纯读、无副作用：
 
 ```ts
 type EstateCondition =
@@ -1362,6 +1394,8 @@ type EstateCondition =
   | { kind: 'job_duty_ratio_at_least'; contractId: string; ratio: number }
   | { kind: 'keqing_slot_free' }
   | { kind: 'schedule_blocks_free'; day: number; blocks: ScheduleBlock[] }
+  | { kind: 'estate_sacrifice_quote_valid'; quoteId: string; pointRef: ResourcePointId }
+  | { kind: 'legacy_excavation_order_active'; orderId: string; cacheId: LegacyCacheId }
   | { kind: 'membership_rank_at_least'; sectRef: SectId; level: 1|2|3|4|5 }
   | { kind: 'economy_budget_remaining'; bucket: EconomyLot['sourceBucket']; minWen: number };
 ```
@@ -1384,6 +1418,10 @@ type EstateAction =
   | { kind: 'reserve_schedule_blocks'; ownerRef: string; day: number; blocks: ScheduleBlock[] }
   | { kind: 'settle_resource_cycle'; pointRef: ResourcePointId; expectedCycleIndex: number }
   | { kind: 'settle_job_contract'; contractId: string }
+  | { kind: 'sacrifice_resource_point'; quoteId: string; pointRef: ResourcePointId; beneficiaryKey: string; receiptKey: string }
+  | { kind: 'legacy_assign_excavation'; cacheId: LegacyCacheId; servantRefs: ServantId[]; day: number; blocks: ScheduleBlock[]; specialty: string }
+  | { kind: 'settle_legacy_excavation'; cacheId: LegacyCacheId; expectedWorkIndex: number; receiptKey: string }
+  | { kind: 'cancel_legacy_excavation'; cacheId: LegacyCacheId; reason: 'manual' | 'unsafe' | 'sleep' }
   | { kind: 'settle_membership_stipend'; sectRef: SectId; economyMonth: number }
   | { kind: 'record_estate_milestone'; key: 'estate_four_types_level5' };
 ```
@@ -1394,10 +1432,12 @@ type EstateAction =
 2. `consume_resource` 先冻结 lot，再扣数量；中途失败恢复原 lot，不能只恢复总数而丢来源。
 3. `start_job_contract(job_keqing)` 必须在同一事务确认“活动客卿合同数 = 0 且 `activeKeqingContractId` 为空”，再插入合同并设置该键；结束该合同须同时清空键。读档校验要求：0 份活动客卿合同时键必为空，1 份时键必须等于其 `contractId`，多于 1 份直接拒绝；并发两个签约请求只允许一个成功。
 4. `reserve_schedule_blocks` 使用“检查 + 写入”同一事务；冲突返回明确占用者。
-5. `settle_*` 带幂等键 `chapterId + objectId + periodIndex`；重复调用返回原结果，不重复发钱。
+5. `settle_*` 带幂等键 `chapterId + objectId + periodIndex`；重复调用返回原结果，不重复发钱。`settle_job_contract(partial)` 支付 60% 后落 `completed`；`breached` 只对应明确失败 / 违约，`ended` 只对应正常关闭。
 6. `set_resource_point_level` 只允许相邻升级或由脚本显式降级；不能从 L1 越到 L5 绕过成本。
-7. 书眠开始后拒绝新的合同 / 结算；`BS_COMMIT` 只执行一次清理，崩溃恢复仍幂等。
-8. 任何 DSL 动作不得直接写 `morality/fame/sectRelation`；应发业务事件，由其归属系统依上下文处理。
+7. `sacrifice_resource_point` 必须重验有效报价和明确 `pointRef`，并与剧情旗标处于同一上层事务；先转交点、停收益并写收据，任一步失败则旗标与点状态一起回滚。
+8. `legacy_assign_excavation` 至多 3 人并复用排班锁；结算只返回工作量收据。`cancel_legacy_excavation` 必须释放全部相关时辰块，不能删除 `design/20` 已保留的残本、信物或源收据。
+9. 书眠开始后拒绝新的合同 / 结算；`BS_COMMIT` 先取消传承挖掘订单，再只执行一次常规清理，崩溃恢复仍幂等。
+10. 任何 DSL 动作不得直接写 `morality/fame/sectRelation`；应发业务事件，由其归属系统依上下文处理。
 
 ---
 
@@ -1460,6 +1500,10 @@ type EstateAction =
 | `estateValueCreatedWen` | 存档字段 | 本界资源点累计净新增价值，整数文 |
 | `ScheduleBlock` | 逻辑类型 | 十二时辰键的联合类型，供 YAML 和 TS 排班共同使用 |
 | `transfer_resource` | DSL 动作键 | 在背包、家业总仓与指定点仓间搬运资源；保留来源 lot，不创造新价值 |
+| `EstateSacrificeQuote` | 事务报价 | 为剧情牺牲冻结明确资源点、净收益口径与有效期；禁止运行时模糊挑点 |
+| `LegacyExcavationOrder` | 适配状态 | 仅保存家丁、排班和工作索引；缓存进度及奖励归 `design/20` |
+| `sacrifice_resource_point` | DSL 动作键 | 原子转交指定家业、停止后续收益并写幂等收据 |
+| `legacy_assign_excavation` / `settle_legacy_excavation` / `cancel_legacy_excavation` | DSL 动作键组 | 分配、结算或取消家丁传承挖掘工作，不负责最终开匣 |
 
 这些是代码事件 / 字段键，不占基准 `ev_<NN>_<拼音>` 的剧情事件命名空间；若章节要监听并形成剧情节点，应另建合法 `ev_*`，再从业务事件桥接。
 
@@ -1486,11 +1530,14 @@ type EstateAction =
 | BIZ-V01 | 进入生产包的 `biz_*` 其城市、类别、时代入口有效且 `entrancePoiRef` 非空；280 只计 casino / escort / manor | 构建失败 |
 | BIZ-V02 | `job_keqing` 只在 escort / manor；活动客卿合同为 0 份时唯一键必为空、为 1 份时唯一键必须恰指向它、多于 1 份非法；教头合同可多份，但已占用日程块不可重叠 | 构建失败 |
 | BIZ-V03 | 所有报酬有唯一 `economySource`；赌博无借贷且下注 / 日赢 / 本界预算不超限 | 构建失败 |
+| BIZ-V04 | 合同部分完成按 0.60 支付并落 `completed`；`breached` 仅用于明确失败 / 违约，`ended` 仅用于正常关闭 | 构建失败 |
 | SECT-V01 | 每个门派恰有 L1～L5，`stipendTier/resourceTier` 与 level 同为 1～5 | 构建失败 |
 | SECT-V02 | 每界活动掌门位 ≤1；配给不含天材 / 唯一物 / 秘籍正文 | 构建失败 |
 | ECO-V01 | 七类收入份额之和精确 100%；逐界 `B=I×H`，各行分桶和等于 B（仅显示取整误差） | 构建失败 |
 | ECO-V02 | 同一 `transactionId` 只产生一次新经济价值；transfer / 本金返还不得计收入 | 构建失败 |
 | SLEEP-V01 | 书眠清空资源运行态；只保留明列学识 / 图鉴 / 里程碑，不由成就恢复资产 | 构建失败 |
+| STORY-V01 | 家业牺牲必须引用有效 `EstateSacrificeQuote` 与明确 `pointRef`；点转交、停收益、收据和剧情旗标同事务 | 构建失败 |
+| LEGACY-V01 | 传承挖掘订单至多 3 名有效合同家丁，专业与十二时辰排班合法；本域不得发残本、信物或改机会结果 | 构建失败 |
 
 ### 16.2 公式单元测试
 
@@ -1513,6 +1560,7 @@ type EstateAction =
 | BIZ-T02 | 已有 A 镖局客卿，直接签 B 山庄客卿 | 拒绝；先结束 A 合同 |
 | BIZ-T03 | 两份教头合同授课都在同一块 | 合同可共存，但只可完成一堂；另一堂改期 / 缺席 |
 | BIZ-T04 | 存档有两份活动客卿合同，或唯一键指向教头 / 已结束合同 | 构建 / 读档修复拒绝进入玩法；不得任取一份静默覆盖 |
+| BIZ-T05 | 单次行脚结果为 `partial`，按同一幂等键重复结算 | 只支付一次 `0.60×` 报酬，合同状态为 `completed`，不写 `breached/ended` |
 | CAS-T01 | 三骰大小枚举 216 种 | 小 105、大 105、豹子 6；单边期望 −2.78% |
 | CAS-T02 | 天龙当日已净赢 1.70 两，再赢 0.50 两 | 仅结算至 1.90 两；其余不转资产 |
 | SECT-T01 | 天龙 L3，完成 3 / 4 职责 | 现金 1.43 两，资源额度上限 997 文，总值 ≤2.427 两 |
@@ -1521,6 +1569,9 @@ type EstateAction =
 | ECO-T02 | 倚天 `I=460,H=15` | `B=6900`，新增四桶和 1725=25% |
 | ECO-T03 | 买 10 两货再卖 4 两 | 新经济价值 0；只记录消费与资产实现 |
 | SLEEP-T01 | 有银两、库存、L5 点、家丁、客卿，触发书眠 | 新界均无；配方 / 图鉴 / 里程碑仍在 |
+| STORY-T01 | 神雕 B 路报价后点权属改变，或转交事务第任一步失败 | 拒绝 / 全回滚；`estate_sacrificed/anchor_fate/fate_echo` 均不写 |
+| LEGACY-T01 | 三名家丁每块贡献 21/17/15，缓存门槛 160 | 三块为 `53×3=159`，第四块才完成；同 `workIndex` 重放不增进度 |
+| SLEEP-T02 | 有活动传承挖掘订单、缓存进度 80/160、两卷一信物后书眠 | 取消订单并释放排班、缓存进度清零；两卷、信物与源收据按 `design/20` 保留 |
 
 ### 16.3 性质测试与并发测试
 
@@ -1531,7 +1582,7 @@ type EstateAction =
 5. 同时领取一个资源周期 100 次，只产生一个账簿事务与一批资源。
 6. 在原子结算步骤 1～9 每一步注入崩溃，恢复后结果等于完整执行一次，无负库存、无重复工资 / 产出。
 7. 随机排 1,000 个职责，任何 NPC / 玩家同一日程块最多一个占用；取消后块可复用。
-8. 书眠前后做全状态 diff：白名单外所有 `ResourcePointState/ServantContractState/JobContractState/ResourceStack/SectLedger` 均不进入新界。
+8. 书眠前后做全状态 diff：白名单外所有 `ResourcePointState/ServantContractState/JobContractState/LegacyExcavationOrder/ResourceStack/SectLedger` 均不进入新界；传承匣白名单只由 `design/20` 判定。
 
 ### 16.4 内容人工抽查
 
@@ -1551,7 +1602,7 @@ type EstateAction =
 
 | 编号 | 下游 | 本文采用的可运行默认 |
 |---|---|---|
-| D16-D01 | `design/14` | 家业总仓初始 40 格，可扩 80 / 120；点仓 `6+2L`；四层管理页与 12 时辰排班 |
+| D16-D01 | `design/14` | **已解决：**家业四层管理页、两周期囤积、十二时辰排班、公私账与未来 30 日冲突预览见 `design/14` §4.13 |
 | D16-D02 | `design/12` | 运输费、地区供需 0.80～1.25、市场饱和 1/0.9/0.75/0.6 与 30 日恢复 |
 | D16-D03 | `design/12` | 资源点购买成本 `[0.30h/0.60h/1.00h]×I`；行脚社交试差失败冷却 3 日 |
 | D16-D04 | `design/12` | 点周期需 2 职责块；教头 / 客卿月需 4 / 6 块；可预见冲突与请假 / 改期 |
@@ -1560,6 +1611,7 @@ type EstateAction =
 | D16-D07 | `design/12` / 章节 | 赌场上限、20 局休息提示、隐藏赌博入口；消息必须有不下注路径 |
 | D16-D08 | `tech/04` | §13～§14 逻辑 schema、拼音类别键、正式职位键和来源 lot |
 | D16-D09 | `tech/05` | §14.4～§14.6 的条件 / 动作、事务、幂等与排班冲突规则 |
+| D16-D10 | `design/20` / `tech/05` | **已解决（设计接口）：**传承挖掘工作量、最多 3 人、排班与书眠取消见 §7.8、§14；实现仍待 `tech/05` |
 
 ### 17.2 本文依赖的上游事实
 
@@ -1574,8 +1626,9 @@ type EstateAction =
 | `design/13` | 成就、书眠、天书之力与运行态边界 | 已解决：见 §6.6、§12.6 |
 | `design/17` | L1～L5、`stipendTier/resourceTier` | 已解决：金额与配给见 §10 |
 | `design/18` | 设施 NPC、D2、床位、替班 | 已解决：经营合同覆盖值见 §7 |
-| 尚未落盘的 `design/12` | 门派晋升、贡献、任务结构、关系与完整经济 | 本文给消费接口，不虚构章节号 |
-| `design/14` | 家业 / 职位 / 掌门手机界面 | 已有 WF-14-13/14 与暂定视图模型；须按本文正式数值、全局客卿唯一键和公私账边界同步 |
+| `design/12` | 门派晋升、贡献、任务结构、关系与完整经济 | 已解决：任务层只消费本文 `EstateCondition/EstateAction`，月钱传 `stipendTier/resourceTier=1..5`；见 `design/12` §2、§6、§9 |
+| `design/14` | 家业 / 职位 / 掌门手机界面 | 已解决：正式数值、全局客卿唯一键、公私账、十二时辰与传承挖掘预览见 `design/14` §4.13～§4.14、§5.2 |
+| `design/20` | 传承缓存、家丁代挖与书眠窄白名单 | 已解决：本文只承接排班 / 工作量 / 取消钩子，源状态、残本、信物和收据仍归 20；见 §7.8、§14 |
 | `tech/05` | 任务解释器 | 已有 §10～§11 provisional 契约；须迁移职位键、状态树、条件 / 动作与结算幂等规则 |
 
 ### 17.3 对基准的修改提案
