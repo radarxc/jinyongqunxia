@@ -35,6 +35,7 @@ CANON_WITH_PREFIXES = """# Canon
 | 地形 | `tr_<pinyin>` |
 | 成就 | `ach_<pinyin>` |
 | 城市 | `city_<pinyin>` |
+| 区域 | `rg_<pinyin>` |
 | 场景 | `sc_<pinyin>` |
 | 穴道 | `ap_<pinyin>` |
 | 范围 | `aoe_<pinyin>` |
@@ -42,6 +43,8 @@ CANON_WITH_PREFIXES = """# Canon
 | 营生 | `biz_<pinyin>` |
 | 选择 | `dc_<pinyin>` |
 | 视频 | `vid_<pinyin>` |
+| 路线 | `route_<pinyin>` |
+| 经脉 | `mer_<pinyin>` |
 | 测试扩展 | `zz_<pinyin>` |
 
 ## 13. 其他
@@ -79,6 +82,10 @@ class TemporaryRepository:
     def add_support_files(self) -> None:
         self.write(check_ids.CANON_REL, CANON_WITH_PREFIXES)
         self.write(check_ids.RULINGS_REL, RULINGS_WITH_RENAME)
+        self.write(
+            "tools/lint/check_ids_near_allowlist.json",
+            '{"schema_version": 1, "pairs": []}\n',
+        )
 
 
 def occurrence(identifier: str, file: str, line: int = 1) -> check_ids.Occurrence:
@@ -580,6 +587,91 @@ stages:
         undefined = {item["id"] for item in report["issues"]["undefined_references"]}
         self.assertIn("set_allowed_flag", undefined)
 
+    def test_declared_action_and_modifier_keys_are_not_set_ids(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/07-set-system.md",
+                "# 套装\n\n### 9.1 `set_real` 真套装\n\n"
+                "| 项 | 定稿 |\n|---|---|\n| 成员（1） | `sk_alpha` |\n",
+            )
+            repo.write(
+                "docs/design/03-attributes.md",
+                "# 属性\n\n修饰族 `flat_mov` / `pct_mov` / `set_mov`。\n"
+                "真实套装漏项 `set_missing`。\n",
+            )
+            repo.write(
+                "docs/design/12-quests-npc-factions.md",
+                "# 任务\n\n```yaml\n"
+                "allowedEffects: [affinity_delta, set_allowed_flag]\n```\n"
+                "效果操作仍称 `set_allowed_flag`。\n",
+            )
+            repo.write(
+                "docs/design/16-resources-and-estates.md",
+                "# 资源\n\n```ts\ntype Action =\n"
+                "  | { kind: 'set_resource_point_ownership' }\n"
+                "  | { kind: 'set_resource_point_level' };\n```\n"
+                "动作 `set_resource_point_level` 只允许相邻升级。\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertTrue(
+            {"set_mov", "set_allowed_flag",
+             "set_resource_point_ownership",
+             "set_resource_point_level"}.isdisjoint(undefined)
+        )
+        self.assertIn("set_missing", undefined)
+
+    def test_migration_negative_and_fixture_contexts_are_not_live(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/11-open-world.md",
+                "# 世界\n\n### 2.3 旧区到新区迁移\n\n"
+                "| W1 旧区 | 本文定稿区 |\n|---|---|\n"
+                "| `rg_legacy` | `rg_current` |\n\n"
+                "## 3. 活跃正文\n\n错误继续使用 `rg_legacy`。\n",
+            )
+            repo.write(
+                "docs/decisions/canon-proposals-v1.2.md",
+                "# 提案\n\n| 编号 | 提案 | 结论 |\n|---|---|---|\n"
+                "| CP-45 | 恢复 `q_08_main_01` | 不采纳 |\n",
+            )
+            repo.write(
+                "docs/design/12-quests-npc-factions.md",
+                "# 任务\n\n```yaml\nschemaVersion: quest.v1\nfixture: true\n"
+                "id: q_08_main_02\n```\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"]: item for item in report["issues"]["undefined_references"]}
+        self.assertEqual(1, undefined["rg_legacy"]["references"])
+        self.assertNotIn("rg_current", undefined)
+        self.assertNotIn("q_08_main_01", undefined)
+        self.assertNotIn("q_08_main_02", undefined)
+
+    def test_route_state_keys_are_not_blanket_exempted(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/map/routes.yaml",
+                '{"routes": [{"id": "route_city_bridge"}]}\n',
+            )
+            repo.write(
+                "docs/design/story/04-demo.md",
+                "# 剧情\n\n活动状态 `route_04`、`route_zheng`；"
+                "地图路线 `route_city_bridge`。\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertTrue({"route_04", "route_zheng"} <= undefined)
+        self.assertNotIn("route_city_bridge", undefined)
+
     def test_asset_owner_defines_three_finale_videos_in_one_catalog_cell(self) -> None:
         with TemporaryRepository() as repo:
             repo.add_support_files()
@@ -747,6 +839,75 @@ class IssueCategoryTests(unittest.TestCase):
         self.assertEqual("bs_boss", issues[0]["old_id"])
         self.assertEqual("bsc_boss", issues[0]["replacement"])
 
+    def test_category_4_parses_set_19_merge_and_delete_destinations(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            set_path = repo.write(
+                check_ids.SET_SYSTEM_REL,
+                """# 套装
+
+## 19. 候选收敛与去向
+
+### 19.2 合并到正式套装
+
+| 原候选 | 去向 | 理由 |
+|---|---|---|
+| `set_old_a`、`set_old_b` | 并入 `set_final_a`／`set_final_b` | 重叠 |
+
+### 19.3 删除：成员不足或延后
+
+| 图鉴 | 未入选候选（逐项） | 去向／理由 |
+|---|---|---|
+| 示例 | `set_old_c` | 删除；留未来扩展 |
+""",
+            )
+            active = repo.write(
+                "docs/design/05-martial-arts-system.md",
+                "# 武学\n\n仍引用 `set_old_a` 与 `set_old_c`。\n",
+            )
+            warnings: List[str] = []
+            prefixes = list(check_ids.DEFAULT_PREFIXES)
+            regex = check_ids.compile_id_regex(prefixes)
+            set_doc = check_ids.load_document(set_path, repo.root, warnings)
+            active_doc = check_ids.load_document(active, repo.root, warnings)
+            self.assertIsNotNone(set_doc)
+            self.assertIsNotNone(active_doc)
+
+            rules = check_ids.parse_set_deprecation_rules(set_doc, regex)  # type: ignore[arg-type]
+            issues = check_ids.old_id_issues([set_doc, active_doc], rules)  # type: ignore[list-item]
+
+        self.assertEqual(3, len(rules))
+        replacements = {rule.old: rule.new for rule in rules}
+        self.assertEqual("set_final_a / set_final_b", replacements["set_old_a"])
+        self.assertEqual("删除 / 延后", replacements["set_old_c"])
+        self.assertEqual(["set_old_a", "set_old_c"], [item["old_id"] for item in issues])
+
+    def test_deprecated_set_is_not_also_reported_as_undefined(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                check_ids.SET_SYSTEM_REL,
+                "# 套装\n\n## 19. 候选收敛与去向\n\n"
+                "### 19.3 删除\n\n| 图鉴 | 未入选候选 | 去向 |\n"
+                "|---|---|---|\n| 示例 | `set_retired` | 删除 |\n",
+            )
+            repo.write(
+                "docs/design/05-martial-arts-system.md",
+                "# 武学\n\n活动正文引用 `set_retired`。\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        self.assertNotIn(
+            "set_retired",
+            {item["id"] for item in report["issues"]["undefined_references"]},
+        )
+        self.assertEqual(
+            [("set_retired", "删除 / 延后")],
+            [(item["old_id"], item["replacement"])
+             for item in report["issues"]["deprecated_ids"]],
+        )
+
     def test_category_5_reports_both_set_membership_directions(self) -> None:
         with TemporaryRepository() as repo:
             repo.add_support_files()
@@ -754,11 +915,13 @@ class IssueCategoryTests(unittest.TestCase):
                 check_ids.SET_SYSTEM_REL,
                 """# 套装
 
-## 1. SetDef
+## 9. 正式目录
 
-| ID | 成员 |
+### 9.1 `set_demo` 示例套装
+
+| 项 | 定稿 |
 |---|---|
-| `set_demo` | `sk_alpha`、`sk_beta` |
+| 成员（2） | `sk_alpha`、`sk_beta` |
 """,
             )
             catalog_path = repo.write(
@@ -796,6 +959,182 @@ class IssueCategoryTests(unittest.TestCase):
             },
             {(item["direction"], item["set_id"], item["member_id"]) for item in issues},
         )
+
+    def test_member_tags_survive_later_summaries_and_parse_bold_cards(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            set_path = repo.write(
+                check_ids.SET_SYSTEM_REL,
+                "# 套装\n\n## 9. 正式目录\n\n"
+                "### 9.1 `set_demo` 示例套装\n\n"
+                "| 项 | 定稿 |\n|---|---|\n"
+                "| 成员（2） | `sk_alpha`、`sk_beta` |\n",
+            )
+            catalog_path = repo.write(
+                "docs/design/catalog/skills-test.md",
+                "# 图鉴\n\n## 1. 完整卡\n\n"
+                "### 1.1 `sk_alpha` 甲\n\n"
+                "| 字段 | 值 |\n|---|---|\n"
+                "| setTags | `[set_demo]` |\n\n"
+                "**`sk_beta` 乙**（玄阶）\n"
+                "- **字段**：`setTags:[set_demo]`。\n\n"
+                "#### 1.3 丙 `sk_gamma`（用户示例套装成员）\n\n"
+                "```yaml\nid: sk_gamma\nname: 丙\n"
+                + "notes:\n" + "  - 说明\n" * 85
+                + "setTags: [set_demo]\n```\n\n"
+                "## 2. ID 清单\n\n"
+                "| ID | 名称 |\n|---|---|\n"
+                "| `sk_alpha` | 甲 |\n| `sk_beta` | 乙 |\n| `sk_gamma` | 丙 |\n",
+            )
+            warnings: List[str] = []
+            prefixes = list(check_ids.DEFAULT_PREFIXES)
+            regex = check_ids.compile_id_regex(prefixes)
+            documents = [
+                check_ids.load_document(path, repo.root, warnings)
+                for path in (set_path, catalog_path)
+            ]
+            loaded = [doc for doc in documents if doc is not None]
+            _, definitions = check_ids.extract_occurrences(loaded, prefixes, regex)
+
+            issues, _ = check_ids.set_symmetry_issues(
+                repo.root, loaded, definitions, regex, warnings
+            )
+
+        self.assertEqual(
+            [("set_missing_member", "sk_gamma")],
+            [(item["direction"], item["member_id"]) for item in issues],
+        )
+        tags = check_ids.parse_member_set_tags(loaded, definitions, regex)
+        self.assertEqual({"set_demo"}, tags["sk_gamma"][0])
+
+    def test_real_set_catalog_has_44_sets_and_306_memberships(self) -> None:
+        root = Path(__file__).resolve().parents[2]
+        warnings: List[str] = []
+        prefixes, _ = check_ids.parse_prefixes(root / check_ids.CANON_REL, warnings)
+        regex = check_ids.compile_id_regex(prefixes)
+        doc = check_ids.load_document(root / check_ids.SET_SYSTEM_REL, root, warnings)
+        self.assertIsNotNone(doc)
+
+        sets = check_ids.parse_set_definitions(doc, regex)  # type: ignore[arg-type]
+
+        self.assertEqual(44, len(sets))
+        self.assertEqual(306, sum(len(members) for members, _ in sets.values()))
+        self.assertEqual(
+            {"sk_longzhaoshou", "sk_yijinjing",
+             "sk_tieshazhang", "sk_tongrenhenglian"},
+            sets["set_shaolin_jingang"][0],
+        )
+        deprecated = check_ids.parse_set_deprecation_rules(doc, regex)  # type: ignore[arg-type]
+        self.assertEqual(119, len(deprecated))
+
+    def test_set_parser_ignores_yaml_example_and_section_19(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            set_path = repo.write(
+                check_ids.SET_SYSTEM_REL,
+                """# 套装
+
+## 2. 数据结构
+
+```yaml
+id: set_example
+members: [sk_wrong]
+```
+
+## 9. 正式目录
+
+### 9.1 `set_final` 正式套装
+
+| 项 | 定稿 |
+|---|---|
+| 成员（2） | `sk_alpha`、`eq_beta` |
+
+## 19. 候选收敛与去向
+
+| 原候选 | 去向 |
+|---|---|
+| `set_retired` | `set_final` |
+""",
+            )
+            warnings: List[str] = []
+            regex = check_ids.compile_id_regex(check_ids.DEFAULT_PREFIXES)
+            doc = check_ids.load_document(set_path, repo.root, warnings)
+            self.assertIsNotNone(doc)
+
+            sets = check_ids.parse_set_definitions(doc, regex)  # type: ignore[arg-type]
+
+        self.assertEqual({"set_final"}, set(sets))
+        self.assertEqual({"sk_alpha", "eq_beta"}, sets["set_final"][0])
+
+    def test_near_match_allowlist_suppresses_only_declared_pairs(self) -> None:
+        occurrences = [
+            occurrence("npc_sangjie", "docs/a.md", 1),
+            occurrence("npc_sangsi", "docs/a.md", 2),
+            occurrence("npc_shijian", "docs/a.md", 3),
+            occurrence("npc_shixian", "docs/a.md", 4),
+        ]
+        definitions = [
+            check_ids.Definition(
+                "npc_sangjie", check_ids.Location("docs/a.md", 1, 1),
+                "桑结", "table",
+            ),
+            check_ids.Definition(
+                "npc_shijian", check_ids.Location("docs/a.md", 3, 1),
+                "侍剑", "table",
+            ),
+        ]
+        issues = check_ids.near_match_issues(
+            occurrences, definitions, list(check_ids.DEFAULT_PREFIXES),
+            {frozenset(("npc_sangjie", "npc_sangsi"))},
+        )
+
+        self.assertEqual([["npc_shijian", "npc_shixian"]],
+                         [item["ids"] for item in issues])
+
+    def test_near_match_ignores_alias_only_context_but_keeps_live_use(self) -> None:
+        legacy = check_ids.Occurrence(
+            id="npc_ningqiangdao",
+            location=check_ids.Location("docs/design/18-npc-and-companions.md", 10, 1),
+            context="旧 ID `npc_ningqiangdao` 迁为 `npc_songqiangdao`",
+            section="## 7.5 别名迁移",
+            h2="7. 迁移",
+            in_fence=False,
+        )
+        current = check_ids.Definition(
+            "npc_songqiangdao",
+            check_ids.Location("docs/design/catalog/npcs-ch10-14.md", 20, 1),
+            "姓宋的强人",
+            "table",
+        )
+
+        ignored = check_ids.near_match_issues(
+            [legacy], [current], list(check_ids.DEFAULT_PREFIXES), set()
+        )
+        live = check_ids.Occurrence(
+            id=legacy.id, location=legacy.location,
+            context="剧情仍生成 `npc_ningqiangdao`",
+            section="## 8. 活跃剧情", h2="8. 活跃剧情", in_fence=False,
+        )
+        reported = check_ids.near_match_issues(
+            [legacy, live], [current], list(check_ids.DEFAULT_PREFIXES), set()
+        )
+
+        self.assertEqual([], ignored)
+        self.assertEqual(
+            [["npc_ningqiangdao", "npc_songqiangdao"]],
+            [item["ids"] for item in reported],
+        )
+
+    def test_near_match_allowlist_loader_warns_on_invalid_file(self) -> None:
+        with TemporaryRepository() as repo:
+            path = repo.write("allow.json", '{"schema_version": 1, "pairs": [["one"]]}')
+            warnings: List[str] = []
+
+            pairs, status = check_ids.load_near_allowlist(path, warnings)
+
+        self.assertEqual(set(), pairs)
+        self.assertEqual("invalid", status)
+        self.assertTrue(any("near-match allowlist" in item for item in warnings))
 
 
 class CommandLineTests(unittest.TestCase):
@@ -870,6 +1209,74 @@ class CommandLineTests(unittest.TestCase):
         self.assertEqual([], payload["baseline"]["new_undefined_ids"])
         self.assertEqual([], payload["baseline"]["new_deprecated_ids"])
 
+    def test_strict_always_counts_conflicts_and_set_asymmetry(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                check_ids.SET_SYSTEM_REL,
+                "# 套装\n\n## 9. 正式目录\n\n"
+                "### 9.1 `set_demo` 示例套装\n\n"
+                "| 项 | 定稿 |\n|---|---|\n"
+                "| 成员（1） | `sk_alpha` |\n",
+            )
+            repo.write(
+                "docs/design/catalog/skills-test.md",
+                "# 图鉴\n\n| ID | 名称 | setTags |\n|---|---|---|\n"
+                "| `sk_alpha` | 甲 | — |\n",
+            )
+            repo.write(
+                "docs/design/catalog/npcs-a.md",
+                "# 人物\n\n| ID | 名称 |\n|---|---|\n| `npc_same` | 名甲 |\n",
+            )
+            repo.write(
+                "docs/design/catalog/npcs-b.md",
+                "# 人物\n\n| ID | 名称 |\n|---|---|\n| `npc_same` | 名乙 |\n",
+            )
+            repo.write(
+                check_ids.BASELINE_REL,
+                json.dumps({
+                    "schema_version": 1,
+                    "undefined_ids": [],
+                    "deprecated_ids": [],
+                }),
+            )
+            with mock.patch.object(check_ids, "repository_root", return_value=repo.root):
+                stdout = io.StringIO()
+                with redirect_stdout(stdout), redirect_stderr(io.StringIO()):
+                    exit_code = check_ids.main(["--json", "--strict"])
+
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(1, exit_code)
+        self.assertEqual(2, payload["strict_failure_count"])
+        self.assertEqual(1, payload["counts"]["conflicting_definitions"])
+        self.assertEqual(1, payload["counts"]["set_tag_asymmetry"])
+
+    def test_near_match_warning_does_not_fail_strict(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/18-npc-and-companions.md",
+                "# NPC\n\n| ID | 名称 |\n|---|---|\n"
+                "| `npc_shijian` | 侍剑 |\n\n引用 `npc_shixian`。\n",
+            )
+            repo.write(
+                check_ids.BASELINE_REL,
+                json.dumps({
+                    "schema_version": 1,
+                    "undefined_ids": ["npc_shixian"],
+                    "deprecated_ids": [],
+                }),
+            )
+            with mock.patch.object(check_ids, "repository_root", return_value=repo.root):
+                stdout = io.StringIO()
+                with redirect_stdout(stdout), redirect_stderr(io.StringIO()):
+                    exit_code = check_ids.main(["--json", "--strict"])
+
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(0, exit_code)
+        self.assertEqual(1, payload["counts"]["near_matches"])
+        self.assertEqual(0, payload["strict_failure_count"])
+
     def test_update_baseline_writes_full_scan_and_rejects_custom_paths(self) -> None:
         with self.make_repo_with_strict_findings() as repo:
             with mock.patch.object(check_ids, "repository_root", return_value=repo.root):
@@ -890,6 +1297,26 @@ class CommandLineTests(unittest.TestCase):
         self.assertEqual(["bs_boss"], baseline["deprecated_ids"])
         self.assertEqual(0o644, baseline_mode)
         self.assertEqual(2, reject_exit)
+
+    def test_baseline_payload_excludes_conflicts_asymmetry_and_near_matches(self) -> None:
+        payload = check_ids.baseline_payload({
+            "issues": {
+                "undefined_references": [{"id": "sk_missing"}],
+                "deprecated_ids": [{"old_id": "set_old"}],
+                "conflicting_definitions": [{"id": "it_same"}],
+                "set_tag_asymmetry": [{"set_id": "set_demo"}],
+                "near_matches": [{"ids": ["npc_a", "npc_b"]}],
+            }
+        })
+
+        self.assertEqual(
+            {
+                "schema_version": 1,
+                "undefined_ids": ["sk_missing"],
+                "deprecated_ids": ["set_old"],
+            },
+            payload,
+        )
 
 
 if __name__ == "__main__":

@@ -26,6 +26,7 @@ CANON_REL = "docs/00-canon.md"
 RULINGS_REL = "docs/decisions/rulings-v1.md"
 SET_SYSTEM_REL = "docs/design/07-set-system.md"
 BASELINE_REL = "tools/lint/check_ids_baseline.json"
+NEAR_ALLOWLIST_REL = "tools/lint/check_ids_near_allowlist.json"
 DATA_SOURCE_PATTERNS: Tuple[str, ...] = ("docs/design/map/*.yaml",)
 
 # Fallback only: the normal source of truth is Canon section 12.  Keep this
@@ -171,7 +172,18 @@ PROVISIONAL_LINE_RE = re.compile(
 PROVISIONAL_SECTION_RE = re.compile(
     r"待决事项|开放问题|对基准的修改提案|原著考据待办|参考资料|"
     r"数据校验规则与测试用例|重命名与同物去重|新增武学候选|建议地图|"
-    r"未收录项为建议|ID 与命名规则|未采纳的提案|变更记录",
+    r"未收录项为建议|ID 与命名规则|未采纳的提案|变更记录|"
+    r"候选收敛与去向|短 ID 迁移|Schema 迁移底线",
+    re.IGNORECASE,
+)
+MIGRATION_SECTION_RE = re.compile(
+    r"迁移|旧\s*ID|旧区|旧名|别名|alias|历史|不采纳|未采纳|候选收敛",
+    re.IGNORECASE,
+)
+NEGATED_REFERENCE_RE = re.compile(
+    r"不采纳|未采纳|拒绝|禁止|不得|不新增|不创建|不再允许|不进入|不属于|"
+    r"只作(?:为)?(?:迁移|读取)?(?:源|别名|输入)|只读\s*alias|"
+    r"旧(?:存档|值|键|ID|名)",
     re.IGNORECASE,
 )
 DEFINITION_BLOCK_RE = re.compile(r"仅引用|候选|占位|待收录|定义以.{0,20}为准|补充说明")
@@ -217,18 +229,6 @@ DERIVED_ID_PATTERNS: Tuple[re.Pattern[str], ...] = (
                r"booksleep_ch(?:0[1-9]|1[0-4])|wake_ch(?:0[1-9]|1[0-4])|"
                r"finale_(?:enter|j[1-6])|clear_[1-9][0-9]*|ironman)$"),
 )
-
-# Known intentional siblings/ranges.  Near-match detection is heuristic; these
-# pairs have documented distinct semantics and would otherwise be noisy.
-KNOWN_NEAR_MATCH_PAIRS: Set[frozenset[str]] = {
-    frozenset(("sk_yuenvjian", "sk_yunvjian")),
-    frozenset(("bf_hunshui", "bf_luoshui")),
-    frozenset(("bf_kuangshi", "bf_shangshi")),
-    frozenset(("bf_shangshi", "bf_yangshi")),
-    frozenset(("bf_shichen", "bf_shishen")),
-    frozenset(("bf_shiheng", "bf_shishen")),
-}
-
 
 @dataclass(frozen=True)
 class Location:
@@ -439,11 +439,6 @@ def compile_id_regex(prefixes: Sequence[str]) -> re.Pattern[str]:
 def looks_like_placeholder(identifier: str) -> bool:
     """Reject templates, schema fields, and incomplete ID examples."""
     if identifier in NON_CONTENT_ID_TOKENS:
-        return True
-    if re.fullmatch(
-        r"route_(?:\d{2}|zheng|xie|act_count_invalid|archive_sealed|examiner|locked_at)",
-        identifier,
-    ):
         return True
     if re.fullmatch(r"sv_runtime_\d+", identifier):
         return True
@@ -747,12 +742,69 @@ def fixture_task_ids(doc: Document) -> Set[str]:
     return result
 
 
+def operation_or_modifier_key(doc: Document, line_index: int, identifier: str) -> bool:
+    """Recognize schema operations that collide with the ``set_`` family.
+
+    This is declaration/context based: a key must occur in a documented
+    operation registry, a discriminator field, or the flat/pct/set modifier
+    triplet. Ordinary prose mentioning an arbitrary ``set_*`` stays live.
+    """
+    if not identifier.startswith("set_"):
+        return False
+    line = doc.lines[line_index]
+    section = doc.sections[line_index]
+    if doc.rel == "docs/design/03-attributes.md":
+        triplet = re.compile(
+            r"`flat_[a-z0-9_]+`?\s*/\s*`pct_[a-z0-9_]+`?\s*/\s*`(set_[a-z0-9_]+)`?"
+        )
+        if any(identifier in match.groups() for item in doc.lines for match in triplet.finditer(item)):
+            return True
+    if doc.rel == "docs/design/12-quests-npc-factions.md":
+        declaration = re.compile(
+            r"allowedEffects\s*:\s*\[[^]]*\b{}\b".format(re.escape(identifier))
+        )
+        if any(declaration.search(item) for item in doc.lines):
+            return True
+        if re.search(r"(?:estate|quest|flag)/{}\b".format(re.escape(identifier)), line):
+            return True
+    if doc.rel == "docs/design/16-resources-and-estates.md":
+        declaration = re.compile(
+            r"\bkind\s*:\s*['\"]{}['\"]".format(re.escape(identifier))
+        )
+        if any(
+            declaration.search(item) and "任务 DSL 动作扩展" in doc.sections[index]
+            for index, item in enumerate(doc.lines)
+        ):
+            return True
+        # A declared discriminator remains an operation when later prose in
+        # the same owner explains its invariant. The exact value is discovered
+        # from the union declaration above, not maintained as a token list.
+        if any(declaration.search(item) for item in doc.lines):
+            return True
+    if occurrence_is_discriminator_line(doc, line_index, identifier):
+        return True
+    return False
+
+
+def occurrence_is_discriminator_line(
+    doc: Document, line_index: int, identifier: str
+) -> bool:
+    if not doc.in_fence[line_index]:
+        return False
+    line = doc.lines[line_index]
+    quoted = re.escape(identifier)
+    return bool(re.search(
+        r"(?:\bkind\b|\bop\b|['\"]const['\"])\s*:\s*['\"]{}['\"]".format(quoted),
+        line,
+    ))
+
+
 def line_is_provisional(doc: Document, line_index: int) -> bool:
     line = doc.lines[line_index]
     section = doc.sections[line_index]
-    if PROVISIONAL_SECTION_RE.search(section):
+    if PROVISIONAL_SECTION_RE.search(section) or MIGRATION_SECTION_RE.search(section):
         return True
-    if PROVISIONAL_LINE_RE.search(line):
+    if PROVISIONAL_LINE_RE.search(line) or NEGATED_REFERENCE_RE.search(line):
         return True
     # The Canon naming table consists of syntax and examples, never live IDs.
     if doc.rel == CANON_REL and re.match(r"12(?:\.|\s)", doc.h2s[line_index]):
@@ -1197,6 +1249,8 @@ def extract_occurrences(
                     active=active_line(doc, line_index) and identifier not in example_ids,
                     local=identifier in local_ids[line_index],
                 )
+                if operation_or_modifier_key(doc, line_index, identifier):
+                    occurrence.active = False
                 definition = occurrence_definition(
                     occurrence, doc, line_index, ids, id_regex, prefixes
                 )
@@ -1329,6 +1383,12 @@ def non_live_reference(occurrence: Occurrence) -> bool:
     """Suppress explicit examples, proposals, and migration-only keys."""
     rel = occurrence.location.file
     line = occurrence.context
+    if MIGRATION_SECTION_RE.search(occurrence.section):
+        return True
+    if NEGATED_REFERENCE_RE.search(line):
+        return True
+    if operation_or_modifier_key_for_occurrence(occurrence):
+        return True
     # Chapter 14 deliberately ends in the separate finale asset family.  The
     # impossible adjacent-book token is retained in prose and acceptance tests
     # only to forbid its creation; do not turn that negative assertion into an
@@ -1400,6 +1460,28 @@ def non_live_reference(occurrence: Occurrence) -> bool:
     return False
 
 
+def operation_or_modifier_key_for_occurrence(occurrence: Occurrence) -> bool:
+    """Fallback for direct callers without a Document instance."""
+    if not occurrence.id.startswith("set_"):
+        return False
+    line = occurrence.context
+    if occurrence.location.file == "docs/design/03-attributes.md" and re.search(
+        r"flat_[a-z0-9_]+.*pct_[a-z0-9_]+.*\b{}\b".format(re.escape(occurrence.id)),
+        line,
+    ):
+        return True
+    if occurrence.location.file == "docs/design/12-quests-npc-factions.md" and re.search(
+        r"allowedEffects\s*:\s*\[[^]]*\b{}\b".format(re.escape(occurrence.id)), line
+    ):
+        return True
+    return bool(occurrence.in_fence and re.search(
+        r"(?:\bkind\b|\bop\b|['\"]const['\"])\s*:\s*['\"]{}['\"]".format(
+            re.escape(occurrence.id)
+        ),
+        line,
+    ))
+
+
 def parse_rename_rules(path: Path, warnings: List[str]) -> List[RenameRule]:
     try:
         lines = path.read_text(encoding="utf-8").splitlines()
@@ -1436,6 +1518,51 @@ def parse_rename_rules(path: Path, warnings: List[str]) -> List[RenameRule]:
     return rules
 
 
+def parse_set_deprecation_rules(
+    doc: Document, id_regex: re.Pattern[str]
+) -> List[RenameRule]:
+    """Parse design/07 §19's retired candidate ledger.
+
+    Merged rows retain every stated formal destination because the prose does
+    not promise positional one-to-one mapping. Deleted or deferred rows use a
+    stable diagnostic label instead of treating their prose as a content ID.
+    """
+    rules: List[RenameRule] = []
+    seen: Set[str] = set()
+    for index, row in sorted(doc.tables.items()):
+        if not re.match(r"19(?:\.|\s)", doc.h2s[index]):
+            continue
+        headers = [clean_markdown(value).lower().replace(" ", "") for value in row.headers]
+        old_col: Optional[int] = None
+        destination_col: Optional[int] = None
+        for column, header in enumerate(headers):
+            if "原候选" in header or "未入选候选" in header:
+                old_col = column
+            if header in {"去向", "去向/理由"} or header.startswith("去向"):
+                destination_col = column
+        if old_col is None or old_col >= len(row.cells):
+            continue
+        old_ids = [
+            match.group(0) for match in id_regex.finditer(row.cells[old_col])
+            if match.group(0).startswith("set_")
+        ]
+        if not old_ids:
+            continue
+        destinations: List[str] = []
+        if destination_col is not None and destination_col < len(row.cells):
+            destinations = [
+                match.group(0) for match in id_regex.finditer(row.cells[destination_col])
+                if match.group(0).startswith("set_")
+            ]
+        replacement = " / ".join(dict.fromkeys(destinations)) or "删除 / 延后"
+        for old in old_ids:
+            if old in seen or old in destinations:
+                continue
+            rules.append(RenameRule(old=old, new=replacement))
+            seen.add(old)
+    return rules
+
+
 def pattern_regex(value: str) -> re.Pattern[str]:
     pieces: List[str] = []
     index = 0
@@ -1455,7 +1582,7 @@ def location_dict(location: Location) -> Dict[str, object]:
 
 def undefined_issues(
     root: Path, occurrences: Sequence[Occurrence], definitions: Sequence[Definition],
-    prefixes: Sequence[str],
+    prefixes: Sequence[str], deprecated_ids: Optional[Set[str]] = None,
 ) -> List[Dict[str, object]]:
     defined = {definition.id for definition in definitions}
     suspended = {
@@ -1468,6 +1595,8 @@ def undefined_issues(
         if not occurrence.active or occurrence.definition or occurrence.local:
             continue
         if occurrence.id in defined:
+            continue
+        if occurrence.id in (deprecated_ids or set()):
             continue
         # Move/passive IDs are intentionally local children of a defined skill
         # and often live only in prose tables; treating them as unresolved would
@@ -1571,18 +1700,27 @@ def levenshtein_at_most_two(left: str, right: str) -> Optional[int]:
 
 
 def near_match_issues(
-    occurrences: Sequence[Occurrence], definitions: Sequence[Definition], prefixes: Sequence[str]
+    occurrences: Sequence[Occurrence], definitions: Sequence[Definition],
+    prefixes: Sequence[str],
+    allowed_pairs: Optional[Set[frozenset[str]]] = None,
 ) -> List[Dict[str, object]]:
+    def eligible(occurrence: Occurrence) -> bool:
+        return (
+            occurrence.active
+            and not occurrence.local
+            and occurrence.id not in EXPLICITLY_REJECTED_IDS
+            and not non_live_reference(occurrence)
+        )
+
     ids = {
         occurrence.id for occurrence in occurrences
-        if occurrence.active and not occurrence.local
-        and occurrence.id not in EXPLICITLY_REJECTED_IDS
+        if eligible(occurrence)
     }
     ids.update(definition.id for definition in definitions)
     first: Dict[str, Location] = {}
     defined_ids = {definition.id for definition in definitions}
     for occurrence in occurrences:
-        if occurrence.active and not occurrence.local:
+        if eligible(occurrence):
             first.setdefault(occurrence.id, occurrence.location)
     # Definitions can enter ``ids`` even when their source line is not an
     # active reference (for example a valid table row whose descriptive cells
@@ -1610,7 +1748,8 @@ def near_match_issues(
             if len(left_tail) < 4:
                 continue
             for right in family_ids[index + 1:]:
-                if frozenset((left, right)) in KNOWN_NEAR_MATCH_PAIRS:
+                pair = frozenset((left, right))
+                if pair in (allowed_pairs or set()):
                     continue
                 right_tail = right[len(family):]
                 if len(right_tail) < 4:
@@ -1646,6 +1785,33 @@ def near_match_issues(
     return result
 
 
+def load_near_allowlist(
+    path: Path, warnings: List[str]
+) -> Tuple[Set[frozenset[str]], str]:
+    """Load reviewed, unordered near-match pairs from JSON."""
+    if not path.is_file():
+        warnings.append("near-match allowlist is missing: {}".format(path))
+        return set(), "missing"
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        if payload.get("schema_version") != 1 or not isinstance(payload.get("pairs"), list):
+            raise ValueError("schema_version 1 and pairs list are required")
+        pairs: Set[frozenset[str]] = set()
+        for pair in payload["pairs"]:
+            if (
+                not isinstance(pair, list)
+                or len(pair) != 2
+                or not all(isinstance(item, str) and item for item in pair)
+                or pair[0] == pair[1]
+            ):
+                raise ValueError("each pair must contain two distinct ID strings")
+            pairs.add(frozenset(pair))
+    except (OSError, UnicodeError, ValueError, json.JSONDecodeError) as exc:
+        warnings.append("cannot load near-match allowlist {}: {}".format(path, exc))
+        return set(), "invalid"
+    return pairs, "loaded"
+
+
 def old_id_issues(
     documents: Sequence[Document], rules: Sequence[RenameRule]
 ) -> List[Dict[str, object]]:
@@ -1662,6 +1828,8 @@ def old_id_issues(
                         doc.rel == RULINGS_REL
                         or PROVISIONAL_LINE_RE.search(line)
                         or PROVISIONAL_SECTION_RE.search(doc.sections[index])
+                        or MIGRATION_SECTION_RE.search(doc.sections[index])
+                        or NEGATED_REFERENCE_RE.search(line)
                     ):
                         continue
                     result.append({
@@ -1687,57 +1855,32 @@ def ids_in_cell(cell: str, id_regex: re.Pattern[str], wanted: Set[str]) -> Set[s
 def parse_set_definitions(
     doc: Document, id_regex: re.Pattern[str]
 ) -> Dict[str, Tuple[Set[str], Location]]:
-    """Parse conservative SetDef shapes from authoritative design/07."""
+    """Parse the authoritative heading-plus-table catalog in 07 §§8–18.
+
+    Section 2's YAML is an explanatory sample, while section 19 is a retired
+    candidate ledger. Neither is allowed to overwrite the release catalog.
+    """
     result: Dict[str, Tuple[Set[str], Location]] = {}
     wanted = {"sk_", "eq_", "it_"}
-    for index, row in doc.tables.items():
-        id_col: Optional[int] = None
-        members_col: Optional[int] = None
-        for col, header in enumerate(row.headers):
-            normalized = clean_markdown(header).lower().replace(" ", "")
-            if normalized in {"id", "套装id", "套装"} or normalized.startswith("套装id"):
-                id_col = col
-            if "成员" in normalized or normalized == "members":
-                members_col = col
-        if id_col is None or members_col is None or max(id_col, members_col) >= len(row.cells):
-            continue
-        set_ids = [
-            match.group(0) for match in id_regex.finditer(row.cells[id_col])
-            if match.group(0).startswith("set_")
-        ]
-        if len(set_ids) != 1:
-            continue
-        member_ids = ids_in_cell(row.cells[members_col], id_regex, wanted)
-        result[set_ids[0]] = (
-            member_ids,
-            Location(doc.rel, index + 1, doc.lines[index].find(set_ids[0]) + 1),
-        )
-
+    heading_re = re.compile(
+        r"^###\s+(?P<section>(?:8|9|1[0-8])\.\d+)\s+.*?`(?P<id>set_[a-z0-9_]+)`"
+    )
     for index, line in enumerate(doc.lines):
-        if not doc.in_fence[index] or not YAML_ID_RE.match(line):
+        heading = heading_re.match(line)
+        if heading is None:
             continue
-        found = [match.group(0) for match in id_regex.finditer(line)]
-        if len(found) != 1 or not found[0].startswith("set_"):
-            continue
-        set_id = found[0]
-        base_indent = len(line) - len(line.lstrip())
+        set_id = heading.group("id")
         members: Set[str] = set()
-        members_indent: Optional[int] = None
-        for scan in range(index + 1, min(len(doc.lines), index + 100)):
-            candidate = doc.lines[scan]
-            if not candidate.strip():
-                continue
-            indent = len(candidate) - len(candidate.lstrip())
-            if indent <= base_indent and YAML_ID_RE.match(candidate):
+        for scan in range(index + 1, len(doc.lines)):
+            next_heading = HEADING_RE.match(doc.lines[scan])
+            if next_heading and len(next_heading.group(1)) <= 3:
                 break
-            if re.match(r"^\s*members\s*:", candidate, re.IGNORECASE):
-                members_indent = indent
-                members.update(ids_in_cell(candidate, id_regex, wanted))
+            row = doc.tables.get(scan)
+            if row is None or len(row.cells) < 2:
                 continue
-            if members_indent is not None:
-                if indent <= members_indent and not candidate.lstrip().startswith("-"):
-                    break
-                members.update(ids_in_cell(candidate, id_regex, wanted))
+            label = clean_markdown(row.cells[0]).replace(" ", "")
+            if re.fullmatch(r"成员(?:（\d+）|\(\d+\))?", label):
+                members.update(ids_in_cell(row.cells[1], id_regex, wanted))
         result[set_id] = (
             members,
             Location(doc.rel, index + 1, line.find(set_id) + 1),
@@ -1748,40 +1891,134 @@ def parse_set_definitions(
 def parse_member_set_tags(
     documents: Sequence[Document], definitions: Sequence[Definition], id_regex: re.Pattern[str]
 ) -> Dict[str, Tuple[Set[str], Location]]:
+    """Aggregate reverse ``setTags`` across every definition of a member.
+
+    Catalogs repeat an ID in indexes and end-of-file inventories. Those terse
+    definitions must not overwrite tags found on the authoritative card.
+    """
     result: Dict[str, Tuple[Set[str], Location]] = {}
     relevant_defs = [
         definition for definition in definitions
         if definition.id.startswith(("sk_", "eq_", "it_"))
     ]
+    known_members = {definition.id for definition in relevant_defs}
     docs_by_rel = {doc.rel: doc for doc in documents}
+
+    def tags_from_value(value: str) -> Set[str]:
+        array = re.search(r"\[([^]]*)\]", value)
+        if array is None:
+            return set()
+        return {
+            match.group(0) for match in id_regex.finditer(array.group(1))
+            if match.group(0).startswith("set_")
+        }
+
+    def tags_at_line(doc: Document, index: int, member_id: str) -> Set[str]:
+        tags: Set[str] = set()
+        if index in doc.tables:
+            row = doc.tables[index]
+            for col, header in enumerate(row.headers):
+                if col >= len(row.cells):
+                    continue
+                cell = row.cells[col]
+                if "settags" in clean_markdown(header).lower().replace(" ", ""):
+                    tags.update(
+                        match.group(0) for match in id_regex.finditer(cell)
+                        if match.group(0).startswith("set_")
+                    )
+                marker = re.search(r"setTags", cell, re.IGNORECASE)
+                if marker:
+                    tags.update(tags_from_value(cell[marker.end():]))
+            return tags
+        line = doc.lines[index]
+        # A block may embed other SkillDef objects (moves, prerequisites,
+        # examples). Only a line that declares the member itself, or contains
+        # no foreign top-level content ID, can own its reverse tags.
+        ids = {match.group(0) for match in id_regex.finditer(line)}
+        foreign_members = {
+            identifier for identifier in ids
+            if identifier.startswith(("sk_", "eq_", "it_"))
+            and identifier != member_id
+        }
+        if foreign_members:
+            return tags
+        marker = re.search(r"setTags", line, re.IGNORECASE)
+        if marker:
+            tags.update(tags_from_value(line[marker.end():]))
+        return tags
+
+    def scan_block(doc: Document, start: int, shape: str, member_id: str) -> Set[str]:
+        if shape == "table":
+            return tags_at_line(doc, start, member_id)
+        tags: Set[str] = set()
+        base_heading = HEADING_RE.match(doc.lines[start])
+        base_level = len(base_heading.group(1)) if base_heading else 99
+        for scan in range(start, len(doc.lines)):
+            if scan > start:
+                heading = HEADING_RE.match(doc.lines[scan])
+                if shape == "heading" and heading and len(heading.group(1)) <= base_level:
+                    break
+                if shape == "yaml-id" and not doc.in_fence[scan]:
+                    break
+                if shape == "bold-card":
+                    line = doc.lines[scan]
+                    closing = line.find("**", line.find("**") + 2)
+                    if (
+                        heading
+                        or (line.lstrip().startswith("**")
+                        and closing >= 0
+                        and id_regex.search(line[: closing + 2]))
+                    ):
+                        break
+            tags.update(tags_at_line(doc, scan, member_id))
+        return tags
+
+    def merge(identifier: str, tags: Set[str], location: Location) -> None:
+        aggregated, prior_location = result.get(identifier, (set(), location))
+        aggregated.update(tags)
+        result[identifier] = (aggregated, location if tags else prior_location)
+
+    anchored: Set[Tuple[str, int, str]] = set()
     for definition in relevant_defs:
         doc = docs_by_rel.get(definition.location.file)
         if doc is None:
             continue
         start = definition.location.line - 1
-        tags: Set[str] = set()
-        if start in doc.tables:
-            row = doc.tables[start]
-            for col, header in enumerate(row.headers):
-                if col < len(row.cells) and "settags" in clean_markdown(header).lower().replace(" ", ""):
-                    tags.update(
-                        match.group(0) for match in id_regex.finditer(row.cells[col])
-                        if match.group(0).startswith("set_")
-                    )
-        if definition.shape in {"heading", "yaml-id"}:
-            base_heading = HEADING_RE.match(doc.lines[start])
-            base_level = len(base_heading.group(1)) if base_heading else 99
-            for scan in range(start + 1, min(len(doc.lines), start + 80)):
-                heading = HEADING_RE.match(doc.lines[scan])
-                if heading and len(heading.group(1)) <= base_level:
-                    break
-                line = doc.lines[scan]
-                if re.search(r"setTags", line, re.IGNORECASE):
-                    tags.update(
-                        match.group(0) for match in id_regex.finditer(line)
-                        if match.group(0).startswith("set_")
-                    )
-        result[definition.id] = (tags, definition.location)
+        tags = scan_block(doc, start, definition.shape, definition.id)
+        merge(definition.id, tags, definition.location)
+        anchored.add((doc.rel, start, definition.id))
+
+    # A real catalog card can contain words such as "用户示例套装成员", which
+    # correctly keeps it from becoming a second definition but must not hide
+    # its reverse tag. Discover only owner-local, named card boundaries for IDs
+    # that already have an authoritative definition elsewhere.
+    for doc in documents:
+        for index, line in enumerate(doc.lines):
+            ids = [
+                match.group(0) for match in id_regex.finditer(line)
+                if match.group(0) in known_members
+            ]
+            if len(ids) != 1 or (doc.rel, index, ids[0]) in anchored:
+                continue
+            identifier = ids[0]
+            if (
+                MIGRATION_SECTION_RE.search(doc.sections[index])
+                or PROVISIONAL_SECTION_RE.search(doc.sections[index])
+                or not definition_allowed(identifier, doc, index, DEFAULT_PREFIXES)
+            ):
+                continue
+            heading = HEADING_RE.match(line)
+            closing = line.find("**", line.find("**") + 2)
+            if heading and heading_name(line, identifier, 1):
+                shape = "heading"
+            elif line.lstrip().startswith("**") and closing >= 0 and identifier in line[: closing + 2]:
+                shape = "bold-card"
+            else:
+                continue
+            merge(
+                identifier, scan_block(doc, index, shape, identifier),
+                Location(doc.rel, index + 1, line.find(identifier) + 1),
+            )
     return result
 
 
@@ -1985,6 +2222,12 @@ def print_human(report: Mapping[str, object]) -> None:
                     )
                 )
     print("\nset check: {}".format(report["set_check"]))
+    allowlist = report["near_allowlist"]  # type: ignore[assignment]
+    print(
+        "near-match allowlist: {status}; {pairs} reviewed pairs ({path})".format(
+            **allowlist  # type: ignore[arg-type]
+        )
+    )
     baseline = report["baseline"]  # type: ignore[assignment]
     print(
         "baseline: {status}; known undefined/deprecated={known_undefined_ids}/"
@@ -1997,7 +2240,7 @@ def print_human(report: Mapping[str, object]) -> None:
         )
     )
     print(
-        "strict failure count (categories 1 + 4): {}".format(
+        "strict failure count (new categories 1 + 4, all categories 2 + 5): {}".format(
             report["strict_failure_count"]
         )
     )
@@ -2026,10 +2269,23 @@ def build_report(root: Path, raw_paths: Sequence[str]) -> Dict[str, object]:
         item for item in definitions if item.location.file in requested_rels
     ]
     rename_rules = parse_rename_rules(root / RULINGS_REL, warnings)
-    undefined = undefined_issues(root, scoped_occurrences, definitions, prefixes)
+    set_doc = next((doc for doc in documents if doc.rel == SET_SYSTEM_REL), None)
+    set_deprecation_rules = (
+        parse_set_deprecation_rules(set_doc, id_regex) if set_doc is not None else []
+    )
+    all_deprecation_rules = rename_rules + set_deprecation_rules
+    deprecated_keys = {rule.old for rule in all_deprecation_rules if not rule.is_pattern}
+    undefined = undefined_issues(
+        root, scoped_occurrences, definitions, prefixes, deprecated_keys
+    )
     duplicates = duplicate_issues(scoped_definitions)
-    near = near_match_issues(scoped_occurrences, definitions, prefixes)
-    deprecated = old_id_issues(scoped_documents, rename_rules)
+    near_allowlist, near_allowlist_status = load_near_allowlist(
+        root / NEAR_ALLOWLIST_REL, warnings
+    )
+    near = near_match_issues(
+        scoped_occurrences, definitions, prefixes, near_allowlist
+    )
+    deprecated = old_id_issues(scoped_documents, all_deprecation_rules)
     set_issues, set_status = set_symmetry_issues(
         root, documents, definitions, id_regex, warnings
     )
@@ -2043,7 +2299,10 @@ def build_report(root: Path, raw_paths: Sequence[str]) -> Dict[str, object]:
     deprecated_ids = {str(item["old_id"]) for item in deprecated}
     new_undefined = sorted(undefined_ids - baseline_undefined)
     new_deprecated = sorted(deprecated_ids - baseline_deprecated)
-    strict_count = len(new_undefined) + len(new_deprecated)
+    strict_count = (
+        len(new_undefined) + len(new_deprecated)
+        + len(duplicates) + len(set_issues)
+    )
     return {
         "schema_version": VERSION,
         "root": root.as_posix(),
@@ -2071,6 +2330,11 @@ def build_report(root: Path, raw_paths: Sequence[str]) -> Dict[str, object]:
             "set_tag_asymmetry": len(set_issues),
         },
         "set_check": set_status,
+        "near_allowlist": {
+            "path": NEAR_ALLOWLIST_REL,
+            "status": near_allowlist_status,
+            "pairs": len(near_allowlist),
+        },
         "baseline": {
             "path": BASELINE_REL,
             "status": baseline_status,
@@ -2097,7 +2361,8 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--strict", action="store_true",
-        help="exit 1 for undefined or deprecated IDs outside the baseline",
+        help=("exit 1 for new undefined/deprecated IDs or any conflicting "
+              "definition/set asymmetry"),
     )
     parser.add_argument(
         "--update-baseline", action="store_true",

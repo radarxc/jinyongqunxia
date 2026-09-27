@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "pairs": [
+    [
+      "npc_sangjie",
+      "npc_sangsi"
+    ],
+    [
+      "npc_meijian",
+      "npc_shijian"
+    ],
+    [
+      "sk_xuansujian",
+      "sk_xuanxujian"
+    ],
+    [
+      "vid_ch00_intro",
+      "vid_ch01_intro"
+    ]
+  ]
+}
