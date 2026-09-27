@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.1；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；主线唯一事实源为 `design/story/14-xueshan.md`。
 > 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05` 与 `design/catalog/skills-qianlong.md`、`skills-general.md`；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备与神兵 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、结局与余韵 → `design/13`；经脉 → `design/15`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.0（D14，2026-09-26）。
+> 版本：v1.0（D14，2026-09-26）；审校 D14.R（2026-09-26）。
 
 ---
 
@@ -208,7 +208,7 @@ routeState: undecided
 | 区域 | 1780 地貌、地形与势力状态 | 入口与轻功门禁 | 主要 NPC / 势力 | 可学武功（已有 ID） | 敌人等级带 | 秘境 / 奇遇 |
 |---|---|---|---|---|---:|---|
 | `rg_liaodong` | 辽河平原、关外雪林与玉笔峰局部；`tr_xuedi`、`tr_shenxue`、`tr_qiaobi`、`tr_yunhaizhandao`、`tr_shinei`；胡苗旧怨、山庄来客与清廷耳目交叠 | 开局即开；吊篮台 qg1，断索侧径 qg3，有修索 / 向导替代；雪崖 qg4 仅额外物证 | `npc_hufei`、`npc_miaorenfeng`、`npc_miaoruolan`、`npc_pingasi`、`npc_baoshu`；胡家、苗家、玉笔山庄 | `sk_hujiadao`、`sk_hujiadaoxinfa`、`sk_hujiaquan`、`sk_miaojiajian`、`sk_miaojiaxinfa` | 46–58；苗人凤终决 62 超限 | `sc_14_yubifeng_manor`、宝藏洞、冰镜破绽、刀谱补页 |
-| `rg_liaoxi` | 锦州—山海关走廊、海风冻土与边墙；`tr_pingdi`、`tr_suishi`、`tr_chengqiang`、`tr_tiesuoqiao` | C03 后沿驿路开；边墙偏门 qg2；海蚀断台 qg3，可走军驿 | `npc_ruanshizhong`、`npc_caoyunqi`、`npc_yinji`、`npc_xiongyuanxian`、`npc_zhengsanniang`；天龙门、平通镖局 | `sk_tianlongrumenjian`、`sk_tianlongjian`、`sk_tianlongbeidao`、`sk_guanwaixinfa` | 47–53 | 南北宗错递镖单、关城失印、冰潮旧箱 |
+| `rg_liaoxi` | 锦州—山海关走廊、海风冻土与边墙；`tr_pingdi`、`tr_suishi`、`tr_chengqiang`、`tr_tiesuoqiao` | C03 后沿驿路开；边墙门洞 / 墙道通行 qg2（不含攀墙）；海蚀断台 qg3，可走军驿 | `npc_ruanshizhong`、`npc_caoyunqi`、`npc_yinji`、`npc_xiongyuanxian`、`npc_zhengsanniang`；天龙门、平通镖局 | `sk_tianlongrumenjian`、`sk_tianlongjian`、`sk_tianlongbeidao`、`sk_guanwaixinfa` | 47–53 | 南北宗错递镖单、关城失印、冰潮旧箱 |
 | `rg_dongbei` | 松辽边地、长白雪线、吉林乌拉与宁古塔驿路；`tr_milin`、`tr_xuedi`、`tr_shenxue`、`tr_bingku`、`tr_baobing` | “宁古塔回封”或主线第二阶段开；雪林 qg2；冰河裂隙 qg3，可等封冻 / 绕驿道 | `npc_duximeng`（行程）、`npc_baoshu`（访药变体）、`npc_pingasi`；药王门隐世线、清宫驿卒 | `sk_yaowangtuna`、`sk_yaowanghushou`、`sk_guanwaichangquan`、`sk_tianshanyingyang`（隐世复现） | 49–56 | 宁古塔封签、雪谷药囊、鹰踪步印 |
 | `rg_yanjing_zhili` | 京师宫城、沧州旧案与直隶镖路；`tr_chengqiang`、`tr_gongdianwuji`、`tr_wuding`、`tr_taijie`、`tr_shinei` | 锚点二后开；沧州旧宅 qg2；宫档屋脊 qg4，只给旁证且可走文书路线 | `npc_liuyuanhe`、`npc_saizongguan`、`npc_miaorenfeng`（旧案映照）；清宫、八卦门 | `sk_miaojiajiangong`、`sk_miaojiaquan`、`sk_baguarumenquan`、`sk_baguachujidao`、`sk_baguadao` | 50–58 | 沧州剑痕、宫档红印、镖路失约 |
 | `rg_qilu` | 济南、青州与鲁中丘陵；`tr_pingdi`、`tr_caodi`、`tr_suishi`、`tr_milin` | C03 后由见证人支线开；山寺后坡 qg2；林冠暗路 qg3，可持封签正门进入 | `npc_jingzhidashi`、`npc_fanbangzhu`、`npc_taobaisui`（阶段）；佛门个人背景与民间帮会，不虚造门派 | `sk_jianghutuna`、`sk_taizuchangquan`、`sk_jianghurumenjian`、`sk_huyuanquan` | 48–54 | 异封三印、范氏旧账、义仓雪痕 |
@@ -329,7 +329,7 @@ routeState: undecided
 | `rp_qilu_sicha_01` | 济南商路桑茶栈 | `sicha` / 商栈 | 1–5 | 镖商 | 护镖或结清旧账 |
 | `rp_monan_mapi_01` | 昭乌达冬牧场 | `mapi` / 牧场 | 2–6 | 商队 | 三马认主链或长期租约 |
 
-分布核算：辽东 3、辽西 2、东北 2、燕京直隶 2、齐鲁 2、漠南 1，共 `3+2+2+2+2+1=12`。两处 6 级专精点不超过 `ceil(12/2)=6` 的允许上限；没有循环产出 `zhenbao` 或天材。
+分布核算：辽东 3、辽西 2、东北 2、燕京直隶 2、齐鲁 2、漠南 1，共 `3+2+2+2+2+1=12`。三处 6 级专精点满足 `3≤ceil(12/2)=6` 的允许上限；没有循环产出 `zhenbao` 或天材。
 
 ### 3.8 十四个营生场所与职位
 
@@ -623,14 +623,14 @@ canLiangquan = crossBookEvidence
 | `q_14_qiyu_02` | 1 | 冰潮旧箱 | 是 |
 | `q_14_qiyu_03` | 2 | 宁古塔回封、雪谷药囊 | 是 |
 | `q_14_qiyu_04` | 1 | 鹰踪步印 | 是 |
-| `q_14_qiyu_05` | 2 | 沧州旧剑痕、宫档红印 | 是 |
-| `q_14_qiyu_06` | 2 | 异封三印、冰壁双影 | 是 |
-| `q_14_qiyu_07` | 3 | 三马认主及三处马印子触点 | 是 |
+| `q_14_qiyu_05` | 2 | 沧州旧剑痕、冰壁双影 | 是 |
+| `q_14_qiyu_06` | 2 | 异封三印、宫档红印 | 是 |
+| `q_14_qiyu_07` | 1 | 三马认主 | 是 |
 | `q_14_qiyu_08` | 1 | 边驿假契 | 是 |
 | 只作入口 / 交叉验证 | 2 | 冻土铁盒、镖路失约 | 否，挂到已有任务 |
 | **合计** | **18** | 六区各三 | **10 个任务根** |
 
-“三马认主”的三处马印属于同一奇遇触点组，地图统计仍按 §3.6 的一个“发现入口”计；上表的链式步骤数用于制作工作量，不得拿它把区域触点虚增到 20。构建期以 §3.6 的 18 个稳定 `opportunityKey` 为准。
+“三马认主”的鞍印、饲料与路线核验是同一稳定触点内的链式步骤，不另计三个地图入口；温锁、拓印等步骤同理。上表各稳定触点只归属一次，计数为 `2+2+2+1+2+1+2+2+1+1+2=18`，构建期须与 §3.6 的 18 个唯一 `opportunityKey` 一一对应。
 
 ### 6.7 奖励与互斥底线
 
@@ -806,7 +806,7 @@ canLiangquan = crossBookEvidence
 | `npc_huyidao` | 回忆 / 史笺 | 壮年时命定死亡 | 胡苗决斗、三托、刀谱传承 | 不能被本书两全复活 |
 | `npc_hufuren` | 回忆 / 史笺 | 青年时命定死亡 | 指出苗剑破绽、胡斐之母 | 不能生成 1780 活体 |
 | `npc_tianguinong` | 回忆 / 史笺 | 主线前已故 | 毒谋授意与天龙门余波 | 不得在山庄活体登场 |
-| `npc_nanlan` | 回忆 / 旧信 | 青年；前史状态待考 | 苗若兰母亲、田归农关系 | 信件内容与存亡需纸本核对 |
+| `npc_nanlan` | 回忆 / 旧信 | 青年；前史命定死亡待考 | 苗若兰母亲、田归农关系 | 信件内容与死亡时点需纸本核对 |
 | `npc_taobaisui` | 活体 | 老年；生卒待考 | 铁盒、父子、毒谋补述 | 结局不擅定死亡 |
 | `npc_taozian` | 活体 | 青年；生卒待考 | 铁盒携带、田曹陶私事 | 与父亲分别保存招募状态 |
 | `npc_ruanshizhong` | 活体 | 中年；生卒待考 | 天龙门北宗 | 南北宗身份细节待考 |
@@ -1232,7 +1232,7 @@ P_actual = G(9) × L(9)
 | B02 | 两名精英合计耐久不超过 Lv50 Boss 预算 | 隔开追兵并保绳路即胜；双童脱离，不擅定死亡 |
 | B03 | 宝树最终走 `full`；模板只定阶段耐久 | 每确认一条独立事实削一层护持，守原卷 / 控卷皆可结算 |
 | B04 | 胡斐走 `full`，剧情限制胡刀层数 | 救曹云奇、保安全格链；气血到阈值锁定并转场 |
-| B05 | 多方总耐久不超过 Lv56 Boss 的 1.5 倍**【建议值】** | 救援、火源、退路三目标；捡金银增加仇恨，不要求全歼 |
+| B05 | 多方总耐久不超过 `floor(139,931×1.5)=209,896`**【建议值】** | 救援、火源、退路三目标；捡金银增加仇恨，不要求全歼 |
 | B06 | 赛总管走 `full`，援军用普通 / 精英模板 | 夺令或拆网可提前结束一波；助捕线仍必须给阻止处决窗口 |
 | B07 | 苗人凤走 Lv62 `full` | 三阶段锁血；完成救援、双破绽与悬刀选择，不以击杀结算 |
 
@@ -1431,7 +1431,7 @@ P_actual = G(9) × L(9)
 | XS-V14 | 人物与招募 | 7 名重点队友均有 D 级、任务门槛、本人同意、受控窗口与离开边界；回忆人物不得生成 1780 活体 | error |
 | XS-V15 | NPC 生产性 | 所有运行时 `npc_*` 可在 ch14 名录或合法跨书同 ID 中解析；无 1780 appearance 者只生成远讯 / 史笺 | error |
 | XS-V16 | Boss 数量与管线 | 7 个唯一 `enc_14_*`；D7、`ai_expert`、2–3 阶段；仅苗人凤 Lv62 为 `capExempt`；具名人物用 `full` | error |
-| XS-V17 | Boss 耐久 | 多单位战总耐久受同级单场预算约束；B05 若采用建议值须 `totalHp≤139931×1.5=209896.5` | error |
+| XS-V17 | Boss 耐久 | 多单位战总耐久受同级单场预算约束；B05 若采用建议值须 `totalHp≤floor(139931×1.5)=209896` | error |
 | XS-V18 | 武学引用 | 可学 / 奖励 `sk_*` 均存在于正式图鉴；本章不新造招名、不改品阶、不因看见破绽自动授艺 | error |
 | XS-V19 | 装配保底 | 本土内功 4、拳脚 5、兵器 9；至少一条非互斥路径可把 2/2/2 补成 3/3/3 | error |
 | XS-V20 | 物品与学习分离 | `eq_lengyuedao` 唯一；`it_chuangwangjundao` 仅为钥匙；持有神兵、军刀或谱卷均不自动授予武学 | error |
@@ -1477,7 +1477,7 @@ P_actual = G(9) × L(9)
 | XS-T24 | 第十四天书已得但未确认赴归梦 | 可清支线 / 冲穴 / 合成；显示 58、压制 −2、敌人最高常规 58 |
 | XS-T25 | 确认赴归梦并完成 `FN_ENTER` | 显示真实 Lv70、解除压制、加载书影；不创建 `vid_sleep_14_15` 或第十五天书 |
 | XS-T26 | 载入缺少三个指点字段的旧存档 | `rateBp/successBp/costReduceBp` 缺项按 0，不由名医 / 高僧称谓补值 |
-| XS-T27 | B05 三方各装完整 Lv56 Boss 耐久 | 构建拒绝；若采用建议阈值，整场总耐久不得超过 209,896.5 |
+| XS-T27 | B05 三方各装完整 Lv56 Boss 耐久 | 构建拒绝；若采用建议阈值，整场总耐久不得超过 209,896 |
 | XS-T28 | B07 加载标准模板而非具名配置 | 构建拒绝；必须 Lv62 `full`、三阶段锁血且不以击杀结算 |
 
 ### 人工验收
@@ -1504,7 +1504,7 @@ P_actual = G(9) × L(9)
 | XS-D04 | `design/15` / `10` | 高风险冲穴固定救济 `it_dingshendan` 1 枚，每周目本界最多领取一次 | 救济节点、库存和走火回退动作进入正式数据后回填 |
 | XS-D05 | `design/15` / 人物指点目录 | 指点暂用 `rateBp=1500`、`successBp=800`、`costReduceBp=500`，缺项按 0 | 胡斐、苗人凤、雪谷医者等人物级 `meridianAid` 定稿后回填 |
 | XS-D06 | `design/03` / `09` | 苗人凤 Lv62 `full` 初始气血 156,866，即标准 Boss 184,548 的 0.85 | 正式先天、武学、装备入库并完成低 / 中 / 高配 TTK 模拟后回填 |
-| XS-D07 | `design/09` | B05 多方整场总耐久不超过 Lv56 Boss 预算 139,931 的 1.5 倍，即 209,896.5 | 编组、目标物耐久与撤离脚本实装后按轮数回填 |
+| XS-D07 | `design/09` | B05 多方整场总耐久不超过 Lv56 Boss 预算 139,931 的 1.5 倍，整数化为 `floor(139,931×1.5)=209,896` | 编组、目标物耐久与撤离脚本实装后按轮数回填 |
 
 ### 本文依赖的上游事实
 
@@ -1555,5 +1555,5 @@ P_actual = G(9) × L(9)
 | XS-O02 | 四组合击是否进入正式图鉴 | 默认不建 ID，只实现平阿四援护脚本；避免候选占用正式内容预算 |
 | XS-O03 | 胡刀与苗剑哪条是雪山主载体 | 默认玩家较早完成并获家传认可者锁主载体；另一条保留授艺与关系奖励 |
 | XS-O04 | 罗生门与劈刀系统是否采用本文 YAML 字段 | 默认只把 YAML 当接口样例；上游 schema 可改字段名，但须保留不可篡改原始层和原子结算语义 |
-| XS-O05 | 苗人凤与 B05 的正式耐久 | 默认分别用 156,866 与整场 ≤209,896.5 起跑；模拟未通过时在建议边界内调机制 / 耐久，不增加隐形倍率 |
+| XS-O05 | 苗人凤与 B05 的正式耐久 | 默认分别用 156,866 与整场 ≤209,896 起跑；模拟未通过时在建议边界内调机制 / 耐久，不增加隐形倍率 |
 | XS-O06 | 余韵是否自动进入归梦 | 默认不自动；玩家主动确认后才进入 `FN_ENTER`，保证最后一界可清支线、冲穴和传承 |
