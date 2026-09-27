@@ -2,9 +2,9 @@
 
 > 归属（基准 §18，待 A3 登记）：传承源、消隐判定、后人 / 宝藏候选、三卷残本、关键信物、跨年代合成与其投放预算。
 > 上游：`00-canon.md` v1.1；作者需求 `decisions/author-requirements.md` AR-01、AR-04、AR-08、AR-09、AR-13；作者决定 `decisions/author-decisions.md`，尤其 P35；跨文档裁定 `decisions/rulings-v1.md`。
-> 引用而不重定义：年代、书眠、残篇 / 残承 / 藏史与 `rs_*` → `design/02-timeline-and-world-tiers.md`；属性与 `lore` / `luk` / `wis` / `morality` → `design/03-attributes.md`；武学、层数、`sourceGrade` / `sourceCap` 与学习途径 → `design/05-martial-arts-system.md`；地图、时代图层与奇遇触点 → `design/11-open-world.md`、`design/19-world-map.md`；任务 DSL → 待建立的 `design/12-quests-npc-factions.md` 与 `tech/05-gameplay-engine.md`；天书之力、多周目与成就 → `design/13-progression-and-endings.md`；家丁与资源点 → `design/16-resources-and-estates.md`；门派时代矩阵 → `design/17-sects-compendium.md`；NPC 生卒、后人与生成规则 → `design/18-npc-and-companions.md`；物品与秘籍 → `design/10-items-and-equipment.md`。
+> 引用而不重定义：年代、书眠、残篇 / 残承 / 藏史与 `rs_*` → `design/02-timeline-and-world-tiers.md`；属性与 `lore` / `luk` / `wis` / `morality` → `design/03-attributes.md`；武学、层数、`sourceGrade` / `sourceCap` 与学习途径 → `design/05-martial-arts-system.md`；地图、时代图层与奇遇触点 → `design/11-open-world.md`、`design/19-world-map.md`；任务 DSL → `design/12-quests-npc-factions.md`，确定性、RNG 与事务 → `tech/05-gameplay-engine.md`；天书之力、多周目与成就 → `design/13-progression-and-endings.md`；家丁与资源点 → `design/16-resources-and-estates.md`；门派时代矩阵 → `design/17-sects-compendium.md`；NPC 生卒、后人与生成规则 → `design/18-npc-and-companions.md`；物品与秘籍 → `design/10-items-and-equipment.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.0（作者需求 AR-13 首稿，2026-09-26）。
+> 版本：v1.0（作者需求 AR-13 首稿，2026-09-26）；审校 H1.R（2026-09-26）。
 
 ---
 
@@ -18,7 +18,7 @@
 4. 残本绝对来源品阶只取地阶或黄阶：目标为天阶 10–12 时，残本分别为地下 7 / 地中 8 / 地上 9；目标为地阶 7–9 时，残本分别为黄下 1 / 黄中 2 / 黄上 3。
 5. 合成产物复用图鉴既有 `sk_*`，品阶等于该传承源登记的完整品阶，不复制第二门同名武学。除越女剑法外，所有天级产物都已在基准 §13 的 51 门闭集中，只是新增一种艰难获取途径。
 6. AR-13 覆盖 P35 的范围仅限完整形态：`sk_yuenvjian` 教学形态仍为地上 9，三卷与阿青墓中手卷校合后的同一武学进入“传承全本形态”，为天下 10。推荐把它列入基准 §13 的独立“合成天级”小节，不把它计作普通第 52 门；此 schema 例外仍标 ⚠️ 待作者确认。
-7. 中、低武书界允许完成合成。合成是当前时代的本土再发现，因此当界 `nativeTo=currentChapter`，真实品阶不降；有效品阶仍受本界完整原生上限、层数上限及基准 §3 的规则约束。进入再下一书界后，它依通常规则成为外来武学。
+7. 中、低武书界允许完成合成。合成是当前时代的本土再发现，因此当界 `nativeTo=currentChapter`，真实品阶不降；基准 §3 现行规则只限制层数、修为与来源，并**没有**通用“本土品阶截断”。为落实 AR-13 原任务给出的默认口径，本文另提 `legacyWorldCap` 专用建议：接纳前不得把它当作基准既定规则。进入再下一书界后，产物依通常规则成为外来武学。
 8. `frag_*` 残本与 `it_xinwu_*` 关键信物放入跨书界“传承匣”，不占普通背包格，不可交易、丢弃或藏史；书眠保留、轮回默认重置。
 
 ### 0.2 章节导航
@@ -259,10 +259,10 @@ sealed ──消隐事实成立──> eligible ──书界配额与概率命�
 3. 检查目标是否已有完整来源；已有则源转 `completed`，不重复投；
 4. 检查本书界是否存在目标的正常完整原生获取；存在时默认不投，除非配方明确 `coexistWithNative=true`；
 5. 检查路线、地点、改命结果和 NPC 生命态；
-6. 检查书界配额是否仍有席位；
+6. 检查本次调度批次是否至少有一个剩余席位；若持久化主载体已达本界上限，则整批延后且不消费出现 RNG；
 7. 按 `lgs_*` ASCII 升序进入概率计算与抽取。
 
-完成过滤后才生成机会收据。这样“没去过对应区域”不是失败，“合法遇到机会但没触发”才计一次 `misses`。
+完成过滤后才生成机会收据。同批候选多于剩余席位时，仍按 §4.2 完成出现判定，再由稳定优先级选入；命中但未入选者记 `deferred`，其本批抽样已经消费但不计 `misses`。这样“没去过对应区域”不是失败，“合法进入调度且出现判定未命中”才计一次 `misses`。
 
 ---
 
@@ -276,13 +276,13 @@ sealed ──消隐事实成立──> eligible ──书界配额与概率命�
 
 1. 候选按 `lgs_*` ASCII 升序；
 2. 每个合法候选最多一次出现判定；
-3. `chanceBp` 的 0 / 10000 端点不耗随机数，拒绝抽样消费次数服从 `rngProtocol=2`；
+3. `chanceBp(rng,bp)` 严格按 `rng.nextU32() % 10_000 < clamp(bp,0,10_000)`；0 / 10,000 端点也各消费一个 `uint32`；
 4. 命中候选再取一个 `nextU32` 作为同优先级 `lotteryKey`；
-5. 入选后再取一个 `0..9999` 的无偏整数决定主载体；
+5. 入选后用 `intInclusive(rng,0,9999)` 决定主载体；该 helper 按 `floor(nextU32()/2^32×span)`，不在本文局部改成拒绝抽样；
 6. 残本机会按 `opportunityId` ASCII 升序判定；
 7. 所有消费都在同一事务提交，回滚恢复 RNG、状态和机会收据。
 
-UI 预览、地图标记、对话条件查询和日志不得消费 RNG。
+上述取模和缩放存在极小映射偏差，但属于当前 `rngProtocol` 的录像兼容契约。UI 预览、地图标记、对话条件查询和日志不得消费 RNG。
 
 ### 3.2 年代距离基础概率
 
@@ -354,12 +354,12 @@ pityMulBp = min(20_000, 10_000 + 2_500 × misses)
 
 ### 3.5 最终出现概率
 
-每次乘法都用正整数半入取整 `roundHalfUpPositive(numerator/denominator)`：
+每次正数 bp 乘法均调用 `tech/05` §4.3 的 `mulBpFloor`，逐步向下取整；不得换成半入取整：
 
 ```text
-p1 = roundHalfUpPositive(pBaseBp × behaviorMulBp / 10_000)
-p2 = roundHalfUpPositive(p1 × luckMulBp / 10_000)
-p3 = roundHalfUpPositive(p2 × pityMulBp / 10_000)
+p1 = floor(pBaseBp × behaviorMulBp / 10_000)
+p2 = floor(p1 × luckMulBp / 10_000)
+p3 = floor(p2 × pityMulBp / 10_000)
 pAppearBp = clamp(p3, 500, 8_000)
 
 if critical && misses >= 3: pAppearBp = 10_000
@@ -413,15 +413,15 @@ if critical && misses >= 3: pAppearBp = 10_000
 knowledgeAdjBp = 20 × lore + 10 × relevantArt       // 0..3_000
 fragmentPityBp = min(20_000, 10_000 + 5_000 × localMisses)
 f0 = clamp(fragmentBaseBp + knowledgeAdjBp, 1_000, 7_000)
-f1 = roundHalfUpPositive(f0 × luckMulBp / 10_000)
-pFragmentBp = clamp(roundHalfUpPositive(f1 × fragmentPityBp / 10_000), 1_000, 8_000)
+f1 = floor(f0 × luckMulBp / 10_000)
+pFragmentBp = clamp(floor(f1 × fragmentPityBp / 10_000), 1_000, 8_000)
 
 if localMisses >= 2: pFragmentBp = 10_000           // 同一激活链第三次合法机会保底
 ```
 
 失败会给明确反馈（假谱、空匣、只余封皮），增加 `localMisses`；未满足硬门槛不抽取、不计失败。第三次合法机会必得一卷尚缺卷，避免围着同一墓穴无限挖。每个机会最多发一卷，每源每书界最多三卷。
 
-缺卷选择：先把 `upper/middle/lower` 中未持有者按枚举顺序列出，再以一次无偏区间抽取；已齐三卷时机会奖励改为校勘心得，不再生成重复物。
+缺卷选择：先把 `upper/middle/lower` 中未持有者按枚举顺序列出，再调用一次 `intInclusive` 抽取；该缩放映射沿用当前 `rngProtocol`，不宣称数学无偏。已齐三卷时机会奖励改为校勘心得，不再生成重复物。
 
 ### 3.8 关键信物
 
@@ -447,16 +447,16 @@ gradeAdj = 150 × (10-7) = 450
 pBase = 1_800 + 900 + 450 = 3_150 bp
 behavior = 9_000 + 20×60 = 10_200 bp
 luck = 5_000 + 100×70 = 12_000 bp
-p1 = round(3_150×10_200/10_000) = 3_213
-p2 = round(3_213×12_000/10_000) = 3_856
-pAppear = 3_856 bp = 38.56%
+p1 = floor(3_150×10_200/10_000) = 3_213
+p2 = floor(3_213×12_000/10_000) = 3_855
+pAppear = 3_855 bp = 38.55%
 ```
 
 若前三个合法书界均未命中，`critical=true` 令第四个合法书界直接为 10,000 bp；往返越州不会增加次数。
 
-#### 算例 B：逍遥北冥在射雕出现
+#### 算例 B：逍遥北冥在神雕出现
 
-逍遥源为 `legendary`、`g=12`、天龙至射雕约 123 年；玩家 `lore=80`、`luk=40`，中立且非同门，已有一次合法书界失败：
+逍遥源为 `legendary`、`g=12`；天龙至神雕的玩法距离为 `123+10=133` 年。玩家 `lore=80`、`luk=40`，中立且非同门，并已在射雕有一次合法书界失败：
 
 ```text
 ageBase = 3_200
@@ -466,10 +466,10 @@ pBase = 4_850 bp
 behavior = 9_000 + 20×80 = 10_600 bp
 luck = 5_000 + 100×40 = 9_000 bp
 pity = 10_000 + 2_500×1 = 12_500 bp
-p1 = round(4_850×10_600/10_000) = 5_141
-p2 = round(5_141×9_000/10_000) = 4_627
-p3 = round(4_627×12_500/10_000) = 5_784
-pAppear = 5_784 bp = 57.84%
+p1 = floor(4_850×10_600/10_000) = 5_141
+p2 = floor(5_141×9_000/10_000) = 4_626
+p3 = floor(4_626×12_500/10_000) = 5_782
+pAppear = 5_782 bp = 57.82%
 ```
 
 `pBase` 未达 5,000 上限，最终也未达 8,000 上限。
@@ -483,8 +483,8 @@ knowledgeAdj = 20×35 + 10×40 = 1_100 bp
 f0 = 4_000 + 1_100 = 5_100 bp
 luck = 5_000 + 100×20 = 7_000 bp
 fragmentPity = 10_000 + 5_000×1 = 15_000 bp
-f1 = round(5_100×7_000/10_000) = 3_570
-pFragment = round(3_570×15_000/10_000) = 5_355 bp = 53.55%
+f1 = floor(5_100×7_000/10_000) = 3_570
+pFragment = floor(3_570×15_000/10_000) = 5_355 bp = 53.55%
 ```
 
 若再次失败，第三个合法机会强制 100%；不是把 80% 上限偷偷改成 100%，而是关键链的独立保底分支。
@@ -520,9 +520,9 @@ keyItemAwardCap(ch) = legacyCarrierCap(ch)
 | 书剑 `ch12_shujian` | 8 | 4 | 2 | 8 | 4 |
 | 飞狐 `ch13_feihu` | 7 | 4 | 2 | 8 | 4 |
 | 雪山 `ch14_xueshan` | 6 | 3 | 2 | 6 | 3 |
-| **合计理论上限** | **103** | **55** | **29** | **110** | **55** |
+| **合计理论上限** | **103** | **55** | **31** | **110** | **55** |
 
-核算：主载体 `5+4+5+5+4+4+4+4+3+3+3+4+4+3=55`；它只是全清极限。39 源每源每界至多一个主载体，常规单周目实际投放会更少。传承链占用 `design/11` 的既有支线 / 完整奇遇链预算，不额外突破每界 10–18 条完整奇遇链。
+核算：主载体 `5+4+5+5+4+4+4+4+3+3+3+4+4+3=55`；后人上限 `3+2+3+3+2+2+2+2+2+2+2+2+2+2=31`；它们只是全清极限。39 源每源每界至多一个主载体，常规单周目实际投放会更少。传承链占用 `design/11` 的既有支线 / 完整奇遇链预算，不额外突破每界 10–18 条完整奇遇链。
 
 ### 4.2 调度顺序
 
@@ -530,12 +530,14 @@ keyItemAwardCap(ch) = legacyCarrierCap(ch)
 
 1. 按 §2.7 得到合法候选；
 2. 按 `sourceId` 排序，逐个计算 `pAppearBp`；
-3. 命中者各取一个 `lotteryKey`；
+3. 每个合法候选各消费一次 `chanceBp`；命中者再各取一个 `lotteryKey`；
 4. 按 `critical 到期` → `deferred` → `misses` 降序 → `lotteryKey` 升序 → `sourceId` 升序排列；
 5. 取前 `legacyCarrierCap` 个，且选后人时不得突破 `heirCarrierCap`；超出后人上限者若允许宝藏则转宝藏，否则延后；
 6. 为入选源选择主载体、落点和机会点，写 `scheduled` 收据；
 7. 未命中的合法候选 `misses+1`；命中但配额延后的候选写 `deferred=true`，不增加 `misses`；
 8. 玩家取得线索时才在 UI 显示，避免开局地图塞满宝藏图标。
+
+若批次开始前持久化载体已占满本界上限，则步骤 2–7 整体不执行，候选直接延后；若是同批竞争导致超额，则所有候选已经按步骤 3 消费出现 RNG，只有实际入选者继续消费载体与机会 RNG。两种情况分别记录 `quota_full_before_batch` / `lottery_deferred`，不得用同一个“未消费”断言混写。
 
 ### 4.3 区域与来源去重
 
@@ -584,7 +586,7 @@ keyItemAwardCap(ch) = legacyCarrierCap(ch)
 
 ### 5.2 与 `design/18` 的生成契约
 
-本文只提交 `LegacyHeirRequest`，人物实体仍由 `design/18` 创建：
+本文建议通过 `LegacyHeirRequest` 适配器提交候选；该接口尚待 `design/18` 接纳，人物实体及其事实仍只由 18 创建：
 
 - 已有原著人物：只能引用既有 `npc_*`，并检查对应书界 appearance；
 - 新的具名长期人物：须由 `design/18` 登记独立 `npc_*`，标 `origin: expanded`；
@@ -762,7 +764,7 @@ all SkillDef hard reqs / oath / route gates still pass
 - 外功、轻功、暗器、杂学由配方声明 `allowedInnerNatures`；未声明则三性质皆可。
 - `design/05` 的 `inner.bridge` 可视为性质满足，但其内功品阶与层数仍须达标。
 - “中性”不是内功性质；目录不得为内功写 `neutral`。
-- 阴阳相冲时按钮置灰，除非玩家选择 §7.5 的强行校合并且配方允许把性质作为软缺项；专属誓约永远不能强行绕过。
+- 内功性质与合法 `inner.bridge` 属于硬条件：阴阳相冲时按钮置灰，不能用 §7.5 的强行校合软化；专属誓约同样永远不能强行绕过。
 
 ### 7.4 时间与材料代价
 
@@ -772,7 +774,7 @@ all SkillDef hard reqs / oath / route gates still pass
 studyDays = ceil(2 × GF(targetGrade) × 100 / (wis + 30))
 ```
 
-校合开始时冻结 `targetGrade/wis/GF`，中途属性变化不回算。玩家必须处于安全据点，期间占用闭关日程；任务或袭击中断时保存已完成整日，不重新抽取结果。配方可要求普通纸墨、拓印布或药材，但不得要求另一件未登记的天材；普通材料消耗由 `design/10` 定价，本文不造价格。
+校合开始时冻结 `targetGrade/wis/GF`，中途属性变化不回算。越女配方在最低 `wis=45` 时，`GF(10)=4.6`，故 `ceil(2×4.6×100/(45+30))=ceil(12.266…)=13` 日。玩家必须处于安全据点，期间占用闭关日程；任务或袭击中断时保存已完成整日，不重新抽取结果。配方可要求普通纸墨、拓印布或药材，但不得要求另一件未登记的天材；普通材料消耗由 `design/10` 定价，本文不造价格。
 
 成功后：
 
@@ -804,26 +806,26 @@ pForceBp = clamp(8_000 - 300 × deficit + 20 × luk, 2_000, 9_500)
 
 ### 7.6 完整品阶与当界上限
 
-通常：
+基准 §3 的现行规则是：完整本土合法习得不受外来品阶压制，只受真实层数、书界层数、修为与来源上限。AR-13 又明确要求中 / 低武可合成、真实品阶保留而有效品阶按书界上限截断。二者之间缺少一个已登记的公共字段，因此本节把后者落实为 **AR-13 执行默认 + 基准修改提案 H1-P04**，不声称它已由基准 §3 推出：
 
 ```text
 resolvedCompleteGrade = SkillDef.grade
 nativeTo = currentChapter
 sourceGrade = resolvedCompleteGrade
 sourceCap = 10
-legacyWorldCap = highest complete native SkillDef.grade in currentChapter
+legacyWorldCap = configured cap for currentChapter       // H1-P04；默认启用
 effGradeCurrent = min(resolvedCompleteGrade, legacyWorldCap)
 ```
 
-`legacyWorldCap` 是 AR-13 合成来源的专用保护，不改一般本土习得。它从基准 §13 的每界完整原生天级池和地阶顶点推出：
+`legacyWorldCap` 只约束 `learnSource=legacy_synthesis`，不改一般本土习得，也不改产物 `sourceGrade`。建议值按**各书界**完整原生顶点取 12 / 10 / 9，而不是把武境与上限机械绑定：笑傲、侠客虽属中武，仍有完整原生天上武学，故取 12；鹿鼎、连城虽属低武，完整原生顶点仍到天下，故取 10。在 H1-P04 合入基准前，实现应把它放在版本化规则配置中，并保留关闭后的现行 Canon 分支。
 
-| 书界 | 合成有效品阶上限 | 推导锚点 |
+| 书界 | AR-13 默认合成有效品阶上限 | 推导锚点 |
 |---|---:|---|
 | 天龙、射雕、神雕、倚天、笑傲、侠客 | 12 天上 | 各界均有完整原生天上武学 |
 | 碧血、鹿鼎、连城、书剑、飞狐、雪山 | 10 天下 | 各界完整原生顶点为天下 |
 | 白马、鸳鸯 | 9 地上 | 基准 §13 明定两界无天级、顶点地上 |
 
-例：天上 12 的北冥全本在白马校合，真实 `sourceGrade=12`，当界 `effGrade=min(12,9)=9`；若带入书剑，它已经是外来实例，改按基准 §3 的中武外来规则求有效品阶，不继续使用白马上限。层数仍分别受高 / 中 / 低武 10 / 9 / 8 重上限。
+例：按 AR-13 默认，天上 12 的北冥全本在白马校合，真实 `sourceGrade=12`，当界 `effGrade=min(12,9)=9`；若带入书剑，它已经是外来实例，改按基准 §3 的中武外来规则求有效品阶，不继续使用白马上限。若 H1-P04 未获基准接纳，则白马当界应回退 Canon 现行结果 `effGrade=12`，但仍只有低武层数上限 8；不得让两个口径静默并存。
 
 ### 7.7 天级闭集处理
 
@@ -851,18 +853,37 @@ interface SkillStateLegacyFields {
   sourceGrade: Grade;
 }
 
-resolvedAbsGrade = formId == null
-  ? SkillDef.grade
-  : SkillDef.forms[formId].grade;
+interface SkillDefWithForms {
+  grade: Grade;
+  forms?: { legacy_complete?: SkillFormDef };
+}
 
-assert(sourceGrade <= resolvedAbsGrade);
+function resolveAbsGrade(
+  skillDef: SkillDefWithForms,
+  formId?: SkillStateLegacyFields['formId'],
+): Grade {
+  if (formId == null || formId === 'base') return skillDef.grade;
+  const form = skillDef.forms?.legacy_complete;
+  if (form == null) throw new Error(`missing skill form: ${formId}`);
+  return form.grade;
+}
+
+function assertLegacySourceGrade(
+  skillDef: SkillDefWithForms,
+  state: SkillStateLegacyFields,
+): void {
+  const resolvedAbsGrade = resolveAbsGrade(skillDef, state.formId);
+  if (state.sourceGrade > resolvedAbsGrade) {
+    throw new Error('sourceGrade exceeds resolved absolute grade');
+  }
+}
 ```
 
 只有 `sk_yuenvjian` 初始需要 `forms`；其他武学默认 `base`，不扩大运行时分支面。构建器应禁止任意配方把 `sourceGrade` 抬过 `resolvedAbsGrade`。
 
 ## 8. 越女剑法：从序章教学到后世全本
 
-### 8.1 四个对象必须分开
+### 8.1 五个对象必须分开
 
 | 对象 | ID / 标记 | 定义 | 品阶 / 上限 |
 |---|---|---|---|
@@ -872,7 +893,7 @@ assert(sourceGrade <= resolvedAbsGrade);
 | 后世校合全本 | `sk_yuenvjian@legacy_complete` | 同一技能的完整传承形态 | 天下 10；来源上限 10 重 |
 | 韩小莹版 | `sk_yuenvjian02` | 五绝图鉴独立武学 | 玄下 4；永不合并 ID |
 
-序章残篇只提供“我曾见过”的忆起与线索优势，不替代任何一卷。`sk_yuenvjian02` 可以在达到 5 重时满足一般的“同类剑法基础”条件，但不属于 `lg_jianyuan` 的同一技能状态，不共享层数、`sxp`、残篇或卷位。
+序章残篇只提供“我曾见过”的忆起与线索优势，不替代任何一卷。`sk_yuenvjian02` 可以在达到 5 重时满足一般的 `category_any:sword` 基础条件；它与 `sk_yuenvjian` 只有 `set_yuenv_jianyuan` 候选关联及残篇加速联动。无论下游是否把这种联动索引进 `lg_jianyuan`，两者都不是同一技能状态，绝不共享层数、`sxp`、残篇或卷位。
 
 ### 8.2 消隐与出现
 
@@ -917,11 +938,11 @@ innerMinLayer = ceil(10/2) + 1 = 6
 6. 无门派与品德硬门槛；
 7. 仍满足 `sk_yuenvjian` 的武器 / 资质等 `SkillDef` 硬门槛。
 
-安全校合必成，时间按 §7.4。成功把 `formId` 写为 `legacy_complete`、`sourceGrade=10`、`sourceCap=10`，不免费升到 10 重。
+安全校合必成，时间按 §7.4；最低悟性时为 `ceil(2×4.6×100/75)=13` 日。成功把 `formId` 写为 `legacy_complete`、`sourceGrade=10`、`sourceCap=10`，不免费升到 10 重。
 
 ### 8.5 可完成书界与压制算例
 
-从 `ch01_tianlong` 到 `ch14_xueshan` 均可调度该源，因此理论上任一十四书界都能完成；实际要先抽到主载体并集齐材料。`critical=true` 保证连续三次合法书界未出现后，第四次合法书界出现，但不保证玩家自动完成任务。
+从 `ch01_tianlong` 到 `ch14_xueshan` 均可调度该源，因此理论上任一十四书界都能完成；实际要先抽到主载体并集齐材料。`critical=true` 保证连续三次合法书界未出现后，第四次合法书界出现，但不保证玩家自动完成任务。下表采用 AR-13 默认的 H1-P04；若该提案未合入基准，则本土校合当界不做品阶截断，只保留下表的层数上限。
 
 | 完成书界 | `legacyWorldCap` | 真实品阶 | 当界有效品阶 | 层数上限 |
 |---|---:|---:|---:|---:|
@@ -1239,14 +1260,14 @@ innerMinLayer = ceil(10/2) + 1 = 6
 
 #### 9.8.4 38 · 辽东胡刀 `lgs_hujia_daopu`
 
-- **时序**：来源 `ch13_feihu/ch14_xueshan`；十四书主流程内没有更晚书界，因此默认仅用于飞狐残谱跨到雪山补全，不在当前周目另生后世 NPC。
+- **时序**：来源 `ch13_feihu/ch14_xueshan`；十四书主流程内没有更晚书界，因此这是 §1.3“至少一个晚于消隐锚点”的**末端续接 / 归档例外**，默认仅用于飞狐残谱跨到雪山补全，不在当前周目另生后世 NPC。它不进入 §3 的消隐出现抽取，只有章节提交 `legacy/hujiadao/terminal_continuation` 才激活。
 - **载体 / 投放**：胡家刀谱缺页、胡斐切磋和雪山补页；`cache_hujiadao_liaodong`，优先 `city_shenyang/rg_liaodong`，不得复制冷月宝刀。
 - **三卷 / 信物**：`frag_hujiadao_yingmen`《迎门卷》、`frag_hujiadao_liaodi`《料敌卷》、`frag_hujiadao_yuanrong`《圆融卷》；`it_xinwu_hujiadao_shouye` 刀谱首二页。
 - **条件 / 产物**：C10（刀法 5、阳），保留胡家心法与胡拳 / 护身刀 OR 前置；产物 `sk_hujiadao` 10 天下；`ch14` 完成时视为本土印证。
 
 #### 9.8.5 39 · 苗家剑谱 `lgs_miaojia_jianpu`
 
-- **时序**：来源 `ch13_feihu/ch14_xueshan`；同胡刀，十四书内只服务飞狐 → 雪山的跨界续接；人物生命态仍由 `design/18`。
+- **时序**：来源 `ch13_feihu/ch14_xueshan`；同胡刀，属于末端续接 / 归档例外，只服务飞狐 → 雪山的跨界续接；不进入消隐出现抽取，须章节提交 `legacy/miaojiajian/terminal_continuation`；人物生命态仍由 `design/18`。
 - **载体 / 投放**：苗家门下试剑、剑谱缺页或胡苗互证线；`cache_miaojiajian_cangzhou`，优先 `city_cangzhou/rg_yanjing_zhili`。
 - **三卷 / 信物**：`frag_miaojia_zhengfeng`《正锋卷》、`frag_miaojia_xunxi`《寻隙卷》、`frag_miaojia_huzhao`《互照卷》；`it_xinwu_miaojia_jianxin` 苗家剑心记。
 - **条件 / 产物**：C9（剑法 5、调和），保留苗家剑功、心法与有效守传认可；产物 `sk_miaojiajian` 9 地上；与胡刀同界可并行线索，但只能占一条主载体预算。
@@ -1264,9 +1285,9 @@ innerMinLayer = ceil(10/2) + 1 = 6
 | 碧血 | 26–28 | 鹿鼎起 | 金蛇用秘籍事实，铁剑 / 华山用 H |
 | 鹿鼎 / 连城 / 白马 | 29–34 | 连城至鸳鸯起 | D/H 与人物源分开处理 |
 | 鸳鸯 / 书剑 | 35–37 | 书剑或飞狐起 | 覆盖后期短间隔书界 |
-| 飞狐 / 雪山 | 38–39 | 雪山 | 覆盖十四书末端的续接，不承诺不存在的第十五界 |
+| 飞狐 / 雪山 | 38–39 | 雪山 | 两条末端续接 / 归档例外；不冒充消隐后的随机传承，也不承诺不存在的第十五界 |
 
-目录共 39 源、117 个卷位和 39 件逻辑信物。39 源虽低于 §4 的主载体理论总上限 55，但若全在同周目投放，仍会挤占普通奇遇，因此默认每周目只激活 18–24 源**【建议值】**，由书界配额、正常原生来源和概率自然裁减；关键源只标 01、04、08、10、17、19、23、31 共 8 条。
+目录共 39 源、117 个卷位和 39 件逻辑信物，其中 37 条是标准消隐候选，38–39 是末端续接 / 归档例外。39 源虽低于 §4 的主载体理论总上限 55，但若全在同周目投放，仍会挤占普通奇遇，因此默认每周目只激活 18–24 源**【建议值】**，由书界配额、正常原生来源和概率自然裁减；关键源只标 01、04、08、10、17、19、23、31 共 8 条。
 
 原著事实边界：目录承认图鉴所列武学与大体来源，不据此断言后世真实血缘、墓址、抄本流转或门派连续。涉及阿青墓 / 若耶溪、九阴总纲版本、六脉剑谱、玉女“十二多 / 十二少”、太玄石壁文字、金蛇剑谱机关、陈近南传授细节、胡苗刀剑谱缺页等，均须回到三联 / 广州修订版逐字核对；本文不提供伪引文或回目号。
 
@@ -1287,61 +1308,75 @@ innerMinLayer = ceil(10/2) + 1 = 6
 
 寻找后人与掘宝都只换 `locate/verify/trial` 的内容，不改变概率、卷位或最终校合语义。玩家拒绝盗墓的来源必须有道德替代路线，例如说服守传人开匣、以拓片替代取骨、或修复地表碑刻；替代路线可更耗时，不能少一个必要条件。
 
-### 10.2 Provisional 任务 DSL
+### 10.2 正式任务 DSL 与传承域扩展
 
-`design/12-quests-npc-factions.md` 当前尚未建立，以下按 `tech/05` §10 的 `ProvisionalQuestState / QuestCondition / QuestIntent` 预留，整体为**【建议值】**；正式字段必须由 12 收口。示例只展示传承域扩展，不重复任务通用字段：
+`design/12-quests-npc-factions.md` 已定稿 `quest.v1` 的 `QuestDef` 外壳、条件 AST、阶段、转移与带 `op` 的动作。本文只提议为其白名单增加两个条件分支和六个动作，不另建第二套 provisional DSL。下例是**非生产夹具**；`q_01_qiyu_75` 符合正式 ID 正则且当前号段未占用，但仍须由 `chapters/01` 登记后才能成为正式任务。
 
 ```yaml
-questId: q_legacy_yuenv_ruoye
-initialStage: rumor
-transitions:
-  - key: hear_old_song
-    from: rumor
-    to: locate
-    on: dialogue/choiceCommitted
-    when:
-      k: all
-      children:
-        - { k: fact, ref: { t: world, field: era }, op: eq, value: ch01_tianlong }
-        - { k: fact, ref: { t: legacy, sourceId: lgs_yuenv_aqing, field: status }, op: eq, value: active }
+schemaVersion: quest.v1
+fixture: true
+id: q_01_qiyu_75
+kind: qiyu
+chapterId: ch01_tianlong
+titleKey: quest.legacy.yuenv_ruoye.title
+recommendedLevel: 35
+offerWhen:
+  all:
+    - location: { regionId: rg_jiangnan_taihu, cityId: city_shaoxing, eraLayer: ch01 }
+    - legacy: { sourceId: lgs_yuenv_aqing, field: status, op: eq, value: active }
+stages:
+  - id: st_rumor
+    transitions:
+      - id: tr_heard_old_song
+        priority: 10
+        when: { flag: { id: fl_legacy_yuenv_old_song, is: true } }
+        to: st_locate
+  - id: st_locate
+    entry:
+      - { op: legacy/revealCache, cacheId: cache_yuenv_ruoye }
+    transitions:
+      - id: tr_scroll_case_opened
+        priority: 10
+        when:
+          all:
+            - event: { name: legacyCacheOpened, sourceId: cache_yuenv_ruoye }
+            - legacy: { sourceId: lgs_yuenv_aqing, field: fragmentCount, op: ge, value: 1 }
+        to: st_close
+  - id: st_close
+    terminal: completed
+    endingKey: keystone_found
     effects:
-      - { kind: legacy_reveal_cache, cacheId: cache_yuenv_ruoye }
-    oneShot: true
-  - key: open_scroll_case
-    from: keystone
-    to: synthesis
-    on: cache/opened
-    when:
-      k: fact
-      ref: { t: legacy, sourceId: lgs_yuenv_aqing, field: fragmentCount }
-      op: gte
-      value: 1
-    effects:
-      - { kind: legacy_grant_keystone, itemId: it_xinwu_aqingshoujuan }
-    oneShot: true
+      - { id: fx_keystone, op: legacy/grantKeystone, sourceId: lgs_yuenv_aqing, itemId: it_xinwu_aqingshoujuan }
+tracking:
+  defaultTracked: false
+  targetRef: cache_yuenv_ruoye
+  revealPolicy: known_only
+source:
+  origin: expanded
+  note: non-production schema fixture; chapter owner must allocate the task id
 ```
 
-需要 `tech/05` 增加的只读条件：
+建议并入 `design/12` `ConditionExpr` / 动作白名单的判别联合为：
 
 ```ts
-type LegacyQuestFactRef =
-  | { t: 'legacy'; sourceId: LegacySourceId; field: 'status'|'fragmentCount'|'hasKeystone'|'localMisses' }
-  | { t: 'legacy_cache'; cacheId: LegacyCacheId; field: 'state'|'progress' };
+type LegacyConditionExtension =
+  | { legacy: { sourceId: LegacySourceId; field: 'status'|'fragmentCount'|'hasKeystone'|'localMisses'; op: 'eq'|'ge'|'le'; value: string|number|boolean } }
+  | { legacyCache: { cacheId: LegacyCacheId; field: 'state'|'progress'; op: 'eq'|'ge'|'le'; value: string|number } };
 
-type LegacyQuestIntent =
-  | { kind: 'legacy_reveal_cache'; cacheId: LegacyCacheId }
-  | { kind: 'legacy_advance_cache'; cacheId: LegacyCacheId; work: number; receiptKey: string }
-  | { kind: 'legacy_resolve_opportunity'; sourceId: LegacySourceId; opportunityId: string }
-  | { kind: 'legacy_grant_fragment'; fragmentId: LegacyFragmentId; receiptKey: string }
-  | { kind: 'legacy_grant_keystone'; itemId: ItemId }
-  | { kind: 'legacy_complete_synthesis'; recipeId: LegacyRecipeId };
+type LegacyActionExtension =
+  | { id?: string; op: 'legacy/revealCache'; cacheId: LegacyCacheId }
+  | { id?: string; op: 'legacy/advanceCache'; cacheId: LegacyCacheId; work: number; receiptKey: string }
+  | { id?: string; op: 'legacy/resolveOpportunity'; sourceId: LegacySourceId; opportunityId: string }
+  | { id?: string; op: 'legacy/grantFragment'; fragmentId: LegacyFragmentId; receiptKey: string }
+  | { id?: string; op: 'legacy/grantKeystone'; sourceId: LegacySourceId; itemId: ItemId }
+  | { id?: string; op: 'legacy/completeSynthesis'; recipeKey: LegacyRecipeKey };
 ```
 
-所有 action 调用传承域 helper 重验，不允许任务脚本直接设置 `fragments[]`、`sourceGrade` 或 RNG。一次 transition 的阶段、物品、收据、RNG 和武学状态必须同事务；任一动作失败则全回滚。幂等键使用 `questId#stageKey#actionKey`，并与机会收据交叉校验。
+`event:legacyCacheOpened` 也须先登记到 `design/12` 的稳定事件白名单。所有动作调用传承域 helper 重验，不允许任务脚本直接设置 `fragments[]`、`sourceGrade` 或 RNG。阶段、物品、收据、RNG 与武学状态必须同事务；任一动作失败则全回滚。持久效果的幂等键沿用正式规则 `effectId=<questId>/<stageId>/<effects[].id>`，并与机会收据交叉校验。
 
 ### 10.3 寻访后人与 NPC 接口
 
-1. 调度只向 `design/18` 提交 `LegacyHeirSpawnRequest`，包含 `sourceId/chapterId/heirKind/roleTags/difficultyBand/locationHints`；姓名、年龄、人格、D1–D5 与能否招募由 18 生成。
+1. 本文提议以 `LegacyHeirRequest` 向 `design/18` 申请生成，字段为 `sourceId/chapterId/heirKind/roleTags/difficultyBand/locationHints`；该类型尚未在 18 正式登记，接纳前只能作为章节适配器。姓名、年龄、人格、D1–D5 与能否招募仍由 18 决定。
 2. `bloodline` 必须带原著或章节事实证据键；无证据时 schema 构建失败。`disciple`、`custodian` 为安全默认。
 3. 可招募后人按 18 的正常队伍 / 驻扎互斥；招募不是获得三卷的必要条件，完成授艺考验即可结算。
 4. 后人死亡或被改命救回都不重掷主载体；任务改走遗物、托付人或等待本人恢复，状态迁移写稳定事实。
@@ -1352,20 +1387,20 @@ type LegacyQuestIntent =
 玩家路线直接消费 §6.4 的进度。家丁路线把 §6.5 的工作量接到 `design/16` 排班 DSL：
 
 ```yaml
-- kind: reserve_schedule_blocks
+- op: reserve_schedule_blocks
   ownerRef: legacy:cache_yuenv_ruoye
   day: 37
-  blocks: [morning, afternoon]
-- kind: legacy_assign_excavation
+  blocks: [chen, si]
+- op: legacy/assignExcavation
   cacheId: cache_yuenv_ruoye
   servantRefs: [sv_runtime_018, sv_runtime_021]
-- kind: settle_legacy_excavation
+- op: legacy/settleExcavation
   cacheId: cache_yuenv_ruoye
   expectedWorkIndex: 3
   receiptKey: ch01_tianlong#cache_yuenv_ruoye#3
 ```
 
-`legacy_assign_excavation` / `settle_legacy_excavation` 是交给 16 与 tech/05 的**【建议值】**扩展。它们检查合同、排班、地点、`estateAssist` 和安全状态，只推进 `progress`；玩家仍须到场处理墓主伦理、信物和最终开匣。任务链应让独行玩家能手挖完成，家丁只是省日程，不是付费门槛。
+此段是传承域调用批次，不是可直接嵌入 `QuestDef.effects` 的现行白名单：`design/16` §14.5 现有动作仍以 `{ kind: 'reserve_schedule_blocks', ... }` 表达，本文在跨域 command bus 上统一转写为 `op`；正式合并时必须由 12 / 16 选定一种编码并补迁移器。`chen/si` 则严格复用 16 的 `ScheduleBlock` 枚举。`legacy/assignExcavation` / `legacy/settleExcavation` 是交给 12、16 与 tech/05 的**【建议值】**扩展。它们检查合同、排班、地点、`estateAssist` 和安全状态，只推进 `progress`；玩家仍须到场处理墓主伦理、信物和最终开匣。任务链应让独行玩家能手挖完成，家丁只是省日程，不是付费门槛。
 
 ### 10.5 奖励、日志与 UI 事件
 
@@ -1432,7 +1467,7 @@ AR-13 的追逐跨越多个书界，因此传承匣是对 `design/02` 书眠清�
 
 新周目默认重置全部传承运行态、卷、信物、配方完成态与武学；账号级可保留“曾完成”图鉴角标，不可凭角标直领奖励。`rule_shihai` 也只扩大武学携带候选，不携带残本。未来若增加宿慧，安全上限是“开局显示一个区域线索”，不得开局给卷、给信物或提升概率；否则会绕过 AR-13 的发现链。
 
-`rule_tianyi` 可改变普通书眠携带选择，但不能重抽传承调度；`rule_wutiandao` 关闭一般压制时，§7.6 的 `legacyWorldCap` 也随之关闭，真实品阶直接生效。`debugTainted` 存档可以测试合成，但不触发账号级成就。
+`rule_tianyi` 可改变普通书眠携带选择，但不能重抽传承调度；`rule_wutiandao` 关闭一般压制与层数上限时，§7.6 提议的 `legacyWorldCap` 也随之关闭，真实品阶直接生效。`debugTainted` 存档可以测试合成，但不触发账号级成就。
 
 ## 12. 数据结构
 
@@ -1440,50 +1475,84 @@ AR-13 的追逐跨越多个书界，因此传承匣是对 `design/02` 书眠清�
 
 ```yaml
 schemaVersion: legacy.v1
-sourceId: lgs_yuenv_aqing
-sourceKind: person
-target: { skillId: sk_yuenvjian, formId: legacy_complete, grade: 10 }
-originChapter: ch00_yuenv
-disappearance: { kind: chapter_fact, fact: prologue/aqing/left_known_history }
-eligibleChapters: [ch01_tianlong, ch02_shediao, ch03_shendiao, ch04_yitian, ch05_xiaoao, ch06_xiake, ch07_bixue, ch08_luding, ch09_liancheng, ch10_baima, ch11_yuanyang, ch12_shujian, ch13_feihu, ch14_xueshan]
-renownTier: legendary
-ethos: neutral
-critical: true
-carrier: { heirWeight: 2000, cacheWeight: 8000, allowedHeirKinds: [disciple, custodian] }
-locationHints: [{ regionId: rg_jiangnan_taihu, cityId: city_shaoxing, placeKey: kuiji_ruoyexi }]
-cache: { cacheId: cache_yuenv_ruoye, siteRef: null, requiredProgress: 160, estateAssist: true }
+sources:
+  - id: lgs_yuenv_aqing
+    kind: person
+    target: { skillId: sk_yuenvjian, formId: legacy_complete, grade: 10 }
+    originChapter: ch00_yuenv
+    disappearance: { kind: chapter_fact, fact: prologue/aqing/left_known_history }
+    eligibleChapters: [ch01_tianlong, ch02_shediao, ch03_shendiao, ch04_yitian, ch05_xiaoao, ch06_xiake, ch07_bixue, ch08_luding, ch09_liancheng, ch10_baima, ch11_yuanyang, ch12_shujian, ch13_feihu, ch14_xueshan]
+    renownTier: legendary
+    ethos: neutral
+    critical: true
+    carrier: { heirWeight: 2000, cacheWeight: 8000, allowedHeirKinds: [disciple, custodian] }
+    locationHints: [{ regionId: rg_jiangnan_taihu, cityId: city_shaoxing, placeKey: kuiji_ruoyexi }]
+    cacheIds: [cache_yuenv_ruoye]
+    fragmentIds: [frag_yuenv_jianying, frag_yuenv_yuanbu, frag_yuenv_wuhen]
+    recipeKey: lgs_yuenv_aqing#synthesis
+caches:
+  - id: cache_yuenv_ruoye
+    sourceId: lgs_yuenv_aqing
+    regionId: rg_jiangnan_taihu
+    cityId: city_shaoxing
+    placeKey: kuiji_ruoyexi
+    requiredProgress: 160
+    estateAssist: true
 fragments:
-  - { id: frag_yuenv_jianying, slot: upper, displayName: 剑影卷, grade: 7 }
-  - { id: frag_yuenv_yuanbu, slot: middle, displayName: 猿步卷, grade: 7 }
-  - { id: frag_yuenv_wuhen, slot: lower, displayName: 无痕卷, grade: 7 }
-keystone: { itemId: it_xinwu_aqingshoujuan, unique: true, deterministicNode: open_scroll_case }
-recipe:
-  recipeKey: lgs_yuenv_aqing#synthesis
-  foundation: { kind: category_any, category: sword, minTrueLayer: 5 }
-  targetMinTrueLayer: 7
-  wis: 45
-  lore: 40
-  inner: { minSourceGrade: 7, minTrueLayer: 6, natures: [harmony], allowBridge: true }
-  forceTolerance: { wis: 5, lore: 10, layer: 1, innerGrade: 1 }
-  output: { skillId: sk_yuenvjian, formId: legacy_complete, sourceGrade: 10, sourceCap: 10 }
+  - { id: frag_yuenv_jianying, sourceId: lgs_yuenv_aqing, slot: upper, displayName: 剑影卷, grade: 7, skillId: sk_yuenvjian }
+  - { id: frag_yuenv_yuanbu, sourceId: lgs_yuenv_aqing, slot: middle, displayName: 猿步卷, grade: 7, skillId: sk_yuenvjian }
+  - { id: frag_yuenv_wuhen, sourceId: lgs_yuenv_aqing, slot: lower, displayName: 无痕卷, grade: 7, skillId: sk_yuenvjian }
+keystones:
+  - { sourceId: lgs_yuenv_aqing, itemId: it_xinwu_aqingshoujuan, unique: true, deterministicNode: open_scroll_case }
+recipes:
+  - recipeKey: lgs_yuenv_aqing#synthesis
+    sourceId: lgs_yuenv_aqing
+    fragments: [frag_yuenv_jianying, frag_yuenv_yuanbu, frag_yuenv_wuhen]
+    keystone: it_xinwu_aqingshoujuan
+    foundation: { kind: category_any, category: sword, minTrueLayer: 5 }
+    targetMinTrueLayer: 7
+    wis: 45
+    lore: 40
+    inner: { minSourceGrade: 7, minTrueLayer: 6, natures: [harmony], allowBridge: true }
+    forceTolerance: { wis: 5, lore: 10, layer: 1, innerGrade: 1 }
+    output: { skillId: sk_yuenvjian, formId: legacy_complete, grade: 10, sourceGrade: 10, sourceCap: 10 }
 ```
 
 ### 12.2 TypeScript 类型与运行态
 
 ```ts
+type Grade = 1|2|3|4|5|6|7|8|9|10|11|12;
+type ChapterId = `ch${string}`; type SkillId = `sk_${string}`; type ItemId = `it_${string}`;
+type RegionId = `rg_${string}`; type CityId = `city_${string}`; type RuinSiteId = `rs_${string}`;
 type LegacySourceId = `lgs_${string}`; type LegacyFragmentId = `frag_${string}`;
-type LegacyCacheId = `cache_${string}`; type FragmentSlot = 'upper'|'middle'|'lower';
+type LegacyCacheId = `cache_${string}`; type LegacyRecipeKey = `${LegacySourceId}#synthesis`;
+type FragmentSlot = 'upper'|'middle'|'lower'; type InnerNature = 'yin'|'yang'|'harmony';
 type LegacyStatus = 'sealed'|'eligible'|'active'|'dormant'|'completed'|'archived';
-interface LegacyFragmentDef { id: LegacyFragmentId; sourceId: LegacySourceId; slot: FragmentSlot; grade: Grade; skillId: SkillId }
+interface LegacyFragmentDef { id: LegacyFragmentId; sourceId: LegacySourceId; slot: FragmentSlot; displayName: string; grade: Grade; skillId: SkillId }
 interface LegacyCacheDef { id: LegacyCacheId; sourceId: LegacySourceId; siteRef?: RuinSiteId; regionId: RegionId; cityId?: CityId; placeKey: string; requiredProgress: number; estateAssist: boolean }
-interface LegacyRecipeDef { recipeKey: `${LegacySourceId}#synthesis`; sourceId: LegacySourceId; fragments: readonly [LegacyFragmentId,LegacyFragmentId,LegacyFragmentId]; keystone: ItemId; foundation: FoundationReq; wis: number; lore: number; inner: InnerReq; output: LegacyOutput; forceTolerance?: ForceTolerance }
-interface LegacySourceDef { id: LegacySourceId; kind: 'person'|'sect'|'manual'; target: LegacyOutput; originChapter: ChapterId; disappearance: DisappearanceRule; eligibleChapters: ChapterId[]; renownTier: 'obscure'|'local'|'renowned'|'legendary'; ethos: 'righteous'|'neutral'|'unorthodox'; critical: boolean; carrier: CarrierWeights; cacheIds: LegacyCacheId[]; fragmentIds: readonly [LegacyFragmentId,LegacyFragmentId,LegacyFragmentId]; recipeKey: string }
+interface LegacyKeystoneDef { sourceId: LegacySourceId; itemId: ItemId; unique: true; deterministicNode: string }
+type DisappearanceRule =
+  | { kind: 'chapter_fact'; fact: string }
+  | { kind: 'sectStatus'; sectId: `sect_${string}`; states: readonly ('D'|'H')[] }
+  | { kind: 'person_dead'; npcId: `npc_${string}`; deathFact?: string };
+type FoundationReq =
+  | { kind: 'category_any'; category: string; minTrueLayer: number }
+  | { kind: 'skill_any'; skillIds: readonly SkillId[]; minTrueLayer: number }
+  | { kind: 'lineage_any'; lineageId: `lg_${string}`; minTrueLayer: number }
+  | { kind: 'art'; art: string; minValue: number }
+  | { kind: 'special'; ruleKey: string };
+interface InnerReq { minSourceGrade: Grade; minTrueLayer: number; natures: readonly InnerNature[]; allowBridge: boolean }
+interface ForceTolerance { wis?: number; lore?: number; layer?: number; innerGrade?: number }
+interface LegacyRecipeDef { recipeKey: LegacyRecipeKey; sourceId: LegacySourceId; fragments: readonly [LegacyFragmentId,LegacyFragmentId,LegacyFragmentId]; keystone: ItemId; foundation: FoundationReq; targetMinTrueLayer: number; wis: number; lore: number; inner: InnerReq; output: LegacyOutput; forceTolerance?: ForceTolerance }
+interface LegacySourceDef { id: LegacySourceId; kind: 'person'|'sect'|'manual'; target: LegacyOutput; originChapter: ChapterId; disappearance: DisappearanceRule; eligibleChapters: ChapterId[]; renownTier: 'obscure'|'local'|'renowned'|'legendary'; ethos: 'righteous'|'neutral'|'unorthodox'; critical: boolean; carrier: CarrierWeights; locationHints: LocationHint[]; cacheIds: LegacyCacheId[]; fragmentIds: readonly [LegacyFragmentId,LegacyFragmentId,LegacyFragmentId]; recipeKey: LegacyRecipeKey }
 interface LegacySourceState { sourceId: LegacySourceId; status: LegacyStatus; misses: number; localMisses: number; fragments: FragmentSlot[]; hasKeystone: boolean; activeChapter?: ChapterId; activeCarrier?: 'heir'|'cache'; receipts: string[]; cooldownUntilDay?: number; completedIn?: ChapterId }
 interface LegacyOutput { skillId: SkillId; formId?: 'legacy_complete'; grade: Grade; sourceGrade?: Grade; sourceCap?: 10 }
 interface CarrierWeights { heirWeight: number; cacheWeight: number; allowedHeirKinds: Array<'bloodline'|'disciple'|'custodian'> }
+interface LocationHint { regionId: RegionId; cityId?: CityId; placeKey?: string }
+interface LegacyRegistry { schemaVersion: 'legacy.v1'; sources: LegacySourceDef[]; caches: LegacyCacheDef[]; fragments: LegacyFragmentDef[]; keystones: LegacyKeystoneDef[]; recipes: LegacyRecipeDef[] }
 ```
 
-数组序列化前按稳定 ID 排序；运行态 `fragments` 按 `upper/middle/lower` 排序。`receiptId=chapterId#sourceId#opportunityId#attemptIndex`，同存档唯一。概率配置只存整数 bp，任何浮点百分比在构建时拒绝。
+YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/recipe` 内嵌进 `LegacySourceDef`。可选 `siteRef` 不存在时省略，不写 `null`，以兼容 `exactOptionalPropertyTypes`。数组序列化前按稳定 ID 排序；运行态 `fragments` 按 `upper/middle/lower` 排序。`receiptId=chapterId#sourceId#opportunityId#attemptIndex`，同存档唯一。概率配置只存整数 bp，任何浮点百分比在构建时拒绝。
 
 ## 13. 本文新增术语与 ID
 
@@ -1525,17 +1594,17 @@ interface CarrierWeights { heirWeight: number; cacheWeight: number; allowedHeirK
 | LEG-T02 | 同源持 0/1/2/3 卷、未校合 | `sourceCap=0/4/7/9`；重复卷只给 10% 下一重 `sxp` |
 | LEG-T03 | 上卷 A + 中下卷 B | 校合硬拒绝，0 时间、0 RNG、0 消耗 |
 | LEG-T04 | 三卷齐但信物缺失 / 重复信物 | 前者硬拒绝；后者构建失败 |
-| LEG-T05 | §3.9 三个概率样本 | 结果逐项为 38.56%、57.84%、53.55% |
+| LEG-T05 | §3.9 三个概率样本 | 逐步 `mulBpFloor` 后结果为 38.55%、57.82%、53.55% |
 | LEG-T06 | 同档同种子载入 100 次 | 载体、机会结果、缺卷选择和 RNG 游标完全一致 |
 | LEG-T07 | 合法出现连续未命中 3 界，`critical=true` | 第 4 个合法书界 10000 bp；地图往返不增加 misses |
-| LEG-T08 | 每界生成至上限再来一候选 | 候选 `deferred`、不计 miss、不消费其出现 RNG |
+| LEG-T08 | 批次前已满 / 同批竞争超额 | 前者整批 `quota_full_before_batch`、不消费出现 RNG；后者命中候选 `lottery_deferred`、已消费出现与 lottery RNG 但不计 miss |
 | LEG-T09 | 安全校合全部满足 | 必成；三卷 / 信物 bound；层数不免费增加；重复提交幂等 |
 | LEG-T10 | 强行校合失败 | 卷 / 信物不毁，耗半时、获紊乱、冷却 7 日；事务失败全回滚 |
-| LEG-T11 | 北冥 12 在白马校合 | `sourceGrade=12, effGrade=9, layerCap=8`；入书剑改按外来规则 |
+| LEG-T11 | 北冥 12 在白马校合（H1-P04 默认开启） | `sourceGrade=12, effGrade=9, layerCap=8`；关闭提案时 Canon 现行值为 `effGrade=12`；入书剑均改按外来规则 |
 | LEG-T12 | 越女教学 / 完整 / 韩小莹三状态 | 9 / 10 / 4，ID 与层数不串；轮回成就不误触发 |
 | LEG-T13 | 书眠时有两卷一信物、挖掘 80/160 | 卷与信物保留，挖掘进度和家丁清零，源转 dormant |
 | LEG-T14 | 太玄配方 `lore=12` | 可校合；通用 `lore≥48` 已被显式特殊条件替换 |
-| LEG-T15 | 枚举 14 界全部上限 | 主载体总计≤55、后人≤29、残本≤110、信物≤55 |
+| LEG-T15 | 枚举 14 界全部上限 | 主载体总计≤55、后人≤31、残本≤110、信物≤55 |
 
 人工验收另做三条：低品德 / 敌对门派仍有可理解线索；拒绝盗墓有等价替代；手机横屏能在一屏看到“三卷—信物—门槛—失败代价”。概率分布、存档重放与 39 源全量自动调度须在实现后跑 10,000 种子，标**（待实测）**。
 
@@ -1545,7 +1614,7 @@ interface CarrierWeights { heirWeight: number; cacheWeight: number; allowedHeirK
 
 | 编号 | 下游 | 建议值 / 默认 |
 |---|---|---|
-| H1-D01 | `design/12` / tech/05 | 采用 §10.2 六项 Legacy fact / intent 与原子、幂等语义 |
+| H1-D01 | `design/12` / tech/05 | 在正式 `quest.v1` 中加入 §10.2 两类 legacy 条件、六项动作与 `legacyCacheOpened` 稳定事件，并沿用原子、幂等语义 |
 | H1-D02 | `design/16` | 家丁挖掘 `requiredProgress=160`、每块 `10+floor((production+skill)/10)`、最多 3 人 |
 | H1-D03 | `design/13` | 三个成就建议为 1/2/3 点；未采纳时只留无点数里程碑 |
 | H1-D04 | chapters/01–14 | 每周目激活 18–24 源；拒绝盗墓提供等价任务路径 |
@@ -1558,7 +1627,7 @@ interface CarrierWeights { heirWeight: number; cacheWeight: number; allowedHeirK
 | `design/02` | 年代、书眠、残篇 / 残承 / 藏史、`lg_*` / `rs_*` | 已按现稿引用；传承匣例外待同步 |
 | `design/05` + 图鉴 | `SkillDef`、品阶、硬门槛、层数与学习来源 | 已按现稿引用；新增来源待各图鉴登记 |
 | `design/11/19` | 地图、时代名、开放区域与坐标 | ID 已引用；具体 `placeKey` 待章节配点 |
-| `design/12` | 正式任务 DSL、门派与任务生命周期 | 文件尚不存在；暂用 tech/05 provisional |
+| `design/12` | 正式任务 DSL、门派与任务生命周期 | 已按 `quest.v1` 对齐；legacy 条件、动作与稳定事件仍待加入白名单 |
 | `design/17/18` | D/H 矩阵、人物生卒与后人生成 | 硬依赖；未知卒年不猜死 |
 
 ### 15.3 对基准的修改提案
@@ -1568,6 +1637,7 @@ interface CarrierWeights { heirWeight: number; cacheWeight: number; allowedHeirK
 | H1-P01 | §13 保留普通天级闭集 51 门，新增“合成天级”独立小节；唯一初始成员 `sk_yuenvjian@legacy_complete=10`，不计普通第 52 门 | AR-13 明定全本天级，又保持教学版 P35=9 与韩小莹版=4 |
 | H1-P02 | §12 登记 `lgs_*` 传承源、`frag_*` 三卷残本、`cache_*` 宝藏缓存；确认 `it_xinwu_*` 属 `it_*` 子命名 | 防止与 `lg_*` 同源组、`rs_*` 古迹、`rp_*` 资源点冲突 |
 | H1-P03 | §18 唯一归属增加 `design/20`：传承源、消隐、后人 / 宝藏候选、三卷、信物与校合 | AR-13 跨多个既有系统，需要单一规则归属 |
+| H1-P04 | §3 增加仅适用于 `learnSource=legacy_synthesis` 的逐书界 `legacyWorldCap`：天龙至侠客 12，碧血 / 鹿鼎 / 连城 / 书剑 / 飞狐 / 雪山 10，白马 / 鸳鸯 9；`rule_wutiandao` 关闭它 | 落实 AR-13b“真实品阶保留、有效品阶按书界上限截断”；顶点取各界 §13 完整原生池，不能简写成武境映射；现行 Canon 对完整本土来源不作品阶截断，必须显式登记例外 |
 
 ### 15.4 原著考据待办
 
@@ -1582,7 +1652,7 @@ interface CarrierWeights { heirWeight: number; cacheWeight: number; allowedHeirK
 5. **单周目激活多少源？** 默认 18–24；8 个关键源仍受每界配额，但享第四合法界保底。
 6. **家丁能否独立开匣？** 默认不能，只推进工作量，玩家必须验收。
 7. **成就是否扩表？** 默认先存三个里程碑，待 13 接纳后再分配正式序号，绝不复用 `ach_yuenv_full`。
-8. **低武合成上限是否启用？** 默认启用 §7.6 的 12/10/9 专用上限；需以 10,000 种子和战斗样本**（待实测）**。
+8. **逐书界合成上限是否启用？** 依 AR-13b 默认启用 §7.6 / H1-P04 的逐界 12 / 10 / 9 专用上限；基准合入前必须以版本化开关实现，并以 10,000 种子和战斗样本**（待实测）**。
 
-需同步而未在本任务修改：`design/02` 加传承匣书眠钩子与“仅原生一次”的例外来源；`design/05` / 各图鉴加 `legacy_synthesis` 与越女 form；`design/10` 登记 117 残本和 39 信物物品；`design/11/19` 配缓存局部点；`design/12` 收口 DSL；`design/13` 处理天级例外与成就；`design/14` 增界面；`design/16` 增挖掘动作；`design/17/18` 输出只读消隐 / 后人接口；`chapters/01–14` 配事实、机会、替代路线和配额；`tech/05` 实现确定性事务与校验。
+需同步而未在本任务修改：`00-canon` 合入 H1-P01～P04；`design/02` 加传承匣书眠钩子与“仅原生一次”的例外来源；`design/05` / 各图鉴加 `legacy_synthesis` 与越女 form（并调整 `skills-general` 的 GEN-V02 例外）；`design/10` 登记 117 残本和 39 信物物品；`design/11/19` 配缓存局部点；`design/12` 加 legacy 条件 / 动作 / 稳定事件；`design/13` 处理天级例外与成就；`design/14` 增界面；`design/16` 增挖掘动作；`design/17/18` 输出只读消隐 / 后人接口；`chapters/01–14` 配事实、机会、替代路线和配额，并由 `chapters/01` 决定是否登记候选任务 `q_01_qiyu_75`；`tech/05` 实现确定性事务与校验。
 以上同步完成前，本文新增跨域键均按建议接口处理，不视为已在其归属文档正式定义。
