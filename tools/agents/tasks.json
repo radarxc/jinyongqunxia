@@ -4962,6 +4962,792 @@
           ]
         ]
       }
+    },
+    {
+      "id": "A4",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "基准 v1.3：登记经脉系统（21 v2.0）并合并 v1.2 之后的提案",
+      "prompt": "A4-canon-v1.3.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/00-canon.md",
+        "docs/decisions/canon-proposals-v1.2.md",
+        "tools/lint/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/00-canon.md"
+        ],
+        "contains": [
+          [
+            "docs/00-canon.md",
+            "v1.3"
+          ]
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "tools/lint/test_check_ids.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "N04",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "经脉系统落地 · 伤害公式与伤害模拟（04）",
+      "prompt": "N-meridian-sync.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/design/04-damage-formula.md",
+        "tools/balance/damage_sim.py",
+        "tools/balance/README.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "伤害公式",
+        "doc_set": "- `docs/design/04-damage-formula.md`\n- `tools/balance/damage_sim.py`\n- `tools/balance/README.md`",
+        "extra": "把经脉独立乘区（攻方）、防守路线乘区（守方）与内劲抵消拳脚接入 04 的乘区链、结算顺序与取整点，数值只引用 21；标准对标准保持中性。更新 `tools/balance/damage_sim.py`：加入这些乘区（标准角色取中性值），`--check` 保持通过并新增经脉用例（同等 / 强一档 / 强两档 / 弱一档 / 强者对杂兵），04 §9 节奏表补对应对比。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/04-damage-formula.md"
+        ],
+        "fences": [
+          "docs/design/04-damage-formula.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "N05",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "经脉系统落地 · 武学体系（05）",
+      "prompt": "N-meridian-sync.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/design/05-martial-arts-system.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学体系",
+        "doc_set": "- `docs/design/05-martial-arts-system.md`",
+        "extra": "`MoveDef` 增加攻 / 防路线、段时间、绝招标记与路线模板引用；内功增加调息档案与内劲抵消参数；轻功武学增加速度路线字段；§4.2 招式预算写明经脉乘区独立于原预算的口径；§14 数量不变。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/05-martial-arts-system.md"
+        ],
+        "fences": [
+          "docs/design/05-martial-arts-system.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "N06",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "经脉系统落地 · Buff 体系（06）",
+      "prompt": "N-meridian-sync.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/design/06-buff-system.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "Buff 体系",
+        "doc_set": "- `docs/design/06-buff-system.md`",
+        "extra": "按 21 的规格表登记 Buff（06 为 `bf_` 归属）：受擒 1–9（标签 `cc.bind`）、穴位受封 1–9、经气迟滞、胀损、护体内劲 / 反震等；旧封穴 `bf_fengxue` / `bf_fengnei` / `bf_fengjingmai` 的迁移映射；与既有麻、眩晕、昏迷的关系与互斥。登记后 21 中对应的\"拟新增 Buff\"即可引用这些 ID（21 本身由审计任务回填，不在本组）。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/06-buff-system.md"
+        ],
+        "fences": [
+          "docs/design/06-buff-system.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "N09",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "经脉系统落地 · 战斗与地形轻功（09、08）",
+      "prompt": "N-meridian-sync.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/design/09-combat-system.md",
+        "docs/design/08-terrain-and-qinggong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "战斗与轻功",
+        "doc_set": "- `docs/design/09-combat-system.md`\n- `docs/design/08-terrain-and-qinggong.md`",
+        "extra": "09：出手结算顺序（经脉模块在乘区之前）、`flowCt` 计入收招、防守路线接反应机制、内劲抵消在命中结算中的位置、调息并入运功调息、解穴与挣脱行动、移动力与首轮排序加入经脉速度修正、AI 选路线 / 防守 / 调息；08：轻功路线对移动、跃起与门禁的修正接口（境界阈值 20 / 50 / 90 / 140 / 200 不变）。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/09-combat-system.md",
+          "docs/design/08-terrain-and-qinggong.md"
+        ],
+        "fences": [
+          "docs/design/09-combat-system.md",
+          "docs/design/08-terrain-and-qinggong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "N15",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "经脉系统落地 · 冲穴与属性（15、03）",
+      "prompt": "N-meridian-sync.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/design/15-meridians-and-acupoints.md",
+        "docs/design/03-attributes.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "冲穴与属性",
+        "doc_set": "- `docs/design/15-meridians-and-acupoints.md`\n- `docs/design/03-attributes.md`",
+        "extra": "15：给 21 提供经脉容量 / 流畅度的来源接口（冲穴开通、周天、九转），写清修炼状态与战斗中运行状态的边界；03：内力、轻功值、`spd` 等属性与经脉修正（攻、防、速度）的接口，只引用 21。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/15-meridians-and-acupoints.md",
+          "docs/design/03-attributes.md"
+        ],
+        "fences": [
+          "docs/design/15-meridians-and-acupoints.md",
+          "docs/design/03-attributes.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "N1314",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "经脉系统落地 · 成长与 UI（13、14）",
+      "prompt": "N-meridian-sync.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/design/13-progression-and-endings.md",
+        "docs/design/14-ui-ux-mobile.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "成长与 UI",
+        "doc_set": "- `docs/design/13-progression-and-endings.md`\n- `docs/design/14-ui-ux-mobile.md`",
+        "extra": "13：经脉强度与成长曲线、绝招解锁节奏；14：路线可视化、迟滞 / 胀损提示、调息入口、点穴 / 擒拿状态、防守路线选择、速度修正与出手顺序显示（手机端要点与线框描述）。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/13-progression-and-endings.md",
+          "docs/design/14-ui-ux-mobile.md"
+        ],
+        "fences": [
+          "docs/design/13-progression-and-endings.md",
+          "docs/design/14-ui-ux-mobile.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Ntech",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "经脉系统落地 · 引擎、数据管线与性能（tech/05、04、03）",
+      "prompt": "N-meridian-sync.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/tech/05-gameplay-engine.md",
+        "docs/tech/04-data-pipeline.md",
+        "docs/tech/03-mobile-performance.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "技术",
+        "doc_set": "- `docs/tech/05-gameplay-engine.md`\n- `docs/tech/04-data-pipeline.md`\n- `docs/tech/03-mobile-performance.md`",
+        "extra": "tech/05：经脉模拟模块逐单位实例化、核心统一注入 `battle` 随机流、预估无副作用、快照与录像字段、黄金数据对拍（`tools/balance/meridian_flow_golden.json`）；tech/04：路线 / 绝招 / 经脉模板 / 敌人经脉参数的数据 schema 与构建期校验；tech/03：经脉模块的性能预算与门禁。"
+      },
+      "validate": {
+        "exists": [
+          "docs/tech/05-gameplay-engine.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/03-mobile-performance.md"
+        ],
+        "fences": [
+          "docs/tech/05-gameplay-engine.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/03-mobile-performance.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NC1",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "经脉系统落地 · 武学图鉴（少林 / 道家 / 通行）",
+      "prompt": "N-meridian-sync.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-shaolin.md",
+        "docs/design/catalog/skills-daojia.md",
+        "docs/design/catalog/skills-general.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（少林 / 道家 / 通行）",
+        "doc_set": "- `docs/design/catalog/skills-shaolin.md`\n- `docs/design/catalog/skills-daojia.md`\n- `docs/design/catalog/skills-general.md`",
+        "extra": "为本组图鉴的武学补经脉数据（字段名以 21 v2.0 为准，05 由并行任务 N05 同步）：天 / 地阶武学逐门列出招式与各自路线（攻或防，每门至少 1 记绝招）；玄 / 黄阶引用路线模板；轻功武学补速度路线；内功补调息档案与内劲抵消档位。招式名优先原著，有现实武术出处的注明，没把握的标（待考），不编造。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NC2",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "经脉系统落地 · 武学图鉴（五绝 / 逍遥）",
+      "prompt": "N-meridian-sync.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-wujue.md",
+        "docs/design/catalog/skills-xiaoyao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（五绝 / 逍遥）",
+        "doc_set": "- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-xiaoyao.md`",
+        "extra": "为本组图鉴的武学补经脉数据（字段名以 21 v2.0 为准，05 由并行任务 N05 同步）：天 / 地阶武学逐门列出招式与各自路线（攻或防，每门至少 1 记绝招）；玄 / 黄阶引用路线模板；轻功武学补速度路线；内功补调息档案与内劲抵消档位。招式名优先原著，有现实武术出处的注明，没把握的标（待考），不编造。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NC3",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "经脉系统落地 · 武学图鉴（倚天 / 侠客碧血 / 五岳）",
+      "prompt": "N-meridian-sync.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-yitian.md",
+        "docs/design/catalog/skills-xiake-bixue.md",
+        "docs/design/catalog/skills-wuyue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（倚天 / 侠客碧血 / 五岳）",
+        "doc_set": "- `docs/design/catalog/skills-yitian.md`\n- `docs/design/catalog/skills-xiake-bixue.md`\n- `docs/design/catalog/skills-wuyue.md`",
+        "extra": "为本组图鉴的武学补经脉数据（字段名以 21 v2.0 为准，05 由并行任务 N05 同步）：天 / 地阶武学逐门列出招式与各自路线（攻或防，每门至少 1 记绝招）；玄 / 黄阶引用路线模板；轻功武学补速度路线；内功补调息档案与内劲抵消档位。招式名优先原著，有现实武术出处的注明，没把握的标（待考），不编造。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-yitian.md",
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-yitian.md",
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NC4",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "经脉系统落地 · 武学图鉴（康熙 / 乾隆 / 古龙）",
+      "prompt": "N-meridian-sync.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-kangxi.md",
+        "docs/design/catalog/skills-qianlong.md",
+        "docs/design/catalog/skills-gulong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（康熙 / 乾隆 / 古龙）",
+        "doc_set": "- `docs/design/catalog/skills-kangxi.md`\n- `docs/design/catalog/skills-qianlong.md`\n- `docs/design/catalog/skills-gulong.md`",
+        "extra": "为本组图鉴的武学补经脉数据（字段名以 21 v2.0 为准，05 由并行任务 N05 同步）：天 / 地阶武学逐门列出招式与各自路线（攻或防，每门至少 1 记绝招）；玄 / 黄阶引用路线模板；轻功武学补速度路线；内功补调息档案与内劲抵消档位。招式名优先原著，有现实武术出处的注明，没把握的标（待考），不编造。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NCh1",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "经脉系统落地 · 书界 01–07 Boss 经脉配置",
+      "prompt": "N-meridian-sync.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/design/chapters/01-tianlong.md",
+        "docs/design/chapters/02-shediao.md",
+        "docs/design/chapters/03-shendiao.md",
+        "docs/design/chapters/04-yitian.md",
+        "docs/design/chapters/05-xiaoao.md",
+        "docs/design/chapters/06-xiake.md",
+        "docs/design/chapters/07-bixue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "书界 01–07",
+        "doc_set": "- `docs/design/chapters/01-tianlong.md`\n- `docs/design/chapters/02-shediao.md`\n- `docs/design/chapters/03-shendiao.md`\n- `docs/design/chapters/04-yitian.md`\n- `docs/design/chapters/05-xiaoao.md`\n- `docs/design/chapters/06-xiake.md`\n- `docs/design/chapters/07-bixue.md`",
+        "extra": "为本组每部书界的 Boss 与精英补经脉配置（按 21 的敌人模板参数，约 7 项），并核对接入经脉乘区与速度修正后的 Boss 节奏仍在 04 目标区间；本界绝招与点穴 / 擒拿遭遇的设计要点只写接口与引用，不重写剧情。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/chapters/07-bixue.md"
+        ],
+        "fences": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/chapters/07-bixue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NCh2",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "经脉系统落地 · 书界 08–14 Boss 经脉配置",
+      "prompt": "N-meridian-sync.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/design/chapters/08-luding.md",
+        "docs/design/chapters/09-liancheng.md",
+        "docs/design/chapters/10-baima.md",
+        "docs/design/chapters/11-yuanyang.md",
+        "docs/design/chapters/12-shujian.md",
+        "docs/design/chapters/13-feihu.md",
+        "docs/design/chapters/14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "书界 08–14",
+        "doc_set": "- `docs/design/chapters/08-luding.md`\n- `docs/design/chapters/09-liancheng.md`\n- `docs/design/chapters/10-baima.md`\n- `docs/design/chapters/11-yuanyang.md`\n- `docs/design/chapters/12-shujian.md`\n- `docs/design/chapters/13-feihu.md`\n- `docs/design/chapters/14-xueshan.md`",
+        "extra": "为本组每部书界的 Boss 与精英补经脉配置（按 21 的敌人模板参数，约 7 项），并核对接入经脉乘区与速度修正后的 Boss 节奏仍在 04 目标区间；本界绝招与点穴 / 擒拿遭遇的设计要点只写接口与引用，不重写剧情。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/08-luding.md",
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/chapters/10-baima.md",
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/chapters/14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/chapters/08-luding.md",
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/chapters/10-baima.md",
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/chapters/14-xueshan.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAudit",
+      "phase": "G",
+      "wave": 7,
+      "kind": "revise",
+      "title": "经脉系统落地一致性审计（21 回填、跨文档一致、README / TODO）",
+      "prompt": "NAudit-meridian.md",
+      "deps": [
+        "A4",
+        "N04",
+        "N05",
+        "N06",
+        "N09",
+        "N15",
+        "N1314",
+        "Ntech",
+        "NC1",
+        "NC2",
+        "NC3",
+        "NC4",
+        "NCh1",
+        "NCh2"
+      ],
+      "writes": [
+        "docs/**",
+        "tools/lint/**",
+        "tools/balance/**",
+        "TODO.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/21-meridian-flow-and-moves.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "tools/lint/test_check_ids.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
     }
   ]
 }
