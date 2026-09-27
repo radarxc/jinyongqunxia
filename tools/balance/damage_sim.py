@@ -226,8 +226,11 @@ PARTY_HIT_EQUIVALENTS = {"normal": 1.0, "elite": 1.0, "boss": 3.1}
 # validate.  The values put elite solo-equivalent fights at 6-10 protagonist
 # actions and four-person Boss fights at 12-25 actions without changing Z1.
 ENCOUNTER_DURABILITY_BP = {
-    "HIGH": {"normal": 10_000, "elite": 7_475, "boss": 8_300},
-    "MID": {"normal": 10_000, "elite": 8_000, "boss": 8_500},
+    # Recalibrated after the player standard loadout stopped using illegal
+    # grade 10-12 ordinary gear (CN-09).  The limiting pre-adjustment rows
+    # scale as 5.16->4.95, 10.32->9.94, 28.61->24.82 and 27.50->24.91.
+    "HIGH": {"normal": 9_600, "elite": 7_200, "boss": 7_200},
+    "MID": {"normal": 10_000, "elite": 8_000, "boss": 7_700},
     "LOW": {"normal": 10_000, "elite": 8_000, "boss": 9_000},
 }
 
@@ -238,7 +241,9 @@ ENCOUNTER_DURABILITY_BP = {
 TEMPLATE_ATTACK_BUDGET_BP = {
     "HIGH": {"normal": 14_000, "elite": 12_000, "boss": 10_000},
     "MID": {"normal": 15_500, "elite": 12_000, "boss": 10_000},
-    "LOW": {"normal": 17_600, "elite": 12_000, "boss": 10_000},
+    # 1.79 leaves room for design/15's full defensive profile: the limiting
+    # White Horse row moves from 12.16 to 11.96 landed hits at turn nine.
+    "LOW": {"normal": 17_900, "elite": 12_000, "boss": 10_000},
 }
 
 # docs/design/02 §3.1: all fourteen chapters, terminal encounter level at the
@@ -362,12 +367,61 @@ class Combatant:
     tough: int
     eff_hit: int
     eff_res: int
-    aptitude: int
-    ap_inner: int
+    aptitude: float
+    ap_inner: float
     mp_regen_bp: int
+    qinggong: float
+    spd: int
+    combo_bp: int
     heal_power: int
     heal_recv: int
     shield: int = 0
+
+
+@dataclass(frozen=True)
+class MeridianProfile:
+    """Static design/15 meridian totals projected into design/03 stats."""
+
+    key: str
+    hp_pct_bp: int = 0
+    mp_pct_bp: int = 0
+    atk_out_pct_bp: int = 0
+    atk_in_pct_bp: int = 0
+    def_out_pct_bp: int = 0
+    def_in_pct_bp: int = 0
+    mp_regen_add_bp: int = 0
+    qinggong_add: float = 0.0
+    aptitude_add: float = 0.0
+    ap_inner_add: float = 0.0
+    eva_add: int = 0
+    tough_add: int = 0
+    eff_hit_add: int = 0
+    eff_res_add: int = 0
+    spd_add: int = 0
+    combo_bp: int = 0
+
+
+# design/15 §§6.2-7.3.  ``turn0`` means all 180 acupoints, all twenty
+# meridians and all three milestones, before the first refinement turn.
+MERIDIAN_PROFILES: Dict[str, MeridianProfile] = {
+    "none": MeridianProfile("none"),
+    "turn0": MeridianProfile(
+        "turn0", hp_pct_bp=100, mp_pct_bp=150,
+        atk_out_pct_bp=150, atk_in_pct_bp=150,
+        def_out_pct_bp=100, def_in_pct_bp=100,
+        mp_regen_add_bp=53, qinggong_add=3.10, aptitude_add=0.100,
+        ap_inner_add=1.150, eva_add=1, tough_add=1, eff_hit_add=1,
+        eff_res_add=2, spd_add=1, combo_bp=150,
+    ),
+    "turn9": MeridianProfile(
+        "turn9", hp_pct_bp=145, mp_pct_bp=195,
+        atk_out_pct_bp=250, atk_in_pct_bp=250,
+        def_out_pct_bp=145, def_in_pct_bp=145,
+        mp_regen_add_bp=63, qinggong_add=3.82, aptitude_add=0.145,
+        ap_inner_add=1.555, eva_add=1, tough_add=1, eff_hit_add=1,
+        eff_res_add=3, spd_add=1, combo_bp=150,
+    ),
+}
 
 
 @dataclass(frozen=True)
@@ -464,10 +518,83 @@ class ReportRow:
     enemy_hit_chance: float
 
 
+@dataclass
+class MeridianTriggerReplay:
+    """Minimal deterministic replay for design/15's stateful passives."""
+
+    hp_max: int
+    mp_max: int
+    turn: int = 0
+    ct: int = 0
+    mp: int = 0
+    rage: int = 0
+    battle_started: bool = False
+    spent_this_turn: bool = False
+    displaced_this_turn: bool = False
+    resisted_this_turn: bool = False
+    parried_this_turn: bool = False
+    low_hp_crossed: bool = False
+    inner_injury_charge_used: bool = False
+
+    def battle_start(self) -> None:
+        if not self.battle_started:
+            self.ct += 15 + 30  # Baihui plus the twelve-meridian milestone.
+            self.battle_started = True
+
+    def start_turn(self) -> None:
+        self.turn += 1
+        self.spent_this_turn = False
+        self.displaced_this_turn = False
+        self.resisted_this_turn = False
+        self.parried_this_turn = False
+
+    def spend_mp(self, amount: int) -> int:
+        spent = min(self.mp, max(0, amount))
+        self.mp -= spent
+        if spent and not self.spent_this_turn:
+            qihai = max(1, spent * 300 // BP)
+            xiaozhoutian = spent * 700 // BP
+            refund = min(spent, qihai + xiaozhoutian)
+            self.mp = min(self.mp_max, self.mp + refund)
+            self.spent_this_turn = True
+        return spent
+
+    def displaced(self, *, forced: bool) -> None:
+        if forced and not self.displaced_this_turn:
+            self.ct += 20
+            self.displaced_this_turn = True
+
+    def resisted_debuff(self) -> None:
+        if not self.resisted_this_turn:
+            self.ct += 20
+            self.resisted_this_turn = True
+
+    def parried(self) -> None:
+        if not self.parried_this_turn:
+            self.mp = min(self.mp_max, self.mp + self.mp_max * 20 // BP)
+            self.parried_this_turn = True
+
+    def hp_changed(self, before: int, after: int) -> None:
+        crossed = before * BP >= self.hp_max * 3_000 > after * BP
+        if not self.low_hp_crossed and crossed:
+            self.rage += 10
+            self.low_hp_crossed = True
+
+    def apply_inner_injury(self, apply_mode: str) -> bool:
+        """Return true when the ninth-turn charge rejects this application."""
+        if apply_mode not in ("create", "stack", "refresh"):
+            raise ValueError("unsupported apply mode: {}".format(apply_mode))
+        if apply_mode == "create" and not self.inner_injury_charge_used:
+            self.inner_injury_charge_used = True
+            return True
+        return False
+
+
 def _sheet(
     name: str, level: int, grade_main: int, grade_aux: int, layer: int,
     innate_base: float, aptitude: float, template_kind: Optional[str] = None,
     difficulty: int = 3, medicine: float = 0.0,
+    meridian: MeridianProfile = MERIDIAN_PROFILES["none"],
 ) -> Combatant:
     """Reproduce the data formulas in design/03 §§3.4–4.9 and §10."""
     hp_lv, mp_lv, atk_lv, def_lv = level_curves(level)
@@ -475,16 +602,27 @@ def _sheet(
     main = INNER_BUDGET[grade_main]
     aux = INNER_BUDGET[grade_aux]
     # Standard loadout: one main plus two same-source auxiliaries at ratio 0.5.
-    mp_pct = scale * (main[0] + STD_AUX_TOTAL_RATIO * aux[0])
-    hp_pct = scale * (main[1] + STD_AUX_TOTAL_RATIO * aux[1])
+    mp_pct = (
+        scale * (main[0] + STD_AUX_TOTAL_RATIO * aux[0])
+        + meridian.mp_pct_bp / 100.0
+    )
+    hp_pct = (
+        scale * (main[1] + STD_AUX_TOTAL_RATIO * aux[1])
+        + meridian.hp_pct_bp / 100.0
+    )
     attr_pool = scale * (main[2] + STD_AUX_TOTAL_RATIO * aux[2])
     attr_each = attr_pool / 5.0
     con = str_ = agi = wis = wil = innate_base + attr_each
     luk = innate_base
 
-    g_equip = grade_aux
+    # Ordinary player equipment ends at grade 9 (design/03 §3.5 and
+    # design/10).  Inner-art grades remain uncapped here: grade_main and
+    # grade_aux above still index the full INNER_BUDGET through grade 12.
+    # Enemy templates use their own already-capped grade for all slots.
+    g_equip = grade_aux if template_kind is not None else min(grade_aux, 9)
     equip_g = GRADE_BP[g_equip] / BP
-    weapon_g = GRADE_BP[grade_main] / BP
+    weapon_grade = grade_main if template_kind is not None else min(grade_main, 9)
+    weapon_g = GRADE_BP[weapon_grade] / BP
     hp_flat = HP_SMALL_ITEM_COUNT * HP_SMALL_ITEM_COEFF * equip_g * hp_lv
     hp_max = (
         hp_lv * max(STAT_FORMULA_FLOOR, 1 + HP_CON_PER_POINT * (con - 50)) + hp_flat
@@ -505,6 +643,10 @@ def _sheet(
         + ARMOUR_DEF_OUT_COEFF * equip_g * def_lv
     )
     def_in = DEF_IN_MP_COEFF * mp_max + ARMOUR_DEF_IN_COEFF * equip_g * def_lv
+    atk_out *= 1 + meridian.atk_out_pct_bp / BP
+    atk_in *= 1 + meridian.atk_in_pct_bp / BP
+    def_out *= 1 + meridian.def_out_pct_bp / BP
+    def_in *= 1 + meridian.def_in_pct_bp / BP
 
     # Enemy templates have no equipped movement art in design/03 §10 examples.
     if template_kind is None:
@@ -518,11 +660,13 @@ def _sheet(
         Q_AGI_PER_POINT * max(0.0, agi - 30) + Q_LEVEL_PER_POINT * level + q_skill
         + Q_AP_PER_POINT * aptitude + Q_EQUIP_PER_GRADE * g_equip
         + Q_INNER_COEFF * (GRADE_BP[grade_main] / BP) * layer / 10
+        + meridian.qinggong_add
     )
     lore = min(LORE_CAP, LORE_PER_LEVEL * level)
     hit = HIT_FORMULA[0] + HIT_FORMULA[1] * agi + HIT_FORMULA[2] * wis + HIT_FORMULA[3] * level
     eva = (EVA_FORMULA[0] + EVA_FORMULA[1] * agi + EVA_FORMULA[2] * luk
-           + EVA_FORMULA[3] * level + EVA_FORMULA[4] * qinggong)
+           + EVA_FORMULA[3] * level + EVA_FORMULA[4] * qinggong
+           + meridian.eva_add)
     parry = (PARRY_FORMULA[0] + PARRY_FORMULA[1] * str_ + PARRY_FORMULA[2] * wis
              + PARRY_FORMULA[3] * level + PARRY_FORMULA[4])
     pierce = (PIERCE_FORMULA[0] + PIERCE_FORMULA[1] * wis + PIERCE_FORMULA[2] * str_
@@ -530,11 +674,14 @@ def _sheet(
     crit = (CRIT_FORMULA[0] + CRIT_FORMULA[1] * luk + CRIT_FORMULA[2] * wis
             + CRIT_FORMULA[3] * agi + CRIT_FORMULA[4] * level)
     tough = (TOUGH_FORMULA[0] + TOUGH_FORMULA[1] * con
-             + TOUGH_FORMULA[2] * wil + TOUGH_FORMULA[3] * level)
+             + TOUGH_FORMULA[2] * wil + TOUGH_FORMULA[3] * level
+             + meridian.tough_add)
     eff_hit = (EFF_HIT_FORMULA[0] + EFF_HIT_FORMULA[1] * wis
-               + EFF_HIT_FORMULA[2] * wil + EFF_HIT_FORMULA[3] * level)
+               + EFF_HIT_FORMULA[2] * wil + EFF_HIT_FORMULA[3] * level
+               + meridian.eff_hit_add)
     eff_res = (EFF_RES_FORMULA[0] + EFF_RES_FORMULA[1] * wil
-               + EFF_RES_FORMULA[2] * con + EFF_RES_FORMULA[3] * level)
+               + EFF_RES_FORMULA[2] * con + EFF_RES_FORMULA[3] * level
+               + meridian.eff_res_add)
     crit_dmg = clamp(
         CRIT_DMG_BASE + CRIT_DMG_STR_PER_POINT * max(0.0, str_ - 50),
         *CRIT_DMG_RANGE
@@ -545,7 +692,8 @@ def _sheet(
         *HEAL_POWER_RANGE
     )
     mp_regen_bp = round_half_up(100 * clamp(
-        1.0 + scale * (main[3] + STD_AUX_TOTAL_RATIO * aux[3]), 0.0, 6.0
+        1.0 + scale * (main[3] + STD_AUX_TOTAL_RATIO * aux[3])
+        + meridian.mp_regen_add_bp / 100.0, 0.0, 6.0
     ))
     heal_recv = clamp(
         HEAL_RECV_BASE + HEAL_RECV_CON_PER_POINT * (con - 50),
@@ -579,20 +727,29 @@ def _sheet(
         parry=round_half_up(max(0, parry)), pierce=round_half_up(max(0, pierce)),
         crit=round_half_up(max(0, crit)), crit_dmg=round_half_up(crit_dmg),
         tough=round_half_up(max(0, tough)), eff_hit=round_half_up(max(0, eff_hit)),
-        eff_res=round_half_up(max(0, eff_res)), aptitude=round_half_up(aptitude),
-        ap_inner=round_half_up(aptitude), mp_regen_bp=mp_regen_bp,
+        eff_res=round_half_up(max(0, eff_res)),
+        aptitude=min(100.0, round_half_up(aptitude) + meridian.aptitude_add),
+        ap_inner=min(100.0, round_half_up(aptitude) + meridian.ap_inner_add),
+        mp_regen_bp=mp_regen_bp, qinggong=qinggong,
+        spd=round_half_up(clamp(85 + 0.20 * qinggong + meridian.spd_add, 30, 300)),
+        combo_bp=meridian.combo_bp,
         heal_power=round_half_up(heal_power),
         heal_recv=round_half_up(heal_recv),
     )
 
 
-def player_std(level: int, medicine: float = 0.0) -> Combatant:
-    """docs/design/03 §3.5 standard player model; med defaults to zero."""
+def player_std(
+    level: int, medicine: float = 0.0, meridian_key: str = "none",
+) -> Combatant:
+    """design/03 STD with an optional design/15 static meridian profile."""
+    if meridian_key not in MERIDIAN_PROFILES:
+        raise ValueError("unsupported meridian profile: {}".format(meridian_key))
     innate = STD_INNATE_BASE + STD_INNATE_PER_LEVEL * (level - 1)
     aptitude = STD_APTITUDE_BASE + STD_APTITUDE_PER_LEVEL * (level - 1)
     return _sheet(
         "STD({})".format(level), level, g_main(level), g_ref(level),
         layer_ref(level), innate, aptitude, medicine=medicine,
+        meridian=MERIDIAN_PROFILES[meridian_key],
     )
 
 
@@ -758,11 +915,13 @@ def position_bp(attack: Attack) -> int:
 
 
 def aptitude_bp(attacker: Combatant, attack: Attack) -> int:
-    out_factor = APTITUDE_BASE_BP + APTITUDE_PER_POINT_BP * int(
-        clamp(attacker.aptitude, *APTITUDE_RANGE)
+    # Meridian rewards are stored below one aptitude point, so convert each
+    # complete term to bp before the Z5 mix instead of truncating the source.
+    out_factor = APTITUDE_BASE_BP + round_half_up(
+        APTITUDE_PER_POINT_BP * clamp(attacker.aptitude, *APTITUDE_RANGE)
     )
-    in_factor = APTITUDE_BASE_BP + APTITUDE_PER_POINT_BP * int(
-        clamp(attacker.ap_inner, *APTITUDE_RANGE)
+    in_factor = APTITUDE_BASE_BP + round_half_up(
+        APTITUDE_PER_POINT_BP * clamp(attacker.ap_inner, *APTITUDE_RANGE)
     )
     return mixed_stat(out_factor, in_factor, attack.w_in_bp)
 
@@ -1062,24 +1221,35 @@ def move_mp_cost(level: int, cost_bp: int) -> int:
     return max(1, (numerator + BP // 2) // BP)
 
 
-def standard_attack(attacker: Combatant, tier: str, template_power: float = 1.0) -> Attack:
+def standard_attack(
+    attacker: Combatant, tier: str, template_power: float = 1.0,
+    w_in_bp: int = REPORT_W_IN_BP,
+) -> Attack:
     # The representative move is exactly on its level/tier expectation trajectory.
     # This isolates stat/template pacing; individual move power remains fully modelled.
-    return Attack(power_bp=round_half_up(p_ref_bp(attacker.level, tier) * template_power))
+    return Attack(
+        power_bp=round_half_up(p_ref_bp(attacker.level, tier) * template_power),
+        w_in_bp=w_in_bp,
+    )
 
 
-def report_rows() -> List[ReportRow]:
+def report_rows(
+    meridian_key: str = "none", w_in_bp: int = REPORT_W_IN_BP,
+) -> List[ReportRow]:
+    """Build encounter rows; ``w_in_bp`` varies only the player's move."""
     rows: List[ReportRow] = []
     for chapter, tier, wuyun, difficulty, cap, _band_min, boss_level, boss_difficulty in CHAPTERS:
         for kind in ("normal", "elite", "boss"):
             enemy_level = boss_level if kind == "boss" and boss_level else cap
             encounter_difficulty = boss_difficulty if kind == "boss" and boss_difficulty else difficulty
-            player = player_std(cap)
+            player = player_std(cap, meridian_key=meridian_key)
             enemy = enemy_std(enemy_level, cap, wuyun, tier, kind, encounter_difficulty)
-            p_attack = standard_attack(player, tier)
+            p_attack = standard_attack(player, tier, w_in_bp=w_in_bp)
             e_attack = standard_attack(enemy, tier, float(TEMPLATE[kind]["power"]))
             p_cond = expected_damage(player, enemy, p_attack, tier, conditional_on_hit=True)
             e_cond = expected_damage(enemy, player, e_attack, tier, conditional_on_hit=True)
+            # design/04 §7.2: a successful combo contributes one 0.50 segment.
+            p_cond *= 1 + player.combo_bp * 5_000 / (BP ** 2)
             encounter_hp = mul_bp(enemy.hp_max, ENCOUNTER_DURABILITY_BP[tier][kind])
             if kind == "boss":
                 encounter_hp = mul_bp(encounter_hp, BOSS_HP_OVERRIDE_BP.get(chapter, BP))
@@ -1375,6 +1545,105 @@ def run_checks(rows: Sequence[ReportRow]) -> Tuple[List[str], List[str]]:
         a.mp_max == 4_697 and move_mp_cost(35, 800) == 376
         and move_mp_cost(35, 0) == 0,
         "MPREF(35)=4,697；8%=375.76 -> 376；零成本保持 0",
+    )
+    level_70 = player_std(70)
+    check(
+        "合法普通装备 STD 锚点",
+        level_70.hp_max == 40_409 and level_70.mp_max == 28_887,
+        "STD(70).hpMax/mpMax={}/{}；玩家武器与普通装备最高 grade 9".format(
+            level_70.hp_max, level_70.mp_max,
+        ),
+    )
+    turn0 = player_std(70, meridian_key="turn0")
+    turn9 = player_std(70, meridian_key="turn9")
+    check(
+        "经脉三档静态面板",
+        (turn0.hp_max, turn0.mp_max, turn0.atk_out, turn0.atk_in,
+         turn0.def_out, turn0.def_in, turn0.mp_regen_bp, turn0.eva,
+         turn0.tough, turn0.eff_hit, turn0.eff_res, turn0.spd,
+         turn0.combo_bp)
+        == (40_657, 29_099, 4_609, 5_907, 3_801, 4_840, 600, 137,
+            51, 67, 68, 125, 150)
+        and (turn9.hp_max, turn9.mp_max, turn9.atk_out, turn9.atk_in,
+             turn9.def_out, turn9.def_in, turn9.mp_regen_bp, turn9.eva,
+             turn9.tough, turn9.eff_hit, turn9.eff_res, turn9.spd,
+             turn9.combo_bp)
+        == (40_769, 29_163, 4_654, 5_978, 3_818, 4_871, 600, 138,
+            51, 67, 69, 126, 150),
+        "none/turn0/turn9 consume design/15 §§6.2-7.3 totals",
+    )
+
+    # M1 requested all three meridian profiles at outward/half/inward mixes.
+    # Check every chapter/template row against the canon pacing red lines.
+    meridian_grids = {
+        (profile, w_in): report_rows(profile, w_in)
+        for profile in ("none", "turn0", "turn9")
+        for w_in in (0, 5_000, BP)
+    }
+    all_meridian_rows = [
+        row for grid_rows in meridian_grids.values() for row in grid_rows
+    ]
+    meridian_regression_ok = True
+    max_round_reduction = 0.0
+    max_enemy_hit_growth = 0.0
+    for w_in in (0, 5_000, BP):
+        baseline = meridian_grids[("none", w_in)]
+        for profile in ("turn0", "turn9"):
+            candidate = meridian_grids[(profile, w_in)]
+            for before, after in zip(baseline, candidate):
+                # The outward/inward extremes are sensitivity cases rather than
+                # the calibrated 65/35 representative move.  Guard against a
+                # meridian discontinuity relative to each same-mix baseline.
+                round_reduction = 1 - after.player_rounds / before.player_rounds
+                enemy_hit_growth = after.enemy_hits / before.enemy_hits - 1
+                max_round_reduction = max(max_round_reduction, round_reduction)
+                max_enemy_hit_growth = max(max_enemy_hit_growth, enemy_hit_growth)
+                meridian_regression_ok &= (
+                    round_reduction <= 0.08 and enemy_hit_growth <= 0.03
+                    and after.player_rounds >= 3
+                )
+    # The calibrated 65/35 move must still satisfy every hard pacing interval.
+    for profile in ("none", "turn0", "turn9"):
+        for row in report_rows(profile, REPORT_W_IN_BP):
+            meridian_regression_ok &= (
+                (3 <= row.player_rounds <= 5 and 8 <= row.enemy_hits <= 12)
+                if row.kind == "normal" else
+                (6 <= row.player_rounds <= 10) if row.kind == "elite" else
+                (12 <= row.player_rounds <= 25)
+            )
+    check(
+        "经脉三档三内劲比 TTK 回归",
+        meridian_regression_ok,
+        "3 profiles x 3 r_in x 42 encounters = {} rows; max player-round "
+        "reduction {:.2%}, max enemy-hit growth {:.2%}".format(
+            len(all_meridian_rows), max_round_reduction, max_enemy_hit_growth,
+        ),
+    )
+
+    replay = MeridianTriggerReplay(hp_max=10_000, mp_max=10_000, mp=8_000)
+    replay.battle_start()
+    replay.battle_start()  # resurrection/re-attachment must not re-trigger.
+    replay.start_turn()
+    replay.spend_mp(1_000)
+    replay.spend_mp(1_000)
+    replay.displaced(forced=False)
+    replay.displaced(forced=True)
+    replay.displaced(forced=True)
+    replay.resisted_debuff()
+    replay.resisted_debuff()
+    replay.parried()
+    replay.parried()
+    replay.hp_changed(3_000, 2_999)
+    replay.hp_changed(2_999, 1_000)
+    first_injury = replay.apply_inner_injury("create")
+    stack_injury = replay.apply_inner_injury("stack")
+    second_injury = replay.apply_inner_injury("create")
+    check(
+        "经脉触发被动确定性回放",
+        replay.ct == 85 and replay.mp == 6_120 and replay.rage == 10
+        and first_injury and not stack_injury and not second_injury,
+        "battle CT=45; turn CT=+20/+20; MP=6120; rage=10; "
+        "ninth-turn rejects only the first create",
     )
     regen_values = tuple(player_std(level).mp_regen_bp for level in range(1, 71))
     check(
