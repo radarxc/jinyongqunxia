@@ -1764,6 +1764,61 @@
       "web": false
     },
     {
+      "id": "H1",
+      "phase": "B",
+      "wave": 2,
+      "priority": 45,
+      "title": "20 跨年代传承：后人、宝藏、残本与合成（作者需求 AR-13）",
+      "prompt": "H1-legacy.md",
+      "deps": [
+        "G1",
+        "R02",
+        "R05",
+        "R13",
+        "S1",
+        "N1",
+        "B3",
+        "R10"
+      ],
+      "writes": [
+        "docs/design/20-legacy-inheritance.md"
+      ],
+      "review": true,
+      "web": false,
+      "review_focus": "复算概率表（归一、保底、每书界上限）与 3 个算例；越女剑法算例与 P35 / AR-13 / skills-general 的 ID 关系一致；合成产物品阶与基准 §3 压制规则、§13 闭集例外的推荐自洽；传承源目录 ≥ 30 条且与 17 矩阵、18 生卒、图鉴 ID 一致（全仓库 grep）；与 05 残篇 / 02 残承的对照表无重定义；YAML / TS 可用。",
+      "validate": {
+        "exists": [
+          "docs/design/20-legacy-inheritance.md"
+        ],
+        "fences": [
+          "docs/design/20-legacy-inheritance.md"
+        ],
+        "min_lines": {
+          "docs/design/20-legacy-inheritance.md": 900
+        },
+        "contains": [
+          [
+            "docs/design/20-legacy-inheritance.md",
+            "越女"
+          ],
+          [
+            "docs/design/20-legacy-inheritance.md",
+            "残本"
+          ],
+          [
+            "docs/design/20-legacy-inheritance.md",
+            "合成"
+          ],
+          [
+            "docs/design/20-legacy-inheritance.md",
+            "待决事项"
+          ]
+        ]
+      },
+      "kind": "draft",
+      "vars": {}
+    },
+    {
       "id": "B7",
       "phase": "B",
       "wave": 2,
@@ -3911,7 +3966,8 @@
         "D12",
         "D13",
         "D14",
-        "E3"
+        "E3",
+        "H1"
       ],
       "writes": [
         "docs/00-canon.md",
