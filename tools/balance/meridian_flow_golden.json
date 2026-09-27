@@ -1,0 +1,447 @@
+{
+  "fixtureVersion": 1,
+  "inputs": {
+    "explicitRolls": {
+      "clean": 9999,
+      "forcedJam": 0
+    },
+    "routes": [
+      {
+        "id": "mfr_half_step_crush",
+        "name": "半步崩拳",
+        "nodes": [
+          "ap_dumai_mingmen",
+          "ap_shoujueyin_laogong"
+        ],
+        "risk_bp": [
+          100,
+          100
+        ],
+        "segment_ct": [
+          70,
+          70
+        ],
+        "ultimate": false
+      },
+      {
+        "id": "mfr_eighteen_palms_chain",
+        "name": "十八掌连环",
+        "nodes": [
+          "ap_renmai_qihai",
+          "ap_renmai_danzhong",
+          "ap_shoutaiyin_yunmen",
+          "ap_shoutaiyin_chize",
+          "ap_shoutaiyin_taiyuan",
+          "ap_shoujueyin_neiguan",
+          "ap_shoujueyin_laogong",
+          "ap_dumai_mingmen",
+          "ap_dumai_zhiyang",
+          "ap_dumai_baihui"
+        ],
+        "risk_bp": [
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150
+        ],
+        "segment_ct": [
+          80,
+          80,
+          80,
+          80,
+          80,
+          80,
+          80,
+          80,
+          80,
+          80
+        ],
+        "ultimate": true
+      },
+      {
+        "id": "mfr_novice_eight",
+        "name": "生疏八段",
+        "nodes": [
+          "ap_renmai_qihai",
+          "ap_renmai_danzhong",
+          "ap_shoutaiyin_yunmen",
+          "ap_shoutaiyin_chize",
+          "ap_shoutaiyin_taiyuan",
+          "ap_shoujueyin_neiguan",
+          "ap_shoujueyin_laogong",
+          "ap_dumai_mingmen"
+        ],
+        "risk_bp": [
+          500,
+          500,
+          500,
+          500,
+          500,
+          500,
+          500,
+          500
+        ],
+        "segment_ct": [
+          75,
+          75,
+          75,
+          75,
+          75,
+          75,
+          75,
+          75
+        ],
+        "ultimate": false
+      },
+      {
+        "id": "mfr_forced_six",
+        "name": "强催六段",
+        "nodes": [
+          "ap_renmai_qihai",
+          "ap_renmai_danzhong",
+          "ap_shoutaiyin_yunmen",
+          "ap_shoutaiyin_chize",
+          "ap_shoutaiyin_taiyuan",
+          "ap_shoujueyin_neiguan"
+        ],
+        "risk_bp": [
+          800,
+          800,
+          800,
+          800,
+          800,
+          800
+        ],
+        "segment_ct": [
+          85,
+          85,
+          85,
+          85,
+          85,
+          85
+        ],
+        "ultimate": false
+      }
+    ],
+    "units": {
+      "boss": {
+        "capacityScaleBp": 13000,
+        "cultivation": {
+          "grade": 10,
+          "great_cycle": true,
+          "inner_nature": "harmony",
+          "layer": 9,
+          "meridian_complete": true,
+          "meridian_nature": "harmony",
+          "mp_ratio_bp": 13000,
+          "practice_bp": 9500,
+          "small_cycle": true,
+          "turns": 5,
+          "twelve_cycle": true
+        },
+        "kind": "boss",
+        "masterSeed": 3362498396,
+        "unitId": "enemy_boss",
+        "unitIndex": 3
+      },
+      "elite": {
+        "capacityScaleBp": 10500,
+        "cultivation": {
+          "grade": 7,
+          "great_cycle": false,
+          "inner_nature": "yin",
+          "layer": 8,
+          "meridian_complete": true,
+          "meridian_nature": "yin",
+          "mp_ratio_bp": 10500,
+          "practice_bp": 7500,
+          "small_cycle": false,
+          "turns": 0,
+          "twelve_cycle": false
+        },
+        "kind": "elite",
+        "masterSeed": 1897818927,
+        "unitId": "enemy_elite",
+        "unitIndex": 2
+      },
+      "hero": {
+        "capacityScaleBp": 10000,
+        "cultivation": {
+          "grade": 9,
+          "great_cycle": true,
+          "inner_nature": "harmony",
+          "layer": 8,
+          "meridian_complete": true,
+          "meridian_nature": "yin",
+          "mp_ratio_bp": 12100,
+          "practice_bp": 9000,
+          "small_cycle": true,
+          "turns": 3,
+          "twelve_cycle": true
+        },
+        "kind": "hero",
+        "masterSeed": 20260927,
+        "unitId": "hero",
+        "unitIndex": 0
+      },
+      "normal": {
+        "capacityScaleBp": 9000,
+        "cultivation": {
+          "grade": 5,
+          "great_cycle": false,
+          "inner_nature": "yang",
+          "layer": 7,
+          "meridian_complete": false,
+          "meridian_nature": "yang",
+          "mp_ratio_bp": 9000,
+          "practice_bp": 6200,
+          "small_cycle": false,
+          "turns": 0,
+          "twelve_cycle": false
+        },
+        "kind": "normal",
+        "masterSeed": 3192770306,
+        "unitId": "enemy_normal",
+        "unitIndex": 1
+      }
+    }
+  },
+  "masterSeed": 20260927,
+  "outputs": {
+    "bossLong": {
+      "attempted": 10,
+      "blockedAt": null,
+      "blockedNode": null,
+      "blockedState": null,
+      "capBp": 750,
+      "completed": 10,
+      "damage": 2677,
+      "disabledReason": null,
+      "flowCt": 800,
+      "routeId": "mfr_eighteen_palms_chain",
+      "unitId": "enemy_boss",
+      "z3Bp": 401
+    },
+    "breath": {
+      "backlog_removed": 252,
+      "ct": 1000,
+      "mp_cost_bp": 0,
+      "rupture_repaired": 617,
+      "seals_reduced": 0,
+      "stagnation_removed_bp": 2500,
+      "touched": [
+        "ap_shoutaiyin_yunmen",
+        "ap_dumai_baihui",
+        "ap_dumai_mingmen"
+      ]
+    },
+    "eliteLong": {
+      "attempted": 10,
+      "blockedAt": null,
+      "blockedNode": null,
+      "blockedState": null,
+      "capBp": 750,
+      "completed": 10,
+      "damage": 1001,
+      "disabledReason": null,
+      "flowCt": 800,
+      "routeId": "mfr_eighteen_palms_chain",
+      "unitId": "enemy_elite",
+      "z3Bp": 541
+    },
+    "escapeLevel6Bp": 1900,
+    "grapple1": {
+      "action_locked": false,
+      "agi_bp": 9500,
+      "evade_bp": 9500,
+      "level": 1,
+      "move_bp": 10000,
+      "recovery_add": 50,
+      "str_bp": 9500,
+      "weapon_locked": false
+    },
+    "grapple9": {
+      "action_locked": true,
+      "agi_bp": 0,
+      "evade_bp": 0,
+      "level": 9,
+      "move_bp": 0,
+      "recovery_add": 0,
+      "str_bp": 0,
+      "weapon_locked": true
+    },
+    "heroLongCommit": {
+      "attempted": 10,
+      "blockedAt": null,
+      "blockedNode": null,
+      "blockedState": null,
+      "capBp": 750,
+      "completed": 10,
+      "damage": 889,
+      "disabledReason": null,
+      "flowCt": 800,
+      "routeId": "mfr_eighteen_palms_chain",
+      "unitId": "hero",
+      "z3Bp": 472
+    },
+    "heroSeededCommit": {
+      "attempted": 10,
+      "blockedAt": null,
+      "blockedNode": null,
+      "blockedState": null,
+      "capBp": 750,
+      "completed": 10,
+      "damage": 889,
+      "disabledReason": null,
+      "flowCt": 800,
+      "routeId": "mfr_eighteen_palms_chain",
+      "unitId": "hero",
+      "z3Bp": 472
+    },
+    "heroSeededRngAfter": [
+      3923689700,
+      3509776315,
+      2155164733,
+      2630245236
+    ],
+    "heroShortPreview": {
+      "attempted": 2,
+      "blockedAt": null,
+      "blockedNode": null,
+      "blockedState": null,
+      "capBp": 300,
+      "completed": 2,
+      "damage": 859,
+      "disabledReason": null,
+      "flowCt": 140,
+      "routeId": "mfr_half_step_crush",
+      "unitId": "hero",
+      "z3Bp": 126
+    },
+    "jammed": {
+      "attempted": 4,
+      "blockedAt": 3,
+      "blockedNode": "ap_shoutaiyin_chize",
+      "blockedState": {
+        "acupoint": "ap_shoutaiyin_chize",
+        "backlog": 1220,
+        "capacity": 1011,
+        "flow_bp": 8580,
+        "opened": true,
+        "rupture_damage": 816,
+        "seal_level": 0,
+        "seal_remaining": 0,
+        "seal_source": null,
+        "stagnation_bp": 6534,
+        "water": 208
+      },
+      "capBp": 685,
+      "completed": 3,
+      "damage": 861,
+      "disabledReason": null,
+      "flowCt": 300,
+      "routeId": "mfr_novice_eight",
+      "unitId": "enemy_normal",
+      "z3Bp": 144
+    },
+    "normalShort": {
+      "attempted": 2,
+      "blockedAt": null,
+      "blockedNode": null,
+      "blockedState": null,
+      "capBp": 300,
+      "completed": 2,
+      "damage": 862,
+      "disabledReason": null,
+      "flowCt": 140,
+      "routeId": "mfr_half_step_crush",
+      "unitId": "enemy_normal",
+      "z3Bp": 158
+    },
+    "point1": {
+      "breath_locked": false,
+      "flow_penalty_bp": 500,
+      "inner_locked": false,
+      "level": 1,
+      "mp_cost_add_bp": 300
+    },
+    "point9": {
+      "breath_locked": true,
+      "flow_penalty_bp": 10000,
+      "inner_locked": true,
+      "level": 9,
+      "mp_cost_add_bp": 0
+    },
+    "ruptured": {
+      "attempted": 3,
+      "blockedAt": 2,
+      "blockedNode": "ap_shoutaiyin_yunmen",
+      "blockedState": {
+        "acupoint": "ap_shoutaiyin_yunmen",
+        "backlog": 1708,
+        "capacity": 1011,
+        "flow_bp": 8580,
+        "opened": true,
+        "rupture_damage": 1304,
+        "seal_level": 0,
+        "seal_remaining": 0,
+        "seal_source": null,
+        "stagnation_bp": 8504,
+        "water": 138
+      },
+      "capBp": 600,
+      "completed": 2,
+      "damage": 857,
+      "disabledReason": null,
+      "flowCt": 255,
+      "routeId": "mfr_forced_six",
+      "unitId": "enemy_normal",
+      "z3Bp": 105
+    },
+    "sealed": {
+      "attempted": 0,
+      "blockedAt": 4,
+      "blockedNode": "ap_shoutaiyin_taiyuan",
+      "blockedState": {
+        "acupoint": "ap_shoutaiyin_taiyuan",
+        "backlog": 0,
+        "capacity": 1969,
+        "flow_bp": 10000,
+        "opened": true,
+        "rupture_damage": 0,
+        "seal_level": 9,
+        "seal_remaining": 2,
+        "seal_source": "fixture",
+        "stagnation_bp": 0,
+        "water": 0
+      },
+      "capBp": 750,
+      "completed": 0,
+      "damage": 849,
+      "disabledReason": "point_seal_9",
+      "flowCt": 0,
+      "routeId": "mfr_eighteen_palms_chain",
+      "unitId": "hero",
+      "z3Bp": 0
+    },
+    "ttkActionsAfter": {
+      "boss": 21,
+      "elite": 8,
+      "normal": 5
+    },
+    "ttkActionsBefore": {
+      "boss": 22,
+      "elite": 9,
+      "normal": 5
+    }
+  },
+  "rngProtocol": 1,
+  "rulesProtocol": 1,
+  "vectorSha256": "21a72a607a99848879e68324087f992d5dbb6505e9236bdb2e9296738a59600e"
+}
