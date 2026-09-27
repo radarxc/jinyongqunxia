@@ -3084,7 +3084,7 @@
         "catalogs": "skills-shaolin、skills-xiaoyao、skills-wujue（丐帮、大理段氏/天龙寺）、skills-general",
         "prev": "序章《越女剑》（ch00_yuenv）",
         "next": "射雕英雄传（ch02_shediao）",
-        "pilot_note": "你写的是第一部书界文档，它将作为其余 13 部的格式范例：结构清晰、各节表格列固定、YAML 示例规范、ID 用法示范完整。"
+        "pilot_note": "天龙八部是**垂直切片**书界：`tech/09` 路线图（E3）以本文为天龙垂直切片的内容范围，所以各节要写到可直接排期的粒度（区域 / 城市 / 场景键、支线清单、队友与 Boss 数值算式、特色系统的规则与数据示例都要齐）。其余十三部书界文档正在并行撰写，`docs/design/chapters/07-bixue.md` 已合入，可参考其结构与表格列；格式以基准 §17 的 13 节模板为准，后续审计会统一。"
       },
       "writes": [
         "docs/design/chapters/01-tianlong.md"
