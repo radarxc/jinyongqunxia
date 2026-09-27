@@ -6,7 +6,7 @@ run.py 是全自动调度器；本脚本把同一套机制拆成可单独调用�
 子代理）逐步调用，并自行判断日志、决定续作或换模型。与 run.py 共用任务图（tasks.json）、
 提示词渲染、校验与提交逻辑；不做依赖调度，也不阻塞等待代理结束。
 
-    python tools/agents/step.py start  <ID> [--model M] [--effort E] [--search] [--note FILE]
+    python tools/agents/step.py start  <ID> [--model M] [--effort E] [--search] [--note FILE|TEXT]
         建工作区（.agents/wt/<ID>，不存在时从当前分支 HEAD 建）、渲染提示词、探测模型应答（无响应自动换备用模型）、后台启动
         `traex exec`，立即返回。工作区已存在（续作）时自动附上上次失败原因。
     python tools/agents/step.py wait   <ID> [--max-min 25]
@@ -205,7 +205,9 @@ def cmd_start(a) -> int:
             return 0
     wt = R.wt_path(root, t.id)
     s = recover_state(root, t, st)
-    note = Path(a.note).read_text(encoding="utf-8").strip() if a.note else None
+    note = None
+    if a.note:  # 既接受说明文件路径，也接受直接写的说明文字
+        note = (Path(a.note).read_text(encoding="utf-8") if Path(a.note).is_file() else a.note).strip()
     if R.wt_exists(wt) and s.get("base"):
         if R.head_has_trailer(wt, t.id):
             print(f"{t.id} 的工作区已提交（{R.git(['rev-parse', 'HEAD'], wt).stdout.strip()[:12]}），直接 merge 即可")
@@ -497,7 +499,7 @@ def build_parser():
     p.add_argument("id")
     model_opts(p)
     p.add_argument("--search", action="store_true", help="开启联网搜索（web 任务自动开启）")
-    p.add_argument("--note", help="续作说明文件（附在提示词末尾；默认用上次校验失败原因）")
+    p.add_argument("--note", help="续作说明：文件路径或直接写文字（附在提示词末尾；默认用上次校验失败原因）")
     p.add_argument("--force", action="store_true", help="任务已在分支历史中完成时仍启动")
     p.add_argument("--no-probe", action="store_true", help="启动前不探测模型是否应答（默认探测，无响应时自动换备用模型）")
     p.add_argument("--probe-sec", type=float, default=150, help="探测超时秒数（默认 150）")
