@@ -4794,6 +4794,85 @@
           ]
         ]
       }
+    },
+    {
+      "id": "M2",
+      "phase": "B",
+      "wave": 5,
+      "kind": "draft",
+      "priority": 50,
+      "title": "21 经脉运行、招式路线、绝招与擒拿点穴（作者需求 AR-14）",
+      "prompt": "M2-meridian-flow.md",
+      "deps": [
+        "F45"
+      ],
+      "writes": [
+        "docs/design/21-meridian-flow-and-moves.md",
+        "tools/balance/meridian_flow_sim.py",
+        "docs/decisions/author-requirements.md",
+        "docs/decisions/canon-proposals-v1.2.md",
+        "TODO.md",
+        "docs/README.md"
+      ],
+      "review": true,
+      "web": true,
+      "vars": {},
+      "review_focus": "复算河流模型算式与至少 6 个算例，运行 meridian_flow_sim.py --check 与 damage_sim.py --check；核对示例招式的原著出处与现实武术招式的真实性（可联网，查无实据的删除或标待考）；与 design/15 的 20 脉 / 180 穴、04 的乘区与 TTK 区间、06 既有控制类 Buff、09 的 CT 与运功调息逐项对照，不得重定义归属概念；擒拿 / 点穴 1–9 级效果表可用且与作者原文一致；ID 只引用已存在的受管前缀 ID，check_ids.py --strict 通过；AR-14 原文照录无改写。",
+      "validate": {
+        "exists": [
+          "docs/design/21-meridian-flow-and-moves.md",
+          "tools/balance/meridian_flow_sim.py"
+        ],
+        "fences": [
+          "docs/design/21-meridian-flow-and-moves.md"
+        ],
+        "min_lines": {
+          "docs/design/21-meridian-flow-and-moves.md": 1000
+        },
+        "contains": [
+          [
+            "docs/design/21-meridian-flow-and-moves.md",
+            "擒拿"
+          ],
+          [
+            "docs/design/21-meridian-flow-and-moves.md",
+            "点穴"
+          ],
+          [
+            "docs/design/21-meridian-flow-and-moves.md",
+            "调息"
+          ],
+          [
+            "docs/design/21-meridian-flow-and-moves.md",
+            "半步崩拳"
+          ],
+          [
+            "docs/design/21-meridian-flow-and-moves.md",
+            "待决事项"
+          ],
+          [
+            "docs/decisions/author-requirements.md",
+            "AR-14"
+          ]
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
     }
   ]
 }
