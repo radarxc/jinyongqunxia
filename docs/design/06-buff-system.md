@@ -1022,6 +1022,24 @@ export type StackRule = 'refresh' | 'stack' | 'independent' | 'highest';
 export type DispelType = 'circulate' | 'acupoint' | 'medicine' | 'antidote' | 'skill' | 'purge' | 'special' | 'rest' | 'bookSleep';
 export type Expr = string;                               // 构建期编译为 AST
 
+// 共享给 Buff、装备与套装的唯一效果原语类型；参数细则与 Zod 收窄见 §6.4。
+export type ModOp = 'modStat' | 'modZone' | 'modJudge' | 'modCost' | 'modRange';
+export type ActionOp =
+  | 'dealDamage' | 'heal' | 'healLostPct' | 'restoreMp' | 'burnMp' | 'drainHp' | 'drainMp'
+  | 'modRage' | 'shield' | 'mpGuard' | 'applyBuff' | 'removeBuff' | 'dispel' | 'erodeGrade'
+  | 'immune' | 'reveal' | 'invulnerable' | 'damageCap' | 'lockHp' | 'revive' | 'redirect'
+  | 'reflect' | 'mirror' | 'guard' | 'negateAttack' | 'extraAction' | 'ctShift' | 'skipAction'
+  | 'disableAction' | 'disableSkillType' | 'forceTarget' | 'aiOverride' | 'triggerMove' | 'displace'
+  | 'stealth' | 'summon' | 'weaponBreak' | 'setFlag' | 'clearFlag' | 'setPhase' | 'convertDamage'
+  | 'modTerrain' | 'log' | 'vfx' | 'sfx';
+export type Mod = { op: ModOp; when?: Expr } & Record<string, unknown>;
+export type Op = { op: ActionOp; when?: Expr } & Record<string, unknown>;
+export interface Trigger {
+  on: `on${string}`; when?: Expr; chance?: Expr; limitPerTurn?: number;
+  limitPerBattle?: number; cooldown?: number; consumeCharge?: boolean;
+  stopOnFail?: boolean; ops: Op[];
+}
+
 export interface BuffDef {
   id: `bf_${string}`; name: string; nameByTier?: Partial<Record<Tier, string>>;
   category: BuffCategory; polarity: Polarity;

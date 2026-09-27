@@ -821,7 +821,7 @@ Boss 模板另含 atk ×1.25、def ×1.20、mp ×2、评级 +15、spd ×1.06、�
 | `it_baima` | 地中8坐骑 | 李文秀人物线；所有权与临时骑乘分开 | 不作为 C05 留住人物的奖励 |
 | `it_tianshu_10` | 天书实物 | C05 两线共用 | 天书之力变体见 §5 与 `design/13` |
 
-本界四件具名固定产出的具体装备名单尚未由 `design/10` 分配；因此本稿不自造 `eq_*`。随机装备遵循低武投放：普通黄上、精英玄中、Boss 玄中，固定名器 / 奇物最高地上。`design/07-set-system.md` 当前缺失，图鉴中的 `set_gaochang_migong`、`set_hasake_caoyuan`、`set_lvliang_sanjie`、`set_huahui_yexing` 仅作为成员标签候选，本章不定义套装件数效果。
+本界四件具名固定产出的具体装备名单尚未由 `design/10` 分配；因此本稿不自造 `eq_*`。随机装备遵循低武投放：普通黄上、精英玄中、Boss 玄中，固定名器 / 奇物最高地上。高昌迷宫、哈萨克草原、吕梁三杰与花会夜行四个旧候选按 `design/07` §19.3 不进入 v1；白马用 `set_jianghu_baijia`、`set_junwu_baizhan` 作为稳定满档选择，件数效果只读其 §16、§18.3。
 
 ### 9.6 冲穴相关内容
 
@@ -1331,7 +1331,7 @@ rg -n 'rg_10_|rg_xiyu\b|mer_du\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/des
 - `skills-kangxi` / `skills-general` 是武学 ID 来源；上游若迁移经脉旧 ID，本章继续只读正式 `mer_dumai`。
 - `design/11`、`design/19`、`map/cities.yaml` 与 `map/jianghu-ch10.svg` 共同提供本时代地理。
 - `design/03` / `04` 提供 Boss 数值与节奏；`design/16` 提供资源、营生和门派经济。
-- `design/07-set-system.md` 当前不存在，因此本章不定义套装效果。
+- **已解决：**`design/07-set-system.md` 已定稿；本章只引用 §9.5 指定的正式套装，仍不定义套装效果。
 - 已解决：`design/20-legacy-inheritance.md` 已落盘，本章 §9.7 已按其目录、区域过滤与白马配额回填前代传承候选及可完成校合。
 - `design/10` 尚未给 D07 地上9牺牲遗物登记正式 `it_*`；本章以不可入包的剧情槽实现，并与 `it_gaochangguwu` 分离。
 
@@ -1357,7 +1357,7 @@ rg -n 'rg_10_|rg_xiyu\b|mer_du\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/des
 | BM-O03 | 瓦耳拉齐与马家骏用哪些完整武学达到地上9·8 Boss 锚 | 不建未收录指法 / 暗器；用合法图鉴组合占位，待图鉴补齐 |
 | BM-O04 | `npc_ningqiangdao` 是否迁移为姓宋对应 ID | 已解决：新内容统一写 `npc_songqiangdao`；旧键只读迁移，不创建并存实体 |
 | BM-O05 | 前界同伴能否实体重逢 | 当前为 0；只有 `design/18` 补 `appearanceChapters` 后开放 |
-| BM-O06 | 套装四个候选标签的实际件数与效果 | 不定义；待 `design/07-set-system.md` 落盘 |
+| BM-O06 | **已解决：**四个旧候选标签是否进入 v1 | 不进入；按 `design/07` §19.3 删除运行 ID，本章改用 §16 / §18.3 的正式通行套装，件数与效果仍只读 07 |
 | BM-O07 | AR-13 的前代传承与本界可合成项目 | 已解决：§9.7 列 8 条区域相容候选，单周目最多 3 个主载体；材料齐全者可按 `design/20` 校合 |
 | BM-O08 | 青龙会扩展模块是否启用 | 默认关闭；即使开启也只作支线敌对，不侵入原著主线 |
 | BM-O09 | 玩法定年是否保留 1725–1726 | 保留为原创定年，直到原著与时代专项给出更可靠锚点 |

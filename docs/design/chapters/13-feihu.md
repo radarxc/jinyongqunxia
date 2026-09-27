@@ -718,7 +718,7 @@ hpTarget ∈ [0.6, 1.2] × hpTemplateBossSameLevel
 | 通用秘籍 | 全本命名 `it_miji_<武功拼音>`，残本命名 `it_miji_<武功拼音>_can` | 运行时物品 ID 由 `design/10` 登记；天级只在固定节点产出，秘籍不跨书眠 |
 | `eq_lengyuedao` 冷月宝刀 | 墓前依 story 先由胡斐取出后放回；余韵期须胡斐明确授权，玩家才可借刀 / 受传 **（原创扩展）** | 全作唯一实例；未取则留待雪山同一实例处理，不复制、不以“刀中秘密”驱动任务 |
 
-`eq_lengyuedao` 为 10 天下神兵；“冷月寒光”“胡家传刀”的触发与数值完全引用 `design/10`，本章不复写。图鉴还给出 `set_hujia_lengyue`、`set_humiao_bainian`、`set_miaojia_jianxin`、`set_yaowang_yidu`、`set_zhangmen_dahui` 等套装候选标签；在套装归属文档正式采纳前，章节只传递标签，不自行启用套装效果。
+`eq_lengyuedao` 为 10 天下神兵；“冷月寒光”“胡家传刀”的触发与数值完全引用 `design/10`，本章不复写。正式套装只引用 `design/07` §15.8 的 `set_hujia_lengyue`；胡苗百年与苗家剑心主题均已并入该套，药王医毒、掌门大会旧候选按 §19.3 不进入 v1。冷月宝刀未列入 v1 成员，故持刀本身不计套装件数。
 
 ### 9.4 冲穴追赶、指点与丹药边界
 
@@ -1160,7 +1160,7 @@ BossPhases      = 2–3
 
 ### 开放问题（附默认值）
 
-- 套装归属文档尚缺：默认 `set_hujia_lengyue` 等只保留图鉴候选标签，不启用效果或套装掉落。
+- **已解决：**套装以 `design/07` 定稿目录为准；本章只激活 `set_hujia_lengyue` 的正式技能成员，旧候选与冷月宝刀均不计 v1 件数。
 - 华拳等小组织尚无稳定全局 `sect_*`：默认只用 `story13.localBeneficiaries.xiyueHuaquan`，不擅增全局门派。
 - `vid_sleep_12_13` 尚未见正式资产映射：默认按命名规则保留逻辑 ID，缺片时使用静帧降级。
 - 冷月宝刀的永久持有窗口：默认墓前仍归刀，只有天书余韵期且胡斐明确授权时才开放借 / 受传。

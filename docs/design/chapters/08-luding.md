@@ -945,12 +945,12 @@ bosses:
 
 | 来源 | 可学武学 | 上限 / 条件 | 内容定位 |
 |---|---|---|---|
-| 北京白云观道长 `npc_baiyunguan_daozhang` | `sk_quanzhentunajue` 2 黄中 | 完成伪度牒辨识；可学完整 10 重 | 给非门派角色一门基础阳性内功 |
+| 北京白云观游方道长角色槽（`roleKey: wandering_daoist`） | `sk_quanzhentunajue` 2 黄中 | 完成伪度牒辨识；可学完整 10 重 | 给非门派角色一门基础阳性内功 |
 | 同上 | `sk_sanqingzhang` 2 黄中 | 不伤无辜、归还经册 | 拳脚补位 |
 | 同上 | `sk_zhongnanjian` 3 黄上 | 吐纳诀 3 重或完成夜巡保护 | 兵器补位 |
 | 拆散的心法笔记 | `sk_quanzhenxinfa` 5 玄中 | `sk_quanzhentunajue≥4`；鹿鼎来源 `maxLayer=6` | 隐世残承，不开放全真完整晋升 |
 
-`sect_quanzhen` 在 `design/17` 的鹿鼎矩阵为 H，故这条线不发全真职级、月钱或 L2 身份；只是个人授艺 / 残本来源。`npc_baiyunguan_daozhang` 目前仅是图鉴出现过的占位 ID，须由 `design/18` 正式登记后才能进发布数据。观名、主持身份及清初具体状态均 **（待考）**；若考据不成立，默认保留北京道观残承玩法与四门既有 ID，改用不指认真实住持的“游方道长”。
+`sect_quanzhen` 在 `design/17` 的鹿鼎矩阵为 H，故这条线不发全真职级、月钱或 L2 身份；只是个人授艺 / 残本来源。授艺者按 `design/18` §12.4 使用白云观设施内局部 `roleKey: wandering_daoist`，互动后再固化运行时 UUID，不建立静态 `npc_*`。观名、主持身份及清初具体状态均 **（待考）**；若考据不成立，默认保留北京道观残承玩法与四门既有 ID，仍不指认真实住持。
 
 ### 9.5 神兵、名器与特殊物品
 
@@ -965,7 +965,7 @@ bosses:
 | `it_baotaiyijinwan` / `it_baotai_jieyao` | 地中毒丸 / 解药 | 神龙控制链与 `q_08_bond_03` | 强制服药只服务剧情状态 `bf_shouzhi`；解药重置期限，不授属性 |
 | `it_shihuifen` / `it_huashifen` | 黄中 / 地下消耗品 | 扬州杂货、海大富线 | 石灰用于致盲；化尸粉是任务 / 淬毒物，不用来无后果抹除关键 NPC |
 
-`eq_bishou`、`eq_baoyi`、`sk_shenxing` 与英雄 / 美人三招具有 `set_weijuye` 等图鉴 `setTags` 候选时，本章只透传标签。仓库缺少 `design/07` 套装规则正文，故不定义件数阈值或套装奖励。
+`eq_bishou`、`eq_baoyi`、`sk_shenxing` 与英雄 / 美人三招保留各自物品、武学和剧情联动；旧“韦爵爷”候选未被 `design/07` 的 44 套正式目录采纳，故本章不输出其 `set_*` 标签。鹿鼎可达的正式套装及件数只读 `design/07` §18.3。
 
 ### 9.6 秘籍、观摩与互斥补偿
 
@@ -1018,7 +1018,8 @@ nativeHeavenSkills:
 whiteCloudFallback:
   questRef: q_08_qiyu_01
   sectState: hidden
-  teacherRef: npc_baiyunguan_daozhang
+  facilityKey: baiyunguan
+  teacherRoleKey: wandering_daoist
   grants: [sk_quanzhentunajue, sk_sanqingzhang, sk_zhongnanjian]
   cappedGrant: { skillId: sk_quanzhenxinfa, maxLayer: 6 }
 legacySchedule:
@@ -1065,7 +1066,7 @@ Psocial = clamp(0.50 + 0.025 × (value − DC), 0.05, 0.95)
 
 权谋状态满足三条守恒：
 
-- `route_zheng` / `route_xie` 任一时刻至多一个为真，换轨同事务一置一清。
+- `fl_08_route_zheng` / `fl_08_route_xie` 任一时刻至多一个为真，换轨同事务一置一清。
 - “原件”“抄本”“口述”分别记录，抄本不能冒充仍持有原件；交出唯一物时库存与知识状态分开。
 - 掌握秘密不等于拥有 NPC。任何涉及会众、教众、家属或俘虏的名单都不能转换为私人兵力资源。
 
@@ -1271,6 +1272,7 @@ onWin:
 
 | 读入回响 | 条件 | 鹿鼎表现 | 类型 / 约束 |
 |---|---|---|---|
+| 李岩 / 红娘子命运 | `echo_07_fate=true`（由碧血 A07-4=`fate` 与两人同时健在派生） | 扬州书坊出现无署名旧稿，流民互助传闻提到二人离开权力中心后仍在接应百姓**（原创扩展）**；若为 `false` 或缺省，只见空匣与二人依原著死亡的旧闻 | `dialog/codex`；只读标准投影，不反写 A07-4，不强制高龄本人常驻，也不给数值奖励 |
 | 九难重逢 | 碧血曾招募 / 结缘 `npc_ajiu`，且 `design/18` 判定本时代可出现 | 首遇先认旧身份，再处理她在本界的刺驾与师徒责任；能力按 §8.5 只增不减合并 | `dialog/affinity`；旧好感不跳过本界冲突 |
 | 金蛇剑旧影 | 携带 `eq_jinshejian` | 九难辨出袁承志旧剑，追加一段对白与金蛇传承可信度 | `dialog/codex` **（原创扩展）**；不凭器物自动授 `sk_jinshejian` |
 | 归家再会 | 碧血记录归辛树、归二娘、归钟状态 | `dc_08_07` 增加旧识劝返证据；三人生死仍分别结算 | `quest` **（原创扩展介入）**；不是本书天书改命点 |
@@ -1597,9 +1599,9 @@ chapterBalance:
 
 - `era_ch08_luding`、`luocha_mission_route`、`tubo_mizong_route`、`sishierzhangjing_eight`、`clue_08_poison_ledger`、`court_private`、`lodge_relief` 仅是 YAML 示例中的章节局部键，不申请全局前缀。
 - G08-01～20 仅为 §3.4.1 的本章审校实例号，不申请全局 ID；对应正式 `gate_*` 必须由 `design/08` 分配。
-- §11 的九难旧识、金蛇剑、血书收据、韦爵爷传闻、神龙残党和天地会史笺六项目前只使用描述性 `proposalKey`；须由 `design/02` 的全局回响表分配并查重正式 `echo_*` 后才能发布。
+- §11 的李岩 / 红娘子结果已消费上游标准投影 `echo_07_fate`；九难旧识、金蛇剑、血书收据、韦爵爷传闻、神龙残党和天地会史笺仍只使用描述性 `proposalKey`，须由 `design/02` 的全局回响表分配并查重正式 `echo_*` 后才能发布。
 - `vid_sleep_07_08`、`vid_sleep_08_09`、`it_shijian_tiandihui`、`enc_08_shenlongdao`、`bsc_hongantong_shenlongdao`、`gauge_baoxun`、锚点 `fl_08_*`、所有 `city_* / rg_* / npc_* / sk_* / eq_* / it_* / lgs_* / cache_* / frag_* / tsp_*` 均复用上游登记，不在本章重建。
-- `npc_baiyunguan_daozhang` 只复用图鉴中的占位引用，尚不是 `design/18` 已发布名录项；在上游登记前必须保持构建阻塞。
+- `facilityKey: baiyunguan` 与其局部 `roleKey: wandering_daoist` 只生成授艺岗位，不进入静态 NPC 唯一性集合；实现须保留其运行时 UUID。
 
 ---
 
@@ -1662,7 +1664,7 @@ chapterBalance:
 - **战斗实测**：在正式阵容与地图落地后复测洪安通无准备约 22–26 轮、完成内乱约 13–15 轮，并核对苏荃阵营切换、援军删除、宝训优先级和失败重试。
 - **经济实测**：以 13 小时样本覆盖三条身份、至少两个门派和赌场自我限制，确认主线 / 门派 / 资源 / 营生不会重复结算同一事件。
 - **UI 实测**：窄屏下检查权谋三槽、2×4 经书格、宝训阈值、不可逆预警、身份暴露和文本 / 图标双编码；本章没有真机结果，均保留 **（待实测）**。
-- **构建审校**：在 `npc_baiyunguan_daozhang`、海大富 / 假太后 / 桑结等正式角色槽以及候选 `echo_*` 未在归属文档登记前，发布构建必须明确报阻塞或禁用对应可选内容，不能静默生成匿名对象。
+- **构建审校**：海大富 / 假太后 / 桑结等具名角色及候选 `echo_*` 未在归属文档登记前，发布构建必须明确报阻塞或禁用对应可选内容；白云观游方道长则按已登记的岗位槽生成规则校验，不得提升为静态 `npc_*`。
 
 ---
 
@@ -1690,8 +1692,8 @@ chapterBalance:
 - **已解决：地图与城市。** 区域取 `design/11` / `map/regions.yaml`，清初城市名称取 `map/cities.yaml`，底图取 `map/jianghu-ch08.svg`。
 - 门派开放 / 隐世状态及五级称谓依赖 `design/17`；人物生卒、D4 / D5 招募与跨书合并依赖 `design/18`；冲穴和前代传承分别依赖 `design/15`、`design/20`。这些新增归属尚未完整写入基准 §18，见提案 D08-P02。
 - 武学、物品、地形、战斗、任务、成长、资源分别依赖 `design/05/10/08/09/12/13/16` 及图鉴。章节 YAML 只示意接口，不可成为第二份规则源。
-- `design/07-set-system.md` 当前不存在；`set_weijuye` 等只按图鉴候选标签透传，在套装规则补齐前不结算件数或奖励。
-- `npc_baiyunguan_daozhang`、海大富 / 假太后 / 桑结等角色槽和六个候选 `echo_*` 尚未全部由其归属文档正式登记，发布数据依赖这些上游补项。
+- **已解决：套装。** `design/07-set-system.md` 已定稿 44 套；本章只消费 §18.3 的鹿鼎可达结论，旧“韦爵爷”候选按 §19 不进入 v1。
+- 海大富 / 假太后 / 桑结等具名角色和六个候选 `echo_*` 尚未全部由其归属文档正式登记，发布数据依赖这些上游补项；白云观授艺者已按 `design/18` 的岗位槽口径收口，不再等待静态人物定义。
 - 洪安通完整属性依赖 `design/03` §10.9；本文采用正式 `spd=113`，旧 103 / 123 均不构成第二真相源。
 
 ### 对基准的修改提案
@@ -1723,7 +1725,7 @@ chapterBalance:
 | O08-02 | 八部经书逐部持有人与颜色尚未考定，如何生产？ | 保留 `it_sishierzhangjing_1..8` 唯一槽；未知项不显示持有人 / 颜色，主线只读两类可信线索 |
 | O08-03 | 海大富、假太后、桑结、王屋首领、冯锡范和雅克萨守将尚缺全部正式 NPC / 遭遇 ID | 使用“局部角色槽 + 遭遇预算画像”；没有归属登记就不造 `npc_* / enc_* / bsc_*` |
 | O08-04 | 九场非洪安通 Boss 的最终数值与机制由谁收口？ | `design/03` 建人物完整画像、`design/09` 建遭遇脚本；本章表仅供预算，禁止直接实装 |
-| O08-05 | `set_weijuye` 等候选标签如何结算？ | 在 `design/07-set-system.md` 补齐前只透传、不激活任何套装效果 |
+| O08-05 | **已解决：**旧“韦爵爷”候选如何结算？ | 不进入 v1；鹿鼎只激活 `design/07` §18.3 已定稿且双向闭合的正式套装 |
 | O08-06 | 六个候选跨章 `echo_*` 是否全部进入正式回响表？ | 上游未登记者默认禁用；物品 / NPC 原状态仍通过通用书眠快照保存 |
 | O08-07 | 苏荃、韦小宝等“长期招募”与战役同行在终局后的可用范围 | 维持 §8.2：满足 D5 可转长期，否则保留战役同行 / 盟友；活动编组仍最多 5 名同伴 |
 | O08-08 | 明史案、鹿鼎山与罗刹路线考据未完成是否阻塞整章？ | 不阻塞无争议主线；相关可选场景保留 `researchPending`，上线文案使用中性地望和无引文版本 |

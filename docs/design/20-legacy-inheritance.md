@@ -893,7 +893,7 @@ function assertLegacySourceGrade(
 | 后世校合全本 | `sk_yuenvjian@legacy_complete` | 同一技能的完整传承形态 | 天下 10；来源上限 10 重 |
 | 韩小莹版 | `sk_yuenvjian02` | 五绝图鉴独立武学 | 玄下 4；永不合并 ID |
 
-序章残篇只提供“我曾见过”的忆起与线索优势，不替代任何一卷。`sk_yuenvjian02` 可以在达到 5 重时满足一般的 `category_any:sword` 基础条件；它与 `sk_yuenvjian` 只有 `set_yuenv_jianyuan` 候选关联及残篇加速联动。无论下游是否把这种联动索引进 `lg_jianyuan`，两者都不是同一技能状态，绝不共享层数、`sxp`、残篇或卷位。
+序章残篇只提供“我曾见过”的忆起与线索优势，不替代任何一卷。`sk_yuenvjian02` 可以在达到 5 重时满足一般的 `category_any:sword` 基础条件；它与 `sk_yuenvjian` 仅有本节的残篇加速联动，旧越女剑源候选套装已按 `design/07` §19.3 删除。两者不是同一技能状态，绝不共享层数、`sxp`、残篇或卷位。
 
 ### 8.2 消隐与出现
 

@@ -917,7 +917,7 @@ Boss 的精确模板值见 §12。武学品阶从图鉴读取；机制名称是�
 | 苗家剑谱三卷 | 传承残卷 | 沧州试剑、互照与苗家关系取得 | 不通过偷看终战破绽直接掉落 |
 | `it_dingshendan` 定神丹 | 地中 8 丹药 | 高风险冲穴后的固定救济节点可得 1 枚**【建议值】** | 只把走火等级降 1，不直接开穴 |
 
-套装只引用图鉴候选 `set_hujia_lengyue`、`set_humiao_bainian`、`set_miaojia_jianxin`、`set_bagua_youlong`、`set_tianlong_nanbei`、`set_yaowang_yidu`。当前仓库未提供基准指向的正式 `design/07` 文件；本章不定义件数阈值、Buff 或数值，也不宣称候选已实装。
+套装只引用 `design/07` §15.8 定稿的 `set_hujia_lengyue`；胡苗百年与苗家剑心主题均已并入该套。八卦游龙、天龙南北、药王医毒旧候选按 §19.3 不进入 v1；章节保留相关武学与剧情投放，不输出旧 `set_*`。件数阈值、Buff 与数值只读 `design/07`。
 
 ### 9.5 冲穴相关内容（AR-03）
 
@@ -1519,7 +1519,7 @@ P_actual = G(9) × L(9)
 | `design/18` 与 `catalog/npcs-ch14-xueshan.md` | **已解决：**人物形态、D 级、appearance 与跨书重逢有正式数据；精确生卒未知者仍保持年龄段 |
 | `catalog/skills-qianlong.md`、`skills-general.md` | **已解决：**本土 4 / 5 / 9 装配池和雪山唯一原生天级 `sk_hujiadao` 均有图鉴 ID |
 | `design/10` / `15` / `20` | **部分解决：**神兵、冲穴、五个传承源与配方可引用；建议救济、指点参数和同界主载体仍待生产验证 |
-| `design/07-set-system.md` | **未落盘：**§9 只列图鉴候选套装，不定义件数、Buff、掉率或实装效果 |
+| `design/07-set-system.md` | **已解决：**§9 只引用正式 `set_hujia_lengyue`；件数、Buff、成员与效果均只读 07 |
 | `tech/04` / `tech/05` | **待对接：**两个章节系统的 YAML、原子提交、旗标注册和旧存档缺省值须纳入 schema / 引擎 |
 
 ### 对基准的修改提案

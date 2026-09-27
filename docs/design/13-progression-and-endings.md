@@ -581,6 +581,8 @@ L = 战败次数；R = 主动撤退次数
 | 13 飞狐 | `(story13.route, story13.fateVariant)`，两轴分别为 `zheng/xie`、`canon/fate` | `fateVariant=canon` → `tsp_13_canon` | `fateVariant=fate` → `tsp_13_fate` |
 | 14 雪山 | `endingKey ∈ {pi, bupi, liangquan}`；正邪只选六种摘要之一 | `pi/bupi` → `tsp_14_canon` | `liangquan` → `tsp_14_fate` |
 
+碧血剑结算须在同一事务写稳定跨书布尔回响 `echo_07_fate := (bx_anchor_4 == fate && npc_liyan.state == alive && npc_hongniangzi.state == alive)`：仅当 A07-4 以改命结果锁定，且李岩、红娘子均健在时为 `true`；它只供鹿鼎等后界的可选对白与图鉴读取，不授奖励、不改变后书主线。旧档缺字段时默认 `false`。具体消费见 `design/chapters/08` §11.1。
+
 书剑结算还须在同一事务写稳定跨书布尔回响 `echo_12_fate := (fateRoute12 == fate)`：它只控制飞狐中的平安信 / 撤民近况等可选对白，不重复授予天书、不改变飞狐开场、锚点或主线。旧档缺字段时默认 `false`。
 
 ### 4.3 天书之力总表
@@ -1691,6 +1693,7 @@ export interface MetaProfile {
 | 书影援阵 / 万卷归一 | `shadowArray` / `wanjuan` | 机制 | | §7.6 |
 | 悬刀之问 | `C ∈ {pi, bupi, huabi, duojuan}` | 抉择 | 终局最终抉择 | §7.2、§7.10 |
 | 雪山抉择 | `echo_14_xueshan ∈ {pi, bupi, liangquan}` | 回响旗标（02 格式） | | §7.2 |
+| 碧血改命回响 | `echo_07_fate` | 跨书布尔回响 | A07-4 改命且李岩、红娘子均健在时为真；只供后书对白 / 图鉴读取，旧档默认假 | §4.2.1 |
 | 书剑改命回响 | `echo_12_fate` | 跨书布尔回响 | `fateRoute12=fate` 时为真；只供后书对白 / 支线读取，旧档默认假 | §4.2.1 |
 | 书页丹 | `it_shuyedan` | 物品（原创扩展） | 终局补给 | §7.3 |
 | 结局 | `end_guixiang` `end_liushu` `end_shouquan` `end_tonggui` `end_wuzi` `end_zhijuan` `end_changmeng` | ID | 7 种结局 | §7.10 |

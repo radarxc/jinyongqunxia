@@ -1443,7 +1443,7 @@ AF(N) = clamp(floor(rawAF(N)*20 + 0.5)/20,0.35,1.00)
 
 - 原著：张三丰观龟蛇二山而创真武七截阵，本为武当七侠七人合使；俞岱岩伤残、张翠山身故后人数不全（细节待考）。
 
-#### 6.8.3 金刚伏魔圈 `sk_jingangfumoquan`（地上 9 · 少林 · `pattern` · `auto` · 3 人，10 重或 `set_sandu` 3 件可 2 人；条目见 catalog/skills-shaolin）
+#### 6.8.3 金刚伏魔圈 `sk_jingangfumoquan`（地上 9 · 少林 · `pattern` · `auto` · 3 人；10 重可 2 人；条目见 catalog/skills-shaolin）
 
 阵型：以局部轴坐标 `(0,-2)`、`(-2,1)`、`(2,1)` 为三角三点，可六向旋转；三名阵员**坐关**，不能移动，免疫击退、牵引、换位。阵员以“布圈” `mv_jingangfumoquan_buquan` 就位，三人到位即成阵（`auto`）。
 
@@ -1453,7 +1453,7 @@ AF(N) = clamp(floor(rawAF(N)*20 + 0.5)/20,0.35,1.00)
 | 伏魔 | 圈域内的敌人每回合开始获得封轻功 `bf_fengqinggong` 1 回合（品阶 = 阵法 `effGrade`） |
 | 索网 | 阵员以长索（主手 `whip`）出招时，圈域内任意敌人都在射程内 |
 | 三力一心 | 任一阵员所受伤害的 50% 平分给另两人（06 `redirect`） |
-| 二僧成圈 | 10 重"二僧成圈"或套装 `set_sandu` 3 件：2 人即可成阵，圈域改为两人连线及其两侧各 1 格，全部效果 ×0.75，三力一心改为"两人互分 50%"（catalog） |
+| 二僧成圈 | 仅阵法有效 10 重：2 人即可成阵，圈域改为两人连线及其两侧各 1 格，全部效果 ×0.75，三力一心改为“两人互分 50%”（catalog）；旧三渡候选已按 `design/07` §19.2 并入少林人物主题，不再作为降人数条件 |
 | 合璧 | 绝招"松间伏魔"按通用合璧规则：其余阵员 `ct −300` 同时出手 |
 
 - **专属破法**：
@@ -2636,7 +2636,7 @@ export type RejectReason = 'NOT_YOUR_TURN' | 'OUT_OF_RANGE' | 'NO_LOS' | 'MP_NOT
 id: enc_08_shenlongdao
 kind: story
 chapter: ch08_luding
-region: rg_islands                      # 全局区域；具体关卡见下行
+region: rg_donghai_islands             # 神龙岛玩法区；辽东仅是登船港与外海锚点说明
 scene: sc_08_shenlongdao_dadian         # chapters/08 正式场景
 localDifficulty: 8                      # 02 §3.3
 grid:                              # authored = 场景内预设六角格集合（仍属就地）
@@ -2929,7 +2929,7 @@ behaviors:
 | Buff（06 已正式收录） | `bf_hunmi` 昏迷、`bf_kangfen` 亢奋、`bf_minjie` 敏捷、`bf_zhuanzhu` 专注、`bf_muguangruju` 目光如炬；`bf_mabi` 已含臂力降低 | §7.0；均已通过 06 目录闭合 |
 | 物品（10 已定义，本文引用） | `it_baotai_jieyao` 豹胎易筋丸解药 | §8.9 |
 | NPC（跨文档建议 ID） | `npc_hongantong` `npc_suquan` `npc_dongfangbubai` `npc_yanglianting` `npc_renwoxing` `npc_xiangwentian` `npc_linghuchong` `npc_renyingying` `npc_xueshenyi`；基准已有 `npc_xiaofeng` | 由 chapters 核名；本文不建立人物定义 |
-| 任务 / 区域 / 场景（跨文档引用） | `q_08_faction_02`（神龙教内乱）`q_08_faction_03`（离间五龙使）`rg_islands` `sc_08_shenlongdao_dadian` | 正式键由 chapters/08 与地图文档定义；本文只读取，不重定义 |
+| 任务 / 区域 / 场景（跨文档引用） | `q_08_faction_02`（神龙教内乱）`q_08_faction_03`（离间五龙使）`rg_donghai_islands` `sc_08_shenlongdao_dadian` | 正式键由 chapters/08 与地图文档定义；本文只读取，不重定义 |
 | 行动类型（`BattleAction.t`） | `skill` `hidden` `item` `yunjin` `guard` `wait` `cover` `flee` `talk` `capture` `discern` `unseal` `struggle` `rescue` `yiyun` `swapWeapon` `drawWeapon` `pickup` `dual` `combo`；免费动作 `order`（号令）与 `battle/free`（天书之力 / 书契技） | §4.7；旧 `meditate` 仅为读档别名 |
 | 运劲分支 | `tiaoxi` `huti` `xuli` `bidu` `liaoshang` `cuiqinggong` `huajie` | §4.8.4 |
 | 命令（扩展 tech/01） | `battle/act`（+ `order` `walkAfter` `facing`）`battle/deploy` `battle/order` `battle/free` `battle/setAuto` `battle/concede` `battle/retry` `battle/undo` | §13.2 |

@@ -566,7 +566,7 @@ c/preview.json（可变指针，开发/预览用）──▶ m/root.<hash12>.jso
     }
   },
   "alias": {
-    "portrait/npc_wuliang_dizi_b/ch01_base": "portrait/npc_wuliang_dizi_a/ch01_base"
+    "portrait/role-slot/wuliang_dizi_b/ch01_base": "portrait/role-slot/wuliang_dizi_a/ch01_base"
   }
 }
 ```

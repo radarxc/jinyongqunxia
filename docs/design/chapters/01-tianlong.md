@@ -883,7 +883,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 | 奇物 | `it_shandiandiao` | `q_01_qiyu_02` 与钟灵羁绊 | 驭兽伙伴，不是普通装备 |
 | 天材 | `it_mangguzhuha` | 无量山唯一奇遇分支 | 全作唯一；服食 / 取血按 `design/10`，不可复制 |
 
-套装只引用图鉴候选：`set_shaolin_luohan`、`set_dali_yiyang`、`set_gaibang_bangzhu`、`set_xiaoyao_xiaoyaoyou`、`set_lingjiu_jiutian`、`set_xingxiu_laoxian`、`set_murong_huanshi`、`set_qidan_xiaofeng`。仓库当前缺少 `design/07-set-system.md`，因此本章不定义 2 / 3 / 4 件效果、倍率或最终是否入库；在其落盘前 UI 只显示“候选成员”，不启用奖励。
+套装只引用 `design/07` 已定稿的 `set_shaolin_luohan`、`set_dali_yiyang`、`set_gaibang_bangzhu`、`set_xiaoyao_xiaoyaoyou`、`set_xingxiu_laoxian`、`set_murong_huanshi`、`set_qidan_xiaofeng`；“灵鹫九天”旧候选已按其 §19.2 并入 `set_xiaoyao_xiaoyaoyou`，不进入运行数据。件数、效果与可达性均只读 `design/07` §9–§18，本章不重定义。
 
 ### 9.5 秘籍、师承与投放可恢复性
 
@@ -1466,7 +1466,7 @@ B = I × H = 19 × 15 = 285 两
 - 主线剧情、选择与锚点只从 `design/story/01-tianlong.md` 生成；本文 §4 的 24 行是索引，不得被编译器当第二份剧情正文。
 - 康敏、全冠清、萧远山、耶律洪基等进入生产前必须先由 `design/18` / 天龙人物名录补稳定 ID、生卒与能力；中文名不得成为持久化外键。
 - `featureKey:zhenlong / babuzhong / daitoudage` 的 YAML 是章节局部内容接口示例；字段归属 schema 接纳前由章节适配器读取，不得自行扩充任务 opcode。
-- `design/07-set-system.md` 缺失时，§9.4 的 `set_*` 只作图鉴候选引用，不启用件数效果、掉率或 Buff。
+- **已解决：**`design/07-set-system.md` 已定稿；§9.4 只引用其正式套装，件数、效果与成员均由 07 提供，本章不重定义。
 - `tools/balance/damage_sim.py` 若仍把 Boss MP 输出成 `×1`，须同步为 `design/03` 的 `×2` 后再用于本章回归；当前 §8 / §12 采用权威文档值。
 - 射雕回响的本地真值读取 story 已登记的 `flags.yanmen_fate_saved`；旧存档缺失按原著线处理，书眠适配器再按 `design/02` §6.3 派生标准 `echo_NN_fate` 投影，剧情任务不双写。
 - `echo_01_huangshang` 是 `design/02` 已有连续性键；本章只增加触发内容，不把它重声明成新全局 schema。
@@ -1574,7 +1574,7 @@ B = I × H = 19 × 15 = 285 两
 | `cmb_longbang` | 复用 `design/09` 已登记合击；其他搭档只作候选，不新建 `cmb_*` |
 | `lgs_yuenv_aqing`、`cache_yuenv_ruoye`、三个 `frag_yuenv_*`、`it_xinwu_aqingshoujuan` | 复用 `design/20` 的传承目录与合成条件 |
 | `vid_sleep_01_02`、`it_shijian_xiaofeng`、`echo_01_huangshang` | 复用 `design/02` 的过场、史笺与连续性键 |
-| `set_*` 候选 | `design/07-set-system.md` 缺失前只显示候选成员，不实装件数、Buff、掉率 |
+| 正式 `set_*` 引用 | 只显示并结算 `design/07` 已收录套装；旧候选不进入运行数据 |
 | 康敏、全冠清、萧远山、耶律洪基 | 仅剧情中文名 / 阻断槽；禁止在上游名录补录前擅造 `npc_*` |
 | `clue_01_xingzilin_mifeng`、`clue_01_yanmeng_jiuhen`、`clue_01_shaolin_dangan` | `featureKey:daitoudage` YAML 的局部示例键；正式 schema 接纳前不作为全局资产 |
 
@@ -1704,7 +1704,7 @@ B = I × H = 19 × 15 = 285 两
 | `design/18` 与 `catalog/npcs-ch01-tianlong.md` | **部分解决：**12 名重点队友和 30 名稳定人物可用；康敏、全冠清、萧远山、耶律洪基等仍缺稳定 ID |
 | 四份指定武学图鉴 | **已解决：**本章可学武学只取 `skills-shaolin`、`skills-xiaoyao`、`skills-wujue`、`skills-general` 已有 ID |
 | `design/20-legacy-inheritance.md` | **已解决：**阿青剑源、墓藏、三卷、信物与本界可完成校合均直接引用权威目录 |
-| `design/07-set-system.md` | **未落盘：**§9.4 的八组 `set_*` 只作候选引用，不定义效果、掉率或 Buff |
+| `design/07-set-system.md` | **已解决：**§9.4 已按 07 正式目录收口；本章仅安排来源，不定义效果、掉率或 Buff |
 | `tech/04` / `tech/05` | **待对接：**三个章节 `featureKey`、证据字段、原子提交、`flags.yanmen_fate_saved` 的旧存档缺失语义及其向 `echo_NN_fate` 的派生映射须纳入 schema / 章节适配器 |
 
 ### 对基准的修改提案
@@ -1748,7 +1748,7 @@ B = I × H = 19 × 15 = 285 两
 |---|---|---|
 | TL-O01 | 三个章节 `featureKey` 是否需要升级为全局正式资产 | 默认不升级；由 `chapterRef: ch01_tianlong` 限定并经章节适配器读取，不生成自定义 opcode |
 | TL-O02 | 45 个局部 `gateKey` 中哪些需要跨场景共享 | 默认全部留在场景配置；仅确有跨场景引用者再由 `design/08` 登记正式 `gate_*` |
-| TL-O03 | `design/07-set-system.md` 缺失时能否先实现候选套装 | 默认不可；仅显示候选成员，件数、效果、Buff、掉率均不启用 |
+| TL-O03 | **已解决：**正式套装是否可启用 | 仅启用 `design/07` 已收录套装；旧候选不显示、不计件，见 §9.4 |
 | TL-O04 | 康敏、全冠清、萧远山、耶律洪基等能否直接生成生产角色 | 默认不可；可出现在审校剧情文本，进入存档 / 战斗前必须补稳定 ID、生命轴和能力画像 |
 | TL-O05 | 10 名具名 Boss 的最终 `full` 面板 | 默认采用 TL-D03 HP 搜索锚、表列速度与 AI；攻击、防御、抗性须用人物合法画像重算并实跑 |
 | TL-O06 | qg5 云海栈道奖励是否绑定 `eq_tayunlv` | 默认只作隐藏候选，任务提供一次 `qinggong +12`；若装备归属调整，门禁仍不得阻主线 |

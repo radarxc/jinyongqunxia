@@ -1448,7 +1448,7 @@ rg -n 'rg_11_|mer_ren\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/design/chapt
 - `design/11`、`design/19`、`map/regions.yaml`、`map/cities.yaml` 和 `map/jianghu-ch11.svg` 提供时代地图；区域归属冲突时服从 `design/11`，故汉中按 `rg_qinba` 处理；已存在的 `map/jianghu-ch12.svg` 仅用于下一界引用。
 - `design/03` / `04` 提供 Boss 模板和战斗节奏；`design/16` 提供资源、营生、月钱与 152 两经济总账。
 - `design/15` 提供正式经脉、师父、静室和丹药接口；`design/20` 提供传承源、三卷、信物、合成与跨书保存。
-- `design/07-set-system.md` 当前不存在，因此本文没有定义、承诺或投放任何套装效果。
+- **已解决：**`design/07-set-system.md` 已定稿；本文只消费其中正式套装，不在章节内定义或承诺额外效果。
 - 已解决：`docs/design/chapters/12-shujian.md` §3.13、§11.2 已接收天书主题、`carry:eq_yuanyangdao`、`legacy/fuqi/manual_lost`、人物健在重验及仁字镖旗 / 威信记录；四个本地 `endingKey` 尚未各自登记正式 `echo_*`，未覆盖差异继续降级为文本。
 
 ### 对基准的修改提案
@@ -1474,7 +1474,7 @@ rg -n 'rg_11_|mer_ren\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/design/chapt
 | YY-O03 | 卓天雄缺失的原著掌法如何配表 | 不建图鉴外 `sk_*`；先用合法清宫 / 通行武学组合，待图鉴归属方考据补齐 |
 | YY-O04 | `eq_changchangfengshibei` 与 `sk_taiyueshibeishou` 的装备兼容如何实现 | 已解决一半：复用 `design/10` 已登记的玄上副手牌 `eq_changchangfengshibei`；其 `exotic/misc` 兼容桥仍待装备 / 图鉴归属方补登记，桥接前武学可学但不能由该装备满足 `weaponReq` |
 | YY-O05 | 本界是否投放具体冲穴丹药 | 暂不投；当前无已确认 `meridianAid` 药物 ID，只给线索和普通药材 |
-| YY-O06 | 本界套装候选及件数 | 暂不定义；等待缺失的 `design/07-set-system.md`，不以散件标签冒充套装 |
+| YY-O06 | **已解决：**本界套装候选及件数 | 只消费 `design/07` 正式目录；不以旧候选或散件标签冒充套装，件数和效果只读 07 |
 | YY-O07 | 白马同伴能否在 ch11 实体重逢 | 默认 0；只有 `design/18` 增加同一 NPC 的 ch11 appearance 后开放 |
 | YY-O08 | 四类本地结局键如何映射到 ch12 正式回响 | 已解决主要入口：ch12 §11.2 已接天书主题、双刀、手记、人物与仁字镖旗 / 威信条件；四个 `endingKey` 未逐项登记 `echo_*` 的差异仍降级为书灵回顾文本，不发数值、不影响通关 |
 | YY-O09 | `lgs_yuanyang_fuqi` 是否在本界余韵提交流散 | 默认不提交；只有玩家明确托付手记才写旗标，并从 ch12 起调度 |

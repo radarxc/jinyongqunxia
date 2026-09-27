@@ -86,7 +86,7 @@
 | 素材键、编码、清单与锁 | `tech/06`、`tech/07` | 只抽取逻辑引用，生成 `refs.json`；不复制二进制或清单规则 |
 | 存档结构迁移与云同步 | `tech/08` | 输出 `contentHash` 与 `idRemaps`，供其迁移后修复 |
 
-`design/11`、`design/12`、`design/15`–`design/20` 已有正式逻辑 / 源数据契约，相关 schema 不再标 provisional；归属文档后续变更时先更新 Zod 与迁移。`design/11` 已定稿 30 区闭集及 `RegionDef` / `EraLayer` / `EraRegionState`，但 `design/map/*.yaml` 的 19→30 区物理数据迁移尚未完成，生产构建必须在迁移完成后才接受。AR-13 已由 `design/20` 落地为 `legacy.v1`；本文只镜像结构、注册引用并执行其校验族，不复制传承概率、投放或合成规则。
+`design/11`、`design/12`、`design/15`–`design/20` 已有正式逻辑 / 源数据契约，相关 schema 不再标 provisional；归属文档后续变更时先更新 Zod 与迁移。`design/11` 已定稿 30 区闭集及 `RegionDef` / `EraLayer` / `EraRegionState`，`design/map/*.yaml` 的 19→30 区物理数据迁移也已完成并通过 §3.7.1 的全量核验。AR-13 已由 `design/20` 落地为 `legacy.v1`；本文只镜像结构、注册引用并执行其校验族，不复制传承概率、投放或合成规则。
 
 **已解决（E1.R）**：`tech/03` §2.8、§5.6 已将早期“单片 ≤300 KB”建议统一为 **原始 UTF-8 JSON 叶片与游戏中单次 `JSON.parse` 输入均 ≤256 KiB**；本文采用同一可直接校验的发布门禁，不再混用十进制 KB、二进制 KiB 与“分片/单次解析”口径。
 
@@ -466,7 +466,7 @@ export type RegionId = z.output<typeof RegionIdSchema>;
 | `design/16` 资源 / 营生 | `economy/*.ts`、`society/business.ts` | 严格消费四阶九品、lot、合同、排班与 DSL；旧英文类别 / 职位键只进迁移器 |
 | `design/20` 跨年代传承 | `legacy/*.ts` | 严格消费 `legacy.v1` 五表；生成 `lgs_ / frag_ / cache_ / it_xinwu_` 引用边，校验三卷、信物、配方、地点、概率与稳定顺序 |
 | `design/17` 门派矩阵 | `society/sect.ts` | 严格消费 `sect-compendium.v1`；校验 99×14、L1–L5 与 T01–T12（含 T05A/T05B） |
-| `design/19` 四份地图源 + `design/11` 迁移表 | `world/navigation-source.ts` | 保留 snake_case/WGS84/短 `chNN` 键；生产校验 189 城、99 门派、30 区、24 驿站、28 码头、48 常规线、3 专线，再映射为 camelCase IR；当前 19 区源只允许迁移模式读取 |
+| `design/19` 四份地图源 + `design/11` 迁移表 | `world/navigation-source.ts` | 保留 snake_case/WGS84/短 `chNN` 键；生产校验 189 城、99 门派、30 区、24 驿站、28 码头、48 常规线、3 专线，再映射为 camelCase IR；旧 19 区别名只允许迁移模式读取 |
 | `design/18` `NpcDef`/`NpcAppearance` | `narrative/npc.ts` | 年代区间与 `design/02` 交叉检查；推算/待考不可伪装成精确史实；跨书同人只建一个 `NpcDef` |
 | 对话显示文本 | `TextEntrySchema` | 从 Ink 抽取，进入 locale 包，不进入规则对象 |
 | 素材字段 | `AssetKeySchema` + 各字段专用 schema | `assets.*`、`anim.cutin/sfx` 归一后生成素材引用边；`anim.vfx` 是 `fx_*` 内容引用，`anim.clip` 是动作片段名，不能误套 `AssetKeySchema`；简写只在迁移期 warning（见 `tech/06` §3.3） |
@@ -674,7 +674,7 @@ export const TravelRouteSourceSchema = z.strictObject({
 });
 ```
 
-根 schema 还须覆盖 `schema_version`、`coordinate_system`、`generated_on`、来源表、陆地环、河流、山脉、岸线掩膜、驿站、码头、门派落点与图外节点，不能用 `.passthrough()` 省略。`history` 与 `seat_moves[].eras` 使用六个历史时期带，`eras`/`open_chapters`/`availability` 才使用十四个 `chNN` 短键；两套枚举不得混用。`generated_on` 是 authoring 来源元数据，进入可追溯报告但排除 `contentHash`。生产构建的金标准为 189 城、99 门派、**30 个 `design/11` §13.2 闭集区域**、24 驿站、28 码头、48 常规路线与 3 图外专线；各城恰有 `ch01`…`ch14`，故城市时代格为 `189 × 14 = 2,646`。当前 `design/map/*.yaml` 仍是 W1 的 19 粗区快照，只允许显式迁移模式按 `design/11` §2.3 读取；普通构建必须报 `TS-CONTENT-MAP-030` 并阻断，直至城市归区、区域几何/邻接、路线索引、门派派生区域与章节引用原子迁移完成。
+根 schema 还须覆盖 `schema_version`、`coordinate_system`、`generated_on`、来源表、陆地环、河流、山脉、岸线掩膜、驿站、码头、门派落点与图外节点，不能用 `.passthrough()` 省略。`history` 与 `seat_moves[].eras` 使用六个历史时期带，`eras`/`open_chapters`/`availability` 才使用十四个 `chNN` 短键；两套枚举不得混用。`generated_on` 是 authoring 来源元数据，进入可追溯报告但排除 `contentHash`。生产构建的金标准为 189 城、99 门派、**30 个 `design/11` §13.2 闭集区域**、24 驿站、28 码头、48 常规路线与 3 图外专线；各城恰有 `ch01`…`ch14`，故城市时代格为 `189 × 14 = 2,646`。`design/map/*.yaml` 已完成 v2 原子迁移；2026-09-27 从仓库根运行 `python3 tools/map/render_map.py --check`，核得 30 区闭集、189 城、99 门派、24 驿站、28 码头、48 常规路线与 3 图外专线，故解除当前 `TS-CONTENT-MAP-030` 阻断。旧 19 粗区只允许迁移器按 `design/11` §2.3 单向读取；生产源重新定义旧粗区时仍触发该诊断。
 
 #### 3.7.2 `RegionDef`、`EraLayer` 与 `EraRegionState`（正式消费 `design/11`）
 
@@ -1390,7 +1390,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | `TS-CONTENT-REF-001` | 硬引用不存在 | error |
 | `TS-CONTENT-SKL-008` | 招式预算偏差 > 0.05 | error / 有批准理由为 warning |
 | `TS-CONTENT-MAP-003` | 主线目标不可达或无安全返回路 | error |
-| `TS-CONTENT-MAP-030` | 全国导航源尚未完成 `design/11` 的 19→30 区原子迁移，或发布数据仍定义旧粗区 | error；只允许显式迁移模式读取旧源 |
+| `TS-CONTENT-MAP-030` | 全国导航源未满足 30 区闭集，或发布数据重新定义旧 19 粗区 | error；当前迁移已完成、门禁已解除，保留作回归诊断；只允许显式迁移模式读取旧源 |
 | `TS-CONTENT-INK-004` | locale 结构签名不同 | error |
 | `TS-CONTENT-PACK-001` | 单叶片原始 JSON > 256 KiB | error |
 | `TS-CONTENT-PROV-001` | provisional schema 仍在使用 | warning；发布报告必须列出 |
@@ -1601,10 +1601,10 @@ HTTP `Content-Encoding` 通常由浏览器透明解压；离线预压缩容器�
 | Ink 夹具 | 结构签名、非法 opcode、占位符差异、死链 | 必须 |
 | 包体/确定性 | 双构建逐字节相同；叶片与总包预算 | 必须 |
 | 兼容 | 每个发布 hash 的存档经结构迁移 + remap 后加载 | 必须 |
-| ID 全仓门禁 | `python3 tools/lint/check_ids.py --strict`；默认扫描配置覆盖全仓文档，检查前缀、重复、弃用 ID、近似名与引用 | PR 必须；CN-08 |
+| ID 全仓门禁 | `python3 tools/lint/check_ids.py --strict`；默认扫描配置覆盖全仓文档。基线外新增的未定义 / 废弃 ID、冲突定义、套装成员不对称阻断；近似名只警告 | PR 必须；CN-08 |
 | 真机 | 256 KiB 解析、区域切换峰值与无长任务 | **（待实测）** |
 
-PR CI 先运行 `python3 tools/lint/check_ids.py --strict`，再跑全量 validate、schema drift、DSL registry drift、单元测试和指定书界构建；任一失败都不得合并。`--strict` 读取已提交的 `tools/lint/check_ids_baseline.json`：仅当前未定义 / 废弃 ID 中**不在基线**的新增债务失败；已消失债务自然退出，改名后的债务视为新 ID 而失败，近似名、重复定义、集合不对称等非基线错误照常失败。过渡期不得为单组审计刷新基线；待 F2 各组把债务清零后，从仓库根运行默认全量扫描确认 0，再执行 `python3 tools/lint/check_ids.py --update-baseline` 写入空基线并复跑 strict。禁止以限定路径更新基线掩盖未扫描文档。夜间任务构建全部书界、跑数值模拟与跨引擎录像。仅 Markdown 改动可跳内容构建，但不能跳 ID 门禁；本文件本身不证明实现已存在。
+PR CI 先运行 `python3 tools/lint/check_ids.py --strict`，再跑全量 validate、schema drift、DSL registry drift、单元测试和指定书界构建；任一失败都不得合并。`--strict` 读取已提交的 `tools/lint/check_ids_baseline.json`：当前未定义 / 废弃 ID 中**不在基线**的新增债务失败，已消失债务自然退出，改名后的债务视为新 ID 而失败；冲突定义和套装成员不对称不纳入债务豁免，始终失败；近似名只输出 warning，不计 strict 失败。基线只可在完成一次全量审计后，从仓库根以默认全量扫描刷新；同一变更记录必须写明刷新前后各类债务数及余债清零计划。禁止使用限定路径刷新，也禁止借刷新掩盖冲突定义或套装不对称。夜间任务构建全部书界、跑数值模拟与跨引擎录像。仅 Markdown 改动可跳内容构建，但不能跳 ID 门禁；本文件本身不证明实现已存在。
 
 ---
 
@@ -1627,7 +1627,7 @@ PR CI 先运行 `python3 tools/lint/check_ids.py --strict`，再跑全量 valida
 | 风险 | 概率/影响 | 对策 |
 |---|---|---|
 | schema 与设计稿漂移 | 高/高 | 字段 metadata 回链章节；generated drift + 归属审阅 |
-| `design/map/*.yaml` 仍为 19 粗区，尚未按 `design/11` 原子迁移到 30 区 | 高/高 | 迁移模式可读旧源并输出差异；生产构建以 `TS-CONTENT-MAP-030` 阻断，迁移须同时更新城市归区、区域几何/邻接、路线、门派派生区、包名与章节引用 |
+| **已解决：**`design/map/*.yaml` 已按 `design/11` 原子迁移到 30 区 | 已消除 / 高 | `render_map.py --check` 持续核对城市归区、区域几何/邻接、路线、门派派生区与 30 区闭集；回退到旧粗区时重新触发 `TS-CONTENT-MAP-030` |
 | 规则/文本误分导致哈希漏变 | 中/高 | schema 显式分类；变异测试验证每个 rule 字段改变 hash |
 | ID remap 链腐化 | 中/高 | DAG、目标存在、存档夹具、发布后记录不可改 |
 | Tiled 编辑坐标被误作方格 | 中/高 | 转换 golden 强制六邻与轴坐标；禁止方格距离字段 |
@@ -1691,7 +1691,7 @@ PR CI 先运行 `python3 tools/lint/check_ids.py --strict`，再跑全量 valida
 
 ### 16.2 本文依赖的上游事实
 
-- `design/11` 已定稿 30 个全局 `rg_*`、邻接及 `RegionDef` / `EraLayer` / `EraRegionState`；`design/19` 已给出 189 个 `city_*`、99 门派落点与路线几何。当前 `design/map/*.yaml` 仍为 W1 的 19 粗区，须按 `design/11` §2.3 一次迁移城市归区、区域几何/邻接、路线索引、门派派生区域、区域包名与章节引用；完成前生产构建阻断。
+- **已解决：**`design/11` 的 30 个全局 `rg_*` 闭集及 `design/19` 的城市、门派与路线几何已同步到 `design/map/*.yaml` v2；2026-09-27 全量检查通过，当前生产构建不再受 `TS-CONTENT-MAP-030` 阻断。旧 19 区仅保留迁移读取。
 - `design/12`、`design/15`–`design/20` 已作为正式上游消费；其 schema 版本或约束变化须同步迁移与 golden，不在本文重定义玩法。
 - `tech/05` 须提供效果原语、表达式上下文和内容 registry 的运行时消费者。
 - `tech/06`/`tech/07` 继续拥有素材清单、登记字段与二进制；本文只输出引用图。

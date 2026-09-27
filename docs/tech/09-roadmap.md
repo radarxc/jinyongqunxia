@@ -350,7 +350,7 @@ M1 是内部能力闸门，不改变基准“序章可跳过”的产品定位�
 
 时间型 CI 使用同机同浏览器基线 +10% 报警；硬预算和计数型指标精确阻断。任一 A 级真机路径未跑，不得用桌面模拟代替。
 
-ID 门禁执行 `python3 tools/lint/check_ids.py --strict`，默认全仓扫描。F2 期间 `check_ids_baseline.json` 只作为过渡差集：已有债不阻断、新增未定义 / 废弃 ID 立即阻断，改名也按新债处理；各分组全部清零后，由汇总任务先确认默认扫描为 0，再运行 `python3 tools/lint/check_ids.py --update-baseline` 刷新空基线。不得在限定路径扫描或单一分组未清零时更新基线。
+ID 门禁执行 `python3 tools/lint/check_ids.py --strict`，默认全仓扫描。`check_ids_baseline.json` 只豁免其中已有的未定义 / 废弃 ID：基线外新增债务立即阻断，改名也按新债处理；冲突定义与套装成员不对称始终阻断，近似名只警告。完成一次全量审计后，才可从仓库根以默认全量扫描运行 `python3 tools/lint/check_ids.py --update-baseline`；同一变更记录须写明刷新前后债务数与余债清零计划。禁止限定路径刷新，也不得用刷新掩盖冲突或套装不对称。
 
 ### 3.6 依赖与主要风险
 

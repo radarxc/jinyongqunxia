@@ -954,7 +954,7 @@ c01 → c02 → c03 → x01 → x02 → x03 → x04 → x05
 - **选项 B“知情暂代、借印查账”**：需石破天同意；进入 `q_06_main_x_01`，`morality −2`、获得临时帮权**【建议值】**。
 - **选项 C“瞒住少年、控制影主”**：需 `morality <= -10` 或贝海石关系达合作；进入邪线，`morality −10`，关闭 `tsp_06_fate` 直到 `dc_06_04` 主动坦白补救**【建议值】**。
 - **选项 D“护送离舵，从外查”**：正线保底；放弃总舵资源，直接进入 `q_06_main_z_01` 的河埠版本。
-- **后果**：设置 `route_06=zheng/xie`；不锁结局。
+- **后果**：设置 `flag_06_route=zheng/xie`；不锁结局。
 - **可逆性**：A/B 可在 `dc_06_04` 切换；C 必须额外坦白；D 不可回收帮主印。
 - **汇合点**：`flag_06_merge_changle`。
 
@@ -1156,7 +1156,7 @@ rosterReady = validDelegate(primary)
 |---|---|
 | 标题 | 宁波府登船 |
 | 原著对应事件 | 第 18–19 回〈有所求〉〈腊八粥〉，E35–E37；锚点 A04 |
-| 地点 | 宁波府 `city_ningbo` 港区，经 `route_xiakedao` 航行 4 日到 `city_xiakedao`；地图区域为 `rg_zhedong` → `rg_nanhai_islands`（旧底表别名为 `rg_liangzhe` / `rg_islands`，不得用于新内容） |
+| 地点 | 宁波府 `city_ningbo` 港区，经 `route_xiakedao` 航行 4 日到 `city_xiakedao`；地图区域为 `rg_zhedong` → `rg_nanhai_islands`（旧粗区别名不得用于新内容） |
 | 参与 NPC | `npc_shipotian`、`npc_shizhongyu`（依名单）、`npc_baizizai`、`npc_zhangsan06`、`npc_lisi06`；正邪名单中的自愿见证者。`npc_miaodi`、`npc_yucha` 早已在岛，不参与此航次登船 |
 | 目标与流程 | 1. 二使逐人核牌；2. 展示离岛前不可返回提示**（原创扩展，原著岛方允许随时离去）**；3. 正线宣读公开名单，邪线向同行者揭开分层名单；4. 处理最后一名无同意代理；5. 上船后回看跨界赏罚账；6. 经地图固定 4 日海程抵岛。 |
 | 关键战斗 | 船上“惧岛哗变”：精英控制战；可说服、缴械或制服。必须保护船员，具体甲板地形和 AI 见 `design/09`。 |
@@ -1612,7 +1612,7 @@ saveBeforeCommit: true
 
 | 类型 | 稳定键 | 值域 / 说明 |
 |---|---|---|
-| 路线 | `route_06` | `zheng/xie`；`dc_06_08` 后复制为锁定 `stance` |
+| 路线 | `flag_06_route` | `zheng/xie`；`dc_06_08` 后复制为锁定 `stance` |
 | 天书轴 | `anchor_06_variant` | `canon/fate`；仅 `dc_06_09` 赋值一次 |
 | 身份事实 | `identityFact` | A02 完成后恒为 `two_distinct_people` |
 | 身份证据 | `identityEvidence` | `public/sealed/controlled/destroyed` |
@@ -1669,7 +1669,7 @@ saveBeforeCommit: true
 | 影主 | 石破天知情、可退出的临时帮主身份**（原创扩展）**；与强迫替身严格区分 |
 | 众证谱 | 多派分别保存动作 / 呼吸 / 经脉记录并定期互证的协议**（原创扩展）**；不是秘籍 |
 | 密盟传灯 | 至少两名独立保管者分持不完整记录的传承方式**（原创扩展）** |
-| `route_06` / `stance` | 当前可变路线 / 第八节点后锁定立场 |
+| `flag_06_route` / `stance` | 当前可变路线 / 第八节点后锁定立场 |
 | `anchor_06_variant` | canon/fate；本书天书变体唯一来源 |
 | `flag_06_merge_changle` | 长乐帮证据阶段汇合完成 |
 | `flag_06_merge_lingxiao` | 凌霄城错认阶段汇合完成 |

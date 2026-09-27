@@ -3,7 +3,7 @@
 > **版本**：v1.2（跨文档同步、全局审计，2026-09-26）。
 > **归属**（基准 §18）：装备栏、物品、神兵、锻造、丹药——物品分类与数据结构、装备栏与兵器、品阶→装备数值、词条、神兵宝甲与名器、装备成长（强化/工艺/铭刻/淬毒/锻造）、书眠携带与外来压制对装备的影响、丹药与消耗品、菜肴、秘籍与残页、背包仓库、价格锚点。
 > **上游**：`00-canon.md`（§3 境界规则、§4 品阶、§6 属性 ID、§7 武功与兵器类别、§8 战斗模型、§9 乘区、§10 Buff、§12 ID、§13 天级武学、§14 天级神兵宝甲、§16 改编原则、§20 装配栏与装备栏）。
-> **引用而不重定义**：外来/本土判定 `nativeTo`、有效品阶 `effGrade`、器合、藏史、史印/史笺、天材骰、掉落品阶分布 → `design/02-timeline-and-world-tiers.md`；属性形态与修饰（`flat`/`flatLv`/`pct`/`pp`）、等级曲线 `ATK_LV`/`DEF_LV`/`HP_LV`、`STD(L)`、技艺门槛 `T(g)`/`gMax`、买卖系数 `buyMul`/`sellMul` → `design/03-attributes.md`；伤害公式与乘区 Z0–Z10 → `design/04-damage-formula.md`；武学字段 `weaponReq`/`kinds`/`Mod_armed`、秘籍阅读天数、残页页数、`sxpGrant` 接口 → `design/05-martial-arts-system.md`；全部 Buff 定义（`bf_*`）、品阶对抗 ρ、族上限、驱散类型 → `design/06-buff-system.md`；套装 → `design/07`（文件落盘后）；地形与轻功门禁、飞爪探索入口 → `design/08-terrain-and-qinggong.md`；六角格物品行动、范围、缴械拾取流程、AI → `design/09-combat-system.md`；统一大地图、时代图层、旅行与客栈休息 → `design/11`、`design/19`；任务、关系与生活技能（含烹饪）→ `design/12`；天书之力与难度模式 → `design/13`；界面 → `design/14`；穴道、经脉、周天、冲穴 → `design/15`；资源、家丁、营生与收入 → `design/16`；门派身份 → `design/17`；NPC 认物与同伴物品 → `design/18`；跨年代传承源、残本、关键信物与校合条件 → `design/20`；图标生成 → `tech/07`。
+> **引用而不重定义**：外来/本土判定 `nativeTo`、有效品阶 `effGrade`、器合、藏史、史印/史笺、天材骰、掉落品阶分布 → `design/02-timeline-and-world-tiers.md`；属性形态与修饰（`flat`/`flatLv`/`pct`/`pp`）、等级曲线 `ATK_LV`/`DEF_LV`/`HP_LV`、`STD(L)`、技艺门槛 `T(g)`/`gMax`、买卖系数 `buyMul`/`sellMul` → `design/03-attributes.md`；伤害公式与乘区 Z0–Z10 → `design/04-damage-formula.md`；武学字段 `weaponReq`/`kinds`/`Mod_armed`、秘籍阅读天数、残页页数、`sxpGrant` 接口 → `design/05-martial-arts-system.md`；全部 Buff 定义（`bf_*`）、品阶对抗 ρ、族上限、驱散类型 → `design/06-buff-system.md`；套装目录、成员、档位与效果 → `design/07-set-system.md`；地形与轻功门禁、飞爪探索入口 → `design/08-terrain-and-qinggong.md`；六角格物品行动、范围、缴械拾取流程、AI → `design/09-combat-system.md`；统一大地图、时代图层、旅行与客栈休息 → `design/11`、`design/19`；任务、关系与生活技能（含烹饪）→ `design/12`；天书之力与难度模式 → `design/13`；界面 → `design/14`；穴道、经脉、周天、冲穴 → `design/15`；资源、家丁、营生与收入 → `design/16`；门派身份 → `design/17`；NPC 认物与同伴物品 → `design/18`；跨年代传承源、残本、关键信物与校合条件 → `design/20`；图标生成 → `tech/07`。
 > **标注约定**：**（原创扩展）**＝原著没有的内容；**（待考）**＝原著细节未逐字核对，需以三联/广州修订版确认；**【建议值】**＝依赖他文档、本文先给出可用数值并在 §16 登记。原著出处一律只写"书名·人物/情节大意"，不写无把握的回目号。
 
 ---
@@ -16,7 +16,7 @@
 | §2 | **物品分类总表**、ID 规则、通用与分类字段、运行时实例、TS 类型 | 程序、配表 |
 | §3 | **装备栏八格**：主属性、固有属性、词条池；兵器类别与武学装配；单手/双手/成对/副手；衣甲轻重；暗器；缴械与缴获 | 程序、数值、战斗 |
 | §4 | **品阶→装备数值**：主属性公式与速查表、等级封顶与推荐使用区间、词条数量、**词条库（78 条）**、部位权重、随机生成算法、合计上限 | 数值、配表 |
-| §5 | **神兵与宝甲**：12 件天级逐件设计、完整 YAML、**47 件地/玄阶名器**、信物、建议套装、各书界产出 | 策划、配表 |
+| §5 | **神兵与宝甲**：12 件天级逐件设计、完整 YAML、**47 件地/玄阶名器**、信物、套装成员同步、各书界产出 | 策划、配表 |
 | §6 | **装备成长**：强化（精炼）、工艺（开锋/加衬/琢磨）、铭刻、淬毒、锻造/重铸/修复/拆解、器魄、材料体系 | 数值、程序 |
 | §7 | **书眠携带与天道压制**：6 件细则、压制对主属性/词条/专属特效的规则、逐件计算、携带策略 | 策划、数值 |
 | §8 | **丹药与消耗品**（常规 55 种，另有终局书页丹 1 种）：使用规则、数值模板、毒/迷/解药、永久增益预算、暗器弹药、炼丹 | 配表、数值 |
@@ -110,7 +110,7 @@
 | 酒 | `wine` | `wine` | `it_<拼音>` | 1–9 | 20 | ❌ | — | ✅ | 酒肆、任务 | 醉意（§9.3） |
 | 材料 | `material` | `metal` 金、`fabric` 丝、`leather` 革、`wood` 木竹、`jade` 玉石、`herb` 药材、`toxin` 毒材、`beast` 兽材、`ingredient` 食材、`ink` 墨料 | `it_<拼音>` | 装备侧换算品阶 1–12；资源自身为天地玄黄 × 九品（一品最高），归 `design/16` | 999 | ❌ | — | ✅（天材否） | `design/16` 资源点、掉落、商店、拆解 | 锻造、强化、炼丹、烹饪、铭刻（§6.8） |
 | 探索工具 | `tool` | `climb` 攀援、`light` 照明等 | `it_<拼音>` | 1–9 | 20 | ❌ | — | ✅ | 商店、制作、任务 | 只触发 `design/08` 探索交互；不得进入战斗物品行动 |
-| 秘籍 | `manual` | `full` 全本、`partial` 残本、`copy` 抄本、`original` 原本 | `it_miji_<武功拼音>`（残本加 `_can`） | = 武学绝对品阶 | 1 | 通常 ❌；20 明列的跨年代残本例外 | — | 黄/玄可 | 任务、门派、宝箱、拼合 | 阅读学习（§10） |
+| 秘籍 | `manual` | `full` 全本、`partial` 残本、`copy` 抄本、`original` 原本 | `it_miji_<武功拼音>`（普通残本加 `_can`）；20 的传承三卷用 `frag_*` | = 武学绝对品阶；传承三卷按 20 §1.5 降阶 | 1 | 通常 ❌；20 明列的跨年代残本例外 | — | 黄/玄可；传承三卷不可 | 任务、门派、宝箱、拼合；传承调度 | 阅读学习（§10） |
 | 残页 | `page` | — | `it_canye_<武功拼音>` | = 武学品阶 | 按武学占 1 格 | ❌ | — | 仅卖出 | 掉落 | 拼合/学习（§10.3） |
 | 配方卷 | `recipe` | `forge` 图谱、`alchemy` 丹方、`poison` 毒方、`cook` 菜谱、`inscribe` 铭文帖 | `it_fang_<拼音>` | 1–12 | 1 | ❌（**学识**跨书界） | — | 部分 | 任务、NPC、宝箱 | 阅读后习得 `rc_*`（§12.3） |
 | 任务物品 | `quest` | — | `it_<拼音>` | 无 | 1 | ❌ | — | ❌ | 任务 | 任务脚本；"要物"栏不占格 |
@@ -129,6 +129,7 @@
 | 装备基底（随机/锻造模板） | `eq_<基底拼音>` | `eq_qinggangjian` 青钢剑、`eq_liuyedao` 柳叶刀 | 实例的品阶与词条另存；**`eq_bishou` 已被基准占用为韦小宝匕首**，通用匕首基底改名 `eq_duanbi` 短匕 |
 | 普通物品 | `it_<拼音>` | `it_jiuhuayulu` 九花玉露丸 | 基准 §12 |
 | 秘籍 / 残页 | `it_miji_<武功拼音>`（残本 `_can`）/ `it_canye_<武功拼音>` | `it_miji_tieshazhang`、`it_canye_luohanquan` | **确认** 05 §16.2 的建议规则 |
+| 跨年代传承残本 | `frag_<来源或武功拼音>_<卷名拼音>` | `frag_yuenv_jianying` | Canon v1.2 §12；仅限 `design/20` §9 明列的 117 卷，物品定义见 §10.3.1 |
 | 配方卷 / 配方学识 | `it_fang_<拼音>` / `rc_<拼音>` | `it_fang_jiuhuayulu` → `rc_jiuhuayulu` | 卷是物品，读后消失；`rc_*` 是学识记录 |
 | 词条 | `af_<拼音>` | `af_fengrui` 锋锐 | 基准 v1.1 正式前缀（V11-04，§16.1 P-A） |
 | 专属特效 | `ue_<装备拼音>_<n>` | `ue_yitianjian_1` 削铁如泥 | 同上 |
@@ -766,7 +767,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 | 固定词条 | 锋锐、透甲、破招、会心 |
 | ① 核心 `ue_yitianjian_1`「削铁如泥」 | 兵器招式命中持械目标、或攻击被持械目标招架（`onParried`）时，以 `12% + 1% × gUse`（天上 24%）概率对其主武器执行 06 `weaponBreak: break`（→ `bf_duanbing`，品阶 `gUse`）；目标兵器为神兵且品阶 ≥ 本剑 `gUse` 时无效（06） |
 | ② 天阶 `ue_yitianjian_2`「倚天不出，谁与争锋」 | 本人剑类招式 `Z3 +8%`；本人剑类绝招不会被 06 §8.6.2 天阶"破招"作废 |
-| 联动 | 峨眉派剑法（catalog）→ 建议套装"倚天·峨眉"（§5.6）；与屠龙刀同在背包时可选择"刀剑互斫"事件 `ev_04_daojianhuzhuo`：取出《九阴真经》《武穆遗书》等藏物，两器变为"倚天断剑" `eq_yitianduanjian` / "屠龙断刀" `eq_tulongduandao`（地上 9 名器，保留①、无②；断器后续为**原创扩展**）。必须同时提供不损毁两器的替代取经路线，二者奖励等价（P20）。**（待考）**核对《倚天屠龙记》三联/广州修订版中刀剑互斫后的断刃流转；考据完成前不据此追加唯一任务门槛 |
+| 联动 | 峨眉派剑法（catalog）→ 正式套装 `set_yitian_emei`（成员与档位见 `design/07` §13.3）；与屠龙刀同在背包时可选择"刀剑互斫"事件 `ev_04_daojianhuzhuo`：取出《九阴真经》《武穆遗书》等藏物，两器变为"倚天断剑" `eq_yitianduanjian` / "屠龙断刀" `eq_tulongduandao`（地上 9 名器，保留①、无②；断器后续为**原创扩展**）。必须同时提供不损毁两器的替代取经路线，二者奖励等价（P20）。**（待考）**核对《倚天屠龙记》三联/广州修订版中刀剑互斫后的断刃流转；考据完成前不据此追加唯一任务门槛 |
 | 获取 | 倚天·峨眉/赵敏线，≥ 第 5 幕（chapters/04） |
 | 原著出处 | 倚天·郭靖、黄蓉铸成倚天剑与屠龙刀，剑中藏武学秘笈，刀中藏《武穆遗书》；灭绝师太持倚天剑，后为周芷若所得。**（待考）**核对《倚天屠龙记》三联/广州修订版中铸材是否明确掺入西方精金、剑内秘笈的准确组成及断刃流转；"武林至尊，宝刀屠龙，号令天下，莫敢不从；倚天不出，谁与争锋"须据该版本逐字校勘 |
 
@@ -811,7 +812,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 | 固定词条 | 坚甲、浑元、体魄 |
 | ① 核心 `ue_ruanweijia_1`「猬刺」 | 常驻 06 `bf_weici`（被拳脚招式命中时，攻击者受其 `hpMax × 1%×G` 伤害并流血 1 层） |
 | ② 天阶 `ue_ruanweijia_2`「刀枪难入」 | 常驻 06 `bf_daoqiang`，参数 ×0.5（剑、刀、枪、奇门、暗器招式的外劲部分 `Z4 +4%×G`，类别同 06） |
-| 联动 | 桃花岛：玉箫、弹指神通、碧海潮生曲 → 建议套装"桃花岛主"（§5.6） |
+| 联动 | 桃花岛武学可组成正式套装 `set_taohuadao`；本装备不计件（见 `design/07` §10.3） |
 | 获取 | 射雕·桃花岛/黄蓉羁绊线，≥ 第 3 幕（chapters/02）；神雕原生实例可器合，持有人与取得节点由章节稿依原著流转核定 |
 | 原著出处 | 射雕·软猬甲为桃花岛宝物，黄蓉贴身穿着，能御刀剑且有倒刺伤及击打者。**（待考）**核对《射雕英雄传》《神雕侠侣》三联/广州修订版中黄药师、黄蓉之间的来历措辞，以及神雕时期持有人 |
 
@@ -833,7 +834,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 | 固定词条 | 会心、连环、破招 |
 | ① 核心 `ue_jinshejian_1`「金蛇吐信」 | 兵器招式命中持械目标时，以 `8% + 0.5% × gUse`（天下 13%）概率对其施加 06 `bf_jiaoxie`（缴械；神兵按 06 免疫） |
 | ② 天阶 `ue_jinshejian_2`「金蛇秘笈」 | 装配金蛇剑法 `sk_jinshejian` 时，其招式常驻 06 `bf_wushi_zhaojia`（无视招架；06 已注"金蛇剑法奇诡难架"） |
-| 联动 | 金蛇锥（§5.4）+ 金蛇剑法 → 建议套装"金蛇三宝"（§5.6） |
+| 联动 | 金蛇锥与金蛇剑法保留独立联动；旧“金蛇三宝”候选按 `design/07` §19.3 不进入 v1 |
 | 获取 | 碧血·华山金蛇洞线（玩家与袁承志的关系与分配由 chapters/07 设计，基准 §16-4） |
 | 原著出处 | 碧血·金蛇剑、金蛇锥及秘笈皆与夏雪宜遗藏相联，袁承志在华山洞中取得。**（待考）**核对《碧血剑》三联/广州修订版中剑身与剑尖形制原文 |
 
@@ -844,7 +845,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 | 固定词条 | 会心、透甲、势沉 |
 | ① 核心 `ue_bishou_1`「削铁如泥」 | 同倚天剑①（概率 `12% + 1% × gUse`，天下 22%） |
 | ② 天阶 `ue_bishou_2`「出其不意」 | 背击（04 Z7 `back`）伤害 `Z3 +15%`；`onBattleStart` 获得 06 `bf_bibao`（必暴）×1 |
-| 联动 | 护身宝衣、神行百变、英雄三招/美人三招 → 建议套装"韦爵爷"（§5.6） |
+| 联动 | 护身宝衣与相关武学保留独立联动；旧“韦爵爷”候选按 `design/07` §19.3 不进入 v1 |
 | 获取 | 鹿鼎·抄没鳌拜家产一线（原著归韦小宝，玩家的获得途径如赌局、赠予由 chapters/08 设计） |
 | 原著出处 | 鹿鼎·韦小宝持有削铁如泥的匕首，来历与鳌拜家产相联。**（待考）**核对《鹿鼎记》三联/广州修订版中取得次序及匕首外形原文 |
 
@@ -953,7 +954,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
         - { op: modZone, zone: Z3, value: 0.08, when: "ctx.move.subType == 'sword'" }
       rules: [ ultimateUnbreakable ]    # 本人剑类绝招不被天阶"破招"作废（06 §8.6.2）
   passives: [ { buff: bf_mian_pobing, grade: gUse, minGUse: 10 } ]   # 神兵护主（§5.1）
-  setTags: [ set_yitian_emei ]          # 建议，归 07
+  setTags: [ set_yitian_emei ]          # 07 §13.3 正式反向标签
   events: [ ev_04_daojianhuzhuo ]       # 刀剑互斫（chapters/04 决定是否采用）
   assets: { icon: equip/yitianjian, model: wpn_sword_yitian }
   text:
@@ -1033,19 +1034,16 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 | 闯王军刀 `it_chuangwangjundao` | 雪山 | `key` | 开启玉笔峰宝藏的关键之物（chapters/14） | 雪山飞狐·闯王军刀上有配合藏宝图寻找宝藏的方位线索，后落入天龙门相关人物手中 |
 | 五龙令 `it_wulongling` | 鹿鼎 | `token` | 神龙教教主令牌：神龙教内乱支线（02 §7.3 N2 削弱洪安通） | **（原创扩展）**；名称取意神龙教青、黄、赤、白、黑五龙使，不宣称原著存在同名令牌 |
 
-### 5.6 建议套装（套装本体归 design/07）
+### 5.6 套装装备成员同步（套装本体归 design/07）
 
-基准 §20：套装件数统计装配中的武学与穿戴中的装备。以下为本文给 07 的**成员建议**（效果方向仅供参考，数值由 07 定）；双人配合（君子剑/淑女剑）已由名器专属实现，不另设套装。
+基准 §20：套装件数统计装配中的武学与穿戴中的装备。`design/07` v1 已收敛为 44 套，唯一正式装备成员是 `eq_yitianjian`；本文以装备侧 `setTags` 与其 §13.3 双向闭合。其余旧提案不进入 v1，保留装备本体与专属效果，不保留候选套装 ID。
 
-| 建议 ID | 名称 | 装备成员 | 武学成员 | 效果方向 | 原著依据 |
-|---|---|---|---|---|---|
-| `set_yitian_emei` | 倚天·峨眉 | 倚天剑、峨眉铁指环 | 峨眉剑法系（catalog）、九阴真经 `sk_jiuyin` | 剑招增伤、九阴速成代价减轻 | 倚天·周芷若 |
-| `set_jinshe_sanbao` | 金蛇三宝 | 金蛇剑、金蛇锥 | 金蛇剑法 `sk_jinshejian`、`sk_jinsheyouzhang`（名称考据归 `catalog/skills-xiake-bixue`） | 缴械、暗器、奇诡 | 碧血·金蛇郎君 |
-| `set_taohuadao` | 桃花岛主 | 玉箫、软猬甲 | 弹指神通 `sk_tanzhi`、碧海潮生曲 `sk_bihai`、落英神剑掌（catalog） | 心神、拿穴、反伤 | 射雕·黄药师父女 |
-| `set_baituoshan` | 白驼山主 | 白驼蛇杖 | 蛤蟆功 `sk_hama`、灵蛇杖法（catalog） | 蛇毒、蓄势 | 射雕·欧阳锋 |
-| `set_gumu` | 古墓 | 金铃索、玉蜂针 | 玉女心经 `sk_yunvxinjing`、玉女剑法（catalog） | 闪避、麻痹、点穴 | 神雕·小龙女 |
-| `set_xuanming` | 玄冥二老 | 鹿杖或鹤笔（二选一计 1 件） | 玄冥神掌 `sk_xuanming` | 寒毒 | 倚天·鹿杖客、鹤笔翁 |
-| `set_weijuye` | 韦爵爷 | 韦小宝匕首、护身宝衣 | 神行百变 `sk_shenxing`、英雄三招/美人三招（catalog） | 背击、逃脱、保命 | 鹿鼎·韦小宝 |
+| 项 | 装备成员处理 | 正式套装 / 去向 | 装备侧闭合 | 状态 |
+|---|---|---|---|---|
+| `set_yitian_emei`（倚天·峨眉） | `eq_yitianjian` 为正式成员 | 武学成员、阈值与效果只见 `design/07` §13.3 | `eq_yitianjian.setTags` 已闭合 | v1 正式 |
+| 桃花岛主 / 白驼山主 | `eq_yuxiao`、`eq_ruanweijia`、`eq_baituoshezhang` 不计件 | 对应正式套装仍为纯武学成员 | 不写装备反向标签 | v1 不采用装备成员 |
+| 金蛇三宝 / 古墓旧名 / 玄冥二老 / 韦爵爷 | 相关装备均不计件 | 旧候选按 `design/07` §19.3 删除，或由古墓玉女正式套装承接主题但不迁入旧成员 | 不写装备反向标签 | v1 不采用旧候选 |
+| 重阳道袍 / 七宝指环 | 不建立 `eq_chongyangdaopao`、`eq_qibaozhihuan` 的 `ItemDef` | `design/07` §19.4 明确不进入 v1 | 如未来采用，须先建装备定义、补双向 `setTags` 并重跑可达性 | v1 不采用 |
 
 ### 5.7 各书界装备产出一览
 
@@ -1601,6 +1599,130 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 
 **跨年代传承例外（AR-13 接口）**：`design/20` 把每个传承源的上/中/下残本标为 `legacyCarry`，并指定一件 `keyToken`；只有这两类被 20 明列的物品跨书眠保留。每卷仍是本文 `manual/partial`，可单独按其配置的降阶 `maxLayer` 修炼；集齐、信物消费、人物/门派消隐、概率、保底与合成条件全部由 20 决定，本文只执行原子物品事务“校验所需实例 → 消耗 `keyToken` → 移除三卷 → 生成全本”。普通随机残页、现有残本和任务信物不得借该接口跨界。
 
+#### 10.3.1 跨年代传承残本最小目录（117 卷）
+
+> 下表逐项定义 `ItemDef` 的 ID、名称与品阶，并用来源 / 卷位外键闭合 `design/20` §9 的 39 × 3 目录；来源资格、投放书界、目标武学与校合语义仍只见 `design/20`。各卷统一为 `kind=manual`、`variant=partial`、`maxLayer=4`、`stack=1`、`price=null`、`flags=[unique, legacyCarry]`，存入传承匣且不可交易、丢弃、赠予或藏史；`unique` 表示同一周目同一卷位最多持有一个物品实例，重复发现按 20 §1.5 转为校勘心得。三卷展示名均为**（原创扩展命名）**；品阶由 20 §1.5 的 `fragmentGrade(g)` 推出。
+
+| ID | 名称 | 品阶 | 所属传承源 | 卷位 | 唯一物 |
+|---|---|---:|---|---|:---:|
+| `frag_yuenv_jianying` | 剑影卷 | 7 | `lgs_yuenv_aqing` | `upper` | ✅ |
+| `frag_yuenv_yuanbu` | 猿步卷 | 7 | `lgs_yuenv_aqing` | `middle` | ✅ |
+| `frag_yuenv_wuhen` | 无痕卷 | 7 | `lgs_yuenv_aqing` | `lower` | ✅ |
+| `frag_yijin_jingluo` | 经络卷 | 9 | `lgs_shaolin_yijin` | `upper` | ✅ |
+| `frag_yijin_xisui` | 洗髓卷 | 9 | `lgs_shaolin_yijin` | `middle` | ✅ |
+| `frag_yijin_huangu` | 换骨卷 | 9 | `lgs_shaolin_yijin` | `lower` | ✅ |
+| `frag_liumai_zhimai` | 指脉卷 | 9 | `lgs_dali_liumai` | `upper` | ✅ |
+| `frag_liumai_jianqi` | 剑气卷 | 9 | `lgs_dali_liumai` | `middle` | ✅ |
+| `frag_liumai_zongtu` | 总图卷 | 9 | `lgs_dali_liumai` | `lower` | ✅ |
+| `frag_beiming_nahai` | 纳海卷 | 9 | `lgs_xiaoyao_beiming` | `upper` | ✅ |
+| `frag_beiming_sanmai` | 散脉卷 | 9 | `lgs_xiaoyao_beiming` | `middle` | ✅ |
+| `frag_beiming_guiyuan` | 归元卷 | 9 | `lgs_xiaoyao_beiming` | `lower` | ✅ |
+| `frag_xiaowuxiang_wuxiang` | 无相卷 | 8 | `lgs_xiaoyao_xiaowuxiang` | `upper` | ✅ |
+| `frag_xiaowuxiang_huasheng` | 化生卷 | 8 | `lgs_xiaoyao_xiaowuxiang` | `middle` | ✅ |
+| `frag_xiaowuxiang_yinni` | 隐迹卷 | 8 | `lgs_xiaoyao_xiaowuxiang` | `lower` | ✅ |
+| `frag_lingbo_guabu` | 卦步卷 | 8 | `lgs_xiaoyao_lingbo` | `upper` | ✅ |
+| `frag_lingbo_feifu` | 飞凫卷 | 8 | `lgs_xiaoyao_lingbo` | `middle` | ✅ |
+| `frag_lingbo_luowa` | 罗袜卷 | 8 | `lgs_xiaoyao_lingbo` | `lower` | ✅ |
+| `frag_douzhuan_jieli` | 借力卷 | 7 | `lgs_murong_douzhuan` | `upper` | ✅ |
+| `frag_douzhuan_yixing` | 移星卷 | 7 | `lgs_murong_douzhuan` | `middle` | ✅ |
+| `frag_douzhuan_huanshi` | 还施卷 | 7 | `lgs_murong_douzhuan` | `lower` | ✅ |
+| `frag_xianglong_gang` | 刚健卷 | 9 | `lgs_gaibang_xianglong` | `upper` | ✅ |
+| `frag_xianglong_bian` | 变易卷 | 9 | `lgs_gaibang_xianglong` | `middle` | ✅ |
+| `frag_xianglong_shibazhang` | 十八掌次第卷 | 9 | `lgs_gaibang_xianglong` | `lower` | ✅ |
+| `frag_dagou_bazijue` | 八字诀卷 | 8 | `lgs_gaibang_dagou` | `upper` | ✅ |
+| `frag_dagou_banglu` | 棒路卷 | 8 | `lgs_gaibang_dagou` | `middle` | ✅ |
+| `frag_dagou_koujue` | 口诀卷 | 8 | `lgs_gaibang_dagou` | `lower` | ✅ |
+| `frag_jiuyin_zonggang` | 总纲卷 | 9 | `lgs_huangshang_jiuyin` | `upper` | ✅ |
+| `frag_jiuyin_lianqi` | 炼气卷 | 9 | `lgs_huangshang_jiuyin` | `middle` | ✅ |
+| `frag_jiuyin_yongfa` | 用法卷 | 9 | `lgs_huangshang_jiuyin` | `lower` | ✅ |
+| `frag_yiyang_dianxue` | 点穴卷 | 8 | `lgs_dali_yiyang` | `upper` | ✅ |
+| `frag_yiyang_liaoshang` | 疗伤卷 | 8 | `lgs_dali_yiyang` | `middle` | ✅ |
+| `frag_yiyang_yunjin` | 运劲卷 | 8 | `lgs_dali_yiyang` | `lower` | ✅ |
+| `frag_bihai_yinlv` | 音律卷 | 7 | `lgs_taohua_bihai` | `upper` | ✅ |
+| `frag_bihai_chaosheng` | 潮生卷 | 7 | `lgs_taohua_bihai` | `middle` | ✅ |
+| `frag_bihai_shexin` | 摄心卷 | 7 | `lgs_taohua_bihai` | `lower` | ✅ |
+| `frag_xuantie_zhongjian` | 重剑卷 | 8 | `lgs_dugu_xuantie` | `upper` | ✅ |
+| `frag_xuantie_haichao` | 海潮卷 | 8 | `lgs_dugu_xuantie` | `middle` | ✅ |
+| `frag_xuantie_wufeng` | 无锋卷 | 8 | `lgs_dugu_xuantie` | `lower` | ✅ |
+| `frag_yunv_shierduo` | 十二多卷**（原创扩展命名；对应待考）** | 7 | `lgs_gumu_yunv` | `upper` | ✅ |
+| `frag_yunv_shiershao` | 十二少卷**（原创扩展命名；对应待考）** | 7 | `lgs_gumu_yunv` | `middle` | ✅ |
+| `frag_yunv_suxin` | 素心卷**（原创扩展命名；对应待考）** | 7 | `lgs_gumu_yunv` | `lower` | ✅ |
+| `frag_taijiquan_song` | 松沉卷 | 8 | `lgs_taiji_quan` | `upper` | ✅ |
+| `frag_taijiquan_huajin` | 化劲卷 | 8 | `lgs_taiji_quan` | `middle` | ✅ |
+| `frag_taijiquan_guiyuan` | 归圆卷 | 8 | `lgs_taiji_quan` | `lower` | ✅ |
+| `frag_taijijian_yuan` | 圆转卷 | 8 | `lgs_taiji_jian` | `upper` | ✅ |
+| `frag_taijijian_nian` | 黏随卷 | 8 | `lgs_taiji_jian` | `middle` | ✅ |
+| `frag_taijijian_wang` | 忘招卷 | 8 | `lgs_taiji_jian` | `lower` | ✅ |
+| `frag_jiuyang_yangmai` | 阳脉卷 | 9 | `lgs_jiuyang_zhenjing` | `upper` | ✅ |
+| `frag_jiuyang_huti` | 护体卷 | 9 | `lgs_jiuyang_zhenjing` | `middle` | ✅ |
+| `frag_jiuyang_yuanyuan` | 源流卷 | 9 | `lgs_jiuyang_zhenjing` | `lower` | ✅ |
+| `frag_qiankun_yinqian` | 引潜卷 | 8 | `lgs_mingjiao_qiankun` | `upper` | ✅ |
+| `frag_qiankun_nuoyi` | 挪移卷 | 8 | `lgs_mingjiao_qiankun` | `middle` | ✅ |
+| `frag_qiankun_qiceng` | 七层卷 | 8 | `lgs_mingjiao_qiankun` | `lower` | ✅ |
+| `frag_dugu_zongjue` | 总诀卷 | 9 | `lgs_dugu_jiujian` | `upper` | ✅ |
+| `frag_dugu_pobing` | 破兵卷 | 9 | `lgs_dugu_jiujian` | `middle` | ✅ |
+| `frag_dugu_poqi` | 破气卷 | 9 | `lgs_dugu_jiujian` | `lower` | ✅ |
+| `frag_xixing_najin` | 纳劲卷 | 8 | `lgs_riyue_xixing` | `upper` | ✅ |
+| `frag_xixing_sangong` | 散功卷 | 8 | `lgs_riyue_xixing` | `middle` | ✅ |
+| `frag_xixing_guiqi` | 归气卷 | 8 | `lgs_riyue_xixing` | `lower` | ✅ |
+| `frag_kuihua_xingqi` | 行气卷 | 8 | `lgs_kuihua_baodian` | `upper` | ✅ |
+| `frag_kuihua_xunji` | 迅疾卷 | 8 | `lgs_kuihua_baodian` | `middle` | ✅ |
+| `frag_kuihua_zhenfa` | 针法卷 | 8 | `lgs_kuihua_baodian` | `lower` | ✅ |
+| `frag_bixie_xunjian` | 迅剑卷 | 7 | `lgs_fuwei_bixie` | `upper` | ✅ |
+| `frag_bixie_shenfa` | 身法卷 | 7 | `lgs_fuwei_bixie` | `middle` | ✅ |
+| `frag_bixie_xinfa` | 心法卷 | 7 | `lgs_fuwei_bixie` | `lower` | ✅ |
+| `frag_taixuan_tu` | 图形卷 | 9 | `lgs_xiakedao_taixuan` | `upper` | ✅ |
+| `frag_taixuan_xue` | 穴位卷 | 9 | `lgs_xiakedao_taixuan` | `middle` | ✅ |
+| `frag_taixuan_zongbi` | 总壁卷 | 9 | `lgs_xiakedao_taixuan` | `lower` | ✅ |
+| `frag_luohan_renmai` | 任脉卷 | 7 | `lgs_luohan_niren` | `upper` | ✅ |
+| `frag_luohan_dumai` | 督脉卷 | 7 | `lgs_luohan_niren` | `middle` | ✅ |
+| `frag_luohan_hemai` | 合脉卷 | 7 | `lgs_luohan_niren` | `lower` | ✅ |
+| `frag_taxue_lingxue` | 凌雪卷 | 2 | `lgs_xueshan_taxue` | `upper` | ✅ |
+| `frag_taxue_wuhen` | 无痕卷 | 2 | `lgs_xueshan_taxue` | `middle` | ✅ |
+| `frag_taxue_lingxiao` | 凌霄卷 | 2 | `lgs_xueshan_taxue` | `lower` | ✅ |
+| `frag_jinshe_youshen` | 游身卷 | 7 | `lgs_jinshe_miji` | `upper` | ✅ |
+| `frag_jinshe_tuxin` | 吐信卷 | 7 | `lgs_jinshe_miji` | `middle` | ✅ |
+| `frag_jinshe_guiwan` | 诡腕卷 | 7 | `lgs_jinshe_miji` | `lower` | ✅ |
+| `frag_shenxing_bianbu` | 变步卷 | 7 | `lgs_tiejian_shenxing` | `upper` | ✅ |
+| `frag_shenxing_yufeng` | 御风卷 | 7 | `lgs_tiejian_shenxing` | `middle` | ✅ |
+| `frag_shenxing_baibian` | 百变卷 | 7 | `lgs_tiejian_shenxing` | `lower` | ✅ |
+| `frag_hunyuan_yangqi` | 养气卷 | 3 | `lgs_huashan_hunyuan` | `upper` | ✅ |
+| `frag_hunyuan_zhangjin` | 掌劲卷 | 3 | `lgs_huashan_hunyuan` | `middle` | ✅ |
+| `frag_hunyuan_heyi` | 内外合卷 | 3 | `lgs_huashan_hunyuan` | `lower` | ✅ |
+| `frag_ningxue_tanmai` | 探脉卷 | 7 | `lgs_tiandihui_ningxue` | `upper` | ✅ |
+| `frag_ningxue_fengmen` | 封门卷 | 7 | `lgs_tiandihui_ningxue` | `middle` | ✅ |
+| `frag_ningxue_ningzhi` | 凝滞卷 | 7 | `lgs_tiandihui_ningxue` | `lower` | ✅ |
+| `frag_shenlong_tuxi` | 吐息卷 | 3 | `lgs_shenlong_xinfa` | `upper` | ✅ |
+| `frag_shenlong_bidu` | 辟毒卷 | 3 | `lgs_shenlong_xinfa` | `middle` | ✅ |
+| `frag_shenlong_huti` | 护体卷 | 3 | `lgs_shenlong_xinfa` | `lower` | ✅ |
+| `frag_shenzhao_shouxi` | 守息卷 | 7 | `lgs_shenzhao_jing` | `upper` | ✅ |
+| `frag_shenzhao_xumai` | 续脉卷 | 7 | `lgs_shenzhao_jing` | `middle` | ✅ |
+| `frag_shenzhao_huming` | 护命卷 | 7 | `lgs_shenzhao_jing` | `lower` | ✅ |
+| `frag_xuedao_xuexi` | 血息卷 | 3 | `lgs_xuedao_jing` | `upper` | ✅ |
+| `frag_xuedao_fuxue` | 伏雪卷 | 3 | `lgs_xuedao_jing` | `middle` | ✅ |
+| `frag_xuedao_jingdao` | 经刀合卷 | 3 | `lgs_xuedao_jing` | `lower` | ✅ |
+| `frag_tangshi_duanju` | 断句卷 | 2 | `lgs_liancheng_tangshi` | `upper` | ✅ |
+| `frag_tangshi_cangjue` | 藏诀卷 | 2 | `lgs_liancheng_tangshi` | `middle` | ✅ |
+| `frag_tangshi_liancheng` | 连城卷 | 2 | `lgs_liancheng_tangshi` | `lower` | ✅ |
+| `frag_gaochang_men` | 门径卷 | 3 | `lgs_gaochang_shouhu` | `upper` | ✅ |
+| `frag_gaochang_jiguan` | 机关卷 | 3 | `lgs_gaochang_shouhu` | `middle` | ✅ |
+| `frag_gaochang_shoujian` | 守剑卷 | 3 | `lgs_gaochang_shouhu` | `lower` | ✅ |
+| `frag_fuqi_linlu` | 林路卷 | 2 | `lgs_yuanyang_fuqi` | `upper` | ✅ |
+| `frag_fuqi_renlu` | 任路卷 | 2 | `lgs_yuanyang_fuqi` | `middle` | ✅ |
+| `frag_fuqi_tongxin` | 同心卷 | 2 | `lgs_yuanyang_fuqi` | `lower` | ✅ |
+| `frag_baihua_xushi` | 虚实卷 | 7 | `lgs_tianchi_baihua` | `upper` | ✅ |
+| `frag_baihua_baijia` | 百家卷 | 7 | `lgs_tianchi_baihua` | `middle` | ✅ |
+| `frag_baihua_guiyi` | 归一卷 | 7 | `lgs_tianchi_baihua` | `lower` | ✅ |
+| `frag_paoding_xunli` | 循理卷 | 7 | `lgs_yufeng_paoding` | `upper` | ✅ |
+| `frag_paoding_youren` | 游刃卷 | 7 | `lgs_yufeng_paoding` | `middle` | ✅ |
+| `frag_paoding_shenyu` | 神遇卷 | 7 | `lgs_yufeng_paoding` | `lower` | ✅ |
+| `frag_hujiadao_yingmen` | 迎门卷 | 7 | `lgs_hujia_daopu` | `upper` | ✅ |
+| `frag_hujiadao_liaodi` | 料敌卷 | 7 | `lgs_hujia_daopu` | `middle` | ✅ |
+| `frag_hujiadao_yuanrong` | 圆融卷 | 7 | `lgs_hujia_daopu` | `lower` | ✅ |
+| `frag_miaojia_zhengfeng` | 正锋卷 | 3 | `lgs_miaojia_jianpu` | `upper` | ✅ |
+| `frag_miaojia_xunxi` | 寻隙卷 | 3 | `lgs_miaojia_jianpu` | `middle` | ✅ |
+| `frag_miaojia_huzhao` | 互照卷 | 3 | `lgs_miaojia_jianpu` | `lower` | ✅ |
+
 ### 10.4 原著奇书
 
 | 奇书 | 书界 | 形态 | 本作规则 | 原著出处 |
@@ -1934,11 +2056,12 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | 暗器弹药（9） | `it_feihuangshi` `it_jinqianbiao` `it_xiujian` `it_tiejili` `it_sangmending` `it_feidao` `it_duzhen` `it_touguding` `it_meihuazhen` |
 | 菜肴与酒（15） | `it_jiaohuaji` `it_yudishuijiatingluomei` `it_haoqiutang` `it_ershisiqiaomingyueye` `it_mantou` `it_jiangniurou` `it_lingjiaogeng` `it_kaoquanyang` `it_yushan` `it_nverhong` `it_manaijiu` `it_fenjiu` `it_putaojiu` `it_zhuangyuanhong`（`it_labazhou` 见上） |
 | 秘籍与奇书 | `it_miji_jiuyin_shang` `it_miji_jiuyin_xia`（其余按 `it_miji_<武功拼音>` 规则） |
+| 跨年代传承残本（117） | `frag_*` 全量逐项见 §10.3.1；均为 `manual/partial`、`unique/legacyCarry`，物品本体由本文定义，来源与校合语义引用 20 |
 | 工具、信物、钥匙、奇物、坐骑、收藏品 | `it_feizhua`；`it_xuantieling` `it_shangshanfaepai` `it_heimuling` `it_wuyuelingqi` `it_jinpen` `it_sishierzhangjing_<1..8>` `it_langpi` `it_gaochangditu` `it_chuangwangjundao` `it_wulongling`；`it_shenmuwangding` `it_bingcan` `it_shandiandiao` `it_yufengchao`；`it_maolv` `it_numa` `it_chuanma` `it_luotuo` `it_mengguma` `it_dawanma` `it_baima` `it_xiaohongma` `it_baidiao`；`it_guanglingsan` `it_xiaoaoqupu` `it_ouxuepu` `it_shuaiyitie` `it_xishanxinglvtu` `it_zhenlongqiju` `it_wuyazihuajuan` `it_shiketapian` `it_zuqianqiujiubei` `it_gaochangguwu` |
 | 跨年代关键信物（39） | `it_xinwu_*` 全量逐项见 §11.2.1；均为 `token/keyToken`，物品本体由本文定义，传承语义引用 20 |
 | 系统（已确认） | `it_tianshu_01`…`it_tianshu_14`（天书，13 §4.1 T10 已确认）；可选事件 `ev_04_daojianhuzhuo`（刀剑互斫）及其产物 `eq_yitianduanjian` `eq_tulongduandao`；chapters/04 必须并列提供保全两件神兵的等价取经路线（P20） |
 | 配方学识（示例） | `rc_jinchuangyao` `rc_xiaohuandan` `rc_baiyunxiongdanwan` `rc_jiuhuayulu` `rc_heiyuduanxugao` `rc_menghanyao` `rc_jiaohuaji` `rc_yudishuijiatingluomei` `rc_haoqiutang` `rc_ershisiqiaomingyueye` |
-| 建议套装（归 07） | `set_yitian_emei` `set_jinshe_sanbao` `set_taohuadao` `set_baituoshan` `set_gumu` `set_xuanming` `set_weijuye` |
+| 套装装备成员（归 07） | `set_yitian_emei`；v1 唯一装备成员为 `eq_yitianjian`，其余装备不写 `setTags` |
 
 ---
 
@@ -1969,6 +2092,7 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | V19 | `material` 必填 `resourceRef` 与 `materialGrade`；资源等级只接受天地玄黄 × 一至九品，且一品最高 | 错误 |
 | V20 | `meridianAid` 五字段形状合法、三项 bp 为非负整数、`hours ≥ 1`，`meridians` 只引用 15 的正式 ID；药物不得直接修改穴道进度或成功结果 | 错误 |
 | V21 | `legacyCarry/keyToken` 只能引用 20 的正式登记；普通残页、残本与信物不得据名称猜测跨界；合成事务必须全有或全无 | 错误 |
+| V21a | §10.3.1 必须恰有 117 个唯一 `frag_*`；20 的 39 个 `lgs_*` 各闭合 `upper/middle/lower` 三卷且无跨源复用；每卷品阶必须等于 20 §1.5 的 `fragmentGrade(g)` | 错误 |
 | V22 | `it_tianshu_01`…`14` 完整且不存在 15；`it_shuyedan` 仅在终局掉落表出现，离开终局清除 | 错误 |
 | V23 | `recipeMastery[rc_*]` 仅取 0–10；0 / 未学不得烹饪，已学至少为 1；烹饪事务不得读取 `alchemy` 或不存在的全局 `cook` | 错误 |
 
@@ -2000,6 +2124,7 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | T22 | 具名资源映射不替物 | 配方要求 `it_qixinhaitang`；库存只有同 `resourceRef=res_ducai_di5` 的通用毒材 | 不满足配方；只有具体 `it_qixinhaitang` 实例可消费 |
 | T23 | 终局书页丹 | `hpMax=1001`、`mpMax=701`，各缺半；使用 `it_shuyedan` | 回复基值分别为 `floor(1001×0.30)=300`、`floor(701×0.30)=210`（再受各自上限/治疗修正）；本场再次使用被拒 |
 | T24 | 菜谱熟练接口 | `recipeMastery[rc_jiaohuaji]=6`、主材 6 品、配方上限 9 | 按 `design/12` §10.4 结算返回 `gCook=7`、`Pcook=0.92`；不读取 `alchemy`，本文不复写上游公式 |
+| T25 | 传承残本目录闭合 | 从 20 §9 枚举 39 个来源并与 §10.3.1 双向比较 | 恰为 `39×3=117` 个唯一 ID；每源卷位集合为 `{upper,middle,lower}`，品阶与 `fragmentGrade(g)` 相同，均为唯一、不可交易的 `manual/partial` |
 
 ---
 
@@ -2013,13 +2138,13 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | D-02 | design/04 | **已接收**：`ammoMul(g)=0.88+0.035g` 进入 Z1；`targetParryMult`/`noCrit` 进入 Z0；背击进入 Z7；外劲条件减伤先按 `wOut` 拆分再进 Z4 | §3.5、§4.1、§5.2；见 04 §11.3 |
 | D-03 | design/05 | 奇门细类、`hands` 与 `HiddenKind`；特殊联动由对应武学声明 `altItems`；`sxpGrant` 档位黄/玄/地/天为 0.10/0.20/0.35/0.50；确认秘籍与残页正式前缀 | §3.2、§8.2、§10 |
 | D-04 | design/06 | C09：`bf_weici`/`bf_daoqiang` 原生 `[4,12]`，运行时 1–3 合法且不得用装备 `mods` 替代；物品 Buff 支持 `valueMul`、`dur:battle`；注册 `ultimateUnbreakable`；`af_fanzhen` 参数覆写；装备词条纳入族上限 | §4.6、§5.2、§7.3、§9.1、V16、T11 |
-| D-05 | design/07 | 7 个套装与装备成员 `setTags` 的反向登记仍须等 07 正式文件落盘后逐件同步；外来压制后按有效品阶算套装档；“天书铭”不改变件数 | §5.6；本轮未凭建议表猜成员 |
+| D-05 | design/07 | **已解决**：07 已定稿 44 套；装备侧只登记唯一正式成员 `eq_yitianjian.setTags=[set_yitian_emei]`。外来压制后按有效品阶算套装档；“天书铭”不改变件数 | §5.6、§14.2；与 `design/07` §13.3 双向闭合 |
 | D-06 | design/09 | 物品行动限次 `3+⌊med/40⌋` 与同 ID 冷却 2；六角范围模板；弃械投降、战后缴获、驭兽/驭蜂、敌人用药；P51 坠崖掉落按稳定序保留 `ceil(n×0.5)` | §3.6、§8.1、§11.3、T19 |
 | D-07 | design/11、design/19 | 屠龙刀夺刀遭遇每日 5%；采集点、营地、坐骑旅行、乌蚕衣夜间发现距离及奇遇永久增益落地；统一地图和时代图层只消费物品 ID，不另建地图 | §5.2、§6.8、§8.5、§11.4 |
 | D-08 | design/12、design/16 | **已接收 12/16 接口**：烹饪使用 `recipeMastery[rc_*]`；五个具名 `resourceRef` 与 40/25/10/10/8/5/2 收入桶已同步。工匠/名厨、馈赠、淬毒品德、秘籍借阅和行囊价格继续引用 12 | §6.8、§9.4、§11.5、§13.5 |
 | D-09 | design/13 | **已解决**：天书 ID 与“天书匣”、难度强化成功率 ×1.0、集齐 ≥7 本解锁“天书铭”以及 `it_shuyedan` 均已接收 | §6.4、§11.2.2、§12.3、§14.2 |
 | D-14 | design/15 | **已解决**：定稿 `meridianAid={rateBp,successBp,costReduceBp,hours,meridians?}`，三种药物与同来源逐槽取高规则 | §2.4、§8.1.1、V20、T21；冲穴公式仍归 15 |
-| D-15 | design/20 | **已接收**：AR-13 的 39 件关键信物已在 §11.2.1 落 `ItemDef`；残本 / 信物生命周期与原子消费仍只接 `legacyCarry/keyToken`，来源、概率和校合条件引用 20 | §10.3、§11.2.1、§12.3 |
+| D-15 | design/20 | **已接收**：AR-13 的 117 卷残本与 39 件关键信物已分别在 §10.3.1、§11.2.1 落最小 `ItemDef`；来源、投放概率和校合条件仍只引用 20 | §10.3.1、§11.2.1、§12.3 |
 | D-10 | design/02 | 天级装备不计 `playerTianBudget`；自动携带评分加入 `Rtarget`/`uniqueW`；接收器魄用途、天材骰清单及工艺术语映射 | §6.7–6.8、§7.5 |
 | D-11 | design/14 | 装备详情折叠、封存词条调整、书眠专属档位显示、背包分页与待拾队列 | §1.1、§7.2、§12.1 |
 | D-12 | tech/06、tech/07 | 独立图标约 93 件、基底约 40 模板族；逻辑键 `equip/<拼音>`/`item/<拼音>`；成对兵器用双手挂点 | §2.3、§5 |
@@ -2033,9 +2158,9 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | design/02 | 外来压制、器合、藏史、天材骰、掉落池；本文不重定义 | 接口见 §4.4、§6.7–6.8、§7、§12.4 |
 | design/03 | 等级曲线、属性 ID、技艺门槛、治疗修饰；装备系数由本文定稿后需回填其 D-02 和 C10 算例 | **已同步**：03 本轮已移除非法“天中鞋”并按地上 9 上限重算合法 STD；本文保留 T16–T17 对照 |
 | design/04 | Z0–Z10 与兵器攻击、装备主属性落点 | **已接收**，见 04 §11.3；本文 §4.1 只提供装备来源值 |
-| design/05 / 06 / 07 / 09 | 武学装配、Buff/品阶对抗、套装、六角战斗与物品行动 | 05/06/09 只引用；07 正式文件尚未落盘，装备 `setTags` 反向成员表仍待同步 |
+| design/05 / 06 / 07 / 09 | 武学装配、Buff/品阶对抗、套装、六角战斗与物品行动 | 只引用；07 已定稿 44 套，唯一装备成员 `eq_yitianjian` 已在 §5.2 / §5.6 完成 `setTags` 双向同步 |
 | design/11 / 12 / 15 / 16 / 17 / 18 / 19 | 大地图、任务关系、冲穴、资源营生、门派、NPC 与地图资产 | 15/16 接口已同步到 §6.8、§8.1、§13.5；其余只保留引用，不重定义 |
-| design/20 | 跨年代传承源、残本三卷、39 件关键信物、概率与合成 | **已同步**：§11.2.1 定义 39 件 `ItemDef`；来源 / 概率 / 三卷与校合语义仍由 20 定义 |
+| design/20 | 跨年代传承源、残本三卷、39 件关键信物、概率与合成 | **已同步**：§10.3.1 / §11.2.1 定义 117 卷残本与 39 件信物的最小 `ItemDef`；来源 / 概率 / 三卷与校合语义仍由 20 定义 |
 
 ### 16.3 对基准的修改提案
 
@@ -2079,5 +2204,5 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | O8 | **已解决（P51）**：普通敌人坠崖时非任务掉落损失 50%，任务关键物必得 | 奇数件按稳定顺序保留 `ceil(n×0.5)`，见 §3.6、T19 |
 | O9 | **已解决**：`design/16` 已定稿资源 36 级到装备 12 品的换算及五个具名映射 | 同一大阶内资源 7–9/4–6/1–3 品映射装备下/中/上品，见 §6.8 |
 | O10 | **已解决**：`design/12` §10.4 已决定不新增独立 `cook`，烹饪也不读取 `alchemy` | 按菜谱独立使用 `recipeMastery[rc_*]∈[0,10]`；未学为 0、初学为 1，见 §9.4、V23、T24 |
-| O11 | **已解决（AR-13 / design/20）**：39 件 `it_xinwu_*` 关键信物已落物品定义 | 只接受 20 正式登记的 `legacyCarry/keyToken`，见 §10.3、§11.2.1、§12.3；普通物品无例外 |
-| O12 | `design/07` 正式套装文件尚不存在，装备侧反向 `setTags` 无权猜测 | 暂保留 §5.6 建议组；07 落盘后按其正式成员表逐件回填并跑 V7 |
+| O11 | **已解决（AR-13 / design/20）**：117 卷 `frag_*` 与 39 件 `it_xinwu_*` 关键信物已落物品定义 | 只接受 20 正式登记的 `legacyCarry/keyToken`，见 §10.3.1、§11.2.1、§12.3；普通物品无例外 |
+| O12 | **已解决**：`design/07` 已定稿，装备侧反向 `setTags` 已按正式成员表同步 | v1 仅 `eq_yitianjian` 属于 `set_yitian_emei`；其余旧候选不进入运行数据，见 §5.6 |

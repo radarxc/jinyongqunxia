@@ -32,7 +32,7 @@
 | 外来压制 | −4 小品阶 | 基准 §2；具体生效公式见 `design/02` |
 | 天书关键词 | 放下 | 基准 §2 |
 | 前 / 后书界 | `ch09_liancheng` / `ch11_yuanyang` | 固定顺序 |
-| 主区域 | `rg_xiyu_beijiang` 西域北疆 | `design/11`；旧别名 `rg_xiyu` 不用于新内容 |
+| 主区域 | `rg_xiyu_beijiang` 西域北疆 | `design/11`；旧粗区别名不用于新内容 |
 | 主要城市锚 | `city_yining` 固勒扎一带**（待考）**；`city_turpan` 吐鲁番 | `design/map/cities.yaml` 的清初时代名；原著部落和迷宫不强行等同城市 |
 | 图外归途 | 玉门关方向 | 原著第八回；当前无正式 `city_*`，仅作演出地名，不新建地图 ID |
 | 特色系统 | 高昌迷宫 | 规则、房间与奖励归后续 `design/chapters/10-baima.md`；本文只规定剧情触点 |
