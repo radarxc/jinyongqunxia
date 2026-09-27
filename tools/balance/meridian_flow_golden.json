@@ -1,5 +1,5 @@
 {
-  "fixtureVersion": 1,
+  "fixtureVersion": 2,
   "inputs": {
     "explicitRolls": {
       "clean": 9999,
@@ -13,6 +13,7 @@
           "ap_dumai_mingmen",
           "ap_shoujueyin_laogong"
         ],
+        "purpose": "attack",
         "risk_bp": [
           100,
           100
@@ -38,6 +39,7 @@
           "ap_dumai_zhiyang",
           "ap_dumai_baihui"
         ],
+        "purpose": "attack",
         "risk_bp": [
           150,
           150,
@@ -77,6 +79,7 @@
           "ap_shoujueyin_laogong",
           "ap_dumai_mingmen"
         ],
+        "purpose": "attack",
         "risk_bp": [
           500,
           500,
@@ -110,6 +113,7 @@
           "ap_shoutaiyin_taiyuan",
           "ap_shoujueyin_neiguan"
         ],
+        "purpose": "attack",
         "risk_bp": [
           800,
           800,
@@ -125,6 +129,60 @@
           85,
           85,
           85
+        ],
+        "ultimate": false
+      },
+      {
+        "id": "mfr_guard_release",
+        "name": "卸力护体",
+        "nodes": [
+          "ap_renmai_qihai",
+          "ap_renmai_danzhong",
+          "ap_shoutaiyin_yunmen",
+          "ap_shoutaiyin_chize",
+          "ap_shoutaiyin_taiyuan",
+          "ap_shoujueyin_neiguan"
+        ],
+        "purpose": "defense",
+        "risk_bp": [
+          120,
+          120,
+          120,
+          120,
+          120,
+          120
+        ],
+        "segment_ct": [
+          70,
+          70,
+          70,
+          70,
+          70,
+          70
+        ],
+        "ultimate": false
+      },
+      {
+        "id": "mfr_qinggong_cycle",
+        "name": "轻功周流",
+        "nodes": [
+          "ap_renmai_qihai",
+          "ap_renmai_danzhong",
+          "ap_shoutaiyin_yunmen",
+          "ap_shoutaiyin_chize"
+        ],
+        "purpose": "movement",
+        "risk_bp": [
+          100,
+          100,
+          100,
+          100
+        ],
+        "segment_ct": [
+          60,
+          60,
+          60,
+          60
         ],
         "ultimate": false
       }
@@ -333,12 +391,11 @@
         8242
       ],
       "attempted": 10,
+      "baseDamage": 2574,
       "blockedAt": null,
       "blockedNode": null,
       "blockedState": null,
-      "capBp": 750,
       "completed": 10,
-      "damage": 2677,
       "disabledReason": null,
       "flowCt": 800,
       "jamChancesBp": [
@@ -354,9 +411,9 @@
         212
       ],
       "routeId": "mfr_eighteen_palms_chain",
+      "routeQualityBp": 5351,
       "stateVersion": 1,
-      "unitId": "enemy_boss",
-      "z3Bp": 401
+      "unitId": "enemy_boss"
     },
     "breath": {
       "backlog_removed": 252,
@@ -370,6 +427,42 @@
         "ap_dumai_baihui",
         "ap_dumai_mingmen"
       ]
+    },
+    "defenseRoute": {
+      "attackMultBp": 9179,
+      "damage": 859,
+      "defenseMultBp": 9361,
+      "incoming": 1000
+    },
+    "defenseRouteFlow": {
+      "arrivalBp": [
+        10000,
+        9755,
+        9516,
+        9282,
+        9054,
+        8832
+      ],
+      "attempted": 6,
+      "baseDamage": 849,
+      "blockedAt": null,
+      "blockedNode": null,
+      "blockedState": null,
+      "completed": 6,
+      "disabledReason": null,
+      "flowCt": 420,
+      "jamChancesBp": [
+        245,
+        245,
+        245,
+        245,
+        245,
+        245
+      ],
+      "routeId": "mfr_guard_release",
+      "routeQualityBp": 5266,
+      "stateVersion": 0,
+      "unitId": "hero"
     },
     "eliteLong": {
       "arrivalBp": [
@@ -385,6 +478,7 @@
         6426
       ],
       "attempted": 10,
+      "baseDamage": 950,
       "blockedAt": 9,
       "blockedNode": "ap_dumai_baihui",
       "blockedState": {
@@ -400,9 +494,7 @@
         "stagnation_bp": 2580,
         "water": 589
       },
-      "capBp": 750,
       "completed": 9,
-      "damage": 994,
       "disabledReason": null,
       "flowCt": 800,
       "jamChancesBp": [
@@ -418,9 +510,9 @@
         770
       ],
       "routeId": "mfr_eighteen_palms_chain",
+      "routeQualityBp": 6263,
       "stateVersion": 1,
-      "unitId": "enemy_elite",
-      "z3Bp": 469
+      "unitId": "enemy_elite"
     },
     "escapeLevel6Bp": 1900,
     "grapple1": {
@@ -457,12 +549,11 @@
         7777
       ],
       "attempted": 10,
+      "baseDamage": 849,
       "blockedAt": null,
       "blockedNode": null,
       "blockedState": null,
-      "capBp": 750,
       "completed": 10,
-      "damage": 889,
       "disabledReason": null,
       "flowCt": 800,
       "jamChancesBp": [
@@ -478,9 +569,9 @@
         275
       ],
       "routeId": "mfr_eighteen_palms_chain",
+      "routeQualityBp": 6302,
       "stateVersion": 1,
-      "unitId": "hero",
-      "z3Bp": 472
+      "unitId": "hero"
     },
     "heroSeededCommit": {
       "arrivalBp": [
@@ -496,12 +587,11 @@
         7777
       ],
       "attempted": 10,
+      "baseDamage": 849,
       "blockedAt": null,
       "blockedNode": null,
       "blockedState": null,
-      "capBp": 750,
       "completed": 10,
-      "damage": 889,
       "disabledReason": null,
       "flowCt": 800,
       "jamChancesBp": [
@@ -517,9 +607,9 @@
         275
       ],
       "routeId": "mfr_eighteen_palms_chain",
+      "routeQualityBp": 6302,
       "stateVersion": 1,
-      "unitId": "hero",
-      "z3Bp": 472
+      "unitId": "hero"
     },
     "heroShortPreview": {
       "arrivalBp": [
@@ -527,12 +617,11 @@
         9775
       ],
       "attempted": 2,
+      "baseDamage": 849,
       "blockedAt": null,
       "blockedNode": null,
       "blockedState": null,
-      "capBp": 300,
       "completed": 2,
-      "damage": 859,
       "disabledReason": null,
       "flowCt": 140,
       "jamChancesBp": [
@@ -540,9 +629,88 @@
         225
       ],
       "routeId": "mfr_half_step_crush",
+      "routeQualityBp": 4230,
       "stateVersion": 0,
-      "unitId": "hero",
-      "z3Bp": 126
+      "unitId": "hero"
+    },
+    "innerGuardBreak": {
+      "broken": true,
+      "cancelled": 600,
+      "capacity": 1000,
+      "delay_ct": 400,
+      "eligible_incoming": 1600,
+      "hp_damage": 1000,
+      "mp_spent": 300,
+      "reflect_damage": 0,
+      "stagnation_bp": 3000
+    },
+    "innerGuardCapacityBreak": {
+      "broken": true,
+      "cancelled": 1000,
+      "capacity": 1000,
+      "delay_ct": 300,
+      "eligible_incoming": 1600,
+      "hp_damage": 600,
+      "mp_spent": 500,
+      "reflect_damage": 0,
+      "stagnation_bp": 2120
+    },
+    "innerGuardHold": {
+      "broken": false,
+      "cancelled": 1000,
+      "capacity": 1506,
+      "delay_ct": 0,
+      "eligible_incoming": 1000,
+      "hp_damage": 0,
+      "mp_spent": 500,
+      "reflect_damage": 100,
+      "stagnation_bp": 0
+    },
+    "innerGuardKinds": {
+      "hidden": {
+        "broken": false,
+        "cancelled": 0,
+        "capacity": 1000,
+        "delay_ct": 0,
+        "eligible_incoming": 0,
+        "hp_damage": 1000,
+        "mp_spent": 0,
+        "reflect_damage": 0,
+        "stagnation_bp": 0
+      },
+      "projected": {
+        "broken": false,
+        "cancelled": 400,
+        "capacity": 1000,
+        "delay_ct": 0,
+        "eligible_incoming": 400,
+        "hp_damage": 600,
+        "mp_spent": 200,
+        "reflect_damage": 0,
+        "stagnation_bp": 0
+      },
+      "unarmed": {
+        "broken": false,
+        "cancelled": 1000,
+        "capacity": 1000,
+        "delay_ct": 0,
+        "eligible_incoming": 1000,
+        "hp_damage": 0,
+        "mp_spent": 500,
+        "reflect_damage": 0,
+        "stagnation_bp": 0
+      },
+      "weapon": {
+        "broken": false,
+        "cancelled": 250,
+        "capacity": 1000,
+        "delay_ct": 0,
+        "eligible_incoming": 250,
+        "hp_damage": 750,
+        "mp_spent": 125,
+        "reflect_damage": 0,
+        "stagnation_bp": 0
+      }
     },
     "jammed": {
       "arrivalBp": [
@@ -552,6 +720,7 @@
         7350
       ],
       "attempted": 4,
+      "baseDamage": 849,
       "blockedAt": 3,
       "blockedNode": "ap_shoutaiyin_chize",
       "blockedState": {
@@ -567,9 +736,7 @@
         "stagnation_bp": 6534,
         "water": 208
       },
-      "capBp": 685,
       "completed": 3,
-      "damage": 861,
       "disabledReason": null,
       "flowCt": 300,
       "jamChancesBp": [
@@ -579,9 +746,97 @@
         1975
       ],
       "routeId": "mfr_novice_eight",
+      "routeQualityBp": 2112,
       "stateVersion": 1,
-      "unitId": "enemy_normal",
-      "z3Bp": 144
+      "unitId": "enemy_normal"
+    },
+    "matchups": {
+      "equal": {
+        "attackMultBp": 10000,
+        "attackerStrengthBp": 10000,
+        "baseDamage": 849,
+        "damage": 849,
+        "defenderStrengthBp": 10000,
+        "defenseMultBp": 10000,
+        "targetHp": 3970,
+        "teamEquivBp": 10000,
+        "ttkActions": 5,
+        "ttkBeforeActions": 5
+      },
+      "masterVsMob": {
+        "attackMultBp": 18265,
+        "attackerStrengthBp": 14975,
+        "baseDamage": 849,
+        "damage": 1550,
+        "defenderStrengthBp": 5575,
+        "defenseMultBp": 10000,
+        "targetHp": 2200,
+        "teamEquivBp": 10000,
+        "ttkActions": 2,
+        "ttkBeforeActions": 3
+      },
+      "strongOneTier": {
+        "attackMultBp": 12053,
+        "attackerStrengthBp": 12050,
+        "baseDamage": 950,
+        "damage": 1145,
+        "defenderStrengthBp": 10000,
+        "defenseMultBp": 10000,
+        "targetHp": 8000,
+        "teamEquivBp": 10000,
+        "ttkActions": 7,
+        "ttkBeforeActions": 9
+      },
+      "strongTwoTiers": {
+        "attackMultBp": 14456,
+        "attackerStrengthBp": 14975,
+        "baseDamage": 2574,
+        "damage": 3720,
+        "defenderStrengthBp": 10000,
+        "defenseMultBp": 10000,
+        "targetHp": 170773,
+        "teamEquivBp": 31000,
+        "ttkActions": 15,
+        "ttkBeforeActions": 22
+      },
+      "weakOneTier": {
+        "attackMultBp": 9241,
+        "attackerStrengthBp": 8250,
+        "baseDamage": 849,
+        "damage": 784,
+        "defenderStrengthBp": 10000,
+        "defenseMultBp": 10000,
+        "targetHp": 3970,
+        "teamEquivBp": 10000,
+        "ttkActions": 6,
+        "ttkBeforeActions": 5
+      }
+    },
+    "movementRouteFlow": {
+      "arrivalBp": [
+        10000,
+        9775,
+        9555,
+        9340
+      ],
+      "attempted": 4,
+      "baseDamage": 849,
+      "blockedAt": null,
+      "blockedNode": null,
+      "blockedState": null,
+      "completed": 4,
+      "disabledReason": null,
+      "flowCt": 240,
+      "jamChancesBp": [
+        225,
+        225,
+        225,
+        225
+      ],
+      "routeId": "mfr_qinggong_cycle",
+      "routeQualityBp": 4748,
+      "stateVersion": 0,
+      "unitId": "hero"
     },
     "normalShort": {
       "arrivalBp": [
@@ -589,12 +844,11 @@
         9425
       ],
       "attempted": 2,
+      "baseDamage": 849,
       "blockedAt": null,
       "blockedNode": null,
       "blockedState": null,
-      "capBp": 300,
       "completed": 2,
-      "damage": 862,
       "disabledReason": null,
       "flowCt": 140,
       "jamChancesBp": [
@@ -602,9 +856,9 @@
         575
       ],
       "routeId": "mfr_half_step_crush",
+      "routeQualityBp": 5286,
       "stateVersion": 1,
-      "unitId": "enemy_normal",
-      "z3Bp": 158
+      "unitId": "enemy_normal"
     },
     "point1": {
       "breath_locked": false,
@@ -627,6 +881,7 @@
         7612
       ],
       "attempted": 3,
+      "baseDamage": 849,
       "blockedAt": 2,
       "blockedNode": "ap_shoutaiyin_yunmen",
       "blockedState": {
@@ -642,9 +897,7 @@
         "stagnation_bp": 8504,
         "water": 138
       },
-      "capBp": 600,
       "completed": 2,
-      "damage": 857,
       "disabledReason": null,
       "flowCt": 255,
       "jamChancesBp": [
@@ -653,13 +906,14 @@
         2775
       ],
       "routeId": "mfr_forced_six",
+      "routeQualityBp": 1762,
       "stateVersion": 1,
-      "unitId": "enemy_normal",
-      "z3Bp": 105
+      "unitId": "enemy_normal"
     },
     "sealed": {
       "arrivalBp": [],
       "attempted": 0,
+      "baseDamage": 849,
       "blockedAt": 4,
       "blockedNode": "ap_shoutaiyin_taiyuan",
       "blockedState": {
@@ -675,16 +929,14 @@
         "stagnation_bp": 0,
         "water": 0
       },
-      "capBp": 750,
       "completed": 0,
-      "damage": 849,
       "disabledReason": "point_seal_9",
       "flowCt": 0,
       "jamChancesBp": [],
       "routeId": "mfr_eighteen_palms_chain",
+      "routeQualityBp": 0,
       "stateVersion": 1,
-      "unitId": "hero",
-      "z3Bp": 0
+      "unitId": "hero"
     },
     "selfUnseal": {
       "backlog_removed": 0,
@@ -700,18 +952,32 @@
       ]
     },
     "selfUnsealLevelAfter": 2,
-    "ttkActionsAfter": {
-      "boss": 21,
-      "elite": 9,
-      "normal": 5
-    },
-    "ttkActionsBefore": {
-      "boss": 22,
-      "elite": 9,
-      "normal": 5
+    "speed": {
+      "equal": {
+        "evadeRatingDelta": 0,
+        "move": 6,
+        "multBp": 10000,
+        "openingQinggong": 98,
+        "spd": 106
+      },
+      "maxActionsPer1000Ticks": 600,
+      "sealed": {
+        "evadeRatingDelta": -35,
+        "move": 4,
+        "multBp": 6500,
+        "openingQinggong": 63,
+        "spd": 68
+      },
+      "strong": {
+        "evadeRatingDelta": 22,
+        "move": 7,
+        "multBp": 12239,
+        "openingQinggong": 119,
+        "spd": 129
+      }
     }
   },
   "rngProtocol": 1,
-  "rulesProtocol": 1,
-  "vectorSha256": "70d2938cf1e22c649af392488fedd8a553842676787677c76b3bbd283ca5ed6b"
+  "rulesProtocol": 2,
+  "vectorSha256": "f2a1aa5262e7b7a0ac01c293364783e759c2d608a50e86ad665675c14adf9bea"
 }
