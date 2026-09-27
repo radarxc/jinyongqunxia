@@ -1,10 +1,10 @@
 # 11 · 鸳鸯刀（书界 DLC）
 
 > 归属（基准 §18）：`ch11_yuanyang` 的时代内容编排——开局、时代图层、主支线接口、门派与人物投放、产出、特色机制、前后界衔接及本界数值落点。
-> 上游：`00-canon.md` v1.1（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/11-yuanyang.md`。
+> 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/11-yuanyang.md`。
 > 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；经脉 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；前代传承 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v0.2（D11 初稿，2026-09-26；审校 D11.R，2026-09-26）。
+> 版本：v0.2（D11 初稿，2026-09-26；审校 D11.R，2026-09-26）；全局审计（2026-09-26）。
 
 
 ## 0. 阅读指引
@@ -1455,11 +1455,11 @@ rg -n 'rg_11_|mer_ren\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/design/chapt
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| YY-P01 | 基准 §17 地图条目改为“时代图层：全局 `rg_*` + 本界 `sc_NN_*` + `cities.yaml` 时代名”，删除旧 `rg_NN_*` 示例约束 | 落实 AR-04 / AR-11，并避免十四章重复创建同一地理区域 |
-| YY-P02 | 基准 §18 增列 `design/15`–`20` 与 `design/story/*`、`design/map/*` 的唯一归属 | 现行 §18 只到 design/14，无法完整表达新增经脉、经营、时代门派、人物、地图、传承和剧情边界 |
-| YY-P03 | 基准 §12 明示 `sc_*`、`rp_*`、`biz_*`、`dc_*`、`anc_*`、跨书回响的命名 / 归属，或指向各专项目录 | 作者需求已经要求这些运行键；统一登记可防同物异名 |
-| YY-P04 | 采纳 `design/20` H1-P04：只对 `learnSource=legacy_synthesis` 加逐书界 `legacyWorldCap`，鸳鸯为 9，且无天道规则时关闭 | AR-13b 要求真实品阶保留、当界有效品阶截断；现行基准没有该专用字段 |
-| YY-P05 | 基准 §17 主线“6–10 幕”改为制作建议，并允许章节只索引已审校 story 的分线幕；鸳鸯单轮为 12 幕 | AR-10 明定 story 为唯一剧情源，强压幕数会破坏四锚点和正邪对称 |
+| YY-P01 | 已解决：基准 §17 已采用“时代图层：全局 `rg_*` + 本界 `sc_NN_*` + `cities.yaml` 时代名” | Canon v1.2 已落实 AR-04 / AR-11，旧 `rg_NN_*` 不再新建 |
+| YY-P02 | 已解决：基准 §18 已增列 `design/15`–`20`、`design/story/*` 与 `design/map/*` 的唯一归属 | Canon v1.2 已采纳并生效 |
+| YY-P03 | 部分解决：基准 §12 已登记 `sc_*`、`rp_*`、`biz_*`、`dc_*` 与回响前缀；`anc_*` 按 CP-39 不升格 | 稳定跨文档对象已登记；锚点仍保持 story 局部键 |
+| YY-P04 | 待作者确认：Canon v1.2 §3 已按默认写入 `legacyWorldCap=9`，仅作用于 `legacy_synthesis`，`rule_wutiandao` 关闭 | 对应 CP-22 / O-A3-02；本文保留默认与回退，不冒充最终拍板 |
+| YY-P05 | 已解决：基准 §17 已允许章节索引 story 的共有幕与正 / 邪各 8–14 幕，并按 6–10 个制作阶段编组 | 鸳鸯单轮 12 幕合法，章节不再维护第二份剧情 |
 
 ### 原著考据待办
 

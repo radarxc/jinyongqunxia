@@ -1,10 +1,10 @@
 # 13 · 书界 DLC · 飞狐外传
 
 > 归属（基准 §18）：`design/chapters/*.md` 中《飞狐外传》书界的时代内容、区域投放、任务接口、人物出场、特色机制与本地平衡。
-> 上游：`docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`、`docs/00-canon.md` v1.1、`docs/decisions/rulings-v1.md`；主线唯一剧情源为 `design/story/13-feihu.md`。
+> 上游：`docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`、`docs/00-canon.md` v1.2、`docs/decisions/rulings-v1.md`；主线唯一剧情源为 `design/story/13-feihu.md`。
 > 引用而不重定义：核心循环与锚点总览 → `design/01`；年代、境界、书眠、携带与压制 → `design/02`；属性与 Boss 模板 → `design/03`；伤害公式 → `design/04`；武学 → `design/05` 与图鉴；地形/轻功 → `design/08`；战斗/合击 → `design/09`；物品/神兵 → `design/10`；开放世界 → `design/11`；任务/门派 → `design/12`；成长/天书 → `design/13`；经脉/冲穴 → `design/15`；资源/营生 → `design/16`；门派名录 → `design/17`；人物名录 → `design/18`；地图 → `design/19`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给可用数值并在文末登记。
-> 版本：v1.0（D13 初稿，2026-09-26）；审校 D13.R（2026-09-26）。
+> 版本：v1.0（D13 初稿，2026-09-26）；审校 D13.R（2026-09-26）；全局审计（2026-09-26）。
 
 
 ## 0. 阅读指引
@@ -1151,7 +1151,7 @@ BossPhases      = 2–3
 ### 对基准的修改提案
 
 - 本章不提议改变书界年代、境界、武运、难度、上限、携带、压制、锚点或天书关键词。
-- 建议上游勘误 `design/13` 的任务当量总数：现有分项 `59+52+37=148`，若总数仍写 147，应统一总数或说明有一项不计入；本章不擅改。
+- **已解决：**`design/13` 已把飞狐任务当量统一为 `148（59 / 52 / 37）`，复算 `59+52+37=148`。
 
 ### 原著考据待办
 

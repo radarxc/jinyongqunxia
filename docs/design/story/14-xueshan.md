@@ -1,10 +1,10 @@
 # 14 · 雪山飞狐：正邪两条主线与选择节点
 
 > 归属（基准 §18）：`ch14_xueshan` 的书界主线、正邪分线、选择节点、原著事件去向、锚点落地与剧情数据接口；这是本书主线剧情的唯一归属文档。
-> 上游：`00-canon.md` v1.1；作者新增需求 AR-04、AR-09、AR-10 见 `decisions/author-requirements.md`；作者决定见 `decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
+> 上游：`00-canon.md` v1.2；作者新增需求 AR-04、AR-09、AR-10 见 `decisions/author-requirements.md`；作者决定见 `decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：核心锚点与改命总览 → `design/01-vision-and-core-loop.md` §7.15；年代、书眠与跨书回响 → `design/02-timeline-and-world-tiers.md`；品德与声望 → `design/03-attributes.md` §8；武学 → `design/05-martial-arts-system.md` 及图鉴；战斗与 Boss → `design/09-combat-system.md`；物件 → `design/10-items-and-equipment.md`；区域与时代地名 → `design/11-open-world.md`；任务结构、DSL、旗标与效果动作 → `design/12-quests-npc-factions.md` §1–§4、§8、§11–§13；天书、结局与雪山抉择 → `design/13-progression-and-endings.md` §4.3、§7；门派 → `design/17-sects-compendium.md`；NPC、招募等级与跨书同伴 → `design/18-npc-and-companions.md` 及 `design/catalog/npcs-ch14-xueshan.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 三联 / 广州修订版原文尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需在游戏构建中验证；**【建议值】** = 依赖归属文档后续落盘或作者决定、先给可执行值并在文末登记。
-> 版本：v1.1（P14.R 审校，2026-09-26；修正原著事件归属并接入正式 `quest.v1` DSL）。
+> 版本：v1.1（P14.R 审校，2026-09-26；修正原著事件归属并接入正式 `quest.v1` DSL）；全局审计（2026-09-26）。
 
 ---
 
@@ -123,7 +123,7 @@ flowchart TD
 
 ### 0.6 罗生门叙事的使用边界
 
-罗生门是本书特色系统，其规则归待创建的书界 DLC 文档 `docs/design/chapters/14-xueshan.md`；本文只规定剧情输入与输出：
+罗生门是本书特色系统，其规则归已落盘的书界 DLC 文档 `docs/design/chapters/14-xueshan.md` §10.1；本文只规定剧情输入与输出：
 
 1. 宝树、平阿四、陶百岁、苗若兰等人的口述分别存为证词片段，不把“先说出口”视为事实。
 2. 每份证词区分“目击”“转述”“利害关系”和“可被物证校验”四类元数据。
@@ -140,7 +140,7 @@ flowchart TD
 - 下表依原著十回的叙事出现顺序编排，共 50 个事件单元；“回忆中的先后”不等同于“叙事出现顺序”。
 - 回目标到“第一回”至“第十回”，不杜撰回目标题；人物和细节以三联 / 广州修订版为最终校勘基线。本文写作时以在线连续章节作辅助核对，版本身份不能替代纸本，差异项统一标 **（待考）**。
 - “去向”表示制作责任，不代表删去其他路线所需信息。标为“正线”的事件，在邪线仍可从侧面听到；标为“邪线”的事件，在正线仍会留下可核物证。
-- “支线（交书界文档）”只把非主线玩法交待创建的 `docs/design/chapters/14-xueshan.md`，不把该原著事件从总覆盖中删除。
+- “支线（交书界文档）”只把非主线玩法交给 `docs/design/chapters/14-xueshan.md`，不把该原著事件从总覆盖中删除。
 
 ### 1.2 五十项事件映射
 
@@ -617,7 +617,7 @@ flowchart TD
 | 原著对应事件（回目） | 第十回末：胡苗上雪崖交手；苗人凤先救回坠崖的胡斐并放弃有利地势，冰壁映出苗剑破绽；胡斐举刀，小说止于是否劈下的悬念 |
 | 地点 | `yubifeng_cliff` |
 | 参与 NPC | `npc_hufei`、`npc_miaorenfeng`、`npc_miaoruolan`；满足条件时 `npc_pingasi` 作远处见证 |
-| 关键战斗 | 苗人凤为 Boss 超限候选 Lv62 = 58 + 4；战斗用于制造选择窗口，不要求把他击倒。战斗强度为 Boss，具体数值、阶段与招式只引用 `design/09` §8.8 和未来 `chapters/14` |
+| 关键战斗 | 苗人凤为 Boss 超限候选 Lv62 = 58 + 4；战斗用于制造选择窗口，不要求把他击倒。战斗强度为 Boss，具体数值、阶段与招式只引用 `design/09` §8.8 与 `chapters/14` §8.8、§12.2 |
 
 **目标与流程**：
 
@@ -875,7 +875,7 @@ C01 → C02 → C03 → Z01 → Z02 → Z03 → Z04 → Z05 → Z06 → Z07 → 
 | 原著对应事件（回目） | 第十回末：胡苗上雪崖交手；苗人凤先救回坠崖的胡斐并放弃有利地势，冰壁映出苗剑破绽；胡斐举刀，结局留白 |
 | 地点 | `yubifeng_cliff` |
 | 参与 NPC | `npc_hufei`、`npc_miaorenfeng`、`npc_miaoruolan`；一名契约见证者 |
-| 关键战斗 | 苗人凤为 Boss 超限候选 Lv62 = 58 + 4；不以击杀为唯一胜利。机制仅引用 `design/09` §8.8，数值与招式由未来 `chapters/14` 配置 |
+| 关键战斗 | 苗人凤为 Boss 超限候选 Lv62 = 58 + 4；不以击杀为唯一胜利。机制仅引用 `design/09` §8.8，数值与招式见 `chapters/14` §8.8、§12.2 |
 
 **目标与流程**：
 
@@ -1098,7 +1098,7 @@ canLiangquan = crossBookEvidence
 | 破绽与先攻 | `fl_14_seen_hu_gap`、`fl_14_seen_miao_gap` 均真；在终战主动选择“弃先手、先出示证据” | Z09 | X09，且已在 X08 释放独占筹码 | 战胜苗人凤、武学等级、`morality ≥ 80` |
 | 不可逆伤害闸门 | 未胁迫 / 伤害苗若兰至永久敌对，未故意堵死无辜者所在的支洞，未销毁唯一跨书证据 | 全程默认可满足 | X04 / X06 有清晰锁定警告 | 后续加好感、交钱、读档外的补偿 |
 
-“等价回响链”不是允许玩家在雪山凭空制造血书：它要求前书界已留下可持久化的胡氏史笺或事实回响，再在本书由两名独立证人和原物复核。生产实现应优先读取正式 `echo_13_hushixueshu`；替代路径由未来 `chapters/13` / `chapters/14` 确认字段，当前标 **【建议值】**。
+“等价回响链”不是允许玩家在雪山凭空制造血书：它要求前书界已留下可持久化的胡氏史笺或事实回响，再在本书由两名独立证人和原物复核。生产实现应优先读取正式 `echo_13_hushixueshu`；替代路径已由 `chapters/13` §11.3 与 `chapters/14` §5.3、§10.2 接口承接，聚合 guard 尚标 **【建议值】**。
 
 ### 6.4 放弃先攻的可操作表现
 
@@ -1267,7 +1267,7 @@ canLiangquan = crossBookEvidence
 
 | 职能槽 | 用途 | 同伴规则 | 是否新建 ID |
 |---|---|---|---:|
-| 玉笔山庄于姓管家 | 提供留书、设施权限、吊篮与库房信息 | 设施 NPC 模板 D2；安排替班后可短时随行，正式实例由 `chapters/14` 生成 | 否 |
+| 玉笔山庄于姓管家 | 提供留书、设施权限、吊篮与库房信息 | 设施 NPC 模板 D2；安排替班后可短时随行，正式实例按 `chapters/14` §8.1 的人物数据边界生成 | 否 |
 | 胡斐左右双童 | 投刺传讯、与群豪交手、离峰后炸断长索与绞盘 | 剧情职能实例；C02 作为精英友方 / 中立单位，不开放招募，也不把二人误写成无力自保者 | 否 |
 
 这两类不计入 `design/18` 的 20–40 名具名人物下限，也不临时造 `npc_*`。
@@ -1387,11 +1387,11 @@ canLiangquan = crossBookEvidence
 
 ### 9.3 任务幕 YAML 示例
 
-以下按 `design/12` §2、§11.1 的正式 `quest.v1` 写法，示范正线第六幕的生产映射：story 稳定键 `q_14_main_z_06` 导出为规范 QuestDef `q_14_main_09`（映射表见 §9.6.2）。推荐等级 55 的核算为 `46 + floor((58−46)×3/4) = 55`，处于本界后四分之一且不超过上限 58。旗标须在所属任务注册表预登记，效果 ID 在阶段内稳定且不可换义。
+以下按 `design/12` §2、§11.1 的正式 `quest.v1` 写法，示范正线第六幕 `q_14_main_z_06`。该路线码 ID 同时是 story 稳定键与规范 QuestDef 主键，不再导出第二套流水号。推荐等级 55 的核算为 `46 + floor((58−46)×3/4) = 55`，处于本界后四分之一且不超过上限 58。旗标须在所属任务注册表预登记，效果 ID 在阶段内稳定且不可换义。
 
 ```yaml
 schemaVersion: quest.v1
-id: q_14_main_09
+id: q_14_main_z_06
 kind: main
 chapterId: ch14_xueshan
 titleKey: quest.ch14.z06.title
@@ -1452,11 +1452,11 @@ source:
 
 ### 9.4 选择节点 YAML 示例
 
-`design/12` 未定义独立 `decision.*` 对象；选择必须建模为任务阶段、互斥 `branchKey` 与终态 `endingKey`。下例是正线第九幕 `q_14_main_z_09 → q_14_main_12` 的 `dc_14_08` 片段；邪线第九幕使用同构阶段，并按 §9.6.2 的固定序号映射。Ink / UI 只能在 action guard 复核后写一个互斥选择旗标。
+`design/12` 未定义独立 `decision.*` 对象；选择必须建模为任务阶段、互斥 `branchKey` 与终态 `endingKey`。下例是正线第九幕 `q_14_main_z_09` 的 `dc_14_08` 片段；邪线第九幕 `q_14_main_x_09` 使用同构阶段。Ink / UI 只能在 action guard 复核后写一个互斥选择旗标。
 
 ```yaml
 schemaVersion: quest.v1
-id: q_14_main_12
+id: q_14_main_z_09
 kind: main
 chapterId: ch14_xueshan
 titleKey: quest.ch14.z09.title
@@ -1562,14 +1562,14 @@ source:
 
 | 类别 | 新增 ID | 用途 |
 |---|---|---|
-| 共有幕（story 键） | `q_14_main_c_01`、`q_14_main_c_02`、`q_14_main_c_03` | 雪路铁盒、吊篮断索、雪夜众口；生产映射 `q_14_main_01..03` |
-| 正线幕（story 键） | `q_14_main_z_01`–`q_14_main_z_09` | 守证止杀路线九幕；生产映射 `q_14_main_04..12` |
-| 邪线幕（story 键） | `q_14_main_x_01`–`q_14_main_x_09` | 控词夺势路线九幕；生产映射 `q_14_main_13..21` |
+| 共有幕（正式主键） | `q_14_main_c_01`、`q_14_main_c_02`、`q_14_main_c_03` | 雪路铁盒、吊篮断索、雪夜众口 |
+| 正线幕（正式主键） | `q_14_main_z_01`–`q_14_main_z_09` | 守证止杀路线九幕 |
+| 邪线幕（正式主键） | `q_14_main_x_01`–`q_14_main_x_09` | 控词夺势路线九幕 |
 | 选择节点 | `dc_14_01`–`dc_14_08` | 八个关键选择；`dc_` 是 story 局部节点前缀 **【建议值】** |
 | 锚点完成态 | `fl_14_anchor_gathering`、`fl_14_anchor_feud`、`fl_14_anchor_vault`、`fl_14_anchor_cliff` | 四个权威锚点的本地完成旗标；不在 story 文档定义全局 `ev_*` |
 | 结局组合键 | `zheng/xie + pi/bupi/liangquan` | 六种本书结局摘要的策划检索键；不是全局 `end_*` ID，是否注册由 `design/13` 决定 |
 
-`q_14_main_c/z/x_*` 沿用原任务明确要求，作为文案、流程图与审校追踪的稳定 story 键；正式 `design/12` §1.1 已只允许 `q_14_main_NN`，故生产 ID 映射固定为上表 01–21，并以 `branchKey=common / zheng / xie` 保存路线。两套键不得混作同一注册表对象，也不得在已有存档上无迁移改名。
+按基准 v1.2 §12（V12-09），`q_14_main_c/z/x_*` 同时用于剧情引用和生产注册；路线码是主键的一部分，`branchKey` 只保存幕内分支，不再维护无路线码的第二套 ID。
 
 #### 9.6.3 地点局部键
 
@@ -1634,7 +1634,7 @@ source:
 | `fl_14_humiao_reconciled` | “两全”后胡苗开始修复关系 |
 | `fl_14_crossbook_evidence` | 已由 `echo_13_hushixueshu` 或获准的严格等价前书链派生出跨书证据 |
 | `fl_14_choice_pi`、`fl_14_choice_bupi`、`fl_14_choice_liangquan` | `dc_14_08` 三项互斥的 UI intent 旗标；guard 成功后写入 |
-| `fl_14_z06_evidence_secured`、`fl_14_z06_rescued_two`、`fl_14_z06_returned_manor` | §9.3 任务内部进度旗标；只属于生产 `q_14_main_09` |
+| `fl_14_z06_evidence_secured`、`fl_14_z06_rescued_two`、`fl_14_z06_returned_manor` | §9.3 任务内部进度旗标；只属于生产 `q_14_main_z_06` |
 | `fl_14_anchor_gathering`、`fl_14_anchor_feud`、`fl_14_anchor_vault`、`fl_14_anchor_cliff` | 四个权威锚点完成旗标 |
 
 已有 ID `ch14_xueshan`、`npc_*`、`sect_*`、`sk_*`、`eq_lengyuedao`、`it_chuangwangjundao`、`echo_13_hushixueshu`、`echo_14_xueshan`、`tsp_14_canon`、`tsp_14_fate` 只引用，不算本文新增。
@@ -1645,7 +1645,7 @@ source:
 
 | 校验 ID | 规则 | 失败级别 |
 |---|---|---|
-| `XS-V01` | story 键 `q_14_main_c_01..03`、`z_01..09`、`x_01..09` 各自连续且不重名；生产映射 `q_14_main_01..21` 全仓唯一并匹配 `design/12` 正则 | error |
+| `XS-V01` | 正式主键 `q_14_main_c_01..03`、`q_14_main_z_01..09`、`q_14_main_x_01..09` 各自连续、不重名且匹配基准 v1.2 §12 | error |
 | `XS-V02` | 正线和邪线均从 C01 可达各自第九幕；每次切线有后继；不存在无出口强连通分量 | error |
 | `XS-V03` | `dc_14_01..08` 恰有定义；每项 2–4 个选项，至少一项恒可用或有可满足替代 | error |
 | `XS-V04` | 50 个原著事件各有非空“本作去向”；编号恰为 1–50 且不重不漏；第一至第十回均出现 | error |
@@ -1697,10 +1697,10 @@ source:
 | 编号 | 建议值 | 下游需定稿 |
 |---|---|---|
 | P14-S01 | **已解决：**品德不再使用自拟 `±3 × severity`；按 `design/12` §8.2 采用 +3 / +5 / +9 与 −3 / −6 / −9 / −12 | 正式任务用 `reward/morality`、`reasonCode` 与幂等 effect ID；见 §0.3、§9.3 |
-| P14-S02 | `dc_` 作为故事选择节点前缀；本书 `dc_14_01..08` | 基准 / `design/12` 若采用别名，需稳定迁移而非直接改存档引用 |
+| P14-S02 | **已解决：**基准 v1.2 §12 已登记 `dc_`；本书使用 `dc_14_01..08` | 生产任务仍以 `branchKey` 引用选择，稳定追踪键不得直接改存档引用 |
 | P14-S03 | 四锚点先写 §9.6.4 明列的四项锚点旗标；如需遥测事件，再由归属文档建立正式 `ev_*` | `design/12`、`design/10`、`tech/04` 确认 EventDef 与 payload |
-| P14-S04 | 玉笔峰五个 `placeKey`，均 `cityId:null`、挂 `rg_liaodong` | `chapters/14` / 地图区域数据落点 |
-| P14-S05 | 等价跨书证据链：前书史笺 / 回响 + 本书两名独立证人 + 原物 | `chapters/13` / `14` 决定除正式 `echo_13_hushixueshu` 外是否启用 |
+| P14-S04 | **已解决：**玉笔峰五个 `placeKey` 均为 `cityId:null`、挂 `rg_liaodong` | 已由 `chapters/14` §2.1、§3.2 落为场景与区域接口 |
+| P14-S05 | 等价跨书证据链：前书史笺 / 回响 + 本书两名独立证人 + 原物 | `chapters/13` §11.3、`chapters/14` §5.3 已承接；正式聚合 guard 仍待数据层落盘 |
 | P14-S06 | 六个结局暂以 `routeState + echo_14_xueshan` 组合检索 | `design/13` 若需纳入全局结局索引，再由其定义正式 `end_*`，story 不抢占前缀 |
 | P14-S07 | **已解决：**任务 / 节点示例已迁到 `quest.v1`，选择以阶段、条件与 `branchKey` 表达 | `tech/04` 仍需把正式 schema 落为构建器，但不得更改 `design/12` 语义 |
 
@@ -1716,8 +1716,8 @@ source:
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| P14-P01 | 在基准 §12 或 `design/12` 登记 `dc_<NN>_<nn>` 为 story 层选择节点键；生产数据仍嵌入规范 `q_*` 阶段 | AR-10 要求选择节点有稳定追踪键；现有 DSL 只有任务 / 阶段 / `branchKey`，缺跨文档选择节点前缀 |
-| P14-P02 | 在 `design/13` 的雪山接口把“改命条件（chapters/14 §5）”改引本文 §6.3，并由未来 chapters 只作索引 | AR-10 已将本书主线唯一归属转到 story；避免出现两份条件真相 |
+| P14-P01 | **已解决：**基准 v1.2 §12 已登记 `dc_<NN>_<nn>`；生产数据仍嵌入规范 `q_*` 阶段 | 已按 AR-10 与 V12-09 采用；见 §5 与 §9.3 |
+| P14-P02 | **已解决：**`design/13` §7.2 已改引 `design/story/14` §5–§7，`chapters/14` §4–§5 只作索引 | 已按 AR-10 与 V12-11 落实主线唯一归属，避免两份条件真相 |
 
 这些只是提案，本文不修改基准或上游文档。
 

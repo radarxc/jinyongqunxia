@@ -1,10 +1,10 @@
 # 12 · 书剑恩仇录（书界 DLC）
 
 > 归属（基准 §18）：`ch12_shujian` 的时代图层、章节内容编排、主线接口、支线、区域投放、人物出场、门派内容位与本书特色机制。
-> 上游：`00-canon.md` v1.1；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定见 `decisions/rulings-v1.md`；已审校正邪主线唯一见 `design/story/12-shujian.md`。
+> 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定见 `decisions/rulings-v1.md`；已审校正邪主线唯一见 `design/story/12-shujian.md`。
 > 引用而不重定义：核心循环与锚点边界 → `design/01`；年代、书眠、携带与外来压制 → `design/02`；属性 / 敌人模板 / 伤害 → `design/03`、`04`；武学与图鉴 → `design/05` 及 `design/catalog/skills-*`；套装 → `design/07`；地形与轻功门禁 → `design/08`；战斗、Boss 与合击 → `design/09`；物品与神兵 → `design/10`；全局地图与预算 → `design/11`；任务、关系与门派流程 → `design/12`；成长、天书与结局 → `design/13`；冲穴 → `design/15`；资源点与营生 → `design/16`；门派时代矩阵 → `design/17`；人物与重逢 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：D12 初稿（2026-09-26）；审校 D12.R（2026-09-26）。
+> 版本：D12 初稿（2026-09-26）；审校 D12.R（2026-09-26）；全局审计（2026-09-26）。
 
 ---
 
@@ -274,14 +274,14 @@
 | 地貌与地形 | 伊犁河谷、天山雪线、草原、火州盆地；主要 `tr_caodi`、`tr_xuedi`、`tr_bingmian`、`tr_shadi`、`tr_qiaobi` |
 | 轻功门禁 | 商路 qg1；雪线支路 qg3；天池隐径 qg4 |
 | 城市状态 | 伊犁营城 **（待考）** 是军镇；吐鲁番是商埠；均只承担时代图层与旁线，不改写主线地望 |
-| 主要 NPC | `npc_huoqingtong`、`npc_kasili`、`npc_chenjialuo`；袁士霄、天山双鹰仅用显示名，待 `design/18` 补正式 ID |
+| 主要 NPC | `npc_huoqingtong`、`npc_kasili`、`npc_chenjialuo`、`npc_yuanshixiao`、`npc_chenzhengde`、`npc_guanmingmei` |
 | 可学武功 | `sk_tianchiyinlu`、`sk_tianchibu`、`sk_yingyangzhang`、`sk_tianshanyingyang`；高阶 `sk_baihuacuo` |
 | 敌人等级 | 商路匪徒 Lv44–46；雪线精英 Lv47–49；天池试招 Lv50（目标式） |
 | 专属场景 | `sc_12_yili_yingdao`、`sc_12_tianshan_xuejing`、`sc_12_tianchi_shizhao`、`sc_12_turpan_shanglu` |
 | 秘境 / 奇遇 | 天池试招、雪线鹰迹、失散驼铃；完整链见 `q_12_qiyu_14` |
 | 资源 / 营生 | 2 个资源点、2 个营生 |
 
-天池传承可以在本界提供完整来源，但袁士霄及天山双鹰未有正式 `npc_*`。在人物名录补录前只能用剧情显示名和临时场景 actor，不能写入同伴存档。
+天池传承可以在本界提供完整来源；袁士霄及天山双鹰已由书剑 NPC 目录登记正式 `npc_*`，其同行窗口与命定死亡边界分别引用目录和 story §8，不由本章另定义。
 
 ### 3.10 十八城时代状态与入口
 
@@ -610,7 +610,7 @@ grant fateRoute12 == fate ? tsp_12_fate : tsp_12_canon
 
 | 级 / T01 称谓 | 本界可接触的已入图鉴武学 | 本门职责与配给特例 |
 |---|---|---|
-| L1 俗家弟子 / 沙弥 | `sk_luohanshibashou`、`sk_hongquan`、`sk_shaolingunfa`、`sk_luohanbu` | 报酬 L1；粮食、木料；寺务与山路接引 |
+| L1 俗家弟子 / 沙弥 | `sk_luohanshibashou`、`sk_hongquan`、`sk_shaolingunfa`、`sk_luohanbu`、`sk_shaolinchangquan`、`sk_shaolinhushangun`、`sk_chanmenshenfa`、`sk_nanshaolinqiaoshou` | 报酬 L1；粮食、木料；寺务与山路接引。前三门以 `reqsOverride {sect: {id: sect_nanshaolin, rank: 1}}` 共享；护山棍另需 `sk_shaolingunfa` 3 重，桥手另需 `sk_luohanshibashou` 3 重 |
 | L2 剃度弟子 / 入室僧 | `sk_tongzigong`、`sk_meihuazhuang`、`sk_boruoxinjing` | 报酬 L2；墨料 / 常药；经课与护拓 |
 | L3 亲传弟子 / 闭关僧 | `sk_tiexiangong`、`sk_wuxingquan`、`sk_wulangbaguagun`、`sk_bazhandao`、`sk_shaolinshangke` | 报酬 L3；药材或武备包；院堂试艺 |
 | L4 首座 / 长老 / 洪门护法 | `sk_huheshuangxingquan`；共享来源 `sk_tiebushan` | 报酬 L4；武备 / 伤药；护寺与身世证物责任 |
@@ -767,8 +767,11 @@ grant fateRoute12 == fate ? tsp_12_fate : tsp_12_canon
 | `npc_muzhuolun`、`npc_huoayi` | 中老年 / 青壮；生卒未知 **（待考）** | 第十九回败讯明确战死 | 现时战死后只允许回忆 / 遗物 |
 | `npc_yuwanting` | 中老年；生卒未知 **（待考）** | 开篇前后已故，只作遗命与传承 | 不生成现时活体 |
 | `npc_chenshiguan` | 历史对象，准确生卒 **（待考）** | 本界现时已故，只由海宁墓碑 / 文书出现 | 不沿用目录中的“现时可招募”旧口径 |
+| `npc_afanti`、`npc_yuanshixiao`、`npc_wangweiyang` | 中老年；生卒未知 **（待考）** | 本界支线 / 师承人物，按目录任务门槛限幕同行 | 未有后书 appearance 前不承诺活体重逢 |
+| `npc_chenzhengde`、`npc_guanmingmei` | 老年；第二十回命定死亡 | 玉峰支线可阶段同行；终局死亡 | 本书主改命不改写其结局 |
+| `npc_zhouyingjie` | 青年；第三回命定死亡 | 仅事发前极短同行 / 保护窗口 | 既成死亡不可消费化改写 |
 
-阿凡提、袁士霄、天山双鹰、王维扬、周英杰与本幕关东三魔虽可按故事显示名或群体模板出现，但当前不在 28 人权威目录中，故不创建临时 `npc_*`，也不写入可招募持久化状态。
+上述六名人物已由 `design/catalog/npcs-ch12-shujian.md` 登记正式 ID；本章只消费目录给出的 D 级与任务门槛。关东三魔继续使用群体 actor / 组织语境，不拆分静态 `npc_*`，也不写入可招募持久化状态。
 
 ### 8.4 前界重逢与后界能力重设
 
@@ -876,7 +879,7 @@ Z2 后基伤 = floor(7,333×0.6075398…) = 4,455
 | 玄阶 | `sk_honghuaxinfa` 5、`sk_jindifa` 6、`sk_tianchibu` 4、`sk_yingyangzhang` 6、`sk_guandongliumodao` 4、`sk_huibujianshu` 6、`sk_tianshanqishe` 5、`sk_huibushuaijiao` 4、`sk_taijimenquan` 6、`sk_taijimenjian` 5、`sk_guangpingxinfa` 4、`sk_baguazhang` 6、`sk_youshenbu` 4 | 红花会、天池、敌方残谱、回部、太极门、八卦门 | 对应 §6–§7 任务与职级；敌方残谱允许制服 / 缴械，不以击杀为前提 |
 | 玄阶访学 | `sk_wulangbaguagun` 6、`sk_tiexiangong` 5、`sk_wuxingquan` 5、`sk_bazhandao` 5；`sk_mianzhang` 5、`sk_liangyixinfa` 5、`sk_furongjinzhen` 6；`sk_jundituna` 5、`sk_junzhongdao` 6、`sk_tongbeijin` 6、`sk_wuguanxinfa` 4、`sk_qingfengjian` 6 | 南少林、武当、军伍、武馆、江湖通行 | 门派 / 城市服务与任务来源；清宫、镖局不得发尚未入图鉴候选 |
 | 黄阶 | `sk_honghuachangquan`、`sk_honghuajian`、`sk_honghuabu`、`sk_tianchiyinlu`、`sk_guandongduandao`、`sk_huibuchujian`、`sk_huibuhushou`、`sk_huibutunaxi`、`sk_guangpingchangquan`、`sk_taijimenchujian`、`sk_baguarumenquan`、`sk_baguachujidao` | 各本土链 L1 / 散承入口 | 用于入场补位与展示门派手感；不能通过批量购买跳过入门职责 |
-| 黄阶访学 | `sk_hongquan` 3、`sk_luohanshibashou` 1；`sk_taihegong` 2、`sk_wudangchangquan` 1、`sk_zhenwujian` 3；`sk_junwuchangjian` 3、`sk_gongshou` 2、`sk_tantuirumen` 3、`sk_jianghurumenjian` 3 | 南少林、武当、军伍、武馆 / 游方武师 | §3 城市与 §7 门派入口 |
+| 黄阶访学 | `sk_hongquan` 3、`sk_luohanshibashou` 1、`sk_shaolinchangquan` 3、`sk_shaolinhushangun` 3、`sk_chanmenshenfa` 2、`sk_nanshaolinqiaoshou` 3；`sk_taihegong` 2、`sk_wudangchangquan` 1、`sk_zhenwujian` 3；`sk_junwuchangjian` 3、`sk_gongshou` 2、`sk_tantuirumen` 3、`sk_jianghurumenjian` 3 | 南少林、武当、军伍、武馆 / 游方武师 | §3 城市与 §7 门派入口；前三门嵩山基础艺在书剑改用南少林 L1 `reqsOverride`，护山棍仍需少林棍法 3 重；桥手需罗汉十八手 3 重 |
 
 `sk_tianshanqishe` 按图鉴属于暗器栏，不计兵器栏；`sk_honghuahuiheji` 是可单人施展的阵法武学，不等于 `ComboDef`。两项均不得用于虚增“兵器三门”或“双人合击”数量。
 
@@ -1134,6 +1137,8 @@ derived:
 
 本节只登记 `design/02` §6 的回响、书眠、重逢和传承接口。跨书结果可以改变对白、可选支线、初始关系、图鉴与不高于地阶的小额奖励；不能改变本界五锚点，也不能改变 `ch13_feihu` 的历史起点。唯一器物、活动队清空、能力快照、残篇与异时之器均引用 `design/02`、`design/18`，本章不另设复制或复活规则。
 
+本界开放 8 区，前代传承投放上限严格引用 `design/20` §4.1：`legacyCarrierCap=ceil(8/2)=4`，`heirCarrierCap=ceil(4/2)=2`，`fragmentAwardCap=2×4=8`，`keyItemAwardCap=4`，即 **4/2/8/4**。这是全界系统上限，不代表每条候选必定投放；同一传承源在本界仍至多一个主载体。
+
 ### 11.2 从 `ch11_yuanyang` 读入的回响
 
 `ch11_yuanyang` 约 1740 年离界，本界 1753 年入场，字幕口径是“十余年”，核算为 `1753−1740=13` 年。以下 6 项满足每界至少 5 个读入回响的配额；未满足条件时使用右栏降级，不凭空补物或活人。
@@ -1372,7 +1377,7 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 | R12-14 | 陈家洛、霍青桐、喀丝丽、赵半山等虚构人物年龄段与卒年 | 年龄段沿 `design/18`，未知保持未知 | 招募 UI 和后书重逢 U0 |
 | R12-15 | 王维扬与八卦门、南少林称谓、红花会十四席的具体人物职责 | 当前仅用上游组织模板和显示名 | 门派对白、人物名录、群像岗位 |
 | R12-16 | 凝碧剑、金笛、铁胆、霍青桐短剑、芙蓉金针在原著中的持有人、取得与最终流转 | 品阶 / ID 沿 `design/10`，章节只给合法结算窗口 | 掉落动画、托管与归还文本 |
-| R12-17 | 阿凡提、袁士霄、天山双鹰、王维扬、周英杰、关东三魔是否应进入权威 NPC 名录 | 只用显示名 / 群体 actor，不进同伴存档 | 持久化、招募和跨书资格 |
+| R12-17 | 已解决：阿凡提、袁士霄、天山双鹰、王维扬、周英杰已登记正式 ID；关东三魔保持群体 actor | 六名人物按目录写入持久状态；群体槽不拆静态 NPC | 招募与跨书仍逐项服从目录、appearance 与 U0 |
 | R12-18 | 前界袁冠南、萧中慧等人在 1753 年是否明确健在 | 无 `explicitAliveAt` 即不生成活体 | 重逢支线，只保留传闻 / 遗物 |
 
 以上均须以三联 / 广州修订版逐字终校。公开文本曾用于故事文档纠错，但不能替代指定校本；本章不因网页回目编号看似明确就删去 **（待考）**。
@@ -1517,7 +1522,7 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 | `design/02/03/04/05` | 书眠、压制、属性、伤害、层数与装配 | 已解决：见 §8.6、§9、§11–§12 |
 | `design/08/09/10` | 地形、qg、Boss / 合击、五件名器和物品边界 | 已解决：见 §3、§8–§10、§12 |
 | `design/11/12/13` | 8/18/9/26/14/24/9/9/8/18/22 预算、任务 / 门派接口、天书与结局 | 已解决：见 §0.2 及对应各节 |
-| `design/15/16/17/18/20` | 冲穴、经济、时代门派、人物 / 重逢、传承源 | 部分已解决：系统接口见 §3、§7–§9、§11；书剑人物生死字段尚待 `design/18` / 名录同步 |
+| `design/15/16/17/18/20` | 冲穴、经济、时代门派、人物 / 重逢、传承源 | 已解决：系统接口见 §3、§7–§9、§11；书剑补录人物见 NPC 目录，本界传承上限复算为 4/2/8/4 |
 | `design/map/jianghu-ch12.svg`、`cities.yaml` | 本时代地图与 18 城显示名 | 已解决：见 §3.1、§3.10 |
 | `design/07-set-system.md` | 套装唯一归属 | **未满足：文件当前不存在**；本章关闭所有未定套装效果 |
 
@@ -1525,12 +1530,12 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| D12-P01 | 基准 §12 登记 AR-04 要求的章节场景前缀 `sc_<NN>_<拼音>`，并明确它与 `design/11` 稳定地理 `scn_*` 的映射 / 生命周期 | 本章按作者明令必须使用 `sc_12_*`，但基准 v1.1 尚无 `sc_*`；若不裁定会形成双场景前缀 |
-| D12-P02 | 采纳故事 P12-C01 / C02：基准 §12 登记 `dc_<NN>_<nn>`，并明确 `flag_*` 是存档键而非内容实体 | 已审校故事和章节接口必须稳定引用选择与派生条件 |
-| D12-P03 | 采纳 11 / 16 的 P-B3-01、P-B3-02、B16-P01：区域改用全局 `rg_*`，登记 `city_*`、`rp_*`、`biz_*`、`job_*` | AR-04～06 已成为作者优先需求，而基准前缀表仍保留旧 `rg_NN_*` |
-| D12-P04 | 基准 §18 补 `design/15`、`16`、`17`、`18`、`20` 的唯一归属，并补 `design/story/*` 的剧情唯一归属 | 当前基准 §18 仍停在早期文档集合，不能表达作者新增系统的事实优先级 |
-| D12-P05 | 基准 §17 的第 4 节模板改为“若已有审校故事文档，章节只写 6–10 个制作阶段索引和系统接口” | AR-10 已要求避免两个文档重复剧情；当前模板仍要求每幕正文 |
-| D12-P06 | 基准 §12 登记 `gauge_*` 的章节实例归属规则，允许章节关卡定义资源槽，但通用结算仍归 `design/09` | `gauge_*` 已有前缀，却未明确章节可否登记具名关卡槽 |
+| D12-P01 | 已解决：Canon v1.2 §12 已登记 `sc_<NN>_<拼音>`，并明确旧 `scn_*` 只迁移读取、不双写 | 本章统一使用 `sc_12_*` 章节相位 / 关卡实例 |
+| D12-P02 | 已解决：Canon v1.2 §12 已登记 `dc_<NN>_<nn>`，并明确 `flag_*` 是任务内部键而非内容实体 | CP-11、CP-39 已裁定 |
+| D12-P03 | 已解决：Canon v1.2 已登记全局 `rg_*`、`city_*`、`rp_*`、`biz_*`、`job_*` | CP-06 已采纳；本章不再使用旧 `rg_NN_*` |
+| D12-P04 | 已解决：Canon v1.2 §18 已补 `design/15`、`16`、`17`、`18`、`20` 及 `design/story/*` 唯一归属 | 本章按归属只引用，不重定义 |
+| D12-P05 | 已解决：Canon v1.2 §17 允许章节将 story 主线编为 6–10 个制作阶段索引，不维护第二份剧情 | 本章 §4 使用 9 个制作阶段 |
+| D12-P06 | 已解决：Canon v1.2 §12 已登记 `gauge_*` 战斗资源槽；通用战斗结算仍归 `design/09` | 本章只登记宫禁实例 `gauge_fengsuo` |
 | D12-P07 | 在故事、人物与图鉴中统一“关东六魔（组织 / 散承总称）—关东三魔（后段在场三人）”的上下文显示规则；不迁移既有技能 / 套装 ID | 公开文本同时使用总称“六魔”和对在场三人的简称“三魔”；需避免把语境差异误判为两个组织，指定版本仍待终校 |
 
 ### 原著考据待办
@@ -1543,7 +1548,7 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 
 | 编号 | 问题 | 默认值 |
 |---|---|---|
-| D12-O01 | `sc_12_*` 与全局 `scn_*` 最终如何共存？ | `sc_12_*` 视为章节相位 / 关卡实例，加载时映射到一个全局场景或城市锚；不批量重命名，等待 D12-P01 |
+| D12-O01 | `sc_12_*` 与旧 `scn_*` 如何共存？ | 已解决：Canon v1.2 §12 规定生产统一 `sc_12_*`，旧 `scn_*` 仅经显式 remap 迁移读取，不双写 |
 | D12-O02 | 普通商号与隐藏舵口是否同一具体杭州街区？ | 两者为相邻相位，在接到同一封急信时汇合；不增加第 19 座城市 |
 | D12-O03 | “邪线”是否作为最终 UI 名称？ | 文档保留“邪线”满足 AR-10；玩家 UI 副标题用“权衡 / 秩序线”，不改底层任务 ID |
 | D12-O04 | 宫禁封锁槽四项是否刚好等权？ | 默认各 25；若原型显示某路径成本显著不同，只调槽值，不改四项改命 AND 条件 |

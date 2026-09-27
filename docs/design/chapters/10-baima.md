@@ -1,10 +1,10 @@
 # 10 · 白马啸西风（书界 DLC）
 
 > 归属（基准 §18）：`ch10_baima` 的时代内容编排——开局、时代图层、主支线接口、门派与人物投放、产出、特色机制、前后界衔接及本界数值落点。
-> 上游：`00-canon.md` v1.1（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/10-baima.md`。
+> 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/10-baima.md`。
 > 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；经脉 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；跨年代传承 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v0.2（D10 初稿；审校 D10.R，2026-09-26）。
+> 版本：v0.2（D10 初稿；审校 D10.R，2026-09-26）；全局审计（2026-09-26）。
 
 ---
 
@@ -659,7 +659,7 @@ UI 在 `dc_10_07`、`dc_10_08` 前显示不可逆提示，但不提前剧透两�
 | `npc_chendahai` 陈达海 | 生卒不详；壮年；结局待考 | D5 | 邪线短约、缴械、归赃、认罪并接受公议 | D09 前只是受制同行；破约即敌对，不能用金钱买断罪责 |
 | `npc_huoyuanlong` 霍元龙 | 生卒不详；壮年；命定死亡情况待考 | D4 | 仅锚影特殊窗或书页改写后的押解 / 问责 | 追忆结束离队；不得凭招募改写主时间线 C01 |
 | `npc_dingtong` 丁同 | 生卒不详；壮年；原著命定死亡 **（待考纸本字词）** | D3 | 仅限 C01 / C02 锚影内，在致命交手前缴械、供出同伙并接受看管 | 追忆结束按既成死亡离队；证词交换不是赦免 |
-| `npc_yunqiangdao` / `npc_quanqiangdao` / `npc_ningqiangdao` | 生卒不详；壮年；原著第五回死亡 **（待考纸本字词）** | D3 | 书页改写后分别提供证词并遵守“不伤人”短约 **（原创扩展）** | 存活到 D09 不属原著线；末项 ID 沿用旧名录，但剧情确认是“姓宋强人”，待上游迁移 |
+| `npc_yunqiangdao` / `npc_quanqiangdao` / `npc_songqiangdao` | 生卒不详；壮年；原著第五回死亡 **（待考纸本字词）** | D3 | 书页改写后分别提供证词并遵守“不伤人”短约 **（原创扩展）** | 存活到 D09 不属原著线；末项正式 ID 对应“姓宋强人”，旧 `npc_ningqiangdao` 仅作只读 alias |
 
 `npc_lisan`、`npc_shangguanhong`、`npc_shizhongjun` 仅在 C01 锚影有特殊短窗；锚影结束全部离队，既成死亡不被改写。哈卜拉姆与绰号“骆驼”的青年没有可靠静态 ID，使用名录规定的生成槽，不虚构姓名。
 
@@ -994,6 +994,8 @@ mazeInstance:
 
 ### 11.3 进入《鸳鸯刀》
 
+白马按 1726 年离界、鸳鸯按 1740 年入界核算，书眠跨度为 `1740−1726=14` 年；逻辑过场 ID 为 `vid_sleep_10_11`，目标 24 秒、允许 20–30 秒。若白马的 1725 年仅用于早期事件显示，不得据此把相邻书眠写成 15 年。
+
 | 项 | 白马输出 | 鸳鸯刀入口用途 | 边界 |
 |---|---|---|---|
 | 时间与地貌 | 从清初回疆转向川陕 / 中原官道 | 书眠由沙路驼铃过渡为驿道镖铃 **（原创扩展）** | 不改变 `ch11_yuanyang` 年代锚 |
@@ -1028,8 +1030,10 @@ mazeInstance:
 
 ```yaml
 bookSleepExit:
+  videoRef: vid_sleep_10_11
   fromChapter: ch10_baima
   toChapter: ch11_yuanyang
+  sleepYears: 14
   recommendedScene: sc_10_gaochang_inner
   alternateScene: sc_10_yumen_jiebie
   require: [it_tianshu_10]
@@ -1174,7 +1178,7 @@ B = 11.4×8 = 91.2 两
 9. 陈达海等人的残图缺线数量、无水沙路结果；正文若只写预计迷失 / 命危，游戏不得擅写全部见尸。
 10. 李文秀最终东归的路线、同伴、白马状态和结尾原句；本稿不引用未经核对的句子。
 11. 哈卜拉姆、绰号“骆驼”的青年以及云 / 全 / 宋姓强人的准确称谓；当前不得虚构姓名。
-12. `npc_ningqiangdao` 与已审校故事所指“姓宋强人”的 ID 不一致，须由人物名录统一迁移。
+12. 已解决：姓宋强人统一使用 `npc_songqiangdao`；旧 `npc_ningqiangdao` 只允许按 `design/18` §7.5 读档迁移，不写回新内容。
 13. 晋威镖局的准确名称、所在地和人物隶属；不能因字形近似误并为《鸳鸯刀》`sect_weixinbiaoju`。
 14. 李文秀、苏普、阿曼、苏鲁克、车尔库、桑斯儿等人的准确年龄线索；本稿只用年龄段。
 15. 哈萨克部族五级玩法称谓的民族史语感，尤其 L3–L5；在专项复核前不用于现实文化概括。
@@ -1335,10 +1339,10 @@ rg -n 'rg_10_|rg_xiyu\b|mer_du\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/des
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| BM-P01 | 基准 §12 增补 `sc_*`、`rp_*`、`biz_*`、`job_*`、`dc_*` 等已被专项文档采用的前缀 | 当前章节必须按作者需求使用这些 ID，而基准旧表未完整登记 |
-| BM-P02 | 基准 §17 的地图模板改为“时代图层：全局 `rg_*` + 本界 `sc_NN_*`”，替换旧 `rg_NN_*` 示例 | 落实 AR-04 / AR-11，避免新章节继续制造重复区域 |
-| BM-P03 | 基准 §17 的主线幕数允许引用已审校 story 的 13 幕标准路线，不以 6–10 强行压缩 | 白马两条标准路线各 13 幕；压缩会破坏 AR-10 的唯一剧情源 |
-| BM-P04 | 基准 §18 增列 `design/15`–`20` 的唯一归属 | 作者新增系统已超出旧归属表，章节需要稳定引用边界 |
+| BM-P01 | 已解决：基准 §12 已登记 `sc_*`、`rp_*`、`biz_*`、`job_*`、`dc_*` 等前缀 | Canon v1.2 已采纳，本文继续使用正式 ID |
+| BM-P02 | 已解决：基准 §17 已采用“时代图层：全局 `rg_*` + 本界 `sc_NN_*`” | Canon v1.2 已落实 AR-04 / AR-11，旧 `rg_NN_*` 不再新建 |
+| BM-P03 | 已解决：基准 §17 允许正 / 邪各 8–14 幕并由章节文档按 6–10 个制作阶段索引 | 白马各 13 幕合法；本文 §4 只编组，不压缩剧情 |
+| BM-P04 | 已解决：基准 §18 已增列 `design/15`–`20` 的唯一归属 | Canon v1.2 已采纳，本文按归属引用 |
 
 ### 原著考据待办
 
@@ -1351,7 +1355,7 @@ rg -n 'rg_10_|rg_xiyu\b|mer_du\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/des
 | BM-O01 | 哈萨克部族 L5 是否允许异乡玩家取得 | 不允许；机械层保留，叙事上由共同体 NPC 担任 |
 | BM-O02 | 白马四件具名固定装备具体是什么 | 不自造 `eq_*`；只投放已登记奇物 / 坐骑，待 `design/10` 分配 |
 | BM-O03 | 瓦耳拉齐与马家骏用哪些完整武学达到地上9·8 Boss 锚 | 不建未收录指法 / 暗器；用合法图鉴组合占位，待图鉴补齐 |
-| BM-O04 | `npc_ningqiangdao` 是否迁移为姓宋对应 ID | 沿用现有 ID 兼容存档，显示称谓按 story，不再创建并存 ID |
+| BM-O04 | `npc_ningqiangdao` 是否迁移为姓宋对应 ID | 已解决：新内容统一写 `npc_songqiangdao`；旧键只读迁移，不创建并存实体 |
 | BM-O05 | 前界同伴能否实体重逢 | 当前为 0；只有 `design/18` 补 `appearanceChapters` 后开放 |
 | BM-O06 | 套装四个候选标签的实际件数与效果 | 不定义；待 `design/07-set-system.md` 落盘 |
 | BM-O07 | AR-13 的前代传承与本界可合成项目 | 已解决：§9.7 列 8 条区域相容候选，单周目最多 3 个主载体；材料齐全者可按 `design/20` 校合 |
