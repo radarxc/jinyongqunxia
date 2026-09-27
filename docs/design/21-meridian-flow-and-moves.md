@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2；作者新增需求 AR-14 与 AR-02 / AR-03 / AR-12 见 `decisions/author-requirements.md`；作者决定见 `decisions/author-decisions.md`；冲突裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：属性、内力与资质 → `design/03`；Z0–Z10、取整与 TTK → `design/04`；武学、招式、层数、熟练、内功性质与 `ultimate` → `design/05`；Buff、控制互斥与 Boss 递减 → `design/06`；CT、运劲、解穴、挣脱与 AI → `design/09`；成长与外来压制 → `design/13`；手机 UI → `design/14`；20 脉 / 180 穴、开通、冲穴、周天与九转 → `design/15`；Core、RNG、存档与 golden → `tech/05`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v0.9（AR-14 首稿，2026-09-27）。
+> 版本：v1.0（AR-14 首稿；审校 M2.R，2026-09-27）。
 
 ---
 
@@ -16,7 +16,7 @@
 - §3 整数公式、卡住与胀损
 - §4 招式路线、路线加成与绝招
 - §5 路线模板与配表方法
-- §6 金庸小说招式样本
+- §6 金庸小说取材与图鉴扩展样本
 - §7 现实武术招式样本与资料
 - §8 擒拿 1–9 级
 - §9 点穴 1–9 级
@@ -42,8 +42,8 @@
 6. 长路线不是白送伤害：每尝试一段增加 CT；熟练不足、节点迟滞或点穴会卡住，未通过之气形成堆积，超过动态阈值则胀损并封路。
 7. 擒拿是外功严重度 1–9，点穴是内功对具体穴位的严重度 1–9；二者由后续 `design/06` 注册承载 Buff，与旧麻、定身、封穴做兼容映射而非同义替换。
 8. 调息合并进 `design/09` 已有 `yunjin mode:tiaoxi`：既保留其回内 / 防护，又增加理顺迟滞、卸除堆积、修复胀损与尝试解穴。
-9. Python 参考实现与固定黄金数据分别位于 `tools/balance/meridian_flow_sim.py`、`meridian_flow_golden.json`；它们是后续 TypeScript Core 的独立慢模型与逐字段对齐基准。
-10. 当前黄金对同一组 04 锚点的接入前 / 后行动数是普通 `5→5`、精英 `9→8`、Boss `22→21`，仍在 3–5 / 6–10 / 12–25 目标内。
+9. Python 参考实现与固定黄金数据分别位于 `tools/balance/meridian_flow_sim.py`、`meridian_flow_golden.json`；它们是后续 TypeScript Core 的独立慢模型与逐字段对齐基准。单位各有状态实例，但随机数只由 Core 的唯一全局 `battle` 流按提交顺序供给。
+10. 当前黄金对同一组 04 锚点、同一我方攻击者的接入前 / 后行动数是普通 `5→5`、精英 `9→9`、Boss `22→21`，仍在 3–5 / 6–10 / 12–25 目标内。
 
 ### 0.1 推荐阅读路径
 
@@ -148,7 +148,7 @@
 7. `routeZ3Bp ≥ 0` 且不超过路线理论上限；Z3 的全局钳制仍由 04 执行。
 8. 卡住只能减少本次路线贡献；不能因为堆积反而增加本次伤害。
 9. 无路线的旧内容迁移为 2 段默认短路线，不允许得到 0 成本满加成。
-10. Boss 也按同样流动公式；其抗点穴 / 抗擒拿来自 06 的抵抗与递减，不来自跳过模块。
+10. Boss 也按同样流动公式；其抗点穴 / 抗擒拿来自 06 的效果抵抗、硬控递减与终局免疫，不通过跳过经脉模块实现。`bind` 是药物 / 蛊主长期受制标签，不得误拿来免疫擒拿 `cc.bind`。
 
 ---
 
@@ -240,7 +240,7 @@ incoming[i] = passed[i-1] + ΔQ
 4. 应用敌人模板的整体容量 / 流畅修正；
 5. 应用装备与 Buff 的显式 `meridianCapacityBp` / `meridianFlowBp` 修饰；
 6. 把开战前伤势投影为初始迟滞，最后钳制；
-7. 所有动态值置零；实例持有 battle 流中为本单位预留的子状态 / 游标，不创建第六条全局随机流。
+7. 所有动态值置零；实例不持有 RNG。Core 在命令事务内取得唯一全局 `battle` 流，并按实际提交顺序把同一 RNG 对象传给攻击者实例；不派生单位子流，也不创建第六条全局随机流。
 
 同一字段的多个修饰先按 `(sourceType, sourceId, modifierId)` 排序后加算，再乘算一次并钳制，沿用 03 / tech/05 的确定性约定。没有主运内功时按黄下 1 品、1 重、`harmony` 计算，允许普通攻击短路线，但不得借此获得阴阳同性增益。
 
@@ -331,10 +331,13 @@ routeZ3Bp    = floor(routeCapBp(routeLength)
 
 ```text
 flowCt = Σ segmentCt[实际尝试段]
-effectiveRecovery = MoveDef.recovery + flowCt + 擒拿附加收招
+effectiveRecovery = clamp(
+  round(MoveDef.recovery × (1 + Σrec_pct))
+  + flowCt + 其他Σrec_flat,
+  500, 2000)
 ```
 
-`segmentCt` 合法范围 40–120，普通转折建议 60–90，强催 / 逆行 90–120。它直接加到 09 的收招值，不作为另一次行动，也不改变首轮固定排序。若预检已发现未开通 / 胀损 / 9 级点穴，动作不可提交且 `flowCt=0`；若途中卡住，已经尝试的段仍计时。
+`segmentCt` 合法范围 40–120，普通转折建议 60–90，强催 / 逆行 90–120。`flowCt` 作为 `design/09` §3.4 的 `Σrec_flat` 一项，不作为另一次行动，也不改变首轮固定排序；最后仍受 `rec_eff∈[500,2000]` 钳制。配表必须满足 `MoveDef.recovery + 满路线 flowCt ≤ 2000`，不得用超过钳制上限的“免费段”换伤害。若预检已发现未开通 / 胀损 / 9 级点穴，动作不可提交且 `flowCt=0`；若途中卡住，已经尝试的段仍计时。
 
 ### 3.6 tick 与自然消退
 
@@ -443,9 +446,9 @@ Z3 来源键建议为 `(sourceType:'meridianRoute', sourceId:routeId)`；与留�
 ### 5.3 配表步骤
 
 1. 先在武学图鉴确认现有 `sk_*` / `mv_*`、品阶、性质、动作描述和是否绝招。
-2. 选择 2–18 个已登记 `ap_*`，让路线能表达起势、躯干蓄力、末端发劲。
+2. 选择 2–18 个已登记 `ap_*`，让路线能表达起势、躯干蓄力、末端发劲；并由当前 `MoveDef.recovery` 反推可用 CT 预算。
 3. 根据段数查上限，不以目标伤害倒推无限长度。
-4. 每段填 40–120 CT；换脉、逆行、强催段提高 CT 与 `riskBp`。
+4. 每段填 40–120 CT；换脉、逆行、强催段提高 CT 与 `riskBp`，但满路线必须满足 `recovery+ΣsegmentCt≤2000`。
 5. 以有效层数和招式使用熟练生成 `practiceBp`；不可在路线里写死角色熟练。
 6. 用 `preview` 检查该角色当前可用性、预计 Z3、堵塞风险和完整收招。
 7. 对普通 / 精英 / Boss 三档跑 04 TTK；超界优先调路线 CT / 固有风险，再考虑上限全局常数。
@@ -469,11 +472,11 @@ Z3 来源键建议为 `(sourceType:'meridianRoute', sourceId:routeId)`；与留�
 
 ---
 
-## 6. 金庸小说招式样本（44 条）
+## 6. 金庸小说取材与图鉴扩展样本（44 条）
 
 ### 6.1 取材原则与考据边界
 
-- 本节 44 条均引用仓库已经登记的 `sk_*` / `mv_*`，不在本文定义这些 ID。
+- 本节 44 条均引用仓库已经登记的 `sk_*` / `mv_*`，不在本文定义这些 ID；其中 41 条是图鉴所列小说取材候选，3 条仅为图鉴游戏化命名，不混入小说数量。
 - “书名 / 情节”采用图鉴已有考据口径。因本次未持有三联 / 广州修订版全文可逐页检索，招名、次序或情节细节凡未逐字核对者都标**（待考）**，不编回目号或原文引句。
 - 路线、CT、上限、卡住 / 胀损风险和内功性质均为游戏设计，统一属于**（原创扩展）**，不声称见于小说。
 - 品阶、绝招位以 `design/05` 和图鉴当前条目为准；后续同步时如果图鉴变更，本文引用必须跟随。
@@ -499,12 +502,12 @@ Z3 来源键建议为 `(sourceType:'meridianRoute', sourceId:routeId)`；与留�
 | 时乘六龙 `mv_xianglong18_shicheng` | 否 | A→B→E 前2 / 10 | 95 | 750 bp | 高；多次转劲 | 阳 |
 | 密云不雨 `mv_xianglong18_miyun` | 否 | A→D / 9 | 90 | 720 bp | 中；封绝支路 | 调和 |
 | 损则有孚 `mv_xianglong18_sunze` | 否 | A→B / 8 | 100 | 685 bp | 高；自损强催 | 阳 |
-| 龙战于野 `mv_xianglong18_longzhan` | 否 | F→A→B 前2 / 10 | 95 | 750 bp | 高 | 阳 |
+| 龙战于野 `mv_xianglong18_longzhan` | 否 | F→A→B 前2 / 10 | 90 | 750 bp | 高 | 阳 |
 | 履霜冰至 `mv_xianglong18_lvshuang` | 否 | A→C / 8 | 80 | 685 bp | 中；连续用会淤积 | 阴 / 调和 |
 | 羝羊触藩 `mv_xianglong18_diyang` | 否 | F→E / 8 | 90 | 685 bp | 中；擒锁支路 | 阳 |
 | 神龙摆尾 `mv_xianglong18_shenlong` | 否 | B 逆序→G / 8 | 95 | 685 bp | 高；逆行转身 | 阳 / 调和 |
 
-`mv_xianglong18_lianhuan`（十八掌连环）是 12 天上绝招：路线采用 A→C→D→B 的 18 段展开，单段 80 CT，上限 900 bp，风险高，适配阳 / 调和。其“十八掌一气呵成”是现有图鉴的**（原创扩展）**表现，不能据此写成小说原招名。
+`mv_xianglong18_lianhuan`（十八掌连环）是 12 天上绝招：路线从 A / C / D / B 片段择取 §12.1 所列 10 个不重复节点，单段 80 CT，上限 750 bp，风险高，适配阳 / 调和。其 `MoveDef.recovery=1200`，故满路线 `rec_eff=1200+800=2000`，恰好达到 09 上限；“十八掌”是六段命中演出及**（原创扩展）**命名，不等于 18 个经脉节点，也不能据此写成小说原招名。
 
 ### 6.3 独孤九剑（9 条）
 
@@ -522,9 +525,9 @@ Z3 来源键建议为 `(sourceType:'meridianRoute', sourceId:routeId)`；与留�
 | 破箭式 `mv_dugu9_poanqi` | 否 | 百会→外关→合谷→劳宫 / 4 | 65 | 480 bp | 低；反应型 | 调和 |
 | 破气式 `mv_dugu9_poqi` | 否 | A→D→百会 / 10 | 100 | 750 bp | 高；破内强催 | 调和 |
 
-`mv_dugu9_wuzhao`（无招胜有招）沿用现有 `ultimate:true`：路线 A→G→D→B，12 段、单段 90 CT、上限 800 bp、高风险、调和适配。它与 05 的不可反击、清架势等机制并行，不额外复制收益。
+`mv_dugu9_wuzhao`（无招胜有招）沿用现有 `ultimate:true`：路线取 A→G→D 中 10 个不重复节点，单段 90 CT、上限 750 bp、高风险、调和适配；图鉴 `recovery=1100`，故满路线 `rec_eff=2000`。它与 05 的不可反击、清架势等机制并行，不额外复制收益。
 
-### 6.4 六脉神剑（6 条）与一阳指（2 条）
+### 6.4 六脉神剑（6 条）与一阳指图鉴扩展（2 条）
 
 六脉神剑 `sk_liumai` 为 12 天上、调和；《天龙八部》天龙寺御鸠摩智、段誉习剑及少室山等情节见图鉴，六剑对应描述 / 次序**（待考）**。一阳指 `sk_yiyangzhi` 为 11 天中、阳；见《天龙八部》《射雕英雄传》《神雕侠侣》段氏与一灯相关情节，具体九品说**（待考）**。
 
@@ -536,12 +539,12 @@ Z3 来源键建议为 `(sourceType:'meridianRoute', sourceId:routeId)`；与留�
 | 关冲剑 `mv_liumai_guanchong` | 否 | A→外关→关冲 / 6 | 80 | 600 bp | 中 | 调和 / 阳 |
 | 少冲剑 `mv_liumai_shaochong` | 否 | A→神门→少冲 / 6 | 70 | 600 bp | 中 | 调和 / 阴 |
 | 少泽剑 `mv_liumai_shaoze` | 否 | A→后溪→少泽 / 6 | 75 | 600 bp | 中 | 调和 / 阳 |
-| 一阳点穴 `mv_yiyangzhi_dianxue` | 否 | 气海→膻中→内关→中冲 / 4 | 80 | 480 bp | 中；施点穴 | 阳 / 调和 |
-| 封穴截脉 `mv_yiyangzhi_jiemai` | 否 | A→D / 9 | 90 | 720 bp | 高；施点穴 | 阳 / 调和 |
+| 一阳点穴 `mv_yiyangzhi_dianxue` **（图鉴原创扩展名，待考）** | 否 | 气海→膻中→内关→中冲 / 4 | 80 | 480 bp | 中；施点穴 | 阳 / 调和 |
+| 封穴截脉 `mv_yiyangzhi_jiemai` **（图鉴原创扩展名，待考）** | 否 | A→D / 9 | 90 | 720 bp | 高；施点穴 | 阳 / 调和 |
 
-`mv_liumai_liumaiqifa`、`mv_yiyangzhi_qianyang` 是图鉴中的**原创扩展命名绝招**，可分别采用 12 段 / 10 段路线；它们不计入“取自小说的 44 条”。
+`mv_liumai_liumaiqifa`、`mv_yiyangzhi_qianyang` 是图鉴中的**原创扩展命名绝招**，建议都采用 10 段路线、每段 80 CT；图鉴 `recovery=1200`，故满路线 `rec_eff=2000`。它们不计入小说取材数量。
 
-### 6.5 太极拳与弹指神通（9 条）
+### 6.5 太极拳（8 条）与弹指神通图鉴扩展（1 条）
 
 太极拳 `sk_taijiquan` 为 11 天中、调和；图鉴依据《倚天屠龙记》张三丰传拳、张无忌迎战阿三一段，完整招序与个别字样**（待考）**。弹指神通 `sk_tanzhi` 为 10 天下、调和；见《射雕英雄传》《神雕侠侣》黄药师相关情节，以下只取图鉴已登记招式。
 
@@ -555,23 +558,23 @@ Z3 来源键建议为 `(sourceType:'meridianRoute', sourceId:routeId)`；与留�
 | 进步搬拦捶 `mv_taijiquan_banlan` | 否 | F→E / 8 | 85 | 685 bp | 中 | 调和 / 阳 |
 | 如封似闭 `mv_taijiquan_rufeng` | 否 | A→G / 8 | 80 | 685 bp | 中；守势 | 调和 |
 | 十字手 `mv_taijiquan_shizi` | 否 | G→E / 8 | 80 | 685 bp | 中；截脉 | 调和 |
-| 弹指 `mv_tanzhi_tanzhi` | 否 | 气海→内关→中冲 / 3 | 65 | 400 bp | 低 | 调和 / 阴 |
+| 弹指 `mv_tanzhi_tanzhi` **（图鉴原创扩展名，待考）** | 否 | 气海→内关→中冲 / 3 | 65 | 400 bp | 低 | 调和 / 阴 |
 
-`mv_taijiquan_baohu`（抱虎归山）是图鉴已定 7 重绝招：G→F→D 的 12 段、单段 85 CT、上限 800 bp、中风险、调和适配。图鉴同时说明招式效果为原创扩展；本文不把现实 24 式条目与小说版本强行等同。
+`mv_taijiquan_baohu`（抱虎归山）是图鉴已定 7 重绝招：取 G→F→D 中 9 个不重复节点，单段 85 CT、上限 720 bp、中风险、调和适配；图鉴 `recovery=1200`，故满路线 `rec_eff=1965`。图鉴同时说明招式效果为原创扩展；本文不把现实 24 式条目与小说版本强行等同。
 
 ### 6.6 数量核对与后续考据
 
-| 组 | 小说来源条数 | 已有武学 ID | 已有招式 ID 状态 |
-|---|---:|---|---|
-| 降龙十八掌 | 18 | `sk_xianglong18` | 18/18 已登记 |
-| 独孤九剑 | 9 | `sk_dugu9` | 9/9 已登记 |
-| 六脉神剑 | 6 | `sk_liumai` | 6/6 已登记 |
-| 太极拳 | 8 | `sk_taijiquan` | 8/8 已登记 |
-| 一阳指 | 2 | `sk_yiyangzhi` | 2/2 已登记 |
-| 弹指神通 | 1 | `sk_tanzhi` | 1/1 已登记 |
-| **合计** | **44** | 6 门 | 均为引用，不在本文定义 |
+| 组 | 小说取材候选 | 图鉴扩展名 | 已有武学 ID | 已有招式 ID 状态 |
+|---|---:|---:|---|---|
+| 降龙十八掌 | 18 | 0 | `sk_xianglong18` | 18/18 已登记 |
+| 独孤九剑 | 9 | 0 | `sk_dugu9` | 9/9 已登记 |
+| 六脉神剑 | 6 | 0 | `sk_liumai` | 6/6 已登记 |
+| 太极拳 | 8 | 0 | `sk_taijiquan` | 8/8 已登记 |
+| 一阳指 | 0 | 2 | `sk_yiyangzhi` | 2/2 已登记 |
+| 弹指神通 | 0 | 1 | `sk_tanzhi` | 1/1 已登记 |
+| **合计** | **41** | **3** | 6 门 | 44 个 ID 均为引用 |
 
-本节实际已超过“至少 25 条”要求。所有 44 条均应在正式数据化前以三联 / 广州修订版复核：降龙掌名与顺序；独孤九式逐字及“破箭式”描述；六脉六剑描述和次序；张三丰传太极拳招序；一阳指点穴 / 截脉是否应作为小说原名还是图鉴游戏命名；弹指是否应只称武功而非单招。若核对发现某行是图鉴原创招名，应保留 ID 但把来源改为“图鉴原创扩展”，并补入另一条确证的原著招式，不能伪装成原著。
+小说取材候选 41 条，已超过“至少 25 条”要求；但本轮没有三联 / 广州修订版可逐页检索，因此 41 条仍统一标**（待考）**。正式数据化前须复核降龙掌名与次序、独孤九式逐字及“破箭式”描述、六脉六剑描述与次序、张三丰传太极拳的招序。`一阳点穴`、`封穴截脉`、`弹指` 当前只按图鉴原创扩展名处理；除非纸本能证明是小说中的独立招名，不得改计为小说来源。
 
 ---
 
@@ -587,7 +590,7 @@ Z3 来源键建议为 `(sourceType:'meridianRoute', sourceId:routeId)`；与留�
 
 | 现实招式 | 拳种 / 来源 | 建议挂接 | 品阶 | 绝招 | 路线 / 段数 | 单段 CT | 上限 | 风险 | 性质 |
 |---|---|---|---:|:---:|---|---:|---:|---|---|
-| 半步崩拳 | 形意拳；浙江省武术协会 | `sk_changquanrumen`；待图鉴选录 | 3 黄上 | 否 | F→命门→劳宫 / 6 | 65 | 600 bp | 低 | 阳 |
+| 半步崩拳 | 形意拳；浙江省武术协会 | `sk_changquanrumen`；待图鉴选录 | 3 黄上 | 否 | 命门→劳宫 / 2 | 70 | 300 bp | 低 | 阳 |
 | 劈拳 | 形意五行拳；中国非遗 | `sk_changquanrumen`；待图鉴选录 | 3 黄上 | 否 | 命门→至阳→云门→少商 / 4 | 70 | 480 bp | 低 | 阳 |
 | 崩拳 | 形意五行拳；中国非遗 | `sk_changquanrumen`；待图鉴选录 | 3 黄上 | 否 | 命门→内关→劳宫 / 3 | 65 | 400 bp | 低 | 阳 |
 | 钻拳 | 形意五行拳；中国非遗 | `sk_changquanrumen`；待图鉴选录 | 3 黄上 | 否 | 气海→曲泽→中冲 / 3 | 70 | 400 bp | 低 | 阴 / 调和 |
@@ -596,7 +599,7 @@ Z3 来源键建议为 `(sourceType:'meridianRoute', sourceId:routeId)`；与留�
 | 进退连环 | 形意拳套路；中国非遗 | `sk_changquanrumen`；待图鉴选录 | 5 玄中 | 否 | F→E / 8 | 80 | 685 bp | 中 | 阳 / 调和 |
 | 安身炮 | 形意拳套路；中国非遗 | `sk_changquanrumen`；待图鉴选录 | 6 玄上 | 是 | A→F→B / 12 | 90 | 800 bp | 高 | 阳 |
 
-“半步崩拳”采用短促步法与直线发力的动作意象，所以路线虽有 6 段，CT 仍低于同长重招；其威力并非靠把路线拉到 18 段。所有路线解释均为**（原创扩展）**。
+“半步崩拳”采用短促步法与直线发力的动作意象，因此抽象为 2 段短路线；其威力并非靠拉长路线。所有路线解释均为**（原创扩展）**。
 
 ### 7.3 太极拳现实套路样本（7 条）
 
@@ -616,8 +619,8 @@ Z3 来源键建议为 `(sourceType:'meridianRoute', sourceId:routeId)`；与留�
 
 访问日期均为 **2026-09-27**：
 
-1. 中国非物质文化遗产网·中国非物质文化遗产数字博物馆，《形意拳》：<https://www.ihchina.cn/project_details/13826/>。用于核对三体势、五行拳、十二形、进退连环、安身炮等体系名称。
-2. 中国非物质文化遗产网，《形意拳》条目：<https://www.ihchina.cn/art/detail/id/13827.html>。用于交叉核对五行拳为劈、崩、钻、炮、横。
+1. 中国非物质文化遗产网·中国非物质文化遗产数字博物馆，《形意拳》：<https://www.ihchina.cn/project_details/13826.html>。用于核对三体势、五行拳、十二形、进退连环、安身炮等体系名称；“安身炮”采用该项目页用字，其他支系资料亦见“挨身炮”。
+2. 中国非物质文化遗产网，《形意拳》条目：<https://www.ihchina.cn/project_details/13827/>。用于交叉核对五行拳为劈、崩、钻、炮、横。
 3. 浙江省武术协会，《崩拳实用技法阐秘》：<http://www.zjws.net/HQmXkzJoJ3aZgHrnyE387P/6BEB01D8EFFC48758CF1C45ED4DD58E3>。用于核对半步崩拳名称及其为崩拳基本练法；历史归因未作为确定游戏史实。
 4. 国家体育总局，《巾帼太极韵 共庆三八节——2025年“三八”妇女节太极拳活动在奥体中心举行》：<https://www.sport.gov.cn/n315/n20067006/c28531205/content.html>。用于核对搂膝拗步、野马分鬃、左右揽雀尾。
 5. 国家体育总局，《和冠军一起练太极》：<http://www.sport.gov.cn/n20001280/n20001265/n20067533/c29648218/content.html>。用于交叉核对白鹤亮翅等动作名称。
@@ -656,7 +659,7 @@ Z3 来源键建议为 `(sourceType:'meridianRoute', sourceId:routeId)`；与留�
 ```text
 attackScore = source.apGrapple + floor(source.str/2) + floor(source.agi/4)
 defendScore = target.apGrapple + floor(target.str/3) + floor(target.agi/2)
-gradeEdge   = clamp(source.effGrade-target.resGrade(cc.bind), -3, 3)
+gradeEdge   = clamp(source.effGrade-target.resGrade(cc), -3, 3)
 baseLevel   = clamp(move.grappleLevel + floor((attackScore-defendScore)/20)
                     + sign(gradeEdge), 1, 9)
 ```
@@ -665,10 +668,10 @@ baseLevel   = clamp(move.grappleLevel + floor((attackScore-defendScore)/20)
 
 ### 8.3 持续、叠加与升级
 
-- 默认持续 2 次受擒者自身行动；精英持续减 1（最低 1），Boss 的 1–8 级持续固定 1。
+- 默认持续 2 次受擒者自身行动；精英持续减 1（最低 1），Boss 的 1–8 级持续固定 1；9 级另走 06 的硬控递减，终局守卷人免疫。
 - 同来源同目标再次成功：若新基础级 > 当前，取新级；否则当前级 +1，上限 9，并刷新持续至两者较大值。
 - 不同来源只保留最高级和最长剩余持续，不相加为 18；来源列表只供解除 / 日志追溯。
-- 9 级结束后获得 06 的 `bf_jianyi` 对 `cc.bind.hard` 免疫 1 回合；Boss 还走 `ccCount` 递减。
+- 9 级结束后获得 06 的 `bf_jianyi`，对同一 `cc.bind` 硬控免疫 1 回合；Boss 还走 `ccCount` 递减。
 - 目标受单次 `hpMax×8%` 以上伤害时，擒拿降 2 级；施加者倒地、离场或与目标距离超过招式保持距离时立即解除“维持型”擒拿。
 
 ### 8.4 挣脱
@@ -693,13 +696,14 @@ escapeBp = clamp(
 | 缠绕 `bf_chanrao` | 语义最接近 | 旧缠绕迁移为擒拿 4 的显示投影；原 Buff 仍由 06 读旧 |
 | 缴械 `bf_jiaoxie` | 兵器离手；擒拿 7–9 只令兵器招不可用 | 可并存；擒拿解除不自动拾回兵器 |
 | 眩晕 / 昏迷 | 硬控 | 9 级与其进入同一硬控互斥组，不叠加跳过次数 |
-| Boss 首领 `bf_shouling` | 受制 / bind 默认免疫 | 普通 Boss 最高只到 6 级数值减益；脚本明确可擒者才允许 7–9，并走递减 |
+| Boss 首领 `bf_shouling` | 现行 `immune [bind]` 只覆盖长期受制，不覆盖 `cc.bind` 擒拿 | 1–8 级数值减益持续固定 1 次自身行动；9 级按 06 `ccCount` 硬控递减；终局守卷人免疫硬控 |
+| 09 `unit.state=held` | 萧峰等脚本的贴身人盾 / 冻结生命周期 | 不是通用擒拿 Buff；可投影 9 级 HUD，但位移、误伤与解除仍只归 `design/09` §8.10 |
 
 ### 8.6 拟新增 Buff 规格（交 `design/06` 登记）
 
 | 名称 | 类 / 标签 | 核心字段 | 持续 / 解法 | 备注 |
 |---|---|---|---|---|
-| 受擒 | 效果负；`cc.bind.grapple` | `level:1..9`，映射 §8.1；1–8 数值减益，9 `skipAction` | 2 次自身行动；挣脱 / 重击施加者 / 距离断开 | 新 `bf_*` ID 由 06 创建 |
+| 受擒 | 效果负；主标签 `cc`，子标签 `cc.bind`（擒拿控制） | `level:1..9`，映射 §8.1；1–8 数值减益，9 `skipAction` | 2 次自身行动；挣脱 / 重击施加者 / 距离断开 | 新 `bf_*` ID 由 06 创建；不得复用表示药物 / 蛊主长期受制的主标签 `bind` |
 | 擒拿坚毅 | 机制正；`guard.immune` | 免疫 9 级擒拿升级 | 1 次自身行动 | 可复用 / 扩展 `bf_jianyi`，由 06 决定 |
 
 ---
@@ -805,11 +809,12 @@ natureBp = 调和 10500；其他 10000
 stagnation' = max(0, stagnation-reliefBp)
 backlog'    = max(0, backlog-floor(capacity×reliefBp/10000))
 rupture'    = max(0, ruptureDamage-repairUnits)
-sealLevel'  = sealLevel-1，若 g+n >= sealLevel+6；否则不变
+若 g+n >= sealLevel+6，则 releaseBp 按 §9.4 计算并抽一次 battle RNG；
+成功时 sealLevel' = sealLevel-1，否则不变
 water'      = 0
 ```
 
-战斗外 `reliefBp` 与 `repairUnits` 均 ×15000 bp 后向下取整；可以连续结算直到状态清空，不占 CT。战后默认至少自动执行一次当前主运档案，然后再决定是否在客栈 / 大地图继续恢复。
+门槛只决定“可尝试”，不是自动成功；未点穴或所触节点均未达门槛时不抽 RNG。战斗外 `reliefBp` 与 `repairUnits` 均 ×15000 bp 后向下取整；可以连续结算直到状态清空，不占 CT，但仍按同一规则逐次尝试解穴。战后默认至少自动执行一次当前主运档案，然后再决定是否在客栈 / 大地图继续恢复。
 
 ### 10.3 不同品阶与性质
 
@@ -864,7 +869,7 @@ water'      = 0
 | 召唤物 | 按需 | 能独立施展武学则是；纯投影 / 阵位则否 |
 | 环境行动者 | 按需 | 会以武学攻击则是；纯地形伤害则否 |
 
-实例所有权键为战斗中的稳定 `unitIndex` / `unitId`；同模板生成的十名敌人也必须有十份动态状态，并持有 battle 流按稳定单位顺序分派的独立子状态 / 游标。任何“敌人共用一个 180 节点数组”的优化均不合法。
+实例所有权键为战斗中的稳定 `unitIndex` / `unitId`；同模板生成的十名敌人也必须有十份动态状态。它们可以共享只读派生基底，却不能共享可变节点；RNG 由 Core 事务统一持有，不属于任何单位实例。
 
 ### 11.2 实例状态
 
@@ -876,8 +881,7 @@ MeridianFlowRuntime
 │  └─ opened, water, capacity, flowBp, stagnationBp, backlog,
 │     ruptureDamage, sealLevel
 ├─ grappleLevel, grappleSource, grappleRemaining
-├─ tickNo
-└─ battleRngState[4]
+└─ tickNo, stateVersion
 ```
 
 生产态只需实例化“单位全部可用招式路线节点的并集 + 当前点穴目标”。玩家经脉页仍从 15 的永久数据绘制完整 180 节点；战斗模块缺省节点可按只读基底即时派生。对有 12 条路线、每条 10 穴且 40% 重合的单位，约需 72 个活跃节点，而非总是 180 个。
@@ -888,7 +892,7 @@ MeridianFlowRuntime
 2. 对玩家 / 同伴读取 15 的永久开通状态；敌人按模板的 `openPolicy` 生成；
 3. 以当前有效品阶 / 层数而非真实未压制值计算容量、流畅与熟练；
 4. 加入 `mpMax / STD.mpMax`、内功性质、周天 / 九转、装备与 Buff；
-5. 由 Core 以 battle 流和稳定 `unitIndex` 派生 / 分派单位子状态；具体算法随 M2-P03 交 tech/05 定稿，禁止简单 `battleSeed+unitIndex` 或新建流名；
+5. 模块不接收 seed 或自存 RNG；Core 继续持有 `BattleSession.battleRng`，只在成功命令事务中把 `tx.rng('battle')` 传给最终提交；
 6. 节点按穴位 ID 排序，动态状态置零，完成可序列化快照。
 
 敌人 `openPolicy` 三档：`routeOnly` 只开行动表路线并集（普通）；`schoolCore` 再开门派核心脉（精英）；`fullTemplate` 按 Boss 配置开额外脉。它只减少配表量，不改变玩家能否点穴或封路。
@@ -915,17 +919,17 @@ F8 commit RNG and state together, or roll everything back
 
 | 接口 | 是否改状态 / RNG | 输入 | 输出 / 保证 |
 |---|---|---|---|
-| `initialize` | 创建 | 单位、成长、装配、模板、种子 | 独立实例；全部派生值已钳制 |
+| `initialize` | 创建 | 单位、成长、装配、模板 | 独立状态实例；全部派生值已钳制 |
 | `preview` | 否 / 否 | 路线、可选安全分位 | 预计 Z3、CT、风险节点；不承诺随机结果 |
-| `commit` | 是 / 是 | 路线、命令 token | 唯一 `FlowResult`；事务提交 |
+| `commit` | 是 / 是 | 路线、Core 的 `battle` RNG | 唯一 `FlowResult`；随命令事务提交 |
 | `applyAcupointSeal` | 是 / 由 04 已消费 | 穴位、等级、来源 | 同穴取高 / 升级，返回变更 |
 | `applyGrapple` | 是 / 由 04 已消费 | 等级、来源、持续 | 取高 / 升级，返回行动限制 |
-| `regulateBreath` | 是 / 解穴时是 | 调息档案、战内 / 外、来源 | 修复明细；随机只用于解穴 |
+| `regulateBreath` | 是 / 有合格点穴时是 | 调息档案、战内 / 外、Core 的 `battle` RNG（按需） | 修复明细；只有实际尝试自行解穴才抽 RNG |
 | `tick` | 是 / 否 | battleTick、Buff 投影 | 清水量、卸 1 backlog、同步持续 |
 | `snapshot` | 否 / 否 | 无 | 规范排序的完整 JSON 值 |
-| `restore` | 是 / 否 | 已校验快照 | 原样恢复，包括 RNG；不同单位拒绝 |
+| `restore` | 是 / 否 | 已校验快照 | 原样恢复单位状态；不同单位拒绝；RNG 由 `BattleSession` 恢复 |
 
-`preview` 默认用“不卡住”的安全轨迹展示期望收益，并另外返回每段 `jamChanceBp`、到达概率和最坏封路点。AI 可用这些确定特征算期望值；不得通过反复 preview 偷抽未来 RNG。
+`preview` 默认以 `roll=9999` 计算无随机卡住的条件轨迹，同时返回 `stateVersion`、每段 `jamChanceBp` 与整数累计到达概率；AI 由这些概率计算期望值。胀损风险和调息预览须由相同纯函数基于条件分支另算，不能把安全轨迹冒充期望结果，也不得通过反复 preview 偷抽未来 RNG。
 
 ### 11.6 Core 与战斗循环挂接
 
@@ -938,19 +942,19 @@ F8 commit RNG and state together, or roll everything back
 | 09 E 段 / CT | 加 `flowCt`，同步 Buff 持续 | 下一次就绪时刻 |
 | battle tick | 对所有活动实例按 `unitIndex` 调 `tick` | 可回放状态 |
 | 存档 / replay checkpoint | `snapshot` | `GameState` / hash 域 |
-| 回滚 | 丢弃候选实例或 `restore` | 命令前状态与 RNG 一致 |
+| 回滚 | 丢弃 journal 中的实例写入 | 命令前状态与 `BattleSession.battleRng` 一致 |
 
 经脉计算必须在伤害 Z3 前完成，但点穴 / 擒拿施加在该次伤害后的 06 阶段，不能反向削弱已经命中的当前招。反击若被触发，使用反击者自己的实例。
 
 ### 11.7 确定性细则
 
 1. PRNG 与 tech/05 一致：版本化 `sfc32`，种子经 `splitmix32` 派生，流名仍为 `battle`。
-2. 节点卡住是 battle 流的一部分；单位可持有由 Core 分派的独立子状态，但不新开未登记的第六条全局流。Python 参考实现用显式单位种子模拟该边界，生产派生算法由 tech/05 随 M2-P03 定稿。
+2. 节点卡住是唯一全局 `battle` 流的一部分；模块的 `commit(route,battleRng)` 逐段消费 Core 传入的同一流，不派生单位子状态。跨单位先按 09 的已定战斗事件顺序，再按路线数组顺序消费。
 3. 一段一个 `rollBp = nextU32()%10000`；预检失败、未到达后段、纯数值函数不消费。
-4. 多单位同时处理按 `unitIndex`，单实例按路线数组，调息按 §10.2 全序。
+4. 多单位同时处理按 `unitIndex`，单实例按路线数组；调息按 §10.2 全序，只有触及且达到解穴门槛的点穴节点各抽一次。
 5. 所有乘法在除法前使用足够宽整数；TS 推荐 `bigint` 或证明不会越过安全整数。
 6. `preview` 必须在调用前后断言 RNG state 与节点 hash 不变。
-7. 快照包含 `rulesProtocol`、RNG 四字状态、tick 和节点明细；排序后进入规范 hash。
+7. 单位快照包含 `rulesProtocol`、tick 和节点明细；`BattleSession` 单独保存唯一 `battleRng` 四字状态，二者一起进入规范 hash，单位快照不得复制 RNG。
 8. Python fixture 的 `fixtureVersion/rulesProtocol/rngProtocol` 任一变化都要求逐项评审后更新 golden，不能只重录掩盖漂移。
 
 ### 11.8 手机端性能预算
@@ -963,7 +967,7 @@ F8 commit RNG and state together, or roll everything back
 | 单路线 `preview` | ≤18 节点、0 次 RNG | ≤0.15 ms **【建议值】【待实测】** | 复用预分配 scratch |
 | 单 AI 的 12 路线候选 | ≤216 节点访问 | ≤2 ms **【建议值】【待实测】** | 超限交 Worker；仍受 tech/05 ≤8 ms 总预测预算 |
 | 全场一次 `tick` | ≤全部活动节点 | ≤0.50 ms **【建议值】【待实测】** | 用 dirty set；无状态节点不写回 |
-| 快照 | ≤全部活动节点 + 每单位 4 个 RNG 字 | ≤1.50 ms **【建议值】【待实测】** | 仅检查点 / 存档执行，不逐帧执行 |
+| 快照 | ≤全部活动节点 + 全局 4 个 battle RNG 字 | ≤1.50 ms **【建议值】【待实测】** | 仅检查点 / 存档执行，不逐帧执行 |
 
 最坏同屏按 `tech/05` 的 24 个单位估算：完整物化为 `180×24=4,320` 节点；典型每单位 12 条、每条 10 穴、重合 40%，约 `10×12×60%=72` 个活动节点，即 `72×24=1,728`。一轮所有单位各出一招的路线热路径最多 `18×24=432` 节点访问；一次 AI 对 12 招全预览最多 `18×12=216`。因此决定性优化顺序是：
 
@@ -971,7 +975,7 @@ F8 commit RNG and state together, or roll everything back
 2. `NodeRuntime` 使用结构化数组或紧凑 typed array，静态容量 / 流畅与动态伤势分离；
 3. 只物化路线并集和被外部点穴的节点，未触及节点读只读基底；
 4. `water` 用本次路线 scratch 保存，只有 backlog / 迟滞 / 胀损 / 点穴变化才标 dirty；
-5. `tick` 遍历 dirty set；没有 backlog 的节点不做“减 1”空写；
+5. 生产 `tick` 遍历 dirty set；没有 backlog 的节点不做“减 1”空写。Python 参考实现为正确性 oracle，按穴位 ID 遍历已物化节点，不声称已实现该优化；
 6. preview 缓存键包含实例 `stateVersion`、路线、有效层数与 Buff 版本；任一提交即失效；
 7. 批量 AI 预览在 Worker 运行，但最终命令仍回 Core 重验并提交。
 
@@ -991,7 +995,7 @@ F8 commit RNG and state together, or roll everything back
 | `openPolicy` | `routeOnly` | `schoolCore` | `fullTemplate` | 开穴集合 |
 | 周天 / 九转 | 无 | 至多小周天 | 显式里程碑 | 只能使用 15 已有里程碑 |
 
-生成步骤：汇总行动表路线 → 应用 `openPolicy` → 用模板参数派生节点基底 → 套单位固有装备 / Buff → 清零动态量。普通敌人的同 archetype 可以共享**只读基底**，但进入战斗后必须复制动态数组和 RNG 状态；任何写时共享都违反 §1.5。召唤物由召唤定义选模板；武学型环境行动者至少给 `routeOnly`，纯落石 / 火场等非武学事件不创建实例。
+生成步骤：汇总行动表路线 → 应用 `openPolicy` → 用模板参数派生节点基底 → 套单位固有装备 / Buff → 清零动态量。普通敌人的同 archetype 可以共享**只读基底**，但进入战斗后必须复制动态数组；任何写时共享都违反 §1.5。召唤物由召唤定义选模板；武学型环境行动者至少给 `routeOnly`，纯落石 / 火场等非武学事件不创建实例。
 
 ### 11.10 异常与降级
 
@@ -1089,7 +1093,7 @@ milestones: { meridianComplete: true, smallCycle: false, greatCycle: false }
 routeRefs: [mfr_eighteen_palms_chain]
 ```
 
-这里的有效品阶 / 层数必须在 13 的外来压制、难度和规则开关之后取得。实例不能保存“绝对天阶”再自行猜压制；否则同一敌人在低武书界会绕开全局规则。
+这里的 `milestones.meridianComplete` 只是敌人模板“路线涉及之脉均已通”的紧凑写法；玩家 / 同伴正式输入必须逐穴读取 15 的开穴状态、逐穴所属经脉的 `completedMeridian`，不可用一个全局布尔把 20 脉一并判定为已通。Python fixture 的 `Cultivation.meridian_complete` 同样只是这种全路同值简写，构造器的 `complete_acupoints` 才对应正式逐穴投影。有效品阶 / 层数必须在 13 的外来压制、难度和规则开关之后取得；实例不能保存“绝对天阶”再自行猜压制。
 
 ### 12.3 TypeScript 契约
 
@@ -1129,7 +1133,9 @@ interface FlowResult {
   bonusCapBp: Bp; routeZ3Bp: Bp;
   blockedAt: number|null; blockedNode: AcupointId|null;
   disabledReason: null|'unopened_node'|'ruptured_node'|'point_seal_9';
-  qualitiesBp: readonly Bp[]; trace: readonly FlowTraceStep[];
+  qualitiesBp: readonly Bp[]; jamChancesBp: readonly Bp[];
+  arrivalBp: readonly Bp[]; stateVersion: number;
+  trace: readonly FlowTraceStep[];
 }
 interface BreathResult {
   touched: readonly AcupointId[];
@@ -1152,37 +1158,37 @@ interface MeridianFlowFactory {
 interface MeridianFlowModule {
   readonly unitId: UnitId;
   preview(route: MeridianRouteDef, options?: PreviewOptions): FlowPreview;
-  commit(route: MeridianRouteDef, commandToken: string): FlowResult;
+  commit(route: MeridianRouteDef, battleRng: Rng): FlowResult;
   applyAcupointSeal(input: AcupointSealInput): SealChange;
   applyGrapple(input: GrappleInput): GrappleChange;
-  regulateBreath(profile: BreathProfile, mode: 'battle'|'rest'): BreathResult;
+  regulateBreath(profile: BreathProfile, mode: 'battle'|'rest', battleRng?: Rng): BreathResult;
   tick(input: MeridianTick): void;
   snapshot(): MeridianFlowSnapshotV1;
   restore(snapshot: MeridianFlowSnapshotV1): void;
 }
 interface MeridianFlowSnapshotV1 {
   schema: 'meridian-flow-state.v1';
-  rulesProtocol: number; rngProtocol: number;
+  rulesProtocol: number;
   unitId: UnitId; unitIndex: number; kind: UnitKind; tick: number;
   stateVersion: number; grappleLevel: number;
   grappleSource: UnitId|null; grappleRemaining: number;
-  battleRngState: readonly [number, number, number, number];
   nodes: readonly MeridianNodeRuntime[]; // ap_* ASCII 升序
 }
 ```
 
-`commit(commandToken)` 必须幂等：相同 token 已提交时返回原结果，不可第二次抽 RNG。`preview` 的返回值必须标 `stateVersion`；UI 点击提交前 Core 若发现版本已变，重做合法性检查而不是照用旧预测。
+`Rng` 是 `tech/05` 的事务端口，不是模块自有状态。幂等 / 重试由 Core 的单命令事务、`causeId` 与 journal 保证：一次合法提交只调用一次 `commit`，失败则单位写入与 RNG 一起回滚。`preview` 的返回值必须标 `stateVersion`；UI 点击提交前 Core 若发现版本已变，重做合法性检查而不是照用旧预测。
+`regulateBreath` 仅在触及至少一个“已点穴且达到 §10.2 门槛”的节点时要求 `battleRng`；此时按穴位 ID 全序逐点抽取。无点穴或全不合格时不得传入后擅自消费。
 
 ### 12.4 存档、录像与 golden
 
 | 载体 | 必存字段 | 不应保存 |
 |---|---|---|
-| 战斗存档 | 每单位 snapshot、战斗 tick、命令序号、内容 / 规则 / RNG 协议 | UI 展开态、preview 缓存 |
+| 战斗存档 | 每单位 snapshot、`BattleSession.battleRng`、战斗 tick、命令序号、内容 / 规则 / RNG 协议 | UI 展开态、preview 缓存、单位 RNG 副本 |
 | 录像检查点 | 同上 + 规范 hash | 浮点中间量、墙钟耗时 |
 | 普通战外存档 | 15 的永久经脉成长；若不在战斗则无临时实例 | 战斗迟滞 / 点穴残影 |
 | golden | 固定输入、显式 roll seam、逐例输出、SHA-256 | 随机器时钟、设备信息 |
 
-Python 黄金文件的固定种子是 `20260927`，`vectorSha256=21a72a607a99848879e68324087f992d5dbb6505e9236bdb2e9296738a59600e`。生产 TypeScript 应逐字段对齐：上限、Z3、CT、阻塞索引、节点伤势、调息结果、控制档、真实 `commit` 后 RNG 状态和 TTK；不是只对最终伤害。`commit_with_rolls` 仅是测试 seam，生产 API 不暴露调用方指定随机数。
+Python 黄金文件的固定种子是 `20260927`；当前 `vectorSha256` 见 §18.7。生产 TypeScript 应逐字段对齐：上限、Z3、CT、每段卡住率 / 到达率、阻塞索引、节点伤势、调息结果、控制档、Core 全局 `battle` 流在真实 `commit` 前后的状态和 TTK；不是只对最终伤害。`commit_with_rolls` 仅是测试 seam，生产 API 不暴露调用方指定随机数。
 
 ### 12.5 版本迁移
 
@@ -1345,18 +1351,18 @@ p = clamp(5000 + 40×((70+65)-(75+70)) + 150×8 - 650×6, 500, 9500)
   = clamp(1900, 500, 9500) = 1900 bp
 ```
 
-失败一次后加 500 bp，下一次为 2400 bp；队友解控和 06 的控制递减另算。对 Boss 先走效果命中与硬控递减，最终 9 级至多映射为短时强控，不能永久无法行动。
+失败一次后加 500 bp，下一次为 2400 bp；队友解控和 06 的控制递减另算。Boss 的 1–8 级先过效果命中且持续固定为 1，9 级再过 `ccCount` 硬控递减；终局守卷人免疫硬控，不能永久无法行动。
 
 ### 14.8 四类单位独立实例与伤害
 
-固定种子下，我方、普通、精英、Boss 各自创建模块；其节点 Map 与 RNG 都不是同一对象。显式使用不卡住 roll 的黄金结果为：
+固定种子下，我方、普通、精英、Boss 各自创建模块；其节点 Map 不是同一对象。表中我方短路是无副作用 preview、我方长路是显式不卡住测试 seam；普通、精英、Boss 则按 `unitIndex` 顺序真实 `commit`，共同消费 Core 的同一个 `battle` RNG。下表 Z3 / 伤害展示隔离派生结果；若真实抽样卡住，以黄金数据的 `completed/blockedAt` 为准。
 
 | 单位 | 路线 | 路线 Z3 | 基础伤害 | 接入后 | 说明 |
 |---|---|---:|---:|---:|---|
 | 我方 | 2 段短路 preview | 126 bp | 849 | 859 | preview 后 RNG / 节点不变 |
-| 我方 | 10 段长路 commit | 472 bp | 849 | 889 | 只改变我方实例 |
-| 普通敌 | 2 段短路 | 158 bp | 849 | 862 | `capacityScale=9000` |
-| 精英 | 10 段长路 | 541 bp | 950 | 1001 | 7 品 8 重阴性相合 |
+| 我方 | 10 段长路显式 roll seam | 472 bp | 849 | 889 | 只改变我方实例；用于隔离算式 |
+| 普通敌 | 2 段短路 | 158 bp | 849 | 862 | 真实提交完整通过；`capacityScale=9000` |
+| 精英 | 10 段长路 | 469 bp | 950 | 994 | 真实提交第 10 段卡住，已完成 9 段 |
 | Boss | 10 段长路 | 401 bp | 2574 | 2677 | 高容量使当前注水填充率更低 |
 
 Boss 路线加成并非必然最高：容量很大但本招注水没有同比增长，填充率较低。这让“高容量更安全”与“更容易打满增益”形成取舍，也防止只堆容量同时获得安全和最高伤害。
@@ -1367,9 +1373,9 @@ Boss 路线加成并非必然最高：容量很大但本招注水没有同比增
 
 | 敌人 | HP | 基础伤害 / 团队等价 | 接入前 | 接入后伤害 | 接入后 | 目标 |
 |---|---:|---:|---:|---:|---:|---|
-| 普通 | 3970 | 849 / 10000 bp | `ceil(3970/849)=5` | 862 | 5 | 3–5 |
-| 精英 | 8000 | 950 / 10000 bp | `ceil(8000/950)=9` | 1001 | 8 | 6–10 |
-| Boss | 170773 | 2574 / 31000 bp | `ceil(170773×10000/(2574×31000))=22` | 2677 | 21 | 12–25 |
+| 普通 | 3970 | 849 / 10000 bp | `ceil(3970/849)=5` | `floor(849×10126/10000)=859` | 5 | 3–5 |
+| 精英 | 8000 | 950 / 10000 bp | `ceil(8000/950)=9` | `floor(950×10472/10000)=994` | 9 | 6–10 |
+| Boss | 170773 | 2574 / 31000 bp | `ceil(170773×10000/(2574×31000))=22` | `floor(2574×10472/10000)=2695` | 21 | 12–25 |
 
 这只是隔离路线加成的回归，不包含卡住、调息消耗行动、点穴与擒拿；这些因素总体会把真实时间拉回而非继续缩短。现有 `damage_sim.py --check` 仍必须 40/40 通过，证明未改 04 旧流水。
 
@@ -1379,19 +1385,19 @@ Boss 路线加成并非必然最高：容量很大但本招注水没有同比增
 
 ### 15.1 敏感性方法
 
-`meridian_flow_sim.py` 以固定种子族运行 64 个我方实例，每个最多尝试 18 次 10 段长路；迟滞合计 ≥3000 bp 或任一点胀损就调息。一次只改一个参数 ±20%。`TTK×100` 用 `ceil(3970×100/平均伤害)`，攻击频率是每 1000 CT 可出招次数的 bp 表示，调息占比按“调息行动 / 全部行动”。结果用于方向判断，不替代完整 09 战局模拟。
+`meridian_flow_sim.py` 以一个固定的全局 `battle` 流依序运行 64 个我方实例，每个给 18 个决策槽：路线可用时攻击；迟滞合计 ≥3000 bp、任一点胀损，或下一槽预检已因胀损封路时改为调息。攻击 CT 使用十八掌连环的 `MoveDef.recovery=1200` 加实际 `flowCt`，调息为 1000 CT；一次只改一个参数 ±20%。`TTK×100` 用 `ceil(3970×100/平均伤害)`，攻击频率是每 1000 CT 可出招次数的 bp 表示，调息占比按“调息行动 / 全部行动”。禁路槽不计一次零伤攻击；结果用于方向判断，不替代完整 09 战局模拟。
 
 ### 15.2 敏感性结果
 
 | 参数 | −20%：TTK×100 / 频率 / 调息 | 基准 | +20%：TTK×100 / 频率 / 调息 | 解读 |
 |---|---|---|---|---|
-| 容量 | 449 / 5135 / 2330 | 451 / 5450 / 1192 | 454 / 5469 / 1111 | 低容量更易填满但调息激增；高容量更安全、增益略低 |
-| 卡住固有风险 | 451 / 5463 / 1090 | 同上 | 451 / 5446 / 1219 | 主要改变维护频率，不显著改平均伤害 |
-| 调息强度 | 451 / 5418 / 1299 | 同上 | 451 / 5465 / 1131 | 强调息减少维护行动，伤害不被直接放大 |
-| 路线上限 | 454 / 5450 / 1192 | 同上 | 448 / 5450 / 1192 | 只改变 875 / 881 / 888 平均伤害 |
-| 单段 CT | 451 / 5899 / 1192 | 同上 | 451 / 5063 / 1192 | 是出手频率最敏感旋钮，不改单次伤害 |
+| 容量 | 448 / 4494 / 2482 | 452 / 4925 / 1258 | 454 / 4943 / 1163 | 低容量更易填满但调息激增；高容量更安全、增益略低 |
+| 卡住固有风险 | 451 / 4933 / 1137 | 同上 | 452 / 4893 / 1380 | 主要改变维护频率，不显著改平均伤害 |
+| 调息强度 | 452 / 4859 / 1432 | 同上 | 451 / 4925 / 1223 | 强调息减少维护行动，伤害不被直接放大 |
+| 路线上限 | 455 / 4925 / 1258 | 同上 | 448 / 4925 / 1258 | 只改变 874 / 880 / 887 平均伤害 |
+| 单段 CT | 452 / 5282 / 1258 | 同上 | 452 / 4879 / 1258 | 路线缩短会明显提频；加长端受 `rec_eff≤2000` 钳制，不改单次伤害 |
 
-表内频率和调息均为 bp。容量 −20% 看似 `TTK×100` 略降，是因为较小容量提高填充率，却以调息占比从 11.92% 升至 23.30% 为代价；不能只读单击伤害。调参优先级应是：先把单段 CT 与调息占比稳定，再微调 1200 上限，不要用伤害上限掩盖节奏问题。
+表内频率和调息均为 bp。容量 −20% 看似 `TTK×100` 略降，是因为较小容量提高填充率，却以调息占比从 12.58% 升至 24.82% 为代价；不能只读单击伤害。调参优先级应是：先把单段 CT 与调息占比稳定，再微调 1200 上限，不要用伤害上限掩盖节奏问题。
 
 ### 15.3 退化策略与防刷
 
@@ -1400,10 +1406,10 @@ Boss 路线加成并非必然最高：容量很大但本招注水没有同比增
 | 永远只用短路线 | 低风险、低 CT，可能压过重招 | 短路 cap 仅 300 bp；绝招机制 / 范围仍在 05；敌人防御迫使换招 | 同练度长路在安全状态期望效用应高，但补刀短路应优 |
 | 永远只用最长路线 | cap 随长度增，容易误以为越长越好 | 上限递减且 <1200；每段加 CT / RNG / 堆积；18 段硬上限 | 10→18 段 cap 只 +150 bp，CT 至少 +320 |
 | 故意卡住刷伤害 | 若失败段被重新归一化会套利 | 分母固定配置总段数；卡住段不计质量；保留 CT 与伤势 | 强制第 4/8 段只得 144 bp，不高于完整短路设计收益 |
-| 反复调息拖时 | 可等待 Buff / AI 失误 | 调息 1000 CT、可被打断；不自然回满；AI 连续三次降权；战斗目标可施压 | 正常样本调息占比约 11.92%，长期 >25% 告警 |
+| 反复调息拖时 | 可等待 Buff / AI 失误 | 调息 1000 CT、可被打断；不自然回满；AI 连续三次降权；战斗目标可施压 | 正常样本调息占比约 12.58%，长期 >25% 告警 |
 | 调息刷内力 | 旧调息本可回内，若再低成本循环 | 本文不另加 mp 收益；完全沿用 09 的回内上限与行动成本 | 净资源 / CT 不得超过 09 原调息 |
 | 点穴链控 | 多人轮流封核心穴可永久禁招 | 同穴取高不相加；持续按自身行动；硬控递减；解穴 / 换路 / 道具；Boss 保护 | Boss 不能被 9 级永久维持；至少留一个可回应窗口 |
-| 擒拿锁死 Boss | 9 级跳行动可无限控 | 先过 04 / 06 命中与 Boss 递减；同源刷新受限；失败挣脱逐次 +500 bp | 连续控制收益递减，Boss 必有行动窗口 |
+| 擒拿锁死 Boss | 9 级跳行动可无限控 | 1–8 级对 Boss 只持续 1；9 级走 06 `ccCount` 递减与 `bf_jianyi`；同源刷新受限，失败挣脱 +500 bp；终局守卷人免疫硬控 | 普通 Boss 可被短暂制约但必有行动窗口；不得借长期受制标签 `bind` 规避规则 |
 | 多次 preview 探 RNG | 若预览消费 / 泄露 roll 可择优 | preview 无副作用且只返回概率；未来 RNG 不可读 | 调用 1 / 100 次后 snapshot 与提交结果一致 |
 | 切换招式洗掉淤积 | 若状态挂在招式而非穴位可规避 | backlog / 迟滞挂单位穴位；共享穴位的所有路线都受影响 | 换招经过同穴仍读取同状态 |
 | 敌方省略模拟 | 会造成玩家被风险约束而敌人白拿加成 | 每独立武学行动者强制一实例；构建期查漏 | 普通 / 精英 / Boss golden 均有独立输出 |
@@ -1485,14 +1491,14 @@ Boss 路线加成并非必然最高：容量很大但本招注水没有同比增
 |---|---|---|
 | MF-V01 | 路线 ID 全局唯一；`moveRef/apRef` 均存在；一招至多一主路线 | 构建失败 |
 | MF-V02 | 1–18 段、穴位不重复；`steps/CT/risk` 等长 | 构建失败 |
-| MF-V03 | 每段 CT 40–120、风险 0–1200；所有值为整数 | 构建失败 |
+| MF-V03 | 每段 CT 40–120、风险 0–1200、`MoveDef.recovery+ΣsegmentCt≤2000`；所有值为整数 | 构建失败 |
 | MF-V04 | `route.ultimate == MoveDef.ultimate`；绝招不能自立第二真值 | 构建失败 |
 | MF-V05 | 普通攻击 / 所有伤害招均有路线；正式内容无默认迁移短路 | 发布阻断 |
 | MF-V06 | `qnl/dxl` 恰有 1–9 且单调；1 / 9 文案符合 AR-14 | 构建失败 |
 | MF-V07 | 点穴实例绑定已登记且在目标投影可寻址的 `ap_*` | 命令拒绝 |
 | MF-V08 | 每独立武学行动者恰有一个实例；unitId / unitIndex 唯一 | 战斗创建失败 |
 | MF-V09 | 所有 bp 在声明范围；容量 600–2600、flow 3000–10000 | 构建 / 初始化失败 |
-| MF-V10 | 快照节点按 `ap_*` 排序、协议齐全、RNG 恰 4 字 | 读档失败 |
+| MF-V10 | 单位快照节点按 `ap_*` 排序、协议齐全且不含 RNG；`BattleSession.battleRng` 恰 4 字 | 读档失败 |
 | MF-V11 | 06 尚未登记拟新增 Buff 时不得把其自然语言名当 `bf_*` | lint 失败 |
 | MF-V12 | 新前缀获 Canon v1.3 接纳前只能处于明确提案 / fixture 语境 | lint 失败 |
 
@@ -1507,11 +1513,12 @@ Boss 路线加成并非必然最高：容量很大但本招注水没有同比增
 | MF-T05 | 路线中一点 9 级点穴 | 预检禁用，0 CT、0 RNG、0 Z3 |
 | MF-T06 | 擒拿 1 / 7 / 9 | 酸软不锁行动；7 锁兵器；9 锁行动 |
 | MF-T07 | 点穴 1 / 8 / 9 | 500 bp 阻流；8 锁内功；9 锁自行调息 |
-| MF-T08 | preview 调用前后 | 节点快照与 RNG 完全相等 |
+| MF-T08 | preview 调用前后 | 节点快照与 Core `battle` RNG 完全相等 |
 | MF-T09 | 我方 / 普通 / 精英 / Boss | 四实例不共享 nodes；各自产生正伤害 |
 | MF-T10 | 04 三档锚点 + 12 段理论 cap | TTK 分别落 3–5 / 6–10 / 12–25 |
 | MF-T11 | snapshot→改变→restore | 规范快照逐字段相等 |
 | MF-T12 | 固定种子 / fixture | JSON 与评审后的 golden 完全一致 |
+| MF-T13 | 普通→精英→Boss 依次 `commit`，随后一次合格自解穴 | 四实例逐次推进同一全局 `battle` 流；解穴仅在实际尝试时再推进一次 |
 
 ### 17.3 集成、属性与性能测试
 
@@ -1520,7 +1527,7 @@ Boss 路线加成并非必然最高：容量很大但本招注水没有同比增
 | MF-I01 | `damage_sim.py --check` | 既有 40 项全通过；旧内容伤害不漂移 |
 | MF-I02 | 同种子 TypeScript vs Python | golden 所有输入 / 输出逐字段相等 |
 | MF-I03 | 同命令序列存档重载 / 录像重放 | 每 10 命令 hash 与终局 hash 相等 |
-| MF-I04 | 1 / 100 次 preview 后再 commit | commit 结果、RNG 游标、hash 相等 |
+| MF-I04 | 1 / 100 次 preview 后再 commit | commit 结果、全局 battle RNG 游标、hash 相等 |
 | MF-I05 | 两单位同穴位受不同伤 | 状态不串；恢复一方不改变另一方 |
 | MF-I06 | 点穴、擒拿与麻 / 晕 / 昏迷同时出现 | 互斥 / 递减 / 图标符合 06，不重复跳行动 |
 | MF-I07 | 24 单位、每人 12 路线、最大 18 段 | §11.8 子预算通过 **（待实测）** |
@@ -1541,7 +1548,7 @@ python3 tools/balance/damage_sim.py --check
 python3 tools/lint/check_ids.py --strict
 ```
 
-只有规则变更经过评审后，才执行 `python3 tools/balance/meridian_flow_sim.py --write-golden --check`。CI 只跑 `--check`，不自动重写 golden；否则实现和基准同时漂移仍可能假绿。当前 Python 脚本仅标准库、899 行，低于 900 行限制。
+只有规则变更经过评审后，才执行 `python3 tools/balance/meridian_flow_sim.py --write-golden --check`。CI 只跑 `--check`，不自动重写 golden；否则实现和基准同时漂移仍可能假绿。当前 Python 脚本仅使用标准库且不超过 900 行；最终行数以 README 与 M2.R 报告的实测值为准。
 
 ---
 
@@ -1552,13 +1559,13 @@ python3 tools/lint/check_ids.py --strict
 | 编号 | 下游 | 建议值 / 默认 |
 |---|---|---|
 | M2-D01 | `design/04` | 路线增益作为 Z3 `dmgUp` 单一来源，cap `floor(1200n/(n+6))`，不新增乘区 |
-| M2-D02 | `design/05` / 图鉴 | `MoveDef` 增 `meridianRouteRef`；黄 / 玄 / 地 / 天每门建议 1–2 / 2–3 / 3–5 / 4–7 招，地 / 天至少一记绝招（若现有内容预算允许） |
+| M2-D02 | `design/05` / 图鉴 | `MoveDef` 增 `meridianRouteRef`；招式数量继续沿用 05 §3.5 的黄 / 玄 / 地 / 天普通招 2–3 / 3–5 / 4–7 / 5–10、绝招 0 / 0–1 / 1 / 1–2，不另立范围 |
 | M2-D03 | `design/06` | 登记“擒拿制约 / 点穴阻流 / 经脉胀损”三类 Buff 规格；正式 ID 由 06 创建 |
-| M2-D04 | `design/09` | `flowCt` 加入收招；调息沿用 1000 CT 与 0 额外内力成本；途中卡住仍付已尝试段 CT |
+| M2-D04 | `design/09` | `flowCt` 作为 `Σrec_flat` 加入并受 `rec_eff≤2000`；调息沿用 1000 CT 与 0 额外内力成本；途中卡住仍付已尝试段 CT |
 | M2-D05 | `design/13` | 初始化只读 `effGrade/effLayer`；临时压制变化不清动态伤势 |
 | M2-D06 | `design/14` | 默认显示路线摘要 / 风险 / 瓶颈，不展示 180 个数字；长按显示明细 |
 | M2-D07 | `design/15` | 全通 / 周天 / 九转仅提高 capacity / flow，绝不提高路线 cap |
-| M2-D08 | `tech/05` | 每单位独立实例；preview 无副作用；24 单位按 §11.8 子预算实现 |
+| M2-D08 | `tech/05` | 每单位独立状态实例、Core 唯一 `battle` RNG；preview 无副作用；24 单位按 §11.8 子预算实现 |
 
 这些数值全部是本文为后续同步提供的执行默认；在下游归属文档正式接纳前以本文为 AR-14 机制口径，不反向宣称其字段已经存在。
 
@@ -1582,7 +1589,7 @@ python3 tools/lint/check_ids.py --strict
 |---|---|---|
 | M2-P01 | Canon §12 登记 `mfr_* / qnl_* / dxl_* / txp_*`，边界见 §16 | 四类对象跨招式、Buff、存档、UI 稳定引用；不能挤占地图路线或穴位 ID |
 | M2-P02 | Canon §18 登记 `design/21` 为战斗经脉动态、招式路线 / Z3、绝招语义补充、擒拿 / 点穴严重度、调息参数唯一归属；15 保持永久经脉成长归属 | AR-14 跨域且主导玩法，需要明确单一事实源 |
-| M2-P03 | Canon §19 / tech 确定性契约加入“一独立行动单位一实例、preview 无副作用、battle RNG、固定顺序、快照 / golden” | 防止 UI、AI、存读档和录像在核心伤害前分叉 |
+| M2-P03 | Canon §19 / tech 确定性契约加入“一独立行动单位一状态实例、preview 无副作用、Core 唯一 battle RNG、固定顺序、快照 / golden” | 防止 UI、AI、存读档和录像在核心伤害前分叉，并保持现行五流协议 |
 
 提案已同步登记于 `docs/decisions/canon-proposals-v1.2.md` 的“v1.2 之后新增（待 v1.3）”；本文不直接修改基准。
 
@@ -1591,11 +1598,11 @@ python3 tools/lint/check_ids.py --strict
 1. 按三联 / 广州修订版逐字核降龙十八掌十八名、出现情节与是否真为完整次序；不编回目号。
 2. 核独孤九剑九式，尤其“破箭式”对暗器的原文措辞；“无招胜有招”只保留为图鉴已有绝招配置。
 3. 核六脉六剑名称、对应次序及段誉使用情节；游戏路线均继续标原创扩展。
-4. 核一阳指“点穴 / 截脉”是原著招名、能力描述还是图鉴游戏名；若非原名，改列原创扩展。
+4. 已将一阳指“点穴 / 截脉”按图鉴原创扩展名处理；若纸本核出独立原名，再恢复小说来源分类。
 5. 核张三丰传太极拳时各招名称与顺序；现实二十四式来源和小说版本保持分栏。
-6. 核弹指神通是否有可单列招名；不能把武功名本身重复冒充多个原著招式。
+6. 已将“弹指”按图鉴原创扩展名处理；若纸本核出独立原名，再恢复小说来源分类。
 
-完成考据前，§6 全部 44 条维持**（待考）**边界；若某项证伪，从“小说来源计数”移出并以确证条目补足 ≥25，不因已有 ID 而强称原著。
+完成考据前，§6 的 41 条小说取材候选维持**（待考）**边界；另 3 条已经移入“图鉴原创扩展名”。即使后续再证伪若干条，18 掌 + 9 剑已满足 ≥25 的数量底线，不因已有 ID 而强称原著。
 
 ### 18.5 开放问题（附默认值）
 
@@ -1621,7 +1628,7 @@ python3 tools/lint/check_ids.py --strict
 | `design/14` | 战斗 HUD / 经脉页 / 无障碍 | 路线线条、瓶颈、迟滞 / 胀损、具体点穴、擒拿级与调息入口 |
 | `design/15` | 战斗投影接口 | 输出开穴、周天、九转只读快照；明确战斗调息不推进永久冲穴 |
 | 武学图鉴全册 | 每门 `MoveDef` | 为现有招式选路线；逐条考据 §6；形意 / 现实太极仅在选录后建 ID |
-| `tech/05` | Core 状态、事务、RNG、存档、golden、性能 | 实现每单位模块、无副作用 preview、固定迭代、快照 / 回放与 Python 对拍 |
+| `tech/05` | Core 状态、事务、RNG、存档、golden、性能 | 实现每单位状态模块、Core 唯一 `battle` RNG、无副作用 preview、固定迭代、快照 / 回放与 Python 对拍 |
 | Canon §12 | ID 前缀 | 处理 M2-P01，登记所有权与禁止借用边界 |
 | Canon §18 | 唯一归属 | 处理 M2-P02，拆清 15 的永久层与 21 的战斗层 |
 | Canon §19 | 确定性底线 | 处理 M2-P03，将实例 / RNG / preview / golden 纳入契约 |
@@ -1632,5 +1639,6 @@ python3 tools/lint/check_ids.py --strict
 - 现实武术公开来源：见 §7.4 八条链接，访问日期 2026-09-27。
 - 仓库事实：`design/03/04/05/06/09/13/14/15`、`tech/05` 与武学图鉴，均按 §1.3 只引用。
 - 可执行证据：`tools/balance/meridian_flow_sim.py --check`；黄金文件 `tools/balance/meridian_flow_golden.json`。
+- 黄金向量内容哈希 `vectorSha256`（审校 M2.R）：`70d2938cf1e22c649af392488fedd8a553842676787677c76b3bbd283ca5ed6b`。该值按去除自身哈希字段后的规范 JSON 计算；用于跨语言逐字段对拍，不等同于格式化文件字节哈希。
 
 本文至此闭合：静态开穴仍归 15；动态河流状态归本文；伤害最终取整归 04；控制生命周期归 06；行动调度归 09；Core 确定性归 tech/05。任何下游实现若需要改动这些边界，应先回到唯一归属文档提案，而非复制公式。

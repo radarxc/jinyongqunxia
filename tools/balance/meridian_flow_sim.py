@@ -23,43 +23,27 @@ RNG_PROTOCOL = 1
 G_BP = (0, 10_000, 11_000, 12_000, 14_000, 15_500, 17_000,
         20_000, 22_000, 24_000, 28_000, 31_000, 35_000)
 GOLDEN_PATH = Path(__file__).with_name("meridian_flow_golden.json")
-
-
 def clamp(value: int, lo: int, hi: int) -> int:
     return min(hi, max(lo, value))
-
-
 def ceil_div(numerator: int, denominator: int) -> int:
     return (numerator + denominator - 1) // denominator
-
-
 def mul_bp_floor(value: int, factor_bp: int) -> int:
     return value * factor_bp // BP
-
-
 def sqrt_ratio_bp(ratio_bp: int) -> int:
     return isqrt(clamp(ratio_bp, 5_000, 20_000) * BP)
-
-
 def affinity_bp(inner: str, meridian: str) -> int:
     if inner == "harmony":
         return 11_000 if meridian == "harmony" else 10_500
     if meridian == "harmony":
         return BP
     return 11_000 if inner == meridian else 8_800
-
-
 def route_cap_bp(length: int) -> int:
     """Diminishing, strictly increasing ceiling whose limit is 1,200 bp."""
     if length < 1:
         raise ValueError("route length must be positive")
     return 1_200 * length // (length + 6)
-
-
 def _imul32(a: int, b: int) -> int:
     return (a * b) & MASK32
-
-
 def seed_stream(master: int, stream: str) -> list[int]:
     h = master & MASK32
     for char in stream:
@@ -74,12 +58,6 @@ def seed_stream(master: int, stream: str) -> list[int]:
         return (z ^ (z >> 16)) & MASK32
 
     return [splitmix32(), splitmix32(), splitmix32(), splitmix32()]
-
-
-def fixture_unit_seed(master: int, unit_index: int) -> int:
-    return master & MASK32 if unit_index == 0 else _imul32(master ^ _imul32(unit_index, 0x9E3779B9), 0x85EBCA6B)
-
-
 class Sfc32:
     """Bit-for-bit port of tech/01 and tech/05's versioned RNG."""
 
@@ -102,8 +80,6 @@ class Sfc32:
 
     def snapshot(self) -> tuple[int, int, int, int]:
         return tuple(self.state)  # type: ignore[return-value]
-
-
 @dataclass(frozen=True)
 class Cultivation:
     grade: int
@@ -117,8 +93,6 @@ class Cultivation:
     twelve_cycle: bool = False
     turns: int = 0
     practice_bp: int = 8_000
-
-
 @dataclass(frozen=True)
 class NodeState:
     acupoint: str
@@ -136,8 +110,6 @@ class NodeState:
     @property
     def ruptured(self) -> bool:
         return self.rupture_damage > 0
-
-
 @dataclass(frozen=True)
 class RouteSpec:
     id: str
@@ -148,14 +120,13 @@ class RouteSpec:
     ultimate: bool = False
 
     def __post_init__(self) -> None:
-        if not self.nodes or len(self.nodes) != len(self.segment_ct):
+        if not 1 <= len(self.nodes) <= 18 or len(self.nodes) != len(self.segment_ct):
             raise ValueError("route arrays must be non-empty and equal length")
-        if len(self.nodes) != len(self.risk_bp) or any(t < 1 for t in self.segment_ct):
-            raise ValueError("risk length and positive segment CT are required")
+        bad_ct = any(not 40 <= t <= 120 for t in self.segment_ct)
+        if len(self.nodes) != len(self.risk_bp) or bad_ct or any(not 0 <= r <= 1_200 for r in self.risk_bp):
+            raise ValueError("risk length and CT/risk bounds are required")
         if len(set(self.nodes)) != len(self.nodes):
             raise ValueError("a route cannot repeat a node")
-
-
 @dataclass(frozen=True)
 class FlowResult:
     unit_id: str
@@ -169,9 +140,10 @@ class FlowResult:
     blocked_node: str | None
     states: tuple[NodeState, ...]
     qualities_bp: tuple[int, ...]
+    jam_chances_bp: tuple[int, ...]
+    arrival_bp: tuple[int, ...]
+    state_version: int
     disabled_reason: str | None = None
-
-
 @dataclass(frozen=True)
 class BreathProfile:
     id: str
@@ -192,8 +164,6 @@ class BreathProfile:
     def repair_units(self) -> int:
         base = 120 + 24 * self.grade + 18 * self.layer
         return mul_bp_floor(base, 10_500 if self.nature == "harmony" else BP)
-
-
 @dataclass(frozen=True)
 class BreathResult:
     touched: tuple[str, ...]
@@ -203,40 +173,37 @@ class BreathResult:
     seals_reduced: int
     ct: int
     mp_cost_bp: int
-
-
 POINT_FLOW_PENALTY_BP = (0, 500, 1_000, 1_600, 2_300, 3_200,
                          4_300, 5_700, 7_500, 10_000)
 
-
-def derive_node(acupoint: str, cultivation: Cultivation, capacity_bp: int = BP) -> NodeState:
+def derive_node(
+    acupoint: str, cultivation: Cultivation, capacity_bp: int = BP,
+    *, opened: bool = True, meridian_complete: bool | None = None,
+) -> NodeState:
     if not 1 <= cultivation.grade <= 12 or not 1 <= cultivation.layer <= 10:
         raise ValueError("grade/layer out of range")
     depth_bp = sqrt_ratio_bp(cultivation.mp_ratio_bp)
     capacity = 700 + G_BP[cultivation.grade] // 50 + 25 * cultivation.layer
-    capacity += 100 * cultivation.meridian_complete + 50 * cultivation.small_cycle
+    complete = cultivation.meridian_complete if meridian_complete is None else meridian_complete
+    capacity += 100 * complete + 50 * cultivation.small_cycle
     capacity += 100 * cultivation.great_cycle + 100 * cultivation.twelve_cycle
     capacity += 20 * clamp(cultivation.turns, 0, 9)
     capacity = mul_bp_floor(mul_bp_floor(capacity, depth_bp), capacity_bp)
     flow = 4_500 + G_BP[cultivation.grade] // 10 + 250 * cultivation.layer
-    flow += 400 * cultivation.meridian_complete + 200 * cultivation.small_cycle
+    flow += 400 * complete + 200 * cultivation.small_cycle
     flow += 400 * cultivation.great_cycle + 400 * cultivation.twelve_cycle
     flow += 100 * clamp(cultivation.turns, 0, 9)
     flow = clamp(
         mul_bp_floor(flow, affinity_bp(cultivation.inner_nature, cultivation.meridian_nature)),
         3_000, BP,
     )
-    return NodeState(acupoint, True, 0, clamp(capacity, 600, 2_600), flow)
+    return NodeState(acupoint, opened, 0, clamp(capacity, 600, 2_600), flow)
 
 
 def initial_qi(cultivation: Cultivation) -> int:
     return 120 + G_BP[cultivation.grade] // 50 + 10 * cultivation.layer
-
-
 def node_gain(cultivation: Cultivation) -> int:
     return 30 + G_BP[cultivation.grade] // 500 + 3 * cultivation.layer
-
-
 def jam_chance_bp(incoming: int, node: NodeState, practice_bp: int, risk_bp: int) -> int:
     load_bp = ceil_div(incoming * BP, max(1, node.capacity))
     overload_bp = max(0, load_bp - 9_000) // 4
@@ -247,26 +214,27 @@ def jam_chance_bp(incoming: int, node: NodeState, practice_bp: int, risk_bp: int
         0, 8_500,
     )
 
-
 class MeridianFlowModule:
     """Mutable per-unit runtime; preview clones, commit mutates this instance."""
-
     def __init__(
         self, unit_id: str, cultivation: Cultivation, acupoints: Sequence[str],
-        *, master_seed: int, kind: str = "hero", unit_index: int = 0,
-        capacity_bp: int = BP,
+        *, kind: str = "hero", unit_index: int = 0, capacity_bp: int = BP,
+        opened_acupoints: set[str] | None = None,
+        complete_acupoints: set[str] | None = None,
     ) -> None:
         self.unit_id = unit_id
         self.kind = kind
         self.unit_index = unit_index
-        self.master_seed = master_seed
         self.capacity_scale_bp = capacity_bp
         self.cultivation = cultivation
-        self.nodes = {ap: derive_node(ap, cultivation, capacity_bp) for ap in sorted(acupoints)}
+        self.nodes = {ap: derive_node(
+            ap, cultivation, capacity_bp,
+            opened=opened_acupoints is None or ap in opened_acupoints,
+            meridian_complete=None if complete_acupoints is None else ap in complete_acupoints,
+        ) for ap in sorted(acupoints)}
         self.grapple_level = 0
         self.grapple_source: str | None = None
         self.grapple_remaining = 0
-        self.rng = Sfc32(master_seed, "battle")
         self.tick_no = 0
         self.state_version = 0
 
@@ -288,12 +256,16 @@ class MeridianFlowModule:
                 reason = "point_seal_9"
             if reason:
                 return FlowResult(self.unit_id, route.id, 0, 0, route_cap_bp(len(states)),
-                                  0, 0, index, node.acupoint, states, (), reason)
+                                  0, 0, index, node.acupoint, states, (), (), (),
+                                  self.state_version, reason)
 
         current_qi = initial_qi(self.cultivation)
         gain = node_gain(self.cultivation)
         updated = list(states)
         qualities: list[int] = []
+        jam_chances: list[int] = []
+        arrivals: list[int] = []
+        arrival_bp = BP
         completed = attempted = flow_ct = 0
         blocked_at: int | None = None
         roll_iter = iter(rolls)
@@ -311,6 +283,8 @@ class MeridianFlowModule:
             throughput = mul_bp_floor(node.capacity, effective_flow_bp)
             normal_pass = min(incoming, throughput)
             chance = jam_chance_bp(incoming, node, self.cultivation.practice_bp, risk_bp)
+            arrivals.append(arrival_bp)
+            jam_chances.append(chance)
             roll = next(roll_iter)
             if not 0 <= roll < BP:
                 raise ValueError("roll must be in 0..9999")
@@ -339,6 +313,7 @@ class MeridianFlowModule:
             qualities.append(mul_bp_floor(fill_bp, effective_flow_bp))
             completed += 1
             current_qi = passed
+            arrival_bp = mul_bp_floor(arrival_bp, BP - chance)
 
         cap = route_cap_bp(len(states))
         actual = cap * sum(qualities) // (len(states) * BP)
@@ -346,33 +321,32 @@ class MeridianFlowModule:
         return FlowResult(
             self.unit_id, route.id, completed, attempted, cap, actual, flow_ct,
             blocked_at, blocked_node, tuple(updated), tuple(qualities),
+            tuple(jam_chances), tuple(arrivals), self.state_version,
         )
 
     def preview(self, route: RouteSpec, *, preview_roll_bp: int = 9_999) -> FlowResult:
         """No state mutation and no RNG consumption."""
-        before = self.rng.snapshot()
-        result = self._run(route, [preview_roll_bp] * len(route.nodes))
-        assert self.rng.snapshot() == before
-        return result
+        return self._run(route, [preview_roll_bp] * len(route.nodes))
 
-    def commit(self, route: RouteSpec) -> FlowResult:
-        result = self._run(route, (self.rng.roll_bp() for _ in route.nodes))
-        for state in result.states:
-            self.nodes[state.acupoint] = state
+    def commit(self, route: RouteSpec, battle_rng: Sfc32) -> FlowResult:
+        """Mutate this unit while consuming Core's sole global battle stream."""
+        result = self._run(route, (battle_rng.roll_bp() for _ in route.nodes))
         if result.attempted:
+            for state in result.states:
+                self.nodes[state.acupoint] = state
             self.state_version += 1
-        return result
+        return replace(result, state_version=self.state_version)
 
     def commit_with_rolls(self, route: RouteSpec, rolls: Sequence[int]) -> FlowResult:
         """Golden/debug seam; production commit always uses the battle stream."""
         if len(rolls) < len(route.nodes):
             raise ValueError("one explicit roll per route node is required")
         result = self._run(route, rolls)
-        for state in result.states:
-            self.nodes[state.acupoint] = state
         if result.attempted:
+            for state in result.states:
+                self.nodes[state.acupoint] = state
             self.state_version += 1
-        return result
+        return replace(result, state_version=self.state_version)
 
     def apply_acupoint_seal(
         self, acupoint: str, level: int, *, source: str = "fixture", remaining: int = 2,
@@ -387,7 +361,7 @@ class MeridianFlowModule:
         self.nodes[acupoint] = replace(
             node, seal_level=next_level, seal_source=source, seal_remaining=next_remaining,
         )
-        if next_level != node.seal_level or next_remaining != node.seal_remaining:
+        if (next_level, next_remaining, source) != (node.seal_level, node.seal_remaining, node.seal_source):
             self.state_version += 1
 
     def apply_grapple(
@@ -410,9 +384,11 @@ class MeridianFlowModule:
             self.state_version += 1
 
     def regulate_breath(
-        self, profile: BreathProfile, *, out_of_battle: bool = False, potency_bp: int = BP
+        self, profile: BreathProfile, *, battle_rng: Sfc32 | None = None,
+        target_will: int = 0, medical: int = 0, method_bonus_bp: int = 0,
+        out_of_battle: bool = False, potency_bp: int = BP,
     ) -> BreathResult:
-        if not out_of_battle and any(node.seal_level >= 9 for node in self.nodes.values()):
+        if any(node.seal_level >= 9 for node in self.nodes.values()):
             raise ValueError("level 9 point seal blocks self regulation")
         scale_bp = 15_000 if out_of_battle else BP
         relief_bp = mul_bp_floor(mul_bp_floor(profile.relief_bp, scale_bp), potency_bp)
@@ -422,13 +398,20 @@ class MeridianFlowModule:
             key=lambda n: (not n.ruptured, -n.seal_level, -n.stagnation_bp, -n.backlog, n.acupoint),
         )
         touched = ranked[:max(1, profile.scope)]
+        if battle_rng is None and any(
+            n.seal_level and profile.grade + profile.layer >= n.seal_level + 6 for n in touched
+        ):
+            raise ValueError("battle RNG is required for a self-unseal attempt")
         removed_stag = removed_backlog = repaired = seals = 0
         for node in touched:
             new_stag = max(0, node.stagnation_bp - relief_bp)
             backlog_relief = max(1, mul_bp_floor(node.capacity, relief_bp))
             new_backlog = max(0, node.backlog - backlog_relief)
             new_damage = max(0, node.rupture_damage - repair)
-            seal_drop = 1 if node.seal_level and profile.grade + profile.layer >= node.seal_level + 6 else 0
+            eligible = bool(node.seal_level and profile.grade + profile.layer >= node.seal_level + 6)
+            release_bp = point_release_bp(node.seal_level, profile.grade, profile.layer,
+                                          medical, target_will, method_bonus_bp) if eligible else 0
+            seal_drop = int(bool(eligible and battle_rng.roll_bp() < release_bp))
             new_seal = max(0, node.seal_level - seal_drop)
             removed_stag += node.stagnation_bp - new_stag
             removed_backlog += node.backlog - new_backlog
@@ -440,10 +423,9 @@ class MeridianFlowModule:
                 seal_source=node.seal_source if new_seal else None,
                 seal_remaining=node.seal_remaining if new_seal else 0,
             )
-        if removed_stag or removed_backlog or repaired or seals:
-            self.state_version += 1
+        self.state_version += 1
         return BreathResult(tuple(n.acupoint for n in touched), removed_stag,
-                            removed_backlog, repaired, seals, profile.ct, profile.mp_cost_bp)
+                            removed_backlog, repaired, seals, 0 if out_of_battle else profile.ct, profile.mp_cost_bp)
 
     def tick(
         self, *, grapple_remaining: int | None = None,
@@ -454,6 +436,10 @@ class MeridianFlowModule:
         Omitted projections retain their current value; this module never runs a
         second control-effect clock.  A projected zero clears the local mirror.
         """
+        seal_projection = seal_remaining or {}
+        unknown = set(seal_projection) - set(self.nodes)
+        if unknown or any(value < 0 for value in seal_projection.values()):
+            raise ValueError("invalid seal projection")
         if grapple_remaining is not None:
             if grapple_remaining < 0:
                 raise ValueError("grapple projection cannot be negative")
@@ -461,29 +447,24 @@ class MeridianFlowModule:
             if grapple_remaining == 0:
                 self.grapple_level = 0
                 self.grapple_source = None
-        seal_projection = seal_remaining or {}
-        unknown = set(seal_projection) - set(self.nodes)
-        if unknown:
-            raise ValueError(f"seal projection references unknown nodes: {sorted(unknown)}")
         self.tick_no += 1
-        self.state_version += 1
         for key in sorted(self.nodes):
             node = self.nodes[key]
             remaining = seal_projection.get(key, node.seal_remaining)
-            if remaining < 0:
-                raise ValueError("seal projection cannot be negative")
-            self.nodes[key] = replace(
+            updated = replace(
                 node, water=0, backlog=max(0, node.backlog - 1),
                 seal_level=node.seal_level if remaining else 0,
                 seal_source=node.seal_source if remaining else None,
                 seal_remaining=remaining,
             )
+            if updated != node:
+                self.nodes[key] = updated
+        self.state_version += 1
 
     def snapshot(self) -> dict[str, object]:
         return {
             "schema": "meridian-flow-state.v1",
             "rulesProtocol": RULES_PROTOCOL,
-            "rngProtocol": RNG_PROTOCOL,
             "unitId": self.unit_id,
             "unitIndex": self.unit_index,
             "kind": self.kind,
@@ -492,7 +473,6 @@ class MeridianFlowModule:
             "grappleLevel": self.grapple_level,
             "grappleSource": self.grapple_source,
             "grappleRemaining": self.grapple_remaining,
-            "rng": list(self.rng.snapshot()),
             "nodes": [asdict(self.nodes[key]) for key in sorted(self.nodes)],
         }
 
@@ -503,8 +483,6 @@ class MeridianFlowModule:
             raise ValueError("unsupported meridian snapshot schema")
         if snapshot.get("rulesProtocol") != RULES_PROTOCOL:
             raise ValueError("unsupported rules protocol")
-        if snapshot.get("rngProtocol") != RNG_PROTOCOL:
-            raise ValueError("unsupported rng protocol")
         if int(snapshot["unitIndex"]) != self.unit_index:
             raise ValueError("snapshot belongs to another unit index")
         self.kind = str(snapshot["kind"])
@@ -513,7 +491,6 @@ class MeridianFlowModule:
         self.grapple_level = int(snapshot["grappleLevel"])
         self.grapple_source = snapshot["grappleSource"]  # type: ignore[assignment]
         self.grapple_remaining = int(snapshot["grappleRemaining"])
-        self.rng.state[:] = [int(value) for value in snapshot["rng"]]  # type: ignore[arg-type]
         rows = snapshot["nodes"]
         self.nodes = {row["acupoint"]: NodeState(**row) for row in rows}  # type: ignore[arg-type,index]
 
@@ -542,7 +519,6 @@ def grapple_effect(level: int) -> GrappleEffect:
         evade_bp=(9_500, 9_000, 8_500, 8_000, 7_500, 7_000, 6_000, 5_000, 0)[level - 1],
         weapon_locked=level >= 7, action_locked=level == 9,
     )
-
 
 def grapple_escape_bp(
     level: int, target_str: int, target_agi: int, source_str: int,
@@ -612,23 +588,24 @@ FORCED_ROUTE = RouteSpec(
 
 
 def make_units(master_seed: int = 20260927) -> dict[str, MeridianFlowModule]:
+    del master_seed  # Unit state is seed-independent; Core owns battle RNG.
     all_nodes = tuple(dict.fromkeys(LONG_ROUTE.nodes + SHORT_ROUTE.nodes))
     return {
         "hero": MeridianFlowModule(
             "hero", Cultivation(9, 8, 12_100, "harmony", "yin", True, True, True, True, 3, 9_000),
-            all_nodes, master_seed=fixture_unit_seed(master_seed, 0), kind="hero", unit_index=0,
+            all_nodes, kind="hero", unit_index=0,
         ),
         "normal": MeridianFlowModule(
             "enemy_normal", Cultivation(5, 7, 9_000, "yang", "yang", practice_bp=6_200),
-            all_nodes, master_seed=fixture_unit_seed(master_seed, 1), kind="normal", unit_index=1, capacity_bp=9_000,
+            all_nodes, kind="normal", unit_index=1, capacity_bp=9_000,
         ),
         "elite": MeridianFlowModule(
             "enemy_elite", Cultivation(7, 8, 10_500, "yin", "yin", True, practice_bp=7_500),
-            all_nodes, master_seed=fixture_unit_seed(master_seed, 2), kind="elite", unit_index=2, capacity_bp=10_500,
+            all_nodes, kind="elite", unit_index=2, capacity_bp=10_500,
         ),
         "boss": MeridianFlowModule(
             "enemy_boss", Cultivation(10, 9, 13_000, "harmony", "harmony", True, True, True, True, 5, 9_500),
-            all_nodes, master_seed=fixture_unit_seed(master_seed, 3), kind="boss", unit_index=3, capacity_bp=13_000,
+            all_nodes, kind="boss", unit_index=3, capacity_bp=13_000,
         ),
     }
 
@@ -642,6 +619,8 @@ def result_vector(result: FlowResult, base_damage: int) -> dict[str, object]:
         "flowCt": result.flow_ct, "damage": z3_damage(base_damage, result.route_z3_bp),
         "blockedAt": result.blocked_at, "blockedNode": result.blocked_node,
         "disabledReason": result.disabled_reason,
+        "jamChancesBp": list(result.jam_chances_bp),
+        "arrivalBp": list(result.arrival_bp), "stateVersion": result.state_version,
         "blockedState": asdict(blocked) if blocked else None,
     }
 
@@ -649,16 +628,18 @@ def result_vector(result: FlowResult, base_damage: int) -> dict[str, object]:
 def golden_payload() -> dict[str, object]:
     units = make_units()
     hero = units["hero"]
-    preview_rng = list(hero.rng.snapshot())
+    battle_rng = Sfc32(20260927, "battle")
+    preview_rng = list(battle_rng.snapshot())
     short = hero.preview(SHORT_ROUTE)
-    assert list(hero.rng.snapshot()) == preview_rng
+    assert list(battle_rng.snapshot()) == preview_rng
     long = hero.commit_with_rolls(LONG_ROUTE, [9_999] * 10)
     seeded_hero = make_units()["hero"]
-    seeded = seeded_hero.commit(LONG_ROUTE)
-
-    normal = units["normal"].commit_with_rolls(SHORT_ROUTE, [9_999] * 2)
-    elite = units["elite"].commit_with_rolls(LONG_ROUTE, [9_999] * 10)
-    boss = units["boss"].commit_with_rolls(LONG_ROUTE, [9_999] * 10)
+    seeded = seeded_hero.commit(LONG_ROUTE, battle_rng)
+    rng_after_hero = list(battle_rng.snapshot())
+    normal = units["normal"].commit(SHORT_ROUTE, battle_rng); elite = units["elite"].commit(LONG_ROUTE, battle_rng); boss = units["boss"].commit(LONG_ROUTE, battle_rng)
+    rng_after_units = list(battle_rng.snapshot())
+    hero.apply_acupoint_seal(SHORT_ROUTE.nodes[0], 3)
+    unseal = hero.regulate_breath(BreathProfile("txp_harmony_supreme", 12, 10, "harmony"), battle_rng=battle_rng, target_will=70, medical=60)
 
     jam_unit = make_units()["normal"]
     jam_node = NOVICE_ROUTE.nodes[3]
@@ -684,20 +665,20 @@ def golden_payload() -> dict[str, object]:
         "boss": ttk_actions(170_773, base_damage["boss"], team_equiv_bp=31_000),
     }
     ttk_after = {
-        "normal": ttk_actions(3_970, z3_damage(base_damage["normal"], normal.route_z3_bp)),
-        "elite": ttk_actions(8_000, z3_damage(base_damage["elite"], elite.route_z3_bp)),
-        "boss": ttk_actions(170_773, z3_damage(base_damage["boss"], boss.route_z3_bp), team_equiv_bp=31_000),
+        "normal": ttk_actions(3_970, z3_damage(base_damage["normal"], short.route_z3_bp)),
+        "elite": ttk_actions(8_000, z3_damage(base_damage["elite"], long.route_z3_bp)),
+        "boss": ttk_actions(170_773, z3_damage(base_damage["boss"], long.route_z3_bp), team_equiv_bp=31_000),
     }
     payload: dict[str, object] = {
         "fixtureVersion": 1, "rulesProtocol": RULES_PROTOCOL, "rngProtocol": RNG_PROTOCOL,
         "masterSeed": 20260927,
         "inputs": {
-            "routes": [asdict(SHORT_ROUTE), asdict(LONG_ROUTE), asdict(NOVICE_ROUTE), asdict(FORCED_ROUTE)],
+            "routes": [asdict(r) for r in (SHORT_ROUTE, LONG_ROUTE, NOVICE_ROUTE, FORCED_ROUTE)],
             "units": {key: {
                 "unitId": value.unit_id, "kind": value.kind,
-                "unitIndex": value.unit_index, "masterSeed": value.master_seed,
-                "capacityScaleBp": value.capacity_scale_bp,
-                "cultivation": asdict(value.cultivation),
+                "unitIndex": value.unit_index,
+                "capacityScaleBp": value.capacity_scale_bp, "cultivation": asdict(value.cultivation),
+                "openedAcupoints": sorted(value.nodes), "completeAcupoints": sorted(value.nodes) if value.cultivation.meridian_complete else [],
             } for key, value in units.items()},
             "explicitRolls": {"clean": 9_999, "forcedJam": 0},
         },
@@ -705,13 +686,15 @@ def golden_payload() -> dict[str, object]:
             "heroShortPreview": result_vector(short, base_damage["normal"]),
             "heroLongCommit": result_vector(long, base_damage["normal"]),
             "heroSeededCommit": result_vector(seeded, base_damage["normal"]),
-            "heroSeededRngAfter": list(seeded_hero.rng.snapshot()),
+            "battleRngBefore": preview_rng, "battleRngAfterHeroCommit": rng_after_hero,
+            "battleRngAfterAllUnitCommits": rng_after_units, "battleRngAfterSelfUnseal": list(battle_rng.snapshot()),
             "normalShort": result_vector(normal, base_damage["normal"]),
             "eliteLong": result_vector(elite, base_damage["elite"]),
             "bossLong": result_vector(boss, base_damage["boss"]),
             "jammed": result_vector(jam, base_damage["normal"]),
             "ruptured": result_vector(rupture, base_damage["normal"]),
-            "breath": asdict(breath), "sealed": result_vector(sealed, base_damage["normal"]),
+            "breath": asdict(breath), "selfUnseal": asdict(unseal), "selfUnsealLevelAfter": hero.nodes[SHORT_ROUTE.nodes[0]].seal_level,
+            "sealed": result_vector(sealed, base_damage["normal"]),
             "ttkActionsBefore": ttk_before, "ttkActionsAfter": ttk_after,
             "grapple1": asdict(grapple_effect(1)), "grapple9": asdict(grapple_effect(9)),
             "escapeLevel6Bp": grapple_escape_bp(6, 70, 65, 75, 70, 8),
@@ -733,25 +716,23 @@ def _cycle_sensitivity(
         risk_bp=tuple(mul_bp_floor(v, risk_scale_bp) for v in LONG_ROUTE.risk_bp),
     )
     attacks = breath_actions = total_ct = total_damage = 0
+    battle_rng = Sfc32(20260927, "battle")
     for sample in range(64):
         unit = make_units(20260927 + sample * 17)["hero"]
         for key in sorted(unit.nodes):
             node = unit.nodes[key]
             unit.nodes[key] = replace(node, capacity=mul_bp_floor(node.capacity, capacity_scale_bp))
         for _ in range(18):
-            result = unit.commit(route)
-            attacks += 1
-            total_ct += 1_000 + result.flow_ct
-            route_bp = mul_bp_floor(result.route_z3_bp, cap_scale_bp)
-            total_damage += z3_damage(849, route_bp)
+            disabled = unit.preview(route).disabled_reason
             bad = sum(n.stagnation_bp for n in unit.nodes.values())
-            if bad >= 3_000 or any(n.ruptured for n in unit.nodes.values()):
-                breath = unit.regulate_breath(
-                    BreathProfile("txp_sensitivity", 9, 8, "harmony"),
-                    potency_bp=relief_scale_bp,
-                )
-                breath_actions += 1
-                total_ct += breath.ct
+            if disabled or bad >= 3_000 or any(n.ruptured for n in unit.nodes.values()):
+                breath = unit.regulate_breath(BreathProfile("txp_sensitivity", 9, 8, "harmony"), potency_bp=relief_scale_bp)
+                breath_actions += 1; total_ct += breath.ct
+            else:
+                result = unit.commit(route, battle_rng)
+                attacks += 1; total_ct += clamp(1_200 + result.flow_ct, 500, 2_000)
+                route_bp = mul_bp_floor(result.route_z3_bp, cap_scale_bp)
+                total_damage += z3_damage(849, route_bp)
             unit.tick()
     dpa = max(1, total_damage // attacks)
     return {
@@ -791,11 +772,12 @@ def run_checks() -> None:
 
     units = make_units()
     hero = units["hero"]
-    rng_before = hero.rng.snapshot()
+    battle_rng = Sfc32(20260927, "battle")
+    rng_before = battle_rng.snapshot()
     clean = hero.preview(RouteSpec("mfr_timing", "时序", LONG_ROUTE.nodes[:4],
                                     (55, 65, 75, 85), (0, 0, 0, 0)))
     assert clean.flow_ct == 280 and clean.completed == 4
-    assert hero.rng.snapshot() == rng_before and hero.snapshot()["unitId"] == "hero"
+    assert battle_rng.snapshot() == rng_before and hero.snapshot()["unitId"] == "hero"
 
     normal = units["normal"]
     bad_ap = FORCED_ROUTE.nodes[0]
@@ -817,14 +799,25 @@ def run_checks() -> None:
     sealed.apply_acupoint_seal(SHORT_ROUTE.nodes[1], 9)
     denied = sealed.preview(SHORT_ROUTE)
     assert denied.disabled_reason == "point_seal_9" and denied.completed == 0
-    sealed_rng = sealed.rng.snapshot()
-    try:
-        sealed.regulate_breath(BreathProfile("txp_check", 12, 10, "harmony"))
-    except ValueError as exc:
-        assert "level 9" in str(exc)
-    else:
-        raise AssertionError("level 9 point seal must block self regulation")
-    assert sealed.rng.snapshot() == sealed_rng
+    sealed_rng = battle_rng.snapshot()
+    for out_of_battle in (False, True):
+        try:
+            sealed.regulate_breath(
+                BreathProfile("txp_check", 12, 10, "harmony"),
+                battle_rng=battle_rng if out_of_battle else None,
+                out_of_battle=out_of_battle,
+            )
+        except ValueError as exc:
+            assert "level 9" in str(exc)
+        else:
+            raise AssertionError("level 9 point seal must block self regulation")
+    assert battle_rng.snapshot() == sealed_rng
+
+    unopened = MeridianFlowModule(
+        "closed", Cultivation(5, 5), SHORT_ROUTE.nodes,
+        opened_acupoints={SHORT_ROUTE.nodes[0]},
+    )
+    assert unopened.preview(SHORT_ROUTE).disabled_reason == "unopened_node"
 
     assert grapple_effect(1).move_bp == BP
     assert grapple_effect(7).weapon_locked and not grapple_effect(8).action_locked
@@ -832,19 +825,20 @@ def run_checks() -> None:
     assert point_effect(1).flow_penalty_bp == 500
     assert point_effect(8).inner_locked and not point_effect(8).breath_locked
     assert point_effect(9).breath_locked and point_effect(9).flow_penalty_bp == BP
-
     duration_unit = make_units()["hero"]
     duration_unit.apply_grapple(4, source="enemy")
     duration_unit.apply_acupoint_seal(SHORT_ROUTE.nodes[0], 3, source="enemy")
     duration_unit.tick(grapple_remaining=0, seal_remaining={SHORT_ROUTE.nodes[0]: 0})
     assert duration_unit.grapple_level == 0 and duration_unit.grapple_source is None
-    assert duration_unit.nodes[SHORT_ROUTE.nodes[0]].seal_level == 0
+    assert duration_unit.nodes[SHORT_ROUTE.nodes[0]].seal_level == 0 and duration_unit.state_version == 3
 
     # Hero, normal, elite and Boss really own separate state and all calculate attacks.
     vectors = golden_payload()["outputs"]
     assert vectors["heroLongCommit"]["z3Bp"] > vectors["heroShortPreview"]["z3Bp"]  # type: ignore[index]
     for key in ("normalShort", "eliteLong", "bossLong"):
         assert vectors[key]["damage"] > 0  # type: ignore[index]
+    assert vectors["battleRngAfterHeroCommit"] != vectors["battleRngAfterAllUnitCommits"]
+    assert vectors["selfUnseal"]["seals_reduced"] == 1 and vectors["battleRngAfterAllUnitCommits"] != vectors["battleRngAfterSelfUnseal"]  # type: ignore[index]
     assert units["normal"].nodes is not units["elite"].nodes
 
     # Existing TTK bands use the current design/04 calibration anchors.
@@ -853,13 +847,18 @@ def run_checks() -> None:
     assert 6 <= ttk_actions(8_000, z3_damage(950, max_route_bp)) <= 10
     assert 12 <= ttk_actions(170_773, z3_damage(2_574, max_route_bp), team_equiv_bp=31_000) <= 25
 
-    # Snapshot/restore is exact for battle save and replay checkpoints.
+    # Unit snapshot/restore is exact; BattleSession snapshots the shared RNG.
     snap = hero.snapshot()
     hero.apply_grapple(6)
     hero.tick()
     hero.restore(snap)
     assert hero.snapshot() == snap
+    rng_snapshot = battle_rng.snapshot()
+    hero.commit(SHORT_ROUTE, battle_rng)
+    assert battle_rng.snapshot() != rng_snapshot
 
+    sensitivity = {row["case"]: row for row in sensitivity_rows()}
+    assert (sensitivity["容量基准"]["ttkCentiActions"], sensitivity["容量基准"]["attackFrequencyBp"], sensitivity["容量基准"]["breathShareBp"], sensitivity["单段CT+20%"]["attackFrequencyBp"]) == (452, 4_925, 1_258, 4_879)
     expected = json.loads(json.dumps(golden_payload(), ensure_ascii=False, sort_keys=True))
     assert GOLDEN_PATH.exists(), "run --write-golden once"
     actual = json.loads(GOLDEN_PATH.read_text(encoding="utf-8"))

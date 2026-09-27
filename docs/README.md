@@ -1,7 +1,7 @@
 # 《金庸群侠传·天书录》文档总索引
 
 > 《天书录》（代号 `tianshu`）是一套面向个人、非商业、自娱用途的手机浏览器武侠 RPG 策划与技术规划：主角穿行十四个书界，在统一江湖的时代更替中取天书、改命并积累跨年代传承。
-> 截至 2026-09-27，本文索引内的规划文档均已成稿；01–20 与既有技术文档已审校，AR-14 新增的 21 待后续审校；这表示“设计可进入实现”，**不表示游戏、素材、服务或发布已经完成**。
+> 截至 2026-09-27，本文索引内的规划文档均已成稿；01–21 与既有技术文档已审校；这表示“设计可进入实现”，**不表示游戏、素材、服务或发布已经完成**。
 
 ## 1. 文档体系与事实顺序
 
@@ -52,7 +52,7 @@
 | [design/18-npc-and-companions.md](design/18-npc-and-companions.md) | NPC / 同伴、D1–D5 招募、生命轴、跨书重逢与名录契约。 | 1,642 | ✅/⚠️ 部分生产画像待补 |
 | [design/19-world-map.md](design/19-world-map.md) | 水墨大地图、真实坐标、时代地名、图外线路和 YAML / SVG 契约。 | 997 | ✅/⚠️ 历史地名待考 |
 | [design/20-legacy-inheritance.md](design/20-legacy-inheritance.md) | 39 个传承源、117 份残卷、缓存 / 信物 / 合成与跨年代状态。 | 1,657 | ✅/⚠️ 字段、点位及 V12-10 待收口 |
-| [design/21-meridian-flow-and-moves.md](design/21-meridian-flow-and-moves.md) | 战斗经脉河流模型、招式路线 / 绝招、擒拿点穴、调息与逐单位模拟。 | 1,636 | ✅/⚠️ AR-14 首稿；待下游同步、考据与真机实测 |
+| [design/21-meridian-flow-and-moves.md](design/21-meridian-flow-and-moves.md) | 战斗经脉河流模型、招式路线 / 绝招、擒拿点穴、调息与逐单位模拟。 | 1,644 | ✅/⚠️ AR-14 已审校；待下游同步、考据与真机实测 |
 
 ### 2.3 武学图鉴 `design/catalog/skills-*`
 
@@ -183,7 +183,7 @@
 | 路径 / 入口 | 一句话摘要 | 实测规模 | 状态 |
 |---|---|---:|---|
 | [tools/lint/README.md](../tools/lint/README.md) / [check_ids.py](../tools/lint/check_ids.py) | 扫描定义、引用、废弃 ID、近似拼写、套装双向关系与 baseline。 | 5 文件 / 4,119 行 | 🧰 strict 门禁；唯一 baseline 为禁用的 `sk_babuganchan` |
-| [tools/balance/README.md](../tools/balance/README.md) / [damage_sim.py](../tools/balance/damage_sim.py) / [meridian_flow_sim.py](../tools/balance/meridian_flow_sim.py) / [meridian_flow_golden.json](../tools/balance/meridian_flow_golden.json) | 复算属性、伤害、TTK、十四界 Boss 节奏与逐单位经脉流。 | 4 文件 / 3,131 行 | 🧰 伤害 40/40、经脉 `--check` 通过 |
+| [tools/balance/README.md](../tools/balance/README.md) / [damage_sim.py](../tools/balance/damage_sim.py) / [meridian_flow_sim.py](../tools/balance/meridian_flow_sim.py) / [meridian_flow_golden.json](../tools/balance/meridian_flow_golden.json) | 复算属性、伤害、TTK、十四界 Boss 节奏与逐单位经脉流。 | 4 文件 / 3,400 行 | 🧰 伤害 40/40、经脉 `--check` 通过 |
 | [tools/map/render_map.py](../tools/map/render_map.py) / [migrate_regions_v2.py](../tools/map/migrate_regions_v2.py) | 校验地图数据并确定性渲染 base + 十四时代 SVG。 | 2 文件 / 813 行 | 🧰 `--check` 通过 |
 | [tools/agents/README.md](../tools/agents/README.md) | 任务图、多 worktree、审校、校验、提交和监督模式总说明。 | 224 行 | 🧰 执行说明 |
 | [tools/agents/SUPERVISOR.md](../tools/agents/SUPERVISOR.md) | 每任务启动、等待、续作、校验和合入的监督手册。 | 36 行 | 🧰 执行说明 |
