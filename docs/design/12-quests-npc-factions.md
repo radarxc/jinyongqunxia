@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：任务结构与任务 DSL、门派加入 / 门规 / 贡献 / 晋升 / 叛出、品德与声望的事件口径、书界经济循环、生活技能玩法。
 > 上游：`docs/00-canon.md` v1.1；作者新增需求与已采用决定见 `docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`；跨文档裁定见 `docs/decisions/rulings-v1.md`。
-> 引用而不重定义：NPC、同伴、招募难度、生卒、日程、好感 / 羁绊、书眠与重逢 → `design/18-npc-and-companions.md`；门派史、时代状态、驻地、人物、称谓模板、武学索引与原著依据 → `design/17-sects-compendium.md`；地图 → `design/11-open-world.md`；武学传授 → `design/05-martial-arts-system.md`；战斗队伍与合击 → `design/09-combat-system.md`；物品、配方、丹药、菜肴、锻造和价格基值 → `design/10-items-and-equipment.md`；成长与结局 → `design/13-progression-and-endings.md`；冲穴与打坐 → `design/15-meridians-and-acupoints.md`；资源、家丁与城市营生 → `design/16-resources-and-estates.md`。
+> 引用而不重定义：NPC、同伴、招募难度、生卒、好感 / 羁绊、书眠与重逢 → `design/18-npc-and-companions.md`；NPC 的区域时代层地点日程与 `ScheduleBlock` → `design/11-open-world.md` §6.3；门派史、时代状态、驻地、人物、称谓模板、武学索引与原著依据 → `design/17-sects-compendium.md`；地图 → `design/11-open-world.md`；武学传授 → `design/05-martial-arts-system.md`；战斗队伍与合击 → `design/09-combat-system.md`；物品、配方、丹药、菜肴、锻造和价格基值 → `design/10-items-and-equipment.md`；成长与结局 → `design/13-progression-and-endings.md`；冲穴与打坐 → `design/15-meridians-and-acupoints.md`；资源、家丁与城市营生 → `design/16-resources-and-estates.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给可用数值并在文末登记。
-> 版本：v1.0（2026-09-26）。
+> 版本：v1.1（审校 B4.R，2026-09-26）。
 
 ---
 
@@ -14,7 +14,7 @@
 2. 五类任务固定为 `main / side / faction / bond / qiyu`，ID 固定为 `q_<两位书界号>_<类型>_<两位序号>`。任务允许阶段、分支、软失败、硬失败和时限，但主线不得因隐藏倒计时永久锁档。
 3. 人物资料与同伴状态机已由 AR-09 移交 `design/18`。本文只定义任务如何查询、改变、监听人物状态，以及门派 NPC 如何从 `design/17` / `design/18` 取得当代职级。旧“队友绝不跨书界”已被跨书重逢规则覆盖。
 4. 门派资料唯一源是 `design/17` 的 99 个规范组织与 1,386 个时代状态单元。本文固定 L1–L5 晋升机制，并把“正式弟子”“客卿 / 盟友”“敌对”分开；每书界至多担任一个组织的 L5。
-5. 经济以 `design/10` §13 的物品价值为锚。货币与门派身份在书眠时清零；经营、资源、家丁和营生的绝对收益归尚未落盘的 `design/16`，本文只给任务与结算接口。
+5. 经济以 `design/10` §13 的物品价值为锚，并以 `design/16` §12 的七类收入桶和十四界预算为正式口径。货币与门派身份在书眠时清零；经营、资源、家丁和营生的产出、成本与结算归 `design/16`，本文只定义任务与门派侧消费接口。
 6. 十项基准技艺沿用 `design/03` 的 0–100 曲线。烹饪是生活技能玩法，但当前不新增第十一项 `cook` 属性；菜谱熟练度独立存储，数值提案见 §10.4。
 
 ### 0.1 章节导航
@@ -35,7 +35,8 @@
 
 | 概念 | 唯一归属 | 本文只做什么 |
 |---|---|---|
-| 人物名录、生卒、时代出现、日程、武学画像 | `design/18` | 查询接口和任务动作 |
+| 人物名录、生卒、时代出现、武学画像 | `design/18` | 查询接口和任务动作 |
+| NPC 区域时代层地点日程、`ScheduleBlock` 与时间门禁 | `design/11` §6.3 | 查询当前地点、下一开放时段和任务覆写 |
 | 好感、信任、芥蒂、羁绊等级、招募 D1–D5 | `design/18` | 门槛表达、增量动作、事件监听 |
 | 活动编组 ≤6、战斗合击效果与 AI | `design/09`、`design/18` | 任务解锁合击 / 编组许可，不定义效果 |
 | 门派历史、驻地、时代开放、称谓模板、人物 | `design/17` | 规则与 99 行汇总视图 |
@@ -111,14 +112,14 @@ locked ──offer──► available ──accept──► active ──advance
 
 | 事件族 | 最小载荷 | 常见消费者 |
 |---|---|---|
-| `questAccepted/Advanced/Completed/Failed` | `questId, stageId, effectId` | 日志、成就、后继任务 |
-| `battleResolved` | `encounterId, result, defeatedNpcIds, sparedNpcIds` | 战斗目标、品德事件 |
-| `itemChanged` | `itemId, delta, sourceRef` | 收集 / 交付目标 |
-| `locationEntered` | `chapterId, regionId, cityId?, placeKey?, eraLayer` | 探索、奇遇 |
-| `timeAdvanced` | `fromMinute, toMinute` | 日程、期限 |
-| `sectMembershipChanged` | `sectId, oldStatus, newStatus, rank` | 门派链、商店 |
+| `quest/advanced`、`quest/succeeded`、`quest/failed` | `questId, oldStatus, newStatus, stageKey, source`；任务定义的 `stageId` 在运行时映射为 `stageKey` | 日志、成就、后继任务；命名与载荷服从 `tech/05` §10.2 |
+| `battle/ended` | 载荷只读 `design/09` §2.11、§13.5 / `tech/05` 的 `BattleOutcome`；`outcome=win/lose/retreat/draw` | 战斗目标、品德事件；世界奖励在 `battle/finalize` 才提交 |
+| `inventory/changed` **【建议值】** | `itemId, delta, sourceRef` | 收集 / 交付目标；待 `tech/05` 冻结正式名与载荷 |
+| `world/locationEntered` **【建议值】** | `chapterId, regionId, cityId?, placeKey?, eraLayer` | 探索、奇遇；待 `tech/05` 冻结正式名与载荷 |
+| `world/timeAdvanced` **【建议值】** | `fromMinute, toMinute` | 日程、期限；待 `tech/05` 冻结正式名与载荷 |
+| `sect/joined`、`sect/promoted`、`sect/left` **【建议值】** | `sectId, oldStatus, newStatus, oldRank?, newRank?` | 门派链、商店；与 `tech/05` §11.3 当前建议族对接 |
 | `companion*` | 见 `design/18` §7.4 | 招募、离队、死亡、重逢 |
-| `livelihoodEvent/resourceEvent/householdEvent` | `sourceId, outcome, amountRef?` | `design/16` 接口 |
+| `businessContractCompleted` / `teachingMonthCompleted` / `keqingDutyResolved` / `businessContractBreached` / `casinoIncidentResolved` | 仅消费 `design/16` §15.3 已登记名称；载荷逐字段服从 `tech/05` 的注册 schema，本文不另造事件名或字段 | 营生任务、关系、品德与声望 |
 
 每个持久效果须声明稳定且不可换义的局部 `effects[].id`，再派生 `effectId=<questId>/<stageId>/<effectLocalId>`；禁止用数组下标生成，以免插入效果后破坏幂等。`appliedEffectIds` 去重。战斗结算、奖励、事件发布处于同一事务：全部成功才提交，否则整体回滚。读档重放同一效果不得重复发钱、道具、贡献或关系值。
 
@@ -137,26 +138,27 @@ locked ──offer──► available ──accept──► active ──advance
 ### 2.2 条件语法
 
 ```yaml
-# ConditionExpr：每个 map 恰有一个操作符
-all: [<ConditionExpr>, ...]
-any: [<ConditionExpr>, ...]
-not: <ConditionExpr>
-flag: { id: fl_<namespace>_<name>, is: true }
-quest: { id: q_01_main_01, state: active, stage: st_03 }
-compare: { left: { stat: morality }, op: ge, right: 40 }
-hasItem: { id: it_xuantieling, count: 1 }
-sect: { id: sect_shaolin, status: member, rankAtLeast: 2, contributionAtLeast: 300 }
-npc: { id: npc_xuzhu, state: alive, affinityAtLeast: 20, bondAtLeast: 40 }
-companion: { id: npc_xuzhu, station: active }
-time: { yearMin: 1093, yearMax: 1094, period: night }
-location: { regionId: rg_dali_cangshan, cityId: city_dali, eraLayer: ch01 }
-livelihood: { kind: escort, status: active }
-resource: { nodeId: rp_<region>_<kind>_<nn>, control: player }
-household: { estateRef: estate:<local-key>, staffAtLeast: 1 }
-event: { name: companionRejoined, npcId: npc_zhaobanshan }
+# 每个序列元素都是独立的 ConditionExpr；单个 map 恰有一个操作符。
+conditionExamples:
+  - all:
+      - { flag: { id: fl_fixture_juxian_help, is: true } }
+      - { not: { quest: { id: q_01_main_90, state: failed } } }
+  - any:
+      - { compare: { left: { stat: morality }, op: ge, right: 40 } }
+      - { hasItem: { id: it_xuantieling, count: 1 } }
+  - { quest: { id: q_01_main_90, state: active, stage: st_help } }
+  - { sect: { id: sect_shaolin, status: member, rankAtLeast: 2, contributionAtLeast: 300 } }
+  - { npc: { id: npc_xuzhu, state: alive, affinityAtLeast: 20, bondAtLeast: 40 } }
+  - { companion: { id: npc_xuzhu, station: active, everRecruited: true } }
+  - { time: { yearMin: 1093, yearMax: 1094, period: night } }
+  - { location: { regionId: rg_dali_cangshan, cityId: city_dali, eraLayer: ch01 } }
+  - { estate: { kind: job_active, jobRef: job_xingjiao, businessRef: biz_fixture_08_escort_01 } }
+  - { estate: { kind: resource_point_state, pointRef: rp_fixture_mine_07, ownership: owned } }
+  - { estate: { kind: servant_available, servantRef: sv_fixture_guard_07, minLoyalty: 40 } }
+  - { event: { name: companionRejoined, npcId: npc_zhaobanshan } }
 ```
 
-`compare.left` 白名单为 `level`、`morality`、`fame`、`fameTotal`、十项 `art.<id>`、`sectContribution.<sectId>`、NPC 关系查询和已注册计数器；仅在对应 `onEvent` 处理器内，还可读取该事件 schema 已登记的 `{ eventField: <name> }`。`op` 仅 `eq/ne/lt/le/gt/ge`。缺失引用不是 `false`，而是构建失败；运行时缺失存档字段经 schema migration 补默认值后才求值。
+`compare.left` 白名单为 `level`、`morality`、`fame`、`fameTotal`、十项 `art.<id>`、`sectContribution.<sectId>`、NPC 关系查询和已注册计数器；仅在对应 `onEvent` 处理器内，还可读取该事件 schema 已登记的 `{ eventField: <name> }`。`companion.everRecruited` 与快照来源是 `design/18` 的持久状态查询，不能拿历史事件队列充当数据库。`estate` 的载荷必须逐字段匹配 `design/16` §14.4 `EstateCondition` 判别联合。`op` 仅 `eq/ne/lt/le/gt/ge`。缺失引用不是 `false`，而是构建失败；运行时缺失存档字段经 schema migration 补默认值后才求值。
 
 ### 2.3 动作语法
 
@@ -166,23 +168,26 @@ event: { name: companionRejoined, npcId: npc_zhaobanshan }
 | `quest/advance` | `questId, toStage` | 出口须存在；当前阶段匹配 |
 | `quest/complete`、`quest/fail` | `questId, endingKey` | 只能到声明终态 |
 | `reward/exp` | `expKind, levelRef, multiplier?` | 调用 `design/13`，不直接填任意经验数 |
-| `reward/money` | `budgetShare` 或 `amountRef` | 由 §4 / §9 预算器求值 |
+| `reward/money` | `budgetShare, sourceBucket, sourceId` | 由 §4 / §9 预算器求值；`sourceBucket` 通常为 `quest`，经营结算不得使用本动作二次发钱 |
 | `reward/item` | `itemId, count` | 物品存在、可发放、背包有回退 |
 | `reward/fame`、`reward/morality` | `delta, reasonCode` | 分别钳制到 0–9999、−100–100 |
 | `sect/contribution` | `sectId, delta, reasonCode` | 当前时代组织可消费；可为负 |
 | `npc/affinity`、`npc/bond` | `npcId, delta, reasonCode` | 刻度与状态归 `design/18`；core 钳制 |
 | `companion/recruit` | `npcId, difficulty, station` | 走 R0–R6；不绕过 D1–D5 门槛 |
-| `companion/station`、`depart`、`betray` | `npcId, ...` | 发布 `design/18` 稳定事件 |
-| `companion/confirmDeath`、`fateRescue`、`rejoin` | `npcId, ...` | 走生死 / 改命 / U0–U5 重逢事务 |
-| `sect/join`、`rankUp`、`discipline`、`expel` | `sectId, ...` | 走 §6 状态机；不能直接写 rank |
+| `companion/station`、`companion/depart`、`companion/betray` | `npcId, ...` | 发布 `design/18` 稳定事件 |
+| `companion/confirmDeath`、`companion/fateRescue`、`companion/rejoin` | `npcId, ...` | 走生死 / 改命 / U0–U5 重逢事务 |
+| `sect/join`、`sect/claimRank`、`sect/discipline`、`sect/expel` | `sectId, ...` | 走 §6 状态机；`claimRank` 只申请当前下一职级，任务内容不能传目标级或直接写存档 rank |
 | `battle/start` | `encounterId, allyControl?` | 交 `design/09`；剧情友军默认 AI |
 | `world/openEntrance` | `entranceId` | 入口和时代层必须匹配 `design/11` |
 | `dialogue/start` | `storyId, knot` | 启动 Ink；Ink 回传 intent 后再校验 |
 | `event/emit` | `name, payload` | 仅稳定事件白名单 |
-| `livelihood/*`、`resource/*`、`household/*` | 受控引用 | 转交 `design/16`，本文不结算经营规则 |
-| `meridian/unlockPracticeSite`、`meridian/grantMasterGuidance` | 地点 / 师父引用 | 转交 `design/15`，不直接加冲穴进度 |
+| `estate/<kind>` | 与 `design/16` §14.5 同名的 payload 字段 | 去掉 `estate/` 前缀后必须恰为 `EstateAction.kind`；同事务调用 16 的领域 helper |
+| `meridian/unlockPracticeSite` | `locationId, meditationQuality` | `meditationQuality=0/1/2`；转交 `design/15`，不直接加冲穴进度 |
+| `meridian/grantMasterGuidance` | `teacherNpcId, meridianId, charges, guidance` | `guidance` 采用 `MeridianGuidance`；资格与额度归本文，冲穴计算归 `design/15` |
 
 技能学习不设通用 `skill/grant`。任务只能发 `learnSource/unlock` 或启动 `master/instruct`，随后由 `design/05` 的 `reqs`、来源品阶、层数上限、师父状态再次校验；天阶观摩默认不可，只有图鉴逐条 `observable=true` 才能走观摩。
+
+经营域不再接受旧 `livelihood/*`、`resource/*`、`household/*` 通配命令。YAML 适配层只做一次机械变换：`op: estate/start_job_contract` 转为 `{kind:'start_job_contract', ...payload}`；条件则原样把 `estate:` 的 map 交给 `EstateCondition`。未知 `kind`、多余字段，或在 `grant_resource` 这类会创造经济价值的动作中缺少 `economySource/sourceId`，均在构建期失败；不创造价值的 `consume/set/assign/start/end/reserve/settle/record` 动作只校验其各自必填字段，不能被错误要求携带这两个字段，也不能降级为任意事件或金额为 0。
 
 ### 2.4 检定原语
 
@@ -225,50 +230,62 @@ Ink 只读查询 `get_flag`、`quest_stage`、`has_item`、`affinity` 等白名�
 ### 3.1 主线分支：聚贤庄立场
 
 ```yaml
-schemaVersion: 1
+schemaVersion: quest.v1
+fixture: true
 id: q_01_main_90
 kind: main
 titleKey: quest.fixture.juxian.title
 chapterId: ch01_tianlong
+subjectNpcIds: [npc_xiaofeng]
 recommendedLevel: 24
+routeTone: mixed
 offerWhen:
   all:
     - location: { cityId: city_luoyang, eraLayer: ch01 }
     - npc: { id: npc_xiaofeng, state: alive }
 stages:
   - id: st_choose
+    objectiveKeys: [quest.fixture.juxian.objective.choose_side]
     entry:
       - { op: dialogue/start, storyId: ink_fixture_juxian, knot: choose_side }
     transitions:
-      - id: tr_help
+      - id: edge_help
         priority: 20
         when: { flag: { id: fl_fixture_juxian_help, is: true } }
         to: st_help
         branchKey: help_xiaofeng
-      - id: tr_oppose
+      - id: edge_oppose
         priority: 10
         when: { flag: { id: fl_fixture_juxian_oppose, is: true } }
         to: st_oppose
         branchKey: oppose_xiaofeng
   - id: st_help
+    objectiveKeys: [quest.fixture.juxian.objective.help_xiaofeng]
     entry:
       - { op: battle/start, encounterId: enc_01_juxianzhuang, allyControl: ai }
     onEvent:
-      battleResolved:
-        successWhen: { compare: { left: { eventField: result }, op: eq, right: victory } }
+      "battle/ended":
+        successWhen: { compare: { left: { eventField: outcome }, op: eq, right: win } }
         failureMode: branch
         successTo: st_close
         failureTo: st_close
   - id: st_oppose
+    objectiveKeys: [quest.fixture.juxian.objective.oppose_xiaofeng]
     entry:
       - { op: battle/start, encounterId: enc_01_juxianzhuang, allyControl: ai }
     onEvent:
-      battleResolved: { successTo: st_close, failureTo: st_close, failureMode: branch }
+      "battle/ended": { successTo: st_close, failureTo: st_close, failureMode: branch }
   - id: st_close
     terminal: completed
+    endingKey: anchor_preserved
     effects:
       - { id: fx_close_exp, op: reward/exp, expKind: anchor, levelRef: recommended }
       - { id: fx_close_fame, op: reward/fame, delta: 120, reasonCode: witnessed_anchor }
+tracking:
+  defaultTracked: true
+  targetRef: npc_xiaofeng
+  revealPolicy: known_only
+source: { origin: expanded, note: schema fixture; not production story }
 ```
 
 无论胜负与立场，原著锚点继续；“倒戈帮助萧峰”可选且黑衣人救走萧峰的结果不被任务普通出口抹除（P42）。剧情友军默认 AI，若章节显式授权玩家控制，则计入六人上限（P46）。
@@ -276,72 +293,102 @@ stages:
 ### 3.2 门派晋升：武当 L2 考核
 
 ```yaml
-schemaVersion: 1
+schemaVersion: quest.v1
+fixture: true
 id: q_04_faction_90
 kind: faction
 chapterId: ch04_yitian
+titleKey: quest.fixture.wudang_rank2.title
 recommendedLevel: 64
-ownerSect: sect_wudang
+ownerSectId: sect_wudang
+subjectNpcIds: [npc_zhangsanfeng]
+routeTone: righteous
 offerWhen:
   all:
     - sect: { id: sect_wudang, status: member, rankAtLeast: 1, contributionAtLeast: 300 }
     - compare: { left: { stat: morality }, op: ge, right: 20 }
     - compare: { left: { stat: fame }, op: ge, right: 100 }
+showWhen:
+  sect: { id: sect_wudang, status: member }
 stages:
   - id: st_exam
+    objectiveKeys:
+      - quest.fixture.wudang_rank2.objective.spar
+      - quest.fixture.wudang_rank2.objective.rules
     objectives:
       - { type: spar, targetRef: npc_zhangsanfeng, nonLethal: true }
       - { type: dialogue, storyId: ink_fixture_wudang_exam, knot: recite_rules }
     transitions:
-      - id: tr_pass
+      - id: edge_pass
         priority: 10
         when:
           all:
             - flag: { id: fl_fixture_wudang_sparred, is: true }
             - flag: { id: fl_fixture_wudang_rules, is: true }
         to: st_promote
+        branchKey: passed_both
   - id: st_promote
     terminal: completed
+    endingKey: promoted
     effects:
-      - { id: fx_rank, op: sect/rankUp, sectId: sect_wudang, toRank: 2 }
+      - { id: fx_rank, op: sect/claimRank, sectId: sect_wudang }
       - { id: fx_exp, op: reward/exp, expKind: faction_rank, levelRef: recommended }
-      - { id: fx_unlock, op: learnSource/unlock, sourceRef: src_fixture_wudang_l2 }
+      - { id: fx_fame, op: reward/fame, delta: 20, reasonCode: rank_up_l2 }
+      - { id: fx_source, op: learnSource/unlock, sourceRef: src_fixture_wudang_l2 }
+tracking:
+  defaultTracked: true
+  targetRef: npc_zhangsanfeng
+  revealPolicy: known_only
+source: { origin: expanded, note: schema fixture; not production story }
 ```
 
-`rankUp` 只开放 L2 候选目录；具体武学仍逐门检查图鉴 `reqs`。示例 NPC 是否适合作为实际考官由章节稿决定，夹具不据此新增剧情事实。
+`sect/claimRank` 只提交晋级意图；core 根据当前 L1、任务收据与其余门槛算出下一职级 L2，调用方不能传 `toRank`。晋级只开放 L2 候选目录，具体武学仍逐门检查图鉴 `reqs`。示例 NPC 是否适合作为实际考官由章节稿决定，夹具不据此新增剧情事实。
 
 ### 3.3 D4 招募：同伴责任链
 
 ```yaml
-schemaVersion: 1
+schemaVersion: quest.v1
+fixture: true
 id: q_05_bond_90
 kind: bond
 chapterId: ch05_xiaoao
+titleKey: quest.fixture.linghuchong_responsibility.title
 recommendedLevel: 48
-subjectNpc: npc_linghuchong
+subjectNpcIds: [npc_linghuchong]
+routeTone: righteous
 offerWhen:
   all:
     - npc: { id: npc_linghuchong, state: alive, affinityAtLeast: 20 }
     - compare: { left: { stat: morality }, op: ge, right: 10 }
 stages:
   - id: st_responsibility
+    objectiveKeys:
+      - quest.fixture.linghuchong_responsibility.objective.promises
+      - quest.fixture.linghuchong_responsibility.objective.responsibility
     objectives:
       - { type: keepPromise, counterId: cnt_fixture_promises, target: 2 }
       - { type: confirmFlag, flagId: fl_fixture_d4_responsibility_done, is: true }
     transitions:
-      - id: tr_ready
+      - id: edge_ready
         priority: 10
         when:
           all:
             - npc: { id: npc_linghuchong, state: alive, affinityAtLeast: 40, bondAtLeast: 20 }
             - flag: { id: fl_fixture_d4_responsibility_done, is: true }
         to: st_invite
+        branchKey: responsibility_proven
   - id: st_invite
     terminal: completed
+    endingKey: recruited
     effects:
       - { id: fx_recruit, op: companion/recruit, npcId: npc_linghuchong, difficulty: D4, station: reserve }
       - { id: fx_bond, op: npc/bond, npcId: npc_linghuchong, delta: 10, reasonCode: fulfilled_responsibility }
       - { id: fx_exp, op: reward/exp, expKind: bond_stage, levelRef: recommended }
+tracking:
+  defaultTracked: true
+  targetRef: npc_linghuchong
+  revealPolicy: known_only
+source: { origin: expanded, note: schema fixture; not production story }
 ```
 
 任务动作进入 `design/18` R0–R6 招募状态机；若同伴容量、时代出现或人物状态不合法，事务拒绝，不会仅因任务完成强塞入队。
@@ -349,118 +396,165 @@ stages:
 ### 3.4 跨书重逢：赵半山
 
 ```yaml
-schemaVersion: 1
+schemaVersion: quest.v1
+fixture: true
 id: q_13_bond_91
 kind: bond
 chapterId: ch13_feihu
+titleKey: quest.fixture.zhaobanshan_reunion.title
 recommendedLevel: 52
-subjectNpc: npc_zhaobanshan
+subjectNpcIds: [npc_zhaobanshan]
+routeTone: righteous
 offerWhen:
   all:
-    - event: { name: companionRecruited, npcId: npc_zhaobanshan, chapterId: ch12_shujian }
+    - companion: { id: npc_zhaobanshan, everRecruited: true }
     - npc: { id: npc_zhaobanshan, state: alive }
-    - not: { event: { name: companionRejoined, npcId: npc_zhaobanshan, chapterId: ch13_feihu } }
+    - flag: { id: fl_fixture_zhaobanshan_rejoined_ch13, is: false }
 stages:
   - id: st_recognize
+    objectiveKeys: [quest.fixture.zhaobanshan_reunion.objective.recognize]
     entry:
       - { op: dialogue/start, storyId: ink_fixture_zhaobanshan_reunion, knot: old_friend }
     transitions:
-      - id: tr_confirm
+      - id: edge_confirm
         priority: 10
         when: { flag: { id: fl_fixture_zhaobanshan_reunion_confirmed, is: true } }
         to: st_rejoin
+        branchKey: identity_confirmed
   - id: st_rejoin
     terminal: completed
+    endingKey: rejoined
     effects:
       - { id: fx_rejoin, op: companion/rejoin, npcId: npc_zhaobanshan, fromChapterId: ch12_shujian, station: reserve }
+      - { id: fx_mark_rejoined, op: flag/set, flagId: fl_fixture_zhaobanshan_rejoined_ch13 }
       - { id: fx_exp, op: reward/exp, expKind: bond_stage, levelRef: recommended }
+tracking:
+  defaultTracked: true
+  targetRef: npc_zhaobanshan
+  revealPolicy: known_only
+source: { origin: expanded, note: schema fixture; not production story }
 ```
 
-`companion/rejoin` 必须执行 `design/18` U0–U5：检查生命线 / 改命事实、载入能力快照、合并当代成长、发布 `companionRejoined`，任一步失败整体回滚。书眠清空活动编组不等于抹除关系。
+`companion/rejoin` 必须执行 `design/18` U0–U5：检查生命线 / 改命事实、载入能力快照、合并当代成长、发布 `companionRejoined`，任一步失败整体回滚。`offerWhen` 查询 `everRecruited` 与持久旗标，不把可能被裁剪、归档或重复投递的历史事件流当作状态数据库。书眠清空活动编组不等于抹除关系。
 
 ### 3.5 城市营生：走镖 / 护院
 
 ```yaml
-schemaVersion: 1
+schemaVersion: quest.v1
+fixture: true
 id: q_08_side_90
 kind: side
 chapterId: ch08_luding
+titleKey: quest.fixture.escort_guard.title
 recommendedLevel: 38
+routeTone: mixed
 tags: [livelihood, escort, guard]
 offerWhen:
-  any:
-    - livelihood: { kind: escort, status: eligible }
-    - livelihood: { kind: guard, status: eligible }
+  estate: { kind: job_active, jobRef: job_xingjiao, businessRef: biz_fixture_08_escort_01 }
 stages:
-  - id: st_contract
-    entry:
-      - { op: livelihood/openContract, contractKind: escort_or_guard, contractRef: lv_fixture_08_90 }
-    transitions:
-      - { id: tr_accept, priority: 10, when: { flag: { id: fl_fixture_contract_accepted, is: true } }, to: st_execute }
   - id: st_execute
+    objectiveKeys: [quest.fixture.escort_guard.objective.complete_contract]
     deadline: { mode: fromAccept, gameHours: 24 }
     objectives:
-      - { type: livelihoodOutcome, contractRef: lv_fixture_08_90, result: success }
+      - { type: livelihoodOutcome, contractRef: contract_fixture_08_90, result: success }
     onDeadline: { mode: soft, to: st_partial }
     transitions:
-      - { id: tr_success, priority: 10, when: { event: { name: livelihoodEvent, sourceId: lv_fixture_08_90, outcome: success } }, to: st_success }
+      - id: edge_success
+        priority: 10
+        when: { estate: { kind: job_duty_ratio_at_least, contractId: contract_fixture_08_90, ratio: 1 } }
+        to: st_success
   - id: st_success
     terminal: completed
+    endingKey: contract_completed
     effects:
-      - { id: fx_income, op: reward/money, amountRef: design16.contract.lv_fixture_08_90 }
+      - { id: fx_income, op: estate/settle_job_contract, contractId: contract_fixture_08_90 }
       - { id: fx_exp, op: reward/exp, expKind: side_small, levelRef: recommended }
   - id: st_partial
     terminal: completed
+    endingKey: contract_partially_completed
     effects:
-      - { id: fx_partial, op: reward/money, amountRef: design16.contract.lv_fixture_08_90.partial }
+      - { id: fx_partial, op: estate/settle_job_contract, contractId: contract_fixture_08_90 }
+tracking:
+  defaultTracked: true
+  targetRef: biz_fixture_08_escort_01
+  revealPolicy: known_only
+source: { origin: expanded, note: schema fixture; not production story }
 ```
 
-任务只承载合同和事件；镖局职位、护院轮值、风险、收益和月结由 `design/16` 定稿。
+测试前置先由 `design/16` fixture 建立 `biz_fixture_08_escort_01`、已占用正确日程块的活动合同 `contract_fixture_08_90`；任务不把测试日硬编码成 `worldDay=1`，只承载合同目标并调用正式 `EstateCondition/EstateAction`。结算动作本身生成收入账簿，因此不再追加一次 `reward/money`。标题中的走镖与临时护院都映射 `job_xingjiao`；镖局职位、山庄护院轮值、风险、收益和月结只读 `design/16` §8.2、§8.6。
 
 ### 3.6 资源点争夺与家丁事件
 
 ```yaml
-schemaVersion: 1
+schemaVersion: quest.v1
+fixture: true
 id: q_07_faction_91
 kind: faction
 chapterId: ch07_bixue
+titleKey: quest.fixture.resource_defense.title
 recommendedLevel: 50
+routeTone: mixed
 tags: [resource, household]
 offerWhen:
   all:
-    - resource: { nodeId: rp_fixture_mine_07, control: contested }
-    - household: { estateRef: estate:fixture_07, staffAtLeast: 1 }
+    - estate: { kind: resource_point_state, pointRef: rp_fixture_mine_07, ownership: disputed }
+    - estate: { kind: servant_available, servantRef: sv_fixture_guard_07, minLoyalty: 40 }
 stages:
   - id: st_choose
+    objectiveKeys: [quest.fixture.resource_defense.objective.choose_response]
     transitions:
-      - { id: tr_defend, priority: 20, when: { flag: { id: fl_fixture_defend_node, is: true } }, to: st_defend, branchKey: defend }
-      - { id: tr_evacuate, priority: 10, when: { flag: { id: fl_fixture_evacuate_staff, is: true } }, to: st_evacuate, branchKey: evacuate }
+      - { id: edge_defend, priority: 20, when: { flag: { id: fl_fixture_defend_node, is: true } }, to: st_defend, branchKey: defend }
+      - { id: edge_evacuate, priority: 10, when: { flag: { id: fl_fixture_evacuate_staff, is: true } }, to: st_evacuate, branchKey: evacuate }
   - id: st_defend
+    objectiveKeys: [quest.fixture.resource_defense.objective.defend]
     entry:
-      - { op: resource/startContest, nodeId: rp_fixture_mine_07 }
-    transitions:
-      - { id: tr_won, priority: 10, when: { event: { name: resourceEvent, sourceId: rp_fixture_mine_07, outcome: secured } }, to: st_close }
-  - id: st_evacuate
-    entry:
-      - { op: household/evacuate, estateRef: estate:fixture_07, policy: protect_people_first }
-    transitions:
-      - { id: tr_safe, priority: 10, when: { event: { name: householdEvent, sourceId: estate:fixture_07, outcome: evacuated } }, to: st_close }
-  - id: st_close
+      - { op: battle/start, encounterId: enc_fixture_mine_defense_07, allyControl: ai } # 测试样例注册表对象
+    onEvent:
+      "battle/ended":
+        successWhen: { compare: { left: { eventField: outcome }, op: eq, right: win } }
+        successTo: st_secure
+        failureTo: st_evacuate
+        failureMode: branch
+  - id: st_secure
     terminal: completed
+    endingKey: resource_secured
+    effects:
+      - { id: fx_secure, op: estate/set_resource_point_ownership, pointRef: rp_fixture_mine_07, state: owned }
+      - { id: fx_exp, op: reward/exp, expKind: side_stage, levelRef: recommended }
+  - id: st_evacuate
+    objectiveKeys: [quest.fixture.resource_defense.objective.evacuate]
+    entry:
+      - { op: battle/start, encounterId: enc_fixture_servant_escape_07, allyControl: ai } # 测试样例注册表对象
+    onEvent:
+      "battle/ended": { successTo: st_evacuated, failureTo: st_lost, failureMode: branch }
+  - id: st_evacuated
+    terminal: completed
+    endingKey: servants_evacuated
     effects:
       - { id: fx_exp, op: reward/exp, expKind: side_stage, levelRef: recommended }
+  - id: st_lost
+    terminal: failed
+    endingKey: resource_and_servants_lost
+tracking:
+  defaultTracked: true
+  targetRef: rp_fixture_mine_07
+  revealPolicy: known_only
+source: { origin: expanded, note: schema fixture; not production story }
 ```
 
-`rp_fixture_mine_07` 与 `estate:fixture_07` 都是测试引用，不登记为正式内容对象；前者按 AR-05 的 `rp_*` 形状验证，后者保持命名空间引用，直到 `design/16` 定稿家业实例 ID。资源品级、产量、家丁伤病与库存结算均由 `design/16` 负责。
+`rp_fixture_mine_07` 与 `sv_fixture_guard_07` 都由 `design/16` 的测试注册表提供，不登记为正式内容对象。争夺和撤离过程使用任务 / 战斗原语；只有胜利后的持久经营权通过正式 `estate/set_resource_point_ownership` 写入。资源品级、产量、家丁伤病与库存结算均由 `design/16` 负责，任务不能用一个自造 `household/evacuate` 动作跳过其状态机。
 
 ### 3.7 限时奇遇：夜间棋局
 
 ```yaml
-schemaVersion: 1
+schemaVersion: quest.v1
+fixture: true
 id: q_06_qiyu_90
 kind: qiyu
 chapterId: ch06_xiake
+titleKey: quest.fixture.night_chess.title
 recommendedLevel: 52
+routeTone: mixed
 offerWhen:
   all:
     - location: { regionId: rg_jiangnan_taihu, eraLayer: ch06 }
@@ -468,6 +562,7 @@ offerWhen:
     - compare: { left: { art: chess }, op: ge, right: 40 }
 stages:
   - id: st_board
+    objectiveKeys: [quest.fixture.night_chess.objective.solve_board]
     deadline: { mode: stageLocal, gameHours: 4 }
     checks:
       - id: chk_q_06_qiyu_90_board
@@ -479,11 +574,18 @@ stages:
     onDeadline: { mode: hard, endingKey: missed_night_window }
   - id: st_insight
     terminal: completed
+    endingKey: insight_gained
     effects:
       - { id: fx_exp, op: reward/exp, expKind: qiyu, levelRef: recommended }
       - { id: fx_lore, op: reward/exp, expKind: lore_event, levelRef: recommended }
   - id: st_departed
     terminal: failed
+    endingKey: opponent_departed
+tracking:
+  defaultTracked: false
+  targetRef: rg_jiangnan_taihu
+  revealPolicy: known_only
+source: { origin: expanded, note: schema fixture; not production story }
 ```
 
 这是一项原创结构示例，不声称对应原著棋局。随机结果首次生成后固化；重新读档不得重掷。
@@ -531,7 +633,7 @@ I(ch) = 2 × P(mainWeapon, g_mode(ch)) × chapterIncomeMul(ch)
 directCashBudget = I(ch) × expectedHours × cashShare(kind)
 ```
 
-`P` 使用 §9.2 同一价格表，`g_mode` 使用 `design/10` §4.4 的普通池众数。`cashShare` 是任务直接发钱占该段目标净收入的比例；其余来自可变卖战利品、敌人掉钱和其他来源。
+`P` 使用 §9.2 同一价格表，`g_mode` 使用 `design/10` §4.4 的普通池众数。`cashShare` 是**任务桶内部**直接发钱占该任务段预算的比例，不是全书界现金份额。任务发放的现金、可售任务物和指定奖励合计计入 `design/16` §12.1 的“任务 40%”桶；普通战斗掉落、敌人现银以及已由营生 / 资源点 / 门派结算的报酬分别进入自身桶。
 
 | 类型 | `cashShare` | 说明 |
 |---|---:|---|
@@ -541,7 +643,7 @@ directCashBudget = I(ch) × expectedHours × cashShare(kind)
 | `bond` | 0.15 | 价值主要在关系、招募与合击许可 |
 | `qiyu` | 0.20 | 价值主要在独特见闻 / 来源；并非必然给钱 |
 
-全书界任务组合必须回到 `design/10` 的总收入构成：任务现金约 50%、变卖战利品 30%、敌人掉钱 15%、其他 5%，每章容许 ±5 个百分点。例：笑傲 `g_mode=5`，主武器 `P=47 两`，故 `I=2×47×1=94 两/时`；预计 30 分钟的支线直接现金预算为 `94×0.5×0.70=32.9`，配表取 33 两。战利品的卖价算入段落收益，不可在直接现金之外重复计满。
+全书界总收入必须回到 `design/16` §12.1 的正式七桶：任务 40%、战利品出售 25%、敌人现银 10%、城市营生 10%、资源点 8%、门派 5%、赌场 / 其他 2%；相邻来源可调 ±5 个百分点，但总和必须 100%。例：笑傲 `g_mode=5`，主武器 `P=47 两`，故 `I=2×47×1=94 两/时`；若预计 30 分钟的普通支线将整段价值计入任务桶，直接现金上限为 `94×0.5×0.70=32.9`，配表取 33 两。若同段另发可售任务物，其参考值须从这 47 两任务段预算及对应 `cashShare` 中扣除；普通战斗掉落记战利品桶，不可再算作任务奖励。
 
 ### 4.3 物品与武学奖励按品阶
 
@@ -577,26 +679,26 @@ directCashBudget = I(ch) × expectedHours × cashShare(kind)
 
 ### 5.1 AR-09 后的职责划分
 
-NPC 与同伴的定义、日程、好感、羁绊、招募难度、离队、生死、能力快照和跨书重逢全部见 `design/18`。本文不再维护第二份名录或刻度，只约束任务系统如何消费这些事实。
+NPC 与同伴的身份、appearance、生卒、好感、羁绊、招募难度、离队、生死、能力快照和跨书重逢见 `design/18`；区域时代层中的地点日程与时间门禁见 `design/11` §6.3。本文不再维护第二份名录、刻度或日程表，只约束任务系统如何消费这些事实。
 
 | 需要 | 查询 | 动作 / 事件 |
 |---|---|---|
-| 找到当代 NPC | `appearance(npcId, chapterId, year)`、当前日程地点 | `dialogue/start`；不改人物定义 |
+| 找到当代 NPC | `design/18` 的 `appearance(npcId, chapterId, year)`，再由 `design/11` 的日程解析器查询当前地点 | `dialogue/start`；不改人物或地点日程定义 |
 | 关系门槛 | `affinity` −100..100、`bond` 0..100、信任 / 芥蒂旗标 | `npc/affinity`、`npc/bond`，写原因码 |
 | 招募 | D1–D5、R0–R6 当前节点、生命与责任状态 | `companion/recruit` → `companionRecruited` |
 | 编组 | `station=active/reserve/location`、冲突与容量 | `companion/station` → `companionStationChanged` |
-| 离队 / 背叛 | 状态机原因、可恢复性 | `depart` / `betray` → 对应稳定事件 |
-| 生死 / 改命 | `lifeState`、命定节点、改命资格 | `confirmDeath` / `fateRescue` |
-| 跨书重逢 | `everRecruited`、生存结果、重逢任务映射 | `rejoin` → `companionRejoined` |
+| 离队 / 背叛 | 状态机原因、可恢复性 | `companion/depart` / `companion/betray` → 对应稳定事件 |
+| 生死 / 改命 | `lifeState`、命定节点、改命资格 | `companion/confirmDeath` / `companion/fateRescue` |
+| 跨书重逢 | `everRecruited`、生存结果、重逢任务映射 | `companion/rejoin` → `companionRejoined` |
 
 ### 5.2 时代图层与日程接入
 
-任务查询 NPC 时必须带 `chapterId + year + eraLayer`，先由 `design/18` 选择当代 `appearance`，再读取其日程。任务目标可指定 `npcId`，但不得把某一时辰坐标硬写成唯一方案。
+任务查询 NPC 时必须带 `chapterId + year + eraLayer`：先由 `design/18` 选择当代 `appearance` 并确认时空可用性，再由 `design/11` §6.3 在对应区域时代层解析 `ScheduleBlock`。任务目标可指定 `npcId`，但不得把某一时辰坐标硬写成唯一方案。
 
 | 情况 | 任务行为 |
 |---|---|
 | NPC 在常规日程 | 追踪显示当前已知活动地点和下一次开放时段 |
-| NPC 因剧情换位 | `scheduleOverride` 由人物状态提供；日志刷新，不重开任务 |
+| NPC 因剧情换位 | 由 `design/11` 的日程解析器按 `quest override > emergency > personal > fallback` 合并；日志刷新，不重开任务 |
 | NPC 离队 / 留守 | 可导航到留守点，或走信使 / 代理交付 |
 | NPC 暂不可见 | 任务 `suspended`，至少提供等待或替代线索 |
 | NPC 死亡且不可改命 | 进入声明的继承 / 失败出口，不生成替身同名 NPC |
@@ -639,7 +741,7 @@ NPC 与同伴的定义、日程、好感、羁绊、招募难度、离队、生�
 
 任务遭遇只引用 `npcId + appearanceId + combatProfileRef`。core 依次从 `design/18` 取得当代画像、从图鉴解析 `sk_*`、按书界显示等级 / 天道压制算有效层数，再由 `design/09` 装配战斗 AI。任务 YAML 可以选已登记画像变体（如切磋、重伤、伪装），不可内嵌一套新的武学数值。
 
-师父指点分两路：武学修炼调用 `design/05` §8.4；冲穴加速只发 `meridian/grantMasterGuidance` 给未来 `design/15`。门派打坐地点同理只解锁地点和倍率来源，不在本文伪定穴位进度公式。
+师父指点分两路：武学修炼调用 `design/05` §8.4；冲穴加速发 `meridian/grantMasterGuidance`，其 payload 使用 `design/15` §5.6 的 `MeridianGuidance`（默认 `rateBp=1500`、`successBp=800`、`costReduceBp=500`；该默认值在上游仍标 **【建议值】**）。门派打坐地点发 `meditationQuality=0/1/2`：普通 0/0、清静处速率 / 成功 `+500/+300bp`、名门静室 `+1000/+600bp`（上游仍标 **【建议值】**）。本文只判师父资格、关系、指导额度与地点开放；加算、封顶、穴道和周天仍由 `design/15` 结算。
 
 ### 5.7 Ink 与可选 AI 对话边界
 
@@ -720,7 +822,7 @@ outsider ──结识──► associate / ally / guest
 
 贡献按任务结算后再检查门槛，不能同一效果先晋级再用新级领取重复奖励。“目录访问”不是赠送武学：师父可用性、来源、属性 / 资质 / 技艺、品德、前置武学和层数上限仍按 `design/05`。L5 天级同样只开放任务线；天阶默认不能观摩偷学（P09）。
 
-月钱与资源只存相对 `Tier=1..5`。实际银两、材料品阶、发放周期、库存、家丁代领与断供由 `design/16` 定稿；兼任同派堂职不叠领，非 `primarySectId` 的正式身份也不领。
+月钱与资源在本文只存相对 `Tier=1..5`。绝对结算已由 `design/16` §10 定稿：现金 / 资源小时当量依次为 `0.03/0.02`、`0.06/0.04`、`0.10/0.07`、`0.16/0.10`、`0.22/0.15` 倍 `I(ch)`，再乘职责完成率；每月职责块默认 2/3/4/5/6 **【建议值】**。配给品阶、发放周期、库存和断供也只读 16；兼任同派堂职不叠领，非 `primarySectId` 的正式身份不领。
 
 ### 6.5 十三种称谓模板的晋升侧重
 
@@ -768,7 +870,7 @@ outsider ──结识──► associate / ally / guest
 | L4 | 地阶与分支秘传 | 门派危机、传承信物、品德等 |
 | L5 | 最高目录访问权 | 每门武学的唯一来源；天阶不自动取得 |
 
-“师父指点”调用 `design/05`：喂招、修炼倍率和层数上限由武学来源定义。若指点同时改善冲穴，只发带 `teacherNpcId`、`locationId`、`duration` 的 `meridian/grantMasterGuidance`；打坐地点发 `meridian/unlockPracticeSite`，实际冲穴加速、穴道与周天由 `design/15` 定。
+“师父指点”调用 `design/05`：喂招、修炼倍率和层数上限由武学来源定义。若指点同时改善冲穴，`meridian/grantMasterGuidance` 必填 `teacherNpcId + meridianId + charges + guidance`；`guidance` 默认取 `design/15` §5.6 的 `+1500/+800/+500bp`，每次绑定一条经脉并消耗一次额度。打坐地点以 `meridian/unlockPracticeSite(locationId, meditationQuality)` 接入：清静处为 1，名门静室为 2。相同来源每槽取最高、不同来源加算及总上限全部由 `design/15` 执行，本文不得预写冲穴进度。
 
 ### 6.8 叛出、逐出与兼并
 
@@ -1071,30 +1173,31 @@ targetIncome(ch) = I(ch) × expectedPlayableHours(ch)
 targetSpend(ch) = targetIncome(ch) × [0.60, 0.80]
 ```
 
-`g_mode` 逐界读取 `design/10` §4.4，`chapterIncomeMul` 采用其 §13.5 锚点。下表把十四界全部展开；“11.5 小时”是基准 §17 的 8–15 小时中位数，只用于横向对表，章节定稿后应以实际 `expectedPlayableHours` 重算。
+`g_mode` 与 `chapterIncomeMul` 源自 `design/10` §4.4、§13.5；`design/16` §12 已据此按章节内容量定稿 `I` 与 `expectedPlayableHours`，故不再用统一 11.5 小时替代。下表直接投影其正式逐界预算；其中天龙按 `design/16` §12.3 的显示价归一值 10 两计算 `I=20`。开局银两仍按 `design/10` §13.5 的 `4×P` 显示价锚，不受 `chapterIncomeMul` 放大。
 
-| 书界 | `g_mode` | `P(主武器,g)` | 收入系数 | 每小时净收入 `I` | 开局银两 | 11.5 h 收入基线 | 11.5 h 支出目标 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 天龙 | 3 | 9.5 两 | 1.0 | 19 两 | 38 两 | 219 两 | 131–175 两 |
-| 射雕 | 5 | 47 两 | 1.0 | 94 两 | 188 两 | 1,081 两 | 649–865 两 |
-| 神雕 | 6 | 100 两 | 1.0 | 200 两 | 400 两 | 2,300 两 | 1,380–1,840 两 |
-| 倚天 | 7 | 230 两 | 1.0 | 460 两 | 920 两 | 5,290 两 | 3,174–4,232 两 |
-| 笑傲 | 5 | 47 两 | 1.0 | 94 两 | 188 两 | 1,081 两 | 649–865 两 |
-| 侠客 | 5 | 47 两 | 1.0 | 94 两 | 188 两 | 1,081 两 | 649–865 两 |
-| 碧血 | 4 | 21 两 | 1.0 | 42 两 | 84 两 | 483 两 | 290–386 两 |
-| 鹿鼎 | 2 | 4.5 两 | 5.0 | 45 两 | 18 两 | 518 两 | 311–414 两 |
-| 连城 | 3 | 9.5 两 | 1.0 | 19 两 | 38 两 | 219 两 | 131–175 两 |
-| 白马 | 3 | 9.5 两 | 0.6 | 11.4 两 | 38 两 | 131 两 | 79–105 两 |
-| 鸳鸯 | 3 | 9.5 两 | 1.0 | 19 两 | 38 两 | 219 两 | 131–175 两 |
-| 书剑 | 4 | 21 两 | 1.5 | 63 两 | 84 两 | 725 两 | 435–580 两 |
-| 飞狐 | 4 | 21 两 | 1.0 | 42 两 | 84 两 | 483 两 | 290–386 两 |
-| 雪山 | 4 | 21 两 | 1.0 | 42 两 | 84 两 | 483 两 | 290–386 两 |
+| 书界 | `I` 两/h | `H` h | 总净值 `B=I×H` | 开局银两 | 支出目标 `60%–80%×B` |
+|---|---:|---:|---:|---:|---:|
+| 天龙 | 20 | 15 | 300 | 38 | 180–240 |
+| 射雕 | 94 | 14 | 1,316 | 188 | 789.6–1,052.8 |
+| 神雕 | 200 | 15 | 3,000 | 400 | 1,800–2,400 |
+| 倚天 | 460 | 15 | 6,900 | 920 | 4,140–5,520 |
+| 笑傲 | 94 | 12 | 1,128 | 188 | 676.8–902.4 |
+| 侠客 | 94 | 10 | 940 | 188 | 564–752 |
+| 碧血 | 42 | 11 | 462 | 84 | 277.2–369.6 |
+| 鹿鼎 | 45 | 13 | 585 | 18 | 351–468 |
+| 连城 | 19 | 9 | 171 | 38 | 102.6–136.8 |
+| 白马 | 11.4 | 8 | 91.2 | 38 | 54.72–72.96 |
+| 鸳鸯 | 19 | 8 | 152 | 38 | 91.2–121.6 |
+| 书剑 | 63 | 12 | 756 | 84 | 453.6–604.8 |
+| 飞狐 | 42 | 11 | 462 | 84 | 277.2–369.6 |
+| 雪山 | 42 | 9 | 378 | 84 | 226.8–302.4 |
+| **合计** | — | **162** | **16,641.2** | — | **9,984.72–13,312.96** |
 
 十四界基础 `chapterPriceMul` 均为 1.00；时代物价差已由当界 `g_mode` 和供货池表达。灾荒、围城、黑市等剧情波动只能作为带起止事件与类目白名单的局部修正，不能永久改写全界基价。
 
 “每小时建议支出”取净收入的 60%–80%，用于消耗品、旅行 / 食宿、修理强化、情报 / 娱乐与经营维护；保留 20%–40% 购买装备或处理意外。每书界总预算由 `expectedPlayableHours` 相乘得出，章节若调整时长只改时长，不改物价公式。标准玩家在中点的可动现金目标为 2–4 小时收入、结局前为 3–6 小时收入**【建议值】**；超上沿触发钱库和高价服务分析，不直接没收。
 
-收入结构固定以 `design/10` §13.5 为目标：任务 50%、变卖战利品 30%、敌人掉钱 15%、其他 5%。`design/16` 汇总营生、月钱、资源点和家丁收益时，必须把它们计入“任务”或“其他”现有篮子并回调现金奖励，不能叠加成第五个不受控的大收入源。
+收入结构以 `design/16` §12.1 为正式目标：任务 40%、战利品出售 25%、敌人现银 10%、城市营生 10%、资源点 8%、门派 5%、赌场 / 其他 2%。十四界合计 `B=16,641.2` 两，对应七桶为 6,656.5 / 4,160.3 / 1,664.1 / 1,664.1 / 1,331.3 / 832.1 / 332.8 两（显示到 0.1 两）；所有桶恰分完 100%，资产转仓、加工或买回不重复创造价值。
 
 ### 9.4 商店、刷新与交易
 
@@ -1109,14 +1212,14 @@ targetSpend(ch) = targetIncome(ch) × [0.60, 0.80]
 | 控制点 | 规则 |
 |---|---|
 | 收入闸 | 全书界模拟后，实际总收入应在 `targetIncome` 的 90%–110% |
-| 现金闸 | 单任务现金由 §4.2 预算；随机掉钱遵守 `design/10` §13.5 |
+| 现金闸 | 单任务现金由 §4.2 预算；随机掉钱受 `design/16` §12.1 的敌人现银 10% 桶钳制 |
 | 战利品闸 | 卖价计入任务段落总收益；具名签名武器不得刷取 |
 | 库存闸 | 高品阶受供货上限、固定来源和每期库存共同约束 |
 | 消耗闸 | 修理 / 强化、旅行、食宿、制作与经营维护形成持续支出 |
 | 重复闸 | 月钱只领 `primarySectId`；客卿全局唯一；教头 / 行脚受日程冲突 |
 | 书眠闸 | 清现金、店铺、典当、资源库存、职位与应收账；只保留上游白名单 |
 
-`design/16` 的收入来源汇总表须接收：`sourceKind`、`grossWen`、材料 / 物品估值、维护成本、周期、风险和书界。走镖、护院、赌场、资源点争夺、家丁事件均通过 §2 的 `livelihood/resource/household` 命令发起，由 16 返回 `amountRef` 后才能结算。本文不规定其成功率、职位工资、资源产量或家丁成长。
+`design/16` 的 `EconomyLot` / 结算收据记录 `sourceBucket`、`sourceId`、`transactionId`、参考价值、数量、时点与 `isNewEconomicValue`。走镖、护院、赌场、资源点争夺和家丁事件通过 §2 的 `estate/<kind>` 适配层调用 `EstateAction`；`settle_*` 自己完成结算与账簿写入，任务不得再追加 `reward/money`。职位工资、资源产量、家丁成长、强制成本和预算钳制全部只读 `design/16`。
 
 ---
 
@@ -1274,7 +1377,7 @@ stages:
       - { type: spar, targetRef: npc_zhangsanfeng, nonLethal: true }
       - { type: dialogue, storyId: ink_fixture_wudang_exam, knot: recite_rules }
     transitions:
-      - id: tr_pass
+      - id: edge_pass
         priority: 10
         when:
           all:
@@ -1286,9 +1389,9 @@ stages:
     terminal: completed
     endingKey: promoted
     effects:
-      - { id: fx_rank, op: sect/rankUp, sectId: sect_wudang, toRank: 2 }
+      - { id: fx_rank, op: sect/claimRank, sectId: sect_wudang }
       - { id: fx_exp, op: reward/exp, expKind: faction_rank, levelRef: recommended }
-      - { id: fx_fame, op: reward/fame, delta: 20, reasonCode: sect_rank_l2 }
+      - { id: fx_fame, op: reward/fame, delta: 20, reasonCode: rank_up_l2 }
       - { id: fx_source, op: learnSource/unlock, sourceRef: src_fixture_wudang_l2 }
 tracking:
   defaultTracked: true
@@ -1320,7 +1423,7 @@ tracked: true
 
 ### 11.2 任务侧 `NpcInteractionBinding`
 
-完整 `NpcDef`、appearance、生卒、日程、武学画像和招募规格见 `design/18` §7。本文只保存任务对人物的绑定，不复制姓名、出生年或武学：
+完整 `NpcDef`、appearance、生卒、武学画像和招募规格见 `design/18` §7；地点日程结构与优先级见 `design/11` §6.3。本文只保存任务对人物及日程解析策略的绑定，不复制姓名、出生年、武学或 `ScheduleBlock`：
 
 ```yaml
 schemaVersion: quest-npc-binding.v1
@@ -1332,7 +1435,8 @@ appearanceQuery:
   eraLayer: ch04
   requirePresenceMode: living
 schedulePolicy:
-  mode: followNpcAppearance
+  mode: resolveWorldSchedule
+  source: design/11#6.3
   unavailable: suspend_or_offer_alternate
 dialogue:
   storyId: ink_fixture_wudang_exam
@@ -1358,7 +1462,7 @@ aiDialogue:
   allowedEffects: [affinity_delta, set_allowed_flag]
 ```
 
-绑定解析顺序固定为 `npcId → 当代 appearance → 日程覆写 → 任务覆写`。找不到活体 appearance 时不得回退到其他时代画像；应进入任务声明的挂起、继承或失败出口。`allowedVariant` 必须是 `design/18` 已登记的画像变体，任务不能内嵌新属性。
+绑定解析顺序固定为 `npcId → 当代 appearance → 区域时代层 ScheduleBlock → 任务日程覆写`。找不到活体 appearance 时不得回退到其他时代画像；应进入任务声明的挂起、继承或失败出口。`allowedVariant` 必须是 `design/18` 已登记的画像变体，任务不能内嵌新属性。
 
 ### 11.3 `SectProgressionPolicy` 与当界身份状态
 
@@ -1416,7 +1520,7 @@ ranks:
     contributionMin: 2400
     fameMin: 800
     tenureDaysMin: 30
-    taskGate: sect_crisis_and_teaching
+    taskGate: crisis_and_teaching
     skillScope: [earth_all, branch_secret_candidate]
     duties: [teach, adjudicate, administer]
     stipendTier: 4
@@ -1433,7 +1537,7 @@ ranks:
 disciplineRules:
   - key: huzhao_against_non_evil
     severity: 2
-    evidenceEvent: battleResolved
+    evidenceEvent: "battle/ended"
     effects:
       - { op: reward/morality, delta: -3, reasonCode: huzhao_non_evil }
       - { op: sect/discipline, sectId: sect_wudang, severity: 2 }
@@ -1477,13 +1581,13 @@ appliedMembershipEffects: []
 | `sect_*` / `T01..T12` | 强 | 存在于 `design/17`；状态与当代相符 | 拒绝入门 / 晋升 |
 | `sk_*` / `it_*` / `rc_*` | 强 | 存在于图鉴 / `design/10` | 奖励事务整体回滚 |
 | `city_*` / `rg_*` / 入口 | 强 | 存在于地图且当代可达 | 隐藏目标并报告内容错误 |
-| `rp_*` / `biz_*` / `sv_*` | 强（16 落盘后） | 存在于 `design/16`，地图位置闭合 | 不结算经营收益 |
-| 家业、合同、月钱 `amountRef` | 命名空间引用 | `design/16` schema 冻结后必须解析 | 不以 0 值静默通过 |
-| 经脉地点 / 指点许可 | 强（15 落盘后） | 存在于 `design/15` | 不增加冲穴进度 |
+| `res_*` / `rp_*` / `biz_*` / `sv_*` / `job_*` | 强 | 存在于 `design/16`，地图位置和时代开放闭合 | 不结算经营收益 |
+| 合同、月钱与经营结算 | 强运行态引用 | payload 匹配 `design/16` §14，合同 / 周期存在 | 不以 0 值静默通过 |
+| 经脉地点 / 指点许可 | 强 | payload 符合 `design/15` §5.6；师父、经脉与地点引用存在 | 不增加冲穴进度，记录可修复内容错误 |
 | Ink story / knot | 强 | 编译成功、结构同构、opcode 白名单 | 播放预写回退，不改状态 |
 | AI 人设卡 | 可选 | 存在时符合 `tech/08` §9 | 关闭 AI，继续本地 Ink |
 
-`design/15`、`design/16` 当前尚未落盘，因此相关示例只能在 fixture 构建中使用 provisional resolver；生产任务不得借 `optional` 或默认 0 绕过缺失依赖。
+`design/15`、`design/16` 已落盘，相关引用必须通过它们的正式 schema 解析；本文 `fixture:true` 示例使用测试注册表中的对象，生产任务不得借 `optional`、旧别名或默认 0 绕过缺失依赖。`tech/05` §10 当前仍把任务结构标作 provisional，运行时对齐事项见 §14.2。
 
 ---
 
@@ -1505,7 +1609,7 @@ appliedMembershipEffects: []
 | `primarySectId` | 当前唯一领取月钱 / 配给并常规晋升的正式身份 | 本文 §6.9 |
 | `rank5SectId` | 本书界唯一掌门级身份；空值表示尚未到达 L5 | 本文 §6.9、§11.3 |
 | 门议 | L5 每月以有限行动选择传艺、救济、巡防、外交等事务 | 本文 §6.11 **（原创扩展）** |
-| `NpcInteractionBinding` | 任务对 `design/18` 人物定义、日程、关系、招募和画像的引用层 | 本文 §5、§11.2 |
+| `NpcInteractionBinding` | 任务对 `design/18` 人物 / 关系 / 招募 / 画像及 `design/11` 地点日程的引用层 | 本文 §5、§11.2 |
 | `moneyWen` | 当界现金的整数文账本；`1 两=1,000 文` | 本文 §9.1 |
 | `recipeMastery` | 每张已学菜谱 1–10 的独立熟练度，不是第十一项技艺 | 本文 §10.4 **（原创扩展）** |
 | `practiceKey` | 生活技能一次可计成长操作的稳定去重键 | 本文 §10.1 |
@@ -1517,7 +1621,7 @@ appliedMembershipEffects: []
 | 对象 | 规范 | 本文状态 |
 |---|---|---|
 | 任务 | `q_<两位书界号>_<main\|side\|faction\|bond\|qiyu>_<两位序号>` | §3 七项均为 `90/91` 测试夹具，不进入生产注册表 |
-| 阶段 / 转移 / 效果 / 检定 | `st_*` / `tr_*` / `fx_*` / `chk_*` | 只在所属任务内唯一；不是全局游戏对象 ID |
+| 阶段 / 转移 / 效果 / 检定 | `st_*` / `edge_*` / `fx_*` / `chk_*` | 只在所属任务内唯一；不是全局游戏对象 ID；转移不用已归地形的全局前缀 `tr_*` |
 | 旗标 / 计数器 | `fl_*` / `cnt_*` | 本文 DSL 局部命名约定；必须由所属任务预登记 |
 | 门规 | 文本键 `rule.<sect>.<name>` 或所属策略局部 `key` | 不新增全局 `rule_*` 开关 |
 | 经营引用 | 已定 `rp_*` / `biz_*` / `sv_*`；其余用带命名空间的局部 ref | ID 本体归 `design/11/16` |
@@ -1542,21 +1646,21 @@ q_06_qiyu_90
 
 | ID | 级别 | 校验规则 |
 |---|---|---|
-| QST-V01 | error | 正式任务 ID 匹配 §1.1 正则、全仓唯一；`chapterId` 与两位书界号一致；fixture 被生产发现器排除 |
+| QST-V01 | error | `schemaVersion` 恰为 `quest.v1`，根对象含 `titleKey`，人物集合使用 `subjectNpcIds`；拒绝旧数值版和 `ownerSect` / `subjectNpc` 别名；正式任务 ID 匹配 §1.1 正则、全仓唯一；`chapterId` 与两位书界号一致；fixture 被生产发现器排除 |
 | QST-V02 | error | `kind` 仅五类；至少一阶段、一个入口和一个终态；所有阶段从入口可达，除显式等待外无闭合死环 |
-| QST-V03 | error | 每阶段 ID、转移 ID、检定 ID 和效果 ID 在其作用域唯一；转移目标、失败目标、恢复目标都存在 |
+| QST-V03 | error | 每阶段 ID、转移 ID、检定 ID 和效果 ID 在其作用域唯一；转移目标、失败目标、恢复目标都存在；可追踪阶段有 `objectiveKeys`，终态有 `endingKey` |
 | QST-V04 | error | 同一阶段同优先级出口不得条件重叠；非穷尽分支必须有兜底；`branchKey` 稳定且同任务唯一 |
 | QST-V05 | error | 条件节点恰有一个操作符；字段、比较运算、动作均属白名单；禁脚本、动态属性、运行时文件 / 网络和隐式 RNG |
 | QST-V06 | error | `check.id` 唯一；概率钳在 0–1；第一次结果持久化；`when` 内不得随机 |
 | QST-V07 | error | 每项持久效果声明唯一且不可换义的局部 `id`，派生稳定 `effectId` 时不得使用数组下标；完成、奖励与事件同事务；同一 effect 重放不改变第二次状态 |
 | QST-V08 | error | 主线无永久不可恢复的 `expired/failed` 死路；任何期限都用世界时间且接受前明示 |
 | QST-V09 | error | 任务经验只用 `design/13` 已登记 `expKind`、合法 `levelRef` 与倍率；非战斗旁路和战斗路线经验差在 ±10% 内 |
-| QST-V10 | error | 金钱奖励计入 §4.2 / §9 预算；每书界实际总收入在目标 90%–110%，来源结构各项在目标 ±5pp |
+| QST-V10 | error | 金钱 / 可售物写唯一 `sourceBucket`；每书界实际总收入在目标 90%–110%，七桶总和 100%，相邻来源调剂不超过 ±5pp；资产换形不得重复计新价值 |
 | QST-V11 | error | `npc_*` 存在于 `design/18`，当代活体 appearance 与年份相交；D4/D5 招募不得跳过其任务、价值与窗口门槛 |
 | QST-V12 | error | `sect_*` 恰来自 `design/17`；加入时状态为 `O`，或 `H` 且已发现；`P/N/D/M` 不得常规加入 |
 | QST-V13 | error | 门派策略恰有 L1–L5，贡献 / 声望 / 年资非递减，`stipendTier/resourceTier` 逐级 1–5；L5 不自动授予天级武学 |
 | QST-V14 | error | 同一书界 `rank5SectId` 最多一个；同一周期只可从 `primarySectId` 领取一次月钱和配给 |
-| QST-V15 | error | 正式 `city_*` / `rg_*` / `rp_*` / `biz_*` 引用存在且时代可用；黑木崖等无城地点允许 `cityId:null + placeKey` |
+| QST-V15 | error | 正式 `city_*` / `rg_*` / `res_*` / `rp_*` / `biz_*` / `sv_*` / `job_*` 引用存在且时代可用；`estate` 条件 / 动作逐字段匹配 `design/16` §14；黑木崖等无城地点允许 `cityId:null + placeKey` |
 | QST-V16 | error | 品德动作单项在 −15～+15；虎爪 −3、生死符 −10；`morality` / `fame` 分别钳到 −100～100 / 0～9,999 |
 | QST-V17 | error | 书眠事务只把当界 `fame` 累加 `fameTotal` 一次，随后归零；现金、门派身份和当界经营状态清零 |
 | QST-V18 | error | 技艺 ID 恰为十项闭集，值在 0–100；未达 `T(g)` 禁止尝试；`gMax` 钳在 12；烹饪不得读 `alchemy` 或新增 `cook` |
@@ -1565,7 +1669,7 @@ q_06_qiyu_90
 | QST-V21 | error | 99 个规范 `sect_*` 与 `design/17` 集合相等；每个有 14 个状态；计数矩阵逐格、逐列等于 §7.3 |
 | QST-V22 | warning→发布 error | 原创、待考和建议值有规范标注；正式内容不得含 fixture 名、占位依赖、未完成标记或省略正文的占位语 |
 
-`error` 阻断内容构建。`warning` 只能在策划复核后带负责人、原因和期限豁免；发布候选不接受无期限豁免。`design/15/16` 尚未落盘期间，只允许 fixture 使用其 provisional 引用，正式任务触发 QST-V15 / V20。
+`error` 阻断内容构建。`warning` 只能在策划复核后带负责人、原因和期限豁免；发布候选不接受无期限豁免。`design/15/16` 引用必须按正式判别联合校验；只有 `fixture:true` 可解析测试注册表对象，正式任务引用 fixture 或旧 provisional opcode 一律触发 QST-V15 / V20。
 
 ### 13.2 任务图、事务与界面测试
 
@@ -1578,7 +1682,7 @@ q_06_qiyu_90
 | QST-T05 | 概率检定失败后存档重载 20 次 | `checkResults[checkId]` 不变，始终进入相同失败出口 |
 | QST-T06 | 主线阶段在期限前未完成 | 只能转预先声明的替代阶段；不存在永久锁死且无锚点出口的存档 |
 | QST-T07 | 追踪隐世门派 `H`，尚未发现入口 | 只显示传闻区域；不显示精确坐标，不自动把状态改为 `O` |
-| QST-T08 | 当前目标 NPC 因剧情换位 / 死亡 | 前者随 `scheduleOverride` 更新；后者走继承 / 失败出口，不生成同名替身 |
+| QST-T08 | 当前目标 NPC 因剧情换位 / 死亡 | 前者由 `design/11` 日程解析器按任务覆写优先级更新；后者走继承 / 失败出口，不生成同名替身 |
 | QST-T09 | AI 提案含 `affinity_delta:+2`、发物品或未登记旗标 | 三者分别因超单项、禁用类型、旗标越权被拒；预写 Ink 仍可继续 |
 | QST-T10 | `bond=59/60` 的当界同伴离队 | 59 不写；60 写一次 `anran_bieli`；转留守位置不写 |
 
@@ -1588,7 +1692,7 @@ q_06_qiyu_90
 |---|---|---|
 | QST-T11 | `sect_wudang` L1、贡献 299 / 300，其他 L2 条件均满足 | 299 不可晋升；300 可进入考核，不直接晋级 |
 | QST-T12 | 贡献 6,000、地阶 8 重、声望 1,600、年资 89 / 90 日 | 89 日不可进入 L5；90 日只开放继承任务，完成且当界无其他 L5 才晋级 |
-| QST-T13 | 已为甲派 L5，再尝试乙派 `rankUp(L5)` | 事务拒绝；乙派可冻结于 L4 或走故事指定非 L5 终点 |
+| QST-T13 | 已为甲派 L5，乙派处于 L4 时调用 `sect/claimRank` | 事务拒绝；乙派可冻结于 L4 或走故事指定非 L5 终点 |
 | QST-T14 | 同时有两派正式身份，同一月分别领月钱 | 仅 `primarySectId` 可领；第二次及非主派请求均拒绝 |
 | QST-T15 | 对 `P/N/D/M` 状态组织执行常规加入；对未发现 `H` 执行加入 | 全部拒绝；`H` 发现后仍须通过入门条件 |
 | QST-T16 | 对临时敌对但非邪派目标首次 / 再次用虎爪绝户手 | 首次品德 −3 并记武当 2 级违纪；同场后续不重复扣 |
@@ -1603,14 +1707,18 @@ q_06_qiyu_90
 | QST-T20 | 玄中主武器 `P0=2 两,g=5` | `2×2.2^4=46.8512 两`，UI 两位有效数字 47 两 |
 | QST-T21 | 上项，`cha=50,speech=40`，两项 shop 倍率均 1 | 买价 `46.8512×1.00×0.96=44.977152 两`；最终以文取整为 44,977 文 |
 | QST-T22 | 上项普通专营店出售 | 倍率 `0.35+0.0015×50=0.425`；`46.8512×0.425=19.91176 两`，19,912 文 |
-| QST-T23 | 笑傲主流品阶 5、30 分钟支线 | `I≈2×47=94 两/时`；现金预算 `94×0.5×0.70=32.9 两`，配表 33 两 |
+| QST-T23 | 笑傲主流品阶 5、30 分钟支线 | `I≈2×47=94 两/时`；任务段预算 47 两，现金上限 `94×0.5×0.70=32.9 两`，配表 33 两；任务物价值从同段余额扣 |
 | QST-T24 | 同一物品经任意合法买入、折扣、回购、卖出环路 | 最终现金变化 ≤0；任务报销不可再次覆盖买入价 |
 | QST-T25 | 技艺 35 尝试玄中 5 / 玄上 6 | `T(5)=36`，两者都不可尝试；技艺 36 时 5 品成功率 60%，仍不能做 6 品 |
 | QST-T26 | 技艺 60 处理地中 8 | `T(8)=60`，成功率 60%；技艺 70 时同品成功率 100% |
 | QST-T27 | 从技艺 0 升到 20 / 60 / 100 | 分别需 130 / 630 / 1,450 次成功使用 |
 | QST-T28 | 菜谱熟练 1 升 10 | 成功批数 `3+4+…+11=63`；不改变十项技艺中的 `alchemy` |
 | QST-T29 | 菜谱熟练 6，主材 6 品，配方上限 9 | `cookValue=60`；`gCook=min(9,7,8)=7`；`T(7)=52`，成功率 92% |
-| QST-T30 | 书眠时有现金、材料、成品、资源点、家丁、菜谱熟练 | 前六类当界状态清除；菜谱知识与 `recipeMastery` 按建议值保留 |
+| QST-T30 | 书眠时有现金、材料、成品、资源点、家丁、菜谱熟练 | 现金、材料、成品、资源点和家丁五类当界状态清除；菜谱知识与 `recipeMastery` 按建议值保留 |
+| QST-T31 | 汇总十四界 `I×H` | `H=162`，总净值 `B=16,641.2 两`；七桶显示为 6,656.5 / 4,160.3 / 1,664.1 / 1,664.1 / 1,331.3 / 832.1 / 332.8 两，总份额 100% |
+| QST-T32 | 天龙 `I=20,H=15`；倚天 `I=460,H=15` | 总值分别 300 / 6,900 两；新增营生 + 资源点 + 门派 + 其他分别为 75 / 1,725 两，均等于总值的 25% |
+| QST-T33 | L3 月钱，天龙 `I=20`，完成职责 3/4 | 现金 `20×0.10×0.75=1.5 两`；资源额度 `20×0.07×0.75=1.05 两`；总值至多 2.55 两 |
+| QST-T34 | 师父指点与名门静室同时生效 | 前者 `+1500/+800/+500bp`，后者速率 / 成功 `+1000/+600bp`；不同来源加算后交 `design/15` 各槽上限钳制，不相乘 |
 
 ### 13.5 人工审校清单
 
@@ -1618,7 +1726,7 @@ q_06_qiyu_90
 2. 所有原著组织、人物、招式与事件按三联 / 广州修订版逐字核对；没有把握的条目保留 **（待考）**，不得补造引文、回目号、人物或招名。
 3. 每个正式门派逐时代人工复核 `O/H/P/N/D/M` 与地点可达性，尤其是合并、改名、前身、族群 / 政权和古龙跨作品投放。
 4. 每条任务至少演练成功、拒绝、失败 / 超时、NPC 不可用、背包满和读档重放；主线另测改命与原著锚点回流。
-5. 每书界跑全经济模拟，分别记录任务、战利品、掉钱、其他与五大支出；营生和门派月钱落地后重新校准，不得只看现金总额。
+5. 每书界跑全经济模拟，分别记录任务、战利品、敌人现银、城市营生、资源点、门派、赌场 / 其他七桶与主要回收口；总份额必须 100%，不得只看现金总额。
 
 ---
 
@@ -1633,13 +1741,14 @@ q_06_qiyu_90
 | Q12-D01 | `design/14` | 日志同屏 1 条主追踪 + 至多 3 条地图辅助钉选；只显示已知位置，期限最后 20% 变色 | §4.4 |
 | Q12-D02 | `design/18` | 同一可重复赠礼来源每 NPC 每游戏日好感收益至多 +5；AI 好感每项 −1..+1、每段累计绝对值 ≤3 | §5.3、§5.7 |
 | Q12-D03 | `tech/08` / 内容制作 | 每个启用 AI 闲聊的 NPC 至少有普通、网络失败、内容拒绝三类预写回退；模型只能调用 `propose_effects` | §5.7 |
-| Q12-D04 | `design/16` | L1–L5 只传 `stipendTier/resourceTier=1..5`；同派兼职、非主派与同周期重复请求均不叠领；实际金额、品级、周期和断供规则由 16 定稿 | §6.4、§6.9、§9.5 |
-| Q12-D05 | `design/16` | 掌门每游戏月 2 点门议行动，未用不累积；营生、资源点、家丁、月钱必须纳入现有“任务 50% / 其他 5%”收入篮子并回调现金 | §6.11、§9.5 |
+| Q12-D04 | `design/16` | **已解决：**L1–L5 传 `stipendTier/resourceTier=1..5`；绝对月钱、配给品阶、职责比例、周期和断供已由 `design/16` §10 定稿，同派兼职、非主派与同周期重复请求不叠领 | §6.4、§6.9、§9.5 |
+| Q12-D05 | `design/16` | **部分解决：**营生、资源点、门派与赌场等已纳入 `design/16` §12 的 40/25/10/10/8/5/2 七桶；掌门每游戏月 2 点门议行动、未用不累积仍是本文建议值，待玩法实测 | §6.11、§9.5 |
 | Q12-D06 | `design/13` | 同模板善举每日品德累计至多 +3；同一战只取最高一项战斗名望；继续沿用 `fameTotal≥20,000` 的“名满天下”修饰 | §8.2、§8.4 |
 | Q12-D07 | `design/14` / `design/10` | 城市专营 / 杂货 / 门派内库 / 黑市 / 当铺的 `shopMul` 为 1.00 / 1.05 / 0.90 / 1.25 / 1.10；库存按普通店 3 日、内库月结刷新 | §9.2、§9.4 |
 | Q12-D08 | 章节经济表 / `design/16` | 标准玩家中点可动现金为 2–4 小时收入、结局前 3–6 小时；偏离时先查来源结构与消耗，不直接没收 | §9.3 |
 | Q12-D09 | `tech/05` | 同一 `practiceKey` 每游戏日前 3 次成功操作可增长技艺，第 4 次起只给产物；口才每命中一项线索使 DC −5，最多 −15 | §10.1、§10.6 |
 | Q12-D10 | `design/10` / `13` / 存档 | 菜谱熟练 1–10，1→10 需 63 批成功；菜谱解锁与 `recipeMastery` 作为学识跨书界保留，材料与成品不保留 | §10.4、§10.7 |
+| Q12-D11 | `tech/05` | `inventory/changed`、`world/locationEntered`、`world/timeAdvanced` 与 `sect/joined` / `sect/promoted` / `sect/left` 暂按“域/过去式”使用；正式事件名、载荷和任务接取事件仍待运行时 schema 冻结 | §1.5 |
 
 ### 14.2 本文依赖的上游事实
 
@@ -1655,9 +1764,9 @@ q_06_qiyu_90
 | `design/13` | **已解决：**任务经验种类 / 权重、改命与结局品德条件、书眠成长规则为奖励与结局上游 |
 | `tech/04` | **已解决：**内容采用 strict schema、JSON-compatible YAML、Ink 仅提交受控 opcode；本文补充任务 AST 与命令白名单 |
 | `tech/08` §9 | **已解决：**AI NPC 默认关闭，唯一工具是 `propose_effects`；任何提案都须由 core 二次校验后才写状态 |
-| `design/15` | 当前尚未落盘；本文只发 `meridian/grantMasterGuidance` / `meridian/unlockPracticeSite`，不预定冲穴倍率、穴位或周天公式 |
-| `design/16` | 当前尚未落盘；本文只发营生 / 资源 / 家丁命令、相对配给档和金额引用，不预定工资、产量、职位、家丁成长或绝对月钱 |
-| `tech/05` | 当前尚未落盘；任务图求值、事务、稳定 RNG、存档迁移和本文 QST-V/T 测试须由运行时实现承接 |
+| `design/15` | **已解决：**本文发 `meridian/grantMasterGuidance` / `meridian/unlockPracticeSite`，payload 使用其 §5.6 的 `MeridianGuidance` 与 `meditationQuality`；冲穴、穴位和周天仍只由 15 计算 |
+| `design/16` | **已解决：**经营条件 / 动作使用其 §14 判别联合；月钱读取 §10，七桶与十四界预算读取 §12；本文不重定义工资、产量、职位或家丁成长 |
+| `tech/05` | **已落盘但待同步：**§10 已实现 provisional 任务状态、事务、稳定 RNG 与 Ink 桥，且已冻结 `quest/advanced`、`quest/succeeded` / `quest/failed`；需改为消费本文正式 `QuestDef`、`effectId`、优先级出口和 `estate/<kind>` 适配层，并冻结 Q12-D11 的其余事件 schema |
 | `design/story/*` / `chapters/*` | 正式十四界任务清单尚待落盘；本文七个 `90/91` 号对象仅为 schema 夹具，不得冒充正式剧情任务 |
 
 ### 14.3 对基准的修改提案
@@ -1692,7 +1801,7 @@ q_06_qiyu_90
 | Q12-O04 | AI 闲聊是否可直接影响任务 / 招募 / 羁绊 | 默认绝不允许；仅可提议微量好感或当前节点预登记旗标，core 可拒绝且预写 Ink 必须独立可通关 |
 | Q12-O05 | 烹饪是否新增第十一项 `cook` | 默认不新增；采用 §10.4 的 `recipeMastery[rc_*]`，并明确 `alchemy` 只用于炼丹 |
 | Q12-O06 | 菜谱熟练是否跨书界保留 | 默认作为已学学识保留；食材、成品、厨房和进行中批次清除 |
-| Q12-O07 | 四个缺图鉴落地组织如何处理 | 默认继续引用 `design/17` 的待收录索引，不让生产任务直接授予其候选武学；涉及 `sect_taibai`、`sect_qinjiazhai`、`sect_bohai`、`sect_jinlongbang` |
-| Q12-O08 | `design/15/16` 未落盘时正式任务能否带 provisional 引用上线 | 默认不能；只允许 `fixture:true` 校验形状，生产构建遇缺失引用直接失败 |
+| Q12-O07 | 图鉴索引未完整落地的组织如何处理 | 默认继续引用 `design/17` 的待收录索引，不让生产任务直接授予尚无 literal `sect_*` / `sk_*` 绑定的候选武学；明确待补的是 `sect_taibai`、`sect_qinjiazhai`、`sect_bohai`、`sect_jinlongbang`。`sect_zhuwulianhuanzhuang` 的候选武学已在 `skills-wujue` 建档，但图鉴明确仅供 NPC 残传、不给玩家来源，故不计作“完全缺失”，正式授艺仍禁止 |
+| Q12-O08 | 正式任务遇到依赖缺失或旧 provisional opcode 能否降级上线 | **已解决：不能。** `design/15/16` 已落盘；仅 `fixture:true` 可引用测试注册表，生产构建遇缺失引用、旧 `livelihood/resource/household` opcode 或默认 0 结算直接失败 |
 
 至此，本文发现的旧待决事项均未静默删除：已由 AR-07 / AR-09 等解决者保留“已解决”追溯，其余均带默认值继续设计。
