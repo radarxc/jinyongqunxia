@@ -1,11 +1,11 @@
 # 15 · 冲穴、经脉与周天（Meridians & Acupoints）
 
-> 归属（基准 §18，AR-03 授权、待 A3 补登记）：穴道、经脉、通脉、小周天、大周天、十二经周流、九转、冲穴速率、奖励预算、失败与持久化契约的唯一归属。
-> 上游：`decisions/author-requirements.md` AR-02 / AR-03；`decisions/author-decisions.md` G1 总确认；`00-canon.md` v1.1（重点 §3 / §5 / §6 / §9 / §10 / §12）；`decisions/rulings-v1.md`。
+> 归属（基准 §18，AR-03）：穴道、经脉、通脉、小周天、大周天、十二经周流、九转、冲穴速率、奖励预算、失败与持久化契约的唯一归属。
+> 上游：`decisions/author-requirements.md` AR-02 / AR-03；`decisions/author-decisions.md` G1 总确认；`00-canon.md` v1.2（重点 §3 / §5 / §6 / §9 / §10 / §12 / §18）；`decisions/rulings-v1.md`。
 > 引用而不重定义：属性与成长曲线见 `design/03`；伤害乘区与节奏见 `design/04`；内功性质、层数、辅运与走火分级见 `design/05`；效果原语与 Buff 本体见 `design/06`；丹药见 `design/10`；打坐与世界时间见 `design/11`；师父权限见 design/12；成长、轮回与天书见 `design/13`；界面见 design/14；数据管线见 tech/04；运行时实现见 tech/05。
 > 标注约定：**（原创扩展）** = 本作游戏化规则；**（待考）** = 原著事实尚待三联/广州修订版逐字核对；**（待核实）** = 技术事实未联网确认；**（待实测）** = 需真机或真实玩法验证；**【建议值】** = 依赖其他归属文档接入，文末登记。
 
-版本：v1.0（M1，2026-09-26）；审校 M1.R（2026-09-26）。规则与奖励均为**（原创扩展）**；穴名与经络名称采用真实术语，不把游戏效果解释为医学功效。
+版本：v1.0（M1，2026-09-26）；审校 M1.R（2026-09-26）；全局审计（2026-09-26）。规则与奖励均为**（原创扩展）**；穴名与经络名称采用真实术语，不把游戏效果解释为医学功效。
 
 ## 0. 阅读指南
 
@@ -677,7 +677,7 @@ failMargin        = u − PsuccessBp       // 失败时至少为 0
 | 内功专精（05） | `inner.meridians` | 对该内功贡献 ×1.20 | 不是成功率加成，不能填穴道 ID |
 
 `meridianAid` 建议形状为 `{rateBp, successBp, costReduceBp, hours, meridians?}`；10 负责具体药名、品阶、价格、获得途径与能否重复服用，15 只消费快照。
-师父与静室文件在本工作副本尚未落盘，故数值标为建议值；缺配置时均按 0，不能阻塞基础冲穴。
+师父与静室的消费接口已由 `design/12` §2.3、§6.3 对齐；数值仍是本文 **【建议值】**，直到玩法实测冻结。缺具体内容配置时三槽均按 0，不能阻塞基础冲穴。
 
 ### 5.7 UI 预估与风险提示
 
@@ -766,7 +766,7 @@ failMargin        = u − PsuccessBp       // 失败时至少为 0
 二十脉合计：通用 `combo +1.00pp`；`mpRegen +0.20pp`；`resCold/resPoison/resMind/resHeat/resInjury/resCC/resSeal` 七项抗性各 +0.50pp；`qinggong +0.50`、`counter +0.25pp`、`spd +1.0`、`effRes +2`，其余见表。
 通脉奖励不随九转放大，避免“穴奖放大 × 通脉放大 × 周天放大”的递归。
 
-### 6.4 锚穴被动（待 06 收录）
+### 6.4 锚穴被动（已由 06 收录）
 
 下列三个具名穴除 §3 的固定小加成外，各生成一个永久被动实例。它们全为**（原创扩展）**，只借真实穴名做主题锚，不声称有医学效果。
 
@@ -776,8 +776,7 @@ failMargin        = u − PsuccessBp       // 失败时至少为 0
 | 百会 `ap_dumai_baihui` | `bf_ap_baihui` | 开战时自身集气 +15；召唤、复活或换人重挂不再触发 | `onBattleStart` + `ctShift 15` |
 | 涌泉 `ap_zushaoyin_yongquan` | `bf_ap_yongquan` | 每次自身行动周期内第一次被强制位移后集气 +20；自身主动移动不触发 | `onDisplaced` + `ctShift 20`，`limitPerTurn:1` |
 
-三项的运行时 Buff 实例来源暂用 06 施加流程中的 `origin.type=system`，`origin.id` 填穴道 ID；这不是 `BuffDef.origin` 的考据来源字段（`canon/expanded/canonExpanded`）。固定系统品阶 12、不可普通驱散、无 `G/Lb` 放大。品阶只用于 schema 完整性，不使它们与免疫做品阶对抗。06 当前公开的 `BuffDef` 类型尚未承载该实例来源对象，须由 tech/05 的施加请求 / 实例 schema 补齐，不能把 `BuffDef.origin` 改填 `system`。
-若 06 未收录这些 ID，静态穴奖仍可工作，但内容构建必须报“未解析被动”而不是悄悄忽略。
+三项的运行时 Buff 实例来源使用 06 施加流程中的 `origin.type=system`，`origin.id` 填穴道 ID；这不是 `BuffDef.origin` 的考据来源字段（`canon/expanded/canonExpanded`）。固定系统品阶 12、不可普通驱散、无 `G/Lb` 放大。品阶只用于 schema 完整性，不使它们与免疫做品阶对抗；完整 Buff 本体见 `design/06` §8.13，实例来源契约见其 §13.4。
 
 ### 6.5 三个完成里程碑
 
@@ -1038,7 +1037,7 @@ schemaVersion / lastAppliedMigration
 | `design/03` | 属性 ID、`MPREF`、`StatModifier`、DAG 与最终上限 | 输出 `sourceType:'meridian'` 的 `flat/pct/pp`；不写 `mult`；奖励由状态派生 |
 | `design/04` | Z0–Z10、TTK 与命中/防御公式 | 不新增乘区；§8 只作现有公式敏感性估算，实装后跑完整回归 |
 | `design/05` | `G/L(n)`、有效品阶/层数、主辅运、性质、`auxRatio`、`inner.meridians`、走火分级 | 消费这些值；专精每门贡献 ×1.20；不改内功或走火本体 |
-| `design/06` | Buff schema、事件钩子、原语、走火与内伤目录 | 收录 §10.3 的 15 个永久被动定义；冲穴失败调用已有 4 个伤势/走火 ID |
+| `design/06` | Buff schema、事件钩子、原语、走火与内伤目录 | **已收录** §10.3 的 15 个永久被动定义（06 §8.13、§13.4）；冲穴失败调用已有 4 个伤势/走火 ID |
 | `design/10` | 丹药名称、价格、品阶、投放与叠加 | 向 `meridianAid` 提供三槽整数值；本文负责总上限与结算 |
 | `design/11` | 世界时钟、安全点、普通打坐、打断 | 冲穴占 1 游戏小时，不触发普通打坐恢复；逐小时交回世界事件 |
 | `design/12` | 师父、关系、指点额度、门派静室 | 消费 `MeridianGuidance` 与 `meditationQuality` **【建议值】** |
@@ -1047,9 +1046,9 @@ schemaVersion / lastAppliedMigration
 | `tech/04` | Zod、ID 注册、引用图、迁移与内容构建 | 将 §11 类型转为正式 schema，执行 §14 校验和短 ID remap |
 | `tech/05` | 玩法核心、世界事务、确定性 RNG、事件总线 | 按 §11.6 原子结算、持久化 ordinal、状态派生奖励 |
 
-### 10.3 交给 06 的 Buff 清单
+### 10.3 由 06 接收的 Buff 清单（已解决）
 
-以下 ID 当前尚未在 06 目录出现，须由 06 收录；字段意义以 §6–§7 精确定义为准，06 只把它们翻译成正式 DSL，不改数值。
+以下 ID 已由 `design/06` §8.13 正式收录，`onBuffApplied.applyMode` 与实例来源契约见其 §13.4；字段意义仍以 §6–§7 的成长侧定义为准，06 只承载运行时 Buff 本体，不改数值。
 
 | 组 | ID | 类别 | 所需钩子 / 原语 |
 |---|---|---|---|
@@ -1066,7 +1065,7 @@ schemaVersion / lastAppliedMigration
 | 八转 | `bf_zt_bazhuan` | effect | `onHpBelow`、`modRage` |
 | 九转 | `bf_zt_jiuzhuan` | mechanic | `onBuffApplied` 拒绝新 `bf_neishang`、战斗 charge |
 
-接口缺口：06 当前钩子表有 `onResisted` 和 `onBuffApplied`，但 `onBuffApplied` 的 `ctx.buff` 必须能区分“新建实例”与“已有实例加层”；若不能，九转实现应增加只读 `ctx.applyMode`，而不是扩大为全部内伤免疫。
+**已解决：**06 的 `onBuffApplied` 已提供只读 `ctx.applyMode: create | stack | refresh`；九转只拒绝 `bf_neishang + create`，不得扩大为全部内伤免疫。
 所有这些被动的运行时实例来源暂用 06 施加流程已有的 `origin.type=system`；06 `BuffDef.origin` 是另一项考据字段，本文新增定义均填 `expanded`。若未来运行时来源枚举增加 `meridian`，应做 schema 迁移，不允许同一被动以两种实例来源并存。
 
 ### 10.4 冲穴界面要点（交 design/14）
@@ -1426,9 +1425,9 @@ RNG 键为 `hash(runSeed,'meridian',targetId,attemptOrdinal)`，不消费战斗 
 | 穴道 | §3 的全部 `ap_*` | 恰 180 个；本表不复制长清单 |
 | 周天里程碑 | `zt_xiaozhoutian`、`zt_dazhoutian`、`zt_shierjingzhouliu` | 3 |
 | 转 | `zt_zhuan_01`～`zt_zhuan_09` | 9；两位十进制序号 |
-| 锚穴被动 | `bf_ap_qihai`、`bf_ap_baihui`、`bf_ap_yongquan` | 3；本体待 06 收录 |
-| 周天被动 | `bf_zt_xiaozhoutian`、`bf_zt_dazhoutian`、`bf_zt_shierjingzhouliu` | 3；本体待 06 收录 |
-| 九转被动 | `bf_zt_yizhuan`、`bf_zt_erzhuan`、`bf_zt_sanzhuan`、`bf_zt_sizhuan`、`bf_zt_wuzhuan`、`bf_zt_liuzhuan`、`bf_zt_qizhuan`、`bf_zt_bazhuan`、`bf_zt_jiuzhuan` | 9；本体待 06 收录 |
+| 锚穴被动 | `bf_ap_qihai`、`bf_ap_baihui`、`bf_ap_yongquan` | 3；本体见 `design/06` §8.13 |
+| 周天被动 | `bf_zt_xiaozhoutian`、`bf_zt_dazhoutian`、`bf_zt_shierjingzhouliu` | 3；本体见 `design/06` §8.13 |
+| 九转被动 | `bf_zt_yizhuan`、`bf_zt_erzhuan`、`bf_zt_sanzhuan`、`bf_zt_sizhuan`、`bf_zt_wuzhuan`、`bf_zt_liuzhuan`、`bf_zt_qizhuan`、`bf_zt_bazhuan`、`bf_zt_jiuzhuan` | 9；本体见 `design/06` §8.13 |
 
 `mer_*`、`ap_*`、`zt_*` 是本文请求基准 §12 新登记的前缀；`bf_*` 沿用基准既有前缀，最终 Buff 本体唯一归 design/06。旧短 ID `mer_ren/mer_du/mer_chong/mer_dai` 只可作为 §11.7 的迁移输入，不能成为新引用或第二定义。
 
@@ -1488,12 +1487,12 @@ T15-06 的边界特意覆盖闭区间：失败余量 2,499 属第二行，2,500 
 
 | 编号 | 下游 | 本文给出的默认 / 接口 | 状态 |
 |---|---|---|---|
-| D15-01 | `design/05`、catalog | `inner.meridians: MeridianId[]`；每门专精贡献 ×1.20；四个旧短 ID 按 §11.7 迁移 | 规则已在本文定稿，待全仓数据同步 |
-| D15-02 | `design/06` | 收录 §10.3 的 15 个永久 `bf_*`；九转拒绝内伤需只读 `ctx.applyMode` 区分 create / stack | **【建议值】**；缺口未落盘 |
+| D15-01 | `design/05`、catalog | `inner.meridians: MeridianId[]`；每门专精贡献 ×1.20；四个旧短 ID 按 §11.7 迁移 | **部分解决：**本文迁移表已定；图鉴侧正式长 ID 回写交 F2c，旧值仅可作为迁移输入（见 §11.7） |
+| D15-02 | `design/06` | 收录 §10.3 的 15 个永久 `bf_*`；九转拒绝内伤需只读 `ctx.applyMode` 区分 create / stack | **已解决：**见 `design/06` §8.13、§13.4 |
 | D15-03 | `design/10` | `meridianAid={rateBp,successBp,costReduceBp,hours,meridians?}`；同来源每槽取最高 | 接口已有预留，具体药品与投放待 10 定稿 |
-| D15-04 | `design/12` | 师父按速率/成功/减耗给 `+1500/+800/+500bp`；清静处按速率/成功给 `+500/+300bp`、名门静室 `+1000/+600bp` | **【建议值】**；12 尚未落盘 |
-| D15-05 | `design/13` | 每本天书速率 +1%、成功 +50bp；按 §10.1 纳入每界成长预算 | 本文默认，待 13 显式登记 |
-| D15-06 | `design/14` | 采用 §10.4 的经脉图、六态节点、风险确认、周天环和减少动态效果方案 | **【建议值】**；14 尚未落盘 |
+| D15-04 | `design/12` | 师父按速率/成功/减耗给 `+1500/+800/+500bp`；清静处按速率/成功给 `+500/+300bp`、名门静室 `+1000/+600bp` | **已解决接口：**12 §2.3、§6.3 已接入；数值仍为本文 **【建议值】**，待玩法实测 |
+| D15-05 | `design/13` | 每本天书速率 +1%、成功 +50bp；按 §10.1 纳入每界成长预算 | **已解决：**13 §4.1 T12 已显式登记 `bookCount` 与 `+1%/+50bp` |
+| D15-06 | `design/14` | 采用 §10.4 的经脉图、六态节点、风险确认、周天环和减少动态效果方案 | **已解决接口：**14 §4.12、§5.6、§8.3 已接入；局部布局值仍待真机实测 |
 | D15-07 | `tech/04`、`tech/05` | 将 §11 schema、remap、keyed RNG、原子事务和 §14 闸门转为实现 | **【建议值】**；技术文档待落盘或同步 |
 
 ### 15.2 本文依赖的上游事实
@@ -1535,7 +1534,7 @@ T15-06 的边界特意覆盖闭区间：失败余量 2,499 属第二行，2,500 
 |---|---|---|---|
 | O15-01 | 师父指点额度与静室品质如何投放 | 使用 §5.6 / D15-04 数值；缺配置即三槽为 0，不阻塞冲穴 | `design/12` |
 | O15-02 | 哪些丹药提供冲穴辅助 | 只接受 10 显式 `meridianAid`；没有合法条目时药物加成为 0 | `design/10` |
-| O15-03 | 九转内伤免除如何识别新建与加层 | 增加只读 `ctx.applyMode`，取 `create`、`stack`、`refresh`；仅 create 可拒绝 | `design/06`、`tech/05` |
-| O15-04 | 15 个新被动尚未进入正式 Buff registry | 接入前视为构建错误；开发预览可禁用被动但必须显示诊断，静态奖励照常核算 | `design/06`、`tech/04` |
+| O15-03 | **已解决：**九转内伤免除如何识别新建与加层 | 06 已增加只读 `ctx.applyMode`，取 `create`、`stack`、`refresh`；仅 `create` 可拒绝（见 `design/06` §13.4） | `design/06`、`tech/05` |
+| O15-04 | **已解决：**15 个新被动尚未进入正式 Buff registry | 15 项均已在 `design/06` §8.13 收录；内容构建继续对悬空引用报错 | `design/06`、`tech/04` |
 | O15-05 | 满九转真实 TTK 与资源循环是否越线 | 先采用 §8 的一阶估算与红线；实装后跑三档完整模拟，不合格时优先下调触发收益 | `design/04`、`design/06`、`tech/05` |
 | O15-06 | 20 脉与 180 穴的文化审校尚未完成 | 保留 §12 的非医疗声明、交会/借穴区分和全部待考标记 | 内容审校 |

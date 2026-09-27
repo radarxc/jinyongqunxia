@@ -1,9 +1,10 @@
 # NPC 名录 · 城市与设施
 
 > 归属：`design/18-npc-and-companions.md` 的设施 NPC 分层名录；招募难度、生卒 / 年龄、同伴状态与价格换算由主文定义。
-> 上游：AR-04（统一地图与历史城市）、AR-06（营生）、`design/02`（时代）、`design/10` §13.5（时收入锚点）、`design/19` 与 `design/map/cities.yaml`（正式城市 ID）；`design/11`、`design/16` 尚未落盘，本文只给区域玩法和营生实现所需的生产模板与 **【建议值】**。
-> 引用而不重定义：城市坐标 / 时代名称归 `design/19`；区域探索归未来 `design/11`；赌场、镖局、山庄职位和报酬归未来 `design/16`；商店货池归 `design/10`；任务 DSL 归未来 `design/12`。
+> 上游：AR-04（统一地图与历史城市）、AR-06（营生）、`design/02`（时代）、`design/10` §13.5（时收入锚点）、`design/11`（区域玩法）、`design/16`（营生契约）、`design/19` 与 `design/map/cities.yaml`（正式城市 ID）；本文只给设施 NPC 生成模板与仍需实测的 **【建议值】**。
+> 引用而不重定义：城市坐标 / 时代名称归 `design/19`；区域探索归 `design/11`；赌场、镖局、山庄职位和报酬归 `design/16`；商店货池归 `design/10`；任务 DSL 归 `design/12`。
 > 标注：`city_*` 必须解析到 `design/map/cities.yaml`；`facilityKey` 是城市记录内局部键；“某姓掌柜 / 某行脚”等是生成槽，不是虚构原著人物，也不建立静态 `npc_*`。
+> 版本：v1.2；全局审计（2026-09-26）。
 
 ## 0. 设施 NPC 的生成单位
 
@@ -141,7 +142,7 @@ publicLabel = displayName + roleTitle
 
 ## 7. 待上游回填
 
-- **已解决：**八个范例节点的城市锚已对接 `design/19` / `design/map/cities.yaml`；其中雁门关用 `city_xinzhou + placeKey=yanmenguan`，不得另造 `city_yanmenguan`。未来 `design/11` 只需确认区域入口、探索与关隘玩法。
-- `design/16`：确认九类场所 schema、`facilityKey` 的父级范围、玩家营生职位、工资倍率和全局客卿唯一约束；若场所需全局内容 ID，再由其提出并登记前缀。
-- `design/12`：确认设施小任务 DSL、雇佣契约状态与声望 / 品德阈值。
+- **已解决：**八个范例节点的城市锚已对接 `design/19` / `design/map/cities.yaml`；其中雁门关用 `city_xinzhou + placeKey=yanmenguan`，不得另造 `city_yanmenguan`。区域入口、探索与关隘玩法只读 `design/11`。
+- **已解决接口：**九类场所、`facilityKey` 父级范围、营生职位、工资与全局客卿唯一约束只读 `design/16` §7–§8、§14；本表的角色槽不是 `biz_*`，也不申请新全局前缀。
+- **已解决接口：**设施小任务服从 `design/12` 的 `quest.v1`、关系与品德 / 声望规则；雇佣 / 排班 / 工资状态服从 `design/16`，本文不维护第二份状态机。
 - 语言 / 历史校审：建立宋、辽、西夏、大理及后续各时代姓名池；核定前保留职业称谓，不批量生成伪史实姓名。

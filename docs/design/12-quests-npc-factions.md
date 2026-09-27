@@ -1,17 +1,17 @@
 # 12 · 任务、人物接口、门派、经济与生活技能（Quests, NPC Interfaces, Factions, Economy & Life Skills）
 
 > 归属（基准 §18）：任务结构与任务 DSL、门派加入 / 门规 / 贡献 / 晋升 / 叛出、品德与声望的事件口径、书界经济循环、生活技能玩法。
-> 上游：`docs/00-canon.md` v1.1；作者新增需求与已采用决定见 `docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`；跨文档裁定见 `docs/decisions/rulings-v1.md`。
+> 上游：`docs/00-canon.md` v1.2；作者新增需求与已采用决定见 `docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`；跨文档裁定见 `docs/decisions/rulings-v1.md`。
 > 引用而不重定义：NPC、同伴、招募难度、生卒、好感 / 羁绊、书眠与重逢 → `design/18-npc-and-companions.md`；NPC 的区域时代层地点日程与 `ScheduleBlock` → `design/11-open-world.md` §6.3；门派史、时代状态、驻地、人物、称谓模板、武学索引与原著依据 → `design/17-sects-compendium.md`；地图 → `design/11-open-world.md`；武学传授 → `design/05-martial-arts-system.md`；战斗队伍与合击 → `design/09-combat-system.md`；物品、配方、丹药、菜肴、锻造和价格基值 → `design/10-items-and-equipment.md`；成长与结局 → `design/13-progression-and-endings.md`；冲穴与打坐 → `design/15-meridians-and-acupoints.md`；资源、家丁与城市营生 → `design/16-resources-and-estates.md`；跨年代传承源、残本、信物、机会收据、缓存与校合 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给可用数值并在文末登记。
-> 版本：v1.2（跨文档同步，2026-09-26）。
+> 版本：v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）。
 
 ---
 
 ## 0. 结论先行与范围
 
 1. 任务是确定性状态机，不是脚本任意改状态的入口。YAML 条件编译成白名单 AST，动作先生成命令，再由 core 在提交时重验；Ink 和可选 AI 都不能绕过这条边界。
-2. 五类任务固定为 `main / side / faction / bond / qiyu`，ID 固定为 `q_<两位书界号>_<类型>_<两位序号>`。任务允许阶段、分支、软失败、硬失败和时限，但主线不得因隐藏倒计时永久锁档。
+2. 五类任务固定为 `main / side / faction / bond / qiyu`。十四书界主线使用带路线码的 `q_<NN>_main_<c|z|x>_<nn>`，其余任务使用 `q_<NN>_<类型>_<nn>`；终局另保留 `q_15_main_<nn>` 容器。任务允许阶段、分支、软失败、硬失败和时限，但主线不得因隐藏倒计时永久锁档。
 3. 人物资料与同伴状态机已由 AR-09 移交 `design/18`。本文只定义任务如何查询、改变、监听人物状态，以及门派 NPC 如何从 `design/17` / `design/18` 取得当代职级。旧“队友绝不跨书界”已被跨书重逢规则覆盖。
 4. 门派资料唯一源是 `design/17` 的 99 个规范组织与 1,386 个时代状态单元。本文固定 L1–L5 晋升机制，并把“正式弟子”“客卿 / 盟友”“敌对”分开；每书界至多担任一个组织的 L5。
 5. 经济以 `design/10` §13 的物品价值为锚，并以 `design/16` §12 的七类收入桶和十四界预算为正式口径。货币与门派身份在书眠时清零；经营、资源、家丁和营生的产出、成本与结算归 `design/16`，本文只定义任务与门派侧消费接口。
@@ -60,7 +60,7 @@
 | 羁绊 | `bond` | 与 `design/18` 人物关系和招募 / 重逢交互 | 是；命定节点按改命规则处理 | 同伴在队时是 | `bond_stage`、好感 / 羁绊、合击许可 |
 | 奇遇 | `qiyu` | 由地点、时辰、福缘、行为组合触发 | 是 | 否，发现后可开 | `qiyu`、特殊来源、见闻 |
 
-完整正则：`^q_(0[0-9]|1[0-5])_(main|side|faction|bond|qiyu)_[0-9]{2}$`。`00` 为序章，`01`–`14` 为十四书界，`15` 仅为终局容器，不是第十五书界。两位序号是“书界 × 类型”局部编号；新建前全仓搜索，已发布 ID 永不换义。示例夹具占用本文 §3 的 90/91 号段，但发布内容应移入测试目录并排除正式任务注册表。
+规范是三个不相交的闭集：十四书界主线 `^q_(0[1-9]|1[0-4])_main_[czx]_[0-9]{2}$`；序章与十四书界非主线 `^q_(0[0-9]|1[0-4])_(side|faction|bond|qiyu)_[0-9]{2}$`；终局容器例外 `^q_15_main_[0-9]{2}$`。`c/z/x` 分别表示共有 / 正 / 邪路线，属于正式稳定 ID；`00` 为序章，`01`–`14` 为十四书界，`15` 不是第十五书界。两位序号在“书界 × 类型 × 路线（如有）”内局部编号；新建前全仓搜索，已发布 ID 永不换义。示例夹具占用本文 §3 的 90/91 号段，但发布内容应移入测试目录并排除正式任务注册表。
 
 ### 1.2 任务状态与阶段状态
 
@@ -143,11 +143,11 @@ locked ──offer──► available ──accept──► active ──advance
 conditionExamples:
   - all:
       - { flag: { id: fl_fixture_juxian_help, is: true } }
-      - { not: { quest: { id: q_01_main_90, state: failed } } }
+      - { not: { quest: { id: q_01_main_c_90, state: failed } } }
   - any:
       - { compare: { left: { stat: morality }, op: ge, right: 40 } }
       - { hasItem: { id: it_xuantieling, count: 1 } }
-  - { quest: { id: q_01_main_90, state: active, stage: st_help } }
+  - { quest: { id: q_01_main_c_90, state: active, stage: st_help } }
   - { sect: { id: sect_shaolin, status: member, rankAtLeast: 2, contributionAtLeast: 300 } }
   - { npc: { id: npc_xuzhu, state: alive, affinityAtLeast: 20, bondAtLeast: 40 } }
   - { companion: { id: npc_xuzhu, station: active, everRecruited: true } }
@@ -236,9 +236,10 @@ Ink 只读查询 `get_flag`、`quest_stage`、`has_item`、`affinity` 等白名�
 
 | 剧情稿表达 | 迁入 `quest.v1` | 作用域与约束 |
 |---|---|---|
-| `q_NN_main_c_nn` | 显式映射到一个正式 `q_NN_main_nn` 及其共有路线阶段 | `c` 仅表示 `common` 作者侧路线段；不是正式 `QuestId` 的合法片段 |
-| `q_NN_main_z_nn` / `q_NN_main_x_nn` | 显式映射到正式主线任务和 `righteous` / `shadow` 路线阶段 | `z/x` 是人读路线别名，不是永久阵营；同号前后段可映入同一任务的不同阶段，不得机械去字母后碰撞 |
-| `dc_NN_nn` | 所属正式任务内的 `st_dc_NN_nn`（或 manifest 指定的等价稳定阶段） | `dc_*` 只作策划选择标签，不登记为全局内容 ID，也不新增 `kind: decision` |
+| `q_NN_main_c_nn` | 保持为正式共有线任务 ID，补齐 `quest.v1` 阶段、出口与效果 | `c` 表示 common；不得去掉路线码或并入同号正 / 邪任务 |
+| `q_NN_main_z_nn` / `q_NN_main_x_nn` | 保持为正式正 / 邪线任务 ID，补齐 `quest.v1` 阶段、出口与效果 | `z/x` 是稳定路线码，不是永久阵营；换线通过 `dc_*` 出口显式连接 |
+| `dc_NN_nn` | 保持为稳定选择节点 ID，并映射到唯一父任务、`stageId` 与各选项 `branchKey` | `dc_*` 全局登记、章内编号；不是任务 ID，也不得降格为私有 `st_dc_*` |
+| 旧简式 `q_NN_main_nn` | 通过 `aliases[]` 显式 remap 到一个带 `c/z/x` 的正式主线任务 | 只作迁移源；禁止字符串猜路线；`q_15_main_<nn>` 终局例外不在此列 |
 | 草稿 `nextByChoice` / `fromChoice` / `choices` | `stages[].transitions[]` | 每个选项生成稳定 `edge_*`、`branchKey`、优先级与明确兜底；目标必须可达 |
 | 草稿 `route` / `routeTone` | 正式任务的 `routeTone` 与稳定 `branchKey` | 只描述当前路径；换线仍由剧情稿已审校的门槛与代价决定 |
 | 草稿 `conditions` / `prerequisites` | `offerWhen`、`showWhen` 或 `transition.when` | 按发生时点显式拆分为单操作符 AST，不能把自由文本当可执行条件 |
@@ -247,7 +248,7 @@ Ink 只读查询 `get_flag`、`quest_stage`、`has_item`、`affinity` 等白名�
 
 各章立场量（包括 `stance03`、`bx_stance`、`stance_11`、`stance12` 及连城诀的 `stancePoints/stanceScore`）均是**所属书界 / 任务局部状态**：manifest 必须保留该章经审校的公式、阈值、累加序列及 `priorSwitches`、`routeReady`、`routeIntent`、`routeOverride` 等换线语义，不能用一个通用公式重算，也不能覆盖全局 `morality`。书眠时只可把最终路线与关键选择写入历史摘要，运行中的局部计数清零。
 
-迁移 manifest 的最小字段为 `chapterId`、`sourceRef`、`sourceSchema`、`aliases[]`、`decisionLabels[]`、`stateMappings[]`、`formulaNotes[]` 和 `unmapped[]`；`unmapped` 在发布构建中必须为空。每个 `aliases[]` 项至少给出 `sourceAlias`、`questId`、`stageIds[]`，每个 `decisionLabels[]` 项至少给出 `sourceLabel`、`questId`、`stageId`、`choiceToBranchKey`。`story/08` 已使用正式 `q_08_main_01`～`q_08_main_18`，不得二次编号；仍须迁移其 `dc_08_01`～`dc_08_10` 局部标签和严格字段。
+迁移 manifest 的最小字段为 `chapterId`、`sourceRef`、`sourceSchema`、`aliases[]`、`decisionNodes[]`、`stateMappings[]`、`formulaNotes[]` 和 `unmapped[]`；`unmapped` 在发布构建中必须为空。每个 `aliases[]` 项至少给出 `sourceAlias`、`questId`、`stageIds[]`，每个 `decisionNodes[]` 项至少给出 `decisionId`、`questId`、`stageId`、`choiceToBranchKey`。`story/08` 现有 `q_08_main_01`～`q_08_main_18` 是旧简式迁移源，必须逐项映射到带路线码的正式 ID；其 `dc_08_01`～`dc_08_10` 保持稳定选择节点 ID，并补齐父任务、阶段、出口、效果与严格字段。
 
 以下任一情形都阻断构建：草稿 schema 被生产发现器直接装载；别名自动去掉 `c/z/x` 后生成 ID；未知字段或 opcode；悬空阶段 / 出口；局部 `st_/edge_/fx_/chk_` 或立场键跨任务引用；选择缺少失败 / 中立兜底；持久效果缺稳定局部 ID；迁移丢失剧情稿原有公式、换线代价或不可逆警告。迁移只改变数据表达，不改写各篇已审校的剧情结论。
 
@@ -262,7 +263,7 @@ Ink 只读查询 `get_flag`、`quest_stage`、`has_item`、`affinity` 等白名�
 ```yaml
 schemaVersion: quest.v1
 fixture: true
-id: q_01_main_90
+id: q_01_main_c_90
 kind: main
 titleKey: quest.fixture.juxian.title
 chapterId: ch01_tianlong
@@ -902,6 +903,16 @@ outsider ──结识──► associate / ally / guest
 
 “师父指点”调用 `design/05`：喂招、修炼倍率和层数上限由武学来源定义。若指点同时改善冲穴，`meridian/grantMasterGuidance` 必填 `teacherNpcId + meridianId + charges + guidance`；`guidance` 默认取 `design/15` §5.6 的 `+1500/+800/+500bp`，每次绑定一条经脉并消耗一次额度。打坐地点以 `meridian/unlockPracticeSite(locationId, meditationQuality)` 接入：清静处为 1，名门静室为 2。相同来源每槽取最高、不同来源加算及总上限全部由 `design/15` 执行，本文不得预写冲穴进度。
 
+门派状态对武学经验只输出一个稳定字段 `sectTrainingMult`，由本文合并，`design/05` §8.1 在最终经验式中恰好乘一次。调用方提供当前人物、书界与该武学已解析的 `skillSectId`；不得靠名称、图鉴章节或 `setTags` 猜门派。合并规则固定为：
+
+```text
+eligible = 当前书界、当前正式身份中 active=true 且 skillSectId 过滤命中的效果
+deltaBp = Σ eligible 中按 sourceKey 去重后的 deltaBp
+sectTrainingMult = (10000 + deltaBp) / 10000
+```
+
+同一 `sourceKey` 重放只计一次；互斥状态同时存在、重复键不同值或输出小于 0 均为存档 / 内容错误，不以数组顺序择一。消费者不得再乘每项效果。当前注册表只有 `sect.shaolin.tonsured`：须为未冻结的 `sect_shaolin` 正式成员、处于剃度状态，且 `skillSectId=sect_shaolin` 时 `deltaBp=1000`，故 `sectTrainingMult=1.10`；其他情况均为 1.00。还俗、离门、逐出、叛出、身份冻结或书眠清理该 active 效果，同时恢复情缘资格；再次入门不自动恢复剃度状态。
+
 ### 6.8 叛出、逐出与兼并
 
 | 退出方式 | 主动性 | 状态 | 回归 |
@@ -1007,7 +1018,7 @@ outsider ──结识──► associate / ally / guest
 | `sect_baituoshan` 白驼山 | O:SD/SHD；H:— | 邪 | 条件正式/敌对 | `skills-wujue` | `city_kashgar` / `rg_xiyu_nanjiang` | 《射雕》《神雕》；`design/17` §7.5 |
 | `sect_jueqinggu` 绝情谷 | O:SHD；H:— | 邪/多线 | 条件正式/敌对 | `skills-daojia` | `city_xian` / `rg_guanzhong` | 《神雕侠侣》；`design/17` §7.6 |
 | `sect_xuansuzhuang` 玄素庄 | O:XK；H:— | 正 | 客盟/条件正式 | `skills-xiake-bixue` | `city_luoyang` / `rg_zhongyuan` | 《侠客行》；`design/17` §7.7 |
-| `sect_shiliang` 石梁温家 | O:BX；H:— | 多线 | 客盟/条件正式 | `skills-xiake-bixue` | 衢州府一带；当前邻近挂 `city_jinhua` / `rg_liangzhe` **（待考）** | 《碧血剑》；`design/17` §7.8、`design/19` §5.2 |
+| `sect_shiliang` 石梁温家 | O:BX；H:— | 多线 | 客盟/条件正式 | `skills-xiake-bixue` | 衢州府一带；当前邻近挂 `city_jinhua` / `rg_zhedong` **（待考）** | 《碧血剑》；`design/17` §7.8、`design/19` §5.2 |
 | `sect_hujia` 辽东胡家 | O:FH/XS；H:YY/SJ | 正 | 客盟/传承 | `skills-qianlong` | `city_shenyang` / `rg_liaodong` | 《飞狐外传》《雪山飞狐》；`design/17` §7.9 |
 | `sect_miaojia` 苗家 | O:FH/XS；H:YY/SJ | 正 | 客盟/传承 | `skills-qianlong` | `city_shenyang` / `rg_liaodong` | 《飞狐外传》《雪山飞狐》；`design/17` §7.10 |
 | `sect_shangjiabao` 商家堡 | O:FH；H:SJ | 邪/多线 | 条件正式/敌对 | `skills-qianlong` | `city_baoding` / `rg_yanjing_zhili` | 《飞狐外传》；`design/17` §7.11 |
@@ -1518,6 +1529,7 @@ membershipPolicy:
   primaryForStipendRequired: true
   dualFormalDefault: deny
   maxRank5PerChapter: 1
+membershipEffects: []
 ranks:
   - level: L1
     contributionMin: 0
@@ -1597,7 +1609,7 @@ memberships:
     stipendPeriodClaimed: null
     resourcePeriodClaimed: null
     frozen: false
-appliedMembershipEffects: []
+modifierStates: {}
 ```
 
 书眠归档该对象后，新书界创建空的 `memberships`、`primarySectId` 与 `rank5SectId`；旧身份只进历史摘要，不能自动领当代月钱或越过当代入门任务。
@@ -1635,14 +1647,15 @@ appliedMembershipEffects: []
 | `effectId` | 由不可换义的 `<questId>/<stageId>/<effectLocalId>` 生成；不得使用数组下标 | 奖励与事件去重 |
 | `branchKey` | 玩家走过的语义分支键；独立于目标阶段 ID | 后日谈、重逢与日志 |
 | `routeTone` | `righteous/shadow/mixed`，描述当前任务路线而非永久阵营 | 本文 §8.1 |
-| `SectProgressionPolicy` | 在 `design/17` 的组织资料之上追加加入、晋升、纪律与 L5 策略 | 本文 §6、§11.3 |
+| `SectProgressionPolicy` | 在 `design/17` 的组织资料之上追加加入、晋升、纪律、状态效果与 L5 策略 | 本文 §6、§11.3 |
+| `sectTrainingMult` | 本文从当前门派状态效果按 `sourceKey` 去重合并后，输出给 `design/05` 的单一武学经验倍率；默认 1.00，少林剃度且修炼少林武学时 1.10 | 本文 §6.7、§11.3 |
 | L1–L5 | 外门 → 入门 / 内门 → 亲传 / 闭门 → 长老级 → 掌门级 | AR-07；显示称谓只读 `design/17` |
 | `primarySectId` | 当前唯一领取月钱 / 配给并常规晋升的正式身份 | 本文 §6.9 |
 | `rank5SectId` | 本书界唯一掌门级身份；空值表示尚未到达 L5 | 本文 §6.9、§11.3 |
 | 门议 | L5 每月以有限行动选择传艺、救济、巡防、外交等事务 | 本文 §6.11 **（原创扩展）** |
 | `NpcInteractionBinding` | 任务对 `design/18` 人物 / 关系 / 招募 / 画像及 `design/11` 地点日程的引用层 | 本文 §5、§11.2 |
-| 剧情路线段别名 | `q_NN_main_<c\|z\|x>_nn`；只在 `design/story/*` 与迁移 manifest 中定位共有 / 正 / 邪路线段 | 本文 §2.6；不得进入正式任务注册表 |
-| 策划选择标签 | `dc_NN_nn`；迁移为所属任务内 `st_dc_NN_nn` 或 manifest 指定的等价阶段 | 本文 §2.6；不是全局内容 ID |
+| 主线路线码 | `q_NN_main_<c\|z\|x>_nn` 中的 `c/z/x`；分别表示共有 / 正 / 邪路线 | 本文 §1.1、§2.6；属于十四书界正式任务 ID |
+| 稳定选择节点 | `dc_NN_nn`；映射到唯一父任务、阶段与选项 `branchKey` | 本文 §2.6；全局登记但不是任务 ID |
 | 剧情迁移 manifest | 逐章保存来源别名、正式任务 / 阶段、选择分支、局部状态公式和未映射项的构建输入 | 本文 §2.6；内容管线消费 |
 | `LegacyQuestFact` / `LegacyQuestIntent` | `design/20` 领域状态的只读查询与六项受控动作；任务层只收口 AST / opcode、事务和幂等适配 | 本文 §2.2–§2.3、§11.4；领域语义见 `design/20` §10 |
 | `moneyWen` | 当界现金的整数文账本；`1 两=1,000 文` | 本文 §9.1 |
@@ -1655,8 +1668,8 @@ appliedMembershipEffects: []
 
 | 对象 | 规范 | 本文状态 |
 |---|---|---|
-| 任务 | `q_<两位书界号>_<main\|side\|faction\|bond\|qiyu>_<两位序号>` | §3 七项均为 `90/91` 测试夹具，不进入生产注册表 |
-| 剧情稿路线段 / 选择标签 | `q_NN_main_<c\|z\|x>_nn` / `dc_NN_nn` | 仅为迁移输入；前者须显式映射正式任务，后者迁为父任务局部 `st_dc_NN_nn` |
+| 任务 | 十四书界主线 `q_<NN>_main_<c\|z\|x>_<nn>`；其余 `q_<NN>_<side\|faction\|bond\|qiyu>_<nn>`；终局例外 `q_15_main_<nn>` | §3 七项均为 `90/91` 测试夹具，不进入生产注册表 |
+| 旧简式主线 / 选择节点 | 迁移源 `q_NN_main_nn` / 正式 `dc_NN_nn` | 前者须显式映射到带路线码任务且不得进入生产注册表；后者登记并映射父任务、阶段与 `branchKey` |
 | 阶段 / 转移 / 效果 / 检定 | `st_*` / `edge_*` / `fx_*` / `chk_*` | 只在所属任务内唯一；不是全局游戏对象 ID；转移不用已归地形的全局前缀 `tr_*` |
 | 旗标 / 计数器 | `fl_*` / `cnt_*` | 本文 DSL 局部命名约定；必须由所属任务预登记 |
 | 门规 | 文本键 `rule.<sect>.<name>` 或所属策略局部 `key` | 不新增全局 `rule_*` 开关 |
@@ -1667,12 +1680,20 @@ appliedMembershipEffects: []
 本文占用但不发布的任务夹具为：
 
 ```text
-q_01_main_90      q_04_faction_90   q_05_bond_90
+q_01_main_c_90    q_04_faction_90   q_05_bond_90
 q_13_bond_91      q_08_side_90      q_07_faction_91
 q_06_qiyu_90
 ```
 
 正式章节不得复用上述 fixture 含义；若确需同号，须先把夹具迁至测试命名空间，并保证生产扫描排除。`anran_bieli` 是 `skills-daojia` 已登记的存档旗标，本文只规定其可靠写入条件，不另建同义 ID。
+
+本轮接收一项已有上下游共同引用、且符合 §1.1 正则的正式任务登记：
+
+| ID | 名称 / 类别 | 来源与范围 | 最小关键字段 |
+|---|---|---|---|
+| `q_04_bond_97` | 八臂旧名 / bond | `chapters/04-yitian` §6.2；方东白比剑与授艺支线 **（原创扩展）** | `chapterId:ch04_yitian`；与方东白比剑并留其退路，识破身份后守门；成功开放 `sk_babishenjian` 来源 |
+
+该行仅登记任务身份和跨文档稳定引用；阶段、条件、失败保底与奖励事务仍须由倚天迁移 manifest 按 §2.6 导入 `quest.v1`，不得从本摘要反向生成完整任务。
 
 ---
 
@@ -1704,9 +1725,10 @@ q_06_qiyu_90
 | QST-V20 | error | 所有 YAML 可无损转 JSON；禁止 anchor、alias、merge、多文档、重复键、未知键、NaN / Infinity 与隐式日期 |
 | QST-V21 | error | 99 个规范 `sect_*` 与 `design/17` 集合相等；每个有 14 个状态；计数矩阵逐格、逐列等于 §7.3 |
 | QST-V22 | warning→发布 error | 原创、待考和建议值有规范标注；正式内容不得含 fixture 名、占位依赖、未完成标记或省略正文的占位语 |
-| QST-V23 | error | 十四篇剧情稿各有显式迁移 manifest；所有 `q_NN_main_<c\|z\|x>_nn` 与 `dc_NN_nn` 均有唯一来源映射，`unmapped=[]`；别名本身不进入生产注册表 |
+| QST-V23 | error | 十四篇剧情稿各有显式迁移 manifest；所有正式 `q_NN_main_<c\|z\|x>_nn` 与 `dc_NN_nn` 均唯一并相互可解析，旧简式 `q_NN_main_nn` 均显式 remap，`unmapped=[]`；旧简式本身不进入生产注册表 |
 | QST-V24 | error | 迁移后保留所属章的立场公式、阈值、换线次数 / 意图 / 覆写、不可逆警告与失败兜底；局部立场键和 `st_/edge_/fx_/chk_` 不得跨任务引用，且不得覆盖全局 `morality` |
 | QST-V25 | error | 传承条件只读两类六字段白名单；六个 `legacy/*` opcode 与 `design/20` §10 一一对应；effect / receipt 双幂等键、阶段、物品、收据与 RNG 必须同事务，禁止直接写领域数组或进度 |
+| QST-V26 | error | `sectTrainingMult` 只由本文从当前 `modifierStates` 与策略 `membershipEffects` 派生；同一 `sourceKey` 只计一次，消费者不得逐效果复乘；当前仅允许 `sect.shaolin.tonsured=+1000bp` 且只命中 `sect_shaolin` 武学 |
 
 `error` 阻断内容构建。`warning` 只能在策划复核后带负责人、原因和期限豁免；发布候选不接受无期限豁免。`design/15/16` 引用必须按正式判别联合校验；只有 `fixture:true` 可解析测试注册表对象，正式任务引用 fixture 或旧 provisional opcode 一律触发 QST-V15 / V20。
 
@@ -1716,7 +1738,7 @@ q_06_qiyu_90
 |---|---|---|
 | QST-T01 | 加载 §3 七个任务夹具 | 七个 `q_*` 唯一、YAML 解析成功、所有阶段 / 出口可解析、生产发现器结果为 0 个 fixture |
 | QST-T02 | 给同一阶段两个 `priority:10` 且都恒真的出口 | QST-V04 失败，不能依 YAML 数组顺序偷偷选路 |
-| QST-T03 | `q_01_main_90` 战斗胜 / 负各走一次 | 都抵达 `st_close`；只生成一次经验与 `fame +120`；原著锚点不中断 |
+| QST-T03 | `q_01_main_c_90` 战斗胜 / 负各走一次 | 都抵达 `st_close`；只生成一次经验与 `fame +120`；原著锚点不中断 |
 | QST-T04 | 在奖励事务提交后，以相同 `effectId` 重放三次 | 经验、金钱、物品、贡献和关系值均不再增加 |
 | QST-T05 | 概率检定失败后存档重载 20 次 | `checkResults[checkId]` 不变，始终进入相同失败出口 |
 | QST-T06 | 主线阶段在期限前未完成 | 只能转预先声明的替代阶段；不存在永久锁死且无锚点出口的存档 |
@@ -1724,9 +1746,9 @@ q_06_qiyu_90
 | QST-T08 | 当前目标 NPC 因剧情换位 / 死亡 | 前者由 `design/11` 日程解析器按任务覆写优先级更新；后者走继承 / 失败出口，不生成同名替身 |
 | QST-T09 | AI 提案含 `affinity_delta:+2`、发物品或未登记旗标 | 三者分别因超单项、禁用类型、旗标越权被拒；预写 Ink 仍可继续 |
 | QST-T10 | `bond=59/60` 的当界同伴离队 | 59 不写；60 写一次 `anran_bieli`；转留守位置不写 |
-| QST-T10A | 将 `q_12_main_z_09` 的前、后段按字符串去掉 `z` 自动编号 | QST-V23 失败；须由 manifest 将两段显式映射到正式任务的两个稳定阶段 |
-| QST-T10B | 将 `dc_08_08` 注册为全局任务，或让 `stance12` 写入 `morality` | 分别因非法任务 ID、局部状态越权触发 QST-V23 / V24；正确结果为父任务内 `st_dc_08_08` 和独立章内状态 |
-| QST-T10C | `story/08` 输入已有 `q_08_main_01`～`18` | 正式任务 ID 原样保留，不二次编号；十个 `dc_*`、出口、效果和公式仍逐项进入 manifest，且 `unmapped=[]` |
+| QST-T10A | 将 `q_12_main_z_09` 按字符串去掉 `z` 自动编号 | QST-V23 失败；带路线码 ID 必须原样保留，阶段只在该正式任务内迁移 |
+| QST-T10B | 将 `dc_08_08` 注册为任务，或让 `stance12` 写入 `morality` | 分别因对象类型错误、局部状态越权触发 QST-V23 / V24；正确结果为 `dc_08_08` 指向唯一父任务 / 阶段 / `branchKey`，立场保持章内状态 |
+| QST-T10C | `story/08` 输入旧简式 `q_08_main_01`～`18` | 十八项都须显式映射到唯一带 `c/z/x` 的正式任务；十个 `dc_*` 保持稳定 ID 并逐项登记父任务、出口、效果和公式，且 `unmapped=[]` |
 | QST-T10D | 同一 `legacy/resolveOpportunity` 在奖励提交后以相同 effect / receipt 重放，或在发卷后故障回滚 | 重放不再消费 RNG / 发卷；故障时阶段、卷、机会收据和 RNG 全部恢复到提交前 |
 
 ### 13.3 门派、声望与书眠测试
@@ -1742,6 +1764,7 @@ q_06_qiyu_90
 | QST-T17 | 对两个非敌对 NPC 各施一次生死符，再对第一人重复一次 | 三次各品德 −10，三条受害者事件均保留；总计 −30 后钳制 |
 | QST-T18 | `fameTotal=900, fame=250`，同一书眠事务因崩溃重试 | 首次结果 `fameTotal=1,150, fame=0`；重试仍为 1,150 / 0 |
 | QST-T19 | 聚合 §7.3 十四行 | 每行合计 99；总单元 `99×14=1,386`；O/H/P/N/D/M 六列总和也为 1,386 |
+| QST-T19A | 同一角色修炼少林 / 非少林武学；依次处于俗家、剃度、冻结、还俗与书眠后状态，并重放相同 `sourceKey` | 只有“剃度 + 未冻结正式少林成员 + `skillSectId=sect_shaolin`”输出 1.10；其余均为 1.00，重放不变成 1.20 |
 
 ### 13.4 经济与生活技能金标准
 
@@ -1792,6 +1815,7 @@ q_06_qiyu_90
 | Q12-D09 | `tech/05` | 同一 `practiceKey` 每游戏日前 3 次成功操作可增长技艺，第 4 次起只给产物；口才每命中一项线索使 DC −5，最多 −15 | §10.1、§10.6 |
 | Q12-D10 | `design/10` / `13` / 存档 | 菜谱熟练 1–10，1→10 需 63 批成功；菜谱解锁与 `recipeMastery` 作为学识跨书界保留，材料与成品不保留 | §10.4、§10.7 |
 | Q12-D11 | `tech/05` | `inventory/changed`、`world/locationEntered`、`world/timeAdvanced` 与 `sect/joined` / `sect/promoted` / `sect/left` 暂按“域/过去式”使用；正式事件名、载荷和任务接取事件仍待运行时 schema 冻结 | §1.5 |
+| Q12-D12 | `design/05` / `tech/05` | **已解决：**本文输出合并后的单一 `sectTrainingMult`；默认 1.00，少林剃度且修炼少林武学时 1.10；消费者恰乘一次 | §6.7、§11.3、§13.3 |
 
 ### 14.2 本文依赖的上游事实
 
@@ -1801,7 +1825,7 @@ q_06_qiyu_90
 | 作者 AR-07 / AR-08 / `design/17` | **已解决：**99 个规范组织、14 界六态矩阵、12 个模板族 / 13 个具体称谓模板为资料源；本文只定义 L1–L5 机械晋升和任务规则 |
 | 作者 AR-09 / `design/18` | **已解决：**人物本体、D1–D5、R0–R6、生卒、编组、成长、离队与 U0–U5 重逢归 18；活动编组清空不等于关系与能力快照消失 |
 | `design/03` | **已解决：**十项技艺均为 0–100；品德为 −100～100，声望为当界数值；制作 / 社交检定公式沿用 §8 |
-| `design/05` 与各武学图鉴 | **已解决：**职级只开放目录，学习仍逐条检查 `reqs`、师父、来源品阶和层数上限；虎爪绝户手的品德代价为 −3 |
+| `design/05` 与各武学图鉴 | **已解决：**职级只开放目录，学习仍逐条检查 `reqs`、师父、来源品阶和层数上限；虎爪绝户手的品德代价为 −3；本文按 §6.7 输出唯一 `sectTrainingMult` |
 | `design/09` | **已解决：**主角 + 同伴上场总数 ≤6；合击效果、站位和战斗 AI 不由任务文档重定义 |
 | `design/10` | **已解决：**`1 两=1,000 文`、品阶价格、供货上限、丹药 / 菜肴 / 锻造事务和来源物品为经济与制作锚点 |
 | `design/13` | **已解决：**任务经验种类 / 权重、改命与结局品德条件、书眠成长规则为奖励与结局上游 |
@@ -1811,7 +1835,7 @@ q_06_qiyu_90
 | `design/16` | **已解决：**经营条件 / 动作使用其 §14 判别联合；月钱读取 §10，七桶与十四界预算读取 §12；本文不重定义工资、产量、职位或家丁成长 |
 | `design/20` | **已解决：**§2.2–§2.3 已正式收口两类传承只读事实、六项 `LegacyQuestIntent` 的任务 opcode、双幂等键与原子回滚；源生命周期、概率、卷位、缓存和校合仍只由 20 定义 |
 | `tech/05` | **已落盘但待同步：**§10 已实现 provisional 任务状态、事务、稳定 RNG 与 Ink 桥，且已冻结 `quest/advanced`、`quest/succeeded` / `quest/failed`；需改为消费本文正式 `QuestDef`、`effectId`、优先级出口和 `estate/<kind>` 适配层，并冻结 Q12-D11 的其余事件 schema |
-| `design/story/*` / `chapters/*` | **已接收迁移接口：**§2.6 已冻结路线段别名、`dc_*`、章内立场值与旧字段迁入 `quest.v1` 的规则；仍须逐章产出显式 manifest 与正式任务文件。本文七个 `90/91` 号对象仅为 schema 夹具，不得冒充正式剧情任务 |
+| `design/story/*` / `chapters/*` | **已接收迁移接口：**§2.6 已冻结正式路线码、`dc_*`、章内立场值与旧字段迁入 `quest.v1` 的规则；仍须逐章产出显式 manifest 与正式任务文件，并把旧简式主线逐项 remap。本文七个 `90/91` 号对象仅为 schema 夹具，不得冒充正式剧情任务 |
 
 ### 14.3 对基准的修改提案
 

@@ -1,5 +1,5 @@
 {
-  "schema_version": "world-map-sects.v1",
+  "schema_version": "world-map-sects.v2",
   "coordinate_system": "WGS84 (EPSG:4326)",
   "generated_on": "2026-09-26",
   "state_codes": {
@@ -61,7 +61,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhongyuan"
     },
     {
       "id": "sect_nanshaolin",
@@ -108,12 +109,14 @@
             "ch12",
             "ch13",
             "ch14"
-          ]
+          ],
+          "region": "rg_fujian"
         }
       ],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_fujian"
     },
     {
       "id": "sect_tianlongsi",
@@ -145,7 +148,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_dali_cangshan"
     },
     {
       "id": "sect_quanzhen",
@@ -192,13 +196,15 @@
             "ch12",
             "ch13",
             "ch14"
-          ]
+          ],
+          "region": "rg_yanjing_zhili"
         }
       ],
       "sources": [
         "src_sect17",
         "src_amap_chongyanggong"
-      ]
+      ],
+      "region": "rg_guanzhong"
     },
     {
       "id": "sect_wudang",
@@ -230,7 +236,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jingxiang"
     },
     {
       "id": "sect_shangqingguan",
@@ -262,7 +269,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhongyuan"
     },
     {
       "id": "sect_tiejian",
@@ -294,7 +302,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "sect_huashan",
@@ -326,7 +335,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_guanzhong"
     },
     {
       "id": "sect_emei",
@@ -358,7 +368,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_bashu"
     },
     {
       "id": "sect_kunlun",
@@ -390,7 +401,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_xiyu_nanjiang"
     },
     {
       "id": "sect_kongtong",
@@ -422,7 +434,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_hexilongyou"
     },
     {
       "id": "sect_qingcheng",
@@ -454,7 +467,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_bashu"
     },
     {
       "id": "sect_songshan",
@@ -486,7 +500,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhongyuan"
     },
     {
       "id": "sect_taishan",
@@ -518,7 +533,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_qilu"
     },
     {
       "id": "sect_hengshan_nan",
@@ -550,7 +566,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_huxiang"
     },
     {
       "id": "sect_hengshan_bei",
@@ -582,7 +599,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_hedong_jinzhong"
     },
     {
       "id": "sect_xueshan",
@@ -614,7 +632,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_qingzang"
     },
     {
       "id": "sect_wuliang",
@@ -646,7 +665,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_dali_cangshan"
     },
     {
       "id": "sect_xiandu",
@@ -678,7 +698,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhedong"
     },
     {
       "id": "sect_taijimen",
@@ -710,7 +731,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "sect_baguamen",
@@ -742,7 +764,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "sect_tianlongmen",
@@ -774,7 +797,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "sect_fuwei",
@@ -806,7 +830,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_fujian"
     },
     {
       "id": "sect_penglai",
@@ -838,7 +863,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_qilu"
     },
     {
       "id": "sect_jinwupai",
@@ -870,7 +896,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_qingzang"
     },
     {
       "id": "sect_taibai",
@@ -902,7 +929,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_guanzhong"
     },
     {
       "id": "sect_weituomen",
@@ -934,7 +962,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "sect_baxianjian",
@@ -966,7 +995,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_lingnan"
     },
     {
       "id": "sect_bajiquan",
@@ -998,7 +1028,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "sect_dali",
@@ -1030,7 +1061,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_dali_cangshan"
     },
     {
       "id": "sect_murong",
@@ -1062,7 +1094,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jiangnan_taihu"
     },
     {
       "id": "sect_gumu",
@@ -1094,7 +1127,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_guanzhong"
     },
     {
       "id": "sect_taohuadao",
@@ -1126,7 +1160,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_donghai_islands"
     },
     {
       "id": "sect_baituoshan",
@@ -1158,7 +1193,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_xiyu_nanjiang"
     },
     {
       "id": "sect_jueqinggu",
@@ -1190,7 +1226,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_guanzhong"
     },
     {
       "id": "sect_xuansuzhuang",
@@ -1222,7 +1259,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhongyuan"
     },
     {
       "id": "sect_shiliang",
@@ -1254,7 +1292,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhedong"
     },
     {
       "id": "sect_hujia",
@@ -1286,7 +1325,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_liaodong"
     },
     {
       "id": "sect_miaojia",
@@ -1318,7 +1358,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_liaodong"
     },
     {
       "id": "sect_shangjiabao",
@@ -1350,7 +1391,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "sect_jindaozhai",
@@ -1382,7 +1424,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhongyuan"
     },
     {
       "id": "sect_qinjiazhai",
@@ -1414,7 +1457,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_hedong_jinzhong"
     },
     {
       "id": "sect_zhuwulianhuanzhuang",
@@ -1446,7 +1490,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_xiyu_nanjiang"
     },
     {
       "id": "sect_wanjia",
@@ -1478,7 +1523,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jingxiang"
     },
     {
       "id": "sect_jiangnanqiguai",
@@ -1516,12 +1562,14 @@
           "latitude": 43.94,
           "open_chapters": [
             "ch02"
-          ]
+          ],
+          "region": "rg_monan"
         }
       ],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jiangnan_taihu"
     },
     {
       "id": "sect_yaowangmen",
@@ -1553,7 +1601,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jingxiang"
     },
     {
       "id": "sect_gaochang",
@@ -1585,7 +1634,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_xiyu_beijiang"
     },
     {
       "id": "sect_hasake",
@@ -1617,7 +1667,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_xiyu_beijiang"
     },
     {
       "id": "sect_huibu",
@@ -1657,12 +1708,14 @@
             "ch12",
             "ch13",
             "ch14"
-          ]
+          ],
+          "region": "rg_xiyu_beijiang"
         }
       ],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_xiyu_nanjiang"
     },
     {
       "id": "sect_bohai",
@@ -1694,7 +1747,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_dongbei"
     },
     {
       "id": "sect_jiulongbian",
@@ -1726,7 +1780,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "sect_gaibang",
@@ -1764,7 +1819,8 @@
           "latitude": 31.57,
           "open_chapters": [
             "ch01"
-          ]
+          ],
+          "region": "rg_jiangnan_taihu"
         },
         {
           "id": "site_gaibang_yueyang",
@@ -1774,7 +1830,8 @@
           "latitude": 29.37,
           "open_chapters": [
             "ch02"
-          ]
+          ],
+          "region": "rg_huxiang"
         },
         {
           "id": "site_gaibang_xiangyang",
@@ -1784,12 +1841,14 @@
           "latitude": 32.04,
           "open_chapters": [
             "ch03"
-          ]
+          ],
+          "region": "rg_jingxiang"
         }
       ],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhongyuan"
     },
     {
       "id": "sect_tiezhangbang",
@@ -1821,7 +1880,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_huxiang"
     },
     {
       "id": "sect_changlebang",
@@ -1853,7 +1913,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jianghuai"
     },
     {
       "id": "sect_honghuahui",
@@ -1891,12 +1952,14 @@
           "latitude": 38.41,
           "open_chapters": [
             "ch12"
-          ]
+          ],
+          "region": "rg_xiyu_nanjiang"
         }
       ],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jiangnan_taihu"
     },
     {
       "id": "sect_tiandihui",
@@ -1934,7 +1997,8 @@
           "latitude": 32.4,
           "open_chapters": [
             "ch08"
-          ]
+          ],
+          "region": "rg_jianghuai"
         },
         {
           "id": "site_tiandihui_tainan",
@@ -1944,12 +2008,14 @@
           "latitude": 23.0,
           "open_chapters": [
             "ch08"
-          ]
+          ],
+          "region": "rg_donghai_islands"
         }
       ],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "sect_wangwu",
@@ -1981,7 +2047,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhongyuan"
     },
     {
       "id": "sect_haisha",
@@ -2013,7 +2080,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhedong"
     },
     {
       "id": "sect_jujing",
@@ -2045,7 +2113,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhedong"
     },
     {
       "id": "sect_shenquan",
@@ -2077,7 +2146,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jianghuai"
     },
     {
       "id": "sect_weixinbiaoju",
@@ -2109,7 +2179,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_hedong_jinzhong"
     },
     {
       "id": "sect_jinlongbang",
@@ -2141,7 +2212,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jianghuai"
     },
     {
       "id": "sect_xiaoyao",
@@ -2179,12 +2251,14 @@
           "latitude": 24.82,
           "open_chapters": [
             "ch01"
-          ]
+          ],
+          "region": "rg_dali_cangshan"
         }
       ],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhongyuan"
     },
     {
       "id": "sect_lingjiu",
@@ -2216,7 +2290,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_xiyu_beijiang"
     },
     {
       "id": "sect_xingxiu",
@@ -2248,7 +2323,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_hexilongyou"
     },
     {
       "id": "sect_mingjiao",
@@ -2289,7 +2365,8 @@
       ],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_xiyu_nanjiang"
     },
     {
       "id": "sect_tianyingjiao",
@@ -2321,7 +2398,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhedong"
     },
     {
       "id": "sect_riyue",
@@ -2359,7 +2437,8 @@
           "latitude": 34.68,
           "open_chapters": [
             "ch05"
-          ]
+          ],
+          "region": "rg_zhongyuan"
         },
         {
           "id": "site_riyue_meizhuang",
@@ -2369,12 +2448,14 @@
           "latitude": 30.29,
           "open_chapters": [
             "ch05"
-          ]
+          ],
+          "region": "rg_jiangnan_taihu"
         }
       ],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_hedong_jinzhong"
     },
     {
       "id": "sect_wudu",
@@ -2406,7 +2487,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_yundian_qianzhong"
     },
     {
       "id": "sect_wuxian",
@@ -2438,7 +2520,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_yundian_qianzhong"
     },
     {
       "id": "sect_shenlongjiao",
@@ -2470,7 +2553,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_donghai_islands"
     },
     {
       "id": "sect_xuedaomen",
@@ -2502,7 +2586,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_qingzang"
     },
     {
       "id": "sect_shennong",
@@ -2534,7 +2619,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_dali_cangshan"
     },
     {
       "id": "sect_mizong",
@@ -2566,7 +2652,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_qingzang"
     },
     {
       "id": "sect_xiakedao",
@@ -2598,7 +2685,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_nanhai_islands"
     },
     {
       "id": "sect_yipintang",
@@ -2630,7 +2718,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_xixia_helan"
     },
     {
       "id": "sect_qidan",
@@ -2668,12 +2757,14 @@
           "latitude": 39.91,
           "open_chapters": [
             "ch01"
-          ]
+          ],
+          "region": "rg_yanjing_zhili"
         }
       ],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_monan"
     },
     {
       "id": "sect_menggu",
@@ -2711,12 +2802,14 @@
           "latitude": 32.1,
           "open_chapters": [
             "ch03"
-          ]
+          ],
+          "region": "rg_jingxiang"
         }
       ],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_mobei"
     },
     {
       "id": "sect_ruyangwangfu",
@@ -2748,7 +2841,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "sect_qinggong",
@@ -2791,7 +2885,8 @@
             "ch12",
             "ch13",
             "ch14"
-          ]
+          ],
+          "region": "rg_yanjing_zhili"
         },
         {
           "id": "site_qinggong_shengjing",
@@ -2807,13 +2902,15 @@
             "ch12",
             "ch13",
             "ch14"
-          ]
+          ],
+          "region": "rg_liaodong"
         }
       ],
       "sources": [
         "src_sect17",
         "src_chengde_resort"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "sect_muwangfu",
@@ -2845,7 +2942,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_yundian_qianzhong"
     },
     {
       "id": "sect_chuangwangjun",
@@ -2883,12 +2981,14 @@
           "latitude": 39.91,
           "open_chapters": [
             "ch07"
-          ]
+          ],
+          "region": "rg_yanjing_zhili"
         }
       ],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_guanzhong"
     },
     {
       "id": "sect_sidaeren",
@@ -2920,7 +3020,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_dali_cangshan"
     },
     {
       "id": "sect_juxianzhuang",
@@ -2952,7 +3053,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhongyuan"
     },
     {
       "id": "sect_yihuagong",
@@ -2984,7 +3086,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_guanzhong"
     },
     {
       "id": "sect_erengu",
@@ -3016,7 +3119,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_xiyu_nanjiang"
     },
     {
       "id": "sect_daqimen",
@@ -3048,7 +3152,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_hexilongyou"
     },
     {
       "id": "sect_shenshuigong",
@@ -3080,7 +3185,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jingxiang"
     },
     {
       "id": "sect_wuzhengshanzhuang",
@@ -3112,7 +3218,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhedong"
     },
     {
       "id": "sect_qinglonghui",
@@ -3144,7 +3251,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jianghuai"
     },
     {
       "id": "sect_kuaihuowangfu",
@@ -3176,7 +3284,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_hexilongyou"
     },
     {
       "id": "sect_xueyumen",
@@ -3208,7 +3317,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jiangnan_taihu"
     },
     {
       "id": "sect_tangmen",
@@ -3240,7 +3350,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_bashu"
     },
     {
       "id": "sect_kongqueshanzhuang",
@@ -3272,7 +3383,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jianghuai"
     },
     {
       "id": "sect_jinqianbang",
@@ -3304,7 +3416,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhongyuan"
     },
     {
       "id": "sect_shenjianshanzhuang",
@@ -3336,7 +3449,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_jiangnan_taihu"
     },
     {
       "id": "sect_wanmeishanzhuang",
@@ -3368,7 +3482,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_guanzhong"
     },
     {
       "id": "sect_baiyuncheng",
@@ -3400,7 +3515,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_nanhai_islands"
     },
     {
       "id": "sect_renyizhuang",
@@ -3432,7 +3548,8 @@
       "branches": [],
       "sources": [
         "src_sect17"
-      ]
+      ],
+      "region": "rg_zhongyuan"
     }
   ],
   "offmap_nodes": [

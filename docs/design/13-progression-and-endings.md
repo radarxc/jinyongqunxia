@@ -4,7 +4,7 @@
 > **上游**：`00-canon.md`（§1 术语、§2 时间线与等级上限、§3 境界规则、§4 品阶、§5 等级与修为、§9 乘区、§10 Buff、§12 ID、§15 天书之力、§16 改编原则、§20 装配栏）；`design/02`（书眠、携带、压制、残篇、积蕴、回响、存档 §4.5）；`design/03`（等级曲线、`STD`、属性叠加、敌人模板）；`design/05`（层数与 `sxp`、修为门槛、融会贯通、断尘之誓）；`design/06`（Buff 品阶、族上限、钩子与原语、Boss 豁免）；`design/15`（冲穴、周天、九转与持久化）；`design/16`（资源经营与家业）；`design/20`（失传绝学、传承匣与残本）；`tech/01`（状态树、确定性 RNG、自动存档时机）；`tech/07`（`vid_end_*` 素材预算）。
 > **引用而不重定义**：属性公式 → 03；伤害乘区与公式 → 04；武学层数、`ExpToNext`、`sxpVal` → 05；Buff 完整定义与 DSL → 06；套装 → 07；地形与轻功 → 08；集气、合击、Boss 阶段框架、AI → 09；物品 → 10；开放世界、时代图层与资源点分布 → 11；任务、羁绊刻度与门派层级 → 12；冲穴、周天与九转 → 15；资源库存、资源点经营与家丁 → 16；NPC、同伴招募/生卒年/跨书界重逢 → 18；失传绝学、三卷残本与传承匣 → 20；书灵与主角世界观 → 01；UI → 14；各书界主线、选择节点、锚点、改命与结局具体内容 → `design/story/NN`，`chapters/NN` 只作玩法配置与索引。
 > **标注约定**：**（原创扩展）**＝原著没有的内容；**（待考）**＝原著细节未逐字核对，须对照三联/广州修订版；**（大意）**＝转述而非引文；**【建议值】**＝依赖他文档尚未定稿的数值，已在 §12 登记。
-> **版本**：v1.2（跨文档同步，2026-09-26）。
+> **版本**：v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）。
 
 ---
 
@@ -560,6 +560,29 @@ L = 战败次数；R = 主动撤退次数
 
 **鹿鼎完成门特例**：`story/08` 的 `dc_08_10.D`“交真实全名单并执行清剿”是可补救的警示支，不是第五个正式书界结局；该状态**不发** `it_tianshu_08`、不授 `tsp_08_*`、不置 `chapterComplete`。只有依次完成销毁后续名单、救出尚存会众、放弃官爵的救援回流并进入 `z08` 或 `x08`，才重新检查通常的天书取得条件。四个“正 / 邪 × 原著 / 改命”结果继续使用 `story/08` 的路线与锚点局部状态，不新增全局 `end_*`；`end_*` 命名空间保留给 §7.10 的七种全局终局。
 
+#### 4.2.1 十四书界局部收束适配器
+
+剧情文档拥有路线、锚点与局部结局文案；本文只在书界结算事务中把其**已锁定**的局部值投影为天书变体。局部键是状态值或文档标签，不登记为全局 `end_*`，也不得由本适配器反推、覆写剧情条件。铭刻自选只改实际授予的变体，不改表中历史轴、人物生死、`F` 或后日谈。
+
+| 书界 | `design/story/NN` 提交的局部收束值 | 原著轴 → 授予 | 改命轴 → 授予 |
+|---|---|---|---|
+| 01 天龙 | `endingKey ∈ {tl01_z_canon, tl01_z_fate, tl01_x_canon, tl01_x_fate}` | 后缀 `canon` → `tsp_01_canon` | 后缀 `fate` → `tsp_01_fate` |
+| 02 射雕 | `ZHENG_CANON / ZHENG_FATE / XIE_CANON / XIE_FATE` | 后缀 `CANON` → `tsp_02_canon` | 后缀 `FATE` → `tsp_02_fate` |
+| 03 神雕 | `(ch03.ending_stance, anchor_fate)`，两轴分别为 `z/x`、`canon/fate` | `anchor_fate=canon` → `tsp_03_canon` | `anchor_fate=fate` → `tsp_03_fate` |
+| 04 倚天 | `endingKey_04 ∈ {z_canon, z_fate, x_canon, x_fate}` | 后缀 `canon` → `tsp_04_canon` | 后缀 `fate` → `tsp_04_fate` |
+| 05 笑傲 | `orthodox_canon / orthodox_rescued / unorthodox_canon / unorthodox_rescued` | 后缀 `canon` → `tsp_05_canon` | 后缀 `rescued` → `tsp_05_fate` |
+| 06 侠客 | `(stance, anchor_06_variant)`，两轴分别为 `zheng/xie`、`canon/fate` | `anchor_06_variant=canon` → `tsp_06_canon` | `anchor_06_variant=fate` → `tsp_06_fate` |
+| 07 碧血 | `(最终路线, bx_anchor_4)`；路线由本界 `routeScore` 收束，锚点为 `canon/fate` | `bx_anchor_4=canon` → `tsp_07_canon` | `bx_anchor_4=fate` → `tsp_07_fate` |
+| 08 鹿鼎 | 互斥路线旗标 `fl_08_route_zheng/xie` × 互斥锚点旗标 `fl_08_anchor_05_canon/fate` | `fl_08_anchor_05_canon=true` → `tsp_08_canon` | `fl_08_anchor_05_fate=true` → `tsp_08_fate` |
+| 09 连城 | `ZHENG_CANON / ZHENG_FATE / XIE_CANON / XIE_FATE`（本界 `endingTable` 局部键） | 后缀 `CANON` → `tsp_09_canon` | 后缀 `FATE` → `tsp_09_fate` |
+| 10 白马 | `baima.ending ∈ {zheng_canon, zheng_fate, xie_canon, xie_fate}` | 后缀 `canon` → `tsp_10_canon` | 后缀 `fate` → `tsp_10_fate` |
+| 11 鸳鸯 | `endingKey ∈ {z_canon, z_fate, x_canon, x_fate}` | 后缀 `canon` → `tsp_11_canon` | 后缀 `fate` → `tsp_11_fate` |
+| 12 书剑 | `(finalRoute12, fateRoute12)`；`SJ-E01..E04` 仅为四组合文档标签 | `fateRoute12=canon`（E01/E03）→ `tsp_12_canon` | `fateRoute12=fate`（E02/E04）→ `tsp_12_fate` |
+| 13 飞狐 | `(story13.route, story13.fateVariant)`，两轴分别为 `zheng/xie`、`canon/fate` | `fateVariant=canon` → `tsp_13_canon` | `fateVariant=fate` → `tsp_13_fate` |
+| 14 雪山 | `endingKey ∈ {pi, bupi, liangquan}`；正邪只选六种摘要之一 | `pi/bupi` → `tsp_14_canon` | `liangquan` → `tsp_14_fate` |
+
+书剑结算还须在同一事务写稳定跨书布尔回响 `echo_12_fate := (fateRoute12 == fate)`：它只控制飞狐中的平安信 / 撤民近况等可选对白，不重复授予天书、不改变飞狐开场、锚点或主线。旧档缺字段时默认 `false`。
+
 ### 4.3 天书之力总表
 
 **表 4-3a：十四本义（两变体共有）**
@@ -1112,7 +1135,7 @@ AR-09c 已决定：改命线可以救回原著命定死亡、且曾成为同伴�
 | ID / 身份 | `npc_shoujuanren`；身份与默认外观由 01 定稿。**建议**（原创扩展）：前代穿书人——他也曾集齐十四天书，却选择留在书与现实之间看守书海；无面白袍，身后浮着十四卷书，终卷现出本相。若上一周目达成守卷且设置未关闭彩蛋，本周目优先使用 `MetaProfile.lastKeeperAppearance` 与誓言（P16） |
 | 生成法 | 03 `full`：Lv70；先天七项 95（手配）；每卷装配该卷代表武学（§7.7），绝对品阶、10 重；装备视作天上品（虚拟，不掉落） |
 | 难度 | 局部难度 D = 10（`enemyStatMul` 1.35，02 §3.3）；再乘 §5.1 难度系数 |
-| 气血单位 | `bossUnit` = 03 §10 模板 Boss（Lv70、W100、D10）的 `hpMax`【建议值 ≈ 286,000，以 03 公式计算为准】 |
+| 气血单位 | `bossUnit = 285,596`，即 03 §10.10 模板 Boss（Lv70、W100、D10）的 `hpMax`：`roundHalfUp(30,221.8001068032 × 7 × 1.35) = 285,596` |
 | 六卷气血系数 | 卷一 0.35 / 卷二 0.55 / 卷三 0.55 / 卷四 0.45 / 卷五 0.40 / 终卷 0.50（合计 2.80 `bossUnit`）；每卷独立气血条，卷间不回复 |
 | 书契削减 | 卷气血 × (1 − 0.25 × 本卷各书界书契平均值 / 100)（§7.5） |
 | 目标时长 | 侠客难度、书契均值 60、5 名书影：约 30 次主角行动（每 `bossUnit` ≈ 12.7 轮：03 §10.8 的 18.5 轮按"4 人 → 6 人、每轮命中 3.1 → 4.5"外推）；各卷约 3.8 / 5.9 / 5.9 / 4.9 / 4.3 / 5.4 轮【tech/05 模拟校验】。整场超出基准 §5 单个 Boss 12–25 轮的区间，属终局特例：以六卷分段、卷间调息与卷间存档保证单段只有 4–6 轮 |
@@ -1668,6 +1691,7 @@ export interface MetaProfile {
 | 书影援阵 / 万卷归一 | `shadowArray` / `wanjuan` | 机制 | | §7.6 |
 | 悬刀之问 | `C ∈ {pi, bupi, huabi, duojuan}` | 抉择 | 终局最终抉择 | §7.2、§7.10 |
 | 雪山抉择 | `echo_14_xueshan ∈ {pi, bupi, liangquan}` | 回响旗标（02 格式） | | §7.2 |
+| 书剑改命回响 | `echo_12_fate` | 跨书布尔回响 | `fateRoute12=fate` 时为真；只供后书对白 / 支线读取，旧档默认假 | §4.2.1 |
 | 书页丹 | `it_shuyedan` | 物品（原创扩展） | 终局补给 | §7.3 |
 | 结局 | `end_guixiang` `end_liushu` `end_shouquan` `end_tonggui` `end_wuzi` `end_zhijuan` `end_changmeng` | ID | 7 种结局 | §7.10 |
 | 结局变体 / 基调 / 共鸣 | `huangliang` `yuwen` `shuhen` / `xia` `yin` `xiao` / `xinkou` `huixin` | 枚举 | | §7.10 |
@@ -1698,6 +1722,7 @@ export interface MetaProfile {
 | V-TSP-02 | §4.8 红线 R1–R7 |
 | V-TSP-03 | 穷举压制抵消组合：任意书界、任意天书之力组合下 `S_eff ≥ S_floor`、`layerCap_eff ≤ 10` 且至多 1 门 +1 |
 | V-TSP-04 | 02 不变式 I5：计入最大抵消后各书界终盘比 ≤ 1.20 |
+| V-TSP-05 | 十四书界各提交一个合法局部收束值，适配结果恰为一项 `tsp_NN_canon/fate`；铭刻不得改写历史轴、人物生命态、`F` 或后日谈 |
 | V-FIN-01 | 六卷气血系数和 = 2.80（±0.01） |
 | V-FIN-02 | 六卷代表武学 ID 均存在于 05 / catalog；每书界至少 1 门 |
 | V-END-01 | 穷举 `F ∈ 0..14`、`M ∈ {−100,−61,−60,−31,−30,0,19,20,39,40,100}`、`A ∈ {0,19,20,79,80,89,90,100}`、`X` 3 种、`C` 4 种、`V` 2 种：每个**合法**组合恰好判定为 1 个结局；非法组合（如 `F < 7` 选"刀化为笔"）被 UI 拒绝 |
@@ -1748,7 +1773,7 @@ export interface MetaProfile {
 | 同伴未上阵的武学经验份额 | 25%（由 18 / 05 定稿） | §2.8 |
 | 天书补偿后的入场强度 | 笑傲气血比约 0.76、鹿鼎约 0.86；四条以上天书之力约等效 +8%–12% 伤害或减伤，待 tech/05 模拟 | §3.4.3 |
 | 同伴命定死亡改命代价 | 每书界首次成功 2 余韵；不足记 `fateDebt` | §6.6 |
-| `bossUnit` | ≈ 286,000（待 03 回填） | §7.4 |
+| `bossUnit` | **已解决：**按 03 §10 的 Lv70、W100、D10 模板公式精确回填为 285,596（见 §7.4） | §7.4 |
 | 终局每 `bossUnit` 轮数 | 12.7（6 人队外推） | §7.4 |
 | `fameTotal` "名满天下"阈值 | 20,000 | §7.10 |
 | 书灵好感来源与数值 | §7.13 全表 | §7.13 |
@@ -1762,7 +1787,7 @@ export interface MetaProfile {
 | D13-02 | 02 | §2.3 `effGrade` 以 `S_eff` 代替 `S`；§2.9 增不变式 I5 | §4.5 |
 | D13-03 | 02 | §4.3 第 3 步增设"本命"标记（仅 1 门，持 `tsp_06_canon` 时有数值意义，成就亦用）；第 9 步苏醒汇总卡顺序：天书之力 → 余韵/积蕴 → 本书界孤本预告 → 压制汇总 | §3.4.2 P5、§4.3 |
 | D13-04 | 02 | §4.7"雪山 → 终局"以本文 §7.1"归梦"为准；§4.5 增 `save_finale_*`、`save_clear_*` 槽 | §7.1、§9.1 |
-| D13-05 | 03 | `sourceType` 枚举增 `title`；确认天书之力不使用 `mult`；按 03 公式回填 `bossUnit`（模板 Boss Lv70、W100、D10 的 `hpMax`，本文估 ≈ 286,000） | §4.1、§7.4、§8.3 |
+| D13-05 | 03 | **已解决：**`sourceType` 枚举增 `title`；确认天书之力不使用 `mult`；按 03 公式回填 `bossUnit=285,596`（模板 Boss Lv70、W100、D10 的 `hpMax`） | §4.1、§7.4、§8.3 |
 | D13-06 | 04 | Z7 方位系数"+0.05 / +0.15"的加法口径；Z3 `filter`（`hidden` / `combo` / `sword` / `sect`）；`dealDamage true` 的书契技是否计 Z8 | §4.3、§7.7、§7.8 |
 | D13-07 | 05 | 余韵灌注层数限制（每门每书界 ≤ 2 重）与丹药限制（05 §8.5）分别计；终局 `gateCap` 按 Lv70；融会贯通自创武学的结局展示 | §2.7、§7.3、§7.10 |
 | D13-08 | 06 | **已解决**：已按 C23 / `rulings-v1` §5.4–5.5 正式收录本文引用的 12 个天书 Buff 与 2 个终局 Buff；本文只消费实例 ID 与既定语义（见 `design/06` §8.12） | §3.4.4、§4.3、§4.6、§4.9、§7.5、§7.7 |
@@ -1774,7 +1799,7 @@ export interface MetaProfile {
 | D13-14 | 12 | 羁绊刻度中的 60 / 90 阈值；将 NPC / 同伴主定义迁为引用 18；书灵夜话与小请求；"极恶事件"定义；降服后的对话 | §2.8、§7.13、§4.3 |
 | D13-15 | 01 | 书灵真名与"同归"形态、守卷人身份与外观、"归乡"醒来地点与信物、"重读"叙事措辞、书灵各档台词 | §6.1、§7.4、§7.11 |
 | D13-16 | 14 | 天书录、此界排名、余韵条、压制"封"样式、悬刀之问、结局幻灯片、成就与称号页 | 多处 |
-| D13-17 | `design/story/01–14`、`chapters/01–14` | **部分解决：**主线、选择、锚点、改命与结局具体内容已改读 `design/story/NN`；`chapters/NN` 仍负责隐藏身份、书界末队友配置（书影）、重建栏位候选、遭遇与 `expKind`、书界成就等玩法配置。后日谈文本须由 story 定稿后再投影 | §4.4、§6.4.2、§6.5、§7.12、§8.2 |
+| D13-17 | `design/story/01–14`、`chapters/01–14` | **已解决：**主线、选择、锚点、改命与局部收束读取 `design/story/NN`；§4.2.1 已登记十四界适配器且不污染全局 `end_*`。`chapters/NN` 只负责隐藏身份、书影候选、遭遇、`expKind` 与书界成就等玩法配置 | §4.2.1、§4.4、§6.4.2、§6.5、§7.12、§8.2 |
 | D13-18 | tech/04 | 实现 §11.1 全部校验 | §11 |
 | D13-19 | tech/05 | 模拟器三类脚本玩家（标准 / 只主线 / 全收集）；终局时长；天劫节奏；速决开关的胜率估计 | §2.5、§5.3、§7.4 |
 | D13-20 | tech/07 | `vid_end_guixiang` `vid_end_wuzi` `vid_end_juanzhong` 三条；`cg_end_*`；`bgm_end_*`；书灵朗读 `vo_shuling_*`（可选） | §7.11 |

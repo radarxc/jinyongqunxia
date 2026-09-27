@@ -1,11 +1,11 @@
 # 19 · 江湖大地图：城市、门派坐标、时代图层与水墨 SVG
 
-> 归属（基准 §18；A3 待补登记）：统一江湖大地图的几何、WGS84 坐标、历史城市名称与地位、治所迁移、门派地图落点、图外节点、跨区交通线和 SVG 生成契约。
+> 归属（基准 §18）：统一江湖大地图的几何、WGS84 坐标、历史城市名称与地位、治所迁移、门派地图落点、图外节点、跨区交通线和 SVG 生成契约。
 > 上游：`docs/decisions/author-requirements.md` AR-04、AR-08、AR-11，`docs/decisions/author-decisions.md` P53，`docs/00-canon.md` §2、§12、§16、§18，`docs/decisions/rulings-v1.md`，`design/02` 年代，`design/17` 门派 ID 与时代矩阵。
 > 引用而不重定义：区域玩法、入口状态、资源点与旅行事件 → `design/11`；大地图交互、筛选、可访问性与响应式布局 → `design/14`；门派史、称谓、武学与 `O/H/P/N/D/M` 开放矩阵 → `design/17`；世界层与区域内可行走渲染 → `tech/02` §7；运行时格式、质量档和分包 → `tech/06`。
 > 下游：`design/11` 定稿区域边界与玩法，`design/14` 消费 SVG/数据，`design/chapters/*` 选择 `chNN` 图层，`tech/04` 定 schema，`tech/06` 定生产分包。
 > 标注约定：**（原创扩展）**＝原著没有的内容；**（待考）**＝原著或史实尚需逐字核对；**（待核实）**＝技术事实尚未联网确认；**（待实测）**＝需真机/真浏览器验证；**【建议值】**＝依赖其他文档、先给可用值并在文末登记。
-> 版本：v1.2（跨文档同步，2026-09-26）。
+> 版本：v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）。
 
 ---
 
@@ -17,8 +17,8 @@
 4. `sects.yaml` 恰收录 `design/17` 的 **99 个 `sect_*`**，没有另造门派 ID；每派落在真实城市、真实山脉或标明精度的小说锚点，并逐格引用 17 的 14 时代开放矩阵。
 5. 真正超出画布的节点只有 **3 个**：波斯明教总教、罗刹国、撒麻尔罕。它们只由一条两端式 `offmap_special` 专线连接驿站或货船码头，`via=[]`、`no_intermediate_stops=true`，途中城市不可见、不可停。
 6. `routes.yaml` 含 **24 座驿站、28 个码头、48 条常规官道/驿路/水路、3 条图外专线**。时长与费用是大地图建议档，不替代 `design/11` 的旅行事件与经济终值。
-7. `regions.yaml` 给出 **19 个 `rg_*` 草案**、81 个简化陆地多边形、14 组河流和 11 组山脉。海岸与河流基于 Natural Earth 1:50m，写入仓库后渲染不联网。
-8. `tools/map/render_map.py` 仅需 Python 3.9+ 标准库；四个 `.yaml` 使用 JSON-compatible YAML 1.2，故无 PyYAML 也能读。W1.R 已补严格类型、逐章状态、分舵、路线几何与原子写入校验；`--check` 与全量 `--render` 均须作为提交门禁。
+7. `regions.yaml` 已按 `design/11` §2 的终稿迁为 **30 个正式 `rg_*`**，保留 81 个简化陆地多边形、14 组河流和 11 组山脉。189 城、99 门派、18 个图内分支、52 个旅行节点与 51 条路线的派生区域在同一批次更新。
+8. `tools/map/render_map.py` 仅需 Python 3.9+ 标准库；四个 `.yaml` 使用 JSON-compatible YAML 1.2，故无 PyYAML 也能读。校验器强制三十区有序闭集及城市 / 门派 / 分支 / 驿站 / 码头 / 路线的派生区域一致；`--check` 与全量 `--render` 均为提交门禁。
 
 ### 0.1 文件契约
 
@@ -27,7 +27,8 @@
 | `design/map/cities.yaml` | 城市、经纬度、历史名称/地位、治所迁移、书界、门派、营生类型、来源 | 本文唯一归属；11 / 14 / chapters 消费 |
 | `design/map/sects.yaml` | 99 门派地图落点、17 的开放矩阵副本、分舵、3 个图外节点 | 地理归本文；门派语义仍归 17 |
 | `design/map/routes.yaml` | 驿站、码头、官道、驿路、水路、岛屿船线、图外专线 | 路线几何归本文；旅行玩法归 11 |
-| `design/map/regions.yaml` | 19 大区草案、陆地、多河流、多山脉折线 | 大区由 11 复核定稿；几何归本文 |
+| `design/map/regions.yaml` | 30 区导航索引、陆地、多河流、多山脉折线 | 区域闭集 / 邻接归 11；导航几何归本文 |
+| `tools/map/migrate_regions_v2.py` | 从 11 的 189 城终稿重建四份地图源的三十区及派生索引 | 只作可复跑迁移工具；不得另立区域事实 |
 | `tools/map/render_map.py` | Albers 投影、数据校验、确定性水墨 SVG 输出 | 工具规范源 |
 | `design/map/jianghu-base.svg` | 底图 + 14 个 `<g id="era-chNN">` | 设计预览 / 运行时构建输入 |
 | `design/map/jianghu-ch01.svg`…`ch14.svg` | 单书界静态输出 | chapters / UI / 资产管线 |
@@ -200,7 +201,7 @@ Y  = offsetY − s·y       // SVG y 轴向下
 
 ### 3.3 城市记录
 
-核心字段为 `id/modern_name/longitude/latitude/region/importance/history/eras/chapters/sects/businesses/seat_moves/sources`；小说地点另有 `location_confidence`。`history` 存 6 期摘要，`eras` 存 14 格权威状态，`chapters` 是其 `open` 投影；`importance` 仅取 `capital/major/secondary/site`。行政地位只取都城、路府州县、军镇、商埠、边关、未建或废弃。
+核心字段为 `id/modern_name/longitude/latitude/region/importance/history/eras/chapters/sects/businesses/seat_moves/sources`；小说地点另有 `location_confidence`。`region` 必须属于 `design/11` §2 的 30 区闭集。`history` 存 6 期摘要，`eras` 存 14 格权威状态，`chapters` 是其 `open` 投影；`importance` 仅取 `capital/major/secondary/site`。行政地位只取都城、路府州县、军镇、商埠、边关、未建或废弃。
 
 ### 3.4 治所迁移
 
@@ -210,39 +211,32 @@ Y  = offsetY − s·y       // SVG y 轴向下
 
 ### 3.5 门派记录
 
-门派仅保留 `id/site_name/city_id/longitude/latitude/coordinate_precision/availability_ref/availability/branches` 等地图字段，不复制武学或人物关系。`availability` 是 `design/17` §3 的机器可读镜像；每个 `branches[]` 另以 `open_chapters` 限定驻点时代，且不得超出父门派 `O/H`。
+门派仅保留 `id/site_name/city_id/longitude/latitude/region/coordinate_precision/availability_ref/availability/branches` 等地图字段，不复制武学或人物关系。`region` 由所挂 `city_id` 派生；无城市锚的黑木崖按权威坐标落入 `rg_hedong_jinzhong`。图内 `branches[]` 同样保存由城市派生的 `region`。`availability` 是 `design/17` §3 的机器可读镜像；每个分支另以 `open_chapters` 限定驻点时代，且不得超出父门派 `O/H`。
 
 ### 3.6 路线记录
 
-路线字段为 `id/kind/from/to/via/geometry/duration_days/fee_tier/open_chapters/service`。`geometry` 是稳定权威折线，`from/to` 是必达端点，`via` 只是候选停靠节点且不塑形；候选点关闭时不得停靠，但路线几何不消失。图外专线仍强制 `via=[]`。
+路线字段为 `id/kind/from/to/via/geometry/duration_days/fee_tier/open_chapters/service/regions`。`geometry` 是稳定权威折线，`from/to` 是必达端点，`via` 只是候选停靠节点且不塑形；`regions` 按 `from → via → to` 首次出现顺序，从城市 / 驿站 / 码头的 `region` 确定性派生，图外端不生成伪区域。候选点关闭时不得停靠，但路线几何不消失。图外专线仍强制 `via=[]`。
 
-### 3.7 区域草案
+### 3.7 三十区正式索引与旧区迁移
 
-19 个 `rg_*` 是覆盖全国导航图的粗粒度分区，不是区域玩法终稿。每区仅有中心、包围盒、邻接：
+区域玩法、名称与邻接唯一归 `design/11` §2；本文只在 `regions.yaml` 保存导航所需的同一 30 项有序闭集、由城市锚计算的中心 / 包围盒和邻接镜像。旧 W1 区只作为迁移来源，不再是可写运行 ID：
 
-| ID | 名称 | 核心覆盖 |
+| W1 旧区 | 正式去向 | 判定摘要 |
 |---|---|---|
-| `rg_yanjing_zhili` | 燕京与直隶 | 北京、天津、保定、山海关 |
-| `rg_zhongyuan` | 中原 | 开封、洛阳、郑州、少林 |
-| `rg_guanzhong` | 关中与陕南 | 西安、华山、终南、汉中 |
-| `rg_hedong_jinzhong` | 河东与晋中 | 大同、太原、雁门、平遥 |
-| `rg_qilu` | 齐鲁 | 济南、泰山、登州沿海 |
-| `rg_jianghuai` | 江淮 | 南京、扬州、徐州、皖江 |
-| `rg_liangzhe` | 两浙 | 杭州、苏州、嘉兴、宁波、舟山 |
-| `rg_fujian` | 福建 | 福州、泉州、莆田、厦门 |
-| `rg_jiangxi` | 江西 | 南昌、九江、赣州、景德镇 |
-| `rg_jingchu` | 荆楚湖湘 | 武汉、襄阳、荆州、衡山 |
-| `rg_lingnan` | 岭南 | 两广、海南、南海港口 |
-| `rg_bashu` | 巴蜀 | 成都、重庆、峨眉、青城 |
-| `rg_yungui` | 云贵 | 昆明、大理、五毒/五仙 |
-| `rg_qingzang` | 青藏 | 拉萨、日喀则、昌都、阿里 |
-| `rg_hexilongyou` | 河西与陇右 | 兰州、兴庆、河西四郡 |
-| `rg_xiyu` | 西域与回疆 | 喀什、和田、吐鲁番、伊犁 |
-| `rg_liaodong` | 辽东与东北 | 盛京、吉林、宁古塔、雅克萨 |
-| `rg_mobei` | 漠南漠北 | 和林、辽上京、呼和浩特 |
-| `rg_islands` | 海岛与台澎 | 桃花岛、侠客岛、神龙岛、台湾 |
+| 燕京与直隶 | `rg_yanjing_zhili` / `rg_liaoxi` | 山海关、秦皇岛入辽西 |
+| 关中与陕南 | `rg_guanzhong` / `rg_qinba` | 汉中、安康、商洛入秦巴 |
+| 两浙 | `rg_jiangnan_taihu` / `rg_zhedong` | 杭苏锡嘉绍湖常 / 宁舟温金衢分流 |
+| 荆楚湖湘 | `rg_jingxiang` / `rg_huxiang` | 江汉、襄荆 / 湖湘分流 |
+| 岭南 | `rg_lingnan` / `rg_guangxi` | 桂林、柳州、南宁入广西 |
+| 云贵 | `rg_dali_cangshan` / `rg_yundian_qianzhong` | 滇西五城 / 其余云贵分流 |
+| 河西与陇右 | `rg_hexilongyou` / `rg_xixia_helan` | 银川、中卫入西夏贺兰 |
+| 西域与回疆 | `rg_xiyu_nanjiang` / `rg_xiyu_beijiang` | 塔里木南缘 / 天山北疆分流 |
+| 辽东与东北 | `rg_liaoxi` / `rg_liaodong` / `rg_dongbei` | 辽西走廊 / 辽河鸭绿江 / 东北边地分流 |
+| 漠南漠北 | `rg_monan` / `rg_mobei` | 哈拉和林入漠北，其余入漠南 |
+| 海岛与台澎 | `rg_donghai_islands` / `rg_nanhai_islands` / `rg_liaodong` | 东海岛链 / 南海小说岛 / 冰火岛分流 |
+| 其余八个旧区 | 原 ID 复用 | 中原、河东、齐鲁、江淮、福建、江西、巴蜀、青藏不拆 |
 
-`design/11` 可拆分玩法区域，但应保留 `city_*` 与投影坐标；若改 `rg_*`，须提供迁移表。
+完整 30 区表、189 城逐项归属与邻接见 `design/11` §2.2、§3.2。`tools/map/migrate_regions_v2.py` 从该城市表重建派生字段；脚本断言恰有 189 个唯一城市，不能凭坐标猜区。
 
 ---
 
@@ -642,9 +636,9 @@ Natural Earth 1:50m 河流中心线经 0.06° 简化。为保持全国图上的�
 
 ### 10.1 `design/11`：区域玩法定稿
 
-`design/11` 应：
+`design/11` 已：
 
-- 采用或迁移本文 19 个 `rg_*` 草案；
+- 定稿 30 个 `rg_*`、189 城归属及旧区迁移判定；本文地图源已原子接收；
 - 为每个书界给 `entryState`、势力、资源点、营生营业状态与旅行事件；
 - 维护区域邻接与可进入条件；
 - 不重写 WGS84、历史名称和投影；发现史实问题时回提本文修订。
@@ -800,8 +794,8 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 - **小说驻地**：黑木崖、凌霄城、绝情谷、侠客岛等没有可证精确 WGS84；UI 对城市地点读 `location_confidence`，对门派读 `coordinate_precision`，展示“小说锚点 / 待考”。
 - **标签密度**：所有点保留 DOM ID / `<title>`，静态图只常显都城、`major` 城与 `O` 门派；全国/区域层级避让与聚类归 `design/14`。
 - **滤镜性能**：MDN 记载 `feDisplacementMap`、`feTurbulence` 已广泛可用，但低端 WebView 仍**（待实测）**；低档可用构建期 2048 WebP，无滤镜时仍保留纸色、折线与符号。
-- **区域迁移**：11 若拆 `rg_*`，须给旧→新迁移表，只更新城市 `region`，不改城市、门派、路线 ID，然后重跑校验与渲染。
-- **19→30 区同步债**：`design/11` 已把玩法区域定为 30 区，而当前 `regions.yaml`、189 城 `region`、门派 / 路线派生索引与 SVG 仍是 W1 的 19 区快照。迁移必须按“区域定义 → 城市 → 路线 → 门派派生索引 → 15 张 SVG”一次原子批次完成；本次只修明确地望，不做会留下半迁状态的局部替换。
+- **区域迁移**：已解决。`design/11` 的旧→新表由 `tools/map/migrate_regions_v2.py` 原子投影到区域定义、189 城、99 门派 / 18 图内分支、52 个旅行节点、51 条路线及 15 张 SVG；稳定城市、门派、路线 ID 与坐标均未改变。旧区只保留在 11 / 本文的迁移说明中，不写运行数据。
+- **后续改区门禁**：任何再拆分必须先更新 11 的唯一事实表，再全量运行迁移、`--check`、`--render` 与确定性 / XML 校验；禁止只改单个 YAML。
 
 ---
 
@@ -874,7 +868,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | `post_*` | 驿站 / 军驿 | 24；`post_kashgar` |
 | `port_*` | 河港、海港、岛屿渡口 | 28；`port_quanzhou` |
 | `route_*` | 常规路线与图外专线 | 51；`route_offmap_persia` |
-| `rg_*` | 大区草案 | 19；`rg_xiyu` |
+| `rg_*` | 正式全局玩法区域的导航镜像 | 30；完整闭集见 `design/11` §2.2 |
 | `river_*` | 渲染河流几何 | 14 组 |
 | `mount_*` | 渲染山系几何 | 11 组 |
 | `site_*` | 门派分舵 / 临时地点 | 只在门派 `branches` 内使用，交 11 定稿 |
@@ -902,6 +896,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | `MAP-V005` | 常规路线种类/费用/时长合法；`geometry` 首尾匹配端点、经过 `via`，非水路逐段在陆地侧 |
 | `MAP-V006` | 图外专线恰一图外端 + 一 `post_*`/`port_*`，`via=[]`、布尔 `no_intermediate_stops=true`，章节与节点相同 |
 | `MAP-V007` | 每个图外节点恰接一条专线，普通路线绝不接图外节点；区域邻接对称 |
+| `MAP-V007a` | `regions.yaml` 恰为 11 的有序 30 区闭集；城市归区与 11 的 189 城表相同；门派、分支、驿站、码头、路线 `region/regions` 均可从所挂节点确定性重算 |
 | `MAP-V008` | 陆地环、岛屿掩膜、河流/山脉几何合法；画布 ≥1024×768；全部 payload 写前 ≤2 MiB |
 | `MAP-V009` | 有 `city_id` 的门派必须同时出现在该城市 `sects[]`；反向引用也必须唯一一致。长乐帮应且只应挂 `city_zhenjiang` |
 | `MAP-V010` | 地望显示遵循时代层：`city_shenyang` 明层为“沈阳中卫”、清层为“盛京奉天府”；石梁剧情提示不把当前 `city_jinhua` 锚点宣称为确址 |
@@ -928,7 +923,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 
 | 编号 | 下游 | 本文建议值 | 下游定稿动作 |
 |---|---|---|---|
-| `W1-D01` | `design/11` | **已解决（规划）：**11 已定稿 30 个玩法区域和 19→30 迁移表 | 地图数据仍须按 §12 原子迁移后再重渲染，不得局部替换 |
+| `W1-D01` | `design/11` | **已解决：**11 已定稿 30 个玩法区域和 19→30 迁移表，地图数据与 SVG 已按 §12 原子迁移 | 后续只需维持同批校验，不得局部替换 |
 | `W1-D02` | `design/11` / `16` | 路费六档，不给银两 | 映射经济曲线；图外“剧情承担”不得误收费 |
 | `W1-D03` | `design/14` | 全国层只常显 capital/major/O；H 半透明 | 定缩放层级、避让、聚类与可访问性 |
 | `W1-D04` | `tech/06` | 共享 base + 14 个时代增量；low 2K、mid/high 4K tiles | 定构建配方、素材键与包归属 |
@@ -947,7 +942,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | 基准 §2 / `design/02` | 14 书界顺序与游戏定年 | 已复制为渲染键 |
 | 基准 §12 | `sect_*`、`rg_*` 命名原则 | 已遵循；新增前已全仓检索 |
 | `design/17` | 99 门派 ID 与 14 时代矩阵 | 已一一复制并校验数量 |
-| `design/11` | 30 区闭集与 19→30 迁移表 | 已接收为上游规划；当前地图数据尚未原子迁移，见 §12 |
+| `design/11` | 30 区闭集与 19→30 迁移表 | 已落实于四份 v2 地图源、派生区域索引及 15 张 SVG，见 §3.7 / §12 |
 | `tech/02` §7 | SVG 属世界层/UI | 已明确接口边界 |
 | `tech/06` | DOM 地图 WebP、2K/4K档与章节分包 | 已给出生成源接口 |
 
@@ -955,10 +950,10 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 
 | 编号 | 提案 | 理由 | 当前默认 |
 |---|---|---|---|
-| `W1-P01` | §12 登记 `city_*`、`offmap_*`、`post_*`、`port_*`、`route_*`；`rg_*` 改为全局区域而非必须带书界号 | AR-04 要求跨书界稳定 ID，现有 `rg_<书界序号>_*` 示例不适合统一地图 | 本文使用全局 `rg_*`，待 A3 合入 |
-| `W1-P02` | §18 新增 `design/19` 为地图几何、坐标、历史地名、图外节点唯一归属 | 防止 11 / chapters / 17 重复定义坐标 | 按本文边界执行 |
-| `W1-P03` | §1 登记“时代图层”“图外节点”“图外专线” | 三者是 AR-04/11 的跨文档契约 | 采用本文 §15.1 定义 |
-| `W1-P04` | §19 或技术基线明确江湖大地图是导航 UI，不是战斗/探索地形 | 固化作者 P53 与 tech/02 §7 | 当前按 P53 执行 |
+| `W1-P01` | **已解决：**基准 §12 已登记 `city_*`、`offmap_*`、`post_*`、`port_*`、`route_*`，并把 `rg_*` 固定为全局区域 | Canon v1.2 V12-02、V12-09；跨书界稳定 ID 已成为正式口径 | 本文与四份地图 v2 数据均已执行 |
+| `W1-P02` | **已解决：**基准 §18 已登记 `design/19` 为地图几何、坐标、历史地名、图外节点唯一归属 | Canon v1.2 V12-11；防止 11 / chapters / 17 重复定义坐标 | 按本文边界执行 |
+| `W1-P03` | **已解决：**基准 §1 已登记“时代图层”“图外节点 / 专线” | Canon v1.2 V12-02；三者已成为 AR-04/11 的跨文档契约 | 采用本文 §15.1 定义 |
+| `W1-P04` | **已解决：**基准 §2 已明确江湖大地图是导航 / UI 层，抵达后才加载区域内可行走场景 | Canon v1.2 V12-02；固化作者 P53 与 tech/02 §7 | 按本文 §1 边界执行 |
 
 ### 16.4 原著考据待办
 
@@ -983,7 +978,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | `W1-O01` | 是否保留 3 个图外节点 | 全保留：波斯满足 AR-11；罗刹国与撒麻尔罕是两部明确远域剧情 |
 | `W1-O02` | 侠客岛等是否也做图外题签 | 否；只要在画布范围内就画图内岛，保留专船 |
 | `W1-O03` | 古龙支线是否全显示 | 依 17 的 `O/H`；默认 H 可由 UI 隐藏，O 才常显 |
-| `W1-O04` | 19 大区是否作为终稿 | **已解决：否。** `design/11` 已定稿 30 区；当前 19 区数据只作待原子迁移的可运行快照 |
+| `W1-O04` | 19 大区是否作为终稿 | **已解决：否。** `design/11` 的 30 区已完成原子迁移；旧 19 区仅保留历史 remap 语境 |
 | `W1-O05` | 是否在全国图绘现代边界 | 否；只绘自然地理与时代城市 |
 | `W1-O06` | 图外旅行能否触发事件 | 可触发专线内部事件，但不能生成/停靠中途城市 |
 | `W1-O07` | 是否嵌入书法字体 | 源 SVG 不嵌；tech/06 构建时子集化，系统字体兜底 |
@@ -993,7 +988,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 
 ### 16.6 已解决的既有待决事项
 
-- 已解决：S17-D01 的门派地图建议已在本稿分配正式城市/坐标与精度（见 §5，区域仍交 11 定稿）。
+- 已解决：S17-D01 的门派地图建议已在本稿分配正式城市 / 坐标 / 精度，并按 11 的三十区派生区域（见 §3.5、§5）。
 - 已解决：AR-11a 采用默认 Albers 25°N / 47°N / 105°E、范围 73–135°E × 18–54°N（见 §2）。
 - 已解决：AR-11b 图外节点默认名单定为波斯明教总教、罗刹国、撒麻尔罕（见 §6.5）；作者仍可删减。
 - 已解决：P53 的大地图形态按导航层实现，不制作可行走世界场景（见 §1.1、§10.4）。

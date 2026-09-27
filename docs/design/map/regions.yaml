@@ -1,5 +1,5 @@
 {
-  "schema_version": "world-map-regions.v1",
+  "schema_version": "world-map-regions.v2",
   "coordinate_system": "WGS84 (EPSG:4326)",
   "generated_on": "2026-09-26",
   "extent": [
@@ -20,271 +20,381 @@
       "id": "rg_yanjing_zhili",
       "name": "燕京与直隶",
       "center": [
-        116.5,
-        39.5
+        116.4,
+        39.36
       ],
       "bounds": [
-        114.0,
-        37.0,
-        120.1,
-        41.5
+        114.32,
+        37.9,
+        118.43,
+        41.2
       ],
       "neighbors": [
         "rg_zhongyuan",
         "rg_hedong_jinzhong",
         "rg_qilu",
-        "rg_liaodong",
-        "rg_mobei"
+        "rg_liaoxi",
+        "rg_monan"
       ]
     },
     {
       "id": "rg_zhongyuan",
       "name": "中原",
       "center": [
-        113.4,
-        34.5
+        113.69,
+        34.39
       ],
       "bounds": [
-        110.5,
-        31.8,
-        116.4,
-        37.2
+        112.2,
+        31.88,
+        115.91,
+        36.35
       ],
       "neighbors": [
         "rg_yanjing_zhili",
         "rg_guanzhong",
+        "rg_qinba",
         "rg_hedong_jinzhong",
         "rg_qilu",
         "rg_jianghuai",
-        "rg_jingchu"
+        "rg_jingxiang"
       ]
     },
     {
       "id": "rg_guanzhong",
-      "name": "关中与陕南",
+      "name": "关中陕北",
       "center": [
-        108.7,
-        35.0
+        109.1,
+        35.27
       ],
       "bounds": [
-        106.0,
-        31.5,
-        111.0,
-        39.0
+        106.99,
+        34.01,
+        110.34,
+        38.54
       ],
       "neighbors": [
         "rg_zhongyuan",
+        "rg_qinba",
         "rg_hedong_jinzhong",
         "rg_hexilongyou",
-        "rg_bashu",
-        "rg_jingchu",
-        "rg_mobei"
+        "rg_monan",
+        "rg_xixia_helan"
+      ]
+    },
+    {
+      "id": "rg_qinba",
+      "name": "秦巴汉水",
+      "center": [
+        108.66,
+        33.21
+      ],
+      "bounds": [
+        106.77,
+        32.44,
+        110.19,
+        34.12
+      ],
+      "neighbors": [
+        "rg_guanzhong",
+        "rg_zhongyuan",
+        "rg_jingxiang",
+        "rg_bashu"
       ]
     },
     {
       "id": "rg_hedong_jinzhong",
       "name": "河东与晋中",
       "center": [
-        112.4,
-        37.5
+        112.41,
+        37.3
       ],
       "bounds": [
-        110.2,
-        34.7,
-        114.0,
-        40.7
+        110.75,
+        34.78,
+        113.55,
+        40.34
       ],
       "neighbors": [
         "rg_yanjing_zhili",
         "rg_zhongyuan",
         "rg_guanzhong",
-        "rg_mobei"
+        "rg_monan"
       ]
     },
     {
       "id": "rg_qilu",
       "name": "齐鲁",
       "center": [
-        118.0,
-        36.5
+        118.26,
+        36.64
       ],
       "bounds": [
-        115.5,
-        34.4,
-        122.8,
-        38.5
+        115.75,
+        34.81,
+        122.36,
+        38.06
       ],
       "neighbors": [
         "rg_yanjing_zhili",
         "rg_zhongyuan",
         "rg_jianghuai",
-        "rg_liangzhe"
+        "rg_jiangnan_taihu",
+        "rg_donghai_islands"
       ]
     },
     {
       "id": "rg_jianghuai",
       "name": "江淮",
       "center": [
-        117.7,
-        32.2
+        118.11,
+        32.18
       ],
       "bounds": [
-        114.8,
-        29.4,
-        120.0,
-        35.0
+        115.56,
+        29.47,
+        119.71,
+        34.85
       ],
       "neighbors": [
         "rg_zhongyuan",
         "rg_qilu",
-        "rg_liangzhe",
+        "rg_jiangnan_taihu",
         "rg_jiangxi",
-        "rg_jingchu"
+        "rg_jingxiang"
       ]
     },
     {
-      "id": "rg_liangzhe",
-      "name": "两浙",
+      "id": "rg_jiangnan_taihu",
+      "name": "太湖江南",
       "center": [
-        120.3,
-        29.8
+        120.35,
+        30.94
       ],
       "bounds": [
-        118.0,
-        27.0,
-        123.0,
-        32.0
+        119.7,
+        29.75,
+        121.0,
+        32.02
       ],
       "neighbors": [
         "rg_qilu",
         "rg_jianghuai",
+        "rg_zhedong",
+        "rg_jiangxi",
+        "rg_donghai_islands"
+      ]
+    },
+    {
+      "id": "rg_zhedong",
+      "name": "浙东沿海",
+      "center": [
+        120.59,
+        29.18
+      ],
+      "bounds": [
+        118.62,
+        27.75,
+        122.46,
+        30.24
+      ],
+      "neighbors": [
+        "rg_jiangnan_taihu",
         "rg_fujian",
         "rg_jiangxi",
-        "rg_islands"
+        "rg_donghai_islands"
       ]
     },
     {
       "id": "rg_fujian",
-      "name": "福建",
+      "name": "闽地",
       "center": [
-        118.4,
-        25.8
+        118.45,
+        25.53
       ],
       "bounds": [
-        116.8,
-        23.4,
-        120.8,
-        28.4
+        117.41,
+        24.23,
+        119.56,
+        28.01
       ],
       "neighbors": [
-        "rg_liangzhe",
+        "rg_zhedong",
         "rg_jiangxi",
         "rg_lingnan",
-        "rg_islands"
+        "rg_donghai_islands",
+        "rg_nanhai_islands"
       ]
     },
     {
       "id": "rg_jiangxi",
       "name": "江西",
       "center": [
-        116.0,
-        27.6
+        116.39,
+        28.39
       ],
       "bounds": [
-        113.5,
-        24.5,
-        118.8,
-        30.8
+        114.68,
+        25.6,
+        118.22,
+        29.95
       ],
       "neighbors": [
         "rg_jianghuai",
-        "rg_liangzhe",
+        "rg_jiangnan_taihu",
+        "rg_zhedong",
         "rg_fujian",
-        "rg_jingchu",
+        "rg_jingxiang",
+        "rg_huxiang",
         "rg_lingnan"
       ]
     },
     {
-      "id": "rg_jingchu",
-      "name": "荆楚湖湘",
+      "id": "rg_jingxiang",
+      "name": "荆襄",
       "center": [
-        112.3,
-        29.5
+        111.77,
+        31.09
       ],
       "bounds": [
-        108.5,
-        24.5,
-        115.5,
-        33.0
+        109.23,
+        30.05,
+        114.52,
+        32.9
       ],
       "neighbors": [
         "rg_zhongyuan",
-        "rg_guanzhong",
+        "rg_qinba",
         "rg_jianghuai",
         "rg_jiangxi",
+        "rg_huxiang",
+        "rg_bashu"
+      ]
+    },
+    {
+      "id": "rg_huxiang",
+      "name": "湖湘",
+      "center": [
+        112.42,
+        27.74
+      ],
+      "bounds": [
+        110.14,
+        25.55,
+        113.38,
+        29.62
+      ],
+      "neighbors": [
+        "rg_jingxiang",
+        "rg_jiangxi",
         "rg_lingnan",
+        "rg_guangxi",
         "rg_bashu",
-        "rg_yungui"
+        "rg_yundian_qianzhong"
       ]
     },
     {
       "id": "rg_lingnan",
-      "name": "岭南",
+      "name": "岭南南海岸",
       "center": [
-        111.5,
-        23.5
+        112.7,
+        22.28
       ],
       "bounds": [
-        106.5,
-        17.8,
-        117.5,
-        26.5
+        109.26,
+        18.0,
+        116.87,
+        25.06
       ],
       "neighbors": [
         "rg_fujian",
         "rg_jiangxi",
-        "rg_jingchu",
-        "rg_yungui",
-        "rg_islands"
+        "rg_huxiang",
+        "rg_guangxi",
+        "rg_donghai_islands",
+        "rg_nanhai_islands"
+      ]
+    },
+    {
+      "id": "rg_guangxi",
+      "name": "桂西桂北",
+      "center": [
+        109.34,
+        24.14
+      ],
+      "bounds": [
+        108.07,
+        22.57,
+        110.55,
+        25.53
+      ],
+      "neighbors": [
+        "rg_lingnan",
+        "rg_huxiang",
+        "rg_dali_cangshan",
+        "rg_yundian_qianzhong"
       ]
     },
     {
       "id": "rg_bashu",
       "name": "巴蜀",
       "center": [
-        105.2,
-        30.5
+        105.45,
+        30.65
       ],
       "bounds": [
-        101.5,
-        27.0,
-        110.0,
-        33.8
+        102.75,
+        29.31,
+        109.71,
+        32.12
       ],
       "neighbors": [
-        "rg_guanzhong",
-        "rg_jingchu",
-        "rg_yungui",
+        "rg_qinba",
+        "rg_jingxiang",
+        "rg_huxiang",
+        "rg_dali_cangshan",
+        "rg_yundian_qianzhong",
         "rg_qingzang"
       ]
     },
     {
-      "id": "rg_yungui",
-      "name": "云贵",
+      "id": "rg_dali_cangshan",
+      "name": "大理苍山",
       "center": [
-        102.5,
-        25.5
+        99.78,
+        24.92
       ],
       "bounds": [
-        97.5,
-        21.0,
-        108.0,
-        29.0
+        98.24,
+        21.76,
+        101.05,
+        27.12
       ],
       "neighbors": [
-        "rg_jingchu",
-        "rg_lingnan",
         "rg_bashu",
+        "rg_guangxi",
+        "rg_yundian_qianzhong",
+        "rg_qingzang"
+      ]
+    },
+    {
+      "id": "rg_yundian_qianzhong",
+      "name": "云滇黔中",
+      "center": [
+        105.04,
+        26.21
+      ],
+      "bounds": [
+        102.47,
+        24.79,
+        107.18,
+        27.98
+      ],
+      "neighbors": [
+        "rg_bashu",
+        "rg_dali_cangshan",
+        "rg_huxiang",
+        "rg_guangxi",
         "rg_qingzang"
       ]
     },
@@ -292,120 +402,246 @@
       "id": "rg_qingzang",
       "name": "青藏",
       "center": [
-        91.5,
-        31.5
+        90.64,
+        30.75
       ],
       "bounds": [
-        78.0,
-        27.0,
-        102.0,
-        37.0
+        79.85,
+        28.67,
+        97.43,
+        33.26
       ],
       "neighbors": [
         "rg_bashu",
-        "rg_yungui",
+        "rg_dali_cangshan",
+        "rg_yundian_qianzhong",
         "rg_hexilongyou",
-        "rg_xiyu"
+        "rg_xiyu_nanjiang"
       ]
     },
     {
       "id": "rg_hexilongyou",
       "name": "河西与陇右",
       "center": [
-        101.5,
-        38.0
+        101.79,
+        37.45
       ],
       "bounds": [
-        93.0,
-        33.5,
-        107.5,
-        42.5
+        94.43,
+        34.33,
+        106.94,
+        40.42
       ],
       "neighbors": [
         "rg_guanzhong",
         "rg_qingzang",
-        "rg_xiyu",
-        "rg_mobei"
+        "rg_xixia_helan",
+        "rg_xiyu_nanjiang",
+        "rg_xiyu_beijiang",
+        "rg_monan"
       ]
     },
     {
-      "id": "rg_xiyu",
-      "name": "西域与回疆",
+      "id": "rg_xixia_helan",
+      "name": "西夏贺兰",
       "center": [
-        84.0,
-        40.5
+        105.73,
+        37.99
       ],
       "bounds": [
-        73.0,
-        35.0,
-        95.0,
-        49.0
+        104.94,
+        37.26,
+        106.52,
+        38.72
+      ],
+      "neighbors": [
+        "rg_guanzhong",
+        "rg_hexilongyou",
+        "rg_monan"
+      ]
+    },
+    {
+      "id": "rg_xiyu_nanjiang",
+      "name": "西域南疆",
+      "center": [
+        80.16,
+        39.42
+      ],
+      "bounds": [
+        75.74,
+        36.05,
+        86.4,
+        42.01
       ],
       "neighbors": [
         "rg_qingzang",
         "rg_hexilongyou",
+        "rg_xiyu_beijiang"
+      ]
+    },
+    {
+      "id": "rg_xiyu_beijiang",
+      "name": "西域北疆",
+      "center": [
+        87.95,
+        44.27
+      ],
+      "bounds": [
+        81.07,
+        42.58,
+        93.76,
+        48.1
+      ],
+      "neighbors": [
+        "rg_xiyu_nanjiang",
+        "rg_hexilongyou",
+        "rg_monan",
         "rg_mobei"
+      ]
+    },
+    {
+      "id": "rg_liaoxi",
+      "name": "辽西走廊",
+      "center": [
+        120.3,
+        40.42
+      ],
+      "bounds": [
+        119.35,
+        39.69,
+        121.38,
+        41.37
+      ],
+      "neighbors": [
+        "rg_yanjing_zhili",
+        "rg_liaodong",
+        "rg_dongbei",
+        "rg_monan"
       ]
     },
     {
       "id": "rg_liaodong",
-      "name": "辽东与东北",
+      "name": "辽东",
       "center": [
-        125.0,
-        45.0
+        125.26,
+        41.17
       ],
       "bounds": [
-        119.0,
-        39.0,
-        135.0,
-        54.0
+        121.98,
+        39.88,
+        133.25,
+        42.25
+      ],
+      "neighbors": [
+        "rg_liaoxi",
+        "rg_dongbei",
+        "rg_donghai_islands"
+      ]
+    },
+    {
+      "id": "rg_dongbei",
+      "name": "东北边地",
+      "center": [
+        125.96,
+        47.93
+      ],
+      "bounds": [
+        122.29,
+        43.6,
+        129.72,
+        53.63
+      ],
+      "neighbors": [
+        "rg_liaoxi",
+        "rg_liaodong",
+        "rg_monan",
+        "rg_mobei"
+      ]
+    },
+    {
+      "id": "rg_monan",
+      "name": "漠南",
+      "center": [
+        114.32,
+        41.91
+      ],
+      "bounds": [
+        109.59,
+        39.57,
+        119.63,
+        44.22
       ],
       "neighbors": [
         "rg_yanjing_zhili",
-        "rg_mobei",
-        "rg_islands"
+        "rg_guanzhong",
+        "rg_hedong_jinzhong",
+        "rg_hexilongyou",
+        "rg_xixia_helan",
+        "rg_xiyu_beijiang",
+        "rg_liaoxi",
+        "rg_dongbei",
+        "rg_mobei"
       ]
     },
     {
       "id": "rg_mobei",
-      "name": "漠南漠北",
+      "name": "漠北",
       "center": [
-        110.0,
-        45.0
+        102.83,
+        47.2
       ],
       "bounds": [
-        95.0,
-        38.0,
-        121.0,
-        54.0
+        102.58,
+        46.95,
+        103.08,
+        47.45
       ],
       "neighbors": [
-        "rg_xiyu",
-        "rg_hexilongyou",
-        "rg_guanzhong",
-        "rg_hedong_jinzhong",
-        "rg_yanjing_zhili",
-        "rg_liaodong"
+        "rg_xiyu_beijiang",
+        "rg_monan",
+        "rg_dongbei"
       ]
     },
     {
-      "id": "rg_islands",
-      "name": "海岛与台澎",
+      "id": "rg_donghai_islands",
+      "name": "东海诸岛",
       "center": [
-        121.0,
-        25.0
+        121.57,
+        27.6
       ],
       "bounds": [
-        109.0,
-        17.5,
-        134.0,
-        43.0
+        119.32,
+        22.38,
+        123.45,
+        39.35
       ],
       "neighbors": [
-        "rg_liangzhe",
+        "rg_qilu",
+        "rg_jiangnan_taihu",
+        "rg_zhedong",
         "rg_fujian",
         "rg_lingnan",
-        "rg_liaodong"
+        "rg_liaodong",
+        "rg_nanhai_islands"
+      ]
+    },
+    {
+      "id": "rg_nanhai_islands",
+      "name": "南海诸岛",
+      "center": [
+        116.67,
+        22.63
+      ],
+      "bounds": [
+        111.95,
+        18.45,
+        124.25,
+        29.25
+      ],
+      "neighbors": [
+        "rg_fujian",
+        "rg_lingnan",
+        "rg_donghai_islands"
       ]
     }
   ],

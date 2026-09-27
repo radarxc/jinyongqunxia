@@ -30,6 +30,20 @@ ID_PREFIX = {
     "posts": "post_", "ports": "port_", "routes": "route_",
     "regions": "rg_", "rivers": "river_", "mountains": "mount_",
 }
+CANONICAL_REGION_IDS = (
+    "rg_yanjing_zhili", "rg_zhongyuan", "rg_guanzhong", "rg_qinba",
+    "rg_hedong_jinzhong", "rg_qilu", "rg_jianghuai", "rg_jiangnan_taihu",
+    "rg_zhedong", "rg_fujian", "rg_jiangxi", "rg_jingxiang", "rg_huxiang",
+    "rg_lingnan", "rg_guangxi", "rg_bashu", "rg_dali_cangshan",
+    "rg_yundian_qianzhong", "rg_qingzang", "rg_hexilongyou",
+    "rg_xixia_helan", "rg_xiyu_nanjiang", "rg_xiyu_beijiang", "rg_liaoxi",
+    "rg_liaodong", "rg_dongbei", "rg_monan", "rg_mobei",
+    "rg_donghai_islands", "rg_nanhai_islands",
+)
+SCHEMA_VERSIONS = {
+    "cities": "world-map-cities.v2", "sects": "world-map-sects.v2",
+    "routes": "world-map-routes.v2", "regions": "world-map-regions.v2",
+}
 
 def load_yaml_subset(path: Path) -> Any:
     text = path.read_text(encoding="utf-8")
@@ -144,6 +158,9 @@ def validate(data: Mapping[str, Any]) -> List[str]:
     routes = data["routes"].get("routes", [])
     special = data["routes"].get("special_routes", [])
     regions = data["regions"]
+    for source, version in SCHEMA_VERSIONS.items():
+        if data[source].get("schema_version") != version:
+            issues.append(f"SCHEMA-VERSION {source}: expected {version}")
 
     groups = {
         "cities":city_rows, "sects":sect_rows, "offmap":offmap_rows,
@@ -186,6 +203,10 @@ def validate(data: Mapping[str, Any]) -> List[str]:
     travel_rows=[*posts,*ports]; travel_ids={r.get("id") for r in travel_rows if isinstance(r.get("id"),str)}; travel_by={r["id"]:r for r in travel_rows if isinstance(r.get("id"),str)}; endpoints=city_ids|travel_ids|offmap_ids
     region_ids={r.get("id") for r in regions.get("regions",[]) if isinstance(r.get("id"),str)}
     region_by={r["id"]:r for r in regions.get("regions",[]) if isinstance(r.get("id"),str)}
+    declared_region_ids=tuple(r.get("id") for r in regions.get("regions",[]))
+    if declared_region_ids != CANONICAL_REGION_IDS:
+        missing=set(CANONICAL_REGION_IDS)-region_ids; extra=region_ids-set(CANONICAL_REGION_IDS)
+        issues.append(f"REGION-CLOSED-SET: expected canonical 30 in order; missing={sorted(missing)}, extra={sorted(extra)}")
     city_statuses=set(data["cities"].get("status_values",[]))
     sect_states=set(data["sects"].get("state_codes",{}))
     confidence_values={
@@ -249,8 +270,13 @@ def validate(data: Mapping[str, Any]) -> List[str]:
             if source not in source_ids: issues.append(f"CITY-SOURCE {cid}: unknown {source}")
     for sect in sect_rows:
         sid=sect.get("id","?"); coord_ok=check_xy(sect,sid)
+        if sect.get("region") not in region_ids: issues.append(f"SECT-REGION {sid}: unknown {sect.get('region')}")
         if coord_ok and not point_on_land((sect["longitude"],sect["latitude"]),regions): issues.append(f"SECT-LAND {sid}: point is not inside land polygon/island mask")
         if sect.get("city_id") and sect["city_id"] not in city_ids: issues.append(f"SECT-CITY {sid}: unknown {sect['city_id']}")
+        elif sect.get("city_id") and sect.get("region") != city_by[sect["city_id"]].get("region"):
+            issues.append(f"SECT-REGION {sid}: must equal bound city region")
+        elif not sect.get("city_id") and sid == "sect_riyue" and sect.get("region") != "rg_hedong_jinzhong":
+            issues.append("SECT-REGION sect_riyue: Blackwood Cliff anchor must resolve to rg_hedong_jinzhong")
         if sect.get("coordinate_precision") not in confidence_values: issues.append(f"SECT-PRECISION {sid}: unrecognized coordinate_precision")
         av=sect.get("availability",{})
         if not isinstance(av,Mapping) or set(av)!=set(CHAPTERS): issues.append(f"SECT-ERA {sid}: must have exactly ch01..ch14")
@@ -272,6 +298,8 @@ def validate(data: Mapping[str, Any]) -> List[str]:
                 if not isinstance(bid,str) or not bid.startswith("site_"): issues.append(f"BRANCH-ID {sid}: {bid!r} must start with site_")
                 if branch.get("city_id") not in city_ids: issues.append(f"BRANCH-CITY {sid}/{bid}: unknown {branch.get('city_id')}")
                 elif branch.get("city_id") in city_by:
+                    if branch.get("region") != city_by[branch["city_id"]].get("region"):
+                        issues.append(f"BRANCH-REGION {sid}/{bid}: must equal bound city region")
                     closed=[ch for ch in branch_chapters if city_by[branch["city_id"]].get("eras",{}).get(ch,{}).get("open") is not True]
                     if closed: issues.append(f"BRANCH-CITY-ERA {sid}/{bid}: bound city closed in {closed}")
                 branch_ok=check_xy(branch,f"{sid}/{bid}")
@@ -291,6 +319,8 @@ def validate(data: Mapping[str, Any]) -> List[str]:
         nid=node.get("id","?"); node_ok=check_xy(node,nid)
         if node_ok and not point_on_land((node["longitude"],node["latitude"]),regions): issues.append(f"TRAVEL-LAND {nid}: point is not inside land polygon/island mask")
         if node.get("city_id") not in city_ids: issues.append(f"TRAVEL-CITY {nid}: unknown {node.get('city_id')}")
+        elif node.get("region") != city_by[node["city_id"]].get("region"):
+            issues.append(f"TRAVEL-REGION {nid}: must equal bound city region")
         node_chapters=node.get("open_chapters",[])
         if not isinstance(node_chapters,list): issues.append(f"TRAVEL-ERA {nid}: open_chapters must be a list"); node_chapters=[]
         if len(node_chapters)!=len(set(node_chapters)): issues.append(f"TRAVEL-ERA-DUP {nid}: duplicate open chapter")
@@ -310,6 +340,12 @@ def validate(data: Mapping[str, Any]) -> List[str]:
         if not isinstance(via,list): issues.append(f"ROUTE-VIA {rid}: via must be a list"); via=[]
         if row in routes and row.get("kind") not in route_kinds: issues.append(f"ROUTE-KIND {rid}: unknown {row.get('kind')!r}")
         if row.get("fee_tier") not in fee_tiers: issues.append(f"ROUTE-FEE {rid}: unknown {row.get('fee_tier')!r}")
+        def endpoint_region(eid: Any) -> Optional[str]:
+            item=city_by.get(eid) or travel_by.get(eid)
+            return item.get("region") if item else None
+        expected_regions=list(dict.fromkeys(x for eid in [row.get("from"),*via,row.get("to")] if (x:=endpoint_region(eid))))
+        if row.get("regions") != expected_regions:
+            issues.append(f"ROUTE-REGIONS {rid}: {row.get('regions')} != {expected_regions}")
         if not is_finite_number(row.get("duration_days")) or row.get("duration_days") <= 0: issues.append(f"ROUTE-DURATION {rid}: duration_days must be positive")
         for field in ("from","to"):
             endpoint=row.get(field)

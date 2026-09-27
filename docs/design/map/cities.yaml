@@ -1,5 +1,5 @@
 {
-  "schema_version": "world-map-cities.v1",
+  "schema_version": "world-map-cities.v2",
   "coordinate_system": "WGS84 (EPSG:4326)",
   "coordinate_decimals": 2,
   "generated_on": "2026-09-26",
@@ -1425,7 +1425,7 @@
       "modern_name": "山海关",
       "longitude": 119.75,
       "latitude": 40.0,
-      "region": "rg_yanjing_zhili",
+      "region": "rg_liaoxi",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -1580,7 +1580,7 @@
       "modern_name": "秦皇岛",
       "longitude": 119.6,
       "latitude": 39.94,
-      "region": "rg_yanjing_zhili",
+      "region": "rg_liaoxi",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -4557,7 +4557,7 @@
       "modern_name": "汉中",
       "longitude": 107.02,
       "latitude": 33.07,
-      "region": "rg_guanzhong",
+      "region": "rg_qinba",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -4713,7 +4713,7 @@
       "modern_name": "安康",
       "longitude": 109.03,
       "latitude": 32.69,
-      "region": "rg_guanzhong",
+      "region": "rg_qinba",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -5182,7 +5182,7 @@
       "modern_name": "商洛",
       "longitude": 109.94,
       "latitude": 33.87,
-      "region": "rg_guanzhong",
+      "region": "rg_qinba",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -10190,7 +10190,7 @@
       "modern_name": "杭州",
       "longitude": 120.16,
       "latitude": 30.29,
-      "region": "rg_liangzhe",
+      "region": "rg_jiangnan_taihu",
       "importance": "capital",
       "history": {
         "northern_song": {
@@ -10351,7 +10351,7 @@
       "modern_name": "苏州",
       "longitude": 120.6,
       "latitude": 31.3,
-      "region": "rg_liangzhe",
+      "region": "rg_jiangnan_taihu",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -10511,7 +10511,7 @@
       "modern_name": "无锡",
       "longitude": 120.29,
       "latitude": 31.57,
-      "region": "rg_liangzhe",
+      "region": "rg_jiangnan_taihu",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -10669,7 +10669,7 @@
       "modern_name": "嘉兴",
       "longitude": 120.75,
       "latitude": 30.75,
-      "region": "rg_liangzhe",
+      "region": "rg_jiangnan_taihu",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -10827,7 +10827,7 @@
       "modern_name": "绍兴",
       "longitude": 120.58,
       "latitude": 30.0,
-      "region": "rg_liangzhe",
+      "region": "rg_jiangnan_taihu",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -10983,7 +10983,7 @@
       "modern_name": "宁波",
       "longitude": 121.55,
       "latitude": 29.88,
-      "region": "rg_liangzhe",
+      "region": "rg_zhedong",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -11141,7 +11141,7 @@
       "modern_name": "舟山",
       "longitude": 122.21,
       "latitude": 29.99,
-      "region": "rg_liangzhe",
+      "region": "rg_zhedong",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -11299,7 +11299,7 @@
       "modern_name": "温州",
       "longitude": 120.67,
       "latitude": 28.0,
-      "region": "rg_liangzhe",
+      "region": "rg_zhedong",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -11455,7 +11455,7 @@
       "modern_name": "金华",
       "longitude": 119.65,
       "latitude": 29.08,
-      "region": "rg_liangzhe",
+      "region": "rg_zhedong",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -11613,7 +11613,7 @@
       "modern_name": "衢州",
       "longitude": 118.87,
       "latitude": 28.97,
-      "region": "rg_liangzhe",
+      "region": "rg_zhedong",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -11769,7 +11769,7 @@
       "modern_name": "湖州",
       "longitude": 120.09,
       "latitude": 30.87,
-      "region": "rg_liangzhe",
+      "region": "rg_jiangnan_taihu",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -11925,7 +11925,7 @@
       "modern_name": "常州",
       "longitude": 119.95,
       "latitude": 31.77,
-      "region": "rg_liangzhe",
+      "region": "rg_jiangnan_taihu",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -13806,7 +13806,7 @@
       "modern_name": "武汉",
       "longitude": 114.27,
       "latitude": 30.58,
-      "region": "rg_jingchu",
+      "region": "rg_jingxiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -13985,7 +13985,7 @@
       "modern_name": "襄阳",
       "longitude": 112.14,
       "latitude": 32.04,
-      "region": "rg_jingchu",
+      "region": "rg_jingxiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -14144,7 +14144,7 @@
       "modern_name": "荆州",
       "longitude": 112.24,
       "latitude": 30.34,
-      "region": "rg_jingchu",
+      "region": "rg_jingxiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -14304,7 +14304,7 @@
       "modern_name": "岳阳",
       "longitude": 113.13,
       "latitude": 29.37,
-      "region": "rg_jingchu",
+      "region": "rg_huxiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -14462,7 +14462,7 @@
       "modern_name": "长沙",
       "longitude": 112.97,
       "latitude": 28.2,
-      "region": "rg_jingchu",
+      "region": "rg_huxiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -14620,7 +14620,7 @@
       "modern_name": "衡阳",
       "longitude": 112.57,
       "latitude": 26.89,
-      "region": "rg_jingchu",
+      "region": "rg_huxiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -14778,7 +14778,7 @@
       "modern_name": "郴州",
       "longitude": 113.03,
       "latitude": 25.8,
-      "region": "rg_jingchu",
+      "region": "rg_huxiang",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -14934,7 +14934,7 @@
       "modern_name": "十堰",
       "longitude": 110.78,
       "latitude": 32.65,
-      "region": "rg_jingchu",
+      "region": "rg_jingxiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -15092,7 +15092,7 @@
       "modern_name": "宜昌",
       "longitude": 111.29,
       "latitude": 30.69,
-      "region": "rg_jingchu",
+      "region": "rg_jingxiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -15248,7 +15248,7 @@
       "modern_name": "恩施",
       "longitude": 109.48,
       "latitude": 30.3,
-      "region": "rg_jingchu",
+      "region": "rg_jingxiang",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -15404,7 +15404,7 @@
       "modern_name": "沅陵",
       "longitude": 110.39,
       "latitude": 28.46,
-      "region": "rg_jingchu",
+      "region": "rg_huxiang",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -15562,7 +15562,7 @@
       "modern_name": "荆门",
       "longitude": 112.2,
       "latitude": 31.04,
-      "region": "rg_jingchu",
+      "region": "rg_jingxiang",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -16499,7 +16499,7 @@
       "modern_name": "桂林",
       "longitude": 110.3,
       "latitude": 25.28,
-      "region": "rg_lingnan",
+      "region": "rg_guangxi",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -16657,7 +16657,7 @@
       "modern_name": "柳州",
       "longitude": 109.41,
       "latitude": 24.32,
-      "region": "rg_lingnan",
+      "region": "rg_guangxi",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -16813,7 +16813,7 @@
       "modern_name": "南宁",
       "longitude": 108.32,
       "latitude": 22.82,
-      "region": "rg_lingnan",
+      "region": "rg_guangxi",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -18850,7 +18850,7 @@
       "modern_name": "昆明",
       "longitude": 102.72,
       "latitude": 25.04,
-      "region": "rg_yungui",
+      "region": "rg_yundian_qianzhong",
       "importance": "capital",
       "history": {
         "northern_song": {
@@ -19012,7 +19012,7 @@
       "modern_name": "大理",
       "longitude": 100.21,
       "latitude": 25.58,
-      "region": "rg_yungui",
+      "region": "rg_dali_cangshan",
       "importance": "capital",
       "history": {
         "northern_song": {
@@ -19177,7 +19177,7 @@
       "modern_name": "丽江",
       "longitude": 100.23,
       "latitude": 26.87,
-      "region": "rg_yungui",
+      "region": "rg_dali_cangshan",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -19333,7 +19333,7 @@
       "modern_name": "保山",
       "longitude": 99.17,
       "latitude": 25.12,
-      "region": "rg_yungui",
+      "region": "rg_dali_cangshan",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -19490,7 +19490,7 @@
       "modern_name": "腾冲",
       "longitude": 98.49,
       "latitude": 25.02,
-      "region": "rg_yungui",
+      "region": "rg_dali_cangshan",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -19647,7 +19647,7 @@
       "modern_name": "曲靖",
       "longitude": 103.8,
       "latitude": 25.49,
-      "region": "rg_yungui",
+      "region": "rg_yundian_qianzhong",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -19803,7 +19803,7 @@
       "modern_name": "贵阳",
       "longitude": 106.72,
       "latitude": 26.58,
-      "region": "rg_yungui",
+      "region": "rg_yundian_qianzhong",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -19961,7 +19961,7 @@
       "modern_name": "遵义",
       "longitude": 106.93,
       "latitude": 27.73,
-      "region": "rg_yungui",
+      "region": "rg_yundian_qianzhong",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -20117,7 +20117,7 @@
       "modern_name": "景洪",
       "longitude": 100.8,
       "latitude": 22.01,
-      "region": "rg_yungui",
+      "region": "rg_dali_cangshan",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -22319,7 +22319,7 @@
       "modern_name": "银川",
       "longitude": 106.27,
       "latitude": 38.47,
-      "region": "rg_hexilongyou",
+      "region": "rg_xixia_helan",
       "importance": "capital",
       "history": {
         "northern_song": {
@@ -22479,7 +22479,7 @@
       "modern_name": "中卫",
       "longitude": 105.19,
       "latitude": 37.51,
-      "region": "rg_hexilongyou",
+      "region": "rg_xixia_helan",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -22795,7 +22795,7 @@
       "modern_name": "喀什",
       "longitude": 75.99,
       "latitude": 39.47,
-      "region": "rg_xiyu",
+      "region": "rg_xiyu_nanjiang",
       "importance": "capital",
       "history": {
         "northern_song": {
@@ -22957,7 +22957,7 @@
       "modern_name": "和田",
       "longitude": 79.93,
       "latitude": 37.11,
-      "region": "rg_xiyu",
+      "region": "rg_xiyu_nanjiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -23116,7 +23116,7 @@
       "modern_name": "莎车",
       "longitude": 77.24,
       "latitude": 38.41,
-      "region": "rg_xiyu",
+      "region": "rg_xiyu_nanjiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -23275,7 +23275,7 @@
       "modern_name": "阿克苏",
       "longitude": 80.27,
       "latitude": 41.17,
-      "region": "rg_xiyu",
+      "region": "rg_xiyu_nanjiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -23434,7 +23434,7 @@
       "modern_name": "库车",
       "longitude": 82.97,
       "latitude": 41.72,
-      "region": "rg_xiyu",
+      "region": "rg_xiyu_nanjiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -23591,7 +23591,7 @@
       "modern_name": "库尔勒",
       "longitude": 86.15,
       "latitude": 41.76,
-      "region": "rg_xiyu",
+      "region": "rg_xiyu_nanjiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -23748,7 +23748,7 @@
       "modern_name": "吐鲁番",
       "longitude": 89.18,
       "latitude": 42.95,
-      "region": "rg_xiyu",
+      "region": "rg_xiyu_beijiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -23907,7 +23907,7 @@
       "modern_name": "哈密",
       "longitude": 93.51,
       "latitude": 42.83,
-      "region": "rg_xiyu",
+      "region": "rg_xiyu_beijiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -24064,7 +24064,7 @@
       "modern_name": "乌鲁木齐",
       "longitude": 87.6,
       "latitude": 43.8,
-      "region": "rg_xiyu",
+      "region": "rg_xiyu_beijiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -24211,7 +24211,7 @@
       "modern_name": "伊宁",
       "longitude": 81.32,
       "latitude": 43.92,
-      "region": "rg_xiyu",
+      "region": "rg_xiyu_beijiang",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -24372,7 +24372,7 @@
       "modern_name": "阿勒泰",
       "longitude": 88.13,
       "latitude": 47.85,
-      "region": "rg_xiyu",
+      "region": "rg_xiyu_beijiang",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -24531,7 +24531,7 @@
       "modern_name": "昆仑山口",
       "longitude": 78.6,
       "latitude": 36.3,
-      "region": "rg_xiyu",
+      "region": "rg_xiyu_nanjiang",
       "importance": "site",
       "location_confidence": "approximate_pending_research",
       "history": {
@@ -25006,7 +25006,7 @@
       "modern_name": "锦州",
       "longitude": 121.13,
       "latitude": 41.12,
-      "region": "rg_liaodong",
+      "region": "rg_liaoxi",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -25162,7 +25162,7 @@
       "modern_name": "兴城",
       "longitude": 120.72,
       "latitude": 40.62,
-      "region": "rg_liaodong",
+      "region": "rg_liaoxi",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -25624,7 +25624,7 @@
       "modern_name": "吉林",
       "longitude": 126.56,
       "latitude": 43.85,
-      "region": "rg_liaodong",
+      "region": "rg_dongbei",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -25780,7 +25780,7 @@
       "modern_name": "哈尔滨",
       "longitude": 126.65,
       "latitude": 45.75,
-      "region": "rg_liaodong",
+      "region": "rg_dongbei",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -25920,7 +25920,7 @@
       "modern_name": "宁安",
       "longitude": 129.47,
       "latitude": 44.34,
-      "region": "rg_liaodong",
+      "region": "rg_dongbei",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -26074,7 +26074,7 @@
       "modern_name": "阿城",
       "longitude": 126.95,
       "latitude": 45.55,
-      "region": "rg_liaodong",
+      "region": "rg_dongbei",
       "importance": "capital",
       "history": {
         "northern_song": {
@@ -26221,7 +26221,7 @@
       "modern_name": "齐齐哈尔",
       "longitude": 123.96,
       "latitude": 47.34,
-      "region": "rg_liaodong",
+      "region": "rg_dongbei",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -26370,7 +26370,7 @@
       "modern_name": "黑河",
       "longitude": 127.49,
       "latitude": 50.24,
-      "region": "rg_liaodong",
+      "region": "rg_dongbei",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -26519,7 +26519,7 @@
       "modern_name": "漠河",
       "longitude": 122.54,
       "latitude": 52.97,
-      "region": "rg_liaodong",
+      "region": "rg_dongbei",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -26668,7 +26668,7 @@
       "modern_name": "雅克萨故址（阿尔巴津）",
       "longitude": 124.08,
       "latitude": 53.38,
-      "region": "rg_liaodong",
+      "region": "rg_dongbei",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -26813,7 +26813,7 @@
       "modern_name": "赤峰",
       "longitude": 118.96,
       "latitude": 42.27,
-      "region": "rg_mobei",
+      "region": "rg_monan",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -26973,7 +26973,7 @@
       "modern_name": "辽上京遗址",
       "longitude": 119.38,
       "latitude": 43.97,
-      "region": "rg_mobei",
+      "region": "rg_monan",
       "importance": "capital",
       "history": {
         "northern_song": {
@@ -27118,7 +27118,7 @@
       "modern_name": "呼和浩特",
       "longitude": 111.65,
       "latitude": 40.81,
-      "region": "rg_mobei",
+      "region": "rg_monan",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -27276,7 +27276,7 @@
       "modern_name": "包头",
       "longitude": 109.84,
       "latitude": 40.65,
-      "region": "rg_mobei",
+      "region": "rg_monan",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -27428,7 +27428,7 @@
       "modern_name": "鄂尔多斯",
       "longitude": 109.99,
       "latitude": 39.82,
-      "region": "rg_mobei",
+      "region": "rg_monan",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -27587,7 +27587,7 @@
       "modern_name": "锡林浩特",
       "longitude": 116.07,
       "latitude": 43.94,
-      "region": "rg_mobei",
+      "region": "rg_monan",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -27894,7 +27894,7 @@
       "modern_name": "台北",
       "longitude": 121.56,
       "latitude": 25.04,
-      "region": "rg_islands",
+      "region": "rg_donghai_islands",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -28042,7 +28042,7 @@
       "modern_name": "台南",
       "longitude": 120.2,
       "latitude": 23.0,
-      "region": "rg_islands",
+      "region": "rg_donghai_islands",
       "importance": "capital",
       "history": {
         "northern_song": {
@@ -28193,7 +28193,7 @@
       "modern_name": "高雄",
       "longitude": 120.3,
       "latitude": 22.63,
-      "region": "rg_islands",
+      "region": "rg_donghai_islands",
       "importance": "secondary",
       "history": {
         "northern_song": {
@@ -28340,7 +28340,7 @@
       "modern_name": "澎湖",
       "longitude": 119.57,
       "latitude": 23.57,
-      "region": "rg_islands",
+      "region": "rg_donghai_islands",
       "importance": "major",
       "history": {
         "northern_song": {
@@ -28498,7 +28498,7 @@
       "modern_name": "桃花岛（舟山群岛）",
       "longitude": 122.26,
       "latitude": 29.83,
-      "region": "rg_islands",
+      "region": "rg_donghai_islands",
       "importance": "site",
       "location_confidence": "approximate_pending_research",
       "history": {
@@ -28653,7 +28653,7 @@
       "modern_name": "神龙岛（小说）",
       "longitude": 122.82,
       "latitude": 39.1,
-      "region": "rg_islands",
+      "region": "rg_donghai_islands",
       "importance": "site",
       "location_confidence": "approximate_fictional",
       "history": {
@@ -28796,7 +28796,7 @@
       "modern_name": "侠客岛（小说）",
       "longitude": 113.8,
       "latitude": 20.2,
-      "region": "rg_islands",
+      "region": "rg_nanhai_islands",
       "importance": "site",
       "location_confidence": "approximate_fictional",
       "history": {
@@ -28939,7 +28939,7 @@
       "modern_name": "灵蛇岛（小说）",
       "longitude": 123.2,
       "latitude": 28.2,
-      "region": "rg_islands",
+      "region": "rg_donghai_islands",
       "importance": "site",
       "location_confidence": "approximate_fictional",
       "history": {
@@ -29080,7 +29080,7 @@
       "modern_name": "冰火岛（小说）",
       "longitude": 133.0,
       "latitude": 42.0,
-      "region": "rg_islands",
+      "region": "rg_liaodong",
       "importance": "site",
       "location_confidence": "approximate_fictional",
       "history": {
@@ -29221,7 +29221,7 @@
       "modern_name": "王盘山岛（小说）",
       "longitude": 122.65,
       "latitude": 29.45,
-      "region": "rg_islands",
+      "region": "rg_donghai_islands",
       "importance": "site",
       "location_confidence": "approximate_fictional",
       "history": {
@@ -29362,7 +29362,7 @@
       "modern_name": "白云城（古龙支线）",
       "longitude": 112.2,
       "latitude": 18.7,
-      "region": "rg_islands",
+      "region": "rg_nanhai_islands",
       "importance": "site",
       "location_confidence": "approximate_original_placement",
       "history": {
@@ -29506,7 +29506,7 @@
       "modern_name": "蝙蝠岛（古龙支线）",
       "longitude": 124.0,
       "latitude": 29.0,
-      "region": "rg_islands",
+      "region": "rg_nanhai_islands",
       "importance": "site",
       "location_confidence": "approximate_original_placement",
       "history": {

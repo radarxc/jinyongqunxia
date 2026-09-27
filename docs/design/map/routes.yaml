@@ -1,5 +1,5 @@
 {
-  "schema_version": "world-map-routes.v1",
+  "schema_version": "world-map-routes.v2",
   "generated_on": "2026-09-26",
   "fee_tiers": {
     "low": "短途",
@@ -32,7 +32,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "post_kaifeng",
@@ -56,7 +57,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_zhongyuan"
     },
     {
       "id": "post_luoyang",
@@ -80,7 +82,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_zhongyuan"
     },
     {
       "id": "post_xian",
@@ -104,7 +107,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_guanzhong"
     },
     {
       "id": "post_datong",
@@ -128,7 +132,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_hedong_jinzhong"
     },
     {
       "id": "post_taiyuan",
@@ -152,7 +157,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_hedong_jinzhong"
     },
     {
       "id": "post_nanjing",
@@ -176,7 +182,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_jianghuai"
     },
     {
       "id": "post_hangzhou",
@@ -200,7 +207,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_jiangnan_taihu"
     },
     {
       "id": "post_fuzhou",
@@ -224,7 +232,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_fujian"
     },
     {
       "id": "post_wuhan",
@@ -248,7 +257,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_jingxiang"
     },
     {
       "id": "post_xiangyang",
@@ -272,7 +282,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_jingxiang"
     },
     {
       "id": "post_chengdu",
@@ -296,7 +307,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_bashu"
     },
     {
       "id": "post_dali",
@@ -320,7 +332,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_dali_cangshan"
     },
     {
       "id": "post_kunming",
@@ -344,7 +357,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_yundian_qianzhong"
     },
     {
       "id": "post_lanzhou",
@@ -368,7 +382,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_hexilongyou"
     },
     {
       "id": "post_yinchuan",
@@ -392,7 +407,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_xixia_helan"
     },
     {
       "id": "post_dunhuang",
@@ -416,7 +432,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_hexilongyou"
     },
     {
       "id": "post_kashgar",
@@ -440,7 +457,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_xiyu_nanjiang"
     },
     {
       "id": "post_yining",
@@ -464,7 +482,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_xiyu_beijiang"
     },
     {
       "id": "post_shenyang",
@@ -488,7 +507,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_liaodong"
     },
     {
       "id": "post_chengde",
@@ -505,7 +525,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "post_yakesa",
@@ -516,7 +537,8 @@
       "kind": "post_station",
       "open_chapters": [
         "ch08"
-      ]
+      ],
+      "region": "rg_dongbei"
     },
     {
       "id": "post_karakorum",
@@ -529,7 +551,8 @@
         "ch02",
         "ch03",
         "ch04"
-      ]
+      ],
+      "region": "rg_mobei"
     },
     {
       "id": "post_lhasa",
@@ -553,7 +576,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_qingzang"
     }
   ],
   "ports": [
@@ -578,7 +602,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_yanjing_zhili"
     },
     {
       "id": "port_qinhuangdao",
@@ -601,7 +626,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_liaoxi"
     },
     {
       "id": "port_yingkou",
@@ -622,7 +648,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_liaodong"
     },
     {
       "id": "port_dandong",
@@ -646,7 +673,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_liaodong"
     },
     {
       "id": "port_yantai",
@@ -667,7 +695,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_qilu"
     },
     {
       "id": "port_lianyungang",
@@ -691,7 +720,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_jianghuai"
     },
     {
       "id": "port_yangzhou",
@@ -715,7 +745,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_jianghuai"
     },
     {
       "id": "port_nanjing",
@@ -739,7 +770,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_jianghuai"
     },
     {
       "id": "port_wuhu",
@@ -763,7 +795,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_jianghuai"
     },
     {
       "id": "port_wuhan",
@@ -787,7 +820,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_jingxiang"
     },
     {
       "id": "port_yichang",
@@ -811,7 +845,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_jingxiang"
     },
     {
       "id": "port_chongqing",
@@ -835,7 +870,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_bashu"
     },
     {
       "id": "port_hangzhou",
@@ -859,7 +895,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_jiangnan_taihu"
     },
     {
       "id": "port_ningbo",
@@ -883,7 +920,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_zhedong"
     },
     {
       "id": "port_zhoushan",
@@ -907,7 +945,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_zhedong"
     },
     {
       "id": "port_quanzhou",
@@ -931,7 +970,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_fujian"
     },
     {
       "id": "port_xiamen",
@@ -952,7 +992,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_fujian"
     },
     {
       "id": "port_guangzhou",
@@ -976,7 +1017,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_lingnan"
     },
     {
       "id": "port_haikou",
@@ -1000,7 +1042,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_lingnan"
     },
     {
       "id": "port_penghu",
@@ -1024,7 +1067,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_donghai_islands"
     },
     {
       "id": "port_tainan",
@@ -1039,7 +1083,8 @@
         "ch12",
         "ch13",
         "ch14"
-      ]
+      ],
+      "region": "rg_donghai_islands"
     },
     {
       "id": "port_taohuadao",
@@ -1051,7 +1096,8 @@
       "open_chapters": [
         "ch02",
         "ch03"
-      ]
+      ],
+      "region": "rg_donghai_islands"
     },
     {
       "id": "port_xiakedao",
@@ -1062,7 +1108,8 @@
       "kind": "island_pier",
       "open_chapters": [
         "ch06"
-      ]
+      ],
+      "region": "rg_nanhai_islands"
     },
     {
       "id": "port_shenlongdao",
@@ -1073,7 +1120,8 @@
       "kind": "island_pier",
       "open_chapters": [
         "ch08"
-      ]
+      ],
+      "region": "rg_donghai_islands"
     },
     {
       "id": "port_lingshedao",
@@ -1084,7 +1132,8 @@
       "kind": "island_pier",
       "open_chapters": [
         "ch04"
-      ]
+      ],
+      "region": "rg_donghai_islands"
     },
     {
       "id": "port_binghuodao",
@@ -1095,7 +1144,8 @@
       "kind": "island_pier",
       "open_chapters": [
         "ch04"
-      ]
+      ],
+      "region": "rg_liaodong"
     },
     {
       "id": "port_wangpanshan",
@@ -1106,7 +1156,8 @@
       "kind": "island_pier",
       "open_chapters": [
         "ch04"
-      ]
+      ],
+      "region": "rg_donghai_islands"
     },
     {
       "id": "port_baiyuncheng",
@@ -1118,7 +1169,8 @@
       "open_chapters": [
         "ch06",
         "ch07"
-      ]
+      ],
+      "region": "rg_nanhai_islands"
     }
   ],
   "routes": [
@@ -1178,7 +1230,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_yanjing_zhili",
+        "rg_zhongyuan"
+      ]
     },
     {
       "id": "route_kaifeng_luoyang",
@@ -1221,7 +1277,10 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_zhongyuan"
+      ]
     },
     {
       "id": "route_luoyang_xian",
@@ -1269,7 +1328,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_zhongyuan",
+        "rg_guanzhong"
+      ]
     },
     {
       "id": "route_xian_lanzhou",
@@ -1317,7 +1380,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_guanzhong",
+        "rg_hexilongyou"
+      ]
     },
     {
       "id": "route_lanzhou_dunhuang",
@@ -1370,7 +1437,10 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_hexilongyou"
+      ]
     },
     {
       "id": "route_dunhuang_kashgar",
@@ -1433,7 +1503,12 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_hexilongyou",
+        "rg_xiyu_beijiang",
+        "rg_xiyu_nanjiang"
+      ]
     },
     {
       "id": "route_kashgar_hotan",
@@ -1476,7 +1551,10 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_xiyu_nanjiang"
+      ]
     },
     {
       "id": "route_turpan_yining",
@@ -1519,7 +1597,10 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_xiyu_beijiang"
+      ]
     },
     {
       "id": "route_yining_karakorum",
@@ -1551,7 +1632,11 @@
         "ch03",
         "ch04"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_xiyu_beijiang",
+        "rg_mobei"
+      ]
     },
     {
       "id": "route_beijing_karakorum",
@@ -1588,7 +1673,12 @@
         "ch03",
         "ch04"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_yanjing_zhili",
+        "rg_monan",
+        "rg_mobei"
+      ]
     },
     {
       "id": "route_beijing_shenyang",
@@ -1641,7 +1731,12 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_yanjing_zhili",
+        "rg_liaoxi",
+        "rg_liaodong"
+      ]
     },
     {
       "id": "route_shenyang_ningan",
@@ -1677,7 +1772,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_liaodong",
+        "rg_dongbei"
+      ]
     },
     {
       "id": "route_ningan_yakesa",
@@ -1716,7 +1815,10 @@
       "open_chapters": [
         "ch08"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_dongbei"
+      ]
     },
     {
       "id": "route_beijing_datong",
@@ -1759,7 +1861,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_yanjing_zhili",
+        "rg_hedong_jinzhong"
+      ]
     },
     {
       "id": "route_datong_taiyuan",
@@ -1807,7 +1913,10 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_hedong_jinzhong"
+      ]
     },
     {
       "id": "route_taiyuan_luoyang",
@@ -1860,7 +1969,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_hedong_jinzhong",
+        "rg_zhongyuan"
+      ]
     },
     {
       "id": "route_xian_chengdu",
@@ -1908,7 +2021,12 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_guanzhong",
+        "rg_qinba",
+        "rg_bashu"
+      ]
     },
     {
       "id": "route_chengdu_dali",
@@ -1956,7 +2074,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_bashu",
+        "rg_dali_cangshan"
+      ]
     },
     {
       "id": "route_dali_kunming",
@@ -1999,7 +2121,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_dali_cangshan",
+        "rg_yundian_qianzhong"
+      ]
     },
     {
       "id": "route_chengdu_lhasa",
@@ -2047,7 +2173,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_bashu",
+        "rg_qingzang"
+      ]
     },
     {
       "id": "route_lanzhou_lhasa",
@@ -2095,7 +2225,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_hexilongyou",
+        "rg_qingzang"
+      ]
     },
     {
       "id": "route_luoyang_xiangyang",
@@ -2138,7 +2272,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_zhongyuan",
+        "rg_jingxiang"
+      ]
     },
     {
       "id": "route_xiangyang_wuhan",
@@ -2181,7 +2319,10 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_jingxiang"
+      ]
     },
     {
       "id": "route_wuhan_changsha",
@@ -2224,7 +2365,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_jingxiang",
+        "rg_huxiang"
+      ]
     },
     {
       "id": "route_changsha_guangzhou",
@@ -2277,7 +2422,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_huxiang",
+        "rg_lingnan"
+      ]
     },
     {
       "id": "route_guangzhou_guilin",
@@ -2325,7 +2474,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_lingnan",
+        "rg_guangxi"
+      ]
     },
     {
       "id": "route_guilin_kunming",
@@ -2378,7 +2531,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_guangxi",
+        "rg_yundian_qianzhong"
+      ]
     },
     {
       "id": "route_nanjing_hangzhou",
@@ -2441,7 +2598,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_jianghuai",
+        "rg_jiangnan_taihu"
+      ]
     },
     {
       "id": "route_hangzhou_fuzhou",
@@ -2506,7 +2667,12 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_jiangnan_taihu",
+        "rg_zhedong",
+        "rg_fujian"
+      ]
     },
     {
       "id": "route_fuzhou_guangzhou",
@@ -2569,7 +2735,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_fujian",
+        "rg_lingnan"
+      ]
     },
     {
       "id": "route_nanjing_kaifeng",
@@ -2622,7 +2792,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_jianghuai",
+        "rg_zhongyuan"
+      ]
     },
     {
       "id": "route_jinan_beijing",
@@ -2675,7 +2849,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_qilu",
+        "rg_yanjing_zhili"
+      ]
     },
     {
       "id": "route_kaifeng_jinan",
@@ -2723,7 +2901,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_zhongyuan",
+        "rg_qilu"
+      ]
     },
     {
       "id": "route_yangtze_upper",
@@ -2771,7 +2953,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_bashu",
+        "rg_jingxiang"
+      ]
     },
     {
       "id": "route_yangtze_lower",
@@ -2824,7 +3010,12 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_jingxiang",
+        "rg_jiangxi",
+        "rg_jianghuai"
+      ]
     },
     {
       "id": "route_grand_canal_south",
@@ -2887,7 +3078,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_jiangnan_taihu",
+        "rg_jianghuai"
+      ]
     },
     {
       "id": "route_grand_canal_north",
@@ -2932,7 +3127,12 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_jianghuai",
+        "rg_qilu",
+        "rg_yanjing_zhili"
+      ]
     },
     {
       "id": "route_east_sea",
@@ -2975,7 +3175,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_zhedong",
+        "rg_fujian"
+      ]
     },
     {
       "id": "route_south_sea",
@@ -3018,7 +3222,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_fujian",
+        "rg_lingnan"
+      ]
     },
     {
       "id": "route_bohai",
@@ -3063,7 +3271,13 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_yanjing_zhili",
+        "rg_liaoxi",
+        "rg_qilu",
+        "rg_liaodong"
+      ]
     },
     {
       "id": "route_taiwan",
@@ -3097,7 +3311,11 @@
         "ch13",
         "ch14"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_fujian",
+        "rg_donghai_islands"
+      ]
     },
     {
       "id": "route_taohuadao",
@@ -3122,7 +3340,11 @@
         "ch02",
         "ch03"
       ],
-      "service": "scheduled"
+      "service": "scheduled",
+      "regions": [
+        "rg_zhedong",
+        "rg_donghai_islands"
+      ]
     },
     {
       "id": "route_lingshedao",
@@ -3146,7 +3368,11 @@
       "open_chapters": [
         "ch04"
       ],
-      "service": "story_locked"
+      "service": "story_locked",
+      "regions": [
+        "rg_zhedong",
+        "rg_donghai_islands"
+      ]
     },
     {
       "id": "route_binghuodao",
@@ -3170,7 +3396,10 @@
       "open_chapters": [
         "ch04"
       ],
-      "service": "story_locked"
+      "service": "story_locked",
+      "regions": [
+        "rg_liaodong"
+      ]
     },
     {
       "id": "route_wangpanshan",
@@ -3194,7 +3423,11 @@
       "open_chapters": [
         "ch04"
       ],
-      "service": "story_locked"
+      "service": "story_locked",
+      "regions": [
+        "rg_zhedong",
+        "rg_donghai_islands"
+      ]
     },
     {
       "id": "route_xiakedao",
@@ -3218,7 +3451,11 @@
       "open_chapters": [
         "ch06"
       ],
-      "service": "story_locked"
+      "service": "story_locked",
+      "regions": [
+        "rg_zhedong",
+        "rg_nanhai_islands"
+      ]
     },
     {
       "id": "route_shenlongdao",
@@ -3242,7 +3479,11 @@
       "open_chapters": [
         "ch08"
       ],
-      "service": "story_locked"
+      "service": "story_locked",
+      "regions": [
+        "rg_liaodong",
+        "rg_donghai_islands"
+      ]
     },
     {
       "id": "route_baiyuncheng",
@@ -3267,7 +3508,11 @@
         "ch06",
         "ch07"
       ],
-      "service": "story_locked"
+      "service": "story_locked",
+      "regions": [
+        "rg_lingnan",
+        "rg_nanhai_islands"
+      ]
     }
   ],
   "special_routes": [
@@ -3285,7 +3530,10 @@
       ],
       "service": "cargo_ship_only",
       "no_intermediate_stops": true,
-      "rule": "两端直达；途中城市不生成、不可停靠。"
+      "rule": "两端直达；途中城市不生成、不可停靠。",
+      "regions": [
+        "rg_fujian"
+      ]
     },
     {
       "id": "route_offmap_luochaguo",
@@ -3301,7 +3549,10 @@
       ],
       "service": "sealed_post_convoy",
       "no_intermediate_stops": true,
-      "rule": "两端直达；途中城市不生成、不可停靠。"
+      "rule": "两端直达；途中城市不生成、不可停靠。",
+      "regions": [
+        "rg_dongbei"
+      ]
     },
     {
       "id": "route_offmap_samarkand",
@@ -3317,7 +3568,10 @@
       ],
       "service": "sealed_post_caravan",
       "no_intermediate_stops": true,
-      "rule": "两端直达；途中城市不生成、不可停靠。"
+      "rule": "两端直达；途中城市不生成、不可停靠。",
+      "regions": [
+        "rg_xiyu_nanjiang"
+      ]
     }
   ]
 }

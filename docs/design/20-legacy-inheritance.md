@@ -1,10 +1,10 @@
 # 20 · 跨年代传承：后人、宝藏、残本与合成（Legacy Inheritance）
 
-> 归属（基准 §18，待 A3 登记）：传承源、消隐判定、后人 / 宝藏候选、三卷残本、关键信物、跨年代合成与其投放预算。
-> 上游：`00-canon.md` v1.1；作者需求 `decisions/author-requirements.md` AR-01、AR-04、AR-08、AR-09、AR-13；作者决定 `decisions/author-decisions.md`，尤其 P35；跨文档裁定 `decisions/rulings-v1.md`。
+> 归属（基准 §18）：传承源、消隐判定、后人 / 宝藏候选、三卷残本、关键信物、跨年代合成与其投放预算。
+> 上游：`docs/00-canon.md` v1.2；作者需求 `decisions/author-requirements.md` AR-01、AR-04、AR-08、AR-09、AR-13；作者决定 `decisions/author-decisions.md`，尤其 P35；跨文档裁定 `decisions/rulings-v1.md`。
 > 引用而不重定义：年代、书眠、残篇 / 残承 / 藏史与 `rs_*` → `design/02-timeline-and-world-tiers.md`；属性与 `lore` / `luk` / `wis` / `morality` → `design/03-attributes.md`；武学、层数、`sourceGrade` / `sourceCap` 与学习途径 → `design/05-martial-arts-system.md`；地图、时代图层与奇遇触点 → `design/11-open-world.md`、`design/19-world-map.md`；任务 DSL → `design/12-quests-npc-factions.md`，确定性、RNG 与事务 → `tech/05-gameplay-engine.md`；天书之力、多周目与成就 → `design/13-progression-and-endings.md`；家丁与资源点 → `design/16-resources-and-estates.md`；门派时代矩阵 → `design/17-sects-compendium.md`；NPC 生卒、后人与生成规则 → `design/18-npc-and-companions.md`；物品与秘籍 → `design/10-items-and-equipment.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.0（作者需求 AR-13 首稿，2026-09-26）；审校 H1.R（2026-09-26）。
+> 版本：v1.0（作者需求 AR-13 首稿，2026-09-26）；审校 H1.R（2026-09-26）；全局审计（2026-09-26）。
 
 ---
 
@@ -18,7 +18,7 @@
 4. 残本绝对来源品阶只取地阶或黄阶：目标为天阶 10–12 时，残本分别为地下 7 / 地中 8 / 地上 9；目标为地阶 7–9 时，残本分别为黄下 1 / 黄中 2 / 黄上 3。
 5. 合成产物复用图鉴既有 `sk_*`，品阶等于该传承源登记的完整品阶，不复制第二门同名武学。除越女剑法外，所有天级产物都已在基准 §13 的 51 门闭集中，只是新增一种艰难获取途径。
 6. AR-13 覆盖 P35 的范围仅限完整形态：`sk_yuenvjian` 教学形态仍为地上 9，三卷与阿青墓中手卷校合后的同一武学进入“传承全本形态”，为天下 10。推荐把它列入基准 §13 的独立“合成天级”小节，不把它计作普通第 52 门；此 schema 例外仍标 ⚠️ 待作者确认。
-7. 中、低武书界允许完成合成。合成是当前时代的本土再发现，因此当界 `nativeTo=currentChapter`，真实品阶不降；基准 §3 现行规则只限制层数、修为与来源，并**没有**通用“本土品阶截断”。为落实 AR-13 原任务给出的默认口径，本文另提 `legacyWorldCap` 专用建议：接纳前不得把它当作基准既定规则。进入再下一书界后，产物依通常规则成为外来武学。
+7. 中、低武书界允许完成合成。合成是当前时代的本土再发现，因此当界 `nativeTo=currentChapter`，真实品阶不降；Canon v1.2 §3 规则 12 已把 `legacyWorldCap` 12 / 10 / 9 写为执行默认，专门截断 `legacy_synthesis` 的当界有效品阶，且仍标 **⚠️ 待作者确认**。进入下一书界后，产物依通常规则成为外来武学。
 8. `frag_*` 残本与 `it_xinwu_*` 关键信物放入跨书界“传承匣”，不占普通背包格，不可交易、丢弃或藏史；书眠保留、轮回默认重置。
 
 ### 0.2 章节导航
@@ -586,7 +586,7 @@ keyItemAwardCap(ch) = legacyCarrierCap(ch)
 
 ### 5.2 与 `design/18` 的生成契约
 
-本文建议通过 `LegacyHeirRequest` 适配器提交候选；该接口尚待 `design/18` 接纳，人物实体及其事实仍只由 18 创建：
+本文通过 `LegacyHeirSpawnRequest` 向 `design/18` 提交候选；六个基础字段与 `bloodline` 的证据闸门由 `design/18` §7.2、§9.5 正式登记，人物实体及其事实仍只由 18 创建：
 
 - 已有原著人物：只能引用既有 `npc_*`，并检查对应书界 appearance；
 - 新的具名长期人物：须由 `design/18` 登记独立 `npc_*`，标 `origin: expanded`；
@@ -806,18 +806,18 @@ pForceBp = clamp(8_000 - 300 × deficit + 20 × luk, 2_000, 9_500)
 
 ### 7.6 完整品阶与当界上限
 
-基准 §3 的现行规则是：完整本土合法习得不受外来品阶压制，只受真实层数、书界层数、修为与来源上限。AR-13 又明确要求中 / 低武可合成、真实品阶保留而有效品阶按书界上限截断。二者之间缺少一个已登记的公共字段，因此本节把后者落实为 **AR-13 执行默认 + 基准修改提案 H1-P04**，不声称它已由基准 §3 推出：
+Canon v1.2 §3 的一般规则仍是：完整本土合法习得不受外来品阶压制，只受真实层数、书界层数、修为与来源上限；同节规则 12 又为 `learnSource=legacy_synthesis` 明确登记专用例外。该例外落实 AR-13，保留真实品阶并按逐界 `legacyWorldCap` 截断当界有效品阶；它是执行默认，但细值仍标 **⚠️ 待作者确认**：
 
 ```text
 resolvedCompleteGrade = SkillDef.grade
 nativeTo = currentChapter
 sourceGrade = resolvedCompleteGrade
 sourceCap = 10
-legacyWorldCap = configured cap for currentChapter       // H1-P04；默认启用
+legacyWorldCap = configured cap for currentChapter       // Canon v1.2 §3 规则 12
 effGradeCurrent = min(resolvedCompleteGrade, legacyWorldCap)
 ```
 
-`legacyWorldCap` 只约束 `learnSource=legacy_synthesis`，不改一般本土习得，也不改产物 `sourceGrade`。建议值按**各书界**完整原生顶点取 12 / 10 / 9，而不是把武境与上限机械绑定：笑傲、侠客虽属中武，仍有完整原生天上武学，故取 12；鹿鼎、连城虽属低武，完整原生顶点仍到天下，故取 10。在 H1-P04 合入基准前，实现应把它放在版本化规则配置中，并保留关闭后的现行 Canon 分支。
+`legacyWorldCap` 只约束 `learnSource=legacy_synthesis`，不改一般本土习得，也不改产物 `sourceGrade`。执行表按**各书界**完整原生顶点取 12 / 10 / 9，而不是把武境与上限机械绑定：笑傲、侠客虽属中武，仍有完整原生天上武学，故取 12；鹿鼎、连城虽属低武，完整原生顶点仍到天下，故取 10。实现须把它放在版本化规则配置中；在作者作出相反决定并提供迁移前，不得自行回退到 v1.1，也不得与关闭分支随机并存。`rule_wutiandao` 关闭该专用上限是 Canon 已定的显式规则，不属于回退。
 
 | 书界 | AR-13 默认合成有效品阶上限 | 推导锚点 |
 |---|---:|---|
@@ -825,7 +825,7 @@ effGradeCurrent = min(resolvedCompleteGrade, legacyWorldCap)
 | 碧血、鹿鼎、连城、书剑、飞狐、雪山 | 10 天下 | 各界完整原生顶点为天下 |
 | 白马、鸳鸯 | 9 地上 | 基准 §13 明定两界无天级、顶点地上 |
 
-例：按 AR-13 默认，天上 12 的北冥全本在白马校合，真实 `sourceGrade=12`，当界 `effGrade=min(12,9)=9`；若带入书剑，它已经是外来实例，改按基准 §3 的中武外来规则求有效品阶，不继续使用白马上限。若 H1-P04 未获基准接纳，则白马当界应回退 Canon 现行结果 `effGrade=12`，但仍只有低武层数上限 8；不得让两个口径静默并存。
+例：按 Canon v1.2 执行默认，天上 12 的北冥全本在白马校合，真实 `sourceGrade=12`，当界 `effGrade=min(12,9)=9`；若带入书剑，它已经是外来实例，改按基准 §3 的中武外来规则求有效品阶，不继续使用白马上限。若启用 `rule_wutiandao`，则依法关闭专用上限；普通规则下不得静默产生 `effGrade=12` 的第二结果。
 
 ### 7.7 天级闭集处理
 
@@ -942,7 +942,7 @@ innerMinLayer = ceil(10/2) + 1 = 6
 
 ### 8.5 可完成书界与压制算例
 
-从 `ch01_tianlong` 到 `ch14_xueshan` 均可调度该源，因此理论上任一十四书界都能完成；实际要先抽到主载体并集齐材料。`critical=true` 保证连续三次合法书界未出现后，第四次合法书界出现，但不保证玩家自动完成任务。下表采用 AR-13 默认的 H1-P04；若该提案未合入基准，则本土校合当界不做品阶截断，只保留下表的层数上限。
+从 `ch01_tianlong` 到 `ch14_xueshan` 均可调度该源，因此理论上任一十四书界都能完成；实际要先抽到主载体并集齐材料。`critical=true` 保证连续三次合法书界未出现后，第四次合法书界出现，但不保证玩家自动完成任务。下表执行 Canon v1.2 §3 规则 12 的 `legacyWorldCap`；该规则仍待作者最终确认，但在决定变更前没有旧 Canon 回退分支。
 
 | 完成书界 | `legacyWorldCap` | 真实品阶 | 当界有效品阶 | 层数上限 |
 |---|---:|---:|---:|---:|
@@ -1310,7 +1310,7 @@ innerMinLayer = ceil(10/2) + 1 = 6
 
 ### 10.2 正式任务 DSL 与传承域扩展
 
-`design/12-quests-npc-factions.md` 已定稿 `quest.v1` 的 `QuestDef` 外壳、条件 AST、阶段、转移与带 `op` 的动作。本文只提议为其白名单增加两个条件分支和六个动作，不另建第二套 provisional DSL。下例是**非生产夹具**；`q_01_qiyu_75` 符合正式 ID 正则且当前号段未占用，但仍须由 `chapters/01` 登记后才能成为正式任务。
+`design/12-quests-npc-factions.md` 已定稿 `quest.v1` 的 `QuestDef` 外壳、条件 AST、阶段、转移与带 `op` 的动作，并已接入本文两类条件分支和六个动作；本文定义传承域字段语义与领域重验，不另建第二套 provisional DSL。下例是**非生产夹具**；`q_01_qiyu_75` 符合正式 ID 正则且当前号段未占用，但仍须由 `chapters/01` 登记后才能成为正式任务。
 
 ```yaml
 schemaVersion: quest.v1
@@ -1339,7 +1339,7 @@ stages:
         priority: 10
         when:
           all:
-            - event: { name: legacyCacheOpened, sourceId: cache_yuenv_ruoye }
+            - legacyCache: { cacheId: cache_yuenv_ruoye, field: state, op: eq, value: opened }
             - legacy: { sourceId: lgs_yuenv_aqing, field: fragmentCount, op: ge, value: 1 }
         to: st_close
   - id: st_close
@@ -1356,7 +1356,7 @@ source:
   note: non-production schema fixture; chapter owner must allocate the task id
 ```
 
-建议并入 `design/12` `ConditionExpr` / 动作白名单的判别联合为：
+已并入 `design/12` `ConditionExpr` / 动作白名单的判别联合为：
 
 ```ts
 type LegacyConditionExtension =
@@ -1372,11 +1372,11 @@ type LegacyActionExtension =
   | { id?: string; op: 'legacy/completeSynthesis'; recipeKey: LegacyRecipeKey };
 ```
 
-`event:legacyCacheOpened` 也须先登记到 `design/12` 的稳定事件白名单。所有动作调用传承域 helper 重验，不允许任务脚本直接设置 `fragments[]`、`sourceGrade` 或 RNG。阶段、物品、收据、RNG 与武学状态必须同事务；任一动作失败则全回滚。持久效果的幂等键沿用正式规则 `effectId=<questId>/<stageId>/<effects[].id>`，并与机会收据交叉校验。
+缓存开匣后的转移直接读取已登记的 `legacyCache.state=opened`，不再额外制造同义稳定事件。所有动作调用传承域 helper 重验，不允许任务脚本直接设置 `fragments[]`、`sourceGrade` 或 RNG。阶段、物品、收据、RNG 与武学状态必须同事务；任一动作失败则全回滚。持久效果的幂等键沿用正式规则 `effectId=<questId>/<stageId>/<effects[].id>`，并与机会收据交叉校验。
 
 ### 10.3 寻访后人与 NPC 接口
 
-1. 本文提议以 `LegacyHeirRequest` 向 `design/18` 申请生成，字段为 `sourceId/chapterId/heirKind/roleTags/difficultyBand/locationHints`；该类型尚未在 18 正式登记，接纳前只能作为章节适配器。姓名、年龄、人格、D1–D5 与能否招募仍由 18 决定。
+1. 本文以 `LegacyHeirSpawnRequest` 向 `design/18` 申请生成，字段为 `sourceId/chapterId/heirKind/roleTags/difficultyBand/locationHints`；姓名、年龄、人格、D1–D5 与能否招募仍由 18 决定。旧草稿类型名 `LegacyHeirRequest` 仅作 schema alias：加载时迁为正式名，保存与新内容只能写 `LegacyHeirSpawnRequest`。
 2. `bloodline` 必须带原著或章节事实证据键；无证据时 schema 构建失败。`disciple`、`custodian` 为安全默认。
 3. 可招募后人按 18 的正常队伍 / 驻扎互斥；招募不是获得三卷的必要条件，完成授艺考验即可结算。
 4. 后人死亡或被改命救回都不重掷主载体；任务改走遗物、托付人或等待本人恢复，状态迁移写稳定事实。
@@ -1567,7 +1567,7 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 | 越女完整形态 | 复用 `sk_yuenvjian@legacy_complete` | 10 天下；教学形态仍为 9 |
 | 既有同源 / 古迹 / 武学 | 复用 `lg_*` / `rs_*` / `sk_*` | 本文不重定义 |
 
-`lgs_*`、`frag_*`、`cache_*` 是对基准 §12 的新增前缀提案；落基准前属于本文保留命名空间。全仓扫描时这些前缀无既有实体冲突。
+`lgs_*`、`frag_*`、`cache_*` 已由 Canon v1.2 §12 登记；定义仍唯一归本文。`it_xinwu_*` 是 `it_*` 的关键信物子命名，具体 `ItemDef` 归 `design/10`。
 
 ## 14. 数据校验规则与测试用例
 
@@ -1600,7 +1600,7 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 | LEG-T08 | 批次前已满 / 同批竞争超额 | 前者整批 `quota_full_before_batch`、不消费出现 RNG；后者命中候选 `lottery_deferred`、已消费出现与 lottery RNG 但不计 miss |
 | LEG-T09 | 安全校合全部满足 | 必成；三卷 / 信物 bound；层数不免费增加；重复提交幂等 |
 | LEG-T10 | 强行校合失败 | 卷 / 信物不毁，耗半时、获紊乱、冷却 7 日；事务失败全回滚 |
-| LEG-T11 | 北冥 12 在白马校合（H1-P04 默认开启） | `sourceGrade=12, effGrade=9, layerCap=8`；关闭提案时 Canon 现行值为 `effGrade=12`；入书剑均改按外来规则 |
+| LEG-T11 | 北冥 12 在白马校合（Canon v1.2 执行默认） | `sourceGrade=12, effGrade=9, layerCap=8`；仅 `rule_wutiandao` 关闭专用上限；入书剑均改按外来规则 |
 | LEG-T12 | 越女教学 / 完整 / 韩小莹三状态 | 9 / 10 / 4，ID 与层数不串；轮回成就不误触发 |
 | LEG-T13 | 书眠时有两卷一信物、挖掘 80/160 | 卷与信物保留，挖掘进度和家丁清零，源转 dormant |
 | LEG-T14 | 太玄配方 `lore=12` | 可校合；通用 `lore≥48` 已被显式特殊条件替换 |
@@ -1614,30 +1614,30 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 
 | 编号 | 下游 | 建议值 / 默认 |
 |---|---|---|
-| H1-D01 | `design/12` / tech/05 | 在正式 `quest.v1` 中加入 §10.2 两类 legacy 条件、六项动作与 `legacyCacheOpened` 稳定事件，并沿用原子、幂等语义 |
-| H1-D02 | `design/16` | 家丁挖掘 `requiredProgress=160`、每块 `10+floor((production+skill)/10)`、最多 3 人 |
-| H1-D03 | `design/13` | 三个成就建议为 1/2/3 点；未采纳时只留无点数里程碑 |
+| H1-D01 | `design/12` / tech/05 | **设计侧已解决：**12 §2.2–§2.3 已接两类 legacy 条件、六项动作与双幂等事务；缓存状态由 `legacyCache` 条件读取，不新增同义事件；运行时 strict schema 仍交 tech/05 |
+| H1-D02 | `design/16` | **已解决设计接口：**16 §7.8、§14 已接 `requiredProgress=160`、每块 `10+floor((production+skill)/10)`、最多 3 人 |
+| H1-D03 | `design/13` | **已解决：**13 §8.2 已登记 `ach_legacy_first/ach_legacy_synthesis/ach_yuenv_legacy` 为 1/2/3 点 |
 | H1-D04 | chapters/01–14 | 每周目激活 18–24 源；拒绝盗墓提供等价任务路径 |
-| H1-D05 | `design/14` | 传承匣独立页；未得卷前隐藏武学真名；三卷 / 信物 / 条件同屏 |
+| H1-D05 | `design/14` | **已解决设计接口：**14 §4.17 已给传承匣独立页、名称门禁及三卷 / 信物 / 条件同屏 |
 
 ### 15.2 本文依赖的上游事实
 
 | 上游 | 依赖 | 状态 |
 |---|---|---|
-| `design/02` | 年代、书眠、残篇 / 残承 / 藏史、`lg_*` / `rs_*` | 已按现稿引用；传承匣例外待同步 |
+| `design/02` | 年代、书眠、残篇 / 残承 / 藏史、`lg_*` / `rs_*` | 仍待同步传承匣的相邻书眠窄白名单；Canon v1.2 §3 与 `design/13` 已登记执行口径 |
 | `design/05` + 图鉴 | `SkillDef`、品阶、硬门槛、层数与学习来源 | 已按现稿引用；新增来源待各图鉴登记 |
 | `design/11/19` | 地图、时代名、开放区域与坐标 | ID 已引用；具体 `placeKey` 待章节配点 |
-| `design/12` | 正式任务 DSL、门派与任务生命周期 | 已按 `quest.v1` 对齐；legacy 条件、动作与稳定事件仍待加入白名单 |
+| `design/12` | 正式任务 DSL、门派与任务生命周期 | **已解决设计接口：**12 §2.2–§2.3 已加入 legacy 条件、六动作和事务边界；运行时 strict schema 仍待 tech/05 |
 | `design/17/18` | D/H 矩阵、人物生卒与后人生成 | 硬依赖；未知卒年不猜死 |
 
 ### 15.3 对基准的修改提案
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| H1-P01 | §13 保留普通天级闭集 51 门，新增“合成天级”独立小节；唯一初始成员 `sk_yuenvjian@legacy_complete=10`，不计普通第 52 门 | AR-13 明定全本天级，又保持教学版 P35=9 与韩小莹版=4 |
-| H1-P02 | §12 登记 `lgs_*` 传承源、`frag_*` 三卷残本、`cache_*` 宝藏缓存；确认 `it_xinwu_*` 属 `it_*` 子命名 | 防止与 `lg_*` 同源组、`rs_*` 古迹、`rp_*` 资源点冲突 |
-| H1-P03 | §18 唯一归属增加 `design/20`：传承源、消隐、后人 / 宝藏候选、三卷、信物与校合 | AR-13 跨多个既有系统，需要单一规则归属 |
-| H1-P04 | §3 增加仅适用于 `learnSource=legacy_synthesis` 的逐书界 `legacyWorldCap`：天龙至侠客 12，碧血 / 鹿鼎 / 连城 / 书剑 / 飞狐 / 雪山 10，白马 / 鸳鸯 9；`rule_wutiandao` 关闭它 | 落实 AR-13b“真实品阶保留、有效品阶按书界上限截断”；顶点取各界 §13 完整原生池，不能简写成武境映射；现行 Canon 对完整本土来源不作品阶截断，必须显式登记例外 |
+| H1-P01 | **已写入 Canon v1.2 §13，仍待作者确认：**普通天级闭集 51 门外，以 `sk_yuenvjian@legacy_complete=10` 作唯一合成形态，不计第 52 门 | AR-13 明定全本天级，又保持教学版 P35=9 与韩小莹版=4；见 O-A3-01 |
+| H1-P02 | **已解决：**Canon v1.2 §12 已登记 `lgs_*`、`frag_*`、`cache_*`，并确认 `it_xinwu_*` 属 `it_*` 子命名 | 防止与 `lg_*` 同源组、`rs_*` 古迹、`rp_*` 资源点冲突 |
+| H1-P03 | **已解决：**Canon v1.2 §18 已把传承源、消隐、后人 / 宝藏候选、三卷、信物与校合唯一归 `design/20` | AR-13 跨多个系统，需要单一规则归属 |
+| H1-P04 | **已写入 Canon v1.2 §3，仍待作者确认：**`legacy_synthesis` 逐界 `legacyWorldCap` 为 12 / 10 / 9；`rule_wutiandao` 关闭它 | 落实 AR-13b；执行默认见 §7.6 与 O-A3-02，不保留 v1.1 回退分支 |
 
 ### 15.4 原著考据待办
 
@@ -1651,8 +1651,7 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 4. **强行校合是否保留？** 默认保留 §7.5 的单软缺项与 7 日冷却；硬条件永不可绕过。
 5. **单周目激活多少源？** 默认 18–24；8 个关键源仍受每界配额，但享第四合法界保底。
 6. **家丁能否独立开匣？** 默认不能，只推进工作量，玩家必须验收。
-7. **成就是否扩表？** 默认先存三个里程碑，待 13 接纳后再分配正式序号，绝不复用 `ach_yuenv_full`。
-8. **逐书界合成上限是否启用？** 依 AR-13b 默认启用 §7.6 / H1-P04 的逐界 12 / 10 / 9 专用上限；基准合入前必须以版本化开关实现，并以 10,000 种子和战斗样本**（待实测）**。
+7. **已解决：成就扩表。** `design/13` §8.2 已登记三个正式成就及 1 / 2 / 3 点，不复用 `ach_yuenv_full`。
+8. **逐书界合成上限是否启用？** Canon v1.2 已按 AR-13b 把 §7.6 / H1-P04 的 12 / 10 / 9 写为执行默认，但仍待作者最终确认；以版本化规则实现，并以 10,000 种子和战斗样本**（待实测）**。
 
-需同步而未在本任务修改：`00-canon` 合入 H1-P01～P04；`design/02` 加传承匣书眠钩子与“仅原生一次”的例外来源；`design/05` / 各图鉴加 `legacy_synthesis` 与越女 form（并调整 `skills-general` 的 GEN-V02 例外）；`design/10` 登记 117 残本和 39 信物物品；`design/11/19` 配缓存局部点；`design/12` 加 legacy 条件 / 动作 / 稳定事件；`design/13` 处理天级例外与成就；`design/14` 增界面；`design/16` 增挖掘动作；`design/17/18` 输出只读消隐 / 后人接口；`chapters/01–14` 配事实、机会、替代路线和配额，并由 `chapters/01` 决定是否登记候选任务 `q_01_qiyu_75`；`tech/05` 实现确定性事务与校验。
-以上同步完成前，本文新增跨域键均按建议接口处理，不视为已在其归属文档正式定义。
+仍需同步而未在本任务修改：`design/02` 加传承匣书眠钩子与“仅原生一次”的例外来源；`design/05` / 各图鉴加 `legacy_synthesis` 与越女 form（并调整 `skills-general` 的 GEN-V02 例外）；`design/10` 登记 117 残本和 39 信物物品；`design/11/19` 为 39 个缓存配置经考据的局部点；`chapters/01–14` 继续完善事实、机会、替代路线和配额；`tech/05` 实现确定性事务与 strict schema。Canon v1.2 的 H1-P01 / H1-P04 执行默认仍待作者确认；12 / 13 / 14 / 16 / 18 的设计接口已落实，不再列作缺失。

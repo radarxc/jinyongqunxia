@@ -1,10 +1,10 @@
 # 18 · NPC 与同伴系统（NPC & Companions）
 
-> 归属（基准 §18，待 A3 补登记）：NPC 身份与生卒年、分层名录、招募难度与任务门槛、好感与羁绊、离队 / 死亡 / 背叛、同伴跨书界重逢及持久化。
+> 归属（基准 §18）：NPC 身份与生卒年、分层名录、招募难度与任务门槛、好感与羁绊、离队 / 死亡 / 背叛、同伴跨书界重逢及持久化。
 > 上游：`docs/decisions/author-requirements.md` AR-09（高于基准）、`docs/00-canon.md`、`design/01-vision-and-core-loop.md`、`design/02-timeline-and-world-tiers.md`、`design/03-attributes.md`、`design/13-progression-and-endings.md`、`design/17-sects-compendium.md`、`design/20-legacy-inheritance.md`。
 > 引用而不重定义：任务与门派流程 → `design/12-quests-npc-factions.md`；战斗编组、合击与 AI → `design/09-combat-system.md`；城市 ID / 坐标 / 时代名 → `design/19-world-map.md` 与 `design/map/cities.yaml`，区域玩法 → `design/11-open-world.md`；营生场所、家业合同与排班 → `design/16-resources-and-estates.md`；传承来源、残本与载体调度 → `design/20-legacy-inheritance.md`；武学 → `design/05` 与 `design/catalog/skills-*.md`；存档 Schema / 运行时 → `tech/04-data-pipeline.md` / `tech/05-gameplay-engine.md`。本文只定义人物实体、生命轴、招募判断和人物侧互斥。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（推算）** = 由本文所列原著线索和游戏定年估算；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需真机或完整存档验证；**【建议值】** = 依赖其他文档、先给可运行值并在文末登记。
-> 版本：v1.2（跨文档同步，2026-09-26）。
+> 版本：v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）。
 
 ---
 
@@ -15,7 +15,7 @@
 3. “书眠”是叙事与存档阶段名；主角借《长生诀》沉睡至下一书界。切换时清空活动编组，但保留招募史、羁绊与离队快照。
 4. 旧基准“队友不跨书界”由 AR-09 覆盖：故人若在苏醒年仍健在，可经重逢任务再次加入。能力以旧快照为逐项下限，再按新书形象补入武学、层数和功力，只增不减。
 5. 具名、可招募 NPC 走 `design/03` 的 `full` 数值管线；普通设施 NPC 与路人走 `template` 管线。年龄段只修正输入画像，不另造第二套战斗公式。
-6. 分层名录拆在 `catalog/npcs-*.md`：14 部主线各有 20–40 名带 `npc_*` 的静态 NPC，当前合计 392 条出场索引、369 个唯一人物；另有 13 个不建静态 ID 的角色 / 支持槽，不计入人物下限。其后再列 99 个组织、设施和路人模板。名录字段是生产数据候选，不替代原著考据。
+6. 分层名录拆在 `catalog/npcs-*.md`：14 部主线各有 20–40 名带 `npc_*` 的静态 NPC，当前合计 420 条出场索引、395 个唯一人物；另有 13 个不建静态 ID 的角色 / 支持槽，不计入人物下限。其后再列 12 个不占主线配额的具名授艺 / 组织来源、99 个组织、设施和路人模板。名录字段是生产数据候选，不替代原著考据。
 
 ### 0.1 章节导航
 
@@ -1307,14 +1307,14 @@ D2定金 = 3 × D2日佣
 
 | # | 书界 | 文件 | 目标 / 实际数 |
 |---:|---|---|---:|
-| 1 | 天龙 | `catalog/npcs-ch01-tianlong.md` | 20–40 / 30 |
-| 2 | 射雕 | `catalog/npcs-ch02-shediao.md` | 20–40 / 30 |
-| 3 | 神雕 | `catalog/npcs-ch03-shendiao.md` | 20–40 / 30 |
-| 4 | 倚天 | `catalog/npcs-ch04-yitian.md` | 20–40 / 28 |
-| 5 | 笑傲 | `catalog/npcs-ch05-xiaoao.md` | 20–40 / 25 |
+| 1 | 天龙 | `catalog/npcs-ch01-tianlong.md` | 20–40 / 40 |
+| 2 | 射雕 | `catalog/npcs-ch02-shediao.md` | 20–40 / 36 |
+| 3 | 神雕 | `catalog/npcs-ch03-shendiao.md` | 20–40 / 35 |
+| 4 | 倚天 | `catalog/npcs-ch04-yitian.md` | 20–40 / 32 |
+| 5 | 笑傲 | `catalog/npcs-ch05-xiaoao.md` | 20–40 / 26 |
 | 6 | 侠客 | `catalog/npcs-ch06-xiake.md` | 20–40 / 26 |
 | 7 | 碧血 | `catalog/npcs-ch07-bixue.md` | 20–40 / 40 名静态 NPC（另 1 角色槽） |
-| 8 | 鹿鼎 | `catalog/npcs-ch08-luding.md` | 20–40 / 30 |
+| 8 | 鹿鼎 | `catalog/npcs-ch08-luding.md` | 20–40 / 32 |
 | 9 | 连城 | `catalog/npcs-ch09-liancheng.md` | 20–40 / 27 |
 | 10 | 白马 | `catalog/npcs-ch10-baima.md` | 20–40 / 21 名静态 NPC（另 3 支持槽） |
 | 11 | 鸳鸯 | `catalog/npcs-ch11-yuanyang.md` | 20–40 / 20 名静态 NPC（另 6 支持槽） |
@@ -1330,7 +1330,7 @@ D2定金 = 3 × D2日佣
 | 设施 NPC | `catalog/npcs-facilities.md` | 9 类模板；天龙 8 城、24 场所、96 个生产槽 |
 | 路人甲 | `catalog/npcs-commoners.md` | 16 职业、7 年龄段、D1、持久化与多地域命名闸门 |
 
-以上主线计数只统计首列带 `npc_*` 的静态人物。碧血、白马、鸳鸯、书剑与雪山合计另有 13 个“不建静态 ID”的角色 / 支持槽，只用于运行时生成、群体叙事或场景职能，不计入“每部主线 NPC ≥20”的验收下限，也不会被包装成原著具名人物。静态索引与角色槽合计 `392+13=405` 行。
+以上主线计数只统计首列带 `npc_*` 的静态人物。碧血、白马、鸳鸯、书剑与雪山合计另有 13 个“不建静态 ID”的角色 / 支持槽，只用于运行时生成、群体叙事或场景职能，不计入“每部主线 NPC ≥20”的验收下限，也不会被包装成原著具名人物。主线静态索引与角色槽合计 `420+13=433` 行；其中 420 条静态索引由 395 个唯一人物与 25 条跨书复用组成。§13.3 的 12 个具名授艺 / 组织来源另计，不占十四书配额。
 
 ---
 
@@ -1463,7 +1463,35 @@ D2定金 = 3 × D2日佣
 
 ### 13.3 内容 ID 登记方式
 
-- 392 条主线静态人物索引行的 `npc_*` 在各 `catalog/npcs-ch*.md` 对应行登记；其中 369 个唯一人物 ID，另 23 行是同一人物的跨书 appearance 索引，故跨文件出现不等于重复定义。
+下列四项是跨书界固定系统实体，由本文登记身份与招募边界；其中主角与墨侠不是“可邀请的他人”，故不属于 AR-09b 的结盟例外名单：
+
+| ID | 名称 | 类别 / 来源 | 存在与招募 | 关键字段 |
+|---|---|---|---|---|
+| `npc_zhujue` | 主角 | 玩家化身；身份与外观见 `design/01` §4 | 全程存在；不对自身执行招募 | `origin=expanded`、`everRecruitable=false`、`allianceOnly=false` |
+| `npc_shuling` | 书灵（默认真名“余墨”） | 天书录器灵；**（原创扩展）**，人格与形态见 `design/01` §5 | 跨书常驻的非战斗伙伴；只结盟，不进六人战斗编组 | `origin=expanded`、`everRecruitable=false`、`allianceOnly=true`、`combatEligible=false` |
+| `npc_shoujuanren` | 天书守卷人 | 前代穿书者 / 终局 Boss；**（原创扩展）**，身份见 `design/01` §3.8，战斗见 `design/13` §7.4 | 只在终局与轮回投影出现；只可结盟，不进入常规同伴池 | `origin=expanded`、`everRecruitable=false`、`allianceOnly=true`、`contentLayer=mainline` |
+| `npc_moxia` | 墨侠 | 书影空位的终局临时战斗投影；**（原创扩展）**，生成规则见 `design/13` §7.6 | 不是独立人物，不生成生卒、关系、招募或跨书快照 | `origin=generated`、`systemProjection=true`、`persistent=false`、`comboEligible=false` |
+
+下列具名人物由武学图鉴或组织名录引用，但未进入十四书主线 20–40 人配额；本文作最小静态登记，生产时仍须补 `appearances` 与正式任务引用。生卒未见可靠锚点者统一记 `unknown`，不得据年龄外推年份：
+
+| ID | 人物 / 来源 | 生卒 | 组织 | 分级与最小招募边界 |
+|---|---|---|---|---|
+| `npc_batianshi` | 巴天石；《天龙八部》大理臣属，善轻功 | `unknown`（待考） | `sect_dali` | D4；王府职责许可后限时同行 |
+| `npc_benyin` | 本因；《天龙八部》天龙寺僧 | `unknown`（待考） | `sect_tianlongsi` | D4；护经与寺务许可后阶段同行，僧职称谓待考 |
+| `npc_fuminyi` | 符敏仪；《天龙八部》灵鹫宫九天九部具名首领、“针神” | `unknown`（待考） | `sect_lingjiu` | D4；灵鹫宫和九部任务许可后同行 |
+| `npc_fusigui` | 傅思归；《天龙八部》大理臣属，持熟铜棍 | `unknown`（待考） | `sect_dali` | D4；王府护卫交班并获许可后同行 |
+| `npc_guducheng` | 古笃诚；《天龙八部》大理臣属，持板斧 | `unknown`（待考） | `sect_dali` | D4；王府护卫交班并获许可后同行 |
+| `npc_heliantieshu` | 赫连铁树；《天龙八部》西夏一品堂统领 | `unknown`（待考） | `sect_yipintang` | D4；仅西夏阵营或受制 / 和解支线限时同行 |
+| `npc_meijian` | 梅剑；《天龙八部》灵鹫宫梅兰竹菊四剑之一 | `unknown`（待考） | `sect_lingjiu` | D4；灵鹫宫职责交班并获本人许可后同行 |
+| `npc_zhaixingzi` | 摘星子；《天龙八部》星宿派具名弟子 | `unknown`（待考） | `sect_xingxiu` | D4；星宿排行与立场任务后同行 |
+| `npc_zhudanchen` | 朱丹臣；《天龙八部》大理臣属，使用判官笔 | `unknown`（待考） | `sect_dali` | D4；王府护卫交班并获许可后同行 |
+| `npc_tianhong` | 天虹禅师；《书剑恩仇录》南少林人物，称谓与关系待考 | `unknown`（待考） | `sect_nanshaolin` | D5；寺务与身世线许可后阶段同行 |
+| `npc_yaoyue` | 邀月；古龙《绝代双骄》移花宫宫主 | `unknown`（待考） | `sect_yihuagong` | D5；侠客书界客串线只在立场解锁后短时同行 |
+| `npc_lianxing` | 怜星；古龙《绝代双骄》移花宫宫主 | `unknown`（待考） | `sect_yihuagong` | D5；与邀月分别求值，取得本人许可后短时同行 |
+
+这 12 项只闭合具名人物身份，不为武学图鉴中的通用教头、院堂、士兵、猎人、庄丁、门人或群体建立伪静态 NPC；此类引用应改用 `roleKey` / `facilityKey` 或明确的运行时槽。
+
+- 420 条主线静态人物索引行的 `npc_*` 在各 `catalog/npcs-ch*.md` 对应行登记；其中 395 个唯一人物 ID，另 25 行是同一人物的跨书 appearance 索引，故跨文件出现不等于重复定义。§13.3 另登记 12 个不占主线配额的具名来源。慈恩沿用裘千仞的 `npc_qiuqianren`，只新增神雕 appearance，不另建人物。
 - 周圻 / 周绮分别为 `npc_zhouqi09` / `npc_zhouqi12`；侠客张三 / 李四分别为 `npc_zhangsan06` / `npc_lisi06`，以书界号消解同名。
 - 白马旧导入键 `npc_ningqiangdao` 已迁为 `npc_songqiangdao`（显示“姓宋的强人”）；旧键只保留作 alias，禁止新内容继续引用。
 - 99 个 `sect_*` 全部引用 `design/17`，本文未新建组织 ID。
@@ -1479,7 +1507,7 @@ D2定金 = 3 × D2日佣
 
 | ID | 检查 | 通过条件 / 失败级别 |
 |---|---|---|
-| NPC-V01 | 静态 ID 格式与唯一性 | 每条正式人物 ID 匹配 `^npc_[a-z0-9]+(?:_[a-z0-9]+)*$`；同一人物跨书允许多 appearance / 索引行，但全局只有一个 `NpcDef`；不同人物不得同 ID。当前 392 条索引行解析为 369 个唯一 ID + 23 条跨书复用。失败 = 构建失败 |
+| NPC-V01 | 静态 ID 格式与唯一性 | 每条正式人物 ID 匹配 `^npc_[a-z0-9]+(?:_[a-z0-9]+)*$`；同一人物跨书允许多 appearance / 索引行，但全局只有一个 `NpcDef`；不同人物不得同 ID。当前 420 条主线索引行解析为 395 个唯一 ID + 25 条跨书复用；另有 12 个不占主线配额的具名来源。失败 = 构建失败 |
 | NPC-V02 | 同名消歧 | 不同人物经规范化姓名相同或拼音冲突时追加两位书界号；已知周圻 / 周绮、侠客张三 / 李四通过。失败 = 构建失败 |
 | NPC-V03 | 生卒顺序 | exact / range 值满足 `born ≤ died`；appearance 与 lifespan 无交集时，只能是 `presenceMode=reference`。失败 = 构建失败 |
 | NPC-V04 | 出现书界一致性 | 每个活体 appearance 与 `design/02` 年区间有交集；`approx` 书界不得把推定年伪装为精确史实。失败 = 构建失败 |
@@ -1500,8 +1528,8 @@ D2定金 = 3 × D2日佣
 
 | ID | 输入 / 算式 | 精确期望 |
 |---|---|---|
-| NPC-T01 | 14 部静态人物行 | `30+30+30+28+25+26+40+30+27+21+20+34+28+23 = 392`；每项均在 20–40 |
-| NPC-T02 | 唯一人物与支持槽 | 392 条静态索引行 = 369 个唯一 `npc_*` + 23 条跨书复用；另有 13 个不建静态 ID 的角色 / 支持槽，总表行 `392+13=405` |
+| NPC-T01 | 14 部静态人物行 | `40+36+35+32+26+26+40+32+27+21+20+34+28+23 = 420`；每项均在 20–40 |
+| NPC-T02 | 唯一人物与支持槽 | 420 条主线静态索引 = 395 个唯一 `npc_*` + 25 条跨书复用；另有 13 个不建静态 ID 的角色 / 支持槽，主线目录总行 `420+13=433`；§13.3 的 12 个具名来源另计 |
 | NPC-T03 | 组织分组 | `29+22+33+15 = 99`，集合与 17 完全相等 |
 | NPC-T04 | 设施范例 | `8 城×3 场所×4 槽 = 96`；场所数 `8×3=24` |
 | NPC-T05 | 路人年龄权重 | `5+12+24+34+16+7+2 = 100%` |

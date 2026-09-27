@@ -1,10 +1,10 @@
 # 16 · 资源、家业与营生（Resources, Estates & Livelihoods）
 
-> **归属（基准 §18，待 A3 补登记）**：资源类别与四阶九品、资源库存、资源点占领与经营、家丁、家业建设、城市营生、行脚 / 教头 / 客卿职位、赌场玩法，以及门派五级职级对应的月钱和资源配给。
-> **上游**：`docs/decisions/author-requirements.md` AR-04～AR-07、AR-13，`docs/decisions/author-decisions.md` 的 G1 确认、`docs/00-canon.md` v1.1、`design/02-timeline-and-world-tiers.md`、`design/03-attributes.md`、`design/10-items-and-equipment.md`、`design/11-open-world.md`、`design/12-quests-npc-factions.md`、`design/13-progression-and-endings.md`、`design/17-sects-compendium.md`、`design/18-npc-and-companions.md`、`design/20-legacy-inheritance.md`。
+> **归属（基准 §18）**：资源类别与四阶九品、资源库存、资源点占领与经营、家丁、家业建设、城市营生、行脚 / 教头 / 客卿职位、赌场玩法，以及门派五级职级对应的月钱和资源配给。
+> **上游**：`docs/decisions/author-requirements.md` AR-04～AR-07、AR-13，`docs/decisions/author-decisions.md` 的 G1 确认、`docs/00-canon.md` v1.2、`design/02-timeline-and-world-tiers.md`、`design/03-attributes.md`、`design/10-items-and-equipment.md`、`design/11-open-world.md`、`design/12-quests-npc-factions.md`、`design/13-progression-and-endings.md`、`design/17-sects-compendium.md`、`design/18-npc-and-companions.md`、`design/20-legacy-inheritance.md`。
 > **引用而不重定义**：区域、城市、时代图层及每书界数量预算 → `design/11`；城市坐标与历史名称 → `design/19` / `design/map/*.yaml`；物品、材料消费、锻造 / 炼丹 / 烹饪及价格 → `design/10`；门派职级、贡献、晋升、任务与经济总结构 → `design/12`；属性、技艺、声望与品德 → `design/03`；天书之力、成就与轮回 → `design/13`；NPC 身份与同伴 → `design/18`；跨年代传承源、缓存、残本、信物、挖掘进度与机会收据 → `design/20`，本文只承接家丁合同、排班和工作量；界面表现 → `design/14`；数据与运行时实现 → `tech/04`、`tech/05`。
 > **标注约定**：**（原创扩展）** = 原著没有的系统或内容；**（待考）** = 原著 / 历史事实须按三联 / 广州修订版或可靠史料核对；**（待核实）** = 版本、价格、API、限额等技术事实尚未联网确认；**（待实测）** = 需真机或完整存档验证；**【建议值】** = 依赖其他文档或实测的可运行默认值，并在 §17.1 集中登记。
-> 版本：v1.2（跨文档同步，2026-09-26）。
+> 版本：v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）。
 
 ---
 
@@ -1635,10 +1635,10 @@ type EstateAction =
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| B16-P01 | 基准 §12 增 `res_` 资源、`rp_` 资源点、`sv_` 家丁、`biz_` 营生场所、`job_` 职位前缀；明确 `rs_` 不用于资源 | AR-05/06 已采用，现有基准 v1.1 尚未登记；防古迹前缀冲突 |
-| B16-P02 | 基准 §18 增 `design/16` 唯一归属：资源体系 / 库存 / 资源点 / 家丁 / 家业 / 城市营生 / 赌场 / 门派月钱与资源配给 | 需求已成独立系统，必须阻止 10 / 11 / 12 重复定义 |
-| B16-P03 | 基准 §3 书眠清理清单显式加入资源库存、资源点状态、家丁合同、家业设施、营生职位、门派公账；保留经营里程碑但不恢复资产 | 落实 AR-05b 与 `design/13` 成就边界 |
-| B16-P04 | 基准经济约束增加“每界收入用 `I(ch)` 分桶，总份额 100%；资产变形不重复计新价值” | 防 AR-05～07 的新玩法叠加成通胀 |
+| B16-P01 | **已解决：**基准 §12 已登记 `res_`、`rp_`、`sv_`、`biz_`、`job_`，并明确 `rs_` 只用于古迹 | Canon v1.2 V12-09；防止资源与古迹前缀冲突 |
+| B16-P02 | **已解决：**基准 §18 已登记 `design/16` 为资源、资源点经营、家丁、家业、公账、城市营生与职位的唯一归属 | Canon v1.2 V12-11；阻止 10 / 11 / 12 重复定义 |
+| B16-P03 | **已解决：**基准 §3 已把资源库存 / 点运行态、家丁合同、家业设施、营生职位与门派公账列入书眠清理，里程碑事实可保留 | Canon v1.2 V12-03；落实 AR-05b 与 `design/13` 成就边界 |
+| B16-P04 | **已解决：**基准 §5 已固定 `I(ch)` 七桶总份额 100%，且资产形态转换不重复计新增价值 | Canon v1.2 V12-15；防止 AR-05～07 新玩法叠加成通胀 |
 
 ### 17.4 原著考据待办
 
