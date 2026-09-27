@@ -3,7 +3,7 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/03-mobile-performance.md` |
-| 版本 | v1.2（跨文档同步，2026-09-26） |
+| 版本 | v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
 | 上游基准 | `docs/00-canon.md` §0（手机浏览器横屏优先 + PC、PWA 可离线、云存档）、§8（斜 45° 等距战棋、就地开战 ≤ 20×20、上场 ≤ 6）、§18（文档归属：性能归 `tech/03`）、§19（技术基线：Three.js WebGL2、Vue 3 DOM 覆盖层、确定性 core 可入 Worker、IndexedDB、PWA、KTX2、按书界分包） |
 | 平行文档 | `tech/01`（主循环、`RenderScheduler`、画质档与非功能目标**初值**）、`tech/02`（渲染管线、四档开关、帧/显存/draw call **初值**、活画基准）、`tech/06`（分包、格式、Service Worker、离线下载）、`tech/07`（精灵显存估算）、`design/09`（六角战斗、行动表、AI 规则）、`design/11`（30 区、场景尺寸）、`design/14`（移动 UI） |
 | 下游文档 | `tech/04`（书界包切分与解析）、`tech/05`（core 性能、Worker 模式）、`tech/08`（云存档、离线同步）、`tech/09`（路线图与性能门禁） |
@@ -1889,13 +1889,13 @@ MSE / HLS / 渐进媒体的取舍与具体打包格式以 tech/06 为唯一实�
 
 ## 11. MVP 与演进路径（性能视角）
 
-排期与产品范围以 `tech/09` 为准，阶段名沿用 `tech/01` §11；本节只规定每个阶段必须留下什么性能能力和证据。原则是**预算从 Phase 0 就作为契约存在，内容量随阶段增加，但不能等量产后才补资源生命周期与测量点**。
+排期与产品范围以 `tech/09` 为准，阶段名沿用 `tech/01` §11；本节只规定每个阶段必须留下什么性能能力和证据。原则是**预算从 Phase 0 就作为契约存在，内容量随阶段增加，但不能等量产后才补资源生命周期与测量点**。阶段映射固定为：本文 Phase 0 → 路线图 P0，Phase 1 → P1/M1，Phase 2 → P1/M2，Phase 3 → P2，Phase 4+ → P3–P15；终局另归 P16。
 
 | 阶段 | 本阶段必须落地 | 可延后 | 性能退出标准 |
 |---|---|---|---|
 | **Phase 0 地基** | `perf-budgets.json` v1；`CapabilityReport`、`DeviceProfile`、`memClass` / `fpsMode`；`FramePacer`、`GpuBudget` / `AssetScope` 最小实现；`?perf=1` 与 `__tsPerf` v1；`bench-title` / `bench-explore` / `bench-battle` 原型；四档 schema 与 low/mid/high 初始开关；`tools/perf/devices.yaml` | T 状态完整动作、离线整书、视频、真机夜跑 | 主力手机 + 一台中端 Android + iPad 的型号 / 条件已登记；三场景各有一份可复跑 JSON；low 地板原型达到 30 fps；mid 基准原型在可整除源上达到 60 fps 的 §2.3 分位，90/144 Hz 例外按 `pacingFps` 单列（待实测）；区域加载 / 卸载后 GPU 账本精确回零；预算不再散落成第二真源 |
 | **Phase 1 MVP：序章《越女剑》** | 六个 CI 场景；静态探测 + 活画基准 + 0.05 动态分辨率 + 封顶识别；T0–T3；shader / KTX2 预热与上传切片；资源深度释放；三层字体；应用外壳 + 序章离线；音频 / 输入 / 生命周期专项；low/mid/high 可选，ultra 保留桌面实验入口 | 自托管夜跑、长视频 HLS、复杂跨书界 LRU、WebGPU / 主渲染 Worker | 地板机 low：探索 / 普通战 30 fps，P95 ≤33.4 ms、P99 ≤50 ms；基准机 mid：可整除源上探索 / 普通战 60 fps，P95 ≤16.7 ms、P99 ≤25 ms，90/144 Hz 例外按 45/48 `pacingFps` 门槛且不得称 60 达标；群战按 30；三机均不越显存 / JS 堆 / 总占用硬线；冷标题 ≤4 s、热开 ≤1.5 s；离线完成新游戏到序章通关；六场景计数门禁全绿且 A 级真机清单无阻断项（均待实测） |
-| **Phase 2 纵切片：天龙 2–3 区域** | 区域流式 + LRU；`bench-region-cycle` 用真实最大区域；下一书界预取、书眠视频生命周期、文件级续传与按需分段；云存档迁移；完整弱网 / 存储不足测试；AI / 构网 Worker 的并发账本 | 自动化 iOS 真机、跨 CDN 镜像、OPFS 半文件、core Worker 模式 B | 最大区域 10 轮资源精确回零；书眠 3 次不越峰值；`enter` ≤60 MB，单文件 ≤8 MB / 采用视频分段时每段 ≤4 MB；作者常用网络的中断恢复完成；iPad / 中端 Android 30 min 无 OOM、上下文丢失或 T3 循环；`battle8` 六视图驻留与八视图瞬时工作集已回填（待实测） |
+| **Phase 2 纵切片**（路线图 P1/M2） | `rg_dali_cangshan` 内四个局部切片的区域流式 + LRU；`bench-region-cycle` 用真实最大切片；下一书界预取、书眠视频生命周期、文件级续传与按需分段；云存档迁移；完整弱网 / 存储不足测试；AI / 构网 Worker 的并发账本 | 自动化 iOS 真机、跨 CDN 镜像、OPFS 半文件、core Worker 模式 B | 四个切片 10 轮资源精确回零；书眠 3 次不越峰值；`enter` ≤60 MB，单文件 ≤8 MB / 采用视频分段时每段 ≤4 MB；作者常用网络的中断恢复完成；iPad / 中端 Android 30 min 无 OOM、上下文丢失或 T3 循环；`battle8` 六视图驻留与八视图瞬时工作集已回填（待实测） |
 | **Phase 3 量产化：完整《天龙》** | 所有素材清单做静态预算；每个新区域 / Boss 复用六场景夹具；长期趋势报告；可选 Android 真机夜跑；按真实数据复评 core Worker / OffscreenCanvas / WebGPU；字体按完整文本重新分包 | 不满足闸门的渲染器迁移、繁体、AI NPC | 连续 60 min soak；区域 / 战斗 / UI 基准无未解释 +10% 时间退化；所有计数变更经审阅；生产内容在 low 可完整游玩；中端 Android 10 min 探索平均 ≥45 fps；一个书界安装 / 更新 / 离线闭包演练通过（待实测） |
 | **Phase 4+：书界 2–14** | 每书界发布前重跑静态预算、六场景、弱网与三机 A 级路径；浏览器 / Three.js / Playwright 升级另建 runner 基线；按设备失效率更新 GPU 规则，不按营销型号猜档 | 只有数据证明收益后才启用的新技术 | 新书界不得让应用壳或共享包突破 §2；进入集、字体、工作集逐书界达标；发布证据包含 build hash、三机 JSON、录屏 / 条件与差异说明 |
 

@@ -3,7 +3,7 @@
 | 项 | 内容 |
 |---|---|
 | 文档归属 | `docs/tech/06-asset-storage.md`：素材**存储分层**、**素材键与清单（manifest）**、**分包与预取**、**运行时格式/编码规范**、**资源构建管线 `tools/asset-pipeline`**、**存储与 CDN 选型**、**缓存/版本/回滚**、**完整性与访问控制**、**运行时侧溯源链**、**占位与回退**的唯一归属文档 |
-| 版本 | v1.2（跨文档同步，2026-09-26） |
+| 版本 | v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
 | 上游基准 | `docs/00-canon.md` §0（非商业、**不公开分发**、PWA 离线、云存档）、§2（书界）、§8、§12（ID 规范）、§18（文档归属）、§19（素材基线：与代码分离；对象存储 + CDN；内容哈希命名 + 清单；KTX2（Basis Universal）；按书界分包、懒加载） |
 | 强依赖 | `tech/01`（monorepo、资源分级 L0–L3、`AssetScope`、PWA/Workbox、CI、`assets.lock.json`）；`tech/07`（资产登记库 `AssetEntry`、母版规格、资产 ID 前缀、`art://` URI、状态机）；`tech/02`（`battle8`、精灵加载器、法线编码、相机）；`tech/03`（显存/包体/字体与加载预算终值）；`tech/04`（书界数据包与引用图）；`tech/08`（会话鉴权、应用托管、域名部署）；`design/02` §4（书眠流程）；`design/11`（30 个全局区域、统一大地图与时代图层）；`design/12`（任务与门派流程）、`design/15`（冲穴）、`design/16`（资源与营生）、`design/17`（99 门派）、`design/18`（NPC 与同伴）、`design/19` 与 `design/map/*.yaml`（4096×3072 地图源、189 城及门派落点）；`design/05`、`design/06`、`design/10`（内容数据中的素材键及物品/装备资产需求） |
 | 读者 | 作者本人（单人开发 + AI 辅助编码）与编写管线/加载器的 AI 编码代理 |
@@ -279,7 +279,7 @@ restic check --read-data-subset=2%          # 每周抽检 2% 数据块
 | 类别 | 依据 | mid 档 | low 档增量 | high 档增量 | 可选变体 |
 |---|---|---|---|---|---|
 | 精灵图集 `sprite` | ≈ 450 套；128 px/m 包均值 ≈ 3.8 MB/套（UASTC+Zstd，颜色 + 半分辨率法线，含 2 级 mip）；96 px/m 包 ≈ 0.56×；64 px/m 包（无法线）≈ 0.2× | ≈ 0.95 GB（96 px/m） | ≈ 0.35 GB（64 px/m） | ≈ 1.7 GB（128 px/m） | — |
-| 视频 `video` | 47 条目标约 26.2 分钟：`105 + 25 + 14×37.5 + 14×17.5 + 13×24 + 4×90 = 1,572 s`；其中 13 条书眠严格为 `13×24=312 s=5.2 min`；480p ≈0.8、720p ≈2、1080p ≈3.5 Mbps | `1572×(2+0.128)/8≈418 MB≈0.42 GB` | `1572×(0.8+0.096)/8≈176 MB≈0.18 GB` | `1572×(3.5+0.128)/8≈713 MB≈0.71 GB` | AV1/HEVC 1080p +0.4–0.9 GB |
+| 视频 `video` | 46 条目标约 24.7 分钟：`1 + 1 + 14 + 14 + 13 + 3 = 46` 条，中心时长 `105 + 25 + 14×37.5 + 14×17.5 + 13×24 + 3×90 = 1,482 s`；其中 13 条书眠严格为 `13×24=312 s=5.2 min`；480p ≈0.8、720p ≈2、1080p ≈3.5 Mbps | `1482×(2+0.128)/8≈394 MB≈0.39 GB` | `1482×(0.8+0.096)/8≈166 MB≈0.17 GB` | `1482×(3.5+0.128)/8≈672 MB≈0.67 GB` | AV1/HEVC 1080p +0.4–0.9 GB |
 | 音乐/音效/配音 | 140 首 × ≈ 2.9 MB；音效 ≈ 30 MB；配音 ≈ 70 MB | ≈ 0.5 GB | 0 | 0 | Opus 变体 +0.3 GB |
 | DOM 图像 | 立绘 + 表情补丁 + CG + 头像 + 图标 + 插画 + 地图 | ≈ 0.5 GB | ≈ 0.25 GB | ≈ 0.45 GB | AVIF +0.3 GB |
 | 3D 与纹理 | 区域地形纹理数组（层 256²/512²）、建筑套件图集（每套 1–3 × 2048²）与地标、LOD1、特效 | ≈ 0.5 GB | ≈ 0.2 GB（LOD1 与半尺寸图集） | ≈ 0.1 GB（512² 地形层） | — |
@@ -404,7 +404,7 @@ export function assertKey(s: string): AssetKey {
 |---|---|---|
 | NPC 立绘（对话） | `portrait/<npcId>/<chNN>_base`；表情 `…/<chNN>_e_<情绪>` | `portrait/npc_duanyu/ch01_e_joy` |
 | NPC 头像 | `avatar/<npcId>/<chNN>` | `avatar/npc_duanyu/ch01` |
-| 单位精灵 | `sprite/<npcId>/<chNN>`；主角按书界时代装 `sprite/npc_zhujue/<chNN>`（`npc_zhujue`、`npc_shuling` 已由 `design/01` §2.1、§2.3 确认） | `sprite/npc_zhujue/ch03` |
+| 单位精灵 | `sprite/<npcId>/<chNN>`；主角按书界时代装 `sprite/npc_zhujue/<chNN>`（主角 / 书灵身份见 `design/01` §2.1、§2.3；`npc_zhujue`、`npc_shuling` 的正式 NPC 目录登记归 `design/18`，当前待补） | `sprite/npc_zhujue/ch03` |
 | 武学 / Buff / 物品图标 | `icon/<对象 ID>/default` | `icon/bf_zhongdu/default` |
 | 武学图鉴插画 / 绝招切入 | `illus/<skillId>/default` / `cutin/<skillId>/default` | `cutin/sk_xianglong18/default` |
 | 地形材质 | `terrain/<terrainId>/<书界时代>`（时代取自 `chapter.yaml`） | `terrain/tr_shenshui/song` |
@@ -873,7 +873,7 @@ stateDiagram-v2
 - **回到书眠前存档**（design/02 §4.5 `save_booksleep_chNN`）：若该书界包已回收，读档前提示体积并在线重新下载。
 - **60 MB 冷进入核算（mid）**：时代公共 18 MB + 开局区域基础 24 MB + 该区域时代状态 8 MB + 当前书界题名/对话补集 0.62 MB + 余量 9.38 MB = **60.00 MB**。`fnt_dlg_common` ≤260 KB 已在 `common`，不重复计；若区域基础包已从前一时代缓存，实际新增最多 `18 + 8 + 0.62 = 26.62 MB`。书眠视频属于 `media` 流式条目，不计入进入集。
 - **时间只是理想链路核算**：60 MB = 480 Mb；50 Mbps 纯传输下限 `480/50 = 9.6 s`，加 TLS、调度、校验和解码后不能承诺 10 s。因此 10 s 目标依赖余韵期预取；完全冷进入应显示独立加载进度，不延长书眠视频。
-- **C19 映射与播放**：相邻正式书界只允许 `vid_sleep_01_02`–`vid_sleep_13_14`，映射为 `video/sleep_01_02/default` 等逻辑键，再由 manifest 指向 `a/<stem>.<hash12>.<ext>`。每条 20–30 秒、目标 24 秒，总计 `13×24=312 s=5.2 min`；首播前 10 秒不可跳，重播立即可跳。跳过许可与加载完成独立；视频未就绪或失败时显示同等剧情信息的静帧、字幕与进度。序章/终局用 intro/end 资源，不占这 13 个 ID。
+- **C19 映射与播放**：相邻正式书界只允许 `vid_sleep_01_02`–`vid_sleep_13_14`，映射为 `video/sleep_01_02/default` 等逻辑键，再由 manifest 指向 `a/<stem>.<hash12>.<ext>`。每条 20–30 秒、目标 24 秒，总计 `13×24=312 s=5.2 min`；首播前 10 秒不可跳，重播立即可跳。跳过许可与加载完成独立；视频未就绪或失败时显示同等剧情信息的静帧、字幕与进度。第十四界之后没有相邻书界，**不得创建** `vid_sleep_14_15`；雪山赴归梦直接加载 `vid_end_guixiang` / `vid_end_wuzi` / `vid_end_juanzhong` 所属独立终局资源。序章/终局用 intro/end 资源，不占这 13 个 ID。
 
 ### 4.6 预算初值
 
@@ -2155,7 +2155,7 @@ cold-enter 50.62 / 60 MB   era-common 18.00 / 18 MB   region-rg_dali_cangshan 24
 
 ## 12. MVP 与演进路径
 
-阶段划分对齐 tech/01 §11 与 tech/07 §3.3；权威排期见 tech/09。
+阶段划分对齐 tech/01 §11 与 tech/07 §3.3；权威排期见 tech/09。映射为：本文 Phase 0 → 路线图 P0，Phase 1 → P1/M1，Phase 2 → P1/M2，Phase 3 → P2，Phase 4+ → P3–P15；终局资源集成另归 P16。
 
 | 阶段 | 本文交付 | 退出标准 |
 |---|---|---|
@@ -2265,7 +2265,7 @@ MVP 刻意不做：签名 URL、AVIF/Opus/AV1/HLS 变体、远端构建缓存、
 | 双射规则 | 资产 ID `<前缀>_<subject>[__<variant>]` ⇄ 素材键（§3.2） |
 | 新增资产前缀 | `fnt_`（字体）、`sfb_`（音效 bank，管线生成）、`atl_`（画布图集，管线生成） |
 | `ph` 保留主体 | 占位素材键 `<kind>/ph/<提示>`；通用兜底 `ui/ph/missing`（§11） |
-| 主角 / 书灵 ID | `npc_zhujue` / `npc_shuling`，由 `design/01` §2.1、§2.3 定义，本文只用于素材键推导 |
+| 主角 / 书灵 ID | `npc_zhujue` / `npc_shuling`；叙事身份见 `design/01` §2.1、§2.3，NPC 目录定义归 `design/18`（当前待登记），本文只引用并用于素材键推导 |
 | 内容寻址文件名 | `a/<stem>.<hash12>.<ext>`，hash12 = SHA-256 前 12 位十六进制（§3.4） |
 | root 清单 / pack 清单 | 两级清单：每次构建一个 root，每个素材包一个 pack（§3.5） |
 | 锁文件 `assets.lock.json` | 代码仓库中钉住 root 的文件；生产版本只认它（§3.5、§8.4） |
@@ -2311,7 +2311,7 @@ MVP 刻意不做：签名 URL、AVIF/Opus/AV1/HLS 变体、远端构建缓存、
 | 10 | **已解决（C19、P48）**：正篇 13 条统一 `vid_sleep_NN_MM` → `video/sleep_NN_MM/default` → 内容寻址文件；20–30 秒、目标 24 秒，首播 10 秒后可跳、重播立即可跳，加载等待独立处理（见 §4.5） | design/02、tech/07 同步 | `13×24=312 s=5.2 min` | 素材键、播放与预算 |
 | 11 | **已解决接口**：`tsgen approve` 结束时触发 `master` 快照（`restic --tag approve:<id>`），见 `tech/07` §6.5；实际脚本仍按路线图实现 | tech/07 | 已同步文档契约 | 母版历史可找回 |
 | 12 | design/05、design/06 的素材字段改写为规范素材键，或保留简写 + 归一化 | design/05、design/06 | 归一化并告警 | 内容可读性 |
-| 13 | **已解决**：主角与书灵内容 ID 为 `npc_zhujue`、`npc_shuling`（见 `design/01` §2.1、§2.3）；本文只据此推导素材键（见 §3.3） | design/01 | 已确认 | 素材键推导 |
+| 13 | **部分解决**：主角与书灵身份及采用的引用键已由 `design/01` §2.1、§2.3 确认；本文只据此推导素材键（见 §3.3），但 `npc_zhujue`、`npc_shuling` 仍须由 `design/18` 按 NPC 唯一归属补登记 | design/01、design/18 | 身份已确认；目录待登记 | 素材键推导 |
 | 14 | 下载与存储管理界面、蒙昧模式文案、“素材清晰度”与离线包选择 | design/14 | §4.4、§4.5；P03 下不显示“资源线路” | UI |
 | 15 | **已解决（P01、P03）**：常用网络只进入 P01 真机矩阵，不自动触发镜像；网络失败记录为风险与变更请求（见 §7.1、§13.1 R1） | 作者、tech/03 | Cloudflare 单源先测 | 验收，不改拓扑 |
 | 16 | **已完成公开资料核查**：Cloudflare 定价/限额与 Worker/R2 API、工具版本、KTX 参数、three XUASTC 状态、字体许可证、Storage API、MediaCapabilities 与 Background Fetch 支持均见“参考资料”；未采用的 OSS/COS/Access/XMP/KTX 元数据路线不再作为本版待办。剩余三项为 AAC edit-list/循环偏移、UASTC 大页并发内存和真实占位包体 **（待实测）**（见 §5.7、§6.4、§11.1） | 本文 + tech/03 真机测试 | 公开事实已收口，运行表现以实测为准 | Phase 0/1 验收 |
@@ -2332,7 +2332,7 @@ MVP 刻意不做：签名 URL、AVIF/Opus/AV1/HLS 变体、远端构建缓存、
 
 - **已采纳（Canon v1.1）**：原稿关于素材 ID/内容 ID 命名空间与文档归属的提案，已由 Canon v1.1 §12、§18 及 C18 的 `packages/spec/` 裁定覆盖；本文不再申请第二套规则。
 - **RT6-P01（提议，设计侧已定稿）**：Canon §12 的区域 ID 从 `rg_<书界序号>_<拼音>` 改为全局稳定 `rg_<地理拼音>`，另以 `chNN` 时代状态字段表达同一地点在不同书界的名称、开放与势力；30 区闭集与旧 ID 迁移表见 `design/11` §13.2，本文已按其实施。理由：AR-04 明确要求一张共用大地图和跨时代共享区域 ID。
-- **RT6-P02（提议）**：Canon §19 的“按书界分包”扩写为“`core` / `common` + 区域基础包 + 时代状态包，按引用懒加载”；书眠视频逻辑 ID `vid_sleep_NN_MM` 可同时按 `rulings-v1` X0-P03 登记到 §12。理由：AR-04 要求地理资产跨时代去重，C19 又要求逻辑 ID 与内容哈希资源分层；当前正文已按较高优先级决定执行。
+- **已采纳（Canon v1.2；原 RT6-P02）**：Canon §19 已采用“`core` / `common` + 区域基础包 + 时代状态包，按引用懒加载”，§12 已登记书眠视频逻辑 ID `vid_sleep_NN_MM`；本文按 §4.1–§4.5 执行，不再保留待登记状态。
 - Cloudflare 单源属于作者决定 P03 的技术落地，不另申请基准修改。
 
 ### 原著考据待办

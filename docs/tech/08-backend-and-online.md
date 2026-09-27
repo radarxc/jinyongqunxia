@@ -3,7 +3,7 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/08-backend-and-online.md` |
-| 版本 | v1.2（跨文档同步，2026-09-26） |
+| 版本 | v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
 | 作者决定覆盖 | `docs/decisions/author-decisions.md` P03：暂不备案，不做国内 / 香港镜像；当前只规划 Cloudflare 方案 |
 | 上游基准 | `docs/00-canon.md` §0（"Online" = 随时随地在浏览器中继续同一份存档；非商业、**不公开分发**）、§8（确定性战斗）、§18（文档归属）、§19（存档：IndexedDB 本地优先 + 云端同步；后端：轻量 Serverless，国内/海外两套部署方案） |
 | 强依赖 | `tech/01`（monorepo、`services/api`、`packages/platform`、存档时机 §6.9、确定性 §8.3、CI §7.6）；`tech/06`（同一 Worker 托管应用 + API + 素材闸门、会话 Cookie `ts_s` 由本文签发；其国内 / 香港镜像旧规划须按作者 P03 收口）；`design/13` §9（存档槽、回档规则、`MetaProfile` 合并规则）；`design/02` §4.5（书眠永久存档）；`tech/05` §14.3（`BattleReplayV1`、战斗开局快照与状态哈希）；`tech/04`（书界包 `contentHash` 与 ID 重映射） |
@@ -2677,6 +2677,8 @@ pnpm --filter @tianshu/api smoke:preview
 6. 最后才启用远程配置、备份 / 告警、遥测、Passkey 和 AI；每项有独立开关与回退。
 
 ### 14.2 与全项目阶段对齐
+
+本节编号与 `tech/09` 权威路线图直接一一对应：Phase 0/1/2/3/4+ 分别为 P0/P1/P2/P3/P4+；P1 内的 M1/M2 共用 Phase 1 后端能力，不另起一套后端阶段。P16 只做既有存档、备份和终局闭包验收，不新增在线协议。
 
 | 项目阶段 | 本文交付 | 默认开关 | 后端退出标准 |
 |---|---|---|---|

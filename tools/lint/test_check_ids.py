@@ -503,6 +503,83 @@ stages:
         self.assertNotIn("vid_sleep_02_03", undefined)
         self.assertIn("vid_sleep_02_04", undefined)
 
+    def test_finale_sleep_video_is_ignored_only_when_explicitly_negated(self) -> None:
+        cases = (
+            (
+                "归梦不经过普通相邻转场 `vid_sleep_14_15`；改用独立终局资源。",
+                "vid_sleep_14_15",
+                False,
+            ),
+            (
+                "归梦不创建 `vid_sleep_14_15`，只加载独立终局资源。",
+                "vid_sleep_14_15",
+                False,
+            ),
+            (
+                "归梦播放普通相邻转场 `vid_sleep_14_15`。",
+                "vid_sleep_14_15",
+                True,
+            ),
+            (
+                "测试不经过普通相邻转场 `vid_sleep_13_15`。",
+                "vid_sleep_13_15",
+                True,
+            ),
+        )
+        for text, identifier, should_report in cases:
+            with self.subTest(text=text):
+                with TemporaryRepository() as repo:
+                    repo.add_support_files()
+                    repo.write(
+                        "docs/design/chapters/14-demo.md",
+                        "# 第十四界\n\n{}\n".format(text),
+                    )
+
+                    report = check_ids.build_report(repo.root, [])
+
+                undefined = {
+                    item["id"]
+                    for item in report["issues"]["undefined_references"]
+                }
+                self.assertEqual(should_report, identifier in undefined)
+
+    def test_protocol_discriminator_is_not_a_set_reference_only_in_exact_context(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/07-set-system.md",
+                "# 套装\n\n| ID | 名称 |\n|---|---|\n| `set_real` | 真套装 |\n",
+            )
+            repo.write(
+                "docs/tech/08-backend-and-online.md",
+                '# 后端\n\n```json\n'
+                '{"kind": {"const": "set_allowed_flag"}}\n'
+                '```\n\n普通引用 `set_missing`。\n',
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertNotIn("set_allowed_flag", undefined)
+        self.assertIn("set_missing", undefined)
+
+    def test_protocol_discriminator_exception_does_not_hide_live_use(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/07-set-system.md",
+                "# 套装\n\n| ID | 名称 |\n|---|---|\n| `set_real` | 真套装 |\n",
+            )
+            repo.write(
+                "docs/tech/08-backend-and-online.md",
+                "# 后端\n\n正文引用 `set_allowed_flag`。\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertIn("set_allowed_flag", undefined)
+
     def test_asset_owner_defines_three_finale_videos_in_one_catalog_cell(self) -> None:
         with TemporaryRepository() as repo:
             repo.add_support_files()

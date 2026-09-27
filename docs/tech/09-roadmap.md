@@ -3,8 +3,8 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/09-roadmap.md` |
-| 版本 | v1.0（2026-09-26）；审校 E3.R（2026-09-26） |
-| 上游基准 | `docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.1、`docs/decisions/rulings-v1.md` |
+| 版本 | v1.0（2026-09-26）；审校 E3.R（2026-09-26）；全局审计（2026-09-26） |
+| 上游基准 | `docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.2、`docs/decisions/rulings-v1.md` |
 | 平行输入 | `tech/01`–`tech/08`；`design/11`（开放世界与内容预算）；`design/chapters/01-tianlong.md`；`design/13`（终局、多周目） |
 | 读者 | 作者本人（单人开发）＋ AI 编码 / 内容助手 |
 | 本文职责 | 全项目权威阶段、工时、依赖、里程碑、验收闸门、决策时点、风险缓冲与范围削减顺序 |
@@ -350,6 +350,8 @@ M1 是内部能力闸门，不改变基准“序章可跳过”的产品定位�
 
 时间型 CI 使用同机同浏览器基线 +10% 报警；硬预算和计数型指标精确阻断。任一 A 级真机路径未跑，不得用桌面模拟代替。
 
+ID 门禁执行 `python3 tools/lint/check_ids.py --strict`，默认全仓扫描。F2 期间 `check_ids_baseline.json` 只作为过渡差集：已有债不阻断、新增未定义 / 废弃 ID 立即阻断，改名也按新债处理；各分组全部清零后，由汇总任务先确认默认扫描为 0，再运行 `python3 tools/lint/check_ids.py --update-baseline` 刷新空基线。不得在限定路径扫描或单一分组未清零时更新基线。
+
 ### 3.6 依赖与主要风险
 
 | 依赖 / 风险 | 预防 | 失败时动作 |
@@ -632,7 +634,7 @@ P16 不再增加第十五书界。`ch15_guimeng` / `rg_15_shuhai` 只按 `design
 
 | 范围 | 必须交付 | 明确不做 |
 |---|---|---|
-| 终局流程 | `FN_ENTER`、`FN_J1`…`FN_J6`、`FN_CHOICE`、`FN_ENDING`、`FN_EPILOGUE`；卷间调息、存档、失败与暂离 | 第十五书界；结局后自由世界 |
+| 终局流程 | `FN_ENTER`、`FN_J1`…`FN_J6`、`FN_CHOICE`、`FN_ENDING`、`FN_EPILOGUE`；卷间调息、存档、失败与暂离；第十四界后直接进入独立 end 资源 | 第十五书界；不得创建 `vid_sleep_14_15`；结局后自由世界 |
 | 战斗兑现 | 六卷守卷人、书契计算、13 个书契技、书影援阵、万卷归一、终局无压制 | 新的平行战斗内核 |
 | 结局 | 归乡、留书、守卷、同归、无字、执卷、长梦共 7 个；十四界后日谈 | 路线图自行改判定条件 |
 | 多周目 | 任一结局后解锁轮回；`MetaProfile`、宿慧、天劫、图鉴与成就；书眠 / 轮回继承边界分别实现 | 把真实同伴、等级、装备误带入轮回 |
@@ -657,7 +659,7 @@ P16 不再增加第十五书界。`ch15_guimeng` / `rg_15_shuhai` 只按 `design
 | 战斗 | 六卷各有 V8 / JSC 同 hash golden；卷间恢复与书契技返还符合难度；13 技全部覆盖，雪山不误生第 14 技 |
 | 继承 | 书眠与轮回字段白名单分别测试；真实同伴状态不进入新轮回；`MetaProfile` 双端交换顺序不影响合并结果 |
 | 存档 | P1 起每个历史 schema 至少一个样本可直迁当前；链式迁移与直迁语义相同；损坏、412、503、离线均不丢最后好档 |
-| 录像 | 三条结局视频逐设备播放、跳过、后台恢复、失败降级；分段时每段 ≤4 MB，首帧和字幕无阻断**（待实测）** |
+| 录像 | 三条结局视频逐设备播放、跳过、后台恢复、失败降级；分段时每段 ≤4 MB，首帧和字幕无阻断；不得创建或正向引用 `vid_sleep_14_15`**（待实测）** |
 | 性能 | 最大书海卷 60 分钟 soak；三机满足 §9；上下文恢复 20 次、区域切换 10 轮、iOS 前后台 20 次、切档 10 次均 100% 恢复 |
 | 全回归 | 14 界正邪主路径、特色、Boss、书眠、离线闭包全绿；阻断 / 高严重度缺陷为 0；连续两次候选无新阻断 |
 | 恢复 | 从与主托管隔离的备份恢复到空环境一次；核对内容、存档、`MetaProfile`、版本哈希和回滚步骤 |
@@ -795,7 +797,7 @@ P0 三机 bench / 渲染 ADR
 | 门 | P0 | P1 | P2–P15 | P16 |
 |---|---|---|---|---|
 | 事实 / 内容 | 探针需求冻结 | M1/M2 白名单 | 本界权威稿、正邪路径、预算实例 100% 闭包 | 十四界事实输入 100% 闭包 |
-| 数据 | schema / ID/ref / 双构建 | 切片零孤儿引用 | 本界引用图、幂等奖励、迁移 | 结局穷举、`MetaProfile` 性质 |
+| 数据 | schema / ID/ref / 双构建；`check_ids.py --strict` 无新增债 | 切片零孤儿引用；`legacy.v1` 五表可编译 | 本界引用图、幂等奖励、迁移；传承 LEG-V01–V10 / LEG-T01–T15 | 结局穷举、`MetaProfile` 性质；全仓 ID 债清零 |
 | core / 回放 | 最小 RNG / hex | V8/JSC 关键 hash | 正邪、特色、全 `full` Boss golden | 六卷、13 技、7 结局 golden |
 | 性能 / 生命周期 | `tech/02` P0–P3、P5；P6 风格金样并行锁定 | P4 VFX + 真实无量资源 | 最大界场景与书眠 | 最大书海、视频和全链 |
 | 离线 / 在线 | 壳与 preview | 私有托管、本地导出 | 已下载闭包；P2 起云同步 / 恢复 | 云 / 本地 / 账号级合并与灾备 |
@@ -831,6 +833,8 @@ P0 三机 bench / 渲染 ADR
 ### 9.4 放行与回退规则
 
 只有阶段负责人（作者）能签出口。硬门红色时不得发布；黄色只能是已有退路、不会损档 / 阻断 / 越预算的低严重度问题，并必须有目标阶段。发布后发现死档、许可不清、认证绕过或确定性破坏，立即回滚到上一内容 hash，保留故障档和日志，不做覆盖式修复。
+
+传承门禁只消费 `design/20` 的 `legacy.v1`：顶层固定为 `sources/caches/fragments/keystones/recipes`，目录闭集为 39 个 `lgs_*`、117 个 `frag_*`、39 个 `cache_*` 与 39 个 `it_xinwu_*`。P1 先用夹具跑通 schema、`qiyu` RNG、事务与书眠生命周期；P2 起每界按正式投放矩阵验 LEG-V01–V10 / LEG-T01–T15。玩法定义仍只归 `design/20`，本文不复制概率或配方公式。
 
 ---
 
@@ -954,7 +958,7 @@ P0 三机 bench / 渲染 ADR
 ### 项目内权威资料
 
 1. `docs/decisions/author-decisions.md`：P01–P05、P11–P16、P33、P40、P48、P53、P55、P57 等已定决策。
-2. `docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.1、`docs/decisions/rulings-v1.md`：优先级、书界顺序、规则和冲突裁定。
+2. `docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.2、`docs/decisions/rulings-v1.md`：优先级、书界顺序、规则和冲突裁定。
 3. `docs/tech/01-architecture.md` 至 `08-backend-and-online.md`：架构、渲染、性能、数据、core、分包、素材、在线的唯一归属与门禁。
 4. `docs/design/11-open-world.md` §10：十四书界容量；`docs/design/chapters/01-tianlong.md`：天龙范围；`docs/design/13-progression-and-endings.md`：终局、结局与轮回。
 5. `docs/design/chapters/02`–`14` 及 `docs/design/story/05-xiaoao.md`：逐书界正式任务与特色输入；笑傲主线仍由 story 唯一定义，chapter 提供其归属内的区域、支线、人物与特色接口。

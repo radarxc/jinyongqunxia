@@ -3,11 +3,10 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/05-gameplay-engine.md` |
-| 版本 | v1.2（跨文档同步，2026-09-26） |
-| 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03（冲穴）、AR-04（统一大地图与时代图层）、AR-05（资源与家丁）、AR-06（营生职位）、AR-07（门派职级与月钱）、AR-09（NPC 与跨书界同伴）、AR-12（六角战棋） |
+| 版本 | v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
+| 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03（冲穴）、AR-04（统一大地图与时代图层）、AR-05（资源与家丁）、AR-06（营生职位）、AR-07（门派职级与月钱）、AR-09（NPC 与跨书界同伴）、AR-12（六角战棋）、AR-13（跨年代传承） |
 | 上游基准 | `docs/00-canon.md` §3–§5（成长、数值、节奏）、§8–§10（战斗、伤害乘区、Buff）、§12（ID）、§18（唯一归属）、§19（技术基线） |
-| 强依赖 | `tech/01` §3、§6、§8.3（架构、运行时、确定性 D1–D9）；`tech/03` §2、§6、§8（性能与 Worker）；`tech/04` §3、§6–§8（schema、书界包、Ink 桥）；`tech/08` §3、§10（TSAV、迁移与录像）；`design/04`（Z0–Z10）；`design/05`（武学）；`design/06` §2、§4–§6（Buff DSL）；`design/08`（地形）；`design/09` §2–§8、§13（战斗）；`design/11`（开放世界、时代层与世界时钟）；`design/12`（任务、门派流程）；`design/13`（成长与规则开关）；`design/15`（经脉）；`design/16`（资源与营生）；`design/17`（门派名录）；`design/18`（NPC/同伴）；`design/19`（全国地图） |
-| 尚未定稿的上游 | AR-13 指向的 `design/20` 尚未落盘；仅保留跨年代传承命令 / 状态注册扩展点，不猜测 `frag_ / lgs_ / cache_` 的字段或规则 |
+| 强依赖 | `tech/01` §3、§6、§8.3（架构、运行时、确定性 D1–D9）；`tech/03` §2、§6、§8（性能与 Worker）；`tech/04` §3、§6–§8（schema、书界包、Ink 桥）；`tech/08` §3、§10（TSAV、迁移与录像）；`design/04`（Z0–Z10）；`design/05`（武学）；`design/06` §2、§4–§6（Buff DSL）；`design/08`（地形）；`design/09` §2–§8、§13（战斗）；`design/11`（开放世界、时代层与世界时钟）；`design/12`（任务、门派流程）；`design/13`（成长与规则开关）；`design/15`（经脉）；`design/16`（资源与营生）；`design/17`（门派名录）；`design/18`（NPC/同伴）；`design/19`（全国地图）；`design/20`（跨年代传承） |
 | 下游 | `apps/game` 的 `CoreHost`；`packages/ui`、`packages/render` 的只读投影与事件消费；`tools/balance`；`tech/09` 路线图 |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手 |
 | 本文职责 | `packages/core` 的纯 TypeScript、无 DOM、确定性内部设计：状态、命令事务、探索 tick、六角格、战斗、伤害执行器、Buff/任务 DSL 运行时、AI、存档状态、录像与测试 |
@@ -25,11 +24,11 @@
 > 7. 战斗首轮严格按有效轻功全序排列，之后使用 `design/09` 的事件驱动 CT；行动含移动与一个动作，运劲和道具都是正式动作。反应为 FIFO，嵌套深度最多 3，并继承来源位集阻断反震/转移/镜返/反击递归。
 > 8. 伤害执行器逐字实现 `design/04` 的 Z0–Z10：每区只在规定边界取整；每段产生完整 `DamageTrace` 与 `Settlement`，可回答“哪一乘区把 1289 变成 867”，而非只输出最终数字。
 > 9. Buff 构建为受限字节码，接入59 hooks/50原语；按 priority/iid 派发，复用 scratch。零临时容器是派发性能目标，BigInt/事件仍有分配。叠加、互斥、驱散与 ρ(Δ) 引用 design/06。
-> 10. 任务 DSL、Ink、经营、门派、经脉都只能产生意图，再由 core 校验；运行态逐项消费 `design/12`、`15`、`16` 的正式 schema 与事务规则，不在 core 重定义玩法。`design/20` 未落盘前，跨年代传承仅有拒绝未知命令 / 状态的扩展点。
+> 10. 任务 DSL、Ink、经营、门派、经脉与传承都只能产生意图，再由 core 校验；运行态逐项消费 `design/12`、`15`、`16`、`20` 的正式 schema 与事务规则，不在 core 重定义玩法。传承调度只用 `qiyu` RNG，阶段、材料、收据与 RNG 同事务。
 > 11. 当前周目跨书界永久状态包括冲穴/周天/九转与同伴履历；新周目仍按 `design/13` 重置其运行态，只保留账号级里程碑。资源点归属、普通库存、家丁、营生职位和当前门派身份默认随书眠清除；跨书同伴按 `design/18` 做健在判定，以离队快照为下限合并后世新增能力。
 > 12. AI 采用09的 Utility AI，Boss 用阶段状态机约束。固定工作预算和5/15/40/80ms调度预算并用，2倍超时取当前最优；AI选择可随设备变化，录像记录最终命令，core重放结果不变。
 > 13. 存档复用 `tech/08` 的 TSAV v1；录像信封固定 `appBuild` 与 `coreVersion`，战斗载荷另固定规则/RNG/内容协议，含封闭战斗快照、全部已接受战斗命令与终局 SHA-256。战后 finalize 单独提交世界奖励，Node/WebKit 验收见 §15。
-> 14. MVP 先交付单线程 core、六角战斗、伤害/Buff、任务基本式、存读档与录像；AI Worker、复杂世界周期以及经脉 / 经营量产在正式 schema 与基线实测上递进，不以尚缺的跨年代传承 schema 阻塞核心闭环。
+> 14. MVP 先交付单线程 core、六角战斗、伤害/Buff、任务基本式、存读档与录像；AI Worker、复杂世界周期以及经脉 / 经营 / 传承量产按 `tech/09` 阶段门和基线实测递进。
 
 ---
 
@@ -47,6 +46,7 @@
 - [9. Buff DSL 编译与运行时](#9-buff-dsl-编译与运行时)
 - [10. 任务 DSL、旗标与 Ink 桥](#10-任务-dsl旗标与-ink-桥)
 - [11. 经脉、资源、营生与门派运行时](#11-经脉资源营生与门派运行时)
+- [11.6 跨年代传承运行时](#116-跨年代传承运行时)
 - [12. NPC、同伴与年代状态](#12-npc同伴与年代状态)
 - [13. Utility AI 与 Worker](#13-utility-ai-与-worker)
 - [14. 存档、迁移、录像与重放](#14-存档迁移录像与重放)
@@ -81,6 +81,7 @@
 | E-16 | AI | Utility AI + Boss 状态机；确定性候选预算，Worker 仅回命令 | `design/09` §8；`tech/03` |
 | E-17 | 存档 | GameState 负载交给 TSAV v1；纯迁移 + 内容 fixup | `tech/08` §3 |
 | E-18 | 录像 | 开局快照、命令、RNG、每 10 命令中间哈希 **【建议值】**、终局哈希 | `tech/08` §10；本文 §14 |
+| E-19 | 跨年代传承 | `legacy.v1` 只读 registry + 当前周目状态；`qiyu` RNG、稳定排序、双类配额收据和原子书眠 | `design/20` §2–§14；本文 §11.6 |
 
 ## 1. 目标、边界与依赖
 
@@ -298,6 +299,7 @@ interface ProfileState {
   metaBridge: MetaBridgeState;                 // MetaProfile 的确定性规则投影与待提交意图
   meridians: MeridianProgress;                  // 正式，design/15 §11.5
   companionLedger: CompanionLedgerState;        // 正式，design/18 §7
+  legacy: LegacyRunState;                        // 当前周目跨书，design/20 §2、§11–§12
   tianshu: TianshuProgressState;
   codex: CodexState;
   replayRules: RuleSwitchState;
@@ -342,6 +344,7 @@ interface ChapterState {
   npcs: NpcRuntimeState[];
   sects: SectMembershipState;                    // sect-membership-state.v1，design/12 §11.3
   economy: EconomyRuntimeState;                  // 聚合 design/16 §14 的正式状态类型
+  legacyCaches: LegacyCacheRuntimeState[];       // 当界缓存 / 挖掘进度；书眠清零
   calendar: WorldCalendarState;                  // 时间尺度见 design/11 §6.1；日历规格见本文 §5.3
 }
 
@@ -360,7 +363,7 @@ interface PartyState {
 
 `CharacterRef` 为主角引用或同伴 `runtimeId`；主角能力唯一写入 `profile.protagonist`，同伴在队能力唯一写入 `party.companions`。战斗初始化复制有效能力与活体资源，战后只经一次 finalize 写回；ledger 保存离队快照，不与在队对象双写。旗标必须显式指定 scope，禁止同名跨域回退；周目继承只按 `design/13` 的继承清单执行。
 
-角色武学持久字段遵循 `design/05` §2.6 与 `tech/04` §3.10 末尾的 `SkillInstance` 校验约定：`skillId`、`sourceGrade/sourceCap`、`trueLayer/sxp/latentExp`、`nativeTo/learnedIn`、`attunedGrade/attunedIn`、`movesEquipped`、`pages/insight/flags`。effective grade/layer 只重算，不双存；`sourceGrade` 不等于层上限。调用 `design/05` resolver 后才冻结攻击，绝对品阶用于修炼门槛、有效品阶用于战斗。
+角色武学持久字段遵循 `design/05` §2.6 与 `tech/04` §3.11 末尾的 `SkillInstance` 校验约定：`skillId`、`sourceGrade/sourceCap`、`trueLayer/sxp/latentExp`、`nativeTo/learnedIn`、`attunedGrade/attunedIn`、`movesEquipped`、`pages/insight/flags`。effective grade/layer 只重算，不双存；`sourceGrade` 不等于层上限。调用 `design/05` resolver 后才冻结攻击，绝对品阶用于修炼门槛、有效品阶用于战斗。
 
 归属与保留边界：
 
@@ -371,10 +374,12 @@ interface PartyState {
 | `profile.metaBridge` / 已装备称号 | 本周目规则投影 | 以显式命令刷新；新周目从 `MetaProfile` 再投影 | `design/13` §8.3、§9.4 |
 | `profile.meridians` | 跨书界、当前周目永久 | 书眠全量保留；新周目按 `design/13` 重置运行态，只向 `MetaProfile` 写里程碑 | AR-03、`design/13` §6.1/§9.4 |
 | `profile.companionLedger` | 跨书界 | 保留快照与履历 | AR-09、`design/18` |
+| `profile.legacy` | 当前周目、跨书界 | 保留源状态、三卷、信物及调度 / 机会 / 校合收据；新周目重置 | AR-13、`design/20` §11 |
 | `profile.flags/runFlags` | 账号授权事实/当前周目 | 两者均跨书保留；新周目仅从 `MetaProfile` 重建获 design/13 授权的 profile facts，并清空 runFlags | §10 **【建议值】** |
 | `chapter.flags/quests/npcs` | 当前书界 | 归档摘要后重建 | `design/12` §1、§11 |
 | `chapter.sects` | 当前书界 | 默认清除 | `design/12` §11.3、`design/16` §11 |
 | 资源点/普通资源/家丁/职位 | 当前书界 | 默认清除；仅归属文档明列的学识 / 图鉴 / 里程碑可留 | `design/16` §13.4、§16 SLEEP-V01 |
+| `chapter.legacyCaches` / 传承挖掘订单 | 当前书界 | 先取消订单并释放排班，再清缓存进度；不删除传承匣与收据 | `design/16` §7.8、`design/20` §11.1 |
 | `party.active/reserve` | 当前队伍 | 写入同伴 ledger 后清理/重邀 | `design/18` §6 |
 | `battle/dialogue` | 临时 | 书眠前必须为空 | 本文 |
 
@@ -401,6 +406,7 @@ interface WorldState {
     entities: WorldEntityState[];
   } | null;
   explored: ExploredRegionState[];
+  repeatEncounters: Array<{ spawnPointId: string; worldDay: number; dailyClearCount: number }>;
   scheduled: ScheduledWorldEvent[];
   pendingTimeAdvance: { remainingTicks: number; reason: 'rest'|'story' } | null;
   lastTickSettlement: number;
@@ -412,6 +418,8 @@ interface BattleState {
   kind: EncounterKind;
   seed: number;
   sourceRegion: RegionId | null;
+  sourceSpawnPointId: string | null;             // 仅可重复世界遭遇；剧情战为 null
+  repeatExpMulBp: 10_000 | 5_000 | 2_000;        // 入场冻结，角色经验结算只乘一次
   phase: 'deploy' | 'running' | 'ended';          // design/09 §13.1
   tick: number;
   round: number;
@@ -453,7 +461,7 @@ interface BattleUnitActionState {
 }
 ```
 
-`RegionRuntimeState/CityRuntimeState` **【建议值】** 各含稳定地理 ID、`open`、`controllerFactionId|null`、入口/场所覆盖、资源点实例引用与任务改动 revision；时代默认值在 registry，状态只存动态覆盖，切书重建。
+`RegionRuntimeState/CityRuntimeState` **【建议值】** 各含稳定地理 ID、`open`、`controllerFactionId|null`、入口/场所覆盖、资源点实例引用与任务改动 revision；时代默认值在 registry，状态只存动态覆盖，切书重建。`repeatEncounters` 只保存当前时代可重复刷新点的当日胜利次数，键为稳定 `spawnPointId + worldDay`；换日自然换键，书眠切层整体卸载。逃跑、战败、一次性剧情战均不增加计数。
 
 `BattleUnitState` 继承 `design/09` §13.1 的身份、unitIndex、阵营/控制、格位/朝向、CT/冻结/待移位、五资源、Buff、反击招、被擒/倒地、AI/仇恨与 flags，全部必须存档。本文统一 optional 规则状态为显式 null/空数组，adapter 映射 `id→battleId`、`env→environment` 等字段，不维护两份值。道具以 `ItemUid` 选择实例、以 `ItemId` 累计次数和冷却。运劲实际效果进入资源/Buff，最近模式供后续查询。`revision` 在预测输入改变时递增；寻路 open set、可达格与动画不保存。
 
@@ -908,6 +916,8 @@ design/19 基础地理
 
 触发战斗后本 tick 不再推进其余路径。地形危险若使主角倒下，先结算其失败/救回规则，再判断遭遇，避免“死亡后开战”。
 
+可重复世界遭遇在入场前按 `spawnPointId + worldDay` 读取胜利计数：第 1–3 次的 `repeatExpMulBp=10000`，第 4–7 次为 5000，第 8 次起为 2000。倍率冻结进 `BattleState`，只在 finalize 的角色经验乘区使用一次；胜利与奖励收据同事务把该点 `dailyClearCount` 加一。一次性剧情战、逃跑与战败不写计数，同一 `EncounterDef` 位于不同刷新点时必须使用不同 `spawnPointId`。
+
 ### 5.8 世界时间测试
 
 | # | 场景 | 断言 |
@@ -923,6 +933,7 @@ design/19 基础地理
 | W-09 | 五次单 tick 与 host 一帧追五次 | 版本/事件/RNG/hash 相同；中途开战立即停止 |
 | W-10 | 任职、升职、占领恰逢月界 | 旧周期按旧资格；新资格只影响下周期 |
 | W-11 | 书眠跨百年 / 满 20 tick / 满 1200 tick | 不补百年产出 / 环境一步 / 世界 Buff 一时辰 |
+| W-12 | 同一 `spawnPointId` 当日胜 8 次、跨日再胜；另换刷新点 | 倍率依次 `1/1/1/0.5/0.5/0.5/0.5/0.2`；跨日和不同点从 1 开始，逃跑 / 战败不计数 |
 
 ## 6. 六角格、构网、寻路、LOS 与范围
 
@@ -1563,7 +1574,7 @@ interface BuffInstanceState {
 
 ### 9.4 施加、叠加、互斥与品阶对抗
 
-施加流程必须调用同一个入口：免疫 → 效果命中/抵抗 → Boss 调整 → 叠加键 → 四种叠加规则 → 数量上限 → 钩子 → cache 置脏。剧情强制来源跳过免疫命中骰，但仍计算免疫压制。
+施加流程必须调用同一个入口：免疫 → 效果命中/抵抗 → Boss 调整 → 叠加键 → 判定 `applyMode` → 持有者提交前钩子 → 四种叠加规则 → 数量上限 → 实例事件 → cache 置脏。剧情强制来源跳过免疫命中骰，但仍计算免疫压制。`onBuffApplied` 收到只读候选 `ctx.buff`，且 `ctx.applyMode` 只能是 `create | stack | refresh`；它拒绝 `create` 时不建实例，拒绝 `stack/refresh` 时已有实例不得变化。九转护脉只匹配 `bf_neishang + create`，不能挡既有内伤的叠层或刷新。
 
 四种叠加语义直接解释 `design/06` §4.1：
 
@@ -1659,9 +1670,9 @@ interface ScalarEntry { key: string; value: QuestScalar }
 
 `stageId`、`branchKey`、`check.id` 与效果局部 ID 都是任务内稳定键。`contentVersion` 升级必须有显式迁移；被删除阶段只能映射到语义等价阶段或声明的 `obsolete` 终态，禁止按数组下标恢复。`locked/available` 可在定义投影中求得；一旦创建实例，合法状态转换严格遵循 `design/12` §1.2，主线不得以永久 `failed/expired` 死锁。
 
-条件编译为无副作用、带类型的 IR，操作符与事实白名单逐字消费 `design/12` §2.2，并并入 `design/16` §14.4 的 `EstateCondition`。`all/any/not`、旗标、任务、物品、地点 / 时间、门派、NPC / 同伴与经营条件均在构建期解析；字段、比较运算与枚举域不相容即失败。缺引用不是 `false`，运行态只有在迁移补齐结构后才求值；条件不消费 RNG，显式 `check` 才按稳定 `check.id` 使用 `world` 流，首次结果写入 `checkResults`，读档不得重掷。
+条件编译为无副作用、带类型的 IR，操作符与事实白名单逐字消费 `design/12` §2.2，并并入 `design/16` §14.4 的 `EstateCondition` 及 `design/20` 的两类传承只读条件。`all/any/not`、旗标、任务、物品、地点 / 时间、门派、NPC / 同伴、经营与传承条件均在构建期解析；字段、比较运算与枚举域不相容即失败。缺引用不是 `false`，运行态只有在迁移补齐结构后才求值；条件不消费 RNG，显式 `check` 才按稳定 `check.id` 使用 `world` 流，首次结果写入 `checkResults`，读档不得重掷。
 
-同一事件的候选出口按 `priority` 降序和稳定源码序求值；迁移先验证当前 `stageId` 与 condition，再在一个事务中写 `stageId`、`branchPath`、检定结果、效果收据和全部动作。任务动作采用 `design/12` §2.3 白名单并并入 `design/16` §14.5 的 `EstateAction`；每个动作经所属领域 helper 重新校验，不允许脚本持有可写状态。持久效果 ID 固定为 `<questId>/<stageId>/<effectLocalId>`，写入 `appliedEffectIds` 去重，禁止数组下标；战斗结算、奖励、事件 outbox 任一失败即整体回滚。任务实例挂在 chapter，书眠先归档摘要再清理，不能靠同名旗标暗续跨界任务。
+同一事件的候选出口按 `priority` 降序和稳定源码序求值；迁移先验证当前 `stageId` 与 condition，再在一个事务中写 `stageId`、`branchPath`、检定结果、效果收据和全部动作。任务动作采用 `design/12` §2.3 白名单，并入 `design/16` §14.5 的 `EstateAction` 及六项 `legacy/*` opcode；每个动作经所属领域 helper 重新校验，不允许脚本持有可写状态。持久效果 ID 固定为 `<questId>/<stageId>/<effectLocalId>`，写入 `appliedEffectIds` 去重，禁止数组下标；战斗结算、奖励、事件 outbox 任一失败即整体回滚。任务实例挂在 chapter，书眠先归档摘要再清理，不能靠同名旗标暗续跨界任务。
 
 ### 10.2 世界事实、旗标与事件
 
@@ -1710,9 +1721,9 @@ inkjs 2.4.0 的公开 `BindExternalFunction(..., lookaheadSafe = false)` 默认�
 
 `ProfileState.meridians` 直接使用 `design/15` §11.5 的 `MeridianProgress`：`schemaVersion=1`、已开穴 `opened`、未完成目标 `targets[ap_*]={progressH,attemptOrdinal}`、`turnCompleted`、可选 `turnTarget/turnState` 与 `lastAppliedMigration`。`completedMeridians`、周天里程碑、奖励与面板加成均从正式内容及该状态派生，不作为第二份权威字段。加载时排序、去重并执行 V15-01～V15-15；180 穴的工作量必须核算为 94,045H，九转为 81,000H，总量 `94,045+81,000=175,045H`。
 
-`meridian/runSession` 在 S0 冻结 `MeridianSessionSnapshot`（目标、稳冲 / 催冲模式、显示等级、主辅内功、MP、`rateH/successBp`、旧 `attemptOrdinal` 与开始世界小时），再严格执行 `design/15` §11.6 的 S1–S8：确定 `sessionId` → 扣 MP → 推进 1 游戏小时 → 算进度 → 必要时掷骰 → 写成败 → 派生奖励 / outbox → 原子提交。冲关随机键固定为 `hash(runSeed,'meridian',targetId,attemptOrdinal)`，不消费五条顺序 RNG 流；触及关隘后无论成败都在同一事务把 ordinal 加一，普通行气不加。S8 前崩溃视为整次不存在，S8 后只重发未确认 outbox。
+`meridian/runSession` 在 S0 冻结 `MeridianSessionSnapshot`（目标、稳冲 / 催冲模式、显示等级、主辅内功、MP、`rateH/successBp`、旧 `attemptOrdinal` 与开始世界小时），再严格执行 `design/15` §11.6 的 S1–S8：确定 `sessionId` → 扣 MP → 推进 1 游戏小时 → 算进度 → 必要时掷骰 → 写成败 → 派生奖励 / outbox → 原子提交。物品只通过 `design/10` 的 `MeridianAid={rateBp,successBp,costReduceBp,hours,meridians?}` 进入 S0：过滤已过期和经脉白名单不匹配项，同一药物来源逐槽取最高，再与师父 / 地点 / 天书等不同来源相加并由 `design/15` 钳制；药物不得直接写进度或成功结果。冲关随机键固定为 `hash(runSeed,'meridian',targetId,attemptOrdinal)`，不消费五条顺序 RNG 流；触及关隘后无论成败都在同一事务把 ordinal 加一，普通行气不加。S8 前崩溃视为整次不存在，S8 后只重发未确认 outbox。
 
-状态在当前周目跨书眠原值保留，新周目按 `design/13` 重置；账号只记历史最高转数，不能据此恢复奖励。提交后稳定事件使用 `design/15` §10.5 的 `meridian.sessionSettled`、`.acupointOpened`、`.meridianCompleted`、`.milestoneReached`、`.turnCompleted`；消费方以 `(runId,eventName,targetId)` 去重。派生奖励每次从 `opened/turnCompleted` 重建，不能既烘进先天属性又保留修饰器。
+状态在当前周目跨书眠原值保留，新周目按 `design/13` 重置；账号只记历史最高转数，不能据此恢复奖励。提交后稳定事件使用 `design/15` §10.5 的 `meridian/sessionSettled`、`meridian/acupointOpened`、`meridian/completed`、`meridian/circulationAdvanced`、`meridian/turnCompleted`；消费方以 `(runId,eventName,targetId)` 去重。派生奖励每次从 `opened/turnCompleted` 重建，不能既烘进先天属性又保留修饰器。
 
 ### 11.2 资源点、库存与家丁
 
@@ -1739,7 +1750,7 @@ interface EconomyRuntimeState {
 
 门派身份使用 `design/12` §11.3 的 `sect-membership-state.v1`：当界唯一 `primarySectId`、至多一个 `rank5SectId`、各 `sect_*` 的 `status/rank/contribution` 与领取游标；门派公账使用 `design/16` 的 `SectLedger`，不把 L1–L5 称谓或晋升阈值复制进 core。月钱和月薪使用 30 游戏日的 `economyMonth`，仍须完成职责；空等到月末为 0。
 
-经营条件与动作从 `design/16` §14.4–§14.5 生成 `EstateCondition/EstateAction` 联合，UI / Ink 只能选择内容已授权的动作。`reserve_schedule_blocks` 的检查与写入同事务；每个 `settle_*` 的幂等键固定为 `chapterId + objectId + periodIndex`，重复调用返回原结果。书眠开始后拒绝新合同和结算，最终提交一次性清除 `ResourcePointState`、`ResourceStack`、`ServantContractState`、`JobContractState`、`EstateCareerState` 与 `SectLedger`；崩溃恢复仍由收据保证幂等。
+经营条件与动作从 `design/16` §14.4–§14.5 生成 `EstateCondition/EstateAction` 联合，UI / Ink 只能选择内容已授权的动作。`reserve_schedule_blocks` 的检查与写入同事务；每个 `settle_*` 的幂等键固定为 `chapterId + objectId + periodIndex`，重复调用返回原结果。`settle_job_contract(partial)` 只支付完整报酬的 `0.60 = 6000 bp` 并把合同落为 `completed`，不得误写 `breached/ended`。`sacrifice_resource_point` 必须重新验证 `EstateSacrificeQuote` 的 `quoteId + pointRef`、权属、候选并列集合和过期 tick；点转交、停收益、唯一收据及任务旗标在同一上层事务提交，禁止运行时再用“最高收益”模糊选择器。书眠开始后拒绝新合同和结算，最终提交一次性清除 `ResourcePointState`、`ResourceStack`、`ServantContractState`、`JobContractState`、`EstateCareerState` 与 `SectLedger`；崩溃恢复仍由收据保证幂等。
 
 ### 11.4 周期状态验收
 
@@ -1751,6 +1762,10 @@ interface EconomyRuntimeState {
 | E-04 | 同时申请第二个客卿 | 原子拒绝，旧职位不变 |
 | E-05 | 书眠 | 经脉全保留；资源/家丁/职位/门派按默认清除 |
 | E-06 | effect ref 重建两次 | 永久加成不重复叠加 |
+| E-07 | 有活动传承挖掘订单后书眠 | 先取消订单并释放全部排班，缓存进度清零；传承匣与源 / 机会收据保留 |
+| E-08 | 同一挖掘 `workIndex` 重放 | 返回原收据，不重复推进缓存或发卷 |
+| E-09 | `settle_job_contract(partial)` 重放 | 只支付一次 `6000 bp` 报酬，合同为 `completed` |
+| E-10 | 家业报价后权属变化 / 报价过期 / 任一步失败 | `sacrifice_resource_point` 拒绝或全回滚；点、收益、收据与剧情旗标均无半提交 |
 
 ### 11.5 经验、余韵与难度的正式接口
 
@@ -1772,11 +1787,50 @@ RuleSwitchState 保存 difficulty、天劫层、开关、difficultyLog 和 ruleR
 
 验收至少涵盖一次奖励越追赶线与封顶线、第16→17点、债务优先、书眠余数、重复 receipt、低难度后切回宗师不恢复成就资格。
 
+### 11.6 跨年代传承运行时
+
+`ContentRegistry.legacy` 只读消费 `tech/04` §3.10 生成的 `legacy.v1`；运行态按 `design/20` §2.6、§4.4、§11–§12 分成当前周目与当前书界两层：
+
+```ts
+interface LegacyRunState {
+  sourceStates: LegacySourceState[];             // 按 sourceId ASCII 升序
+  fragmentIds: LegacyFragmentId[];               // 传承匣；按 sourceId + slot 排序
+  keystoneItemIds: ItemId[];                     // 仅登记的 it_xinwu_*
+  scheduleReceipts: string[];
+  opportunityReceipts: string[];
+  synthesisReceipts: string[];
+}
+type LegacyCacheRuntimePhase = 'hidden' | 'revealed' | 'working' | 'ready' | 'opened'; // 【建议值】
+interface LegacyCacheRuntimeState {
+  cacheId: LegacyCacheId; sourceId: LegacySourceId;
+  state: LegacyCacheRuntimePhase;
+  progress: number; nextWorkIndex: number;
+}
+```
+
+缓存 `state` 是 core 为任务只读条件提供的有限执行枚举；`design/12` 已开放该字段，但 `design/20` 尚未列出值域，因此五值闭集仅作**【建议值】**，上游登记前不得伪称已定 schema。内容定义、地点、`requiredProgress` 与奖励仍只读 registry。`LegacyExcavationOrder` 使用 `design/16` §14.3 的正式形状并挂在当界经济状态；`LegacyHeirSpawnRequest` 使用 `design/18` §9.5 的正式六字段请求，`bloodline` 另强制非空 `evidenceRefs`。core 不生成谱系事实，也不把运行时 UUID 注册成 `npc_*`。
+
+任务层两类只读条件与六项 opcode 逐字消费 `design/12` §2.2–§2.3：`legacy` 只读 `status/fragmentCount/hasKeystone/localMisses`，`legacyCache` 只读 `state/progress`；`legacy/revealCache`、`legacy/advanceCache`、`legacy/resolveOpportunity`、`legacy/grantFragment`、`legacy/grantKeystone`、`legacy/completeSynthesis` 分别映射唯一传承 helper。`effectId` 与机会 / 校合 `receiptKey` 双重幂等；任务阶段、材料、武学实例、收据、事件和 RNG 在同一 `CommandTx` 提交，任一步失败全部回滚。
+
+书界苏醒调度固定如下：
+
+1. 依 `design/20` §2.7 的硬过滤顺序产生候选；未通过者不消费 RNG、不增加 `misses`。
+2. 候选按 `lgs_*` ASCII 升序，每项只通过 `tx.rng('qiyu')` 做一次 `chanceBp`；命中者再取一次 `lotteryKey`。不得新增 `legacy` RNG 流，也不得从 seed 元组另算结果。
+3. 若批次开始前持久化载体已满，整批写 `quota_full_before_batch`，出现 RNG 消费为 0；若同批竞争超额，候选已消费出现 / lottery RNG，未入选命中项写 `lottery_deferred` 且不增加 `misses`。两类收据不可合并。
+4. 入选后才按同一 `qiyu` 流选择 `heir/cache`、地点和机会；`LegacyHeirSpawnRequest` 或缓存创建失败则事务整体回滚，不能留下半份调度收据。
+5. 残本机会按 `opportunityId` ASCII 升序；第三次合法机会保底，缺卷候选按 `upper/middle/lower` 固定枚举后抽取。预览、地图标记、条件查询和日志均不得消费 RNG。
+
+家丁代挖调用 `legacy_assign_excavation / settle_legacy_excavation / cancel_legacy_excavation`，每单至多 3 人；每块工作量逐人算 `10 + floor((production + relevantSkill)/10)` 后求和。结算只推进缓存进度并写 `chapterId+cacheId+workIndex` 收据，最终开匣、伦理选择、发卷与信物仍要求玩家到场。`BS_COMMIT` 顺序固定为：拒绝新订单 → 取消活动订单并释放排班 → 清除当界缓存进度 → 保留传承匣和源 / 机会 / 校合收据 → 执行普通武学携带 / 残篇 → 新界重算 eligible；任一步失败恢复状态、五流 RNG、事件和收据。
+
+合成调用 `design/20` §7 的门槛与事务。产物保留真实 `sourceGrade`；`learnSource=legacy_synthesis` 在当前完成书界额外应用 Canon v1.2 §3 的 `legacyWorldCap`：天龙至侠客 12，碧血 / 鹿鼎 / 连城 / 书剑 / 飞狐 / 雪山 10，白马 / 鸳鸯 9；`rule_wutiandao` 关闭该专用上限。进入下一界后改走普通外来规则。`legacyWorldCap` 不改真实品阶、普通本土习得或非传承来源。
+
+传承验收至少逐项实现 LEG-T01–T15，并额外跑 10,000 个业务 seed **（待实测）**：每个 seed 同时在 Node/V8 与 Playwright WebKit/JSC 重放书界调度、机会、强行校合和书眠；核对候选顺序、五流游标、两类配额收据、事件字节、终态 hash 与 39 源配额。发布候选另抽 30 份完整录像做跨引擎逐 checkpoint 一致性门禁；30 是与 `tech/08` / `tech/09` 对齐的**【建议值】**。
+
 ## 12. NPC、同伴与年代状态
 
 ### 12.1 当前时代的 NPC 投影
 
-NpcDef、CompanionState、CompanionSnapshot 采用18 §7与tech/04 §3.10。具名 NPC 的生卒年对应 registry 中带精度的 `born` / `died` 事实，运行态只保存分支覆盖与年代投影，不复制考据原值；生成/设施实例持久化出生/生成时年龄基点，不能只存当前年龄段：
+NpcDef、CompanionState、CompanionSnapshot 采用18 §7与tech/04 §3.11。具名 NPC 的生卒年对应 registry 中带精度的 `born` / `died` 事实，运行态只保存分支覆盖与年代投影，不复制考据原值；生成/设施实例持久化出生/生成时年龄基点，不能只存当前年龄段：
 
 ```ts
 interface NpcRuntimeState {
@@ -1937,8 +1991,9 @@ Node/V8 与 Playwright WebKit/JSC 都跑同一录像。Playwright WebKit 不是�
 | golden | Node + WebKit 的探索/战斗/任务/书眠录像 | 合并与发布 |
 | 迁移 | 每个历史 schema → 最新 → 冒烟命令 | 合并与发布 |
 | 性能 | 600 tick、24 单位群战、最大 Buff、AI、存读档 | 发布候选 **（待实测）** |
+| 传承确定性 | LEG-T01–T15、10,000 seeds；发布候选 30 份 V8/JSC 完整录像 | 合并与发布 **（待实测）**；30 份为【建议值】 |
 
-确定性 fixture 至少覆盖：普通战、环境战、多段范围、反应深度、合击/阵法、Boss 阶段、跨日周期、任务与 Ink、书眠及同伴重逢。随机测试失败时记录业务 seed 和最小化命令序列，不能只保存测试框架内部 seed。
+确定性 fixture 至少覆盖：普通战、环境战、多段范围、反应深度、合击/阵法、Boss 阶段、跨日周期、任务与 Ink、书眠及同伴重逢，以及传承的调度 / 配额 / 挖掘 / 校合 / 书眠。随机测试失败时记录业务 seed 和最小化命令序列，不能只保存测试框架内部 seed。
 
 CI 不通过“重录全部 golden”修失败。先定位规则变化，若属预期，评审逐条事件/数值差异后随内容或 schema 版本更新基线。测试代码不得调用实现私有 helper 复制公式作为唯一 oracle；关键公式用上游算例和独立慢模型交叉验证。
 
@@ -1970,6 +2025,8 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | Phase 3 | 正式经脉/资源/营生/门派、跨书同伴全链、遥测重放 | `design/12/15/16` 生成契约全量接入；旧档迁移与书眠 golden |
 | Phase 4+ | 更深 Boss/AI 前瞻、工具化 trace、平衡批跑 | 不以在线生成式 AI替代规则 AI |
 
+本表仅是玩法 core 的内部切片：Phase 1 → `tech/09` P1，Phase 2 → P1/M2–P2，Phase 3 → P2–P3，Phase 4+ → P4–P16；正式排期、阶段出口与发布称谓只认 `tech/09` P0–P16。传承 `legacy.v1` 的 schema / helper 可在 P1 接线，39 源量产、10,000 seeds 与 30 份跨引擎录像随相应书界阶段持续扩充。
+
 ### 17.2 风险登记
 
 | 风险 | 级别 | 预防 / 降级 |
@@ -1978,7 +2035,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | 乘区/取整漂移 | 高 | 生成 zone 顺序、BigInt 精确边界、04 向量与双引擎 golden |
 | 反应/Buff 递归爆炸 | 高 | 来源位、深度 3、全局深度/op 上限、事务回滚 |
 | 正式 schema 与运行时生成物漂移 | 高 | 单源生成、版本门禁、升 schema 与纯迁移，不保留双写层 |
-| `design/20` 尚未落盘而误收传承字段 | 高 | 扩展命令 / 状态采用严格 registry；未知字段拒绝，待归属文档落盘后再升版 |
+| 传承 registry、运行态与跨域 helper 漂移 | 高 | `legacy.v1` strict registry；六项 opcode / 两类条件穷尽；LEG-V/T 与双引擎重放，未知字段拒绝 |
 | AI Worker 延迟/不可用 | 中 | 固定 workBudget、watchdog、basic/待机 fallback |
 | 热路径 GC | 中 | bucket/index/scratch pool；超预算先 profile 后迁 Worker |
 | 旧内容无法重放 | 高 | 按 contentHash 保留规则工件；缺失即隔离，不猜修 |
@@ -1991,7 +2048,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 ### 项目内规范（权威顺序见文首）
 
 - `docs/00-canon.md`；`docs/decisions/author-requirements.md`；`docs/decisions/author-decisions.md`；`docs/decisions/rulings-v1.md`。
-- `docs/design/04-damage-formula.md`、`05-martial-arts-system.md`、`06-buff-system.md`、`08-terrain-and-qinggong.md`、`09-combat-system.md`、`11-open-world.md`、`12-quests-npc-factions.md`、`13-progression-and-endings.md`、`15-meridians-and-acupoints.md`、`16-resources-and-estates.md`、`17-sects-compendium.md`、`18-npc-and-companions.md`、`19-world-map.md`。
+- `docs/design/04-damage-formula.md`、`05-martial-arts-system.md`、`06-buff-system.md`、`08-terrain-and-qinggong.md`、`09-combat-system.md`、`11-open-world.md`、`12-quests-npc-factions.md`、`13-progression-and-endings.md`、`15-meridians-and-acupoints.md`、`16-resources-and-estates.md`、`17-sects-compendium.md`、`18-npc-and-companions.md`、`19-world-map.md`、`20-legacy-inheritance.md`。
 - `docs/tech/01-architecture.md`、`03-mobile-performance.md`、`04-data-pipeline.md`、`08-backend-and-online.md`。
 
 ### 外部技术资料（2026-09-26 访问）
@@ -2018,6 +2075,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | workBudget | AI 固定的确定性工作单元上限；不同于墙钟 SLO |
 | replay hash 域 | 规范 JSON 数组 `["tianshu:battle-replay:v1",appBuild,coreVersion,rulesProtocol,rngProtocol,contentHash,runtimeMartialArts,session]` 的 UTF-8；摘要字段本身不入域 |
 | 正式 schema 适配层 | `packages/data` 生成类型到 core handler / 状态组合的薄映射；不复制玩法定义 |
+| 传承调度收据 | 区分 `quota_full_before_batch` 与 `lottery_deferred` 的当前周目幂等事实；二者 RNG 消费语义不同 |
 
 本文没有新增玩法内容 ID；所有示例均复用既有前缀或使用局部 key。
 
@@ -2031,6 +2089,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 - **已解决（tech/01 P10）**：Buff 目录归 `design/06`；本文实现生成式 59-hook/原语运行时，不另建语义清单。
 - **已解决（AR-12）**：战斗为 pointy-top 六角轴坐标，首轮按轻功；旧方格运行时接口不保留。
 - **已解决（作者 P08/P14/P16/P41/P56，G1 采用默认）**：自创武学倚天后开放且最多 3 门；称号属性默认开启可关闭；最近一次守卷外观与誓言默认启用可关闭；两种天道规则开关互斥；化险为夷按每战一次、指定对象与 0–30% 公式执行（见 §3.2–§3.4、§14.3、§9.4、§7.7）。
+- **已解决（AR-13 / H1）**：`design/20` 已落盘；本文已接入 `legacy.v1` 状态、两类条件、六项 opcode、家丁挖掘、`qiyu` RNG、双配额收据、书眠顺序与 12 / 10 / 9 专用上限（见 §3.2、§10、§11.6、§15）。
 
 ### 本文采用的建议值（含已解决追溯）
 
@@ -2051,7 +2110,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `design/12` | 已定稿；使用 `quest.v1`、`quest-instance.v1`、任务条件 / 动作与 `sect-membership-state.v1` | 上游升 `contentVersion` 时补纯迁移并重跑 QST-V01～V22 |
 | `design/15` | 已定稿；使用 `MeridianProgress`、session 快照、keyed RNG 与 S0–S8 | 上游升 schema / 公式时按迁移版本重算派生奖励并重跑 V15-01～V15-15 |
 | `design/16` | 已定稿；使用资源、点、家丁、合同、家业、公账与 Estate DSL | 上游升 schema / 数值时迁移当界运行态并重跑 RES/BIZ/SLEEP 门禁 |
-| `design/20` | 尚未落盘；仅登记跨年代传承扩展槽 | 落盘前拒绝未知命令 / 状态 / `frag_ / lgs_ / cache_` 内容，不猜字段 |
+| `design/20` | 已定稿；使用 `legacy.v1`、`LegacySourceState`、配额 / 机会 / 校合收据、书眠矩阵与 LEG-V/T | 上游升 schema / RNG 消费或生命周期时升规则与存档版本，并重跑 10,000 seeds 和跨引擎录像 |
 | `design/18` | 同伴快照、健在与重逢合并正式契约 | 内容考据修订需 legacy timeline 迁移 |
 | `tech/03/08` | 性能预算、TSAV、录像运输 | 真机实测和限额变化不得反写玩法结果 |
 
@@ -2070,6 +2129,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `docs/tech/01-architecture.md` | core API / GameState / P3 | **已解决**：已统一 `Core`/`GameplayCore`、`meta.stateVersion`、`tick()` 返回型、候选实例原子读档、`BattleActionPlan`、负 CT、AI seed 提交与 replay hash 域（见该文 §3.6、§8.3） |
 | `docs/tech/03-mobile-performance.md` | Worker/预算 | **已解决**：AI 时间只作 SLO，确定性停止使用 `workBudget`；64 KiB / 2 ms 保持 **（待实测）** |
 | `docs/tech/04-data-pipeline.md` | 正式 schema / DSL 编译 | **已解决**：已接入 12/15/16 正式字段，并从单一 registry 生成 59 hooks、50 `OpId` 与表达式 opcode |
+| `docs/tech/04-data-pipeline.md` / `docs/design/20-legacy-inheritance.md` | `legacy.v1` / 传承运行时 | **已解决**：tech/04 已接五表与 LEG-V01–V10；本文已接状态、六项 opcode、两类配额收据、家丁 / NPC 适配和跨引擎测试（见 §11.6） |
 | `docs/tech/08-backend-and-online.md` | §10 录像 | **已解决**：`BattleReplayV1` 只哈希 / 上传战斗域，并对齐 `appBuild/coreVersion` 与中间 hash |
 | `docs/tech/08-backend-and-online.md` / `docs/design/13-progression-and-endings.md` | Meta 合并 / §9.4 | **tech/08 已解决**：已对齐确定性 `MetaProfileIntent.intentId`、规则投影版本与守卷快照确认边界，平台墙钟不回流 core；`design/13` 仍需归属文档核对 |
 | `docs/design/09-combat-system.md` | §5.3 范围结算 | 将“格序稳定 RNG”拆为模板格序与目标 `unitIndex` 顺序，避免范围映射后歧义 |

@@ -3,8 +3,8 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/01-architecture.md` |
-| 版本 | v1.2（跨文档同步，2026-09-26） |
-| 上游基准 | `docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.1、`docs/decisions/rulings-v1.md` |
+| 版本 | v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
+| 上游基准 | `docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.2、`docs/decisions/rulings-v1.md` |
 | 下游文档 | `tech/02` 渲染、`tech/03` 性能、`tech/04` 数据管线、`tech/05` 玩法引擎、`tech/06` 素材存储、`tech/07` 素材生成、`tech/08` 后端、`tech/09` 路线图 |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手（Claude Code 等） |
 | 本文职责 | 选型论证、分层与模块边界、monorepo 结构、第三方库清单、核心运行时骨架、开发工作流、代码规范、AI 协作约定、架构级风险 |
@@ -12,7 +12,7 @@
 > **结论先行（TL;DR）**
 >
 > 1. **维持 Canon §19 基线**：Three.js（r186）＋ Vue 3.5 DOM 覆盖层 ＋ 纯 TypeScript 确定性玩法核心 ＋ Vite 8 ＋ pnpm workspace。经实测与调研，**无致命问题**。
-> 2. **渲染器结论**：当前继续 `WebGLRenderer`（GLSL）单一路径。`tech/02` 同功能构建记录为 WebGL 156 KB、WebGPU 297 KB，差 141 KB；WebGPU 加自有代码估约 330 KB，`330 > 300 KB` 独立闸门，故**当前未通过**。Phase 0 仍在作者主力手机、中端 Android 与 iPad 上比较 R1/R2/R3 性能，但不得靠抬高预算把失败改写为通过（见 §2.6、§5.4）。
+> 2. **渲染器结论**：当前继续 `WebGLRenderer`（GLSL）单一路径。`tech/02` 同功能构建记录为 WebGL 156 KB、WebGPU 297 KB，差 141 KB；WebGPU 加自有代码估约 330 KB，`330 > 300 KB` 独立闸门，故**当前未通过**。路线图 P0 只有在 `tech/02` §9.3 五项硬门全部通过后，才再应用 R09-S04 的二级采纳门；不得靠 15% 性能建议值替代硬门，或靠抬高预算把失败改写为通过（见 §2.6、§5.4）。
 > 3. **TypeScript 锁定 6.0.x**：TS 7.0（Go 原生编译器，2026-07 发布）虽已发布，但 `typescript-eslint@8.70` 的 peer 仍为 `<6.1.0`，`vue-tsc`/Volar 也要联调。待 lint、SFC 类型检查、构建与编辑器链全部兼容后再整体升级，不按版本号到期自动切换。
 > 4. **状态管理**：core 采用**单一可序列化状态树 + 命令（Command）事务 + 领域事件（DomainEvent）**，不采用 ECS、不采用 Immer；UI/渲染只消费事件与只读查询。
 > 5. **运行模式**：MVP 中 core 跑在主线程；战斗 AI 与压缩/哈希进 Web Worker。`io.worker` 只把解压后的 UTF-8 `ArrayBuffer` 以 Transferable 交回，主线程在加载遮罩/IdleQueue 中分片 `JSON.parse`，不回传大对象承担结构化克隆成本；core API 保持可序列化，便于未来整体迁入 Worker。
@@ -222,7 +222,10 @@ Phase 0（第 1–2 周）基准场景 bench-iso：
 
 判定（"性能"以 P95 帧时间衡量，越低越好）：
   若完整 render ≤ 300 KB，且 R2 性能不低于 R1，且 R3 的 P95 帧时间 ≤ 1.25 × R1
-  （即 R3 吞吐不低于 R1 的 80%），全部设备成立
+  （即 R3 吞吐不低于 R1 的 80%），并同时满足 tech/02 §9.3 的画面一致、
+  稳定/入口浸泡、明确需求与维护成本共五项硬门，全部设备成立
+      → 再过路线图 R09-S04 二级采纳门：R2 的 10 分钟 P95 比 R1 改善 ≥15%，
+        或性能持平但能耗/温控有可复核改善【建议值】；不满足仍维持 WebGL
       → 才可另写 ADR 选 WebGPURenderer + TSL；该路线 entry + render ≤ 170 + 300 = 470 KB
   否则
       → 选 WebGLRenderer + GLSL 为唯一路径（默认假设）
@@ -231,6 +234,7 @@ Phase 0（第 1–2 周）基准场景 bench-iso：
 ```
 
 - 本文其余部分**按已定当前路线（`WebGLRenderer`）**展开；渲染细节由 `tech/02` 定义。WebGPU 上限 300 KB 是独立评估线，不是把 WebGL 的 350 KB 路线总预算抬高后宣称“达标”。
+- R09-S04 是五项硬门全部通过后的项目收益判断，不改变任何硬门；真机证据可替换该建议阈值，但必须在 `tech/09` 留下 ADR 依据。
 - 无论选哪条，`render` 包对外暴露的接口（§4.3）不变，core/ui 不受影响。
 - 设备能力检测与降级档位（DPR 上限、阴影、后处理开关）由 `platform/device` 提供，见 §6.1。
 
@@ -990,7 +994,7 @@ scope.release();                               // 引用计数归零 → 进入 
 | 语义动作 | 触控 | 鼠标 | 键盘 |
 |---|---|---|---|
 | `select` 选择 / 确认 | 点按（≤ 250 ms 且位移 ≤ 10 px） | 左键 | Space / Enter |
-| `cancel` 取消 / 返回 | UI 返回键；双指轻点 | 右键 | Esc |
+| `cancel` 取消 / 返回 | UI 返回键（双指轻点默认不绑定） | 右键 | Esc |
 | `inspect` 查看详情 | 长按 ≥ 450 ms | 悬停 + Alt，或右键菜单 | I |
 | `pan` 平移相机 | 单指拖动空白处 | 中键/右键拖动；屏幕边缘滚动（可关） | WASD / 方向键 |
 | `zoom` 缩放 | 双指捏合 | 滚轮 | `+` / `-` |
@@ -1043,6 +1047,8 @@ scope.release();                               // 引用计数归零 → 进入 
 - 运行时不打包 OpenCC。
 
 ### 6.9 页面生命周期与存档时机
+
+战斗内“悔招”的行动开始 checkpoint 只存在于当前进程的战斗状态，不是可上传或跨进程恢复的存档。若页面隐藏、关闭或进程被系统终止，统一恢复最近具资格的**战斗前自动档**，不得声称能续接到半场行动边界（见 `design/09` §10.8、`design/13` §9.2）。
 
 | 事件 | 处理 |
 |---|---|
@@ -1611,12 +1617,13 @@ export type SkillDef = z.infer<typeof SkillDef>;
 ## 11. MVP 与演进路径
 
 > 权威排期见 `tech/09`；此处只给架构视角的阶段目标与"每阶段新增的架构件"。
+> 阶段号统一映射为：本文 Phase 0 → 路线图 P0；Phase 1 → P1/M1；Phase 2 → P1/M2；Phase 3 → P2；Phase 4+ → P3–P15。终局与全作收尾另归路线图 P16，不能从本文旧编号推导额外阶段。
 
 | 阶段 | 目标 | 新增 / 启用的架构件 | 退出标准 |
 |---|---|---|---|
 | **Phase 0 地基**（约 2 周） | 仓库可跑、可测、可部署 | monorepo 骨架、CI、`shared`（RNG/fx）、`core` 命令/事件骨架、`bench-iso` 基准场景、Tiled 六角/offset→轴坐标→RegionMap 转换打通 1 张图 | WebGL 基线记录写入 ADR-0001；只有完整 WebGPU render 先压到 ≤ 300 KB 才启动 R2/R3 真机闸门；`pnpm check` 全绿；手机上能看到可拾取的高度六角地形 |
 | **Phase 1 MVP**（约 8–10 周） | 序章《越女剑》完整可玩 | 探索（10 Hz tick）、ink 对话、就地开战（CT 时间轴、Z0–Z10 完整、Buff 子集）、表现队列、本地存档、PWA 离线、dev 控制台、内容热更新 | 手机上从新游戏到序章通关无阻断 bug；战斗 ≥ 30 fps；首包达标 |
-| **Phase 2 纵切片** | 《天龙八部》2–3 个区域 | 轻功门禁、套装、区域懒加载 + LRU、书眠流程（携带/压制）、云存档（`services/api`）、`ai.worker`、`apps/editor` 预览 | 跨设备继续同一存档；书眠进入下一书界（用占位内容） |
+| **Phase 2 纵切片**（路线图 P1/M2） | 《天龙八部》1 个区域内 4 个局部场景切片 | `rg_dali_cangshan` 内无量外驿、剑湖宫、琅嬛福地外围、万劫谷外围药径；轻功门禁、套装、区域懒加载 + LRU、书眠流程（携带/压制）、云存档（`services/api`）、`ai.worker`、`apps/editor` 预览 | `q_01_main_01` 的 30–60 分钟闭环；跨设备继续同一存档；书眠进入下一书界（用占位内容） |
 | **Phase 3 量产化** | 完整《天龙》 | AIGC 素材管线（`tech/07`）、内容规模化校验（L6 可达性、L8 数值冒烟）、在完整 render ≤ 300 KB 且 Phase 0 真机条件均通过后才可能整体迁移 WebGPU、可能的 core Worker 模式 B | 单书界 8–15 小时内容，全部通过校验 |
 | **Phase 4+** | 书界 2–14 逐部推进 | 繁体（可选）、AI NPC 代理（可选） | 每部完成即可发布到个人站点 |
 

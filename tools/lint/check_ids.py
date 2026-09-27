@@ -1329,6 +1329,27 @@ def non_live_reference(occurrence: Occurrence) -> bool:
     """Suppress explicit examples, proposals, and migration-only keys."""
     rel = occurrence.location.file
     line = occurrence.context
+    # Chapter 14 deliberately ends in the separate finale asset family.  The
+    # impossible adjacent-book token is retained in prose and acceptance tests
+    # only to forbid its creation; do not turn that negative assertion into an
+    # asset requirement.  Keep both the ID and wording narrow so a positive use
+    # of this token, or any other invalid sleep-video edge, still fails lint.
+    if occurrence.id == "vid_sleep_14_15" and re.search(
+        r"(?:不经过|不创建|禁止创建|不得创建)[^。；\n]{0,24}`?vid_sleep_14_15",
+        line,
+    ):
+        return True
+    # tech/08 uses this exact string as a JSON Schema discriminator value,
+    # not as a SetDef reference.  Constrain the exception to the owning
+    # protocol document, a fenced schema line, and an exact ``const`` shape so
+    # ordinary undefined set_* references remain visible.
+    if (
+        rel == "docs/tech/08-backend-and-online.md"
+        and occurrence.id == "set_allowed_flag"
+        and occurrence.in_fence
+        and re.search(r'"const"\s*:\s*"set_allowed_flag"', line)
+    ):
+        return True
     if is_data_source_rel(rel):
         # Enum/value strings such as "city_anchor" and "post_station"
         # collide with registered prefixes but are not object references.
