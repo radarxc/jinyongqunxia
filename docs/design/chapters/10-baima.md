@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：`ch10_baima` 的时代内容编排——开局、时代图层、主支线接口、门派与人物投放、产出、特色机制、前后界衔接及本界数值落点。
 > 上游：`00-canon.md` v1.1（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/10-baima.md`。
-> 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；经脉 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`。
+> 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；经脉 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；跨年代传承 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v0.1（D10 初稿，2026-09-26）。
+> 版本：v0.2（D10 初稿；审校 D10.R，2026-09-26）。
 
 ---
 
@@ -246,7 +246,7 @@ chapterMapLayer:
 
 ### 3.6 资源点与营生
 
-资源点与职位规则只引用 `design/16`。本界 12 点满足：城外 9 点（≥8）、初始势力控制 4 点（≤4）、具两种以上取得路径 4 点（≥3），并覆盖药材、木矿、粮畜和商贸四个供给面。低武普通点 `materialGrade≤4`；一处 L5 专精点可到 5，一处固定稀缺点可到 7，但天材不循环产出。
+资源点与职位规则只引用 `design/16`。本界 12 点满足：城外至少 9 点（≥`ceil(0.60×12)=8`）、初始 `controlled` 恰 4 点（≤`floor(0.40×12)=4`）、具两种以上取得路径 12 点（≥`ceil(0.25×12)=3`），并覆盖药材、木矿、粮畜和商贸四个供给面。表中“争议”按 `disputed`、“隐藏”按 `hidden`、“可用 / 可租赁 / 村社合作”按 `available` 统计，不计入 `controlled`。低武普通点 `materialGrade≤4`；一处 L5 专精点可到 5，一处固定稀缺点可到 7，但天材不循环产出。
 
 #### 3.6.1 十二个资源点
 
@@ -260,7 +260,7 @@ chapterMapLayer:
 | `rp_xiyunanjiang_sicha_01` | 南疆商路 | `trade_source` | `sicha`、`mocai` | 黄六～玄九（G4） | 商队控制 | 买入经营权 / 完成护运 | `q_10_side_04` |
 | `rp_xiyunanjiang_yaocai_01` | 南疆绿洲 | `herb_garden` | `yaocai`、`ducai` | 黄六～玄六（G5 专精） | 隐藏 | 沈青禾引路 / qg3 风蚀台发现 | `q_10_qiyu_01` |
 | `rp_hexilongyou_picao_01` | 河西 / 肃州外 | `pasture` | `picao`、`mapi` | 黄九～玄九（G4） | 村社合作 | 护院 / 租赁 | `q_10_side_05` |
-| `rp_hexilongyou_kuangshi_01` | 河西 / 敦煌县境 | `mine` | `kuangshi`、`mocai` | 黄六～地下九（G7 固定稀缺） | 盗采者占据 | 驱逐盗采 / 与村社调解 | `q_10_qiyu_02` |
+| `rp_hexilongyou_kuangshi_01` | 河西 / 敦煌县境 | `mine` | `kuangshi`、`mocai` | 黄六～地下九（G7 固定稀缺） | `disputed`（盗采者侵扰） | 驱逐盗采 / 与村社调解 | `q_10_qiyu_02` |
 | `rp_hexilongyou_liangshi_01` | 河西 / 甘州府 | `farm` | `liangshi`、`shicai` | 黄九～黄一（G3） | 庄园控制 | 护院 / 赈济后托管 | `q_10_side_06` |
 | `rp_guanzhong_liangshi_01` | 关中 / 西安府外 | `farm` | `liangshi`、`shicai` | 黄九～玄九（G4） | 可租赁 | 租赁 / 解决水渠争端 | `q_10_side_07` |
 | `rp_guanzhong_tieqi_01` | 关中 / 西安府 | `workshop` | `tieqi`、`kuangshi` | 黄六～玄九（G4） | 行会控制 | 教头合同 / 订单合作 | `q_10_side_08` |
@@ -816,7 +816,8 @@ Boss 模板另含 atk ×1.25、def ×1.20、mp ×2、评级 +15、spd ×1.06、�
 |---|---|---|---|
 | `it_langpi` | 信物 | C02 / 羁绊线 | 赠受顺序待考；不预先指定“正确收件人” |
 | `it_gaochangditu` | `key` | C03 手帕地图信息抽象、C04 入迷宫 | 不先断言一定是独立纸图；载体待考 |
-| `it_gaochangguwu` | 玄上6古玩 | 原著线可记录 / 取得，改命硬条件要求永久放弃“高阶遗物候选”时不得同时发放 | 具体单件类别与名称待考；不升级为神兵 |
+| `it_gaochangguwu` | 玄上6古玩 | C05 清点后可记录 / 取得；与 `dc_10_07` 的牺牲槽是两件不同对象 | 具体单件类别与名称待考；取得它不影响主改命，也不升级为神兵 |
+| D07 高阶固定遗物槽（正式物品 ID 待 `design/10` 登记） | 地上9遗物 | `dc_10_07` 取走或永久封藏；先救人且封藏才写 `high_relic_abandoned=true` | 不得复用玄上6的 `it_gaochangguwu`；未有正式 ID 前不可入包，只能走选择状态 |
 | `it_baima` | 地中8坐骑 | 李文秀人物线；所有权与临时骑乘分开 | 不作为 C05 留住人物的奖励 |
 | `it_tianshu_10` | 天书实物 | C05 两线共用 | 天书之力变体见 §5 与 `design/13` |
 
@@ -836,18 +837,22 @@ Boss 模板另含 atk ×1.25、def ×1.20、mp ×2、评级 +15、spd ×1.06、�
 
 ### 9.7 前代传承源与合成
 
-AR-13 指定的 `design/20-legacy-inheritance.md` 在当前仓库不存在。因此本稿不能可靠列出传承源目录、`frag_*` / `lg_*` / `rs_*`、后人、宝藏、遗迹、残本或可合成项目；擅自创建会违反 ID 先检索和唯一归属。
+本节只把 `design/20` §9 的既有传承源挂到本界开放区域，不重定义概率、三卷修炼、关键信物、校合条件或防刷。白马开放 6 区，所以按 `ceil(6/2)=3`：单周目主载体最多 3、其中后人最多 2、新残本最多 6、新信物最多 3；下表 8 条是**合法候选池**，不是一轮全部出现。每条仍须通过 `design/20` §2.7 的完整来源、消隐事件、路线、地点与 NPC 生存态硬过滤；需 `manual_lost` / `lineage_broken` 而存档未提交者保持 `sealed`。
 
-本版只保留不依赖缺失目录的事实：
+| 传承源 | 本界合法落点与载体 | 三卷 / 关键信物 | 白马可否完成校合 | 关键前置与当界结果 |
+|---|---|---|---|---|
+| `lgs_huangshang_jiuyin` | `rg_guanzhong` 终南支点；`cache_jiuyin_zhongnan` 文献 / 石刻链 | `frag_jiuyin_zonggang`、`frag_jiuyin_lianqi`、`frag_jiuyin_yongfa`；`it_xinwu_jiuyin_jiaokan` | 可；材料与硬条件齐全时 | 须已有 `legacy/jiuyin/manual_lost`，并满足 C12 与任一 `lg_jiuyin` 武学 6 重；真实 12、当界默认有效 9、≤8 重 |
+| `lgs_gumu_yunv` | `rg_guanzhong` 终南隐脉；`cache_yunv_gumu` 密室 / 守传者链 | `frag_yunv_shierduo`、`frag_yunv_shiershao`、`frag_yunv_suxin`；`it_xinwu_yunv_shuangyin` | 可 | C10、阴性内功、古墓心法前置与羁绊≥60 的护法同伴【建议值】；卷名对应仍 **（待考）**；真实 10、当界默认有效 9、≤8 重 |
+| `lgs_jiuyang_zhenjing` | `rg_xiyu_nanjiang` 昆仑山道局部点；`cache_jiuyang_kunlun` 洞藏 / 医家校本链 | `frag_jiuyang_yangmai`、`frag_jiuyang_huti`、`frag_jiuyang_yuanyuan`；`it_xinwu_jiuyang_jiaoben` | 可 | 须已有 `legacy/jiuyang/manual_lost`，并满足 C12 与资质硬门槛；真实 12、当界默认有效 9、≤8 重 |
+| `lgs_mingjiao_qiankun` | `rg_xiyu_nanjiang` 光明顶秘道专线；`cache_qiankun_guangming` 石刻 / 旧部链 | `frag_qiankun_yinqian`、`frag_qiankun_nuoyi`、`frag_qiankun_qiceng`；`it_xinwu_qiankun_shenghuolingyin` | 可 | C11、光明心法 / 九阳 OR 前置与守传认可；真实 11、当界默认有效 9、≤8 重 |
+| `lgs_dugu_jiujian` | `rg_guanzhong` 华山局部点，时代名引用 `city_huayin`“华阴县”；`cache_dugu_siguoya` 试招链 | `frag_dugu_zongjue`、`frag_dugu_pobing`、`frag_dugu_poqi`；`it_xinwu_dugu_jianshi` | 可 | 须已有 `legacy/dugu9/lineage_broken`，满足 C12 并见识四类兵器；真实 12、当界默认有效 9、≤8 重 |
+| `lgs_xueshan_taxue` | `rg_qingzang` 雪线 / 风洞；`cache_taxue_xuegu` 足迹石刻链 | `frag_taxue_lingxue`、`frag_taxue_wuhen`、`frag_taxue_lingxiao`；`it_xinwu_taxue_xueyin` | 可 | C8、阴性内功、雪山剑法前置或有效覆写；真实 / 有效均 8、≤8 重 |
+| `lgs_huashan_hunyuan` | `rg_guanzhong` 华山局部点，时代名引用 `city_huayin`“华阴县”；`cache_hunyuan_huashan` 隐院 / 崖壁链 | `frag_hunyuan_yangqi`、`frag_hunyuan_zhangjin`、`frag_hunyuan_heyi`；`it_xinwu_hunyuan_zhangyin` | 可 | C9、阳性内功、混元掌 / 华山前置或守传覆写；真实 / 有效均 9、≤8 重 |
+| `lgs_xuedao_jing` | `rg_qingzang` 雪谷遗物；`cache_xuedao_xuegu` 残页经匣链 | `frag_xuedao_xuexi`、`frag_xuedao_fuxue`、`frag_xuedao_jingdao`；`it_xinwu_xuedao_xueyin` | 可，是 `ch09_liancheng` 最直接的本界续接 | C9、阴性内功，保留血刀基础 / 心法与路线硬条件；真实 / 有效均 9、≤8 重 |
 
-| 可确认接口 | 本界处理 | 是否为传承合成 |
-|---|---|---|
-| `ch09_liancheng` → 本界书眠携带 | 按 1/1/1、−4、8 重上限重算 | 否，是通用书眠 |
-| 高昌古物与迷宫 | 作为本界物品 / 场景，不宣称属于某 `lg_*` | 否 |
-| 吕梁 / 华辉战斗印证 | 使用现有 `sk_*`，不编造残本 ID | 否 |
-| 藏史取回 | 仅按 `design/02` 已有规则；本章不指定新古迹 | 否 |
+`lgs_shenzhao_jing` 与 `lgs_liancheng_tangshi` 虽从 `ch10` 起时序合法，但目录首选 `city_jingzhou/rg_jingxiang`，不在本界六个开放区；本版不把它们硬搬到回疆。若玩家先前已取得其卷或信物，它们按 `design/20` §11 随书眠保留；一旦三卷、信物与配方硬条件齐全，也可在本界安全据点校合，本章只是不新增两源的地表载体。
 
-默认值是“本界没有可在当前数据中声明完成的前代传承合成”。待 `design/20` 落盘后，必须用其真实 `frag_* / lg_* / rs_*` 回填地点、信物与条件，再解除本节校验阻断。
+所有“可完成”都表示材料与硬条件齐全时允许安全校合，不表示开局赠送、必定抽中或保证在单界集齐三卷；第三机会仍按 `design/20` §5.4 放到后续地点或下一书界，除非来源配置明确允许单界完结。华山 / 昆仑节点只占区域内传承局部点，不增加第 11 座可制作城市街区。完整产物保留真实品阶；依 AR-13b 与 `design/20` §7.6 的执行默认，白马 `legacyWorldCap=9`，故天级全本当界有效品阶 `min(sourceGrade,9)=9`、层数上限 8；若其基准提案 H1-P04 未获接纳，则实现必须切回 Canon 现行完整本土来源口径，不得让两套算法静默并存。传承链占用本文既有支线 / 奇遇预算：优先把入选源挂到未锁定的奇遇替代阶段，不额外突破 10 条完整奇遇链。
 
 ---
 
@@ -1009,14 +1014,15 @@ mazeInstance:
 
 ### 11.5 前代传承与后续传承
 
-本界可验证的传承接口已列于 §9.7。由于 `design/20-legacy-inheritance.md` 缺失，本章不创建 `frag_* / lg_* / rs_*`，也不宣称任何合成可以完成。后续上游补齐时应检查：
+本界可调度的前代候选、卷、信物、地点与校合条件见 §9.7；运行态和跨界保留完全引用 `design/20` §11。与相邻书界的最小接口如下：
 
-- `ch09` 是否有可在清初回疆出现的后人、残本或藏史遗迹；
-- 高昌古物是否只是本界收藏品，还是某个已登记同源组的信物；
-- `ch10` 放弃遗物是否应留下“信息型传承”而非实物；
-- `ch11` 官道 / 镖局是否承接段霜旧旗，但不能把晋威和威信合并。
+- `ch09_liancheng` 的 `lgs_xuedao_jing` 可在本界 `rg_qingzang` 首次投放；`lgs_shenzhao_jing` 与 `lgs_liancheng_tangshi` 因首选荆襄、不在本界六区而只保留已得卷 / 信物，不迁址硬投。
+- 已得 `frag_*`、`it_xinwu_*`、源状态与机会收据进入传承匣并跨书眠保留；未完成地表缓存、家丁、合同与排班按 `design/20` / `design/16` 清理。
+- `it_gaochangguwu` 是玄上6普通收藏品，不是 D07 的地上9牺牲遗物，也不是任一前代源的 `it_xinwu_*`；三者不可互相替代。
+- 以本界为来源的 `lgs_gaochang_shouhu` 从 `ch11_yuanyang` 才可投；其三卷 `frag_gaochang_men`、`frag_gaochang_jiguan`、`frag_gaochang_shoujian`，信物 `it_xinwu_gaochang_bihua` 与缓存 `cache_gaochang_migong` 均由 `design/20` §9.7.6 定义，本界只写入来源事实，不提前发卷。
+- `ch11` 官道 / 镖局可承接段霜旧旗彩蛋，但不得把晋威与威信合并，也不得把普通跨书彩蛋算作传承主载体。
 
-默认依旧是零项可合成，避免用未定义的传承系统制造跨界奖励。
+传承校合完成后，武学实例仍按 `design/02` 进入核心携带 / 残篇流程；三卷不会替代普通残篇，普通藏史也不能收纳 `frag_*` 或 `it_xinwu_*`。
 
 ### 11.6 书眠 YAML 接口
 
@@ -1149,6 +1155,7 @@ B = 11.4×8 = 91.2 两
 | 武学 | 高昌、哈萨克、吕梁与华辉图鉴中标为 expanded / canonExpanded 的技能设计 | 本章不新增图鉴外 `sk_*` |
 | 经济 | 12 资源点、10 营生场所、职位任务与本界预算分配 | 统一规则来自 `design/16`；地点经营状态原创 |
 | 迷宫 | 固定拓扑、四层证据、机关状态机、UI、保底出口 | 不提供现实遗址定位、盗掘或危险机关制作指南 |
+| 传承投放 | 把 `design/20` 的 8 条合法候选挂到关中、南疆与青藏既有节点 | 三卷、信物、缓存与完整武学均为上游既有定义；本章只做时代投放，不把它们冒充原著遗物 |
 | 改命 | 五项硬条件、封针缴刃、分路救治 | 只改变锚点三结局；不改下一书界历史起点 |
 | 跨书 | 冰纹化沙、旧旗澄清、一囊水等彩蛋 | 只作回响，不令人物本体无条件跨界 |
 
@@ -1197,7 +1204,7 @@ B = 11.4×8 = 91.2 两
 | Boss | 6 个遭遇；D3 基础均 1 阶段 |
 | 资源 / 营生 | 12 / 10，分布约束满足 |
 | 天级 | 武学 0、装备 0；未越过基准闭集 |
-| 前代传承 | 上游 `design/20` 缺失，默认 0 个可声明合成，无伪造 ID |
+| 前代传承 | 8 条区域相容候选；单周目主载体≤3、后人≤2、新残本≤6、新信物≤3；可完成项目按 §9.7 硬过滤 |
 
 ---
 
@@ -1263,7 +1270,8 @@ B = 11.4×8 = 91.2 两
 | BM-V13 | 主线 qg≤2，支 / 隐 qg≤3，主线有替代解 | qg3 成为主线硬门禁 |
 | BM-V14 | `mer_du` 不作为新运行态引用 | 应使用 `mer_dumai` 却继续输出旧 ID |
 | BM-V15 | 代码围栏成对、Markdown 表列数一致、相对链接存在 | 任一结构错误 |
-| BM-V16 | 前代传承仅引用已存在目录 ID | `design/20` 缺失时出现新 `frag_* / lg_* / rs_*` |
+| BM-V16 | 前代传承只引用 `design/20` 已定义的 `lgs_* / frag_* / cache_* / it_xinwu_*`，且本界主载体≤3、后人≤2、新卷≤6、新信物≤3 | 自建传承 ID、把 `lg_* / rs_*` 当新源实例、超配额，或把不在六区的荆襄源硬搬入本界 |
+| BM-V17 | D07 地上9牺牲遗物槽与玄上6 `it_gaochangguwu` 分离 | 普通高昌古物的取得 / 放弃改变 `high_relic_abandoned`，或未登记遗物 ID 被写入背包 |
 
 ### 数值与流程用例
 
@@ -1283,7 +1291,9 @@ B = 11.4×8 = 91.2 两
 | BM-T12 | 白马 Lv46 Boss 节奏 | 约 38.9 整队命中等价 / 13.5 主角行动；敌约 10.9 命中 / 11.4 行动；命中 93.0% / 95.4% |
 | BM-T13 | 搭档 `ct=299/300` | 299 合击不可用；300 可用，结算后搭档 ct=0 |
 | BM-T14 | 取得天书后选“了却尘缘” | 进入余韵，未锁支线可继续；资源 / 合同直到正式书眠才结清 |
-| BM-T15 | `design/20` 文件不存在 | 前代传承合成表为空并报上游依赖，不生成临时 ID |
+| BM-T15 | 6 个开放区进入传承调度 | `legacyCarrierCap=ceil(6/2)=3`、`heirCarrierCap=ceil(3/2)=2`、新残本≤6、新信物≤3；8 条候选按硬过滤和确定性 RNG 取舍 |
+| BM-T16 | 在白马完成真实 12 品传承全本（H1-P04 默认启用） | `sourceGrade=12`，`effGrade=min(12,9)=9`，`effLayer≤8`；关闭 H1-P04 时显式切回 Canon 分支 |
+| BM-T17 | 取得 `it_gaochangguwu` 后在 D07 先救人并封藏高阶槽 | 普通古物仍可合法持有；`rescue_before_treasure=true`、`high_relic_abandoned=true` |
 
 ### 建议执行命令
 
@@ -1308,6 +1318,7 @@ rg -n 'rg_10_|rg_xiyu\b|mer_du\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/des
 | BM-S04 | 沈青禾指点 `1500/800/500bp` | 沿 `design/15` 通用建议；由任务 / 人物系统落指导额度 |
 | BM-S05 | 具名 Boss 气血为同级模板 0.70–0.90，瓦耳拉齐默认 0.80、马家骏 0.70 | 角色配表以合法先天、武学、装备实算后替换 |
 | BM-S06 | 场所关系 20 开铁场代课 | `design/12` 统一关系阈值审校 |
+| BM-S07 | `lgs_gumu_yunv` 校合需羁绊≥60 的护法同伴；传承校勘门槛与 H1-P04 开关沿 `design/20` | `design/20` / 人物关系实现统一读取，章节不得另设第二套值 |
 
 ### 本文依赖的上游事实
 
@@ -1317,7 +1328,8 @@ rg -n 'rg_10_|rg_xiyu\b|mer_du\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/des
 - `design/11`、`design/19`、`map/cities.yaml` 与 `map/jianghu-ch10.svg` 共同提供本时代地理。
 - `design/03` / `04` 提供 Boss 数值与节奏；`design/16` 提供资源、营生和门派经济。
 - `design/07-set-system.md` 当前不存在，因此本章不定义套装效果。
-- `design/20-legacy-inheritance.md` 当前不存在，因此 AR-13 的精确传承目录与合成不能完成。
+- 已解决：`design/20-legacy-inheritance.md` 已落盘，本章 §9.7 已按其目录、区域过滤与白马配额回填前代传承候选及可完成校合。
+- `design/10` 尚未给 D07 地上9牺牲遗物登记正式 `it_*`；本章以不可入包的剧情槽实现，并与 `it_gaochangguwu` 分离。
 
 ### 对基准的修改提案
 
@@ -1342,6 +1354,7 @@ rg -n 'rg_10_|rg_xiyu\b|mer_du\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/des
 | BM-O04 | `npc_ningqiangdao` 是否迁移为姓宋对应 ID | 沿用现有 ID 兼容存档，显示称谓按 story，不再创建并存 ID |
 | BM-O05 | 前界同伴能否实体重逢 | 当前为 0；只有 `design/18` 补 `appearanceChapters` 后开放 |
 | BM-O06 | 套装四个候选标签的实际件数与效果 | 不定义；待 `design/07-set-system.md` 落盘 |
-| BM-O07 | AR-13 的前代传承与本界可合成项目 | 当前为 0；待 `design/20` 真实目录后回填 |
+| BM-O07 | AR-13 的前代传承与本界可合成项目 | 已解决：§9.7 列 8 条区域相容候选，单周目最多 3 个主载体；材料齐全者可按 `design/20` 校合 |
 | BM-O08 | 青龙会扩展模块是否启用 | 默认关闭；即使开启也只作支线敌对，不侵入原著主线 |
 | BM-O09 | 玩法定年是否保留 1725–1726 | 保留为原创定年，直到原著与时代专项给出更可靠锚点 |
+| BM-O10 | D07 地上9固定牺牲遗物的正式 ID 与表现 | 默认保持不可入包剧情槽；待 `design/10` 登记后替换，但不得复用 `it_gaochangguwu` |
