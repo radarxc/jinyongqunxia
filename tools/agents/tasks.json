@@ -3990,25 +3990,340 @@
       "web": false
     },
     {
-      "id": "F2",
+      "id": "F2a",
       "phase": "F",
       "wave": 4,
       "kind": "revise",
-      "title": "全局一致性审计（ID、冲突落实、基准同步、数值链）",
-      "prompt": "F2-audit.md",
+      "title": "全局审计 · 设计核心 A（01/02/03/06/08/09/10/11）",
+      "prompt": "F2-group.md",
       "deps": [
         "A3",
-        "L1",
-        "L1b",
+        "E3",
+        "C2",
         "F1a",
         "F1b",
         "F1t",
         "F1n",
-        "E3"
+        "L1b"
+      ],
+      "writes": [
+        "docs/design/01-vision-and-core-loop.md",
+        "docs/design/02-timeline-and-world-tiers.md",
+        "docs/design/03-attributes.md",
+        "docs/design/06-buff-system.md",
+        "docs/design/08-terrain-and-qinggong.md",
+        "docs/design/09-combat-system.md",
+        "docs/design/10-items-and-equipment.md",
+        "docs/design/11-open-world.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "设计核心 A",
+        "doc_set": "- `docs/design/01-vision-and-core-loop.md`\n- `docs/design/02-timeline-and-world-tiers.md`\n- `docs/design/03-attributes.md`\n- `docs/design/06-buff-system.md`\n- `docs/design/08-terrain-and-qinggong.md`\n- `docs/design/09-combat-system.md`\n- `docs/design/10-items-and-equipment.md`\n- `docs/design/11-open-world.md`",
+        "id_scope": "`bf_*`（06）；`aoe_*`、`bsc_*`、`cmb_*`、`ai_*`、`enc_*` 等战斗与 Boss 脚本 ID（09）；`it_*`、`eq_*`、`rc_*` 等物品 / 装备 / 配方（10，含 `design/20` 的信物 `it_xinwu_*`）；`rg_*`、`city_*`、`sc_*` 等区域与场景（11；坐标数据由 F2b 的 19 / map 负责）；`rs_*`、`lg_*`（02）；地形与轻功相关 ID（08）；属性与技艺键（03）。",
+        "extra": "09 登记各书界报告新增的 Boss 脚本、合击与 AI 档，范围模板旧名按 09 v2.0 重命名表处理；06 收录 `design/15` 的 15 个冲穴 Buff（M1.R 报告）与各报告点名的缺失 Buff；10 登记 `design/20` 的 39 件信物与各书界点名的物品（可用紧凑表）；11 的区域采用三十区终稿并与 `design/map/regions.yaml` 一致（YAML 由 F2b 改，不一致处写进报告）；CN-11（08 六角尺度）若 F1a 未落实则落实。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/01-vision-and-core-loop.md",
+          "docs/design/02-timeline-and-world-tiers.md",
+          "docs/design/03-attributes.md",
+          "docs/design/06-buff-system.md",
+          "docs/design/08-terrain-and-qinggong.md",
+          "docs/design/09-combat-system.md",
+          "docs/design/10-items-and-equipment.md",
+          "docs/design/11-open-world.md"
+        ],
+        "fences": [
+          "docs/design/01-vision-and-core-loop.md",
+          "docs/design/02-timeline-and-world-tiers.md",
+          "docs/design/03-attributes.md",
+          "docs/design/06-buff-system.md",
+          "docs/design/08-terrain-and-qinggong.md",
+          "docs/design/09-combat-system.md",
+          "docs/design/10-items-and-equipment.md",
+          "docs/design/11-open-world.md"
+        ]
+      }
+    },
+    {
+      "id": "F2b",
+      "phase": "F",
+      "wave": 4,
+      "kind": "revise",
+      "title": "全局审计 · 设计核心 B（12–20、NPC 名录、地图数据）",
+      "prompt": "F2-group.md",
+      "deps": [
+        "A3",
+        "E3",
+        "C2",
+        "F1a",
+        "F1b",
+        "F1t",
+        "F1n",
+        "L1b"
+      ],
+      "writes": [
+        "docs/design/12-quests-npc-factions.md",
+        "docs/design/13-progression-and-endings.md",
+        "docs/design/14-ui-ux-mobile.md",
+        "docs/design/15-meridians-and-acupoints.md",
+        "docs/design/16-resources-and-estates.md",
+        "docs/design/17-sects-compendium.md",
+        "docs/design/18-npc-and-companions.md",
+        "docs/design/19-world-map.md",
+        "docs/design/20-legacy-inheritance.md",
+        "docs/design/catalog/npcs-*.md",
+        "docs/design/map/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "设计核心 B",
+        "doc_set": "- `docs/design/12-quests-npc-factions.md`\n- `docs/design/13-progression-and-endings.md`\n- `docs/design/14-ui-ux-mobile.md`\n- `docs/design/15-meridians-and-acupoints.md`\n- `docs/design/16-resources-and-estates.md`\n- `docs/design/17-sects-compendium.md`\n- `docs/design/18-npc-and-companions.md`\n- `docs/design/19-world-map.md`\n- `docs/design/20-legacy-inheritance.md`\n- `docs/design/catalog/npcs-*.md`\n- `docs/design/map/**`",
+        "id_scope": "`q_*`（非主线）、`fl_*` / `flag_*`、任务 DSL 键（12）；`end_*`、`ach_*`、`tsp_*`、`echo_*`（13）；`mer_*`、`ap_*`、`zt_*`（15）；`res_*`、`rp_*`、`sv_*`、`biz_*`、`job_*`（16）；`sect_*`（17）；`npc_*`（18 与 `catalog/npcs-*.md`）；地图坐标与城市 / 门派落点数据（19 与 `design/map/**`）；`lgs_*`、`frag_*`、`cache_*`（20）。",
+        "extra": "18 与 `catalog/npcs-*.md` 补录各剧情 / 书界报告点名的缺失 NPC（按 18 的规则写生卒年与招募分级；只需人物卡或名录行，不写长篇）；15 给出 `mer_*` 旧短 ID → 正式 ID 的迁移表（CN-07，图鉴侧由 F2c 回写）；17 回写候选武学 ID 为图鉴实际 ID（CN-02、CN-03，若 F1b 未落实）；13 接收各书界的本地结局键与 `tsp_NN_canon/fate` 映射；`design/map/**` 与 11 的三十区终稿、17 与各剧情的门派驻地一致。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/12-quests-npc-factions.md",
+          "docs/design/13-progression-and-endings.md",
+          "docs/design/14-ui-ux-mobile.md",
+          "docs/design/15-meridians-and-acupoints.md",
+          "docs/design/16-resources-and-estates.md",
+          "docs/design/17-sects-compendium.md",
+          "docs/design/18-npc-and-companions.md",
+          "docs/design/19-world-map.md",
+          "docs/design/20-legacy-inheritance.md"
+        ],
+        "fences": [
+          "docs/design/12-quests-npc-factions.md",
+          "docs/design/13-progression-and-endings.md",
+          "docs/design/14-ui-ux-mobile.md",
+          "docs/design/15-meridians-and-acupoints.md",
+          "docs/design/16-resources-and-estates.md",
+          "docs/design/17-sects-compendium.md",
+          "docs/design/18-npc-and-companions.md",
+          "docs/design/19-world-map.md",
+          "docs/design/20-legacy-inheritance.md"
+        ]
+      }
+    },
+    {
+      "id": "F2c",
+      "phase": "F",
+      "wave": 4,
+      "kind": "revise",
+      "title": "全局审计 · 武学与数值（04/05/07、武学图鉴、伤害模拟）",
+      "prompt": "F2-group.md",
+      "deps": [
+        "A3",
+        "E3",
+        "C2",
+        "F1a",
+        "F1b",
+        "F1t",
+        "F1n",
+        "L1b"
+      ],
+      "writes": [
+        "docs/design/04-damage-formula.md",
+        "docs/design/05-martial-arts-system.md",
+        "docs/design/07-set-system.md",
+        "docs/design/catalog/skills-*.md",
+        "tools/balance/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学与数值",
+        "doc_set": "- `docs/design/04-damage-formula.md`\n- `docs/design/05-martial-arts-system.md`\n- `docs/design/07-set-system.md`\n- `docs/design/catalog/skills-*.md（全部武学图鉴）`\n- `tools/balance/**`",
+        "id_scope": "`sk_*`、`mv_*`、`ps_*`（05 与各武学图鉴）；`set_*`（07）；内功性质 `nature` 与学习来源枚举（05）。",
+        "extra": "`python tools/balance/damage_sim.py --check` 必须通过；各图鉴的 `aoe_*` 按 09 v2.0 重命名表更新、`mer_*` 按 15 的迁移表更新（CN-07）；CN-01（skills-wujue 预算口径）；skills-wuyue 独孤六式核算式改为 1.147（C3 报告）；05 §14 各图鉴实际数按 CX* 与 C2 之后的结果更新（按唯一 `sk_*` 并集），并重算 §14.4 十四界可习得池；`design/20` 新增的 `legacy_fragment` / `legacy_synthesis` 学习来源与越女全本形态在 05 / skills-general 落地。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/04-damage-formula.md",
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/07-set-system.md"
+        ],
+        "fences": [
+          "docs/design/04-damage-formula.md",
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/07-set-system.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "F2d1",
+      "phase": "F",
+      "wave": 4,
+      "kind": "revise",
+      "title": "全局审计 · 剧情与书界 01–07（story、chapters）",
+      "prompt": "F2-group.md",
+      "deps": [
+        "A3",
+        "E3",
+        "C2",
+        "F1a",
+        "F1b",
+        "F1t",
+        "F1n",
+        "L1b"
+      ],
+      "writes": [
+        "docs/design/story/01-*.md",
+        "docs/design/story/02-*.md",
+        "docs/design/story/03-*.md",
+        "docs/design/story/04-*.md",
+        "docs/design/story/05-*.md",
+        "docs/design/story/06-*.md",
+        "docs/design/story/07-*.md",
+        "docs/design/chapters/01-*.md",
+        "docs/design/chapters/02-*.md",
+        "docs/design/chapters/03-*.md",
+        "docs/design/chapters/04-*.md",
+        "docs/design/chapters/05-*.md",
+        "docs/design/chapters/06-*.md",
+        "docs/design/chapters/07-*.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "剧情与书界 01–07",
+        "doc_set": "- `docs/design/story/01…07-*.md`（剧情 01–07）\n- `docs/design/chapters/01…07-*.md`（书界 01–07）",
+        "id_scope": "各书主线幕 `q_NN_main_*`、选择节点 `dc_NN_*`、锚点与本地结局键（story）；书界内场景键与本书界局部 ID（chapters）。其余前缀只引用，不在本组登记。",
+        "extra": "chapters 与 story 两侧的主线 ID、选择节点、结局键、NPC / 门派 / 区域 ID 一致（区域用三十区终稿）；十四部书界格式统一（以基准 §17 模板与已审校书界为准，只改表格列名与小节名，不重写内容）；书界之间的跨书接口两侧一致（书眠年数、回响、同伴重逢、前代传承投放上限与 `design/20` 一致）。 书界 08–14 由并行任务处理；与相邻书界（07↔08）的跨书接口，只改本组一侧，另一侧的不一致写进报告交 F2 汇总。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/story/01-tianlong.md",
+          "docs/design/chapters/01-tianlong.md"
+        ]
+      }
+    },
+    {
+      "id": "F2d2",
+      "phase": "F",
+      "wave": 4,
+      "kind": "revise",
+      "title": "全局审计 · 剧情与书界 08–14（story、chapters）",
+      "prompt": "F2-group.md",
+      "deps": [
+        "A3",
+        "E3",
+        "C2",
+        "F1a",
+        "F1b",
+        "F1t",
+        "F1n",
+        "L1b"
+      ],
+      "writes": [
+        "docs/design/story/08-*.md",
+        "docs/design/story/09-*.md",
+        "docs/design/story/10-*.md",
+        "docs/design/story/11-*.md",
+        "docs/design/story/12-*.md",
+        "docs/design/story/13-*.md",
+        "docs/design/story/14-*.md",
+        "docs/design/chapters/08-*.md",
+        "docs/design/chapters/09-*.md",
+        "docs/design/chapters/10-*.md",
+        "docs/design/chapters/11-*.md",
+        "docs/design/chapters/12-*.md",
+        "docs/design/chapters/13-*.md",
+        "docs/design/chapters/14-*.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "剧情与书界 08–14",
+        "doc_set": "- `docs/design/story/08…14-*.md`（剧情 08–14）\n- `docs/design/chapters/08…14-*.md`（书界 08–14）",
+        "id_scope": "各书主线幕 `q_NN_main_*`、选择节点 `dc_NN_*`、锚点与本地结局键（story）；书界内场景键与本书界局部 ID（chapters）。其余前缀只引用，不在本组登记。",
+        "extra": "chapters 与 story 两侧的主线 ID、选择节点、结局键、NPC / 门派 / 区域 ID 一致（区域用三十区终稿）；十四部书界格式统一（以基准 §17 模板与已审校书界为准，只改表格列名与小节名，不重写内容）；书界之间的跨书接口两侧一致（书眠年数、回响、同伴重逢、前代传承投放上限与 `design/20` 一致）。 书界 01–07 由并行任务处理；与相邻书界（07↔08）的跨书接口，只改本组一侧，另一侧的不一致写进报告交 F2 汇总。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/story/08-luding.md",
+          "docs/design/chapters/08-luding.md"
+        ]
+      }
+    },
+    {
+      "id": "F2t",
+      "phase": "F",
+      "wave": 4,
+      "kind": "revise",
+      "title": "全局审计 · 技术与工具（tech/01–09、ID 检查脚本）",
+      "prompt": "F2-group.md",
+      "deps": [
+        "A3",
+        "E3",
+        "C2",
+        "F1a",
+        "F1b",
+        "F1t",
+        "F1n",
+        "L1b"
+      ],
+      "writes": [
+        "docs/tech/**",
+        "tools/lint/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "技术与工具",
+        "doc_set": "- `docs/tech/*.md（01–09）`\n- `tools/lint/**`",
+        "id_scope": "技术文档自有的存档 / 事件 / 协议键（如 `save_*`）；ID 检查脚本本身。",
+        "extra": "修正 `tools/lint/check_ids.py` 的误报：任务内局部键（`tr_*`、`st_*`、`edge_*` 等）与 YAML 局部作用域键、文档中明确标注的示例 ID——给出明确的作用域规则或白名单并说明理由；更新 `tools/lint/test_check_ids.py`，`python -m unittest tools/lint/test_check_ids.py` 必须通过。技术文档中的示例 ID 改为真实 ID 或按脚本约定标为示例；tech/04、tech/05 接收 12 / 15 / 16 / 17 / 18 / 20 的正式 schema 与 v1.2 新前缀（若 F1t 未落实）。"
+      },
+      "validate": {
+        "exists": [
+          "tools/lint/check_ids.py"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "tools/lint/test_check_ids.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "F2",
+      "phase": "F",
+      "wave": 4,
+      "kind": "revise",
+      "title": "全局一致性终审汇总（分组遗留、ID 闭合、冲突 / AR / CN / 基准同步汇总表、数值链抽查）",
+      "prompt": "F2-audit.md",
+      "deps": [
+        "F2a",
+        "F2b",
+        "F2c",
+        "F2d1",
+        "F2d2",
+        "F2t"
       ],
       "writes": [
         "docs/**",
-        "tools/lint/**"
+        "tools/lint/**",
+        "tools/balance/**"
       ],
       "validate": {
         "exists": [
@@ -4018,6 +4333,11 @@
           [
             "{python}",
             "tools/lint/check_ids.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
           ]
         ]
       },
