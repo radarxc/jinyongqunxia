@@ -5,7 +5,7 @@
 > 引用而不重定义：属性与成长曲线见 `design/03`；伤害乘区与节奏见 `design/04`；内功性质、层数、辅运与走火分级见 `design/05`；效果原语与 Buff 本体见 `design/06`；丹药见 `design/10`；打坐与世界时间见 `design/11`；师父权限见 design/12；成长、轮回与天书见 `design/13`；界面见 design/14；数据管线见 tech/04；运行时实现见 tech/05。
 > 标注约定：**（原创扩展）** = 本作游戏化规则；**（待考）** = 原著事实尚待三联/广州修订版逐字核对；**（待核实）** = 技术事实未联网确认；**（待实测）** = 需真机或真实玩法验证；**【建议值】** = 依赖其他归属文档接入，文末登记。
 
-版本：v1.0（M1，2026-09-26）。规则与奖励均为**（原创扩展）**；穴名与经络名称采用真实术语，不把游戏效果解释为医学功效。
+版本：v1.0（M1，2026-09-26）；审校 M1.R（2026-09-26）。规则与奖励均为**（原创扩展）**；穴名与经络名称采用真实术语，不把游戏效果解释为医学功效。
 
 ## 0. 阅读指南
 
@@ -776,7 +776,7 @@ failMargin        = u − PsuccessBp       // 失败时至少为 0
 | 百会 `ap_dumai_baihui` | `bf_ap_baihui` | 开战时自身集气 +15；召唤、复活或换人重挂不再触发 | `onBattleStart` + `ctShift 15` |
 | 涌泉 `ap_zushaoyin_yongquan` | `bf_ap_yongquan` | 每次自身行动周期内第一次被强制位移后集气 +20；自身主动移动不触发 | `onDisplaced` + `ctShift 20`，`limitPerTurn:1` |
 
-三项均暂用 06 现有的 `origin.type=system`，`origin.id` 填穴道 ID；固定系统品阶 12、不可普通驱散、无 `G/Lb` 放大。品阶只用于 schema 完整性，不使它们与免疫做品阶对抗。
+三项的运行时 Buff 实例来源暂用 06 施加流程中的 `origin.type=system`，`origin.id` 填穴道 ID；这不是 `BuffDef.origin` 的考据来源字段（`canon/expanded/canonExpanded`）。固定系统品阶 12、不可普通驱散、无 `G/Lb` 放大。品阶只用于 schema 完整性，不使它们与免疫做品阶对抗。06 当前公开的 `BuffDef` 类型尚未承载该实例来源对象，须由 tech/05 的施加请求 / 实例 schema 补齐，不能把 `BuffDef.origin` 改填 `system`。
 若 06 未收录这些 ID，静态穴奖仍可工作，但内容构建必须报“未解析被动”而不是悄悄忽略。
 
 ### 6.5 三个完成里程碑
@@ -845,7 +845,7 @@ F(k) = 1 + 0.05×k，k=已完成转数 0..9
 | 9 | 1.45 | `bf_zt_jiuzhuan` | 每战第一次将获得 `bf_neishang` 时拒绝该实例；不挡其他 `injury`、剧情伤势或已有实例加层 |
 
 静态项用 `modStat`；四转用 `onResisted+ctShift`，七转用 `onParry+restoreMp`，八转用 `onHpBelow+modRage`，九转用 `onBuffApplied` 精确匹配 `bf_neishang` 并消费一次战斗 charge。
-所有 `bf_zt_*` 都是永久、固定系统品阶 12、不可普通驱散，暂用 `origin.type=system` 并以对应 `zt_*` 作 `origin.id`；不乘 `G/Lb`，不计入非永久增益数量。第九转只拒绝“新建实例”，不能被读档或移除重挂刷新 charge。
+所有 `bf_zt_*` 都是永久、固定系统品阶 12、不可普通驱散；运行时实例来源暂用 `origin.type=system` 并以对应 `zt_*` 作 `origin.id`，而 `BuffDef.origin` 仍按 06 的考据来源枚举填写 `expanded`。这些被动不乘 `G/Lb`，不计入非永久增益数量。第九转只拒绝“新建实例”，不能被读档或移除重挂刷新 charge。
 
 ### 7.3 满九转静态奖励总账
 
@@ -1067,7 +1067,7 @@ schemaVersion / lastAppliedMigration
 | 九转 | `bf_zt_jiuzhuan` | mechanic | `onBuffApplied` 拒绝新 `bf_neishang`、战斗 charge |
 
 接口缺口：06 当前钩子表有 `onResisted` 和 `onBuffApplied`，但 `onBuffApplied` 的 `ctx.buff` 必须能区分“新建实例”与“已有实例加层”；若不能，九转实现应增加只读 `ctx.applyMode`，而不是扩大为全部内伤免疫。
-所有这些被动暂用 06 已存在的 `origin.type=system`；若未来 06 增加 `meridian` origin，应做 schema 迁移，不允许同一被动以两种 origin 并存。
+所有这些被动的运行时实例来源暂用 06 施加流程已有的 `origin.type=system`；06 `BuffDef.origin` 是另一项考据字段，本文新增定义均填 `expanded`。若未来运行时来源枚举增加 `meridian`，应做 schema 迁移，不允许同一被动以两种实例来源并存。
 
 ### 10.4 冲穴界面要点（交 design/14）
 
@@ -1085,13 +1085,14 @@ schemaVersion / lastAppliedMigration
 
 | 事件 | 载荷最小集 | 消费者 |
 |---|---|---|
-| `meridian.sessionSettled` | `sessionId,targetId,mode,costMp,rateH,progressBefore,progressAfter,attemptOrdinal,result` | 日志、存档、遥测 |
-| `meridian.acupointOpened` | `acupointId,meridianId,order,turn` | 属性重建、UI、成就 |
-| `meridian.meridianCompleted` | `meridianId,openedCount` | 里程碑派生、UI |
-| `meridian.milestoneReached` | `milestoneId` | 被动实例化、UI、成就 |
-| `meridian.turnCompleted` | `turnId,turn,scaleBp` | 奖励重建、MetaProfile 最大值 |
+| `meridian/sessionSettled` | `sessionId,targetId,mode,costMp,rateH,progressBefore,progressAfter,attemptOrdinal,result` | 日志、存档、遥测 |
+| `meridian/acupointOpened` | `acupointId,meridianId,order,turn` | 属性重建、UI、成就 |
+| `meridian/completed` | `meridianId,openedCount` | 里程碑派生、UI |
+| `meridian/circulationAdvanced` | `milestoneId` | 被动实例化、UI、成就 |
+| `meridian/turnCompleted` | `turnId,turn,scaleBp` | 奖励重建、MetaProfile 最大值 |
 
 事件是事务提交后的事实通知，不能成为奖励唯一存储。消费者以 `(runId,eventName,targetId)` 去重；重放事件只重建派生缓存，不可再次向基础属性加值。
+其中 `meridian/acupointOpened`、`meridian/completed`、`meridian/circulationAdvanced` 已与 tech/05 §11.1 的主题一致；`meridian/sessionSettled` 与 `meridian/turnCompleted` 是本文补充的正式需求，tech/05 收口时须登记载荷与顺序。
 
 ## 11. 数据结构、YAML 示例与确定性
 
@@ -1142,8 +1143,8 @@ unlock:
   minMainInnerLayer: 5
   requiresAnyCompletedMeridian: true
 completionRewards:
-  - { modifierId: ren_combo, target: combo, op: pp, valueMilliPp: 50 }
-  - { modifierId: ren_effres, target: effRes, op: flat, valueMilli: 1000 }
+  - { modifierId: ren_combo, stat: combo, op: pp, valueMilliPp: 50 }
+  - { modifierId: ren_effres, stat: effRes, op: flat, valueMilli: 1000 }
 ```
 
 ```yaml
@@ -1157,7 +1158,7 @@ routeKind: native
 sequence: 6
 barrierH: 565
 baseRewards:
-  - { modifierId: qihai_resheat, target: resHeat, op: pp, valueMilliPp: 100 }
+  - { modifierId: qihai_resheat, stat: resHeat, op: pp, valueMilliPp: 100 }
 passiveBuffs: [bf_ap_qihai]
 sourceRef: design/15 §3.14
 ```
@@ -1174,11 +1175,11 @@ name: 小周天
 kind: milestone
 requiresMeridians: [mer_renmai, mer_dumai]
 rewards:
-  - { modifierId: xzt_atkin, target: atkIn, op: pct, valueBp: 75 }
-  - { modifierId: xzt_mpmax, target: mpMax, op: pct, valueBp: 50 }
-  - { modifierId: xzt_mpregen, target: mpRegen, op: pp, valueMilliPp: 100 }
+  - { modifierId: xzt_atkin, stat: atkIn, op: pct, valueBp: 75 }
+  - { modifierId: xzt_mpmax, stat: mpMax, op: pct, valueBp: 50 }
+  - { modifierId: xzt_mpregen, stat: mpRegen, op: pp, valueMilliPp: 100 }
 passiveBuffs: [bf_zt_xiaozhoutian]
-event: meridian.milestoneReached
+event: meridian/circulationAdvanced
 ```
 
 ```yaml
@@ -1198,7 +1199,7 @@ requiresFinaleEntered: true
 acupointScaleBp: 14500
 rewards: []
 passiveBuffs: [bf_zt_jiuzhuan]
-event: meridian.turnCompleted
+event: meridian/turnCompleted
 ```
 
 每个 `zt_zhuan_NN` 都保存自己的累计目标 `acupointScaleBp`，但构建器还要断言它等于 `10000+500×turn`；运行时只读取当前最高转对应值，不能把九行相乘。
@@ -1213,14 +1214,14 @@ type MeridianNature = 'yin' | 'yang' | 'harmony';
 type RouteKind = 'native' | 'intersect' | 'borrowed';
 type ModOp = 'flat' | 'pct' | 'pp';
 
-interface MeridianReward {
+interface MeridianRewardBase {
   modifierId: string;
-  target: StatId;
-  op: ModOp;
-  valueBp?: number;       // pct
-  valueMilliPp?: number;  // pp
-  valueMilli?: number;    // flat
+  stat: StatId;
 }
+type MeridianReward =
+  | (MeridianRewardBase & { op: 'pct'; valueBp: number; valueMilliPp?: never; valueMilli?: never })
+  | (MeridianRewardBase & { op: 'pp'; valueMilliPp: number; valueBp?: never; valueMilli?: never })
+  | (MeridianRewardBase & { op: 'flat'; valueMilli: number; valueBp?: never; valueMilliPp?: never });
 
 interface MeridianDef {
   schemaVersion: 'meridian.v1';
@@ -1274,11 +1275,11 @@ interface CirculationDef {
   acupointScaleBp?: number;
   rewards: MeridianReward[];
   passiveBuffs: BuffId[];
-  event: 'meridian.milestoneReached' | 'meridian.turnCompleted';
+  event: 'meridian/circulationAdvanced' | 'meridian/turnCompleted';
 }
 ```
 
-`MeridianReward` 三个数值字段必须且只能按 `op` 填一个；`StatId/BuffId` 直接复用 03/06 生成联合类型，不在 15 维护副本。
+`MeridianReward` 三个数值字段必须且只能按 `op` 填一个；`StatId/BuffId` 直接复用 03/06 生成联合类型，不在 15 维护副本。构建器将其展开为 03 的 `StatModifier`：`stat` 原名透传，`sourceType='meridian'`，`sourceId` 取所属 `ap_*` / `mer_*` / `zt_*`，`modifierId` 原名透传；`valueBp/10000`、`valueMilliPp/1000`、`valueMilli/1000` 分别转成 03 的 `value`。同一来源内 `modifierId` 不得重复。
 
 ### 11.5 玩家进度与快照
 
@@ -1310,7 +1311,7 @@ interface MeridianSessionSnapshot {
   rateH: number;
   successBp: number;
   attemptOrdinal: number;
-  worldHourStarted: number;
+  worldTickStarted: number;
 }
 ```
 
@@ -1351,7 +1352,7 @@ lastAppliedMigration: 1
 
 ```text
 S0 校验开始条件并生成 immutable snapshot
-S1 预写 sessionId = hash(runId,targetId,attemptOrdinal,worldHourStarted)
+S1 预写 sessionId = hash(runId,targetId,attemptOrdinal,worldTickStarted)
 S2 扣除 mpCost
 S3 推进世界 1 小时，并按 11 结算途中世界状态
 S4 若角色仍可提交，计算 progressAfter
