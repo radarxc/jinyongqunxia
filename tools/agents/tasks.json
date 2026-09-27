@@ -4513,6 +4513,9 @@
             "tools/map/render_map.py",
             "--check"
           ]
+        ],
+        "shrink_exempt": [
+          "tools/lint/check_ids_baseline.json"
         ]
       },
       "vars": {},

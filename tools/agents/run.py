@@ -466,8 +466,11 @@ def validate(t: Task, wt: Path, baseline: dict, cfg: Config) -> list:
                 if not re.search(rx, s, re.M):
                     problems.append(f"{rel}：缺少章节标题（应匹配 {rx}）")
     ratio = float(v.get("shrink_guard", cfg.shrink_guard))
+    exempt = v.get("shrink_exempt", [])  # 预期会大幅缩短的文件（如检查基线在债务清零后）
     for rel, before in baseline.items():
         s = text(rel)
+        if exempt and s is not None and matches_any(rel, exempt):
+            continue
         if s is None:
             problems.append(f"{rel}：文件被删除")
         elif before >= 20 and count_lines(s) < before * ratio:
