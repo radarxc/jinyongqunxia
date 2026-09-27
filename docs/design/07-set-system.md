@@ -1,11 +1,11 @@
 # 07 · 套装体系（Set System）
 
 > 归属（基准 §18）：套装的数据结构、计件、有效品阶、档位效果、跨品阶混搭、可达性、平衡预算与正式套装目录。
-> 上游：`00-canon.md` v1.1（§3～§5、§9、§12、§20）；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定见 `decisions/rulings-v1.md`。
+> 上游：`00-canon.md` v1.2（§3～§5、§9、§12、§20）；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：书眠携带与外来压制 → `design/02-timeline-and-world-tiers.md`；属性 → `design/03-attributes.md`；Z0～Z10 → `design/04-damage-formula.md`；武学装配、`effGrade` 与 `setTags` → `design/05-martial-arts-system.md`；Buff DSL、叠加族与上限 → `design/06-buff-system.md`；装备与成对兵器 → `design/10-items-and-equipment.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联／广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v1.0（2026-09-26）。
-> 变更记录：v1.0 首次冻结规则与 44 套正式目录；把 11 份技能图鉴的候选收敛为可双向闭合的首发集合。
+> 版本：v1.1（审校 C2.R，2026-09-26）。
+> 变更记录：v1.0 首次冻结规则与 44 套正式目录；把 11 份技能图鉴的候选收敛为可双向闭合的首发集合。v1.1 对齐 Canon v1.2 与 06 DSL，重校平衡预算、低武路径、古龙投放和全部淘汰候选去向，并补双向关系审计规则。
 
 ---
 
@@ -39,7 +39,7 @@
 |---|---|---|
 | S1 | 让跨门派、跨品阶武学形成可读构筑 | 每套有明确成员、阈值和主题 |
 | S2 | 低武仍有成套选择 | 每套逐项写高／中／低武路径或不可达原因 |
-| S3 | 奖励是“锦上添花”而非强制毕业装 | 满档累计预算低于同品阶一门武学被动预算 |
+| S3 | 奖励是“锦上添花”而非强制毕业装 | 4 件静态峰值不高于同阶两门武学的 `layerStats`，且逐套通过实战回归 |
 | S4 | 不绕过上游代价 | 门派、前置、断尘、阴阳相冲、武器要求照常检查 |
 | S5 | 数据可静态验证 | `members ↔ setTags` 双向闭合，阈值和 ID 可 lint |
 | S6 | 规则稳定、目录可扩展 | 新套装只增数据，不另写专用计件代码 |
@@ -75,6 +75,7 @@
 | `thresholds` | `SetTier[]` | 是 | 严格递增；首档 ≥2；末档 ≤成员数 |
 | `gradeRule` | enum | 是 | v1 固定 `effectiveMedianFloor` |
 | `reachable` | `Reachability[]` | 是 | 按书界境界与本土来源给路径 |
+| `balance` | `SetBalance` | 是 | 基准系数、峰值评估与回归标签；不参与运行时结算 |
 | `exclusiveGroup` | string | 否 | 套装自身互斥；不同套默认可并存 |
 | `ui` | object | 是 | 图标、短说明、进度显示 |
 | `version` | int | 是 | 数据迁移版本，首发为 1 |
@@ -96,17 +97,14 @@ members:
 gradeRule: effectiveMedianFloor
 thresholds:
   - count: 2
-    budget: 3
-    effects: [{ op: modStat, stat: seal, kind: pp, value: "4 * G" }]
+    mods: [{ op: modStat, stat: seal, kind: pp, value: "4 * G" }]
   - count: 3
-    budget: 2
-    effects: [{ op: modStat, stat: parry, kind: pct, value: "3% * G" }]
+    mods: [{ op: modStat, stat: parry, kind: pct, value: "0.03 * G" }]
   - count: 4
-    budget: 3
-    effects: [{ op: modZone, zone: Z3, value: "4% * G", filter: { cat: unarmed } }]
+    mods: [{ op: modZone, zone: Z3, value: "0.04 * G", filter: { cat: unarmed } }]
 reachable:
   - { chapters: [ch08_luding], count: 4, carry: [sk_yijinjing, sk_longzhaoshou], local: [sk_tieshazhang, sk_tongrenhenglian] }
-exclusiveGroup: null
+balance: { scale: G, peakScore: 22.0, compare: sameGradeFullSkill, regression: set_shaolin_jingang }
 ui: { icon: set/shaolin_jingang, showNextThreshold: true }
 version: 1
 ```
@@ -118,7 +116,7 @@ export type SetId = `set_${string}`;
 export type SkillId = `sk_${string}`;
 export type EquipId = `eq_${string}`;
 export type ChapterId = `ch${string}`;
-import type { Op } from './buff/types'; // 共享战斗 DSL；唯一原语语义见 design/06 §6.4
+import type { Mod, Op, Trigger } from './buff/types'; // 唯一原语语义见 design/06 §6.4
 
 export type SetMember =
   | { kind: 'skill'; id: SkillId }
@@ -126,8 +124,19 @@ export type SetMember =
 
 export interface SetTier {
   count: number;
-  budget: number;
-  effects: Op[]; // 直接复用 06 的原语，不在套装域另造字段或语义
+  mods?: Mod[];       // 06 §6.4 的 modStat/modZone/modJudge/modCost/modRange 只能放这里
+  triggers?: Trigger[]; // 事件钩子；动作只放 Trigger.ops
+  onApply?: Op[];     // 档位永久来源实例生效时执行
+  onRemove?: Op[];    // 档位永久来源实例失效时执行（若原语需要显式清理）
+}
+
+// SetTier 本身是一条不可驱散的永久来源；具体 duration/grade/origin 由 §6.1 包装。
+
+export interface SetBalance {
+  scale: 'G';
+  peakScore: number;  // §7 的审计分；不是运行时强度参数
+  compare: 'sameGradeFullSkill';
+  regression: string;
 }
 
 export interface Reachability {
@@ -147,6 +156,7 @@ export interface SetDef {
   thresholds: SetTier[];
   gradeRule: 'effectiveMedianFloor';
   reachable: Reachability[];
+  balance: SetBalance;
   exclusiveGroup?: string;
   ui: { icon: string; showNextThreshold: boolean };
   version: 1;
@@ -337,7 +347,7 @@ G(7)  = 2.00
 3. 同名 Buff 按其 `stack.rule` 和 `stackKey` 处理；套装不能另开私有层池。
 4. `Z5:破X` 与武学“破 X”取最高，不相加。
 5. 相同事件每个套装每回合至多触发一次，除非目录明确写更严的“每场一次”。
-6. 由一击触发的套装反应带 `noSetChain`，不能再次触发套装，防止反击、治疗、吸取循环。
+6. 攻击派生反应直接继承 06 §5.3.1 的 `reflected`／`redirected`／`mirrored`／`countered` 来源位，并受反应队列深度 3 限制；同一实例的同一触发器在同一事件至多执行一次。本文不另造 `noSetChain`。
 7. 套装造成的回复、护体、DOT、吸取都进入 06 的 HOT、护体、DOT、吸取上限。
 
 ### 6.4 互斥与取高
@@ -345,11 +355,30 @@ G(7)  = 2.00
 - 只有 `exclusiveGroup` 相同的档位互斥；默认保留 `g_set` 高者，仍同品则保留阈值高者，再同则按 `setId` 字典序保证确定性。
 - 目录里“与既有被动取高”按效果语义取高，不因为来源不同相加。
 - 套装不能移除成员自身的 `conflicts`；阴阳内功相冲、武器不匹配、代价型被动仍先于套装收益结算。
-- 队伍型套装只给实际满足距离／羁绊／阵位条件者，不把队友成员合并到持有者件数。
+- 队伍型套装只给实际满足距离条件者，不把队友成员合并到持有者件数；首发效果不读取 06 表达式白名单之外的羁绊／阵法运行态。
 
 ### 6.5 动态变化时机
 
 装配界面确认、战斗开始、装备卸下／损坏、武学临时失效、压制变化时重算。战斗中重算发生在当前原子事件结束后、下一次 P1 之前；已经排队的伤害不回溯。若重算后失去阈值，其永久被动立即移除，但此前合法施加的限时 Buff 按自身持续规则结束。
+
+### 6.6 目录效果到 DSL 的固定映射
+
+目录是玩家可读摘要，运行数据必须按下表展开；表中没有的“直接改 Buff 持续、直接改招式冷却、改既有 Buff 内部参数”等旁路一律禁止。临时属性效果通过现有 `bf_*` 实例承载，不能把 `modStat` 写进 `triggers[].ops`。
+
+| 目录效果 | `SetTier` 落点 | 关键约束 |
+|---|---|---|
+| 常驻属性、Z 区、消耗、射程 | `mods: [modStat/modZone/modCost/modRange]` | `when` 只读 06 §2.3 白名单；百分数写小数 |
+| 临时属性提升 | `triggers[].ops: [applyBuff]` | 只引用 06 已登记 `bf_*`；本文采用 `bf_renjin`、`bf_yuanzhuan`、`bf_ningshen`、`bf_piaohu` |
+| 气势、集气、治疗、回内 | `triggers[].ops: [modRage/ctShift/heal/restoreMp]` | 写明 `limitPerTurn`／`limitPerBattle`；目标必须显式 |
+| 免疫、驱散、架势 | `applyBuff`／`dispel` | `dispel` 只能在效果已存在且事件上下文提供目标时执行；预防型一律先挂免疫 |
+| 反击、奉还、锁血 | `triggerMove`／`mirror`／`lockHp` | 使用 06 来源位防循环；奉还受距离、绝招品阶及每战次数约束 |
+| 雪地移动折扣 | `onApply: [modTerrain]` | `modTerrain` 是 06 §6.4 的 `Op`，不冒充 `Mod`；规则贡献以来源实例 `iid` 为键，来源移除即撤销，最终移动代价最低 1 |
+
+几个容易误实现的定稿例：星宿 4 件用 `onBuffApply → modRage`，不延长毒实例；大轮 5 件用 `onUltimate → ctShift`，不修改招式冷却；明教的预防档在 `onBattleStart` 施加既有免疫 Buff，不在“命中后”倒序驱散；鸳鸯改用 `onAllyHurt → heal/modRage`，不从攻击方越权改写目标死亡流程。
+
+下列是目录中事件短语到 06 钩子的规范化映射：开战→`onBattleStart`；回合开始／施招→`onTurnStart`／`onSkillCast`；攻击发起／奉还判定→`onBeforeAttack`／`onBeforeHit`；命中／受伤→`onHit`／`onHurt`；招架／闪避→`onParry`／`onDodge`；击杀／友方倒地／友方受伤→`onKill`／`onAllyDeath`／`onAllyHurt`；施治／向他人施加 Buff→`onHeal`／`onBuffApply`；施放绝招→`onUltimate`；首次跌破气血阈值→`onHpBelow`。
+
+“某门派／某套／某性质招式”及 `poison`／`mind`／`cc` 等语义筛选在构建期据 05／06 的正式定义展开为 `ctx.move.id` 或 `ctx.buff` 的 ID 等值集合；运行时表达式仍只读取 06 §2.3 已公开字段，不新增 `ctx.mode`、目标生命值等私有字段。距离／邻接直接使用白名单函数 `dist`、`count` 与选择器；是否有至少两名近邻由 `count(allies(holder,2)) >= 2` 表达。首发不以羁绊或阵法运行态作为效果条件。
 
 ---
 
@@ -357,31 +386,31 @@ G(7)  = 2.00
 
 ### 7.1 预算单位
 
-以 `design/05` §4.2 的同品阶单门武学 `layerStats` 满层预算作 100% 参照：黄／玄／地／天分别约 6／10／15／20 点。套装奖励无需修炼且可跨门叠，因此累计上限取参照的一部分，并预留机制税。
+参照唯一取 `design/05` §3.6 的同大阶单门外功 `layerStats` 满层上限 `P_skill`：黄／玄／地／天分别为 6／10／15／20 点。这里比较的是**装配成长数值**，不是整门武学的招式与全部被动；旧稿把三档实际效果误记成 `3+2+3=8`，又声称“小于半门武学”，两者都不能由 05 推出，现删除。
 
-| `g_set` 大阶 | 单门被动参照 | 2 件累计 | 3 件累计 | 4 件累计 | 5 件累计 | 6 件累计 |
-|---|---:|---:|---:|---:|---:|---:|
-| 黄 | 6 | 1.5 | 2.5 | 3.5 | 4.0 | 4.5 |
-| 玄 | 10 | 2.5 | 4.0 | 5.5 | 6.5 | 7.0 |
-| 地 | 15 | 3.5 | 5.5 | 7.5 | 9.0 | 10.0 |
-| 天 | 20 | 4.5 | 7.0 | 10.0 | 12.0 | 13.5 |
+静态审计分 `B_static` 按最终面板量计算：RAT 的 `pct`、PCT 的 `pp`、条件 Z3／Z4 每 1 个百分点计 1 点；无条件 Z3／Z4、Z2 每 1 个百分点计 1.5 点；消耗降低每 1 个百分点计 0.8 点。目录中的 `a×G` 要先代入当前 `G(g_set)`，再累计已激活档。限次、驱散、射程等机制不伪装成静态点，另按 §7.2 记 `B_mech` 并做实战门禁。
 
-“累计”包含低档；4 件天套最多约半门天阶被动，不能等价于四门额外武学。5／6 件主要奖励构筑方向或限次机制，不能继续线性叠数值。
+| 已激活最高档 | `B_static + B_mech` 累计上限 | 与同阶一门 `layerStats` 比较 |
+|---:|---:|---:|
+| 2 件 | `1.00 × P_skill` | 至多一门的装配成长 |
+| 3 件 | `1.50 × P_skill` | 至多一门半 |
+| 4 件 | `2.00 × P_skill` | 至多两门；相对四个成员合计栏位预算不超过一半 |
+| 5 件 | `2.25 × P_skill` | 只允许窄条件或限次机制扩展 |
+| 6 件 | `2.50 × P_skill` | 仍须受 §7.4 实战门禁约束 |
+
+上限按**当前** `g_set` 所属大阶查表，并包含所有低档。它是配表审计线，不改变 03／04／06 的实际合成与族上限；跨层效果只能用于比较，不能相互换算后写回运行数据。
 
 ### 7.2 常用效果成本
 
 | 效果 | 预算折算 |
 |---|---:|
-| `attr:hit/eva/parry pct +1%×G` | 1.0 |
-| `attr:seal/resX/counter pp +1×G` | 1.0 |
-| 条件 Z3／Z4 `+1%×G` | 1.0 |
-| 无条件 Z3／Z4 `+1%×G` | 1.5 |
-| Z2 `+1%×G` | 1.5 |
-| `cost −1%×G` | 0.8 |
-| 每场一次的小型驱散／护体／怒气 | 2～4 |
-| 改距离、额外段数、必定触发、免死等机制 | 4～8，逐条评审 |
+| RAT `pct`／PCT `pp`／条件 Z3、Z4 | 最终 1% 或 1pp = 1 点 |
+| 无条件 Z3、Z4／Z2 | 最终 1% = 1.5 点 |
+| `cost` 降低 | 最终 1% = 0.8 点 |
+| 每场一次的小型怒气、集气、驱散或护体 | `B_mech=2～4` |
+| 射程、额外段数、必定触发、锁血等高税机制 | `B_mech=4～8`，逐条评审 |
 
-目录采用基线 `2件: 2～4×G`、`3件: 2～3×G`、`4件: 3～4×G`；条件越窄可取上沿，无条件 Z3／Z4 取下沿。显示值不代表脱离族上限。
+目录采用基线 `2件: 2～4×G`、`3件: 2～3×G`、`4件: 3～4×G`；条件越窄可取上沿，无条件 Z3／Z4 取下沿。触发效果按最长可用持续和最高合法次数计，不因“实战未必触发”免除上限。
 
 ### 7.3 机制税与禁区
 
@@ -391,9 +420,11 @@ G(7)  = 2.00
 - 4 件效果若同时含机制和数值，数值至少下调 25%。
 - 低武本土即可满档的套装，不因可达早而额外削弱；有效品阶中位数已经自然压低其数值。
 
+少林金刚完整四件 `g_set=7`、`G=2.00`：2 件 `seal +8pp` 得 8 点；累计 3 件再加 `parry +6%` 得 14 点；累计 4 件再加条件拳脚 Z3 `+8%` 得 **22 点**。地下参照 `P_skill=15`，三档上限依次为 15／22.5／30，故 `8≤15`、`14≤22.5`、`22≤30`。这才是 YAML `balance.peakScore:22` 的来源。
+
 ### 7.4 回归基准
 
-QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件对 TTK／承伤影响目标 3%～6%，3 件累计 6%～10%，4 件累计 10%～16%，5／6 件累计不超过 20%。任何单套令标准战斗 TTK 改变超过 25%，或与第二套叠加后触及 06 红线，应下调而不是新增特殊上限。
+QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件对 TTK／承伤影响目标 3%～6%，3 件累计 6%～10%，4 件累计 10%～16%，5／6 件累计不超过 20%。任何单套令标准战斗 TTK 改变超过 25%，或与第二套叠加后触及 06 红线，应下调而不是新增特殊上限。静态审计通过不等于实战通过；机制套至少覆盖“永不触发／恰触发上限”两端。
 
 ---
 
@@ -461,7 +492,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（4） | `sk_yijinjing`、`sk_boruoxinjing`、`sk_xumishanzhang`、`sk_nianhuazhi` |
 | 2 件 | `attr:resMind pp +3×G`【属性层】 |
 | 3 件 | 七十二绝技招式 `Z3 +3%×G`【Z3】 |
-| 4 件 | 开战 `applyBuff bf_mian_xin` 1 回合，每场一次【机制】 |
+| 4 件 | 开战对自身 `applyBuff bf_mian_xin` 1 回合，每场一次【机制】 |
 | 品阶 | 玄下～天上 |
 | 依据 | 扫地僧在藏经阁化解萧远山、慕容博戾气的原著主题；具体套装为**（原创扩展）**；须弥山掌名目**（待考）** |
 
@@ -491,7 +522,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（5） | `sk_xianglong18`、`sk_dagou`、`sk_dagouzhen`、`sk_canfengyinlugong`、`sk_yunyoubu` |
 | 2 件 | `attr:tough pct +3%×G`【属性层】 |
 | 3 件 | 棍杖／拳掌招式 `Z3 +3%×G`【Z3】 |
-| 4 件 | 相邻友方倒地时 `modRage +6×G`，每回合一次【机制】 |
+| 4 件 | 相邻友方倒地时对自身 `modRage +6×G`，每回合一次【机制】 |
 | 品阶 | 黄上～天上 |
 | 依据 | 降龙、打狗棒法与丐帮帮主关联有原著依据；阵法、心法、步法和奖励含**（原创扩展）** |
 
@@ -504,7 +535,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（6） | `sk_tanzhi`、`sk_bihai`、`sk_lanhuafuxueshou`、`sk_yuxiaojianfa`、`sk_luoyingshenjianzhang`、`sk_bitaoxuangong` |
 | 2 件 | `attr:effHit pct +3%×G`【属性层】 |
 | 3 件 | 侧击／背击招式 `Z3 +3%×G`【Z3】 |
-| 4 件 | 每场首次施加 `mind` 或 `seal` 成功后 `ctShift +30×G`【ct】 |
+| 4 件 | 每场首次向目标施加 `mind` 或 `seal` 时，对自身 `ctShift +30×G`【ct】 |
 | 品阶 | 地下～天下 |
 | 依据 | 黄药师及桃花岛武学为原著主题；碧涛玄功、成套效果为**（原创扩展）**，程英相关来源**（待考）** |
 
@@ -517,7 +548,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（6） | `sk_hama`、`sk_lingshezhangfa`、`sk_lingshequan`、`sk_nizhuanjingmai`、`sk_tashaxing`、`sk_shexingdiaoshou` |
 | 2 件 | `attr:resPoison pp +3×G`【属性层】 |
 | 3 件 | 对中毒目标 `Z3 +3%×G`【Z3】 |
-| 4 件 | 自身蓄势被打断时获得 `attr:tough pct +3%×G` 1 回合【属性层／机制】 |
+| 4 件 | 每回合首次被拳脚近身招式伤害后，对自身 `applyBuff bf_renjin` 1 回合【属性层／机制】 |
 | 品阶 | 黄中～天下 |
 | 依据 | 欧阳锋白驼武学与蛇毒主题有原著依据；踏沙行、蛇形刁手和效果为**（原创扩展）**；杖法正式名**（待考）** |
 
@@ -544,7 +575,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 2 件 | `attr:resMind pp +3×G`【属性层】 |
 | 3 件 | 九阴系效果 `attr:effHit pct +2%×G`【属性层】 |
 | 4 件 | 九阴系招式 `Z3 +3%×G`【Z3】 |
-| 6 件 | 每场首次受 `injury` 时 `dispel` 1 个不高于 `g_set` 的 `injury`【机制】 |
+| 6 件 | 每场首次回合开始且自身有 `injury` 时，对自身 `dispel` 1 个不高于 `g_set` 的 `injury`【机制】 |
 | 品阶 | 玄中～天上 |
 | 依据 | 《九阴真经》诸篇与正练主题有原著名目；拆分为多技能、阈值与效果为**（原创扩展）**，神爪名称**（待考）** |
 
@@ -557,7 +588,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（6） | `sk_xianglong18`、`sk_jiuyin`、`sk_kongming`、`sk_zuoyouhubo`、`sk_zhebiejianshu`、`sk_wumuyishu` |
 | 2 件 | `attr:resMind pp +3×G`【属性层】 |
 | 3 件 | 拳掌招式 `Z3 +3%×G`【Z3】 |
-| 4 件 | 相邻友方受伤后，自身 `attr:parry pct +2%×G` 1 回合，每回合一次【属性层／机制】 |
+| 4 件 | 相邻友方受伤后，对自身 `applyBuff bf_yuanzhuan` 1 回合，每回合一次【属性层／机制】 |
 | 品阶 | 地中～天上 |
 | 依据 | 郭靖所学降龙、九阴、空明、左右互搏、哲别箭术和《武穆遗书》均有原著关联；成套为**（原创扩展）** |
 
@@ -574,7 +605,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（7） | `sk_xiantiangong`、`sk_jinguanyusuo`、`sk_quanzhenxinfa`、`sk_quanzhenjian`、`sk_tongguijian`、`sk_tiangang`、`sk_dabeidouzhen` |
 | 2 件 | `attr:hit pct +3%×G`【属性层】 |
 | 3 件 | 全真招式 `Z3 +3%×G`【Z3】 |
-| 4 件 | 阵中 `Z4 +3%×G`；未装阵则 `attr:parry pct +2%×G`【Z4／属性层】 |
+| 4 件 | 与至少 2 名友方距离≤2时 `Z4 +3%×G`；否则 `attr:parry pct +2%×G`【Z4／属性层】 |
 | 品阶 | 玄中～天中 |
 | 依据 | 全真教与天罡北斗阵为原著主题；心法拆分、档位效果为**（原创扩展）** |
 
@@ -587,7 +618,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（8） | `sk_yunvxinjing`、`sk_hanyuxinjue`、`sk_yunvjian`、`sk_suxin`、`sk_meinvquan`、`sk_jinlingsuo`、`sk_gumuqinggong`、`sk_yufengzhen` |
 | 2 件 | `attr:eva pct +3%×G`【属性层】 |
 | 3 件 | 阴性招式 `Z3 +3%×G`【Z3】 |
-| 4 件 | 开战 `applyBuff bf_youshi` 2 回合，每场一次【机制】 |
+| 4 件 | 开战对自身 `applyBuff bf_youshi` 2 回合，每场一次【机制】 |
 | 品阶 | 玄下～天下 |
 | 依据 | 古墓、玉女心经、玉女剑法等为原著主题；寒玉心诀与数值为**（原创扩展）** |
 
@@ -598,9 +629,9 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 项 | 定稿 |
 |---|---|
 | 成员（6） | `sk_suxin`、`sk_anran`、`sk_xuantie`、`sk_yunvxinjing`、`sk_yunvjian`、`sk_quanzhenjian` |
-| 2 件 | 与羁绊≥3友方相距≤2时 `Z3 +3%×G`【Z3】 |
+| 2 件 | 与任一友方相距≤2时 `Z3 +3%×G`【Z3】 |
 | 3 件 | `attr:resPoison pp +3×G`【属性层】 |
-| 4 件 | 羁绊友方首次倒地时 `modRage +8×G`，每场一次【机制】 |
+| 4 件 | 每场首次有相邻友方倒地时，对自身 `modRage +8×G`【机制】 |
 | 品阶 | 玄中～天中 |
 | 依据 | 杨过、小龙女及玉女素心合璧为原著主题；黯然、玄铁并入与奖励为**（原创扩展）** |
 
@@ -612,8 +643,8 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 |---|---|
 | 成员（8） | `sk_xuantie`、`sk_lijianyi`、`sk_ruanjianyi`、`sk_zhongjianyi`、`sk_mujianyi`、`sk_haichaolianjian`、`sk_jianzhongtuna`、`sk_dugu9` |
 | 2 件 | 剑法 `Z2 +3%×G`【Z2】 |
-| 3 件 | `attr:crit pp +3×G`【属性层】 |
-| 4 件 | 剑法被招架时 `Z9` 减免降低 `4pp×G`【Z9】 |
+| 3 件 | `attr:crit flat +3×G`【属性层】 |
+| 4 件 | 剑法攻击的目标招架率系数 `targetParryMult = max(0.50, 1−0.04×G)`【Z0 判定】 |
 | 5 件 | 剑法 `Z3 +3%×G`【Z3】 |
 | 品阶 | 黄中～天上 |
 | 依据 | 剑冢重、木、无剑境与独孤九剑关联为跨书主题；组合与数值为**（原创扩展）** |
@@ -627,7 +658,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（6） | `sk_taijiquan`、`sk_taijijian`、`sk_liangyixinfa`、`sk_taijituishou`、`sk_mianzhang`、`sk_tiyunzong` |
 | 2 件 | `attr:parry pct +3%×G`【属性层】 |
 | 3 件 | `attr:counter pp +2×G`【属性层】 |
-| 4 件 | 招架成功后 30% `applyBuff bf_shiheng` 1 回合；同类取高【机制】 |
+| 4 件 | 招架成功后 30% 对攻击者 `applyBuff bf_shiheng` 1 回合；同类取高【机制】 |
 | 品阶 | 玄中～天中 |
 | 依据 | 张三丰太极拳剑与武当主题有原著依据；推手、两仪心法和奖励为**（原创扩展）** |
 
@@ -640,7 +671,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（7） | `sk_chunyangwuji`、`sk_wudangjiuyang`、`sk_huzhaojuehushou`、`sk_wujixuangongquan`、`sk_shenmen13`、`sk_yitiantulonggong`、`sk_zhenwuqijie` |
 | 2 件 | 武当招式 `attr:hit pct +3%×G`【属性层】 |
 | 3 件 | 阳性招式 `Z3 +3%×G`【Z3】 |
-| 4 件 | 阵中 `Z4 +3%×G`；未装阵则 `attr:resCC pp +2×G`【Z4／属性层】 |
+| 4 件 | 与至少 2 名友方距离≤2时 `Z4 +3%×G`；否则 `attr:resCC pp +2×G`【Z4／属性层】 |
 | 品阶 | 地下～地中 |
 | 依据 | 武当七侠与真武七截阵为原著主题；技能拆分与奖励为**（原创扩展）** |
 
@@ -656,9 +687,9 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 |---|---|
 | 成员（8） | `sk_beiming`、`sk_lingbo`、`sk_zhemei`、`sk_baihongzhang`、`sk_langhuanjian`、`sk_zuowangxinfa`、`sk_tianjianzhifa`、`sk_fuyaotui` |
 | 2 件 | `attr:eva pct +3%×G`【属性层】 |
-| 3 件 | 本回合移动≥3格后 `Z3 +3%×G`【Z3】 |
-| 4 件 | 开场 `applyBuff bf_canying` 1 层，每场一次【机制】 |
-| 5 件 | 吸内发生时回复吸取量 25% 气血，每回合≤2% hpMax【settle】 |
+| 3 件 | 对距离≥3的目标 `Z3 +3%×G`【Z3】 |
+| 4 件 | 开场对自身 `applyBuff bf_canying` 1 层，每场一次【机制】 |
+| 5 件 | 拳脚命中后自身 `drainHp pctOfDamage:min(0.15,0.02×G)`，每回合一次【settle】 |
 | 品阶 | 黄上～天上 |
 | 依据 | 逍遥派诸绝学有原著主题；坐忘、天鉴、扶摇、琅嬛剑及成套为**（原创扩展）** |
 
@@ -671,7 +702,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（9） | `sk_huagong`、`sk_chousuizhang`、`sk_sanxiaoxiaoyaosan`、`sk_fushidu`、`sk_huoduozhang`、`sk_lianchongshu`、`sk_chanhunwang`、`sk_bilinzhang`、`sk_xingxiudugong` |
 | 2 件 | 毒效果 `attr:effHit pct +3%×G`【属性层】 |
 | 3 件 | 对中毒目标 `Z3 +3%×G`【Z3】 |
-| 4 件 | 本方施加的 `poison` 持续 +1 回合，同定义只取高【机制】 |
+| 4 件 | 自身每回合首次向目标施加 `poison` 时，对自身 `modRage +3×G`【机制】 |
 | 5 件 | `attr:resPoison pp +3×G`【属性层】 |
 | 品阶 | 黄上～地上 |
 | 依据 | 丁春秋、化功大法与星宿用毒为原著主题；多门补位和奖励为**（原创扩展）** |
@@ -684,9 +715,9 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 |---|---|
 | 成员（8） | `sk_douzhuan`、`sk_canhezhi`、`sk_baijiadao`、`sk_murongjian`、`sk_canheqigong`、`sk_shuixiefeidao`、`sk_longchengxinfa`、`sk_yizhenfengdao` |
 | 2 件 | `attr:counter pp +2×G`【属性层】 |
-| 3 件 | 被命中后，下一招若同大类则 `Z3 +3%×G`【Z3】 |
-| 4 件 | `bf_douzhuan` 奉还倍率 +0.05，与本体上限合并【机制】 |
-| 5 件 | 每场首次被不高于 `g_set` 的绝招命中时，触发一次合法奉还【机制】 |
+| 3 件 | 受到招式伤害后对自身 `modRage +3×G`，每回合一次【机制】 |
+| 4 件 | 招架成功后对攻击者 `triggerMove basic`、`powerMul:0.4`、`tag:counter`，每回合一次【机制】 |
+| 5 件 | 每场首次遭距离≤3、品阶不高于 `g_set` 的绝招命中判定时，`mirror chance:1 powerMul:0.8 maxRange:3`【机制】 |
 | 品阶 | 黄上～天下 |
 | 依据 | 姑苏慕容“以彼之道”与斗转星移为原著主题；补位武学和成套为**（原创扩展）** |
 
@@ -699,12 +730,12 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（10） | `sk_huoyandao`、`sk_xiaowuxiang`、`sk_dashouyin`、`sk_mizonghufashen`、`sk_zhuohuogong`、`sk_jingangjue`、`sk_wuxiangjiezhi`、`sk_duoluoyezhi`、`sk_ranmudaofa`、`sk_jiashafumogong` |
 | 2 件 | 火焰招式 `Z3 +3%×G`【Z3】 |
 | 3 件 | `attr:rageGain pp +3×G`【属性层】 |
-| 4 件 | 火焰刀射程 +1，每回合至多一次【机制】 |
-| 5 件 | 首次施放绝招后，火焰刀冷却 −1，每场一次【机制】 |
+| 4 件 | 火焰刀 `modRange delta:+1`【招式射程】 |
+| 5 件 | 每场首次施放绝招后，对自身 `ctShift +20×G`【ct】 |
 | 品阶 | 黄上～天中 |
 | 依据 | 鸠摩智以小无相功催动少林绝技为原著主题；密宗补位、范围与数值为**（原创扩展）** |
 
-可达：高·天龙本土十选 5；中携内2、拳2、兵2可达 5；低·鹿鼎 `C:小无相+火焰刀+燃木刀，L:拙火+护法身+大手印+金刚橛`，栏位内可达 6；其他低武纯携入 3。
+可达：高·天龙本土十选 5；中携内2、拳2、兵2可达 5；低·鹿鼎 `C:小无相+火焰刀+燃木刀，L:拙火+护法身+大手印+金刚橛`，按内3、拳2、兵2实际可达 7；其他低武纯携入 3。
 
 ### 12.5 `set_qidan_xiaofeng` 契丹英雄
 
@@ -713,12 +744,12 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（8） | `sk_xianglong18`、`sk_qinlonggong`、`sk_jingedangkouqiang`、`sk_canglangdao`、`sk_tuxiongbohuquan`、`sk_taizuchangquan`、`sk_caoyuanchangqiang`、`sk_liaodongpaochui` |
 | 2 件 | 拳脚招式 `Z2 +3%×G`【Z2】 |
 | 3 件 | 相邻敌人≥3时 `Z3 +3%×G`、`Z4 +2%×G`【Z3／Z4】 |
-| 4 件 | 击杀后 `modRage +5×G`，每回合一次【机制】 |
-| 5 件 | 气血首次低于30%时 `applyBuff bf_kuangshi` 2 回合，每场一次【机制】 |
+| 4 件 | 击杀后对自身 `modRage +5×G`，每回合一次【机制】 |
+| 5 件 | 气血首次低于30%时对自身 `applyBuff bf_kuangshi` 2 回合，每场一次【机制】 |
 | 品阶 | 黄上～天上 |
 | 依据 | 萧峰的降龙、擒龙与契丹身份为原著主题；军阵武学组合与数值为**（原创扩展）** |
 
-可达：高·天龙本土并携跨组成员可达 5；中携拳2、兵2，且通行太祖长拳本土重学 →5；低携降龙、金戈枪并本土重学太祖长拳 →3，鹿鼎若本土契丹补位可到 4。
+可达：高·天龙本土并携跨组成员可达 5；中携拳2、兵2，且通行太祖长拳本土重学 →5；低携降龙、金戈枪并本土重学太祖长拳 →3。正式成员中没有第二门鹿鼎本土契丹武学，故低武不能据现有投放达到 4 件。
 
 ---
 
@@ -731,7 +762,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（6） | `sk_qiankun`、`sk_dajiutianshou`、`sk_guangmingxinfa`、`sk_dafengyunfeizhang`、`sk_guangmingquan`、`sk_guangmingduandao` |
 | 2 件 | `attr:resMind pp +3×G`【属性层】 |
 | 3 件 | 阳性招式 `Z3 +3%×G`【Z3】 |
-| 4 件 | 每场首次被控制命中时 `dispel` 该效果，强度=`g_set`【机制】 |
+| 4 件 | 开战对自身 `applyBuff bf_mian_kong` 1 回合，每场一次【机制】 |
 | 品阶 | 黄中～天中 |
 | 依据 | 明教、乾坤大挪移及光明顶为原著主题；补位武学和效果为**（原创扩展）** |
 
@@ -744,11 +775,11 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（5） | `sk_shenghuoling`、`sk_shenghuoxinfa`、`sk_shenghuotunajue`、`sk_mingjiaoduanjian`、`sk_shenghuobu` |
 | 2 件 | `attr:eva pct +3%×G`【属性层】 |
 | 3 件 | 侧击招式 `Z3 +3%×G`【Z3】 |
-| 4 件 | 换位后 `attr:hit pct +2%×G` 1 回合【属性层／机制】 |
+| 4 件 | 每场首次闪避成功后对自身 `applyBuff bf_ningshen` 1 回合【属性层／机制】 |
 | 品阶 | 黄中～天上 |
 | 依据 | 圣火令与波斯总教为原著主题；心法、短剑、步法与奖励为**（原创扩展）** |
 
-可达：高·倚天本土 5；中携内2、兵2 →4，轻功不能携；低一内一兵 →2，无明教本土补位。圣火令装备不计。
+可达：高·倚天本土 5；中携两内、一拳、一兵 →4，轻功不能携；低携一内、一拳、一兵 →3，无明教本土补位。`sk_shenghuoling` 是拳脚武学；圣火令装备不计。
 
 ### 13.3 `set_yitian_emei` 倚天·峨眉
 
@@ -770,7 +801,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 |---|---|
 | 成员（7） | `sk_qishangquan`、`sk_qishangchujue`、`sk_kongtongyangshenggong`、`sk_kongtongjian`、`sk_kongtongtunajue`、`sk_kongtongrumenquan`、`sk_kongtongrumenjian` |
 | 2 件 | `attr:resInjury pp +3×G`【属性层】 |
-| 3 件 | 七伤拳自伤结算 −`2%×G`，最低保留原值 50%【settle】 |
+| 3 件 | 七伤拳施放时对自身 `shield hpMax×1%×G` 1 回合，每回合一次【settle】 |
 | 4 件 | 气血低于50%时拳掌 `Z3 +3%×G`【Z3】 |
 | 品阶 | 黄中～地上 |
 | 依据 | 崆峒七伤拳为原著主题；初诀、养生功、入门链及奖励为**（原创扩展）** |
@@ -784,7 +815,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（4） | `sk_hanbingmianzhang`、`sk_lieyanzhang`、`sk_qingyifashen`、`sk_shizihou` |
 | 2 件 | `attr:resCC pp +3×G`【属性层】 |
 | 3 件 | 冰／火／音功招式 `attr:effHit pct +3%×G`【属性层】 |
-| 4 件 | 每场首次施加控制成功后 `modRage +5×G`【机制】 |
+| 4 件 | 每场首次向目标施加 `cc` 时，对自身 `modRage +5×G`【机制】 |
 | 品阶 | 玄～天；具体品阶见所属图鉴 |
 | 依据 | 明教四大法王人物与武学意象为原著主题；四风格成套和奖励为**（原创扩展）** |
 
@@ -800,8 +831,8 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 |---|---|
 | 成员（8） | `sk_huashanrumenjian`、`sk_huashantuna`、`sk_huashanjianfa`、`sk_yangwujian`、`sk_huashanxinfa`、`sk_kuangfengkuaijian`、`sk_taiyuesanqingfeng`、`sk_zixiashengong` |
 | 2 件 | `attr:parry pct +3%×G`【属性层】 |
-| 3 件 | 先运内功再出剑时 `Z3 +3%×G`【Z3】 |
-| 4 件 | 剑法招架成功后 `ctShift +20×G`，每回合一次【ct】 |
+| 3 件 | 内功招式与剑法招式 `Z3 +3%×G`【Z3】 |
+| 4 件 | 剑法招架成功后对自身 `ctShift +20×G`，每回合一次【ct】 |
 | 6 件 | 剑法 `Z2 +2%×G`【Z2】 |
 | 品阶 | 黄上～天上 |
 | 依据 | 华山气宗、剑宗与独孤九剑为原著主题；基础链与跨宗成套为**（原创扩展）** |
@@ -828,7 +859,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（7） | `sk_heimuyarumenjian`、`sk_heimutuna`、`sk_riyuejianfa`、`sk_riyuexinfa`、`sk_heimuyajianfa`、`sk_xixing`、`sk_kuihua` |
 | 2 件 | `attr:spd pct +2%×G`【属性层】 |
 | 3 件 | 侧击／背击 `Z3 +3%×G`【Z3】 |
-| 4 件 | 吸取内力后 `attr:eva pct +2%×G` 1 回合【属性层／机制】 |
+| 4 件 | 近身内功招式命中后对自身 `applyBuff bf_piaohu` 1 回合，每回合一次【属性层／机制】 |
 | 品阶 | 黄上～天阶 |
 | 依据 | 日月神教、黑木崖、吸星与葵花为原著主题；入门链和奖励为**（原创扩展）** |
 
@@ -840,8 +871,8 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 |---|---|
 | 成员（7） | `sk_linjiarumenjian`、`sk_biaojuxinfa`、`sk_linjiajianfa`、`sk_linjiashou`、`sk_fantianzhang`、`sk_bixie`、`sk_kuihua` |
 | 2 件 | `attr:hit pct +3%×G`【属性层】 |
-| 3 件 | 移动后剑法 `Z3 +3%×G`【Z3】 |
-| 4 件 | 每回合首次击倒目标后 `ctShift +25×G`【ct】 |
+| 3 件 | 对距离≥2的目标使用剑法时 `Z3 +3%×G`【Z3】 |
+| 4 件 | 每回合首次击倒目标后对自身 `ctShift +25×G`【ct】 |
 | 品阶 | 黄上～天阶 |
 | 依据 | 林家辟邪剑谱与葵花同源为原著主题；基础链、套装奖励为**（原创扩展）** |
 
@@ -858,7 +889,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（4） | `sk_taxuewuhen`、`sk_xueshanjianfa`、`sk_wuwangshengong`、`sk_jinwudaofa` |
 | 2 件 | `attr:resCold pp +3×G`【属性层】 |
 | 3 件 | 对持剑目标的刀法或对持刀目标的剑法 `Z5 +3%×G`【Z5】 |
-| 4 件 | 雪地移动代价 −1，最低 1；寒地招式 `Z3 +2%×G`【机制／Z3】 |
+| 4 件 | 档位生效时登记 `modTerrain terrain:snow costMul:0.5`（最终每格最低 1）；站在雪地时招式 `Z3 +2%×G`【地形／Z3】 |
 | 品阶 | 玄上～地中 |
 | 依据 | 雪山派与金乌刀法克雪山剑法为原著主题；套装效果为**（原创扩展）**，无妄神功细节**（待考）** |
 
@@ -884,7 +915,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（5） | `sk_shenxing`、`sk_tiejianjianfa`、`sk_mantianhuayu`、`sk_tiejianqipanjian`、`sk_tiejianxinfa` |
 | 2 件 | `attr:eva pct +3%×G`【属性层】 |
 | 3 件 | 暗器／剑法 `attr:hit pct +3%×G`【属性层】 |
-| 4 件 | 每场首次闪避成功后 `ctShift +30×G`【ct】 |
+| 4 件 | 每场首次闪避成功后对自身 `ctShift +30×G`【ct】 |
 | 品阶 | 玄中～天下 |
 | 依据 | 木桑道人、神行百变、暗器与弈棋意象为原著主题；剑法／心法命名和成套为**（原创扩展）** |
 
@@ -897,7 +928,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（6） | `sk_shenlongrumenquan`、`sk_shenlongshebu`、`sk_shenlongzhang`、`sk_yingxiongsanzhao`、`sk_meirensanzhao`、`sk_shenlongxinfa` |
 | 2 件 | `attr:effHit pct +3%×G`【属性层】 |
 | 3 件 | 对受控制目标 `Z3 +3%×G`【Z3】 |
-| 4 件 | 每场首次被缴械／缠绕命中时 `dispel` 该效果，强度=`g_set`【机制】 |
+| 4 件 | 开战对自身 `applyBuff bf_mian_kong` 1 回合，每场一次【机制】 |
 | 品阶 | 黄～地；具体见图鉴 |
 | 依据 | 神龙教与洪安通武库为原著主题；技能拆分与效果为**（原创扩展）** |
 
@@ -910,11 +941,11 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（6） | `sk_yuzhongduanquan`、`sk_yuzhongduandao`、`sk_yuzhongqinna`、`sk_xiangxituna`、`sk_meinianshengxinfa`、`sk_shenzhao` |
 | 2 件 | `attr:resInjury pp +3×G`【属性层】 |
 | 3 件 | 气血低于50%时 `Z4 +3%×G`【Z4】 |
-| 4 件 | 每场首次气血低于25%时 `heal hpMax×1%×G`【settle】 |
+| 4 件 | 每场首次气血低于25%时对自身 `heal hpMax×1%×G`【settle】 |
 | 品阶 | 黄下～天阶；具体见图鉴 |
 | 依据 | 神照经、丁典—狄云牢狱传承为原著主题；狱中武学、湘西吐纳与奖励为**（原创扩展）** |
 
-可达：高／中携内2、拳2、兵1可达 5；低·连城六门本土，栏位内可达 5；其他低武一内一拳一兵 →3。锁穴效果次数不增加。
+可达：高携内3、拳2、兵1可达 6；中受内功携带上限 2 约束，携内2、拳2、兵1可达 5；低·连城六门本土，内功3、拳脚2、兵器1 均在装配栏上限内，可达 6；其他低武一内一拳一兵 →3。锁穴效果次数不增加。
 
 ### 15.6 `set_yuanyangdao_renzhe` 鸳鸯刀·仁者
 
@@ -923,11 +954,11 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（4） | `sk_yuanyangjibenjian`、`sk_renzhetuna`、`sk_yuanyangshuangdao`、`sk_fuqidaofa` |
 | 2 件 | `attr:resMind pp +3×G`【属性层】 |
 | 3 件 | 对气血高于50%目标 `Z3 +3%×G`【Z3】 |
-| 4 件 | 本方造成致死伤害时可将目标留在 1 HP，每场一次；触发后 `modRage +5×G`【机制】 |
+| 4 件 | 每场首次相邻友方受伤后，对该友方 `heal hpMax×1%×G`，再对自身 `modRage +5×G`【settle／机制】 |
 | 品阶 | 黄～地；具体见图鉴 |
 | 依据 | 鸳鸯刀“仁者无敌”主题有原著依据；基础剑、吐纳、成套奖励为**（原创扩展）**，人物关系细节**（待考）** |
 
-可达：高／中携一内、三兵可达 4；低·鸳鸯四门本土且兵器栏 3 →4；其他低武一内一兵 →2。鸳鸯刀装备不计。
+可达：高携一内、三兵可达 4；中纯携入受兵器携带上限 2 限制，只能一内、两兵 →3；低·鸳鸯四门均为本土，且一内、三兵恰占栏位上限，可达 4；其他低武一内一兵 →2。鸳鸯刀装备不计。
 
 ### 15.7 `set_honghua_shisidangjia` 红花十四当家
 
@@ -936,8 +967,8 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（8） | `sk_baihuacuo`、`sk_paoding`、`sk_honghuahuiheji`、`sk_honghuaxinfa`、`sk_jindifa`、`sk_honghuachangquan`、`sk_honghuajian`、`sk_honghuabu` |
 | 2 件 | `attr:combo pp +2×G`【属性层】 |
 | 3 件 | 相邻友方存在时 `Z4 +3%×G`【Z4】 |
-| 4 件 | 友方击倒目标后自身 `ctShift +20×G`，每回合一次【ct】 |
-| 6 件 | 开战 `modRage +5×G`【机制】 |
+| 4 件 | 相邻友方命中后对自身 `ctShift +5×G`，每回合一次【ct】 |
+| 6 件 | 开战对自身 `modRage +5×G`【机制】 |
 | 品阶 | 黄中～地；具体见图鉴 |
 | 依据 | 红花会十四当家与群侠接应为原著主题；合击技能、阈值与数值为**（原创扩展）** |
 
@@ -950,7 +981,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（5） | `sk_hujiadao`、`sk_hujiaquan`、`sk_hujiadaoxinfa`、`sk_hujiaxiaolianquan`、`sk_liaodonghushendao` |
 | 2 件 | `attr:parry pct +3%×G`【属性层】 |
 | 3 件 | 刀法／拳法 `Z3 +3%×G`【Z3】 |
-| 4 件 | 未移动时下一次招架 `Z9 +3pp×G`【Z9】 |
+| 4 件 | 招架拳脚招式时 `Z9 +3pp×G`【Z9】 |
 | 品阶 | 黄上～天阶；具体见图鉴 |
 | 依据 | 胡家刀法与拳经互证为原著主题；小练拳、护身刀与奖励为**（原创扩展）** |
 
@@ -980,12 +1011,12 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（12） | `sk_pojunqiangfa`、`sk_baizhanxinfa`、`sk_shouchengzhen`、`sk_duanzhenqiang`、`sk_junzhongdao`、`sk_zhenqijian`、`sk_jundituna`、`sk_xingjunbu`、`sk_shouchengfa`、`sk_changqiangrumen`、`sk_junwuduandao`、`sk_junwuchangjian` |
 | 2 件 | `attr:tough pct +3%×G`【属性层】 |
 | 3 件 | 相邻友方存在时 `Z4 +3%×G`【Z4】 |
-| 4 件 | 对处于阵法范围内目标 `Z3 +3%×G`【Z3】 |
+| 4 件 | 对距离≤2的目标 `Z3 +3%×G`【Z3】 |
 | 6 件 | 击退抵抗 `attr:resCC pp +3×G`【属性层】 |
 | 品阶 | 黄上～地上 |
 | 依据 | 历代军伍与守城主题；技能体系和全部奖励为**（原创扩展）** |
 
-可达：高本土／携带内2、兵3、杂1可达 6；中同样可达 6；低 `ALL14` 本土三兵、两内及行军步可达 6，杂学可本土重学。
+可达：高以内2、兵3、杂1可达 6；中同样可达 6。低武携入 `sk_baizhanxinfa`，并在 `ALL14` 本土重学 `sk_jundituna`、三门兵器与 `sk_xingjunbu`，按内2、兵3、轻1可达 6；不依赖杂学携带。
 
 ### 16.3 `set_penglai_chaosheng` 蓬莱潮生
 
@@ -994,11 +1025,11 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（6） | `sk_donghaichaoshengzhang`、`sk_tianwangbuxin`、`sk_penglaiquan`、`sk_chaoyinxinfa`、`sk_penglairumenquan`、`sk_haifengbu` |
 | 2 件 | `attr:parry pct +3%×G`【属性层】 |
 | 3 件 | 水岸／浅水格上招式 `Z3 +3%×G`【Z3】 |
-| 4 件 | 每场首次治疗或施加 `mind` 后 `ctShift +20×G`【ct】 |
+| 4 件 | 每场首次施治后对自身 `ctShift +20×G`【ct】 |
 | 品阶 | 黄中～地下 |
 | 依据 | 蓬莱传承整体为**（原创扩展）**；天王补心针名目与归属**（待考）** |
 
-可达：高·天龙本土拳3、内1、暗1、轻1可达 6；中可携一内、两拳，并在本土有通行投放时补至 4，未投放则 3；低携一内一拳 →2，轻功／暗器不可携且无蓬莱本土来源。
+可达：高·天龙本土拳3、内1、暗1、轻1可达 6；中纯携入一内、两拳 →3；低纯携入一内、一拳 →2。现有六门的 `sourceChapters` 都只有天龙，中／低武没有已登记本土补件，轻功／暗器也不可携。
 
 ---
 
@@ -1010,12 +1041,12 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 |---|---|
 | 成员（4） | `sk_yihuagongjian`、`sk_yihuagongqinggong`、`sk_yihuajieyu`、`sk_mingyugong` |
 | 2 件 | `attr:eva pct +3%×G`【属性层】 |
-| 3 件 | 招架后下一招 `Z3 +3%×G`【Z3】 |
-| 4 件 | 每场首次遭远程命中时 `applyBuff bf_youshi` 1 回合【机制】 |
+| 3 件 | 远程招式 `Z3 +3%×G`【Z3】 |
+| 4 件 | 每场首次遭远程招式伤害后，对自身 `applyBuff bf_youshi` 1 回合【机制】 |
 | 品阶 | 黄～地；具体见图鉴 |
 | 依据 | 移花宫与明玉功主题来自古龙作品；跨作者扩展接入本作属**（原创扩展）** |
 
-可达：高／中在古龙扩展书界本土四门 →4；无本土时携一内一兵，轻功不可携，第三门类别以图鉴为准可达 2～3；低无本土保守 2。
+可达：中武·侠客为主投放，本土可装一内、一拳、一兵、一轻 →4；中武·笑傲隐藏线只落明玉功与入门剑，保守 2；高武无本土时可携一内、一拳、一兵 →3，轻功不可携；低武同样纯携入一内、一拳、一兵 →3。投放到金庸书界均为**（原创扩展）**。
 
 ### 17.2 `set_baiyun_juezhan` 白云决战
 
@@ -1024,11 +1055,11 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 成员（5） | `sk_baiyunjichujian`、`sk_baiyunjianwei`、`sk_feixiandao`、`sk_tianwaifeixian`、`sk_ximenjiandao` |
 | 2 件 | 剑法 `attr:hit pct +3%×G`【属性层】 |
 | 3 件 | 单体剑招 `Z3 +3%×G`【Z3】 |
-| 4 件 | 每场首次双方皆未受伤时命中，`attr:crit pp +3×G`【属性层／机制】 |
+| 4 件 | 剑法 `attr:crit flat +3×G`【属性层】 |
 | 品阶 | 黄～天；具体见图鉴 |
 | 依据 | 白云城主与西门吹雪决战主题来自古龙作品；技能组合、数值为**（原创扩展）**，不改写原作胜负 |
 
-可达：高／中在古龙扩展书界本土可装 3 门剑法，并由本土轻功 `sk_baiyunjianwei` 补至 4；纯跨书携带受兵器栏与携带上限约束，中／低最多携入 3 门兵器，不能只靠跨书携入激活 4 件。具体书界接入待章节表落盘。
+可达：中武·碧血为主投放，本土四门剑法中任选三门，再装轻功 `sk_feixiandao`，恰达 4；第四门剑法受三个兵器栏限制不能同时计件。高武无本土时可携三门兵器，轻功不可携，最多 3；其他中武最多携两门兵器，低武最多携一门兵器，均不能只靠跨书携入激活 4 件。投放到碧血书界为**（原创扩展）**。
 
 ---
 
@@ -1051,7 +1082,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 
 ### 18.2 高／中／低武可达档总览
 
-下表数字是当前可证明的代表性最高件数；带 `L` 表示依赖标注书界本土重学，带 `X` 表示只在原生／扩展书界成立。精确成员路径见各套条目。
+下表数字是当前可证明、足以覆盖最高奖励档的代表路径件数，不承诺穷举数学最大值；带 `L` 表示依赖标注书界本土重学，带 `E` 表示依赖装备。精确成员路径见各套条目。
 
 | 套装 | 高 | 中 | 低 | 低武 4 件结论 |
 |---|---:|---:|---:|---|
@@ -1075,10 +1106,10 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 逍遥游 | 5L | 5 | 3 | 不可 |
 | 星宿老仙 | 5L | 5 | 3 | 不可 |
 | 以彼之道 | 5L | 5 | 3 | 不可 |
-| 大轮明王 | 5L | 5 | 6L/3 | 鹿鼎可 |
-| 契丹英雄 | 5L | 5L | 4L/3 | 鹿鼎可 |
+| 大轮明王 | 5L | 5 | 7L/3 | 鹿鼎可 |
+| 契丹英雄 | 5L | 5L | 3L/3 | 不可 |
 | 光明圣火 | 4L | 4 | 3 | 不可 |
-| 波斯圣火 | 5L | 4 | 2 | 不可 |
+| 波斯圣火 | 5L | 4 | 3 | 不可 |
 | 倚天峨眉 | 6L | 6 | 4E | 可，依赖倚天剑 |
 | 崆峒七伤 | 4L | 4 | 3 | 不可 |
 | 四大法王 | 4L | 2 | 2 | 不可 |
@@ -1090,19 +1121,19 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 华山混元 | 4 | 4L | 2 | 不可 |
 | 铁剑木桑 | 5L | 5L | 2 | 不可 |
 | 神龙教主 | 4 | 4 | 4L/2 | 鹿鼎可 |
-| 神照连城 | 5 | 5 | 5L/3 | 连城可 |
-| 鸳鸯仁者 | 4 | 4 | 4L/2 | 鸳鸯可 |
+| 神照连城 | 6 | 5 | 6L/3 | 连城可 |
+| 鸳鸯仁者 | 4 | 3 | 4L/2 | 鸳鸯可 |
 | 红花十四当家 | 5 | 6L | 3 | 不可 |
 | 胡家冷月 | 5 | 5L | 3 | 不可 |
 | 江湖百家 | 6L | 6L | 6L | 四界均可 |
 | 军伍百战 | 6L | 6L | 6L | 四界均可 |
-| 蓬莱潮生 | 6L | 3～4 | 2 | 不可 |
-| 移花双璧 | 4X | 4X | 2～3 | 仅扩展本土可 |
-| 白云决战 | 4X | 4X | 2～3 | 仅扩展本土可 |
+| 蓬莱潮生 | 6L | 3 | 2 | 不可 |
+| 移花双璧 | 3 | 4L/2 | 3 | 侠客本土可 |
+| 白云决战 | 3 | 4L/2 | 1 | 碧血本土可 |
 
 ### 18.3 低武分布结论
 
-十四书界中，鹿鼎有少林金刚、少林罗汉、扫地僧、丐帮帮主、大轮明王、契丹英雄、神龙教主与两套通行套；连城有武当太极、神照连城和两套通行套；鸳鸯有武当太极、鸳鸯仁者和两套通行套；白马以江湖百家、军伍百战作为稳定满档，本土专属套装留给章节后续设计。这样既保留低武地域特色，也不靠未登记装备伪造可达性。
+十四书界中，鹿鼎有少林金刚、少林罗汉、扫地僧、丐帮帮主、大轮明王、神龙教主与两套通行套；连城有武当太极、神照连城和两套通行套；鸳鸯有武当太极、鸳鸯仁者和两套通行套；白马以江湖百家、军伍百战作为稳定满档，本土专属套装留给章节后续设计。契丹英雄在低武仅可达 3 件，不计入四件名单。这样既保留低武地域特色，也不靠未登记装备或未登记本土武学伪造可达性。
 
 ---
 
@@ -1116,52 +1147,65 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 
 | 原候选 | 去向 | 理由 |
 |---|---|---|
-| `set_shaolin_henglian`、`set_shaolin_banruo`、`set_shaolin_gunseng` | 并入少林金刚／罗汉／达摩主题池 | 减少少林内部碎套；成员仍可作为普通武学 |
-| `set_sandu`、`set_chengguan` | 并入扫地僧／方证的人物佛门套 | 同为少林人物与佛法主题，避免四成员重复 |
-| `set_gaibang_tuobo`、`set_gaibang_xingyi` | 并入丐帮帮主 | 入门、行艺成为帮主套的成长路径 |
-| `set_huangrong_nvzhuge`、`set_taohua_qimen` | 并入桃花岛主／侠之大者 | 黄蓉成员高度重叠 |
-| `set_baituo_shenu` | 并入白驼山主 | 同门蛇毒主题 |
-| `set_dali_huwei` | 并入一阳 | 大理入门链已在一阳套内 |
-| `set_zhoubotong_wantong` | 并入侠之大者／九阴正宗 | 空明、互搏、九阴三件高度重叠 |
-| `set_xiaoyao_xuzhu`、`set_lingjiu_jiutian` | 并入逍遥游 | 天阶成员与逍遥门派主题重叠 |
-| `set_mizong_jinlun` | 并入大轮明王的密宗玩法池 | 避免两套共用大手印、护法身、拙火 |
-| `set_mingjiao_wuxingqi`、`set_tianying_baimei` | 并入光明圣火 | 明教内部集中为主套，角色支系保留武学 |
-| `set_huashan_liangyi`、`set_liangyi_sixiang` | 并入华山气剑／武当太极 | 两仪作为招式关系，不另做小套 |
-| `set_meizhuang_siyou`、`set_renwoxing`、`set_dongfang_kuihua` | 并入黑木日月／林家辟邪 | 避免吸星、葵花在多套重复叠收益 |
-| `set_humiao_bainian`、`set_miaojia_jianxin` | 并入胡家冷月 | 飞狐刀剑对照保留为剧情，不另占套装槽 |
-| `set_fuqidao_tongxin` | 并入鸳鸯刀·仁者 | `sk_fuqidaofa` 已作为仁者套成员 |
-| `set_wanmei_gucheng`、`set_shenjian_wangfan` | 并入白云决战 | 西门、谢晓峰主题不再各开一套 |
+| `set_shaolin_henglian`、`set_shaolin_banruo`、`set_shaolin_gunseng` | 主题并入 `set_shaolin_jingang`／`set_shaolin_luohan`／`set_shaolin_damo` | 减少少林碎套；并入不表示把原候选全部成员迁入正式表 |
+| `set_sandu`、`set_chengguan` | 主题并入 `set_saodiseng`／`set_fangzheng` | 同为少林人物、佛法主题，避免重叠 |
+| `set_gaibang_tuobo`、`set_gaibang_xingyi` | 主题并入 `set_gaibang_bangzhu` | 入门与行艺留作帮主成长链 |
+| `set_huangrong_nvzhuge`、`set_taohua_qimen` | 主题并入 `set_taohuadao`／`set_guojing_xiazhe` | 人物与奇门成员高度重叠 |
+| `set_baituo_shenu` | 主题并入 `set_baituoshan` | 同门蛇毒主题 |
+| `set_dali_huwei` | 主题并入 `set_dali_yiyang` | 大理入门链已由一阳主题覆盖 |
+| `set_zhoubotong_wantong` | 主题并入 `set_guojing_xiazhe`／`set_jiuyin_zhengzong` | 空明、互搏、九阴关系高度重叠 |
+| `set_xiaoyao_xuzhu`、`set_lingjiu_jiutian` | 主题并入 `set_xiaoyao_xiaoyaoyou` | 人物与门派主轴重叠 |
+| `set_mizong_jinlun` | 主题并入 `set_mizong_mingwang` | 避免共用大手印、护法身、拙火的两套同开 |
+| `set_mingjiao_wuxingqi`、`set_tianying_baimei` | 主题并入 `set_mingjiao_guangming` | 明教内部集中为主套，支系武学仍保留 |
+| `set_huashan_liangyi`、`set_liangyi_sixiang` | 主题并入 `set_huashan_qijian`／`set_wudang_taiji` | 两仪作为武学关系，不另开小套 |
+| `set_meizhuang_siyou`、`set_renwoxing`、`set_dongfang_kuihua` | 主题并入 `set_riyue_heimu`／`set_linjia_bixie` | 避免吸星、葵花多套叠益 |
+| `set_humiao_bainian`、`set_miaojia_jianxin` | 主题并入 `set_hujia_lengyue` | 飞狐刀剑对照保留为剧情关系；两 ID 不再列于删除表 |
+| `set_fuqidao_tongxin` | 主题并入 `set_yuanyangdao_renzhe` | `sk_fuqidaofa` 已是正式成员 |
+| `set_wanmei_gucheng` | 主题并入 `set_baiyun_juezhan` | 西门剑道已进入正式成员 |
+| `set_shenjian_wangfan` | 不并成员；叙事对照并入 `set_baiyun_juezhan` | 谢晓峰不是白云决战成员，避免误称成员迁移 |
 
 ### 19.3 删除：成员不足、依赖未闭合或主题重复
 
-| 图鉴 | 未入选候选 | 处理理由 |
+以下逐项登记未入选 ID；连同 §19.2 的“主题并入”项，旧 ID 均不进入运行数据。`set_tiezhang_shuishangpiao` 在五绝、道家两册重复出现，所以两表覆盖 120 次图鉴提及、119 个唯一 ID。
+
+| 图鉴 | 未入选候选（逐项） | 去向／理由 |
 |---|---|---|
-| 少林 | `set_nanshaolin_hongmen` | 书剑专属、与红花／少林主题重叠；留作赛季扩展 |
-| 五绝 | `set_heifeng_shuangsha`、`set_tiezhang_shuishangpiao`、`set_jiangnan_qiguai`、`set_yangjia_jiangmen`、`set_menggu_shediao`、`set_menggu_mufu`、`set_tiezhang_shanzhai` | 候选过大或人物／势力分散；首发优先六个主传承 |
-| 道家 | `set_shujian_mianlizhen`、`set_chilian_xianzi`、`set_jueqing_gongsun`、`set_tiezhang_shuishangpiao` | 依赖装备／非核心携带或与保留套重叠 |
-| 逍遥 | `set_sidaeren`、`set_yipintang_tieyao` | 备选未展开，优先保留门派主轴 |
+| 少林 | `set_nanshaolin_hongmen` | 书剑专属，和红花／少林主套重叠；留未来扩展 |
+| 五绝 | `set_heifeng_shuangsha`、`set_tiezhang_shuishangpiao`、`set_jiangnan_qiguai`、`set_yangjia_jiangmen`、`set_menggu_shediao`、`set_menggu_mufu`、`set_tiezhang_shanzhai` | 人物或势力分散；首发优先六个主传承 |
+| 道家 | `set_shujian_mianlizhen`、`set_chilian_xianzi`、`set_jueqing_gongsun`、`set_tiezhang_shuishangpiao` | 非核心携带、装备依赖或主题重叠；铁掌项与五绝同一 ID |
+| 逍遥 | `set_sidaeren`、`set_yipintang_tieyao` | 备选未展开；保留未来阵营包 |
 | 倚天 | `set_xuanming` | 只有两门技能，鹿杖／鹤笔装备反向未闭合 |
-| 倚天 | `set_kunlun_liangyi`、`set_ruyang_suwei`、`set_haisha_duyan`、`set_jujing_fenshui`、`set_shenquan_cuijun` | 首发容量收敛；保留为未来门派包 |
-| 五岳 | `set_taishan_daizong`、`set_hengshan_yunwu`、`set_hengshan_cibei`、`set_qingcheng_songfeng`、`set_wuxian_baidu`、`set_xiaoao_yiren` | 首发只保留四条最具差异的纵向成长线 |
+| 倚天 | `set_kunlun_liangyi`、`set_ruyang_suwei`、`set_haisha_duyan`、`set_jujing_fenshui`、`set_shenquan_cuijun` | 可闭合但首发容量收敛；保留未来门派包 |
+| 五岳 | `set_taishan_daizong`、`set_hengshan_yunwu`、`set_hengshan_cibei`、`set_qingcheng_songfeng`、`set_wuxian_baidu`、`set_xiaoao_yiren` | 首发只留四条差异较大的成长线 |
 | 五岳 | `set_xiaoao_qinxiao` | 仅 3 个技能成员，未达正式套最小 4 件 |
-| 侠客／碧血 | `set_xiakedao_shibi`、`set_xiake_fumo`、`set_motian_qingzhang`、`set_changle_wuxing`、`set_jindao_pigua`、`set_shangqing_xuansu`、`set_shiliang_wuxing` | 仅 3 件，未达最小成员数 |
-| 侠客／碧血 | `set_xuansu_shuangjian`、`set_wudu_tieshou` | 依赖未登记装备；去掉装备后主题完整性不足 |
-| 侠客／碧血 | `set_jinshe_sanbao` | 依赖金蛇剑／锥装备且当前技能侧不足稳定 4 件 |
-| 侠客／碧血 | `set_xiandu_shangqing`、`set_chuangwang_shanzong` | 可闭合但与正式三套相比辨识度／跨界价值较低 |
+| 侠客／碧血 | `set_xiakedao_shibi`、`set_xiake_fumo`、`set_motian_qingzhang`、`set_changle_wuxing`、`set_jindao_pigua`、`set_shangqing_xuansu`、`set_shiliang_wuxing` | 各仅 3 件，未达最小成员数 |
+| 侠客／碧血 | `set_xuansu_shuangjian`、`set_wudu_tieshou`、`set_jinshe_sanbao` | 依赖未登记装备；移除装备后不足稳定 4 件或主题不完整 |
+| 侠客／碧血 | `set_xiandu_shangqing`、`set_chuangwang_shanzong` | 可闭合但首发辨识度／跨界价值较低 |
 | 康熙 | `set_chenjinnan`、`set_haidafu` | 单件人物标签，不构成套装 |
-| 康熙 | `set_pingxi_junbei`、`set_lvliang_sanjie`、`set_qinggong_yadao` | 只有 2 件 |
-| 康熙 | `set_huahui_yexing`、`set_nansiqi_xuegu` | 只有 3 件 |
-| 康熙 | 其余天地会、沐府、王屋、清宫、血刀、万家、诗剑、高昌、哈萨克、威信、太岳候选 | 首发容量收敛；保留为章节／DLC 扩展池 |
+| 康熙 | `set_pingxi_junbei`、`set_lvliang_sanjie`、`set_qinggong_yadao` | 各只有 2 件 |
+| 康熙 | `set_huahui_yexing`、`set_nansiqi_xuegu` | 各只有 3 件 |
+| 康熙 | `set_tiandihui_fanqing`、`set_muwang_hufu`、`set_wangwu_shandao`、`set_qinggong_neiting`、`set_xuedao_xuegu`、`set_wanjia_shimen`、`set_liancheng_shijian`、`set_gaochang_migong`、`set_hasake_caoyuan`、`set_weixin_hubiao`、`set_taiyue_sixia` | 可闭合但首发容量收敛；分别留天地会、沐府、王屋、清宫、血刀、万家、诗剑、高昌、哈萨克、威信、太岳扩展池 |
 | 乾隆 | `set_guandong_liumo` | 只有 2 件 |
-| 乾隆 | 天池、回部、苗家、商家、药王、广平、八卦、天龙南北、韦陀、八仙、八极、九龙、掌门大会 | 首发容量收敛；不删除武学 |
-| 通用 | `set_guchong_mifa`、`set_huanyirong` | 只有 3 件 |
-| 通用 | `set_xinglin_qihuang` | 七名成员均为杂学，受 2 个杂学装配栏限制，任何书界都无法达到 4 件 |
-| 通用 | 越女、雁门、镖局、武馆、毒家、奇门、雅乐、翰墨、百兽候选 | 与已有正式套重叠或首发容量收敛 |
-| 古龙 | 恶人谷、大旗、神水、无争、青龙、快活、血雨、唐门、孔雀、金钱、仁义候选 | 首发扩展组只留两套代表；其余留未来独立平衡 |
+| 乾隆 | `set_tianchi_shuangying`、`set_huibu_cuiyu`、`set_shangjiabao_fuchou`、`set_yaowang_yidu`、`set_taijimen_guangping`、`set_bagua_youlong`、`set_tianlong_nanbei`、`set_weituo_hufa`、`set_baxian_zuijian`、`set_baji_tieshan`、`set_jiulong_chanrao`、`set_zhangmen_dahui` | 可闭合但首发容量收敛；不删除武学，留未来支线包 |
+| 通用 | `set_guchong_mifa`、`set_huanyirong` | 各只有 3 件 |
+| 通用 | `set_xinglin_qihuang` | 七名成员均为杂学，受 2 个杂学装配栏限制，无法达到 4 件 |
+| 通用 | `set_yuenv_jianyuan`、`set_junwu_yanmeng`、`set_biaoju_sihai`、`set_wuguan_jiben`、`set_dujia_baicao`、`set_qimen_jianghu`、`set_yayue_qingxin`、`set_hanmo_yiqi`、`set_baishou_xunyuan` | 可闭合但与正式通行套重叠或首发容量收敛 |
+| 古龙 | `set_erengu_qiaobian`、`set_daqi_tiexue`、`set_shenshui_shenmiao`、`set_wuzheng_tingfeng`、`set_qinglong_ancao`、`set_kuaihuo_mifu`、`set_xueyu_yanluo`、`set_tangmen_qiaoji`、`set_kongque_shouzhuang`、`set_jinqian_juesu`、`set_renyi_xuanhong` | 首发古龙组只留两套代表；留未来独立平衡 |
 
 ### 19.4 装备候选的统一去向
 
 `eq_dagoubang`、`eq_jiuhulu`、`eq_yuxiao`、`eq_ruanweijia`、`eq_baituoshezhang`、`eq_chongyangdaopao`、`eq_junzijian`、`eq_shunvjian`、`eq_xuantiejian`、`eq_qibaozhihuan`、`eq_jinlun`、`eq_shenghuoling`、`eq_tiezhihuan`、`eq_lengyuedao`、`eq_jinsibeixin`、`eq_yuanyangdao` 等均不进入 v1 `members`。若 `design/10` 日后补同名反向标签，可在不改变武学侧的情况下作为版本 2 成员提案；此时必须重跑可达性与中位数回归。
+
+### 19.5 收敛计数复核
+
+| 项 | 数量 | 算式 |
+|---|---:|---|
+| 原图鉴候选 | 163 个唯一 ID | 11 册原候选节去重 |
+| 首发正式 | 44 | §9～§17 |
+| 未入选 | 119 个唯一 ID | `163−44=119` |
+| 未入选图鉴提及 | 120 | `119+1`；`set_tiezhang_shuishangpiao` 跨两册重复 |
+
+§19.2 列 27 个未入选 ID，§19.3 列 92 个未入选 ID，合计 `27+92=119`；同一 ID 不在两表重复。装备候选只是候选的附属成员，不另计入 163 个 `set_*`。
 
 ---
 
@@ -1180,7 +1224,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 
 ### 20.2 新数据结构与枚举
 
-`SetDef`、`SetMember`、`SetTier`、`Reachability`、`ActiveSetState`、`effectiveMedianFloor`、`canonTheme` 为本文新增数据约定。44 个 `set_*` ID 均复用图鉴候选，不新造套装 ID。
+`SetDef`、`SetMember`、`SetTier`、`SetBalance`、`Reachability`、`ActiveSetState`、`effectiveMedianFloor`、`canonTheme` 为本文新增数据约定。44 个 `set_*` ID 均复用图鉴候选，不新造套装 ID。
 
 ---
 
@@ -1202,13 +1246,15 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | SET-V10 | 装备成员必须在 10 的真实定义中有反向 `setTags` | 失败 |
 | SET-V11 | 首发套装数在 30～45；当前期望 44 | 失败 |
 | SET-V12 | 机制效果有次数／冷却／上限，触发链带防循环标记 | 失败 |
+| SET-V13 | 06 的常驻修饰 `modStat`／`modZone`／`modJudge`／`modCost`／`modRange` 仅在 `mods`；`modTerrain` 及其他动作原语仅在 `triggers[].ops` 或生命周期 `onApply/onRemove` | 失败 |
+| SET-V14 | `balance.peakScore` 按 §7 复算且不超过最高档累计上限 | 失败 |
 
 ### 21.2 单元测试
 
 | 用例 | 输入 | 期望 |
 |---|---|---|
 | SET-T01 | 金刚四件品阶 `[8,12,5,6]` | 排序 `[5,6,8,12]`，`g_set=7` |
-| SET-T02 | 金刚鹿鼎压制 `[8,6,5,4]` | `g_set=5` |
+| SET-T02 | 金刚鹿鼎压制 `[8,6,5,4]` | 排序 `[4,5,6,8]`，`g_set=floor((5+6)/2)=5` |
 | SET-T03 | 只装易筋经、龙爪手，背包有另两门 | 2 件，不读背包 |
 | SET-T04 | 同一装备 ID 两实例都穿戴 | 对同套装只计 1 件 |
 | SET-T05 | 成对装备为单一 `pair` ID | 占两槽但只计 1 件 |
@@ -1223,12 +1269,24 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | SET-T14 | 低武尝试携带轻功成员 | 拒绝携带；只有本土重学才计 |
 | SET-T15 | `set_yitian_emei` 穿倚天剑 | 装备计 1 件；卸下立即减 1 |
 | SET-T16 | 未登记装备被写入成员 | SET-V04／V10 失败 |
-| SET-T17 | 事件套装触发产生反击 | `noSetChain` 阻止套装再次递归 |
+| SET-T17 | 事件套装触发产生反击 | 继承 `countered` 来源位且受反应深度 3 限制，同一触发器不重入 |
 | SET-T18 | 两套同加 `fam_z4` | 合并后钳制于 75% |
+| SET-T19 | 金刚地下三档静态审计 | `8`、`8+6=14`、`8+6+8=22`，分别不超过 `15/22.5/30` |
+| SET-T20 | 连城本土神照六成员 | 内3＋拳2＋兵1，合法 6 件 |
+| SET-T21 | 中武纯携入鸳鸯仁者 | 内1＋兵2，只能 3 件；鸳鸯本土可 4 |
+| SET-T22 | 碧血本土白云决战 | 兵4中任选3＋轻1，可达 4；`sk_baiyunjianwei` 按剑法计 |
+| SET-T23 | 鹿鼎本土大轮明王 | 携入内1＋兵2，本土内2＋拳2；装配内3＋拳2＋兵2，合法 7 件 |
+| SET-T24 | 低武契丹英雄 | 携入拳1＋兵1，本土太祖长拳1；共 3 件，不得误判为 4 件 |
+| SET-T25 | 波斯圣火纯携入 | 中武内2＋拳1＋兵1=4；低武内1＋拳1＋兵1=3 |
+| SET-T26 | 蓬莱潮生纯携入 | 中武内1＋拳2=3；低武内1＋拳1=2，轻功／暗器均不得携入 |
+| SET-T27 | 白云决战类别与栏位 | `sk_baiyunjianwei` 是剑法、`sk_feixiandao` 是轻功；碧血本土兵3＋轻1=4 |
+| SET-T28 | 目录事件 DSL | 星宿不改持续、大轮不改冷却；预防免疫先于命中；临时属性均由既有 `bf_*` 承载；目录条件只读 06 白名单字段 |
+| SET-T29 | 来源位防循环 | 慕容反击继承 `countered`；奉还继承 `mirrored`，两者受 06 反应深度 3 与同事件去重限制 |
+| SET-T30 | 雪山地形操作 | 4 件生效时经 `onApply` 登记 `modTerrain`；换装失效时按来源 `iid` 撤销，雪地最终每格代价≥1 |
 
 ### 21.3 可达性回归
 
-每次改 `sourceChapters`、携带上限、装配栏或套装成员后，重新枚举所有书界的合法装配组合。至少断言：鹿鼎少林金刚 4；连城神照 4；鸳鸯仁者 4；白马江湖百家 4；所有目录写明“不可 4”的纯携入路径不得被错误判为可达。
+每次改 `sourceChapters`、携带上限、装配栏或套装成员后，重新枚举所有书界的合法装配组合。至少断言：鹿鼎少林金刚 4、大轮明王 7、契丹英雄 3；连城神照 6；波斯圣火纯携入中4／低3；蓬莱纯携入中3／低2；鸳鸯仁者本土 4、中武纯携入 3；白马江湖百家 4；侠客本土移花 4；碧血本土白云 4；所有目录写明“不可 4”的纯携入路径不得被错误判为可达。
 
 ---
 
@@ -1240,7 +1298,7 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 |---|---|---|
 | S-D01 | `tech/05` | `g_set` 用整数排序与 `(a+b)>>1` 等价的向下取整；档位变更在原子事件后提交 |
 | S-D02 | UI | 套装面板显示“已装配 x/y、当前品阶、下一档”，不显示背包候选为已计件 |
-| S-D03 | QA | 以 §21 的 18 条为最低自动化集合；44 套逐套生成双向与阈值测试 |
+| S-D03 | QA | 以 §21 的 30 条为最低自动化集合；44 套逐套生成双向与阈值测试 |
 
 ### 22.2 本文依赖的上游事实
 
@@ -1266,8 +1324,8 @@ QA 以同等级、同装备、只替换装配构筑的标准敌人比较：2 件
 | 编号 | 问题 | 默认值 |
 |---|---|---|
 | SET-O01 | 后续是否允许更多装备进入正式成员 | 不允许；先由 10 补真实 `setTags`，再升 `version` |
-| SET-O02 | 古龙扩展组对应哪个正式书界 | 暂标扩展本土 `X`；不计十四书界覆盖承诺 |
-| SET-O03 | `set_baiyun_juezhan` 四件是否受三兵器栏限制 | 是；轻功作为第 4 件须本土重学，纯携入最多 3 |
+| SET-O02 | 古龙扩展组后续是否另建独立书界 | 不建；当前按图鉴既定原创投放，移花主投侠客、白云主投碧血 |
+| SET-O03 | `set_baiyun_juezhan` 四件是否受三兵器栏限制 | 是；本土以轻功 `sk_feixiandao` 作第 4 件，纯携入最多依境界为高3／中2／低1 |
 | SET-O04 | 白马是否需要独占套装 | 首发不加；以江湖／军伍通行套保证完整体验 |
 | SET-O05 | 是否将被删候选作为后续赛季套 | 保留 ID 历史但不进运行数据；新增前重新做 C22 与预算审查 |
 
