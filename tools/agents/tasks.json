@@ -4879,6 +4879,81 @@
           ]
         ]
       }
+    },
+    {
+      "id": "M3",
+      "phase": "B",
+      "wave": 5,
+      "kind": "revise",
+      "priority": 50,
+      "title": "21 v2.0：经脉独立乘区、防守招式路线、内劲抵消拳脚（作者对 AR-14 的决定）",
+      "prompt": "M3-meridian-v2.md",
+      "deps": [
+        "M2"
+      ],
+      "writes": [
+        "docs/design/21-meridian-flow-and-moves.md",
+        "tools/balance/meridian_flow_sim.py",
+        "tools/balance/meridian_flow_golden.json",
+        "docs/decisions/author-requirements.md",
+        "docs/decisions/canon-proposals-v1.2.md"
+      ],
+      "review": true,
+      "web": false,
+      "vars": {},
+      "review_focus": "复算经脉独立乘区曲线：标准对标准 ≈1.0 且 damage_sim.py --check 仍 40/40，强一档 / 强两档 / 弱一档 / 强者对杂兵的倍率与 TTK 符合文中目标且有上下界；防守路线乘区与内劲抵消拳脚的结算顺序、与基准 §8 护体和 04 护体结算不冲突；退化策略（堆内力、龟缩防守、Boss 拳脚免疫）有可执行的抑制规则；参考实现与黄金数据一致（meridian_flow_sim.py --check）；§18.6 同步清单覆盖 04 / 09 / 06 / 05 / 图鉴 / 基准且可逐条执行；作者原文照录无改写；check_ids.py --strict 通过。",
+      "validate": {
+        "exists": [
+          "docs/design/21-meridian-flow-and-moves.md",
+          "tools/balance/meridian_flow_sim.py",
+          "tools/balance/meridian_flow_golden.json"
+        ],
+        "fences": [
+          "docs/design/21-meridian-flow-and-moves.md"
+        ],
+        "min_lines": {
+          "docs/design/21-meridian-flow-and-moves.md": 1700
+        },
+        "contains": [
+          [
+            "docs/design/21-meridian-flow-and-moves.md",
+            "v2.0"
+          ],
+          [
+            "docs/design/21-meridian-flow-and-moves.md",
+            "独立乘区"
+          ],
+          [
+            "docs/design/21-meridian-flow-and-moves.md",
+            "内劲"
+          ],
+          [
+            "docs/design/21-meridian-flow-and-moves.md",
+            "防守"
+          ],
+          [
+            "docs/decisions/author-requirements.md",
+            "强则无敌"
+          ]
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
     }
   ]
 }
