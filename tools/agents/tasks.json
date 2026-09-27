@@ -4367,6 +4367,109 @@
       }
     },
     {
+      "id": "F2x",
+      "phase": "F",
+      "wave": 4,
+      "kind": "tool",
+      "title": "ID 检查脚本收口（07 套装目录、§19 弃用映射、操作 / 修饰键、迁移语境、route_ 豁免、严格口径）",
+      "prompt": "F2x-lint.md",
+      "deps": [
+        "F2L",
+        "F2t",
+        "F2b",
+        "C2"
+      ],
+      "writes": [
+        "tools/lint/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/lint/check_ids.py",
+          "tools/lint/test_check_ids.py"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "tools/lint/test_check_ids.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "F2y",
+      "phase": "F",
+      "wave": 4,
+      "kind": "revise",
+      "title": "跨组遗留的文档收口（旗标改名、重复定义、旧区域、套装引用、门禁文字、回响、提案追加）",
+      "prompt": "F2y-docs.md",
+      "deps": [
+        "F2a",
+        "F2b",
+        "F2d1",
+        "F2d2",
+        "F2t",
+        "C2"
+      ],
+      "writes": [
+        "docs/design/01-*.md",
+        "docs/design/02-*.md",
+        "docs/design/03-*.md",
+        "docs/design/06-*.md",
+        "docs/design/08-*.md",
+        "docs/design/09-*.md",
+        "docs/design/10-*.md",
+        "docs/design/11-*.md",
+        "docs/design/12-*.md",
+        "docs/design/13-*.md",
+        "docs/design/14-*.md",
+        "docs/design/15-*.md",
+        "docs/design/16-*.md",
+        "docs/design/17-*.md",
+        "docs/design/18-*.md",
+        "docs/design/19-*.md",
+        "docs/design/20-*.md",
+        "docs/design/catalog/npcs-*.md",
+        "docs/design/story/**",
+        "docs/design/chapters/**",
+        "docs/tech/**",
+        "docs/decisions/canon-proposals-v1.2.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/decisions/canon-proposals-v1.2.md"
+        ],
+        "contains": [
+          [
+            "docs/decisions/canon-proposals-v1.2.md",
+            "v1.2 之后新增"
+          ]
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py"
+          ],
+          [
+            "{python}",
+            "tools/map/render_map.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
       "id": "F2",
       "phase": "F",
       "wave": 4,
@@ -4379,25 +4482,35 @@
         "F2c",
         "F2d1",
         "F2d2",
-        "F2t"
+        "F2t",
+        "F2x",
+        "F2y"
       ],
       "writes": [
         "docs/**",
         "tools/lint/**",
-        "tools/balance/**"
+        "tools/balance/**",
+        "tools/map/**"
       ],
       "validate": {
         "exists": [
-          "tools/lint/check_ids.py"
+          "tools/lint/check_ids.py",
+          "tools/lint/check_ids_baseline.json"
         ],
         "cmd": [
           [
             "{python}",
-            "tools/lint/check_ids.py"
+            "tools/lint/check_ids.py",
+            "--strict"
           ],
           [
             "{python}",
             "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/map/render_map.py",
             "--check"
           ]
         ]
