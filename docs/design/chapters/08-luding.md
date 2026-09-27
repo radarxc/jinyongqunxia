@@ -4,7 +4,7 @@
 > 上游：`docs/00-canon.md` v1.1；作者新增需求与决定见 `docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`；正邪主线与选择节点唯一叙事源见 `docs/design/story/08-luding.md`。
 > 引用而不重定义：时间线、书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害公式 → `design/04`；武学规则与图鉴 → `design/05`、`design/catalog/skills-*.md`；Buff → `design/06`；地形与轻功门禁 → `design/08`；战斗、Boss 与合击 → `design/09`；物品与神兵 → `design/10`；统一地图与时代图层 → `design/11`；任务、门派与羁绊 → `design/12`；成长、天书与结局 → `design/13`；经脉与冲穴 → `design/15`；资源与营生 → `design/16`；门派时代矩阵 → `design/17`；NPC 与跨书重逢 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v1.0（D08 初稿，2026-09-26）。
+> 版本：v1.0（D08 初稿，2026-09-26）；审校 D08.R（2026-09-26）。
 
 ---
 
@@ -30,7 +30,7 @@
 | 支线 | 28 | §6；奇遇 14、门派 5、羁绊 8、普通 1 |
 | 完整奇遇链 / 区域触点 | 14 / 14 | §6.2、§6.6；每条完整奇遇对应一个首触点 |
 | 可招募队友 | 10 | §8.2 |
-| 开放门派 | 9 | §7.1；另有隐世接口，不计开放名额 |
+| 门派内容实例 | 9 | §7.1；均来自 LD=`O`，另有隐世接口但不计内容预算 |
 | Boss | 10 | §8.6 |
 | 资源点 | 16 | §3.6 |
 | 营生场所 | 26 | §3.7 |
@@ -165,7 +165,7 @@ foreignGradePenalty: 4
 
 ### 3.1 本时代图层与地图入口
 
-本界地图使用 [`jianghu-ch08.svg`](../map/jianghu-ch08.svg)；城市名称、开放状态和坐标读取 [`cities.yaml`](../map/cities.yaml) 的 `ch08 / qing_early` 数据。区域边界和邻接读取 `map/regions.yaml`。地图只承担全国导航；进入区域后才加载六角场景。
+本界地图使用 [`jianghu-ch08.svg`](../map/jianghu-ch08.svg)；城市名称与开放状态逐城读取 [`cities.yaml`](../map/cities.yaml) 的 `.eras.ch08`，坐标读取城市稳定字段；`chapters.ch08.band=qing_early` 只用于时期带摘要，不得覆盖逐章城市状态。区域边界和邻接读取 `map/regions.yaml`。地图只承担全国导航；进入区域后才加载六角场景。
 
 图层加载顺序为：
 
@@ -181,13 +181,13 @@ foreignGradePenalty: 4
 
 | 全局区域 | 本时代入口 | 地貌与 `tr_*` | 轻功门禁 | 势力 / 主要 NPC | 本土可学武功 | 敌人等级 | 秘境 / 奇遇 |
 |---|---|---|---|---|---|---:|---|
-| `rg_yanjing_zhili` 燕京与直隶 | 开局北上后开放；紫禁城须 `q_08_main_01` 或清宫身份 | 官道 `tr_pingdi`、城墙 `tr_chengqiang`、宫殿屋脊 `tr_gongdianwuji` / `tr_wuding`、河滩 `tr_qianshui` | qg2 可走普通屋面；宫墙外攀须 qg5，或 qg4 + 借壁；正门可用身份 / 时辰替代 | 清宫、天地会、铁剑门游方线；`npc_kangxi`、`npc_weixiaobao`、`npc_chenjinnan`、`npc_ajiu` | `sk_bukushuaijiao`、`sk_daneishenfa`、`sk_tiandihuidao`、`sk_xiangtangbu`、`sk_shenxing` | 30–36 | `sc_08_zijincheng` 宫墙听漏、`sc_08_tiandihui_antu` 双名册、热河围猎暗线 **（原创扩展）** |
-| `rg_zhongyuan` 中原 | `dc_08_03` 后经河南府开放；少林内院另验身份 | 平原 `tr_caodi`、嵩山 `tr_qiaobi` / `tr_taijie`、寺院 `tr_shinei`、王屋窄道 `tr_zhandao` / `tr_xuanya` | 嵩山捷径 qg3；藏经高阁 qg4 或少林 L3；王屋断栈 qg2，亦可修桥 | 少林、王屋派、丐帮分舵；`npc_chengguan`、`npc_zengrou` | `sk_shaolingunfa`、少林入门拳掌、`sk_wangwujian`、`sk_wangwuzhang`、`sk_wangwuxinfa`、`sk_lianhuazhang` | 32–38 | `sc_08_shaolin_houshan` 经函、`sc_08_wangwu_duanzhan` 赌局、洛阳泥人古玩线 |
+| `rg_yanjing_zhili` 燕京与直隶 | 开局北上后开放；紫禁城须 `q_08_main_01` 或清宫身份 | 官道 `tr_pingdi`、城墙 `tr_chengqiang`、宫殿屋脊 `tr_gongdianwuji` / `tr_wuding`、河滩 `tr_qianshui` | qg2 可走普通屋面；qg3 可借壁上殿；唯一 qg4 内容是隐藏“屋脊飞渡”；宫墙外侧仍须身份 / 钥匙 / 剧情许可 | 清宫、天地会、铁剑门游方线；`npc_kangxi`、`npc_weixiaobao`、`npc_chenjinnan`、`npc_ajiu` | `sk_bukushuaijiao`、`sk_daneishenfa`、`sk_tiandihuidao`、`sk_xiangtangbu`、`sk_shenxing` | 30–36 | `sc_08_zijincheng` 宫墙听漏、`sc_08_tiandihui_antu` 双名册、热河围猎暗线 **（原创扩展）** |
+| `rg_zhongyuan` 中原 | `dc_08_03` 后经河南府开放；少林内院另验身份 | 平原 `tr_caodi`、嵩山 `tr_qiaobi` / `tr_taijie`、寺院 `tr_shinei`、王屋窄道 `tr_zhandao` / `tr_xuanya` | 少林后山偏径 qg3；藏经高阁验少林 L3 / 钥匙；王屋断栈 qg2，亦可修桥 | 少林、王屋派、丐帮分舵；`npc_chengguan`、`npc_zengrou` | `sk_shaolingunfa`、少林入门拳掌、`sk_wangwujian`、`sk_wangwuzhang`、`sk_wangwuxinfa`、`sk_lianhuazhang` | 32–38 | `sc_08_shaolin_houshan` 经函、`sc_08_wangwu_duanzhan` 赌局、洛阳泥人古玩线 |
 | `rg_hedong_jinzhong` 河东与晋中 | 河间 / 五台剧情后，以太原驿路进入 | 黄土坡 `tr_suishi`、山林 `tr_milin`、冬季 `tr_xuedi`、寺院台阶 `tr_taijie` | 五台偏峰 qg3；雪后屋脊 qg2 且受湿滑；无轻功可走香客道 | 清凉寺、王屋联络人、密宗行脚僧；`npc_ajiu`，顺治 / 行痴为局部角色槽 | `sk_jingangjue`、`sk_dashouyin`、`sk_zhuohuogong` **（游戏获取均为原创扩展）** | 33–38 | `sc_08_wutaishan_qingliang` 护寺、忻州雪夜口供 **（原创扩展）** |
-| `rg_jianghuai` 江淮 | 开局即开扬州；江宁、镇江在离京后解锁 | 运河 `tr_qianshui` / `tr_dajiang`、码头 `tr_chuanjiaban`、城巷 `tr_pingdi`、屋顶 `tr_wuding`、园林 `tr_huacong` | 运河短跨 qg3 或船；屋顶监听 qg2；高墙密档 qg4 或钥匙 | 天地会联络网、庄家遗属、丐帮；`npc_shuanger`、`npc_maoshiba`、`npc_wuliuqi` | `sk_ningxue`、`sk_canfengyinlugong`、`sk_guitoudaofa`、`sk_yunyoubu`、通行低武 | 30–38 | `sc_08_yangzhou_yunhe`、`sc_08_yangzhou_lichunyuan`、`sc_08_jiangning_mingshian` 明史案余波 |
-| `rg_yungui` 云贵 | `dc_08_06` 前以婚使 / 密函专线开；离滇后转自由旅行 | 滇中山道 `tr_zhandao`、密林 `tr_milin`、毒泽 `tr_duzhao`、王府 `tr_shinei`、驿道 `tr_pingdi` | 山道抄径 qg3；王府高墙 qg4 或婚使身份；毒泽以解毒 / 驭兽替代 | 平西王府、沐王府、九难线；`npc_wusangui`、`npc_jianning`、`npc_ake`、`npc_chenyuanyuan`、`npc_lizicheng` | `sk_muwangjian`、`sk_muwangquan`、`sk_muwangbu`、`sk_hongyingjian` | 35–41 | `sc_08_kunming_pingxiwangfu` 三封家书、滇池旧舟、毒材谷 **（原创扩展）** |
-| `rg_liaodong` 辽东与东北 | 山海关陆路或没沟营海路；雅克萨须终盘军令 / 外交通行 | 林雪 `tr_milin` / `tr_xuedi`、冰面 `tr_bingmian`、木城 `tr_chengqiang`、江面 `tr_shenshui` | 雪林 qg4 免减速；冰面 qg4 免滑；木城外攀 qg5，或交涉 / 云梯 | 清军、罗刹守军、海商；`npc_suofeiya`、`npc_kangxi`（远程政令） | `sk_manchuqishe`、`sk_daneishenfa`、`sk_luochahuoqi` | 36–44 | `sc_08_yakesa_mucheng` 停战线、`sc_08_ludingshan_kuangdao` 地图辨伪 **（待考）** |
-| `rg_islands` 海岛与台澎 | 神龙岛须没沟营专船 / 教内引路；台湾须郑氏或清廷船线；通吃岛仅任务专线 | 海滩 `tr_shadi`、深水 `tr_shenshui`、甲板 `tr_chuanjiaban`、密林 `tr_milin`、蛇窟 `tr_sheku` | 离岸礁 qg3 连踏 ≤3 格；远礁 qg4；无遮蔽海面须船；蛇窟可用驱蛇物 / 身份替代 | 神龙教、郑氏、海商；`npc_hongantong`、`npc_suquan`、`npc_fangyi`、`npc_zhengkeshuang`、`npc_shilang` | `sk_shenlongxinfa`、`sk_huagumianzhang`、`sk_yingxiongsanzhao`、`sk_meirensanzhao` | 35–41；洪安通 50 | `sc_08_shenlongdao_sheku`、`sc_08_tongchidao`、`sc_08_taiwan_chengtian` |
+| `rg_jianghuai` 江淮 | 开局即开扬州；江宁、镇江在离京后解锁 | 运河 `tr_qianshui` / `tr_dajiang`、码头 `tr_chuanjiaban`、城巷 `tr_pingdi`、屋顶 `tr_wuding`、园林 `tr_huacong` | 屋顶监听 / 密档后窗最高 qg2，亦可用钥匙；短距踏水只是 qg3 移动收益，不独占内容 | 天地会联络网、庄家遗属、丐帮；`npc_shuanger`、`npc_maoshiba`、`npc_wuliuqi` | `sk_ningxue`、`sk_canfengyinlugong`、`sk_guitoudaofa`、`sk_yunyoubu`、通行低武 | 30–38 | `sc_08_yangzhou_yunhe`、`sc_08_yangzhou_lichunyuan`、`sc_08_jiangning_mingshian` 明史案余波 |
+| `rg_yungui` 云贵 | `dc_08_06` 前以婚使 / 密函专线开；离滇后转自由旅行 | 滇中山道 `tr_zhandao`、密林 `tr_milin`、毒泽 `tr_duzhao`、王府 `tr_shinei`、驿道 `tr_pingdi` | 山道抄径 qg2；王府花墙 qg3 或婚使身份；毒泽以解毒 / 驭兽替代 | 平西王府、沐王府、九难线；`npc_wusangui`、`npc_jianning`、`npc_ake`、`npc_chenyuanyuan`、`npc_lizicheng` | `sk_muwangjian`、`sk_muwangquan`、`sk_muwangbu`、`sk_hongyingjian` | 35–41 | `sc_08_kunming_pingxiwangfu` 三封家书、滇池旧舟、毒材谷 **（原创扩展）** |
+| `rg_liaodong` 辽东与东北 | 山海关陆路或没沟营海路；雅克萨须终盘军令 / 外交通行 | 林雪 `tr_milin` / `tr_xuedi`、冰面 `tr_bingmian`、木城 `tr_chengqiang`、江面 `tr_shenshui` | 军道矮障最高 qg2；qg4 只免雪地 / 冰面惩罚，不作为内容门禁；木城须军令、交涉或云梯 | 清军、罗刹守军、海商；`npc_suofeiya`、`npc_kangxi`（远程政令） | `sk_manchuqishe`、`sk_daneishenfa`、`sk_luochahuoqi` | 36–44 | `sc_08_yakesa_mucheng` 停战线、`sc_08_ludingshan_kuangdao` 地图辨伪 **（待考）** |
+| `rg_islands` 海岛与台澎 | 神龙岛须没沟营专船 / 教内引路；台湾须郑氏或清廷船线；通吃岛仅任务专线 | 海滩 `tr_shadi`、深水 `tr_shenshui`、甲板 `tr_chuanjiaban`、密林 `tr_milin`、蛇窟 `tr_sheku` | 礁间短路最高 qg2；qg3 可踏水连过 ≤3 格但不独占内容；远礁与无遮蔽海面均须船；蛇窟可用驱蛇物 / 身份替代 | 神龙教、郑氏、海商；`npc_hongantong`、`npc_suquan`、`npc_fangyi`、`npc_zhengkeshuang`、`npc_shilang` | `sk_shenlongxinfa`、`sk_huagumianzhang`、`sk_yingxiongsanzhao`、`sk_meirensanzhao` | 35–41；洪安通 50 | `sc_08_shenlongdao_sheku`、`sc_08_tongchidao`、`sc_08_taiwan_chengtian` |
 
 `rg_yungui` 与 `rg_islands` 是 `regions.yaml` 的正式全局 ID；不使用旧式 `rg_08_*`，也不把神龙岛另造区域。
 
@@ -226,21 +226,48 @@ foreignGradePenalty: 4
 | `sc_08_yangzhou_shufang` | 同上 / 扬州 | 抄手开局、缉帖辨伪 | 开局即开；密格需 `art` 检定或店主信任 | 明史案余波后新增禁书搜检 |
 | `sc_08_yangzhou_yaopu` | 同上 / 扬州 | 药童开局、迷药辨毒 | 开局即开；后堂需 `med` 或掌柜关系 | 神龙线后可配 `it_baotai_jieyao` |
 | `sc_08_yangzhou_lichunyuan` | 同上 / 扬州 | 汇流点；隐藏身份开局 | 首周目可进入公共区；隐藏身份只按 `design/13` 解锁 | 终幕作为退隐假线索之一 |
-| `sc_08_zijincheng` | `rg_yanjing_zhili` / 北京 | 布库、擒鳌拜、宫闱证据 | 正门 `status`；屋面 qg2，外墙 qg5 或 qg4 + 借壁；不可用高轻功直接跳过剧情锁 | 警戒随 `dc_08_01/03` 改变 |
+| `sc_08_zijincheng` | `rg_yanjing_zhili` / 北京 | 布库、擒鳌拜、宫闱证据 | 正门 `status`；主路线屋面 qg2，支路上殿 qg3；隐藏“屋脊飞渡” qg4；外墙仍受任务许可约束 | 警戒随 `dc_08_01/03` 改变 |
 | `sc_08_tiandihui_antu` | 同上 / 北京秘密据点 | 双名帖、香堂职责 | 天地会关系 20 或引荐；邪线可用伪帖但留下审计痕迹 | `dc_08_10` 后撤空 / 被清剿 / 化整为零 |
 | `sc_08_shaolin_houshan` | `rg_zhongyuan` / 登封 | 澄观、经函、冲穴指点 | 少林 L3；或 qg3 + `morality≥20`；夜潜会损关系 | 五台护寺结果影响僧众态度 |
 | `sc_08_wangwu_duanzhan` | 同上 / 王屋山 | 曾柔羁绊、山道赌局 | qg2 或修复断栈；战斗夺路不是唯一解 | 救派成功后成为安全点 |
 | `sc_08_wutaishan_qingliang` | `rg_hedong_jinzhong` / `mt_wutai` | 护顺治、密宗冲突 | 香客道全员可走；偏峰 qg3；内院需任务状态 | 冬季积雪改变路线，不改变锚点 |
 | `sc_08_jiangning_mingshian` | `rg_jianghuai` / 江宁 | 文献保护、证人转移 | `art≥35` 或士人引荐；强闯会烧毁部分证据 | 证据归属随 `dc_08_07` 锁定 |
-| `sc_08_kunming_pingxiwangfu` | `rg_yungui` / 云南府 | 婚使、三封家书 | 婚使 / 平西军身份；花墙 qg4；沐府地道由支线开 | `dc_08_06` 后三方巡逻表不同 |
+| `sc_08_kunming_pingxiwangfu` | `rg_yungui` / 云南府 | 婚使、三封家书 | 婚使 / 平西军身份；花墙 qg3；沐府地道由支线开 | `dc_08_06` 后三方巡逻表不同 |
 | `sc_08_shenlongdao_sheku` | `rg_islands` / 神龙岛 | 毒丸账、终战侧道 | `beast`、雄黄类物品、神龙身份或承受 `tr_sheku` | 完成教内内乱后蛇群不再被驱赶参战 |
 | `sc_08_shenlongdao_dadian` | 同上 / 神龙岛 | 洪安通终战 | 只能由终幕任务开启；不可提前以门派身份跳 Boss | 读取 `gauge_baoxun` 与苏荃关系 |
 | `sc_08_tongchidao` | 图外地点 / `tongchi_island` | 陈近南落轴与退隐 | 仅任务专船；无自由导航边 | `dc_08_08/10` 决定生死与撤离通道 |
 | `sc_08_taiwan_chengtian` | `rg_islands` / 承天府 | 郑氏三方渠道 | 郑氏船旗、清廷军令或天地会接引三选一 | 台湾大势不因局部任务改写 |
-| `sc_08_yakesa_mucheng` | `rg_liaodong` / 雅克萨 | 围城、俘虏与止战 | 军令、罗刹旧识或雪林 qg4 潜入；木城外攀 qg5 | 谈判后转中立交接场 |
+| `sc_08_yakesa_mucheng` | `rg_liaodong` / 雅克萨 | 围城、俘虏与止战 | 军令、罗刹旧识或雪沟 qg2 侦察；入城须交涉 / 云梯 / 主线攻城状态 | 谈判后转中立交接场 |
 | `sc_08_ludingshan_kuangdao` | 同上 / 鹿鼎山附近 **（地望待考）** | 经书地图辨伪、矿道救援 | 八经线索至少 5 份，或本地向导 + `formation` | 禁止成为无限珍宝矿 |
 
-所有 qg 阈值仅调用 `design/08` §6；剧情锁优先于运动能力。高轻功可以改路线和代价，不能提前触发终幕、盗走天书或让关键人物凭空在场。
+所有 qg 阈值仅调用 `design/08` §6；剧情锁优先于运动能力。全界 20 个轻功门禁内容实例按 `6 / 9 / 4 / 1 / 0` 分配到 qg1–qg5，主线 / 支线 / 隐藏上限依次为 qg2 / qg3 / qg4；唯一 qg4 是紫禁城隐藏“屋脊飞渡”，没有 qg5 内容门禁。qg4 的雪地免减速、冰面免滑和 qg5 的一苇渡江仍可提供运动效率，但不得据此新增独占内容或绕过剧情锁。
+
+#### 3.4.1 二十处轻功门禁内容实例
+
+| 实例号（非全局 ID） | 地点 | 阶 | 意图 | 轻功路线 | 非轻功替代 |
+|---|---|---:|---|---|---|
+| G08-01 | 扬州运河货棚 | qg1 | 主线 | 跨货垛脱离追问 | 脚夫搬梯 / 地面绕行 |
+| G08-02 | 扬州旧书坊 | qg1 | 支线 | 越矮柜取纸样 | 店主信任后架梯 |
+| G08-03 | 京师宫外巷院 | qg1 | 支线 | 翻矮院墙送信 | 正门口令 / 贿赂 |
+| G08-04 | 王屋碎石坡 | qg1 | 支线 | 越松石取绳锚 | 清石铺路 |
+| G08-05 | 太原矿道断梁 | qg1 | 支线 | 越断梁救矿工 | 支撑后钻行 |
+| G08-06 | 吉林驿道浅雪沟 | qg1 | 支线 | 跃沟追向导 | 放绳板 |
+| G08-07 | 丽春院邻屋 | qg2 | 主线 | 屋顶追逐 | 穿巷并通过口才检定 |
+| G08-08 | 紫禁城普通屋面 | qg2 | 主线 | 随巡更路线过屋面 | 清宫身份 / 换班口令 |
+| G08-09 | 热河围猎场 | qg2 | 支线 | 越猎栏追失箭 | 骑马绕门 |
+| G08-10 | 王屋断栈 | qg2 | 支线 | 跃过短缺口 | 修栈 |
+| G08-11 | 五台寺顶 | qg2 | 支线 | 跨屋脊递送经函 | 香客道 / 僧众引路 |
+| G08-12 | 江宁密档后窗 | qg2 | 支线 | 翻窗转移文稿 | 钥匙 / 士人引荐 |
+| G08-13 | 滇中山道 | qg2 | 支线 | 越短塌口抄径 | 修桥 / 绕行 |
+| G08-14 | 雅克萨雪沟 | qg2 | 主线 | 越沟抵侦察位 | 军令引路 / 工兵木板 |
+| G08-15 | 神龙岛离岸礁 | qg2 | 支线 | 跨近礁取药箱 | 小舟 / 教内引路 |
+| G08-16 | 紫禁城上殿支路 | qg3 | 支线 | 借壁上殿取巡更证据 | 内廷身份 / 钥匙 |
+| G08-17 | 少林后山偏径 | qg3 | 支线 | 攀偏径进经函点 | 少林 L3 正门 |
+| G08-18 | 平西王府花墙 | qg3 | 支线 | 借壁潜入 | 婚使 / 平西军身份、沐府地道 |
+| G08-19 | 五台偏峰 | qg3 | 支线 | 攀偏峰观察告密者 | 香客道绕行 |
+| G08-20 | 紫禁城高屋脊 | qg4 | 隐藏 | “屋脊飞渡”，取得不影响主线的捷径记录 | 无等价捷径；任务目标仍可走身份路线 |
+
+配额复核：qg1 六处、qg2 九处、qg3 四处、qg4 一处、qg5 零处，共 `6+9+4+1+0=20`。G08-01～20 是本章审校用实例号，不是内容 ID；正式 `gate_*` 由唯一归属 `design/08` 分配。表中的“意图”与替代解只配置内容实例；动作、提示、体力与寻路规则继续读取 `design/08`。
 
 ### 3.5 旅行、天气与区域奇遇密度
 
@@ -325,6 +352,7 @@ foreignGradePenalty: 4
 id: era_ch08_luding
 chapterId: ch08_luding
 mapRef: docs/design/map/jianghu-ch08.svg
+cityEraKey: ch08
 cityEraBand: qing_early
 openRegions:
   - rg_yanjing_zhili
@@ -568,7 +596,7 @@ economySource: task
 
 ### 7.1 时代开放矩阵
 
-本界按 `design/17` 的 LD 列开放 9 个门派：
+`design/17` 的 LD 列共有 13 个 `O` 状态组织；`O` 只表示时代投放状态，不等于本章都要占一条完整门派线。依 `design/11` §10 的“实际承载任务、加入、挑战或遗址内容”预算，本章从中选取下列 9 个门派内容实例：
 
 | 门派 | LD 状态 | 本界驻点 / 接口 | 加入形态 | 敌友主轴 |
 |---|---|---|---|---|
@@ -582,7 +610,9 @@ economySource: task
 | `sect_gaibang` 丐帮 | O | 洛阳、江淮分舵 | 正式 / 分舵盟友 | 以济困与消息网介入，不等同天地会 |
 | `sect_mizong` 吐蕃密宗 | O | 北京 / 五台任务点；本寺图外 | 条件正式 / 行脚师承 | 桑结线与少林冲突可调解 |
 
-`sect_quanzhen` 在鹿鼎为 H，只开放北京白云观式史实宗教 / 残承接口 **（具体映射待考）**，不计入九个开放门派，不开放完整武学晋升。`sect_xuedaomen` 在 LD 为 H，只作下一界传闻和彩蛋。华山在本时代为 H；归辛树一家是人物事件，不能因此把 `sect_huashan` 算作开放门派。
+其余四个 LD=`O` 不占本章九个内容实例：`sect_menggu` 的葛尔丹关联仅保留图外政治背景，不开漠北区域、军职或独立任务线；`sect_qinglonghui`、`sect_xueyumen`、`sect_kongqueshanzhuang` 属古龙跨作品原创投放，本章未分配任务 / NPC / 场景，默认禁用，不能借矩阵状态偷增内容。
+
+LD=`H` 的 `sect_quanzhen` 只开放北京白云观式史实宗教 / 残承接口 **（具体映射待考）**，不开放完整武学晋升；`sect_xuedaomen` 只作下一界传闻和彩蛋；`sect_huashan` 只承载归辛树一家的人物事件。LD=`P` 的 `sect_huibu` 不得以“回部”当前身份加入，LD=`M` 的 `sect_chuangwangjun` 只作李自成及旧部提及。其余 H/P/M 组织若没有本章任务实例，只保留全局矩阵状态，不生成驻点、月钱或职级线。
 
 ### 7.2 五级共通薪给
 
@@ -752,8 +782,8 @@ economySource: task
 | `npc_fangyi` 方怡 | 青年；生卒待考 | D4 | `q_08_bond_06`；取得豹胎易筋丸解药路线；承担风险时不得牺牲沐府家属 | 长期入队；毒丸仍受制时只能限时同行 | `sk_muwangjian`、`sk_muwangbu`，神龙状态另挂 `bf_shouzhi` | 与沐剑屏同门援护；与苏荃的反制协同须先解除受制 |
 | `npc_mujianping` 沐剑屏 | 少女；生卒待考 | D4 | `q_08_bond_06`；沐府关系达到可托付，且两封信没有把她当诱饵 | 长期入队；府中职责冲突时转 `stationed` | `sk_mufujichujian`，后续 `sk_muwangjian` | 与方怡形成同门协防；相邻时只启用通用援护，专属合击另待战斗文档登记 |
 | `npc_zengrou` 曾柔 | 青年；生卒待考 | D4 | `q_08_bond_07`；曾放还王屋众；赌桌不押人命 | 长期入队；王屋覆灭时须先安置同门 | `sk_wangwujian`、`sk_wangwuxinfa` | 与王屋同门形成窄道夹击候选；击退与地形仍按 `design/08/09` |
-| `npc_maoshiba` 茅十八 | 壮年；命定结局待考 | D4 | `q_08_bond_08`；扬州旧识成立；法场前保留真实救援路 | 开局 / 法场段可入队，改命后长期；错过时只保留传闻与悼念 | 刀法待图鉴收录，未收录前只用模板招式，不预建“ 五虎断门刀 ”ID | 与吴六奇形成江湖旧识协同；专属合击必须等其刀法入图鉴 |
-| `npc_wuliuqi` 吴六奇 | 中年；命定死亡待考 | D5 | `q_08_bond_08`；身份揭露、归家庄救援与立场核验全部完成 | 改命后可长期入队；原著轴仅战役同行 / 留下丐帮信物 | `sk_canfengyinlugong`、`sk_lianhuazhang`、`sk_guitoudaofa`、`sk_yunyoubu` | 与茅十八为旧识协同；与丐帮队友可用通用援护 / 追击，不授未登记 `cmb_*` |
+| `npc_maoshiba` 茅十八 | 壮年；命定结局待考 | D4 | `q_08_bond_08`；扬州旧识成立；法场前保留真实救援路 | 开局 / 法场段可入队，改命后长期；错过时只保留传闻与悼念 | 刀法待图鉴收录，未收录前只用模板招式，不预建“五虎断门刀”ID | 与吴六奇形成江湖协同 **（两人原著旧识关系待考）**；专属合击必须等其刀法入图鉴 |
+| `npc_wuliuqi` 吴六奇 | 中年；命定死亡待考 | D5 | `q_08_bond_08`；身份揭露、归家庄救援与立场核验全部完成 | 改命后可长期入队；原著轴仅战役同行 / 留下丐帮信物 | `sk_canfengyinlugong`、`sk_lianhuazhang`、`sk_guitoudaofa`、`sk_yunyoubu` | 与茅十八形成任务中新识协同 **（原著旧识关系待考）**；与丐帮队友可用通用援护 / 追击，不授未登记 `cmb_*` |
 
 十人均达到 D4 或 D5，不能靠重复对话、送礼或一次付钱直接招募。`q_08_bond_06` 和 `q_08_bond_08` 虽各服务两人，但每人的 R3 取舍、R4 共患和 R5 邀请分别结算，不能“一人过关、两人同时入队”。
 
@@ -1354,11 +1384,11 @@ enemyStatMul(5) = 0.85 + 0.05 × 5 = 1.10
 
 | 鹿鼎样本 | 主 / 敌 Lv | 主角击败所需标准命中 | 主角行动轮 | 敌方击倒主角所需命中 | 敌方行动轮 | 主 / 敌命中率 | 普通招式耗内 |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| 普通 | 44 / 44 | 3.5 | 3.5 | 9.6 | 11.1 | 99.0% / 86.2% | 7.0% |
-| 精英 | 44 / 44 | 7.1 | 7.2 | 10.8 | 12.0 | 99.0% / 90.6% | 7.0% |
-| Boss 模板（洪安通参数） | 44 / 50 | 59.7（全队标准命中等价） | 21.1 | 4.8 | 5.0 | 91.4% / 97.8% | 7.0% |
+| 普通 | 44 / 44 | 3.9 | 3.9 | 9.4 | 10.9 | 99.0% / 86.2% | 7.0% |
+| 精英 | 44 / 44 | 7.9 | 8.0 | 10.8 | 12.0 | 99.0% / 90.6% | 7.0% |
+| Boss 模板（洪安通参数） | 44 / 50 | 66.4（全队标准命中等价） | 23.4 | 4.8 | 5.0 | 91.4% / 97.8% | 7.0% |
 
-普通 3.5 落在基准 3–5 轮，精英 7.2 落在 6–10 轮，Boss 21.1 落在 12–25 轮。Boss 的 59.7 是四人队折算前的标准命中总量，不能误读为主角单人要打 59.7 个回合；敌方约 4.8 次命中击倒主角说明峰值危险，预警、援护和降低宝训不是可选装饰。
+普通 3.9 落在基准 3–5 轮，精英 8.0 落在 6–10 轮，Boss 23.4 落在 12–25 轮。Boss 的 66.4 是全队标准命中等价总量，不能误读为主角单人要打 66.4 个回合；敌方约 4.8 次命中击倒主角说明峰值危险，预警、援护和降低宝训不是可选装饰。
 
 该报表仍是模板基线，不是 `bsc_hongantong_shenlongdao` 带全阵容、走位、苏荃和宝训后的实测结果。正式关卡必须在数据实装后另跑：无准备目标约 22–26 轮，完成神龙内乱约 13–15 轮，两者均以 `design/09` §8.9 为验收口径。
 
@@ -1397,7 +1427,7 @@ enemyStatMul(5) = 0.85 + 0.05 × 5 = 1.10
 | 资源点池 | `0.08×585 = 46.8 两` | 达上限后停常规新增产出，不停事件 |
 | 营生池 | `0.10×585 = 58.5 两` | 赌场、镖局、山庄合池，不能重复领职责收入 |
 | 经脉投入 | 第五转 `9,000H` | 提供安全点与时间窗，不主线直赠 |
-| qg4+ 门禁 | 全界主要门禁占比 ≤5% | 神行百变是奖励路线，非主线通行税 |
+| 轻功门禁 | `20=6+9+4+1+0`（qg1→qg5）；qg4+ `1/20=5%` | 唯一 qg4 为紫禁城隐藏“屋脊飞渡”；无 qg5 内容门禁 |
 | 主线高强度战 | 后置到神龙终战 / 通吃岛 / 雅克萨 | 前 60% 用重建装配、证据与人情准备峰值 |
 
 ### 12.7 数值配置 YAML 示例
@@ -1561,6 +1591,7 @@ chapterBalance:
 ### A.6 局部键、候选键与复用 ID
 
 - `era_ch08_luding`、`luocha_mission_route`、`tubo_mizong_route`、`sishierzhangjing_eight`、`clue_08_poison_ledger`、`court_private`、`lodge_relief` 仅是 YAML 示例中的章节局部键，不申请全局前缀。
+- G08-01～20 仅为 §3.4.1 的本章审校实例号，不申请全局 ID；对应正式 `gate_*` 必须由 `design/08` 分配。
 - §11 的九难旧识、金蛇剑、血书收据、韦爵爷传闻、神龙残党和天地会史笺六项目前只使用描述性 `proposalKey`；须由 `design/02` 的全局回响表分配并查重正式 `echo_*` 后才能发布。
 - `vid_sleep_07_08`、`vid_sleep_08_09`、`it_shijian_tiandihui`、`enc_08_shenlongdao`、`bsc_hongantong_shenlongdao`、`gauge_baoxun`、锚点 `fl_08_*`、所有 `city_* / rg_* / npc_* / sk_* / eq_* / it_* / lgs_* / cache_* / frag_* / tsp_*` 均复用上游登记，不在本章重建。
 - `npc_baiyunguan_daozhang` 只复用图鉴中的占位引用，尚不是 `design/18` 已发布名录项；在上游登记前必须保持构建阻塞。
@@ -1576,14 +1607,14 @@ chapterBalance:
 | V08-C01 | 解析一级小节 | `## 1`–`## 13` 各且仅一次、顺序连续；其后依次是三个文末附录 | `chapter_section_order_invalid` |
 | V08-C02 | 读固定参数 | `chapterId=ch08_luding`、1669–1690、`LOW`、武运 30、D5、Lv44、携带 1/1/1、外来压制 4 | `chapter_fixed_param_drift` |
 | V08-C03 | 统计地图区域 | 恰为 7 个全局 `rg_*`；不存在 `rg_08_*`；每区均有 `tr_*`、qg 门禁、NPC、武学、等级带、奇遇 | `chapter_region_budget_invalid` |
-| V08-C04 | 校验时代城市 | 20 个 `city_*` 均能在 `map/cities.yaml` 的 `ch08 / qing_early` 解析；显示名取本时代名 | `chapter_city_era_name_invalid` |
+| V08-C04 | 校验时代城市 | 20 个 `city_*` 均能在 `map/cities.yaml` 的 `.eras.ch08` 解析且 `open=true`；显示名取该逐章字段，`qing_early` 只作时期带摘要 | `chapter_city_era_name_invalid` |
 | V08-C05 | 校验场景归属 | 17 个 `sc_08_*` 均挂在开放 `rg_*` 或合法 `placeKey`；罗刹、密宗本寺、通吃岛只经专线 | `chapter_scene_orphaned` |
 | V08-C06 | 统计主线 | 生产任务 18 个：共享 2、正线独占 8、邪线独占 8；任一完整路线恰 10 幕 | `chapter_mainline_count_invalid` |
 | V08-C07 | 对照剧情稿 | 18 个 `q_08_main_*`、10 个 `dc_08_*`、六锚点及所有结果旗标与 `story/08-luding.md` 一致 | `chapter_story_contract_drift` |
 | V08-C08 | 统计支线 | 28 = qiyu 14 + faction 5 + bond 8 + side 1；无重复主键 | `chapter_sidequest_budget_invalid` |
 | V08-C09 | 扫描旧建议任务 ID | `q_08_side_91/92` 只能出现在迁移说明；不可作为任务 `id`、别名字段或独立奖励源 | `chapter_legacy_quest_id_active` |
-| V08-C10 | 统计门派 | LD 开放门派恰 9；`sect_quanzhen`、`sect_xuedaomen`、`sect_huashan` 不计开放名额 | `chapter_sect_matrix_drift` |
-| V08-C11 | 校验五级职级 | 九个开放门派都列 L1–L5 称谓、可学武学、职责 / 配给特例；武学 ID 均可在图鉴解析 | `chapter_sect_rank_incomplete` |
+| V08-C10 | 统计门派内容实例 | 本章承载完整内容的门派恰 9；九者在 LD 均为 O；另 4 个 LD=O 组织及所有 H/P/M 只保留 §7.1 声明的非实例状态 | `chapter_sect_matrix_drift` |
+| V08-C11 | 校验五级职级 | 九个门派内容实例都列 L1–L5 称谓、可学武学、职责 / 配给特例；武学 ID 均可在图鉴解析 | `chapter_sect_rank_incomplete` |
 | V08-C12 | 统计人物 | 招募池恰 10，均为 D4 / D5 且有任务硬门；跨书重逢按 `design/18` 的 appearance / 状态判定 | `chapter_recruit_contract_invalid` |
 | V08-C13 | 校验 Boss | 遭遇预算恰 10；洪安通是唯一正式 `enc_* / bsc_*`；其余九场不得误作正式人物面板 | `chapter_boss_budget_invalid` |
 | V08-C14 | 校验武学引用 | 所有 `sk_*` 在指定图鉴唯一存在；本界完整原生天级仅 `sk_ningxue`、`sk_shenxing` | `chapter_skill_ref_invalid` |
@@ -1591,6 +1622,7 @@ chapterBalance:
 | V08-C16 | 校验资源 / 营生 | `rp_*` 恰 16、`biz_*` 恰 26；资源点每区 ≥1，城外 ≥10，初始势力 / 行会控制 ≤6 | `chapter_economy_budget_invalid` |
 | V08-C17 | 校验传承预算 | 开 7 区时 `carrierCap=ceil(7/2)=4`、后人 ≤2、新残本 ≤8、新信物 ≤4；`lgs_tiejian_shenxing` 被原生来源过滤 | `chapter_legacy_budget_invalid` |
 | V08-C18 | 校验文档标注 | 原创内容带“（原创扩展）”或由 §13 集中归类；未核原著事实进入 K08 清单；所有“【建议值】”进入 C.1 | `chapter_annotation_ledger_missing` |
+| V08-C19 | 校验轻功门禁 | 20 个内容实例按 qg1–qg5 恰为 6 / 9 / 4 / 1 / 0；唯一 qg4 是紫禁城隐藏“屋脊飞渡”；qg4/qg5 地形收益不计内容门禁；正式 `gate_*` 由 `design/08` 分配 | `chapter_qg_gate_budget_invalid` |
 
 ### B.2 关键流程测试
 
@@ -1598,7 +1630,7 @@ chapterBalance:
 |---|---|---|
 | T08-C01 | 首周目分别选脚夫、抄手、药童 | 都从扬州进入 `q_08_side_01` 的对应首段，并汇入 `q_08_main_01`；只得到一项 +5 修正，不锁正邪路线 |
 | T08-C02 | 未达多周目条件尝试选择丽春院杂役 | 身份不可选；公共区仍可正常进入；已达鹿鼎改命线后才显示隐藏身份并调用 `design/13` 的 `speech +10` |
-| T08-C03 | qg5 在第一幕前尝试翻紫禁城外墙 | 可通过运动门槛但仍被剧情锁拦截；高轻功不能提前取经书或触发终幕 |
+| T08-C03 | qg4 在第一幕前尝试走紫禁城隐藏“屋脊飞渡” | 路线仍被 `q_08_main_01` 的剧情锁拦截；高轻功不能提前取经书或触发终幕 |
 | T08-C04 | 完成正线 8 个独占幕、两个共享幕 | 路线计数为 10；共享 `q_08_main_08` 只结算一次；邪线同理 |
 | T08-C05 | 在换轨节点由正转邪 | 同一事务置 `fl_08_route_xie=true`、清 `fl_08_route_zheng`；不会短暂双真或重复领共享奖励 |
 | T08-C06 | 未带双儿，但已由 `q_08_faction_01` 布置观察者，且其余改命条件满足 | `dc_08_08` 可选改命；队伍编组不会软锁陈近南救援 |
@@ -1612,7 +1644,7 @@ chapterBalance:
 | T08-C14 | 苏荃关系为 59 / 60 / 84 / 85 | 分别为敌对 / 袖手 / 袖手 / 倒戈；倒戈复用同一 NPC 和剩余气血 |
 | T08-C15 | 无任何神龙支线准备进入终战 | 宝训初值 40、援军保留、苏荃按关系处理；仍允许失败重试，不能口才跳战 |
 | T08-C16 | 洪安通 `realLevel=50`、本界上限 44、豁免 +6 | 显示 `min(50,70,44+6)=50`；D8 系数 1.25；约 `71300/3066/2438/103`、命闪 161/131 |
-| T08-C17 | 运行 `python3 tools/balance/damage_sim.py --report` | 鹿鼎样本普通约 3.5、精英约 7.2、Boss 约 21.1 主角行动轮；超出基准区间则阻塞数值合入 |
+| T08-C17 | 运行 `python3 tools/balance/damage_sim.py --report` | 鹿鼎样本普通约 3.9、精英约 8.0、Boss 约 23.4 主角行动轮；超出基准区间则阻塞数值合入 |
 | T08-C18 | 在鹿鼎学习四门白云观武学 | 前三门可完整学习；`sk_quanzhenxinfa` 最多 6 重；不创建全真 L1 身份、不发全真月钱 |
 | T08-C19 | 同周目调度五个传承候选 | 最多激活 4 个载体、其中后人最多 2；新残本最多 8、新信物最多 4；神行百变源不进池 |
 | T08-C20 | 资源点与营生都达到净新增池上限 | 资源池分别停在 46.8 两、营生池 58.5 两；事件仍可运行，同一职责不能与门派月钱重复结算 |
