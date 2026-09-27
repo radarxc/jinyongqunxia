@@ -2,9 +2,9 @@
 
 > **归属（基准 §18，待 A3 补登记）**：资源类别与四阶九品、资源库存、资源点占领与经营、家丁、家业建设、城市营生、行脚 / 教头 / 客卿职位、赌场玩法，以及门派五级职级对应的月钱和资源配给。
 > **上游**：`docs/decisions/author-requirements.md` AR-04～AR-07、`docs/decisions/author-decisions.md` 的 G1 确认、`docs/00-canon.md` v1.1、`design/02-timeline-and-world-tiers.md`、`design/03-attributes.md`、`design/10-items-and-equipment.md`、`design/11-open-world.md`、`design/13-progression-and-endings.md`、`design/17-sects-compendium.md`、`design/18-npc-and-companions.md`。
-> **引用而不重定义**：区域、城市、时代图层及每书界数量预算 → `design/11`；城市坐标与历史名称 → `design/19` / `design/map/*.yaml`；物品、材料消费、锻造 / 炼丹 / 烹饪及价格 → `design/10`；门派职级、贡献、晋升、任务与经济总结构 → 未来 `design/12-quests-npc-factions.md`；属性、技艺、声望与品德 → `design/03`；天书之力、成就与轮回 → `design/13`；NPC 身份与同伴 → `design/18`；界面表现 → 未来 `design/14-ui-ux-mobile.md`；数据与运行时实现 → `tech/04`、`tech/05`。当前副本尚无 `design/12` 与 `design/14`，本文对二者只给明确的消费接口和同步清单，不虚构章节号。
-> **标注约定**：**（原创扩展）** = 原著没有的系统或内容；**（待考）** = 原著 / 历史事实须按三联 / 广州修订版或可靠史料核对；**（待核实）** = 版本、价格、API、限额等技术事实尚未联网确认；**（待实测）** = 需真机或完整存档验证；**【建议值】** = 依赖尚未落盘的 12 / 14 / tech/05，先给可运行默认值，并在 §17.1 集中登记。
-> 版本：v1.0（B7，2026-09-26）。
+> **引用而不重定义**：区域、城市、时代图层及每书界数量预算 → `design/11`；城市坐标与历史名称 → `design/19` / `design/map/*.yaml`；物品、材料消费、锻造 / 炼丹 / 烹饪及价格 → `design/10`；门派职级、贡献、晋升、任务与经济总结构 → 尚未落盘的 `design/12-quests-npc-factions.md`；属性、技艺、声望与品德 → `design/03`；天书之力、成就与轮回 → `design/13`；NPC 身份与同伴 → `design/18`；界面表现 → `design/14-ui-ux-mobile.md`；数据与运行时实现 → `tech/04`、`tech/05`。当前副本已有 `design/14` 与 `tech/05`；本文以其现有界面 / 运行时接口为对接基线，并在 §17 列明正式 schema 同步项。当前仍无 `design/12`，因此门派晋升、关系与任务结构只给消费接口，不虚构章节号。
+> **标注约定**：**（原创扩展）** = 原著没有的系统或内容；**（待考）** = 原著 / 历史事实须按三联 / 广州修订版或可靠史料核对；**（待核实）** = 版本、价格、API、限额等技术事实尚未联网确认；**（待实测）** = 需真机或完整存档验证；**【建议值】** = 依赖尚未落盘的 `design/12` 或仍待 `design/14` / `tech/05` 同步的接口，先给可运行默认值，并在 §17.1 集中登记。
+> 版本：v1.1（审校 B7.R，2026-09-26）。
 
 ---
 
@@ -80,7 +80,7 @@ I(ch) = 2 × P(主武器, g_mode(ch)) × chapterIncomeMul(ch)   // 两 / 现实�
 
 - `P`、普通池众数 `g_mode` 和建议 `chapterIncomeMul` 均来自 `design/10` §4.4、§13.1～§13.5。
 - 本文在 §12 接受并定稿该接口；`I` 是标准路线的**净价值流量**，包括银两和按参考卖价折算的可消费资源，不是每小时强制发钱。
-- 所有公式先以文计算，最终按最近 10 文取整；不足 10 文的单个掉落可累计在场所账簿中，结算时再取整。
+- 所有现金、维护与赌注公式先以文计算，最终按最近 10 文取整；对非负文数 `x`（中间值可为有理数）定义 `round10(x)=10×floor((x+5)/10)`。不足 10 文的单个掉落可累计在场所账簿中，结算时再取整。资源价值额度、预算桶和统计账簿保留到整数文；额度上限不足 1 文时向下取整，因“完整资源单位”装箱产生的尾差不折现。
 - 难度的商店价格倍率仍见 `design/13` §5.1；收入不随难度等比例上涨，因此宗师 / 天劫经济会更紧。
 
 ### 1.3 三种时间
@@ -161,8 +161,8 @@ materialGrade = 3 × T + 1 + floor((9 − resourceRank) / 3)
 g=1..12: 0.1, 0.2, 0.5, 1, 2.5, 5, 11, 25, 55, 120, 270, 580 两
 q(rank): 每个三品组内，最低 / 中间 / 最高 = 0.80 / 0.90 / 1.00
 Vbase = Pmat(materialGrade) × q(resourceRank)
-参考区间 = [0.80 × Vbase, 1.20 × Vbase]
-具体类别中值 = Vbase × C(category)
+具体类别中值 Vref = Vbase × C(category)
+具体类别参考区间 = [0.80 × Vref, 1.20 × Vref]
 ```
 
 下表是 `C=1.00` 的一标准份估值，未乘地区供需、买卖倍率或类别乘数；带 ★ 的天阶只估值，通常不可买卖。
@@ -368,7 +368,7 @@ sellPrice = round10(Vref × sellMul(cha) × outlet × supplyMul × saturationMul
 | `quarters` 居所 | L2 | 本点床位 +2 / 级；现金工资可折 20% 食宿 | 木材、粮食、丝茶 |
 | `ledger` 账房 | L3 | 经营能力检定 +8；显示未来一周期预测 | 木材、墨料、丝茶 |
 
-建设成本按本界收入而非写死银两：某设施第 `k=1..3` 级的总参考成本为 `(0.10+0.10k)h×I(ch)`，其中至少 50% 必须以表中资源按参考值交付。例：天龙修 2 级仓棚，成本 `20×0.30=6 两`，至少 3 两等值木材 / 铁器；倚天同项目 `460×0.30=138 两`。这样两个时代的相对负担都约 18 分钟标准收入。
+建设成本按本界收入而非写死银两：某设施第 `k=1..3` 级的总参考成本为 `(0.10+0.10k)h×I(ch)`，其中至少 50% 必须以表中资源按参考值交付。例：天龙修 2 级仓棚，成本 `19×0.30=5.70 两`，至少 2.85 两等值木材 / 铁器；倚天同项目 `460×0.30=138 两`。这样两个时代的相对负担都约 18 分钟标准收入。
 
 ---
 
@@ -463,7 +463,7 @@ lost → acquiring → owned
 | 4 | 专营 | 第 3 名家丁、专精路线 | 1.30 | `0.35h×I(ch)` |
 | 5 | 大成 | 一个主产物可按 §2.4 上移一档上限 | 1.45 | `0.55h×I(ch)` |
 
-公式 `M_l=0.70+0.15L`。升到 L5 的累计开发成本为 `1.20h×I(ch)`；天龙为 `1.2×20=24 两`，倚天为 `1.2×460=552 两`，相对都约 72 分钟标准收入。至少 50% 成本用该点适配资源交付，不能纯银一键升级。
+公式 `M_l=0.70+0.15L`。升到 L5 的累计开发成本为 `1.20h×I(ch)`；天龙为 `1.2×19=22.8 两`，倚天为 `1.2×460=552 两`，相对都约 72 分钟标准收入。至少 50% 成本用该点适配资源交付，不能纯银一键升级。
 
 `ach_ziyuan_yidai` 的“最高管理阶段”即 L5：同一书界内让至少 4 个不同 `pointType` 的资源点达到 L5，发一次稳定里程碑 `estate_four_types_level5`。它只向 `design/13` 记事实，不提升产量、不携带库存。
 
@@ -514,26 +514,26 @@ gross = floor(4×1.15×1.069×1.20×1×1) = floor(5.90088) = 5 单位
 每界资源点可创造的新经济价值池为：
 
 ```text
-B_res(ch) = round10(0.08 × I(ch) × expectedHours(ch) × 1000)  // 文
-remaining = B_res − estateValueCreated
-netPreview = max(0, grossReferenceValue − mandatoryOperatingCost)
-allowedNetThisSettlement = min(netPreview, max(0, remaining))
+B_resWen(ch) = floor(0.08 × I(ch) × expectedHours(ch) × 1000)  // 预算保留整数文
+remainingWen = B_resWen − estateValueCreatedWen
+netPreviewWen = max(0, grossReferenceValueWen − mandatoryOperatingCostWen)
+allowedNetThisSettlementWen = min(netPreviewWen, max(0, remainingWen))
 ```
 
-只对“无前置资产、由周期新生成”的**净价值**扣池；`mandatoryOperatingCost` 包含本周期维护、工资和经营投入。若 `netPreview>remaining`，从产出表最低优先级的可交易单位开始减产，直至“保留产物毛值 − 强制成本”不超余额；若最便宜单位也会超出，则本周期显示“本界常规产能已达上限”，不生成零碎单位。玩家投入的资源被退还、从一处调到另一处、买后卖出都不算新价值。固定任务 / 天材奖励从其自身预算出，不偷用该池。
+只对“无前置资产、由周期新生成”的**净价值**扣池；`mandatoryOperatingCostWen` 包含本周期维护、工资和经营投入。若 `netPreviewWen>remainingWen`，从产出表最低优先级的可交易单位开始减产，直至“保留产物毛值 − 强制成本”不超余额；若最便宜单位也会超出，则本周期显示“本界常规产能已达上限”，不生成零碎单位。玩家投入的资源被退还、从一处调到另一处、买后卖出都不算新价值。固定任务 / 天材奖励从其自身预算出，不偷用该池。
 
-该钳制保证标准路线即使精于排班，也不能把资源点从 8% 刷成无限收入；玩家仍可继续经营来完成职责、事件或加工已有库存，但常规生产暂停。章节结算模拟若因路径互斥只释放了部分 `B_res`，不把余额在书眠前兑换成现金。
+该钳制保证标准路线即使精于排班，也不能把资源点从 8% 刷成无限收入；玩家仍可继续经营来完成职责、事件或加工已有库存，但常规生产暂停。章节结算模拟若因路径互斥只释放了部分 `B_resWen`，不把余额在书眠前兑换成现金。
 
 ### 6.4 工资、维护与净产出
 
 家丁工资见 §7.5。资源点每成熟周期另扣：
 
 ```text
-maintenance = round10(0.005h × L × I(ch) × 1000 + 0.05 × grossReferenceValue)
-netValue    = grossReferenceValue − maintenance − payroll − investmentCost
+maintenanceWen = round10(0.005h × L × I(ch) × 1000 + 0.05 × grossReferenceValueWen)
+netValueWen    = grossReferenceValueWen − maintenanceWen − payrollWen − investmentCostWen
 ```
 
-首项表示高等级设施的固定维护，第二项表示耗材损耗。例：天龙 L3、毛值 6 两，固定维护 `0.005×3×20=0.3 两`，耗材 `0.3 两`，维护合计 0.6 两；工资另扣。UI 必须同时展示毛产出、估值、投入、维护、工资和净值，不能只显示“获得 5 份”。
+首项表示高等级设施的固定维护，第二项表示耗材损耗。例：天龙 L3、毛值 6 两，式内两项为 `285 文 + 300 文`，合并后 `round10(585)=590 文=0.59 两`；工资另扣。UI 必须同时展示毛产出、估值、投入、维护、工资和净值，不能只显示“获得 5 份”。
 
 若现金不足，先用本点可交易产物按参考卖价的 80% 抵扣；仍不足则形成欠款，不让余额变负。欠款超过一个成熟周期即停工。维护成本不计 §12 的“消费回收”之外的新负收入来源，数值模拟使用净值。
 
@@ -620,13 +620,14 @@ success when defenseScore + checkRoll ≥ riskScore
 不上场家丁的基准日薪低于冒险同行：
 
 ```text
-estateDayWage = round10(I(ch) × 0.005h × skillMul × dutyMul × (1−boardingDiscount) × 1000)
+rawDailyWageWen = I(ch) × 0.005h × skillMul × dutyMul × (1−boardingDiscount) × 1000
+payrollWen      = round10(Σ本次账期内的 rawDailyWageWen)
 skillMul = 0.8 学徒 / 1.0 熟手 / 1.5 名手
 dutyMul  = 1.0 普通 / 1.25 危险点 / 1.50 临时护运
 boardingDiscount = 0 或 0.20（有合格居所与食宿）
 ```
 
-例：天龙熟手普通家丁日薪 `20×0.005=0.10 两`；提供食宿后 0.08 两。倚天同档为 `460×0.005=2.30 两`；每月 30 日现金工资均等于 `0.15h×I`，低于教头 `0.20h×I`。D2 设施 NPC 若作为战斗同行仍是 `I×0.50h×skillMul`，高得多是因为其离岗且承担冒险风险；家丁则有稳定长约与食宿。
+例：天龙熟手普通家丁日应计 `19×0.005=0.095 两=95 文`；三日定金 `round10(95×3)=290 文`，足月 30 日为 2.85 两。提供食宿后日应计 76 文、三日定金 230 文、足月 2.28 两。倚天同档日应计 `460×0.005=2.30 两`；30 日工资当量均为 `0.15h×I`，低于教头 `0.20h×I`。账期只在付款时取整，不能先把日薪取整再乘天数。D2 设施 NPC 若作为战斗同行仍是 `I×0.50h×skillMul`，高得多是因为其离岗且承担冒险风险；家丁则有稳定长约与食宿。
 
 签约先付 3 日定金；跨子时只对应计实际出勤日。工资在资源点结算前预留，主动解约返还尚未开始的整日预付款。欠薪不能以忠诚为负数无限透支：1 周期降忠诚并停加班，2 周期停工，3 周期自动解约且记录债务；债务结清前同城同业雇价 +20% **【建议值】**。
 
@@ -719,7 +720,7 @@ dutyRatio    = completedRequiredBlocks / requiredBlocks             // clamp 0..
 outcomeMul   = 0 / 0.60 / 1.00 / 1.20                               // 失败 / 部分 / 成功 / 额外目标
 ```
 
-例：天龙 `I=20`，普通镖局一趟预计 20 分钟的危险行脚，成功得 `20×20/60×1×1.25=8.33 两`，取整为 8.33 两；同局教头足额月薪 4 两，客卿 7 两。倚天对应 191.67 / 92 / 161 两；相对游戏时间负担相同。
+例：天龙 `I=19`，普通镖局一趟预计 20 分钟的危险行脚，成功得 `19×20/60×1×1.25=7.916… 两`，按最近 10 文取整为 7.92 两；同局教头足额月薪 3.80 两，客卿 6.65 两。倚天对应 191.67 / 92 / 161 两；相对游戏时间负担相同。
 
 - 教头 / 客卿不是登录月卡：`dutyRatio=0` 则 0 薪；月中入职按剩余职责块配置，不先发整月。
 - 特殊任务若另有奖励，必须写 `rewardSplit`；职位月薪计“城市营生”，任务奖励只能在“任务”与“营生”中选一个来源桶。
@@ -770,7 +771,7 @@ dailyNetWinCap = round10(0.10h × I(ch) × 1000)
 B_other(ch)    = 0.02 × I(ch) × expectedHours(ch)
 ```
 
-天龙 `I=20`：最低 0.10 两、单局最多 0.50 两、单日净赢最多 2 两；倚天分别 2.30 / 11.50 / 46 两。达到单日净赢上限后可以继续无筹码练习或离桌，不能继续赢取可售物；亏损不把上限反向抬高。全书界赌场净赢再与消息奖励、杂项共同受 `B_other` 钳制。
+天龙 `I=19`：最低 `max(10文,95文)` 后取整为 0.10 两、单局最多 0.48 两、单日净赢最多 1.90 两；倚天分别 2.30 / 11.50 / 46 两。达到单日净赢上限后可以继续无筹码练习或离桌，不能继续赢取可售物；亏损不把上限反向抬高。全书界赌场净赢再与消息奖励、杂项共同受 `B_other` 钳制。
 
 赌场不放贷、不允许负余额、不接受任务物 / 天材 / 已装备物抵押。玩家可另设低于系统上限的会话止损和提醒；达到后必须主动确认才能继续。连续 20 局弹一次“歇一歇”提示 **【建议值】**，不以连胜特效诱导加注。
 
@@ -811,15 +812,15 @@ B_other(ch)    = 0.02 × I(ch) × expectedHours(ch)
 
 金额以本界 `I(ch)` 缩放，职责比例和 30 日月结沿用 §1.3：
 
-| `stipendTier/resourceTier` | 抽象职级 | 现金月钱 | 资源配给价值上限 | 每月职责块【建议值】 | 天龙 `I=20` 足额合计 | 倚天 `I=460` 足额合计 |
+| `stipendTier/resourceTier` | 抽象职级 | 现金月钱 | 资源配给价值上限 | 每月职责块【建议值】 | 天龙 `I=19` 足额合计 | 倚天 `I=460` 足额合计 |
 |---:|---|---:|---:|---:|---:|---:|
-| 1 | 外门 | `0.03×I` | `0.02×I` | 2 | 1 两 | 23 两 |
-| 2 | 入门 / 内门 | `0.06×I` | `0.04×I` | 3 | 2 两 | 46 两 |
-| 3 | 亲传 / 闭门 | `0.10×I` | `0.07×I` | 4 | 3.4 两 | 78.2 两 |
-| 4 | 长老 | `0.16×I` | `0.10×I` | 5 | 5.2 两 | 119.6 两 |
-| 5 | 掌门 | `0.22×I` | `0.15×I` | 6 | 7.4 两 | 170.2 两 |
+| 1 | 外门 | `0.03×I` | `0.02×I` | 2 | 0.95 两 | 23 两 |
+| 2 | 入门 / 内门 | `0.06×I` | `0.04×I` | 3 | 1.90 两 | 46 两 |
+| 3 | 亲传 / 闭门 | `0.10×I` | `0.07×I` | 4 | 3.23 两 | 78.2 两 |
+| 4 | 长老 | `0.16×I` | `0.10×I` | 5 | 4.94 两 | 119.6 两 |
+| 5 | 掌门 | `0.22×I` | `0.15×I` | 6 | 7.03 两 | 170.2 两 |
 
-现金和实物都乘 `dutyRatio=完成职责块/要求块`；资源按完整单位装入，不能装入的尾差不折现金。例：天龙 L3 完成 3 / 4 职责，现金 `20×0.10×0.75=1.5 两`，资源额度 `20×0.07×0.75=1.05 两`，总值至多 2.55 两。
+现金和实物都乘 `dutyRatio=完成职责块/要求块`；现金按最近 10 文取整，资源额度向下取到整数文，再按完整单位装入，不能装入的尾差不折现金。例：天龙 L3 完成 3 / 4 职责，现金 `round10(19×0.10×0.75×1000)=1.43 两`，资源额度 `floor(19×0.07×0.75×1000)=997 文`，总值至多 2.427 两；实际完整资源单位可能更低。
 
 月钱指玩家个人报酬；掌门不能再以 L5 身份向自己重复发“长老月钱”。同一职责块只可计入一个门派或一个城市职位。若 `design/12` 允许多门身份，逐门都须完成独立职责，且全界仍受 §10.5 的门派收入池。
 
@@ -831,7 +832,7 @@ B_other(ch)    = 0.02 × I(ch) × expectedHours(ch)
 gAllowance(tier) = min(gShopCap, max(1, gMode − 3 + tier))
 ```
 
-| `resourceTier` | 必有基础包 | 可选专业包 | 品阶上限相对 `gMode` | 禁止 |
+| 门派配给档 `resourceTier=1..5` | 必有基础包 | 可选专业包 | 品阶上限相对 `gMode` | 禁止 |
 |---:|---|---|---:|---|
 | 1 | 粮食 / 食材、低品药材 | 木材、墨料 | `gMode−2` | 稀缺点专产 |
 | 2 | 粮食、药材 | 矿石、木材、皮草 | `gMode−1` | 天材 |
@@ -866,7 +867,7 @@ sectValueReceived = 现金月钱 + 可交易配给参考值 + 合法掌门分成
 
 ### 11.1 两本账
 
-成为 L5 后开放 `SectLedger`。门派公账与玩家私账严格分开：任务捐款、门产收入、弟子供给先入 `sectTreasuryWen`；只有 §10 月钱和经规则批准的盈余分成能进玩家钱包。用公款买门派建筑不算个人消费，用私款捐门派则不可在同一 tick 退款套贡献。
+成为 L5 后开放 `SectLedger`。门派公账与玩家私账严格分开：任务捐款、门产收入、弟子供给先入 `SectLedger.treasuryWen`；只有 §10 月钱和经规则批准的盈余分成能进玩家钱包。用公款买门派建筑不算个人消费，用私款捐门派则不可在同一 tick 退款套贡献。
 
 ### 11.2 月度收入与支出
 
@@ -934,25 +935,25 @@ distributable  = max(0, treasuryAfterSettlement − reserveTarget)
 
 | 书界 | `I` 两/h | `H` h | 总值 `B` | 任务 40% | 战利品 25% | 现银 10% | 营生 10% | 资源点 8% | 门派 5% | 其他 2% |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 天龙 | 20 | 15 | 300 | 120 | 75 | 30 | 30 | 24 | 15 | 6 |
+| 天龙 | 19 | 15 | 285 | 114 | 71.3 | 28.5 | 28.5 | 22.8 | 14.3 | 5.7 |
 | 射雕 | 94 | 14 | 1,316 | 526.4 | 329 | 131.6 | 131.6 | 105.3 | 65.8 | 26.3 |
 | 神雕 | 200 | 15 | 3,000 | 1,200 | 750 | 300 | 300 | 240 | 150 | 60 |
 | 倚天 | 460 | 15 | 6,900 | 2,760 | 1,725 | 690 | 690 | 552 | 345 | 138 |
 | 笑傲 | 94 | 12 | 1,128 | 451.2 | 282 | 112.8 | 112.8 | 90.2 | 56.4 | 22.6 |
 | 侠客 | 94 | 10 | 940 | 376 | 235 | 94 | 94 | 75.2 | 47 | 18.8 |
 | 碧血 | 42 | 11 | 462 | 184.8 | 115.5 | 46.2 | 46.2 | 37.0 | 23.1 | 9.2 |
-| 鹿鼎 | 45 | 13 | 585 | 234 | 146.2 | 58.5 | 58.5 | 46.8 | 29.2 | 11.7 |
+| 鹿鼎 | 45 | 13 | 585 | 234 | 146.3 | 58.5 | 58.5 | 46.8 | 29.3 | 11.7 |
 | 连城 | 19 | 9 | 171 | 68.4 | 42.8 | 17.1 | 17.1 | 13.7 | 8.6 | 3.4 |
 | 白马 | 11.4 | 8 | 91.2 | 36.5 | 22.8 | 9.1 | 9.1 | 7.3 | 4.6 | 1.8 |
 | 鸳鸯 | 19 | 8 | 152 | 60.8 | 38 | 15.2 | 15.2 | 12.2 | 7.6 | 3.0 |
 | 书剑 | 63 | 12 | 756 | 302.4 | 189 | 75.6 | 75.6 | 60.5 | 37.8 | 15.1 |
 | 飞狐 | 42 | 11 | 462 | 184.8 | 115.5 | 46.2 | 46.2 | 37.0 | 23.1 | 9.2 |
 | 雪山 | 42 | 9 | 378 | 151.2 | 94.5 | 37.8 | 37.8 | 30.2 | 18.9 | 7.6 |
-| **合计** | — | **162** | **16,641.2** | **6,656.5** | **4,160.3** | **1,664.1** | **1,664.1** | **1,331.3** | **832.1** | **332.8** |
+| **合计（未取整预算）** | — | **162** | **16,626.2** | **6,650.5** | **4,156.6** | **1,662.6** | **1,662.6** | **1,330.1** | **831.3** | **332.5** |
 
-以天龙核算：`B=20×15=300`；新增四类系统共 `30+24+15+6=75=25%×300`，原有任务 / 战利品 / 现银改为 `120+75+30=225`，两者合计仍为 300。倚天同理：`460×15=6,900`，四类新增合计 `690+552+345+138=1,725=25%×6,900`。
+以天龙核算：`B=19×15=285`；新增四类系统共 `28.5+22.8+14.25+5.7=71.25=25%×285`，原有任务 / 战利品 / 现银为 `114+71.25+28.5=213.75`，两者合计仍为 285。倚天同理：`460×15=6,900`，四类新增合计 `690+552+345+138=1,725=25%×6,900`。
 
-合计行按未取整公式得到 `16,641.2` 两；显示分桶分别四舍五入到 0.1 两，故显示值相加可能有至多 0.1 两误差，实现仍以整数文逐界核算，不以合计显示小数反向发奖。
+合计行按未取整公式得到 `16,626.2` 两；各合计桶同样先对 14 界未取整值求和，再显示到 0.1 两，因此表内合计精确保持 100%。单界显示行各列独立四舍五入到 0.1 两时可能出现至多 0.2 两的视觉差；实现仍按各界整数文预算核算，不以显示小数反向发奖。
 
 ### 12.3 `I(ch)` 的逐界来源
 
@@ -960,7 +961,7 @@ distributable  = max(0, treasuryAfterSettlement − reserveTarget)
 
 | 书界 | 主武器众数价 | 收入系数 | 算式 | `I` |
 |---|---:|---:|---|---:|
-| 天龙 | 10 | 1.0 | `2×10×1` | 20 |
+| 天龙 | 9.5 | 1.0 | `2×9.5×1` | 19 |
 | 射雕 / 笑傲 / 侠客 | 47 | 1.0 | `2×47×1` | 94 |
 | 神雕 | 100 | 1.0 | `2×100×1` | 200 |
 | 倚天 | 230 | 1.0 | `2×230×1` | 460 |
@@ -974,7 +975,7 @@ distributable  = max(0, treasuryAfterSettlement − reserveTarget)
 
 ### 12.4 净值计量与防重复
 
-每个价值进入玩家资产时写不可变 `provenance`：`sourceBucket`、`sourceId`、`transactionId`、`referenceValueWen`、`createdAt`。以下都不是新收入：
+每个价值进入玩家资产时写不可变 `provenance`：`sourceBucket`、`sourceId`、`transactionId`、`referenceValueWen`、`createdAtWorldTick`。以下都不是新收入：
 
 - 商店买来再卖、跨城套利、当铺赎回；
 - 资源从点仓转总仓、封装成物品、加工成等值制品；
@@ -984,7 +985,7 @@ distributable  = max(0, treasuryAfterSettlement − reserveTarget)
 
 制作若把材料变成更高价值物品，只有 `max(0,成品参考值−投入参考值−强制费用)` 记“加工增值”，并由承载该制作任务的原来源桶支付；没有独立无限“制作收入桶”。市场价差只改变资产实现价值，不扩大章节 `newEconomicValue`。
 
-资源点的 8% 以**净新增价值**计：`max(0,毛产物参考值−本周期强制维护−家丁工资−经营投入)`。§6.3 的产量钳制应在预演这些成本后，使累计净值不超过 `B_res`；不能简单把毛产物限制到 8% 后再扣成本，导致标准路线系统性少发。
+资源点的 8% 以**净新增价值**计：`max(0,毛产物参考值−本周期强制维护−家丁工资−经营投入)`。§6.3 的产量钳制应在预演这些成本后，使累计净值不超过 `B_resWen`；不能简单把毛产物限制到 8% 后再扣成本，导致标准路线系统性少发。
 
 ### 12.5 主要回收口与失败保护
 
@@ -1026,7 +1027,7 @@ unit: 份
 categoryValueMul: 1.10
 baseValueWen: 2750
 tradePolicy: normal
-uses: [alchemy, sect_contribution, trade, estate_build]
+uses: [alchemy, contribution, trade, estate_build]
 itemVariantRefs: []
 tags: [perishable_optional, medicinal]
 ```
@@ -1067,7 +1068,7 @@ eraStates:
     clues: []
 ```
 
-`rp_dali_herb_01` 已由 `design/11` 用作候选地图实例；本文正式规定其资源点字段形状。具体场景引用、产物和线索在天龙章节落盘前仍须验证，示例不替代章节内容。
+`rp_dali_herb_01` 已由 `design/11` 用作候选地图实例；本文给出候选经营字段，待 `tech/04` 与章节数据定稿后再成为正式 schema。具体场景引用、产物和线索在天龙章节落盘前仍须验证，示例不替代章节内容。构建器还须把 `eraStates` 的键集合校验为 `openChapters` 的子集，并拒绝缺失当前书界时代状态的点。
 
 ### 13.3 家丁实例与合同
 
@@ -1087,16 +1088,17 @@ abilities:
 specialties: {herbalism: 75, accounting: 30}
 skillBand: skilled
 contract:
+  servantRef: sv_dali_caoyao_01
+  state: active
   startedAtDay: 8
   prepaidThroughDay: 10
   dutyMul: 1.0
   boardingDiscount: 0.20
   accruedWageWen: 0
-assignment:
-  state: estate
-  targetRef: rp_dali_herb_01
-  role: manager
-  scheduleBlocks: [chen, si]
+  assignment:
+    targetRef: rp_dali_herb_01
+    role: manager
+    blocks: [chen, si]
 combatEligible: false
 ```
 
@@ -1157,7 +1159,7 @@ jobs:
 ```
 
 ```yaml
-schemaVersion: sect_stipend.v1
+schemaVersion: stipend.v1
 tiers:
   - {tier: 1, cashHourEq: 0.03, resourceHourEq: 0.02, requiredBlocks: 2}
   - {tier: 2, cashHourEq: 0.06, resourceHourEq: 0.04, requiredBlocks: 3}
@@ -1188,6 +1190,7 @@ type JobId = 'job_xingjiao' | 'job_jiaotou' | 'job_keqing';
 type ResourceTier = 'huang' | 'xuan' | 'di' | 'tian';
 type ResourceRank = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 type MaterialGrade = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+type MartialGrade = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 type ScheduleBlock = 'zi' | 'chou' | 'yin' | 'mao' | 'chen' | 'si' | 'wu' | 'wei' | 'shen' | 'you' | 'xu' | 'hai';
 type ResourceCategory =
   | 'kuangshi' | 'yaocai' | 'ducai' | 'mucai' | 'mapi' | 'liangshi'
@@ -1205,7 +1208,7 @@ interface ResourceDef {
   categoryValueMul: number;
   baseValueWen: number;
   tradePolicy: 'normal' | 'restricted' | 'forbidden';
-  uses: Array<'forge' | 'alchemy' | 'cooking' | 'sect_contribution' | 'trade' | 'estate_build'>;
+  uses: Array<'forge' | 'alchemy' | 'cooking' | 'contribution' | 'trade' | 'estate_build'>;
   itemVariantRefs: string[]; tags?: string[];
 }
 
@@ -1214,6 +1217,9 @@ interface ResourceStack {
   quantity: number;            // int 0..999
   provenanceLots: EconomyLot[];
 }
+type ResourceLocation =
+  | { scope: 'bag' | 'estate' }
+  | { scope: 'point'; pointRef: ResourcePointId };
 
 interface EconomyLot {
   transactionId: string;
@@ -1230,7 +1236,7 @@ interface EconomyLot {
 ```ts
 type PointType = 'mine' | 'herb_garden' | 'toxin_ground' | 'forest' | 'pasture'
   | 'farm' | 'silk_tea_estate' | 'workshop' | 'fishery_hunt' | 'trade_source';
-type AcquisitionRoute = 'battle' | 'quest' | 'purchase' | 'sect_grant';
+type AcquisitionRoute = 'battle' | 'quest' | 'purchase' | 'grant_by_sect';
 type PointOwnership = 'hidden' | 'discovered' | 'available' | 'controlled' | 'disputed'
   | 'acquiring' | 'owned' | 'harassed' | 'suspended' | 'lost' | 'era_unloaded';
 type EraResourcePointState = { mapState: PointOwnership; controllingFactionRef: SectId | null; maxMaterialGrade: MaterialGrade; clues: string[] };
@@ -1318,7 +1324,7 @@ interface BusinessDef {
   id: BusinessId; cityRef: CityId; kind: BusinessKind; openChapters: ChapterId[];
   entrancePoiRef: string | null; operatorFactionRef: SectId | null; scale: 'small' | 'normal' | 'head';
   legality: 'legal' | 'gray' | 'underground'; openSchedule: ScheduleBlock[];
-  jobs: Array<{ jobRef: JobId; localMartialGrade: MaterialGrade; minFame: number;
+  jobs: Array<{ jobRef: JobId; localMartialGrade: MartialGrade; minFame: number;
     minRelation: number; requiredBlocksPerMonth?: number }>;
   positionNpcSlots: string[];
 }
@@ -1329,7 +1335,7 @@ interface JobContractState {
 }
 interface EstateCareerState {
   jobContracts: JobContractState[];
-  activeKeqingContractId?: string; estateValueCreated: number; // 均为本书界状态；前者全存档至多一个活动值
+  activeKeqingContractId?: string; estateValueCreatedWen: number; // 均为本书界状态；前者全存档至多一个活动值
 }
 interface SectStipendTier { tier: 1|2|3|4|5; cashHourEq: number; resourceHourEq: number; requiredBlocks: number; }
 interface SectLedger {
@@ -1340,15 +1346,15 @@ interface SectLedger {
 }
 ```
 
-`ServantDef` 的 `npcRef` 与 `generatedNpcRuntimeId` 必须恰有一个；§13.3 为便于审阅把定义、初始合同与指派写在同一 YAML，编译后拆为 `ServantDef + ServantContractState`。当前 `tech/04` provisional schema 缺 `martial/loyalty/specialties`，且把类别写成英文 `ore/herb/...`、职位写成 `walker/instructor/retainer`；实现时应迁移到本文正式逻辑键，旧别名只允许在导入迁移器中出现。
+`ServantDef` 的 `npcRef` 与 `generatedNpcRuntimeId` 必须恰有一个；§13.3 为便于审阅把定义、初始合同与指派写在同一 YAML，编译后拆为 `ServantDef + ServantContractState`。当前 `tech/04` / `tech/05` provisional schema 缺 `martial/loyalty/specialties`，且仍有英文类别 / 职位旧键；同步时应迁移到本文正式逻辑键，旧别名只允许在导入迁移器中出现。
 
 ### 14.4 任务 DSL 条件扩展（交 `tech/05`）
 
-未来 `design/12` 定义任务结构，`tech/05` 实现解释器。本文只给资源 / 营生域的判别联合；条件必须纯读、无副作用：
+尚未落盘的 `design/12` 定义任务结构；现有 `tech/05` §10 使用 provisional `QuestCondition/QuestIntent`，须按本文联合类型升版迁移。本文只给资源 / 营生域的判别联合；条件必须纯读、无副作用：
 
 ```ts
 type EstateCondition =
-  | { kind: 'resource_at_least'; resourceRef: ResourceId; quantity: number; scope: 'bag' | 'estate' | 'point' }
+  | ({ kind: 'resource_at_least'; resourceRef: ResourceId; quantity: number } & ResourceLocation)
   | { kind: 'resource_point_state'; pointRef: ResourcePointId; ownership?: PointOwnership; minLevel?: 1|2|3|4|5 }
   | { kind: 'servant_available'; servantRef?: ServantId; minLoyalty?: number; specialty?: string; minValue?: number }
   | { kind: 'business_relation_at_least'; businessRef: BusinessId; value: number }
@@ -1356,7 +1362,7 @@ type EstateCondition =
   | { kind: 'job_duty_ratio_at_least'; contractId: string; ratio: number }
   | { kind: 'keqing_slot_free' }
   | { kind: 'schedule_blocks_free'; day: number; blocks: ScheduleBlock[] }
-  | { kind: 'sect_rank_at_least'; sectRef: SectId; level: 1|2|3|4|5 }
+  | { kind: 'membership_rank_at_least'; sectRef: SectId; level: 1|2|3|4|5 }
   | { kind: 'economy_budget_remaining'; bucket: EconomyLot['sourceBucket']; minWen: number };
 ```
 
@@ -1366,26 +1372,27 @@ type EstateCondition =
 
 ```ts
 type EstateAction =
-  | { kind: 'grant_resource'; resourceRef: ResourceId; quantity: number; destination: 'bag'|'estate'|'point';
-      economySource: EconomyLot['sourceBucket']; sourceId: string }
-  | { kind: 'consume_resource'; resourceRef: ResourceId; quantity: number; scope: 'bag'|'estate'|'point' }
+  | ({ kind: 'grant_resource'; resourceRef: ResourceId; quantity: number;
+       economySource: Exclude<EconomyLot['sourceBucket'], 'transfer'>; sourceId: string } & ResourceLocation)
+  | ({ kind: 'transfer_resource'; resourceRef: ResourceId; quantity: number; from: ResourceLocation; to: ResourceLocation })
+  | ({ kind: 'consume_resource'; resourceRef: ResourceId; quantity: number } & ResourceLocation)
   | { kind: 'set_resource_point_ownership'; pointRef: ResourcePointId; state: PointOwnership }
   | { kind: 'set_resource_point_level'; pointRef: ResourcePointId; level: 1|2|3|4|5 }
-  | { kind: 'assign_servant'; servantRef: ServantId; targetRef: ResourcePointId; role: string; blocks: ScheduleBlock[] }
+  | { kind: 'assign_servant'; servantRef: ServantId; targetRef: ResourcePointId | BusinessId | SectId; role: string; blocks: ScheduleBlock[] }
   | { kind: 'start_job_contract'; businessRef: BusinessId; jobRef: JobId; startDay: number; endDay: number }
-  | { kind: 'end_job_contract'; contractId: string; reason: string }
+  | { kind: 'close_job_contract'; contractId: string; reason: string }
   | { kind: 'reserve_schedule_blocks'; ownerRef: string; day: number; blocks: ScheduleBlock[] }
   | { kind: 'settle_resource_cycle'; pointRef: ResourcePointId; expectedCycleIndex: number }
   | { kind: 'settle_job_contract'; contractId: string }
-  | { kind: 'settle_sect_stipend'; sectRef: SectId; economyMonth: number }
+  | { kind: 'settle_membership_stipend'; sectRef: SectId; economyMonth: number }
   | { kind: 'record_estate_milestone'; key: 'estate_four_types_level5' };
 ```
 
 ### 14.6 DSL 执行不变式
 
-1. `grant_resource` 必填 `economySource/sourceId`；转仓用 `transfer` 且 `isNewEconomicValue=false`。
+1. `grant_resource` 必填非 `transfer` 的 `economySource/sourceId`；转仓必须用 `transfer_resource`，栈内保留原 provenance lot，另向事务账簿写 `sourceBucket=transfer,isNewEconomicValue=false` 的搬运收据，禁止把该收据作为第二份库存 lot 造成数量翻倍。点仓作为源或目标时 `pointRef` 必填。
 2. `consume_resource` 先冻结 lot，再扣数量；中途失败恢复原 lot，不能只恢复总数而丢来源。
-3. `start_job_contract(job_keqing)` 必须原子比较并设置 `activeKeqingContractId`；并发两个请求只允许一个成功。
+3. `start_job_contract(job_keqing)` 必须在同一事务确认“活动客卿合同数 = 0 且 `activeKeqingContractId` 为空”，再插入合同并设置该键；结束该合同须同时清空键。读档校验要求：0 份活动客卿合同时键必为空，1 份时键必须等于其 `contractId`，多于 1 份直接拒绝；并发两个签约请求只允许一个成功。
 4. `reserve_schedule_blocks` 使用“检查 + 写入”同一事务；冲突返回明确占用者。
 5. `settle_*` 带幂等键 `chapterId + objectId + periodIndex`；重复调用返回原结果，不重复发钱。
 6. `set_resource_point_level` 只允许相邻升级或由脚本显式降级；不能从 L1 越到 L5 绕过成本。
@@ -1450,8 +1457,9 @@ type EstateAction =
 | `businessContractBreached` | 业务事件名 | 欠薪、弃约或无故缺席 |
 | `casinoIncidentResolved` | 业务事件名 | 出千 / 识破 / 地下事件结案 |
 | `activeKeqingContractId` | 存档字段 | 指向全局唯一的活动客卿合同 |
-| `estateValueCreated` | 存档字段 | 本界资源点累计净新增价值 |
+| `estateValueCreatedWen` | 存档字段 | 本界资源点累计净新增价值，整数文 |
 | `ScheduleBlock` | 逻辑类型 | 十二时辰键的联合类型，供 YAML 和 TS 排班共同使用 |
+| `transfer_resource` | DSL 动作键 | 在背包、家业总仓与指定点仓间搬运资源；保留来源 lot，不创造新价值 |
 
 这些是代码事件 / 字段键，不占基准 `ev_<NN>_<拼音>` 的剧情事件命名空间；若章节要监听并形成剧情节点，应另建合法 `ev_*`，再从业务事件桥接。
 
@@ -1467,15 +1475,16 @@ type EstateAction =
 | RES-V02 | 资源 `baseValueWen` 等于材料基价 × 组三档质量 × 类别倍率，误差仅允许最近 10 文取整 | 构建失败 |
 | RES-V03 | `itemVariantRefs` 均存在；具名 / 唯一 `it_*` 不被通用 `res_*` 反向替代 | 构建失败 |
 | RES-V04 | 天阶资源无常规资源点循环产出；天材不可买、不可合成 | 构建失败 |
+| RES-V05 | 资源位置为点仓时 `pointRef` 必填；栈数量等于来源 lot 数量之和；`transfer_resource` 只拆分 / 合并原 lot，且不能增加 `newEconomicValue` | 构建失败 |
 | RP-V01 | 每界资源点数逐行等于 §5.2，合计 229；营生数合计 280 | 构建失败 |
 | RP-V02 | 每开放区域至少 1 点；城外 ≥60%、势力控制 ≤40%、多路径 ≥25%；每区高稀缺点 ≤1 | 构建失败 |
 | RP-V03 | `rp_*` 引用有效区域 / 场景 / 城市与书界；产出资源存在且不超 §2.4 | 构建失败 |
 | RP-V04 | 每界覆盖药材、木 / 矿、粮 / 畜、商贸四供给面；同类最近点不全挤同区 | 审校失败 |
 | SV-V01 | 家丁能力和专业均为整数 0～100；`npcRef` / runtime UUID 恰一；儿童不进雇佣池 | 构建失败 |
 | SV-V02 | 同一 NPC 在同一块最多一地；家业任职与活动 / 留守同伴状态互斥 | 构建失败 |
-| SV-V03 | 工资非负、定金为三日、食宿折扣仅 0 / 20%；欠薪状态转换合法 | 构建失败 |
+| SV-V03 | 工资非负、原始日应计先按账期求和再 `round10`；定金为三日、食宿折扣仅 0 / 20%；欠薪状态转换合法 | 构建失败 |
 | BIZ-V01 | 进入生产包的 `biz_*` 其城市、类别、时代入口有效且 `entrancePoiRef` 非空；280 只计 casino / escort / manor | 构建失败 |
-| BIZ-V02 | `job_keqing` 只在 escort / manor，活动合同全存档最多 1；教头冲突不可重叠 | 构建失败 |
+| BIZ-V02 | `job_keqing` 只在 escort / manor；活动客卿合同为 0 份时唯一键必为空、为 1 份时唯一键必须恰指向它、多于 1 份非法；教头合同可多份，但已占用日程块不可重叠 | 构建失败 |
 | BIZ-V03 | 所有报酬有唯一 `economySource`；赌博无借贷且下注 / 日赢 / 本界预算不超限 | 构建失败 |
 | SECT-V01 | 每个门派恰有 L1～L5，`stipendTier/resourceTier` 与 level 同为 1～5 | 构建失败 |
 | SECT-V02 | 每界活动掌门位 ≤1；配给不含天材 / 唯一物 / 秘籍正文 | 构建失败 |
@@ -1491,22 +1500,24 @@ type EstateAction =
 | RES-T02 | 玄四品药材 | `2.5×1×1.10=2.75 两`；区间 2.20～3.30 两 |
 | RES-T03 | 黄九品矿石 | `resourceLevel=1`、`g=1`、中值 80 文 |
 | RES-T04 | 天一品矿石 | `resourceLevel=36`、`g=12`、中值 580 两；常规产出非法 |
+| RES-T05 | 从点 A 转 2 份资源到总仓，再尝试按 `grant_resource` 记资源收入 | 转移只移动原 lot；后一次因 `economySource=transfer` 非法而拒绝，新经济价值不变 |
 | RP-T01 | `base=4,L3,A=(60,70,50),i=2,u=1,event=1` | `A=61.5`、`M_a=1.069`、毛产 5 单位 |
-| RP-T02 | 天龙 L3、毛值 6 两 | 固定维护 0.3 + 耗材 0.3 = 0.6 两，工资另扣 |
+| RP-T02 | 天龙 L3、毛值 6 两 | 式内固定项 285 文 + 耗材 300 文，合并后 `round10(585)=590 文=0.59 两`，工资另扣 |
 | RP-T03 | 世界过 3 日、有效经营 44 分钟 | 不结算；提示尚欠 1 分钟 |
 | RP-T04 | 两个成熟周期未领取后再过 3 日 | 仍为 2 周期，停产，不生成第三批 |
-| RP-T05 | 天龙资源净值累计 23 两，本次预演净值 3 两 | 只允许完整单位组合使本次净值 ≤1 两；总额 ≤24 |
-| SV-T01 | 天龙熟手普通家丁、无食宿 | `20×0.005=0.10 两/日`；三日定金 0.30 两 |
+| RP-T05 | 天龙资源净值累计 22 两，本次预演净值 3 两 | 只允许完整单位组合使本次净值 ≤0.8 两；总额 ≤22.8 两 |
+| SV-T01 | 天龙熟手普通家丁、无食宿 | 日应计 95 文；三日定金 `round10(95×3)=290 文`；30 日工资 2.85 两 |
 | SV-T02 | 同人已是资源点主管，再请求活动编组 | 先要求交班；事务未完成则拒绝，不复制角色 |
 | SV-T03 | 同人排了辰时上工，再排辰时护运 | 返回日程冲突及原占用者 |
-| BIZ-T01 | 天龙普通镖局、20 分钟危险行脚成功 | `20×20/60×1×1.25=8.33 两` |
+| BIZ-T01 | 天龙普通镖局、20 分钟危险行脚成功 | `19×20/60×1×1.25=7.916… 两`，取整 7.92 两 |
 | BIZ-T02 | 已有 A 镖局客卿，直接签 B 山庄客卿 | 拒绝；先结束 A 合同 |
 | BIZ-T03 | 两份教头合同授课都在同一块 | 合同可共存，但只可完成一堂；另一堂改期 / 缺席 |
+| BIZ-T04 | 存档有两份活动客卿合同，或唯一键指向教头 / 已结束合同 | 构建 / 读档修复拒绝进入玩法；不得任取一份静默覆盖 |
 | CAS-T01 | 三骰大小枚举 216 种 | 小 105、大 105、豹子 6；单边期望 −2.78% |
-| CAS-T02 | 天龙当日已净赢 1.8 两，再赢 0.5 | 仅结算至 2.0 两；其余不转资产 |
-| SECT-T01 | 天龙 L3，完成 3 / 4 职责 | 现金 1.50 两，资源上限 1.05 两，总值 ≤2.55 |
+| CAS-T02 | 天龙当日已净赢 1.70 两，再赢 0.50 两 | 仅结算至 1.90 两；其余不转资产 |
+| SECT-T01 | 天龙 L3，完成 3 / 4 职责 | 现金 1.43 两，资源额度上限 997 文，总值 ≤2.427 两 |
 | SECT-T02 | 同界已有 L5，再授另一门 L5 | 拒绝，最多一个掌门位 |
-| ECO-T01 | 天龙 `I=20,H=15` | `B=300`，七桶为 120/75/30/30/24/15/6，和 300 |
+| ECO-T01 | 天龙 `I=19,H=15` | `B=285`，七桶原始值为 114/71.25/28.5/28.5/22.8/14.25/5.7，和 285 |
 | ECO-T02 | 倚天 `I=460,H=15` | `B=6900`，新增四桶和 1725=25% |
 | ECO-T03 | 买 10 两货再卖 4 两 | 新经济价值 0；只记录消费与资产实现 |
 | SLEEP-T01 | 有银两、库存、L5 点、家丁、客卿，触发书眠 | 新界均无；配方 / 图鉴 / 里程碑仍在 |
@@ -1563,9 +1574,9 @@ type EstateAction =
 | `design/13` | 成就、书眠、天书之力与运行态边界 | 已解决：见 §6.6、§12.6 |
 | `design/17` | L1～L5、`stipendTier/resourceTier` | 已解决：金额与配给见 §10 |
 | `design/18` | 设施 NPC、D2、床位、替班 | 已解决：经营合同覆盖值见 §7 |
-| 未来 `design/12` | 门派晋升、贡献、任务结构、关系与完整经济 | 尚未落盘；本文给消费接口，不虚构章节号 |
-| 未来 `design/14` | 家业 / 职位 / 掌门手机界面 | 尚未落盘；本文给信息与操作需求 |
-| 未来 `tech/05` | 任务解释器 | 尚未落盘；本文给 DSL 判别联合与不变式 |
+| 尚未落盘的 `design/12` | 门派晋升、贡献、任务结构、关系与完整经济 | 本文给消费接口，不虚构章节号 |
+| `design/14` | 家业 / 职位 / 掌门手机界面 | 已有 WF-14-13/14 与暂定视图模型；须按本文正式数值、全局客卿唯一键和公私账边界同步 |
+| `tech/05` | 任务解释器 | 已有 §10～§11 provisional 契约；须迁移职位键、状态树、条件 / 动作与结算幂等规则 |
 
 ### 17.3 对基准的修改提案
 
