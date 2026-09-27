@@ -181,7 +181,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {agi 55, wis 55}`；`aptitude {apStaff 55}`；`morality {min 0}`；`sect {id: sect_gaibang, rank: 5}`；`hard [sect, morality]`（非帮主途径以 `reqsOverride {sect: null}` 放开，见获取） |
 | layerStats | `parry [4, 12]`、`pierce [2, 8]`（合计 20） |
 | 层数要点 | 1：棒打双犬、绊字诀、八字真诀 ｜ 2：缠字诀 ｜ 3：拨狗朝天、以巧破力 ｜ 4：恶狗拦路 ｜ 5：斜打狗背、棒影 ｜ 6：引字诀 ｜ **7：绝招 天下无狗** ｜ 8：獒口夺杖、反截狗臀 ｜ 9：压肩狗背、巧打 ｜ 10：八诀归一 |
-| setTags | `set_gaibang_bangzhu`、`set_huangrong_nvzhuge` |
+| setTags | `[set_gaibang_bangzhu]` |
 | conflicts | 无 |
 | special / observable | `{fusible: true}` / `false` |
 | 获取 | ① 天龙 `qiyu` `q_01_faction_91`（丐帮变乱后护帮有功，传功长老代传，原创扩展；与降龙二选一）`maxLayer 8`；② 射雕 `master npc_hongqigong` `maxLayer 6`（"有招无诀"，`reqsOverride {sect: null}`）＋ `master npc_huangrong` `maxLayer 10`（羁绊 ≥ 4 或入帮至九袋）；③ 神雕 `qiyu q_03_qiyu_92`（华山绝顶观洪七公与欧阳锋拆招，致敬杨过）`maxLayer 6` ＋ `master npc_huangrong` `maxLayer 10`；④ 倚天 `manual it_miji_dagou_can` `maxLayer 6`，并设 `qiyu q_04_faction_9x`（寻回旧谱、由本土丐帮传功者补全口诀，**原创扩展**）`maxLayer 10`；完本途径 `reqsOverride {sect: null}`，仍计本章五绝系天级取得预算 |
@@ -223,7 +223,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {str 40, con 40}`；`aptitude {apExotic 40}`；`prereq [{skill: sk_lianhuazhang, layer: 5}, {skill: sk_canfengyinlugong, layer: 5}]`；`sect {id: sect_gaibang, rank: 4, bagCount: 8}`；`hard [sect, prereq]` |
 | layerStats | `parry [3, 9]`、`defOut [1, 6]`（合计 15） |
 | 层数要点 | 1：钵盂叩击、托钵化缘、化缘 ｜ 3：飞钵回旋 ｜ 4：钵挡 ｜ 5：钵底藏锋 ｜ **7：绝招 钵震八方** ｜ 8：扣钵 ｜ 9：回旋 ｜ 10：钵纳百川 |
-| setTags / conflicts | `set_gaibang_tuobo` / 无 |
+| setTags / conflicts | `[]` / 无 |
 | special / observable | `{fusible: true}` / `true` |
 | 获取 | 笑傲 `master npc_gaibang_zhanglao` `maxLayer 10`；碧血 `manual it_miji_tiebogong_can` `maxLayer 7`；`observe` 6。倚天掌钵龙头仅作出处原型与 NPC 见闻，不产生可拼完整秘籍的残页 |
 | 图鉴文本 | （原创扩展）丐帮掌钵龙头一脉的奇门功夫，以精铁钵盂为兵：托钵可挡刀剑暗器，飞钵回旋伤人。"掌钵龙头"为倚天原著中的丐帮职名，本作据此衍出其武学。 |
@@ -309,7 +309,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_shexinshu_xinyan` 心眼（1，stat：本武学效果命中 `effHit` +[3%, 8%]）；`ps_shexinshu_rumeng` 入梦（10，mechanic：本武学施加的 `bf_hunshui` 持续 +1，对 Boss 无效）。
 
-**`sk_lianhuazhang` 莲花掌**（5 玄中 · 拳脚/拳掌 · 阳 · 0.70/0.30 · 栏 3）｜reqs：`attrs {str 25, con 25}`、`aptitude {apFist 25}`、`prereq [{skill: sk_qiongjiaquan, layer: 4}]`、`sect {id: sect_gaibang, rank: 2, bagCount: 4}`（硬：sect、prereq）｜layerStats：`parry [1,5]`、`defOut [1,5]`｜setTags：`set_gaibang_tuobo`｜获取：丐帮四袋 `master`（射雕—笑傲、碧血、鹿鼎）；`pages it_canye_lianhuazhang`（4 页）；`observe` 6｜出处：《射雕英雄传》中丐帮是否有“莲花掌”正式名、由何人使用及所在情节（待考）；现招式和后世传承均为原创扩展
+**`sk_lianhuazhang` 莲花掌**（5 玄中 · 拳脚/拳掌 · 阳 · 0.70/0.30 · 栏 3）｜reqs：`attrs {str 25, con 25}`、`aptitude {apFist 25}`、`prereq [{skill: sk_qiongjiaquan, layer: 4}]`、`sect {id: sect_gaibang, rank: 2, bagCount: 4}`（硬：sect、prereq）｜layerStats：`parry [1,5]`、`defOut [1,5]`｜setTags：`[]`｜获取：丐帮四袋 `master`（射雕—笑傲、碧血、鹿鼎）；`pages it_canye_lianhuazhang`（4 页）；`observe` 6｜出处：《射雕英雄传》中丐帮是否有“莲花掌”正式名、由何人使用及所在情节（待考）；现招式和后世传承均为原创扩展
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -331,7 +331,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_guitoudaofa_daochen` 刀沉（1，stat Z6：本武学暴击伤害 +[5, 12] pp）；`ps_guitoudaofa_shaqi` 煞气（5，trigger `onKill`：自身 `bf_zhanyi` +1 层）；`ps_guitoudaofa_dacheng` 索命（10，stat Z3：对带 `bleed` 标签效果的目标 +8%）。
 
-**`sk_canfengyinlugong` 餐风饮露功**（4 玄下 · 内功 · `nature: yang` · 0/1 · 栏 3）｜**（原创扩展）**丐帮弟子耐饥寒、走江湖的根基心法｜reqs：`attrs {con 25}`、`sect {id: sect_gaibang, rank: 1, bagCount: 2}`（硬）｜contribution：`mpMaxPct 12, hpMaxPct 10, attrs {con 6}, mpRegen 1.5, stats {resCold 5, resPoison 5}`（IP = 12+10+2×6+5×1.5 = **41.5**）｜setTags：`set_gaibang_bangzhu`、`set_gaibang_tuobo`｜获取：丐帮二袋 `master`（全部丐帮书界）；碧血/鹿鼎 `manual it_miji_canfengyinlugong`；`pages`
+**`sk_canfengyinlugong` 餐风饮露功**（4 玄下 · 内功 · `nature: yang` · 0/1 · 栏 3）｜**（原创扩展）**丐帮弟子耐饥寒、走江湖的根基心法｜reqs：`attrs {con 25}`、`sect {id: sect_gaibang, rank: 1, bagCount: 2}`（硬）｜contribution：`mpMaxPct 12, hpMaxPct 10, attrs {con 6}, mpRegen 1.5, stats {resCold 5, resPoison 5}`（IP = 12+10+2×6+5×1.5 = **41.5**）｜setTags：`[set_gaibang_bangzhu]`｜获取：丐帮二袋 `master`（全部丐帮书界）；碧血/鹿鼎 `manual it_miji_canfengyinlugong`；`pages`
 
 | 招式 | 重 | 范围 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -349,7 +349,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_yunyoubu_yunyou` 云游（1，mechanic：探索中体力消耗 −[5%, 15%]）；`ps_yunyoubu_yuanman` 走遍天下（10，mechanic：大地图旅行耗时 −10%，design/11 接口）。
 
-**`sk_qiongjiaquan` 穷家拳**（2 黄中 · 拳脚/拳掌 · 阳 · 0.85/0.15 · 栏 3）｜**（原创扩展）**丐帮入门拳｜reqs：无（入帮即授）｜layerStats：`parry [1,3]`、`hit [1,3]`｜setTags：`set_gaibang_tuobo`｜获取：丐帮 `master`（入帮）；`pages`（3 页）；`observe` 6
+**`sk_qiongjiaquan` 穷家拳**（2 黄中 · 拳脚/拳掌 · 阳 · 0.85/0.15 · 栏 3）｜**（原创扩展）**丐帮入门拳｜reqs：无（入帮即授）｜layerStats：`parry [1,3]`、`hit [1,3]`｜setTags：`[]`｜获取：丐帮 `master`（入帮）；`pages`（3 页）；`observe` 6
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -359,7 +359,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_qiongjiaquan_picao` 皮糙肉厚（5，stat：`resCC` +[5, 10] pp）；`ps_qiongjiaquan_yuanman` 入帮圆满（10，mechanic：首次练满 `apFist` +1（全游戏一次）；此后丐帮拳脚武学资质软门槛 −10）。
 
-**`sk_lianhualuo` 莲花落**（2 黄中 · 杂学/音律 · 中性 · 栏 3）｜**（原创扩展）**乞者唱曲，丐帮以之鼓劲、传讯｜reqs：无｜强度技艺 `music`（05 §2.3）｜layerStats：`effHit [1,3]`、`resMind [1,3]`｜setTags：`set_gaibang_tuobo`｜获取：丐帮入帮；街市乞儿事件（design/11）
+**`sk_lianhualuo` 莲花落**（2 黄中 · 杂学/音律 · 中性 · 栏 3）｜**（原创扩展）**乞者唱曲，丐帮以之鼓劲、传讯｜reqs：无｜强度技艺 `music`（05 §2.3）｜layerStats：`effHit [1,3]`、`resMind [1,3]`｜setTags：`[]`｜获取：丐帮入帮；街市乞儿事件（design/11）
 
 | 招式 | 重 | 范围 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -369,7 +369,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_lianhualuo_anhao` 暗号（1，mechanic：探索中可用莲花落与丐帮弟子互通消息，解锁丐帮情报对话，design/12 接口）；`ps_lianhualuo_yuanman` 圆满（10，stat：本武学施加的增益持续 +1）。
 
-**`sk_gangougunfa` 赶狗棍法**（1 黄下 · 兵器/棍杖 · 中性 · 0.90/0.10 · 栏 3）｜**（原创扩展）**乞儿防身的竹棒法，打狗阵之基｜reqs：无｜layerStats：`parry [1,4]`、`hit [1,2]`｜setTags：`set_gaibang_tuobo`｜获取：丐帮入帮；`pages`（3 页）；`observe` 6
+**`sk_gangougunfa` 赶狗棍法**（1 黄下 · 兵器/棍杖 · 中性 · 0.90/0.10 · 栏 3）｜**（原创扩展）**乞儿防身的竹棒法，打狗阵之基｜reqs：无｜layerStats：`parry [1,4]`、`hit [1,2]`｜setTags：`[]`｜获取：丐帮入帮；`pages`（3 页）；`observe` 6
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -385,93 +385,93 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 #### `sk_gaibangtunajue` 丐帮吐纳诀（4 玄下 · 内功）
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{sect:{id:sect_gaibang,rank:1,bagCount:1},hard:[sect]}`；`inner.contribution:{mpMaxPct:14,hpMaxPct:8,attrs:{con:4,str:2},mpRegen:1.5,stats:{resCold:5,resPoison:5}}`，`IP=14+8+2×6+5×1.5=41.5`；`inner.meridians:[mer_dumai]`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{sect:{id:sect_gaibang,rank:1,bagCount:1},hard:[sect]}`；`inner.contribution:{mpMaxPct:14,hpMaxPct:8,attrs:{con:4,str:2},mpRegen:1.5,stats:{resCold:5,resPoison:5}}`，`IP=14+8+2×6+5×1.5=41.5`；`inner.meridians:[mer_dumai]`；`setTags:[]`。
 
 - 招式：沿街调息 `mv_gaibangtunajue_tiaoxi`（L1，自身，5%/3，`bf_huinei`2，`power:0`）；护腹运气 `mv_gaibangtunajue_hufu`（L4，自身，6%/3，`bf_jiangu`2，`power:0`）。
 - 被动：耐饥 `ps_gaibangtunajue_naiji`（体力消耗 −5%→12%）；行乞根基 `ps_gaibangtunajue_genji`（丐帮玄阶修炼 +10%）。获取：L1 传功；后世分舵来源均明确标原创。
 
 #### `sk_liuyunbu` 流云步（4 玄下 · 轻功）
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.55/0.45`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`Q_skill=QS(4)=56`；`reqs:{attrs:{agi:25},aptitude:{apLight:22},sect:{id:sect_gaibang,rank:1},hard:[sect]}`；`layerStats:{eva:[1,5],tough:[1,5]}`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.55/0.45`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`Q_skill=QS(4)=56`；`reqs:{attrs:{agi:25},aptitude:{apLight:22},sect:{id:sect_gaibang,rank:1},hard:[sect]}`；`layerStats:{eva:[1,5],tough:[1,5]}`；`setTags:[]`。
 
 - 招式：穿巷 `mv_liuyunbu_chuanxiang`（L1，自身，5%/3，`bf_jixing`2）；借墙 `mv_liuyunbu_jieqiang`（L4，移至 2 格内可达空位，5%/2，`power:0`）。
 - 被动：识路 `ps_liuyunbu_shilu`（城镇探索耗时 −10%）；云脚 `ps_liuyunbu_yunjiao`（移动 ≥3 格后 eva +3→8）。获取：丐帮 L1；`observe maxLayer:6`。
 
 #### `sk_duanbangshou` 短棒手（4 玄下 · 兵器/棍杖）——核算抽样
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0.85/0.15`；`weaponReq:{category:staff}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{aptitude:{apStaff:22},prereq:[{skill:sk_gangougunfa,layer:4}],sect:{id:sect_gaibang,rank:1},hard:[sect,prereq]}`；`layerStats:{hit:[1,5],parry:[1,5]}`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0.85/0.15`；`weaponReq:{category:staff}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{aptitude:{apStaff:22},prereq:[{skill:sk_gangougunfa,layer:4}],sect:{id:sect_gaibang,rank:1},hard:[sect,prereq]}`；`layerStats:{hit:[1,5],parry:[1,5]}`；`setTags:[]`。
 
 - 招式：横棒 `mv_duanbangshou_hengbang`（L1，`aoe_cone r1/120°`，**0.85**，6%/1/1000；`.75×1.12=.84≈.85`）；点膝 `mv_duanbangshou_dianxi`（L3，单体，**1.10**，6%/1，`bf_jiansu`30%；`1×1.12−.10×.30=1.09≈1.10`）；贴身架 `mv_duanbangshou_tieshen`（L6，单体，**1.15**，7%/1，击退1；`1×(1+.12+.05)−.05=1.12≈1.15`）。
 - 被动：短兵 `ps_duanbangshou_duanbing`（贴身 hit +3→8）；护手 `ps_duanbangshou_hushou`（parry +2→5）。获取：丐帮 L1，`observe maxLayer:6`。
 
 #### `sk_gaibanghuxinfa` 丐帮护心法（5 玄中 · 内功）
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{prereq:[{skill:sk_gaibangtunajue,layer:5}],sect:{id:sect_gaibang,rank:2,bagCount:3},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:17,hpMaxPct:10,attrs:{con:4,str:3},mpRegen:1.5,stats:{resMind:5,resCC:5}}`，`IP=17+10+2×7+5×1.5=48.5`；`inner.meridians:[mer_dumai,mer_renmai]`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{prereq:[{skill:sk_gaibangtunajue,layer:5}],sect:{id:sect_gaibang,rank:2,bagCount:3},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:17,hpMaxPct:10,attrs:{con:4,str:3},mpRegen:1.5,stats:{resMind:5,resCC:5}}`，`IP=17+10+2×7+5×1.5=48.5`；`inner.meridians:[mer_dumai,mer_renmai]`；`setTags:[]`。
 
 - 招式：护心 `mv_gaibanghuxinfa_huxin`（L3，自身，6%/3，`bf_dingxin`2）；行义 `mv_gaibanghuxinfa_xingyi`（L6，自身与相邻友方，7%/4，`bf_jiangu`2）；均 `power:0`。
 - 被动：同袍 `ps_gaibanghuxinfa_tongpao`（相邻友方存在时 resMind +4→10）；百折 `ps_gaibanghuxinfa_baizhe`（气血低于 35% 时 Z4 +6%）。获取：丐帮 L2。
 
 #### `sk_fengyuzhang` 风雨掌（5 玄中 · 拳脚/拳掌）——核算抽样
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0.70/0.30`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{attrs:{str:28},aptitude:{apFist:25},prereq:[{skill:sk_qiongjiaquan,layer:4}],sect:{id:sect_gaibang,rank:2},hard:[sect,prereq]}`；`layerStats:{hit:[1,5],parry:[1,5]}`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0.70/0.30`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{attrs:{str:28},aptitude:{apFist:25},prereq:[{skill:sk_qiongjiaquan,layer:4}],sect:{id:sect_gaibang,rank:2},hard:[sect,prereq]}`；`layerStats:{hit:[1,5],parry:[1,5]}`；`setTags:[]`。
 
 - 招式：风掌 `mv_fengyuzhang_fengzhang`（L1，单体，**1.10**，6%/1；`1×1.12=1.12≈1.10`）；雨打 `mv_fengyuzhang_yuda`（L3，单体三段，**1.30**，7%/2；`1×(1+.24+.05)=1.29≈1.30`）；扫街 `mv_fengyuzhang_saojie`（L6，`aoe_cone r1/120°`，**0.95**，7%/2；`.75×(1+.24+.05)=.97≈.95`）。
 - 被动：风紧 `ps_fengyuzhang_fengjin`（移动后本武学 Z3 +4%→10%）；雨密 `ps_fengyuzhang_yumi`（多段招式 hit +5）。获取：丐帮 L2。
 
 #### `sk_bocaogunfa` 拨草棍法（5 玄中 · 兵器/棍杖）——核算抽样
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.80/0.20`；`weaponReq:{category:staff}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{aptitude:{apStaff:28},prereq:[{skill:sk_duanbangshou,layer:4}],sect:{id:sect_gaibang,rank:2},hard:[sect,prereq]}`；`layerStats:{hit:[1,5],parry:[1,5]}`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.80/0.20`；`weaponReq:{category:staff}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{aptitude:{apStaff:28},prereq:[{skill:sk_duanbangshou,layer:4}],sect:{id:sect_gaibang,rank:2},hard:[sect,prereq]}`；`layerStats:{hit:[1,5],parry:[1,5]}`；`setTags:[]`。
 
 - 招式：拨草 `mv_bocaogunfa_bocao`（L1，横扫，**0.85**，6%/1；`.75×1.12=.84≈.85`）；寻路 `mv_bocaogunfa_xunlu`（L3，直线2格，**1.00**，7%/1；`.85×(1+.12+.05)=.9945≈1.00`）；惊蛇 `mv_bocaogunfa_jingshe`（L6，单体，**1.20**，7%/2，`bf_dongyao`40%；`1×(1+.24+.05)−.10×.40=1.25≈1.20`）。被动：开路 `ps_bocaogunfa_kailu`（命中后友方穿越目标邻格不加耗）；棒花 `ps_bocaogunfa_banghua`（parry +3→8）。获取：丐帮 L2。
 
 #### `sk_xingshidao` 行市刀（5 玄中 · 兵器/刀）
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0.80/0.20`；`weaponReq:{category:blade}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{aptitude:{apBlade:26},prereq:[{skill:sk_gaibangduandao,layer:4}],sect:{id:sect_gaibang,rank:2},hard:[sect,prereq]}`；`layerStats:{crit:[1,5],hit:[1,5]}`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0.80/0.20`；`weaponReq:{category:blade}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{aptitude:{apBlade:26},prereq:[{skill:sk_gaibangduandao,layer:4}],sect:{id:sect_gaibang,rank:2},hard:[sect,prereq]}`；`layerStats:{crit:[1,5],hit:[1,5]}`；`setTags:[]`。
 
 - 招式：开市 `mv_xingshidao_kaishi`（L1，单体，1.00，6%/0）；收摊 `mv_xingshidao_shoutan`（L3，横扫，0.90，7%/1）；断路 `mv_xingshidao_duanlu`（L6，单体，1.20，7%/2，击退1）。被动：市眼 `ps_xingshidao_shiyan`（巷道 hit +3→8）；藏锋 `ps_xingshidao_cangfeng`（本回合首次刀招 crit +4→10）。获取：丐帮 L2。
 
 #### `sk_jiefengbu` 接风步（5 玄中 · 轻功）——核算抽样（功能式）
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.60/0.40`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`Q_skill=QS(5)=65`；`reqs:{attrs:{agi:30},aptitude:{apLight:28},prereq:[{skill:sk_liuyunbu,layer:4}],sect:{id:sect_gaibang,rank:2},hard:[sect,prereq]}`；`layerStats:{eva:[1,6],tough:[1,4]}`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.60/0.40`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`Q_skill=QS(5)=65`；`reqs:{attrs:{agi:30},aptitude:{apLight:28},prereq:[{skill:sk_liuyunbu,layer:4}],sect:{id:sect_gaibang,rank:2},hard:[sect,prereq]}`；`layerStats:{eva:[1,6],tough:[1,4]}`；`setTags:[]`。
 
 - 招式：接风 `mv_jiefengbu_jiefeng`（L1，自身，5%/3/900，`bf_piaohu`2，`power:0`）；换巷 `mv_jiefengbu_huanxiang`（L3，位移至 3 格内可达空位，6%/2，`power:0`）；回身 `mv_jiefengbu_huishen`（L6，后撤2格并获 `bf_shoushi`1，6%/3，`power:0`）。三式为支援/位移，不走伤害预算。
 - 被动：迎风 `ps_jiefengbu_yingfeng`（位移后 eva +3→8）；接力 `ps_jiefengbu_jieli`（相邻友方受击后下一次移动 +1，每回合1次）。获取：丐帮 L2。
 
 #### `sk_gaibangqilingshu` 丐帮信令术（5 玄中 · 杂学/阵法）
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.30/0.70`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{attrs:{cha:28,wis:25},skills:{formation:25},prereq:[{skill:sk_yanjiehao,layer:4}],sect:{id:sect_gaibang,rank:2},hard:[sect,prereq]}`；`layerStats:{effHit:[1,5],resMind:[1,5]}`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.30/0.70`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao,ch07_bixue,ch08_luding]`；`reqs:{attrs:{cha:28,wis:25},skills:{formation:25},prereq:[{skill:sk_yanjiehao,layer:4}],sect:{id:sect_gaibang,rank:2},hard:[sect,prereq]}`；`layerStats:{effHit:[1,5],resMind:[1,5]}`；`setTags:[]`。
 
 - 招式：鸣竹 `mv_gaibangqilingshu_mingzhu`（L1，友方 r2，`bf_juqi`2）；换哨 `mv_gaibangqilingshu_huanshao`（L3，友方 r2，`bf_jixing`1）；收声 `mv_gaibangqilingshu_shousheng`（L6，驱散友方一个 `mind`）；均为 `power:0`。
 - 被动：暗号 `ps_gaibangqilingshu_anhao`（丐帮情报检定 +5→12）；应和 `ps_gaibangqilingshu_yinghe`（2 格内友方 ≥2 时 resMind +8）。获取：丐帮 L2。
 
 #### `sk_jiudaixingong` 九袋行功（6 玄上 · 内功）
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{attrs:{con:35,wil:30},aptitude:{apInner:32},prereq:[{skill:sk_gaibanghuxinfa,layer:6}],sect:{id:sect_gaibang,rank:4,bagCount:9},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:20,hpMaxPct:12,attrs:{con:4,str:2,wil:2},mpRegen:1.8,stats:{resCC:5,tough:5}}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_dumai,mer_chongmai]`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{attrs:{con:35,wil:30},aptitude:{apInner:32},prereq:[{skill:sk_gaibanghuxinfa,layer:6}],sect:{id:sect_gaibang,rank:4,bagCount:9},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:20,hpMaxPct:12,attrs:{con:4,str:2,wil:2},mpRegen:1.8,stats:{resCC:5,tough:5}}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_dumai,mer_chongmai]`；`setTags:[]`。
 
 - 招式：聚众运气 `mv_jiudaixingong_juzhong`（L3，自身及相邻友方，7%/4，`bf_juqi`2）；护帮 `mv_jiudaixingong_hubang`（L6，自身，8%/3，`bf_hutizhenqi`2）；均 `power:0`。被动：九袋 `ps_jiudaixingong_jiudai`（丐帮武学耗内 −4%→10%）；护帮 `ps_jiudaixingong_hubang`（友方倒地时自身获 `bf_ruiyi`2，每战一次）。获取：丐帮 L4；不替代掌门专属绝学。
 
 #### `sk_fengyulianshou` 风雨连手（6 玄上 · 拳脚/拳掌）——核算抽样
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0.65/0.35`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{attrs:{str:35,agi:30},aptitude:{apFist:34},prereq:[{skill:sk_fengyuzhang,layer:6}],sect:{id:sect_gaibang,rank:3},hard:[sect,prereq]}`；`layerStats:{hit:[2,6],crit:[1,4]}`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0.65/0.35`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{attrs:{str:35,agi:30},aptitude:{apFist:34},prereq:[{skill:sk_fengyuzhang,layer:6}],sect:{id:sect_gaibang,rank:3},hard:[sect,prereq]}`；`layerStats:{hit:[2,6],crit:[1,4]}`；`setTags:[]`。
 
 - 招式：风催 `mv_fengyulianshou_fengcui`（L1，单体，**1.10**，6%/1；`1×1.12=1.12≈1.10`）；雨骤 `mv_fengyulianshou_yuzhou`（L3，单体三段，**1.30**，7%/2；`1×1.29=1.29≈1.30`）；连手扫巷 `mv_fengyulianshou_saoxiang`（L6，`aoe_cone r1/120°`，**1.00**，8%/2；`.75×(1+.24+.10)=1.005≈1.00`）。
 - 被动：连手 `ps_fengyulianshou_lianshou`（不同招式连续命中时 Z3 +4%→10%）；群丐 `ps_fengyulianshou_qungai`（相邻友方存在时 hit +6）。获取：丐帮 L3。
 
 #### `sk_zhengoubang` 镇狗棒（6 玄上 · 兵器/棍杖）
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.75/0.25`；`weaponReq:{category:staff}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{aptitude:{apStaff:35},prereq:[{skill:sk_bocaogunfa,layer:6}],sect:{id:sect_gaibang,rank:3},hard:[sect,prereq]}`；`layerStats:{parry:[2,6],hit:[1,4]}`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.75/0.25`；`weaponReq:{category:staff}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{aptitude:{apStaff:35},prereq:[{skill:sk_bocaogunfa,layer:6}],sect:{id:sect_gaibang,rank:3},hard:[sect,prereq]}`；`layerStats:{parry:[2,6],hit:[1,4]}`；`setTags:[]`。
 
 - 招式：镇路 `mv_zhengoubang_zhenlu`（L1，单体，1.05，6%/1，`bf_dongyao`50%）；压棒 `mv_zhengoubang_yabang`（L3，线2格，1.00，7%/2）；回栏 `mv_zhengoubang_huilan`（L6，周身，0.85，8%/3，击退1）。被动：镇场 `ps_zhengoubang_zhenchang`（对 `beast`/`summon` 目标 Z3 +8%→15%）；棒门 `ps_zhengoubang_bangmen`（parry +3→8）。获取：丐帮 L3。
 
 #### `sk_pojunguitoudao` 破军鬼头刀（6 玄上 · 兵器/刀）
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0.85/0.15`；`weaponReq:{category:blade}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{attrs:{str:38},aptitude:{apBlade:35},prereq:[{skill:sk_xingshidao,layer:6}],sect:{id:sect_gaibang,rank:3},hard:[sect,prereq]}`；`layerStats:{crit:[2,6],hit:[1,4]}`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0.85/0.15`；`weaponReq:{category:blade}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{attrs:{str:38},aptitude:{apBlade:35},prereq:[{skill:sk_xingshidao,layer:6}],sect:{id:sect_gaibang,rank:3},hard:[sect,prereq]}`；`layerStats:{crit:[2,6],hit:[1,4]}`；`setTags:[]`。
 
 - 招式：破门 `mv_pojunguitoudao_pomen`（L1，单体，1.10，6%/1）；断阵 `mv_pojunguitoudao_duanzhen`（L3，线3格，0.95，7%/2）；回首斩 `mv_pojunguitoudao_huishou`（L6，绕背，1.05，8%/2）。被动：军威 `ps_pojunguitoudao_junwei`（击杀后获 `bf_zhanyi`1）；重刃 `ps_pojunguitoudao_zhongren`（crit +3→8）。获取：丐帮 L3。
 
 #### `sk_gaibangchuansheng` 丐帮传声（6 玄上 · 杂学/音律）——核算抽样（功能式）
 
-**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.10/0.90`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{attrs:{cha:35,wil:30},skills:{music:35},prereq:[{skill:sk_gaibangqilingshu,layer:6}],sect:{id:sect_gaibang,rank:3},hard:[sect,prereq]}`；`layerStats:{effHit:[2,6],resMind:[1,4]}`；`setTags:[set_gaibang_xingyi]`。
+**字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.10/0.90`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{attrs:{cha:35,wil:30},skills:{music:35},prereq:[{skill:sk_gaibangqilingshu,layer:6}],sect:{id:sect_gaibang,rank:3},hard:[sect,prereq]}`；`layerStats:{effHit:[2,6],resMind:[1,4]}`；`setTags:[]`。
 
 - 招式：长啸传信 `mv_gaibangchuansheng_changxiao`（L1，友方 r3，7%/3，`bf_juqi`2）；群声相应 `mv_gaibangchuansheng_yinghe`（L3，友方 r2，7%/4，`bf_ruiyi`1）；喝止 `mv_gaibangchuansheng_hezhi`（L6，敌方锥2，8%/3，`bf_dongyao`60%）；均 `power:0`，功能式不走伤害预算。
 - 被动：耳目 `ps_gaibangchuansheng_ermu`（情报检定 +5→12）；众声 `ps_gaibangchuansheng_zhongsheng`（每命中一名友方回复自身1%内力，至多3%）。获取：丐帮 L3。
@@ -480,23 +480,23 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_gangougunfa` | 赶狗棍法（1 黄下） | 丐帮 | 兵器/棍杖 | 天龙—笑傲、碧血、鹿鼎 | 竹棒防身、打狗阵前置；`set_gaibang_tuobo` | 无；入帮 | **（原创扩展）**；详细卡见 §2.5 |
-| `sk_zhuzhangrumen` | 竹杖入门（1 黄下） | 丐帮 | 兵器/棍杖 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 单体基线 1.00、基础招架；`set_gaibang_xingyi` | 无；L1 | **（原创扩展）** |
-| `sk_qiongjiaquan` | 穷家拳（2 黄中） | 丐帮 | 拳脚/拳掌 | 天龙—笑傲、碧血、鹿鼎 | 入门拳、滚地控位；`set_gaibang_tuobo` | 无；入帮 | **（原创扩展）**；详细卡见 §2.5 |
-| `sk_lianhualuo` | 莲花落（2 黄中） | 丐帮 | 杂学/音律 | 天龙—笑傲、碧血、鹿鼎 | 鼓劲传讯；`set_gaibang_tuobo` | 无；入帮 | 民间曲艺借用，武学化**（原创扩展）**；详细卡见 §2.5 |
-| `sk_tuobozhuang` | 托钵桩（2 黄中） | 丐帮 | 内功 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | `nature:yang`；`IP=8+5+2×3+5×1=24`；`mer_dumai`；`set_gaibang_xingyi` | 无；L1 | **（原创扩展）** |
-| `sk_gaibangduanquan` | 丐帮短拳（2 黄中） | 丐帮 | 拳脚/拳掌 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 贴身连打、单体基线 1.00；`set_gaibang_xingyi` | 无；L1 | **（原创扩展）** |
-| `sk_hujiaobang` | 护脚棒（2 黄中） | 丐帮 | 兵器/棍杖 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 横扫基线 .85、护持下盘；`set_gaibang_xingyi` | 竹杖入门 3 重 | **（原创扩展）** |
-| `sk_bailingbu` | 百灵步（2 黄中） | 丐帮 | 轻功 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | `QS(2)=38`，巷道转向；`set_gaibang_xingyi` | 无；L1 | **（原创扩展）** |
-| `sk_jietouyanwu` | 街头演武（2 黄中） | 丐帮 | 杂学/阵法 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 相邻友军 `bf_juqi`1；`formation:10`；`set_gaibang_xingyi` | 无；L1 | **（原创扩展）** |
-| `sk_xunxiangshou` | 寻香手（2 黄中） | 丐帮 | 杂学/医 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 采集与低阶解毒；`med:10`；`set_gaibang_xingyi` | 无；L1 | **（原创扩展）** |
+| `sk_gangougunfa` | 赶狗棍法（1 黄下） | 丐帮 | 兵器/棍杖 | 天龙—笑傲、碧血、鹿鼎 | 竹棒防身、打狗阵前置；`[]` | 无；入帮 | **（原创扩展）**；详细卡见 §2.5 |
+| `sk_zhuzhangrumen` | 竹杖入门（1 黄下） | 丐帮 | 兵器/棍杖 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 单体基线 1.00、基础招架；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_qiongjiaquan` | 穷家拳（2 黄中） | 丐帮 | 拳脚/拳掌 | 天龙—笑傲、碧血、鹿鼎 | 入门拳、滚地控位；`[]` | 无；入帮 | **（原创扩展）**；详细卡见 §2.5 |
+| `sk_lianhualuo` | 莲花落（2 黄中） | 丐帮 | 杂学/音律 | 天龙—笑傲、碧血、鹿鼎 | 鼓劲传讯；`[]` | 无；入帮 | 民间曲艺借用，武学化**（原创扩展）**；详细卡见 §2.5 |
+| `sk_tuobozhuang` | 托钵桩（2 黄中） | 丐帮 | 内功 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | `nature:yang`；`IP=8+5+2×3+5×1=24`；`mer_dumai`；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_gaibangduanquan` | 丐帮短拳（2 黄中） | 丐帮 | 拳脚/拳掌 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 贴身连打、单体基线 1.00；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_hujiaobang` | 护脚棒（2 黄中） | 丐帮 | 兵器/棍杖 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 横扫基线 .85、护持下盘；`[]` | 竹杖入门 3 重 | **（原创扩展）** |
+| `sk_bailingbu` | 百灵步（2 黄中） | 丐帮 | 轻功 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | `QS(2)=38`，巷道转向；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_jietouyanwu` | 街头演武（2 黄中） | 丐帮 | 杂学/阵法 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 相邻友军 `bf_juqi`1；`formation:10`；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_xunxiangshou` | 寻香手（2 黄中） | 丐帮 | 杂学/医 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 采集与低阶解毒；`med:10`；`[]` | 无；L1 | **（原创扩展）** |
 | `sk_yunyoubu` | 云游步（3 黄上） | 丐帮 | 轻功 | 天龙—笑傲、碧血、鹿鼎 | `QS(3)=45`；旅行耗时；`set_gaibang_bangzhu` | L1 | **（原创扩展）**；详细卡见 §2.5 |
-| `sk_fengdizhang` | 风地掌（3 黄上） | 丐帮 | 拳脚/拳掌 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 横扫 .90、命中后稳身；`set_gaibang_xingyi` | 丐帮短拳 4 重 | **（原创扩展）** |
-| `sk_shuangjiebang` | 双节棒路（3 黄上） | 丐帮 | 兵器/棍杖 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 两段合计 1.10、招架成长；`set_gaibang_xingyi` | 护脚棒 4 重 | **（原创扩展）** |
-| `sk_gaibangduandao` | 丐帮短刀（3 黄上） | 丐帮 | 兵器/刀 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 单体 1.00、流血 20% 时倍率 .95；`set_gaibang_xingyi` | 无；L1 | **（原创扩展）** |
-| `sk_gaibangfenshou` | 丐帮分手（3 黄上） | 丐帮 | 拳脚/擒拿 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 扣腕，封经 20% 时倍率 .95；`set_gaibang_xingyi` | 丐帮短拳 4 重 | **（原创扩展）** |
-| `sk_shichengbu` | 石城步（3 黄上） | 丐帮 | 轻功 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | `QS(3)=45`，守城时 `bf_wenzhong`1；`set_gaibang_xingyi` | 百灵步 4 重 | **（原创扩展）** |
-| `sk_yanjiehao` | 沿街号（3 黄上） | 丐帮 | 杂学/音律 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 友方 `bf_juqi`2，敌方 `bf_dongyao`低概率；`set_gaibang_xingyi` | 街头演武 4 重 | **（原创扩展）** |
+| `sk_fengdizhang` | 风地掌（3 黄上） | 丐帮 | 拳脚/拳掌 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 横扫 .90、命中后稳身；`[]` | 丐帮短拳 4 重 | **（原创扩展）** |
+| `sk_shuangjiebang` | 双节棒路（3 黄上） | 丐帮 | 兵器/棍杖 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 两段合计 1.10、招架成长；`[]` | 护脚棒 4 重 | **（原创扩展）** |
+| `sk_gaibangduandao` | 丐帮短刀（3 黄上） | 丐帮 | 兵器/刀 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 单体 1.00、流血 20% 时倍率 .95；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_gaibangfenshou` | 丐帮分手（3 黄上） | 丐帮 | 拳脚/擒拿 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 扣腕，封经 20% 时倍率 .95；`[]` | 丐帮短拳 4 重 | **（原创扩展）** |
+| `sk_shichengbu` | 石城步（3 黄上） | 丐帮 | 轻功 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | `QS(3)=45`，守城时 `bf_wenzhong`1；`[]` | 百灵步 4 重 | **（原创扩展）** |
+| `sk_yanjiehao` | 沿街号（3 黄上） | 丐帮 | 杂学/音律 | 天龙、射雕、神雕、笑傲、碧血、鹿鼎 | 友方 `bf_juqi`2，敌方 `bf_dongyao`低概率；`[]` | 街头演武 4 重 | **（原创扩展）** |
 
 **黄阶整体预算核对**：本节 13 门新增条目中，伤害招按黄阶 5% 耗内、cd0、收招1000的单体基线 `1.00` 配置；横扫基线 `.75`，加 cd1 后 `.75×1.12=.84≈.85`；封经/流血 20% 各扣 `.20×.20=.04` / `.10×.20=.02`，倍率取 `.95` 均在 ±.05。两门轻功精确用 `QS(2)=38`、`QS(3)=45`；托钵桩精确命中黄中 IP 24；`layerStats` 合计均不超过 6。
 
@@ -616,7 +616,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {agi 45, wis 45}`；`aptitude {apGrapple 45}`；`sect {id: sect_taohuadao, rank: 2}`；`hard [sect]` |
 | layerStats | `seal [3, 10]`、`eva [1, 5]`（合计 15） |
 | 层数要点 | 1：拂穴、兰指轻拈、认穴 ｜ 3：幽兰吐芳 ｜ 4：轻灵 ｜ 5：空谷幽兰 ｜ **7：绝招 九畹兰香** ｜ 8：拈花擒拿、冲穴 ｜ 10：兰花大成 |
-| setTags / conflicts | `set_taohuadao`、`set_huangrong_nvzhuge` / 无 |
+| setTags / conflicts | `[set_taohuadao]` / 无 |
 | special / observable | `{fusible: true}` / `true` |
 | 获取 | 射雕 `master npc_huangyaoshi` `maxLayer 10`、`master npc_huangrong` `maxLayer 8`（羁绊 ≥ 3）；神雕 `master npc_huangrong` `maxLayer 10`、`master npc_chengying` `maxLayer 8`；`observe` 6 |
 | 图鉴文本 | 桃花岛点穴擒拿手法，出手如拈兰拂花，姿态闲雅而认穴奇准，专拂敌人要穴。黄药师、黄蓉父女皆擅（原著）；招名为原创扩展。 |
@@ -682,7 +682,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {agi 40, wis 40}`；`aptitude {apFist 40}`；`prereq [{skill: sk_pikongzhang, layer: 4}]`；`sect {id: sect_taohuadao, rank: 2}`；`hard [sect, prereq]`（黄蓉/程英羁绊途径 `reqsOverride {sect: null, prereq: []}`） |
 | layerStats | `eva [2, 8]`、`hit [1, 7]`（合计 15） |
 | 层数要点 | 1：落英缤纷、花落无声、虚幻 ｜ 3：飞花拂柳 ｜ 5：虚实变幻、飘零 ｜ **7：绝招 神剑落英** ｜ 8：桃花满地、落英成阵 ｜ 10：落英大成 |
-| setTags / conflicts | `set_taohuadao`、`set_huangrong_nvzhuge` / 无 |
+| setTags / conflicts | `[set_taohuadao]` / 无 |
 | special / observable | `{fusible: true}` / `true` |
 | 获取 | 射雕 `master npc_huangrong` `maxLayer 10`（羁绊 ≥ 2）、`master npc_huangyaoshi` `maxLayer 10`；神雕 `master npc_huangrong` / `npc_chengying` `maxLayer 10`；`pages it_canye_luoyingshenjianzhang`（6 页）；`observe` 6 |
 | 图鉴文本 | 桃花岛掌法，掌影缤纷如桃花飘落，虚实相生、令人目眩。黄药师所创，黄蓉少时即以之行走江湖（原著）；招名为原创扩展。 |
@@ -744,7 +744,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {wis 50}`；`skills {formation: 40}`；`sect {id: sect_taohuadao, rank: 2}`；`hard [sect]`（`formation` 为软门槛，C17） |
 | layerStats | `effHit [3, 9]`、`eva [1, 6]`（合计 15） |
 | 层数要点 | 1：布桃林阵、奇门遁形、迷林 ｜ 4：五行生克 ｜ 5：移步换景、识阵 ｜ **7：绝招 二十八宿** ｜ 8：困龙 ｜ 10：奇门大成 |
-| setTags / conflicts | `set_huangrong_nvzhuge` / 无 |
+| setTags / conflicts | `[]` / 无 |
 | special / observable | `{fusible: false}` / `true` |
 | 获取 | 射雕 `master npc_huangyaoshi` `maxLayer 10`、`master npc_huangrong` `maxLayer 8`、`puzzle`（破解桃花岛桃林阵，design/11）`maxLayer 5`；神雕 `master npc_huangrong` `maxLayer 10` |
 | 图鉴文本 | 桃花岛依奇门五行布置桃林，外人入岛即迷失路径（原著）；本作将其化为战场阵法：布阵、遁形、移步换景，困敌于五行生克之中。 |
@@ -832,33 +832,33 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 #### `sk_taohuatunaxi` 桃花吐纳息（4 玄下 · 内功）
 
-**字段**｜`origin:expanded`；`sect:sect_taohuadao`；`nature:harmony`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{wis:28},sect:{id:sect_taohuadao,rank:1},hard:[sect]}`；`inner.contribution:{mpMaxPct:12,hpMaxPct:10,attrs:{agi:3,wis:3},mpRegen:1.5,stats:{resMind:5,effHit:5}}`，`IP=12+10+2×6+5×1.5=41.5`；`inner.meridians:[mer_renmai,mer_daimai]`；`setTags:[set_taohua_qimen]`；**（原创扩展）**。
+**字段**｜`origin:expanded`；`sect:sect_taohuadao`；`nature:harmony`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{wis:28},sect:{id:sect_taohuadao,rank:1},hard:[sect]}`；`inner.contribution:{mpMaxPct:12,hpMaxPct:10,attrs:{agi:3,wis:3},mpRegen:1.5,stats:{resMind:5,effHit:5}}`，`IP=12+10+2×6+5×1.5=41.5`；`inner.meridians:[mer_renmai,mer_daimai]`；`setTags:[]`；**（原创扩展）**。
 
 - 招式：听潮 `mv_taohuatunaxi_tingchao`（L1，自身 `bf_dingxin`2）；理息 `mv_taohuatunaxi_lixi`（L4，自身 `bf_huinei`2）；均 5%/3、`power:0`。被动：潮息 `ps_taohuatunaxi_chaoxi`（水域 mpRegen +.2→.5pp）；桃根 `ps_taohuatunaxi_taogen`（桃花岛玄阶修炼 +10%）。获取：桃花岛 L1。
 
 #### `sk_taohuaduanjian` 桃花短剑（5 玄中 · 兵器/剑）——核算抽样
 
-**字段**｜`origin:expanded`；`sect:sect_taohuadao`；`nature:harmony`；`wOut/wIn:0.60/0.40`；`weaponReq:{category:sword}`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{agi:30},aptitude:{apSword:28},prereq:[{skill:sk_taohuajianru,layer:4}],sect:{id:sect_taohuadao,rank:2},hard:[sect,prereq]}`；`layerStats:{hit:[1,5],eva:[1,5]}`；`setTags:[set_taohua_qimen]`；**（原创扩展）**。
+**字段**｜`origin:expanded`；`sect:sect_taohuadao`；`nature:harmony`；`wOut/wIn:0.60/0.40`；`weaponReq:{category:sword}`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{agi:30},aptitude:{apSword:28},prereq:[{skill:sk_taohuajianru,layer:4}],sect:{id:sect_taohuadao,rank:2},hard:[sect,prereq]}`；`layerStats:{hit:[1,5],eva:[1,5]}`；`setTags:[]`；**（原创扩展）**。
 
 - 招式：花枝刺 `mv_taohuaduanjian_huazhi`（L1，单体，**1.10**，6%/1；`1×1.12=1.12≈1.10`）；落瓣回锋 `mv_taohuaduanjian_huifeng`（L3，横扫，**0.90**，7%/1；`.75×1.17=.8775≈.90`）；疏影穿枝 `mv_taohuaduanjian_chuanzhi`（L6，线3格，**0.90**，7%/2；`.80×1.29=1.032`，再扣穿障**【建议值】**.10，取 .90）。
 - 被动：花影 `ps_taohuaduanjian_huaying`（移动后 hit +3→8）；回锋 `ps_taohuaduanjian_huifeng`（招架后下一剑 Z3 +6%）。获取：桃花岛 L2；招名均原创。
 
 #### `sk_chaoyinbu` 潮音步（5 玄中 · 轻功）
 
-**字段**｜`origin:expanded`；`sect:sect_taohuadao`；`nature:harmony`；`wOut/wIn:0.40/0.60`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`Q_skill=QS(5)=65`；`reqs:{attrs:{agi:32,wis:25},aptitude:{apLight:28},prereq:[{skill:sk_huajianbu,layer:4}],sect:{id:sect_taohuadao,rank:2},hard:[sect,prereq]}`；`layerStats:{eva:[1,6],tough:[1,4]}`；`setTags:[set_taohua_qimen]`；**（原创扩展）**。
+**字段**｜`origin:expanded`；`sect:sect_taohuadao`；`nature:harmony`；`wOut/wIn:0.40/0.60`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`Q_skill=QS(5)=65`；`reqs:{attrs:{agi:32,wis:25},aptitude:{apLight:28},prereq:[{skill:sk_huajianbu,layer:4}],sect:{id:sect_taohuadao,rank:2},hard:[sect,prereq]}`；`layerStats:{eva:[1,6],tough:[1,4]}`；`setTags:[]`；**（原创扩展）**。
 
 - 招式：听潮换位 `mv_chaoyinbu_huanwei`（L1，2 格换位，6%/3，`power:0`）；逐浪 `mv_chaoyinbu_zhulang`（L4，自身 `bf_jixing`2）；回汀 `mv_chaoyinbu_huiting`（L6，后撤2格，获 `bf_piaohu`1）。被动：潮准 `ps_chaoyinbu_chaozhun`（水边 eva +3→8）；步合五行 `ps_chaoyinbu_wuxing`（自布阵区内移动耗力 −1）。获取：桃花岛 L2。
 
 #### `sk_biluofengyan` 碧落风烟（6 玄上 · 杂学/音律）——核算抽样（功能式）
 
-**字段**｜`origin:expanded`；`sect:sect_taohuadao`；`nature:harmony`；`wOut/wIn:0.15/0.85`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{wis:38,wil:32},skills:{music:35},prereq:[{skill:sk_qimenyinlu,layer:5}],sect:{id:sect_taohuadao,rank:3},hard:[sect,prereq]}`；`layerStats:{effHit:[2,6],resMind:[1,4]}`；`setTags:[set_taohua_qimen]`；**（原创扩展）**。
+**字段**｜`origin:expanded`；`sect:sect_taohuadao`；`nature:harmony`；`wOut/wIn:0.15/0.85`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{wis:38,wil:32},skills:{music:35},prereq:[{skill:sk_qimenyinlu,layer:5}],sect:{id:sect_taohuadao,rank:3},hard:[sect,prereq]}`；`layerStats:{effHit:[2,6],resMind:[1,4]}`；`setTags:[]`；**（原创扩展）**。
 
 - 招式：风烟起 `mv_biluofengyan_fengyan`（L1，敌方锥2，`bf_dongyao`50%，7%/3，`power:0`）；碧落引 `mv_biluofengyan_biluoyin`（L3，友方 r2，`bf_ningshen`2，7%/3，`power:0`）；烟波散 `mv_biluofengyan_yanbosan`（L6，驱散敌方一个 `stance`，8%/4，`power:0`）。均属功能式，不走伤害预算。
 - 被动：余韵 `ps_biluofengyan_yuyun`（心神效果命中 +4→10）；清商 `ps_biluofengyan_qingshang`（支援友方后自身 resMind +8 一回合）。获取：桃花岛 L3。
 
 #### `sk_qimenfushou` 奇门拂手（6 玄上 · 拳脚/擒拿）——核算抽样
 
-**字段**｜`origin:expanded`；`sect:sect_taohuadao`；`nature:harmony`；`wOut/wIn:0.45/0.55`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{agi:38,wis:35},aptitude:{apGrapple:35},prereq:[{skill:sk_luoyingduanquan,layer:5}],sect:{id:sect_taohuadao,rank:3},hard:[sect,prereq]}`；`layerStats:{seal:[2,6],eva:[1,4]}`；`setTags:[set_taohua_qimen]`；**（原创扩展）**。
+**字段**｜`origin:expanded`；`sect:sect_taohuadao`；`nature:harmony`；`wOut/wIn:0.45/0.55`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{agi:38,wis:35},aptitude:{apGrapple:35},prereq:[{skill:sk_luoyingduanquan,layer:5}],sect:{id:sect_taohuadao,rank:3},hard:[sect,prereq]}`；`layerStats:{seal:[2,6],eva:[1,4]}`；`setTags:[]`；**（原创扩展）**。
 
 - 招式：拂袖 `mv_qimenfushou_fuxiu`（L1，单体，**1.00**，6%/1，`bf_fengxue`50%；`1×1.12−.20×.50=1.02≈1.00`）；引花 `mv_qimenfushou_yinhua`（L3，拉拽1格，**1.05**，7%/2；`1×1.29−.10=1.19`，再扣封位**【建议值】**.15，取1.05）；错步拿腕 `mv_qimenfushou_nawan`（L6，绕背，**1.00**，8%/2，`bf_jiaoxie`30%；`.90×1.34−.15−.20×.30=1.00`）。
 - 被动：奇门 `ps_qimenfushou_qimen`（自布阵区内 seal +4→10）；拂穴 `ps_qimenfushou_fuxue`（对带 `seal` 标签目标 Z3 +8%）。获取：桃花岛 L3。
@@ -868,14 +868,14 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
 | `sk_bibozhang` | 碧波掌（2 黄中） | 桃花岛 | 拳脚/拳掌 | 射雕、神雕 | 单体基线、击退；桃花拳掌链起点 | 无；入门 | **（原创扩展）**；详细卡见 §3.5 |
-| `sk_taohuajianru` | 桃花剑入（2 黄中） | 桃花岛 | 兵器/剑 | 射雕、神雕 | 单体 1.00、基础回锋；`set_taohua_qimen` | 无；L1 | **（原创扩展）** |
-| `sk_yaoputunaxi` | 药圃吐纳息（2 黄中） | 桃花岛药圃 | 内功 | 射雕、神雕 | `nature:harmony`；`IP=8+5+2×3+5×1=24`；`mer_renmai`；`set_taohua_qimen` | 无；L1 | **（原创扩展）** |
-| `sk_huajianbu` | 花间步（2 黄中） | 桃花岛 | 轻功 | 射雕、神雕 | `QS(2)=38`，花林转向；`set_taohua_qimen` | 无；L1 | **（原创扩展）** |
-| `sk_luoyingduanquan` | 落英短拳（2 黄中） | 桃花岛 | 拳脚/拳掌 | 射雕、神雕 | 两段合计1.10，拳掌链起点；`set_taohua_qimen` | 碧波掌 3 重 | **（原创扩展）** |
+| `sk_taohuajianru` | 桃花剑入（2 黄中） | 桃花岛 | 兵器/剑 | 射雕、神雕 | 单体 1.00、基础回锋；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_yaoputunaxi` | 药圃吐纳息（2 黄中） | 桃花岛药圃 | 内功 | 射雕、神雕 | `nature:harmony`；`IP=8+5+2×3+5×1=24`；`mer_renmai`；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_huajianbu` | 花间步（2 黄中） | 桃花岛 | 轻功 | 射雕、神雕 | `QS(2)=38`，花林转向；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_luoyingduanquan` | 落英短拳（2 黄中） | 桃花岛 | 拳脚/拳掌 | 射雕、神雕 | 两段合计1.10，拳掌链起点；`[]` | 碧波掌 3 重 | **（原创扩展）** |
 | `sk_feishishou` | 飞石手（3 黄上） | 桃花岛 | 暗器 | 射雕、神雕 | 投射 .90、弹指前置 | 无；入门 | **（原创扩展）**；详细卡见 §3.5 |
-| `sk_qimenyinlu` | 奇门音律（3 黄上） | 桃花岛 | 杂学/音律 | 射雕、神雕 | 友方 `bf_ningshen`1；`music:20`；`set_taohua_qimen` | 药圃吐纳息 3 重 | **（原创扩展）** |
-| `sk_yuxiaoduanji` | 玉箫短击（3 黄上） | 桃花岛 | 兵器/奇门 | 射雕、神雕 | `exotic/flute`，点穴20%时倍率 .95；`set_taohua_qimen` | 奇门音律 3 重 | 黄药师以箫为兵据原著；套路**（原创扩展）** |
-| `sk_feihuachen` | 飞花尘（3 黄上） | 桃花岛 | 暗器 | 射雕、神雕 | 投射花瓣、减速20%时倍率 .90；`set_taohua_qimen` | 飞石手 4 重 | **（原创扩展）** |
+| `sk_qimenyinlu` | 奇门音律（3 黄上） | 桃花岛 | 杂学/音律 | 射雕、神雕 | 友方 `bf_ningshen`1；`music:20`；`[]` | 药圃吐纳息 3 重 | **（原创扩展）** |
+| `sk_yuxiaoduanji` | 玉箫短击（3 黄上） | 桃花岛 | 兵器/奇门 | 射雕、神雕 | `exotic/flute`，点穴20%时倍率 .95；`[]` | 奇门音律 3 重 | 黄药师以箫为兵据原著；套路**（原创扩展）** |
+| `sk_feihuachen` | 飞花尘（3 黄上） | 桃花岛 | 暗器 | 射雕、神雕 | 投射花瓣、减速20%时倍率 .90；`[]` | 飞石手 4 重 | **（原创扩展）** |
 
 **黄阶整体预算核对**：新增 7 门中攻击基线为单体 1.00；投射基线 `.92≈.90`，封穴 20% 扣 `.20×.20=.04`、减速20%扣 `.10×.20=.02`，均在允许误差内。花间步用 `QS(2)=38`；药圃吐纳息精确命中黄中 IP 24；所有 `layerStats≤6`。
 
@@ -1095,28 +1095,28 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 #### `sk_baituotunadu` 白驼吐纳术（4 玄下 · 内功）
 
-**字段**｜`origin:expanded`；`sect:sect_baituoshan`；`nature:yin`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:25,wil:22},sect:{id:sect_baituoshan,rank:1},hard:[sect]}`；`inner.contribution:{mpMaxPct:14,hpMaxPct:8,attrs:{con:3,wil:3},mpRegen:1.5,stats:{resPoison:6,resCC:4}}`，`IP=14+8+2×6+5×1.5=41.5`；`inner.meridians:[mer_chongmai]`；`setTags:[set_baituo_shenu]`。
+**字段**｜`origin:expanded`；`sect:sect_baituoshan`；`nature:yin`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:25,wil:22},sect:{id:sect_baituoshan,rank:1},hard:[sect]}`；`inner.contribution:{mpMaxPct:14,hpMaxPct:8,attrs:{con:3,wil:3},mpRegen:1.5,stats:{resPoison:6,resCC:4}}`，`IP=14+8+2×6+5×1.5=41.5`；`inner.meridians:[mer_chongmai]`；`setTags:[]`。
 
 - 招式：伏息 `mv_baituotunadu_fuxi`（L1，自身，5%/3，`bf_tiaoxi`2）；闭毒 `mv_baituotunadu_bidu`（L4，自身，6%/3，`bf_bidu`2）；均 `power:0`。
 - 被动：蛇奴根基 `ps_baituotunadu_genji`（毒类效果抗性 +4→10）；耐渴 `ps_baituotunadu_naike`（沙地探索体力消耗 −5%→12%）。获取：白驼山 L1；神雕白驼遗谱 `maxLayer:8`。
 
 #### `sk_lingsheduanci` 灵蛇短刺（5 玄中 · 兵器/棍杖）——核算抽样
 
-**字段**｜`origin:expanded`；`sect:sect_baituoshan`；`nature:yin`；`wOut/wIn:0.70/0.30`；`weaponReq:{category:staff}`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{agi:30},aptitude:{apStaff:28},prereq:[{skill:sk_baituoduanbang,layer:4}],sect:{id:sect_baituoshan,rank:2},hard:[sect,prereq]}`；`layerStats:{hit:[1,6],crit:[1,4]}`；`setTags:[set_baituo_shenu]`。
+**字段**｜`origin:expanded`；`sect:sect_baituoshan`；`nature:yin`；`wOut/wIn:0.70/0.30`；`weaponReq:{category:staff}`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{agi:30},aptitude:{apStaff:28},prereq:[{skill:sk_baituoduanbang,layer:4}],sect:{id:sect_baituoshan,rank:2},hard:[sect,prereq]}`；`layerStats:{hit:[1,6],crit:[1,4]}`；`setTags:[]`。
 
 - 招式：蛇信刺 `mv_lingsheduanci_shexin`（L1，单体，**1.10**，6%/1；`1×1.12=1.12≈1.10`）；盘杖 `mv_lingsheduanci_panzhang`（L3，单体，**1.15**，7%/1，`bf_shedu`20%；`1×(1+.12+.05)−.10×.20=1.15`）；回蛇扫 `mv_lingsheduanci_huishe`（L6，横扫，**1.00**，8%/2；`.75×(1+.24+.10)=1.005≈1.00`）。
 - 被动：藏蛇 `ps_lingsheduanci_cangshe`（持蛇杖时 `effHit` +3→8）；回腕 `ps_lingsheduanci_huiwan`（招架后下一招 hit +5）。获取：白驼山 L2；`observe maxLayer:6`。
 
 #### `sk_lingshebu` 灵蛇步（6 玄上 · 轻功）——核算抽样（功能式）
 
-**字段**｜`origin:expanded`；`sect:sect_baituoshan`；`nature:neutral`；`wOut/wIn:0.55/0.45`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`Q_skill=QS(6)=74`；`reqs:{attrs:{agi:35,wil:28},aptitude:{apLight:32},prereq:[{skill:sk_tashaxing,layer:6}],sect:{id:sect_baituoshan,rank:3},hard:[sect,prereq]}`；`layerStats:{eva:[2,6],tough:[1,4]}`；`setTags:[set_baituo_shenu]`。
+**字段**｜`origin:expanded`；`sect:sect_baituoshan`；`nature:neutral`；`wOut/wIn:0.55/0.45`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`Q_skill=QS(6)=74`；`reqs:{attrs:{agi:35,wil:28},aptitude:{apLight:32},prereq:[{skill:sk_tashaxing,layer:6}],sect:{id:sect_baituoshan,rank:3},hard:[sect,prereq]}`；`layerStats:{eva:[2,6],tough:[1,4]}`；`setTags:[]`。
 
 - 招式：蛇游 `mv_lingshebu_sheyou`（L1，自身移 2 格，6%/2，`power:0`）；折身 `mv_lingshebu_zhesheng`（L3，换至相邻敌侧后空格，7%/3，`power:0`）；脱壳 `mv_lingshebu_tuoqiao`（L6，自身，8%/4，驱散一个 `seal` 并获 `bf_piaohu`1，`power:0`）。三式均为位移/支援，不伪造伤害倍率。
 - 被动：曲行 `ps_lingshebu_quxing`（连续两次移动方向不同时 eva +4→10）；避沙 `ps_lingshebu_bisha`（沙地移动不受减速）。获取：白驼山 L3；神雕欧阳锋羁绊 `maxLayer:8`。
 
 #### `sk_dumaihuqigong` 毒脉护气功（6 玄上 · 内功）
 
-**字段**｜`origin:expanded`；`sect:sect_baituoshan`；`nature:yin`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:35,wil:35},aptitude:{apInner:32},prereq:[{skill:sk_baituotunadu,layer:6}],sect:{id:sect_baituoshan,rank:3},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:20,hpMaxPct:12,attrs:{con:4,wil:4},mpRegen:1.8,stats:{resPoison:6,resSeal:4}}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_chongmai,mer_yinwei]`；`setTags:[set_baituo_shenu]`。
+**字段**｜`origin:expanded`；`sect:sect_baituoshan`；`nature:yin`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:35,wil:35},aptitude:{apInner:32},prereq:[{skill:sk_baituotunadu,layer:6}],sect:{id:sect_baituoshan,rank:3},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:20,hpMaxPct:12,attrs:{con:4,wil:4},mpRegen:1.8,stats:{resPoison:6,resSeal:4}}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_chongmai,mer_yinwei]`；`setTags:[]`。
 
 - 招式：护毒 `mv_dumaihuqigong_hudu`（L2，自身，6%/3，`bf_bidu`3）；引毒归脉 `mv_dumaihuqigong_guidu`（L6，自身，8%/4，驱散一个 `poison` 并获 `bf_qinei`2）；均 `power:0`。
 - 被动：毒脉 `ps_dumaihuqigong_dumai`（主运时 `resPoison` +6→15）；借毒 `ps_dumaihuqigong_jiedu`（驱散自身中毒后回复 3% 内力，每回合至多一次）。获取：白驼山 L3；神雕遗谱 `maxLayer:8`。
@@ -1126,12 +1126,12 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
 | `sk_tashaxing` | 踏沙行（2 黄中） | 白驼山 | 轻功 | 射雕、神雕 | `QS(2)=38`，沙地移动；`set_baituoshan` | 无；入门 | **（原创扩展）**；详细卡见 §4.5 |
-| `sk_shexingtunaxi` | 蛇形吐纳息（2 黄中） | 白驼山 | 内功 | 射雕、神雕 | `nature:yin`；`IP=8+5+2×3+5×1=24`；`mer_chongmai`；`set_baituo_shenu` | 无；L1 | **（原创扩展）** |
-| `sk_baituoduanbang` | 白驼短棒（2 黄中） | 白驼山 | 兵器/棍杖 | 射雕、神雕 | 单体 1.10，短杖点刺；`set_baituo_shenu` | 无；L1 | **（原创扩展）** |
-| `sk_shanbushequan` | 山步蛇拳（2 黄中） | 白驼山 | 拳脚/拳掌 | 射雕、神雕 | 单体 1.05，侧移后 hit +3；`set_baituo_shenu` | 无；L1 | **（原创扩展）** |
+| `sk_shexingtunaxi` | 蛇形吐纳息（2 黄中） | 白驼山 | 内功 | 射雕、神雕 | `nature:yin`；`IP=8+5+2×3+5×1=24`；`mer_chongmai`；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_baituoduanbang` | 白驼短棒（2 黄中） | 白驼山 | 兵器/棍杖 | 射雕、神雕 | 单体 1.10，短杖点刺；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_shanbushequan` | 山步蛇拳（2 黄中） | 白驼山 | 拳脚/拳掌 | 射雕、神雕 | 单体 1.05，侧移后 hit +3；`[]` | 无；L1 | **（原创扩展）** |
 | `sk_shexingdiaoshou` | 蛇形刁手（3 黄上） | 白驼山 | 拳脚/擒拿 | 射雕、神雕 | 刁腕、缴械；`set_baituoshan` | 无；入门 | **（原创扩展命名）**；详细卡见 §4.5 |
-| `sk_duwushou` | 毒雾手（3 黄上） | 白驼山 | 拳脚/擒拿 | 射雕、神雕 | 单体 .95，`bf_zhongdu`30%；`set_baituo_shenu` | 蛇形吐纳息 3 重 | **（原创扩展）** |
-| `sk_shamozhang` | 沙漠掌（3 黄上） | 白驼山 | 拳脚/拳掌 | 射雕、神雕 | 横扫 .85，沙地获得 `bf_wenzhong`1；`set_baituo_shenu` | 山步蛇拳 4 重 | **（原创扩展）** |
+| `sk_duwushou` | 毒雾手（3 黄上） | 白驼山 | 拳脚/擒拿 | 射雕、神雕 | 单体 .95，`bf_zhongdu`30%；`[]` | 蛇形吐纳息 3 重 | **（原创扩展）** |
+| `sk_shamozhang` | 沙漠掌（3 黄上） | 白驼山 | 拳脚/拳掌 | 射雕、神雕 | 横扫 .85，沙地获得 `bf_wenzhong`1；`[]` | 山步蛇拳 4 重 | **（原创扩展）** |
 
 **黄阶整体预算核对**：新增 5 门中，白驼短棒以单体、cd1 配 `1×1.12=1.12≈1.10`；山步蛇拳单体 1.05 为收招 1100 的 `1+.07=1.07≈1.05`；毒雾手按单体 1.00 扣中毒 `.10×.30=.03` 得 `.97≈.95`；沙漠掌横扫、cd1 为 `.75×1.12=.84≈.85`。蛇形吐纳息精确命中黄中 IP 24；所有 `layerStats≤6`。
 
@@ -1402,35 +1402,35 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 #### `sk_dalishenfa` 大理身法（4 玄下 · 轻功）
 
-**字段**｜`origin:expanded`；`sect:sect_dali`；`nature:neutral`；`wOut/wIn:0.60/0.40`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao]`；`Q_skill=QS(4)=56`；`reqs:{attrs:{agi:25},aptitude:{apLight:22},sect:{id:sect_dali,rank:1},hard:[sect]}`；`layerStats:{eva:[1,5],tough:[1,5]}`；`setTags:[set_dali_huwei]`。
+**字段**｜`origin:expanded`；`sect:sect_dali`；`nature:neutral`；`wOut/wIn:0.60/0.40`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao]`；`Q_skill=QS(4)=56`；`reqs:{attrs:{agi:25},aptitude:{apLight:22},sect:{id:sect_dali,rank:1},hard:[sect]}`；`layerStats:{eva:[1,5],tough:[1,5]}`；`setTags:[]`。
 
 - 招式：绕塔 `mv_dalishenfa_raota`（L1，自身移2格，5%/2）；渡溪 `mv_dalishenfa_duxi`（L4，自身，6%/3，`bf_shenqing`1）；均 `power:0`。
 - 被动：山路 `ps_dalishenfa_shanlu`（山地移动耗力 −5%→12%）；护驾 `ps_dalishenfa_hujia`（相邻友方存在时 eva +3→8）。获取：大理 L1；天龙寺护法居士可学。
 
 #### `sk_huweidaofa` 护卫刀法（5 玄中 · 兵器/刀）——核算抽样
 
-**字段**｜`origin:expanded`；`sect:sect_dali`；`nature:yang`；`wOut/wIn:0.85/0.15`；`weaponReq:{category:blade}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{str:30},aptitude:{apBlade:28},prereq:[{skill:sk_dalichangdao,layer:4}],sect:{id:sect_dali,rank:2},hard:[sect,prereq]}`；`layerStats:{parry:[1,6],hit:[1,4]}`；`setTags:[set_dali_huwei]`。
+**字段**｜`origin:expanded`；`sect:sect_dali`；`nature:yang`；`wOut/wIn:0.85/0.15`；`weaponReq:{category:blade}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{str:30},aptitude:{apBlade:28},prereq:[{skill:sk_dalichangdao,layer:4}],sect:{id:sect_dali,rank:2},hard:[sect,prereq]}`；`layerStats:{parry:[1,6],hit:[1,4]}`；`setTags:[]`。
 
 - 招式：护门 `mv_huweidaofa_humen`（L1，单体，**1.10**，6%/1；`1×1.12=1.12≈1.10`）；横刀 `mv_huweidaofa_hengdao`（L3，横扫，**0.95**，7%/2；`.75×1.29=.9675≈.95`）；援主 `mv_huweidaofa_yuanzhu`（L6，单体，**1.20**，7%/2，击退1；`1×1.29−.05=1.24≈1.20`）。
 - 被动：守门 `ps_huweidaofa_shoumen`（与友方相邻时 parry +3→8）；忠勇 `ps_huweidaofa_zhongyong`（援护后获 `bf_ruiyi`1）。获取：大理 L2；神雕一灯门下护卫遗谱。
 
 #### `sk_cangshanzhang` 苍山掌（5 玄中 · 拳脚/拳掌）
 
-**字段**｜`origin:expanded`；`sect:sect_dali`；`nature:yang`；`wOut/wIn:0.70/0.30`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{str:28,con:25},aptitude:{apFist:28},prereq:[{skill:sk_huweiduanquan,layer:4}],sect:{id:sect_dali,rank:2},hard:[sect,prereq]}`；`layerStats:{tough:[1,5],hit:[1,5]}`；`setTags:[set_dali_huwei]`。
+**字段**｜`origin:expanded`；`sect:sect_dali`；`nature:yang`；`wOut/wIn:0.70/0.30`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{str:28,con:25},aptitude:{apFist:28},prereq:[{skill:sk_huweiduanquan,layer:4}],sect:{id:sect_dali,rank:2},hard:[sect,prereq]}`；`layerStats:{tough:[1,5],hit:[1,5]}`；`setTags:[]`。
 
 - 招式：苍山横云 `mv_cangshanzhang_hengyun`（L1，横扫，.85，6%/1）；十九峰叠掌 `mv_cangshanzhang_diezhan`（L3，单体三段，1.30，7%/2）；洱海推澜 `mv_cangshanzhang_tuilan`（L6，线2，1.00，8%/2，击退1）。
 - 被动：山沉 `ps_cangshanzhang_shanchen`（未移动时 tough +3→8）；云开 `ps_cangshanzhang_yunkai`（击退目标后 hit +5）。获取：大理 L2；招名、规则均为原创扩展。
 
 #### `sk_duanshiyangshenggong` 段氏养生功（6 玄上 · 内功）
 
-**字段**｜`origin:expanded`；`sect:sect_dali`；`nature:harmony`；`wOut/wIn:0/1`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:35,wis:32},aptitude:{apInner:32},prereq:[{skill:sk_wangfutunaxi,layer:6}],sect:{id:sect_dali,rank:3},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:20,hpMaxPct:12,attrs:{con:3,wis:3,wil:2},mpRegen:1.8,stats:{resInjury:5,resSeal:5}}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_renmai,mer_chongmai]`；`setTags:[set_dali_huwei]`。
+**字段**｜`origin:expanded`；`sect:sect_dali`；`nature:harmony`；`wOut/wIn:0/1`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:35,wis:32},aptitude:{apInner:32},prereq:[{skill:sk_wangfutunaxi,layer:6}],sect:{id:sect_dali,rank:3},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:20,hpMaxPct:12,attrs:{con:3,wis:3,wil:2},mpRegen:1.8,stats:{resInjury:5,resSeal:5}}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_renmai,mer_chongmai]`；`setTags:[]`。
 
 - 招式：养息 `mv_duanshiyangshenggong_yangxi`（L2，自身，6%/3，`bf_yangsheng`3）；护脉 `mv_duanshiyangshenggong_humai`（L6，单体友方，8%/4，`bf_huoluo`2、`bf_huxue`2）；均 `power:0`。
 - 被动：王府养生 `ps_duanshiyangshenggong_yangsheng`（休息恢复 +5%→12%）；正脉 `ps_duanshiyangshenggong_zhengmai`（主运时 `resSeal` +5→12）。获取：大理 L3；一灯羁绊线 `maxLayer:8`。
 
 #### `sk_tianlongchanbu` 天龙禅步（6 玄上 · 轻功）——核算抽样（功能式）
 
-**字段**｜`origin:expanded`；`sect:sect_tianlongsi`；`nature:harmony`；`wOut/wIn:0.35/0.65`；`sourceChapters:[ch01_tianlong]`；`Q_skill=QS(6)=74`；`reqs:{attrs:{agi:35,wil:35},aptitude:{apLight:32},sect:{id:sect_tianlongsi,rank:2},hard:[sect]}`；`layerStats:{eva:[2,5],resMind:[1,5]}`；`setTags:[set_dali_huwei]`。
+**字段**｜`origin:expanded`；`sect:sect_tianlongsi`；`nature:harmony`；`wOut/wIn:0.35/0.65`；`sourceChapters:[ch01_tianlong]`；`Q_skill=QS(6)=74`；`reqs:{attrs:{agi:35,wil:35},aptitude:{apLight:32},sect:{id:sect_tianlongsi,rank:2},hard:[sect]}`；`layerStats:{eva:[2,5],resMind:[1,5]}`；`setTags:[]`。
 
 - 招式：绕殿 `mv_tianlongchanbu_raodian`（L1，自身移2格，6%/2，`power:0`）；定步 `mv_tianlongchanbu_dingbu`（L3，自身，7%/3，`bf_wenzhong`2，`power:0`）；退礼 `mv_tianlongchanbu_tuili`（L6，后撤2格并获 `bf_ningshen`1，8%/3，`power:0`）。
 - 被动：禅行 `ps_tianlongchanbu_chanxing`（本回合未攻击时 resMind +4→10）；不争 `ps_tianlongchanbu_buzheng`（后撤后下次受击 Z4 −5%）。获取：天龙寺 L2；仅天龙。
@@ -1440,16 +1440,16 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
 | `sk_zhennangunfa` | 镇南棍法（2 黄中） | 大理王府 | 兵器/棍杖 | 天龙、射雕、神雕 | 单体 1.00、横扫 .85；护卫招架 | 无；L1 | **（原创扩展命名）**；详细卡见 §5.5 |
-| `sk_wangfutunaxi` | 王府吐纳息（2 黄中） | 大理王府 | 内功 | 天龙、射雕、神雕 | `nature:yang`；`IP=8+5+2×3+5×1=24`；`mer_renmai`；`set_dali_huwei` | 无；L1 | **（原创扩展）** |
-| `sk_dalirumenjian` | 大理入门剑（2 黄中） | 大理段氏 | 兵器/剑 | 天龙、射雕、神雕 | 单体 1.10、基础招架；`set_dali_huwei` | 无；L1 | **（原创扩展）** |
-| `sk_huweiduanquan` | 护卫短拳（2 黄中） | 大理王府 | 拳脚/拳掌 | 天龙、射雕、神雕 | 单体 1.10，援护相邻友方；`set_dali_huwei` | 无；L1 | **（原创扩展）** |
-| `sk_dianchibu` | 滇池步（2 黄中） | 大理段氏 | 轻功 | 天龙、射雕、神雕 | `QS(2)=38`，浅水移动；`set_dali_huwei` | 无；L1 | **（原创扩展）** |
+| `sk_wangfutunaxi` | 王府吐纳息（2 黄中） | 大理王府 | 内功 | 天龙、射雕、神雕 | `nature:yang`；`IP=8+5+2×3+5×1=24`；`mer_renmai`；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_dalirumenjian` | 大理入门剑（2 黄中） | 大理段氏 | 兵器/剑 | 天龙、射雕、神雕 | 单体 1.10、基础招架；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_huweiduanquan` | 护卫短拳（2 黄中） | 大理王府 | 拳脚/拳掌 | 天龙、射雕、神雕 | 单体 1.10，援护相邻友方；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_dianchibu` | 滇池步（2 黄中） | 大理段氏 | 轻功 | 天龙、射雕、神雕 | `QS(2)=38`，浅水移动；`[]` | 无；L1 | **（原创扩展）** |
 | `sk_tiannanxinfa` | 天南心法（3 黄上） | 大理段氏 | 内功 | 天龙、射雕、神雕 | `nature:yang`；`IP=10+6+2×4+5×1.2=30`；`set_dali_yiyang` | L1 | **（原创扩展）**；详细卡见 §5.5 |
 | `sk_chunqiubifa` | 春秋笔法（3 黄上） | 大理段氏 | 兵器/奇门 | 天龙、射雕、神雕 | 单体 .95、封穴15% | 无 | **（原创扩展命名）**；详细卡见 §5.5 |
 | `sk_kaishanfufa` | 开山斧法（3 黄上） | 大理段氏 | 兵器/奇门 | 天龙、射雕、神雕 | 单体 1.20，破甲60%招式 1.25 | 无 | **（原创扩展命名）**；详细卡见 §5.5 |
-| `sk_dalichangdao` | 大理长刀（3 黄上） | 大理王府 | 兵器/刀 | 天龙、射雕、神雕 | 单体 1.10、线2 .95；`set_dali_huwei` | 王府吐纳息 3 重 | **（原创扩展）** |
-| `sk_yuyincha` | 渔隐叉（3 黄上） | 一灯门下渔隐 | 兵器/奇门 | 射雕、神雕 | `exotic/misc`，线2 .95、拉拽式 1.00；`set_dali_huwei` | 滇池步 3 重 | 点苍渔隐持兵器的具体形制（待考）；套路**（原创扩展命名）** |
-| `sk_tianlongmuzhang` | 天龙木杖（3 黄上） | 天龙寺 | 兵器/棍杖 | 天龙 | 单体 1.10、守势 `bf_shoushi`1；`set_dali_huwei` | 天龙寺 L1 | **（原创扩展）** |
+| `sk_dalichangdao` | 大理长刀（3 黄上） | 大理王府 | 兵器/刀 | 天龙、射雕、神雕 | 单体 1.10、线2 .95；`[]` | 王府吐纳息 3 重 | **（原创扩展）** |
+| `sk_yuyincha` | 渔隐叉（3 黄上） | 一灯门下渔隐 | 兵器/奇门 | 射雕、神雕 | `exotic/misc`，线2 .95、拉拽式 1.00；`[]` | 滇池步 3 重 | 点苍渔隐持兵器的具体形制（待考）；套路**（原创扩展命名）** |
+| `sk_tianlongmuzhang` | 天龙木杖（3 黄上） | 天龙寺 | 兵器/棍杖 | 天龙 | 单体 1.10、守势 `bf_shoushi`1；`[]` | 天龙寺 L1 | **（原创扩展）** |
 
 **黄阶整体预算核对**：新增攻击招按黄阶基准配置：单体 cd1 `1×1.12=1.12≈1.10`，线2 cd1 `.85×1.12=.952≈.95`；渔隐叉拉拽式按单体 cd1 后扣拉拽 `.10` 得 `1.02≈1.00`。滇池步用 `QS(2)=38`；王府吐纳息精确命中黄中 IP 24；所有 `layerStats≤6`。
 
@@ -1485,7 +1485,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {wil 55, wis 45}`；`aptitude {apFist 55}`；`hard []`（仅羁绊途径可得） |
 | layerStats | `parry [4, 12]`、`counter [2, 8]`（合计 20） |
 | 层数要点 | 1：空朦、洞松、空碗盛饭 ｜ 2：风通 ｜ 3：容梦、以柔克刚 ｜ 4：冲穷 ｜ 5：中弄、转劲 ｜ 6：童庸 ｜ **7：绝招 七十二路空明拳** ｜ 8：弓虫（触发）、空明 ｜ 10：空明大成 |
-| setTags / conflicts | `set_zhoubotong_wantong`、`set_guojing_xiazhe` / `{with: sk_zuoyouhubo, type: synergy}`（见被动"空明大成"） |
+| setTags / conflicts | `[set_guojing_xiazhe]` / `{with: sk_zuoyouhubo, type: synergy}`（见被动"空明大成"） |
 | special / observable | `{fusible: true}` / `false` |
 | 获取 | 射雕 `master npc_zhoubotong` `maxLayer 10`（桃花岛石洞事件，羁绊 ≥ 3）；神雕 `master npc_zhoubotong` `maxLayer 10`（百花谷） |
 | 图鉴文本 | 周伯通在桃花岛石洞中所创的七十二路拳法，本于"以空明柔弱胜刚强"之理，如空碗方能盛饭，以柔化刚（原著）。招名取其口诀，招式效果为原创设计。 |
@@ -1523,7 +1523,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrsMax {wis 85}`；`attrs {wil 50}`；`hard [attrsMax]` |
 | layerStats | `effHit [2, 8]`、`resMind [4, 12]`（合计 20） |
 | 层数要点 | 1：分心二用、左手画方右手画圆 ｜ 4：一心二用 ｜ 6：双手互援 ｜ **7：绝招 双手全力** ｜ 8：心思纯一 ｜ 10：互搏大成 |
-| setTags / conflicts | `set_zhoubotong_wantong`、`set_guojing_xiazhe` / 无 |
+| setTags / conflicts | `[set_guojing_xiazhe]` / 无 |
 | special / observable | `{fusible: false, trainMult: pureMult}` / `false` |
 | 获取 | 射雕 `master npc_zhoubotong` `maxLayer 10`（桃花岛石洞）；神雕 `master npc_zhoubotong` `maxLayer 10`、`master npc_xiaolongnv` `maxLayer 8`（羁绊 ≥ 4，原创扩展途径） |
 | 图鉴文本 | 周伯通所创"一心二用"之术，左手画方、右手画圆，双手各使一门武功。心思纯一者易学，聪明伶俐者反难领会——郭靖、小龙女学成，黄蓉不能（原著）。 |
@@ -1543,7 +1543,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 ### 6.4 玄阶紧凑卡
 
-**`sk_wantongmizong` 顽童迷踪**（5 玄中 · 轻功 · 中性 · 栏 3）｜**（原创扩展）**老顽童嬉戏逃遁的身法｜reqs：`attrs {agi 30}`（仅周伯通羁绊途径）｜轻功值 `QS(5) = 65`｜layerStats：`eva [1,6]`、`tough [1,4]`｜setTags：`set_zhoubotong_wantong`｜获取：射雕/神雕 `master npc_zhoubotong` `maxLayer 10`
+**`sk_wantongmizong` 顽童迷踪**（5 玄中 · 轻功 · 中性 · 栏 3）｜**（原创扩展）**老顽童嬉戏逃遁的身法｜reqs：`attrs {agi 30}`（仅周伯通羁绊途径）｜轻功值 `QS(5) = 65`｜layerStats：`eva [1,6]`、`tough [1,4]`｜setTags：`[]`｜获取：射雕/神雕 `master npc_zhoubotong` `maxLayer 10`
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -1557,7 +1557,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 #### `sk_wantongshuangxi` 顽童双戏（6 玄上 · 拳脚/拳掌）——核算抽样
 
-**字段**｜`origin:expanded`；`sect:null`；`lineage:周伯通`；`nature:harmony`；`wOut/wIn:0.45/0.55`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{agi:35,wil:30},aptitude:{apFist:32},prereq:[{skill:sk_kongming,layer:3}],hard:[prereq]}`；`layerStats:{parry:[2,6],counter:[1,4]}`；`setTags:[set_zhoubotong_wantong]`；**（原创扩展）**，只取周伯通嬉戏与一心二用的原著形象，不宣称有此具名拳法。
+**字段**｜`origin:expanded`；`sect:null`；`lineage:周伯通`；`nature:harmony`；`wOut/wIn:0.45/0.55`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{agi:35,wil:30},aptitude:{apFist:32},prereq:[{skill:sk_kongming,layer:3}],hard:[prereq]}`；`layerStats:{parry:[2,6],counter:[1,4]}`；`setTags:[]`；**（原创扩展）**，只取周伯通嬉戏与一心二用的原著形象，不宣称有此具名拳法。
 
 - 招式：逗你一拳 `mv_wantongshuangxi_douquan`（L1，单体，**1.10**，6%/1；`1×1.12=1.12≈1.10`）；忽左忽右 `mv_wantongshuangxi_huzuohuyou`（L3，绕背，**1.10**，7%/2；`1×1.29−.15=1.14≈1.10`）；双戏连环 `mv_wantongshuangxi_lianhuan`（L6，单体四段，**1.35**，8%/2；`1×(1+.24+.10)=1.34≈1.35`）。
 - 被动：童心 `ps_wantongshuangxi_tongxin`（首回合 crit +4→10）；戏耍 `ps_wantongshuangxi_xishua`（招架后下一式 hit +5）。获取：周伯通羁绊 ≥2；`observe maxLayer:6`。
@@ -1603,7 +1603,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | inner | `contribution {mpMaxPct 58, hpMaxPct 34, attrs {wis 8, agi 6, con 6, wil 4}, mpRegen 3.2, stats {resSeal 10, resMind 10}}`（IP = 58+34+2×(8+6+6+4)+5×3.2 = **156**，预算 156）；`auxUsableMoves [mv_jiuyin_jiexue]` |
 | reqs | `attrs {wis 60, wil 55}`；`aptitude {apInner 55}`；`hard []`（经书/奇遇途径，受 02 §2.9 进度门槛约束） |
 | 层数要点 | 1：损有余、总纲 ｜ 3：补不足、虚胜实（被动） ｜ 5：虚实相生（架势）、不足胜有余 ｜ 6：九阴解穴 ｜ **7：绝招 天之道**、解穴秘诀 ｜ 8：九阴收功、正本清源 ｜ 10：九阴大成 |
-| setTags / conflicts | `set_jiuyin_zhengzong`、`set_guojing_xiazhe`、`set_zhoubotong_wantong` / 无 |
+| setTags / conflicts | `[set_jiuyin_zhengzong, set_guojing_xiazhe]` / 无 |
 | special / observable | `{fusible: true}` / `false` |
 | 获取 | 射雕 `master npc_zhoubotong` `maxLayer 10`（桃花岛石洞授经，羁绊 ≥ 4；总纲另需一灯译解事件，未完成前 `maxLayer 7`，原创扩展节奏）；神雕 `qiyu q_03_qiyu_9x`（古墓王重阳石刻）`maxLayer 8`；倚天 `qiyu q_04_qiyu_9x`（倚天剑藏经）`maxLayer 10` |
 | 图鉴文本 | 黄裳所著武学总纲，上卷内功、下卷招式，总纲以梵文音译写成（原著）。"天之道，损有余而补不足"——本作以资源再平衡、以弱胜强实现其意。 |
@@ -1707,7 +1707,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {agi 45, str 40}`；`aptitude {apGrapple 45}`；`morality {max: −20}`；`hard [morality]`（奇遇途径以 `reqsOverride {morality: null}` 放开，习得即扣 `morality −10`） |
 | layerStats | `crit [3, 9]`、`hit [1, 6]`（合计 15） |
 | 层数要点 | 1：阴风爪、鬼影抓、邪练、邪气、穿骨 ｜ 3：五指锁魂 ｜ 5：白骨阴风、夺命 ｜ **7：绝招 索命** ｜ 8：鬼魅绕身 ｜ 10：白骨大成 |
-| setTags / conflicts | `set_heifeng_shuangsha` / `{with: sk_jiuyinshenzhao, type: exclusive}` |
+| setTags / conflicts | `[]` / `{with: sk_jiuyinshenzhao, type: exclusive}` |
 | special / observable | `{evilTraining: {sxpMult: 1.5, moralityPerLayer: −5, zouhuoOnLayerUp: {chance: 0.08, level: 1}}, reformTo: sk_jiuyinshenzhao, fusible: false}`（05 §9.1.2）/ `true` |
 | 获取 | 射雕 `master npc_meichaofeng` `maxLayer 10`（投其门下）、`qiyu q_02_side_9x`（"误读真经"，原创扩展）`maxLayer 8`；倚天 `manual it_miji_jiuyinbaigu_su`（倚天剑藏经速成篇，周芷若线）`maxLayer 10`；`observe` 6 |
 | 图鉴文本 | 黑风双煞误读《九阴真经》而练成的阴毒爪功，出手迅捷狠辣（射雕）；倚天中周芷若亦以速成之法习之（原著）。本作以"邪练"代价实现，不渲染血腥。 |
@@ -1740,7 +1740,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {str 45, con 45}`；`aptitude {apFist 50}`；`morality {max: −20}`（软，05 §7.3 邪派地阶）；`hard []` |
 | layerStats | `crit [2, 7]`、`pierce [2, 8]`（合计 15） |
 | 层数要点 | 1：摧心、阴劲透体、外表无伤 ｜ 3：碎脉 ｜ 4：心脉受创 ｜ 5：断魂掌 ｜ **7：绝招 摧心裂脉** ｜ 8：无痕、阴劲 ｜ 10：摧心大成 |
-| setTags / conflicts | `set_heifeng_shuangsha` / 无 |
+| setTags / conflicts | `[]` / 无 |
 | special / observable | `{fusible: true}` / `true` |
 | 获取 | 射雕 `master npc_meichaofeng` `maxLayer 10`；`qiyu q_02_side_9x`（误读真经）`maxLayer 8`；`observe` 6 |
 | 图鉴文本 | 黑风双煞所使阴毒掌力，中掌者外表不见伤痕，内里心脉已碎（原著）。本作以内伤层数实现其"摧心"之意。 |
@@ -1864,7 +1864,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {agi 40, str 35}`；`aptitude {apWhip 40}`；`hard []` |
 | layerStats | `hit [2, 8]`、`parry [1, 7]`（合计 15） |
 | 层数要点 | 1：白蟒出洞、长鞭卷地、听风 ｜ 3：缠身 ｜ 5：回鞭、蟒缠 ｜ **7：绝招 白蟒翻江** ｜ 8：鞭爪相济 ｜ 10：白蟒大成 |
-| setTags / conflicts | `set_heifeng_shuangsha` / `{with: sk_jiuyinbaigu, type: synergy}`（见"鞭爪相济"） |
+| setTags / conflicts | `[]` / `{with: sk_jiuyinbaigu, type: synergy}`（见"鞭爪相济"） |
 | special / observable | `{fusible: true}` / `true` |
 | 获取 | 射雕 `master npc_meichaofeng` `maxLayer 10`；倚天 `manual it_miji_baimangbianfa_su`（藏经速成篇，原创扩展推定）`maxLayer 8`；`observe` 6 |
 | 图鉴文本 | 梅超风所使长鞭功夫，与九阴白骨爪相济，远则鞭缠、近则爪取；倚天周芷若亦有长鞭表现。正式鞭法名与同源关系见本卡“出处”的考据项，招名与效果为原创扩展。 |
@@ -1896,7 +1896,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_jiuyinliaoshangpian_qiri` 七日七夜（1，mechanic：战斗外疗伤时内伤、骨伤、走火 2 级的治愈天数 −50%；有羁绊 ≥ 2 的同伴相助再 −25%，design/11 接口）；`ps_jiuyinliaoshangpian_dacheng` 疗伤大成（10，mechanic：导气疗伤额外施加 `bf_mian_shang` 1 回合——06 已登记"九阴真经·疗伤篇大成"为其来源）。
 
-**`sk_tongshihenglian` 铜尸横练**（6 玄上 · 内功 · `nature: yang` · 0/1 · 栏 3）｜**（原创扩展命名）**陈玄风号“铜尸”，周身坚硬、罩门在脐，郭靖幼时以匕首刺中其罩门（射雕，原著）｜reqs：`attrs {con 35, str 30}`、`morality {max: −10}`（软）｜contribution：`mpMaxPct 14, hpMaxPct 15, attrs {con 10}, mpRegen 1.6, stats {defOut 6, tough 4}`（IP = 14+15+2×10+5×1.6 = **57**）｜setTags：`set_heifeng_shuangsha`｜获取：射雕 `manual it_miji_tongshihenglian`（黑风双煞遗物）`maxLayer 10`；`pages`（4 页）
+**`sk_tongshihenglian` 铜尸横练**（6 玄上 · 内功 · `nature: yang` · 0/1 · 栏 3）｜**（原创扩展命名）**陈玄风号“铜尸”，周身坚硬、罩门在脐，郭靖幼时以匕首刺中其罩门（射雕，原著）｜reqs：`attrs {con 35, str 30}`、`morality {max: −10}`（软）｜contribution：`mpMaxPct 14, hpMaxPct 15, attrs {con 10}, mpRegen 1.6, stats {defOut 6, tough 4}`（IP = 14+15+2×10+5×1.6 = **57**）｜setTags：`[]`｜获取：射雕 `manual it_miji_tongshihenglian`（黑风双煞遗物）`maxLayer 10`；`pages`（4 页）
 
 | 招式 | 重 | 范围 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -1967,7 +1967,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {str 55, con 50}`；`aptitude {apFist 55}`；`prereq [{skill: sk_tiezhangxinfa, layer: 5}]`；`sect {id: sect_tiezhangbang, rank: 4}`；`hard [sect, prereq]` |
 | layerStats | `crit [4, 12]`、`pierce [2, 8]`（合计 20） |
 | 层数要点 | 1：铁掌开山、排云推月、铁掌 ｜ 2：掌断金石 ｜ 3：掌力雄浑 ｜ 4：铁掌震岳 ｜ 5：掌劲透骨、掌伤 ｜ **7：绝招 铁掌擎天** ｜ 8：铁掌护身、刚猛 ｜ 9：铁掌连环 ｜ 10：铁掌大成 |
-| setTags / conflicts | `set_tiezhang_shuishangpiao` / 无 |
+| setTags / conflicts | `[]` / 无 |
 | special / observable | `{fusible: true}` / `false` |
 | 获取 | 射雕 `master npc_qiuqianren` `maxLayer 10`（帮中四级或卧底线）；`qiyu q_02_side_9x`（中指峰上官剑南遗谱，原创扩展）`maxLayer 8` |
 | 图鉴文本 | 铁掌帮镇帮绝学，裘千仞凭之号"铁掌水上飘"，掌力雄浑，中者内伤极重——黄蓉中掌后须一灯以一阳指救治（射雕，原著）。招名为原创扩展。 |
@@ -2004,7 +2004,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {agi 50}`；`aptitude {apLight 45}`；`sect {id: sect_tiezhangbang, rank: 4}`；`hard [sect]` |
 | layerStats | `eva [2, 8]`、`tough [1, 7]`（合计 15） |
 | 层数要点 | 1：踏浪、踏水 ｜ 3：浪里穿行 ｜ 4：身轻 ｜ 5：水上飘身 ｜ 6：真假水上飘 ｜ **7：绝招 踏水无痕** ｜ 8：借力回旋 ｜ 10：水上飘大成 |
-| setTags / conflicts | `set_tiezhang_shuishangpiao` / 无 |
+| setTags / conflicts | `[]` / 无 |
 | special / observable | `{fusible: true}` / `true` |
 | 获取 | 射雕 `master npc_qiuqianren` `maxLayer 10`；神雕 `master npc_cien`（慈恩，一灯门下）`maxLayer 8`；`observe` 6 |
 | 图鉴文本 | 裘千仞绝顶轻功，能踏水而行，与铁掌并称"铁掌水上飘"（原著）；其兄裘千丈冒名招摇，暗置木桩于水中欺人（原著）。招式效果为原创设计。 |
@@ -2026,7 +2026,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 ### 8.5 玄/黄阶紧凑卡
 
-**`sk_tiezhangxinfa` 铁掌心法**（5 玄中 · 内功 · `nature: yang` · 0/1 · 栏 3）｜**（原创扩展）**铁掌帮练掌前的运劲心法｜reqs：`attrs {str 30, con 30}`、`aptitude {apInner 25}`、`prereq [{skill: sk_heishazhang, layer: 4}]`、`sect {id: sect_tiezhangbang, rank: 2}`（硬：sect、prereq）｜contribution：`mpMaxPct 18, hpMaxPct 10, attrs {str 7}, mpRegen 1.4, stats {resInjury 5, resCC 5}`（IP = 18+10+2×7+5×1.4 = **49**）｜setTags：`set_tiezhang_shuishangpiao`｜获取：射雕 `master`（铁掌帮长老）`maxLayer 10`；神雕 `manual it_miji_tiezhangxinfa` `maxLayer 8`
+**`sk_tiezhangxinfa` 铁掌心法**（5 玄中 · 内功 · `nature: yang` · 0/1 · 栏 3）｜**（原创扩展）**铁掌帮练掌前的运劲心法｜reqs：`attrs {str 30, con 30}`、`aptitude {apInner 25}`、`prereq [{skill: sk_heishazhang, layer: 4}]`、`sect {id: sect_tiezhangbang, rank: 2}`（硬：sect、prereq）｜contribution：`mpMaxPct 18, hpMaxPct 10, attrs {str 7}, mpRegen 1.4, stats {resInjury 5, resCC 5}`（IP = 18+10+2×7+5×1.4 = **49**）｜setTags：`[]`｜获取：射雕 `master`（铁掌帮长老）`maxLayer 10`；神雕 `manual it_miji_tiezhangxinfa` `maxLayer 8`
 
 | 招式 | 重 | 范围 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2045,7 +2045,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_tiezhangdaofa_hanqi` 悍气（5，stat：`crit` +[2%, 4%]）；`ps_tiezhangdaofa_yuanman` 圆满（10，mechanic：首次练满 `apBlade` +1）。
 
-**`sk_heishazhang` 黑砂掌**（2 黄中 · 拳脚/拳掌 · 阳 · 0.85/0.15 · 栏 3）｜**（原创扩展）**铁掌帮入门掌法（与少林铁砂掌 `sk_tieshazhang` 无涉）｜reqs：无（入帮）｜layerStats：`parry [1,3]`、`hit [1,3]`｜setTags：`set_tiezhang_shuishangpiao`｜获取：铁掌帮入帮；`pages`（3 页）；`observe` 6
+**`sk_heishazhang` 黑砂掌**（2 黄中 · 拳脚/拳掌 · 阳 · 0.85/0.15 · 栏 3）｜**（原创扩展）**铁掌帮入门掌法（与少林铁砂掌 `sk_tieshazhang` 无涉）｜reqs：无（入帮）｜layerStats：`parry [1,3]`、`hit [1,3]`｜setTags：`[]`｜获取：铁掌帮入帮；`pages`（3 页）；`observe` 6
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2061,21 +2061,21 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 #### `sk_tiezhangtunajue` 铁掌吐纳诀（4 玄下 · 内功）
 
-**字段**｜`origin:expanded`；`sect:sect_tiezhangbang`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:25,str:22},sect:{id:sect_tiezhangbang,rank:1},hard:[sect]}`；`inner.contribution:{mpMaxPct:14,hpMaxPct:8,attrs:{con:3,str:3},mpRegen:1.5,stats:{resInjury:5,defOut:5}}`，`IP=14+8+2×6+5×1.5=41.5`；`inner.meridians:[mer_dumai]`；`setTags:[set_tiezhang_shanzhai]`。
+**字段**｜`origin:expanded`；`sect:sect_tiezhangbang`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:25,str:22},sect:{id:sect_tiezhangbang,rank:1},hard:[sect]}`；`inner.contribution:{mpMaxPct:14,hpMaxPct:8,attrs:{con:3,str:3},mpRegen:1.5,stats:{resInjury:5,defOut:5}}`，`IP=14+8+2×6+5×1.5=41.5`；`inner.meridians:[mer_dumai]`；`setTags:[]`。
 
 - 招式：温掌 `mv_tiezhangtunajue_wenzhang`（L1，自身，5%/3，`bf_renjin`2）；护臂 `mv_tiezhangtunajue_hubi`（L4，自身，6%/3，`bf_tiebi`2）；均 `power:0`。
 - 被动：练砂 `ps_tiezhangtunajue_liansha`（拳掌修炼 +5%→12%）；山寨根基 `ps_tiezhangtunajue_genji`（山地探索体力 −5%）。获取：铁掌帮 L1；神雕慈恩传承仅 `maxLayer:6`。
 
 #### `sk_tiesuobu` 铁索步（5 玄中 · 轻功）
 
-**字段**｜`origin:expanded`；`sect:sect_tiezhangbang`；`nature:neutral`；`wOut/wIn:0.70/0.30`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`Q_skill=QS(5)=65`；`reqs:{attrs:{agi:30,con:28},aptitude:{apLight:28},prereq:[{skill:sk_shanlubu,layer:4}],sect:{id:sect_tiezhangbang,rank:2},hard:[sect,prereq]}`；`layerStats:{eva:[1,5],tough:[1,5]}`；`setTags:[set_tiezhang_shanzhai]`。
+**字段**｜`origin:expanded`；`sect:sect_tiezhangbang`；`nature:neutral`；`wOut/wIn:0.70/0.30`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`Q_skill=QS(5)=65`；`reqs:{attrs:{agi:30,con:28},aptitude:{apLight:28},prereq:[{skill:sk_shanlubu,layer:4}],sect:{id:sect_tiezhangbang,rank:2},hard:[sect,prereq]}`；`layerStats:{eva:[1,5],tough:[1,5]}`；`setTags:[]`。
 
 - 招式：踏索 `mv_tiesuobu_tasuo`（L1，自身移2格，5%/2）；折返 `mv_tiesuobu_zhefan`（L4，后撤2格并获 `bf_wenzhong`1，6%/3）；均 `power:0`。
 - 被动：险径 `ps_tiesuobu_xianjing`（桥索地形移动耗力 −10%→25%）；稳足 `ps_tiesuobu_wenzu`（被击退距离 −1）。获取：铁掌帮 L2；铁掌峰索道事件。
 
 #### `sk_duanfengzhang` 断峰掌（6 玄上 · 拳脚/拳掌）——核算抽样
 
-**字段**｜`origin:expanded`；`sect:sect_tiezhangbang`；`nature:yang`；`wOut/wIn:0.65/0.35`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{str:36,con:32},aptitude:{apFist:34},prereq:[{skill:sk_heishazhang,layer:6}],sect:{id:sect_tiezhangbang,rank:3},hard:[sect,prereq]}`；`layerStats:{crit:[2,6],tough:[1,4]}`；`setTags:[set_tiezhang_shanzhai]`。
+**字段**｜`origin:expanded`；`sect:sect_tiezhangbang`；`nature:yang`；`wOut/wIn:0.65/0.35`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{str:36,con:32},aptitude:{apFist:34},prereq:[{skill:sk_heishazhang,layer:6}],sect:{id:sect_tiezhangbang,rank:3},hard:[sect,prereq]}`；`layerStats:{crit:[2,6],tough:[1,4]}`；`setTags:[]`。
 
 - 招式：劈岩 `mv_duanfengzhang_piyan`（L1，单体，**1.10**，6%/1；`1×1.12=1.12≈1.10`）；断梁 `mv_duanfengzhang_duanliang`（L3，线2，**1.10**，7%/2；`.85×1.29=1.0965≈1.10`）；震峰 `mv_duanfengzhang_zhenfeng`（L6，锥2，**0.95**，8%/2，击退1；`.75×1.34−.05=.955≈.95`）。
 - 被动：刚掌 `ps_duanfengzhang_gangzhang`（本武学 Z2 穿透 +4%→10%）；断势 `ps_duanfengzhang_duanshi`（击退后目标获 `bf_shiheng`，每回合一次）。获取：铁掌帮 L3；神雕慈恩羁绊 `maxLayer:8`。
@@ -2084,12 +2084,12 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_heishazhang` | 黑砂掌（2 黄中） | 铁掌帮 | 拳脚/拳掌 | 射雕 | 单体 1.00、内伤30%；`set_tiezhang_shuishangpiao` | 无；入帮 | **（原创扩展）**；详细卡见 §8.5 |
-| `sk_tiezhangzhuang` | 铁掌桩（2 黄中） | 铁掌帮 | 内功 | 射雕、神雕 | `nature:yang`；`IP=8+5+2×3+5×1=24`；`mer_dumai`；`set_tiezhang_shanzhai` | 无；L1 | **（原创扩展）** |
-| `sk_bangzhongduandao` | 帮中短刀（2 黄中） | 铁掌帮 | 兵器/刀 | 射雕 | 单体 1.10；`set_tiezhang_shanzhai` | 无；L1 | **（原创扩展）** |
-| `sk_tiebishou` | 铁臂手（2 黄中） | 铁掌帮 | 拳脚/擒拿 | 射雕 | 单体 1.05、封经20%；`set_tiezhang_shanzhai` | 铁掌桩 3 重 | **（原创扩展）** |
+| `sk_heishazhang` | 黑砂掌（2 黄中） | 铁掌帮 | 拳脚/拳掌 | 射雕 | 单体 1.00、内伤30%；`[]` | 无；入帮 | **（原创扩展）**；详细卡见 §8.5 |
+| `sk_tiezhangzhuang` | 铁掌桩（2 黄中） | 铁掌帮 | 内功 | 射雕、神雕 | `nature:yang`；`IP=8+5+2×3+5×1=24`；`mer_dumai`；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_bangzhongduandao` | 帮中短刀（2 黄中） | 铁掌帮 | 兵器/刀 | 射雕 | 单体 1.10；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_tiebishou` | 铁臂手（2 黄中） | 铁掌帮 | 拳脚/擒拿 | 射雕 | 单体 1.05、封经20%；`[]` | 铁掌桩 3 重 | **（原创扩展）** |
 | `sk_tiezhangdaofa` | 铁掌刀法（3 黄上） | 铁掌帮 | 兵器/刀 | 射雕 | 连刀 1.30、横扫 .90 | 无；入帮 | **（原创扩展）**；详细卡见 §8.5 |
-| `sk_shanlubu` | 山路步（3 黄上） | 铁掌帮 | 轻功 | 射雕、神雕 | `QS(3)=45`，陡坡稳足；`set_tiezhang_shanzhai` | 无；L1 | **（原创扩展）** |
+| `sk_shanlubu` | 山路步（3 黄上） | 铁掌帮 | 轻功 | 射雕、神雕 | `QS(3)=45`，陡坡稳足；`[]` | 无；L1 | **（原创扩展）** |
 
 **黄阶整体预算核对**：帮中短刀用单体 cd1 `1.12≈1.10`；铁臂手按单体 cd1 扣封经 `.20×.20=.04` 得 `1.08≈1.05`。山路步用 `QS(3)=45`，铁掌桩精确命中黄中 IP 24；所有 `layerStats≤6`。
 
@@ -2116,7 +2116,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | `sk_nanshanzhangfa` | 南山掌法 | 拳脚/拳掌 | 2 黄中 | 阳 | 0.85/0.15 | 射雕 | 南希仁 | 原著（南希仁所授掌法） |
 | `sk_chengchuidafa` | 秤锤打法 | 兵器/奇门 | 2 黄中 | 阳 | 0.85/0.15 | 射雕 | 全金发 | **（原创扩展命名）**据全金发以大秤为兵器构造 |
 
-**`sk_tingshengzhangfa` 听声杖法**（5 玄中 · 棍杖 · 栏 3）｜配柯镇恶铁杖 `eq_kezhenezhang`（design/10）｜reqs：`attrs {str 30, wil 25}`、`aptitude {apStaff 25}`、`prereq [{skill: sk_chengchuidafa, layer: 4}]`、`sect {id: sect_jiangnanqiguai, rank: 2}`（硬：sect；prereq 为软——七怪互授，原创扩展）｜layerStats：`parry [1,5]`、`hit [1,5]`｜setTags：`set_jiangnan_qiguai`｜获取：射雕/神雕 `master npc_kezhene` `maxLayer 10`；`observe` 6
+**`sk_tingshengzhangfa` 听声杖法**（5 玄中 · 棍杖 · 栏 3）｜配柯镇恶铁杖 `eq_kezhenezhang`（design/10）｜reqs：`attrs {str 30, wil 25}`、`aptitude {apStaff 25}`、`prereq [{skill: sk_chengchuidafa, layer: 4}]`、`sect {id: sect_jiangnanqiguai, rank: 2}`（硬：sect；prereq 为软——七怪互授，原创扩展）｜layerStats：`parry [1,5]`、`hit [1,5]`｜setTags：`[]`｜获取：射雕/神雕 `master npc_kezhene` `maxLayer 10`；`observe` 6
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2127,7 +2127,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_tingshengzhangfa_tingfeng` 听风辨器（1，trigger `battleStart`：自身 `bf_tingfeng`〔`dur 99`〕——柯镇恶目盲而以耳代目，原著）；`ps_tingshengzhangfa_gangzhi` 刚直（5，stat：`resMind` +[4, 8] pp）；`ps_tingshengzhangfa_dacheng` 大成（10，stat Z3：对带 `veil` 标签效果（隐身/残影）的目标 +10%）。
 
-**`sk_fenjincuogushou` 分筋错骨手**（5 玄中 · 擒拿 · 栏 3）｜reqs：`attrs {agi 25, wis 25}`、`aptitude {apGrapple 25}`、`prereq [{skill: sk_nanshanzhangfa, layer: 4}]`（软）、`sect {id: sect_jiangnanqiguai, rank: 2}`（硬）｜layerStats：`seal [1,5]`、`crit [1,5]`｜setTags：`set_jiangnan_qiguai`｜获取：射雕 `master npc_zhucong` `maxLayer 10`；神雕 `master npc_guojing` `maxLayer 8`；`observe` 6
+**`sk_fenjincuogushou` 分筋错骨手**（5 玄中 · 擒拿 · 栏 3）｜reqs：`attrs {agi 25, wis 25}`、`aptitude {apGrapple 25}`、`prereq [{skill: sk_nanshanzhangfa, layer: 4}]`（软）、`sect {id: sect_jiangnanqiguai, rank: 2}`（硬）｜layerStats：`seal [1,5]`、`crit [1,5]`｜setTags：`[]`｜获取：射雕 `master npc_zhucong` `maxLayer 10`；神雕 `master npc_guojing` `maxLayer 8`；`observe` 6
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2138,7 +2138,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_fenjincuogushou_rujie` 入节（1，stat：`seal` +[2, 5]）；`ps_fenjincuogushou_miaoshou` 妙手空空（5，mechanic：缴械成功时 30% 将目标兵器收入行囊（战后归还或缴获，design/10）——致敬朱聪，原创扩展）；`ps_fenjincuogushou_dacheng` 大成（10，stat Z3：对带 `bf_gushang` 的目标 +10%）。
 
-**`sk_yuenvjian02` 越女剑法（韩小莹）**（4 玄下 · 剑 · 栏 3）｜reqs：`attrs {agi 30}`、`aptitude {apSword 25}`、`sect {id: sect_jiangnanqiguai, rank: 1}`（硬）｜layerStats：`hit [1,5]`、`eva [1,5]`｜setTags：`set_jiangnan_qiguai`｜获取：射雕 `master npc_hanxiaoying` `maxLayer 10`；`observe` 6｜说明：序章阿青教学版 `sk_yuenvjian` 已定地上 9，离开序章强制化残篇；本条仍为玄下 4，两 ID 分立（基准 V11-29、作者决定 P35）。二者“剑源余韵”联系为**（原创扩展）**解读
+**`sk_yuenvjian02` 越女剑法（韩小莹）**（4 玄下 · 剑 · 栏 3）｜reqs：`attrs {agi 30}`、`aptitude {apSword 25}`、`sect {id: sect_jiangnanqiguai, rank: 1}`（硬）｜layerStats：`hit [1,5]`、`eva [1,5]`｜setTags：`[]`｜获取：射雕 `master npc_hanxiaoying` `maxLayer 10`；`observe` 6｜说明：序章阿青教学版 `sk_yuenvjian` 已定地上 9，离开序章强制化残篇；本条仍为玄下 4，两 ID 分立（基准 V11-29、作者决定 P35）。二者“剑源余韵”联系为**（原创扩展）**解读
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2149,7 +2149,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_yuenvjian02_kuaijian` 快剑（1，stat：`combo` +[2, 5] pp）；`ps_yuenvjian02_jianyuan` 剑源余韵（5，mechanic：拥有 `sk_yuenvjian` 残篇时，本武学修炼 +20%、招式收招 −50，02 §5.4"剑源"的延伸，原创扩展）；`ps_yuenvjian02_dacheng` 大成（10，stat Z0：本武学暴击 +5）。
 
-**`sk_jinlongbianfa` 金龙鞭法**（4 玄下 · 鞭索 · 栏 3）｜reqs：`attrs {agi 25, str 25}`、`aptitude {apWhip 25}`、`sect {id: sect_jiangnanqiguai, rank: 1}`（硬）｜layerStats：`hit [1,5]`、`parry [1,5]`｜setTags：`set_jiangnan_qiguai`｜获取：射雕 `master npc_hanbaoju` `maxLayer 10`；`observe` 6
+**`sk_jinlongbianfa` 金龙鞭法**（4 玄下 · 鞭索 · 栏 3）｜reqs：`attrs {agi 25, str 25}`、`aptitude {apWhip 25}`、`sect {id: sect_jiangnanqiguai, rank: 1}`（硬）｜layerStats：`hit [1,5]`、`parry [1,5]`｜setTags：`[]`｜获取：射雕 `master npc_hanbaoju` `maxLayer 10`；`observe` 6
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2160,7 +2160,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_jinlongbianfa_mawang` 马王神（1，mechanic：探索中骑马移动速度 +10%，design/11 接口）；`ps_jinlongbianfa_changbian` 长鞭（5，stat Z3：对 3 格外目标 +6%）；`ps_jinlongbianfa_dacheng` 大成（10，stat：`hit` +5%）。
 
-**`sk_duling` 毒菱**（4 玄下 · 暗器 · 栏 3）｜reqs：`attrs {agi 25}`、`aptitude {apHidden 25}`、`sect {id: sect_jiangnanqiguai, rank: 2}`（硬）｜弹药：淬毒铁菱（design/10）｜layerStats：`hit [1,5]`、`effHit [1,5]`｜setTags：`set_jiangnan_qiguai`｜获取：射雕/神雕 `master npc_kezhene` `maxLayer 10`
+**`sk_duling` 毒菱**（4 玄下 · 暗器 · 栏 3）｜reqs：`attrs {agi 25}`、`aptitude {apHidden 25}`、`sect {id: sect_jiangnanqiguai, rank: 2}`（硬）｜弹药：淬毒铁菱（design/10）｜layerStats：`hit [1,5]`、`effHit [1,5]`｜setTags：`[]`｜获取：射雕/神雕 `master npc_kezhene` `maxLayer 10`
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2170,7 +2170,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_duling_cuidu` 淬毒（1，stat：本武学所附 `bf_zhongdu` 施加率 +[0, 10] pp）；`ps_duling_tingsheng` 听声发菱（5，mechanic：攻击隐身或残影持有者时命中不受其影响（仅本武学））；`ps_duling_dacheng` 大成（10，mechanic：本武学命中已中毒目标时 `bf_zhongdu` +1 层）。
 
-**`sk_nanshanzhangfa` 南山掌法**（2 黄中 · 拳掌 · 栏 3）｜reqs：无｜layerStats：`parry [1,3]`、`hit [1,3]`｜setTags：`set_jiangnan_qiguai`｜获取：射雕 `master npc_nanxiren` `maxLayer 10`；`observe` 6
+**`sk_nanshanzhangfa` 南山掌法**（2 黄中 · 拳掌 · 栏 3）｜reqs：无｜layerStats：`parry [1,3]`、`hit [1,3]`｜setTags：`[]`｜获取：射雕 `master npc_nanxiren` `maxLayer 10`；`observe` 6
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2180,7 +2180,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_nanshanzhangfa_chenwen` 沉稳（5，stat：`tough` +[2%, 4%]）；`ps_nanshanzhangfa_yuanman` 圆满（10，mechanic：首次练满 `apFist` +1）。
 
-**`sk_chengchuidafa` 秤锤打法**（2 黄中 · 奇门 · 栏 3）｜weaponReq：`{category: exotic, kinds: [misc]}`（秤）｜reqs：无｜layerStats：`hit [1,3]`、`parry [1,3]`｜setTags：`set_jiangnan_qiguai`｜获取：射雕 `master npc_quanjinfa` `maxLayer 10`；`observe` 6
+**`sk_chengchuidafa` 秤锤打法**（2 黄中 · 奇门 · 栏 3）｜weaponReq：`{category: exotic, kinds: [misc]}`（秤）｜reqs：无｜layerStats：`hit [1,3]`、`parry [1,3]`｜setTags：`[]`｜获取：射雕 `master npc_quanjinfa` `maxLayer 10`；`observe` 6
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2196,21 +2196,21 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 #### `sk_qiguaihebushu` 七怪合步术（4 玄下 · 轻功）
 
-**字段**｜`origin:expanded`；`sect:sect_jiangnanqiguai`；`nature:neutral`；`wOut/wIn:0.65/0.35`；`sourceChapters:[ch02_shediao]`；`Q_skill=QS(4)=56`；`reqs:{attrs:{agi:25},aptitude:{apLight:22},sect:{id:sect_jiangnanqiguai,rank:1},hard:[sect]}`；`layerStats:{eva:[1,5],tough:[1,5]}`；`setTags:[set_jiangnan_qiguai]`。
+**字段**｜`origin:expanded`；`sect:sect_jiangnanqiguai`；`nature:neutral`；`wOut/wIn:0.65/0.35`；`sourceChapters:[ch02_shediao]`；`Q_skill=QS(4)=56`；`reqs:{attrs:{agi:25},aptitude:{apLight:22},sect:{id:sect_jiangnanqiguai,rank:1},hard:[sect]}`；`layerStats:{eva:[1,5],tough:[1,5]}`；`setTags:[]`。
 
 - 招式：错肩 `mv_qiguaihebushu_cuojian`（L1，与相邻友方换位，5%/2，`power:0`）；补位 `mv_qiguaihebushu_buwei`（L4，移至友方相邻空格并获 `bf_yuanhu`1，6%/3，`power:0`）。
 - 被动：七位 `ps_qiguaihebushu_qiwei`（每名相邻友方 eva +2，上限8）；合斗 `ps_qiguaihebushu_hedou`（相邻友方受击后下一步移动耗力 −10%）。获取：七怪任意三人共同传授；神雕柯镇恶仅 `maxLayer:6`。
 
 #### `sk_lingyangbu` 羚羊步（5 玄中 · 轻功）
 
-**字段**｜`origin:expanded`；`sect:sect_jiangnanqiguai`；`nature:neutral`；`wOut/wIn:0.75/0.25`；`sourceChapters:[ch02_shediao]`；`Q_skill=QS(5)=65`；`reqs:{attrs:{agi:30},aptitude:{apLight:28},prereq:[{skill:sk_qiguaihebushu,layer:4}],sect:{id:sect_jiangnanqiguai,rank:2},hard:[sect,prereq]}`；`layerStats:{eva:[1,6],spd:[1,4]}`；`setTags:[set_jiangnan_qiguai]`。
+**字段**｜`origin:expanded`；`sect:sect_jiangnanqiguai`；`nature:neutral`；`wOut/wIn:0.75/0.25`；`sourceChapters:[ch02_shediao]`；`Q_skill=QS(5)=65`；`reqs:{attrs:{agi:30},aptitude:{apLight:28},prereq:[{skill:sk_qiguaihebushu,layer:4}],sect:{id:sect_jiangnanqiguai,rank:2},hard:[sect,prereq]}`；`layerStats:{eva:[1,6],spd:[1,4]}`；`setTags:[]`。
 
 - 招式：跃沟 `mv_lingyangbu_yuegou`（L1，自身移3格，5%/3，`power:0`）；折角 `mv_lingyangbu_zhejiao`（L4，移至敌侧后空格，6%/3，`power:0`）。
 - 被动：山行 `ps_lingyangbu_shanxing`（坡地移动耗力 −8%→20%）；灵足 `ps_lingyangbu_lingzu`（移动 ≥3 格后 eva +4→10）。获取：七怪 L2；以韩宝驹“马王神”与大漠训练形象扩展。
 
 #### `sk_tiebifangshen` 铁臂防身（6 玄上 · 内功）
 
-**字段**｜`origin:expanded`；`sect:sect_jiangnanqiguai`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:35,str:32},aptitude:{apInner:32},prereq:[{skill:sk_xiaomituozhuang,layer:4}],sect:{id:sect_jiangnanqiguai,rank:3},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:20,hpMaxPct:12,attrs:{con:5,str:3},mpRegen:1.8,stats:{defOut:5,resInjury:5}}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_dumai,mer_shouyangming]`；`setTags:[set_jiangnan_qiguai]`。
+**字段**｜`origin:expanded`；`sect:sect_jiangnanqiguai`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:35,str:32},aptitude:{apInner:32},prereq:[{skill:sk_xiaomituozhuang,layer:4}],sect:{id:sect_jiangnanqiguai,rank:3},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:20,hpMaxPct:12,attrs:{con:5,str:3},mpRegen:1.8,stats:{defOut:5,resInjury:5}}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_dumai,mer_shouyangming]`；`setTags:[]`。
 
 - 招式：架臂 `mv_tiebifangshen_jiabi`（L2，自身，6%/3，`bf_tiebi`2）；舍身 `mv_tiebifangshen_sheshen`（L6，自身，7%/4，`bf_yuanhu`2、`bf_jiangu`1）；均 `power:0`。
 - 被动：笑弥陀 `ps_tiebifangshen_xiaomituo`（外功减伤 +4%→10%）；护徒 `ps_tiebifangshen_hutu`（相邻友方低血时自身 tough +5）。获取：张阿生传授窗口；神雕柯镇恶整理遗法 `maxLayer:6`。
@@ -2219,14 +2219,14 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_nanshanzhangfa` | 南山掌法（2 黄中） | 江南七怪 / 南希仁 | 拳脚/拳掌 | 射雕 | 单体 1.00、击退；`set_jiangnan_qiguai` | 无 | 原著；详细卡见 §9.2 |
-| `sk_chengchuidafa` | 秤锤打法（2 黄中） | 江南七怪 / 全金发 | 兵器/奇门 | 射雕 | 单体 1.00、点穴20%；`set_jiangnan_qiguai` | 无 | **（原创扩展命名）**；详细卡见 §9.2 |
-| `sk_shizhangrumen` | 铁杖入门（2 黄中） | 江南七怪 / 柯镇恶 | 兵器/棍杖 | 射雕、神雕 | 单体 1.10，听声杖法前置；`set_jiangnan_qiguai` | 无；L1 | 柯镇恶持铁杖为原著；套路**（原创扩展）** |
-| `sk_duanbianrumen` | 短鞭入门（2 黄中） | 江南七怪 / 韩宝驹 | 兵器/鞭索 | 射雕 | 单体 1.05，拉拽式 1.00；`set_jiangnan_qiguai` | 无；L1 | 韩宝驹持金龙鞭为原著；套路**（原创扩展）** |
-| `sk_miaoshoubianji` | 妙手辨机（2 黄中） | 江南七怪 / 朱聪 | 杂学/书画 | 射雕 | `art:10`；拆陷阱、战斗获 `bf_dongxi`1；`set_jiangnan_qiguai` | 无；L1 | 朱聪“妙手书生”为原著；技能**（原创扩展）** |
-| `sk_hengjiangbian` | 横江鞭（3 黄上） | 江南七怪 / 韩宝驹 | 兵器/鞭索 | 射雕 | 横扫 .85、拉拽式 1.00；`set_jiangnan_qiguai` | 短鞭入门 4 重 | **（原创扩展）** |
-| `sk_xiaoyingduanjian` | 小莹短剑（3 黄上） | 江南七怪 / 韩小莹 | 兵器/剑 | 射雕 | 单体 1.10、回身招架；`set_jiangnan_qiguai` | 无；L1 | 韩小莹使剑为原著；套路**（原创扩展命名）** |
-| `sk_xiaomituozhuang` | 笑弥陀桩（3 黄上） | 江南七怪 / 张阿生 | 内功 | 射雕 | `nature:yang`；`IP=10+6+2×4+5×1.2=30`；`mer_dumai`；`set_jiangnan_qiguai` | 无；L1 | 张阿生外号与体魄为原著；心法**（原创扩展命名）** |
+| `sk_nanshanzhangfa` | 南山掌法（2 黄中） | 江南七怪 / 南希仁 | 拳脚/拳掌 | 射雕 | 单体 1.00、击退；`[]` | 无 | 原著；详细卡见 §9.2 |
+| `sk_chengchuidafa` | 秤锤打法（2 黄中） | 江南七怪 / 全金发 | 兵器/奇门 | 射雕 | 单体 1.00、点穴20%；`[]` | 无 | **（原创扩展命名）**；详细卡见 §9.2 |
+| `sk_shizhangrumen` | 铁杖入门（2 黄中） | 江南七怪 / 柯镇恶 | 兵器/棍杖 | 射雕、神雕 | 单体 1.10，听声杖法前置；`[]` | 无；L1 | 柯镇恶持铁杖为原著；套路**（原创扩展）** |
+| `sk_duanbianrumen` | 短鞭入门（2 黄中） | 江南七怪 / 韩宝驹 | 兵器/鞭索 | 射雕 | 单体 1.05，拉拽式 1.00；`[]` | 无；L1 | 韩宝驹持金龙鞭为原著；套路**（原创扩展）** |
+| `sk_miaoshoubianji` | 妙手辨机（2 黄中） | 江南七怪 / 朱聪 | 杂学/书画 | 射雕 | `art:10`；拆陷阱、战斗获 `bf_dongxi`1；`[]` | 无；L1 | 朱聪“妙手书生”为原著；技能**（原创扩展）** |
+| `sk_hengjiangbian` | 横江鞭（3 黄上） | 江南七怪 / 韩宝驹 | 兵器/鞭索 | 射雕 | 横扫 .85、拉拽式 1.00；`[]` | 短鞭入门 4 重 | **（原创扩展）** |
+| `sk_xiaoyingduanjian` | 小莹短剑（3 黄上） | 江南七怪 / 韩小莹 | 兵器/剑 | 射雕 | 单体 1.10、回身招架；`[]` | 无；L1 | 韩小莹使剑为原著；套路**（原创扩展命名）** |
+| `sk_xiaomituozhuang` | 笑弥陀桩（3 黄上） | 江南七怪 / 张阿生 | 内功 | 射雕 | `nature:yang`；`IP=10+6+2×4+5×1.2=30`；`mer_dumai`；`[]` | 无；L1 | 张阿生外号与体魄为原著；心法**（原创扩展命名）** |
 
 **黄阶整体预算核对**：铁杖、短剑单体 cd1 均为 `1.12≈1.10`；短鞭拉拽式以单体 cd1 扣 `.10` 得 `1.02≈1.00`；横江鞭横扫 cd1 为 `.75×1.12=.84≈.85`，拉拽式同前。笑弥陀桩精确命中黄上 IP 30；所有 `layerStats≤6`。
 
@@ -2263,7 +2263,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {wis 55, cha 40}`；`hard []`（剧情途径；强度参考技艺 `formation`） |
 | layerStats | `effHit [3, 9]`、`parry [1, 6]`（合计 15） |
 | 层数要点 | 1：运筹、鱼鳞阵、兵法 ｜ 3：奇正相生 ｜ 4：阵法娴熟 ｜ 5：背嵬冲阵 ｜ **7：绝招 撼山易** ｜ 8：以逸待劳、精忠 ｜ 10：武穆大成 |
-| setTags / conflicts | `set_guojing_xiazhe`、`set_yangjia_jiangmen` / 无 |
+| setTags / conflicts | `[set_guojing_xiazhe]` / 无 |
 | special / observable | `{fusible: false}` / `false` |
 | 获取 | 射雕 `qiyu q_02_main_9x`（铁掌峰中指峰，与郭靖共读，原创扩展）`maxLayer 10`；神雕 `master npc_guojing` `maxLayer 10`（襄阳守城线）；倚天 `qiyu q_04_main_9x`（屠龙刀藏书）`maxLayer 10` |
 | 图鉴文本 | 岳飞遗下的兵法韬略，射雕中几经辗转为郭靖所得，后郭靖以之守襄阳；倚天时藏于屠龙刀中（原著）。本作以统兵布阵的队伍增益实现。 |
@@ -2296,7 +2296,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {str 45, agi 40}`；`aptitude {apSpear 45}`；`prereq [{skill: sk_yangjiaqiangfa, layer: 5}]`；`hard [prereq]` |
 | layerStats | `hit [2, 8]`、`crit [1, 7]`（合计 15） |
 | 层数要点 | 1：梨花点点、直刺、一寸长一寸强 ｜ 3：梨花喷雪、火药 ｜ 5：二十年 ｜ **7：绝招 天下无敌手** ｜ 8：拒马、无敌手 ｜ 10：梨花大成 |
-| setTags / conflicts | `set_yangjia_jiangmen` / 无 |
+| setTags / conflicts | `[]` / 无 |
 | special / observable | `{fusible: true}` / `true` |
 | 获取 | 射雕 `master npc_yangmiaozhen` `maxLayer 10`（山东支线，原创扩展）；神雕 `manual it_miji_lihuaqiang` `maxLayer 8`；碧血 `master npc_ming_jiaotou`（袁崇焕旧部教头，原创扩展）`maxLayer 9`；`observe` 6 |
 | 图鉴文本 | **（原创扩展）**取意南宋杨妙真以梨花枪著称的史料形象；史料原句仍待校勘，火药喷筒是玩法嫁接。本作将其列入“将门”玩法组，不宣称与杨再兴同一血缘或谱系。 |
@@ -2319,7 +2319,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 ### 10.4 玄/黄阶紧凑卡
 
-**`sk_yangjiaqiangfa` 杨家枪法**（6 玄上 · 枪 · 阳 · 0.75/0.25 · 栏 3）｜reqs：`attrs {str 30, agi 25}`、`aptitude {apSpear 30}`、`prereq [{skill: sk_liuheqiang, layer: 4}]`（软，杨家后人线免除）｜layerStats：`hit [1,5]`、`parry [1,5]`｜setTags：`set_yangjia_jiangmen`｜获取：射雕 `master npc_yangtiexin` `maxLayer 10`（牛家村/比武招亲线）、`master npc_munianci` `maxLayer 8`；神雕 `manual it_miji_yangjiaqiangfa`（杨铁心遗谱）`maxLayer 10`；碧血 `master npc_ming_jiaotou`（明军旧部，原创扩展）`maxLayer 9`；`observe` 6｜出处：杨铁心在《射雕英雄传》中施展家传枪法；“拦、拿、扎”为通用枪术语，“回马枪”在此作为**（原创扩展）**招式，不宣称为小说具名招法
+**`sk_yangjiaqiangfa` 杨家枪法**（6 玄上 · 枪 · 阳 · 0.75/0.25 · 栏 3）｜reqs：`attrs {str 30, agi 25}`、`aptitude {apSpear 30}`、`prereq [{skill: sk_liuheqiang, layer: 4}]`（软，杨家后人线免除）｜layerStats：`hit [1,5]`、`parry [1,5]`｜setTags：`[]`｜获取：射雕 `master npc_yangtiexin` `maxLayer 10`（牛家村/比武招亲线）、`master npc_munianci` `maxLayer 8`；神雕 `manual it_miji_yangjiaqiangfa`（杨铁心遗谱）`maxLayer 10`；碧血 `master npc_ming_jiaotou`（明军旧部，原创扩展）`maxLayer 9`；`observe` 6｜出处：杨铁心在《射雕英雄传》中施展家传枪法；“拦、拿、扎”为通用枪术语，“回马枪”在此作为**（原创扩展）**招式，不宣称为小说具名招法
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2331,7 +2331,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_yangjiaqiangfa_jiafeng` 忠烈家风（1，stat：`resMind` +[3, 8] pp）；`ps_yangjiaqiangfa_huima` 回马（5，stat Z3：回马枪反击 +10%）；`ps_yangjiaqiangfa_dacheng` 大成（10，stat Z3：对以突进（`aoe_dash`）接近自身的敌人，本回合反击与攻击 +10%）。
 
-**`sk_liuheqiang` 六合枪**（3 黄上 · 枪 · 阳 · 0.85/0.15 · 栏 3）｜**（原创扩展）**自宋至清军伍、镖局通行枪法，"中平枪，枪中王"为民间枪谚｜reqs：无｜layerStats：`hit [1,3]`、`parry [1,3]`｜setTags：`set_yangjia_jiangmen`｜获取仅限 `ch02_shediao`、`ch03_shendiao`、`ch04_yitian`、`ch07_bixue`、`ch08_luding`、`ch11_yuanyang`、`ch12_shujian`、`ch13_feihu` 的军营/镖局教头 `master`（如 `npc_generic_jiaotou`）`maxLayer 10`；`pages`（3 页）；`observe` 6
+**`sk_liuheqiang` 六合枪**（3 黄上 · 枪 · 阳 · 0.85/0.15 · 栏 3）｜**（原创扩展）**自宋至清军伍、镖局通行枪法，"中平枪，枪中王"为民间枪谚｜reqs：无｜layerStats：`hit [1,3]`、`parry [1,3]`｜setTags：`[]`｜获取仅限 `ch02_shediao`、`ch03_shendiao`、`ch04_yitian`、`ch07_bixue`、`ch08_luding`、`ch11_yuanyang`、`ch12_shujian`、`ch13_feihu` 的军营/镖局教头 `master`（如 `npc_generic_jiaotou`）`maxLayer 10`；`pages`（3 页）；`observe` 6
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2347,14 +2347,14 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 #### `sk_jiangmenzhuang` 将门桩（4 玄下 · 内功）
 
-**字段**｜`origin:expanded`；`sect:null`；`lineage:杨家将门军伍`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao,ch07_bixue]`；`reqs:{attrs:{con:25,str:25},hard:[]}`；`inner.contribution:{mpMaxPct:14,hpMaxPct:8,attrs:{con:3,str:3},mpRegen:1.5,stats:{defOut:5,resCC:5}}`，`IP=14+8+2×6+5×1.5=41.5`；`inner.meridians:[mer_dumai]`；`setTags:[set_yangjia_jiangmen]`。
+**字段**｜`origin:expanded`；`sect:null`；`lineage:杨家将门军伍`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao,ch07_bixue]`；`reqs:{attrs:{con:25,str:25},hard:[]}`；`inner.contribution:{mpMaxPct:14,hpMaxPct:8,attrs:{con:3,str:3},mpRegen:1.5,stats:{defOut:5,resCC:5}}`，`IP=14+8+2×6+5×1.5=41.5`；`inner.meridians:[mer_dumai]`；`setTags:[]`。
 
 - 招式：立枪桩 `mv_jiangmenzhuang_liqiang`（L1，自身，5%/3，`bf_wenzhong`2）；振军 `mv_jiangmenzhuang_zhenjun`（L4，自身，6%/3，`bf_renjin`2）；均 `power:0`。
 - 被动：军姿 `ps_jiangmenzhuang_junzi`（未移动时 tough +3→8）；耐阵 `ps_jiangmenzhuang_naizhen`（军阵战体力消耗 −5%→12%）。获取：杨铁心或明军旧部；均明确为原创扩展传授。
 
 #### `sk_hujunqiang` 护军枪（5 玄中 · 兵器/枪）——核算抽样
 
-**字段**｜`origin:expanded`；`sect:null`；`lineage:杨家将门军伍`；`nature:yang`；`wOut/wIn:0.80/0.20`；`weaponReq:{category:spear}`；`sourceChapters:[ch02_shediao,ch03_shendiao,ch07_bixue]`；`reqs:{attrs:{str:30,con:28},aptitude:{apSpear:28},prereq:[{skill:sk_bubingqiang,layer:4}],hard:[prereq]}`；`layerStats:{parry:[1,6],hit:[1,4]}`；`setTags:[set_yangjia_jiangmen]`。
+**字段**｜`origin:expanded`；`sect:null`；`lineage:杨家将门军伍`；`nature:yang`；`wOut/wIn:0.80/0.20`；`weaponReq:{category:spear}`；`sourceChapters:[ch02_shediao,ch03_shendiao,ch07_bixue]`；`reqs:{attrs:{str:30,con:28},aptitude:{apSpear:28},prereq:[{skill:sk_bubingqiang,layer:4}],hard:[prereq]}`；`layerStats:{parry:[1,6],hit:[1,4]}`；`setTags:[]`。
 
 - 招式：拒骑 `mv_hujunqiang_juqi`（L1，线2，**0.95**，6%/1；`.85×1.12=.952≈.95`）；护阵 `mv_hujunqiang_huzhen`（L3，单体，**1.15**，7%/1；`1×(1+.12+.05)=1.17≈1.15`）；挑落 `mv_hujunqiang_tiaoluo`（L6，单体，**1.20**，7%/2，击退1；`1×1.29−.05=1.24≈1.20`）。
 - 被动：长兵 `ps_hujunqiang_changbing`（距离2时 Z3 +4%→10%）；护军 `ps_hujunqiang_hujun`（相邻友方每人 parry +2，上限8）。获取：射雕郭靖军阵线；碧血明军教头。
@@ -2363,12 +2363,12 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_bubingqiang` | 步兵枪（2 黄中） | 将门 / 军伍 | 兵器/枪 | 射雕、神雕、碧血 | 线2 .95、基础拒马；`set_yangjia_jiangmen` | 无 | **（原创扩展）** |
-| `sk_jiangmenchangquan` | 将门长拳（2 黄中） | 将门 / 军伍 | 拳脚/拳掌 | 射雕、神雕、碧血 | 单体 1.10、稳步；`set_yangjia_jiangmen` | 无 | **（原创扩展）** |
-| `sk_junzhubu` | 军阵步（2 黄中） | 将门 / 军伍 | 轻功 | 射雕、神雕、碧血 | `QS(2)=38`，相邻友方移动耗力降低；`set_yangjia_jiangmen` | 无 | **（原创扩展）** |
-| `sk_lanmaqian` | 拦马钳（2 黄中） | 将门 / 军伍 | 兵器/奇门 | 射雕、神雕、碧血 | `exotic/misc`，拉拽式 1.00；`set_yangjia_jiangmen` | 步兵枪 3 重 | **（原创扩展）** |
-| `sk_huweidao` | 护卫刀（2 黄中） | 将门 / 军伍 | 兵器/刀 | 射雕、神雕、碧血 | 单体 1.10、友军相邻时 parry +2；`set_yangjia_jiangmen` | 无 | **（原创扩展）** |
-| `sk_liuheqiang` | 六合枪（3 黄上） | 将门 / 各地军伍镖局 | 兵器/枪 | 射雕、神雕、倚天、碧血、鹿鼎、鸳鸯、书剑、飞狐 | 单体1.00、三段1.30；`set_yangjia_jiangmen` | 无 | **（原创扩展）**；详细卡见 §10.4 |
+| `sk_bubingqiang` | 步兵枪（2 黄中） | 将门 / 军伍 | 兵器/枪 | 射雕、神雕、碧血 | 线2 .95、基础拒马；`[]` | 无 | **（原创扩展）** |
+| `sk_jiangmenchangquan` | 将门长拳（2 黄中） | 将门 / 军伍 | 拳脚/拳掌 | 射雕、神雕、碧血 | 单体 1.10、稳步；`[]` | 无 | **（原创扩展）** |
+| `sk_junzhubu` | 军阵步（2 黄中） | 将门 / 军伍 | 轻功 | 射雕、神雕、碧血 | `QS(2)=38`，相邻友方移动耗力降低；`[]` | 无 | **（原创扩展）** |
+| `sk_lanmaqian` | 拦马钳（2 黄中） | 将门 / 军伍 | 兵器/奇门 | 射雕、神雕、碧血 | `exotic/misc`，拉拽式 1.00；`[]` | 步兵枪 3 重 | **（原创扩展）** |
+| `sk_huweidao` | 护卫刀（2 黄中） | 将门 / 军伍 | 兵器/刀 | 射雕、神雕、碧血 | 单体 1.10、友军相邻时 parry +2；`[]` | 无 | **（原创扩展）** |
+| `sk_liuheqiang` | 六合枪（3 黄上） | 将门 / 各地军伍镖局 | 兵器/枪 | 射雕、神雕、倚天、碧血、鹿鼎、鸳鸯、书剑、飞狐 | 单体1.00、三段1.30；`[]` | 无 | **（原创扩展）**；详细卡见 §10.4 |
 
 **黄阶整体预算核对**：步兵枪按线2 cd1 `.85×1.12=.952≈.95`；将门长拳、护卫刀按单体 cd1 `1.12≈1.10`；拦马钳按单体 cd1 扣拉拽 `.10` 得 `1.02≈1.00`。军阵步用 `QS(2)=38`；所有 `layerStats≤6`。
 
@@ -2412,7 +2412,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | reqs | `attrs {str 45, agi 40}`；`aptitude {apHidden 45}`；`hard []` |
 | layerStats | `hit [3, 9]`、`crit [1, 6]`（合计 15） |
 | 层数要点 | 1：开弓、连珠箭、神箭 ｜ 3：穿杨、屏息 ｜ 5：射雕手 ｜ 6：力透 ｜ **7：绝招 一箭双雕** ｜ 8：骑射 ｜ 10：箭神 |
-| setTags / conflicts | `set_menggu_shediao`、`set_guojing_xiazhe` / 无 |
+| setTags / conflicts | `[set_guojing_xiazhe]` / 无 |
 | special / observable | `{fusible: true}` / `true` |
 | 获取 | 射雕 `master npc_zhebie` `maxLayer 10`（蒙古部族身份或郭靖羁绊）、`master npc_guojing` `maxLayer 6`；神雕 `master npc_guojing` `maxLayer 10`；`observe` 6 |
 | 图鉴文本 | 蒙古神箭手哲别的箭术，郭靖少年时得其亲传，曾一箭射落双雕，得成吉思汗赐金刀（射雕，原著）。本作以暗器栏的弓箭实现。 |
@@ -2435,7 +2435,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 ### 11.4 玄/黄阶紧凑卡
 
-**`sk_huodushanfa` 霍都扇法**（6 玄上 · 奇门（扇）· 阴 · 0.60/0.40 · 栏 3）｜weaponReq：`{category: exotic, kinds: [fan]}`（配霍都折扇 `eq_huoduzheshan`，design/10）｜reqs：`attrs {agi 30, wis 25}`、`aptitude {apExotic 30}`、`morality {max: −10}`（软）｜layerStats：`hit [1,5]`、`eva [1,5]`｜setTags：`set_menggu_mufu`｜获取：神雕 `master npc_huodu`（敌对路线）`maxLayer 10`；`observe` 6｜出处：霍都王子使折扇，大胜关败于朱子柳，后化名混入丐帮并害死鲁有脚（《神雕侠侣》）；“霍都扇法”、扇底藏针和毒效均为**（原创扩展）**
+**`sk_huodushanfa` 霍都扇法**（6 玄上 · 奇门（扇）· 阴 · 0.60/0.40 · 栏 3）｜weaponReq：`{category: exotic, kinds: [fan]}`（配霍都折扇 `eq_huoduzheshan`，design/10）｜reqs：`attrs {agi 30, wis 25}`、`aptitude {apExotic 30}`、`morality {max: −10}`（软）｜layerStats：`hit [1,5]`、`eva [1,5]`｜setTags：`[]`｜获取：神雕 `master npc_huodu`（敌对路线）`maxLayer 10`；`observe` 6｜出处：霍都王子使折扇，大胜关败于朱子柳，后化名混入丐帮并害死鲁有脚（《神雕侠侣》）；“霍都扇法”、扇底藏针和毒效均为**（原创扩展）**
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2446,7 +2446,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_huodushanfa_yinxian` 阴险（1，stat Z0：战斗首回合本武学暴击 +[5, 10]）；`ps_huodushanfa_wangzi` 王子骄横（5，stat Z3：对气血 < 50% 的目标 +8%）；`ps_huodushanfa_dacheng` 大成（10，mechanic：扇底藏针所附 `bf_zhongdu` 改为 `bf_judu`）。
 
-**`sk_kusangbangfa` 哭丧棒法**（6 玄上 · 棍杖 · 阴 · 0.70/0.30 · 栏 3）｜reqs：`attrs {str 30, wil 25}`、`aptitude {apStaff 30}`、`morality {max: −10}`（软）｜layerStats：`hit [1,5]`、`tough [1,5]`｜setTags：`set_menggu_mufu`｜获取：神雕 `master npc_xiaoxiangzi`（敌对路线）`maxLayer 10`；`observe` 6｜出处：湘西潇湘子使哭丧棒，形貌如僵尸（《神雕侠侣》）；棒中毒砂、“僵尸功”及其战斗效果均为**（原创扩展）**
+**`sk_kusangbangfa` 哭丧棒法**（6 玄上 · 棍杖 · 阴 · 0.70/0.30 · 栏 3）｜reqs：`attrs {str 30, wil 25}`、`aptitude {apStaff 30}`、`morality {max: −10}`（软）｜layerStats：`hit [1,5]`、`tough [1,5]`｜setTags：`[]`｜获取：神雕 `master npc_xiaoxiangzi`（敌对路线）`maxLayer 10`；`observe` 6｜出处：湘西潇湘子使哭丧棒，形貌如僵尸（《神雕侠侣》）；棒中毒砂、“僵尸功”及其战斗效果均为**（原创扩展）**
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2457,7 +2457,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_kusangbangfa_jiangshi` 僵直（1，stat：`resCC` +[4, 10] pp）；`ps_kusangbangfa_yinqi` 阴气（5，stat Z3：对气血 < 30% 的目标 +10%）；`ps_kusangbangfa_dacheng` 诈尸（10，trigger `battleStart`：自身获得 `bf_zhasi` ×1）。
 
-**`sk_mengguqishe` 蒙古骑射**（5 玄中 · 暗器（弓箭）· 阳 · 0.85/0.15 · 栏 3）｜reqs：`attrs {str 25, agi 25}`、`aptitude {apHidden 25}`｜弹药：箭｜layerStats：`hit [1,6]`、`crit [1,4]`｜setTags：`set_menggu_shediao`｜获取：射雕/神雕部族或军营教头 `master` `maxLayer 10`；鹿鼎葛尔丹部 `pages`（4 页，原创扩展）；`observe` 6。倚天元军仅为 NPC 使用
+**`sk_mengguqishe` 蒙古骑射**（5 玄中 · 暗器（弓箭）· 阳 · 0.85/0.15 · 栏 3）｜reqs：`attrs {str 25, agi 25}`、`aptitude {apHidden 25}`｜弹药：箭｜layerStats：`hit [1,6]`、`crit [1,4]`｜setTags：`[]`｜获取：射雕/神雕部族或军营教头 `master` `maxLayer 10`；鹿鼎葛尔丹部 `pages`（4 页，原创扩展）；`observe` 6。倚天元军仅为 NPC 使用
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2468,7 +2468,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_mengguqishe_mashang` 马上（1，mechanic：探索中骑马移动速度 +5%；骑乘战斗若由 design/09 支持，本武学射程 +1）；`ps_mengguqishe_caoyuan` 草原（5，stat Z3：身处平原/草地地形时本武学 +8%）；`ps_mengguqishe_dacheng` 大成（10，stat：`hit` +5%）。
 
-**`sk_menggushuaijiao` 蒙古摔跤**（3 黄上 · 擒拿 · 阳 · 0.90/0.10 · 栏 3）｜reqs：无｜layerStats：`tough [1,3]`、`hit [1,3]`｜setTags：`set_menggu_shediao`｜获取：射雕 `master npc_tuolei`（拖雷羁绊）`maxLayer 10`；神雕蒙古军营 `master`；鹿鼎布库房（若 `chapters/08` 另立"布库"武学，则本条作为其残篇印证来源）；`observe` 6。倚天蒙古军 NPC 可用但不可传授
+**`sk_menggushuaijiao` 蒙古摔跤**（3 黄上 · 擒拿 · 阳 · 0.90/0.10 · 栏 3）｜reqs：无｜layerStats：`tough [1,3]`、`hit [1,3]`｜setTags：`[]`｜获取：射雕 `master npc_tuolei`（拖雷羁绊）`maxLayer 10`；神雕蒙古军营 `master`；鹿鼎布库房（若 `chapters/08` 另立"布库"武学，则本条作为其残篇印证来源）；`observe` 6。倚天蒙古军 NPC 可用但不可传授
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2478,7 +2478,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 被动：`ps_menggushuaijiao_zhuangshi` 壮实（5，stat：`resCC` +[4, 8] pp）；`ps_menggushuaijiao_yuanman` 圆满（10，mechanic：首次练满 `apGrapple` +1；鹿鼎"布库"相关事件可直接以本武学应对，chapters/08 接口）。
 
-**`sk_mengguwandao` 蒙古弯刀**（2 黄中 · 刀 · 阳 · 0.90/0.10 · 栏 3）｜**（原创扩展）**草原马刀｜reqs：无｜layerStats：`hit [1,3]`、`crit [1,3]`｜setTags：`set_menggu_shediao`、`set_menggu_mufu`｜获取：射雕/神雕部族或军营 `master`；鹿鼎葛尔丹部 `pages`（3 页，原创扩展）；`observe` 6。倚天元军仅为 NPC 使用
+**`sk_mengguwandao` 蒙古弯刀**（2 黄中 · 刀 · 阳 · 0.90/0.10 · 栏 3）｜**（原创扩展）**草原马刀｜reqs：无｜layerStats：`hit [1,3]`、`crit [1,3]`｜setTags：`[]`｜获取：射雕/神雕部族或军营 `master`；鹿鼎葛尔丹部 `pages`（3 页，原创扩展）；`observe` 6。倚天元军仅为 NPC 使用
 
 | 招式 | 重 | 范围·射程 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
@@ -2494,21 +2494,21 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 #### `sk_caoyuanbufa` 草原步法（4 玄下 · 轻功）
 
-**字段**｜`origin:expanded`；`sect:sect_menggu`；`nature:neutral`；`wOut/wIn:0.75/0.25`；`sourceChapters:[ch02_shediao,ch03_shendiao,ch08_luding]`；`Q_skill=QS(4)=56`；`reqs:{attrs:{agi:25,con:22},aptitude:{apLight:22},sect:{id:sect_menggu,rank:1},hard:[sect]}`；`layerStats:{spd:[1,5],eva:[1,5]}`；`setTags:[set_menggu_shediao]`。
+**字段**｜`origin:expanded`；`sect:sect_menggu`；`nature:neutral`；`wOut/wIn:0.75/0.25`；`sourceChapters:[ch02_shediao,ch03_shendiao,ch08_luding]`；`Q_skill=QS(4)=56`；`reqs:{attrs:{agi:25,con:22},aptitude:{apLight:22},sect:{id:sect_menggu,rank:1},hard:[sect]}`；`layerStats:{spd:[1,5],eva:[1,5]}`；`setTags:[]`。
 
 - 招式：逐草 `mv_caoyuanbufa_zhucao`（L1，自身移2格，5%/2）；踏雪 `mv_caoyuanbufa_taxue`（L4，自身，6%/3，`bf_shenqing`1）；均 `power:0`。
 - 被动：识途 `ps_caoyuanbufa_shitu`（草原旅行耗时 −5%→12%）；长行 `ps_caoyuanbufa_changxing`（连续移动后 spd +2→5）。获取：蒙古 L1；鹿鼎葛尔丹部来源为原创扩展。
 
 #### `sk_qimawandaofa` 骑马弯刀法（5 玄中 · 兵器/刀）——核算抽样
 
-**字段**｜`origin:expanded`；`sect:sect_menggu`；`nature:yang`；`wOut/wIn:0.85/0.15`；`weaponReq:{category:blade}`；`sourceChapters:[ch02_shediao,ch03_shendiao,ch08_luding]`；`reqs:{attrs:{str:30,agi:28},aptitude:{apBlade:28},prereq:[{skill:sk_mengguchangdao,layer:4}],sect:{id:sect_menggu,rank:2},hard:[sect,prereq]}`；`layerStats:{crit:[1,6],hit:[1,4]}`；`setTags:[set_menggu_shediao]`。
+**字段**｜`origin:expanded`；`sect:sect_menggu`；`nature:yang`；`wOut/wIn:0.85/0.15`；`weaponReq:{category:blade}`；`sourceChapters:[ch02_shediao,ch03_shendiao,ch08_luding]`；`reqs:{attrs:{str:30,agi:28},aptitude:{apBlade:28},prereq:[{skill:sk_mengguchangdao,layer:4}],sect:{id:sect_menggu,rank:2},hard:[sect,prereq]}`；`layerStats:{crit:[1,6],hit:[1,4]}`；`setTags:[]`。
 
 - 招式：走马劈 `mv_qimawandaofa_zoumapi`（L1，突进2格后单体，**1.00**，6%/1；`1×1.12−.10=1.02≈1.00`）；回骑斩 `mv_qimawandaofa_huiqi`（L3，横扫，**0.95**，7%/2；`.75×1.29=.9675≈.95`）；追风刀 `mv_qimawandaofa_zhuifeng`（L6，单体，**1.30**，8%/2；`1×(1+.24+.10)−.05=1.29≈1.30`，其中后撤 1 格扣 `.05`）。
 - 被动：马上刀 `ps_qimawandaofa_mashang`（骑乘表现开放时 Z3 +4%→10%，否则无效）；回锋 `ps_qimawandaofa_huifeng`（横扫命中两人以上获 `bf_ruiyi`1）。获取：蒙古 L2；鹿鼎葛尔丹部残谱。
 
 #### `sk_mengguduanmao` 蒙古短矛（5 玄中 · 兵器/枪）
 
-**字段**｜`origin:expanded`；`sect:sect_menggu`；`nature:yang`；`wOut/wIn:0.85/0.15`；`weaponReq:{category:spear}`；`sourceChapters:[ch02_shediao,ch03_shendiao,ch08_luding]`；`reqs:{attrs:{str:28,agi:28},aptitude:{apSpear:28},prereq:[{skill:sk_mengguchangmao,layer:4}],sect:{id:sect_menggu,rank:2},hard:[sect,prereq]}`；`layerStats:{hit:[1,6],parry:[1,4]}`；`setTags:[set_menggu_shediao]`。
+**字段**｜`origin:expanded`；`sect:sect_menggu`；`nature:yang`；`wOut/wIn:0.85/0.15`；`weaponReq:{category:spear}`；`sourceChapters:[ch02_shediao,ch03_shendiao,ch08_luding]`；`reqs:{attrs:{str:28,agi:28},aptitude:{apSpear:28},prereq:[{skill:sk_mengguchangmao,layer:4}],sect:{id:sect_menggu,rank:2},hard:[sect,prereq]}`；`layerStats:{hit:[1,6],parry:[1,4]}`；`setTags:[]`。
 
 - 招式：短矛刺 `mv_mengguduanmao_cishou`（L1，单体1–2，1.10，6%/1）；投矛 `mv_mengguduanmao_toumao`（L3，投射1–4，1.10，7%/2）；拦骑 `mv_mengguduanmao_lanqi`（L6，线2，1.05，8%/2，击退1）。
 - 被动：短兵长用 `ps_mengguduanmao_changyong`（距离2时 hit +3→8）；备矛 `ps_mengguduanmao_beimao`（每战首次投矛不耗弹药）。获取：蒙古 L2；鹿鼎葛尔丹部来源为原创扩展。
@@ -2517,135 +2517,37 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_mengguwandao` | 蒙古弯刀（2 黄中） | 蒙古诸部 | 兵器/刀 | 射雕、神雕、鹿鼎 | 单体1.00、横扫.85；`set_menggu_shediao`、`set_menggu_mufu` | 无 | **（原创扩展）**；详细卡见 §11.4 |
-| `sk_caoyuanshuai` | 草原摔（2 黄中） | 蒙古诸部 | 拳脚/擒拿 | 射雕、神雕、鹿鼎 | 单体1.05、绊倒20%；`set_menggu_shediao` | 无；L1 | **（原创扩展）** |
-| `sk_menggushuaijiao` | 蒙古摔跤（3 黄上） | 蒙古诸部 | 拳脚/擒拿 | 射雕、神雕、鹿鼎 | 抱摔、过肩摔；`set_menggu_shediao` | 无 | 原著背景；详细卡见 §11.4 |
-| `sk_buzuqiang` | 部族枪（3 黄上） | 蒙古诸部 | 兵器/枪 | 射雕、神雕、鹿鼎 | 线2 .95、基础拒骑；`set_menggu_shediao` | 无；L1 | **（原创扩展）** |
-| `sk_qipaobu` | 骑跑步（3 黄上） | 蒙古诸部 | 轻功 | 射雕、神雕、鹿鼎 | `QS(3)=45`，骑行转位；`set_menggu_shediao` | 草原摔 3 重 | **（原创扩展）** |
-| `sk_junzhanghao` | 军帐号（3 黄上） | 蒙古军帐 | 杂学/音律 | 射雕、神雕、鹿鼎 | 友方 `bf_juqi`1；`music:15`；`set_menggu_shediao` | 无 | **（原创扩展）** |
-| `sk_caoyuantunaxi` | 草原吐纳息（3 黄上） | 蒙古诸部 | 内功 | 射雕、神雕、鹿鼎 | `nature:yang`；`IP=10+6+2×4+5×1.2=30`；`mer_dumai`；`set_menggu_shediao` | 无；L1 | **（原创扩展）** |
-| `sk_mengguchangdao` | 蒙古长刀（3 黄上） | 蒙古军伍 | 兵器/刀 | 射雕、神雕、鹿鼎 | 单体1.10、横扫.85；`set_menggu_shediao` | 蒙古弯刀 3 重 | **（原创扩展）** |
-| `sk_mengguchangmao` | 蒙古长矛（3 黄上） | 蒙古军伍 | 兵器/枪 | 射雕、神雕、鹿鼎 | 线2 .95、距离2命中；`set_menggu_shediao` | 无；L1 | **（原创扩展）** |
-| `sk_taomasuo` | 套马索（3 黄上） | 蒙古牧民 | 兵器/鞭索 | 射雕、神雕、鹿鼎 | 投射拉拽式 .95；`set_menggu_shediao` | 草原摔 3 重 | **（原创扩展）** |
-| `sk_qizhenhaoling` | 骑阵号令（3 黄上） | 蒙古军帐 | 杂学/阵法 | 射雕、神雕、鹿鼎 | 相邻友军 `bf_jixing`1；`formation:15`；`set_menggu_shediao` | 军帐号 3 重 | **（原创扩展）** |
+| `sk_mengguwandao` | 蒙古弯刀（2 黄中） | 蒙古诸部 | 兵器/刀 | 射雕、神雕、鹿鼎 | 单体1.00、横扫.85；`[]` | 无 | **（原创扩展）**；详细卡见 §11.4 |
+| `sk_caoyuanshuai` | 草原摔（2 黄中） | 蒙古诸部 | 拳脚/擒拿 | 射雕、神雕、鹿鼎 | 单体1.05、绊倒20%；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_menggushuaijiao` | 蒙古摔跤（3 黄上） | 蒙古诸部 | 拳脚/擒拿 | 射雕、神雕、鹿鼎 | 抱摔、过肩摔；`[]` | 无 | 原著背景；详细卡见 §11.4 |
+| `sk_buzuqiang` | 部族枪（3 黄上） | 蒙古诸部 | 兵器/枪 | 射雕、神雕、鹿鼎 | 线2 .95、基础拒骑；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_qipaobu` | 骑跑步（3 黄上） | 蒙古诸部 | 轻功 | 射雕、神雕、鹿鼎 | `QS(3)=45`，骑行转位；`[]` | 草原摔 3 重 | **（原创扩展）** |
+| `sk_junzhanghao` | 军帐号（3 黄上） | 蒙古军帐 | 杂学/音律 | 射雕、神雕、鹿鼎 | 友方 `bf_juqi`1；`music:15`；`[]` | 无 | **（原创扩展）** |
+| `sk_caoyuantunaxi` | 草原吐纳息（3 黄上） | 蒙古诸部 | 内功 | 射雕、神雕、鹿鼎 | `nature:yang`；`IP=10+6+2×4+5×1.2=30`；`mer_dumai`；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_mengguchangdao` | 蒙古长刀（3 黄上） | 蒙古军伍 | 兵器/刀 | 射雕、神雕、鹿鼎 | 单体1.10、横扫.85；`[]` | 蒙古弯刀 3 重 | **（原创扩展）** |
+| `sk_mengguchangmao` | 蒙古长矛（3 黄上） | 蒙古军伍 | 兵器/枪 | 射雕、神雕、鹿鼎 | 线2 .95、距离2命中；`[]` | 无；L1 | **（原创扩展）** |
+| `sk_taomasuo` | 套马索（3 黄上） | 蒙古牧民 | 兵器/鞭索 | 射雕、神雕、鹿鼎 | 投射拉拽式 .95；`[]` | 草原摔 3 重 | **（原创扩展）** |
+| `sk_qizhenhaoling` | 骑阵号令（3 黄上） | 蒙古军帐 | 杂学/阵法 | 射雕、神雕、鹿鼎 | 相邻友军 `bf_jixing`1；`formation:15`；`[]` | 军帐号 3 重 | **（原创扩展）** |
 
 **黄阶整体预算核对**：草原摔按单体 cd1 扣硬控 `.25×.20=.05` 得 `1.07≈1.05`；部族枪、蒙古长矛按线2 cd1 `.85×1.12=.952≈.95`；蒙古长刀单体 cd1 `1.12≈1.10`、横扫 cd1 `.84≈.85`；套马索投射拉拽按 `1×1.12×.92−.10=.930≈.95`。骑跑步用 `QS(3)=45`，草原吐纳息精确命中黄上 IP 30；所有 `layerStats≤6`。
 
 ---
 
-## 12. 套装候选（最终规则由 `design/07` 定稿）
+## 12. 套装候选（已由 `design/07` 收敛）
 
-### 12.1 约定（C22 已裁定；本体与奖励数值仍由 `design/07` 定稿）
+> **C2 定稿索引**：计件、品阶、效果、可达性及正式成员唯一见 `design/07` §10；实际 `setTags` 已按 C22 只保留正式关系。
 
-成员关系必须双向闭合：`s ∈ SetDef.members ⇔ setId ∈ SkillDef/EquipDef.setTags`。跨图鉴成员也不例外；引用成员按唯一 ID 去重，当前“候选”只表示成员建议，不代表下列奖励已经成为 `design/07` 的正式值。
+| 正式套装 | ID | 本图鉴成员 | 跨组成员 |
+|---|---|---|---|
+| 丐帮帮主 | `set_gaibang_bangzhu` | `sk_xianglong18`、`sk_dagou`、`sk_dagouzhen`、`sk_canfengyinlugong`、`sk_yunyoubu` | 无 |
+| 桃花岛主 | `set_taohuadao` | `sk_tanzhi`、`sk_bihai`、`sk_lanhuafuxueshou`、`sk_yuxiaojianfa`、`sk_luoyingshenjianzhang`、`sk_bitaoxuangong` | 无 |
+| 白驼山主 | `set_baituoshan` | `sk_hama`、`sk_lingshezhangfa`、`sk_lingshequan`、`sk_nizhuanjingmai`、`sk_tashaxing`、`sk_shexingdiaoshou` | 无 |
+| 一阳 | `set_dali_yiyang` | `sk_yiyangzhi`、`sk_liumai`、`sk_kurongchangong`、`sk_yiyangshuzhi`、`sk_duanjiajianfa`、`sk_tiannanxinfa` | 无 |
+| 九阴正宗 | `set_jiuyin_zhengzong` | `sk_jiuyin`、`sk_jiuyinshenzhao`、`sk_yihun`、`sk_dafumoquan`、`sk_yijinduangupian`、`sk_shexinglifan`、`sk_jiuyinliaoshangpian`、`sk_jiuyintiaoxipian`、`sk_shoujinpian`、`sk_biguqipian` | 无 |
+| 侠之大者 | `set_guojing_xiazhe` | `sk_jiuyin`、`sk_kongming`、`sk_zuoyouhubo`、`sk_zhebiejianshu`、`sk_wumuyishu` | `sk_xianglong18`（`design/05` 权威定义，须下游同步） |
 
-| 项 | 建议 |
-|---|---|
-| 计件 | 装配中的武学（含辅运内功、兵器栏暂不可用的兵器武学）＋穿戴中的装备；每个唯一 ID 对其 `setTags` 中每个套装各计 1 件，同一 ID 不因多来源或多实例重复计件 |
-| 套装品阶 `g_set` | `floor(median(已计件成员 effGrade))`；奇数件取中间值，偶数件取中间两值平均后向下取整。外来成员按压制后的有效品阶计入，不得改用图鉴绝对品阶 |
-| 数值写法 | "基准值 × G(g_set)"（G 取基准 §4），与 06 §3.2 同尺度；**必须标注作用层**（`attr:` 属性层 / `Z3` 增伤 / `Z4` 减伤 / `Z0` 判定 / `cost` / 机制） |
-| 上限 | 套装与 Buff、被动合并计入 06 §11.1 的族上限 |
-| 跨品阶混搭 | 允许天地玄黄任意混搭（用户示例：少林金刚＝地中龙爪手＋天上易筋经＋玄中铁砂掌＋铜人横练）；低阶成员拉低中位数，是"凑件"与"质量"的取舍 |
-| 低武可达成性 | 低武书界只能携带内/拳/兵各 1 门＋6 件装备；轻功、暗器、杂学成员不可携带。表中"低武上限"= 携带核心成员 ＋ 可带装备成员 ＋ 该书界原生（可重新习得）成员的最大件数 |
+未采用的沿门托钵、女诸葛、黑风双煞、老顽童、铁掌水上飘、江南七怪、满门忠烈、弯弓射雕、幕府群雄，以及五组 AR-01 门派底座套装，均已从实际标签移除；原因与合并去向见 `design/07` §19。装备草案不计入 v1 成员。
 
-### 12.2 候选总表
-
-| set ID | 名称 | 类型 | 成员（件） | 品阶跨度 | 中武上限 | 低武上限 |
-|---|---|---|---|---|---|---|
-| `set_gaibang_bangzhu` | 丐帮帮主 | 门派 | 降龙十八掌、打狗棒法、打狗阵、餐风饮露功、`eq_dagoubang`、`eq_jiuhulu`（6；洪七公酒葫芦见 design/10） | 天上—玄下 | 6（笑傲本土重修餐风饮露功、打狗阵） | 5（降龙＋打狗携带、餐风饮露功于鹿鼎分舵重修、打狗棒与酒葫芦装备） |
-| `set_gaibang_tuobo` | 沿门托钵 | 门派 | 穷家拳、莲花掌、赶狗棍法、餐风饮露功、铁钵功、莲花落（6） | 地下—黄中 | 6（笑傲全部原生） | 5（鹿鼎分舵：除铁钵功外全部原生） |
-| `set_taohuadao` | 桃花岛主（东邪） | 门派/人物 | 弹指神通、碧海潮生曲、兰花拂穴手、玉箫剑法、落英神剑掌、碧涛玄功、`eq_yuxiao`、`eq_ruanweijia`（8；与 design/10 §5.6 同 ID 合并） | 天下—地下 | 6 | 5 |
-| `set_huangrong_nvzhuge` | 女诸葛 | 人物传承 | 打狗棒法、兰花拂穴手、落英神剑掌、桃花阵、`eq_ruanweijia`（5） | 天中—地下 | 4 | 3 |
-| `set_baituoshan` | 白驼山主（西毒） | 门派/人物 | 蛤蟆功、灵蛇杖法、灵蛇拳、逆转经脉、`eq_baituoshezhang`（5；与 design/10 §5.6 同 ID 合并） | 天下—地下 | 5 | 4 |
-| `set_dali_yiyang` | 一阳 | 门派 | 一阳指、六脉神剑、枯荣禅功、一阳书指、段家剑法、天南心法（6） | 天上—黄上 | 4 | 3 |
-| `set_jiuyin_zhengzong` | 九阴正宗 | 传承 | 九阴真经、九阴神爪、移魂大法、大伏魔拳、易筋锻骨篇、蛇行狸翻、九阴疗伤篇、九阴调息篇、收筋篇、辟谷气篇（10） | 天上—玄中 | 4 | 2 |
-| `set_heifeng_shuangsha` | 黑风双煞 | 人物（邪） | 九阴白骨爪、摧心掌、白蟒鞭法、铜尸横练（4） | 地上—玄上 | 4 | 3 |
-| `set_guojing_xiazhe` | 侠之大者 | 人物传承 | 降龙十八掌、九阴真经、空明拳、左右互搏、哲别箭术、武穆遗书（6） | 天上—地中 | 4 | 2 |
-| `set_zhoubotong_wantong` | 老顽童 | 人物传承 | 空明拳、左右互搏、九阴真经、顽童迷踪、顽童双戏（5） | 天上—玄中 | 3 | 2 |
-| `set_tiezhang_shuishangpiao` | 铁掌水上飘 | 门派/人物 | 铁掌功、水上飘、`sk_zaoheding`（道家组）、铁掌心法、黑砂掌（5） | 天下—黄中 | 3 | 2 |
-| `set_jiangnan_qiguai` | 江南七怪 | 门派 | 听声杖法、分筋错骨手、越女剑法（韩小莹）、金龙鞭法、毒菱、南山掌法、秤锤打法、七怪合步术、羚羊步、铁臂防身、铁杖入门、短鞭入门、妙手辨机、横江鞭、小莹短剑、笑弥陀桩（16） | 玄上—黄中 | 4 | 2 |
-| `set_yangjia_jiangmen` | 满门忠烈 | 传承 | 杨家枪法、梨花枪、六合枪、武穆遗书、将门桩、护军枪、步兵枪、将门长拳、军阵步、拦马钳、护卫刀（11） | 地中—黄中 | 3（碧血至少三门枪法可本土重修） | 2（鹿鼎/鸳鸯可重修六合枪，另携带 1 门枪法） |
-| `set_menggu_shediao` | 弯弓射雕 | 门派 | 哲别箭术、蒙古骑射、蒙古摔跤、蒙古弯刀、草原步法、骑马弯刀法、蒙古短矛、草原摔、部族枪、骑跑步、军帐号、草原吐纳息、蒙古长刀、蒙古长矛、套马索、骑阵号令、`eq_jindao`（17；成吉思汗金刀见 design/10） | 地下—黄中 | 3 | 4（鹿鼎葛尔丹部可本土重修低阶成员，原创扩展；另穿金刀） |
-| `set_menggu_mufu` | 幕府群雄 | 势力 | `sk_jingangxiangmochu`（逍遥/吐蕃组）、霍都扇法、哭丧棒法、蒙古弯刀、`eq_jinchu`、`eq_huoduzheshan`（6） | 玄上—黄中 | 3 | 3（携带扇/杵/棒之一＋鹿鼎重修弯刀＋兵器装备） |
-| `set_gaibang_xingyi` | 丐帮行艺 | 门派 | 丐帮吐纳诀、流云步、短棒手、丐帮护心法、风雨掌、拨草棍法、行市刀、接风步、丐帮信令术、九袋行功、风雨连手、镇狗棒、破军鬼头刀、丐帮传声、竹杖入门、托钵桩、丐帮短拳、护脚棒、百灵步、街头演武、寻香手、风地掌、双节棒路、丐帮短刀、丐帮分手、石城步、沿街号（27） | 玄上—黄下 | 7 | 5 |
-| `set_taohua_qimen` | 桃花奇门 | 门派 | 桃花吐纳息、桃花短剑、潮音步、碧落风烟、奇门拂手、桃花剑入、药圃吐纳息、花间步、落英短拳、奇门音律、玉箫短击、飞花尘（12） | 玄上—黄中 | 7 | 5 |
-| `set_baituo_shenu` | 白驼蛇奴 | 门派 | 白驼吐纳术、灵蛇短刺、灵蛇步、毒脉护气功、蛇形吐纳息、白驼短棒、山步蛇拳、毒雾手、沙漠掌（9） | 玄上—黄中 | 7 | 5 |
-| `set_dali_huwei` | 大理护卫 | 门派 | 大理身法、护卫刀法、苍山掌、段氏养生功、天龙禅步、王府吐纳息、大理入门剑、护卫短拳、滇池步、大理长刀、渔隐叉、天龙木杖（12） | 玄上—黄中 | 7 | 5 |
-| `set_tiezhang_shanzhai` | 铁掌山寨 | 门派 | 铁掌吐纳诀、铁索步、断峰掌、铁掌桩、帮中短刀、铁臂手、山路步（7） | 玄上—黄中 | 7 | 5 |
-
-### 12.3 阈值效果（建议值；`G` = G(g_set)）
-
-**`set_gaibang_bangzhu` 丐帮帮主**（天上降龙＋天中打狗棒法＋地下打狗阵＋玄下餐风饮露功＋天中打狗棒装备；典型五件有效品阶为 12/11/11/7/4，中位数 `g_set = 11`，故 `G = 3.10`）
-- 2 件：拳掌与棍杖招式伤害 `Z3 +3%×G`（≈ +9.3%）。
-- 3 件：`attr:parry pct +3%×G`；降龙/打狗招式击杀时返还 15% 耗内（`cost`）。
-- 4 件：打狗棒法控制类附带效果命中 `Z0 effHit +10%`；降龙招式无视外防 `Z2 +5%`。
-- 5 件（机制）：每场首次施放绝招后，2 格内友方获得 `bf_juqi` 2 回合；战斗外丐帮 NPC 好感 +（design/12）。
-- 混搭：玄下的餐风饮露功把中位数压低有限（5 件时中位 11）；只凑降龙＋打狗＋打狗棒 3 件也可拿到 3 件档；洪七公酒葫芦 `eq_jiuhulu`（design/10）为可选第 6 件，"6 选 5"。低武：见总表，5 件档可达。
-
-**`set_gaibang_tuobo` 沿门托钵**（全黄玄＋地下铁钵功；g_set ≈ 2–4）
-- 2 件：`attr:hpMax pct +2%×G`。 3 件：拳掌/棍杖 `Z3 +3%×G`。 4 件：`attr:resCold pp +4×G`、`attr:resPoison pp +4×G`。 5 件（机制）：自身与 ≥ 1 名友方相邻时 `Z4 +3%×G`（群丐互保）。
-- 定位：**中武/低武的保底套装**——本组唯一在鹿鼎（原创扩展分舵）即可凑满 5 件的套装，数值低但完全不受外来压制。
-
-**`set_taohuadao` 桃花岛主（东邪）**（天下弹指/碧海＋地中兰花/玉箫＋地下落英/碧涛＋装备玉箫 `eq_yuxiao`〔design/10，地上〕、软猬甲 `eq_ruanweijia`；与 design/10 §5.6 建议同 ID，合并其成员）
-- 2 件：`attr:effHit pct +3%×G`。 3 件：`attr:seal pp +2×G`；指法/擒拿所附封穴施加率 +10pp。 4 件：调和性质招式 `Z3 +4%×G`；桃花岛杂学耗内 −10%（`cost`）。 5 件（机制）：战斗开始时 30% 令随机 1 名敌人获得 `bf_luanxin` 1 回合；自身免疫品阶 ≤ g_set 的 `mind` 减益。
-- 低武：碧海潮生曲（杂学）不可携带 → 最多 碧涛＋一门拳脚＋玉箫剑法＋玉箫＋软猬甲 = 5 件（5 件档可达）。
-
-**`set_huangrong_nvzhuge` 女诸葛**（打狗棒法＋兰花＋落英＋桃花阵＋软猬甲 `eq_ruanweijia`）
-- 2 件：`attr:eva pct +3%×G`。 3 件：本套成员招式的控制类附带施加率 +8pp。 4 件：穿戴软猬甲时 `bf_weici` 反伤 ×1.5（`settle`）。 5 件（机制）：战斗开始时本方全体获得 `bf_ningshen` 2 回合（运筹）。
-- 低武：桃花阵不可携带；打狗棒法（兵器）＋一门桃花岛拳脚＋软猬甲 = 3 件。
-
-**`set_baituoshan` 白驼山主（西毒）**（蛤蟆功＋灵蛇杖法＋灵蛇拳＋逆转经脉＋白驼蛇杖 `eq_baituoshezhang`〔design/10，地上〕；与 design/10 §5.6 建议同 ID）
-- 2 件：`attr:resPoison pp +5×G`。 3 件：自身施加的 `poison` 标签 DOT 每跳伤害 ×1.10（`settle`）。 4 件：获得 `bf_xushi` 时额外 `Z3 +5%`（至下一次攻击）。 5 件（机制）：自身施加的 `bf_shedu` 满层失去行动率 30% → 40%。
-- 注意：蛤蟆功（阳）与逆转经脉（阴）同装会阴阳相冲（05 §5.4）；逆转经脉 10 重"倒行逆施"作辅运时视为桥接，是本套的内部解法。
-
-**`set_dali_yiyang` 一阳**（天上六脉＋天中一阳指＋地上枯荣＋地中一阳书指＋地下段家剑法＋黄上天南心法）
-- 2 件：`attr:seal pp +2×G`。 3 件：指法招式 `Z3 +3%×G`；一阳疗伤治疗量 +10%。 4 件：本套成员所附 `bf_fengxue` 施加率 +10pp。 5 件（机制）：一阳疗伤冷却 −1；六脉神剑"时灵时不灵"概率减半。
-- 混搭：天南心法（黄上）作为便宜的第 6 件，会把中位数从 9 拉到 8——鼓励"宁缺毋滥"的取舍。低武：一内一拳一兵 = 3 件。
-
-**`set_jiuyin_zhengzong` 九阴正宗**
-- 2 件：`attr:atkIn pct +3%×G`。 3 件：`attr:resSeal pp +3×G`；九阴系武学修炼 +10%。 4 件：九阴系招式 `Z3 +4%×G`。 5 件（机制）：被 `seal`/`cc` 所制时，每回合开始 20% 自行驱散 1 个（品阶 ≤ g_set）。
-- 低武：本套无兵器成员，杂学、轻功不可携带 → 2 件；**这是有意的**：九阴正宗是高武终盘套，下半程只剩"九阴真经＋神爪"的 2 件档。
-
-**`set_heifeng_shuangsha` 黑风双煞**（邪练套）
-- 2 件：`attr:crit pct +3%×G`。 3 件：对带 `bleed`/`injury` 标签效果的目标 `Z3 +4%×G`。 4 件（机制）：`bf_xielian` 的 `resMind −15` 减半；夜间战斗（design/11 昼夜）`Z3 +5%`。
-- 与九阴正宗互斥（白骨爪 × 神爪互斥，05 §9.2），二者只能择一。
-
-**`set_guojing_xiazhe` 侠之大者**（郭靖传承：降龙、九阴真经、空明拳、左右互搏、哲别箭术、武穆遗书）
-- 2 件：`attr:hpMax pct +2%×G`。 3 件：`Z4 +3%×G`。 4 件（机制）：每场 1 次，相邻友方受致命伤害时由自身代受（等效 `bf_yuanhu` ×1）。 5 件：`Z3 +4%×G`。 6 件（机制）：本方有单位倒地时，自身获得 `bf_ruiyi` 与 `bf_jiangu` 各 2 回合（每场 1 次）。
-- 说明：本文已在降龙补充卡登记本套；权威定义仍需 `design/05` §13.1 同步反向 `setTags`（C22）。低武：左右互搏、哲别、武穆均不可携带 → 2 件。
-
-**`set_zhoubotong_wantong` 老顽童**
-- 2 件：`attr:resMind pp +4×G`。 3 件：左右互搏"分心二用"中两招 `Mod_special` +0.05。 4 件（机制）：每场首次受致死伤害时获得 `bf_zhasi` 效果（装死，致敬老顽童），每场 1 次。
-
-**`set_tiezhang_shuishangpiao` 铁掌水上飘**
-- 2 件：`attr:atkOut pct +3%×G`。 3 件：拳掌招式 `Z2 +3%×G`。 4 件：水域地形中 `attr:eva pct +4%×G`。 5 件（机制）：每场首次踏水（使用水上飘招式）后，下一次拳掌攻击获得 `bf_bibao` ×1。
-
-**`set_jiangnan_qiguai` 江南七怪**（射雕前期补位套）
-- 2 件：`attr:hit pct +3%×G`。 3 件：与友方攻击同一目标时 `Z3 +3%×G`（合斗）。 4 件（机制）：每名相邻友方使自身 `Z4 +2%`（至多 +6%）。 7 件（彩蛋）：战斗开始时本方全体获得 `bf_juqi` 2 回合。
-- 定位：全玄黄，g_set 仅 3–5，但射雕开局即可凑 4 件，覆盖"新书界装配栏空缺"的阵痛期。
-
-**`set_yangjia_jiangmen` 满门忠烈**
-- 2 件：`attr:parry pct +3%×G`。 3 件：枪法招式 `Z3 +4%×G`，回马枪反击 +10%。 4 件（机制）：免疫品阶 ≤ g_set 的 `bf_kongju`；气血 < 30% 时 `Z3 +5%×G`。
-
-**`set_menggu_shediao` 弯弓射雕**
-- 2 件：`attr:hit pct +3%×G`。 3 件：暗器（弓箭）招式 `Z3 +4%×G`；平原/草地地形 `attr:mov flat +1`。 4 件（机制）：战斗开始 `ct +100×G`（等效一次 `bf_xianji`）。
-- 成吉思汗金刀 `eq_jindao`（design/10）计 1 件。低武：鹿鼎葛尔丹部可本土重修骑射、摔跤、弯刀（原创扩展），再穿金刀 → 4 件档可达。
-
-**`set_menggu_mufu` 幕府群雄**（达尔巴金杵武学 `sk_jingangxiangmochu` 由逍遥/吐蕃组定义；`eq_jinchu`、`eq_huoduzheshan` 见 design/10）
-- 2 件：`attr:atkOut pct +3%×G`。 3 件：奇门兵器招式 `Z3 +4%×G`。 4 件（机制）：对宋军/丐帮/全真势力标签的敌人 `Z3 +5%`（势力标签归 design/12）。
-- `sk_longxiang` 当前不计入成员；若 `design/07` 与逍遥/吐蕃组后续决定纳入，须在本表、其武学条目和套装数据三处同步双向 `setTags`。
-
-**AR-01 新增的五组门派套装**（均为**【建议值】**；只补成员闭合，奖励由 `design/07` 定稿）
-
-- `set_gaibang_xingyi` 丐帮行艺：2 件使玄黄成员修炼经验 +8%；4 件使相邻友方 `attr:tough flat +1×G`；7 件时每场首次支援友方后自身获得 `bf_juqi` 1。
-- `set_taohua_qimen` 桃花奇门：2 件 `attr:effHit pct +2%×G`；4 件使音律/阵法效果命中 +8pp；7 件时首次施加 `mind` 或 `seal` 标签后获得 `bf_piaohu` 1。
-- `set_baituo_shenu` 白驼蛇奴：2 件 `attr:resPoison pp +3×G`；4 件使本套所附毒类效果施加率 +6pp；7 件时首次驱散自身毒类效果后获得 `bf_bidu` 2。
-- `set_dali_huwei` 大理护卫：2 件 `attr:parry pct +2%×G`；4 件时援护相邻友方后获得 `bf_shoushi` 1；7 件时每场首次承受致命伤害后保留 1 点气血并获得 `bf_jiangu` 1。
-- `set_tiezhang_shanzhai` 铁掌山寨：2 件 `attr:atkOut pct +2%×G`；4 件使拳掌所附 `injury` 标签效果命中 +6pp；7 件时首次击退敌人后获得 `bf_wenzhong` 2。
-
-上述五套成员全部只取本轮新增武学，成员卡和黄阶索引均已写入同名 `setTags`。建议阈值统一为 2/4/7 件；其典型 7 件有效品阶中位数为黄上或玄下，避免用低阶基础套追平既有天/地阶人物套。
-
----
 
 ## 13. 境界覆盖与装配可行性
 

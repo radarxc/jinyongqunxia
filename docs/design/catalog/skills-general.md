@@ -150,7 +150,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | reqs | `attrs {agi:48,wis:45}`；`aptitude {apSword:50}`；`prereq:[{skill:sk_zhuzhijianfa,layer:6}]`；`hard:[prereq]`；阿青直授来源以 `reqsOverride {prereq:[],hard:[]}` 放开 |
 | layerStats | `hit:[3,8]`、`eva:[3,7]`，第10重合计15；正常序章最多3重，轮回《越女剑·全本》最多6重，离章后残篇只保留真实已学层数 |
 | 层数要点 | 1重竹影；3重猿跃；5重一剑越甲；**7重绝招剑意无痕**（现行两种序章来源均不可达）；8～10重只作完整武学数据远景 |
-| setTags／冲突 | `[set_yuenv_jianyuan]`；无冲突；与 `sk_yuenvjian02` 只是套装候选关联，不合并同源记录 |
+| setTags／冲突 | `[]`；无冲突；与 `sk_yuenvjian02` 只是套装候选关联，不合并同源记录 |
 | 获取 | 正常序章随阿青观剑的主线节点【建议值：由 `chapters/00` 分配正式 `q_00_*`】，`maxLayer:3`；跳过序章直接得 `maxLayer:1` 残篇；轮回《越女剑·全本》按 `design/13` §6.4.3 最多6重。离开任一序章均转 `it_canye_yuenvjian`，天龙不可直接装配，规则见 `design/02` §1.2 |
 | special／图鉴 | `{fusible:false,prologueSeal:true}`；“竹枝所指，剑理先于招名；这是玩家第一次看见地阶威力，也是不可带走的剑源一梦。” |
 
@@ -173,19 +173,19 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 
 #### `sk_zhuzhijianfa` 竹枝剑法（6 玄上 · 兵器／剑 · 调和）**（原创扩展命名）**——核算抽样
 
-- 字段：`sect:null`；`lineage:阿青观竹`；`sourceChapters:[ch00_yuenv]`；`wOut/wIn:0.60/0.40`；`weaponReq:sword`；`reqs {aptitude:{apSword:32},prereq:[{skill:sk_yuezu_duanjian,layer:4}],hard:[prereq]}`；`layerStats {hit:[2,6],eva:[2,4]}`；`setTags:[set_yuenv_jianyuan]`。
+- 字段：`sect:null`；`lineage:阿青观竹`；`sourceChapters:[ch00_yuenv]`；`wOut/wIn:0.60/0.40`；`weaponReq:sword`；`reqs {aptitude:{apSword:32},prereq:[{skill:sk_yuezu_duanjian,layer:4}],hard:[prereq]}`；`layerStats {hit:[2,6],eva:[2,4]}`；`setTags:[]`。
 - 招式：点竹 `_dianzhu`（L1单体 **1.10**，6%/1；`1+.12=1.12≈1.10`）；横枝 `_hengzhi`（L3横扫 **.85**，7%/1；`.75×(1+.12+.05)=.88≈.85`）；穿林 `_chuanlin`（L6线2 **1.15**，8%/2；`.85×(1+.24+.10)=1.14≈1.15`）。被动“竹韧” `_zhuren`（招架+2→8）。
 - 获取：阿青演示后由书灵拆解为可学套路；是 `sk_yuenvjian` 常规前置，不等于原著具名剑法。
 
 #### `sk_baiyuanjianyi` 白猿剑意（5 玄中 · 杂学／心神 · 调和）**（原创扩展命名）**——核算抽样
 
-- 字段：`sect:null`；`lineage:白猿与阿青交锋的观悟`；`sourceChapters:[ch00_yuenv]`；`wOut/wIn:0.20/0.80`；`reqs {attrs:{wis:35,wil:32},hard:[]}`；`layerStats {effRes:[2,6],hit:[1,4]}`；`setTags:[set_yuenv_jianyuan]`。
+- 字段：`sect:null`；`lineage:白猿与阿青交锋的观悟`；`sourceChapters:[ch00_yuenv]`；`wOut/wIn:0.20/0.80`；`reqs {attrs:{wis:35,wil:32},hard:[]}`；`layerStats {effRes:[2,6],hit:[1,4]}`；`setTags:[]`。
 - 招式：观势 `_guanshi`（L1自身，6%/3，`bf_jingzhun`2，支援）；猿跃试锋 `_shifeng`（L3单体 **1.15**，7%/1，`bf_dongyao`30%；`1+.12+.05−.10×.30=1.14≈1.15`）；忘形 `_wangxing`（L6自身，`bf_dingxin`2，支援）。被动“先观后动” `_xianguan`（未攻击一回合后下一击 hit+5→12）。
 - 出处：白猿与阿青以竹棒交锋是原著情节；把观悟拆成杂学为原创扩展。
 
 #### `sk_yueyingshenfa` 越影身法（4 玄下 · 轻功 · 调和）**（原创扩展）**——核算抽样
 
-- 字段：`sect:null`；`sourceChapters:[ch00_yuenv]`；`Q_skill=QS(4)=56`；`wOut/wIn:0.80/0.20`；`reqs {attrs:{agi:28},aptitude:{apLight:25},hard:[]}`；`layerStats {eva:[1,5],spd:[1,5]}`；`setTags:[set_yuenv_jianyuan]`。
+- 字段：`sect:null`；`sourceChapters:[ch00_yuenv]`；`Q_skill=QS(4)=56`；`wOut/wIn:0.80/0.20`；`reqs {attrs:{agi:28},aptitude:{apLight:25},hard:[]}`；`layerStats {eva:[1,5],spd:[1,5]}`；`setTags:[]`。
 - 招式：越溪 `_yuexi`（L1自身移2格，5%/2，支援位移）；踏叶 `_taye`（L4自身，6%/3，`bf_tengyue`2，支援）；回身点剑 `_huishen`（L6单体 **1.00**，6%/1，先换位；`1+.12−.15=.97≈1.00`）。被动“山野熟路” `_shanye`（草地移动耗力−10%）。
 - 该身法只服务教学，不参与十四书界最高原生轻功统计。
 
@@ -193,10 +193,10 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 
 | ID | 名称 | 门派／来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_yuezu_duanjian` | 越卒短剑 | 越军教习 | 兵器／剑（3 黄上·neutral） | 序章 | 单体1.10与线2 .95；`setTags:[set_yuenv_jianyuan]` | 无 | **（原创扩展）** |
-| `sk_yuezu_geshou` | 越卒戈手 | 越军教习 | 兵器／枪（2 黄中·yang） | 序章 | 线2 .90、命中后击退1；`setTags:[set_yuenv_jianyuan]` | 无 | **（原创扩展）** |
+| `sk_yuezu_duanjian` | 越卒短剑 | 越军教习 | 兵器／剑（3 黄上·neutral） | 序章 | 单体1.10与线2 .95；`setTags:[]` | 无 | **（原创扩展）** |
+| `sk_yuezu_geshou` | 越卒戈手 | 越军教习 | 兵器／枪（2 黄中·yang） | 序章 | 线2 .90、命中后击退1；`setTags:[]` | 无 | **（原创扩展）** |
 | `sk_shanyetuna` | 山野吐纳 | 山民 | 内功（3 黄上·harmony） | 序章 | `IP=10+6+2×4+5×1.2=30`；`mer_renmai`【建议值】 | 无 | **（原创扩展）** |
-| `sk_muyangzhang` | 牧羊杖法 | 阿青日常技法 | 兵器／棍杖（2 黄中·neutral） | 序章 | 横扫.80、击退1；`setTags:[set_yuenv_jianyuan]` | 无 | **（原创扩展命名）** |
+| `sk_muyangzhang` | 牧羊杖法 | 阿青日常技法 | 兵器／棍杖（2 黄中·neutral） | 序章 | 横扫.80、击退1；`setTags:[]` | 无 | **（原创扩展命名）** |
 | `sk_xijiantoubu` | 溪涧投步 | 苎萝山山民 | 轻功（1 黄下·neutral） | 序章 | `Q_skill=QS(1)=32`，浅水移步教学 | 无 | **（原创扩展）** |
 | `sk_fengshitoushu` | 风石投术 | 越地牧童 | 暗器（1 黄下·neutral） | 序章 | 投石单体 1.05，教学视线与遮挡 | 无 | **（原创扩展）** |
 
@@ -277,19 +277,19 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 |---|---|---|---|---|---|---|
 | 地上9 | `sk_pojunqiangfa` | 破军枪法 | 兵器／枪 | 射雕；神雕、倚天、碧血 | `sk_duanzhenqiang`≥5 | `set_junwu_baizhan` |
 | 地中8 | `sk_baizhanxinfa` | 百战心法 | 内功 | 射雕；神雕、倚天、碧血 | `sk_jundituna`≥6 | `set_junwu_baizhan` |
-| 地中8 | `sk_yanmengqishe` | 雁门骑射 | 暗器 | 天龙；射雕、神雕 | `sk_bianshe`≥6 | `set_junwu_yanmeng` |
+| 地中8 | `sk_yanmengqishe` | 雁门骑射 | 暗器 | 天龙；射雕、神雕 | `sk_bianshe`≥6 | `[]` |
 | 地下7 | `sk_shouchengzhen` | 守城军阵 | 杂学／阵法 | 神雕；倚天、碧血 | `sk_shouchengfa`≥5 | `set_junwu_baizhan` |
 | 玄上6 | `sk_duanzhenqiang` | 断阵枪 | 兵器／枪 | 射雕；神雕、倚天 | `sk_changqiangrumen`≥4 | `set_junwu_baizhan` |
 | 玄上6 | `sk_junzhongdao` | 军中刀法 | 兵器／刀 | 天龙；明清各界 | `sk_junwuduandao`≥4 | `set_junwu_baizhan` |
 | 玄上6 | `sk_zhenqijian` | 阵旗剑 | 兵器／剑 | 神雕；倚天、碧血 | `sk_junwuchangjian`≥4 | `set_junwu_baizhan` |
-| 玄中5 | `sk_bianshe` | 边塞射法 | 暗器 | 天龙；射雕、神雕、书剑 | `sk_gongshou`≥4 | `set_junwu_yanmeng` |
+| 玄中5 | `sk_bianshe` | 边塞射法 | 暗器 | 天龙；射雕、神雕、书剑 | `sk_gongshou`≥4 | `[]` |
 | 玄中5 | `sk_jundituna` | 军旅吐纳 | 内功 | 天龙；ALL14 | 无 | `set_junwu_baizhan` |
 | 玄中5 | `sk_xingjunbu` | 行军步 | 轻功 | 天龙；ALL14 | 无 | `set_junwu_baizhan` |
 | 玄下4 | `sk_shouchengfa` | 守城法 | 杂学／阵法 | 射雕；神雕、倚天、碧血 | 无 | `set_junwu_baizhan` |
 | 黄上3 | `sk_changqiangrumen` | 长枪入门 | 兵器／枪 | 天龙；ALL14 | 无 | `set_junwu_baizhan` |
 | 黄上3 | `sk_junwuduandao` | 军伍短刀 | 兵器／刀 | 天龙；ALL14 | 无 | `set_junwu_baizhan` |
 | 黄上3 | `sk_junwuchangjian` | 军伍长剑 | 兵器／剑 | 天龙；ALL14 | 无 | `set_junwu_baizhan` |
-| 黄中2 | `sk_gongshou` | 弓手法 | 暗器 | 天龙；ALL14 | 无 | `set_junwu_yanmeng` |
+| 黄中2 | `sk_gongshou` | 弓手法 | 暗器 | 天龙；ALL14 | 无 | `[]` |
 | 黄中2 | `sk_bubingcao` | 步兵操 | 拳脚／拳掌 | 天龙；ALL14 | 无 | — |
 | 黄中2 | `sk_junzhangtuna` | 军帐吐纳 | 内功 | 天龙；ALL14 | 无 | — |
 | 黄下1 | `sk_liezhengbu` | 列阵步 | 轻功 | 天龙；ALL14 | 无 | — |
@@ -340,7 +340,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 基础 | `category:hidden`；`subType:hidden`；`grade:8`；`origin:expanded`；`sect:null`；`lineage:雁门边军骑射`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao]`；`nature:yang`；`wOut/wIn:.85/.15` |
 | reqs | `attrs {agi:48,str:42}`；`aptitude {apHidden:48}`；`prereq:[{skill:sk_bianshe,layer:6}]`；`hard:[prereq]`；弓与箭检查沿 C16／design/10 |
 | layerStats／层数 | `hit:[3,9],crit:[2,6]`；1走射、3连珠、5回马、7绝招雁落长空、10人马一体 |
-| setTags／获取 | `[set_junwu_yanmeng]`；雁门关骑军 L4 或射雕蒙古部族交流支线；`category:hidden,subType:hidden`，不占兵器栏 |
+| setTags／获取 | `[]`；雁门关骑军 L4 或射雕蒙古部族交流支线；`category:hidden,subType:hidden`，不占兵器栏 |
 | special／图鉴 | `{fusible:true}`；原著多有骑射人物，本武学名与整套招法为原创扩展 |
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -408,7 +408,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | `sk_changqiangrumen` | 长枪入门 | 各地军营 | 兵器／枪（3 黄上·yang） | ALL14 | 单体1.10、线2 .95；`set_junwu_baizhan` | 无 | **（原创扩展）** |
 | `sk_junwuduandao` | 军伍短刀 | 各地军营 | 兵器／刀（3 黄上·yang） | ALL14 | 单体1.10、横扫.85；`set_junwu_baizhan` | 无 | **（原创扩展）** |
 | `sk_junwuchangjian` | 军伍长剑 | 各地军营 | 兵器／剑（3 黄上·neutral） | ALL14 | 单体1.10、招架架势；`set_junwu_baizhan` | 无 | **（原创扩展）** |
-| `sk_gongshou` | 弓手法 | 各地军营 | 暗器（2 黄中·neutral） | ALL14 | 投射1.00，需弓箭；`set_junwu_yanmeng` | 无 | **（原创扩展）** |
+| `sk_gongshou` | 弓手法 | 各地军营 | 暗器（2 黄中·neutral） | ALL14 | 投射1.00，需弓箭；`[]` | 无 | **（原创扩展）** |
 | `sk_bubingcao` | 步兵操 | 各地军营 | 拳脚／拳掌（2 黄中·yang） | ALL14 | 单体1.10、相邻友军 hit+2 | 无 | **（原创扩展）** |
 | `sk_junzhangtuna` | 军帐吐纳 | 各地军营 | 内功（2 黄中·yang） | ALL14 | `IP=8+5+2×3+5×1=24`；`mer_dumai`【建议值】 | 无 | **（原创扩展）** |
 | `sk_liezhengbu` | 列阵步 | 各地军营 | 轻功（1 黄下·neutral） | ALL14 | `Q_skill=32`；相邻友军移动耗力−5% | 无 | **（原创扩展）** |
@@ -425,14 +425,14 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 
 | 大阶 | ID | 名称 | 类别 | 首现／复现 | 前置 | setTags |
 |---|---|---|---|---|---|---|
-| 地中8 | `sk_sihaibiaodao` | 四海镖刀 | 兵器／刀 | 笑傲；碧血至雪山 | `sk_jiebiaodaofa`≥5 | `set_biaoju_sihai` |
-| 地下7 | `sk_huweiyingqiang` | 护围缨枪 | 兵器／枪 | 连城；白马、鸳鸯、书剑、飞狐、雪山 | `sk_lianhuanqiang`≥5 | `set_biaoju_sihai` |
-| 玄上6 | `sk_jiebiaodaofa` | 解镖刀法 | 兵器／刀 | 笑傲；明清各界 | `sk_biaojurumen`≥4 | `set_biaoju_sihai` |
-| 玄中5 | `sk_lianhuanqiang` | 连环镖枪 | 兵器／枪 | 连城；清代各界 | `sk_biaojuqiangfa`≥4 | `set_biaoju_sihai` |
-| 玄中5 | `sk_huweijian` | 护围剑 | 兵器／剑 | 笑傲；明清各界 | `sk_biaojujianfa`≥4 | `set_biaoju_sihai` |
-| 玄下4 | `sk_jindunxinfa` | 金盾心法 | 内功 | 笑傲；明清各界 | `sk_zhuangxingong`≥5 | `set_biaoju_sihai` |
-| 玄下4 | `sk_tanluobu` | 探路步 | 轻功 | 笑傲；明清各界 | `sk_ganyebu`≥4 | `set_biaoju_sihai` |
-| 玄下4 | `sk_feihuangshi` | 飞蝗石 | 暗器 | 笑傲；明清各界 | 无 | `set_biaoju_sihai` |
+| 地中8 | `sk_sihaibiaodao` | 四海镖刀 | 兵器／刀 | 笑傲；碧血至雪山 | `sk_jiebiaodaofa`≥5 | `[]` |
+| 地下7 | `sk_huweiyingqiang` | 护围缨枪 | 兵器／枪 | 连城；白马、鸳鸯、书剑、飞狐、雪山 | `sk_lianhuanqiang`≥5 | `[]` |
+| 玄上6 | `sk_jiebiaodaofa` | 解镖刀法 | 兵器／刀 | 笑傲；明清各界 | `sk_biaojurumen`≥4 | `[]` |
+| 玄中5 | `sk_lianhuanqiang` | 连环镖枪 | 兵器／枪 | 连城；清代各界 | `sk_biaojuqiangfa`≥4 | `[]` |
+| 玄中5 | `sk_huweijian` | 护围剑 | 兵器／剑 | 笑傲；明清各界 | `sk_biaojujianfa`≥4 | `[]` |
+| 玄下4 | `sk_jindunxinfa` | 金盾心法 | 内功 | 笑傲；明清各界 | `sk_zhuangxingong`≥5 | `[]` |
+| 玄下4 | `sk_tanluobu` | 探路步 | 轻功 | 笑傲；明清各界 | `sk_ganyebu`≥4 | `[]` |
+| 玄下4 | `sk_feihuangshi` | 飞蝗石 | 暗器 | 笑傲；明清各界 | 无 | `[]` |
 ### 5.2 `sk_sihaibiaodao` 四海镖刀（8 地中 · 兵器／刀 · 阳）**（原创扩展）**
 
 | 字段 | 值 |
@@ -440,7 +440,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 基础 | `category:weapon`；`subType:blade`；`grade:8`；`origin:expanded`；`sect:null`；`lineage:多地镖师互证的护镖刀路`；`sourceChapters:[ch05_xiaoao,ch07_bixue,ch08_luding,ch09_liancheng,ch10_baima,ch11_yuanyang,ch12_shujian,ch13_feihu,ch14_xueshan]`；`nature:yang`；`wOut/wIn:.80/.20`；`weaponReq:{category:blade}` |
 | reqs | `attrs {str:45,con:42}`；`aptitude {apBlade:45}`；`prereq:[{skill:sk_jiebiaodaofa,layer:5}]`；`hard:[prereq]` |
 | layerStats／层数 | `parry:[3,8],crit:[2,7]`；1护镖、3卸马、5开路、7绝招四海同途、10镖在人在 |
-| setTags／获取 | `[set_biaoju_sihai]`；跨三地完成护镖支线，或任一镖局 L4 总镖头传授 |
+| setTags／获取 | `[]`；跨三地完成护镖支线，或任一镖局 L4 总镖头传授 |
 | special／图鉴 | `{fusible:true}`；不是任何一家镖局的祖传绝学 |
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -459,7 +459,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 基础 | `category:weapon`；`subType:spear`；`grade:7`；`origin:expanded`；`sect:null`；`lineage:北地车队护院`；`sourceChapters:[ch09_liancheng,ch10_baima,ch11_yuanyang,ch12_shujian,ch13_feihu,ch14_xueshan]`；`nature:harmony`；`wOut/wIn:.75/.25`；`weaponReq:{category:spear}` |
 | reqs | `attrs {str:38,agi:38}`；`aptitude {apSpear:40}`；`prereq:[{skill:sk_lianhuanqiang,layer:5}]`；`hard:[prereq]` |
 | layerStats／层数 | `parry:[3,8],hit:[2,7]`；1护车、3挑索、5回马、7绝招八方护围、10长途不懈 |
-| setTags／获取 | `[set_biaoju_sihai]`；北地镖局 L4 或连续三次无货损护送奖励 |
+| setTags／获取 | `[]`；北地镖局 L4 或连续三次无货损护送奖励 |
 | special／图鉴 | `{fusible:true}`；低武书界同类枪链的终点 |
 
 | 招式（ID） | 重 | 范围·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -501,9 +501,9 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 
 | ID | 名称 | 门派／来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_biaojurumen` | 镖局入门刀 | 镖局／护院 | 兵器／刀（3 黄上·yang） | ALL14 | 单体1.10、横扫.85；`set_biaoju_sihai` | 无 | **（原创扩展）** |
-| `sk_biaojujianfa` | 镖局剑法 | 镖局／护院 | 兵器／剑（3 黄上·neutral） | ALL14 | 单体1.10、招架+2→6；`set_biaoju_sihai` | 无 | **（原创扩展）** |
-| `sk_biaojuqiangfa` | 镖局枪法 | 镖局／护院 | 兵器／枪（2 黄中·yang） | ALL14 | 线2 .90；`set_biaoju_sihai` | 无 | **（原创扩展）** |
+| `sk_biaojurumen` | 镖局入门刀 | 镖局／护院 | 兵器／刀（3 黄上·yang） | ALL14 | 单体1.10、横扫.85；`[]` | 无 | **（原创扩展）** |
+| `sk_biaojujianfa` | 镖局剑法 | 镖局／护院 | 兵器／剑（3 黄上·neutral） | ALL14 | 单体1.10、招架+2→6；`[]` | 无 | **（原创扩展）** |
+| `sk_biaojuqiangfa` | 镖局枪法 | 镖局／护院 | 兵器／枪（2 黄中·yang） | ALL14 | 线2 .90；`[]` | 无 | **（原创扩展）** |
 | `sk_huyuanquan` | 护院拳 | 镖局／护院 | 拳脚／拳掌（2 黄中·yang） | ALL14 | 单体1.10、援护邻人 | 无 | **（原创扩展）** |
 | `sk_zhuangxingong` | 壮行功 | 镖局／护院 | 内功（2 黄中·yang） | ALL14 | `IP=8+5+2×3+5×1=24`；`mer_renmai`【建议值】 | 无 | **（原创扩展）** |
 | `sk_ganyebu` | 赶夜步 | 镖局／护院 | 轻功（1 黄下·neutral） | ALL14 | `Q_skill=32`，夜间疾行体力×.9 | 无 | **（原创扩展）** |
@@ -518,16 +518,16 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 
 | 大阶 | ID | 名称 | 类别 | 首现／复现 | 前置 | setTags |
 |---|---|---|---|---|---|---|
-| 地中8 | `sk_kaimenpiguaquan` | 开门劈挂拳 | 拳脚／拳掌 | 射雕；后世武馆 | `sk_tongbeijin`≥5 | `set_wuguan_jiben` |
-| 地下7 | `sk_tongbeijian` | 通背剑 | 兵器／剑 | 笑傲；后世武馆 | `sk_lianhuanjian`≥5 | `set_wuguan_jiben` |
-| 地下7 | `sk_hunyuanfangzhuang` | 混元方桩 | 内功 | 射雕；后世武馆 | `sk_wuguanxinfa`≥6 | `set_wuguan_jiben` |
-| 玄上6 | `sk_tongbeijin` | 通背劲 | 拳脚／拳掌 | 射雕；ALL14 | `sk_changquanrumen`≥4 | `set_wuguan_jiben` |
-| 玄上6 | `sk_tantui_tongxing` | 弹腿（通行） | 拳脚／腿法 | 天龙；ALL14 | `sk_tantuirumen`≥4 | `set_wuguan_jiben` |
-| 玄中5 | `sk_wuhuduandandao` | 五虎断门刀（民间式） | 兵器／刀 | 笑傲；后世武馆 | `sk_wuguandao`≥4 | `set_wuguan_jiben` |
-| 玄中5 | `sk_qimeigun` | 齐眉棍 | 兵器／棍杖 | 天龙；后世武馆 | `sk_wuguangun`≥4 | `set_wuguan_jiben` |
-| 玄下4 | `sk_wuguanxinfa` | 武馆心法 | 内功 | 天龙；ALL14 | `sk_zhamabu`≥4 | `set_wuguan_jiben` |
-| 玄下4 | `sk_lianhuanjian` | 连环剑 | 兵器／剑 | 射雕；ALL14 | `sk_wuguanjian`≥4 | `set_wuguan_jiben` |
-| 玄下4 | `sk_duandashou` | 短打手 | 拳脚／擒拿 | 天龙；ALL14 | `sk_changquanrumen`≥4 | `set_wuguan_jiben` |
+| 地中8 | `sk_kaimenpiguaquan` | 开门劈挂拳 | 拳脚／拳掌 | 射雕；后世武馆 | `sk_tongbeijin`≥5 | `[]` |
+| 地下7 | `sk_tongbeijian` | 通背剑 | 兵器／剑 | 笑傲；后世武馆 | `sk_lianhuanjian`≥5 | `[]` |
+| 地下7 | `sk_hunyuanfangzhuang` | 混元方桩 | 内功 | 射雕；后世武馆 | `sk_wuguanxinfa`≥6 | `[]` |
+| 玄上6 | `sk_tongbeijin` | 通背劲 | 拳脚／拳掌 | 射雕；ALL14 | `sk_changquanrumen`≥4 | `[]` |
+| 玄上6 | `sk_tantui_tongxing` | 弹腿（通行） | 拳脚／腿法 | 天龙；ALL14 | `sk_tantuirumen`≥4 | `[]` |
+| 玄中5 | `sk_wuhuduandandao` | 五虎断门刀（民间式） | 兵器／刀 | 笑傲；后世武馆 | `sk_wuguandao`≥4 | `[]` |
+| 玄中5 | `sk_qimeigun` | 齐眉棍 | 兵器／棍杖 | 天龙；后世武馆 | `sk_wuguangun`≥4 | `[]` |
+| 玄下4 | `sk_wuguanxinfa` | 武馆心法 | 内功 | 天龙；ALL14 | `sk_zhamabu`≥4 | `[]` |
+| 玄下4 | `sk_lianhuanjian` | 连环剑 | 兵器／剑 | 射雕；ALL14 | `sk_wuguanjian`≥4 | `[]` |
+| 玄下4 | `sk_duandashou` | 短打手 | 拳脚／擒拿 | 天龙；ALL14 | `sk_changquanrumen`≥4 | `[]` |
 “弹腿”在少林图鉴已有 `sk_tantui`；为避免同名异物误合并，本文正式 ID 与显示名均加“通行”语义：`sk_tantui_tongxing`／弹腿（通行），只代表武馆整理的民间套路。
 
 ### 6.2 地阶完整条目卡（3 门）
@@ -539,7 +539,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 基础 | `category:unarmed`；`subType:fist`；`grade:8`；`origin:expanded`；`sect:null`；`lineage:市镇武馆通背劈挂合练`；`sourceChapters:[ch02_shediao,ch04_yitian,ch05_xiaoao,ch07_bixue,ch08_luding,ch09_liancheng,ch11_yuanyang,ch12_shujian,ch13_feihu,ch14_xueshan]`；`nature:yang`；`wOut/wIn:.80/.20` |
 | reqs | `attrs {str:46,agi:42}`；`aptitude {apFist:45}`；`prereq:[{skill:sk_tongbeijin,layer:5}]`；`hard:[prereq]` |
 | layerStats／层数 | `hit:[3,8],crit:[2,7]`；1开门、3挂掌、5通臂、7绝招开合一气、10身手相通 |
-| setTags／获取 | `[set_wuguan_jiben]`；名城武馆连胜考校或多馆印证；不绑定现实门派谱系 |
+| setTags／获取 | `[]`；名城武馆连胜考校或多馆印证；不绑定现实门派谱系 |
 | special／图鉴 | `{fusible:true}`；名称取通行拳理意象，传承与数值为原创扩展 |
 
 | 招式（ID） | 重 | 范围·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -558,7 +558,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 基础 | `category:weapon`；`subType:sword`；`grade:7`；`origin:expanded`；`sect:null`；`lineage:游方武馆教头`；`sourceChapters:[ch05_xiaoao,ch07_bixue,ch08_luding,ch09_liancheng,ch11_yuanyang,ch12_shujian,ch13_feihu,ch14_xueshan]`；`nature:harmony`；`wOut/wIn:.70/.30`；`weaponReq:{category:sword}` |
 | reqs | `attrs {agi:42,wis:38}`；`aptitude {apSword:42}`；`prereq:[{skill:sk_lianhuanjian,layer:5}]`；`hard:[prereq]` |
 | layerStats／层数 | `hit:[3,8],parry:[2,7]`；1舒臂、3回剑、5连环、7绝招剑走通背、10臂剑如一 |
-| setTags／获取 | `[set_wuguan_jiben]`；三家武馆印证，或游方教头传授 |
+| setTags／获取 | `[]`；三家武馆印证，或游方教头传授 |
 | special／图鉴 | `{fusible:true}`；不与任何原著具名门派剑法合并 |
 
 | 招式（ID） | 重 | 范围·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -578,7 +578,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | reqs | `attrs {con:42,wil:38}`；`aptitude {apInner:40}`；`prereq:[{skill:sk_wuguanxinfa,layer:6}]`；`hard:[prereq]` |
 | inner／经脉 | `IP=26+16+2×10+5×2=72`，`attrs {con:5,str:2,wil:3}`、`stats {defOut:8,resCC:7}`；`meridians:[mer_renmai,mer_dumai]`【建议值】 |
 | layerStats／层数 | `layerStats:null`（内功属性只走 `inner.contribution.stats`，见 `design/05` §3.6、§5.5）；1重方桩；3重沉肩；5重混元；**7重绝招运劲开门**；10重根深叶茂 |
-| setTags／获取 | `[set_wuguan_jiben]`；武馆 L4 或扎桩、武馆心法双修考校 |
+| setTags／获取 | `[]`；武馆 L4 或扎桩、武馆心法双修考校 |
 | special／图鉴 | `{fusible:true}`；“混元”仅描述周身协调，不是华山混元功残承 |
 
 | 招式（ID） | 重 | 范围·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -622,11 +622,11 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 
 | ID | 名称 | 门派／来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_changquanrumen` | 长拳入门 | 市镇武馆 | 拳脚／拳掌（3 黄上·neutral） | ALL14 | 单体1.10；`set_wuguan_jiben` | 无 | **（原创扩展）** |
-| `sk_tantuirumen` | 弹腿入门 | 市镇武馆 | 拳脚／腿法（3 黄上·yang） | ALL14 | 单体1.05、击退1；`set_wuguan_jiben` | 无 | **（原创扩展）** |
-| `sk_wuguanjian` | 武馆剑法 | 市镇武馆 | 兵器／剑（2 黄中·neutral） | ALL14 | 单体1.10；`set_wuguan_jiben` | 无 | **（原创扩展）** |
-| `sk_wuguandao` | 武馆刀法 | 市镇武馆 | 兵器／刀（2 黄中·yang） | ALL14 | 单体1.10；`set_wuguan_jiben` | 无 | **（原创扩展）** |
-| `sk_wuguangun` | 武馆棍法 | 市镇武馆 | 兵器／棍杖（2 黄中·neutral） | ALL14 | 横扫.80；`set_wuguan_jiben` | 无 | **（原创扩展）** |
+| `sk_changquanrumen` | 长拳入门 | 市镇武馆 | 拳脚／拳掌（3 黄上·neutral） | ALL14 | 单体1.10；`[]` | 无 | **（原创扩展）** |
+| `sk_tantuirumen` | 弹腿入门 | 市镇武馆 | 拳脚／腿法（3 黄上·yang） | ALL14 | 单体1.05、击退1；`[]` | 无 | **（原创扩展）** |
+| `sk_wuguanjian` | 武馆剑法 | 市镇武馆 | 兵器／剑（2 黄中·neutral） | ALL14 | 单体1.10；`[]` | 无 | **（原创扩展）** |
+| `sk_wuguandao` | 武馆刀法 | 市镇武馆 | 兵器／刀（2 黄中·yang） | ALL14 | 单体1.10；`[]` | 无 | **（原创扩展）** |
+| `sk_wuguangun` | 武馆棍法 | 市镇武馆 | 兵器／棍杖（2 黄中·neutral） | ALL14 | 横扫.80；`[]` | 无 | **（原创扩展）** |
 | `sk_zhamabu` | 扎马步 | 市镇武馆 | 内功（1 黄下·yang） | ALL14 | `IP=6+4+2×2+5×1=19`；`mer_dumai`【建议值】；不计 `set_wuguan_jiben` | 无 | **（原创扩展）** |
 
 **黄阶预算核对**：拳剑刀单体约1.10；弹腿扣击退.05得1.05；棍横扫 `.75×1.12−.05=.79≈.80`；扎马步精确命中 IP19。
@@ -801,7 +801,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 基础 | `category:misc`；`subType:medicine`；`grade:8`；`origin:expanded`；`sect:null`；`lineage:游医与地方医案汇编`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch04_yitian,ch05_xiaoao,ch06_xiake,ch07_bixue,ch09_liancheng,ch12_shujian,ch13_feihu,ch14_xueshan]`；`nature:harmony`；`wOut/wIn:0/1` |
 | reqs | `attrs {wis:48,wil:40}`；`skills {med:58}`；`prereq:[{skill:sk_tuinaliaofa,layer:5}]`；`hard:[prereq]`，`med` 为软门槛 |
 | layerStats／层数 | `healPower:[3,8],resPoison:[2,7]`；1切脉、3推宫、5辨证、6金针、7绝招起沉疴、10医理贯通 |
-| setTags／获取 | `[set_xinglin_qihuang]`；三地游医医案印证，或完成无门派名医连续救治支线 |
+| setTags／获取 | `[]`；三地游医医案印证，或完成无门派名医连续救治支线 |
 | special／图鉴 | `{fusible:false}`；不代替物品与专属解药；对蛊、受制类只能依 `design/06` 压制，不能通杀 |
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -821,7 +821,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 基础 | `category:misc`；`subType:poison`；`grade:8`；`origin:expanded`；`sect:null`；`lineage:药商、仵作与江湖毒经互证`；`sourceChapters:[ch01_tianlong,ch03_shendiao,ch04_yitian,ch05_xiaoao,ch07_bixue,ch08_luding,ch09_liancheng,ch12_shujian,ch13_feihu,ch14_xueshan]`；`nature:yin`；`wOut/wIn:.20/.80` |
 | reqs | `attrs {wis:48,wil:40}`；`skills {poi:58,antidote:48}`；`prereq:[{skill:sk_baicaobiandu,layer:5}]`；`hard:[prereq]` |
 | layerStats／层数 | `effHit:[3,8],resPoison:[2,7]`；1察色、3引毒、5攻其所畏、6相制、7绝招百毒归证、10知毒知解 |
-| setTags／获取 | `[set_dujia_baicao]`；辨识八类野外毒物并取得三份地方药案；不从门派毒师处自动复制 |
+| setTags／获取 | `[]`；辨识八类野外毒物并取得三份地方药案；不从门派毒师处自动复制 |
 | special／图鉴 | `{fusible:false}`；所有中毒、驱散、免疫与跨战斗持续完整引用 `design/06` |
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -841,7 +841,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 基础 | `category:misc`；`subType:formation`；`grade:8`；`origin:expanded`；`sect:null`；`lineage:行军图、堪舆图与江湖阵图汇编`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch04_yitian,ch05_xiaoao,ch06_xiake,ch07_bixue,ch08_luding,ch09_liancheng,ch10_baima,ch11_yuanyang,ch12_shujian,ch13_feihu,ch14_xueshan]`；`nature:harmony`；`wOut/wIn:.40/.60` |
 | reqs | `attrs {wis:50,wil:42}`；`skills {formation:60}`；`prereq:[{skill:sk_xiaoqimen,layer:5}]`；`hard:[prereq]` |
 | layerStats／层数 | `hit:[2,7],parry:[3,8]`；1定门、3引路、5伏门、6移位、7绝招八门归一、10因地制宜 |
-| setTags／获取 | `[set_qimen_jianghu]`；破解三种地形阵题并完成一场单人守阵；不要求多人才能施展 |
+| setTags／获取 | `[]`；破解三种地形阵题并完成一场单人守阵；不要求多人才能施展 |
 | special／图鉴 | `{fusible:false,combo:false}`；单人可装配，多人站位只是协同，不计合击武学 |
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -863,7 +863,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 基础 | `category:misc`；`subType:music`；`grade:8`；`origin:canonExpanded`；`sect:null`；`lineage:琴师、乐工与隐者曲谱汇编`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch04_yitian,ch05_xiaoao,ch06_xiake,ch07_bixue,ch08_luding,ch12_shujian,ch13_feihu]`；`nature:harmony`；`wOut/wIn:.10/.90` |
 | reqs | `attrs {wis:46,wil:46}`；`skills {music:60}`；`prereq:[{skill:sk_qixianyin,layer:5}]`；`hard:[prereq]` |
 | layerStats／层数 | `effRes:[3,8],resMind:[2,7]`；1定弦、3和声、5清心、6解纷、7绝招万籁澄明、10心弦不乱 |
-| setTags／获取 | `[set_yayue_qingxin]`；集齐三地残谱并经一位乐师印证；需琴、箫等适用乐器时由装备标签检查 |
+| setTags／获取 | `[]`；集齐三地残谱并经一位乐师印证；需琴、箫等适用乐器时由装备标签检查 |
 | special／图鉴 | `{fusible:false}`；音律效果不穿透 `bf_mian_xin`，心神抗性与驱散完全服从 `design/06` |
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -885,7 +885,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 基础 | `category:misc`；`subType:disguise`；`grade:7`；`origin:canonExpanded`；`sect:null`；`lineage:阿朱技法观摩与江湖伶人改扮术汇编`；`sourceChapters:[ch01_tianlong,ch05_xiaoao,ch08_luding,ch09_liancheng,ch12_shujian]`；`nature:harmony`；`wOut/wIn:.30/.70` |
 | reqs | `attrs {agi:42,wis:45,cha:40}`；`skills {art:54}`；`prereq:[{skill:sk_suogugong,layer:5}]`；`hard:[prereq]` |
 | layerStats／层数 | `eva:[2,7],effRes:[3,8]`；1改貌、3拟声、5缩骨、6换步、7绝招幻形脱身、10真假难辨 |
-| setTags／获取 | `[set_huanyirong]`；天龙可观摩阿朱相关支线，其余书界由伶班／江湖秘本印证；每个来源单独限制身份伪装范围 |
+| setTags／获取 | `[]`；天龙可观摩阿朱相关支线，其余书界由伶班／江湖秘本印证；每个来源单独限制身份伪装范围 |
 | special／图鉴 | `{fusible:false}`；探索识破公式与战斗首击规则只引用 `design/06` 的 `bf_yirong` |
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -905,7 +905,7 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 | 基础 | `category:misc`；`subType:beast`；`grade:7`；`origin:expanded`；`sect:null`；`lineage:猎户、牧人、鹰师与蛇客经验汇编`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch04_yitian,ch05_xiaoao,ch06_xiake,ch07_bixue,ch08_luding,ch10_baima,ch11_yuanyang,ch12_shujian,ch13_feihu,ch14_xueshan]`；`nature:harmony`；`wOut/wIn:.50/.50` |
 | reqs | `attrs {cha:48,wis:42}`；`prereq:[{skill:sk_yingshefa,layer:5}]`；`hard:[prereq]`；驭兽效果强度读 `cha`，不虚造 `skills.beast` |
 | layerStats／层数 | `effHit:[2,7],resMind:[3,8]`；1安抚、3驱行、5鹰蛇、6兽阵、7绝招百兽归心、10人兽相知 |
-| setTags／获取 | `[set_baishou_xunyuan]`；救治并安抚三类动物、再由猎户／牧人印证；宠物与召唤上限归 `design/18` |
+| setTags／获取 | `[]`；救治并安抚三类动物、再由猎户／牧人印证；宠物与召唤上限归 `design/18` |
 | special／图鉴 | `{fusible:false,combo:false}`；不是蛊术，不能控制剧情首领或具 `bf_shouling` 的单位 |
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -966,60 +966,38 @@ IP = mpMaxPct + hpMaxPct + 2×属性点 + 5×mpRegen
 
 | ID | 名称 | 门派／来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_caoyaozhi` | 草药知 | 采药人／游医 | 杂学／医（3 黄上·harmony） | ALL14 | 识药、治疗18%；`set_xinglin_qihuang` | 无 | **（原创扩展）** |
-| `sk_baoshangfa` | 包伤法 | 军医／镖局 | 杂学／医（2 黄中·harmony） | ALL14 | 止血、治疗18%；`set_xinglin_qihuang` | 无 | **（原创扩展）** |
-| `sk_biandufa` | 辨毒法 | 药商／游医 | 杂学／毒（3 黄上·harmony） | ALL14 | 显示毒标签、`bf_bidu`2；`set_dujia_baicao` | 无 | **（原创扩展）** |
-| `sk_yantufa` | 验土法 | 仵作／采药人 | 杂学／毒（2 黄中·harmony） | ALL14 | 识别毒地形、样本；`set_dujia_baicao` | 无 | **（原创扩展）** |
-| `sk_shiguchong` | 识蛊虫 | 西南行商／猎户 | 杂学／蛊（2 黄中·neutral） | 天龙、笑傲、碧血、飞狐 | 识别蛊标签、`bf_bigu`1；`set_guchong_mifa` | 无 | **（原创扩展）** |
-| `sk_kanzhenfa` | 看阵法 | 乡勇／行商 | 杂学／阵法（3 黄上·harmony） | ALL14 | 显示阵眼与陷阱；`set_qimen_jianghu` | 无 | **（原创扩展）** |
-| `sk_buzhenrumen` | 布阵入门 | 军士／护院 | 杂学／阵法（2 黄中·neutral） | ALL14 | 放置1个阵眼、相邻 parry+2；`set_qimen_jianghu` | 无 | **（原创扩展）** |
-| `sk_diqurumen` | 笛曲入门 | 乐工／牧人 | 杂学／音律（3 黄上·harmony） | ALL14 | `bf_dingxin`2；`set_yayue_qingxin` | 无 | **（原创扩展）** |
-| `sk_linmotieshi` | 临摹帖式 | 书生／画师 | 杂学／书画（3 黄上·harmony） | ALL14 | 识字画、下一次命中+3；`set_hanmo_yiqi` | 无 | **（原创扩展）** |
-| `sk_qishirumen` | 棋势入门 | 棋摊／隐士 | 杂学／棋（2 黄中·harmony） | ALL14 | 显示下一行动、阵眼+1；`set_hanmo_yiqi` | 无 | **（原创扩展）** |
-| `sk_gaizhuangfa` | 改装法 | 伶人／行商 | 杂学／易容（3 黄上·neutral） | ALL14 | 低阶 `bf_yirong`、限平民身份；`set_huanyirong` | 无 | **（原创扩展）** |
-| `sk_xunquanshu` | 训犬术 | 猎户／庄户 | 杂学／驭兽（3 黄上·harmony） | ALL14 | 安抚犬类、犬伴 hit+2；`set_baishou_xunyuan` | 无 | **（原创扩展）** |
-| `sk_chuanyinfa` | 传音法 | 乐工／说书人 | 杂学／音功（2 黄中·harmony） | ALL14 | 友方单体 `bf_ningshen`2；`set_yayue_qingxin` | 无 | **（原创扩展）** |
-| `sk_shouxinjue` | 守心诀 | 江湖抄本 | 杂学／心神（2 黄中·harmony） | ALL14 | 自身 `bf_dingxin`2；`set_yayue_qingxin` | 无 | **（原创扩展）** |
-| `sk_jiuxuefa` | 救穴法 | 行脚医者 | 杂学／医（1 黄下·harmony） | ALL14 | 解除低阶点穴、失败则压制1回合；`set_xinglin_qihuang` | 无 | **（原创扩展）** |
-| `sk_qingxinshou` | 清心手 | 说书人／僧道散人 | 杂学／心神（1 黄下·harmony） | ALL14 | 清1个低阶 `mind` 或施 `bf_dingxin`1；`set_yayue_qingxin` | 无 | **（原创扩展）** |
+| `sk_caoyaozhi` | 草药知 | 采药人／游医 | 杂学／医（3 黄上·harmony） | ALL14 | 识药、治疗18%；`[]` | 无 | **（原创扩展）** |
+| `sk_baoshangfa` | 包伤法 | 军医／镖局 | 杂学／医（2 黄中·harmony） | ALL14 | 止血、治疗18%；`[]` | 无 | **（原创扩展）** |
+| `sk_biandufa` | 辨毒法 | 药商／游医 | 杂学／毒（3 黄上·harmony） | ALL14 | 显示毒标签、`bf_bidu`2；`[]` | 无 | **（原创扩展）** |
+| `sk_yantufa` | 验土法 | 仵作／采药人 | 杂学／毒（2 黄中·harmony） | ALL14 | 识别毒地形、样本；`[]` | 无 | **（原创扩展）** |
+| `sk_shiguchong` | 识蛊虫 | 西南行商／猎户 | 杂学／蛊（2 黄中·neutral） | 天龙、笑傲、碧血、飞狐 | 识别蛊标签、`bf_bigu`1；`[]` | 无 | **（原创扩展）** |
+| `sk_kanzhenfa` | 看阵法 | 乡勇／行商 | 杂学／阵法（3 黄上·harmony） | ALL14 | 显示阵眼与陷阱；`[]` | 无 | **（原创扩展）** |
+| `sk_buzhenrumen` | 布阵入门 | 军士／护院 | 杂学／阵法（2 黄中·neutral） | ALL14 | 放置1个阵眼、相邻 parry+2；`[]` | 无 | **（原创扩展）** |
+| `sk_diqurumen` | 笛曲入门 | 乐工／牧人 | 杂学／音律（3 黄上·harmony） | ALL14 | `bf_dingxin`2；`[]` | 无 | **（原创扩展）** |
+| `sk_linmotieshi` | 临摹帖式 | 书生／画师 | 杂学／书画（3 黄上·harmony） | ALL14 | 识字画、下一次命中+3；`[]` | 无 | **（原创扩展）** |
+| `sk_qishirumen` | 棋势入门 | 棋摊／隐士 | 杂学／棋（2 黄中·harmony） | ALL14 | 显示下一行动、阵眼+1；`[]` | 无 | **（原创扩展）** |
+| `sk_gaizhuangfa` | 改装法 | 伶人／行商 | 杂学／易容（3 黄上·neutral） | ALL14 | 低阶 `bf_yirong`、限平民身份；`[]` | 无 | **（原创扩展）** |
+| `sk_xunquanshu` | 训犬术 | 猎户／庄户 | 杂学／驭兽（3 黄上·harmony） | ALL14 | 安抚犬类、犬伴 hit+2；`[]` | 无 | **（原创扩展）** |
+| `sk_chuanyinfa` | 传音法 | 乐工／说书人 | 杂学／音功（2 黄中·harmony） | ALL14 | 友方单体 `bf_ningshen`2；`[]` | 无 | **（原创扩展）** |
+| `sk_shouxinjue` | 守心诀 | 江湖抄本 | 杂学／心神（2 黄中·harmony） | ALL14 | 自身 `bf_dingxin`2；`[]` | 无 | **（原创扩展）** |
+| `sk_jiuxuefa` | 救穴法 | 行脚医者 | 杂学／医（1 黄下·harmony） | ALL14 | 解除低阶点穴、失败则压制1回合；`[]` | 无 | **（原创扩展）** |
+| `sk_qingxinshou` | 清心手 | 说书人／僧道散人 | 杂学／心神（1 黄下·harmony） | ALL14 | 清1个低阶 `mind` 或施 `bf_dingxin`1；`[]` | 无 | **（原创扩展）** |
 
 **黄阶预算核对**：本表皆为支援／知识型杂学，不设攻击倍率；单体治疗统一18% `hpMax`，黄阶清除只对不高于来源品阶者生效。增益、驱散、识别与阵眼能力的持续／品阶对抗直接引用 `design/06`，不存在绕过专属解药、蛊主或首领免疫的例外。
 
 ---
 
-## 9. 套装候选（交 `design/07` 定稿）
+## 9. 套装候选（已由 `design/07` 收敛）
 
-> 本节只冻结候选 ID、武学成员与主题，不定义 2／3／4 件阈值、奖励或数值。计件、有效品阶中位数及最终效果服从裁定 C22 与 `design/07`。下表成员均已在 §2～§8 反向登记相同 `setTags`；不在成员表中的基础补位武学可以无套装标签。另按 C22 为 `sk_taizuchangquan` 反向登记外部候选 `set_qidan_xiaofeng`；其成员表归 `skills-xiaoyao`，不重复列为本文候选。
+> 正式成员、阈值、效果与逐书界路径唯一见 `design/07` §16；本节只保留图鉴侧成员索引。实际 `setTags` 已按 C22 只保留正式关系。
 
-| 候选套装 | ID | 武学成员 | 主题与边界 |
-|---|---|---|---|
-| 越女剑源 | `set_yuenv_jianyuan` | `sk_yuenvjian`、`sk_zhuzhijianfa`、`sk_baiyuanjianyi`、`sk_yueyingshenfa`、`sk_yuezu_duanjian`、`sk_yuezu_geshou`、`sk_muyangzhang` | 竹枝、猿跃与越卒短兵；离章后仍受序章残篇规则，不因套装恢复完整越女剑 |
-| 蓬莱潮生 | `set_penglai_chaosheng` | `sk_donghaichaoshengzhang`、`sk_tianwangbuxin`、`sk_penglaiquan`、`sk_chaoyinxinfa`、`sk_penglairumenquan`、`sk_haifengbu` | 潮息、掌针与水岸身法；是本组唯一正式门派套装 |
-| 军伍百战 | `set_junwu_baizhan` | `sk_pojunqiangfa`、`sk_baizhanxinfa`、`sk_shouchengzhen`、`sk_duanzhenqiang`、`sk_junzhongdao`、`sk_zhenqijian`、`sk_jundituna`、`sk_xingjunbu`、`sk_shouchengfa`、`sk_changqiangrumen`、`sk_junwuduandao`、`sk_junwuchangjian` | 破阵、守城与行军；阵法可单人使用，不是强制多人合击 |
-| 雁门骑射 | `set_junwu_yanmeng` | `sk_yanmengqishe`、`sk_bianshe`、`sk_gongshou` | 骑乘、远射与风向判断；弓箭武学仍计暗器栏 |
-| 四海行镖 | `set_biaoju_sihai` | `sk_sihaibiaodao`、`sk_huweiyingqiang`、`sk_jiebiaodaofa`、`sk_lianhuanqiang`、`sk_huweijian`、`sk_jindunxinfa`、`sk_tanluobu`、`sk_feihuangshi`、`sk_biaojurumen`、`sk_biaojujianfa`、`sk_biaojuqiangfa` | 护货、探路与解围；不把各家镖局合成虚构门派 |
-| 武馆基本功 | `set_wuguan_jiben` | `sk_kaimenpiguaquan`、`sk_tongbeijian`、`sk_hunyuanfangzhuang`、`sk_tongbeijin`、`sk_tantui_tongxing`、`sk_wuhuduandandao`、`sk_qimeigun`、`sk_wuguanxinfa`、`sk_lianhuanjian`、`sk_duandashou`、`sk_changquanrumen`、`sk_tantuirumen`、`sk_wuguanjian`、`sk_wuguandao`、`sk_wuguangun` | 扎实基本功与多器械互补；`sk_zhamabu` 是通行补位，不先列为计件成员 |
-| 江湖百家 | `set_jianghu_baijia` | `sk_jianghubaizhanjian`、`sk_yanzisanchaoshui`、`sk_qingfengjian`、`sk_panlonggun`、`sk_dengpingdushui`、`sk_feishahuangshi`、`sk_luoyedao`、`sk_liuxingchui`、`sk_wuyingshou`、`sk_jianghutuna`、`sk_xingqizhou`、`sk_yexinggong`、`sk_hutiaodaofa`、`sk_huiliuquan`、`sk_taizuchangquan`、`sk_jianghurumenjian`、`sk_pingfengjian`、`sk_hengdaorumenzhao`、`sk_shaobanggun`、`sk_duanqiangfa`、`sk_sanshou`、`sk_yanxingbu`、`sk_tunaqianjue`、`sk_dantianyangqi`、`sk_huxixingqi`、`sk_tongxingfeishi`、`sk_tiexiu`、`sk_jianghuchangquan`、`sk_caoshangfei` | 跨书界公开传承；成员多不代表奖励线性叠加，07 应采用档位与上限 |
-| 杏林岐黄 | `set_xinglin_qihuang` | `sk_qihuangmifa`、`sk_tuinaliaofa`、`sk_jingmaizhenfa`、`sk_wangqiwenshen`、`sk_caoyaozhi`、`sk_baoshangfa`、`sk_jiuxuefa` | 诊断、推拿、针法与救治；不绕过专属解药 |
-| 毒家百草 | `set_dujia_baicao` | `sk_baidubianzheng`、`sk_baicaobiandu`、`sk_shiduyaojing`、`sk_biandufa`、`sk_yantufa` | 识毒、用毒与相克；门派秘毒仍归各自图鉴 |
-| 蛊虫秘法 | `set_guchong_mifa` | `sk_yanggujue`、`sk_biangufa`、`sk_shiguchong` | 通用识蛊、养蛊；最高玄阶，不替代五仙等门派蛊法 |
-| 江湖奇门 | `set_qimen_jianghu` | `sk_qimenbuzhen`、`sk_xiaoqimen`、`sk_dixingkanzhen`、`sk_kanzhenfa`、`sk_buzhenrumen` | 阵眼、地形与换位；所有成员都能单人装配 |
-| 雅乐清心 | `set_yayue_qingxin` | `sk_qingxinqupu`、`sk_qixianyin`、`sk_diquxinfa`、`sk_chuanyunxiao`、`sk_ningxinjue`、`sk_diqurumen`、`sk_chuanyinfa`、`sk_shouxinjue`、`sk_qingxinshou` | 音律、音功与心神防护；不冒充门派专属曲目 |
-| 翰墨弈气 | `set_hanmo_yiqi` | `sk_feibairujian`、`sk_danqingguanfa`、`sk_yizhanqipu`、`sk_zhijibufa`、`sk_linmotieshi`、`sk_qishirumen` | 书画观形与棋理预判；笔类装备是否计件由 07／10 决定 |
-| 幻易容 | `set_huanyirong` | `sk_huanyirongshu`、`sk_suogugong`、`sk_gaizhuangfa` | 改貌、拟声与缩骨；身份伪装仍由剧情白名单限制 |
-| 百兽寻源 | `set_baishou_xunyuan` | `sk_baishouyujue`、`sk_yingshefa`、`sk_ximashu`、`sk_xunquanshu` | 安抚、鹰蛇与坐骑；宠物、召唤数量和首领免疫归 `design/18`／`design/06` |
+| 正式套装 | ID | 本图鉴成员 |
+|---|---|---|
+| 江湖百家 | `set_jianghu_baijia` | `sk_jianghubaizhanjian`、`sk_yanzisanchaoshui`、`sk_qingfengjian`、`sk_panlonggun`、`sk_dengpingdushui`、`sk_feishahuangshi`、`sk_luoyedao`、`sk_liuxingchui`、`sk_wuyingshou`、`sk_jianghutuna`、`sk_xingqizhou`、`sk_yexinggong`、`sk_hutiaodaofa`、`sk_huiliuquan`、`sk_taizuchangquan`、`sk_jianghurumenjian`、`sk_pingfengjian`、`sk_hengdaorumenzhao`、`sk_shaobanggun`、`sk_duanqiangfa`、`sk_sanshou`、`sk_yanxingbu`、`sk_tunaqianjue`、`sk_dantianyangqi`、`sk_huxixingqi`、`sk_tongxingfeishi`、`sk_tiexiu`、`sk_jianghuchangquan`、`sk_caoshangfei` |
+| 军伍百战 | `set_junwu_baizhan` | `sk_pojunqiangfa`、`sk_baizhanxinfa`、`sk_shouchengzhen`、`sk_duanzhenqiang`、`sk_junzhongdao`、`sk_zhenqijian`、`sk_jundituna`、`sk_xingjunbu`、`sk_shouchengfa`、`sk_changqiangrumen`、`sk_junwuduandao`、`sk_junwuchangjian` |
+| 蓬莱潮生 | `set_penglai_chaosheng` | `sk_donghaichaoshengzhang`、`sk_tianwangbuxin`、`sk_penglaiquan`、`sk_chaoyinxinfa`、`sk_penglairumenquan`、`sk_haifengbu` |
 
-### 9.1 双向闭合与可达性抽样
-
-| 检查 | 结果 |
-|---|---|
-| 成员反向登记 | 上表 15 个本文候选的 125 个成员关系，逐项在条目卡或黄阶核心效果列登记同名 `setTags`；另有 `sk_taizuchangquan → set_qidan_xiaofeng` 1 个跨组关系，由 `skills-xiaoyao` §13.8 的成员表闭合 |
-| 黄→玄→地成长 | 越女、蓬莱、军伍、镖局、武馆、江湖、医、毒、阵、音、易容、驭兽均可由本组条目形成三阶链；蛊与翰墨主动止于玄阶，不虚造地阶 |
-| 早期可达 | 每个主要候选至少有一门黄阶成员；`set_guchong_mifa`、`set_huanyirong` 恰为黄／玄／地或黄／玄成长，不依赖跨组武学起套 |
-| 大集合边界 | `set_jianghu_baijia` 只表示公共传承标签；07 不得按 29 件逐件无限叠加，应采用封顶档位 |
-| 跨组成员 | `sk_taizuchangquan` 反向登记 `set_qidan_xiaofeng`（裁定 C22；成员正向表见 `skills-xiaoyao` §13.8）；`sk_yuenvjian02` 仅作剑源叙事关联，不列成员 |
-
----
+跨组正式关系：`sk_taizuchangquan → set_qidan_xiaofeng`，完整套装见 `design/07` §12.5。越女、雁门、镖局、武馆、杏林、毒家、蛊虫、奇门、雅乐、翰墨、易容与百兽候选均已移除实际标签；完整去向见 `design/07` §19。
 
 ## 10. 本组统计
 

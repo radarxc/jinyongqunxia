@@ -102,14 +102,14 @@
 
 | ID | 名称 | 类别 | 品阶 | nature | 来源 | 前置 | setTags |
 |---|---|---|---:|---|---|---|---|
-| `sk_taixuan` | 太玄经 | 内功 | 12 天上 | harmony | 侠客岛石壁 | 石壁会意解谜 | `set_xiakedao_shibi` |
-| `sk_luohanfumo` | 罗汉伏魔神功 | 内功 | 10 天下 | harmony | 泥人经脉图 | 泥人图解谜 | `set_xiake_fumo` |
-| `sk_xiakedaozhangfa` | 侠客岛掌法 | 拳脚/拳掌 | 8 地中 | harmony | 侠客岛（原创扩展） | `sk_xiakedaoshangshanshou` 6 | `set_xiakedao_shibi` |
-| `sk_xiakedaoshangshanshou` | 赏善罚恶手 | 拳脚/擒拿 | 5 玄中 | harmony | 侠客岛（原创扩展命名） | `sk_xiakedaoquanji` 4 | `set_xiakedao_shibi` |
-| `sk_bizhenqingzhang` | 碧针清掌 | 拳脚/拳掌 | 6 玄上 | yin | 谢烟客 | 无 | `set_motian_qingzhang` |
-| `sk_konghegong` | 控鹤功 | 拳脚/指法 | 5 玄中 | harmony | 谢烟客 | `sk_xiakedaoquanji` 4 或 `sk_shangqingquan06` 4 | `set_motian_qingzhang` |
-| `sk_xiakedaoquanji` | 岛上拳基 | 拳脚/拳掌 | 2 黄中 | neutral | 侠客岛（原创扩展） | 无 | `set_xiake_fumo,set_motian_qingzhang` |
-| `sk_xiakedaozhoufa` | 赏罚令杖法 | 兵器/奇门（令牌） | 3 黄上 | neutral | 侠客岛（原创扩展命名） | 无 | `set_xiake_fumo` |
+| `sk_taixuan` | 太玄经 | 内功 | 12 天上 | harmony | 侠客岛石壁 | 石壁会意解谜 | `[]` |
+| `sk_luohanfumo` | 罗汉伏魔神功 | 内功 | 10 天下 | harmony | 泥人经脉图 | 泥人图解谜 | `[]` |
+| `sk_xiakedaozhangfa` | 侠客岛掌法 | 拳脚/拳掌 | 8 地中 | harmony | 侠客岛（原创扩展） | `sk_xiakedaoshangshanshou` 6 | `[]` |
+| `sk_xiakedaoshangshanshou` | 赏善罚恶手 | 拳脚/擒拿 | 5 玄中 | harmony | 侠客岛（原创扩展命名） | `sk_xiakedaoquanji` 4 | `[]` |
+| `sk_bizhenqingzhang` | 碧针清掌 | 拳脚/拳掌 | 6 玄上 | yin | 谢烟客 | 无 | `[]` |
+| `sk_konghegong` | 控鹤功 | 拳脚/指法 | 5 玄中 | harmony | 谢烟客 | `sk_xiakedaoquanji` 4 或 `sk_shangqingquan06` 4 | `[]` |
+| `sk_xiakedaoquanji` | 岛上拳基 | 拳脚/拳掌 | 2 黄中 | neutral | 侠客岛（原创扩展） | 无 | `[]` |
+| `sk_xiakedaozhoufa` | 赏罚令杖法 | 兵器/奇门（令牌） | 3 黄上 | neutral | 侠客岛（原创扩展命名） | 无 | `[]` |
 | `sk_xiakedaojianji` | 石室剑基 | 兵器/剑 | 2 黄中 | neutral | 侠客岛（原创扩展） | 无 | — |
 
 进阶链：`岛上拳基（黄中）→4 重→赏善罚恶手（玄中）→6 重→侠客岛掌法（地中）`。套装组合由三者与太玄经构成；太玄经不是入门链的硬前置，避免把门派地阶课程锁到唯一天下奇遇之后。
@@ -130,7 +130,7 @@
 | meridians | `[mer_ren, mer_du, mer_chong]`（预留；任、督、冲脉专精，定义归 `design/15`） |
 | 层数要点 | 1 重观图行气；3 重图意入招；5 重拳剑互证；6 重身随意转；**7 重绝招太玄归一**；8 重忘文见图；10 重百脉自运 |
 | 获取 | 侠客岛石壁 `puzzle`；先完成石室会意节点（按二十四室建模，室数**（待考）**；节点化为**（原创扩展）**），完整路径 `maxLayer 10`。只读字句路线最多提供见闻，不产秘籍；天阶不可观摩 |
-| setTags / conflicts | `[set_xiakedao_shibi]`；无 |
+| setTags / conflicts | `[]`；无 |
 | special | `fusible:false, observable:false, seclusionCap:7`；拳、剑招按当前持械状态切换，仍只占内功栏，不额外占拳脚/兵器栏 |
 | 图鉴文本 | 石壁图文所藏绝学，不拘一类招法；忘去名相，方见经脉与身法自成一体。玩法拆招与层数效果为原创扩展。 |
 
@@ -166,7 +166,7 @@
 | meridians | `[mer_ren, mer_du]`（预留；任督并修，定义归 `design/15`） |
 | 层数要点 | 1 重罗汉行气；3 重伏魔真气；4 重泥人周流；5 重罗汉护体；**7 重绝招诸相伏魔**；8 重内息自净；10 重伏魔圆满 |
 | 获取 | 泥人图谱 `puzzle maxLayer 10`；剧情失散后可收齐图谱残片恢复 `sourceCap`，不能靠观摩习得 |
-| setTags / conflicts | `[set_xiake_fumo]`；无 |
+| setTags / conflicts | `[]`；无 |
 | special | `fusible:true, observable:false, seclusionCap:8, bridge:true` |
 | 图鉴文本 | 泥人以经脉行气示意的调和内功，重在澄心护体、化解内伤；系统招式与数值为原创扩展。 |
 
@@ -196,7 +196,7 @@
 | reqs | `attrs {str:35, wil:40}`；`aptitude {apFist:35}`；`sect {id:sect_xiakedao,rank:3}`；`prereq [{skill:sk_xiakedaoshangshanshou,layer:6}]`；`hard [sect,prereq]` |
 | layerStats | `hit [2,7], parry [2,8]`，10 重合计 `7+8=15` |
 | 层数要点 | 1 重赏罚分明；3 重令出掌随；5 重刚柔互换；**7 重绝招双使合印**；8 重化执；10 重岛主印证 |
-| 获取 / 套装 | 龙、木二岛主传授**（原创扩展）**，掌门级 `maxLayer 10`；`setTags [set_xiakedao_shibi]`；`fusible:true` |
+| 获取 / 套装 | 龙、木二岛主传授**（原创扩展）**，掌门级 `maxLayer 10`；`setTags []`；`fusible:true` |
 | 图鉴文本 | 侠客岛使者与岛主掌势的游戏化归纳，刚掌负责逼位，柔掌负责锁势；原著未立此武学总名。 |
 
 | 招式 | ID | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -211,7 +211,7 @@
 
 ### 2.4 玄阶紧凑卡（3 门；抽样 1 门）
 
-**`sk_xiakedaoshangshanshou` 赏善罚恶手**（5 玄中 · 拳脚/擒拿 · harmony · `0.60/0.40` · **原创扩展命名**）｜`reqs: sect {id:sect_xiakedao,rank:2}; prereq [{skill:sk_xiakedaoquanji,layer:4}]; hard [sect,prereq]`｜`layerStats seal 6 + hit 4 =10`｜获取：岛使传授；`setTags [set_xiakedao_shibi]`。
+**`sk_xiakedaoshangshanshou` 赏善罚恶手**（5 玄中 · 拳脚/擒拿 · harmony · `0.60/0.40` · **原创扩展命名**）｜`reqs: sect {id:sect_xiakedao,rank:2}; prereq [{skill:sk_xiakedaoquanji,layer:4}]; hard [sect,prereq]`｜`layerStats seal 6 + hit 4 =10`｜获取：岛使传授；`setTags []`。
 
 | 招式 | 重 | 范围 | 倍率 | 一句效果 | 核算 |
 |---|---:|---|---:|---|---|
@@ -221,16 +221,16 @@
 
 被动：`ps_xiakedaoshangshanshou_shan` 赏（对无减益目标效果命中 +5）；`ps_xiakedaoshangshanshou_e` 罚（对有减益目标 Z3 +6%）；`ps_xiakedaoshangshanshou_dacheng` 分明（10，封穴成功后自身获 `bf_dingxin` 1）。
 
-**`sk_bizhenqingzhang` 碧针清掌**（6 玄上 · 拳脚/拳掌 · yin · `0.45/0.55`）｜谢烟客绝技；《侠客行》谢烟客演练此掌、须摒绝外扰的情节，回目**（待考）**｜`reqs attrs {wil:35}; aptitude {apFist:25}; hard []`｜招式：碧针 `mv_bizhenqingzhang_bizhen`（1.00，单体）、清掌 `mv_bizhenqingzhang_qingzhang`（0.95，远程，30% `bf_neishang`）、凝神一线 `mv_bizhenqingzhang_yixian`（1.35，需本行动未移动）｜被动：心无旁骛（未移动时命中 +10）、清气如针（内劲穿透 +8%）、大成（Z3 +8%）｜`setTags [set_motian_qingzhang]`。
+**`sk_bizhenqingzhang` 碧针清掌**（6 玄上 · 拳脚/拳掌 · yin · `0.45/0.55`）｜谢烟客绝技；《侠客行》谢烟客演练此掌、须摒绝外扰的情节，回目**（待考）**｜`reqs attrs {wil:35}; aptitude {apFist:25}; hard []`｜招式：碧针 `mv_bizhenqingzhang_bizhen`（1.00，单体）、清掌 `mv_bizhenqingzhang_qingzhang`（0.95，远程，30% `bf_neishang`）、凝神一线 `mv_bizhenqingzhang_yixian`（1.35，需本行动未移动）｜被动：心无旁骛（未移动时命中 +10）、清气如针（内劲穿透 +8%）、大成（Z3 +8%）｜`setTags []`。
 
-**`sk_konghegong` 控鹤功**（5 玄中 · 拳脚/指法 · harmony · `0.20/0.80`）｜谢烟客曾以此功较技的原著情节，人物与地点细节**（待考）**｜`reqs attrs {wil:30}; aptitude {apFinger:25}; prereq [{anyOf:[{skill:sk_xiakedaoquanji,layer:4},{skill:sk_shangqingquan06,layer:4}]}]; hard []`｜招式：摄物 `mv_konghegong_shewu`（0，拉取场景物 2 格）、控鹤 `mv_konghegong_konghe`（0.85，远程，拉敌 1）、文丞武尉 `mv_konghegong_wenchengwuwei`（1.20，把相邻轻型单位/物体投向目标，**原创扩展命名**）｜被动：隔空运劲、借物、圆满｜`setTags [set_motian_qingzhang]`。
+**`sk_konghegong` 控鹤功**（5 玄中 · 拳脚/指法 · harmony · `0.20/0.80`）｜谢烟客曾以此功较技的原著情节，人物与地点细节**（待考）**｜`reqs attrs {wil:30}; aptitude {apFinger:25}; prereq [{anyOf:[{skill:sk_xiakedaoquanji,layer:4},{skill:sk_shangqingquan06,layer:4}]}]; hard []`｜招式：摄物 `mv_konghegong_shewu`（0，拉取场景物 2 格）、控鹤 `mv_konghegong_konghe`（0.85，远程，拉敌 1）、文丞武尉 `mv_konghegong_wenchengwuwei`（1.20，把相邻轻型单位/物体投向目标，**原创扩展命名**）｜被动：隔空运劲、借物、圆满｜`setTags []`。
 
 ### 2.5 黄阶一行条目（3 门）
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_xiakedaoquanji` | 岛上拳基 | 侠客岛 | 拳脚/拳掌（neutral） | 侠客 | 单体 1.00；10 重命中 +3；黄中层数预算 `hit 3+parry 3=6`；`setTags [set_xiake_fumo,set_motian_qingzhang]` | 无 | **（原创扩展）** |
-| `sk_xiakedaozhoufa` | 赏罚令杖法 | 侠客岛 | 兵器/奇门·令牌（neutral） | 侠客 | 横扫 0.80、击退 1；黄上层数预算 6；`setTags [set_xiake_fumo]` | 无 | 原著有赏善罚恶令；武学名与招式**（原创扩展命名）** |
+| `sk_xiakedaoquanji` | 岛上拳基 | 侠客岛 | 拳脚/拳掌（neutral） | 侠客 | 单体 1.00；10 重命中 +3；黄中层数预算 `hit 3+parry 3=6`；`setTags []` | 无 | **（原创扩展）** |
+| `sk_xiakedaozhoufa` | 赏罚令杖法 | 侠客岛 | 兵器/奇门·令牌（neutral） | 侠客 | 横扫 0.80、击退 1；黄上层数预算 6；`setTags []` | 无 | 原著有赏善罚恶令；武学名与招式**（原创扩展命名）** |
 | `sk_xiakedaojianji` | 石室剑基 | 侠客岛 | 兵器/剑（neutral） | 侠客 | 单体 1.00、直线 0.80；黄中层数预算 6 | 无 | **（原创扩展）** |
 
 黄阶整体预算核对：三门耗内均以 5% 为基准；单体无附带 = 1.00，直线 `AF 0.85×(1+cd1 0.12)=0.95` 或在无 cd 时取 0.85，横扫 `0.75×1.12−击退0.05=0.79≈0.80`；每门 `layerStats≤6`，无绝招。
@@ -332,9 +332,9 @@
 
 | ID | 名称 | 类别 | 品阶 | nature | 出处/标注 | setTags |
 |---|---|---|---:|---|---|---|
-| `sk_wuxingliuhezhang` | 五行六合掌 | 拳脚/拳掌 | 7 地下 | harmony | 《侠客行》贝海石 | `set_changle_wuxing` |
-| `sk_changlezhang` | 长乐掌 | 拳脚/拳掌 | 4 玄下 | neutral | **（原创扩展）** | `set_changle_wuxing` |
-| `sk_changlexinfa` | 长乐心法 | 内功 | 5 玄中 | harmony | **（原创扩展）** | `set_changle_wuxing` |
+| `sk_wuxingliuhezhang` | 五行六合掌 | 拳脚/拳掌 | 7 地下 | harmony | 《侠客行》贝海石 | `[]` |
+| `sk_changlezhang` | 长乐掌 | 拳脚/拳掌 | 4 玄下 | neutral | **（原创扩展）** | `[]` |
+| `sk_changlexinfa` | 长乐心法 | 内功 | 5 玄中 | harmony | **（原创扩展）** | `[]` |
 | `sk_changleqinna` | 堂口擒拿 | 拳脚/擒拿 | 4 玄下 | neutral | **（原创扩展）** | — |
 | `sk_changlequan` | 长乐入门拳 | 拳脚/拳掌 | 2 黄中 | neutral | **（原创扩展）** | — |
 | `sk_changletuna` | 长乐吐纳 | 内功 | 1 黄下 | harmony | **（原创扩展）** | — |
@@ -352,7 +352,7 @@
 | reqs | `attrs {str:30,wil:35,wis:35}`；`aptitude {apFist:30}`；`sect {id:sect_changlebang,rank:3}`；`prereq [{skill:sk_changlezhang,layer:6}]`；`hard [sect,prereq]` |
 | layerStats | `hit [2,8], parry [1,7]`，合计 15 |
 | 层数要点 | 1 重五行起手；3 重相生；4 重相克；5 重六合；**7 重绝招五行归环**；9 重错位借势；10 重六合无隙 |
-| 获取 / 套装 | 贝海石传授或长乐帮清算支线秘籍；`setTags [set_changle_wuxing]`；`fusible:true` |
+| 获取 / 套装 | 贝海石传授或长乐帮清算支线秘籍；`setTags []`；`fusible:true` |
 | 图鉴文本 | 贝海石所擅掌法，以五行换势、六合封路；具体招式名与战棋轮转机制为原创扩展。 |
 
 | 招式 | ID | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -367,9 +367,9 @@
 
 ### 4.3 玄阶紧凑卡（3 门；抽样 1 门）
 
-**`sk_changlezhang` 长乐掌**（4 玄下 · 拳脚/拳掌 · neutral · **原创扩展**）｜前置 `sk_changlequan 4`，长乐帮 L2｜招式：迎客（1.00）、送客（1.05，击退1）、满堂乐（0.85横扫）｜被动：堂口声势、圆满｜`setTags [set_changle_wuxing]`。
+**`sk_changlezhang` 长乐掌**（4 玄下 · 拳脚/拳掌 · neutral · **原创扩展**）｜前置 `sk_changlequan 4`，长乐帮 L2｜招式：迎客（1.00）、送客（1.05，击退1）、满堂乐（0.85横扫）｜被动：堂口声势、圆满｜`setTags []`。
 
-**`sk_changlexinfa` 长乐心法**（5 玄中 · 内功 · harmony · **原创扩展**）｜前置 `sk_changletuna 5`｜贡献 `17+10+2×7+5×1.5=48.5`；`stats effRes5+resMind5=10`；`meridians [mer_ren,mer_dai]` 预留｜招式：调息（0，`bf_huinei` 2）、和气生财（0，`bf_dingxin` 2）｜被动：和气、帮众呼应、圆满｜`setTags [set_changle_wuxing]`。
+**`sk_changlexinfa` 长乐心法**（5 玄中 · 内功 · harmony · **原创扩展**）｜前置 `sk_changletuna 5`｜贡献 `17+10+2×7+5×1.5=48.5`；`stats effRes5+resMind5=10`；`meridians [mer_ren,mer_dai]` 预留｜招式：调息（0，`bf_huinei` 2）、和气生财（0，`bf_dingxin` 2）｜被动：和气、帮众呼应、圆满｜`setTags []`。
 
 **`sk_changleqinna` 堂口擒拿**（4 玄下 · 拳脚/擒拿 · neutral · **原创扩展**）｜`reqs aptitude {apGrapple:15}; sect {id:sect_changlebang,rank:2}; hard [sect]`。
 
@@ -399,10 +399,10 @@
 
 | ID | 名称 | 类别 | 品阶 | nature | 标注 | setTags |
 |---|---|---|---:|---|---|---|
-| `sk_heibaijianfa` | 黑白双剑法 | 兵器/剑 | 8 地中 | harmony | **（原创扩展命名）** | `set_xuansu_shuangjian` |
-| `sk_heibaijianshi` | 黑白剑势 | 兵器/剑 | 5 玄中 | harmony | **（原创扩展）** | `set_xuansu_shuangjian` |
-| `sk_xuansuxinfa` | 玄素心法 | 内功 | 4 玄下 | harmony | **（原创扩展）** | `set_xuansu_shuangjian` |
-| `sk_xuansushenfa` | 玄素身法 | 轻功 | 5 玄中 | harmony | **（原创扩展）** | `set_xuansu_shuangjian` |
+| `sk_heibaijianfa` | 黑白双剑法 | 兵器/剑 | 8 地中 | harmony | **（原创扩展命名）** | `[]` |
+| `sk_heibaijianshi` | 黑白剑势 | 兵器/剑 | 5 玄中 | harmony | **（原创扩展）** | `[]` |
+| `sk_xuansuxinfa` | 玄素心法 | 内功 | 4 玄下 | harmony | **（原创扩展）** | `[]` |
+| `sk_xuansushenfa` | 玄素身法 | 轻功 | 5 玄中 | harmony | **（原创扩展）** | `[]` |
 | `sk_xuansuquan` | 玄素护庄拳 | 拳脚/拳掌 | 2 黄中 | neutral | **（原创扩展）** | — |
 | `sk_xuansuzhuanggong` | 玄素桩功 | 内功 | 2 黄中 | harmony | **（原创扩展）** | — |
 | `sk_xuansurumenjian` | 玄素入门剑 | 兵器/剑 | 3 黄上 | neutral | **（原创扩展）** | — |
@@ -419,7 +419,7 @@
 | reqs | `attrs {agi:35,wil:35}`；`aptitude {apSword:35}`；`sect {id:sect_xuansuzhuang,rank:4}`；`prereq [{skill:sk_heibaijianshi,layer:6}]`；`hard [sect,prereq]` |
 | layerStats / weaponReq | `parry [2,8], hit [2,7]`，10 重合计 `8+7=15`；`{category:sword}` |
 | 层数要点 | 1 重玄剑；2 重素剑；4 重黑白相济；5 重夫妻照应；**7 重绝招双剑合光**；8 重留手；10 重同心 |
-| 获取 / 套装 | 石清、闵柔羁绊与玄素庄 L4；单人可完整施展，队友配剑只提供奖励；`setTags [set_xuansu_shuangjian]` |
+| 获取 / 套装 | 石清、闵柔羁绊与玄素庄 L4；单人可完整施展，队友配剑只提供奖励；`setTags []` |
 | special | `fusible:true`；不是“必须多人”的地阶合击类，故不计合击配额 |
 | 图鉴文本 | 由石清、闵柔并肩用剑的原著表现归纳；单剑自成，双人相应时更善招架与追击。 |
 
@@ -435,9 +435,9 @@
 
 ### 5.3 玄阶紧凑卡（3 门；抽样 1 门）
 
-**`sk_heibaijianshi` 黑白剑势**（5 玄中 · 兵器/剑 · harmony · **原创扩展**）｜前置 `sk_xuansurumenjian 4`｜招式：墨守（1.00）、留白（1.10，后撤1；后撤成本 **【建议值】**）、双锋（1.15两段）｜被动：交替用式 Z3 +5%、大成 parry +5｜`setTags [set_xuansu_shuangjian]`。
+**`sk_heibaijianshi` 黑白剑势**（5 玄中 · 兵器/剑 · harmony · **原创扩展**）｜前置 `sk_xuansurumenjian 4`｜招式：墨守（1.00）、留白（1.10，后撤1；后撤成本 **【建议值】**）、双锋（1.15两段）｜被动：交替用式 Z3 +5%、大成 parry +5｜`setTags []`。
 
-**`sk_xuansuxinfa` 玄素心法**（4 玄下 · 内功 · harmony · **原创扩展**）｜前置 `sk_xuansuzhuanggong 5`｜贡献 `14+8+2×6+5×1.5=41.5`；`stats resMind5+effRes5=10`；`meridians [mer_ren,mer_du]` 预留｜招式：玄素相济（0，`bf_dingxin`2）｜被动：夫妇相护、圆满｜`setTags [set_xuansu_shuangjian]`。
+**`sk_xuansuxinfa` 玄素心法**（4 玄下 · 内功 · harmony · **原创扩展**）｜前置 `sk_xuansuzhuanggong 5`｜贡献 `14+8+2×6+5×1.5=41.5`；`stats resMind5+effRes5=10`；`meridians [mer_ren,mer_du]` 预留｜招式：玄素相济（0，`bf_dingxin`2）｜被动：夫妇相护、圆满｜`setTags []`。
 
 **`sk_xuansushenfa` 玄素身法**（5 玄中 · 轻功 · harmony · **原创扩展**）｜`QS(5)=65`｜招式与核算：
 
@@ -447,7 +447,7 @@
 | 双影 `mv_xuansushenfa_shuangying` | 4 | 自身 | 0 | `bf_piaohu`·承·2；相邻友军也得1回合 | 功能式；耗内7%、cd3 |
 | 回身一剑 `mv_xuansushenfa_huishen` | 7 | 单体·1 | 1.05 | 仅本行动移动≥2格可用 | `1+0.15−0.10（身法接招）=1.05` |
 
-被动：`ps_xuansushenfa_bingjian` 并肩（相邻友军时 eva +5）；`ps_xuansushenfa_dacheng` 双行（10，移动后首次招架 +8）。`setTags [set_xuansu_shuangjian]`。
+被动：`ps_xuansushenfa_bingjian` 并肩（相邻友军时 eva +5）；`ps_xuansushenfa_dacheng` 双行（10，移动后首次招架 +8）。`setTags []`。
 
 ### 5.4 黄阶一行条目（3 门）
 
@@ -467,9 +467,9 @@
 
 | ID | 名称 | 类别 | 品阶 | nature | 标注 | setTags |
 |---|---|---|---:|---|---|---|
-| `sk_piguadao` | 七十二路劈卦刀 | 兵器/刀 | 7 地下 | neutral | 《侠客行》安奉日，名目与交手细节**（待考）** | `set_jindao_pigua` |
-| `sk_jindaokuaidao` | 金刀快刀 | 兵器/刀 | 5 玄中 | neutral | **（原创扩展）** | `set_jindao_pigua` |
-| `sk_jindaoxinfa` | 金刀心法 | 内功 | 4 玄下 | yang | **（原创扩展）** | `set_jindao_pigua` |
+| `sk_piguadao` | 七十二路劈卦刀 | 兵器/刀 | 7 地下 | neutral | 《侠客行》安奉日，名目与交手细节**（待考）** | `[]` |
+| `sk_jindaokuaidao` | 金刀快刀 | 兵器/刀 | 5 玄中 | neutral | **（原创扩展）** | `[]` |
+| `sk_jindaoxinfa` | 金刀心法 | 内功 | 4 玄下 | yang | **（原创扩展）** | `[]` |
 | `sk_jindaobu` | 金刀寨步 | 轻功 | 4 玄下 | neutral | **（原创扩展）** | — |
 | `sk_jindaoquan` | 金刀寨拳 | 拳脚/拳掌 | 1 黄下 | neutral | **（原创扩展）** | — |
 | `sk_jindaozhuanggong` | 金刀桩功 | 内功 | 2 黄中 | yang | **（原创扩展）** | — |
@@ -487,7 +487,7 @@
 | reqs | `attrs {str:35,agi:30}`；`aptitude {apBlade:30}`；`sect {id:sect_jindaozhai,rank:4}`；`prereq [{skill:sk_jindaokuaidao,layer:6}]`；`hard [sect,prereq]` |
 | layerStats / weaponReq | `hit [2,8], crit [1,7]`，15；`{category:blade}` |
 | 层数要点 | 1 重劈挂；3 重套中含式；4 重转背刀；5 重连环三路；**7 重绝招七十二路归刀**；9 重藏套；10 重刀势不绝 |
-| 获取 / 套装 | 安奉日传授或寨中刀谱；`setTags [set_jindao_pigua]`；`fusible:true` |
+| 获取 / 套装 | 安奉日传授或寨中刀谱；`setTags []`；`fusible:true` |
 | 图鉴文本 | 本作按“招中藏套、套中含式”的待考线索整理七十二路劈卦刀，并把长套路压缩为“起套—转套—收套”的战棋节奏；原文字样与归属仍须核对。 |
 
 | 招式 | ID | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -502,9 +502,9 @@
 
 ### 6.3 玄阶紧凑卡（3 门；抽样 1 门）
 
-**`sk_jindaokuaidao` 金刀快刀**（5 玄中 · 兵器/刀 · neutral · **原创扩展**）｜前置 `sk_jindaorumen 4`｜招式：抢刀（1.00）、连劈（1.15两段）、压寨横扫（0.90）｜被动：先手 hit +5、连式、大成｜`setTags [set_jindao_pigua]`。
+**`sk_jindaokuaidao` 金刀快刀**（5 玄中 · 兵器/刀 · neutral · **原创扩展**）｜前置 `sk_jindaorumen 4`｜招式：抢刀（1.00）、连劈（1.15两段）、压寨横扫（0.90）｜被动：先手 hit +5、连式、大成｜`setTags []`。
 
-**`sk_jindaoxinfa` 金刀心法**（4 玄下 · 内功 · yang · **原创扩展**）｜前置 `sk_jindaozhuanggong 5`｜贡献 `14+8+2×6+5×1.5=41.5`；`stats resInjury5+defOut5=10`；`meridians [mer_du,mer_yangwei]` 预留｜招式：提刀运劲（0，`bf_waigong_sheng` 2）｜被动：刀沉气稳、圆满｜`setTags [set_jindao_pigua]`。
+**`sk_jindaoxinfa` 金刀心法**（4 玄下 · 内功 · yang · **原创扩展**）｜前置 `sk_jindaozhuanggong 5`｜贡献 `14+8+2×6+5×1.5=41.5`；`stats resInjury5+defOut5=10`；`meridians [mer_du,mer_yangwei]` 预留｜招式：提刀运劲（0，`bf_waigong_sheng` 2）｜被动：刀沉气稳、圆满｜`setTags []`。
 
 **`sk_jindaobu` 金刀寨步**（4 玄下 · 轻功 · neutral · **原创扩展**）｜`QS(4)=56`。
 
@@ -534,9 +534,9 @@
 
 | ID | 名称 | 类别 | 品阶 | nature | 标注 | setTags |
 |---|---|---|---:|---|---|---|
-| `sk_shangqingjianfa06` | 上清剑法·侠客 | 兵器/剑 | 7 地下 | harmony | 《侠客行》上清观传承，名称**（待考）** | `set_shangqing_xuansu` |
-| `sk_shangqingqingjian06` | 上清轻剑 | 兵器/剑 | 5 玄中 | harmony | **（原创扩展命名）** | `set_shangqing_xuansu` |
-| `sk_shangqingxinfa06` | 上清心法·侠客 | 内功 | 5 玄中 | harmony | **（原创扩展命名）** | `set_shangqing_xuansu` |
+| `sk_shangqingjianfa06` | 上清剑法·侠客 | 兵器/剑 | 7 地下 | harmony | 《侠客行》上清观传承，名称**（待考）** | `[]` |
+| `sk_shangqingqingjian06` | 上清轻剑 | 兵器/剑 | 5 玄中 | harmony | **（原创扩展命名）** | `[]` |
+| `sk_shangqingxinfa06` | 上清心法·侠客 | 内功 | 5 玄中 | harmony | **（原创扩展命名）** | `[]` |
 | `sk_shangqingyunbu06` | 上清云步 | 轻功 | 4 玄下 | harmony | **（原创扩展命名）** | — |
 | `sk_shangqingquan06` | 上清入门拳·侠客 | 拳脚/拳掌 | 2 黄中 | neutral | **（原创扩展）** | — |
 | `sk_shangqingtuna06` | 上清吐纳·侠客 | 内功 | 2 黄中 | harmony | **（原创扩展）** | — |
@@ -554,7 +554,7 @@
 | reqs | `attrs {agi:30,wil:35}`；`aptitude {apSword:30}`；`sect {id:sect_shangqingguan,rank:4}`；`prereq [{skill:sk_shangqingqingjian06,layer:6}]`；`hard [sect,prereq]` |
 | layerStats / weaponReq | `parry [2,8], hit [2,7]`，15；`{category:sword}` |
 | 层数要点 | 1 重清举；3 重云开；4 重玄白互见；5 重剑守灵台；**7 重绝招上清归真**；9 重双剑互证；10 重清静无碍 |
-| 获取 / 套装 | 上清观 L4–L5；石清/闵柔羁绊来源可 `reqsOverride {sect:null}`，其余前置保留；`setTags [set_shangqing_xuansu]` |
+| 获取 / 套装 | 上清观 L4–L5；石清/闵柔羁绊来源可 `reqsOverride {sect:null}`，其余前置保留；`setTags []` |
 | 图鉴文本 | 上清观剑术在本作的系统化版本，以轻灵、守中和回剑为主；招式命名均为原创扩展。 |
 
 | 招式 | ID | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -569,9 +569,9 @@
 
 ### 7.3 玄阶紧凑卡（3 门；抽样 1 门）
 
-**`sk_shangqingqingjian06` 上清轻剑**（5 玄中 · 兵器/剑 · harmony · **原创扩展命名**）｜前置 `sk_shangqingrujian06 4`｜招式：清风（1.00）、云过（0.95直线2）、回峰（1.10后撤1）｜被动：轻剑 parry +4、圆满｜`setTags [set_shangqing_xuansu]`。
+**`sk_shangqingqingjian06` 上清轻剑**（5 玄中 · 兵器/剑 · harmony · **原创扩展命名**）｜前置 `sk_shangqingrujian06 4`｜招式：清风（1.00）、云过（0.95直线2）、回峰（1.10后撤1）｜被动：轻剑 parry +4、圆满｜`setTags []`。
 
-**`sk_shangqingxinfa06` 上清心法·侠客**（5 玄中 · 内功 · harmony · **原创扩展命名**）｜前置 `sk_shangqingtuna06 5`｜贡献 `17+10+2×7+5×1.5=48.5`；`stats resMind5+effRes5=10`；`meridians [mer_ren,mer_du]` 预留｜招式：清心（0，驱散1个mind）、守一（0，`bf_shouyi`2）｜被动：桥接（仅10重触发 `inner.bridge:true`）、圆满｜`setTags [set_shangqing_xuansu]`。
+**`sk_shangqingxinfa06` 上清心法·侠客**（5 玄中 · 内功 · harmony · **原创扩展命名**）｜前置 `sk_shangqingtuna06 5`｜贡献 `17+10+2×7+5×1.5=48.5`；`stats resMind5+effRes5=10`；`meridians [mer_ren,mer_du]` 预留｜招式：清心（0，驱散1个mind）、守一（0，`bf_shouyi`2）｜被动：桥接（仅10重触发 `inner.bridge:true`）、圆满｜`setTags []`。
 
 **`sk_shangqingyunbu06` 上清云步**（4 玄下 · 轻功 · harmony · **原创扩展命名**）｜`QS(4)=56`。
 
@@ -764,14 +764,14 @@
 
 | ID | 名称 | 类别 | 品阶 | nature | 门派/来源 | 出处/标注 | setTags |
 |---|---|---|---:|---|---|---|---|
-| `sk_jinshejian` | 金蛇剑法 | 兵器/剑 | 10 天下 | yin | 金蛇郎君夏雪宜 | 《碧血剑》金蛇秘笈 | `set_jinshe_sanbao` |
-| `sk_wenjiawuxingzhen` | 温家五行阵 | 杂学/阵法 | 8 地中 | harmony | 石梁派温家 | 五老围攻情节；阵式名**（待考）** | `set_shiliang_wuxing` |
-| `sk_jinsheyouzhang` | 金蛇游身掌 | 拳脚/拳掌 | 6 玄上 | yin | 金蛇郎君 | 名称据既有装备套装建议，原著是否有正式名**（待考）** | `set_jinshe_sanbao` |
-| `sk_jinshezhui` | 金蛇锥法 | 暗器 | 6 玄上 | yin | 金蛇郎君 | 原著有金蛇锥；“锥法”总名**（原创扩展命名）** | `set_jinshe_sanbao` |
-| `sk_shiliangwuxingzhang` | 石梁五行掌 | 拳脚/拳掌 | 5 玄中 | harmony | 石梁派温家 | **（原创扩展命名）** | `set_shiliang_wuxing` |
+| `sk_jinshejian` | 金蛇剑法 | 兵器/剑 | 10 天下 | yin | 金蛇郎君夏雪宜 | 《碧血剑》金蛇秘笈 | `[]` |
+| `sk_wenjiawuxingzhen` | 温家五行阵 | 杂学/阵法 | 8 地中 | harmony | 石梁派温家 | 五老围攻情节；阵式名**（待考）** | `[]` |
+| `sk_jinsheyouzhang` | 金蛇游身掌 | 拳脚/拳掌 | 6 玄上 | yin | 金蛇郎君 | 名称据既有装备套装建议，原著是否有正式名**（待考）** | `[]` |
+| `sk_jinshezhui` | 金蛇锥法 | 暗器 | 6 玄上 | yin | 金蛇郎君 | 原著有金蛇锥；“锥法”总名**（原创扩展命名）** | `[]` |
+| `sk_shiliangwuxingzhang` | 石梁五行掌 | 拳脚/拳掌 | 5 玄中 | harmony | 石梁派温家 | **（原创扩展命名）** | `[]` |
 | `sk_shiliangquan` | 石梁入门拳 | 拳脚/拳掌 | 2 黄中 | neutral | 石梁派 | **（原创扩展）** | — |
 | `sk_wenjiagong` | 温家桩功 | 内功 | 2 黄中 | yang | 石梁派 | **（原创扩展）** | — |
-| `sk_shilianggun` | 石梁护院棍 | 兵器/棍杖 | 3 黄上 | neutral | 石梁派 | **（原创扩展）** | `set_shiliang_wuxing` |
+| `sk_shilianggun` | 石梁护院棍 | 兵器/棍杖 | 3 黄上 | neutral | 石梁派 | **（原创扩展）** | `[]` |
 
 进阶链：`石梁入门拳（黄中）→4 重→石梁五行掌（玄中）→6 重→温家五行阵（地中）`。五行阵、五行掌与护院棍登记 `set_shiliang_wuxing`；金蛇剑法、金蛇游身掌、金蛇锥法登记既有候选 `set_jinshe_sanbao`，装备成员 `eq_jinshejian/eq_jinshezhui` 由 `design/10` 已登记。
 
@@ -788,7 +788,7 @@
 | layerStats / weaponReq | `hit [3,10], crit [2,10]`，合计 20；`{category:sword}` |
 | 层数要点 | 1 重蛇行；3 重吐信；4 重盘身；5 重锥剑互证；**7 重绝招金蛇狂舞**；8 重奇诡难架；10 重金蛇化境 |
 | 获取 | 华山金蛇洞 `puzzle maxLayer 10`；金蛇秘笈与金蛇剑共同解锁完整路线，失去剑不失传承但失装备联动；天阶不可观摩 |
-| setTags / special | `[set_jinshe_sanbao]`；`fusible:false, observable:false`；配 `eq_jinshejian` 的无视招架由其唯一特效 `ue_jinshejian_2` 施加 `bf_wushi_zhaojia`，武学本体不重复常驻 |
+| setTags / special | `[]`；`fusible:false, observable:false`；配 `eq_jinshejian` 的无视招架由其唯一特效 `ue_jinshejian_2` 施加 `bf_wushi_zhaojia`，武学本体不重复常驻 |
 | 图鉴文本 | 路数盘旋奇诡、剑锋吞吐如蛇，配异形金蛇剑更难招架；具体招式和数值为原创扩展。 |
 
 | 招式 | ID | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
@@ -812,7 +812,7 @@
 | reqs | `attrs {wil:35}`；`skills {formation:45}`；`sect {id:sect_shiliang,rank:3}`；`prereq [{skill:sk_shiliangwuxingzhang,layer:6}]`；`hard [sect,prereq]`；技艺为软门槛 |
 | layerStats | `hit [2,7], parry [2,7]`，另 `effRes 1`，合计 15；阵法无 `weaponReq` |
 | 层数要点 | 1 重守位；3 重相生；4 重补缺；5 重转位；**7 重绝招五行轮转**；8 重一人成阵；10 重五老合围 |
-| 获取 / 套装 | 温家门派线、旧案和解路线；玩家一人即可使用全部招式；`setTags [set_shiliang_wuxing]` |
+| 获取 / 套装 | 温家门派线、旧案和解路线；玩家一人即可使用全部招式；`setTags []` |
 | special | `formation {minUnits:1,maxUnits:5}`；友军使用本套武学时每人仅令阵法招式 hit +2（最多 +8），不生成额外攻击，不标 `jointAttack` |
 | 图鉴文本 | 温家五老合围之势的数据化：独行者以步位自转模拟五方，同伴到位只增强封路，绝不要求多人才能施展。 |
 
@@ -828,9 +828,9 @@
 
 ### 10.4 玄阶紧凑卡（3 门；抽样 1 门）
 
-**`sk_jinsheyouzhang` 金蛇游身掌**（6 玄上 · 拳脚/拳掌 · yin）｜金蛇郎君意象；正式武学名**（待考）**｜前置 `sk_shiliangquan 4` 或金蛇秘笈来源覆写清空前置｜招式：游身（1.00）、吐信掌（1.05，后撤1）、缠身（0.95，30% `bf_jiansu`·2）｜被动：移动后 eva +5、侧击 Z3 +6%、大成残影｜`setTags [set_jinshe_sanbao]`。
+**`sk_jinsheyouzhang` 金蛇游身掌**（6 玄上 · 拳脚/拳掌 · yin）｜金蛇郎君意象；正式武学名**（待考）**｜前置 `sk_shiliangquan 4` 或金蛇秘笈来源覆写清空前置｜招式：游身（1.00）、吐信掌（1.05，后撤1）、缠身（0.95，30% `bf_jiansu`·2）｜被动：移动后 eva +5、侧击 Z3 +6%、大成残影｜`setTags []`。
 
-**`sk_jinshezhui` 金蛇锥法**（6 玄上 · 暗器 · yin · **原创扩展命名**）｜原著有金蛇锥遗物，件数与手法细节**（待考）**｜`reqs attrs {agi:35,luk:30}; aptitude {apHidden:30}; skills {forge:25}; prereq [{skill:sk_jinsheyouzhang,layer:4}]; hard [prereq]`｜`layerStats hit5+crit5=10`｜`setTags [set_jinshe_sanbao]`。
+**`sk_jinshezhui` 金蛇锥法**（6 玄上 · 暗器 · yin · **原创扩展命名**）｜原著有金蛇锥遗物，件数与手法细节**（待考）**｜`reqs attrs {agi:35,luk:30}; aptitude {apHidden:30}; skills {forge:25}; prereq [{skill:sk_jinsheyouzhang,layer:4}]; hard [prereq]`｜`layerStats hit5+crit5=10`｜`setTags []`。
 
 | 招式 | 重 | 范围 | 倍率 | 一句效果 | 核算 |
 |---|---:|---|---:|---|---|
@@ -840,7 +840,7 @@
 
 被动：认锥（战后回收50%）、蛇眼（侧后 hit +6）、大成（对带 `bf_polu` 目标 crit +6）。
 
-**`sk_shiliangwuxingzhang` 石梁五行掌**（5 玄中 · 拳脚/拳掌 · harmony · **原创扩展命名**）｜前置 `sk_shiliangquan 4`｜招式：金劈（1.00）、水引（0.95拉1）、火进（1.10突进）、土守（0，`bf_shoushi`·2）、木缠（0.90横扫）｜被动：五式轮替、阵位、大成｜`setTags [set_shiliang_wuxing]`。
+**`sk_shiliangwuxingzhang` 石梁五行掌**（5 玄中 · 拳脚/拳掌 · harmony · **原创扩展命名**）｜前置 `sk_shiliangquan 4`｜招式：金劈（1.00）、水引（0.95拉1）、火进（1.10突进）、土守（0，`bf_shoushi`·2）、木缠（0.90横扫）｜被动：五式轮替、阵位、大成｜`setTags []`。
 
 ### 10.5 黄阶一行条目（3 门）
 
@@ -848,7 +848,7 @@
 |---|---|---|---|---|---|---|---|
 | `sk_shiliangquan` | 石梁入门拳 | 石梁派温家 | 拳脚/拳掌（neutral） | 碧血 | 单体1.00；站定时 parry +2 | 无 | **（原创扩展）** |
 | `sk_wenjiagong` | 温家桩功 | 石梁派温家 | 内功（yang） | 碧血 | `IP=8+5+2×3+5×1=24`；`meridians [mer_du]` 预留 | 无 | **（原创扩展）** |
-| `sk_shilianggun` | 石梁护院棍 | 石梁派温家 | 兵器/棍杖（neutral） | 碧血 | 单体1.00、横扫0.80；`setTags [set_shiliang_wuxing]` | 无 | **（原创扩展）** |
+| `sk_shilianggun` | 石梁护院棍 | 石梁派温家 | 兵器/棍杖（neutral） | 碧血 | 单体1.00、横扫0.80；`setTags []` | 无 | **（原创扩展）** |
 
 黄阶预算：单体基准 1.00；棍横扫 `0.75×1.12−0.05=0.79≈0.80`；桩功 IP 24；三门层数预算≤6、无绝招。
 
@@ -860,10 +860,10 @@
 
 | ID | 名称 | 类别 | 品阶 | nature | 出处/标注 | setTags |
 |---|---|---|---:|---|---|---|
-| `sk_xieweibian` | 蝎尾鞭 | 兵器/鞭索 | 8 地中 | yin | 《碧血剑》五毒教武学，正式名**（待考）** | `set_wudu_tieshou` |
-| `sk_ruanhongzhusuo` | 软红蛛索 | 兵器/鞭索 | 6 玄上 | yin | 五毒教软索意象**（原创扩展命名）** | `set_wudu_tieshou` |
-| `sk_wuduxinfa` | 五毒心法·碧血 | 内功 | 6 玄上 | yin | **（原创扩展命名）** | `set_wudu_tieshou` |
-| `sk_hanshasheying` | 含沙射影 | 暗器 | 5 玄中 | yin | 《碧血剑》是否属何铁手一脉**（待考）** | `set_wudu_tieshou` |
+| `sk_xieweibian` | 蝎尾鞭 | 兵器/鞭索 | 8 地中 | yin | 《碧血剑》五毒教武学，正式名**（待考）** | `[]` |
+| `sk_ruanhongzhusuo` | 软红蛛索 | 兵器/鞭索 | 6 玄上 | yin | 五毒教软索意象**（原创扩展命名）** | `[]` |
+| `sk_wuduxinfa` | 五毒心法·碧血 | 内功 | 6 玄上 | yin | **（原创扩展命名）** | `[]` |
+| `sk_hanshasheying` | 含沙射影 | 暗器 | 5 玄中 | yin | 《碧血剑》是否属何铁手一脉**（待考）** | `[]` |
 | `sk_wuduquan` | 五毒入门拳 | 拳脚/拳掌 | 2 黄中 | neutral | **（原创扩展）** | — |
 | `sk_wudutuna` | 五毒吐纳·碧血 | 内功 | 2 黄中 | yin | **（原创扩展）** | — |
 | `sk_wuduruobian` | 五毒入门软鞭 | 兵器/鞭索 | 3 黄上 | neutral | **（原创扩展）** | — |
@@ -880,7 +880,7 @@
 | reqs | `attrs {agi:35,wil:35}`；`aptitude {apWhip:35}`；`skills {poi:45}`；`sect {id:sect_wudu,rank:4}`；`prereq [{skill:sk_ruanhongzhusuo,layer:6}]`；`hard [sect,prereq]`，毒术为软门槛 |
 | layerStats / weaponReq | `hit [2,8], effHit [2,7]`，合计 15；`{category:whip}` |
 | 层数要点 | 1 重蝎针；3 重倒钩；4 重卷兵；5 重游丝；**7 重绝招百足蝎尾**；8 重毒随鞭走；10 重铁手无情 |
-| 获取 / 套装 | 五毒教 L4；何铁手羁绊可 `reqsOverride {sect:null}`，其余前置保留；`setTags [set_wudu_tieshou]` |
+| 获取 / 套装 | 五毒教 L4；何铁手羁绊可 `reqsOverride {sect:null}`，其余前置保留；`setTags []` |
 | special | `fusible:true`；未给武器淬毒时仍仅由招式明确施加毒，不凭门派身份常驻中毒 |
 | 图鉴文本 | 软鞭如蝎尾回钩，兼以毒劲牵制；武学名和具体招式尚待原著核对，玩法效果为原创扩展。 |
 
@@ -896,11 +896,11 @@
 
 ### 11.3 玄阶紧凑卡（3 门；抽样 1 门）
 
-**`sk_ruanhongzhusuo` 软红蛛索**（6 玄上 · 兵器/鞭索 · yin · **原创扩展命名**）｜前置 `sk_wuduruobian 4`｜招式：蛛丝（0.95，减速30%）、牵蛛（0.90，拉1）、罗网（0.80，30% `bf_chanrao`·1）｜被动：软索射程2、毒蛛纹、大成｜`setTags [set_wudu_tieshou]`。
+**`sk_ruanhongzhusuo` 软红蛛索**（6 玄上 · 兵器/鞭索 · yin · **原创扩展命名**）｜前置 `sk_wuduruobian 4`｜招式：蛛丝（0.95，减速30%）、牵蛛（0.90，拉1）、罗网（0.80，30% `bf_chanrao`·1）｜被动：软索射程2、毒蛛纹、大成｜`setTags []`。
 
-**`sk_wuduxinfa` 五毒心法·碧血**（6 玄上 · 内功 · yin · **原创扩展命名**）｜`reqs attrs {con:30,wil:30}; aptitude {apInner:30}; skills {poi:35}; prereq [{skill:sk_wudutuna,layer:5}]; hard [prereq]`｜贡献 `21+12+2×8+5×1.6=57`；`attrs {con:4,agi:2,wil:2}`；`stats resPoison6+effRes4=10`；`meridians [mer_ren,mer_dai]` 预留｜招式：运毒（0，自身 `bf_bidu`·2）、毒引（0，目标 `bf_kangxing_jiang`·承·2，参数 poison）｜被动：识毒、毒劲、大成｜`setTags [set_wudu_tieshou]`。
+**`sk_wuduxinfa` 五毒心法·碧血**（6 玄上 · 内功 · yin · **原创扩展命名**）｜`reqs attrs {con:30,wil:30}; aptitude {apInner:30}; skills {poi:35}; prereq [{skill:sk_wudutuna,layer:5}]; hard [prereq]`｜贡献 `21+12+2×8+5×1.6=57`；`attrs {con:4,agi:2,wil:2}`；`stats resPoison6+effRes4=10`；`meridians [mer_ren,mer_dai]` 预留｜招式：运毒（0，自身 `bf_bidu`·2）、毒引（0，目标 `bf_kangxing_jiang`·承·2，参数 poison）｜被动：识毒、毒劲、大成｜`setTags []`。
 
-**`sk_hanshasheying` 含沙射影**（5 玄中 · 暗器 · yin）｜武学名与归属《碧血剑》五毒教**（待考）**｜`reqs attrs {agi:30}; aptitude {apHidden:25}; skills {poi:30}; hard []`｜`layerStats hit5+effHit5=10`｜`setTags [set_wudu_tieshou]`。
+**`sk_hanshasheying` 含沙射影**（5 玄中 · 暗器 · yin）｜武学名与归属《碧血剑》五毒教**（待考）**｜`reqs attrs {agi:30}; aptitude {apHidden:25}; skills {poi:30}; hard []`｜`layerStats hit5+effHit5=10`｜`setTags []`。
 
 | 招式 | 重 | 范围 | 倍率 | 一句效果 | 核算 |
 |---|---:|---|---:|---|---|
@@ -928,10 +928,10 @@
 
 | ID | 名称 | 类别 | 品阶 | nature | 出处/标注 | setTags |
 |---|---|---|---:|---|---|---|
-| `sk_shangqingjianfa07` | 上清剑法·碧血 | 兵器/剑 | 7 地下 | harmony | 《碧血剑》仙都派，名称与回目**（待考）** | `set_xiandu_shangqing` |
-| `sk_liangyijianfa07` | 两仪剑法·仙都 | 兵器/剑 | 6 玄上 | harmony | 《碧血剑》仙都派，正式名**（待考）** | `set_xiandu_shangqing` |
-| `sk_xianduxinfa` | 仙都心法 | 内功 | 5 玄中 | harmony | **（原创扩展）** | `set_xiandu_shangqing` |
-| `sk_lingbaoquan` | 灵宝拳 | 拳脚/拳掌 | 4 玄下 | yang | 仙都派武学名**（待考）** | `set_xiandu_shangqing` |
+| `sk_shangqingjianfa07` | 上清剑法·碧血 | 兵器/剑 | 7 地下 | harmony | 《碧血剑》仙都派，名称与回目**（待考）** | `[]` |
+| `sk_liangyijianfa07` | 两仪剑法·仙都 | 兵器/剑 | 6 玄上 | harmony | 《碧血剑》仙都派，正式名**（待考）** | `[]` |
+| `sk_xianduxinfa` | 仙都心法 | 内功 | 5 玄中 | harmony | **（原创扩展）** | `[]` |
+| `sk_lingbaoquan` | 灵宝拳 | 拳脚/拳掌 | 4 玄下 | yang | 仙都派武学名**（待考）** | `[]` |
 | `sk_xianduquan` | 仙都入门拳 | 拳脚/拳掌 | 2 黄中 | neutral | **（原创扩展）** | — |
 | `sk_xiandutuna` | 仙都吐纳 | 内功 | 2 黄中 | harmony | **（原创扩展）** | — |
 | `sk_xiandurumenjian` | 仙都入门剑 | 兵器/剑 | 3 黄上 | neutral | **（原创扩展）** | — |
@@ -948,7 +948,7 @@
 | reqs | `attrs {agi:35,wil:30}`；`aptitude {apSword:30}`；`sect {id:sect_xiandu,rank:4}`；`prereq [{skill:sk_liangyijianfa07,layer:6}]`；`hard [sect,prereq]` |
 | layerStats / weaponReq | `hit [2,8], parry [2,7]`，合计 15；`{category:sword}` |
 | 层数要点 | 1 重清光；3 重上清；4 重两仪归一；5 重灵宝护身；**7 重绝招仙都云开**；8 重一剑两仪；10 重上清圆满 |
-| 获取 / 套装 | 仙都派 L4；门派和解支线可得秘籍 `maxLayer 8`；`setTags [set_xiandu_shangqing]` |
+| 获取 / 套装 | 仙都派 L4；门派和解支线可得秘籍 `maxLayer 8`；`setTags []` |
 | special | `fusible:true`；与 `sk_shangqingjianfa06` 无同源加速、无相互替代 |
 | 图鉴文本 | 仙都派清正轻灵的上乘剑路，以阴阳换势、回锋守中为要；招式拆分和数值为原创扩展。 |
 
@@ -964,7 +964,7 @@
 
 ### 12.3 玄阶紧凑卡（3 门；抽样 1 门）
 
-**`sk_liangyijianfa07` 两仪剑法·仙都**（6 玄上 · 兵器/剑 · harmony）｜仙都派传承名**（待考）**｜`reqs attrs {agi:30,wil:30}; aptitude {apSword:25}; sect {id:sect_xiandu,rank:2}; prereq [{skill:sk_xiandurumenjian,layer:4}]; hard [sect,prereq]`｜`layerStats hit5+parry5=10`｜`setTags [set_xiandu_shangqing]`。
+**`sk_liangyijianfa07` 两仪剑法·仙都**（6 玄上 · 兵器/剑 · harmony）｜仙都派传承名**（待考）**｜`reqs attrs {agi:30,wil:30}; aptitude {apSword:25}; sect {id:sect_xiandu,rank:2}; prereq [{skill:sk_xiandurumenjian,layer:4}]; hard [sect,prereq]`｜`layerStats hit5+parry5=10`｜`setTags []`。
 
 | 招式 | 重 | 范围 | 倍率 | 一句效果 | 核算 |
 |---|---:|---|---:|---|---|
@@ -974,9 +974,9 @@
 
 被动：两路（交替用式 Z3 +5%）、并肩（2格内友军用剑时 hit +3，非必要条件）、大成（交替成功后 parry +5）。单人可完整运转，不标 `jointAttack`。
 
-**`sk_xianduxinfa` 仙都心法**（5 玄中 · 内功 · harmony · **原创扩展**）｜前置 `sk_xiandutuna 5`｜贡献 `17+10+2×7+5×1.5=48.5`；`attrs {agi:3,wil:4}`；`stats parry5+resMind5=10`；`meridians [mer_ren,mer_du]` 预留｜招式：清心（0，驱散自身1个mind）、抱元（0，`bf_shouyi`·2）｜被动：阴阳桥接仅10重、清静、大成｜`setTags [set_xiandu_shangqing]`。
+**`sk_xianduxinfa` 仙都心法**（5 玄中 · 内功 · harmony · **原创扩展**）｜前置 `sk_xiandutuna 5`｜贡献 `17+10+2×7+5×1.5=48.5`；`attrs {agi:3,wil:4}`；`stats parry5+resMind5=10`；`meridians [mer_ren,mer_du]` 预留｜招式：清心（0，驱散自身1个mind）、抱元（0，`bf_shouyi`·2）｜被动：阴阳桥接仅10重、清静、大成｜`setTags []`。
 
-**`sk_lingbaoquan` 灵宝拳**（4 玄下 · 拳脚/拳掌 · yang）｜仙都派武学名与人物**（待考）**｜前置 `sk_xianduquan 4`｜招式：灵台（1.00）、宝印（1.10，cd1）、护法（0，`bf_shoushi`·2）｜被动：守中、拳剑相济、大成｜`setTags [set_xiandu_shangqing]`。
+**`sk_lingbaoquan` 灵宝拳**（4 玄下 · 拳脚/拳掌 · yang）｜仙都派武学名与人物**（待考）**｜前置 `sk_xianduquan 4`｜招式：灵台（1.00）、宝印（1.10，cd1）、护法（0，`bf_shoushi`·2）｜被动：守中、拳剑相济、大成｜`setTags []`。
 
 ### 12.4 黄阶一行条目（3 门）
 
@@ -996,10 +996,10 @@
 
 | ID | 名称 | 类别 | 品阶 | nature | 来源/标注 | setTags |
 |---|---|---|---:|---|---|---|
-| `sk_fuhuzhang` | 伏虎掌 | 拳脚/拳掌 | 7 地下 | yang | 山宗/江湖人物，正式归属**（待考）** | `set_chuangwang_shanzong` |
-| `sk_shuangqiangqiangfa` | 双枪枪法 | 兵器/枪 | 6 玄上 | neutral | 闯军人物用枪意象**（原创扩展命名）** | `set_chuangwang_shanzong` |
-| `sk_shanzongquanfa` | 山宗拳法 | 拳脚/拳掌 | 5 玄中 | yang | 山宗人物传承**（原创扩展命名）** | `set_chuangwang_shanzong` |
-| `sk_shanzongxinfa` | 山宗心法 | 内功 | 5 玄中 | yang | **（原创扩展命名）** | `set_chuangwang_shanzong` |
+| `sk_fuhuzhang` | 伏虎掌 | 拳脚/拳掌 | 7 地下 | yang | 山宗/江湖人物，正式归属**（待考）** | `[]` |
+| `sk_shuangqiangqiangfa` | 双枪枪法 | 兵器/枪 | 6 玄上 | neutral | 闯军人物用枪意象**（原创扩展命名）** | `[]` |
+| `sk_shanzongquanfa` | 山宗拳法 | 拳脚/拳掌 | 5 玄中 | yang | 山宗人物传承**（原创扩展命名）** | `[]` |
+| `sk_shanzongxinfa` | 山宗心法 | 内功 | 5 玄中 | yang | **（原创扩展命名）** | `[]` |
 | `sk_chuangwangchangquan` | 闯军长拳 | 拳脚/拳掌 | 2 黄中 | neutral | **（原创扩展）** | — |
 | `sk_chuangwangtuna` | 闯军吐纳 | 内功 | 2 黄中 | yang | **（原创扩展）** | — |
 | `sk_chuangwangqiangji` | 闯军枪基 | 兵器/枪 | 3 黄上 | neutral | **（原创扩展）** | — |
@@ -1016,7 +1016,7 @@
 | reqs | `attrs {str:35,con:30}`；`aptitude {apFist:30}`；`prereq [{skill:sk_shanzongquanfa,layer:6}]`；`hard [prereq]` |
 | layerStats | `hit [2,8], pierce [2,7]`，合计 15；空手，无 `weaponReq` |
 | 层数要点 | 1 重按虎；3 重伏身；4 重震胆；5 重开山；**7 重绝招伏虎镇关**；8 重军阵不退；10 重山宗大成 |
-| 获取 / 套装 | 山宗人物羁绊、闯王军 L4；金龙帮调停支线只给 `maxLayer 7`；`setTags [set_chuangwang_shanzong]` |
+| 获取 / 套装 | 山宗人物羁绊、闯王军 L4；金龙帮调停支线只给 `maxLayer 7`；`setTags []` |
 | special | `fusible:true`；无誓约、无耗血；门派来源与江湖来源共用同一武学 |
 | 图鉴文本 | 劲路沉雄、重在压住正面与守住关口的掌法；其总名和具体招式待考，战斗机制为原创扩展。 |
 
@@ -1032,7 +1032,7 @@
 
 ### 13.3 玄阶紧凑卡（3 门；抽样 1 门）
 
-**`sk_shuangqiangqiangfa` 双枪枪法**（6 玄上 · 兵器/枪 · neutral · **原创扩展命名**）｜闯军人物/青竹帮支线来源，原著人物用枪细节**（待考）**｜`reqs attrs {str:30,agi:30}; aptitude {apSpear:30}; prereq [{skill:sk_chuangwangqiangji,layer:4}]; hard [prereq]`｜`layerStats hit5+pierce5=10`｜`setTags [set_chuangwang_shanzong]`。
+**`sk_shuangqiangqiangfa` 双枪枪法**（6 玄上 · 兵器/枪 · neutral · **原创扩展命名**）｜闯军人物/青竹帮支线来源，原著人物用枪细节**（待考）**｜`reqs attrs {str:30,agi:30}; aptitude {apSpear:30}; prereq [{skill:sk_chuangwangqiangji,layer:4}]; hard [prereq]`｜`layerStats hit5+pierce5=10`｜`setTags []`。
 
 | 招式 | 重 | 范围 | 倍率 | 一句效果 | 核算 |
 |---|---:|---|---:|---|---|
@@ -1042,9 +1042,9 @@
 
 被动：并进（相邻持枪友军只加 hit +3，非必要条件）、拒马（首次近战受击 parry +6）、大成（直线招式 pierce +5）。
 
-**`sk_shanzongquanfa` 山宗拳法**（5 玄中 · 拳脚/拳掌 · yang · **原创扩展命名**）｜前置 `sk_chuangwangchangquan 4`｜招式：立寨（1.00）、破门（1.10，cd1）、合围（0.85横扫）｜被动：军阵相邻 hit +3、守线、大成｜`setTags [set_chuangwang_shanzong]`。
+**`sk_shanzongquanfa` 山宗拳法**（5 玄中 · 拳脚/拳掌 · yang · **原创扩展命名**）｜前置 `sk_chuangwangchangquan 4`｜招式：立寨（1.00）、破门（1.10，cd1）、合围（0.85横扫）｜被动：军阵相邻 hit +3、守线、大成｜`setTags []`。
 
-**`sk_shanzongxinfa` 山宗心法**（5 玄中 · 内功 · yang · **原创扩展命名**）｜前置 `sk_chuangwangtuna 5`｜贡献 `17+10+2×7+5×1.5=48.5`；`attrs {str:3,con:4}`；`stats defOut6+resInjury4=10`；`meridians [mer_du,mer_yangwei]` 预留｜招式：整队（0，自身 `bf_wenzhong`·2）、军心（0，相邻友军 `bf_dingxin`·1）｜被动：耐战、守阵、大成｜`setTags [set_chuangwang_shanzong]`。
+**`sk_shanzongxinfa` 山宗心法**（5 玄中 · 内功 · yang · **原创扩展命名**）｜前置 `sk_chuangwangtuna 5`｜贡献 `17+10+2×7+5×1.5=48.5`；`attrs {str:3,con:4}`；`stats defOut6+resInjury4=10`；`meridians [mer_du,mer_yangwei]` 预留｜招式：整队（0，自身 `bf_wenzhong`·2）、军心（0，相邻友军 `bf_dingxin`·1）｜被动：耐战、守阵、大成｜`setTags []`。
 
 ### 13.4 黄阶一行条目（3 门）
 
@@ -1056,29 +1056,17 @@
 
 黄阶预算：拳/枪单体 1.00；枪直线 `0.85×1.12=0.952≈0.95`；吐纳 IP 24；三门层数预算≤6、无绝招。
 
-## 14. 套装候选（交 `design/07` 定稿）
+## 14. 套装候选（已由 `design/07` 收敛）
 
-> 本节只声明候选 ID、成员与主题，不定义件数奖励、品阶或数值。最终成员表由 `design/07` 唯一定义，并按 C22 校验 `s ∈ SetDef.members ⇔ setId ∈ SkillDef/EquipDef.setTags`；表中每个本文武学成员已在所属条目双向登记。装备成员仅引用 `design/10` 已有 ID，需由该文档补反向标签。
+> 正式成员、阈值、效果与逐书界路径唯一见 `design/07` §15.1～§15.3；本节只保留图鉴侧成员索引。实际 `setTags` 已按 C22 只保留正式关系。
 
-| 套装候选 | 成员（按唯一 ID） | 主题与边界 |
+| 正式套装 | ID | 本图鉴成员 |
 |---|---|---|
-| `set_xiakedao_shibi` 侠客岛石壁 | `sk_taixuan`、`sk_xiakedaozhangfa`、`sk_xiakedaoshangshanshou` | 由招见意、刚柔转换；太玄经仍独立走石壁解谜 |
-| `set_xiake_fumo` 罗汉伏魔 | `sk_luohanfumo`、`sk_xiakedaoquanji`、`sk_xiakedaozhoufa` | 调息、护体与赏罚历练 |
-| `set_motian_qingzhang` 摩天清掌 | `sk_bizhenqingzhang`、`sk_konghegong`、`sk_xiakedaoquanji` | 凝神、隔空控物与拳基 |
-| `set_xueshan_jinwu` 雪山金乌 | `sk_taxuewuhen`、`sk_xueshanjianfa`、`sk_wuwangshengong`、`sk_jinwudaofa` | 雪山派寒地剑法与史小翠个人/金乌派克雪刀法跨传承互证；套装关联不表示两组织合并 |
-| `set_changle_wuxing` 长乐五行 | `sk_wuxingliuhezhang`、`sk_changlezhang`、`sk_changlexinfa` | 五行换势、堂口群战 |
-| `set_xuansu_shuangjian` 玄素双剑 | `sk_heibaijianfa`、`sk_heibaijianshi`、`sk_xuansuxinfa`、`sk_xuansushenfa`、`eq_xuansushuangjian` | 黑白相济；单人可用、并肩加成 |
-| `set_jindao_pigua` 金刀劈卦 | `sk_piguadao`、`sk_jindaokuaidao`、`sk_jindaoxinfa` | 招中藏套、连刀换式 |
-| `set_shangqing_xuansu` 上清观传承 | `sk_shangqingjianfa06`、`sk_shangqingqingjian06`、`sk_shangqingxinfa06` | 清剑与心法相济；与玄素庄的师承联系只作叙事，不跨套 |
-| `set_huashan_hunyuan` 华山混元 | `sk_hunyuangong`、`sk_hunyuanzhang`、`sk_tiezhijue`、`sk_poyuquan` | 由外入内、拳掌养气 |
-| `set_tiejian_musang` 铁剑木桑 | `sk_shenxing`、`sk_tiejianjianfa`、`sk_mantianhuayu`、`sk_tiejianqipanjian`、`sk_tiejianxinfa`、`eq_jinsibeixin` | 弈棋、暗器、剑路与逃生；装备反向标签待 10 同步 |
-| `set_jinshe_sanbao` 金蛇三宝 | `sk_jinshejian`、`sk_jinsheyouzhang`、`sk_jinshezhui`、`eq_jinshejian`、`eq_jinshezhui` | 剑、锥、游身；沿用 `design/10` 既有候选 ID |
-| `set_shiliang_wuxing` 石梁五行 | `sk_wenjiawuxingzhen`、`sk_shiliangwuxingzhang`、`sk_shilianggun` | 一人成阵、多人补位，非强制合击 |
-| `set_wudu_tieshou` 五毒铁手 | `sk_xieweibian`、`sk_ruanhongzhusuo`、`sk_wuduxinfa`、`sk_hanshasheying`、`eq_hetieshougou` | 鞭索、毒与暗器；装备反向标签待 10 同步 |
-| `set_xiandu_shangqing` 仙都上清 | `sk_shangqingjianfa07`、`sk_liangyijianfa07`、`sk_xianduxinfa`、`sk_lingbaoquan` | 两仪换路、清静守中 |
-| `set_chuangwang_shanzong` 闯王山宗 | `sk_fuhuzhang`、`sk_shuangqiangqiangfa`、`sk_shanzongquanfa`、`sk_shanzongxinfa` | 军阵守线与山宗拳掌 |
+| 雪山金乌 | `set_xueshan_jinwu` | `sk_taxuewuhen`、`sk_xueshanjianfa`、`sk_wuwangshengong`、`sk_jinwudaofa` |
+| 华山混元 | `set_huashan_hunyuan` | `sk_hunyuangong`、`sk_hunyuanzhang`、`sk_tiezhijue`、`sk_poyuquan` |
+| 铁剑木桑 | `set_tiejian_musang` | `sk_shenxing`、`sk_tiejianjianfa`、`sk_mantianhuayu`、`sk_tiejianqipanjian`、`sk_tiejianxinfa` |
 
-表内所有武学成员均在各自总表/条目登记相同 `setTags`；装备反向标签只能由 `design/10` 维护，列入 §19.1 与报告第 6 节。
+侠客岛、摩天、长乐、玄素、金刀、上清、金蛇、石梁、五毒、仙都与闯王山宗候选均已移除实际标签；装备草案也未进入 v1 成员。完整去向见 `design/07` §19。
 
 ## 15. 本组统计
 

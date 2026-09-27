@@ -164,7 +164,7 @@ reqs:
 | 海纳百川 | `ps_beiming_haina` | 8 | mechanic | 免疫品阶 ≤ 自身的 `bf_huagong_qin`（化功侵体） | full |
 | 北冥归元（大成） | `ps_beiming_guiyuan` | 10 | mechanic | 主运时战斗结束回复 30% 内力；单场累计吸取 ≥ 自身 mpMax 50% → 永久 mpMax +0.2%（每书界 ≤ +3%，计入 03 §5.1 永久 mpMax 共享上限） | none |
 
-- **setTags**：`[set_xiaoyao_xiaoyaoyou, set_xiaoyao_xuzhu]`
+- **setTags**：`[set_xiaoyao_xiaoyaoyou]`
 - **conflicts**：`{with: sk_huagong, type: exclusive}`（05 §9.2 已定）；`{with: sk_xixing, type: synergy}`（北冥主运时吸星不生异种真气，05 §9.2、06 §8.3）
 - **learnSources**：`qiyu ch01 q_01_qiyu_71`（无量山玉洞帛卷，maxLayer 6，`earlyException`；帛卷嘱"磕首千遍"作为触发互动，致敬原著）；`master ch01 npc_xuzhu`（珍珑锚点后，逍遥派/灵鹫宫 rank 3 且虚竹羁绊 ≥ 3，maxLayer 10）
 - **特殊**：无代价；"越吸越厚"以大成被动的小额永久成长体现，数额受 03 共享上限约束。
@@ -191,7 +191,7 @@ reqs:
 | 小无相护体 | `ps_xiaowuxiang_huti` | 8 | trigger | `battleStart` → `bf_hutizhenqi {shieldPctHpMax: 0.06→0.12}`（按层插值） | none |
 | 无相大成 | `ps_xiaowuxiang_dacheng` | 10 | mechanic | 主运时两门辅运比例各 +0.05（上限 0.60）；作辅运时固定比例 0.50 → 0.55 | full |
 
-- **setTags**：`[set_xiaoyao_xuzhu, set_mizong_mingwang]`
+- **setTags**：`[set_mizong_mingwang]`
 - **conflicts**：无定稿条目。与少林七十二绝技的关系以 `skills-shaolin` §1.3.1"戾气"规则为准（该文已定：主运小无相功时鸠摩智冒用的无相劫指 `sk_wuxiangjiezhi` 不计戾气、观摩上限 8 重），本文不另设增伤，避免双重加成
 - **learnSources**：`master ch01 npc_liqiushui`（西夏线，冰窖锚点前，maxLayer 10）；`qiyu ch01 q_01_qiyu_73`（鸠摩智枯井大彻大悟后以口诀相赠，原创扩展，maxLayer 8）；`master ch01 npc_xuzhu`（maxLayer 8；原著明确虚竹施展过小无相功路数，游戏化为可传授途径，**原创扩展**）
 
@@ -245,7 +245,7 @@ reqs:
 | 天钧 | `ps_liuyangzhang_tianjun` | 8 | stat | 主运为阳时本武学暴击 +10（`attr:crit flat`） |
 | 六阳大成 | `ps_liuyangzhang_dacheng` | 10 | mechanic | 绝招 +20%；本武学命中时 25% 破除目标 1 个 `guard` 增益（`purge`，品阶 inherit） |
 
-- **setTags**：`[set_xiaoyao_xuzhu]`
+- **setTags**：`[]`
 - **conflicts**：`{with: sk_shengsifu, type: counter, note: 唯一可拔除生死符（06 §7.1）}`
 - **learnSources**：`master ch01 npc_tonglao`（童姥线，冰窖同归锚点前，童姥好感 ≥ 60，maxLayer 10，`reqsOverride {sect: {id: sect_lingjiu, rank: 3}, hard: [sect]}`）；`master ch01 npc_xuzhu`（maxLayer 10，`reqsOverride {sect: {id: sect_xiaoyao, rank: 3}, hard: [sect]}`）；`puzzle ch01 q_01_side_72`（灵鹫宫石壁图谱，maxLayer 8，`reqsOverride {sect: null, hard: []}`）
 
@@ -272,7 +272,7 @@ reqs:
 | 六路圆转 | `ps_zhemei_liulu` | 6 | stat（Z3） | 连续两次以**不同**折梅招式命中同一目标，第二招 +15% |
 | 折梅大成 | `ps_zhemei_dacheng` | 10 | mechanic | 绝招 +20%；招式栏 +1；每场首次被施加 `bf_jiaoxie` / `bf_fengjingmai` 时立即解除 |
 
-- **setTags**：`[set_xiaoyao_xiaoyaoyou, set_xiaoyao_xuzhu]`；**conflicts**：无
+- **setTags**：`[set_xiaoyao_xiaoyaoyou]`；**conflicts**：无
 - **learnSources**：`master ch01 npc_tonglao`（maxLayer 10，`reqsOverride {sect: {id: sect_lingjiu, rank: 2}, hard: [sect]}`）；`master ch01 npc_xuzhu`（maxLayer 10，`reqsOverride {sect: {id: sect_xiaoyao, rank: 2}, hard: [sect]}`）；`puzzle ch01 q_01_side_72`（灵鹫宫石壁，maxLayer 8，`reqsOverride {sect: null, hard: []}`）
 
 #### `sk_baihongzhang` 白虹掌力（地阶上品 · 拳脚·掌 · 阴）
@@ -447,7 +447,7 @@ reqs:
 | 阳极生阴 | `ps_bahuang_zhuanyin` | 8 | mechanic | 装配本功时，生死符（`sk_shengsifu`）效果命中 +20%，施加的 `bf_shengsifu` 品阶 +1（上限 12）——生死符以阳刚内力化水成冰 | full |
 | 八荒大成 | `ps_bahuang_dacheng` | 10 | effect | 主运时常驻 `bf_huichun`（每回合回复 hpMax × 1%×G） | none |
 
-- **setTags**：`[set_xiaoyao_xuzhu, set_lingjiu_jiutian]`
+- **setTags**：`[]`
 - **conflicts**：无直接条目；与阴性主运（北冥神功）同装时按 05 §5.4 相冲，可由小无相功桥接
 - **learnSources**：`master ch01 npc_tonglao`（童姥好感 ≥ 60，maxLayer 10）；`master ch01 npc_xuzhu`（rank 4，maxLayer 10）；`puzzle ch01 q_01_side_72`（石壁，maxLayer 7）
 - **特殊规则（代价型·轻度）**：①**散功重聚**：书眠后进入新书界的前 3 个游戏日，本功内功贡献 ×0.5（UI"功力逐日回复"，致敬返老还童）；②**饮生血**：闭关修炼本功需消耗"生血"（`it_shengxue`，建议 ID，狩猎所得），缺则闭关收益 ×0.5。
@@ -476,7 +476,7 @@ reqs:
 | 寒入骨髓 | `ps_shengsifu_hanru` | 8 | effect | 本武学命中附加 `bf_hanqi` 1 层（100%） |
 | 生死符大成 | `ps_shengsifu_dacheng` | 10 | trigger | 每场首次击杀身中生死符的敌人后，对 5 格内全部敌人各种符一枚（效果命中照常） |
 
-- **setTags**：`[set_xiaoyao_xuzhu]`；**conflicts**：`{with: sk_liuyangzhang, type: counter}`（被其拔除）
+- **setTags**：`[]`；**conflicts**：`{with: sk_liuyangzhang, type: counter}`（被其拔除）
 - **learnSources**：`master ch01 npc_tonglao`（maxLayer 10）；`master ch01 npc_xuzhu`（maxLayer 10）
 - **特殊规则**：战斗外对非敌对 NPC 施符以"驭人"（原著童姥之术）视为邪行：每次 `morality −10`，并向 design/12 的事件记录写入 `{type: imposeShengsifu, actorId, targetId, chapterId, timestamp, moralityDelta: -10}`，再由其结算势力关系与 NPC 后果；同一目标重复施符仍按每次计。Boss 常驻 `bf_shouling` 免疫 `bind`，故生死符对 Boss 只造成伤害部分。
 
@@ -502,7 +502,7 @@ reqs:
 | 护驾 | `ps_piaomiaojian_hujia` | 8 | trigger | 相邻友方被单体攻击选为目标时，20% 获得 `bf_yuanhu` 1（代受此击） |
 | 缥缈大成 | `ps_piaomiaojian_dacheng` | 10 | mechanic | 绝招 +20%；四剑同心上限 8% → 12%（仅限灵鹫宫部众同阵时） |
 
-- **setTags**：`[set_lingjiu_jiutian]`；**conflicts**：无
+- **setTags**：`[]`；**conflicts**：无
 - **learnSources**：`master ch01 npc_meijian`（梅兰竹菊四剑，maxLayer 10）；`puzzle ch01 q_01_side_72`（石壁，maxLayer 7）
 
 ### 3.4 玄阶 / 黄阶（紧凑）
@@ -510,34 +510,34 @@ reqs:
 **`sk_jiutianjiubu` 九天九部阵**（6 玄上 · 杂学·阵法 · 原创扩展，本于灵鹫宫九天九部建制）
 - 招式：`mv_jiutianjiubu_buzhen` 布阵（L1·援·`aoe_allies r2`·6%/3·友方 `bf_jiangu` 2）；`mv_jiutianjiubu_juntian` 钧天号令（L4·控·单体远 1–4·6%/2·目标 `bf_suoding` 70%·2⁺）；`mv_jiutianjiubu_jiutian` 九天合击（L7·援·`aoe_allies r3`·8%/4·友方 `bf_zhuiji` 2⁺）
 - 被动：L1 九部（每有一名装配灵鹫宫武学的友方在场，布阵半径 +1，上限 4）；L6 同袍（阵中友方 `effRes` +5%）；L10 大成（布阵同时驱散每名友方 1 个 `mind`）
-- 门槛/获取：`skills {formation: 30}`、`sect {id: sect_lingjiu, rank: 3}`；`master npc_lingjiu_shouling`（九部首领，占位）｜setTags：`[set_lingjiu_jiutian]`
+- 门槛/获取：`skills {formation: 30}`、`sect {id: sect_lingjiu, rank: 3}`；`master npc_lingjiu_shouling`（九部首领，占位）｜setTags：`[]`
 
 **`sk_zhenshenfeizhen` 针神飞针**（4 玄下 · 暗器 · 0.8/0.2 · 原创扩展，本于阳天部首领符敏仪"针神"之号；原著称其能在骆驼急驰时迅速缝成衣袍，未写飞针武技）
 - `layerStats {crit: [1, 5], hit: [1, 5]}`（10）；弹药：梅花针 `it_meihuazhen` / 毒针 `it_duzhen`（design/10 §8.6）
 - 招式：`mv_zhenshenfeizhen_feizhen` 飞针（L1·`aoe_bolt` 投射 2–5·**0.90**·6%/0·`bf_fengxue` 15%·1；.92 −.03）；`mv_zhenshenfeizhen_mizhen` 密针（L3·`aoe_multi n4 r1` 目标点 2–4·**0.95**·6%/2；.85×1.24×.92=.970）；`mv_zhenshenfeizhen_chuanxian` 穿针引线（L6·单体投射 2–4·**1.05**·6%/2·`bf_chanrao` 40%·2；1.24×.92=1.141 −.10）
 - 被动：L1 针神（本武学 `critDmg` +10pp）；L5 认穴引针（本武学点穴率 +10pp）；L8 千针（密针段数 +1）
-- 门槛/获取：`aptitude {apHidden: 30}`、`attrs {agi: 30}`、rank 2；`master npc_fuminyi`｜setTags：`[set_lingjiu_jiutian]`
+- 门槛/获取：`aptitude {apHidden: 30}`、`attrs {agi: 30}`、rank 2；`master npc_fuminyi`｜setTags：`[]`
 
 **`sk_lingjiuxinfa` 灵鹫心法**（3 黄上 · 内功 · `nature yang`（阳）· 0/1 · 原创扩展）——入宫即授的根基心法，八荒六合的软门槛铺垫。
 - 贡献：`mpMaxPct 10 · hpMaxPct 6 · attrs {con 2, wil 2} · mpRegen 1.2` → IP 30；`stats {resCold 6}`
 - 招式：`mv_lingjiuxinfa_yangqi` 养气（L4·援·`aoe_self`·3%/4·`bf_huinei` 2）
 - 被动：L1 天山寒气（不受品阶 ≤ 本功的 `bf_shouhan`）；L7 灵鹫门风（灵鹫宫武学修炼 +10%）
-- 门槛/获取：`sect_lingjiu` rank 1｜setTags：`[set_lingjiu_jiutian]`
+- 门槛/获取：`sect_lingjiu` rank 1｜setTags：`[]`
 
 **`sk_piaomiaobu` 缥缈步**（2 黄中 · 轻功 · 原创扩展）——QS 38。
 - 招式：`mv_piaomiaobu_tayun` 踏云（L1·位移·自身移动 ≤ mov+1，雪/冰地形不减速·3%/2）
 - 被动：L1 雪地无痕（`tr_xuedi` `tr_shenxue` `tr_bingmian` 移动不减速；只解速度，不解 qg4"踏雪"探索门禁，design/08）；L7 天山（`jump` +1）
-- 门槛/获取：rank 1｜setTags：`[set_lingjiu_jiutian]`
+- 门槛/获取：rank 1｜setTags：`[]`
 
 #### AR-01 新增玄阶（紧凑卡）
 
 **`sk_sijijianzhen` 四季剑阵**（6 玄上 · 兵器·剑 · 阳 · 0.65/0.35 · 原创扩展）——由梅兰竹菊四剑的合击意象扩写；单人可施展，多人只提供可选强化，不计强制合击。
 - `weaponReq {category: sword}`；`layerStats {parry: [1, 5], hit: [1, 5]}`（10）。招式：`mv_sijijianzhen_chun` 春生（L1·单体·**1.00**·6%/0）；`mv_sijijianzhen_xia` 夏长（L3·`aoe_line n2`·**0.95**·6%/1；`.85×1.12=.952`）；`mv_sijijianzhen_qiu` 秋收（L5·单体·**1.15**·7%/1·`bf_liuxue` 20%；`1×1.17−.02=1.15`）；`mv_sijijianzhen_dong` 冬藏（L7·架势·自身·5%/3·`bf_shoushi` 2）。
-- 被动：L1 四时（每次改用不同招式命中，下一式 Z3 +3%，上限 +9%）；L5 四剑同心（相邻友方也装配本武学时 `parry +5`）；L10 大成（春生后获得 `bf_huixin` 1）。门槛/获取：`apSword 35`、`sect_lingjiu` rank 2；梅兰竹菊传授｜setTags：`[set_lingjiu_jiutian]`。
+- 被动：L1 四时（每次改用不同招式命中，下一式 Z3 +3%，上限 +9%）；L5 四剑同心（相邻友方也装配本武学时 `parry +5`）；L10 大成（春生后获得 `bf_huixin` 1）。门槛/获取：`apSword 35`、`sect_lingjiu` rank 2；梅兰竹菊传授｜setTags：`[]`。
 
 **`sk_feixuezhang` 飞雪掌**（5 玄中 · 拳脚·掌 · 阳 · 0.6/0.4 · 原创扩展）——灵鹫宫雪地近战掌法。
 - `layerStats {hit: [1, 5], eva: [1, 5]}`（10）。招式：`mv_feixuezhang_feixue` 飞雪（L1·单体·**1.00**·6%/0）；`mv_feixuezhang_xuanzhang` 旋掌（L3·`aoe_around`·**0.85**·6%/1；`.75×1.12=.84`）；`mv_feixuezhang_linghan` 凌寒（L5·单体·**1.10**·7%/1·`bf_hanqi` 50%；`1×1.17−.05=1.12`）；`mv_feixuezhang_xuewu` 雪舞（L7·`aoe_cone {r:1,angle:120,dirCount:6}`·**1.00**·7%/2；`.80×1.29=1.032`）。
-- 被动：L1 踏雪（雪地命中 +5）；L5 寒中行气（自身有 `bf_shouhan` 时获得 `bf_wenzhong` 1）；L10 大成（旋掌范围内每多一敌，`resCC +2pp`，上限 6）。门槛/获取：`apFist 30`、`sect_lingjiu` rank 2；九部首领传授｜setTags：`[set_lingjiu_jiutian]`。
+- 被动：L1 踏雪（雪地命中 +5）；L5 寒中行气（自身有 `bf_shouhan` 时获得 `bf_wenzhong` 1）；L10 大成（旋掌范围内每多一敌，`resCC +2pp`，上限 6）。门槛/获取：`apFist 30`、`sect_lingjiu` rank 2；九部首领传授｜setTags：`[]`。
 
 **`sk_tianshanhanxiu` 天山寒袖**（4 玄下 · 兵器·鞭索 · 阴 · 0.65/0.35 · 原创扩展）——以长袖代软兵的护宫技法。
 - `weaponReq {category: whip}`；`layerStats {parry: [1, 5], effHit: [1, 5]}`（10）。招式：`mv_tianshanhanxiu_fuxue` 拂雪（L1·近 1–2·**0.95**·6%/0）；`mv_tianshanhanxiu_chanxiu` 缠袖（L3·近 1–2·**1.00**·6%/1·`bf_chanrao` 40%；`1×1.12−.25×.40=1.02`）；`mv_tianshanhanxiu_huixiu` 回袖（L6·`aoe_cone {r:1,angle:120,dirCount:6}`·**1.05**·7%/2；`.80×1.29=1.032`，取 1.05）。
@@ -547,8 +547,8 @@ reqs:
 
 | ID | 名称 | 门派／来源 | 类别（品阶·nature） | 原生书界 | 核心效果（含 setTags） | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_lingjiuxinfa` | 灵鹫心法 | 灵鹫宫 | 内功（3 黄上·`nature yang`） | 天龙 | IP 30、抗寒；`set_lingjiu_jiutian` | `sect_lingjiu` rank 1 | （原创扩展） |
-| `sk_piaomiaobu` | 缥缈步 | 灵鹫宫 | 轻功（2 黄中） | 天龙 | QS 38、雪地无减速；`set_lingjiu_jiutian` | `sect_lingjiu` rank 1 | （原创扩展） |
+| `sk_lingjiuxinfa` | 灵鹫心法 | 灵鹫宫 | 内功（3 黄上·`nature yang`） | 天龙 | IP 30、抗寒；`[]` | `sect_lingjiu` rank 1 | （原创扩展） |
+| `sk_piaomiaobu` | 缥缈步 | 灵鹫宫 | 轻功（2 黄中） | 天龙 | QS 38、雪地无减速；`[]` | `sect_lingjiu` rank 1 | （原创扩展） |
 | `sk_jiubujian` | 九部剑 | 灵鹫宫九部 | 兵器·剑（3 黄上·阳） | 天龙 | 单体 **1.00**、合击 **1.10**（常见相邻友方 `1+.15`，取 −.05）；`layerStats hit 3/parry 3` | `sect_lingjiu` rank 1 | （原创扩展） |
 | `sk_lengyueshou` | 冷月手 | 灵鹫宫 | 拳脚·擒拿（2 黄中·阴） | 天龙 | 单体 **0.95** 附 `bf_hanqi` 50%（`1−.10×.50=.95`）；`layerStats effHit 3/hit 3` | rank 1 | （原创扩展） |
 | `sk_gongshijian` | 宫侍剑 | 灵鹫宫宫侍 | 兵器·剑（3 黄上·中性） | 天龙 | 单体 **1.00**、双人掩护；`layerStats parry 3/hit 3` | rank 1 | （原创扩展） |
@@ -1010,7 +1010,7 @@ reqs:
 | 龙象大力 | `ps_longxiang_dali` | 8 | stat（Z3） | `bf_longxiang` 达上限时 +10% | none |
 | 十层龙象 | `ps_longxiang_shiceng` | 10 | mechanic | 开场即获得 `bf_longxiang` 5 层（原著金轮十层之境） | none |
 
-- **setTags**：`[set_mizong_jinlun]`；**conflicts**：无
+- **setTags**：`[]`；**conflicts**：无
 - **learnSources**：`master ch03 npc_jinlunfawang`（金轮收徒线——原著金轮欲收郭襄为徒；主角代为"金轮传人"属敌对路线，原创扩展；maxLayer 10）
 - **特殊规则**：**成倍递增**——第 5 重起本功武学经验需求 ×1.25（原著之意，数值原创扩展）；配合 `seclusionCap 10`，是"闭关苦修"取向的内功。
 
@@ -1037,7 +1037,7 @@ reqs:
 | 五轮连环 | `ps_wulundazhuan_lianhuan` | 8 | stat（Z3） | 连续两次以**不同**轮招命中同一目标，第二招 +12%（龙象联动由 `eq_jinlun` 专属特效提供，design/10，不在此重复） |
 | 五轮大成 | `ps_wulundazhuan_dacheng` | 10 | mechanic | 绝招 +20% |
 
-- **setTags**：`[set_mizong_jinlun]`；**conflicts**：无
+- **setTags**：`[]`；**conflicts**：无
 - **learnSources**：`master ch03 npc_jinlunfawang`（maxLayer 10）；`observe`（maxLayer 6）
 
 #### `sk_dashouyin` 大手印（玄阶上品 · 拳脚·掌 · 阳）（原创扩展）
@@ -1062,7 +1062,7 @@ reqs:
 | 密乘相应 | `ps_dashouyin_xiangying` | 8 | stat（Z3） | 主运为本派内功（拙火功、龙象般若功）时 +8% |
 | 大手印大成 | `ps_dashouyin_dacheng` | 10 | mechanic | 绝招 +20%（低武书界层数上限 8，此被动在鹿鼎不可得） |
 
-- **setTags**：`[set_mizong_mingwang, set_mizong_jinlun]`；**conflicts**：无
+- **setTags**：`[set_mizong_mingwang]`；**conflicts**：无
 - **learnSources**：`master ch01 npc_mizong_lama`（吐蕃武士教头/大轮寺僧，maxLayer 10）；`master ch03 npc_daerba`（金轮门下，maxLayer 10）；`master ch04 npc_mizong_lama`（元廷番僧投放，原创扩展，maxLayer 10）；`master ch08 npc_sangjie`（鹿鼎，原著大手印来源，受书界层数上限 8）；`pages it_canye_dashouyin`（番僧掉落，6 页）
 
 ### 6.4 玄阶 / 黄阶（紧凑）
@@ -1071,13 +1071,13 @@ reqs:
 - `weaponReq {category: exotic, kinds: [pestle]}`（配达尔巴金杵 `eq_jinchu`，design/10 §5.4，`heavy` 双手）；`layerStats {defOut: [1, 6], resCC: [1, 4]}`（10）
 - 招式：`mv_jingangxiangmochu_xiangmo` 降魔（L1·单体·收招 1100·**1.05**·7%/0·击退 1；1+.07+.05 −.05）；`mv_jingangxiangmochu_qianjun` 杵落千钧（L3·`aoe_leap` 目标点 1–3 溅射 sq3·**1.00**（溅射 ×0.5）·6%/2；.90×1.24 −.10）；`mv_jingangxiangmochu_hufa` 护法（L5·架势·`aoe_self`·5%/2·`bf_shoushi` 3）；`mv_jingangxiangmochu_fumo` 金刚伏魔（L7·**绝招**·`aoe_around`·**1.90**·8%·`bf_xuanyun` 30%；3.00×.65 −.075）
 - 被动：L1 伏魔（本武学命中 20% 施加 `bf_zhenshe` 1；击退 +1 由 `eq_jinchu` 专属特效"降魔杵"提供，不重复）；L4 护法（相邻友方被攻击时 15% 获得 `bf_yuanhu` 1）；L8 大力（`str ≥ 60` 时 Z3 +6%）
-- 门槛/获取：`attrs {str: 35}`、`aptitude {apExotic: 30}`、`sect_mizong` rank 2；`master ch03 npc_daerba`｜setTags：`[set_mizong_jinlun]`
+- 门槛/获取：`attrs {str: 35}`、`aptitude {apExotic: 30}`、`sect_mizong` rank 2；`master ch03 npc_daerba`｜setTags：`[]`
 
 **`sk_zhuohuogong` 拙火功**（4 玄下 · 内功 · `nature yang`（阳）· 0/1 · 原创扩展，借藏传"拙火"修法之名）——密宗通传根基内功，火焰刀、龙象般若功的软门槛铺垫；天龙/神雕/倚天/鹿鼎四书界原生。
 - 贡献：`mpMaxPct 12 · hpMaxPct 10 · attrs {con 3, str 3} · mpRegen 1.6` → IP 42（玄下 41.5，+1.2%）；`stats {resCold 6, resHeat 4}`
 - 招式：`mv_zhuohuogong_zhuohuo` 拙火（L4·援·`aoe_self`·6%/3·驱散自身 `cold` 1＋`bf_quanli` 2）
 - 被动：L1 内火（不受品阶 ≤ 本功的 `bf_shouhan`）；L5 火种（本派 `fire` 标签招式灼烧施加率 +10pp）；L10 大成（学习火焰刀、龙象般若功的 `con` 软门槛 −10）
-- 门槛/获取：`sect_mizong` rank 1；各书界 `npc_mizong_lama` / 鹿鼎 `npc_sangjie`｜setTags：`[set_mizong_mingwang, set_mizong_jinlun]`
+- 门槛/获取：`sect_mizong` rank 1；各书界 `npc_mizong_lama` / 鹿鼎 `npc_sangjie`｜setTags：`[set_mizong_mingwang]`
 
 **`sk_jingangjue` 金刚橛法**（3 黄上 · 兵器·奇门（短兵）· 中性 · 0.8/0.2 · 原创扩展，金刚橛为密宗法器）
 - `weaponReq {category: exotic, kinds: [dagger]}`；`layerStats {hit: [1, 3], crit: [1, 3]}`（6）
@@ -1094,15 +1094,15 @@ reqs:
 
 **`sk_mizonghufashen` 密宗护法身**（6 玄上 · 内功 · `nature yang`（阳）· 0/1 · 原创扩展）——四书界通传的护体内功；跨时代谱系是本作整理，不冒充同一历史组织连续存在。
 - `sourceChapters [ch01_tianlong, ch03_shendiao, ch04_yitian, ch08_luding]`；贡献：`mpMaxPct 20 · hpMaxPct 12 · attrs {con 5, str 3} · mpRegen 1.8` → `20+12+2×8+5×1.8=57`（玄上标准）；`stats {tough 6, resCC 4}`。招式：`mv_mizonghufashen_huti` 护体（L4·援·自身·6%/3·`bf_jiangu` 2）。
-- 被动：L1 护法（相邻友方被攻击时自身 `bf_wenzhong` 1，每回合一次）；L6 金刚身（被击退距离 −1，最低 0）；L10 大成（主运时护体真气获得量 +10%）。门槛/获取：`apInner 35`、`sect_mizong` rank 2；四书界番僧／桑结一系（后世来源均为原创扩展）｜setTags：`[set_mizong_mingwang, set_mizong_jinlun]`。
+- 被动：L1 护法（相邻友方被攻击时自身 `bf_wenzhong` 1，每回合一次）；L6 金刚身（被击退距离 −1，最低 0）；L10 大成（主运时护体真气获得量 +10%）。门槛/获取：`apInner 35`、`sect_mizong` rank 2；四书界番僧／桑结一系（后世来源均为原创扩展）｜setTags：`[set_mizong_mingwang]`。
 
 **`sk_mandaluozhen` 曼荼罗阵**（6 玄上 · 杂学·阵法 · 阳 · 0/1 · 原创扩展）——金轮一脉以法器方位组织护法的阵势。
 - `sourceChapters [ch03_shendiao]`。招式：`mv_mandaluozhen_buzhen` 布阵（L1·`aoe_allies r2`·6%/3·友方 `bf_jiangu` 2）；`mv_mandaluozhen_zhenxin` 镇心（L3·敌方 1–4·6%/2·`bf_zhenshe` 50%）；`mv_mandaluozhen_lunzhuan` 轮转（L5·`aoe_disk r1` 远 1–3·**1.00**·7%/3；抽样核算 `.70×1.41=.987`，取 1.00）；`mv_mandaluozhen_hufa` 护法合势（L7·`aoe_allies r3`·8%/4·`bf_zhuiji` 2）。
-- 被动：L1 四方（阵中每种不同密宗武学使效果命中 +2%，上限 8%）；L6 法器相应（奇门持兵者额外 `parry +4`）；L10 大成（布阵时驱散友方 `mind` 1）。门槛/获取：`formation 35`、`sect_mizong` rank 3；金轮法王／护法传授｜setTags：`[set_mizong_jinlun]`。
+- 被动：L1 四方（阵中每种不同密宗武学使效果命中 +2%，上限 8%）；L6 法器相应（奇门持兵者额外 `parry +4`）；L10 大成（布阵时驱散友方 `mind` 1）。门槛/获取：`formation 35`、`sect_mizong` rank 3；金轮法王／护法传授｜setTags：`[]`。
 
 **`sk_falunshou` 法轮手**（5 玄中 · 拳脚·擒拿 · 阳 · 0.65/0.35 · 原创扩展）——以旋拧、锁腕模拟转轮之势的徒手法，跨四书界用同 ID 通传。
 - `sourceChapters [ch01_tianlong, ch03_shendiao, ch04_yitian, ch08_luding]`；`layerStats {hit: [1, 5], effHit: [1, 5]}`（10）。招式：`mv_falunshou_zhuanwan` 转腕（L1·单体·**0.90**·6%/0·`bf_jiaoxie` 40%；`1−.25×.40=.90`）；`mv_falunshou_suobi` 锁臂（L3·单体·**1.00**·6%/1·`bf_dingshen` 40%；`1.12−.10=1.02`）；`mv_falunshou_yinlun` 引轮（L5·拉拽 1 格·**1.05**·7%/1；`1.17−.10=1.07`，取 1.05）；`mv_falunshou_zhouzhuan` 周转（L7·`aoe_around`·**0.95**·7%/2；`.75×1.29=.968`，取 .95）。
-- 被动：L1 转轮（成功招架后本武学效果命中 +5%）；L5 相应（装配奇门轮/橛/铃时 Z3 +6%）；L10 大成（擒拿持续 +1，上限遵守 06）。门槛/获取：`apGrapple 30`、`sect_mizong` rank 2；四书界通传（原创扩展）｜setTags：`[set_mizong_jinlun]`。
+- 被动：L1 转轮（成功招架后本武学效果命中 +5%）；L5 相应（装配奇门轮/橛/铃时 Z3 +6%）；L10 大成（擒拿持续 +1，上限遵守 06）。门槛/获取：`apGrapple 30`、`sect_mizong` rank 2；四书界通传（原创扩展）｜setTags：`[]`。
 
 **`sk_lingtaibu` 灵台步**（4 玄下 · 轻功 · 原创扩展）——金轮门下绕轮换位的中阶步法；`sourceChapters [ch03_shendiao]`，QS 56。
 - 招式：`mv_lingtaibu_raolun` 绕轮（L1·移至相邻敌人侧后格·5%/3）；`mv_lingtaibu_huanzhen` 换阵（L4·与 1–2 格友方换位·6%/4）。
@@ -1213,11 +1213,11 @@ reqs:
 
 **`sk_tieyaoqiang` 铁鹞枪**（6 玄上 · 兵器·枪 · 阳 · 0.85/0.15 · 原创扩展）——取西夏铁鹞子重骑之名，武学与招式均为本作扩写。
 - `weaponReq {category: spear}`；`layerStats {hit: [1, 6], defOut: [1, 4]}`（10）。招式：`mv_tieyaoqiang_tuci` 突刺（L1·`aoe_pierce n2`·**0.95**·6%/0；抽样核算 AF `.90`，取 +.05）；`mv_tieyaoqiang_chongqi` 冲骑（L3·`aoe_dash n4`·**1.10**·6%/2·击退 1；`1×1.24−.10−.05=1.09`，取 1.10）；`mv_tieyaoqiang_henglan` 横拦（L5·`aoe_cone {r:1,angle:120,dirCount:6}`·**0.95**·7%/1；`.80×1.17=.936`，取 .95）；`mv_tieyaoqiang_pozhen` 破阵（L7·直线 3 格·**1.20**·8%/3·`bf_pojia` 40%；`.85×1.46−.04=1.201`，取 1.20）。
-- 被动：L1 重骑（着重甲时击退抗性 +10pp）；L5 鹞击（冲锋首击 Z3 +8%）；L10 大成（突进距离 +1）。门槛/获取：`str 35`、`apSpear 35`、`sect_yipintang` rank 2；一品堂教头｜setTags：`[set_yipintang_tieyao]`。
+- 被动：L1 重骑（着重甲时击退抗性 +10pp）；L5 鹞击（冲锋首击 Z3 +8%）；L10 大成（突进距离 +1）。门槛/获取：`str 35`、`apSpear 35`、`sect_yipintang` rank 2；一品堂教头｜setTags：`[]`。
 
 **`sk_heifengzhen` 黑风阵**（4 玄下 · 杂学·阵法 · 阴 · 0.3/0.7 · 原创扩展）——以悲酥清风配合军阵遮蔽的中阶战阵。
 - 招式：`mv_heifengzhen_qifeng` 起风（L1·`aoe_allies r2`·6%/3·`bf_youshi` 2）；`mv_heifengzhen_bifeng` 蔽风（L3·`aoe_disk r1` 目标点 1–3·**0.90**·6%/3·`bf_shimang` 30%；抽样核算 `.70×1.36−.25×.30=.877`，取 .90）；`mv_heifengzhen_heiji` 黑骑合击（L6·`aoe_line n3`·**1.10**·7%/2；`.85×1.29=1.097`，取 1.10）。
-- 被动：L1 遮阵（阵内友方远程受击命中修正 −5）；L6 风势（目标已有 `bf_shimang` 时黑骑合击 Z3 +6%）；L10 大成（起风半径 +1）。门槛/获取：`formation 25`、`sect_yipintang` rank 2；一品堂军阵教习｜setTags：`[set_yipintang_tieyao]`。
+- 被动：L1 遮阵（阵内友方远程受击命中修正 −5）；L6 风势（目标已有 `bf_shimang` 时黑骑合击 Z3 +6%）；L10 大成（起风半径 +1）。门槛/获取：`formation 25`、`sect_yipintang` rank 2；一品堂军阵教习｜setTags：`[]`。
 
 #### 黄阶总表（既有 2 门 + AR-01 新增 3 门）
 
@@ -1225,7 +1225,7 @@ reqs:
 |---|---|---|---|---|---|---|---|
 | `sk_poxifeishi` | 泼喜飞石 | 西夏一品堂 | 暗器（2 黄中） | 天龙 | 飞石、弧线抛射 | 无 | 取史载“泼喜军”；（原创扩展） |
 | `sk_dangxiangshuaijiao` | 党项摔角 | 西夏武士 | 拳脚·擒拿（1 黄下·中性） | 天龙 | 抱摔、绊脚 | 无 | （原创扩展） |
-| `sk_tieyaoqiangji` | 铁鹞枪技 | 西夏军士 | 兵器·枪（3 黄上·阳） | 天龙 | 突刺 **0.95**（二格 AF .90，取 +.05）、横扫 **0.85**（`.75×1.12=.84`）；`set_yipintang_tieyao` | rank 1 | 取铁鹞子；（原创扩展） |
+| `sk_tieyaoqiangji` | 铁鹞枪技 | 西夏军士 | 兵器·枪（3 黄上·阳） | 天龙 | 突刺 **0.95**（二格 AF .90，取 +.05）、横扫 **0.85**（`.75×1.12=.84`）；`[]` | rank 1 | 取铁鹞子；（原创扩展） |
 | `sk_helanquan` | 贺兰拳 | 西夏一品堂 | 拳脚·拳（2 黄中·阳） | 天龙 | 单体 **1.00**、格挡后 **1.10**（常见条件 1.15，取 −.05）；`layerStats defOut 3/hit 3` | rank 1 | （原创扩展） |
 | `sk_junzhongxingqi` | 军中行气 | 西夏军士 | 内功（2 黄中·`nature yang`） | 天龙 | `IP=8+5+2×3+5×1=24`、披甲耐力 | 无 | （原创扩展） |
 
@@ -1372,17 +1372,17 @@ reqs:
 
 **`sk_duanmaidao` 断脉刀**（6 玄上 · 兵器·刀 · 阴 · 0.7/0.3 · 原创扩展）——叶二娘薄刀一系的进阶招路，不据此补写原著未载的招名。
 - `weaponReq {category: blade}`；`layerStats {crit: [1, 6], hit: [1, 4]}`（10）。招式：`mv_duanmaidao_xuexian` 血线（L1·单体·**0.95**·6%/0·`bf_liuxue` 50%；核算 `1−.10×.50=.95`）；`mv_duanmaidao_bodao` 薄刀（L3·单体·收招 900·**0.95**·6%/0；`1−.07=.93`）；`mv_duanmaidao_duanmai` 断脉（L5·单体·**1.15**·7%/1·`bf_fengxue` 30%；`1+.12+.05−.20×.30=1.11`）；`mv_duanmaidao_wuhen` 无痕（L7·单体·背后罕见条件·**1.60**·7%/2；`1+.24+.05+.30=1.59`，取 1.60）。
-- 被动：L1 薄刃（对流血目标暴击 +5）；L5 恶名（击倒目标后 2 格敌人受 `bf_zhenshe` 20%）；L10 大成（本武学流血持续 +1）。门槛/获取：`apBlade 35`、邪派路线；叶二娘传授｜setTags：`[set_sidaeren]`。
+- 被动：L1 薄刃（对流血目标暴击 +5）；L5 恶名（击倒目标后 2 格敌人受 `bf_zhenshe` 20%）；L10 大成（本武学流血持续 +1）。门槛/获取：`apBlade 35`、邪派路线；叶二娘传授｜setTags：`[]`。
 
 **`sk_eyingheji` 恶影合击**（5 玄中 · 杂学·阵法 · 中性 · 0.6/0.4 · 原创扩展）——四恶各自可独立使用的围猎法，多人同场只增强、不构成强制合击。
 - 招式：`mv_eyingheji_qianyin` 牵引（L1·敌方 1–3·6%/2·`bf_qianyin` 2）；`mv_eyingheji_jiaji` 夹击（L3·单体·友方邻接目标时·**1.30**·6%/1；抽样核算 `1×(1+.12+.15)=1.27`）；`mv_eyingheji_weilie` 围猎（L5·`aoe_disk r1`·**1.00**·7%/3；`.70×1.41=.987`，取 1.00）；`mv_eyingheji_esi` 恶似（L7·敌方 1–4·7%/3·`bf_kongju` 40%）。
-- 被动：L1 恶影（每名同装本武学友方令效果命中 +3%，上限 9%）；L5 各怀心思（无相邻友方时 `eva +5`）；L10 大成（围猎后自身 `bf_youshi` 1）。门槛/获取：与任一四恶关系达 2；邪派支线｜setTags：`[set_sidaeren]`。
+- 被动：L1 恶影（每名同装本武学友方令效果命中 +3%，上限 9%）；L5 各怀心思（无相邻友方时 `eva +5`）；L10 大成（围猎后自身 `bf_youshi` 1）。门槛/获取：与任一四恶关系达 2；邪派支线｜setTags：`[]`。
 
 #### 黄阶总表（既有 2 门 + AR-01 新增 3 门）
 
 | ID | 名称 | 门派／来源 | 类别（品阶·nature） | 原生书界 | 核心效果（含 setTags） | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_eweibian` | 鳄尾鞭 | 南海鳄神 | 兵器·鞭索（3 黄上·阳） | 天龙 | 扫尾、缠绕；备选 `set_sidaeren` | 岳老三收徒线 | 原著兵刃；武学（原创扩展） |
+| `sk_eweibian` | 鳄尾鞭 | 南海鳄神 | 兵器·鞭索（3 黄上·阳） | 天龙 | 扫尾、缠绕；备选 `[]` | 岳老三收徒线 | 原著兵刃；武学（原创扩展） |
 | `sk_niujingshou` | 扭颈手 | 南海鳄神 | 拳脚·擒拿（2 黄中·阳） | 天龙 | 定身、残血处决 | 岳老三收徒线 | 本于原著行为；（原创扩展） |
 | `sk_baodaoduanfa` | 薄刀短法 | 叶二娘 | 兵器·刀（3 黄上·阴） | 天龙 | 单体 **0.95** 附流血 50%（`1−.10×.5=.95`）；`layerStats crit 3/hit 3` | 邪派路线 | 原著薄刀；武学（原创扩展） |
 | `sk_egangshou` | 恶刚手 | 段延庆一系 | 拳脚·拳（2 黄中·阳） | 天龙 | 单体 **1.00**、击退式 **0.95**（`1−.05=.95`）；`layerStats defOut 3/hit 3` | 邪派路线 | （原创扩展） |
@@ -1800,138 +1800,20 @@ reqs:
 
 ---
 
-## 13. 套装候选（交 design/07 定稿）
+## 13. 套装候选（已由 `design/07` 收敛）
 
-### 13.0 通则（建议）
+> **C2 定稿索引**：正式成员、阈值、效果与可达性唯一见 `design/07` §12；实际 `setTags` 已按 C22 只保留正式关系。
 
-| 项 | 建议 |
-|---|---|
-| 计件 | 按 05 §6.5：装配中的武学 + 穿戴中的装备；辅运内功计件；兵器栏"不可用"仍计件；一门武学对同一套装只计 1 件 |
-| 数值口径 | 下表数值为**套装品阶 = 地中（G 2.2）**的参考值；design/07 应以 `参考值 × G(g_set) / 2.2` 缩放。依 C22，`g_set = floor(median(已计件成员 effGrade))`；偶数件先取中间两值均值，再向下取整，外来压制因此自然传导 |
-| 记法 | 沿用 06 §4.7：`attr:<id> pct/pp/flat`（属性层）、`Z3`/`Z4`（增伤/减伤乘区）、`settle`（结算层）、机制类注明 |
-| 携带约束 | 核心武学携带 高 3/3/3、中 2/2/2、低 1/1/1；轻功/暗器/杂学**不可携带**；装备可携带 6 件（任意品阶）。"可达成性"按"携带件 + 该书界本土件 + 携带装备"计算 |
+| 正式套装 | ID | 本图鉴成员 | 跨组成员 |
+|---|---|---|---|
+| 逍遥游 | `set_xiaoyao_xiaoyaoyou` | `sk_beiming`、`sk_lingbo`、`sk_zhemei`、`sk_baihongzhang`、`sk_langhuanjian`、`sk_zuowangxinfa`、`sk_tianjianzhifa`、`sk_fuyaotui` | 无 |
+| 星宿老仙 | `set_xingxiu_laoxian` | `sk_huagong`、`sk_chousuizhang`、`sk_sanxiaoxiaoyaosan`、`sk_fushidu`、`sk_huoduozhang`、`sk_lianchongshu`、`sk_chanhunwang`、`sk_bilinzhang`、`sk_xingxiudugong` | 无 |
+| 以彼之道 | `set_murong_huanshi` | `sk_douzhuan`、`sk_canhezhi`、`sk_baijiadao`、`sk_murongjian`、`sk_canheqigong`、`sk_shuixiefeidao`、`sk_longchengxinfa`、`sk_yizhenfengdao` | 无 |
+| 大轮明王 | `set_mizong_mingwang` | `sk_huoyandao`、`sk_xiaowuxiang`、`sk_dashouyin`、`sk_mizonghufashen`、`sk_zhuohuogong`、`sk_jingangjue` | `sk_wuxiangjiezhi`、`sk_duoluoyezhi`、`sk_ranmudaofa`、`sk_jiashafumogong`（少林图鉴） |
+| 契丹英雄 | `set_qidan_xiaofeng` | `sk_qinlonggong`、`sk_jingedangkouqiang`、`sk_canglangdao`、`sk_tuxiongbohuquan`、`sk_caoyuanchangqiang`、`sk_liaodongpaochui` | `sk_xianglong18`（五绝图鉴）、`sk_taizuchangquan`（通用图鉴） |
 
-### 13.1 `set_xiaoyao_xiaoyaoyou` 逍遥游（门派套装·逍遥派）
+未采用的虚竹子、九天九部、龙象金轮、四大恶人和一品堂铁鹞子候选已从实际标签移除；原因与去向见 `design/07` §19。装备草案不计入 v1 成员。
 
-- **构成（9 候选）**：`sk_beiming`（天上·内）、`sk_lingbo`（天中·轻）、`sk_zhemei`（天下·擒）、`sk_baihongzhang`（地上·掌）、`sk_langhuanjian`（地下·剑）、`sk_zuowangxinfa`（玄中·内）、`sk_tianjianzhifa`（玄上·指）、`sk_fuyaotui`（黄上·腿）、`eq_qibaozhihuan`（七宝指环，逍遥派掌门信物，原著；**建议** design/10 按峨眉铁指环 `eq_tiezhihuan` 的"掌门信物"模式增设为佩饰）
-
-| 件数 | 效果（参考值） | 作用层 |
-|---|---|---|
-| 2 | `attr:qinggong flat +15`；`attr:eva pct +4%` | 属性层 |
-| 3 | 本回合移动 ≥ 3 格后，所有招式 +8% | Z3 |
-| 4 | 开场获得 `bf_canying` 1 层；辅运内功比例 +0.05（上限 0.60） | 机制 / 05 §5.2 |
-| 5 | 北冥吸内量 +30%；吸内时回复等量 50% 的气血（每回合 ≤ 3% hpMax） | settle |
-
-- **跨品阶混搭**：天上北冥 + 天下折梅 + 地下琅嬛 + 黄上扶摇即成 4 件；黄上/玄中两件使入门弟子在北冥受 `earlyException` 限速的第 3 幕前也能凑 2–3 件。
-- **低武（1/1/1）**：北冥（内）+ 折梅或白虹（拳脚）+ 琅嬛（兵器）= 3 件，加七宝指环（待 design/10 增设）= **4 件**；5 件需凌波（非核心不可带）或第二门内功/拳脚，低武不可达；中武（2/2/2）可达 5 件。
-
-### 13.2 `set_xiaoyao_xuzhu` 虚竹子（人物传承套装）
-
-- **构成（7 候选）**：`sk_beiming`、`sk_bahuang`、`sk_xiaowuxiang`、`sk_liuyangzhang`、`sk_zhemei`、`sk_shengsifu`、`eq_qibaozhihuan`
-- **阈值只设 2/3/4**：成员全为逍遥系天级，而 02 §2.9 R4 规定逍遥系单周目至多取 3，故上限为"3 门 + 七宝指环 = 4 件"。
-
-| 件数 | 效果（参考值） | 作用层 |
-|---|---|---|
-| 2 | 本套装的阴、阳两门内功同装配时视同桥接，不触发内息相冲（05 §5.4）；`attr:hpMax pct +5%` | 机制 / 属性层 |
-| 3 | 天山六阳掌、天山折梅手招式 +8%；`attr:seal pp +8` | Z3 / 属性层 |
-| 4 | 三老合一：生死符效果命中 +15%、"拔符"冷却 −1；三门逍遥内功同装配时两门辅运比例固定 0.60 | 属性层 / 机制 |
-
-- **跨品阶混搭**：全员天阶（天上/天中/天下），是本组"天级浓度"最高、但件数最受限的套装——用"取哪 3 门"制造取舍。
-- **低武**：北冥（内）+ 六阳或折梅（拳脚）= 2 件，加七宝指环（待 design/10 增设）= **3 件**（本套无兵器件）。
-
-### 13.3 `set_lingjiu_jiutian` 九天九部（门派套装·灵鹫宫）
-
-- **构成（8 候选）**：`sk_bahuang`（天下·内）、`sk_piaomiaojian`（地下·剑）、`sk_jiutianjiubu`（玄上·阵）、`sk_sijijianzhen`（玄上·剑）、`sk_feixuezhang`（玄中·掌）、`sk_zhenshenfeizhen`（玄下·暗）、`sk_lingjiuxinfa`（黄上·内）、`sk_piaomiaobu`（黄中·轻）
-
-| 件数 | 效果（参考值） | 作用层 |
-|---|---|---|
-| 2 | `attr:parry pct +4%`；2 格内每名装配灵鹫宫武学的友方使你 `attr:effRes pct +2%`（上限 +8%） | 属性层 |
-| 3 | 缥缈剑法、针神飞针招式 +8%；暗器弹药消耗 −1（每场 3 次） | Z3 / 机制 |
-| 4 | 九天九部阵半径 +1；阵中友方受到伤害 −5% | 机制 / Z4 |
-| 5 | 天山号令：开场 `rage +20`；击杀后获得 `bf_juqi` 2 | 机制 |
-
-- **跨品阶混搭**：入宫即授的黄上心法 + 黄中缥缈步即成 2 件，是本组最平滑的"黄→天"门派套装。
-- **低武**：八荒（或心法）+ 缥缈剑法 = **2 件**（本套无拳脚件）；中武 3 件。如实标注：本套为"天龙本地套装"，跨书界价值低。
-
-### 13.4 `set_xingxiu_laoxian` 星宿老仙（门派套装·星宿派）
-
-- **构成（10 候选）**：`sk_huagong`（地上·内）、`sk_chousuizhang`（地中·掌）、`sk_sanxiaoxiaoyaosan`（地下·毒）、`sk_fushidu`（玄上·毒）、`sk_huoduozhang`（玄上·掌）、`sk_lianchongshu`（玄下·毒）、`sk_chanhunwang`（玄中·鞭）、`sk_bilinzhang`（玄下·掌）、`sk_xingxiudugong`（黄上·内）；〔条件候选〕神木王鼎——design/10 现列为奇物 `it_shenmuwangding`，按 05 §6.5 不计件；**建议** design/10 增设可佩戴版 `eq_shenmuwangding`（佩饰），采纳后为第 10 件
-
-| 件数 | 效果（参考值） | 作用层 |
-|---|---|---|
-| 2 | 施加 `poison` 标签效果时效果命中 +10% | 属性层（条件） |
-| 3 | 对中毒目标 +8% | Z3 |
-| 4 | 本方施加的 `poison` 效果持续 +1 | 机制 |
-| 5 | 星宿老仙：获得永久 `bf_mian_du`，品阶 = 套装品阶 −2（06 §3.5 品阶对抗照常） | 机制 |
-
-- **跨品阶混搭**：地上化功 + 地中抽髓 + 玄中缠魂网 + 地下三笑 = 4 件；黄上毒功 + 玄下碧磷掌让入门弟子即可凑 2–3 件。
-- **低武**：化功（内）+ 抽髓（拳脚）+ 缠魂网（兵器）= **3 件**；若可佩戴的神木王鼎被采纳则 4 件；5 件需毒类杂学（不可带），不可达。
-
-### 13.5 `set_murong_huanshi` 以彼之道（门派/人物套装·姑苏慕容）
-
-- **构成（8 候选）**：`sk_douzhuan`（天下·内）、`sk_canhezhi`（地中·指）、`sk_baijiadao`（玄上·刀）、`sk_murongjian`（玄上·剑）、`sk_canheqigong`（玄上·内）、`sk_shuixiefeidao`（玄上·暗）、`sk_longchengxinfa`（玄中·内）、`sk_yizhenfengdao`（黄上·刀）
-
-| 件数 | 效果（参考值） | 作用层 |
-|---|---|---|
-| 2 | `bf_douzhuan` 概率 +3pp；`attr:counter pp +5` | 机制 / 属性层 |
-| 3 | 被敌方招式命中后，下一招与来袭招式同大类时 +10% | Z3 |
-| 4 | 斗转奉还倍率 +0.1（与"斗转大成"相加，至多 ×1.1）；观摩领悟 +30% | 机制 |
-| 5 | 还施彼身：每场首次被敌方绝招命中时，若该绝招品阶 ≤ 套装品阶，则必定奉还（仍受 `bf_douzhuan` 距离限制；每战 1 次） | 机制 |
-
-- **跨品阶混搭**：一条完整的黄→玄→地→天链（一阵风刀 → 龙城/慕容剑/百家刀 → 参合 → 斗转）；刀、剑两门兵器同装配时只有一门可用，但两门都计件（05 §6.5-3）。
-- **低武**：斗转 + 参合 + 百家刀（或慕容剑）= **3 件**；中武（2/2/2）可达 5 件。
-
-### 13.6 `set_mizong_mingwang` 大轮明王（人物套装·鸠摩智，跨门派）
-
-- **构成（6 个本文成员 + 4 个跨组成员）**：`sk_huoyandao`（天下·掌）、`sk_xiaowuxiang`（天中·内，逍遥派）、`sk_dashouyin`（玄上·掌）、`sk_mizonghufashen`（玄上·内）、`sk_zhuohuogong`（玄下·内）、`sk_jingangjue`（黄上·奇门）；〔跨组成员，已由 `skills-shaolin` 反向登记 `setTags`〕鸠摩智冒用或施展过的七十二绝技：无相劫指 `sk_wuxiangjiezhi`（地上·指）、多罗叶指 `sk_duoluoyezhi`（地下·指）、燃木刀法 `sk_ranmudaofa`（地上·刀）、袈裟伏魔功 `sk_jiashafumogong`（地中·奇门）——"以小无相功催动七十二绝技"。
-
-| 件数 | 效果（参考值） | 作用层 |
-|---|---|---|
-| 2 | `fire` 标签招式 +5%；灼烧施加率 +10pp | Z3 / 属性层 |
-| 3 | `attr:rageGain pp +15` | 属性层 |
-| 4 | 火焰刀 `ranged` 招式射程 +1；本方对护体真气伤害 ×1.2 | 机制 / settle |
-| 5 | 吐蕃国师：本战首次施放绝招后，火焰刀招式冷却 −1 | 机制 |
-
-- **跨品阶混搭**：天中小无相 + 天下火焰刀 + 玄上大手印 + 玄下拙火 + 黄上金刚橛，跨两门派四个大阶，体现鸠摩智"偷学他派"。
-- **低武**：**鹿鼎可达 7 件**——携带小无相（内）、火焰刀（拳脚）与燃木刀法或袈裟伏魔功（兵器）＋鹿鼎本土习得拙火功、密宗护法身（第 2、3 内功栏）、大手印（第 2 拳脚栏）及金刚橛（第 2 兵器栏）；本土新学不占书眠携带数，实际装配仍受 3/3/3 栏位限制。连城/白马/鸳鸯只有携带的 3 件。
-
-### 13.7 `set_mizong_jinlun` 龙象金轮（人物套装·金轮法王）
-
-- **构成（9 候选）**：`sk_longxiang`（天中·内）、`sk_wulundazhuan`（地上·奇门）、`sk_dashouyin`（玄上·掌）、`sk_jingangxiangmochu`（玄上·奇门）、`sk_mizonghufashen`（玄上·内）、`sk_mandaluozhen`（玄上·阵）、`sk_falunshou`（玄中·擒拿）、`sk_zhuohuogong`（玄下·内）、`eq_jinlun`（金轮，基准 §14 注"以地阶为主"，design/10 定）
-
-| 件数 | 效果（参考值） | 作用层 |
-|---|---|---|
-| 2 | `attr:resCC pp +10`；本方击退类招式距离 +1 | 属性层 / 机制 |
-| 3 | 开场获得 `bf_longxiang` 2 层 | 机制 |
-| 4 | 投射（`projectile`）招式 +10% | Z3 |
-| 5 | 国师威仪：五轮大转段数 +1、倍率 ×1.1（与 `eq_jinlun`"五轮齐飞"特效并存） | 机制（改写招式段数与倍率） |
-
-- **跨品阶混搭**：天中龙象 + 地上五轮 + 玄上大手印 / 降魔杵 + 玄下拙火 + 金轮。
-- **低武**：**鹿鼎按候选清单可达 7 件**——携带龙象（内）、五轮大转或降魔杵（兵器）、金轮（装备）＋鹿鼎本土大手印、法轮手、拙火功、密宗护法身；本土新学不占书眠携带数，实际装配仍受 3/3/3 栏位限制。`eq_jinlun` 尚待 `design/10` 反向登记 `set_mizong_jinlun`，故当前双向闭合口径先按 **6 件**，回填后为 7 件。曼荼罗阵非核心且神雕独有，不能带入低武。
-
-### 13.8 `set_qidan_xiaofeng` 契丹英雄（人物套装·萧峰，跨门派）
-
-- **构成（8 候选）**：`sk_xianglong18`（天上·掌，丐帮图鉴）、`sk_qinlonggong`（地上·擒）、`sk_jingedangkouqiang`（玄上·枪）、`sk_canglangdao`（玄上·刀）、`sk_tuxiongbohuquan`（玄中·拳）、`sk_taizuchangquan`（黄上·拳，通用图鉴）、`sk_caoyuanchangqiang`（黄上·枪）、`sk_liaodongpaochui`（黄上·拳）。军行步为轻功，既不可携带也未登记本套。
-
-| 件数 | 效果（参考值） | 作用层 |
-|---|---|---|
-| 2 | 拳脚招式 `attr:pierce pct +8%` | 属性层 |
-| 3 | 聚贤庄：相邻敌人 ≥ 3 时 +10% 伤害、受到伤害 −10% | Z3 / Z4 |
-| 4 | 击杀后 `rage +15`；`attr:tough pct +8%` | 机制 / 属性层 |
-| 5 | 雁门：气血首次 < 30% 时获得 `bf_kuangshi` 3 与 `bf_mian_kong` 1 | 机制 |
-
-- **跨品阶混搭**：与 05 D7 的 `set_shaolin_jingang`（少林金刚）同构——天上降龙 + 地上擒龙 + 玄中搏虎 + 黄上太祖长拳，四个大阶各一件即成 4 件。
-- **低武**：携带降龙（拳脚）与金戈荡寇枪（兵器）为 2 件；C22 已裁定太祖长拳作为通行武学拓至十四书界，低武再由本土途径装配太祖长拳即可达 **3 件**。中武（2/2/2）同样至少 3 件。
-- **跨组闭合**：C22 已裁定 `sk_xianglong18` 与 `sk_taizuchangquan` 均为正式成员；二者现已分别在 `skills-wujue`、`skills-general`（且 `design/05` 示例）反向登记 `set_qidan_xiaofeng`。四门少林绝技也已在 `skills-shaolin` 反向登记 `set_mizong_mingwang`；构建期继续按 05 §6.5-6 做双向校验，不设豁免。
-
-### 13.9 备选（未展开，交 design/07 取舍）
-
-| 套装 | 构成 | 定位 |
-|---|---|---|
-| `set_sidaeren` 四大恶人 | 延庆杖法、血痕刀法、断脉刀、恶影合击、鳄嘴剪、鹤翔步、腹语术、鳄尾鞭、扭颈手、薄刀短法 | 邪派路线趣味套装；建议 2 件"恶名"（击杀时 2 格内敌人 20% `bf_kongju`）、3 件对气血 < 50% 目标 Z3 +10%、4 件开场对 3 格内敌人施 `bf_zhenshe` |
-| `set_yipintang_tieyao` 铁鹞子 | 铁鹞子刀法、铁鹞枪、黑风阵、铁鹞枪技、贺兰心法、泼喜飞石、党项摔角、悲酥清风 | 西夏军阵低阶套装；2 件冲锋 Z3 +5%、3 件着重甲无移动惩罚 |
-
----
 
 ## 14. 本组统计
 
