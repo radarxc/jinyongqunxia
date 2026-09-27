@@ -9,6 +9,8 @@
    - `grep -rn "对基准的修改提案" docs` 下各小节中仍未处理的条目；
    - `docs/decisions/rulings-v1.md` A6"基准修改提案"；
    - `docs/decisions/author-decisions.md` 中作者已填写、且与基准有关的决定。
+   - `docs/decisions/author-requirements.md` AR-01…AR-13 各条的"归属与影响"与追加表的默认值：它们与作者决定同级、高于基准，凡指向基准条目的都要落实到 v1.2——至少：§4 品阶数量比例 1:3:9:9；§6 内力阴 / 阳 / 调和（AR-02）与冲穴 / 周天的接口（AR-03，定义归 `design/15`）；§8 六角格战棋、移动 / 出手顺序按轻功、范围模板归 09（AR-12）；§12 新前缀（`res_` / `rp_` / `sv_` / `biz_` / `job_`（16）、`frag_` / `lgs_` / `cache_`（20）、`q_NN_main_<c|z|x>_nn` / `dc_NN_nn`（story）等，以各文档报告第 5 节为准）；§13 天级闭集的"合成全本"例外（AR-13，按 `design/20` 的推荐写入并标 ⚠️ 待作者确认）；§18 新增 `design/15`–`20` 与 `story/NN-*` 的归属；§3 书眠清除 / 跨书界保留清单接收 16、18、20、tech/05 的提案；§2 统一大地图与时代图层（AR-04）。
+   - `tools/agents/reports/_coordinator-notes.md` 中"应由谁处理"含 A3 的条目（如 CN-04、CN-06）。
 2. **逐条处理**：
    - 与作者决定一致且无争议的：采纳；
    - 有争议的：按推荐值写入正文，并标"⚠️ 待作者确认"；

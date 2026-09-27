@@ -4000,7 +4000,11 @@
       "deps": [
         "A3",
         "L1",
-        "L1b"
+        "L1b",
+        "F1a",
+        "F1b",
+        "F1t",
+        "F1n"
       ],
       "writes": [
         "docs/**",
@@ -4050,6 +4054,246 @@
       "vars": {},
       "review": false,
       "web": false
+    },
+    {
+      "id": "F1a",
+      "phase": "F",
+      "wave": 3,
+      "kind": "revise",
+      "title": "跨文档同步落实 · 设计 A（01/02/03/06/08/09/10/11）",
+      "prompt": "F1-sync.md",
+      "deps": [
+        "B2.R",
+        "R02",
+        "R03",
+        "R06",
+        "R08",
+        "R09.R",
+        "R10",
+        "B3.R",
+        "B7.R",
+        "E2.R",
+        "N1.R",
+        "S1.R",
+        "W1.R",
+        "M1",
+        "R09"
+      ],
+      "writes": [
+        "docs/design/01-vision-and-core-loop.md",
+        "docs/design/02-timeline-and-world-tiers.md",
+        "docs/design/03-attributes.md",
+        "docs/design/06-buff-system.md",
+        "docs/design/08-terrain-and-qinggong.md",
+        "docs/design/09-combat-system.md",
+        "docs/design/10-items-and-equipment.md",
+        "docs/design/11-open-world.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "设计文档 A 组",
+        "doc_set": "- `docs/design/01-vision-and-core-loop.md`\n- `docs/design/02-timeline-and-world-tiers.md`\n- `docs/design/03-attributes.md`\n- `docs/design/06-buff-system.md`\n- `docs/design/08-terrain-and-qinggong.md`\n- `docs/design/09-combat-system.md`\n- `docs/design/10-items-and-equipment.md`\n- `docs/design/11-open-world.md`",
+        "focus": "09 六角格（AR-12）对 08 邻距 / 地形成本、06 Buff 目录（CN-10 五个新 Buff 与 `bf_mabi`）、04 Z7 方向倍率的接口；02 的 `rs_` 古迹与 16 的 `res_` 资源不混用；11 接收 16 的资源点 / 营生场所字段与 229 / 280 预算；10 材料 `it_*` 的 `resourceRef`；01 §7 各书界锚点与已审校的 `story/NN-*.md` 一致；03 / 02 / 10 / 11 对 15（冲穴）、17（门派）、18（NPC 生卒与招募）、19（地图数据）、20（残本与信物）的引用。",
+        "scope_note": "**协调备忘专项**：CN-11（08 §1.2 邻距 1 m 与 09 六角邻距 √3R 的尺度冲突）以 09 v2.0 六角格为准回写 08 并登记；CN-10 核对 R06 是否已收录 09 v2.0 的 5 个新 Buff 与 `bf_mabi` 的 `str −3×G`、`bf_pibei` 20% 阈值，缺的补入 06；CN-04 在 02 中写明 `rs_` 仅古迹、资源用 `res_`（见 16）。E2.R 指出的 09 §3.3 首轮排序公式漏列 `openingPriority`、11 §6.1 示例改单步 `tick()`，按 tech/05 落实。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/01-vision-and-core-loop.md",
+          "docs/design/02-timeline-and-world-tiers.md",
+          "docs/design/03-attributes.md",
+          "docs/design/06-buff-system.md",
+          "docs/design/08-terrain-and-qinggong.md",
+          "docs/design/09-combat-system.md",
+          "docs/design/10-items-and-equipment.md",
+          "docs/design/11-open-world.md"
+        ],
+        "fences": [
+          "docs/design/01-vision-and-core-loop.md",
+          "docs/design/02-timeline-and-world-tiers.md",
+          "docs/design/03-attributes.md",
+          "docs/design/06-buff-system.md",
+          "docs/design/08-terrain-and-qinggong.md",
+          "docs/design/09-combat-system.md",
+          "docs/design/10-items-and-equipment.md",
+          "docs/design/11-open-world.md"
+        ]
+      }
+    },
+    {
+      "id": "F1b",
+      "phase": "F",
+      "wave": 3,
+      "kind": "revise",
+      "title": "跨文档同步落实 · 设计 B（12–19 与 NPC 名录）",
+      "prompt": "F1-sync.md",
+      "deps": [
+        "B4.R",
+        "M1.R",
+        "B7.R",
+        "B5.R",
+        "R13",
+        "S1.R",
+        "N1.R",
+        "W1.R",
+        "E2.R",
+        "P04.R",
+        "P07.R",
+        "P03.R"
+      ],
+      "writes": [
+        "docs/design/12-quests-npc-factions.md",
+        "docs/design/13-progression-and-endings.md",
+        "docs/design/14-ui-ux-mobile.md",
+        "docs/design/15-meridians-and-acupoints.md",
+        "docs/design/16-resources-and-estates.md",
+        "docs/design/17-sects-compendium.md",
+        "docs/design/18-npc-and-companions.md",
+        "docs/design/19-world-map.md",
+        "docs/design/catalog/npcs-*.md",
+        "docs/design/map/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "设计文档 B 组",
+        "doc_set": "- `docs/design/12-quests-npc-factions.md`\n- `docs/design/13-progression-and-endings.md`\n- `docs/design/14-ui-ux-mobile.md`\n- `docs/design/15-meridians-and-acupoints.md`\n- `docs/design/16-resources-and-estates.md`\n- `docs/design/17-sects-compendium.md`\n- `docs/design/18-npc-and-companions.md`\n- `docs/design/19-world-map.md`",
+        "focus": "12 接收各 `story/NN-*.md` 审校后的路线段 / 选择节点约定（`q_NN_main_<c|z|x>_nn`、`dc_NN_nn`、立场值、换线公式、YAML 字段）；18 与 `catalog/npcs-*.md` 补录各剧情审校报告点名的候选 NPC（ID 全仓库查重、生卒年、招募分级）；17 的候选武学 ID 回写为图鉴实际 ID（CN-02、CN-03）；15 的 `mer_*` 迁移表（CN-07）；16 与 12 / 17 的月钱 / 职位接口（`stipendTier` / `resourceTier`）；13 的跨书界保留清单接收 E2-P03 / B7 O16-01 / 15 九转 / 20 残本；14 接收 16 的家业页与 12 时辰冲突；19 / map 数据与 17 / story 的地望双称（石梁衢州—金华、沈阳中卫—盛京等）。",
+        "scope_note": "**协调备忘专项**：CN-02、CN-03 回写 17；CN-07 在 15 中给出 `mer_*` 预留 ID → 正式 ID 的迁移表（图鉴本身由 CX* / F2 改）。已审校的剧情报告（`P*.R.md`）第 6 节针对 12 / 18 / 13 / 17 / 19 的条目逐条处理；尚未审校的剧情只处理其初稿报告中已明确的条目。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/12-quests-npc-factions.md",
+          "docs/design/13-progression-and-endings.md",
+          "docs/design/14-ui-ux-mobile.md",
+          "docs/design/15-meridians-and-acupoints.md",
+          "docs/design/16-resources-and-estates.md",
+          "docs/design/17-sects-compendium.md",
+          "docs/design/18-npc-and-companions.md",
+          "docs/design/19-world-map.md"
+        ],
+        "fences": [
+          "docs/design/12-quests-npc-factions.md",
+          "docs/design/13-progression-and-endings.md",
+          "docs/design/14-ui-ux-mobile.md",
+          "docs/design/15-meridians-and-acupoints.md",
+          "docs/design/16-resources-and-estates.md",
+          "docs/design/17-sects-compendium.md",
+          "docs/design/18-npc-and-companions.md",
+          "docs/design/19-world-map.md"
+        ]
+      }
+    },
+    {
+      "id": "F1t",
+      "phase": "F",
+      "wave": 3,
+      "kind": "revise",
+      "title": "跨文档同步落实 · 技术（tech/01–08）",
+      "prompt": "F1-sync.md",
+      "deps": [
+        "RT1",
+        "RT2",
+        "RT6",
+        "RT7",
+        "B6a.R",
+        "B6b.R",
+        "E1.R",
+        "E2.R",
+        "B7.R",
+        "W1.R",
+        "N1.R",
+        "S1.R",
+        "R09.R",
+        "L1b"
+      ],
+      "writes": [
+        "docs/tech/01-architecture.md",
+        "docs/tech/02-rendering.md",
+        "docs/tech/03-mobile-performance.md",
+        "docs/tech/04-data-pipeline.md",
+        "docs/tech/05-gameplay-engine.md",
+        "docs/tech/06-asset-storage.md",
+        "docs/tech/07-asset-generation.md",
+        "docs/tech/08-backend-and-online.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "技术文档组",
+        "doc_set": "- `docs/tech/01-architecture.md`\n- `docs/tech/02-rendering.md`\n- `docs/tech/03-mobile-performance.md`\n- `docs/tech/04-data-pipeline.md`\n- `docs/tech/05-gameplay-engine.md`\n- `docs/tech/06-asset-storage.md`\n- `docs/tech/07-asset-generation.md`\n- `docs/tech/08-backend-and-online.md`",
+        "focus": "tech/01 §3.6 / §8.3 与 tech/05 的 `Core`、版本字段、单步 `tick()`、原子读档、负 CT、AI seed、录像 hash 域；tech/08 §10 的 `appBuild` / `coreVersion`、战斗域 hash、不上传完整 GameState；tech/04 同源生成 59 hooks / 50 OpId / opcode 并接收 12 / 15 / 16 / 17 / 18 / 20 的正式字段与 `res_/rp_/sv_/biz_/job_/frag_/lgs_/cache_` 前缀；tech/02 对 09 v2.0 六角格（pointy-top 轴坐标、6 向朝向、范围模板预览）的渲染评估与 19 水墨地图 / 时代图层的资源方案；tech/06 / 07 接收 19 地图 SVG 与城市 / 门派素材清单；tech/03 单位预算对六角格与 AR-12 行动表的影响。",
+        "scope_note": "**协调备忘专项**：CN-08（`tools/lint/check_ids.py` 已可用）在 tech/04 的内容管线中登记为 CI 门禁。E2.R 报告第 6 节的 tech/01 / tech/08 / tech/04 条目必须逐条落实。"
+      },
+      "validate": {
+        "exists": [
+          "docs/tech/01-architecture.md",
+          "docs/tech/02-rendering.md",
+          "docs/tech/03-mobile-performance.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/05-gameplay-engine.md",
+          "docs/tech/06-asset-storage.md",
+          "docs/tech/07-asset-generation.md",
+          "docs/tech/08-backend-and-online.md"
+        ],
+        "fences": [
+          "docs/tech/01-architecture.md",
+          "docs/tech/02-rendering.md",
+          "docs/tech/03-mobile-performance.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/05-gameplay-engine.md",
+          "docs/tech/06-asset-storage.md",
+          "docs/tech/07-asset-generation.md",
+          "docs/tech/08-backend-and-online.md"
+        ]
+      }
+    },
+    {
+      "id": "F1n",
+      "phase": "F",
+      "wave": 3,
+      "kind": "revise",
+      "title": "跨文档同步落实 · 数值链（04 / 05 / 伤害模拟）",
+      "prompt": "F1-sync.md",
+      "deps": [
+        "C3",
+        "B1.R",
+        "R03",
+        "R05",
+        "R09.R",
+        "M1",
+        "E2.R"
+      ],
+      "writes": [
+        "docs/design/04-damage-formula.md",
+        "docs/design/05-martial-arts-system.md",
+        "tools/balance/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "数值链组",
+        "doc_set": "- `docs/design/04-damage-formula.md`\n- `docs/design/05-martial-arts-system.md`",
+        "focus": "03 锚点 → 04 公式与 §9 节奏表 → 05 招式预算（范围系数按 09 六角格数表）→ 09 战斗节奏；04 Z7 方向倍率与 09 六向背击 / 侧击；05 §5 内功 `nature`（AR-02）与 15 内劲接口；05 §14 数量规划（C3 已按 1:3:9:9 重定）与 CX* 目标一致；E2.R 指出的 04 §7.5 共享资源仲裁序与 `settledIncoming` 是否公开。",
+        "scope_note": "**协调备忘专项**：CN-09——R03 重算的合法 STD（玩家装备 `min(grade,9)`：Lv70 hp 40,409 / mp 28,887，MPREF(35) 4,697）尚未进入 `tools/balance/damage_sim.py`。把脚本的玩家装备改为 `min(grade,9)`，重生 04 §9 节奏表与金标准，`python tools/balance/damage_sim.py --check` 必须通过（36/36 或更新后的用例数），并在 04 变更记录写明前后差异。CN-05 核对 C3 是否已消解 05 §4.2 与 §13.2 的独孤六式倍率矛盾，未消解则按 §4.2 预算改定。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/04-damage-formula.md",
+          "docs/design/05-martial-arts-system.md"
+        ],
+        "fences": [
+          "docs/design/04-damage-formula.md",
+          "docs/design/05-martial-arts-system.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ]
+        ]
+      }
     }
   ]
 }
