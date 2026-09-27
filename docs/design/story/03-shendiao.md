@@ -1,10 +1,10 @@
 # 03 · 神雕侠侣主线剧情（正邪双线）
 
 > 归属（基准 §18）：`ch03_shendiao` 的主线剧情、正邪路线、选择节点、锚点落实、结局与剧情任务 ID；本书界 DLC 文档 `chapters/03-shendiao.md` 的“主线”只应索引本文。
-> 上游：`00-canon.md` v1.1；作者新增需求 AR-04、AR-09、AR-10 与 `decisions/author-decisions.md`；锚点以 `design/01-vision-and-core-loop.md` §7.4 为准，年代与书眠以 `design/02-timeline-and-world-tiers.md` 为准，天书变体以后者及 `design/13-progression-and-endings.md` §4 为准。
-> 引用而不重定义：属性、品德与声望 → `design/03-attributes.md`；武学与授艺 → `design/05-martial-arts-system.md` 及四册技能图鉴；Boss 与剧情战 → `design/09-combat-system.md`；区域、城市与旅行 → `design/11-open-world.md`、`design/19-world-map.md`；任务 DSL → 待建立的 `design/12-quests-npc-factions.md`（过渡接口见 `tech/04-data-pipeline.md`）；天书、结局与成长 → `design/13-progression-and-endings.md`；门派 → `design/17-sects-compendium.md`；NPC、生卒与招募 → `design/18-npc-and-companions.md`。
+> 上游：`00-canon.md` v1.2；作者新增需求 AR-04、AR-09、AR-10 与 `decisions/author-decisions.md`；锚点以 `design/01-vision-and-core-loop.md` §7.4 为准，年代与书眠以 `design/02-timeline-and-world-tiers.md` 为准，天书变体以后者及 `design/13-progression-and-endings.md` §4 为准。
+> 引用而不重定义：属性、品德与声望 → `design/03-attributes.md`；武学与授艺 → `design/05-martial-arts-system.md` 及四册技能图鉴；Boss 与剧情战 → `design/09-combat-system.md`；区域、城市与旅行 → `design/11-open-world.md`、`design/19-world-map.md`；任务 DSL → `design/12-quests-npc-factions.md`（策划夹具落盘仍须经 `tech/04-data-pipeline.md` 校验）；天书、结局与成长 → `design/13-progression-and-endings.md`；门派 → `design/17-sects-compendium.md`；NPC、生卒与招募 → `design/18-npc-and-companions.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.1（P03 初稿；审校 P03.R，2026-09-26）。原著考据以三联 / 广州修订版为基线；联网目录与可访问章节只用于交叉定位，不代替指定纸本逐字校勘。
+> 版本：v1.1（P03 初稿；审校 P03.R，2026-09-26）；全局审计（2026-09-26）。原著考据以三联 / 广州修订版为基线；联网目录与可访问章节只用于交叉定位，不代替指定纸本逐字校勘。
 
 ---
 
@@ -106,7 +106,7 @@ flowchart TD
 3. “主改命”仅为后来襄阳陷落预置暗道、接应人、路线册与传承箱；本界不演 1273 年城破，也不承诺郭靖、黄蓉必然生还。
 4. 原著人物命定死亡只有在明确的改命条件下改变；改变后写入 `design/18` 可读取的状态，下一书界仍以“史自愈 + 回响”开场。
 5. 获得任何 `sk_*` 必须走既有图鉴来源。九阳只写入“闻经”与跨书线索，不授予 `sk_jiuyang`。
-6. 选择造成的单次 `morality` 变化控制在 ±1–15；所有数值均列为建议值，等待 `design/12` 统一。
+6. 选择造成的单次 `morality` 变化控制在 ±1–15；所有数值均列为建议值，并须按 `design/12` §2.6 原样迁入正式任务实例。
 
 ---
 
@@ -981,7 +981,7 @@ routeReady = evac_route_segments >= 3
 | A1 | 终南山与古墓相逢 | 杨过入全真后逃离，转入古墓并与小龙女相识 | 可保护旁人、揭露或利用门派冲突；不可取代相识，不改孙婆婆缺省命运 | Z01 / X01 结束；`anchor_zhongnan = complete` | 古墓与全真关系、遗刻处理方式；不改变杨过入古墓 |
 | A2 | 大胜关英雄大会 | 群雄抗蒙，杨过、小龙女重逢并迎战金轮一方 | 从群雄外围或蒙古使团一侧介入；可取得军情，不改变杨龙取胜与离场 | Z05 / X05；`anchor_dasheng = complete` | 杨康真相、郭家 / 蒙古关系、绝情谷入口 |
 | A3 | 绝情谷情花与断肠崖之约 | 杨过中情花毒；谷中旧怨爆发；小龙女留下十六年约，二人分离 | 可救谷中旁人、处理证据与解药；不可取消情花、提前揭露谷底或删十六年离别 | Z09 / X09；`anchor_duanchang = complete`、`sixteen_year_vow` | 幸存人物在同书余韵健在；写 `anran_bieli` 的既有门槛；进入十六年跳转 |
-| A4 | ★ 襄阳守城与后世撤离预置 | 本界只演当下守城；后来襄阳终会陷落，郭家结局不在 1259 正面展开 | 原著：守住当下，未形成持久退路；改命：三段暗道、四处安全屋、三处缓存和密封档案留给后来的人**（原创扩展）** | `dc_03_09`；`routeReady` + 家业 / 收益牺牲 | 写 `ch03.fate_echo` 局部状态；跨书回响正式 ID 待 `design/02` 或 `design/13` 登记，倚天只出现襄阳遗民口述变体，不改起点 |
+| A4 | ★ 襄阳守城与后世撤离预置 | 本界只演当下守城；后来襄阳终会陷落，郭家结局不在 1259 正面展开 | 原著：守住当下，未形成持久退路；改命：三段暗道、四处安全屋、三处缓存和密封档案留给后来的人**（原创扩展）** | `dc_03_09`；`routeReady` + 家业 / 收益牺牲 | 写 `ch03.fate_echo` 局部单写状态；书眠适配器据此派生 `design/02` §6.3 的标准 `echo_NN_fate` 投影，倚天只出现襄阳遗民口述变体，不改起点 |
 | A5 | 蒙哥之死与华山重逢 | 杨过在襄阳城外击毙蒙哥，群雄后于华山重聚、定名号并作别 | 玩家守侧翼、救百姓或逼出射界；杨过必须完成决定性一击；华山见证而不夺名 | `q_03_main_c_03` 完成；终战成功、华山到场 | 天书现世，取得 `tsp_03_canon` 或 `tsp_03_fate`；开启书眠 |
 
 ### 6.2 主改命的闭环
@@ -1005,7 +1005,7 @@ routeReady = evac_route_segments >= 3
 - 公孙止、裘千尺、金轮法王、霍都的非原著生存结果必须来自明确节点；本文未给“自动洗白”，也不因加入邪线就默认他们存活。
 - 1259 年终局不演 1273 年襄阳陷落。郭靖、黄蓉是否利用暗道生还仍保持开放，本文只承诺部分军民与传承有退路，符合 `design/13` §7.12 的后日谈。
 - 神雕至倚天间隔 77 年。任何获救者能否跨书再见，都先检查 `design/18` 的生卒、年龄段与 `companionReunion`；不能只凭 `alive` 忽略自然寿命。
-- 下一书界仍按原著起点初始化。`ch03.fate_echo` 只改变对白、遗民支线与图鉴，不删除倚天锚点；跨书回响正式 ID 待 `design/02` 或 `design/13` 登记。
+- 下一书界仍按原著起点初始化。`ch03.fate_echo` 只改变对白、遗民支线与图鉴，不删除倚天锚点；书眠提交按 `design/02` §6.3 从该单写者派生 `echo_NN_fate` 标准投影，不要求剧情节点双写。
 
 ### 6.4 城头与华山 `q_03_main_c_03`
 
@@ -1101,7 +1101,7 @@ routeReady = evac_route_segments >= 3
 | 持有玄铁重剑且在倚天见到倚天剑 / 屠龙刀 | “三器共鸣”无数值过场**（原创扩展）** | 不复制装备、不改变倚天器物原著位置，引用 `design/02` §5.8 |
 | `jiuyang_echo = true` | 倚天取得九阳时门槛 ×0.9，显示见闻图鉴 | 神雕绝不可完整学习 `sk_jiuyang`，遵从作者决定 P10 |
 | `npc_guoxiang` 羁绊记录 | 峨眉祖师像前专属对白 | 只作回响，不把郭襄强行写成 1336 年健在同伴 |
-| `ch03.fate_echo = true` | 襄阳遗民口述暗道与分持路线册 | 不改变倚天主线起点或武当、峨眉锚点；跨书回响正式 ID 待上游登记 |
+| `ch03.fate_echo = true` | 襄阳遗民口述暗道与分持路线册 | 不改变倚天主线起点或武当、峨眉锚点；离界时派生标准 `echo_NN_fate=true` |
 | 李莫愁 / 绿萼等局部改命 | 遗物、谱系或传闻文本候选 | 77 年后是否本人出现必须另过生卒校验，默认不直接现身 |
 | 正 / 邪终局立场 | 张三丰、峨眉或丐帮对主角当年做法的不同评价 | 不增减核心奖励；不能把“邪线”当自动敌对 |
 
@@ -1228,7 +1228,7 @@ routeReady = evac_route_segments >= 3
 - [古诗文网转录《第三十九回 大战襄阳》](https://m.gsw6.com/book/sdxl/8302.html)：用于核对郭襄高台、杨过登台与金轮法王交战的顺序；二手转录。
 - [古诗文网转录《第四十回 华山之巅》](https://m.gsw6.com/book/sdxl/8308.html)及[续页](https://m.gsw6.com/book/sdxl/8309.html)：用于核对觉远、张君宝、潇湘子、尹克西与《九阳真经》线索；二手转录。
 
-`https://jinyongx.com/shen/` 在本次访问中发生 TLS 连接失败，未作为已抓取证据。本文没有版本号、API、浏览器支持、价格或服务限额等外部技术事实；任务 YAML 是内部 `design/12` 尚未定稿前的兼容草案，不把它标作已实现 schema。
+`https://jinyongx.com/shen/` 在本次访问中发生 TLS 连接失败，未作为已抓取证据。本文没有版本号、API、浏览器支持、价格或服务限额等外部技术事实；任务 YAML 是早于现行 `design/12` 的兼容草案，不把它标作已实现 schema。
 
 ### 9.2 原创扩展清单
 
@@ -1246,7 +1246,7 @@ routeReady = evac_route_segments >= 3
 
 ### 9.3 任务 YAML 兼容草案
 
-`design/12-quests-npc-factions.md` 尚未建立。下例采用 `tech/05` §10.1 当前最新的 `QuestCondition`（`all / any / not / expr / fact`）与 `QuestTransition` 形状，并保留 `tech/04` §3.2 要求的根级 `schemaStatus: provisional`。其中 `effects` 是待正式判别联合收口的 `QuestIntent[]`，所有事实显式写 `scope` 与 `key`；字段名、事件名和 intent `t` 仍待 `design/12` 定稿，不能把此代码块直接当生产数据。
+`design/12-quests-npc-factions.md` 已落盘。下例保留为早期迁移夹具，采用 `tech/05` §10.1 的 `QuestCondition`（`all / any / not / expr / fact`）与 `QuestTransition` 形状，并保留 `tech/04` §3.2 要求的根级 `schemaStatus: provisional`。其中 `effects` 尚须按 `design/12` §2.6 迁入正式 `QuestIntent[]`，所有事实显式写 `scope` 与 `key`；不能把此代码块直接当生产数据。
 
 ```yaml
 schemaStatus: provisional
@@ -1410,7 +1410,7 @@ lock:
 | `ch03.limochou_alive` | bool | `dc_03_06` / Z/X09 | NPC 状态与余韵 |
 | `anran_bieli` | bool | 当界羁绊 ≥3 同伴离开或倒下 | `skills-daojia` 的 `sk_anran` 来源门槛 |
 | `jiuyang_echo` | bool | C03 华山尾声的觉远 / 张君宝线索 | 倚天九阳见闻；不产生 LearnSource |
-| `ch03.fate_echo` | bool | `dc_03_09` 改命成功 | 倚天襄阳遗民回响；跨书回响正式 ID 待上游登记 |
+| `ch03.fate_echo` | bool | `dc_03_09` 改命成功 | 倚天襄阳遗民回响的单写者；离界适配器派生标准 `echo_NN_fate` |
 
 ---
 
@@ -1436,7 +1436,7 @@ lock:
 | 邪线幕（10） | `q_03_main_x_01`–`q_03_main_x_10` |
 | 选择节点（10） | `dc_03_01`–`dc_03_10` |
 
-以上新 ID 已对全仓（排除本文）检索，未发现同名。`q_03_main_z/x/c_NN` 与 `dc_03_NN` 是 AR-10 本批故事文档约定；建议补入基准 §12，见文末提案。四类结局当前只用语义标签，两个遭遇只用局部槽，跨书回响只写 `ch03.fate_echo` 状态；三者须分别等 `design/13`、`design/09` / `design/12`、`design/02` / `design/13` 的归属文档登记正式 ID。局部 stage / option 名不进入全局 ID 注册表。
+以上新 ID 已对全仓（排除本文）检索，未发现同名。`q_03_main_z/x/c_NN` 与 `dc_03_NN` 已由 Canon v1.2 §12 登记，剧情定义归本文；生产任务按 `design/12` §2.6 映射。四类结局当前只用语义标签，两个遭遇只用局部槽，跨书回响只写 `ch03.fate_echo` 单写状态，并由书眠适配器派生 `design/02` §6.3 的标准投影；结局与遭遇仍分别等 `design/13`、`design/09` / `design/12` 的归属文档登记正式 ID。局部 stage / option 名不进入全局 ID 注册表。
 
 ---
 
@@ -1514,9 +1514,9 @@ lock:
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| `SD03-B01` | 在基准 §12 登记故事批次的路线任务格式 `q_NN_main_ROUTE_MM`（`ROUTE` 为 `z`、`x` 或 `c`）与选择节点 `dc_NN_MM` | AR-10 明确要求，但现有基准只列通用 `q_NN_main_nn`，需避免后续校验误报 |
-| `SD03-B02` | 在基准 §18 明示 `design/story/NN-*.md` 为主线唯一归属，`chapters/NN` 只索引与配置书界特色 | 防止十四部并行写作在 DLC 文档重复定义主线 |
-| `SD03-B03` | 为主改命状态补统一 `anchor_fate` / 跨书回响写入约定，并由归属文档登记正式回响 ID | `design/13` 已消费改命变体与回响，但任务侧缺统一提交契约 |
+| `SD03-B01` | **已解决：**Canon v1.2 §12 已登记路线任务格式 `q_NN_main_ROUTE_MM`（`ROUTE` 为 `z`、`x` 或 `c`）与选择节点 `dc_NN_MM` | AR-10 的稳定命名已成为基准规范 |
+| `SD03-B02` | **已解决：**Canon v1.2 §18 已明示 `design/story/NN-*.md` 为主线唯一归属，`chapters/NN` 只索引并配置书界特色 | 防止十四部并行写作在 DLC 文档重复定义主线 |
+| `SD03-B03` | **已解决（不升格）：**Canon v1.2 提案裁定 CP-40 不把锚点 / 回响原子提交写入基准；当前 `ch03.fate_echo` 保持 story 局部单写者，书眠适配器按 `design/02` §6.3 派生标准投影 | 不制造第二套同义剧情旗标；正式跨书接口仍归其权威文档 |
 
 ### 原著考据待办
 
@@ -1540,6 +1540,6 @@ lock:
 | `SD03-O04` | 路线倾向用显式条还是仅在节点解释？ | 不常驻显示；`dc_03_10` 展示最近三次选择与公式结果 | UI、存档透明度 |
 | `SD03-O05` | 原著目录采用哪套题名？ | 内容 profile 默认三联常见题名，版本差异保留映射 | 本地化、图鉴、测试快照 |
 | `SD03-O06` | 未入神雕核心名录的原著人物何时补 ID？ | 在任务配表前由 `design/18` 一次性补录；本文此前只用显示名 | 引用完整性与招募 |
-| `SD03-O07` | `design/12` 未完成前 YAML 是否可入生产 content？ | 不可；只作为 provisional 接口样例 | 数据构建与 CI |
+| `SD03-O07` | **已解决：**当前 YAML 是否可直接进入生产 content？ | 不可；须先按现行 `design/12` §2.6 迁移并通过 `tech/04` 校验 | 数据构建与 CI |
 
 本文不删除任何既有待决项；新建文档此前没有历史条目。

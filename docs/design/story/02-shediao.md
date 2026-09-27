@@ -1,10 +1,10 @@
 # 剧情 · 02 射雕英雄传：正邪双线与选择节点
 
 > 归属（基准 §18）：`ch02_shediao` 主线剧情、正邪立场路径、选择节点、幕级状态与五个锚点的最终脚本口径。
-> 上游：`docs/decisions/author-requirements.md` AR-04、AR-09、AR-10；`docs/decisions/author-decisions.md`；`docs/00-canon.md` §2、§15–§18；`design/01` §7.3；`design/02`；`design/13`；`design/18`。
-> 引用而不重定义：地图 / 城市 / 时代图层 → `design/11`；任务 DSL、品德与门派关系变化 → `design/12`（尚未落盘；§9.4–9.5 仅给待映射的候选载荷）；战斗与 Boss 机制 → `design/09`；门派开放与职级 → `design/17`；NPC 生卒、招募等级、跨书重逢 → `design/18`；武学数据 → `catalog/skills-wujue.md`、`skills-daojia.md`、`skills-general.md`；华山论剑、九阴收集、黄蓉厨艺、西征大战的玩法规则 → `chapters/02-shediao.md`。
+> 上游：`docs/decisions/author-requirements.md` AR-04、AR-09、AR-10；`docs/decisions/author-decisions.md`；`docs/00-canon.md` v1.2 §2、§12、§15–§18；`design/01` §7.3；`design/02`；`design/13`；`design/18`。
+> 引用而不重定义：地图 / 城市 / 时代图层 → `design/11`；任务 DSL、品德与门派关系变化 → `design/12`（已落盘；§9.4–9.5 仍是待迁移验证的策划夹具）；战斗与 Boss 机制 → `design/09`；门派开放与职级 → `design/17`；NPC 生卒、招募等级、跨书重逢 → `design/18`；武学数据 → `catalog/skills-wujue.md`、`skills-daojia.md`、`skills-general.md`；华山论剑、九阴收集、黄蓉厨艺、西征大战的玩法规则 → `chapters/02-shediao.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v1.0（P02，2026-09-26）；审校 P02.R（2026-09-26）。
+> 版本：v1.0（P02，2026-09-26）；审校 P02.R（2026-09-26）；全局审计（2026-09-26）。
 
 ---
 
@@ -207,7 +207,7 @@ flowchart TD
 2. “行脚”不是门派或营生职位，不违反书眠清除门派身份；入界后仍可自由加入本时代门派。
 3. 玩家男女外观均使用同一剧情身份，遵守作者决定 P05。语言能力按 `design/01` §4.2：通行汉语由残卷译写，蒙古语、女真语、公文和西域语言仍需同伴或技艺。
 
-`chapters/02-shediao.md` 尚未创建；其“穿越开局”必须同步本节，不另造第二身份。
+`chapters/02-shediao.md` 已落盘；其“穿越开局”已同步本节的标准 / 隐藏身份，只作索引与书界配置，不另造平行设定。
 
 ### 2.2 与主要人物的关系起点
 
@@ -893,6 +893,8 @@ A4 的“降级为原著结果”不是普通失败惩罚：界面在 D6 前显�
 
 余韵期可完成华山外围比试、黄蓉菜谱、九阴残页归档与同伴告别；隐藏门禁只由书灵提示“遗珠”，遵守作者决定 P52。提交书眠时播放 `vid_sleep_02_03`：目标 24 秒、范围 20–30 秒，首播前 10 秒不可跳、重播立即可跳，完整流程见 `design/02` §4。
 
+A4 的剧情单写者是 `anchor_02_taohua` 与五人生命事实；书眠适配器按 `anchor_02_taohua == fate` 派生 `design/02` §6.3 的标准 `echo_NN_fate`（本界 `NN=02`），不要求剧情节点双写。
+
 字幕只说“一梦十年”（`1237−1227=10`），画面钩子依次为：
 
 - 华山风雪覆去论剑脚印，化作终南山古墓石门。
@@ -1043,7 +1045,7 @@ A4 的“降级为原著结果”不是普通失败惩罚：界面在 D6 前显�
 
 ### 9.4 幕 YAML 示例
 
-`design/12` 尚未落盘；以下以 `story_act.v0` 标明“候选载荷”，只承诺覆盖 `design/18` §3.1 的 `require / choice / effect / fail / emit` 语义。条件树采用 `tech/04` §4.6 的白名单 AST 形状，不含可执行 JavaScript；效果操作码、状态路径、幕字段与结局路由仍须由 `design/12` 映射并校验，不能把本代码块直接当生产数据。流程图中的 D6 → A4 → D7 先于 `z_08`；因此示例将本幕序列化为三者已结算后的“后果落实幕”，不在幕内重复执行选择节点。
+`design/12` 已落盘；以下 `story_act.v0` 仍是待迁移的策划夹具，只承诺覆盖 `design/18` §3.1 的 `require / choice / effect / fail / emit` 语义。迁入生产内容时须按 `design/12` §2.6 映射为 `quest.v1`，并由 `tech/04` 校验条件 AST、效果操作码、状态路径、幕字段与结局路由，不能把本代码块直接当生产数据。流程图中的 D6 → A4 → D7 先于 `z_08`；因此示例将本幕序列化为三者已结算后的“后果落实幕”，不在幕内重复执行选择节点。
 
 ```yaml
 schemaVersion: story_act.v0
@@ -1167,15 +1169,15 @@ mergeAt: dc_02_07
 
 | 类别 | ID / 术语 | 说明 |
 |---|---|---|
-| 共有主线任务 | `q_02_main_c_01`–`q_02_main_c_02` | `c` 为本文在 AR-10 下使用的 shared/common 路由段；需 A3 / `design/12` 登记语法扩展 |
-| 正线任务 | `q_02_main_z_01`–`q_02_main_z_10` | `z` = 正线；需登记为任务 ID 子类 |
-| 邪线任务 | `q_02_main_x_01`–`q_02_main_x_10` | `x` = 邪线；需登记为任务 ID 子类 |
-| 选择节点 | `dc_02_01`–`dc_02_09` | decision choice；新前缀，交 A3 / `design/12` 登记 |
+| 共有主线任务 | `q_02_main_c_01`–`q_02_main_c_02` | `c` = shared/common；Canon v1.2 §12 正式路线段 |
+| 正线任务 | `q_02_main_z_01`–`q_02_main_z_10` | `z` = 正线；Canon v1.2 §12 正式任务 ID |
+| 邪线任务 | `q_02_main_x_01`–`q_02_main_x_10` | `x` = 邪线；Canon v1.2 §12 正式任务 ID |
+| 选择节点 | `dc_02_01`–`dc_02_09` | 本文定义的稳定选择节点；Canon v1.2 §12 已登记，生产映射见 `design/12` §2.6 |
 | 局部结局键（非全局 ID） | `ZHENG_CANON`、`ZHENG_FATE`、`XIE_CANON`、`XIE_FATE` | 仅在本文 / 本书尾声选择文案；不占 `end_*`，不取代 `design/13` 全局结局 |
 | 遭遇局部槽 | `tieqiangmiao_verdict` | 非全局 ID；正式 `enc_*` 由 `design/09` / `chapters/02` 配置后回填，本文不抢占遭遇定义 |
-| 锚点键 | `anchor_02_old_oath`、`anchor_02_palace`、`anchor_02_junshan`、`anchor_02_taohua`、`anchor_02_huashan` | **【建议值】**；等待任务 DSL 统一锚点字段 / 前缀 |
-| 入口 / 关系旗标 | `flag_02_old_case_known`、`flag_02_old_case_copy`、`flag_02_met_guojing`、`flag_02_double_agent`、`flag_02_z_entered_palace`、`flag_02_x_wangfu_badge`、`flag_02_yang_truth_public`、`flag_02_yangkang_pact`、`flag_02_yangkang_warned`、`flag_02_hongqigong_trust`、`flag_02_x_baituoxian`、`flag_02_yideng_aid` | **【建议值】**；剧情存档旗标，等待 `design/12` 命名约束 |
-| 证据 / 资源旗标 | `flag_02_jiuyin_chain_known`、`flag_02_fake_manual_marked`、`flag_02_true_clue_sold`、`flag_02_bangzhang_evidence`、`flag_02_gaibang_truth`、`flag_02_x_wumu_clue`、`flag_02_wumu_disposition`、`flag_02_false_evidence_contradiction`、`flag_02_divine_clue_abandoned`、`flag_02_taohua_landed`、`flag_02_west_mercy` | **【建议值】**；真假证、兵书去向、A4 资源与西征行为；等待 `design/12` 命名约束 |
+| 锚点键 | `anchor_02_old_oath`、`anchor_02_palace`、`anchor_02_junshan`、`anchor_02_taohua`、`anchor_02_huashan` | **【建议值】**；仅作剧情草稿局部键，按 `design/12` §2.6 映射到正式任务阶段 / 状态，不升格为全局内容 ID |
+| 入口 / 关系旗标 | `flag_02_old_case_known`、`flag_02_old_case_copy`、`flag_02_met_guojing`、`flag_02_double_agent`、`flag_02_z_entered_palace`、`flag_02_x_wangfu_badge`、`flag_02_yang_truth_public`、`flag_02_yangkang_pact`、`flag_02_yangkang_warned`、`flag_02_hongqigong_trust`、`flag_02_x_baituoxian`、`flag_02_yideng_aid` | **【建议值】**；剧情草稿局部键，按 `design/12` §2.6 在迁移 manifest 中显式映射，不升格为全局内容 ID |
+| 证据 / 资源旗标 | `flag_02_jiuyin_chain_known`、`flag_02_fake_manual_marked`、`flag_02_true_clue_sold`、`flag_02_bangzhang_evidence`、`flag_02_gaibang_truth`、`flag_02_x_wumu_clue`、`flag_02_wumu_disposition`、`flag_02_false_evidence_contradiction`、`flag_02_divine_clue_abandoned`、`flag_02_taohua_landed`、`flag_02_west_mercy` | **【建议值】**；真假证、兵书去向、A4 资源与西征行为；按 `design/12` §2.6 显式迁移，不升格为全局内容 ID |
 | 次级改命 | secondary fate | 不改变 `tsp_02_*` 的人物生死 / 关系改写；**（原创扩展）** |
 
 ### 9.7 数据校验规则与测试用例
@@ -1198,7 +1200,7 @@ mergeAt: dc_02_07
 | `ST02-V14` | 地名时代化 | 全部 `city_*` / `rg_*` | 采用 `design/11` 当前稳定 ID 与 ch02 显示名；不把 1217 燕京称当时金都 |
 | `ST02-V15` | 天书唯一性 | 四结局 | 只发 `it_tianshu_02`；变体恰一项 `tsp_02_canon/fate` |
 | `ST02-V16` | 跨书生存 | A4=`fate` 后进入 1237 | 五名七怪写 alive，允许按 `design/18` 重邀；A4=`canon` 时只柯镇恶沿原著生还 |
-| `ST02-V17` | 任务 DSL 迁移 | 两段 YAML | `design/12` 落盘后字段逐项映射；任何未支持字段先迁移，不静默丢弃 |
+| `ST02-V17` | 任务 DSL 迁移 | 两段 YAML | 按 `design/12` §2.6 逐字段映射；任何未支持字段先迁移，不静默丢弃 |
 | `ST02-V18` | 无占位交付 | 全文搜索 | 不出现编辑期占位标记；“待补”只用于明确上游缺项并有同步目标 |
 | `ST02-V19` | 切线保留后果 | D2、D4、D5、D7、D8 各切一次 | 旧阵营损失、人物生死与已交物证不回滚；新路线有合法入口 |
 | `ST02-V20` | 隐藏身份等价 | 标准 / 酒店帮工各跑到 D1 | A1 均完成、未提前获知 A4；仅入口线索与初始关系不同 |
@@ -1240,15 +1242,15 @@ mergeAt: dc_02_07
 - 已解决：射雕年代采用基准 §2 的约 1217–1227、楔子 1199，不采用 `design/02` 尚未同步的旧年代（见基准 V11-41、`design/01` §7.1）。
 - 已解决：主改命只救桃花岛五名七怪成员，张阿生排除；天书效果引用 `design/13` §4.3。
 - 已解决：所有书内 NPC 至少提供阶段性可控同行窗口，按 `design/18` §2.7 默认与 AR-09 执行；不把君主 / 掌门擅自列为永久不可招募。
-- 待上游完成：`design/12` 正式任务 DSL、品德 / 声望事件表与任务前缀扩展；本文 YAML 只能作为兼容输入。
+- **已解决：**`design/12` 正式任务 DSL 已落盘，Canon v1.2 §12 已登记路线码主线与 `dc_*`；本文 `story_act.v0` YAML 仍只作兼容输入，须按 `design/12` §2.6 产出迁移 manifest 并完成品德 / 声望效果映射。
 - 待下游完成：`chapters/02-shediao.md` 的特色系统、具体场景、奖励投放与本时代开放内容；主线一节只索引本文。
 
 #### 对基准的修改提案
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| `P02-CANON-01` | 基准 §12 任务格式允许路线段 `q_<NN>_main_<c\|z\|x>_<nn>` | AR-10 要求共有 / 正 / 邪幕可机器区分；现有 `q_<NN>_main_<nn>` 无法稳定表达 |
-| `P02-CANON-02` | 基准 §12 增列选择节点 `dc_<NN>_<nn>` 与锚点引用字段（前缀是否为 `anchor_` 由 A3 裁定） | 十四篇剧情都需统一序列化选择与锚点，不应各自用临时字符串 |
+| `P02-CANON-01` | **已解决：**Canon v1.2 §12 已采用 `q_<NN>_main_<c\|z\|x>_<nn>` | 共有 / 正 / 邪幕现可机器区分 |
+| `P02-CANON-02` | **已解决：**Canon v1.2 §12 已登记 `dc_<NN>_<nn>`；锚点继续作为 story 局部字段 | 稳定选择节点与局部锚点已分层 |
 
 #### 原著考据待办
 

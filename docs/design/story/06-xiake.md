@@ -1,10 +1,10 @@
 # 剧情 · 06 侠客行（正邪双线与选择节点）
 
 > 归属（基准 §18）：`ch06_xiake` 的书界主线、正邪立场分支、选择节点、原著事件去向、锚点落地与本书结局；这是本书界主线剧情的唯一归属文档。
-> 上游：`docs/00-canon.md` v1.1；`docs/decisions/author-requirements.md` AR-04、AR-09、AR-10；`docs/decisions/author-decisions.md` G1；`design/01` §7.7；`design/02`；`design/13` §4；`design/17`；`design/18`。
-> 引用而不重定义：年代、书眠、携带与外来压制 → `design/02`；品德与声望 → `design/03`；武学与习得 → `design/05` 及 `design/catalog/skills-xiake-bixue.md`；Boss、战斗失败与非致死结算 → `design/09`；城市、区域与路线 → `design/11` 及 `design/map/*.yaml`；任务 DSL → 未来 `design/12`（尚未落盘，本文契约仅为待接纳提案）；天书之力与结局规则 → `design/13`；门派 → `design/17`；NPC、生卒、招募与跨书界 → `design/18`。
-> 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要实际构建或游玩验证；**【建议值】** = 依赖尚未落盘的任务 / 数值文档，先给可用值并在文末登记。
-> 版本：v1.1（P06 初稿；审校 P06.R，2026-09-26）。
+> 上游：`docs/00-canon.md` v1.2；`docs/decisions/author-requirements.md` AR-04、AR-09、AR-10；`docs/decisions/author-decisions.md` G1；`design/01` §7.7；`design/02`；`design/13` §4；`design/17`；`design/18`。
+> 引用而不重定义：年代、书眠、携带与外来压制 → `design/02`；品德与声望 → `design/03`；武学与习得 → `design/05` 及 `design/catalog/skills-xiake-bixue.md`；Boss、战斗失败与非致死结算 → `design/09`；城市、区域与路线 → `design/11` 及 `design/map/*.yaml`；任务 DSL → `design/12`（已落盘；本文兼容契约仍须迁移校验）；天书之力与结局规则 → `design/13`；门派 → `design/17`；NPC、生卒、招募与跨书界 → `design/18`。
+> 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要实际构建或游玩验证；**【建议值】** = 依赖其他文档，先给可用值并在文末登记。
+> 版本：v1.1（P06 初稿；审校 P06.R，2026-09-26）；全局审计（2026-09-26）。
 
 ---
 
@@ -1142,7 +1142,7 @@ rosterReady = validDelegate(primary)
            && copperTokenReconciled
 ```
 
-以上是本文剧情条件，不是 `design/12` 已定语法。`dc_06_08` 必须总有二使恢复原名单的保底，因此玩家无法靠把所有牌扔掉软锁。
+以上是本文剧情条件，不直接重定义 `design/12` 的正式语法；迁移须遵守其 §2.6。`dc_06_08` 必须总有二使恢复原名单的保底，因此玩家无法靠把所有牌扔掉软锁。
 
 赏善罚恶的跨书界戏份分三层：
 
@@ -1215,7 +1215,7 @@ fateReady = trust_long
          && identityEvidence != destroyed
 ```
 
-`3/4` 记录要求给一类容错；公开正线需三派互证，秘密邪线需两名相互制衡的自愿保管者。所有阈值均为**【建议值】**，待 `design/12` 定稿。
+`3/4` 记录要求给一类容错；公开正线需三派互证，秘密邪线需两名相互制衡的自愿保管者。所有阈值均为**【建议值】**，须按 `design/12` §2.6 保留原公式迁入正式任务实例；当前迁移 manifest 与生产数据仍待落盘。
 
 ### 6.9 共享终幕三 `q_06_main_c_06` · 石壁终局与归航
 
@@ -1242,6 +1242,8 @@ fateReady = trust_long
 | 大悲老人支线获救 | 优先留下泥人传承和书信回响；是否本人健在仍由 `design/18` 生卒数据判定 | 不因本剧情擅定其可活到 1630 |
 
 若侍剑或梅芳姑在救援前曾正式加入队伍，救援成功必须发送 `companionFateRescued(ch06_xiake, [npcId])`，首次按 `design/18` §4.4 / `design/13` §6.6 支付 2 点修为余韵；同一锚点救多人仍只计一次。若未曾入队，只更新人物生命状态，不触发同伴代价。
+
+`anchor_06_variant` 是 A05 的剧情单写者；书眠适配器按 `anchor_06_variant == fate` 派生 `design/02` §6.3 的标准 `echo_NN_fate`（本界 `NN=06`）。后界读取标准投影或本地真值必须等价，剧情节点不双写。
 
 ---
 
@@ -1499,7 +1501,7 @@ variant = canon | fate
 
 ### 9.3 数据结构：幕 YAML 示例
 
-`design/12-quests-npc-factions.md` 当前尚未落盘，以下为待其收敛的兼容契约，不宣称已通过 Schema。字段名优先采用通用的 `id/chapter/kind/prerequisites/objectives/choices/effects/next`，不在本文定义任务运行时。
+`design/12-quests-npc-factions.md` 已落盘；以下仍是待迁移的兼容契约，不宣称已通过 Schema。字段名优先采用通用的 `id/chapter/kind/prerequisites/objectives/choices/effects/next`，迁入生产时按 `design/12` §2.6 映射，不在本文定义任务运行时。
 
 ```yaml
 id: q_06_main_z_08
@@ -1656,7 +1658,7 @@ saveBeforeCommit: true
 | 邪线 | `q_06_main_x_01`–`q_06_main_x_10` | 借名行局十幕 |
 | 选择节点 | `dc_06_01`–`dc_06_10` | 十个抉择；第八节点锁立场，第九节点锁天书轴 |
 
-`q_06_main_c/z/x_NN` 与 `dc_06_NN` 是 AR-10 所需的剧情分支命名提案；基准 §12 当前任务格式只有 `q_NN_type_nn`（其中 type 为 main / side / faction / bond / qiyu），且未登记 `dc_*`。因此在 `design/12` 接纳前，它们是稳定策划键而非声称已通过全局 Schema 的生产 ID。四个结局仅用 §7 的中文局部组合名及 `(stance, anchor_06_variant)` 求值；正式 `end_*` 由 `design/13` 统一登记。白自在战斗只保留任务侧 `encounterKey`，正式遭遇 / Boss ID 归 `design/09` 或战斗数据。
+`q_06_main_c/z/x_NN` 与 `dc_06_NN` 是 Canon v1.2 §12 已登记、由本文定义的稳定剧情 ID；生产任务仍须按 `design/12` §2.6 把选择节点映射为父任务阶段。四个结局仅用 §7 的中文局部组合名及 `(stance, anchor_06_variant)` 求值；正式 `end_*` 由 `design/13` 统一登记。白自在战斗只保留任务侧 `encounterKey`，正式遭遇 / Boss ID 归 `design/09` 或战斗数据。
 
 #### 9.7.2 状态与策划术语
 
@@ -1678,7 +1680,7 @@ saveBeforeCommit: true
 | `identityFact` / `identityEvidence` | 二人不同的事实 / 该事实的公开与保管方式 |
 | `officeHolder` / `liabilityBearer` | 当前帮务权位 / 旧案与赴岛责任承担者，避免姓名等于责任 |
 
-本文还使用若干 flag_06 局部状态，均在正文首次写明语义；正式枚举由未来 design/12 汇总。本文没有新增 NPC、门派、城市、区域、路线、物品或武学 ID；天书实物与两种天书之力均为基准既有 ID。
+本文还使用若干 `flag_06` 局部状态，均在正文首次写明语义；落盘时按 `design/12` 的任务局部键预登记。本文没有新增 NPC、门派、城市、区域、路线、物品或武学 ID；天书实物与两种天书之力均为基准既有 ID。
 
 ### 9.8 数据校验规则与测试用例
 
@@ -1787,13 +1789,13 @@ saveBeforeCommit: true
 | 地图 `cities.yaml` / `regions.yaml` / `sects.yaml` / `routes.yaml` | 城市、区域、门派驻地和路线 ID | 新内容采用 `rg_zhedong`、`rg_nanhai_islands`；旧粗区只作底表别名，不作为新叙事 ID |
 | `catalog/skills-xiake-bixue.md`、`catalog/skills-general.md` | 可授艺、展示或作为前置的已有 `sk_*` | §8.4 不新增招名，不把观察记录当武学 |
 
-任务 DSL 的最终文件若尚未形成，本文 §9.3–§9.5 先提供最小可执行契约；将来以上游归属文档为准，但迁移必须保留 ID、原子提交与失败回补语义。
+任务 DSL 的归属文件已经形成；本文 §9.3–§9.5 仍作为待迁移契约，按 `design/12` §2.6 落盘时必须保留 ID、原子提交与失败回补语义。
 
 #### 9.9.3 对基准的修改提案
 
 | 编号 | 提案 | 理由 | 默认处理 |
 |---|---|---|---|
-| P06-B01 | 在基准 §12 / 未来 `design/12` 接纳书界主线分支键 `q_NN_main_{c,z,x}_nn` 与选择键 `dc_NN_nn`，或给出等价规范迁移表 | AR-10 要求同一开局内可切换的正邪双线；现行 `q_NN_main_nn` 无法稳定表达共享幕、双线同序号与独立选择节点 | 本文保留 `q_06_main_c/z/x_NN`、`dc_06_NN` 为策划稳定键，不假称已符合当前生产 ID Schema |
+| P06-B01 | **已解决：**Canon v1.2 §12 已接纳书界主线分支键 `q_NN_main_{c,z,x}_nn` 与选择键 `dc_NN_nn`，运行时迁移见 `design/12` §2.6 | AR-10 所需的共享幕、双线同序号与独立选择节点已有统一规范 | 本文保留 `q_06_main_c/z/x_NN`、`dc_06_NN` 为正式稳定策划 ID |
 
 除此之外不申请改变 `docs/00-canon.md` 或 `design/01` 的五锚点事实；`design/13` 的侠客改命旧口径属于下游同步错误。
 
@@ -1830,7 +1832,7 @@ saveBeforeCommit: true
 本节只登记，不在本任务越权修改：
 
 1. `docs/design/13-progression-and-endings.md` §4.4、§6.5、§7.12：把“改命让留岛掌门归返”等旧口径改为“毁壁、岛主死亡、群雄归返不变；仅保存多元、可互证且不构成完整秘籍的传承”。
-2. `docs/design/12-quests-npc-factions.md`（形成后）：吸收 §9.3–§9.5 的任务 / 选择 / 原子状态契约、超时回补和幂等结算规则。
+2. `docs/design/12-quests-npc-factions.md`：已形成统一任务 / 选择迁移契约；后续任务数据须按其 §2.6 吸收本文 §9.3–§9.5 的原子状态、超时回补和幂等结算语义。
 3. `docs/chapters/06-xiake.md`：主线章节只索引本文；实现石壁“不识字”解谜、赏善罚恶跨书界品德清算、支线与地图细节，不复制正邪主线定义。
 4. `docs/design/18-npc-and-companions.md` 与侠客行 NPC 目录：把侍剑改为“三联原著第 16 回死亡、提前保护可 `fate_rescued`”，核正妙谛 / 愚茶为三十余年前已赴岛的旧客，核正大悲老人发生于第 3 回；定稿 §8.2 的 46–55 招募等级。
 5. `docs/design/09-combat-system.md` 或战斗数据：为叙事键 `baizizai_lingxiao_nonlethal` 新建并登记正式遭遇 / Boss 脚本，定义失败转场和关键 NPC 保护规则。
