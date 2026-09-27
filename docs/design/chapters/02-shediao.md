@@ -4,7 +4,7 @@
 > 上游：`docs/00-canon.md` v1.1；作者新增需求与决定见 `docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`；主线唯一剧情源为 `docs/design/story/02-shediao.md`；人物与门派数据分别以 `design/18`、`catalog/npcs-ch02-shediao.md`、`design/17` 为准。
 > 引用而不重定义：时间线与书眠 → `design/02`；属性与敌人模板 → `design/03`；伤害公式 → `design/04`；武学 → `design/05` 与三个指定图鉴；地形与轻功 → `design/08`；战斗与合击 → `design/09`；物品 → `design/10`；开放世界 → `design/11`；任务与门派规则 → `design/12`；成长、结局与天书之力 → `design/13`；经脉与冲穴 → `design/15`；资源与营生 → `design/16`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖归属文档、先给出可执行数值并在文末登记。
-> 版本：v1.0（2026-09-26）。
+> 版本：v1.0（2026-09-26）；审校 D02.R（2026-09-26）。
 
 ---
 
@@ -18,7 +18,7 @@
 
 - 区域只使用 `design/11` 的全局 `rg_*`，不再建立书界私有区域 ID。
 - 本书独有的内部场景使用 `sc_02_*`；`design/08` §9.2 的旧章节区域仅作场景语义来源。
-- 城市显示名读取 `docs/design/map/cities.yaml` 的 `southern_song_jin_mongol` 层；地图底图为 `docs/design/map/jianghu-ch02.svg`。
+- 城市显示名、地位与开放状态逐项读取 `docs/design/map/cities.yaml` 的 `eras.ch02` 逐章层；六期 `history.southern_song_jin_mongol` 只作历史摘要，不覆盖逐章修订。地图底图为 `docs/design/map/jianghu-ch02.svg`。
 - 花剌子模、西征城池与撒马尔罕等图外节点只由商队 / 军旅专线进入，不扩张 30 区闭集。
 
 ### 0.2 交付规模
@@ -77,7 +77,7 @@
 
 ### 2.1 固定苏醒与不可改写的前因
 
-主角从天龙余韵期经《长生诀》沉睡 `1217−1094=123` 年，于临安府外通往牛家村的驿路 `sc_02_linan_yilu` 苏醒。楔子发生在约 1199 年，玩家只能在共有幕 `q_02_main_c_01` 查证旧案，不能回到当年阻止郭杨两家离散。此口径与 `story/02` §2 完全一致。
+主角从天龙余韵期经《长生诀》沉睡 `1217−1094=123` 年：标准“北来行脚”在临安府外通往牛家村的驿路 `sc_02_linan_yilu` 苏醒，轮回隐藏“牛家村酒店帮工”则在酒店旧址 `sc_02_niujia_jiudian` 苏醒。楔子发生在约 1199 年，玩家只能在共有幕 `q_02_main_c_01` 查证旧案，不能回到当年阻止郭杨两家离散。此口径与 `story/02` §2 完全一致。
 
 天龙遗物 `it_shijian_xiaofeng` 若已取得，只提供“前代侠者为止战而死”的主题回响；未取得时书灵给无名残页替代，不锁射雕内容。上一界门派身份与活动编组已经清空，携带与关系保留规则只引用 `design/02`、`design/18`。
 
@@ -87,9 +87,8 @@
 |---|---|---|---|---|---|
 | 北来行脚 | 默认 | `sc_02_linan_yilu`；`rg_jiangnan_taihu` | 无初始门派；丘处机与七怪均保持中立 | `q_02_side_01`“旧雪下的账” | 完整经历 `c_01`、`c_02`；默认持一张郭杨旧案拓片 **（原创扩展）** |
 | 牛家村酒店帮工 | 完成本界改命后轮回可选 | `sc_02_niujia_jiudian`；同属 `rg_jiangnan_taihu` | 江南七怪初见关系 +10 **【建议值】**；桃花岛不因此友好 | `q_02_qiyu_14`“牛家密室雨” | 提前酒店旧址 / 曲灵风线索，但不跳过 `c_01`，不预知桃花岛杀局 **（原创扩展）** |
-| 北地驿传随员 | 二周目且天龙蒙古 / 辽边线留有通行学识 **（原创扩展）** | 仍在固定驿路苏醒；完成 `c_01` 后优先开放 `rg_yanjing_zhili` | 蒙古语线索检定 +10 **【建议值】**；可接全真外务，不自动入派 | `q_02_side_02`“保州粮庄夜” | `c_01` 不能省略；`c_02` 末仍在 `dc_02_01` 与其他身份汇流 |
 
-三个身份只改变首个自由探索入口、初始关系与一条支线，不替换原著角色、不改变五锚点、不绕过主线第一次选择。身份与玩家性别无关；蒙古语、女真语与公文仍需同伴或既有技艺支持。
+两种身份只改变 `c_01` 的入口、初始关系与一条补证路径，不替换原著角色、不改变五锚点、不绕过主线第一次选择。本文不另造第三身份；身份与玩家性别无关，蒙古语、女真语与公文仍需同伴或既有技艺支持。
 
 ### 2.3 开局节拍与保底
 
@@ -100,7 +99,7 @@
 | `c_02` 大漠见证 | 书墨回溯郭靖成长，现时在野狐岭会合 | 回溯战败由原著人物完成结果，只损失奖励 |
 | `dc_02_01` | 护送郭黄、持王府印入城，或伪领印信 | 三路都必达 A2；只改变立场、警戒与后续入口 |
 
-开局轻功保底从携带技能中择一：已带有效轻功则照常使用；否则在驿路忆起 `sk_caoshangfei`。选择北地驿传随员时可把首个教学替换为 `sk_babuganchan` 的通行演示，但正式习得仍须图鉴来源，不能凭背景白送。
+开局轻功保底从携带技能中择一：已带有效轻功则照常使用；否则在驿路忆起 `sk_caoshangfei`。两种身份都不得凭背景白送其他武学或语言能力，正式习得仍须满足图鉴来源。
 
 ---
 
@@ -113,7 +112,7 @@
 | 全局区域 | 当代城市 / 核心场景 | 时代状态与势力 | 地貌与 `tr_*` | 入口与轻功门禁 | 主要 NPC | 可学武功（已有 ID） | 敌人等级 | 秘境 / 奇遇 |
 |---|---|---|---|---|---|---|---:|---|
 | `rg_jiangnan_taihu` 太湖江南 | 临安、平江、无锡、嘉兴、绍兴；`sc_02_niujia_jiudian`、`sc_02_guiyunzhuang`、`sc_02_tieqiangmiao` | 南宋行在与水网商埠；七怪旧踪、丐帮分舵、归云庄 | `tr_pingdi`、`tr_qianshui`、`tr_dajiang`、`tr_wuding`、`tr_gaoqiang` | 驿路 qg0；屋顶 qg2；太湖支路 qg3 踏水或乘船 | `npc_guojing`、`npc_huangrong`、`npc_kezhene`、`npc_munianci` | `sk_xiaoyaoyou`、`sk_yuenvjian02`、`sk_fenjincuogushou`、`sk_caoshangfei` | 28–39 | 曲三旧窖、归云水阵、铁枪庙夜证 |
-| `rg_yanjing_zhili` 燕京与直隶 | 中都大兴府 / 燕京、野狐岭 / 宣德州北境、顺天军 / 保州；`sc_02_zhaowangfu` | 金廷控制；赵王府、全真外务与市井诸帮交错 | `tr_pingdi`、`tr_wuding`、`tr_gaoqiang`、`tr_chengqiang` | 城门身份 / 公文；王府屋脊 qg2，宫墙捷径 qg3；正门永远可用 | `npc_wanyanhonglie`、`npc_yangkang`、`npc_wangchuyi`、`npc_munianci` | `sk_quanzhenxinfa`、`sk_quanzhenjian`、`sk_taizuchangquan` | 31–41 | 王府药库、旧都地道、野狐岭驿券 |
+| `rg_yanjing_zhili` 燕京与直隶 | 中都故城 / 燕京、野狐岭 / 宣德州北境、顺天军 / 保州；`sc_02_zhaowangfu` | 逐章历史层已是失守后的中都故城；赵王府按小说主线舞台保留，其与 1217 历史状态的张力 **（待考）**；全真外务与市井诸帮交错 | `tr_pingdi`、`tr_wuding`、`tr_gaoqiang`、`tr_chengqiang` | 城门身份 / 公文；王府屋脊 qg2，宫墙捷径 qg3；正门永远可用 | `npc_wanyanhonglie`、`npc_yangkang`、`npc_wangchuyi`、`npc_munianci` | `sk_quanzhenxinfa`、`sk_quanzhenjian`、`sk_taizuchangquan` | 31–41 | 王府药库、旧都地道、野狐岭驿券 |
 | `rg_mobei` 漠北 | 和林 / 哈拉和林；`sc_02_mobei_yingdi`、`sc_02_menggu_xuanya` | 蒙古诸部与行营；1217 后军旅扩张 | `tr_caodi`、`tr_shadi`、`tr_xuedi`、`tr_qiaobi`、`tr_xuanya` | 坐骑为长途门禁；悬崖训练 qg1→qg2；西征从专线离图 | `npc_tiemuzhen`、`npc_tuolei`、`npc_huazheng`、`npc_zhebie`、`npc_guojing` | `sk_zhebiejianshu`、`sk_mengguqishe`、`sk_menggushuaijiao`、`sk_jinyangong` | 32–50 | 射雕试猎、雪夜悬崖、旧安答箭簇 |
 | `rg_donghai_islands` 东海诸岛 | 桃花岛；`sc_02_taohua_qimenzhen`、`sc_02_zhoubotong_dong`、`sc_02_guanchao` | 桃花岛私域；白驼船队与海匪仅阶段出现 | `tr_huacong`、`tr_zhulin`、`tr_shadi`、`tr_dajiang`、`tr_qiaobi` | 船 / 向导；桃花阵 `formation≥68` 或阵图；观潮台隐 qg4 | `npc_huangyaoshi`、`npc_huangrong`、`npc_zhoubotong`、`npc_ouyangfeng` | `sk_tanzhi`、`sk_bihai`、`sk_luoyingshenjianzhang`、`sk_taohuazhen` | 38–50 | 海崖观潮、顽童洞、九阴经卷与 A4 分路 |
 | `rg_huxiang` 湖湘 | 岳州、潭州、辰州；`sc_02_junshan`、`sc_02_tiezhangfeng`、`sc_02_yideng_shanju` | 丐帮大会、铁掌帮山寨；一灯隐居暂挂荆湖北路桃源县境内 **（待考）** | `tr_nizhao`、`tr_jiliu`、`tr_pubu`、`tr_dumuqiao`、`tr_qiaobi` | 君山乘船；中指峰主 qg3 或飞爪 / 带路；急流支 qg4 或船 | `npc_luyoujiao`、`npc_qiuqianren`、`npc_yideng`、`npc_huangrong` | `sk_tiezhang`、`sk_tiezhangxinfa`、`sk_shuishangpiao`、`sk_yiyangzhi` | 37–49 | 渔樵耕读四关、铁掌墓穴、黑沼旧信 |
@@ -123,7 +122,7 @@
 
 ### 3.2 二十座开放城市
 
-`cities.yaml` 仍保留部分旧粗区字段，本文按 `design/11` §3.3 的迁移表归入 30 区闭集；显示名则逐字读取其南宋金蒙时代层。
+`cities.yaml` 仍保留部分旧粗区字段，本文按 `design/11` §3.3 的迁移表归入 30 区闭集；显示名、地位与开放状态逐字读取 `eras.ch02`，不得退回较粗的六期历史摘要。
 
 | # | 城市 ID | 本时代显示名 / 地位 | 全局区域 | 主要用途 | 营生实例 |
 |---:|---|---|---|---|---|
@@ -132,7 +131,7 @@
 | 3 | `city_wuxi` | 无锡县·路府州县 | `rg_jiangnan_taihu` | 丐帮旧踪、码头 | 1 |
 | 4 | `city_jiaxing` | 嘉兴府·路府州县 | `rg_jiangnan_taihu` | 牛家村、醉仙楼、铁枪庙 | 2 |
 | 5 | `city_shaoxing` | 绍兴府·路府州县 | `rg_jiangnan_taihu` | 越地剑迹与丝茶支路 | 1 |
-| 6 | `city_beijing` | 中都大兴府 / 燕京·都城 | `rg_yanjing_zhili` | 赵王府与比武招亲 | 3 |
+| 6 | `city_beijing` | 中都故城 / 燕京·路府州县 | `rg_yanjing_zhili` | 赵王府与比武招亲；小说舞台与 1217 历史状态并置 **（待考）** | 3 |
 | 7 | `city_zhangjiakou` | 野狐岭 / 宣德州北境·边关 **（待考）** | `rg_yanjing_zhili` | 南归会合、军商关口 | 1 |
 | 8 | `city_baoding` | 顺天军 / 保州·路府州县 **（待考）** | `rg_yanjing_zhili` | 南北交通与王府外庄 | 1 |
 | 9 | `city_kaifeng` | 南京开封府 / 汴京·都城 | `rg_zhongyuan` | 金境旧都、商路消息 | 2 |
@@ -146,7 +145,7 @@
 | 17 | `city_kashgar` | 喀什噶尔·商埠 **（待考）** | `rg_xiyu_nanjiang` | 白驼商队与毒材 | 1 |
 | 18 | `city_hotan` | 和阗·商埠 **（待考）** | `rg_xiyu_nanjiang` | 玉石、驼队与昆仑支线 | — |
 | 19 | `city_karakorum` | 和林 / 哈拉和林·都城 | `rg_mobei` | 蒙古行营与西征专线 | 1 |
-| 20 | `city_taohuadao` | 桃花岛（小说）·特殊题签 | `rg_donghai_islands` | 桃花岛门派、A4、九阴 | — |
+| 20 | `city_taohuadao` | 桃花岛（小说）·未建或废弃 | `rg_donghai_islands` | `eras.ch02.open=true` 的小说地点，不冒充历史城市；桃花岛门派、A4、九阴 | — |
 
 合计 `3+3+1+2+1+3+1+1+2+1+1+1+1+1+0+0+1+0+1+0=24` 个营生实例。桃花岛、和阗、潭州、辰州没有常设三类营生，不用虚构赌场或镖局凑“每城齐全”；其职位需求由相邻开放城市承接。
 
@@ -237,21 +236,17 @@
 
 ### 3.6 前代传承
 
-AR-13 指定的 `design/20` 尚未落盘，故本文不伪造 `frag_*`、新 `lg_*` 或传承合成公式。当前只挂接已在 `design/02` / 基准登记的来源；待 `design/20` 完成后按同一 ID 回填。
+载体、三卷、信物、校合条件与唯一性只引用 `design/20` §4、§7–§9；本文只决定射雕时代的落点和可达性。八区预算为 `legacyCarrierCap=ceil(8/2)=4`、`heirCarrierCap=ceil(4/2)=2`、`fragmentAwardCap=2×4=8`、`keyItemAwardCap=4`。下表列的是五个合法候选池，不表示同周目全投：每源每界至多一个主载体，总主载体不得超过 4；北冥与小无相同界不得同时占两个主载体席位。这里的“后人”只表示守传者 / 门下再传等载体，不作血缘断言；`cache_*` 是一次性宝藏，不是 `rp_*`。
 
-| 传承 / 遗迹 | 本时代状态 | 地点（当代名） | 可出现内容 | 本界可完成的印证 / 合成 |
+| 传承源 | 本界候选载体 / 宝藏 | 三卷与信物 | 本时代地点 | 本界可完成的校合 |
 |---|---|---|---|---|
-| `lg_jiuyin` | 活跃同源组 | 桃花岛、牛家村旧窖 | 九阴上下卷、周伯通 / 黑风双煞经手痕迹 | 两卷 `it_miji_jiuyin_shang/_xia` 齐备且通过真伪核验，可合为完整来源；不新增 `frag_*` |
-| `lg_yiyang` | 活跃同源组 | 一灯山居、终南山 | `sk_yiyangzhi`、`sk_xiantiangong` 的互证线索 | 持完整来源之一并获一灯 / 全真许可，只做同源印证；六脉不在本界凭空合成 |
-| `rs_shaolin_cangjingge` | 射雕残承 / 完整易筋线 | 登封县少室山 | 前代经阁守护、`sk_yijinjing` 完整学习线 | 护经、辨伪、持戒三段完成后取得完整来源；不靠潜入盗取 |
-| `rs_huashan` | 开放 | 华阴县华山 | 前代论剑遗痕、王重阳传承回响 | qg3 可达旧坛；隐 qg4 只给史笺 / 印证，不额外发天级 |
-| `rs_gumu` | 星标遗迹 | 京兆府终南山 | 王重阳 / 林朝英时代痕迹 **（待考）** | 断龙石仍封闭；本界只取得后世回访线索 |
-| `rs_taohuadao` | 开放 | 桃花岛 | 曲灵风旧物、桃花岛典籍与九阴旧案 | 阵法 / 师门许可后印证桃花岛武学；不等于取得全岛目录 |
-| `rs_tianlongsi` | 星标残承 | 图外大理专线；不列本界开放城市 | 大理段氏 / 一灯关系、寺址回响 | 只允许一阳同源校验；需段氏好感，不重开天龙寺门派线 |
-| `rs_yanmenguan` | 星标回响 | 图外边关题签 | 萧峰止战史笺与北地传闻 | 读取天龙结局彩蛋；不生成仍健在的天龙同伴 |
-| `rs_xihu` | 星标旧址 | 临安府西湖 | 园林易主、旧书画与曲灵风线索 | 只产史笺 / 书画印证；不提前出现梅庄 |
+| `lgs_yuenv_aqing` | 越地无名守传者、旧档或墓藏；`cache_yuenv_ruoye`；不擅造未登记 `rs_*` | `frag_yuenv_jianying`、`frag_yuenv_yuanbu`、`frag_yuenv_wuhen`；`it_xinwu_aqingshoujuan` | `city_shaoxing` 绍兴府、会稽 / 若耶溪局部题签；墓址 **（待考）** | 可：C10，另需其他剑法 5 重、来源品阶≥7 且真实 6 重的合法调和内功；产物 `sk_yuenvjian@legacy_complete` 天下 10 |
+| `lgs_xiaoyao_beiming` | 无量旧洞拓本、无名门下再传或流转帛卷；`cache_beiming_wuliang` | `frag_beiming_nahai`、`frag_beiming_sanmai`、`frag_beiming_guiyuan`；`it_xinwu_beiming_botu` | 图外大理专线的 `rg_dali_cangshan` / `city_dali`，不计入八区二十城 | 可：C12 阴，保留与化功互斥；产物 `sk_beiming` 天上 12 |
+| `lgs_xiaoyao_xiaowuxiang` | 西夏宫藏抄本或门下口授；`cache_xiaowuxiang_xixia` | `frag_xiaowuxiang_wuxiang`、`frag_xiaowuxiang_huasheng`、`frag_xiaowuxiang_yinni`；`it_xinwu_xiaowuxiang_yuxin` | 图外 `city_yinchuan` 兴庆府 / `rg_xixia_helan` 专线；时代称谓 **（待考）** | 可：C11 调和，另需任意两类不同武学各 4 重；产物 `sk_xiaowuxiang` 天中 11；与北冥主载体互斥 |
+| `lgs_xiaoyao_lingbo` | 步图残拓或熟路守传者；`cache_lingbo_wuliang` | `frag_lingbo_guabu`、`frag_lingbo_feifu`、`frag_lingbo_luowa`；`it_xinwu_lingbo_butu` | 图外 `rg_dali_cangshan` 无量山局部路径 | 可：C11、轻功 6、`formation≥40` **【建议值】**；产物 `sk_lingbo` 天中 11；必须走地形解谜 |
+| `lgs_murong_douzhuan` | 慕容家臣门下再传或参合庄旧匣；`cache_douzhuan_canghe` | `frag_douzhuan_jieli`、`frag_douzhuan_yixing`、`frag_douzhuan_huanshi`；`it_xinwu_douzhuan_shipu` | `city_suzhou` 平江府 / `rg_jiangnan_taihu` | 可：C10 调和，另需两类敌招图鉴达到“识破”；产物 `sk_douzhuan` 天下 10 |
 
-可完成的唯一实体合成是九阴上下卷；信物分别位于桃花岛 / 周伯通线与黑风双煞 / 曲三旧物线，条件是两卷真伪核验、A4 尚未锁定且未把任一卷交作阵营投名。其他条目只做“后人 / 宝藏 / 遗迹 / 残本”入口，待 `design/20` 明确 `frag_*` 目录后再数据化。
+易筋经最后完整来源关闭并提交失落事实后最早 `ch06`；大理六脉最早 `ch05`；降龙十八掌默认 `ch05` 后才进入残本池，三者都不得在本界伪装成跨代残本。射雕当代的九阴上下卷仍由 §10.2 与 `design/10` 作为原生实体收集，不占上述前代三卷预算，也不与 `frag_*` 混用。候选源即使可校合，也必须实际集齐同源三卷、唯一信物、基础武学与 `design/20` §7 的全部门槛；预算只给机会，不保证一周目完成。
 
 ---
 
@@ -609,7 +604,7 @@ full.hpMax 仍须落入同级、同书界 tmpl_boss ×[0.6, 1.2]
 | 2 `enc_02_zhaowangfu_qunxiong` | Lv40；王府精英组，完颜洪烈为非战斗指挥目标 | 既有全真 / 江湖通行玄黄阶池；未入图鉴的王府高手不临造武学 ID | 三路潜入、警戒钟与“救人 / 夺药 / 取证”目标；击溃守卫不是击杀政治人物 | Lv40 模板 62,222；高武遭遇耐久预算 `62,222×0.83=51,644`，分配给 1 头目 + 2 精英 |
 | 3 `enc_02_huangyaoshi_sanshi` | Lv48；黄药师 `full`，非死斗 | `sk_tanzhi` 天下 10、`sk_bihai` 天下 10、`sk_lanhuafuxueshou` 地中 8 | 琴音压力、弹指截招、阵眼换位；分别允许武、文、守诺证据通过 | Lv48 模板 103,026；灵巧试炼取下限 `×0.60=61,816` |
 | 4 `enc_02_ouyangfeng_haishang` | Lv48；欧阳锋 `full` | `sk_hama` 天下 10、`sk_lingshezhangfa` 地上 9 | 船体耐久、断索 / 撑过目标、蛇毒区；正邪线可对抗、交易或暂时停手 | `103,026×0.70=72,118`；攻击以 Lv48 模板外 / 内攻 2,984 / 2,768 对拍 |
-| 5 `enc_02_junshan_weizhen` | Lv40；丐帮围阵 + 撤离指挥战 | `sk_dagouzhen` 地下 7、`sk_lianhuazhang` 玄阶、通行棍法 | 阵眼、证人、帮众战意三条资源；优先降服，黄蓉接掌由剧情结算 | 模板耐久 `62,222×0.83=51,644` 分摊；每个模板单位仍独立按 kind 生成 |
+| 5 `enc_02_junshan_weizhen` | Lv40；丐帮围阵 + 撤离指挥战 | `sk_dagouzhen` 地下 7、`sk_lianhuazhang` 玄中 5、通行棍法 | 阵眼、证人、帮众战意三条资源；优先降服，黄蓉接掌由剧情结算 | 模板耐久 `62,222×0.83=51,644` 分摊；每个模板单位仍独立按 kind 生成 |
 | 6 `enc_02_qiuqianren_tiezhangfeng` | Lv48；裘千仞 `full` | `sk_tiezhang` 天下 10、`sk_shuishangpiao` 地上 9 | 峭壁、掌风蓄招、追击伤员；目标为击退 / 脱离，不强杀悔悟角色 | `103,026×0.80=82,421`；落在 61,816–123,631 |
 | 7 `enc_02_ouyangfeng_taohua_shaju` | Lv50；欧阳锋 `full` + 蛇阵模板 | `sk_hama` 天下 10、`sk_lingshequan` 地中 8、`sk_nizhuanjingmai` 地下 7 | 三路救援同时计时；每救一人改变敌方目标权重，不以清怪替代原子判定 | Lv50 模板 111,694；取 `×0.85=94,940`，区间 67,016–134,033 |
 | 8 `enc_02_xizheng_pocheng` | Lv50 战役；城门 / 城墙 Boss 对象与敌军模板 | `sk_wumuyishu` 地中 8 是玩家指挥接口；敌军只用通行军伍池 | 战区、军令、士气与平民撤离；正线护民、邪线军功都须承担战后账本 | 城防总有效耐久 `111,694×0.83=92,706`；不是某个史实名将的 `full.hpMax` |
@@ -1206,10 +1201,10 @@ Boss 行的 69.1 不是主角独自挥击次数；上游用四人队 3.1 次标�
 
 | 类别 | 原创内容 | 边界与回退 |
 |---|---|---|
-| 穿越开局 | 北来行脚、牛家村酒店帮工、北地驿传随员三种身份及其线索 / 关系差异 | 三者都从 `sc_02_linan_yilu` 苏醒，都完整经历 `c_01..c_02`，不得提前知道 A4 |
+| 穿越开局 | 北来行脚与轮回隐藏的牛家村酒店帮工两种身份及其线索 / 关系差异 | 两者都完整经历 `c_01..c_02`，不得提前知道 A4；隐藏身份只把出生点移到酒店旧址，不另造第三身份 |
 | 时代场景 | §3.3 的 18 个 `sc_02_*` 作为全局区域内的章节实例 | 不把场景升格为新 `rg_*`；图外西征只走既有专线 |
 | 资源与营生 | §3.4 的 20 个 `rp_*`、§3.5 的 24 个 `biz_*` 及走镖 / 护院合同 | 经营权不等于武力占地；收益、家丁、职位与书眠清理只读 `design/16` |
-| 前代传承装配 | 把九阴、一阳、少林经阁及古迹挂入本时代图层 | `design/20` 缺失期间不生成 `frag_*`、新 `lg_*` 或概率合成 |
+| 前代传承装配 | 按 `design/20` 从阿青剑源、逍遥三源与姑苏斗转五个合法候选中调度至多四个主载体 | 严守主载体 / 后人 / 残卷 / 信物 `4/2/8/4` 上限与北冥—小无相互斥；九阴是本界原生实体，不占前代残本预算 |
 | 次级改命 | 杨铁心 / 包惜弱双生还、杨康后果线、梅超风赎罪生还等独立人物变体 | 不写射雕主改命回响键，也不自动改变 A4 与天书变体 |
 | 主改命 | A4 三路救援让朱聪、韩宝驹、南希仁、全金发、韩小莹五人全部生还 | 五人必须原子成立；张阿生不计入；少一人即回落 `canon` |
 | 支线内容 | 2 条普通支线、6 条门派任务、6 条人物羁绊、16 条完整奇遇链 | 全部是围绕原著人物 / 地点的原创互动，不反向证明原著发生过这些任务 |
@@ -1243,6 +1238,8 @@ Boss 行的 69.1 不是主角独自挥击次数；上游用四人队 3.1 次标�
 | K02-10 | 曲三旧窖、曲灵风遗物与傻姑 | 各物件出现 / 被发现的准确时点及持有人 | 密室雨只作原创探查，原物所有权由主线 / 物品系统结算 |
 | K02-11 | 同归剑法 | 原著名称、传授关系与在全真武学中的定位 | 品阶和来源沿用道家图鉴，章节不追加原著断言 |
 | K02-12 | 王重阳 / 林朝英遗迹在射雕时点的可见边界 | 古墓封闭状态及后世事件不可提前泄露的范围 | `rs_gumu` 只给回访线索，不进入古墓核心 |
+| K02-13 | 中都故城 / 燕京与赵王府舞台的时序张力 | 小说王府段落所用城市称谓、政权状态，以及其与 1217 年开界点的关系 | 时代层沿用 `cities.yaml` 的“中都故城 / 燕京、路府州县”；赵王府只称小说舞台，不断言金廷此时仍以此为都 |
+| K02-14 | 阿青墓 / 若耶溪与西夏宫藏的时代称谓 | 阿青传说能否落实到会稽 / 若耶溪墓址，以及 1217–1227 年西夏地点、宫藏称谓 | 均视为前代传承的原创落点并保留 **（待考）**，不据此断言真实墓址或抄本流转 |
 
 本章没有编造逐字引文或回目号。后续考据若只改变名称 / 年龄显示，可原位修订；若会改变锚点、生死、任务先后或时代图层，则必须同时复核故事正本、`design/18` 与后界读取条件。
 
@@ -1298,7 +1295,7 @@ biz_dengfeng_manor_01 biz_xian_escort_01 biz_huayin_manor_01
 biz_yueyang_casino_01 biz_kashgar_escort_01 biz_karakorum_manor_01
 ```
 
-以下均为上游既有或上游正本已登记的引用，不算本文新建：`ch02_shediao`、22 个 `q_02_main_*`、`dc_02_01`–`09`、五个 `anchor_02_*`、故事旗标、`it_tianshu_02`、`tsp_02_canon/fate`、`vid_sleep_02_03`、`save_booksleep_ch02`、`ach_huashan`、`cmb_longbang`、全部 `rg_*` / `city_*` / `npc_*` / `sect_*` / `sk_*` / `eq_*` / `it_*` / `rc_*` / `tr_*` / `lg_*` / `rs_*` 以及 `route_offmap_samarkand`。
+以下均为上游既有或上游正本已登记的引用，不算本文新建：`ch02_shediao`、22 个 `q_02_main_*`、`dc_02_01`–`09`、五个 `anchor_02_*`、故事旗标、`it_tianshu_02`、`tsp_02_canon/fate`、`vid_sleep_02_03`、`save_booksleep_ch02`、`ach_huashan`、`cmb_longbang`、全部 `rg_*` / `city_*` / `npc_*` / `sect_*` / `sk_*` / `eq_*` / `it_*` / `rc_*` / `tr_*` / `lg_*` / `rs_*`，以及 §3.6 由 `design/20` 定义的 `lgs_*` / `frag_*` / `cache_*` / `it_xinwu_*` 和 `route_offmap_samarkand`。
 
 ### 13.4 数据校验规则与测试用例
 
@@ -1326,7 +1323,7 @@ biz_yueyang_casino_01 biz_kashgar_escort_01 biz_karakorum_manor_01
 | SD02-V18 | error | 主线 qg 门禁均有长山道、船、飞爪、带路或机关替代；qg4 只锁隐藏 / 非主线收益，所有单向场景有返回点 |
 | SD02-V19 | error | 书眠只允许 3 内功、3 拳脚、3 兵器、6 装备；轻功 / 暗器 / 杂学转残篇；活动队伍清空但合法重逢快照保留 |
 | SD02-V20 | error | 所有 **【建议值】** 在 §13.5.1 登记；所有原创玩法在 §13.1 归类；所有待考事实在 §13.2 / §13.5.4 集中可追踪 |
-| SD02-V21 | error | 缺失 `design/07` 时不生成套装件数效果；缺失 `design/20` 时不生成 `frag_*` 或未登记传承合成 |
+| SD02-V21 | error | 缺失 `design/07` 时不生成套装件数效果；§3.6 的 `lgs_*` / `frag_*` / `cache_*` / `it_xinwu_*` 必须全部解析到 `design/20`，调度不得突破 `4/2/8/4` 上限、北冥—小无相互斥或各源最早投放时序 |
 | SD02-V22 | error | 正式正文无编辑期占位语；Markdown 表格列数一致，代码围栏成对，所有相对文件引用可解析 |
 
 #### 13.4.2 核心测试用例
@@ -1350,8 +1347,9 @@ biz_yueyang_casino_01 biz_kashgar_escort_01 biz_karakorum_manor_01
 | SD02-T15 | 四张菜谱教学失败后重试，并检查属性账 | 剧情可继续，失败不增熟练；系统既不创建 `cook` 也不增长 `alchemy` |
 | SD02-T16 | 西征让每种撤离失败事件各触发一次，再以相同 seed 重载 | 扣值和战后事实完全一致；击杀更多敌人不能回补 `civilianSafety` |
 | SD02-T17 | A4=`fate` 后书眠到 1237，再测 A4=`canon` | 前者仅五名生还者进入合法重逢候选；后者不生成其活体，神雕主线起点均不变 |
-| SD02-T18 | 删除套装或传承上游后构建本章 | 候选套装降级为“相关传承”，前代传承只保留已登记引用；构建不臆造效果 / 残本 |
-| SD02-T19 | 搜索禁用占位词、未闭合代码围栏、重复 ID 与不存在文件 | 均为零；若命中正文引用的缺失上游，只允许 §13.5 已登记的两项依赖 |
+| SD02-T18 | 在缺少 `design/07` 的构建环境加载本章 | 候选套装降级为“相关传承”，不生成件数效果；其余内容可构建 |
+| SD02-T19 | 搜索禁用占位词、未闭合代码围栏、重复 ID 与不存在文件 | 均为零；若命中正文引用的缺失上游，只允许 §13.5.2 明列的 `design/07` 与正式特色 schema 两项依赖 |
+| SD02-T20 | 向射雕传承调度器同时输入 §3.6 五个合法候选，并插入易筋、六脉、降龙三个过早来源 | 主载体至多 4、后人至多 2、残卷至多 8、信物至多 4；北冥与小无相不得同时占主载体；三个过早来源全部被时序过滤 |
 
 ### 13.5 待决事项 / 依赖
 
@@ -1362,13 +1360,14 @@ biz_yueyang_casino_01 biz_kashgar_escort_01 biz_karakorum_manor_01
 | 编号 | 归属 / 下游 | 当前默认 | 本文位置 |
 |---|---|---|---|
 | D02-S01 | 开局关系平衡 / 任务配置 | 牛家村酒店帮工使七怪初见关系 `+10` | §2.2 |
-| D02-S02 | 技艺检定 / 任务配置 | 北地驿传随员的蒙古语线索检定 `+10` | §2.2 |
+| D02-S02 | 技艺检定 / 任务配置 | **已解决：**取消“北地驿传随员”独立身份及蒙古语 `+10`；语言仍须同伴或既有技艺（见 `story/02` §2） | §2.2 |
 | D02-S03 | `design/15` / 任务配置 | 师父指点 `rateBp=1500`、`successBp=800`、`costReduceBp=500`；一次只绑一脉 | §7.5 |
 | D02-S04 | `design/18` / 羁绊任务 | 周伯通“三不赌”三局至少守约两局，失败可重赛 | §8.1、§6.4 |
 | D02-S05 | `design/09` / 西征配置 | `civilianSafety` 初始 100，每次撤离失败扣 10–25 | §10.4 |
 | D02-S06 | `design/09` / 西征配置 | `discipline` 取 0–100，读取军令与战中行为 | §10.4 |
 | D02-S07 | `design/09` / UI | 两项西征局部量默认分档 `≥70 / 30–69 / <30` | §10.4 |
 | D02-S08 | `design/02` / `design/13` | 主改命跨书回响键暂用 `echo_02_fate=true`，只由 A4 五人原子生还写入 | §11.4、§13.3 |
+| D02-S09 | `design/20` / 传承配置 | 凌波残本校合的附加技艺门槛为 `formation≥40` | §3.6 |
 
 #### 13.5.2 本文依赖的上游事实
 
@@ -1381,7 +1380,7 @@ biz_yueyang_casino_01 biz_kashgar_escort_01 biz_karakorum_manor_01
 | `design/11`、地图 YAML / SVG | **已解决：**使用 8 区、20 城、20 资源点、24 营生和实际 `jianghu-ch02.svg` |
 | `design/12`、`design/13`、`design/15`–`18` | **已解决：**任务 / 门派、成长 / 天书、经脉、资源、时代门派与人物名录均按上游表执行 |
 | `docs/design/07-set-system.md` | **未落盘：**§9.5 只保留图鉴候选 `setTags`，不展示或结算件数效果 |
-| `docs/design/20-heritage-and-legacies.md` / AR-13 所称 `20-legacy-inheritance.md` | **未落盘且文件名未统一：**§3.6 不建立新 `frag_*`，只挂既有 `lg_*` / `rs_*`；待上游出现后回填目录与合成 |
+| `docs/design/20-legacy-inheritance.md` | **已解决：**§3.6 采用正式目录的五个 `ch02` 合法候选、`4/2/8/4` 预算、北冥—小无相互斥与各源时序；九阴仍按本界原生实体处理 |
 | `chapter-feature.v1` 正式 schema | **未落盘：**四份 YAML 是章节侧字段需求，不承诺目录、Zod 名称或最终键；技术归属确认后迁移 |
 
 #### 13.5.3 对基准的修改提案
@@ -1392,7 +1391,7 @@ biz_yueyang_casino_01 biz_kashgar_escort_01 biz_karakorum_manor_01
 | D02-P02 | 基准 §17 第 4 条改为“主线幕数与结构服从已审校 `story/NN`；章节只写索引” | 射雕正本为 2 共有 + 每线 10，任一路线 12 幕，已由 AR-10 覆盖旧 6–10 幕 |
 | D02-P03 | 在 `design/02` 的回响表和 `design/13` 的天书变体校验中登记 `echo_02_fate` | A4 五人原子生还是射雕到神雕最重要的跨书事实，应有唯一持久键 |
 | D02-P04 | 在内容数据 / `tech/04` 为章节特色装配定义正式 schema，吸收或替换 `chapter-feature.v1` | 四项系统已给出稳定字段需求，但章节不应永久承担编译 schema 归属 |
-| D02-P05 | 统一 AR-13 传承文档实际文件名，并在基准 §18 增列其唯一归属 | 当前用户任务名、作者需求名与缺失文件状态不一致，无法稳定建立 `frag_*` 引用 |
+| D02-P05 | **已解决：**实际文件统一为 `docs/design/20-legacy-inheritance.md`；仍建议在基准 §18 增列“跨年代传承”的唯一归属 | 文件名歧义已经消除，基准的归属索引仍需同步，避免章节重定义传承规则 |
 
 #### 13.5.4 原著考据待办
 
@@ -1405,13 +1404,15 @@ biz_yueyang_casino_01 biz_kashgar_escort_01 biz_karakorum_manor_01
 7. 核对华山“三百招”的说话者、对象和语境；在完成前不写逐字引文或回目号。
 8. 核对花剌子模具体城名、攻城计策和事件顺序；考据完成前不在 UI 细化城市。
 9. 核对白雕、曲三旧窖 / 傻姑的准确出现时点，以及同归剑法的原著定位。
+10. 核对赵王府段落的城市称谓与 1217 年中都故城 / 燕京状态；在完成前不把小说舞台写成仍在用的金廷都城。
+11. 核对阿青传说与会稽 / 若耶溪的地理关联，以及西夏宫藏在本时代的地点称谓；未核前保持原创落点与待考标记。
 
 #### 13.5.5 开放问题（附默认值）
 
 | 编号 | 问题 | 默认值 |
 |---|---|---|
 | D02-O01 | `design/07` 未落盘时是否启用套装 | 不启用效果，只传候选 `setTags` 并显示“相关传承” |
-| D02-O02 | `design/20` 未落盘时是否先建残本 | 不建；九阴上下卷按 `design/10` 既有物品处理，其余只做史笺 / 印证 |
+| D02-O02 | **已解决：**本界如何投放前代残本 | 按 `design/20` §4、§7–§9 的正式目录、预算、互斥与时序投放；九阴上下卷仍按 `design/10` 的本界原生物品处理 |
 | D02-O03 | `chapter-feature.v1` 是否可直接进入生产 | 不可；仅作字段需求与测试 fixture，待正式 schema 映射后入包 |
 | D02-O04 | 一灯山居的全局区域归属 | 暂挂 `rg_huxiang`，保留 **（待考）**，主线可达性不依赖精确县治 |
 | D02-O05 | A4 主改命回响写什么 | 五人全活才写 `echo_02_fate=true`；次级救援使用各自生命事实，不共用此键 |
