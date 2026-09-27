@@ -4812,22 +4812,24 @@
         "docs/decisions/author-requirements.md",
         "docs/decisions/canon-proposals-v1.2.md",
         "TODO.md",
-        "docs/README.md"
+        "docs/README.md",
+        "tools/balance/meridian_flow_golden.json"
       ],
       "review": true,
       "web": true,
       "vars": {},
-      "review_focus": "复算河流模型算式与至少 6 个算例，运行 meridian_flow_sim.py --check 与 damage_sim.py --check；核对示例招式的原著出处与现实武术招式的真实性（可联网，查无实据的删除或标待考）；与 design/15 的 20 脉 / 180 穴、04 的乘区与 TTK 区间、06 既有控制类 Buff、09 的 CT 与运功调息逐项对照，不得重定义归属概念；擒拿 / 点穴 1–9 级效果表可用且与作者原文一致；ID 只引用已存在的受管前缀 ID，check_ids.py --strict 通过；AR-14 原文照录无改写。",
+      "review_focus": "复算河流模型算式与至少 6 个算例，运行 meridian_flow_sim.py --check 与 damage_sim.py --check；核对示例招式的原著出处与现实武术招式的真实性（可联网，查无实据的删除或标待考）；与 design/15 的 20 脉 / 180 穴、04 的乘区与 TTK 区间、06 既有控制类 Buff、09 的 CT 与运功调息逐项对照，不得重定义归属概念；擒拿 / 点穴 1–9 级效果表可用且与作者原文一致；ID 只引用已存在的受管前缀 ID，check_ids.py --strict 通过；AR-14 原文照录无改写。另重点审：经脉模拟模块规格能否直接实现（每个我方 / 敌方单位实例化、接口、与 tech/05 Core 和 Z0–Z10 的挂接、确定性、手机性能预算）；参考实现是否按单位实例化并与黄金数据一致；敏感性分析、退化策略抑制、压制下表现、新手引入与 15 成长曲线衔接是否成立；接入前后 TTK 对比。",
       "validate": {
         "exists": [
           "docs/design/21-meridian-flow-and-moves.md",
-          "tools/balance/meridian_flow_sim.py"
+          "tools/balance/meridian_flow_sim.py",
+          "tools/balance/meridian_flow_golden.json"
         ],
         "fences": [
           "docs/design/21-meridian-flow-and-moves.md"
         ],
         "min_lines": {
-          "docs/design/21-meridian-flow-and-moves.md": 1000
+          "docs/design/21-meridian-flow-and-moves.md": 1300
         },
         "contains": [
           [
@@ -4853,6 +4855,10 @@
           [
             "docs/decisions/author-requirements.md",
             "AR-14"
+          ],
+          [
+            "docs/design/21-meridian-flow-and-moves.md",
+            "经脉模拟模块"
           ]
         ],
         "cmd": [
