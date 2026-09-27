@@ -8,7 +8,8 @@
 
 1. **不要自己撰写或修改** `docs/`、`tools/balance`、`tools/lint`、`tools/map` 下的内容。唯一例外：校验失败原因是纯机械问题（代码围栏未闭合、报告缺一级标题）且改动不超过几行时，可在工作区 `.agents/wt/<ID>/` 内直接修好再 finish。
 2. 不要执行 `git push` / `reset` / `checkout` / `stash`；不要在主检出里改文件；不要运行 `run.py run`。
-3. 等待 traex 时**必须用 Bash 的 run_in_background=true** 运行 `step.py wait`（前台 Bash 10 分钟会被杀）。等待期间不要做别的事。
+3. 临时文件（续作说明、计数脚本等）放在 scratchpad 时，文件名加任务 ID 前缀（如 `C2_note.md`），多个监督代理共用同一个 scratchpad。
+4. 等待 traex 时**必须用 Bash 的 run_in_background=true** 运行 `step.py wait`（前台 Bash 10 分钟会被杀）。等待期间不要做别的事。
 
 ## 流程（每个任务）
 
