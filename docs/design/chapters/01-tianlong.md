@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.1；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；主线唯一事实源为 `design/story/01-tianlong.md`。
 > 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05` 与四份指定图鉴；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、余韵与结局 → `design/13`；经脉 → `design/15`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.0（D01，2026-09-26）。
+> 版本：v1.1（D01；审校 D01.R，2026-09-26）。
 
 ---
 
@@ -12,7 +12,7 @@
 
 ### 0.1 一句话结论
 
-《天龙八部》是十四书界的首个完整垂直切片：玩家以无籍行脚人身份从无量山进入“大理—宋—辽—西夏—吐蕃—天山”的多国江湖，在不替代段誉、萧峰、虚竹的前提下，用救人、取证、结盟与主动舍利来回答“众生是否值得同渡”。
+《天龙八部》是十四书界的首个完整垂直切片：玩家以无籍行脚人身份从无量山进入“大理—宋—辽—西夏—吐蕃—天山”的多国江湖，在不替代段誉、萧峰、虚竹的前提下，用救人、取证、结盟与主动舍弃独占利益来回答“众生是否值得同渡”。
 
 ### 0.2 制作边界
 
@@ -75,7 +75,7 @@
 | 身份与证言 | 从杏子林到少室山，事实、证人、封缄与公开方式都可追溯 | 带头大哥谜案、`dc_01_03`–`08` | 不让主角代萧峰回答身份问题 |
 | 高武初见 | 低阶生存逐步接触顶级绝学，先理解门槛再选择传承 | 十四门原生天级、互斥取得、师承与解谜 | 单周目完整天级仍最多 6 门 |
 | 三兄弟并行 | 玩家可同行、救援、结盟，却不夺段誉、萧峰、虚竹各自的决定 | 12 名重点同伴、合击、主线介入点 | 不替代原著主角取得核心机缘 |
-| 改命有价 | 救萧峰不是赢一场 Boss，而是跨势力救援、活证、羁绊与舍利的合取 | A5 四项硬条件 | 不改变射雕时代历史起点 |
+| 改命有价 | 救萧峰不是赢一场 Boss，而是跨势力救援、活证、羁绊与舍弃独占利益的合取 | A5 四项硬条件 | 不改变射雕时代历史起点 |
 
 ### 1.3 内容节奏
 
@@ -142,7 +142,7 @@
 
 - 段誉不会因玩家探索或长休死亡；延误只减少钟灵 / 脚夫的人情奖励。
 - 无量剑与神农帮同时敌对时，茶商路引仍能通往大理；主线不得要求先加入任一门派。
-- `gate_01_wuliangyidao` 的 qg1 奖励岔道可绕行；琅嬛福地核心传承仍由段誉先取得。
+- 局部门禁键 `gateKey:wuliangyidao` 的 qg1 奖励岔道可绕行；琅嬛福地核心传承仍由段誉先取得。
 - 任何自述都能在第一小时获得一门通行黄阶根基，不把选错背景变成成长死档。
 
 ```yaml
@@ -244,21 +244,21 @@ chapterStart:
 
 ### 3.5 四十五道轻功门禁
 
-每个编号都是一个可验收的门禁实例；门禁表达式、失败后果、落点与替代动作只引用 `design/08`。
+每个 `gateKey` 都是 `sc_01_*` 场景配置内的局部、可验收键，不注册全局 `gate_*` ID；门禁表达式、失败后果、落点与替代动作只引用 `design/08`。若实现确需跨场景引用，须先由 `design/08` 按唯一归属登记正式 `gate_*`。
 
 | 区域 | qg1（12） | qg2（17） | qg3（12） | qg4（3） | qg5（1） |
 |---|---|---|---|---|---|
-| 大理苍山 | `gate_01_wuliangyidao`、`gate_01_wanjianguyaojing` | `gate_01_daliwuding`、`gate_01_tianlongsiceyuan` | `gate_01_yubijianying` | `gate_01_langhuanhoubi` | — |
-| 中原 | `gate_01_leigushanyaopo` | `gate_01_juxianzhuangqiang`、`gate_01_shaoshishanpianjing` | `gate_01_cangjinggewuji`、`gate_01_xuemuhuayaojing` | `gate_01_damodonghoubi` | — |
-| 太湖江南 | `gate_01_xingzilinshuize` | `gate_01_qinyunshuiting`、`gate_01_yanziwuduanqiao` | `gate_01_taihugudao`、`gate_01_mantuohuapu` | `gate_01_huanshishuge` | — |
-| 河西陇右 | `gate_01_hexixiakou`、`gate_01_qingtangfengpo` | `gate_01_shangduifengsha` | `gate_01_xingxiuduhao` | — | — |
-| 河东晋中 | `gate_01_qinjiazhaihoupo` | `gate_01_yanmengyace`、`gate_01_guanwaishengsuo` | `gate_01_yanmengshike` | — | — |
-| 西夏贺兰 | `gate_01_helanshashan` | `gate_01_xingqinggongqiang`、`gate_01_yipintangyuan` | `gate_01_helanyadao` | — | — |
-| 青藏 | `gate_01_xuelingyidao`、`gate_01_gaoyuanshitan` | `gate_01_dalunsihoupo`、`gate_01_yaogubinghe` | `gate_01_xuelingjiejing` | — | — |
-| 西域北疆 | `gate_01_tianshansonglin` | `gate_01_lingjiutiesuo`、`gate_01_jiutianyingzhai` | `gate_01_piaomiaoduanbi`、`gate_01_xueyuanwuhen` | — | `gate_01_yunhaizhandao` |
-| 漠南 | `gate_01_caoyuanhegu` | `gate_01_nanyuanyingzhai`、`gate_01_shangjingchengduo` | `gate_01_monanlianwang` | — | — |
+| 大理苍山 | `wuliangyidao`、`wanjianguyaojing` | `daliwuding`、`tianlongsiceyuan` | `yubijianying` | `langhuanhoubi` | — |
+| 中原 | `leigushanyaopo` | `juxianzhuangqiang`、`shaoshishanpianjing` | `cangjinggewuji`、`xuemuhuayaojing` | `damodonghoubi` | — |
+| 太湖江南 | `xingzilinshuize` | `qinyunshuiting`、`yanziwuduanqiao` | `taihugudao`、`mantuohuapu` | `huanshishuge` | — |
+| 河西陇右 | `hexixiakou`、`qingtangfengpo` | `shangduifengsha` | `xingxiuduhao` | — | — |
+| 河东晋中 | `qinjiazhaihoupo` | `yanmengyace`、`guanwaishengsuo` | `yanmengshike` | — | — |
+| 西夏贺兰 | `helanshashan` | `xingqinggongqiang`、`yipintangyuan` | `helanyadao` | — | — |
+| 青藏 | `xuelingyidao`、`gaoyuanshitan` | `dalunsihoupo`、`yaogubinghe` | `xuelingjiejing` | — | — |
+| 西域北疆 | `tianshansonglin` | `lingjiutiesuo`、`jiutianyingzhai` | `piaomiaoduanbi`、`xueyuanwuhen` | — | `yunhaizhandao` |
+| 漠南 | `caoyuanhegu` | `nanyuanyingzhai`、`shangjingchengduo` | `monanlianwang` | — | — |
 
-计数：qg1 `2+1+1+2+1+1+2+1+1=12`；qg2 `2+2+2+1+2+2+2+2+2=17`；qg3 `1+2+2+1+1+1+1+2+1=12`；qg4 `3`；qg5 `1`，合计 45。qg4+ 占比 `(3+1)/45=8.89%≤10%`。唯一 qg5 `gate_01_yunhaizhandao` 必须由任务提供合法临时 `qinggong +12`，不能靠章节私设阈值降低；它只保护隐藏见闻与天材候选，不阻断任何任务或返回路径。
+计数：qg1 `2+1+1+2+1+1+2+1+1=12`；qg2 `2+2+2+1+2+2+2+2+2=17`；qg3 `1+2+2+1+1+1+1+2+1=12`；qg4 `3`；qg5 `1`，合计 45。qg4+ 占比 `(3+1)/45=8.89%≤10%`。唯一 qg5 局部键 `gateKey:yunhaizhandao` 必须由任务提供合法临时 `qinggong +12`，不能靠章节私设阈值降低；它只保护隐藏见闻与天材候选，不阻断任何任务或返回路径。
 
 ### 3.6 三十六个奇遇触点
 
@@ -278,9 +278,9 @@ chapterStart:
 
 ### 3.7 二十二个资源点
 
-资源四阶九品、所有权、家丁、产出周期与估值只见 `design/16`。本表仅给时代实例；常态品级不超过五品，专精 / 稀缺点可到六至八品，天材不作周期产出。所有点位实例均为**（原创扩展）**。
+资源四阶九品、所有权、家丁、产出周期与估值只见 `design/16`。本表数字专指映射给配方的 `materialGrade`（1–12），不是同阶一品最高、九品最低的 `resourceRank`；常态材料品阶不超过 6，开发至 5 级的专精输出可到 7，稀缺资源点可到 8，均未触及天材 `materialGrade=10..12`。所有点位实例均为**（原创扩展）**。
 
-| ID | 区域 / 场景 | `pointType` / 类别 | 常态品级 | 初始控制 | 双路径取得 |
+| ID | 区域 / 场景 | `pointType` / 类别 | 可产材料品阶 `materialGrade` | 初始控制 | 双路径取得 |
 |---|---|---|---:|---|---|
 | `rp_dali_herb_01` | 无量山药坡 | `herb_garden` / 药材 | 1–5 | 无 | 救药农 / 租约 |
 | `rp_dali_silk_tea_01` | 大理城外茶园 | `silk_tea_estate` / 丝茶 | 1–5 | 商户 | 护运 / 投资 |
@@ -305,7 +305,7 @@ chapterStart:
 | `rp_monan_pasture_01` | 漠南马场 | `pasture` / 马匹 | 2–7 | 辽军 | 军职 / 骑猎救援 |
 | `rp_monan_workshop_01` | 上京铁器作坊 | `workshop` / 铁器 | 2–6 | 行会 | 商约 / 查内盗 |
 
-分布为大理 3、中原 3、太湖 2、河西 2、河东 2、西夏 2、青藏 3、西域 3、漠南 2，共 22。城外 / 野外节点 17 个，满足至少 14；初始由明确势力直接控制 8 个，不超过上限；“双路径取得”逐项 22 个，满足至少 6。取得经营权不等于土地永占，书眠清理见 `design/16`。
+分布为大理 3、中原 3、太湖 2、河西 2、河东 2、西夏 2、青藏 3、西域 3、漠南 2，共 22。城外 / 野外节点 17 个，满足至少 14；初始由明确势力直接控制 8 个，不超过上限；“双路径取得”逐项 22 个，满足至少 6。表中上限 7–8 只适用于开发后的专精 / 固定稀缺输出，常态循环产出仍受 `design/16` §2.4 的高武上限 `materialGrade≤6`；取得经营权不等于土地永占，书眠清理见 `design/16`。
 
 ### 3.8 二十八个营生场所与职位
 
@@ -404,7 +404,7 @@ chapterStart:
 | `q_01_main_11` | 灵鹫解厄 | 回 33–38；洞岛、童姥 / 李秋水、冰窖善后 | 缥缈峰、兴庆府、冰窖 | 正 | 八部众、`dc_01_07`、灵鹫入宫 / 客卿 | §3.2 Z07 |
 | `q_01_main_12` | 少室护证 | 回 39–43；返少林、群雄会、藏经阁止斗 | 少室山、藏经阁 | 正 | A4、谜案闭合、少林 / 星宿 Boss 群 | §3.2 Z08 |
 | `q_01_main_13` | 西夏南归 | 回 44–48；求亲、枯井、三问、曼陀悲剧 | 兴庆府、苏州、曼陀山庄 | 正 | `dc_01_08`、段氏生死、鸠摩智结盟窗口 | §3.2 Z09 |
-| `q_01_main_14` | 雁门众生 | 回 49–50；南京被囚、营救、折箭止战 | 辽上京 / 南京题签专线、雁门关 | 正 | A5、`dc_01_09`、跨方公开盟约、天书 | §3.2 Z10 |
+| `q_01_main_14` | 雁门众生 | 回 49–50；南京被囚、营救、折箭止战 | `city_beijing` 辽南京析津府（`rg_yanjing_zhili` 专线任务实例）→ `city_xinzhou` 忻州 + `placeKey: yanmenguan` | 正 | A5、`dc_01_09`、跨方公开盟约、天书 | §3.2 Z10 |
 
 ### 4.4 邪线幕索引
 
@@ -419,7 +419,7 @@ chapterStart:
 | `q_01_main_21` | 灵鹫易主 | 回 33–38；洞岛反叛、冰窖与易主 | 缥缈峰、兴庆府、冰窖 | 邪 | 八部众控制账、`dc_01_07`、P31 驭人代价 | §4.2 X07 |
 | `q_01_main_22` | 少室布衡 | 回 39–43；返少林、群雄会与藏经阁 | 少室山、藏经阁 | 邪 | A4、三方密封、Boss 连战 | §4.2 X08 |
 | `q_01_main_23` | 曼陀破局 | 回 44–48；求亲、枯井、夺位交易 | 兴庆府、苏州、曼陀山庄 | 邪 | `dc_01_08`、多方托管、段氏生命轴 | §4.2 X09 |
-| `q_01_main_24` | 雁门折箭 | 回 49–50；南京脱狱、军令制衡、止战 | 辽上京 / 南京题签专线、雁门关 | 邪 | A5、`dc_01_09`、把柄公托、天书 | §4.2 X10 |
+| `q_01_main_24` | 雁门折箭 | 回 49–50；南京脱狱、军令制衡、止战 | `city_beijing` 辽南京析津府（`rg_yanjing_zhili` 专线任务实例）→ `city_xinzhou` 忻州 + `placeKey: yanmenguan` | 邪 | A5、`dc_01_09`、把柄公托、天书 | §4.2 X10 |
 
 邪线不等于滥杀路线：儿童、俘虏与普通百姓不得成为高收益牺牲品；每份联盟有退出条款，主动伤害无辜仍按 story 和 `design/03` 结算品德与同伴后果。
 
@@ -437,7 +437,7 @@ chapterStart:
 | `dc_01_06` 珍珑之后谁执局 | Z06 / X06 | 护传承、分筹码或全交虚竹 | 可切线或保持 | 珍珑、逍遥 / 星宿关系、虚竹羁绊 |
 | `dc_01_07` 生死符与宫众 | Z07 / X07 | 全解、限用或交虚竹 | 可切线或保持 | 八部众、灵鹫关系、跨势力救援 |
 | `dc_01_08` 两案真相的归处 | Z09 / X09 | 公开盟约、密封托管或焚毁 | 决定终幕组织方式 | 谜案、段氏证据、改命证据支柱 |
-| `dc_01_09` 舍利还是舍己 | Z10 / X10 | 舍弃独占利益、尊重原著或据为己有 | 原著 / 改命最终分流 | 萧峰生命轴、天书变体、书契 |
+| `dc_01_09` 舍弃还是舍己 | Z10 / X10 | 舍弃独占利益、尊重原著或据为己有 | 原著 / 改命最终分流 | 萧峰生命轴、天书变体、书契 |
 
 ### 4.6 主线与章节内容接口
 
@@ -464,7 +464,7 @@ chapterStart:
 | A2 | 杏子林身世揭露 | 萧峰契丹身世被公开并离开帮主位 | 改证词顺序、保全证人和中毒帮众 | 不替萧峰回答身份、不让证据永远封口 | C04；`dc_01_03` |
 | A3 | 聚贤庄大战 | 群雄围攻；黑衣人救走萧峰 | 助萧峰、助群雄或救治双方 | 萧峰不可真正击败；黑衣人身份不提前揭示 | Z03 / X03；`dc_01_04` |
 | A4 | 少室山群雄会 | 多线汇合、旧案对质、扫地僧止斗 | 保证书证、证人、伤者和退路 | 不让主角取代玄慈、萧慕容两家或三兄弟 | Z08 / X08 |
-| A5 | ★ 雁门关止战 | 辽帝折箭退兵；原著线以萧峰自尽收束 **（细节待考）** | 组织南京救援、护民、提交公开盟约或密封制衡 | 仅四项硬条件齐备且舍利时可救萧峰；宋辽历史起点不变 | Z10 / X10；`dc_01_09` |
+| A5 | ★ 雁门关止战 | 辽帝折箭退兵；原著线以萧峰自尽收束 **（细节待考）** | 组织南京救援、护民、提交公开盟约或密封制衡 | 仅四项硬条件齐备且永久舍弃独占利益时可救萧峰；宋辽历史起点不变 | Z10 / X10；`dc_01_09` |
 
 ### 5.2 原著线 `tsp_01_canon` 达成路径
 
@@ -510,7 +510,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 |---|---|---|
 | 五锚点缺一 | A1–A5 任一 false | 不现世，回到缺失节点补救 |
 | 五锚点全、改命不足 | `a5=true`、`fateReady=false` | 只可获得 `tsp_01_canon` |
-| 条件前三项全、未舍利 | `relinquishedExclusiveGain=false` | 原著变体；不可用终战胜利绕过 |
+| 条件前三项全、未舍弃独占利益 | `relinquishedExclusiveGain=false` | 原著变体；不可用终战胜利绕过 |
 | 四项全并选 A | `fateReady=true` | 只获得 `tsp_01_fate`，萧峰 `fate_rescued` |
 | 重复结算 | 已有任一 `tsp_01_*` | 幂等，不重复发天书或奖励 |
 
@@ -764,20 +764,20 @@ fateReady = size(crossFactionRescueFactions) >= 2
 
 ### 8.6 十个 Boss 内容位与机制
 
-10 个内容位均使用稳定人物和 `full` 画像；遭遇 / 脚本新 ID 已做仓内查重，仍须由战斗数据包正式登记。D4 的 Boss 通常 2 阶段；止斗、护送和非致死目标可以完成内容位，不把所有角色做成可击杀对象。
+10 个内容位均使用稳定人物和 `full` 画像。`enc_01_*` 是本章遭遇 ID；只有聚贤庄复用 `design/09` 已登记的全局 Boss 脚本，其余九项先用章节局部 `scriptKey` 表示内容需求，待 `design/09` 接纳后才能获得正式 `bsc_*` ID。D4 的 Boss 通常 2 阶段；止斗、护送和非致死目标可以完成内容位，不把所有角色做成可击杀对象。
 
-| 遭遇 / 脚本**（原创扩展 ID）** | Boss / Lv | 武学（图鉴 ID） | 阶段与胜负机制 |
+| 遭遇 / Boss 脚本或局部 `scriptKey` | Boss / Lv | 武学（图鉴 ID） | 阶段与胜负机制 |
 |---|---:|---|---|
-| `enc_01_wanjiangu` / `bsc_duanyanqing_wanjiangu` | `npc_duanyanqing` / 16 | `sk_yiyangzhi` 6、`sk_yanqingzhang` 6 | P1 杖行点穴；50% 后以腹语诱导并封路。救出人质或迫其退让即胜，不要求击杀 |
-| `enc_01_tianlonghujing` / `bsc_jiumozhi_tianlongsi` | `npc_jiumozhi` / 25 | `sk_huoyandao` 7、`sk_xiaowuxiang` 7、`sk_wuxiangjiezhi` 6 | P1 刀气压阵；60% 后以小无相催少林绝技。守住经卷 8 回合或迫退为胜 |
+| `enc_01_wanjiangu` / `scriptKey:duanyanqing_wanjiangu` | `npc_duanyanqing` / 16 | `sk_yiyangzhi` 6、`sk_yanqingzhang` 6 | P1 杖行点穴；50% 后以腹语诱导并封路。救出人质或迫其退让即胜，不要求击杀 |
+| `enc_01_tianlonghujing` / `scriptKey:jiumozhi_tianlongsi` | `npc_jiumozhi` / 25 | `sk_huoyandao` 7、`sk_xiaowuxiang` 7、`sk_wuxiangjiezhi` 6 | P1 刀气压阵；60% 后以小无相催少林绝技。守住经卷 8 回合或迫退为胜 |
 | `enc_01_juxianzhuang` / `bsc_xiaofeng_juxianzhuang` | `npc_xiaofeng` / 35 | `sk_xianglong18` 有效 8、`sk_taizuchangquan`、`sk_qinlonggong` 8 | 完整复用 `design/09` §8.10：力竭 / 40% 锁血，黑衣人必救走；不可真正击败 |
-| `enc_01_xingxiuhai` / `bsc_dingchunqiu_xingxiuhai` | `npc_dingchunqiu` / 29 | `sk_huagong` 8、`sk_sanxiaoxiaoyaosan` 7、`sk_fushidu` 7 | P1 门徒颂扬蓄毒；55% 后化功圈扩大。毁毒鼎或迫退；邪线可改为制约交易 |
-| `enc_01_bingjiaotonglao` / `bsc_tonglao_bingjiao` | `npc_tonglao` / 31 | `sk_bahuang` 8、`sk_liuyangzhang` 8、`sk_shengsifu` 7 | 返老窗口使属性按回合恢复；低血触发解符抉择。保护 / 制止均走非致死结算 |
-| `enc_01_bingjiaoliqiushui` / `bsc_liqiushui_bingjiao` | `npc_liqiushui` / 31 | `sk_xiaowuxiang` 8、`sk_baihongzhang` 8 | 白虹变向标记；50% 后镜面残影。双 Boss 同场时共享止斗槽，不允许先杀一人刷简单结局 |
-| `enc_01_shaoshiyoutanzhi` / `bsc_youtanzhi_shaoshishan` | `npc_youtanzhi` / 32 | `sk_bingcanduzhang` 8、`sk_yijinjing` 6 | 寒毒地块逐轮扩散；摘除控制物 / 唤醒本人可提前结束。击倒不自动写命定死亡 |
-| `enc_01_shaoshixuanci` / `bsc_xuanci_shaoshishan` | `npc_xuanci` / 33 | `sk_dajingangquan` 8、`sk_boruozhang` 8、`sk_shaolinxinfa` 8 | 证据对质 / 戒律承压双槽；战斗仅为护证或试招，真相与认亲由原著人物完成 |
-| `enc_01_mantuomurongfu` / `bsc_murongfu_mantuoshan` | `npc_murongfu` / 34 | `sk_douzhuan` 9、`sk_murongjian` 8、`sk_canhezhi` 7 | P1 借力反击；50% 后切换复国死士。销毁资金链、劝退或击倒均可结算，王语嫣非奖励 |
-| `enc_01_cangjinggemurongbo` / `bsc_murongbo_cangjingge` | `npc_murongbo` / 35 | `sk_douzhuan` 10、`sk_wuxiangjiezhi` 8、`sk_ranmudaofa` 8 | 与萧远山对峙的存活 / 止斗战；扫地僧为不可攻击裁定者，绝不作为常规击杀 Boss |
+| `enc_01_xingxiuhai` / `scriptKey:dingchunqiu_xingxiuhai` | `npc_dingchunqiu` / 29 | `sk_huagong` 8、`sk_sanxiaoxiaoyaosan` 7、`sk_fushidu` 7 | P1 门徒颂扬蓄毒；55% 后化功圈扩大。毁毒鼎或迫退；邪线可改为制约交易 |
+| `enc_01_bingjiaotonglao` / `scriptKey:tonglao_bingjiao` | `npc_tonglao` / 31 | `sk_bahuang` 8、`sk_liuyangzhang` 8、`sk_shengsifu` 7 | 返老窗口使属性按回合恢复；低血触发解符抉择。保护 / 制止均走非致死结算 |
+| `enc_01_bingjiaoliqiushui` / `scriptKey:liqiushui_bingjiao` | `npc_liqiushui` / 31 | `sk_xiaowuxiang` 8、`sk_baihongzhang` 8 | 白虹变向标记；50% 后镜面残影。双 Boss 同场时共享止斗槽，不允许先杀一人刷简单结局 |
+| `enc_01_shaoshiyoutanzhi` / `scriptKey:youtanzhi_shaoshishan` | `npc_youtanzhi` / 32 | `sk_bingcanduzhang` 8、`sk_yijinjing` 6 | 寒毒地块逐轮扩散；摘除控制物 / 唤醒本人可提前结束。击倒不自动写命定死亡 |
+| `enc_01_shaoshixuanci` / `scriptKey:xuanci_shaoshishan` | `npc_xuanci` / 33 | `sk_dajingangquan` 8、`sk_boruozhang` 8、`sk_shaolinxinfa` 8 | 证据对质 / 戒律承压双槽；战斗仅为护证或试招，真相与认亲由原著人物完成 |
+| `enc_01_mantuomurongfu` / `scriptKey:murongfu_mantuoshan` | `npc_murongfu` / 34 | `sk_douzhuan` 9、`sk_murongjian` 8、`sk_canhezhi` 7 | P1 借力反击；50% 后切换复国死士。销毁资金链、劝退或击倒均可结算，王语嫣非奖励 |
+| `enc_01_cangjinggemurongbo` / `scriptKey:murongbo_cangjingge` | `npc_murongbo` / 35 | `sk_douzhuan` 10、`sk_wuxiangjiezhi` 8、`sk_ranmudaofa` 8 | 与萧远山对峙的存活 / 止斗战；扫地僧为不可攻击裁定者，绝不作为常规击杀 Boss |
 
 ### 8.7 `full` 数值核算与验收值
 
@@ -932,9 +932,9 @@ fateReady = size(crossFactionRescueFactions) >= 2
 
 ## 10. 本书界特色系统
 
-三套系统都是书界内容层：通用任务状态、战斗、成长、NPC、物品和结局事务仍由 `design/09`、`12`、`13`、`18` 等归属文档处理。以下 `sys_01_*`、局部键与 YAML 为本章生产约定**（原创扩展）**；schema 未进入技术文档前须由章节适配器解析，不能悄悄加入全局 opcode。
+三套系统都是书界内容层：通用任务状态、战斗、成长、NPC、物品和结局事务仍由 `design/09`、`12`、`13`、`18` 等归属文档处理。以下 `featureKey`、局部键与 YAML 为本章生产约定**（原创扩展）**；它们不是基准 §12 的全局 ID，也不能悄悄扩充任务 opcode。schema 未进入技术文档前由章节适配器按所属 `ch01_tianlong` 解析。
 
-### 10.1 珍珑棋局 `sys_01_zhenlong`
+### 10.1 珍珑棋局（`featureKey: zhenlong`）
 
 #### 10.1.1 叙事约束与入口
 
@@ -956,7 +956,8 @@ fateReady = size(crossFactionRescueFactions) >= 2
 #### 10.1.3 YAML 示例
 
 ```yaml
-id: sys_01_zhenlong
+featureKey: zhenlong
+chapterRef: ch01_tianlong
 questRefs: [q_01_main_10, q_01_main_20]
 sceneRef: sc_01_leigushan
 board: { visualSize: 19, keyPoints: 9, turnLimit: 6 }
@@ -987,7 +988,7 @@ source: canonExpanded
 - `design/12` 只接收阶段完成、分支键与旗标；棋道检定读取 `design/03`，战斗调用 `design/09`，继承 / 好感调用 `design/18`。
 - `design/13` 只消费 Z06 / X06 完成和结局旗标；棋局分数不直接发天书、不增加改命条件。
 
-### 10.2 八部众支线 `sys_01_babuzhong`
+### 10.2 八部众支线（`featureKey: babuzhong`）
 
 #### 10.2.1 主题与内容结构
 
@@ -1013,7 +1014,7 @@ source: canonExpanded
 5. 可招募恶人仍保留罪责、受害者态度与离队边界；完成主题位不清空品德或势力敌对。
 
 ```yaml
-id: sys_01_babuzhong
+featureKey: babuzhong
 chapterRef: ch01_tianlong
 slots:
   - id: tian
@@ -1041,7 +1042,7 @@ source: expanded
 - 从主题位可跳到任务追踪，但锁因由 `design/12` 的条件树生成；已死亡人物的可替代证言或遗物只显示已合法解锁项。
 - NPC 状态、羁绊与命定死亡由 `design/18`；任务奖励由 `design/12`；书眠追加镜头与成就由 `design/13`。系统只聚合只读状态并提交一次幂等完成事件。
 
-### 10.3 带头大哥谜案 `sys_01_daitoudage`
+### 10.3 带头大哥谜案（`featureKey: daitoudage`）
 
 #### 10.3.1 证据不是“猜名字”
 
@@ -1061,7 +1062,8 @@ source: expanded
 | 收束 | A4 固定写 `flags.leader_mystery_resolved=true`；真相由玄慈、萧远山、慕容博等原著人物行动揭示，扫地僧保留止斗位置 |
 
 ```yaml
-id: sys_01_daitoudage
+featureKey: daitoudage
+chapterRef: ch01_tianlong
 opensOn: flags.a2_xingzilin_witnessed
 clues:
   - id: clue_01_xingzilin_mifeng
@@ -1194,8 +1196,8 @@ sleepYears = next.gameYear.start − current.gameYear.end
 | 携带 `sk_xianglong18` | `quest`（隐式 `carry:`） | 洪七公识出“帮外传人”，开放传承来源核验支线 **（原创扩展）** | 不自动得洪七公好感、不跳过射雕丐帮门槛 |
 | 携带 `sk_liumai` | `quest`（隐式 `carry:`） | 一灯线出现“先祖遗学”见闻 **（原创扩展）** | 一灯只见闻；射雕没有六脉原生全本 |
 | `echo_01_huangshang=true` | `dialog/codex` | 余韵在东京书院见中年官员校文后，射雕习九阴时出现“文气似曾相识” **（原创扩展）** | 不授 `sk_jiuyin`，不把匿名会面写成确证身份 |
-| `echo_01_fate=true` | `dialog/cinematic` | 丐帮老人说乔帮主“还活着，只是不回来了”；书眠雪痕不见血色 **（原创扩展）** | 只改传说文本；射雕起点、五绝和锚点不变 |
-| `echo_01_fate` 缺失 | `dialog/cinematic` | 说书版本为“一身止万人刀兵”；雁门留断箭剪影 | 不伪造原著引文；原著线不是失败态；不得为原著线持久化显式 `false` |
+| `flags.yanmen_fate_saved=true` | `dialog/cinematic` | 丐帮老人说乔帮主“还活着，只是不回来了”；书眠雪痕不见血色 **（原创扩展）** | 只改传说文本；射雕起点、五绝和锚点不变；与 story / 射雕章节共用正式剧情旗标 |
+| `flags.yanmen_fate_saved=false` 或缺失 | `dialog/cinematic` | 说书版本为“一身止万人刀兵”；雁门留断箭剪影 | 不伪造原著引文；原著线不是失败态；旧存档缺失按原著线读取 |
 | `it_shijian_xiaofeng` | `item` | 余韵可用史印封存止战旧拓；射雕开局用作北来行脚身份物证 **（原创扩展）** | 无史笺时由无名残页替代，不能锁死下一界 |
 | `rs_yanmenguan` 到访记录 | `codex/item` | 射雕雁门古迹可见“契丹狼头刺青拓片”题签 **（原创扩展）** | 只给图鉴 / 地阶以下小额奖励，不重演 A5 |
 | 携带 `eq_dagoubang` | `dialog/quest`（隐式 `carry:`） | 与射雕当代原生信物同场触发“异时之器”与归还 / 器合预告 | 史自愈保证当代信物仍在；不得装备两件同 ID |
@@ -1320,7 +1322,7 @@ maxHpFactor = 1.20
 | 曼陀山庄 | 斗转反击、死士援军、资金链 | 换攻击类型、断账、劝离 | 销毁资金链、劝退或击倒三选一；王语嫣不是战利品 |
 | 藏经阁 | 双父对峙、止斗和裁定 | 生存、护人、降低仇恨槽 | 扫地僧入场即转裁定态；不可攻击裁定者 |
 | 南京营救 | 多目标撤离、军民分流 | 跨势力救援、开路线、放弃独占奖励 | 达到 story 的救援目标即可；损失改变 A5 条件，不毁存档 |
-| 雁门终局 | 谜案、军阵、羁绊、证据合取 | 五锚点、证据 / 活证、萧峰羁绊、主动舍利 | 原著线始终可结；改命缺项时明确显示差哪一项 |
+| 雁门终局 | 谜案、军阵、羁绊、证据合取 | 五锚点、证据 / 活证、萧峰羁绊、主动舍弃独占利益 | 原著线始终可结；改命缺项时明确显示差哪一项 |
 
 所有 Boss 在侠客难度的目标仍引用 `design/09`：12–25 次主角行动、约 8–15 分钟；聚贤庄等群战可到 10–15 轮，但需支持轮界续玩。这里是验收目标，不以手填 HP 保证结果，必须用最终 `full` 画像和合法队伍实跑 **（待实测）**。
 
@@ -1459,10 +1461,10 @@ B = I × H = 19 × 15 = 285 两
 
 - 主线剧情、选择与锚点只从 `design/story/01-tianlong.md` 生成；本文 §4 的 24 行是索引，不得被编译器当第二份剧情正文。
 - 康敏、全冠清、萧远山、耶律洪基等进入生产前必须先由 `design/18` / 天龙人物名录补稳定 ID、生卒与能力；中文名不得成为持久化外键。
-- `sys_01_zhenlong`、`sys_01_babuzhong`、`sys_01_daitoudage` YAML 是内容接口示例；字段归属 schema 接纳前由章节适配器读取，不得自行扩充任务 opcode。
+- `featureKey:zhenlong / babuzhong / daitoudage` 的 YAML 是章节局部内容接口示例；字段归属 schema 接纳前由章节适配器读取，不得自行扩充任务 opcode。
 - `design/07-set-system.md` 缺失时，§9.4 的 `set_*` 只作图鉴候选引用，不启用件数效果、掉率或 Buff。
 - `tools/balance/damage_sim.py` 若仍把 Boss MP 输出成 `×1`，须同步为 `design/03` 的 `×2` 后再用于本章回归；当前 §8 / §12 采用权威文档值。
-- `echo_01_fate` 只存改命成功时的 `true`；旗标缺失代表原著线。实现不得要求持久化显式 `false` 才显示原著文本。
+- 射雕回响读取 story 已登记的 `flags.yanmen_fate_saved`；旧存档缺失按原著线处理，不另造同义 `echo_*`。
 - `echo_01_huangshang` 是 `design/02` 已有连续性键；本章只增加触发内容，不把它重声明成新全局 schema。
 - 三十二条支线、三十六触点、二十二资源点、二十八营生、三特色系统和十 Boss 均须有唯一来源、幂等完成事件和失败恢复；断线 / 掉电回滚不得重复发唯一物。
 - 全部 **（待考）** 项发布前按三联 / 广州修订版和可靠史地资料抽查；无法核定时保留模糊地名 / 年龄段，不以影视改编或网络转述填空。
@@ -1480,14 +1482,14 @@ B = I × H = 19 × 15 = 285 两
 | 时代图层 | 地图实例 | 1093–1094 年全局区域、城市的名称、势力、入口与内容状态 | 坐标、旅行和城市底表归 `design/11` / `design/map/*` |
 | 资产包 | 制作排期 | 把 24 个正式主线任务归并为 10 组场景、美术与 QA 包 | 不取代任务 ID、路线或 story 剧情 |
 | 跨势力救援类别 | A5 集合 | 按大理 / 天龙寺、宋地群雄 / 丐帮、灵鹫 / 洞岛、辽军民等来源去重 | 条件来自 story；同势力重复救援只计一次 |
-| 独立封缄证据 | A5 条件 | `sourceRoot` 不同且封缄完整的证据；同源抄本仍只算一份 | `sys_01_daitoudage` 聚合，结局消费归 `design/13` |
-| 永久舍利 | A5 条件 | 玩家不可再装备、出售、找回的独占利益放弃事务 | 由 `dc_01_09` 触发；原子事务归任务 / 存档 schema |
-| 众生录主题位 | 章节聚合状态 | 八个主题位对人物选择的本作索引，不是原著官方人物映射 | `sys_01_babuzhong` 局部状态 |
+| 独立封缄证据 | A5 条件 | `sourceRoot` 不同且封缄完整的证据；同源抄本仍只算一份 | `featureKey:daitoudage` 聚合，结局消费归 `design/13` |
+| 永久舍弃独占利益 | A5 条件 | 玩家不可再装备、出售、找回的独占利益放弃事务 | 由 `dc_01_09` 触发；原子事务归任务 / 存档 schema |
+| 众生录主题位 | 章节聚合状态 | 八个主题位对人物选择的本作索引，不是原著官方人物映射 | `featureKey:babuzhong` 局部状态 |
 | 止斗槽 | Boss 机制 | 冰窖双高手、聚贤庄等非致死战共享的剧情耐久 / 结束条件 | 战斗实现归 `design/09`；不能当第二条 HP |
 | `trueRole` / `coverHistory` | 开局 YAML 字段 | 固定真实身份与三选一自述 | schema 待 `tech/04` / `tech/05` 接纳 |
 | `sourceRoot` / `seal` / `credibility` | 谜案 YAML 字段 | 证据同源去重、封缄与可信状态 | 仅是本章接口示例，不能私增任务 opcode |
 | `exclusiveGainRef` | 终局事务引用 | 被永久公托、焚毁或放弃的独占利益对象 | 具体所有权事务归任务、物品与存档系统 |
-| `echo_01_fate` | 跨书事实键 | 仅在 A5 改命成功时存 `true`；缺失表示原著线 | schema 待技术文档接纳；不得持久化 `false` 作为必需条件 |
+| `flags.yanmen_fate_saved` | 跨书剧情事实 | A5 改命成功为 `true`；`false` 或旧存档缺失表示原著线 | 复用 story 与射雕章节已有键；不另建同义回响 ID |
 
 ### 本章正式登记的场景 `sc_01_*`（36）
 
@@ -1503,9 +1505,9 @@ B = I × H = 19 × 15 = 285 两
 | 西域北疆 | `sc_01_piaomiaofeng`、`sc_01_lingjiugong`、`sc_01_jiutianying`、`sc_01_yunhaizhandao` |
 | 漠南 | `sc_01_liaoshangjing`、`sc_01_nanyuanxingying`、`sc_01_caoyuanyingdi`、`sc_01_fengshiya` |
 
-### 本章门禁实例 `gate_01_*`（45）
+### 本章局部门禁键（45）
 
-门禁定义即 §3.5 的 45 行实例清单；该表逐 ID 绑定区域与 qg 阶，是本章唯一登记处。此处不重复定义，只复核数量为 qg1/2/3/4/5=`12/17/12/3/1`、合计 45。由于 `gate_*` 的唯一归属仍是 `design/08`，正式构建前须由该归属文档接纳这 45 个实例；未接纳时 ID lint 会如实报“引用但未定义”。
+§3.5 的 45 个 `gateKey` 逐项绑定区域与 qg 阶，数量为 qg1/2/3/4/5=`12/17/12/3/1`、合计 45。它们随所属 `sc_01_*` 场景配置持久化，不是全局 ID；需要跨场景引用的条目必须先由唯一归属 `design/08` 登记为正式 `gate_*`，本章不越权定义。
 
 ### 本章正式登记的支线任务（32）
 
@@ -1544,17 +1546,17 @@ B = I × H = 19 × 15 = 285 两
 | 西域北疆 | `biz_yining_manor_01` | 1 |
 | 漠南 | `biz_liaoshangjing_escort_01`、`biz_liaoshangjing_casino_01`、`biz_chifeng_manor_01` | 3 |
 
-### 本章正式登记的战斗与特色系统（21）
+### 本章登记的战斗与特色系统工作项（21）
 
-| 类别 | 正式 ID | 数量 |
+| 类别 | 正式 ID / 本章局部键 | 数量 |
 |---|---|---:|
 | 新遭遇 | `enc_01_wanjiangu`、`enc_01_tianlonghujing`、`enc_01_xingxiuhai`、`enc_01_bingjiaotonglao`、`enc_01_bingjiaoliqiushui`、`enc_01_shaoshiyoutanzhi`、`enc_01_shaoshixuanci`、`enc_01_mantuomurongfu`、`enc_01_cangjinggemurongbo` | 9 |
 | 复用遭遇 | `enc_01_juxianzhuang` | 1 |
-| 新 Boss 脚本接口 | `bsc_duanyanqing_wanjiangu`、`bsc_jiumozhi_tianlongsi`、`bsc_dingchunqiu_xingxiuhai`、`bsc_tonglao_bingjiao`、`bsc_liqiushui_bingjiao`、`bsc_youtanzhi_shaoshishan`、`bsc_xuanci_shaoshishan`、`bsc_murongfu_mantuoshan`、`bsc_murongbo_cangjingge` | 9 |
+| 新 Boss 局部 `scriptKey` | `duanyanqing_wanjiangu`、`jiumozhi_tianlongsi`、`dingchunqiu_xingxiuhai`、`tonglao_bingjiao`、`liqiushui_bingjiao`、`youtanzhi_shaoshishan`、`xuanci_shaoshishan`、`murongfu_mantuoshan`、`murongbo_cangjingge` | 9 |
 | 复用 Boss 脚本 | `bsc_xiaofeng_juxianzhuang` | 1 |
-| 章节系统 | `sys_01_zhenlong`、`sys_01_babuzhong`、`sys_01_daitoudage` | 3 |
+| 章节局部 `featureKey` | `zhenlong`、`babuzhong`、`daitoudage` | 3 |
 
-“21”按去重资产计为 10 遭遇 + 10 Boss 脚本 + 3 系统 = 23；其中聚贤庄遭遇与脚本是上游正式资产，故本章新增内容需求为 `9+9+3=21`。九个 `bsc_*` 的正式定义归 `design/09`，本文只登记脚本接口需求；三个 `sys_*` 在 schema 接纳前只是章节接口 ID，不得据此扩充全局 opcode。
+“21”按新增工作项计为 9 遭遇 + 9 Boss 局部脚本 + 3 特色系统；聚贤庄遭遇与正式脚本均复用上游资产，不计新增。若九个局部脚本需要成为共享资产，须由 `design/09` 分别登记正式 `bsc_*`；三个 `featureKey` 始终由 `chapterRef` 限定，不据此扩充全局前缀。
 
 ### 上游复用、局部键与禁止项
 
@@ -1570,7 +1572,7 @@ B = I × H = 19 × 15 = 285 两
 | `vid_sleep_01_02`、`it_shijian_xiaofeng`、`echo_01_huangshang` | 复用 `design/02` 的过场、史笺与连续性键 |
 | `set_*` 候选 | `design/07-set-system.md` 缺失前只显示候选成员，不实装件数、Buff、掉率 |
 | 康敏、全冠清、萧远山、耶律洪基 | 仅剧情中文名 / 阻断槽；禁止在上游名录补录前擅造 `npc_*` |
-| `clue_01_xingzilin_mifeng`、`clue_01_yanmeng_jiuhen`、`clue_01_shaolin_dangan` | `sys_01_daitoudage` YAML 的局部示例键；正式 schema 接纳前不作为全局资产 |
+| `clue_01_xingzilin_mifeng`、`clue_01_yanmeng_jiuhen`、`clue_01_shaolin_dangan` | `featureKey:daitoudage` YAML 的局部示例键；正式 schema 接纳前不作为全局资产 |
 
 ---
 
@@ -1603,9 +1605,9 @@ B = I × H = 19 × 15 = 285 两
 | TL-V21 | 资源与营生 | 22 个 `rp_*`、28 个 `biz_*` 唯一；每资源点有双取得路径；收入仅一个 `economySource` | error |
 | TL-V22 | 冲穴边界 | 本界只投放肺经 + 大肠经 18 穴 / 2 通脉、6,480 H；不作为主线 / A5 / 天书硬条件 | error |
 | TL-V23 | 前代传承 | 只引用 `design/20` 的阿青剑源、三卷、信物和 `legacy_complete`；不可生成阿青本人或虚构血脉 | error |
-| TL-V24 | 三特色系统 | 三个 `sys_01_*` 均有规则、YAML、UI、通用系统接口、失败恢复与幂等结算 | error |
+| TL-V24 | 三特色系统 | `featureKey:zhenlong / babuzhong / daitoudage` 均有规则、YAML、UI、通用系统接口、失败恢复与幂等结算；不得被当作全局 ID | error |
 | TL-V25 | 书眠衔接 | 离界 / 入场年份为 1094 / 1217，差 123 年；视频为 `vid_sleep_01_02`，20–30 秒、目标 24 秒 | error |
-| TL-V26 | 回响语义 | `echo_01_fate` 仅允许 `true` 或缺失；缺失代表 canon；射雕历史起点与锚点不变 | error |
+| TL-V26 | 回响语义 | 只读取 `flags.yanmen_fate_saved`；`false` 或旧存档缺失代表 canon；射雕历史起点与锚点不变 | error |
 | TL-V27 | Markdown 完整 | 表格列数一致；围栏成对；链接目标存在；无截断句和占位语 | error |
 
 ### 数值金标准
@@ -1642,8 +1644,8 @@ B = I × H = 19 × 15 = 285 两
 | TL-T23 | 八部众 8 位全成并重复加载 | 完成事件幂等，只追加无数值后日谈 / 称号候选，不重复收益、不自动满足 fate |
 | TL-T24 | 同一原始口供复制三份并分别封缄 | `independentSealedSources=1`，不能冒充三份独立证据 |
 | TL-T25 | 关键证人死亡，但两份不同 `sourceRoot` 的封缄证据存在 | A5 证据项成立；人物死亡仍按 story / 名录结算 |
-| TL-T26 | 五锚点齐，救援 ≥2、证据合格、萧峰羁绊 80，未永久舍利 | 只能获得 `tsp_01_canon`；明确提示缺少舍利 |
-| TL-T27 | 五锚点齐，A5 四项全且选 `dc_01_09.A` | 只获得 `tsp_01_fate`；萧峰为 `fate_rescued`；`echo_01_fate=true` |
+| TL-T26 | 五锚点齐，救援 ≥2、证据合格、萧峰羁绊 80，未永久舍弃独占利益 | 只能获得 `tsp_01_canon`；明确提示缺少“舍弃独占利益” |
+| TL-T27 | 五锚点齐，A5 四项全且选 `dc_01_09.A` | 只获得 `tsp_01_fate`；萧峰为 `fate_rescued`；`flags.yanmen_fate_saved=true` |
 | TL-T28 | 五锚点齐但 A5 任一项缺失 | 原著线始终可完成并授 `tsp_01_canon`；不是失败结局 |
 | TL-T29 | 聚贤庄伤害把萧峰压至 40% 以下 | 立即锁血 / 转力竭，黑衣人救走；任何溢出伤害都不能写死亡 |
 | TL-T30 | 冰窖先把童姥或李秋水打至低血 | 进入共享止斗结算，不得击杀一人再复刻另一人满耐久 |
@@ -1653,7 +1655,7 @@ B = I × H = 19 × 15 = 285 两
 | TL-T34 | 前代传承三卷 + 信物及所有技能门槛齐 | 可在本界校合 `sk_yuenvjian@legacy_complete`；只写形态与来源，不免费升层 |
 | TL-T35 | 从天龙进入射雕但无 `it_shijian_xiaofeng` | 书灵补无名残页，仍能获得“北来行脚”身份，不锁死后界 |
 | TL-T36 | A5 改命后进入射雕 | 只读存活传说；没有 `explicitAliveAt:1217` 时不生成萧峰本人 |
-| TL-T37 | 读取旧存档没有 `echo_01_fate` | 按原著回响显示，不要求补写 `false` |
+| TL-T37 | 读取旧存档没有 `flags.yanmen_fate_saved` | 按原著回响显示，不要求补写 `false` |
 | TL-T38 | 任一支线失败后重新进入区域 | 主线入口仍在；唯一物未销毁、完成事件未重复、可走明示补救路径 |
 
 ### 人工验收与工具边界
@@ -1699,7 +1701,7 @@ B = I × H = 19 × 15 = 285 两
 | 四份指定武学图鉴 | **已解决：**本章可学武学只取 `skills-shaolin`、`skills-xiaoyao`、`skills-wujue`、`skills-general` 已有 ID |
 | `design/20-legacy-inheritance.md` | **已解决：**阿青剑源、墓藏、三卷、信物与本界可完成校合均直接引用权威目录 |
 | `design/07-set-system.md` | **未落盘：**§9.4 的八组 `set_*` 只作候选引用，不定义效果、掉率或 Buff |
-| `tech/04` / `tech/05` | **待对接：**三个 `sys_01_*`、证据字段、原子提交与 `echo_01_fate` 缺失语义须纳入 schema / 章节适配器 |
+| `tech/04` / `tech/05` | **待对接：**三个章节 `featureKey`、证据字段、原子提交与 `flags.yanmen_fate_saved` 的旧存档缺失语义须纳入 schema / 章节适配器 |
 
 ### 对基准的修改提案
 
@@ -1708,10 +1710,10 @@ B = I × H = 19 × 15 = 285 两
 | 编号 | 提案 | 理由 / 建议落点 |
 |---|---|---|
 | TL-P01 | 基准 §12 的区域格式从 `rg_<书界序号>_<拼音>` 改为全局稳定 `rg_<拼音>`，章节独有场景用 `sc_<NN>_<拼音>` | AR-04 已覆盖旧模板，实际全局地图和本章都使用稳定区域 |
-| TL-P02 | 基准 §12 登记 `city_*`、`sc_*`、`gate_*`、`rp_*`、`biz_*`、`job_*`、`sys_*` 的前缀、归属和生命周期 | 作者需求已要求地图、资源、营生和特色系统进入可排期数据；现表不完整 |
+| TL-P02 | 基准 §12 登记 `city_*`、`sc_*`、`rp_*`、`biz_*`、`job_*` 的前缀、归属和生命周期，并明确章节局部 `featureKey` / `gateKey` 不属于全局 ID | 作者需求已要求地图、资源、营生和特色系统进入可排期数据；现表不完整 |
 | TL-P03 | 基准 §17 同步 AR-04、AR-07–AR-11、AR-13：时代图层、主线只索引 story、门派 / 人物读 17 / 18、前代传承读 20 | 防止后续书界私建区域、复写主线或虚造传承 |
 | TL-P04 | 基准 §18 增列 story、地图、经脉、资源、门派、人物、传承与章节特色系统接口的唯一归属 | 现归属表早于专项文档，章节交叉引用边界需要显式化 |
-| TL-P05 | 基准 / 存档规则明确布尔回响键可采用“仅真值存在，缺失为假”的稀疏语义 | `echo_01_fate` 若要求显式 false，会与旧存档和本章 canon 回响产生歧义 |
+| TL-P05 | 基准 / 存档规则明确布尔剧情旗标可采用“旧存档缺失按 false”的兼容语义 | `flags.yanmen_fate_saved` 若要求所有旧存档显式补 false，会造成不必要迁移 |
 
 ### 原著考据待办
 
@@ -1740,14 +1742,14 @@ B = I × H = 19 × 15 = 285 两
 
 | 编号 | 需作者 / 上游拍板 | 本版默认值 / 理由 |
 |---|---|---|
-| TL-O01 | 三个 `sys_01_*` 是否成为全局正式前缀 | 默认保留为章节接口 ID；schema 接纳前由章节适配器读取，不生成自定义 opcode |
-| TL-O02 | 45 个 `gate_01_*` 是否纳入基准正式 ID 前缀 | 默认作为场景门禁实例稳定使用；门禁公式仍只在 `design/08` 定义 |
+| TL-O01 | 三个章节 `featureKey` 是否需要升级为全局正式资产 | 默认不升级；由 `chapterRef: ch01_tianlong` 限定并经章节适配器读取，不生成自定义 opcode |
+| TL-O02 | 45 个局部 `gateKey` 中哪些需要跨场景共享 | 默认全部留在场景配置；仅确有跨场景引用者再由 `design/08` 登记正式 `gate_*` |
 | TL-O03 | `design/07-set-system.md` 缺失时能否先实现候选套装 | 默认不可；仅显示候选成员，件数、效果、Buff、掉率均不启用 |
 | TL-O04 | 康敏、全冠清、萧远山、耶律洪基等能否直接生成生产角色 | 默认不可；可出现在审校剧情文本，进入存档 / 战斗前必须补稳定 ID、生命轴和能力画像 |
 | TL-O05 | 10 名具名 Boss 的最终 `full` 面板 | 默认采用 TL-D03 HP 搜索锚、表列速度与 AI；攻击、防御、抗性须用人物合法画像重算并实跑 |
 | TL-O06 | qg5 云海栈道奖励是否绑定 `eq_tayunlv` | 默认只作隐藏候选，任务提供一次 `qinggong +12`；若装备归属调整，门禁仍不得阻主线 |
 | TL-O07 | 八部众主题位的最终人物映射和全成奖励 | 默认沿 §10.2 的本作映射；全成只给无数值称号候选与镜头，不影响 A5 |
-| TL-O08 | `echo_01_fate` 的存档布尔语义 | 默认只存 `true`，缺失代表 canon；旧存档无需迁移补 `false` |
+| TL-O08 | `flags.yanmen_fate_saved` 的旧存档布尔语义 | 默认 `true` 表示改命，`false` 或缺失表示 canon；旧存档无需补写 |
 | TL-O09 | `cities.yaml` / `regions.yaml` 与 `design/11` 区域映射冲突时采用哪一方 | 默认 `design/11` 为区域 / 城市制作权威，YAML 只取 ch01 时代显示名，待底表同步 |
 | TL-O10 | 黄裳匿名触点是否保留到最终发布 | 默认只作余韵文气彩蛋；考据未闭合时不具名、不授武学、不写硬年代 |
 | TL-O11 | A5 改命后的萧峰是否可在天龙余韵继续入队 | 默认不可；写 `fate_rescued` 后离开活动编组，只开放回访与跨书传说 |
