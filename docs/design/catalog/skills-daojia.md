@@ -1,6 +1,6 @@
 # 门派武学图鉴 · 道家与神雕诸派（`skills-daojia`）
 
-版本：v1.1（审校修订，2026-09-26）
+版本：v1.2（CXd 扩充，2026-09-26）
 
 > **归属**（基准 §18）：`design/catalog/skills-*.md` 门派武学图鉴。本文件覆盖：**全真教、古墓派（含李莫愁一系）、杨过自创与传承（含独孤求败剑冢剑意）、武当派（倚天 → 笑傲 → 侠客 → 书剑 → 飞狐）、绝情谷**。
 > **上游**：`decisions/author-decisions.md`、`decisions/author-requirements.md`、`00-canon.md`、`decisions/rulings-v1.md`。数据结构、层数节奏、招式预算、范围模板、特殊武学规则以 `design/05` 为准；附带效果只引用 `design/06` 目录中已有的 `bf_` ID；属性与资质 ID 见 `design/03`；书界、境界、残篇、再遇、印证见 `design/02`；合击与阵法流程归 `design/09`；兵器与名器归 `design/10`；套装本体归 `design/07`；门派身份、职级和月钱归 `design/12`、门派资料见 `design/17`；冲穴只接入 `design/15`；资源、资源点与营生只接入 `design/16`；大地图与时代图层只接入 `design/11`；NPC 招募、生卒与跨书界同伴归 `design/18`；正邪主线与选择节点归 `design/story/`，本文任务号仅是武学来源接口。
@@ -34,7 +34,7 @@
 - 耗内按大阶基准：黄 5% / 玄 6% / 地 7% / 天 8%（× `MPREF`）；绝招 = 基准 + 2%。收招默认 1000（绝招 1200）。"招架"列 ✓ = `parryable: true`。
 - 被动 ID 前缀 `ps_<武功拼音>_`（05 §16 P-4）。内功贡献按 05 §5.5：`IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen`。
 - 轻功的 `Q_skill` 统一按 03 §4.5：`QS(g) × (0.40 + 0.06 × 层)`，本文不再逐条重复。
-- 战斗为六角格（AR-12）。`aoe_single`、`aoe_self`、线、环、扇形等可直接表达六角语义；旧方格专用十字/九宫已迁为“中心点＋六邻格”的目标面或持续面。本文件暂记 `aoe_hex_area r1` / `aoe_hex_zone r1 tN` **【建议值】**，只描述形状，不定义模板 ID、覆盖格数对应 AF 或坐标算法；待 `design/09` 定稿后机械替换并由 `design/05` 统一重算 AF（见 §11 D-18）。
+- 战斗为六角格（AR-12）。`aoe_single`、`aoe_self`、线、环、扇形等按 `design/09` §5.3、§13.1 的生产 schema 表达；“中心点＋六邻格”目标面统一写 `aoe_disk {r:1}`（N=7，AF=0.70），持续面统一写 `aoe_zone {inner:{tpl:aoe_disk,r:1},duration:N}`。旧方格专用十字/九宫及旧占位模板不得进入新数据（见 §11 D-18）。
 - 门派职级（`sect.rank`）统一为 L1–L5，抽象层级依次为外门弟子 / 入门弟子 / 亲传或闭门弟子 / 长老 / 掌门。全真、武当采用 `design/17` §1.3 T02：L1 记名弟子 / 道童，L2 入门道士，L3 亲传弟子，L4 监院·长老 / 都讲，L5 掌教 / 观主 / 掌门；古墓采用 `design/17` §7.3 小规模 T04 变体；绝情谷采用 `design/17` §7.6 T04。月钱与资源只引用 `design/12`、`design/16`，本文不重定义。
 - NPC、任务、物品 ID 为占位（任务统一用本文件保留号段 `_71`–`_99`，见 §11 D-9）。
 
@@ -71,18 +71,18 @@
 
 | 书界 | 境界 | 内 | 拳脚 | 兵器 | 轻 | 暗 | 杂 | 合计 | 本组本土最高（内 / 拳脚 / 兵器） | 说明 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 射雕 `ch02` | 高 | 4 | 5 | 3 | 1 | 0 | 1 | 14 | 11 天中 / 6 玄上 / 7 地下 | 全真主场；全真拳脚上限玄上（原著亦无全真地阶拳掌），以剑阵为长 |
-| 神雕 `ch03` | 高 | 8 | 10 | 12 | 3 | 3 | 9 | 45 | 10 天下 / 11 天中 / 11 天中 | 本组主场：全真三代、古墓、杨过、绝情谷 |
-| 倚天 `ch04` | 高 | 3＋1★ | 6＋2★ | 5＋1★ | 2＋1★ | 0 | 1 | 17＋5★ | 8 地中（另有武当九阳功，倚天组）/ 11 天中 / 11 天中 | 武当开派；★为黄衫女子所传古墓武学 |
-| 笑傲 `ch05` | 中 | 3 | 6 | 4 | 2 | 0 | 1 | 16 | 8 地中 / 7 地下 / 7 地下 | 另有太极拳、太极剑残承（`lineageGrade 10`，02 §5.7） |
-| 侠客 `ch06` | 中 | 3 | 6 | 3 | 2 | 0 | 1 | 15 | 8 地中 / 7 地下 / 7 地下 | 武当掌门赴侠客岛不归（02 C7） |
-| 书剑 `ch12` | 中 | 3 | 5 | 3 | 2 | 1 | 0 | 14 | 8 地中 / 7 地下 / 7 地下 | 陆菲青、张召重一代 |
-| 飞狐 `ch13` | 中 | 2 | 3 | 2 | 2 | 1 | 0 | 10 | 5 玄中 / 6 玄上 / 7 地下 | 仅掌门人大会一线（原创扩展延伸） |
-| 鹿鼎 `ch08`★ | 低 | 2 | 1 | 1 | 0 | 0 | 0 | 4 | 5 玄中 / 2 黄中 / 3 黄上 | 北京白云观全真入门（原创扩展） |
-| 连城 `ch09`★、鸳鸯 `ch11`★ | 低 | 1 | 2 | 1 | 1 | 0 | 0 | 5 | 2 黄中 / 5 玄中 / 3 黄上 | 游方武当道人（原创扩展；连城故事主要发生在湖北荆州一带，与武当山同省，鸳鸯"太岳四侠"之"太岳"为武当山古称，作彩蛋） |
+| 射雕 `ch02` | 高 | 5 | 8 | 6 | 3 | 0 | 2 | 24 | 11 天中 / 6 玄上 / 7 地下 | 全真主场；本组剑类 4 门，可同持剑装配 |
+| 神雕 `ch03` | 高 | 13 | 16 | 21 | 11 | 4 | 12 | 77 | 10 天下 / 11 天中 / 11 天中 | 本组主场：全真三代、古墓、杨过、绝情谷 |
+| 倚天 `ch04` | 高 | 9 | 11 | 11 | 6 | 0 | 1 | 38 | 8 地中（另有武当九阳功，倚天组）/ 11 天中 / 11 天中 | 含黄衫女子古墓延续★；兵器以武当剑类为主 |
+| 笑傲 `ch05` | 中 | 8 | 9 | 9 | 4 | 0 | 1 | 31 | 8 地中 / 7 地下 / 7 地下 | 太极拳、太极剑为 10 品残承，列入可学池但不计完整原生天级；最高栏只列完整传承 |
+| 侠客 `ch06` | 中 | 8 | 8 | 7 | 4 | 0 | 1 | 28 | 8 地中 / 7 地下 / 7 地下 | 武当掌门赴侠客岛不归（02 C7） |
+| 书剑 `ch12` | 中 | 6 | 8 | 4 | 5 | 1 | 0 | 24 | 8 地中 / 7 地下 / 7 地下 | 陆菲青、张召重一代；剑类 4 门形成同类兵器覆盖 |
+| 飞狐 `ch13` | 中 | 5 | 4 | 3 | 3 | 1 | 0 | 16 | 5 玄中 / 6 玄上 / 7 地下 | 武当后世传承延伸；本组剑类恰 3 门 |
+| 鹿鼎 `ch08`★ | 低 | 3 | 3 | 3 | 1 | 0 | 0 | 10 | 5 玄中 / 3 黄上 / 3 黄上 | 北京白云观全真入门（原创扩展）；本组恰好满足 3/3/3 |
+| 连城 `ch09`★、鸳鸯 `ch11`★（各） | 低 | 2 | 2 | 1 | 1 | 0 | 0 | 6 | 2 黄中 / 5 玄中 / 3 黄上 | 本组只到 2/2/1；由 `skills-general` §11.1 的 `ALL14` 三类底座补足 3/3/3 |
 | 天龙、碧血、白马、雪山 | — | — | — | — | — | — | — | 0 | — | 本组无原生武学（只能携带） |
 
-> 高武书界装配栏由本组即可填满；中武书界本组提供 2/2/2 以上的本土补位（武当）；低武书界本组只提供★入门级补位，主力须携带或学习他组本土武学。天级获取受 02 §2.9 预算与进度门槛约束（神雕：古墓系、杨过系等至多深入 2 系）。
+> 表按本组全部合法路线的可习得 ID 并集统计；笑傲不把太极两门 10 品残承冒充完整天级。射雕、神雕、倚天、笑傲、侠客、书剑、飞狐均由本组自身满足内功 / 拳脚 / 同类兵器各 ≥3；鹿鼎由本组满足三大类各 ≥3，但“两剑一拂尘”尚不满足同一兵器子类 3 门，须由 `skills-general` §11.1 的 `ALL14` 三剑链补齐。连城、鸳鸯同样明确依赖 `ALL14` 通行底座，而非虚构本门派来源。天级获取仍受 02 §2.9 预算与进度门槛约束（神雕：古墓系、杨过系等至多深入 2 系）。
 
 ---
 
@@ -95,7 +95,7 @@
 - **倚天以后**：原著不再出场。元明以降全真龙门派存续为史实；本作只在鹿鼎北京白云观设入门彩蛋（★，原创扩展）。
 - **敌人配置建议**（02 §2.11）：射雕全真道士普通玄中、精英地下（持天罡北斗阵）；神雕三代普通玄上、精英地下—地中（持北斗大阵）。
 
-### 2.2 武学总表（15 门）
+### 2.2 武学总表（27 门）
 
 | ID | 名称 | 大类/子类 | 品阶 | 内力性质 | wOut/wIn | 原生书界 | 获取方式 | 出处 |
 |---|---|---|---|---|---|---|---|---|
@@ -114,6 +114,18 @@
 | `sk_jinyangong` | 金雁功 | 轻功 | 6 玄上 | 阳 | 0.80/0.20 | 射雕、神雕 | 拜师（L2）；"马钰夜授" | 原著 |
 | `sk_tiangang` | 天罡北斗阵 | 杂学/阵法（合击） | 10 天下 | 阳 | 0.55/0.45 | 射雕、神雕 | 门派任务链"七星聚义"（原创扩展）；合击领悟 | 原著（基准 §13） |
 | `sk_dabeidouzhen` | 北斗大阵 | 杂学/阵法（合击） | 5 玄中 | 阳 | 0.60/0.40 | 神雕 | 拜师（三代弟子，L3）；观摩 | 游戏概括名**（待考：《神雕侠侣》重阳宫四十九人大阵的原文称谓）** |
+| `sk_beidouxinfa` | 北斗心法 | 内功/心法 | 5 玄中 | 阳 | 0/1 | 射雕、神雕 | 拜师（L2）；七星桩进阶 | 原创扩展 |
+| `sk_qixingbu` | 七星步 | 轻功 | 4 玄下 | 阳 | 0.80/0.20 | 射雕、神雕 | 拜师（L2）；七星桩进阶 | 原创扩展 |
+| `sk_chongyangzhang` | 重阳掌 | 拳脚/拳掌 | 6 玄上 | 阳 | 0.55/0.45 | 射雕、神雕 | 拜师（L3）；昊天掌进阶 | 原创扩展命名 |
+| `sk_tongxuanjian` | 通玄剑 | 兵器/剑 | 6 玄上 | 调和 | 0.65/0.35 | 射雕、神雕 | 拜师（L3）；全真剑法进阶 | 原创扩展 |
+| `sk_beidoufuchen` | 北斗拂尘 | 兵器/鞭索（拂尘） | 6 玄上 | 阳 | 0.65/0.35 | 射雕、神雕 | 拜师（L3）；七星步进阶 | 原创扩展 |
+| `sk_baiyunguanxinfa` | 白云观心法 | 内功/心法 | 2 黄中 | 调和 | 0/1 | 鹿鼎★ | 北京白云观道长（L1） | 原创扩展；史实宫观不等同小说武学 |
+| `sk_chongyangchangquan` | 重阳长拳 | 拳脚/拳掌 | 3 黄上 | 阳 | 0.80/0.20 | 射雕、神雕、鹿鼎★ | 拜师（L1） | 原创扩展 |
+| `sk_quanzhenqinna` | 全真擒拿 | 拳脚/擒拿 | 3 黄上 | 阳 | 0.75/0.25 | 射雕、神雕、鹿鼎★ | 拜师（L1） | 原创扩展 |
+| `sk_longmenjian` | 龙门剑式 | 兵器/剑 | 3 黄上 | 调和 | 0.75/0.25 | 鹿鼎★ | 北京白云观道长（L1） | 原创扩展；借全真龙门派名目 |
+| `sk_quanzhenfuchen` | 全真拂尘 | 兵器/鞭索（拂尘） | 3 黄上 | 阳 | 0.70/0.30 | 射雕、神雕、鹿鼎★ | 拜师（L1） | 原创扩展 |
+| `sk_xuanmenxingbu` | 玄门行步 | 轻功 | 2 黄中 | 调和 | 0.80/0.20 | 射雕、神雕、鹿鼎★ | 拜师（L1） | 原创扩展 |
+| `sk_qixingzhuang` | 七星桩 | 杂学/阵法 | 3 黄上 | 阳 | 0.60/0.40 | 射雕、神雕 | 拜师（L1）；北斗阵教学 | 原创扩展 |
 
 ### 2.3 天级条目卡
 
@@ -325,11 +337,11 @@
 | 招式 | ID | 层 | 范围 · 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 | 招架 |
 |---|---|---|---|---|---|---|---|---|---|
 | 昊天正气 | `mv_haotianzhang_zhengqi` | 1 | `aoe_single` · 1 | 1.00 | 6% | 0 | 1000 | — | ✓ |
-| 云行雨施 | `mv_haotianzhang_yunxing` | 2 | 六角目标面：中心点＋六邻格（暂记 `aoe_hex_area r1`）· 1–2（`ranged`） | 0.70 | 7% | 2 | 1000 | — | ✓ |
+| 云行雨施 | `mv_haotianzhang_yunxing` | 2 | `aoe_disk {r:1}`（中心点＋六邻格）· 1–2（`ranged`） | 0.75 | 7% | 2 | 1000 | — | ✓ |
 | 紫气东来 | `mv_haotianzhang_ziqi` | 4 | `aoe_single` · 1 | 1.25 | 7% | 2 | 1000 | `bf_sangong`·承·40%·2 | ✓ |
 | 昊天罔极（玄阶可选绝招） | `mv_haotianzhang_wangji` | 7 | `aoe_single` · 1 | 2.95 | 8% | — | 1200 | 击退 1 | ✓ |
 
-- 核算：云行雨施 0.65 × 1.29 × 0.85 = 0.71；紫气东来 1.29 − 0.04；昊天罔极 3.0 − 0.05。被动：`ps_haotianzhang_zhengqi` 正气（5 重，对 `morality ≤ −20` 的目标 Z3 +8%）；`ps_haotianzhang_dacheng` 大成（10 重，本武学耗内 −10%）。
+- 核算：云行雨施 0.70 × 1.29 × 0.85 = 0.768，取 0.75；紫气东来 1.29 − 0.04；昊天罔极 3.0 − 0.05。被动：`ps_haotianzhang_zhengqi` 正气（5 重，对 `morality ≤ −20` 的目标 Z3 +8%）；`ps_haotianzhang_dacheng` 大成（10 重，本武学耗内 −10%）。
 
 **`sk_sanhuajudingzhang` 三花聚顶掌**（6 玄上 · 拳脚/拳掌 · 阳 · 0.40/0.60 · 原著）
 - 原著：全真派掌法，神雕中郝大通以此掌误伤古墓孙婆婆致死；情节位置仍须核对**（待考：《神雕侠侣》杨过入全真后与孙婆婆退敌、郝大通出手的段落）**。“三花聚顶”为道家内丹语（精、气、神三花）。
@@ -382,14 +394,60 @@
 
 - 核算：合围 1 + 0.12 + 0.15（条件：目标与 ≥ 2 阵员相邻）− 0.03 = 1.24 ≈ 1.20。被动：`ps_dabeidouzhen_zhenzhong` 阵中（1 重，阵员 `attr:parry pct +3% → +6%`）；`ps_dabeidouzhen_xianghu` 相护（5 重，阵员被攻击后相邻阵员获得 `bf_yuanhu` 1 回合，每阵每回合 1 次）；`ps_dabeidouzhen_dacheng` 大成（10 重，本阵光环 Z4 +5%，不替天罡北斗阵补人数）。
 
+#### 2.5.1 AR-01 新增玄阶紧凑卡（5 门）
+
+> 下列均为 **（原创扩展）**，`origin: expanded`、`sect: sect_quanzhen`、`sourceChapters: [ch02_shediao, ch03_shendiao]`，`setTags: []`、`conflicts: []`；外功 `special.fusible: true`，内功不可观摩。未另写的普通招式均 `friendlyFire: none`。
+
+**`sk_beidouxinfa` 北斗心法**（5 玄中 · 内功/心法 · `nature: yang` · 0/1）
+- 字段：`reqs {attrs {wil:25,wis:25}, aptitude {apInner:25}, sect {id:sect_quanzhen,rank:2}, prereq [{skill:sk_qixingzhuang,layer:4}], hard:[sect,prereq]}`；`inner.contribution {mpMaxPct:17,hpMaxPct:10,attrs:{con:2,wil:3,wis:2},mpRegen:1.5}`，IP `17+10+2×7+5×1.5=48.5`；`stats {parry:5,resMind:5}`；`meridians:[mer_renmai,mer_dumai]`；`yunjin:[tiaoxi,huti]`。
+- 招式：北斗守一 `mv_beidouxinfa_shouyi`（1 重，自身，6%/cd3/收招900，`bf_shouyi`·承·2）；斗柄回元 `mv_beidouxinfa_huiyuan`（5 重，自身，7%/cd4/收招900，驱散 1 个 `injury` 并获 `bf_huinei`·承·2）。被动：斗枢 `ps_beidouxinfa_doushu`（招架 +3%→8%）；循斗 `ps_beidouxinfa_xundou`（同装全真阵法时效果抵抗 +5%→12%）；圆满 `ps_beidouxinfa_yuanman`（10 重，全真阵法修炼 +10%）。获取：L2 入门道士于七星桩 4 重后传授。
+
+**`sk_qixingbu` 七星步**（4 玄下 · 轻功 · `nature: yang` · 0.80/0.20）
+- 字段：`reqs {attrs {agi:22}, aptitude {apLight:20}, sect {id:sect_quanzhen,rank:2}, prereq [{skill:sk_qixingzhuang,layer:4}], hard:[sect,prereq]}`；`layerStats {eva:[2,5],parry:[1,2]}`（合计 7≤玄阶 10）；满层 `Q_skill=QS(4)=56`。
+- 招式：移星 `mv_qixingbu_yixing`（1 重，自身，5%/cd2/收招800，移动 2 格且不触发截击）；换斗 `mv_qixingbu_huandou`（4 重，友方 1–3 格，5%/cd3/收招800，与目标换位）；踏罡 `mv_qixingbu_tagang`（7 重，自身，6%/cd3/收招800，`bf_piaohu`·承·2）。被动：循位 `ps_qixingbu_xunwei`（相邻友方时闪避 +3%→8%）；归阵 `ps_qixingbu_guizhen`（阵法有效时移动后首次攻击 Z3 +5%→12%）。获取：L2 传授；`observable:true`，观摩上限 5 重。
+
+**`sk_chongyangzhang` 重阳掌**（6 玄上 · 拳脚/拳掌 · `nature: yang` · 0.55/0.45）【玄阶预算抽样】
+- 字段：`reqs {attrs {str:30,wil:30}, aptitude {apFist:30}, sect {id:sect_quanzhen,rank:3}, prereq [{skill:sk_haotianzhang,layer:5}], hard:[sect,prereq]}`；`layerStats {hit:[2,6],defIn:[1,4]}`（10）；`moveSlots:3`。
+- 招式：正阳掌 `mv_chongyangzhang_zhengyang`（1 重，单体近身，1.00，6%/cd0/1000，可招架）；推云 `mv_chongyangzhang_tuiyun`（3 重，`aoe_line n2`，1.00，6%/cd1/1000，可招架）；重阳叠掌 `mv_chongyangzhang_diezhang`（6 重，单体近身，1.20，6%/cd2/1000，40% `bf_neishang`·承·2，可招架）。核算：`1.00`；`0.90×(1+0.12)=1.008≈1.00`；`1×(1+0.24)−0.10×40%=1.20`。
+- 被动：纯阳贯掌 `ps_chongyangzhang_chunyang`（内劲穿透 +4%→10%）；中正 `ps_chongyangzhang_zhongzheng`（未移动时招架 +3%→8%）；大成 `ps_chongyangzhang_dacheng`（10 重，对 `injury` 目标 Z3 +10%）。获取：L3 亲传；`observable:true`，观摩上限 6 重。
+
+**`sk_tongxuanjian` 通玄剑**（6 玄上 · 兵器/剑 · `nature: harmony` · 0.65/0.35）【玄阶预算抽样】
+- 字段：`reqs {attrs {agi:30,wis:30}, aptitude {apSword:30}, sect {id:sect_quanzhen,rank:3}, prereq [{skill:sk_quanzhenjian,layer:5}], hard:[sect,prereq]}`；`layerStats {parry:[2,6],hit:[1,4]}`（10）；`weaponReq:{category:sword}`；`moveSlots:3`。
+- 招式：通玄刺 `mv_tongxuanjian_ci`（1 重，单体近身，1.00，6%/cd0/1000，可招架）；三清贯线 `mv_tongxuanjian_sanqing`（4 重，`aoe_line n3`，1.05，6%/cd2/1000，可招架）；破关 `mv_tongxuanjian_poguan`（6 重，单体近身，1.20，6%/cd2/1000，40% `bf_pojia`·承·2，可招架）。核算：`1.00`；`0.85×(1+0.24)=1.054≈1.05`；`1×1.24−0.10×40%=1.20`。
+- 被动：剑气通玄 `ps_tongxuanjian_jianqi`（内劲部分无视内防 4%→10%）；守中 `ps_tongxuanjian_shouzhong`（招架成功获 `bf_shouyi` 1 回合，每回合 1 次）；大成 `ps_tongxuanjian_dacheng`（10 重，持剑时效果命中 +8%）。获取：L3 亲传；`observable:true`，观摩上限 6 重。
+
+**`sk_beidoufuchen` 北斗拂尘**（6 玄上 · 兵器/鞭索（拂尘）· `nature: yang` · 0.65/0.35）【玄阶预算抽样】
+- 字段：`reqs {attrs {agi:30,wil:28}, aptitude {apWhip:30}, sect {id:sect_quanzhen,rank:3}, prereq [{skill:sk_qixingbu,layer:5}], hard:[sect,prereq]}`；`layerStats {hit:[2,6],seal:[1,4]}`（10）；`weaponReq:{category:whip,tags:[fuchen]}`；`moveSlots:3`。
+- 招式：拂星 `mv_beidoufuchen_fuxing`（1 重，单体 1–2 格，1.00，6%/cd0/1000，可招架）；斗柄横扫 `mv_beidoufuchen_hengsao`（4 重，`aoe_ring r1`，0.95，6%/cd2/1000，可招架）；缠辰 `mv_beidoufuchen_chanchen`（6 重，单体 1–2 格，1.05，6%/cd1/1000，40% `bf_chanrao`·承·2，可招架）。核算：`1.00`；`0.75×1.24=0.93≈0.95`；`1×1.12−0.20×40%=1.04≈1.05`。
+- 被动：尘尾循星 `ps_beidoufuchen_xunxing`（两格攻击命中 +3%→8%）；北斗牵制 `ps_beidoufuchen_qianzhi`（缠绕目标对全真阵员伤害 −5%→12%）；大成 `ps_beidoufuchen_dacheng`（10 重，招架后 `ct +50`，每回合 1 次）。获取：L3 亲传；`observable:true`，观摩上限 6 重。
+
+#### 2.5.2 黄阶一行总表（11 门）
+
+> 本表把原有 4 门与 AR-01 新增 7 门统一转写为八字段一行；原有展开卡继续保留为详细定义。伤害缩写 Y1–Y5 的整体预算见 §8.5。
+
+| ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或（原创扩展） |
+|---|---|---|---|---|---|---|---|
+| `sk_quanzhentunajue` | 全真吐纳诀 | 全真教 L1 | 2 黄中·内功/心法·`nature:yang` | 射雕、神雕、鹿鼎★ | IP `8+5+2×3+5×1.0=24`；`mer_renmai` | 无；L1 | **（原创扩展）** |
+| `sk_sanqingzhang` | 三清掌 | 全真教 L1 | 2 黄中·拳脚/拳掌·阳 | 射雕、神雕、鹿鼎★ | 单体掌＋线2；Y1/Y2 | 无；L1 | **（原创扩展）** |
+| `sk_yuyangtui` | 玉阳腿 | 王处一一系 | 3 黄上·拳脚/腿法·阳 | 射雕、神雕 | 单体腿＋架势反击＋扇形扫腿；Y1/Y3 | 无；L2 | **（原创扩展）**，人物依据待考见 K-5 |
+| `sk_zhongnanjian` | 终南剑法 | 全真教 L1 | 3 黄上·兵器/剑·阳 | 射雕、神雕、鹿鼎★ | 单体刺＋扇形扫＋突进；Y1/Y3/Y4 | 无；L1 | **（原创扩展）** |
+| `sk_baiyunguanxinfa` | 白云观心法 | 鹿鼎北京白云观 | 2 黄中·内功/心法·`nature:harmony` | 鹿鼎★ | IP `8+5+2×3+5×1.0=24`；`attrs {con:1,wil:1,wis:1}`；`mer_renmai` | 无；L1 | **（原创扩展）**；史实宫观不等同小说武学 |
+| `sk_chongyangchangquan` | 重阳长拳 | 全真教 / 白云观 | 3 黄上·拳脚/拳掌·阳 | 射雕、神雕、鹿鼎★ | 单体直拳＋线2进步拳；Y1/Y2 | 无；L1 | **（原创扩展）** |
+| `sk_quanzhenqinna` | 全真擒拿 | 全真教 / 白云观 | 3 黄上·拳脚/擒拿·阳 | 射雕、神雕、鹿鼎★ | 单体拿腕，30% `bf_fengjingmai`；Y5 | 无；L1 | **（原创扩展）** |
+| `sk_longmenjian` | 龙门剑式 | 鹿鼎北京白云观 | 3 黄上·兵器/剑·调和 | 鹿鼎★ | 单体点剑＋线2；Y1/Y2 | 无；L1 | **（原创扩展）**；借全真龙门派名目 |
+| `sk_quanzhenfuchen` | 全真拂尘 | 全真教 / 白云观 | 3 黄上·兵器/鞭索（拂尘）·阳 | 射雕、神雕、鹿鼎★ | 单体 1–2 格＋30% `bf_jiansu`；Y5 | 无；L1 | **（原创扩展）** |
+| `sk_xuanmenxingbu` | 玄门行步 | 全真教 / 白云观 | 2 黄中·轻功·调和 | 射雕、神雕、鹿鼎★ | 自身 `bf_wenzhong` / `bf_jisu` 二选一；满层 `QS(2)=38` | 无；L1 | **（原创扩展）** |
+| `sk_qixingzhuang` | 七星桩 | 全真教 L1 | 3 黄上·杂学/阵法·阳 | 射雕、神雕 | 自身 `bf_wenzhong`；相邻同门互获 `bf_yuanhu`，不构成强制合击 | 无；L1 | **（原创扩展）** |
+
 ### 2.6 进阶链与门派内搭配
 
 | 链 | 前置关系 |
 |---|---|
-| 内功（黄 → 玄 → 地 → 天） | 全真吐纳诀（黄中）→ 4 重 → 全真心法（玄中）→ 6 重 → 金关玉锁二十四诀（地中）→ 5 重 → 先天功（天中） |
-| 剑（黄 → 玄 → 地 / 天） | 终南剑法（黄上）→（建议 4 重）→ 全真剑法（玄中）→ 6 重 → 同归剑法（地下）；→ 5 重 → 天罡北斗阵（天下）；→ 5 重 → 玉女素心剑法全真位（天中） |
-| 拳脚 | 三清掌（黄中）→ 4 重 → 昊天掌 / 长春擒拿手（玄）→ 5 重 → 三花聚顶掌（玄上）。**全真无地阶拳脚**（原著亦无），为有意保留的门派短板 |
-| 阵法 | 北斗大阵（玄中，3 人）→ 天罡北斗阵（天下，4–6 人） |
+| 内功（黄 → 玄 → 地 → 天） | 全真吐纳诀（黄中）→ 4 重 → 全真心法（玄中）→ 6 重 → 金关玉锁二十四诀（地中）→ 5 重 → 先天功（天中）；七星桩（黄上）→ 4 重 → 北斗心法（玄中）；白云观心法为鹿鼎★独立入门支线 |
+| 剑（黄 → 玄 → 地 / 天） | 终南剑法（黄上）→（建议 4 重）→ 全真剑法（玄中）→ 5 重 → 通玄剑（玄上）→ 6 重 → 同归剑法（地下）；全真剑法 5 重亦可进入玉女素心剑法全真位（天中） |
+| 拳脚 | 三清掌 / 重阳长拳（黄）→ 昊天掌 / 长春擒拿手（玄）→ 重阳掌 / 三花聚顶掌（玄上）。**全真无地阶拳脚**（原著亦无），为有意保留的门派短板 |
+| 轻功 / 拂尘 | 玄门行步（黄中）→ 七星步（玄下）→ 金雁功（玄上）；全真拂尘（黄上）→ 北斗拂尘（玄上） |
+| 阵法 | 七星桩（黄上）→ 北斗大阵（玄中，3 人）→ 天罡北斗阵（天下，4–6 人） |
 
 - **推荐装配（射雕中期）**：主运全真心法＋辅运全真吐纳诀｜三花聚顶掌、长春擒拿手｜全真剑法、同归剑法｜金雁功｜天罡北斗阵。
 - **阴阳搭配**：金关玉锁为调和桥接，可让先天功（阳）与玉女心经（阴）同装不相冲——对应原著"全真、古墓双修方成素心剑"。
@@ -405,7 +463,7 @@
 - **倚天**：原著不再明言古墓门派活动，少林屠狮大会上黄衫女子现身且来历指向终南一脉；其是否可直称杨过后人仍须核对**（待考：《倚天屠龙记》屠狮大会黄衫女子出场、自述及旁白）**。本作以黄衫女子羁绊线传授部分古墓入门/中坚武学（★，原创扩展，maxLayer ≤ 8）。
 - **敌人配置建议**：李莫愁（神雕具名 Boss，主力赤练神掌 / 冰魄银针 / 三无三不手，地下—地中）；洪凌波（精英，玄上）。
 
-### 3.2 武学总表（16 门）
+### 3.2 武学总表（27 门）
 
 | ID | 名称 | 大类/子类 | 品阶 | 内力性质 | wOut/wIn | 原生书界 | 获取方式 | 出处 |
 |---|---|---|---|---|---|---|---|---|
@@ -425,6 +483,17 @@
 | `sk_bingpoyinzhen` | 冰魄银针 | 暗器 | 7 地下 | 阴 | 0.70/0.30 | 神雕 | 李莫愁投师（邪）；五毒秘传附录 | 原著 |
 | `sk_yufengshu` | 驭蜂术 | 杂学/驭兽 | 6 玄上 | 阴 | 0.50/0.50 | 神雕 | 小龙女传授（L2）；周伯通亦可转授 | 原著扩展（名称原创） |
 | `sk_wudumichuan` | 五毒秘传 | 杂学/毒 | 6 玄上 | 阴 | 0.50/0.50 | 神雕 | 陆无双携书线；李莫愁邪线传授 | 原著书名，内容**（待考：《神雕侠侣》陆无双携书、杨过翻阅相关情节）** |
+| `sk_hanyujinggong` | 寒玉静功 | 内功/心法 | 5 玄中 | 阴 | 0/1 | 神雕 | 寒玉床闭关；古墓 L2 | 原创扩展 |
+| `sk_yunvsanshou` | 玉女散手 | 拳脚/拳掌 | 5 玄中 | 阴 | 0.60/0.40 | 神雕 | 古墓 L2；天罗地网势进阶 | 原创扩展 |
+| `sk_muzhongyixing` | 墓中移形 | 轻功 | 4 玄下 | 阴 | 0.80/0.20 | 神雕 | 古墓 L2；墓道试炼 | 原创扩展 |
+| `sk_baichousuofa` | 白绸索法 | 兵器/鞭索 | 6 玄上 | 阴 | 0.55/0.45 | 神雕 | 古墓 L3；白绸柔劲进阶 | 原创扩展 |
+| `sk_yufengyin` | 玉蜂引 | 杂学/驭兽 | 6 玄上 | 阴 | 0.45/0.55 | 神雕 | 古墓 L3；玉蜂哨进阶 | 原创扩展 |
+| `sk_gumudaoyin` | 古墓导引 | 内功/心法 | 2 黄中 | 阴 | 0/1 | 神雕 | 古墓 L1 | 原创扩展 |
+| `sk_gumujichushou` | 古墓基础手 | 拳脚/擒拿 | 1 黄下 | 阴 | 0.80/0.20 | 神雕 | 古墓 L1 | 原创扩展 |
+| `sk_yunvjianji` | 玉女剑基 | 兵器/剑 | 3 黄上 | 阴 | 0.75/0.25 | 神雕 | 古墓 L1 | 原创扩展 |
+| `sk_baichouroujin` | 白绸柔劲 | 兵器/鞭索 | 3 黄上 | 阴 | 0.70/0.30 | 神雕 | 古墓 L1 | 原创扩展 |
+| `sk_muzhongbu` | 墓中步 | 轻功 | 2 黄中 | 阴 | 0.80/0.20 | 神雕 | 古墓 L1 | 原创扩展 |
+| `sk_yufengshao` | 玉蜂哨 | 杂学/驭兽 | 3 黄上 | 阴 | 0.45/0.55 | 神雕 | 古墓 L1；玉蜂浆教学 | 原创扩展 |
 
 ### 3.3 天级条目卡
 
@@ -688,22 +757,22 @@
 | 招式 | ID | 层 | 范围 · 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 | 招架 |
 |---|---|---|---|---|---|---|---|---|---|
 | 蜂针 | `mv_yufengzhen_fengzhen` | 1 | `aoe_bolt` · 1–5 | 0.75 | 6% | 0 | 1000 | `bf_mabi`·承·20%·2 | ✗ |
-| 群蜂 | `mv_yufengzhen_qunfeng` | 3 | 六角目标面：中心点＋六邻格（暂记 `aoe_hex_area r1`）· 1–4 | 0.55 | 7% | 2 | 1000 | `bf_zhongdu`·承·30%·3 | ✗ |
+| 群蜂 | `mv_yufengzhen_qunfeng` | 3 | `aoe_disk {r:1}`（中心点＋六邻格）· 1–4 | 0.65 | 7% | 2 | 1000 | `bf_zhongdu`·承·30%·3 | ✗ |
 | 麻痒难当 | `mv_yufengzhen_mayang` | 5 | `aoe_bolt` · 1–4 | 0.90 | 7% | 2 | 1000 | `bf_mabi`·承·60%·2 | ✗ |
 
-- 核算：蜂针 0.78 − 0.04；群蜂 0.60 × 1.29 × 0.78 = 0.60，−0.03；麻痒难当 1.29 × 0.78 = 1.01，−0.12。被动：`ps_yufengzhen_fengdu` 蜂毒（1 重，命中时 15% → 30% 附加 `bf_zhongdu` 1 层）；`ps_yufengzhen_fengjiang` 蜂浆解药（5 重，可以行动为相邻友方驱散 1 个 `bf_mabi` 或 `poison` 减益，`antidote` 等效、品阶承）；`ps_yufengzhen_dacheng` 大成（10 重，本武学耗内 −10%）。
+- 核算：蜂针 0.78 − 0.04；群蜂 0.70 × 1.29 × 0.92 × 0.85 − 0.10 × 30% = 0.676，取 0.65；麻痒难当 1.29 × 0.78 = 1.01，−0.12。被动：`ps_yufengzhen_fengdu` 蜂毒（1 重，命中时 15% → 30% 附加 `bf_zhongdu` 1 层）；`ps_yufengzhen_fengjiang` 蜂浆解药（5 重，可以行动为相邻友方驱散 1 个 `bf_mabi` 或 `poison` 减益，`antidote` 等效、品阶承）；`ps_yufengzhen_dacheng` 大成（10 重，本武学耗内 −10%）。
 
 **`sk_yufengshu` 驭蜂术**（6 玄上 · 杂学/驭兽 · 阴 · 原著扩展）
 - 原著：小龙女以玉蜂浆与手势驱使玉蜂，周伯通后亦学得（神雕；"驭蜂术"之名为原创扩展）。强度用魅力 `cha`（05 §2.3 驭兽）。
-- reqs：`attrs {cha 30, wis 25}`；`sect {sect_gumu, rank 2}`；`hard [sect]`。获取：小龙女传授；周伯通 `npc_zhouboting` 转授（羁绊 ≥ 3，`reqsOverride {sect: null}`，maxLayer 8）。
+- reqs：`attrs {cha 30, wis 25}`；`sect {sect_gumu, rank 2}`；`hard [sect]`。获取：小龙女传授；周伯通 `npc_zhoubotong` 转授（羁绊 ≥ 3，`reqsOverride {sect: null}`，maxLayer 8）。
 
 | 招式 | ID | 层 | 范围 · 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 | 招架 |
 |---|---|---|---|---|---|---|---|---|---|
-| 玉蜂群 | `mv_yufengshu_fengqun` | 1 | 六角持续面：目标点＋六邻格、持续 3 回合（暂记 `aoe_hex_zone r1 t3`）· 1–4 | 0.25/跳 | 7% | 4 | 1000 | 每跳 `bf_zhongdu`·承·30%·3；遇火（灼烧 / 火把 / 火场地形）蜂群即散 | ✗ |
-| 蜂阵护主 | `mv_yufengshu_fengzhen` | 4 | 六角持续面：自身＋六邻格、持续 2 回合（暂记 `aoe_hex_zone r1 t2`） | 0.25/跳 | 7% | 4 | 1000 | 区内敌方每跳 `bf_mabi`·承·15%·2 | ✗ |
+| 玉蜂群 | `mv_yufengshu_fengqun` | 1 | `aoe_zone {inner:{tpl:aoe_disk,r:1},duration:3}`（目标点＋六邻格）· 1–4 | 0.25/跳 | 7% | 4 | 1000 | 每跳 `bf_zhongdu`·承·30%·3；遇火（灼烧 / 火把 / 火场地形）蜂群即散 | ✗ |
+| 蜂阵护主 | `mv_yufengshu_fengzhen` | 4 | `aoe_zone {inner:{tpl:aoe_disk,r:1},duration:2}`（自身＋六邻格） | 0.25/跳 | 7% | 4 | 1000 | 区内敌方每跳 `bf_mabi`·承·15%·2 | ✗ |
 | 蜂语 | `mv_yufengshu_fengyu` | 7 | `aoe_self` | 0 | 5% | 5 | 800 | `bf_tingfeng`·承·100%·3（可选中隐身者）；探索中侦察 6 格内伏兵与陷阱 | — |
 
-- 核算：区域招式每跳 AF 0.25（05 §4.3）。被动：`ps_yufengshu_niangjiang` 酿浆（1 重，战斗外每日产出玉蜂浆 `it_yufengjiang` 1 份，回内与解麻痒，design/10）；`ps_yufengshu_fengzhong` 蜂众（5 重，蜂群区域持续 +1）；`ps_yufengshu_dacheng` 大成（10 重，蜂群每跳另附 `bf_mabi` 10%）。
+- 核算：两招的 `aoe_zone` 内层均为 `aoe_disk {r:1}`，N=7、几何 AF=0.70；其持续地表伤害与控制按 09 §5.3.3 单独审查，0.25/跳是持续伤害折算值，不把 0.70 重复作为每跳 `power`。被动：`ps_yufengshu_niangjiang` 酿浆（1 重，战斗外每日产出玉蜂浆 `it_yufengjiang` 1 份，回内与解麻痒，design/10）；`ps_yufengshu_fengzhong` 蜂众（5 重，蜂群区域持续 +1）；`ps_yufengshu_dacheng` 大成（10 重，蜂群每跳另附 `bf_mabi` 10%）。
 
 **`sk_wudumichuan` 五毒秘传**（6 玄上 · 杂学/毒 · 阴 · 原著书名，机制原创扩展）
 - 原著：陆无双持有并称《五毒秘传》为师父之书；其如何从李莫愁所藏书物中取得、杨过翻阅到哪些内容，仍须按基线版本逐字核对**（待考：《神雕侠侣》陆无双携书、杨过翻阅相关情节）**。本文不再把它写成古墓藏书，也不设孙婆婆口授。强度使用毒术技艺 `poi`（05 §2.3），但原稿没有给出学习数值，依 C17 不臆补 `skills.poi` 门槛。兵器持久淬毒只引用 `design/10` §6.5 `poisonCoat`；战内毒伤复用 `bf_zhongdu` / `bf_judu`，不创建 `bf_cuidu`。
@@ -712,19 +781,56 @@
 | 招式 | ID | 层 | 范围 · 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 | 招架 |
 |---|---|---|---|---|---|---|---|---|---|
 | 淬毒 | `mv_wudumichuan_cuidu` | 1 | `aoe_self` | 0 | 5% | 4 | 900 | `bf_jingzhun`·承·100%·3（效果命中 +，配合被动"毒刃"） | — |
-| 毒雾 | `mv_wudumichuan_duwu` | 3 | 六角持续面：目标点＋六邻格、持续 2 回合（暂记 `aoe_hex_zone r1 t2`）· 1–3 | 0.25/跳 | 7% | 4 | 1000 | 每跳 `bf_zhongdu`·承·40%·3；`friendlyFire: all`（05 §4.6 毒雾敌我皆中） | ✗ |
+| 毒雾 | `mv_wudumichuan_duwu` | 3 | `aoe_zone {inner:{tpl:aoe_disk,r:1},duration:2}`（目标点＋六邻格）· 1–3 | 0.25/跳 | 7% | 4 | 1000 | 每跳 `bf_zhongdu`·承·40%·3；`friendlyFire: all`（05 §4.6 毒雾敌我皆中） | ✗ |
 | 解毒 | `mv_wudumichuan_jiedu` | 5 | `aoe_single` · 1（友方） | 0 | 6% | 2 | 1000 | 驱散目标 2 个 `poison` 减益（`antidote` 等效，品阶承） | — |
 
-- 被动：`ps_wudumichuan_duren` 毒刃（1 重，装配时本方兵器 / 暗器招式命中 10% → 20% 附加 `bf_zhongdu` 1 层）；`ps_wudumichuan_shidu` 识毒（4 重，`attr:resPoison pp +5 → +10`）；`ps_wudumichuan_baidu` 百毒谱（8 重，本方施加的中毒持续 +1）；`ps_wudumichuan_dacheng` 大成（10 重，赤练神掌、冰魄银针修炼 +20%）。
+- 核算：毒雾的 `aoe_zone` 内层为 `aoe_disk {r:1}`，N=7、几何 AF=0.70；持续地表伤害与控制按 09 §5.3.3 单独审查，0.25/跳为持续伤害折算。被动：`ps_wudumichuan_duren` 毒刃（1 重，装配时本方兵器 / 暗器招式命中 10% → 20% 附加 `bf_zhongdu` 1 层）；`ps_wudumichuan_shidu` 识毒（4 重，`attr:resPoison pp +5 → +10`）；`ps_wudumichuan_baidu` 百毒谱（8 重，本方施加的中毒持续 +1）；`ps_wudumichuan_dacheng` 大成（10 重，赤练神掌、冰魄银针修炼 +20%）。
+
+#### 3.5.1 AR-01 新增玄阶紧凑卡（5 门）
+
+> 下列均为 **（原创扩展）**，`origin: expanded`、`sect: sect_gumu`、`sourceChapters:[ch03_shendiao]`，未另列时 `setTags:[]`、`conflicts:[]`。古墓采用 `design/17` §7.3 的小规模 T04 变体：L1 侍女/外客、L2 入室、L3 亲传、L4 守墓人、L5 掌门。
+
+**`sk_hanyujinggong` 寒玉静功**（5 玄中 · 内功/心法 · `nature: yin` · 0/1）
+- 字段：`reqs {attrs {wil:25,agi:22}, aptitude {apInner:25}, sect {id:sect_gumu,rank:2}, prereq [{skill:sk_gumudaoyin,layer:5}], hard:[sect,prereq]}`；`inner.contribution {mpMaxPct:17,hpMaxPct:10,attrs:{con:2,agi:2,wil:3},mpRegen:1.5}`，IP `17+10+2×7+5×1.5=48.5`；`stats {resHeat:5,resMind:5}`；`meridians:[mer_zushaoyin,mer_yinqiao]`；`yunjin:[tiaoxi,huti]`。
+- 招式：寒玉静息 `mv_hanyujinggong_jingxi`（1 重，自身，6%/cd3/900，`bf_shouyi`·承·2）；冰心护脉 `mv_hanyujinggong_humai`（5 重，自身，7%/cd4/900，`bf_hutizhenqi`·承·2，护盾 hpMax 10%）。被动：寒室 `ps_hanyujinggong_hanshi`（室内/寒地回内 +0.2→0.5pp）；静守 `ps_hanyujinggong_jingshou`（心神减益持续 −1，最低 1）；圆满 `ps_hanyujinggong_yuanman`（寒玉心诀修炼 +10%）。获取：寒玉床闭关或 L2 入室。
+
+**`sk_yunvsanshou` 玉女散手**（5 玄中 · 拳脚/拳掌 · `nature: yin` · 0.60/0.40）【玄阶预算抽样】
+- 字段：`reqs {attrs {agi:25}, aptitude {apFist:25}, sect {id:sect_gumu,rank:2}, prereq [{skill:sk_tianluodiwang,layer:5}], hard:[sect,prereq]}`；`layerStats {eva:[2,5],hit:[2,5]}`（10）；`moveSlots:3`。
+- 招式：拂花 `mv_yunvsanshou_fuhua`（1 重，单体，1.00，6%/cd0/1000，可招架）；回袖 `mv_yunvsanshou_huixiu`（3 重，`aoe_ring r1`，0.95，6%/cd2/1000，可招架）；穿隙 `mv_yunvsanshou_chuanxi`（6 重，单体，1.20，6%/cd2/1000，30% `bf_jiansu`·承·2，可招架）。核算：`1.00`；`0.75×1.24=0.93≈0.95`；`1×1.24−0.10×30%=1.21≈1.20`。
+- 被动：柔手 `ps_yunvsanshou_roushou`（闪避后下一掌 Z3 +4%→10%）；罗网余势 `ps_yunvsanshou_luowang`（对减速目标命中 +3→8）；大成 `ps_yunvsanshou_dacheng`（10 重，招架后可后退 1 格，每回合 1 次）。获取：L2 入室；`observable:true`，观摩上限 6 重。
+
+**`sk_muzhongyixing` 墓中移形**（4 玄下 · 轻功 · `nature: yin` · 0.80/0.20）
+- 字段：`reqs {attrs {agi:22}, aptitude {apLight:20}, sect {id:sect_gumu,rank:2}, prereq [{skill:sk_muzhongbu,layer:5}], hard:[sect,prereq]}`；`layerStats {eva:[2,5],spd:[1,2]}`（7）；满层 `Q_skill=QS(4)=56`。招式：暗廊移形 `mv_muzhongyixing_yixing`（1 重，自身，5%/cd2/800，移动 2 格）；回身 `mv_muzhongyixing_huishen`（4 重，自身，5%/cd3/800，`bf_piaohu`·承·2）；穿门 `mv_muzhongyixing_chuanmen`（7 重，自身，6%/cd4/800，本次移动无视 1 格敌方控制区）。被动：暗室 `ps_muzhongyixing_anshi`（室内闪避 +3%→8%）；无声 `ps_muzhongyixing_wusheng`（移动不触发首个截击，每回合 1 次）。获取：墓道试炼；`observable:true`，观摩上限 5 重。
+
+**`sk_baichousuofa` 白绸索法**（6 玄上 · 兵器/鞭索 · `nature: yin` · 0.55/0.45）
+- 字段：`reqs {attrs {agi:30}, aptitude {apWhip:30}, sect {id:sect_gumu,rank:3}, prereq [{skill:sk_baichouroujin,layer:5}], hard:[sect,prereq]}`；`layerStats {hit:[2,6],parry:[1,4]}`（10）；`weaponReq:{category:whip,tags:[cloth]}`。招式：白绸拂穴 `mv_baichousuofa_fuxue`（1 重，1–2 格，0.95，6%/cd0/1000，20% `bf_fengjingmai`·承·2）；回环 `mv_baichousuofa_huihuan`（4 重，`aoe_around`，0.95，6%/cd2/1000）；卷腕 `mv_baichousuofa_juanwan`（6 重，1–2 格，1.05，6%/cd1/1000，40% `bf_chanrao`·承·2）。被动：柔韧 `ps_baichousuofa_rouren`（招架 +3%→8%）；借势 `ps_baichousuofa_jieshi`（缠绕目标对本武学 Z3 +5%→12%）；大成 `ps_baichousuofa_dacheng`（10 重，射程 2 招式命中 +8）。获取：L3 亲传；`observable:true`，上限 6 重。
+
+**`sk_yufengyin` 玉蜂引**（6 玄上 · 杂学/驭兽 · `nature: yin` · 0.45/0.55）
+- 字段：`reqs {attrs {cha:30,wis:28}, sect {id:sect_gumu,rank:3}, prereq [{skill:sk_yufengshao,layer:5}], hard:[sect,prereq]}`；`layerStats {effHit:[2,6],eva:[1,4]}`（10）。招式：引蜂 `mv_yufengyin_yinfeng`（1 重，目标点 1–4 格，6%/cd2/1000，目标获 `bf_suoding`·承·2）；蜂路 `mv_yufengyin_fenglu`（4 重，自身，6%/cd3/800，`bf_jisu`·承·2）；群蜂护主 `mv_yufengyin_huzhu`（6 重，自身，7%/cd4/900，`bf_yuanhu`·承·2）。被动：闻香 `ps_yufengyin_wenxiang`（对中毒目标效果命中 +5→12）；群聚 `ps_yufengyin_qunju`（同装驭蜂术时其区域持续不再叠加，只使施加率 +10pp）；大成 `ps_yufengyin_dacheng`（10 重，战斗开始获 `bf_ruiyi` 2 回合）。获取：L3 且玉蜂哨 5 重；`fusible:false`。
+
+#### 3.5.2 黄阶一行总表（10 门）
+
+| ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或（原创扩展） |
+|---|---|---|---|---|---|---|---|
+| `sk_gumuxinfa` | 古墓心法 | 古墓派 L1 | 3 黄上·内功/心法·`nature:yin` | 神雕、倚天★ | IP `10+5+2×4+5×1.4=30`；`mer_zushaoyin` | 无；L1 | 原著泛称，内容扩展 |
+| `sk_tianluodiwang` | 天罗地网势 | 古墓派 L1 | 2 黄中·拳脚/拳掌·阴 | 神雕、倚天★ | 单体定身＋周身掌；Y5/Y3 | 无；L1 | 原著 |
+| `sk_hantanjian` | 寒潭剑法 | 古墓派 L1 | 3 黄上·兵器/剑·阴 | 神雕 | 单体刺＋绕背＋寒气；Y1/Y4/Y5 | 无；L1 | **（原创扩展）** |
+| `sk_buquegong` | 捕雀功 | 古墓派 L1 | 3 黄上·轻功·阴 | 神雕 | 自身 `bf_piaohu`；满层 `QS(3)=45` | 无；L1 | 原著情节扩展 |
+| `sk_gumudaoyin` | 古墓导引 | 古墓派 L1 | 2 黄中·内功/心法·`nature:yin` | 神雕 | IP `8+5+2×3+5×1.0=24`；`attrs {con:1,agi:1,wil:1}`；`mer_zushaoyin` | 无；L1 | **（原创扩展）** |
+| `sk_gumujichushou` | 古墓基础手 | 古墓派 L1 | 1 黄下·拳脚/擒拿·阴 | 神雕 | 单体拿腕＋30% `bf_jiansu`；Y5 | 无；L1 | **（原创扩展）** |
+| `sk_yunvjianji` | 玉女剑基 | 古墓派 L1 | 3 黄上·兵器/剑·阴 | 神雕 | 单体点剑＋线2；Y1/Y2 | 无；L1 | **（原创扩展）** |
+| `sk_baichouroujin` | 白绸柔劲 | 古墓派 L1 | 3 黄上·兵器/鞭索·阴 | 神雕 | 单体 1–2 格＋30% `bf_chanrao`；Y5 | 无；L1 | **（原创扩展）** |
+| `sk_muzhongbu` | 墓中步 | 古墓派 L1 | 2 黄中·轻功·阴 | 神雕 | 自身 `bf_piaohu`；满层 `QS(2)=38` | 无；L1 | **（原创扩展）** |
+| `sk_yufengshao` | 玉蜂哨 | 古墓派 L1 | 3 黄上·杂学/驭兽·阴 | 神雕 | 标记目标 `bf_suoding` 2 回合，供玉蜂类技能追踪 | 无；L1，需玉蜂浆教学 | **（原创扩展）** |
 
 ### 3.6 进阶链与门派内搭配
 
 | 链 | 前置关系 |
 |---|---|
-| 内功（黄 → 玄 → 天） | 古墓心法（黄上）→ 5 重 → 寒玉心诀（玄上）→ 3 重 → 玉女心经（天下）；古墓心法 6 重亦可直入 |
-| 剑（黄 → 玄 → 天） | 寒潭剑法（黄上）→ 4 重 → 玉女剑法（玄上）→ 5 重 → 玉女素心剑法古墓位（天中，§4） |
-| 拳脚 / 鞭 | 天罗地网势（黄中）→ 4 重 → 美女拳法（玄下）；天罗地网势 5 重 → 金铃索法（地下） |
-| 轻功 | 捕雀功（黄上）→ 6 重 → 古墓轻功（地上） |
+| 内功（黄 → 玄 → 天） | 古墓导引（黄中）→ 5 重 → 寒玉静功（玄中）→ 寒玉心诀（玄上）；古墓心法（黄上）→ 5 重 → 寒玉心诀；寒玉心诀 3 重或古墓心法 6 重可入玉女心经（天下） |
+| 剑（黄 → 玄 → 天） | 玉女剑基 / 寒潭剑法（黄上）→ 玉女剑法（玄上）→ 5 重 → 玉女素心剑法古墓位（天中，§4） |
+| 拳脚 / 鞭 | 古墓基础手 / 天罗地网势（黄）→ 玉女散手 / 美女拳法（玄）；白绸柔劲（黄上）→ 白绸索法（玄上）→ 金铃索法（地下） |
+| 轻功 / 驭蜂 | 墓中步 / 捕雀功（黄）→ 墓中移形（玄下）→ 古墓轻功（地上）；玉蜂哨（黄上）→ 玉蜂引 / 驭蜂术（玄上） |
 | 李莫愁一系（邪，`morality ≤ −20` 软门槛） | 五毒秘传（玄上）→ 3 重 → 赤练神掌 / 冰魄银针（地下）；三无三不手（玄上） |
 
 - **推荐装配（神雕中后期，古墓正宗）**：主运玉女心经＋辅运寒玉心诀、金关玉锁（桥接，便于兼修全真）｜美女拳法、天罗地网势｜玉女剑法、玉女素心剑法（或金铃索法，须换主手鞭索）｜古墓轻功｜玉蜂针｜驭蜂术、五毒秘传。
@@ -740,7 +846,7 @@
 - **独孤求败剑冢（神雕）**：剑冢石刻与四柄剑（利剑、已弃之紫薇软剑、玄铁重剑、木剑）下的碑文记独孤求败一生剑道**（待考：《神雕侠侣》杨过入剑冢所见四段石刻原文与次序）**。按基准 §13，独孤九剑本体只在笑傲可学；神雕只得"剑冢剑意"。本作把四段碑文做成四门"剑意"杂学（原创扩展），离开神雕后化为残篇，建议并入同源组 `lg_dugu`，在笑傲加速独孤九剑（§11 D-7）。
 - **获取结构**：天级三门受 02 §2.9 R3/R4 约束（神雕第 4 幕后；与古墓系合计至多深入 2 系）。
 
-### 4.2 武学总表（7 门）
+### 4.2 武学总表（11 门）
 
 | ID | 名称 | 大类/子类 | 品阶 | 内力性质 | wOut/wIn | 原生书界 | 获取方式 | 出处 |
 |---|---|---|---|---|---|---|---|---|
@@ -751,6 +857,10 @@
 | `sk_ruanjianyi` | 软剑意 | 杂学/心神 | 6 玄上 | 中性 | 0.50/0.50 | 神雕 | 剑冢第二碑（紫薇软剑已弃） | 原创扩展（碑文原著） |
 | `sk_zhongjianyi` | 重剑意 | 杂学/心神 | 8 地中 | 中性 | 0.60/0.40 | 神雕 | 剑冢第三碑（玄铁重剑处） | 原创扩展（碑文原著） |
 | `sk_mujianyi` | 木剑意 | 杂学/心神 | 9 地上 | 中性 | 0.60/0.40 | 神雕 | 剑冢第四碑（木剑处） | 原创扩展（碑文原著） |
+| `sk_diaopubu` | 雕步 | 轻功 | 4 玄下 | 中性 | 0.80/0.20 | 神雕 | 神雕伴行试炼 | 原创扩展 |
+| `sk_haichaolianjian` | 海潮炼剑 | 兵器/剑 | 6 玄上 | 中性 | 0.65/0.35 | 神雕 | 海潮练剑奇遇；山洪步＋剑冢吐纳进阶 | 原创扩展（取材于原著练剑情节） |
+| `sk_jianzhongtuna` | 剑冢吐纳 | 内功/心法 | 2 黄中 | 调和 | 0/1 | 神雕 | 剑冢石室静修 | 原创扩展 |
+| `sk_shanhongbu` | 山洪步 | 轻功 | 3 黄上 | 中性 | 0.80/0.20 | 神雕 | 山洪练剑前置试炼 | 原创扩展（取材于原著练剑情节） |
 
 ### 4.3 天级条目卡
 
@@ -949,11 +1059,32 @@
 
 - 被动：`ps_ruanjianyi_rouren` 柔韧（1 重，持软剑或鞭索时 `attr:combo pp +2 → +6`）；`ps_ruanjianyi_qijian` 弃剑之诫（5 重，本方范围剑招不误伤友方；击杀 `morality ≥ 20` 的目标后本场剑法 Z3 −10%——碑文"误伤义士不祥"之诫，原创扩展规则化）；`ps_ruanjianyi_dacheng` 大成（10 重，剑法 `attr:hit flat +5`）。
 
+#### 4.5.1 AR-01 新增玄阶紧凑卡（2 门）
+
+> 两门均为 **（原创扩展）**，`sect:null`、`lineage:独孤求败剑冢 / 杨过`、`sourceChapters:[ch03_shendiao]`、`conflicts:[]`。海潮炼剑只取材于杨过在海潮中练剑的原著情节，不把武学名称写成原著名目。
+
+**`sk_diaopubu` 雕步**（4 玄下 · 轻功 · `nature: neutral` · 0.80/0.20）
+- 字段：`reqs {attrs {agi:22,con:20}, aptitude {apLight:20}, prereq [{skill:sk_shanhongbu,layer:5}], hard:[prereq]}`；`layerStats {spd:[2,5],resCC:[1,2]}`（7）；满层 `Q_skill=QS(4)=56`；`setTags:[]`。
+- 招式：随雕跃 `mv_diaopubu_suidiao`（1 重，自身，5%/cd2/800，跃至 2 格内空位）；逆风 `mv_diaopubu_nifeng`（4 重，自身，5%/cd3/800，`bf_wenzhong`·承·2）；踏石 `mv_diaopubu_tashi`（7 重，自身，6%/cd4/800，本次移动忽略 1 格困难地形）。被动：伴雕 `ps_diaopubu_bandiao`（相邻大型友方时抗击退 +5→12pp）；险径 `ps_diaopubu_xianjing`（高差移动消耗 −1，最低 1）。获取：与神雕伴行试炼，山洪步 5 重。
+
+**`sk_haichaolianjian` 海潮炼剑**（6 玄上 · 兵器/剑 · `nature: neutral` · 0.65/0.35）【玄阶预算抽样】
+- 字段：`reqs {attrs {str:30,con:30}, aptitude {apSword:30}, prereq [{skill:sk_shanhongbu,layer:6},{skill:sk_jianzhongtuna,layer:5}], hard:[prereq]}`；`layerStats {tough:[2,6],hit:[1,4]}`（10）；`weaponReq:{category:sword}`；`setTags:[set_dugu_jianzhong]`。
+- 招式：迎潮 `mv_haichaolianjian_yingchao`（1 重，单体，1.00，6%/cd0/1000，可招架）；破浪 `mv_haichaolianjian_polang`（4 重，`aoe_line n3`，1.05，6%/cd2/1000，可招架）；回潮 `mv_haichaolianjian_huichao`（6 重，单体，1.15，7%/cd1/1000，击退 1，可招架）。核算：`1.00`；`0.85×1.24=1.054≈1.05`；`1×(1+0.12+0.05)−0.05=1.12≈1.15`。
+- 被动：迎浪 `ps_haichaolianjian_yinglang`（受击后下一剑 Z3 +4%→10%）；潮炼 `ps_haichaolianjian_chaolian`（水域或暴雨中修炼 +15%）；大成 `ps_haichaolianjian_dacheng`（10 重，持重剑时抗击退 +15pp）。获取：海潮练剑支线；`observable:true`，观摩上限 5 重。
+
+#### 4.5.2 黄阶一行总表（2 门）
+
+| ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或（原创扩展） |
+|---|---|---|---|---|---|---|---|
+| `sk_jianzhongtuna` | 剑冢吐纳 | 剑冢石室 | 2 黄中·内功/心法·`nature:harmony` | 神雕 | IP `8+5+2×3+5×1.0=24`；`attrs {con:1,wil:1,wis:1}`；`mer_dumai`；`setTags:[set_dugu_jianzhong]` | 无 | **（原创扩展）** |
+| `sk_shanhongbu` | 山洪步 | 杨过练剑传承 | 3 黄上·轻功·中性 | 神雕 | 自身 `bf_wenzhong`；满层 `QS(3)=45` | 无 | **（原创扩展）**；取材于《神雕侠侣》杨过山洪 / 海潮练剑情节，段落待考 |
+
 ### 4.6 进阶链
 
 | 链 | 前置关系 |
 |---|---|
-| 剑冢 | 利剑意（玄上）→ 3 重 → 重剑意（地中）→ 5 重 ＋ 玄铁剑法 5 重 → 木剑意（地上）；软剑意独立（第二碑） |
+| 剑冢 | 剑冢吐纳（黄中）＋山洪步（黄上）→ 海潮炼剑（玄上）；利剑意（玄上）→ 3 重 → 重剑意（地中）→ 5 重 ＋ 玄铁剑法 5 重 → 木剑意（地上）；软剑意独立（第二碑） |
+| 身法 | 山洪步（黄上）→ 5 重 → 雕步（玄下）；雕步与海潮炼剑共同服务玄铁重剑修行，不改玄铁剑法的原著获取 |
 | 合璧 | 全真剑法 5 重（全真位）/ 玉女剑法 5 重（古墓位）→ 玉女素心剑法 |
 | 情 | 黯然销魂掌：羁绊传授，须经"别离"（无前置武学） |
 
@@ -974,7 +1105,7 @@
 - **低武★**：原著鹿鼎、连城、白马、鸳鸯未见武当；本作在连城（湖北荆州一带，与武当山同省）与鸳鸯（"太岳四侠"之"太岳"为武当山古称，作彩蛋）设"游方武当道人"传授入门武学（原创扩展，须 chapters/09、11 采纳），供 1/1/1 携带书界补位。
 - **敌人配置建议**：倚天武当弟子普通地下、七侠为具名（地中—天中）；书剑张召重为具名 Boss（主力无极玄功拳 / 柔云剑术，地下，配凝碧剑）。
 
-### 5.2 武学总表（20 门，另引用武当九阳功）
+### 5.2 武学总表（36 门，另引用武当九阳功）
 
 | ID | 名称 | 大类/子类 | 品阶 | 内力性质 | wOut/wIn | 原生书界 | 获取方式 | 出处 |
 |---|---|---|---|---|---|---|---|---|
@@ -999,8 +1130,24 @@
 | `sk_tiyunzong` | 梯云纵 | 轻功 | 8 地中 | 阳 | 0.80/0.20 | 倚天、笑傲★、侠客★、书剑★、飞狐★ | 拜师（L3） | 原著 |
 | `sk_furongjinzhen` | 芙蓉金针 | 暗器 | 6 玄上 | 阳 | 0.70/0.30 | 书剑、飞狐★ | 陆菲青 / 李沅芷传授 | 原著 |
 | `sk_zhenwuqijie` | 真武七截阵 | 杂学/阵法（合击） | 8 地中 | 阳 | 0.55/0.45 | 倚天、笑傲★、侠客★ | 武当门派任务链"真武七截"（原创扩展）；合击领悟 | 原著 |
+| `sk_wudangyangshenggong` | 武当养生功 | 内功/心法 | 5 玄中 | 调和 | 0/1 | 倚天、笑傲、侠客、书剑、飞狐 | 武当 L2；太和功 / 真武导引任一进阶 | 原创扩展 |
+| `sk_xuanzhenxinfa` | 玄真心法 | 内功/心法 | 5 玄中 | 阳 | 0/1 | 倚天、笑傲、侠客 | 武当 L2；真武桩进阶 | 原创扩展 |
+| `sk_lingxuzhang` | 凌虚掌 | 拳脚/拳掌 | 5 玄中 | 调和 | 0.50/0.50 | 倚天、笑傲、侠客、书剑 | 武当 L2；武当长拳 / 武当入门拳任一进阶 | 原创扩展 |
+| `sk_xuanxujian` | 玄虚剑 | 兵器/剑 | 6 玄上 | 调和 | 0.55/0.45 | 倚天、笑傲、侠客 | 武当 L3；武当入门剑 / 七侠初剑 / 真武剑法任一进阶 | 原创扩展 |
+| `sk_liangyibu` | 两仪步 | 轻功 | 6 玄上 | 调和 | 0.80/0.20 | 倚天、笑傲、侠客、书剑 | 武当 L3；武当行步进阶 | 原创扩展 |
+| `sk_wudangfuchen` | 武当拂尘 | 兵器/鞭索（拂尘） | 6 玄上 | 调和 | 0.60/0.40 | 倚天、笑傲、侠客 | 武当 L3；真武拂尘进阶 | 原创扩展 |
+| `sk_wudangtuna` | 武当吐纳 | 内功/心法 | 1 黄下 | 阳 | 0/1 | 倚天、笑傲、侠客、书剑、飞狐、连城★、鸳鸯★ | 武当 L1；游方道人★ | 原创扩展 |
+| `sk_zhenwudaoyin` | 真武导引 | 内功/心法 | 2 黄中 | 调和 | 0/1 | 倚天、笑傲、侠客、书剑、飞狐 | 武当 L1 | 原创扩展 |
+| `sk_wudangrumenquan` | 武当入门拳 | 拳脚/拳掌 | 2 黄中 | 阳 | 0.85/0.15 | 倚天、笑傲、侠客、书剑、飞狐 | 武当 L1 | 原创扩展 |
+| `sk_songxiqinna` | 松溪擒拿 | 拳脚/擒拿 | 3 黄上 | 调和 | 0.70/0.30 | 倚天、书剑 | 武当 L1 | 原创扩展命名 |
+| `sk_wudangrumenjian` | 武当入门剑 | 兵器/剑 | 3 黄上 | 阳 | 0.75/0.25 | 倚天、笑傲、侠客、书剑、飞狐 | 武当 L1 | 原创扩展 |
+| `sk_zhenwufuchen` | 真武拂尘 | 兵器/鞭索（拂尘） | 3 黄上 | 调和 | 0.70/0.30 | 倚天、笑傲、侠客 | 武当 L1 | 原创扩展 |
+| `sk_qixiachujian` | 七侠初剑 | 兵器/剑 | 3 黄上 | 阳 | 0.75/0.25 | 倚天 | 武当七侠门下 L1 | 原创扩展 |
+| `sk_wudangxingbu` | 武当行步 | 轻功 | 2 黄中 | 调和 | 0.80/0.20 | 倚天、笑傲、侠客、书剑、飞狐 | 武当 L1 | 原创扩展 |
+| `sk_songxibu` | 松溪步 | 轻功 | 3 黄上 | 调和 | 0.80/0.20 | 倚天、书剑 | 武当 L1 | 原创扩展命名 |
+| `sk_zhenwuzhuang` | 真武桩功 | 内功/心法 | 3 黄上 | 阳 | 0/1 | 倚天、笑傲、侠客 | 武当 L1 | 原创扩展 |
 
-> 注：`sk_wudangjiuyang` 行只作引用，不计入本组 66 门。内力性质取向：太极一系调和（配调和主运得 +12% 相性），纯阳 / 九阳一系阳；绕指柔剑取阴（"百炼钢化为绕指柔"）。
+> 注：`sk_wudangjiuyang` 行只作引用，不计入本组 116 门。内力性质取向：太极一系调和（配调和主运得 +12% 相性），纯阳 / 九阳一系阳；绕指柔剑取阴（"百炼钢化为绕指柔"）。
 
 ### 5.3 天级条目卡
 
@@ -1442,16 +1589,63 @@
 
 - 核算：金针 0.78 − 0.03；芙蓉满枝 0.85 × 1.29 × 0.78 = 0.86；打穴金针 1.29 × 0.78 = 1.01，−0.10；绵里藏针（近身、可招架）1 + 0.24 + 0.05 + 0.15 − 0.06 = 1.38。被动：`ps_furongjinzhen_renxue` 认穴（1 重，`attr:seal pp +2`）；`ps_furongjinzhen_zhenxue` 针穴（5 重，对被点穴目标本武学 Z3 +8%）；`ps_furongjinzhen_dacheng` 大成（10 重，本武学耗内 −10%）。
 
+#### 5.5.1 AR-01 新增玄阶紧凑卡（6 门）
+
+> 下列均为 **（原创扩展）**，`origin:expanded`、`sect:sect_wudang`，按 `design/17` §1.3 T02 使用 L1–L5。未另列时 `setTags:[]`、`conflicts:[]`；各书界来源均为当地武当传承，不因同名自动跨界满层。
+
+**`sk_wudangyangshenggong` 武当养生功**（5 玄中 · 内功/心法 · `nature:harmony` · 0/1）
+- 字段：`sourceChapters:[ch04_yitian,ch05_xiaoao,ch06_xiake,ch12_shujian,ch13_feihu]`；`reqs {attrs {con:24,wil:24}, aptitude {apInner:25}, sect {id:sect_wudang,rank:2}, prereq [{anyOf:[{skill:sk_taihegong,layer:5},{skill:sk_zhenwudaoyin,layer:5}]}], hard:[sect,prereq]}`；`inner.contribution {mpMaxPct:17,hpMaxPct:10,attrs:{con:3,wil:2,wis:2},mpRegen:1.5}`，IP `17+10+2×7+5×1.5=48.5`；`stats {resInjury:5,resMind:5}`；`meridians:[mer_renmai,mer_chongmai]`；`yunjin:[tiaoxi,liaoshang]`。
+- 招式：养息 `mv_wudangyangshenggong_yangxi`（1 重，自身，6%/cd3/900，`bf_huinei`·承·2）；和气护脉 `mv_wudangyangshenggong_humai`（5 重，友方 0–1 格，6%/cd3/1000，驱散 1 个 `injury`）。被动：延年 `ps_wudangyangshenggong_yannian`（受治疗 +3%→8%）；养正 `ps_wudangyangshenggong_yangzheng`（非战斗休整回复 +10%→25%）；圆满 `ps_wudangyangshenggong_yuanman`（纯阳无极功软门槛 −10）。获取：L2，由太和功 / 真武导引任一 5 重进阶。
+
+**`sk_xuanzhenxinfa` 玄真心法**（5 玄中 · 内功/心法 · `nature:yang` · 0/1）
+- 字段：`sourceChapters:[ch04_yitian,ch05_xiaoao,ch06_xiake]`；`reqs {attrs {wil:25}, aptitude {apInner:25}, sect {id:sect_wudang,rank:2}, prereq [{skill:sk_zhenwuzhuang,layer:5}], hard:[sect,prereq]}`；`inner.contribution {mpMaxPct:17,hpMaxPct:10,attrs:{con:3,str:2,wil:2},mpRegen:1.5}`，IP `17+10+2×7+5×1.5=48.5`；`stats {defIn:5,tough:5}`；`meridians:[mer_dumai,mer_yangwei]`；`yunjin:[huti,xuli]`。
+- 招式：玄真护体 `mv_xuanzhenxinfa_huti`（1 重，自身，6%/cd3/900，`bf_hutizhenqi`·承·2，护盾 hpMax 10%）；蓄真 `mv_xuanzhenxinfa_xuzhen`（5 重，自身，6%/cd4/800，`bf_xuli`·承·2）。被动：真息 `ps_xuanzhenxinfa_zhenxi`（内防 +3%→8%）；桩中运气 `ps_xuanzhenxinfa_zhuangqi`（同装真武桩时抗控制 +5→12pp）；圆满 `ps_xuanzhenxinfa_yuanman`（纯阳无极功修炼 +10%）。获取：L2，真武桩 5 重。
+
+**`sk_lingxuzhang` 凌虚掌**（5 玄中 · 拳脚/拳掌 · `nature:harmony` · 0.50/0.50）
+- 字段：`sourceChapters:[ch04_yitian,ch05_xiaoao,ch06_xiake,ch12_shujian]`；`reqs {attrs {wis:25,agi:22}, aptitude {apFist:25}, sect {id:sect_wudang,rank:2}, prereq [{anyOf:[{skill:sk_wudangchangquan,layer:5},{skill:sk_wudangrumenquan,layer:5}]}], hard:[sect,prereq]}`；`layerStats {parry:[2,5],hit:[2,5]}`（10）。招式：凌虚引掌 `mv_lingxuzhang_yinzhang`（1 重，单体，0.95，6%/cd0/1000，30% `bf_jiansu`·承·2）；卸步掌 `mv_lingxuzhang_xiebu`（4 重，单体，1.05，6%/cd1/1000，击退 1）；云回 `mv_lingxuzhang_yunhui`（6 重，自身架势，5%/cd2/850，被近战攻击以 0.85 倍反击）。被动：虚领 `ps_lingxuzhang_xuling`（招架 +3%→8%）；卸力 `ps_lingxuzhang_xieli`（受近身伤害 Z4 −4%→10%）；大成 `ps_lingxuzhang_dacheng`（太极推手修炼 +10%）。获取：L2；`observable:true`，上限 6 重。
+
+**`sk_xuanxujian` 玄虚剑**（6 玄上 · 兵器/剑 · `nature:harmony` · 0.55/0.45）【玄阶预算抽样】
+- 字段：`sourceChapters:[ch04_yitian,ch05_xiaoao,ch06_xiake]`；`reqs {attrs {agi:30,wis:30}, aptitude {apSword:30}, sect {id:sect_wudang,rank:3}, prereq [{anyOf:[{skill:sk_wudangrumenjian,layer:5},{skill:sk_qixiachujian,layer:5},{skill:sk_zhenwujian,layer:5}]}], hard:[sect,prereq]}`；`layerStats {parry:[2,6],hit:[1,4]}`（10）；`weaponReq:{category:sword}`。
+- 招式：玄虚刺 `mv_xuanxujian_ci`（1 重，单体，1.00，6%/cd0/1000，可招架）；虚实回锋 `mv_xuanxujian_huifeng`（4 重，`aoe_line n2`，1.10，6%/cd2/1000，可招架）；引剑卸势 `mv_xuanxujian_xieshi`（6 重，单体，1.15，6%/cd2/1000，50% `bf_jiansu`·承·2，可招架）。核算：`1.00`；`0.90×1.24=1.116≈1.10`；`1×1.24−0.10×50%=1.19≈1.15`。
+- 被动：藏锋 `ps_xuanxujian_cangfeng`（招架 +3%→8%）；虚实 `ps_xuanxujian_xushi`（对处于守势的目标 Z3 +5%→12%）；大成 `ps_xuanxujian_dacheng`（10 重，招架成功 `ct +50`，每回合 1 次）。获取：L3；`observable:true`，上限 6 重。
+
+**`sk_liangyibu` 两仪步**（6 玄上 · 轻功 · `nature:harmony` · 0.80/0.20）
+- 字段：`sourceChapters:[ch04_yitian,ch05_xiaoao,ch06_xiake,ch12_shujian]`；`reqs {attrs {agi:30,wis:28}, aptitude {apLight:30}, sect {id:sect_wudang,rank:3}, prereq [{skill:sk_wudangxingbu,layer:5}], hard:[sect,prereq]}`；`layerStats {eva:[2,6],parry:[1,4]}`（10）；满层 `Q_skill=QS(6)=74`。招式：分阴阳 `mv_liangyibu_fenyinyang`（1 重，自身，5%/cd2/800，`bf_piaohu`·承·2）；两仪换位 `mv_liangyibu_huanwei`（4 重，友方 1–3 格，6%/cd3/800，换位）；环行 `mv_liangyibu_huanxing`（6 重，自身，6%/cd4/800，本次移动可绕过敌方控制区）。被动：阴阳步 `ps_liangyibu_yinyang`（移动后招架 +3%→8%）；圆转 `ps_liangyibu_yuanzhuan`（换位后双方获 `bf_wenzhong` 1 回合）。获取：L3；`observable:true`，上限 6 重。
+
+**`sk_wudangfuchen` 武当拂尘**（6 玄上 · 兵器/鞭索（拂尘）· `nature:harmony` · 0.60/0.40）【玄阶预算抽样】
+- 字段：`sourceChapters:[ch04_yitian,ch05_xiaoao,ch06_xiake]`；`reqs {attrs {agi:30,wil:28}, aptitude {apWhip:30}, sect {id:sect_wudang,rank:3}, prereq [{skill:sk_zhenwufuchen,layer:5}], hard:[sect,prereq]}`；`layerStats {parry:[2,6],seal:[1,4]}`（10）；`weaponReq:{category:whip,tags:[fuchen]}`。
+- 招式：拂尘点穴 `mv_wudangfuchen_dianxue`（1 重，单体 1–2 格，0.95，6%/cd0/1000，20% `bf_fengjingmai`·承·2，可招架）；圆尘 `mv_wudangfuchen_yuanchen`（4 重，`aoe_ring r1`，0.95，6%/cd2/1000，可招架）；牵丝 `mv_wudangfuchen_qiansi`（6 重，单体 1–2 格，1.05，6%/cd1/1000，40% `bf_chanrao`·承·2，可招架）。核算：`1−0.15×20%=0.97≈0.95`；`0.75×1.24=0.93≈0.95`；`1×1.12−0.20×40%=1.04≈1.05`。
+- 被动：尘圆 `ps_wudangfuchen_chenyuan`（招架 +3%→8%）；借丝 `ps_wudangfuchen_jiesi`（对缠绕目标 Z3 +5%→12%）；大成 `ps_wudangfuchen_dacheng`（10 重，招架后自身获 `bf_shouyi` 1 回合，每回合 1 次）。获取：L3；`observable:true`，上限 6 重。
+
+#### 5.5.2 黄阶一行总表（14 门）
+
+| ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或（原创扩展） |
+|---|---|---|---|---|---|---|---|
+| `sk_taihegong` | 太和功 | 武当 L1 / 游方道人 | 2 黄中·内功/心法·`nature:harmony` | 倚天、笑傲、侠客、书剑、飞狐、连城★、鸳鸯★ | IP `8+5+2×3+5×1.0=24`；`mer_renmai` | 无；L1 | **（原创扩展）** |
+| `sk_wudangchangquan` | 武当长拳 | 武当 L1 / 游方道人 | 1 黄下·拳脚/拳掌·阳 | 倚天、笑傲、侠客、书剑、飞狐、连城★、鸳鸯★ | 单体拳＋线2；Y1/Y2 | 无；L1 | 原著 |
+| `sk_zhenwujian` | 真武剑法 | 武当 L1 / 游方道人 | 3 黄上·兵器/剑·阳 | 倚天、笑傲、侠客、书剑、飞狐、连城★、鸳鸯★ | 单体剑＋架势＋线2；Y1/Y2 | 无；L1 | **（原创扩展）** |
+| `sk_wudangyunbu` | 武当云步 | 武当 L1 / 游方道人 | 3 黄上·轻功·阳 | 倚天、笑傲、侠客、书剑、飞狐、连城★、鸳鸯★ | 自身 `bf_piaohu`；满层 `QS(3)=45` | 无；L1 | **（原创扩展）** |
+| `sk_wudangtuna` | 武当吐纳 | 武当 L1 / 游方道人 | 1 黄下·内功/心法·`nature:yang` | 倚天、笑傲、侠客、书剑、飞狐、连城★、鸳鸯★ | IP `6+4+2×2+5×1.0=19`；`attrs {con:1,wil:1}`；`mer_dumai` | 无；L1 | **（原创扩展）** |
+| `sk_zhenwudaoyin` | 真武导引 | 武当 L1 | 2 黄中·内功/心法·`nature:harmony` | 倚天、笑傲、侠客、书剑、飞狐 | IP `8+5+2×3+5×1.0=24`；`attrs {con:1,wil:1,wis:1}`；`mer_renmai` | 无；L1 | **（原创扩展）** |
+| `sk_wudangrumenquan` | 武当入门拳 | 武当 L1 | 2 黄中·拳脚/拳掌·阳 | 倚天、笑傲、侠客、书剑、飞狐 | 单体直拳＋线2；Y1/Y2 | 无；L1 | **（原创扩展）** |
+| `sk_songxiqinna` | 松溪擒拿 | 武当 L1 | 3 黄上·拳脚/擒拿·调和 | 倚天、书剑 | 单体拿腕＋30% `bf_fengjingmai`；Y5 | 无；L1 | **（原创扩展命名）** |
+| `sk_wudangrumenjian` | 武当入门剑 | 武当 L1 | 3 黄上·兵器/剑·阳 | 倚天、笑傲、侠客、书剑、飞狐 | 单体正刺＋线2；Y1/Y2 | 无；L1 | **（原创扩展）** |
+| `sk_zhenwufuchen` | 真武拂尘 | 武当 L1 | 3 黄上·兵器/鞭索（拂尘）·调和 | 倚天、笑傲、侠客 | 单体 1–2 格＋30% `bf_jiansu`；Y5 | 无；L1 | **（原创扩展）** |
+| `sk_qixiachujian` | 七侠初剑 | 武当七侠门下 | 3 黄上·兵器/剑·阳 | 倚天 | 单体点剑＋相邻援护架势；Y1 | 无；L1 | **（原创扩展）** |
+| `sk_wudangxingbu` | 武当行步 | 武当 L1 | 2 黄中·轻功·调和 | 倚天、笑傲、侠客、书剑、飞狐 | 自身 `bf_jisu`；满层 `QS(2)=38` | 无；L1 | **（原创扩展）** |
+| `sk_songxibu` | 松溪步 | 武当 L1 | 3 黄上·轻功·调和 | 倚天、书剑 | 自身 `bf_piaohu`；满层 `QS(3)=45` | 无；L1 | **（原创扩展命名）** |
+| `sk_zhenwuzhuang` | 真武桩功 | 武当 L1 | 3 黄上·内功/心法·`nature:yang` | 倚天、笑傲、侠客 | IP `10+6+2×4+5×1.2=30`；`attrs {con:2,wil:2}`；`mer_dumai`；桩中运气为玄真心法前置 | 无；L1 | **（原创扩展）** |
+
 ### 5.6 进阶链与跨书界说明
 
 | 链 | 前置关系 |
 |---|---|
-| 内功（黄 → 玄 → 地） | 太和功（黄中）→ 4 重 → 两仪心法（玄中）→ 5 重 → 纯阳无极功（地中）；太和功 7 重亦可直入 |
-| 剑（黄 → 玄 / 地） | 真武剑法（黄上）→ 5 重 → 绕指柔剑（玄上）/ 柔云剑术（地下）/ 神门十三剑（地下）；太极剑（天中）张三丰直传 |
-| 拳脚 | 武当长拳（黄下）→ 4 重 → 绵掌 / 截脉手（玄中）；绵掌 4 重 → 太极推手（玄上）；绵掌 5 重 → 无极玄功拳（地下）；武当长拳 6 重 → 虎爪绝户手（地下）；太极拳（天中）张三丰直传（推手圆满降软门槛） |
-| 轻功 | 武当云步（黄上）→ 5 重 → 梯云纵（地中） |
+| 内功（黄 → 玄 → 地） | 武当吐纳 / 真武导引 / 太和功（黄）→ 武当养生功 / 两仪心法（玄中）→ 纯阳无极功（地中）；真武桩（黄上）→ 玄真心法（玄中）亦接纯阳支线 |
+| 剑（黄 → 玄 / 地） | 武当入门剑 / 七侠初剑 / 真武剑法（黄）→ 玄虚剑 / 绕指柔剑（玄）→ 柔云剑术 / 神门十三剑（地）；太极剑（天中）由张三丰直传 |
+| 拳脚 | 武当长拳 / 武当入门拳（黄）→ 绵掌 / 截脉手 / 凌虚掌（玄）；绵掌 4 重 → 太极推手（玄上），5 重 → 无极玄功拳（地下）；武当长拳 6 重 → 虎爪绝户手（地下）；太极拳（天中）由张三丰直传 |
+| 轻功 / 拂尘 | 武当行步（黄中）→ 两仪步（玄上）；武当云步（黄上）→ 梯云纵（地中）；真武拂尘（黄上）→ 武当拂尘（玄上） |
 
-- **全池与衰减**：倚天是武当唯一的"全池"书界；笑傲、侠客尚有 15–16 门（多为★延续），书剑 14 门（张召重、陆菲青一代），飞狐只余 10 门入门—中坚——武当池随时代收窄，与"武林衰败"曲线一致（基准 §2）。
+- **全池与衰减**：扩充后本组可习得池为倚天 38、笑傲 31（含太极两门 10 品残承）、侠客 28、书剑 24、飞狐 16；池仍随时代收窄，与“武林衰败”曲线一致（基准 §2）。
 - **太极残承**：太极拳、太极剑在笑傲为 `partial`、`lineageGrade 10`（02 §5.7、E9）：携带者经冲虚道长印证可恢复到天下；侠客、书剑、飞狐无再遇。
 - **中武装配示例（书剑，2/2/2 携带）**：携带太极拳、太极剑（外来压制后 11 → 9 地上）与主运内功各 1 门；本土补齐纯阳无极功、无极玄功拳、柔云剑术；本土再学梯云纵、芙蓉金针。
 - **低武★补位（连城 / 鸳鸯）**：太和功、武当长拳、绵掌、真武剑法、武当云步 5 门（黄下—玄中），只作 1/1/1 携带后的补位；须 chapters/09、11 采纳。
@@ -1467,7 +1661,7 @@
 - **强弱**：人少，谷主一人独强（具名 Boss，地中—地上）；弟子多为玄阶，以渔网阵取胜。
 - **情花**：情花毒 `bf_qinghuadu`（06 §8.5，品阶 8–9）由情花丛地形或情花刺物品施加（design/08、10），不由本组武学直接施加；解法绝情丹 `it_jueqingdan`、断肠草 `it_duanchangcao`（06 §4.6 `rx_yiduigongdu`）。
 
-### 6.2 武学总表（8 门）
+### 6.2 武学总表（15 门）
 
 | ID | 名称 | 大类/子类 | 品阶 | 内力性质 | wOut/wIn | 原生书界 | 获取方式 | 出处 |
 |---|---|---|---|---|---|---|---|---|
@@ -1479,6 +1673,13 @@
 | `sk_yinyangdaoluan` | 阴阳倒乱刃法 | 兵器/刀（刀剑互易） | 8 地中 | 调和 | 0.65/0.35 | 神雕 | 公孙止传授（L4）；剑室奇遇 | 原著 |
 | `sk_zaoheding` | 枣核钉 | 暗器 | 6 玄上 | 阴 | 0.60/0.40 | 神雕 | 裘千尺传授（谷底石窟线） | 原著 |
 | `sk_yuwangzhen` | 渔网阵 | 杂学/阵法（合击） | 5 玄中 | 阳 | 0.60/0.40 | 神雕 | 拜师（L2） | 原著 |
+| `sk_qinghuabufa` | 情花步法 | 轻功 | 5 玄中 | 阴 | 0.80/0.20 | 神雕 | 绝情谷 L2；情花丛试炼 | 原创扩展 |
+| `sk_jueqingdaoyin` | 绝情导引 | 内功/心法 | 2 黄中 | 阴 | 0/1 | 神雕 | 绝情谷 L1 | 原创扩展 |
+| `sk_gukouquan` | 谷口拳 | 拳脚/拳掌 | 1 黄下 | 阳 | 0.85/0.15 | 神雕 | 绝情谷 L1 | 原创扩展 |
+| `sk_jindaojichu` | 金刀基础 | 兵器/刀 | 3 黄上 | 阳 | 0.80/0.20 | 神雕 | 绝情谷 L1；剑室 | 原创扩展 |
+| `sk_heijianjichu` | 黑剑基础 | 兵器/剑 | 3 黄上 | 阴 | 0.70/0.30 | 神雕 | 绝情谷 L1；剑室 | 原创扩展 |
+| `sk_qinghuabici` | 情花避刺 | 暗器 | 3 黄上 | 阴 | 0.65/0.35 | 神雕 | 绝情谷 L1；情花圃劳作 | 原创扩展 |
+| `sk_gudibu` | 谷底步 | 轻功 | 3 黄上 | 调和 | 0.80/0.20 | 神雕 | 绝情谷 L1；谷底石窟 | 原创扩展 |
 
 ### 6.3 地阶条目卡
 
@@ -1606,19 +1807,40 @@
 
 | 招式 | ID | 层 | 范围 · 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 | 招架 |
 |---|---|---|---|---|---|---|---|---|---|
-| 撒网 | `mv_yuwangzhen_sawang` | 1 | 六角目标面：中心点＋六邻格（暂记 `aoe_hex_area r1`）· 1–3 | 0.80 | 7% | 3 | 1000 | 条件：另 1 名阵员距目标格 ≤ 3；`bf_chanrao`·承·50%·2；`bf_fengqinggong`·承·50%·2 | ✓ |
+| 撒网 | `mv_yuwangzhen_sawang` | 1 | `aoe_disk {r:1}`（中心点＋六邻格）· 1–3 | 0.95 | 7% | 3 | 1000 | 条件：另 1 名阵员距目标格 ≤ 3；`bf_chanrao`·承·50%·2；`bf_fengqinggong`·承·50%·2 | ✓ |
 | 收网 | `mv_yuwangzhen_shouwang` | 4 | `aoe_pull n1` · 1–3 | 1.25 | 7% | 2 | 1000 | 条件：目标缠绕中 | ✓ |
 | 刀网绞杀 | `mv_yuwangzhen_jiaosha` | 7 | `aoe_single` · 1–2 | 1.25 | 7% | 2 | 1000 | 条件：目标缠绕中；`bf_liuxue`·承·100%·3（2 层） | ✓ |
 
-- 核算：撒网 0.60 ×(1+0.36+0.05+0.15)= 0.94，−0.10 −0.05；收网 0.95 ×(1+0.24+0.05+0.15)= 1.37，−0.10；刀网绞杀 1.44 − 0.20。被动：`ps_yuwangzhen_wangmi` 网密（1 重，网中敌人"挣脱"缠绕成功率 −10% → −25%）；`ps_yuwangzhen_zhangwang` 张网（5 重，成阵时阵员获得 `bf_jieji` 2 回合）；`ps_yuwangzhen_dacheng` 大成（10 重，撒网冷却 −1）。
+- 核算：撒网 0.70 × (1+0.36+0.05+0.15) − 0.20 × 50% − 0.10 × 50% = 0.942，取 0.95；收网 0.95 ×(1+0.24+0.05+0.15)= 1.37，−0.10；刀网绞杀 1.44 − 0.20。被动：`ps_yuwangzhen_wangmi` 网密（1 重，网中敌人"挣脱"缠绕成功率 −10% → −25%）；`ps_yuwangzhen_zhangwang` 张网（5 重，成阵时阵员获得 `bf_jieji` 2 回合）；`ps_yuwangzhen_dacheng` 大成（10 重，撒网冷却 −1）。
+
+#### 6.4.1 AR-01 新增玄阶紧凑卡（1 门）
+
+**`sk_qinghuabufa` 情花步法**（5 玄中 · 轻功 · `nature:yin` · 0.80/0.20 · **原创扩展**）【玄阶预算抽样】
+- 字段：`origin:expanded`；`sect:sect_jueqinggu`；`sourceChapters:[ch03_shendiao]`；`reqs {attrs {agi:25,wis:22}, aptitude {apLight:25}, sect {id:sect_jueqinggu,rank:2}, prereq [{skill:sk_gudibu,layer:5}], hard:[sect,prereq]}`；`layerStats {eva:[2,5],resPoison:[2,5]}`（10）；满层 `Q_skill=QS(5)=65`；`setTags:[set_jueqing_gongsun]`。
+- 招式：避刺 `mv_qinghuabufa_bici`（1 重，自身，5%/cd2/800，`bf_piaohu`·承·2）；穿花 `mv_qinghuabufa_chuanhua`（4 重，单体突进 2，1.00，6%/cd1/1000，可招架）；回谷 `mv_qinghuabufa_huigu`（6 重，自身，6%/cd3/800，后撤 2 格并获 `bf_wenzhong`·承·1）。核算：穿花 `1×(1+0.12)−0.10=1.02≈1.00`；其余为位移 / 架势招式。
+- 被动：识花 `ps_qinghuabufa_shihua`（情花丛伤害与 Buff 施加率 −30%→60%）；错步 `ps_qinghuabufa_cuobu`（闪避后 `ct +50`，每回合 1 次）；大成 `ps_qinghuabufa_dacheng`（10 重，情花丛不再减速）。获取：L2，完成情花丛穿行试炼；`observable:true`，观摩上限 5 重。
+
+#### 6.4.2 黄阶一行总表（9 门）
+
+| ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或（原创扩展） |
+|---|---|---|---|---|---|---|---|
+| `sk_jueqingxinjue` | 绝情心诀 | 绝情谷 L1 | 3 黄上·内功/心法·`nature:yin` | 神雕 | IP `10+6+2×4+5×1.2=30`；`mer_yinwei` | 无；L1 | **（原创扩展）** |
+| `sk_zhezhishou` | 折枝手 | 绝情谷 L1 | 1 黄下·拳脚/擒拿·阴 | 神雕 | 单体拿手＋缠绕；Y1/Y5 | 无；L1 | **（原创扩展）** |
+| `sk_jueqingjian` | 绝情剑法 | 绝情谷 L1 | 3 黄上·兵器/剑·阴 | 神雕 | 单体剑＋扇形扫＋30% `bf_nanyu`；Y1/Y3/Y5 | 无；L1 | **（原创扩展）** |
+| `sk_jueqingdaoyin` | 绝情导引 | 绝情谷 L1 | 2 黄中·内功/心法·`nature:yin` | 神雕 | IP `8+5+2×3+5×1.0=24`；`attrs {con:1,wil:2}`；`mer_yinwei` | 无；L1 | **（原创扩展）** |
+| `sk_gukouquan` | 谷口拳 | 绝情谷 L1 | 1 黄下·拳脚/拳掌·阳 | 神雕 | 单体冲拳＋击退 1；Y1/Y5 | 无；L1 | **（原创扩展）** |
+| `sk_jindaojichu` | 金刀基础 | 绝情谷 L1 / 剑室 | 3 黄上·兵器/刀·阳 | 神雕 | 单体劈刀＋扇形扫；Y1/Y3；`setTags:[set_jueqing_gongsun]` | 无；L1 | **（原创扩展）** |
+| `sk_heijianjichu` | 黑剑基础 | 绝情谷 L1 / 剑室 | 3 黄上·兵器/剑·阴 | 神雕 | 单体刺＋线2；Y1/Y2；`setTags:[set_jueqing_gongsun]` | 无；L1 | **（原创扩展）** |
+| `sk_qinghuabici` | 情花避刺 | 绝情谷情花圃 | 3 黄上·暗器·阴 | 神雕 | 投掷情花枝，30% `bf_jiansu`；Y5（投射修正已计） | `skills {poi:10}`；L1 | **（原创扩展）**；不直接施加情花毒 |
+| `sk_gudibu` | 谷底步 | 绝情谷 L1 / 谷底石窟 | 3 黄上·轻功·调和 | 神雕 | 自身 `bf_wenzhong`；满层 `QS(3)=45` | 无；L1 | **（原创扩展）** |
 
 ### 6.5 进阶链
 
 | 链 | 前置关系 |
 |---|---|
-| 内功（黄 → 地） | 绝情心诀（黄上）→ 5 重 → 闭穴功（地下） |
-| 刀剑（黄 → 地） | 绝情剑法（黄上）→ 5 重 → 阴阳倒乱刃法（地中）；长须杖法（玄中）独立 |
-| 拳脚 | 折枝手（黄下）为谷中唯一拳脚（原著公孙一系以刀剑、闭穴为主） |
+| 内功（黄 → 地） | 绝情导引（黄中）→ 绝情心诀（黄上）→ 5 重 → 闭穴功（地下） |
+| 刀剑（黄 → 地） | 金刀基础＋黑剑基础（黄上）→ 绝情剑法（黄上）→ 5 重 → 阴阳倒乱刃法（地中）；长须杖法（玄中）独立 |
+| 拳脚 / 轻功 | 谷口拳 / 折枝手（黄下）为拳脚入门；谷底步（黄上）→ 5 重 → 情花步法（玄中） |
 | 裘千尺线 | 枣核钉（玄上）；闭穴功口授（maxLayer 8） |
 
 - **推荐装配（神雕中期，绝情谷线）**：主运闭穴功（注意罩门）＋辅运绝情心诀｜折枝手｜阴阳倒乱刃法（主手锯齿金刀、副手黑剑）、长须杖法（换杖时用）｜枣核钉｜渔网阵。
@@ -1634,12 +1856,12 @@
 | 全真·北斗（ID 沿用 05 §13.6） | `set_quanzhen_beidou` | `sk_xiantiangong`（天·内）、`sk_jinguanyusuo`（地·内）、`sk_quanzhenxinfa`（玄·内）、`sk_quanzhenjian`（玄·剑）、`sk_tongguijian`（地·剑）、`sk_tiangang`（天·杂）、`sk_dabeidouzhen`（玄·杂）、`eq_chongyangdaopao` 重阳道袍（原创扩展，建议地下·衣） | `attr:hit pct +5%`、`attr:parry pct +5%`（属性层） | 全真门派武学招式 Z3 +8% | 装配天罡北斗阵且已有 6 个实际阵员时补 1 个虚拟阵位；与 10 重同类效果取高、虚实最多 7，不改变 `minMembers/dissolveBelow`，不增加行动、CT、追击或反击；未装阵法则改为 `attr:parry pct +5%` | 每场开始获得 `bf_hutizhenqi`（hpMax 8%）；`bf_suoding` 施加率 +20% | 射雕中期：先天功（天中）＋全真心法（玄中）＋全真剑法（玄中）＋同归剑法（地下）= 4 件 | 携带先天功＋同归剑法＋道袍 = 3 件；鹿鼎★另可本土学全真心法 → 4 件 |
 | 古墓·玉女 | `set_gumu_yunv` | `sk_yunvxinjing`（天·内）、`sk_hanyuxinjue`（玄·内）、`sk_yunvjian`（玄·剑）、`sk_suxin`（天·剑）、`sk_meinvquan`（玄·拳）、`sk_jinlingsuo`（地·鞭）、`sk_gumuqinggong`（地·轻）、`sk_yufengzhen`（玄·暗）、`eq_jinlingsuo` 金铃索（建议地下·鞭） | `attr:eva pct +6%`、`attr:spd pct +3%` | 阴性招式 Z3 +6%；对使用全真武学的目标 Z5 +4%（与"克全真"被动取高） | 每场开始获得 `bf_youshi`（游势）2 回合 | 每 3 回合获得 `bf_canying` 1 层（上限 1） | 玉女心经（天下）＋玉女剑法（玄上）＋美女拳法（玄下）＋古墓轻功（地上）= 4 件 | 携带玉女心经＋美女拳法＋金铃索法＋金铃索装备 = 4 件（金铃索法须主手鞭） |
 | 神雕侠侣（杨过 × 小龙女） | `set_shendiao_xialv` | `sk_suxin`（天·剑）、`sk_anran`（天·掌）、`sk_xuantie`（天·剑）、`sk_yunvxinjing`（天·内）、`sk_yunvjian`（玄·剑）、`sk_quanzhenjian`（玄·剑）、`eq_junzijian` 君子剑、`eq_shunvjian` 淑女剑（绝情谷剑室所出，原著；建议地中·剑） | 与羁绊 ≥ 3 的队友相距 ≤ 2 时双方招式 Z3 +6% | 素心独练系数 +0.1；自身情花毒"动情"发作伤害 −30% | 本方羁绊队友倒地时自身获得 `bf_ruiyi` 3 回合、气势 +30 | （须含君子剑或淑女剑）合璧状态下双方 Z4 +10% | 三门天中＋天下内功＋地中双剑：天、地两阶混搭 | **低武可满 5 件**：携带玉女心经＋黯然销魂掌＋玉女素心剑法（或玄铁剑法）＋君子剑＋淑女剑——本组最"低武友好"的套装 |
-| 独孤剑冢 | `set_dugu_jianzhong` | `sk_xuantie`（天·剑）、`sk_lijianyi` / `sk_ruanjianyi`（玄·杂）、`sk_zhongjianyi`（地·杂）、`sk_mujianyi`（地·杂）、`eq_xuantiejian`（天中·剑，基准 §14）、`sk_dugu9`（天上·剑，五岳组，需其 `setTags` 同步） | 剑法招式 Z2 防御穿透 +6% | 剑法 `attr:crit flat +8`；持重剑时击退 +1 | 剑法招式被招架时 Z9 招架减免 −30% | 剑法招式 Z3 +10%；独孤九剑 `bf_duguyi` 战斗开始即有 2 层（笑傲起） | 神雕：玄铁剑法（天中）＋玄铁重剑（天中装备）＋重剑意（地中）＋木剑意（地上）＋利剑意（玄上）= 5 件 | 剑意为神雕杂学、不可携带：神雕外至多 3 件；低武只有 1 个兵器携带位 → 玄铁剑法（或独孤九剑）＋玄铁重剑 = **2 件**；笑傲（2/2/2）可 3 件 |
+| 独孤剑冢 | `set_dugu_jianzhong` | `sk_xuantie`（天·剑）、`sk_lijianyi` / `sk_ruanjianyi`（玄·杂）、`sk_zhongjianyi`（地·杂）、`sk_mujianyi`（地·杂）、`sk_haichaolianjian`（玄·剑）、`sk_jianzhongtuna`（黄·内）、`eq_xuantiejian`（天中·剑，基准 §14）、`sk_dugu9`（天上·剑，五岳组，需其 `setTags` 同步） | 剑法招式 Z2 防御穿透 +6% | 剑法 `attr:crit flat +8`；持重剑时击退 +1 | 剑法招式被招架时 Z9 招架减免 −30% | 剑法招式 Z3 +10%；独孤九剑 `bf_duguyi` 战斗开始即有 2 层（笑傲起） | 神雕：玄铁剑法（天中）＋玄铁重剑（天中装备）＋重剑意（地中）＋海潮炼剑（玄上）＋剑冢吐纳（黄中）= 5 件 | 剑意为神雕杂学、不可携带：神雕外至多 3 件；低武只有 1 个兵器携带位 → 玄铁剑法（或独孤九剑）＋玄铁重剑 = **2 件**；笑傲（2/2/2）可 3 件 |
 | 武当·太极 | `set_wudang_taiji` | `sk_taijiquan`（天·拳）、`sk_taijijian`（天·剑）、`sk_liangyixinfa`（玄·内）、`sk_taijituishou`（玄·擒拿）、`sk_mianzhang`（玄·掌）、`sk_tiyunzong`（地·轻） | `attr:parry pct +6%` | 调和招式 Z5 +4%；`attr:counter pp +5` | 招架成功时 30% 使攻击者获得 `bf_shiheng`（与太极拳被动取高）；Z4 +6% | 每场开始获得 `bf_jingshi` 1 层与 `bf_yuanzhuan` 3 回合 | 太极拳 / 太极剑（天中）＋两仪心法（玄中）＋太极推手（玄上）＋梯云纵（地中） | 中武：笑傲残承或携带＋本土两仪、推手、绵掌 → 5 件；低武：携带太极拳＋太极剑＋两仪心法 = 3 件，连城★/鸳鸯★本土绵掌 → 4 件 |
 | 武当·真武（七侠） | `set_wudang_zhenwu` | `sk_chunyangwuji`（地·内）、`sk_wudangjiuyang`（地·内，倚天组已登记本套 `setTags`）、`sk_huzhaojuehushou`（地·擒拿）、`sk_wujixuangongquan`（地·拳）、`sk_shenmen13`（地·剑）、`sk_yitiantulonggong`（地·奇门）、`sk_zhenwuqijie`（地·杂） | 武当武学招式 `attr:hit pct +5%` | 阳性招式 Z3 +6% | 装配真武七截阵且已有 6 个实际阵员时补 1 个虚拟阵位；与 10 重同类效果取高、虚实最多 7，不改变四人门槛且不增加行动、CT、追击或反击；未装阵法则改为 Z4 +5% | 每场开始获得 `bf_hutizhenqi`（hpMax 10%）；本方施加 `bf_jiaoxie` 概率 +10% | 纯地阶套装（地中 ×4、地下 ×3），用作中武书界的"本土主力" | 中武：笑傲★/侠客★本土可学除倚天屠龙功、九阳功外全部 → 5 件；低武：携带纯阳无极功＋虎爪绝户手＋神门十三剑 = 3 件 |
 | 绵里针（陆菲青 · 书剑） | `set_shujian_mianlizhen` | `sk_mianzhang`（玄·掌）、`sk_furongjinzhen`（玄·暗）、`sk_rouyunjian`（地·剑）、`sk_tiyunzong`（地·轻） | `attr:seal pp +5` | 拳掌招式命中后，下一次暗器招式获得 `bf_bizhong`（必中 ×1；每 3 回合 1 次） | 剑法与暗器对被点穴目标 Z3 +10% | — | 玄中＋玄上＋地下＋地中：玄、地混搭的中武套装 | 书剑本土全员 → 4 件；低武：携带绵掌＋柔云剑术 = 2 件（暗器、轻功不可携带且无低武原生） |
 | 赤练仙子（李莫愁） | `set_chilian_xianzi` | `sk_chilianshenzhang`（地·掌）、`sk_bingpoyinzhen`（地·暗）、`sk_sanwusanbushou`（玄·拂尘）、`sk_wudumichuan`（玄·毒）、`sk_gumuqinggong`（地·轻）、`eq_chilianfuchen` 赤练拂尘（原创扩展命名，建议地下·鞭） | 毒类与心神类效果 `attr:effHit pct +6%` | 对中毒目标 Z3 +8% | 本方施加中毒时每次额外 +1 层；`morality ≤ −20` 时 `attr:crit flat +5` | — | 地下 ×2＋玄上 ×2＋地上：邪派玄地混搭 | 携带赤练神掌＋三无三不手＋赤练拂尘 = 3 件（毒术、暗器、轻功不可携带） |
-| 绝情谷·公孙 | `set_jueqing_gongsun` | `sk_yinyangdaoluan`（地·刀）、`sk_bixuegong`（地·内）、`sk_jueqingxinjue`（黄·内）、`sk_yuwangzhen`（玄·阵）、`eq_juchijindao` 锯齿金刀、`eq_heijian` 黑剑（建议地中·刀 / 剑；名称**（待考：《神雕侠侣》公孙止兵刃描写）**） | `attr:resSeal pp +8` | 主副手互换后下一招获得 `bf_bizhong`（每 3 回合 1 次） | （须含金刀或黑剑）敌方破 X 对自身效果 ×0.5（与“倒乱”取高不叠加）；Z3 +8% | — | 地中＋地下＋黄上＋装备：黄、地跨阶 | **低武可满 4 件**：携带闭穴功＋阴阳倒乱刃法＋锯齿金刀＋黑剑 |
+| 绝情谷·公孙 | `set_jueqing_gongsun` | `sk_yinyangdaoluan`（地·刀）、`sk_bixuegong`（地·内）、`sk_jueqingxinjue`（黄·内）、`sk_yuwangzhen`（玄·阵）、`sk_qinghuabufa`（玄·轻）、`sk_jindaojichu`（黄·刀）、`sk_heijianjichu`（黄·剑）、`eq_juchijindao` 锯齿金刀、`eq_heijian` 黑剑（建议地中·刀 / 剑；名称**（待考：《神雕侠侣》公孙止兵刃描写）**） | `attr:resSeal pp +8` | 主副手互换后下一招获得 `bf_bizhong`（每 3 回合 1 次） | （须含金刀或黑剑）敌方破 X 对自身效果 ×0.5（与“倒乱”取高不叠加）；Z3 +8% | — | 地中＋地下＋玄中＋黄上＋装备：黄、玄、地跨阶 | **低武可满 4 件**：携带闭穴功＋阴阳倒乱刃法＋锯齿金刀＋黑剑；神雕原生可用基础刀剑继续凑件 |
 
 **设计要点**
 
@@ -1651,86 +1873,135 @@
 
 ## 8. 本组统计
 
-> 统计口径：本组 **66 门**（含 05 §13.6 已定义的全真剑法 1 门；本文新定义 65 门）；武当九阳功为倚天组定义，只引用、不计。
+> 统计口径：本组按五张武学总表的唯一 ID 计 **116 门**，含 `design/05` §13.6 唯一定义、本文只引用的全真剑法 `sk_quanzhenjian`；武当九阳功 `sk_wudangjiuyang` 由倚天组定义，只引用、不计。本文件实际定义 115 门。C3 受控配额为 `8/18/44/46=116`，本轮只新增玄 19、黄 31，不新增天、地。
+>
+> **预算口径说明**：本轮新增招式一律按 `design/05` §4.2 现行公式，以 `cost_buff × 施加率` 扣一次；持续回合只采用 `design/06` 条目的默认持续，不再乘入成本。全文未发现沿用“Buff 成本 × 施加率 × 持续回合”的新增条目，故无须向 F2 提交旧口径重算清单；若 06 后续修改默认持续或价值，仍按 §11 D-2 统一回归。
 
 ### 8.1 门派 × 品阶（12 级）
 
 | 门派 | 1 黄下 | 2 黄中 | 3 黄上 | 4 玄下 | 5 玄中 | 6 玄上 | 7 地下 | 8 地中 | 9 地上 | 10 天下 | 11 天中 | 12 天上 | 合计 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 全真教 | 0 | 2 | 2 | 1 | 4 | 2 | 1 | 1 | 0 | 1 | 1 | 0 | **15** |
-| 古墓派 | 0 | 1 | 3 | 1 | 1 | 5 | 3 | 0 | 1 | 1 | 0 | 0 | **16** |
-| 杨过传承 · 剑冢 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 1 | 1 | 0 | 3 | 0 | **7** |
-| 武当派 | 1 | 1 | 2 | 0 | 3 | 3 | 4 | 4 | 0 | 0 | 2 | 0 | **20** |
-| 绝情谷 | 1 | 0 | 2 | 0 | 2 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | **8** |
-| **合计** | **2** | **4** | **9** | **2** | **10** | **13** | **9** | **7** | **2** | **2** | **6** | **0** | **66** |
-| 大阶小计 | | 黄 15（22.7%） | | | 玄 25（37.9%） | | | 地 18（27.3%） | | | 天 8（12.1%） | | |
+| 全真教 | 0 | 4 | 7 | 2 | 5 | 5 | 1 | 1 | 0 | 1 | 1 | 0 | **27** |
+| 古墓派 | 1 | 3 | 6 | 2 | 3 | 7 | 3 | 0 | 1 | 1 | 0 | 0 | **27** |
+| 杨过传承 · 剑冢 | 0 | 1 | 1 | 1 | 0 | 3 | 0 | 1 | 1 | 0 | 3 | 0 | **11** |
+| 武当派 | 2 | 4 | 8 | 0 | 6 | 6 | 4 | 4 | 0 | 0 | 2 | 0 | **36** |
+| 绝情谷 | 2 | 1 | 6 | 0 | 3 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | **15** |
+| **合计** | **5** | **13** | **28** | **5** | **17** | **22** | **9** | **7** | **2** | **2** | **6** | **0** | **116** |
+| 大阶小计 | | 黄 46（39.7%） | | | 玄 44（37.9%） | | | 地 18（15.5%） | | | 天 8（6.9%） | | |
 
 - 天级 8 门与基准 §13 逐条一致：先天功（天中）、天罡北斗阵（天下）、玉女心经（天下）、黯然销魂掌 / 玄铁剑法 / 玉女素心剑法（天中）、太极拳 / 太极剑（天中）；**未新增天级**。
-- 本图鉴现状为天 / 地 / 玄 / 黄 = 8 / 18 / 25 / 15，仅是 CXd 扩充前快照，不满足 AR-01 的图鉴内约 1:3:9:9 目标；本任务不增补条目。后续 CXd 应主要补玄、黄阶，并由 05 §14 在全局约 1,100–1,150 门口径下统筹（§11 D-11）。
+- 调整前为 `8/18/25/15=66`，本轮增加 `0/0/19/31=50`，调整后精确命中 `design/05` §14.5 给本册的受控目标 `8/18/44/46=116`，四阶偏差均为 0。
+- 若只对照以 8 门天级机械推导的名义值 `8/24/72/72`，地 / 玄 / 黄分别为 `−6/24=−25.00%`、`−28/72=−38.89%`、`−26/72=−36.11%`。这是“冻结既有天、地且全目录总闸为 1,138”的受控分配结果，不得再自行补门数。
 
 ### 8.2 按类别 × 大阶
 
 | 大类 | 子类 | 天 | 地 | 玄 | 黄 | 合计 |
 |---|---|---|---|---|---|---|
-| 内功 | 心法 | 2 | 3 | 3 | 4 | **12** |
-| 拳脚 | 拳掌 | 2 | 2 | 4 | 3 | 11 |
+| 内功 | 心法 | 2 | 3 | 7 | 11 | **23** |
+| 拳脚 | 拳掌 | 2 | 2 | 7 | 6 | 17 |
 | | 指法 | 0 | 0 | 1 | 0 | 1 |
 | | 腿法 | 0 | 0 | 0 | 1 | 1 |
-| | 擒拿 | 0 | 1 | 2 | 1 | 4 |
-| | 小计 | 2 | 3 | 7 | 5 | **17** |
-| 兵器 | 剑 | 3 | 3 | 3 | 4 | 13 |
-| | 刀 | 0 | 1 | 0 | 0 | 1 |
+| | 擒拿 | 0 | 1 | 2 | 4 | 7 |
+| | 小计 | 2 | 3 | 10 | 11 | **26** |
+| 兵器 | 剑 | 3 | 3 | 6 | 9 | 21 |
+| | 刀 | 0 | 1 | 0 | 1 | 2 |
 | | 棍杖 | 0 | 0 | 1 | 0 | 1 |
 | | 枪 | 0 | 0 | 0 | 0 | 0 |
-| | 鞭索 | 0 | 1 | 1 | 0 | 2 |
+| | 鞭索 | 0 | 1 | 4 | 3 | 8 |
 | | 奇门 | 0 | 1 | 0 | 0 | 1 |
-| | 小计 | 3 | 6 | 5 | 4 | **18** |
-| 轻功 | | 0 | 2 | 1 | 2 | **5** |
-| 暗器 | | 0 | 1 | 3 | 0 | **4** |
-| 杂学 | 阵法 4、心神 4、驭兽 1、毒 1 | 1 | 3 | 6 | 0 | **10** |
-| **合计** | | **8** | **18** | **25** | **15** | **66** |
+| | 小计 | 3 | 6 | 11 | 13 | **33** |
+| 轻功 | — | 0 | 2 | 6 | 8 | **16** |
+| 暗器 | — | 0 | 1 | 3 | 1 | **5** |
+| 杂学 | 阵法 | 1 | 1 | 2 | 1 | 5 |
+| | 心神 | 0 | 2 | 2 | 0 | 4 |
+| | 驭兽 | 0 | 0 | 2 | 1 | 3 |
+| | 毒 | 0 | 0 | 1 | 0 | 1 |
+| | 小计 | 1 | 3 | 7 | 2 | **13** |
+| **合计** | | **8** | **18** | **44** | **46** | **116** |
 
-> 注：拳掌——天：黯然销魂掌、太极拳；地：赤练神掌、无极玄功拳；玄：昊天掌、三花聚顶掌、美女拳法、绵掌；黄：三清掌、天罗地网势、武当长拳。剑——天：玄铁剑法、玉女素心剑法、太极剑；地：同归剑法、柔云剑术、神门十三剑；玄：全真剑法、玉女剑法、绕指柔剑；黄：终南剑法、寒潭剑法、真武剑法、绝情剑法。阴阳倒乱刃法记在刀；金铃索法（地）、三无三不手（玄）记在鞭索；倚天屠龙功记在奇门。
+本轮 50 门新增量按类别为：内功 11、拳脚 9、兵器 15、轻功 11、暗器 1、杂学 3，合计 `11+9+15+11+1+3=50`。23 门内功的 `nature` 分布为阳 8、阴 8、调和 7，均逐门显式登记。
 
 ### 8.3 按原生书界
 
 **首现书界**（该武学第一个原生书界）
 
-| 书界 | 境界 | 天 | 地 | 玄 | 黄 | 首现合计 | 对照 05 §14.4 该书界首现目标（全组合计） |
+| 书界 | 境界 | 天 | 地 | 玄 | 黄 | 首现合计 | 本轮首现增量说明 |
 |---|---|---|---|---|---|---|---|
-| 射雕 `ch02` | 高 | 2 | 2 | 6 | 4 | 14 | 天 11 / 地 16 / 玄 20 / 黄 18 = 65 |
-| 神雕 `ch03` | 高 | 4 | 8 | 13 | 7 | 32 | 05 §14.4 旧快照：天 5 / 地 14 / 玄 16 / 黄 12 = 47；AR-01 已覆盖旧配额，待 C3/CXd 重算（§11 D-11） |
-| 倚天 `ch04` | 高 | 2 | 6 | 5 | 4 | 17 | 天 8 / 地 16 / 玄 18 / 黄 14 = 56 |
-| 书剑 `ch12` | 中 | 0 | 2 | 1 | 0 | 3 | 天 2 / 地 6 / 玄 10 / 黄 12 = 30 |
-| **合计** | | **8** | **18** | **25** | **15** | **66** | |
+| 射雕 `ch02` | 高 | 2 | 2 | 11 | 9 | 24 | 本轮新增玄 5、黄 5；全真新入门链 |
+| 神雕 `ch03` | 高 | 4 | 8 | 21 | 21 | 54 | 本轮新增玄 8、黄 14；古墓、剑冢、绝情谷为主 |
+| 倚天 `ch04` | 高 | 2 | 6 | 11 | 14 | 33 | 本轮新增玄 6、黄 10；武当新入门链 |
+| 书剑 `ch12` | 中 | 0 | 2 | 1 | 0 | 3 | 原有首现；本轮无新增 |
+| 鹿鼎 `ch08`★ | 低 | 0 | 0 | 0 | 2 | 2 | 白云观心法、龙门剑式首现；均为原创扩展 |
+| **合计** | | **8** | **18** | **44** | **46** | **116** | 本轮首现增量 `0/0/19/31`，与 C3 配额闭合 |
 
 **可习得池**（含跨书界复现；★为原创扩展延伸，须 chapters/ 采纳）
 
-| 书界 | 境界 | 内 | 拳脚 | 兵器 | 轻 | 暗 | 杂 | 合计 | 其中天 / 地 / 玄 / 黄 |
-|---|---|---|---|---|---|---|---|---|---|
-| 射雕 | 高 | 4 | 5 | 3 | 1 | 0 | 1 | 14 | 2 / 2 / 6 / 4 |
-| 神雕 | 高 | 8 | 10 | 12 | 3 | 3 | 9 | 45 | 5 / 10 / 19 / 11 |
-| 倚天 | 高 | 3 ＋1★ | 6 ＋2★ | 5 ＋1★ | 2 ＋1★ | 0 | 1 | 17 ＋5★ | 2 / 6 / 5 / 4；★：地 1、玄 2、黄 2 |
-| 笑傲 | 中 | 3 | 6 | 4 | 2 | 0 | 1 | 16（＋太极拳 / 剑残承） | 0 / 7 / 5 / 4 |
-| 侠客 | 中 | 3 | 6 | 3 | 2 | 0 | 1 | 15 | 0 / 7 / 4 / 4 |
-| 书剑 | 中 | 3 | 5 | 3 | 2 | 1 | 0 | 14 | 0 / 5 / 5 / 4 |
-| 飞狐 | 中 | 2 | 3 | 2 | 2 | 1 | 0 | 10 | 0 / 2 / 4 / 4 |
-| 鹿鼎★ | 低 | 2 | 1 | 1 | 0 | 0 | 0 | 4 | 0 / 0 / 1 / 3 |
-| 连城★、鸳鸯★（各） | 低 | 1 | 2 | 1 | 1 | 0 | 0 | 5 | 0 / 0 / 1 / 4 |
+| 书界 | 境界 | 内 | 拳脚 | 兵器 | 轻 | 暗 | 杂 | 合计 | 其中天 / 地 / 玄 / 黄 | 四阶占比 | 局部校核 |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---|---|---|
+| 射雕 | 高 | 5 | 8 | 6 | 3 | 0 | 2 | 24 | 2 / 2 / 11 / 9 | 8.33 / 8.33 / 45.83 / 37.50% | 局部池不在高武目标区间 |
+| 神雕 | 高 | 13 | 16 | 21 | 11 | 4 | 12 | 77 | 5 / 10 / 32 / 30 | 6.49 / 12.99 / 41.56 / 38.96% | 局部池不在高武目标区间 |
+| 倚天 | 高 | 9 | 11 | 11 | 6 | 0 | 1 | 38 | 2 / 7 / 13 / 16 | 5.26 / 18.42 / 34.21 / 42.11% | 玄命中；其余须全目录合并 |
+| 笑傲 | 中 | 8 | 9 | 9 | 4 | 0 | 1 | 31 | 2 / 7 / 11 / 11 | 6.45 / 22.58 / 35.48 / 35.48% | 天列两门均为 10 品残承，不计完整原生天级；局部池不单验 |
+| 侠客 | 中 | 8 | 8 | 7 | 4 | 0 | 1 | 28 | 0 / 7 / 10 / 11 | 0 / 25.00 / 35.71 / 39.29% | 玄、黄命中；天、地须全目录合并 |
+| 书剑 | 中 | 6 | 8 | 4 | 5 | 1 | 0 | 24 | 0 / 5 / 8 / 11 | 0 / 20.83 / 33.33 / 45.83% | 玄命中；其余须全目录合并 |
+| 飞狐 | 中 | 5 | 4 | 3 | 3 | 1 | 0 | 16 | 0 / 2 / 5 / 9 | 0 / 12.50 / 31.25 / 56.25% | 局部池不在中武目标区间 |
+| 鹿鼎★ | 低 | 3 | 3 | 3 | 1 | 0 | 0 | 10 | 0 / 0 / 1 / 9 | 0 / 0 / 10.00 / 90.00% | 局部入门补位；须全目录合并 |
+| 连城★、鸳鸯★（各） | 低 | 2 | 2 | 1 | 1 | 0 | 0 | 6 | 0 / 0 / 1 / 5 | 0 / 0 / 16.67 / 83.33% | 本组不足，由 `ALL14` 补位 |
 
-> 神雕行"天 5"含天罡北斗阵（神雕为 `recall`，02 §5.7；不计则为 4）；"地 10"含重剑意、木剑意。
+> 目标区间引用 `design/05` §14.4：高武 `10–15/20–25/30–35/30–35%`，中武 `2–6/15–20/33–38/38–45%`，低武 `0–5/8–12/33–38/48–55%`。上表只校核本图鉴对各书界的**局部贡献**，不能替代全目录唯一 ID 并集；扩充改变了十个书界的分子与分母，须由 F2 / 章节在所有 CX 落盘后重算。神雕“天 5”含回想来源的天罡北斗阵；笑傲两门太极残承另存 `lineageGrade:10`，按可习得池列入天阶栏，但完整原生天级池核对时必须剔除。
 
-### 8.4 其他自检
+### 8.4 境界覆盖与装配可行性
+
+`design/05` §14.6 #4 要求每个正式书界有非互斥、前置闭合的本土内功 / 拳脚 / 兵器各至少 3 门，并且兵器至少 3 门同一子类。下表先核本组，再引用 `skills-general` §11.1 的 `ALL14` 本土底座；`ALL14` 是各书界本地可学来源，不是跨书携带。
+
+| 书界 | 本组内 / 拳 / 兵 | 本组同类兵器证明 | 缺口补位 | 结论 |
+|---|---:|---|---|---|
+| 天龙 | 0 / 0 / 0 | — | `ALL14` 三内功、三拳脚、三剑链 | 全目录通过；本组不贡献 |
+| 射雕 | 5 / 8 / 6 | 终南剑法、全真剑法、同归剑法（另有通玄剑） | 无 | 本组独立通过 |
+| 神雕 | 13 / 16 / 21 | 终南剑法、全真剑法、玉女剑法等 | 无 | 本组独立通过 |
+| 倚天 | 9 / 11 / 11 | 真武剑法、绕指柔剑、神门十三剑等 | 无 | 本组独立通过 |
+| 笑傲 | 8 / 9 / 9 | 真武剑法、柔云剑术、绕指柔剑等 | 无 | 本组独立通过（覆盖证明不靠太极残承） |
+| 侠客 | 8 / 8 / 7 | 真武剑法、柔云剑术、神门十三剑等 | 无 | 本组独立通过 |
+| 碧血 | 0 / 0 / 0 | — | `ALL14` 三内功、三拳脚、三剑链 | 全目录通过；本组不贡献 |
+| 鹿鼎 | 3 / 3 / 3 | 本组为两剑一拂尘，未达同类 3 门 | `ALL14` 三剑链 | 三大类本组通过；同类兵器由通行池补齐 |
+| 连城 | 2 / 2 / 1 | 本组仅真武剑法 | `ALL14` 三内功、三拳脚、三剑链 | 全目录通过；本组单独不足 |
+| 白马 | 0 / 0 / 0 | — | `ALL14` 三内功、三拳脚、三剑链 | 全目录通过；本组不贡献 |
+| 鸳鸯 | 2 / 2 / 1 | 本组仅真武剑法 | `ALL14` 三内功、三拳脚、三剑链 | 全目录通过；本组单独不足 |
+| 书剑 | 6 / 8 / 4 | 真武剑法、柔云剑术、神门十三剑、武当入门剑 | 无 | 本组独立通过 |
+| 飞狐 | 5 / 4 / 3 | 真武剑法、柔云剑术、武当入门剑 | 无 | 本组独立通过 |
+| 雪山 | 0 / 0 / 0 | — | `ALL14` 三内功、三拳脚、三剑链 | 全目录通过；本组不贡献 |
+
+装配槽证明沿 `skills-general` §11.1：三门内功可填主运 1＋辅运 2，三门拳脚可填 3 个拳脚栏，三门同类剑法共享主武器且可填 3 个兵器栏。目录层面的 ID 数与同类武器已闭合；章节仍须保证至少三条来源在同一周目非互斥且前置可达。
+
+### 8.5 黄阶整体预算核对
+
+46 门黄阶已全部进入各门派的八字段一行总表；其中原有 15 门、新增 31 门。表中 Y1–Y5 是下列 `design/05` §4.2 现行预算模板，不是省略预算：
+
+| 模板 | 公式 | 取值与适用 |
+|---|---|---|
+| Y1 标准单体 | `AF 1.00 × (1+0)` | 5% MPREF、cd0、收招1000、可招架、无附带，取 `1.00` |
+| Y2 线 2 | `AF 0.90 × (1+cd1 0.12)=1.008` | 取 `1.00`；若无冷却则取 `0.90` |
+| Y3 六格周身 / 扇扫 | `AF 0.75 × (1+cd1 0.12)=0.84` | 取 `0.85` |
+| Y4 突进 / 绕背 | `1.00×(1+内力+1% 0.05+cd1 0.12)−位移0.10=1.07` | 取 `1.05` |
+| Y5 轻减益 / 击退 | cd0：`1.00−0.03~0.06=0.94~0.97`；cd1：`1.12−0.03~0.06=1.06~1.09` | 依 30% 轻减益或击退 1 的实际成本取 `0.95` / `1.05` / `1.10`，误差 ≤0.05 |
+| 支援 / 纯位移 | `power:0` | 单次位移至多 2 格、增益默认不超过 2 回合；不伪配伤害倍率 |
+| 黄阶内功 | 黄下 `6+4+2×2+5×1=19`；黄中 `8+5+2×3+5×1=24`；黄上 `10+6+2×4+5×1.2=30` | 11 门内功逐门命中对应 IP，且均显式写 `nature` |
+| 黄阶轻功 | `QS(1/2/3)=32/38/45` | 8 门均不越本书界轻功上限 |
+
+所有黄阶无绝招，`layerStats` 入库总量上限为 6。Y5 的持续期采用 06 默认值；不得把持续回合再次乘入 `cost_buff`。
+
+### 8.6 其他自检
 
 | 项 | 结果 |
 |---|---|
-| 招式 | 本文新定义 250 个（另引用全真剑法 4 个）；绝招 30 个：天级 8、地阶 18 门全部配有绝招，玄阶 4 门配可选绝招，黄阶无绝招（05 §15 V9）；核心武学首个绝招均在第 7 重（02 P11） |
-| 被动 | 本文新定义 215 个（`ps_` 前缀）；黄阶内功无招式，以 3 个被动补偿（05 §3.5 V7 预期告警 4 条：吐纳诀、古墓心法、太和功、绝情心诀；玄阶 3 条多 1 被动：寒玉心诀、玉女剑法、五毒秘传） |
-| Buff 引用 | 招式与被动共引用 81 个 `bf_` ID，全部为 06 目录已有条目（06 §8.1–§8.11，逐一核对）；未自定义 Buff |
-| 内功贡献 | 12 门内功 IP 全部等于 05 §5.5 对应品阶预算，单项偏差 ≤ ±30% |
+| 招式 | 本文新定义 303 个 `mv_`（旧 250＋新增玄阶代表式 53），另引用全真剑法 4 个；本轮黄阶按 AR-01 一行卡，不创建招式 ID；原有绝招数不变 |
+| 被动 | 本文新定义 268 个 `ps_`（旧 215＋新增玄阶 53）；黄阶新增内容以数据模板约束，不在一行卡虚造被动 ID |
+| 玄阶预算抽样 | 新增 19 门玄阶中 8 门标“玄阶预算抽样”并列公式，`8÷19=42.11%≥30%`；其余紧凑卡仍给耗内、冷却、收招与附带，导出时全部走同一公式 lint |
+| Buff 引用 | 活跃规则共引用 82 个 06 已有 `bf_` ID；本轮只新增既有 `bf_jisu` 的引用，未创建 Buff；`bf_ID` 为记法占位，撤回名只出现在禁止性说明 |
+| 内功贡献 | 23 门内功 IP 全部命中 05 §5.5 对应品阶预算；`nature` 为阳 8 / 阴 8 / 调和 7 |
 | layerStats | 按大阶上限（黄 6 / 玄 10 / 地 15 / 天 20）逐条校验 |
 | 代价 / 合击 | 地阶代价型 1（同归剑法）；另有轻代价 2（闭穴功罩门、虎爪绝户手门规）；地阶合击 1（真武七截阵）——均在 05 §14.6 全局上限内 |
-| 原创扩展 | 原创扩展武学 17 门（全真 5、古墓 2、武当 6、绝情谷 4，入库时 `description` 须含"原创扩展"，05 §15 V17）＋剑冢四意 4 门（碑文原著、机制原创）；原著武学中招名为原创者均逐条标注 |
+| 原创扩展 | 本轮新增 50 门均在总表和紧凑卡 / 一行表标明“原创扩展”或“取材于原著情节、名称与机制原创”；没有把新造招名伪装成原著引文 |
 
 ---
 
@@ -1748,14 +2019,14 @@
 
 | 类别 | 数量 | 说明 |
 |---|---|---|
-| 武学 `sk_` | **65** | 全真 14（除 05 已定义的 `sk_quanzhenjian`）、古墓 16、杨过传承 7、武当 20、绝情谷 8；另引用 `sk_quanzhenjian`（05）、`sk_wudangjiuyang`（倚天组）等跨组 ID 不计 |
-| 招式 `mv_` | **250** | 其中绝招 30；原著定数例外：黯然销魂掌 18（17 招＋绝招） |
-| 被动 `ps_` | **215** | 前缀按 05 §16 P-4 |
+| 武学 `sk_` | **115 个本文定义；116 门本组计数** | 本文定义：全真 26（另含 05 定义的 `sk_quanzhenjian` 1）、古墓 27、杨过传承 11、武当 36、绝情谷 15；另引用 `sk_wudangjiuyang` 等跨组 ID 不计。本轮新增 `sk_` 恰 50 个 |
+| 招式 `mv_` | **303** | 旧稿 250＋本轮玄阶紧凑卡 53；另引用全真剑法 4 个；本轮黄阶采用模板一行卡，不创建招式 ID |
+| 被动 `ps_` | **268** | 旧稿 215＋本轮玄阶紧凑卡 53；前缀按 05 §16 P-4 |
 | 套装候选 `set_` | **9**（新 8 ＋沿用 1） | 新：`set_gumu_yunv` `set_shendiao_xialv` `set_dugu_jianzhong` `set_wudang_taiji` `set_wudang_zhenwu` `set_shujian_mianlizhen` `set_chilian_xianzi` `set_jueqing_gongsun`；沿用 05：`set_quanzhen_beidou` |
 | 新提议 Buff | **0** | C23 已解决：不登记 `bf_zhenshi`、`bf_cuidu`。前者由阵法运行状态投影 UI“阵中”，后者复用 `design/10` §6.5 `poisonCoat` 与 `bf_zhongdu` / `bf_judu`；两串旧名只可出现在迁移/裁定说明，不得进入 `applyBuff` |
 | 装备（建议 ID，design/10 定级） | 7 | `eq_chongyangdaopao` 重阳道袍（原创扩展）、`eq_jinlingsuo` 金铃索、`eq_junzijian` 君子剑、`eq_shunvjian` 淑女剑、`eq_chilianfuchen` 赤练拂尘（原创扩展命名）、`eq_juchijindao` 锯齿金刀**（待考：《神雕侠侣》公孙止兵刃描写）**、`eq_heijian` 黑剑；引用基准 §14 `eq_xuantiejian` |
 | 物品（建议 ID，design/10） | 15 | 秘籍 `it_miji_quanzhenxinfa` `it_miji_tongguijian` `it_miji_chilianshenzhang_can` `it_miji_bingpoyinzhen` `it_miji_liangyixinfa` `it_miji_chunyangwuji` `it_miji_huzhaojuehushou` `it_miji_wujixuangongquan` `it_miji_shenmen13`；暗器弹药 `it_bingpoyinzhen` `it_yufengzhen` `it_furongjinzhen` `it_zaoheding`；`it_yufengjiang` 玉蜂浆；引用 `it_jueqingdan` `it_duanchangcao` |
-| NPC（占位） | 21 | `npc_mayu` `npc_qiuchuji` `npc_yideng` `npc_quanzhen_sandai` `npc_baiyunguan_daozhang` `npc_xiaolongnv` `npc_limochou` `npc_zhouboting` `npc_yangguo` `npc_zhangsanfeng` `npc_songyuanqiao` `npc_yulianzhou` `npc_zhangcuishan` `npc_chongxu` `npc_lufeiqing` `npc_liyuanzhi` `npc_zhangzhaozhong` `npc_wudang_youfang` `npc_gongsunzhi` `npc_qiuqianchi` `npc_fanyiweng` |
+| NPC（占位） | 21 | `npc_mayu` `npc_qiuchuji` `npc_yideng` `npc_quanzhen_sandai` `npc_baiyunguan_daozhang` `npc_xiaolongnv` `npc_limochou` `npc_zhoubotong` `npc_yangguo` `npc_zhangsanfeng` `npc_songyuanqiao` `npc_yulianzhou` `npc_zhangcuishan` `npc_chongxu` `npc_lufeiqing` `npc_liyuanzhi` `npc_zhangzhaozhong` `npc_wudang_youfang` `npc_gongsunzhi` `npc_qiuqianchi` `npc_fanyiweng` |
 | 任务（占位，本文件号段 `_71`–`_96`） | 24 | `q_02_bond_72` `q_02_faction_73` `q_02_qiyu_74` `q_02_bond_75` `q_02_faction_77` `q_03_side_76` `q_03_side_79` `q_03_faction_80` `q_03_qiyu_81` `q_03_bond_82` `q_03_qiyu_83` `q_03_qiyu_84` `q_03_bond_86` `q_03_faction_94` `q_03_side_95` `q_03_qiyu_96` `q_04_bond_85` `q_04_main_87` `q_04_main_88` `q_04_bond_91` `q_04_qiyu_92` `q_04_faction_93` `q_12_faction_89` `q_12_bond_90` |
 | 其他 | 2 | 存档旗标 `anran_bieli`（黯然"别离"门槛）；地形建议 `tr_qinghuacong` 情花丛（design/08） |
 
@@ -1767,20 +2038,22 @@
 
 | 编号 | 检查 | 通过条件 |
 |---|---|---|
-| DJ-V01 | 唯一武学与品阶计数 | 本组按唯一 `sk_` 为 66 门；天 / 地 / 玄 / 黄恰为 8 / 18 / 25 / 15；`sk_wudangjiuyang` 只引用、不重复计数 |
-| DJ-V02 | 内功性质（AR-02） | 12 门内功各且仅有一个 `nature`，枚举只能为 `yin` / `yang` / `harmony`；数量分别为 5 / 4 / 3 |
+| DJ-V01 | 唯一武学与品阶计数 | 五张总表按唯一 `sk_` 为 116 门；天 / 地 / 玄 / 黄恰为 8 / 18 / 44 / 46，十二品为 `5/13/28/5/17/22/9/7/2/2/6/0`；`sk_wudangjiuyang` 只引用、不重复计数 |
+| DJ-V02 | 内功性质（AR-02） | 23 门内功各且仅有一个 `nature`，枚举只能为 `yin` / `yang` / `harmony`；数量分别为阴 8 / 阳 8 / 调和 7 |
 | DJ-V03 | 内功贡献 | 对每门内功复算 `IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen`，必须等于对应预算 |
 | DJ-V04 | 七人阵（C13） | `sk_tiangang` 与 `sk_zhenwuqijie` 均为 `minMembers=4`、`dissolveBelow=4`、持续 3 次阵主行动；仅 6 实员且阵主有效 10 重时可补 1 虚位，虚位不得产生行动或额外反应 |
 | DJ-V05 | 前置结构（C17） | `prereq` 外层 AND、`anyOf` 内层 OR；纯阳无极功与玉女心经不得回退为自然语言二选一；倚天屠龙功须有 `skills {art: 40}`；五毒秘传因原稿无数值，不强造 `poi: 40` |
 | DJ-V06 | 套装闭合（C22） | 本文件归属成员的 `setTags` 与 §7 成员表双向一致；跨归属缺口只列 §11 D-12，不在本文复制定义；套装品阶按 `floor(median(effGrade))` |
 | DJ-V07 | Buff 目录（C23） | 活跃规则不得施加 `bf_zhenshi` 或 `bf_cuidu`；运行用 `bf_*` 均能在 `design/06` 找到定义，历史说明中的撤回名不计活跃引用 |
-| DJ-V08 | 六角范围（AR-12） | 活跃招式不得保留 `aoe_cross`、`aoe_sq3`、`aoe_sq5` 或 `aoe_zone shape=sq*`；暂未定模板只写六角覆盖语义与上游责任 |
+| DJ-V08 | 六角范围（AR-12） | 活跃招式不得保留 `aoe_cross`、`aoe_sq3`、`aoe_sq5`、旧占位模板或 `aoe_zone shape=sq*`；中心＋六邻格须分别匹配 `aoe_disk {r:1}` 或结构化 `aoe_zone`，并以 N=7、AF=0.70 校验直接伤害 |
 | DJ-V09 | 门派与职级（AR-07/08） | `sect_quanzhen`、`sect_wudang`、`sect_gumu`、`sect_jueqinggu` 与 `design/17` 一致；所有 `sect.rank` 为 1–5，不得残留 0–4 旧制 |
 | DJ-V10 | 天级池（C15） | 本文无第 52 个天级 ID；神雕全局完整原生天级池固定 16；笑傲太极拳/剑均为 `partial`、`lineageGrade 10`，不计完整池 |
 | DJ-V11 | 标注与考据 | 原创获取/机制有“原创扩展”；每个保留的“待考”均指出书名与要核对的人物、情节、名目或版本差异；不虚构引文与回目号 |
 | DJ-V12 | 文档结构 | 目录与一级/二级标题一致，Markdown 表格列数一致，代码围栏成对，无截断句或占位词 |
+| DJ-V13 | AR-01 新增量 | 与 v1.1 比较只新增玄 19、黄 31；天、地均为 0；玄阶预算样本 ≥30%，黄阶 46 门均出现在八字段一行表 |
+| DJ-V14 | 装配覆盖（05 §14.6 #4） | 每界内功 / 拳脚 / 兵器及同类兵器链均 ≥3；本组不足的书界必须明确由 `skills-general` §11.1 `ALL14` 补齐，不得把携带武学当本土来源 |
 
-### 10.2 十二门内功 IP 复算
+### 10.2 二十三门内功 IP 复算
 
 | 内功 | `nature` | 复算 | 结果 |
 |---|---|---|---|
@@ -1788,14 +2061,25 @@
 | 金关玉锁二十四诀 | `harmony` | `30 + 18 + 2×(4+5+3) + 5×2.2` | 83 |
 | 全真吐纳诀 | `yang` | `8 + 5 + 2×(1+2) + 5×1.0` | 24 |
 | 全真心法 | `yang` | `18 + 10 + 2×(3+2+2) + 5×1.3` | 48.5 |
+| 北斗心法 | `yang` | `17 + 10 + 2×(2+3+2) + 5×1.5` | 48.5 |
+| 白云观心法 | `harmony` | `8 + 5 + 2×(1+1+1) + 5×1.0` | 24 |
 | 玉女心经 | `yin` | `44 + 23 + 2×(8+8+2) + 5×3.0` | 118 |
 | 古墓心法 | `yin` | `10 + 5 + 2×(2+2) + 5×1.4` | 30 |
 | 寒玉心诀 | `yin` | `20 + 10 + 2×(4+3+1) + 5×2.2` | 57 |
+| 寒玉静功 | `yin` | `17 + 10 + 2×(2+2+3) + 5×1.5` | 48.5 |
+| 古墓导引 | `yin` | `8 + 5 + 2×(1+1+1) + 5×1.0` | 24 |
+| 剑冢吐纳 | `harmony` | `8 + 5 + 2×(1+1+1) + 5×1.0` | 24 |
 | 纯阳无极功 | `yang` | `32 + 18 + 2×(5+3+4) + 5×1.8` | 83 |
 | 太和功 | `harmony` | `8 + 5 + 2×(2+1) + 5×1.0` | 24 |
 | 两仪心法 | `harmony` | `17 + 10 + 2×(3+2+2) + 5×1.5` | 48.5 |
+| 武当养生功 | `harmony` | `17 + 10 + 2×(3+2+2) + 5×1.5` | 48.5 |
+| 玄真心法 | `yang` | `17 + 10 + 2×(3+2+2) + 5×1.5` | 48.5 |
+| 武当吐纳 | `yang` | `6 + 4 + 2×(1+1) + 5×1.0` | 19 |
+| 真武导引 | `harmony` | `8 + 5 + 2×(1+1+1) + 5×1.0` | 24 |
+| 真武桩功 | `yang` | `10 + 6 + 2×(2+2) + 5×1.2` | 30 |
 | 闭穴功 | `yin` | `24 + 16 + 2×(4+4+2) + 5×2.4` | 72 |
 | 绝情心诀 | `yin` | `10 + 6 + 2×(3+1) + 5×1.2` | 30 |
+| 绝情导引 | `yin` | `8 + 5 + 2×(1+2) + 5×1.0` | 24 |
 
 ### 10.3 关键规则样例
 
@@ -1819,7 +2103,7 @@
 | # | 下游 / 建议值 | 本文处理 |
 |---|---|---|
 | D-2 | 06、05 §4.2：缴械、恐惧、迷惑 0.25；麻痹、缠绕、封内力 0.20；剧毒、乱心、封经脉 0.15；中毒等 0.10；锁定 0.05 | 均为 `cost_buff` **【建议值】**；本文据此核算，待 06 定价后按 05 统一重算，允许误差仍以 05 为准 |
-| D-3 | 05 §4.7、06 §8.6：暗器 `K_delivery=0.92`、默认不可招架 `K_parry=0.85`，弹药不计招式倍率 | 本组 4 门暗器按该 **【建议值】** 核算；弹药成本仍归 `design/10` §8 |
+| D-3 | 05 §4.7、06 §8.6：暗器 `K_delivery=0.92`、默认不可招架 `K_parry=0.85`，弹药不计招式倍率 | 本组 5 门暗器按该 **【建议值】** 核算；新增黄阶情花避刺套用 Y5 且已含投射修正；弹药成本仍归 `design/10` §8 |
 | D-5 | 05 §13.6：为 `sk_quanzhenjian` 增补 `sk_zhongnanjian ≥ 4` 前置 | 本文进阶链按“终南剑法 → 全真剑法 → 同归剑法”展示；是否把首段写入全真剑法唯一条目由 05 定稿 |
 | D-6 | 05 §4.11：新增 `borrowForce{pct}` 钩子 | 钩子定稿前，太极拳“借力打力”用“对 `atkOut` 高于自身者 Z3 +6%→15%”的 **【建议值】** 代替 |
 | D-7 | 02 §5.4：新增同源组 `lg_dugu`，可选扩展 `lg_taiji` | 剑冢四意残篇建议归 `lg_dugu` 并在笑傲加速独孤九剑；太极推手、两仪心法是否入 `lg_taiji` 由 02 决定 |
@@ -1829,7 +2113,7 @@
 | D-14 | 06 §8.9、§8.11：既有 Buff 的来源扩展 | `bf_zhaomen` 用于闭穴功，`bf_xielian` 用于赤练神掌，`bf_qianlong` / `bf_xuli` 用于黯然销魂掌；建议 06 在“典型来源”补登，不新建同物 ID |
 | D-16 | 08、10：情花丛 `tr_qinghuacong`、情花刺及闭关/解谜地点 | 本文只给内容侧 **【建议值】**；地形定义与物品品阶分别由 08、10 定稿 |
 | D-17 | 09 §6.7：玉女素心剑法搭档 CT −300、合击演出、情花毒“动情”时序 | 本文按 05 §9.3.1 写候选参数；事件顺序由 09 统一 |
-| D-18 | 09、05：六角“中心点＋六邻格”目标面/持续面 | 暂记 `aoe_hex_area r1` / `aoe_hex_zone r1 tN` **【建议值】**；09 定模板与坐标，05 定 AF 后，应替换占位并重算涉及招式 |
+| D-18 | 09、05：六角“中心点＋六邻格”目标面/持续面 | **已解决**：09 §5.3、§13.1 已定稿为 `aoe_disk {r:1}` 与 `aoe_zone {inner:{tpl:aoe_disk,r:1},duration:N}`；N=7、AF=0.70。本文已替换占位并按 05 §4.2 重算直接伤害；持续地表伤害按 09 §5.3.3 单独审查 |
 
 ### 11.2 本文依赖的上游事实
 
@@ -1837,15 +2121,15 @@
 |---|---|---|
 | D-1 | C13；基准 §8；05 §7.7、09 §6.8 | **已解决**：天罡北斗阵、真武七截阵均 4 个有效实际单位起阵且低于 4 即散，持续 3 次阵主行动；原著完整阵均为 7 人，游戏中仅“6 实员＋阵主有效 10 重”补 1 虚位。虚位不增单位、CT、追击或反击；北斗大阵 3 人、渔网阵 2 人不套 C13（见 §2.3、§2.5、§5.4） |
 | D-4 | C17；`rulings-v1.md` §4 | **已解决**：玉女心经、纯阳无极功使用 `prereq[].anyOf`；倚天屠龙功使用 `skills {art: 40}`；真武七截阵枚举武当拳脚/兵器 OR 分支。五毒秘传原稿无毒术数值，故只说明 `poi` 参与强度，不臆造门槛（见 §3.3、§3.5、§5.4） |
-| D-11 | C14、AR-01；05 §14 | **已解决旧提案，待 CXd 扩充**：撤回“神雕玄阶 16→22”、合并剑意或降北斗品阶的建议。AR-01 覆盖 C14 的 661 门方案：全局约 1,100–1,150 门，天:地:玄:黄约 1:3:9:9；本图鉴当前 66 门 = 8/18/25/15，本任务只统计，后续 CXd 主要补玄、黄阶；05 C3 重算逐界池与文件配额（见 §8） |
+| D-11 | C14、AR-01；05 §14 | **已解决（CXd）**：保留 8 天、18 地，新增玄 19、黄 31，使本图鉴由 `8/18/25/15=66` 达到受控配额 `8/18/44/46=116`；未新增天阶、未删改既有品阶。扩充后的十四书界全目录池仍由 F2 / 章节统一重算（见 §8.3） |
 | D-12 | C22；07 | **本文侧已解决**：套装按 `floor(median(effGrade))`，成员与 `setTags` 必须双向闭合；本文给 `sk_zaoheding → set_tiezhang_shuishangpiao`，倚天组已给 `sk_wudangjiuyang → set_wudang_zhenwu`。仍需五岳组给 `sk_dugu9 → set_dugu_jianzhong`、05 给 `sk_quanzhenjian → set_shendiao_xialv`，07 建唯一成员表（见 §7） |
 | D-13 | C23；06、09、10 | **已解决**：撤回 `bf_zhenshi`、`bf_cuidu`；前者由阵法状态投影 UI，后者复用 `poisonCoat` 与 `bf_zhongdu` / `bf_judu`。两旧串仅留在迁移说明与禁止性校验中，不得用于运行时 `applyBuff`（见 §9–§10） |
 | D-15 | 03 待决 D-03、05 §14.6 #7 | **已对齐**：神雕最高本土轻功由地上古墓轻功满足；笑傲 / 侠客 / 书剑 / 飞狐由地中梯云纵满足；射雕本组最高仅玄上金雁功 |
 | U-1 | C15；基准 v1.1 V11-17、§13 | **已采纳（v1.1）且作者 G1 确认默认**：高武完整原生天级池允许 6–16；神雕固定 16 = 天上 2＋天中 6＋天下 8。本文神雕行只含本图鉴完整/回想子集，不得用 4 或 5 改写全局 16；笑傲太极拳/剑为 10 品残承，另列且不计完整池 |
 | U-2 | 基准 v1.1 V11-04、V11-28、V11-36 | **已采纳（v1.1）**：`ps_` / `aoe_` / `it_miji_` 前缀已登记；太极笑傲残承固定 10；玩家队伍 ≤6 而剧情 AI 友军另计。本文已分别用于 §9 ID、太极条目与 C13 阵法边界 |
-| U-3 | AR-02 | 12 门内功全部显式标 `nature`：`yin=5`、`yang=4`、`harmony=3`；阴阳相性与冲穴只引用 05 和 `design/15`，本文不重定义 |
+| U-3 | AR-02 | 23 门内功全部显式标 `nature`：`yin=8`、`yang=8`、`harmony=7`；阴阳相性与冲穴只引用 05 和 `design/15`，本文不重定义 |
 | U-4 | AR-07、AR-08；`design/17` | 五级 L1–L5 与现行门派资料对齐：全真/武当用 T02；古墓用 §7.3 小规模 T04 变体；绝情谷用 §7.6 T04。月钱、资源与营生只引用 12/16 |
-| U-5 | AR-12 | 活跃招式已移除旧方格专用十字/九宫写法；六角范围的最终模板与 AF 仍依赖 09/05（见 D-18） |
+| U-5 | AR-12 | **已解决**：活跃招式已移除旧方格专用十字/九宫与临时占位，统一使用 09 §5.3、§13.1 的 `aoe_disk` / 结构化 `aoe_zone`；直接伤害按 05 §4.2 的 AF=0.70 重算（见 D-18） |
 
 ### 11.3 对基准的修改提案
 
@@ -1891,4 +2175,4 @@
 | O-2 | 鹿鼎全真、连城 / 鸳鸯武当的低武★来源是否保留 | **已解决（作者决定 P25）**：保留候选，全部标（原创扩展）；章节须落实或以同阶合法本土来源等价替换（见 §1.2、§5.6） |
 | O-3 | 黯然销魂掌是否保留当书界羁绊 ≥ 3 同伴离队或倒下的“别离”门槛 | **已解决（作者决定 P24）**：保留；事件旗标为 `anran_bieli`，由 `chapters/03` / `design/12` 写入（见 §4.3、§9） |
 | O-4 | 虎爪绝户手对非邪派目标使用是否扣品德 | **已解决（作者决定 P26）**：保留；临时敌对不等于邪派，目标须按其既有阵营/行为标签判定（见 §5.4、§10.3） |
-| O-5 | 六角范围占位模板的最终 ID 与 AF | **默认值**：在 09/05 定稿前沿用 `aoe_hex_area r1` / `aoe_hex_zone r1 tN`，只表达中心＋六邻格；不得把旧方格 AF 当最终值（见 D-18） |
+| O-5 | 六角范围占位模板的最终 ID 与 AF | **已解决**：09/05 已定稿生产 schema；本文已迁为 `aoe_disk {r:1}` / `aoe_zone {inner:{tpl:aoe_disk,r:1},duration:N}`，直接伤害使用 N=7、AF=0.70，持续地表效果单独审查（见 D-18） |
