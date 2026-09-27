@@ -9,25 +9,29 @@
 在仓库根目录运行：
 
 ```shell
-python tools/lint/check_ids.py
-python tools/lint/check_ids.py --json
-python tools/lint/check_ids.py --strict
-python tools/lint/check_ids.py docs/design/06-buff-system.md docs/design/catalog
+python3 tools/lint/check_ids.py
+python3 tools/lint/check_ids.py --json
+python3 tools/lint/check_ids.py --strict
+python3 tools/lint/check_ids.py --update-baseline
+python3 tools/lint/check_ids.py docs/design/06-buff-system.md docs/design/catalog
 ```
 
-不传路径时递归扫描 `docs/` 下所有 `.md`。路径参数可以是 Markdown 文件或目录；
-不存在的路径和非 Markdown 文件会产生警告。无论扫描范围如何，脚本都会额外读取
+不传路径时递归扫描 `docs/` 下所有 `.md`，并扫描明确登记的数据源
+`docs/design/map/*.yaml`。路径参数可以是受支持文件或目录；不存在的路径和其他
+文件会产生警告。无论扫描范围如何，脚本都会额外读取
 `docs/00-canon.md` 和 `docs/decisions/rulings-v1.md` 作为前缀、锚点与重命名规则
 来源，但不会把范围外支持文件的问题计入结果。完整跨文档审计应采用默认扫描。
 
 默认输出供人阅读的报告，发现问题时仍退出 `0`。`--json` 输出稳定 JSON，警告只写
-标准错误，不污染 JSON。`--strict` 仅在存在“引用但未定义”或“仍使用旧 ID”时退出
-`1`；第 2、3、5 类是人工审校线索，不触发严格模式失败。参数可组合。
+标准错误，不污染 JSON。`--strict` 仅在出现基线之外的新“引用但未定义”或“仍使用
+旧 ID”时退出 `1`；第 2、3、5 类是人工审校线索，不触发严格模式失败。完整扫描后
+用 `--update-baseline` 原子刷新 `tools/lint/check_ids_baseline.json`；该参数拒绝路径参数，
+防止把局部扫描误写成全仓基线。没有基线或基线无效时，所有严格问题都视为新增。
 
 运行单元测试：
 
 ```shell
-python -m unittest -v tools.lint.test_check_ids
+python3 -m unittest -v tools.lint.test_check_ids
 ```
 
 ## 检查的五类问题
@@ -44,7 +48,9 @@ python -m unittest -v tools.lint.test_check_ids
    `SetDef.members` 与武学/装备/物品定义的 `setTags`。缺少 07 时明确显示跳过。
 
 JSON 顶层包含 `schema_version`、`root`、`prefix_source`、`prefixes`、`scan`、
-`issues`、`counts`、`set_check`、`strict_failure_count` 和 `warnings`。问题位置均为
+`issues`、`counts`、`set_check`、`baseline`、`strict_failure_count` 和 `warnings`。
+`issues` 始终保留当前全部问题；`baseline.new_undefined_ids` 与
+`baseline.new_deprecated_ids` 是严格模式实际阻断的新增集合。问题位置均为
 仓库相对文件名，以及从 1 开始的行、列号。
 
 ## ID 提取与定义规则
@@ -58,7 +64,8 @@ JSON 顶层包含 `schema_version`、`root`、`prefix_source`、`prefixes`、`sc
 
 ### 出现位置
 
-普通 Markdown 正文只提取反引号内的 ID；围栏代码块还识别以下形式：
+普通 Markdown 正文只提取反引号内的 ID；围栏代码块和已登记 YAML 数据源还识别
+以下形式：
 
 ```yaml
 id: sk_demo
@@ -70,19 +77,26 @@ JSON 字符串、带键的值和列表项也会提取。`sk_<拼音>`、`chNN_<p
 文件路径内部的片段，以及明显的 schema/资源变体会被排除。建议新文档始终给内容
 ID 加反引号；这样既便于阅读，也能被检查器稳定识别。
 
+`quest.v1` 围栏中的 `st_*`、`edge_*`、`fx_*`、`chk_*` 及旧式局部 `tr_*` 只在
+声明它们的同一任务块内解析，不进入全局未定义或近似名检查；明确写有
+`fixture: true` 的任务对象及带后缀 `example` 或 `example_*` 的示例 ID 也不视为活动
+内容。其他相似拼写不会因此整体豁免。
+
 ### 定义与归属
 
 一个出现只有同时满足“定义形态”和“归属文档”才算定义。支持的定义形态为：
 
 - Markdown 表格的明确 `ID`/`对象 ID` 列，或已知对象名首列；
-- 围栏 YAML 的 `id:` 字段；
+- 围栏 YAML/JSON 与登记数据源中的 `id:` 字段或以完整 ID 为键的映射；
 - 带名称的条目标题，例如五级标题“幻阴指 `sk_huanyinzhi`”；
 - 明确的“本文新增术语与 ID”/“ID 清单”登记；
 - 少量仓库既有的强语义形式，例如 Buff 的 `family:`、`exclusive:` 和连续性旗标。
 
 候选、建议、示例、占位、迁移、重命名、开放问题、参考资料等上下文不建立正式
-定义。Buff 族表允许一个“族 ID”单元格登记两个具体族；`fam_*` 参数化族、书眠
-存档键、时辰物品、秘籍/残页和配方学识按权威命名规则识别派生实例，而不要求穷举。
+定义。所有形态仍须通过 `OWNERSHIP`：同样的 `ID` 表、标题或 `id:` 写在非归属
+文档时只算引用。Buff 族、场景键、残本和明确生产清单等多 ID 单元格只按窄规则
+识别；`fam_*`、正式存档槽与视频序列、时辰物品、秘籍/残页和配方学识按权威命名
+规则识别派生实例，而不要求穷举。
 
 归属配置位于 `check_ids.py` 顶部的 `OWNERSHIP`。当前按基准 §18 与实际布局分组：
 
@@ -90,19 +104,30 @@ ID 加反引号；这样既便于阅读，也能被检查器稳定识别。
 |---|---|
 | `ch` | `docs/00-canon.md` §2 |
 | `sk_` / `mv_` / `ps_` | `docs/design/catalog/*.md`、`design/05`；`sk_` 另含 Canon §13 |
-| `aoe_` / `vow_` | `design/05` |
+| `aoe_` | `design/09` |
+| `vow_` | `design/05` |
 | `bf_` / `fam_` / `exg_` / `rx_` | `design/06` |
 | `set_` | `design/07` |
 | `tr_` / `tst_` / `gate_` | `design/08` |
 | `enc_` / `bsc_` / `cmb_` / `tg_` / `wk_` / `gauge_` / `pers_` / `ea_` / `ai_` | `design/09`；`enc_` 也可由章节定义 |
 | `eq_` / `it_` / `af_` / `ue_` / `ins_` / `rc_` / `ev_` | `design/10`；`eq_` 另含 Canon §14，`ev_` 也可由章节定义 |
-| `npc_` | NPC 图鉴、章节、`design/11`、`design/12`、`design/18` |
-| `q_` | 故事/章节、`design/11`、`design/12` |
-| `rg_` | 章节、`design/11`、`design/12`、`design/19` |
-| `sect_` | `design/12` 与 `design/17` 的权威矩阵 |
+| `npc_` | `design/18` 与 NPC 图鉴；旧章节、`design/11`、`design/12` 只引用 |
+| `q_` | story 定义主线幕（含数字生产 ID）；chapters 可定义本界非主线实例；`design/11` 可定义奇遇实例；`design/12` 只给 schema / fixture |
+| `rg_` | `design/11` 的三十区终稿、`design/map/*.yaml`；章节和 `design/19` 草案只引用 |
+| `sect_` | `design/17` 的权威矩阵与 `design/map/sects.yaml`；`design/12` 只引用 |
 | `tsp_` / `end_` / `ach_` / `ttl_` / `diff_` / `rule_` / `tj_` / `sh_` / `sqj_` / `fin_` / `yy_` | `design/13` |
 | `save_` / `rs_` / `lg_` / `echo_` / `bs_` | `design/02`；`save_`、`echo_` 也可由 `design/13` 定义 |
 | `tal_` / `tmpl_` / `arch_` | `design/03` |
+| `origin_` | `design/01` |
+| `mer_` / `ap_` / `zt_` | `design/15` |
+| `res_` / `sv_` / `job_` | `design/16` |
+| `rp_` / `biz_` | 对应 `design/chapters/NN-*` 的书界实例 |
+| `city_` / `offmap_` / `post_` / `port_` / `route_` | `design/19` 与地图 YAML |
+| `sc_` | 对应 `design/chapters/NN-*`；书界号必须匹配文件号 |
+| `poi_` | `design/11`、`design/19` 与地图 YAML |
+| `dc_` | 对应 `design/story/NN-*`；书界号必须匹配文件号 |
+| `lgs_` / `frag_` / `cache_` | `design/20` |
+| `vid_` | `design/02` 与 `tech/07` 的正式视频清单 |
 
 `set_`、`npc_`、`q_` 的全部归属文件都尚不存在时，第 1 类会暂停该 ID 族，避免增量
 编写阶段把所有前向引用当错误；归属文件一旦出现便恢复检查。
@@ -122,6 +147,8 @@ ID 加反引号；这样既便于阅读，也能被检查器稳定识别。
   的 `setTags`；跨很远拆写的字段可能无法关联。
 - 第 1 类会同时报告仍在活动正文出现的旧 ID；同一项也会出现在第 4 类。这可保证
   `--strict` 在缺少旧定义时仍保持完整计数。
+- baseline 键只保存 ID，不保存易漂移的行号；删除已知问题会自然从报告消失，新 ID
+  仍会阻断。重命名同一缺口也会被视为新增，需修复或经完整审计后刷新基线。
 
 ## 扩展配置
 

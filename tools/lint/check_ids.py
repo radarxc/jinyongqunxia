@@ -14,15 +14,19 @@ import fnmatch
 import json
 import re
 import sys
+import tempfile
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Mapping, Optional, Sequence, Set, Tuple
 
 
 VERSION = 1
+BASELINE_VERSION = 1
 CANON_REL = "docs/00-canon.md"
 RULINGS_REL = "docs/decisions/rulings-v1.md"
 SET_SYSTEM_REL = "docs/design/07-set-system.md"
+BASELINE_REL = "tools/lint/check_ids_baseline.json"
+DATA_SOURCE_PATTERNS: Tuple[str, ...] = ("docs/design/map/*.yaml",)
 
 # Fallback only: the normal source of truth is Canon section 12.  Keep this
 # table usable when the checker is copied into a partial checkout.
@@ -35,6 +39,10 @@ DEFAULT_PREFIXES: Tuple[str, ...] = (
     "ach_", "ttl_", "diff_", "rule_", "tj_", "sh_", "sqj_",
     "fin_", "yy_", "enc_", "bsc_", "cmb_", "tg_", "wk_",
     "gauge_", "pers_", "ea_", "ai_",
+    "origin_", "mer_", "ap_", "zt_", "res_", "rp_",
+    "sv_", "biz_", "job_", "city_", "sc_", "poi_",
+    "offmap_", "post_", "port_", "route_", "dc_", "lgs_",
+    "frag_", "cache_", "vid_",
 )
 
 # Configurable ownership map derived from Canon section 18 and the concrete
@@ -45,7 +53,7 @@ OWNERSHIP: Mapping[str, Tuple[str, ...]] = {
     "sk_": ("docs/design/catalog/*.md", "docs/design/05-martial-arts-system.md", CANON_REL),
     "mv_": ("docs/design/catalog/*.md", "docs/design/05-martial-arts-system.md"),
     "ps_": ("docs/design/catalog/*.md", "docs/design/05-martial-arts-system.md"),
-    "aoe_": ("docs/design/05-martial-arts-system.md",),
+    "aoe_": ("docs/design/09-combat-system.md",),
     "vow_": ("docs/design/05-martial-arts-system.md",),
     "bf_": ("docs/design/06-buff-system.md",),
     "fam_": ("docs/design/06-buff-system.md",),
@@ -89,9 +97,12 @@ OWNERSHIP: Mapping[str, Tuple[str, ...]] = {
              "docs/design/18-npc-and-companions.md"),
     "q_": ("docs/design/story/*.md", "docs/design/chapters/*.md",
            "docs/design/11-open-world.md", "docs/design/12-quests-npc-factions.md"),
-    "rg_": ("docs/design/chapters/*.md", "docs/design/11-open-world.md",
-            "docs/design/12-quests-npc-factions.md", "docs/design/19-world-map.md"),
-    "sect_": ("docs/design/12-quests-npc-factions.md", "docs/design/17-sects-compendium.md"),
+    # AR-04 assigns the finalized global RegionDef table to design/11.  The
+    # map YAML is its structured source; design/19's 19-region table is an
+    # explicitly labelled draft, and chapters only consume era-layer state.
+    "rg_": ("docs/design/11-open-world.md", "docs/design/map/*.yaml"),
+    "sect_": ("docs/design/12-quests-npc-factions.md",
+               "docs/design/17-sects-compendium.md", "docs/design/map/*.yaml"),
     "enc_": ("docs/design/09-combat-system.md", "docs/design/chapters/*.md"),
     "bsc_": ("docs/design/09-combat-system.md",),
     "cmb_": ("docs/design/09-combat-system.md",),
@@ -101,18 +112,59 @@ OWNERSHIP: Mapping[str, Tuple[str, ...]] = {
     "pers_": ("docs/design/09-combat-system.md",),
     "ea_": ("docs/design/09-combat-system.md",),
     "ai_": ("docs/design/09-combat-system.md",),
+    "origin_": ("docs/design/01-vision-and-core-loop.md",),
+    "mer_": ("docs/design/15-meridians-and-acupoints.md",),
+    "ap_": ("docs/design/15-meridians-and-acupoints.md",),
+    "zt_": ("docs/design/15-meridians-and-acupoints.md",),
+    "res_": ("docs/design/16-resources-and-estates.md",),
+    "sv_": ("docs/design/16-resources-and-estates.md",),
+    "job_": ("docs/design/16-resources-and-estates.md",),
+    # Resource-point and business instances are owned by the book-world
+    # documents. design/16 owns their schema, not every concrete instance.
+    "rp_": ("docs/design/chapters/*.md",),
+    "biz_": ("docs/design/chapters/*.md",),
+    "city_": ("docs/design/19-world-map.md", "docs/design/map/*.yaml"),
+    "sc_": ("docs/design/chapters/*.md",),
+    "poi_": ("docs/design/11-open-world.md", "docs/design/19-world-map.md",
+             "docs/design/map/*.yaml"),
+    "offmap_": ("docs/design/19-world-map.md", "docs/design/map/*.yaml"),
+    "post_": ("docs/design/19-world-map.md", "docs/design/map/*.yaml"),
+    "port_": ("docs/design/19-world-map.md", "docs/design/map/*.yaml"),
+    "route_": ("docs/design/19-world-map.md", "docs/design/map/*.yaml"),
+    "dc_": ("docs/design/story/*.md",),
+    "lgs_": ("docs/design/20-legacy-inheritance.md",),
+    "frag_": ("docs/design/20-legacy-inheritance.md",),
+    "cache_": ("docs/design/20-legacy-inheritance.md",),
+    "vid_": ("docs/design/02-timeline-and-world-tiers.md",
+              "docs/tech/07-asset-generation.md"),
 }
 
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})")
 INLINE_CODE_RE = re.compile(r"`([^`]+)`")
 TABLE_SEPARATOR_RE = re.compile(r"^:?-{3,}:?$")
-YAML_ID_RE = re.compile(r"^\s*(?:-\s*)?id\s*:\s*", re.IGNORECASE)
+YAML_ID_RE = re.compile(
+    r"^\s*(?:-\s*)?[\"']?id[\"']?\s*:\s*", re.IGNORECASE
+)
+YAML_KEY_RE = re.compile(
+    r"^\s*(?:-\s*)?[\"']?([a-z][a-z0-9]*(?:_[a-z0-9]+)+)[\"']?\s*:"
+)
+LOCAL_TASK_PREFIXES: Tuple[str, ...] = ("st_", "edge_", "fx_", "chk_", "tr_")
+DATA_ENUM_FIELDS: Set[str] = {"coordinate_precision", "kind"}
+NON_CONTENT_ID_TOKENS: Set[str] = {
+    # Schema fields, enum members, diagnostic codes, and third-party flags
+    # that happen to begin with a registered content-ID prefix.
+    "ai_budget_exhausted", "ai_region_disabled", "ai_upstream_unavailable",
+    "ap_cat", "ap_k", "end_turn", "job_active",
+    "job_duty_ratio_at_least", "offmap_node", "poi_eff", "post_road",
+    "post_station", "res_eff", "save_booksleep_ch", "save_slots",
+    "save_too_large", "save_versions", "save_wake_ch", "sc_threshold",
+}
 
 PROVISIONAL_LINE_RE = re.compile(
     r"占位|候选|待收录|待(?:由|在|向|后续|下游|归属文档)?.{0,12}(?:定义|登记|补|定稿|替换)|"
     r"建议(?:\s*ID|命名|值)?|仅引用|引用而不重定义|示例|样例|格式(?:为|：|:)|模板|"
-    r"通配|不新增|明确不新增|迁移|重命名|旧(?:\s*ID|名|前缀|规划|稿|口径)|"
+    r"通配|不新增|不创建|不得另造|明确不新增|迁移|重命名|旧(?:\s*ID|名|前缀|规划|稿|口径)|"
     r"须改名|替代旧|定义以.{0,20}为准|补充说明|决定是否采用|采用与否",
     re.IGNORECASE,
 )
@@ -129,7 +181,8 @@ DEFINITION_BLOCK_RE = re.compile(r"仅引用|候选|占位|待收录|定义以.{
 # suppression happens later, where ownership and repository state are known.
 PLACEHOLDER_SEGMENTS = {
     "id", "nn", "n", "x", "xx", "xxx", "yyy", "t",
-    "pinyin", "pingyin", "english", "name", "status", "revs",
+    "fixture", "pinyin", "pingyin", "english",
+    "name", "status", "revs",
 }
 CHAPTER_ASSET_VARIANT_RE = re.compile(
     r"^ch\d{2}_(?:youth|prime|child|young|adult|old|elder|base|default|variant\d*)$"
@@ -158,6 +211,11 @@ DERIVED_ID_PATTERNS: Tuple[re.Pattern[str], ...] = (
     re.compile(r"^fam_(?:rat|res|pct|z5|dot)_[a-z0-9]+(?:_[a-z0-9]+)*$"),
     re.compile(r"^save_(?:booksleep|wake)_ch\d{2}$"),
     re.compile(r"^it_shijian_[a-z0-9]+(?:_[a-z0-9]+)*$"),
+    re.compile(r"^vid_sleep_(?:0[1-9]|1[0-3])_(?:0[2-9]|1[0-4])$"),
+    re.compile(r"^vid_ch(?:0[1-9]|1[0-4])_(?:intro|tianshu)$"),
+    re.compile(r"^save_(?:manual_(?:0[1-9]|1[0-2])|quick|auto_[1-3]|"
+               r"booksleep_ch(?:0[1-9]|1[0-4])|wake_ch(?:0[1-9]|1[0-4])|"
+               r"finale_(?:enter|j[1-6])|clear_[1-9][0-9]*|ironman)$"),
 )
 
 # Known intentional siblings/ranges.  Near-match detection is heuristic; these
@@ -189,6 +247,7 @@ class Occurrence:
     in_fence: bool
     active: bool = True
     definition: bool = False
+    local: bool = False
 
 
 @dataclass
@@ -379,6 +438,22 @@ def compile_id_regex(prefixes: Sequence[str]) -> re.Pattern[str]:
 
 def looks_like_placeholder(identifier: str) -> bool:
     """Reject templates, schema fields, and incomplete ID examples."""
+    if identifier in NON_CONTENT_ID_TOKENS:
+        return True
+    if re.fullmatch(
+        r"route_(?:\d{2}|zheng|xie|act_count_invalid|archive_sealed|examiner|locked_at)",
+        identifier,
+    ):
+        return True
+    if re.fullmatch(r"sv_runtime_\d+", identifier):
+        return True
+    # The prerequisite grammar uses exactly these two metavariables.  Do not
+    # suppress arbitrary real IDs ending in ``_a`` or ``_b``.
+    if identifier in {"sk_a", "sk_b"}:
+        return True
+    tail = identifier.split("_", 1)[1] if "_" in identifier else identifier
+    if tail == "example" or tail.startswith("example_"):
+        return True
     if CHAPTER_ASSET_VARIANT_RE.match(identifier):
         return True
     if identifier in {
@@ -413,6 +488,8 @@ def fenced_match_has_id_context(line: str, start: int, end: int) -> bool:
                 return True
     stripped = line.strip()
     if stripped.startswith(("-", "{", "[")):
+        return True
+    if mapping_key_spans(line, re.escape(line[start:end])):
         return True
     before = line[:start]
     if re.search(r"[A-Za-z_][A-Za-z0-9_]*\s*:\s*[^#]*$", before):
@@ -451,6 +528,26 @@ def path_matches(rel: str, patterns: Sequence[str]) -> bool:
     return any(fnmatch.fnmatchcase(rel, pattern) for pattern in patterns)
 
 
+def is_data_source_rel(rel: str) -> bool:
+    """Return whether *rel* is an explicitly registered structured source."""
+    return path_matches(rel, DATA_SOURCE_PATTERNS)
+
+
+def numbered_owner_matches(identifier: str, rel: str, family: str) -> bool:
+    """Keep book-local definitions in their matching chapter/story file."""
+    match = re.match(r"docs/design/(?:chapters|story)/(\d{2})-", rel)
+    if match is None:
+        return True
+    book = match.group(1)
+    if family == "sc_":
+        return identifier.startswith("sc_{}_".format(book))
+    if family == "dc_":
+        return identifier.startswith("dc_{}_".format(book))
+    if family == "q_" and re.match(r"^q_\d{2}_main_", identifier):
+        return identifier.startswith("q_{}_main_".format(book))
+    return True
+
+
 def definition_allowed(identifier: str, doc: Document, line_index: int, prefixes: Sequence[str]) -> bool:
     family = family_for(identifier, prefixes)
     if family is None:
@@ -458,6 +555,25 @@ def definition_allowed(identifier: str, doc: Document, line_index: int, prefixes
     patterns = OWNERSHIP.get(family, ())
     if not patterns or not path_matches(doc.rel, patterns):
         return False
+    if not numbered_owner_matches(identifier, doc.rel, family):
+        return False
+    # Higher-priority ownership changes supersede the historical broad paths:
+    # NPCs belong to design/18/catalogs, sect IDs to design/17/map data, and
+    # story-main keys to the matching story document.  Chapters may still own
+    # non-main quest instances and design/11 may own its Qiyu definitions.
+    if family == "npc_":
+        if doc.rel not in {"docs/design/18-npc-and-companions.md"} and not (
+            path_matches(doc.rel, ("docs/design/catalog/npcs-*.md",))
+        ):
+            return False
+    if family == "sect_":
+        if doc.rel != "docs/design/17-sects-compendium.md" and not (
+            doc.rel == "docs/design/map/sects.yaml"
+        ):
+            return False
+    if family == "q_" and re.match(r"^q_\d{2}_main_", identifier):
+        if not path_matches(doc.rel, ("docs/design/story/*.md",)):
+            return False
     if doc.rel == CANON_REL:
         h2 = doc.h2s[line_index]
         if family == "ch":
@@ -487,7 +603,8 @@ def normalized_name(value: str) -> str:
     value = re.sub(r"^[（(]?\d+(?:\.\d+)*[）)]?[.．、]?\s*", "", value)
     value = re.sub(r"^[A-ZＡ-Ｚ][.．、]\s*", "", value)
     value = re.sub(r"^(?:核心|天阶)\s*", "", value)
-    value = value.strip("『』「」\"' ")
+    # Headings may use a middle dot only as a visual separator before an ID.
+    value = value.strip("『』「」\"' ·")
     return re.sub(r"\s+", "", value)
 
 
@@ -544,6 +661,92 @@ def yaml_name(doc: Document, line_index: int) -> Optional[str]:
     return None
 
 
+def id_field_spans(line: str, identifier_re: str) -> List[Tuple[int, int]]:
+    """Return value spans for YAML/JSON ``id`` keys on one line."""
+    pattern = re.compile(
+        r"(?:^|[,{\s-])[\"']?id[\"']?\s*:\s*[\"']?"
+        + r"(?P<id>" + identifier_re + r")(?![A-Za-z0-9_])",
+        re.IGNORECASE,
+    )
+    return [(match.start("id"), match.end("id")) for match in pattern.finditer(line)]
+
+
+def mapping_key_spans(line: str, identifier_re: str) -> List[Tuple[int, int]]:
+    """Return mapping-key spans, excluding ordinary field values."""
+    pattern = re.compile(
+        r"(?:^|[,{\s-])[\"']?(?P<id>" + identifier_re + r")[\"']?\s*:"
+    )
+    return [(match.start("id"), match.end("id")) for match in pattern.finditer(line)]
+
+
+def occurrence_has_span(occurrence: Occurrence, spans: Sequence[Tuple[int, int]]) -> bool:
+    start = occurrence.location.column - 1
+    return (start, start + len(occurrence.id)) in spans
+
+
+def local_task_ids_by_line(doc: Document) -> List[Set[str]]:
+    """Resolve task-local keys within each fenced ``quest.v1`` object."""
+    result: List[Set[str]] = [set() for _ in doc.lines]
+    index = 0
+    local_re = r"[a-z][a-z0-9]*(?:_[a-z0-9]+)+"
+    while index < len(doc.lines):
+        if not doc.in_fence[index]:
+            index += 1
+            continue
+        end = index
+        while end < len(doc.lines) and doc.in_fence[end]:
+            end += 1
+        block = doc.lines[index:end]
+        if any(re.search(r"schemaVersion[\"']?\s*:\s*[\"']?quest\.v1", line) for line in block):
+            declared: Set[str] = set()
+            for line in block:
+                for start, stop in id_field_spans(line, local_re):
+                    identifier = line[start:stop]
+                    if identifier.startswith(LOCAL_TASK_PREFIXES):
+                        declared.add(identifier)
+                for match in re.finditer(
+                    r"branchKey\s*:\s*[\"']?(dc_\d{2}_\d{2}_[a-z0-9_]+)",
+                    line,
+                ):
+                    declared.add(match.group(1))
+            for line_index in range(index, end):
+                result[line_index] = declared
+        index = end
+    return result
+
+
+def fixture_task_ids(doc: Document) -> Set[str]:
+    """Return root quest IDs from explicitly marked ``fixture: true`` blocks."""
+    result: Set[str] = set()
+    index = 0
+    while index < len(doc.lines):
+        if not doc.in_fence[index]:
+            index += 1
+            continue
+        end = index
+        while end < len(doc.lines) and doc.in_fence[end]:
+            end += 1
+        block = doc.lines[index:end]
+        is_quest = any(
+            re.search(r"schemaVersion[\"']?\s*:\s*[\"']?quest\.v1", line)
+            for line in block
+        )
+        is_fixture = any(
+            re.match(r"^\s*fixture\s*:\s*true(?:\s*(?:#.*)?)?$", line, re.IGNORECASE)
+            for line in block
+        )
+        if is_quest and is_fixture:
+            for line in block:
+                match = re.match(
+                    r"^id\s*:\s*[\"']?(q_[a-z0-9]+(?:_[a-z0-9]+)+)", line
+                )
+                if match:
+                    result.add(match.group(1))
+                    break
+        index = end
+    return result
+
+
 def line_is_provisional(doc: Document, line_index: int) -> bool:
     line = doc.lines[line_index]
     section = doc.sections[line_index]
@@ -560,18 +763,21 @@ def line_is_provisional(doc: Document, line_index: int) -> bool:
 def line_id_matches(
     doc: Document, line_index: int, id_regex: re.Pattern[str]
 ) -> List[re.Match[str]]:
-    """Return ID-looking tokens from inline code or fenced code only."""
+    """Return ID tokens from Markdown code contexts or structured sources."""
     line = doc.lines[line_index]
     matches = [
         match for match in id_regex.finditer(line)
         if not looks_like_placeholder(match.group(0))
         and not line[match.end():].startswith("_<")
     ]
-    if doc.in_fence[line_index]:
+    if doc.in_fence[line_index] or is_data_source_rel(doc.rel):
         return [
             match for match in matches
             if not looks_like_path_fragment(line, match.start(), match.end())
-            and fenced_match_has_id_context(line, match.start(), match.end())
+            and (
+                is_data_source_rel(doc.rel)
+                or fenced_match_has_id_context(line, match.start(), match.end())
+            )
         ]
     spans = [(match.start(1), match.end(1)) for match in INLINE_CODE_RE.finditer(line)]
     return [
@@ -606,17 +812,33 @@ def table_definition(
             continue
         if normalized in {"id", "编号", "id / 名称", "id/名称", "名称 / id", "名称/id"}:
             id_columns.append(index)
+        elif normalized.startswith(("生产 id", "本文新增 id")):
+            id_columns.append(index)
         elif normalized.startswith("id /") or normalized.endswith("/ id"):
             id_columns.append(index)
         elif re.fullmatch(
             r"(?:buff|武学|招式|绝招|被动|地形|装备|物品|套装|门派|书界|"
-            r"旗标|城市|区域|遭遇|战斗场景|结局|成就|称号|难度|规则)\s*id",
+            r"旗标|城市|区域|遭遇|战斗场景|结局|成就|称号|难度|规则|穴道|"
+            r"经脉|资源点|营生场所|家丁|职位|传承源|残本|宝藏缓存)\s*id",
             normalized,
         ):
             id_columns.append(index)
         elif family == "mv_" and ("招式" in normalized or "绝招" in normalized):
             id_columns.append(index)
         elif family == "ps_" and "被动" in normalized:
+            id_columns.append(index)
+        elif family == "rg_" and normalized in {"区域 id / 名称", "区域 id/名称"}:
+            id_columns.append(index)
+        elif family == "sc_" and re.fullmatch(r"场景键(?:\s*\d+)?", normalized):
+            id_columns.append(index)
+        elif family == "biz_" and normalized in {
+            "场所 id", "场所id", "营生 id", "营生id",
+            "营生场所", "营生场所 id",
+        }:
+            id_columns.append(index)
+        elif family == "frag_" and normalized in {"三卷 / 信物", "三卷/信物"}:
+            id_columns.append(index)
+        elif family == "cache_" and normalized in {"载体 / 投放", "载体/投放"}:
             id_columns.append(index)
     if not id_columns:
         # A first column headed with the object's noun is commonly the defining
@@ -648,7 +870,33 @@ def table_definition(
             and doc.rel == "docs/design/06-buff-system.md"
             and clean_markdown(row.headers[index]).lower() == "族 id"
         )
-        if identifier not in ids or (not family_registry_cell and len(ids) != 1):
+        multi_id_columns = (
+            (family == "sc_" and re.fullmatch(r"场景键(?:\s*\d+)?", clean_markdown(row.headers[index]).lower()))
+            or (family == "frag_" and "三卷" in clean_markdown(row.headers[index]))
+            or (
+                family == "vid_"
+                and doc.rel == "docs/tech/07-asset-generation.md"
+                and clean_markdown(row.headers[index]).lower() == "id"
+                and all(item.startswith("vid_end_") for item in ids)
+                and "结局成片" in " ".join(row.cells)
+            )
+            or (
+                family == "aoe_"
+                and doc.rel == "docs/design/09-combat-system.md"
+                and clean_markdown(row.headers[index]).lower().startswith("生产 id")
+            )
+            or (
+                family == "aoe_"
+                and doc.rel == "docs/design/09-combat-system.md"
+                and clean_markdown(row.headers[index]).lower() == "id"
+                and row.cells
+                and "范围模板" in clean_markdown(row.cells[0])
+                and "本文生产 ID" in clean_markdown(row.cells[0])
+            )
+        )
+        if identifier not in ids or (
+            not family_registry_cell and not multi_id_columns and len(ids) != 1
+        ):
             continue
         # Provisional wording in the ID cell itself is meaningful.  Wording in
         # another field (for example an origin note marked "待考" or
@@ -761,6 +1009,30 @@ def semantic_definition(
     )
 
 
+def legacy_bullet_definition(
+    identifier: str, doc: Document, line_index: int, prefixes: Sequence[str]
+) -> Optional[Definition]:
+    """Recognize design/20's compact source/cache/three-fragment cards."""
+    if doc.rel != "docs/design/20-legacy-inheritance.md":
+        return None
+    if not definition_allowed(identifier, doc, line_index, prefixes):
+        return None
+    line = doc.lines[line_index]
+    family = family_for(identifier, prefixes)
+    if family == "cache_" and re.match(r"^\s*[-*]\s+\*\*载体\s*/\s*投放\*\*", line):
+        shape = "legacy-carrier"
+    elif family == "frag_" and re.match(r"^\s*[-*]\s+\*\*三卷\s*/\s*信物\*\*", line):
+        shape = "legacy-fragments"
+    else:
+        return None
+    return Definition(
+        id=identifier,
+        location=Location(doc.rel, line_index + 1, line.find(identifier) + 1),
+        name=None,
+        shape=shape,
+    )
+
+
 def bold_card_definition(
     identifier: str, doc: Document, line_index: int, ids: Sequence[str],
     prefixes: Sequence[str],
@@ -792,6 +1064,16 @@ def heading_definition(
     # Headings such as "§7.2 ch03" are navigation, not cards.  Definitions
     # must either have a name beside the ID or be a catalog/sect entry heading.
     name = heading_name(line, identifier, len(ids))
+    if (
+        name is None
+        and doc.rel == "docs/design/20-legacy-inheritance.md"
+        and identifier.startswith("lgs_")
+        and len(ids) == 1
+    ):
+        # Numbered LegacySource cards use "09 · name ID"; the generic name
+        # normalizer rejects the residual digits, but this remains a strong
+        # owner-only definition shape.
+        name = "LegacySource"
     if name is None:
         return None
     return Definition(
@@ -806,9 +1088,15 @@ def yaml_definition(
     identifier: str, doc: Document, line_index: int, ids: Sequence[str], prefixes: Sequence[str]
 ) -> Optional[Definition]:
     line = doc.lines[line_index]
-    if not doc.in_fence[line_index] or not YAML_ID_RE.match(line):
+    spans = id_field_spans(line, re.escape(identifier))
+    if not doc.in_fence[line_index] or not spans:
         return None
-    if len(ids) != 1 or line_is_provisional(doc, line_index):
+    column = line.find(identifier) + 1
+    occurrence = Occurrence(
+        identifier, Location(doc.rel, line_index + 1, column), line,
+        doc.sections[line_index], doc.h2s[line_index], True,
+    )
+    if not occurrence_has_span(occurrence, spans) or line_is_provisional(doc, line_index):
         return None
     if not definition_allowed(identifier, doc, line_index, prefixes):
         return None
@@ -820,18 +1108,63 @@ def yaml_definition(
     )
 
 
+def fenced_mapping_definition(
+    occurrence: Occurrence, doc: Document, line_index: int, prefixes: Sequence[str]
+) -> Optional[Definition]:
+    """Recognize an ID used as a YAML/JSON mapping key in an owner fence."""
+    if not doc.in_fence[line_index]:
+        return None
+    spans = mapping_key_spans(doc.lines[line_index], re.escape(occurrence.id))
+    if not occurrence_has_span(occurrence, spans):
+        return None
+    if line_is_provisional(doc, line_index):
+        return None
+    if not definition_allowed(occurrence.id, doc, line_index, prefixes):
+        return None
+    return Definition(
+        id=occurrence.id,
+        location=occurrence.location,
+        name=None,
+        shape="yaml-key",
+    )
+
+
+def data_source_definition(
+    occurrence: Occurrence, doc: Document, line_index: int, prefixes: Sequence[str]
+) -> Optional[Definition]:
+    """Recognize object IDs, but not reference fields, in registered data."""
+    if not is_data_source_rel(doc.rel):
+        return None
+    line = doc.lines[line_index]
+    identifier_re = re.escape(occurrence.id)
+    spans = id_field_spans(line, identifier_re) + mapping_key_spans(line, identifier_re)
+    if not occurrence_has_span(occurrence, spans):
+        return None
+    if not definition_allowed(occurrence.id, doc, line_index, prefixes):
+        return None
+    return Definition(
+        id=occurrence.id,
+        location=occurrence.location,
+        name=None,
+        shape="data-id",
+    )
+
+
 def occurrence_definition(
     occurrence: Occurrence, doc: Document, line_index: int, ids: Sequence[str],
     id_regex: re.Pattern[str], prefixes: Sequence[str]
 ) -> Optional[Definition]:
     for detector in (
+        lambda: data_source_definition(occurrence, doc, line_index, prefixes),
         lambda: table_definition(occurrence.id, doc, line_index, id_regex, prefixes),
         lambda: heading_definition(occurrence.id, doc, line_index, ids, prefixes),
         lambda: yaml_definition(occurrence.id, doc, line_index, ids, prefixes),
+        lambda: fenced_mapping_definition(occurrence, doc, line_index, prefixes),
         lambda: inventory_definition(occurrence.id, doc, line_index, prefixes),
         lambda: canon_chapter_definition(occurrence.id, doc, line_index),
         lambda: canon_anchor_definition(occurrence.id, doc, line_index, prefixes),
         lambda: semantic_definition(occurrence.id, doc, line_index, prefixes),
+        lambda: legacy_bullet_definition(occurrence.id, doc, line_index, prefixes),
         lambda: bold_card_definition(occurrence.id, doc, line_index, ids, prefixes),
     ):
         definition = detector()
@@ -847,6 +1180,8 @@ def extract_occurrences(
     definitions: List[Definition] = []
     seen_definitions: Set[Tuple[str, str, int]] = set()
     for doc in documents:
+        local_ids = local_task_ids_by_line(doc)
+        example_ids = fixture_task_ids(doc)
         for line_index, line in enumerate(doc.lines):
             matches = line_id_matches(doc, line_index, id_regex)
             ids = [match.group(0) for match in matches]
@@ -859,11 +1194,14 @@ def extract_occurrences(
                     section=doc.sections[line_index],
                     h2=doc.h2s[line_index],
                     in_fence=doc.in_fence[line_index],
-                    active=active_line(doc, line_index),
+                    active=active_line(doc, line_index) and identifier not in example_ids,
+                    local=identifier in local_ids[line_index],
                 )
                 definition = occurrence_definition(
                     occurrence, doc, line_index, ids, id_regex, prefixes
                 )
+                if definition is not None and occurrence.local:
+                    definition = None
                 if definition is not None:
                     occurrence.definition = True
                     key = (definition.id, definition.location.file, definition.location.line)
@@ -875,7 +1213,7 @@ def extract_occurrences(
 
 
 RANGE_RE = re.compile(
-    r"(?P<left>[a-z][a-z0-9_]*?)(?P<start>\d{1,2})`?\s*(?:…|–|—|-)\s*`?"
+    r"(?P<left>[a-z][a-z0-9_]*?)(?P<start>\d{1,2})`?\s*(?:\.\.|…|–|—|-)\s*`?"
     r"(?:(?P<right>[a-z][a-z0-9_]*?))?(?P<end>\d{1,2})"
 )
 
@@ -975,6 +1313,13 @@ def covered_by_parameterized_definition(
         # peers. Placeholder tokens are deliberately excluded by extraction,
         # so existence of the family owner is the reliable authority signal.
         return owner_exists(root, "fam_")
+    if identifier.startswith("vid_sleep_"):
+        match = re.fullmatch(r"vid_sleep_(\d{2})_(\d{2})", identifier)
+        return bool(match and int(match.group(2)) == int(match.group(1)) + 1)
+    if identifier.startswith("vid_ch"):
+        return owner_exists(root, "vid_")
+    if identifier.startswith("save_"):
+        return owner_exists(root, "save_")
     # save_booksleep/wake and it_shijian are explicitly reserved as patterns
     # by their owning documents; the concrete suffix is the data parameter.
     return True
@@ -984,6 +1329,14 @@ def non_live_reference(occurrence: Occurrence) -> bool:
     """Suppress explicit examples, proposals, and migration-only keys."""
     rel = occurrence.location.file
     line = occurrence.context
+    if is_data_source_rel(rel):
+        # Enum/value strings such as "city_anchor" and "post_station"
+        # collide with registered prefixes but are not object references.
+        column = line.find(occurrence.id)
+        key = line[:column] if column >= 0 else ""
+        match = re.search(r"[\"'](?P<field>[a-z][a-z0-9_]*)[\"']\s*:\s*[\"']$", key)
+        if match and match.group("field") in DATA_ENUM_FIELDS:
+            return True
     if rel == "docs/design/08-terrain-and-qinggong.md":
         if occurrence.id.startswith("rg_") and re.match(r"9(?:\.|\s)", occurrence.h2):
             return True
@@ -1091,7 +1444,7 @@ def undefined_issues(
     first_reference: Dict[str, Occurrence] = {}
     count: Dict[str, int] = {}
     for occurrence in occurrences:
-        if not occurrence.active or occurrence.definition:
+        if not occurrence.active or occurrence.definition or occurrence.local:
             continue
         if occurrence.id in defined:
             continue
@@ -1201,13 +1554,14 @@ def near_match_issues(
 ) -> List[Dict[str, object]]:
     ids = {
         occurrence.id for occurrence in occurrences
-        if occurrence.active and occurrence.id not in EXPLICITLY_REJECTED_IDS
+        if occurrence.active and not occurrence.local
+        and occurrence.id not in EXPLICITLY_REJECTED_IDS
     }
     ids.update(definition.id for definition in definitions)
     first: Dict[str, Location] = {}
     defined_ids = {definition.id for definition in definitions}
     for occurrence in occurrences:
-        if occurrence.active:
+        if occurrence.active and not occurrence.local:
             first.setdefault(occurrence.id, occurrence.location)
     # Definitions can enter ``ids`` even when their source line is not an
     # active reference (for example a valid table row whose descriptive cells
@@ -1460,7 +1814,7 @@ def set_symmetry_issues(
     return result, "checked: {} SetDef entries".format(len(sets))
 
 
-def discover_markdown_paths(
+def discover_document_paths(
     root: Path, raw_paths: Sequence[str], warnings: List[str]
 ) -> List[Path]:
     targets = [Path(value) for value in raw_paths] if raw_paths else [root / "docs"]
@@ -1469,11 +1823,17 @@ def discover_markdown_paths(
         candidate = target if target.is_absolute() else root / target
         if candidate.is_dir():
             paths.update(path for path in candidate.rglob("*.md") if path.is_file())
+            for pattern in DATA_SOURCE_PATTERNS:
+                paths.update(
+                    path for path in root.glob(pattern)
+                    if path.is_file() and (not raw_paths or candidate in path.parents)
+                )
         elif candidate.is_file():
-            if candidate.suffix.lower() == ".md":
+            candidate_rel = relpath(candidate, root)
+            if candidate.suffix.lower() == ".md" or is_data_source_rel(candidate_rel):
                 paths.add(candidate)
             else:
-                warnings.append("ignored non-Markdown path: {}".format(relpath(candidate, root)))
+                warnings.append("ignored unsupported path: {}".format(candidate_rel))
         else:
             warnings.append("path does not exist: {}".format(target))
     return sorted(paths, key=lambda path: relpath(path, root))
@@ -1490,6 +1850,48 @@ def ensure_support_documents(root: Path, paths: List[Path]) -> List[Path]:
     return sorted(result, key=lambda path: relpath(path, root))
 
 
+def load_baseline(path: Path, warnings: List[str]) -> Tuple[Set[str], Set[str], str]:
+    """Load stable strict issue keys; locations deliberately do not matter."""
+    if not path.is_file():
+        return set(), set(), "missing"
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        if payload.get("schema_version") != BASELINE_VERSION:
+            raise ValueError("unsupported schema_version")
+        undefined = payload.get("undefined_ids")
+        deprecated = payload.get("deprecated_ids")
+        if not isinstance(undefined, list) or not isinstance(deprecated, list):
+            raise ValueError("issue lists are required")
+        if not all(isinstance(item, str) for item in undefined + deprecated):
+            raise ValueError("issue keys must be strings")
+    except (OSError, UnicodeError, ValueError, json.JSONDecodeError) as exc:
+        warnings.append("cannot load baseline {}: {}".format(path, exc))
+        return set(), set(), "invalid"
+    return set(undefined), set(deprecated), "loaded"
+
+
+def baseline_payload(report: Mapping[str, object]) -> Dict[str, object]:
+    issues = report["issues"]  # type: ignore[assignment]
+    return {
+        "schema_version": BASELINE_VERSION,
+        "undefined_ids": sorted(item["id"] for item in issues["undefined_references"]),
+        "deprecated_ids": sorted({item["old_id"] for item in issues["deprecated_ids"]}),
+    }
+
+
+def write_baseline(path: Path, report: Mapping[str, object]) -> None:
+    """Atomically replace the baseline after a complete successful scan."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    content = json.dumps(baseline_payload(report), ensure_ascii=False, indent=2) + "\n"
+    with tempfile.NamedTemporaryFile(
+        mode="w", encoding="utf-8", dir=str(path.parent), delete=False
+    ) as handle:
+        handle.write(content)
+        temporary = Path(handle.name)
+    temporary.chmod(0o644)
+    temporary.replace(path)
+
+
 def format_location(item: Mapping[str, object]) -> str:
     return "{}:{}:{}".format(
         item.get("file", "?"), item.get("line", "?"), item.get("column", "?")
@@ -1502,8 +1904,10 @@ def print_human(report: Mapping[str, object]) -> None:
     scan = report["scan"]  # type: ignore[assignment]
     print("ID consistency report")
     print(
-        "scanned: {files} Markdown files, {occurrences} occurrences, "
-        "{definitions} definitions".format(**scan)  # type: ignore[arg-type]
+        "scanned: {files} files ({markdown_files} Markdown, {data_files} data), "
+        "{occurrences} occurrences, {definitions} definitions".format(
+            **scan  # type: ignore[arg-type]
+        )
     )
     suffix = (
         " (built-in fallback)"
@@ -1560,6 +1964,17 @@ def print_human(report: Mapping[str, object]) -> None:
                     )
                 )
     print("\nset check: {}".format(report["set_check"]))
+    baseline = report["baseline"]  # type: ignore[assignment]
+    print(
+        "baseline: {status}; known undefined/deprecated={known_undefined_ids}/"
+        "{known_deprecated_ids}; new={new_count}".format(
+            new_count=(
+                len(baseline["new_undefined_ids"])
+                + len(baseline["new_deprecated_ids"])
+            ),
+            **baseline,
+        )
+    )
     print(
         "strict failure count (categories 1 + 4): {}".format(
             report["strict_failure_count"]
@@ -1571,7 +1986,7 @@ def build_report(root: Path, raw_paths: Sequence[str]) -> Dict[str, object]:
     warnings: List[str] = []
     prefixes, fallback = parse_prefixes(root / CANON_REL, warnings)
     id_regex = compile_id_regex(prefixes)
-    requested_paths = discover_markdown_paths(root, raw_paths, warnings)
+    requested_paths = discover_document_paths(root, raw_paths, warnings)
     all_paths = ensure_support_documents(root, requested_paths)
     documents = [
         doc for path in all_paths
@@ -1600,7 +2015,14 @@ def build_report(root: Path, raw_paths: Sequence[str]) -> Dict[str, object]:
     if SET_SYSTEM_REL not in requested_rels and raw_paths:
         set_issues = []
         set_status = "skipped: {} was outside requested paths".format(SET_SYSTEM_REL)
-    strict_count = len(undefined) + len(deprecated)
+    baseline_undefined, baseline_deprecated, baseline_status = load_baseline(
+        root / BASELINE_REL, warnings
+    )
+    undefined_ids = {str(item["id"]) for item in undefined}
+    deprecated_ids = {str(item["old_id"]) for item in deprecated}
+    new_undefined = sorted(undefined_ids - baseline_undefined)
+    new_deprecated = sorted(deprecated_ids - baseline_deprecated)
+    strict_count = len(new_undefined) + len(new_deprecated)
     return {
         "schema_version": VERSION,
         "root": root.as_posix(),
@@ -1608,6 +2030,8 @@ def build_report(root: Path, raw_paths: Sequence[str]) -> Dict[str, object]:
         "prefixes": prefixes,
         "scan": {
             "files": len(requested_paths),
+            "markdown_files": sum(path.suffix.lower() == ".md" for path in requested_paths),
+            "data_files": sum(path.suffix.lower() != ".md" for path in requested_paths),
             "occurrences": len(scoped_occurrences),
             "definitions": len(scoped_definitions),
         },
@@ -1626,6 +2050,14 @@ def build_report(root: Path, raw_paths: Sequence[str]) -> Dict[str, object]:
             "set_tag_asymmetry": len(set_issues),
         },
         "set_check": set_status,
+        "baseline": {
+            "path": BASELINE_REL,
+            "status": baseline_status,
+            "known_undefined_ids": len(undefined_ids & baseline_undefined),
+            "known_deprecated_ids": len(deprecated_ids & baseline_deprecated),
+            "new_undefined_ids": new_undefined,
+            "new_deprecated_ids": new_deprecated,
+        },
         "strict_failure_count": strict_count,
         "warnings": warnings,
     }
@@ -1644,15 +2076,29 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--strict", action="store_true",
-        help="exit 1 for undefined or deprecated active IDs",
+        help="exit 1 for undefined or deprecated IDs outside the baseline",
+    )
+    parser.add_argument(
+        "--update-baseline", action="store_true",
+        help="replace the strict baseline from a complete default scan",
     )
     return parser.parse_args(argv)
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     args = parse_args(argv)
+    if args.update_baseline and args.paths:
+        print(
+            "error: --update-baseline requires the complete default docs scan",
+            file=sys.stderr,
+        )
+        return 2
     root = repository_root()
     report = build_report(root, args.paths)
+    if args.update_baseline:
+        write_baseline(root / BASELINE_REL, report)
+        # Reflect the just-written baseline in output and strict semantics.
+        report = build_report(root, args.paths)
     if args.as_json:
         for warning in report["warnings"]:
             print("warning: {}".format(warning), file=sys.stderr)

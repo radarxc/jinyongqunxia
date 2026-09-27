@@ -28,8 +28,20 @@ CANON_WITH_PREFIXES = """# Canon
 | 武学 | `sk_<pinyin>` |
 | Buff | `bf_<pinyin>` |
 | 套装 | `set_<pinyin>` |
+| 物品 | `it_<pinyin>` |
 | NPC | `npc_<pinyin>` |
 | 任务 | `q_<pinyin>` |
+| 门派 | `sect_<pinyin>` |
+| 地形 | `tr_<pinyin>` |
+| 成就 | `ach_<pinyin>` |
+| 城市 | `city_<pinyin>` |
+| 场景 | `sc_<pinyin>` |
+| 穴道 | `ap_<pinyin>` |
+| 范围 | `aoe_<pinyin>` |
+| 资源点 | `rp_<pinyin>` |
+| 营生 | `biz_<pinyin>` |
+| 选择 | `dc_<pinyin>` |
+| 视频 | `vid_<pinyin>` |
 | 测试扩展 | `zz_<pinyin>` |
 
 ## 13. 其他
@@ -187,6 +199,324 @@ skills:
 
         self.assertEqual({"fam_z3", "fam_z4"}, {item.id for item in definitions})
 
+    def test_yaml_source_id_field_and_mapping_key_define_ids(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/map/cities.yaml",
+                '''{
+  "cities": [{"id": "city_yaml", "next": "city_missing"}],
+  "city_keyed": {"name": "键式城市"}
+}
+''',
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertNotIn("city_yaml", undefined)
+        self.assertNotIn("city_keyed", undefined)
+        self.assertIn("city_missing", undefined)
+
+    def test_owner_table_defines_but_non_owner_table_only_references(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/15-meridians-and-acupoints.md",
+                "# 经脉\n\n| 序 | 穴道 ID | 名称 |\n|---|---|---|\n"
+                "| 1 | `ap_owner` | 正式穴道 |\n",
+            )
+            repo.write(
+                "docs/design/03-attributes.md",
+                "# 属性\n\n| 序 | 穴道 ID | 名称 |\n|---|---|---|\n"
+                "| 1 | `ap_non_owner` | 误放定义 |\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertNotIn("ap_owner", undefined)
+        self.assertIn("ap_non_owner", undefined)
+
+    def test_owner_fenced_mapping_key_defines_id(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/15-meridians-and-acupoints.md",
+                "# 经脉\n\n```yaml\npoints:\n  ap_keyed:\n"
+                "    name: 键式穴位\n```\n",
+            )
+            repo.write(
+                "docs/design/03-attributes.md",
+                "# 属性\n\n引用 `ap_keyed`。\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertNotIn("ap_keyed", undefined)
+
+    def test_unique_owners_reject_legacy_npc_sect_and_main_quest_definitions(
+        self,
+    ) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write("docs/design/18-npc-and-companions.md", "# NPC\n")
+            repo.write(
+                "docs/design/12-quests-npc-factions.md",
+                "# 任务\n\n```yaml\nid: npc_wrong_owner\n"
+                "ownerSectId: sect_wrong_owner\n```\n",
+            )
+            repo.write(
+                "docs/design/chapters/01-demo.md",
+                "# 第一界\n\n| ID | 名称 |\n|---|---|\n"
+                "| `q_01_main_c_01` | 仅索引 |\n",
+            )
+            repo.write(
+                "docs/design/story/01-demo.md",
+                "# 第一界剧情\n\n## 本文新增术语与 ID\n\n"
+                "生产任务 `q_01_main_01..02`。\n",
+            )
+            repo.write(
+                "docs/design/03-attributes.md",
+                "# 属性\n\n外部引用 `q_01_main_02`。\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertTrue(
+            {"npc_wrong_owner", "sect_wrong_owner", "q_01_main_c_01"}
+            <= undefined
+        )
+        self.assertTrue({"q_01_main_01", "q_01_main_02"}.isdisjoint(undefined))
+
+    def test_owner_region_id_name_column_defines_region(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/11-open-world.md",
+                "# 开放世界\n\n| # | 区域 ID / 名称 | 职责 |\n|---|---|---|\n"
+                "| 1 | `rg_demo` 演示区域 | 测试 |\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertNotIn("rg_demo", undefined)
+
+    def test_region_draft_and_chapter_rows_do_not_redefine_global_region(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/11-open-world.md",
+                "# 开放世界\n\n| # | 区域 ID / 名称 |\n|---|---|\n"
+                "| 1 | `rg_shared` 正式区域 |\n",
+            )
+            repo.write(
+                "docs/design/19-world-map.md",
+                "# 地图\n\n| ID | 名称 |\n|---|---|\n"
+                "| `rg_shared` | 草案区域 |\n",
+            )
+            repo.write(
+                "docs/design/chapters/01-demo.md",
+                "# 第一界\n\n| ID | 名称 |\n|---|---|\n"
+                "| `rg_shared` | 本界称呼 |\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        definitions = [
+            item for item in report["issues"]["conflicting_definitions"]
+            if item["id"] == "rg_shared"
+        ]
+        self.assertEqual([], definitions)
+
+    def test_owner_production_id_cell_can_define_multiple_ids(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/09-combat-system.md",
+                "# 战斗\n\n| 族 | 生产 ID |\n|---|---|\n"
+                "| 点 | `aoe_one` / `aoe_two` |\n",
+            )
+            repo.write(
+                "docs/design/05-martial-arts-system.md",
+                "# 武学\n\n| 族 | 生产 ID |\n|---|---|\n"
+                "| 引用 | `aoe_wrong_owner` / `aoe_one` |\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertTrue({"aoe_one", "aoe_two"}.isdisjoint(undefined))
+        self.assertIn("aoe_wrong_owner", undefined)
+
+    def test_chapter_and_story_instances_require_matching_book_number(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/chapters/01-demo.md",
+                "# 第一界\n\n| 区域 | 场景键 1 | 场景键 2 |\n|---|---|---|\n"
+                "| 中原 | `sc_01_gate` | `sc_02_wrong` |\n\n"
+                "| 资源点 ID | 营生场所 |\n|---|---|\n"
+                "| `rp_demo_01` | `biz_demo_01` |\n",
+            )
+            repo.write(
+                "docs/design/story/01-demo.md",
+                "# 第一界剧情\n\n| ID | 名称 |\n|---|---|\n"
+                "| `q_01_main_c_01` | 第一幕 |\n"
+                "| `dc_01_01` | 选择 |\n"
+                "| `dc_02_01` | 错界选择 |\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertTrue({"sc_02_wrong", "dc_02_01"} <= undefined)
+        self.assertTrue(
+            {"sc_01_gate", "rp_demo_01", "biz_demo_01",
+             "q_01_main_c_01", "dc_01_01"}.isdisjoint(undefined)
+        )
+
+    def test_task_local_keys_are_suppressed_only_in_their_quest_block(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/story/01-demo.md",
+                """# 剧情
+
+```yaml
+schemaVersion: quest.v1
+id: q_01_main_c_01
+stages:
+  - id: st_choose
+    transitions:
+      - id: tr_local_exit
+        to: st_close
+    checks: [{id: chk_gate}]
+    effects: [{id: fx_reward}]
+```
+
+另一个任务错误引用 `tr_local_exit`。
+""",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertEqual({"tr_local_exit"}, undefined)
+
+    def test_task_local_id_in_family_owner_does_not_define_global_id(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/08-terrain-and-qinggong.md",
+                "# 地形\n\n```yaml\nschemaVersion: quest.v1\n"
+                "id: q_01_side_01\ntransitions:\n  - id: tr_local_exit\n```\n",
+            )
+            repo.write(
+                "docs/design/03-attributes.md",
+                "# 属性\n\n错误跨任务引用 `tr_local_exit`。\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertIn("tr_local_exit", undefined)
+
+    def test_explicit_fixture_quest_id_is_not_a_live_global_reference(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/12-quests-npc-factions.md",
+                "# 任务\n\n```yaml\nschemaVersion: quest.v1\n"
+                "fixture: true\nid: q_01_main_90\nstages: []\n```\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertNotIn("q_01_main_90", undefined)
+
+    def test_explicit_example_suffix_is_not_a_live_reference(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/13-progression-and-endings.md",
+                "# 成就\n\n示范 `ach_example` 与 `ach_example_first`；"
+                "真实漏项 `ach_real_missing`。\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertEqual({"ach_real_missing"}, undefined)
+
+    def test_single_letter_suffix_is_not_implicitly_a_placeholder(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write("docs/design/18-npc-and-companions.md", "# NPC\n")
+            repo.write(
+                "docs/design/03-attributes.md",
+                "# 属性\n\n真实漏项 `npc_guard_a`。\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        self.assertEqual(
+            ["npc_guard_a"],
+            [item["id"] for item in report["issues"]["undefined_references"]],
+        )
+
+    def test_legacy_definition_bullets_define_cache_and_fragments(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/20-legacy-inheritance.md",
+                "# 传承\n\n#### 1 · 示例 `lgs_demo`\n\n"
+                "- **载体 / 投放**：旧匣；`cache_demo`。\n"
+                "- **三卷 / 信物**：`frag_demo_upper`、`frag_demo_middle`、"
+                "`frag_demo_lower`；`it_demo_keystone`。\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertTrue(
+            {"lgs_demo", "cache_demo", "frag_demo_upper",
+             "frag_demo_middle", "frag_demo_lower"}.isdisjoint(undefined)
+        )
+        self.assertIn("it_demo_keystone", undefined)
+
+    def test_parameterized_sleep_video_allows_only_adjacent_books(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/02-timeline-and-world-tiers.md",
+                "# 时间线\n\n合法 `vid_sleep_02_03`；非法 `vid_sleep_02_04`。\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertNotIn("vid_sleep_02_03", undefined)
+        self.assertIn("vid_sleep_02_04", undefined)
+
+    def test_asset_owner_defines_three_finale_videos_in_one_catalog_cell(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/tech/07-asset-generation.md",
+                "# 素材生成\n\n| ID | 内容 | 数量 |\n|---|---|---|\n"
+                "| `vid_end_a` / `vid_end_b` / `vid_end_c` | 三条既定结局成片 | 3 |\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertTrue({"vid_end_a", "vid_end_b", "vid_end_c"}.isdisjoint(undefined))
+
 
 class IssueCategoryTests(unittest.TestCase):
     def test_category_1_reports_undefined_and_accepts_parameterized_family(self) -> None:
@@ -262,6 +592,28 @@ class IssueCategoryTests(unittest.TestCase):
         self.assertEqual(1, len(issues))
         self.assertEqual(["tr_shekou", "tr_sheku"], issues[0]["ids"])
         self.assertLessEqual(issues[0]["distance"], 2)
+
+    def test_category_3_ignores_task_local_ids(self) -> None:
+        local = occurrence(
+            "tr_shekou", "docs/design/story/01-demo.md", 4
+        )
+        local.local = True
+        definitions = [
+            check_ids.Definition(
+                "tr_sheku",
+                check_ids.Location(
+                    "docs/design/08-terrain-and-qinggong.md", 8, 1
+                ),
+                "蛇窟",
+                "table",
+            )
+        ]
+
+        issues = check_ids.near_match_issues(
+            [local], definitions, list(check_ids.DEFAULT_PREFIXES)
+        )
+
+        self.assertEqual([], issues)
 
     def test_category_3_uses_definition_location_when_id_has_no_active_occurrence(
         self,
@@ -417,6 +769,50 @@ class CommandLineTests(unittest.TestCase):
             ["sk_missing"],
             [item["id"] for item in report["issues"]["undefined_references"]],
         )
+
+    def test_baseline_filters_strict_failures_but_keeps_all_issues(self) -> None:
+        with self.make_repo_with_strict_findings() as repo:
+            repo.write(
+                check_ids.BASELINE_REL,
+                json.dumps({
+                    "schema_version": 1,
+                    "undefined_ids": ["sk_missing"],
+                    "deprecated_ids": ["bs_boss"],
+                }),
+            )
+            with mock.patch.object(check_ids, "repository_root", return_value=repo.root):
+                stdout = io.StringIO()
+                with redirect_stdout(stdout), redirect_stderr(io.StringIO()):
+                    exit_code = check_ids.main(["--json", "--strict"])
+
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(0, exit_code)
+        self.assertEqual(1, payload["counts"]["undefined_references"])
+        self.assertEqual(1, payload["counts"]["deprecated_ids"])
+        self.assertEqual(0, payload["strict_failure_count"])
+        self.assertEqual([], payload["baseline"]["new_undefined_ids"])
+        self.assertEqual([], payload["baseline"]["new_deprecated_ids"])
+
+    def test_update_baseline_writes_full_scan_and_rejects_custom_paths(self) -> None:
+        with self.make_repo_with_strict_findings() as repo:
+            with mock.patch.object(check_ids, "repository_root", return_value=repo.root):
+                with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+                    update_exit = check_ids.main(["--update-baseline"])
+                baseline = json.loads(
+                    (repo.root / check_ids.BASELINE_REL).read_text(encoding="utf-8")
+                )
+                baseline_mode = (repo.root / check_ids.BASELINE_REL).stat().st_mode & 0o777
+                with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+                    reject_exit = check_ids.main([
+                        "--update-baseline",
+                        "docs/design/05-martial-arts-system.md",
+                    ])
+
+        self.assertEqual(0, update_exit)
+        self.assertEqual(["sk_missing"], baseline["undefined_ids"])
+        self.assertEqual(["bs_boss"], baseline["deprecated_ids"])
+        self.assertEqual(0o644, baseline_mode)
+        self.assertEqual(2, reject_exit)
 
 
 if __name__ == "__main__":
