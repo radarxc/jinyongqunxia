@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.1（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/11-yuanyang.md`。
 > 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；经脉 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；前代传承 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v0.1（D11 初稿，2026-09-26）。
+> 版本：v0.2（D11 初稿，2026-09-26；审校 D11.R，2026-09-26）。
 
 
 ## 0. 阅读指引
@@ -195,18 +195,18 @@ chapterMapLayer:
   offMapNodes: []
 ```
 
-本界没有波斯总教等图外节点；若传承调度选中超出六区的来源，只能通过专线奇遇临时加载，不把图外地点伪装为可自由步行区域。
+本界没有波斯总教、罗刹国、撒麻尔罕这三类真正图外节点。传承调度若命中荆州、吐鲁番等六个开放区之外的**图内**地点，只能通过任务专线临时加载，不把它们伪装为本界可自由步行区域；若未来命中真正图外源，则继续服从 `design/19` 的图外专线约束。
 
 ### 3.2 六区总表
 
 | 全局区域 | 地貌与 `tr_*` | 入口与轻功门禁 | 本时代势力 / 主要 NPC | 可学武功（已有 ID） | 敌人等级带 | 秘境 / 奇遇 |
 |---|---|---|---|---|---:|---|
-| `rg_guanzhong` 关中与陕南 | 官道 `tr_pingdi`、松林 `tr_milin`、荆棘 `tr_jingji`、低墙 `tr_gaoqiang` | 开局即开；官道主线 qg0–1；松林树梢捷径 qg2 | 威信镖局、地方官差；周威信、太岳四侠、鲁忱、何谦 | `sk_weixinbiaoquan`、`sk_weixinjian`、`sk_hangzhen`、`sk_taiyuequan` | 36–41 | `sc_11_songlin_biaodao`；“碑背藏签”奇遇 **（原创扩展）** |
+| `rg_guanzhong` 关中陕北 | 官道 `tr_pingdi`、松林 `tr_milin`、荆棘 `tr_jingji`、低墙 `tr_gaoqiang` | 开局即开；官道主线 qg0–1；松林树梢捷径 qg2 | 威信镖局、地方官差；周威信、太岳四侠、鲁忱、何谦 | `sk_weixinbiaoquan`、`sk_weixinjian`、`sk_hangzhen`、`sk_taiyuequan` | 36–41 | `sc_11_songlin_biaodao`；“碑背藏签”奇遇 **（原创扩展）** |
 | `rg_hedong_jinzhong` 河东与晋中 | 枣林 `tr_milin`、庵院 `tr_shinei`、府墙 `tr_gaoqiang`、中条山 `tr_qiaobi` | C01 后沿官道进入；主线最高 qg2；中条山残壁支线 qg3 | 萧府、林任夫妇、清宫押刀队；袁冠南、萧中慧、萧半和、卓天雄 | `sk_linyulongdao`、`sk_renfeiyandao`、`sk_linrenhexinfa`、`sk_fuqidaofa`、`sk_yuanyangshuangdao` | 38–48 | 甘亭、枣香林、紫竹庵、萧府、中条山；双刀真伪链 |
 | `rg_zhongyuan` 中原 | 驿路 `tr_pingdi`、河滩 `tr_qianshui`、碑林 `tr_shizhen`、屋顶 `tr_wuding` | 甘亭后开放；洛阳屋脊 qg2；碑墨崖台 qg3 | 中原商帮、游方武者；程墨、传承候选后人 | `sk_taizuchangquan`、`sk_caoshangfei`；随机传承只引用 `design/20` | 39–45 | “三纸假谱”“碑墨校合” **（原创扩展）** |
 | `rg_yanjing_zhili` 燕京与直隶 | 城巷 `tr_pingdi`、宫墙 `tr_gaoqiang`、屋顶 `tr_wuding`、校场 `tr_jiaotu` | 邪线官凭、清宫 L1 或支线引荐进入外围；宫墙不作自由攀越，屋脊支路 qg2 | `sect_qinggong`；刘於义、罗宁及大内侍卫 | `sk_yulinjichudao`、`sk_daneishuangdao`；清宫通行武学依 §7 | 41–47 | 封刀文书、周家名册与“假檄夜行” **（原创扩展）** |
 | `rg_hexilongyou` 河西与陇右 | 黄土坡 `tr_suishi`、风口 `tr_jiaotu`、栈道 `tr_zhandao`、浅谷 `tr_shengu` | 凤翔府支路或传承专线；普通路 qg1，断栈捷径 qg2 | 驿商、旧镖路守户；无原著核心人物常驻 | `sk_caoshangfei`、通行拳脚；传承源按调度结果 | 36–42 | 白马高昌线索回响、旧镖旗埋藏 **（原创扩展）** |
-| `rg_bashu` 巴蜀 | 山道 `tr_zhandao`、竹林 `tr_zhulin`、急流 `tr_jiliu`、峭壁 `tr_qiaobi` | 汉中府南下或遗藏专线；普通栈道 qg2；药壁回访 qg3 | 药商、护院、川陕官差；无原著核心人物常驻 | `sk_dengpingdushui`、`sk_babuganchan`（奇遇彩蛋，不等于原著传授） | 38–44 | “药壁留手”“川路旧匣” **（原创扩展）** |
+| `rg_bashu` 巴蜀 | 山道 `tr_zhandao`、竹林 `tr_zhulin`、急流 `tr_jiliu`、峭壁 `tr_qiaobi` | 西安—成都定期路线；汉中、巴中是关闭区内 `via`，可经过但不可停靠；普通栈道 qg2，药壁回访 qg3 | 药商、护院、川陕官差；无原著核心人物常驻 | `sk_dengpingdushui`、`sk_babuganchan`（奇遇彩蛋，不等于原著传授） | 38–44 | “药壁留手”“川路旧匣” **（原创扩展）** |
 
 六区形成“关中开局—晋中主轴—京畿官府终点”的故事骨架；中原、河西和巴蜀提供成长、营生与前代传承。开放不等于主线强制远行，八小时流程不会要求玩家清遍六区。
 
@@ -216,7 +216,7 @@ chapterMapLayer:
 |---|---|---|---|---|---|
 | `city_xian` 西安府 | `rg_guanzhong` | 路府州县；官署、镖行与商旅汇集 | 周威信、何谦、鲁忱；开局整备 | 开局可入 | 关中粮田、铁作；镖局 / 赌场 |
 | `city_baoji` 凤翔府 | `rg_guanzhong` | 路府州县；川陕与陇右转运 | 驿商、传承线索人 **（原创扩展）** | C01 后 | 关中矿木；镖局 |
-| `city_hanzhong` 汉中府 | `rg_guanzhong` | 路府州县；巴蜀入口 | 药商、护院主管 **（原创扩展）** | 获普通路引或完成药路支线 | 药材；山庄 |
+| `city_xianyang` 咸阳县 | `rg_guanzhong` | 路府州县；西安近郊商旅节点 | 药商、护院主管 **（原创扩展）** | 开局可入 | 药材转运；山庄 |
 | `city_linfen` 平阳府 | `rg_hedong_jinzhong` | 路府州县；甘亭最近府城 | 林任夫妇、镖队过客 | C01 后 | 林地 / 药坡；镖局 |
 | `city_taiyuan` 太原府 | `rg_hedong_jinzhong` | 路府州县；萧府所在城市层 | 萧半和、严和、袁杨两夫人 | 完成 `anc_11_03` 或取得寿帖 | 林场；镖局 / 山庄 |
 | `city_yuncheng` 解州 | `rg_hedong_jinzhong` | 路府州县；中条山北侧补给 | 袁冠南、萧中慧后段同行 | C02 后可入；山内主线随 z/x_10 | 山矿；镖局 |
@@ -225,9 +225,9 @@ chapterMapLayer:
 | `city_kaifeng` 开封府 | `rg_zhongyuan` | 路府州县；河运与消息市场 | 传承线人、赌场主管 **（原创扩展）** | 完成一项中原行脚 | 墨料；赌场 |
 | `city_beijing` 京师顺天府 | `rg_yanjing_zhili` | 都城；清宫、官署、封刀终点 | 刘於义、罗宁 | 官凭、清宫身份或结局交换专线；内城非全开放 | 京畿铁作；镖局 |
 | `city_tianshui` 秦州 | `rg_hexilongyou` | 路府州县；陇右旧镖道 | 旧旗守户 **（原创扩展）** | 凤翔府支线 | 河西畜皮；镖局 |
-| `city_chengdu` 成都府 | `rg_bashu` | 路府州县；茶药商路 | 药师与庄头 **（原创扩展）** | 汉中府南路或传承专线 | 茶园 / 药坡；山庄 |
+| `city_chengdu` 成都府 | `rg_bashu` | 路府州县；茶药商路 | 药师与庄头 **（原创扩展）** | 西安—成都定期路线或传承专线；沿途关闭节点不可停靠 | 茶园 / 药坡；山庄 |
 
-地图 SVG 会显示更多城市；上表十二座才计入本界制作预算。京师入口只开放任务所需的外城、会馆和文书节点，不把紫禁城做成可随意闯入的普通城镇。
+地图 SVG 会显示更多城市；上表十二座才计入本界制作预算。`city_hanzhong` 按 `design/11` 已迁入未开放的 `rg_qinba`，故只可作为 `route_xian_chengdu` 的经过点，不得停靠或计入十二城；`cities.yaml.region` 的旧 `rg_guanzhong` 值待地图数据归属方迁移。京师入口只开放任务所需的外城、会馆和文书节点，不把紫禁城做成可随意闯入的普通城镇。
 
 ### 3.4 本界专属场景与旧 ID 迁移
 
@@ -272,7 +272,7 @@ chapterMapLayer:
 | `rp_zhongyuan_mocai_02` | 开封府碑墨坊 | `workshop` / 墨料 | 3–6 | 否 | 行会控制 | 校谱 / 委托加工 |
 | `rp_yanjing_tieqi_01` | 京师外城官作 | `workshop` / 铁器 | 3–6 | 否 | 清宫控制 | 清宫 L2 / 结局合同 |
 | `rp_hexilongyou_picao_02` | 秦州西路牧场 | `pasture` / 皮草、马匹 | 1–4 | 是 | 村社合作 | 护群 / 租赁 |
-| `rp_bashu_yaocai_02` | 汉中南路药坡 | `herb_garden` / 药材 | 3–6；专精至 7 | 是 | 药户共有，无独占势力 | 救治 / 购买采期 |
+| `rp_bashu_yaocai_02` | 成都府北路药坡 | `herb_garden` / 药材 | 3–6；专精至 7 | 是 | 药户共有，无独占势力 | 救治 / 购买采期 |
 | `rp_bashu_sicha_01` | 成都府外茶园 | `trade_source` / 丝茶 | 2–6 | 是 | 开放商契，无独占势力 | 护院 / 商契 |
 
 循环资源净新增预算为 `B_res=0.08×152=12.16≈12.2 两`。中条旧坑和巴蜀药坡的 7 品只按固定稀缺批次发放，不进入无限循环。`rp_*` 是稳定地理节点；跨时代复用 ID 时只切换本界状态。
@@ -284,7 +284,7 @@ chapterMapLayer:
 | `biz_xian_escort_01` | 西安府 | `escort` | 行脚、教头、客卿 | “暗镖不暗”：分离明镖与家眷名册 | 可承接威信镖局合同，但职位不等于门派职级 |
 | `biz_xian_casino_01` | 西安府 | `casino` | 行脚 | “一桌三把刀”：从赔率找泄密人 | 无借贷；只给消息和小额报酬 |
 | `biz_baoji_escort_01` | 凤翔府 | `escort` | 三职位 | “西栈药箱”：走镖至秦州 | 危险路冻结时限与路线 |
-| `biz_hanzhong_manor_01` | 汉中府 | `manor` | 三职位 | “竹栈护院”：护药户撤货 | 佃户、药户不可交易 |
+| `biz_xianyang_manor_01` | 咸阳县 | `manor` | 三职位 | “近畿护院”：护药户转运 | 佃户、药户不可交易；本章新建稳定实例 |
 | `biz_linfen_escort_01` | 平阳府 | `escort` | 三职位 | “梦话之后”：追回泄露的封签 | 与 C02 共享旗标，不双发经济奖励 |
 | `biz_taiyuan_escort_01` | 太原府 | `escort` | 三职位 | “寿帖同车”：护送宾客名帖 | 跨界复用场所，本时代经营者可变 |
 | `biz_taiyuan_manor_01` | 太原府 | `manor` | 三职位 | “寿堂替班”：调停宾客与护院 | 萧府为剧情挂点，不能买下 |
@@ -806,6 +806,7 @@ Boss 战斗流程、阶段、控制递减与脚本 ID 归 `design/09`；本文�
 |---|---|---|---|---|
 | `eq_yuanyangdao` | 天下 10；刀（成对） | `dc_11_08` 选“玩家独占双刀”时取得合法剧情归属；或后续明确允许的外来携带 | 独占会强制原著结果，不能同时取得改命变体 | 一件成对兵器，占主 / 副两格；神兵效果只见 `design/10` §5.2 |
 | `ins_renzhe` | 铭文学识 | `anc_11_04` 读出刀铭，或 `q_11_qiyu_05` 取得拓片后解锁 | 不论刀由后人共管、镖局托管或官府封存，学识均可获得 | 效果只见 `design/10` §6.4；本章不重复数值 |
+| `eq_changchangfengshibei` | 玄上；副手 · 牌 · `heavy` | 太岳四侠喜剧支线中由常长风授权使用 | 非致命降服或议和均可取得，不要求击杀 | 装备定义见 `design/10`；其 `exotic/misc` 武学兼容桥尚待图鉴归属方与装备归属方同步，未完成前不能满足 `sk_taiyueshibeishou.weaponReq` |
 | 镖局刀、鞭与护具 | 黄上至玄中 | 门派任务、商店、Boss 固定件 | 不要求杀死持有者；降服后可由组织授权 / 缴获 | 名录外装备最高地上 9 |
 | 清宫押运装备 | 黄上至玄上 | 官凭任务、清宫配给 | 离派后归还制式公物，个人合法奖励除外 | 不把官库当无限商店 |
 | 随机掉落 | 普通 ≤地下7、精英 / Boss ≤地中8 | 服从低武池 | 概率由 `design/02` 品阶骰 | 不随机产天级装备或秘籍 |
@@ -831,11 +832,11 @@ Boss 战斗流程、阶段、控制递减与脚本 ID 归 `design/09`；本文�
 
 | 源 | 本时代载体 / 地点 | 三卷与信物 | 合成条件与本界落点 |
 |---|---|---|---|
-| `lgs_shenzhao_jing` | 若 `legacy/shenzhao/lineage_broken` 已提交，可由无名受救者门下在成都府药行留医案，或经专线访问 `city_jingzhou/rg_jingxiang` 的 `cache_shenzhao_jingzhou` | `frag_shenzhao_shouxi`、`frag_shenzhao_xumai`、`frag_shenzhao_huming`；`it_xinwu_shenzhao_yuwen` | C10 调和、湘西吐纳前置或守传认可、`med≥35`【建议值】；三卷同源后可在紫竹庵静室校合 `sk_shenzhao` |
-| `lgs_liancheng_tangshi` | 洛阳 / 开封书商先给线索；正式宝藏仍经专线到 `city_jingzhou/rg_jingxiang` 的 `cache_tangshi_jingzhou`，不把荆州改名成河南府 | `frag_tangshi_duanju`、`frag_tangshi_cangjue`、`frag_tangshi_liancheng`；`it_xinwu_tangshi_puzi` | C8、剑法 4、`art≥45`；洛阳校谱房可完成 `sk_tangshijian` 校合，不伪造诗句 |
-| `lgs_gaochang_shouhu` | 秦州旧镖商提供专线；载体仍位于 `city_turpan/rg_xiyu_beijiang` 的 `cache_gaochang_migong`，可为守藏门下、壁画暗层或机关匣 | `frag_gaochang_men`、`frag_gaochang_jiguan`、`frag_gaochang_shoujian`；`it_xinwu_gaochang_bihua` | C9、剑法 5、`formation≥40`、高昌剑术与守藏认可；在洛阳机关铺或专线原址校合 `sk_gaochangshouhujian` |
+| `lgs_shenzhao_jing` | 若 `legacy/shenzhao/lineage_broken` 已提交，可由无名受救者门下在成都府药行留医案，或经开放区外图内任务专线访问 `city_jingzhou/rg_jingxiang` 的 `cache_shenzhao_jingzhou` | `frag_shenzhao_shouxi`、`frag_shenzhao_xumai`、`frag_shenzhao_huming`；`it_xinwu_shenzhao_yuwen` | C10 调和、湘西吐纳前置或守传认可、`med≥35`【建议值】；三卷同源后可在紫竹庵静室校合 `sk_shenzhao` |
+| `lgs_liancheng_tangshi` | 洛阳 / 开封书商先给线索；正式宝藏仍经开放区外图内任务专线到 `city_jingzhou/rg_jingxiang` 的 `cache_tangshi_jingzhou`，不把荆州改名成河南府 | `frag_tangshi_duanju`、`frag_tangshi_cangjue`、`frag_tangshi_liancheng`；`it_xinwu_tangshi_puzi` | C8、剑法 4、`art≥45`；洛阳校谱房可完成 `sk_tangshijian` 校合，不伪造诗句 |
+| `lgs_gaochang_shouhu` | 秦州旧镖商提供开放区外图内任务专线；载体仍位于 `city_turpan/rg_xiyu_beijiang` 的 `cache_gaochang_migong`，可为守藏门下、壁画暗层或机关匣 | `frag_gaochang_men`、`frag_gaochang_jiguan`、`frag_gaochang_shoujian`；`it_xinwu_gaochang_bihua` | C9、剑法 5、`formation≥40`、高昌剑术与守藏认可；在洛阳机关铺或专线原址校合 `sk_gaochangshouhujian` |
 
-三个源最多占满三载体；若调度命中别的合法源，应替换最末优先项而非突破上限。任何图外地点都只经任务专线抵达，完成后返回接入城市。`cache_*` 是一次性宝藏点，不是可经营的 `rp_*`；后人无可靠血缘时只称门下再传 / 守传者。
+三个源最多占满三载体；若调度命中别的合法源，应替换最末优先项而非突破上限。荆州、吐鲁番属于全局图内、但在本界六区之外，只能经任务专线抵达并在完成后返回接入城市；真正图外节点另按 `design/19` 处理。`cache_*` 是一次性宝藏点，不是可经营的 `rp_*`；后人无可靠血缘时只称门下再传 / 守传者。
 
 按 `design/20` 当前 AR-13 默认，三项完整合成在鸳鸯界的结果为：神照真实 10、当界有效 `min(10,9)=9`；唐诗真实 8、有效 8；高昌守护剑真实 9、有效 9。层数仍受本界上限 8，合成不免费升层。`legacyWorldCap=9` 尚待基准接纳；若提案未采纳，回退 Canon 现行分支——本土校合不截品阶，只保留 8 重上限。
 
@@ -1077,12 +1078,12 @@ nonLethalEncounter:
 |---|---|---|
 | 约 1740 → 1753 | 书眠约 13 年，时代图层切至乾隆中期 | 不因本界改命改变书剑历史起点 |
 | “仁者无敌” | 与陈家洛面对恩仇、承诺和政治选择形成主题回声 | 只作提示，不替后一界人物做决定 |
-| `z_fate/x_fate` | 江湖或官府各自流传“握刀而不用”的版本 | 仅对白、入口与关系差异，不能直接完成后一界任务 |
-| `z_canon/x_canon` | 传闻强调刀的价值、归属与遗憾 | 不把 canon 写成失败结局 |
+| `z_fate/x_fate` | 江湖或官府各自流传“握刀而不用”的版本；ch12 已接天书主题与仁字镖旗 / 无人死亡条件，官府具结仍按通用文本降级 | 仅对白、入口与关系差异，不能直接完成后一界任务 |
+| `z_canon/x_canon` | 传闻强调刀的价值、归属与遗憾；ch12 已接双刀“有刀 / 无刀”入口，尚未逐项消费两个本地结局键 | 不把 canon 写成失败结局 |
 | `eq_yuanyangdao` | 若合法携带，触发乾隆欲收藏双刀的清宫追索支线 | 唯一异时之器可与历史传闻并存；不得复制一件奖励刀 |
 | 双刀已放弃 | 以刀铭拓片或镖旗传闻替代收藏支线入口 | 玩家不因改命少一整条内容，只改变筹码和报酬 |
-| 清宫关系 / 官凭 | 允许更早接触官府线 | 身份在书眠时清除，只保留回响与已签承诺，不能直接沿用官职 |
-| 威信镖局结果 | 影响后界镖路对玩家的初始口碑 | 声望仍清零；只读具体事件回响 |
+| 清宫关系 / 官凭 | 当前 ch12 未直接继承官职；可由双刀追索或通用旧档文本间接回声 | 身份在书眠时清除，只保留已登记事实，不能直接沿用官职 |
+| 威信镖局结果 | ch12 已读取无人死亡改命收束或“仁”字镖旗记录，改变镖局初见招呼 | 声望仍清零；只读具体事件回响 |
 
 ### 11.5 后界彩蛋表
 
@@ -1092,10 +1093,10 @@ nonLethalEncounter:
 | 一纸放人 | `endingKey=x_fate` | 官府旧档留有可追责释放具结 | 输出 `endingKey` 与具结事实；正式回响 ID 由 `design/02` / `13` 登记 **（原创扩展）** |
 | 有价之刀 | `endingKey=x_canon` | 清宫与红花会都更早试探玩家 | 输出 `endingKey` 与双刀保管事实；正式回响 ID 由 `design/02` / `13` 登记 **（原创扩展）** |
 | 刀在人后 | `endingKey=z_canon` | 江湖人记得中条山真相，但各说各话 | 输出 `endingKey` 与见证事实；正式回响 ID 由 `design/02` / `13` 登记 **（原创扩展）** |
-| 乾隆索刀 | `carry:eq_yuanyangdao` | 清宫收藏支线；可展示、拒绝、假匣或有条件交付 | 沿用自动携带旗标，不另造物品 |
-| 夫妻刀遗绪 | `legacy/fuqi/manual_lost=true` | `lgs_yuanyang_fuqi` 可进入调度 | 三卷 / 信物只由 `design/20` 产生 |
+| 乾隆索刀 | `carry:eq_yuanyangdao` | 已由 ch12 §11.2 接入 `q_12_faction_05` 的可选清宫追索分支；可展示、拒绝或有条件交付 | 沿用自动携带旗标，不另造物品；无刀时以拓片 / 传闻降级 |
+| 夫妻刀遗绪 | `legacy/fuqi/manual_lost=true` | 已由 ch12 §3.13、§11.2 接入 `lgs_yuanyang_fuqi` 与 `q_12_qiyu_09` | 三卷 / 信物只由 `design/20` 产生 |
 
-四类回响只传递既往事实，不直接发属性、金钱或结局分。本文不越过唯一归属抢建 `echo_*`；若下游不接入，默认降级为书灵回顾文本，不影响 ch12 主线可通关性。
+四类回响只传递既往事实，不直接发属性、金钱或结局分。`chapters/12-shujian.md` §11.2 已接入天书主题、双刀携带、夫妻刀手记、人物健在重验与仁字镖旗 / 威信记录；四个本地 `endingKey` 尚未逐项获得正式 `echo_*`，因此其中未被上述条件覆盖的差异仍降级为书灵回顾文本，不影响 ch12 主线可通关性。本文不越过唯一归属抢建 `echo_*`。
 
 ### 11.6 书眠 YAML 接口
 
@@ -1161,7 +1162,8 @@ enemyStatMul(D3) = 0.85 + 0.05×3 = 1.00
 ```text
 STD_E(L, W=40, tier=LOW, kind=boss)
 → tmpl_boss
-   （绝顶段 hpMax×6；atkOut/atkIn×1.25；defOut/defIn×1.20；
+   （一流段 Lv31–40：hpMax×5.5；绝顶段 Lv41–50：hpMax×6；
+    两段均为 atkOut/atkIn×1.25；defOut/defIn×1.20；
     mpMax×2；hit/eva/parry/crit/tough/effHit/effRes 评级 +15；spd×1.06）
 → enemyStatMul(D3=1.00，仅 hpMax 与 atkOut/atkIn)
 → 可选流派修正
@@ -1178,7 +1180,7 @@ D3 难度乘区只再次作用于 `hpMax` 与 `atkOut/atkIn`；不能乘防御�
 | 46 | 64,534 | 6,692 | 1,919 / 1,673 | 1,521 / 1,349 | 140 / 113 | 82 | 57 | 53 | 65 / 65 | 93 |
 | 48 | 70,193 | 7,277 | 2,086 / 1,819 | 1,654 / 1,466 | 141 / 114 | 83 | 58 | 53 | 66 / 66 | 93 |
 
-表内 Lv38–40 仍显示绝顶段之前 / 边缘等级按工具实际选择的 Boss 倍率结果；“绝顶段 hp×6”对本界关键 Lv41–48 配表成立。禁止从表值倒推一套章节私有公式。
+表内 Lv38、Lv40 属一流段，按 `hpMax×5.5`；Lv42、Lv44、Lv46、Lv48 属绝顶段，按 `hpMax×6.0`。其余 Boss 乘区一致，并由工具按等级段选择；禁止从表值倒推一套章节私有公式。
 
 ### 12.4 六个遭遇的 `full` / `template` 配表
 
@@ -1253,7 +1255,7 @@ B = I×H = 19×8 = 152 两
 | 非致命系统 | 留手意图、证明集合、责任归因、UI 预警和降级为 canon | 战斗收束复用 `design/09`，不是第二套伤害规则 |
 | 冲穴 | 林任指点、紫竹庵 / 中条山静室和药壁线索 | 只配置上游接口；不虚构名医、丹药或新经脉 |
 | 前代传承 | 三项候选在本时代的线索人、专线入口与校合地点 | 卷、信物、概率和来源全由 `design/20`；不保证同周目出现 |
-| 跨书 | 白马回响、四类待上游登记的结局回响、乾隆索刀、夫妻刀手记与书眠镜头 | 只传事实和入口，不替 ch12 完成任务或发属性 |
+| 跨书 | 白马回响、四类仍待正式 `echo_*` 的结局语义、已接入 ch12 的乾隆索刀 / 夫妻刀手记 / 仁字镖旗与书眠镜头 | 只传事实和入口，不替 ch12 完成任务或发属性 |
 
 ### 13.2 原著考据集中清单
 
@@ -1272,7 +1274,7 @@ B = I×H = 19×8 = 152 两
 11. 袁冠南以笔墨迎战并虚称剧毒的具体载体、措辞和退敌次序；不得给“毒墨”虚构药名或毒性。
 12. 紫竹庵的庵中人物、与官道距离及卓威胁焚庵的准确情节；本稿新增安全区和撤离路线均非原著。
 13. 夫妻刀法在紫竹庵先授十二招、萧府再补六十招的数字与先后；未核前不列任何招名。
-14. 萧半和三月初十五十寿辰、英雄帖、许亲、太岳四侠送钗的出场顺序。
+14. 萧半和三月初十、五十寿辰、英雄帖、许亲、太岳四侠送钗的出场顺序。
 15. 袁夫人两手小指枝指、翡翠狮子和玉扳指各自的证据作用；不得把三者合并成一个新信物。
 16. 官兵先喊破“萧义”、萧半和去假须、袁萧救人、假短刀折断与真短刀去向的准确先后。
 17. 萧义入宫、营救两家、收养袁杨后人与两位夫人身份关系的完整叙述；不以游戏概述替代原著亲口说明。
@@ -1343,7 +1345,7 @@ B = I×H = 19×8 = 152 两
 
 - 本章新建资源点：`rp_hedongjinzhong_yaocai_01`、`rp_hedongjinzhong_kuangshi_01`、`rp_zhongyuan_mocai_02`、`rp_hexilongyou_picao_02`、`rp_bashu_yaocai_02`。
 - 复用既有资源点：`rp_guanzhong_liangshi_01`、`rp_guanzhong_tieqi_01`、`rp_hedongjinzhong_mucai_01`、`rp_zhongyuan_liangshi_01`、`rp_yanjing_tieqi_01`、`rp_bashu_sicha_01`。
-- 本章新建营生场所：`biz_baoji_escort_01`、`biz_hanzhong_manor_01`、`biz_linfen_escort_01`、`biz_taiyuan_manor_01`、`biz_yuncheng_escort_01`、`biz_changzhi_manor_01`、`biz_tianshui_escort_01`、`biz_chengdu_manor_01`。
+- 本章新建营生场所：`biz_baoji_escort_01`、`biz_xianyang_manor_01`、`biz_linfen_escort_01`、`biz_taiyuan_manor_01`、`biz_yuncheng_escort_01`、`biz_changzhi_manor_01`、`biz_tianshui_escort_01`、`biz_chengdu_manor_01`。
 - 复用既有营生场所：`biz_xian_escort_01`、`biz_xian_casino_01`、`biz_taiyuan_escort_01`、`biz_luoyang_escort_01`、`biz_kaifeng_casino_01`、`biz_beijing_escort_01`。
 
 资源点与营生 ID 表示稳定物理节点，本章只新增 / 覆盖 ch11 状态；其类型和经营规则仍归 `design/16`。
@@ -1384,9 +1386,9 @@ B = I×H = 19×8 = 152 两
 | YY-V15 | 资源 11：城外≥7、初始势力控制≤4、多路径≥3；营生 14 | 数量 / 分布任一不符，或同一活动重复领经济桶 |
 | YY-V16 | 轻功门禁 14：qg1=6、qg2=6、qg3=2、qg4/5=0 | qg3 成为主线硬门槛，或无替代路 |
 | YY-V17 | 经脉运行态只用 `mer_renmai` / `mer_daimai` | 写入废弃 `mer_ren`；图鉴旧值只能出现在迁移说明 |
-| YY-V18 | 前代传承最多 3 载体、2 后人、6 新残本、3 新信物 | 本界反投 `lgs_yuanyang_fuqi`，或图外地点变成自由步行区 |
+| YY-V18 | 前代传承最多 3 载体、2 后人、6 新残本、3 新信物 | 本界反投 `lgs_yuanyang_fuqi`，或把开放区外图内地点 / 真正图外节点变成自由步行区 |
 | YY-V19 | `eq_yuanyangdao` 全局唯一；任务中两柄只是部件引用 | 生成两件永久装备、赝品读铭或托管同时入包 |
-| YY-V20 | Markdown 代码围栏成对、表格列数一致、引用路径存在 | 截断句、未闭合围栏、断链或占位语 |
+| YY-V20 | Markdown 代码围栏成对、表格列数一致；已实现的必需引用路径存在；明确声明缺失并采用降级方案的可选归属文件不计断链 | 截断句、未闭合围栏、必需引用断链、未声明的可选依赖缺失或占位语 |
 
 ### 数值与流程用例
 
@@ -1443,11 +1445,11 @@ rg -n 'rg_11_|mer_ren\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/design/chapt
 - `design/story/11-yuanyang.md` 是开局、22 个唯一幕、8 个选择、4 个锚点、证明键与四类本地结局的唯一剧情源。
 - `catalog/npcs-ch11-yuanyang.md` 与 `design/18` 是人物身份、D 级、年龄、招募和跨书判断来源。
 - `skills-kangxi` / `skills-general` 是全部武学 ID 来源；本章不定义招式和品阶。
-- `design/11`、`design/19`、`map/regions.yaml`、`map/cities.yaml` 和 `map/jianghu-ch11.svg` 提供时代地图；已存在的 `map/jianghu-ch12.svg` 仅用于下一界引用。
+- `design/11`、`design/19`、`map/regions.yaml`、`map/cities.yaml` 和 `map/jianghu-ch11.svg` 提供时代地图；区域归属冲突时服从 `design/11`，故汉中按 `rg_qinba` 处理；已存在的 `map/jianghu-ch12.svg` 仅用于下一界引用。
 - `design/03` / `04` 提供 Boss 模板和战斗节奏；`design/16` 提供资源、营生、月钱与 152 两经济总账。
 - `design/15` 提供正式经脉、师父、静室和丹药接口；`design/20` 提供传承源、三卷、信物、合成与跨书保存。
 - `design/07-set-system.md` 当前不存在，因此本文没有定义、承诺或投放任何套装效果。
-- `docs/design/chapters/12-shujian.md` 当前不存在，因此四类回响和乾隆索刀只形成下游接口；不能宣称已被 ch12 接收。
+- 已解决：`docs/design/chapters/12-shujian.md` §3.13、§11.2 已接收天书主题、`carry:eq_yuanyangdao`、`legacy/fuqi/manual_lost`、人物健在重验及仁字镖旗 / 威信记录；四个本地 `endingKey` 尚未各自登记正式 `echo_*`，未覆盖差异继续降级为文本。
 
 ### 对基准的修改提案
 
@@ -1470,12 +1472,12 @@ rg -n 'rg_11_|mer_ren\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/design/chapt
 | YY-O01 | 威信镖局 L5 是否可在主线中取得 | 否；周威信在任时玩家最高 L4，余韵才可由行业推举 |
 | YY-O02 | 清宫 L5 是否允许普通玩家取得 | 否；仅保留称谓与数据层，普通玩家本界最高 L4 |
 | YY-O03 | 卓天雄缺失的原著掌法如何配表 | 不建图鉴外 `sk_*`；先用合法清宫 / 通行武学组合，待图鉴归属方考据补齐 |
-| YY-O04 | 四侠兵器和 `sk_taiyueshibeishou` 的装备兼容如何实现 | 武学可学；不创建未登记墓碑装备，待 `design/10` 给合法器型 |
+| YY-O04 | `eq_changchangfengshibei` 与 `sk_taiyueshibeishou` 的装备兼容如何实现 | 已解决一半：复用 `design/10` 已登记的玄上副手牌 `eq_changchangfengshibei`；其 `exotic/misc` 兼容桥仍待装备 / 图鉴归属方补登记，桥接前武学可学但不能由该装备满足 `weaponReq` |
 | YY-O05 | 本界是否投放具体冲穴丹药 | 暂不投；当前无已确认 `meridianAid` 药物 ID，只给线索和普通药材 |
 | YY-O06 | 本界套装候选及件数 | 暂不定义；等待缺失的 `design/07-set-system.md`，不以散件标签冒充套装 |
 | YY-O07 | 白马同伴能否在 ch11 实体重逢 | 默认 0；只有 `design/18` 增加同一 NPC 的 ch11 appearance 后开放 |
-| YY-O08 | 四类结局回响若 ch12 不接入如何处理 | 降级为书灵回顾文本，不发数值、不影响 ch12 通关；正式 `echo_*` 待唯一归属文档登记 |
+| YY-O08 | 四类本地结局键如何映射到 ch12 正式回响 | 已解决主要入口：ch12 §11.2 已接天书主题、双刀、手记、人物与仁字镖旗 / 威信条件；四个 `endingKey` 未逐项登记 `echo_*` 的差异仍降级为书灵回顾文本，不发数值、不影响通关 |
 | YY-O09 | `lgs_yuanyang_fuqi` 是否在本界余韵提交流散 | 默认不提交；只有玩家明确托付手记才写旗标，并从 ch12 起调度 |
 | YY-O10 | `legacyWorldCap=9` 尚未并入基准时采用哪条规则 | 以版本化开关默认执行 AR-13；若提案被否决，回退现行 Canon 的本土完整来源规则，仍限 8 重 |
-| YY-O11 | ch12 对双刀携带、官凭与威信口碑接哪些接口 | 默认接四回响与“有刀 / 无刀”两入口；不继承官职、声望或自动完成任务 |
+| YY-O11 | ch12 对双刀携带、官凭与威信口碑接哪些接口 | 已解决主要接口：ch12 §11.2 已接双刀“有刀 / 无刀”、仁字镖旗 / 无人死亡改命收束及人物重验；官凭不继承官职，未登记的个别口碑只作文本回响 |
 | YY-O12 | 玩法定年是否固定为 1740 | 保留为原创定年，直到纸本考据和时间线归属文档给出更可靠锚点 |
