@@ -3990,6 +3990,48 @@
       "web": false
     },
     {
+      "id": "F2L",
+      "phase": "F",
+      "wave": 4,
+      "kind": "tool",
+      "title": "修正 ID 检查脚本的定义识别（YAML 数据源、归属文档定义写法、局部作用域、过渡基线）",
+      "prompt": "F2L-lint.md",
+      "deps": [
+        "A3",
+        "L1b"
+      ],
+      "writes": [
+        "tools/lint/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/lint/check_ids.py",
+          "tools/lint/test_check_ids.py",
+          "tools/lint/check_ids_baseline.json"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "tools/lint/test_check_ids.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
       "id": "F2a",
       "phase": "F",
       "wave": 4,
@@ -4004,7 +4046,8 @@
         "F1b",
         "F1t",
         "F1n",
-        "L1b"
+        "L1b",
+        "F2L"
       ],
       "writes": [
         "docs/design/01-vision-and-core-loop.md",
@@ -4062,7 +4105,8 @@
         "F1b",
         "F1t",
         "F1n",
-        "L1b"
+        "L1b",
+        "F2L"
       ],
       "writes": [
         "docs/design/12-quests-npc-factions.md",
@@ -4138,7 +4182,8 @@
         "F1b",
         "F1t",
         "F1n",
-        "L1b"
+        "L1b",
+        "F2L"
       ],
       "writes": [
         "docs/design/04-damage-formula.md",
@@ -4190,7 +4235,8 @@
         "F1b",
         "F1t",
         "F1n",
-        "L1b"
+        "L1b",
+        "F2L"
       ],
       "writes": [
         "docs/design/story/01-*.md",
@@ -4238,7 +4284,8 @@
         "F1b",
         "F1t",
         "F1n",
-        "L1b"
+        "L1b",
+        "F2L"
       ],
       "writes": [
         "docs/design/story/08-*.md",
@@ -4286,7 +4333,8 @@
         "F1b",
         "F1t",
         "F1n",
-        "L1b"
+        "L1b",
+        "F2L"
       ],
       "writes": [
         "docs/tech/**",
@@ -4298,7 +4346,7 @@
         "group_name": "技术与工具",
         "doc_set": "- `docs/tech/*.md（01–09）`\n- `tools/lint/**`",
         "id_scope": "技术文档自有的存档 / 事件 / 协议键（如 `save_*`）；ID 检查脚本本身。",
-        "extra": "修正 `tools/lint/check_ids.py` 的误报：任务内局部键（`tr_*`、`st_*`、`edge_*` 等）与 YAML 局部作用域键、文档中明确标注的示例 ID——给出明确的作用域规则或白名单并说明理由；更新 `tools/lint/test_check_ids.py`，`python -m unittest tools/lint/test_check_ids.py` 必须通过。技术文档中的示例 ID 改为真实 ID 或按脚本约定标为示例；tech/04、tech/05 接收 12 / 15 / 16 / 17 / 18 / 20 的正式 schema 与 v1.2 新前缀（若 F1t 未落实）。 **严格检查门禁**：tech/04 已把 `check_ids.py --strict` 设为 CI 首步门禁，但仓库存量仍有两百多个失败。为脚本增加过渡基线机制（如 `tools/lint/check_ids_baseline.json` 记录已知存量、`--strict` 只阻断基线之外的新增，并提供刷新基线的命令），在 tech/04 写明门禁规则与清零计划；基线文件在 F2 汇总结束后由 F2 刷新。design/20 已存在（`docs/design/20-legacy-inheritance.md`），F1t 报告里 T45 \"design/20 缺失\" 是因其工作区早于 H1 合入——本任务把 `frag_/lgs_/cache_` 与传承 schema 正式接入 tech/04 / tech/05。"
+        "extra": "检查脚本的定义识别、局部作用域与过渡基线已由 F2L 完成（读 `tools/agents/reports/F2L.md`）；本组若发现脚本仍有误报，可在 `tools/lint/` 做小修并补测试。技术文档中的示例 ID 改为真实 ID 或按脚本约定标为示例；tech/04 写明 `check_ids.py --strict` 门禁与基线规则、清零计划；tech/04、tech/05 接收 12 / 15 / 16 / 17 / 18 / 20 的正式 schema 与 v1.2 新前缀（若 F1t 未落实）——design/20 已存在（`docs/design/20-legacy-inheritance.md`），F1t 报告里 T45 \"design/20 缺失\" 是因其工作区早于 H1 合入，本任务把 `frag_/lgs_/cache_` 与传承 schema 正式接入 tech/04 / tech/05。"
       },
       "validate": {
         "exists": [
