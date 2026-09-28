@@ -1,6 +1,6 @@
 # 门派武学图鉴 · 射雕五绝体系（`skills-wujue`）
 
-版本：v1.2（AR-01 受控扩充；全局审计；经脉系统落地，2026-09-27）
+版本：v1.2（AR-01 受控扩充；全局审计；经脉系统落地；绝招数量调整（2026-09-27））
 
 > **归属**（基准 §18）：`design/catalog/skills-*.md` 门派武学图鉴之一。本文覆盖：丐帮（全书界）、桃花岛、白驼山、大理段氏与天龙寺、周伯通、九阴真经系、铁掌帮、江南七怪、杨家枪与将门、蒙古（射雕/神雕，金轮法王除外）。
 > **上游**：`decisions/author-decisions.md`、`decisions/author-requirements.md`、`00-canon.md` v1.3（§4 品阶、§6 属性 ID、§7 分类、§12 ID、§13 天级总表、§16 改编原则、§20 装配栏）、`decisions/rulings-v1.md`（C14/C17/C22/C23）、`design/05` 的 AR-14 接口与 `design/21` v2.0。
@@ -214,31 +214,32 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 每门轻功在顶层 `SkillDef.movementRouteRef` 引用本表的稳定路线实例；有主动移动招时，顶层路线复用表中第一项既有 `mv_*` 并采用同体 `mfr_*`；无主动招式时，由构建器生成该武学局部基础移动 `MoveDef` 后绑定本表路线，不引入全局招名。所有顶层路线均为 `ultimate:false`、`purpose:movement`。主动轻功招只在发力不同于顶层时以逐招 `mfr_<move-body>` 覆写；高阶逐招已在 §0.9，玄 / 黄阶主动招按 §0.7 的 M4 / M6 模板生成。经脉速度不改写 03 的轻功值或 08 的门禁 / 地形成本。
 
-| 轻功武学 | `movementRouteRef` / 展开码 | 主动覆写 |
-|---|---|---|
-| `sk_yunyoubu` | `mfr_yunyoubu_youfang` / M4H | `youfang`、`qianli` 各生成同体 `mfr_*` / M4H |
-| `sk_liuyunbu` | `mfr_liuyunbu_chuanxiang` / M4H | `chuanxiang`、`jieqiang` / M4H |
-| `sk_jiefengbu` | `mfr_jiefengbu_jiefeng` / M4H | `jiefeng`、`huanxiang`、`huishen` / M4H |
-| `sk_bailingbu`、`sk_shichengbu` | `mfr_bailingbu` / `mfr_shichengbu` / M4H | 无 |
-| `sk_taohuayingluo` | `mfr_taohuayingluo_suifeng` / M6H | `suifeng`、`wuzong`、`dushui` / M6H |
-| `sk_chaoyinbu` | `mfr_chaoyinbu_zhulang` / M4H | `zhulang`、`huiting`、`huanwei` / M4H |
-| `sk_huajianbu` | `mfr_huajianbu` / M4H | 无 |
-| `sk_tashaxing` | `mfr_tashaxing_tuoling` / M6I | `tuoling`、`wuhen` / M6I |
-| `sk_lingshebu` | `mfr_lingshebu_sheyou` / M4I | `sheyou`、`zhesheng`、`tuoqiao` / M4I |
-| `sk_cangshanfeidu` | `mfr_cangshanfeidu_feidu` / M4H | `feidu`、`shijiufeng` / M4H |
-| `sk_dalishenfa` | `mfr_dalishenfa_duxi` / M4H | `duxi`、`raota` / M4H |
-| `sk_tianlongchanbu` | `mfr_tianlongchanbu_dingbu` / M4H | `dingbu`、`raodian`、`tuili` / M4H |
-| `sk_dianchibu` | `mfr_dianchibu` / M4Y | 无 |
-| `sk_wantongmizong` | `mfr_wantongmizong_zhuomicang` / M4H | `zhuomicang`、`liuzhidaji` / M4H；`xinong` 是 attack / A4H |
-| `sk_shexinglifan` | `mfr_shexinglifan_shexing` / M4H | §0.9 三个普通式 / M4H、绝招 / M8H |
-| `sk_shuishangpiao` | `mfr_shuishangpiao_talang` / M6H | §0.9 四个普通式 / M6H、绝招 / M8H |
-| `sk_tiesuobu` | `mfr_tiesuobu_tasuo` / M4Y | `tasuo`、`zhefan` / M4Y |
-| `sk_shanlubu` | `mfr_shanlubu` / M4Y | 无 |
-| `sk_qiguaihebushu` | `mfr_qiguaihebushu_buwei` / M4H | `buwei`、`cuojian` / M4H |
-| `sk_lingyangbu` | `mfr_lingyangbu_yuegou` / M4Y | `yuegou`、`zhejiao` / M4Y |
-| `sk_junzhubu` | `mfr_junzhubu` / M4Y | 无 |
-| `sk_caoyuanbufa` | `mfr_caoyuanbufa_zhucao` / M4Y | `zhucao`、`taxue` / M4Y |
-| `sk_qipaobu` | `mfr_qipaobu` / M4Y | 无 |
+| 轻功武学 | movementRouteRef | 展开码 | 主动覆写 |
+|---|---|---|---|
+| `sk_yunyoubu` | `mfr_yunyoubu_youfang` | M4H | `youfang`、`qianli` 各生成同体 `mfr_*` / M4H |
+| `sk_liuyunbu` | `mfr_liuyunbu_chuanxiang` | M4H | `chuanxiang`、`jieqiang` / M4H |
+| `sk_jiefengbu` | `mfr_jiefengbu_jiefeng` | M4H | `jiefeng`、`huanxiang`、`huishen` / M4H |
+| `sk_bailingbu` | `mfr_bailingbu` | M4H | 无 |
+| `sk_shichengbu` | `mfr_shichengbu` | M4H | 无 |
+| `sk_taohuayingluo` | `mfr_taohuayingluo_suifeng` | M6H | `suifeng`、`wuzong`、`dushui` / M6H |
+| `sk_chaoyinbu` | `mfr_chaoyinbu_zhulang` | M4H | `zhulang`、`huiting`、`huanwei` / M4H |
+| `sk_huajianbu` | `mfr_huajianbu` | M4H | 无 |
+| `sk_tashaxing` | `mfr_tashaxing_tuoling` | M6I | `tuoling`、`wuhen` / M6I |
+| `sk_lingshebu` | `mfr_lingshebu_sheyou` | M4I | `sheyou`、`zhesheng`、`tuoqiao` / M4I |
+| `sk_cangshanfeidu` | `mfr_cangshanfeidu_feidu` | M4H | `feidu`、`shijiufeng` / M4H |
+| `sk_dalishenfa` | `mfr_dalishenfa_duxi` | M4H | `duxi`、`raota` / M4H |
+| `sk_tianlongchanbu` | `mfr_tianlongchanbu_dingbu` | M4H | `dingbu`、`raodian`、`tuili` / M4H |
+| `sk_dianchibu` | `mfr_dianchibu` | M4Y | 无 |
+| `sk_wantongmizong` | `mfr_wantongmizong_zhuomicang` | M4H | `zhuomicang`、`liuzhidaji` / M4H；`xinong` 是 attack / A4H |
+| `sk_shexinglifan` | `mfr_shexinglifan_shexing` | M4H | §0.9 三个普通式 / M4H、绝招 / M8H |
+| `sk_shuishangpiao` | `mfr_shuishangpiao_talang` | M6H | §0.9 四个普通式 / M6H、绝招 / M8H |
+| `sk_tiesuobu` | `mfr_tiesuobu_tasuo` | M4Y | `tasuo`、`zhefan` / M4Y |
+| `sk_shanlubu` | `mfr_shanlubu` | M4Y | 无 |
+| `sk_qiguaihebushu` | `mfr_qiguaihebushu_buwei` | M4H | `buwei`、`cuojian` / M4H |
+| `sk_lingyangbu` | `mfr_lingyangbu_yuegou` | M4Y | `yuegou`、`zhejiao` / M4Y |
+| `sk_junzhubu` | `mfr_junzhubu` | M4Y | 无 |
+| `sk_caoyuanbufa` | `mfr_caoyuanbufa_zhucao` | M4Y | `zhucao`、`taxue` / M4Y |
+| `sk_qipaobu` | `mfr_qipaobu` | M4Y | 无 |
 
 本表另含正文汇总漏列的高阶两门，合计 24 / 24：`sk_shexinglifan`、`sk_shuishangpiao`。主动覆写一律按同体规则取得完整 `mv_* / mfr_*`；带伤害的突进 / 后撤仍只提交 attack 主路线。
 
@@ -246,39 +247,152 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 表中每一行都是本册拥有的完整 `BreathProfile` 内容实例；21 §10、§12 只定义 schema、算法与共享示例。`grade/layer` 是图鉴静态档案，战时品阶压制只影响投影结果、不回写本表。每门内功的 `inner.breathProfileRef` 指向同一行 `id`，并写 `inner.innerGuard:{enabled:true,reflectBp:0}`；自然护体依合法短路或正文已有防守招触发，不虚构通用 `_guard` 路线，也不把路线 ID 塞进 `innerGuard`。
 
-| 内功 | 完整调息档案 `id / grade / layer / nature / scope` | `ct / mpCostBp / outOfBattleScaleBp` | `inner.innerGuard` | 特色覆写 |
-|---|---|---|---|---|
-| `sk_jiuyin` | `txp_jiuyin / 12 / 10 / harmony / 3` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 每次额外解除一个 1–6 级点穴；不绕过 9 级禁用（21 §10.4） |
-| `sk_hama` | `txp_hama / 10 / 10 / yang / 3` | `1200 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 蓄势后 backlog 卸除 +40%（21 §10.4） |
-| `sk_nizhuanjingmai` | `txp_nizhuanjingmai / 7 / 10 / yin / 3` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 可越过一个 7 级封穴；每次自增 1000 bp 迟滞，不越过 8–9 级 |
-| `sk_kurongchangong` | `txp_kurongchangong / 9 / 10 / harmony / 3` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | “枯”（清迟滞更快）/“荣”（修复更快）二选一 |
-| `sk_bitaoxuangong` | `txp_bitaoxuangong / 7 / 10 / harmony / 3` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用调和公式 |
-| `sk_yijinduangupian` | `txp_yijinduangupian / 8 / 10 / harmony / 3` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用调和公式；不额外叠加原招治疗 |
-| `sk_canfengyinlugong` | `txp_canfengyinlugong / 4 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_gaibangtunajue` | `txp_gaibangtunajue / 4 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_gaibanghuxinfa` | `txp_gaibanghuxinfa / 5 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | “护心”只作内容定位，不私增倍率 |
-| `sk_jiudaixingong` | `txp_jiudaixingong / 6 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_taohuatunaxi` | `txp_taohuatunaxi / 4 / 10 / harmony / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用调和公式 |
-| `sk_baituotunadu` | `txp_baituotunadu / 4 / 10 / yin / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_dumaihuqigong` | `txp_dumaihuqigong / 6 / 10 / yin / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | “护气”只作内容定位，不私增倍率 |
-| `sk_duanshiyangshenggong` | `txp_duanshiyangshenggong / 6 / 10 / harmony / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | “养生”只作内容定位，不私增倍率 |
-| `sk_tongshihenglian` | `txp_tongshihenglian / 6 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_jiuyintiaoxipian` | `txp_jiuyintiaoxipian / 5 / 10 / harmony / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用调和公式 |
-| `sk_biguqipian` | `txp_biguqipian / 6 / 10 / harmony / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用调和公式 |
-| `sk_tiezhangxinfa` | `txp_tiezhangxinfa / 5 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_tiezhangtunajue` | `txp_tiezhangtunajue / 4 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_tiebifangshen` | `txp_tiebifangshen / 6 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_jiangmenzhuang` | `txp_jiangmenzhuang / 4 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_tuobozhuang` | `txp_tuobozhuang / 2 / 10 / yang / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_yaoputunaxi` | `txp_yaoputunaxi / 2 / 10 / harmony / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用调和公式 |
-| `sk_shexingtunaxi` | `txp_shexingtunaxi / 2 / 10 / yin / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_tiannanxinfa` | `txp_tiannanxinfa / 3 / 10 / yang / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_wangfutunaxi` | `txp_wangfutunaxi / 2 / 10 / yang / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_tiezhangzhuang` | `txp_tiezhangzhuang / 2 / 10 / yang / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_xiaomituozhuang` | `txp_xiaomituozhuang / 3 / 10 / yang / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
-| `sk_caoyuantunaxi` | `txp_caoyuantunaxi / 3 / 10 / yang / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| 内功 | BreathProfile.id | `grade / layer / nature / scope` | `ct / mpCostBp / outOfBattleScaleBp` | `inner.innerGuard` | 特色覆写 |
+|---|---|---|---|---|---|
+| `sk_jiuyin` | `txp_jiuyin` | `12 / 10 / harmony / 3` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 每次额外解除一个 1–6 级点穴；不绕过 9 级禁用（21 §10.4） |
+| `sk_hama` | `txp_hama` | `10 / 10 / yang / 3` | `1200 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 蓄势后 backlog 卸除 +40%（21 §10.4） |
+| `sk_nizhuanjingmai` | `txp_nizhuanjingmai` | `7 / 10 / yin / 3` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 可越过一个 7 级封穴；每次自增 1000 bp 迟滞，不越过 8–9 级 |
+| `sk_kurongchangong` | `txp_kurongchangong` | `9 / 10 / harmony / 3` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | “枯”（清迟滞更快）/“荣”（修复更快）二选一 |
+| `sk_bitaoxuangong` | `txp_bitaoxuangong` | `7 / 10 / harmony / 3` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用调和公式 |
+| `sk_yijinduangupian` | `txp_yijinduangupian` | `8 / 10 / harmony / 3` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用调和公式；不额外叠加原招治疗 |
+| `sk_canfengyinlugong` | `txp_canfengyinlugong` | `4 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_gaibangtunajue` | `txp_gaibangtunajue` | `4 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_gaibanghuxinfa` | `txp_gaibanghuxinfa` | `5 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | “护心”只作内容定位，不私增倍率 |
+| `sk_jiudaixingong` | `txp_jiudaixingong` | `6 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_taohuatunaxi` | `txp_taohuatunaxi` | `4 / 10 / harmony / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用调和公式 |
+| `sk_baituotunadu` | `txp_baituotunadu` | `4 / 10 / yin / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_dumaihuqigong` | `txp_dumaihuqigong` | `6 / 10 / yin / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | “护气”只作内容定位，不私增倍率 |
+| `sk_duanshiyangshenggong` | `txp_duanshiyangshenggong` | `6 / 10 / harmony / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | “养生”只作内容定位，不私增倍率 |
+| `sk_tongshihenglian` | `txp_tongshihenglian` | `6 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_jiuyintiaoxipian` | `txp_jiuyintiaoxipian` | `5 / 10 / harmony / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用调和公式 |
+| `sk_biguqipian` | `txp_biguqipian` | `6 / 10 / harmony / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用调和公式 |
+| `sk_tiezhangxinfa` | `txp_tiezhangxinfa` | `5 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_tiezhangtunajue` | `txp_tiezhangtunajue` | `4 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_tiebifangshen` | `txp_tiebifangshen` | `6 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_jiangmenzhuang` | `txp_jiangmenzhuang` | `4 / 10 / yang / 2` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_tuobozhuang` | `txp_tuobozhuang` | `2 / 10 / yang / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_yaoputunaxi` | `txp_yaoputunaxi` | `2 / 10 / harmony / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用调和公式 |
+| `sk_shexingtunaxi` | `txp_shexingtunaxi` | `2 / 10 / yin / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_tiannanxinfa` | `txp_tiannanxinfa` | `3 / 10 / yang / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_wangfutunaxi` | `txp_wangfutunaxi` | `2 / 10 / yang / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_tiezhangzhuang` | `txp_tiezhangzhuang` | `2 / 10 / yang / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_xiaomituozhuang` | `txp_xiaomituozhuang` | `3 / 10 / yang / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
+| `sk_caoyuantunaxi` | `txp_caoyuantunaxi` | `3 / 10 / yang / 1` | `1000 / 0 / 15000` | `{enabled:true,reflectBp:0}` | 通用公式 |
 
 调息基准值由 21 §10.2 公式导出；例如 `txp_kurongchangong` 为地上 10 重调和：`reliefBp=floor((500+9×100+10×80)×10500/10000)=2310`，`repairUnits=floor((120+9×24+10×18)×10500/10000)=541`；`txp_jiuyin` 为天上 10 重调和：`reliefBp=min(2500,floor(2500×10500/10000))=2500`，`repairUnits=floor(588×10500/10000)=617`。派生结果不重复存进档案。`outOfBattleScaleBp` 按 21 §12.1 的 YAML 契约登记为 15000；21 §12.3 的 TypeScript `BreathProfile` 尚漏该字段，见 §17.2 同步项。
+
+### 0.12 绝招数量调整与显式路线（AR-14h）
+
+本节是 2026-09-27 绝招数量调整后的权威覆写层：若正文卡或 §0.8–§0.9 仍把下列招式写成普通招式，构建时以本节的 `unlock / ultimate / rageCost / mpCost / cd / recovery / meridianRouteRef` 为准；招名、目标、倍率和效果仍沿用原卡。全部从既有 `mv_*` 升格，本轮不新造招式名。配额采用天上 3、天中 2、天下 2、地上 2、地中/地下 1、玄上 1；玄中以下为 0。
+
+| 大阶 | 门数 | 调整前绝招 | 调整后绝招 | 配额核对 |
+|---|---:|---:|---:|---|
+| 天（12/11/10） | 13 | 13 | 29 | `3×3 + 2×2 + 8×2 = 29` |
+| 地（9/8/7） | 23 | 23 | 29 | `6×2 + 6×1 + 11×1 = 29` |
+| 玄上（6） | 27 | 0 | 27 | `27×1 = 27` |
+
+下表每行同时定义一条完整 `MeridianRouteDef`。资源列依次为 `unlock / ultimate / rageCost / mpCost / cd / recovery`；计时列为 `段数×单段 CT / ΣCT / recovery+ΣCT`；`steps` 每项是 `穴位/riskBp`，故没有借 §0.7 短码或同句继承。路线及经脉搭配属于**（原创扩展）**玩法抽象。降龙三条绝招路线唯一归 `design/21` §12.1，本册只在下表之后引用。
+
+#### 0.12.1 天阶最终绝招路线
+
+| 武学（品） | 路线 ID | moveRef | 资源字段 | purpose / requiredNature | 计时 CT | steps（依次为穴位/riskBp） |
+|---|---|---|---|---|---|---|
+| `sk_dagou`（11） | `mfr_dagou_tianxiawugou` | `mv_dagou_tianxiawugou` | `7 / true / 100 / 10% / 0 / 1200` | attack / `[yin,yang,harmony]` | `10×80 / 800 / 2000` | `ap_renmai_qihai/120→ap_renmai_guanyuan/120→ap_renmai_zhongwan/140→ap_renmai_danzhong/140→ap_daimai_zulinqi/150→ap_daimai_weidao/180→ap_daimai_daimai/160→ap_dumai_zhiyang/180→ap_shoujueyin_tianchi/160→ap_shoujueyin_quze/180` |
+| `sk_dagou`（11） | `mfr_dagou_aokouduozhang` | `mv_dagou_aokouduozhang` | `9 / true / 100 / 10% / 0 / 1200` | attack / `[yin,yang,harmony]` | `8×80 / 640 / 1840` | `ap_zushaoyin_yongquan/110→ap_zushaoyin_taixi/110→ap_zutaiyang_weizhong/120→ap_dumai_mingmen/120→ap_shoujueyin_tianchi/120→ap_shoujueyin_quze/140→ap_shoujueyin_neiguan/120→ap_shoujueyin_laogong/150` |
+| `sk_yiyangzhi`（11） | `mfr_yiyangzhi_qianyang` | `mv_yiyangzhi_qianyang` | `7 / true / 100 / 10% / 0 / 1200` | attack / `[yang,harmony]` | `10×80 / 800 / 2000` | `ap_renmai_qihai/120→ap_renmai_guanyuan/120→ap_renmai_zhongwan/140→ap_renmai_danzhong/140→ap_dumai_mingmen/150→ap_dumai_zhiyang/180→ap_dumai_shendao/160→ap_dumai_baihui/180→ap_shouyangming_quchi/160→ap_shouyangming_shousanli/180` |
+| `sk_yiyangzhi`（11） | `mfr_yiyangzhi_liaoshang` | `mv_yiyangzhi_liaoshang` | `9 / true / 100 / 10% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_tanzhi`（10） | `mfr_tanzhi_tianhua` | `mv_tanzhi_tianhua` | `7 / true / 100 / 10% / 0 / 1200` | attack / `[yin,yang,harmony]` | `10×80 / 800 / 2000` | `ap_renmai_qihai/120→ap_renmai_guanyuan/120→ap_renmai_zhongwan/140→ap_renmai_danzhong/140→ap_daimai_zulinqi/150→ap_daimai_weidao/180→ap_daimai_daimai/160→ap_dumai_zhiyang/180→ap_shoujueyin_tianchi/160→ap_shoujueyin_quze/180` |
+| `sk_tanzhi`（10） | `mfr_tanzhi_lianzhu` | `mv_tanzhi_lianzhu` | `9 / true / 100 / 10% / 0 / 1200` | attack / `[yin,yang,harmony]` | `8×80 / 640 / 1840` | `ap_zushaoyin_yongquan/110→ap_zushaoyin_taixi/110→ap_zutaiyang_weizhong/120→ap_dumai_mingmen/120→ap_shoujueyin_tianchi/120→ap_shoujueyin_quze/140→ap_shoujueyin_neiguan/120→ap_shoujueyin_laogong/150` |
+| `sk_bihai`（10） | `mfr_bihai_chaosheng` | `mv_bihai_chaosheng` | `7 / true / 100 / 10% / 0 / 1200` | attack / `[yin,yang,harmony]` | `10×80 / 800 / 2000` | `ap_renmai_qihai/120→ap_renmai_guanyuan/120→ap_renmai_zhongwan/140→ap_renmai_danzhong/140→ap_daimai_zulinqi/150→ap_daimai_weidao/180→ap_daimai_daimai/160→ap_dumai_zhiyang/180→ap_shoujueyin_tianchi/160→ap_shoujueyin_quze/180` |
+| `sk_bihai`（10） | `mfr_bihai_dingshen` | `mv_bihai_dingshen` | `9 / true / 100 / 10% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_hama`（10） | `mfr_hama_quanjin` | `mv_hama_quanjin` | `7 / true / 100 / 10% / 0 / 1200` | attack / `[yang,harmony]` | `10×80 / 800 / 2000` | `ap_renmai_qihai/120→ap_renmai_guanyuan/120→ap_renmai_zhongwan/140→ap_renmai_danzhong/140→ap_dumai_mingmen/150→ap_dumai_zhiyang/180→ap_dumai_shendao/160→ap_dumai_baihui/180→ap_shouyangming_quchi/160→ap_shouyangming_shousanli/180` |
+| `sk_hama`（10） | `mfr_hama_fajin` | `mv_hama_fajin` | `9 / true / 100 / 10% / 0 / 1200` | attack / `[yang,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_dumai_mingmen/120→ap_dumai_zhiyang/140→ap_dumai_shendao/120→ap_dumai_baihui/150` |
+| `sk_kongming`（10） | `mfr_kongming_qishier` | `mv_kongming_qishier` | `7 / true / 100 / 10% / 0 / 1200` | attack / `[yin,yang,harmony]` | `10×80 / 800 / 2000` | `ap_renmai_qihai/120→ap_renmai_guanyuan/120→ap_renmai_zhongwan/140→ap_renmai_danzhong/140→ap_daimai_zulinqi/150→ap_daimai_weidao/180→ap_daimai_daimai/160→ap_dumai_zhiyang/180→ap_shoujueyin_tianchi/160→ap_shoujueyin_quze/180` |
+| `sk_kongming`（10） | `mfr_kongming_dongsong` | `mv_kongming_dongsong` | `9 / true / 100 / 10% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_zuoyouhubo`（10） | `mfr_zuoyouhubo_quanli` | `mv_zuoyouhubo_quanli` | `7 / true / 100 / 10% / 0 / 1200` | attack / `[yin,yang,harmony]` | `10×80 / 800 / 2000` | `ap_renmai_qihai/120→ap_renmai_guanyuan/120→ap_renmai_zhongwan/140→ap_renmai_danzhong/140→ap_daimai_zulinqi/150→ap_daimai_weidao/180→ap_daimai_daimai/160→ap_dumai_zhiyang/180→ap_shoujueyin_tianchi/160→ap_shoujueyin_quze/180` |
+| `sk_zuoyouhubo`（10） | `mfr_zuoyouhubo_fenxin` | `mv_zuoyouhubo_fenxin` | `9 / true / 100 / 10% / 0 / 1200` | attack / `[yin,yang,harmony]` | `8×80 / 640 / 1840` | `ap_zushaoyin_yongquan/110→ap_zushaoyin_taixi/110→ap_zutaiyang_weizhong/120→ap_dumai_mingmen/120→ap_shoujueyin_tianchi/120→ap_shoujueyin_quze/140→ap_shoujueyin_neiguan/120→ap_shoujueyin_laogong/150` |
+| `sk_jiuyin`（12） | `mfr_jiuyin_tianzhidao` | `mv_jiuyin_tianzhidao` | `7 / true / 100 / 10% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_jiuyin`（12） | `mfr_jiuyin_sunyouyu` | `mv_jiuyin_sunyouyu` | `9 / true / 100 / 10% / 0 / 1200` | attack / `[yin,yang,harmony]` | `8×80 / 640 / 1840` | `ap_zushaoyin_yongquan/110→ap_zushaoyin_taixi/110→ap_zutaiyang_weizhong/120→ap_dumai_mingmen/120→ap_shoujueyin_tianchi/120→ap_shoujueyin_quze/140→ap_shoujueyin_neiguan/120→ap_shoujueyin_laogong/150` |
+| `sk_jiuyin`（12） | `mfr_jiuyin_buzu` | `mv_jiuyin_buzu` | `10 / true / 100 / 10% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_shoujueyin_quze/120→ap_shoujueyin_tianchi/100→ap_dumai_zhiyang/120→ap_daimai_daimai/100→ap_daimai_weidao/90→ap_daimai_zulinqi/80` |
+| `sk_jiuyinshenzhao`（10） | `mfr_jiuyinshenzhao_wujian` | `mv_jiuyinshenzhao_wujian` | `7 / true / 100 / 10% / 0 / 1200` | attack / `[yin,harmony]` | `10×80 / 800 / 2000` | `ap_renmai_qihai/120→ap_renmai_guanyuan/120→ap_renmai_zhongwan/140→ap_renmai_danzhong/140→ap_shoutaiyin_yunmen/150→ap_shoutaiyin_chize/180→ap_shoutaiyin_taiyuan/160→ap_shoutaiyin_shaoshang/180→ap_shoujueyin_tianchi/160→ap_shoujueyin_quze/180` |
+| `sk_jiuyinshenzhao`（10） | `mfr_jiuyinshenzhao_shounao` | `mv_jiuyinshenzhao_shounao` | `9 / true / 100 / 10% / 0 / 1200` | attack / `[yin,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_shoutaiyin_yunmen/120→ap_shoutaiyin_chize/140→ap_shoutaiyin_taiyuan/120→ap_shoutaiyin_shaoshang/150` |
+| `sk_yihun`（10） | `mfr_yihun_yihun` | `mv_yihun_yihun` | `7 / true / 100 / 10% / 0 / 1200` | attack / `[yin,yang,harmony]` | `10×80 / 800 / 2000` | `ap_renmai_qihai/120→ap_renmai_guanyuan/120→ap_renmai_zhongwan/140→ap_renmai_danzhong/140→ap_daimai_zulinqi/150→ap_daimai_weidao/180→ap_daimai_daimai/160→ap_dumai_zhiyang/180→ap_shoujueyin_tianchi/160→ap_shoujueyin_quze/180` |
+| `sk_yihun`（10） | `mfr_yihun_dingxin` | `mv_yihun_dingxin` | `9 / true / 100 / 10% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_tiezhang`（10） | `mfr_tiezhang_qingtian` | `mv_tiezhang_qingtian` | `7 / true / 100 / 10% / 0 / 1200` | attack / `[yang,harmony]` | `10×80 / 800 / 2000` | `ap_renmai_qihai/120→ap_renmai_guanyuan/120→ap_renmai_zhongwan/140→ap_renmai_danzhong/140→ap_dumai_mingmen/150→ap_dumai_zhiyang/180→ap_dumai_shendao/160→ap_dumai_baihui/180→ap_shouyangming_quchi/160→ap_shouyangming_shousanli/180` |
+| `sk_tiezhang`（10） | `mfr_tiezhang_hushen` | `mv_tiezhang_hushen` | `9 / true / 100 / 10% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+
+降龙十八掌（12）最终为 3 绝招，完整定义直接引用 `design/21` §12.1：`mv_xianglong18_zhenjing → mfr_xianglong18_zhenjing`（9×85，Σ765，总 1965）、`mv_xianglong18_lianhuan → mfr_eighteen_palms_chain`（10×80，Σ800，总 2000）、`mv_xianglong18_shenlong → mfr_xianglong18_shenlong`（8×95，Σ760，总 1960）；三者均 `ultimate:true / rageCost:100 / mpCost:10% / cd:0 / recovery:1200`，解锁层与招式字段以 `design/05` §13.1 为准。六脉神剑（12）的另两记升格绝招为下表首两行，连同既有六脉齐发合计 3。
+
+#### 0.12.2 六脉补足与地阶最终绝招路线
+
+| 武学（品） | 路线 ID | moveRef | 资源字段 | purpose / requiredNature | 计时 CT | steps（依次为穴位/riskBp） |
+|---|---|---|---|---|---|---|
+| `sk_liumai`（12） | `mfr_liumai_liumaiqifa` | `mv_liumai_liumaiqifa` | `7 / true / 100 / 10% / 0 / 1200` | attack / `[yin,yang,harmony]` | `10×80 / 800 / 2000` | `ap_renmai_qihai/120→ap_renmai_guanyuan/120→ap_renmai_zhongwan/140→ap_renmai_danzhong/140→ap_daimai_zulinqi/150→ap_daimai_weidao/180→ap_daimai_daimai/160→ap_dumai_zhiyang/180→ap_shoujueyin_tianchi/160→ap_shoujueyin_quze/180` |
+| `sk_liumai`（12） | `mfr_liumai_shaoshang` | `mv_liumai_shaoshang` | `9 / true / 100 / 10% / 0 / 1200` | attack / `[yang,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_dumai_mingmen/120→ap_dumai_zhiyang/140→ap_dumai_shendao/120→ap_dumai_baihui/150` |
+| `sk_liumai`（12） | `mfr_liumai_shaoze` | `mv_liumai_shaoze` | `10 / true / 100 / 10% / 0 / 1200` | attack / `[yin,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_shoutaiyin_yunmen/120→ap_shoutaiyin_chize/140→ap_shoutaiyin_taiyuan/120→ap_shoutaiyin_shaoshang/150` |
+| `sk_tiebogong`（7） | `mfr_tiebogong_zhenbafang` | `mv_tiebogong_zhenbafang` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yang,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_dumai_mingmen/120→ap_dumai_zhiyang/140→ap_dumai_shendao/120→ap_dumai_baihui/150` |
+| `sk_dagouzhen`（7） | `mfr_dagouzhen_shouwang` | `mv_dagouzhen_shouwang` | `7 / true / 100 / 9% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_lanhuafuxueshou`（8） | `mfr_lanhuafuxueshou_jiuwan` | `mv_lanhuafuxueshou_jiuwan` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yin,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_shoutaiyin_yunmen/120→ap_shoutaiyin_chize/140→ap_shoutaiyin_taiyuan/120→ap_shoutaiyin_shaoshang/150` |
+| `sk_yuxiaojianfa`（8） | `mfr_yuxiaojianfa_feishenjian` | `mv_yuxiaojianfa_feishenjian` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yin,yang,harmony]` | `8×80 / 640 / 1840` | `ap_zushaoyin_yongquan/110→ap_zushaoyin_taixi/110→ap_zutaiyang_weizhong/120→ap_dumai_mingmen/120→ap_shoujueyin_tianchi/120→ap_shoujueyin_quze/140→ap_shoujueyin_neiguan/120→ap_shoujueyin_laogong/150` |
+| `sk_luoyingshenjianzhang`（7） | `mfr_luoyingshenjianzhang_shenjian` | `mv_luoyingshenjianzhang_shenjian` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yin,yang,harmony]` | `8×80 / 640 / 1840` | `ap_zushaoyin_yongquan/110→ap_zushaoyin_taixi/110→ap_zutaiyang_weizhong/120→ap_dumai_mingmen/120→ap_shoujueyin_tianchi/120→ap_shoujueyin_quze/140→ap_shoujueyin_neiguan/120→ap_shoujueyin_laogong/150` |
+| `sk_bitaoxuangong`（7） | `mfr_bitaoxuangong_wanli` | `mv_bitaoxuangong_wanli` | `7 / true / 100 / 9% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_taohuazhen`（7） | `mfr_taohuazhen_ershibaxiu` | `mv_taohuazhen_ershibaxiu` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yin,yang,harmony]` | `8×80 / 640 / 1840` | `ap_zushaoyin_yongquan/110→ap_zushaoyin_taixi/110→ap_zutaiyang_weizhong/120→ap_dumai_mingmen/120→ap_shoujueyin_tianchi/120→ap_shoujueyin_quze/140→ap_shoujueyin_neiguan/120→ap_shoujueyin_laogong/150` |
+| `sk_lingshezhangfa`（9） | `mfr_lingshezhangfa_qunshe` | `mv_lingshezhangfa_qunshe` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yang,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_dumai_mingmen/120→ap_dumai_zhiyang/140→ap_dumai_shendao/120→ap_dumai_baihui/150` |
+| `sk_lingshezhangfa`（9） | `mfr_lingshezhangfa_chan` | `mv_lingshezhangfa_chan` | `9 / true / 100 / 9% / 0 / 1200` | attack / `[yang,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_lingshequan`（8） | `mfr_lingshequan_qianbian` | `mv_lingshequan_qianbian` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yin,yang,harmony]` | `8×80 / 640 / 1840` | `ap_zushaoyin_yongquan/110→ap_zushaoyin_taixi/110→ap_zutaiyang_weizhong/120→ap_dumai_mingmen/120→ap_shoujueyin_tianchi/120→ap_shoujueyin_quze/140→ap_shoujueyin_neiguan/120→ap_shoujueyin_laogong/150` |
+| `sk_nizhuanjingmai`（7） | `mfr_nizhuanjingmai_daozhuan` | `mv_nizhuanjingmai_daozhuan` | `7 / true / 100 / 9% / 0 / 1200` | defense / `[yin,harmony]` | `6×90 / 540 / 1740` | `ap_shoutaiyin_yunmen/80→ap_shoutaiyin_chize/90→ap_shoutaiyin_taiyuan/100→ap_shoutaiyin_shaoshang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_kurongchangong`（9） | `mfr_kurongchangong_feikufeirong` | `mv_kurongchangong_feikufeirong` | `7 / true / 100 / 9% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_kurongchangong`（9） | `mfr_kurongchangong_fengchun` | `mv_kurongchangong_fengchun` | `9 / true / 100 / 9% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_shoujueyin_quze/120→ap_shoujueyin_tianchi/100→ap_dumai_zhiyang/120→ap_daimai_daimai/100→ap_daimai_weidao/90→ap_daimai_zulinqi/80` |
+| `sk_yiyangshuzhi`（8） | `mfr_yiyangshuzhi_yunyan` | `mv_yiyangshuzhi_yunyan` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yang,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_dumai_mingmen/120→ap_dumai_zhiyang/140→ap_dumai_shendao/120→ap_dumai_baihui/150` |
+| `sk_duanjiajianfa`（7） | `mfr_duanjiajianfa_nanzhao` | `mv_duanjiajianfa_nanzhao` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yang,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_dumai_mingmen/120→ap_dumai_zhiyang/140→ap_dumai_shendao/120→ap_dumai_baihui/150` |
+| `sk_jiuyinbaigu`（9） | `mfr_jiuyinbaigu_suoming` | `mv_jiuyinbaigu_suoming` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yin,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_shoutaiyin_yunmen/120→ap_shoutaiyin_chize/140→ap_shoutaiyin_taiyuan/120→ap_shoutaiyin_shaoshang/150` |
+| `sk_jiuyinbaigu`（9） | `mfr_jiuyinbaigu_guimei` | `mv_jiuyinbaigu_guimei` | `9 / true / 100 / 9% / 0 / 1200` | attack / `[yin,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_shoutaiyin_yunmen/100→ap_shoutaiyin_chize/120→ap_shoutaiyin_taiyuan/100→ap_shoutaiyin_shaoshang/120` |
+| `sk_cuixinzhang`（9） | `mfr_cuixinzhang_liemai` | `mv_cuixinzhang_liemai` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yin,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_shoutaiyin_yunmen/120→ap_shoutaiyin_chize/140→ap_shoutaiyin_taiyuan/120→ap_shoutaiyin_shaoshang/150` |
+| `sk_cuixinzhang`（9） | `mfr_cuixinzhang_wuhen` | `mv_cuixinzhang_wuhen` | `9 / true / 100 / 9% / 0 / 1200` | attack / `[yin,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_shoutaiyin_yunmen/100→ap_shoutaiyin_chize/120→ap_shoutaiyin_taiyuan/100→ap_shoutaiyin_shaoshang/120` |
+| `sk_dafumoquan`（9） | `mfr_dafumoquan_dafumo` | `mv_dafumoquan_dafumo` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yang,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_dumai_mingmen/120→ap_dumai_zhiyang/140→ap_dumai_shendao/120→ap_dumai_baihui/150` |
+| `sk_dafumoquan`（9） | `mfr_dafumoquan_hufa` | `mv_dafumoquan_hufa` | `9 / true / 100 / 9% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_yijinduangupian`（8） | `mfr_yijinduangupian_tuotai` | `mv_yijinduangupian_tuotai` | `7 / true / 100 / 9% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_shexinglifan`（7） | `mfr_shexinglifan_baibian` | `mv_shexinglifan_baibian` | `7 / true / 100 / 9% / 0 / 1200` | movement / `[yin,yang,harmony]` | `8×70 / 560 / 1760` | `ap_zushaoyin_yongquan/80→ap_zushaoyin_taixi/90→ap_zutaiyang_weizhong/100→ap_dumai_mingmen/110→ap_daimai_zulinqi/120→ap_daimai_weidao/130→ap_daimai_daimai/140→ap_dumai_zhiyang/150` |
+| `sk_baimangbianfa`（7） | `mfr_baimangbianfa_fanjiang` | `mv_baimangbianfa_fanjiang` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yin,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_shoutaiyin_yunmen/120→ap_shoutaiyin_chize/140→ap_shoutaiyin_taiyuan/120→ap_shoutaiyin_shaoshang/150` |
+| `sk_shuishangpiao`（9） | `mfr_shuishangpiao_wuhen` | `mv_shuishangpiao_wuhen` | `7 / true / 100 / 9% / 0 / 1200` | movement / `[yin,yang,harmony]` | `8×70 / 560 / 1760` | `ap_zushaoyin_yongquan/80→ap_zushaoyin_taixi/90→ap_zutaiyang_weizhong/100→ap_dumai_mingmen/110→ap_daimai_zulinqi/120→ap_daimai_weidao/130→ap_daimai_daimai/140→ap_dumai_zhiyang/150` |
+| `sk_shuishangpiao`（9） | `mfr_shuishangpiao_jieli` | `mv_shuishangpiao_jieli` | `9 / true / 100 / 9% / 0 / 1200` | movement / `[yin,yang,harmony]` | `6×65 / 390 / 1590` | `ap_zushaoyin_yongquan/70→ap_zushaoyin_taixi/80→ap_zutaiyang_weizhong/90→ap_dumai_mingmen/100→ap_daimai_zulinqi/110→ap_daimai_weidao/120` |
+| `sk_wumuyishu`（8） | `mfr_wumuyishu_hanshan` | `mv_wumuyishu_hanshan` | `7 / true / 100 / 9% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_lihuaqiang`（7） | `mfr_lihuaqiang_wudishou` | `mv_lihuaqiang_wudishou` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yang,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_dumai_mingmen/120→ap_dumai_zhiyang/140→ap_dumai_shendao/120→ap_dumai_baihui/150` |
+| `sk_zhebiejianshu`（7） | `mfr_zhebiejianshu_yijianshuangdiao` | `mv_zhebiejianshu_yijianshuangdiao` | `7 / true / 100 / 9% / 0 / 1200` | attack / `[yang,harmony]` | `8×80 / 640 / 1840` | `ap_renmai_qihai/110→ap_renmai_guanyuan/110→ap_renmai_zhongwan/120→ap_renmai_danzhong/120→ap_dumai_mingmen/120→ap_dumai_zhiyang/140→ap_dumai_shendao/120→ap_dumai_baihui/150` |
+
+#### 0.12.3 玄上唯一绝招路线
+
+| 武学（品） | 路线 ID | moveRef | 资源字段 | purpose / requiredNature | 计时 CT | steps（依次为穴位/riskBp） |
+|---|---|---|---|---|---|---|
+| `sk_suohouqinnashou`（6） | `mfr_suohouqinnashou_qinlong` | `mv_suohouqinnashou_qinlong` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yang,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_xiaoyaoyou`（6） | `mfr_xiaoyaoyou_tuanfeng` | `mv_xiaoyaoyou_tuanfeng` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yang,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_shexinshu`（6） | `mfr_shexinshu_mihun` | `mv_shexinshu_mihun` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_jiudaixingong`（6） | `mfr_jiudaixingong_hubang` | `mv_jiudaixingong_hubang` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_fengyulianshou`（6） | `mfr_fengyulianshou_saoxiang` | `mv_fengyulianshou_saoxiang` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_zhengoubang`（6） | `mfr_zhengoubang_huilan` | `mv_zhengoubang_huilan` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_pojunguitoudao`（6） | `mfr_pojunguitoudao_huishou` | `mv_pojunguitoudao_huishou` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_gaibangchuansheng`（6） | `mfr_gaibangchuansheng_hezhi` | `mv_gaibangchuansheng_hezhi` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_xuanfengsaoyetui`（6） | `mfr_xuanfengsaoyetui_canye` | `mv_xuanfengsaoyetui_canye` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yang,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_biluofengyan`（6） | `mfr_biluofengyan_yanbosan` | `mv_biluofengyan_yanbosan` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_qimenfushou`（6） | `mfr_qimenfushou_nawan` | `mv_qimenfushou_nawan` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_shentuoxueshanzhang`（6） | `mfr_shentuoxueshanzhang_fuzhong` | `mv_shentuoxueshanzhang_fuzhong` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yang,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_yushe`（6） | `mfr_yushe_shidi` | `mv_yushe_shidi` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_lingshebu`（6） | `mfr_lingshebu_tuoqiao` | `mv_lingshebu_tuoqiao` | `6 / true / 100 / 8% / 0 / 1200` | movement / `[yin,harmony]` | `6×65 / 390 / 1590` | `ap_zushaoyin_yongquan/70→ap_zushaoyin_taixi/80→ap_zutaiyang_weizhong/90→ap_dumai_mingmen/100→ap_shoujueyin_tianchi/110→ap_shoujueyin_quze/120` |
+| `sk_dumaihuqigong`（6） | `mfr_dumaihuqigong_guidu` | `mv_dumaihuqigong_guidu` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yin,harmony]` | `6×90 / 540 / 1740` | `ap_shoutaiyin_yunmen/80→ap_shoutaiyin_chize/90→ap_shoutaiyin_taiyuan/100→ap_shoutaiyin_shaoshang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_duanshiyangshenggong`（6） | `mfr_duanshiyangshenggong_humai` | `mv_duanshiyangshenggong_humai` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_tianlongchanbu`（6） | `mfr_tianlongchanbu_tuili` | `mv_tianlongchanbu_tuili` | `6 / true / 100 / 8% / 0 / 1200` | movement / `[yin,yang,harmony]` | `6×65 / 390 / 1590` | `ap_zushaoyin_yongquan/70→ap_zushaoyin_taixi/80→ap_zutaiyang_weizhong/90→ap_dumai_mingmen/100→ap_daimai_zulinqi/110→ap_daimai_weidao/120` |
+| `sk_wantongshuangxi`（6） | `mfr_wantongshuangxi_lianhuan` | `mv_wantongshuangxi_lianhuan` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_jiuyinliaoshangpian`（6） | `mfr_jiuyinliaoshangpian_biqi` | `mv_jiuyinliaoshangpian_biqi` | `7 / true / 100 / 8% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_tongshihenglian`（6） | `mfr_tongshihenglian_yingqiao` | `mv_tongshihenglian_yingqiao` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_shoujinpian`（6） | `mfr_shoujinpian_suomai` | `mv_shoujinpian_suomai` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_biguqipian`（6） | `mfr_biguqipian_guixi` | `mv_biguqipian_guixi` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_duanfengzhang`（6） | `mfr_duanfengzhang_zhenfeng` | `mv_duanfengzhang_zhenfeng` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yang,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_tiebifangshen`（6） | `mfr_tiebifangshen_sheshen` | `mv_tiebifangshen_sheshen` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_yangjiaqiangfa`（6） | `mfr_yangjiaqiangfa_huima` | `mv_yangjiaqiangfa_huima` | `5 / true / 100 / 8% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_huodushanfa`（6） | `mfr_huodushanfa_ansuan` | `mv_huodushanfa_ansuan` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_shoutaiyin_yunmen/100→ap_shoutaiyin_chize/120→ap_shoutaiyin_taiyuan/100→ap_shoutaiyin_shaoshang/120` |
+| `sk_kusangbangfa`（6） | `mfr_kusangbangfa_zhaohun` | `mv_kusangbangfa_zhaohun` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_shoutaiyin_yunmen/100→ap_shoutaiyin_chize/120→ap_shoutaiyin_taiyuan/100→ap_shoutaiyin_shaoshang/120` |
+
+本册最终共 85 条绝招路线（天 29、地 29、玄上 27），其中 82 条由本册逐行定义、降龙 3 条引用 `design/21`；相对 NC2 新增 47 个绝招标记（天 16、地 6、玄上 27），其路线复用 20 条已有逐招 `mfr_*` 并新增 27 条 `mfr_*`。所有本册行段数为 6–10、单段 65–90 CT，最大总时长为 `1200+10×80=2000 CT`；各行穴位不重复。黄阶、玄中、玄下绝招数均为 0。
 
 ---
 
@@ -2867,6 +2981,26 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 F2 应以当前 §0.2 口径对扩充前其余招式再做全量机械复算；若发现新差异，只改显示倍率/核算式，不改变本轮 182 门配额与 ID 集合。
 
+### 14.5 各阶绝招数量（AR-14h）
+
+本表以 §0.12 的 `ultimate:true` 最终覆写为准；“调整前”是 NC2 完成逐招路线后每门天 / 地阶各 1 记、玄上 0 记的状态。
+
+| 品阶 | 武学门数 | 调整前绝招 | 调整后绝招 | 配额核对 |
+|---|---:|---:|---:|---|
+| 天上（12） | 3 | 3 | 9 | 每门 3，满足 2–3 |
+| 天中（11） | 2 | 2 | 4 | 每门 2，满足 2–3 |
+| 天下（10） | 8 | 8 | 16 | 每门 2，满足 2–3 |
+| **天阶小计** | **13** | **13** | **29** | 新增标记 16 |
+| 地上（9） | 6 | 6 | 12 | 每门 2，满足 1–2 |
+| 地中（8） | 6 | 6 | 6 | 每门 1，满足 1–2 |
+| 地下（7） | 11 | 11 | 11 | 每门 1，满足 1–2 |
+| **地阶小计** | **23** | **23** | **29** | 新增标记 6 |
+| **玄上（6）** | **27** | **0** | **27** | 每门 1 |
+| 玄中 / 玄下 / 黄阶（1–5） | 119 | 0 | 0 | 规则要求 0 |
+| **合计（受 AR-14h 约束）** | **63** | **36** | **85** | 新增标记 47；新增路线 ID 27 |
+
+全部新增标记均从本门既有 `mv_*` 中升格，未新造招名或招式 ID；82 条路线在本册 §0.12 显式定义，降龙十八掌 3 条路线引用 `design/21` §12.1，故最终 85 记绝招均有独立路线。
+
 ---
 
 ## 15. 本文新增术语与 ID
@@ -2888,7 +3022,7 @@ F2 应以当前 §0.2 口径对扩充前其余招式再做全量机械复算；�
 | 效果钩子（接口候选） | 4 | `weaponCoat`、`followupMove`、`equalizeHp`、`reflectMind`；唯一归 `design/05` §4.11 / `tech/05` |
 | 招式/被动条件（接口候选） | 7 | `differentTagThanLast`、`firstHitOnTarget`、`targetHeightAboveSelf`、`selfNotHitThisBattle`、`targetMoralityMax`、`mainHandTag`、`equipped`；唯一归 `design/05` / `tech/05` |
 | 其他局部接口 | 4 组 | `special.instrument`、`special.reformTo/reformFrom`、`special.trainMult`、奇门钵暂用 `weaponReq.kinds:[misc]`；不得据本文单独扩充公共 schema |
-| 经脉路线 `mfr_*` | 逐招 231 个同体实例（另引用 21 的降龙绝招示例）＋轻功顶层实例 | §0.7–§0.10 定义；前缀见 Canon v1.3 §12，schema、算法、共享模板与 `mfr_eighteen_palms_chain` 示例归 `design/21` |
+| 经脉路线 `mfr_*` | 原逐招 231 个同体实例＋轻功顶层实例；§0.12 显式登记本册最终绝招 82 条并引用降龙 3 条（本次新增 27 个路线 ID，另有 20 个升格招式复用已有逐招路线） | §0.7–§0.12 定义；前缀见 Canon v1.3 §12，schema、算法与降龙三条绝招路线归 `design/21` |
 | 调息档案 `txp_*` | 29 个逐武学实例 | §0.11 逐门定义完整 `BreathProfile` 并由 `inner.breathProfileRef` 引用；档案 schema 与公式归 `design/21` |
 | `MeridianFlowModule` / `MeridianRouteDef` / `BreathProfile` | 接口术语 | 战时实例、schema 与算法由 `design/21` 定义；本文拥有逐武学路线 / 调息内容并提供 05 的引用映射，不保存运行态 |
 
@@ -2985,6 +3119,8 @@ F2 应以当前 §0.2 口径对扩充前其余招式再做全量机械复算；�
 | V-S10 | ID / Markdown | 本文定义 `sk_*` 182 个且无重复；全文具体 `mv_*` 475、`ps_*` 350；75 门黄阶均进入八列表；表格列数一致、代码围栏成对，无未完成占位 |
 | V-S11 | 新增 ID 差集 | 相对扩充前新增 `sk_*` 99、`mv_*` 111、`ps_*` 86、`set_*` 5；旧具体 ID 删除数均为 0 |
 | V-S12 | 书界装配 | §13.1 逐界列本组内/拳/兵计数；不足界引用 `skills-general` §11.1 的 `ALL14` 三内、三拳、三门同类剑底座 |
+| WJ-ULT-01 | 按 §0.12 的 `ultimate:true` 覆写按品阶聚合 | 天 13 门、绝招 `13→29`；地 23 门、`23→29`；玄上 27 门、`0→27`；玄中以下 0 |
+| WJ-ULT-02 | §0.12 每个最终绝招的资源与路线 | 气势 100、`cd:0`、收招 1200；本册独立 `mfr_*` 82 条并引用降龙 3 条，段数 6–10、单段 65–95 CT、总时长 ≤2000 CT，穴位不重复 |
 | V-M01 | §0.8–§0.9 与 36 门天 / 地阶正文卡逐门比对 | 36 / 36 门、232 / 232 个既有 `mv_*` 均恰有路线；每门至少一个 `ultimate:true`，且 `route.ultimate == MoveDef.ultimate` |
 | V-M02 | §0.7 的玄 / 黄模板实例化 | 每个需要运气的招式生成稳定 `mfr_*`；模板名不得进入 Core；一招至多一条主路线，攻击 / 防守 / movement 不共用万能路线 |
 | V-M03 | 分组简写导出为 `MeridianRouteDef` | 每个具体路线只有一个 `moveRef`；同名路线族按 `mv_*` 拆唯一稳定子路线，`requiredNature` 与武学性质一致或显式 `allowOpposedNature:true` |
@@ -3020,6 +3156,7 @@ F2 应以当前 §0.2 口径对扩充前其余招式再做全量机械复算；�
 | CN-01 | 已解决（本轮边界）：§0.2 改用现行 Buff 成本口径，新增条目全按该口径；§14.4 列六式旧条目重算清单。其余旧招由 F2 全量机械复算 | F2 |
 | C22 外部闭合 | `sk_zaoheding` 补 `legacy-set:tiezhang_shuishangpiao`；`sk_jingangxiangmochu` 补 `legacy-set:menggu_mufu`；套装中的 8 个装备 ID 补齐 9 条反向标签关系（`eq_ruanweijia` 属两套） | `skills-daojia`、`skills-xiaoyao`、`design/10` |
 | M3-D03 / AR-14 | **已解决（本册内容侧）**：§0.6–§0.11 已定义本册攻、防、轻功路线实例与 29 门调息 / 护体档；05 提供字段，21 提供 schema、算法、共享模板与示例，不再由 21 重复收录具体实例 | `design/05`、`design/21` |
+| AR-14h | **已解决（本册内容侧）**：§0.12 与 §14.5 将天 / 地 / 玄上绝招补为 `29/29/27`；47 个既有 `mv_*` 升格后各有独立路线（新增路线 ID 27、复用已有逐招路线 20），未新增招式 ID，玄中以下维持 0 | `design/05` 数量规则、`design/21` 路线校验 |
 
 ### 17.2 本文依赖的上游事实
 
