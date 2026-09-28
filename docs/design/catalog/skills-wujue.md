@@ -1,6 +1,6 @@
 # 门派武学图鉴 · 射雕五绝体系（`skills-wujue`）
 
-版本：v1.2（AR-01 受控扩充；全局审计；经脉系统落地；绝招数量调整（2026-09-27））
+版本：v1.3（AR-01 受控扩充；全局审计；经脉系统落地；绝招数量调整；绝招真值回写（2026-09-27））
 
 > **归属**（基准 §18）：`design/catalog/skills-*.md` 门派武学图鉴之一。本文覆盖：丐帮（全书界）、桃花岛、白驼山、大理段氏与天龙寺、周伯通、九阴真经系、铁掌帮、江南七怪、杨家枪与将门、蒙古（射雕/神雕，金轮法王除外）。
 > **上游**：`decisions/author-decisions.md`、`decisions/author-requirements.md`、`00-canon.md` v1.3（§4 品阶、§6 属性 ID、§7 分类、§12 ID、§13 天级总表、§16 改编原则、§20 装配栏）、`decisions/rulings-v1.md`（C14/C17/C22/C23）、`design/05` 的 AR-14 接口与 `design/21` v2.0。
@@ -39,7 +39,7 @@
 | `Kd` / `Kp` | 远程气劲 `ranged` 0.85、投射 `projectile` 0.92；不可招架 0.85 |
 | Buff 代价 | 硬控（定身/眩晕/缠绕/昏睡/迷惑/移魂）0.25×施加率；封穴/封内/封经脉/封绝/缴械/麻痹 0.20×施加率；数值减益、DOT（中毒/蛇毒/流血/内伤/破甲/减速/破绽/虚弱/易伤/动摇/乱心等）0.10×施加率；嘲讽 0.15×施加率；自身增益 0.10–0.20。**均不乘持续回合**（现行 `design/05` §4.2；CN-01） |
 | 位移代价 | 击退 0.05/格；拉拽 0.10；突进/跳斩 0.10；绕背/换位 0.15 |
-| 绝招 | `power = 3.00 × AF × Kd × Kp − Σcost`；耗气势 100、耗内 = 大阶基准 +2%、收招 1200、无冷却；核心武学首个绝招 ≤ 7 重（05 §4.8、V9） |
+| 绝招 | `power = 3.00 × AF × Kd × Kp − Σcost`；`ultimate:true` 是唯一真值；气势 100，耗内 = 大阶基准 +2%，`cd:0`，收招 1200；同门共享 1 次自身行动冷却且不得连续重复同一绝招（见 05 §4.8、21 §4），不把共享冷却误写进 `MoveDef.cd`；第一 / 第二 / 第三绝招依次在 7 / 9 / 10 重解锁（05 §3.5、13 §3.5.3） |
 | 支援招式 | `power 0`；标准单体治疗 = 目标 `hpMax` 18%（cd 2），护体真气按治疗量 ×1.2 等价（05 §4.2） |
 | `aoe_zone` | 倍率为"每跳"；`aoe_chain` 每跳 ×0.8 递减；`aoe_leap` 溅射 ×0.5；`aoe_boomerang` 为"每程" |
 | 省略写法 | 表中"单体"= `aoe_single`，"自身"= `aoe_self`；"近身/远程/投射"= `delivery: melee / ranged / projectile`；"架"列 = `parryable`；"n 段"= `hits: n` |
@@ -164,19 +164,19 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 | 武学 | 全部既有招式 → 路线 / 用途 / 绝招断言 |
 |---|---|
-| `sk_xianglong18` | `mv_xianglong18_kanglong→mfr_xianglong18_kanglong/false/attack/A6Y`；`jianlong→mfr_xianglong18_jianlong/A6Y`；`hongjian→mfr_xianglong18_hongjian/A6Y`；`lishe→mfr_xianglong18_lishe/A6Y`；`turu→mfr_xianglong18_turu/A6Y`；`zhenjing→mfr_xianglong18_zhenjing/A6Y`；`shuanglong→mfr_xianglong18_shuanglong/A6Y`；`yuyue→mfr_xianglong18_yuyue/A6Y`；`feilong→mfr_xianglong18_feilong/A6Y`；`shicheng→mfr_xianglong18_shicheng/A6Y`；`miyun→mfr_xianglong18_miyun/A6Y`；`sunze→mfr_xianglong18_sunze/A6Y`；`longzhan→mfr_xianglong18_longzhan/A6Y`；`lvshuang→mfr_xianglong18_lvshuang/A6Y`；`diyang→mfr_xianglong18_diyang/A6Y`；`shenlong→mfr_xianglong18_shenlong/A6Y`；`qianlong→mfr_xianglong18_qianlong/false/defense/D6Y`；`huoyue→mfr_xianglong18_huoyue/D6Y`；`lianhuan→mfr_eighteen_palms_chain/true/attack/21 §12.1`。首项写全的 `false/attack` 延续至同句省略项；21 §12.1 既有绝招 fixture 的 `requiredNature:[yang,harmony]` 与 Y 路线一致，逐式取材可在专项打磨时细化 |
-| `sk_dagou` | `bangdashuangquan→mfr_dagou_bangdashuangquan/false/attack/A6H`；`ban→mfr_dagou_ban/A6H`；`chan→mfr_dagou_chan/A6H`；`bogouchaotian→mfr_dagou_bogouchaotian/A6H`；`xiedagoubei→mfr_dagou_xiedagoubei/A6H`；`yin→mfr_dagou_yin/A6H`；`aokouduozhang→mfr_dagou_aokouduozhang/A6H`；`fanjiegoutun→mfr_dagou_fanjiegoutun/A6H`；`yajiangoubei→mfr_dagou_yajiangoubei/A6H`；`egoulanlu→mfr_dagou_egoulanlu/false/defense/D6H`；`tianxiawugou→mfr_dagou_tianxiawugou/true/attack/A10H`（各省略 `mv_dagou_` 前缀） |
+| `sk_xianglong18` | `mv_xianglong18_kanglong→mfr_xianglong18_kanglong/false/attack/A6Y`；`jianlong→mfr_xianglong18_jianlong/A6Y`；`hongjian→mfr_xianglong18_hongjian/A6Y`；`lishe→mfr_xianglong18_lishe/A6Y`；`turu→mfr_xianglong18_turu/A6Y`；`zhenjing→mfr_xianglong18_zhenjing/true/attack/21 §12.1`；`shuanglong→mfr_xianglong18_shuanglong/false/attack/A6Y`；`yuyue→mfr_xianglong18_yuyue/A6Y`；`feilong→mfr_xianglong18_feilong/A6Y`；`shicheng→mfr_xianglong18_shicheng/A6Y`；`miyun→mfr_xianglong18_miyun/A6Y`；`sunze→mfr_xianglong18_sunze/A6Y`；`longzhan→mfr_xianglong18_longzhan/A6Y`；`lvshuang→mfr_xianglong18_lvshuang/A6Y`；`diyang→mfr_xianglong18_diyang/A6Y`；`shenlong→mfr_xianglong18_shenlong/true/attack/21 §12.1`；`qianlong→mfr_xianglong18_qianlong/false/defense/D6Y`；`huoyue→mfr_xianglong18_huoyue/D6Y`；`lianhuan→mfr_eighteen_palms_chain/true/attack/21 §12.1`。首项写全的 `false/attack` 延续至同句省略项；三记绝招均直接引用 21 §12.1，正文唯一真值见 `design/05` §13.1 |
+| `sk_dagou` | `bangdashuangquan→mfr_dagou_bangdashuangquan/false/attack/A6H`；`ban→mfr_dagou_ban/A6H`；`chan→mfr_dagou_chan/A6H`；`bogouchaotian→mfr_dagou_bogouchaotian/A6H`；`xiedagoubei→mfr_dagou_xiedagoubei/A6H`；`yin→mfr_dagou_yin/A6H`；`aokouduozhang→mfr_dagou_aokouduozhang/true/attack/A8H`；`fanjiegoutun→mfr_dagou_fanjiegoutun/false/attack/A6H`；`yajiangoubei→mfr_dagou_yajiangoubei/A6H`；`egoulanlu→mfr_dagou_egoulanlu/false/defense/D6H`；`tianxiawugou→mfr_dagou_tianxiawugou/true/attack/A10H`（各省略 `mv_dagou_` 前缀） |
 | `sk_tiebogong` | `kouji→mfr_tiebogong_kouji/false/attack/A4Y`；`feibo→mfr_tiebogong_feibo/A4Y`；`bodi→mfr_tiebogong_bodi/A4Y`；`koubo→mfr_tiebogong_koubo/A4Y`；`tuobo→mfr_tiebogong_tuobo/false/defense/D4Y`；`zhenbafang→mfr_tiebogong_zhenbafang/true/attack/A8Y`（各省略 `mv_tiebogong_` 前缀；原 `bf_fanzhen` 独立结算） |
 | `sk_dagouzhen` | `weizhen→mfr_dagouzhen_weizhen/false/attack/A4H`；`youdi→mfr_dagouzhen_youdi/A4H`；`hewei→mfr_dagouzhen_hewei/false/defense/D4H`；`zhenzhuan→mfr_dagouzhen_zhenzhuan/D4H`；`jiedao→mfr_dagouzhen_jiedao/D4H`；`shouwang→mfr_dagouzhen_shouwang/true/defense/D6H`（各省略 `mv_dagouzhen_` 前缀；阵效不吃攻击乘区） |
-| `sk_tanzhi` | `tanzhi→mfr_tanzhi_tanzhi/false/attack/A6H`；`dianxue→mfr_tanzhi_dianxue/A6H`；`lianzhu→mfr_tanzhi_lianzhu/A6H`；`chuanshi→mfr_tanzhi_chuanshi/A6H`；`jiemai→mfr_tanzhi_jiemai/A6H`；`miaoshi→mfr_tanzhi_miaoshi/false/defense/D6H`；`tanjia→mfr_tanzhi_tanjia/D6H`；`tianhua→mfr_tanzhi_tianhua/true/attack/A10H`（各省略 `mv_tanzhi_` 前缀） |
-| `sk_bihai` | `chaoqi→mfr_bihai_chaoqi/false/attack/A6H`；`chaoyong→mfr_bihai_chaoyong/A6H`；`jingtao→mfr_bihai_jingtao/A6H`；`xinsui→mfr_bihai_xinsui/A6H`；`yuyin→mfr_bihai_yuyin/A6H`；`dingshen→mfr_bihai_dingshen/false/defense/D6H`；`chaosheng→mfr_bihai_chaosheng/true/attack/A10H`（各省略 `mv_bihai_` 前缀） |
+| `sk_tanzhi` | `tanzhi→mfr_tanzhi_tanzhi/false/attack/A6H`；`dianxue→mfr_tanzhi_dianxue/A6H`；`lianzhu→mfr_tanzhi_lianzhu/true/attack/A8H`；`chuanshi→mfr_tanzhi_chuanshi/false/attack/A6H`；`jiemai→mfr_tanzhi_jiemai/A6H`；`miaoshi→mfr_tanzhi_miaoshi/false/defense/D6H`；`tanjia→mfr_tanzhi_tanjia/D6H`；`tianhua→mfr_tanzhi_tianhua/true/attack/A10H`（各省略 `mv_tanzhi_` 前缀） |
+| `sk_bihai` | `chaoqi→mfr_bihai_chaoqi/false/attack/A6H`；`chaoyong→mfr_bihai_chaoyong/A6H`；`jingtao→mfr_bihai_jingtao/A6H`；`xinsui→mfr_bihai_xinsui/A6H`；`yuyin→mfr_bihai_yuyin/A6H`；`dingshen→mfr_bihai_dingshen/true/defense/D6H`；`chaosheng→mfr_bihai_chaosheng/true/attack/A10H`（各省略 `mv_bihai_` 前缀） |
 | `sk_lanhuafuxueshou` | `fuxue→mfr_lanhuafuxueshou_fuxue/false/attack/A4I`；`nian→mfr_lanhuafuxueshou_nian/A4I`；`tufang→mfr_lanhuafuxueshou_tufang/A4I`；`qinna→mfr_lanhuafuxueshou_qinna/A4I`；`konggu→mfr_lanhuafuxueshou_konggu/false/defense/D4I`；`jiuwan→mfr_lanhuafuxueshou_jiuwan/true/attack/A8I`（各省略 `mv_lanhuafuxueshou_` 前缀） |
 | `sk_yuxiaojianfa` | `meihua→mfr_yuxiaojianfa_meihua/false/attack/A4H`；`hengchui→mfr_yuxiaojianfa_hengchui/A4H`；`feishen→mfr_yuxiaojianfa_feishen/A4H`；`anxiao→mfr_yuxiaojianfa_anxiao/A4H`；`jianqi→mfr_yuxiaojianfa_jianqi/A4H`；`jianying→mfr_yuxiaojianfa_jianying/false/defense/D4H`；`feishenjian→mfr_yuxiaojianfa_feishenjian/true/attack/A8H`（各省略 `mv_yuxiaojianfa_` 前缀） |
 | `sk_luoyingshenjianzhang` | `mfr_luoyingshenjianzhang_binfen/false/attack/A4H`；`mfr_luoyingshenjianzhang_wusheng/false/attack/A4H`；`mfr_luoyingshenjianzhang_fuliu/false/attack/A4H`；`mfr_luoyingshenjianzhang_xushi/false/attack/A4H`；`mfr_luoyingshenjianzhang_mandi/false/attack/A4H`；`mfr_luoyingshenjianzhang_shenjian/true/attack/A8H` |
 | `sk_bitaoxuangong` | `mfr_bitaoxuangong_chaoxi/false/attack/A4H`；`mfr_bitaoxuangong_daoqi/false/attack/A4H`；`mfr_bitaoxuangong_huti/false/defense/D4H`；`mfr_bitaoxuangong_wanli/true/defense/D6H`（支援效果不吃攻击乘区） |
 | `sk_taohuazhen` | `mfr_taohuazhen_taolin/false/attack/A4H`；`mfr_taohuazhen_kunlong/false/attack/A4H`；`mfr_taohuazhen_dunxing/false/movement/M4H`；`mfr_taohuazhen_huanjing/false/movement/M4H`；`mfr_taohuazhen_shengke/false/defense/D4H`；`mfr_taohuazhen_ershibaxiu/true/attack/A8H`（阵效不吃攻击乘区） |
-| `sk_hama` | `mfr_hama_fajin/false/attack/A6Y`；`mfr_hama_guhu/false/attack/A6Y`；`mfr_hama_tiaoyue/false/attack/A6Y`；`mfr_hama_xujin/false/defense/D6Y`；`mfr_hama_jinghou/false/defense/D6Y`；`mfr_hama_quanjin/true/attack/A10Y` |
-| `sk_lingshezhangfa` | `mfr_lingshezhangfa_chudong/false/attack/A4Y`；`mfr_lingshezhangfa_saojun/false/attack/A4Y`；`mfr_lingshezhangfa_shuangshe/false/attack/A4Y`；`mfr_lingshezhangfa_jikuo/false/attack/A4Y`；`mfr_lingshezhangfa_chan/false/attack/A4Y`；`mfr_lingshezhangfa_qunshe/true/attack/A8Y` |
+| `sk_hama` | `mfr_hama_fajin/true/attack/A8Y`；`mfr_hama_guhu/false/attack/A6Y`；`mfr_hama_tiaoyue/false/attack/A6Y`；`mfr_hama_xujin/false/defense/D6Y`；`mfr_hama_jinghou/false/defense/D6Y`；`mfr_hama_quanjin/true/attack/A10Y` |
+| `sk_lingshezhangfa` | `mfr_lingshezhangfa_chudong/false/attack/A4Y`；`mfr_lingshezhangfa_saojun/false/attack/A4Y`；`mfr_lingshezhangfa_shuangshe/false/attack/A4Y`；`mfr_lingshezhangfa_jikuo/false/attack/A4Y`；`mfr_lingshezhangfa_chan/true/attack/A6Y`；`mfr_lingshezhangfa_qunshe/true/attack/A8Y` |
 | `sk_lingshequan` | `mfr_lingshequan_tuxin/false/attack/A4H`；`mfr_lingshequan_qubi/false/attack/A4H`；`mfr_lingshequan_chanbi/false/attack/A4H`；`mfr_lingshequan_raoji/false/attack/A4H`；`mfr_lingshequan_fanshou/false/defense/D4H`；`mfr_lingshequan_qianbian/true/attack/A8H` |
 | `sk_nizhuanjingmai` | `mfr_nizhuanjingmai_chongxue/false/defense/D4I`；`mfr_nizhuanjingmai_daoli/false/defense/D4I`；`mfr_nizhuanjingmai_fanchong/false/attack/A4I`；`mfr_nizhuanjingmai_daozhuan/true/defense/D6I` |
 
@@ -186,24 +186,24 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 | 武学 | 全部既有招式 → 路线 / 用途 / 绝招断言 |
 |---|---|
-| `sk_liumai` | `mfr_liumai_shaoshang/false/attack/A6H`；`mfr_liumai_shangyang/false/attack/A6H`；`mfr_liumai_zhongchong/false/attack/A6H`；`mfr_liumai_guanchong/false/attack/A6H`；`mfr_liumai_shaochong/false/attack/A6H`；`mfr_liumai_shaoze/false/attack/A6H`；`mfr_liumai_liumaiqifa/true/attack/A10H`。六剑可按 21 §6.4 逐指取材替换共享骨架 |
-| `sk_yiyangzhi` | `mfr_yiyangzhi_dianxue/false/attack/A6Y`；`mfr_yiyangzhi_chunyang/false/attack/A6Y`；`mfr_yiyangzhi_sanjiao/false/attack/A6Y`；`mfr_yiyangzhi_jiemai/false/attack/A6Y`；`mfr_yiyangzhi_liaoshang/false/defense/D6Y`；`mfr_yiyangzhi_qianyang/true/attack/A10Y`（治疗不吃攻击乘区） |
-| `sk_kurongchangong` | `mfr_kurongchangong_kushi/false/defense/D4H`；`mfr_kurongchangong_chanding/false/defense/D4H`；`mfr_kurongchangong_rongshi/false/defense/D4H`；`mfr_kurongchangong_fengchun/false/defense/D4H`；`mfr_kurongchangong_feikufeirong/true/defense/D6H`（支援效果不吃攻击乘区） |
+| `sk_liumai` | `mfr_liumai_shaoshang/true/attack/A8Y`；`mfr_liumai_shangyang/false/attack/A6H`；`mfr_liumai_zhongchong/false/attack/A6H`；`mfr_liumai_guanchong/false/attack/A6H`；`mfr_liumai_shaochong/false/attack/A6H`；`mfr_liumai_shaoze/true/attack/A8I`；`mfr_liumai_liumaiqifa/true/attack/A10H`。六剑可按 21 §6.4 逐指取材替换共享骨架 |
+| `sk_yiyangzhi` | `mfr_yiyangzhi_dianxue/false/attack/A6Y`；`mfr_yiyangzhi_chunyang/false/attack/A6Y`；`mfr_yiyangzhi_sanjiao/false/attack/A6Y`；`mfr_yiyangzhi_jiemai/false/attack/A6Y`；`mfr_yiyangzhi_liaoshang/true/defense/D6Y`；`mfr_yiyangzhi_qianyang/true/attack/A10Y`（治疗不吃攻击乘区） |
+| `sk_kurongchangong` | `mfr_kurongchangong_kushi/false/defense/D4H`；`mfr_kurongchangong_chanding/false/defense/D4H`；`mfr_kurongchangong_rongshi/false/defense/D4H`；`mfr_kurongchangong_fengchun/true/defense/D6H`；`mfr_kurongchangong_feikufeirong/true/defense/D6H`（两记绝招路线穴位顺序不同；支援效果不吃攻击乘区） |
 | `sk_yiyangshuzhi` | `mfr_yiyangshuzhi_kaishu/false/attack/A4Y`；`mfr_yiyangshuzhi_dianhua/false/attack/A4Y`；`mfr_yiyangshuzhi_caoshu/false/attack/A4Y`；`mfr_yiyangshuzhi_shiguwen/false/attack/A4Y`；`mfr_yiyangshuzhi_touzhi/false/attack/A4Y`；`mfr_yiyangshuzhi_longshe/false/defense/D4Y`；`mfr_yiyangshuzhi_yunyan/true/attack/A8Y` |
 | `sk_duanjiajianfa` | `mfr_duanjiajianfa_yunqi/false/attack/A4Y`；`mfr_duanjiajianfa_yueming/false/attack/A4Y`；`mfr_duanjiajianfa_daoying/false/attack/A4Y`；`mfr_duanjiajianfa_yiyang/false/attack/A4Y`；`mfr_duanjiajianfa_hudie/false/attack/A4Y`；`mfr_duanjiajianfa_nanzhao/true/attack/A8Y` |
-| `sk_kongming` | `mfr_kongming_kongmeng/false/attack/A6H`；`mfr_kongming_dongsong/false/attack/A6H`；`mfr_kongming_fengtong/false/attack/A6H`；`mfr_kongming_rongmeng/false/attack/A6H`；`mfr_kongming_chongqiong/false/attack/A6H`；`mfr_kongming_zhongnong/false/attack/A6H`；`mfr_kongming_tongyong/false/attack/A6H`；`mfr_kongming_gongchong/false/defense/D6H`；`mfr_kongming_qishier/true/attack/A10H` |
-| `sk_zuoyouhubo` | `mfr_zuoyouhubo_fenxin/false/attack/A6H`；`mfr_zuoyouhubo_quanli/true/attack/A10H`。两手被选原招仍各自提交自身路线；入口路线只负责双招定序，不复制效果 |
-| `sk_jiuyin` | `mfr_jiuyin_sunyouyu/false/attack/A6H`；`mfr_jiuyin_buzu/false/defense/D6H`；`mfr_jiuyin_xushi/false/defense/D6H`；`mfr_jiuyin_jiexue/false/defense/D6H`；`mfr_jiuyin_shougong/false/defense/D6H`；`mfr_jiuyin_tianzhidao/true/defense/D6H` |
-| `sk_jiuyinshenzhao` | `mfr_jiuyinshenzhao_cuijian/false/attack/A6I`；`mfr_jiuyinshenzhao_suo/false/attack/A6I`；`mfr_jiuyinshenzhao_futu/false/attack/A6I`；`mfr_jiuyinshenzhao_shounao/false/attack/A6I`；`mfr_jiuyinshenzhao_wuzhi/false/attack/A6I`；`mfr_jiuyinshenzhao_qinna/false/attack/A6I`；`mfr_jiuyinshenzhao_wujian/true/attack/A10I` |
-| `sk_yihun` | `mfr_yihun_shehun/false/attack/A6H`；`mfr_yihun_huoxin/false/attack/A6H`；`mfr_yihun_cuimian/false/attack/A6H`；`mfr_yihun_dingxin/false/defense/D6H`；`mfr_yihun_fanzhao/false/defense/D6H`；`mfr_yihun_yihun/true/attack/A10H` |
-| `sk_jiuyinbaigu` | `mfr_jiuyinbaigu_yinfeng/false/attack/A4I`；`mfr_jiuyinbaigu_guiying/false/attack/A4I`；`mfr_jiuyinbaigu_suohun/false/attack/A4I`；`mfr_jiuyinbaigu_yinfengsao/false/attack/A4I`；`mfr_jiuyinbaigu_guimei/false/attack/A4I`；`mfr_jiuyinbaigu_suoming/true/attack/A8I` |
-| `sk_cuixinzhang` | `mfr_cuixinzhang_cuixin/false/attack/A4I`；`mfr_cuixinzhang_touti/false/attack/A4I`；`mfr_cuixinzhang_suimai/false/attack/A4I`；`mfr_cuixinzhang_duanhun/false/attack/A4I`；`mfr_cuixinzhang_wuhen/false/attack/A4I`；`mfr_cuixinzhang_liemai/true/attack/A8I` |
-| `sk_dafumoquan` | `mfr_dafumoquan_zhenmo/false/attack/A4Y`；`mfr_dafumoquan_fuhu/false/attack/A4Y`；`mfr_dafumoquan_poxie/false/attack/A4Y`；`mfr_dafumoquan_lianhuan/false/attack/A4Y`；`mfr_dafumoquan_hufa/false/defense/D4Y`；`mfr_dafumoquan_dafumo/true/attack/A8Y`（原 `bf_fanzhen` 独立结算） |
+| `sk_kongming` | `mfr_kongming_kongmeng/false/attack/A6H`；`mfr_kongming_dongsong/true/defense/D6H`；`mfr_kongming_fengtong/false/attack/A6H`；`mfr_kongming_rongmeng/false/attack/A6H`；`mfr_kongming_chongqiong/false/attack/A6H`；`mfr_kongming_zhongnong/false/attack/A6H`；`mfr_kongming_tongyong/false/attack/A6H`；`mfr_kongming_gongchong/false/defense/D6H`；`mfr_kongming_qishier/true/attack/A10H` |
+| `sk_zuoyouhubo` | `mfr_zuoyouhubo_fenxin/true/attack/A8H`；`mfr_zuoyouhubo_quanli/true/attack/A10H`。两手被选原招仍各自提交自身路线；入口路线只负责双招定序，不复制效果 |
+| `sk_jiuyin` | `mfr_jiuyin_sunyouyu/true/attack/A8H`；`mfr_jiuyin_buzu/true/defense/D6H`；`mfr_jiuyin_xushi/false/defense/D6H`；`mfr_jiuyin_jiexue/false/defense/D6H`；`mfr_jiuyin_shougong/false/defense/D6H`；`mfr_jiuyin_tianzhidao/true/defense/D6H` |
+| `sk_jiuyinshenzhao` | `mfr_jiuyinshenzhao_cuijian/false/attack/A6I`；`mfr_jiuyinshenzhao_suo/false/attack/A6I`；`mfr_jiuyinshenzhao_futu/false/attack/A6I`；`mfr_jiuyinshenzhao_shounao/true/attack/A8I`；`mfr_jiuyinshenzhao_wuzhi/false/attack/A6I`；`mfr_jiuyinshenzhao_qinna/false/attack/A6I`；`mfr_jiuyinshenzhao_wujian/true/attack/A10I` |
+| `sk_yihun` | `mfr_yihun_shehun/false/attack/A6H`；`mfr_yihun_huoxin/false/attack/A6H`；`mfr_yihun_cuimian/false/attack/A6H`；`mfr_yihun_dingxin/true/defense/D6H`；`mfr_yihun_fanzhao/false/defense/D6H`；`mfr_yihun_yihun/true/attack/A10H` |
+| `sk_jiuyinbaigu` | `mfr_jiuyinbaigu_yinfeng/false/attack/A4I`；`mfr_jiuyinbaigu_guiying/false/attack/A4I`；`mfr_jiuyinbaigu_suohun/false/attack/A4I`；`mfr_jiuyinbaigu_yinfengsao/false/attack/A4I`；`mfr_jiuyinbaigu_guimei/true/attack/A6I`；`mfr_jiuyinbaigu_suoming/true/attack/A8I` |
+| `sk_cuixinzhang` | `mfr_cuixinzhang_cuixin/false/attack/A4I`；`mfr_cuixinzhang_touti/false/attack/A4I`；`mfr_cuixinzhang_suimai/false/attack/A4I`；`mfr_cuixinzhang_duanhun/false/attack/A4I`；`mfr_cuixinzhang_wuhen/true/attack/A6I`；`mfr_cuixinzhang_liemai/true/attack/A8I` |
+| `sk_dafumoquan` | `mfr_dafumoquan_zhenmo/false/attack/A4Y`；`mfr_dafumoquan_fuhu/false/attack/A4Y`；`mfr_dafumoquan_poxie/false/attack/A4Y`；`mfr_dafumoquan_lianhuan/false/attack/A4Y`；`mfr_dafumoquan_hufa/true/defense/D6Y`；`mfr_dafumoquan_dafumo/true/attack/A8Y`（原 `bf_fanzhen` 独立结算） |
 | `sk_yijinduangupian` | `mfr_yijinduangupian_fagu/false/defense/D4H`；`mfr_yijinduangupian_yijin/false/defense/D4H`；`mfr_yijinduangupian_suogu/false/defense/D4H`；`mfr_yijinduangupian_tuotai/true/defense/D6H` |
 | `sk_shexinglifan` | `mfr_shexinglifan_shexing/false/movement/M4H`；`mfr_shexinglifan_lifan/false/movement/M4H`；`mfr_shexinglifan_tiedi/false/movement/M4H`；`mfr_shexinglifan_baibian/true/movement/M8H` |
 | `sk_baimangbianfa` | `mfr_baimangbianfa_chudong/false/attack/A4I`；`mfr_baimangbianfa_juandi/false/attack/A4I`；`mfr_baimangbianfa_chanshen/false/attack/A4I`；`mfr_baimangbianfa_huibian/false/attack/A4I`；`mfr_baimangbianfa_bianzhao/false/attack/A4I`；`mfr_baimangbianfa_fanjiang/true/attack/A8I` |
-| `sk_tiezhang` | `mfr_tiezhang_kaishan/false/attack/A6Y`；`mfr_tiezhang_paiyun/false/attack/A6Y`；`mfr_tiezhang_duanjin/false/attack/A6Y`；`mfr_tiezhang_zhenyue/false/attack/A6Y`；`mfr_tiezhang_tougu/false/attack/A6Y`；`mfr_tiezhang_lianhuan/false/attack/A6Y`；`mfr_tiezhang_hushen/false/defense/D6Y`；`mfr_tiezhang_qingtian/true/attack/A10Y` |
-| `sk_shuishangpiao` | `mfr_shuishangpiao_talang/false/movement/M6H`；`mfr_shuishangpiao_chuanxing/false/movement/M6H`；`mfr_shuishangpiao_piaoshen/false/movement/M6H`；`mfr_shuishangpiao_jieli/false/movement/M6H`；`mfr_shuishangpiao_wuhen/true/movement/M8H` |
+| `sk_tiezhang` | `mfr_tiezhang_kaishan/false/attack/A6Y`；`mfr_tiezhang_paiyun/false/attack/A6Y`；`mfr_tiezhang_duanjin/false/attack/A6Y`；`mfr_tiezhang_zhenyue/false/attack/A6Y`；`mfr_tiezhang_tougu/false/attack/A6Y`；`mfr_tiezhang_lianhuan/false/attack/A6Y`；`mfr_tiezhang_hushen/true/defense/D6Y`；`mfr_tiezhang_qingtian/true/attack/A10Y` |
+| `sk_shuishangpiao` | `mfr_shuishangpiao_talang/false/movement/M6H`；`mfr_shuishangpiao_chuanxing/false/movement/M6H`；`mfr_shuishangpiao_piaoshen/false/movement/M6H`；`mfr_shuishangpiao_jieli/true/movement/M6H`；`mfr_shuishangpiao_wuhen/true/movement/M8H` |
 | `sk_wumuyishu` | `mfr_wumuyishu_yunchou/false/defense/D4H`；`mfr_wumuyishu_yulin/false/defense/D4H`；`mfr_wumuyishu_qizheng/false/defense/D4H`；`mfr_wumuyishu_beiwei/false/defense/D4H`；`mfr_wumuyishu_yiyi/false/defense/D4H`；`mfr_wumuyishu_hanshan/true/defense/D6H`（军阵效果仍归原卡） |
 | `sk_lihuaqiang` | `mfr_lihuaqiang_diandian/false/attack/A4Y`；`mfr_lihuaqiang_zhici/false/attack/A4Y`；`mfr_lihuaqiang_penxue/false/attack/A4Y`；`mfr_lihuaqiang_ershinian/false/attack/A4Y`；`mfr_lihuaqiang_juma/false/defense/D4Y`；`mfr_lihuaqiang_wudishou/true/attack/A8Y` |
 | `sk_zhebiejianshu` | `mfr_zhebiejianshu_kaigong/false/attack/A4Y`；`mfr_zhebiejianshu_lianzhu/false/attack/A4Y`；`mfr_zhebiejianshu_chuanyang/false/attack/A4Y`；`mfr_zhebiejianshu_shediao/false/attack/A4Y`；`mfr_zhebiejianshu_qishe/false/attack/A4Y`；`mfr_zhebiejianshu_yijianshuangdiao/true/attack/A8Y`。箭矢仍属暗器 / 投射物，护体内劲适用率为 0 |
@@ -281,9 +281,9 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 调息基准值由 21 §10.2 公式导出；例如 `txp_kurongchangong` 为地上 10 重调和：`reliefBp=floor((500+9×100+10×80)×10500/10000)=2310`，`repairUnits=floor((120+9×24+10×18)×10500/10000)=541`；`txp_jiuyin` 为天上 10 重调和：`reliefBp=min(2500,floor(2500×10500/10000))=2500`，`repairUnits=floor(588×10500/10000)=617`。派生结果不重复存进档案。`outOfBattleScaleBp` 按 21 §12.1 的 YAML 契约登记为 15000；21 §12.3 的 TypeScript `BreathProfile` 尚漏该字段，见 §17.2 同步项。
 
-### 0.12 绝招数量调整与显式路线（AR-14h）
+### 0.12 绝招显式路线表（AR-14h）
 
-本节是 2026-09-27 绝招数量调整后的权威覆写层：若正文卡或 §0.8–§0.9 仍把下列招式写成普通招式，构建时以本节的 `unlock / ultimate / rageCost / mpCost / cd / recovery / meridianRouteRef` 为准；招名、目标、倍率和效果仍沿用原卡。全部从既有 `mv_*` 升格，本轮不新造招式名。配额采用天上 3、天中 2、天下 2、地上 2、地中/地下 1、玄上 1；玄中以下为 0。
+本节镜像 2026-09-27 绝招数量调整后的路线断言；正文卡中的 `MoveDef.ultimate` 是唯一真值，本表与 §0.8–§0.9 的路线侧 `ultimate` 均不得覆写正文，也不得静默回退。构建校验 V-M01 要求三处逐项相等，并同时核对解锁层、气势、耗内、冷却、收招与 `meridianRouteRef`。全部绝招均从既有 `mv_*` 升格，本轮不新造招式名；配额采用天上 3、天中 2、天下 2、地上 2、地中 / 地下 1、玄上 1，玄中以下为 0。
 
 | 大阶 | 门数 | 调整前绝招 | 调整后绝招 | 配额核对 |
 |---|---:|---:|---:|---|
@@ -321,7 +321,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | `sk_tiezhang`（10） | `mfr_tiezhang_qingtian` | `mv_tiezhang_qingtian` | `7 / true / 100 / 10% / 0 / 1200` | attack / `[yang,harmony]` | `10×80 / 800 / 2000` | `ap_renmai_qihai/120→ap_renmai_guanyuan/120→ap_renmai_zhongwan/140→ap_renmai_danzhong/140→ap_dumai_mingmen/150→ap_dumai_zhiyang/180→ap_dumai_shendao/160→ap_dumai_baihui/180→ap_shouyangming_quchi/160→ap_shouyangming_shousanli/180` |
 | `sk_tiezhang`（10） | `mfr_tiezhang_hushen` | `mv_tiezhang_hushen` | `9 / true / 100 / 10% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
 
-降龙十八掌（12）最终为 3 绝招，完整定义直接引用 `design/21` §12.1：`mv_xianglong18_zhenjing → mfr_xianglong18_zhenjing`（9×85，Σ765，总 1965）、`mv_xianglong18_lianhuan → mfr_eighteen_palms_chain`（10×80，Σ800，总 2000）、`mv_xianglong18_shenlong → mfr_xianglong18_shenlong`（8×95，Σ760，总 1960）；三者均 `ultimate:true / rageCost:100 / mpCost:10% / cd:0 / recovery:1200`，解锁层与招式字段以 `design/05` §13.1 为准。六脉神剑（12）的另两记升格绝招为下表首两行，连同既有六脉齐发合计 3。
+降龙十八掌（12）最终为 3 绝招，完整正文 `MoveDef` 唯一定义引用 `design/05` §13.1，路线定义引用 `design/21` §12.1：第一绝招 `mv_xianglong18_lianhuan → mfr_eighteen_palms_chain`（L7，10×80，Σ800，总 2000）、第二绝招 `mv_xianglong18_shenlong → mfr_xianglong18_shenlong`（L9，8×95，Σ760，总 1960）、第三绝招 `mv_xianglong18_zhenjing → mfr_xianglong18_zhenjing`（L10，9×85，Σ765，总 1965）；三者均 `ultimate:true / rageCost:100 / mpCost:10% / cd:0 / recovery:1200`。六脉神剑（12）三记绝招均在下表前 3 行。
 
 #### 0.12.2 六脉补足与地阶最终绝招路线
 
@@ -367,32 +367,32 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | `sk_suohouqinnashou`（6） | `mfr_suohouqinnashou_qinlong` | `mv_suohouqinnashou_qinlong` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yang,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
 | `sk_xiaoyaoyou`（6） | `mfr_xiaoyaoyou_tuanfeng` | `mv_xiaoyaoyou_tuanfeng` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yang,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
 | `sk_shexinshu`（6） | `mfr_shexinshu_mihun` | `mv_shexinshu_mihun` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
-| `sk_jiudaixingong`（6） | `mfr_jiudaixingong_hubang` | `mv_jiudaixingong_hubang` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
-| `sk_fengyulianshou`（6） | `mfr_fengyulianshou_saoxiang` | `mv_fengyulianshou_saoxiang` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
-| `sk_zhengoubang`（6） | `mfr_zhengoubang_huilan` | `mv_zhengoubang_huilan` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
-| `sk_pojunguitoudao`（6） | `mfr_pojunguitoudao_huishou` | `mv_pojunguitoudao_huishou` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
-| `sk_gaibangchuansheng`（6） | `mfr_gaibangchuansheng_hezhi` | `mv_gaibangchuansheng_hezhi` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_jiudaixingong`（6） | `mfr_jiudaixingong_hubang` | `mv_jiudaixingong_hubang` | `7 / true / 100 / 8% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_fengyulianshou`（6） | `mfr_fengyulianshou_saoxiang` | `mv_fengyulianshou_saoxiang` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_zhengoubang`（6） | `mfr_zhengoubang_huilan` | `mv_zhengoubang_huilan` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_pojunguitoudao`（6） | `mfr_pojunguitoudao_huishou` | `mv_pojunguitoudao_huishou` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_gaibangchuansheng`（6） | `mfr_gaibangchuansheng_hezhi` | `mv_gaibangchuansheng_hezhi` | `7 / true / 100 / 8% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
 | `sk_xuanfengsaoyetui`（6） | `mfr_xuanfengsaoyetui_canye` | `mv_xuanfengsaoyetui_canye` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yang,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
-| `sk_biluofengyan`（6） | `mfr_biluofengyan_yanbosan` | `mv_biluofengyan_yanbosan` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
-| `sk_qimenfushou`（6） | `mfr_qimenfushou_nawan` | `mv_qimenfushou_nawan` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_biluofengyan`（6） | `mfr_biluofengyan_yanbosan` | `mv_biluofengyan_yanbosan` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_qimenfushou`（6） | `mfr_qimenfushou_nawan` | `mv_qimenfushou_nawan` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
 | `sk_shentuoxueshanzhang`（6） | `mfr_shentuoxueshanzhang_fuzhong` | `mv_shentuoxueshanzhang_fuzhong` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yang,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
 | `sk_yushe`（6） | `mfr_yushe_shidi` | `mv_yushe_shidi` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
-| `sk_lingshebu`（6） | `mfr_lingshebu_tuoqiao` | `mv_lingshebu_tuoqiao` | `6 / true / 100 / 8% / 0 / 1200` | movement / `[yin,harmony]` | `6×65 / 390 / 1590` | `ap_zushaoyin_yongquan/70→ap_zushaoyin_taixi/80→ap_zutaiyang_weizhong/90→ap_dumai_mingmen/100→ap_shoujueyin_tianchi/110→ap_shoujueyin_quze/120` |
-| `sk_dumaihuqigong`（6） | `mfr_dumaihuqigong_guidu` | `mv_dumaihuqigong_guidu` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yin,harmony]` | `6×90 / 540 / 1740` | `ap_shoutaiyin_yunmen/80→ap_shoutaiyin_chize/90→ap_shoutaiyin_taiyuan/100→ap_shoutaiyin_shaoshang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
-| `sk_duanshiyangshenggong`（6） | `mfr_duanshiyangshenggong_humai` | `mv_duanshiyangshenggong_humai` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
-| `sk_tianlongchanbu`（6） | `mfr_tianlongchanbu_tuili` | `mv_tianlongchanbu_tuili` | `6 / true / 100 / 8% / 0 / 1200` | movement / `[yin,yang,harmony]` | `6×65 / 390 / 1590` | `ap_zushaoyin_yongquan/70→ap_zushaoyin_taixi/80→ap_zutaiyang_weizhong/90→ap_dumai_mingmen/100→ap_daimai_zulinqi/110→ap_daimai_weidao/120` |
-| `sk_wantongshuangxi`（6） | `mfr_wantongshuangxi_lianhuan` | `mv_wantongshuangxi_lianhuan` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_lingshebu`（6） | `mfr_lingshebu_tuoqiao` | `mv_lingshebu_tuoqiao` | `7 / true / 100 / 8% / 0 / 1200` | movement / `[yin,harmony]` | `6×65 / 390 / 1590` | `ap_zushaoyin_yongquan/70→ap_zushaoyin_taixi/80→ap_zutaiyang_weizhong/90→ap_dumai_mingmen/100→ap_shoujueyin_tianchi/110→ap_shoujueyin_quze/120` |
+| `sk_dumaihuqigong`（6） | `mfr_dumaihuqigong_guidu` | `mv_dumaihuqigong_guidu` | `7 / true / 100 / 8% / 0 / 1200` | defense / `[yin,harmony]` | `6×90 / 540 / 1740` | `ap_shoutaiyin_yunmen/80→ap_shoutaiyin_chize/90→ap_shoutaiyin_taiyuan/100→ap_shoutaiyin_shaoshang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_duanshiyangshenggong`（6） | `mfr_duanshiyangshenggong_humai` | `mv_duanshiyangshenggong_humai` | `7 / true / 100 / 8% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_tianlongchanbu`（6） | `mfr_tianlongchanbu_tuili` | `mv_tianlongchanbu_tuili` | `7 / true / 100 / 8% / 0 / 1200` | movement / `[yin,yang,harmony]` | `6×65 / 390 / 1590` | `ap_zushaoyin_yongquan/70→ap_zushaoyin_taixi/80→ap_zutaiyang_weizhong/90→ap_dumai_mingmen/100→ap_daimai_zulinqi/110→ap_daimai_weidao/120` |
+| `sk_wantongshuangxi`（6） | `mfr_wantongshuangxi_lianhuan` | `mv_wantongshuangxi_lianhuan` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
 | `sk_jiuyinliaoshangpian`（6） | `mfr_jiuyinliaoshangpian_biqi` | `mv_jiuyinliaoshangpian_biqi` | `7 / true / 100 / 8% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
-| `sk_tongshihenglian`（6） | `mfr_tongshihenglian_yingqiao` | `mv_tongshihenglian_yingqiao` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
-| `sk_shoujinpian`（6） | `mfr_shoujinpian_suomai` | `mv_shoujinpian_suomai` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
-| `sk_biguqipian`（6） | `mfr_biguqipian_guixi` | `mv_biguqipian_guixi` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
-| `sk_duanfengzhang`（6） | `mfr_duanfengzhang_zhenfeng` | `mv_duanfengzhang_zhenfeng` | `6 / true / 100 / 8% / 0 / 1200` | attack / `[yang,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
-| `sk_tiebifangshen`（6） | `mfr_tiebifangshen_sheshen` | `mv_tiebifangshen_sheshen` | `6 / true / 100 / 8% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
-| `sk_yangjiaqiangfa`（6） | `mfr_yangjiaqiangfa_huima` | `mv_yangjiaqiangfa_huima` | `5 / true / 100 / 8% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_tongshihenglian`（6） | `mfr_tongshihenglian_yingqiao` | `mv_tongshihenglian_yingqiao` | `7 / true / 100 / 8% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_shoujinpian`（6） | `mfr_shoujinpian_suomai` | `mv_shoujinpian_suomai` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,yang,harmony]` | `6×75 / 450 / 1650` | `ap_daimai_zulinqi/100→ap_daimai_weidao/100→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_biguqipian`（6） | `mfr_biguqipian_guixi` | `mv_biguqipian_guixi` | `7 / true / 100 / 8% / 0 / 1200` | defense / `[yin,yang,harmony]` | `6×90 / 540 / 1740` | `ap_daimai_zulinqi/80→ap_daimai_weidao/90→ap_daimai_daimai/100→ap_dumai_zhiyang/120→ap_shoujueyin_tianchi/100→ap_shoujueyin_quze/120` |
+| `sk_duanfengzhang`（6） | `mfr_duanfengzhang_zhenfeng` | `mv_duanfengzhang_zhenfeng` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yang,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_tiebifangshen`（6） | `mfr_tiebifangshen_sheshen` | `mv_tiebifangshen_sheshen` | `7 / true / 100 / 8% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
+| `sk_yangjiaqiangfa`（6） | `mfr_yangjiaqiangfa_huima` | `mv_yangjiaqiangfa_huima` | `7 / true / 100 / 8% / 0 / 1200` | defense / `[yang,harmony]` | `6×90 / 540 / 1740` | `ap_renmai_qihai/80→ap_renmai_guanyuan/90→ap_dumai_mingmen/100→ap_dumai_zhiyang/120→ap_dumai_shendao/100→ap_dumai_baihui/120` |
 | `sk_huodushanfa`（6） | `mfr_huodushanfa_ansuan` | `mv_huodushanfa_ansuan` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_shoutaiyin_yunmen/100→ap_shoutaiyin_chize/120→ap_shoutaiyin_taiyuan/100→ap_shoutaiyin_shaoshang/120` |
 | `sk_kusangbangfa`（6） | `mfr_kusangbangfa_zhaohun` | `mv_kusangbangfa_zhaohun` | `7 / true / 100 / 8% / 0 / 1200` | attack / `[yin,harmony]` | `6×75 / 450 / 1650` | `ap_renmai_qihai/100→ap_renmai_guanyuan/100→ap_shoutaiyin_yunmen/100→ap_shoutaiyin_chize/120→ap_shoutaiyin_taiyuan/100→ap_shoutaiyin_shaoshang/120` |
 
-本册最终共 85 条绝招路线（天 29、地 29、玄上 27），其中 82 条由本册逐行定义、降龙 3 条引用 `design/21`；相对 NC2 新增 47 个绝招标记（天 16、地 6、玄上 27），其路线复用 20 条已有逐招 `mfr_*` 并新增 27 条 `mfr_*`。所有本册行段数为 6–10、单段 65–90 CT，最大总时长为 `1200+10×80=2000 CT`；各行穴位不重复。黄阶、玄中、玄下绝招数均为 0。
+本册最终共 85 条绝招路线（天 29、地 29、玄上 27），其中 82 条由本册逐行定义、降龙 3 条引用 `design/21`；相对 NC2 共新增 49 个绝招标记，其中降龙 2 记（`mv_xianglong18_zhenjing`、`mv_xianglong18_shenlong`）由 `design/05` §13.1 定义、路线引用 `design/21` §12.1，本册 §0.12 逐行新增 47 记（路线复用 20 条已有 `mfr_*`、新增 27 条）。所有本册行段数为 6–10、单段 65–90 CT，最大总时长为 `1200+10×80=2000 CT`；各行穴位不重复。黄阶、玄中、玄下绝招数均为 0。
 
 ---
 
@@ -473,7 +473,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | weaponReq | `{category: staff}`（持打狗棒 `eq_dagoubang` 的加成走套装，§12） |
 | reqs | `attrs {agi 55, wis 55}`；`aptitude {apStaff 55}`；`morality {min 0}`；`sect {id: sect_gaibang, rank: 5}`；`hard [sect, morality]`（非帮主途径以 `reqsOverride {sect: null}` 放开，见获取） |
 | layerStats | `parry [4, 12]`、`pierce [2, 8]`（合计 20） |
-| 层数要点 | 1：棒打双犬、绊字诀、八字真诀 ｜ 2：缠字诀 ｜ 3：拨狗朝天、以巧破力 ｜ 4：恶狗拦路 ｜ 5：斜打狗背、棒影 ｜ 6：引字诀 ｜ **7：绝招 天下无狗** ｜ 8：獒口夺杖、反截狗臀 ｜ 9：压肩狗背、巧打 ｜ 10：八诀归一 |
+| 层数要点 | 1：棒打双犬、绊字诀、八字真诀 ｜ 2：缠字诀 ｜ 3：拨狗朝天、以巧破力 ｜ 4：恶狗拦路 ｜ 5：斜打狗背、棒影 ｜ 6：引字诀 ｜ **7：第一绝招 天下无狗** ｜ 8：反截狗臀 ｜ **9：第二绝招 獒口夺杖**、压肩狗背、巧打 ｜ 10：八诀归一 |
 | setTags | `[set_gaibang_bangzhu]` |
 | conflicts | 无 |
 | special / observable | `{fusible: true}` / `false` |
@@ -489,8 +489,8 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 恶狗拦路 `mv_dagou_egoulanlu` · 封 | 4 | 自身架势 | 0 | 5%/2/800 | 自身 `bf_jieji` 2（敌入相邻即截击） | — | 架势招式 |
 | 斜打狗背 `mv_dagou_xiedagoubei` · 戳 | 5 | 单体 · 1–2 · 近身 | 1.15 | 8%/2/1000 | `bf_fengxue` 40% 1 | 可 | 1.24−0.08 |
 | 引字诀 `mv_dagou_yin` · 引 | 6 | `aoe_pull n2` · 1–3 · 远程 | 0.65 | 8%/1/1000 | 拉拽 2；`bf_chaofeng` 100% 1 | 可 | 0.95×1.12×0.85−0.10−0.15 |
-| **天下无狗** `mv_dagou_tianxiawugou`（绝招） | 7 | `aoe_around` · 自身 · 近身 | 1.55（3 段） | 10%/—/1200 | `bf_dingshen` 100% 1；`bf_polu` 100% 2 | 不可 | N=6、AF=0.75；3.00×0.75×0.85−0.25−0.10=1.5625≈1.55 |
-| 獒口夺杖 `mv_dagou_aokouduozhang` · 挑 | 8 | 单体 · 1 · 近身；`condition {targetArmed}` | 1.40 | 8%/3/1000 | `bf_jiaoxie` 60% | 可 | (1+0.36+0.15)−0.12 |
+| **天下无狗** `mv_dagou_tianxiawugou`（绝招；`ultimate:true`；`rageCost:100`） | 7 | `aoe_around` · 自身 · 近身 | 1.55（3 段） | 10%/0/1200 | `bf_dingshen` 100% 1；`bf_polu` 100% 2 | 不可 | N=6、AF=0.75；3.00×0.75×0.85−0.25−0.10=1.5625≈1.55 |
+| **獒口夺杖** `mv_dagou_aokouduozhang` · 挑（绝招；`ultimate:true`；`rageCost:100`） | 9 | 单体 · 1 · 近身；`condition {targetArmed}` | 3.20 | 10%/0/1200 | `bf_jiaoxie` 60% | 可 | 3.00+0.30−0.20×0.60=3.18≈3.20 |
 | 反截狗臀 `mv_dagou_fanjiegoutun` · 转 | 8 | `aoe_behind` · 1–2 | 0.95 | 8%/2/1000 | 绕背（Z7 背击） | 可 | 0.90×1.24−0.15 |
 | 压肩狗背 `mv_dagou_yajiangoubei` · 劈 | 9 | 单体 · 1–2 · 近身 | 1.05 | 9%/2/1000 | `bf_dingshen` 50% 1；`bf_xuruo` 100% | 可 | (1+0.24+0.05)−0.125−0.10 |
 
@@ -527,7 +527,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 托钵化缘 `mv_tiebogong_tuobo` | 1 | 自身架势 | 0 | 5%/2/800 | 自身 `bf_shoushi` 2、`bf_fanzhen` 2 | — | 架势招式 |
 | 飞钵回旋 `mv_tiebogong_feibo` | 3 | `aoe_boomerang n3` · 投射 | 0.90/程 | 8%/2/1000 | — | 可 | 0.75×(1+0.24+0.05)×0.92 |
 | 钵底藏锋 `mv_tiebogong_bodi` | 5 | 单体 · 1 · 近身 | 1.05 | 7%/1/1000 | `bf_pojia` 50% | 可 | 1.12−0.05 |
-| **钵震八方** `mv_tiebogong_zhenbafang`（绝招） | 7 | `aoe_around` · 自身 | 2.10 | 9%/—/1200 | `bf_zhenshe` 100%；击退 1 | 可 | N=6、AF=0.75；3.00×0.75−0.10−0.05=2.10 |
+| **钵震八方** `mv_tiebogong_zhenbafang`（绝招；`ultimate:true`；`rageCost:100`） | 7 | `aoe_around` · 自身 | 2.10 | 9%/0/1200 | `bf_zhenshe` 100%；击退 1 | 可 | N=6、AF=0.75；3.00×0.75−0.10−0.05=2.10 |
 | 扣钵 `mv_tiebogong_koubo` | 8 | 单体 · 1 · 近身 | 1.25 | 8%/3/1000 | `bf_dingshen` 60% 2 | 可 | (1+0.36+0.05)−0.25×0.60 = 1.26 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -559,7 +559,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 群丐合围 `mv_dagouzhen_hewei` | 1 | `aoe_allies r2` | 0 | 6%/3/900 | 友方 `bf_zhuiji` 2 | — | 支援 |
 | 阵转 `mv_dagouzhen_zhenzhuan` | 4 | `aoe_allies r2` | 0 | 5%/2/800 | 友方 `bf_jixing` 2 | — | 支援 |
 | 诱敌入阵 `mv_dagouzhen_youdi` | 5 | `aoe_pull n2` · 1–3 · 远程 | 0.80 | 7%/1/1000 | 拉拽 2 | 可 | 0.95×1.12×0.85−0.10 |
-| **收网** `mv_dagouzhen_shouwang`（绝招，原创扩展命名） | 7 | `aoe_disk {r:2}` · 1–4 · 远程 | 0.95 | 9%/—/1200 | `bf_panshan` 100%；`bf_chihuan` 100% | 可 | 3.00×0.45×0.85−0.10−0.10 |
+| **收网** `mv_dagouzhen_shouwang`（绝招，原创扩展命名；`ultimate:true`；`rageCost:100`） | 7 | `aoe_disk {r:2}` · 1–4 · 远程 | 0.95 | 9%/0/1200 | `bf_panshan` 100%；`bf_chihuan` 100% | 可 | 3.00×0.45×0.85−0.10−0.10 |
 | 截道 `mv_dagouzhen_jiedao` | 8 | `aoe_allies r1` | 0 | 7%/3/900 | 自身与相邻友方 `bf_jieji` 2 | — | 支援 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -577,7 +577,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 锁喉 `mv_suohouqinnashou_suohou` | 1 | 单体·1 | 1.05 | 6%/1/1000 | `bf_fengnei` 35% 1 | 可 | 1.12−0.07 |
 | 扣腕 `mv_suohouqinnashou_kouwan` | 2 | 单体·1 | 0.85 | 6%/0/900 | `bf_jiaoxie` 35%（targetArmed） | 可 | 0.93−0.07 |
 | 折臂 `mv_suohouqinnashou_zhebi` | 4 | 单体·1 | 1.25 | 7%/2/1000 | `bf_gushang` 40% | 可 | 1.29−0.04 |
-| 锁喉擒龙 `mv_suohouqinnashou_qinlong` | 7 | 单体·1 | 1.15 | 7%/3/1000 | `bf_dingshen` 60% 1；`bf_fengnei` 60% 1 | 可 | 1.41−0.15−0.12 |
+| **锁喉擒龙** `mv_suohouqinnashou_qinlong`（绝招；`ultimate:true`；`rageCost:100`） | 7 | 单体·1 | 2.75 | 8%/0/1200 | `bf_dingshen` 60% 1；`bf_fengnei` 60% 1 | 可 | 3.00−0.25×0.60−0.20×0.60=2.73≈2.75 |
 
 被动：`ps_suohouqinnashou_nahou` 拿喉（1，stat Z0：本武学招式暴击 +[3, 8]）；`ps_suohouqinnashou_suoguan` 锁关（5，trigger `onHit` 15%：`bf_fengjingmai`〔封拳脚〕1 回合）；`ps_suohouqinnashou_dacheng` 擒拿圆熟（10，stat Z3：对带 `seal` 标签效果的目标 +15%）。
 
@@ -588,7 +588,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 鲲化为鹏 `mv_xiaoyaoyou_kunhua` | 1 | `aoe_dash n3`·1–3 | 1.00 | 6%/1/1000 | 突进 | 可 | 1.12−0.10 |
 | 扶摇直上 `mv_xiaoyaoyou_fuyao` | 3 | `aoe_leap`·1–3 | 1.05 | 7%/2/1000 | 跳斩；`leapHeightExtra {n: 1}` | 可 | 0.90×1.29−0.10 |
 | 水击三千 `mv_xiaoyaoyou_shuiji` | 5 | `aoe_line n3`·1–3·远程 | 0.95 | 7%/2/1000 | — | 可 | N=3、AF=0.85；0.85×1.29×0.85=0.932≈0.95 |
-| 抟风九万 `mv_xiaoyaoyou_tuanfeng` | 7 | 单体·1（3 段） | 1.30 | 7%/2/1000 | — | 可 | 1.29 |
+| **抟风九万** `mv_xiaoyaoyou_tuanfeng`（绝招；`ultimate:true`；`rageCost:100`） | 7 | 单体·1（3 段） | 3.00 | 8%/0/1200 | — | 可 | 单体绝招基准 3.00 |
 
 被动：`ps_xiaoyaoyou_youwuqiong` 游无穷（1，stat Z3：本回合移动 ≥ 3 格后本武学招式 +[5%, 10%]）；`ps_xiaoyaoyou_wusuodai` 无所待（5，effect：闪避成功后自身下一招收招 −100）；`ps_xiaoyaoyou_wuji` 无己（10，mechanic：免疫品阶 ≤ 自身的 `bf_dingshen`）。
 
@@ -598,7 +598,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 |---|---|---|---|---|---|---|---|
 | 摄心 `mv_shexinshu_shexin` | 1 | 单体·1–3·远程 | 0 | 6%/2/1000 | `bf_hunshui` 40% 2 | — | 纯控制 |
 | 慑魂 `mv_shexinshu_shehun` | 4 | `aoe_cone {r:2,angle:60,dirCount:6}`·远程 | 0 | 6%/3/1000 | `bf_dongyao` 100%；`bf_luanxin` 30% | — | 纯控制；N=4、AF=0.80 不参与零伤害结算 |
-| 迷魂 `mv_shexinshu_mihun` | 7 | 单体·1–3·远程 | 0 | 8%/4/1000 | `bf_mihuo` 50% 1 | — | 纯控制 |
+| **迷魂** `mv_shexinshu_mihun`（绝招；`ultimate:true`；`rageCost:100`） | 7 | 单体·1–3·远程 | 0 | 8%/0/1200 | `bf_mihuo` 50% 1 | — | 纯控制绝招，不走伤害倍率 |
 
 被动：`ps_shexinshu_xinyan` 心眼（1，stat：本武学效果命中 `effHit` +[3%, 8%]）；`ps_shexinshu_rumeng` 入梦（10，mechanic：本武学施加的 `bf_hunshui` 持续 +1，对 Boss 无效）。
 
@@ -741,32 +741,32 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 **字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{attrs:{con:35,wil:30},aptitude:{apInner:32},prereq:[{skill:sk_gaibanghuxinfa,layer:6}],sect:{id:sect_gaibang,rank:4,bagCount:9},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:20,hpMaxPct:12,attrs:{con:4,str:2,wil:2},mpRegen:1.8,stats:{resCC:5,tough:5}}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_dumai,mer_chongmai]`；`setTags:[]`。
 
-- 招式：聚众运气 `mv_jiudaixingong_juzhong`（L3，自身及相邻友方，7%/4，`bf_juqi`2）；护帮 `mv_jiudaixingong_hubang`（L6，自身，8%/3，`bf_hutizhenqi`2）；均 `power:0`。被动：九袋 `ps_jiudaixingong_jiudai`（丐帮武学耗内 −4%→10%）；护帮 `ps_jiudaixingong_hubang`（友方倒地时自身获 `bf_ruiyi`2，每战一次）。获取：丐帮 L4；不替代掌门专属绝学。
+- 招式：聚众运气 `mv_jiudaixingong_juzhong`（L3，自身及相邻友方，7%/4，`bf_juqi`2）；**护帮** `mv_jiudaixingong_hubang`（L7·绝招，`ultimate:true`、`rageCost:100`，自身，8%/0/1200，`bf_hutizhenqi`2，`power:0`；支援绝招不走伤害倍率）。被动：九袋 `ps_jiudaixingong_jiudai`（丐帮武学耗内 −4%→10%）；护帮 `ps_jiudaixingong_hubang`（友方倒地时自身获 `bf_ruiyi`2，每战一次）。获取：丐帮 L4；不替代掌门专属绝学。
 
 #### `sk_fengyulianshou` 风雨连手（6 玄上 · 拳脚/拳掌）——核算抽样
 
 **字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0.65/0.35`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{attrs:{str:35,agi:30},aptitude:{apFist:34},prereq:[{skill:sk_fengyuzhang,layer:6}],sect:{id:sect_gaibang,rank:3},hard:[sect,prereq]}`；`layerStats:{hit:[2,6],crit:[1,4]}`；`setTags:[]`。
 
-- 招式：风催 `mv_fengyulianshou_fengcui`（L1，单体，**1.10**，6%/1；`1×1.12=1.12≈1.10`）；雨骤 `mv_fengyulianshou_yuzhou`（L3，单体三段，**1.30**，7%/2；`1×1.29=1.29≈1.30`）；连手扫巷 `mv_fengyulianshou_saoxiang`（L6，`aoe_cone {r:1,angle:120,dirCount:6}`，**1.15**，8%/2；N=3、AF=.85，`.85×(1+.24+.10)=1.139≈1.15`）。
+- 招式：风催 `mv_fengyulianshou_fengcui`（L1，单体，**1.10**，6%/1；`1×1.12=1.12≈1.10`）；雨骤 `mv_fengyulianshou_yuzhou`（L3，单体三段，**1.30**，7%/2；`1×1.29=1.29≈1.30`）；**连手扫巷** `mv_fengyulianshou_saoxiang`（L7·绝招，`ultimate:true`、`rageCost:100`，`aoe_cone {r:1,angle:120,dirCount:6}`，**2.55**，8%/0/1200；N=3、AF=.85，`3.00×.85=2.55`）。
 - 被动：连手 `ps_fengyulianshou_lianshou`（不同招式连续命中时 Z3 +4%→10%）；群丐 `ps_fengyulianshou_qungai`（相邻友方存在时 hit +6）。获取：丐帮 L3。
 
 #### `sk_zhengoubang` 镇狗棒（6 玄上 · 兵器/棍杖）
 
 **字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.75/0.25`；`weaponReq:{category:staff}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{aptitude:{apStaff:35},prereq:[{skill:sk_bocaogunfa,layer:6}],sect:{id:sect_gaibang,rank:3},hard:[sect,prereq]}`；`layerStats:{parry:[2,6],hit:[1,4]}`；`setTags:[]`。
 
-- 招式：镇路 `mv_zhengoubang_zhenlu`（L1，单体，1.05，6%/1，`bf_dongyao`50%）；压棒 `mv_zhengoubang_yabang`（L3，线2格，1.05，7%/2；N=2、AF=.90，`.90×1.29=1.161`，保留棍墙控制折价**【建议值】**.10）；回栏 `mv_zhengoubang_huilan`（L6，周身，0.95，8%/3，击退1；N=6、AF=.75，`.75×1.41−.05=1.0075≈.95`）。被动：镇场 `ps_zhengoubang_zhenchang`（对 `beast`/`summon` 目标 Z3 +8%→15%）；棒门 `ps_zhengoubang_bangmen`（parry +3→8）。获取：丐帮 L3。
+- 招式：镇路 `mv_zhengoubang_zhenlu`（L1，单体，1.05，6%/1，`bf_dongyao`50%）；压棒 `mv_zhengoubang_yabang`（L3，线2格，1.05，7%/2；N=2、AF=.90，`.90×1.29=1.161`，保留棍墙控制折价**【建议值】**.10）；**回栏** `mv_zhengoubang_huilan`（L7·绝招，`ultimate:true`、`rageCost:100`，周身，**2.20**，8%/0/1200，击退1；N=6、AF=.75，`3.00×.75−.05=2.20`）。被动：镇场 `ps_zhengoubang_zhenchang`（对 `beast`/`summon` 目标 Z3 +8%→15%）；棒门 `ps_zhengoubang_bangmen`（parry +3→8）。获取：丐帮 L3。
 
 #### `sk_pojunguitoudao` 破军鬼头刀（6 玄上 · 兵器/刀）
 
 **字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:yang`；`wOut/wIn:0.85/0.15`；`weaponReq:{category:blade}`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{attrs:{str:38},aptitude:{apBlade:35},prereq:[{skill:sk_xingshidao,layer:6}],sect:{id:sect_gaibang,rank:3},hard:[sect,prereq]}`；`layerStats:{crit:[2,6],hit:[1,4]}`；`setTags:[]`。
 
-- 招式：破门 `mv_pojunguitoudao_pomen`（L1，单体，1.10，6%/1）；断阵 `mv_pojunguitoudao_duanzhen`（L3，线3格，0.95，7%/2）；回首斩 `mv_pojunguitoudao_huishou`（L6，绕背，1.05，8%/2）。被动：军威 `ps_pojunguitoudao_junwei`（击杀后获 `bf_zhanyi`1）；重刃 `ps_pojunguitoudao_zhongren`（crit +3→8）。获取：丐帮 L3。
+- 招式：破门 `mv_pojunguitoudao_pomen`（L1，单体，1.10，6%/1）；断阵 `mv_pojunguitoudao_duanzhen`（L3，线3格，0.95，7%/2）；**回首斩** `mv_pojunguitoudao_huishou`（L7·绝招，`ultimate:true`、`rageCost:100`，绕背，**2.55**，8%/0/1200；`3.00×.90−.15=2.55`）。被动：军威 `ps_pojunguitoudao_junwei`（击杀后获 `bf_zhanyi`1）；重刃 `ps_pojunguitoudao_zhongren`（crit +3→8）。获取：丐帮 L3。
 
 #### `sk_gaibangchuansheng` 丐帮传声（6 玄上 · 杂学/音律）——核算抽样（功能式）
 
 **字段**｜`origin:expanded`；`sect:sect_gaibang`；`nature:neutral`；`wOut/wIn:0.10/0.90`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao,ch05_xiaoao]`；`reqs:{attrs:{cha:35,wil:30},skills:{music:35},prereq:[{skill:sk_gaibangqilingshu,layer:6}],sect:{id:sect_gaibang,rank:3},hard:[sect,prereq]}`；`layerStats:{effHit:[2,6],resMind:[1,4]}`；`setTags:[]`。
 
-- 招式：长啸传信 `mv_gaibangchuansheng_changxiao`（L1，友方 r3，7%/3，`bf_juqi`2）；群声相应 `mv_gaibangchuansheng_yinghe`（L3，友方 r2，7%/4，`bf_ruiyi`1）；喝止 `mv_gaibangchuansheng_hezhi`（L6，敌方锥2，8%/3，`bf_dongyao`60%）；均 `power:0`，功能式不走伤害预算。
+- 招式：长啸传信 `mv_gaibangchuansheng_changxiao`（L1，友方 r3，7%/3，`bf_juqi`2）；群声相应 `mv_gaibangchuansheng_yinghe`（L3，友方 r2，7%/4，`bf_ruiyi`1）；**喝止** `mv_gaibangchuansheng_hezhi`（L7·绝招，`ultimate:true`、`rageCost:100`，敌方锥2，8%/0/1200，`bf_dongyao`60%，`power:0`；纯控制绝招不走伤害倍率）。
 - 被动：耳目 `ps_gaibangchuansheng_ermu`（情报检定 +5→12）；众声 `ps_gaibangchuansheng_zhongsheng`（每命中一名友方回复自身1%内力，至多3%）。获取：丐帮 L3。
 
 ### 2.7 黄阶总表（17 门；含既有 4 门索引、新增 13 门）
@@ -846,10 +846,10 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 弹指 `mv_tanzhi_tanzhi` | 1 | 单体 · 1–5 · 远程 | 0.85 | 8%/0/1000 | — | 可 | 1×0.85 |
 | 神通点穴 `mv_tanzhi_dianxue` | 1 | 单体 · 1–4 · 远程 | 0.85 | 8%/1/1000 | `bf_fengxue` 50% 1 | 可 | 1.12×0.85−0.10 |
 | 瞄势 `mv_tanzhi_miaoshi` | 2 | 自身 | 0 | 4%/2/800 | 自身 `bf_ningshen` 2 | — | 支援 |
-| 连珠弹 `mv_tanzhi_lianzhu` | 3 | `aoe_multi n3, r1` · 1–5 | 1.10（3 段） | 9%/2/1000 | — | 可 | 0.85×1.29（乱击 AF 已含远程） |
+| **连珠弹** `mv_tanzhi_lianzhu`（绝招；`ultimate:true`；`rageCost:100`） | 9 | `aoe_multi n3, r1` · 1–5 | 2.15（3 段） | 10%/0/1200 | — | 可 | N=2–3、AF=0.85；3.00×0.85×0.85=2.1675≈2.15 |
 | 弹指穿石 `mv_tanzhi_chuanshi` | 4 | `aoe_pierce` · 1–5 · 远程 | 0.80 | 8%/1/1000 | `ignoreDef {out: 0.15}` | 可 | 0.90×1.12×0.85−0.05 |
 | 截脉 `mv_tanzhi_jiemai` | 5 | 单体 · 1–4 · 远程 | 0.95 | 8%/2/1000 | `bf_fengnei` 50% 1 | 可 | 1.24×0.85−0.10 |
-| **天花乱坠** `mv_tanzhi_tianhua`（绝招，原创扩展命名） | 7 | `aoe_disk r2` · 1–5 · 远程 | 1.15 | 10%/—/1200 | `bf_fengxue` 50% 1 | 可 | 3.00×0.50×0.85−0.10 |
+| **天花乱坠** `mv_tanzhi_tianhua`（绝招，原创扩展命名；`ultimate:true`；`rageCost:100`） | 7 | `aoe_disk r2` · 1–5 · 远程 | 1.15 | 10%/0/1200 | `bf_fengxue` 50% 1 | 可 | 3.00×0.50×0.85−0.10 |
 | 弹甲 `mv_tanzhi_tanjia`（触发） | 8 | 自身 | 0 | 3%/—/— | `trigger {on: projectileIncoming, perRound 2}`；`deflectProjectile {chance: [0.25, 0.45]}` | — | 触发招式 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -879,11 +879,11 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
 | 潮起 `mv_bihai_chaoqi` | 1 | `aoe_ring r2` · 远程 · 友伤 `all` | 0.35 | 8%/0/1000 | `bf_dongyao` 100% | 不适用（音功） | 0.55×0.85−0.10 |
-| 定神 `mv_bihai_dingshen` | 1 | `aoe_allies r3` | 0 | 5%/3/900 | 友方 `bf_dingxin` 2 | — | 支援 |
+| **定神** `mv_bihai_dingshen`（绝招；`ultimate:true`；`rageCost:100`） | 9 | `aoe_allies r3` | 0 | 10%/0/1200 | 友方 `bf_dingxin` 2 | — | 支援绝招，不走伤害倍率 |
 | 潮涌 `mv_bihai_chaoyong` | 3 | `aoe_wave d1, w5` · 远程 · `all` | 0.55 | 9%/1/1000 | `bf_luanxin` 40% | — | 0.60×1.17×0.85−0.04 |
 | 惊涛 `mv_bihai_jingtao` | 5 | `aoe_ring r3` · 远程 · `all` | 0.45 | 10%/2/1000 | `bf_luanxin` 60%；`bf_xieqi` 50% | — | 0.50×1.34×0.85−0.06−0.05 |
 | 心随音动 `mv_bihai_xinsui` | 6 | 单体 · 1–5 · 远程 | 0 | 9%/3/1000 | `bf_mihuo` 50% 1 | — | 纯控制 |
-| **碧海潮生** `mv_bihai_chaosheng`（绝招） | 7 | `aoe_field side all` | 0.70 | 10%/—/1200 | `bf_luanxin` 100%；`bf_dongyao` 100% | — | 3.00×0.35×0.85−0.10−0.10 |
+| **碧海潮生** `mv_bihai_chaosheng`（绝招；`ultimate:true`；`rageCost:100`） | 7 | `aoe_field side all` | 0.70 | 10%/0/1200 | `bf_luanxin` 100%；`bf_dongyao` 100% | — | 3.00×0.35×0.85−0.10−0.10 |
 | 余音 `mv_bihai_yuyin` | 8 | `aoe_zone diamond2, t 3` · 1–4 · `all` | 0.30/跳 | 8%/2/1000 | 区内每跳 `bf_luanxin` 30% | — | 0.25×1.24−0.03 |
 
 > 音功核算约定：音律/音功攻击招式不可招架（Kp 0.85），但敌我皆伤（`friendlyFire: all`），按"罕见条件"补 +0.15（0.85 × 1.15 ≈ 0.98），两项相抵，核算中一并略去；只作用敌方的音律招式（如心随音动）不享受此补偿。
@@ -920,7 +920,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 兰指轻拈 `mv_lanhuafuxueshou_nian` | 1 | 单体 · 1 · 近身 | 0.85 | 7%/0/800 | — | 可 | 1−0.14 |
 | 幽兰吐芳 `mv_lanhuafuxueshou_tufang` | 3 | `aoe_cone {angle:120,r:1,dirCount:6}` | 0.90 | 7%/1/1000 | `bf_fengxue` 20% 1 | 可 | N=3、AF=0.85；0.85×1.12−0.04=0.91，取 0.90 |
 | 空谷幽兰 `mv_lanhuafuxueshou_konggu` | 5 | 自身架势 | 0 | 6%/2/850 | `stanceCounter {counterPower 0.9, expires: nextOwnAction, applyBuff: bf_fengxue 40%}` | — | 架势招式 |
-| **九畹兰香** `mv_lanhuafuxueshou_jiuwan`（绝招，原创扩展命名，取《离骚》"滋兰之九畹"） | 7 | 单体 · 1（5 段） | 2.70 | 9%/—/1200 | `bf_fengxue` 100% 2；`bf_fengnei` 50% 1 | 可 | 3.00−0.20×1.00−0.20×0.50 = 2.70 |
+| **九畹兰香** `mv_lanhuafuxueshou_jiuwan`（绝招；`ultimate:true`；`rageCost:100`；原创扩展命名，取《离骚》"滋兰之九畹"） | 7 | 单体 · 1（5 段） | 2.70 | 9%/0/1200 | `bf_fengxue` 100% 2；`bf_fengnei` 50% 1 | 可 | `3.00−0.20×1.00−0.20×0.50=2.70` |
 | 拈花擒拿 `mv_lanhuafuxueshou_qinna` | 8 | 单体 · 1 · 近身 | 1.15 | 8%/2/1000 | `bf_jiaoxie` 40%（targetArmed）；`bf_fengjingmai` 40% 1 | 可 | (1+0.24+0.05)−0.08−0.08 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -954,7 +954,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 影落飞神 `mv_yuxiaojianfa_feishen` | 3 | `aoe_dash n3` · 1–3 | 1.05 | 8%/1/1000 | 突进 | 可 | (1+0.12+0.05)−0.10 |
 | 碧海按箫 `mv_yuxiaojianfa_anxiao` | 5 | 单体 · 1–2 · 近身 | 1.25 | 8%/2/1000 | `bf_luanxin` 40% | 可 | 1.29−0.04 |
 | 箫中剑气 `mv_yuxiaojianfa_jianqi` | 6 | `aoe_line n3` · 1–3 · 远程 | 0.95 | 8%/2/1000 | — | 可 | N=3、AF=0.85；0.85×1.29×0.85=0.932≈0.95 |
-| **桃花影落飞神剑** `mv_yuxiaojianfa_feishenjian`（绝招） | 7 | `aoe_cone {r:3,angle:60,dirCount:6}`（3 段） | 2.00 | 9%/—/1200 | `bf_luanxin` 100% | 可 | N=7、AF=0.70；3.00×0.70−0.10=2.00 |
+| **桃花影落飞神剑** `mv_yuxiaojianfa_feishenjian`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招） | 7 | `aoe_cone {r:3,angle:60,dirCount:6}`（3 段） | 2.00 | 9%/0/1200 | `bf_luanxin` 100% | 可 | N=7、AF=0.70；3.00×0.70−0.10=2.00 |
 | 箫声剑影 `mv_yuxiaojianfa_jianying` | 9 | 自身架势 | 0 | 6%/2/850 | `stanceCounter {counterPower 1.0, applyBuff: bf_polu}` | — | 架势招式 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -986,7 +986,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 花落无声 `mv_luoyingshenjianzhang_wusheng` | 1 | 单体 · 1 · 近身 | 0.90 | 6%/0/900 | — | 可 | 1−0.05−0.07 |
 | 飞花拂柳 `mv_luoyingshenjianzhang_fuliu` | 3 | `aoe_behind` · 1–2 | 0.95 | 7%/2/1000 | 绕背 | 可 | 0.90×1.24−0.15 |
 | 虚实变幻 `mv_luoyingshenjianzhang_xushi` | 5 | 单体 · 1（2 段） | 1.25 | 8%/2/1000 | `bf_polu` 50% | 可 | 1.29−0.05 |
-| **神剑落英** `mv_luoyingshenjianzhang_shenjian`（绝招） | 7 | `aoe_multi n8, r2` · 1–2 | 2.45（8 段） | 9%/—/1200 | `bf_polu` 100% | 可 | 3.00×0.85−0.10 |
+| **神剑落英** `mv_luoyingshenjianzhang_shenjian`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招） | 7 | `aoe_multi n8, r2` · 1–2 | 2.45（8 段） | 9%/0/1200 | `bf_polu` 100% | 可 | 3.00×0.85−0.10 |
 | 桃花满地 `mv_luoyingshenjianzhang_mandi` | 8 | `aoe_around` | 0.95 | 8%/2/1000 | — | 可 | N=6、AF=0.75；0.75×1.29=0.9675≈0.95 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -1016,7 +1016,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 |---|---|---|---|---|---|---|---|
 | 潮汐吐纳 `mv_bitaoxuangong_chaoxi` | 3 | 自身 | 0 | 6%/3/900 | 自身 `bf_huinei` 3、`bf_dingxin` 2 | — | 支援 |
 | 碧涛护体 `mv_bitaoxuangong_huti` | 5 | 自身 | 0 | 9%/3/900 | 自身 `bf_hutizhenqi {shieldPctHpMax: 0.12}` 3 | — | 护盾 12%（< 标准 21.6%） |
-| **潮生万里** `mv_bitaoxuangong_wanli`（绝招） | 7 | `aoe_allies r2` | 0 | 9%/—/1200 | 友方 `bf_dingxin` 2、`bf_huinei` 3；自身 `bf_hutizhenqi {shieldPctHpMax: 0.15}` 3 | — | 支援绝招 |
+| **潮生万里** `mv_bitaoxuangong_wanli`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招） | 7 | `aoe_allies r2` | 0 | 9%/0/1200 | 友方 `bf_dingxin` 2、`bf_huinei` 3；自身 `bf_hutizhenqi {shieldPctHpMax: 0.15}` 3 | — | 支援绝招 |
 | 以音导气 `mv_bitaoxuangong_daoqi` | 8 | 自身 | 0 | 6%/3/900 | 驱散自身 `mind` 2 个（≤ 品阶）；下一次音律招式耗内 −50% | — | 支援 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -1048,7 +1048,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 奇门遁形 `mv_taohuazhen_dunxing` | 1 | 自身 | 0 | 7%/4/900 | 自身 `bf_yinshen` 1 | — | 支援 |
 | 五行生克 `mv_taohuazhen_shengke` | 4 | `aoe_allies r2` | 0 | 6%/3/900 | 友方 `bf_piaohu` 2 | — | 支援 |
 | 移步换景 `mv_taohuazhen_huanjing` | 5 | `aoe_swap` · 1–4 | 0 | 7%/3/1000 | 与目标换位（须过效果命中） | — | 功能招式 |
-| **二十八宿** `mv_taohuazhen_ershibaxiu`（绝招，名取《神雕侠侣》襄阳布阵） | 7 | `aoe_zone diamond2, t 3` · 1–4 | 0.60/跳 | 9%/—/1200 | 区内每跳 `bf_luanxin` 50%、`bf_panshan` 100% | 可 | 3.00×0.25−0.05−0.10 |
+| **二十八宿** `mv_taohuazhen_ershibaxiu`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招，名取《神雕侠侣》襄阳布阵） | 7 | `aoe_zone diamond2, t 3` · 1–4 | 0.60/跳 | 9%/0/1200 | 区内每跳 `bf_luanxin` 50%、`bf_panshan` 100% | 可 | 3.00×0.25−0.05−0.10 |
 | 困龙 `mv_taohuazhen_kunlong` | 8 | 单体 · 1–4 | 0 | 8%/4/1000 | `bf_dingshen` 60% 2；`bf_fengqinggong` 60% 2 | — | 纯控制 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -1066,7 +1066,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 秋风扫叶 `mv_xuanfengsaoyetui_saoye` | 1 | `aoe_cone {angle:120,r:1,dirCount:6}` | 0.90 | 6%/1/1000 | `bf_panshan` 30% | 可 | N=3、AF=0.85；0.85×1.12−0.03=0.92，取 0.90 |
 | 旋风连踢 `mv_xuanfengsaoyetui_lianti` | 3 | 单体·1（3 段） | 1.30 | 7%/2/1000 | — | 可 | 1.29 |
 | 回旋扫腿 `mv_xuanfengsaoyetui_huixuan` | 5 | `aoe_around` | 0.95 | 7%/2/1000 | — | 可 | N=6、AF=0.75；0.75×1.29=0.9675≈0.95 |
-| 风卷残叶 `mv_xuanfengsaoyetui_canye` | 7 | `aoe_knock n2`·1 | 1.15 | 7%/2/1000 | 击退 2 | 可 | 0.95×1.29−0.10 |
+| **风卷残叶** `mv_xuanfengsaoyetui_canye`（绝招；`ultimate:true`；`rageCost:100`） | 7 | `aoe_knock n2`·1 | 2.75 | 8%/0/1200 | 击退 2 | 可 | 3.00×0.95−0.10=2.75 |
 
 被动：`ps_xuanfengsaoyetui_xuanfeng` 旋风（1，effect：本武学招式命中后，自身本回合剩余移动力 +1）；`ps_xuanfengsaoyetui_xujin` 腿中蓄劲（5，stat Z3：对带 `cc` 标签效果的目标 +8%）；`ps_xuanfengsaoyetui_huangu` 活骨（10，mechanic：装配时免疫品阶 ≤ 自身的 `bf_gushang`——致敬黄药师以腿法内功助陆乘风复原，原创扩展）。
 
@@ -1146,14 +1146,14 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 **字段**｜`origin:expanded`；`sect:sect_taohuadao`；`nature:harmony`；`wOut/wIn:0.15/0.85`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{wis:38,wil:32},skills:{music:35},prereq:[{skill:sk_qimenyinlu,layer:5}],sect:{id:sect_taohuadao,rank:3},hard:[sect,prereq]}`；`layerStats:{effHit:[2,6],resMind:[1,4]}`；`setTags:[]`；**（原创扩展）**。
 
-- 招式：风烟起 `mv_biluofengyan_fengyan`（L1，敌方锥2，`bf_dongyao`50%，7%/3，`power:0`）；碧落引 `mv_biluofengyan_biluoyin`（L3，友方 r2，`bf_ningshen`2，7%/3，`power:0`）；烟波散 `mv_biluofengyan_yanbosan`（L6，驱散敌方一个 `stance`，8%/4，`power:0`）。均属功能式，不走伤害预算。
+- 招式：风烟起 `mv_biluofengyan_fengyan`（L1，敌方锥2，`bf_dongyao`50%，7%/3，`power:0`）；碧落引 `mv_biluofengyan_biluoyin`（L3，友方 r2，`bf_ningshen`2，7%/3，`power:0`）；**烟波散** `mv_biluofengyan_yanbosan`（L7·绝招，`ultimate:true`、`rageCost:100`，驱散敌方一个 `stance`，8%/0/1200，`power:0`）。本式为功能式绝招，不走伤害倍率。
 - 被动：余韵 `ps_biluofengyan_yuyun`（心神效果命中 +4→10）；清商 `ps_biluofengyan_qingshang`（支援友方后自身 resMind +8 一回合）。获取：桃花岛 L3。
 
 #### `sk_qimenfushou` 奇门拂手（6 玄上 · 拳脚/擒拿）——核算抽样
 
 **字段**｜`origin:expanded`；`sect:sect_taohuadao`；`nature:harmony`；`wOut/wIn:0.45/0.55`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{agi:38,wis:35},aptitude:{apGrapple:35},prereq:[{skill:sk_luoyingduanquan,layer:5}],sect:{id:sect_taohuadao,rank:3},hard:[sect,prereq]}`；`layerStats:{seal:[2,6],eva:[1,4]}`；`setTags:[]`；**（原创扩展）**。
 
-- 招式：拂袖 `mv_qimenfushou_fuxiu`（L1，单体，**1.00**，6%/1，`bf_fengxue`50%；`1×1.12−.20×.50=1.02≈1.00`）；引花 `mv_qimenfushou_yinhua`（L3，拉拽1格，**1.05**，7%/2；`1×1.29−.10=1.19`，再扣封位**【建议值】**.15，取1.05）；错步拿腕 `mv_qimenfushou_nawan`（L6，绕背，**1.00**，8%/2，`bf_jiaoxie`30%；`.90×1.34−.15−.20×.30=1.00`）。
+- 招式：拂袖 `mv_qimenfushou_fuxiu`（L1，单体，**1.00**，6%/1，`bf_fengxue`50%；`1×1.12−.20×.50=1.02≈1.00`）；引花 `mv_qimenfushou_yinhua`（L3，拉拽1格，**1.05**，7%/2；`1×1.29−.10=1.19`，再扣封位**【建议值】**.15，取1.05）；**错步拿腕** `mv_qimenfushou_nawan`（L7·绝招，`ultimate:true`、`rageCost:100`，绕背，**2.80**，8%/0/1200，`bf_jiaoxie`30%；`3.00−.15−.20×.30=2.79≈2.80`）。
 - 被动：奇门 `ps_qimenfushou_qimen`（自布阵区内 seal +4→10）；拂穴 `ps_qimenfushou_fuxue`（对带 `seal` 标签目标 Z3 +8%）。获取：桃花岛 L3。
 
 ### 3.7 黄阶总表（9 门；含既有 2 门索引、新增 7 门）
@@ -1220,11 +1220,11 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
 | 蛤蟆蓄劲 `mv_hama_xujin` | 1 | 自身 | 0 | 4%/2/800 | 自身 `bf_xushi`（至下一次攻击） | — | 架势招式 |
-| 蛤蟆发劲 `mv_hama_fajin` | 1 | `aoe_knock n2` · 1 · 近身 | 1.05 | 8%/1/1100 | 击退 2 | 可 | 0.95×(1+0.12+0.07)−0.10 |
+| **蛤蟆发劲** `mv_hama_fajin`（绝招；`ultimate:true`；`rageCost:100`） | 9 | `aoe_knock n2` · 1 · 近身 | 2.75 | 10%/0/1200 | 击退 2 | 可 | 3.00×0.95−0.10=2.75 |
 | 咕呼 `mv_hama_guhu` | 3 | `aoe_cone {r:2,angle:60,dirCount:6}` · 远程 | 0.85 | 9%/2/1000 | `bf_zhenshe` 30% | 可 | N=4、AF=0.80；0.80×1.29×0.85−0.03=0.85 |
 | 静候 `mv_hama_jinghou` | 5 | 自身架势 | 0 | 6%/2/850 | `stanceCounter {counterPower 1.2, expires: nextOwnAction}`＋击退 1 | — | 架势招式 |
 | 蛤蟆跃 `mv_hama_tiaoyue` | 6 | `aoe_leap {splash:{tpl:aoe_disk,r:1}}` · 1–3 | 1.25（溅射 ×0.5） | 9%/3/1100 | 跳斩 | 可 | 落点 N=7、AF=0.70；主目标 0.90×(1+0.36+0.05+0.07)−0.10=1.23≈1.25，溅射另乘 0.5 |
-| **蛤蟆功·全劲** `mv_hama_quanjin`（绝招，原创扩展命名） | 7 | `aoe_cone {r:3,angle:60,dirCount:6}` | 1.90 | 10%/—/1200 | 击退 2；`bf_xuanyun` 30% 1 | 可 | N=7、AF=0.70；3.00×0.70−0.10−0.075=1.925≈1.90 |
+| **蛤蟆功·全劲** `mv_hama_quanjin`（绝招，原创扩展命名；`ultimate:true`；`rageCost:100`） | 7 | `aoe_cone {r:3,angle:60,dirCount:6}` | 1.90 | 10%/0/1200 | 击退 2；`bf_xuanyun` 30% 1 | 可 | N=7、AF=0.70；3.00×0.70−0.10−0.075=1.925≈1.90 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|---|
@@ -1259,8 +1259,8 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 杖扫千军 `mv_lingshezhangfa_saojun` | 1 | `aoe_cone {angle:120,r:1,dirCount:6}` | 0.95 | 7%/1/1000 | — | 可 | N=3、AF=0.85；0.85×1.12=0.95 |
 | 双蛇噬 `mv_lingshezhangfa_shuangshe` | 3 | 单体 · 1–2（2 段） | 1.25 | 8%/2/1000 | `bf_shedu` 60%（需蛇杖） | 可 | 1.29−0.06 |
 | 杖头机括 `mv_lingshezhangfa_jikuo` | 5 | `aoe_bolt` · 1–5 · 投射；`condition {mainHandTag: shezhang}` | 1.35 | 7%/3/1000 | `bf_zhongdu` 50% | 可 | (1+0.36+0.15)×0.92−0.05 |
-| **群蛇乱舞** `mv_lingshezhangfa_qunshe`（绝招，原创扩展命名） | 7 | `aoe_around`（2 段） | 2.10 | 9%/—/1200 | `bf_shedu` 100%；`bf_mabi` 30% 1 | 可 | N=6、AF=0.75；3.00×0.75−0.10−0.06=2.09≈2.10 |
-| 杖缠 `mv_lingshezhangfa_chan` | 8 | 单体 · 1–2 · 近身 | 1.25 | 8%/3/1000 | `bf_chanrao` 60% 2 | 可 | (1+0.36+0.05)−0.25×0.60 = 1.26 |
+| **群蛇乱舞** `mv_lingshezhangfa_qunshe`（绝招，原创扩展命名；`ultimate:true`；`rageCost:100`） | 7 | `aoe_around`（2 段） | 2.10 | 9%/0/1200 | `bf_shedu` 100%；`bf_mabi` 30% 1 | 可 | N=6、AF=0.75；3.00×0.75−0.10−0.06=2.09≈2.10 |
+| **杖缠** `mv_lingshezhangfa_chan`（绝招；`ultimate:true`；`rageCost:100`） | 9 | 单体 · 1–2 · 近身 | 2.85 | 9%/0/1200 | `bf_chanrao` 60% 2 | 可 | 3.00−0.25×0.60=2.85 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|---|
@@ -1291,7 +1291,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 曲臂回击 `mv_lingshequan_qubi` | 1 | 单体 · 1 · 近身 | 1.00 | 8%/1/1000 | — | 不可 | (1+0.12+0.05)×0.85 |
 | 蛇缠臂 `mv_lingshequan_chanbi` | 3 | 单体 · 1 · 近身 | 1.15 | 7%/2/1000 | `bf_chanrao` 40% 1 | 可 | 1.24−0.10 |
 | 蛇行绕击 `mv_lingshequan_raoji` | 5 | `aoe_behind` · 1–2 | 0.95 | 7%/2/1000 | 绕背 | 可 | 0.90×1.24−0.15 |
-| **灵蛇千变** `mv_lingshequan_qianbian`（绝招，原创扩展命名） | 7 | 单体 · 1（4 段） | 2.45 | 9%/—/1200 | `bf_polu` 100% 2 | 不可 | 3.00×0.85−0.10 |
+| **灵蛇千变** `mv_lingshequan_qianbian`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招，原创扩展命名） | 7 | 单体 · 1（4 段） | 2.45 | 9%/0/1200 | `bf_polu` 100% 2 | 不可 | 3.00×0.85−0.10 |
 | 反手蛇击 `mv_lingshequan_fanshou`（触发） | 8 | 自身 | 0 | 5%/—/— | `trigger {on: backAttacked, chance 0.5, perRound 1, counterPower 1.0}` | — | 触发招式 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -1321,7 +1321,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 逆冲穴道 `mv_nizhuanjingmai_chongxue` | 1 | 自身 | 0 | 6%/2/800 | 驱散自身全部 `seal`（≤ 品阶） | — | 支援 |
 | 倒立行功 `mv_nizhuanjingmai_daoli` | 3 | 自身 | 0 | 7%/3/900 | 自身 `bf_mian_xue` 2、`bf_jiangu` 2 | — | 支援 |
 | 逆脉反冲 `mv_nizhuanjingmai_fanchong` | 5 | 单体 · 1 · 近身 | 1.25 | 8%/2/1000 | `bf_neishang` 50% | 可 | 1.29−0.05 |
-| **经脉倒转** `mv_nizhuanjingmai_daozhuan`（绝招，原创扩展命名） | 7 | 自身 | 0 | 9%/—/1200 | 驱散自身全部 `seal`、`cc`（≤ 品阶）；回复 20% `hpMax`；自身 `bf_mian_xue` 3、`bf_mian_kong` 1 | — | 支援绝招 |
+| **经脉倒转** `mv_nizhuanjingmai_daozhuan`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招，原创扩展命名） | 7 | 自身 | 0 | 9%/0/1200 | 驱散自身全部 `seal`、`cc`（≤ 品阶）；回复 20% `hpMax`；自身 `bf_mian_xue` 3、`bf_mian_kong` 1 | — | 支援绝招 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|---|
@@ -1339,7 +1339,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 驼峰叠掌 `mv_shentuoxueshanzhang_tuofeng` | 1 | 单体·1（2 段） | 1.10 | 6%/1/1000 | — | 可 | 1.12 |
 | 雪崩式 `mv_shentuoxueshanzhang_xuebeng` | 3 | `aoe_cone {r:2,angle:60,dirCount:6}` | 1.00 | 7%/2/1000 | `bf_hanqi` 30% | 可 | N=4、AF=0.80；0.80×1.29−0.03=1.00 |
 | 大漠孤烟 `mv_shentuoxueshanzhang_guyan` | 5 | 单体·1–3·远程 | 1.00 | 7%/1/1000 | — | 可 | 1.17×0.85 |
-| 神驼负重 `mv_shentuoxueshanzhang_fuzhong` | 7 | 单体·1 | 1.25 | 8%/2/1000 | 击退 1；`bf_xuanyun` 20% 1 | 可 | 1.34−0.05−0.05 |
+| **神驼负重** `mv_shentuoxueshanzhang_fuzhong`（绝招；`ultimate:true`；`rageCost:100`） | 7 | 单体·1 | 2.90 | 8%/0/1200 | 击退 1；`bf_xuanyun` 20% 1 | 可 | 3.00−0.05−0.25×0.20=2.90 |
 
 被动：`ps_shentuoxueshanzhang_naihan` 耐寒（1，stat：`resCold` +[4, 10] pp）；`ps_shentuoxueshanzhang_tuobu` 驼步（5，stat：`tough` +[2%, 5%]）；`ps_shentuoxueshanzhang_dacheng` 雪山（10，stat Z3：对带 `cold` 标签效果的目标 +8%）。
 
@@ -1349,7 +1349,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 |---|---|---|---|---|---|---|---|
 | 召蛇 `mv_yushe_zhaoshe` | 1 | `aoe_zone {inner:{tpl:aoe_disk,r:1},duration:3}`·1–3 | 0.30/跳 | 8%/2/1000 | 区内每跳 `bf_shedu` 50% | 可 | 持续地表伤害单独审查；0.25×(1+0.24+0.10)−0.05 |
 | 蛇阵 `mv_yushe_shezhen` | 4 | `aoe_zone line, t 2`·1–3 | 0.20/跳 | 6%/3/1000 | 入区敌 `bf_panshan` 100%、`bf_shedu` 30% | 可 | 0.25×1.36−0.10−0.03 |
-| 驱蛇噬敌 `mv_yushe_shidi` | 7 | `aoe_bolt`·1–4·投射 | 1.10 | 7%/2/1000 | `bf_shedu` 80% | 可 | (1+0.24+0.05)×0.92−0.08 |
+| **驱蛇噬敌** `mv_yushe_shidi`（绝招；`ultimate:true`；`rageCost:100`） | 7 | `aoe_bolt`·1–4·投射 | 2.70 | 8%/0/1200 | `bf_shedu` 80% | 可 | 3.00×0.92−0.10×0.80=2.68≈2.70 |
 
 被动：`ps_yushe_shexiao` 蛇哨（1，mechanic：野外遭遇蛇类敌人时可"驱散"免战或"收服"为战斗召唤，design/11 驭兽接口）；`ps_yushe_bishe` 避蛇（5，stat：`resPoison` +[5, 10] pp）；`ps_yushe_dacheng` 万蛇（10，mechanic：召蛇区域持续 +1 跳）。
 
@@ -1404,14 +1404,14 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 **字段**｜`origin:expanded`；`sect:sect_baituoshan`；`nature:neutral`；`wOut/wIn:0.55/0.45`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`Q_skill=QS(6)=74`；`reqs:{attrs:{agi:35,wil:28},aptitude:{apLight:32},prereq:[{skill:sk_tashaxing,layer:6}],sect:{id:sect_baituoshan,rank:3},hard:[sect,prereq]}`；`layerStats:{eva:[2,6],tough:[1,4]}`；`setTags:[]`。
 
-- 招式：蛇游 `mv_lingshebu_sheyou`（L1，自身移 2 格，6%/2，`power:0`）；折身 `mv_lingshebu_zhesheng`（L3，换至相邻敌侧后空格，7%/3，`power:0`）；脱壳 `mv_lingshebu_tuoqiao`（L6，自身，8%/4，驱散一个 `seal` 并获 `bf_piaohu`1，`power:0`）。三式均为位移/支援，不伪造伤害倍率。
+- 招式：蛇游 `mv_lingshebu_sheyou`（L1，自身移 2 格，6%/2，`power:0`）；折身 `mv_lingshebu_zhesheng`（L3，换至相邻敌侧后空格，7%/3，`power:0`）；**脱壳** `mv_lingshebu_tuoqiao`（L7·绝招，`ultimate:true`、`rageCost:100`，自身，8%/0/1200，驱散一个 `seal` 并获 `bf_piaohu`1，`power:0`）。本式为位移 / 支援绝招，不走伤害倍率。
 - 被动：曲行 `ps_lingshebu_quxing`（连续两次移动方向不同时 eva +4→10）；避沙 `ps_lingshebu_bisha`（沙地移动不受减速）。获取：白驼山 L3；神雕欧阳锋羁绊 `maxLayer:8`。
 
 #### `sk_dumaihuqigong` 毒脉护气功（6 玄上 · 内功）
 
 **字段**｜`origin:expanded`；`sect:sect_baituoshan`；`nature:yin`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:35,wil:35},aptitude:{apInner:32},prereq:[{skill:sk_baituotunadu,layer:6}],sect:{id:sect_baituoshan,rank:3},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:20,hpMaxPct:12,attrs:{con:4,wil:4},mpRegen:1.8,stats:{resPoison:6,resSeal:4}}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_chongmai,mer_yinwei]`；`setTags:[]`。
 
-- 招式：护毒 `mv_dumaihuqigong_hudu`（L2，自身，6%/3，`bf_bidu`3）；引毒归脉 `mv_dumaihuqigong_guidu`（L6，自身，8%/4，驱散一个 `poison` 并获 `bf_qinei`2）；均 `power:0`。
+- 招式：护毒 `mv_dumaihuqigong_hudu`（L2，自身，6%/3，`bf_bidu`3）；**引毒归脉** `mv_dumaihuqigong_guidu`（L7·绝招，`ultimate:true`、`rageCost:100`，自身，8%/0/1200，驱散一个 `poison` 并获 `bf_qinei`2，`power:0`；支援绝招不走伤害倍率）。
 - 被动：毒脉 `ps_dumaihuqigong_dumai`（主运时 `resPoison` +6→15）；借毒 `ps_dumaihuqigong_jiedu`（驱散自身中毒后回复 3% 内力，每回合至多一次）。获取：白驼山 L3；神雕遗谱 `maxLayer:8`。
 
 ### 4.7 黄阶总表（7 门；含既有 2 门索引、新增 5 门）
@@ -1470,7 +1470,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | nature · wOut/wIn · moveSlots | `harmony` · 0.15/0.85 · 5 |
 | reqs | `attrs {wis 60, con 55}`；`aptitude {apFinger 60}`；`prereq [{anyOf: [{skill: sk_yiyangzhi, layer: 5}, {skill: sk_beiming, layer: 5}]}]`；`hard [prereq]`（外层 AND、组内 OR；C17） |
 | layerStats | `hit [3, 10]`、`pierce [3, 10]`（合计 20） |
-| 层数要点 | 1：少商剑、商阳剑、剑气、时灵时不灵 ｜ 2：中冲剑 ｜ 3：关冲剑、无形 ｜ 4：少冲剑 ｜ 5：少泽剑、剑随心转 ｜ **7：绝招 六脉齐发** ｜ 9：剑气纵横 ｜ 10：六脉大成 |
+| 层数要点 | 1：商阳剑、剑气、时灵时不灵 ｜ 2：中冲剑 ｜ 3：关冲剑、无形 ｜ 4：少冲剑 ｜ 5：剑随心转 ｜ **7：第一绝招 六脉齐发** ｜ **9：第二绝招 少商剑**、剑气纵横 ｜ **10：第三绝招 少泽剑**、六脉大成 |
 | setTags / conflicts | `set_dali_yiyang` / 无 |
 | special / observable | `{fusible: true}` / `false` |
 | 获取 | 天龙 `qiyu q_01_qiyu_9x`（天龙寺牟尼堂观剑谱，须天龙寺护法 `rank 3` 且一阳指 ≥ 5；《天龙八部》中剑谱遭毁的先后时点及毁谱者动作待核对〔待考〕）`maxLayer 10`；`master` 天龙寺诸僧之一 `maxLayer 6`（该僧所精之脉为“本脉”，本脉招式 +10%，原创扩展）；`master npc_duanyu` `maxLayer 8`（羁绊 ≥ 4；段誉教法随性，1–6 重“时灵时不灵”概率 ×1.5，原创扩展） |
@@ -1478,13 +1478,13 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
-| 少商剑 `mv_liumai_shaoshang`（拇指·雄劲） | 1 | 单体 · 1–5 · 远程 | 1.15 | 10%/2/1100 | 击退 1 | 可 | (1+0.24+0.10+0.07)×0.85−0.05 |
+| **少商剑** `mv_liumai_shaoshang`（拇指·雄劲；绝招；`ultimate:true`；`rageCost:100`） | 9 | 单体 · 1–5 · 远程 | 2.50 | 10%/0/1200 | 击退 1 | 可 | 3.00×0.85−0.05=2.50 |
 | 商阳剑 `mv_liumai_shangyang`（食指·灵巧） | 1 | 单体 · 1–5 · 远程 | 0.70 | 7%/0/850 | — | 可 | (1−0.05−0.105)×0.85 |
 | 中冲剑 `mv_liumai_zhongchong`（中指·大开大阖） | 2 | `aoe_wave d1, w5` · 远程 | 0.70 | 10%/2/1000 | — | 可 | 0.60×1.34×0.85 |
 | 关冲剑 `mv_liumai_guanchong`（无名指·拙滞古朴） | 3 | `aoe_pierce` · 1–4 · 远程 | 1.00 | 9%/2/1150 | `bf_pojia` 50% | 可 | 0.90×(1+0.24+0.05+0.105)×0.85−0.05 |
 | 少冲剑 `mv_liumai_shaochong`（小指·轻灵） | 4 | `aoe_multi n3, r1` · 1–5 | 0.90（3 段） | 8%/1/900 | — | 可 | 0.85×(1+0.12−0.07) |
-| 少泽剑 `mv_liumai_shaoze`（小指·忽来忽去） | 5 | `aoe_chain n3` · 1–5 · 远程 | 0.90（每跳 ×0.8） | 9%/2/1000 | — | 可 | 0.80×1.29×0.85 |
-| **六脉齐发** `mv_liumai_liumaiqifa`（绝招，原创扩展命名） | 7 | `aoe_cone {r:3,angle:60,dirCount:6}` · 远程（6 段） | 1.80 | 10%/—/1200 | — | 可 | N=7、AF=0.70；3.00×0.70×0.85=1.785≈1.80 |
+| **少泽剑** `mv_liumai_shaoze`（小指·忽来忽去；绝招；`ultimate:true`；`rageCost:100`） | 10 | `aoe_chain n3` · 1–5 · 远程 | 2.05（每跳 ×0.8） | 10%/0/1200 | — | 可 | N=3、AF=0.80；3.00×0.80×0.85=2.04≈2.05 |
+| **六脉齐发** `mv_liumai_liumaiqifa`（绝招，原创扩展命名；`ultimate:true`；`rageCost:100`） | 7 | `aoe_cone {r:3,angle:60,dirCount:6}` · 远程（6 段） | 1.80 | 10%/0/1200 | — | 可 | N=7、AF=0.70；3.00×0.70×0.85=1.785≈1.80 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|---|
@@ -1505,7 +1505,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | nature · wOut/wIn · moveSlots | `yang` · 0.30/0.70 · 5 |
 | reqs | `attrs {wis 55, con 50}`；`aptitude {apFinger 55}`；`morality {min 10}`；`sect {id: sect_dali, rank: 3}`；`hard [sect, morality]`（一灯门下与天龙寺护法视为满足 `sect`） |
 | layerStats | `seal [4, 12]`、`hit [2, 8]`（合计 20） |
-| 层数要点 | 1：一阳点穴、纯阳指力、一阳认穴、九品 ｜ 3：一阳疗伤 ｜ 4：指贯三焦、纯阳 ｜ 5：封穴截脉 ｜ **7：绝招 乾阳一指** ｜ 8：以杖代指 ｜ 10：一品圆满 |
+| 层数要点 | 1：一阳点穴、纯阳指力、一阳认穴、九品 ｜ 4：指贯三焦、纯阳 ｜ 5：封穴截脉 ｜ **7：第一绝招 乾阳一指** ｜ 8：以杖代指 ｜ **9：第二绝招 一阳疗伤** ｜ 10：一品圆满 |
 | setTags | `set_dali_yiyang` |
 | conflicts | `{with: sk_hama, type: counter}`（与蛤蟆功条目互为镜像：一阳指命中蓄势中的蛤蟆功持有者，驱散其蓄势并封穴 1 回合） |
 | special / observable | `{fusible: true}` / `false` |
@@ -1516,10 +1516,10 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 |---|---|---|---|---|---|---|---|
 | 一阳点穴 `mv_yiyangzhi_dianxue` | 1 | 单体 · 1–3 · 远程 | 0.85 | 8%/1/1000 | `bf_fengxue` 50% 1 | 可 | 1.12×0.85−0.10 |
 | 纯阳指力 `mv_yiyangzhi_chunyang` | 1 | 单体 · 1–4 · 远程 | 0.85 | 8%/0/1000 | — | 可 | 1×0.85 |
-| 一阳疗伤 `mv_yiyangzhi_liaoshang` | 3 | 单体友方 · 0–1 | 0 | 14%/4/1100 | 回复 25% `hpMax`；驱散 `injury`/`seal`/`poison` 共 2 个（≤ 品阶）；**代价**：自身 `bf_xuruo` 3 | — | 高于标准 18%，以高耗内、长冷却与自身虚弱抵偿 |
+| **一阳疗伤** `mv_yiyangzhi_liaoshang`（绝招；`ultimate:true`；`rageCost:100`） | 9 | 单体友方 · 0–1 | 0 | 10%/0/1200 | 回复 25% `hpMax`；驱散 `injury`/`seal`/`poison` 共 2 个（≤ 品阶）；**代价**：自身 `bf_xuruo` 3 | — | 支援绝招；高于标准 18%，以气势 100 与自身虚弱抵偿 |
 | 指贯三焦 `mv_yiyangzhi_sanjiao` | 4 | `aoe_pierce` · 1–4 · 远程 | 0.90 | 9%/1/1000 | — | 可 | 0.90×1.17×0.85 |
 | 封穴截脉 `mv_yiyangzhi_jiemai` | 5 | 单体 · 1–3 · 远程 | 0.90 | 9%/2/1000 | `bf_fengxue` 60% 1；`bf_fengnei` 40% 1 | 可 | 1.29×0.85−0.12−0.08 |
-| **乾阳一指** `mv_yiyangzhi_qianyang`（绝招，原创扩展命名） | 7 | 单体 · 1–3 · 远程 | 2.35 | 10%/—/1200 | `bf_fengxue` 100% 2 | 可 | 3.00×0.85−0.20×1.00 = 2.35 |
+| **乾阳一指** `mv_yiyangzhi_qianyang`（绝招，原创扩展命名；`ultimate:true`；`rageCost:100`） | 7 | 单体 · 1–3 · 远程 | 2.35 | 10%/0/1200 | `bf_fengxue` 100% 2 | 可 | 3.00×0.85−0.20×1.00 = 2.35 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|---|
@@ -1541,7 +1541,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | nature · wOut/wIn · moveSlots | `harmony`（自动桥接）· 0/1 · 4 |
 | inner | `contribution {mpMaxPct 32, hpMaxPct 22, attrs {wil 8, con 6}, mpRegen 2.5, stats {resMind 10, resInjury 5}}`（IP = 32+22+2×(8+6)+5×2.5 = **94.5**，预算 94.5） |
 | reqs | `attrs {wil 55, con 45}`；`aptitude {apInner 45}`；`morality {min 10}`；`sect {id: sect_tianlongsi, rank: 3}`；`hard [sect, morality]` |
-| 层数要点 | 1：枯式、荣式、半枯 ｜ 4：枯木逢春、半荣 ｜ 5：禅定 ｜ **7：绝招 非枯非荣**、入定 ｜ 10：枯荣大成 |
+| 层数要点 | 1：枯式、荣式、半枯 ｜ 4：半荣 ｜ 5：禅定 ｜ **7：第一绝招 非枯非荣**、入定 ｜ **9：第二绝招 枯木逢春** ｜ 10：枯荣大成 |
 | setTags / conflicts | `set_dali_yiyang` / 无 |
 | special / observable | `{fusible: true}` / `true` |
 | 获取 | 天龙 `master npc_kurong` `maxLayer 10`（护法居士且羁绊 ≥ 3）、`master npc_benyin` `maxLayer 8` |
@@ -1551,9 +1551,9 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 |---|---|---|---|---|---|---|---|
 | 枯式 `mv_kurongchangong_kushi` | 1 | 自身架势 | 0 | 5%/1/800 | 自身 `bf_shoushi` 3 | — | 架势招式 |
 | 荣式 `mv_kurongchangong_rongshi` | 1 | 自身架势 | 0 | 5%/1/800 | 自身 `bf_gongshi` 3 | — | 架势招式 |
-| 枯木逢春 `mv_kurongchangong_fengchun` | 4 | 自身 | 0 | 8%/3/1000 | 回复 15% `hpMax`；驱散 `injury` 1 个 | — | 支援 |
+| **枯木逢春** `mv_kurongchangong_fengchun`（绝招；`ultimate:true`；`rageCost:100`） | 9 | 自身 | 0 | 9%/0/1200 | 回复 15% `hpMax`；驱散 `injury` 1 个 | — | 支援绝招，不走伤害倍率 |
 | 禅定 `mv_kurongchangong_chanding` | 5 | 自身 | 0 | 7%/4/900 | 自身 `bf_mian_xin` 2 | — | 支援 |
-| **非枯非荣** `mv_kurongchangong_feikufeirong`（绝招，原创扩展命名） | 7 | `aoe_allies r2` | 0 | 9%/—/1200 | 自身 `bf_wudi` 1、回复 20% `hpMax`；友方 `bf_dingxin` 2 | — | 支援绝招 |
+| **非枯非荣** `mv_kurongchangong_feikufeirong`（绝招，原创扩展命名；`ultimate:true`；`rageCost:100`） | 7 | `aoe_allies r2` | 0 | 9%/0/1200 | 自身 `bf_wudi` 1、回复 20% `hpMax`；友方 `bf_dingxin` 2 | — | 支援绝招 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|---|
@@ -1586,7 +1586,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 自言帖（草）`mv_yiyangshuzhi_caoshu` | 3 | `aoe_multi n4, r1` · 1–2 | 1.10（4 段） | 8%/2/1000 | — | 可 | 0.85×1.29 |
 | 石鼓文（篆）`mv_yiyangshuzhi_shiguwen` | 5 | 单体 · 1–2 · 近身 | 1.20 | 8%/2/1000 | `bf_luanxin` 60%；目标 `lore` 低于自身时另附 `bf_polu` 100% | 可 | 1.29−0.06−0.10×0.5（条件按半数计） |
 | 一阳透纸 `mv_yiyangshuzhi_touzhi` | 6 | `aoe_pierce` · 1–2 · 近身 | 1.05 | 8%/1/1000 | — | 可 | 0.90×1.17 |
-| **满纸云烟** `mv_yiyangshuzhi_yunyan`（绝招，原创扩展命名） | 7 | `aoe_cone {r:2,angle:60,dirCount:6}`（4 段） | 2.30 | 9%/—/1200 | `bf_fengxue` 60% 1 | 可 | N=4、AF=0.80；3.00×0.80−0.12=2.28≈2.30 |
+| **满纸云烟** `mv_yiyangshuzhi_yunyan`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招，原创扩展命名） | 7 | `aoe_cone {r:2,angle:60,dirCount:6}`（4 段） | 2.30 | 9%/0/1200 | `bf_fengxue` 60% 1 | 可 | N=4、AF=0.80；3.00×0.80−0.12=2.28≈2.30 |
 | 笔走龙蛇 `mv_yiyangshuzhi_longshe` | 9 | 自身架势 | 0 | 6%/2/850 | `stanceCounter {counterPower 1.0, applyBuff: bf_fengxue 30%}` | — | 架势招式 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -1619,7 +1619,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 洱海月明 `mv_duanjiajianfa_yueming` | 1 | `aoe_line n2` | 1.00 | 7%/1/1000 | — | 可 | N=2、AF=0.90；0.90×1.12=1.008≈1.00 |
 | 三塔倒影 `mv_duanjiajianfa_daoying` | 3 | 单体 · 1（3 段） | 1.30 | 8%/2/1000 | — | 可 | 1.29 |
 | 剑指一阳 `mv_duanjiajianfa_yiyang` | 5 | 单体 · 1–2 · 近身 | 1.20 | 8%/2/1000 | `bf_fengxue` 40% 1 | 可 | 1.29−0.08 |
-| **南诏风云** `mv_duanjiajianfa_nanzhao`（绝招，原创扩展命名） | 7 | `aoe_cone {r:2,angle:60,dirCount:6}` | 2.30 | 9%/—/1200 | `bf_polu` 100% 2 | 可 | N=4、AF=0.80；3.00×0.80−0.10=2.30 |
+| **南诏风云** `mv_duanjiajianfa_nanzhao`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招，原创扩展命名） | 7 | `aoe_cone {r:2,angle:60,dirCount:6}` | 2.30 | 9%/0/1200 | `bf_polu` 100% 2 | 可 | N=4、AF=0.80；3.00×0.80−0.10=2.30 |
 | 蝴蝶泉 `mv_duanjiajianfa_hudie` | 8 | `aoe_dash n3, through` · 1–3 | 0.90 | 7%/2/1000 | 突进（穿过） | 可 | 0.80×1.24−0.10 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -1718,14 +1718,14 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 **字段**｜`origin:expanded`；`sect:sect_dali`；`nature:harmony`；`wOut/wIn:0/1`；`sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:35,wis:32},aptitude:{apInner:32},prereq:[{skill:sk_wangfutunaxi,layer:6}],sect:{id:sect_dali,rank:3},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:20,hpMaxPct:12,attrs:{con:3,wis:3,wil:2},mpRegen:1.8,stats:{resInjury:5,resSeal:5}}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_renmai,mer_chongmai]`；`setTags:[]`。
 
-- 招式：养息 `mv_duanshiyangshenggong_yangxi`（L2，自身，6%/3，`bf_yangsheng`3）；护脉 `mv_duanshiyangshenggong_humai`（L6，单体友方，8%/4，`bf_huoluo`2、`bf_huxue`2）；均 `power:0`。
+- 招式：养息 `mv_duanshiyangshenggong_yangxi`（L2，自身，6%/3，`bf_yangsheng`3）；护脉 `mv_duanshiyangshenggong_humai`（绝招；`ultimate:true`；`rageCost:100`；L7，单体友方，8%/0/1200，`bf_huoluo`2、`bf_huxue`2，`power:0`；支援绝招不走伤害倍率）。
 - 被动：王府养生 `ps_duanshiyangshenggong_yangsheng`（休息恢复 +5%→12%）；正脉 `ps_duanshiyangshenggong_zhengmai`（主运时 `resSeal` +5→12）。获取：大理 L3；一灯羁绊线 `maxLayer:8`。
 
 #### `sk_tianlongchanbu` 天龙禅步（6 玄上 · 轻功）——核算抽样（功能式）
 
 **字段**｜`origin:expanded`；`sect:sect_tianlongsi`；`nature:harmony`；`wOut/wIn:0.35/0.65`；`sourceChapters:[ch01_tianlong]`；`Q_skill=QS(6)=74`；`reqs:{attrs:{agi:35,wil:35},aptitude:{apLight:32},sect:{id:sect_tianlongsi,rank:2},hard:[sect]}`；`layerStats:{eva:[2,5],resMind:[1,5]}`；`setTags:[]`。
 
-- 招式：绕殿 `mv_tianlongchanbu_raodian`（L1，自身移2格，6%/2，`power:0`）；定步 `mv_tianlongchanbu_dingbu`（L3，自身，7%/3，`bf_wenzhong`2，`power:0`）；退礼 `mv_tianlongchanbu_tuili`（L6，后撤2格并获 `bf_ningshen`1，8%/3，`power:0`）。
+- 招式：绕殿 `mv_tianlongchanbu_raodian`（L1，自身移2格，6%/2，`power:0`）；定步 `mv_tianlongchanbu_dingbu`（L3，自身，7%/3，`bf_wenzhong`2，`power:0`）；退礼 `mv_tianlongchanbu_tuili`（绝招；`ultimate:true`；`rageCost:100`；L7，后撤2格并获 `bf_ningshen`1，8%/0/1200，`power:0`；纯移动绝招不走伤害倍率）。
 - 被动：禅行 `ps_tianlongchanbu_chanxing`（本回合未攻击时 resMind +4→10）；不争 `ps_tianlongchanbu_buzheng`（后撤后下次受击 Z4 −5%）。获取：天龙寺 L2；仅天龙。
 
 ### 5.7 黄阶总表（11 门；含既有 4 门索引、新增 7 门）
@@ -1777,7 +1777,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | nature · wOut/wIn · moveSlots | `harmony` · 0.40/0.60 · 5 |
 | reqs | `attrs {wil 55, wis 45}`；`aptitude {apFist 55}`；`hard []`（仅羁绊途径可得） |
 | layerStats | `parry [4, 12]`、`counter [2, 8]`（合计 20） |
-| 层数要点 | 1：空朦、洞松、空碗盛饭 ｜ 2：风通 ｜ 3：容梦、以柔克刚 ｜ 4：冲穷 ｜ 5：中弄、转劲 ｜ 6：童庸 ｜ **7：绝招 七十二路空明拳** ｜ 8：弓虫（触发）、空明 ｜ 10：空明大成 |
+| 层数要点 | 1：空朦、空碗盛饭 ｜ 2：风通 ｜ 3：容梦、以柔克刚 ｜ 4：冲穷 ｜ 5：中弄、转劲 ｜ 6：童庸 ｜ **7：第一绝招 七十二路空明拳** ｜ 8：弓虫（触发）、空明 ｜ **9：第二绝招 洞松** ｜ 10：空明大成 |
 | setTags / conflicts | `[set_guojing_xiazhe]` / `{with: sk_zuoyouhubo, type: synergy}`（见被动"空明大成"） |
 | special / observable | `{fusible: true}` / `false` |
 | 获取 | 射雕 `master npc_zhoubotong` `maxLayer 10`（桃花岛石洞事件，羁绊 ≥ 3）；神雕 `master npc_zhoubotong` `maxLayer 10`（百花谷） |
@@ -1786,13 +1786,13 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
 | 空朦 `mv_kongming_kongmeng` | 1 | 单体 · 1 · 近身 | 0.90 | 7%/0/900 | — | 可 | 1−0.05−0.07 |
-| 洞松 `mv_kongming_dongsong` | 1 | 自身架势 | 0 | 5%/2/800 | 自身 `bf_xieli` 2；`stanceCounter {counterPower 0.8, expires: nextOwnAction}` | — | 架势招式 |
+| **洞松** `mv_kongming_dongsong`（绝招；`ultimate:true`；`rageCost:100`） | 9 | 自身架势 | 0 | 10%/0/1200 | 自身 `bf_xieli` 2；`stanceCounter {counterPower 0.8, expires: nextOwnAction}` | — | 防守反击绝招；架势本身不走伤害倍率，反击倍率保持 0.8 |
 | 风通 `mv_kongming_fengtong` | 2 | `aoe_cone {angle:120,r:1,dirCount:6}` | 0.85 | 8%/1/1000 | 自身 `bf_zhuanjin` 2 | 可 | N=3、AF=0.85；0.85×1.12−0.10=0.85 |
 | 容梦 `mv_kongming_rongmeng` | 3 | 单体 · 1 · 近身 | 1.20 | 8%/2/1000 | `bf_waigong_jiang` 60% | 可 | 1.24−0.06 |
 | 冲穷 `mv_kongming_chongqiong` | 4 | `aoe_knock n2` · 1 | 1.15 | 9%/2/1000 | 击退 2 | 可 | 0.95×1.29−0.10 |
 | 中弄 `mv_kongming_zhongnong` | 5 | 单体 · 1（3 段） | 1.30 | 9%/2/1000 | — | 可 | 1.29 |
 | 童庸 `mv_kongming_tongyong` | 6 | `aoe_swap` · 1–2 | 0.80 | 8%/2/1000 | 换位；`bf_shiheng` 100% | 可 | 0.85×1.24−0.15−0.10 |
-| **七十二路空明拳** `mv_kongming_qishier`（绝招） | 7 | 单体 · 1（6 段） | 2.80 | 10%/—/1200 | `bf_waigong_jiang` 100%；`bf_shiheng` 100% | 可 | 3.00−0.10−0.10 |
+| **七十二路空明拳** `mv_kongming_qishier`（绝招；`ultimate:true`；`rageCost:100`） | 7 | 单体 · 1（6 段） | 2.80 | 10%/0/1200 | `bf_waigong_jiang` 100%；`bf_shiheng` 100% | 可 | 3.00−0.10−0.10 |
 | 弓虫 `mv_kongming_gongchong`（触发） | 8 | 自身 | 0 | 4%/—/— | `trigger {on: meleeAttacked, chance 0.3, perRound 1, counterPower 1.0}` | — | 触发招式 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -1815,7 +1815,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | category / subType / nature | `misc` / `mind`（C16 已定，不新增 `dual`）/ `neutral` |
 | reqs | `attrsMax {wis 85}`；`attrs {wil 50}`；`hard [attrsMax]` |
 | layerStats | `effHit [2, 8]`、`resMind [4, 12]`（合计 20） |
-| 层数要点 | 1：分心二用、左手画方右手画圆 ｜ 4：一心二用 ｜ 6：双手互援 ｜ **7：绝招 双手全力** ｜ 8：心思纯一 ｜ 10：互搏大成 |
+| 层数要点 | 1：左手画方右手画圆 ｜ 4：一心二用 ｜ 6：双手互援 ｜ **7：第一绝招 双手全力** ｜ 8：心思纯一 ｜ **9：第二绝招 分心二用** ｜ 10：互搏大成 |
 | setTags / conflicts | `[set_guojing_xiazhe]` / 无 |
 | special / observable | `{fusible: false, trainMult: pureMult}` / `false` |
 | 获取 | 射雕 `master npc_zhoubotong` `maxLayer 10`（桃花岛石洞）；神雕 `master npc_zhoubotong` `maxLayer 10`、`master npc_xiaolongnv` `maxLayer 8`（羁绊 ≥ 4，原创扩展途径） |
@@ -1823,8 +1823,8 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 | 招式（ID） | 重 | 范围 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
-| 分心二用 `mv_zuoyouhubo_fenxin` | 1 | 依所选两招 | 各招 × `Mod_special` | 两招之和/各自冷却/较大者 + 150 | — | 依原招 | 05 §9.3.2 |
-| **双手全力** `mv_zuoyouhubo_quanli`（绝招，原创扩展命名） | 7 | 依所选两招 | 各招 ×1.00 | 两招之和 + 10%/—/较大者 | — | 依原招 | 以气势 100 换取"去除 `Mod_special` 折算与 +150 收招"；两招仍须为非绝招 |
+| **分心二用** `mv_zuoyouhubo_fenxin`（绝招；`ultimate:true`；`rageCost:100`） | 9 | 依所选两招 | 各招 × `Mod_special` | 10%/0/1200 | — | 依原招 | 05 §9.3.2 的双招机制不改；绝招入口统一支付本行资源，所选两招仍须为非绝招 |
+| **双手全力** `mv_zuoyouhubo_quanli`（绝招，原创扩展命名；`ultimate:true`；`rageCost:100`） | 7 | 依所选两招 | 各招 ×1.00 | 10%/0/1200 | — | 依原招 | 以气势 100 换取“去除 `Mod_special` 折算”；两招仍须为非绝招 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|---|
@@ -1852,7 +1852,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 **字段**｜`origin:expanded`；`sect:null`；`lineage:周伯通`；`nature:harmony`；`wOut/wIn:0.45/0.55`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{agi:35,wil:30},aptitude:{apFist:32},prereq:[{skill:sk_kongming,layer:3}],hard:[prereq]}`；`layerStats:{parry:[2,6],counter:[1,4]}`；`setTags:[]`；**（原创扩展）**，只取周伯通嬉戏与一心二用的原著形象，不宣称有此具名拳法。
 
-- 招式：逗你一拳 `mv_wantongshuangxi_douquan`（L1，单体，**1.10**，6%/1；`1×1.12=1.12≈1.10`）；忽左忽右 `mv_wantongshuangxi_huzuohuyou`（L3，绕背，**1.10**，7%/2；`1×1.29−.15=1.14≈1.10`）；双戏连环 `mv_wantongshuangxi_lianhuan`（L6，单体四段，**1.35**，8%/2；`1×(1+.24+.10)=1.34≈1.35`）。
+- 招式：逗你一拳 `mv_wantongshuangxi_douquan`（L1，单体，**1.10**，6%/1；`1×1.12=1.12≈1.10`）；忽左忽右 `mv_wantongshuangxi_huzuohuyou`（L3，绕背，**1.10**，7%/2；`1×1.29−.15=1.14≈1.10`）；双戏连环 `mv_wantongshuangxi_lianhuan`（绝招；`ultimate:true`；`rageCost:100`；L7，单体四段，**3.00**，8%/0/1200；`3.00×1.00=3.00`）。
 - 被动：童心 `ps_wantongshuangxi_tongxin`（首回合 crit +4→10）；戏耍 `ps_wantongshuangxi_xishua`（招架后下一式 hit +5）。获取：周伯通羁绊 ≥2；`observe maxLayer:6`。
 
 ---
@@ -1895,7 +1895,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | nature · wOut/wIn · moveSlots | `harmony`（自动桥接）· 0/1（损有余覆写 0.20/0.80）· 5 |
 | inner | `contribution {mpMaxPct 58, hpMaxPct 34, attrs {wis 8, agi 6, con 6, wil 4}, mpRegen 3.2, stats {resSeal 10, resMind 10}}`（IP = 58+34+2×(8+6+6+4)+5×3.2 = **156**，预算 156）；`auxUsableMoves [mv_jiuyin_jiexue]` |
 | reqs | `attrs {wis 60, wil 55}`；`aptitude {apInner 55}`；`hard []`（经书/奇遇途径，受 02 §2.9 进度门槛约束） |
-| 层数要点 | 1：损有余、总纲 ｜ 3：补不足、虚胜实（被动） ｜ 5：虚实相生（架势）、不足胜有余 ｜ 6：九阴解穴 ｜ **7：绝招 天之道**、解穴秘诀 ｜ 8：九阴收功、正本清源 ｜ 10：九阴大成 |
+| 层数要点 | 1：总纲 ｜ 3：虚胜实（被动） ｜ 5：虚实相生（架势）、不足胜有余 ｜ 6：九阴解穴 ｜ **7：第一绝招 天之道**、解穴秘诀 ｜ 8：九阴收功、正本清源 ｜ **9：第二绝招 损有余** ｜ **10：第三绝招 补不足**、九阴大成 |
 | setTags / conflicts | `[set_jiuyin_zhengzong, set_guojing_xiazhe]` / 无 |
 | special / observable | `{fusible: true}` / `false` |
 | 获取 | 射雕 `master npc_zhoubotong` `maxLayer 10`（桃花岛石洞授经，羁绊 ≥ 4；总纲另需一灯译解事件，未完成前 `maxLayer 7`，原创扩展节奏）；神雕 `qiyu q_03_qiyu_9x`（古墓王重阳石刻）`maxLayer 8`；倚天 `qiyu q_04_qiyu_9x`（倚天剑藏经）`maxLayer 10` |
@@ -1903,11 +1903,11 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 | 招式（ID） | 重 | 范围·射程 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
-| 损有余 `mv_jiuyin_sunyouyu` | 1 | 单体 · 1–2 · 近身 | 1.00 | 8%/1/1000 | `rageDrain {value: 15}` | 可 | 1.12−0.10（夺气势） |
-| 补不足 `mv_jiuyin_buzu` | 3 | 自身 | 0 | 10%/3/1000 | 回复 18% `hpMax`；气血 < 50% 时另回复 10% `mpMax` | — | 标准治疗 |
+| **损有余** `mv_jiuyin_sunyouyu`（绝招；`ultimate:true`；`rageCost:100`） | 9 | 单体 · 1–2 · 近身 | 2.90 | 10%/0/1200 | `rageDrain {value: 15}` | 可 | 3.00−0.10（夺气势）=2.90 |
+| **补不足** `mv_jiuyin_buzu`（绝招；`ultimate:true`；`rageCost:100`） | 10 | 自身 | 0 | 10%/0/1200 | 回复 18% `hpMax`；气血 < 50% 时另回复 10% `mpMax` | — | 支援绝招，不走伤害倍率 |
 | 虚实相生 `mv_jiuyin_xushi` | 5 | 自身架势 | 0 | 6%/3/800 | 自身 `bf_piaohu` 2、`bf_xieli` 2 | — | 架势招式 |
 | 九阴解穴 `mv_jiuyin_jiexue` | 6 | 单体友方 · 0–2 | 0 | 8%/3/1000 | 驱散全部 `seal` 与 1 个 `cc`（≤ 品阶） | — | 支援（辅运可用） |
-| **天之道** `mv_jiuyin_tianzhidao`（绝招，原创扩展命名） | 7 | `aoe_allies r2` | 0 | 10%/—/1200 | 本方范围内气血百分比向平均值拉平（高于均值者匀出，至多各 20%；新钩子 `equalizeHp`，W-05）；友方 `bf_jiangu` 2；自身 `bf_hutizhenqi {shieldPctHpMax: 0.15}` 3 | — | 支援绝招 |
+| **天之道** `mv_jiuyin_tianzhidao`（绝招，原创扩展命名；`ultimate:true`；`rageCost:100`） | 7 | `aoe_allies r2` | 0 | 10%/0/1200 | 本方范围内气血百分比向平均值拉平（高于均值者匀出，至多各 20%；新钩子 `equalizeHp`，W-05）；友方 `bf_jiangu` 2；自身 `bf_hutizhenqi {shieldPctHpMax: 0.15}` 3 | — | 支援绝招 |
 | 九阴收功 `mv_jiuyin_shougong` | 8 | 自身 | 0 | 6%/4/900 | `cleanseZouhuo {maxLevel: 1}`；驱散自身 `injury` 1 个 | — | 支援 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -1929,7 +1929,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | nature · wOut/wIn · moveSlots | `yin` · 0.50/0.50 · 5 |
 | reqs | `attrs {agi 50, str 45}`；`aptitude {apGrapple 55}`；`prereq [{skill: sk_jiuyin, layer: 3}]`；`morality {min 0}`；`hard [prereq, morality]` |
 | layerStats | `pierce [4, 12]`、`crit [2, 8]`（合计 20） |
-| 层数要点 | 1：摧坚、九阴锁、正法 ｜ 3：如穿腐土、无坚不破 ｜ 4：摧敌首脑 ｜ 5：五指发劲、要害 ｜ **7：绝招 无坚不摧** ｜ 8：擒拿要害、腐土 ｜ 10：神爪大成 |
+| 层数要点 | 1：摧坚、九阴锁、正法 ｜ 3：如穿腐土、无坚不破 ｜ 5：五指发劲、要害 ｜ **7：第一绝招 无坚不摧** ｜ 8：擒拿要害、腐土 ｜ **9：第二绝招 摧敌首脑** ｜ 10：神爪大成 |
 | setTags / conflicts | `set_jiuyin_zhengzong` / `{with: sk_jiuyinbaigu, type: exclusive}`（05 §9.2） |
 | special / observable | `{fusible: true, reformFrom: sk_jiuyinbaigu}`（改修：`layerReal = floor(0.6 × 原层)`，05 §9.1.2）/ `false` |
 | 获取 | 射雕 `qiyu q_02_main_9x`（真经下卷正解，与总纲同组，02 §2.9）`maxLayer 10`、`master npc_zhoubotong` `maxLayer 8`；神雕 `master npc_guojing` `maxLayer 10` |
@@ -1940,9 +1940,9 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 摧坚 `mv_jiuyinshenzhao_cuijian` | 1 | 单体 · 1 | 1.05 | 8%/1/1000 | `ignoreDef {out: 0.15}` | 可 | 1.12−0.05 |
 | 九阴锁 `mv_jiuyinshenzhao_suo` | 1 | 单体 · 1 | 1.05 | 8%/1/1000 | `bf_fengjingmai` 40% 1 | 可 | 1.12−0.08 |
 | 如穿腐土 `mv_jiuyinshenzhao_futu` | 3 | `aoe_pierce` | 1.15 | 9%/2/1000 | — | 可 | 0.90×1.29 |
-| 摧敌首脑 `mv_jiuyinshenzhao_shounao` | 4 | 单体 · 1；`condition {targetHasTag: [seal, cc]}` | 1.50 | 9%/3/1000 | `bf_xuanyun` 30% 1 | 可 | (1+0.36+0.05+0.15)−0.075 |
+| 摧敌首脑 `mv_jiuyinshenzhao_shounao`（绝招；`ultimate:true`；`rageCost:100`） | 9 | 单体 · 1；`condition {targetHasTag: [seal, cc]}` | 3.10 | 10%/0/1200 | `bf_xuanyun` 30% 1 | 可 | `3.00+0.15−0.25×0.30=3.075≈3.10` |
 | 五指发劲 `mv_jiuyinshenzhao_wuzhi` | 5 | 单体 · 1（5 段） | 1.25 | 9%/2/1000 | `bf_liuxue` 50% | 可 | 1.29−0.05 |
-| **无坚不摧** `mv_jiuyinshenzhao_wujian`（绝招，原创扩展命名） | 7 | 单体 · 1 | 2.40 | 10%/—/1200 | `bf_pojia` 100%；驱散目标 `guard` 1 个 | 不可 | 3.00×0.85−0.10−0.05 |
+| **无坚不摧** `mv_jiuyinshenzhao_wujian`（`ultimate:true`、`rageCost:100`、`mpCost:10%`、`cd:0`、`recovery:1200`）（绝招，原创扩展命名） | 7 | 单体 · 1 | 2.40 | 10%/0/1200 | `bf_pojia` 100%；驱散目标 `guard` 1 个 | 不可 | 3.00×0.85−0.10−0.05 |
 | 擒拿要害 `mv_jiuyinshenzhao_qinna` | 8 | `aoe_pull n1` · 1–2 | 1.00 | 8%/2/1000 | 拉拽 1；`bf_dingshen` 30% 1 | 可 | 0.95×1.24−0.10−0.075 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -1963,7 +1963,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | nature · wOut/wIn · moveSlots | `neutral` · 0/1 · 5 |
 | reqs | `attrs {wis 60, wil 60}`；`prereq [{skill: sk_jiuyin, layer: 3}]`；`hard [prereq]`（黄蓉途径 `reqsOverride {prereq: []}`） |
 | layerStats | `effHit [4, 12]`、`resMind [2, 8]`（合计 20） |
-| 层数要点 | 1：摄魂、定心、摄目 ｜ 3：反照、心镜 ｜ 5：惑心、克摄心 ｜ **7：绝招 移魂大法** ｜ 8：催眠 ｜ 10：移魂大成 |
+| 层数要点 | 1：摄魂、摄目 ｜ 3：反照、心镜 ｜ 5：惑心、克摄心 ｜ **7：第一绝招 移魂大法** ｜ 8：催眠 ｜ **9：第二绝招 定心** ｜ 10：移魂大成 |
 | setTags / conflicts | `set_jiuyin_zhengzong` / `{with: sk_shexinshu, type: counter}`（见摄心术条目） |
 | special / observable | `{fusible: false}` / `false` |
 | 获取 | 射雕 `qiyu q_02_main_9x`（真经下卷，与总纲同组）`maxLayer 10`；`master npc_huangrong` `maxLayer 8`（羁绊 ≥ 4，原创扩展） |
@@ -1972,10 +1972,10 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 招式（ID） | 重 | 范围·射程 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
 | 摄魂 `mv_yihun_shehun` | 1 | 单体 · 1–3 | 0 | 8%/3/1000 | `bf_mihuo` 40% 1 | — | 纯控制 |
-| 定心 `mv_yihun_dingxin` | 1 | `aoe_allies r2` | 0 | 6%/3/900 | 友方 `bf_dingxin` 2；驱散 `mind` 1 个 | — | 支援 |
+| 定心 `mv_yihun_dingxin`（绝招；`ultimate:true`；`rageCost:100`） | 9 | `aoe_allies r2` | 0 | 10%/0/1200 | 友方 `bf_dingxin` 2；驱散 `mind` 1 个 | — | 支援绝招不走伤害倍率 |
 | 反照 `mv_yihun_fanzhao` | 3 | 自身架势 | 0 | 7%/3/800 | 至下次行动：受 `mind` 招式时 60% 反施于施术者（新钩子 `reflectMind`，W-05） | — | 架势招式 |
 | 惑心 `mv_yihun_huoxin` | 5 | `aoe_cone {r:2,angle:60,dirCount:6}` · 远程 | 0 | 8%/3/1000 | `bf_luanxin` 60%；`bf_dongyao` 100% | — | 纯控制；N=4、AF=0.80 不参与零伤害结算 |
-| **移魂大法** `mv_yihun_yihun`（绝招） | 7 | 单体 · 1–4 | 0 | 10%/—/1200 | `bf_yihun` 100% 2 | — | 纯控制绝招（Boss 受 `bf_shouling` 免疫） |
+| **移魂大法** `mv_yihun_yihun`（`ultimate:true`、`rageCost:100`、`mpCost:10%`、`cd:0`、`recovery:1200`）（绝招） | 7 | 单体 · 1–4 | 0 | 10%/0/1200 | `bf_yihun` 100% 2 | — | 纯控制绝招（Boss 受 `bf_shouling` 免疫） |
 | 催眠 `mv_yihun_cuimian` | 8 | 单体 · 1–3 | 0 | 8%/3/1000 | `bf_hunshui` 60% 2 | — | 纯控制 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -1999,7 +1999,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | nature · wOut/wIn · moveSlots | `yin` · 0.55/0.45 · 4 |
 | reqs | `attrs {agi 45, str 40}`；`aptitude {apGrapple 45}`；`morality {max: −20}`；`hard [morality]`（奇遇途径以 `reqsOverride {morality: null}` 放开，习得即扣 `morality −10`） |
 | layerStats | `crit [3, 9]`、`hit [1, 6]`（合计 15） |
-| 层数要点 | 1：阴风爪、鬼影抓、邪练、邪气、穿骨 ｜ 3：五指锁魂 ｜ 5：白骨阴风、夺命 ｜ **7：绝招 索命** ｜ 8：鬼魅绕身 ｜ 10：白骨大成 |
+| 层数要点 | 1：阴风爪、鬼影抓、邪练、邪气、穿骨 ｜ 3：五指锁魂 ｜ 5：白骨阴风、夺命 ｜ **7：第一绝招 索命** ｜ **9：第二绝招 鬼魅绕身** ｜ 10：白骨大成 |
 | setTags / conflicts | `[]` / `{with: sk_jiuyinshenzhao, type: exclusive}` |
 | special / observable | `{evilTraining: {sxpMult: 1.5, moralityPerLayer: −5, zouhuoOnLayerUp: {chance: 0.08, level: 1}}, reformTo: sk_jiuyinshenzhao, fusible: false}`（05 §9.1.2）/ `true` |
 | 获取 | 射雕 `master npc_meichaofeng` `maxLayer 10`（投其门下）、`qiyu q_02_side_9x`（"误读真经"，原创扩展）`maxLayer 8`；倚天 `manual it_miji_jiuyinbaigu_su`（倚天剑藏经速成篇，周芷若线）`maxLayer 10`；`observe` 6 |
@@ -2011,8 +2011,8 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 鬼影抓 `mv_jiuyinbaigu_guiying` | 1 | `aoe_dash n3` · 1–3 | 1.00 | 7%/1/1000 | 突进 | 可 | 1.12−0.10 |
 | 五指锁魂 `mv_jiuyinbaigu_suohun` | 3 | 单体 · 1（5 段） | 1.20 | 8%/2/1000 | `bf_liuxue` 60%；`bf_neishang` 40% | 可 | 1.29−0.06−0.04 |
 | 白骨阴风 `mv_jiuyinbaigu_yinfengsao` | 5 | `aoe_cone {angle:120,r:1,dirCount:6}` | 1.05 | 8%/2/1000 | `bf_hanqi` 40% | 可 | N=3、AF=0.85；0.85×1.29−0.04=1.06，取 1.05 |
-| **索命** `mv_jiuyinbaigu_suoming`（绝招，原创扩展命名） | 7 | 单体 · 1（5 段） | 2.80 | 9%/—/1200 | `bf_liuxue` 100%；`bf_neishang` 100% | 可 | 3.00−0.10−0.10 |
-| 鬼魅绕身 `mv_jiuyinbaigu_guimei` | 8 | `aoe_behind` · 1–2 | 1.00 | 8%/2/1000 | 绕背 | 可 | 0.90×1.29−0.15 |
+| **索命** `mv_jiuyinbaigu_suoming`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招，原创扩展命名） | 7 | 单体 · 1（5 段） | 2.80 | 9%/0/1200 | `bf_liuxue` 100%；`bf_neishang` 100% | 可 | 3.00−0.10−0.10 |
+| 鬼魅绕身 `mv_jiuyinbaigu_guimei`（绝招；`ultimate:true`；`rageCost:100`） | 9 | `aoe_behind` · 1–2 | 2.55 | 9%/0/1200 | 绕背 | 可 | `3.00×0.90−0.15=2.55` |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|---|
@@ -2032,7 +2032,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | nature · wOut/wIn · moveSlots | `yin` · 0.35/0.65 · 4 |
 | reqs | `attrs {str 45, con 45}`；`aptitude {apFist 50}`；`morality {max: −20}`（软，05 §7.3 邪派地阶）；`hard []` |
 | layerStats | `crit [2, 7]`、`pierce [2, 8]`（合计 15） |
-| 层数要点 | 1：摧心、阴劲透体、外表无伤 ｜ 3：碎脉 ｜ 4：心脉受创 ｜ 5：断魂掌 ｜ **7：绝招 摧心裂脉** ｜ 8：无痕、阴劲 ｜ 10：摧心大成 |
+| 层数要点 | 1：摧心、阴劲透体、外表无伤 ｜ 3：碎脉 ｜ 4：心脉受创 ｜ 5：断魂掌 ｜ **7：第一绝招 摧心裂脉** ｜ 8：阴劲 ｜ **9：第二绝招 无痕** ｜ 10：摧心大成 |
 | setTags / conflicts | `[]` / 无 |
 | special / observable | `{fusible: true}` / `true` |
 | 获取 | 射雕 `master npc_meichaofeng` `maxLayer 10`；`qiyu q_02_side_9x`（误读真经）`maxLayer 8`；`observe` 6 |
@@ -2044,8 +2044,8 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 阴劲透体 `mv_cuixinzhang_touti` | 1 | 单体 · 1 | 0.95 | 7%/0/1000 | `ignoreDef {in: 0.20}` | 可 | 1−0.05 |
 | 碎脉 `mv_cuixinzhang_suimai` | 3 | 单体 · 1 | 1.10 | 8%/2/1000 | `bf_neishang` 100%（2 层） | 可 | 1.29−0.20 |
 | 断魂掌 `mv_cuixinzhang_duanhun` | 5 | `aoe_line n2` | 1.10 | 8%/2/1000 | `bf_neishang` 50% | 可 | N=2、AF=0.90；0.90×1.29−0.05=1.111≈1.10 |
-| **摧心裂脉** `mv_cuixinzhang_liemai`（绝招，原创扩展命名） | 7 | 单体 · 1 | 2.60 | 9%/—/1200 | `bf_neishang` 100%（3 层）；`bf_nanyu` 100% | 可 | 3.00−0.30−0.10 |
-| 无痕 `mv_cuixinzhang_wuhen` | 8 | 单体 · 1；`condition {targetHpBelow: 0.3}` | 1.70 | 8%/3/1000 | — | 可 | 1+0.36+0.05+0.30 |
+| **摧心裂脉** `mv_cuixinzhang_liemai`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招，原创扩展命名） | 7 | 单体 · 1 | 2.60 | 9%/0/1200 | `bf_neishang` 100%（3 层）；`bf_nanyu` 100% | 可 | 3.00−0.30−0.10 |
+| 无痕 `mv_cuixinzhang_wuhen`（绝招；`ultimate:true`；`rageCost:100`） | 9 | 单体 · 1；`condition {targetHpBelow: 0.3}` | 3.30 | 9%/0/1200 | — | 可 | `3.00+0.30=3.30` |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|---|
@@ -2064,7 +2064,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | nature · wOut/wIn · moveSlots | `yang` · 0.60/0.40 · 4 |
 | reqs | `attrs {str 50, con 45}`；`aptitude {apFist 50}`；`prereq [{skill: sk_jiuyin, layer: 3}]`；`morality {min 10}`；`hard [prereq, morality]` |
 | layerStats | `parry [2, 8]`、`tough [2, 7]`（合计 15） |
-| 层数要点 | 1：镇魔拳、伏虎式、正气 ｜ 3：破邪 ｜ 4：刚猛 ｜ 5：伏魔连环 ｜ **7：绝招 大伏魔** ｜ 8：降魔护法、伏魔 ｜ 10：伏魔大成 |
+| 层数要点 | 1：镇魔拳、伏虎式、正气 ｜ 3：破邪 ｜ 4：刚猛 ｜ 5：伏魔连环 ｜ **7：第一绝招 大伏魔** ｜ 8：伏魔 ｜ **9：第二绝招 降魔护法** ｜ 10：伏魔大成 |
 | setTags / conflicts | `set_jiuyin_zhengzong` / 无 |
 | special / observable | `{fusible: true}` / `true` |
 | 获取 | 射雕 `qiyu q_02_main_9x`（真经下卷）`maxLayer 10`；神雕 `master npc_guojing` `maxLayer 10`；`observe` 6 |
@@ -2076,8 +2076,8 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 伏虎式 `mv_dafumoquan_fuhu` | 1 | 单体 · 1 | 1.05 | 7%/1/1000 | 击退 1 | 可 | 1.12−0.05 |
 | 破邪 `mv_dafumoquan_poxie` | 3 | 单体 · 1；`condition {targetMoralityMax: −20}` | 1.40 | 8%/2/1000 | `bf_xuruo` 50% | 可 | (1+0.24+0.05+0.15)−0.05 |
 | 伏魔连环 `mv_dafumoquan_lianhuan` | 5 | 单体 · 1（3 段） | 1.30 | 8%/2/1000 | — | 可 | 1.29 |
-| **大伏魔** `mv_dafumoquan_dafumo`（绝招） | 7 | `aoe_around` | 2.10 | 9%/—/1200 | `bf_zhenshe` 100%；击退 1 | 可 | N=6、AF=0.75；3.00×0.75−0.10−0.05=2.10 |
-| 降魔护法 `mv_dafumoquan_hufa` | 8 | 自身架势 | 0 | 6%/3/850 | 自身 `bf_shoushi` 2、`bf_fanzhen` 2 | — | 架势招式 |
+| **大伏魔** `mv_dafumoquan_dafumo`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招） | 7 | `aoe_around` | 2.10 | 9%/0/1200 | `bf_zhenshe` 100%；击退 1 | 可 | N=6、AF=0.75；3.00×0.75−0.10−0.05=2.10 |
+| 降魔护法 `mv_dafumoquan_hufa`（绝招；`ultimate:true`；`rageCost:100`） | 9 | 自身架势 | 0 | 9%/0/1200 | 自身 `bf_shoushi` 2、`bf_fanzhen` 2 | — | 无直接伤害架势绝招不走伤害倍率 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|---|
@@ -2106,7 +2106,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 |---|---|---|---|---|---|---|---|
 | 伐骨 `mv_yijinduangupian_fagu` | 3 | 自身 | 0 | 6%/3/900 | 自身 `bf_renjin` 3、`bf_jiangu` 2 | — | 支援 |
 | 易筋 `mv_yijinduangupian_yijin` | 5 | 自身 | 0 | 8%/3/1000 | 驱散自身 `injury` 2 个；回复 12% `hpMax` | — | 支援 |
-| **脱胎换骨** `mv_yijinduangupian_tuotai`（绝招，原创扩展命名） | 7 | 自身 | 0 | 9%/—/1200 | 自身 `bf_mian_shang` 2、`bf_mian_kong` 1；回复 25% `hpMax` | — | 支援绝招 |
+| **脱胎换骨** `mv_yijinduangupian_tuotai`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招，原创扩展命名） | 7 | 自身 | 0 | 9%/0/1200 | 自身 `bf_mian_shang` 2、`bf_mian_kong` 1；回复 25% `hpMax` | — | 支援绝招 |
 | 缩骨 `mv_yijinduangupian_suogu` | 8 | 自身 | 0 | 6%/3/800 | 驱散自身 `cc.bind`、`cc.root` 各 1 个；自身 `bf_jixing` 1 | — | 支援 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -2137,7 +2137,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 蛇行 `mv_shexinglifan_shexing` | 1 | 自身架势 | 0 | 5%/2/800 | 自身 `bf_youshi` 3 | — | 架势招式 |
 | 狸翻 `mv_shexinglifan_lifan` | 3 | 相邻敌人身后格 · 1 | 0 | 5%/2/800 | 自身位移至目标身后（`displacement: behind`，不出招） | — | 功能招式 |
 | 贴地游身 `mv_shexinglifan_tiedi` | 5 | 自身 | 0 | 6%/3/900 | 自身 `bf_piaohu` 2、`bf_shenqing` 1 | — | 支援 |
-| **蛇行百变** `mv_shexinglifan_baibian`（绝招，原创扩展命名） | 7 | 自身 | 0 | 9%/—/1200 | 自身 `bf_canying` 2 层、`bf_jixing` 2 | — | 支援绝招 |
+| **蛇行百变** `mv_shexinglifan_baibian`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招，原创扩展命名） | 7 | 自身 | 0 | 9%/0/1200 | 自身 `bf_canying` 2 层、`bf_jixing` 2 | — | 支援绝招 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|---|
@@ -2168,7 +2168,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 长鞭卷地 `mv_baimangbianfa_juandi` | 1 | `aoe_cone {angle:120,r:1,dirCount:6}` | 0.90 | 7%/1/1000 | `bf_panshan` 50% | 可 | N=3、AF=0.85；0.85×1.12−0.05=0.90 |
 | 缠身 `mv_baimangbianfa_chanshen` | 3 | 单体 · 1–3 | 1.15 | 8%/2/1000 | `bf_chanrao` 60% 2 | 可 | 1.29−0.25×0.60 = 1.14 |
 | 回鞭 `mv_baimangbianfa_huibian` | 5 | `aoe_pull n2` · 1–3 | 1.15 | 8%/2/1000 | 拉拽 2 | 可 | 0.95×1.29−0.10 |
-| **白蟒翻江** `mv_baimangbianfa_fanjiang`（绝招，原创扩展命名） | 7 | `aoe_line n4` · 1–4 | 2.15 | 9%/—/1200 | `bf_chanrao` 50% 1 | 可 | 3.00×0.75−0.125 |
+| **白蟒翻江** `mv_baimangbianfa_fanjiang`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招，原创扩展命名） | 7 | `aoe_line n4` · 1–4 | 2.15 | 9%/0/1200 | `bf_chanrao` 50% 1 | 可 | 3.00×0.75−0.125 |
 | 鞭爪相济 `mv_baimangbianfa_bianzhao` | 8 | 单体 · 1–3；`condition {equipped: sk_jiuyinbaigu}` | 1.40 | 8%/2/1000 | `bf_liuxue` 50% | 可 | (1+0.24+0.05+0.15)−0.05 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -2185,7 +2185,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 |---|---|---|---|---|---|---|---|
 | 导气疗伤 `mv_jiuyinliaoshangpian_daoqi` | 1 | 单体友方·0–1 | 0 | 7%/2/1000 | 回复 18% `hpMax`；驱散 `injury` 1 个 | — | 标准治疗 |
 | 掌心相抵 `mv_jiuyinliaoshangpian_xiangdi` | 4 | 单体友方·1 | 0 | 8%/3/1000 | 目标 `bf_huichun` 3、`bf_huoluo` 2 | — | 支援 |
-| 闭气护脉 `mv_jiuyinliaoshangpian_biqi` | 7 | 单体友方·0–1 | 0 | 7%/3/1000 | 目标 `bf_guben` 3；驱散 `poison` 1 个 | — | 支援 |
+| 闭气护脉 `mv_jiuyinliaoshangpian_biqi`（绝招；`ultimate:true`；`rageCost:100`） | 7 | 单体友方·0–1 | 0 | 8%/0/1200 | 目标 `bf_guben` 3；驱散 `poison` 1 个 | — | 支援绝招不走伤害倍率 |
 
 被动：`ps_jiuyinliaoshangpian_qiri` 七日七夜（1，mechanic：战斗外疗伤时内伤、骨伤、走火 2 级的治愈天数 −50%；有羁绊 ≥ 2 的同伴相助再 −25%，design/11 接口）；`ps_jiuyinliaoshangpian_dacheng` 疗伤大成（10，mechanic：导气疗伤额外施加 `bf_mian_shang` 1 回合——06 已登记"九阴真经·疗伤篇大成"为其来源）。
 
@@ -2194,7 +2194,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 招式 | 重 | 范围 | 倍率 | 耗内/cd/收 | 附带 | 架 | 核算 |
 |---|---|---|---|---|---|---|---|
 | 铜皮 `mv_tongshihenglian_tongpi` | 3 | 自身 | 0 | 6%/3/900 | 自身 `bf_waifang_sheng` 3 | — | 支援 |
-| 硬桥硬马 `mv_tongshihenglian_yingqiao` | 6 | 自身 | 0 | 7%/3/900 | 自身 `bf_wenzhong` 2、`bf_fanzhen` 2 | — | 支援 |
+| 硬桥硬马 `mv_tongshihenglian_yingqiao`（绝招；`ultimate:true`；`rageCost:100`） | 7 | 自身 | 0 | 8%/0/1200 | 自身 `bf_wenzhong` 2、`bf_fanzhen` 2 | — | 支援绝招不走伤害倍率 |
 
 被动：`ps_tongshihenglian_tongshi` 铜尸（1，mechanic：主运时获得伴生的 `bf_zhaomen`（罩门，06 §8.9），同时受到外功伤害 −[5%, 12%]（Z4，`auxMode scaled`））；`ps_tongshihenglian_dacheng` 铜尸大成（10，mechanic：罩门被击中时的 Z3 +50% 降为 +25%）。
 
@@ -2213,14 +2213,14 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 **字段**｜`origin:expanded`；`sect:null`；`lineage:九阴真经`；`nature:yin`；`wOut/wIn:0.45/0.55`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{agi:35,wis:35},aptitude:{apGrapple:32},prereq:[{skill:sk_jiuyin,layer:2}],hard:[prereq]}`；`layerStats:{seal:[2,6],hit:[1,4]}`；`setTags:[set_jiuyin_zhengzong]`；**（原创扩展）**。
 
-- 招式：收腕 `mv_shoujinpian_shouwan`（L1，单体，**1.05**，6%/1，`bf_fengjingmai`30%；`1×1.12−.20×.30=1.06≈1.05`）；牵筋 `mv_shoujinpian_qianjin`（L3，单体，**1.10**，7%/2/900，拉拽1；`1×1.29−.10−.07=1.12≈1.10`，其中收招 900 扣 `.07`）；锁脉 `mv_shoujinpian_suomai`（L6，单体不可招架，**1.05**，8%/2，`bf_fengjingmai`40%；`1×1.34×.85−.20×.40=1.059≈1.05`）。
+- 招式：收腕 `mv_shoujinpian_shouwan`（L1，单体，**1.05**，6%/1，`bf_fengjingmai`30%；`1×1.12−.20×.30=1.06≈1.05`）；牵筋 `mv_shoujinpian_qianjin`（L3，单体，**1.10**，7%/2/900，拉拽1；`1×1.29−.10−.07=1.12≈1.10`，其中收招 900 扣 `.07`）；锁脉 `mv_shoujinpian_suomai`（绝招；`ultimate:true`；`rageCost:100`；L7，单体不可招架，**2.45**，8%/0/1200，`bf_fengjingmai`40%；`3.00×.85−.20×.40=2.47≈2.45`）。
 - 被动：识筋 `ps_shoujinpian_shijin`（对带 `seal` 标签目标 Z3 +4%→10%）；收放 `ps_shoujinpian_shoufang`（成功封经后自身获 `bf_youshi`1）。获取：真经下卷残页；郭靖羁绊。
 
 #### `sk_biguqipian` 辟谷气篇（6 玄上 · 内功）
 
 **字段**｜`origin:expanded`；`sect:null`；`lineage:九阴真经`；`nature:harmony`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:35,wil:35},aptitude:{apInner:32},prereq:[{skill:sk_jiuyintiaoxipian,layer:6}],hard:[prereq]}`；`inner.contribution:{mpMaxPct:20,hpMaxPct:12,attrs:{con:3,wil:3,wis:2},mpRegen:1.8,stats:{resCold:5,resPoison:5}}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_renmai,mer_yinwei]`；`setTags:[set_jiuyin_zhengzong]`。
 
-- 招式：闭谷 `mv_biguqipian_bigu`（L2，自身，6%/4，`bf_bigu`3）；龟息 `mv_biguqipian_guixi`（L6，自身，8%/4，`bf_ningshen`2、`bf_huinei`2）；均 `power:0`。
+- 招式：闭谷 `mv_biguqipian_bigu`（L2，自身，6%/4，`bf_bigu`3，`power:0`）；龟息 `mv_biguqipian_guixi`（绝招；`ultimate:true`；`rageCost:100`；L7，自身，8%/0/1200，`bf_ningshen`2、`bf_huinei`2，`power:0`；支援绝招不走伤害倍率）。
 - 被动：耐饥 `ps_biguqipian_naiji`（食物消耗 −8%→20%）；绵长 `ps_biguqipian_mianchang`（主运时内力低于30%获 `bf_tiaoxi`1，每战一次）。获取：真经上卷旁注；神雕古墓石刻仅 `maxLayer:6`。
 
 ---
@@ -2259,7 +2259,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | nature · wOut/wIn · moveSlots | `yang` · 0.55/0.45 · 5 |
 | reqs | `attrs {str 55, con 50}`；`aptitude {apFist 55}`；`prereq [{skill: sk_tiezhangxinfa, layer: 5}]`；`sect {id: sect_tiezhangbang, rank: 4}`；`hard [sect, prereq]` |
 | layerStats | `crit [4, 12]`、`pierce [2, 8]`（合计 20） |
-| 层数要点 | 1：铁掌开山、排云推月、铁掌 ｜ 2：掌断金石 ｜ 3：掌力雄浑 ｜ 4：铁掌震岳 ｜ 5：掌劲透骨、掌伤 ｜ **7：绝招 铁掌擎天** ｜ 8：铁掌护身、刚猛 ｜ 9：铁掌连环 ｜ 10：铁掌大成 |
+| 层数要点 | 1：铁掌开山、排云推月、铁掌 ｜ 2：掌断金石 ｜ 3：掌力雄浑 ｜ 4：铁掌震岳 ｜ 5：掌劲透骨、掌伤 ｜ **7：第一绝招 铁掌擎天** ｜ 8：刚猛 ｜ **9：第二绝招 铁掌护身**、铁掌连环 ｜ 10：铁掌大成 |
 | setTags / conflicts | `[]` / 无 |
 | special / observable | `{fusible: true}` / `false` |
 | 获取 | 射雕 `master npc_qiuqianren` `maxLayer 10`（帮中四级或卧底线）；`qiyu q_02_side_9x`（中指峰上官剑南遗谱，原创扩展）`maxLayer 8` |
@@ -2272,8 +2272,8 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 掌断金石 `mv_tiezhang_duanjin` | 2 | 单体 · 1；`condition {targetHasTag: [guard, stance]}` | 1.35 | 9%/2/1000 | `bf_pojia` 100% | 可 | (1+0.24+0.05+0.15)−0.10 |
 | 铁掌震岳 `mv_tiezhang_zhenyue` | 4 | `aoe_around` | 1.05 | 10%/3/1000 | `bf_zhenshe` 50% | 可 | N=6、AF=0.75；0.75×1.46−0.05=1.045≈1.05 |
 | 掌劲透骨 `mv_tiezhang_tougu` | 5 | 单体 · 1 | 1.20 | 9%/2/1000 | `ignoreDef {out: 0.20}`；`bf_gushang` 30% | 可 | 1.29−0.05−0.03 |
-| **铁掌擎天** `mv_tiezhang_qingtian`（绝招，原创扩展命名） | 7 | 单体 · 1 | 2.70 | 10%/—/1200 | 击退 2；`bf_neishang` 100%（2 层） | 可 | 3.00−0.10−0.20 |
-| 铁掌护身 `mv_tiezhang_hushen` | 8 | 自身架势 | 0 | 6%/2/850 | 自身 `bf_shoushi` 2；`stanceCounter {counterPower 1.0, applyBuff: bf_neishang}` | — | 架势招式 |
+| **铁掌擎天** `mv_tiezhang_qingtian`（`ultimate:true`、`rageCost:100`、`mpCost:10%`、`cd:0`、`recovery:1200`）（绝招，原创扩展命名） | 7 | 单体 · 1 | 2.70 | 10%/0/1200 | 击退 2；`bf_neishang` 100%（2 层） | 可 | 3.00−0.10−0.20 |
+| 铁掌护身 `mv_tiezhang_hushen`（绝招；`ultimate:true`；`rageCost:100`） | 9 | 自身架势 | 0 | 10%/0/1200 | 自身 `bf_shoushi` 2；`stanceCounter {counterPower 1.0, applyBuff: bf_neishang}` | — | 无直接伤害架势绝招不走伤害倍率；反击倍率保持 1.0 |
 | 铁掌连环 `mv_tiezhang_lianhuan` | 9 | 单体 · 1（3 段） | 1.35 | 10%/2/1000 | — | 可 | 1+0.24+0.10 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -2296,7 +2296,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | nature / moveSlots | `neutral` / 4；轻功值 `QS(9) = 120`——射雕/神雕最高原生轻功（地上）候选，满足 03 D-03 / 05 §14.6 第 7 条的假设 |
 | reqs | `attrs {agi 50}`；`aptitude {apLight 45}`；`sect {id: sect_tiezhangbang, rank: 4}`；`hard [sect]` |
 | layerStats | `eva [2, 8]`、`tough [1, 7]`（合计 15） |
-| 层数要点 | 1：踏浪、踏水 ｜ 3：浪里穿行 ｜ 4：身轻 ｜ 5：水上飘身 ｜ 6：真假水上飘 ｜ **7：绝招 踏水无痕** ｜ 8：借力回旋 ｜ 10：水上飘大成 |
+| 层数要点 | 1：踏浪、踏水 ｜ 3：浪里穿行 ｜ 4：身轻 ｜ 5：水上飘身 ｜ 6：真假水上飘 ｜ **7：第一绝招 踏水无痕** ｜ **9：第二绝招 借力回旋** ｜ 10：水上飘大成 |
 | setTags / conflicts | `[]` / 无 |
 | special / observable | `{fusible: true}` / `true` |
 | 获取 | 射雕 `master npc_qiuqianren` `maxLayer 10`；神雕仍引用 `npc_qiuqianren`（显示身份“慈恩”，一灯门下）`maxLayer 8`；`observe` 6 |
@@ -2307,8 +2307,8 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 踏浪 `mv_shuishangpiao_talang` | 1 | 自身 | 0 | 6%/3/900 | 自身 `bf_shenqing` 2、`bf_jixing` 2 | — | 支援 |
 | 浪里穿行 `mv_shuishangpiao_chuanxing` | 3 | `aoe_dash n5, through` · 1–5 | 0.95 | 8%/2/1000 | 突进（可越水面） | 可 | 0.80×1.29−0.10 |
 | 水上飘身 `mv_shuishangpiao_piaoshen` | 5 | 自身 | 0 | 5%/2/800 | 自身 `bf_piaohu` 3 | — | 支援 |
-| **踏水无痕** `mv_shuishangpiao_wuhen`（绝招，原创扩展命名） | 7 | 自身 | 0 | 9%/—/1200 | 自身 `bf_canying` 2 层、`bf_dunzou` 2 | — | 支援绝招 |
-| 借力回旋 `mv_shuishangpiao_jieli` | 8 | 单体 · 1 · 近身 | 1.00 | 7%/1/1000 | 出招后后撤 2（`displacement: retreat`） | 可 | 1.12−0.10 |
+| **踏水无痕** `mv_shuishangpiao_wuhen`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招，原创扩展命名） | 7 | 自身 | 0 | 9%/0/1200 | 自身 `bf_canying` 2 层、`bf_dunzou` 2 | — | 支援绝招 |
+| 借力回旋 `mv_shuishangpiao_jieli`（绝招；`ultimate:true`；`rageCost:100`） | 9 | 单体 · 1 · 近身 | 2.90 | 9%/0/1200 | 出招后后撤 2（`displacement: retreat`） | 可 | `3.00−0.10=2.90` |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
 |---|---|---|---|---|---|---|
@@ -2370,7 +2370,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 **字段**｜`origin:expanded`；`sect:sect_tiezhangbang`；`nature:yang`；`wOut/wIn:0.65/0.35`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{str:36,con:32},aptitude:{apFist:34},prereq:[{skill:sk_heishazhang,layer:6}],sect:{id:sect_tiezhangbang,rank:3},hard:[sect,prereq]}`；`layerStats:{crit:[2,6],tough:[1,4]}`；`setTags:[]`。
 
-- 招式：劈岩 `mv_duanfengzhang_piyan`（L1，单体，**1.10**，6%/1；`1×1.12=1.12≈1.10`）；断梁 `mv_duanfengzhang_duanliang`（L3，线2，**1.15**，7%/2；N=2、AF=.90，`.90×1.29=1.161≈1.15`）；震峰 `mv_duanfengzhang_zhenfeng`（L6，`aoe_cone {r:2,angle:60,dirCount:6}`，**1.00**，8%/2，击退1；N=4、AF=.80，`.80×1.34−.05=1.022≈1.00`）。
+- 招式：劈岩 `mv_duanfengzhang_piyan`（L1，单体，**1.10**，6%/1；`1×1.12=1.12≈1.10`）；断梁 `mv_duanfengzhang_duanliang`（L3，线2，**1.15**，7%/2；N=2、AF=.90，`.90×1.29=1.161≈1.15`）；震峰 `mv_duanfengzhang_zhenfeng`（绝招；`ultimate:true`；`rageCost:100`；L7，`aoe_cone {r:2,angle:60,dirCount:6}`，**2.35**，8%/0/1200，击退1；`3.00×.80−.05=2.35`）。
 - 被动：刚掌 `ps_duanfengzhang_gangzhang`（本武学 Z2 穿透 +4%→10%）；断势 `ps_duanfengzhang_duanshi`（击退后目标获 `bf_shiheng`，每回合一次）。获取：铁掌帮 L3；神雕慈恩羁绊 `maxLayer:8`。
 
 ### 8.7 黄阶总表（6 门；含既有 2 门索引、新增 4 门）
@@ -2505,7 +2505,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 
 **字段**｜`origin:expanded`；`sect:sect_jiangnanqiguai`；`nature:yang`；`wOut/wIn:0/1`；`sourceChapters:[ch02_shediao,ch03_shendiao]`；`reqs:{attrs:{con:35,str:32},aptitude:{apInner:32},prereq:[{skill:sk_xiaomituozhuang,layer:4}],sect:{id:sect_jiangnanqiguai,rank:3},hard:[sect,prereq]}`；`inner.contribution:{mpMaxPct:20,hpMaxPct:12,attrs:{con:5,str:3},mpRegen:1.8,stats:{defOut:5,resInjury:5}}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_dumai,mer_shouyangming]`；`setTags:[]`。
 
-- 招式：架臂 `mv_tiebifangshen_jiabi`（L2，自身，6%/3，`bf_tiebi`2）；舍身 `mv_tiebifangshen_sheshen`（L6，自身，7%/4，`bf_yuanhu`2、`bf_jiangu`1）；均 `power:0`。
+- 招式：架臂 `mv_tiebifangshen_jiabi`（L2，自身，6%/3，`bf_tiebi`2，`power:0`）；舍身 `mv_tiebifangshen_sheshen`（绝招；`ultimate:true`；`rageCost:100`；L7，自身，8%/0/1200，`bf_yuanhu`2、`bf_jiangu`1，`power:0`；支援绝招不走伤害倍率）。
 - 被动：笑弥陀 `ps_tiebifangshen_xiaomituo`（外功减伤 +4%→10%）；护徒 `ps_tiebifangshen_hutu`（相邻友方低血时自身 tough +5）。获取：张阿生传授窗口；神雕柯镇恶整理遗法 `maxLayer:6`。
 
 ### 9.4 黄阶总表（8 门；含既有 2 门索引、新增 6 门）
@@ -2567,7 +2567,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 鱼鳞阵 `mv_wumuyishu_yulin` | 1 | `aoe_allies r2` | 0 | 7%/3/1000 | 友方 `bf_jiangu` 2 | — | 支援 |
 | 奇正相生 `mv_wumuyishu_qizheng` | 3 | `aoe_allies r2` | 0 | 7%/3/1000 | 友方 `bf_zhuiji` 2 | — | 支援 |
 | 背嵬冲阵 `mv_wumuyishu_beiwei`（"背嵬军"为岳家军精锐，史实） | 5 | `aoe_allies r2` | 0 | 8%/4/1000 | 友方 `bf_ruiyi` 2、`bf_jixing` 1 | — | 支援 |
-| **撼山易** `mv_wumuyishu_hanshan`（绝招，取"撼山易，撼岳家军难"，史实语） | 7 | `aoe_ally_all` | 0 | 9%/—/1200 | 本方全体 `bf_mian_kong` 1、`bf_jiangu` 2、`bf_juqi` 2 | — | 支援绝招 |
+| **撼山易** `mv_wumuyishu_hanshan`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招，取"撼山易，撼岳家军难"，史实语） | 7 | `aoe_ally_all` | 0 | 9%/0/1200 | 本方全体 `bf_mian_kong` 1、`bf_jiangu` 2、`bf_juqi` 2 | — | 支援绝招 |
 | 以逸待劳 `mv_wumuyishu_yiyi` | 8 | `aoe_field side enemy` | 0 | 9%/5/1000 | 敌方全体 `bf_chihuan` 100% | — | 纯控制 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -2600,7 +2600,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 直刺 `mv_lihuaqiang_zhici` | 1 | `aoe_pierce` · 1–2 | 0.90 | 7%/0/1000 | — | 可 | 0.90 |
 | 梨花喷雪 `mv_lihuaqiang_penxue` | 3 | `aoe_cone {r:2,angle:60,dirCount:6}` · 远程 | 0.90 | 8%/3/1000 | `bf_zhuoshao` 60%；`terrainFx {ignite: [tr_caodi]}` | 可 | N=4、AF=0.80；0.80×1.41×0.85−0.06=0.90 |
 | 二十年 `mv_lihuaqiang_ershinian` | 5 | 单体 · 1–2；`condition {selfNotHitThisBattle: true}` | 1.60 | 8%/2/1000 | — | 可 | 1+0.24+0.05+0.30 |
-| **天下无敌手** `mv_lihuaqiang_wudishou`（绝招，原创扩展命名） | 7 | `aoe_line n4` · 1–4 | 2.15 | 9%/—/1200 | `bf_zhuoshao` 100% | 可 | 3.00×0.75−0.10 |
+| **天下无敌手** `mv_lihuaqiang_wudishou`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招，原创扩展命名） | 7 | `aoe_line n4` · 1–4 | 2.15 | 9%/0/1200 | `bf_zhuoshao` 100% | 可 | 3.00×0.75−0.10 |
 | 拒马 `mv_lihuaqiang_juma` | 8 | 自身架势 | 0 | 6%/2/850 | 自身 `bf_jieji` 2（06：长枪拒马） | — | 架势招式 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -2619,7 +2619,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 拦 `mv_yangjiaqiangfa_lan` | 1 | 单体·1–2 | 1.00 | 6%/0/1000 | — | 可 | 1.00 |
 | 拿 `mv_yangjiaqiangfa_na` | 1 | 单体·1–2 | 1.10 | 6%/1/1000 | `bf_jiaoxie` 20%（targetArmed） | 可 | 1.12−0.04 |
 | 扎 `mv_yangjiaqiangfa_zha` | 3 | `aoe_pierce`·1–2 | 1.05 | 7%/1/1000 | — | 可 | 0.90×1.17 |
-| 回马枪 `mv_yangjiaqiangfa_huima` | 5 | 自身架势 | 0 | 6%/2/800 | 后撤 1；`stanceCounter {counterPower 1.3, expires: nextOwnAction}` | — | 架势招式 |
+| 回马枪 `mv_yangjiaqiangfa_huima`（绝招；`ultimate:true`；`rageCost:100`） | 7 | 自身架势 | 0 | 8%/0/1200 | 后撤 1；`stanceCounter {counterPower 1.3, expires: nextOwnAction}` | — | 无直接伤害架势绝招不走伤害倍率；反击倍率保持 1.3 |
 | 枪挑 `mv_yangjiaqiangfa_tiao` | 7 | 单体·1–2 | 1.20 | 7%/2/1000 | 击退 2 | 可 | 1.29−0.10 |
 
 被动：`ps_yangjiaqiangfa_jiafeng` 忠烈家风（1，stat：`resMind` +[3, 8] pp）；`ps_yangjiaqiangfa_huima` 回马（5，stat Z3：回马枪反击 +10%）；`ps_yangjiaqiangfa_dacheng` 大成（10，stat Z3：对以突进（`aoe_dash`）接近自身的敌人，本回合反击与攻击 +10%）。
@@ -2716,7 +2716,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 连珠箭 `mv_zhebiejianshu_lianzhu` | 1 | `aoe_bolt` · 1–7（3 段） | 1.20 | 8%/2/1000 | — | 可 | 1.29×0.92 |
 | 穿杨 `mv_zhebiejianshu_chuanyang` | 3 | `aoe_pierce` · 1–7 · 投射 | 0.95 | 7%/1/1000 | — | 可 | 0.90×1.12×0.92 |
 | 射雕手 `mv_zhebiejianshu_shediao` | 5 | `aoe_bolt` · 1–8；`condition {targetHeightAboveSelf: 2}` | 1.45 | 8%/2/1000 | — | 可 | (1+0.24+0.05+0.30)×0.92 |
-| **一箭双雕** `mv_zhebiejianshu_yijianshuangdiao`（绝招） | 7 | `aoe_chain n1` · 1–8 · 投射 | 2.20（跳段 ×0.8） | 9%/—/1200 | — | 可 | 3.00×0.80×0.92 |
+| **一箭双雕** `mv_zhebiejianshu_yijianshuangdiao`（`ultimate:true`、`rageCost:100`、`mpCost:9%`、`cd:0`、`recovery:1200`）（绝招） | 7 | `aoe_chain n1` · 1–8 · 投射 | 2.20（跳段 ×0.8） | 9%/0/1200 | — | 可 | 3.00×0.80×0.92 |
 | 骑射 `mv_zhebiejianshu_qishe` | 8 | `aoe_bolt` · 1–6 | 1.10 | 8%/2/1000 | 射后后撤 2 | 可 | 1.29×0.92−0.10 |
 
 | 被动 ID | 名称 | 重 | 类 | 乘区 | 数值 | 说明 |
@@ -2735,7 +2735,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 折扇点穴 `mv_huodushanfa_dianxue` | 1 | 单体·1 | 1.05 | 6%/1/1000 | `bf_fengxue` 25% 1 | 可 | 1.12−0.05 |
 | 扇底藏针 `mv_huodushanfa_cangzhen` | 3 | `aoe_bolt`·1–4·投射 | 1.15 | 7%/2/1000 | `bf_zhongdu` 50% | 可 | 1.29×0.92−0.05 |
 | 扇风迷眼 `mv_huodushanfa_shanfeng` | 5 | `aoe_cone {r:2,angle:60,dirCount:6}`·远程 | 0.70 | 6%/1/1000 | `bf_muxuan` 50% | 可 | N=4、AF=0.80；0.80×1.12×0.85−0.05=0.71≈0.70 |
-| 暗算 `mv_huodushanfa_ansuan` | 7 | 单体·1；`condition {fromBehind: true}` | 1.60 | 7%/2/1000 | — | 可 | 1+0.24+0.05+0.30 |
+| 暗算 `mv_huodushanfa_ansuan`（绝招；`ultimate:true`；`rageCost:100`） | 7 | 单体·1；`condition {fromBehind: true}` | 3.30 | 8%/0/1200 | — | 可 | `3.00+0.30=3.30` |
 
 被动：`ps_huodushanfa_yinxian` 阴险（1，stat Z0：战斗首回合本武学暴击 +[5, 10]）；`ps_huodushanfa_wangzi` 王子骄横（5，stat Z3：对气血 < 50% 的目标 +8%）；`ps_huodushanfa_dacheng` 大成（10，mechanic：扇底藏针所附 `bf_zhongdu` 改为 `bf_judu`）。
 
@@ -2746,7 +2746,7 @@ AR-02 审校结果：扩充前 10 门与本轮新增 19 门内功均显式填写
 | 哭丧 `mv_kusangbangfa_kusang` | 1 | 单体·1–2 | 1.00 | 6%/0/1000 | `bf_zhenshe` 20% | 可 | 1−0.02 |
 | 毒砂 `mv_kusangbangfa_dusha` | 3 | `aoe_cone {r:2,angle:60,dirCount:6}`·远程 | 0.85 | 7%/3/1000 | `bf_zhongdu` 60%；`bf_shimang` 20% 1 | 可 | N=4、AF=0.80；0.80×1.41×0.85−0.06−0.02=0.88≈0.85 |
 | 僵尸跳 `mv_kusangbangfa_jiangshi` | 5 | `aoe_leap`·1–3 | 1.05 | 7%/2/1000 | 跳斩 | 可 | 0.90×1.29−0.10 |
-| 招魂 `mv_kusangbangfa_zhaohun` | 7 | 单体·1–2 | 1.25 | 7%/2/1000 | `bf_kongju` 20% 1 | 可 | 1.29−0.05 |
+| 招魂 `mv_kusangbangfa_zhaohun`（绝招；`ultimate:true`；`rageCost:100`） | 7 | 单体·1–2 | 2.95 | 8%/0/1200 | `bf_kongju` 20% 1 | 可 | `3.00−0.25×0.20=2.95` |
 
 被动：`ps_kusangbangfa_jiangshi` 僵直（1，stat：`resCC` +[4, 10] pp）；`ps_kusangbangfa_yinqi` 阴气（5，stat Z3：对气血 < 30% 的目标 +10%）；`ps_kusangbangfa_dacheng` 诈尸（10，trigger `battleStart`：自身获得 `bf_zhasi` ×1）。
 
@@ -2983,7 +2983,7 @@ F2 应以当前 §0.2 口径对扩充前其余招式再做全量机械复算；�
 
 ### 14.5 各阶绝招数量（AR-14h）
 
-本表以 §0.12 的 `ultimate:true` 最终覆写为准；“调整前”是 NC2 完成逐招路线后每门天 / 地阶各 1 记、玄上 0 记的状态。
+本表按正文卡的 `MoveDef.ultimate:true` 聚合，并与 §0.8–§0.9、§0.12 的路线镜像逐项互校（V-M01）；“调整前”是 NC2 完成逐招路线后每门天 / 地阶各 1 记、玄上 0 记的状态。
 
 | 品阶 | 武学门数 | 调整前绝招 | 调整后绝招 | 配额核对 |
 |---|---:|---:|---:|---|
@@ -2997,7 +2997,7 @@ F2 应以当前 §0.2 口径对扩充前其余招式再做全量机械复算；�
 | **地阶小计** | **23** | **23** | **29** | 新增标记 6 |
 | **玄上（6）** | **27** | **0** | **27** | 每门 1 |
 | 玄中 / 玄下 / 黄阶（1–5） | 119 | 0 | 0 | 规则要求 0 |
-| **合计（受 AR-14h 约束）** | **63** | **36** | **85** | 新增标记 47；新增路线 ID 27 |
+| **合计（受 AR-14h 约束）** | **63** | **36** | **85** | 共新增 49 个标记；降龙 2 记由 `design/05` §13.1 定义、路线引用 `design/21` §12.1；本册 §0.12 逐行新增 47 记（复用 20 条已有 `mfr_*`、新增 27 条） |
 
 全部新增标记均从本门既有 `mv_*` 中升格，未新造招名或招式 ID；82 条路线在本册 §0.12 显式定义，降龙十八掌 3 条路线引用 `design/21` §12.1，故最终 85 记绝招均有独立路线。
 
@@ -3119,7 +3119,7 @@ F2 应以当前 §0.2 口径对扩充前其余招式再做全量机械复算；�
 | V-S10 | ID / Markdown | 本文定义 `sk_*` 182 个且无重复；全文具体 `mv_*` 475、`ps_*` 350；75 门黄阶均进入八列表；表格列数一致、代码围栏成对，无未完成占位 |
 | V-S11 | 新增 ID 差集 | 相对扩充前新增 `sk_*` 99、`mv_*` 111、`ps_*` 86、`set_*` 5；旧具体 ID 删除数均为 0 |
 | V-S12 | 书界装配 | §13.1 逐界列本组内/拳/兵计数；不足界引用 `skills-general` §11.1 的 `ALL14` 三内、三拳、三门同类剑底座 |
-| WJ-ULT-01 | 按 §0.12 的 `ultimate:true` 覆写按品阶聚合 | 天 13 门、绝招 `13→29`；地 23 门、`23→29`；玄上 27 门、`0→27`；玄中以下 0 |
+| WJ-ULT-01 | 按正文卡 `MoveDef.ultimate:true` 聚合，并与 §0.8–§0.9、§0.12 镜像比对 | 天 13 门、绝招 `13→29`；地 23 门、`23→29`；玄上 27 门、`0→27`；玄中以下 0；三处集合相同 |
 | WJ-ULT-02 | §0.12 每个最终绝招的资源与路线 | 气势 100、`cd:0`、收招 1200；本册独立 `mfr_*` 82 条并引用降龙 3 条，段数 6–10、单段 65–95 CT、总时长 ≤2000 CT，穴位不重复 |
 | V-M01 | §0.8–§0.9 与 36 门天 / 地阶正文卡逐门比对 | 36 / 36 门、232 / 232 个既有 `mv_*` 均恰有路线；每门至少一个 `ultimate:true`，且 `route.ultimate == MoveDef.ultimate` |
 | V-M02 | §0.7 的玄 / 黄模板实例化 | 每个需要运气的招式生成稳定 `mfr_*`；模板名不得进入 Core；一招至多一条主路线，攻击 / 防守 / movement 不共用万能路线 |
