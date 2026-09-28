@@ -2,10 +2,10 @@
 
 > 归属（基准 §18）：属性的定义、取值范围、成长曲线、派生公式与叠加顺序。
 > 上游：`00-canon.md` v1.2；`decisions/author-decisions.md`；`decisions/author-requirements.md`；跨文档裁定见 `decisions/rulings-v1.md`。
-> 引用而不重定义：伤害、治疗与 Z0–Z10 → `design/04-damage-formula.md`；武功层数、内功相性与左右互搏 → `design/05-martial-arts-system.md`；Buff 目录、持续类型与跨战清理 → `design/06-buff-system.md`；套装 → `design/07-set-system.md`；六角地形、轻功门禁与水性行为 → `design/08-terrain-and-qinggong.md`；集气、首轮排序、移动点与战后流程 → `design/09-combat-system.md`；装备数值与合法名录 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务与门派层级 → `design/12-quests-npc-factions.md`；经验、`expFp`、修为余韵、终局与天书之力 → `design/13-progression-and-endings.md`；冲穴、经脉、周天与九转 → `design/15-meridians-and-acupoints.md`；资源、家丁与营生 → `design/16-resources-and-estates.md`；门派历史、称谓与时代矩阵 → `design/17-sects-compendium.md`；NPC 与跨书界同伴 → `design/18-npc-and-companions.md`；地图坐标、区域、城市与路线数据 → `design/19-world-map.md`；后人、宝藏、残本与合成 → `design/20`。
+> 引用而不重定义：伤害、治疗与 Z0–Z10 → `design/04-damage-formula.md`；武功层数、内功相性与左右互搏 → `design/05-martial-arts-system.md`；Buff 目录、持续类型与跨战清理 → `design/06-buff-system.md`；套装 → `design/07-set-system.md`；六角地形、轻功门禁与水性行为 → `design/08-terrain-and-qinggong.md`；集气、首轮排序、移动点与战后流程 → `design/09-combat-system.md`；装备数值与合法名录 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务与门派层级 → `design/12-quests-npc-factions.md`；经验、`expFp`、修为余韵、终局与天书之力 → `design/13-progression-and-endings.md`；冲穴、经脉、周天与九转 → `design/15-meridians-and-acupoints.md`；资源、家丁与营生 → `design/16-resources-and-estates.md`；门派历史、称谓与时代矩阵 → `design/17-sects-compendium.md`；NPC 与跨书界同伴 → `design/18-npc-and-companions.md`；地图坐标、区域、城市与路线数据 → `design/19-world-map.md`；后人、宝藏、残本与合成 → `design/20`；战斗经脉动态、攻 / 防 / 轻功路线、护体内劲与经脉模拟模块 → `design/21`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他归属文档、先给出可用数值并在文末登记。
 
-> 版本：v1.2（跨文档同步、全局审计，2026-09-26）。
+> 版本：v1.2（跨文档同步、全局审计，2026-09-26）；经脉系统落地（2026-09-27）。
 
 ---
 
@@ -620,7 +620,23 @@ spd      = clamp(⌊(Base_spd + Σflat_spd) × max(0.2, 1 + Σpct_spd) × Πmult
 
 `qinggong` 已包含身法、显示等级、轻功武学、轻功资质、鞋、主运内功与负重；上式仍给 `agi` / `Ld` 较小的独立权重，以免脱卸轻功后速度完全坍缩，但**不得**再把 `Q_skill` 或 `Q_agi/Q_lv` 分项重复加入。速度修饰通过 `flat` / `pct` / `mult` 管线进入；完整乘算后只在末尾向下取整。“停止集气”不把速度改成 0，而由 09 冻结时间轴。
 
-本文只输出最终整数 `spd`。开战首轮按 `effectiveQinggong → spd → agi → openingPriority → initiativeSideRank → unitIndex` 固定排序，不抽随机 `CT0`；其后每 tick 集气、行动阈值、收招与同 tick 裁决均由 `design/09` §3 定义。参考：合法 STD `spd` 为 91（Lv1）/ 106（Lv35）/ 126（Lv70）。Lv35 用未取整 `agi=58.576`、未取整 `qinggong=97.794`，得 `floor(72+0.30×58.576+0.10×35+0.14×97.794)=106`；Lv70 的普通鞋受 `gGear=min(gref,9)` 限制，`qinggong=193.7975`，故 `floor(72+0.30×69.35+0.10×70+0.14×193.7975)=floor(126.93665)=126`。不能用未封顶的 11 品普通鞋把轻功写成 198.7975 后反推出 127。
+本文只输出属性快照中的最终整数 `spd`，交给 21 时语义名为 `baseSpd`；它不是把战斗经脉状态写回属性表后的值。开战前先按本节完成属性取整，随后 `design/21` §4.9 才可读取 `baseSpd` 并投影战斗速度。参考：合法 STD `baseSpd` 为 91（Lv1）/ 106（Lv35）/ 126（Lv70）。Lv35 用未取整 `agi=58.576`、未取整 `qinggong=97.794`，得 `floor(72+0.30×58.576+0.10×35+0.14×97.794)=106`；Lv70 的普通鞋受 `gGear=min(gref,9)` 限制，`qinggong=193.7975`，故 `floor(72+0.30×69.35+0.10×70+0.14×193.7975)=floor(126.93665)=126`。不能用未封顶的 11 品普通鞋把轻功写成 198.7975 后反推出 127。
+
+AR-14 的战斗速度接线固定为：
+
+```text
+属性快照：effectiveQinggong = roundHalfUp(qinggong)，baseSpd = spd，baseMove = 09 的合法移动点
+21 输出：combinedSpeedBp = floor(meridianSpeedBp × grappleMoveBp / 10000)
+         openingQinggong = floor(effectiveQinggong × combinedSpeedBp / 10000)
+         spd' = clamp(floor(baseSpd × combinedSpeedBp / 10000), 30, 300)
+         move' / evadeRatingDelta 见 design/21 §4.9
+```
+
+首轮接口的 `effectiveQinggong` 是 §0.3 最终显示边界的 half-up 整数；`baseSpd` 仍须先用未取整轻功完成本节公式，禁止把该整数倒灌重算速度。上框只是 `design/21` §4.9 的接线镜像：其 TypeScript 结果字段实际名为 `openingQinggong/spd/move/evadeRatingDelta`，其中正文记号 `spd'`、`move'` 分别对应字段 `spd`、`move`，不得把撇号写进 schema。
+
+`meridianSpeedBp` 是 21 以已含同路线 STD 归一完成质量的 `MeridianProfile` 直接查曲线所得，标准 10000 bp、硬界 6500–13500 bp；不得把原始 `routeQualityBp` 再混合一次。擒拿在经脉之后进入 `combinedSpeedBp`；其独立 `evadeBp` 由 04 / 06 另结算一次，故 `evadeRatingDelta` 只反映经脉速度，不能同时包含擒拿。
+
+开战首轮由 09 按冻结的 `openingQinggong → MeridianSpeedResult.spd → agi → openingPriority → initiativeSideRank → unitIndex` 排序，不抽随机 `CT0`；战中点穴、胀损、调息或擒拿只使后续 CT / 移动投影变脏，不回溯首轮。其后每 tick 集气、行动阈值、收招、移动力和同 tick 裁决仍由 `design/09` §3 定义。
 
 ### 4.4 移动力 `mov` 与跳跃 `jump`
 
@@ -629,10 +645,11 @@ jump = clamp(qgTier(qinggong) + Σflat_jump, 0, 6)
 qgTier(q) = 0 (q<20) | 1 (≥20) | 2 (≥50) | 3 (≥90) | 4 (≥140) | 5 (≥200)      // 基准 §11
 ```
 
-`mov` 是 09 在行动开始时计算并回写的**六角移动点结果**，本文不再给方格时代的基础公式或 1–8 上限。03 向 09 提供：最终 `qinggong` / `qgTier`、`sta` / `staMax`、`Q_load`、装备与 Buff 汇总出的 `flat_mov` / `pct_mov` / `set_mov`，以及疲惫等状态标签；六邻距离、地形消耗、移动点钳制和覆写优先级见 `design/09`。这也意味着 `agi` 只能先进入 `qinggong`，不能再独立增加移动点。
+`mov` 是 09 在行动开始时计算并回写的**六角基础移动点结果**，供 21 称作 `baseMove`；本文不再给方格时代的基础公式或 1–8 上限。03 向 09 提供：最终 `qinggong` / `qgTier`、`sta` / `staMax`、`Q_load`、装备与 Buff 汇总出的 `flat_mov` / `pct_mov` / `set_mov`，以及疲惫等状态标签；21 再输出 `MeridianSpeedResult.move`（正文记作 `move'`），其 `moveDelta∈[-2,+2]` 且结果钳于 1–10，精确式只见 `design/21` §4.9。六邻距离、地形消耗、移动点钳制和覆写优先级见 `design/09`。这也意味着 `agi` 只能先进入 `qinggong`，不能再独立增加移动点。
 
 - `jump` 只决定**六角战斗地图中单步可跃上的高度差**与**可跨越的沟宽**；平面距离一律用六角距离。台阶、坡道类地形不受 `jump` 限制；下跳免伤高度、跨越消耗等由 `design/08` 定义。
 - 探索中的地形门禁判 `qgTier(qinggong)`（**含** `qinggong` 的临时加值——丹药/Buff 是合法钥匙，见 §11.5）；`jump` 自身的 flat 加值只在战斗网格中生效。
+- 21 的 `openingQinggong` / `meridianSpeedBp` 只服务战斗首轮、CT、移动与闪避投影；08 的 20 / 50 / 90 / 140 / 200 门禁、`qgTier`、`jump` 与逐格地形成本始终读取本节未乘经脉速度的 `qinggong`，不能靠临时行气越级。
 
 ### 4.5 轻功值 `qinggong`（完整公式）
 
@@ -779,6 +796,14 @@ mpMax = ( MP_LV(Ld) × max(0.5, 1 + 0.006 × (wil − 50) + 0.004 × (con − 50
 **内力回复**：每次自身行动开始时 `mp += floor(真实 mpMax × mpRegen / 100)`，不超过 `mpMax`（§4.8）；封内等暂停回复的状态由 `design/06` 定义。“运功调息”行动的调息分支已由 `design/09` §4.8.4 定稿：立即恢复 15% `mpMax`，本行动未移动再恢复 5%。
 
 **永久内力加成**：丹药与"传功"（05 §8 `inherit`，如无崖子传功虚竹）给予的永久 `mpMax` 加成，数值**【建议值】**：传功者主运天级 +12%、地级 +8%、玄级 +4%；与丹药共用"永久 `mpMax` pct ≤ +40%"的上限（§5.1）。
+
+**给经脉模拟的内力接口**：21 只读取结算后的 `mpMax`、当前 `mp` 与同显示等级 `MPREF(Ld)=STD(Ld).mpMax`，不得把 §3.4 的单门内功 `mpMaxPct` 再加一次。初始化比例为：
+
+```text
+mpRatioBp = clamp(floor(mpMax × 10000 / MPREF(Ld)), 5000, 20000)
+```
+
+该比值只供 `design/21` §2.3 用整数平方根换算节点容量；`capacity` 不是 `mpMax` 副本，也不是本文的新属性。21 的起始气量 / 逐段注水同样是无量纲运行量，不再从 `mp` 扣除。只有护体内劲结算会读取 `currentMp` 并按 21 §4.8 的 `1 内力抵 2 伤害` 实际扣费；其结果发生在护体真气之后、既有 `mpGuard` 之前，不能回写 `mpMax` 或 `atkIn/defIn`。
 
 ### 5.3 体力 `sta`
 
@@ -1364,7 +1389,7 @@ bossUnit = roundHalfUp(30,221.8001068032 × 7 × 1.35)
 | ⑧ | 覆写 | 机制类 `override`（如"`resCC` 视为 75"、"`hpMax` 锁定为施加时的值"）最后生效，多个覆写取最新施加者；"停止集气"不用覆写实现（§11.5 #3） |
 
 - `floor_S`：MAG/RAT 为 0.2（即任何减益叠加最多把属性压到 20%）；资源上限 `hpMax`/`mpMax` 同为 0.2。
-- 与伤害乘区的关系：本管线产出的是**面板属性**。"伤害 +X%"进 Z3、"受到伤害 −X%"进 Z4、"对某类兵器伤害"进 Z5，均**不是属性修饰**，由 design/04 汇总；数据中以 `target: 'dmgUp' | 'dmgDown' | ...` 区分于 `target: StatId`。
+- 与伤害乘区的关系：本管线产出的是**面板属性**。"伤害 +X%"进 Z3、"受到伤害 −X%"进 Z4、"对某类兵器伤害"进 Z5，均**不是属性修饰**，由 design/04 汇总；AR-14 的 `Z4M / meridianDefense` 与 `Z5M / meridianAttack` 也不是 `StatModifier.mult`，只可由 `design/21` 的双方战斗 Profile 输出。数据中以 `target: 'dmgUp' | 'dmgDown' | ...` 区分于 `target: StatId`。
 - **实例唯一**：以 `(sourceType, sourceId, modifierId)` 为修饰器唯一键；同键重复输入只生效一次，不同 `modifierId` 可让同一装备、武学或 Buff 合法修改多个属性。Buff 的刷新/叠层/独立/取高由 design/06 在展开修饰器前处理。
 
 示例（`atkOut`，Lv50，`str` 70）：
@@ -1435,9 +1460,27 @@ interface CharacterStatsInput {
 }
 
 declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯函数、确定性、可在 Worker 运行
+
+interface MeridianAttributeInput {
+  currentMp: number;
+  mpMax: number;
+  mpRatioBp: number;           // 21 输入；由 mpMax 与 MPREF(displayLevel) 求得
+  innerNature: 'yang'|'yin'|'harmony';
+  effectiveQinggong: number;   // half-up 后；未乘 21 经脉速度
+  baseSpd: number;             // 本文最终整数 spd
+  baseMove: number;            // 09 已算出的基础移动点
+  apInner: number;
+  apGrapple: number;
+  str: number; agi: number; wil: number;
+}
+
+declare function toMeridianAttributeInput(
+  stats: StatSheet, displayLevel: number, baseMove: number
+): MeridianAttributeInput;
 ```
 
 公式中的 `Lr = input.progression.realLevel`；`expFp` 不进入任一属性公式，但必须随同一不可变成长快照读取，避免升级边界上把新等级与旧级内经验拼成不可能状态。
+`toMeridianAttributeInput` 只是稳定传值适配器：`mpRatioBp` 必须以 §5.2 的 21 口径现场读取 `MPREF(displayLevel)` 后求得；`innerNature` 是 `StatSheet.mpNature` 的跨模块语义名；`effectiveQinggong` 取属性管线最终 half-up 整数；`baseSpd` 取本文整数 `spd`；`baseMove` 取 09 同快照的移动点。其余字段也必须来自该不可变快照。它不运行路线、不读取点穴 / 擒拿、不生成 `meridianAttackBp/meridianDefenseBp/meridianSpeedBp`，也不把 21 的 `MeridianSpeedResult.spd` 回灌 `StatSheet.spd`。
 
 ### 11.4 重算时机
 
@@ -1445,6 +1488,7 @@ declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯�
 |---|---|
 | 书眠进入新书界、`Lr` 升级、装配/装备变化、修为分配变化 | 全量重算 |
 | 战斗中 Buff 施加/移除/叠层变化 | 标脏受影响属性及其下游（按 §1.2 DAG），在**下一次读取前**增量重算 |
+| 属性重算导致 `mpMax/mpNature/qinggong/spd` 改变 | 先完成属性快照，再标脏 21 的容量 / 流畅度或速度投影；保留其迟滞、堆积、胀损和点穴，不从旧 `spd'` 反推新 `spd` |
 | 条件修饰（`cond`，如"气血低于 30% 时 +20% 攻击"） | 在每次自身行动开始、每次受击结算后重新求值条件 |
 | 伤害结算 | 读取**招式开始结算那一刻**的属性快照；同一招式多段伤害共用该快照 |
 
@@ -1474,6 +1518,9 @@ declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯�
 | AR-01 武学数量比例 | 属性公式只消费武学的 `g_eff`、`layer_eff`、类别和贡献，不把目录数量写入属性预算 | 武学总量与品阶分布见 `design/05` 与各 catalog |
 | AR-02 阴 / 阳 / 调和 | `mpNature` 取值 `yang` / `yin` / `harmony`；未装主运时按调和枚举显示但相性加成为 0（§5.2、§11.5） | 每门内功的 `nature`、相性、走火风险归 `design/05`；Z5 归 `design/04` |
 | AR-03 冲穴 | 接受 `sourceType:'meridian'` 的普通 `StatModifier`；全部结果仍受本文属性范围与叠加顺序约束 | 穴道、经脉、通脉、小/大周天、十二经周流、九转和冲穴速率归 `design/15` |
+| AR-14 经脉攻防 | 向 21 提供同一快照的 `currentMp/mpMax/mpRatioBp`、`innerNature`、`apInner/apGrapple`、`str/agi/wil`；前四项分别由本文 `mp/mpMax/MPREF(Ld)/mpNature` 映射。21 返回 `meridianAttackBp/meridianDefenseBp` 给 04，不进入属性 `mult` | 气量 / 容量 / 流畅度、双方 Profile、独立乘区与取整见 `design/21` §2–§4；伤害链落位见 `design/04` |
+| AR-14 护体内劲 | 本文只提供当前 `mp` 与 `mpMax`；21 的 `InnerGuardResult` 实扣 `mpSpent`，输出 `damageBeforeMpGuard`，不得改名为 `hpDamage` | 类别适用率、容量、击穿迟滞与 1 内力抵 2 伤害见 `design/21` §4.8；最终 settle 归 `design/04` |
+| AR-14 经脉速度 | 本文提供未修正且 half-up 的 `effectiveQinggong` 与整数 `baseSpd`，09 提供 `baseMove`；21 输出 `openingQinggong/spd/move/evadeRatingDelta`。面板与 08 门禁仍读未乘经脉速度的 `qinggong` | 路线 Profile、6500–13500 bp 曲线及先经脉后擒拿见 `design/21` §4.9；首轮 / CT / 移动见 `design/09` |
 | AR-04 / AR-11 大地图与时代图层 | 对检定只输出 `Ld`、先天、技艺、`qinggong`、`sta/staMax` 等稳定属性；不建立地图坐标或时代表 | 世界结构归 `design/11`，地图数据与绘制归 `design/19` / `design/map/*` |
 | AR-05 / AR-06 资源与营生 | 16 可读取等级、武学品阶、技艺、声望与品德作产出/任职检定；资源品阶不得冒充武学 `g` 或属性 `grade` | 资源点、家丁、库存、赌场/镖局/山庄、职位与收益归 `design/16`，任务接口归 `design/12` |
 | AR-07 / AR-08 门派层级与资料 | `sourceType:'sect'` 只承接归属文档明确输出的属性项；书眠后的身份存续由门派系统决定 | 五级结构归 `design/12`，门派称谓、历史和开放矩阵归 `design/17` |
@@ -1502,7 +1549,11 @@ declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯�
 | `seal` | 拿穴 pp | §4.6 | 0–100 |
 | `counter` `combo` | 反击 / 连击 pp | §4.6 | 0–60 / 0–50 |
 | `healPower` `healRecv` | 治疗 / 受疗 pp | §4.7 | 0–300 / 0–200 |
-| `spd` | 属性层输出的速度；集气与首轮排序由 09 消费 | §4.3 | 30–300 |
+| `spd` | 属性层输出的基础速度（21 语义名 `baseSpd`）；经脉战斗投影后由 09 消费结果字段 `spd` | §4.3 | 30–300 |
+| `MeridianAttributeInput` | 供 21 初始化 / 投影读取的同快照属性子集；字段用 21 的消费语义，不含战斗经脉输出 | §5.2、§11.3 | `currentMp/mpMax/mpRatioBp/innerNature/effectiveQinggong/baseSpd/baseMove/apInner/apGrapple/str/agi/wil` |
+| `openingQinggong`、`spd'`、`move'` | 21 在基础属性之上的战斗投影；撇号是正文记号，schema 字段为 `openingQinggong/spd/move`，均不写回 `StatSheet` | §4.3–§4.4；21 §4.9、§12.3 | 轻功 / 速度由 6500–13500 bp 修正；`spd'` 仍钳 30–300，`move'` 1–10 |
+| `meridianAttackBp`、`meridianDefenseBp` | 21 输出给 04 的独立攻 / 防乘区；不是 `mult` 修饰 | 21 §3.5、§4.4 | 攻 6500–22000；防 5000–13000；标准均 10000 |
+| `damageBeforeMpGuard` | 护体内劲后、既有 `mpGuard` 前的剩余伤害；不是实际气血伤害 | 21 §4.8 | 0 至护体真气后的伤害 |
 | `mov`、`jump` | 六角移动点结果（09 主定义）/ 跃高 | §4.4 | `mov` 由 09 按场景钳制；`jump` 0–6 |
 | `qinggong`、`qgTier` | 轻功值、轻功境界 | §4.5 | 0–300（实际多在 0–220）、0–5 |
 | `hpMax` `mpMax` `staMax` `shieldMax` | 资源上限 | §5 | — |
@@ -1562,6 +1613,11 @@ declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯�
 | 越级 Boss | 规则 | 敌人等级可高于书界上限（≤ +6） | §10.1 |
 | `template` / `full` | 敌人生成方式 | | §10.1 |
 | `StatModifier` `CharacterStatsInput` `computeStats` | 代码接口 | | §11.3 |
+| `MeridianAttributeInput` | 代码接口 | 从一个已完成的属性快照向 21 传基础内力、轻功、速度及检定属性；不承载 21 的动态节点态 | §5.2、§11.3 |
+| `baseSpd` / `baseMove` | 跨模块语义别名 | 分别是本文 `spd` 与 09 移动力在 21 修正前的值；不是新 `StatId` | §4.3–§4.4 |
+| `openingQinggong` / `spd'` / `move'` | 引用字段 | 21 输出的战斗投影；实际 schema 键为 `openingQinggong/spd/move`，只供 09 首轮、CT 和移动，不写回面板 | §4.3–§4.4；21 §4.9、§12.3 |
+| `meridianAttackBp` / `meridianDefenseBp` / `meridianSpeedBp` | 引用字段 | 21 唯一定义的攻、防、速度经脉修正；不是属性 `mult` | §11.6；21 §3.5、§4.9 |
+| `damageBeforeMpGuard` | 引用字段 | 21 护体内劲结算后的剩余伤害，继续交既有 `mpGuard`；不是 `hpDamage` | §11.6；21 §4.8 |
 
 ### 13.1 本文引用、但不定义的现有 ID
 
@@ -1573,6 +1629,8 @@ declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯�
 | `bf_tsp_xianying` | 临时解除外来品阶压制并放开书界层数上限 | `design/06`、`design/13`；本文 §9.1 |
 | `bf_tsp_xianying_fin` | 终局 Z3/Z4 效果，不进入属性 `mult` | `design/06`、`design/13`；本文 §9.1 |
 | `bf_tsp_weiguang` | 武学/装备各抵消 1 小品，仍受半额压制下限 | `design/06`、`design/13`；本文 §9.1 |
+
+`openingQinggong`、`meridianAttackBp`、`meridianDefenseBp`、`meridianSpeedBp` 与 `damageBeforeMpGuard` 是 21 的 schema 字段而非全局内容 ID，因此不使用 `tal_*`、`bf_*` 或 `mer_*` 前缀，也不进入本文 `StatId` 联合类型；`spd'`、`move'` 只用于公式排版，序列化必须写 21 的 `spd`、`move`。
 
 ---
 
@@ -1596,6 +1654,9 @@ declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯�
 | V03-12 | 章节引用遵守基准 §18 唯一归属 | 本文重新定义战斗 CT、Buff 清理、地图、门派、冲穴或营生规则 |
 | V03-13 | `CharacterStatsInput.progression.expFp` 必须为安全非负整数，且满足 13 的当前级内上界；属性层只读取同快照的 `realLevel` | 仍保存二进制浮点 `exp`，或等级与级内经验来自不同状态版本 |
 | V03-14 | `bossUnit` 必须由 §10.2 与 §10.3 的 Lv70 / W100 / D10 输入生成并 half-up 一次 | 手填近似值，或把终局分卷系数提前乘入属性模板 |
+| V03-15 | `MeridianAttributeInput.mpRatioBp == clamp(floor(mpMax×10000/MPREF(displayLevel)),5000,20000)`，且 `currentMp/innerNature/effectiveQinggong/baseSpd/baseMove` 与其余字段来自同一已完成属性 / 移动快照 | 混用不同 tick / 等级快照，从当前 `mp` 反推 `mpMax`，或把 `mpNature/qinggong/spd/mov` 原键无声明直传 |
+| V03-16 | `StatSheet.qinggong/spd` 保持未乘经脉速度；21 的战斗投影只序列化 `openingQinggong/spd/move`，公式别名 `spd'/move'` 不作键名 | 把 `meridianSpeedBp` 写进 `Q_skill`、`Σpct_spd`，用修正后轻功通过 08 门禁，或把撇号别名写进 schema |
+| V03-17 | `meridianAttackBp/meridianDefenseBp` 不进入 `StatModifier.mult`；`evadeRatingDelta` 不含擒拿；护体输出名为 `damageBeforeMpGuard` | 经脉攻防重复乘、擒拿重复罚闪避，或把护体剩余量当实际 `hpDamage` |
 
 ### 14.2 金标准数值用例
 
@@ -1622,13 +1683,17 @@ declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯�
 | T03-17 | 合法 STD 速度：Lv1 / 35 / 70 分别代入未取整 `agi` 与 `qinggong`；Lv70 普通鞋取 `gGear=9` | 原值 `91.55288 / 106.76396 / 126.93665`，末尾 `floor` 为 `91 / 106 / 126` |
 | T03-18 | Lv70、W100、D10 模板 Boss：`30,221.8001068032×7×1.35` | `bossUnit=285,596`；中间值只在末尾 half-up |
 | T03-19 | `progression={realLevel:35,expFp:123456}` | `Ld` 从 35 推导；`expFp` 保持整数且不进入属性算术 |
+| T03-20 | Lv35 STD：管线内 `qinggong=97.794`，交换边界 `effectiveQinggong=roundHalfUp(97.794)=98`；`mpMax=MPREF=4697`、`baseSpd=106`，21 标准 Profile 且无擒拿 | `mpRatioBp=10000`；`meridianSpeedBp=combinedSpeedBp=10000`；`openingQinggong=98`、结果 `spd=106`，与 21 §14.11 的 `98/106/6/0` 一致；未修正面板轻功仍显示 98，08 门禁输入不变 |
+| T03-21 | 同一基础快照，21 强者 `meridianSpeedBp=12239`、5 级擒拿 `grappleMoveBp=6000`、`baseMove=6` | `combinedSpeedBp=floor(12239×6000/10000)=7343`；`openingQinggong=71`、`spd'=77`、`move'=5`；纯经脉 `evadeRatingDelta=+22`，擒拿闪避只由 04 / 06 另算一次 |
+| T03-22 | 护体真气后剩 1000 拳脚伤害，21 抵消 1000、耗内 500 | `damageBeforeMpGuard=0` 且 `1000=1000+0`；属性层只把 `mp` 扣 500，不改变 `mpMax/atkIn/defIn` |
 
 ### 14.3 验收闸门
 
-1. 修改 §2–§10 任一公式后，重算 T03-01～T03-19，并同步 §3.5、§4.9、§10.2、§10.7、§10.10 中受影响的显示表。
+1. 修改 §2–§10 任一公式后，重算 T03-01～T03-22，并同步 §3.5、§4.9、§10.2、§10.7、§10.10 中受影响的显示表。
 2. 修改 `STD`、`MPREF`、`P_ref` 或敌模板后，运行 `python3 tools/balance/damage_sim.py --check`；脚本必须先采用本文的合法普通装备上限，不能用旧脚本结果反向覆盖正文。
 3. 修改类型或 ID 后，对 `docs` 与 `tools` 执行精确搜索，确认旧重命名 ID 为 0 个运行态命中，并检查 06 的 Buff 目录与 10 的装备名录。
 4. 合并前检查 Markdown 表列数、代码围栏成对、标题顺序、引用路径和 TypeScript 语法；无 YAML 代码块时记录“无适用项”，不得伪称解析通过。
+5. 经脉接线变更还须运行 `python3 tools/balance/meridian_flow_sim.py --check`，并断言标准 Profile 的攻 / 防 / 速度均为 10000 bp；该脚本不替代本文基础属性测试。
 
 ---
 
@@ -1666,6 +1731,7 @@ declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯�
 | D-24 | **已解决**：书眠流程可免费重分配全部 `realmAlloc`，取消不落盘 | `design/02` §4.5；本文 §2.8 |
 | D-25 | **已解决**：01 已定义五个首周目身份 `OriginBonus`，并逐项通过本文预算 | `design/01` §4.3、§12；本文 §2.7 |
 | D-26 | **已解决**：福缘只按 `μ += luk/200` 上移掉落品阶中心，不另设第二修正 | `design/02` §2.12；本文 §2.3 |
+| D-27 | **已解决（规划接口）**：03 只输出未乘经脉速度的 `MeridianAttributeInput`；21 独立输出攻 / 防 / 速度与护体内劲结果，09 / 04 消费，不回写属性管线 | 本文 §4.3–§5.2、§11.3、§11.6；`design/21` §3.5、§4.8–§4.9、§12.3 |
 
 ### 15.2 本文依赖的上游事实
 
@@ -1683,6 +1749,7 @@ declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯�
 | CT、移动点、反击/连击、调息与战末顺序 | `design/09` §3–§7 | §4.3–§4.6、§5.2、§5.6 |
 | 敌人品阶模型、书界难度、成长余韵、天书与终局 | `design/02` §2–§3；`design/13` §2、§4–§7 | §3.5、§8.4、§9–§10 |
 | AR-03～AR-12 的主定义 | `author-requirements`；`design/11`、12、15、16、18 | §11.6 仅保留输入/输出接口，不重定义其系统内部规则 |
+| AR-14 作者决定与战斗经脉公式 | `author-requirements` AR-14；`design/21` §2–§4、§11–§12 | §4.3–§5.2、§11.3–§11.6、§12–§14 |
 
 ### 15.3 对基准的修改提案
 
@@ -1699,6 +1766,12 @@ declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯�
 **已采纳 R03-P01（v1.2 V12-06）**：基准 §6 已将左右互搏 `dualWield` 收敛为整数 0–10；未装配为 0，否则取 `sk_zuoyouhubo` 当前有效层数。本文按该定义执行。
 
 **已采纳 R03-P02（v1.2 V12-05）**：基准 §5 的 `STD(70).hpMax` 已由 41,314 同步为 **40,409**，并注明普通装备最高为地上（g9），天级（g10–12）只属于封闭名器。按 `design/10` 封顶 g9 后，`HP_LV(70)=19,820.1`、`con=50+0.15×69+45/5=69.35`，等级与根骨项为 `19,820.1×(1+0.008×19.35)=22,888.25148`，四件小件的气血为 `4×0.01×G(9)×19,820.1=1,902.7296`，再乘内功气血 `+63%`：`roundHalfUp((22,888.25148+1,902.7296)×1.63)=40,409`。本文 §3.2、§3.5 与基准一致。
+
+| 编号 | 待 v1.3 提案 | 理由 |
+|---|---|---|
+| M3-P01（沿用 21 提案） | Canon §9 在 Z4 后 / Z5 后分别插入 `Z4M / meridianDefense`、`Z5M / meridianAttack` 并逐区向下取整 | 经脉攻防是作者决定的独立乘区，不得塞入属性 `mult` 或旧 Z3 加算池 |
+| M3-P02（沿用 21 提案） | Canon §8 / §9 在护体真气后、既有 `mpGuard` 前登记护体内劲、类别适用率、1 内力抵 2 伤害及 `damageBeforeMpGuard` | 明确真实 `mp` 扣费和守恒边界，避免把中间量误作气血伤害 |
+| M3-P03（沿用 21 提案） | Canon §8 / §11 登记 6500–13500 bp 经脉速度、`openingQinggong`、先经脉后擒拿与基础轻功 / 门禁不回写 | 保持标准中性，避免重复加入 `Q_skill`、绕过地形门禁或二次惩罚闪避 |
 
 ### 15.4 原著考据待办
 
@@ -1720,3 +1793,4 @@ declare function computeStats(input: CharacterStatsInput): StatSheet;   // 纯�
 | O06 | 各书界最高原生轻功与获取节点是否最终闭合 | 沿用 D-03 表；所有门禁仍须逐实例按 `effGrade/effLayer` 和 10 的合法装备复算 | `design/05`、catalog、chapters、`design/08` |
 | O07 | 天书之力是否直接给永久先天 | 默认不新增通用“每本 +3”；仅消费 `design/13` 明列的稳定 `StatModifier` 或规则效果，且 `tianshu` 不得使用属性 `mult` | `design/13` |
 | O08 | `StatModifier.modifierId` 的跨文档迁移 | 新数据必须填写稳定子项 ID；旧数据加载时可暂按“目标属性 + 操作 + 源内序号”生成，完成迁移后移除兜底 | `design/06`、07、10、13、tech/04 |
+| O09 | `MeridianAttributeInput` 是否物化为独立缓存 | 默认不持久化：由同一属性快照与 09 的 `baseMove` 临时组装；若缓存，必须携带属性版本和移动投影版本并在恢复时校验 | `tech/05` |

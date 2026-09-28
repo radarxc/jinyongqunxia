@@ -1,17 +1,18 @@
 # 15 · 冲穴、经脉与周天（Meridians & Acupoints）
 
 > 归属（基准 §18，AR-03）：穴道、经脉、通脉、小周天、大周天、十二经周流、九转、冲穴速率、奖励预算、失败与持久化契约的唯一归属。
-> 上游：`decisions/author-requirements.md` AR-02 / AR-03；`decisions/author-decisions.md` G1 总确认；`00-canon.md` v1.2（重点 §3 / §5 / §6 / §9 / §10 / §12 / §18）；`decisions/rulings-v1.md`。
-> 引用而不重定义：属性与成长曲线见 `design/03`；伤害乘区与节奏见 `design/04`；内功性质、层数、辅运与走火分级见 `design/05`；效果原语与 Buff 本体见 `design/06`；丹药见 `design/10`；打坐与世界时间见 `design/11`；师父权限见 design/12；成长、轮回与天书见 `design/13`；界面见 design/14；数据管线见 tech/04；运行时实现见 tech/05。
+> 上游：`decisions/author-requirements.md` AR-02 / AR-03 / AR-14（含 2026-09-27 作者决定）；`decisions/author-decisions.md` G1 总确认；`00-canon.md` v1.2（重点 §3 / §5 / §6 / §9 / §10 / §12 / §18）；`decisions/rulings-v1.md`。
+> 引用而不重定义：属性与成长曲线见 `design/03`；伤害乘区与节奏见 `design/04`；内功性质、层数、辅运与走火分级见 `design/05`；效果原语与 Buff 本体见 `design/06`；丹药见 `design/10`；打坐与世界时间见 `design/11`；师父权限见 design/12；成长、轮回与天书见 `design/13`；界面见 design/14；战斗经脉动态、攻 / 防 / 轻功路线、护体内劲、点穴 / 擒拿与调息见 `design/21`；数据管线见 tech/04；运行时实现见 tech/05。
 > 标注约定：**（原创扩展）** = 本作游戏化规则；**（待考）** = 原著事实尚待三联/广州修订版逐字核对；**（待核实）** = 技术事实未联网确认；**（待实测）** = 需真机或真实玩法验证；**【建议值】** = 依赖其他归属文档接入，文末登记。
 
-版本：v1.0（M1，2026-09-26）；审校 M1.R（2026-09-26）；全局审计（2026-09-26）。规则与奖励均为**（原创扩展）**；穴名与经络名称采用真实术语，不把游戏效果解释为医学功效。
+版本：v1.0（M1，2026-09-26）；审校 M1.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）。规则与奖励均为**（原创扩展）**；穴名与经络名称采用真实术语，不把游戏效果解释为医学功效。
 
 ## 0. 阅读指南
 
 本文冻结 20 条经脉、180 个互不重复的游戏穴道 ID、3 个周天里程碑及 9 个转数 ID。
 冲穴由主运内功驱动，在安全点消耗内力和游戏时间；进度永久保留到本周目结束。
-九转只把穴道原始奖励放大至 1.45 倍，通脉和周天奖励不递归放大，也不增加独立伤害乘区。
+九转只把穴道原始奖励放大至 1.45 倍，通脉和周天奖励不递归放大；它可提高 21 的经脉强度输入，但不直接追加乘区或抬高硬界。
+战斗创建时，本文把开穴、通脉、周天与九转派生为只读投影交给 `design/21`；战斗内的气量、容量、流畅度、迟滞、堆积、胀损与点穴均不回写永久修炼进度。
 
 | 章节 | 内容 | 主要读者 |
 |---|---|---|
@@ -31,15 +32,16 @@
 | R05 Q-R05-1 / D19 | 已解决：接收有效品阶、有效层数、真实面板 mpMax、性质和辅运；目录及公式见 §2、§4。 |
 | R03 AR-03 接口 | 已解决：只输出 sourceType 为 meridian 的合法修饰器，接入 03 的既有上限。见 §6、§10。 |
 | R13 AR-03 继承 | 已解决：书眠完整保留，轮回运行态重置，账号只记最高转数。见 §9、§11。 |
+| AR-14 战斗投影 | 已解决：本文只输出开穴 / 通脉 / 周天 / 九转只读快照；容量与流畅度的战斗换算、每单位实例及调息均引用 `design/21`。见 §6.7、§11.6。 |
 | 图鉴预留经脉 / CN-07 | 已解决正式命名：保留长名任督冲带；短名迁移表见 §13。其他文件回写交 F2。 |
-| CN-09 / R03-P02 | 仍需同步：04 脚本的旧普通装备超过 g9。§8 给合法配装增量与旧表敏感性，不宣称完成上游重校准。 |
+| CN-09 / R03-P02 | 已解决：基准与 03 已统一普通装备最高 g9，04 脚本也以合法装备回归；本文 §8 只保留静态奖励敏感性，不反向覆盖上游基线。 |
 
 ### 0.2 本文采用的范围
 
 - 主角参与可操作冲穴；NPC 是否预置经脉由 design/18 手配，不能随玩家进度动态追平。
 - 不新增先天属性、战斗资源、货币、武功品阶或“第十转”。内劲是速率，不能囤积、交易或带进战斗消耗。
 - 进度与属性收益不要求保留当初使用的内功；再次冲穴时才重新读取当前装配。
-- 冲穴不是战斗中点穴，也不是运劲行动；封穴脱困见 design/06 §7.1，运劲见 design/09 §4.8.4。
+- 冲穴不是战斗中点穴，也不是运劲行动；点穴、经脉迟滞 / 胀损与战斗调息唯一见 `design/21` §3、§9–§11，Buff 生命周期见 `design/06`，行动窗口见 `design/09`。
 
 ## 1. 术语、真实归经与游戏结构
 
@@ -795,8 +797,33 @@ failMargin        = u − PsuccessBp       // 失败时至少为 0
 - `atkOut/atkIn/defOut/defIn/hpMax/mpMax` 的 pct 在 03 属性 DAG 内合并。它们间接影响 04 的 Z1/Z2，**不直接写 Z3 或 Z4**。
 - `ap*` 经 03 资质钳制后进入 04 Z5；`counter/combo` 最终还受 03 的 60pp/50pp 上限。
 - 抗性按 03 最终范围 −50pp 至 75pp；经脉收益不创造免疫，`resSeal` 也不免疫点穴。
-- 触发被动由 06 展开；本文没有 `modZone`，没有新的伤害乘区，也不豁免 06 的行动、HOT、资源与实例限制。
+- 触发被动由 06 展开；本文没有 `modZone`，也不直接生成战斗乘区。AR-14 的 `Z4M / meridianDefense`、`Z5M / meridianAttack` 与经脉速度是 `design/21` §3.5、§4.4、§4.9 的独立战斗输出，不是 `StatModifier.mult`，不得折回本节重复累计。
 - 经脉奖励本身是本周目永久成长，不按外来品阶压制；压制只降低以后冲穴所用的 `Ld/g_i/n_i`。
+
+### 6.7 给战斗经脉模块的只读成长投影
+
+本文只把永久修炼事实投影给 `design/21`，不在此复制其容量、流畅度、强度或乘区公式。字段与 21 §2.3–§2.6、§12.2 的输入一致：
+
+| 本文事实 | 输出字段 | 精确派生 | 21 的消费边界 |
+|---|---|---|---|
+| 穴位成功开启 | `openedAcupoints` | `MeridianProgress.opened` 去重后按 `ap_*` ASCII 升序 | 决定对应 `MeridianNodeRuntime.opened`；未开穴使引用该穴的路线预检失败 |
+| 一条经脉全通 | `completeAcupoints` | 对每条 `MeridianDef.acupoints` 做全包含检查；已通经脉的全部穴并集，按 `ap_*` ASCII 升序 | 节点取得 21 所称 `allMeridians=1`：容量 +100、流畅 +400 bp；该名称不是“20 脉全通” |
+| 任、督均通 | `smallCycle` | 派生 `zt_xiaozhoutian` 是否达成 | 21 消费为容量 +50、流畅 +200 bp |
+| 奇经八脉全通 | `greatCycle` | 派生 `zt_dazhoutian` 是否达成 | 21 消费为容量 +100、流畅 +400 bp |
+| 十二正经全通 | `twelveCycle` | 派生 `zt_shierjingzhouliu` 是否达成 | 21 消费为容量 +100、流畅 +400 bp；与 `greatCycle` 是两条独立完成轴 |
+| 已完成九转 | `turns` | 直接取已校验的 `turnCompleted∈[0,9]` | 21 每转消费为容量 +20、流畅 +100 bp；不得提高攻 / 防 / 速度硬界 |
+
+`progressH`、`attemptOrdinal`、未完成经脉的开穴比例、冲穴模式和当时使用的内功都不进入该投影：只有一次冲关成功、事务提交并真正把穴写入 `opened` 后，下一场战斗才可把它视为开通。上表数值只是对 21 §2.3–§2.4 消费口径的引用；基础项、`mpRatioBp` 平方根、相性、配表倍率、取整及 600–2600 / 3000–10000 钳制仍唯一见 21。本文不得另填 `capacity` / `flowBp`，也不得把同一里程碑再伪装成装备或 Buff 的 `meridianCapacityBp / meridianFlowBp`。
+
+静态奖励与战斗投影是两条有意并存的路径：§6.1–§7 先经 03 重建面板，故 `mpMax` 可间接改变 21 的 `mpRatioBp`；本节再传开穴与里程碑，使其改善路线稳定性。二者分别对应“属性成长”和“行气通畅”，不是重复写同一个修饰器。
+
+生命周期固定如下：
+
+1. `createBattle` 从同一份已提交 `MeridianProgress` 生成不可变快照；玩家、每名同伴各读自己的进度，绝不借用主角进度。敌人里程碑由 21 §11.9 的模板生成，不伪造玩家存档。
+2. 战斗期间不允许开始 §4–§5 的一小时冲穴 session；快照在该战斗内不因卡住、点穴、调息或胀损而变化。21 可按路线并集稀疏物化节点，但逻辑结果须等同完整快照。
+3. 战斗中的 `water/stagnationBp/backlog/ruptureDamage/sealLevel` 只存在于每单位 `MeridianFlowModule`；战斗存档由 21 / tech/05 保存，不能写入 `MeridianProgress`。
+4. 战斗结束后按 21 §1.4 清理临时运行态；下一场战斗重新投影。剧情永久伤势走 09 / 06，不能关闭穴位、倒扣 `progressH` 或降低 `turnCompleted`。
+5. 任何中途战斗读档恢复 21 的实例快照，而不是重新读取本投影覆盖伤势；只有开始一场新战斗才重新初始化。
 
 ## 7. 大周天之后的九转
 
@@ -910,7 +937,7 @@ Lv35、t4、无辅助：稳冲每小时 174 MP，`4697/174=26` 个完整 session
 
 ### 8.4 对 04 伤害与 TTK 的敏感性
 
-本文不改 04 的脚本或基准表，只把满九转增量代入其 Z1/Z2 做一阶敏感性。取攻防同级时常见 `F_def≈0.65`，攻方 `atkOut/atkIn` 同时乘 `x=1.025`：
+本节只把本文的**静态属性奖励**代入 04 的 Z1/Z2 做一阶敏感性；AR-14 的动态经脉路线另由 `design/21` §14–§15 与 `meridian_flow_sim.py` 验证，不能把其 `Z4M / Z5M` 再乘入本节后声称是同一份奖励。取攻防同级时常见 `F_def≈0.65`，攻方 `atkOut/atkIn` 同时乘 `x=1.025`：
 
 ```text
 D2'/D2 = x² / ((1−F_def) + x×F_def)
@@ -942,6 +969,7 @@ D2'/D2 = x² / ((1−F_def) + x×F_def)
 3. TTK 回归必须分别测试外功占比 0%、50%、100%，因为 `apInner` 与类别资质的增量不同。
 4. 同时测试无经脉、180 穴第零转、满九转三档；若只测满九转，无法定位穴奖与里程碑的斜率。
 5. 04 当前基线本身若因上游合法装备修正而重跑，应以新基线重做本节，不能把这里的 4.59/4.40/3.50 当永恒常数。
+6. 接入 AR-14 后还须运行 `meridian_flow_sim.py --check`：标准对标准的攻、防、速度均须为 10000 bp；冲穴 / 周天 / 九转只能改变双方强度输入，不能把 22000 / 5000 / 13500 bp 三个硬边界抬高。
 
 ## 9. 境界压制、书眠、余韵期与轮回
 
@@ -1035,7 +1063,7 @@ schemaVersion / lastAppliedMigration
 | 文档 | 它提供 / 归属 | 本文输出 / 要求 |
 |---|---|---|
 | `design/03` | 属性 ID、`MPREF`、`StatModifier`、DAG 与最终上限 | 输出 `sourceType:'meridian'` 的 `flat/pct/pp`；不写 `mult`；奖励由状态派生 |
-| `design/04` | Z0–Z10、TTK 与命中/防御公式 | 不新增乘区；§8 只作现有公式敏感性估算，实装后跑完整回归 |
+| `design/04` | Z0–Z10、TTK 与命中/防御公式 | 本文静态奖励不直接新增乘区；动态 `Z4M / Z5M` 只从 21 输出，§8 分开核算并跑完整回归 |
 | `design/05` | `G/L(n)`、有效品阶/层数、主辅运、性质、`auxRatio`、`inner.meridians`、走火分级 | 消费这些值；专精每门贡献 ×1.20；不改内功或走火本体 |
 | `design/06` | Buff schema、事件钩子、原语、走火与内伤目录 | **已收录** §10.3 的 15 个永久被动定义（06 §8.13、§13.4）；冲穴失败调用已有 4 个伤势/走火 ID |
 | `design/10` | 丹药名称、价格、品阶、投放与叠加 | 向 `meridianAid` 提供三槽整数值；本文负责总上限与结算 |
@@ -1043,8 +1071,9 @@ schemaVersion / lastAppliedMigration
 | `design/12` | 师父、关系、指点额度、门派静室 | 消费 `MeridianGuidance` 与 `meditationQuality` **【建议值】** |
 | `design/13` | 天书数量、书眠/轮回、天劫、终局状态 | 每本给速率/成功辅助；采用 §10.1 投放目标；更新 `meridianMaxTurn` |
 | `design/14` | 页面导航、交互、动效、可访问性 | 实现 §10.4 的经脉图与风险确认；不在 UI 复制公式 |
+| `design/21` | 战斗经脉动态、攻 / 防 / 轻功路线、护体内劲、点穴 / 擒拿与调息 | 本文按 §6.7 / §11.6 输出开穴、通脉、周天、九转只读快照；不输出临时伤势，不抬三类乘区硬界 |
 | `tech/04` | Zod、ID 注册、引用图、迁移与内容构建 | 将 §11 类型转为正式 schema，执行 §14 校验和短 ID remap |
-| `tech/05` | 玩法核心、世界事务、确定性 RNG、事件总线 | 按 §11.6 原子结算、持久化 ordinal、状态派生奖励 |
+| `tech/05` | 玩法核心、世界事务、确定性 RNG、事件总线 | 按 §11.7 原子结算、持久化 ordinal、状态派生奖励 |
 
 ### 10.3 由 06 接收的 Buff 清单（已解决）
 
@@ -1312,6 +1341,16 @@ interface MeridianSessionSnapshot {
   attemptOrdinal: number;
   worldTickStarted: number;
 }
+
+interface MeridianBattleProjectionV1 {
+  schema: 'meridian-battle-projection.v1';
+  openedAcupoints: readonly AcupointId[];
+  completeAcupoints: readonly AcupointId[];
+  smallCycle: boolean;
+  greatCycle: boolean;
+  twelveCycle: boolean;
+  turns: 0|1|2|3|4|5|6|7|8|9;
+}
 ```
 
 玩家进度 YAML 与上列类型一一对应；示例表示已通肺经、任脉按序开到气海、正在冲任脉阴交，且尚未进入九转：
@@ -1345,7 +1384,26 @@ lastAppliedMigration: 1
 `completedMeridians` 和里程碑不落为独立权威字段：加载时由 `opened` 与内容表派生。可保存缓存以加速，但每次加载须与派生值比较，不一致则以派生值覆盖并记诊断。
 `targets` 只需保存未开穴的非零进度；穴已开后可删除对应条目。`attemptOrdinal` 即使 progress 为 0 也保留，防止迁移或异常回滚让同一次冲关复用随机数。它表示“下一次冲关尝试序号”，初值为 0；普通行气不变，触及关隘时以快照序号取 RNG，并在同一事务内无论成败都写回 `attemptOrdinal+1`。
 
-### 11.6 原子事务与确定性 RNG
+### 11.6 战斗只读投影构造
+
+`MeridianBattleProjectionV1` 是 §6.7 的具体交换值，不是第二份存档真值。构造器只接受已完成迁移和校验的 `MeridianProgress` 与当前 `MeridianDef[]`：
+
+```text
+opened = unique(sortAscii(progress.opened))
+completedMeridians = { m | every(ap in m.acupoints, opened.has(ap)) }
+completeAcupoints = sortAscii(union(m.acupoints for m in completedMeridians))
+smallCycle = {mer_renmai,mer_dumai} subsetOf completedMeridians
+greatCycle = all(extra8) subsetOf completedMeridians
+twelveCycle = all(regular12) subsetOf completedMeridians
+assert 0 <= progress.turnCompleted <= 9
+turns = progress.turnCompleted
+```
+
+`openedAcupoints` 与 `completeAcupoints` 都是穴位集合，不输出一个全局 `meridianComplete` 布尔值；否则仅通一脉的玩家会被误当成 20 脉全通。21 初始化某节点时，以 `completeAcupoints.includes(acupointRef)` 得到其 `allMeridians` 布尔输入。三个周天布尔与 `turns` 必须从同一个不可变进度版本派生，禁止从面板 Buff 是否存在反推。
+
+构造函数不读取战斗 `battle` RNG，也不接收 / 返回 `water`、`capacity`、`flowBp`、`stagnationBp`、`backlog`、`ruptureDamage` 或 `sealLevel`。这些字段和 `MeridianFlowSnapshotV1` 唯一归 `design/21` §11–§12；战斗内恢复时必须恢复 21 快照，不得重建本投影覆盖现场状态。
+
+### 11.7 原子事务与确定性 RNG
 
 一次 session 的唯一流程：
 
@@ -1364,7 +1422,7 @@ S8 原子提交；提交后按稳定顺序发布 outbox
 RNG 键为 `hash(runSeed,'meridian',targetId,attemptOrdinal)`，不消费战斗 RNG，也不依赖数组遍历顺序。键使用 session 快照中的旧序号，结算再把持久化序号加 1；普通行气未触及 H 不增加。
 崩溃发生在 S8 前则整次 session 不存在，回到开始前；发生在 S8 后则状态与 outbox 都存在，重启只重发未确认事件。禁止出现已扣 MP/时间但未写进度，或已开穴却未记 ordinal 的半事务。
 
-### 11.7 短 ID 迁移
+### 11.8 短 ID 迁移
 
 正式 ID 采用经名全拼；当前图鉴中存在设计期短 ID，必须单向迁移：
 
@@ -1412,7 +1470,8 @@ RNG 键为 `hash(runSeed,'meridian',targetId,attemptOrdinal)`，不消费战斗 
 | 关隘值 `H` / 内劲 `Qi` / 冲穴速率 `RateH` | 目标工作量 / 当前装配贡献 / 每游戏小时推进量；三者都不是战斗资源 | §4 |
 | 稳冲 / 催冲 | 基准模式 / 高速高耗低成功模式 | §5.5 |
 | `MeridianDef` / `AcupointDef` / `CirculationDef` | 经脉、穴道、周天或转的内容实体 | §11.2–§11.4 |
-| `MeridianProgress` / `MeridianSessionSnapshot` | 本周目进度真值 / 单小时不可变结算快照 | §11.5–§11.6 |
+| `MeridianProgress` / `MeridianSessionSnapshot` | 本周目进度真值 / 单小时不可变结算快照 | §11.5 |
+| `MeridianBattleProjectionV1` | 从永久进度派生、供 21 初始化读取的战斗只读投影；不是存档真值 | §6.7、§11.6 |
 
 以上玩法术语和数据实体均为**（原创扩展）**。`mpNature`、属性 ID、Buff 原语及走火等级只引用 03、05、06，不在本文创建第二套定义。
 
@@ -1429,7 +1488,7 @@ RNG 键为 `hash(runSeed,'meridian',targetId,attemptOrdinal)`，不消费战斗 
 | 周天被动 | `bf_zt_xiaozhoutian`、`bf_zt_dazhoutian`、`bf_zt_shierjingzhouliu` | 3；本体见 `design/06` §8.13 |
 | 九转被动 | `bf_zt_yizhuan`、`bf_zt_erzhuan`、`bf_zt_sanzhuan`、`bf_zt_sizhuan`、`bf_zt_wuzhuan`、`bf_zt_liuzhuan`、`bf_zt_qizhuan`、`bf_zt_bazhuan`、`bf_zt_jiuzhuan` | 9；本体见 `design/06` §8.13 |
 
-`mer_*`、`ap_*`、`zt_*` 是本文请求基准 §12 新登记的前缀；`bf_*` 沿用基准既有前缀，最终 Buff 本体唯一归 design/06。旧短 ID `mer_ren/mer_du/mer_chong/mer_dai` 只可作为 §11.7 的迁移输入，不能成为新引用或第二定义。
+`mer_*`、`ap_*`、`zt_*` 是本文请求基准 §12 新登记的前缀；`bf_*` 沿用基准既有前缀，最终 Buff 本体唯一归 design/06。旧短 ID `mer_ren/mer_du/mer_chong/mer_dai` 只可作为 §11.8 的迁移输入，不能成为新引用或第二定义。
 
 ## 14. 数据校验规则与测试用例
 
@@ -1454,6 +1513,9 @@ RNG 键为 `hash(runSeed,'meridian',targetId,attemptOrdinal)`，不消费战斗 
 | V15-13 | 同一 RNG 键重复结算结果一致；一次 session 要么完整提交成本、时间、进度、事件，要么全部不提交 | 失败 |
 | V15-14 | YAML 通过正式 schema；引用图无悬空边；迁移单出口、无环，且旧、新 ID 不得同时定义 | 失败 |
 | V15-15 | 20 脉走向、脏腑摘要、交会和借穴说明完成专门文献审校 | 警告（待考） |
+| V15-16 | `MeridianBattleProjectionV1` 的两数组去重并按 `ap_*` ASCII 升序；`completeAcupoints` 恰等于全部已通经脉的穴位并集；三个周天布尔与 `turns` 都可从同一进度版本复算 | 失败 |
+| V15-17 | 战斗投影不含未完成 `progressH/attemptOrdinal`，也不含 21 的 `water/capacity/flowBp/stagnationBp/backlog/ruptureDamage/sealLevel`；战斗调息不得写 `MeridianProgress` | 失败 |
+| V15-18 | 21 消费通脉 / 周天 / 九转时只提高强度输入；攻击 / 防守 / 速度仍受 22000 / 5000 / 13500 bp 硬界，静态奖励不得伪装成 `meridianCapacityBp/meridianFlowBp` 再算一次 | 集成失败 |
 
 ### 14.2 金标准测试用例
 
@@ -1471,15 +1533,19 @@ RNG 键为 `hash(runSeed,'meridian',targetId,attemptOrdinal)`，不消费战斗 
 | T15-10 | 相同 runSeed、target、ordinal 重放；改变 ordinal 再掷 | 前者 RNG 与结果完全一致；后者使用不同键；两者均不消费战斗 RNG |
 | T15-11 | 配表把 `atkOut` 经脉总量改到 +5.01%，或写 `mult` | 构建失败，不以最终属性钳制掩盖错误 |
 | T15-12 | 引用 `mer_ren`、重复 ST30、令一脉只有 5 穴、令 turn=10 | 四项分别因旧 ID、标准代码重复、穴数越界、九转封顶而失败 |
+| T15-13 | 只通肺经、任脉开到气海、`turnCompleted=0` | `openedAcupoints` 含实际 15 穴；`completeAcupoints` 只含肺经 9 穴；三个周天布尔全为 false，`turns=0` |
+| T15-14 | 任督全通、奇经八脉全通、十二正经全通、第三转依次投影 | `smallCycle/greatCycle/twelveCycle=true`，`turns=3`；数组顺序固定；重建值逐字段相等 |
+| T15-15 | 战斗中对同一穴产生迟滞、胀损和 9 级点穴，再执行一次战斗调息 | 15 的投影与 `MeridianProgress` hash 不变；21 的单位实例独立变化；新战斗才按永久事实重新初始化 |
 
 T15-06 的边界特意覆盖闭区间：失败余量 2,499 属第二行，2,500 才进入走火 2 级。完整实装还须跑 04 的无经脉／第零转／满九转三档 TTK 回归和 06 的被动事件回放**（待实测）**。
 
 ### 14.3 文档与发布闸门
 
-1. 内容变更后重跑 V15-01～V15-15、T15-01～T15-12，并核对 §6.2、§7.3、§8.1、§10.1 四张总账。
+1. 内容变更后重跑 V15-01～V15-18、T15-01～T15-15，并核对 §6.2、§7.3、§8.1、§10.1 四张总账。
 2. 公式、属性或 Buff 变化时，联合 03/04/06 的既有测试；不能只验证 schema。
 3. 合并前检查 Markdown 表列、代码围栏、标题顺序、无占位文本，并扫描 `mer_ren|mer_du|mer_chong|mer_dai` 的运行态引用。
 4. 文化审校未完成时保留“待考”和借穴说明；不得为了让警告归零而删除边界标注。
+5. AR-14 接线后运行 `python3 tools/balance/meridian_flow_sim.py --check`；其正式玩家 / 同伴适配器必须按本节生成 `openedAcupoints/completeAcupoints/smallCycle/greatCycle/twelveCycle/turns`，不得依赖隐藏全局完成布尔；当前 Python fixture 仅在 `Cultivation.meridian_complete` 中保留敌人模板 / 全路同值测试简写，见 21 §12.2。
 
 ## 15. 待决事项 / 依赖
 
@@ -1487,13 +1553,14 @@ T15-06 的边界特意覆盖闭区间：失败余量 2,499 属第二行，2,500 
 
 | 编号 | 下游 | 本文给出的默认 / 接口 | 状态 |
 |---|---|---|---|
-| D15-01 | `design/05`、catalog | `inner.meridians: MeridianId[]`；每门专精贡献 ×1.20；四个旧短 ID 按 §11.7 迁移 | **部分解决：**本文迁移表已定；图鉴侧正式长 ID 回写交 F2c，旧值仅可作为迁移输入（见 §11.7） |
+| D15-01 | `design/05`、catalog | `inner.meridians: MeridianId[]`；每门专精贡献 ×1.20；四个旧短 ID 按 §11.8 迁移 | **部分解决：**本文迁移表已定；图鉴侧正式长 ID 回写交 F2c，旧值仅可作为迁移输入（见 §11.8） |
 | D15-02 | `design/06` | 收录 §10.3 的 15 个永久 `bf_*`；九转拒绝内伤需只读 `ctx.applyMode` 区分 create / stack | **已解决：**见 `design/06` §8.13、§13.4 |
 | D15-03 | `design/10` | `meridianAid={rateBp,successBp,costReduceBp,hours,meridians?}`；同来源每槽取最高 | 接口已有预留，具体药品与投放待 10 定稿 |
 | D15-04 | `design/12` | 师父按速率/成功/减耗给 `+1500/+800/+500bp`；清静处按速率/成功给 `+500/+300bp`、名门静室 `+1000/+600bp` | **已解决接口：**12 §2.3、§6.3 已接入；数值仍为本文 **【建议值】**，待玩法实测 |
 | D15-05 | `design/13` | 每本天书速率 +1%、成功 +50bp；按 §10.1 纳入每界成长预算 | **已解决：**13 §4.1 T12 已显式登记 `bookCount` 与 `+1%/+50bp` |
 | D15-06 | `design/14` | 采用 §10.4 的经脉图、六态节点、风险确认、周天环和减少动态效果方案 | **已解决接口：**14 §4.12、§5.6、§8.3 已接入；局部布局值仍待真机实测 |
 | D15-07 | `tech/04`、`tech/05` | 将 §11 schema、remap、keyed RNG、原子事务和 §14 闸门转为实现 | **已解决（规划接口）：**`tech/04` §3.8 已接正式 schema、短 ID remap 与校验门禁，`tech/05` §11.1 已接 keyed RNG、S0–S8 原子事务和事件；量产实现与完整 golden 仍待开发验收 |
+| D15-08 | `design/21`、`tech/05` | `MeridianBattleProjectionV1` 输出 `openedAcupoints/completeAcupoints/smallCycle/greatCycle/twelveCycle/turns`；容量 / 流畅度只由 21 换算 | **已解决（规划接口）：**见 §6.7、§11.6；生产构造器、跨语言对拍仍待实现 |
 
 ### 15.2 本文依赖的上游事实
 
@@ -1506,7 +1573,9 @@ T15-06 的边界特意覆盖闭区间：失败余量 2,499 属第二行，2,500 
 | `design/06` | Buff 生命周期、已有伤势/走火 ID、事件与效果原语 | §5、§6、§7、§10.3 |
 | `design/10`、`design/11` | 丹药辅助槽；安全点、1 游戏小时时钟与普通打坐边界 | §5 |
 | `design/13` | 天书数、书眠、轮回、天劫、终局和历史最高转数 | §4、§7、§9–§10 |
+| `design/21` | 战斗节点初始化、容量 / 流畅度换算、独立攻防乘区、护体内劲、经脉速度与每单位实例 | §0.2、§6.6–§6.7、§8、§10–§11 |
 | AR-02、AR-03 与 G1 | 内力性质、术语校正、穴数范围、跨书界保留及默认确认 | 全文 |
+| AR-14 作者决定 | 经脉攻防独立乘、护体内劲及轻功按经脉运行；具体曲线与硬界由 21 唯一定义 | §6.6–§6.7、§8、§11 |
 
 ### 15.3 对基准的修改提案
 
@@ -1515,6 +1584,7 @@ T15-06 的边界特意覆盖闭区间：失败余量 2,499 属第二行，2,500 
 | M1-P01 | 基准 §12 登记 `mer_`（经脉）、`ap_`（穴道）、`zt_`（周天/转） | AR-03 已产生持久化与跨文档引用 ID；缺前缀会让校验器无法判定所有权 |
 | M1-P02 | 基准 §18 登记 `design/15` 为穴道、经脉、通脉、三个里程碑、九转、冲穴算法和进度 schema 的唯一归属 | 避免 05、06、13、14、tech/04–05 重复定义规则 |
 | M1-P03 | 基准 §3 的“永久增益跨书界保留”明确包含 `opened/progressH/turnCompleted`；同时注明轮回只留历史最高转数、不恢复奖励 | 区分同周目书眠与结局后多周目，落实 AR-03c |
+| M3-P04（沿用 21 提案） | 基准 §18 明确 15 唯一拥有永久拓扑 / 修炼事实，21 唯一拥有战斗动态、攻 / 防 / 轻功路线、护体内劲、控制严重度与调息 | 本文已按该边界输出只读投影；需由 v1.3 正式登记，且该提案取代旧 M2-P02 的 Z3 口径 |
 
 基准 §6 无需新增属性：内劲 `Qi` 和关隘 `H` 是计算中间量，不能进入角色面板；奖励全部使用 03 已有属性。若后续把二者做成可装备、可交易资源，应作为新提案审议，不能沿用本文定义。
 
@@ -1538,3 +1608,4 @@ T15-06 的边界特意覆盖闭区间：失败余量 2,499 属第二行，2,500 
 | O15-04 | **已解决：**15 个新被动尚未进入正式 Buff registry | 15 项均已在 `design/06` §8.13 收录；内容构建继续对悬空引用报错 | `design/06`、`tech/04` |
 | O15-05 | 满九转真实 TTK 与资源循环是否越线 | 先采用 §8 的一阶估算与红线；实装后跑三档完整模拟，不合格时优先下调触发收益 | `design/04`、`design/06`、`tech/05` |
 | O15-06 | 20 脉与 180 穴的文化审校尚未完成 | 保留 §12 的非医疗声明、交会/借穴区分和全部待考标记 | 内容审校 |
+| O15-07 | `MeridianBattleProjectionV1` 是否在生产存档中物化 | 默认不物化，只在 `createBattle` 从 `MeridianProgress` 派生；若为性能缓存，必须带进度版本并逐次校验 | `tech/05` |
