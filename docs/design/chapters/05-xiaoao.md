@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定与重命名见 `decisions/rulings-v1.md`。
 > 引用而不重定义：核心循环与锚点 → `design/01`；年代、境界、书眠与残承 → `design/02`；属性、伤害、武学与 Buff → `design/03`–`06`；套装、地形、战斗与装备 → `design/07`–`10`；开放世界与任务 → `design/11`–`12`；成长与天书 → `design/13`；静态经脉成长 → `design/15`；战斗经脉运行、招式路线、绝招、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；门派矩阵 → `design/17`；人物名录 → `design/18`；世界地图 → `design/19`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v1.0（D05 初稿，2026-09-26）；审校 D05.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）。
+> 版本：v1.0（D05 初稿，2026-09-26）；审校 D05.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）；首领 / Boss 配装补全（2026-09-27）。
 
 ---
 
@@ -1293,22 +1293,28 @@ Boss 的 71.5 是四人队标准命中等价，不是要求主角单人出手 71
 
 数值验收以“公式一次应用”为首要条件：D7 不乘防御，模板 `P_ref×tmplPower` 只在 Z1 归一一次，`full` 用真实 `P_actual`，难度模式另乘且 UI 明示。任何为了追求回合数而改面板的调整，都必须先在 `design/03` / `04` / `09` 归属处落定，再回填本章。
 
-### 12.6 敌方经脉模板与高速 Boss 接线
+### 12.6 首领 / Boss 武学配装与经脉接线
 
-本节只配置 `design/21` §11.9 七参数；战斗动态、独立乘区、护体内劲、速度、控制与调息均不在本章重定义，静态里程碑只读 `design/15`。`routeRefs` 必须取单位行动表内 `MoveDef.meridianRouteRef` 去重并集；图鉴缺路线时构建失败，不建章节私有 `mfr_*`。以下均为 **【建议值】**：
+本节给出 `design/21` §11.9 七参数与完整行动栏 **【建议值】**；战斗动态、独立乘区、护体内劲、速度、控制与调息仍只引用该文，静态里程碑只读 `design/15`。只使用图鉴既有且在笑傲可用、或属于人物门派 / 原著所学的 `sk_*`；`routeRefs` 取实际行动表中 `MoveDef.meridianRouteRef` 的去重并集。
 
-| 单位 / 角色组成员 | `kind` | `effGrade/effLayer` | `mpRatioBp` | `practiceBp` | `capacityScaleBp` | `innerNature` | `openPolicy` | `milestones` |
-|---|---|---:|---:|---:|---:|---|---|---|
-| 本界精英默认 | `elite` | `8/8` | 10500 | 7500 | 10500 | 由主武学解析，落盘为 `yin/yang/harmony` | `schoolCore` | `{meridianComplete:true,smallCycle:true,greatCycle:false,twelveCycle:false,turns:0}` |
-| 余沧海 / 青城追索首领 | `boss` | `7/9` | 13000 | 9000 | 13000 | 由主武学解析，落盘为 `yin/yang/harmony` | `fullTemplate` | `{meridianComplete:true,smallCycle:true,greatCycle:true,twelveCycle:false,turns:2}` |
-| 嵩山使者 / 剑宗来客 / 日月来袭首领 | `boss` | `8/9` | 13000 | 9000 | 13000 | 由主武学解析，落盘为 `yin/yang/harmony` | `fullTemplate` | 同上 |
-| 任我行（梅庄 / 少林复用） | `boss` | `11/9` | 13000 | 9000 | 13000 | `yin` | `fullTemplate` | 同上 |
-| 方证 | `boss` | `12/9` | 13000 | 9000 | 13000 | `harmony` | `fullTemplate` | 同上 |
-| 左冷禅（少林 / 夺帅复用） | `boss` | `9/9` | 13000 | 9000 | 13000 | `yin` | `fullTemplate` | 同上 |
-| 东方不败 | `boss` | `11/9` | 13000 | 9000 | 13000 | `yin` | `fullTemplate` | 同上 |
-| 岳不群 | `boss` | `10/9` | 13000 | 9000 | 13000 | `yin` | `fullTemplate` | 同上 |
+| 单位 | 门派 / 来源 | 主运内功 | 辅运内功 | 外功（逐门品阶） | 经脉七项参数 | 节奏复核（补全前→补全后） |
+|---|---|---|---|---|---|---|
+| 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主武学解析 | 按单位来源的基础内功解析 | 按单位行动表解析 | `elite; 8/8; 10500; 7500; 10500; 由主武学解析; schoolCore; {meridianComplete:true,smallCycle:true,greatCycle:false,twelveCycle:false,turns:0}` | 模板精英 `9.5`，在 6–10 |
+| 余沧海 / 青城追索首领 | 青城 L5 | `sk_qingchengxinfa` 青城心法（玄中5，阴） | `sk_qingchengtuna` 青城吐纳（黄上3）、`sk_tunaqianjue` 吐纳浅诀（黄上3） | `sk_qingchengcuixinzhang` 青城摧心掌（地下7）、`sk_songfengjianfa` 松风剑法（玄上6）、`sk_qingchengrumenjian` 青城入门剑（黄上3）、`sk_qingchengrumenquan` 青城入门拳（黄中2） | `boss; 5/9; 13000; 9000; 13000; yin; fullTemplate; M5` | `24.9→24.9`；旧 7 品来自外功，现按主运 5 品 |
+| 嵩山使者首领 | 嵩山使者组 | `sk_songyangxinfa` 嵩阳心法（玄上6，阳） | `sk_songyangtuna` 嵩阳吐纳（黄上3）、`sk_zhamabu` 扎马步（黄下1） | `sk_songshanjianfa` 嵩山剑法（玄上6）、`sk_dayinyangshou` 大阴阳手（玄中5）、`sk_songshanzhuangong` 嵩山桩功（玄下4）、`sk_songshanrumenjian` 嵩山入门剑（黄上3）、`sk_songyangrumenzhang` 嵩阳入门掌（黄中2） | `boss; 6/9; 13000; 9000; 13000; yang; fullTemplate; M5` | `24.9→24.9`；原缺主运会回退 `1/1/harmony`，现闭合 |
+| 剑宗 / 蒙面首领（复用画像） | 华山剑宗 / 药王庙蒙面组 | `sk_huashanxinfa` 华山心法（玄上6，调和） | `sk_huashantuna` 华山吐纳（黄上3）、`sk_dantianyangqi` 丹田养气（黄中2） | `sk_taiyuesanqingfeng` 太岳三青峰（地中8）、`sk_kuangfengkuaijian` 狂风快剑（玄上6）、`sk_huashanjianfa` 华山剑法（玄上6）、`sk_huashanrumenjian` 华山入门剑（黄上3）、`sk_huashanjichuquan` 华山基础拳（黄中2） | `boss; 6/9; 13000; 9000; 13000; harmony; fullTemplate; M5` | `24.9→24.9`；原缺主运会回退 `1/1/harmony`，现闭合 |
+| 任我行（梅庄 / 少林复用） | 日月神教 L5 | `sk_xixing` 吸星大法（天中11，阴） | `sk_riyuexinfa` 日月心法（玄上6）、`sk_heimutuna` 黑木吐纳（黄上3） | `sk_heimuyajianfa` 黑木崖剑法（地下7）、`sk_riyuejianfa` 日月剑法（玄上6）、`sk_heimuyarumenjian` 黑木崖入门剑（黄上3）、`sk_riyuejichuquan` 日月基础拳（黄中2） | `boss; 11/9; 13000; 9000; 13000; yin; fullTemplate; M5` | `24.9→24.9`；专属外功图鉴缺口见下文 |
+| 方证 | 少林 L5 | `sk_yijinjing` 易筋经（天上12，调和） | `sk_jinzhongzhao` 金钟罩（地中8）、`sk_shaolinxinfa` 少林心法（黄中2） | `sk_qianshourulaizhang` 千手如来掌（地上9）、`sk_yizhichan` 一指禅（地中8）、`sk_longzhaoshou` 龙爪手（地中8）、`sk_dajingangzhang` 大金刚掌（地下7）、`sk_shaolinqinna` 少林擒拿手（黄上3） | `boss; 12/9; 13000; 9000; 13000; harmony; fullTemplate; M5` | `24.9→24.9`；主运与旧 12 品口径一致 |
+| 左冷禅（少林 / 夺帅复用） | 嵩山 L5 | `sk_hanbingzhenqi` 寒冰真气（地上9，阴） | `sk_songyangxinfa` 嵩阳心法（玄上6）、`sk_songyangtuna` 嵩阳吐纳（黄上3） | `sk_songshanjianfa` 嵩山剑法（玄上6）、`sk_dayinyangshou` 大阴阳手（玄中5）、`sk_songshanzhuangong` 嵩山桩功（玄下4）、`sk_songshanrumenjian` 嵩山入门剑（黄上3）、`sk_songyangrumenzhang` 嵩阳入门掌（黄中2） | `boss; 9/9; 13000; 9000; 13000; yin; fullTemplate; M5` | `24.9→24.9`；主运与旧 9 品口径一致 |
+| 日月来袭首领 | 日月神教 L4 | `sk_riyuexinfa` 日月心法（玄上6，阴） | `sk_heimutuna` 黑木吐纳（黄上3）、`sk_tunaqianjue` 吐纳浅诀（黄上3） | `sk_heimuyajianfa` 黑木崖剑法（地下7）、`sk_riyuejianfa` 日月剑法（玄上6）、`sk_duandashou` 短打手（玄下4）、`sk_heimuyarumenjian` 黑木崖入门剑（黄上3）、`sk_riyuejichuquan` 日月基础拳（黄中2） | `boss; 6/9; 13000; 9000; 13000; yin; fullTemplate; M5` | `24.9→24.9`；原缺主运会回退 `1/1/harmony`，现闭合 |
+| 东方不败 | 日月神教教主 / 葵花传承 | `sk_kuihua` 葵花宝典（天中11，阴） | `sk_riyuexinfa` 日月心法（玄上6）、`sk_heimutuna` 黑木吐纳（黄上3） | `sk_heimuyajianfa` 黑木崖剑法（地下7）、`sk_riyuejianfa` 日月剑法（玄上6）、`sk_heimuyarumenjian` 黑木崖入门剑（黄上3）、`sk_riyuejichuquan` 日月基础拳（黄中2） | `boss; 11/9; 13000; 9000; 13000; yin; fullTemplate; M5` | `24.9→24.9`；针招由主运已有招式与 `eq_xiuhuazhen` 承载，专场待实测 |
+| 岳不群 | 华山气宗掌门 / 辟邪传承 | `sk_zixiashengong` 紫霞神功（地上9，阳） | `sk_huashanxinfa` 华山心法（玄上6）、`sk_huashantuna` 华山吐纳（黄上3） | `sk_bixie` 辟邪剑法（天下10）、`sk_taiyuesanqingfeng` 太岳三青峰（地中8）、`sk_huashanjianfa` 华山剑法（玄上6）、`sk_yangwujian` 养吾剑（玄上6）、`sk_huashanrumenjian` 华山入门剑（黄上3） | `boss; 9/9; 13000; 9000; 13000; yang; fullTemplate; M5` | `24.9→24.9`；旧表误取辟邪外功 10 品，现按主运 9 品 |
 
-“同上”是路线所涉经脉全通、小 / 大周天、第二转；不是 20 脉全开。每名使者、围攻头目、少林三战参与者与独立武学行动者各有一个 `MeridianFlowModule`；琴音、黑暗、索道等纯环境状态无实例。同一角色跨遭遇只复用静态模板，每场动态态重建。模块不持有 RNG；Core 仅在成功命令事务中注入唯一全局 `battle` 流，按既定提交顺序消费并与状态原子提交，不派生单位子流。`effGrade/effLayer` 均是 `design/13` 完成外来压制、难度与规则开关后的最终有效值。
+表内先写 `kind`，随后七项参数固定为 `effGrade/effLayer; mpRatioBp; practiceBp; capacityScaleBp; innerNature; openPolicy; milestones`；`M5={meridianComplete:true,smallCycle:true,greatCycle:true,twelveCycle:false,turns:2}`，表示本界已开放的小 / 大周天与第二转，不是 20 脉全开。九个具名首领画像共配 27 门内功、42 门外功；同一角色跨遭遇复用静态画像，每场动态态重建。
+
+每名使者、围攻头目、少林三战参与者与独立武学行动者各持一个 `MeridianFlowModule`；同场多人仍共享 §12.3 的遭遇耐久，不得逐人复制整份 Boss HP。琴音、黑暗、索道等纯环境状态不配武学且无实例。任我行在现有图鉴只有专属内功 `sk_xixing`，东方不败的飞针攻击收在主运 `sk_kuihua` 的招式内，均没有可另列的专属外功 `sk_*`；故表中外功使用其日月门派链，不虚造 ID。模块不持有 RNG；Core 只在成功命令事务中注入唯一全局 `battle` 流。`effGrade/effLayer` 只取主运内功经 `design/13` 压制后的最终有效值。
+
+本界主力锚点为 8 品，故主运应至少 7 品。余沧海的青城内功上限为 `sk_qingchengxinfa` 5 品；嵩山使者首领、剑宗 / 蒙面首领、日月来袭首领的对应门派常规内功上限分别为 `sk_songyangxinfa`、`sk_huashanxinfa`、`sk_riyuexinfa`，均为 6 品。9 品寒冰真气、紫霞神功与 11 品吸星大法均属具名人物 / 掌门专属链，不能借给普通首领；故四组保留原主运并登记“缺本界级别内功”。
 
 按 `design/21` §4.9，东方不败原有约 216 的基础 / 脚本速度先经 `meridianSpeedBp` 投影，再用于首轮与 CT；不得把经脉速度再写进基础 `spd`，也不得用它越过 qg 门禁。随后才乘擒拿移动倍率；纯经脉 `evadeRatingDelta` 与擒拿 `evadeBp` 各一次。攻防分别走 Z5M / Z4M，护体内劲位于护盾后、`mpGuard` 前；吸星的异种真气和经脉 backlog 是两套状态，不相互冒充或重复计罚。
 

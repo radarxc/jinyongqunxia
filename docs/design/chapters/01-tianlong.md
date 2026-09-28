@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；主线唯一事实源为 `design/story/01-tianlong.md`。
 > 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05` 与四份指定图鉴；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、余韵与结局 → `design/13`；静态经脉成长 → `design/15`；战斗经脉运行、招式路线、绝招、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.1（D01；审校 D01.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）。
+> 版本：v1.1（D01；审校 D01.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）；首领 / Boss 配装补全（2026-09-27）。
 
 ---
 
@@ -1376,23 +1376,25 @@ B = I × H = 19 × 15 = 285 两
 - 18 穴 / 2 通脉是内容投放上限与建议目标，不是通关条件；同一开穴事务不得重复发通脉奖励。
 - 四档难度、单人 / 满编、最低合法三联和无天级武学各跑一遍主线关键战；天书结算不得要求随机掉落或单一互斥秘籍 **（待实测）**。
 
-### 12.8 敌方经脉模板与战斗接线
+### 12.8 首领 / Boss 武学配装与经脉接线
 
 本节只给章节实例参数；经脉河流、攻防路线、护体内劲、速度、绝招、擒拿 / 点穴与调息的定义均见 `design/21`，永久开穴与里程碑见 `design/15`。`routeRefs` 不在本章手填，必须取该单位行动表中已解析 `MoveDef.meridianRouteRef` 的去重并集；若任一正式招式仍无路线，构建失败，不以章节自造 `mfr_*` 补洞。以下均为 **【建议值】**：
 
-| 单位 / 模板 | `kind` | `effGrade/effLayer` | `mpRatioBp` | `practiceBp` | `capacityScaleBp` | `innerNature` | `openPolicy` | `milestones` |
-|---|---|---:|---:|---:|---:|---|---|---|
-| 本界精英默认 | `elite` | `7/8` | 10500 | 7500 | 10500 | 由主武学解析，落盘为 `yin/yang/harmony` | `schoolCore` | `{meridianComplete:true,smallCycle:false,greatCycle:false,twelveCycle:false,turns:0}` |
-| `npc_duanyanqing` | `boss` | `11/9` | 13000 | 9000 | 13000 | `yang` | `fullTemplate` | `{meridianComplete:true,smallCycle:false,greatCycle:false,twelveCycle:false,turns:0}` |
-| `npc_jiumozhi` | `boss` | `11/9` | 13000 | 9000 | 13000 | `harmony` | `fullTemplate` | 同上 |
-| `npc_xiaofeng` | `boss` | `12/9` | 13000 | 9000 | 13000 | `yang` | `fullTemplate` | 同上 |
-| `npc_dingchunqiu` | `boss` | `9/9` | 13000 | 9000 | 13000 | `yin` | `fullTemplate` | 同上 |
-| `npc_tonglao` | `boss` | `11/9` | 13000 | 9000 | 13000 | `yang` | `fullTemplate` | 同上 |
-| `npc_liqiushui` | `boss` | `11/9` | 13000 | 9000 | 13000 | `harmony` | `fullTemplate` | 同上 |
-| `npc_youtanzhi` | `boss` | `12/9` | 13000 | 9000 | 13000 | `harmony` | `fullTemplate` | 同上 |
-| `npc_xuanci` | `boss` | `8/9` | 13000 | 9000 | 13000 | `yang` | `fullTemplate` | 同上 |
-| `npc_murongfu` | `boss` | `10/9` | 13000 | 9000 | 13000 | `harmony` | `fullTemplate` | 同上 |
-| `npc_murongbo` | `boss` | `10/9` | 13000 | 9000 | 13000 | `harmony` | `fullTemplate` | 同上 |
+| 单位 | 门派 / 来源 | 主运内功 | 辅运内功 | 外功（逐门品阶） | 经脉七项参数 | 节奏复核 |
+|---|---|---|---|---|---|---|
+| 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主武学解析 | 按单位来源的基础内功解析 | 按单位行动表解析 | `elite; 7/8; 10500; 7500; 10500; 由主武学解析; schoolCore; M0` | 模板精英 `9.6`，在 6–10 |
+| `npc_duanyanqing` | 大理段氏 / 四大恶人 | `sk_duanshiyangshenggong`（玄上6，调和） | `sk_tiannanxinfa`（黄上3）、`sk_wangfutunaxi`（黄中2） | `sk_yiyangzhi`（天中11）、`sk_yanqingzhang`（地上9）、`sk_duanjiajianfa`（地下7）、`sk_egangshou`（黄中2） | `boss; 6/9; 13000; 9000; 13000; harmony; fullTemplate; M0` | 旧 `11/9/yang`（误取一阳指）→16.1，在12–25 |
+| `npc_jiumozhi` | 吐蕃密宗 / 少林旁学 | `sk_xiaowuxiang`（天中11，调和） | `sk_mizonghufashen`（玄上6）、`sk_zhuohuogong`（玄下4） | `sk_huoyandao`（天下10）、`sk_wuxiangjiezhi`（地上9）、`sk_ranmudaofa`（地上9）、`sk_duoluoyezhi`（地下7）、`sk_dashouyin`（玄上6） | `boss; 11/9; 13000; 9000; 13000; harmony; fullTemplate; M0` | `16.1→16.1`，在12–25 |
+| `npc_xiaofeng` | 丐帮 / 契丹军旅 | `sk_jiudaixingong` 九袋行功（玄上6，阳） | `sk_saibeixinfa` 塞北心法（玄中5）、`sk_canfengyinlugong` 餐风饮露功（玄下4） | `sk_xianglong18`（天上12）、`sk_qinlonggong`（地上9）、`sk_jingedangkouqiang`（玄上6）、`sk_tuxiongbohuquan`（玄中5）、`sk_taizuchangquan`（黄上3） | `boss; 6/9; 13000; 9000; 13000; yang; fullTemplate; M0` | 旧 `12/9/yang`（误取降龙）→按原补全为 `5/9/yang`→本次 `6/9/yang`；模板仍 16.1，在12–25 |
+| `npc_dingchunqiu` | 星宿派 | `sk_huagong`（地上9，阴） | `sk_xingxiudugong`（黄上3）、`sk_huxixingqi`（黄下1，通行） | `sk_chousuizhang`（地中8）、`sk_sanxiaoxiaoyaosan`（地下7）、`sk_fushidu`（玄上6）、`sk_huoduozhang`（玄上6）、`sk_bilinzhang`（玄下4） | `boss; 9/9; 13000; 9000; 13000; yin; fullTemplate; M0` | `16.1→16.1`，在12–25 |
+| `npc_tonglao` | 逍遥派 / 灵鹫宫 | `sk_bahuang`（天下10，阳） | `sk_zuowangxinfa`（玄中5）、`sk_lingjiuxinfa`（黄上3） | `sk_liuyangzhang`（天中11）、`sk_zhemei`（天下10）、`sk_shengsifu`（天下10）、`sk_piaomiaojian`（地下7） | `boss; 10/9; 13000; 9000; 13000; yang; fullTemplate; M0` | 旧 `11/9/yang`（误取六阳掌）→16.1，在12–25 |
+| `npc_liqiushui` | 逍遥派 / 西夏 | `sk_xiaowuxiang`（天中11，调和） | `sk_zuowangxinfa`（玄中5）、`sk_yunyougong`（玄下4） | `sk_baihongzhang`（地上9）、`sk_langhuanjian`（地下7）、`sk_chuanyinsouhun`（玄上6）、`sk_tianfengzhang`（黄上3） | `boss; 11/9; 13000; 9000; 13000; harmony; fullTemplate; M0` | `16.1→16.1`，在12–25 |
+| `npc_youtanzhi` | 聚贤庄 / 冰蚕奇遇 | `sk_yijinjing`（天上12，调和） | `sk_juxianyijue`（玄中5）、`sk_dantianyangqi`（黄中2，通行） | `sk_bingcanduzhang`（地中8）、`sk_youshishuangqiang`（玄上6）、`sk_shuangxiongdundao`（玄中5）、`sk_zhuangkequan`（黄中2） | `boss; 12/9; 13000; 9000; 13000; harmony; fullTemplate; M0` | `16.1→16.1`，在12–25 |
+| `npc_xuanci` | 少林 L5 | `sk_jinzhongzhao`（地中8，阳） | `sk_tongrenhenglian`（玄上6）、`sk_shaolinxinfa`（黄中2） | `sk_nianhuazhi`（地上9）、`sk_boruozhang`（地中8）、`sk_dajingangquan`（地下7）、`sk_longzhaoshou`（地中8）、`sk_luohanquan`（黄下1） | `boss; 8/9; 13000; 9000; 13000; yang; fullTemplate; M0` | `16.1→16.1`，在12–25 |
+| `npc_murongfu` | 姑苏慕容 | `sk_douzhuan`（天下10，调和） | `sk_canheqigong`（玄上6）、`sk_longchengxinfa`（玄中5） | `sk_canhezhi`（地中8）、`sk_murongjian`（玄上6）、`sk_baijiadao`（玄上6）、`sk_yanmenzhang`（黄上3） | `boss; 10/9; 13000; 9000; 13000; harmony; fullTemplate; M0` | `16.1→16.1`，在12–25 |
+| `npc_murongbo` | 姑苏慕容 / 少林旁学 | `sk_douzhuan`（天下10，调和） | `sk_canheqigong`（玄上6）、`sk_longchengxinfa`（玄中5） | `sk_canhezhi`（地中8）、`sk_nianhuazhi`（地上9）、`sk_wuxiangjiezhi`（地上9）、`sk_ranmudaofa`（地上9）、`sk_murongjian`（玄上6） | `boss; 10/9; 13000; 9000; 13000; harmony; fullTemplate; M0` | `16.1→16.1`，在12–25 |
+
+表内先写 `kind`，随后七项参数固定为 `effGrade/effLayer; mpRatioBp; practiceBp; capacityScaleBp; innerNature; openPolicy; milestones`；`M0` 展开为 `{meridianComplete:true,smallCycle:false,greatCycle:false,twelveCycle:false,turns:0}`。每名具名 Boss 均为 3 门内功、4–5 门外功；主运品阶只取该内功自身，辅运不抬 `effGrade`。玄 / 黄底子以门派图鉴为先，仅丁春秋、游坦之各用一门 `ALL14` 通行内功补足。萧峰按丐帮前帮主来源改以图鉴明确投放天龙、且要求丐帮 L4 / 九袋的 `sk_jiudaixingong` 为主运；原 `sk_saibeixinfa` 下移辅运，三门总数不变。
 
 `meridianComplete:true` 仅表示行动路线涉及之脉均通，不表示 20 脉全开。每个可独立行动的精英、Boss、召唤物各初始化一个 `MeridianFlowModule`；童姥 / 李秋水同场也不得共享节点、点穴、迟滞等动态态，纯场景毒雾、镜面残影不建实例。模块不持有 RNG；Core 仅在成功命令事务中注入唯一全局 `battle` 流，按既定提交顺序消费并与状态原子提交，不派生单位子流。表中 `effGrade/effLayer` 仅作建议基底，传入实例的必须是 `design/13` 完成外来压制、难度与规则开关后的最终有效值；阶段切换不得重置动态伤势。
 

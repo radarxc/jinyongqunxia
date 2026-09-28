@@ -4,7 +4,7 @@
 > 上游：`docs/00-canon.md` v1.2；作者需求与决定见 `docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`；冲突裁定见 `docs/decisions/rulings-v1.md`；正邪主线唯一叙事源为 `design/story/03-shendiao.md`。
 > 引用而不重定义：年代、书眠、携带与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害公式 → `design/04`；武学与 Buff → `design/05`、`06`及图鉴；地形与轻功 → `design/08`；战斗、合击与 Boss → `design/09`；装备与物品 → `design/10`；开放世界 → `design/11`；任务、门派与羁绊 → `design/12`；成长、天书与结局 → `design/13`；静态经脉成长 → `design/15`；战斗经脉运行、招式路线、绝招、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；时代门派 → `design/17`；人物 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联／广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要完整存档或设备验证；**【建议值】** = 依赖上游定稿、先给可用数值并在文末登记。
-> 版本：v1.0（D03 初稿，2026-09-26）；审校 D03.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）。
+> 版本：v1.0（D03 初稿，2026-09-26）；审校 D03.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）；首领 / Boss 配装补全（2026-09-27）。
 
 ---
 
@@ -1480,22 +1480,26 @@ B = I × H = 200 × 15 = 3,000 两
 5. 经济调参按来源桶 ±10% 范围执行；牺牲家业是改命成本，不得再把其账面价值作为奖励发回。
 6. 经脉推进只按 `design/15` 的 18,180H 新增工作量；当前无合法 `meridianAid` 药物，不能靠临时丹药抹平节奏。
 
-### 12.8 敌方经脉模板与控制遭遇
+### 12.8 首领 / Boss 武学配装与控制遭遇
 
 本节仅提供 `design/21` §11.9 初始化参数；动态经脉、路线乘区、护体内劲、速度与控制均只引用 21，静态开穴 / 小周天只引用 `design/15`。`routeRefs` 必须由单位行动表中 `MoveDef.meridianRouteRef` 去重生成，章节不登记新 `mfr_*`。下列均为 **【建议值】**：
 
-| 单位 / 模板 | `kind` | `effGrade/effLayer` | `mpRatioBp` | `practiceBp` | `capacityScaleBp` | `innerNature` | `openPolicy` | `milestones` |
-|---|---|---:|---:|---:|---:|---|---|---|
-| 本界精英默认 | `elite` | `9/8` | 10500 | 7500 | 10500 | 由主武学解析，落盘为 `yin/yang/harmony` | `schoolCore` | `{meridianComplete:true,smallCycle:true,greatCycle:false,twelveCycle:false,turns:0}` |
-| 李莫愁 | `boss` | `7/9` | 13000 | 9000 | 13000 | `yin` | `fullTemplate` | 同上 |
-| 重阳七星阵首 / 蒙古百户 | `boss` | `5/9` | 13000 | 9000 | 13000 | 由主武学解析，落盘为 `yin/yang/harmony` | `fullTemplate` | 同上 |
-| 金轮法王（两战） | `boss` | `11/9` | 13000 | 9000 | 13000 | `yang` | `fullTemplate` | 同上 |
-| 公孙止 | `boss` | `8/9` | 13000 | 9000 | 13000 | `yin` | `fullTemplate` | 同上 |
-| 裘千尺 / 霍都 | `boss` | `7/9` | 13000 | 9000 | 13000 | `yin` | `fullTemplate` | 同上 |
-| 黄药师 | `boss` | `10/9` | 13000 | 9000 | 13000 | `harmony` | `fullTemplate` | 同上 |
-| 杨过 | `boss` | `11/9` | 13000 | 9000 | 13000 | `yin` | `fullTemplate` | 同上 |
+| 单位 | 门派 / 来源 | 主运内功 | 辅运内功 | 外功（逐门品阶） | 经脉七项参数 | 节奏复核（补全前→补全后） |
+|---|---|---|---|---|---|---|
+| 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主武学解析 | 按单位来源的基础内功解析 | 按单位行动表解析 | `elite; 9/8; 10500; 7500; 10500; 由主武学解析; schoolCore; M1` | 模板精英 `9.7`，在 6–10 |
+| 李莫愁 | 古墓叛支 / 赤练一系 | `sk_hanyuxinjue` 寒玉心诀（玄上6，阴） | `sk_hanyujinggong` 寒玉静功（玄中5）、`sk_gumudaoyin` 古墓导引（黄中2） | `sk_chilianshenzhang` 赤练神掌（地下7）、`sk_bingpoyinzhen` 冰魄银针（地下7）、`sk_sanwusanbushou` 三无三不手（玄上6）、`sk_wudumichuan` 五毒秘传（玄上6） | `boss; 6/9; 13000; 9000; 13000; yin; fullTemplate; M1` | `24.8→24.8`；旧表误取赤练神掌 7 品，现按主运 6 品 |
+| 重阳七星阵首 | 全真三代 / 北斗阵 | `sk_beidouxinfa` 北斗心法（玄中5，阳） | `sk_quanzhenxinfa` 全真心法（玄中5）、`sk_quanzhentunajue` 全真吐纳诀（黄中2） | `sk_dabeidouzhen` 北斗大阵（玄中5）、`sk_quanzhenjian` 全真剑法（玄中5）、`sk_sanqingzhang` 三清掌（黄中2）、`sk_quanzhenqinna` 全真擒拿（黄上3） | `boss; 5/9; 13000; 9000; 13000; yang; fullTemplate; M1` | `24.8→24.8`；原缺主运、严格解析会回退 `1/1/harmony`，现闭合为 `5/9/yang` |
+| 金轮法王（大胜关 / 襄阳复用画像） | 吐蕃密宗 | `sk_longxiang` 龙象般若功（天中11，阳） | `sk_mizonghufashen` 密宗护法身（玄上6）、`sk_zhuohuogong` 拙火功（玄下4） | `sk_wulundazhuan` 五轮大转（地上9）、`sk_dashouyin` 大手印（玄上6）、`sk_jingangxiangmochu` 金刚降魔杵（玄上6）、`sk_falunshou` 法轮手（玄中5） | `boss; 11/9; 13000; 9000; 13000; yang; fullTemplate; M1` | `24.8→24.8`；两战各建动态态 |
+| 公孙止 | 绝情谷 | `sk_bixuegong` 闭穴功（地下7，阴） | `sk_jueqingxinjue` 绝情心诀（黄上3）、`sk_jueqingdaoyin` 绝情导引（黄中2） | `sk_yinyangdaoluan` 阴阳倒乱刃法（地中8）、`sk_jueqingjian` 绝情剑法（黄上3）、`sk_jindaojichu` 金刀基础（黄上3）、`sk_heijianjichu` 黑剑基础（黄上3） | `boss; 7/9; 13000; 9000; 13000; yin; fullTemplate; M1` | `24.8→24.8`；旧表误取阴阳倒乱刃 8 品，现按主运 7 品 |
+| 裘千尺 | 铁掌传承 / 绝情谷 | `sk_bixuegong` 闭穴功（地下7，阴） | `sk_tiezhangxinfa` 铁掌心法（玄中5）、`sk_tiezhangzhuang` 铁掌桩（黄中2） | `sk_zaoheding` 枣核钉（玄上6）、`sk_duanfengzhang` 断峰掌（玄上6）、`sk_heishazhang` 黑砂掌（黄中2） | `boss; 7/9; 13000; 9000; 13000; yin; fullTemplate; M1` | `24.8→24.8`；伤残后行动表只启用不需双手的枣核钉；伤前铁掌层级**（待考）** |
+| 霍都 | 密宗弟子 / 蒙古王子 | `sk_mizonghufashen` 密宗护法身（玄上6，阳） | `sk_zhuohuogong` 拙火功（玄下4）、`sk_xueshanlianqi` 雪山炼气（黄上3） | `sk_huodushanfa` 霍都扇法（玄上6）、`sk_falunshou` 法轮手（玄中5）、`sk_jingangjue` 金刚橛法（黄上3）、`sk_hufashou` 护法手（黄上3） | `boss; 6/9; 13000; 9000; 13000; yang; fullTemplate; M1` | `24.8→24.8`；旧表误以扇法威胁写 `7/yin`，现按主运 `6/yang` |
+| 黄药师 | 桃花岛 | `sk_bitaoxuangong` 碧涛玄功（地下7，调和） | `sk_taohuatunaxi` 桃花吐纳息（玄下4）、`sk_yaoputunaxi` 药圃吐纳息（黄中2） | `sk_tanzhi` 弹指神通（天下10）、`sk_bihai` 碧海潮生曲（天下10）、`sk_lanhuafuxueshou` 兰花拂穴手（地中8）、`sk_yuxiaojianfa` 玉箫剑法（地中8）、`sk_luoyingshenjianzhang` 落英神剑掌（地下7） | `boss; 7/9; 13000; 9000; 13000; harmony; fullTemplate; M1` | `24.8→24.8`；旧表误取天阶外功 10 品，现按主运 7 品 |
+| 杨过 | 古墓 / 白驼 / 剑冢传承 | `sk_yunvxinjing` 玉女心经（天下10，阴） | `sk_jinguanyusuo` 金关玉锁二十四诀（地中8）、`sk_hanyuxinjue` 寒玉心诀（玄上6） | `sk_anran` 黯然销魂掌（天中11）、`sk_xuantie` 玄铁剑法（天中11）、`sk_suxin` 玉女素心剑法（天中11）、`sk_tanzhi` 弹指神通（天下10）、`sk_yunvjian` 玉女剑法（玄上6） | `boss; 10/9; 13000; 9000; 13000; yin; fullTemplate; M1` | `24.8→24.8`；旧表误取黯然 / 玄铁 11 品，现按主运 10 品 |
+| 蒙古攻城百户 | 蒙古军伍 | `sk_baizhanxinfa` 百战心法（地中8，阳） | `sk_jundituna` 军旅吐纳（玄中5）、`sk_caoyuantunaxi` 草原吐纳息（黄上3） | `sk_pojunqiangfa` 破军枪法（地上9）、`sk_yanmengqishe` 雁门骑射（地中8）、`sk_mengguqishe` 蒙古骑射（玄中5）、`sk_qimawandaofa` 骑马弯刀法（玄中5）、`sk_mengguduanmao` 蒙古短矛（玄中5） | `boss; 8/9; 13000; 9000; 13000; yang; fullTemplate; M1` | `24.8→24.8`；原缺主运、严格解析会回退 `1/1/harmony`，现闭合为 `8/9/yang` |
 
-“同上”指路线所涉经脉全通 + 小周天，不表示 20 脉全开。七星阵各阵眼、战阵军官与一切独立出手召唤物各有一个 `MeridianFlowModule`；音律场、毒区、号角、投石等纯环境行为无实例。金轮两次出战复用静态画像但各建动态态；杨过、金轮的 `capExempt` 只改显示等级，不绕过中武 / 高武压制。模块不持有 RNG；Core 仅在成功命令事务中注入唯一全局 `battle` 流，按既定提交顺序消费并与状态原子提交，不派生单位子流。表中 `effGrade/effLayer` 仅作建议基底，传入实例的必须是 `design/13` 完成外来压制、难度与规则开关后的最终有效值。
+表内先写 `kind`，随后七项参数固定为 `effGrade/effLayer; mpRatioBp; practiceBp; capacityScaleBp; innerNature; openPolicy; milestones`；`M1={meridianComplete:true,smallCycle:true,greatCycle:false,twelveCycle:false,turns:0}`，只表示路线所涉经脉全通 + 小周天，不表示 20 脉全开。七星阵各阵眼、战阵军官与一切独立出手召唤物各有一个 `MeridianFlowModule`；音律场、毒区、号角、投石等纯环境行为无实例。金轮两次出战复用静态画像但各建动态态；杨过、金轮的 `capExempt` 只改显示等级，不绕过中武 / 高武压制。模块不持有 RNG；Core 仅在成功命令事务中注入唯一全局 `battle` 流，按既定提交顺序消费并与状态原子提交，不派生单位子流。`effGrade/effLayer` 只取主运内功的最终有效品阶 / 层数。九名具名首领共配 27 门内功、38 门外功；每人内功 3 门、外功 3–5 门。
+
+本界主力锚点为 9 品，故主运应至少 8 品。重阳七星阵首可合法取得全真 L4 的 `sk_jinguanyusuo` 8 品，但现画像标为全真三代阵首，尚无 L4 / 都讲来源，不擅自越级；李莫愁的古墓叛支已明写主运最高 `sk_hanyuxinjue` 6 品，公孙止 / 裘千尺的绝情谷链最高 `sk_bixuegong` 7 品，霍都本人未获金轮专属 `sk_longxiang`，黄药师的桃花岛内功最高 `sk_bitaoxuangong` 7 品。以上均无已确认且非他人专属的 ≥8 品替代，保留原主运并登记“缺本界级别内功”。
 
 神雕按 `design/21` §13.4 开放擒拿 / 点穴 1–9、逆催与多路线反制；公孙止“闭穴”只能由图鉴路线 / Buff 表达，不获得脚本免疫。Z4M / Z5M 各取整一次，护体内劲位于护盾后、`mpGuard` 前，经脉速度先于擒拿移动倍率；9 级控制仍走 06 的硬控递减与终局保护。
 
