@@ -4,7 +4,7 @@
 > **上游**：`decisions/author-decisions.md`（G1 / P33）、`00-canon.md`（§3–§7、§9、§12–§13、§16、§18、§20）、`decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-12、AR-14、`decisions/rulings-v1.md` C14、C16–C17、C22–C23、`design/17` §1.11–§1.14、§3.4、§11、`design/21` v2.0。
 > **引用而不重定义**：字段、层数、招式预算、内功贡献与学习规则见 `design/05`；战斗经脉运行、路线、护体内劲、速度修正与调息见 `design/21`；经脉、穴位、冲穴、周天与九转见 `design/15`；Buff 本体见 `design/06`；六角范围与阵法流程见 `design/09`；机关、毒物、兵器与弹药见 `design/10`；套装规则与最终数值见 `design/07`。
 > **标注约定**：**（原创扩展）** = 原著没有的武学、招名或投放；**（原创扩展命名）** = 原著有其人、兵器或行为而无可确认武学名；**（待考）** = 须以正式出版的古龙作品逐字核对。本文不编造引文与回目号。
-> **版本**：C1g 初稿；审校 C1g.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）。
+> **版本**：C1g 初稿；审校 C1g.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）。
 
 ---
 
@@ -23,8 +23,7 @@
 | 9 地上 | `sk_shenshuineigong` | `mv_shenshuineigong_huilan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_shenshuineigong_huilan}` | `mfr_shenshuineigong_huilan` | `MeridianRouteDef{moveRef:mv_shenshuineigong_huilan; ultimate:true; purpose:defense}`；`ap_renmai_shenque/90/100→ap_shoujueyin_jianshi/90/120→ap_shoujueyin_zhongchong/90/140→ap_shoushaoyin_shenmen/90/160→ap_shoutaiyin_tianfu/90/180→ap_yinqiao_lieque/90/200→ap_yinwei_lianquan/90/220→ap_zujueyin_taichong/90/240` |
 | 9 地上 | `sk_shenshuineigong` | `mv_shenshuineigong_zhongchao` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_shenshuineigong_zhongchao}` | `mfr_shenshuineigong_zhongchao` | `MeridianRouteDef{moveRef:mv_shenshuineigong_zhongchao; ultimate:true; purpose:defense}`；`ap_yinqiao_jiaoxin/90/100→ap_yinwei_fuai/90/120→ap_zujueyin_ligou/90/140→ap_zujueyin_zhongfeng/90/160→ap_zushaoyin_taixi/90/180→ap_zutaiyin_shangqiu/90/200→ap_renmai_guanyuan/90/220→ap_renmai_yinjiao/90/240` |
 | 7 地下 | `sk_qinglongcisha` | `mv_qinglongcisha_yici` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_qinglongcisha_yici}` | `mfr_qinglongcisha_yici` | `MeridianRouteDef{moveRef:mv_qinglongcisha_yici; ultimate:true; purpose:attack}`；`ap_renmai_chengjiang/90/100→ap_renmai_shimen/90/120→ap_shoujueyin_laogong/90/140→ap_shoushaoyin_jiquan/90/160→ap_shoushaoyin_tongli/90/180→ap_shoutaiyin_xiabai/90/200→ap_yinqiao_lougu/90/220→ap_yinwei_qimen/90/240` |
-| 8 地中 | `sk_tangmenanshou` | `mv_tangmenanshou_zhuixing` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_tangmenanshou_zhuixing}` | `mfr_tangmenanshou_zhuixing` | `MeridianRouteDef{moveRef:mv_tangmenanshou_zhuixing; ultimate:true; purpose:attack}`；`ap_renmai_qugu/90/100→ap_shoujueyin_daling/90/120→ap_shoujueyin_ximen/90/140→ap_shoushaoyin_shaohai/90/160→ap_shoutaiyin_taiyuan/90/180→ap_yinqiao_jingming/90/200→ap_yinwei_fushe/90/220→ap_zujueyin_ququan/90/240` |
-| 8 地中 | `sk_tangmenanshou` | `mv_tangmenanshou_baoyu` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_tangmenanshou_baoyu}` | `mfr_tangmenanshou_baoyu` | `MeridianRouteDef{moveRef:mv_tangmenanshou_baoyu; ultimate:true; purpose:attack}`；`ap_shoujueyin_tianquan/90/100→ap_shoushaoyin_shaofu/90/120→ap_shoutaiyin_shaoshang/90/140→ap_yinqiao_jiaoxin/90/160→ap_yinwei_fuai/90/180→ap_zujueyin_ligou/90/200→ap_zujueyin_zhongfeng/90/220→ap_zushaoyin_taixi/90/240` |
+| 8 地中 | `sk_tangmenanshou` | `mv_tangmenanshou_baoyu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_tangmenanshou_baoyu}` | `mfr_tangmenanshou_baoyu` | `MeridianRouteDef{moveRef:mv_tangmenanshou_baoyu; ultimate:true; purpose:attack}`；`ap_shoujueyin_tianquan/90/100→ap_shoushaoyin_shaofu/90/120→ap_shoutaiyin_shaoshang/90/140→ap_yinqiao_jiaoxin/90/160→ap_yinwei_fuai/90/180→ap_zujueyin_ligou/90/200→ap_zujueyin_zhongfeng/90/220→ap_zushaoyin_taixi/90/240` |
 | 9 地上 | `sk_kongquelingfa` | `mv_kongquelingfa_shouping` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_kongquelingfa_shouping}` | `mfr_kongquelingfa_shouping` | `MeridianRouteDef{moveRef:mv_kongquelingfa_shouping; ultimate:true; purpose:defense}`；`ap_shoushaoyang_yifeng/90/100→ap_shoutaiyang_tinggong/90/120→ap_shouyangming_pianli/90/140→ap_yangqiao_dicang/90/160→ap_yangqiao_pucan/90/180→ap_yangwei_toulinqi/90/200→ap_zushaoyang_waiqiu/90/220→ap_zutaiyang_feishu/90/240` |
 | 9 地上 | `sk_kongquelingfa` | `mv_kongquelingfa_kaiping` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_kongquelingfa_kaiping}` | `mfr_kongquelingfa_kaiping` | `MeridianRouteDef{moveRef:mv_kongquelingfa_kaiping; ultimate:true; purpose:defense}`；`ap_yangwei_yamen/90/100→ap_zushaoyang_xuanzhong/90/120→ap_zutaiyang_kunlun/90/140→ap_zuyangming_fenglong/90/160→ap_zuyangming_zusanli/90/180→ap_dumai_shenzhu/90/200→ap_shoushaoyang_sizhukong/90/220→ap_shoushaoyang_zhongzhu/90/240` |
 | 9 地上 | `sk_longfengshuanghuan` | `mv_longfengshuanghuan_huihuan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_longfengshuanghuan_huihuan}` | `mfr_longfengshuanghuan_huihuan` | `MeridianRouteDef{moveRef:mv_longfengshuanghuan_huihuan; ultimate:true; purpose:attack}`；`ap_dumai_shuigou/90/100→ap_shoushaoyang_tianjing/90/120→ap_shoutaiyang_houxi/90/140→ap_shoutaiyang_yanggu/90/160→ap_shouyangming_shangyang/90/180→ap_yangqiao_jugu/90/200→ap_yangwei_fengfu/90/220→ap_zushaoyang_fengshi/90/240` |
@@ -754,7 +753,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | `weaponReq` | 暗器栏与弹药，引用 `design/10`；不使用主手兵器 |
 | `reqs` | `attrs {agi:45,wis:40}`；`aptitude {apHidden:45}`；`skills {forge:35,poi:25}`；`sect {id:sect_tangmen,rank:4}`；`prereq [{skill:sk_tangmenjieqi,layer:6},{skill:sk_tangmenbidu,layer:5}]`；`hard:[sect,prereq]` |
 | `layerStats` | `{hit:[1,5],crit:[1,5],effHit:[1,5]}`，第 10 重合计 15，等于地阶上限 |
-| 层数要点 | 1 藏手｜3 连星｜5 破器｜7 绝招追星｜9 绝招暴雨连星｜10 无痕 |
+| 层数要点 | 1 藏手｜3 连星｜5 破器｜6 追星（普通招）｜7 绝招暴雨连星｜10 无痕 |
 | `setTags / conflicts` | `[]` / 无 |
 | `special / observable` | `{fusible:true}` / `true`；消耗普通弹药，但没有 `special.cost`，不属 §9.1 主动代价型 |
 | 获取 | XK 暗器房传授 `maxLayer:10`；案件观摩 `maxLayer:6`，具体弹药归 `design/10` |
@@ -765,8 +764,8 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | 藏手 `mv_tangmenanshou_cangshou` **（原创扩展命名）** | 1 | 单体·2–5·投射 | 1.05 | 7%/2/1000 | 命中后自身 `bf_dunzou·承·100%·1` | ✓ | `1×(1+0.24)×0.92−0.10=1.041→1.05` |
 | 连星 `mv_tangmenanshou_lianxing` **（原创扩展命名）** | 3 | 连锁 2 目标·2–5·投射 | 1.20（次目标 ×0.8=0.96） | 8%/2/1000 | `aoe_chain n1` | ✓ | 首段按 N=1：`1.00×(1+0.24+0.05)×0.92=1.1868→1.20`；次段再 ×0.8 |
 | 破器 `mv_tangmenanshou_poqi` **（原创扩展命名）** | 5 | 单体·2–4·投射 | 1.10 | 8%/2/1000 | `bf_jiaoxie·承·40%·1` | ✓ | `1×(1+0.24+0.05)×0.92−0.20×40%=1.107→1.10` |
-| 追星 `mv_tangmenanshou_zhuixing`（绝招，**原创扩展命名**） | 7 | `aoe_line n3`·1–3·投射 | 2.00 | 9%/—/1200 | 仅首目标带 `bf_suoding` 时可用；气势 100 | ✓ | N=3、AF=0.85；`3.00×0.85×0.92=2.346→2.35`，条件收益预扣 0.35 → 2.00；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
-| 暴雨连星 `mv_tangmenanshou_baoyu` **（绝招，原创扩展命名）** | 9 | `aoe_disk {r:1}` 六角圆盘七格·2–5·投射 | 1.90 | 9%/—/1200 | `bf_zhongdu·承·35%·3`，气势 100 | ✓ | `3.00×0.70×0.92−0.10×35%=1.897→1.90`；`MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
+| 追星 `mv_tangmenanshou_zhuixing`（普通招，**原创扩展命名**） | 6 | `aoe_line n3`·1–3·投射 | 1.05 | 8%/2/900 | 仅首目标带 `bf_suoding` 时可用（预算条件 +0.15，不再叠加 Z3） | ✓ | N=3、AF=0.85；`0.85×(1+0.24+0.05−0.07+0.15)×0.92=1.071→1.05`；`MoveDef{unlock:6; ultimate:false; rageCost:0; mpCost:8%; cd:2; recovery:900}` |
+| 暴雨连星 `mv_tangmenanshou_baoyu` **（绝招，原创扩展命名）** | 7 | `aoe_disk {r:1}` 六角圆盘七格·2–5·投射 | 1.90 | 9%/—/1200 | `bf_zhongdu·承·35%·3`，气势 100 | ✓ | `3.00×0.70×0.92−0.10×35%=1.897→1.90`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 
 | 被动 ID | 名称 | 重 | 类型 | 数值 / 说明 |
 |---|---|---:|---|---|
@@ -1237,7 +1236,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 - 天阶：0；严格未新增基准 §13 名录外天阶。地阶 10≤12。
 - 地阶代价 / 誓约型 0 门，`0/10=0%≤5%`；地阶必须多人合击 0 门，`0/10=0%≤3%`。
 - `enemyOnly:true` 为 0 门；68 门均至少有一个可学来源或章节内传授说明。
-- 绝招数量调整后：地上 8 门各 2 记、地中 1 门 2 记、地下 1 门 1 记，共 19；玄上 26 门各 1 记，共 26；本册无天阶。调整前对应为地 10、玄上 0，本轮净增 35 个 `ultimate:true`。其中地阶 9 记与玄上 12 记复用既有 `mv_*`，另为原本仅有中文动作名的 14 记玄上绝招补正式 `mv_*`。
+- 统一裁定后：地上 8 门各 2 记、地中 1 门 1 记、地下 1 门 1 记，共 18；玄上 26 门各 1 记，共 26；本册无天阶。统一裁定前为地 19 / 玄上 26，本轮将 `mv_tangmenanshou_zhuixing` 降回普通招。回溯 2026-09-27 调整前基线为地 10 / 玄上 0；截至本版净增 34 个 `ultimate:true`，其中地阶 8 记与玄上 12 记复用既有 `mv_*`，另为原本仅有中文动作名的 14 记玄上绝招补正式 `mv_*`。
 
 ### 18.2 类别 × 大阶
 
@@ -1369,14 +1368,14 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | `sk_jiayishengong` / 阳 | `mv_jiayishengong_cangfeng→mfr_jiayishengong_cangfeng/false/attack/G-A5`；`mv_jiayishengong_huyi→mfr_jiayishengong_huyi/false/defense/G-AD4`；`mv_jiayishengong_chongzhen→mfr_jiayishengong_chongzhen/true/defense/显式（见本册绝招显式路线索引）`；`mv_jiayishengong_liehuo→mfr_jiayishengong_liehuo/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_shenshuineigong` / 阴 | `mv_shenshuineigong_naliu→mfr_shenshuineigong_naliu/false/attack/G-Y5`；`mv_shenshuineigong_shuimu→mfr_shenshuineigong_shuimu/false/defense/G-YD4`；`mv_shenshuineigong_huilan→mfr_shenshuineigong_huilan/true/defense/显式（见本册绝招显式路线索引）`；`mv_shenshuineigong_zhongchao→mfr_shenshuineigong_zhongchao/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_qinglongcisha` / 阴 | `mv_qinglongcisha_cangren→mfr_qinglongcisha_cangren/false/attack/G-Y5`；`mv_qinglongcisha_liuji→mfr_qinglongcisha_liuji/false/attack/G-Y5`；`mv_qinglongcisha_duanxian→mfr_qinglongcisha_duanxian/false/attack/G-Y5`；`mv_qinglongcisha_fenghou→mfr_qinglongcisha_fenghou/false/attack/G-Y5`；`mv_qinglongcisha_yici→mfr_qinglongcisha_yici/true/attack/显式（见本册绝招显式路线索引）` |
-| `sk_tangmenanshou` / 阴 | `mv_tangmenanshou_cangshou→mfr_tangmenanshou_cangshou/false/attack/G-Y5`；`mv_tangmenanshou_lianxing→mfr_tangmenanshou_lianxing/false/attack/G-Y5`；`mv_tangmenanshou_poqi→mfr_tangmenanshou_poqi/false/attack/G-Y5`；`mv_tangmenanshou_zhuixing→mfr_tangmenanshou_zhuixing/true/attack/显式（见本册绝招显式路线索引）`；`mv_tangmenanshou_baoyu→mfr_tangmenanshou_baoyu/true/attack/显式（见本册绝招显式路线索引）` |
+| `sk_tangmenanshou` / 阴 | `mv_tangmenanshou_cangshou→mfr_tangmenanshou_cangshou/false/attack/G-Y5`；`mv_tangmenanshou_lianxing→mfr_tangmenanshou_lianxing/false/attack/G-Y5`；`mv_tangmenanshou_poqi→mfr_tangmenanshou_poqi/false/attack/G-Y5`；`mv_tangmenanshou_zhuixing→mfr_tangmenanshou_zhuixing/false/attack/G-Y5`；`mv_tangmenanshou_baoyu→mfr_tangmenanshou_baoyu/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_kongquelingfa` / 和 | `mv_kongquelingfa_yanling→mfr_kongquelingfa_yanling/false/defense/G-HD4`；`mv_kongquelingfa_zhanping→mfr_kongquelingfa_zhanping/false/attack/G-H5`；`mv_kongquelingfa_huihu→mfr_kongquelingfa_huihu/false/attack/G-H5`；`mv_kongquelingfa_shouping→mfr_kongquelingfa_shouping/true/attack/显式（见本册绝招显式路线索引）`；`mv_kongquelingfa_kaiping→mfr_kongquelingfa_kaiping/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_longfengshuanghuan` / 和 | `mv_longfengshuanghuan_longxing→mfr_longfengshuanghuan_longxing/false/attack/G-H5`；`mv_longfengshuanghuan_fengsuo→mfr_longfengshuanghuan_fengsuo/false/attack/G-H5`；`mv_longfengshuanghuan_bilu→mfr_longfengshuanghuan_bilu/false/attack/G-H5`；`mv_longfengshuanghuan_huihuan→mfr_longfengshuanghuan_huihuan/true/attack/显式（见本册绝招显式路线索引）`；`mv_longfengshuanghuan_jueyu→mfr_longfengshuanghuan_jueyu/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_shenjianwuwang` / 和 | `mv_shenjianwuwang_guanxi→mfr_shenjianwuwang_guanxi/false/attack/G-H5`；`mv_shenjianwuwang_powang→mfr_shenjianwuwang_powang/false/attack/G-H5`；`mv_shenjianwuwang_wuzhu→mfr_shenjianwuwang_wuzhu/false/attack/G-H5`；`mv_shenjianwuwang_fanzhao→mfr_shenjianwuwang_fanzhao/true/attack/显式（见本册绝招显式路线索引）`；`mv_shenjianwuwang_yijian→mfr_shenjianwuwang_yijian/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_ximenjiandao` / 阴 | `mv_ximenjiandao_jingjian→mfr_ximenjiandao_jingjian/false/attack/G-Y5`；`mv_ximenjiandao_hanfeng→mfr_ximenjiandao_hanfeng/false/attack/G-Y5`；`mv_ximenjiandao_yixian→mfr_ximenjiandao_yixian/false/attack/G-Y5`；`mv_ximenjiandao_yingxue→mfr_ximenjiandao_yingxue/true/attack/显式（见本册绝招显式路线索引）`；`mv_ximenjiandao_xilai→mfr_ximenjiandao_xilai/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_tianwaifeixian` / 和 | `mv_tianwaifeixian_yunqi→mfr_tianwaifeixian_yunqi/false/attack/G-H5`；`mv_tianwaifeixian_feidu→mfr_tianwaifeixian_feidu/false/attack/G-H5`；`mv_tianwaifeixian_lingxu→mfr_tianwaifeixian_lingxu/false/attack/G-H5`；`mv_tianwaifeixian_yunwai→mfr_tianwaifeixian_yunwai/true/attack/显式（见本册绝招显式路线索引）`；`mv_tianwaifeixian_tianwai→mfr_tianwaifeixian_tianwai/true/attack/显式（见本册绝招显式路线索引）` |
 
-以上 47/47 个地阶 `mv_*` 均唯一挂接，10/10 门达到其品阶目标：地上 / 地中各 2 记、地下 1 记。暗器伤害虽不能被护体内劲抵消，仍要运行攻击路线并进入 Z5M；带伤害位移式不再另挂 movement 路线。
+以上 47/47 个地阶 `mv_*` 均唯一挂接，10/10 门达到统一裁定表的绝招定数：地上 2 记、地中 1 记、地下 1 记。暗器伤害虽不能被护体内劲抵消，仍要运行攻击路线并进入 Z5M；带伤害位移式不再另挂 movement 路线。
 
 ### 19A.3 玄 / 黄模板与九门轻功
 
@@ -1529,7 +1528,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | `GL-V001` | `sk_*` 匹配 `^sk_[a-z0-9_]+$`，68 个定义 ID 唯一；逐项比对 `design/17` 的 45 个候选 ID、名称与建议品阶 | 通过：ID / 名称 45/45；25 项沿用建议品阶，20 项按 AR-01 调阶并逐项登记于 §0.5 |
 | `GL-V002` | 品阶 ≥10 的条目数为 0；地阶数 ≤12 | 通过：0 / 10 |
 | `GL-V003` | 地阶每招均有核算式且偏差 ≤0.05；玄阶有核算武学占比 ≥30%；范围依 `design/09` §5.3 的六角 `Nmax→AF`，不采用 05 §4.3 旧方格值 | 通过：10 门完整卡；20/29；六角范围已复算 |
-| `GL-V003A` | 地阶核心武学招式总数 ≥4、首个绝招 ≤7 重；内功允许 1–4 个运功招式 | 通过：7 门外功 / 暗器地阶各 5 式，3 门地阶内功各 4 式；地上 / 地中各 2 绝招、地下 1 绝招 |
+| `GL-V003A` | 地阶核心武学招式总数 ≥4、首个绝招 ≤7 重；内功允许 1–4 个运功招式 | 通过：7 门外功 / 暗器地阶各 5 式，3 门地阶内功各 4 式；地上 2 绝招、地中 1 绝招、地下 1 绝招 |
 | `GL-V004` | 每门内功 `nature∈{yin,yang,harmony}` 且 IP 在目标 ±5% | 通过：9/9 |
 | `GL-V004A` | `layerStats` 满重合计不超过大阶上限（黄 6、玄 10、地 15） | 通过；地阶 7 门外功 / 暗器均 ≤15，玄阶有该字段者均 ≤10 |
 | `GL-V005` | 每派至少一门黄阶入门拳或剑、黄→玄→地链、一个闭合套装候选 | 通过：15/15 |
@@ -1539,7 +1538,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | `GL-V009` | 地阶代价 / 誓约 ≤5%，必须多人合击 ≤3%；`enemyOnly` 单列 | 通过：0%、0%、0 门 |
 | `GL-V010` | 套装表成员与条目 `setTags` 双向一致 | 通过；跨派标签也双向登记 |
 | `GL-V011` | 地阶路线 47/47 唯一挂接；26 条玄上绝招路线显式挂接；`moveRef` 存在、`ultimate` 相等、用途唯一并满足 21 MF-V01–V05 | 失败即阻断发布 |
-| `GL-V011A` | 绝招数按地上 / 地中 2、地下 1、玄上 1；玄中 / 玄下 / 黄为 0 | 失败即阻断发布 |
+| `GL-V011A` | 绝招数按地上 2、地中逐门服从统一裁定表、地下 1、玄上 1；玄中 / 玄下 / 黄为 0 | 失败即阻断发布 |
 | `GL-V012` | 9 门内功各有唯一 `txp_*`，`ct=1000`、`mpCostBp=0`、`outOfBattleScaleBp=15000`；护体路线按性质匹配，反震只能来自既有语义 | 通过：9/9；本册反震均为 0 |
 | `GL-V013` | 每个独立行动单位恰有一个 `MeridianFlowModule`，静态定义可共享但节点状态与 RNG 不共享 | 失败即阻断战斗创建 |
 
@@ -1555,7 +1554,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | `GL-T06` 套装反向 | 从 `set_baiyun_juezhan` 读取 `sk_ximenjiandao` | 武学条目同时含该 `setTags` |
 | `GL-T07` 名器门槛 | 已学 `sk_kongquelingfa` 但未装备 `eq_kongqueling` | 机发攻击招式锁定，数值被动保留 50%、触发率乘 50%，守心不触发 |
 | `GL-T08` 合击比例 | 单人施放 `sk_sanzhuangheji` | 可施放；仅失去相邻友方奖励，不计“必须多人”地阶合击 |
-| `GL-T09` 高阶路线闭合 | 扫描 §19A.2–§19A.3 的 `moveRef/mfr/ultimate/purpose` | 47 个地阶 `mv_*` 各一次、26 个玄上绝招各一次；绝招总数按地 / 玄上为 19 / 26 |
+| `GL-T09` 高阶路线闭合 | 扫描 §19A.2–§19A.3 的 `moveRef/mfr/ultimate/purpose` | 47 个地阶 `mv_*` 各一次、26 个玄上绝招各一次；绝招总数按地 / 玄上为 18 / 26 |
 | `GL-T10` 路线 CT 上界 | 普通最大 `1100+360`；玄上绝招 `1200+600`；地阶绝招 `1200+720` | 1460 / 1800 / 1920，均不超过 2000 |
 | `GL-T11` 调息与隔离 | 扫描 9 个 `txp_*`；两个同模板敌人只让 A 跑一段 | 档案唯一且合法；A 状态前进，B 节点 / 版本不变 |
 
@@ -1620,6 +1619,6 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | G-10 | AR-01 扩容后 XK、BX、SJ、FH、XS 的全书界可习得池品阶比例如何恢复 | 默认交 C3 在全部 AR-01 图鉴落盘后按全量池重配；本文件不为追平旧快照而擅改其他图鉴，现状与机械叠加核验见 §19.5 |
 | G-11 | 裁定分工表未列 gulong 时，扩容基数采用多少 | 默认以 17 的 45 个候选作为基数，正数四舍五入取 68；C3 正式登记配额并重算全局池 |
 | G-13 | 护体“地 / 玄 / 黄档”是否成为正式字段 | 默认不新增字段；只由 `grade/nature` 派生作检索文案，容量仍由 21 实时计算 |
-| G-14 | 地中武学应取 1 还是 2 记绝招 | **本册 `sk_tangmenanshou` 取 2**；已有后段追星式可承担第二绝招 |
+| G-14 | 地中武学应取 1 还是 2 记绝招 | **已解决：本册 `sk_tangmenanshou` 按统一裁定表取 1**；`mv_tangmenanshou_zhuixing` 已恢复普通成本与路线 |
 
 已有待决追溯：经脉正式 ID 已解决（见 G-03、`design/15`）；旧路线 cap 已由作者决定的独立乘区取代（见 `design/21` §3.5、§18.5）；调息默认不另耗内、9 级点穴不可自调息、护体默认不反震，均按 21 §10、§18.5 落地。
