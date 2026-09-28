@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：`ch01_tianlong` 的时代图层、开局投放、主线索引、锚点落地、支线、门派实例、人物投放、Boss、产出、特色系统、前代传承及前后书界衔接。
 > 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；主线唯一事实源为 `design/story/01-tianlong.md`。
-> 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05` 与四份指定图鉴；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、余韵与结局 → `design/13`；经脉 → `design/15`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承 → `design/20`。
+> 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05` 与四份指定图鉴；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、余韵与结局 → `design/13`；静态经脉成长 → `design/15`；战斗经脉运行、招式路线、绝招、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.1（D01；审校 D01.R，2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.1（D01；审校 D01.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）。
 
 ---
 
@@ -1376,6 +1376,30 @@ B = I × H = 19 × 15 = 285 两
 - 18 穴 / 2 通脉是内容投放上限与建议目标，不是通关条件；同一开穴事务不得重复发通脉奖励。
 - 四档难度、单人 / 满编、最低合法三联和无天级武学各跑一遍主线关键战；天书结算不得要求随机掉落或单一互斥秘籍 **（待实测）**。
 
+### 12.8 敌方经脉模板与战斗接线
+
+本节只给章节实例参数；经脉河流、攻防路线、护体内劲、速度、绝招、擒拿 / 点穴与调息的定义均见 `design/21`，永久开穴与里程碑见 `design/15`。`routeRefs` 不在本章手填，必须取该单位行动表中已解析 `MoveDef.meridianRouteRef` 的去重并集；若任一正式招式仍无路线，构建失败，不以章节自造 `mfr_*` 补洞。以下均为 **【建议值】**：
+
+| 单位 / 模板 | `kind` | `effGrade/effLayer` | `mpRatioBp` | `practiceBp` | `capacityScaleBp` | `innerNature` | `openPolicy` | `milestones` |
+|---|---|---:|---:|---:|---:|---|---|---|
+| 本界精英默认 | `elite` | `7/8` | 10500 | 7500 | 10500 | 由主武学解析，落盘为 `yin/yang/harmony` | `schoolCore` | `{meridianComplete:true,smallCycle:false,greatCycle:false,twelveCycle:false,turns:0}` |
+| `npc_duanyanqing` | `boss` | `11/9` | 13000 | 9000 | 13000 | `yang` | `fullTemplate` | `{meridianComplete:true,smallCycle:false,greatCycle:false,twelveCycle:false,turns:0}` |
+| `npc_jiumozhi` | `boss` | `11/9` | 13000 | 9000 | 13000 | `harmony` | `fullTemplate` | 同上 |
+| `npc_xiaofeng` | `boss` | `12/9` | 13000 | 9000 | 13000 | `yang` | `fullTemplate` | 同上 |
+| `npc_dingchunqiu` | `boss` | `9/9` | 13000 | 9000 | 13000 | `yin` | `fullTemplate` | 同上 |
+| `npc_tonglao` | `boss` | `11/9` | 13000 | 9000 | 13000 | `yang` | `fullTemplate` | 同上 |
+| `npc_liqiushui` | `boss` | `11/9` | 13000 | 9000 | 13000 | `harmony` | `fullTemplate` | 同上 |
+| `npc_youtanzhi` | `boss` | `12/9` | 13000 | 9000 | 13000 | `harmony` | `fullTemplate` | 同上 |
+| `npc_xuanci` | `boss` | `8/9` | 13000 | 9000 | 13000 | `yang` | `fullTemplate` | 同上 |
+| `npc_murongfu` | `boss` | `10/9` | 13000 | 9000 | 13000 | `harmony` | `fullTemplate` | 同上 |
+| `npc_murongbo` | `boss` | `10/9` | 13000 | 9000 | 13000 | `harmony` | `fullTemplate` | 同上 |
+
+`meridianComplete:true` 仅表示行动路线涉及之脉均通，不表示 20 脉全开。每个可独立行动的精英、Boss、召唤物各初始化一个 `MeridianFlowModule`；童姥 / 李秋水同场也不得共享节点、点穴、迟滞等动态态，纯场景毒雾、镜面残影不建实例。模块不持有 RNG；Core 仅在成功命令事务中注入唯一全局 `battle` 流，按既定提交顺序消费并与状态原子提交，不派生单位子流。表中 `effGrade/effLayer` 仅作建议基底，传入实例的必须是 `design/13` 完成外来压制、难度与规则开关后的最终有效值；阶段切换不得重置动态伤势。
+
+结算接口固定读取 `design/21` §4、§8–§11：防守路线在 Z4 后生成 `meridianDefenseBp`，攻击路线在 Z5 后生成 `meridianAttackBp`，两处各向下取整一次；护体内劲在既有护盾后、`mpGuard` 前结算；`meridianSpeedBp` 先修正首轮 / CT / 移动，再乘擒拿移动倍率，纯经脉 `evadeRatingDelta` 与擒拿 `evadeBp` 各只应用一次。段延庆等点穴遭遇按天龙前 / 中 / 后段只开放 1–3 / 1–3 / 4–6 级，7–9 级仅作带解法的剧情预告；萧峰擒龙、绝招和所有防守招式只消费图鉴挂接的路线，不在本章另写控制或绝招效果。
+
+节奏复核采用同一批固定输入：`damage_sim.py` 当前天龙普通 / 精英 / Boss 为 `4.5/9.6/16.1` 次主角行动，均在 `3–5/6–10/12–25`；标准对标准时 Z4M、Z5M、速度均为 10000 bp，故接入后仍为 `4.5/9.6/16.1`。`meridian_flow_sim.py` 的强一档 `Z5M=12053` 使 9→7，强两档 `Z5M=14456` 使 22→15，仍分别在精英 / Boss 窗口；速度中性为 `106→106`，强档为 `106→129`，但仍支付 `flowCt/recovery`。具名 `full` 行动表和路线数据齐备后须逐战复跑 **（待实测）**；越界先查重复乘区、路线长度与阶段耐久，不加隐藏减伤。
+
 ---
 
 ## 13. 原创扩展清单与考据备注
@@ -1613,6 +1637,8 @@ B = I × H = 19 × 15 = 285 两
 | TL-V25 | 书眠衔接 | 离界 / 入场年份为 1094 / 1217，差 123 年；视频为 `vid_sleep_01_02`，20–30 秒、目标 24 秒 | error |
 | TL-V26 | 回响语义 | 本地真值只读 `flags.yanmen_fate_saved`；标准 `echo_NN_fate` 投影与之等价；`false` 或旧存档缺失代表 canon；射雕历史起点与锚点不变 | error |
 | TL-V27 | Markdown 完整 | 表格列数一致；围栏成对；链接目标存在；无截断句和占位语 | error |
+| TL-V28 | 经脉实例与模板 | 每个独立武学行动者恰有一个 `MeridianFlowModule`；10 Boss 与精英七参数齐全；`routeRefs` 等于行动表路线并集，环境效果不误建实例 | error |
+| TL-V29 | 经脉结算顺序 | Z4M / Z5M 各取整一次；护体内劲位于护盾后、`mpGuard` 前；经脉速度先于擒拿，两个闪避修正各一次 | error |
 
 ### 数值金标准
 
@@ -1634,6 +1660,8 @@ B = I × H = 19 × 15 = 285 两
 | TL-T14 | Boss 等级 / 豁免 | `maxBossLevel=35≤cap 35`；`capExemptCount=0` |
 | TL-T15 | 书眠年份 | `1217−1094=123` 年 |
 | TL-T16 | 正式携带 | 天龙→射雕最多内功 / 拳脚 / 兵器=`3/3/3`，装备最多 6，外来压制 0 |
+| TL-T16A | 经脉中性节奏 | Z4M / Z5M / 速度=`10000/10000/10000 bp`；普通 / 精英 / Boss `4.5/9.6/16.1` 行动不漂移 |
+| TL-T16B | 经脉强档隔离 | 强一档 `Z5M=12053`、`9→7`；强两档 `Z5M=14456`、`22→15`；仍在 6–10 / 12–25 |
 
 ### 剧情、系统、恢复与跨书测试
 
@@ -1673,6 +1701,7 @@ B = I × H = 19 × 15 = 285 两
 7. 运行 `python3 tools/lint/check_ids.py --strict`；若全仓遗留失败，须区分本文新增错误与其他文档旧错。
 8. 当前 `tools/balance/damage_sim.py` 的 Boss MP 若仍输出 `×1`，不可作为本文金标准；先同步为 `design/03` 的 `×2`，再运行其正式检查。
 9. 按三联 / 广州修订版逐项核 §13.5；无法确认的事实继续保留 **（待考）**，不得自动补回目号、原句、精确生卒或史地。
+10. 运行 `python3 tools/balance/meridian_flow_sim.py --check`；并以固定种子对 10 场 `full` 行动表验证实例隔离、Z4M / Z5M、护体内劲、速度、点穴 / 擒拿与调息事件 **（待实测）**。
 
 ---
 
@@ -1705,6 +1734,7 @@ B = I × H = 19 × 15 = 285 两
 | 四份指定武学图鉴 | **已解决：**本章可学武学只取 `skills-shaolin`、`skills-xiaoyao`、`skills-wujue`、`skills-general` 已有 ID |
 | `design/20-legacy-inheritance.md` | **已解决：**阿青剑源、墓藏、三卷、信物与本界可完成校合均直接引用权威目录 |
 | `design/07-set-system.md` | **已解决：**§9.4 已按 07 正式目录收口；本章仅安排来源，不定义效果、掉率或 Buff |
+| `design/21-meridian-flow-and-moves.md` | **部分解决：**§12.8 已接敌方七参数、逐单位实例、攻防 / 护体 / 速度 / 控制接口；武学图鉴路线及具名 `full` 战局仍待上游落地与实测 |
 | `tech/04` / `tech/05` | **待对接：**三个章节 `featureKey`、证据字段、原子提交、`flags.yanmen_fate_saved` 的旧存档缺失语义及其向 `echo_NN_fate` 的派生映射须纳入 schema / 章节适配器 |
 
 ### 对基准的修改提案
@@ -1758,6 +1788,7 @@ B = I × H = 19 × 15 = 285 两
 | TL-O10 | 黄裳匿名触点是否保留到最终发布 | 默认只作余韵文气彩蛋；考据未闭合时不具名、不授武学、不写硬年代 |
 | TL-O11 | A5 改命后的萧峰是否可在天龙余韵继续入队 | 默认不可；写 `fate_rescued` 后离开活动编组，只开放回访与跨书传说 |
 | TL-O12 | 天龙垂直切片的 15 小时目标是否需要下调 | 默认保留 15 小时上限值；主线 6.75 小时、开放内容 5.25 小时，其余成长 / 余韵 3 小时 |
+| TL-O13 | 10 名具名 Boss 经脉建议值何时转正式值 | 默认沿 §12.8；待 `MoveDef.meridianRouteRef` 与人物 `full` 行动表齐备后，以固定 RNG 逐战复跑再回填，不用模板结论冒充实测 |
 
 至此，全部建议值、上游缺口、考据与作者选择均有保守默认。默认不得覆盖 story 因果、图鉴事实、全局地图、人物生命轴或唯一归属文档。
 
