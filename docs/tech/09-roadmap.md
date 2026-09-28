@@ -3,9 +3,9 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/09-roadmap.md` |
-| 版本 | v1.0（2026-09-26）；审校 E3.R（2026-09-26）；全局审计（2026-09-26） |
-| 上游基准 | `docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.2、`docs/decisions/rulings-v1.md` |
-| 平行输入 | `tech/01`–`tech/08`；`design/11`（开放世界与内容预算）；`design/chapters/01-tianlong.md`；`design/13`（终局、多周目） |
+| 版本 | v1.1（经脉 TypeScript runner、黄金对拍与三机门禁，2026-09-27）；v1.0（2026-09-26）；审校 E3.R（2026-09-26）；全局审计（2026-09-26） |
+| 上游基准 | `docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.3、`docs/decisions/rulings-v1.md` |
+| 平行输入 | `tech/01`–`tech/08`；`design/21` v2.1（经脉规则、黄金向量与性能预算）；`design/11`（开放世界与内容预算）；`design/chapters/01-tianlong.md`；`design/13`（终局、多周目） |
 | 读者 | 作者本人（单人开发）＋ AI 编码 / 内容助手 |
 | 本文职责 | 全项目权威阶段、工时、依赖、里程碑、验收闸门、决策时点、风险缓冲与范围削减顺序 |
 | 不在本文定义 | 战斗 / 成长 / 内容规则、书界剧情、性能预算、素材规格、在线协议；分别引用其唯一归属文档 |
@@ -20,6 +20,7 @@
 > 6. 三点估算为乐观 12,590 h / 基准 15,740 h / 保守 21,250 h。按每周 12–15 小时、每年有效 46 周，基准需约 22.8–28.5 年；按规划中点 13.5 h/周为 **约 25.3 年**。这是产能真相，不是发布日期承诺。
 > 7. 关键路径是“闸门 → 引擎 / 工具 → 可玩内容 → 资产修整 → 真机 / 回放 → 发布候选”。AI 可并行起草和无人值守构建，但作者的审核、修图、集成和测试不能同时记工。
 > 8. 进度落后先砍 B/C 级 CG、次要立绘、可选配音、额外环境变体与 AI NPC；不砍主线锚点、两条路线可达性、离线 / 导出、存档迁移、确定性录像、三机门禁和无占位的关键路径。
+> 9. 经脉实现不以 Python 报告代替生产代码：P1 必须交付协议 2 TypeScript runner，并在 Node / WebKit 对固定黄金数据逐字段对拍；从 P1 起，每个发布候选还必须在作者主力手机、中端 Android、iPad 全部通过七项 P95 子预算，任一设备 / 任一项失败即阻断。
 
 ---
 
@@ -182,6 +183,7 @@ P0 的目的不是做漂亮 Demo，而是尽早回答四个可能推翻项目的
 |---|---|---|
 | 仓库地基 | pnpm monorepo、严格 TypeScript、CI、`pnpm check`、版本锁 | 完整编辑器、全部业务 UI |
 | core 探针 | RNG、命令 / 事件骨架、10 Hz tick、六角坐标、最小录像 | 全 59 hook、完整经营 / 经脉 |
+| 经脉实现探针 | 固定 `rulesProtocol=2` / `rngProtocol=1` 的 TypeScript runner 骨架；能读取现有黄金文件并拒绝版本 / hash 不匹配 | 完整内容量产与三机发布结论 |
 | 数据探针 | schema registry、单张 Tiled 图、规范 JSON、ID/ref 校验 | 十四界批量数据 |
 | 渲染探针 | `tech/02` §12.3 的 P0–P3、P5；`bench-iso` 常规 / 压力版 | P4 完整 VFX 压力（P1 M1）；生产 WebGPU 双路径 |
 | 素材探针 | 美术圣经、回归集、男女主角北宋装 / 段誉 / 杂兵金样，登记→打包→加载 | 本地模型、租卡、ComfyUI |
@@ -251,6 +253,7 @@ Three.js 官方说明 `WebGPURenderer` 默认用 WebGPU、不可用时退至 Web
 | 遮挡 | 12 场景 ×4 偏航，无脚 / 头切穿；剪影误报率 <5% | 48 组金样 |
 | 韧性 | 上下文 20 次、区域 10 轮、iOS 前后台 20 次、切档 10 次，恢复率 100%；GPU / 资源账本精确回到基线，JS 堆 GC 后 ±10% 仅作趋势告警且不得单调增长；撤遮罩后 10 s 内无 >100 ms 长帧 | `tech/02` 原型 P5 日志 + `tech/03` `bench-region-cycle` |
 | 数据 | 同输入双构建逐字节一致；单个原始 JSON 叶片 ≤256 KiB | CI 报告 |
+| 经脉 runner | TypeScript runner 能载入 `fixtureVersion=2 / rulesProtocol=2 / rngProtocol=1`；校验 `masterSeed=20260927` 与 `vectorSha256=af33dcd10dc196e18811fe485870666ab139c03a17342fa47113ecc19552cd76`，版本或 hash 不符硬失败；允许先有失败测试，完整逐字段对拍在 P1 M1 前转绿 | Node CI 读取同一黄金工件；不得在测试中重写 golden |
 | 存档 | TSAV 损坏、超限、迁移失败均保留原件；D1 CAS 并发 fixture 通过 | 契约测试 |
 | 访问 | 作者常用网络能访问 Cloudflare preview；不备案、不增加国内 / 香港镜像 | 三机网络记录 |
 | 风格 | 四档截图仍可识别同一美术方向；角色跨 10 张构图人工一致性 ≥4/5 | 审定金样与评分单 |
@@ -310,6 +313,7 @@ M1 是内部能力闸门，不改变基准“序章可跳过”的产品定位�
 | 系统 | M1 最小能力 | M2 天龙真实验证 | 延后 |
 |---|---|---|---|
 | core | 单线程状态树、命令 / 事件、五流 RNG、10 Hz、六角 A* / LOS、CT、Z0–Z10、Buff 必需子集、任务 / Ink、存读档、录像 | D4 敌人模板、毒区 / 制服 / 撤离、关系与三选一原子提交 | 全 59 hook 的非切片用例可在 P2 补齐 |
+| 经脉 | 协议 2 TypeScript runner、逐单位实例、Core 注入单一 `battle` RNG、零副作用 preview、`meridian-flow-state.v1` snapshot | 以真实武学 / 敌人跑路线提交、绝招轮换与经脉投影；Node / WebKit 同一黄金文件逐字段对拍 | 非切片路线内容量产可在 P2 扩充，但 runner / golden / 三机门禁不可延后 |
 | 渲染 | 地形、两段式精灵、四偏航、战斗格、基础 VFX、DOM 浮字、昼夜、恢复、自适应 | 真实 `battle8` 六视图驻留 + 旋转两视图预取、宋式地标、崖谷遮挡 | 极致档、高级水体 / 天候组合 |
 | 数据 | ch00 schema、Tiled、Ink bridge、规则 / 文本分片、remap | ch01 base + `rg_dali_cangshan`，引用图、预算、零孤儿引用 | 浏览器内编辑器 |
 | 素材 | 登记库、导入、Blender 中转、三档精灵、KTX2 / WebP / AAC / H.264、许可台账 | §3.4 清单全部审定，关键路径零占位 | 其他天龙区域资产 |
@@ -340,6 +344,8 @@ M1 是内部能力闸门，不改变基准“序章可跳过”的产品定位�
 | 内容 | 切片区域关键路径零占位；可选未做支路明确锁门而非空场景；ID/ref/schema 全通过 |
 | 测试 | core 单元 / 属性 / golden 全绿；关键路线至少 3 自述 × 2 性别 × 2 输入方式 = 12 组冒烟；三档难度至少各 1 次 |
 | 确定性 | 相同初始快照 + 命令在 V8 / WebKit 得到同一终局 hash；不得重跑 AI 产生不同录像 |
+| 经脉黄金 | TypeScript runner 在 Node / V8 与 Playwright WebKit / JSC 消费同一 `fixtureVersion=2` 黄金工件；`inputs` 与全部 `outputs` 逐字段相等，包括路线 trace / 质量 / CT、四单位隔离、三段 `battleRng`、攻防护体、速度 / 控制 / 调息、归一化和五档 TTK。只比最终伤害不算通过；CI 禁止自动 `--write-golden` |
+| 经脉三机 | 作者主力手机、中端 Android、iPad 均跑典型 1,728 与完整 4,320 节点；七项 P95 逐项满足 §9.2，且 preview 为 0 RNG / 0 写、24 单位动态数组不共享。任一设备 / 任一项缺证据或超线均阻断 M1 / M2 **【建议值】【待实测】** |
 | 性能 | `tech/03` 六个 CI 场景全绿；中端 Android mid 的常规探索 / 普通战 P95 ≤16.7 ms、P99 ≤25 ms，群战按 30；low P95 ≤33.4 ms、P99 ≤50 ms |
 | 体验 | 冷标题 ≤4 s、热开 ≤1.5 s；点击反馈 P95 ≤100 ms；区域切换 ≤10 s（Wi-Fi）；`enter` ≤60 MB |
 | 内存 | GPU、JS 堆、进程总占用不越 `tech/03` 档位硬线；区域 10 轮 GPU / 资源账本精确回到基线，JS 堆 GC 后 ±10% 仅告警且不得单调增长 |
@@ -799,6 +805,7 @@ P0 三机 bench / 渲染 ADR
 | 事实 / 内容 | 探针需求冻结 | M1/M2 白名单 | 本界权威稿、正邪路径、预算实例 100% 闭包 | 十四界事实输入 100% 闭包 |
 | 数据 | schema / ID/ref / 双构建；`check_ids.py --strict` 无新增债 | 切片零孤儿引用；`legacy.v1` 五表可编译 | 本界引用图、幂等奖励、迁移；传承 LEG-V01–V10 / LEG-T01–T15 | 结局穷举、`MetaProfile` 性质；全仓 ID 债清零 |
 | core / 回放 | 最小 RNG / hex | V8/JSC 关键 hash | 正邪、特色、全 `full` Boss golden | 六卷、13 技、7 结局 golden |
+| 经脉协议 2 | TS runner 骨架读取并校验固定 golden | TS runner + Node / WebKit 全字段黄金对拍；三机七项 P95 | 每次规则 / 路线变更复跑；所有 Boss 均有逐单位经脉态 | 全作协议 2 旧工件回归与恢复演练 |
 | 性能 / 生命周期 | `tech/02` P0–P3、P5；P6 风格金样并行锁定 | P4 VFX + 真实无量资源 | 最大界场景与书眠 | 最大书海、视频和全链 |
 | 离线 / 在线 | 壳与 preview | 私有托管、本地导出 | 已下载闭包；P2 起云同步 / 恢复 | 云 / 本地 / 账号级合并与灾备 |
 | 素材 / 法律 | 金样与许可流程 | 关键路径零占位 | 本界 S/A 审定、许可闭合 | 全作署名、字体、三视频闭合 |
@@ -819,8 +826,11 @@ P0 三机 bench / 渲染 ADR
 | 韧性 | 上下文 20 次、区域 10 轮、iOS 前后台 20 次、切档 10 次：恢复 100%；GPU / 资源账本精确回到基线；JS 堆 GC 后 ±10% 只告警、不得单调增长；撤遮罩后 10 秒无 >100 ms 长帧 |
 | 下载 / 文件 | `enter` ≤60 MB；普通文件 ≤8 MB；分段视频每段 ≤4 MB；规则 + 文本压缩 ≤1.5 MiB；原始 JSON 叶片 ≤256 KiB |
 | 回归 | 同机时间回归 >10% 必须解释；阻断 / 高严重度缺陷 0；连续两次候选不新增阻断 |
+| 经脉七项 P95 | 三机分别满足：路线 `commit` ≤0.25 ms；攻防 + 护体 ≤0.08 ms；速度脏重算 ≤0.05 ms；单路线 `preview` ≤0.15 ms；AI 12 路线 ≤2.00 ms；全场 `tick` ≤0.50 ms；checkpoint snapshot ≤1.50 ms **【建议值】【待实测】** |
 
 阈值归属仍在 `tech/02` / `03` / `06`；本文摘要用于排期阻断。`measureUserAgentSpecificMemory()` 需要安全上下文与跨源隔离，且兼容性不足，只可补充诊断，不能替代跨浏览器内存 / 生命周期门。
+
+经脉七项终值与采集方法归 `tech/03` §2.3.1、§8.4，规则工作量归 `design/21` §11.8、`tech/05` §16。每台设备须预热后至少 3 轮，保存 P50 / P95、原始样本、节点 / RNG 计数、build、`rulesProtocol` 与入口条件；不得跨设备取平均掩盖单机失败。超线先优化连续索引、SoA / 稀疏物化、dirty set、scratch、缓存或 Worker 调度，不能跳过敌人实例、减少 RNG / 路线节点或改成浮点近似。
 
 ### 9.3 内容完成度与抽样边界
 
@@ -860,6 +870,7 @@ P0 三机 bench / 渲染 ADR
 | `RD-03` | P0 出口 | low / mid / high 的实际默认档与不可接受设备 | 10 分钟分位、发热、恢复、画质评分 | 中端 Android 以 mid 尝试，失败降 low；不伪称 60 fps |
 | `RD-04` | P1 M1 前 | 确认具体 OFL 标题字体可入包 | 许可证文本、字形覆盖、子集与嵌入测试 | 继续系统字体 / 已核 OFL 占位 |
 | `RD-05` | P1 M2 后 | 是否采用乐观估算、是否维持 12–15 h/周 | 工时日志、候选接受率、返工率、作者可持续产能 | 维持基准档 15,740 h |
+| `RD-05A` | P1 M1 前 | 经脉协议 2 runner / golden / 三机七项是否达到量产条件 | Node + WebKit 全字段差异报告；三机各 3 轮 P50 / P95 与原始样本 | 任一 golden 字段、设备或七项超线即不签 M1；继续优化实现，不删规则或放宽预算 |
 | `RD-06` | P2 云同步放行前 | 是否开通 Workers Paid 或保持 Free | 请求、CPU、存储、备份实耗与官方当日价格 | 保持 Free；超限能力不上线 |
 | `RD-07` | P3 发布前 | 是否启用 Passkey与仅作者遥测 | 两类浏览器可用性、30 份 V8/JSC 一致录像【建议值】、隐私 / 运维成本 | Passkey 可延后，配对码保留；遥测关闭 |
 | `RD-08` | P4 起、首次实验前 | 是否启用 AI NPC，选哪个当前可合规模型 | 地区、价格、条款、金标、安全和降级评测 | 始终关闭，用预写台词 |
@@ -958,10 +969,11 @@ P0 三机 bench / 渲染 ADR
 ### 项目内权威资料
 
 1. `docs/decisions/author-decisions.md`：P01–P05、P11–P16、P33、P40、P48、P53、P55、P57 等已定决策。
-2. `docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.2、`docs/decisions/rulings-v1.md`：优先级、书界顺序、规则和冲突裁定。
+2. `docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.3、`docs/decisions/rulings-v1.md`：优先级、书界顺序、规则和冲突裁定。
 3. `docs/tech/01-architecture.md` 至 `08-backend-and-online.md`：架构、渲染、性能、数据、core、分包、素材、在线的唯一归属与门禁。
-4. `docs/design/11-open-world.md` §10：十四书界容量；`docs/design/chapters/01-tianlong.md`：天龙范围；`docs/design/13-progression-and-endings.md`：终局、结局与轮回。
-5. `docs/design/chapters/02`–`14` 及 `docs/design/story/05-xiaoao.md`：逐书界正式任务与特色输入；笑傲主线仍由 story 唯一定义，chapter 提供其归属内的区域、支线、人物与特色接口。
+4. `docs/design/21-meridian-flow-and-moves.md` v2.1：经脉协议 2、TypeScript 契约、黄金向量与七项性能预算。
+5. `docs/design/11-open-world.md` §10：十四书界容量；`docs/design/chapters/01-tianlong.md`：天龙范围；`docs/design/13-progression-and-endings.md`：终局、结局与轮回。
+6. `docs/design/chapters/02`–`14` 及 `docs/design/story/05-xiaoao.md`：逐书界正式任务与特色输入；笑傲主线仍由 story 唯一定义，chapter 提供其归属内的区域、支线、人物与特色接口。
 
 ### 联网技术资料
 
@@ -998,6 +1010,8 @@ P0 三机 bench / 渲染 ADR
 | 人工时 | 作者实际占用时间；AI / 构建无人值守墙钟另记，不能与人工并行重复抵扣。 |
 | ROM | Rough Order of Magnitude，早期量级估算；本文以 −20% / +35% 表达不确定性。 |
 | 阻断出口 | 进入下一阶段前必须满足的一组硬门；不是建议性验收。 |
+| 经脉 TS runner | `design/21` Python oracle 的生产 TypeScript 消费者；读取固定黄金工件并在 Node / WebKit 逐字段核对，不把 Python 内部 snake_case 当交换协议。 |
+| 经脉七项门禁 | commit、攻防护体、速度重算、preview、AI 12 路线、全场 tick、snapshot 的三机 P95 组合门；七项分别判定，不能平均。 |
 
 本文不新增角色、武学、物品、场景或任务运行 ID；出现的 `ch15_guimeng`、`rg_15_shuhai`、`FN_*`、`vid_end_*` 等均引用既有归属文档。
 
@@ -1017,6 +1031,7 @@ P0 三机 bench / 渲染 ADR
 | `R09-S06` | P3 Passkey / 遥测放行前 30 份 V8/JSC 录像一致 | `tech/05` / `08`；按统计稳定性复估 |
 | `R09-S07` | 每批支线 / 奇遇人工抽验 ≥20%，发布前轮换覆盖全部 | QA 计划；自动覆盖增强后仍保留人工 A 路径 |
 | `R09-S08` | 审核积压两周即停生成；连续 8 有效周产能 <70% 即削范围 | 制作看板；以实际可持续节奏替换 |
+| `R09-S09` | 经脉七项三机 P95 暂用 0.25 / 0.08 / 0.05 / 0.15 / 2.00 / 0.50 / 1.50 ms | `tech/03` 首轮作者主力手机、中端 Android、iPad 各 3 轮实测后回填；未有证据前保持【建议值】【待实测】，不得宣称通过 |
 
 ### 本文依赖的上游事实
 
@@ -1031,6 +1046,7 @@ P0 三机 bench / 渲染 ADR
 | `StorageManager.persist()` 与各入口实际保留行为 | API 语义已核；批准 / 驱逐**（待实测）** | 不依赖持久承诺，提示导出并保留三代档 |
 | 笑傲 story / chapter 的接口与制作包口径 | **已解决**：两份已审校文档均存在；10 个逻辑任务映射为 9 个制作包 | P6 预生产逐项比对；主线取 story，区域 / 支线 / 特色取 chapter |
 | 每界正式 story / chapter 的任务数与 `design/11` 旧幕位差异 | 已知天龙存在差异，其余按交付时核对 | 正式任务优先，旧幕位只估容量 |
+| 经脉 TypeScript runner、Node / WebKit 全字段 golden 与三机七项数据 | runner / 真机证据尚未实现，现有 Python 工件只作 oracle | P1 M1 不签出；保持规则与黄金不变，先优化实现 / 调度 |
 
 ### 对基准的修改提案
 
@@ -1051,5 +1067,6 @@ P0 三机 bench / 渲染 ADR
 | `R09-O06` | AI NPC 是否进入产品？ | P4+ 仍默认关闭；只有地区合规、当前模型、价格、金标、安全和预写回退全过后才另行开启。 |
 | `R09-O07` | **已解决**：《笑傲江湖》chapter 稿已形成，P6 如何消费？ | 主线唯一来源保持 story；chapter 负责区域、支线、人物与特色接口；10 个逻辑任务按 9 个制作包排产，不删任务。 |
 | `R09-O08` | 15,740 h 是否仍符合“自娱”目标？ | 逐界做完即玩，不承诺全作日期；若长期不可接受，按 §11 先降表现，内容数量只经上游正式改版。 |
+| `R09-O09` | 经脉七项建议预算在三台实际设备上是否可达？ | 未实测前全部视为未通过；按 `R09-S09` 各 3 轮取证，超线先优化数据布局、dirty set、缓存或 Worker，不能删规则工作量。 |
 
 已解决：设备类别采用主力手机 + 中端 Android + iPad；素材不租 GPU；不 ICP 备案、不做国内 / 香港镜像；标题走逐项核实 OFL 字体（见作者决定 P01–P04 与本文 §10.1）。这些条目仍保留实测 / 许可执行项，不因偏好已决定而宣称技术已通过。

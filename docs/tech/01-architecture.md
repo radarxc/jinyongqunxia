@@ -3,8 +3,8 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/01-architecture.md` |
-| 版本 | v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
-| 上游基准 | `docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.2、`docs/decisions/rulings-v1.md` |
+| 版本 | v1.3（经脉协议 2 架构同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
+| 上游基准 | `docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.3、`docs/decisions/rulings-v1.md` |
 | 下游文档 | `tech/02` 渲染、`tech/03` 性能、`tech/04` 数据管线、`tech/05` 玩法引擎、`tech/06` 素材存储、`tech/07` 素材生成、`tech/08` 后端、`tech/09` 路线图 |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手（Claude Code 等） |
 | 本文职责 | 选型论证、分层与模块边界、monorepo 结构、第三方库清单、核心运行时骨架、开发工作流、代码规范、AI 协作约定、架构级风险 |
@@ -22,6 +22,7 @@
 > 9. **包体预算**：WebGL 路线 entry ≤ 170 KB、render ≤ 180 KB，合计 `170 + 180 = 350 KB gzip`。WebGPU 仅以完整 render ≤ 300 KB 独立评估；若未来通过，路线总预算为 `170 + 300 = 470 KB`。Basis 转码器约 240 KB gzip，延迟加载。
 > 10. **私有访问边界**：因项目“不公开分发”，应用外壳、API 与受保护素材统一走 Cloudflare Worker Static Assets + 会话闸门；`workers_dev=false`、`preview_urls=false`。不采用公开 Cloudflare Pages / GitHub Pages，不规划国内或香港镜像（作者决定 P03；见 §7.6）。
 > 11. **AI 协作**：根目录与每个包各有 `CLAUDE.md`；"数据驱动优先、schema 即文档、一条命令自检（`pnpm check`）、小步提交"。
+> 12. **战斗经脉服从协议 2 边界**：`BattleState.meridianByUnit` 为每个独立武学行动单位保存一个实例；模块只消费 Core 注入的单一 `battle` 随机流，所有 preview / 估算零写入、零抽数；录像按固定协议 2 域做规范哈希。
 
 ---
 
@@ -347,6 +348,7 @@ flowchart TB
 | AR-09 NPC/同伴 | `profile` 增设跨书界 `companionLedger`，记录稳定 NPC ID、最后相遇时代、招募/结盟状态与加入时能力快照；当前队伍仍在 `party`，不得把全部同伴历史只放 `chapter/party` | `design/18` |
 | AR-10 双主线 | 正/邪主线与选择节点继续由 Ink 文本 + YAML 任务 schema 表达；core 只解释条件、旗标和命令，不硬编码逐书剧情 | `docs/design/story/*`、`design/12` |
 | AR-12 六角战棋 | `HexCoord { q, r }`、`HexDir` 与六角集合 DTO 贯穿 shared/core/render；精确几何和渲染接口见 `tech/02` | `design/09`、`tech/02` |
+| AR-14 战斗经脉 | `BattleState.meridianByUnit` 按单位隔离动态实例；Core 事务向模块注入唯一 `battle` RNG，`CoreQueries` 的路线 / 伤害预估不接 RNG 且不可写状态；录像使用 `rulesProtocol=2` | `design/21`；实现见 `tech/05` §11.2、§14 |
 
 ### 3.3 依赖方向规则（由 lint 强制）
 
@@ -440,11 +442,17 @@ export interface GameState {
   chapter: ChapterState;           // 当前书界：chapterId、worldTier、flags、任务、NPC、势力、时间天气
   party: PartyState;               // 队伍成员、装配、背包、金钱
   world: WorldState;               // 当前区域/场景、坐标、已探索、门禁开启情况
-  battle: BattleState | null;      // 就地开战时非空：网格截取、单位、CT 时间轴、Buff、日志
+  battle: BattleState | null;      // 就地开战时非空；协议 2 含按 unitIndex 排序的 meridianByUnit
   dialogue: DialogueState | null;  // 当前 ink 故事状态（inkjs 的 JSON 状态字符串）
 }
 
 export type RngStreamId = 'battle' | 'loot' | 'world' | 'ai' | 'qiyu';
+
+/** 字段细节归 tech/05；这里只固定逐单位所有权。 */
+export interface BattleState {
+  // ...网格、单位、CT、Buff 与日志
+  meridianByUnit: readonly MeridianFlowInstance[]; // 每个独立武学行动单位恰一项，按 unitIndex 全序
+}
 
 // packages/shared/src/hex.ts —— pointy-top 六角轴坐标；高度 h 属于地图单元，不塞进坐标键
 export interface HexCoord { readonly q: number; readonly r: number }
@@ -486,7 +494,7 @@ export interface CommandHandler<C extends Command> {
 }
 export interface CoreCtx {
   content: ContentRegistry;                 // 只读内容数据（书界包）
-  rng(stream: RngStreamId): Rng;            // 分流 RNG，状态回写 meta.rng
+  rng(stream: RngStreamId): Rng;            // 分流 RNG，状态回写 meta.rng；经脉只能取唯一 battle 流
   emit(e: DomainEvent): void;
   trace?: DamageTrace;                      // 开发模式：记录 Z0–Z10 乘区明细
 }
@@ -504,6 +512,8 @@ export interface AiDecisionProof {
   readonly aiSeed: number;
 }
 ```
+
+`meridianByUnit` 不保存共享可写模板引用：只读穴位基底可以复用，`water / stagnation / backlog / seal` 等动态槽必须在开战时逐单位复制。经脉模块不得自建、分叉或缓存随机流；成功提交路线时由当前 `CommandTx` 注入 `ctx.rng('battle')`，拒绝、取消和查询均不推进游标。`CoreQueries` 的经脉 preview / 伤害估算只能读取深只读状态并返回新 DTO，调用一次或重复调用都应保持状态字节与五条 RNG 游标不变。以上边界已由 Canon v1.3 `V13-07` 登记，玩法细节唯一见 `design/21`。
 
 读档不在活实例上原地执行：I/O 层按 `tech/05` §14.1 完成 TSAV 头、解压上限、schema migration、内容哈希与 ID remap 全链校验，再以 `createCore(ports, validatedState)` 构造候选实例；只读冒烟查询通过后，`CoreHost` 才原子替换当前引用。任一步失败都保留旧实例，避免半迁移状态污染当前游戏。
 
@@ -1413,10 +1423,10 @@ export default defineConfig(
 | D3 禁止"实现近似"数学函数参与结算 | ECMAScript 规范把 `Math.exp/log/sin/cos/atan2/hypot/cbrt…` 以及 `Math.pow` 与 `**` 运算符共用的 `Number::exponentiate` 定为 implementation-approximated（本文已在 tc39/ecma262 规范源码核实），不同引擎（V8 / JavaScriptCore）结果可能有差异，累积后导致录像与云端校验不一致；`+ − × ÷`、`Math.sqrt`（规范要求 `ℱ(数学平方根)`）、`Math.floor/round/trunc`、`Math.min/max/abs` 可用，但所有结算仍须在 D4 指定边界取整 | ESLint（含禁用 `**` 运算符）；需要幂/衰减时用整数幂 `fx.powInt()`（连乘）或预计算查表 |
 | D4 数值取整点固定 | 结算在约定的乘区边界取整（由 `design/04` 定义取整点，`tech/05` 实现）；百分比加成在 core 内部统一换算为整数万分点（bp） | 单元测试 + golden 录像 |
 | D5 迭代顺序确定 | 影响结果的遍历一律基于排序后的 ID 数组；排序比较器必须是全序（相等时比 ID）；禁止 `for…in` | ESLint + 代码评审 |
-| D6 RNG 分流 | `battle`、`loot`、`world`、`ai`、`qiyu` 各自独立流；新增一次 UI 预览不得消耗任何流。AI 请求只预览下一 `aiSeed`，同一状态重请求复用；只有携带匹配 `AiDecisionProof` 的命令成功提交才消费该值 | 查询函数签名不接收 `rng`；拒绝/取消/过期响应的流状态断言 |
+| D6 RNG 分流 | `battle`、`loot`、`world`、`ai`、`qiyu` 各自独立流；一场战斗只有 Core 持有并注入的一条 `battle` 流，经脉实例不得各持子流。新增一次 UI / 经脉预览不得消耗任何流。AI 请求只预览下一 `aiSeed`，同一状态重请求复用；只有携带匹配 `AiDecisionProof` 的命令成功提交才消费该值 | 查询函数签名不接收 `rng`；经脉 preview 前后状态字节与五流游标相等；拒绝/取消/过期响应的流状态断言 |
 | D7 第三方库的隐性随机 | inkjs 的 `StoryState` 构造时用 `new Date().getTime()` 生成 `storySeed`（本文已在 inkjs 2.4.0 源码核实）→ core 创建 Story 后立即以 `world` 流覆盖 `story.state.storySeed` | 封装 `createStory()` + 单测 |
 | D8 状态可序列化 | `GameState` 只含 JSON 值；无 `Map/Set/class/undefined 字段` | `serialize→parse→deepEqual` 属性测试 |
-| D9 录像回归 | 录像只覆盖 `tech/05` §14.3 的战斗域：`BattleSession`、`battle/ai` 两流、战内可达静态引用及动态自创武学闭包；不哈希或上传完整 `GameState`。`openingHash`、每 10 条建议的 `afterHash` 与 `terminalHash` 均对同一规范域计算，hash 字段自身不入域；runner 由 `appBuild + coreVersion + rulesProtocol + rngProtocol + contentHash` 选择 | CI golden 测试；Node（V8）与 Playwright WebKit（JSC）复跑 |
+| D9 录像回归 | 协议 2 的 hash 域固定为规范 JSON 数组 `["tianshu:battle-replay:v1", appBuild, coreVersion, rulesProtocol, rngProtocol, contentHash, runtimeMartialArts, session]`；`session` 含按 `unitIndex` 排序的 `meridian-flow-state.v1` 与唯一 `battleRng`。不哈希或上传完整 `GameState`，摘要字段自身也不入域；旧协议必须交给匹配 runner，不能静默按协议 2 重算 | CI golden 测试；Node（V8）与 Playwright WebKit（JSC）复跑 |
 
 ```ts
 // packages/shared/src/rng.ts —— sfc32 + splitmix32 播种；状态 4×uint32 可直接存档
@@ -1720,6 +1730,8 @@ export type SkillDef = z.infer<typeof SkillDef>;
 | `@tianshu/*` | 代码包命名空间（与 Canon 代号 `tianshu` 一致） |
 | 确定性规则 D1–D9 | §8.3 定义的 core 编码规则 |
 | 效果原语 | Buff/招式效果的最小可组合单元（如 `modStat`、`dot`、`immune`），清单归 `tech/05`、`design/06` |
+| `meridianByUnit` | `BattleState` 中按 `unitIndex` 全序保存的逐单位经脉实例集合；静态模板可共享，动态槽不可共享 |
+| 协议 2 replay hash 域 | 规范 JSON 数组 `["tianshu:battle-replay:v1",appBuild,coreVersion,rulesProtocol,rngProtocol,contentHash,runtimeMartialArts,session]`；摘要字段不自包含 |
 
 **裁定迁移检查（2026-09-26）**：C18 已把跨语言静态契约唯一收敛到根 `packages/spec/`，`packages/data` 不保留副本；C21 已按 §4.3/§5.4/§6.1 与本表收敛。对 `rulings-v1.md` §2 的旧名/旧 ID 全文扫描无命中；本文也没有具体 `bf_*` 实例定义，C23 的 19 个目录缺口及撤回项全部由 `design/06` 唯一定义，故本文无可迁移 Buff ID。运行时校验仍必须拒绝引用不存在的具体 Buff，不允许用 `bf_tsp_*` 通配前缀代替实例。
 
@@ -1744,6 +1756,7 @@ export type SkillDef = z.infer<typeof SkillDef>;
 | P11 | **已解决公开可查部分**：已确认 iOS Safari 的 Opus 支持口径、checkout/setup-node v7、`pnpm/action-setup@v6.1.0` 支持 pnpm 12，以及 Apple 不公开通用标签页内存硬上限；部署改为同一 workflow 内重新构建，不再依赖跨 workflow artifact。Cocos 包体转为实测项，XWeb 两项见 O3。 |
 | P12 | **已解决当前选型**：TS 7.0 已发布，但 `typescript-eslint@8.70.1` peer 仍 `<6.1.0`，继续锁 TS 6.0.x；升级条件见 §8.1，后续按依赖生态复查，不硬编码“7.1 即升级”。 |
 | P13 | **已解决选型原则（作者决定 P04）**：只选逐项核实许可的 OFL 书法字体；具体字体及其嵌入/子集许可是执行项，见 O4。 |
+| AR-14 / V13-07 | **已解决架构边界**：§3.2.1、§3.6 与 §8.3 已登记 `meridianByUnit`、Core 单一 `battle` RNG 注入、preview 零副作用及协议 2 固定 hash 域；字段和玩法仍归 `tech/05` / `design/21`。 |
 
 ### 对基准的修改提案
 
