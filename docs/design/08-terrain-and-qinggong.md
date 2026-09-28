@@ -1,10 +1,11 @@
 # 08 · 地形与轻功（Terrain & Qinggong）
 
-> **版本**：v1.2（跨文档同步、全局审计，2026-09-26）。
+> **版本**：v1.2（跨文档同步、全局审计，2026-09-26）；经脉系统落地（2026-09-27）。
 > **归属**（基准 §18）：地形目录、轻功（境界能力、动作规格、轻功武学的特技）、探索门禁（类型、节奏、预算、反挫败）、战斗中的地形规则（移动代价、地形效果挂载、互动、坠落）、地形与天气昼夜的换算。
-> **上游**：`00-canon.md` v1.2（§3 境界规则与"轻功不可携带"、§4 品阶、§6 属性 ID、§7 武功分类、§8 战斗模型、§9 乘区、§10 Buff 规则、§11 轻功阈值 20/50/90/140/200、§12 ID 规范、§13 天级武学、§19 技术基线、§20 装配栏）；`decisions/author-requirements.md` AR-01–AR-12，其中 AR-12 的六角格要求已由 v1.2 吸收。
-> **引用而不重定义**：轻功值 `qinggong`、`jump`、`mov`、`staMax`、疲惫 → `design/03-attributes.md` §4.4、§4.5、§5.3；Z7 公式本体、命中/伤害计算 → `design/04-damage-formula.md`；武功数据结构、招式 `terrainFx`/`displacement`/`hTol`、修为门槛 `gateCap` → `design/05-martial-arts-system.md`；Buff 定义与钩子 → `design/06-buff-system.md`；移动格数、范围模板、集气、AI、撤退、Boss 阶段 → `design/09-combat-system.md`；鞋与道具 → `design/10-items-and-equipment.md`；统一大地图、时代图层、天气、旅行与坐骑 → `design/11-open-world.md`、`design/19-world-map.md`；门派五级抽象层与称谓 → `design/12-quests-npc-factions.md`、`design/17-sects-compendium.md`；冲穴与经脉永久加成 → `design/15-meridians-and-acupoints.md`；资源点、家丁与营生 → `design/16-resources-and-estates.md`；队友带人及 NPC 时空可用性 → `design/18-npc-and-companions.md`；任务条件 → `design/story/*` 与 `design/chapters/*`；地图编辑与可达性校验 → `tech/01` §7.4–7.5。
+> **上游**：`00-canon.md` v1.2（§3 境界规则与"轻功不可携带"、§4 品阶、§6 属性 ID、§7 武功分类、§8 战斗模型、§9 乘区、§10 Buff 规则、§11 轻功阈值 20/50/90/140/200、§12 ID 规范、§13 天级武学、§19 技术基线、§20 装配栏）；`decisions/author-requirements.md` AR-01–AR-12、AR-14，其中 AR-12 的六角格要求已由 v1.2 吸收，AR-14 的作者决定高于当前基准并按 `design/21` v2.0 接入。
+> **引用而不重定义**：轻功值 `qinggong`、`jump`、`mov`、`staMax`、疲惫 → `design/03-attributes.md` §4.4、§4.5、§5.3；Z7 公式本体、命中/伤害计算 → `design/04-damage-formula.md`；武功数据结构、招式 `terrainFx`/`displacement`/`hTol`、修为门槛 `gateCap` → `design/05-martial-arts-system.md`；Buff 定义与钩子 → `design/06-buff-system.md`；移动格数、范围模板、集气、AI、撤退、Boss 阶段 → `design/09-combat-system.md`；战斗轻功路线、经脉速度投影、点穴 / 擒拿与逐单位经脉实例 → `design/21-meridian-flow-and-moves.md`；鞋与道具 → `design/10-items-and-equipment.md`；统一大地图、时代图层、天气、旅行与坐骑 → `design/11-open-world.md`、`design/19-world-map.md`；门派五级抽象层与称谓 → `design/12-quests-npc-factions.md`、`design/17-sects-compendium.md`；冲穴、周天、九转与经脉永久加成 → `design/15-meridians-and-acupoints.md`；资源点、家丁与营生 → `design/16-resources-and-estates.md`；队友带人及 NPC 时空可用性 → `design/18-npc-and-companions.md`；任务条件 → `design/story/*` 与 `design/chapters/*`；地图编辑与可达性校验 → `tech/01` §7.4–7.5。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 需以三联/广州修订版逐字核对的原著细节，保留时须写明书名与人物/情节；**（待核实）** = 版本、API 等技术事实尚未联网确认；**（待实测）** = 需真机或真账号验证；**【建议值】** = 依赖他文档、本文先给出可用数值并在 §13 登记。
+> **2026-09-27 变更摘要**：按 `design/21` v2.0 接入战斗轻功的 `purpose: movement` 路线与速度投影边界；探索、境界阈值、门禁、跃起资格、通行模式、体力和逐格成本均保持原口径。
 
 ---
 
@@ -88,7 +89,7 @@
 - 稳定遍历顺序为先 `r` 后 `q` 升序；六角线视线使用 cube 线性插值与 cube rounding（§5.6）。渲染像素换算与六角美术尺寸归 `tech/02`，不得反向影响规则坐标。
 - `design/09` 主定义单位每次行动的移动点预算与范围模板；本文只定义逐格进入成本、地形动作附加成本及通行合法性。
 
-### 1.5 作者新增需求的本文接口（AR-01～AR-12）
+### 1.5 作者新增需求的本文接口（AR-01～AR-12、AR-14）
 
 | 需求 | 本文只负责的接口 | 主定义引用 |
 |---|---|---|
@@ -101,6 +102,7 @@
 | AR-09 NPC / 同伴 | “带人”只检查当前时空可用且已同行的队友；招募、生卒年和跨书重逢不在本文定义 | `design/18-npc-and-companions.md` |
 | AR-10 剧情 | `quest` 门禁只消费任务状态；正邪主线、选择节点及事件覆盖均由剧情文档决定 | `design/story/*`、`design/chapters/*` |
 | AR-12 六角战斗 | 本文定义 pointy-top 坐标、六角距离、地形成本、高差与传播；移动点、集气顺序、点/环/面/扇范围和战斗道具由 09 定 | `design/09` |
+| AR-14 经脉运行 | 本文保持 20 / 50 / 90 / 140 / 200 境界与地形接口不变；只校验战斗轻功招式引用 `purpose: movement` 路线，并消费 21 / 09 投影后的移动预算 | `design/21` §4.9、§12.3、§18.6；`design/09` §3–§5 |
 
 ---
 
@@ -379,6 +381,9 @@ export type TerrainStateId = `tst_${string}`;
 export type MoveMode = 'walk'|'wade'|'swim'|'waterwalk'|'climb'|'treetop'|'glide'|'boat';
 export type QgTier = 0|1|2|3|4|5;
 export type HexDir = 0|1|2|3|4|5;
+export type QinggongActionId = 'sprint'|'scramble'|'leap'|'wallkick'|'drop'|'climb'|'roofwalk'
+  |'waterwalk'|'rapidswalk'|'bigwaterwalk'|'treetop'|'trackless'|'glide'|'cloudwalk'
+  |'carry'|'swim'|'dive'|'squeeze';
 export interface HexPos { q: number; r: number }     // s = -q-r，不重复存储
 
 export interface TerrainDef {
@@ -630,6 +635,18 @@ qgTier(q) = 0 (q<20) | 1 (≥20) | 2 (≥50) | 3 (≥90) | 4 (≥140) | 5 (≥20
 jump = clamp(qgTier(qinggong) + Σflat_jump, 0, 6)      mov = design/09 的行动移动点结果
 ```
 
+AR-14 的经脉速度是**战斗投影**，不回写上述基础量。探索时不实例化 21 的 `MeridianFlowModule`，也不运行 `mfr_*`；探索门禁、探索动作和熟练折扣只读 `qinggong/qgAction/qgTier/jump`。战斗时由 09 先算 `baseMove`，再消费 21 `projectSpeed` 的 `move`；但本节所有资格与成本仍读未经经脉速度修正的基础字段：
+
+| 接口 | 读取值 | 经脉速度能否改变 |
+|---|---|---|
+| 探索 / 战斗轻功门禁 | `qinggong`、`qgAction(a)`、`qgTier` | 否；阈值固定 20 / 50 / 90 / 140 / 200 |
+| 上跃、跨沟、攀崖、下跳 | 03 的 `jump` 与本文 §5.2 | 否；不得把 `openingQinggong` 或 `meridianSpeedBp` 代入 |
+| 踏水 / 滑翔 / 树梢等资格 | `qgTier`、`moveMode`、特技 | 否；封路不能授予或抬高资格 |
+| 一次行动总移动预算 | 09 `baseMove` → 21 `MeridianSpeedResult.move` | 是，最终仍钳 1–10 |
+| 逐格成本、动作附加、体力 | `TerrainDef.moveCost`、§4.3、§7.2 | 否；速度只让可用移动点增减，不改每格价格 |
+
+因此经脉强者可在同一合法地形上走得更远、在 CT 上更快，却不能靠临时运气把 qg2 当 qg3 踏水，也不能把泥地 2 点成本压成 1。9 级点穴 / 轻功路线胀损可按 21 把战斗移动投影压低，但普通六邻步行仍由 09 保留至少 1 点移动力；`bf_fengqinggong` 对资格和 `jump` 的既有硬封仍按 Q5。
+
 本文在其上增加的判定规则：
 
 | # | 规则 | 说明 |
@@ -752,10 +769,42 @@ cost' = cost × max(0.5, 1 − (qgAction(a) − 该动作资格阈值) / 200)
 | `specials` | enum[] | 特技开关（解锁层见 `layers`）：`squeeze` 挤过窄隙、`glideEarly` qg3 起可滑翔、`wallkickEarly` qg2 起可借壁、`noThorn` 荆棘不流血、`trackless` 永不留足迹、`threeSkim` 三抄水（qg2 可踏水 ≤ 3 格，每次移动 1 次，起止须为陆地）、`shallowFree` 浅水移动 1 | 蛇行狸翻 `[squeeze, noThorn]` |
 | `battle` | 05 `moves` / `passives` | 战斗中的招式与被动（Buff 引用 06） | 梯云纵"纵云梯" |
 
+#### 4.5.1 战斗轻功招式的经脉路线引用（AR-14）
+
+`movement` 块继续只表达地形 / 探索特技；路线字段位于 05 的具体 `MoveDef.meridianRouteRef`，引用 21 定义的稳定 `mfr_*`。凡招式的主要效果属于位移、跃起、追击、脱离、闪避身法或战斗踏水，所引路线必须满足 `purpose: movement`。本文不登记路线节点、段 CT、完成质量或速度曲线，也不得用武学 / 招式显示名推导路线 ID。
+
+```ts
+// 只示消费关系；MeridianRouteId / MeridianSpeedResult 的生产定义见 21 §12.3。
+interface QinggongMoveTerrainBridge {
+  moveId: MoveId;
+  meridianRouteRef: MeridianRouteId;   // 指向 purpose:'movement'
+  actionId?: QinggongActionId;         // 仍用于本节资格、体力与地形动作
+}
+
+interface TerrainMovementInput {
+  qinggong: number; qgTier: QgTier; jump: number;
+  projectedMove: number;               // 09 提供 baseMove 后由 21 输出，已钳 1–10
+  routePreview?: FlowPreview;           // 仅战斗轻功招式预览时存在；提交态由 09 持有 FlowResult
+}
+```
+
+| 情形 | 路线 / 地形处理 |
+|---|---|
+| 普通六邻步行 | 不提交路线；按 `projectedMove` 花逐格成本 |
+| 轻功招式预览 | 09 调 21 无副作用 `preview`；本文只校验落点、资格、路径、地形成本和体力 |
+| 轻功招式提交 | 先通过本节静态门禁，再由 09 提交一次 movement 路线；`flowCt` 归 09 收招 |
+| 路线预检硬封 | 招式不可施展；不扣资源、不消耗 RNG、不移动；普通步行仍可用 |
+| 路线途中卡住 | 这是合法提交结果：只兑现 21 返回的已完成质量；实际移动缩至最终 `mov` 内的最长合法前缀，已支付资源、RNG、节点伤势与已尝试段 CT 均保留 |
+| 路线成功 | `projectedMove` 可扩大本行动总预算；`jump/qgTier/maxRun/moveMode` 和每格成本不变 |
+| 探索 | 不创建战斗经脉实例，不提交路线；完全沿用 §4.1–§6 |
+
+先静态后动态的拒绝顺序固定为：疲惫 / 控制等状态 → 基础 `qgTier/jump` 与通行模式 → 落点 / 路径可达性 → movement 路线无副作用预检与速度投影 → 以投影后的总 `mov` 校验完整路径预算 / 体力 → Core 原子提交。这样门禁失败不会消耗经脉 RNG 或 `flowCt`，而预算又能使用路线完成质量所形成的移动投影。提交后若实际卡住使最终预算低于预览值，按所选路径顺序执行“累计成本不超过最终 `mov`”的最长合法前缀；纵跃、跨沟等不可拆边只有整条边成本可付时才执行，不能停在仅可跨越格。该次路线提交、已支付资源、RNG、节点伤势与 `flowCt` 均保留；只有命令非法、引擎异常或 P1 前反应作废才随 Core 事务整体回滚（21 §11.4–§11.6）。路线使速度变化时只标记 09 的投影缓存，不重写地形格或 `QinggongGate`。
+
 **约束**：
 1. `actionBonus` 与 `specials` 属于**钥匙**：本书界原生轻功的特技若能绕过某门禁（如燕子三抄水之于短水面），该门禁在 §6.5 预算中按"被绕过后的境界"计。
 2. 特技不改变 `qgTier` 本身，只影响对应动作（UI 显示为"踏水 · 境界三（水上飘 +30）"）。
 3. 装配轻功只有 1 栏（基准 §20），特技随换装即时生效/失效；战斗中不可更换。
+4. `movement.speedMul` 只影响探索疾行；战斗速度与移动预算只认 03 基础量、21 `projectSpeed` 和 09 钳制，不能把该字段再乘一次。
 
 ### 4.6 轻功武学目录（catalog 优先，未收录项为建议）
 
@@ -779,6 +828,8 @@ cost' = cost × max(0.5, 1 − (qgAction(a) − 该动作资格阈值) / 200)
 | `sk_dengpingdushui` | 登萍渡水 | 玄上 6 | 江湖通行 | 全部书界 | 74 | `shallowFree` | `waterwalk +15` | 武侠通称；定级原创扩展（鸳鸯最高原生） |
 | `sk_babuganchan` | 八步赶蟾 | 玄下 4 | 江湖通行 | 射雕、碧血、鸳鸯 | 56 | 招式"赶蟾"→ `bf_tengyue` 2 回合 | `leap +10` | **待 catalog 配额裁定，当前禁用且不计正式库存**；显示名按 C12；盖一鸣绰号中该词及完整次序**（待考：《鸳鸯刀》太岳四侠登场与盖一鸣自报名号情节）** |
 | `sk_caoshangfei` | 草上飞 | 黄中 2 | 江湖通行 | 全部书界 | 38 | 植被格移动 −1（最低 1） | 疾行体力 ×0.8；草地不留足迹 | 武侠通称（原创扩展）；**各书界开局基础轻功**（§4.7） |
+
+AR-14 配表注：本表“战斗能力”只描述既有效果，不替代路线登记。已存在的凌波招式 `mv_lingbo_feifu`、`mv_lingbo_jiangfei` 应由图鉴分别引用 movement 路线，`mv_lingbo_piaohu` 作为闪避预置同样引用 movement 路线（见 21 §4.9）；具体 `mfr_*` 尚未在 21 正式配表示例中命名，本文不抢先新建 ID。其余目录项只有在图鉴拥有对应 `mv_*` 后才挂路线；不得为满足接口而从本表战斗描述自动生成招式。
 
 **数量核对**：按现有 catalog 定稿值和本表未收录项建议值，本表 15 门子集为天 2 / 地 7 / 玄 5 / 黄 1，合计 `2+7+5+1=15`。05 §14.3 的旧“轻功 37 门（天 2 / 地 5 / 玄 12 / 黄 18）”已受 AR-01 全局总量与比例重定影响，不能由这个地形特技子集反推为新配额，也不能再提出“地 6 / 玄 11”；轻功总量与品阶分布应由 05 汇总全部 catalog 后统一重算（§13 D-12）。
 
@@ -1136,9 +1187,10 @@ hint: hint_gate_02_zhongzhifeng
 
 ### 7.2 移动消耗与寻路
 
-- 移动只沿 §1.4 的六邻进行；距离启发式为 `hexDistance`。本次移动总消耗 ≤ `mov`，而 `mov` 的轻功换算与行动预算由 `design/09` 主定义。
+- 移动只沿 §1.4 的六邻进行；距离启发式为 `hexDistance`。本次移动总消耗 ≤ 09 传入的最终 `mov`：先由 09 求 `baseMove`，再由 21 `projectSpeed` 得 `move=clamp(baseMove+moveDelta,1,10)`；本文不重算速度曲线。
 - 每一步的消耗 = 目标格 `moveCost`（按 `byMode`/`byTier`/轻功特技 `moveCostByTag` 修正，最低 1）+ 动作附加（纵跃 `⌈Δh_up/2⌉`、攀峭壁 `Δh`、攀低坎 2、刹步 1、上坡 `uphill`）。
 - 寻路：A*，状态 = `(HexPos, 通行模式, 本次已踏水格数)`；启发式 `h=hexDistance×最低进入成本`，不得高估；边合法性按 §5.2 H1–H8 与 `pass`；敌方单位阻挡；友军可穿越（窄道格除外）；截击与控制区归 06/09。同代价路径按"动作少 → 危险格少 → (r,q)"确定性择一。
+- 经脉投影只改变这次可花的总预算，不改变 A* 的边成本、踏水计数或合法边集合。普通步行无需 `meridianRouteRef`；轻功招式则按 §4.5.1 先校验 `qgTier/jump/moveMode`，再由 09 提交 `purpose: movement` 路线。路线途中卡住不得把已走路径改成非法捷径；Core 只允许执行已验证且成本不超过最终 `mov` 的前缀。
 - UI（14 定样式）：可达格按"步行 / 纵跃 / 攀爬 / 踏水 / 危险"五色标示；悬停显示体力消耗与将触发的地形效果。
 - 探索寻路同一算法，代价改为时间（`1 / exploreSpeed`），自动路径默认绕开 `hazard` 格与门禁，玩家可长按强制通过。
 
@@ -1513,6 +1565,7 @@ objHp(k) = k × HP_ref(regionLv)       HP_ref = 03 §10.2 普通敌人模板 STD
 | 坠落 | 单次 ≤ 40% `hpMax`（虚空坠崖另论）；Boss ×0.25、精英 ×0.5；Boss 免疫坠崖 | 防"推下悬崖秒 Boss" |
 | 危险格密度 | 普通战场可触发 `onStay` 伤害的格 ≤ 25%；Boss 场地可至 50% 且须有安全格路径 | 避免"无处立足" |
 | 轻功武学特技 | `actionBonus` 合计 ≤ +40；`staMul ≥ 0.5`；`speedMul ≤ 1.3`；`mov` 加成计入 06 `fam_move` 上限 +3 | 特技是方向性优势，不替代境界 |
+| 经脉速度投影 | `meridianSpeedBp` 6500–13500，战斗 `moveDelta` 仅 −2～+2、最终 `mov` 1–10；不得修改门禁、`jump`、`maxRun`、逐格成本或体力 | 保持强者机动优势，同时不破坏关卡资格与地形经济（21 §4.9） |
 | 门禁 | §6.4 G1–G12 与 §6.5 预算 | 节奏 |
 | 临时轻功加值 | `bf_shenqing` 等 flat ≤ +40（06 `fam_move`） | 丹药至多"跨一阶" |
 
@@ -1528,6 +1581,9 @@ objHp(k) = k × HP_ref(regionLv)       HP_ref = 03 §10.2 普通敌人模板 STD
 | `moveMode` | 枚举 | `walk`、`wade`、`swim`、`waterwalk`、`climb`、`treetop`、`glide`、`boat` |
 | `terrainGrade` | 公式 | `clamp(1,12,gMain(region)+adj)`；玩家制造地形效果取来源有效品阶 |
 | `qgAction(a)` | 公式 | `qinggong + ΣactionBonus[a]`，情境加成合计 ≤ +40 |
+| `QinggongActionId` | 枚举 | §4.3 的 18 个动作 ID；供 `movement.actionBonus` 与战斗轻功桥接校验 |
+| `QinggongMoveTerrainBridge` / `TerrainMovementInput` | 消费接口 | 战斗轻功招式以 `meridianRouteRef` 接 21 `purpose: movement`，本文只判资格、路径、成本与体力 |
+| `MeridianRouteId` / `FlowPreview` / `FlowResult` / `MeridianSpeedResult` | 外部类型 | 由 21 §12.3 唯一定义；本文只引用，不登记新 ID 或复制字段 |
 | `QinggongGate` / `gateIntent` | 门禁接口 | 跨场景复合门禁对象 / 关卡预期可达境界声明 |
 | `envTick` | 环境行动者 | 固定速度驱动火、冰、水流、烟雾与机关；不推进单位 Buff/冷却 |
 | `swimLevel` | 探索能力 | 水性 0–3，主角默认 1；已写入基准 v1.1 |
@@ -1557,6 +1613,10 @@ objHp(k) = k × HP_ref(regionLv)       HP_ref = 03 §10.2 普通敌人模板 STD
 | V11 | 所有格坐标为 `HexPos`，边只连六邻；距离等于六角距离；禁止出现方格四/八邻或曼哈顿距离配置 | 错误 |
 | V12 | 范围半径 R 的闭圆盘格数为 `1+3R(R+1)`；定向传播只能走 `HexDir 0..5`，同距按 `(r,q)` 稳定排序 | 错误 |
 | V13 | 生产数据只能引用 C12 标准 ID；历史旧名只允许存在于显式迁移表，不得成为 `TerrainDef.id`、技能 ID 或资产键 | 错误 |
+| V14 | 位移、跃起、追击、脱离、闪避身法或战斗踏水类 `MoveDef` 必须有 `meridianRouteRef`，所引 21 路线存在且 `purpose: movement`；普通步行不得强制路线 | 错误 |
+| V15 | 门禁和地形合法性只读取基础 `qinggong/qgAction/qgTier/jump/moveMode`；禁止读取 `openingQinggong`、`meridianSpeedBp` 或 `combinedSpeedBp` | 错误 |
+| V16 | 经脉投影只能改变本次总 `mov`（1–10）；不得改 `TerrainDef.moveCost`、动作附加成本、体力、`maxRun`、`jump` 或资格阈值；实际提交若卡住导致预算下降，只能执行最终预算内的最长合法前缀，并保留路线提交结果；不可拆边不得部分执行 | 错误 |
+| V17 | 探索状态不得创建 / 持久化 `MeridianFlowModule` 或提交 `mfr_*`；`movement.speedMul` 不得进入战斗速度乘区 | 错误 |
 
 ### 12.2 测试用例（玩法核心单元测试，期望值精确）
 
@@ -1587,6 +1647,11 @@ objHp(k) = k × HP_ref(regionLv)       HP_ref = 03 §10.2 普通敌人模板 STD
 | T23 | C10 门槛 | 天龙合法输入；同配置另加 `qinggong flat +10/+12`；倚天合法输入 | `188.54` 为 qg4；`198.54` 仍 qg4；`200.54` 为 qg5；倚天 `200.25` 为 qg5 |
 | T24 | 强制入陷阱 | qg4 主动进入 / 被击退进入 `tr_jiguan` 或 `tr_liusha` | 主动进入免触发；强制进入照常触发机关或获得 1 层 `bf_xianluo` |
 | T25 | 六角终局盘 | `fin_j6` 白页半径 7 | `1+3×7×8=169` 个白页格；外环才是 `tr_liubai` |
+| T26 | 经脉只改移动预算 | `baseMove=6`，21 返回强档 `move=7`；路径为 3 格泥沼，每格 3 点 | 可走 2 格（花 6 点），不能走 3 格；经脉不会把泥沼成本改成 1 |
+| T27 | 经脉不越境界门禁 | `qinggong=89,qgTier=2,jump=2`，`meridianSpeedBp=13500`；尝试 qg3 踏水与 `Δh=3` 纵跃 | 两者均非法；不得用投影 `openingQinggong=120` 反算 qg3，也不得增加 `jump` |
+| T28 | movement 路线与普通步行 | 同一单位轻功路线被 9 级点穴硬封，最终普通步行预算仍为 4；分别提交普通走 1 格与轻功位移招式 | 普通步行合法且不提交路线；轻功招式以 `MERIDIAN_ROUTE_BLOCKED` 拒绝，资源 / RNG / 位置不变 |
+| T29 | 探索隔离 | 探索中 `qinggong=98`，战斗快照曾有强档经脉投影；检查 qg3 门禁、逐格成本与存档 | 仍按 98 / qg3 与原成本；无经脉实例、`mfr_*` 状态或战斗 `moveDelta` 写入探索存档 |
+| T30 | 预览与提交分歧 | movement 预览给 `mov=7`，所选逐步路径成本依次 2 / 2 / 3；提交时第 2 段卡住并投影为 `mov=6` | 执行前两步共 4 点的最长合法前缀；第 3 步不执行；已支付资源、经脉节点、RNG 与已尝试 `flowCt` 均保留。若首条为成本 7 的不可拆纵跃边，则位置不变但路线提交结果仍保留 |
 
 ---
 
@@ -1611,7 +1676,7 @@ objHp(k) = k × HP_ref(regionLv)       HP_ref = 03 §10.2 普通敌人模板 STD
 | 环境时钟 | `envTick` | `spd 100`、`CT0 500` 的虚拟行动者，段 N1–N6 | §7.4 |
 | 门禁 | `gate_<NN>_<拼音>`（基准 v1.1 已登记）、`GateExpr`、`kind` 18 种 | `qg` `key` `fame` `morality` `sect` `status` `time` `quest` `formation` `check` `swim` `beast` `mount` `boat` `light` `squeeze` `device` `strength` | §6.1–6.2 |
 | 轻功门禁对象 | `QinggongGate`（tech/01 对象类的字段定义）、`gateIntent`、`intent`（`main`/`side`/`secret`/`hidden`）、`earliest`、`reveal` | 竖向转场、复合路线、意图声明 | §6.3 |
-| 规则编号 | — | Q1–Q8（判定）、H1–H8（高度）、B1–B6（体力预算）、G1–G12（门禁节奏）、AF1–AF13（反挫败）、C1–C6（截取）、V-G1–V-G9（门禁校验）、V1–V13、T1–T25 | 各节 |
+| 规则编号 | — | Q1–Q8（判定）、H1–H8（高度）、B1–B6（体力预算）、G1–G12（门禁节奏）、AF1–AF13（反挫败）、C1–C6（截取）、V-G1–V-G9（门禁校验）、V1–V17、T1–T30 | 各节 |
 | 轻功武学（建议，catalog 定稿） | `sk_*` | `sk_shuishangpiao` 水上飘、`sk_gumuqinggong` 古墓轻功、`sk_tiyunzong` 梯云纵、`sk_yiweidujiang` 一苇渡江、`sk_taxuewuhen` 踏雪无痕、`sk_yanzisanchaoshui` 燕子三抄水、`sk_jinyangong` 金雁功、`sk_shexinglifan` 蛇行狸翻、`sk_luoxuanjiuying` 螺旋九影、`sk_wanliduxing` 万里独行、`sk_dengpingdushui` 登萍渡水、`sk_babuganchan` 八步赶蟾、`sk_caoshangfei` 草上飞（基准已有：`sk_lingbo`、`sk_shenxing`） | §4.6 |
 | 轻功武学扩展块 | `SkillDef.movement` | `actionBonus` `staMul` `speedMul` `moveCostByTag` `specials`（`squeeze` `glideEarly` `wallkickEarly` `noThorn` `trackless` `threeSkim` `shallowFree`） | §4.5 |
 | Buff（裁定正式收录，定义归 06） | `bf_*` | `bf_luoshui` 落水、`bf_xianluo` 陷落、`bf_shishen` 湿身 | `rulings-v1.md` §5.3；本文 §4.2.3、§7.3、§13 D-06 |
@@ -1621,6 +1686,7 @@ objHp(k) = k × HP_ref(regionLv)       HP_ref = 03 §10.2 普通敌人模板 STD
 | 坐骑地形类 | 映射 | 道路、平原、山道、草原、沙地/沙漠、雪地、不可骑行 → 地形 ID（供 10 坐骑表） | §6.8 |
 | 终局战场地形 | 表 | 六卷战场的地形构成与机制（供 13 §7.7）；终局地形品阶定值 12 | §9.15 |
 | 系统玩法（原创扩展） | — | 沼气爆燃、倒木成桥、揭瓦窥听、冻熔岩成路、临渊一搏、乾坤大挪移接人、驱蛇噬敌、舍身一子 | §3、§9 |
+| 战斗轻功经脉桥接 | 外部 `mfr_*` 引用 | 具体轻功招式的 `meridianRouteRef` 必须指向 21 的 `purpose: movement`；本文不新增路线 ID | §4.5.1、§7.2 |
 
 ---
 
@@ -1652,11 +1718,13 @@ objHp(k) = k × HP_ref(regionLv)       HP_ref = 03 §10.2 普通敌人模板 STD
 | D-18 | design/09 | **已解决（C12）**：生产引用采用 `tr_sheku`；旧 `tr_shekou` 仅可留在显式历史迁移说明。09 仍须按本文核对通行消耗、不可停留、遮蔽、`h+canopy`、主动下跳上限与冰面击退 | §3、§5；不得把历史旧名恢复为运行 ID |
 | D-19 | design/13 | 13 D13-10 所需终局六卷地形见 §9.15；新增终局专用地形 `tr_liubai` 留白（离场 1 回合，覆写 Boss 坠崖免疫）；终局地形品阶定值 12 | §3.7、§9.15 |
 | D-20 | design/10 | 坐骑可骑行地形映射见 §6.8；C10 已裁定普通鞋绝对品阶 ≤9 且强化不放大轻功，碧血、倚天的 qg5 余量据此标为极小（§4.7、§6.4 G4）；“雄黄驱蛇”物品请 10 确认（10 现有 `it_xionghuangjiu` 雄黄药酒用于蛊） | §6.8、§4.7 |
+| D-21 | design/05、21、09、tech/05 | **已解决（AR-14 接口）**：具体战斗轻功招式由 05 / 图鉴补 `meridianRouteRef`，路线及 `purpose: movement` 由 21 主定义，09 提交并收 `flowCt`；本文只校验门禁、路径、成本、体力及探索隔离 | §4.1、§4.5.1、§7.2、V14–V17 |
 
 ### 13.2 本文依赖的上游事实
 
 - 轻功、体力、装备、Buff、武学与伤害接口分别以上游 `design/03`、`10`、`06`、`05`、`04` 为准；`design/04` 已正式采用 §5.5 的 Z7 高差 / 地形输入与六向方位倍率。地形效果命中 `10 + 3T`、高差射程及 `sourceType: terrain` 尚未获归属文档正式承接，仍标 **【建议值】**。
 - 战斗移动点、六角范围模板、集气和 AI 归 `design/09`；本文只给六角坐标、逐格地形成本、高差、通行和地形传播。09 v2.0 已完成 AR-12 六角重构；两文共同采用 `R=2/3 m`、行距 1 m、六邻中心距约 1.1547 m。
+- AR-14 与 `design/21` v2.0 已定：战斗轻功以 21 的 `MeridianSpeedResult` 修正 09 总移动预算，招式路线为 `purpose: movement`；标准对标准中性、速度硬界 6500–13500 bp。本文不复制速度曲线，且门禁、`qgTier/jump/maxRun`、通行模式、逐格成本和体力均不读取经脉倍率。探索不实例化战斗经脉模块。
 - AR-01～AR-11 的武学规模/性质、冲穴、世界地图、资源营生、门派、NPC 与剧情数据由 §1.5 所列归属文档定义；本文只消费稳定 ID/状态，不建立替代表。
 
 ### 13.3 对基准的修改提案
@@ -1668,6 +1736,7 @@ objHp(k) = k × HP_ref(regionLv)       HP_ref = 03 §10.2 普通敌人模板 STD
 | P-03 | **已采纳（v1.1，V11-20）** | §6 已登记探索能力 `swimLevel` 0–3，主角默认 1；本文见 §4.2.3。 |
 | P-04 | **已采纳（v1.1，V11-21）** | §8 已登记固定速度环境行动者，并明确其行动不推进单位 Buff/冷却；本文见 §7.4。 |
 | P-05 | **已采纳（v1.2 V12-07）** | 基准 §8 已按 AR-12 改为 pointy-top 六角格，并采用“实际可用格 ≤400，`qSpan/rSpan≤20`”；六角距离与范围模板分别引用本文和 09。 |
+| P-06 | **待 v1.3（M3-P03 / P04）** | Canon §11 / §18 登记经脉速度是战斗层投影：可修正 09 的 `openingQinggong/spd/move`，但 20 / 50 / 90 / 140 / 200 门禁、本文地形成本与探索状态保持基础口径；归属仍由 21 主定义。提案已登记于 `decisions/canon-proposals-v1.2.md`，本文不直接修改基准。 |
 
 ### 13.4 原著考据待办（需以三联/广州修订版逐字核对）
 
@@ -1693,7 +1762,7 @@ objHp(k) = k × HP_ref(regionLv)       HP_ref = 03 §10.2 普通敌人模板 STD
 
 ### 13.5 开放问题（附默认值）
 
-作者决策单 G1 已令既有默认值全部生效；以下旧编号不删除，均改为已解决，当前无阻塞本文交付的开放问题。
+作者决策单 G1 已令既有默认值全部生效；以下旧编号不删除。AR-14 接口本轮不新增阻塞项。
 
 | 编号 | 原问题 | 状态与生效值 |
 |---|---|---|
