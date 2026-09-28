@@ -5907,7 +5907,7 @@
       "vars": {
         "group_name": "武学图鉴（五绝 / 逍遥）",
         "doc_set": "- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-xiaoyao.md`",
-        "extra": "本组若有协调者或上一任务报告指出的格式问题（如调息档案缺 `outOfBattleScaleBp`、逐招路线为隐式派生），顺手按 21 统一：调息档案补齐 `outOfBattleScaleBp`，逐招路线显式列出 `mfr_*`。"
+        "extra": "**先修 ID 检查识别问题**：本组两册（NC2 产出，基点早于检查脚本修正）的经脉实例表头不被 `tools/lint/check_ids.py` 识别，主分支 strict 因此报 90 个未定义（五绝 53、逍遥 37，集中在 §0.10 轻功速度路线与 §0.11 调息档案等表）。定义 `mfr_*` 的表，ID 列表头改为恰好 `路线 ID` 或 `movementRouteRef`；定义 `txp_*` 的表，ID 列表头改为恰好 `BreathProfile.id` 或 `breathProfileRef`；每个单元格只放一个 ID（像 `` `mfr_bailingbu` / `mfr_shichengbu` / M4H `` 这样的格子拆成多行，展开码放到单独一列）。识别规则见 `tools/lint/check_ids.py` 约 870–960 行，不改脚本。修完运行 `python3 tools/agents/check_undefined_in.py docs/design/catalog/skills-wujue.md docs/design/catalog/skills-xiaoyao.md`，两册未定义必须为 0（调度器用它校验）。另外：调息档案统一带 `outOfBattleScaleBp`；§0.8–§0.9 的\"共享骨架 + 同句继承\"压缩写法下，绝招与本次新增的路线一律显式列出 `mfr_*`（段数、单段 CT、风险）。NC2 报告指出本组天阶 23 门（五绝 13、逍遥 10）都只有 1 记绝招、玄上尚未配绝招，这是本任务的主体。"
       },
       "validate": {
         "exists": [
@@ -5928,6 +5928,12 @@
             "{python}",
             "tools/balance/meridian_flow_sim.py",
             "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-xiaoyao.md"
           ]
         ]
       }
