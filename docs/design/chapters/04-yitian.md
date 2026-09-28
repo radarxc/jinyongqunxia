@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定与重命名见 `decisions/rulings-v1.md`。
 > 引用而不重定义：核心循环与锚点 → `design/01`；年代、境界、书眠与残承 → `design/02`；属性与敌人模板 → `design/03`；伤害公式 → `design/04`；武学 → `design/05` 与图鉴；地形和轻功门禁 → `design/08`；战斗、Boss、合击 → `design/09`；装备与神兵 → `design/10`；开放世界与预算 → `design/11`；任务、门派、队友 → `design/12`；成长、天书与结局 → `design/13`；静态经脉成长 → `design/15`；战斗经脉运行、招式路线、绝招、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；门派时代矩阵 → `design/17`；人物名录 → `design/18`；世界地图 → `design/19`；跨年代传承源、残本与校合 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v1.0（D04 初稿，2026-09-26）；审校 D04.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）。
+> 版本：v1.0（D04 初稿，2026-09-26）；审校 D04.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）。
 
 ---
 
@@ -846,16 +846,16 @@ Boss 机制消费 `design/09` 的阶段门、预警、控制递减、狂暴与�
 
 | # | 遭遇 / 脚本 | 等级 | 首领 / 角色组 | 武学与品阶 | 核心机制 | 失败处理 |
 |---:|---|---:|---|---|---|---|
-| 1 | `enc_04_hudiegu_jinhua` / 病患毒雾 | 54 | 金花婆婆显示角色（缺主记录） | 暗器 / 杖与医毒表现按图鉴既有项核配，不预建 ID | 病患保护圈、毒雾风向、真假药箱；攻击病患会降低评价 | 战败由张无忌护病患撤离，失一份药证但主线继续 |
-| 2 | `enc_04_guangmingding_chengkun` / 密道证据 | 62 | `npc_chengkun` | `sk_huanyinzhi`（7 地下）等 | 密道暗袭、证据箱与假退场；控制证据比击杀更重要 | 成昆带走一份证据，保留猎刀证人兜底 |
+| 1 | `enc_04_hudiegu_jinhua` / 病患毒雾 | 54 | 金花婆婆显示角色（缺主记录） | `sk_mingjiaohujiaogong`（9 地上）、`sk_jinhuazhangfa` / `sk_jinhuabiaofa`（8 地中） | 病患保护圈、毒雾风向、真假药箱；攻击病患会降低评价 | 战败由张无忌护病患撤离，失一份药证但主线继续 |
+| 2 | `enc_04_guangmingding_chengkun` / 密道证据 | 62 | `npc_chengkun` | `sk_huanyinxinfa`、`sk_huanyinshou`（9 地上），辅以 `sk_huanyinzhi`（8 地中） | 密道暗袭、证据箱与假退场；控制证据比击杀更重要 | 成昆带走一份证据，保留猎刀证人兜底 |
 | 3 | `enc_04_guangmingding_liupai` / 山道广场 | 64 | 六派战区指挥组；张无忌为中央剧情单位 | 六派各用所属图鉴地 / 玄阶；中央人物用自身画像 | §10.2 连战：士气、救援位、三次调息、不能抢张无忌核心止战 | 任一侧翼失守由中央止战，伤亡 / 承诺降档但锚点完成 |
 | 4 | `enc_04_lvliuzhuang_suwei` / 绿柳解毒 | 63 | 王府宿卫指挥组 | `sk_jifengbajian`（6 玄上）、`sk_babishenjian`（7 地下，仅指挥） | 中毒计时、解药真伪、守约撤离；可不战破局 | 战败交出额外证据换真解药，进入下一幕 |
-| 5 | `enc_04_wudang_xuanming` / 双体寒毒 | 66 | 玄冥二老角色组（鹿杖客、鹤笔翁缺主记录） | `sk_xuanmingxinfa`（6 玄上）、`sk_xuanming`（10 天下） | 双体寒毒联动、分离破势、护住伤员；非终结战 | 撑至张无忌破局即算完成；失败增加伤势，不删除武当人物 |
+| 5 | `enc_04_wudang_xuanming` / 双体寒毒 | 66 | 玄冥二老角色组（鹿杖客、鹤笔翁缺主记录） | 共用 `sk_xuanming`（10 天下）；分别用 `sk_lutouzhangfa` / `sk_hezuibifa`（8 地中）；10 品主运仍缺 | 双体寒毒联动、分离破势、护住伤员；非终结战 | 撑至张无忌破局即算完成；失败增加伤势，不删除武当人物 |
 | 6 | `enc_04_wanansi_wangbaobao` / 火塔撤离 | 65 | `npc_wangbaobao` 与王府守军 | 军阵画像、`sk_caoyuansheyi`（5 玄中）；不虚构个人绝学 | 多层撤离、火势、换班增援、平民通道；指挥槽代替单体血条 | 超时进入分批撤离，核心人物保全、普通弟子伤亡增加 |
-| 7 | `enc_04_lingshedao_sanshi` / 三使异位 | 67 | 波斯三使角色组（缺主记录） | `sk_shenghuoling`（10 天下）、`sk_shenghuoxinfa`（6 玄上） | 三人异位连携、令牌夺持、海潮边界；可和解达成 | 战败以圣火令 / 名册交易换人，不强迫小昭留下 |
+| 7 | `enc_04_lingshedao_sanshi` / 三使异位 | 67 | 波斯三使角色组（缺主记录） | 缺 10 品合法内功（地位兜底；**构建阻断**）；`sk_shenghuoling`（10 天下）及既有辅运不变 | 三人异位连携、令牌夺持、海潮边界；可和解达成 | 战败以圣火令 / 名册交易换人，不强迫小昭留下 |
 | 8 | `enc_04_tushihui_zhouzhiruo` / 质证擂台 | 68 | `npc_zhouzhiruo` | `sk_emeijiuyang`（8 地中）、`sk_jiuyinbaigu`（9 地上）、`sk_jiuyin`（12 天上） | 速成九阴姿态、公开质证、非致死擂台；关系影响停手条件 | 战败失大会优先发言权，不把周芷若写死或洗白 |
-| 9 | `enc_04_shaolin_sandu` / 金刚伏魔圈 | 70 | `npc_duee`、`npc_dujie`、`npc_dunan` | `sk_jingangfumoquan`（9 地上）、`sk_fumosuofa`（6 玄上）、`sk_shaolinjiuyang`（8 地中） | 三松三角、坐关、索网、三力一心；破阵不杀僧 | 战败可用两类证据换正式质证，主线不断 |
-| 10 | `enc_04_shaolin_chengkun` / 公审封锁 | 70 | `npc_chengkun` | `sk_huanyinzhi`（7 地下）及其既有画像 | 证据门、暗道封锁、谢逊情绪与俘获目标；最终阶段禁止脚本处决替玩家决定 | 逃脱时以证据副本结案，失去完整公审修饰但可进终幕 |
+| 9 | `enc_04_shaolin_sandu` / 金刚伏魔圈 | 70 | `npc_duee`、`npc_dujie`、`npc_dunan` | `sk_jingangbuhuai`（10 天下）主运、`sk_jingangfumoquan`（9 地上）、`sk_fumosuofa`（6 玄上） | 三松三角、坐关、索网、三力一心；破阵不杀僧 | 战败可用两类证据换正式质证，主线不断 |
+| 10 | `enc_04_shaolin_chengkun` / 公审封锁 | 70 | `npc_chengkun` | `sk_huanyinxinfa`、`sk_huanyinshou`（9 地上），辅以 `sk_huanyinzhi`（8 地中） | 证据门、暗道封锁、谢逊情绪与俘获目标；最终阶段禁止脚本处决替玩家决定 | 逃脱时以证据副本结案，失去完整公审修饰但可进终幕 |
 
 周芷若、成昆等 `full` 具名人物按合法画像生成，不强套模板攻击倍率；角色组与非具名指挥官才用模板法。`enc_*` 表示整场战斗；表中阶段配置是交给 `design/09` 建立正式 `bsc_*` 的输入，不在本章越权命名。
 
@@ -1255,40 +1255,44 @@ enemyStatMul = 0.85 + 0.05 × D
 | 单位 | 门派 / 来源 | 主运内功 | 辅运内功 | 外功（逐门品阶） | 经脉七项参数 | 血量 / 防御倍率 | 逐单位估算轮数（调倍率前→后） | 节奏复核 / 说明 |
 |---|---|---|---|---|---|---|---|---|
 | 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主武学解析 | 按单位来源的基础内功解析 | 按单位行动表解析 | `elite; 9/8; 10500; 7500; 10500; 由主武学解析; schoolCore; M4E` | `1.000 / 1.000` | `9.39→9.39` | 在精英 6–10 窗口 |
-| 金花婆婆 | 波斯总教 / 明教紫衫龙王 | 缺专属主运（目标地上9；**原创扩展配置·待补专属**） | `sk_guangmingxinfa`（玄上6）、`sk_shenghuotunajue`（黄上3） | `sk_dajiutianshou`（地上9；**原创扩展配置**）、`sk_lieyanzhang`（玄中5）、`sk_dafengyunfeizhang`（玄中5）、`sk_mingjiaoduanjian`（黄中2） | `boss; 9/9; 13000; 9000; 13000; harmony; fullTemplate; M4B` | `1.000 / 1.000` | `22.02→22.02` | `G=9`；同门明教链闭合外功，专属杖 / 暗器仍缺 |
-| 成昆（光明顶 / 屠狮大会复用画像） | 成昆旁支 / 江湖武馆补位 | 缺同源主运（目标地上9；**原创扩展配置·待补专属**） | `sk_wuguanxinfa`（玄下4）、`sk_zhamabu`（黄下1） | `sk_huanyinzhi`（地中8）、`sk_kaimenpiguaquan`（地中8）、`sk_tongbeijin`（玄上6）、`sk_duandashou`（玄下4） | `boss; 9/9; 13000; 9000; 13000; harmony; fullTemplate; M4B` | `1.000 / 1.000` | `22.02→22.02` | 普通 Boss 四档无达标主运且外功最高 8，生产构建阻断 |
+| 金花婆婆 | 波斯总教 / 明教紫衫龙王 | `sk_mingjiaohujiaogong`（地上9，调和） | `sk_guangmingxinfa`（玄上6）、`sk_shenghuotunajue`（黄上3） | `sk_dajiutianshou`（地上9）、`sk_jinhuazhangfa`（地中8，配杖）、`sk_jinhuabiaofa`（地中8）、`sk_lieyanzhang`（玄中5） | `boss; 9/9; 13000; 9000; 13000; harmony; fullTemplate; M4B` | `1.000 / 1.000` | `22.02→22.02` | `G=9`；主运与杖 / 暗器均由本书补录闭合 |
+| 成昆（光明顶 / 屠狮大会复用画像） | 成昆个人旁支 | `sk_huanyinxinfa`（地上9，阴） | `sk_wuguanxinfa`（玄下4）、`sk_zhamabu`（黄下1） | `sk_huanyinshou`（地上9）、`sk_huanyinzhi`（地中8）、`sk_kaimenpiguaquan`（地中8）、`sk_tongbeijin`（玄上6） | `boss; 9/9; 13000; 9000; 13000; yin; fullTemplate; M4B` | `1.000 / 1.000` | `22.02→22.02` | 主运与 ≥9 外功均由本书补录闭合，解除正式构建阻断 |
 | 六派战区·少林指挥 | 少林 L4 | `sk_shaolinjiuyang`（地中8，阳） | `sk_tongrenhenglian`（玄上6）、`sk_shaolinxinfa`（黄中2） | `sk_longzhaoshou`（地中8）、`sk_dalijingangzhi`（地中8）、`sk_yingzhuagong`（玄中5）、`sk_shaolinqinna`（黄上3） | `elite; 8/8; 10500; 7500; 10500; yang; schoolCore; M4E` | `1.000 / 1.000` | `9.22→9.22` | 精英目标 `G−1=8` |
 | 六派战区·武当指挥 | 武当 L4 | `sk_chunyangwuji`（地中8，阳） | `sk_liangyixinfa`（玄中5）、`sk_wudangtuna`（黄下1） | `sk_jianghubaizhanjian`（地中8；**原创扩展配置**）、`sk_huzhaojuehushou`（地下7）、`sk_shenmen13`（地下7）、`sk_mianzhang`（玄中5）、`sk_zhenwujian`（黄上3） | `elite; 8/8; 10500; 7500; 10500; yang; schoolCore; M4E` | `1.000 / 1.000` | `9.22→9.22` | 精英目标 `G−1=8`；通行外功闭合闸门 |
 | 六派战区·峨眉指挥 | 峨眉 L4 | `sk_emeijiuyang`（地中8，阳） | `sk_emeixinfa`（玄上6）、`sk_emeitunajue`（黄上3） | `sk_jianghubaizhanjian`（地中8；**原创扩展配置**）、`sk_miejuejian`（玄上6）、`sk_jindingjiushi`（玄上6）、`sk_piaoxuechuanyunzhang`（玄中5）、`sk_emeirumenjian`（黄中2） | `elite; 8/8; 10500; 7500; 10500; yang; schoolCore; M4E` | `1.000 / 1.000` | `9.22→9.22` | 精英目标 `G−1=8`；通行外功闭合闸门 |
-| 六派战区·昆仑指挥 | 昆仑 L4 | `sk_baizhanxinfa`（地中8，阳；**原创扩展配置·待补专属**） | `sk_kunlunxinfa`（玄中5）、`sk_kunluntunajue`（黄上3） | `sk_zhengliangyi`（地上9）、`sk_yudafeihuajian`（玄上6）、`sk_xunleijianfa`（玄上6）、`sk_kunlunrumenjian`（黄上3） | `elite; 8/8; 10500; 7500; 10500; yang; schoolCore; M4E` | `1.000 / 1.000` | `9.22→9.22` | 第四档通行图鉴补位 |
-| 六派战区·崆峒指挥 | 崆峒 L4 | `sk_baizhanxinfa`（地中8，阳；**原创扩展配置·待补专属**） | `sk_kongtongyangshenggong`（玄中5）、`sk_kongtongtunajue`（黄上3） | `sk_qishangquan`（地上9）、`sk_qishangchujue`（玄上6）、`sk_kongtongjian`（玄下4）、`sk_kongtongrumenquan`（黄上3） | `elite; 8/8; 10500; 7500; 10500; yang; schoolCore; M4E` | `1.000 / 1.000` | `9.22→9.22` | 第四档通行图鉴补位 |
-| 六派战区·华山指挥 | 华山倚天支 L4 | `sk_baizhanxinfa`（地中8，阳；**原创扩展配置·待补专属**） | `sk_huashanxinfa04`（玄中5）、`sk_huashantunajue04`（黄上3） | `sk_fanliangyi`（地中8）、`sk_liangyidaojia`（玄上6）、`sk_yingsheshengsibo`（玄上6）、`sk_huashanrumendao04`（黄上3） | `elite; 8/8; 10500; 7500; 10500; yang; schoolCore; M4E` | `1.000 / 1.000` | `9.22→9.22` | 第四档通行图鉴补位 |
+| 六派战区·昆仑指挥 | 昆仑 L4 | `sk_kunlunliangyixinfa`（地中8，调和） | `sk_kunlunxinfa`（玄中5）、`sk_kunluntunajue`（黄上3） | `sk_zhengliangyi`（地上9）、`sk_yudafeihuajian`（玄上6）、`sk_xunleijianfa`（玄上6）、`sk_kunlunrumenjian`（黄上3） | `elite; 8/8; 10500; 7500; 10500; harmony; schoolCore; M4E` | `1.000 / 1.000` | `9.22→9.22` | 同门主运由本书补录闭合 |
+| 六派战区·崆峒指挥 | 崆峒 L4 | `sk_kongtongwuxingxinfa`（地中8，调和） | `sk_kongtongyangshenggong`（玄中5）、`sk_kongtongtunajue`（黄上3） | `sk_qishangquan`（地上9）、`sk_qishangchujue`（玄上6）、`sk_kongtongjian`（玄下4）、`sk_kongtongrumenquan`（黄上3） | `elite; 8/8; 10500; 7500; 10500; harmony; schoolCore; M4E` | `1.000 / 1.000` | `9.22→9.22` | 同门主运由本书补录闭合 |
+| 六派战区·华山指挥 | 华山倚天支 L4 | `sk_huashanliangyixinfa04`（地中8，调和） | `sk_huashanxinfa04`（玄中5）、`sk_huashantunajue04`（黄上3） | `sk_fanliangyi`（地中8）、`sk_liangyidaojia`（玄上6）、`sk_yingsheshengsibo`（玄上6）、`sk_huashanrumendao04`（黄上3） | `elite; 8/8; 10500; 7500; 10500; harmony; schoolCore; M4E` | `1.000 / 1.000` | `9.22→9.22` | 同门主运由本书补录闭合 |
 | 绿柳宿卫指挥 | 汝阳王府 / 元军宿卫 | `sk_baizhanxinfa`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_jianghubaizhanjian`（地中8；**原创扩展配置**）、`sk_babishenjian`（地下7）、`sk_jifengbajian`（玄上6）、`sk_caoyuansheyi`（玄中5）、`sk_suweijianfa`（黄上3） | `elite; 8/8; 10500; 7500; 10500; yang; schoolCore; M4E` | `1.000 / 1.000` | `9.22→9.22` | 精英目标 `G−1=8`；通行外功闭合闸门 |
-| 玄冥二老（鹿杖客 / 鹤笔翁各自） | 玄冥传承 / 汝阳王府供奉 | 缺专属主运（目标天下10；**原创扩展配置·待补专属**） | `sk_xuanmingxinfa`（玄上6）、`sk_jundituna`（玄中5） | `sk_xuanming`（天下10）、`sk_caoyuansheyi`（玄中5）、`sk_duandashou`（玄下4）、`sk_wangfuchangquan`（黄中2） | `boss; 10/9; 13000; 9000; 13000; yin; fullTemplate; M4B` | `1.000 / 1.000` | `22.78→22.78` | 地位下限 10；双人共享整场耐久 |
+| 鹿杖客 | 玄冥传承 / 汝阳王府供奉 | 缺 10 品合法内功（地位兜底；**构建阻断**） | `sk_xuanmingxinfa`（玄上6）、`sk_jundituna`（玄中5） | `sk_xuanming`（天下10）、`sk_lutouzhangfa`（地中8，装备 `eq_luzhang`）、`sk_caoyuansheyi`（玄中5）、`sk_duandashou`（玄下4） | `boss; 10/9; 13000; 9000; 13000; yin; fullTemplate; M4B` | `1.000 / 1.000` | `22.78→22.78` | 鹿杖外功已补；七参数仅用于地位节奏估算，空主运不得进正式构建 |
+| 鹤笔翁 | 玄冥传承 / 汝阳王府供奉 | 缺 10 品合法内功（地位兜底；**构建阻断**） | `sk_xuanmingxinfa`（玄上6）、`sk_jundituna`（玄中5） | `sk_xuanming`（天下10）、`sk_hezuibifa`（地中8，装备 `eq_hebi`）、`sk_caoyuansheyi`（玄中5）、`sk_duandashou`（玄下4） | `boss; 10/9; 13000; 9000; 13000; yin; fullTemplate; M4B` | `1.000 / 1.000` | `22.78→22.78` | 双笔外功已补；七参数仅用于地位节奏估算，空主运不得进正式构建 |
 | 王保保 | 元军统帅 / 汝阳王府 | `sk_baizhanxinfa` 百战心法（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_shouchengzhen`（地下7）、`sk_zhenqijian`（玄上6）、`sk_caoyuansheyi`（玄中5）、`sk_wangfuchangquan`（黄中2） | `boss; 8/9; 13000; 9000; 13000; yang; fullTemplate; M4B` | `1.000 / 1.000` | `21.65→21.65` | 政治 / 战役指挥首领，不以单人格斗 Boss 结算；保留 8 品例外 |
-| 波斯三使（各自） | 波斯总教 | 缺专属主运（目标天下10；**原创扩展配置·待补专属**） | `sk_shenghuoxinfa`（玄上6）、`sk_shenghuotunajue`（黄上3） | `sk_shenghuoling`（天下10）、`sk_guangmingquan`（黄上3）、`sk_mingjiaoduanjian`（黄中2）、`sk_guangmingduandao`（黄中2） | `boss; 10/9; 13000; 9000; 13000; harmony; fullTemplate; M4B` | `1.000 / 1.000` | `22.78→22.78` | 地位下限 10；三人共享整场耐久 |
+| 波斯三使（各自） | 波斯总教 | 缺 10 品合法内功（地位兜底；**构建阻断**） | `sk_shenghuoxinfa`（玄上6）、`sk_shenghuotunajue`（黄上3） | `sk_shenghuoling`（天下10）、`sk_guangmingquan`（黄上3）、`sk_mingjiaoduanjian`（黄中2）、`sk_guangmingduandao`（黄中2） | `boss; 10/9; 13000; 9000; 13000; harmony; fullTemplate; M4B` | `1.000 / 1.000` | `22.78→22.78` | 三使非明教教主，不能合法取得 9 重 `sk_qiankun`；七参数仅用于地位节奏估算，空主运不得进正式构建；三人共享整场耐久 |
 | 周芷若 | 峨眉掌门 / 九阴速成 | `sk_jiuyin`（天上12，调和） | `sk_emeixinfa`（玄上6）、`sk_emeitunajue`（黄上3） | `sk_jiuyinbaigu`（地上9）、`sk_baimangbianfa`（地下7）、`sk_miejuejian`（玄上6）、`sk_jindingjiushi`（玄上6）、`sk_piaoxuechuanyunzhang`（玄中5） | `boss; 12/9; 13000; 9000; 13000; harmony; fullTemplate; M4B` | `1.000 / 1.000` | `23.60→23.60` | 地位下限 12，合法主运已达标；辅运收紧为玄 / 黄基础内功 |
-| 三渡（渡厄 / 渡劫 / 渡难各自） | 少林 L4 | 缺专属主运（目标地上9；**原创扩展配置·待补专属**） | `sk_tongrenhenglian`（玄上6）、`sk_shaolinxinfa`（黄中2） | `sk_jingangfumoquan`（地上9）、`sk_longzhaoshou`（地中8）、`sk_fumosuofa`（玄上6）、`sk_shaolinqinna`（黄上3）、`sk_shaolingunfa`（黄中2） | `boss; 9/9; 13000; 9000; 13000; yang; fullTemplate; M4B` | `1.000 / 1.000` | `22.02→22.02` | 地位下限 9；三人共享整场耐久 |
+| 三渡（渡厄 / 渡劫 / 渡难各自） | 少林 L4 | `sk_jingangbuhuai`（天下10，阳） | `sk_tongrenhenglian`（玄上6）、`sk_shaolinxinfa`（黄中2） | `sk_jingangfumoquan`（地上9）、`sk_longzhaoshou`（地中8）、`sk_fumosuofa`（玄上6）、`sk_shaolinqinna`（黄上3）、`sk_shaolingunfa`（黄中2） | `boss; 10/9; 13000; 9000; 13000; yang; fullTemplate; M4B` | `1.000 / 1.000` | `22.02→22.78` | 复用少林既有主运，高于地位下限 9；三人共享整场耐久 |
 
-表内先写 `kind`，随后七项参数固定为 `effGrade/effLayer; mpRatioBp; practiceBp; capacityScaleBp; innerNature; openPolicy; milestones`；`M4E={meridianComplete:true,smallCycle:true,greatCycle:false,twelveCycle:false,turns:0}`，`M4B={meridianComplete:true,smallCycle:true,greatCycle:true,twelveCycle:false,turns:1}`。精英遵守 `design/21` §11.9“至多小周天”，Boss 才使用本界已开放的大周天 / 第一转。表内每个武学行动者仍占 1 主运 + 2 辅运；“缺专属 / 同源主运”的槽位不是已存在 `sk_*`，只允许地位人物据 §11.9.1 兜底，普通 Boss / 精英标构建阻断。
+表内先写 `kind`，随后七项参数固定为 `effGrade/effLayer; mpRatioBp; practiceBp; capacityScaleBp; innerNature; openPolicy; milestones`；`M4E={meridianComplete:true,smallCycle:true,greatCycle:false,twelveCycle:false,turns:0}`，`M4B={meridianComplete:true,smallCycle:true,greatCycle:true,twelveCycle:false,turns:1}`。精英遵守 `design/21` §11.9“至多小周天”，Boss 才使用本界已开放的大周天 / 第一转。表内每个武学行动者仍占 1 主运 + 2 辅运；新增条目唯一见 `design/catalog/skills-bulu-04-yitian.md`。玄冥二老与波斯三使的空主运虽可按 §11.9.1 地位兜底做静态节奏估算，但没有合法 `sk_*` 外键，故仍阻断正式构建。
 
-玄冥二老、三使、三渡与六派战区每个独立出手者各持一个 `MeridianFlowModule`，绝不因共享阵眼、TP 或阶段耐久而共享节点；火、潮、钟与证据销毁等纯环境行动者不配武学且不建实例。成昆的“混元霹雳手”只有称号接口，图鉴明确不建同名武学；金花婆婆的杖法 / 暗器、鹿杖客的鹿头杖与鹤笔翁的双笔也没有人物专属合法 `sk_*`，因此只用现有门派 / 通行条目补足，不借用白驼或大理专属武学。模块不持有 RNG；Core 仅在成功命令事务中注入唯一全局 `battle` 流。`effGrade/effLayer` 只取主运内功经 `design/13` 压制后的最终有效值。
+玄冥二老、三使、三渡与六派战区每个独立出手者各持一个 `MeridianFlowModule`，绝不因共享阵眼、TP 或阶段耐久而共享节点；火、潮、钟与证据销毁等纯环境行动者不配武学且不建实例。成昆的“混元霹雳手”仍只是称号接口，不另建同名武学；本次按人物 / 门派来源补录幻阴旁支、金花杖 / 镖、鹿头杖与鹤嘴笔，均有玩家或其他合格角色可达来源，不是敌人专用卡。模块不持有 RNG；Core 仅在成功命令事务中注入唯一全局 `battle` 流。`effGrade/effLayer` 只取主运内功经 `design/13` 压制后的最终有效值；玄冥二老与波斯三使的例外值只供缺口期估算，不伪装成已存在主运。
 
-本界 `G=9`：Boss 至少 9，手配精英至少 8。金花、玄冥二老、波斯三使、三渡按明列地位下限兜底；金花的明教身份允许第三档使用本门 `sk_dajiutianshou` 闭合外功闸门。成昆四档检索失败且现有外功最高 8，即构建阻断。王保保属于政治 / 战役指挥首领，胜负由守军与目标推进而非个人 Boss 耐久，按 §11.9.1 的明写例外保留 8 品。昆仑 / 崆峒 / 华山三名指挥按第四档采用本界可用的通行 `sk_baizhanxinfa`，并登记待补同门内功。六派指挥与绿柳宿卫继续按精英结算，因为它们是战区波次 / 头目而非独立 Boss 耐久；这既保留 NB1 定位，也满足精英至多小周天。
+本界 `G=9`：Boss 至少 9，手配精英至少 8。金花与成昆已分别用 9 品新增内 / 外功闭合；昆仑、崆峒、华山指挥改用各门 8 品新增主运；三渡复用 10 品 `sk_jingangbuhuai`。玄冥二老的鹿杖 / 双笔外功已补，但既有 51 门天级闭集中无有据的 10 品内功可用，本任务又不得新增天级，因此主运缺口保留为正式构建阻断。波斯三使同样维持 10 品地位兜底：`sk_qiankun` 是明教 L5 教主镇教心法，非教主经张无忌私传也只到 8 重；且波斯总教遣黛绮丝来中土求取心法、三使以圣火令武功见长的原著前提**（待考）**，不支持把它当三使正常主运。王保保属于政治 / 战役指挥首领，胜负由守军与目标推进而非个人 Boss 耐久，按 §11.9.1 的明写例外保留 8 品。六派指挥与绿柳宿卫继续按精英结算，因为它们是战区波次 / 头目而非独立 Boss 耐久；这既保留 NB1 定位，也满足精英至多小周天。
 
-Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺序完全引用 `design/21` §4、§8–§11。逐单位 10 / 6 段静态估算为：默认精英 9.39、六派与宿卫手配精英 9.22，Boss 9 / 10 / 12 品分别为 22.02 / 22.78 / 23.60，均在窗口，故 HP / 防御保持 1.000。多体遭遇仍按 §12.3 共享整场耐久，二老 / 三使 / 三渡及六派波次须固定阵容回放 **（待实测）**。
+Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺序完全引用 `design/21` §4、§8–§11。按 `boss_pacing.py` 以 10 / 6 段路线重估：默认精英 9.39、六派与宿卫手配精英 9.22；Boss 9 / 10 / 11 / 12 品分别为 22.02 / 22.78 / 23.12 / 23.60。三使按 10 品地位参数保持 `22.78→22.78`；全部落在 Boss 12–25 或精英 6–10 窗口，故 HP / 防御保持 `1.000 / 1.000`。多体遭遇仍按 §12.3 共享整场耐久，二老 / 三使 / 三渡及六派波次须固定阵容回放 **（待实测）**。
 
 #### 12.5.1 图鉴缺口
 
-| 人物 / 单位 | 缺的专属内功 / 外功 | 当前替补 |
+| 人物 / 单位 | 原缺口 | 本次处理 / 当前状态 |
 |---|---|---|
-| 金花婆婆 | 9 品主运；专属杖 / 暗器 | 地位兜底 `9/9/harmony`；同门 `sk_dajiutianshou` 暂闭合外功品阶 |
-| 成昆 | 9 品同源主运；至少一门 ≥9 外功 | 通行基础链仅供辅运；主运 / 外功双缺，普通 Boss 构建阻断 |
-| 昆仑 / 崆峒 / 华山指挥 | 各门 8 品主运 | 通行 `sk_baizhanxinfa`（原创扩展配置） |
-| 玄冥二老 | 各自 10 品专属主运；鹿杖 / 双笔外功 | 地位兜底 `10/9/yin`；玄冥基础内功辅运 |
-| 王保保 | 若改为个人格斗 Boss，需 9 品军伍主运 | 当前作为政治 / 战役指挥首领，例外保留 `sk_baizhanxinfa` 8 品 |
-| 波斯三使 | 各自 10 品专属主运 | 地位兜底 `10/9/harmony`；圣火基础链辅运 |
-| 三渡 | 各自 9 品主运 | 地位兜底 `9/9/yang`；少林基础内功辅运 |
+| 金花婆婆 | 9 品主运；杖 / 暗器 | **已补：**`sk_mingjiaohujiaogong`、`sk_jinhuazhangfa`、`sk_jinhuabiaofa`；均见按书补录册 |
+| 成昆 | 9 品同源主运；至少一门 ≥9 外功 | **已补并解除原构建阻断：**`sk_huanyinxinfa`、`sk_huanyinshou`；既有 `sk_huanyinzhi` 保留辅外功 |
+| 昆仑 / 崆峒 / 华山指挥 | 各门 8 品主运 | **已补：**`sk_kunlunliangyixinfa` / `sk_kongtongwuxingxinfa` / `sk_huashanliangyixinfa04` |
+| 鹿杖客 | 10 品主运；鹿杖外功 | **部分补录：**新增 `sk_lutouzhangfa` 并装备 `eq_luzhang`；10 品合法内功仍缺，地位七参数不得替代外键，**正式构建阻断** |
+| 鹤笔翁 | 10 品主运；双笔外功 | **部分补录：**新增 `sk_hezuibifa` 并装备 `eq_hebi`；10 品合法内功仍缺，地位七参数不得替代外键，**正式构建阻断** |
+| 王保保 | 若改为个人格斗 Boss，需 9 品军伍主运 | **未改：**按作者待确认的政治 / 战役指挥首领例外，继续用 `sk_baizhanxinfa` 8 品 |
+| 波斯三使 | 各自 ≥10 品主运 | **未补：**三使不是明教 L5 教主，不能合法取得 9 重 `sk_qiankun`；私传上限仅 8 重，且原著求取心法前提**（待考）**与三使直接持有相悖；天级 51 门闭集不得新增。维持地位兜底并标**正式构建阻断** |
+| 三渡 | 各自 ≥9 品主运 | **已复用：**`sk_jingangbuhuai`（10 天下），少林图鉴原生倚天来源，无跨书界新建 |
+
+本表没有“待书界 NN 补录”的跨书界项：三渡虽属少林（天龙一系）主书界，但已有合规内功可直接复用；本任务未新造少林武学。来源扩展待登记同样为 0。未闭合项有两类：玄冥二老 10 品主运中，`sk_xuanmingxinfa` 仅 6 品、`sk_xuanming` 是外功；波斯三使不能合法以 9 重 `sk_qiankun` 主运。两者在天级 51 门闭集不得新增的前提下均无法合法替换。
 
 ---
 
@@ -1307,7 +1311,7 @@ Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺�
 | 门派落地 | 十二门派入门考验、门规证据、晋升特例、配给侧重和部分称谓落点 | §7 | 五级框架与开放状态引用 `design/17`；章节不改变武学硬前置 |
 | 人物玩法 | 招募门槛、限定同行、拒绝 / 错过 / 联盟结果、张三丰 U0–U5 重逢流程 | §8 | 生卒、D1–D5 与同人同 ID 引用 `design/18`；不以招募洗白伤害 |
 | 遭遇 | 十个 `enc_04_*` 的目标、阶段配置、失败前进、非致死及多体约束 | §8.6、§12 | 具名人物用合法画像；未入名录者只作显示角色组；正式 Boss 脚本交 `design/09` 登记 |
-| 武学投放 | 易筋经印证、狮吼观摩、打狗补诀、三类低阶补栏和冲穴指导的章节入口 | §9 | 只发既有图鉴来源；不创造新武学、层数或丹药效果 |
+| 武学投放 | 易筋经印证、狮吼观摩、打狗补诀、三类低阶补栏、冲穴指导，以及首领所缺 10 门地阶武学的正常学习入口 | §9、§12.5 | 新增卡唯一见 `skills-bulu-04-yitian.md`；章节只排来源与配装，不重定义招式或数值 |
 | 光明顶系统 | 玩家承担侧翼 / 救援 / 证据战、共享三次调息、四项 0–3 评价 | §10.2 | 张无忌仍完成中央止战；评价不改锚点与天书变体 |
 | 刀剑保全 | `q_04_side_07` 与 `non_destructive_open` 无损探取路线 | §6.2、§10.3 | 当前采用 `design/10` §16.4 O4 的 P20 默认值；藏经奖励与互斫等价，差异仅在神兵物态和机会成本 |
 | 明教统御 | 共议 / 密令 / 制衡循环、五旗支持 0–100、议事 UI | §10.4 | `command_04` 只修饰本界治理与结局镜头，不成为第三条天书轴 |
@@ -1409,7 +1413,7 @@ Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺�
 | `CH04-V12` | 门派矩阵 | 倚天列恰为 `O16/H7/P1/N59/D15/M1`；其中 12 个完整经营位各有 L1–L5、称谓、授艺、月钱 / 配给和特例，另 4 个 `O` 只走条件身份 / 敌对 / 任职；禁用 `sect_huashan04`、`sect_jingangmen` | error |
 | `CH04-V13` | 人物 | 重点招募不少于 6；本文为 10；每人有 D 级和任务门槛；跨神雕活体重逢只认 `npc_zhangsanfeng` | error |
 | `CH04-V14` | NPC 引用 | 正式 `npc_*` 均能在人物名录解析；缺主记录者只用显示名 / 角色组，不能作为可招募或 `full` 属性源 | error |
-| `CH04-V15` | 武学引用 | 所有 `sk_*` 均在五份指定图鉴或基准存在；天级完整池恰 11，残承 `sk_xianglong18` 不计入完整池 | error |
+| `CH04-V15` | 武学引用 | 所有 `sk_*` 均在既有图鉴、`skills-bulu-04-yitian.md` 或基准存在；天级完整池恰 11，残承 `sk_xianglong18` 不计入完整池 | error |
 | `CH04-V16` | 低阶装配 | 本土内功、拳脚、兵器各至少三门可在不互斥来源取得，且仍服从图鉴 `maxLayer` | error |
 | `CH04-V17` | 刀剑三路 | 互斫 / 无损 / 封存三项均可继续主线；前两项藏经内容等价；事务幂等且不得复制唯一物品 | error |
 | `CH04-V18` | Boss 数值 | D10 仅乘 HP / 攻击 1.35；具名 `full` 不套模板攻击 1.25；多体总耐久不叠三份单 Boss 预算 | error |
@@ -1419,6 +1423,8 @@ Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺�
 | `CH04-V22` | 标注与考据 | 所有原创流程有标注或被 §13.1 成组覆盖；未核事实不出现伪引文、伪回目或确定地望 | error |
 | `CH04-V23` | 经脉模板 / 实例 | §12.5 七参数齐全；每个独立武学行动者一实例，多体共享阵法 / 耐久但不共享经脉状态 | error |
 | `CH04-V24` | 经脉顺序 / 节奏 | Z4M / Z5M、护体与速度顺序符合 21；标准对标准 10000 bp，行动轮保持 `4.8/9.3/19.5` | error |
+| `CH04-V25` | 首领主运外键 | 除明列的王保保战役型例外外，主运必须解析为合规内功 `sk_*`；玄冥二老与波斯三使空主运须阻断正式构建，不得以地位七参数或不合法的 `sk_qiankun` 冒充外键 | error |
+| `CH04-V26` | 补录映射 | §12.5 使用的 10 门新增武学均命中 `skills-bulu-04-yitian.md`；三渡复用项命中原图鉴；三使主运显式为空并阻断构建；无未登记来源扩展 | error |
 
 ### 路径、数值与接口测试
 
@@ -1444,6 +1450,8 @@ Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺�
 | `CH04-T18` | 对所有 `npc_*`、`sk_*`、`eq_*`、`sect_*` 做注册表解析 | 已登记者全部命中上游；金花婆婆、玄冥二老、波斯三使等仍以显示组报缺，不静默造 ID |
 | `CH04-T19` | 二老 / 三使 / 三渡分别对一名成员施加点穴、迟滞并快照 | 只有目标实例改变；阵法共享量不复制动态节点，纯火势 / 海潮无实例 |
 | `CH04-T20` | 标准、中强、强两档跑经脉隔离回归 | 中性三倍率 10000；`9→7`、`22→15` 仍在精英 / Boss 目标窗 |
+| `CH04-T21` | 以替换后的七参数逐项运行 `boss_pacing.py` | 金花 / 成昆 22.02；六派手配 9.22；二老 / 三使 / 三渡 22.78；均不需调整 `1.000 / 1.000` |
+| `CH04-T22` | 扫描 §12.5.1 未闭合项 | 只剩鹿杖客、鹤笔翁与波斯三使的 10 品合法内功；三类均显式 `构建阻断`，且不把外功或不合法的 `sk_qiankun` 当主运 |
 
 ### 人工审校与实测用例
 
@@ -1479,12 +1487,12 @@ Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺�
 | `design/01`、story 04 | 已采用六锚点、双线 14 幕、十选择、唯一主改命和四结局；主线内容不在本文重写 |
 | `design/02`、`13` | 已采用书眠、传承上限、天书效果引用、余韵与后界压制；后界直接读取 `fate_04`、`command_04`、已有旗标或 `carry:*`，通用 `echo_NN_fate` 仅作派生投影 |
 | `design/03`、`04`、`09` | 已采用 D10、模板 Boss、有效耐久、合击和群战；三场复杂战仍**（待实测）** |
-| `design/05` 与五份指定图鉴 | 已采用全部 `sk_*` 名称、品阶、来源上限；本章不定义招式或套装效果 |
+| `design/05`、既有图鉴与 `skills-bulu-04-yitian.md` | 已采用全部 `sk_*` 名称、品阶、来源上限；新增武学及招式只在按书补录册定义，本章仅引用配装 |
 | `design/07` | **已解决：**正式套装目录已落盘；本文只引用其成员、档位与效果，不创建第二份定义 |
 | `design/08`、`10`、`11`、`16` | 已采用地形、qg、神兵、区域预算、资源与营生；场景前缀和地图产物尚有同步缺口 |
 | `design/12`、`15`、`17`、`18` | 已采用任务 / 门派 / 经脉 / 人物规则；章节新增实例、缺 NPC 与建议阈值待归属文档收录 |
 | `design/20` | 已采用其候选过滤、配额、三卷残本、信物、校合与传承匣规则；§3.8 选择三条合法来源并复用既有任务预算 |
-| `design/21` | **部分解决：**§12.5 已接敌方模板、逐单位实例、攻防 / 护体 / 速度 / 控制接口；图鉴路线、06 Buff 与多体具名实跑仍待上游完成 |
+| `design/21` | **部分解决：**§12.5 已接敌方模板、逐单位实例、攻防 / 护体 / 速度 / 控制接口；本次补录的 13 条绝招路线已落盘，多体具名固定 RNG 回放仍**（待实测）** |
 | `design/map/cities.yaml`、`jianghu-ch04.svg` | **已解决：**已采用现有时代名与实际文件名，并按 `design/11` 的 30 区体系重生成 |
 
 ### 对基准的修改提案
@@ -1504,6 +1512,8 @@ Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺�
 | `D04-B09` | 为 `city_nanjing` 增加末段“应天府”场景级历史名覆写规则，同时保留常态“集庆路” | 小说末段政权更替跨越静态时代层，单一城市名不能覆盖两个时点 |
 | `D04-B10` | 已解决：删除三个内容专用 `echo_04_*` 包装键，后界直接读取 `fate_04`、`flag_04_mingjiao_archive_saved` 与 `command_04`；`design/02` §6.3 的通用投影由书眠适配器派生 | 避免复制状态和迁移分叉；既有状态已有明确单写者 |
 | `D04-B11` | **已解决（不升格）：**六个 `anchor_04_*` 只作 §5 伪代码局部键；正式任务按 `design/12` §2.6 映射阶段 / 状态并指定单写者 | CP-39 / CP-40 已拒绝把局部锚点升格为 Canon 内容 ID |
+| `D04-B12` | 在 Canon §13 / 图鉴入口登记 `design/catalog/skills-bulu-04-yitian.md` 为正式定义源，并令构建器扫描按书补录册 | 本次 10 门武学不能写回既有门派图鉴，章节又只应引用；需有唯一可解析的正式入口 |
+| `D04-B13` | 明确地位品阶兜底只可用于缺口期节奏估算，不能代替主运内功外键 | 玄冥二老与波斯三使当前 `10/9` 能估算轮数，却没有合法 10 品内功；若静默通过会把外功、不合规候选或七参数误当主运 |
 
 ### 原著考据待办
 
@@ -1516,6 +1526,7 @@ Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺�
 7. 核对波斯总教来使的称谓、人数、圣火令与小昭责任线，不预造引文和人物 ID。
 8. 核对灭绝师太、胡青牛夫妇、纪晓芙、殷天正、宋青书的命运版本差异与时点。
 9. 核对常遇春、彭莹玉、徐达、朱元璋、王保保的生卒与小说 / 史实身份边界。
+10. 核对金花婆婆的持杖 / 金花暗器、成昆的幻阴指暗袭、鹿杖客鹿角杖与鹤笔翁双笔的具体动作；补录名与招名在核定前均保持原创扩展标注。
 
 ### 开放问题（附默认值）
 
@@ -1531,3 +1542,6 @@ Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺�
 | `D04-O08` | 三个包装式后界回响键如何处理？ | 已解决：不创建内容专用键；笑傲直接读取既有状态与携带条件，标准 `echo_NN_fate` 仅由书眠适配器派生 | 跨书兼容与旧档迁移 |
 | `D04-O09` | **已解决：**套装如何投放？ | 仅按 `design/07` 正式目录投放；旧候选不产生效果或专属掉落 | 装备成长、收集奖励 |
 | `D04-O10` | 多体 Boss 经脉配置何时成为正式值？ | 默认沿 §12.5；路线挂接完成后固定 RNG 回放二老 / 三使 / 三渡，先调共享阶段耐久与路线 CT，不改 21 曲线 | 战斗节奏、AI 与 QA |
+| `D04-O11` | 玄冥二老缺少 10 品合法主运如何处理？ | 不新增天级、不把 `sk_xuanming` 外功当内功；暂保留地位七参数用于节奏估算并阻断正式构建，等待作者从既有天级闭集裁定有据复用项 | 二老画像、正式构建 |
+| `D04-O12` | 个人独门的玩家满层来源是否保留？ | 成昆只由本人私授 / 受控同行至 10 重，遗册至 8 重；鹿 / 鹤只由本人羁绊或换俘至 10 重，缴获残谱至 8 重 | 学习来源、支线奖励 |
+| `D04-O13` | 波斯三使是否改按第 3 档以**（原创扩展配置）**配 `sk_qiankun`（11 品、最多 8 重）？ | 否；三使不是明教教主，且求取心法的原著前提**（待考）**与直接持有相悖，维持 10 品地位兜底并阻断正式构建 | 三使画像、正式构建、原著边界 |
