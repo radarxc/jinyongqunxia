@@ -5709,7 +5709,13 @@
         "NC3",
         "NC4",
         "NCh1",
-        "NCh2"
+        "NCh2",
+        "M4",
+        "NL",
+        "NU1",
+        "NU2",
+        "NU3",
+        "NU4"
       ],
       "writes": [
         "docs/**",
@@ -5736,6 +5742,277 @@
             "tools/lint/check_ids.py",
             "--strict"
           ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "M4",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "绝招数量新规则：天 2–3、地 1–2、玄上 1（AR-14 追加）",
+      "prompt": "M4-ultimate-counts.md",
+      "deps": [
+        "M3"
+      ],
+      "writes": [
+        "docs/design/21-meridian-flow-and-moves.md",
+        "docs/design/05-martial-arts-system.md",
+        "docs/design/13-progression-and-endings.md",
+        "docs/decisions/author-requirements.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/21-meridian-flow-and-moves.md"
+        ],
+        "fences": [
+          "docs/design/21-meridian-flow-and-moves.md",
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/13-progression-and-endings.md"
+        ],
+        "contains": [
+          [
+            "docs/decisions/author-requirements.md",
+            "天阶应该有两到三个绝招"
+          ]
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NL",
+      "phase": "G",
+      "wave": 6,
+      "kind": "tool",
+      "title": "ID 检查脚本：武学图鉴可定义具体武学的 mfr_ / txp_ 实例",
+      "prompt": "NL-lint.md",
+      "deps": [
+        "A4"
+      ],
+      "writes": [
+        "tools/lint/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/lint/check_ids.py"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "tools/lint/test_check_ids.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NU1",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "绝招数量补足 · 武学图鉴（少林 / 道家 / 通行）",
+      "prompt": "NU-ultimate.md",
+      "deps": [
+        "NC1",
+        "M3"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-shaolin.md",
+        "docs/design/catalog/skills-daojia.md",
+        "docs/design/catalog/skills-general.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（少林 / 道家 / 通行）",
+        "doc_set": "- `docs/design/catalog/skills-shaolin.md`\n- `docs/design/catalog/skills-daojia.md`\n- `docs/design/catalog/skills-general.md`",
+        "extra": "本组若有协调者或上一任务报告指出的格式问题（如调息档案缺 `outOfBattleScaleBp`、逐招路线为隐式派生），顺手按 21 统一：调息档案补齐 `outOfBattleScaleBp`，逐招路线显式列出 `mfr_*`。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NU2",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "绝招数量补足 · 武学图鉴（五绝 / 逍遥）",
+      "prompt": "NU-ultimate.md",
+      "deps": [
+        "NC2",
+        "M3"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-wujue.md",
+        "docs/design/catalog/skills-xiaoyao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（五绝 / 逍遥）",
+        "doc_set": "- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-xiaoyao.md`",
+        "extra": "本组若有协调者或上一任务报告指出的格式问题（如调息档案缺 `outOfBattleScaleBp`、逐招路线为隐式派生），顺手按 21 统一：调息档案补齐 `outOfBattleScaleBp`，逐招路线显式列出 `mfr_*`。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NU3",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "绝招数量补足 · 武学图鉴（倚天 / 侠客碧血 / 五岳）",
+      "prompt": "NU-ultimate.md",
+      "deps": [
+        "NC3",
+        "M3"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-yitian.md",
+        "docs/design/catalog/skills-xiake-bixue.md",
+        "docs/design/catalog/skills-wuyue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（倚天 / 侠客碧血 / 五岳）",
+        "doc_set": "- `docs/design/catalog/skills-yitian.md`\n- `docs/design/catalog/skills-xiake-bixue.md`\n- `docs/design/catalog/skills-wuyue.md`",
+        "extra": "本组若有协调者或上一任务报告指出的格式问题（如调息档案缺 `outOfBattleScaleBp`、逐招路线为隐式派生），顺手按 21 统一：调息档案补齐 `outOfBattleScaleBp`，逐招路线显式列出 `mfr_*`。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-yitian.md",
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-yitian.md",
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NU4",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "绝招数量补足 · 武学图鉴（康熙 / 乾隆 / 古龙）",
+      "prompt": "NU-ultimate.md",
+      "deps": [
+        "NC4",
+        "M3"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-kangxi.md",
+        "docs/design/catalog/skills-qianlong.md",
+        "docs/design/catalog/skills-gulong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（康熙 / 乾隆 / 古龙）",
+        "doc_set": "- `docs/design/catalog/skills-kangxi.md`\n- `docs/design/catalog/skills-qianlong.md`\n- `docs/design/catalog/skills-gulong.md`",
+        "extra": "本组若有协调者或上一任务报告指出的格式问题（如调息档案缺 `outOfBattleScaleBp`、逐招路线为隐式派生），顺手按 21 统一：调息档案补齐 `outOfBattleScaleBp`，逐招路线显式列出 `mfr_*`。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "cmd": [
           [
             "{python}",
             "tools/balance/damage_sim.py",
