@@ -4,11 +4,49 @@
 > **上游**：`00-canon.md`（§3–§5、§9、§12–§13、§16、§20）；`decisions/author-requirements.md` AR-01–03、AR-07–08、AR-14；`decisions/author-decisions.md` P33、P38；`decisions/rulings-v1.md` C16、C17、C22、C23；`design/17` 的门派 ID、时代状态与职级称谓；`design/21` v2.0。
 > **引用而不重定义**：字段、层数、招式预算、内功贡献、学习与残承 → `design/05`；战斗经脉运行、路线、护体内劲、速度修正与调息 → `design/21`；经脉 / 穴位与永久成长 → `design/15`；Buff → `design/06`；轻功值 → `design/03`；书界、印证与残承 → `design/02`；套装规则与最终数值 → `design/07`；装备 → `design/10`；门派史与开放矩阵 → `design/17`。
 > **标注约定**：**（原创扩展）** = 原著没有的武学、招名或机制；**（原创扩展命名）** = 原著有其人其事或器械而无正式武学名；**（待考）** = 须以三联 / 广州修订版逐字核对。本文不编造引文与回目号。
-> **版本**：初稿 C1e；审校 C1e.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）。
+> **版本**：初稿 C1e；审校 C1e.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）。
 
 ---
 
 ## 0. 阅读指引与统一记法
+### 绝招显式路线索引（镜像正文卡，非覆写层；2026-09-28）
+
+本索引镜像正文卡，非覆写层；与正文不一致即为错误，并以正文为准。每记绝招使用独立稳定路线与显式穴位序列。
+
+<!-- skill-catalog-audit:start -->
+| 品阶 | 武学 | MoveDef（正文卡镜像） | 路线 ID | steps（acupointRef/segmentCt/riskBp） |
+|---|---|---|---|---|
+| 10 天下 | `sk_baihuacuo` | `mv_baihuacuo_cuoluo` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_baihuacuo_cuoluo}` | `mfr_baihuacuo_cuoluo` | `MeridianRouteDef{moveRef:mv_baihuacuo_cuoluo; ultimate:true; purpose:attack}`；`ap_shoushaoyin_shaofu/80/100→ap_shoutaiyin_shaoshang/80/120→ap_yinqiao_jiaoxin/80/140→ap_yinwei_fuai/80/160→ap_zujueyin_ligou/80/180→ap_zujueyin_zhongfeng/80/200→ap_zushaoyin_taixi/80/220→ap_zutaiyin_shangqiu/80/240→ap_renmai_guanyuan/80/260→ap_renmai_yinjiao/80/280` |
+| 10 天下 | `sk_baihuacuo` | `mv_baihuacuo_fanchang` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_baihuacuo_fanchang}` | `mfr_baihuacuo_fanchang` | `MeridianRouteDef{moveRef:mv_baihuacuo_fanchang; ultimate:true; purpose:attack}`；`ap_zushaoyin_rangu/80/100→ap_zutaiyin_dadu/80/120→ap_zutaiyin_yinlingquan/80/140→ap_renmai_shenque/80/160→ap_shoujueyin_jianshi/80/180→ap_shoujueyin_zhongchong/80/200→ap_shoushaoyin_shenmen/80/220→ap_shoutaiyin_tianfu/80/240→ap_yinqiao_lieque/80/260→ap_yinwei_lianquan/80/280` |
+| 10 天下 | `sk_paoding` | `mv_paoding_muwuquanniu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_paoding_muwuquanniu}` | `mfr_paoding_muwuquanniu` | `MeridianRouteDef{moveRef:mv_paoding_muwuquanniu; ultimate:true; purpose:attack}`；`ap_yinwei_fuai/80/100→ap_zujueyin_ligou/80/120→ap_zujueyin_zhongfeng/80/140→ap_zushaoyin_taixi/80/160→ap_zutaiyin_shangqiu/80/180→ap_renmai_guanyuan/80/200→ap_renmai_yinjiao/80/220→ap_shoujueyin_quze/80/240→ap_shoushaoyin_qingling/80/260→ap_shoutaiyin_chize/80/280` |
+| 10 天下 | `sk_paoding` | `mv_paoding_daokuan` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_paoding_daokuan}` | `mfr_paoding_daokuan` | `MeridianRouteDef{moveRef:mv_paoding_daokuan; ultimate:true; purpose:attack}`；`ap_shoushaoyin_lingdao/80/100→ap_shoushaoyin_yinxi/80/120→ap_shoutaiyin_yuji/80/140→ap_yinqiao_sanyinjiao/80/160→ap_yinwei_tiantu/80/180→ap_zujueyin_xingjian/80/200→ap_zushaoyin_rangu/80/220→ap_zutaiyin_dadu/80/240→ap_zutaiyin_yinlingquan/80/260→ap_renmai_shenque/80/280` |
+| 10 天下 | `sk_hujiadao` | `mv_hujiadao_fengxue` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_hujiadao_fengxue}` | `mfr_hujiadao_fengxue` | `MeridianRouteDef{moveRef:mv_hujiadao_fengxue; ultimate:true; purpose:attack}`；`ap_shoutaiyang_wangu/80/100→ap_shouyangming_quchi/80/120→ap_yangqiao_fuyang/80/140→ap_yangqiao_shenmai/80/160→ap_yangwei_yamen/80/180→ap_zushaoyang_xuanzhong/80/200→ap_zutaiyang_kunlun/80/220→ap_zuyangming_fenglong/80/240→ap_zuyangming_zusanli/80/260→ap_dumai_shenzhu/80/280` |
+| 10 天下 | `sk_hujiadao` | `mv_hujiadao_humiaohuzhao` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_hujiadao_humiaohuzhao}` | `mfr_hujiadao_humiaohuzhao` | `MeridianRouteDef{moveRef:mv_hujiadao_humiaohuzhao; ultimate:true; purpose:attack}`；`ap_zutaiyang_feishu/80/100→ap_zuyangming_chengqi/80/120→ap_zuyangming_tianshu/80/140→ap_dumai_shendao/80/160→ap_shoushaoyang_guanchong/80/180→ap_shoushaoyang_zhigou/80/200→ap_shoutaiyang_wangu/80/220→ap_shouyangming_quchi/80/240→ap_yangqiao_fuyang/80/260→ap_yangqiao_shenmai/80/280` |
+| 9 地上 | `sk_miaojiajian` | `mv_miaojiajian_bafang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_miaojiajian_bafang}` | `mfr_miaojiajian_bafang` | `MeridianRouteDef{moveRef:mv_miaojiajian_bafang; ultimate:true; purpose:attack}`；`ap_yangwei_tianliao/90/100→ap_zushaoyang_tongziliao/90/120→ap_zutaiyang_cuanzhu/90/140→ap_zutaiyang_zhiyin/90/160→ap_zuyangming_sibai/90/180→ap_dumai_shangxing/90/200→ap_dumai_zhiyang/90/220→ap_shoushaoyang_yifeng/90/240` |
+| 9 地上 | `sk_miaojiajian` | `mv_miaojiajian_shouxi` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_miaojiajian_shouxi}` | `mfr_miaojiajian_shouxi` | `MeridianRouteDef{moveRef:mv_miaojiajian_shouxi; ultimate:true; purpose:attack}`；`ap_zutaiyang_chengshan/90/100→ap_zutaiyang_xinshu/90/120→ap_zuyangming_renying/90/140→ap_dumai_mingmen/90/160→ap_dumai_yinjiao/90/180→ap_shoushaoyang_yemen/90/200→ap_shoutaiyang_tianzong/90/220→ap_shouyangming_hegu/90/240` |
+| 8 地中 | `sk_yaowangdujing` | `mv_yaowangdujing_baidu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_yaowangdujing_baidu}` | `mfr_yaowangdujing_baidu` | `MeridianRouteDef{moveRef:mv_yaowangdujing_baidu; ultimate:true; purpose:defense}`；`ap_zutaiyin_taibai/90/100→ap_renmai_huiyin/90/120→ap_renmai_zhongji/90/140→ap_shoujueyin_tianchi/90/160→ap_shoushaoyin_shaochong/90/180→ap_shoutaiyin_kongzui/90/200→ap_shoutaiyin_zhongfu/90/220→ap_yinwei_daheng/90/240` |
+| 8 地中 | `sk_yaowangdujing` | `mv_yaowangdujing_fanzhao` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_yaowangdujing_fanzhao}` | `mfr_yaowangdujing_fanzhao` | `MeridianRouteDef{moveRef:mv_yaowangdujing_fanzhao; ultimate:true; purpose:defense}`；`ap_shoushaoyin_shaofu/90/100→ap_shoutaiyin_shaoshang/90/120→ap_yinqiao_jiaoxin/90/140→ap_yinwei_fuai/90/160→ap_zujueyin_ligou/90/180→ap_zujueyin_zhongfeng/90/200→ap_zushaoyin_taixi/90/220→ap_zutaiyin_shangqiu/90/240` |
+| 8 地中 | `sk_qixinhaitang` | `mv_qixinhaitang_wusheng` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_qixinhaitang_wusheng}` | `mfr_qixinhaitang_wusheng` | `MeridianRouteDef{moveRef:mv_qixinhaitang_wusheng; ultimate:true; purpose:attack}`；`ap_shoujueyin_ximen/90/100→ap_shoushaoyin_shaohai/90/120→ap_shoutaiyin_taiyuan/90/140→ap_yinqiao_jingming/90/160→ap_yinwei_fushe/90/180→ap_zujueyin_ququan/90/200→ap_zushaoyin_dazhong/90/220→ap_zushaoyin_yingu/90/240` |
+| 8 地中 | `sk_qixinhaitang` | `mv_qixinhaitang_chifa` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_qixinhaitang_chifa}` | `mfr_qixinhaitang_chifa` | `MeridianRouteDef{moveRef:mv_qixinhaitang_chifa; ultimate:true; purpose:attack}`；`ap_shoutaiyin_chize/90/100→ap_shoutaiyin_yunmen/90/120→ap_yinqiao_zhaohai/90/140→ap_yinwei_zhubin/90/160→ap_zujueyin_yinlian/90/180→ap_zushaoyin_shufu/90/200→ap_zutaiyin_diji/90/220→ap_renmai_chengjiang/90/240` |
+| 8 地中 | `sk_tianshanyingyang` | `mv_tianshanyingyang_tianji` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_tianshanyingyang_tianji}` | `mfr_tianshanyingyang_tianji` | `MeridianRouteDef{moveRef:mv_tianshanyingyang_tianji; ultimate:true; purpose:movement}`；`ap_zushaoyang_xuanzhong/90/100→ap_zutaiyang_kunlun/90/120→ap_zuyangming_fenglong/90/140→ap_zuyangming_zusanli/90/160→ap_dumai_shenzhu/90/180→ap_shoushaoyang_sizhukong/90/200→ap_shoushaoyang_zhongzhu/90/220→ap_shoutaiyang_xiaohai/90/240` |
+| 8 地中 | `sk_tianshanyingyang` | `mv_tianshanyingyang_yingluo` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_tianshanyingyang_yingluo}` | `mfr_tianshanyingyang_yingluo` | `MeridianRouteDef{moveRef:mv_tianshanyingyang_yingluo; ultimate:true; purpose:movement}`；`ap_dumai_shangxing/90/100→ap_dumai_zhiyang/90/120→ap_shoushaoyang_yifeng/90/140→ap_shoutaiyang_tinggong/90/160→ap_shouyangming_pianli/90/180→ap_yangqiao_dicang/90/200→ap_yangqiao_pucan/90/220→ap_yangwei_toulinqi/90/240` |
+| 7 地下 | `sk_honghuahuiheji` | `mv_honghuahuiheji_shisidangjia` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_honghuahuiheji_shisidangjia}` | `mfr_honghuahuiheji_shisidangjia` | `MeridianRouteDef{moveRef:mv_honghuahuiheji_shisidangjia; ultimate:true; purpose:movement}`；`ap_zuyangming_lidui/90/100→ap_dumai_jizhong/90/120→ap_dumai_yaoyangguan/90/140→ap_shoushaoyang_yangchi/90/160→ap_shoutaiyang_shaoze/90/180→ap_shouyangming_erjian/90/200→ap_shouyangming_yangxi/90/220→ap_yangqiao_juliao_wei/90/240` |
+| 7 地下 | `sk_hujiaquan` | `mv_hujiaquan_quandao` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_hujiaquan_quandao}` | `mfr_hujiaquan_quandao` | `MeridianRouteDef{moveRef:mv_hujiaquan_quandao; ultimate:true; purpose:defense}`；`ap_yangwei_benshen/90/100→ap_yangwei_yangjiao/90/120→ap_zushaoyang_yangbai/90/140→ap_zutaiyang_shenshu/90/160→ap_zuyangming_jiache/90/180→ap_dumai_baihui/90/200→ap_dumai_shuigou/90/220→ap_shoushaoyang_tianjing/90/240` |
+| 7 地下 | `sk_baguadao` | `mv_baguadao_bamen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_baguadao_bamen}` | `mfr_baguadao_bamen` | `MeridianRouteDef{moveRef:mv_baguadao_bamen; ultimate:true; purpose:attack}`；`ap_shoushaoyang_yemen/90/100→ap_shoutaiyang_tianzong/90/120→ap_shouyangming_hegu/90/140→ap_shouyangming_yingxiang/90/160→ap_yangqiao_naoshu/90/180→ap_yangwei_tianliao/90/200→ap_zushaoyang_tongziliao/90/220→ap_zutaiyang_cuanzhu/90/240` |
+| 7 地下 | `sk_huibuqijian` | `mv_huibuqijian_huifeng` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_huibuqijian_huifeng}` | `mfr_huibuqijian_huifeng` | `MeridianRouteDef{moveRef:mv_huibuqijian_huifeng; ultimate:true; purpose:defense}`；`ap_shouyangming_shousanli/90/100→ap_yangqiao_juliao/90/120→ap_yangwei_jianjing/90/140→ap_zushaoyang_guangming/90/160→ap_zushaoyang_zuqiaoyin/90/180→ap_zutaiyang_weizhong/90/200→ap_zuyangming_lidui/90/220→ap_dumai_jizhong/90/240` |
+| 7 地下 | `sk_zhangmenboyi` | `mv_zhangmenboyi_baipai` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_zhangmenboyi_baipai}` | `mfr_zhangmenboyi_baipai` | `MeridianRouteDef{moveRef:mv_zhangmenboyi_baipai; ultimate:true; purpose:defense}`；`ap_shoutaiyang_shaoze/90/100→ap_shouyangming_erjian/90/120→ap_shouyangming_yangxi/90/140→ap_yangqiao_juliao_wei/90/160→ap_yangwei_jinmen/90/180→ap_zushaoyang_riyue/90/200→ap_zutaiyang_chengshan/90/220→ap_zutaiyang_xinshu/90/240` |
+| 6 玄上 | `sk_jindifa` | `mv_jindifa_huban` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_jindifa_huban}` | `mfr_jindifa_huban` | `MeridianRouteDef{moveRef:mv_jindifa_huban; ultimate:true; purpose:defense}`；`ap_zutaiyang_shenshu/100/100→ap_zutaiyin_diji/100/120→ap_zuyangming_chengqi/100/140→ap_zuyangming_tianshu/100/160→ap_chongmai_qichong/100/180→ap_chongmai_zhongzhu/100/200` |
+| 6 玄上 | `sk_yingyangzhang` | `mv_yingyangzhang_bingji` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_yingyangzhang_bingji}` | `mfr_yingyangzhang_bingji` | `MeridianRouteDef{moveRef:mv_yingyangzhang_bingji; ultimate:true; purpose:attack}`；`ap_dumai_baihui/100/100→ap_dumai_shuigou/100/120→ap_shoushaoyang_tianjing/100/140→ap_shoutaiyang_houxi/100/160→ap_shoutaiyang_yanggu/100/180→ap_shouyangming_shangyang/100/200` |
+| 6 玄上 | `sk_huibujianshu` | `mv_huibujianshu_liuguang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_huibujianshu_liuguang}` | `mfr_huibujianshu_liuguang` | `MeridianRouteDef{moveRef:mv_huibujianshu_liuguang; ultimate:true; purpose:attack}`；`ap_shoutaiyang_xiaohai/100/100→ap_shoutaiyin_tianfu/100/120→ap_shouyangming_pianli/100/140→ap_yangqiao_dicang/100/160→ap_yangqiao_pucan/100/180→ap_yangwei_toulinqi/100/200` |
+| 6 玄上 | `sk_miaojiaquan` | `mv_miaojiaquan_zhengqi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_miaojiaquan_zhengqi}` | `mfr_miaojiaquan_zhengqi` | `MeridianRouteDef{moveRef:mv_miaojiaquan_zhengqi; ultimate:true; purpose:attack}`；`ap_shoushaoyang_waiguan/100/100→ap_shoushaoyin_lingdao/100/120→ap_shoushaoyin_yinxi/100/140→ap_shoutaiyang_xiaohai/100/160→ap_shoutaiyin_tianfu/100/180→ap_shouyangming_pianli/100/200` |
+| 6 玄上 | `sk_taijimenquan` | `mv_taijimenquan_heshou` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_taijimenquan_heshou}` | `mfr_taijimenquan_heshou` | `MeridianRouteDef{moveRef:mv_taijimenquan_heshou; ultimate:true; purpose:attack}`；`ap_shoushaoyin_tongli/100/100→ap_shoutaiyang_wangu/100/120→ap_shoutaiyin_taiyuan/100/140→ap_shouyangming_hegu/100/160→ap_shouyangming_yingxiang/100/180→ap_yangqiao_naoshu/100/200` |
+| 6 玄上 | `sk_baguazhang` | `mv_baguazhang_bafang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_baguazhang_bafang}` | `mfr_baguazhang_bafang` | `MeridianRouteDef{moveRef:mv_baguazhang_bafang; ultimate:true; purpose:attack}`；`ap_zushaoyin_yongquan/100/100→ap_zutaiyang_weizhong/100/120→ap_zutaiyin_shangqiu/100/140→ap_zuyangming_jiache/100/160→ap_baihui/100/180→ap_chongmai_shangqu/100/200` |
+| 6 玄上 | `sk_tianlongjian` | `mv_tianlongjian_zhengshou` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_tianlongjian_zhengshou}` | `mfr_tianlongjian_zhengshou` | `MeridianRouteDef{moveRef:mv_tianlongjian_zhengshou; ultimate:true; purpose:attack}`；`ap_zujueyin_ligou/100/100→ap_zujueyin_zhongfeng/100/120→ap_zushaoyin_taixi/100/140→ap_zutaiyin_shangqiu/100/160→ap_renmai_guanyuan/100/180→ap_renmai_yinjiao/100/200` |
+| 6 玄上 | `sk_baxianjian` | `mv_baxianjian_guohai` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_baxianjian_guohai}` | `mfr_baxianjian_guohai` | `MeridianRouteDef{moveRef:mv_baxianjian_guohai; ultimate:true; purpose:attack}`；`ap_dumai_shuigou/100/100→ap_renmai_danzhong/100/120→ap_renmai_shuifen/100/140→ap_shoujueyin_neiguan/100/160→ap_shoushaoyang_sizhukong/100/180→ap_shoushaoyang_zhongzhu/100/200` |
+| 6 玄上 | `sk_bajiquan` | `mv_bajiquan_beng` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_bajiquan_beng}` | `mfr_bajiquan_beng` | `MeridianRouteDef{moveRef:mv_bajiquan_beng; ultimate:true; purpose:attack}`；`ap_shouyangming_hegu/100/100→ap_shouyangming_yingxiang/100/120→ap_yangqiao_naoshu/100/140→ap_yangwei_tianliao/100/160→ap_zushaoyang_tongziliao/100/180→ap_zutaiyang_cuanzhu/100/200` |
+| 6 玄上 | `sk_jiulongbian` | `mv_jiulongbian_guiyi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_jiulongbian_guiyi}` | `mfr_jiulongbian_guiyi` | `MeridianRouteDef{moveRef:mv_jiulongbian_guiyi; ultimate:true; purpose:attack}`；`ap_zutaiyin_yinlingquan/100/100→ap_renmai_shenque/100/120→ap_shoujueyin_jianshi/100/140→ap_shoujueyin_zhongchong/100/160→ap_shoushaoyin_shenmen/100/180→ap_shoutaiyin_tianfu/100/200` |
+<!-- skill-catalog-audit:end -->
+
 
 ### 0.1 配额、口径与条目详略
 
@@ -149,7 +187,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | nature · wOut/wIn · aptitude | `harmony` · 0.50/0.50 · `apFist` |
 | reqs | `attrs {agi:55,wis:55}`；`aptitude {apFist:55}`；`prereq [{anyOf:[{skill:sk_honghuaxinfa,layer:7},{skill:sk_tianchibu,layer:7}]}]`；`hard:[prereq]` |
 | layerStats | `hit [4,10]`、`crit [2,10]`（合计 20） |
-| 层数要点 | 1 乱花错眼、移花接木、错中藏真；3 虚实相生；5 百家纷呈、无定；**7 绝招 百花错落**；**8 绝招反常合道、被动错拳后发**；10 百花归一 |
+| 层数要点 | 1 乱花错眼、移花接木、错中藏真；3 虚实相生；5 百家纷呈、无定；**7 绝招 百花错落**；**9 绝招反常合道、被动错拳后发**；10 百花归一 |
 | moveSlots | 5 |
 | setTags | `[set_honghua_shisidangjia]` |
 | conflicts / weaponReq | `[] / null` |
@@ -163,8 +201,8 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 移花接木 `mv_baihuacuo_yihua` | 1 | 绕背·近 | 0.80 | 8%/1/1000 | 绕背；`bf_pozhao` 40%·1 | 可 | `0.90×1.12−0.15−0.10×0.4=0.82≈0.80` |
 | 错中藏真 `mv_baihuacuo_cangzhen` | 3 | 单体·近 | 1.15 | 9%/1/1000 | — | 可 | `1+0.12+0.05=1.17≈1.15` |
 | 百家纷呈 `mv_baihuacuo_baijia` | 5 | 横扫·近 | 1.05 | 9%/2/1000 | `bf_shiheng` 50%·1 | 可 | N=3、AF=0.85；`0.85×(1+0.24+0.05)−0.10×0.5=1.0465≈1.05` |
-| **百花错落** `mv_baihuacuo_cuoluo`（绝招） | 7 | 周身·近 | 2.00 | 10%/—/1200 | 目标 `bf_shiheng` 100%·1；自身 `bf_bizhong`×1 | 可 | N=6、AF=0.75；`3×0.75−0.10−0.15=2.00` |
-| 反常合道 `mv_baihuacuo_fanchang`（绝招，**原创扩展命名**） | 8 | 单体·近；目标有 `stance` | 2.90 | 10%/—/1200 | `bf_pozhao` 100%·1；气势 100 | 可 | `3.00−0.10=2.90`；姿态条件不另抬绝招基础倍率 |
+| **百花错落** `mv_baihuacuo_cuoluo`（绝招） | 7 | 周身·近 | 2.00 | 10%/—/1200 | 目标 `bf_shiheng` 100%·1；自身 `bf_bizhong`×1 | 可 | N=6、AF=0.75；`3×0.75−0.10−0.15=2.00`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200}` |
+| 反常合道 `mv_baihuacuo_fanchang`（绝招，**原创扩展命名**） | 9 | 单体·近；目标有 `stance` | 2.90 | 10%/—/1200 | `bf_pozhao` 100%·1；气势 100 | 可 | `3.00−0.10=2.90`；姿态条件不另抬绝招基础倍率；`MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200}` |
 
 | 被动 ID | 名称 | 重 | 类 / 乘区 | 数值与说明 |
 |---|---|---:|---|---|
@@ -198,8 +236,8 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 中綮 `mv_paoding_zhongqing` | 1 | 单体·近 | 1.05 | 8%/1/1000 | `bf_pojia` 60%·2 | 可 | `1+0.12−0.10×0.6=1.06≈1.05` |
 | 游刃 `mv_paoding_youren` | 3 | 突进 3·近 | 1.00 | 9%/1/1000 | 自身突进；目标 `bf_pozhao` 20%·1 | 可 | `1×(1+0.12+0.05)−0.10−0.10×0.2=1.05≈1.00` |
 | 因其固然 `mv_paoding_guran` | 5 | 线2·近 | 1.05 | 9%/2/1000 | `bf_pojia` 100%·2 | 可 | N=2、AF=0.90；`0.90×(1+0.24+0.05)−0.10=1.06≈1.05` |
-| **目无全牛** `mv_paoding_muwuquanniu`（绝招） | 7 | 单体·近 | 2.80 | 10%/—/1200 | 自身 `bf_wushi_fangyu`×1；目标 `bf_pozhao` 100%·1 | 可 | `3.00−0.10−0.10=2.80` |
-| 批隙导窾 `mv_paoding_daokuan`（绝招，**原创扩展命名**） | 9 | 单体·近；目标有 `weaken.def` | 2.95 | 10%/—/1200 | `bf_neishang` 40%·3；气势 100 | 可 | `3.00−0.10×0.40=2.96≈2.95`；虚弱条件不另抬绝招基础倍率 |
+| **目无全牛** `mv_paoding_muwuquanniu`（绝招） | 7 | 单体·近 | 2.80 | 10%/—/1200 | 自身 `bf_wushi_fangyu`×1；目标 `bf_pozhao` 100%·1 | 可 | `3.00−0.10−0.10=2.80`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200}` |
+| 批隙导窾 `mv_paoding_daokuan`（绝招，**原创扩展命名**） | 9 | 单体·近；目标有 `weaken.def` | 2.95 | 10%/—/1200 | `bf_neishang` 40%·3；气势 100 | 可 | `3.00−0.10×0.40=2.96≈2.95`；虚弱条件不另抬绝招基础倍率；`MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200}` |
 
 | 被动 ID | 名称 | 重 | 类 / 乘区 | 数值与说明 |
 |---|---|---:|---|---|
@@ -245,8 +283,8 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 横断关山 `mv_hujiadao_guanshan` | 3 | 线2·近 | 1.10 | 9%/2/1000 | `bf_liuxue` 50%·2 | 可 | N=2、AF=0.90；`0.90×(1+0.24+0.05)−0.10×0.5=1.11≈1.10` |
 | 刀走偏锋 `mv_hujiadao_pianfeng` | 5 | 横扫·近 | 1.05 | 9%/2/1000 | `bf_pozhao` 50%·1 | 可 | N=3、AF=0.85；`0.85×1.29−0.10×0.5=1.0465≈1.05` |
 | 回身望月 `mv_hujiadao_wangyue` | 5 | 绕背·近 | 0.95 | 8%/2/1000 | 绕背 | 可 | `0.90×1.24−0.15=0.97≈0.95` |
-| **辽东风雪** `mv_hujiadao_fengxue`（绝招） | 7 | 锥2·近 | 2.15 | 10%/—/1200 | `bf_liuxue` 100%·2；自身 `bf_shichen` 2 回合 | 可 | N=4、AF=0.80；`3×0.80−0.10−0.15=2.15` |
-| 胡苗互照 `mv_hujiadao_humiaohuzhao`（绝招，**原创扩展命名**） | 9 | 单体·近；目标用剑 | 2.95 | 10%/—/1200 | `bf_pozhao` 60%·1；气势 100 | 可 | `3.00−0.10×0.60=2.94≈2.95`；持剑条件不另抬绝招基础倍率 |
+| **辽东风雪** `mv_hujiadao_fengxue`（绝招） | 7 | 锥2·近 | 2.15 | 10%/—/1200 | `bf_liuxue` 100%·2；自身 `bf_shichen` 2 回合 | 可 | N=4、AF=0.80；`3×0.80−0.10−0.15=2.15`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200}` |
+| 胡苗互照 `mv_hujiadao_humiaohuzhao`（绝招，**原创扩展命名**） | 9 | 单体·近；目标用剑 | 2.95 | 10%/—/1200 | `bf_pozhao` 60%·1；气势 100 | 可 | `3.00−0.10×0.60=2.94≈2.95`；持剑条件不另抬绝招基础倍率；`MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200}` |
 
 | 被动 ID | 名称 | 重 | 类 / 乘区 | 数值与说明 |
 |---|---|---:|---|---|
@@ -290,8 +328,8 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 剑试胡刀 `mv_miaojiajian_shidao` | 1 | 单体·近；目标持刀 | 1.10 | 7%/0/1000 | `bf_pozhao` 50%·1 | 可 | `1+条0.15−0.10×0.5=1.10` |
 | 披风走剑 `mv_miaojiajian_pifeng` | 3 | 线2·近 | 1.00 | 7%/1/1000 | — | 可 | N=2、AF=0.90；`0.90×1.12=1.008≈1.00` |
 | 回锋照隙 `mv_miaojiajian_huifeng` | 5 | 绕背·近 | 0.95 | 7%/2/1000 | 绕背 | 可 | `0.90×1.24−0.15=0.97≈0.95` |
-| **剑照八方** `mv_miaojiajian_bafang`（绝招） | 7 | 周身·近 | 2.15 | 9%/—/1200 | `bf_pozhao` 100%·1 | 可 | N=6、AF=0.75；`3×0.75−0.10=2.15` |
-| 守隙反刺 `mv_miaojiajian_shouxi`（绝招，**原创扩展命名**） | 9 | 单体·近 | 2.90 | 9%/—/1200 | 自身 `bf_shoushi` 1 回合；气势 100 | 可 | `3.00−0.10=2.90` |
+| **剑照八方** `mv_miaojiajian_bafang`（绝招） | 7 | 周身·近 | 2.15 | 9%/—/1200 | `bf_pozhao` 100%·1 | 可 | N=6、AF=0.75；`3×0.75−0.10=2.15`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
+| 守隙反刺 `mv_miaojiajian_shouxi`（绝招，**原创扩展命名**） | 9 | 单体·近 | 2.90 | 9%/—/1200 | 自身 `bf_shoushi` 1 回合；气势 100 | 可 | `3.00−0.10=2.90`；`MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 
 | 被动 ID | 名称 | 重 | 类 / 乘区 | 数值与说明 |
 |---|---|---:|---|---|
@@ -323,8 +361,8 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 试毒 `mv_yaowangdujing_shidu` | 1 | 单体·投 | 0.80 | 7%/1/1000 | `bf_zhongdu` 100%·3 | 否 | `1×1.12×0.92×0.85−0.10=0.78≈0.80` |
 | 隔烟布药 `mv_yaowangdujing_buyao` | 3 | `aoe_zone {inner:{tpl:aoe_disk,r:1},duration:2}`·投 | 0.20/跳 | 8%/2/1000 | `bf_zhongdu` 100%·2 | 否 | 持续地表伤害单独审查；`0.25×(1+0.24+0.05)×0.92×0.85−0.10=0.15≈0.20` |
 | 以毒攻毒 `mv_yaowangdujing_yidu` | 5 | 单体友方·支援 | 0 | 6%/3/1000 | 驱散 1 个 `poison`；获得 `bf_hutizhenqi`（目标 hpMax 8%） | — | 支援基准：18% 治疗等价 ×0.6≈10.8%，取护体 8%并含驱散 |
-| **百毒归经** `mv_yaowangdujing_baidu`（绝招） | 7 | `aoe_allies r2`·支援 | 0 | 9%/—/1200 | 各驱散 2 个 `poison`，自身获得 `bf_huinei` 2 回合 | — | 支援绝招，`power 0` |
-| 毒理反照 `mv_yaowangdujing_fanzhao`（绝招，**原创扩展命名**） | 9 | 单体·投；目标带 `poison` | 2.30 | 10%/—/1200 | `bf_judu` 40%·2；气势 100 | 否 | `3.00×0.92×0.85−0.10×0.40=2.306≈2.30` |
+| **百毒归经** `mv_yaowangdujing_baidu`（绝招） | 7 | `aoe_allies r2`·支援 | 0 | 9%/—/1200 | 各驱散 2 个 `poison`，自身获得 `bf_huinei` 2 回合 | — | 支援绝招，`power 0`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
+| 毒理反照 `mv_yaowangdujing_fanzhao`（绝招，**原创扩展命名**） | 9 | 单体·投；目标带 `poison` | 2.30 | 9%/—/1200 | `bf_judu` 40%·2；气势 100 | 否 | `3.00×0.92×0.85−0.10×0.40=2.306≈2.30`；`MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 
 | 被动 ID | 名称 | 重 | 类 / 乘区 | 数值与说明 |
 |---|---|---:|---|---|
@@ -357,8 +395,8 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 留香 `mv_qixinhaitang_liuxiang` | 1 | 单体·投 | 0.75 | 6%/1/900 | `bf_zhongdu` 70%·3 | 否 | `(1+0.12−0.05−0.07)×0.92×0.85−0.10×0.7=0.71≈0.75` |
 | 双叶 `mv_qixinhaitang_shuangye` | 3 | 线2·投 | 0.85 | 8%/2/1000 | `bf_qixin` 40%·2 | 否 | N=2、AF=0.90；`0.90×1.29×0.92×0.85−0.10×0.4=0.87≈0.85` |
 | 藏锋 `mv_qixinhaitang_cangfeng` | 5 | 单体·投；未被目标看见 | 1.00 | 7%/2/1000 | `bf_mabi` 35%·2 | 否 | `(1+0.24+条0.15)×0.92×0.85−0.25×0.35=1.00` |
-| **海棠无声** `mv_qixinhaitang_wusheng`（绝招） | 7 | 单体·投 | 2.25 | 9%/—/1200 | `bf_qixin` 100%·2 | 否 | `3×0.92×0.85−0.10=2.25` |
-| 迟发 `mv_qixinhaitang_chifa`（绝招，**原创扩展命名**） | 9 | `aoe_zone {inner:{tpl:aoe_disk,r:1},duration:2}`·投 | 0.45/跳 | 10%/—/1200 | `bf_qixin` 30%·2；气势 100 | 否 | 持续地表伤害单独审查；绝招总预算按 5 跳上限均摊：`(3×0.92×0.85−0.10×0.30)÷5≈0.46→0.45` |
+| **海棠无声** `mv_qixinhaitang_wusheng`（绝招） | 7 | 单体·投 | 2.25 | 9%/—/1200 | `bf_qixin` 100%·2 | 否 | `3×0.92×0.85−0.10=2.25`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
+| 迟发 `mv_qixinhaitang_chifa`（绝招，**原创扩展命名**） | 9 | `aoe_zone {inner:{tpl:aoe_disk,r:1},duration:2}`·投 | 0.45/跳 | 9%/—/1200 | `bf_qixin` 30%·2；气势 100 | 否 | 持续地表伤害单独审查；绝招总预算按 5 跳上限均摊：`(3×0.92×0.85−0.10×0.30)÷5≈0.46→0.45`；`MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 
 | 被动 ID | 名称 | 重 | 类 / 乘区 | 数值与说明 |
 |---|---|---:|---|---|
@@ -393,8 +431,8 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 双翼 `mv_tianshanyingyang_shuangyi` | 1 | 自身与相邻友方·支援 | 0 | 7%/3/900 | 各获 `bf_piaohu` 2 回合 | — | 支援招式，`power 0` |
 | 掠雪 `mv_tianshanyingyang_luexue` | 3 | 突进 4·近 | 1.15 | 7%/2/1000 | 自身突进 | 可 | `1×1.24−0.10=1.14≈1.15` |
 | 盘空 `mv_tianshanyingyang_pankong` | 5 | 自身·支援 | 0 | 6%/3/800 | `bf_youshi` 2 回合；跳跃 +1（结构化位移修正） | — | 支援招式，`power 0` |
-| **鹰扬天际** `mv_tianshanyingyang_tianji`（绝招） | 7 | `aoe_allies r2`·支援 | 0 | 10%/—/1200 | 全体 `bf_jixing`、`bf_piaohu` 2 回合 | — | 支援绝招，`power 0` |
-| 鹰落 `mv_tianshanyingyang_yingluo`（绝招，**原创扩展命名**） | 9 | 跳斩 4·近 | 2.85 | 10%/—/1200 | 自身跳斩；`bf_shiheng` 50%·1；气势 100 | 可 | `3.00−0.10−0.10×0.50=2.85` |
+| **鹰扬天际** `mv_tianshanyingyang_tianji`（绝招） | 7 | `aoe_allies r2`·支援 | 0 | 9%/—/1200 | 全体 `bf_jixing`、`bf_piaohu` 2 回合 | — | 支援绝招，`power 0`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
+| 鹰落 `mv_tianshanyingyang_yingluo`（绝招，**原创扩展命名**） | 9 | 跳斩 4·近 | 2.85 | 9%/—/1200 | 自身跳斩；`bf_shiheng` 50%·1；气势 100 | 可 | `3.00−0.10−0.10×0.50=2.85`；`MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 
 | 被动 ID | 名称 | 重 | 类 / 乘区 | 数值与说明 |
 |---|---|---:|---|---|
@@ -426,7 +464,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 接应 `mv_honghuahuiheji_jieying` | 1 | 相邻友方·支援 | 0 | 5%/2/800 | 友方 `bf_yuanhu` 2 回合 | — | 支援招式 |
 | 补位 `mv_honghuahuiheji_buwei` | 3 | 友方换位 3·支援 | 0 | 6%/2/800 | 换位后双方 `bf_youshi` 1 回合 | — | 支援招式 |
 | 夹击 `mv_honghuahuiheji_jiaji` | 5 | 单体·近；友方邻接目标 | 1.25 | 7%/1/1000 | `bf_shiheng` 50%·1 | 可 | `1+0.12+条0.15−0.10×0.5=1.22≈1.25` |
-| **十四当家** `mv_honghuahuiheji_shisidangjia`（绝招） | 7 | `aoe_allies r2`·支援 | 0 | 9%/—/1200 | 全体 `bf_zhuiji` 2 回合、`bf_yuanhu` 2 回合 | — | 支援绝招 |
+| **十四当家** `mv_honghuahuiheji_shisidangjia`（绝招） | 7 | `aoe_allies r2`·支援 | 0 | 9%/—/1200 | 全体 `bf_zhuiji` 2 回合、`bf_yuanhu` 2 回合 | — | 支援绝招；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 | 会旗所向 `mv_honghuahuiheji_huiqi` | 9 | 锥2·近 | 0.95 | 8%/2/1000 | 自身 `bf_gongshi` 2 回合 | 可 | N=4、AF=0.80；`0.80×(1+0.24+0.05)−0.10=0.932≈0.95` |
 
 | 被动 ID | 名称 | 重 | 类 / 乘区 | 数值与说明 |
@@ -458,8 +496,8 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 探门 `mv_hujiaquan_tanmen` | 1 | 单体·近 | 1.00 | 7%/0/1000 | — | 可 | `1.00` |
 | 架刀 `mv_hujiaquan_jiadao` | 1 | 自身架势 | 0 | 5%/2/850 | `bf_shoushi` 1 回合 | — | 架势招式 |
 | 贴身靠 `mv_hujiaquan_tieshen` | 3 | 突进 2·近 | 1.00 | 7%/1/1000 | 突进；`bf_shiheng` 30%·1 | 可 | `1×1.12−0.10−0.10×0.3=0.99≈1.00` |
-| 翻腕夺势 `mv_hujiaquan_fanwan` | 5 | 单体·近；目标持械 | 1.20 | 7%/1/1000 | `bf_fengjingmai` 30%·2 | 可 | `1+0.12+条0.15−0.20×0.3=1.21≈1.20` |
-| **拳刀一理** `mv_hujiaquan_quandao`（绝招） | 7 | 单体·近 | 2.85 | 9%/—/1200 | 自身 `bf_xushi`；目标 `bf_pozhao` 50%·1 | 可 | `3−0.10−0.10×0.5=2.85` |
+| 翻腕夺势 `mv_hujiaquan_fanwan` | 5 | 单体·近；目标持械 | 1.20 | 7%/1/1000 | `bf_xueweishoufeng(level:7,acupointRef:sourcePrimary)` 30%·2 | 可 | `1+0.12+条0.15−0.20×0.3=1.21≈1.20` |
+| **拳刀一理** `mv_hujiaquan_quandao`（绝招） | 7 | 单体·近 | 2.85 | 9%/—/1200 | 自身 `bf_xushi`；目标 `bf_pozhao` 50%·1 | 可 | `3−0.10−0.10×0.5=2.85`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 | 夺势回身 `mv_hujiaquan_duoshi` | 9 | 横扫·近 | 1.05 | 8%/2/1000 | `bf_shiheng` 50%·1 | 可 | N=3、AF=0.85；`0.85×1.29−0.10×0.5=1.0465≈1.05` |
 
 | 被动 ID | 名称 | 重 | 类 / 乘区 | 数值与说明 |
@@ -492,7 +530,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 休门回刀 `mv_baguadao_xiumen` | 1 | 绕背·近 | 0.95 | 7%/2/1000 | 绕背 | 可 | `0.90×1.24−0.15=0.97≈0.95` |
 | 生门连环 `mv_baguadao_shengmen` | 3 | 线2·近 | 1.00 | 7%/1/1000 | — | 可 | N=2、AF=0.90；`0.90×1.12=1.008≈1.00` |
 | 景门横断 `mv_baguadao_jingmen` | 5 | 横扫·近 | 1.05 | 8%/2/1000 | `bf_pozhao` 30%·1 | 可 | N=3、AF=0.85；`0.85×1.29−0.10×0.3=1.0665≈1.05` |
-| **八门齐转** `mv_baguadao_bamen`（绝招） | 7 | 周身·近 | 2.10 | 9%/—/1200 | 自身 `bf_youshi` 2 回合；目标 `bf_shiheng` 50%·1 | 可 | N=6、AF=0.75；`3×0.75−0.10−0.10×0.5=2.10` |
+| **八门齐转** `mv_baguadao_bamen`（绝招） | 7 | 周身·近 | 2.10 | 9%/—/1200 | 自身 `bf_youshi` 2 回合；目标 `bf_shiheng` 50%·1 | 可 | N=6、AF=0.75；`3×0.75−0.10−0.10×0.5=2.10`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 | 杜门封路 `mv_baguadao_dumen` | 9 | 线3·近 | 1.15 | 8%/3/1000 | `bf_jiansu` 60%·2 | 可 | N=3、AF=0.85；`0.85×(1+0.36+0.05)−0.10×0.6=1.14≈1.15` |
 
 | 被动 ID | 名称 | 重 | 类 / 乘区 | 数值与说明 |
@@ -525,7 +563,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 护营 `mv_huibuqijian_huying` | 1 | 自身架势 | 0 | 5%/2/850 | `bf_shoushi` 1 回合 | — | 架势招式 |
 | 回马剑 `mv_huibuqijian_huima` | 3 | 突进 3·近 | 1.05 | 7%/1/1000 | 突进 | 可 | `1×1.12−0.10=1.02≈1.05` |
 | 飞砂掩锋 `mv_huibuqijian_feisha` | 5 | 锥2·近 | 1.00 | 8%/2/1000 | `bf_shiheng` 40%·1 | 可 | N=4、AF=0.80；`0.80×1.29−0.10×0.4=0.992≈1.00` |
-| **天山回风** `mv_huibuqijian_huifeng`（绝招） | 7 | 周身·近 | 2.10 | 9%/—/1200 | 自身 `bf_youshi` 2 回合；目标 `bf_jiansu` 50%·2 | 可 | N=6、AF=0.75；`3×0.75−0.10−0.10×0.5=2.10` |
+| **天山回风** `mv_huibuqijian_huifeng`（绝招） | 7 | 周身·近 | 2.10 | 9%/—/1200 | 自身 `bf_youshi` 2 回合；目标 `bf_jiansu` 50%·2 | 可 | N=6、AF=0.75；`3×0.75−0.10−0.10×0.5=2.10`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 | 护旗反刺 `mv_huibuqijian_huqi` | 9 | 单体·近；相邻友方存在 | 1.20 | 7%/1/1000 | 自身 `bf_yuanhu` 1 回合 | 可 | `1+0.12+条0.15−0.10=1.17≈1.20` |
 
 | 被动 ID | 名称 | 重 | 类 / 乘区 | 数值与说明 |
@@ -558,7 +596,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 试手 `mv_zhangmenboyi_shishou` | 1 | 单体·近 | 0.95 | 7%/0/1000 | `bf_pozhao` 50%·1 | 可 | `1−0.10×0.5=0.95` |
 | 见招 `mv_zhangmenboyi_jianzhao` | 3 | 自身架势 | 0 | 5%/2/850 | `bf_shoushi` 1 回合；下次招架成功得 `bf_bizhong`×1 | — | 架势招式 |
 | 借鉴 `mv_zhangmenboyi_jiejian` | 5 | 单体·近；上一招不同类别 | 1.25 | 7%/1/1000 | — | 可 | `1+0.12+条0.15=1.27≈1.25` |
-| **百派一览** `mv_zhangmenboyi_baipai`（绝招） | 7 | 周身·近 | 2.05 | 9%/—/1200 | 目标 `bf_pozhao` 50%·1；自身 `bf_dongxi` 2 回合 | 可 | N=6、AF=0.75；`3×0.75−0.10×0.5−0.15=2.05` |
+| **百派一览** `mv_zhangmenboyi_baipai`（绝招） | 7 | 周身·近 | 2.05 | 9%/—/1200 | 目标 `bf_pozhao` 50%·1；自身 `bf_dongxi` 2 回合 | 可 | N=6、AF=0.75；`3×0.75−0.10×0.5−0.15=2.05`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 | 临阵校谱 `mv_zhangmenboyi_jiaopu` | 9 | 单体·近；目标已用过 ≥3 门武学 | 1.25 | 7%/1/1000 | `bf_shiheng` 50%·1 | 可 | `1+0.12+条0.15−0.10×0.5=1.22≈1.25` |
 
 | 被动 ID | 名称 | 重 | 类 / 乘区 | 数值与说明 |
@@ -606,10 +644,10 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 
 | 招式 | ID | 层 | 倍率 | 一句效果 | 核算 |
 |---|---|---:|---:|---|---|
-| 笛点中庭 | `mv_jindifa_zhongting` | 1 | 0.95 | 单体近身，`bf_fengxue` 25%·1 | `1−0.20×0.25=0.95` |
+| 笛点中庭 | `mv_jindifa_zhongting` | 1 | 0.95 | 单体近身，`bf_xueweishoufeng(level:9,acupointRef:sourcePrimary)` 25%·1 | `1−0.20×0.25=0.95` |
 | 金声乱耳 | `mv_jindifa_luaner` | 3 | 0.70 | `aoe_spokes {r:1}` 气劲，`bf_shiheng` 40%·1 | N=7、AF=0.70；`0.70×1.24×0.85−0.10×0.4=0.70` |
 | 笛影三叠 | `mv_jindifa_sandie` | 5 | 1.30 | 单体 3 段，8% 内、cd2 | `1+0.24+0.10=1.34≈1.30` |
-| 清音护伴（绝招，**原创扩展命名**） | `mv_jindifa_huban` | 7 | 0 | 友方单体驱散 1 个 `mind`，获 `bf_wenzhong` 2 回合；耗内 8%、气势 100、收招 1200 | 支援绝招，`power=0` |
+| 清音护伴（绝招，**原创扩展命名**） | `mv_jindifa_huban` | 7 | 0 | 友方单体驱散 1 个 `mind`，获 `bf_wenzhong` 2 回合；耗内 8%、气势 100、收招 1200 | 支援绝招，`power=0`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 
 - 被动：`ps_jindifa_renxue` 金声认穴（本门封穴命中 +5→10pp）；`ps_jindifa_tongjian` 笛剑相通（同装红花剑时 Z3 +8%）；`ps_jindifa_dacheng` 10 重金笛秀才（音乐检定 +10）。获取：余鱼同羁绊；装备 `eq_jindi` 只提供装备效果，不自动授武学。
 
@@ -634,7 +672,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 鹰啄 | `mv_yingyangzhang_yingzhuo` | 1 | 0.95 | 单体，`bf_pojia` 40%·2 | `1−0.10×0.4=0.96≈0.95` |
 | 展翼 | `mv_yingyangzhang_zhanyi` | 3 | 1.10 | 横扫，7% 内、cd2 | N=3、AF=0.85；`0.85×(1+0.24+0.05)=1.0965≈1.10` |
 | 扑崖 | `mv_yingyangzhang_puya` | 5 | 1.05 | 跳斩，`bf_shiheng` 30%·1 | `0.90×1.29−0.10−0.03=1.03≈1.05` |
-| 双鹰并击 | `mv_yingyangzhang_bingji` | 7 | 2.85 | 绝招单体；相邻友方存在时获 `bf_bizhong`×1 | `3.00−自增益0.15=2.85`；无相邻友方时仍可用但不获增益 |
+| 双鹰并击 | `mv_yingyangzhang_bingji` | 7 | 2.85 | 绝招单体；相邻友方存在时获 `bf_bizhong`×1 | `3.00−自增益0.15=2.85`；无相邻友方时仍可用但不获增益；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 
 - 被动：`ps_yingyangzhang_linya` 临崖不惧（高差 Z7 惩罚减半）；`ps_yingyangzhang_shuangying` 双鹰（相邻友方时招架 +6%）；`ps_yingyangzhang_dacheng` 10 重鹰扬（击败目标获 `bf_jixing`）。
 
@@ -662,7 +700,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 翠羽点沙 | `mv_huibujianshu_diansha` | 1 | 1.00 | 单体近身 | `1.00` |
 | 黄衫回剑 | `mv_huibujianshu_huijian` | 3 | 0.95 | 绕背，cd2 | `0.90×1.24−0.15=0.97≈0.95` |
 | 绿洲分浪 | `mv_huibujianshu_fenlang` | 5 | 1.00 | 线2，cd1 | N=2、AF=0.90；`0.90×1.12=1.008≈1.00` |
-| 翠羽流光 | `mv_huibujianshu_liuguang` | 7 | 2.80 | 绝招单体，获 `bf_youshi` 2 回合 | `3.00−自增益0.20=2.80` |
+| 翠羽流光 | `mv_huibujianshu_liuguang` | 7 | 2.80 | 绝招单体，获 `bf_youshi` 2 回合 | `3.00−自增益0.20=2.80`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 
 - 被动：`ps_huibujianshu_shaxing` 沙行（沙地命中 +5%）；`ps_huibujianshu_humin` 护民（相邻友方低血时自身 `bf_yuanhu`）；`ps_huibujianshu_cuiyu` 10 重翠羽（绕背后下一招收招 −100）。
 
@@ -715,7 +753,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 正门拳 | `mv_miaojiaquan_zhengmen` | 1 | 1.00 | 单体近身 | `1.00` |
 | 拆刀手 | `mv_miaojiaquan_chaidao` | 3 | 1.10 | 目标持刀；`bf_pozhao` 50%·1 | `1+条0.15−0.10×0.5=1.10` |
 | 回身掌 | `mv_miaojiaquan_huishen` | 5 | 1.00 | 横扫，7% 内、cd1 | N=3、AF=0.85；`0.85×1.17=0.9945≈1.00` |
-| 金面正气 | `mv_miaojiaquan_zhengqi` | 7 | 2.80 | 绝招单体，自身 `bf_shoushi` 2 回合 | `3.00−0.20=2.80` |
+| 金面正气 | `mv_miaojiaquan_zhengqi` | 7 | 2.80 | 绝招单体，自身 `bf_shoushi` 2 回合 | `3.00−0.20=2.80`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 
 - 被动：`ps_miaojiaquan_zhengmen` 正门（正面来招减伤 +5%）；`ps_miaojiaquan_chaidao` 拆刀（招架刀招后命中 +10%）；`ps_miaojiaquan_tongli` 10 重拳剑同理（同装苗剑时双方 Z3 +8%）。
 
@@ -744,10 +782,10 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 
 | 招式 | ID | 层 | 倍率 | 一句效果 | 核算 |
 |---|---|---:|---:|---|---|
-| 认穴针 | `mv_yaowangzhenfa_renxue` | 1 | 0.75 | 单体投射不可招架，`bf_fengxue` 30%·1 | `1×0.92×0.85−0.20×0.3=0.72≈0.75` |
+| 认穴针 | `mv_yaowangzhenfa_renxue` | 1 | 0.75 | 单体投射不可招架，`bf_xueweishoufeng(level:9,acupointRef:sourcePrimary)` 30%·1 | `1×0.92×0.85−0.20×0.3=0.72≈0.75` |
 | 解穴针 | `mv_yaowangzhenfa_jiexue` | 1 | 0 | 友方单体驱散 1 个 `seal` | 支援招式 |
 | 渡药针 | `mv_yaowangzhenfa_duyao` | 3 | 0 | 友方单体治疗 hpMax 18%，cd2 | 标准治疗 |
-| 飞针封脉 | `mv_yaowangzhenfa_fengmai` | 5 | 0.80 | 单体投射不可招架，`bf_fengjingmai` 35%·2 | `1×1.12×0.92×0.85−0.20×0.35=0.81≈0.80` |
+| 飞针封脉 | `mv_yaowangzhenfa_fengmai` | 5 | 0.80 | 单体投射不可招架，`bf_xueweishoufeng(level:7,acupointRef:sourcePrimary)` 35%·2 | `1×1.12×0.92×0.85−0.20×0.35=0.81≈0.80` |
 
 - 被动：`ps_yaowangzhenfa_zhenwen` 针稳（暗器命中 +4→8%）；`ps_yaowangzhenfa_yizhen` 医针（治疗量 +8%）；`ps_yaowangzhenfa_tongtu` 10 重药针同途（每回合首次驱散毒 / 穴后，目标获 `bf_huinei` 1 回合）。获取：药王门 L2、程灵素羁绊。
 
@@ -760,9 +798,9 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 招式 | ID | 层 | 倍率 | 一句效果 | 核算 |
 |---|---|---:|---:|---|---|
 | 广平推手 | `mv_taijimenquan_tuishou` | 1 | 0.95 | 单体，`bf_shiheng` 50%·1 | `1−0.10×0.5=0.95` |
-| 缠手 | `mv_taijimenquan_chanshou` | 3 | 1.00 | 单体，`bf_chanrao` 50%·2，cd1 | `1+0.12−0.25×0.5=1.00` |
+| 缠手 | `mv_taijimenquan_chanshou` | 3 | 1.00 | 单体，`bf_shouqin(level:4,holdRange:1)` 50%·2，cd1 | `1+0.12−0.25×0.5=1.00` |
 | 进步靠 | `mv_taijimenquan_jinbu` | 5 | 1.10 | 突进 2，击退 1，cd2 | `1+0.24−0.10−0.05=1.09≈1.10` |
-| 广平合手 | `mv_taijimenquan_heshou` | 7 | 2.80 | 绝招单体，自己 `bf_shoushi` 2 | `3.00−0.20=2.80` |
+| 广平合手 | `mv_taijimenquan_heshou` | 7 | 2.80 | 绝招单体，自己 `bf_shoushi` 2 | `3.00−0.20=2.80`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 
 - 被动：`ps_taijimenquan_yuanzhuan` 圆转（招架 +4→8%）；`ps_taijimenquan_jiebu` 借步（移动后减伤 +5%）；`ps_taijimenquan_hejin` 10 重广平合劲（从守势切攻势时下一拳 Z3 +10%）。
 
@@ -788,7 +826,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 单换掌 | `mv_baguazhang_danhuan` | 1 | 1.00 | 单体 | `1.00` |
 | 双换掌 | `mv_baguazhang_shuanghuan` | 3 | 1.05 | 横扫，cd2 | N=3、AF=0.85；`0.85×1.24=1.054≈1.05` |
 | 走圈穿掌 | `mv_baguazhang_zouquan` | 5 | 0.95 | 绕背，cd2 | `0.90×1.24−0.15=0.97≈0.95` |
-| 八方游身 | `mv_baguazhang_bafang` | 7 | 2.05 | 绝招周身，自身 `bf_youshi` 2 | N=6、AF=0.75；`3×0.75−0.20=2.05` |
+| 八方游身 | `mv_baguazhang_bafang` | 7 | 2.05 | 绝招周身，自身 `bf_youshi` 2 | N=6、AF=0.75；`3×0.75−0.20=2.05`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 
 - 被动：`ps_baguazhang_zouquan` 走圈（移动 ≥2 格后闪避 +5%）；`ps_baguazhang_huanzhang` 换掌（绕背后 `bf_pozhao` 施加率 +20pp）；`ps_baguazhang_youlong` 10 重游龙（攻击后可继续移动）。
 
@@ -809,7 +847,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 关外点锋 | `mv_tianlongjian_dianfeng` | 1 | 1.00 | 单体 | `1.00` |
 | 北宗抢剑 | `mv_tianlongjian_beizong` | 3 | 1.15 | 单体，cd1、7% 内 | `1+0.12+0.05=1.17≈1.15` |
 | 南宗回锋 | `mv_tianlongjian_nanzong` | 5 | 0.95 | 绕背，cd2 | `0.90×1.24−0.15=0.97≈0.95` |
-| 天龙争首 | `mv_tianlongjian_zhengshou` | 7 | 2.95 | 绝招单体，`bf_pozhao` 50%·1 | `3−0.10×0.5=2.95` |
+| 天龙争首 | `mv_tianlongjian_zhengshou` | 7 | 2.95 | 绝招单体，`bf_pozhao` 50%·1 | `3−0.10×0.5=2.95`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 
 - 被动：`ps_tianlongjian_nanbei` 南北各长（装配天龙北刀时剑 / 刀各 +6%）；`ps_tianlongjian_zhengming` 争名（对门派首领命中 +8%）；`ps_tianlongjian_hezong` 10 重合宗（完成和解线后，绝招命中时额外获得 `bf_youshi` 1 回合）。
 
@@ -843,7 +881,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 **`sk_baxianjian` 八仙剑**（6 玄上 · 兵器/剑 · `nature:harmony`）
 
 - 出处：《飞狐外传》梧州八仙剑派、蓝秦等参加大会（人物与招式待考）；`sect:sect_baxianjian`；`prereq [{skill:sk_baxianrumenjian,layer:5},{skill:sk_zuibaxianbu,layer:4}]`；`setTags:[]`。
-- 招式：洞宾指路 `mv_baxianjian_dongbin`（1，1.00，单体）；采和踏歌 `mv_baxianjian_caihe`（3，0.95，绕背）；铁拐横江 `mv_baxianjian_tieguai`（5，1.05，横扫、击退 1；N=3、AF=0.85，`0.85×1.29−0.05=1.0465≈1.05`）；八仙过海 `mv_baxianjian_guohai`（7，2.35，绝招线3，自己 `bf_youshi` 2；N=3、AF=0.85，`3×0.85−0.20=2.35`）。招名均为**（原创扩展）**，只取八仙意象。
+- 招式：洞宾指路 `mv_baxianjian_dongbin`（1，1.00，单体）；采和踏歌 `mv_baxianjian_caihe`（3，0.95，绕背）；铁拐横江 `mv_baxianjian_tieguai`（5，1.05，横扫、击退 1；N=3、AF=0.85，`0.85×1.29−0.05=1.0465≈1.05`）；八仙过海 `mv_baxianjian_guohai`（7，2.35，绝招线3，自己 `bf_youshi` 2；N=3、AF=0.85，`3×0.85−0.20=2.35`）。招名均为**（原创扩展）**，只取八仙意象。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - 被动：`ps_baxianjian_lunhuan` 八式轮换（连续使用不同招 +4%→8%）；`ps_baxianjian_tage` 踏歌（位移后闪避 +5%）；`ps_baxianjian_guohai` 10 重过海（每回合首次无视浅水移动惩罚）。
 
 **`sk_zuibaxianbu` 醉八仙步**（4 玄下 · 轻功 · `nature:harmony`）
@@ -855,7 +893,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 **`sk_bajiquan` 八极拳**（6 玄上 · 拳脚/拳掌 · `nature:yang`）
 
 - 出处：《飞狐外传》开封秦耐之一系掌门会武（准确人物与招法待考）；现实孟村八极拳史与小说世系不可互证。`sect:sect_bajiquan`；`prereq [{skill:sk_bajirumenquan,layer:5},{skill:sk_bajizhuang,layer:4}]`；`setTags:[]`。
-- 招式：顶肘 `mv_bajiquan_dingzhou`（1，1.00，单体）；进步冲拳 `mv_bajiquan_chongquan`（3，1.05，突进 2）；贴山 `mv_bajiquan_tieshen`（5，1.20，单体、击退 2）；八极崩 `mv_bajiquan_beng`（7，2.90，绝招单体，`bf_shiheng` 100%·1；核算 `3.00−0.10=2.90`）。招名是玩法抽象，史实对应待考。
+- 招式：顶肘 `mv_bajiquan_dingzhou`（1，1.00，单体）；进步冲拳 `mv_bajiquan_chongquan`（3，1.05，突进 2）；贴山 `mv_bajiquan_tieshen`（5，1.20，单体、击退 2）；八极崩 `mv_bajiquan_beng`（7，2.90，绝招单体，`bf_shiheng` 100%·1；核算 `3.00−0.10=2.90`）。招名是玩法抽象，史实对应待考。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - 被动：`ps_bajiquan_duanda` 短打（相邻目标反击伤害 −6%）；`ps_bajiquan_zhengjin` 整劲（未移动时暴伤 +8pp）；`ps_bajiquan_kaimen` 10 重开门（击退撞墙时附 `bf_pojia`）。
 
 **`sk_tieshankao` 铁山靠**（5 玄中 · 拳脚/拳掌 · `nature:yang`）
@@ -867,13 +905,13 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 **`sk_jiulongbian` 九龙鞭**（6 玄上 · 兵器/鞭索 · `nature:yin`）
 
 - 出处：《飞狐外传》湖南易家湾九龙鞭小派（人物与兵刃细节待考）；`sect:sect_jiulongbian`；`prereq [{skill:sk_jiulongrumenquan,layer:5},{skill:sk_chanlongshou,layer:4}]`；`setTags:[]`。
-- 招式：游龙 `mv_jiulongbian_youlong`（1，1.00，单体射程 2）；双龙探海 `mv_jiulongbian_shuanglong`（3，0.95，线2；N=2、AF=0.90，扣缠索覆盖价值**【建议值】**0.05）；缠龙 `mv_jiulongbian_chanlong`（5，0.85，单体 `bf_chanrao` 50%·2）；九龙归一 `mv_jiulongbian_guiyi`（7，2.35，绝招线3，`bf_chanrao` 60%·2；N=3、AF=0.85，`3×0.85−0.25×0.60=2.40≈2.35`）。
+- 招式：游龙 `mv_jiulongbian_youlong`（1，1.00，单体射程 2）；双龙探海 `mv_jiulongbian_shuanglong`（3，0.95，线2；N=2、AF=0.90，扣缠索覆盖价值**【建议值】**0.05）；缠龙 `mv_jiulongbian_chanlong`（5，0.85，单体 `bf_shouqin(level:4,holdRange:1)` 50%·2）；九龙归一 `mv_jiulongbian_guiyi`（7，2.35，绝招线3，`bf_shouqin(level:4,holdRange:1)` 60%·2；N=3、AF=0.85，`3×0.85−0.25×0.60=2.40≈2.35`）。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - 被动：`ps_jiulongbian_bianchang` 鞭长（近战射程 +1）；`ps_jiulongbian_huisuo` 回索（招架后 `ct +50`）；`ps_jiulongbian_jiulong` 10 重九龙（缠绕目标对本门招式 Z3 +10%）。
 
 **`sk_chanlongshou` 缠龙手**（4 玄下 · 拳脚/擒拿 · `nature:yin`）
 
 - **（原创扩展）**；`sect:sect_jiulongbian`；`sourceChapters:[ch13_feihu]`；`prereq [{skill:sk_jiulongrumenquan,layer:4}]`；`setTags:[]`。
-- 招式：缠腕 `mv_chanlongshou_chanwan`（1，0.90，单体 `bf_fengjingmai` 30%·2）；引臂 `mv_chanlongshou_yinbi`（3，0.90，拉拽 1）；锁肩 `mv_chanlongshou_suojian`（5，0.85，`bf_chanrao` 50%·2）；回龙 `mv_chanlongshou_huilong`（7，1.10，普通单体、7% 内、cd2，`bf_fengjingmai` 100%·2；核算 `1.00+0.05+0.24−0.20=1.09≈1.10`）。
+- 招式：缠腕 `mv_chanlongshou_chanwan`（1，0.90，单体 `bf_xueweishoufeng(level:7,acupointRef:sourcePrimary)` 30%·2）；引臂 `mv_chanlongshou_yinbi`（3，0.90，拉拽 1）；锁肩 `mv_chanlongshou_suojian`（5，0.85，`bf_shouqin(level:4,holdRange:1)` 50%·2）；回龙 `mv_chanlongshou_huilong`（7，1.10，普通单体、7% 内、cd2，`bf_xueweishoufeng(level:7,acupointRef:sourcePrimary)` 100%·2；核算 `1.00+0.05+0.24−0.20=1.09≈1.10`）。
 - 被动：`ps_chanlongshou_ruanchan` 软缠（对高力量目标效果命中 +8%）；`ps_chanlongshou_jiesuo` 借索（同装九龙鞭时擒拿 +8%）；`ps_chanlongshou_chanlong` 10 重缠龙（成功施加缠绕后获 `bf_bizhong`×1）。
 
 ### 5.7 玄阶招式预算抽样汇总
@@ -1124,18 +1162,18 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 
 | 武学 / 性质 | 逐招路线 |
 |---|---|
-| `sk_baihuacuo` / 和 | `mv_baihuacuo_luanhua→mfr_baihuacuo_luanhua/false/attack/Q-H5`；`mv_baihuacuo_yihua→mfr_baihuacuo_yihua/false/attack/Q-H5`；`mv_baihuacuo_cangzhen→mfr_baihuacuo_cangzhen/false/attack/Q-H5`；`mv_baihuacuo_baijia→mfr_baihuacuo_baijia/false/attack/Q-H5`；`mv_baihuacuo_cuoluo→mfr_baihuacuo_cuoluo/true/attack/Q-H10`；`mv_baihuacuo_fanchang→mfr_baihuacuo_fanchang/true/attack/Q-H10` |
-| `sk_paoding` / 和 | `mv_paoding_xunli→mfr_paoding_xunli/false/attack/Q-H5`；`mv_paoding_zhongqing→mfr_paoding_zhongqing/false/attack/Q-H5`；`mv_paoding_youren→mfr_paoding_youren/false/attack/Q-H5`；`mv_paoding_guran→mfr_paoding_guran/false/attack/Q-H5`；`mv_paoding_muwuquanniu→mfr_paoding_muwuquanniu/true/attack/Q-H10`；`mv_paoding_daokuan→mfr_paoding_daokuan/true/attack/Q-H10` |
-| `sk_hujiadao` / 阳 | `mv_hujiadao_yingmen→mfr_hujiadao_yingmen/false/attack/Q-A5`；`mv_hujiadao_cangfeng→mfr_hujiadao_cangfeng/false/attack/Q-A5`；`mv_hujiadao_guanshan→mfr_hujiadao_guanshan/false/attack/Q-A5`；`mv_hujiadao_pianfeng→mfr_hujiadao_pianfeng/false/attack/Q-A5`；`mv_hujiadao_wangyue→mfr_hujiadao_wangyue/false/attack/Q-A5`；`mv_hujiadao_fengxue→mfr_hujiadao_fengxue/true/attack/Q-A10`；`mv_hujiadao_humiaohuzhao→mfr_hujiadao_humiaohuzhao/true/attack/Q-A10` |
-| `sk_miaojiajian` / 和 | `mv_miaojiajian_zhengfeng→mfr_miaojiajian_zhengfeng/false/attack/Q-H5`；`mv_miaojiajian_shidao→mfr_miaojiajian_shidao/false/attack/Q-H5`；`mv_miaojiajian_pifeng→mfr_miaojiajian_pifeng/false/attack/Q-H5`；`mv_miaojiajian_huifeng→mfr_miaojiajian_huifeng/false/attack/Q-H5`；`mv_miaojiajian_bafang→mfr_miaojiajian_bafang/true/attack/Q-H8`；`mv_miaojiajian_shouxi→mfr_miaojiajian_shouxi/true/attack/Q-H8` |
-| `sk_yaowangdujing` / 阴 | `mv_yaowangdujing_biandu→mfr_yaowangdujing_biandu/false/defense/Q-YD4`；`mv_yaowangdujing_shidu→mfr_yaowangdujing_shidu/false/attack/Q-Y5`；`mv_yaowangdujing_buyao→mfr_yaowangdujing_buyao/false/attack/Q-Y5`；`mv_yaowangdujing_yidu→mfr_yaowangdujing_yidu/false/defense/Q-YD4`；`mv_yaowangdujing_baidu→mfr_yaowangdujing_baidu/true/defense/Q-Y8`；`mv_yaowangdujing_fanzhao→mfr_yaowangdujing_fanzhao/true/attack/Q-Y8` |
-| `sk_qixinhaitang` / 阴 | `mv_qixinhaitang_wuse→mfr_qixinhaitang_wuse/false/attack/Q-Y5`；`mv_qixinhaitang_liuxiang→mfr_qixinhaitang_liuxiang/false/attack/Q-Y5`；`mv_qixinhaitang_shuangye→mfr_qixinhaitang_shuangye/false/attack/Q-Y5`；`mv_qixinhaitang_cangfeng→mfr_qixinhaitang_cangfeng/false/attack/Q-Y5`；`mv_qixinhaitang_wusheng→mfr_qixinhaitang_wusheng/true/attack/Q-Y8`；`mv_qixinhaitang_chifa→mfr_qixinhaitang_chifa/true/attack/Q-Y8` |
-| `sk_tianshanyingyang` / 和 | `mv_tianshanyingyang_yingqi→mfr_tianshanyingyang_yingqi/false/movement/Q-M5`；`mv_tianshanyingyang_shuangyi→mfr_tianshanyingyang_shuangyi/false/movement/Q-M5`；`mv_tianshanyingyang_luexue→mfr_tianshanyingyang_luexue/false/attack/Q-H5`；`mv_tianshanyingyang_pankong→mfr_tianshanyingyang_pankong/false/movement/Q-M5`；`mv_tianshanyingyang_tianji→mfr_tianshanyingyang_tianji/true/movement/Q-M8`；`mv_tianshanyingyang_yingluo→mfr_tianshanyingyang_yingluo/true/attack/Q-H8` |
-| `sk_honghuahuiheji` / 和 | `mv_honghuahuiheji_lunzhan→mfr_honghuahuiheji_lunzhan/false/attack/Q-H5`；`mv_honghuahuiheji_jieying→mfr_honghuahuiheji_jieying/false/defense/Q-HD4`；`mv_honghuahuiheji_buwei→mfr_honghuahuiheji_buwei/false/movement/Q-M5`；`mv_honghuahuiheji_jiaji→mfr_honghuahuiheji_jiaji/false/attack/Q-H5`；`mv_honghuahuiheji_shisidangjia→mfr_honghuahuiheji_shisidangjia/true/defense/Q-H8`；`mv_honghuahuiheji_huiqi→mfr_honghuahuiheji_huiqi/false/attack/Q-H5` |
-| `sk_hujiaquan` / 阳 | `mv_hujiaquan_tanmen→mfr_hujiaquan_tanmen/false/attack/Q-A5`；`mv_hujiaquan_jiadao→mfr_hujiaquan_jiadao/false/defense/Q-AD4`；`mv_hujiaquan_tieshen→mfr_hujiaquan_tieshen/false/attack/Q-A5`；`mv_hujiaquan_fanwan→mfr_hujiaquan_fanwan/false/attack/Q-A5`；`mv_hujiaquan_quandao→mfr_hujiaquan_quandao/true/attack/Q-A8`；`mv_hujiaquan_duoshi→mfr_hujiaquan_duoshi/false/attack/Q-A5` |
-| `sk_baguadao` / 和 | `mv_baguadao_kaimen→mfr_baguadao_kaimen/false/attack/Q-H5`；`mv_baguadao_xiumen→mfr_baguadao_xiumen/false/attack/Q-H5`；`mv_baguadao_shengmen→mfr_baguadao_shengmen/false/attack/Q-H5`；`mv_baguadao_jingmen→mfr_baguadao_jingmen/false/attack/Q-H5`；`mv_baguadao_bamen→mfr_baguadao_bamen/true/attack/Q-H8`；`mv_baguadao_dumen→mfr_baguadao_dumen/false/attack/Q-H5` |
-| `sk_huibuqijian` / 和 | `mv_huibuqijian_yingke→mfr_huibuqijian_yingke/false/attack/Q-H5`；`mv_huibuqijian_huying→mfr_huibuqijian_huying/false/defense/Q-HD4`；`mv_huibuqijian_huima→mfr_huibuqijian_huima/false/attack/Q-H5`；`mv_huibuqijian_feisha→mfr_huibuqijian_feisha/false/attack/Q-H5`；`mv_huibuqijian_huifeng→mfr_huibuqijian_huifeng/true/attack/Q-H8`；`mv_huibuqijian_huqi→mfr_huibuqijian_huqi/false/attack/Q-H5` |
-| `sk_zhangmenboyi` / 和 | `mv_zhangmenboyi_shipai→mfr_zhangmenboyi_shipai/false/defense/Q-HD4`；`mv_zhangmenboyi_shishou→mfr_zhangmenboyi_shishou/false/attack/Q-H5`；`mv_zhangmenboyi_jianzhao→mfr_zhangmenboyi_jianzhao/false/defense/Q-HD4`；`mv_zhangmenboyi_jiejian→mfr_zhangmenboyi_jiejian/false/attack/Q-H5`；`mv_zhangmenboyi_baipai→mfr_zhangmenboyi_baipai/true/attack/Q-H8`；`mv_zhangmenboyi_jiaopu→mfr_zhangmenboyi_jiaopu/false/attack/Q-H5` |
+| `sk_baihuacuo` / 和 | `mv_baihuacuo_luanhua→mfr_baihuacuo_luanhua/false/attack/Q-H5`；`mv_baihuacuo_yihua→mfr_baihuacuo_yihua/false/attack/Q-H5`；`mv_baihuacuo_cangzhen→mfr_baihuacuo_cangzhen/false/attack/Q-H5`；`mv_baihuacuo_baijia→mfr_baihuacuo_baijia/false/attack/Q-H5`；`mv_baihuacuo_cuoluo→mfr_baihuacuo_cuoluo/true/attack/显式（见本册绝招显式路线索引）`；`mv_baihuacuo_fanchang→mfr_baihuacuo_fanchang/true/attack/显式（见本册绝招显式路线索引）` |
+| `sk_paoding` / 和 | `mv_paoding_xunli→mfr_paoding_xunli/false/attack/Q-H5`；`mv_paoding_zhongqing→mfr_paoding_zhongqing/false/attack/Q-H5`；`mv_paoding_youren→mfr_paoding_youren/false/attack/Q-H5`；`mv_paoding_guran→mfr_paoding_guran/false/attack/Q-H5`；`mv_paoding_muwuquanniu→mfr_paoding_muwuquanniu/true/attack/显式（见本册绝招显式路线索引）`；`mv_paoding_daokuan→mfr_paoding_daokuan/true/attack/显式（见本册绝招显式路线索引）` |
+| `sk_hujiadao` / 阳 | `mv_hujiadao_yingmen→mfr_hujiadao_yingmen/false/attack/Q-A5`；`mv_hujiadao_cangfeng→mfr_hujiadao_cangfeng/false/attack/Q-A5`；`mv_hujiadao_guanshan→mfr_hujiadao_guanshan/false/attack/Q-A5`；`mv_hujiadao_pianfeng→mfr_hujiadao_pianfeng/false/attack/Q-A5`；`mv_hujiadao_wangyue→mfr_hujiadao_wangyue/false/attack/Q-A5`；`mv_hujiadao_fengxue→mfr_hujiadao_fengxue/true/attack/显式（见本册绝招显式路线索引）`；`mv_hujiadao_humiaohuzhao→mfr_hujiadao_humiaohuzhao/true/attack/显式（见本册绝招显式路线索引）` |
+| `sk_miaojiajian` / 和 | `mv_miaojiajian_zhengfeng→mfr_miaojiajian_zhengfeng/false/attack/Q-H5`；`mv_miaojiajian_shidao→mfr_miaojiajian_shidao/false/attack/Q-H5`；`mv_miaojiajian_pifeng→mfr_miaojiajian_pifeng/false/attack/Q-H5`；`mv_miaojiajian_huifeng→mfr_miaojiajian_huifeng/false/attack/Q-H5`；`mv_miaojiajian_bafang→mfr_miaojiajian_bafang/true/attack/显式（见本册绝招显式路线索引）`；`mv_miaojiajian_shouxi→mfr_miaojiajian_shouxi/true/attack/显式（见本册绝招显式路线索引）` |
+| `sk_yaowangdujing` / 阴 | `mv_yaowangdujing_biandu→mfr_yaowangdujing_biandu/false/defense/Q-YD4`；`mv_yaowangdujing_shidu→mfr_yaowangdujing_shidu/false/attack/Q-Y5`；`mv_yaowangdujing_buyao→mfr_yaowangdujing_buyao/false/attack/Q-Y5`；`mv_yaowangdujing_yidu→mfr_yaowangdujing_yidu/false/defense/Q-YD4`；`mv_yaowangdujing_baidu→mfr_yaowangdujing_baidu/true/defense/显式（见本册绝招显式路线索引）`；`mv_yaowangdujing_fanzhao→mfr_yaowangdujing_fanzhao/true/attack/显式（见本册绝招显式路线索引）` |
+| `sk_qixinhaitang` / 阴 | `mv_qixinhaitang_wuse→mfr_qixinhaitang_wuse/false/attack/Q-Y5`；`mv_qixinhaitang_liuxiang→mfr_qixinhaitang_liuxiang/false/attack/Q-Y5`；`mv_qixinhaitang_shuangye→mfr_qixinhaitang_shuangye/false/attack/Q-Y5`；`mv_qixinhaitang_cangfeng→mfr_qixinhaitang_cangfeng/false/attack/Q-Y5`；`mv_qixinhaitang_wusheng→mfr_qixinhaitang_wusheng/true/attack/显式（见本册绝招显式路线索引）`；`mv_qixinhaitang_chifa→mfr_qixinhaitang_chifa/true/attack/显式（见本册绝招显式路线索引）` |
+| `sk_tianshanyingyang` / 和 | `mv_tianshanyingyang_yingqi→mfr_tianshanyingyang_yingqi/false/movement/Q-M5`；`mv_tianshanyingyang_shuangyi→mfr_tianshanyingyang_shuangyi/false/movement/Q-M5`；`mv_tianshanyingyang_luexue→mfr_tianshanyingyang_luexue/false/attack/Q-H5`；`mv_tianshanyingyang_pankong→mfr_tianshanyingyang_pankong/false/movement/Q-M5`；`mv_tianshanyingyang_tianji→mfr_tianshanyingyang_tianji/true/movement/显式（见本册绝招显式路线索引）`；`mv_tianshanyingyang_yingluo→mfr_tianshanyingyang_yingluo/true/attack/显式（见本册绝招显式路线索引）` |
+| `sk_honghuahuiheji` / 和 | `mv_honghuahuiheji_lunzhan→mfr_honghuahuiheji_lunzhan/false/attack/Q-H5`；`mv_honghuahuiheji_jieying→mfr_honghuahuiheji_jieying/false/defense/Q-HD4`；`mv_honghuahuiheji_buwei→mfr_honghuahuiheji_buwei/false/movement/Q-M5`；`mv_honghuahuiheji_jiaji→mfr_honghuahuiheji_jiaji/false/attack/Q-H5`；`mv_honghuahuiheji_shisidangjia→mfr_honghuahuiheji_shisidangjia/true/defense/显式（见本册绝招显式路线索引）`；`mv_honghuahuiheji_huiqi→mfr_honghuahuiheji_huiqi/false/attack/Q-H5` |
+| `sk_hujiaquan` / 阳 | `mv_hujiaquan_tanmen→mfr_hujiaquan_tanmen/false/attack/Q-A5`；`mv_hujiaquan_jiadao→mfr_hujiaquan_jiadao/false/defense/Q-AD4`；`mv_hujiaquan_tieshen→mfr_hujiaquan_tieshen/false/attack/Q-A5`；`mv_hujiaquan_fanwan→mfr_hujiaquan_fanwan/false/attack/Q-A5`；`mv_hujiaquan_quandao→mfr_hujiaquan_quandao/true/attack/显式（见本册绝招显式路线索引）`；`mv_hujiaquan_duoshi→mfr_hujiaquan_duoshi/false/attack/Q-A5` |
+| `sk_baguadao` / 和 | `mv_baguadao_kaimen→mfr_baguadao_kaimen/false/attack/Q-H5`；`mv_baguadao_xiumen→mfr_baguadao_xiumen/false/attack/Q-H5`；`mv_baguadao_shengmen→mfr_baguadao_shengmen/false/attack/Q-H5`；`mv_baguadao_jingmen→mfr_baguadao_jingmen/false/attack/Q-H5`；`mv_baguadao_bamen→mfr_baguadao_bamen/true/attack/显式（见本册绝招显式路线索引）`；`mv_baguadao_dumen→mfr_baguadao_dumen/false/attack/Q-H5` |
+| `sk_huibuqijian` / 和 | `mv_huibuqijian_yingke→mfr_huibuqijian_yingke/false/attack/Q-H5`；`mv_huibuqijian_huying→mfr_huibuqijian_huying/false/defense/Q-HD4`；`mv_huibuqijian_huima→mfr_huibuqijian_huima/false/attack/Q-H5`；`mv_huibuqijian_feisha→mfr_huibuqijian_feisha/false/attack/Q-H5`；`mv_huibuqijian_huifeng→mfr_huibuqijian_huifeng/true/attack/显式（见本册绝招显式路线索引）`；`mv_huibuqijian_huqi→mfr_huibuqijian_huqi/false/attack/Q-H5` |
+| `sk_zhangmenboyi` / 和 | `mv_zhangmenboyi_shipai→mfr_zhangmenboyi_shipai/false/defense/Q-HD4`；`mv_zhangmenboyi_shishou→mfr_zhangmenboyi_shishou/false/attack/Q-H5`；`mv_zhangmenboyi_jianzhao→mfr_zhangmenboyi_jianzhao/false/defense/Q-HD4`；`mv_zhangmenboyi_jiejian→mfr_zhangmenboyi_jiejian/false/attack/Q-H5`；`mv_zhangmenboyi_baipai→mfr_zhangmenboyi_baipai/true/attack/显式（见本册绝招显式路线索引）`；`mv_zhangmenboyi_jiaopu→mfr_zhangmenboyi_jiaopu/false/attack/Q-H5` |
 
 以上 73/73 个天 / 地阶 `mv_*` 均有唯一稳定路线，12/12 门达到其品阶下限：天下 2、地上 / 地中 2、地下 1。纯支援绝招走防守或速度路线；带伤害的位移式仍只提交攻击路线，避免一次招式重复获得 Z5M 与速度路线收益。
 
@@ -1145,16 +1183,16 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 
 | 武学 / 性质 | 玄上绝招显式路线 |
 |---|---|
-| `sk_jindifa` / 和 | `mv_jindifa_huban→mfr_jindifa_huban/true/defense/Q-H6U`（`requiredNature:[harmony]`；6 段；100 CT/段；风险 `[100,120,180,250,220,160]`，总风险 1030） |
-| `sk_yingyangzhang` / 阳 | `mv_yingyangzhang_bingji→mfr_yingyangzhang_bingji/true/attack/Q-A6U`（`requiredNature:[yang,harmony]`） |
-| `sk_huibujianshu` / 和 | `mv_huibujianshu_liuguang→mfr_huibujianshu_liuguang/true/attack/Q-H6U`（`requiredNature:[harmony]`） |
-| `sk_miaojiaquan` / 和 | `mv_miaojiaquan_zhengqi→mfr_miaojiaquan_zhengqi/true/attack/Q-H6U`（`requiredNature:[harmony]`） |
-| `sk_taijimenquan` / 和 | `mv_taijimenquan_heshou→mfr_taijimenquan_heshou/true/attack/Q-H6U`（`requiredNature:[harmony]`） |
-| `sk_baguazhang` / 和 | `mv_baguazhang_bafang→mfr_baguazhang_bafang/true/attack/Q-H6U`（`requiredNature:[harmony]`） |
-| `sk_tianlongjian` / 阴 | `mv_tianlongjian_zhengshou→mfr_tianlongjian_zhengshou/true/attack/Q-Y6U`（`requiredNature:[yin,harmony]`） |
-| `sk_baxianjian` / 和 | `mv_baxianjian_guohai→mfr_baxianjian_guohai/true/attack/Q-H6U`（`requiredNature:[harmony]`） |
-| `sk_bajiquan` / 阳 | `mv_bajiquan_beng→mfr_bajiquan_beng/true/attack/Q-A6U`（`requiredNature:[yang,harmony]`） |
-| `sk_jiulongbian` / 阴 | `mv_jiulongbian_guiyi→mfr_jiulongbian_guiyi/true/attack/Q-Y6U`（`requiredNature:[yin,harmony]`） |
+| `sk_jindifa` / 和 | `mv_jindifa_huban→mfr_jindifa_huban/true/defense/显式（见本册绝招显式路线索引）`（`requiredNature:[harmony]`；6 段；100 CT/段；风险 `[100,120,180,250,220,160]`，总风险 1030） |
+| `sk_yingyangzhang` / 阳 | `mv_yingyangzhang_bingji→mfr_yingyangzhang_bingji/true/attack/显式（见本册绝招显式路线索引）`（`requiredNature:[yang,harmony]`） |
+| `sk_huibujianshu` / 和 | `mv_huibujianshu_liuguang→mfr_huibujianshu_liuguang/true/attack/显式（见本册绝招显式路线索引）`（`requiredNature:[harmony]`） |
+| `sk_miaojiaquan` / 和 | `mv_miaojiaquan_zhengqi→mfr_miaojiaquan_zhengqi/true/attack/显式（见本册绝招显式路线索引）`（`requiredNature:[harmony]`） |
+| `sk_taijimenquan` / 和 | `mv_taijimenquan_heshou→mfr_taijimenquan_heshou/true/attack/显式（见本册绝招显式路线索引）`（`requiredNature:[harmony]`） |
+| `sk_baguazhang` / 和 | `mv_baguazhang_bafang→mfr_baguazhang_bafang/true/attack/显式（见本册绝招显式路线索引）`（`requiredNature:[harmony]`） |
+| `sk_tianlongjian` / 阴 | `mv_tianlongjian_zhengshou→mfr_tianlongjian_zhengshou/true/attack/显式（见本册绝招显式路线索引）`（`requiredNature:[yin,harmony]`） |
+| `sk_baxianjian` / 和 | `mv_baxianjian_guohai→mfr_baxianjian_guohai/true/attack/显式（见本册绝招显式路线索引）`（`requiredNature:[harmony]`） |
+| `sk_bajiquan` / 阳 | `mv_bajiquan_beng→mfr_bajiquan_beng/true/attack/显式（见本册绝招显式路线索引）`（`requiredNature:[yang,harmony]`） |
+| `sk_jiulongbian` / 阴 | `mv_jiulongbian_guiyi→mfr_jiulongbian_guiyi/true/attack/显式（见本册绝招显式路线索引）`（`requiredNature:[yin,harmony]`） |
 
 十条路线收招上界均为 `1200+6×100=1800 CT`，不得退回 2 段迁移短路。
 
@@ -1185,17 +1223,17 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 
 | 内功 | `BreathProfile.id` | 输入 | 10 重 `reliefBp / repairUnits` | 护体内劲 |
 |---|---|---|---|---|
-| `sk_honghuaxinfa` | `txp_honghuaxinfa` | `5/10/harmony/2/1000/0/15000` | `floor((500+500+800)×10500/10000)=1890` / `floor((120+120+180)×10500/10000)=441` | 玄调和档；自然 `Q-HN2`；`mv_honghuaxinfa_huhui→Q-HD4`；`reflectBp:0` |
-| `sk_hujiadaoxinfa` | `txp_hujiadaoxinfa` | `5/10/yang/2/1000/0/15000` | `1800 / 420` | 玄阳档；自然 `Q-AN2`；无主动护体招；`reflectBp:0` |
-| `sk_miaojiaxinfa` | `txp_miaojiaxinfa` | `5/10/harmony/2/1000/0/15000` | `1890 / 441` | 玄调和档；自然 `Q-HN2`；`shouxi/chengming→Q-HD4`；`reflectBp:0` |
-| `sk_guangpingxinfa` | `txp_guangpingxinfa` | `4/10/harmony/2/1000/0/15000` | `1785 / 415` | 玄调和档；自然 `Q-HN2`；`dingjia→Q-HD4`；`reflectBp:0` |
-| `sk_guanwaixinfa` | `txp_guanwaixinfa` | `4/10/yang/2/1000/0/15000` | `1700 / 396` | 玄阳档；自然 `Q-AN2`；`shouguan→Q-AD4`；`reflectBp:0` |
-| `sk_huibutunaxi` | `txp_huibutunaxi` | `3/10/harmony/1/1000/0/15000` | `1680 / 390` | 黄调和档；自然 `Q-HN2`；`reflectBp:0` |
-| `sk_miaojialianqi` | `txp_miaojialianqi` | `3/10/harmony/1/1000/0/15000` | `1680 / 390` | 黄调和档；自然 `Q-HN2`；`reflectBp:0` |
-| `sk_yaowangtuna` | `txp_yaowangtuna` | `3/10/yin/1/1000/0/15000` | `1600 / 372` | 黄阴档；自然 `Q-YN2`；`reflectBp:0` |
-| `sk_baxianxinfa` | `txp_baxianxinfa` | `3/10/harmony/1/1000/0/15000` | `1680 / 390` | 黄调和档；自然 `Q-HN2`；`reflectBp:0` |
-| `sk_bajizhuang` | `txp_bajizhuang` | `3/10/yang/1/1000/0/15000` | `1600 / 372` | 黄阳档；自然 `Q-AN2`；`reflectBp:0` |
-| `sk_yijiaxinfa` | `txp_yijiaxinfa` | `3/10/yin/1/1000/0/15000` | `1600 / 372` | 黄阴档；自然 `Q-YN2`；`reflectBp:0` |
+| `sk_honghuaxinfa` | `txp_honghuaxinfa` | `5/10/harmony/2/1000/0/15000` | `floor((500+500+800)×10500/10000)=1890` / `floor((120+120+180)×10500/10000)=441` | 玄调和档；自然 `Q-HN2`；`mv_honghuaxinfa_huhui→Q-HD4`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_hujiadaoxinfa` | `txp_hujiadaoxinfa` | `5/10/yang/2/1000/0/15000` | `1800 / 420` | 玄阳档；自然 `Q-AN2`；无主动护体招；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_miaojiaxinfa` | `txp_miaojiaxinfa` | `5/10/harmony/2/1000/0/15000` | `1890 / 441` | 玄调和档；自然 `Q-HN2`；`shouxi/chengming→Q-HD4`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_guangpingxinfa` | `txp_guangpingxinfa` | `4/10/harmony/2/1000/0/15000` | `1785 / 415` | 玄调和档；自然 `Q-HN2`；`dingjia→Q-HD4`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_guanwaixinfa` | `txp_guanwaixinfa` | `4/10/yang/2/1000/0/15000` | `1700 / 396` | 玄阳档；自然 `Q-AN2`；`shouguan→Q-AD4`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_huibutunaxi` | `txp_huibutunaxi` | `3/10/harmony/1/1000/0/15000` | `1680 / 390` | 黄调和档；自然 `Q-HN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_miaojialianqi` | `txp_miaojialianqi` | `3/10/harmony/1/1000/0/15000` | `1680 / 390` | 黄调和档；自然 `Q-HN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_yaowangtuna` | `txp_yaowangtuna` | `3/10/yin/1/1000/0/15000` | `1600 / 372` | 黄阴档；自然 `Q-YN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_baxianxinfa` | `txp_baxianxinfa` | `3/10/harmony/1/1000/0/15000` | `1680 / 390` | 黄调和档；自然 `Q-HN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_bajizhuang` | `txp_bajizhuang` | `3/10/yang/1/1000/0/15000` | `1600 / 372` | 黄阳档；自然 `Q-AN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_yijiaxinfa` | `txp_yijiaxinfa` | `3/10/yin/1/1000/0/15000` | `1600 / 372` | 黄阴档；自然 `Q-YN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 
 拳脚 / 兵器 / 暗器 / 内劲外放的护体适用率固定为 `10000/2500/0/4000 bp`，1 MP 抵 2 伤害。顺序固定为护体真气后、护体内劲、既有 `mpGuard`，再到气血；点穴 / 擒拿仍在伤害后处理。本册没有既有反震语义，故全为 `reflectBp:0`。
 
