@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/10-baima.md`。
 > 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；穴位、冲穴、通脉、周天与九转 → `design/15-meridians-and-acupoints.md`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21-meridian-flow-and-moves.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；跨年代传承 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v0.2（D10 初稿；审校 D10.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）。
+> 版本：v0.2（D10 初稿；审校 D10.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）。
 
 ---
 
@@ -681,8 +681,8 @@ UI 在 `dc_10_07`、`dc_10_08` 前显示不可逆提示，但不提前剧透两�
 
 | NPC / 槽 | 年龄段 | 剧情职能 | 能力重设要点 |
 |---|---|---|---|
-| `npc_walazi` | 中老年 | “华辉”身份、假鬼、授艺与旧怨核心 | 本界按 Lv46 `full` 重算；图鉴尚无可靠指法 ID，不临时造招名，优先使用已收录华辉剑 / 夜行体系 |
-| `npc_majiajun` | 老年伪装 | 计老人养父身份与马家骏真相 | 揭晓前使用 D2 非战斗画像，揭晓后按 D5 `full`；不能沿用伪装面板 |
+| `npc_walazi` | 中老年 | “华辉”身份、假鬼、授艺与旧怨核心 | 本界按 Lv46 `full` 重算；主运 `sk_huahuixinfa`，以 `sk_walalizhi` 闭合指法画像；二者均可由其他合资格人物习得 |
+| `npc_majiajun` | 老年伪装 | 计老人养父身份与马家骏真相 | 揭晓前使用 D2 非战斗画像；揭晓后按 D5 `full`，主运 `sk_huahuixinfa` 并使用 `sk_majiajunfeizhen`，不能沿用伪装面板 |
 | `npc_chendahai` | 壮年 | 血显地图、追图团与正邪短约 | 只装配图鉴已有剑 / 吕梁系条目；“青蟒剑”尚未有可靠 `sk_*`，不预建 |
 | `npc_huoyuanlong` | 壮年 | C01 追忆首领与吕梁旧案 | 使用 `sk_lvliangquan`、`sk_lvliangzhuifengdao`；死亡细节待考 |
 | `npc_shizhongjun` | 壮年 | 上官虹旧情与复仇偏执 | 梅花枪未收录对应图鉴 ID，不虚构；以通行枪模板占位须等上游配表 |
@@ -721,8 +721,8 @@ UI 在 `dc_10_07`、`dc_10_08` 前显示不可逆提示，但不提前剧透两�
 |---|---|---:|---|---|---|---|
 | `enc_10_huoyuanlong_zhuiyi` | `npc_huoyuanlong` | 41 | `full` | `sk_lvliangzhuifengdao` 玄中5、`sk_lvliangquan` 黄上3 | 骑追截路；每次玩家移动后提高其下一刀命中 | 斩断马具 / 迫退；追忆收束而非改写死亡 |
 | `enc_10_chendahai_xuetu` | `npc_chendahai` | 43 | `full` | 图鉴合法通行剑术至玄上6；“青蟒剑”不建假 ID | 以人质站位和残图撤退点制造压力 | 先解救目标可迫其短约 / 投降 |
-| `enc_10_walazi_guisheng` | `npc_walazi` | 46 | `full` | `sk_huahuijian` 玄上6、`sk_huahuiyexing` 玄下4；图鉴未收指法则不用伪 ID | 遮蔽、熄灯、假鬼声源三选位；身份揭示后停战窗口 | 点亮三处灯位或公开证物 |
-| `enc_10_shitu_shuangren` | `npc_majiajun` + `npc_walazi` | 46 / 46 | 双 `full` 剧情战 | 各用已有图鉴合法条目；毒针仅作剧情危险，不造武学 | 玩家目标是拆招与隔离；双方仇恨互锁 | 五项改命条件全真可封针缴刃；否则保护旁人后按原著结算 |
+| `enc_10_walazi_guisheng` | `npc_walazi` | 46 | `full` | `sk_huahuixinfa` / `sk_walalizhi` 地上9，兼用华辉剑 / 夜行 | 遮蔽、熄灯、假鬼声源三选位；身份揭示后停战窗口 | 点亮三处灯位或公开证物 |
+| `enc_10_shitu_shuangren` | `npc_majiajun` + `npc_walazi` | 46 / 46 | 双 `full` 剧情战 | 同主运 `sk_huahuixinfa` 地上9；分别用 `sk_majiajunfeizhen` / `sk_walalizhi` 地上9 | 玩家目标是拆招与隔离；双方仇恨互锁 | 五项改命条件全真可封针缴刃；否则保护旁人后按原著结算 |
 | `enc_10_jiagui_jiguan` | 假鬼机关阵 | 42 | `template` Boss | `sk_gaochangjiguan` 玄下4 对应机关行为 | 四个声源中一真三假；破坏错误声源触发落石 | `formation` 或第二足迹揭真源 |
 | `enc_10_shoucang_shilian` | 迷宫守藏试炼 | 45 | `template` Boss | `sk_gaochangjian` 玄上6、`sk_gaochanggong` 玄中5 的机关傀儡化动作 | 护住通风井而非只清敌；取遗物会改变胜利条件 | 不拿遗物且全员撤出即完胜 |
 
@@ -751,7 +751,7 @@ Boss 模板另含 atk ×1.25、def ×1.20、mp ×2、评级 +15、spd ×1.06、�
 |---|---|
 | 天级武学 | 无 |
 | 原生天级装备 | 无 |
-| 本土武学峰值 | `sk_gaochangshouhujian` 地上 9 |
+| 本土武学峰值 | `sk_gaochangshouhujian`、`sk_huahuixinfa`、`sk_walalizhi`、`sk_majiajunfeizhen`，均为地上 9 |
 | 另一地阶代表 | `sk_hasakeqishe` 地下 7 |
 | 通行补栏峰值 | `sk_jianghubaizhanjian` 地中 8；轻功 `sk_yanzisanchaoshui` 地下 7 |
 | 固定奇物 / 坐骑 | `it_gaochangguwu` 玄上6；`it_baima` 地中8 |
@@ -761,12 +761,16 @@ Boss 模板另含 atk ×1.25、def ×1.20、mp ×2、评级 +15、spd ×1.06、�
 | 品阶 | ID / 名称 | 类别 | 来源与获得方式 | 原著 / 扩展 |
 |---|---|---|---|---|
 | 地上9 | `sk_gaochangshouhujian` 高昌守护剑 | 兵器·剑 | 高昌 L5 目录 + 守藏试炼 + `sk_gaochangjian` 6 重 | **（原创扩展）** |
+| 地上9 | `sk_huahuixinfa` 华辉心法 | 内功 | 华辉一脉传授；旧案问证、安全隔离后授艺，或余韵遗谱 | **（原创扩展）**；见 `skills-bulu-10-baima` §1.1 |
+| 地上9 | `sk_walalizhi` 瓦耳拉齐指 | 拳脚·指法 | 华辉传承者传授；瓦耳拉齐信任线或遗谱奇遇 | 称号依据 **（待考）**，总名 / 招名 **（原创扩展命名）**；见补录册 §1.2 |
+| 地上9 | `sk_majiajunfeizhen` 马家骏飞针 | 暗器·针 | 华辉传承者传授；旧案完整、安全分隔后练习针谱或遗谱奇遇 | 针具情节 **（待考）**，总名 / 招名 **（原创扩展命名）**；见补录册 §1.3 |
 | 地下7 | `sk_hasakeqishe` 哈萨克骑射 | 暗器 / 弓箭 | 哈萨克 L4、骑射实技、`sk_hasakeshuai` 5 重 | 草原骑射背景；武学整理 **（原创扩展）** |
 | 玄上6 | `sk_gaochangjian` 高昌剑术 | 兵器·剑 | 高昌 L3、狭道守门考核 | 正式武学名 **（原创扩展）** |
 | 玄中5 | `sk_gaochanggong` 高昌劲 | 内功 | 高昌 L3、耐沙与守藏职责 | **（原创扩展）** |
 | 玄下4 | `sk_gaochangjiguan` 高昌机关术 | 杂学·机关 | 高昌 L4、复位三类机关 | **（原创扩展）** |
 | 玄中5 | `sk_hasakeshuai` 草原摔角 | 拳脚·擒拿 | 哈萨克 L3、桑斯儿 / 苏鲁克训练 | 民俗参考待专项考据；玩法 **（原创扩展）** |
 | 玄下4 | `sk_hasakexinfa` 草原心法 | 内功 | 哈萨克 L3、`sk_hasakehuxi` 4 重 | **（原创扩展）** |
+| 玄中5 | `sk_hasakeyunqi` 草原运气法 | 内功 | 哈萨克 L3 亲随完成救援、守诺与演武认可后由长辈 / 教头传授 | **（原创扩展）**；见 `skills-bulu-10-baima` §2 |
 | 玄中5 | `sk_lvliangzhuifengdao` 吕梁追风刀 | 兵器·刀 | 霍元龙战斗印证 / 旧案支线 | 人物组合据原著；武学名 **（原创扩展）** |
 | 玄上6 | `sk_huahuijian` 华辉快剑 | 兵器·剑 | 李文秀 / 瓦耳拉齐信任线，身份揭示后授艺 | 人物实际武学 **（待考）**；名称原创 |
 | 玄下4 | `sk_huahuiyexing` 华辉夜行术 | 轻功 | 夜间迷宫足迹链 | **（原创扩展）** |
@@ -781,13 +785,14 @@ Boss 模板另含 atk ×1.25、def ×1.20、mp ×2、评级 +15、spd ×1.06、�
 
 ### 9.3 低武装配栏补齐证明
 
-主角只带入内功 / 拳脚 / 兵器各 1 门，须在前 60% 流程内获得足够本土或通行武学填满 3/3/3。先核本界原生池（均来自 `skills-kangxi`）：
+主角只带入内功 / 拳脚 / 兵器各 1 门，须在前 60% 流程内获得足够本土或通行武学填满 3/3/3。先核本界原生池（来自 `skills-kangxi` 与 `skills-bulu-10-baima`）：
 
 | 本土类别 | 可习得代表 | 数量结论 |
 |---|---|---:|
-| 内功 | `sk_gaochangtuna`、`sk_gaochanggong`、`sk_hasakehuxi`、`sk_hasakexinfa` | 4 ≥ 3 |
-| 拳脚 | `sk_caoyuanquan`、`sk_hasakeshuai`、`sk_lvliangquan` | 3 ≥ 3 |
+| 内功 | `sk_gaochangtuna`、`sk_gaochanggong`、`sk_hasakehuxi`、`sk_hasakexinfa`、`sk_huahuixinfa`、`sk_hasakeyunqi` | 6 ≥ 3 |
+| 拳脚 | `sk_caoyuanquan`、`sk_hasakeshuai`、`sk_lvliangquan`、`sk_walalizhi` | 4 ≥ 3 |
 | 兵器 | `sk_gaochangjibenjian`、`sk_gaochangjian`、`sk_gaochangshouhujian`、`sk_caoyuandao`、`sk_lvliangzhuifengdao`、`sk_huahuijibenjian`、`sk_huahuijian` | 7 ≥ 3 |
+| 暗器 / 弓箭（额外分支） | `sk_hasakeqishe`、`sk_majiajunfeizhen` | 2；不计入上述 3/3/3 最低证明 |
 
 但玩家可能不加入两组织，且三格兵器必须匹配当前主武器类别；因此另用 `skills-general` 的 ALL14 池提供无门派保底：
 
@@ -797,7 +802,7 @@ Boss 模板另含 atk ×1.25、def ×1.20、mp ×2、评级 +15、spd ×1.06、�
 | 拳脚 3 | `sk_tongbeijin` 玄上6、`sk_tantui_tongxing` 玄上6、`sk_duandashou` 玄下4 | C04 前通过西安府 / 商路师父 | 3 门，同属拳脚栏 |
 | 兵器 3（同类剑） | `sk_jianghurumenjian` 黄上3、`sk_qingfengjian` 玄上6、`sk_jianghubaizhanjian` 地中8 | 入门剑 C02 后、清风剑 C04 前、百战剑迷宫后段 | 3 门共用剑类主武器，不以三种兵器伪充 |
 
-本土组织还提供内功 `sk_gaochangtuna` / `sk_gaochanggong`、`sk_hasakehuxi` / `sk_hasakexinfa`，拳脚 `sk_caoyuanquan` / `sk_hasakeshuai` / `sk_lvliangquan`，兵器 `sk_gaochangjibenjian` / `sk_gaochangjian` / `sk_caoyuandao` 等，因此玩家不加入某一组织也有替代路线。通行拳 `sk_taizuchangquan` 可作为额外补位，但不计入上述最低证明。
+本土组织还提供内功 `sk_gaochangtuna` / `sk_gaochanggong`、`sk_hasakehuxi` / `sk_hasakexinfa` / `sk_hasakeyunqi`，拳脚 `sk_caoyuanquan` / `sk_hasakeshuai` / `sk_lvliangquan` / `sk_walalizhi`，兵器 `sk_gaochangjibenjian` / `sk_gaochangjian` / `sk_caoyuandao` 等；华辉线另给 `sk_huahuixinfa` 与 `sk_majiajunfeizhen`，因此玩家不加入某一组织也有替代路线。通行拳 `sk_taizuchangquan` 可作为额外补位，但不计入上述最低证明。
 
 ### 9.4 秘籍、师父与互斥获取
 
@@ -806,8 +811,10 @@ Boss 模板另含 atk ×1.25、def ×1.20、mp ×2、评级 +15、spd ×1.06、�
 | 高昌基础三门 | 门派 L1–L2 师父传授 | 迷宫安全路线完成后以合法摹本学习 | 破坏壁画者先完成修复任务 |
 | 高昌玄阶三门 | L3–L4 目录、机关实技 | 改命线放弃遗物后由守藏者印证 | “放弃遗物”不等于失去武学成长 |
 | 高昌守护剑 | L5 试炼 | 余韵期以守藏功绩开启一次挑战 | 不从宝箱随机掉落 |
-| 哈萨克武学 | 部族职责与师父 | 人物羁绊教学 | 关系破裂后可通过修复任务恢复，不从尸体掉谱 |
-| 吕梁 / 华辉系 | 旧案战斗印证、人物信任 | 余韵期证词 + 演武 | 不预建未收录的青蟒剑、梅花枪或指法 |
+| 哈萨克基础武学 | 部族职责与师父 | 人物羁绊教学 | 关系破裂后可通过修复任务恢复，不从尸体掉谱 |
+| `sk_hasakeyunqi` | 哈萨克 L3 亲随完成救援、守诺与演武认可后，由长辈 / 教头传授 | 被共同体接纳后的余韵演武 | 首领只是示范者；胜负不转移传承权 |
+| 吕梁 / 原有华辉剑与夜行 | 旧案战斗印证、人物信任 | 余韵期证词 + 演武 | 不预建未收录的青蟒剑、梅花枪 |
+| 华辉心法 / 指法 / 飞针 | 旧案问证并取得相应传承者信任后正常授艺 | 双方安全隔离后的练习谱，或余韵期三方校合遗谱 | 主角与其他合资格人物均可学；击败瓦耳拉齐或马家骏不自动掉完整武学 |
 | 通行补栏 | 河西军驿、关中武馆、游方武师 | 城市教头 / 客卿任务 | 经济结算与任务奖励只取一桶 |
 
 秘籍实物若后续序列化，按 `design/10` 的 `it_miji_<武功拼音>` 规则生成；本章不为尚未在物品目录登记的每册先造 ID。
@@ -1105,10 +1112,10 @@ STD_E(L,W=36,tier=LOW,kind=boss)
 |---|---:|---|---|---|
 | 霍元龙 Lv41 | 同级 Boss 参照的 0.70–0.85 = 36,023–43,743【建议值】 | 玄中5，≤8 重 | 头目至 Boss 间 | 先天、吕梁拳刀、合法装备 |
 | 陈达海 Lv43 | 0.70–0.90×56,506 = 39,554–50,855【建议值】 | 玄上6，≤8 重 | 灵巧剑客偏命中 | 合法通行剑术，不造青蟒剑 ID |
-| 瓦耳拉齐 Lv46 | 默认 0.80×64,534 = 51,627【建议值】 | 地上9 · 8 重目标；已收录条目最高玄上6，缺口须图鉴先补或以合法多技组合实现 | `spd` 与遮蔽高、抗控按 Boss | 手配先天、华辉剑 / 夜行、合法装备 |
-| 马家骏 Lv46 | 默认 0.70×64,534 = 45,174【建议值】 | 地上9 · 8 重目标；现有可靠武学 ID 不足 | 防御 / 暗器倾向但不虚构技能 | 手配先天、合法图鉴条目、伤势状态 |
+| 瓦耳拉齐 Lv46 | 默认 0.80×64,534 = 51,627【建议值】 | `sk_huahuixinfa` 地上9 · 8 重主运；`sk_walalizhi` 地上9 外功 | `spd` 与遮蔽高、抗控按 Boss | 手配先天、华辉剑 / 夜行、合法装备 |
+| 马家骏 Lv46 | 默认 0.70×64,534 = 45,174【建议值】 | `sk_huahuixinfa` 地上9 · 8 重主运；`sk_majiajunfeizhen` 地上9 外功 | 防御 / 暗器倾向；内伤只读招式正式 Buff | 手配先天、合法图鉴条目、伤势状态 |
 
-基准 `design/02` 把瓦耳拉齐定为终盘 Boss、主力地上9·8，`P=3.12`；本章不能用尚未存在的指法 ID填空。配表阶段应先由图鉴归属方解决“人物能力与现有技能 ID”缺口，或明确用多个现有武学组合达到目标。
+基准 `design/02` 把瓦耳拉齐定为终盘 Boss、主力地上9·8，`P=3.12`；补录册现以共享 `sk_huahuixinfa` 和可传授的华辉指法 / 飞针闭合两人的真实 9 品主运与外功画像。两人只是装配者，不把武学锁为角色专属；完整定义与习得条件见 `skills-bulu-10-baima` §1。马家骏地位下限 9 仍按既有锚点保留，待作者最终确认。
 
 ### 12.5 战斗节奏核算
 
@@ -1143,20 +1150,20 @@ B = 11.4×8 = 91.2 两
 
 ### 12.8 Boss / 精英经脉配置与节奏回归
 
-本节仅配置 `design/21` §11.9 的敌方 `MeridianFlowModule` 输入；穴位、周天和第七转仍归 `design/15`。低武 `effLayer≤8`。除瓦耳拉齐、马家骏按 §12.4 既有 9 品目标使用地位下限兜底外，`effGrade/effLayer/innerNature` 必须取最终主运内功经压制后的值；只会外功、轻功或机关术不算主运。所有武学型 Boss / 精英已在下表固定主运，不允许再回退 `1/1/harmony`。`routeRefs` 必须由行动表中 attack / defense / movement 三类 `MoveDef.meridianRouteRef` 编译为并集；现阶段不造 `mfr_*`，未知路线或默认迁移短路不得发布。`milestones` 对每个实例显式写全五字段。
+本节仅配置 `design/21` §11.9 的敌方 `MeridianFlowModule` 输入；穴位、周天和第七转仍归 `design/15`。低武 `effLayer≤8`。`effGrade/effLayer/innerNature` 必须取最终主运内功经压制后的值；只会外功、轻功或机关术不算主运。所有武学型 Boss / 精英已在下表固定主运，不允许再回退 `1/1/harmony`。瓦耳拉齐与马家骏现均以补录的真实 9 品主运入参，不再使用地位下限伪装。`routeRefs` 必须由行动表中 attack / defense / movement 三类正式 `MoveDef.meridianRouteRef` 编译为并集；补录武学的逐招 `mfr_*` 见 `skills-bulu-10-baima` §0，未知路线或默认迁移短路不得发布。`milestones` 对每个实例显式写全五字段。
 
-主运 1 格、辅运 2 格即完整内功栏；七项参数按 `effGrade/effLayer；mpRatioBp/practiceBp/capacityScaleBp；innerNature；openPolicy` 排列。华辉指法、马家暗器 / 内伤没有专属图鉴条目，以下以华辉与通行现存武学闭合槽位，均为**（原创扩展配置）**，不冒充原著招名。
+主运 1 格、辅运 2 格即完整内功栏；七项参数按 `effGrade/effLayer；mpRatioBp/practiceBp/capacityScaleBp；innerNature；openPolicy` 排列。`sk_huahuixinfa`、`sk_walalizhi`、`sk_majiajunfeizhen` 与 `sk_hasakeyunqi` 均来自本书补录册，按正常传授 / 职级 / 遗谱途径开放；首领配装不构成人物独占。其游戏化总名、招名与数值沿补录册的原创标注，不冒充原著定名。
 
 | 单位 | 门派 / 来源 | 主运内功 | 辅运内功（2 格） | 外功（逐门标品阶） | 经脉七项参数 | `milestones` | 血量 / 防御倍率 | 逐单位估算轮数 | 机制备注 |
 |---|---|---|---|---|---|---|---|---:|---|
 | 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主运解析（不得低于玄中5） | 按来源解析两门玄 / 黄基础内功 | 按行动表解析 3–5 门 | `5/8；10500/7500/10500；由主运解析；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.42` | 唯一锚点 |
 | 霍元龙 | 吕梁三杰 / 晋威镖局 | `sk_jianghutuna`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_zhuangxingong`（黄中2） | `sk_jiebiaodaofa`（玄上6）、`sk_lvliangzhuifengdao`（玄中5）、`sk_lvliangquan`（黄上3）、`sk_huyuanquan`（黄中2） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `16.32` | — |
 | 陈达海 | 晋威镖局 / 江湖剑士 | `sk_jianghutuna`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_zhuangxingong`（黄中2） | `sk_qingfengjian`（玄上6）、`sk_huweijian`（玄中5）、`sk_biaojujianfa`（黄上3）、`sk_jianghurumenjian`（黄上3） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `16.32` | — |
-| 瓦耳拉齐 | 华辉散承 | 缺专属 9 品主运 **（原创扩展配置·待补专属）** | `sk_jianghutuna`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_huahuijian`（玄上6）、`sk_wuyingshou`（玄中5）、`sk_feishahuangshi`（玄下4）、`sk_huahuijibenjian`（黄上3） | `9/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | `1.00 / 1.00`（双人战共享） | `17.44→18.44` | §12.4 既有 9 品目标优先；性质沿原 `sk_jianghutuna`；灯位破局 **（待实测）** |
-| 马家骏 | 华辉前弟子 / 江湖 | 缺专属 9 品主运 **（原创扩展配置·待补专属）** | `sk_jianghutuna`（玄中5）、`sk_wuguanxinfa`（玄下4） | `sk_huahuijian`（玄上6）、`sk_wuyingshou`（玄中5）、`sk_feishahuangshi`（玄下4）、`sk_huahuijibenjian`（黄上3）**（原创扩展配置·待补专属）** | `9/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `1.00 / 1.00`（双人战共享） | `17.13→17.39→18.44` | §12.4 既有 9 品目标优先；性质沿原 `sk_jianghutuna`；非致死阈值 **（待实测）** |
-| 双人剧情战·瓦耳拉齐 | 华辉散承 | 缺专属 9 品主运 **（原创扩展配置·待补专属）** | `sk_jianghutuna`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_huahuijian`（玄上6）、`sk_wuyingshou`（玄中5）、`sk_feishahuangshi`（玄下4）、`sk_huahuijibenjian`（黄上3） | `9/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | `1.00 / 1.00`（全场共享） | `17.44→18.44` | 独立实例；双人总耐久只计一次 |
-| 双人剧情战·马家骏 | 华辉前弟子 / 江湖 | 缺专属 9 品主运 **（原创扩展配置·待补专属）** | `sk_jianghutuna`（玄中5）、`sk_wuguanxinfa`（玄下4） | `sk_huahuijian`（玄上6）、`sk_wuyingshou`（玄中5）、`sk_feishahuangshi`（玄下4）、`sk_huahuijibenjian`（黄上3）**（原创扩展配置·待补专属）** | `9/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `1.00 / 1.00`（全场共享） | `17.13→17.39→18.44` | 独立实例，封针 / 缴刃只改本人 |
-| 部族演武首领 | 哈萨克部族 | `sk_jianghutuna`（玄中5，调和）**（原创扩展配置·待补专属）** | `sk_hasakexinfa`（玄下4）、`sk_hasakehuxi`（黄中2） | `sk_hasakeqishe`（地下7）、`sk_hasakeshuai`（玄中5）、`sk_caoyuandao`（黄上3）、`sk_caoyuanquan`（黄中2） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `16.00→16.32` | 计分 / 认输结束非死斗 **（待实测）** |
+| 瓦耳拉齐 | 华辉散承 | `sk_huahuixinfa`（地上9，阴） | `sk_jianghutuna`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_walalizhi`（地上9）、`sk_huahuijian`（玄上6）、`sk_huahuiyexing`（玄下4）、`sk_huahuijibenjian`（黄上3） | `9/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | `1.00 / 1.00`（双人战共享） | `18.44` | 真实主运闭合；灯位破局 **（待实测）** |
+| 马家骏 | 华辉前弟子 / 江湖 | `sk_huahuixinfa`（地上9，阴） | `sk_jianghutuna`（玄中5）、`sk_wuguanxinfa`（玄下4） | `sk_majiajunfeizhen`（地上9）、`sk_huahuijian`（玄上6）、`sk_huahuiyexing`（玄下4）、`sk_huahuijibenjian`（黄上3） | `9/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `1.00 / 1.00`（双人战共享） | `18.44` | 真实主运闭合；非致死阈值 **（待实测）** |
+| 双人剧情战·瓦耳拉齐 | 华辉散承 | `sk_huahuixinfa`（地上9，阴） | `sk_jianghutuna`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_walalizhi`（地上9）、`sk_huahuijian`（玄上6）、`sk_huahuiyexing`（玄下4）、`sk_huahuijibenjian`（黄上3） | `9/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | `1.00 / 1.00`（全场共享） | `18.44` | 独立实例；双人总耐久只计一次 |
+| 双人剧情战·马家骏 | 华辉前弟子 / 江湖 | `sk_huahuixinfa`（地上9，阴） | `sk_jianghutuna`（玄中5）、`sk_wuguanxinfa`（玄下4） | `sk_majiajunfeizhen`（地上9）、`sk_huahuijian`（玄上6）、`sk_huahuiyexing`（玄下4）、`sk_huahuijibenjian`（黄上3） | `9/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `1.00 / 1.00`（全场共享） | `18.44` | 独立实例，封针 / 缴刃只改本人 |
+| 部族演武首领 | 哈萨克部族 | `sk_hasakeyunqi`（玄中5，阳） | `sk_hasakexinfa`（玄下4）、`sk_hasakehuxi`（黄中2） | `sk_hasakeqishe`（地下7）、`sk_hasakeshuai`（玄中5）、`sk_caoyuandao`（黄上3）、`sk_caoyuanquan`（黄中2） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `16.32` | 计分 / 认输结束非死斗 **（待实测）** |
 | 假鬼机关阵 | 纯机关 | 不适用 | 不适用 | 不适用；`sk_gaochangjiguan` 是机关行为而非外功 | 不创建经脉实例 | 不适用 | 不适用 | 不适用（目标流程约 `14.9`） | 纯机关合法豁免 |
 | 守藏机关傀儡（每个） | 高昌遗脉机关武学 | `sk_gaochanggong`（玄中5） | `sk_gaochangtuna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_gaochangshouhujian`（地上9）、`sk_gaochangjian`（玄上6）、`sk_gaochangjibenjian`（黄中2） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `1.00 / 1.00`（全场共享） | `16.93` | 多傀儡合计只用单场预算 **（待实测）** |
 | 吕梁 / 镖局精英（每名） | 吕梁 / 晋威镖局 | `sk_wuguanxinfa`（玄下4） | `sk_zhuangxingong`（黄中2）、`sk_tunaqianjue`（黄上3） | `sk_lvliangzhuifengdao`（玄中5）、`sk_lvliangquan`（黄上3）、`sk_huyuanquan`（黄中2） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.27` | — |
@@ -1167,13 +1174,14 @@ B = 11.4×8 = 91.2 两
 
 #### 本界首领配装图鉴缺口
 
-| 人物 / 模板 | 缺的专属内功 / 外功 | 当前替补 |
+| 人物 / 模板 | 原缺口 | 本轮处理 |
 |---|---|---|
-| 瓦耳拉齐 | 原 §12.4 的地上9人物主运、专属指法 | 主运暂缺；性质沿 `sk_jianghutuna`，七参按 9 品地位下限兜底；外功暂用 `sk_wuyingshou` |
-| 马家骏 | 原 §12.4 的地上9人物主运、专属暗器 / 内伤手段 | 主运暂缺；性质沿 `sk_jianghutuna`，七参按 9 品地位下限兜底；外功用华辉 / 通行替补 |
-| 部族演武首领 | 至少 5 品哈萨克主运 | `sk_jianghutuna`，辅运保留哈萨克底子 |
+| 瓦耳拉齐 | 地上9真实主运、符合“一指镇江南”画像的指法 | **已补：**共享 `sk_huahuixinfa`（地上9）+ `sk_walalizhi`（地上9）；均非人物独占 |
+| 马家骏 | 地上9真实主运、实体暗器 / 内伤手段 | **已补：**共享 `sk_huahuixinfa`（地上9）+ `sk_majiajunfeizhen`（地上9）；均非人物独占 |
+| 部族演武首领 | 至少 5 品哈萨克主运 | **已补：**`sk_hasakeyunqi`（玄中5）；按哈萨克 L3 正常传授 |
+| 假鬼机关阵 | 无；纯机关没有武学行动者 | **合法豁免：**不创建主运、武学或经脉实例，目标流程仍约 `14.9` 轮 |
 
-当前脚本基线 `3.4 / 7.3 / 14.9`；逐单位结果为 Boss `16.32–18.44`、精英 `7.27–7.42`，全部保持 `1.00×1.00` 即落窗。瓦耳拉齐两行按既有 9 品目标为 `17.44→18.44`，马家骏两行为 `17.13→17.39→18.44`，部族首领为 `16.00→16.32`；双人战和多傀儡的倍率只作用于整场共享耐久。速度变化只改首轮 / CT / 移动，不再乘一次伤害；固定 RNG 回放仍 **（待实测）**。
+当前脚本基线 `3.4 / 7.3 / 14.9`；逐单位结果为 Boss `16.32–18.44`、精英 `7.27–7.42`，全部保持 `1.00×1.00` 即落窗。以 NB4b 已调好的临时有效参数为替换前快照，本轮把替补 ID 换成真实主运后：瓦耳拉齐 `18.44→18.44`、马家骏 `18.44→18.44`、部族演武首领 `16.32→16.32`；脚本原始值分别为 `18.4403 / 18.4403 / 16.3160`。因此无需调血量或防御倍率。双人战和多傀儡的倍率只作用于整场共享耐久；速度变化只改首轮 / CT / 移动，不再乘一次伤害；固定 RNG 回放仍 **（待实测）**。
 
 ---
 
@@ -1192,7 +1200,7 @@ B = 11.4×8 = 91.2 两
 | 人物 | 沈青禾、韩禾、段霜 | 名录已标 `origin=expanded`；无虚构原著回目 |
 | 招募 | 原著人物入队窗、D1–D5 门槛、职责替班、互斥编组 | 招募不洗白罪责、不改人物自主选择 |
 | 战斗 | 六个 Boss 遭遇、假鬼机关阵、守藏试炼、非杀伤胜利 | 机制原创；人物及旧怨骨架来自原著 |
-| 武学 | 高昌、哈萨克、吕梁与华辉图鉴中标为 expanded / canonExpanded 的技能设计 | 本章不新增图鉴外 `sk_*` |
+| 武学 | 高昌、哈萨克、吕梁与华辉图鉴及 `skills-bulu-10-baima` 中标为 expanded / canonExpanded 的技能设计 | 本章只投放图鉴已定义 `sk_*`；补录册四门均允许合资格人物正常学习 |
 | 经济 | 12 资源点、10 营生场所、职位任务与本界预算分配 | 统一规则来自 `design/16`；地点经营状态原创 |
 | 迷宫 | 固定拓扑、四层证据、机关状态机、UI、保底出口 | 不提供现实遗址定位、盗掘或危险机关制作指南 |
 | 传承投放 | 把 `design/20` 的 8 条合法候选挂到关中、南疆与青藏既有节点 | 三卷、信物、缓存与完整武学均为上游既有定义；本章只做时代投放，不把它们冒充原著遗物 |
@@ -1219,7 +1227,7 @@ B = 11.4×8 = 91.2 两
 14. 李文秀、苏普、阿曼、苏鲁克、车尔库、桑斯儿等人的准确年龄线索；本稿只用年龄段。
 15. 哈萨克部族五级玩法称谓的民族史语感，尤其 L3–L5；在专项复核前不用于现实文化概括。
 16. `it_gaochangguwu` 可代表的典籍 / 器物类别；未核对前不创建单件古物名称。
-17. 霍元龙、陈达海、史仲俊、瓦耳拉齐、马家骏的真实武功描写；图鉴未收录者不预建招式 ID。
+17. **已补录但仍待考：**瓦耳拉齐“一指镇江南”的准确字形与动作、马家骏旧案针具细节，以及华辉收徒范围；`sk_huahuixinfa`、`sk_walalizhi`、`sk_majiajunfeizhen` 已按原创总名 / 招名收录，不宣称为原著正式定名。霍元龙、陈达海、史仲俊其余真实武功描写仍待核，图鉴未收录者不预建招式 ID。
 
 ### 13.3 文化与安全表述
 
@@ -1303,7 +1311,7 @@ B = 11.4×8 = 91.2 两
 | BM-V06 | 支线 ≥20、完整奇遇链≥10、触点恰 12 | 数量不足、同一微交互重复计数 |
 | BM-V07 | 两组织时代状态与 `design/17` 一致 | 把哈萨克共同体全设敌对，或把高昌写成史实门派 |
 | BM-V08 | 常规可招募队友 ≥6，每人有 D 级和任务门槛 | 仅写好感 / 交钱，D4/D5 无专属取舍 |
-| BM-V09 | 所有 `sk_*` 在图鉴或归属文档存在 | 为青蟒剑、梅花枪、指法或合击临时造 ID |
+| BM-V09 | 所有 `sk_*` 在 `skills-kangxi`、`skills-general` 或 `skills-bulu-10-baima` 存在；补录册四门的习得不锁首领 | 为青蟒剑、梅花枪或合击临时造 ID，或把补录武学做成人物排他技能 |
 | BM-V10 | 白马天级武学 / 装备均为 0；本土固定上限地上9 | 产生新天级或随机池超过地上 |
 | BM-V11 | D3 基础 Boss 每个遭遇恰 1 阶段 | 双单位误当多阶段，或无说明增加阶段 |
 | BM-V12 | 资源点 12、营生 10；城外≥8、控制≤4、多路径≥3 | 数量 / 分布任一不符 |
@@ -1312,8 +1320,8 @@ B = 11.4×8 = 91.2 两
 | BM-V15 | 代码围栏成对、Markdown 表列数一致、相对链接存在 | 任一结构错误 |
 | BM-V16 | 前代传承只引用 `design/20` 已定义的 `lgs_* / frag_* / cache_* / it_xinwu_*`，且本界主载体≤3、后人≤2、新卷≤6、新信物≤3 | 自建传承 ID、把 `lg_* / rs_*` 当新源实例、超配额，或把不在六区的荆襄源硬搬入本界 |
 | BM-V17 | D07 地上9牺牲遗物槽与玄上6 `it_gaochangguwu` 分离 | 普通高昌古物的取得 / 放弃改变 `high_relic_abandoned`，或未登记遗物 ID 被写入背包 |
-| BM-V18 | Boss / 精英经脉：§12.8 参数齐全、层数 ≤8；双人 / 傀儡逐武学行动者独立，纯机关无实例；路线只从 `MoveDef` 编译 | 任一漏实例、共享动态态或出现手造 `mfr_*` |
-| BM-V19 | 经脉节奏：标准档为 3.4 / 7.3 / 14.9；结算顺序匹配 `design/21`，具名与双人战固定 RNG 回放 Boss 为 12–25 | 仍用旧 3.1 / 6.6 / 13.5，或经脉乘区 / 速度被重复计算 |
+| BM-V18 | Boss / 精英经脉：§12.8 参数齐全、层数 ≤8；双人 / 傀儡逐武学行动者独立，纯机关无实例；路线只从各图鉴正式 `MoveDef` 编译 | 任一漏实例、共享动态态、补录招式缺 `mfr_*`，或使用默认迁移短路 |
+| BM-V19 | 经脉节奏：标准档为 3.4 / 7.3 / 14.9；结算顺序匹配 `design/21`；具名和双人战槽为 18.44、演武首领 16.32，固定 RNG 回放 Boss 为 12–25 | 仍用旧 3.1 / 6.6 / 13.5，替补替换后超窗，或经脉乘区 / 速度被重复计算 |
 
 ### 数值与流程用例
 
@@ -1336,6 +1344,8 @@ B = 11.4×8 = 91.2 两
 | BM-T15 | 6 个开放区进入传承调度 | `legacyCarrierCap=ceil(6/2)=3`、`heirCarrierCap=ceil(3/2)=2`、新残本≤6、新信物≤3；8 条候选按硬过滤和确定性 RNG 取舍 |
 | BM-T16 | 在白马完成真实 12 品传承全本（H1-P04 默认启用） | `sourceGrade=12`，`effGrade=min(12,9)=9`，`effLayer≤8`；关闭 H1-P04 时显式切回 Canon 分支 |
 | BM-T17 | 取得 `it_gaochangguwu` 后在 D07 先救人并封藏高阶槽 | 普通古物仍可合法持有；`rescue_before_treasure=true`、`high_relic_abandoned=true` |
+| BM-T18 | 瓦耳拉齐 / 马家骏分别以 `sk_huahuixinfa` 9 品 8 重、阴性和 §12.8 七参运行 `boss_pacing.py` | 两者均 `18.4403≈18.44` 轮；血量 / 防御倍率保持 `1.00/1.00` |
+| BM-T19 | 部族演武首领以 `sk_hasakeyunqi` 5 品 8 重、阳性和 §12.8 七参运行 `boss_pacing.py` | `16.3160≈16.32` 轮；血量 / 防御倍率保持 `1.00/1.00` |
 
 ### 建议执行命令
 
@@ -1367,12 +1377,13 @@ rg -n 'rg_10_|rg_xiyu\b|mer_du\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/des
 - `design/story/10-baima.md` 是开局、幕、选择节点、锚点和结局的唯一剧情源。
 - `design/catalog/npcs-ch10-baima.md` 与 `design/18` 是人物、D 级、年龄和跨书规则的来源。
 - `skills-kangxi` / `skills-general` 是武学 ID 来源；上游若迁移经脉旧 ID，本章继续只读正式 `mer_dumai`。
+- `skills-bulu-10-baima` 是本轮四门补录武学、十八招、逐招路线、调息档案与习得途径的唯一来源；本章只投放和装配。
 - `design/11`、`design/19`、`map/cities.yaml` 与 `map/jianghu-ch10.svg` 共同提供本时代地理。
 - `design/03` / `04` 提供 Boss 数值与节奏；`design/16` 提供资源、营生和门派经济。
 - **已解决：**`design/07-set-system.md` 已定稿；本章只引用 §9.5 指定的正式套装，仍不定义套装效果。
 - 已解决：`design/20-legacy-inheritance.md` 已落盘，本章 §9.7 已按其目录、区域过滤与白马配额回填前代传承候选及可完成校合。
 - `design/10` 尚未给 D07 地上9牺牲遗物登记正式 `it_*`；本章以不可入包的剧情槽实现，并与 `it_gaochangguwu` 分离。
-- **已解决：**`design/21` 的敌方经脉模板与攻防 / 护体 / 速度 / 控制接口已写入 §12.8；具体招式路线仍等待图鉴正式 `mfr_*`。
+- **已解决：**`design/21` 的敌方经脉模板与攻防 / 护体 / 速度 / 控制接口已写入 §12.8；本轮补录武学的逐招正式 `mfr_*` 已见 `skills-bulu-10-baima` §0，其余既有武学继续只读各自图鉴。
 
 ### 对基准的修改提案
 
@@ -1393,7 +1404,7 @@ rg -n 'rg_10_|rg_xiyu\b|mer_du\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/des
 |---|---|---|
 | BM-O01 | 哈萨克部族 L5 是否允许异乡玩家取得 | 不允许；机械层保留，叙事上由共同体 NPC 担任 |
 | BM-O02 | 白马四件具名固定装备具体是什么 | 不自造 `eq_*`；只投放已登记奇物 / 坐骑，待 `design/10` 分配 |
-| BM-O03 | 瓦耳拉齐与马家骏用哪些完整武学达到地上9·8 Boss 锚 | 默认按 §12.8 以 9 品地位下限七参兜底，性质沿 `sk_jianghutuna`；不建未收录指法 / 暗器，待图鉴补齐专属内功后恢复三项同取主运 |
+| BM-O03 | 瓦耳拉齐与马家骏用哪些完整武学达到地上9·8 Boss 锚 | **已解决：**两人共享 `sk_huahuixinfa` 地上9·8重、阴性主运，分别装 `sk_walalizhi` / `sk_majiajunfeizhen` 地上9外功（见 §12.8）；均可由其他合资格人物学习，不再用地位下限伪装主运 |
 | BM-O04 | `npc_ningqiangdao` 是否迁移为姓宋对应 ID | 已解决：新内容统一写 `npc_songqiangdao`；旧键只读迁移，不创建并存实体 |
 | BM-O05 | 前界同伴能否实体重逢 | 当前为 0；只有 `design/18` 补 `appearanceChapters` 后开放 |
 | BM-O06 | **已解决：**四个旧候选标签是否进入 v1 | 不进入；按 `design/07` §19.3 删除运行 ID，本章改用 §16 / §18.3 的正式通行套装，件数与效果仍只读 07 |
@@ -1401,3 +1412,4 @@ rg -n 'rg_10_|rg_xiyu\b|mer_du\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/des
 | BM-O08 | 青龙会扩展模块是否启用 | 默认关闭；即使开启也只作支线敌对，不侵入原著主线 |
 | BM-O09 | 玩法定年是否保留 1725–1726 | 保留为原创定年，直到原著与时代专项给出更可靠锚点 |
 | BM-O10 | D07 地上9固定牺牲遗物的正式 ID 与表现 | 默认保持不可入包剧情槽；待 `design/10` 登记后替换，但不得复用 `it_gaochangguwu` |
+| BM-O11 | 马家骏地位下限是否继续与师父瓦耳拉齐同为 9 | 默认保留 9；本轮用真实 9 品主运闭合。作者若下调，只改人物目标与节奏重算，不反向删除可学习武学 |
