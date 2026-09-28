@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/10-baima.md`。
 > 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；穴位、冲穴、通脉、周天与九转 → `design/15-meridians-and-acupoints.md`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21-meridian-flow-and-moves.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；跨年代传承 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v0.2（D10 初稿；审校 D10.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）。
+> 版本：v0.2（D10 初稿；审校 D10.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）。
 
 ---
 
@@ -715,6 +715,8 @@ UI 在 `dc_10_07`、`dc_10_08` 前显示不可逆提示，但不提前剧透两�
 
 本界 D3，所有 Boss 只有 1 个标准阶段；天劫·魔劫的通用追加阶段由 `design/09` 处理，不写进基础遭遇。具名且可招募者走 `full`，机关 / 试炼走 `template`。以下数值是等级、品阶与模板目标，最终 `full` 面板须用合法先天、武学和装备重新求值。正式 `bsc_*` 脚本 ID 归 `design/09` 分配，本章只登记 `enc_*` 遭遇与机制接口。
 
+§12.2 的部族演武首领是非致死头目，不占下列 6 个正式 Boss 遭遇预算；其固定武学配装与部族勇士精英模板见 §12.8。
+
 | 遭遇 ID | Boss | Lv | 管线 | 武学与品阶 | 单阶段机制 | 弱点 / 非杀伤结算 |
 |---|---|---:|---|---|---|---|
 | `enc_10_huoyuanlong_zhuiyi` | `npc_huoyuanlong` | 41 | `full` | `sk_lvliangzhuifengdao` 玄中5、`sk_lvliangquan` 黄上3 | 骑追截路；每次玩家移动后提高其下一刀命中 | 斩断马具 / 迫退；追忆收束而非改写死亡 |
@@ -1141,20 +1143,26 @@ B = 11.4×8 = 91.2 两
 
 ### 12.8 Boss / 精英经脉配置与节奏回归
 
-本节仅配置 `design/21` §11.9 的敌方 `MeridianFlowModule` 输入；穴位、周天和第七转仍归 `design/15`。低武 `effLayer≤8`。`effGrade/effLayer/innerNature` 必须取当前主运内功经压制后的值；只会外功、轻功或机关术不算主运，无主运用 `1/1/harmony`。`routeRefs` 必须由行动表中 attack / defense / movement 三类 `MoveDef.meridianRouteRef` 编译为并集；现阶段不造 `mfr_*`，未知路线或默认迁移短路不得发布。`milestones` 对每个实例显式写全五字段。
+本节仅配置 `design/21` §11.9 的敌方 `MeridianFlowModule` 输入；穴位、周天和第七转仍归 `design/15`。低武 `effLayer≤8`。`effGrade/effLayer/innerNature` 必须取当前主运内功经压制后的值；只会外功、轻功或机关术不算主运，所有武学型 Boss / 精英已在下表固定主运，不允许再回退 `1/1/harmony`。`routeRefs` 必须由行动表中 attack / defense / movement 三类 `MoveDef.meridianRouteRef` 编译为并集；现阶段不造 `mfr_*`，未知路线或默认迁移短路不得发布。`milestones` 对每个实例显式写全五字段。
 
-| 遭遇 / 独立行动者 | 当前主运 → `effGrade/effLayer` | `mpRatioBp/practiceBp/capacityScaleBp` | `innerNature` / `openPolicy` | `milestones` | 实例边界 |
-|---|---:|---:|---|---|---|
-| 霍元龙 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 骑追坐骑不共享动态节点 |
-| 陈达海 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 人质 / 撤退点无实例 |
-| 瓦耳拉齐 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | 本人一实例；夜行 movement 路线参与速度，揭示身份不重置 |
-| 马家骏 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | 本人一实例；图鉴补内功前不虚构性质 |
-| 双人剧情战·瓦耳拉齐 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | 同场独立实例；仇恨互锁不共享经脉，封针 / 缴刃只改本人状态 |
-| 双人剧情战·马家骏 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | 同场独立实例；仇恨互锁不共享经脉，封针 / 缴刃只改本人状态 |
-| 假鬼机关阵 | 不适用（无实例） | 不适用（无实例） | 不适用（无实例） | 不适用（无实例） | 纯声源与落石不创建实例；`sk_gaochangjiguan` 仅为机关行为标签，不得白拿路线加成 |
-| 守藏机关傀儡（每个） | `sk_gaochanggong` → 5 / 8 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 因确实以高昌武学攻击而创建实例；每个可独立出手傀儡各一份 |
+主运 1 格、辅运 2 格即完整内功栏；七项参数按 `effGrade/effLayer；mpRatioBp/practiceBp/capacityScaleBp；innerNature；openPolicy` 排列。华辉指法、马家暗器 / 内伤没有专属图鉴条目，以下以华辉与通行现存武学闭合槽位，均为**（原创扩展配置）**，不冒充原著招名。
 
-本界其他精英统一取 `10500/7500/10500`、`schoolCore`、`{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}`；普通取 `9000/6200/9000`、`routeOnly`、`{meridianComplete:false, smallCycle:false, greatCycle:false, twelveCycle:false, turns:0}`。两类的修为三项都逐单位读取当前主运，无主运即 `1/1/harmony`。阶段或灯位切换不清 backlog / 迟滞 / 胀损。攻防分别接 Z5M / Z4M；护体顺序是护体真气 → 护体内劲 → `mpGuard` → 气血；速度先乘经脉、再乘擒拿，首轮冻结。绝招仅读 `MoveDef.ultimate`；点穴 / 擒拿在伤害后调用 `applyAcupointSeal` / `applyGrapple`，调息不推进第七转。
+| 单位 | 门派 / 来源 | 主运内功 | 辅运内功（2 格） | 外功（逐门标品阶） | 经脉七项参数 | `milestones` | 节奏复核 |
+|---|---|---|---|---|---|---|---|
+| 霍元龙 | 吕梁三杰 / 晋威镖局 | `sk_jianghutuna`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_zhuangxingong`（黄中2） | `sk_jiebiaodaofa`（玄上6）、`sk_lvliangzhuifengdao`（玄中5）、`sk_lvliangquan`（黄上3）、`sk_huyuanquan`（黄中2） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 旧 `1/1/harmony` → `5/8/harmony`；Boss 14.9，弱档 / 强守 17 / 18 |
+| 陈达海 | 晋威镖局 / 江湖剑士 | `sk_jianghutuna`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_zhuangxingong`（黄中2） | `sk_qingfengjian`（玄上6）、`sk_huweijian`（玄中5）、`sk_biaojujianfa`（黄上3）、`sk_jianghurumenjian`（黄上3） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 旧 `1/1/harmony` → `5/8/harmony`；14.9，弱档 / 强守 17 / 18 |
+| 瓦耳拉齐 | 华辉散承 | `sk_jianghutuna`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_huahuijian`（玄上6）、`sk_wuyingshou`（玄中5）、`sk_feishahuangshi`（玄下4）、`sk_huahuijibenjian`（黄上3） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | 旧 `1/1/harmony` → `5/8/harmony`；14.9，灯位破局后仍 12–25 **（待实测）** |
+| 马家骏 | 华辉前弟子 / 江湖 | `sk_wuguanxinfa`（玄下4） | `sk_tunaqianjue`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_huahuijian`（玄上6）、`sk_feishahuangshi`（玄下4）、`sk_huahuijibenjian`（黄上3）、`sk_tongxingfeishi`（黄下1） | `4/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | 旧 `1/1/harmony` → `4/8/harmony`；14.9，非致死阈值 **（待实测）** |
+| 双人剧情战·瓦耳拉齐 | 华辉散承 | `sk_jianghutuna`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_huahuijian`（玄上6）、`sk_wuyingshou`（玄中5）、`sk_feishahuangshi`（玄下4）、`sk_huahuijibenjian`（黄上3） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | 双人总耐久受单场 Boss 预算约束，目标 12–25 **（待实测）** |
+| 双人剧情战·马家骏 | 华辉前弟子 / 江湖 | `sk_wuguanxinfa`（玄下4） | `sk_tunaqianjue`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_huahuijian`（玄上6）、`sk_feishahuangshi`（玄下4）、`sk_huahuijibenjian`（黄上3）、`sk_tongxingfeishi`（黄下1） | `4/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | 同场独立实例，封针 / 缴刃只改本人；12–25 **（待实测）** |
+| 部族演武首领 | 哈萨克部族 | `sk_hasakexinfa`（玄下4） | `sk_hasakehuxi`（黄中2）、`sk_tunaqianjue`（黄上3） | `sk_hasakeqishe`（地下7）、`sk_hasakeshuai`（玄中5）、`sk_caoyuandao`（黄上3）、`sk_caoyuanquan`（黄中2） | `4/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | Boss 14.9；计分 / 认输阈值结束非死斗，目标 12–25 **（待实测）** |
+| 假鬼机关阵 | 纯机关 | 不适用 | 不适用 | 不适用；`sk_gaochangjiguan` 是机关行为而非外功 | 不创建经脉实例 | 不适用 | 模板 Boss 14.9；声源目标承担节奏，不给机关虚构内功 |
+| 守藏机关傀儡（每个） | 高昌遗脉机关武学 | `sk_gaochanggong`（玄中5） | `sk_gaochangtuna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_gaochangshouhujian`（地上9）、`sk_gaochangjian`（玄上6）、`sk_gaochangjibenjian`（黄中2） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 14.9；多傀儡合计耐久不得超过单场预算 **（待实测）** |
+| 吕梁 / 镖局精英（每名） | 吕梁 / 晋威镖局 | `sk_wuguanxinfa`（玄下4） | `sk_zhuangxingong`（黄中2）、`sk_tunaqianjue`（黄上3） | `sk_lvliangzhuifengdao`（玄中5）、`sk_lvliangquan`（黄上3）、`sk_huyuanquan`（黄中2） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 精英 7.3，落在 6–10 |
+| 部族勇士精英（每名） | 哈萨克部族 | `sk_hasakexinfa`（玄下4） | `sk_hasakehuxi`（黄中2）、`sk_tunaqianjue`（黄上3） | `sk_hasakeshuai`（玄中5）、`sk_caoyuandao`（黄上3）、`sk_caoyuanquan`（黄中2） | `4/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 精英 7.3，落在 6–10；演武不结算死亡 |
+| 高昌武学精英（每名） | 高昌遗脉 | `sk_gaochanggong`（玄中5） | `sk_gaochangtuna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_gaochangjian`（玄上6）、`sk_gaochangjibenjian`（黄中2）、`sk_huiliuquan`（玄下4） | `5/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 精英 7.3，落在 6–10 |
+
+未列普通敌人才允许 `9000/6200/9000`、`routeOnly` 与五里程碑全 0；所有武学型精英必须绑定上表确定模板，缺失即构建失败。阶段或灯位切换不清 backlog / 迟滞 / 胀损。攻防分别接 Z5M / Z4M；护体顺序是护体真气 → 护体内劲 → `mpGuard` → 气血；速度先乘经脉、再乘擒拿，首轮冻结。绝招仅读 `MoveDef.ultimate`；点穴 / 擒拿在伤害后调用 `applyAcupointSeal` / `applyGrapple`，调息不推进第七转。
 
 当前脚本基线 `3.4 / 7.3 / 14.9` 在标准对标准 10000 bp 下零漂移。玩家弱一档时 Boss 伤害轮包络为 `ceil(14.9×10000/9157)=17`；面对强守方 861/1000 的净伤害则约 `ceil(14.9×1000/861)=18`，均在 12–25。强两档 14456 bp 时约 `ceil(14.9×10000/14456)=11`，低于下限，因此 Boss 不允许玩家以“强两档”作为标准配装验收；标准配装仍按 10000 bp，同步以阶段目标、撤离和保护条件阻止纯秒杀。速度变化只改首轮 / CT / 移动，不再乘一次伤害；双人战与傀儡实装后须固定 RNG 回放 **（待实测）**。
 

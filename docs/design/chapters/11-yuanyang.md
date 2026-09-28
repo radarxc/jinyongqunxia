@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/11-yuanyang.md`。
 > 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；穴位、冲穴、通脉、周天与九转 → `design/15-meridians-and-acupoints.md`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21-meridian-flow-and-moves.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；前代传承 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v0.2（D11 初稿，2026-09-26；审校 D11.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）。
+> 版本：v0.2（D11 初稿，2026-09-26；审校 D11.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）。
 
 
 ## 0. 阅读指引
@@ -723,7 +723,7 @@ chapterResolution:
 | `enc_11_zhuo_zizhu` | 卓天雄，Lv44 | 同上；清宫通行身法只在图鉴合法时装配 | 焚庵威胁倒计时、平民安全区、袁萧合击教学 | 逼退 / 擒获；庵中人安全后登记 `zizhu_tuizhuo` |
 | `enc_11_linren_yanwu` | 林玉龙 + 任飞燕，Lv42 / 42 | `sk_linyulongdao`、`sk_renfeiyandao` 玄上；`sk_linrenhexinfa` 玄中 | 双人争合演武，打错一方会抬高另一方怒气 | 同时压至演武阈值或完成调停，不计击杀 |
 | `enc_11_xiaofu_weizhan` | 大内统领代理，Lv46 | `sk_yulinjichudao` 黄中、`sk_daneishuangdao` 玄下；当前主运 `sk_jundituna` 玄中 **（原创扩展配置）** | 三路增援、平民撤离门、文书停战；统领为模板头目而非新静态 NPC | 开放撤离、出示具结或降服，登记 `xiaofu_weizhan` |
-| `enc_11_zhongtiao_jiaoge` | 卓天雄或官府追队，Lv48 | 卓用 `sk_daneishuangdao` 玄下且无主运内功；官府追队头目当前主运 `sk_jundituna` 玄中 **（原创扩展配置）**；路线决定援军 | 真刀 / 假刀、证物、保管权三槽；满足证据可无战斗结案 | 谈判、交换或降服；不另增加第五证明键 |
+| `enc_11_zhongtiao_jiaoge` | 卓天雄或官府追队，Lv48 | 卓与官府追队头目均以 `sk_jundituna` 玄中主运，外功分别见 §12.8 **（原创扩展配置）**；路线决定援军 | 真刀 / 假刀、证物、保管权三槽；满足证据可无战斗结案 | 谈判、交换或降服；不另增加第五证明键 |
 
 Boss 战斗流程、阶段、控制递减与脚本 ID 归 `design/09`；本文只登记遭遇。所有具名人物均走 `full` 属性管线，表内模板数值只是配表目标，详见 §12。
 
@@ -1232,19 +1232,23 @@ B = I×H = 19×8 = 152 两
 
 ### 12.8 Boss / 精英经脉配置与节奏回归
 
-本节只配置 `design/21` §11.9 敌人模板的输入；穴位、通脉、周天与九转归 `design/15`。本章是低武追赶窗口，所有单位 `effLayer≤8`，且不会因玩家可追赶而自动抬高敌人里程碑。修为三项只读当前主运内功的压制后 `effGrade/effLayer/nature`，无主运严格用 `1/1/harmony`。`routeRefs` 由每个单位行动表的 attack / defense / movement `MoveDef.meridianRouteRef` 在构建期汇总、展开、去重；不在章节造 `mfr_*`。`milestones` 每行显式写全五字段。
+本节只配置 `design/21` §11.9 敌人模板的输入；穴位、通脉、周天与九转归 `design/15`。本章是低武追赶窗口，所有单位 `effLayer≤8`，且不会因玩家可追赶而自动抬高敌人里程碑。修为三项只读当前主运内功的压制后 `effGrade/effLayer/nature`；下表已为全部 Boss / 精英固定主运，不允许再回退 `1/1/harmony`。`routeRefs` 由每个单位行动表的 attack / defense / movement `MoveDef.meridianRouteRef` 在构建期汇总、展开、去重；不在章节造 `mfr_*`。`milestones` 每行显式写全五字段。
 
-| 遭遇 / 独立行动者 | 当前主运 → `effGrade/effLayer` | `mpRatioBp/practiceBp/capacityScaleBp` | `innerNature` / `openPolicy` | `milestones` | 实例边界 |
-|---|---:|---:|---|---|---|
-| 太岳四侠（每人） | `sk_taiyuehuxi` → 2 / 8 | 10500 / 7500 / 10500 | `yang` / `schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 四个精英实例；共享“面子”士气但不共享穴位动态态 |
-| 卓天雄·枣林 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 识破假盲只切行动表 |
-| 卓天雄·紫竹庵 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 同一人物在单场阶段内复用实例；跨遭遇按战斗新建但不改人物永久画像 |
-| 林玉龙 / 任飞燕（各） | 各 `sk_linrenhexinfa` → 各 5 / 8 | 各 13000 / 9000 / 13000 | 各 `harmony` / `fullTemplate` | 各 `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 两个独立实例；合演与怒气互锁不合并节点 |
-| 大内统领代理 | `sk_jundituna` → 5 / 8 | 13000 / 9000 / 13000 | `yang` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 代理一实例；三路武学援军按精英档逐单位初始化 |
-| 终局卓天雄 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | 路线二选一时仅实际生成者建实例；不因终局阶段臆配内功 |
-| 官府追队头目 | `sk_jundituna` → 5 / 8 | 13000 / 9000 / 13000 | `yang` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | 路线二选一时仅实际生成者建实例；追队武学成员各自实例化 |
+主运 1 格、辅运 2 格即完整内功栏；七项参数按 `effGrade/effLayer；mpRatioBp/practiceBp/capacityScaleBp；innerNature；openPolicy` 排列。卓天雄原著掌法尚未入图鉴，其三场使用清宫与军伍现存武学作**（原创扩展配置）**，保留专属掌法缺口。
 
-同场其他精英使用 `10500/7500/10500、schoolCore` 与 `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}`；普通使用 `9000/6200/9000、routeOnly` 与 `{meridianComplete:false, smallCycle:false, greatCycle:false, twelveCycle:false, turns:0}`。两类都逐单位读主运三项，无主运即 `1/1/harmony`。攻防路线分别进入 04 的 Z5M / Z4M；护体真气后结算护体内劲，再进 `mpGuard`；速度先经脉后 `grappleMoveBp`，首轮冻结。绝招只看 `MoveDef.ultimate`；卓天雄点穴或玩家擒拿均在当次伤害后调用目标实例的 `applyAcupointSeal` / `applyGrapple`，不得反改该击。调息只修动态伤势，不推进永久成长。
+| 单位 | 门派 / 来源 | 主运内功 | 辅运内功（2 格） | 外功（逐门标品阶） | 经脉七项参数 | `milestones` | 节奏复核 |
+|---|---|---|---|---|---|---|---|
+| 太岳四侠（每人，精英） | 太岳四侠散承 | `sk_wuguanxinfa`（玄下4） | `sk_taiyuehuxi`（黄中2）、`sk_zhamabu`（黄下1） | `sk_taiyueshibeishou`（玄上6）、`sk_taiyueqigong`（玄下4）、`sk_taiyuequan`（黄中2） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 精英标准 7.1，落在 6–10；石碑装备桥接仍按图鉴缺口处理 |
+| 卓天雄·枣林 | 清宫 / 军伍代理 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_daneishuangdao`（玄下4）、`sk_wuyingshou`（玄中5）、`sk_yulinjichudao`（黄中2）、`sk_daneichangquan`（黄中2） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 旧 `1/1/harmony` → `5/8/yang`；Boss 14.3，弱档 / 强守 16 / 17 |
+| 卓天雄·紫竹庵 | 清宫 / 军伍代理 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_daneishuangdao`（玄下4）、`sk_wuyingshou`（玄中5）、`sk_yulinjichudao`（黄中2）、`sk_daneichangquan`（黄中2） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 旧 `1/1/harmony` → `5/8/yang`；14.3，救人 / 逼退不延长节奏 **（待实测）** |
+| 林玉龙 | 林任夫妇 | `sk_linrenhexinfa`（玄中5） | `sk_renzhetuna`（黄上3）、`sk_taiyuehuxi`（黄中2） | `sk_fuqidaofa`（地中8）、`sk_linyulongdao`（玄上6）、`sk_linrenjichudao`（黄上3） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 14.3；双人共享单场耐久预算 **（待实测）** |
+| 任飞燕 | 林任夫妇 | `sk_linrenhexinfa`（玄中5） | `sk_renzhetuna`（黄上3）、`sk_taiyuehuxi`（黄中2） | `sk_fuqidaofa`（地中8）、`sk_renfeiyandao`（玄上6）、`sk_linrenjichudao`（黄上3） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 14.3；合演阈值结束，弱档 ≤25 **（待实测）** |
+| 大内统领代理 | 清宫 / 军伍 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_junzhongdao`（玄上6）、`sk_daneishuangdao`（玄下4）、`sk_yulinjichudao`（黄中2）、`sk_gongshou`（黄中2） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 14.3；撤离 / 文书停战令多波不超 25 **（待实测）** |
+| 终局卓天雄 | 清宫 / 军伍代理 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_daneishuangdao`（玄下4）、`sk_wuyingshou`（玄中5）、`sk_yulinjichudao`（黄中2）、`sk_daneichangquan`（黄中2） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | 旧 `1/1/harmony` → `5/8/yang`；14.3，证物结案可提前停战 |
+| 官府追队头目 | 清宫 / 军伍 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_junzhongdao`（玄上6）、`sk_daneishuangdao`（玄下4）、`sk_yulinjichudao`（黄中2）、`sk_gongshou`（黄中2） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | 14.3；弱档 / 强守 16 / 17，合格 |
+| 大内援军（每名精英） | 清宫 / 军伍 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_daneishuangdao`（玄下4）、`sk_yulinjichudao`（黄中2）、`sk_gongshou`（黄中2） | `5/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 精英标准 7.1，落在 6–10 |
+
+未列普通敌人使用 `9000/6200/9000、routeOnly` 与五里程碑全 0；武学型精英须绑定上表明确模板，缺失即构建失败。攻防路线分别进入 04 的 Z5M / Z4M；护体真气后结算护体内劲，再进 `mpGuard`；速度先经脉后 `grappleMoveBp`，首轮冻结。绝招只看 `MoveDef.ultimate`；卓天雄点穴或玩家擒拿均在当次伤害后调用目标实例的 `applyAcupointSeal` / `applyGrapple`，不得反改该击。调息只修动态伤势，不推进永久成长。
 
 04 基线 `3.5 / 7.1 / 14.3` 在标准对标准 10000 bp 下保持不变。玩家弱一档时 Boss 伤害轮约 `ceil(14.3×10000/9157)=16`；强守方净伤害 861/1000 时约 `ceil(14.3×1000/861)=17`，均在 12–25。玩家强两档时约 `ceil(14.3×10000/14456)=10`，故该档只作碾压敏感性，不作为标准 Boss 验收；标准档仍须 12–25。速度强档 12239 bp 与封路 6500 bp 另测首轮 / CT / 移动，禁止折回伤害倍率。四侠、林任双人和援军场须以独立模块固定 RNG 回放 **（待实测）**。
 
