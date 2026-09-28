@@ -24,6 +24,7 @@ from typing import Iterable
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG_DIR = ROOT / "docs" / "design" / "catalog"
 ACUPOINT_REGISTRY = ROOT / "docs" / "design" / "15-meridians-and-acupoints.md"
+MERIDIAN_FLOW_PATH = ROOT / "docs" / "design" / "21-meridian-flow-and-moves.md"
 ULTIMATE_RULINGS_PATH = (
     ROOT / "docs" / "decisions" / "ultimate-counts-tianzhong-dizhong.md"
 )
@@ -63,6 +64,10 @@ ULTIMATE_QUOTA = {
     6: (1, 1), 7: (1, 1), 8: (1, 2), 9: (2, 2),
     10: (2, 2), 11: (2, 3), 12: (3, 3),
 }
+DIVERSITY_OVERLAP_BP = 8000
+EXTERNAL_WUJUE_ROUTE_IDS = frozenset(
+    item[1] for item in EXTERNAL_WUJUE.values()
+)
 
 
 class UltimateRulingsError(ValueError):
@@ -216,6 +221,90 @@ class RouteStepDefinition:
     @property
     def location(self) -> str:
         return f"{self.source}:{self.line}"
+
+
+@dataclass(frozen=True)
+class DiversityRoute:
+    catalog: str
+    source: str
+    line: int
+    skill_id: str
+    move_id: str
+    route_id: str
+    signature: tuple[str, ...]
+
+    @property
+    def location(self) -> str:
+        return f"{self.source}:{self.line}"
+
+
+@dataclass(frozen=True)
+class DiversityPair:
+    left: DiversityRoute
+    right: DiversityRoute
+    shared_count: int
+    denominator: int
+    exact: bool
+
+    @property
+    def overlap_bp(self) -> int:
+        return self.shared_count * 10000 // self.denominator
+
+
+@dataclass(frozen=True)
+class DiversityExactGroup:
+    signature: tuple[str, ...]
+    routes: tuple[DiversityRoute, ...]
+
+    @property
+    def skill_count(self) -> int:
+        return len({route.skill_id for route in self.routes})
+
+
+@dataclass(frozen=True)
+class DiversityCatalogSummary:
+    name: str
+    route_count: int
+    distinct_sequences: int
+    exact_group_count: int
+    exact_pair_count: int
+    similar_pair_count: int
+    warning_pair_count: int
+    cross_catalog_exact_pair_count: int
+    cross_catalog_similar_pair_count: int
+    cross_catalog_warning_pair_count: int
+
+
+@dataclass(frozen=True)
+class DiversityReport:
+    routes: tuple[DiversityRoute, ...]
+    catalogs: tuple[DiversityCatalogSummary, ...]
+    exact_groups: tuple[DiversityExactGroup, ...]
+    pairs: tuple[DiversityPair, ...]
+
+    @property
+    def route_count(self) -> int:
+        return len(self.routes)
+
+    @property
+    def distinct_sequences(self) -> int:
+        return len({route.signature for route in self.routes})
+
+    @property
+    def exact_pair_count(self) -> int:
+        return sum(pair.exact for pair in self.pairs)
+
+    @property
+    def warning_pair_count(self) -> int:
+        return sum(not pair.exact for pair in self.pairs)
+
+    @property
+    def similar_pair_count(self) -> int:
+        return len(self.pairs)
+
+    @property
+    def cross_catalog_similar_pair_count(self) -> int:
+        return sum(pair.left.catalog != pair.right.catalog for pair in self.pairs)
 
 
 @dataclass
@@ -1031,6 +1120,159 @@ def parse_audit_instances(text: str) -> dict[str, FinalInstance]:
     return result
 
 
+def collect_diversity_routes(paths: Iterable[Path]) -> list[DiversityRoute]:
+    """Collect final ultimate routes from each catalog's audit projection."""
+    routes: list[DiversityRoute] = []
+    include_external_wujue = False
+    for path in paths:
+        include_external_wujue |= (
+            is_official_catalog(path) and catalog_name(path) == "wujue"
+        )
+        text = path.read_text(encoding="utf-8")
+        for item in parse_audit_instances(text).values():
+            if item.body_ultimate is not True or item.route_ultimate is not True:
+                continue
+            routes.append(DiversityRoute(
+                catalog=catalog_name(path),
+                source=path.name,
+                line=item.line,
+                skill_id=item.skill_id,
+                move_id=item.move_id,
+                route_id=item.route_id,
+                signature=item.signature,
+            ))
+    if include_external_wujue:
+        routes.extend(parse_external_wujue_diversity_routes(MERIDIAN_FLOW_PATH))
+    return sorted(
+        routes, key=lambda item: (item.catalog, item.line, item.route_id)
+    )
+
+
+def parse_external_wujue_diversity_routes(path: Path) -> list[DiversityRoute]:
+    """Read the three Wujue routes whose concrete definitions live in 21."""
+    text = path.read_text(encoding="utf-8")
+    lines = text.splitlines()
+    starts: list[tuple[int, str]] = []
+    for index, line in enumerate(lines):
+        match = re.fullmatch(r"  - id: (mfr_[a-z0-9_]+)", line)
+        if match and match.group(1) in EXTERNAL_WUJUE_ROUTE_IDS:
+            starts.append((index, match.group(1)))
+
+    owner_by_route = {
+        route_id: (move_id, skill_id)
+        for move_id, (skill_id, route_id, _grade) in EXTERNAL_WUJUE.items()
+    }
+    routes: list[DiversityRoute] = []
+    for index, route_id in starts:
+        end = next((
+            cursor for cursor in range(index + 1, len(lines))
+            if re.match(r"^(?:  - id: mfr_|\S)", lines[cursor])
+        ), len(lines))
+        block = "\n".join(lines[index:end])
+        move_match = re.search(r"^    moveRef: (mv_[a-z0-9_]+)$", block, re.M)
+        points = tuple(re.findall(r"acupointRef: (ap_[a-z0-9_]+)", block))
+        expected_move, skill_id = owner_by_route[route_id]
+        if (move_match is None or move_match.group(1) != expected_move
+                or not re.search(r"^    ultimate: true$", block, re.M) or not points):
+            raise ValueError(
+                f"{path}:{index + 1}: malformed external route {route_id}"
+            )
+        routes.append(DiversityRoute(
+            catalog="wujue", source=path.name, line=index + 1,
+            skill_id=skill_id, move_id=expected_move, route_id=route_id,
+            signature=points,
+        ))
+    missing = sorted(set(owner_by_route) - {route.route_id for route in routes})
+    if missing:
+        raise ValueError(f"{path}: missing external routes {','.join(missing)}")
+    return routes
+
+
+def _diversity_pair(
+    left: DiversityRoute, right: DiversityRoute
+) -> DiversityPair | None:
+    """Return a cross-skill finding when set overlap reaches 80%."""
+    if left.skill_id == right.skill_id:
+        return None
+    left_points, right_points = set(left.signature), set(right.signature)
+    denominator = min(len(left_points), len(right_points))
+    if denominator == 0:
+        return None
+    shared = len(left_points & right_points)
+    if shared * 10000 < denominator * DIVERSITY_OVERLAP_BP:
+        return None
+    return DiversityPair(
+        left=left, right=right, shared_count=shared, denominator=denominator,
+        exact=left.signature == right.signature,
+    )
+
+
+def analyze_diversity_routes(
+    routes: Iterable[DiversityRoute],
+) -> DiversityReport:
+    """Compare ordered signatures globally while excluding one skill's routes."""
+    route_list = tuple(routes)
+    pairs: list[DiversityPair] = []
+    for index, left in enumerate(route_list):
+        for right in route_list[index + 1:]:
+            pair = _diversity_pair(left, right)
+            if pair is not None:
+                pairs.append(pair)
+
+    grouped: dict[tuple[str, ...], list[DiversityRoute]] = defaultdict(list)
+    for route in route_list:
+        grouped[route.signature].append(route)
+    exact_groups = tuple(
+        DiversityExactGroup(signature, tuple(items))
+        for signature, items in sorted(grouped.items())
+        if len({item.skill_id for item in items}) > 1
+    )
+
+    catalogs: list[DiversityCatalogSummary] = []
+    for name in sorted({route.catalog for route in route_list}):
+        local_routes = tuple(route for route in route_list if route.catalog == name)
+        local_pairs = tuple(
+            pair for pair in pairs
+            if pair.left.catalog == name and pair.right.catalog == name
+        )
+        cross_catalog_pairs = tuple(
+            pair for pair in pairs
+            if pair.left.catalog != pair.right.catalog
+            and name in (pair.left.catalog, pair.right.catalog)
+        )
+        local_groups = {
+            route.signature for route in local_routes
+            if len({
+                other.skill_id for other in local_routes
+                if other.signature == route.signature
+            }) > 1
+        }
+        catalogs.append(DiversityCatalogSummary(
+            name=name,
+            route_count=len(local_routes),
+            distinct_sequences=len({route.signature for route in local_routes}),
+            exact_group_count=len(local_groups),
+            exact_pair_count=sum(pair.exact for pair in local_pairs),
+            similar_pair_count=len(local_pairs),
+            warning_pair_count=sum(not pair.exact for pair in local_pairs),
+            cross_catalog_exact_pair_count=sum(
+                pair.exact for pair in cross_catalog_pairs
+            ),
+            cross_catalog_similar_pair_count=len(cross_catalog_pairs),
+            cross_catalog_warning_pair_count=sum(
+                not pair.exact for pair in cross_catalog_pairs
+            ),
+        ))
+    return DiversityReport(
+        routes=route_list, catalogs=tuple(catalogs),
+        exact_groups=exact_groups, pairs=tuple(pairs),
+    )
+
+
+def analyze_route_diversity(paths: Iterable[Path]) -> DiversityReport:
+    return analyze_diversity_routes(collect_diversity_routes(paths))
+
+
 def _route_values(line: str, route_id: str) -> tuple[tuple[str, ...], tuple[int, ...], tuple[int, ...]]:
     """Return acupoints, segment CT and risk from one instance row."""
     start = line.find(route_id)
@@ -1489,12 +1731,77 @@ def summary_row(audit: CatalogAudit) -> str:
     )
 
 
+def _route_label(route: DiversityRoute) -> str:
+    return (
+        f"{route.catalog}:{route.skill_id}/{route.move_id}/{route.route_id}"
+        f"@{route.location}"
+    )
+
+
+def print_diversity_report(report: DiversityReport, details: bool = False) -> None:
+    """Print stable per-catalog totals plus actionable global findings."""
+    for item in report.catalogs:
+        print(
+            f"{item.name}: routes={item.route_count}; "
+            f"distinct_sequences={item.distinct_sequences}; "
+            f"exact_groups={item.exact_group_count}; "
+            f"exact_pairs={item.exact_pair_count}; "
+            f"similar_pairs_ge80={item.similar_pair_count}; "
+            f"warnings={item.warning_pair_count}; "
+            f"cross_catalog_exact_pairs={item.cross_catalog_exact_pair_count}; "
+            f"cross_catalog_pairs_ge80={item.cross_catalog_similar_pair_count}; "
+            f"cross_catalog_warnings={item.cross_catalog_warning_pair_count}"
+        )
+    print(
+        f"diversity: routes={report.route_count}; "
+        f"distinct_sequences={report.distinct_sequences}; "
+        f"exact_groups={len(report.exact_groups)}; "
+        f"exact_pairs={report.exact_pair_count}; "
+        f"similar_pairs_ge80={report.similar_pair_count}; "
+        f"warnings={report.warning_pair_count}; "
+        f"cross_catalog_pairs_ge80={report.cross_catalog_similar_pair_count}"
+    )
+    if report.exact_groups:
+        print("ERROR: identical ordered sequences exist across different skills")
+    for group in report.exact_groups:
+        labels = ", ".join(_route_label(route) for route in group.routes)
+        print(
+            f"  ERROR exact sequence: skills={group.skill_count}; "
+            f"routes={len(group.routes)}; {labels}"
+        )
+    if report.warning_pair_count:
+        print(
+            f"WARNING: {report.warning_pair_count} non-identical cross-skill "
+            f"route pairs share at least {DIVERSITY_OVERLAP_BP / 100:.0f}% "
+            "of the shorter route; each requires a narrative reason"
+        )
+    if not details:
+        return
+    for pair in report.pairs:
+        if pair.exact:
+            continue
+        print(
+            f"  WARNING overlap={pair.shared_count}/{pair.denominator} "
+            f"({pair.overlap_bp / 100:.2f}%): "
+            f"{_route_label(pair.left)} <> {_route_label(pair.right)}; "
+            "requires a documented narrative reason"
+        )
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("paths", nargs="*", type=Path)
     parser.add_argument("--json", action="store_true", help="emit JSON")
     parser.add_argument("--strict", action="store_true", help="fail on any error")
     parser.add_argument("--details", action="store_true", help="print individual errors")
+    parser.add_argument(
+        "--diversity", action="store_true",
+        help="report cross-skill route diversity without changing exit status",
+    )
+    parser.add_argument(
+        "--diversity-strict", action="store_true",
+        help="fail on identical cross-skill routes; warn at 80%% overlap",
+    )
     args = parser.parse_args(argv)
     paths = args.paths or list(CATALOG_PATHS)
     paths = [path if path.is_absolute() else ROOT / path for path in paths]
@@ -1508,8 +1815,17 @@ def main(argv: list[str] | None = None) -> int:
     except UltimateRulingsError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
+    diversity_report = None
+    if args.diversity or args.diversity_strict:
+        diversity_report = analyze_route_diversity(paths)
     if args.json:
-        print(json.dumps([asdict(audit) for audit in audits], ensure_ascii=False, indent=2))
+        payload: object = [asdict(audit) for audit in audits]
+        if diversity_report is not None:
+            payload = {
+                "audits": payload,
+                "diversity": asdict(diversity_report),
+            }
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
     else:
         for audit in audits:
             print(summary_row(audit))
@@ -1519,7 +1835,15 @@ def main(argv: list[str] | None = None) -> int:
                 for warning in audit.warnings:
                     print(f"  ! {warning}")
         print(f"catalogs={len(audits)} errors={sum(len(a.errors) for a in audits)}")
-    return 1 if args.strict and any(audit.errors for audit in audits) else 0
+        if diversity_report is not None:
+            print_diversity_report(diversity_report, details=args.details)
+    existing_failure = args.strict and any(audit.errors for audit in audits)
+    diversity_failure = (
+        args.diversity_strict
+        and diversity_report is not None
+        and bool(diversity_report.exact_groups)
+    )
+    return 1 if existing_failure or diversity_failure else 0
 
 
 if __name__ == "__main__":

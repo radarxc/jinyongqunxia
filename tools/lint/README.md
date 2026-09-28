@@ -206,6 +206,9 @@ python3 tools/lint/check_skill_catalogs.py
 python3 tools/lint/check_skill_catalogs.py --details
 python3 tools/lint/check_skill_catalogs.py --json
 python3 tools/lint/check_skill_catalogs.py --strict
+python3 tools/lint/check_skill_catalogs.py --diversity
+python3 tools/lint/check_skill_catalogs.py --diversity --details
+python3 tools/lint/check_skill_catalogs.py --diversity-strict
 ```
 
 除 V-M01 三方一致、逐门绝招配额、7 / 9 / 10 重解锁层、显式路线、同门路线相似度、
@@ -224,11 +227,48 @@ Markdown 表格行含恰好一个 `mfr_*` 和至少一个具体 `ap_*` 步骤，
 解析、重复 ID 或算术不一致均为配置错误，命令输出明确 `ERROR` 并退出 `2`。正式扫描
 范围由 `docs/design/catalog/skills-*.md` 路径模式决定，不维护易漂移的整册门数/绝招
 总数快照；`MoveDef.ultimate:true` 仍是绝招真值，降龙十八掌的跨文档定义例外不变。
+该例外的三条最终路线实际定义在 `design/21` §12.1；默认正式扫描会把它们计入
+`wujue` 的多样性统计，但不会把 `design/21` 当成第十二册图鉴。传入临时文件或不含
+正式五绝册的局部路径时，不附加这三条路线。
+
+### 跨武学绝招路线多样性
+
+多样性检查只比较最终绝招路线，并排除同一 `skill_id` 内部的配对：同门多绝招已有
+更严格的“共享穴位不超过较短路线 50%、不得循环轮换 / 逆序”规则。跨武学检查采用：
+
+```text
+signature = tuple(acupointRef)
+overlapBp = floor(10000 * |set(A) ∩ set(B)| / min(|set(A)|, |set(B)|))
+```
+
+- 不同武学的 `signature` 完全相同：精确重复，属于严格失败；CT、风险或路线 ID 不同
+  不能把同一穴位序列变成不同路线。
+- 不同武学 `overlapBp >= 8000`：要求人工说明共同内功 / 门派底子与动作差异。非完全
+  相同只警告；同穴逆序或重排是 10000 bp 警告，而不是有序精确重复。
+- 分母取较短路线，避免一条长路线完整包住短路线却被长度稀释。正式路线已由既有检查
+  保证穴位不重复，因此集合交集不会隐藏单路线重复点。
+
+开关彼此独立，兼容既有门禁：
+
+| 开关 | 输出 | 多样性导致的退出码 |
+|---|---|---|
+| 无 / `--strict` | 不运行多样性分析 | 无；`--strict` 只按既有图鉴错误退出 1 |
+| `--diversity` | 按册汇总、全局汇总、所有精确组、非精确警告总数 | 始终不改变退出码 |
+| `--diversity --details` | 再展开每一对非精确 `>=80%` 路线及位置 | 始终不改变退出码 |
+| `--diversity-strict` | 与 `--diversity` 相同 | 存在至少一组跨武学精确重复时退出 1；仅高重合仍为 0 |
+
+按册字段中 `exact_groups/exact_pairs/similar_pairs_ge80/warnings` 只统计册内配对；
+`cross_catalog_*` 统计该册与其他册之间的配对，每个全局跨册对会在所涉及的两册各记
+一次。全局 `similar_pairs_ge80` 包含精确对，`warnings` 仅指非完全相同的高重合对。
+`--json` 与任一多样性开关合用时，顶层为 `audits` 与 `diversity`；不加多样性开关时
+仍保持原有审计数组形状。
 
 人读模式的 `配额违规` / `重复步骤定义` 与 JSON 字段
 `ultimate_quota_violations` / `duplicate_step_definitions` 分别统计逐门配额错误和第二次
 及以后的步骤定义；JSON 的 `warnings` 保存非失败提示。错误在 `--strict` 下令进程退出
-`1`。专项与全部 lint 测试分别可运行：
+`1`。图鉴路线尚未按 `design/21` §4.3.1–§4.3.4 全部改完前，应并行保留
+`--strict` 和只报告的 `--diversity`；精确重复清零后再启用 `--diversity-strict`。专项与
+全部 lint 测试分别可运行：
 
 ```shell
 python3 -m unittest -v tools.lint.test_check_skill_catalogs

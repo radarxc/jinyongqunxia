@@ -24,6 +24,19 @@ VALID_INSTANCE = """
 """
 
 
+def diversity_row(
+    skill_id: str, move_id: str, route_id: str, points: tuple[str, ...]
+) -> str:
+    steps = "→".join(f"{point}/80/100" for point in points)
+    return (
+        f"| 9 地上 | {skill_id} | {move_id} "
+        "MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; "
+        f"cd:0; recovery:1200; meridianRouteRef:{route_id}}} | "
+        f"{route_id} MeridianRouteDef{{moveRef:{move_id}; "
+        f"ultimate:true; purpose:attack}} | {steps} |"
+    )
+
+
 class CatalogParserTests(unittest.TestCase):
     ROUTE_DEFINITION_SHAPES = {
         "front_index": """
@@ -590,6 +603,152 @@ class CatalogParserTests(unittest.TestCase):
             audit = checker.audit_catalog(path)
         self.assertEqual((1, 1), (audit.body_ultimate_count, audit.route_ultimate_count))
         self.assertEqual([], audit.errors)
+
+
+class DiversityTests(unittest.TestCase):
+    POINTS = tuple(f"ap_test_{index}" for index in range(1, 6))
+
+    def write_catalog(
+        self, directory: str, name: str, rows: list[str]
+    ) -> Path:
+        path = Path(directory) / f"skills-{name}.md"
+        path.write_text("\n".join(rows), encoding="utf-8")
+        return path
+
+    def test_analysis_counts_exact_and_eighty_percent_across_skills(self) -> None:
+        exact = diversity_row(
+            "sk_alpha", "mv_alpha_one", "mfr_alpha_one", self.POINTS
+        )
+        copied = diversity_row(
+            "sk_beta", "mv_beta_one", "mfr_beta_one", self.POINTS
+        )
+        overlap = diversity_row(
+            "sk_gamma", "mv_gamma_one", "mfr_gamma_one",
+            self.POINTS[:4] + ("ap_other",),
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            first = self.write_catalog(directory, "first", [exact, copied])
+            second = self.write_catalog(directory, "second", [overlap])
+            report = checker.analyze_route_diversity([first, second])
+
+        self.assertEqual((3, 2), (report.route_count, report.distinct_sequences))
+        self.assertEqual(1, len(report.exact_groups))
+        self.assertEqual(2, report.exact_groups[0].skill_count)
+        self.assertEqual(3, report.similar_pair_count)
+        self.assertEqual(1, report.exact_pair_count)
+        self.assertEqual(2, report.warning_pair_count)
+        self.assertEqual(1, report.catalogs[0].exact_group_count)
+        self.assertEqual(0, report.catalogs[1].exact_group_count)
+        self.assertEqual(2, report.cross_catalog_similar_pair_count)
+        self.assertEqual(2, report.catalogs[0].cross_catalog_similar_pair_count)
+        self.assertEqual(2, report.catalogs[1].cross_catalog_similar_pair_count)
+        self.assertEqual(0, report.catalogs[0].cross_catalog_exact_pair_count)
+
+    def test_similarity_uses_smaller_route_and_excludes_same_skill(self) -> None:
+        left = checker.DiversityRoute(
+            "first", "first.md", 1, "sk_alpha", "mv_a", "mfr_a",
+            self.POINTS,
+        )
+        eighty = checker.DiversityRoute(
+            "first", "first.md", 2, "sk_beta", "mv_b", "mfr_b",
+            self.POINTS[:4],
+        )
+        seventy_five = checker.DiversityRoute(
+            "first", "first.md", 3, "sk_gamma", "mv_c", "mfr_c",
+            self.POINTS[:3] + ("ap_other",),
+        )
+        same_skill = checker.DiversityRoute(
+            "first", "first.md", 4, "sk_alpha", "mv_d", "mfr_d",
+            self.POINTS,
+        )
+        report = checker.analyze_diversity_routes(
+            [left, eighty, seventy_five, same_skill]
+        )
+        pairs = {(pair.left.route_id, pair.right.route_id) for pair in report.pairs}
+        self.assertIn(("mfr_a", "mfr_b"), pairs)
+        self.assertNotIn(("mfr_a", "mfr_c"), pairs)
+        self.assertNotIn(("mfr_a", "mfr_d"), pairs)
+
+    def test_reordered_same_points_is_warning_not_exact_sequence(self) -> None:
+        left = checker.DiversityRoute(
+            "first", "first.md", 1, "sk_alpha", "mv_a", "mfr_a",
+            self.POINTS,
+        )
+        reordered = checker.DiversityRoute(
+            "second", "second.md", 2, "sk_beta", "mv_b", "mfr_b",
+            tuple(reversed(self.POINTS)),
+        )
+        report = checker.analyze_diversity_routes([left, reordered])
+
+        self.assertEqual(0, len(report.exact_groups))
+        self.assertEqual(0, report.exact_pair_count)
+        self.assertEqual(1, report.warning_pair_count)
+        self.assertEqual(10000, report.pairs[0].overlap_bp)
+
+    def test_external_wujue_routes_are_read_from_design_21(self) -> None:
+        route_ids = list(checker.EXTERNAL_WUJUE.values())
+        blocks = []
+        for index, (skill_id, route_id, _grade) in enumerate(route_ids, 1):
+            move_id = next(
+                move for move, owner in checker.EXTERNAL_WUJUE.items()
+                if owner[1] == route_id
+            )
+            blocks.append(
+                f"  - id: {route_id}\n"
+                f"    moveRef: {move_id}\n"
+                "    ultimate: true\n"
+                "    steps:\n"
+                f"      - {{ acupointRef: ap_test_{index} }}"
+            )
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "21.md"
+            path.write_text("\n".join(blocks), encoding="utf-8")
+            routes = checker.parse_external_wujue_diversity_routes(path)
+
+        self.assertEqual(3, len(routes))
+        self.assertEqual("wujue", routes[0].catalog)
+        self.assertEqual(
+            set(checker.EXTERNAL_WUJUE), {route.move_id for route in routes}
+        )
+
+    def test_cli_report_never_fails_and_strict_fails_only_on_exact(self) -> None:
+        exact_rows = [
+            diversity_row("sk_alpha", "mv_a", "mfr_a", self.POINTS),
+            diversity_row("sk_beta", "mv_b", "mfr_b", self.POINTS),
+        ]
+        warning_rows = [
+            diversity_row("sk_alpha", "mv_a", "mfr_a", self.POINTS),
+            diversity_row(
+                "sk_beta", "mv_b", "mfr_b",
+                self.POINTS[:4] + ("ap_other",),
+            ),
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            exact = self.write_catalog(directory, "exact", exact_rows)
+            warning = self.write_catalog(directory, "warning", warning_rows)
+            with redirect_stdout(StringIO()) as output:
+                report_code = checker.main(["--diversity", str(exact)])
+            with redirect_stdout(StringIO()):
+                strict_code = checker.main(["--diversity-strict", str(exact)])
+            with redirect_stdout(StringIO()) as warning_output:
+                warning_code = checker.main(["--diversity-strict", str(warning)])
+
+        self.assertEqual(0, report_code)
+        self.assertIn("exact_groups=1", output.getvalue())
+        self.assertEqual(1, strict_code)
+        self.assertEqual(0, warning_code)
+        self.assertIn("WARNING", warning_output.getvalue())
+        self.assertIn("mfr_a", output.getvalue())
+
+    def test_existing_strict_does_not_run_diversity(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = self.write_catalog(directory, "empty", [])
+            with mock.patch.object(
+                checker, "analyze_route_diversity",
+                side_effect=AssertionError("diversity must be opt-in"),
+            ), redirect_stdout(StringIO()):
+                result = checker.main(["--strict", str(path)])
+        self.assertEqual(0, result)
 
 
 if __name__ == "__main__":
