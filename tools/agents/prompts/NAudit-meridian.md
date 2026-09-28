@@ -11,6 +11,7 @@
 - **ID 检查脚本修正**：NL。
 - **首领 / Boss 配装与统一口径**：NB1、NB2、NB3、NB4a、NB4b。
 - **审计前两段**：规则文档同步（NA1）、技术文档同步（NA1t）、11 册图鉴一致性（NA2）。
+- **外放加持（AR-16）**：21 新节、04 与参考实现（M5），规则与技术文档同步（M5b），图鉴逐招标记（M5c1、M5c2）。
 
 你是这一轮的最后一道关卡，可以修改 `docs/` 下任何文档、`tools/lint/`、`tools/balance/` 与 `TODO.md`。
 
@@ -32,18 +33,20 @@
    - **雪山侍从**：雪山左右侍从在 18 中是非战斗人物，在 `docs/design/chapters/14-xueshan.md` 中是精英敌人，统一口径。
    - **节奏抽查**：每部书界抽查 2 个 Boss，用 `boss_pacing.py` 复核逐单位轮数落在 12–25。
    - **书界 Buff 迁移**：14 部书界中运行时仍引用 `bf_fengxue` / `bf_fengnei` / `bf_fengjingmai` / `bf_chanrao` 的地方，改为新状态加等级。
-5. **跨文档一致**：
+5. **外放加持（AR-16）**：作者设定（原文）："再补一个设定，经脉修为上升后，对外放的武功会有范围加持（比如弹指神通，独孤九剑，降龙十八掌），原理是气是武功外放的能力，经脉运转快真气多，自然外放范围和威力就会剧增"。核对 21 的外放加持节、04、05 的 `MoveDef` 字段、09 / 14 / tech 与 11 册图鉴的外放标记一致；标准对标准时加持为零、Boss 节奏不变（`boss_pacing.py`）；抽查每册 3 个外放招式的射程 / 范围 / 威力与 `projection_sim.py --report` 一致；书界 Boss 使用的外放招式按 21 计入。
+6. **跨文档一致**：
    - 21 与 04 / 05 / 06 / 08 / 09 / 13 / 14 / 15 / 03 / tech / 武学图鉴 / 书界 的字段名、ID、结算顺序、数值一致。
    - 抽查每册图鉴至少 5 门天 / 地 / 玄上武学：绝招数量与解锁层、路线硬约束。
    - 抽查每部书界 1 个 Boss 的配装与经脉配置。
-6. **检查全部通过**：
+7. **检查全部通过**：
    - `python3 tools/lint/check_ids.py --strict`（必要时按全量扫描刷新基线，并在 tech/04 §11 记录债务数）
    - `python3 -m unittest tools/lint/test_check_ids.py`（以及 NA2 新增的 lint 测试）
    - `python3 tools/balance/damage_sim.py --check`
    - `python3 tools/balance/meridian_flow_sim.py --check`
    - `python3 tools/balance/boss_pacing.py --check`
-7. **需求状态**：
-   - 更新 `TODO.md` §7.1 的 AR-14、AR-15 行，写明覆盖章节与剩余缺口。
+   - `python3 tools/balance/projection_sim.py --check`
+8. **需求状态**：
+   - 更新 `TODO.md` §7.1 的 AR-14、AR-15、AR-16 行，写明覆盖章节与剩余缺口。
    - 更新 `docs/README.md` 的相关条目：行数实测、摘要，新增的工具与文档都要列入。
 
 ## 报告

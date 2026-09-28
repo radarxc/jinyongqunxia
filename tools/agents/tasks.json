@@ -5724,7 +5724,11 @@
         "NU2S",
         "NA1",
         "NA1t",
-        "NA2"
+        "NA2",
+        "M5",
+        "M5b",
+        "M5c1",
+        "M5c2"
       ],
       "writes": [
         "docs/**",
@@ -5768,6 +5772,11 @@
           [
             "{python}",
             "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
             "--check"
           ]
         ]
@@ -6612,6 +6621,276 @@
             "docs/design/catalog/skills-wujue.md",
             "docs/design/catalog/skills-xiaoyao.md",
             "docs/design/catalog/skills-yitian.md",
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "docs/design/catalog/skills-wuyue.md",
+            "docs/design/catalog/skills-kangxi.md",
+            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-gulong.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "M5",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "外放武功的经脉范围与威力加持（AR-16）：21 新节、04、参考实现",
+      "prompt": "M5-projection.md",
+      "deps": [
+        "NB3",
+        "N04"
+      ],
+      "writes": [
+        "docs/design/21-meridian-flow-and-moves.md",
+        "docs/design/04-damage-formula.md",
+        "docs/decisions/author-requirements.md",
+        "tools/balance/projection_sim.py",
+        "tools/balance/README.md",
+        "tools/balance/damage_sim.py"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/21-meridian-flow-and-moves.md",
+          "docs/design/04-damage-formula.md",
+          "docs/decisions/author-requirements.md",
+          "tools/balance/projection_sim.py"
+        ],
+        "fences": [
+          "docs/design/21-meridian-flow-and-moves.md",
+          "docs/design/04-damage-formula.md",
+          "docs/decisions/author-requirements.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "M5b",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "外放加持（AR-16）的规则与技术文档同步（05 / 09 / 14 / tech/04 / tech/05 / 基准）",
+      "prompt": "M5b-projection-sync.md",
+      "deps": [
+        "M5",
+        "NA1",
+        "NA1t"
+      ],
+      "writes": [
+        "docs/design/05-martial-arts-system.md",
+        "docs/design/09-combat-system.md",
+        "docs/design/14-ui-ux-mobile.md",
+        "docs/tech/04-data-pipeline.md",
+        "docs/tech/05-gameplay-engine.md",
+        "docs/00-canon.md",
+        "docs/decisions/canon-proposals-v1.2.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/09-combat-system.md",
+          "docs/design/14-ui-ux-mobile.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/05-gameplay-engine.md",
+          "docs/00-canon.md",
+          "docs/decisions/canon-proposals-v1.2.md"
+        ],
+        "fences": [
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/09-combat-system.md",
+          "docs/design/14-ui-ux-mobile.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/05-gameplay-engine.md",
+          "docs/00-canon.md",
+          "docs/decisions/canon-proposals-v1.2.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "M5c1",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "外放标记与基础射程 / 范围（AR-16）· 武学图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
+      "prompt": "M5c-projection-catalog.md",
+      "deps": [
+        "M5b",
+        "NA2"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-shaolin.md",
+        "docs/design/catalog/skills-daojia.md",
+        "docs/design/catalog/skills-general.md",
+        "docs/design/catalog/skills-wujue.md",
+        "docs/design/catalog/skills-xiaoyao.md",
+        "docs/design/catalog/skills-yitian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
+        "doc_set": "- `docs/design/catalog/skills-shaolin.md`\n- `docs/design/catalog/skills-daojia.md`\n- `docs/design/catalog/skills-general.md`\n- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-xiaoyao.md`\n- `docs/design/catalog/skills-yitian.md`",
+        "extra": "玄 / 黄阶招式若属外放（如劈空掌一类），同样标记；作者三例中的弹指神通、降龙十八掌若在本组，按示例数值核对。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md",
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md",
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md",
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md",
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-shaolin.md",
+            "docs/design/catalog/skills-daojia.md",
+            "docs/design/catalog/skills-general.md",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "M5c2",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "外放标记与基础射程 / 范围（AR-16）· 武学图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
+      "prompt": "M5c-projection-catalog.md",
+      "deps": [
+        "M5b",
+        "NA2"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-xiake-bixue.md",
+        "docs/design/catalog/skills-wuyue.md",
+        "docs/design/catalog/skills-kangxi.md",
+        "docs/design/catalog/skills-qianlong.md",
+        "docs/design/catalog/skills-gulong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
+        "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`\n- `docs/design/catalog/skills-wuyue.md`\n- `docs/design/catalog/skills-kangxi.md`\n- `docs/design/catalog/skills-qianlong.md`\n- `docs/design/catalog/skills-gulong.md`",
+        "extra": "玄 / 黄阶招式若属外放，同样标记；作者三例中的独孤九剑（剑气招）若在本组，按示例数值核对；古龙册的飞刀、暗器类按 21 的判定标准区分暗器通道与外放。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md",
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md",
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
             "docs/design/catalog/skills-xiake-bixue.md",
             "docs/design/catalog/skills-wuyue.md",
             "docs/design/catalog/skills-kangxi.md",
