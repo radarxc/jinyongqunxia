@@ -20,7 +20,7 @@ M5 已登记 AR-16，在 `docs/design/21-meridian-flow-and-moves.md` 新增"外�
    - 被点穴或经脉堵塞导致范围缩小时的提示。
 4. **tech/04**（`docs/tech/04-data-pipeline.md`）：
    - 构建校验包括新字段的合法区间、外放招式路线的穴位要求等。
-5. **tech/05**（`docs/tech/05-gameplay-engine.md`）：
+5. **tech/05**（`docs/tech/05-gameplay-engine.md`）：另按 NA1 报告，把 09 新写的绝招时序（F2 支付资源时置本门冷却、E2 递减）、统一候选过滤器（招式冷却 → 本门共享冷却 → 禁止连用 → 路线硬封，不扣资源、不耗 RNG）与 `query.moveAvailability` 对齐到 tech/05；
    - 范围计算在引擎中的位置与确定性。
    - 预估零副作用。
    - 回放一致。
