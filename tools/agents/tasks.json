@@ -5732,8 +5732,10 @@
         "NU5p",
         "NU5a",
         "NU5b",
-        "NX1",
-        "NX2"
+        "NXc1",
+        "NXc2",
+        "NXr1",
+        "NXr2"
       ],
       "writes": [
         "docs/**",
@@ -6776,7 +6778,8 @@
       "deps": [
         "M5b",
         "NA2",
-        "NU5a"
+        "NU5a",
+        "NXc1"
       ],
       "writes": [
         "docs/design/catalog/skills-shaolin.md",
@@ -6849,7 +6852,8 @@
       "deps": [
         "M5b",
         "NA2",
-        "NU5b"
+        "NU5b",
+        "NXc2"
       ],
       "writes": [
         "docs/design/catalog/skills-xiake-bixue.md",
@@ -7114,19 +7118,178 @@
       }
     },
     {
-      "id": "NX1",
+      "id": "NXc1",
       "phase": "G",
       "wave": 6,
       "kind": "revise",
-      "title": "补录首领专属武学并替换替补配装 · 书界 01–07",
-      "prompt": "NX-boss-arts.md",
+      "title": "补录首领所缺武学（按门派 / 来源归入图鉴，可正常习得）· 武学图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
+      "prompt": "NXc-boss-arts-catalog.md",
       "deps": [
+        "NU5a",
         "NB4a",
-        "M5b",
-        "NU5p"
+        "NB4b"
       ],
       "writes": [
-        "docs/design/catalog/skills-shouling-01-07.md",
+        "docs/design/catalog/skills-shaolin.md",
+        "docs/design/catalog/skills-daojia.md",
+        "docs/design/catalog/skills-general.md",
+        "docs/design/catalog/skills-wujue.md",
+        "docs/design/catalog/skills-xiaoyao.md",
+        "docs/design/catalog/skills-yitian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
+        "doc_set": "- `docs/design/catalog/skills-shaolin.md`\n- `docs/design/catalog/skills-daojia.md`\n- `docs/design/catalog/skills-general.md`\n- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-xiaoyao.md`\n- `docs/design/catalog/skills-yitian.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md",
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md",
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md",
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md",
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-shaolin.md",
+            "docs/design/catalog/skills-daojia.md",
+            "docs/design/catalog/skills-general.md",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXc2",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "补录首领所缺武学（按门派 / 来源归入图鉴，可正常习得）· 武学图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
+      "prompt": "NXc-boss-arts-catalog.md",
+      "deps": [
+        "NU5b",
+        "NB4a",
+        "NB4b"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-xiake-bixue.md",
+        "docs/design/catalog/skills-wuyue.md",
+        "docs/design/catalog/skills-kangxi.md",
+        "docs/design/catalog/skills-qianlong.md",
+        "docs/design/catalog/skills-gulong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
+        "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`\n- `docs/design/catalog/skills-wuyue.md`\n- `docs/design/catalog/skills-kangxi.md`\n- `docs/design/catalog/skills-qianlong.md`\n- `docs/design/catalog/skills-gulong.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md",
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md",
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "docs/design/catalog/skills-wuyue.md",
+            "docs/design/catalog/skills-kangxi.md",
+            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-gulong.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXr1",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "按补录结果替换首领替补配装 · 书界 01–07",
+      "prompt": "NXr-boss-arts-replace.md",
+      "deps": [
+        "NXc1",
+        "NXc2",
+        "NB4a"
+      ],
+      "writes": [
         "docs/design/chapters/01-tianlong.md",
         "docs/design/chapters/02-shediao.md",
         "docs/design/chapters/03-shendiao.md",
@@ -7139,12 +7302,10 @@
       "web": false,
       "vars": {
         "group_name": "书界 01–07",
-        "doc_set": "- `docs/design/chapters/01-tianlong.md`\n- `docs/design/chapters/02-shediao.md`\n- `docs/design/chapters/03-shendiao.md`\n- `docs/design/chapters/04-yitian.md`\n- `docs/design/chapters/05-xiaoao.md`\n- `docs/design/chapters/06-xiake.md`\n- `docs/design/chapters/07-bixue.md`",
-        "catalog": "docs/design/catalog/skills-shouling-01-07.md"
+        "doc_set": "- `docs/design/chapters/01-tianlong.md`\n- `docs/design/chapters/02-shediao.md`\n- `docs/design/chapters/03-shendiao.md`\n- `docs/design/chapters/04-yitian.md`\n- `docs/design/chapters/05-xiaoao.md`\n- `docs/design/chapters/06-xiake.md`\n- `docs/design/chapters/07-bixue.md`"
       },
       "validate": {
         "exists": [
-          "docs/design/catalog/skills-shouling-01-07.md",
           "docs/design/chapters/01-tianlong.md",
           "docs/design/chapters/02-shediao.md",
           "docs/design/chapters/03-shendiao.md",
@@ -7154,7 +7315,6 @@
           "docs/design/chapters/07-bixue.md"
         ],
         "fences": [
-          "docs/design/catalog/skills-shouling-01-07.md",
           "docs/design/chapters/01-tianlong.md",
           "docs/design/chapters/02-shediao.md",
           "docs/design/chapters/03-shendiao.md",
@@ -7196,13 +7356,7 @@
           ],
           [
             "{python}",
-            "tools/balance/projection_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
             "tools/agents/check_undefined_in.py",
-            "docs/design/catalog/skills-shouling-01-07.md",
             "docs/design/chapters/01-tianlong.md",
             "docs/design/chapters/02-shediao.md",
             "docs/design/chapters/03-shendiao.md",
@@ -7215,19 +7369,18 @@
       }
     },
     {
-      "id": "NX2",
+      "id": "NXr2",
       "phase": "G",
       "wave": 6,
       "kind": "revise",
-      "title": "补录首领专属武学并替换替补配装 · 书界 08–14",
-      "prompt": "NX-boss-arts.md",
+      "title": "按补录结果替换首领替补配装 · 书界 08–14",
+      "prompt": "NXr-boss-arts-replace.md",
       "deps": [
-        "NB4b",
-        "M5b",
-        "NU5p"
+        "NXc1",
+        "NXc2",
+        "NB4b"
       ],
       "writes": [
-        "docs/design/catalog/skills-shouling-08-14.md",
         "docs/design/chapters/08-luding.md",
         "docs/design/chapters/09-liancheng.md",
         "docs/design/chapters/10-baima.md",
@@ -7240,12 +7393,10 @@
       "web": false,
       "vars": {
         "group_name": "书界 08–14",
-        "doc_set": "- `docs/design/chapters/08-luding.md`\n- `docs/design/chapters/09-liancheng.md`\n- `docs/design/chapters/10-baima.md`\n- `docs/design/chapters/11-yuanyang.md`\n- `docs/design/chapters/12-shujian.md`\n- `docs/design/chapters/13-feihu.md`\n- `docs/design/chapters/14-xueshan.md`",
-        "catalog": "docs/design/catalog/skills-shouling-08-14.md"
+        "doc_set": "- `docs/design/chapters/08-luding.md`\n- `docs/design/chapters/09-liancheng.md`\n- `docs/design/chapters/10-baima.md`\n- `docs/design/chapters/11-yuanyang.md`\n- `docs/design/chapters/12-shujian.md`\n- `docs/design/chapters/13-feihu.md`\n- `docs/design/chapters/14-xueshan.md`"
       },
       "validate": {
         "exists": [
-          "docs/design/catalog/skills-shouling-08-14.md",
           "docs/design/chapters/08-luding.md",
           "docs/design/chapters/09-liancheng.md",
           "docs/design/chapters/10-baima.md",
@@ -7255,7 +7406,6 @@
           "docs/design/chapters/14-xueshan.md"
         ],
         "fences": [
-          "docs/design/catalog/skills-shouling-08-14.md",
           "docs/design/chapters/08-luding.md",
           "docs/design/chapters/09-liancheng.md",
           "docs/design/chapters/10-baima.md",
@@ -7297,13 +7447,7 @@
           ],
           [
             "{python}",
-            "tools/balance/projection_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
             "tools/agents/check_undefined_in.py",
-            "docs/design/catalog/skills-shouling-08-14.md",
             "docs/design/chapters/08-luding.md",
             "docs/design/chapters/09-liancheng.md",
             "docs/design/chapters/10-baima.md",
