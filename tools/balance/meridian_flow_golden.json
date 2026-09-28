@@ -14,11 +14,11 @@
           "ap_shoujueyin_laogong"
         ],
         "purpose": "attack",
-        "risk_bp": [
+        "riskBp": [
           100,
           100
         ],
-        "segment_ct": [
+        "segmentCt": [
           70,
           70
         ],
@@ -40,7 +40,7 @@
           "ap_dumai_baihui"
         ],
         "purpose": "attack",
-        "risk_bp": [
+        "riskBp": [
           150,
           150,
           150,
@@ -52,7 +52,7 @@
           150,
           150
         ],
-        "segment_ct": [
+        "segmentCt": [
           80,
           80,
           80,
@@ -80,7 +80,7 @@
           "ap_dumai_mingmen"
         ],
         "purpose": "attack",
-        "risk_bp": [
+        "riskBp": [
           500,
           500,
           500,
@@ -90,7 +90,7 @@
           500,
           500
         ],
-        "segment_ct": [
+        "segmentCt": [
           75,
           75,
           75,
@@ -114,7 +114,7 @@
           "ap_shoujueyin_neiguan"
         ],
         "purpose": "attack",
-        "risk_bp": [
+        "riskBp": [
           800,
           800,
           800,
@@ -122,7 +122,7 @@
           800,
           800
         ],
-        "segment_ct": [
+        "segmentCt": [
           85,
           85,
           85,
@@ -144,7 +144,7 @@
           "ap_shoujueyin_neiguan"
         ],
         "purpose": "defense",
-        "risk_bp": [
+        "riskBp": [
           120,
           120,
           120,
@@ -152,7 +152,7 @@
           120,
           120
         ],
-        "segment_ct": [
+        "segmentCt": [
           70,
           70,
           70,
@@ -172,13 +172,13 @@
           "ap_shoutaiyin_chize"
         ],
         "purpose": "movement",
-        "risk_bp": [
+        "riskBp": [
           100,
           100,
           100,
           100
         ],
-        "segment_ct": [
+        "segmentCt": [
           60,
           60,
           60,
@@ -204,16 +204,16 @@
         ],
         "cultivation": {
           "grade": 10,
-          "great_cycle": true,
-          "inner_nature": "harmony",
+          "greatCycle": true,
+          "innerNature": "harmony",
           "layer": 9,
-          "meridian_complete": true,
-          "meridian_nature": "harmony",
-          "mp_ratio_bp": 13000,
-          "practice_bp": 9500,
-          "small_cycle": true,
+          "meridianComplete": true,
+          "meridianNature": "harmony",
+          "mpRatioBp": 13000,
+          "practiceBp": 9500,
+          "smallCycle": true,
           "turns": 5,
-          "twelve_cycle": true
+          "twelveCycle": true
         },
         "kind": "boss",
         "openedAcupoints": [
@@ -247,16 +247,16 @@
         ],
         "cultivation": {
           "grade": 7,
-          "great_cycle": false,
-          "inner_nature": "yin",
+          "greatCycle": false,
+          "innerNature": "yin",
           "layer": 8,
-          "meridian_complete": true,
-          "meridian_nature": "yin",
-          "mp_ratio_bp": 10500,
-          "practice_bp": 7500,
-          "small_cycle": false,
+          "meridianComplete": true,
+          "meridianNature": "yin",
+          "mpRatioBp": 10500,
+          "practiceBp": 7500,
+          "smallCycle": false,
           "turns": 0,
-          "twelve_cycle": false
+          "twelveCycle": false
         },
         "kind": "elite",
         "openedAcupoints": [
@@ -290,16 +290,16 @@
         ],
         "cultivation": {
           "grade": 9,
-          "great_cycle": true,
-          "inner_nature": "harmony",
+          "greatCycle": true,
+          "innerNature": "harmony",
           "layer": 8,
-          "meridian_complete": true,
-          "meridian_nature": "yin",
-          "mp_ratio_bp": 12100,
-          "practice_bp": 9000,
-          "small_cycle": true,
+          "meridianComplete": true,
+          "meridianNature": "yin",
+          "mpRatioBp": 12100,
+          "practiceBp": 9000,
+          "smallCycle": true,
           "turns": 3,
-          "twelve_cycle": true
+          "twelveCycle": true
         },
         "kind": "hero",
         "openedAcupoints": [
@@ -322,16 +322,16 @@
         "completeAcupoints": [],
         "cultivation": {
           "grade": 5,
-          "great_cycle": false,
-          "inner_nature": "yang",
+          "greatCycle": false,
+          "innerNature": "yang",
           "layer": 7,
-          "meridian_complete": false,
-          "meridian_nature": "yang",
-          "mp_ratio_bp": 9000,
-          "practice_bp": 6200,
-          "small_cycle": false,
+          "meridianComplete": false,
+          "meridianNature": "yang",
+          "mpRatioBp": 9000,
+          "practiceBp": 6200,
+          "smallCycle": false,
           "turns": 0,
-          "twelve_cycle": false
+          "twelveCycle": false
         },
         "kind": "normal",
         "openedAcupoints": [
@@ -410,18 +410,92 @@
         212,
         212
       ],
+      "qualitiesBp": [
+        3396,
+        3830,
+        4265,
+        4700,
+        5134,
+        5569,
+        6003,
+        6438,
+        6873,
+        7307
+      ],
       "routeId": "mfr_eighteen_palms_chain",
       "routeQualityBp": 5351,
       "stateVersion": 1,
+      "trace": [
+        {
+          "acupointRef": "ap_renmai_qihai",
+          "incoming": 883,
+          "jamChanceBp": 212,
+          "passed": 883
+        },
+        {
+          "acupointRef": "ap_renmai_danzhong",
+          "incoming": 996,
+          "jamChanceBp": 212,
+          "passed": 996
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_yunmen",
+          "incoming": 1109,
+          "jamChanceBp": 212,
+          "passed": 1109
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_chize",
+          "incoming": 1222,
+          "jamChanceBp": 212,
+          "passed": 1222
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_taiyuan",
+          "incoming": 1335,
+          "jamChanceBp": 212,
+          "passed": 1335
+        },
+        {
+          "acupointRef": "ap_shoujueyin_neiguan",
+          "incoming": 1448,
+          "jamChanceBp": 212,
+          "passed": 1448
+        },
+        {
+          "acupointRef": "ap_shoujueyin_laogong",
+          "incoming": 1561,
+          "jamChanceBp": 212,
+          "passed": 1561
+        },
+        {
+          "acupointRef": "ap_dumai_mingmen",
+          "incoming": 1674,
+          "jamChanceBp": 212,
+          "passed": 1674
+        },
+        {
+          "acupointRef": "ap_dumai_zhiyang",
+          "incoming": 1787,
+          "jamChanceBp": 212,
+          "passed": 1787
+        },
+        {
+          "acupointRef": "ap_dumai_baihui",
+          "incoming": 1900,
+          "jamChanceBp": 212,
+          "passed": 1900
+        }
+      ],
       "unitId": "enemy_boss"
     },
     "breath": {
-      "backlog_removed": 252,
+      "backlogRemoved": 252,
       "ct": 1000,
-      "mp_cost_bp": 0,
-      "rupture_repaired": 617,
-      "seals_reduced": 0,
-      "stagnation_removed_bp": 2500,
+      "mpCostBp": 0,
+      "ruptureRepaired": 617,
+      "sealsReduced": 0,
+      "stagnationRemovedBp": 2500,
       "touched": [
         "ap_shoutaiyin_yunmen",
         "ap_dumai_baihui",
@@ -429,8 +503,8 @@
       ]
     },
     "defenseRoute": {
-      "attackMultBp": 9179,
-      "damage": 859,
+      "attackMultBp": 9200,
+      "damage": 861,
       "defenseMultBp": 9361,
       "incoming": 1000
     },
@@ -459,9 +533,55 @@
         245,
         245
       ],
+      "qualitiesBp": [
+        3971,
+        4489,
+        5007,
+        5525,
+        6043,
+        6561
+      ],
       "routeId": "mfr_guard_release",
       "routeQualityBp": 5266,
       "stateVersion": 0,
+      "trace": [
+        {
+          "acupointRef": "ap_renmai_qihai",
+          "incoming": 782,
+          "jamChanceBp": 245,
+          "passed": 782
+        },
+        {
+          "acupointRef": "ap_renmai_danzhong",
+          "incoming": 884,
+          "jamChanceBp": 245,
+          "passed": 884
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_yunmen",
+          "incoming": 986,
+          "jamChanceBp": 245,
+          "passed": 986
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_chize",
+          "incoming": 1088,
+          "jamChanceBp": 245,
+          "passed": 1088
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_taiyuan",
+          "incoming": 1190,
+          "jamChanceBp": 245,
+          "passed": 1190
+        },
+        {
+          "acupointRef": "ap_shoujueyin_neiguan",
+          "incoming": 1292,
+          "jamChanceBp": 245,
+          "passed": 1292
+        }
+      ],
       "unitId": "hero"
     },
     "eliteLong": {
@@ -482,16 +602,16 @@
       "blockedAt": 9,
       "blockedNode": "ap_dumai_baihui",
       "blockedState": {
-        "acupoint": "ap_dumai_baihui",
+        "acupointRef": "ap_dumai_baihui",
         "backlog": 951,
         "capacity": 1505,
-        "flow_bp": 9790,
+        "flowBp": 9790,
         "opened": true,
-        "rupture_damage": 0,
-        "seal_level": 0,
-        "seal_remaining": 0,
-        "seal_source": null,
-        "stagnation_bp": 2580,
+        "ruptureDamage": 0,
+        "sealLevel": 0,
+        "sealRemaining": 0,
+        "sealSource": null,
+        "stagnationBp": 2580,
         "water": 589
       },
       "completed": 9,
@@ -509,31 +629,104 @@
         614,
         770
       ],
+      "qualitiesBp": [
+        4514,
+        5125,
+        5736,
+        6348,
+        6959,
+        7571,
+        8182,
+        8794,
+        9405
+      ],
       "routeId": "mfr_eighteen_palms_chain",
       "routeQualityBp": 6263,
       "stateVersion": 1,
+      "trace": [
+        {
+          "acupointRef": "ap_renmai_qihai",
+          "incoming": 694,
+          "jamChanceBp": 462,
+          "passed": 694
+        },
+        {
+          "acupointRef": "ap_renmai_danzhong",
+          "incoming": 788,
+          "jamChanceBp": 462,
+          "passed": 788
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_yunmen",
+          "incoming": 882,
+          "jamChanceBp": 462,
+          "passed": 882
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_chize",
+          "incoming": 976,
+          "jamChanceBp": 462,
+          "passed": 976
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_taiyuan",
+          "incoming": 1070,
+          "jamChanceBp": 462,
+          "passed": 1070
+        },
+        {
+          "acupointRef": "ap_shoujueyin_neiguan",
+          "incoming": 1164,
+          "jamChanceBp": 462,
+          "passed": 1164
+        },
+        {
+          "acupointRef": "ap_shoujueyin_laogong",
+          "incoming": 1258,
+          "jamChanceBp": 462,
+          "passed": 1258
+        },
+        {
+          "acupointRef": "ap_dumai_mingmen",
+          "incoming": 1352,
+          "jamChanceBp": 462,
+          "passed": 1352
+        },
+        {
+          "acupointRef": "ap_dumai_zhiyang",
+          "incoming": 1446,
+          "jamChanceBp": 614,
+          "passed": 1446
+        },
+        {
+          "acupointRef": "ap_dumai_baihui",
+          "incoming": 1540,
+          "jamChanceBp": 770,
+          "passed": 589
+        }
+      ],
       "unitId": "enemy_elite"
     },
     "escapeLevel6Bp": 1900,
     "grapple1": {
-      "action_locked": false,
-      "agi_bp": 9500,
-      "evade_bp": 9500,
+      "actionLocked": false,
+      "agiBp": 9500,
+      "evadeBp": 9500,
       "level": 1,
-      "move_bp": 10000,
-      "recovery_add": 50,
-      "str_bp": 9500,
-      "weapon_locked": false
+      "moveBp": 10000,
+      "recoveryAdd": 50,
+      "strBp": 9500,
+      "weaponLocked": false
     },
     "grapple9": {
-      "action_locked": true,
-      "agi_bp": 0,
-      "evade_bp": 0,
+      "actionLocked": true,
+      "agiBp": 0,
+      "evadeBp": 0,
       "level": 9,
-      "move_bp": 0,
-      "recovery_add": 0,
-      "str_bp": 0,
-      "weapon_locked": true
+      "moveBp": 0,
+      "recoveryAdd": 0,
+      "strBp": 0,
+      "weaponLocked": true
     },
     "heroLongCommit": {
       "arrivalBp": [
@@ -568,9 +761,83 @@
         275,
         275
       ],
+      "qualitiesBp": [
+        3971,
+        4489,
+        5007,
+        5525,
+        6043,
+        6561,
+        7079,
+        7597,
+        8115,
+        8633
+      ],
       "routeId": "mfr_eighteen_palms_chain",
       "routeQualityBp": 6302,
       "stateVersion": 1,
+      "trace": [
+        {
+          "acupointRef": "ap_renmai_qihai",
+          "incoming": 782,
+          "jamChanceBp": 275,
+          "passed": 782
+        },
+        {
+          "acupointRef": "ap_renmai_danzhong",
+          "incoming": 884,
+          "jamChanceBp": 275,
+          "passed": 884
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_yunmen",
+          "incoming": 986,
+          "jamChanceBp": 275,
+          "passed": 986
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_chize",
+          "incoming": 1088,
+          "jamChanceBp": 275,
+          "passed": 1088
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_taiyuan",
+          "incoming": 1190,
+          "jamChanceBp": 275,
+          "passed": 1190
+        },
+        {
+          "acupointRef": "ap_shoujueyin_neiguan",
+          "incoming": 1292,
+          "jamChanceBp": 275,
+          "passed": 1292
+        },
+        {
+          "acupointRef": "ap_shoujueyin_laogong",
+          "incoming": 1394,
+          "jamChanceBp": 275,
+          "passed": 1394
+        },
+        {
+          "acupointRef": "ap_dumai_mingmen",
+          "incoming": 1496,
+          "jamChanceBp": 275,
+          "passed": 1496
+        },
+        {
+          "acupointRef": "ap_dumai_zhiyang",
+          "incoming": 1598,
+          "jamChanceBp": 275,
+          "passed": 1598
+        },
+        {
+          "acupointRef": "ap_dumai_baihui",
+          "incoming": 1700,
+          "jamChanceBp": 275,
+          "passed": 1700
+        }
+      ],
       "unitId": "hero"
     },
     "heroSeededCommit": {
@@ -606,9 +873,83 @@
         275,
         275
       ],
+      "qualitiesBp": [
+        3971,
+        4489,
+        5007,
+        5525,
+        6043,
+        6561,
+        7079,
+        7597,
+        8115,
+        8633
+      ],
       "routeId": "mfr_eighteen_palms_chain",
       "routeQualityBp": 6302,
       "stateVersion": 1,
+      "trace": [
+        {
+          "acupointRef": "ap_renmai_qihai",
+          "incoming": 782,
+          "jamChanceBp": 275,
+          "passed": 782
+        },
+        {
+          "acupointRef": "ap_renmai_danzhong",
+          "incoming": 884,
+          "jamChanceBp": 275,
+          "passed": 884
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_yunmen",
+          "incoming": 986,
+          "jamChanceBp": 275,
+          "passed": 986
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_chize",
+          "incoming": 1088,
+          "jamChanceBp": 275,
+          "passed": 1088
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_taiyuan",
+          "incoming": 1190,
+          "jamChanceBp": 275,
+          "passed": 1190
+        },
+        {
+          "acupointRef": "ap_shoujueyin_neiguan",
+          "incoming": 1292,
+          "jamChanceBp": 275,
+          "passed": 1292
+        },
+        {
+          "acupointRef": "ap_shoujueyin_laogong",
+          "incoming": 1394,
+          "jamChanceBp": 275,
+          "passed": 1394
+        },
+        {
+          "acupointRef": "ap_dumai_mingmen",
+          "incoming": 1496,
+          "jamChanceBp": 275,
+          "passed": 1496
+        },
+        {
+          "acupointRef": "ap_dumai_zhiyang",
+          "incoming": 1598,
+          "jamChanceBp": 275,
+          "passed": 1598
+        },
+        {
+          "acupointRef": "ap_dumai_baihui",
+          "incoming": 1700,
+          "jamChanceBp": 275,
+          "passed": 1700
+        }
+      ],
       "unitId": "hero"
     },
     "heroShortPreview": {
@@ -628,88 +969,106 @@
         225,
         225
       ],
+      "qualitiesBp": [
+        3971,
+        4489
+      ],
       "routeId": "mfr_half_step_crush",
       "routeQualityBp": 4230,
       "stateVersion": 0,
+      "trace": [
+        {
+          "acupointRef": "ap_dumai_mingmen",
+          "incoming": 782,
+          "jamChanceBp": 225,
+          "passed": 782
+        },
+        {
+          "acupointRef": "ap_shoujueyin_laogong",
+          "incoming": 884,
+          "jamChanceBp": 225,
+          "passed": 884
+        }
+      ],
       "unitId": "hero"
     },
     "innerGuardBreak": {
       "broken": true,
       "cancelled": 600,
       "capacity": 1000,
-      "delay_ct": 400,
-      "eligible_incoming": 1600,
-      "hp_damage": 1000,
-      "mp_spent": 300,
-      "reflect_damage": 0,
-      "stagnation_bp": 3000
+      "damageBeforeMpGuard": 1000,
+      "delayCt": 400,
+      "eligibleIncoming": 1600,
+      "mpSpent": 300,
+      "reflectDamage": 0,
+      "stagnationBp": 3000
     },
     "innerGuardCapacityBreak": {
       "broken": true,
       "cancelled": 1000,
       "capacity": 1000,
-      "delay_ct": 300,
-      "eligible_incoming": 1600,
-      "hp_damage": 600,
-      "mp_spent": 500,
-      "reflect_damage": 0,
-      "stagnation_bp": 2120
+      "damageBeforeMpGuard": 600,
+      "delayCt": 300,
+      "eligibleIncoming": 1600,
+      "mpSpent": 500,
+      "reflectDamage": 0,
+      "stagnationBp": 2120
     },
     "innerGuardHold": {
       "broken": false,
       "cancelled": 1000,
       "capacity": 1506,
-      "delay_ct": 0,
-      "eligible_incoming": 1000,
-      "hp_damage": 0,
-      "mp_spent": 500,
-      "reflect_damage": 100,
-      "stagnation_bp": 0
+      "damageBeforeMpGuard": 0,
+      "delayCt": 0,
+      "eligibleIncoming": 1000,
+      "mpSpent": 500,
+      "reflectDamage": 100,
+      "stagnationBp": 0
     },
     "innerGuardKinds": {
       "hidden": {
         "broken": false,
         "cancelled": 0,
         "capacity": 1000,
-        "delay_ct": 0,
-        "eligible_incoming": 0,
-        "hp_damage": 1000,
-        "mp_spent": 0,
-        "reflect_damage": 0,
-        "stagnation_bp": 0
+        "damageBeforeMpGuard": 1000,
+        "delayCt": 0,
+        "eligibleIncoming": 0,
+        "mpSpent": 0,
+        "reflectDamage": 0,
+        "stagnationBp": 0
       },
       "projected": {
         "broken": false,
         "cancelled": 400,
         "capacity": 1000,
-        "delay_ct": 0,
-        "eligible_incoming": 400,
-        "hp_damage": 600,
-        "mp_spent": 200,
-        "reflect_damage": 0,
-        "stagnation_bp": 0
+        "damageBeforeMpGuard": 600,
+        "delayCt": 0,
+        "eligibleIncoming": 400,
+        "mpSpent": 200,
+        "reflectDamage": 0,
+        "stagnationBp": 0
       },
       "unarmed": {
         "broken": false,
         "cancelled": 1000,
         "capacity": 1000,
-        "delay_ct": 0,
-        "eligible_incoming": 1000,
-        "hp_damage": 0,
-        "mp_spent": 500,
-        "reflect_damage": 0,
-        "stagnation_bp": 0
+        "damageBeforeMpGuard": 0,
+        "delayCt": 0,
+        "eligibleIncoming": 1000,
+        "mpSpent": 500,
+        "reflectDamage": 0,
+        "stagnationBp": 0
       },
       "weapon": {
         "broken": false,
         "cancelled": 250,
         "capacity": 1000,
-        "delay_ct": 0,
-        "eligible_incoming": 250,
-        "hp_damage": 750,
-        "mp_spent": 125,
-        "reflect_damage": 0,
-        "stagnation_bp": 0
+        "damageBeforeMpGuard": 750,
+        "delayCt": 0,
+        "eligibleIncoming": 250,
+        "mpSpent": 125,
+        "reflectDamage": 0,
+        "stagnationBp": 0
       }
     },
     "jammed": {
@@ -724,16 +1083,16 @@
       "blockedAt": 3,
       "blockedNode": "ap_shoutaiyin_chize",
       "blockedState": {
-        "acupoint": "ap_shoutaiyin_chize",
+        "acupointRef": "ap_shoutaiyin_chize",
         "backlog": 1220,
         "capacity": 1011,
-        "flow_bp": 8580,
+        "flowBp": 8580,
         "opened": true,
-        "rupture_damage": 816,
-        "seal_level": 0,
-        "seal_remaining": 0,
-        "seal_source": null,
-        "stagnation_bp": 6534,
+        "ruptureDamage": 816,
+        "sealLevel": 0,
+        "sealRemaining": 0,
+        "sealSource": null,
+        "stagnationBp": 6534,
         "water": 208
       },
       "completed": 3,
@@ -745,9 +1104,40 @@
         975,
         1975
       ],
+      "qualitiesBp": [
+        4938,
+        5634,
+        6330
+      ],
       "routeId": "mfr_novice_eight",
       "routeQualityBp": 2112,
       "stateVersion": 1,
+      "trace": [
+        {
+          "acupointRef": "ap_renmai_qihai",
+          "incoming": 582,
+          "jamChanceBp": 975,
+          "passed": 582
+        },
+        {
+          "acupointRef": "ap_renmai_danzhong",
+          "incoming": 664,
+          "jamChanceBp": 975,
+          "passed": 664
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_yunmen",
+          "incoming": 746,
+          "jamChanceBp": 975,
+          "passed": 746
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_chize",
+          "incoming": 828,
+          "jamChanceBp": 1975,
+          "passed": 208
+        }
+      ],
       "unitId": "enemy_normal"
     },
     "matchups": {
@@ -800,10 +1190,10 @@
         "ttkBeforeActions": 22
       },
       "weakOneTier": {
-        "attackMultBp": 9241,
+        "attackMultBp": 9157,
         "attackerStrengthBp": 8250,
         "baseDamage": 849,
-        "damage": 784,
+        "damage": 777,
         "defenderStrengthBp": 10000,
         "defenseMultBp": 10000,
         "targetHp": 3970,
@@ -833,9 +1223,41 @@
         225,
         225
       ],
+      "qualitiesBp": [
+        3971,
+        4489,
+        5007,
+        5525
+      ],
       "routeId": "mfr_qinggong_cycle",
       "routeQualityBp": 4748,
       "stateVersion": 0,
+      "trace": [
+        {
+          "acupointRef": "ap_renmai_qihai",
+          "incoming": 782,
+          "jamChanceBp": 225,
+          "passed": 782
+        },
+        {
+          "acupointRef": "ap_renmai_danzhong",
+          "incoming": 884,
+          "jamChanceBp": 225,
+          "passed": 884
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_yunmen",
+          "incoming": 986,
+          "jamChanceBp": 225,
+          "passed": 986
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_chize",
+          "incoming": 1088,
+          "jamChanceBp": 225,
+          "passed": 1088
+        }
+      ],
       "unitId": "hero"
     },
     "normalShort": {
@@ -855,24 +1277,57 @@
         575,
         575
       ],
+      "qualitiesBp": [
+        4938,
+        5634
+      ],
       "routeId": "mfr_half_step_crush",
       "routeQualityBp": 5286,
       "stateVersion": 1,
+      "trace": [
+        {
+          "acupointRef": "ap_dumai_mingmen",
+          "incoming": 582,
+          "jamChanceBp": 575,
+          "passed": 582
+        },
+        {
+          "acupointRef": "ap_shoujueyin_laogong",
+          "incoming": 664,
+          "jamChanceBp": 575,
+          "passed": 664
+        }
+      ],
       "unitId": "enemy_normal"
     },
+    "normalization": {
+      "equalProfile": {
+        "capacityBp": 10000,
+        "completionBp": 10000,
+        "flowBp": 10000,
+        "qiBp": 10000
+      },
+      "equalStrengthBp": 10000,
+      "rawAndStandard": [
+        320,
+        1240,
+        8650,
+        4230
+      ]
+    },
     "point1": {
-      "breath_locked": false,
-      "flow_penalty_bp": 500,
-      "inner_locked": false,
+      "breathLocked": false,
+      "flowPenaltyBp": 500,
+      "innerLocked": false,
       "level": 1,
-      "mp_cost_add_bp": 300
+      "mpCostAddBp": 300
     },
     "point9": {
-      "breath_locked": true,
-      "flow_penalty_bp": 10000,
-      "inner_locked": true,
+      "breathLocked": true,
+      "flowPenaltyBp": 10000,
+      "innerLocked": true,
       "level": 9,
-      "mp_cost_add_bp": 0
+      "mpCostAddBp": 0
     },
     "ruptured": {
       "arrivalBp": [
@@ -885,16 +1340,16 @@
       "blockedAt": 2,
       "blockedNode": "ap_shoutaiyin_yunmen",
       "blockedState": {
-        "acupoint": "ap_shoutaiyin_yunmen",
+        "acupointRef": "ap_shoutaiyin_yunmen",
         "backlog": 1708,
         "capacity": 1011,
-        "flow_bp": 8580,
+        "flowBp": 8580,
         "opened": true,
-        "rupture_damage": 1304,
-        "seal_level": 0,
-        "seal_remaining": 0,
-        "seal_source": null,
-        "stagnation_bp": 8504,
+        "ruptureDamage": 1304,
+        "sealLevel": 0,
+        "sealRemaining": 0,
+        "sealSource": null,
+        "stagnationBp": 8504,
         "water": 138
       },
       "completed": 2,
@@ -905,9 +1360,33 @@
         1275,
         2775
       ],
+      "qualitiesBp": [
+        4938,
+        5634
+      ],
       "routeId": "mfr_forced_six",
       "routeQualityBp": 1762,
       "stateVersion": 1,
+      "trace": [
+        {
+          "acupointRef": "ap_renmai_qihai",
+          "incoming": 582,
+          "jamChanceBp": 1275,
+          "passed": 582
+        },
+        {
+          "acupointRef": "ap_renmai_danzhong",
+          "incoming": 664,
+          "jamChanceBp": 1275,
+          "passed": 664
+        },
+        {
+          "acupointRef": "ap_shoutaiyin_yunmen",
+          "incoming": 746,
+          "jamChanceBp": 2775,
+          "passed": 138
+        }
+      ],
       "unitId": "enemy_normal"
     },
     "sealed": {
@@ -917,34 +1396,36 @@
       "blockedAt": 4,
       "blockedNode": "ap_shoutaiyin_taiyuan",
       "blockedState": {
-        "acupoint": "ap_shoutaiyin_taiyuan",
+        "acupointRef": "ap_shoutaiyin_taiyuan",
         "backlog": 0,
         "capacity": 1969,
-        "flow_bp": 10000,
+        "flowBp": 10000,
         "opened": true,
-        "rupture_damage": 0,
-        "seal_level": 9,
-        "seal_remaining": 2,
-        "seal_source": "fixture",
-        "stagnation_bp": 0,
+        "ruptureDamage": 0,
+        "sealLevel": 9,
+        "sealRemaining": 2,
+        "sealSource": "fixture",
+        "stagnationBp": 0,
         "water": 0
       },
       "completed": 0,
       "disabledReason": "point_seal_9",
       "flowCt": 0,
       "jamChancesBp": [],
+      "qualitiesBp": [],
       "routeId": "mfr_eighteen_palms_chain",
       "routeQualityBp": 0,
       "stateVersion": 1,
+      "trace": [],
       "unitId": "hero"
     },
     "selfUnseal": {
-      "backlog_removed": 0,
+      "backlogRemoved": 0,
       "ct": 1000,
-      "mp_cost_bp": 0,
-      "rupture_repaired": 0,
-      "seals_reduced": 1,
-      "stagnation_removed_bp": 0,
+      "mpCostBp": 0,
+      "ruptureRepaired": 0,
+      "sealsReduced": 1,
+      "stagnationRemovedBp": 0,
       "touched": [
         "ap_dumai_mingmen",
         "ap_dumai_baihui",
@@ -959,6 +1440,14 @@
         "multBp": 10000,
         "openingQinggong": 98,
         "spd": 106
+      },
+      "grappledStrong": {
+        "evadeRatingDelta": 22,
+        "grappleMoveBp": 6000,
+        "move": 5,
+        "multBp": 12239,
+        "openingQinggong": 71,
+        "spd": 77
       },
       "maxActionsPer1000Ticks": 600,
       "sealed": {
@@ -979,5 +1468,5 @@
   },
   "rngProtocol": 1,
   "rulesProtocol": 2,
-  "vectorSha256": "f2a1aa5262e7b7a0ac01c293364783e759c2d608a50e86ad665675c14adf9bea"
+  "vectorSha256": "af33dcd10dc196e18811fe485870666ab139c03a17342fa47113ecc19552cd76"
 }

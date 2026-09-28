@@ -6,8 +6,6 @@ is a balance/reference implementation, not the production TypeScript engine.
 It intentionally uses only the standard library, integers and basis points.
 """
 
-from __future__ import annotations
-
 import argparse
 import json
 from dataclasses import asdict, dataclass, replace
@@ -15,7 +13,6 @@ from hashlib import sha256
 from math import isqrt
 from pathlib import Path
 from typing import Iterable, Sequence
-
 BP = 10_000
 MASK32 = 0xFFFF_FFFF
 RULES_PROTOCOL = 2
@@ -46,14 +43,11 @@ def lerp_anchors(value: int, anchors: Sequence[tuple[int, int]]) -> int:
             return y0 + (value - x0) * (y1 - y0) // (x1 - x0)
     return anchors[-1][1]
 
-
 def route_reach_bp(length: int) -> int:
     """How much of a relative-strength edge this route can realise."""
     if not 1 <= length <= 18:
         raise ValueError("route length must be 1..18")
     return min(BP, 3_000 + 7_000 * length // 18)
-
-
 ATTACK_CURVE = (
     (4_000, 6_500), (5_000, 6_500), (6_500, 7_200), (8_000, 8_600),
     (10_000, 10_000), (12_000, 13_000), (15_000, 16_500),
@@ -69,47 +63,48 @@ SPEED_CURVE = (
     (10_000, 10_000), (12_000, 11_000), (15_000, 12_250),
     (18_000, 13_500),
 )
-
-
 @dataclass(frozen=True)
 class MeridianProfile:
     qi_bp: int
     capacity_bp: int
     flow_bp: int
     completion_bp: int
+def relative_component_bp(value: int, standard: int, lo: int = 4_000) -> int:
+    if standard <= 0:
+        raise ValueError("STD meridian component must be positive")
+    return clamp(value * BP // standard, lo, 18_000)
 
-
+def normalize_profile(raw: tuple[int, int, int, int],
+                      standard: tuple[int, int, int, int]) -> MeridianProfile:
+    values = [relative_component_bp(v, s) for v, s in zip(raw[:3], standard[:3])]
+    return MeridianProfile(*values, relative_component_bp(raw[3], standard[3], lo=0))
 def meridian_strength_bp(profile: MeridianProfile) -> int:
     """30% qi, 25% capacity, 25% fluency, 20% route quality."""
-    score = (30 * profile.qi_bp + 25 * profile.capacity_bp
-             + 25 * profile.flow_bp + 20 * profile.completion_bp) // 100
+    qi, capacity, flow = (clamp(value, 4_000, 18_000) for value in
+                          (profile.qi_bp, profile.capacity_bp, profile.flow_bp))
+    completion = clamp(profile.completion_bp, 0, 18_000)
+    score = (30 * qi + 25 * capacity + 25 * flow + 20 * completion) // 100
     return clamp(score, 4_000, 18_000)
-
-
 def _blend_from_neutral(target_bp: int, realise_bp: int) -> int:
     if target_bp >= BP:
         return BP + (target_bp - BP) * realise_bp // BP
     return BP - (BP - target_bp) * realise_bp // BP
-
-
 def attack_meridian_mult_bp(
     attacker: MeridianProfile, defender: MeridianProfile, route_length: int,
 ) -> int:
     ratio = clamp(meridian_strength_bp(attacker) * BP
                   // max(1, meridian_strength_bp(defender)), 4_000, 25_000)
     target = lerp_anchors(ratio, ATTACK_CURVE)
-    quality_reach = clamp(5_000 + attacker.completion_bp // 2, 5_000, BP)
+    quality_reach = clamp(5_000 + (attacker.completion_bp if ratio >= BP else defender.completion_bp) // 2, 5_000, BP)
     realise = mul_bp_floor(route_reach_bp(route_length), quality_reach)
     return clamp(_blend_from_neutral(target, realise), 6_500, 22_000)
-
-
 def defense_meridian_mult_bp(
     defender: MeridianProfile, attacker: MeridianProfile, route_length: int,
 ) -> int:
     ratio = clamp(meridian_strength_bp(defender) * BP
                   // max(1, meridian_strength_bp(attacker)), 4_000, 25_000)
     target = lerp_anchors(ratio, DEFENSE_CURVE)
-    quality_reach = clamp(5_000 + defender.completion_bp // 2, 5_000, BP)
+    quality_reach = clamp(5_000 + (defender.completion_bp if ratio >= BP else attacker.completion_bp) // 2, 5_000, BP)
     realise = mul_bp_floor(route_reach_bp(route_length), quality_reach)
     return clamp(_blend_from_neutral(target, realise), 5_000, 13_000)
 def _imul32(a: int, b: int) -> int:
@@ -201,6 +196,9 @@ class RouteSpec:
         if self.purpose not in {"attack", "defense", "movement"}:
             raise ValueError("route purpose must be attack/defense/movement")
 @dataclass(frozen=True)
+class FlowTraceStep:
+    acupoint: str; incoming: int; passed: int; jam_chance_bp: int
+@dataclass(frozen=True)
 class FlowResult:
     unit_id: str
     route_id: str
@@ -214,6 +212,7 @@ class FlowResult:
     qualities_bp: tuple[int, ...]
     jam_chances_bp: tuple[int, ...]
     arrival_bp: tuple[int, ...]
+    trace: tuple[FlowTraceStep, ...]
     state_version: int
     disabled_reason: str | None = None
 @dataclass(frozen=True)
@@ -328,7 +327,7 @@ class MeridianFlowModule:
                 reason = "point_seal_9"
             if reason:
                 return FlowResult(self.unit_id, route.id, 0, 0, 0, 0, index, node.acupoint,
-                                  states, (), (), (),
+                                  states, (), (), (), (),
                                   self.state_version, reason)
 
         current_qi = initial_qi(self.cultivation)
@@ -337,6 +336,7 @@ class MeridianFlowModule:
         qualities: list[int] = []
         jam_chances: list[int] = []
         arrivals: list[int] = []
+        trace: list[FlowTraceStep] = []
         arrival_bp = BP
         completed = attempted = flow_ct = 0
         blocked_at: int | None = None
@@ -362,6 +362,7 @@ class MeridianFlowModule:
                 raise ValueError("roll must be in 0..9999")
             jammed = roll < chance
             passed = mul_bp_floor(normal_pass, 4_000) if jammed else normal_pass
+            trace.append(FlowTraceStep(node.acupoint, incoming, passed, chance))
             excess = max(0, incoming - passed)
             backlog = node.backlog + excess
             stagnation = clamp(
@@ -392,7 +393,7 @@ class MeridianFlowModule:
         return FlowResult(
             self.unit_id, route.id, completed, attempted, actual, flow_ct,
             blocked_at, blocked_node, tuple(updated), tuple(qualities),
-            tuple(jam_chances), tuple(arrivals), self.state_version,
+            tuple(jam_chances), tuple(arrivals), tuple(trace), self.state_version,
         )
 
     def preview(self, route: RouteSpec, *, preview_roll_bp: int = 9_999) -> FlowResult:
@@ -531,7 +532,6 @@ class MeridianFlowModule:
             if updated != node:
                 self.nodes[key] = updated
         self.state_version += 1
-
     def snapshot(self) -> dict[str, object]:
         return {
             "schema": "meridian-flow-state.v1",
@@ -544,9 +544,8 @@ class MeridianFlowModule:
             "grappleLevel": self.grapple_level,
             "grappleSource": self.grapple_source,
             "grappleRemaining": self.grapple_remaining,
-            "nodes": [asdict(self.nodes[key]) for key in sorted(self.nodes)],
+            "nodes": [contract_value(self.nodes[key]) for key in sorted(self.nodes)],
         }
-
     def restore(self, snapshot: dict[str, object]) -> None:
         if snapshot["unitId"] != self.unit_id:
             raise ValueError("snapshot belongs to another unit")
@@ -562,8 +561,10 @@ class MeridianFlowModule:
         self.grapple_level = int(snapshot["grappleLevel"])
         self.grapple_source = snapshot["grappleSource"]  # type: ignore[assignment]
         self.grapple_remaining = int(snapshot["grappleRemaining"])
-        rows = snapshot["nodes"]
-        self.nodes = {row["acupoint"]: NodeState(**row) for row in rows}  # type: ignore[arg-type,index]
+        self.nodes = {row["acupointRef"]: NodeState(
+            row["acupointRef"], row["opened"], row["water"], row["capacity"], row["flowBp"],
+            row["stagnationBp"], row["backlog"], row["ruptureDamage"], row["sealLevel"], row["sealSource"], row["sealRemaining"],
+        ) for row in snapshot["nodes"]}  # type: ignore[arg-type,index]
 
 
 @dataclass(frozen=True)
@@ -633,7 +634,7 @@ class InnerGuardResult:
     eligible_incoming: int
     capacity: int
     cancelled: int
-    hp_damage: int
+    damage_before_mp_guard: int
     mp_spent: int
     broken: bool
     delay_ct: int
@@ -652,7 +653,8 @@ def inner_guard(
         raise ValueError("unknown damage kind")
     eligible = mul_bp_floor(incoming, eligibility[damage_kind])
     strength = meridian_strength_bp(defender)
-    raw_capacity = strength * defender.flow_bp // 100_000
+    flow_ratio_bp = clamp(defender.flow_bp, 4_000, 18_000)
+    raw_capacity = strength * flow_ratio_bp // 100_000
     capacity = mul_bp_floor(raw_capacity, max(0, BP - clamp(break_guard_bp, 0, 8_000)))
     cancelled = min(eligible, capacity, mp * 2)
     spent = ceil_div(cancelled, 2)
@@ -668,13 +670,12 @@ def inner_guard(
 
 def speed_meridian_mult_bp(
     self_profile: MeridianProfile, field_reference: MeridianProfile,
-    *, route_quality_bp: int, sealed: bool = False, ruptured: bool = False,
+    *, sealed: bool = False, ruptured: bool = False,
 ) -> int:
     ratio = clamp(meridian_strength_bp(self_profile) * BP
                   // max(1, meridian_strength_bp(field_reference)), 4_000, 18_000)
     target = lerp_anchors(ratio, SPEED_CURVE)
-    quality_reach = clamp(route_quality_bp, 0, BP)
-    result = _blend_from_neutral(target, quality_reach)
+    result = target
     if sealed:
         result = min(result, 6_500)
     if ruptured:
@@ -698,9 +699,9 @@ def project_opening_qinggong(effective_qinggong: int, combined_speed_bp: int) ->
     return max(0, mul_bp_floor(effective_qinggong, combined_speed_bp))
 
 
-def evade_rating_delta(combined_speed_bp: int) -> int:
-    """Correction consumed by 04's evade rating; 04 still owns hit chance."""
-    return clamp((combined_speed_bp - BP) // 100, -35, 35)
+def evade_rating_delta(meridian_speed_bp: int) -> int:
+    """Meridian-only correction; grapple evadeBp is applied once by 04/06."""
+    return clamp((meridian_speed_bp - BP) // 100, -35, 35)
 
 
 def resolve_direct_damage(
@@ -788,10 +789,22 @@ def result_vector(result: FlowResult, base_damage: int) -> dict[str, object]:
         "disabledReason": result.disabled_reason,
         "jamChancesBp": list(result.jam_chances_bp),
         "arrivalBp": list(result.arrival_bp), "stateVersion": result.state_version,
-        "blockedState": asdict(blocked) if blocked else None,
+        "qualitiesBp": list(result.qualities_bp),
+        "trace": contract_value(result.trace),
+        "blockedState": contract_value(blocked) if blocked else None,
     }
 
 
+def contract_value(value: object) -> object:
+    if hasattr(value, "__dataclass_fields__"):
+        value = asdict(value)
+    if isinstance(value, dict):
+        return {("acupointRef" if key == "acupoint" else key.split("_")[0]
+                + "".join(part.title() for part in key.split("_")[1:])):
+                contract_value(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [contract_value(item) for item in value]
+    return value
 def golden_payload() -> dict[str, object]:
     units = make_units()
     hero = units["hero"]
@@ -857,25 +870,25 @@ def golden_payload() -> dict[str, object]:
     guard_capacity_break = inner_guard(1_600, STANDARD_PROFILE, VERY_STRONG_PROFILE, mp=2_000)
     guard_kinds = {kind: inner_guard(1_000, STANDARD_PROFILE, STANDARD_PROFILE, damage_kind=kind)
                    for kind in ("unarmed", "weapon", "hidden", "projected")}
-    equal_speed_bp = speed_meridian_mult_bp(
-        STANDARD_PROFILE, STANDARD_PROFILE, route_quality_bp=BP)
-    strong_speed_bp = speed_meridian_mult_bp(
-        VERY_STRONG_PROFILE, STANDARD_PROFILE, route_quality_bp=BP)
-    sealed_speed_bp = speed_meridian_mult_bp(
-        VERY_STRONG_PROFILE, STANDARD_PROFILE, route_quality_bp=BP, sealed=True)
+    equal_speed_bp = speed_meridian_mult_bp(STANDARD_PROFILE, STANDARD_PROFILE)
+    strong_speed_bp = speed_meridian_mult_bp(VERY_STRONG_PROFILE, STANDARD_PROFILE)
+    sealed_speed_bp = speed_meridian_mult_bp(VERY_STRONG_PROFILE, STANDARD_PROFILE, sealed=True)
     equal_speed = apply_speed(106, 6, equal_speed_bp)
     strong_speed = apply_speed(106, 6, strong_speed_bp)
     sealed_speed = apply_speed(106, 6, sealed_speed_bp)
+    grappled_strong = apply_speed(106, 6, strong_speed_bp, grapple_bp=6_000)
+    normalized_equal = normalize_profile((320, 1_240, 8_650, 4_230),
+                                         (320, 1_240, 8_650, 4_230))
     action_cap = ceil_div(300 * 1_000, 500)
     payload: dict[str, object] = {
         "fixtureVersion": 2, "rulesProtocol": RULES_PROTOCOL, "rngProtocol": RNG_PROTOCOL,
         "masterSeed": 20260927,
         "inputs": {
-            "routes": [asdict(r) for r in (SHORT_ROUTE, LONG_ROUTE, NOVICE_ROUTE, FORCED_ROUTE, DEFENSE_ROUTE, MOVEMENT_ROUTE)],
+            "routes": [contract_value(r) for r in (SHORT_ROUTE, LONG_ROUTE, NOVICE_ROUTE, FORCED_ROUTE, DEFENSE_ROUTE, MOVEMENT_ROUTE)],
             "units": {key: {
                 "unitId": value.unit_id, "kind": value.kind,
                 "unitIndex": value.unit_index,
-                "capacityScaleBp": value.capacity_scale_bp, "cultivation": asdict(value.cultivation),
+                "capacityScaleBp": value.capacity_scale_bp, "cultivation": contract_value(value.cultivation),
                 "openedAcupoints": sorted(value.nodes), "completeAcupoints": sorted(value.nodes) if value.cultivation.meridian_complete else [],
             } for key, value in units.items()},
             "explicitRolls": {"clean": 9_999, "forcedJam": 0},
@@ -891,16 +904,19 @@ def golden_payload() -> dict[str, object]:
             "bossLong": result_vector(boss, base_damage["boss"]),
             "jammed": result_vector(jam, base_damage["normal"]),
             "ruptured": result_vector(rupture, base_damage["normal"]),
-            "breath": asdict(breath), "selfUnseal": asdict(unseal), "selfUnsealLevelAfter": hero.nodes[SHORT_ROUTE.nodes[0]].seal_level,
+            "breath": contract_value(breath), "selfUnseal": contract_value(unseal), "selfUnsealLevelAfter": hero.nodes[SHORT_ROUTE.nodes[0]].seal_level,
             "sealed": result_vector(sealed, base_damage["normal"]),
             "defenseRouteFlow": result_vector(defense_flow, base_damage["normal"]),
             "movementRouteFlow": result_vector(movement_flow, base_damage["normal"]),
             "matchups": matchups,
+            "normalization": {"rawAndStandard": [320, 1_240, 8_650, 4_230],
+                              "equalProfile": contract_value(normalized_equal),
+                              "equalStrengthBp": meridian_strength_bp(normalized_equal)},
             "defenseRoute": {"incoming": 1_000, "attackMultBp": defended_attack,
                              "defenseMultBp": defended_mult, "damage": defended_damage},
-            "innerGuardHold": asdict(guard_hold), "innerGuardBreak": asdict(guard_break),
-            "innerGuardCapacityBreak": asdict(guard_capacity_break),
-            "innerGuardKinds": {kind: asdict(result) for kind, result in guard_kinds.items()},
+            "innerGuardHold": contract_value(guard_hold), "innerGuardBreak": contract_value(guard_break),
+            "innerGuardCapacityBreak": contract_value(guard_capacity_break),
+            "innerGuardKinds": {kind: contract_value(result) for kind, result in guard_kinds.items()},
             "speed": {"equal": {"multBp": equal_speed_bp, "spd": equal_speed[0],
                                      "move": equal_speed[1], "openingQinggong": project_opening_qinggong(98, equal_speed_bp),
                                      "evadeRatingDelta": evade_rating_delta(equal_speed_bp)},
@@ -910,10 +926,15 @@ def golden_payload() -> dict[str, object]:
                       "sealed": {"multBp": sealed_speed_bp, "spd": sealed_speed[0],
                                       "move": sealed_speed[1], "openingQinggong": project_opening_qinggong(98, sealed_speed_bp),
                                       "evadeRatingDelta": evade_rating_delta(sealed_speed_bp)},
+                      "grappledStrong": {"multBp": strong_speed_bp, "grappleMoveBp": 6_000,
+                                          "spd": grappled_strong[0], "move": grappled_strong[1],
+                                          "openingQinggong": project_opening_qinggong(
+                                              98, mul_bp_floor(strong_speed_bp, 6_000)),
+                                          "evadeRatingDelta": evade_rating_delta(strong_speed_bp)},
                       "maxActionsPer1000Ticks": action_cap},
-            "grapple1": asdict(grapple_effect(1)), "grapple9": asdict(grapple_effect(9)),
+            "grapple1": contract_value(grapple_effect(1)), "grapple9": contract_value(grapple_effect(9)),
             "escapeLevel6Bp": grapple_escape_bp(6, 70, 65, 75, 70, 8),
-            "point1": asdict(point_effect(1)), "point9": asdict(point_effect(9)),
+            "point1": contract_value(point_effect(1)), "point9": contract_value(point_effect(9)),
         },
     }
     canonical = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
@@ -947,7 +968,8 @@ def _cycle_sensitivity(
                 result = unit.commit(route, battle_rng)
                 attacks += 1; total_ct += clamp(1_200 + result.flow_ct, 500, 2_000)
                 route_quality = mul_bp_floor(result.route_quality_bp, strength_scale_bp)
-                attacker = MeridianProfile(BP, BP, BP, clamp(route_quality, 0, BP))
+                attacker = MeridianProfile(
+                    BP, BP, BP, relative_component_bp(route_quality, 6_302, 0))
                 damage, _, _ = resolve_direct_damage(849, attacker, STANDARD_PROFILE, len(route.nodes))
                 total_damage += damage
             unit.tick()
@@ -993,9 +1015,20 @@ def run_checks() -> None:
     assert all(a >= b for a, b in zip(defense_curve, defense_curve[1:]))
     assert attack_curve[0] == 6_500 and attack_curve[-1] == 22_000
     assert defense_curve[0] == 12_500 and defense_curve[-1] == 5_000
+    raw = (320, 1_240, 8_650, 4_230)
+    normalized = normalize_profile(raw, raw)
+    assert normalized == STANDARD_PROFILE and meridian_strength_bp(normalized) == BP
+    assert normalize_profile((320, 1_240, 8_650, 0), raw).completion_bp == 0
+    assert meridian_strength_bp(MeridianProfile(0, 99_999, 0, 99_999)) == 10_300
     assert attack_meridian_mult_bp(STANDARD_PROFILE, STANDARD_PROFILE, 10) == BP
     assert defense_meridian_mult_bp(STANDARD_PROFILE, STANDARD_PROFILE, 6) == BP
-
+    speed_edge = [speed_meridian_mult_bp(MeridianProfile(4_000, 4_000, 4_000, quality), STANDARD_PROFILE) for quality in (3, 4)]
+    assert speed_edge == [7_500, 7_500], speed_edge  # no raw-quality second blend / 1 bp reversal
+    for component in range(4):
+        profiles = [MeridianProfile(*(v if i == component else BP for i in range(4))) for v in range(0 if component == 3 else 4_000, 18_001, 100)]
+        for length in (1, 6, 10, 18):
+            values = [(attack_meridian_mult_bp(p, STANDARD_PROFILE, length), defense_meridian_mult_bp(p, STANDARD_PROFILE, length), attack_meridian_mult_bp(STANDARD_PROFILE, p, length), defense_meridian_mult_bp(STANDARD_PROFILE, p, length), speed_meridian_mult_bp(p, STANDARD_PROFILE)) for p in profiles]
+            assert all(a[0] <= b[0] and a[1] >= b[1] and a[2] >= b[2] and a[3] <= b[3] and a[4] <= b[4] for a, b in zip(values, values[1:])), (component, length)
     units = make_units()
     hero = units["hero"]
     battle_rng = Sfc32(20260927, "battle")
@@ -1067,7 +1100,7 @@ def run_checks() -> None:
     assert vectors["defenseRouteFlow"]["attempted"] == len(DEFENSE_ROUTE.nodes)
     assert vectors["movementRouteFlow"]["attempted"] == len(MOVEMENT_ROUTE.nodes)
     assert vectors["battleRngAfterHeroCommit"] != vectors["battleRngAfterAllUnitCommits"]
-    assert vectors["selfUnseal"]["seals_reduced"] == 1 and vectors["battleRngAfterAllUnitCommits"] != vectors["battleRngAfterSelfUnseal"]  # type: ignore[index]
+    assert vectors["selfUnseal"]["sealsReduced"] == 1 and vectors["battleRngAfterAllUnitCommits"] != vectors["battleRngAfterSelfUnseal"]  # type: ignore[index]
     assert units["normal"].nodes is not units["elite"].nodes
 
     # Standard versus standard is neutral; strength gaps are steep and bounded.
@@ -1085,18 +1118,18 @@ def run_checks() -> None:
     assert matchups["masterVsMob"]["ttkBeforeActions"] == 3
     assert matchups["masterVsMob"]["ttkActions"] <= 2
     assert vectors["defenseRoute"]["defenseMultBp"] < BP
-    assert vectors["defenseRoute"]["damage"] == 859  # Z4M before Z5M.
+    assert vectors["defenseRoute"]["damage"] == 861  # Z4M before Z5M.
     assert vectors["innerGuardHold"]["cancelled"] > 0
     assert vectors["innerGuardBreak"]["broken"]
     assert vectors["innerGuardCapacityBreak"]["broken"]
     assert vectors["innerGuardCapacityBreak"]["cancelled"] == 1_000
-    assert vectors["innerGuardBreak"]["delay_ct"] > 0
-    assert vectors["innerGuardBreak"]["stagnation_bp"] > 0
+    assert vectors["innerGuardBreak"]["delayCt"] > 0
+    assert vectors["innerGuardBreak"]["stagnationBp"] > 0
     for key in ("innerGuardHold", "innerGuardBreak", "innerGuardCapacityBreak"):
         guard = vectors[key]
-        assert guard["hp_damage"] + guard["cancelled"] in (1_000, 1_600)
-        assert 0 <= 2 * guard["mp_spent"] - guard["cancelled"] <= 1
-    assert [vectors["innerGuardKinds"][kind]["eligible_incoming"] for kind in
+        assert guard["damageBeforeMpGuard"] + guard["cancelled"] in (1_000, 1_600)
+        assert 0 <= 2 * guard["mpSpent"] - guard["cancelled"] <= 1
+    assert [vectors["innerGuardKinds"][kind]["eligibleIncoming"] for kind in
             ("unarmed", "weapon", "hidden", "projected")] == [1_000, 250, 0, 400]
     assert vectors["speed"]["equal"] == {
         "multBp": BP, "spd": 106, "move": 6, "openingQinggong": 98,
@@ -1107,6 +1140,8 @@ def run_checks() -> None:
     assert vectors["speed"]["sealed"]["spd"] < 106
     assert vectors["speed"]["sealed"]["openingQinggong"] < 98
     assert vectors["speed"]["sealed"]["evadeRatingDelta"] < 0
+    assert vectors["speed"]["grappledStrong"]["spd"] < 106
+    assert vectors["speed"]["grappledStrong"]["evadeRatingDelta"] == 22
     assert vectors["speed"]["maxActionsPer1000Ticks"] <= 600
 
     # Unit snapshot/restore is exact; BattleSession snapshots the shared RNG.
