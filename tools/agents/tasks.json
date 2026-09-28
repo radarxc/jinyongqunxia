@@ -8838,7 +8838,8 @@
         "docs/design/chapters/11-yuanyang.md",
         "docs/design/chapters/12-shujian.md",
         "docs/design/chapters/13-feihu.md",
-        "docs/design/chapters/14-xueshan.md"
+        "docs/design/chapters/14-xueshan.md",
+        "docs/decisions/ultimate-counts-tianzhong-dizhong.md"
       ],
       "review": false,
       "web": false,
