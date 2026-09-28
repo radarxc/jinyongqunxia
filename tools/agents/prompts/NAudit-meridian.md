@@ -7,7 +7,7 @@
 1. **收拢遗留**：读上述 15 个任务的报告（`tools/agents/reports/<ID>.md`）第 7 节，落实其中的小改与"交其他组 / 交审计"的条目；需要整节重写的列入遗留。
 2. **回填 21**：把 06 正式登记的 Buff ID、05 的字段名、基准 v1.3 的乘区与前缀编号回填到 21（替换"拟新增"写法），并更新 21 §18.6 同步清单的状态（已落实 / 遗留）。
 3. **跨文档一致**：21 与 04 / 05 / 06 / 08 / 09 / 13 / 14 / 15 / 03 / tech / 武学图鉴 / 书界 的字段名、ID、结算顺序、数值一致；抽查每个武学图鉴至少 5 门天 / 地阶武学的路线与绝招是否符合 21 的规则（段数、收招 + 满路线 CT ≤ 上限、攻 / 防 / 速度路线）；抽查每部书界 1 个 Boss 的经脉配置与节奏。
-4. **检查全部通过**：`python tools/lint/check_ids.py --strict`（必要时按全量扫描刷新基线并在 tech/04 §11 记录债务数）、`python -m unittest tools/lint/test_check_ids.py`、`python tools/balance/damage_sim.py --check`、`python tools/balance/meridian_flow_sim.py --check`。
+4. **检查全部通过**：`python3 tools/lint/check_ids.py --strict`（必要时按全量扫描刷新基线并在 tech/04 §11 记录债务数）、`python3 -m unittest tools/lint/test_check_ids.py`、`python3 tools/balance/damage_sim.py --check`、`python3 tools/balance/meridian_flow_sim.py --check`。
 5. **需求状态**：更新 `TODO.md` §7.1 的 AR-14 行（写明覆盖章节与剩余缺口）与 `docs/README.md` 的相关条目（行数实测、摘要）。
 
 ## 报告

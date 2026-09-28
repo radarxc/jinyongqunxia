@@ -11,7 +11,7 @@
 1. 读 21 v2.0 全文（重点：§18.6 同步清单、数据结构与 TS 类型、经脉模拟模块接口、核心算式与取整点）和 `docs/decisions/author-requirements.md` 的 AR-14（含作者决定小节）。
 2. 逐条落实 §18.6 中目标为本组文档的条目。归属规则：21 定义战斗中的经脉运行、招式路线、绝招、擒拿 / 点穴、调息、内劲抵消、经脉乘区；15 定义经脉与穴位本身及冲穴、周天、九转；本组文档只引用 21 的定义并写清接口，不重定义；字段名与 ID 以 21 为准。
 3. **本组专项**：{{extra}}
-4. **交叉一致**：本组文档与 21 的字段名、ID、数值、结算顺序一致；每个新引用的 ID 先 `grep -rn` 确认存在或由本组按归属登记。能运行的检查都要跑：`python tools/lint/check_ids.py --strict`、`python tools/balance/damage_sim.py --check`、`python tools/balance/meridian_flow_sim.py --check`。
+4. **交叉一致**：本组文档与 21 的字段名、ID、数值、结算顺序一致；每个新引用的 ID 先 `grep -rn` 确认存在或由本组按归属登记。能运行的检查都要跑：`python3 tools/lint/check_ids.py --strict`、`python3 tools/balance/damage_sim.py --check`、`python3 tools/balance/meridian_flow_sim.py --check`。
 
 ## 修改原则
 
