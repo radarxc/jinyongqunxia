@@ -1,10 +1,11 @@
 # 14 · 手机端 UI/UX（Mobile UI/UX）
 
 > **归属（基准 §18）**：手机浏览器与 PC 浏览器的界面、导航、操作反馈、无障碍和 UI 性能承接；本文不定义战斗、成长、经济或存档规则。
-> **上游**：作者决定与新增需求 AR-01–AR-14；基准 §0、§4、§8、§19–§20；`design/01–06、09–13、15–21`；`tech/01–04、06–08`。
+> **上游**：作者决定与新增需求 AR-01–AR-14；基准 v1.4 §0、§4、§8、§19–§20；`design/01–06、09–13、15–21`（战斗经脉与绝招模式取 `design/21` v2.1）；`tech/01–04、06–08`。
 > **引用而不重定义**：装配与图鉴见 `design/05`，六角战斗见 `design/09`，书眠见 `design/02`，装备见 `design/10`，存档见 `design/13` 与 `tech/08`，地图见 `design/11、19`；任务、冲穴、资源家业、门派、人物与跨年代传承分别只读 `design/12、15、16、17、18、20`；战斗经脉动态、攻防/轻功路线、独立乘区、护体内劲、点穴/擒拿、调息与逐单位实例只读 `design/21`。
 > **标注约定**：原著没有的设计标 **（原创扩展）**；原著事实待逐字核对标 **（待考）**；未联网确认的技术事实标 **（待核实）**；真机/账号验证标 **（待实测）**；暂定字段和依赖数值标 **【建议值】**，统一登记于 §11。
-> 版本：v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）。
+> 版本：v1.3（绝招与经脉状态界面同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）。
+> **v1.3 变更记录**：战斗招式面板改为“所选普通招式＋全部已解锁绝招”，显示角色唯一共享气势、同门共享冷却及逐项禁用原因（含“不能连用同一绝招”）；五类 AR-14 经脉 Buff 按 06 的实例 / 派生视图边界进入 HUD 与详情。
 
 文档日期：2026-09-27。审校：B5.R（2026-09-26）。适用平台：手机浏览器横屏优先，兼容 PC 浏览器；UI 使用 Vue 3 DOM 覆盖层，场景使用单个 WebGL 画布。
 本文为规划交付，线框不表示已实现的客户端；所有人物能力、按钮状态与数值示例均为界面说明，实际由合法视图模型提供。
@@ -41,7 +42,8 @@
 | AR-03、AR-05–AR-08；`design/12、15–17` | 冲穴、资源点、家丁、营生职位、门派职级均有正式只读投影与命令入口 | 只有武学与背包的角色菜单；继续使用 provisional 英文职位键 |
 | AR-09、`design/18` §5–§6 | 活动队清空，关系与能力快照保留，健在且满足门槛才能重逢 | 同伴历史完全丢弃、无条件跨书召唤 |
 | AR-13、`design/20` | 传承匣独立于背包 / 史匣；残本、信物、线索与校合同屏，未揭示名称不剧透 | 把 `frag_*` 当普通物品，或在书眠时清空 |
-| AR-14、`design/21` v2.0 | HUD 显示攻防路线、护体内劲、经脉速度与封路摘要；详情承接迟滞 / 胀损、点穴 / 擒拿、防守路线和调息；只消费逐单位 `MeridianFlowModule` 的只读投影 | 把 180 穴铺满战斗 HUD、由 UI 重算乘区或通过反复预览偷抽 RNG |
+| AR-14、`design/21` v2.1 | HUD 显示攻防路线、护体内劲、经脉速度与封路摘要；详情承接迟滞 / 胀损、点穴 / 擒拿、防守路线和调息；只消费逐单位 `MeridianFlowModule` 的只读投影 | 把 180 穴铺满战斗 HUD、由 UI 重算乘区或通过反复预览偷抽 RNG |
+| Canon V14-01～02、`design/05` §3.5 / §4.8、`design/09` §5.1 / §13.6 | 每门显示全部已解锁绝招；全角色只显示一条共享气势，同门显示一份共享冷却；所有不可用项保留并逐项解释，连续同招固定显示“不能连用同一绝招” | 每门只露出一个绝招、为每个绝招各画气势 / 冷却，或把不可用绝招直接隐藏 |
 | C20、`tech/02` §5.6 | 12 品阶边框色与纹饰由共享色板提供 | UI 自建第二套金紫蓝绿品质体系 |
 
 `design/07` 已定稿，套装效果只显示其正式注册表的有效结果。门派晋升、冲穴、营生与传承已分别由 `design/12、15、16、20` 收口；本文 §4、§5、§8、§10 已改为消费正式字段与规则。仍标 **【建议值】** 的只是这些归属文档自身尚未冻结的建议项以及 UI 局部参数；可操作性始终由 core 校验，未知不等于零。
@@ -383,7 +385,9 @@ flowchart TD
 |                 ╲╱   ╱╲   ╲╱   ╱╲   ╲╱                              |
 |                     │★ │      │ !│        ★落点 ·范围 !友伤         |
 |                      ╲╱        ╲╱                                   |
-| 招式：[招式一·攻路10段 ×1.2053] [招式二] [翻页]   [旋左] [旋右]  |
+| 气势 78/100（全角色共享）  本门绝招冷却：本行动禁用，结束后解除   |
+| 普通：[招式一·攻路10段 ×1.2053] [招式二] [翻页] [旋左] [旋右] |
+| 绝招：[绝招甲×共享冷却] [绝招乙×不能连用同一绝招] [绝招丙×封路]|
 | 预览：攻路 / 对方承伤 / 护体内劲 / MP / 流转CT / 风险 [经脉详情] |
 | 状态：迟滞2 · 胀损1 · 点穴4 · 擒拿3        防守：[自然短路⌄]       |
 | [移动] [招式] [运劲·调息!] [道具] [更多]          [撤销] [确认施放]|
@@ -396,6 +400,13 @@ flowchart TD
 范围图例只解释当前招式，不让玩家任意切换招式没有的形状。
 信息不足时显示“尚未看破”，不猜伤害；预览失效时保持候选但重新推演，确认暂不可用。
 招式按钮只放“路线段数、对当前目标攻路倍率、`flowCt`、稳 / 衡 / 险”；`×1.0000` 是中性。预览把攻击 `meridianAttackBp` 显示为“攻路 ×”，把 `meridianDefenseBp` 显示为“承伤 ×（越低越强）”，避免把两个方向都误叫“加成”。
+
+**绝招展示与禁用说明**：招式抽屉按武学分组；普通招只列 `moveSlots` 中所选项，绝招区则枚举该门所有已解锁且 `MoveDef.ultimate:true` 的招式，不占普通招分页配额。空间不足时组内横向滚动并显示“绝招 1–3 / 3”，不得因气势不足、冷却、重复限制或路线封锁把卡片隐藏。每个绝招卡显示招名、独立路线摘要与“耗气势 100”；角色顶部只画一条 `rage 0..100`，不得为武学或绝招复制气势槽。
+
+每门武学标题只显示一份共享状态：`ultimateCooldown=0` 为“本门绝招可用”，`=1` 为“本门绝招共享冷却：本行动禁用，行动结束后解除”。招式自身冷却仍显示在各卡上，不与同门共享冷却合并。禁用卡保持可聚焦，短按 / 确认打开完整原因；界面原样消费 `query.moveAvailability(unit)` 的有序原因，至少区分“招式冷却中”“本门绝招共享冷却中”“不能连用同一绝招”“经脉路线被封”“气势不足（当前值 / 100）”及其他 F0 条件。重复限制的正式玩家文案必须精确为 **“不能连用同一绝招”**；读屏名称同时包含招名、禁用和全部原因。
+
+共享冷却在施放绝招的当次行动末不假减；下一次正常自身行动（即使被硬控跳过）全程仍显示禁用，E2 结果事件到达后才切为可用。环境 / 他人行动、免费动作和额外行动均不改变倒计时显示。冷却清零但重复限制尚在时，卡片仍显示“不能连用同一绝招”，并提示可先用同门另一绝招或同门普通招；其他武学普通招不能解除。
+
 护体栏严格分开护盾、护体内劲、`mpGuard`：护体内劲显示预计抵消 `cancelled`、耗内 `mpSpent`、剩余 `damageBeforeMpGuard`；`broken=true` 时另标“击穿”、`delayCt` 与迟滞，不把中间值写成实际气血伤害。
 速度摘要直接读 `meridianSpeedBp/openingQinggong/spd/move/evadeRatingDelta`；首轮只显示冻结快照，战中变化标“影响后续集气 / 移动，不重排初阵”。擒拿影响显示在经脉速度之后，纯经脉闪避与擒拿闪避不得合成一个来源。
 状态摘要分别显示迟滞、堆积 / 胀损、点穴 `1–9` 与擒拿 `1–9`；红点进入 WF-14-18。HUD 不铺 180 穴，展开最多只渲染所选路线的 `1–18` 个节点。
@@ -835,7 +846,17 @@ W1 源文件约 1.02 MB、10,468 个元素；运行时使用其派生静态底�
 
 #### 4.18.3 状态、调息与速度
 
-点穴按穴位逐项显示 `sealLevel 1–9`、剩余自身行动与受影响路线；7 级绝招、8 级内功 / 护体、9 级路线 / 运劲禁用均只读 21 / 06 返回。擒拿显示 `grappleLevel 1–9`、移动 / 臂力 / 身法 / 闪避 / 兵器影响和“挣脱”入口；7–9 级的兵器封锁或跳过行动不得与点穴合成一个图标。
+状态名与生命周期只读 `design/06` §8.14，路线数值只读 21；五类状态分别呈现，不能合并成一个“经脉异常”图标：
+
+| 状态 | HUD 摘要 | 详情必须显示 | 交互边界 |
+|---|---|---|---|
+| 受擒 `bf_shouqin` | “受擒 Lx · 剩 N 次自身行动” | `grappleLevel 1–9`、来源、移动 / 臂力 / 身法 / 闪避 / 兵器影响、维持距离（若有） | 1–8 级给“挣脱”；9 级说明本次行动跳过。不得与点穴共用图标 |
+| 穴位受封 `bf_xueweishoufeng` | 按穴位逐项“穴位受封 Lx” | 穴位、来源、剩余自身行动、受影响路线；7 级绝招、8 级内功 / 护体、9 级路线 / 运劲限制 | ≤8 级给自行调息 / 队友解穴 / 道具；9 级自行调息禁用 |
+| 经气迟滞 `bf_jingqizhizhi` | “迟滞 N 穴” | 最严重节点、受影响路线数、`stagnationBp/delayCt` | 只读模块派生视图，不显示普通驱散或独立 Buff 剩余回合 |
+| 经脉胀损 `bf_jingmaizhangsun` | “胀损 N 穴” | `ruptureDamage>0` 的节点、被封路线、调息可修量 | 只读模块派生视图；不得把封路重写成普通负面状态 |
+| 护体内劲 `bf_hutineijin` | 防守卡“护体内劲 · 路线名” | `routeId`、覆盖窗口、抵消、耗内、击穿与反震（若有） | 只显示合法已提交路线投影；路线胀损 / 相关封穴失效后立即撤下 |
+
+点穴和受擒都以 1–9 级显示，但二者是不同状态；7–9 级的兵器封锁、路线限制或跳过行动不得互相替代。迟滞 / 胀损由节点真值派生，UI 不创建、驱散或保存它们；护体内劲也不被画成普通护盾。状态来源、剩余自身行动和穴位缺失时显示“状态详情不可用”，不按名称猜值。
 
 “调息预览”复用 `{t:yunjin, mode:tiaoxi}`，默认显示基础 `1000 CT`、回内 `15% mpMax`，本行动未移动则再 `+5%`，以及预计触及 1–4 穴、迟滞 / 堆积 / 胀损修复和逐穴解穴概率。9 级点穴时自行调息禁用并优先给队友解穴 / 道具入口；可能被打断时明确写“中断则本次回内、修复与完整收招一并回滚”。21 当前默认不另收调息内力成本。
 
@@ -925,9 +946,9 @@ UI 用“威力系数下降”而非“伤害必减”；带天书抵消、装�
 
 示例为“移动后出招”，只演示输入顺序；具体步数、行动与反应窗口取 `design/09`，经脉路线、状态和调息取 `design/21`，伤害与 MP 取各自上游查询结果。
 
-1. 我方行动者到达行动时点，HUD 聚焦该单位；玩家可查看冻结的初阵排序或后续集气。状态条汇总迟滞、胀损、点穴、擒拿，默认不弹详情抢焦点。
+1. 我方行动者到达行动时点，HUD 聚焦该单位；玩家可查看冻结的初阵排序或后续集气。状态条汇总迟滞、胀损、点穴、擒拿和护体内劲，默认不弹详情抢焦点；顶部唯一气势槽显示当前 `rage/100`。
 2. 点“移动”再点候选六角，画出路径、消耗与高差；单位仍停原位，终点为幽灵。
-3. 点“招式”，选择当前可用招式；从幽灵落点重新查询射程、方向、范围与其 `purpose:attack` 路线。卡片显示段数、攻路倍率、`flowCt` 和风险；硬封路招式禁用并指出 `blockedNode/disabledReason`。
+3. 点“招式”，按武学看到 `moveSlots` 普通招与全部已解锁绝招。每记绝招各有自己的 `purpose:attack` 路线摘要，但共用角色气势与本门冷却；禁用卡不隐藏，并逐项解释自身冷却、共享冷却、气势、连续同招或路线硬封。正式重复原因写“不能连用同一绝招”。
 4. 点敌人或地面，吸附合法目标；出现范围、伤害分支、友伤、MP、攻 / 防倍率、护体内劲与行动后时间轴幽灵。点“经脉详情”才展开 1–18 段。
 5. 点“撤销”先撤目标，第二次回到移动候选；可改成先出招后移动，预览重新计算。
 6. 若来袭方允许即时防守，受击方在 09 的反应窗口选择自然短路、可用防守路线或放弃；预览分列承伤倍率、护体抵消、内力成本与击穿后果，同一 `causeId` 的多段攻击只询问一次。
@@ -1153,7 +1174,7 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 | 组件族 | 职责与输入 | 生命周期 |
 |---|---|---|
 | `UiShell` / `SafeAreaFrame` / `FocusScope` | 安全区、模式、焦点、返回层级与输入来源 | 常驻，保持轻量 |
-| `ExploreHud` / `BattleHud` / `ActionBar` | 已筛选摘要、可用动作、时间轴和当前候选 | 跟随场景模式，重菜单打开时卸载 |
+| `ExploreHud` / `BattleHud` / `ActionBar` / `MovePicker` | 已筛选摘要、角色共享气势、`moveSlots` 普通招、全部已解锁绝招、同门冷却、逐招禁用原因、时间轴和当前候选 | 跟随场景模式，重菜单打开时卸载 |
 | `BattleMeridianDrawer` / `RouteStrip` / `DefenseReactionSheet` | 当前攻 / 防 / 身法路线、状态、护体内劲、防守反应与调息预览；输入只读 `BattleMeridianView` | 跟随战斗候选按需挂载，关闭后释放逐段列表 |
 | `PanelHost` / `ConfirmPanel` / `StatusNotice` | 异步面板、事务确认、批量状态播报 | 同时一个主面板与一个确认层 |
 | `VirtualList` / `GradeBadge` / `CompareRows` | 窗口化、品阶纹饰、前后比较 | 数据只读，接受完整可访问文本 |
@@ -1184,6 +1205,7 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 | 对话选项 | `dialogue/choose` | 新段落、任务/关系事件 |
 | 穿戴、装配 | `party/equip`、`party/assignSkill` | 当前效力、适配、套装、冲穴相关变化 |
 | 战斗行动 | `battle/act`，结构以 `design/09` §13.2 为准；路线选择随同动作意图提交 | 接受/拒绝、伤害结果、收招、经脉路线结果与新阶段；UI 不直接调用 21 的 `commit` |
+| 招式 / 绝招可用性 | `query.moveAvailability(unit)`，只读 09 的统一过滤结果 | `moveSlots` 普通招、全部已解锁绝招、角色 `rage`、逐门 `ultimateCooldown/lastUltimateMoveId` 与有序禁用原因；UI 不自行推断或过滤 |
 | 战斗经脉预览 / 防守反应 / 调息 | 21 的无副作用 preview / selector；确认仍封装进 09 的战斗命令，调息沿用 `{t:yunjin, mode:tiaoxi}` | `stateVersion`、路线概率、攻防 / 速度、护体、状态与修复结果；Core 提交前重验 |
 | 书眠 | `chapter/bookSleep` 接入 `BookSleepPlan` 适配【建议值】 | 幂等提交结果、目标书界与苏醒档 |
 | 存档、登录、同步 | platform 存储/在线服务，遵守 `tech/08` | 四态同步、冲突头、设备与错误 |
@@ -1205,7 +1227,8 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 | 经脉目录 | `MeridianDef.family/acupoints/unlock`；`AcupointDef.gameMeridian/sequence/barrierH/baseRewards` | `design/15` §11.4；名称、标准归经与游戏路线均由上游给出 |
 | 周天目录 | `CirculationDef.kind/requires/turn/barrierH/minBooks/rewards` | `design/15` §7、§11.4；状态不是新游戏 ID |
 | `MeridianPanelView` | `targetId/progressH/barrierH/rateH/mpCost/successBp/mode/attemptOrdinal/rateSources/failureBands/canStart/blockedReason` | 由 15 的进度与 session 快照投影；UI 只格式化单位与文字 |
-| `BattleMeridianView` | 路线：`unitId/stateVersion/routeId/purpose/routeLength/attempted/completed/routeQualityBp/flowCt/blockedAt/blockedNode/disabledReason/qualitiesBp/jamChancesBp/arrivalBp`；乘区：`attackerStrengthBp/defenderStrengthBp/meridianAttackBp/meridianDefenseBp`；护体：`eligibleIncoming/capacity/cancelled/damageBeforeMpGuard/mpSpent/broken/delayCt/stagnationBp/reflectDamage`；速度：`meridianSpeedBp/combinedSpeedBp/openingQinggong/spd/move/evadeRatingDelta`；状态：`sealLevel/grappleLevel`；调息：`touched/stagnationRemovedBp/backlogRemoved/ruptureRepaired/sealsReduced/ct/mpCostBp` | 直接字段由 21 §11–§12 的 `FlowPreview`、`MeridianMultipliers`、`InnerGuardResult`、`MeridianSpeedResult`、`BreathResult` 与状态快照筛选；`purpose` 取 `MeridianRouteDef.purpose`，`routeLength=steps.length`；仅为只读 selector，不进入存档 |
+| `MoveAvailabilityView` | `rage/rageMax`；逐门 `skillId/ultimateCooldown/lastUltimateMoveId`；逐招 `moveId/ultimate/unlocked/available/disabledReasons/routeSummary` | 直接映射 09 `query.moveAvailability(unit)`；普通招只取 `moveSlots`，绝招取全部已解锁且 `ultimate:true` 项。共享冷却和重复限制不由 UI 猜测 |
+| `BattleMeridianView` | 路线：`unitId/stateVersion/routeId/purpose/routeLength/attempted/completed/routeQualityBp/flowCt/blockedAt/blockedNode/disabledReason/qualitiesBp/jamChancesBp/arrivalBp`；乘区：`attackerStrengthBp/defenderStrengthBp/meridianAttackBp/meridianDefenseBp`；护体：`eligibleIncoming/capacity/cancelled/damageBeforeMpGuard/mpSpent/broken/delayCt/stagnationBp/reflectDamage`；速度：`meridianSpeedBp/combinedSpeedBp/openingQinggong/spd/move/evadeRatingDelta`；状态：`sealLevel/grappleLevel` 及逐项 `meridianStatuses`；调息：`touched/stagnationRemovedBp/backlogRemoved/ruptureRepaired/sealsReduced/ct/mpCostBp` | 直接字段由 21 §11–§12 的 `FlowPreview`、`MeridianMultipliers`、`InnerGuardResult`、`MeridianSpeedResult`、`BreathResult` 与 06 状态快照筛选；`meridianStatuses` 只投影 `bf_shouqin`、`bf_xueweishoufeng`、`bf_jingqizhizhi`、`bf_jingmaizhangsun`、`bf_hutineijin` 的合法载荷 / 派生视图；仅为只读 selector，不进入存档 |
 | 资源目录 | `ResourceDef.resourceTier/resourceRank/unit`；`ResourcePointDef.outputs/baseYield/servantSlots` 与 `ResourcePointState.developmentLevel/storage/matureCycles` | `design/16` §14.1–§14.2；最终产量由同一结算函数预演 |
 | 家丁目录 | `ServantDef.abilities/specialties/skillBand` 与 `ServantContractState.assignment/accruedWageWen` | `design/16` §14.3；能力上限与成长由 16 决定 |
 | 场所与职位 | `BusinessDef.kind/jobs/openSchedule`、`JobContractState.requiredBlocks/completedBlocks`；职位为 `job_xingjiao/job_jiaotou/job_keqing` | `design/16` §8、§14.3；赌场职位按实际上游配置，不补虚构职务 |
@@ -1233,6 +1256,7 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 | 经脉 / 经济结果缺失 | 已知资料可读，操作不可用并说明条件暂不可判定 | 以零成本、零工资或成功默认值继续 |
 | 战斗经脉 `stateVersion` 变化 | 保留仍合法的目标 / 路线意图，丢弃旧数值并重新请求；完成前禁确认 | 用旧倍率、旧封路或旧调息结果提交 |
 | 经脉逐段投影缺失 / 超 18 段 | 退化为用途、段数、禁用原因的文字摘要；标“详情暂不可用” | UI 自造节点、截掉硬封原因或把缺失当全通 |
+| 招式可用性版本变化 | 重新请求 `MoveAvailabilityView`，保留招式卡位置并更新原因；当前候选转为待重验 | 因按钮曾可用而绕过共享冷却 / 重复限制，或先行扣气势 |
 
 ## 9. 本文新增术语与 ID
 
@@ -1246,9 +1270,10 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 | 再续朱印 | 已重新习得武学的历史标记 | 02 的正式 `recalled` 状态在 05 基础图鉴状态上的显示适配 |
 | 本机已存 / 等待上云 / 已上云 / 有冲突 | 本地持久化与在线同步的四种用户可见状态 | 语义来自 tech/08，不是四份存档类型 |
 | `BattleMeridianView` | 战斗经脉 UI 的只读 selector：合并 21 的路线、乘区、护体、速度、控制与调息结果 | 不是存档 schema，也不拥有玩法公式 |
+| `MoveAvailabilityView` | 战斗招式 UI 的只读 selector：普通招栏、全部已解锁绝招、共享气势、逐门共享冷却与结构化禁用原因 | 不是存档 schema；唯一规则来自 09 `query.moveAvailability` |
 | `WF-14-01`…`WF-14-18` | §4 的十八张线框编号；17 为传承匣，18 为战斗经脉与防守反应 | 文档局部，不进入存档 |
-| `U14-V01`…`U14-V14`、`U14-T01`…`U14-T32` | §10 的校验与场景编号 | 验收文档局部，不是内容 ID |
-| `U14-S01`…`U14-S16`、`U14-O01`…`U14-O14` | §11 的建议值与开放问题编号 | 文档局部，供后续同步追踪 |
+| `U14-V01`…`U14-V16`、`U14-T01`…`U14-T35` | §10 的校验与场景编号 | 验收文档局部，不是内容 ID |
+| `U14-S01`…`U14-S16`、`U14-O01`…`U14-O15` | §11 的建议值与开放问题编号 | 文档局部，供后续同步追踪 |
 | `B5-P01`…`B5-P04` | §11.3 的同步提案编号 | 本任务报告引用 |
 
 ### 9.2 ID 复用与禁止项
@@ -1258,7 +1283,7 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 复用状态与接口：`BS_*`、`BookSleepPlan`、`HexDir`、`HexAim12Index`、`aoe_*`、`save_*`、`vid_sleep_NN_MM`，以及 21 的 `mfr_*` 路线引用、`MeridianFlowModule` 输出字段。
 资源引用坚持 `res_`，家丁 `sv_`、资源点 `rp_`、营生 `biz_`、经脉 `mer_`、穴位 `ap_`；具体新 ID 由归属文档创建。
 传承源 `lgs_*`、残本 `frag_*`、缓存 `cache_*` 与信物 `it_xinwu_*` 全部只读 `design/20`；传承匣视图不创建同义 UI ID。
-点穴 / 擒拿 / 调息档案 `dxl_* / qnl_* / txp_*` 只读 21；UI 不创建同义 `bf_*`，也不把 `BattleMeridianView` 注册成内容 ID。
+点穴 / 擒拿 / 调息档案 `dxl_* / qnl_* / txp_*` 只读 21；UI 不创建同义 `bf_*`，也不把 `BattleMeridianView` 注册成内容 ID。战斗状态只显示 06 正式的 `bf_shouqin`、`bf_xueweishoufeng`、`bf_jingqizhizhi`、`bf_jingmaizhangsun`、`bf_hutineijin`；旧兼容 ID 不进入新界面投影。
 不使用旧 `vid_booksleep_*`、旧方格范围 ID 或 `battle4` 作为新内容；历史记录迁移按 rulings 与 tech/04。
 组件名、CSS 语义 token 与投影字段均不作为永久资产键，正式实现须统一在对应代码包导出。
 
@@ -1284,6 +1309,8 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 | U14-V12 | 路线为 1–18 段；`meridianAttackBp / meridianDefenseBp / meridianSpeedBp` 分别守 6500–22000 / 5000–13000 / 6500–13500 bp；标准对标准三者均显示 10000 bp 中性值 | 错误；core / UI |
 | U14-V13 | 所有经脉预览带 `stateVersion`；版本变化使旧结果失效并重验；preview 不调用 commit、不消费 RNG，随机分支显示条件概率而非承诺 | 错误；core bridge / UI |
 | U14-V14 | 点穴与擒拿是两个 1–9 级状态；调息动作、防守路线和初阵冻结字段均可读、可键盘操作；颜色、动画关闭后仍能辨认 | 错误；UI / accessibility |
+| U14-V15 | 招式面板只以 `MoveDef.ultimate:true` 识别绝招；每门显示 `moveSlots` 普通招与全部已解锁绝招；全角色恰一条 `rage 0..100`，每门恰一份共享冷却，不得按绝招拆槽 / 拆冷却 | 错误；core selector / UI |
+| U14-V16 | 每个不可用绝招保留可聚焦卡片并显示 09 返回的全部原因；自身冷却、同门共享冷却、连续同招、路线硬封与气势不足可区分，连续同招的正式文案精确为“不能连用同一绝招” | 错误；UI / accessibility |
 
 ### 10.2 用户流程与边界场景
 
@@ -1323,6 +1350,9 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 | U14-T30 | 点穴与擒拿各取 1、8、9 级，并组合出现 | 两状态独立显示等级；点穴 9 级禁自行调息，擒拿 9 级跳过行动；速度、闪避和封路理由不合并为一个控制图标 |
 | U14-T31 | 未移动调息、移动后调息、点穴 9 级尝试调息、调息提交中被打断 | 显示 1000 CT、回内 15% / 20% `mpMax` 的上游结果；9 级按钮禁用且理由准确；打断事务回滚，不先播回血或修复成功 |
 | U14-T32 | 首轮前改变经脉 / 擒拿速度，首轮冻结后再次改变，并制造同 `openingQinggong` | 首轮按冻结的 `openingQinggong` 第一键、同快照 `spd` 第二键显示；冻结后不回排，只更新后续 CT / 移动力；同值继续按 09 的裁决链 |
+| U14-T33 | 一门天上武学已解锁三绝招，其中一招自身冷却、一招路线硬封；角色气势 78 | 三招全部可见，各自显示独立路线；顶部只显示气势 78/100；三招均含“气势不足”，另分别叠加自身冷却 / 经脉路线被封，不能提交且不先扣资源 |
+| U14-T34 | 绝招 A 施放后经历当次 E2、他人 / 环境 / 免费 / 额外行动，再进入下一次正常自身行动并被硬控跳过 | 全程只显示一份本门共享冷却；前述非正常行动不改变它；被跳过行动全程 A/B 禁用，该行动 E2 结果到达后才显示冷却解除 |
+| U14-T35 | T34 冷却已清、气势回满；依次尝试 A、其他武学普通招后尝试 A、本门普通招后尝试 A | 前两次 A 卡精确显示“不能连用同一绝招”；其他武学普通招不清理由；本门普通招后 A 变可用。若改选同门绝招 B，则 B 可用并在结算后成为新的重复限制对象 |
 
 ### 10.3 验收证据与实现阶段门禁
 
@@ -1361,12 +1391,12 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 | 上游 | 本文使用的事实 | 若变化需重验 |
 |---|---|---|
 | 作者需求 AR-01–AR-14、作者已定决定 | 六角格、统一江湖、冲穴、资源营生、门派月钱、跨书重逢、跨年代传承与经脉运行 | 导航、线框、字段与验收 |
-| 基准 §0、§4、§8、§19–§20 | 手机+PC、品阶体系、世界与技术平台约束 | 布局、视觉与运行边界 |
+| 基准 v1.4 §0、§4、§8、§19–§20 | 手机+PC、品阶体系、绝招数量 / 共享气势与冷却、世界与技术平台约束 | 布局、视觉与运行边界 |
 | design/01 §8 | 序章三入口、差异奖励与情境教学 | §5.1 与 U14-T03 |
 | design/02 §4–§5；design/03、05 | 书眠原子流程、容量、残篇、免费重配、效力公式 | §4.4、§5.2 的预览与恢复 |
-| design/05 §6、§11；design/10 | 13 栏、武器适配、套装计件、八装备栏与六件计数 | §4.3–§4.6、§5.4 |
-| design/09 §3–§5、§10、§13 | 六角范围、轻功初阵、CT、运劲道具、确认与自动 | §4.2、§5.3、§6 |
-| design/21 §5–§12、§16、§18.6 | 路线预览、独立攻防 / 速度乘区、护体内劲、点穴 / 擒拿、调息、逐单位实例与 UI 下游接口 | §3–§8、§10；UI 只读投影，不复制战斗公式 |
+| design/05 §3.5、§4.8–§4.9、§6、§11；design/10 | 绝招身份 / 解锁、13 栏、武器适配、套装计件、八装备栏与六件计数 | §4.2–§4.6、§5.3–§5.4 |
+| design/06 §8.14；design/09 §3–§5、§10、§13 | 五类经脉状态；六角范围、轻功初阵、CT、绝招统一候选过滤、运劲道具、确认与自动 | §4.2、§4.18、§5.3、§6、§8 |
+| design/21 v2.1 §4–§12、§16、§18.6 | 绝招各自路线、路线预览、独立攻防 / 速度乘区、护体内劲、点穴 / 擒拿、调息、逐单位实例与 UI 下游接口 | §3–§8、§10；UI 只读投影，不复制战斗公式 |
 | design/11、19 与 W1 地图数据 | 全国/区域分层、时代、城名、图外路线与旅行 | §4.8、§4.11、§7.2 |
 | design/13 §8–§9；tech/08 §4–§5 | 成就、槽位、回档、冲突、登录、配对与迁移 | §4.10、§4.16、§5.5 |
 | design/17 §1；design/18 §5–§6 | 门派称谓、招募、年龄证据、能力合并 | §4.14–§4.15 |
@@ -1383,7 +1413,8 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 | B5-P01 | 基准 §8 明示六角格与运劲、截取尺寸引用09；§18将范围模板归属由05更新为09，并保留十二向瞄准例外的引用 | AR-12 已执行；旧28方格只作迁移，避免下游按两套体系做图 |
 | B5-P02 | 基准 §18 的手机 UI 索引补充 design/14 的地图、冲穴、家业、门派职级、同伴重逢界面入口，规则仍归11/12/15/16/18/19 | AR 新增系统已纳入导航；不转移规则归属 |
 | B5-P03 | 基准 §19 的 UI 输入约定补“统一逻辑单位、触屏命中底线、关键长按提供等价辅助操作”，具体值只引用14与tech/03 | 解决44pt与44px表述、书眠无障碍的实施差异；常规1.5秒长按继续保留 |
-| B5-P04 | 基准 v1.3 登记 design/21 的战斗经脉路线独立攻防 / 速度乘区、护体内劲与逐单位实例，并把 design/14 定为其手机端只读入口 | 00-canon v1.2 尚未收录 21 v2.0；当前已按 AR-14 执行，但需避免后续客户端把路线加成并回旧伤害乘区或共享实例 |
+| B5-P04 | **已采纳（Canon v1.3）**：登记 design/21 的战斗经脉路线独立攻防 / 速度乘区、护体内劲与逐单位实例，并把 design/14 定为其手机端只读入口 | 见 Canon V13-02～07；本文继续按 21 v2.1 的路线 / 状态投影消费，不把路线加成并回旧伤害乘区或共享实例 |
+| NA1-P01 | **已采纳（Canon v1.4）**：登记十二品绝招数量、`MoveDef.ultimate:true` 唯一真值、角色共享气势、同门共享冷却与禁止连续同一绝招 | 本文 §4.2、§5.3、§8、U14-V15～16 与 U14-T33～35 已消费，不新增玩法规则 |
 
 ### 11.4 原著考据待办
 
@@ -1413,5 +1444,6 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 | U14-O12 | 浏览器兼容、字体许可和性能是否已验证？ | 未在本次验证；保留（待核实）/（待实测），按§10设备证据验收 | tech/03 / QA |
 | U14-O13 | 防守即时反应抽屉是否会在多段来袭中造成信息过载，是否需要倒计时？ | 默认同一 `causeId` 合并一次、显示路线差异并允许自然短路 / 放弃反应；不设倒计时，Core 提交前重验 | design/09、21 / UI / QA |
 | U14-O14 | 21 的路线预览、逐单位实例与动画在低端手机上是否满足输入 / patch 预算？ | 尚未真机验证；默认只挂当前单位与当前 1–18 段，静态编号替代流动画，超 8 ms 同步预览显示“推演中”且禁提交 | tech/01、03 / UI / QA |
+| U14-O15 | 多绝招卡在最窄横屏 / 150% 字号下是否仍能同时看清共享状态与逐项原因？ | 尚未真机验证；默认按武学分组横向滚动，固定角色气势和本门共享冷却，卡片只显示首因，聚焦详情列全因；不得隐藏任何已解锁绝招 | tech/01、03 / UI / QA |
 
 本文所有暂定项均有上述默认值；无需等待作者答复即可继续内容与客户端工作，规则终值仍由唯一归属文档收口。
