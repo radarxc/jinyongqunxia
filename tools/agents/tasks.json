@@ -5732,15 +5732,26 @@
         "NU5p",
         "NU5a",
         "NU5b",
-        "NXc1",
-        "NXc2",
-        "NXr1",
-        "NXr2",
         "NL2",
         "NL3",
         "NR0",
         "NR1",
-        "NR2"
+        "NR2",
+        "NXB01",
+        "NXB02",
+        "NXB03",
+        "NXB04",
+        "NXB05",
+        "NXB06",
+        "NXB07",
+        "NXB08",
+        "NXB09",
+        "NXB10",
+        "NXB11",
+        "NXB12",
+        "NXB13",
+        "NXB14",
+        "NXfix"
       ],
       "writes": [
         "docs/**",
@@ -6789,8 +6800,7 @@
       "deps": [
         "M5b",
         "NA2",
-        "NU5a",
-        "NXc1"
+        "NU5a"
       ],
       "writes": [
         "docs/design/catalog/skills-shaolin.md",
@@ -6874,8 +6884,7 @@
       "deps": [
         "M5b",
         "NA2",
-        "NU5b",
-        "NXc2"
+        "NU5b"
       ],
       "writes": [
         "docs/design/catalog/skills-xiake-bixue.md",
@@ -7175,369 +7184,6 @@
       }
     },
     {
-      "id": "NXc1",
-      "phase": "G",
-      "wave": 6,
-      "kind": "revise",
-      "title": "补录首领所缺武学（按门派 / 来源归入图鉴，可正常习得）· 武学图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
-      "prompt": "NXc-boss-arts-catalog.md",
-      "deps": [
-        "NU5a",
-        "NB4a",
-        "NB4b"
-      ],
-      "writes": [
-        "docs/design/catalog/skills-shaolin.md",
-        "docs/design/catalog/skills-daojia.md",
-        "docs/design/catalog/skills-general.md",
-        "docs/design/catalog/skills-wujue.md",
-        "docs/design/catalog/skills-xiaoyao.md",
-        "docs/design/catalog/skills-yitian.md"
-      ],
-      "review": false,
-      "web": false,
-      "vars": {
-        "group_name": "武学图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
-        "doc_set": "- `docs/design/catalog/skills-shaolin.md`\n- `docs/design/catalog/skills-daojia.md`\n- `docs/design/catalog/skills-general.md`\n- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-xiaoyao.md`\n- `docs/design/catalog/skills-yitian.md`"
-      },
-      "validate": {
-        "exists": [
-          "docs/design/catalog/skills-shaolin.md",
-          "docs/design/catalog/skills-daojia.md",
-          "docs/design/catalog/skills-general.md",
-          "docs/design/catalog/skills-wujue.md",
-          "docs/design/catalog/skills-xiaoyao.md",
-          "docs/design/catalog/skills-yitian.md"
-        ],
-        "fences": [
-          "docs/design/catalog/skills-shaolin.md",
-          "docs/design/catalog/skills-daojia.md",
-          "docs/design/catalog/skills-general.md",
-          "docs/design/catalog/skills-wujue.md",
-          "docs/design/catalog/skills-xiaoyao.md",
-          "docs/design/catalog/skills-yitian.md"
-        ],
-        "cmd": [
-          [
-            "{python}",
-            "tools/lint/check_ids.py",
-            "--strict"
-          ],
-          [
-            "{python}",
-            "-m",
-            "unittest",
-            "discover",
-            "-s",
-            "tools/lint",
-            "-p",
-            "test_*.py"
-          ],
-          [
-            "{python}",
-            "tools/balance/damage_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/balance/meridian_flow_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/agents/check_undefined_in.py",
-            "docs/design/catalog/skills-shaolin.md",
-            "docs/design/catalog/skills-daojia.md",
-            "docs/design/catalog/skills-general.md",
-            "docs/design/catalog/skills-wujue.md",
-            "docs/design/catalog/skills-xiaoyao.md",
-            "docs/design/catalog/skills-yitian.md"
-          ],
-          [
-            "{python}",
-            "tools/lint/check_skill_catalogs.py",
-            "--strict",
-            "docs/design/catalog/skills-shaolin.md",
-            "docs/design/catalog/skills-daojia.md",
-            "docs/design/catalog/skills-general.md",
-            "docs/design/catalog/skills-wujue.md",
-            "docs/design/catalog/skills-xiaoyao.md",
-            "docs/design/catalog/skills-yitian.md"
-          ]
-        ]
-      }
-    },
-    {
-      "id": "NXc2",
-      "phase": "G",
-      "wave": 6,
-      "kind": "revise",
-      "title": "补录首领所缺武学（按门派 / 来源归入图鉴，可正常习得）· 武学图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
-      "prompt": "NXc-boss-arts-catalog.md",
-      "deps": [
-        "NU5b",
-        "NB4a",
-        "NB4b"
-      ],
-      "writes": [
-        "docs/design/catalog/skills-xiake-bixue.md",
-        "docs/design/catalog/skills-wuyue.md",
-        "docs/design/catalog/skills-kangxi.md",
-        "docs/design/catalog/skills-qianlong.md",
-        "docs/design/catalog/skills-gulong.md"
-      ],
-      "review": false,
-      "web": false,
-      "vars": {
-        "group_name": "武学图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
-        "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`\n- `docs/design/catalog/skills-wuyue.md`\n- `docs/design/catalog/skills-kangxi.md`\n- `docs/design/catalog/skills-qianlong.md`\n- `docs/design/catalog/skills-gulong.md`"
-      },
-      "validate": {
-        "exists": [
-          "docs/design/catalog/skills-xiake-bixue.md",
-          "docs/design/catalog/skills-wuyue.md",
-          "docs/design/catalog/skills-kangxi.md",
-          "docs/design/catalog/skills-qianlong.md",
-          "docs/design/catalog/skills-gulong.md"
-        ],
-        "fences": [
-          "docs/design/catalog/skills-xiake-bixue.md",
-          "docs/design/catalog/skills-wuyue.md",
-          "docs/design/catalog/skills-kangxi.md",
-          "docs/design/catalog/skills-qianlong.md",
-          "docs/design/catalog/skills-gulong.md"
-        ],
-        "cmd": [
-          [
-            "{python}",
-            "tools/lint/check_ids.py",
-            "--strict"
-          ],
-          [
-            "{python}",
-            "-m",
-            "unittest",
-            "discover",
-            "-s",
-            "tools/lint",
-            "-p",
-            "test_*.py"
-          ],
-          [
-            "{python}",
-            "tools/balance/damage_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/balance/meridian_flow_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/agents/check_undefined_in.py",
-            "docs/design/catalog/skills-xiake-bixue.md",
-            "docs/design/catalog/skills-wuyue.md",
-            "docs/design/catalog/skills-kangxi.md",
-            "docs/design/catalog/skills-qianlong.md",
-            "docs/design/catalog/skills-gulong.md"
-          ],
-          [
-            "{python}",
-            "tools/lint/check_skill_catalogs.py",
-            "--strict",
-            "docs/design/catalog/skills-xiake-bixue.md",
-            "docs/design/catalog/skills-wuyue.md",
-            "docs/design/catalog/skills-kangxi.md",
-            "docs/design/catalog/skills-qianlong.md",
-            "docs/design/catalog/skills-gulong.md"
-          ]
-        ]
-      }
-    },
-    {
-      "id": "NXr1",
-      "phase": "G",
-      "wave": 6,
-      "kind": "revise",
-      "title": "按补录结果替换首领替补配装 · 书界 01–07",
-      "prompt": "NXr-boss-arts-replace.md",
-      "deps": [
-        "NXc1",
-        "NXc2",
-        "NB4a"
-      ],
-      "writes": [
-        "docs/design/chapters/01-tianlong.md",
-        "docs/design/chapters/02-shediao.md",
-        "docs/design/chapters/03-shendiao.md",
-        "docs/design/chapters/04-yitian.md",
-        "docs/design/chapters/05-xiaoao.md",
-        "docs/design/chapters/06-xiake.md",
-        "docs/design/chapters/07-bixue.md"
-      ],
-      "review": false,
-      "web": false,
-      "vars": {
-        "group_name": "书界 01–07",
-        "doc_set": "- `docs/design/chapters/01-tianlong.md`\n- `docs/design/chapters/02-shediao.md`\n- `docs/design/chapters/03-shendiao.md`\n- `docs/design/chapters/04-yitian.md`\n- `docs/design/chapters/05-xiaoao.md`\n- `docs/design/chapters/06-xiake.md`\n- `docs/design/chapters/07-bixue.md`"
-      },
-      "validate": {
-        "exists": [
-          "docs/design/chapters/01-tianlong.md",
-          "docs/design/chapters/02-shediao.md",
-          "docs/design/chapters/03-shendiao.md",
-          "docs/design/chapters/04-yitian.md",
-          "docs/design/chapters/05-xiaoao.md",
-          "docs/design/chapters/06-xiake.md",
-          "docs/design/chapters/07-bixue.md"
-        ],
-        "fences": [
-          "docs/design/chapters/01-tianlong.md",
-          "docs/design/chapters/02-shediao.md",
-          "docs/design/chapters/03-shendiao.md",
-          "docs/design/chapters/04-yitian.md",
-          "docs/design/chapters/05-xiaoao.md",
-          "docs/design/chapters/06-xiake.md",
-          "docs/design/chapters/07-bixue.md"
-        ],
-        "cmd": [
-          [
-            "{python}",
-            "tools/lint/check_ids.py",
-            "--strict"
-          ],
-          [
-            "{python}",
-            "-m",
-            "unittest",
-            "discover",
-            "-s",
-            "tools/lint",
-            "-p",
-            "test_*.py"
-          ],
-          [
-            "{python}",
-            "tools/balance/damage_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/balance/meridian_flow_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/balance/boss_pacing.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/agents/check_undefined_in.py",
-            "docs/design/chapters/01-tianlong.md",
-            "docs/design/chapters/02-shediao.md",
-            "docs/design/chapters/03-shendiao.md",
-            "docs/design/chapters/04-yitian.md",
-            "docs/design/chapters/05-xiaoao.md",
-            "docs/design/chapters/06-xiake.md",
-            "docs/design/chapters/07-bixue.md"
-          ]
-        ]
-      }
-    },
-    {
-      "id": "NXr2",
-      "phase": "G",
-      "wave": 6,
-      "kind": "revise",
-      "title": "按补录结果替换首领替补配装 · 书界 08–14",
-      "prompt": "NXr-boss-arts-replace.md",
-      "deps": [
-        "NXc1",
-        "NXc2",
-        "NB4b"
-      ],
-      "writes": [
-        "docs/design/chapters/08-luding.md",
-        "docs/design/chapters/09-liancheng.md",
-        "docs/design/chapters/10-baima.md",
-        "docs/design/chapters/11-yuanyang.md",
-        "docs/design/chapters/12-shujian.md",
-        "docs/design/chapters/13-feihu.md",
-        "docs/design/chapters/14-xueshan.md"
-      ],
-      "review": false,
-      "web": false,
-      "vars": {
-        "group_name": "书界 08–14",
-        "doc_set": "- `docs/design/chapters/08-luding.md`\n- `docs/design/chapters/09-liancheng.md`\n- `docs/design/chapters/10-baima.md`\n- `docs/design/chapters/11-yuanyang.md`\n- `docs/design/chapters/12-shujian.md`\n- `docs/design/chapters/13-feihu.md`\n- `docs/design/chapters/14-xueshan.md`"
-      },
-      "validate": {
-        "exists": [
-          "docs/design/chapters/08-luding.md",
-          "docs/design/chapters/09-liancheng.md",
-          "docs/design/chapters/10-baima.md",
-          "docs/design/chapters/11-yuanyang.md",
-          "docs/design/chapters/12-shujian.md",
-          "docs/design/chapters/13-feihu.md",
-          "docs/design/chapters/14-xueshan.md"
-        ],
-        "fences": [
-          "docs/design/chapters/08-luding.md",
-          "docs/design/chapters/09-liancheng.md",
-          "docs/design/chapters/10-baima.md",
-          "docs/design/chapters/11-yuanyang.md",
-          "docs/design/chapters/12-shujian.md",
-          "docs/design/chapters/13-feihu.md",
-          "docs/design/chapters/14-xueshan.md"
-        ],
-        "cmd": [
-          [
-            "{python}",
-            "tools/lint/check_ids.py",
-            "--strict"
-          ],
-          [
-            "{python}",
-            "-m",
-            "unittest",
-            "discover",
-            "-s",
-            "tools/lint",
-            "-p",
-            "test_*.py"
-          ],
-          [
-            "{python}",
-            "tools/balance/damage_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/balance/meridian_flow_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/balance/boss_pacing.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/agents/check_undefined_in.py",
-            "docs/design/chapters/08-luding.md",
-            "docs/design/chapters/09-liancheng.md",
-            "docs/design/chapters/10-baima.md",
-            "docs/design/chapters/11-yuanyang.md",
-            "docs/design/chapters/12-shujian.md",
-            "docs/design/chapters/13-feihu.md",
-            "docs/design/chapters/14-xueshan.md"
-          ]
-        ]
-      }
-    },
-    {
       "id": "NL2",
       "phase": "G",
       "wave": 6,
@@ -7695,7 +7341,7 @@
       "vars": {
         "group_name": "武学图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
         "doc_set": "- `docs/design/catalog/skills-shaolin.md`\n- `docs/design/catalog/skills-daojia.md`\n- `docs/design/catalog/skills-general.md`\n- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-xiaoyao.md`\n- `docs/design/catalog/skills-yitian.md`",
-        "extra": "跨组重复的分工：与另一组图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）完全相同的序列，本组保留、不改，由之后运行的 NR2 改写它那一侧的副本；本组内部的完全相同组全部由你处理。NXc 补录的新武学与 M5c 标记的外放招式一并纳入检查；外放招式改写后仍须满足外放端点白名单。"
+        "extra": "跨组重复的分工：与另一组图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）完全相同的序列，本组保留、不改，由之后运行的 NR2 改写它那一侧的副本；本组内部的完全相同组全部由你处理。M5c 标记的外放招式改写后仍须满足外放端点白名单。按书补录图鉴 `skills-bulu-*.md`（NXB01–NXB14）不在本任务写集内：与它们完全相同的路线，改写门派图鉴一侧；补录图鉴之间的互查由收尾任务 NXfix 负责。"
       },
       "validate": {
         "exists": [
@@ -7794,7 +7440,7 @@
       "vars": {
         "group_name": "武学图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
         "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`\n- `docs/design/catalog/skills-wuyue.md`\n- `docs/design/catalog/skills-kangxi.md`\n- `docs/design/catalog/skills-qianlong.md`\n- `docs/design/catalog/skills-gulong.md`",
-        "extra": "你在 NR1 合入之后运行：与少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天完全相同的序列，由你改写本组一侧的副本（NR1 已按约定保留那一侧）。完成后对全部 11 册运行 `python3 tools/lint/check_skill_catalogs.py --strict --diversity-strict`（不带路径即全量），必须为 0。NXc 补录的新武学与 M5c 标记的外放招式一并纳入检查；外放招式改写后仍须满足外放端点白名单。"
+        "extra": "你在 NR1 合入之后运行：与少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天完全相同的序列，由你改写本组一侧的副本（NR1 已按约定保留那一侧）。完成后对 11 册门派图鉴运行 `python3 tools/lint/check_skill_catalogs.py --strict --diversity-strict` 加这 11 册的路径，必须为 0。M5c 标记的外放招式改写后仍须满足外放端点白名单。按书补录图鉴 `skills-bulu-*.md`（NXB01–NXB14）不在本任务写集内：与它们完全相同的路线，改写门派图鉴一侧；补录图鉴之间的互查由收尾任务 NXfix 负责。"
       },
       "validate": {
         "exists": [
@@ -7866,7 +7512,1405 @@
             "{python}",
             "tools/lint/check_skill_catalogs.py",
             "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-shaolin.md",
+            "docs/design/catalog/skills-daojia.md",
+            "docs/design/catalog/skills-general.md",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md",
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "docs/design/catalog/skills-wuyue.md",
+            "docs/design/catalog/skills-kangxi.md",
+            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-gulong.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB01",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 01《天龙八部》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/01-tianlong.md",
+        "docs/design/catalog/skills-bulu-01-tianlong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "01",
+        "book_name": "天龙八部",
+        "chapter": "docs/design/chapters/01-tianlong.md",
+        "catalog": "docs/design/catalog/skills-bulu-01-tianlong.md",
+        "extra": "- 按地位下限兜底、缺真实主运：萧峰（12）、段延庆（11）、童姥（11）。先查原著所学（如童姥的天山武学、萧峰的丐帮 / 少林底子）在图鉴中是否已有。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/01-tianlong.md"
+        ],
+        "fences": [
+          "docs/design/chapters/01-tianlong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-01-tianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/01-tianlong.md",
+            "docs/design/catalog/skills-bulu-01-tianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB02",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 02《射雕英雄传》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/02-shediao.md",
+        "docs/design/catalog/skills-bulu-02-shediao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "02",
+        "book_name": "射雕英雄传",
+        "chapter": "docs/design/chapters/02-shediao.md",
+        "catalog": "docs/design/catalog/skills-bulu-02-shediao.md",
+        "extra": "- 兜底缺主运：陈玄风、梅超风（9）、黄药师（10）、裘千仞（10）。\n- 君山阵首暂用通行替补 `sk_hunyuanfangzhuang`。\n- 本书是桃花岛 / 白驼山 / 铁掌帮 / 全真的主书界：神雕书界的黄药师（11）、裘千尺也会用到这些武学，补录时一并考虑。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/02-shediao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/02-shediao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-02-shediao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/02-shediao.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB03",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 03《神雕侠侣》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/03-shendiao.md",
+        "docs/design/catalog/skills-bulu-03-shendiao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "03",
+        "book_name": "神雕侠侣",
+        "chapter": "docs/design/chapters/03-shendiao.md",
+        "catalog": "docs/design/catalog/skills-bulu-03-shendiao.md",
+        "extra": "- **阻断正式构建**：李莫愁、重阳七星阵首、公孙止、裘千尺、霍都、蒙古攻城百户缺 ≥9 品合规外功；七星阵首、百户还缺 9 品主运。\n- 兜底缺主运：李莫愁、公孙止、霍都、杨过（12）。\n- 作者决定：金轮 < 五绝 < 杨过（现为金轮 11/8、黄药师 11/9、杨过 12/9），不得打乱。\n- 黄药师、裘千尺的门派主书界是 02：跨书界，暂留替补并登记。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/03-shendiao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/03-shendiao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-03-shendiao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/03-shendiao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB04",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 04《倚天屠龙记》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/04-yitian.md",
+        "docs/design/catalog/skills-bulu-04-yitian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "04",
+        "book_name": "倚天屠龙记",
+        "chapter": "docs/design/chapters/04-yitian.md",
+        "catalog": "docs/design/catalog/skills-bulu-04-yitian.md",
+        "extra": "- **阻断正式构建**：成昆缺 ≥9 品合规外功与 9 品主运。\n- 兜底缺主运：金花婆婆、玄冥二老（10）、波斯三使（10）、三渡。\n- 缺专属外功：金花婆婆的杖法 / 暗器，鹿杖客的杖法，鹤笔翁的双笔。\n- 王保保的\"战役型例外\"8 品待作者确认，本任务不改。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/04-yitian.md"
+        ],
+        "fences": [
+          "docs/design/chapters/04-yitian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-04-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/04-yitian.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB05",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 05《笑傲江湖》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/05-xiaoao.md",
+        "docs/design/catalog/skills-bulu-05-xiaoao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "05",
+        "book_name": "笑傲江湖",
+        "chapter": "docs/design/chapters/05-xiaoao.md",
+        "catalog": "docs/design/catalog/skills-bulu-05-xiaoao.md",
+        "extra": "- 兜底缺主运：余沧海、嵩山使者、剑宗 / 蒙面首领、日月来袭首领、岳不群（10）。\n- 缺专属外功：任我行、东方不败（飞针暂由 `sk_kuihua` 承载）、左冷禅。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/05-xiaoao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/05-xiaoao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB06",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 06《侠客行》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/06-xiake.md",
+        "docs/design/catalog/skills-bulu-06-xiake.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "06",
+        "book_name": "侠客行",
+        "chapter": "docs/design/chapters/06-xiake.md",
+        "catalog": "docs/design/catalog/skills-bulu-06-xiake.md",
+        "extra": "- 兜底缺主运：谢烟客、丁不四、白自在、张三、李四、龙岛主、木岛主。\n- 缺丁氏家传武学、侠客岛的非太玄内功、谢烟客的外功。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/06-xiake.md"
+        ],
+        "fences": [
+          "docs/design/chapters/06-xiake.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-06-xiake.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/06-xiake.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB07",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 07《碧血剑》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/07-bixue.md",
+        "docs/design/catalog/skills-bulu-07-bixue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "07",
+        "book_name": "碧血剑",
+        "chapter": "docs/design/chapters/07-bixue.md",
+        "catalog": "docs/design/catalog/skills-bulu-07-bixue.md",
+        "extra": "- 兜底缺主运：玉真子（9）。\n- 温家五人、金龙帮缺内功：现用通行替补 `sk_hunyuanfangzhuang`（五个首领）与 `sk_baizhanxinfa`（温家）。\n- 本书是华山派（碧血一系）/ 归辛树的主书界：鹿鼎书界的归辛树 / 归二娘也会用到。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/07-bixue.md"
+        ],
+        "fences": [
+          "docs/design/chapters/07-bixue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-07-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/07-bixue.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB08",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 08《鹿鼎记》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/08-luding.md",
+        "docs/design/catalog/skills-bulu-08-luding.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "08",
+        "book_name": "鹿鼎记",
+        "chapter": "docs/design/chapters/08-luding.md",
+        "catalog": "docs/design/catalog/skills-bulu-08-luding.md",
+        "extra": "- 缺口：鳌拜、桑结 / 番僧、王屋、平西、神龙舰队、郑氏 / 冯锡范（剑法）、雅克萨（本土武艺）、海大富。\n- `sk_baizhanxinfa` 按第四档借用。\n- 归辛树 / 归二娘的主书界是 07：跨书界，暂留替补并登记。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/08-luding.md"
+        ],
+        "fences": [
+          "docs/design/chapters/08-luding.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-08-luding.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/08-luding.md",
+            "docs/design/catalog/skills-bulu-08-luding.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB09",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 09《连城诀》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/09-liancheng.md",
+        "docs/design/catalog/skills-bulu-09-liancheng.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "09",
+        "book_name": "连城诀",
+        "chapter": "docs/design/chapters/09-liancheng.md",
+        "catalog": "docs/design/catalog/skills-bulu-09-liancheng.md",
+        "extra": "- 缺口：万圭、凌退思。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/09-liancheng.md"
+        ],
+        "fences": [
+          "docs/design/chapters/09-liancheng.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-09-liancheng.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/09-liancheng.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB10",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 10《白马啸西风》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/10-baima.md",
+        "docs/design/catalog/skills-bulu-10-baima.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "10",
+        "book_name": "白马啸西风",
+        "chapter": "docs/design/chapters/10-baima.md",
+        "catalog": "docs/design/catalog/skills-bulu-10-baima.md",
+        "extra": "- 缺口：瓦耳拉齐（指法）、马家骏（暗器与内伤手法）、演武首领。\n- 马家骏地位下限 9，与师父瓦耳拉齐同为 9，待作者确认。\n- 纯机关假鬼阵豁免。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/10-baima.md"
+        ],
+        "fences": [
+          "docs/design/chapters/10-baima.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-10-baima.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/10-baima.md",
+            "docs/design/catalog/skills-bulu-10-baima.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB11",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 11《鸳鸯刀》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/11-yuanyang.md",
+        "docs/design/catalog/skills-bulu-11-yuanyang.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "11",
+        "book_name": "鸳鸯刀",
+        "chapter": "docs/design/chapters/11-yuanyang.md",
+        "catalog": "docs/design/catalog/skills-bulu-11-yuanyang.md",
+        "extra": "- 缺口：卓天雄（掌法）、太岳石碑桥接。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/11-yuanyang.md"
+        ],
+        "fences": [
+          "docs/design/chapters/11-yuanyang.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB12",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 12《书剑恩仇录》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/12-shujian.md",
+        "docs/design/catalog/skills-bulu-12-shujian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "12",
+        "book_name": "书剑恩仇录",
+        "chapter": "docs/design/chapters/12-shujian.md",
+        "catalog": "docs/design/catalog/skills-bulu-12-shujian.md",
+        "extra": "- 缺口：周仲英、假旗队领、兆惠、陈家洛。\n- 陈家洛的地位下限 9，主运现为兜底\"缺专属 9 品主运\"。\n- `sk_baizhanxinfa` 按第四档借用。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/12-shujian.md"
+        ],
+        "fences": [
+          "docs/design/chapters/12-shujian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-12-shujian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/12-shujian.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB13",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 13《飞狐外传》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/13-feihu.md",
+        "docs/design/catalog/skills-bulu-13-feihu.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "13",
+        "book_name": "飞狐外传",
+        "chapter": "docs/design/chapters/13-feihu.md",
+        "catalog": "docs/design/catalog/skills-bulu-13-feihu.md",
+        "extra": "- 缺口：商老太、凤天南（五虎刀）、袁紫衣、苗人凤（9）、田归农、药王三人（药王门玄阶内功）及四类精英。\n- 本书是苗家剑 / 胡家刀 / 天龙门 / 药王门的主书界：雪山书界的胡斐、苗人凤、田归农也会用到，补录时一并考虑。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/13-feihu.md"
+        ],
+        "fences": [
+          "docs/design/chapters/13-feihu.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-13-feihu.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/13-feihu.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXB14",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界 14《雪山飞狐》首领所缺武学补录与替补替换",
+      "prompt": "NXB-book-arts.md",
+      "deps": [
+        "NB4a",
+        "NB4b",
+        "NU5a",
+        "NU5b",
+        "NR0",
+        "M5b"
+      ],
+      "writes": [
+        "docs/design/chapters/14-xueshan.md",
+        "docs/design/catalog/skills-bulu-14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "14",
+        "book_name": "雪山飞狐",
+        "chapter": "docs/design/chapters/14-xueshan.md",
+        "catalog": "docs/design/catalog/skills-bulu-14-xueshan.md",
+        "extra": "- 缺口：B01–B07 各槽，含胡斐、苗人凤的 9 品主运。\n- 胡斐、苗人凤、田归农的主书界是 13：跨书界，暂留替补并登记。\n- 宝树等本书首领由本书自行补录。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/chapters/14-xueshan.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/14-xueshan.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfix",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "首领武学补录收尾：来源扩展落实、跨书界替换、补录图鉴互查",
+      "prompt": "NXfix-cross-book.md",
+      "deps": [
+        "NXB01",
+        "NXB02",
+        "NXB03",
+        "NXB04",
+        "NXB05",
+        "NXB06",
+        "NXB07",
+        "NXB08",
+        "NXB09",
+        "NXB10",
+        "NXB11",
+        "NXB12",
+        "NXB13",
+        "NXB14",
+        "NR2"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-shaolin.md",
+        "docs/design/catalog/skills-daojia.md",
+        "docs/design/catalog/skills-general.md",
+        "docs/design/catalog/skills-wujue.md",
+        "docs/design/catalog/skills-xiaoyao.md",
+        "docs/design/catalog/skills-yitian.md",
+        "docs/design/catalog/skills-xiake-bixue.md",
+        "docs/design/catalog/skills-wuyue.md",
+        "docs/design/catalog/skills-kangxi.md",
+        "docs/design/catalog/skills-qianlong.md",
+        "docs/design/catalog/skills-gulong.md",
+        "docs/design/catalog/skills-bulu-*.md",
+        "docs/design/chapters/01-tianlong.md",
+        "docs/design/chapters/02-shediao.md",
+        "docs/design/chapters/03-shendiao.md",
+        "docs/design/chapters/04-yitian.md",
+        "docs/design/chapters/05-xiaoao.md",
+        "docs/design/chapters/06-xiake.md",
+        "docs/design/chapters/07-bixue.md",
+        "docs/design/chapters/08-luding.md",
+        "docs/design/chapters/09-liancheng.md",
+        "docs/design/chapters/10-baima.md",
+        "docs/design/chapters/11-yuanyang.md",
+        "docs/design/chapters/12-shujian.md",
+        "docs/design/chapters/13-feihu.md",
+        "docs/design/chapters/14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md",
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md",
+          "docs/design/catalog/skills-yitian.md",
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md",
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md",
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md",
+          "docs/design/catalog/skills-yitian.md",
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md",
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
             "--diversity-strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
           ]
         ]
       }
