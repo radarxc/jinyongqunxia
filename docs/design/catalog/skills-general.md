@@ -1,6 +1,6 @@
 # 门派武学图鉴 · 江湖通用武学与杂学总表（`skills-general`）
 
-> **版本**：v1.2（审校 C1f.R；全局审计）；经脉系统落地、绝招数量调整（2026-09-27）；M4 返修（解锁层 7/9/10、同门绝招独立路线）；图鉴一致性审计、天中 / 地中绝招数统一（2026-09-28）。
+> **版本**：v1.2（审校 C1f.R；全局审计）；经脉系统落地、绝招数量调整（2026-09-27）；M4 返修（解锁层 7/9/10、同门绝招独立路线）；图鉴一致性审计、天中 / 地中绝招数统一、外放标记（2026-09-28）。
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 门派武学图鉴之一。本文唯一收录无门派通行武学、军中／镖局／武馆传承、序章《越女剑》教学武学、蓬莱派，以及不属于任何门派的医、毒、蛊、阵法、音律、书画、棋、易容、驭兽、音功与心神杂学。
 > **上游**：`docs/decisions/author-requirements.md` AR-01～AR-03、AR-07～AR-08、AR-12～AR-14；`docs/decisions/author-decisions.md` P33、P35；`docs/00-canon.md` v1.2 §3～§7、§12～§13、§16、§20；`docs/decisions/rulings-v1.md` C12、C14～C17、C22～C23、§3～§5；`design/21` v2.0。
@@ -1087,10 +1087,50 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | 品阶 | 1 黄下 | 2 黄中 | 3 黄上 | 4 玄下 | 5 玄中 | 6 玄上 | 7 地下 | 8 地中 | 9 地上 | 10 天下 | 11 天中 | 12 天上 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | 门数 | 11 | 25 | 22 | 19 | 22 | 17 | 8 | 9 | 2 | 0 | 0 | 0 |
+| AR-16 外放招式 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 - `nature` 统计为阳 37、阴 7、调和 66、中性 25，合计 135；中性只用于非内功。14 门内功全部显式登记阳／阴／调和，其中阳 7、调和 7、阴 0、中性 0。
 - 地阶 19 门均为完整条目卡；玄阶逐招核算 21 门，`21÷58=36.21%≥30%`；黄阶 58 门均是一行八列表。
 - 上游已点名或已有机制条目 8 门，本文新增武学 ID 127 个；“已点名”不代表其他文件已定义完整条目，唯一完整卡仍在本文。
+
+> AR-16 外放按武学品阶汇总为：天 0、地 0、玄 0、黄 0、合计 0。两招因远程伤害来源不明列待考；实体箭矢、针石、毒物、动物攻击、音波、阵法机关与普通兵刃延伸均已审不标。
+
+#### AR-16 外放候选审计表
+
+本表是 `tech/04` 构建 `projection-coverage.json` 的图鉴输入之一；结论按 `moveId` 排序。短卡后缀按 §12.3 展开为完整 ID。
+
+| `moveId` | 结论 | 依据 | 所在位置 |
+|---|---|---|---|
+| `mv_baicaobiandu_shiye` | 已审不标 `not_projected` | 投掷实体草叶／药材 | §8.8 百草辨毒 |
+| `mv_baicaobiandu_zadu` | 已审不标 `not_projected` | 实体毒物投射 | §8.8 百草辨毒 |
+| `mv_baidubianzheng_gongwei` | 已审不标 `not_projected` | 投毒手段，不是离体真气 | §8.3 百毒辨证 |
+| `mv_baidubianzheng_guizheng` | 已审不标 `not_projected` | 范围施毒表现，不是掌力／气劲外放 | §8.3 百毒辨证 |
+| `mv_baidubianzheng_yindu` | 已审不标 `not_projected` | 实体毒物投射 | §8.3 百毒辨证 |
+| `mv_baishouyujue_sherao` | 已审不标 `not_projected` | 动物攻击与蛇毒 | §8.7 百兽御诀 |
+| `mv_baishouyujue_yingji` | 已审不标 `not_projected` | 动物攻击，不是真气外放 | §8.7 百兽御诀 |
+| `mv_bianshe_dingxian` | 已审不标 `not_projected` | 实体箭矢 | §4.3 边塞射法 |
+| `mv_bianshe_lianfa` | 已审不标 `not_projected` | 实体箭矢连发 | §4.3 边塞射法 |
+| `mv_bianshe_paoshe` | 已审不标 `not_projected` | 实体箭矢抛射 | §4.3 边塞射法 |
+| `mv_chuanyunxiao_chuanyun` | 已审不标 `not_projected` | 音波伤害 | §8.8 穿云啸 |
+| `mv_donghaichaoshengzhang_haitian` | 待考 | 1–3 格掌招未明示离体掌力 | §3.2 东海潮生掌 |
+| `mv_feibairujian_feibai` | 待考 | 远程笔招未说明气劲或实体墨锋 | §8.8 飞白如剑 |
+| `mv_feihuangshi_dadeng` | 已审不标 `not_projected` | 实体石弹 | §5.4 飞蝗石 |
+| `mv_feihuangshi_feihuang` | 已审不标 `not_projected` | 实体石弹 | §5.4 飞蝗石 |
+| `mv_feihuangshi_lianshi` | 已审不标 `not_projected` | 实体石弹连投 | §5.4 飞蝗石 |
+| `mv_feishahuangshi_feisha` | 已审不标 `not_projected` | 实体砂石投射 | §7.4 飞砂黄石 |
+| `mv_feishahuangshi_huangshi` | 已审不标 `not_projected` | 实体石弹 | §7.4 飞砂黄石 |
+| `mv_feishahuangshi_liantou` | 已审不标 `not_projected` | 实体砂石连投 | §7.4 飞砂黄石 |
+| `mv_liuxingchui_feizhui` | 已审不标 `not_projected` | 长链实体兵器攻击 | §7.4 流星锤 |
+| `mv_liuxingchui_huixuan` | 已审不标 `not_projected` | 实体链锤往返 | §7.4 流星锤 |
+| `mv_qimenbuzhen_fumen` | 已审不标 `not_projected` | 阵法机关／阵眼远程生效 | §8.4 奇门布阵 |
+| `mv_qixianyin_luanxian` | 已审不标 `not_projected` | 琴音伤害 | §8.8 七弦音 |
+| `mv_tianwangbuxin_buxin` | 已审不标 `not_projected` | 实体针投射 | §3.3 天王补心针 |
+| `mv_tianwangbuxin_sanzhen` | 已审不标 `not_projected` | 实体针散射 | §3.3 天王补心针 |
+| `mv_yanmengqishe_huima` | 已审不标 `not_projected` | 实体箭矢 | §4.2 雁门骑射 |
+| `mv_yanmengqishe_lianzhu` | 已审不标 `not_projected` | 实体箭矢连射 | §4.2 雁门骑射 |
+| `mv_yanmengqishe_yanluo` | 已审不标 `not_projected` | 实体箭矢范围射击 | §4.2 雁门骑射 |
+| `mv_yanmengqishe_zouma` | 已审不标 `not_projected` | 实体箭矢 | §4.2 雁门骑射 |
+| `mv_yuenvjian_yixian` | 已审不标 `not_projected` | 表内明确近身剑招 | §2.1 越女剑法 |
 
 ### 10.4 约束统计
 
@@ -1473,6 +1513,7 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | GEN-V19 | 13 门轻功全部接 movement 路线，不写回 `Q_skill` / 门禁；14 门内功各有合法 `txp_*`，CT 1000、耗内 0、scope 1–3、`outOfBattleScaleBp=15000` | 失败 |
 | GEN-V21 | `MoveDef.ultimate:true` 统计恰为天 / 地 / 玄上 `0/21/17`；本次不新增 `mv_*`，新增绝招路线恰为 19 | 失败 |
 | GEN-V20 | 每个独立行动单位一个 `MeridianFlowModule`；preview 不写状态、不耗 RNG；结算顺序与 21 的 Z4M / Z5M、护体内劲位置一致 | 失败 |
+| GEN-V22 | AR-16 候选表按 `moveId` 排序；本册 `projection:true` 数为 0；实体投射、音波、动物攻击、阵法机关、普通兵刃与待考项均不得获得外放字段 | 失败 |
 
 ### 13.2 金标准测试用例
 
@@ -1499,6 +1540,7 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | GEN-T19 | 燕子三抄水绝招执行 | `mfr_yanzisanchaoshui_sanchao` 为 movement、8 段、720 CT；1200+720=1920≤2000 |
 | GEN-T20 | 百战心法护体后承受拳脚伤害 | 按护体真气→护体内劲→`mpGuard`→气血顺序，路线 `reflectBp=0` |
 | GEN-T21 | 扫描 17 门玄上定义与 §11.6.5 | 每门恰一个 `ultimate:true`，且对应路线均 6 段、600 CT；1200+600=1800≤2000 |
+| GEN-T22 | 扫描 AR-16 候选表、正文全部 `ranged/远程/投射` 伤害招 | 外放集合为空；箭、针、石、毒物、兽击、音波、阵法与两条待考均不得出现 `projection:true` 或 `projectionSpreadSteps` |
 
 ### 13.3 人工审阅清单
 
@@ -1510,6 +1552,7 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 6. 核对 `design/15` 正式经脉枚举、`design/07` 套装唯一成员表及 `chapters/*` 学习来源后，再生成运行数据。
 7. 将 §11.6 的模板全部展开为真实 `ap_*` 后，逐条检查路线 `ultimate`、CT、风险、穴位去重及 `recovery+flowCt`；不得把模板码交给 Core。
 8. 对两个同场单位的相同招式分别提交、取消与 preview，确认状态、RNG 游标和 trace 互不串扰。
+9. 逐项复查 AR-16 候选表；尤其不得把预算中的远程 `Kd`、投射 `Kp` 或线形范围当作真气离体证据。
 
 ---
 
@@ -1577,6 +1620,7 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | O-8 | 幻易容术“拟声 / 缩骨”是否在探索时运行经脉模块 | 默认否；二者仍有稳定 defense `mfr_*` 供战斗调用，但探索检定 / 门禁不创建战斗模块、不支付 `flowCt`（见 §11.6.4） |
 | O-9 | 通行图鉴是否自行定义攻防 / 速度乘区与护体内劲公式 | **已解决：否**。本文仅登记绑定；公式、调息、结算顺序、逐单位状态与 preview 契约统一见 `design/21` §3–§12 |
 | O-10 | 地中百战心法是否也补到 2 记绝招 | 默认保持 1 记；该功仅有两式，且“军魂”已承担完整群体支援核心，符合地中 1–2 的允许区间 |
+| O-11 | 海天一线与飞白是否属于离体掌力／笔锋气劲 | 默认均记待考、不赋 `projection:true`；待作者确认表现或补足文本证据后，再增加基础范围、三档 spread、伤害类型与合法端点 |
 
 ---
 
