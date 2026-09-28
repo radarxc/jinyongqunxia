@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from contextlib import redirect_stdout
+from io import StringIO
 import tempfile
 import unittest
 from pathlib import Path
@@ -22,6 +24,107 @@ VALID_INSTANCE = """
 
 
 class CatalogParserTests(unittest.TestCase):
+    ROUTE_DEFINITION_SHAPES = {
+        "front_index": """
+### 绝招显式路线索引（镜像正文卡，非覆写层；2026-09-28）
+<!-- skill-catalog-audit:start -->
+| 品阶 | 武学 | MoveDef（正文卡镜像） | 路线 ID | steps（acupointRef/segmentCt/riskBp） |
+|---|---|---|---|---|
+| 9 地上 | `sk_alpha` | `mv_alpha_one` | `mfr_alpha_one` | `MeridianRouteDef{moveRef:mv_alpha_one; ultimate:true; purpose:attack}`；`ap_renmai_qihai/80/100→ap_renmai_guanyuan/80/120` |
+<!-- skill-catalog-audit:end -->
+""",
+        "second_or_third_ultimate": """
+#### 同门第二／第三绝招显式路线
+| 武学 | moveRef | 路线 ID | purpose | 职责 | 显式步骤（`ap_*/CT/风险`） |
+|---|---|---|---|---|---|
+| 甲门武学 | `mv_alpha_one` | `mfr_alpha_one` | attack | 单体 | `ap_renmai_qihai/80/100 → ap_renmai_guanyuan/80/120` |
+""",
+        "section_0_12_1": """
+| `sk_alpha` | 9 地上 | 定义 |
+| `mv_alpha_one` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
+#### 0.12.1 天 / 地阶最终绝招路线
+| 武学（品） | 路线 ID | moveRef | 资源字段 | purpose | 计时 CT | steps（依次为穴位/riskBp） |
+|---|---|---|---|---|---|---|
+| `sk_alpha`（9） | `mfr_alpha_one` | `mv_alpha_one` | `7 / true / 100 / 9% / 0 / 1200` | attack | `2×80 / 160 / 1360` | `ap_renmai_qihai/100→ap_renmai_guanyuan/120` |
+""",
+    }
+
+    def test_route_steps_defined_once_passes_for_supported_table_shapes(self) -> None:
+        for shape, text in self.ROUTE_DEFINITION_SHAPES.items():
+            with self.subTest(shape=shape), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / f"skills-{shape}.md"
+                path.write_text(text, encoding="utf-8")
+                definitions = checker.parse_route_step_definitions(text, path.name)
+                audits = checker.audit_paths([path])
+            self.assertEqual(["mfr_alpha_one"], [item.route_id for item in definitions])
+            self.assertEqual(0, audits[0].duplicate_step_definitions)
+            self.assertFalse(any(
+                "steps defined more than once" in error
+                for error in audits[0].errors
+            ))
+
+    def test_route_steps_repeated_with_different_sequences_reports_both_locations(self) -> None:
+        first = self.ROUTE_DEFINITION_SHAPES["front_index"]
+        second = self.ROUTE_DEFINITION_SHAPES["section_0_12_1"].replace(
+            "ap_renmai_qihai/100→ap_renmai_guanyuan/120",
+            "ap_dumai_mingmen/100→ap_dumai_zhiyang/120",
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            first_path = Path(directory) / "skills-first.md"
+            second_path = Path(directory) / "skills-second.md"
+            first_path.write_text(first, encoding="utf-8")
+            second_path.write_text(second, encoding="utf-8")
+            definitions = [
+                *checker.parse_route_step_definitions(first, first_path.name),
+                *checker.parse_route_step_definitions(second, second_path.name),
+            ]
+            first_audit, second_audit = checker.audit_paths(
+                [first_path, second_path]
+            )
+        self.assertEqual(2, len(definitions))
+        self.assertEqual([], first_audit.errors)
+        self.assertEqual(0, first_audit.duplicate_step_definitions)
+        self.assertEqual(1, second_audit.duplicate_step_definitions)
+        duplicate_errors = [
+            error for error in second_audit.errors
+            if "mfr_alpha_one steps defined more than once" in error
+        ]
+        self.assertEqual(1, len(duplicate_errors))
+        for definition in definitions:
+            self.assertIn(definition.location, duplicate_errors[0])
+
+    def test_route_steps_reference_after_definition_passes(self) -> None:
+        text = self.ROUTE_DEFINITION_SHAPES["front_index"] + """
+#### 同门第二／第三绝招显式路线
+| 武学 | moveRef | 路线 ID | 显式步骤 |
+|---|---|---|---|
+| 甲门武学 | `mv_alpha_one` | `mfr_alpha_one` | 见文首索引 |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            audit = checker.audit_paths([path])[0]
+        self.assertEqual(0, audit.duplicate_step_definitions)
+        self.assertEqual([], audit.errors)
+
+    def test_strict_fails_on_duplicate_route_step_definition(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            first_path = Path(directory) / "skills-first.md"
+            second_path = Path(directory) / "skills-second.md"
+            first_path.write_text(
+                "| `mfr_alpha_one` | `ap_renmai_qihai/80/100` |",
+                encoding="utf-8",
+            )
+            second_path.write_text(
+                "| `mfr_alpha_one` | `ap_renmai_qihai/80/100` |",
+                encoding="utf-8",
+            )
+            with redirect_stdout(StringIO()):
+                result = checker.main(
+                    ["--strict", str(first_path), str(second_path)]
+                )
+        self.assertEqual(1, result)
+
     def test_final_instance_is_body_truth_and_route_mirror(self) -> None:
         item = checker.parse_final_instances(VALID_INSTANCE)["mv_alpha_one"]
         self.assertEqual(("sk_alpha", 12), (item.skill_id, item.grade))

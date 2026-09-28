@@ -1,4 +1,4 @@
-# ID 一致性检查器
+# ID 与武学图鉴一致性检查器
 
 `check_ids.py` 对规划文档中的内容 ID 做保守的跨文档静态检查。它只使用 Python
 标准库，兼容 Python 3.9 及以上版本，可在 Windows、macOS 和 Linux 运行。设计原则
@@ -194,3 +194,33 @@ ID 加反引号；这样既便于阅读，也能被检查器稳定识别。
    全仓 `--json` 扫描。
 
 若 Canon 暂时缺失，新前缀还应同步加入 `DEFAULT_PREFIXES`，保证 fallback 模式可用。
+
+## 武学图鉴一致性检查器
+
+`check_skill_catalogs.py` 审计 11 册 `docs/design/catalog/skills-*.md` 的绝招、
+经脉路线与调息档案。默认扫描全部图鉴，也可在命令末尾传入一册或多册；多册参数会
+作为同一次审计共同检查。
+
+```shell
+python3 tools/lint/check_skill_catalogs.py
+python3 tools/lint/check_skill_catalogs.py --details
+python3 tools/lint/check_skill_catalogs.py --json
+python3 tools/lint/check_skill_catalogs.py --strict
+```
+
+除 V-M01 三方一致、各品配额、7 / 9 / 10 重解锁层、显式路线、同门路线相似度、
+`outOfBattleScaleBp` 与旧 Buff 外，检查器还要求每个 `mfr_*` 的具体步骤序列在本次
+扫描的全部图鉴中只定义一次。它识别文首“绝招显式路线索引”、NU1–NU3 的“同门
+第二／第三绝招显式路线”表，以及 NU2S 的 §0.12.1 最终绝招路线表；判据是同一表行
+含恰好一个 `mfr_*` 和至少一个具体 `ap_*` 步骤。第二次及以后定义无论序列相同还是
+不同均报错，诊断同时给出首次定义与重复定义的文件和行号。只列路线 ID，或步骤列写
+“见文首索引”等且不再列 `ap_*` 的行按引用处理。
+
+人读模式的 `重复步骤定义` 与 JSON 字段 `duplicate_step_definitions` 统计第二次及以后
+的定义；这些错误和其他审计错误一样，在 `--strict` 下令进程退出 `1`。专项与全部
+lint 测试分别可运行：
+
+```shell
+python3 -m unittest -v tools.lint.test_check_skill_catalogs
+python3 -m unittest discover -s tools/lint -p "test_*.py"
+```

@@ -5,7 +5,8 @@ The catalogs are Markdown, but their machine-facing rows use a small set of
 stable tokens (``sk_*``, ``mv_*``, ``mfr_*`` and ``txp_*``).  This checker
 parses those tokens without treating prose as a second gameplay source of
 truth.  ``MoveDef.ultimate`` in a move card is authoritative; route flags are
-only mirrors.
+only mirrors.  Concrete steps for each ``mfr_*`` may be defined only once
+across all catalog paths passed to one invocation.
 """
 
 from __future__ import annotations
@@ -117,6 +118,18 @@ class FinalInstance:
     risks: tuple[int, ...] = ()
 
 
+@dataclass(frozen=True)
+class RouteStepDefinition:
+    route_id: str
+    source: str
+    line: int
+    steps: tuple[str, ...]
+
+    @property
+    def location(self) -> str:
+        return f"{self.source}:{self.line}"
+
+
 @dataclass
 class CatalogAudit:
     name: str
@@ -129,6 +142,7 @@ class CatalogAudit:
     missing_out_of_battle_scale: int = 0
     old_buff_runtime_refs: int = 0
     body_index_mismatches: int = 0
+    duplicate_step_definitions: int = 0
     errors: list[str] = field(default_factory=list)
 
 
@@ -447,6 +461,29 @@ def parse_final_instances(text: str) -> dict[str, FinalInstance]:
 def _explicit_signature(line: str) -> tuple[str, ...] | None:
     points = re.findall(r"ap_[a-z0-9_]+", line)
     return tuple(points) if points else None
+
+
+def parse_route_step_definitions(
+    text: str, source: str
+) -> list[RouteStepDefinition]:
+    """Return every concrete ``mfr_*`` step definition with its location.
+
+    All supported catalog layouts put one route ID and its ordered ``ap_*``
+    sequence on the same Markdown table row.  Rows that only name an ID (for
+    example ``见文首索引``) have no acupoints and therefore remain references.
+    A list is intentional: dictionaries would hide the duplicate occurrences
+    that this rule exists to diagnose.
+    """
+    result: list[RouteStepDefinition] = []
+    for number, line in enumerate(text.splitlines(), 1):
+        if not line.lstrip().startswith("|"):
+            continue
+        route_ids = list(dict.fromkeys(re.findall(r"mfr_[a-z0-9_]+", line)))
+        steps = tuple(re.findall(r"ap_[a-z0-9_]+", line))
+        if len(route_ids) != 1 or not steps:
+            continue
+        result.append(RouteStepDefinition(route_ids[0], source, number, steps))
+    return result
 
 
 def _route_template(fragment: str) -> str | None:
@@ -1161,7 +1198,24 @@ def audit_catalog(path: Path) -> CatalogAudit:
 
 
 def audit_paths(paths: Iterable[Path]) -> list[CatalogAudit]:
-    return [audit_catalog(path) for path in paths]
+    path_list = list(paths)
+    audits = [audit_catalog(path) for path in path_list]
+    definitions_by_route: dict[
+        str, list[tuple[CatalogAudit, RouteStepDefinition]]
+    ] = defaultdict(list)
+    for path, audit in zip(path_list, audits):
+        text = path.read_text(encoding="utf-8")
+        for definition in parse_route_step_definitions(text, path.name):
+            definitions_by_route[definition.route_id].append((audit, definition))
+    for route_id, entries in definitions_by_route.items():
+        first = entries[0][1]
+        for audit, duplicate in entries[1:]:
+            audit.duplicate_step_definitions += 1
+            audit.errors.append(
+                f"{duplicate.location}: {route_id} steps defined more than once; "
+                f"first definition at {first.location}"
+            )
+    return audits
 
 
 def summary_row(audit: CatalogAudit) -> str:
@@ -1172,6 +1226,7 @@ def summary_row(audit: CatalogAudit) -> str:
     return (
         f"{audit.name}: {tiers}; 解锁={audit.unlock_violations}; "
         f"同门重复={audit.duplicate_routes}; 隐式路线={audit.implicit_routes}; "
+        f"重复步骤定义={audit.duplicate_step_definitions}; "
         f"缺离战倍率={audit.missing_out_of_battle_scale}; "
         f"旧Buff={audit.old_buff_runtime_refs}; "
         f"正文≠索引={audit.body_index_mismatches}; errors={len(audit.errors)}"
