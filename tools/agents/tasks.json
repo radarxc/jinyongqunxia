@@ -7341,7 +7341,7 @@
       "vars": {
         "group_name": "武学图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
         "doc_set": "- `docs/design/catalog/skills-shaolin.md`\n- `docs/design/catalog/skills-daojia.md`\n- `docs/design/catalog/skills-general.md`\n- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-xiaoyao.md`\n- `docs/design/catalog/skills-yitian.md`",
-        "extra": "跨组重复的分工：与另一组图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）完全相同的序列，本组保留、不改，由之后运行的 NR2 改写它那一侧的副本；本组内部的完全相同组全部由你处理。M5c 标记的外放招式改写后仍须满足外放端点白名单。按书补录图鉴 `skills-bulu-*.md`（NXB01–NXB14）不在本任务写集内：与它们完全相同的路线，改写门派图鉴一侧；补录图鉴之间的互查由收尾任务 NXfix 负责。"
+        "extra": "另按 M5c1 报告第 7 节：本组 17 个掌类外放招式的路线终点在合谷 / 商阳 / 少商而非劳宫（其中 5 记是绝招：白虹掌力 ×2、火毒掌、大九天手 ×2），不符合 21 §4.3.1 的掌招规则，改写为经劳宫收束（仍须满足外放端点白名单与同门互异）。跨组重复的分工：与另一组图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）完全相同的序列，本组保留、不改，由之后运行的 NR2 改写它那一侧的副本；本组内部的完全相同组全部由你处理。M5c 标记的外放招式改写后仍须满足外放端点白名单。按书补录图鉴 `skills-bulu-*.md`（NXB01–NXB14）不在本任务写集内：与它们完全相同的路线，改写门派图鉴一侧；补录图鉴之间的互查由收尾任务 NXfix 负责。"
       },
       "validate": {
         "exists": [
