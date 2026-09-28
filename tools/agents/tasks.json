@@ -5715,7 +5715,9 @@
         "NU1",
         "NU2",
         "NU3",
-        "NU4"
+        "NU4",
+        "NB1",
+        "NB2"
       ],
       "writes": [
         "docs/**",
@@ -6011,6 +6013,122 @@
           "docs/design/catalog/skills-kangxi.md",
           "docs/design/catalog/skills-qianlong.md",
           "docs/design/catalog/skills-gulong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NB1",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "首领 / Boss 武学配装补全与节奏复核（书界 01–07）",
+      "prompt": "NB-boss-loadout.md",
+      "deps": [
+        "NCh1"
+      ],
+      "writes": [
+        "docs/design/chapters/01-tianlong.md",
+        "docs/design/chapters/02-shediao.md",
+        "docs/design/chapters/03-shendiao.md",
+        "docs/design/chapters/04-yitian.md",
+        "docs/design/chapters/05-xiaoao.md",
+        "docs/design/chapters/06-xiake.md",
+        "docs/design/chapters/07-bixue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "书界 01–07",
+        "doc_set": "- `docs/design/chapters/01-tianlong.md`\n- `docs/design/chapters/02-shediao.md`\n- `docs/design/chapters/03-shendiao.md`\n- `docs/design/chapters/04-yitian.md`\n- `docs/design/chapters/05-xiaoao.md`\n- `docs/design/chapters/06-xiake.md`\n- `docs/design/chapters/07-bixue.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/chapters/07-bixue.md"
+        ],
+        "fences": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/chapters/07-bixue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NB2",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "首领 / Boss 武学配装补全与节奏复核（书界 08–14）",
+      "prompt": "NB-boss-loadout.md",
+      "deps": [
+        "NCh2"
+      ],
+      "writes": [
+        "docs/design/chapters/08-luding.md",
+        "docs/design/chapters/09-liancheng.md",
+        "docs/design/chapters/10-baima.md",
+        "docs/design/chapters/11-yuanyang.md",
+        "docs/design/chapters/12-shujian.md",
+        "docs/design/chapters/13-feihu.md",
+        "docs/design/chapters/14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "书界 08–14",
+        "doc_set": "- `docs/design/chapters/08-luding.md`\n- `docs/design/chapters/09-liancheng.md`\n- `docs/design/chapters/10-baima.md`\n- `docs/design/chapters/11-yuanyang.md`\n- `docs/design/chapters/12-shujian.md`\n- `docs/design/chapters/13-feihu.md`\n- `docs/design/chapters/14-xueshan.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/08-luding.md",
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/chapters/10-baima.md",
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/chapters/14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/chapters/08-luding.md",
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/chapters/10-baima.md",
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/chapters/14-xueshan.md"
         ],
         "cmd": [
           [
