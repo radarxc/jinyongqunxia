@@ -1,9 +1,9 @@
 # 06 · Buff 体系（Buff System）
 
 > **归属**（基准 §18）：Buff 规则与完整目录——数据结构、品阶强度与品阶对抗、叠加与冲突、持续与结算时机、触发器与效果原语（DSL 语义）、驱散与免疫、蛊毒专章、UI 表现规则、平衡约束。
-> **版本**：v1.2（跨文档同步、全局审计，2026-09-26）。
-> **上游**：`decisions/author-requirements.md`（AR-03 冲穴接口、AR-12 战斗状态清单）、`decisions/author-decisions.md`（G1、P27、P31、P39）、`00-canon.md`（§4 品阶、§6 属性 ID、§7 兵器类别、§8 战斗模型与"回合"定义、§9 乘区、§10 Buff 基础规则、§12 ID 规范、§13 天级武学、§14 神兵）、`decisions/rulings-v1.md`（C07–C09、C11–C12、C23）。
-> **引用而不重定义**：属性形态与修饰种类（`flat`/`flatLv`/`pct`/`mult`/`pp`）→ `design/03-attributes.md`；伤害、治疗、命中/招架/暴击、效果命中公式 → `design/04-damage-formula.md`；武功被动、招式 `buffs` 字段、层数系数、辅运比例、走火入魔触发条件、"破 X"的获取 → `design/05-martial-arts-system.md`；套装 → `design/07-set-system.md`；地形与轻功 → `design/08-terrain-and-qinggong.md`；集气/反击/合击/AI/Boss 阶段 → `design/09-combat-system.md`；物品与丹药 → `design/10-items-and-equipment.md`；时辰/昼夜/节令 → `design/11-open-world.md`；NPC 与任务 → `design/12-quests-npc-factions.md`；天书之力、难度模式 → `design/13-progression-and-endings.md`；DSL 解释器实现 → `tech/05`（玩法引擎）。
+> **版本**：v1.3（跨文档同步、全局审计，2026-09-26；经脉系统落地，2026-09-27）。
+> **上游**：`decisions/author-requirements.md`（AR-03 冲穴接口、AR-12 战斗状态清单、AR-14 经脉运行）、`decisions/author-decisions.md`（G1、P27、P31、P39）、`00-canon.md`（§4 品阶、§6 属性 ID、§7 兵器类别、§8 战斗模型与"回合"定义、§9 乘区、§10 Buff 基础规则、§12 ID 规范、§13 天级武学、§14 神兵）、`decisions/rulings-v1.md`（C07–C09、C11–C12、C23）。
+> **引用而不重定义**：属性形态与修饰种类（`flat`/`flatLv`/`pct`/`mult`/`pp`）→ `design/03-attributes.md`；伤害、治疗、命中/招架/暴击、效果命中公式 → `design/04-damage-formula.md`；武功被动、招式 `buffs` 字段、层数系数、辅运比例、走火入魔触发条件、"破 X"的获取 → `design/05-martial-arts-system.md`；Buff 只登记战斗经脉状态的生命周期与投影，河流模型、招式路线、经脉乘区、护体内劲算法、擒拿 / 点穴严重度及调息唯一见 `design/21-meridian-flow-and-moves.md`；穴位拓扑、冲穴、周天与九转唯一见 `design/15-meridian-acupoint-system.md`；套装 → `design/07-set-system.md`；地形与轻功 → `design/08-terrain-and-qinggong.md`；集气/反击/合击/AI/Boss 阶段 → `design/09-combat-system.md`；物品与丹药 → `design/10-items-and-equipment.md`；时辰/昼夜/节令 → `design/11-open-world.md`；NPC 与任务 → `design/12-quests-npc-factions.md`；天书之力、难度模式 → `design/13-progression-and-endings.md`；DSL 解释器实现 → `tech/05`（玩法引擎）。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术版本、价格、API 或限额尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖他文档、本文先给出可用数值并在 §15 登记。
 
 ---
@@ -13,13 +13,13 @@
 | 章节 | 内容 | 主要读者 |
 |---|---|---|
 | §1 | 设计目标、核心概念、三大类的判别规则 | 全体 |
-| §2 | 数据结构：`BuffDef` 字段表、`BuffInstance`、表达式语言、3 个完整 YAML 示例 | 程序、配表 |
+| §2 | 数据结构：`BuffDef`、`BuffInstance`、经脉投影载荷、表达式语言、3 个完整 YAML 示例 | 程序、配表 |
 | §3 | 品阶体系：来源品阶、强度系数、大阶特性、12 档速查表、**品阶对抗公式** | 数值、程序 |
 | §4 | 叠加与冲突：四种叠加规则的精确语义、同族合并、增减益抵消、元素反应、乘区对照 | 数值、程序 |
 | §5 | 持续与时机：持续类型、回合结算顺序、伤害结算插入点、战斗外持续、永久被动 | 程序、战斗 |
 | §6 | 触发器与效果原语：事件钩子全集、条件、目标选择器、原语全集、防循环 | 程序（tech/05） |
 | §7 | 驱散与免疫：驱散类型、免疫/抵抗/驱散/无敌的区别、标签体系 | 数值、策划 |
-| §8 | **Buff 目录**（数值类、效果类、破兵系列、控制、架势、机制类、杂项、武学专属、跨系统接口、经脉永久被动，共 237 条；连同 §9 蛊类 10 条合计 247 条） | 配表、策划 |
+| §8 | **Buff 目录**（数值类、效果类、破兵系列、控制、架势、机制类、杂项、武学专属、跨系统接口、经脉永久被动与战斗经脉投影，共 242 条；连同 §9 蛊类 10 条合计 252 条） | 配表、策划 |
 | §9 | **蛊毒专章**（蛊的生命周期、跨战斗、周期发作、解法，含 10 条蛊类 Buff） | 策划、数值 |
 | §10 | UI 表现规则：图标边框、极性、叠层、剩余回合、说明模板、飘字、战斗日志 | UI、程序 |
 | §11 | 平衡约束：数值上限、数量上限、机制类冷却、Boss 豁免 | 数值 |
@@ -202,6 +202,21 @@
 | `phase` | enum | 蛊/受制类的阶段：`latent` 潜伏 / `active` 发作期 / `terminal` 危殆（§9.2） |
 | `worldClock` | `{appliedAt, nextTickAt, nextFlareAt, phaseChangedAt}` | 世界时间戳（时辰）；`phaseChangedAt` 供 `world.daysSince('phase')` 查询 |
 | `revealed` | sideId[] | `hidden` 实例已被哪一方识破 |
+| `meridian` | `MeridianBuffPayload | null` | AR-14 战斗经脉状态的参数化投影；仅 §8.14 五条可用。06 维护生命周期，21 的逐单位 `MeridianFlowModule` 维护节点真值；不得把两者复制成两套可独立修改的状态 |
+
+#### 2.2.1 `MeridianBuffPayload`（AR-14 投影载荷）
+
+| `kind` | 必填字段 | 可选字段 | 唯一语义 |
+|---|---|---|---|
+| `grapple` | `level`、`source`、`remainingOwnActions` | `sourceRefs`、`failedAttempts`、`holdRange`、`legacyRef` | 21 §8 的 `GrappleInput`；`level` 只允许 1–9 |
+| `acupointSeal` | `acupointRef`、`level`、`source`、`remainingOwnActions` | `legacyRef` | 21 §9 / §12.3 的 `AcupointSealInput`；字段名必须是 `acupointRef`，不是旧稿 `acupointId` |
+| `stagnation` | `acupointRef` | `stagnationBp`、`delayCt`、`causeId` | 仅显示 / 生命周期投影；数值真值在模块节点 |
+| `rupture` | `acupointRef` | `ruptureDamage`、`causeId` | 仅显示 / 生命周期投影；`ruptureDamage>0` 的封路由 21 判断 |
+| `innerGuard` | `routeId` | `reflectBp`、`causeId` | 护体防守窗口的 Buff 投影；字段与 21 运行态一致，抵消公式和资源真值归 21 §4.8 |
+
+共同约束：`source` 使用战斗 `unitId`，与实例顶层 `source` 相等；`remainingOwnActions` 与 `turnsLeft` 相等。每次 E2 递减只更新 Core 的待投影值：受擒写入 `MeridianTick.grappleRemaining`，各穴写入 `MeridianTick.sealRemainingByAcupoint`；到 21 §3.6 / §11.6 规定的下一次全局 `battle tick`，再把最新值随该单位唯一一次 `tick` 调用送入模块。传 `0` 才清模块镜像，字段缺省表示保持；E2 不得额外调用第二次 `tick`。`level` 只引用 21 的 `qnl_lv01..09` / `dxl_lv01..09`，本文不复制严重度数值。
+
+**条件互斥字段**：`exclusive` 仍是定义级静态字段，因此 `bf_shouqin` 与 `bf_xueweishoufeng` 不直接填写它；运行时只有 `meridian.level === 9` 才生成派生视图 `effectiveExclusive='exg_control_hard'`、`isHardControl=true`，1–8 级二者均为 `false`。此派生值不序列化，不创建第 2 个 Buff，也不得把 1–8 级送入 `ccCount`。
 
 ### 2.3 表达式语言（`expr`）
 
@@ -653,12 +668,14 @@ function apply(def: BuffDef, n: ApplyReq, holder: Unit): ApplyResult {
 | 组 | 成员 | 规则 |
 |---|---|---|
 | `exg_stance` 架势 | 守势、攻势、蓄势、游势、静势、狂势 | 同组只能存在 1 个；新架势**替换**旧架势（无论品阶）；被 `purge(stance)` 驱散后进入"乱架"（1 回合不能再起架势） |
-| `exg_control_hard` 硬控 | 眩晕、冰冻、昏睡、昏迷、点穴 | 同时只结算 1 个：新硬控到来时，若旧硬控剩余 ≥ 新硬控持续则新者丢弃，否则替换（**硬控不叠加时间**） |
+| `exg_control_hard` 硬控 | 眩晕、冰冻、昏睡、昏迷、`bf_shouqin` 9 级、`bf_xueweishoufeng` 9 级（旧 `bf_fengxue` 迁移后同点穴 9 级） | 同时只结算 1 个：新硬控到来时，若旧硬控剩余 ≥ 新硬控持续则新者丢弃，否则替换（**硬控不叠加时间、不叠加跳过次数**） |
 | `exg_mind` 心神 | 迷惑、移魂、恐惧、嘲讽 | 新者替换旧者；移魂 > 迷惑 > 恐惧 > 嘲讽，低者不能替换高者 |
 | `exg_ai_override` | 走火入魔的"敌我不分"与迷惑 | 同上，取迷惑 |
 | `exg_zouhuo` 走火 | 内息紊乱、经脉逆行、走火入魔（1–3 级） | 同组只存一个；按 05 §10.1 升级：已处于 k 级时再触发 ≤ k 级 → 升为 k+1 级（上限 3），触发更高级 → 直接替换 |
 | `exg_tsp_choice` 天书抉择 | 劈、不劈 | 同组只能存在 1 个；新选择替换旧选择，不占用通用架势组 |
 | `exg_speed_state` | 疾速（spd+）与减速（spd−） | **不互斥**，走 §4.5 净值；列出仅为说明 |
+
+`bf_shouqin` / `bf_xueweishoufeng` 是“一个参数化 Buff”，不能为 9 级再建影子实例。运行时以 §2.2.1 的 `effectiveExclusive` 参加上表：仅 `level===9` 是硬控，1–8 级可与硬控并存且不触发坚毅 / `ccCount`。若 8→9 升级被已有硬控拒绝，原 8 级实例及原剩余时间保持，不得先删后加；Boss 的 9 级退化见 §11.4。
 
 ### 4.5 增益与减益互相抵消
 
@@ -696,7 +713,7 @@ net    = posSum + negSum                       // 进入 03 §11 的修饰汇总
 | `attr:<id> flat` | 属性层固定值 | 加到基础值 | `attr:mov flat +1` |
 | `attr:<id> pp` | 属性层百分点（PCT 形态） | 直接加减 | `attr:resPoison pp +4×G` |
 | `attr:<id> mult` | 属性层独立乘数 | 连乘 | **Buff 一般不用**：03 §11.2 限定 `mult` 只用于天书之力特殊项与敌人模板，玩家侧每属性 ≤ 2 个 |
-| `attr:<id> override` | 属性覆写（03 §11.2 步骤⑧） | 最后生效，多个取最新施加者 | 点穴 `eva`/`parry` 视为 0；封轻功 `qinggong` 视为 0 |
+| `attr:<id> override` | 属性覆写（03 §11.2 步骤⑧） | 最后生效，多个取最新施加者 | 旧 `bf_fengxue` 的 `eva`/`parry` 覆写（仅 v1 runner）；封轻功 `qinggong` 视为 0 |
 | `Z0:<flag>` | 判定层开关 | `mustHit` / `mustCrit` / `skipParry` / `noCrit` | 必中、必暴、无视招架 |
 | `Z2` | 防御减免层 | 防御穿透比例，加法合并 | 透劲 `Z2 +5%×G` |
 | `Z3` | 增伤（攻方） | 加法合并；减益为负值（虚弱） | 锐意 `Z3 +5%×G` |
@@ -720,7 +737,7 @@ net    = posSum + negSum                       // 进入 03 §11 的修饰汇总
 | 计数单位 | `turns` 型以**持有者自身行动**计（基准 §8）。施加者是谁、施加于谁的回合，都不影响计数主体。 |
 | 递减时机 | 持有者每次行动的**回合结束段 E2**（§5.2）递减 1。 |
 | 新挂载 | `fresh: skipFirst`（默认）：在持有者**自己的行动中**被施加（自我增益、反震回来的减益）→ 本次 E2 不递减。在别人行动中被施加 → 持有者下次行动结束时正常递减。 |
-| 被跳过的行动 | 因眩晕/冰冻/点穴/昏睡/昏迷跳过行动**仍然算一次行动**：照常执行 E 段并递减。故"眩晕 1 回合"= 恰好失去下一次行动。 |
+| 被跳过的行动 | 因眩晕 / 冰冻 / 9 级穴位受封 / 9 级受擒 / 昏睡 / 昏迷跳过行动**仍然算一次行动**：照常执行 E 段并递减。故“眩晕 1 回合”= 恰好失去下一次行动。 |
 | 额外行动 | "再动"获得的额外行动**不执行** S 段与 E2 递减（§8.9 `bf_zaidong`）；防止额外行动把持续与冷却变相减半。（左右互搏的"分心二用"是一次行动内出两招，05 §9.3.2，本就只算一次行动） |
 | `charges` | 满足触发条件并**实际生效**时消耗 1 次（被免疫/未命中不消耗）；`maxTurns` 到期则提前移除。 |
 | 死亡 | 持有者倒地时移除全部非 `persist` 实例；`persist` 实例保留（战后仍带着内伤醒来）。复活不恢复已移除的增益。 |
@@ -738,9 +755,9 @@ net    = posSum + negSum                       // 进入 03 §11 的修饰汇总
 │   S2  [200–299] DOT：中毒 210 → 剧毒 220 → 蛇毒 225 → 流血 230 → 灼烧 240 → 寒毒 250 → 化骨 255 → 内伤 260
 │   S3  死亡判定：若 hp ≤ 0 → onDeath 链（锁血 → 诈死 → 复活 → 倒地），倒地则跳到 E 段后结束
 │   S4  [300–399] HOT：回春 310 → 续命 320 → 回内 330 → 养势 340；03 的 hpRegen/mpRegen 在 S4 最前结算
-│   S5  [400–449] 自动驱散：内功被动的自动逼毒（如九阳驱寒）、战斗自解穴判定（§7.1）
+│   S5  [400–449] 自动驱散：内功被动的自动逼毒（如九阳驱寒）；AR-14 点穴不再作免费自动自解穴，须选择调息 / 队友解穴 / 道具
 │   S6  [450–499] 控制判定：
-│         硬控（眩晕/冰冻/昏睡/昏迷/点穴）存在 → 本次行动跳过（直接进入 E 段）
+│         硬控（眩晕/冰冻/昏睡/昏迷/9 级受擒/9 级穴位受封）存在 → 本次行动跳过（直接进入 E 段）
 │         麻痹 → 掷骰，失败则跳过
 │         移魂/迷惑/恐惧/嘲讽/走火入魔 → 本次行动交由对应 AI 模式（09）
 │         定身/封轻功/封内力/封经脉/缴械 → 生成本次行动的禁用清单
@@ -751,7 +768,7 @@ net    = posSum + negSum                       // 进入 03 §11 的修饰汇总
 │
 └─ E 段：回合结束（onTurnEnd）
     E1  [任意] onTurnEnd 触发（流血"移动加伤"、静势叠层、蓄势检查）
-    E2  持续递减（跳过 fresh 与额外行动）
+    E2  持续递减（跳过 fresh 与额外行动）→ 更新受擒 / 各穴位待投影值（不在此额外调用模块 tick）
     E3  到期移除 → onExpire / onRemove（到期即结算的效果在此执行）
     E4  叠层衰减（expire: one 的实例）
     E5  "再动"检查 → 若有，立即开始额外行动（仅 S6 控制判定 + A 段 + E1）
@@ -771,10 +788,14 @@ net    = posSum + negSum                       // 进入 03 §11 的修饰汇总
 | P3c | 招架判定 → `onParry`/`onParried` | 破 X 招架评级加成；无视招架跳过 | Z0 / Z9 |
 | P3d | 暴击判定 → `onBeforeCrit` | 破 X 地阶"不能暴击"、必暴 | Z0 / Z6 |
 | P4 | 伤害计算 Z1–Z10 | 数值类 Buff 已并入属性与乘区（§4.7） | Z1–Z10 |
-| P5 | `onBeforeHurt`（守方，结算前） | 无敌 100 → 挪移 120 → 金刚 140 → 刀枪不入（已在 Z4）→ **护体真气吸收** → 以气御伤（内力代扣）→ 扣气血 | settle |
+| P5 | `onBeforeHurt`（守方，结算前） | 无敌 100 → 挪移 120 → 金刚 140 → 刀枪不入（已在 Z4）→ **护体真气** → **护体内劲**（21 §4.8）→ `mpGuard` / 以气御伤 → 扣气血 | settle |
 | P6 | `onDeath`（若 hp ≤ 0） | 锁血 → 诈死 → 复活 → 倒地 | settle |
 | P7 | `onHit`（攻方）/ `onHurt`（守方）/ `onCrit` / `onKill` | 吸血、吸内、反震、猬刺、附加 Buff 施加（招式 `buffs`）、战意、北冥受击吸内；**本次攻击若被护体真气完全吸收，其附带的 `injury`、`bleed` 标签效果不施加**（采纳 03 §5.5 建议），其余标签照常判定 | settle |
 | P8 | `onAfterAttack` | 连招、追击、反击（`counter`，流程归 09）排入**反应队列** | — |
+
+**AR-14 settle 契约**：护体内劲的唯一顺序是 `护体真气 → 护体内劲 → mpGuard → 气血`。21 返回的剩余量必须命名为 `damageBeforeMpGuard`；它不是 `hpDamage`。`bf_hutineijin` 只令该阶段合法，`bf_poqi` 只提供钳于 0–8000 bp 的候选 `breakGuardBp`（多来源取最高、不叠加），抵消率、`1 内力抵 2 伤害`、击穿 `delayCt/stagnationBp` 与类别适用率均只见 21 §4.8。
+
+攻击附带的 `bf_shouqin` / `bf_xueweishoufeng` 在本次 P5 全部 settle 完成后，于 P7 通过 04 效果检定再调用目标自己的模块；不回溯削弱当前攻击或本次护体。即使 `hpDamage=0`，接触成立仍可施加；只有招式显式声明“必须击穿护体”时才把 `innerGuard.broken` 用作既有 `extraFactor` 条件。反击与合击各读实际行动单位自己的模块实例。
 
 #### 5.3.1 反应队列与防循环
 
@@ -891,7 +912,7 @@ bossF    = 以 hpMax 比例为 raw 时：Boss 0.25 / 精英 0.50 / 普通 1.00�
 | `onBeforeCrit` | P3d 暴击判定 | 攻守双方 | `move` | `noCrit` / `mustCrit` | 破 X（地）、必暴 |
 | `onCrit` / `onCritted` | 暴击发生 | 攻方 / 守方 | `damage` | — | 战意、露怯 |
 | `onAttacked` | P3 结束（无论命中/招架/闪避） | 守方 | `result` `move` `dist` | — | 以静制动（后发制人） |
-| `onBeforeHurt` | P5 伤害已算出、扣除之前 | 守方 | `damage`（可写）`dmgType` `move` `flags` | **伤害数值** | 无敌、挪移、金刚不坏、以气御伤 |
+| `onBeforeHurt` | P5 伤害已算出、扣除之前 | 守方 | `damage`（可写）`dmgType` `move` `flags`；护盾后由 Core 另提供 21 `InnerGuardInput/Result` | **伤害数值** | 无敌、挪移、金刚不坏、护体内劲、以气御伤 |
 | `onHit` | P7 攻击造成伤害后 | 攻方 | `damage` `hpDamage` `shieldDamage` `target` | — | 吸血、吸内、附加 Buff |
 | `onHurt` | P7 受到伤害后 | 守方 | 同上 + `attacker` `direction` | — | 反震、猬刺、北冥受击吸内 |
 | `onShieldBroken` | 护体真气被打空 | 守方 | `overflow` | — | 金钟罩破罩 |
@@ -972,7 +993,7 @@ bossF    = 以 hpMax 比例为 raw 时：Boss 0.25 / 精英 0.50 / 普通 1.00�
 | `drainMp` | `mode`(`absorb` 北冥 / `seize` 吸星 / `dissolve` 化功) `amount` `overflow`(`shield`/`tempMax`/`none`) `backlash` | 吸取目标内力 | settle | 三种模式规则见 §8.3 | 北冥、吸星、化功 |
 | `modRage` | `target` `value` | 增减气势 | — | 0–100 | 养势、泄气 |
 | `shield` | `amount` `duration` | 增加护体真气（进入 03 `shield` 池） | settle 前 | 池上限 `shieldMax`（03，≤ 50% hpMax） | 护体真气 |
-| `mpGuard` | `pct` `ratio` | 伤害的 pct 由内力按 ratio 代扣 | P5 护体之后 | 内力不足部分照扣气血 | 以气御伤 |
+| `mpGuard` | `pct` `ratio` | 伤害的 pct 由内力按 ratio 代扣 | P5 护体真气与护体内劲之后 | 输入必须是 21 的 `damageBeforeMpGuard`；内力不足部分照扣气血 | 以气御伤 |
 | **Buff 管理** | | | | | |
 | `applyBuff` | `id` `target` `grade` `stacks` `duration` `chance` `params` | 施加 Buff（走完整 §4.1 流程） | — | 与 05 `BuffApply` 字段同构 | 各附加效果 |
 | `removeBuff` | `target` `id`/`tags`/`polarity` `count` | 无条件移除（**不走品阶对抗**，仅限规则/剧情用） | — | 数据校验：只允许 `origin: system/story` 或自身移除 | 诈死起身、架势替换 |
@@ -1011,6 +1032,17 @@ bossF    = 以 hpMax 比例为 raw 时：Boss 0.25 / 精英 0.50 / 普通 1.00�
 | `convertDamage` | `from`(`out`) `to`(`in`) `pct` | 外劲伤害部分转为内劲 | Z1 前 | | 转劲 |
 | `modTerrain` | `terrain` `costMul` `passable` | 持有者对某地形的通行规则（08） | 寻路 | | 踏雪无痕类 |
 | `log` / `vfx` / `sfx` | `template` / `key` | 表现 | 表现层事件 | 不影响逻辑 | 全部 |
+
+#### 6.4.1 经脉桥接命令（Core 端口，不是通用 `ActionOp`）
+
+| 端口 | 06 输入 | 21 调用 / 回写 | 事务规则 |
+|---|---|---|---|
+| `applyGrappleBuff` | `holder, source, level, remainingOwnActions` | 目标实例 `applyGrapple({level,source,remainingOwnActions})`；返回等级写回同一 `bf_shouqin` | 04 效果检定成功且本次伤害 settle 后调用；Buff 与模块同提交 / 同回滚 |
+| `applyAcupointSealBuff` | `holder, acupointRef, level, source, remainingOwnActions` | 目标实例 `applyAcupointSeal(...)`；返回等级写回对应 `bf_xueweishoufeng` | 多穴按 `acupointRef` ASCII 顺序；每穴各消费 04 已定义的效果检定，不由模块再掷一次 |
+| `syncMeridianDurations` | E2 更新的受擒剩余与 `Record<AcupointId,number>` | 在 21 的全局 `battle tick`，并入该单位唯一一次 `tick({battleTick,grappleRemaining,sealRemainingByAcupoint})` | `0` 清镜像；缺省保持；模块禁止自行递减；同一 `battleTick` 不得因 E2 再调一次 |
+| `rebuildMeridianViews` | 节点快照 | 重建迟滞 / 胀损派生视图 | 只读、无 RNG、无第二份状态 |
+
+这些端口由玩法 Core 编排，故不加入 `ActionOp` 联合类型，也不允许配表绕过 04 命中 / 抵抗、06 互斥与 21 模块所有权。
 
 ### 6.5 TypeScript 类型（`packages/data` Zod 同构，tech/05 实现）
 
@@ -1061,6 +1093,25 @@ export interface BuffDef {
   text: { desc: string; short: string; log: string; lore?: string };
   aiValue?: Expr; origin: 'canon'|'expanded'|'canonExpanded'; canonRef?: string;
 }
+
+type MeridianLevel = 1|2|3|4|5|6|7|8|9;
+type MeridianBuffPayload =
+  | { kind:'grapple'; level:MeridianLevel; source:UnitId; remainingOwnActions:number;
+      sourceRefs?:readonly UnitId[]; failedAttempts?:number; holdRange?:number; legacyRef?:BuffId }
+  | { kind:'acupointSeal'; acupointRef:AcupointId; level:MeridianLevel; source:UnitId;
+      remainingOwnActions:number; legacyRef?:BuffId }
+  | { kind:'stagnation'; acupointRef:AcupointId; stagnationBp?:number; delayCt?:number; causeId?:string }
+  | { kind:'rupture'; acupointRef:AcupointId; ruptureDamage?:number; causeId?:string }
+  | { kind:'innerGuard'; routeId:MeridianRouteId; reflectBp?:number; causeId?:string };
+
+export interface BuffInstance {
+  iid:number; def:BuffId; holder:UnitId; source:UnitId|null;
+  origin:{type:'skill'|'move'|'item'|'equip'|'set'|'terrain'|'tsp'|'system'|'story'|'aura'; id:string};
+  g0:number; g:number; stacks:number; turnsLeft:number; charges:number; fresh:boolean;
+  snap:Record<string,unknown>; pen:number; dormant:boolean; triggerState:Record<string,unknown>;
+  phase?:'latent'|'active'|'terminal'; worldClock?:Record<string,number>; revealed?:SideId[];
+  meridian?:MeridianBuffPayload;
+}
 ```
 
 ---
@@ -1072,7 +1123,7 @@ export interface BuffDef {
 | ID | 名称 | 施行方式 | 强度品阶 `gd` | 可处理的标签（主/子） | 每次处理量 | 代价 | 场合 |
 |---|---|---|---|---|---|---|---|
 | `circulate` | 运功逼毒 / 运功疗伤 | 行动"运功调息"的逼毒分支（09）；只对自身 | 主运内功 `effGrade` | `poison`、`injury`、`heat`、`cold.chill`、`seal.qg`、`seal.meridian`、`mind.confuse`；**寒毒**只有主运为阳性/调和内功时可"压制"（暂停 2 回合，不移除） | 1 个效果；叠层型 3 层 | 本次行动 + 内力 8% `mpMax` | 战斗内/外（外：2 时辰） |
-| `acupoint` | 战斗自解穴 / 解穴 | **战斗自解穴**：S5 段自动判定（被点穴者）；**解穴**：队友行动，需相邻且装配带 `seal` 标签招式的指法/擒拿武学 | 自解穴：主运内功 `effGrade`；解穴：该武学 `effGrade` | `seal`（全部子标签） | 自解穴：仅 `seal.point`；解穴：全部 `seal` | 自解穴无；解穴消耗该队友本次行动 | 战斗内 |
+| `acupoint` | 调息冲穴 / 队友解穴 | **自行冲穴**：选择 09 的 `yunjin:tiaoxi`，等级 ≤8 且未禁运劲；**队友解穴**：相邻队友使用带 `seal` 标签的指法 / 擒拿招式 | 自调息：21 的调息档案；队友：该武学 `effGrade` | `seal`（含 `seal.point.node`） | 自调息每次至多使 1 穴 −1 级；队友按效果命中削品 / 解除 | 自调息沿用调息行动；队友收招 900 | 战斗内 |
 | `medicine` | 医术 | 杂学·医的招式（05）或医者 NPC 服务（12） | `medGrade(med)`（下表） | `poison`、`injury`、`bleed`、`cold`、`heat`、`mind`、`weaken`、`cc.slow`、`cc.paralyze`；`seal` 以难度 +1 处理（金针渡穴）；`gu` 只能**压制** | 2 个效果；叠层全部 | 本次行动 + 药材（10） | 内/外 |
 | `antidote` | 解药 / 丹药 | 使用物品 | 物品有效品阶 | 物品配置的标签（例：九花玉露丸 `injury`；辟毒丹 `poison`） | 物品配置 | 物品 | 内/外 |
 | `skill` | 特定武功 | 武功被动（自动）或招式 | 该武功 `effGrade` | 武功配置（下表） | 武功配置 | 武功配置 | 内/外 |
@@ -1089,13 +1140,13 @@ export interface BuffDef {
 
 公式：`medGrade(v) = min(12, 1 + ⌊v / 9⌋)`。原著名医参考（NPC 技艺由 12 定级）：薛慕华（天龙）、胡青牛（倚天）、平一指（笑傲）、程灵素（飞狐）。
 
-**战斗自解穴概率**（被 `seal.point` 点穴者在 S5 段自动判定，成功则本次行动正常进行）：
+**旧版战斗自解穴概率（已解决：不再自动触发）**：下式仅保留给旧 `bf_fengxue` v1 录像 runner；AR-14 新状态必须显式选择 `yunjin:tiaoxi`，并按 21 §9.4 / §10 的 `releaseBp` 与调息档案处理。
 
 ```
 P自解穴 = clamp(5%, 95%, 25% + 15% × (g主运内功 − g点穴) + 0.3% × (con − 50))
 ```
 
-另：点穴期间每次受到伤害，有 20% 概率"撞开穴道"（天阶点穴 10%）。
+旧 runner 的“受伤撞开穴道”同样不用于 `bf_xueweishoufeng`；新点穴只走到期、调息、队友解穴或合法道具，避免同一状态有两套随机时钟。
 
 **`skill` 型驱散（特定武功，节选；完整配置随图鉴）**：
 
@@ -1140,12 +1191,12 @@ P自解穴 = clamp(5%, 95%, 25% + 15% × (g主运内功 − g点穴) + 0.3% × (
 |---|---|---|---|---|
 | `poison` | 毒 | `poison.common` 中毒、`poison.severe` 剧毒、`poison.snake` 蛇毒、`poison.numb` 麻药、`poison.gas` 迷烟毒雾、`poison.huagong` 化功、`poison.qixin` 七心海棠、`poison.qinghua` 情花毒、`poison.sanxiao` 三笑毒 | `resPoison` | 运/医/药/武 |
 | `gu` | 蛊 | `gu.jincan` `gu.bican` `gu.sanshi` `gu.wuxian`（五仙教诸蛊） | `resGu` | 专（医只压制） |
-| `seal` | 穴 | `seal.point` 点穴、`seal.mp` 封内力、`seal.qg` 封轻功、`seal.meridian` 封经脉、`seal.ult` 封绝（不能施放绝招） | `resSeal` | 穴/医/武 |
-| `injury` | 内伤 | `injury.internal` 内伤、`injury.bone` 骨伤/化骨、`injury.qi` 异种真气/走火、`injury.blood` 凝血、`injury.shangshi` 战后伤势 | `resInjury` | 运/医/药/武/休 |
+| `seal` | 穴 | `seal.point` 旧总体点穴、`seal.point.node` AR-14 穴位受封、`seal.mp` 封内力、`seal.qg` 封轻功、`seal.meridian` 封经脉、`seal.ult` 封绝（不能施放绝招） | `resSeal` | 穴/医/武 |
+| `injury` | 内伤 | `injury.internal` 内伤、`injury.bone` 骨伤/化骨、`injury.qi` 异种真气/走火、`injury.qi.stagnation` 经气迟滞、`injury.qi.rupture` 经脉胀损、`injury.blood` 凝血、`injury.shangshi` 战后伤势 | `resInjury` | 运/医/药/武/休 |
 | `bleed` | 流血 | `bleed` | `resInjury`（×0.5，建议） | 医/药/休 |
 | `cold` | 寒 | `cold.chill` 寒气、`cold.freeze` 冰冻、`cold.poison` 寒毒 | `resCold` | 运/医/武；寒毒专 |
 | `heat` | 热 | `heat.burn` 灼烧 | `resHeat` | 运/医/入水 |
-| `cc` | 控制 | `cc.stun` 眩晕、`cc.unconscious` 昏迷、`cc.root` 定身、`cc.knock` 击退、`cc.pull` 牵引、`cc.freeze` 冰冻、`cc.sleep` 昏睡、`cc.slow` 减速、`cc.paralyze` 麻痹、`cc.stagger` 失衡、`cc.delay` 迟缓、`cc.bind` 缠绕 | `resCC` | 医（软控）/ 时间 |
+| `cc` | 控制 | `cc.stun` 眩晕、`cc.unconscious` 昏迷、`cc.root` 定身、`cc.knock` 击退、`cc.pull` 牵引、`cc.freeze` 冰冻、`cc.sleep` 昏睡、`cc.slow` 减速、`cc.paralyze` 麻痹、`cc.stagger` 失衡、`cc.delay` 迟缓、`cc.bind` 擒拿 / 缠绕 | `resCC` | 医（软控）/ 时间 / 挣脱 |
 | `guard` | 护体（增益） | `guard.shield` `guard.reflect` `guard.invuln` `guard.lock` `guard.cap` `guard.redirect` `guard.mirror` `guard.immune` `guard.revive` | — | 破 |
 | `mind` | 心神 | `mind.charm` 迷惑、`mind.control` 移魂、`mind.taunt` 嘲讽、`mind.fear` 恐惧、`mind.confuse` 乱心、`mind.awe` 震慑 | `resMind` | 医/武 |
 | `weaponBreak` | 破兵 | 增益：`weaponBreak.<cat>`（破 X，cat ∈ 基准 §7 八类 + `inner`）；减益：`weaponBreak.disarm` 缴械、`weaponBreak.broken` 断兵、`weaponBreak.exposed` 破招（门户洞开） | —（`effRes`） | 破（增益）/ 时间、修复（减益） |
@@ -1279,12 +1330,12 @@ P自解穴 = clamp(5%, 95%, 25% + 15% × (g主运内功 − g点穴) + 0.3% × (
 
 | ID | 名称 | 类极 | 品阶 | 数值（作用位置 · 按品阶） | 持续 | 叠加 | 标签 | 驱散 | 典型来源 |
 |---|---|---|---|---|---|---|---|---|---|
-| `bf_fanzhen` | 反震 | E+ | 1–12 | P7：受到近战（距离 1）伤害后，按 04 唯一公式 `D_reflect=floor(ctx.hpDamage×min(0.40,8%×G)×(1−attackerZ4))` 结算内劲反震；`ctx.hpDamage` 是护体/代扣后实际气血伤害，不重复进入 Z1–Z3，不可闪避/招架 | 3⁺；被动 ∞ | H | guard.reflect | 破 | 九阳神功（倚天：受击时真气反震）；金钟罩（外功近战） |
+| `bf_fanzhen` | 反震 | E+ | 1–12 | 普通 P7 分支仍按 04 唯一公式，以护体 / 代扣后的 `ctx.hpDamage` 为基数；若同源 `bf_hutineijin` 显式给出 `reflectBp>0`，另按 21 §4.8 以 `floor(innerGuard.cancelled×min(reflectBp,2000)/10000)` 结算护体反震。两者都带 `reflected`、不重跑 Z1–Z3、不可闪避 / 招架，派生伤害不再反震 | 3⁺；被动 ∞ | H | guard.reflect | 破 | 九阳神功（倚天：受击时真气反震）；金钟罩（外功近战） |
 | `bf_weici` | 猬刺 | E+ | 4–12 | P7：被**拳脚**类招式造成气血伤害时，按比例型反伤 `floor(攻击者 hpMax×1%×G×pctFactor×(1−attackerZ4))`，再施加流血 1 层（同有效品阶）；原生范围 `[4,12]`，运行时压制/削品至 1–3 合法 | ∞（装备） | R | guard.reflect | ✗ | 软猬甲（《射雕英雄传》《神雕侠侣》黄蓉所穿）；低阶同类护甲为（原创扩展） |
 | `bf_houfa` | 后发制人 | E+ | 4–12 | `onAttacked`：受近战攻击后（命中、招架、闪避均可）以当前装配基础招式反击 ×0.6（`counter`，每回合 1 次） | 2⁺ | R | boost.counter | 破 | 太极拳"以静制动、后发先至"（倚天·武当；招名原创扩展） |
 | `bf_lianzhao` | 连招 | E+ | 1–12 | 下一次单体攻击命中后追加一段 ×0.5（地+ ×0.6；天阶追加两段） | ×1（天 ×2） | R | boost.combo | 破 | 快剑快刀；辟邪剑法 |
-| `bf_hutizhenqi` | 护体真气 | E+ | 1–12 | 施加时获得护体 `hpMax × 5%×G`（默认；05 以 `value: {shieldPctHpMax}` / `{shieldPctCasterHpMax}` 覆写，如九阳护体 15%），进入 `shield` 池（上限 `shieldMax`，03）；到期时剩余护体消散 | 3⁺ | I3 | guard.shield | 破 | 九阳护体、九阳真气（05）；易筋经"金刚不坏之基"（05）；运功护体行动（09） |
-| `bf_yiqiyushang` | 以气御伤 | E+ | 4–12 | P5（护体之后）：伤害的 25%（玄）/ 30%（地）/ 35%（天）改由内力代扣，1 内力抵 2 气血；内力不足部分照扣气血 | 3⁺；被动 ∞ | H | guard | 破 | 九阳神功、易筋经、混元功（地上）被动 |
+| `bf_hutizhenqi` | 护体真气 | E+ | 1–12 | 施加时获得护体 `hpMax × 5%×G`（默认；05 以 `value: {shieldPctHpMax}` / `{shieldPctCasterHpMax}` 覆写，如九阳护体 15%），进入 `shield` 池（上限 `shieldMax`，03）；到期时剩余护体消散。它只占第一段护盾，不等于、也不自动启用 §8.14 `bf_hutineijin` | 3⁺ | I3 | guard.shield | 破 | 九阳护体、九阳真气（05）；易筋经"金刚不坏之基"（05）；运功护体行动（09） |
+| `bf_yiqiyushang` | 以气御伤 | E+ | 4–12 | `mpGuard`：仅对 21 护体内劲返回的 `damageBeforeMpGuard` 生效；伤害的 25%（玄）/ 30%（地）/ 35%（天）改由内力代扣，1 内力抵 2 气血，内力不足部分照扣气血。不得与护体内劲合池或重复消耗同一伤害 | 3⁺；被动 ∞ | H | guard | 破 | 九阳神功、易筋经、混元功（地上）被动 |
 | `bf_zhuiji` | 追击 | E+ | 1–12 | `onAllyHit`：友方命中距持有者 ≤ 2 格的敌人后，持有者对其追加一次基础招式 ×0.4（`followup`，每回合 1 次） | 3⁺ | R | boost | 破 | 天罡北斗阵（射雕·全真；合击细则 09）；双剑合璧 |
 | `bf_jieji` | 截击 | E+ | 1–12 | `onEnemyEnterAdjacent`：敌方进入相邻格即终止其移动，并受一次基础招式 ×0.5（每回合 1 次） | 2⁺ | R | boost | 破 | 打狗棒法"封字诀"（射雕/神雕·丐帮）；长枪拒马（原创扩展） |
 | `bf_xianji` | 先机 | E+ | 1–12 | 首轮固定排序 `openingPriority +100×G`（缺省 0；天上 +350）；不再额外移动开场 CT | ∞（被动） | H | boost.tempo | ✗ | 独孤九剑“料敌机先”；神行百变（数值原创扩展） |
@@ -1359,7 +1410,7 @@ P自解穴 = clamp(5%, 95%, 25% + 15% × (g主运内功 − g点穴) + 0.3% × (
 | `bf_posuo` | 破索 | E+ | 1–12 | `Z5:whip`，同上 | 同上 | H | weaponBreak.whip | 同上 | 独孤九剑·破索式 |
 | `bf_pozhang` | 破掌 | E+ | 1–12 | `Z5:unarmed`，同上；天：另免疫由拳脚招式附带、品阶 ≤ 本 Buff 的 `seal` 效果 | 同上 | H | weaponBreak.unarmed | 同上 | 独孤九剑·破掌式 |
 | `bf_poanqi` | 破箭 | E+ | 1–12 | `Z5:hidden`，同上；守方以 `attr:eva pct +4%×G` 代替招架加成（暗器不可招架时）；天阶破招时将暗器以 50% 伤害反射回施放者 | 同上 | H | weaponBreak.hidden | 同上 | 独孤九剑·破箭式（05：被动拨开暗器 35%→60%，9 重起反射） |
-| `bf_poqi` | 破气 | E+ | 1–12 | `Z5:inner`，同上；攻击匹配目标时无视其护体真气 30%（地）/ 60%（天）；天：命中时对目标执行 1 次 `purge(guard)`（品阶 = 本 Buff） | 同上 | H | weaponBreak.inner | 同上 | 独孤九剑·破气式（05：对护体真气伤害 ×2） |
+| `bf_poqi` | 破气 | E+ | 1–12 | `Z5:inner`，同上；攻击匹配目标时无视其护体真气 30%（地）/ 60%（天），并向 21 护体内劲提供 `breakGuardBp=3000/6000`（黄玄为 0）**【建议值】**；多来源取最高、不叠加，最终钳于 0–8000。天：命中时对目标执行 1 次 `purge(guard)`（品阶 = 本 Buff） | 同上 | H | weaponBreak.inner | 同上 | 独孤九剑·破气式（05：对护体真气伤害 ×2） |
 | `bf_duguyi` | 剑意 | S+ | 10–12 | 每层本武学（独孤九剑）招式 `attr:crit flat +2`（05） | 战（05：dur 99） | S9 | boost.crit | ✗ | 独孤九剑·总诀式（05 §13.2） |
 | `bf_pozhao` | 破招 | E− | 1–12 | 招式被破、门户洞开：不能招架（Z0 跳过招架）、`attr:counter` 视为 0、不能施放蓄招 | 1 | R | weaponBreak.exposed | ✗（1 回合自然消退） | 独孤九剑破 X 式命中（05：60%）；破 X 天阶"破招" |
 | `bf_jiaoxie` | 缴械 | E− | 1–12 | 主手兵器落到随机相邻格（05 §6），强制空手：兵器类武学禁用、主武器属性失效；移动到该格并花费行动"拾回"即解除；持有天阶神兵且神兵品阶 ≥ 效果品阶时免疫 | 至拾回（战斗结束自动拾回） | R | weaponBreak.disarm | ✗（拾回） | 天山折梅手（天龙，天下）；独孤九剑破索式（05：30%）；空手入白刃（原创扩展） |
@@ -1368,17 +1419,17 @@ P自解穴 = clamp(5%, 95%, 25% + 15% × (g主运内功 − g点穴) + 0.3% × (
 
 ### 8.7 效果类 · 控制（24 条）
 
-> 硬控（眩晕、冰冻、昏睡、昏迷、点穴）同属互斥组 `exg_control_hard`，时间不叠加（§4.4）；心神类同属 `exg_mind`。所有硬控结束时自动获得"坚毅"（§8.9 `bf_jianyi`）。Boss 的控制递减见 §11.4。
+> 硬控（眩晕、冰冻、昏睡、昏迷，以及 §8.14 的 9 级受擒 / 穴位受封）同属互斥组 `exg_control_hard`，时间与跳过次数均不叠加（§4.4）；心神类同属 `exg_mind`。所有实际生效的硬控结束时自动获得“坚毅”（§8.9 `bf_jianyi`）。Boss 的控制递减见 §11.4。旧封穴 ID 仅供存档迁移，不再由新内容施加。
 
 | ID | 名称 | 类极 | 品阶 | 数值 / 规则 | 持续 | 叠加 | 标签 | 驱散 | 典型来源 |
 |---|---|---|---|---|---|---|---|---|---|
 | `bf_dingshen` | 定身 | E− | 1–12 | `disableAction [move, jump]`；可出招、用物品；不能借轻功跨越地形 | 1（地+ 2） | R | cc.root | 医；时间 | 羝羊触藩（05：60%）；天罗地网势（神雕·古墓）；打狗棒法"绊字诀" |
 | `bf_xuanyun` | 眩晕 | E− | 1–12 | S6 `skipAction` | 1 | R（硬控组） | cc.stun | 医（品阶 ≥ 效果） | 震惊百里（05：30%）；明确附带眩晕的重击 |
 | `bf_jitui` | 击退 | E− | 1–12 | `displace knock`：1 格（1–6）/ 2（7–9）/ 3（10–12）。若撞墙/单位/高差阻挡，取触发位移的单段 `D_hit`（已走完 Z0–Z10、尚未扣护体）：撞墙者受 `floor(0.2×D_hit)`，被撞单位受 `floor(0.1×D_hit)`；正常扣护体，不重跑乘区，不反击/再击退，每次位移至多一次。`D_hit=0` 则撞击为 0；无自动眩晕，坠落另归 08 | 瞬 | — | cc.knock | — | 见龙在田、龙战于野（05）；七伤拳"吐劲"（05） |
-| `bf_fengxue` | 点穴（封穴） | E− | 1–12 | S6 `skipAction`；`eva`/`parry` 视为 0；每次受伤 20%（天阶 10%）撞开穴道；S5 战斗自解穴判定（§7.1） | 1（天 2） | R（硬控组） | seal.point | 穴医武 | 一阳指、弹指神通、兰花拂穴手；七伤拳"闭劲"（05） |
-| `bf_fengnei` | 封内力（沉默） | E− | 1–12 | `disableAction [inner]`：不能施放 `mpCost > 0` 的招式与绝招、不能运功调息；内力不再生；来源为内功的 effect/mechanic 被动暂停（§5.5） | 2⁺ | R | seal.mp | 穴医武 | 点"气海穴"（原创扩展招名）；十香软筋散（附带） |
+| `bf_fengxue` | 点穴（旧） | E− | 1–12 | **迁移入口**：载入即按 §8.14.3 转为一个 `bf_xueweishoufeng` 9 级实例；至多跳过 1 次行动。新战斗不得创建本 ID，旧 S5 自解 / 受伤撞开规则仅由 v1 录像 runner 保留 | 旧档剩余，钳至 1 | — | seal.point | 迁移后按新状态 | 旧一阳指、弹指神通等内容引用；新内容改用穴位受封 |
+| `bf_fengnei` | 封内力（旧） | E− | 1–12 | **迁移入口**：载入即按 §8.14.3 转为一个关键穴 `bf_xueweishoufeng` 8 级实例；新战斗不得创建本 ID | 旧档剩余，钳至 1 | — | seal.mp | 迁移后按新状态 | 旧“气海穴”等内容引用；新内容改用穴位受封 |
 | `bf_fengqinggong` | 封轻功 | E− | 1–12 | `attr:qinggong` 视为 0、`attr:jump` 视为 0、`attr:mov flat −2`（最低 1）、`attr:eva pct −3%×G` | 2⁺ | R | seal.qg | 穴医 | 点"环跳穴"（原创扩展招名）；绊索、渔网（10） |
-| `bf_fengjingmai` | 封经脉 | E− | 1–12 | `disableSkillType [param: unarmed 或 weapon]` | 2 | R（defParam） | seal.meridian | 穴医武 | 擒拿手法；天山折梅手 |
+| `bf_fengjingmai` | 封经脉（旧） | E− | 1–12 | **迁移入口**：载入即按 §8.14.3 转为该脉最常用路线节点 `bf_xueweishoufeng` 7 级实例；不得一次封满整脉，新战斗不得创建本 ID | 旧档剩余，钳至 1 | — | seal.meridian | 迁移后按新状态 | 旧擒拿 / 折梅手内容引用；新内容改用穴位受封 |
 | `bf_miyun` | 封绝 | E− | 1–12 | 不能施放绝招；施加时目标 `rage −30`（05） | 2 | R | seal.ult | 穴医 | 降龙十八掌·密云不雨（05） |
 | `bf_mabi` | 麻痹 | E− | 1–12 | S6：25%（黄）/ 30%（玄）/ 35%（地）/ 40%（天）失去行动；`attr:spd pct −10%`；`attr:str flat −3×G`，最终有效臂力最低 1 | 2⁺ | R | cc.paralyze, poison.numb | 运医药 | 麻药；玉蜂针（《神雕侠侣》古墓派）；蛇毒满层；减力数值为（原创扩展） |
 | `bf_mihuo` | 迷惑 | E− | 1–12 | `aiOverride charm`：每次行动目标随机（含友军），不能施放绝招 | 1（天 2） | R（心神组） | mind.charm | 医武 | 迷香（原创扩展）；圣火令武功之诡变（倚天，机制解释原创扩展） |
@@ -1392,7 +1443,7 @@ P自解穴 = clamp(5%, 95%, 25% + 15% × (g主运内功 − g点穴) + 0.3% × (
 | `bf_lvshuang` | 履霜 | E− | 7–12 | 每层 `attr:spd pct −5%`；满 4 层"冰至"：清空层数，追加一段 0.8 倍伤害并定身 1 回合（05） | 3 | S4 | cc.slow, cold.chill | 运医 | 降龙十八掌·履霜冰至（05） |
 | `bf_hunshui` | 昏睡 | E− | 1–9 | S6 `skipAction`，直至受到任何伤害或持续结束 | 2 | R（硬控组） | cc.sleep | 医药；受伤即醒 | 蒙汗药、迷香（江湖通用，数值原创扩展） |
 | `bf_hunmi` | 昏迷 | E− | 1–12 | S6 `skipAction`；单次受到 `ctx.hpDamage ≥ 5% hpMax` 时立即解除。与可被任意伤害唤醒的 `bf_hunshui` 分立 | 1 | R（硬控组） | cc.unconscious | 医药；重伤唤醒 | 伤重昏厥的战斗抽象（原创扩展） |
-| `bf_chanrao` | 缠绕 | E− | 1–12 | 定身 + `attr:parry pct −4%×G`；施加者与持有者距离超过施加招式射程时解除；持有者可花费行动"挣脱"（成功率 `50% + (str − 施加者 str) × 1%`，5%–95%） | 2 | R | cc.bind | 医；挣脱 | 打狗棒法"缠字诀"；软鞭、长索 |
+| `bf_chanrao` | 缠绕（旧） | E− | 1–12 | **兼容入口**：旧实例显示并迁移为 `bf_shouqin` 4 级；保留旧 `source`、剩余时间与维持距离，新战斗不得创建本 ID。迁移后的挣脱统一引用 21 §8.4 | 旧档剩余，最多 2 | — | cc.bind | 挣脱 / 断距 | 旧打狗棒法“缠字诀”、软鞭与长索内容引用 |
 | `bf_shiheng` | 失衡 | E− | 1–12 | `attr:hit pct −2%×G`、`attr:parry pct −4%×G`；下一招收招 +20%（09） | 1 | R | cc.stagger | —（时间） | 太极拳"四两拨千斤"（倚天）；破 X 天阶破招 |
 | `bf_qianyin` | 牵引 | E− | 1–12 | `displace pull`：1 / 2 / 3 格（1–6 / 7–9 / 10–12）；05 招式 `displacement: pull` 同义 | 瞬 | — | cc.pull | — | 擒龙功（天龙·萧峰）；倒拽九牛尾（05） |
 | `bf_chihuan` | 迟缓 | E− | 1–12 | `ct −100×G`（推迟集气） | 瞬 | — | cc.delay | — | 打狗棒法"绊字诀"；重兵器砸击 |
@@ -1454,7 +1505,7 @@ P自解穴 = clamp(5%, 95%, 25% + 15% × (g主运内功 − g点穴) + 0.3% × (
 | `bf_daoqiang` | 刀枪不入 | M+ | 4–12 | 受到 `sword/blade/spear/exotic/hidden` 类招式伤害中的**外劲部分** `Z4 +8%×G`（条件减伤）；`immune [bleed]`（≤ 本品阶）。原生范围 `[4,12]`；装备按当前 `effGrade` 生成，运行时 1–3 品合法 | ∞（装备） | H | guard | ✗ | 乌蚕衣（《连城诀》）；护身宝衣（《鹿鼎记》）；低阶同类护甲为（原创扩展） |
 | `bf_dunzou` | 遁走 | M+ | 1–12 | `attr:mov flat +2`；无视截击与控制区；撤退行动必定成功；`attr:eva pct +4%×G` | 2 | R | boost | 破 | 神行百变（碧血/鹿鼎：韦小宝只学了逃命的本事，天下） |
 | `bf_tingfeng` | 听风辨器 | M+ | 1–12 | 可选中隐身单位；攻击残影持有者时 50% 不消耗残影直接命中；对暗器 `attr:eva pct +4%×G`；被其选中的隐匿者获得"破隐" | 3⁺；被动 ∞ | R | boost | 破 | 名称与破隐规则为（原创扩展）；需核《笑傲江湖》独孤九剑破箭式练法是否存在相近表述（待考） |
-| `bf_jianyi` | 坚毅 | M+ | 系统 | 硬控结束时自动获得：1 回合内免疫同子标签的硬控（品阶 12） | 1 | R | guard.immune | ✗ | 系统（§11.3） |
+| `bf_jianyi` | 坚毅 | M+ | 系统 | 硬控结束时按该硬控子标签实例化：1 回合内仅免疫同子标签硬控（品阶 12） | 1 | R | guard.immune | ✗ | 系统（§11.3） |
 | `bf_shouling` | 首领 | M+ | 系统 | Boss 常驻：控制递减、百分比伤害系数 0.25、`immune [mind.charm, mind.control, bind]`（品阶 = Boss 最高武学品阶） | ∞ | — | guard.immune | ✗ | 系统（§11.4） |
 | `bf_shuling_huyou` | 书灵护佑 | M+ | 系统 | 本战首次受致死伤害时改为回复 30% 气血。江湖：全部战斗；侠客：序章与剧情战；宗师：仅序章；天劫：不启用（13 §5.1） | 战 | — | guard.lock | ✗ | 书灵（01/13） |
 | `bf_xielian` | 邪气 | M− | 系统 | 装配时 `attr:resMind pp −15`；正派 NPC 初见好感 −10（12） | ∞（装配） | — | weaken | ✗ | 九阴白骨爪（05 §9.1.2） |
@@ -1554,6 +1605,52 @@ AR-12 的第五个新状态昏迷 `bf_hunmi` 已在 §8.7 定义。其余点名�
 | `bf_zt_jiuzhuan` | 九转护脉 | M+；guard.immune | `onBuffApplied` 且 `ctx.buff.def == 'bf_neishang' && ctx.applyMode == 'create'` 时拒绝该新实例 | 每战一次并消费战斗 charge；不挡其他 `injury`、剧情伤势、已有内伤的叠层或刷新 | `zt_zhuan_09` |
 
 气海与小周天分别对同一笔实扣内力取整：实际合计为 `max(1,floor(mpSpent×3%)) + floor(mpSpent×7%)`，并各自受 `mpMax` 封顶；例如实扣 100 点时返 `3+7=10`。大周天与七转的回复若向下取整为 0 就不生成 0 值日志。百会与十二经周流使用战斗账本的一次性键，不能靠移除再挂永久实例重置；九转的 charge 同理。
+
+### 8.14 AR-14 战斗经脉状态（5 条）
+
+> 本节只定义 `bf_*` 身份、生命周期、标签、互斥、驱散与模块投影。所有等级效果、节点算法、调息和护体内劲算式唯一见 `design/21` §3、§4.8、§8–§12；`qnl_*` / `dxl_*` 严重度档案由 21 拥有。五条玩法包装均为**（原创扩展）**。
+
+| ID | 名称 | 类极 | 品阶 | 数值 / 规则 | 持续 | 叠加 | 标签 | 驱散 / 解除 | 来源 |
+|---|---|---|---|---|---|---|---|---|---|
+| `bf_shouqin` | 受擒 | E− | 1–12 | 参数 `kind:grapple, level:1..9`；运行时引用同级 `qnl_lv01..09`。1–8 级是移动、收招、臂力、身法、闪避及兵器可用性限制；仅 9 级派生硬控并 `skipAction` | 默认 2 次自身行动；精英 −1（最低 1）；Boss 1–8 固定 1，9 见 §11.4 | 单实例，见 §8.14.1 | cc.bind | 挣脱；持有者受单次 ≥8% `hpMax` 实际气血伤害（降 2 级）；施加者倒地 / 离场；维持型断距 | 擒拿招式（21 §8） |
+| `bf_xueweishoufeng` | 穴位受封 | E− | 1–12 | 参数 `kind:acupointSeal, acupointRef, level:1..9`；引用同级 `dxl_lv01..09`。仅 9 级派生硬控；同一实例不得同时代表两个穴位 | 1–6 级 2 次自身行动；7–9 级 1 次 | 同穴升级；异穴 I3，见 §8.14.2 | seal.point.node | 自行调息（≤8）；队友解穴；合法道具 / 剧情；到期 | 点穴招式（21 §9） |
+| `bf_jingqizhizhi` | 经气迟滞 | S− | 系统投影 | 一穴一条派生视图，显示模块节点 `stagnationBp` 与击穿 `delayCt`；不以 `mods` 再扣一次流畅 / CT | 节点值 >0；战末清 | 节点键；不计普通实例上限 | injury.qi.stagnation | 21 调息；模块归零即移除 | 路线卡住、护体击穿等（21 §3 / §4.8） |
+| `bf_jingmaizhangsun` | 经脉胀损 | M− | 系统投影 | 一穴一条派生视图；模块节点 `ruptureDamage>0` 即封经该穴路线，本文不重复判断阈值 | 修至 0；战末深度调息清 | 节点键；不计普通实例上限 | injury.qi.rupture | 21 调息修复；战后深度调息 | 经脉过载（21 §3.3） |
+| `bf_hutineijin` | 护体内劲 | E+ | 1–12 | 只把已提交且合法的护体路线投影为 `innerGuard.enabled`；抵消、耗内、击穿和四类伤害适用率全部由 21 §4.8 返回 | 防守行动后至下次正常自身行动；即时反应仅当前 `causeId` | R（defSource） | guard.inner | 破；路线胀损 / 8–9 级相关封穴立即失效 | 自然护体短路、护体防守路线（21 §4.7） |
+
+`bf_jingqizhizhi` 与 `bf_jingmaizhangsun` 是只读派生 Buff 视图：禁止 `applyBuff`、不序列化 `BuffInstance`、不参加品阶对抗或非永久 Buff / 全战场实例数量上限。Core 每次模块事务后按 `acupointRef` 重建视图；UI 折叠显示最严重节点与受影响路线数。战斗结束时模块按 21 §1.4 清理临时状态，它们不得直接转为 09 的 `bf_shangshi`。
+
+#### 8.14.1 受擒合并、解除与并存
+
+1. 同来源再次成功：新基础级更高则取新级，否则当前 `level+1`，上限 9；`remainingOwnActions=max(旧,新)`。不同来源不相加，只保留最高等级、最长剩余；完全相同时保留当前 `source`，其余写入排序后的 `sourceRefs` 供日志追溯。
+2. 单次实际气血伤害 `ctx.hpDamage ≥ ceil(holder.hpMax×800/10000)` 时降 2 级（最低 0，0 即解除）；从 9 降为 7 也视为 9 级硬控结束，生成仅免疫 `cc.bind` 的 `bf_jianyi` 1 回合。
+3. 与 `bf_mabi` 并存：重叠的臂力 / 身法 / 闪避限制在最终限制层取更不利结果，不连乘；麻痹失去行动只掷一次。与 `bf_dingshen` 并存时移动取最严限制。与 `bf_jiaoxie` 并存时仍须拾回兵器，受擒解除不代为拾回。
+4. `bf_chanrao` 只作 4 级旧档入口。长期药物 / 蛊主“受制”使用主标签 `bind`，不属于擒拿；因此 `bf_shouling` 的 `immune [bind]` 不免疫 `cc.bind`。
+
+#### 8.14.2 穴位受封合并、硬控与并存
+
+1. 同一 `acupointRef` 再次成功：新等级较高则替换，否则 `level+1`，上限 9；剩余持续取较长。不同穴最多 3 个；第 4 个成功时替换“等级最低 → 剩余最短 → `acupointRef` ASCII 最小”的实例。
+2. 1–8 级只把等级和剩余时间投影给目标自己的模块；路线所受流畅、耗内、绝招 / 内功 / 护体限制读取 `dxl_*`。9 级另进入硬控组、禁止所有运劲和自行调息；它与眩晕、冰冻、昏睡、昏迷、9 级受擒只保留一次跳过行动。
+3. `bf_mabi` 可并存，点穴不会附赠麻痹。1–8 级不触发坚毅；9 级硬控结束才生成只免疫 `seal.point.node` 的 `bf_jianyi`。
+4. Boss 的 1–6 级正常；7–8 级不锁绝招 / 内功，改为对相应类别 `flowBp −3000`；9 级先走 `ccCount`，失败则在同穴落为 6 级、持续 1 次自身行动。终局守卷人免疫 9 级硬控，仍可承受 1–6 级阻流。
+
+#### 8.14.3 旧 ID 迁移（读时转换、写时只写新 ID）
+
+| 旧 ID | 新实例 | 穴位选择与保守约束 |
+|---|---|---|
+| `bf_fengxue` | `bf_xueweishoufeng` 9 级、剩余 1 | 目标主要路线关键穴；最多跳过一次，不继承旧天阶 2 回合 |
+| `bf_fengnei` | `bf_xueweishoufeng` 8 级、剩余 `min(1,旧剩余)` | 优先来源指定穴；没有则取目标当前主运路线首个未封穴 |
+| `bf_fengjingmai` | `bf_xueweishoufeng` 7 级、剩余 `min(1,旧剩余)` | 目标经脉最常用路线节点；不得扩为整脉全封 |
+| `bf_chanrao` | `bf_shouqin` 4 级、剩余 `min(2,旧剩余)` | 保留来源与维持距离；旧 ID 仍可读，不再写出 |
+
+迁移在恢复战斗状态、建立模块前执行，按旧实例 `iid` 升序；生成新实例后再走本节同穴 / 上限 / 硬控合并。无法解析路线或穴位时使用当前主运路线第一个已开通穴位；仍无合法穴位则保留旧实例并记录迁移告警，不凭显示名伪造 `ap_*`。
+
+#### 8.14.4 Buff 时钟与逐单位模块桥接
+
+- 每个可独立行动单位各有一份 21 `MeridianFlowModule`；Buff 只能写 `holder` 对应实例，不得把我方、敌方、召唤物或同模板敌人的状态共享。
+- 新建 / 升级 `bf_shouqin` 或 `bf_xueweishoufeng` 成功提交后，分别调用 `applyGrapple` / `applyAcupointSeal`。E2 只更新待投影 remaining；Core 在 21 §3.6 / §11.6 的每次全局 `battle tick` 对每个活动实例只调用一次 `tick`，并携带该单位的最新投影；即使 E2 与该 tick 同周期，也合并为这一次调用。模块不得自行再减一次持续。
+- 模块的 `stagnationBp` / `ruptureDamage` 是唯一数值真值；派生 Buff 只展示。反之，受擒 / 点穴的剩余时间由本文唯一维护；模块快照中的 remaining 只是镜像。
+- 调息事务顺序引用 21 §10：09 回内 / 防护 → 经脉调息 → 写事件 → 扣收招；9 级点穴在动作校验即拒绝自行调息。事务被打断则 Buff、模块、资源与 RNG 一并回滚。
 
 ---
 
@@ -1740,6 +1837,8 @@ AR-12 的第五个新状态昏迷 `bf_hunmi` 已在 §8.7 定义。其余点名�
 | 被削品 | 外框颜色按当前品阶；详情中显示"原品阶 → 当前品阶" |
 | 隐藏实例 | 未识破时持有方完全不显示；识破后显示并在左上加"识"字角标 |
 | 图案 | 按标签取统一图形母题：毒=葫芦/蛇、蛊=虫、穴=指点、内伤=经脉裂纹、流血=血滴、寒=冰棱、热=火焰、控制=锁链、心神=漩涡、护体=金钟、破兵=断剑、架势=拳架剪影；同母题内以纹样区分具体 Buff（素材规格归 tech/06） |
+| AR-14 等级 / 节点 | `bf_shouqin` 图标中央显示 1–9；`bf_xueweishoufeng` 显示 1–9 且详情列 `acupointRef` 的本地化穴名。迟滞用虚线、胀损用断线、点穴用结印；不得只用颜色区分 |
+| 护体分层 | 护体真气显示护盾池；护体内劲显示预计抵消 / 内力消耗；`mpGuard` 单列。三个数不得合成一个“护盾”数 |
 
 ### 10.2 极性与类别的区分（不只靠颜色）
 
@@ -1765,6 +1864,7 @@ AR-12 的第五个新状态昏迷 `bf_hunmi` 已在 §8.7 定义。其余点名�
 - 触控：长按图标 300ms 弹出详情卡（§10.4）；状态栏内单击即弹出。PC：悬停 250ms。
 - 头顶图标 18×18 CSS px，状态栏 28×28，详情卡图标 48×48（手机横屏基准，14 可调）。
 - 新施加的实例图标在头顶闪现 0.6 秒（免疫/抵抗时以灰色图标闪现并打叉）。
+- `bf_shouqin` / `bf_xueweishoufeng` 只有等级 9 出现在“仅硬控”位；1–8 级留在状态栏。经气迟滞 / 胀损按穴位折叠，摘要显示最严重值与“另有 n 穴”，展开后按严重度降序、`acupointRef` ASCII 升序。
 
 ### 10.4 说明文本模板
 
@@ -1820,6 +1920,8 @@ interface BuffLog {
   stacks?: number; value?: number; pen?: number; by?: string;   // by = 免疫/驱散实例 ID 或来源招式
 }
 ```
+
+AR-14 日志在上述公共字段外允许 `level`、`acupointRef`、`remainingOwnActions`、`causeId`，护体结算事件引用 21 的 `InnerGuardResult` 字段：`eligibleIncoming/capacity/cancelled/damageBeforeMpGuard/mpSpent/broken/delayCt/stagnationBp/reflectDamage`。不得把 `damageBeforeMpGuard` 记成 `hpDamage`；简洁模式至少显示“受擒等级变化 / 穴位与等级 / 护体抵消或击穿”，详细模式才展开整数 trace。
 
 | kind | 文本模板（简） | 例 |
 |---|---|---|
@@ -1900,9 +2002,9 @@ interface BuffLog {
 | 必中 / 必暴 / 无视防御 | 次数型 | 3 | — | ✅ | ✅ | ✅ |
 | 援护 `bf_yuanhu` | 2 | 3 | — | ✅ | ✅ | ✅ |
 | 金刚不坏 `bf_jingang` | 被动 / 2 | 主动 5 | — | ✅ | ✅ | ✅（cap 下限 16%） |
-| 硬控（眩晕/冰冻/昏睡/昏迷/点穴） | 2 | — | — | 受"坚毅"约束 | 同左 | 受控制递减（§11.4） |
+| 硬控（眩晕 / 冰冻 / 昏睡 / 昏迷 / 9 级受擒 / 9 级穴位受封） | 2（AR-14 两类固定 1） | — | — | 受“坚毅”约束 | 同左 | 受控制递减（§11.4） |
 
-**坚毅（反连控）**：任一硬控结束时，持有者获得 `bf_jianyi` 1 回合：期间免疫**同子标签**的硬控（不同子标签仍可生效，给"换一种控法"留空间）。玩家与敌人一视同仁。
+**坚毅（反连控）**：任一实际生效的硬控结束时，持有者获得 `bf_jianyi` 1 回合：期间免疫**同子标签**的硬控（不同子标签仍可生效，给“换一种控法”留空间）。9 级受擒对应 `cc.bind`，9 级穴位受封对应 `seal.point.node`；1–8 级升级不触发坚毅。玩家与敌人一视同仁。
 
 ### 11.4 Boss 与精英豁免
 
@@ -1916,6 +2018,8 @@ interface BuffLog {
 | 吸内 | 正常 | ×0.75 | ×0.5 | ×0.25 |
 | 驱散其增益（`purge`） | 正常 | 正常 | 阶段 Buff（狂暴等）不可驱散 | 同左 |
 | 数值类减益 | 正常 | 正常 | 正常（**这是对付 Boss 的主力**） | 效果 × 0.5 |
+| 受擒 1–8 | 正常 | 持续 −1（最低 1） | 持续固定 1；不计 `ccCount` | 数值分支按 Boss 规则；9 级免疫 |
+| 穴位受封 | 正常 | 7–9 持续仍为 1 | 1–6 正常；7–8 改为对应类别 `flowBp−3000`；9 级硬控失败退化为 6 级、持续 1 | 1–6 数值阻流正常；9 级免疫 |
 
 **Boss 控制递减**：Boss 维护计数器 `ccCount`（每次成功施加硬控 +1，Boss 连续 6 个自身回合未被硬控则清零）：
 
@@ -1925,7 +2029,9 @@ interface BuffLog {
 | 1 | 生效概率 × 0.5，持续 1 |
 | ≥ 2 | 无效；Boss 获得 3 回合"不动如山"（`bf_mian_kong`，品阶 = Boss 最高武学品阶），计数清零 |
 
-软控（减速、定身、缠绕、失衡）对 Boss：持续 −1（最低 1），不计入 `ccCount`。
+9 级受擒若被本表拒绝，保留此前合法的 1–8 级实例，不生成新的跳过行动；9 级穴位受封若被拒绝，则按 21 §9.3 在同穴写入 6 级、持续 1，而不是完全无效果。只有**实际生效的 9 级硬控**增加 `ccCount` 并在结束后生成坚毅。
+
+软控（减速、定身、旧缠绕、失衡）及受擒 1–8 对 Boss 不计入 `ccCount`。`bf_shouling` 的 `immune [bind]` 只覆盖长期药物 / 蛊主受制，不覆盖主标签为 `cc` 的擒拿。
 
 **个例（示意，数值归 chapters/08）**：鹿鼎记洪安通（基准 §2：书界难度峰值 8）——其麾下受豹胎易筋丸所制的教众带 `bf_shouzhi`（免疫恐惧、不可撤退、死战不退）；洪安通本人在低武书界拥有地上品护体与全书界唯一的"阶段转换无敌"，以此形成"武运最低、Boss 最陡"的体验。
 
@@ -1958,14 +2064,15 @@ interface BuffLog {
 | 12.10 | NPC/任务、门派与剧情（12/17/18/story，AR-07/08/09/10） | `special` 解法中的 NPC 与任务引用；`onTalk` 钩子（迷心蛊、易容识破）；门派身份如产生常驻状态，复用 `origin.type: story` 并令 `origin.id = sect_*`；正邪线只通过任务事件施加/解除既有 Buff | 12/17/18/story 定义门派层级、称谓、NPC 生卒与招募、剧情选择、名医技艺、解蛊/解受制任务链；本文不复制人物、门派、剧情或月钱规则 |
 | 12.11 | UI（14） | §10 全部视觉语义 | 手机布局与字号总规范、色弱模式开关 |
 | 12.12 | 玩法引擎（tech/05） | DSL 语义、结算全序、伪代码（§4.1）、TS 类型（§6.5）、日志结构（§10.6） | 解释器实现；构建期表达式编译；属性缓存"脏标记"重算；存档序列化 `BuffInstance`；批量对战模拟器（§11.1 红线 4） |
-| 12.13 | 经脉与穴道（15，AR-03） | §8.13 的 15 个永久被动本体与 `onBuffApplied.applyMode`；`bf_neixiwenluan` / `bf_jingmainixing` / `bf_zouhuorumo` 等走火状态原语；本文 §7.1 的 `P自解穴` 仅处理**战斗中被点穴** | 15 定义穴道 `ap_*`、经脉 `mer_*`、通脉、小周天/大周天/十二经周流、九转、冲穴进度与速度；成长“冲穴”不得复用本文战斗自解穴公式 |
+| 12.13 | 经脉与穴道（15，AR-03） | §8.13 的 15 个永久被动本体与 `onBuffApplied.applyMode`；`bf_neixiwenluan` / `bf_jingmainixing` / `bf_zouhuorumo` 等走火状态原语；§7.1 的 `P自解穴` 仅为旧录像兼容 | 15 定义穴道 `ap_*`、经脉 `mer_*`、通脉、小周天 / 大周天 / 十二经周流、九转、冲穴进度与速度；成长冲穴不得复用旧战斗公式，AR-14 战斗点穴见 21 |
 | 12.14 | 资源与营生（16，AR-05/06） | Buff/世界态原语可承接药材、营生或家业事件的临时效果 | 资源品阶、资源点、家丁、经营产出、客卿唯一性和时间成本均由 16 定义；本文不建立平行经济规则 |
+| 12.15 | 战斗经脉（21，AR-14） | §2.2.1 / §6.4.1 / §8.14 提供五个 `bf_*`、自身行动时钟、条件硬控、Boss 递减、迁移、驱散及 UI / 日志投影；`bf_poqi` 提供最高值 `breakGuardBp`，`bf_fanzhen` 可提供 `reflectBp` | 21 唯一定义河流 / 路线、攻防 / 速度乘区、`qnl_*` / `dxl_*`、护体内劲整数算法、调息与每单位 `MeridianFlowModule`；模块须在其全局 `battle tick` 唯一调用中接受本文 E2 更新的 remaining 投影，节点真值不得回写成第二套 Buff 数值 |
 
 **实现要点（给 tech/05 的约束）**：
-- **确定性**：所有随机（触发概率、麻痹、撞开穴道）走战斗种子 RNG；同优先级按 `iid` 升序；集合遍历一律用数组而非对象键序。
+- **确定性**：所有随机（触发概率、麻痹，以及 AR-14 调息 / 解穴）走 Core 唯一战斗种子 RNG；同优先级按 `iid` 升序；集合遍历一律用数组而非对象键序。点穴多穴与调息按 `acupointRef` ASCII 升序，`preview` 与派生视图重建不得消费 RNG。
 - **性能预算**：单次行动内 Buff 结算 ≤ 0.5 ms（中端手机）；实现"钩子 → 实例列表"倒排索引，避免每事件遍历全部实例；数值类修饰仅在属性"脏"时重算（03 §11.4 重算时机）。
 - **数据打包**：Buff 定义为跨书界公共数据（`data/common/buffs/*.yaml`，tech/01 §目录约定），构建期编译表达式并做 §14 校验。
-- **存档**：只存 `BuffInstance`（§2.2）；定义变更后读档按 `def` 重新绑定，`params` 以新定义为准、`snap` 保留旧值。
+- **存档**：普通 Buff 存 `BuffInstance`（§2.2）；AR-14 受擒 / 点穴连同每单位 21 模块 snapshot 保存，加载后核对 `turnsLeft===remainingOwnActions`。迟滞 / 胀损派生视图不存；旧四 ID 先按 §8.14.3 迁移。定义变更后读档按 `def` 重新绑定，`params` 以新定义为准、`snap` 保留旧值。
 
 ---
 
@@ -1994,7 +2101,9 @@ interface BuffLog {
 | 暂停（被动） | 持有者处于 `seal.mp` 时内功来源的 effect/mechanic 被动暂停 | §5.5 |
 | 驱散类型 | `circulate` `acupoint` `medicine` `antidote` `skill` `purge` `special` `rest` `bookSleep` | §7.1 |
 | 医术品阶 | `medGrade(v) = min(12, 1 + ⌊v/9⌋)` | §7.1 |
-| 战斗自解穴概率 | `P自解穴 = clamp(5%, 95%, 25% + 15%×Δg + 0.3%×(con−50))` | §7.1；与 15 的成长冲穴分立 |
+| 旧版战斗自解穴概率 | `P自解穴 = clamp(5%, 95%, 25% + 15%×Δg + 0.3%×(con−50))` | §7.1；仅 v1 录像兼容，新状态改走 21 调息 / 解穴 |
+| 经脉 Buff 载荷 | `MeridianBuffPayload`、`MeridianLevel`、`effectiveExclusive` | §2.2.1、§8.14 |
+| 经脉桥接端口 | `applyGrappleBuff` `applyAcupointSealBuff` `syncMeridianDurations` `rebuildMeridianViews` | §6.4.1 |
 | 破 X 匹配 | `poMatch(cat, u, move)`、`mainCat(u)` | §8.6.1 |
 | 蛊阶段 | `phase`：`latent` 潜伏 / `active` 发作 / `terminal` 危殆；参数 `latentFor` `flareTurns` `flareEvery` `terminalAfter` `onMasterDeath` `cuiDong` | §9.2 |
 | 蛊主 | 施蛊者（`source`），可"催蛊" | §9.2 |
@@ -2007,7 +2116,8 @@ interface BuffLog {
 
 | 类别 | 名称 |
 |---|---|
-| 类型 | `BuffDef` `BuffInstance` `Duration` `StackSpec` `DispelSpec` `PersistSpec` `Trigger` `Op` `Mod` `BuffLog` |
+| 类型 | `BuffDef` `BuffInstance` `MeridianBuffPayload` `MeridianLevel` `Duration` `StackSpec` `DispelSpec` `PersistSpec` `Trigger` `Op` `Mod` `BuffLog` |
+| `BuffInstance` AR-14 字段 | `meridian`；分支字段 `kind` `level` `source` `remainingOwnActions` `sourceRefs` `failedAttempts` `holdRange` `legacyRef` `acupointRef` `stagnationBp` `delayCt` `ruptureDamage` `routeId` `reflectBp` `causeId` |
 | `BuffDef` 字段 | `id` `name` `nameByTier` `category` `polarity` `grade` `gradeRange` `tags` `subTags` `family` `exclusive` `resistAttr` `duration` `stack` `dispel` `priority` `params` `snapshot` `mods` `triggers` `onApply` `onRemove` `tierTraits` `reactions` `persist` `bossProfile` `limits` `systemExempt` `hidden` `ui` `vfx` `sfx` `text` `aiValue` `origin` `canonRef` |
 | 持续类型 | `turns` `permanent` `charges` `battle` `world` `untilCured` `aura` `instant` |
 | 叠加字段 | `rule` `key` `max` `add` `durationOnStack` `expire` `snapshotMerge` `onMax` |
@@ -2024,9 +2134,9 @@ interface BuffLog {
 | 类别 | ID |
 |---|---|
 | v1.1 新增主标签（V11-24） | `bind` 受制、`veil` 隐匿、`boost` 强化、`weaken` 削弱 |
-| 子标签 | `poison.{common,severe,snake,numb,gas,huagong,qixin,qinghua,sanxiao}`；`gu.{jincan,bican,sanshi,wuxian}`；`seal.{point,mp,qg,meridian,ult}`；`injury.{internal,bone,qi,blood,shangshi}`；`cold.{chill,freeze,poison}`；`heat.burn`；`cc.{stun,unconscious,root,knock,pull,freeze,sleep,slow,paralyze,stagger,delay,bind}`；`guard.{shield,reflect,invuln,lock,cap,redirect,mirror,immune,revive}`；`mind.{charm,control,taunt,fear,confuse,awe}`；`weaponBreak.{sword,blade,spear,staff,whip,exotic,hidden,unarmed,inner,disarm,broken,exposed}`；`stance.{def,atk,charge,mobile,still,wild}`；`bind.{baotai,shengsi,sanshi,gu}`；`veil.{stealth,afterimage,disguise,feign}`；`boost.<stat>` `boost.{regen,tempo,berserk,drain,res,dmg,dmgDown}`；`weaken.<stat>` `weaken.{mark,sight,res,terrain}` |
+| 子标签 | `poison.{common,severe,snake,numb,gas,huagong,qixin,qinghua,sanxiao}`；`gu.{jincan,bican,sanshi,wuxian}`；`seal.{point,point.node,mp,qg,meridian,ult}`；`injury.{internal,bone,qi,qi.stagnation,qi.rupture,blood,shangshi}`；`cold.{chill,freeze,poison}`；`heat.burn`；`cc.{stun,unconscious,root,knock,pull,freeze,sleep,slow,paralyze,stagger,delay,bind}`；`guard.{shield,inner,reflect,invuln,lock,cap,redirect,mirror,immune,revive}`；`mind.{charm,control,taunt,fear,confuse,awe}`；`weaponBreak.{sword,blade,spear,staff,whip,exotic,hidden,unarmed,inner,disarm,broken,exposed}`；`stance.{def,atk,charge,mobile,still,wild}`；`bind.{baotai,shengsi,sanshi,gu}`；`veil.{stealth,afterimage,disguise,feign}`；`boost.<stat>` `boost.{regen,tempo,berserk,drain,res,dmg,dmgDown}`；`weaken.<stat>` `weaken.{mark,sight,res,terrain}` |
 
-### 13.4 Buff ID（247 个，§8–§9）
+### 13.4 Buff ID（252 个，§8–§9）
 
 | 分组 | ID |
 |---|---|
@@ -2043,9 +2153,10 @@ interface BuffLog {
 | 8.11 武学专属（8） | `bf_xuli` `bf_qianlong` `bf_liuli` `bf_longyin` `bf_weituo` `bf_jianshi` `bf_shouque` `bf_qishang` |
 | 8.12 跨系统与点名状态（23） | `bf_sanxiao` `bf_luoshui` `bf_shishen` `bf_xianluo` `bf_shangshi` `bf_tsp_sheshen_aura` `bf_tsp_aibing` `bf_tsp_qiyi` `bf_tsp_qingshang` `bf_tsp_xiangxu` `bf_tsp_chou` `bf_tsp_shixin` `bf_tsp_pi` `bf_tsp_bupi` `bf_tsp_xianying` `bf_tsp_xianying_fin` `bf_tsp_weiguang` `bf_juanshi_ruo` `bf_fin_zhinian` `bf_kangfen` `bf_minjie` `bf_zhuanzhu` `bf_muguangruju` |
 | 8.13 经脉永久被动（15） | `bf_ap_qihai` `bf_ap_baihui` `bf_ap_yongquan` `bf_zt_xiaozhoutian` `bf_zt_dazhoutian` `bf_zt_shierjingzhouliu` `bf_zt_yizhuan` `bf_zt_erzhuan` `bf_zt_sanzhuan` `bf_zt_sizhuan` `bf_zt_wuzhuan` `bf_zt_liuzhuan` `bf_zt_qizhuan` `bf_zt_bazhuan` `bf_zt_jiuzhuan` |
+| 8.14 AR-14 战斗经脉（5） | `bf_shouqin` `bf_xueweishoufeng` `bf_jingqizhizhi` `bf_jingmaizhangsun` `bf_hutineijin` |
 | 9.5 蛊（10） | `bf_gu_jincan` `bf_gu_bican` `bf_gu_sanshi` `bf_gu_shixin` `bf_gu_qingsi` `bf_gu_shigu` `bf_gu_mixin` `bf_gu_xue` `bf_gu_wang` `bf_gu_cuidong` |
 
-> `bf_zhongdu`、`bf_wudi` 为基准 §12 的示例 ID，本文沿用；其余 245 个在本文登记。C23 的 19 个缺口、AR-12 的 5 个点名缺口及 15 的 15 个经脉永久被动均已收录；`bf_cuidu`、`bf_zhenshi` 按裁定分别复用 `poisonCoat` 与阵法运行态，不作为 Buff ID。
+> `bf_zhongdu`、`bf_wudi` 为基准 §12 的示例 ID，本文沿用；其余 250 个在本文登记。C23 的 19 个缺口、AR-12 的 5 个点名缺口、15 的 15 个经脉永久被动与 AR-14 的 5 个战斗经脉状态均已收录；`bf_cuidu`、`bf_zhenshi` 按裁定分别复用 `poisonCoat` 与阵法运行态，不作为 Buff ID。
 
 ### 13.5 引用的物品与根治接口（定义归 10/12/chapters）
 
@@ -2075,6 +2186,13 @@ interface BuffLog {
 | V14 | 环境行动者事件不得推进任一单位 Buff/冷却；`ctShift` 必须保留 [−1000,999] 收招债务语义 | 错误 |
 | V15 | §8.13 的 15 个经脉被动必须为 g12、永久、不可普通驱散、`origin.type=system`，且不引用 `G/Lb`；其 `origin.id` 必须存在于 15 | 错误 |
 | V16 | `onBuffApplied` 条件若读取 `ctx.applyMode`，取值只能是 `create/stack/refresh`；拒绝不得改写已有实例，九转只允许拒绝 `bf_neishang + create` | 错误 |
+| V17 | §8.14 的 `bf_shouqin` / `bf_xueweishoufeng` 必有合法 `MeridianBuffPayload`；`level∈[1,9]`，点穴 `acupointRef` 必须是 15 已登记 `ap_*`，`remainingOwnActions===turnsLeft` | 错误 |
+| V18 | 只有上述两条的 `level===9` 可派生 `exg_control_hard`；1–8 级不得带 `exclusive`、不得增加 `ccCount` 或触发 `bf_jianyi` | 错误 |
+| V19 | `bf_jingqizhizhi` / `bf_jingmaizhangsun` 必须由模块节点派生，不得出现在 `applyBuff`、战斗存档或实例上限计数；每个持有者必须绑定独立模块实例 | 错误 |
+| V20 | 护体 settle 字段和次序固定为 `shield → innerGuard → mpGuard → hp`；`damageBeforeMpGuard` 不得别名为 `hpDamage`，`breakGuardBp` 多来源取最高并钳 0–8000，`reflectBp` 钳 0–2000 | 错误 |
+| V21 | 新内容不得施加 `bf_fengxue` / `bf_fengnei` / `bf_fengjingmai` / `bf_chanrao`；它们只能进入 §8.14.3 迁移器，写档不得再输出旧 ID | 错误 |
+| V22 | `bf_hutineijin` 必有合法 `routeId`；只有有效自然护体短路 / 护体防守路线可创建，`reflectBp` 缺省 0 且非零时必须同时存在既有反震语义 | 错误 |
+| V23 | `bf_shouqin` / `bf_xueweishoufeng` 必在本次伤害 settle 后施加；反击 / 合击必须调用实际行动者 / 目标自己的模块，不得共享状态 | 错误 |
 
 ### 14.2 测试用例（玩法核心单元测试，期望值精确）
 
@@ -2095,7 +2213,7 @@ interface BuffLog {
 | T13 | 蛊与免疫 | 已中 `bf_gu_bican` g9（发作期）；获得 `bf_mian_gu` g9 | 不移除；阶段与计时冻结；免疫消失后从冻结处继续 |
 | T14 | 跨战斗换算 | 战斗结束时有 `bf_zhongdu` g8 ×3 层 | 转世界态：持续 12 时辰；每时辰掉 `hpMax × 0.5% × 2.2 × 3 = 3.3%`（不致死）；每 4 时辰 −1 层 |
 | T15 | 破招与装备豁免 | 持有者 `bf_pojian` g11；先受 g12 剑法绝招，再受带 `ultimateUnbreakable` 的 g10 绝招 | 前者因招式品阶更高而不作废；后者只跳过天阶破招的整招作废，Z5/招架修正仍生效 |
-| T16 | 封内力暂停被动 | 主运九阳（`bf_mian_han` 被动）被施加 `bf_fengnei` | `bf_mian_han` 暂停（图标置灰），此时可被施加寒气；封内力解除后恢复并对寒气执行免疫净化 |
+| T16 | 旧版封内力暂停被动 | v1 录像 runner 中，主运九阳（`bf_mian_han` 被动）被施加 `bf_fengnei` | runner 维持旧语义：`bf_mian_han` 暂停，封内力解除后恢复；新存档加载则先按 §8.14.3 迁移为 8 级穴位受封 |
 | T17 | 护体完全吸收 | 护体 800，受 600 伤害的攻击附带内伤与破甲 | 内伤不施加，破甲照常判定 |
 | T18 | 撞击一次结算 | 单段 `D_hit=1000` 将目标撞墙并波及另一单位 | 撞墙者 200、被撞单位 100；正常扣护体，不重跑 Z0–Z10、不附赠眩晕 |
 | T19 | 疲惫恢复阈值 | `staMax=101`、当前体力从 20 回到 21 | `ceil(0.20×101)=21`，体力到 21 时立即移除 `bf_pibei` |
@@ -2103,6 +2221,16 @@ interface BuffLog {
 | T21 | 气海与小周天返内 | 同时持有两被动；自身行动内首次实扣 MP 100，随后又实扣 50 | 首笔分别返 `floor(100×3%)=3` 与 `floor(100×7%)=7`，合计 10；同一行动周期第二笔不返 |
 | T22 | 经脉开战集气不可重挂 | 持有百会与十二经周流，开战后复活并重建永久被动 | 开战只累计 `15+30=45` 集气；复活/重挂不再增加 |
 | T23 | 九转只拒绝新内伤 | 每战依次尝试新建 `bf_neishang`、给既有内伤叠层、再新建另一来源内伤 | 第一次 `create` 被拒并耗 charge；已有实例 `stack` 不被拒；charge 已耗后另一 `create` 正常进入命中/免疫流程 |
+| T24 | 受擒同源升级 | 现有同源 4 级、剩 1；再成功施加基础 3 级、持续 2 | 只保留一个 `bf_shouqin`，等级 `4+1=5`、剩余 2；移动 6000 bp，臂力 / 身法 / 闪避各 7500 bp，收招 +250（均引用 `qnl_lv05`） |
+| T25 | 受擒重击解除 | `hpMax=5000`、受擒 6；单次 `ctx.hpDamage=400` | 阈值 `ceil(5000×800/10000)=400`，等级降 2 为 4；399 不降级 |
+| T26 | 条件硬控互斥 | 先有眩晕剩 1，再施加受擒 8，随后升级 9 | 8 级可并存且不增 `ccCount`；9 级升级按硬控组比较，至多跳过一次，若被拒则原 8 级实例不丢失 |
+| T27 | 点穴多穴上限 | 三穴分别为 `(lv4,2)`、`(lv4,1)`、`(lv6,1)`，第 4 穴成功 | 替换两个 lv4 中剩余 1 者；若剩余也同，则替换 `acupointRef` ASCII 最小者；总数仍 3 |
+| T28 | Boss 九级点穴退化 | Boss `ccCount≥2`，某穴成功施加 9 级 | 9 级硬控无效并触发控制递减；同穴落为 `dxl_lv06`、剩 1，不跳行动 |
+| T29 | 自身行动时钟投影 | 受擒剩 1、穴 A 剩 2；持有者正常行动结束，随后进入全局 `battle tick` | E2 后 Buff 为 0 / 1 且只更新待投影值；该单位本次唯一 `tick` 收到 `grappleRemaining:0`、`sealRemainingByAcupoint:{A:1}`；未传穴保持，模块不再自行递减，E2 不产生额外 `tick` |
+| T30 | 旧封穴迁移 | 旧档有 `bf_fengxue` 天阶剩 2、`bf_fengnei` 剩 2 | 前者变主要路线关键穴 9 级剩 1，后者变关键穴 8 级剩 1；同穴时依同穴升级规则合并，写档只含新 ID |
+| T31 | 护体链守恒 | `postShield=1600` 拳脚，护体容量足但 `currentMp=300` | `cancelled=600`、`mpSpent=ceil(600/2)=300`、`damageBeforeMpGuard=1000`；`1600=600+1000`，再由 `mpGuard` 处理 1000 |
+| T32 | 护体反震与破气 | 多个破气来源 3000/6000/9000 bp，护体同源反震 2500 bp，`cancelled=1000` | `breakGuardBp=min(8000,max(...))=8000`；`reflectBp=2000`，反震 `floor(1000×2000/10000)=200` 且带 `reflected` |
+| T33 | 模块实例隔离 | 我方、普通敌、Boss 各挂迟滞 / 点穴；只对普通敌调息 | 只改变普通敌模块及其派生视图；另两份 snapshot 逐字段不变 |
 
 ---
 
@@ -2114,12 +2242,14 @@ interface BuffLog {
 |---|---|---|
 | 地形/光环 Buff 缺省品阶 | `clamp(1, 12, ⌈Ld/6⌉)` | §3.1 |
 | DOT / HOT 每回合合计上限 | 12% / 8% `hpMax` | §5.3.2、§11.1 |
-| 战斗自解穴概率 | `25% + 15%×Δg + 0.3%×(con−50)` | §7.1；不得挪作 15 的成长冲穴速度 |
+| 旧版战斗自解穴概率 | **已解决：AR-14 新状态废止 S5 自动判定**；公式仅供 v1 录像兼容 | §7.1；新点穴改用 21 §9.4 / §10 |
 | `medGrade` | `1 + ⌊v/9⌋` | §7.1 |
 | 神龙教解药周期 | 365 日 | §8.9 `bf_shouzhi` |
 | 生死符战斗外发作周期 | 30 日 | §8.9 `bf_shengsifu` |
 | 医术压制蛊的时长 | `3 × (medGrade − 蛊品阶 + 3)` 日 | §9.2 |
 | 数量上限 | 增益 10 / 减益 10 / 机制 4 | §11.2 |
+| `bf_poqi.breakGuardBp` | 地 3000 / 天 6000；多来源取最高，最终钳 8000 | §8.6、21 §4.8；05 可按具体招式覆写但不得越硬界 |
+| 护体内劲反震上限 | `reflectBp≤2000`，默认 0 | §8.4、§8.14；只有原招 / Buff 已有反震语义才启用 |
 
 ### 15.2 本文依赖的上游事实
 
@@ -2139,7 +2269,8 @@ interface BuffLog {
 | D10 | 14 UI | 图标尺寸、色弱模式、详情卡布局的最终规范 | §10 给出语义 |
 | D11 | tech/05、tech/06 | DSL 解释器、表达式编译、倒排索引与性能预算（§12）；Buff 图标母题与纹样素材规格（§10.1） | — |
 | D12 | chapters/* | 各书界的蛊/受制钩子（§9.7）与洪安通等 Boss 的 `bossProfile` | 只给示意 |
-| D13 | 15 经脉与穴道 | **已解决**：15 §6–§7、§10.3 已定稿穴道/周天/九转被动；本文 §6.1、§8.13、§13.4 已收录 15 个永久 `bf_*` 并补 `ctx.applyMode` | 本文只定义运行时 Buff 与走火原语；成长冲穴仍唯一归 15，战斗点穴脱困仍称 `P自解穴` |
+| D13 | 15 经脉与穴道 | **已解决**：15 §6–§7、§10.3 已定稿穴道/周天/九转被动；本文 §6.1、§8.13、§13.4 已收录 15 个永久 `bf_*` 并补 `ctx.applyMode` | 本文只定义运行时 Buff 与走火原语；成长冲穴仍唯一归 15；`P自解穴` 仅供旧 v1 录像 runner，正式战斗点穴脱困见 21 §9.4 / §10 |
+| D14 | 21 战斗经脉 | **已解决**：21 v2.0 已定稿动态经脉、护体内劲、擒拿 / 点穴、调息与逐单位模块；本文已登记五个 `bf_*`、迁移、条件硬控、时钟及桥接端口 | 严重度和节点数值始终引用 21；本文不维护第二套河流 / 等级公式 |
 
 ### 15.3 对基准（00-canon）的修改提案
 
@@ -2149,8 +2280,9 @@ interface BuffLog {
 | P2 | **已采纳（v1.1）**：增加 `battle`、`world`、`untilCured`、`aura`、`instant` 持续类型 | 基准 §10；本文 §2.1.1 | V11-25 |
 | P3 | **已采纳（v1.1）**：Z0 统一解析判定开关与判定乘数 | 基准 §9；本文 §4.7、§6.4 | V11-23 |
 | P4 | **已采纳（v1.1）**：固定 `ρ(Δ)` 与 `Δ≤0` 分支 | 基准 §10；本文 §3.5 | V11-26 |
+| P5 | **待 v1.3 采纳**：Canon §8 / §9 / §18 接纳 21 的独立经脉乘区、护体内劲、速度与战斗经脉唯一归属；Canon §12 登记 `mfr_*` / `qnl_*` / `dxl_*` / `txp_*` | 基准 §8–§9、§11–§12、§18–§19；本文 §8.14、§12.15 | 21 M2-P01、M2-P03、M3-P01～P04 |
 
-本轮没有新增基准修改提案；正文已按基准 v1.2 收敛。
+本轮不另造提案；P5 只是消费并转述 21 已登记、尚待基准 v1.3 接纳的提案，避免本文越权定义。
 
 ### 15.4 考据清单（标注"待考"的原著事实，须以三联/广州修订版核对）
 
@@ -2171,6 +2303,7 @@ interface BuffLog {
 |---|---|---|---|
 | O1 | 地形/光环缺省品阶是否需按区域难度另行拟合 | `clamp(1,12,ceil(Ld/6))` | 08 / 09 实测后覆写 |
 | O2 | DOT/HOT 合计上限与 Buff 数量上限是否需调整 | DOT 12%、HOT 8% `hpMax`/回合；增益 10、减益 10、机制 4 | tech/05 压测与数值回归 |
-| O3 | 战斗自解穴与医术品阶曲线是否需调整 | §7.1 的 `P自解穴` 与 `medGrade(v)=min(12,1+floor(v/9))` | 15 不复用该式；tech/05 做战斗回归 |
+| O3 | 医术品阶曲线是否需调整 | `medGrade(v)=min(12,1+floor(v/9))`；旧 `P自解穴` 仅保留给 v1 runner，新 AR-14 不自动自解 | tech/05 做战斗回归 |
 | O4 | 神龙教解药、生死符发作和医术压蛊周期是否需按章节节奏调整 | 365 日、30 日、`3×(medGrade−蛊品阶+3)` 日 | 11 / 12 / chapters 定稿 |
 | O5 | 三尸脑神丹年度期限的具体节令 | 未完成版本考据前使用 `sanshi_annual` 配置键，不硬编码端午 | 11 / chapters 配置；考据后决定映射 |
+| O6 | `bf_poqi` 的护体内劲破气值是否按具体招式细分 | 默认地 3000 / 天 6000 bp，黄玄 0；05 可逐招覆写，最终仍取最高并钳 8000 | 05 图鉴 / 21 模拟回归 |
