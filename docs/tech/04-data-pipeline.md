@@ -3,9 +3,9 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/04-data-pipeline.md` |
-| 版本 | v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
-| 上游基准 | `docs/00-canon.md` §3–§5、§9、§12、§18、§19；`docs/decisions/author-requirements.md` AR-03–AR-07、AR-09；`docs/decisions/rulings-v1.md` C12、C18、C22、C23 |
-| 强依赖 | `tech/01` §3.7、§4、§6.8、§8.3、§9；`tech/02` §1–§2、§7；`tech/03` §5.6；`tech/06`；`tech/08` §3.6；`design/02`–`design/20` 已落盘的数据契约与校验规则；相关代理报告中的下游交接项 |
+| 版本 | v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
+| 上游基准 | `docs/00-canon.md` §3–§5、§9、§12、§18、§19；`docs/decisions/author-requirements.md` AR-03–AR-07、AR-09、AR-14；`docs/decisions/rulings-v1.md` C12、C18、C22、C23 |
+| 强依赖 | `tech/01` §3.7、§4、§6.8、§8.3、§9；`tech/02` §1–§2、§7；`tech/03` §5.6；`tech/05` §7–§8、§11.2、§14–§16；`tech/06`；`tech/08` §3.6；`design/02`–`design/21` 已落盘的数据契约与校验规则；相关代理报告中的下游交接项 |
 | 下游文档 | `tech/05` 玩法引擎、`tech/09` 路线图；各书界内容文档 |
 | 读者 | 作者本人、内容编辑者、AI 编码/内容助手 |
 | 本文职责 | `content/` 源数据布局；YAML 与 Zod 契约；ID 注册、重命名与引用图；Tiled/Ink 转换；内容校验器；规则/文本书界包、`contentHash` 与增量更新；AI 草稿审核入库 |
@@ -26,6 +26,7 @@
 > 11. **素材与内容分版本**：内容只保存逻辑素材键；`content:build --emit-refs` 生成引用图交给 `tech/06`，二进制和 `assets.lock.json` 不进入 `contentHash`。
 > 12. **AI 只能进入草稿区**：结构化输出先落 `content/_drafts/`，经草稿校验、事实/原创标注审阅、人工批准后才由 `content:promote` 入正式目录；任何模型输出都不能自动覆盖已入库内容。
 > 13. **传承已转正式 schema**：`design/20` 的 `legacy.v1` 以 `sources / caches / fragments / keystones / recipes` 五表进入 registry；39 源、117 卷、39 缓存与 39 信物必须闭合，`lgs_ / frag_ / cache_` 不再是占位前缀。
+> 14. **战斗经脉按四类严格数据进入构建**：`meridian-route.v1`、`meridian-control.v1`、调息档案与敌人 `meridian-unit-template.v1` 均消费 `design/21` 字段；`STD_meridian` 在构建期固化，MF-V01～V12 阻断错误路线、缺档、共享实例输入与旧 Z3 残留。
 
 ---
 
@@ -155,6 +156,7 @@ content/
 │   ├── tianshu/                     # tsp_*；保留 tianshu/tsp_*.yaml
 │   ├── sects/                       # sect_*、职级模板
 │   ├── meridians/                   # mer_* / ap_*【建议值，AR-03】
+│   ├── meridian-flow/               # mfr_* 路线、qnl_*/dxl_* 控制、txp_* 调息（AR-14 提案域）
 │   └── economy/                     # res_* 与跨书界品级表【建议值，AR-05】
 ├── world/                           # 构建期导入的全局导航索引 + 区域内地图
 │   ├── tiers.yaml                   # 保留既有 content/world/tiers.yaml
@@ -273,6 +275,7 @@ export type ContentKind =
   | 'item' | 'equip' | 'terrain' | 'terrainState' | 'region' | 'city'
   | 'npc' | 'quest' | 'encounter' | 'bossScript' | 'enemyTemplate'
   | 'sect' | 'tianshuPower' | 'meridian' | 'acupoint'
+  | 'meridianRoute' | 'grappleProfile' | 'acupointProfile' | 'breathProfile'
   | 'resource' | 'resourcePoint' | 'servant' | 'business'
   | 'legacySource' | 'legacyFragment' | 'legacyCache' | 'legacyKeystone' | 'legacyRecipe';
 
@@ -297,6 +300,8 @@ export interface RefEdge {
 注册顺序固定为规范相对路径的 Unicode code point 升序，再按文件内数组序。重复定义同时报告首处和冲突处；不能“最后一个赢”。嵌套 `MoveDef`、`PassiveDef` 也进入同一全局表，因此跨武功重名会失败。
 
 ID 正则从基准 §12 与已批准作者需求生成，而不是散落在各 schema 中手抄。AR-04 将区域扩为全局 `rg_*`，词法正则为 `^rg_[a-z0-9_]+$`，生产定义还必须属于 `design/11` §13.2 的 30 区闭集。旧 `rg_NN_*` 与 W1 的五个废弃粗区只允许迁移器按 `design/11` §2.3 单向读取，不能进入新内容或发布注册表；未曾发布的旧 ID 直接改正，已发布者才登记 `idRemaps`。
+
+AR-14 的 `mfr_* / qnl_* / dxl_* / txp_*` 尚待 Canon v1.3 按 `design/21` M2-P01 正式登记；在此之前只允许出现在 `design/21` 明确提案、其 fixture / golden，以及本节对应 schema 的生产候选中，并统一标 `provisionalPrefixOwner:'design/21'`。它们不得借用地图 `route_*`、Buff `bf_*` 或穴位 `ap_*`，也不得由显示名临时拼接。Canon 接纳后只移除提案标记，不改稳定 ID。
 
 ### 2.6 ID 重映射
 
@@ -442,6 +447,7 @@ export type RegionId = z.output<typeof RegionIdSchema>;
 | 天书成长 | `TianshuPowerDef`、`TspRule`、成就/结局/称号定义 | `tsp_*`、`ach_*`、`end_*`、`ttl_*` | `design/13` §4、§8、§10–§11 |
 | 门派职级 | `SectCompendium`、`SectDef`、`RankTemplateDef`、`SectEraProfile`、`SectProgressionPolicy` | `sect_*`；L1–L5；T01–T12（T05A/T05B 分型） | `design/17` §12、§15；流程字段见 `design/12` §11.3 |
 | 经脉穴道 | `MeridianDef`、`AcupointDef`、`CirculationDef`、`MeridianProgress`、`MeridianSessionSnapshot` | `mer_*`、`ap_*`、`zt_*` | AR-03；`design/15` §11、§14 |
+| 战斗经脉 | `MeridianRouteDef`、`MeridianControlDef`、`BreathProfileDef`、`MeridianUnitTemplateDef`、`StdMeridianRow` | `mfr_*`、`qnl_*`、`dxl_*`、`txp_*`；敌人表内局部键 | AR-14；`design/21` §11.9、§12、§17 |
 | 资源经营 | `ResourceDef`、`ResourcePointDef/State`、`ServantDef/ContractState`、`BusinessDef`、`JobContractState`、`EconomyLot`、`SectLedger` | `res_*`、`rp_*`、`sv_*`、`biz_*`、`job_*` | AR-05–AR-07；`design/16` §14 |
 | 跨年代传承 | `LegacyRegistry`、`LegacySourceDef`、`LegacyFragmentDef`、`LegacyCacheDef`、`LegacyKeystoneDef`、`LegacyRecipeDef` | `lgs_*`、`frag_*`、`cache_*`、`it_xinwu_*` | AR-13；`design/20` §12、§14 |
 | 素材登记 | `AssetEntry`、`Provenance` | 素材逻辑键 / `art://` | 字段归 `tech/07`，存储与清单归 `tech/06` |
@@ -453,7 +459,9 @@ export type RegionId = z.output<typeof RegionIdSchema>;
 |---|---|---|
 | `design/05` `SkillDef` 顶层 | `combat/skill.ts: SkillDefSchema` | `aptitude`、`moveSlots` 可按设计规则展开默认；保留输入/输出差异 |
 | 招式 `moves[]` | `MoveDefSchema` | `aoe` 解析为模板引用；预算报告保存期望值、实值、差值 |
+| 招式 / 触发器经脉路线 | `MoveDefSchema.meridianRouteRef`、`TriggerSpecSchema.routeOnTriggerRef` | 强引用 `mfr_*`；构建器核对路线用途、`moveRef` 与 `ultimate`，运行时只保留编译索引 |
 | 内功 `inner.contribution` | `InnerContributionSchema` | 计算 IP，不把计算结果写回源 YAML |
+| 内功调息档案 | `InnerDefSchema.breathProfileRef` | 强引用 `txp_*`；未登记内功由 normalize 依 `design/21` §10.2 生成稳定档案，再作为构建产物固化 |
 | `design/06` 表达式字段 | `ExprSourceSchema` | 白名单解析为 AST；产物只含 AST，不在运行时 `eval` |
 | Buff `mods/triggers/reactions` | 对应判别联合 | 建立 hook → Buff 倒排索引供运行时加载 |
 | `design/08` `TerrainDef` | `world/terrain.ts` | `combat` 记法编译为 `Mod[]`；资产简写归一为素材键 |
@@ -463,6 +471,8 @@ export type RegionId = z.output<typeof RegionIdSchema>;
 | `design/13` `TianshuPowerDef` | `progression/tianshu.ts` | `TspRule.kind` 必须在 `tech/05` 原语注册表 |
 | `design/12` 任务 / NPC 绑定 / 门派流程 | `narrative/quest.ts`、`narrative/npc-binding.ts`、`society/sect-progression.ts` | 严格消费 `quest.v1`、`quest-instance.v1`、`quest-npc-binding.v1`、`sect-progression.v1`；stage/effect 稳定键与状态迁移入校验 |
 | `design/15` 经脉 / 穴道 / 周天 | `meridian/*.ts` | 严格消费 `meridian.v1`、`acupoint.v1`、`circulation.v1` 与 `MeridianProgress`；旧短 ID 只进 remap |
+| `design/21` 路线 / 控制 / 调息 | `meridian/flow.ts`、`meridian/control.ts` | 严格消费 `meridian-route.v1` / `meridian-control.v1`；生成路线整数索引、九档控制表与 `STD_meridian` |
+| `design/21` 敌人经脉参数 | `combat/enemy.ts: MeridianUnitTemplateSchema` | 作为 `EnemyTemplateDef` 子对象或召唤定义强引用；展开只读基底，动态数组留给战斗逐单位复制 |
 | `design/16` 资源 / 营生 | `economy/*.ts`、`society/business.ts` | 严格消费四阶九品、lot、合同、排班与 DSL；旧英文类别 / 职位键只进迁移器 |
 | `design/20` 跨年代传承 | `legacy/*.ts` | 严格消费 `legacy.v1` 五表；生成 `lgs_ / frag_ / cache_ / it_xinwu_` 引用边，校验三卷、信物、配方、地点、概率与稳定顺序 |
 | `design/17` 门派矩阵 | `society/sect.ts` | 严格消费 `sect-compendium.v1`；校验 99×14、L1–L5 与 T01–T12（含 T05A/T05B） |
@@ -481,7 +491,9 @@ export type RegionId = z.output<typeof RegionIdSchema>;
 
 ```ts
 import { z } from 'zod';
-import { GradeSchema, SkillIdSchema, BuffIdSchema, AssetKeySchema } from '../primitives/index.js';
+import {
+  GradeSchema, SkillIdSchema, BuffIdSchema, AssetKeySchema, MeridianRouteIdSchema,
+} from '../primitives/index.js';
 import {
   AiHintSchema, AnimRefSchema, AoeRefSchema, CleanseSpecSchema, ConflictSchema, EffectHookSchema,
   HealSpecSchema, InnerDefSchema, LayerDefSchema, LearnSourceSchema, MoveConditionSchema,
@@ -527,6 +539,8 @@ export const MoveDefSchema = z.strictObject({
   charge: z.union([z.literal(0), z.literal(1)]).default(0),
   power: z.number().nonnegative(),
   hits: z.number().int().positive().default(1),
+  // 迁移输入可缺；正式内容由 MF-V05 强制需要运气的招式必填。
+  meridianRouteRef: MeridianRouteIdSchema.optional(),
   wOut: Step005.optional(),
   wIn: Step005.optional(),
   nature: z.enum(['yang', 'yin', 'harmony', 'neutral']).optional(),
@@ -609,6 +623,8 @@ export type SkillDef = z.output<typeof SkillDefSchema>;
 ```
 
 示例列齐 `design/05` §2.1、§4.1 的顶层字段；各 `*Schema` 是从归属文档映射的严格判别联合，不以 `z.unknown()` 或开放对象逃逸。`unlock/kind/target/range/aoe/delivery/hpCost/cd/recovery/charge/hits/parryable/counterable/friendlyFire` 以及 `BuffApply.chance` 按该文档字段表展开默认值；`observable` 的默认值依赖品阶，留给 normalize 按“天阶 false、其余 true”展开，不能用常量 `.default()`。`AoeRefSchema` 的生产模板唯一来源是 `design/09` §5.3；旧 `sq/diamond/cross/x` 等仅作为迁移输入，不是“28 种模板”的现行生产定义。`BuffApply.to='area'` 表示沿招式最终格集选取，`allies/enemies` 则映射 `design/06` §6.3 选择器；两种归属文档用法均被保留。`balanceOverride` 是仅供构建审阅的 authoring 元数据，打包前剥离，不改变玩法语义。
+
+AR-14 另在归属结构中增加两个强引用：`TriggerSpecSchema.routeOnTriggerRef?: MeridianRouteId` 供被动 / 反应窗口引用 defense 路线，`InnerDefSchema.breathProfileRef?: BreathProfileId` 供内功引用 `txp_*`。两者在迁移输入阶段可省略；正式发布时，防守 / 轻功触发器与所有内功分别由 MF-V05 和调息完整性检查阻断缺项。不得把 `routeOnTriggerRef` 塞进通用 Buff 参数袋，也不得把调息数值复制进每个招式。
 
 ### 3.7 世界导航源、区域地图与时代玩法层
 
@@ -812,6 +828,121 @@ export const MeridianProgressSchema = z.strictObject({
 ```
 
 `requireExactlyOneValueForOp` 按 `op` 强制恰好一个量值字段：`flat → valueMilli`、`pct → valueBp`、`pp → valueMilliPp`，其余两个必须缺省；它是 schema helper，不是第四种数值语义。`MeridianAidSchema` 挂在 `ConsumableDef.meridianAid`，三槽只接受非负整数 bp，持续时间至少 1 游戏小时，白名单只能引用本文已加载的正式 `mer_*`；同来源逐槽取高、不同来源加算及总上限仍唯一见 `design/15` §5.6。完整字段、不变量、冲穴原子事务和 `MeridianSessionSnapshot` 直接见 `design/15` §11–§12；上例只展示 schema registry 的严格入口，不重复玩法公式。事件主题固定为 `meridian/sessionSettled`、`meridian/acupointOpened`、`meridian/completed`、`meridian/circulationAdvanced`、`meridian/turnCompleted`，不得恢复点号旧名。构建门禁校验 20 经、每经 6–12 穴、总数 150–200、标准穴位代码唯一、周天依赖闭合，以及九转 `acupointScaleBp = 10000 + 500 × turn`。旧短 ID `mer_ren / mer_du / mer_chong / mer_dai` 只允许出现在 `idRemaps`，分别迁往 `mer_renmai / mer_dumai / mer_chongmai / mer_daimai`，新内容引用一律拒绝。
+
+#### 3.8.1 战斗路线与护体扩展（消费 `design/21`）
+
+```ts
+const MeridianRouteIdSchema = z.string().regex(/^mfr_[a-z0-9_]+$/).brand<'MeridianRouteId'>();
+const RoutePurposeSchema = z.enum(['attack', 'defense', 'movement']);
+const RouteNatureSchema = z.enum(['yin', 'yang', 'harmony']);
+
+const RouteStepSchema = z.strictObject({
+  acupointRef: AcupointIdSchema,
+  segmentCt: z.number().int().min(40).max(120),
+  riskBp: z.number().int().min(0).max(1200),
+});
+
+export const MeridianRouteSchema = z.strictObject({
+  id: MeridianRouteIdSchema,
+  moveRef: z.string().regex(/^mv_[a-z0-9_]+$/),
+  ultimate: z.boolean(),
+  purpose: RoutePurposeSchema,
+  requiredNature: z.array(RouteNatureSchema).min(1),
+  allowOpposedNature: z.boolean().optional(),
+  steps: z.array(RouteStepSchema).min(1).max(18),
+  innerGuard: z.strictObject({
+    enabled: z.literal(true),
+    reflectBp: z.number().int().min(0).max(2000).default(0),
+  }).optional(),
+});
+
+export const MeridianRouteRootSchema = z.strictObject({
+  schema: z.literal('meridian-route.v1'),
+  routes: z.array(MeridianRouteSchema).min(1),
+});
+```
+
+`steps` 是 `design/21` §12.1 单一对象数组，构建后才拆成紧凑的 `acupointIndex[] / segmentCt[] / riskBp[]`；源 YAML 不接受三份可能错位的平行数组。`requiredNature` 至少一项且去重；路线自然性质与招式性质相反时必须显式 `allowOpposedNature:true`。`innerGuard` 只允许挂 defense 路线；`reflectBp>0` 还必须能沿招式 / Buff 引用图追到 05 / 06 已登记反震语义，不能由管线凭路线自动赠送。路线只携带 Z4M / Z5M 所需输入，严禁 `routeZ3Bp`、`bonusCapBp` 或第二份 `power`。
+
+构建器为每条路线输出稳定 `routeIndex` 与连续 `acupointIndex[]`，供 `tech/05` 热路径使用；同时保留 `mfr_* / mv_* / ap_*` 反向索引供诊断与回放。索引按规范路径、文件内数组序和 ID 全序生成，不能依赖 Map 插入偶然顺序。
+
+#### 3.8.2 擒拿、点穴与调息档案
+
+```ts
+const Level1To9Schema = z.number().int().min(1).max(9);
+const GrappleProfileIdSchema = z.string().regex(/^qnl_lv0[1-9]$/).brand<'GrappleProfileId'>();
+const AcupointProfileIdSchema = z.string().regex(/^dxl_lv0[1-9]$/).brand<'AcupointProfileId'>();
+const BreathProfileIdSchema = z.string().regex(/^txp_[a-z0-9_]+$/).brand<'BreathProfileId'>();
+
+const GrappleProfileSchema = z.strictObject({
+  id: GrappleProfileIdSchema, level: Level1To9Schema,
+  movementBp: z.number().int().min(0).max(10000),
+  recoveryAdd: z.number().int().min(0).max(500),
+  strengthBp: z.number().int().min(0).max(10000),
+  agilityBp: z.number().int().min(0).max(10000),
+  evadeBp: z.number().int().min(0).max(10000),
+  weaponLocked: z.boolean(), actionLocked: z.boolean(),
+});
+const AcupointProfileSchema = z.strictObject({
+  id: AcupointProfileIdSchema, level: Level1To9Schema,
+  flowPenaltyBp: z.number().int().min(500).max(10000),
+  mpCostAddBp: z.number().int().min(0).max(3000),
+  innerMoveLocked: z.boolean(), selfBreathLocked: z.boolean(),
+});
+const BreathProfileSchema = z.strictObject({
+  id: BreathProfileIdSchema, grade: GradeSchema,
+  layer: z.number().int().min(1).max(10), nature: MeridianNatureSchema,
+  scope: z.number().int().min(1).max(4), ct: z.number().int().nonnegative(),
+  mpCostBp: z.number().int().min(0).max(10000),
+  outOfBattleScaleBp: z.number().int().positive().default(15000),
+});
+export const MeridianControlRootSchema = z.strictObject({
+  schema: z.literal('meridian-control.v1'),
+  grappleProfiles: z.array(GrappleProfileSchema).length(9),
+  acupointProfiles: z.array(AcupointProfileSchema).length(9),
+  breathProfiles: z.array(BreathProfileSchema).min(1),
+});
+```
+
+九档的精确表值、升级 / 持续、硬控与调息公式唯一见 `design/21` §8–§10；这里仅约束字段和范围。`qnl_* / dxl_*` 是严重度档案而非 `bf_*`，点穴档案不得带固定 `ap_*`；运行实例另存 `acupointRef / sourceUnitId / remainingOwnActions`。`txp_*` 是内功静态投影，不替代 `sk_*`；默认调息 `ct=1000`，战外倍率 15000 bp，特色覆写须能追到对应内功定义。
+
+#### 3.8.3 敌人经脉模板与标准参考表
+
+```ts
+export const MeridianUnitTemplateSchema = z.strictObject({
+  schema: z.literal('meridian-unit-template.v1'),
+  id: z.string().regex(/^[a-z][a-z0-9_]*$/), // 所属敌人 / 召唤表内局部键
+  kind: z.enum(['normal', 'elite', 'boss', 'summon', 'environment']),
+  effGrade: GradeSchema,
+  effLayer: z.number().int().min(1).max(10),
+  mpRatioBp: z.number().int().min(5000).max(20000),
+  innerNature: MeridianNatureSchema,
+  meridianNature: MeridianNatureSchema,
+  practiceBp: z.number().int().min(3500).max(9800),
+  capacityScaleBp: z.number().int().min(5000).max(20000),
+  openPolicy: z.enum(['routeOnly', 'schoolCore', 'fullTemplate']),
+  milestones: z.strictObject({
+    meridianComplete: z.boolean(), smallCycle: z.boolean(), greatCycle: z.boolean(),
+  }),
+  routeRefs: z.array(MeridianRouteIdSchema).min(1),
+});
+
+export const StdMeridianRowSchema = z.strictObject({
+  displayLevel: z.number().int().min(1).max(70),
+  chapterRef: z.string().regex(/^ch(?:0[0-9]|1[0-5])_[a-z0-9_]+$/),
+  purpose: RoutePurposeSchema, routeRef: MeridianRouteIdSchema,
+  effGrade: GradeSchema, effLayer: z.number().int().min(1).max(10),
+  routeQi: z.number().int().positive(), meanCapacity: z.number().int().min(600).max(2600),
+  meanFlow: z.number().int().min(3000).max(10000),
+  routeQualityBp: z.number().int().positive().max(10000),
+});
+```
+
+模板仅输入 `design/21` §11.9 允许的少量参数：行动表路线并集 → `openPolicy` → 派生节点基底 → 固有装备 / Buff → 动态量清零。`effGrade / effLayer` 必须已经过 `design/13` 外来压制、难度和规则开关；玩家与同伴不走这份紧凑模板，而从 `design/15` 逐穴投影。`milestones.meridianComplete` 仅表示路线涉及之脉均通，不得误解为 20 脉全通。`environment` 只允许武学型行动者，纯落石 / 火场不得配模板。
+
+生成物 `generated/meridian-std.v1.json` 按 `(displayLevel, chapterRef, purpose, routeRef)` 唯一键固化 `STD_meridian`。输入来自 `design/03` 同显示等级标准人、该书界标准有效品阶 / 层数与同用途同路线；构建器调用共享整数 oracle 跑无伤标准状态，绝不在客户端以浮点重算。每行要求 `routeQualityBp>0`，且标准 raw 对本行归一后四个 Profile 分量和 `meridianStrengthBp` 必须都为 10000；攻击、防守、轻功不能跨路线借用参考行。路线 / 等级表 / 书界压制输入变化会使该表和 `contentHash` 一并失效。
+
+同 archetype 可以共享上述静态、冻结的节点基底；构建产物不得含 `water / stagnationBp / backlog / ruptureDamage / sealLevel / sealSource / sealRemaining` 等动态槽。`tech/05` 初始化时必须为每个独立武学行动单位复制动态数组，模板引用不能成为共享写时状态。
 
 ### 3.9 资源、家丁、营生与门派月钱（正式消费 `design/16`）
 
@@ -1069,7 +1200,7 @@ CI 连续运行两次生成：第一次写临时目录，第二次比较 hash；
 | 4 `register` | 所有合法实体 | `SymbolTable` | ID 格式或唯一性失败 |
 | 5 `link` | 实体与符号表 | `RefGraph` | 硬引用缺失、类型不匹配、非法跨界引用 |
 | 6 `lint` | 完整图 | 诊断、预算、考据/临时项清单 | 业务规则 error；warning 留报告 |
-| 7 `compile` | 已链接内容 | 表达式 AST、`RegionMap`、Ink JSON | 不支持的原语、地图或故事编译失败 |
+| 7 `compile` | 已链接内容 | 表达式 AST、路线索引、`STD_meridian`、`RegionMap`、Ink JSON | 不支持的原语、经脉参考行、地图或故事编译失败 |
 | 8 `partition` | 编译 IR 与引用图 | common/chapter/region/locale 逻辑分片 | 循环拥有关系、分片越界 |
 | 9 `emit` | 逻辑分片 | 规范 JSON、hash、manifest、refs | 输出不确定、预算失败 |
 
@@ -1135,6 +1266,8 @@ Ink 先由 `inkjs-compiler` 做语法编译，再由本管线扫描声明、标�
 | `anim.vfx: fx_sand_burst` | 保持 `fx_sand_burst`，解析为 `content/vfx/fx_*.yaml` 内容 ID；由 VFX 定义再引用 `vfx/sand_burst/default` 等贴图 | 不得把 `fx_*` 直接改写为素材键；见 `tech/02` §6.1、`tech/06` §3.3 |
 | `anim.clip: palm_heavy` | 保持精灵元数据片段名 | 不是素材键；按动作片段 schema 校验 |
 | 旧 Boss ID `bs_hongantong_...` | 不在源内自动改；要求正式 `bsc_*` + remap | error + fix hint |
+| 缺 `meridianRouteRef` 的已发布招式 | 仅迁移器按性质与已开穴生成 2 段稳定 `mfr_*` 候选并要求写回 | warning / 正式发布 error；不得运行时长期短路 |
+| `routeZ3Bp` / `bonusCapBp` | 仅 v1 战斗迁移器读取；v2 内容不生成替代字段 | error；禁止静默映射到 Z4M / Z5M |
 | 缺省 `maxLayer`、空数组 | 按 schema 默认展开到输出 | info 可选 |
 | CRLF / BOM | 读入时接受，规范输出为 UTF-8 LF | warning |
 
@@ -1271,6 +1404,11 @@ pnpm schema:gen
 | `TspRule` 的压制抵消类别 | 武学 / 装备 effective resolver | `off_skill` 与 `off_equip` 必须保留为互斥目标类别，并由 `design/13` §4.5 的同一 resolver 解释；禁止折叠为无类型的 `off_kind` 总和 |
 | `SkillDef.setTags[]` | `SetDef` | C22 双向成员闭合 |
 | `Reqs.prereq[].skill`、`LearnSource.ref` | 武功 / NPC / 物品 / 任务 | 类型与来源 kind 相符；前置图无自环 |
+| `MoveDef.meridianRouteRef` | `MeridianRouteDef` | 目标存在且 `moveRef` 反指本招；一招至多一主路线，`ultimate` 相等，攻击 / 防守 / 轻功用途匹配 |
+| `TriggerSpec.routeOnTriggerRef` | `MeridianRouteDef` | 目标存在且为 defense；触发器仍由 05 / 06 定义，不把路线当第二个 Buff |
+| `InnerDef.breathProfileRef` | `BreathProfileDef` | 目标存在且由该内功拥有；未覆写档案依 21 §10.2 生成并固化，不在客户端临算 |
+| `MeridianRouteDef.steps[].acupointRef` | `AcupointDef` | 每穴已登记、同路线不重复；不能借 `ap_*` 命名点穴严重度 |
+| `EnemyTemplateDef.meridian` / 召唤模板 | `MeridianUnitTemplateDef` / 路线 | 所有 `routeRefs` 存在；行动表路线为其子集；武学行动者有且仅有一份初始化输入 |
 | `EquipDef.signature` | `NpcDef` | `design/18` 已入库；缺失、类型错误或指向运行时 UUID 一律 error |
 | `ItemDef.use.effects` | Buff / 武功 / 原语 | 引用存在，原语参数通过判别联合 |
 | `TerrainDef.onEnter/onStay` | Buff / 地表状态 | C23 的 19 个补录已进入 `design/06` 正式目录；目标不存在或被撤回时一律 error，不以通配符或“同步中”告警放行 |
@@ -1306,11 +1444,33 @@ pnpm schema:gen
 | `design/13` §2、§4.1、§4.5–§4.6、§11 | 经验锚点与跨追赶线/封顶线分段、任务经验、天书 28 变体、天书实物例外、`off_skill/off_equip` 分类压制、其余门槛顺序、终局、结局完备性、成就/称号 | `progression-lint`；边界穷举、跨域书眠 fixture 与锚点 golden |
 | `design/17` §15 S17-V001–V020 | 99 门派、1,386 时代格、L1–L5、来源、关系、候选武学与地图建议状态 | `sect-lint`；pending 与 provisional 分列 |
 | `design/15` §14 V15-01–V15-15 | 20 经脉、每脉 6–12 穴、总数 150–200、引用闭合、周天顺序、冲穴事务 | `meridian-lint`；结构、remap 与事务 golden 必须 |
+| `design/21` §17 MF-V01–MF-V12 | 路线、控制九档、调息、单位实例输入、bp / 容量 / flow、快照协议、新前缀边界 | `meridian-flow-lint`；生产错误一律阻断，和 Python golden / `tech/05` 协议对拍 |
 | `design/19` §15 MAP-V001–V008 | 全国导航 ID、WGS84 范围、14 时代、99 门派落点、路线端点、图外专线与输出边界 | `world-source-lint`；源数据错误阻断；运行 `tools/map/render_map.py --check` |
 | `design/11` §14 V-OW01–V-OW27 | 30 区闭集、邻接、场景 / 战场上限、入口、势力、资源 / 营生、路线、天气、旅行可达；重复遭遇必须有稳定 `spawnPointId` | `world-play-lint`；错误级别直接服从归属文档 |
 | `design/16` §16 RES/RP/SV/BIZ/SECT/ECO/SLEEP/STORY/LEGACY 校验族 | 四阶九品、资源点产出、家丁槽、营生职位、客卿唯一、L1–L5 月钱档、lot / 合同事务、`EstateSacrificeQuote` 与传承挖掘适配 | `economy-lint`；公式、引用与原子结算必须 |
 | `design/18` §14 NPC-V01–V14 | 生卒证据、D1–D5、书界存在、跨书 ID 复用、武学/任务/门派引用、设施与路人实例身份 | `npc-lint`；V01–V11/V13/V14 为 error，V12 按其发布级别执行 |
 | `design/20` §14 LEG-V01–V10 | 五表闭合、三卷 / 信物唯一、品阶、消隐证据、权重 / 配额、目标武学、地点与稳定顺序 | `legacy-lint`；任一结构、引用、整数 bp 或收据键不合法均 error |
+
+#### 战斗经脉 MF-V01～MF-V12 落地表
+
+| 规则 | 构建期实现与失败证据 |
+|---|---|
+| MF-V01 | `mfr_*` 全局唯一；`moveRef / acupointRef` 强引用存在；反向索引证明每招至多一条主路线 |
+| MF-V02 | `steps` 长 1–18，穴位无重复；编译后的 `acupointIndex / segmentCt / riskBp` 与源步骤逐项同长 |
+| MF-V03 | CT、风险及所有 bp 均为整数且在归属范围；`MoveDef.recovery + Σsteps.segmentCt ≤ 2000` |
+| MF-V04 | `route.ultimate === move.ultimate`；路线的标记仅作断言，不生成另一份玩法真值 |
+| MF-V05 | 普攻和每个伤害招都有 attack 路线，防守 / 轻功招或触发器有相应用途路线；正式包无 2 段迁移短路 |
+| MF-V06 | `qnl_lv01..09` 与 `dxl_lv01..09` 各恰一项、ID 与 level 对齐；按 §8.1 / §9.1 全字段表逐级核对，含 1 级移动 10000 与 9 级硬锁 |
+| MF-V07 | 点穴内容只给候选 / 明确 `ap_*`；集成 fixture 在目标路线投影中可寻址，运行命令仍由 Core 二次拒绝非法目标 |
+| MF-V08 | 遭遇展开后，每个独立武学行动者恰好一个模板输入；`unitId / unitIndex` 唯一；非武学环境事件为零实例 |
+| MF-V09 | 校验 21 声明的 bp 范围、容量 600–2600、flow 3000–10000；敌人比例先通过 schema，再用极值生成测试验证派生值 |
+| MF-V10 | 兼容夹具要求 `meridian-flow-state.v1`、`rulesProtocol=2`、节点按 `ap_*` ASCII 序且无 RNG；`BattleSession.battleRng` 恰四个 u32 |
+| MF-V11 | 自然语言“受擒 / 穴位受封 / 胀损”不得生成 `bf_*`；只有 06 注册表已有 ID 才可建立 Buff 引用 |
+| MF-V12 | Canon v1.3 接纳前，四个新前缀只允许 §2.5 标明的提案 / fixture / schema 候选语境；其他正式定义报错 |
+
+MF-V06 的“单调”不是简单要求每列同方向：构建器与 `design/21` 的权威九行常量逐项相等，并另断言限制随等级不减；`recoveryAdd` 在 9 级因“跳过行动”回到 0，不能被通用单调比较误杀。MF-V08 在遭遇 / 召唤展开后的 IR 上检查，数据管线只证明初始化输入基数，动态数组不共享仍由 `tech/05` 的创建测试证明。MF-V10 的单位快照 / 全局 RNG 属运行态，本文以兼容 fixture 验证形状，不把它们打进内容包。
+
+`meridian-flow-lint` 还必须构建所有 `(显示等级, 书界, purpose, routeRef)` 的 `STD_meridian` 行，并以相同 raw / 相同 STD 的 property test 证明四分量及强度恒为 10000。输出表按复合键排序，连续两次构建逐字节一致；任何 `routeQualityBp=0`、缺行、跨用途借行、浮点中间量或旧 Z3 字段均报告 error。
 
 ### 5.5 招式预算检查
 
@@ -1391,6 +1551,9 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | `TS-CONTENT-SKL-008` | 招式预算偏差 > 0.05 | error / 有批准理由为 warning |
 | `TS-CONTENT-MAP-003` | 主线目标不可达或无安全返回路 | error |
 | `TS-CONTENT-MAP-030` | 全国导航源未满足 30 区闭集，或发布数据重新定义旧 19 粗区 | error；当前迁移已完成、门禁已解除，保留作回归诊断；只允许显式迁移模式读取旧源 |
+| `TS-CONTENT-MFR-001` | 路线结构、用途、引用、预算或 `ultimate` 不一致（MF-V01～V05） | error |
+| `TS-CONTENT-MFR-006` | 擒拿 / 点穴九档、调息档案或敌人模板不合法（MF-V06～V09） | error |
+| `TS-CONTENT-MFR-010` | 快照 / RNG 协议、Buff 边界、新前缀语境或 `STD_meridian` 漂移（MF-V10～V12） | error |
 | `TS-CONTENT-INK-004` | locale 结构签名不同 | error |
 | `TS-CONTENT-PACK-001` | 单叶片原始 JSON > 256 KiB | error |
 | `TS-CONTENT-PROV-001` | provisional schema 仍在使用 | warning；发布报告必须列出 |
@@ -1597,6 +1760,7 @@ HTTP `Content-Encoding` 通常由浏览器透明解压；离线预压缩容器�
 | parser golden | YAML 行列、TMJ、Ink 错误在不同 OS 稳定 | 必须 |
 | 属性测试 | ID/remap DAG、规范 JSON、随机对象 round-trip | 必须 |
 | 业务 golden | `design/05/06/08/09/10/13` 列出的精确用例 | 必须 |
+| 经脉 golden | `meridian_flow_golden.json` 的 fixture/rules/rng 协议、逐字段输出与 SHA-256；`STD_meridian` 同档零漂移 | 必须 |
 | 地图夹具 | 六邻、门禁泄漏、单向软锁、32×32 边界 | 必须 |
 | Ink 夹具 | 结构签名、非法 opcode、占位符差异、死链 | 必须 |
 | 包体/确定性 | 双构建逐字节相同；叶片与总包预算 | 必须 |
@@ -1662,6 +1826,8 @@ PR CI 先运行 `python3 tools/lint/check_ids.py --strict`，再跑全量 valida
 11. MDN `DecompressionStream`：<https://developer.mozilla.org/en-US/docs/Web/API/DecompressionStream>
 12. MDN `SubtleCrypto.digest()`：<https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest>
 13. RFC 8785, JSON Canonicalization Scheme：<https://www.rfc-editor.org/rfc/rfc8785>
+14. `design/21` §8–§12、§17：战斗经脉字段、运行接口与 MF-V01～MF-V12 的唯一玩法契约（仓库内资料）。
+15. `tools/balance/meridian_flow_golden.json`：`fixtureVersion=2`、`rulesProtocol=2`、`rngProtocol=1` 的跨引擎黄金向量（仓库内资料）。
 
 版本/API 已联网核实；包体压缩率、手机解析时延、Tiled 编辑体验与真机内存仍需按 §11 **（待实测）**。
 
@@ -1680,6 +1846,8 @@ PR CI 先运行 `python3 tools/lint/check_ids.py --strict`，再跑全量 valida
 | `releaseHash` | 发布 manifest 的确定性摘要，绑定规则、文本与兼容元数据 |
 | provisional schema | 上游归属文档未定稿时的显式接口占位；所有值为【建议值】并进入报告 |
 | promote | 经人工批准，把隔离草稿移动到正式目录并跑全量门禁的动作 |
+| 经脉路线编译索引 | 由 `mfr_*` 与 `ap_*` 确定性生成的紧凑整数索引；只优化寻址，不改变路线顺序或 ID |
+| `STD_meridian` 固化表 | 按显示等级、书界、用途、同路线构建的整数参考行；运行时只查表，不重算 |
 
 本文没有新增确定的游戏内容 ID；示例 `since` hash 仅示格式。诊断码、manifest 名和 schema 状态是技术约定，不是游戏世界 ID。
 
@@ -1693,13 +1861,15 @@ PR CI 先运行 `python3 tools/lint/check_ids.py --strict`，再跑全量 valida
 - **已解决：C18**。跨语言静态契约唯一根为 `packages/spec/`；内容 Zod 仍在 `packages/data/src/schemas/`（见 §3.1）。
 - **已解决：`design/11` / `12` / `15`–`20` 的 provisional 接口**。已切换为各归属文档的正式版本根、字段与校验族（见 §3.4–§3.12、§5.4）；`design/map/*.yaml` 的 19→30 数据迁移另列 §16.2，不以 provisional schema 掩盖。
 - **已解决：AR-13 传承 schema 与新前缀接入**。`legacy.v1` 五表、`lgs_ / frag_ / cache_` 注册、LEG-V01–V10 及跨域请求边界见 §3.10、§5.4。
+- **已解决：AR-14 战斗经脉数据入口**。路线、控制、调息、敌人模板、武学强引用、`STD_meridian` 固化与 MF-V01～V12 已接入 §2.5、§3.4–§3.8、§4–§5；玩法数值仍唯一引用 `design/21`。
 - 【建议值】源文件 2 MiB 上限、IP 偏差 >10% 提升 error，以及 P4 的压缩率，待实测替换。
 
 ### 16.2 本文依赖的上游事实
 
 - **已解决：**`design/11` 的 30 个全局 `rg_*` 闭集及 `design/19` 的城市、门派与路线几何已同步到 `design/map/*.yaml` v2；2026-09-27 全量检查通过，当前生产构建不再受 `TS-CONTENT-MAP-030` 阻断。旧 19 区仅保留迁移读取。
 - `design/12`、`design/15`–`design/20` 已作为正式上游消费；其 schema 版本或约束变化须同步迁移与 golden，不在本文重定义玩法。
-- `tech/05` 须提供效果原语、表达式上下文和内容 registry 的运行时消费者。
+- `design/21` v2.0 是战斗经脉唯一契约；`mfr_* / qnl_* / dxl_* / txp_*` 在 Canon v1.3 接纳前仍带提案域标记，发布门禁默认阻断越界使用。
+- `tech/05` 须提供效果原语、表达式上下文、内容 registry 与经脉编译表的运行时消费者，并对 Python golden 逐字段对拍。
 - `tech/06`/`tech/07` 继续拥有素材清单、登记字段与二进制；本文只输出引用图。
 
 ### 16.3 对基准的修改提案
@@ -1708,6 +1878,7 @@ PR CI 先运行 `python3 tools/lint/check_ids.py --strict`，再跑全量 valida
 |---|---|---|
 | E1-P01 | 基准 §12 的区域格式由仅 `rg_<书界序号>_<拼音>` 扩为全局 `rg_<拼音>`，旧 ID 经 remap 迁移 | AR-04 与 `design/11` 已定稿共享大地图的 30 个全局区域及 19→30 迁移表；旧式只允许迁移读取 |
 | E1-P02 | 基准 §19 登记三哈希域与原始 JSON 叶片 ≤256 KiB | 避免文本改动触发存档修复，并把 `tech/03` 解析终值变成发布门禁 |
+| E1-P03 | 基准 §12 登记 `mfr_* / qnl_* / dxl_* / txp_*`，分别归 `design/21` | 路线、控制严重度和调息需稳定跨数据、存档与 UI 引用，且不能借用地图 / Buff / 穴位前缀 |
 
 ### 16.4 开放问题（附默认值）
 
@@ -1718,5 +1889,6 @@ PR CI 先运行 `python3 tools/lint/check_ids.py --strict`，再跑全量 valida
 | O3 | ID remap 支持窗口多长？ | 单人项目默认永久保留所有已发布映射；仅在明确废弃旧存档版本时压缩 |
 | O4 | 是否采用 RFC 8785 实现规范 JSON？ | 默认采用其对象键/数字规范；若现成实现体积不合适，工具端自实现并以 RFC 向量测试，运行时不携带 |
 | O5 | **已解决**：`design/20` 何时提供跨年代传承 schema？ | 已按 `design/20` §12 的 `legacy.v1` 五表转正，并接入 §14 LEG-V01–V10（见 §3.10、§5.4） |
+| O6 | Canon v1.3 何时接纳 AR-14 的四个 ID 前缀？ | 默认按 §2.5 保持 `provisionalPrefixOwner:'design/21'`，允许 schema 候选 / fixture，正式发布阻断其他越界定义 |
 
 真机解析耗时、内存峰值及 Tiled 热更 ≤1 秒仍为**（待实测）**；技术版本与上述 API 已于参考资料所列日期联网核实。

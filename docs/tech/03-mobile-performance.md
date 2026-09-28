@@ -3,9 +3,9 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/03-mobile-performance.md` |
-| 版本 | v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
-| 上游基准 | `docs/00-canon.md` §0（手机浏览器横屏优先 + PC、PWA 可离线、云存档）、§8（斜 45° 等距战棋、就地开战 ≤ 20×20、上场 ≤ 6）、§18（文档归属：性能归 `tech/03`）、§19（技术基线：Three.js WebGL2、Vue 3 DOM 覆盖层、确定性 core 可入 Worker、IndexedDB、PWA、KTX2、按书界分包） |
-| 平行文档 | `tech/01`（主循环、`RenderScheduler`、画质档与非功能目标**初值**）、`tech/02`（渲染管线、四档开关、帧/显存/draw call **初值**、活画基准）、`tech/06`（分包、格式、Service Worker、离线下载）、`tech/07`（精灵显存估算）、`design/09`（六角战斗、行动表、AI 规则）、`design/11`（30 区、场景尺寸）、`design/14`（移动 UI） |
+| 版本 | v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
+| 上游基准 | `docs/00-canon.md` §0（手机浏览器横屏优先 + PC、PWA 可离线、云存档）、§8（斜 45° 等距战棋、就地开战 ≤ 20×20、上场 ≤ 6）、§18（文档归属：性能归 `tech/03`）、§19（技术基线：Three.js WebGL2、Vue 3 DOM 覆盖层、确定性 core 可入 Worker、IndexedDB、PWA、KTX2、按书界分包）；`docs/decisions/author-requirements.md` AR-14 |
+| 平行文档 | `tech/01`（主循环、`RenderScheduler`、画质档与非功能目标**初值**）、`tech/02`（渲染管线、四档开关、帧/显存/draw call **初值**、活画基准）、`tech/04`（经脉 schema 与 `STD_meridian`）、`tech/05`（Core、逐单位经脉实例与 golden）、`tech/06`（分包、格式、Service Worker、离线下载）、`tech/07`（精灵显存估算）、`design/09`（六角战斗、行动表、AI 规则）、`design/11`（30 区、场景尺寸）、`design/14`（移动 UI）、`design/21`（战斗经脉唯一玩法契约） |
 | 下游文档 | `tech/04`（书界包切分与解析）、`tech/05`（core 性能、Worker 模式）、`tech/08`（云存档、离线同步）、`tech/09`（路线图与性能门禁） |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手 |
 | 本文职责 | 目标设备 / 浏览器矩阵；**全部性能预算的终值**（帧率、帧时间、draw call、三角形、显存、JS 堆、DOM、首包、首屏、书界包、存储）；iOS / Android 平台专项；加载、运行时、自适应质量策略；性能测试与 CI 门禁；弱网与离线；性能风险 |
@@ -27,6 +27,7 @@
 > 12. **自适应质量**：静态探测 → GPU/内存规则 → 标题画面活画基准 → 运行时（动态分辨率 0.05 步进、CPU/GPU 瓶颈判别、会话内只降不升、垂直同步封顶识别）→ 温控调速器 T0–T3（移动端没有 Web 温度 API，按"同场景代价漂移"推断）。
 > 13. **测试**：自研 HUD（`?perf=1`）+ `window.__tsPerf` 报告接口；CI 用 Playwright 1.63 + CDP（`Performance.getMetrics`、`browser.startTracing`、CPU 4× 降速）跑 6 个确定性基准场景：**计数型指标精确门禁、时间型指标 +10% 报警**；GPU 时间只在真机验证（可选：自托管安卓机 + `connectOverCDP` 夜间跑）。
 > 14. **弱网与离线**：PWA 离线范围 = 应用外壳 + 已下载书界 + 存档；断点续传按"内容寻址文件"粒度（单文件 ≤ 8 MB）；Cache API 不接受 206 → 短片可缓存完整文件，长视频或按 tech/06 选择分段时每段 ≤ 4 MB；微信内（无 SW、存储易被清）只提供在线模式并引导"在浏览器打开"。
+> 15. **经脉模块独立门禁**：24 单位典型物化 1,728 节点、完整上界 4,320；单路线 `commit` ≤0.25 ms、攻防护体 ≤0.08 ms、速度重算 ≤0.05 ms、`preview` ≤0.15 ms、单 AI 12 路线 ≤2 ms、全场 `tick` ≤0.50 ms、快照 ≤1.50 ms，均为 **【建议值】【待实测】**。超限只能优化索引、布局、dirty set、缓存或 Worker 调度，不得跳过敌人实例、RNG、卡住、护体或改用浮点近似。
 
 > **基线核查结论**：Canon §19 **无致命问题**，正文按基线展开。以下为调研中发现的非致命问题，已在本文处理，并需同步到相应文档：
 >
@@ -90,6 +91,7 @@
 | D14 | 自适应 | 静态探测 + 活画基准 + 动态分辨率 + 会话内只降不升 + 垂直同步封顶识别 + 温控 T0–T3 | §7 |
 | D15 | 测试 | 真机手工清单 + 自研 HUD + CI（Playwright/CDP 确定性基准，计数精确门禁、时间 +10% 报警）+ 可选自托管安卓真机夜跑 | §8 |
 | D16 | 离线 | 文件级断点续传（内容寻址 ≤ 8 MB）；短片可用完整文件，长片或选择分段时每段 ≤ 4 MB；无 SW 环境只做在线模式 | §9 |
+| D17 | 经脉性能 | 经脉只遍历当前路线 / 活动或 dirty 节点；`commit`、攻防护体、速度、preview、AI 12 路线、tick、快照各有独立预算并进入 `bench-battle` / `bench-mass` | §2.3.1、§8.2–§8.4 |
 
 ---
 
@@ -316,6 +318,24 @@ export function gate(c: CapabilityReport, hasIndexedDb: boolean): GateResult {
 
 AI Worker 只接收裁剪后的 `BattleAiSnapshot`（≤ 64 KiB【建议值】）；structured clone 目标 ≤ 2 ms。两项均须在三类发布设备上**（待实测）**。`workBudget` 随规则版本发布且不能按设备或即时帧率改变；墙钟只属于 host 调度、诊断和降级，录像记录最终命令与 seed 凭证，不重跑 AI。
 
+#### 2.3.1 经脉模拟子预算（AR-14）
+
+下表是 §2.3 `core.tick()` 与 AI SLO 内的**子预算**，不能再额外加到帧总额。测量用生产构建、预热后至少 1,000 次调用取 P95；每次都校验输出 / 状态 hash，避免基准把工作优化掉。预算承接 `design/21` §11.8，玩法、取整、RNG 消费和实例边界仍归该文与 `tech/05`。
+
+| 测点 | 固定工作量 | P95 子预算 | 失败处置 |
+|---|---:|---:|---|
+| `meridian.commit` | 1 条 18 段路线；最多 18 次 `battle` RNG；质量汇总一次 | ≤0.25 ms **【建议值】【待实测】** | 连续穴位索引、结构化数组；不得少抽 / 多抽 RNG |
+| `meridian.settle` | Z4M + Z5M + 护体内劲；2 次曲线插值、3 次乘区 / 守恒 | ≤0.08 ms **【建议值】【待实测】** | 缓存同 `causeId` 防守结果；坚持定点整数与顺序 |
+| `meridian.speed` | 敌对强度中位数一次 + 曲线插值一次 | ≤0.05 ms **【建议值】【待实测】** | 仅脏标记重算；不逐帧扫描 |
+| `meridian.preview` | 1 条 18 段路线，`rollBp=9999`，0 次 RNG、0 次状态写入 | ≤0.15 ms **【建议值】【待实测】** | 复用 scratch，以 `stateVersion` 做缓存键 |
+| `meridian.aiPreview12` | 同一 AI 最多 12 条路线、216 节点访问 | ≤2.00 ms **【建议值】【待实测】** | 超限转 `ai.worker`；最终命令仍由 Core 重验 |
+| `meridian.tickAll` | 24 个活动实例的 dirty set；压力例覆盖 4,320 节点 | ≤0.50 ms **【建议值】【待实测】** | 稀疏 dirty set；无状态节点不空写 |
+| `meridian.snapshotAll` | 24 个单位节点 + 全局 `battleRng` 四字；规范排序 / hash | ≤1.50 ms **【建议值】【待实测】** | 仅检查点 / 存档执行；紧凑数组，非逐帧 |
+
+规模核算：完整上界是 `180 穴 × 24 单位 = 4,320` 节点；典型单位收集 12 路线、每路 10 穴、重合 40%，即 `10×12×(1−40%)=72` 个活动节点，全场 `72×24=1,728`。一轮 24 单位各出一招，路线热路最多 `18×24=432` 节点；单 AI 预览 12 招最多 `18×12=216`。这些上界与性能报告一起锁定，画质档或温控状态不得改变逻辑节点数。
+
+内存按最坏 4,320 节点、每节点 8 个 32 位槽粗估裸数据为 `4,320×8×4=138,240 B`（约 135 KiB），未计容器 / JSON 键；因此生产使用 SoA / typed array 与稀疏物化，JSON 仅供调试和 golden。典型态、满物化态都要记录 `activeNodes / materializedNodes / dirtyNodes / bytes`，不能只报总战斗堆。
+
 ### 2.4 渲染量与同屏上限
 
 **渲染量**（draw call、三角形沿用 tech/02 §8.2；其余为本文新增）：
@@ -483,6 +503,15 @@ AI Worker 只接收裁剪后的 `BattleAiSnapshot`（≤ 64 KiB【建议值】�
     "workBudget": { "basic": 1024, "adept": 4096, "expert": 16384, "master": 32768 },
     "hostSloMs": { "basic": 5, "adept": 15, "expert": 40, "master": 80 },
     "watchdogMultiplier": 2, "snapshotKiB": 64, "cloneMs": 2
+  },
+  "meridian": {
+    "maxUnits": 24, "acupointsPerUnit": 180,
+    "typicalActiveNodes": 1728, "maxMaterializedNodes": 4320,
+    "maxRouteNodesPerRound": 432, "maxAiPreviewNodes": 216,
+    "p95Ms": {
+      "commit": 0.25, "settle": 0.08, "speed": 0.05, "preview": 0.15,
+      "aiPreview12": 2.0, "tickAll": 0.50, "snapshotAll": 1.50
+    }
   },
   "memoryMB": {
     "gpuByTier":     { "low": 96, "mid": 160, "high": 256, "ultra": 512 },
@@ -1633,6 +1662,7 @@ Web 平台没有手机温度 API；Compute Pressure 在本文目标移动端也�
 | 帧 | `sceneKey`、`targetFps` / `pacingFps` / 实际 fps、`interval` P50/P95/P99、`work` P50/P95、>50 ms 次数 | 实际渲染帧环形缓冲 600 项；按 §2.2–§2.3 绿 / 黄 / 红 |
 | 调节 | `effectiveTier`、`memClass`、`fpsMode`、`renderScale`、`sourceRefreshHz`、`detectedFpsCeiling`、T0–T3、最近一次动作 / 理由 | 状态变化立即记事件，DOM 仍 500 ms 刷新 |
 | CPU | input / core / cue / render CPU / Vue 分项 P95，Worker 往返 | 每段 `performance.mark/measure`；不支持的留 `null`，不填 0 |
+| 经脉 | `commit / settle / speed / preview / aiPreview12 / tickAll / snapshotAll` P50/P95、调用数、访问 / 物化 / dirty 节点数、RNG 抽数 | 按 command sequence 聚合；预算见 §2.3.1，preview RNG / 写入不为 0 直接报异常 |
 | GPU / 渲染 | draw call、三角形、点 / 线、program、texture / geometry 数、`GpuBudget` bytes、上传队列 | `renderer.info` + 自有账本；GPU ms 仅扩展可用且非 disjoint 时显示 |
 | 内存 | JS heap（Chromium，可空）、规则 / 图像 / PCM / wasm / GPU 自有账本、总占用（真机工具手填） | iOS 没 API就显示 `n/a`；禁止把账本总和冒充进程 RSS |
 | UI / 输入 | DOM 节点、最大子节点、深度、合成层手工项、最近 20 次输入近似延迟 P95 | DOM 每 1 s 采样；输入按 §6.9 |
@@ -1695,8 +1725,8 @@ tools/perf/
 |---|---|---:|---|---|
 | `bench-title` | 固定标题小景；`m=1→4`，每级 30 帧；另跑冷 / 热启动 | ≥120 渲染帧 | program、draw call、三角形、请求数、传输字节、entry / render chunk 大小 | 标题可交互、各 m 的 P90、4× CPU 下解析 / 执行 |
 | `bench-explore` | 96×96 标准场景、48 NPC、固定 30 s 路线与 90° 镜头旋转、昼间晴天；另以同脚本跑 256×256 稀疏压力夹具 | 30 s | draw / triangle / NPC / program 的逐帧最大值；运行时编译 = 0；每帧上传不越 §2.4；压力夹具核对 64 chunk 元数据与按需驻留 | 标准场景按实际 `pacingFps` 看 interval / work；压力夹具只作回归与路径/构网压力，不宣称常规内容达标 |
-| `bench-battle` | pointy-top 六角战场；20 活动单位；固定 12 条 Cue，含移动、范围技、镜头旋转与 `battle8` 新增 2 视图预取 | 30 s | 活动单位、6 驻留视图、VFX / 飘字峰值、program；演出外编译 = 0 | `battle.anim` 可整除源按 60 fps，节拍例外单列；亮相 ≤0.8 s |
-| `bench-mass` | `mid` 上限 24 活动单位 / 48 人形，6 个特效同时、1,200 粒子；固定 AoE 序列 | 30 s | 所有同屏数、draw call / triangle / 精灵预算不得越硬线 | `mid` 按 30 fps；CPU / GPU-likely 分型 |
+| `bench-battle` | pointy-top 六角战场；20 活动单位；固定 12 条 Cue，含 18 段攻防路线、护体、速度脏重算、preview / 调息、移动、范围技、镜头旋转与 `battle8` 新增 2 视图预取 | 30 s | 活动单位、经脉调用 / RNG / hash、6 驻留视图、VFX / 飘字峰值、program；演出外编译 = 0 | `battle.anim` 可整除源按 60 fps；经脉各 P95 不越 §2.3.1；亮相 ≤0.8 s |
+| `bench-mass` | `mid` 上限 24 活动单位 / 48 人形，典型 1,728 与压力 4,320 经脉节点，24 招 / 轮、AI 12 路线、全场 tick / 快照；6 个特效同时、1,200 粒子 | 30 s | 经脉节点规模、逐单位实例 / 动态数组不共享、RNG 抽数、hash 及所有同屏 / 渲染硬线 | `mid` 按 30 fps；经脉 `tickAll / snapshotAll / aiPreview12` P95；CPU / GPU-likely 分型 |
 | `bench-region-cycle` | 同一 160×160 常规大型场景（25 chunk）加载→稳定→卸载，连续 10 轮；一次原子切换另覆盖 `region-base + era-state` 双包 | 每轮稳定 60 帧 | 末态 texture / geometry / program / `GpuBudget.bytes` **与起点精确相等**；加载作用域数 = 0；旧 / 新场景不得同时全量 GPU 驻留 | 每轮加载时长、区域切换缓存峰值与 JS heap 趋势；GC 后 ±10% 只告警 |
 | `bench-ui` | 对话翻 20 页；背包 1,000 项滚顶→底；图鉴搜索 / 筛选；全屏菜单开关 20 次 | 固定输入脚本 | HUD ≤300、全局 ≤800、子节点 ≤60、深度 ≤24；全屏菜单 GPU 提交 = 0；运行时字体请求固定 | Vue patch、输入近似延迟、长任务 |
 
@@ -1726,6 +1756,7 @@ await browser.stopTracing();
 3. 任何崩溃、控制台未处理异常、上下文丢失、运行时 shader 编译、报告 `contaminated=true`、样本不足均直接失败；不得把失败轮丢掉只取剩余中位数。
 4. 基线与 runner 指纹绑定；Playwright / Chromium、OS 镜像、CPU 型号或 GPU backend 改变时先生成新基线并人工审阅，禁止把两台机器的毫秒数直接比较。
 5. GPU 时间、进程 RSS、温控和 iOS 行为**不进桌面 CI 自动结论**。这些字段只由 §8.4 / §8.5 真机报告补齐。
+6. 经脉计数与正确性是硬门禁：`preview` 前后节点 hash 和 `battleRng` 必须不变；同 seed 的 commit RNG 抽数、最终状态 hash 与录像逐次相等；每单位实例数 / `unitIndex` 唯一、4,320 压力态动态数组不共享。时间仍遵守“同 runner +10% 报警、越 §2.3.1 绝对预算阻断发布候选”，不得通过减少节点、关闭敌人模块或跳过规则让性能场景变绿。
 
 ### 8.4 真机手工清单
 
@@ -1738,6 +1769,7 @@ await browser.stopTracing();
 | 探索 | `bench-explore` 10 分钟，固定路线循环；再静止 5 分钟 | 中端 Android `mid` 目标 60，10 分钟平均 ≥45；idle 降 30 / onDemand 正确；T 状态理由合理 | HUD JSON + 录屏；设备温度只记外部观感，不编造摄氏度 |
 | 战斗 | `bench-battle`、`bench-mass`；六角格点 / 环 / 60°/120°扇形；镜头四个偏航轮换 | 普通战 `mid` 60、群战 30；`battle8` 固定镜头驻留 6 视图、旋转无黑帧；点击反馈 P95 ≤100 ms | 回填 RT2 要求的 `battle8` 工作集显存 / 包量（待实测） |
 | AI / 行动预览 | 四档各跑固定快照；反复切换完整行动表、移动落点、6/12 向范围预览 | 同 seed + 同 `workBudget` 的 visited / 命令一致；5/15/40/80 ms 只记录 host SLO，2× watchdog 取最新完整批 best；快照 ≤64 KiB、克隆 ≤2 ms；单次可达 / 伤害预测目标 ≤8 ms | 全部 **（待实测）**；保留 snapshot 字节数、clone / 往返分位及 watchdog 结果 |
+| 经脉模拟 | 典型 1,728 节点与完整 4,320 节点各跑；逐单位提交 18 段路线、攻防 / 护体、速度脏重算、无副作用 preview、AI 12 路线、tick 与快照 | 七项 P95 分别 ≤0.25 / 0.08 / 0.05 / 0.15 / 2.00 / 0.50 / 1.50 ms；preview 0 RNG / 0 写；同 seed hash 一致；24 单位动态数组互不共享 | 三类设备均 **（待实测）**；保存原始样本、节点 / RNG 计数、`rulesProtocol=2` 与 build hash |
 | 大型 / 压力场景 | 160×160、25 chunk 场景循环；256×256、64 chunk 稀疏夹具构网、长路径与区域切换 | 常规大型满足加载 / 回零预算；压力夹具无 OOM、主线程长阻塞或全量驻留；切换缓存峰值以 74 MB【建议值】为线 | 分开报告，不得用 96×96 结果代替，也不得把压力上限变成内容常态 |
 | 内存 | `bench-region-cycle` 10 轮；连续书眠 3 次；大图对话→战斗→视频→回探索 | 账本回零；无重载 / OOM / 上下文丢失；S/M/L 总占用与 PCM / 图像 / GPU 硬线达标 | iPad Safari Web Inspector / Instruments；Android `adb dumpsys meminfo`（命令与字段需现场核实） |
 | 上下文 | `WEBGL_lose_context`；切后台 10 次；锁屏 / 解锁；压力后恢复 | 1–3 s 自动恢复；失败有 reload / 完全退出浏览器指引；存档不丢 | iOS 重建失败缺陷仍未确认修复 |
@@ -1883,6 +1915,8 @@ MSE / HLS / 渐进媒体的取舍与具体打包格式以 tech/06 为唯一实�
 | 9 / `R03-09` | **中国大陆到 Cloudflare 的时延 / 丢包使首玩与书眠失败**；高 / 中 | 作者网络冷首屏 >4 s；60 MB `enter` 集失败率上升；TTFB / 吞吐晚高峰恶化；重试耗尽 | 唯一 Cloudflare 路线下按书界离线下载、余韵期预取、文件小粒度、静态占位；发布前真实网络测试；限额 / 账单提醒 | 已缓存内容继续；降低并发和视频档位、文件级续传；新内容暂停并给出可恢复状态；**不自动切未授权镜像** | 作者常用网络晚高峰 3 轮；Slow 4G；中断与恢复；部署日复核官方价格 / 限额（§9.2、§9.6） |
 | 10 / `R03-10` | **桌面 CI 绿但真机失败，或噪声造成错误性能结论**；高 / 高 | runner 指纹变化；时间波动而计数不变；桌面缺 GPU / RSS / 温控字段；报告 `contaminated` / 样本不足；只有单次跑分 | 计数精确、时间只作同机 +10% 趋势；基线绑定指纹；3 次取中位；六个固定场景；不支持字段为 null；发布候选强制三机手测 | CI 时间报警先看 trace、不盲目改预算；设备缺席则发布闸门未通过；基础设施失败记 `infra-failed`，不算性能通过或失败 | §8 全套；每次发布留 JSON + 条件记录 + 录屏；预算变更须同变更附基线理由 |
 
+AR-14 增加一项横切风险 `R03-MF`：若经脉实现每招扫描 `180×单位数`、每帧重算速度、preview 复制全状态，或模板共享动态数组，会同时造成 CPU 尖峰、GC 与确定性串扰。早期信号是“访问节点数大于 §2.3.1 上界”、preview 后 hash / RNG 改变、同 archetype 单位状态联动。预防与恢复只能采用连续索引、SoA、稀疏物化、dirty set、预分配 scratch、`stateVersion` 缓存和 AI Worker；不得把路线截短、停用敌人经脉、取消卡住 / 护体或减少 RNG。`bench-battle` / `bench-mass` 的节点计数、别名检测与 Python golden 共同阻断。
+
 **止损原则**：首先保证存档与规则正确，其次保证能完成操作，再保帧率，最后才保画质。任何降级只可改变表现、加载节奏和本地缓存，不得改变 `packages/core` 的单位数量、AI、命中或结算结果；表现单位可以 LOD / 隐藏远景，但逻辑实体不能被删除。一次 OOM / 上下文丢失 / 离线闭包损坏就足以阻断该发布候选，不以平均帧率掩盖。
 
 ---
@@ -1991,7 +2025,8 @@ MSE / HLS / 渐进媒体的取舍与具体打包格式以 tech/06 为唯一实�
 27. Workbox `workbox-range-requests`：https://developer.chrome.com/docs/workbox/modules/workbox-range-requests ；缓存音视频指南：https://developer.chrome.com/docs/workbox/serving-cached-audio-and-video ——插件从已经完整缓存的响应生成 Range 响应，不拼接网络半片。
 28. MDN, Network Information API：https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API ；`AbortController`：https://developer.mozilla.org/en-US/docs/Web/API/AbortController 。Safari 缺失网络信息时按未知处理。
 29. Cloudflare R2 pricing：https://developers.cloudflare.com/r2/pricing/ （页面更新 2026-08-07）；R2 limits：https://developers.cloudflare.com/r2/platform/limits/ ；Workers limits：https://developers.cloudflare.com/workers/platform/limits/ ；Workers Static Assets billing and limitations：https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/ （2026-09-26 访问）。当日核实 R2 Standard 为 $0.015/GB-month、每月 10 GB-month 免费，Workers Free 为 100,000 请求/日；只作部署日输入，不写入运行时常量。
-30. 项目内权威与平行文档：`docs/00-canon.md`、`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/decisions/rulings-v1.md`、`docs/tech/01-architecture.md`、`docs/tech/02-rendering.md`、`docs/tech/04-data-pipeline.md`、`docs/tech/05-gameplay-engine.md`、`docs/tech/06-asset-storage.md`、`docs/tech/07-asset-generation.md`、`docs/tech/08-backend-and-online.md`、`docs/design/09-combat-system.md`、`docs/design/11-open-world.md`、`docs/design/14-ui-ux-mobile.md`。内部引用只用于归属与一致性，不替代上述外部事实来源。
+30. 项目内权威与平行文档：`docs/00-canon.md`、`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/decisions/rulings-v1.md`、`docs/tech/01-architecture.md`、`docs/tech/02-rendering.md`、`docs/tech/04-data-pipeline.md`、`docs/tech/05-gameplay-engine.md`、`docs/tech/06-asset-storage.md`、`docs/tech/07-asset-generation.md`、`docs/tech/08-backend-and-online.md`、`docs/design/09-combat-system.md`、`docs/design/11-open-world.md`、`docs/design/14-ui-ux-mobile.md`、`docs/design/21-meridian-flow-and-moves.md`。内部引用只用于归属与一致性，不替代上述外部事实来源。
+31. `tools/balance/meridian_flow_sim.py` 与 `tools/balance/meridian_flow_golden.json`：经脉正确性 oracle、规模夹具及协议 2 黄金数据；性能预算仍须由本文三类真机实测。
 
 ---
 
@@ -2023,6 +2058,8 @@ MSE / HLS / 渐进媒体的取舍与具体打包格式以 tech/06 为唯一实�
 | 时间型 +10% 报警 | 同 runner 指纹、3 次中位数超过基线 10% 时警告；越绝对预算才阻断候选 | §8.3 |
 | `contaminated` | 捕获受后台、resize、DevTools、加载 / 编译等污染；该轮无效，不能参与中位数 | §8.2–§8.3 |
 | `infra-failed` | 夜跑因 USB、系统弹窗、浏览器更新等基础设施原因未得到有效结果；既非通过也非性能失败 | §8.5 |
+| 经脉活动节点 | 某单位由已装配 / 行动表路线并集及外部点穴实际物化的 `ap_*`；不等于完整 180 穴 | §2.3.1、`design/21` §11.8 |
+| 经脉性能子预算 | 被包含在 core / AI 总预算内的七个 P95 测点，不是额外帧时间额度 | §2.3.1、§8 |
 | 文件级断点续传 | 保存下载意图与已完整校验的内容寻址文件集合；恢复时补差集，不持久化半文件 | §9.3 |
 | 离线闭包 | 某 root 通过 pack manifest 可达的全部必需内容寻址文件；全部存在才可标完整 | §9.1、§9.3 |
 
@@ -2045,6 +2082,7 @@ MSE / HLS / 渐进媒体的取舍与具体打包格式以 tech/06 为唯一实�
 - **已解决（B3/B3.R）**：30 个全局区域不同时驻留；常规大型 160×160（25 chunk）与 256×256（64 chunk）压力上限已纳入场景、切换与回零基准（见 §2.8、§8.3–8.4）。
 - **已解决（B5/B5.R）**：新存档导入导出后缀统一为 `.tsav`；旧格式仅由迁移适配器读取（见 §3.8）。
 - **已解决（B5.R）**：浏览器触控不把原生 44 pt、CSS 印刷 `pt` 与 dp 互相硬换算；本文维持 60 CSS px【建议值】、44×44 CSS px 硬底线，六角吸附半径暂为 24 CSS px 并等待真机校准（见 §6.5、`design/14` §1.2、§6.1）。
+- **已解决（AR-14）**：战斗经脉的 24 单位规模、七项子预算、HUD 指标、CI / 真机场景与不可降规则边界已接入 §2.3.1、§8、§10；所有时间值仍标 **【建议值】【待实测】**。
 
 ### 替下游给出的建议值
 
@@ -2056,6 +2094,7 @@ MSE / HLS / 渐进媒体的取舍与具体打包格式以 tech/06 为唯一实�
 | S4 | `tech/06` 下载 / 媒体 | 普通内容寻址文件 ≤8 MB；关键 `enter` 文件优先 2–4 MB；短片按 tech/06 用完整渐进 MP4，长片选择分段时每段【建议值】≤4 MB；网络 206 不写 Cache Storage；`enter` 终值 36/60/80 MB | manifest / SW v1 前 |
 | S5 | `tech/07` 精灵资产 | `battle8` 完整 8 视图，固定镜头驻留 6；三档 64/96/128 px/m；实测工作集必须落入 S1 上限 | Phase 0 精灵样板打包时 |
 | S6 | `tech/09` 发布门禁 | 计数精确门禁、时间同机 +10% 报警；发布候选三机 A 路径必须全部完成 | 路线图 / CI 里程碑定稿前 |
+| S7 | `tech/05` 经脉模块 | 24 单位典型 / 完整节点 1,728 / 4,320；七项 P95 为 0.25 / 0.08 / 0.05 / 0.15 / 2.00 / 0.50 / 1.50 ms **【建议值】【待实测】** | 模块实现与三机基线时；不得把子预算另加到 core / AI 总额 |
 
 ### 本文依赖的上游事实
 
@@ -2067,6 +2106,7 @@ MSE / HLS / 渐进媒体的取舍与具体打包格式以 tech/06 为唯一实�
 | U4 | design/09 最终群战规模与表现 LOD | 本文先给 S1 硬线；规则规模归 design/09 | 若逻辑规模增大，只能提高 LOD / 合批，不自动放宽内存 |
 | U5 | `design/14-ui-ux-mobile.md` 的性能 HUD、存储页、旋转 / 安全区、质量与恢复提示 UI | 正式文档已落盘并接收本文 R-UI-1～R-UI-14 | 后续组件实现仍须按 §3、§8.2、§9 真机验收 |
 | U6 | 作者自用设备与常用网络 | 未提供，按 P01 三类占位 | 所有型号结论与大陆 Cloudflare 质量保持（待实测） |
+| U7 | `design/21` / `tech/05` 经脉规模与热路径 | `rulesProtocol=2`；每单位独立实例、路线最多 18 段、全局 `battle` RNG、preview 无副作用 | 节点布局或协议变化须重跑 §2.3.1、Python golden、两项战斗基准与三机真测 |
 
 ### 对基准的修改提案
 
@@ -2090,6 +2130,7 @@ MSE / HLS / 渐进媒体的取舍与具体打包格式以 tech/06 为唯一实�
 | V8 | Cloudflare 在作者常用大陆网络的冷首屏、60 MB enter、4 MB 中断恢复与晚高峰稳定性；部署日价格 / 限额 | 只用 Cloudflare；慢则允许手动完整下载，不启镜像 | §9.6 五项实测；部署日重开官方价格 / limits 页面 |
 | V9 | Android `adb dumpsys meminfo` / thermal 字段、iPad Web Inspector / Instruments 的实际采集流程 | HUD 自有账本为共同口径，系统指标可空 | 在登记设备上固定命令、权限、字段与证据格式（待核实 / 待实测） |
 | V10 | WebKit PR #73204 是否合入作者所用 Safari，以及 `webglcontextlost` 后可否稳定重建 | 仍按未修复处理：5 s 后一次重建，再失败提示完全退出 | 每次 Safari 主版本升级查 PR / release notes 并跑后台 10 次 |
+| V11 | 经脉七项子预算在典型 1,728 节点与完整 4,320 节点下是否可达 | 先采用 §2.3.1 建议值；任何超限先优化索引 / 布局 / dirty set / 缓存或 Worker，不改规则 | 作者主力手机、中端 Android、iPad 各 3 轮，保留 P50/P95、原始样本、节点 / RNG 计数、hash 与 build 条件（待实测） |
 
 ### 开放问题（附默认值）
 
@@ -2100,3 +2141,4 @@ MSE / HLS / 渐进媒体的取舍与具体打包格式以 tech/06 为唯一实�
 | Q3 | 题名字体选马善政楷书还是志莽行书，对话是否最终用霞鹜文楷 GB？ | 题名暂用**志莽行书**（启动子集本地实测更小），对话暂用霞鹜文楷 GB；正式纳入前逐项核实 OFL / RFN | Phase 1 美术圣经锁定前 |
 | Q4 | 是否需要把 >60 s 长片纳入离线包并上 HLS / MSE？ | **否**；MVP 只有书眠短片，长片可选且永远有静态替代 | 首个长片进入内容清单时 |
 | Q5 | 是否为反复 OOM 的设备自动永久记住 `low`？ | **是，但可撤销**：一周 ≥3 次则下次 low + 显存 −25%，设置页“重新检测”清除 | Phase 1 恢复 UI 定稿时 |
+| Q6 | 经脉建议预算若在某类真机只差少量是否允许按设备放宽？ | **不按设备改确定性工作量**；先做结构优化，仍不达标则用统一、经审阅的新绝对预算更新 `perf-budgets.json`，不能只放宽单机基线 | 首轮三机数据齐备后 |

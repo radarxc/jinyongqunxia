@@ -3,10 +3,10 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/05-gameplay-engine.md` |
-| 版本 | v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
-| 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03（冲穴）、AR-04（统一大地图与时代图层）、AR-05（资源与家丁）、AR-06（营生职位）、AR-07（门派职级与月钱）、AR-09（NPC 与跨书界同伴）、AR-12（六角战棋）、AR-13（跨年代传承） |
+| 版本 | v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
+| 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03（冲穴）、AR-04（统一大地图与时代图层）、AR-05（资源与家丁）、AR-06（营生职位）、AR-07（门派职级与月钱）、AR-09（NPC 与跨书界同伴）、AR-12（六角战棋）、AR-13（跨年代传承）、AR-14（经脉运行、路线、绝招与擒拿点穴） |
 | 上游基准 | `docs/00-canon.md` §3–§5（成长、数值、节奏）、§8–§10（战斗、伤害乘区、Buff）、§12（ID）、§18（唯一归属）、§19（技术基线） |
-| 强依赖 | `tech/01` §3、§6、§8.3（架构、运行时、确定性 D1–D9）；`tech/03` §2、§6、§8（性能与 Worker）；`tech/04` §3、§6–§8（schema、书界包、Ink 桥）；`tech/08` §3、§10（TSAV、迁移与录像）；`design/04`（Z0–Z10）；`design/05`（武学）；`design/06` §2、§4–§6（Buff DSL）；`design/08`（地形）；`design/09` §2–§8、§13（战斗）；`design/11`（开放世界、时代层与世界时钟）；`design/12`（任务、门派流程）；`design/13`（成长与规则开关）；`design/15`（经脉）；`design/16`（资源与营生）；`design/17`（门派名录）；`design/18`（NPC/同伴）；`design/19`（全国地图）；`design/20`（跨年代传承） |
+| 强依赖 | `tech/01` §3、§6、§8.3（架构、运行时、确定性 D1–D9）；`tech/03` §2、§6、§8（性能与 Worker）；`tech/04` §3、§5–§8（schema、经脉配表、书界包、Ink 桥）；`tech/08` §3、§10（TSAV、迁移与录像）；`design/04`（Z0–Z10）；`design/05`（武学）；`design/06` §2、§4–§6（Buff DSL）；`design/08`（地形）；`design/09` §2–§8、§13（战斗）；`design/11`（开放世界、时代层与世界时钟）；`design/12`（任务、门派流程）；`design/13`（成长与规则开关）；`design/15`（永久经脉与穴位）；`design/16`（资源与营生）；`design/17`（门派名录）；`design/18`（NPC/同伴）；`design/19`（全国地图）；`design/20`（跨年代传承）；`design/21`（战斗经脉运行、招式路线与控制） |
 | 下游 | `apps/game` 的 `CoreHost`；`packages/ui`、`packages/render` 的只读投影与事件消费；`tools/balance`；`tech/09` 路线图 |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手 |
 | 本文职责 | `packages/core` 的纯 TypeScript、无 DOM、确定性内部设计：状态、命令事务、探索 tick、六角格、战斗、伤害执行器、Buff/任务 DSL 运行时、AI、存档状态、录像与测试 |
@@ -22,13 +22,14 @@
 > 5. 探索逻辑终值为 **10 Hz，即 100 ms/tick**；页面后台、暂停、对话停时均不补跑。世界日历只由已提交 tick 推进。正式换算沿用 `design/11` §6.1：10 tick/游戏分钟、600 tick/游戏小时、1200 tick/时辰、14400 tick/日，即实时 2 分钟/时辰、24 分钟/日。
 > 6. 战斗使用 AR-12 的 pointy-top 六角轴坐标。距离、六邻 A*、LOS、点/环/面/扇形模板均以整数和固定枚举序实现；全国导航坐标、区域六角坐标、战场局部坐标是三个不同坐标域。
 > 7. 战斗首轮严格按有效轻功全序排列，之后使用 `design/09` 的事件驱动 CT；行动含移动与一个动作，运劲和道具都是正式动作。反应为 FIFO，嵌套深度最多 3，并继承来源位集阻断反震/转移/镜返/反击递归。
-> 8. 伤害执行器逐字实现 `design/04` 的 Z0–Z10：每区只在规定边界取整；每段产生完整 `DamageTrace` 与 `Settlement`，可回答“哪一乘区把 1289 变成 867”，而非只输出最终数字。
+> 8. 伤害执行器逐字实现 `design/04` 的 Z0–Z10，并按 `design/21` §4.4 在 Z4 / Z5 后分别接 Z4M / Z5M：每区只在规定边界取整；护体内劲位于护体真气后、`mpGuard` 前，输出保留 `damageBeforeMpGuard`。
 > 9. Buff 构建为受限字节码，接入59 hooks/50原语；按 priority/iid 派发，复用 scratch。零临时容器是派发性能目标，BigInt/事件仍有分配。叠加、互斥、驱散与 ρ(Δ) 引用 design/06。
-> 10. 任务 DSL、Ink、经营、门派、经脉与传承都只能产生意图，再由 core 校验；运行态逐项消费 `design/12`、`15`、`16`、`20` 的正式 schema 与事务规则，不在 core 重定义玩法。传承调度只用 `qiyu` RNG，阶段、材料、收据与 RNG 同事务。
-> 11. 当前周目跨书界永久状态包括冲穴/周天/九转与同伴履历；新周目仍按 `design/13` 重置其运行态，只保留账号级里程碑。资源点归属、普通库存、家丁、营生职位和当前门派身份默认随书眠清除；跨书同伴按 `design/18` 做健在判定，以离队快照为下限合并后世新增能力。
-> 12. AI 采用09的 Utility AI，Boss 用阶段状态机约束。固定工作预算和5/15/40/80ms调度预算并用，2倍超时取当前最优；AI选择可随设备变化，录像记录最终命令，core重放结果不变。
-> 13. 存档复用 `tech/08` 的 TSAV v1；录像信封固定 `appBuild` 与 `coreVersion`，战斗载荷另固定规则/RNG/内容协议，含封闭战斗快照、全部已接受战斗命令与终局 SHA-256。战后 finalize 单独提交世界奖励，Node/WebKit 验收见 §15。
-> 14. MVP 先交付单线程 core、六角战斗、伤害/Buff、任务基本式、存读档与录像；AI Worker、复杂世界周期以及经脉 / 经营 / 传承量产按 `tech/09` 阶段门和基线实测递进。
+> 10. 每个可独立武学行动单位拥有一个 `MeridianFlowModule`；只读模板基底可共享，节点动态态绝不共享。模块不持有 RNG，只有成功命令由 Core 注入唯一 `tx.rng('battle')`；`preview` 不改状态、不抽数、不泄露未来 roll。
+> 11. 任务 DSL、Ink、经营、门派、永久经脉与传承都只能产生意图，再由 core 校验；运行态逐项消费 `design/12`、`15`、`16`、`20`、`21` 的正式 schema 与事务规则，不在 core 重定义玩法。传承调度只用 `qiyu` RNG，阶段、材料、收据与 RNG 同事务。
+> 12. 当前周目跨书界永久状态包括冲穴/周天/九转与同伴履历；新周目仍按 `design/13` 重置其运行态，只保留账号级里程碑。资源点归属、普通库存、家丁、营生职位和当前门派身份默认随书眠清除；跨书同伴按 `design/18` 做健在判定，以离队快照为下限合并后世新增能力。
+> 13. AI 采用09的 Utility AI，Boss 用阶段状态机约束。固定工作预算和5/15/40/80ms调度预算并用，2倍超时取当前最优；AI选择可随设备变化，录像记录最终命令，core重放结果不变。
+> 14. 存档复用 `tech/08` 的 TSAV v1；`rulesProtocol=2` 的录像/检查点把按 `unitIndex` 排序的 `meridian-flow-state.v1` 与唯一四字 `battleRng` 一起纳入规范 hash，并与 Python golden 逐字段对拍。
+> 15. MVP 先交付单线程 core、六角战斗、伤害/Buff、任务基本式、存读档与录像；AI Worker、复杂世界周期以及经脉 / 经营 / 传承量产按 `tech/09` 阶段门和基线实测递进。
 
 ---
 
@@ -46,7 +47,8 @@
 - [9. Buff DSL 编译与运行时](#9-buff-dsl-编译与运行时)
 - [10. 任务 DSL、旗标与 Ink 桥](#10-任务-dsl旗标与-ink-桥)
 - [11. 经脉、资源、营生与门派运行时](#11-经脉资源营生与门派运行时)
-- [11.6 跨年代传承运行时](#116-跨年代传承运行时)
+- [11.2 战斗经脉模拟模块](#112-战斗经脉模拟模块)
+- [11.7 跨年代传承运行时](#117-跨年代传承运行时)
 - [12. NPC、同伴与年代状态](#12-npc同伴与年代状态)
 - [13. Utility AI 与 Worker](#13-utility-ai-与-worker)
 - [14. 存档、迁移、录像与重放](#14-存档迁移录像与重放)
@@ -81,7 +83,8 @@
 | E-16 | AI | Utility AI + Boss 状态机；确定性候选预算，Worker 仅回命令 | `design/09` §8；`tech/03` |
 | E-17 | 存档 | GameState 负载交给 TSAV v1；纯迁移 + 内容 fixup | `tech/08` §3 |
 | E-18 | 录像 | 开局快照、命令、RNG、每 10 命令中间哈希 **【建议值】**、终局哈希 | `tech/08` §10；本文 §14 |
-| E-19 | 跨年代传承 | `legacy.v1` 只读 registry + 当前周目状态；`qiyu` RNG、稳定排序、双类配额收据和原子书眠 | `design/20` §2–§14；本文 §11.6 |
+| E-19 | 跨年代传承 | `legacy.v1` 只读 registry + 当前周目状态；`qiyu` RNG、稳定排序、双类配额收据和原子书眠 | `design/20` §2–§14；本文 §11.7 |
+| E-20 | 战斗经脉 | `rulesProtocol=2`；一独立行动单位一实例；Z4M / Z5M 与护体内劲按固定边界接入；模块只消费 Core 注入的全局 `battle` 流 | AR-14；`design/21` §4、§11–§12；本文 §7–§8、§11.2 |
 
 ## 1. 目标、边界与依赖
 
@@ -187,6 +190,7 @@ packages/core/src/
 │   ├── action/          # 位移、招式、运劲、道具等
 │   ├── reaction/        # 招架、反击、连击、合击、援护
 │   ├── damage/          # Z0–Z10、Settlement、DamageTrace
+│   ├── meridian-flow/   # 每单位战斗经脉实例、纯预估、快照与投影
 │   ├── formation/       # 阵法成员/阵眼/生门投影
 │   └── encounter/       # 就地构网、胜负、战后提交
 ├── buff/                # IR、表达式 VM、hook router、叠加/驱散
@@ -215,6 +219,7 @@ content → state → command → world / battle → event → projection
 依赖约束：
 
 - `damage` 可调用 Buff 的已编译修饰器/钩子端口，但不解析 YAML，也不认识具体 `bf_*`。
+- `battle/meridian-flow` 消费 `packages/data` 编译后的路线、控制、调息与敌人模板；它可向 `damage/timeline/ai` 提供纯查询及事务写端口，但不能 import 永久冲穴 handler，也不能保存 RNG。
 - `buff` 可请求伤害、位移等受控原语端口，不能直接递归调用任意 command handler。
 - `ai` 只依赖只读战斗视图、`hex` 与预测接口；不能 import 事务写接口。
 - `quest` 与 `dialogue` 通过 `DialogueIntent` 单向连接，避免 Ink 直接写任务状态。
@@ -426,6 +431,7 @@ interface BattleState {
   revision: number;
   grid: BattleGridState;
   units: BattleUnitState[];
+  meridianByUnit: MeridianBattleUnitState[];      // unitIndex 升序；design/21 的战斗临时态
   openingOrder: UnitId[];
   turn: TurnFrame | null;
   sides: Record<SideId, SideState>;              // 士气、号令、黑板
@@ -458,6 +464,15 @@ interface BattleUnitActionState {
   itemState: { uses: number; maxUses: number; byId: ItemUseEntry[]; cooldowns: CooldownEntry[] };
   moves: MoveUseEntry[];                        // moveId、uses、charges、cd、freshTurnToken
   yunjin: { lastMode: YunjinMode | null; sourceInner: SkillId | null; resolvedAtTurnToken: number | null };
+}
+
+interface MeridianBattleUnitState {
+  unitId: UnitId;
+  unitIndex: number;
+  flow: MeridianFlowSnapshotV1;
+  activeDefense: { routeId: MeridianRouteId; qualityBp: number; expiresAtOwnAction: number; causeId: string|null } | null;
+  movementProjection: { routeId: MeridianRouteId; qualityBp: number; speedBp: number; sealed: boolean; ruptured: boolean } | null;
+  innerGuard: { enabled: boolean; routeId: MeridianRouteId; breakGuardBp: number; reflectBp: number } | null;
 }
 ```
 
@@ -544,6 +559,8 @@ interface CoreTransaction {
 7. 异常或 `abort`：逆序应用 journal；丢弃 RNG 副本和事件；版本不变。
 
 生产环境不为每个命令深拷贝整棵状态。journal 记录第一次写入的 `(owner, key, oldValue)` 以及数组 splice 逆操作；战斗开始、存档和 debug 模式才做完整快照。开发构建可在事务前后做 canonical clone/deep-freeze，对照 journal 回滚结果。
+
+`MeridianFlowModule` 的可变 facade 必须绑定当前 `CoreTransaction`：第一次写某节点槽、主动防守、护体、擒拿或 `stateVersion` 时登记旧值；模块不得把可写 `Map` / TypedArray 藏在 journal 之外。`commit(route, tx.rng('battle'))` 所推进的是事务局部 RNG 副本，因此卡住后的合法命令会同时提交节点与游标，后续不变量失败则两者同时恢复。测试以“第 k 段写伤后主动抛错”验证节点 snapshot、全局 `battle` 四字状态、CT、资源和事件均回到命令前。
 
 ### 3.6 可变与不可变策略
 
@@ -636,13 +653,17 @@ export function chanceBp(rng: Rng, chance: number): boolean {
 
 | 流 | 允许 | 禁止 |
 |---|---|---|
-| `battle` | 命中、招架、暴击、浮动、战斗效果、撤退 | 战利品、AI tie-break |
+| `battle` | 命中、招架、暴击、浮动、战斗效果、撤退、经脉逐段卡住与合格自行解穴 | 战利品、AI tie-break、经脉单位子流 |
 | `loot` | 掉落表、奖励随机品质 | 战斗判定 |
 | `world` | Ink seed、世界事件、资源受扰、天气 | UI 装饰 |
 | `ai` | 明确配置的等分候选破同分 | 模拟命中；AI 预测用期望值 |
 | `qiyu` | 奇遇池抽取 | 普通旅行事件 |
 
 新增流会改变存档 schema，不能临时用字符串创建。随机选择前必须把候选按稳定 ID 排序；权重累计使用整数，禁止浮点 alias table。
+
+经脉模块不得接收 master seed、保存游标或从 `unitId` 派生子流。只有通过预检且准备提交的路线才拿到同一命令事务的 `tx.rng('battle')`：跨单位先服从战斗事件全序，同一条路线按 `steps[]` 顺序，每个实际到达并尝试的节点恰消费一个 `nextU32()%10000`；预检失败、未到达的后段与所有纯函数消费 0 次。调息只对“实际触及且达到自行解穴门槛”的穴位按 `ap_*` ASCII 序各抽一次。
+
+`preview` 默认以安全条件轨迹 `rollBp=9999` 计算，并返回每段概率 / 到达率与条件分支；它不读取或复制下一枚随机数。开发与 CI 在调用前后比较 `battleRng` 四字状态和单位 snapshot hash。`commitWithRolls` 仅可存在于测试适配器，生产包与公开类型都不得导出。
 
 ### 4.3 整数、bp 与溢出
 
@@ -1116,16 +1137,17 @@ ended → battle/finalize → 世界状态与奖励提交，battle=null
 
 初始化顺序固定：
 
-1. 按遭遇配置解析参战者，并以 `(sideRank, spawnSlot, characterId)` 分配永不复用的 `unitIndex`。
+1. 按遭遇配置解析参战者；若环境配置含会以武学独立出手的实体，也在此纳入身份表。按 `(sideRank, spawnSlot, characterId)` 分配永不复用的 `unitIndex`；纯环境时钟没有单位身份。
 2. 按 `design/09` §2.9 从区域格生成局部六角网；复制可写回地形的来源映射。
 3. 应用难度规则开关、敌人模板、装备、武学与永久被动，得到基础属性快照。
 4. 挂载跨战斗 Buff，再实例化战斗被动；每一步都按定义 ID 升序。
 5. 派发 59-hook 表中的 `onBattleStart`，重算脏属性与阵法。
-6. 冻结轻功/速度/身法降序键，生成 `openingOrder`；前三项相等时先比 openingPriority 降序，再阵营 rank、unitIndex。
-7. 有环境演化时创建 `{ct:500, spd:100}` 的环境行动者；否则为 `null`。
-8. 进入 `running`，执行首位 S 段到 `awaitAction`；不使用随机 CT0。
+6. 按 `unitIndex` 为每个可独立施展武学的单位创建一份 `MeridianFlowModule`，从 `design/15` 永久投影或敌人模板初始化，并写入 `meridianByUnit`；同模板只可共享只读基底。
+7. 以同场可选敌方经脉强度中位数投影 `openingQinggong/spd/move`，冻结轻功/速度/身法降序键后生成 `openingOrder`；前三项相等时先比 openingPriority 降序，再阵营 rank、unitIndex。
+8. 有环境演化时创建 `{ct:500, spd:100}` 的环境行动者；纯地形演化不建经脉实例；会独立施展武学者须使用第 1 步预留的稳定 `unitIndex`，并在创建后、进入 `running` 前立即按第 6 步创建自己的 `MeridianFlowModule`，不得复用其他单位实例。
+9. 进入 `running`，执行首位 S 段到 `awaitAction`；不使用随机 CT0。
 
-先机须在第 6 步前就绪，冻结后不重排。09 §3.3 文字含 openingPriority、公式漏列，本文按文字实现并登记同步，默认 priority=0。剧情 openingSlot 仅接受带非空理由、槽位唯一的构建批准覆盖，其余槽按全序填充。首轮援军不插队，以 entryCT（默认 500）进入后续 CT。
+先机与经脉速度须在第 7 步前就绪，冻结后不重排。09 §3.3 文字含 openingPriority、公式漏列，本文按文字实现并登记同步，默认 priority=0。剧情 openingSlot 仅接受带非空理由、槽位唯一的构建批准覆盖，其余槽按全序填充。首轮援军不插队，以 entryCT（默认 500）进入后续 CT；援军入场时仍必须创建自己的经脉实例。
 
 ### 7.2 事件驱动 CT
 
@@ -1151,6 +1173,8 @@ function ticksToReady(ct: number, gain: number): number {
 
 寻找跳变量时，对所有可推进单位取 `ceil((1000-ct)/spd)`，并与环境及未来定时事件的距离取最小正整数 `dt`。随后一次性执行 `ct += spd*dt`、环境 `ct += 100*dt`、`battle.tick += dt`。全部单位被冻结且没有环境或未来事件时返回 `stalled`，转胜负/僵局判断；严禁把 `Infinity` 写入状态。
 
+时间轴批量跳过空 tick 不能漏掉经脉自然演化：推进到新 `battle.tick` 后、处理该 tick 的定时事件前，按 `unitIndex` 对全部活动实例调用一次带目标 tick 的批处理 `tick`。它必须与连续执行 `dt` 次 `design/21` §3.6 单 tick 完全同态（`water=0`、`backlog=max(0,backlog-dt)`，其余节点伤势不自然消退），并得到相同 snapshot；禁止真的循环 `dt` 次。点穴 / 擒拿剩余量仍只接收 06 的自身行动投影，不随这段墙钟式跳量递减。
+
 正常行动结束的收招实现为：
 
 ```text
@@ -1159,6 +1183,10 @@ ct'    = clamp(ct - recEff + pendingShift, -1000, 999)
 ```
 
 首轮单位不是先得到 1000 CT 再行动；其行动后直接置为 `clamp(1000-recEff+pendingShift,-1000,999)`。当前行动者受到 `ctShift` 时累积进 `pendingShift`，避免被 E6 收招覆盖；其他单位立即修改。正向位移不把已就绪单位推得更高，负向位移可把它拉出就绪区。
+
+经脉速度接线不改变基础属性归属：先由 `design/03/09` 得到 `effectiveQinggong/baseSpd/baseMove`，再让本单位模块按 `design/21` §4.9 产生 `meridianSpeedBp`，最后仅在移动 / CT 路径把擒拿 `grappleMoveBp` 相乘，即“先经脉、后擒拿”。`openingQinggong` 与 `spd` 使用组合后倍率，`move` 加经脉导出的 −2..+2 后仍钳 1..10；轻功门禁与地形逐格成本继续读取未修正轻功和原成本。纯经脉 `evadeRatingDelta` 从 `meridianSpeedBp` 单独输出给 Z0，擒拿 `evadeBp` 再由 04 / 06 应用一次，不能把 `combinedSpeedBp` 又乘进闪避。
+
+首轮投影只冻结一次。首轮后，当 movement 路线、点穴、胀损、擒拿或相关 Buff 变化时，把对应单位速度及同场参考中位数置脏；下一次 CT 推进前按 `unitIndex` 重算，已积累 CT 和已经冻结的首轮顺序不追溯。无可选敌人时参考 `STD_meridian=10000`；路线封死与胀损的 6500 / 8000 bp 覆盖、总硬界 6500–13500 bp 都由 `design/21` 的纯函数负责。
 
 ### 7.3 S/A/E 行动执行器
 
@@ -1220,13 +1248,15 @@ interface AiDecisionProof {
 }
 ```
 
-验证顺序为：行动权 → 单位状态 → 路径与移动预算 → 行动类别未被禁 → 内容 ID/装配/冷却 → 目标/范围/LOS → 资源与本场限次 → 反应/脚本门禁。通过后才扣资源；命中失败、被招架或被抵抗均不退款。资源扣除、弹药数、物品数、冷却和事件属于同一事务。
+验证顺序为：行动权 → 单位状态 → 路径与移动预算 → 行动类别未被禁 → 内容 ID/装配/冷却 → 目标/范围/LOS → 资源与本场限次 → 经脉路线硬封 / 用途 → 反应/脚本门禁。预检发现未开节点、胀损或 9 级点穴时拒绝整招，`flowCt=0` 且零资源 / 零 RNG；通过后才扣资源。命中失败、被招架或被抵抗均不退款，已经提交的路线动态态与 `flowCt` 也不撤销。资源扣除、路线节点、控制镜像、弹药数、物品数、冷却和事件属于同一事务。
 
 耗内基数引用MPREF而非当前mpMax：Lv35 MPREF=4697，天阶基准8%为half-up(375.76)=376。主/辅运收益、性质、辅运被动可用性严格用05 §5.1–5.5，持续与触发率不因auxRatio一起折扣；易运重建被动并保留合法实例计数。gateCap按绝对品阶与显示等级，解锁按effLayer，避免低武压制解锁更高层。
 
 BattleCommand 从 09 §13.2 的生成契约导入，act 的平铺移动字段对应 BattleActionPlan；分支分别校验，不用 JsonValue payload 兜底。AI 发出的 `battle/act` 在该分支上追加可选 `ai?: AiDecisionProof`；玩家命令不得携带，AI 当前行动者必须携带，core 按 §13.2 校验后才消费 `ai` 流。左右互搏 a/b 各有目标与朝向。运劲七模式及成本见 09 §4.8.4；invest 的 0.1/0.2/0.3 在边界转为精确 investBp，化解 buffIid 必须存在。它不推进冲穴/周天/九转；旧 meditate 仅在 adapter 迁为 yunjin:tiaoxi。
 
-道具命令只含背包实例与目标，不含效果值。普通道具本场次数、同 ID 冷却、擂台/切磋禁用和收招引用 `design/09` §4.8.3；core 从内容表解释效果。数量先进入事务 journal，再派发 `onItemUse`，使任何后续不变量失败都能完整回滚。统一事件序为 `battle/actionDeclared` → 资源/背包变化 → `battle/itemUsed` 或 `battle/yunjinResolved` → Buff/治疗等派生事实 → `battle/actionEnded`；拒绝时这一串均不产生。事件只存模式、来源/目标、消耗和实际结果，不嵌内容文案。
+道具命令只含背包实例与目标，不含效果值。普通道具本场次数、同 ID 冷却、擂台/切磋禁用和收招引用 `design/09` §4.8.3；core 从内容表解释效果。数量先进入事务 journal，再派发 `onItemUse`，使任何后续不变量失败都能完整回滚。统一事件序为 `battle/actionDeclared` → 资源/背包 / 路线变化 → `battle/itemUsed` 或 `battle/yunjinResolved` → Buff/治疗等派生事实 → `battle/actionEnded`；拒绝时这一串均不产生。事件只存模式、来源/目标、消耗和实际结果，不嵌内容文案。
+
+`yunjin:tiaoxi` 解析为 `design/21` 的 `txp_*` 档案，仍是 1000 CT、默认 0 额外内力成本；按调息目标全序修改本单位实例。只有触及合格点穴节点时才传 `tx.rng('battle')`，硬控中断则整条命令回滚且无收益。AI / UI 必须先调用同一纯预览，不能用未来随机数替它择优。
 
 ### 7.5 招式、多段与反应队列
 
@@ -1349,7 +1379,9 @@ const rollBp = chanceBp; // 唯一实现为 §4.2，禁止复制一套取模概�
 | Z2 `defense` | 各侧穿透钳 0..6000bp，floor 后混合再 floor；`D2=floor(D1*120*ATKmix/(100*DEFmix+120*ATKmix))` | 不先把 K 或 Fdef 化为舍入 bp | 防御、穿透与精确分式 |
 | Z3 `dmgUp` | 攻方适用增伤先加后钳 `[0.5,2.0]` | `D3=floor(D2*F3)` | 每来源 bp、合计 |
 | Z4 `dmgDown` | 守方减伤/易伤加法，钳 `[-0.5,0.75]` | `D4` | 标签筛选与合计 |
+| Z4M `meridianDefense` | 读取本次守方防守路线 Profile；无合法主动防守则 10000 bp | `D4M=floor(D4×meridianDefenseBp/10000)`，只取整一次 | 双方强度、路线长度 / 质量、5000–13000 bp |
 | Z5 `affinity` | `Aap=(1-wIn)*(.80+.004*apCat)+wIn*(.80+.004*apInner)`；相性加法池钳 -3000..5000bp | Aap 保留分数，与相性相乘后只取 D5 | Aap 分子/分母、相性来源 |
+| Z5M `meridianAttack` | 读取整招攻方路线 Profile；标准对标准严格 10000 bp | `D5M=floor(D5×meridianAttackBp/10000)`，只取整一次 | 双方强度、路线长度 / 质量、6500–22000 bp |
 | Z6 `crit` | 暴击才乘 `critDmg` | `D6` | 暴击倍率 |
 | Z7 `position` | 方位10000/11000/13000；高差按08；地形加法池±3000bp；三因子合成 F7 后钳5000..20000 | `F7=floor(dirBp*heightBp*terrainBp/10000²)`，再 D7 | 三因子与方向 |
 | Z8 `realmGap` | 显示等级差，每级 150 bp、封顶 ±1500 bp | `D8` | 等级差与钳制 |
@@ -1380,13 +1412,15 @@ function baseDefense(x: BaseDefenseInput): readonly [number, number, number] {
 }
 ```
 
-Lv35 锚点：ATKmix=1040、DEFmix=607、Pactual=Pref=2.88，`D1=floor(1040*124/100)=1289`；`D2=floor(1289*124800/(60700+124800))=867`；Z3/Z4 中性、Aap=9800bp 时 `D5=floor(867*.98)=849`。区值非负；incoming=D10 是 P5 前事实，不等于飘字。
+Lv35 锚点：ATKmix=1040、DEFmix=607、Pactual=Pref=2.88，`D1=floor(1040*124/100)=1289`；`D2=floor(1289*124800/(60700+124800))=867`；Z3/Z4 中性、Z4M=10000、Aap=9800bp、Z5M=10000 时 `D5=floor(867*.98)=849`、`D5M=849`。区值非负；incoming=D10 是 P5 前事实，不等于飘字。
+
+Z4M / Z5M 的强度、曲线、路线兑现与中性定义唯一归 `design/21` §3.4–§4.4，core 只调用同一纯函数并保留整数 trace。顺序固定为 Z4M → Z5 相性 / 破 X → Z5M → Z6；不得把旧 `routeZ3Bp` 放回 Z3，不得把路线倍率预乘进 `MoveDef.power`。范围 / 多段攻击共享一次攻方路线结果，但每目标单独以自己的 Profile 计算相对强度与 Z4M。
 
 ### 8.4 `DamageTrace` 与来源归因
 
 ```ts
 interface ZoneTrace {
-  zone: 'Z0'|'Z1'|'Z2'|'Z3'|'Z4'|'Z5'|'Z6'|'Z7'|'Z8'|'Z9'|'Z10';
+  zone: 'Z0'|'Z1'|'Z2'|'Z3'|'Z4'|'Z4M'|'Z5'|'Z5M'|'Z6'|'Z7'|'Z8'|'Z9'|'Z10';
   before: number | null;
   after: number | null;
   factorBp?: number;
@@ -1409,13 +1443,14 @@ interface DamageTrace {
 Settlement 完整采用 `design/04` §6 的 P5–P8 顺序：
 
 1. `onBeforeHurt`：无敌、转移、单击上限等机制防护；整招镜返已在 Z0/P3b 决定。
-2. 护体吸收：`shieldBlocked=min(shield,incoming)`；破盾倍率只影响 `shieldSpent`。
-3. `mpGuard` 等资源代扣。
-4. 扣气血并区分 `uncappedHpDamage/hpDamage/overkill`。
-5. 气血为 0 时执行 §7.7 倒地拦截链。
-6. 仅以 `hpDamage` 计算吸血、伤害型吸内、反震。
-7. 判附加效果；`hpDamage=0` 时阻断伤势/流血，其他按自身标签。
-8. 发事件并完成本段。
+2. 护体真气吸收：`shieldBlocked=min(shield,incoming)`；破盾倍率只影响 `shieldSpent`。
+3. 若自然护体短路或防守路线已启用护体内劲，调用 `settleInnerGuard`，得到 `innerGuardCancelled/mpSpent/damageBeforeMpGuard`；击穿迟滞写回同一守方实例。
+4. `mpGuard` 等既有资源代扣只消费 `damageBeforeMpGuard`。
+5. 扣气血并区分 `uncappedHpDamage/hpDamage/overkill`。
+6. 气血为 0 时执行 §7.7 倒地拦截链。
+7. 仅以 `hpDamage` 计算吸血、伤害型吸内、反震；护体内劲反震仅在原招 / Buff 已授权时从 `innerGuardCancelled` 派生并带 `reflected`。
+8. 判附加效果；`hpDamage=0` 时阻断伤势/流血，其他按自身标签。
+9. 发事件并完成本段。
 
 ```ts
 interface Settlement {
@@ -1424,6 +1459,13 @@ interface Settlement {
   shieldBlocked: number;
   shieldSpent: number;
   shieldAfter: number;
+  innerGuardEligible: number;
+  innerGuardCancelled: number;
+  innerGuardMpSpent: number;
+  damageBeforeMpGuard: number;
+  innerGuardBroken: boolean;
+  innerGuardDelayCt: number;
+  innerGuardStagnationBp: number;
   guardedHp: number;
   mpGuardSpent: number;
   uncappedHpDamage: number;
@@ -1435,7 +1477,11 @@ interface Settlement {
 }
 ```
 
-`incoming` 始终保留 Z10 原值。`settledIncoming` 是本文执行器为资源守恒新增的**内部派生量**，不冒充 `design/04` 的公共 `Settlement` 字段：它表示 P5 依优先级执行无敌、转移与单击上限后的本目标伤害；若跨包暴露，应先回填 `design/04` 的接口契约。被机制归零、转出或截下的份额另记带来源的 `prevented/redirected/capped` trace term，不混入资源守恒。内部断言采用 `settledIncoming = shieldBlocked + guardedHp + uncappedHpDamage`。当前气血、剧情阶段门或锁血再把 `uncappedHpDamage` 截为 `hpDamage`，差额计入 `overkill` 类诊断，不得增加吸血、反震或击杀。事件顺序为 `damageResolved` → 发生变化的 `shieldChanged/mpChanged/hpChanged` → `downed/phaseChanged` → drain/reflect → `effectApplied`。
+`incoming` 始终保留 Z10 原值。`settledIncoming` 是本文执行器为资源守恒新增的**内部派生量**，不冒充 `design/04` 的公共 `Settlement` 字段：它表示 P5 依优先级执行无敌、转移与单击上限后的本目标伤害；若跨包暴露，应先回填 `design/04` 的接口契约。被机制归零、转出或截下的份额另记带来源的 `prevented/redirected/capped` trace term，不混入资源守恒。
+
+护体内劲算式、四类伤害适用率与击穿迟滞唯一归 `design/21` §4.8；core 必须断言 `postShield = innerGuardCancelled + damageBeforeMpGuard`，以及 `2×innerGuardMpSpent-innerGuardCancelled∈{0,1}`。拳脚 / 兵器 / 暗器 / 内劲外放的适用率分别为 10000 / 2500 / 0 / 4000 bp；`breakGuardBp` 取最高来源、钳 0–8000 而不相加。`damageBeforeMpGuard` 只是下一阶段输入，绝不能命名或上报为 `hpDamage`。
+
+总守恒改为 `settledIncoming = shieldBlocked + innerGuardCancelled + guardedHp + uncappedHpDamage`。当前气血、剧情阶段门或锁血再把 `uncappedHpDamage` 截为 `hpDamage`，差额计入 `overkill` 类诊断，不得增加吸血、反震或击杀。事件顺序为 `damageResolved` → `innerGuardSettled` → 发生变化的 `shieldChanged/mpChanged/hpChanged` → `downed/phaseChanged` → drain/reflect → `effectApplied`。点穴 / 擒拿只在本次伤害后的效果阶段写入目标实例，不能反向削弱当前段。
 
 DOT/HOT 不伪装成普通招式：DOT 按 `design/04` §6.5 的抗性、半额通用 Z4、专属 Z4、Z8 与 Boss 系数公式执行，不跑 Z0–Z10、暴击或浮动；HOT 走治疗公式。每次持有者行动 DOT/HOT 合计上限分别为 12%/8% `hpMax`，按 `design/06` 指定优先级裁剪。
 
@@ -1725,7 +1771,59 @@ inkjs 2.4.0 的公开 `BindExternalFunction(..., lookaheadSafe = false)` 默认�
 
 状态在当前周目跨书眠原值保留，新周目按 `design/13` 重置；账号只记历史最高转数，不能据此恢复奖励。提交后稳定事件使用 `design/15` §10.5 的 `meridian/sessionSettled`、`meridian/acupointOpened`、`meridian/completed`、`meridian/circulationAdvanced`、`meridian/turnCompleted`；消费方以 `(runId,eventName,targetId)` 去重。派生奖励每次从 `opened/turnCompleted` 重建，不能既烘进先天属性又保留修饰器。
 
-### 11.2 资源点、库存与家丁
+### 11.2 战斗经脉模拟模块
+
+本小节只实现 `design/21` 的战斗动态契约；`design/15` §11.5 的 `ProfileState.meridians` 仍是永久开穴、周天与九转事实源。战斗开始把这些事实投影为临时节点态，战斗结束丢弃水量、堆积、迟滞、胀损、点穴镜像与擒拿镜像；战斗调息绝不反写永久冲穴进度。
+
+`battle/meridian-flow` 以 `unitIndex` 为稳定所有权键。`BattleState.meridianByUnit` 是唯一可序列化事实，运行时 cache 只保存到该数组槽位及只读模板基底的索引，可随时重建：
+
+| 行动者 | 实例规则 | 初始化事实 |
+|---|---|---|
+| 主角 / 同伴 | 每单位各一份 | 自己的 `design/15` 逐穴开通与里程碑；不得借主角状态 |
+| 普通 / 精英 / Boss | 每战斗单位各一份 | `tech/04` 编译的敌人经脉模板 + 本单位行动表路线并集 |
+| 召唤物 / 环境行动者 | 能独立施展武学则一份 | 自己的模板、稳定 `unitIndex` 与路线并集 |
+| 虚拟阵位 / 纯地形事件 | 不创建 | 不经过武学路线，不得伪造标准实例取得倍率 |
+
+同 archetype 单位可共享不可变的容量 / 流畅派生基底；`nodes`、主动防守、护体、速度投影、点穴、擒拿、tick 与 `stateVersion` 必须逐实例独占。生产态只物化“可用路线穴位并集 + 外部点穴目标”，不能为每次出手扫描完整 180 穴。
+
+```ts
+interface MeridianFlowRuntimePort {
+  readonly unitId: UnitId;
+  preview(route: MeridianRouteDef, options?: PreviewOptions): FlowPreview;
+  commit(route: MeridianRouteDef, battleRng: Rng): FlowResult;
+  estimateMultipliers(input: MeridianPairInput): MeridianMultipliers;
+  estimateInnerGuard(input: InnerGuardInput): InnerGuardResult;
+  settleInnerGuard(input: InnerGuardInput): InnerGuardResult;
+  projectSpeed(input: MeridianSpeedInput): MeridianSpeedResult;
+  applyAcupointSeal(input: AcupointSealInput): SealChange;
+  applyGrapple(input: GrappleInput): GrappleChange;
+  regulateBreath(profile: BreathProfile, mode: 'battle'|'rest', battleRng?: Rng): BreathResult;
+  tick(input: MeridianTick): void;
+  snapshot(): MeridianFlowSnapshotV1;
+  restore(snapshot: MeridianFlowSnapshotV1): void;
+}
+```
+
+字段形状逐字消费 `design/21` §12.3 的生成类型；这里不另写一份公式或枚举。`mfr_* / qnl_* / dxl_* / txp_*` 仍是该文拟登记的稳定引用域，在 Canon v1.3 接纳前由 `tech/04` 以提案语境门禁，core 不动态拼 ID。`initialize` 的固定流程是：
+
+1. 从最终解析的 `MoveDef.meridianRouteRef` 与触发器路线收集 attack / defense / movement 路线，展开 `ap_*` 后去重、按 ASCII 排序；
+2. 主角 / 同伴逐穴读取永久投影，敌人应用 `routeOnly / schoolCore / fullTemplate`；
+3. 读取 `design/13` 外来压制、难度与规则开关结算后的 `effGrade/effLayer`，不得在实例内用真实品阶重算；
+4. 投影当前 `mpMax`、同级 STD、内功性质、周天 / 九转、装备与 Buff，所有派生量先钳制；
+5. 创建 `schema:'meridian-flow-state.v1'`、`rulesProtocol:2` 的零动态态；节点按 `ap_*` ASCII 序写入；
+6. 不传 seed、不复制 RNG；完成后才参与 §7.1 的经脉速度与首轮排序。
+
+模块调用必须处于一条 Core 命令事务内。预检硬封路发生在资源支付前；通过后固定走 `design/21` §11.4 的 F1–F10：冻结双方 Profile 与节点引用、支付、逐段提交、汇总质量、可选防守路线、Z4M / Z5M、护体内劲、效果 / 控制、`flowCt` 与事件，最后让节点态和 RNG 一起提交。途中卡住是合法结果，保留已付资源、实际尝试段 CT 与伤势；命中失败也不撤销已经运气。只有命令非法、P1 前被反应作废或引擎异常才整笔回滚。
+
+`flowCt` 只累计实际尝试段的 `segmentCt`，作为 §7.2 `recFlat` 的一项；预检失败为 0。攻方一次整招只 `commit` 一次，多段 / 范围共享该攻方路线质量；每个守方对同一 `causeId` 至多提交一次防守路线。反击、追击、左右互搏两招与合击的每名真实参与者各自提交，且都操作自己的实例。
+
+防御行动的已提交路线可覆盖至守方下次正常行动；同一攻击 `causeId` 的多段只读取一次防守结果。未移动待机预置只接受 `design/21` §4.7 的最多 3 段且满 `flowCt≤240` 配置 **【建议值】**；即时招架 / 卸力 / 闪避仍受反应资格、次数与深度限制，所付 `flowCt` 进入该反应的恢复债务。主动防守失效、自己的下一正常行动开始或路线胀损时按上游生命周期清除，不能成为无成本常驻倍率。
+
+点穴与擒拿的来源、持续、互斥、递减和图标仍由 `design/06` 的 Buff 实例拥有；模块只保存用于路线 / 速度查询的镜像。效果成功后调用 `applyAcupointSeal/applyGrapple`；时间轴推进时按 `unitIndex` 调 `tick({battleTick,...Buff剩余投影})`：模块根据 snapshot 内上次 tick 与目标 `battleTick` 求非负 `dt`，等价地令所有节点 `water=0`、有 backlog 的 dirty 节点减 `dt`（最低 0），再把自身 tick 写到目标值。持续字段只同步、不自建第二个时钟；投影值为 0 才清镜像，字段未传则保持。
+
+`preview`、`estimateMultipliers`、`estimateInnerGuard` 与 `projectSpeed` 允许 UI / AI 调用，但必须只读。缓存键至少含实例 `stateVersion`、路线、有效层数与 Buff revision；任何提交即失效。Worker 超时可用最近完整预览或合法待机，UI 可跳动画，低内存可丢预览缓存；任何降级都不得省略敌方实例、卡住判定、整数取整或控制镜像。
+
+### 11.3 资源点、库存与家丁
 
 `ChapterState.economy` 聚合 `design/16` §14 的正式状态，不再另造简化字段：
 
@@ -1744,7 +1842,7 @@ interface EconomyRuntimeState {
 
 资源点每 3 游戏日形成候选周期，且自上次结算须累计至少 45 分钟有效经营时间；最多囤 2 个成熟周期。调度只由 §5 的世界时间驱动，先 `boundaryTick`，再按 `pointRef → output.resourceRef → servantRef` 稳定全序；一个周期所有点结束后才进入下一周期。`ResourceSettlement` 的产出、成本、预算余量、事件倍率和账簿事务号全部来自 `design/16`，core 不回算过去的所有者、等级或班表。时代层中不可用的点拒绝结算。资源、点状态、家丁合同和仓储在书眠提交时清除；只有上游明列的学识 / 图鉴 / 里程碑可保留。
 
-### 11.3 营生职位与门派月钱
+### 11.4 营生职位与门派月钱
 
 职位只接受 `job_xingjiao | job_jiaotou | job_keqing`。合同状态直接用 `JobContractState`，职业聚合用 `EstateCareerState`；签约先检查场所时代、武艺 / 名望、期限和共享排班。行脚按单结算；教头可同时签多处，但日程块不得重叠；活动客卿在全存档至多一份。签 `job_keqing` 必须把“活动合同数为 0、`activeKeqingContractId` 为空、插入合同并设置该键”放在同一事务，结束时同事务清键；读档出现键与合同不一致或多份活动客卿即拒绝。
 
@@ -1752,7 +1850,7 @@ interface EconomyRuntimeState {
 
 经营条件与动作从 `design/16` §14.4–§14.5 生成 `EstateCondition/EstateAction` 联合，UI / Ink 只能选择内容已授权的动作。`reserve_schedule_blocks` 的检查与写入同事务；每个 `settle_*` 的幂等键固定为 `chapterId + objectId + periodIndex`，重复调用返回原结果。`settle_job_contract(partial)` 只支付完整报酬的 `0.60 = 6000 bp` 并把合同落为 `completed`，不得误写 `breached/ended`。`sacrifice_resource_point` 必须重新验证 `EstateSacrificeQuote` 的 `quoteId + pointRef`、权属、候选并列集合和过期 tick；点转交、停收益、唯一收据及任务旗标在同一上层事务提交，禁止运行时再用“最高收益”模糊选择器。书眠开始后拒绝新合同和结算，最终提交一次性清除 `ResourcePointState`、`ResourceStack`、`ServantContractState`、`JobContractState`、`EstateCareerState` 与 `SectLedger`；崩溃恢复仍由收据保证幂等。
 
-### 11.4 周期状态验收
+### 11.5 周期状态验收
 
 | # | 场景 | 断言 |
 |---|---|---|
@@ -1767,7 +1865,7 @@ interface EconomyRuntimeState {
 | E-09 | `settle_job_contract(partial)` 重放 | 只支付一次 `6000 bp` 报酬，合同为 `completed` |
 | E-10 | 家业报价后权属变化 / 报价过期 / 任一步失败 | `sacrifice_resource_point` 拒绝或全回滚；点、收益、收据与剧情旗标均无半提交 |
 
-### 11.5 经验、余韵与难度的正式接口
+### 11.6 经验、余韵与难度的正式接口
 
 本小节使用已定稿的 design/13 §2/§5，不属于经脉/经济建议规则。profile.progression 持有 `ExpState{realLevel,expFp}`、`YuyunState{points,progressFp,gainedThisChapter,fateDebt,log}` 与 rewardReceipts；`EXP_SCALE=100`，技能积蕴仍归05，禁止与角色经验共用账本。同伴依18成长，不套主角经验分配。
 
@@ -1787,7 +1885,7 @@ RuleSwitchState 保存 difficulty、天劫层、开关、difficultyLog 和 ruleR
 
 验收至少涵盖一次奖励越追赶线与封顶线、第16→17点、债务优先、书眠余数、重复 receipt、低难度后切回宗师不恢复成就资格。
 
-### 11.6 跨年代传承运行时
+### 11.7 跨年代传承运行时
 
 `ContentRegistry.legacy` 只读消费 `tech/04` §3.10 生成的 `legacy.v1`；运行态按 `design/20` §2.6、§4.4、§11–§12 分成当前周目与当前书界两层：
 
@@ -1965,11 +2063,17 @@ interface BattleSession {
 }
 ```
 
+`rulesProtocol=2` 时，`battle.meridianByUnit[].flow` 必须逐单位保存 `schema:'meridian-flow-state.v1'`、`rulesProtocol/unitId/unitIndex/kind/tick/stateVersion`、`grappleLevel/grappleSource/grappleRemaining` 与完整动态 `nodes`；外层同时保存会跨命令生效的 `activeDefense/movementProjection/innerGuard`。数组按 `unitIndex`，节点按 `ap_*` ASCII 升序。单位 snapshot 绝不复制 RNG；唯一 `battleRng` 仍只在 `BattleSession` 保存四个 uint32。
+
+规范 replay hash 因而覆盖每个单位的经脉动态态、唯一 `battleRng`、内容版本和协议。事件的概念名逐字消费 `design/21` §13.5；落到本文统一的 `域/过去式`信封时映射为 `battle/routeCommitted`、`battle/routeJammed`、`battle/nodeRuptured`、`battle/meridianAttackMultiplied`、`battle/meridianDefenseMultiplied`、`battle/innerGuardSettled`、`battle/meridianSpeedChanged`、`battle/pointApplied`、`battle/grappleApplied`、`battle/breathCompleted`，并携带整数输入 / 输出、来源 ID 与命令序进入可回放事实。`route.previewed` 仅是 host 诊断名，不产生 `DomainEvent`、不入 hash。
+
 BattleCommand 包含 act/deploy/order/free/setAuto/concede/retry/undo，不只录 act。seq 从0连续，每10条中间hash为建议；openingHash 与 afterHash/terminalHash 置于被哈希对象之外。`appBuild` 与 `coreVersion` 逐字映射到 `tech/08` §10.2 的运输 header：前者定位可部署应用工件，后者定位玩法 runner；`GameState.meta.coreBuild` 是二者组合后的内部诊断标识，不作为第三套运输字段。精确摘要输入为规范 JSON 数组 `["tianshu:battle-replay:v1",appBuild,coreVersion,rulesProtocol,rngProtocol,contentHash,runtimeMartialArts,session]` 的UTF-8；registryRefs 是静态内容传递闭包的核验辅助，不替代 contentHash。P08 的自创武学不属于静态内容包，必须把本战可达的完整运行时定义按 ID 冻结进 `runtimeMartialArts`；重放不得用当前存档同槽定义覆盖。session 自己不含hash，避免自引用。
 
 battle 本地事件序与 acceptedOrdinal 也进入域；外层 GameState 的 event seq/causeId 仅作运输映射，不回传影响战斗。重放不重新跑AI，只验证所录seed并推进ai流；不调用loot/world/qiyu。ended 后停止录像，host 另提交 finalize：用 battleId+outcomeSeq 收据执行 onBattleEnd、Buff/资源/地形写回、伤势/调息、奖励和任务；五流变更同事务提交，成功清 battle。失败回滚全部，不能重复抽掉落。
 
 重试/悔招保留命令历史：checkpoint 只含战斗规则片段与两流，不包含 checkpointStore 自身，避免递归快照。undo 恢复目标片段后扣当前 undoLeft，保留当前重试数/消耗账本，不从旧片段恢复次数；禁止无限悔招。restart 恢复入场快照并保留累计retry/assist，finalize前未写世界资源。完整录像按原序执行undo/retry，而不是删掉历史后拼接。
+
+经脉 checkpoint 恢复时先校验 schema / `rulesProtocol`、单位身份唯一性、节点排序与范围，再逐单位调用 `restore`；任一单位失败则候选战斗整体拒绝，不允许丢弃经脉态续跑。v1 的 `bonusCapBp/routeZ3Bp` 只能交旧 runner；v2 使用 `routeQualityBp`。没有明确迁移器的进行中 v1 战斗回到已登记战前检查点，战外永久经脉则从 `design/15` 事实重新投影。
 
 运输仍是 `tech/08` 的 NDJSON.gz：压缩 ≤2 MiB、声明未压缩 ≤16 MiB；超限降级摘要而非截断录像。信封 schema 与 `BattleReplayV1.schema` 分开演进。
 
@@ -1992,10 +2096,15 @@ Node/V8 与 Playwright WebKit/JSC 都跑同一录像。Playwright WebKit 不是�
 | 迁移 | 每个历史 schema → 最新 → 冒烟命令 | 合并与发布 |
 | 性能 | 600 tick、24 单位群战、最大 Buff、AI、存读档 | 发布候选 **（待实测）** |
 | 传承确定性 | LEG-T01–T15、10,000 seeds；发布候选 30 份 V8/JSC 完整录像 | 合并与发布 **（待实测）**；30 份为【建议值】 |
+| 经脉慢模型 | TypeScript 对 `tools/balance/meridian_flow_golden.json` 全字段，Node + WebKit 各跑 | 每次提交；不得只比最终伤害 |
 
 确定性 fixture 至少覆盖：普通战、环境战、多段范围、反应深度、合击/阵法、Boss 阶段、跨日周期、任务与 Ink、书眠及同伴重逢，以及传承的调度 / 配额 / 挖掘 / 校合 / 书眠。随机测试失败时记录业务 seed 和最小化命令序列，不能只保存测试框架内部 seed。
 
 CI 不通过“重录全部 golden”修失败。先定位规则变化，若属预期，评审逐条事件/数值差异后随内容或 schema 版本更新基线。测试代码不得调用实现私有 helper 复制公式作为唯一 oracle；关键公式用上游算例和独立慢模型交叉验证。
+
+经脉 oracle 固定读取 `fixtureVersion=2`、`rulesProtocol=2`、`rngProtocol=1`、`masterSeed=20260927` 与 `vectorSha256=af33dcd10dc196e18811fe485870666ab139c03a17342fa47113ecc19552cd76`。TypeScript runner 必须逐字段对拍 `inputs` 及 `outputs`：路线逐段 trace、到达 / 卡住率、质量与 `flowCt`，四单位独立提交及三段 `battleRng` 状态，攻防乘区、护体四伤害类 / 容量与内力击穿、速度 / 封路 / 擒拿、点穴 / 调息、归一化与五档 TTK。Python snake_case 不是协议，golden 的 camelCase 才是交换键。
+
+最低集成断言还包括：1 次与 100 次 preview 后的 commit / RNG / hash 相同；两单位同穴状态互不串；snapshot→修改→restore 逐字段相同；普通→精英→Boss 提交后合格自行解穴严格推进同一全局流；标准对标准 Z4M / Z5M 均为 10000 且旧伤害 golden 零漂移。只有归属规则经评审并同步提升 fixture / rules protocol 后，才允许显式执行 `--write-golden`；CI 只执行 `--check`。
 
 ## 16. 性能预算与观测
 
@@ -2008,6 +2117,11 @@ CI 不通过“重录全部 golden”修失败。先定位规则变化，若属�
 | AI | 5/15/40/80 ms | workBudget + 2× watchdog取当前最优，最终命令入录像 |
 | AI 快照/克隆 | ≤64 KiB / ≤2 ms | **（待实测）**；裁剪字段/Transferable 索引 |
 | 普通攻击热路径 | 0 临时数组/闭包 | scratch pool；事件批除外 **（待实测）** |
+| 经脉单路线 `commit` | ≤18 节点、≤18 抽；≤0.25 ms | 连续索引 / scratch；禁止减少判定 **【建议值】【待实测】** |
+| 经脉攻防 + 护体 | ≤0.08 ms | 纯整数；同一 `causeId` 复用防守结果 **【建议值】【待实测】** |
+| 经脉速度脏重算 / 全场 tick | ≤0.05 / ≤0.50 ms | 脏标记与 dirty set，不逐帧扫 180 穴 **【建议值】【待实测】** |
+| 经脉 preview / AI 12 路线 | ≤0.15 / ≤2 ms | 0 RNG；216 节点访问；批量可转 Worker **【建议值】【待实测】** |
+| 经脉检查点 snapshot | ≤1.50 ms | 只在检查点 / 存档执行，绝不逐帧 **【建议值】【待实测】** |
 | 自有 JS / 主线程总预算（中档） | ≤6 ms / ≤8.5 ms | core 与输入、UI、动画共用预算，不能分别各占整帧 |
 
 core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命令类型、计数、分位和 build，不把耗时写进状态/事件/hash。规则层可返回确定性 counters（访问节点、派发 hook、伤害段、分配池溢出），与外层耗时关联定位。
@@ -2040,6 +2154,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | 热路径 GC | 中 | bucket/index/scratch pool；超预算先 profile 后迁 Worker |
 | 旧内容无法重放 | 高 | 按 contentHash 保留规则工件；缺失即隔离，不猜修 |
 | 年代考据变化杀死旧档 NPC | 高 | `legacyTimeline` 保留既有分支；新游戏才用新事实 |
+| 经脉逐招扫描 180 穴、共享动态数组或预估偷改状态 | 高 | 路线连续索引、稀疏节点 / dirty set、逐单位别名测试、preview 前后 snapshot + RNG 断言；超时只降缓存 / 动画或转 Worker，不删规则 |
 
 ---
 
@@ -2049,6 +2164,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 
 - `docs/00-canon.md`；`docs/decisions/author-requirements.md`；`docs/decisions/author-decisions.md`；`docs/decisions/rulings-v1.md`。
 - `docs/design/04-damage-formula.md`、`05-martial-arts-system.md`、`06-buff-system.md`、`08-terrain-and-qinggong.md`、`09-combat-system.md`、`11-open-world.md`、`12-quests-npc-factions.md`、`13-progression-and-endings.md`、`15-meridians-and-acupoints.md`、`16-resources-and-estates.md`、`17-sects-compendium.md`、`18-npc-and-companions.md`、`19-world-map.md`、`20-legacy-inheritance.md`。
+- `docs/design/21-meridian-flow-and-moves.md` v2.0；`tools/balance/meridian_flow_sim.py` 与 `tools/balance/meridian_flow_golden.json`（战斗经脉规则、慢模型与跨语言黄金）。
 - `docs/tech/01-architecture.md`、`03-mobile-performance.md`、`04-data-pipeline.md`、`08-backend-and-online.md`。
 
 ### 外部技术资料（2026-09-26 访问）
@@ -2076,6 +2192,10 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | replay hash 域 | 规范 JSON 数组 `["tianshu:battle-replay:v1",appBuild,coreVersion,rulesProtocol,rngProtocol,contentHash,runtimeMartialArts,session]` 的 UTF-8；摘要字段本身不入域 |
 | 正式 schema 适配层 | `packages/data` 生成类型到 core handler / 状态组合的薄映射；不复制玩法定义 |
 | 传承调度收据 | 区分 `quota_full_before_batch` 与 `lottery_deferred` 的当前周目幂等事实；二者 RNG 消费语义不同 |
+| `MeridianFlowModule` | 每个可独立武学行动单位一份的战斗经脉动态实例；不拥有 RNG，消费 Core 事务端口 |
+| `meridian-flow-state.v1` | 单位级规范经脉快照；节点按 `ap_*` 排序，不含全局 RNG |
+| `damageBeforeMpGuard` | 护体真气与护体内劲后、既有 `mpGuard` 前的剩余伤害；不是实际气血伤害 |
+| 经脉 golden | Python 慢模型生成、TypeScript 全字段消费的 `fixtureVersion=2/rulesProtocol=2` 跨语言契约 |
 
 本文没有新增玩法内容 ID；所有示例均复用既有前缀或使用局部 key。
 
@@ -2089,7 +2209,8 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 - **已解决（tech/01 P10）**：Buff 目录归 `design/06`；本文实现生成式 59-hook/原语运行时，不另建语义清单。
 - **已解决（AR-12）**：战斗为 pointy-top 六角轴坐标，首轮按轻功；旧方格运行时接口不保留。
 - **已解决（作者 P08/P14/P16/P41/P56，G1 采用默认）**：自创武学倚天后开放且最多 3 门；称号属性默认开启可关闭；最近一次守卷外观与誓言默认启用可关闭；两种天道规则开关互斥；化险为夷按每战一次、指定对象与 0–30% 公式执行（见 §3.2–§3.4、§14.3、§9.4、§7.7）。
-- **已解决（AR-13 / H1）**：`design/20` 已落盘；本文已接入 `legacy.v1` 状态、两类条件、六项 opcode、家丁挖掘、`qiyu` RNG、双配额收据、书眠顺序与 12 / 10 / 9 专用上限（见 §3.2、§10、§11.6、§15）。
+- **已解决（AR-13 / H1）**：`design/20` 已落盘；本文已接入 `legacy.v1` 状态、两类条件、六项 opcode、家丁挖掘、`qiyu` RNG、双配额收据、书眠顺序与 12 / 10 / 9 专用上限（见 §3.2、§10、§11.7、§15）。
+- **已解决（AR-14）**：`design/21` v2.0 已确定每单位实例、Core 唯一 `battle` 流、无副作用 preview、Z4M / Z5M、护体内劲、速度 / 控制 / 调息接口与 golden；本文已按 §7–§8、§11.2、§14–§16 接入。
 
 ### 本文采用的建议值（含已解决追溯）
 
@@ -2100,6 +2221,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | E2-S03 | 录像每 10 条已接受命令写中间 hash | `tech/08` 遥测实测后 |
 | E2-S04（已解决） | 已按 `design/12/15/16` 正式 schema 重写 §10–§11，并保留纯迁移策略 | 本次跨文档同步 |
 | E2-S05 | AI 各档 `workBudget` 由基准机标定，墙钟 SLO 不作停止条件 | Phase 1 AI 基准后 |
+| NTECH-S01 | 经脉 commit / 攻防护体 / 速度 / preview / 12 候选 / tick / snapshot 子预算采用 0.25 / 0.08 / 0.05 / 0.15 / 2 / 0.50 / 1.50 ms **【建议值】【待实测】** | `tech/03` 三机基准后 |
 
 ### 本文依赖的上游事实
 
@@ -2111,6 +2233,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `design/15` | 已定稿；使用 `MeridianProgress`、session 快照、keyed RNG 与 S0–S8 | 上游升 schema / 公式时按迁移版本重算派生奖励并重跑 V15-01～V15-15 |
 | `design/16` | 已定稿；使用资源、点、家丁、合同、家业、公账与 Estate DSL | 上游升 schema / 数值时迁移当界运行态并重跑 RES/BIZ/SLEEP 门禁 |
 | `design/20` | 已定稿；使用 `legacy.v1`、`LegacySourceState`、配额 / 机会 / 校合收据、书眠矩阵与 LEG-V/T | 上游升 schema / RNG 消费或生命周期时升规则与存档版本，并重跑 10,000 seeds 和跨引擎录像 |
+| `design/21` | v2.0；使用逐单位模块、路线 / 控制 / 调息档案、Z4M / Z5M、护体内劲、速度、`meridian-flow-state.v1` 与 golden | 路线数组、取整点或 RNG 消费改变须升 `rulesProtocol`，保留旧 runner 并逐字段评审 golden |
 | `design/18` | 同伴快照、健在与重逢合并正式契约 | 内容考据修订需 legacy timeline 迁移 |
 | `tech/03/08` | 性能预算、TSAV、录像运输 | 真机实测和限额变化不得反写玩法结果 |
 
@@ -2121,6 +2244,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | E2-P01 | 基准 §19 补充：玩法 core 使用整数/bp、固定 PRNG 流、规范 hash 与 Node+WebKit golden，禁墙钟参与规则 | 将可重放约束提升为跨文档不变量 |
 | E2-P02 | 基准 §8 明记 CT 内部可为负、首轮按轻功固定序、后续事件驱动；环境行动不算单位回合 | 避免“0→1000”描述吞掉高收招债务，并统一 AR-12 |
 | E2-P03 | 基准 §3 跨书保留项补入当前周目的经脉进度/九转和同伴 ledger，书眠清空项补入普通资源/家丁/职位/门派身份；新周目仍按 `design/13` 重置运行态，仅保留账号里程碑 | 落实 AR-03/05/06/07/09 的生命周期覆盖，同时避免把“跨书界”误读成“跨周目” |
+| M2-P03 / M3-P01～P03 | Canon §19 纳入逐单位经脉实例、无副作用预估、唯一 `battle` RNG、快照 / golden；§8–§11 纳入 Z4M / Z5M、护体内劲与经脉速度接口 | AR-14 已定机制需要跨文档确定性与伤害 / 时间线基线；具体玩法定义仍只归 `design/21` |
 
 ### 需同步到其他文档
 
@@ -2129,7 +2253,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `docs/tech/01-architecture.md` | core API / GameState / P3 | **已解决**：已统一 `Core`/`GameplayCore`、`meta.stateVersion`、`tick()` 返回型、候选实例原子读档、`BattleActionPlan`、负 CT、AI seed 提交与 replay hash 域（见该文 §3.6、§8.3） |
 | `docs/tech/03-mobile-performance.md` | Worker/预算 | **已解决**：AI 时间只作 SLO，确定性停止使用 `workBudget`；64 KiB / 2 ms 保持 **（待实测）** |
 | `docs/tech/04-data-pipeline.md` | 正式 schema / DSL 编译 | **已解决**：已接入 12/15/16 正式字段，并从单一 registry 生成 59 hooks、50 `OpId` 与表达式 opcode |
-| `docs/tech/04-data-pipeline.md` / `docs/design/20-legacy-inheritance.md` | `legacy.v1` / 传承运行时 | **已解决**：tech/04 已接五表与 LEG-V01–V10；本文已接状态、六项 opcode、两类配额收据、家丁 / NPC 适配和跨引擎测试（见 §11.6） |
+| `docs/tech/04-data-pipeline.md` / `docs/design/20-legacy-inheritance.md` | `legacy.v1` / 传承运行时 | **已解决**：tech/04 已接五表与 LEG-V01–V10；本文已接状态、六项 opcode、两类配额收据、家丁 / NPC 适配和跨引擎测试（见 §11.7） |
 | `docs/tech/08-backend-and-online.md` | §10 录像 | **已解决**：`BattleReplayV1` 只哈希 / 上传战斗域，并对齐 `appBuild/coreVersion` 与中间 hash |
 | `docs/tech/08-backend-and-online.md` / `docs/design/13-progression-and-endings.md` | Meta 合并 / §9.4 | **tech/08 已解决**：已对齐确定性 `MetaProfileIntent.intentId`、规则投影版本与守卷快照确认边界，平台墙钟不回流 core；`design/13` 仍需归属文档核对 |
 | `docs/design/09-combat-system.md` | §5.3 范围结算 | 将“格序稳定 RNG”拆为模板格序与目标 `unitIndex` 顺序，避免范围映射后歧义 |
@@ -2138,6 +2262,8 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `docs/design/15-*` | 经脉 | **已解决**：本文已接进度单位、冲穴公式、事件与 keyed RNG，保持当前周目跨书永久、新周目重置运行态 |
 | `docs/design/16-*` | 资源营生历史依赖文字 | 正式契约已被本文接入；该文仍称 `tech/04/05` provisional、`design/12` 未落盘，应改为已解决追溯 |
 | `docs/design/18-npc-and-companions.md` | §7.3 | `CompanionSnapshot` 示例接口重复声明一次 `level/innates`，应去重；事件命名与本文兼容 |
+| `docs/tech/08-backend-and-online.md` | TSAV / replay 版本表 | 登记 `rulesProtocol=2` 与 `meridian-flow-state.v1` 的检查点兼容边界；旧 v1 战中档不得静默升级 |
+| `docs/tech/01-architecture.md` | Core 状态与确定性摘要 | 把 `BattleState.meridianByUnit`、唯一 battle RNG 注入和 preview 零副作用纳入摘要 |
 | `TODO.md` / 协调任务 | Phase F 同步 | 登记 E2-S02–S05、E2-P01–P03；E2-S01 与 E2-S04 已解决，其余按实现实测 / 基准修订跟踪 |
 
 ### 开放问题（附默认值）
@@ -2150,4 +2276,5 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | O-04 | AI 固定节点预算各档取值 | 先以墙钟 SLO 标定；发布配置版本化，不能由设备动态改变 | 首个完整 AI 基准 |
 | O-05 | 是否保存完整逐区 DamageTrace | 开发/手动录像开启，release 默认只存汇总 | 日志体积实测 |
 | O-06 | Playwright WebKit 外是否加真机 Safari golden | 默认发布候选人工复放关键录像；自动化不阻塞 MVP | 真机自动化条件具备时 |
+| O-07 | 经脉子预算三档手机能否达到 | 默认采用 §16 数值；超限先做连续索引、稀疏节点、dirty set、scratch 与 Worker 预览，不删除敌方模拟或降低规则精度 | 首个 24 单位经脉群战基准 |
 
