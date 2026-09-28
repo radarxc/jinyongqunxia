@@ -7441,7 +7441,7 @@
       "vars": {
         "group_name": "武学图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
         "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`\n- `docs/design/catalog/skills-wuyue.md`\n- `docs/design/catalog/skills-kangxi.md`\n- `docs/design/catalog/skills-qianlong.md`\n- `docs/design/catalog/skills-gulong.md`",
-        "extra": "你在 NR1 合入之后运行：与少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天完全相同的序列，由你改写本组一侧的副本（NR1 已按约定保留那一侧）。完成后对 11 册门派图鉴运行 `python3 tools/lint/check_skill_catalogs.py --strict --diversity-strict` 加这 11 册的路径，必须为 0。M5c 标记的外放招式改写后仍须满足外放端点白名单。按书补录图鉴 `skills-bulu-*.md`（NXB01–NXB14）不在本任务写集内：与它们完全相同的路线，改写门派图鉴一侧；补录图鉴之间的互查由收尾任务 NXfix 负责。"
+        "extra": "NR1 的教训（必须遵守）：①不得把路线缩到 21 §4.3 第 3 条的品阶建议段数以下（NR1 第 2 次运行曾把 53 条缩短，改变了出招耗时与平衡，已返修）；②终点必须合出招方式——指招落指端、腿招落足三阳端点、兵器招有腕部导引、掌招经劳宫、内功攻击绝招含任 / 督；③改了路线就同步本册的镜像表与说明文字（段数、模板代号等）。本组与少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天之间还有约 36 个完全相同组，NR1 已按约定保留那一侧，由你改写本组一侧。你在 NR1 合入之后运行：与少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天完全相同的序列，由你改写本组一侧的副本（NR1 已按约定保留那一侧）。完成后对 11 册门派图鉴运行 `python3 tools/lint/check_skill_catalogs.py --strict --diversity-strict` 加这 11 册的路径，必须为 0。M5c 标记的外放招式改写后仍须满足外放端点白名单。按书补录图鉴 `skills-bulu-*.md`（NXB01–NXB14）不在本任务写集内：与它们完全相同的路线，改写门派图鉴一侧；补录图鉴之间的互查由收尾任务 NXfix 负责。"
       },
       "validate": {
         "exists": [
