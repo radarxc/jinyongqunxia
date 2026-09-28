@@ -3,10 +3,10 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/05-gameplay-engine.md` |
-| 版本 | v1.3（经脉 v2.1 与绝招轮换同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
-| 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03（冲穴）、AR-04（统一大地图与时代图层）、AR-05（资源与家丁）、AR-06（营生职位）、AR-07（门派职级与月钱）、AR-09（NPC 与跨书界同伴）、AR-12（六角战棋）、AR-13（跨年代传承）、AR-14（经脉运行、路线、绝招与擒拿点穴） |
-| 上游基准 | `docs/00-canon.md` §3–§5（成长、数值、节奏）、§8–§10（战斗、伤害乘区、Buff）、§12（ID）、§18（唯一归属）、§19（技术基线） |
-| 强依赖 | `tech/01` §3、§6、§8.3（架构、运行时、确定性 D1–D9）；`tech/03` §2、§6、§8（性能与 Worker）；`tech/04` §3、§5–§8（schema、经脉配表、书界包、Ink 桥）；`tech/08` §3、§10（TSAV、迁移与录像）；`design/04`（Z0–Z10）；`design/05`（武学）；`design/06` §2、§4–§6（Buff DSL）；`design/08`（地形）；`design/09` §2–§8、§13（战斗）；`design/11`（开放世界、时代层与世界时钟）；`design/12`（任务、门派流程）；`design/13`（成长与规则开关）；`design/15`（永久经脉与穴位）；`design/16`（资源与营生）；`design/17`（门派名录）；`design/18`（NPC/同伴）；`design/19`（全国地图）；`design/20`（跨年代传承）；`design/21`（战斗经脉运行、招式路线与控制） |
+| 版本 | v1.4（AR-16 外放预估、原子支付与回放同步；绝招候选时序对齐，2026-09-28）；v1.3（经脉 v2.1 与绝招轮换同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
+| 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03（冲穴）、AR-04（统一大地图与时代图层）、AR-05（资源与家丁）、AR-06（营生职位）、AR-07（门派职级与月钱）、AR-09（NPC 与跨书界同伴）、AR-12（六角战棋）、AR-13（跨年代传承）、AR-14（经脉运行、路线、绝招与擒拿点穴）、AR-16（外放范围与威力加持） |
+| 上游基准 | `docs/00-canon.md` v1.5 §3–§5（成长、数值、节奏）、§8–§10（战斗、外放、伤害乘区、Buff）、§12（ID）、§18（唯一归属）、§19（技术基线） |
+| 强依赖 | `tech/01` §3、§6、§8.3（架构、运行时、确定性 D1–D9）；`tech/03` §2、§6、§8（性能与 Worker）；`tech/04` §3、§5–§8（schema、经脉 / 外放配表、书界包、Ink 桥）；`tech/08` §3、§10（TSAV、迁移与录像）；`design/04`（Z0–Z10）；`design/05`（武学与外放静态字段）；`design/06` §2、§4–§6（Buff DSL）；`design/08`（地形）；`design/09` §2–§8、§13（战斗、范围与候选）；`design/11`（开放世界、时代层与世界时钟）；`design/12`（任务、门派流程）；`design/13`（成长与规则开关）；`design/15`（永久经脉与穴位）；`design/16`（资源与营生）；`design/17`（门派名录）；`design/18`（NPC/同伴）；`design/19`（全国地图）；`design/20`（跨年代传承）；`design/21` v2.3（战斗经脉、招式路线、控制与外放算法） |
 | 下游 | `apps/game` 的 `CoreHost`；`packages/ui`、`packages/render` 的只读投影与事件消费；`tools/balance`；`tech/09` 路线图 |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手 |
 | 本文职责 | `packages/core` 的纯 TypeScript、无 DOM、确定性内部设计：状态、命令事务、探索 tick、六角格、战斗、伤害执行器、Buff/任务 DSL 运行时、AI、存档状态、录像与测试 |
@@ -31,6 +31,7 @@
 > 14. 存档复用 `tech/08` 的 TSAV v1；`rulesProtocol=2` 的录像/检查点把按 `unitIndex` 排序的 `meridian-flow-state.v1` 与唯一四字 `battleRng` 一起纳入规范 hash，并与 Python golden 逐字段对拍。
 > 15. MVP 先交付单线程 core、六角战斗、伤害/Buff、任务基本式、存读档与录像；AI Worker、复杂世界周期以及经脉 / 经营 / 传承量产按 `tech/09` 阶段门和基线实测递进。
 > 16. 绝招轮换只存在于当前战斗：每单位、每门已装配武学记录 `ultimateCooldown: 0|1` 与 `lastUltimateMoveId`，战后丢弃且不写持久 `SkillState`；录像 / 内存检查点把它们纳入协议 2 状态哈希，降龙 `cdMinus` 只减招式自身 CD。
+> 17. AR-16 外放在 F0 由同一可用性查询冻结 `projectionStep`、射程、范围、额外耗内与 Profile 版本；预估零写入 / 零 RNG，F2 才与原招成本原子支付。命令、AI 候选、录像与 hash 都携带所选档；Z5M 只在既有位置二选一执行一次。
 
 ---
 
@@ -86,6 +87,7 @@
 | E-18 | 录像 | 开局快照、命令、RNG、每 10 命令中间哈希 **【建议值】**、终局哈希 | `tech/08` §10；本文 §14 |
 | E-19 | 跨年代传承 | `legacy.v1` 只读 registry + 当前周目状态；`qiyu` RNG、稳定排序、双类配额收据和原子书眠 | `design/20` §2–§14；本文 §11.7 |
 | E-20 | 战斗经脉 | `rulesProtocol=2`；一独立行动单位一实例；Z4M / Z5M 与护体内劲按固定边界接入；模块只消费 Core 注入的全局 `battle` 流 | AR-14；`design/21` §4、§11–§12；本文 §7–§8、§11.2 |
+| E-21 | 外放加持 | `projectionStep` 入命令 / AI / replay；`projectProjection` 纯查询，F2 原子付费；六角枚举复用 §6，外放曲线替代唯一 Z5M | AR-16；`design/09` §5、`design/21` §4.4.1；本文 §6–§8、§11.2、§14 |
 
 ## 1. 目标、边界与依赖
 
@@ -1082,6 +1084,10 @@ open heap 的全序键为：
 | 扇形 | `aoe_cone(r,60\|120,6\|12)` | 与 `design/09` 表的 `Nmax` 一致 |
 | 地表/友方/全场 | 内层几何或单位筛选 | 按最大合法目标数 |
 
+外放招不在几何层临时放大模板。F0 先以命令中的 `projectionStep` 调用本单位 `projectProjection`，冻结 `stateVersion / maxProjectionStep / effectiveRange / spread / extraMpCost`；随后才把冻结的 `spread` 交给本节唯一枚举器，并依次裁战场边界、高差、模板阻断、地形和单位合法性。`effectiveRange` 只约束单体目标或范围锚点，实际命中仍只来自裁剪后的格集合。非外放招不得带该字段；外放招省略时规范化为 0 档，显式越过当前上限则返回 `PROJECTION_STEP_UNAVAILABLE`，不静默降档。
+
+`projectProjection` 不枚举格，也不读取表现层；本节不重算经脉阈值或额外耗内。旧 `bf_zhenqiwaifang` 与 AR-16 的 `rangeBonus` 先取较大值而不相加，其余独立射程修正再由 `design/09` §5.2 的固定顺序合入。预览、玩家 F0、AI 和敌方均调用同一组合函数；目标、朝向或 Profile revision 变化后必须重新枚举，禁止复用旧格集合。
+
 ```ts
 export function disk(center: HexCoord, radius: number, out: HexCoord[]): number {
   let n = 0;
@@ -1097,7 +1103,7 @@ export function disk(center: HexCoord, radius: number, out: HexCoord[]): number 
 
 上例为语义版，热路径写调用方预分配坐标槽。扇形把位移变为 `U=2*dq+dr,V=dr`；六主向 `(u,v)` 取 `(2,0),(1,-1),(-1,-1),(-2,0),(-1,1),(1,1)`，十二向的奇数方向取相邻主向之和。令 `D=U*u+3*V*v,C=U*v-V*u`，60° 保留 `D>0 && 9*C*C<=D*D`，120° 为 `D>0 && C*C<=D*D`，并限制六角半径、排除原点。无需 atan2/sqrt/epsilon。r=3 主向为 7/15 格，半向为 9/13 格（09 T34b）。
 
-过滤场外、高差、阻断后按模板格序显示；普通范围映射单位、去重后按 `unitIndex` 结算并消费 RNG。同目标按段序；链式/溅射的主次顺序由内容行为定义。`design/09` §5.3 中“格序稳定 RNG”的文字仍需由其归属文档改成分别规定格序与目标序；本实现以 `design/04` §7.5 的伤害归属裁定为准。
+过滤场外、高差、阻断后按模板格序显示；普通范围映射单位、去重后按“距施招者六角距离、`unitIndex`”结算并消费 RNG。同目标按段序；链式/溅射的主次顺序由内容行为定义。外放只换用三项静态模板之一，不改 `AF/power`、目标阵营、友伤、LOS 或穿透语义。
 
 旧 `sq/diamond/cross/x` 只在 `tech/04` 构建迁移层改写；运行时 IR 不接受旧模板。范围预览直接返回 core 格集合，render 不得再次算几何。
 
@@ -1222,13 +1228,14 @@ interface TurnFrame {
 - 额外行动只执行 S6、A、E1，不递减持续或冷却，不重置 `limitPerTurn`，结束后回到原正常行动的 E6。
 - 硬控跳过 A 段仍执行完整 E 段并用 1000 收招；因此“1 次行动”不会因控制而永久挂住。
 
-turnToken 只在新正常行动开始时递增；反应、免费、再动不重置 limitPerTurn。提交边界停在 deploy/awaitAction/ended，内部 S/E 游标用于执行，半个伤害段不能存档。招式/道具新 CD 用 freshTurnToken 跳过施放当次；普通 trigger cooldown 在持有者 E2 递减，机制 limits.cooldown 从机制结束后起算（06 §11.3）。绝招结算时把所属武学 `ultimateCooldown=1`、`lastUltimateMoveId=moveId` 并记录当前 `freshTurnToken`；设置当次 E2 不减，紧接的下一次自身正常行动全程禁止同门绝招，至该行动 E2 才清零。额外行动不递减这项冷却。journalMark 留在事务内，不能存进 TurnFrame。
+turnToken 只在新正常行动开始时递增；反应、免费、再动不重置 limitPerTurn。提交边界停在 deploy/awaitAction/ended，内部 S/E 游标用于执行，半个伤害段不能存档。招式/道具新 CD 用 `freshTurnToken` 跳过施放当次；普通 trigger cooldown 在持有者 E2 递减，机制 limits.cooldown 从机制结束后起算（06 §11.3）。绝招通过 F0 后，在 F2 与气势、内力等资源同一事务设置所属武学 `ultimateCooldown=1`、`lastUltimateMoveId=moveId` 和当前 `freshTurnToken`；此后即使命中失败、被招架、被抵抗或路线途中卡住也不退款、不撤冷却，只有事务整体失败才回滚。E2 只递减本次正常行动 S 段快照中已经存在、且 `freshTurnToken !== turnToken` 的共享冷却，因此设置当次不减；紧接的下一次自身正常行动从 S 到 E 全程禁止同门绝招，至该行动 E2 才清零。环境、他人、免费与额外行动都不推进。journalMark 留在事务内，不能存进 TurnFrame。
 
 ### 7.4 行动计划、运劲与道具
 
 ```ts
 type BattleAction =
-  | { readonly t: 'skill' | 'hidden'; readonly move: MoveId; readonly target: Target; readonly aim?: HexAim }
+  | { readonly t: 'skill'; readonly move: MoveId; readonly target: Target; readonly aim?: HexAim; readonly projectionStep?: 0|1|2 }
+  | { readonly t: 'hidden'; readonly move: MoveId; readonly target: Target; readonly aim?: HexAim }
   | { readonly t: 'item'; readonly item: ItemUid; readonly target: Target; readonly aim?: HexAim }
   | { readonly t: 'yunjin'; readonly mode: YunjinMode; readonly sourceInner?: SkillId; readonly investBp?: 1000|2000|3000; readonly buffIid?: number }
   | { readonly t: 'guard' | 'wait' | 'flee' | 'struggle' | 'cover' | 'swapWeapon' }
@@ -1241,7 +1248,7 @@ type BattleAction =
   | { readonly t: 'drawWeapon'; readonly item: ItemUid }
   | { readonly t: 'pickup'; readonly tile: HexCoord }
   | { readonly t: 'dual'; readonly a: MoveTarget; readonly b: MoveTarget };
-interface MoveTarget { readonly move: MoveId; readonly target: Target; readonly aim?: HexAim }
+interface MoveTarget { readonly move: MoveId; readonly target: Target; readonly aim?: HexAim; readonly projectionStep?: 0|1|2 }
 
 interface BattleActionPlan {
   readonly walkTo?: HexCoord;
@@ -1255,9 +1262,54 @@ interface AiDecisionProof {
   readonly decisionToken: number;
   readonly aiSeed: number;
 }
+
+interface ProjectionStepAvailability {
+  readonly projectionStep: 0|1|2;
+  readonly available: boolean;
+  readonly disabledReasons: readonly RejectReason[];
+  readonly extraMpCost: number;
+  readonly totalMpCost: number;
+  readonly effectiveRange: number;
+  readonly spread: HexShape;
+}
+interface MoveAvailabilityEntry {
+  readonly moveId: MoveId;
+  readonly skillId: SkillId;
+  readonly ultimate: boolean;
+  readonly unlocked: boolean;
+  readonly available: boolean;
+  readonly disabledReasons: readonly RejectReason[];
+  readonly routeSummary: RouteAvailabilitySummary;
+  readonly projection: boolean;
+  readonly maxProjectionStep?: 0|1|2;
+  readonly projectionSteps?: readonly ProjectionStepAvailability[];
+}
+interface MoveAvailabilityView {
+  readonly stateVersion: number;
+  readonly unitId: UnitId;
+  readonly rage: number;
+  readonly rageMax: number;
+  readonly skills: readonly {
+    skillId: SkillId; ultimateCooldown: 0|1; lastUltimateMoveId: MoveId|null;
+    moves: readonly MoveAvailabilityEntry[];
+  }[];
+}
 ```
 
-验证顺序为：行动权 → 单位状态 → 路径与移动预算 → 行动类别未被禁 → 内容 ID/装配/招式自身 CD → 绝招共享冷却与重复限制 → 目标/范围/LOS → 资源与本场限次 → 经脉路线硬封 / 用途 → 反应/脚本门禁。`MoveDef.ultimate` 是唯一绝招判定；绝招要求所属武学 `ultimateCooldown=0` 且 `moveId !== lastUltimateMoveId`。同门另一绝招成功结算会更新记录；同门非绝招成功结算会把 `lastUltimateMoveId` 清为 null；其他武学行动不解除重复限制。预检发现未开节点、胀损或 9 级点穴封路时拒绝整招，`flowCt=0` 且零资源 / 零 RNG，也不启动共享冷却；通过后才扣资源。命中失败、被招架或被抵抗均不退款，已经提交的路线动态态与 `flowCt` 也不撤销。资源扣除、路线节点、控制镜像、弹药数、物品数、招式 CD、绝招临时态和事件属于同一事务。
+行动权、单位状态、移动预算、行动类别、内容 ID 与装配解锁先作共同前置校验；随后玩家按钮、AI、一键重复与 Core F0 必须调用同一个 `filterMoveCandidate`，严格按下列顺序追加有序原因，不能各写一套：
+
+1. 招式自身 `cds[moveId] > 0`；
+2. `MoveDef.ultimate:true` 且所属武学 `ultimateCooldown > 0`；
+3. 绝招 `moveId === lastUltimateMoveId`，其后尚未成功结算同门另一绝招或同门普通招；
+4. `design/21` 无副作用预检确认路线被未开穴、胀损或 9 级点穴硬封。
+
+四项过滤完成后才展开外放档，并依次校验所选档、总资源、目标 / 范围 / LOS、本场限次与反应 / 脚本门禁。任何一步拒绝都不扣内力 / 气血 / 气势 / 弹药，不写路线、招式或共享冷却，不消费 `battle` / `ai` RNG，也不产生领域事件。路线途中卡住则是 F2 后的合法结算：成本、共享冷却、已提交路线动态态与 `flowCt` 均保留，命中失败、被招架或被抵抗同样不退款。全部写入仍属于同一命令事务，异常或不变量失败由 journal 整体回滚。
+
+`query.moveAvailability(unit)` 返回上述 `MoveAvailabilityView`：普通招只列装配槽，绝招列全部已解锁项；每门只给一份共享冷却与上次绝招。非外放招的 `maxProjectionStep/projectionSteps` 必须省略；外放招固定返回 0、1、2 三项，逐项含总耗内、有效射程、审核模板及档级原因，超过当前上限的档保留用于解释但 `available=false`。结果、F0 与 AI 使用同一个 helper 和同一原因序，不耗 RNG、不填缓存以外状态。
+
+F0 把所选档（外放缺省 0）、经脉 `stateVersion`、`maxProjectionStep`、有效射程、审核模板、外放额外耗内和原招总成本冻结进内部 `MoveUsePlan`；目标格 / 朝向用这份冻结结果枚举和校验。非外放招携带 `projectionStep`，或外放招显式档越过上限，均返回 `PROJECTION_STEP_UNAVAILABLE`。左右互搏 a / b 独立冻结、过滤和计费；任一段非法则整条命令拒绝。
+
+F2 在同一事务一次支付原招成本与外放额外耗内，再设置招式自身冷却；若为绝招，同时支付共享气势并立即设置本门 `ultimateCooldown=1 / lastUltimateMoveId=moveId / freshTurnToken=turnToken`。同门非绝招只有成功越过 F2 并完成本招结算后才清空 `lastUltimateMoveId`；其他武学、免费动作、道具、防御、待机或被跳过行动不清空。
 
 被动 `cdMinus` 只作用于每个 `MoveUseEntry` 的招式自身 `MoveDef.cd`，最低减至 0；它不得读取或修改 `ultimateCooldown`。因此降龙大成即使把某记绝招自身 CD 减到 0，同门下一次自身行动仍受共享冷却，且冷却归零后仍须满足不得连续使用同一 `moveId`。
 
@@ -1427,6 +1479,8 @@ Lv35 锚点：ATKmix=1040、DEFmix=607、Pactual=Pref=2.88，`D1=floor(1040*124/
 
 Z4M / Z5M 的强度、曲线、路线兑现与中性定义唯一归 `design/21` §3.4–§4.4，core 只调用同一纯函数并保留整数 trace。顺序固定为 Z4M → Z5 相性 / 破 X → Z5M → Z6；不得把旧 `routeZ3Bp` 放回 Z3，不得把路线倍率预乘进 `MoveDef.power`。范围 / 多段攻击共享一次攻方路线结果，但每目标单独以自己的 Profile 计算相对强度与 Z4M。
 
+Z5M 只允许二选一执行一次：`MoveDef.projection:true` 使用 F0/F1 冻结的 `projectProjection(...).meridianAttackBp`（外放曲线），其余招式使用普通 `estimateMultipliers(...).meridianAttackBp`。外放档 0 / 1 / 2 只改变射程、模板和额外耗内，不再次乘威力，也不能因选 0 档退回普通曲线；`DamageTrace` 应记录 `projection=true`、所选档与唯一 `factorBp`。同一伤害段出现两个 Z5M、或先乘普通曲线再乘外放曲线，均为引擎不变量错误。
+
 ### 8.4 `DamageTrace` 与来源归因
 
 ```ts
@@ -1509,7 +1563,7 @@ DOT/HOT 不伪装成普通招式：DOT 按 `design/04` §6.5 的抗性、半额�
 
 多段将 `powerBp` 的商余数分给前 `powerBp % hits` 段，保证段威力之和不丢 1 bp。逐段取整造成总伤略低是规则结果，不能把尾差偷偷加回最后一段。溅射、连锁、反击、合击各自生成独立 `DamageInput`，不可共用判定。
 
-`queryDamagePreview` 调用同一 evaluator 的纯分支模式，输出命中/招架/暴击概率、条件最小/期望/最大伤害、可见 modifier。隐藏敌方属性按 UI 已知区间或 `unknown`，不得泄露真实值。查询不改 cache 以外状态、不耗 RNG、不触发 hook，也不把预测 trace 写入战斗日志。
+`queryDamagePreview` 与外放范围预估调用同一 evaluator 的纯分支模式，输出命中/招架/暴击概率、条件最小/期望/最大伤害、可见 modifier，以及冻结的 `projectionStep / effectiveRange / spread / extraMpCost / totalMpCost`。隐藏敌方属性按 UI 已知区间或 `unknown`，不得泄露真实值。查询不得写任何玩法状态、不耗 RNG、不触发 hook，也不把预测 trace 写入战斗日志；只允许不进入 `GameState` / hash 且不影响候选顺序的纯性能缓存。验收须证明调用前后 `GameState`、本单位及所有单位经脉 snapshot、五条 RNG 流和待发事件队列逐字段相同。
 
 ### 8.7 伤害测试与 golden
 
@@ -1527,6 +1581,8 @@ DOT/HOT 不伪装成普通招式：DOT 按 `design/04` §6.5 的抗性、半额�
 | D-08 | trace 开/关 | 状态、事件事实字段、RNG 状态一致 |
 | D-09 | 预测查询 1000 次 | 状态与全部 RNG 流完全不变 |
 | D-10 | Node 与 WebKit 重放 | 每段 zone 值、settlement、终局哈希一致 |
+| D-11 | 外放招分别预估 0 / 1 / 2 档各 100 次 | GameState、全部经脉 snapshot、五流与事件队列逐字段不变；格集合与总耗内重复一致 |
+| D-12 | 外放伤害段 | `projection:true` 只出现一个 Z5M，选 0 / 1 / 2 档不改变该档之外的 Z5M 曲线；普通与外放曲线不叠乘 |
 
 ## 9. Buff DSL 编译与运行时
 
@@ -1803,6 +1859,7 @@ interface MeridianFlowRuntimePort {
   preview(route: MeridianRouteDef, options?: PreviewOptions): FlowPreview;
   commit(route: MeridianRouteDef, battleRng: Rng): FlowResult;
   estimateMultipliers(input: MeridianPairInput): MeridianMultipliers;
+  projectProjection(input: ProjectionInput): ProjectionResult;
   estimateInnerGuard(input: InnerGuardInput): InnerGuardResult;
   settleInnerGuard(input: InnerGuardInput): InnerGuardResult;
   projectSpeed(input: MeridianSpeedInput): MeridianSpeedResult;
@@ -1824,7 +1881,7 @@ interface MeridianFlowRuntimePort {
 5. 创建 `schema:'meridian-flow-state.v1'`、`rulesProtocol:2` 的零动态态；节点按 `ap_*` ASCII 序写入；
 6. 不传 seed、不复制 RNG；完成后才参与 §7.1 的经脉速度与首轮排序。
 
-模块调用必须处于一条 Core 命令事务内。预检硬封路发生在资源支付前；通过后固定走 `design/21` §11.4 的 F1–F10：冻结双方 Profile 与节点引用、支付、逐段提交、汇总质量、可选防守路线、Z4M / Z5M、护体内劲、效果 / 控制、`flowCt` 与事件，最后让节点态和 RNG 一起提交。途中卡住是合法结果，保留已付资源、实际尝试段 CT 与伤势；命中失败也不撤销已经运气。只有命令非法、P1 前被反应作废或引擎异常才整笔回滚。
+模块调用必须处于一条 Core 命令事务内。外放招在 F0 先调纯 `projectProjection`，校验档位 / 总资源并冻结 Profile `stateVersion`、范围与模板；`design/09` 再从该冻结结果枚举目标格。预检硬封路发生在资源支付前；通过后固定走 `design/21` §11.4 的 F1–F10：冻结双方 Profile 与节点引用，F2 原子支付招式成本和外放增量（绝招同时设置本门共享冷却），逐段提交，汇总质量，可选防守路线，Z4M / 唯一 Z5M，护体内劲，效果 / 控制，`flowCt` 与事件，最后让节点态和 RNG 一起提交。途中卡住是合法结果，保留已付资源、共享冷却、实际尝试段 CT 与伤势；命中失败也不撤销已经运气。只有命令非法、P1 前被反应作废或引擎异常才整笔回滚。
 
 `flowCt` 只累计实际尝试段的 `segmentCt`，作为 §7.2 `recFlat` 的一项；预检失败为 0。攻方一次整招只 `commit` 一次，多段 / 范围共享该攻方路线质量；每个守方对同一 `causeId` 至多提交一次防守路线。反击、追击、左右互搏两招与合击的每名真实参与者各自提交，且都操作自己的实例。
 
@@ -1832,7 +1889,7 @@ interface MeridianFlowRuntimePort {
 
 点穴与擒拿的来源、持续、互斥、递减和图标仍由 `design/06` 的 Buff 实例拥有；模块只保存用于路线 / 速度查询的镜像。效果成功后调用 `applyAcupointSeal/applyGrapple`；时间轴推进时按 `unitIndex` 调 `tick({battleTick,...Buff剩余投影})`：模块根据 snapshot 内上次 tick 与目标 `battleTick` 求非负 `dt`，等价地令所有节点 `water=0`、有 backlog 的 dirty 节点减 `dt`（最低 0），再把自身 tick 写到目标值。持续字段只同步、不自建第二个时钟；投影值为 0 才清镜像，字段未传则保持。
 
-`preview`、`estimateMultipliers`、`estimateInnerGuard` 与 `projectSpeed` 允许 UI / AI 调用，但必须只读。缓存键至少含实例 `stateVersion`、路线、有效层数与 Buff revision；任何提交即失效。Worker 超时可用最近完整预览或合法待机，UI 可跳动画，低内存可丢预览缓存；任何降级都不得省略敌方实例、卡住判定、整数取整或控制镜像。
+`preview`、`estimateMultipliers`、`projectProjection`、`estimateInnerGuard` 与 `projectSpeed` 允许 UI / AI 调用，但必须只读。`projectProjection` 的输入输出逐字消费 `design/21` §12.3，Core 不复制档位阈值或外放 Z5M 算式；它不枚举六角格，枚举唯一归 §6.5。缓存键至少含实例 `stateVersion`、路线、有效层数、里程碑、所选档与 Buff revision；任何提交即失效。Worker 超时可用状态版本仍匹配的最近完整预览或合法待机，UI 可跳动画，低内存可丢预览缓存；任何降级都不得省略敌方实例、卡住判定、整数取整或控制镜像。
 
 ### 11.3 资源点、库存与家丁
 
@@ -2018,7 +2075,7 @@ tech/03 与09的5/15/40/80ms为每次决策预算，2倍由 host watchdog 执行
 
 AI 本身按09不要求跨引擎/跨设备同招：超时可能改变最终选择。确定性保证在同一已记录命令序列的 core；录像记录最终命令及任何实际改变控制策略的 setAuto/策略事件。不能让“连续超时整场降档”只留在诊断、却改变未记录规则状态。墙钟仅在 AI host/worker 壳测量，pure evaluator 与 battle core 不读墙钟。
 
-候选生成复用玩家的六角可达集、范围、LOS 和 §8 预测查询。每个合法中心/方向都调用同一模板；不能用方形包围盒估算。`ai_master` 只对固定前 5 个候选模拟后续 2 个行动者。失控 `charm/control/fear/confuse/berserk/obey` 使用 `design/09` §7.9 的专用候选/目标规则，仍从同一入口输出命令。
+候选生成先复用 §7.4 的 `filterMoveCandidate / query.moveAvailability`，再复用玩家的六角可达集、范围、LOS 和 §8 预测查询。`projection:true` 时把 `0..maxProjectionStep` 中资源足够的每一档作为独立候选；每档、每个合法中心 / 方向都调用 §6.5 的同一模板，不能用方形包围盒或纸面面积估算。评分读取裁剪后实际命中的敌方 / 友方 / 地表集合，使伤害、击杀、控制、治疗、友伤、危险地表、总耗内、路线堵塞风险和 `flowCt` 都进入 `design/09` §8 的对应项；敌方、召唤物与玩家完全同规，不免外放成本。最终效用相同时先取较低 `projectionStep`，再按既有稳定键裁决，避免无收益扩张。`ai_master` 只对固定前 5 个候选模拟后续 2 个行动者。失控 `charm/control/fear/confuse/berserk/obey` 使用 `design/09` §7.9 的专用候选/目标规则，仍从同一入口输出命令。
 
 ### 13.4 AI 验收
 
@@ -2030,6 +2087,8 @@ AI 本身按09不要求跨引擎/跨设备同招：超时可能改变最终选�
 | AI-04 | 人为触发 2× watchdog | 取最新完整批best；可选招不同，但所录命令可复放 |
 | AI-05 | 候选输入顺序打乱 | 全序后结果不变 |
 | AI-06 | Worker 不可用 | 主线程基础决策或待机，不阻塞战斗 |
+| AI-07 | 外放高档多命中 2 敌但多伤 1 友，低档只命中可击杀目标 | 逐档使用实际格集评分；按 09 权重选效用最高档，不固定取最高档 |
+| AI-08 | 两个外放档收益完全相同 | 选较低 `projectionStep`，命令记录该档；敌方也支付同档成本 |
 
 ## 14. 存档、迁移、录像与重放
 
@@ -2076,7 +2135,9 @@ interface BattleSession {
 
 `rulesProtocol=2` 时，`battle.meridianByUnit[].flow` 必须逐单位保存 `schema:'meridian-flow-state.v1'`、`rulesProtocol/unitId/unitIndex/kind/tick/stateVersion`、`grappleLevel/grappleSource/grappleRemaining` 与完整动态 `nodes`；外层同时保存会跨命令生效的 `activeDefense/movementProjection/innerGuard`。`BattleUnitActionState.ultimateBySkill` 也必须随 battle 保存 `ultimateCooldown / lastUltimateMoveId / freshTurnToken`，否则中间 hash 无法证明绝招轮换确定性。数组按 `unitIndex` 或 `skillId`，节点按 `ap_*` ASCII 升序。单位 snapshot 绝不复制 RNG；唯一 `battleRng` 仍只在 `BattleSession` 保存四个 uint32。
 
-规范 replay hash 因而覆盖每个单位的经脉动态态、唯一 `battleRng`、内容版本和协议。事件的概念名逐字消费 `design/21` §13.5；落到本文统一的 `域/过去式`信封时映射为 `battle/routeCommitted`、`battle/routeJammed`、`battle/nodeRuptured`、`battle/meridianAttackMultiplied`、`battle/meridianDefenseMultiplied`、`battle/innerGuardSettled`、`battle/meridianSpeedChanged`、`battle/pointApplied`、`battle/grappleApplied`、`battle/breathCompleted`，并携带整数输入 / 输出、来源 ID 与命令序进入可回放事实。`route.previewed` 仅是 host 诊断名，不产生 `DomainEvent`、不入 hash。
+外放选择属于命令事实：`skill` 与 `dual.a/b` 原样把 `projectionStep` 写入 `commands[].command`，即使为 0 也按调用方提交值规范化后记录；非外放招不得出现该字段。录像和 checkpoint 不保存“预览格集合”作为第二事实源，重放必须以锁定内容、规则版本、经脉 snapshot 与命令档位重新求 `maxProjectionStep / effectiveRange / spread / extraMpCost`。规范 command JSON（因此 replay hash）必须覆盖 `projectionStep`；只记录推导后的命中格、或重放时自动改成当前最高档，均应在首个命令处报差异。
+
+规范 replay hash 因而覆盖每个单位的经脉动态态、唯一 `battleRng`、内容版本、协议和命令所选外放档。事件的概念名逐字消费 `design/21` §13.5；落到本文统一的 `域/过去式`信封时映射为 `battle/routeCommitted`、`battle/routeJammed`、`battle/nodeRuptured`、`battle/meridianAttackMultiplied`、`battle/meridianDefenseMultiplied`、`battle/innerGuardSettled`、`battle/meridianSpeedChanged`、`battle/pointApplied`、`battle/grappleApplied`、`battle/breathCompleted`，并携带整数输入 / 输出、来源 ID 与命令序进入可回放事实。`route.previewed` 与外放格预览都只是 host 诊断，不产生 `DomainEvent`、不入 hash。
 
 BattleCommand 包含 act/deploy/order/free/setAuto/concede/retry/undo，不只录 act。seq 从0连续，每10条中间hash为建议；openingHash 与 afterHash/terminalHash 置于被哈希对象之外。`appBuild` 与 `coreVersion` 逐字映射到 `tech/08` §10.2 的运输 header：前者定位可部署应用工件，后者定位玩法 runner；`GameState.meta.coreBuild` 是二者组合后的内部诊断标识，不作为第三套运输字段。精确摘要输入为规范 JSON 数组 `["tianshu:battle-replay:v1",appBuild,coreVersion,rulesProtocol,rngProtocol,contentHash,runtimeMartialArts,session]` 的UTF-8；registryRefs 是静态内容传递闭包的核验辅助，不替代 contentHash。P08 的自创武学不属于静态内容包，必须把本战可达的完整运行时定义按 ID 冻结进 `runtimeMartialArts`；重放不得用当前存档同槽定义覆盖。session 自己不含hash，避免自引用。
 
@@ -2109,6 +2170,7 @@ Node/V8 与 Playwright WebKit/JSC 都跑同一录像。Playwright WebKit 不是�
 | 传承确定性 | LEG-T01–T15、10,000 seeds；发布候选 30 份 V8/JSC 完整录像 | 合并与发布 **（待实测）**；30 份为【建议值】 |
 | 经脉慢模型 | TypeScript 对 `tools/balance/meridian_flow_golden.json` 全字段，Node + WebKit 各跑 | 每次提交；不得只比最终伤害 |
 | 绝招轮换 | 同门多绝招的共享冷却、禁止连续同招、同门普通招解除、`cdMinus` 隔离；录像中途恢复后逐字段相同 | 每次提交；Node + WebKit |
+| 外放加持 | 三档射程 / 模板 / 成本、点穴降档、统一过滤、唯一 Z5M、敌方 AI、多次预估零副作用、命令档位与 replay hash | 每次提交；Node + WebKit；对拍 `projection_sim.py --check` |
 
 确定性 fixture 至少覆盖：普通战、环境战、多段范围、反应深度、合击/阵法、Boss 阶段、跨日周期、任务与 Ink、书眠及同伴重逢，以及传承的调度 / 配额 / 挖掘 / 校合 / 书眠。随机测试失败时记录业务 seed 和最小化命令序列，不能只保存测试框架内部 seed。
 
@@ -2116,7 +2178,7 @@ CI 不通过“重录全部 golden”修失败。先定位规则变化，若属�
 
 经脉 oracle 固定读取 `fixtureVersion=2`、`rulesProtocol=2`、`rngProtocol=1`、`masterSeed=20260927` 与 `vectorSha256=af33dcd10dc196e18811fe485870666ab139c03a17342fa47113ecc19552cd76`。TypeScript runner 必须逐字段对拍 `inputs` 及 `outputs`：路线逐段 trace、到达 / 卡住率、质量与 `flowCt`，四单位独立提交及三段 `battleRng` 状态，攻防乘区、护体四伤害类 / 容量与内力击穿、速度 / 封路 / 擒拿、点穴 / 调息、归一化与五档 TTK。Python snake_case 不是协议，golden 的 camelCase 才是交换键。
 
-最低集成断言还包括：1 次与 100 次 preview 后的 commit / RNG / hash 相同；两单位同穴状态互不串；snapshot→修改→restore 逐字段相同；普通→精英→Boss 提交后合格自行解穴严格推进同一全局流；标准对标准 Z4M / Z5M 均为 10000 且旧伤害 golden 零漂移。绝招另以三招序列证明“设置行动末仍为 1 → 下一次自身行动拒绝同门任一绝招 → 该行动末归零 → 同一绝招仍拒绝 → 同门普通招后可再用”，并断言 `cdMinus` 不改变该序列。只有归属规则经评审并同步提升 fixture / rules protocol 后，才允许显式执行 `--write-golden`；CI 只执行 `--check`。
+最低集成断言还包括：1 次与 100 次 preview 后的 commit / RNG / hash 相同；两单位同穴状态互不串；snapshot→修改→restore 逐字段相同；普通→精英→Boss 提交后合格自行解穴严格推进同一全局流；标准对标准 Z4M / Z5M 均为 10000 且旧伤害 golden 零漂移。绝招另以三招序列证明“F2 设置后当次 E2 仍为 1 → 下一次自身行动拒绝同门任一绝招 → 该行动 E2 后归零 → 同一绝招仍拒绝 → 同门普通招后可再用”，并断言事务失败整体回滚、`cdMinus` 不改变该序列。外放另证明 0 / 1 / 2 档命令产生固定 +0 / +2 / +4 射程与 0 / 200 / 400 bp MPREF 增量、点穴后旧 2 档以 `PROJECTION_STEP_UNAVAILABLE` 零副作用拒绝、预估前后 GameState / 经脉 snapshot / 五流 / 事件队列相同，以及仅改变命令档位会改变命令字节与 replay hash。只有归属规则经评审并同步提升 fixture / rules protocol 后，才允许显式执行 `--write-golden`；CI 只执行 `--check`。
 
 ## 16. 性能预算与观测
 
@@ -2176,7 +2238,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 
 - `docs/00-canon.md`；`docs/decisions/author-requirements.md`；`docs/decisions/author-decisions.md`；`docs/decisions/rulings-v1.md`。
 - `docs/design/04-damage-formula.md`、`05-martial-arts-system.md`、`06-buff-system.md`、`08-terrain-and-qinggong.md`、`09-combat-system.md`、`11-open-world.md`、`12-quests-npc-factions.md`、`13-progression-and-endings.md`、`15-meridians-and-acupoints.md`、`16-resources-and-estates.md`、`17-sects-compendium.md`、`18-npc-and-companions.md`、`19-world-map.md`、`20-legacy-inheritance.md`。
-- `docs/design/21-meridian-flow-and-moves.md` v2.1；`tools/balance/meridian_flow_sim.py` 与 `tools/balance/meridian_flow_golden.json`（战斗经脉规则、慢模型与跨语言黄金）。
+- `docs/design/21-meridian-flow-and-moves.md` v2.3；`tools/balance/meridian_flow_sim.py`、`tools/balance/meridian_flow_golden.json` 与 `tools/balance/projection_sim.py`（战斗经脉、外放规则、慢模型与跨语言黄金）。
 - `docs/tech/01-architecture.md`、`03-mobile-performance.md`、`04-data-pipeline.md`、`08-backend-and-online.md`。
 
 ### 外部技术资料（2026-09-26 访问）
@@ -2209,6 +2271,8 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `damageBeforeMpGuard` | 护体真气与护体内劲后、既有 `mpGuard` 前的剩余伤害；不是实际气血伤害 |
 | 经脉 golden | Python 慢模型生成、TypeScript 全字段消费的 `fixtureVersion=2/rulesProtocol=2` 跨语言契约 |
 | 绝招轮换态 | `BattleUnitActionState.ultimateBySkill` 中每单位、每门已装配武学的 `ultimateCooldown:0|1`、`lastUltimateMoveId` 与 `freshTurnToken`；仅属本战 |
+| 外放命令档 | `projectionStep:0|1|2`；随招式命令选择并进入 replay/hash，绑定当前档射程、审核模板与额外耗内 |
+| `MoveAvailabilityView` | `query.moveAvailability(unit)` 的只读 DTO；普通招槽、全部已解锁绝招、共享冷却、路线原因和外放逐档结果的单一消费接口 |
 
 本文没有新增玩法内容 ID；所有示例均复用既有前缀或使用局部 key。
 
@@ -2223,8 +2287,10 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 - **已解决（AR-12）**：战斗为 pointy-top 六角轴坐标，首轮按轻功；旧方格运行时接口不保留。
 - **已解决（作者 P08/P14/P16/P41/P56，G1 采用默认）**：自创武学倚天后开放且最多 3 门；称号属性默认开启可关闭；最近一次守卷外观与誓言默认启用可关闭；两种天道规则开关互斥；化险为夷按每战一次、指定对象与 0–30% 公式执行（见 §3.2–§3.4、§14.3、§9.4、§7.7）。
 - **已解决（AR-13 / H1）**：`design/20` 已落盘；本文已接入 `legacy.v1` 状态、两类条件、六项 opcode、家丁挖掘、`qiyu` RNG、双配额收据、书眠顺序与 12 / 10 / 9 专用上限（见 §3.2、§10、§11.7、§15）。
-- **已解决（AR-14）**：`design/21` v2.1 已确定每单位实例、Core 唯一 `battle` 流、无副作用 preview、Z4M / Z5M、护体内劲、速度 / 控制 / 调息接口与 golden；本文已按 §7–§8、§11.2、§14–§16 接入。
+- **已解决（AR-14）**：`design/21` v2.3 已确定每单位实例、Core 唯一 `battle` 流、无副作用 preview、Z4M / Z5M、护体内劲、速度 / 控制 / 调息接口与 golden；本文已按 §7–§8、§11.2、§14–§16 接入。
 - **已解决（M4 绝招轮换）**：§3.3、§7.3–§7.4、§14–§15 已接入仅战斗存在的 `ultimateCooldown / lastUltimateMoveId`，并明确 `cdMinus` 不减武学级共享冷却。
+- **已解决（AR-16 / M6-P01～P03）**：§6–§8、§11.2、§13–§15 已接 `projectProjection`、逐档六角枚举、F2 原子支付、唯一外放 Z5M、AI 同规与命令 replay/hash；静态字段和构建约束由 `design/05`、`tech/04` 提供。
+- **已解决（NA1 绝招时序）**：§7.3–§7.4 已把同门共享冷却设置点前移至 F2，并以 `freshTurnToken` 保证设置当次 E2 不减；玩家、AI、一键重复与 F0 共用四段有序过滤器，拒绝零资源 / 零 RNG。
 
 ### 本文采用的建议值（含已解决追溯）
 
@@ -2247,7 +2313,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `design/15` | 已定稿；使用 `MeridianProgress`、session 快照、keyed RNG 与 S0–S8 | 上游升 schema / 公式时按迁移版本重算派生奖励并重跑 V15-01～V15-15 |
 | `design/16` | 已定稿；使用资源、点、家丁、合同、家业、公账与 Estate DSL | 上游升 schema / 数值时迁移当界运行态并重跑 RES/BIZ/SLEEP 门禁 |
 | `design/20` | 已定稿；使用 `legacy.v1`、`LegacySourceState`、配额 / 机会 / 校合收据、书眠矩阵与 LEG-V/T | 上游升 schema / RNG 消费或生命周期时升规则与存档版本，并重跑 10,000 seeds 和跨引擎录像 |
-| `design/21` | v2.1；使用逐单位模块、路线 / 控制 / 调息档案、Z4M / Z5M、护体内劲、速度、`meridian-flow-state.v1`、绝招路线约束与 golden | 路线数组、取整点或 RNG 消费改变须升 `rulesProtocol`，保留旧 runner 并逐字段评审 golden |
+| `design/21` | v2.3；使用逐单位模块、路线 / 控制 / 调息档案、Z4M / Z5M、护体内劲、速度、外放档、`meridian-flow-state.v1`、绝招路线约束与 golden | 路线数组、外放档 / 曲线、取整点或 RNG 消费改变须升 `rulesProtocol`，保留旧 runner 并逐字段评审 golden |
 | `design/18` | 同伴快照、健在与重逢合并正式契约 | 内容考据修订需 legacy timeline 迁移 |
 | `tech/03/08` | 性能预算、TSAV、录像运输 | 真机实测和限额变化不得反写玩法结果 |
 
@@ -2270,7 +2336,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `docs/tech/04-data-pipeline.md` / `docs/design/20-legacy-inheritance.md` | `legacy.v1` / 传承运行时 | **已解决**：tech/04 已接五表与 LEG-V01–V10；本文已接状态、六项 opcode、两类配额收据、家丁 / NPC 适配和跨引擎测试（见 §11.7） |
 | `docs/tech/08-backend-and-online.md` | §10 录像 | **已解决**：`BattleReplayV1` 只哈希 / 上传战斗域，并对齐 `appBuild/coreVersion` 与中间 hash |
 | `docs/tech/08-backend-and-online.md` / `docs/design/13-progression-and-endings.md` | Meta 合并 / §9.4 | **tech/08 已解决**：已对齐确定性 `MetaProfileIntent.intentId`、规则投影版本与守卷快照确认边界，平台墙钟不回流 core；`design/13` 仍需归属文档核对 |
-| `docs/design/09-combat-system.md` | §5.3 范围结算 | 将“格序稳定 RNG”拆为模板格序与目标 `unitIndex` 顺序，避免范围映射后歧义 |
+| `docs/design/09-combat-system.md` | §5.3 范围结算 | **已解决**：模板格按稳定六角坐标序枚举，命中单位再按稳定 `unitIndex` 排序；范围映射不改变 RNG 消费（见 09 §5.2.1、§5.3） |
 | `docs/design/11-open-world.md` | §6.1 日历（已解决） | 已由上游定稿为 1200 tick/时辰、14400 tick/日；本文审校已同步，无需反向修改 |
 | `docs/design/12-*` | 任务/门派历史依赖文字 | 正式契约已被本文接入；该文仍称 `design/15/16` 未落盘，应改为已解决追溯 |
 | `docs/design/15-*` | 经脉 | **已解决**：本文已接进度单位、冲穴公式、事件与 keyed RNG，保持当前周目跨书永久、新周目重置运行态 |

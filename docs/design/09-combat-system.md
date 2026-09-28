@@ -1,13 +1,14 @@
 # 09 · 战斗系统（Combat System）
 
 > **归属**（基准 §18）：战斗流程、六角格战场与范围模板、集气时间轴、行动经济、招式施放流程、反应机制（招架/反击/连击/援护/合击）、阵法、倒地与伤势、AI、Boss 机制、大规模战斗、战斗奖励流程、战斗难度与失败保护。
-> **版本**：v1.3（绝招共享节奏与经脉 Buff 迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）。
-> **上游**：`decisions/author-requirements.md`（AR-02 阴阳、AR-03 冲穴、AR-12 六角格战棋、AR-14 经脉运行）、`decisions/author-decisions.md`（G1、P42–P47）、`00-canon.md` v1.4（§1 就地开战、§3 境界、§5 节奏目标、§6 属性、§8 战斗模型、§9 乘区、§10 Buff 基础、§11 轻功阈值、§20 装配栏）、`design/06-buff-system.md` v1.3、`design/21-meridian-flow-and-moves.md` v2.1。AR-12、AR-14 与绝招追加规则均已由基准吸收；本文只承接战斗执行。
+> **版本**：v1.4（AR-16 外放范围、选目标与 AI 接线，2026-09-28）；v1.3（绝招共享节奏与经脉 Buff 迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）。
+> **上游**：`decisions/author-requirements.md`（AR-02 阴阳、AR-03 冲穴、AR-12 六角格战棋、AR-14 经脉运行、AR-16 外放加持）、`decisions/author-decisions.md`（G1、P42–P47）、`00-canon.md` v1.5（§1 就地开战、§3 境界、§5 节奏目标、§6 属性、§8 战斗模型、§9 乘区、§10 Buff 基础、§11 轻功阈值、§20 装配栏）、`design/06-buff-system.md` v1.3、`design/21-meridian-flow-and-moves.md` v2.3。AR-12、AR-14、AR-16 与绝招追加规则均已由基准吸收；本文只承接战斗执行。
 > **引用而不重定义**：属性、基础轻功值、体力、气势、护体真气与社交检定 → `design/03-attributes.md`；伤害/命中/招架/暴击/效果命中/治疗公式、Z0–Z10 与逐乘区取整 → `design/04-damage-formula.md`；招式字段、收招 `recovery`、蓄招、绝招、位移、易运、分心二用、合击武学、实战武学经验 → `design/05-martial-arts-system.md`（六角范围模板及枚举唯一归本文 §5）；Buff 钩子、原语、叠加、结算段 S/A/E、攻击管线 P1–P8、控制递减与 Boss 豁免 → `design/06-buff-system.md`；套装 → `design/07`；六角地形、通行成本、高差、坠落/落水、轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗经脉运行、攻/防/轻功路线、经脉独立乘区、护体内劲、擒拿/点穴 1–9 级与调息 → `design/21-meridian-flow-and-moves.md`；永久穴脉、冲穴、周天与九转 → `design/15-meridians-and-acupoints.md`；物品、暗器、弹药、丹药、毒药、机关与投掷物 → `design/10-items-and-equipment.md`；巡逻、昼夜天气、区域等级 → `design/11`；羁绊、门派、声望/品德 → `design/12`；角色经验、Boss 经验系数、难度模式与结局 → `design/13-progression-and-endings.md`；手机 UI 布局 → `design/14`；武运、敌人品阶骰、掉落池、难度 D 映射 → `design/02-timeline-and-world-tiers.md`；渲染与精灵朝向 → `tech/02-rendering.md`；命令/事件、RNG 分流、Worker 与存档 → `tech/01`、`tech/05`。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术版本、API 或限额尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖他文档、本文先给出可用数值并在 §16 登记。
 > **v1.2 变更摘要**：依 AR-12 将战场从方格改为 pointy-top 六角格，确立轴/立方坐标、六向朝向、轻功移动力与首轮排序；把点、环、面、扇形范围模板及预算迁入本文；补齐运劲、战斗道具与作者点名 Buff 接口；同时按 C06/C12/C13/C20、`design/04` 定稿和 G1 作者决定审校原有反应、阵法、奖励、难度与数据契约。
 > **2026-09-27 变更摘要**：按 `design/21` v2.0 接入逐单位经脉实例、速度投影、攻防路线提交、护体内劲 settle、路线 CT、调息、解穴/挣脱与 AI 预览；不在本文复制经脉公式。
 > **v1.3 变更摘要**：落实同门绝招共享一次自身行动冷却、禁止连续同一绝招、完整候选过滤与多绝招 AI 评分；运行态只消费 06 参数化的受擒、穴位受封及经脉派生状态。
+> **v1.4 变更摘要**：接入 AR-16 的逐招外放档：按命令锁定 0 / 1 / 2 档，确定性生成扩大后的射程与六角范围，复用既有遮挡 / 地形裁剪；补齐选目标重验、额外耗内、敌我同规与 AI 多目标评分。
 
 ---
 
@@ -1029,10 +1030,10 @@ reachable(P) = pathCost(P) <= move
 ### 5.1 施放流程
 
 ```
-① 选择招式与目标（UI）：合法性 §5.4、射程 §5.2、视线 §5.5、友伤确认 §5.6；调用 21 `preview`，不改状态 / RNG
-② F0 校验（core validate，失败不产生事件）：资源、招式自身冷却、同门绝招共享冷却、禁止连续同一绝招、状态禁用、攻方路线硬封；有防守窗口时也预检守方路线
+① 选择招式、外放档与目标（UI）：合法性 §5.4、射程 §5.2、视线 §5.5、友伤确认 §5.6；调用 21 `preview`，不改状态 / RNG
+② F0 校验（core validate，失败不产生事件）：先按招式自身冷却 → 同门绝招共享冷却 → 禁止连续同一绝招 → 攻方路线硬封统一过滤招式；再校验外放档、资源（含所选档额外耗内）、状态、目标 / 范围 / 视线；有防守窗口时也预检守方路线
 ③ F1 快照整招所需的攻守 `MeridianProfile` 与路线节点；之后本次结算不读被效果改变的新快照
-④ F2 支付：内力、气血（hpCost）、气势（绝招）、弹药 → 进入冷却 → 06 onSkillCast / onUltimate
+④ F2 支付：内力、气血（hpCost）、气势（绝招）、弹药 → 进入冷却（绝招同时置本门共享冷却）→ 06 onSkillCast / onUltimate
 ⑤ 命令事务内提交一次攻方路线；有窗口时按 §6.1 提交或复用守方路线。仅 `commit` 按路线段序消费 Core 唯一 `battle` RNG
 ⑥ 若为蓄招（charge）→ 挂出预警，本次行动到此为止（§5.8；路线提交时点由 05 的释放契约决定，不在起手重复提交）
 ⑦ 施招者位移前段：突进 / 跳斩 / 绕背（05 §4.5）；轻功招式先满足 08 门禁并提交 `purpose:movement` 路线
@@ -1047,7 +1048,7 @@ reachable(P) = pathCost(P) <= move
 
 Z4M / Z5M、护体内劲的数学定义和硬界唯一见 21 §3.5、§4.8；本文只固定调用点。标准对标准两乘区均为 10000，不改变旧伤害；输出 `damageBeforeMpGuard` 只是进入既有 `mpGuard` 前的剩余值，不得命名为最终 `hpDamage`。攻击路线途中卡住不自动令招式未命中；预检的未开穴、胀损或 9 级点穴硬封才拒绝命令且不收费。
 
-**招式候选过滤**：玩家按钮、AI 候选生成、一键重复和 Core F0 必须调用同一过滤器。依次排除：（1）招式自身 `cds[moveId] > 0`；（2）绝招所属武学 `ultimateCooldown > 0`；（3）绝招 `moveId === lastUltimateMoveId`，且此后尚未成功结算同门另一绝招或同门普通招；（4）21 无副作用预检已确认本路线被未开穴、胀损或 9 级穴位受封硬封。被排除项可保留在 UI 供解释，但不进入可提交候选；失败不得扣内力 / 气血 / 气势、消费 RNG、写路线或启动任何冷却。
+**招式候选过滤**：玩家按钮、AI 候选生成、一键重复和 Core F0 必须调用同一过滤器。依次排除：（1）招式自身 `cds[moveId] > 0`；（2）绝招所属武学 `ultimateCooldown > 0`；（3）绝招 `moveId === lastUltimateMoveId`，且此后尚未成功结算同门另一绝招或同门普通招；（4）21 无副作用预检已确认本路线被未开穴、胀损或 9 级穴位受封硬封。完成招式过滤后，再对每个外放档校验 `projectionStep≤maxProjectionStep` 与资源；档不可用只排除该档，不把非法命令静默降档。被排除项可保留在 UI 供解释，但不进入可提交候选；失败不得扣内力 / 气血 / 气势、消费 RNG、写路线或启动任何冷却。
 
 范围 / 多段同一 `causeId`：攻方路线只提交一次，每个守方至多提交一次防守路线并覆盖本招所有段；不同反击、追击、合击真实参与者各用自己的实例另提一次。点穴多个穴位时按 `ap_*` ASCII 顺序消费效果 RNG。只有纯攻击 / 防守 / 移动路线真正提交的 `flowCt` 进入对应单位恢复债务；UI / AI 预览不得收费。
 
@@ -1057,10 +1058,26 @@ Z4M / Z5M、护体内劲的数学定义和硬界唯一见 21 §3.5、§4.8；本
 |---|---|
 | 度量 | 六角距离 `dist = max(abs(dq),abs(dr),abs(-dq-dr))`；自身为 0，六邻为 1 |
 | 合法 | `range.min ≤ dist ≤ range.max_eff`；`min > 1` 表示贴身不可用 |
-| 射程修正 | 真气外放 `bf_zhenqiwaifang` +1 / +2（06）；失明 `bf_shimang` −2（最低 1）且不能选 3 格外目标（06）；`modRange`（06） |
+| 射程修正 | 真气外放 `bf_zhenqiwaifang` +1 / +2（06，旧机制）；失明 `bf_shimang` −2（最低 1）且不能选 3 格外目标（06）；`modRange`（06）。`projection:true` 时旧 `bf_zhenqiwaifang` 的射程量与 AR-16 档位取较大值、不相加，避免同一外放来源突破基础 +4；06 后续应把该 Buff 明确为兼容来源 |
 | 高差对远程 | `ranged`/`projectile`：`range.max_eff += clamp(⌊(h_施 − h_目) / 2⌋, 0, 2)`（08 §5.5：居高 2 级 +1、4 级 +2；处低不减）；高差对命中与伤害（`hit ±4`/级、Z7）见 08 §5.5，数值交 04 |
 | 高差对近身 | `melee`：`\|Δh\| ≤ hTol`（05：缺省 2）；跳斩类用 `jump + 2`（05 §4.4） |
 | 兵器可及 `reach` | 缺省 1；主手 `spear`/`staff` 为 2（仅直线方向）。只用于反击判定（§6.3）与长兵控制区（§4.4），**不**自动延长招式射程 |
+
+#### 5.2.1 外放射程与作用范围（AR-16）
+
+对 `projection:true` 的招式，先由 design/21 §4.4.1 对当前不可变 Profile 求 `maxProjectionStep`，再由玩家 / AI 选择 `projectionStep∈[0,maxProjectionStep]`。档位必须随命令提交，射程与范围绑定取值：
+
+```text
+rangeMaxProjection = move.range.max + [0, 2, 4][projectionStep]
+shapeProjection    = move.projectionSpreadSteps[projectionStep]
+projectionMpExtra = round(MPREF(Ld) × [0, 0.02, 0.04][projectionStep])
+```
+
+`round` 沿用 §5.7 的非负四舍五入；这里只计算外放增量一次。旧 `bf_zhenqiwaifang` 与本档增量取较大者、不相加；其余独立 Buff、失明与居高修正再接到 `range.max_eff`，但 AR-16 自身贡献绝不超过基础 `range.max+4`。`range.min` 不变；外放不改变移动、兵器 `reach`、反击距离或路线 `flowCt`。
+
+作用范围不做连续半径插值，也不靠运行时“放大模板”：只取 05 已审核的三项之一，再用 §5.3.2 同一整数枚举器生成格集合。枚举顺序固定为：选档取模板 → 无限平面生成 → 裁战场外 → 高度 `hTol` → 模板的 `blocksAoe` / `penetrates` → 目标合法性与友伤着色。树林、烟雾等只按 §5.5 影响视线 / 命中，不因气劲更强被免费穿透；墙体、不可穿透地形、边界和单位阻挡仍按该招 `delivery` 与模板原规则。扩大后不会补回被裁掉的格，也不会改变 05 构建期的 `AF/power`。
+
+玩家、敌人、召唤物完全同规。点穴、迟滞或胀损改变 Profile 后必须重新求上限；若原选档已越界，旧预览失效、F0 返回档位不可用，调用者应让用户降档或由 AI 重选，不得偷偷改成 0 档。外放路线硬封仍禁整招，而不是仅禁高档。
 
 ### 5.3 六角范围模板（唯一归属）
 
@@ -1185,6 +1202,8 @@ AF(N) = clamp(floor(rawAF(N)*20 + 0.5)/20,0.35,1.00)
 
 ### 5.4 目标选择与合法性
 
+外放招式先选 `projectionStep`，再以该档的 `range.max_eff` 和 `projectionSpreadSteps[step]` 生成合法目标 / 落点 / 朝向；切换档位会使旧目标与格集合全部失效并重算，不允许沿用高档选中的远目标再以低档支付。单体目标自身须在当前射程与视线内；对地 / 定向范围的锚点须在当前射程内，实际受影响单位则只来自 §5.2.1 裁剪后的格集合。形状扩大不会放宽 `target` 阵营、隐身、倒地、友伤或 LOS 规则。若 F0 时 Profile 变化令所选档或目标失效，返回结构化拒绝原因，不自动改目标、不自动降档。
+
 | 情形 | 单体招式 | 范围招式 |
 |---|---|---|
 | 隐身 `bf_yinshen` | 不可选 | 可命中（06：受伤即解除，解除一击视为背击） |
@@ -1233,7 +1252,7 @@ AF(N) = clamp(floor(rawAF(N)*20 + 0.5)/20,0.35,1.00)
 
 | 资源 | 计算 | 不足时 |
 |---|---|---|
-| 内力 | `mpUse = max(1, round(mpCost × MPREF(Ld) × (1 + Σcost)))`：`MPREF` 取 03 §3.5（STD `mpMax`：Lv1 213、Lv35 4,697、Lv70 28,887）；`Σcost` 为 06 `cost` 族（−50% ~ +100%）；绝招的 `mpCost` 已含"大阶基准 + 2%"（05 §4.8） | 招式灰显；普攻 `mv_basic_strike` 永远可用 |
+| 内力 | `mpUseTotal = max(1, round(mpCost × MPREF(Ld) × (1 + Σcost))) + projectionMpExtra`：`MPREF` 取 03 §3.5（STD `mpMax`：Lv1 213、Lv35 4,697、Lv70 28,887）；`Σcost` 为 06 `cost` 族（−50% ~ +100%）；绝招的 `mpCost` 已含"大阶基准 + 2%"（05 §4.8）。外放额外耗内按 §5.2.1 独立四舍五入后相加，不再套 `Σcost` | 总额不足则所选档灰显；普攻 `mv_basic_strike` 永远可用 |
 | 气血 | `hpUse = round(hpCost × hpMax)`（05 代价型） | `hp ≤ hpUse` 时灰显（不能自杀） |
 | 气势 | 绝招 100（基准 §8） | 灰显 |
 | 弹药 | 暗器 1 份 | 灰显 |
@@ -1747,7 +1766,7 @@ Buff 到期或被驱散时同样重算。若失去轻功门禁后正站在树梢
 
 其中招式池先取每门武学 `moveSlots` 个已装配普通招式与**全部已解锁绝招**，绝招身份只读 `MoveDef.ultimate:true`。随后与玩家端共用 §5.1 的过滤器：自身冷却中、同门共享冷却中、仍命中该门 `lastUltimateMoveId` 禁止重复规则，或 21 预检确认路线硬封的招式不进入候选；资源不足与状态禁用仍按 F0 过滤。过滤只影响可选性，不支付共享气势、不启动共享冷却，也不消费 RNG。
 
-范围候选不得用包围盒面积近似：对每个合法中心和朝向调用 §5.3 的同一枚举器，得到确定的命中格集合后再统计敌方、友方、危险地表和可破坏物。扇形按 6/12 个允许方向逐一评估；直线按六个 `HexDir`；环与圆盘按六角距离。这样 AI 与玩家预览不会因方格近似而选出规则层实际打不到的目标。
+`projection:true` 时把每个 `projectionStep=0..maxProjectionStep` 都作为独立候选，故候选元组扩为 `c=(t,a,step,x)`；资源不足只剔除对应档。范围候选不得用包围盒面积近似：对每个档、合法中心和朝向调用 §5.2.1 / §5.3 的同一枚举器，经过战场边界、高差、遮挡和地形裁剪后，再统计敌方、友方、危险地表和可破坏物。扇形按 6/12 个允许方向逐一评估；直线按六个 `HexDir`；环与圆盘按六角距离。这样 AI 与玩家预览不会因方格近似而选出规则层实际打不到的目标。玩家、敌人、召唤物均走这条候选路径。
 
 每个涉及运气的候选还必须调用 21 的无副作用 `preview` / 护体 / 速度预估，至少取得预计路线质量、Z4M / Z5M、`flowCt`、完整与卡住分位、首个硬封节点、逐段卡住率、胀损率、护体抵消和调息恢复量。预览只读 `stateVersion`，不读未来随机数；AI 最终只提交一条命令，由 Core 重验并对最终攻 / 防 / 轻功路线调用 `commit`。
 
@@ -1765,18 +1784,18 @@ V_buff = Σ aiValue(buff) / 10                        06 BuffDef.aiValue
 V_heal = Σ_友 min(治疗量, 已损气血) / hpMax × urg      urg：气血 < 30% 为 2.0、< 60% 为 1.0，否则 0.3
 V_pos  = tileScore(t)（§8.6）
 V_risk = danger(t) / hp_self（§8.2.4）
-V_cost = 0.5 × mpUse / mp_now + [绝招] × ultReserve（§8.2.5）
+V_cost = 0.5 × (mpUse + projectionMpExtra) / mp_now + [绝招] × ultReserve（§8.2.5）
 V_team = 0.2 × [x 本轮已被本方攻击] + 0.3 × [本行动为合击 / 阵法铺垫]
 V_obj  = 剧情目标项（护送距离、夺点、与 VIP 的距离）
 V_ff   = −1.5 × Σ_友 误伤 / hp_友（05 §4.6）
 V_flow = −flowCt × ctValue − ruptureRiskBp × ruptureValue/10000 − pointExposure × sealValue
 ```
 
-所有 `V` 大致归一到 0–1 量级；`V_flow` 按 21 §13.1 计入候选成本，且预计伤害已经包含相对 Profile 的 Z4M / Z5M，禁止另乘一次经脉优势。权重 `w` = 性格模板（§8.4）× 档位掩码（§8.3：档位未开放的考量项权重为 0）。防守窗口另比较“立即承伤”与“支付即时路线恢复债务”的效用，不能只最大化攻击。
+所有 `V` 大致归一到 0–1 量级；外放扩张新增的合法目标自然进入 `V_dmg/V_kill/V_ctrl/V_ff`，其额外耗内只进入 `V_cost`，不得按模板理论格数虚增收益。`V_flow` 按 21 §13.1 计入候选成本，且预计伤害已经包含相对 Profile 的 Z4M / Z5M，禁止另乘一次经脉优势。权重 `w` = 性格模板（§8.4）× 档位掩码（§8.3：档位未开放的考量项权重为 0）。防守窗口另比较“立即承伤”与“支付即时路线恢复债务”的效用，不能只最大化攻击。
 
 #### 8.2.3 选择
 
-- 按 `U` 降序排序，平分时按（行动优先级、目标 `unitIndex`、格 `r`、格 `q`、朝向 `dir`）打破，保证确定性；坐标顺序与 §2.9 的稳定遍历一致。
+- 按 `U` 降序排序，平分时按（行动优先级、较低 `projectionStep`、目标 `unitIndex`、格 `r`、格 `q`、朝向 `dir`）打破，保证确定性并在无新增收益时省内；坐标顺序与 §2.9 的稳定遍历一致。
 - 档位决定"会不会犯错"：`ai_basic` 从前 3 名按 55% / 30% / 15% 抽取；`ai_adept` 70% / 20% / 10%；`ai_expert` 从前 2 名按 85% / 15%；`ai_master` 前瞻后取第一（§8.2.6）。抽取走 `ai` 流。
 
 #### 8.2.4 危险图
@@ -2691,7 +2710,7 @@ export interface BattleUnit {
 ```ts
 export type Target = UnitId | TilePos;
 export type BattleAction =
-  | { t: 'skill'; move: MoveId; target: Target; aim?: HexAim }
+  | { t: 'skill'; move: MoveId; target: Target; aim?: HexAim; projectionStep?: 0 | 1 | 2 }
   | { t: 'hidden'; move: MoveId; target: Target; aim?: HexAim }
   | { t: 'item'; item: ItemUid; target: Target; aim?: HexAim }
   | { t: 'yunjin'; mode: YunjinMode; sourceInner?: SkillId; invest?: 0.1 | 0.2 | 0.3; buffIid?: number }
@@ -2704,12 +2723,13 @@ export type BattleAction =
   | { t: 'struggle' } | { t: 'rescue'; target: UnitId; item?: ItemUid }
   | { t: 'yiyun'; aux: SkillId } | { t: 'swapWeapon' } | { t: 'drawWeapon'; item: ItemUid } | { t: 'pickup'; tile: TilePos }
   | { t: 'dual';
-      a: { move: MoveId; target: Target; aim?: HexAim };
-      b: { move: MoveId; target: Target; aim?: HexAim } }
+      a: { move: MoveId; target: Target; aim?: HexAim; projectionStep?: 0 | 1 | 2 };
+      b: { move: MoveId; target: Target; aim?: HexAim; projectionStep?: 0 | 1 | 2 } }
   | { t: 'combo'; combo: `cmb_${string}`; partner: UnitId; target: Target; aim?: HexAim };
 
-// 左右互搏的两招分别校验各自模板与 aim；合击由 combo 定义决定模板，但本次落点和
-// 六角朝向仍由命令携带。缺省 aim 时均按各自 target 从施术者所在格确定性吸附。
+// 左右互搏的两招分别校验各自模板、aim 与 projectionStep；合击由 combo 定义决定模板，
+// 但本次落点和六角朝向仍由命令携带。非外放招 projectionStep 必须省略；外放招缺省为 0。
+// 缺省 aim 时均按各自 target 从施术者所在格确定性吸附。
 
 // 对 tech/01 §3.6 Command 联合的扩展（本文提案）
 export type BattleCommand =
@@ -2726,7 +2746,8 @@ export type BattleCommand =
 
 export type RejectReason = 'NOT_YOUR_TURN' | 'OUT_OF_RANGE' | 'NO_LOS' | 'MP_NOT_ENOUGH' | 'ON_COOLDOWN'
   | 'DISABLED_BY_STATUS' | 'PATH_BLOCKED' | 'ILLEGAL_TARGET' | 'COMBO_UNAVAILABLE' | 'LIMIT_REACHED'
-  | 'NOT_VISIBLE' | 'FREE_ACTION_USED' | 'MERIDIAN_ROUTE_BLOCKED' | 'SELF_BREATH_FORBIDDEN';
+  | 'NOT_VISIBLE' | 'FREE_ACTION_USED' | 'MERIDIAN_ROUTE_BLOCKED' | 'SELF_BREATH_FORBIDDEN'
+  | 'PROJECTION_STEP_UNAVAILABLE';
 ```
 
 `BattleState.meridianByUnit` 保存可序列化快照；`BattleSession` 运行态按同一键各持一个 21 `MeridianFlowModule`，两者在事务边界同步。`activeDefense.routeId/qualityBp` 对齐 21 §11.2，保存该次提交用于后续来袭重建防守 Profile 的完成质量；09 只另存来源与到期窗口，节点态仍在对应模块中。`defendedCauseIds` 在攻击事务结束后裁剪，禁止无界增长。`openingQinggong` 与 `meridianSpeed` 是可重建缓存，但进入回放 hash，以便尽早暴露跨引擎取整漂移。
@@ -2930,7 +2951,7 @@ behaviors:
 | `query.comboOptions(unit)` | 当前可发动的合击（§6.7） |
 | `query.formationStatus(side)` | 阵法状态与阵位偏离（§6.8） |
 | `query.quickResolveEligible()` | 速战条件（§10.7） |
-| `query.moveAvailability(unit)` | 返回 `moveSlots` 普通招与全部已解锁绝招的可用性、气势、本门共享冷却及结构化禁用原因；供玩家、AI 与一键重复共用 |
+| `query.moveAvailability(unit)` | 返回 `moveSlots` 普通招与全部已解锁绝招的可用性、气势、本门共享冷却、结构化禁用原因；外放招另返 `maxProjectionStep`、各档总耗内 / 射程 / 模板与档级禁用原因，供玩家、AI 与一键重复共用 |
 | `query.meridianPreview(unit, action, target?)` | 包装 21 无副作用 `preview`：路线质量、倍率、`flowCt`、硬封、风险与状态版本；不得消费 RNG |
 | `query.breathPreview(unit, sourceInner?)` | 包装 21 调息预览：触及穴位、恢复量与解穴概率；不得预抽实际解穴结果 |
 
@@ -2979,6 +3000,7 @@ behaviors:
 | 运劲 | `yunjin` | 内功驱动的调息、护体、蓄力、逼毒、疗伤、催轻功、化解；不是冲穴“内劲”资源 | §4.8.4 |
 | 战斗道具状态 | `itemState` | 普通道具本场总次数与同 ID 冷却；暗器另算 | §4.8.3、§13.1 |
 | 同门绝招临时态 | `ultimateBySkill[skillId].ultimateCooldown` / `lastUltimateMoveId` | 同门共享 1 次自身行动冷却与禁止连续同一绝招；不写持久武学状态 | §3.6、§5.9、§13.1 |
+| 外放档 | `projectionStep` / `maxProjectionStep` | `MoveDef.projection:true` 招式本次命令所选档 / 当前 Profile 可选上限；档位绑定射程、范围与额外耗内 | §5.1–§5.4、§13.2 |
 | 撤退加成 | `Σflee` | 万里独行、`tsp_08_canon` 等撤退成功率加成之和 | §4.8.7 |
 | 效果触发的投降 | — | 鸳鸯刀"仁者无敌"、脚本、士气来源的 `surrendered` 统一流程 | §4.8.8 |
 | 视野 / 最后已知位置 | — | 一方可见区域 = 各单位视野并集（08 §5.7）；迷雾中的敌人显示最后已知位置 | §5.5 |
@@ -3140,6 +3162,9 @@ behaviors:
 | V33 | 每门已装配武学恰有一份 `ultimateBySkill`；绝招只以 `MoveDef.ultimate:true` 识别。F0 必须拒绝招式自身冷却、同门共享冷却、未被同门招式打断的连续同招及路线硬封；拒绝项不扣资源、不写路线、不启动冷却 | 错误 |
 | V34 | 任一绝招 F2 支付后设置 `ultimateCooldown=1`；E2 只递减 S 段快照中已有的冷却，故施放当次不减、紧接下一次自身行动结束才清零；额外行动、环境 / 他人行动与免费动作不推进；`lastUltimateMoveId` 只由同门另一绝招更新或同门普通招清除 | 错误 |
 | V35 | `bf_shouqin` / `bf_xueweishoufeng` 的等级、来源、穴位和剩余行动载荷符合 06 §2.2.1；经气迟滞 / 胀损仅从模块派生，护体内劲必有合法 `routeId`；新运行态不得读写旧迁移 ID | 错误 |
+| V36 | 非外放招不得携带 `projectionStep`；外放招缺省为 0，显式值只能是 0 / 1 / 2 且不得超过当前 `maxProjectionStep`；F0 必须以命令快照重验，越界返回 `PROJECTION_STEP_UNAVAILABLE` 而非静默降档 | 错误 |
+| V37 | 外放档必须成组取 `range.max+[0,2,4]`、`projectionSpreadSteps[step]` 与额外耗内 `[0,200,400]bp×MPREF`；范围枚举复用 §5.3 的稳定顺序及边界 / 高差 / 遮挡 / 地形裁剪，不得运行时插值模板或改写 `AF/power` | 错误 |
+| V38 | 玩家、敌人、召唤物和 AI 使用同一外放档查询 / F0；AI 枚举所有合法档并以实际目标收益、友伤与总耗内评分，不能固定取最高档或免除敌方成本 | 错误 |
 
 ### 15.2 测试用例（玩法核心单元测试，期望值精确）
 
@@ -3207,6 +3232,9 @@ behaviors:
 | T57 | 禁止连续同招 | T56 后气势回满，先尝试 A；再成功结算其他武学普通招后尝试 A；另一路径先成功结算本门普通招后尝试 A | 前两次 A 均以“不能连用同一绝招”拒绝；只有本门普通招清除重复限制，随后 A 合法；若改用本门绝招 B，则 B 合法并把最近绝招更新为 B |
 | T58 | 绝招过滤与 AI 轮换 | 同门 A 为 3 目标高风险长路线，B 为 1 目标可击杀短路线；分别令 A 自身冷却、共享冷却、重复锁、路线硬封 | 四种场景 A 均不进入候选且零资源 / RNG / 冷却副作用；均可用时逐招按目标数、击杀、风险、堵塞、`flowCt` 与共享资源评分，本例选择 B，不按纸面威力固定选 A |
 | T59 | 经脉 Buff 运行载荷 | 受擒 4 级、点穴 7/8/9 级、一个迟滞节点、一个胀损节点、护体路线；再尝试把两个派生视图作为普通 Buff 施加 | 分别按 21 投影移动 / 绝招 / 内功 / 硬封限制；派生视图重建但不重复扣数值，显式施加被拒；护体实例缺 `routeId` 被拒 |
+| T60 | 外放射程与范围 | 利涉大川基础射程 4、三档直线 n4/n5/n6，依次选 0/1/2 档；边界与墙体各裁 1 格 | 射程为 4/6/8，先枚举 4/5/6 格再按既有规则裁掉；不补格、不改 `power`，稳定顺序不变 |
+| T61 | 点穴后重验 | 顶尖 Profile 已预览 2 档；确认前点穴令 `maxProjectionStep` 降至 0；仍提交原目标与 `projectionStep:2` | F0 返回 `PROJECTION_STEP_UNAVAILABLE`；内力 / 气势 / 冷却 / RNG / 路线状态均不变，UI 重选档与目标 |
+| T62 | 外放 AI 敌我同规 | 玩家和敌方加载同一外放招，各有 0/1 档；1 档新增两名敌人但也新增一名友方且需 `round(0.02×4697)=94` MP | 两方均枚举两档并以实际命中集合与 94 MP 计分；若友伤成本令 0 档更优则选 0，不能固定最高档 |
 
 
 ## 16. 待决事项 / 依赖
@@ -3226,6 +3254,7 @@ behaviors:
 | D-06-2 | design/06 | **已解决**：`bf_shangshi` 已由 `rulings-v1.md` §5.3 正式收录；06 仍需落实其跨战斗清理与恢复接口 | §7.4 |
 | D-06-3 | design/06 | **已解决**：06 已收录 `bf_hunmi`、`bf_kangfen`、`bf_minjie`、`bf_zhuanzhu`、`bf_muguangruju`，且 `bf_mabi` 已含“力气 −3×G”；阶段转换驱散与阶段门截断仍属于系统操作 | §7.0、§7.9、§8.8 |
 | D-06-4 | design/06 | Boss 脚本可按实例覆写 Buff：东方不败残影“每次自身行动 +1 层”；英雄三招的改判抵抗不增加控制递减计数 | §8.9、§8.11 |
+| D-06-5 | design/06 | 将旧 `bf_zhenqiwaifang` 明确为 AR-16 的兼容射程来源：对 `projection:true` 与所选档增量取较大值而非相加，确保外放总硬顶不突破基础 `+4`；非外放旧内容仍按 Buff 原定义迁移 | §5.2–§5.2.1 |
 | D-08-1 | design/08 | **已解决（CN-11）**：08 §1.2–§1.4 已同步 `R=2/3 m`、轴坐标行距 `3R/2=1 m`、相邻中心距 `sqrt(3)R≈1.1547 m`；飞越边、出生区 / 窄场模板、坠崖失败接口与地形 AI 分值继续按双方对应章节核验 | §2.9.1、§4.2、§7.7、§8.6 |
 | D-05-1 | design/05、各武学图鉴 | 删除方格曼哈顿距离、8 向和 28 个旧范围模板的生产定义；招式只引用本文的六角范围模板与 `aoe_*` ID | §5.1–§5.7、§14.2 |
 | D-05-2 | design/05 | 蓄招起手 / 收招与释放时移动限制仍归 05；若涉及范围，只传本文 §13.1 的 `HexShape` | §4.8.5、§5.8 |
@@ -3247,11 +3276,12 @@ behaviors:
 | D-CH | chapters/01、03、04、05、08 | 核对三个 Boss 的最终数据，以及聚贤庄、光明顶、襄阳、少室山的六角地图、波次、阵营和分支标记 | §8.9–§8.11、§9.6 |
 | D-CAT-1 | catalog/skills-daojia | **已解决（C13）**：天罡北斗阵、真武七截阵均 4 个真实单位起阵；6 名真实阵员且阵主有效 10 重时才补 1 个无实体虚位。条目数值归图鉴，运行规则归本文 | §6.8.0–§6.8.2 |
 | D-CAT-2 | catalog/skills-shaolin | **已解决（C12 / P47）**：使用 `sk_jingangfumoquan`；慈悲类武学默认制服、可单场关闭。金刚伏魔圈 / 罗汉阵条目数值归图鉴，运行规则归本文 | §4.8.9、§6.8.3 |
-| D-21-1 | design/21、tech/05 | **已解决（AR-14）**：战斗经脉运行、攻防 / 轻功路线、Z4M / Z5M、护体内劲、擒拿 / 点穴与调息均由 21 v2.1 主定义；本文只接逐单位实例、事务顺序、CT / 反应 / AI 与回放接口 | §1.4.1、§3–§8、§13、§15 |
+| D-21-1 | design/21、tech/05 | **已解决（AR-14）**：战斗经脉运行、攻防 / 轻功路线、Z4M / Z5M、护体内劲、擒拿 / 点穴与调息均由 21 v2.3 主定义；本文只接逐单位实例、事务顺序、CT / 反应 / AI 与回放接口 | §1.4.1、§3–§8、§13、§15 |
 | D-21-2 | design/05、武学图鉴 | **已解决（Canon v1.3 澄清）**：21 定义 schema / 算法 / 共享模板与示例，各武学图鉴定义具体 `mfr_*` / `txp_*` 实例；09 只消费引用，缺失时不得以显示名猜路线。绝招只使用 `MoveDef.ultimate:true` | §5.1、§6.1、§13.2 |
 | D-21-3 | tech/05 | 实现 `rulesProtocol:2` 的逐单位 `MeridianFlowModule`、Core 唯一 `battle` RNG 注入、事务回滚、快照 / 回放 hash、预览无副作用与 Python golden 对拍 | §1.4.1、§3.2、§13.1–§13.5 |
 | D-14-2 | design/14 | 战斗招式面板显示每门全部已解锁绝招、角色唯一气势、本门共享冷却与逐招禁用原因；连续同招必须显示“不能连用同一绝招” | §5.1、§5.7、§5.9、§13.1 |
 | D-T-4 | tech/01、tech/05 | 串行化 `ultimateBySkill`，并让玩家 / AI / 一键重复 / Core 共用候选过滤与 E2 冷却时钟；失败候选不扣资源、不推进 RNG | §3.6、§5.1、§8.2、§13.1 |
+| D-AR16-1 | design/14、tech/05 | **已解决（09 规则侧）**：外放档进入 `BattleAction.projectionStep`；Core / UI / AI 共用当前档的射程、形状、总耗内和结构化禁用原因，点穴 / 胀损降档后重验 | §5.1–§5.7、§8.2、§13.2、§13.6 |
 
 ### 16.2 本文依赖的上游事实
 
@@ -3272,11 +3302,11 @@ behaviors:
 | C13 / rulings-v1 | **已解决**：天罡北斗阵、真武七截阵均 `minMembers=4`、`dissolveBelow=4`；虚位无单位、CT、攻击、追击或援护能力 |
 | C20 + AR-12 + tech/02 | **已解决**：旧“战斗四斜向”被六角格覆盖；采用逻辑六向、完整 `battle8`、固定镜头驻留 6 个映射视图 |
 | author-decisions P42–P47 | **已解决**：聚贤庄允许倒戈且保留黑衣人锚点；保留显式“了断”；保留洪安通奉承；速战武学经验 ×0.5；剧情友军默认 AI、剧情可指定可控且占 6 人名额；少林慈悲类武学默认制服且可单场关闭 |
-| 作者需求 AR-14、design/21 v2.1 | **已解决**：21 唯一定义战斗经脉动态、路线与乘区、护体内劲、擒拿 / 点穴、调息和速度投影。本文按 21 §18.6 负责实例调度、出手 / settle 次序、防守窗口、`flowCt`、首轮 / CT / 移动力与 AI 消费；永久穴脉仍归 15 |
+| 作者需求 AR-14、design/21 v2.3 | **已解决**：21 唯一定义战斗经脉动态、路线与乘区、护体内劲、擒拿 / 点穴、调息、速度投影与 AR-16 外放档上限。本文按 21 §18.6 负责实例调度、出手 / settle 次序、防守窗口、`flowCt`、首轮 / CT / 移动力、外放格集合与 AI 消费；永久穴脉仍归 15 |
 
 ### 16.3 对基准的修改提案
 
-> 保留 v1.0 原提案编号以便追溯。P-09-1～P-09-5 已全部或主要由基准 v1.1 吸收；P-09-6～P-09-8 已由基准 v1.2 吸收，P-09-9 / P-09-10 分别由 v1.3 / v1.4 吸收；以下保留历史编号与落点。
+> 保留 v1.0 原提案编号以便追溯。P-09-1～P-09-5 已全部或主要由基准 v1.1 吸收；P-09-6～P-09-8 已由基准 v1.2 吸收，P-09-9 / P-09-10 / P-09-11 分别由 v1.3 / v1.4 / v1.5 吸收；以下保留历史编号与落点。
 
 | # | 状态 | 提案 / 已采纳结论 | 理由 |
 |---|---|---|---|
@@ -3290,6 +3320,7 @@ behaviors:
 | P-09-8 | **已采纳（v1.2 V12-07 / V12-13）** | 基准 §8 固定 6 个 `HexDir`；§19 固定动画资源完整旋转使用 `battle8`，固定镜头常驻映射的 6 视图 | AR-12 覆盖 C20 的旧四向前提，并与 tech/02 的资源方案闭合 |
 | P-09-9 | **已采纳（v1.3 V13-02～V13-07）** | Canon §8 / §9 / §11 / §18 已接纳 21：Z4M / Z5M、护体内劲、6500–13500 bp 经脉速度、逐单位模块与唯一归属 | AR-14 的战斗接口已有 Canon 真值，本文按其调度 |
 | P-09-10 | **已采纳（v1.4 V14-02）** | 同一角色全部绝招共享 `rage 0..100`；同门共享 1 次自身行动冷却，且不能连续使用同一绝招 | 保证多绝招是战术轮换而非连续爆发；本文 §3.6、§5.9 落实运行时序 |
+| P-09-11 | **已采纳（v1.5 V15-02～04）** | AR-16 逐招外放按 0 / 1 / 2 档绑定射程 `+0/+2/+4`、预审形状与额外耗内 `0/2%/4% MPREF`；外放 Z5M 替代普通 Z5M | 本文 §5.2.1、§5.4、§8.2 负责六角格、选目标和敌我 AI；公式仍唯一归 21 |
 
 ### 16.4 原著考据待办
 
