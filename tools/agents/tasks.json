@@ -5720,7 +5720,8 @@
         "NB2",
         "NB3",
         "NB4a",
-        "NB4b"
+        "NB4b",
+        "NU2S"
       ],
       "writes": [
         "docs/**",
@@ -6331,6 +6332,52 @@
             "{python}",
             "tools/balance/boss_pacing.py",
             "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NU2S",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "五绝 / 逍遥图鉴：绝招真值回写正文卡与路线索引（取消覆写层）",
+      "prompt": "NU2S-sync.md",
+      "deps": [
+        "NU2"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-wujue.md",
+        "docs/design/catalog/skills-xiaoyao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-xiaoyao.md"
           ]
         ]
       }
