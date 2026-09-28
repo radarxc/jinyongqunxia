@@ -28,6 +28,7 @@ from meridian_flow_sim import (
     evade_rating_delta,
     inner_guard,
 )
+from projection_sim import projected_attack_mult_bp
 
 
 BP = 10_000  # design/04 §1.2: 10_000 bp == 100%.
@@ -960,6 +961,7 @@ def damage_pipeline(
     attacker_meridian: FlowMeridianProfile = FLOW_STANDARD_PROFILE,
     defender_meridian: FlowMeridianProfile = FLOW_STANDARD_PROFILE,
     attack_route_length: int = 2, defense_route_length: int = 0,
+    projected: bool = False,
 ) -> DamageTrace:
     """Resolve one already-hit damage segment through Z1..Z10."""
     # Callers may pass pre-rolled outcomes, but attack hard switches remain
@@ -1017,8 +1019,12 @@ def damage_pipeline(
         *Z5_AFFINITY_ADD_RANGE_BP
     ))
     z5 = z4m * aptitude_bp(attacker, attack) * (BP + affinity_add) // (BP ** 2)
-    meridian_attack_bp = attack_meridian_mult_bp(
-        attacker_meridian, defender_meridian, attack_route_length,
+    meridian_attack_bp = (
+        projected_attack_mult_bp(
+            attacker_meridian, defender_meridian, attack_route_length,
+        ) if projected else attack_meridian_mult_bp(
+            attacker_meridian, defender_meridian, attack_route_length,
+        )
     )
     z5m = mul_bp(z5, meridian_attack_bp)
 
@@ -1172,14 +1178,18 @@ def resolve_direct(
     defender_meridian: FlowMeridianProfile = FLOW_STANDARD_PROFILE,
     attack_route_length: int = 2, defense_route_length: int = 0,
     inner_guard_enabled: bool = False, damage_kind: str = "unarmed",
+    projection: bool = False,
     break_guard_bp: int = 0, inner_guard_reflect_bp: int = 0,
 ) -> Tuple[DamageTrace, Settlement]:
     """Run one already-hit direct segment through Z1-Z10 and P5/P7."""
+    if projection and damage_kind != "projected":
+        raise ValueError("projection=True requires damage_kind='projected'")
     trace = damage_pipeline(
         attacker, defender, attack, tier, crit=crit, parried=parried,
         attacker_meridian=attacker_meridian, defender_meridian=defender_meridian,
         attack_route_length=attack_route_length,
         defense_route_length=defense_route_length,
+        projected=projection,
     )
     settlement = settle_direct(
         trace, defender_hp=defender_hp, defender_shield=defender.shield,
@@ -1439,6 +1449,40 @@ def run_checks(rows: Sequence[ReportRow]) -> Tuple[List[str], List[str]]:
         "经脉同档零漂移",
         trace.z4m == trace.z4 and trace.z5m == trace.z5,
         "标准 Profile 的 Z4M/Z5M 均为 10000 bp",
+    )
+    projected_neutral = damage_pipeline(
+        a, d, basic, "HIGH", projected=True, attack_route_length=10,
+    )
+    projected_strong = damage_pipeline(
+        a, d, basic, "HIGH", projected=True,
+        attacker_meridian=FLOW_STRONG_PROFILE, attack_route_length=10,
+    )
+    legacy_channel, _ = resolve_direct(
+        a, d, basic, "HIGH", defender_hp=d.hp_max, defender_mp=d.mp_max,
+        damage_kind="projected", attacker_meridian=FLOW_STRONG_PROFILE,
+        attack_route_length=10,
+    )
+    marked_move, _ = resolve_direct(
+        a, d, basic, "HIGH", defender_hp=d.hp_max, defender_mp=d.mp_max,
+        damage_kind="projected", projection=True,
+        attacker_meridian=FLOW_STRONG_PROFILE, attack_route_length=10,
+    )
+    mismatched_projection_rejected = False
+    try:
+        resolve_direct(
+            a, d, basic, "HIGH", defender_hp=d.hp_max, defender_mp=d.mp_max,
+            projection=True, damage_kind="unarmed",
+        )
+    except ValueError:
+        mismatched_projection_rejected = True
+    check(
+        "外放 Z5M 中性与单次取整",
+        projected_neutral.z5m == projected_neutral.z5
+        and projected_strong.z5m == mul_bp(projected_strong.z5, 13_581)
+        and legacy_channel.z5m == mul_bp(legacy_channel.z5, 12_053)
+        and marked_move.z5m == mul_bp(marked_move.z5, 13_581)
+        and mismatched_projection_rejected,
+        "旧 projected 通道不反推新标记；新外放强一档只在 Z5M 乘 13581 bp 一次",
     )
     meridian_cases = (
         ("同等", FLOW_STANDARD_PROFILE, FLOW_STANDARD_PROFILE, 849, 3_970, BP, 10_000, 849, 5),

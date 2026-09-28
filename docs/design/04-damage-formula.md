@@ -1,23 +1,24 @@
 # 04 · 伤害与判定公式（Damage Formula）
 
 > **归属**（基准 §18）：伤害、治疗、护盾、命中、招架、暴击、效果命中公式；Z0–Z10 的精确定义、取整点与伤害后结算。
-> **上游**：`00-canon.md`（§3 境界、§4 品阶、§5 节奏、§6 属性 ID、§8 战斗模型、§9 乘区）；`decisions/author-requirements.md`（AR-02、AR-12、AR-14）；`decisions/rulings-v1.md`（C01、C02、C03、C11）；`design/02`（书界、压制、等级带）；`design/03`（属性、`STD`、敌人模板）；`design/05`（武学威力与招式字段）；`design/06`（Buff 时序与 DOT/HOT）；`design/08`（地形、高差、坠落）；`design/09`（行动、反应、合击）；`design/15`（经脉静态总账与触发边界）；`design/21`（战斗经脉路线与模拟接口）。
+> **上游**：`00-canon.md`（§3 境界、§4 品阶、§5 节奏、§6 属性 ID、§8 战斗模型、§9 乘区）；`decisions/author-requirements.md`（AR-02、AR-12、AR-14、AR-16）；`decisions/rulings-v1.md`（C01、C02、C03、C11）；`design/02`（书界、压制、等级带）；`design/03`（属性、`STD`、敌人模板）；`design/05`（武学威力与招式字段）；`design/06`（Buff 时序与 DOT/HOT）；`design/08`（地形、高差、坠落）；`design/09`（行动、反应、合击）；`design/15`（经脉静态总账与触发边界）；`design/21`（战斗经脉路线、外放加持与模拟接口）。
 > **引用而不重定义**：属性成长与敌人生成 → `design/03-attributes.md`；武学层数、绝招、代价、招式与范围模板 → `design/05-martial-arts-system.md`；Buff 目录、叠加、品阶对抗与时序 → `design/06-buff-system.md`；六角格距、方向枚举、范围格集合与战斗时序 → `design/09-combat-system.md`；经脉运行、路线曲线、护体内劲与实例状态 → `design/21-meridian-flow-and-moves.md`。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖他文档、本文先给可用数值并在 §13 登记。
-> **版本**：v1.3（经脉系统落地，2026-09-27）。
+> **版本**：v1.4（AR-16 外放威力接入 Z5M，2026-09-27）。
 > **变更记录**：v1.2 落实 CN-09：玩家普通武器/装备由错误沿用内功 10–12 品改为最高 9 品，`STD(70).hpMax` 由 41,314 改为 40,409（`mpMax` 仍为 28,887）；重校 §9 遭遇系数和 42 行金标准，并新增 `design/15` 经脉三档回归。同步补齐调和相性、同时结算共享资源、天书修饰与内部守恒边界。
 > **变更记录**：v1.3 按 AR-14 与 `design/21` v2.0 接入 Z4M / Z5M、经脉闪避评级与护体内劲；新增五档 TTK、标准档零漂移及击穿守恒回归。
+> **变更记录**：v1.4 按 AR-16 令外放招式在既有 Z5M 位置改用 21 的外放专用曲线；不新增乘区，标准档和既有 42 行节奏零漂移。
 
 ---
 
 ## 0. 结论先行与阅读顺序
 
-1. 一次直接伤害严格按 `Z0 → Z1…Z4 → Z4M → Z5 → Z5M → Z6…Z10 → settle`；Z4M / Z5M 是 21 定义的防守 / 攻击经脉独立乘区。
+1. 一次直接伤害严格按 `Z0 → Z1…Z4 → Z4M → Z5 → Z5M → Z6…Z10 → settle`；Z4M / Z5M 是 21 定义的防守 / 攻击经脉独立乘区。外放仅替换该招的 Z5M 曲线，不另乘一次。
 2. C01 定稿：Z1 的实际武学威力只除一次攻方 `P_ref(Ld, tier)`。这样品阶和层数仍有收益，又不会因全程 `G × L(n)` 增长约 6.5 倍而让后期同级战缩成约 1.5 击。
 3. 数值核心使用整数万分点：`BP = 10000 = 100%`；每个乘区结束向下取整。概率以整数 bp 比较，资源消耗按 `MPREF` 四舍五入。
 4. Z2 是比值型减伤；Z3、Z4 各自先加法合并，Z4 正向减伤上限 75%；Z5 由资质独立乘子与相性/破 X 加算池组成。
 5. 直接伤害先扣护体真气，再按需结算护体内劲、`mpGuard`，最后扣气血；完全没有气血伤害时，不施加 `injury` / `bleed`。
-6. 随附模拟器采用解析期望而非蒙特卡洛；十四书界全部节奏检查通过，无已知偏差。
+6. 随附模拟器采用解析期望而非蒙特卡洛；十四书界全部节奏检查通过。`projection_sim.py` 固化外放曲线与三个作者示例，无已知偏差。
 
 ---
 
@@ -92,7 +93,7 @@ D10 = floor(D9 × variance), variance ∈ [0.95,1.05]
 
 其中 `P_actual = G(g_eff) × L(layer_eff) × move.power × Mod_armed × Mod_special`。`1.24` 是用合法 `STD(L)`、上游敌人模板与基准 §5 节奏校准的全局常数**（原创扩展）**；它不是品阶加成，不因等级或阵营变化。
 
-`meridianDefenseBp` 与 `meridianAttackBp` 均由 `design/21` §3.5 / §4.4 的模拟模块给出；无合法防守路线时前者为 10000，标准 Profile 对标准 Profile 时二者严格为 10000。伤害类型只影响所选攻防与机制标签，不改变区序。`direct` 跑完整管线；`dot` 走 §6.5；`true` 与环境伤害只跑其明确列出的区；`reflect`、`redirect`、`mirror`、`counter` 带来源旗标，防循环规则见 `design/06` §5.3.1。
+`meridianDefenseBp` 与 `meridianAttackBp` 均由 `design/21` §3.5 / §4.4 给出；外放招式按 21 §4.4.1 在同一字段写入外放专用结果。无合法防守路线时前者为 10000，标准 Profile 对标准 Profile 时二者严格为 10000。伤害类型只影响所选攻防与机制标签，不改变区序。`direct` 跑完整管线；`dot` 走 §6.5；`true` 与环境伤害只跑其明确列出的区；`reflect`、`redirect`、`mirror`、`counter` 带来源旗标，防循环规则见 `design/06` §5.3.1。
 
 ### 2.1 单段输入与输出契约
 
@@ -101,8 +102,8 @@ D10 = floor(D9 × variance), variance ∈ [0.95,1.05]
 | 类别 | 必需输入 | 读取时点 | 说明 |
 |---|---|---|---|
 | 攻方快照 | `Ld`、四项攻防中的攻击侧、资质、判定评级、`critDmg` | 整招 P1 | 后段不因攻方本招自增益追溯改值；明确写“即时读取”的效果例外 |
-| 招式快照 | `g_eff`、`layer_eff`、`powerBp`、`wInBp`、伤害标签、判定开关 | 整招 P1 | 外来压制必须在进入 04 前完成；本文不保存绝对品阶的第二份结果 |
-| 经脉快照 | 双方 `MeridianProfile`、`meridianAttackBp`、`meridianDefenseBp`、`evadeRatingDelta` | 路线提交后 / 每段 | 字段、曲线和路线状态归 21；04 只消费结果；无防守路线传 10000 |
+| 招式快照 | `g_eff`、`layer_eff`、`powerBp`、`wInBp`、`projection`、伤害标签、判定开关 | 整招 P1 | 外来压制及 21 外放档预检必须先完成；本文不保存绝对品阶的第二份结果 |
+| 经脉快照 | 双方 `MeridianProfile`、`meridianAttackBp`、`meridianDefenseBp`、`evadeRatingDelta` | 路线提交后 / 每段 | 普通 / 外放曲线选择与路线状态归 21；04 只消费唯一结果；无防守路线传 10000 |
 | 守方即时值 | 防御、闪避、招架、韧性、Z4、抗性、护体、当前气血/内力 | 每段 P3/P5 | 前段破盾、驱散或倒地会影响后段；已经离场的目标不再接收后段 |
 | 几何上下文 | 来源格、目标格、六向朝向、高度差、地形修正 | 每段 P3 | 方位枚举由 09 给出，04 只接受 `front/side/back` 与数值修正 |
 | 已决结果 | `hit`、`parried`、`crit`、`varianceBp` | 对应判定后 | 正式结算由 RNG 产生；查询/预览可枚举，不得消耗 RNG |
@@ -258,6 +259,17 @@ D5 = floor(D4M×A_ap×F_aff)
 ### 4.5.1 Z5M · 攻击经脉独立乘区
 
 `D5M=floor(D5×meridianAttackBp/10000)`。`meridianAttackBp` 由 `design/21` §3.5、§4.4 计算并钳于 6500–22000 bp；标准对标准严格为 10000。它不进入 Z3 加算池，也不重复读取品阶压制、相性或境界差。整招可共享一次攻击路线结果，但面对不同目标仍以各自 Profile 求倍率。
+
+AR-16 外放招式仍只走这一格：若 `MoveDef.projection=true`，用 `design/21` §4.4.1 的 `projectedAttackMultBp(attackerProfile,defenderProfile,routeLength)` **替代**普通 `attackMeridianMultBp`；否则用普通曲线。二者不能相乘、相加或先后各取整；旧内容只有 `DamageKind='projected'` 而没有新标记时仍走普通曲线。统一伪代码为：
+
+```text
+meridianAttackBp = move.projection
+  ? projectedAttackMultBp(attackerProfile, defenderProfile, routeLength)
+  : attackMeridianMultBp(attackerProfile, defenderProfile, routeLength)
+D5M = floor(D5 × clamp(meridianAttackBp,6500,22000) / 10000)
+```
+
+外放曲线、修为输入、范围档和 6500–22000 总硬界唯一见 21 §4.4.1；本文不复制锚点。范围选择 0 / 1 / 2 档只改变目标集合、射程与 P1 耗内，不在这里追加威力。标准对标准时普通与外放都得到 10000，故 `D5M=D5`；扩大至 2 档也不能制造第二个乘区。若同一整招命中多目标，可共享攻方路线提交，但仍须按每名守方 Profile 分别求外放 Z5M，并在每个伤害段的 Z5M 边界向下取整一次。
 
 ### 4.6 Z6 · 暴击 `crit`
 
@@ -627,6 +639,18 @@ python3 tools/balance/damage_sim.py --check
 
 标准对标准的 Z4M / Z5M 都是 10000，故 §9.2 的 42 行金标准与 §9.3 区间零漂移。防守链另有确定性例：标准攻击者对强一档守方，`floor(floor(1000×9361/10000)×9200/10000)=861`，两次取整不可合并。
 
+### 9.4.1 外放 Z5M 接线回归
+
+外放不改 §9.2 模板：模板招未逐招声明 `projection:true`，仍走普通曲线；即使显式用标准 Profile 测外放，结果也为 10000。隔离输入 `D5=849`、标准守方、10 段路线时：
+
+| 攻方 | 普通 Z5M | 外放 Z5M | 外放算式 |
+|---|---:|---:|---:|
+| 标准 | 10000 | 10000 | `floor(849×10000/10000)=849` |
+| 强一档 | 12053 | 13581 | `floor(849×13581/10000)=1152` |
+| 顶尖 | 14456 | 19046 | `floor(849×19046/10000)=1616` |
+
+三行只验证 Z5M 位置和曲线替换，不代表完整招式伤害；范围档、额外耗内及三个作者示例见 21 §4.4.1.5 与 `projection_sim.py --report`。守方仍先过 Z4M，伤害 settle 时外放仍按 `DamageKind='projected'` 只给护体内劲 40% 适用量，不因更高 Z5M 绕过防守。
+
 ### 9.5 报表解读与敏感性
 
 报表中的“命中”是成功命中的标准伤害等价次数，不等于招式施放次数；“主角行动轮”才把未命中计入。Boss 行使用四人队输出折算，例如天龙 Boss 的 45.7 个标准命中与 16.1 次主角行动并不矛盾。敌方行动轮只是假设目标持续用模板普攻的危险度参考，不是团队被团灭所需轮数。
@@ -655,7 +679,7 @@ python3 tools/balance/damage_sim.py --check
 | 09 ↔ 04 | 六角方位、范围目标、反应/合击、预测 | 04 返回判定概率、逐区 trace 与结算结果；09 决定调用次数/顺序 |
 | 13 → 04 | 天书/称号的 Z3 filter、Z7 `directionAdd`、书契真实伤害 | filter 只筛来源；方向加值先进 Z7 方位池；`dmgType:true` 不进 Z8 |
 | 15 → 04 | 经脉静态属性与触发边界 | 属性经 03 进入 Z1/Z2/Z5；04 只做三档 TTK 与确定性触发回归，不重定义经脉 |
-| 21 → 04 | `MeridianProfile`、`meridianAttackBp`、`meridianDefenseBp`、`evadeRatingDelta`、`InnerGuardResult` | 04 只按 §2 / §6 的位置消费；路线、曲线、容量、击穿及每单位实例均由 21 定义 |
+| 21 → 04 | `MeridianProfile`、普通 / 外放二选一的 `meridianAttackBp`、`meridianDefenseBp`、`evadeRatingDelta`、`InnerGuardResult` | 04 只按 §2 / §6 的位置消费；外放也只占一个 Z5M；路线、曲线、范围档、容量、击穿及每单位实例均由 21 定义 |
 | tech/05 | 整数 bp 实现 | 每区 trace 可记录；查询不得消耗 RNG |
 | UI | 预测值 | 显示命中/招架/暴击、0.95–1.05 区间、护体吸收与效果率 |
 
@@ -685,6 +709,7 @@ calcEffectChance(ctx, effect): number;
 | `BP` / `mulBp` | 10000 为 100%的整数比例单位 / 乘后向下取整 |
 | `D1`…`D10` / `D4M` / `D5M` | 既有乘区及两个经脉独立乘区结束时的整数快照 |
 | `meridianDefenseBp` / `meridianAttackBp` | 21 给出的 Z4M 承伤 / Z5M 攻击倍率；不是内容 ID |
+| `projected` / `projection` | 参考实现运行参数 / 05 待同步的逐招静态字段；为真时 Z5M 选择 21 外放曲线，不是新伤害区 |
 | `evadeRatingDelta` | 21 给出的纯经脉闪避评级差，只在 Z0 加一次 |
 | `damageBeforeMpGuard` | 护体真气与护体内劲后、既有 `mpGuard` 前的剩余伤害 |
 | `P_actual` | 有效品阶、层数、招式与特殊倍率合成的实际威力指数 |
@@ -724,6 +749,7 @@ calcEffectChance(ctx, effect): number;
 | V17 | `meridianAttackBp` 6500–22000、`meridianDefenseBp` 5000–13000；标准对标准均为 10000 | 错误 |
 | V18 | `damageBeforeMpGuard=postShield-innerGuard.cancelled`；内劲与 `mpGuard` 合计耗内不得超过段前内力 | 错误 |
 | V19 | `evadeRatingDelta` 只能来自 21 且在 −35…+35；擒拿 `evadeBp` 不得重复折入 | 错误 |
+| V20 | `projection=true` 时 Z5M 只可选 21 外放曲线；普通 / 外放结果二选一并钳 6500–22000，不得双乘 | 错误 |
 
 ### 12.2 核心测试
 
@@ -758,7 +784,7 @@ calcEffectChance(ctx, effect): number;
 | T21 | 治疗 `base=2`、`healPower=116`、`healRecv=130`；护盾 `base=1`、`healPower=129`、`healRecv=130` | 分别按完整公式末取整为 3 / 2；逐因子提前取整会误得 2 / 1 |
 | T22 | Lv35 普通招式 `costBp=800` | C02：`MPREF=STD(35).mpMax=4697`，`round(4697×8%)=376` |
 | T23 | `STD(L)`，L=1…70；另查 Lv35 | C03：`mpRegen` 最大 6.00%，Lv35 为 4.40% |
-| T24 | `python3 tools/balance/damage_sim.py --check` | 40 项全 PASS、已知偏差 0 |
+| T24 | `python3 tools/balance/damage_sim.py --check` | AR-16 前既有 46 项全 PASS、已知偏差 0；接入后连同 T37 共 47 项 |
 | T25 | 向 Z1 传 `movePowerBp=0` | 构建/运行均拒绝，不静默生成 0 伤害招式 |
 | T26 | 已决参数与硬开关矛盾：`noCrit+crit`、`skipParry+parried`、`parryable=false+parried` | `noCrit` 禁暴；后两者均令 Z9 不生效；`mustCrit` 仅在未 `noCrit` 时强制暴击 |
 | T27 | 招架基准 40 bp、侧击 75%、`targetParryMult=66.67%` | 完整公式末取整为 20 bp |
@@ -771,6 +797,7 @@ calcEffectChance(ctx, effect): number;
 | T34 | Lv70 的 `turn0/turn9` 静态档 | 关键面板逐项匹配 15 §§6.2–7.3；`mpRegen +0.634pp` 在最终战斗值边界换算为整数 bp |
 | T35 | 三经脉档 × 内劲占比 0/50/100% × 42 遭遇 | 378 行；相对同内劲比基线的轮数下降 ≤8%、敌方命中增长 ≤3%，且 65/35 代表招全过硬区间 |
 | T36 | 经脉触发确定性回放 | 开战/每行动限次与 30% 下穿只触发一次；九转仅拒绝首次 `bf_neishang` create，不拒绝 stack/refresh |
+| T37 | 10 段，标准 / 强一档攻方对标准守方，分别普通与 `projection=true` | 标准两者均 10000；强一档普通 12053、外放 13581；外放 `D5M=floor(D5×13581/10000)` 只取整一次 |
 
 ---
 
@@ -810,6 +837,7 @@ calcEffectChance(ctx, effect): number;
 | C03 `mpRegen≤6%` | **采纳** | 作为 V11 接口约束，不在伤害区重复定义属性 |
 | C11 撞击 | **采纳** | §7.4；不附赠眩晕 |
 | 21 v2.0 战斗经脉接口 | **采纳** | Z4M / Z5M 见 §2、§4；闪避见 §3；护体内劲见 §6；曲线与状态仍归 21 |
+| 21 v2.3 / AR-16 外放接口 | **采纳** | `projection=true` 在同一 Z5M 改用外放曲线；范围 / 成本仍归 21、05、09，见 §2、§4.5.1、§9.4.1 |
 
 `STD` 当前仍含 `design/03` 自身登记的装备主属性【建议值】，且其合法装备集合尚需由 `design/10` 复核；模拟结论因此是当前上游基线，不冒充最终内容实测。
 
@@ -821,6 +849,7 @@ calcEffectChance(ctx, effect): number;
 | P-04-2 | 基准 §8 的“斜45°等距网格”按 AR-12 改为六角格，并指向 09 | 作者新增需求已高于基准正文，避免旧四/八向继续传播 |
 | M3-P01 | 基准 §9 在 Z4 后 / Z5 后加入 Z4M / Z5M，分别取整 | 落实 AR-14 独立乘区，同时保持标准档零漂移 |
 | M3-P02 | 基准 §8 / §9 登记护体内劲位于护体真气后、`mpGuard` 前 | 固化资源守恒与“强则无敌”的拳脚抵消语义 |
+| M6-P02 | 基准 §9 登记外放招式以 21 外放曲线替代普通 Z5M；仍在 Z5 后只向下取整一次、总界 6500–22000、标准对标准 10000 | 落实 AR-16 的威力剧增，同时阻止同一经脉优势双算 |
 
 ### 13.4 原著考据待办
 
@@ -836,3 +865,4 @@ calcEffectChance(ctx, effect): number;
 | Q4 | `asHigh` 没有给高度级数时按几级 | 默认攻方高 1 级 |
 | Q5 | Z10 是否每段独立掷骰 | 默认每段独立；保持多段有波动但总伤更稳定 |
 | Q6 | 基准何时正式吸收 M3-P01 / M3-P02 | 默认先按作者决定与 21 v2.0 执行；待基准维护任务登记 |
+| Q7 | AR-16 外放曲线是否维持当前陡度 | 默认按 21 §4.4.1 与 `projection_sim.py`；10 段高 / 顶尖对标准为 13581 / 19046 bp，待作者确认 |

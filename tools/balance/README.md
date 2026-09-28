@@ -21,7 +21,7 @@ python3 tools/balance/damage_sim.py --check >/dev/null
 echo $?
 ```
 
-当前预期为 `All 46 checks passed; known deviations: 0.`。
+AR-16 接入后的当前预期为 `All 47 checks passed; known deviations: 0.`；新增的一项只验证外放在唯一 Z5M 的中性与取整，原有 46 项仍全部通过。
 
 ## 模型口径
 
@@ -40,6 +40,7 @@ echo $?
 | 普通招式耗内 | `docs/design/05-martial-arts-system.md` §4.2 | `MP_COST_BP` |
 | 经脉三档静态总账与触发边界 | `docs/design/15-meridians-and-acupoints.md` §6–§8 | `MERIDIAN_PROFILES`、`MeridianTriggerReplay`；`none/turn0/turn9` |
 | 战斗经脉乘区、闪避与护体内劲 | `docs/design/21-meridian-flow-and-moves.md` §3.5、§4.4、§4.8–§4.9 | 导入 `meridian_flow_sim.py` 的 Profile 与纯函数；标准档 10000 bp |
+| 外放范围档与专用 Z5M | `docs/design/21-meridian-flow-and-moves.md` §4.4.1 | `projection_sim.py`；`damage_pipeline(projected=True)` 仅替换普通 Z5M 曲线 |
 | Z1–Z10、护体/以气御伤结算与遭遇校准 | `docs/design/04-damage-formula.md` §2–§9 | 文件顶部常量及对应函数 |
 | `ρ(Δ)`、有效抗性、DOT/HOT 与模板比例系数 | `docs/design/03-attributes.md` §6.3；`docs/design/06-buff-system.md` §3.5.0、§5.3.2、§11 | `rho_bp`、`effective_resistance_bp`、`effect_chance_bp`、`dot_damage` |
 | 坠落 | `docs/design/08-terrain-and-qinggong.md` §5.3 | `fall_damage` |
@@ -89,6 +90,28 @@ python3 tools/balance/damage_sim.py --check
 ```
 
 五档伤害锚点固定使用 10 段攻击路线，与 `design/21` §14.9 一致；不要把普通攻击默认 2 段误用于该隔离回归。
+
+## 外放加持参考实现
+
+`projection_sim.py` 复用 `meridian_flow_sim.py` 的 `MeridianProfile`、经脉强度、速度与路线兑现函数，负责 AR-16 的 0 / 1 / 2 范围档、0 / 2% / 4% `MPREF` 额外耗内，以及外放招式在唯一 Z5M 使用的专用曲线。它只输出已经审核的范围档标签，不枚举六角格；实际几何归 `design/09`。
+
+```bash
+python3 tools/balance/projection_sim.py --check
+python3 tools/balance/projection_sim.py --report
+```
+
+- `--check` 固定标准对标准中性、随修为单调、6500–22000 bp 与射程 +4 / 范围 +2 档硬顶、扩张耗内取整，以及弹指神通、独孤九剑剑气招、降龙十八掌三个作者示例。
+- `--report` 输出三个示例在标准 / 高 / 顶尖修为下的射程、范围档与 Z5M；示例是跨文档对拍夹具，不代替图鉴正式逐招配置。
+- `damage_sim.py` 的 `damage_pipeline(projected=False)` 为兼容默认；传 `projected=True` 时只在 D5 后改用 `projected_attack_mult_bp`，仍只生成一个 `z5m`。`resolve_direct(projection=True, damage_kind='projected')` 对应新 `MoveDef`；两个输入保持独立，因为旧内容可能已有外放伤害通道却还没有逐招新标记，不能反向自动获得威力曲线。运行时会拒绝“新标记为真但伤害通道非 `projected`”的非法组合。
+
+联调时依次运行：
+
+```bash
+python3 tools/balance/meridian_flow_sim.py --check
+python3 tools/balance/projection_sim.py --check
+python3 tools/balance/damage_sim.py --check
+python3 tools/balance/boss_pacing.py --check
+```
 
 ## 逐单位 Boss / 精英节奏估算
 
