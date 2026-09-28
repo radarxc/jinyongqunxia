@@ -5735,7 +5735,8 @@
         "NXc1",
         "NXc2",
         "NXr1",
-        "NXr2"
+        "NXr2",
+        "NL2"
       ],
       "writes": [
         "docs/**",
@@ -5785,6 +5786,11 @@
             "{python}",
             "tools/balance/projection_sim.py",
             "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
           ]
         ]
       }
@@ -6838,6 +6844,17 @@
             "docs/design/catalog/skills-wujue.md",
             "docs/design/catalog/skills-xiaoyao.md",
             "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "docs/design/catalog/skills-shaolin.md",
+            "docs/design/catalog/skills-daojia.md",
+            "docs/design/catalog/skills-general.md",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md"
           ]
         ]
       }
@@ -6908,6 +6925,16 @@
             "docs/design/catalog/skills-kangxi.md",
             "docs/design/catalog/skills-qianlong.md",
             "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "docs/design/catalog/skills-wuyue.md",
+            "docs/design/catalog/skills-kangxi.md",
+            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-gulong.md"
           ]
         ]
       }
@@ -6966,7 +6993,8 @@
       "prompt": "NU5-ultimate-apply.md",
       "deps": [
         "NU5p",
-        "NA2"
+        "NA2",
+        "NL2"
       ],
       "writes": [
         "docs/design/catalog/skills-shaolin.md",
@@ -6981,7 +7009,7 @@
       "vars": {
         "group_name": "武学图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
         "doc_set": "- `docs/design/catalog/skills-shaolin.md`\n- `docs/design/catalog/skills-daojia.md`\n- `docs/design/catalog/skills-general.md`\n- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-xiaoyao.md`\n- `docs/design/catalog/skills-yitian.md`",
-        "extra": "NA2 已统一 V-M01、显式路线与调息字段，并可能新增了 lint 检查；改动后这些检查必须继续通过。"
+        "extra": "**先统一重复的路线定义**（NA2 遗留，NL2 已加检查规则）：本组有绝招路线 ID 同时在文首索引块与旧表中列了不同步骤（五绝 82、逍遥 67、少林 22、道家 19、通用 10、倚天 9）。逐个统一：若旧表中按招式写的序列（NU1–NU3 的\"同门第二 / 第三绝招显式路线\"、NU2S 的\"§0.12.1 最终绝招路线\"）满足 21 的硬约束与同门互异规则（与同门其他绝招共享穴位 ≤50%、非轮换或逆序），优先采用它，并把文首索引块中该路线改为同一序列；否则保留索引块序列。步骤只在文首索引块定义一次，旧表的步骤列改为\"见文首索引\"。本任务升格新写的路线也只写在文首索引块。在报告里分列\"采用旧序列 / 采用索引块序列\"的数目。NA2 已统一 V-M01、显式路线与调息字段，并可能新增了 lint 检查；改动后这些检查必须继续通过。"
       },
       "validate": {
         "exists": [
@@ -7035,6 +7063,17 @@
             "docs/design/catalog/skills-wujue.md",
             "docs/design/catalog/skills-xiaoyao.md",
             "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "docs/design/catalog/skills-shaolin.md",
+            "docs/design/catalog/skills-daojia.md",
+            "docs/design/catalog/skills-general.md",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md"
           ]
         ]
       }
@@ -7048,7 +7087,8 @@
       "prompt": "NU5-ultimate-apply.md",
       "deps": [
         "NU5p",
-        "NA2"
+        "NA2",
+        "NL2"
       ],
       "writes": [
         "docs/design/catalog/skills-xiake-bixue.md",
@@ -7062,7 +7102,7 @@
       "vars": {
         "group_name": "武学图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
         "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`\n- `docs/design/catalog/skills-wuyue.md`\n- `docs/design/catalog/skills-kangxi.md`\n- `docs/design/catalog/skills-qianlong.md`\n- `docs/design/catalog/skills-gulong.md`",
-        "extra": "NA2 已统一 V-M01、显式路线与调息字段，并可能新增了 lint 检查；改动后这些检查必须继续通过。"
+        "extra": "**先统一重复的路线定义**（NA2 遗留，NL2 已加检查规则）：本组有绝招路线 ID 同时在文首索引块与旧表中列了不同步骤（五岳 7、侠客碧血 5）。逐个统一：若旧表中按招式写的序列满足 21 的硬约束与同门互异规则（与同门其他绝招共享穴位 ≤50%、非轮换或逆序），优先采用它，并把文首索引块中该路线改为同一序列；否则保留索引块序列。步骤只在文首索引块定义一次，旧表的步骤列改为\"见文首索引\"。本任务升格新写的路线也只写在文首索引块。在报告里分列\"采用旧序列 / 采用索引块序列\"的数目。NA2 已统一 V-M01、显式路线与调息字段，并可能新增了 lint 检查；改动后这些检查必须继续通过。"
       },
       "validate": {
         "exists": [
@@ -7108,6 +7148,16 @@
           [
             "{python}",
             "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "docs/design/catalog/skills-wuyue.md",
+            "docs/design/catalog/skills-kangxi.md",
+            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
             "docs/design/catalog/skills-xiake-bixue.md",
             "docs/design/catalog/skills-wuyue.md",
             "docs/design/catalog/skills-kangxi.md",
@@ -7195,6 +7245,17 @@
             "docs/design/catalog/skills-wujue.md",
             "docs/design/catalog/skills-xiaoyao.md",
             "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "docs/design/catalog/skills-shaolin.md",
+            "docs/design/catalog/skills-daojia.md",
+            "docs/design/catalog/skills-general.md",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md"
           ]
         ]
       }
@@ -7268,6 +7329,16 @@
           [
             "{python}",
             "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "docs/design/catalog/skills-wuyue.md",
+            "docs/design/catalog/skills-kangxi.md",
+            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
             "docs/design/catalog/skills-xiake-bixue.md",
             "docs/design/catalog/skills-wuyue.md",
             "docs/design/catalog/skills-kangxi.md",
@@ -7455,6 +7526,45 @@
             "docs/design/chapters/12-shujian.md",
             "docs/design/chapters/13-feihu.md",
             "docs/design/chapters/14-xueshan.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NL2",
+      "phase": "G",
+      "wave": 6,
+      "kind": "tool",
+      "title": "图鉴检查脚本增加\"每条路线只定义一次\"",
+      "prompt": "NL2-route-unique.md",
+      "deps": [
+        "NA2"
+      ],
+      "writes": [
+        "tools/lint/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/lint/check_skill_catalogs.py"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
           ]
         ]
       }
