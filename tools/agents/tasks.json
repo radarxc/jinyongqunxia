@@ -5721,7 +5721,10 @@
         "NB3",
         "NB4a",
         "NB4b",
-        "NU2S"
+        "NU2S",
+        "NA1",
+        "NA1t",
+        "NA2"
       ],
       "writes": [
         "docs/**",
@@ -5741,7 +5744,11 @@
             "{python}",
             "-m",
             "unittest",
-            "tools/lint/test_check_ids.py"
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
           ],
           [
             "{python}",
@@ -6378,6 +6385,238 @@
             "tools/agents/check_undefined_in.py",
             "docs/design/catalog/skills-wujue.md",
             "docs/design/catalog/skills-xiaoyao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NA1",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "审计第一段：绝招新规则与经脉落地的规则文档同步（基准 / 裁定 / 05 / 09 / 10 / 14）",
+      "prompt": "NA1-rules-sync.md",
+      "deps": [
+        "M4",
+        "NU1",
+        "NU2",
+        "NU3",
+        "NU4",
+        "N06"
+      ],
+      "writes": [
+        "docs/00-canon.md",
+        "docs/decisions/canon-proposals-v1.2.md",
+        "docs/decisions/rulings-v1.md",
+        "docs/design/05-martial-arts-system.md",
+        "docs/design/09-combat-system.md",
+        "docs/design/10-items-and-equipment.md",
+        "docs/design/14-ui-ux-mobile.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/00-canon.md",
+          "docs/decisions/canon-proposals-v1.2.md",
+          "docs/decisions/rulings-v1.md",
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/09-combat-system.md",
+          "docs/design/10-items-and-equipment.md",
+          "docs/design/14-ui-ux-mobile.md"
+        ],
+        "fences": [
+          "docs/00-canon.md",
+          "docs/decisions/canon-proposals-v1.2.md",
+          "docs/decisions/rulings-v1.md",
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/09-combat-system.md",
+          "docs/design/10-items-and-equipment.md",
+          "docs/design/14-ui-ux-mobile.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NA1t",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "审计第一段：经脉系统与绝招新规则的技术文档同步（tech/01 / 04 / 05 / 08 / 09）",
+      "prompt": "NA1t-tech-sync.md",
+      "deps": [
+        "M4",
+        "Ntech"
+      ],
+      "writes": [
+        "docs/tech/01-architecture.md",
+        "docs/tech/04-data-pipeline.md",
+        "docs/tech/05-gameplay-engine.md",
+        "docs/tech/08-backend-and-online.md",
+        "docs/tech/09-roadmap.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/tech/01-architecture.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/05-gameplay-engine.md",
+          "docs/tech/08-backend-and-online.md",
+          "docs/tech/09-roadmap.md"
+        ],
+        "fences": [
+          "docs/tech/01-architecture.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/05-gameplay-engine.md",
+          "docs/tech/08-backend-and-online.md",
+          "docs/tech/09-roadmap.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NA2",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "审计第二段：11 册武学图鉴的绝招与经脉实例一致性（V-M01、显式路线、调息字段、Buff 迁移、lint）",
+      "prompt": "NA2-catalog-consistency.md",
+      "deps": [
+        "NU1",
+        "NU2S",
+        "NU3",
+        "NU4",
+        "NL"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-shaolin.md",
+        "docs/design/catalog/skills-daojia.md",
+        "docs/design/catalog/skills-general.md",
+        "docs/design/catalog/skills-wujue.md",
+        "docs/design/catalog/skills-xiaoyao.md",
+        "docs/design/catalog/skills-yitian.md",
+        "docs/design/catalog/skills-xiake-bixue.md",
+        "docs/design/catalog/skills-wuyue.md",
+        "docs/design/catalog/skills-kangxi.md",
+        "docs/design/catalog/skills-qianlong.md",
+        "docs/design/catalog/skills-gulong.md",
+        "tools/lint/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md",
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md",
+          "docs/design/catalog/skills-yitian.md",
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md",
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md",
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md",
+          "docs/design/catalog/skills-yitian.md",
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md",
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-shaolin.md",
+            "docs/design/catalog/skills-daojia.md",
+            "docs/design/catalog/skills-general.md",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md",
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "docs/design/catalog/skills-wuyue.md",
+            "docs/design/catalog/skills-kangxi.md",
+            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-gulong.md"
           ]
         ]
       }
