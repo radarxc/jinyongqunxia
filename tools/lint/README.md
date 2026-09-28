@@ -41,7 +41,8 @@ python3 -m unittest -v tools.lint.test_check_ids
 1. **引用但未定义**：活动正文中的 ID 没有在允许的归属文档中形成定义。
 2. **冲突的重复定义**：同一 ID 在多个文件定义且可提取的名称不一致。当前至少
    比较名称；同名索引/摘要不报错。武学名称以 `docs/design/catalog/*.md` 的
-   `SkillDef` 为准，`design/05` 的机制标题不会覆盖图鉴名。
+   `SkillDef` 为准，`design/05` 的机制标题不会覆盖图鉴名。`mfr_*` / `txp_*`
+   若同时在 `design/21` 与武学图鉴定义，则无论名称是否相同都按所有权冲突报告。
 3. **疑似近似拼写**：同前缀 ID 的后缀编辑距离为 1 或 2，且恰有一方已定义。
    连号、父子式前缀、高密度子 ID 空间会降噪；已人工确认的合法近名对由
    `tools/lint/check_ids_near_allowlist.json` 管理。
@@ -104,6 +105,14 @@ ID 加反引号；这样既便于阅读，也能被检查器稳定识别。
 - 明确的“本文新增术语与 ID”/“ID 清单”登记；
 - 少量仓库既有的强语义形式，例如 Buff 的 `family:`、`exclusive:` 和连续性旗标。
 
+经脉内容采用两层归属：`design/21` 定义模式、共享模板与示例，
+`docs/design/catalog/skills-*.md` 定义具体武学的 `mfr_*` 路线和 `txp_*` 调息档案
+实例；`qnl_*` / `dxl_*` 仍只由 `design/21` 定义。图鉴中的显式实例列按实际写法
+识别：路线列为 `路线 id`、`movementRouteRef`，调息列为 `breathProfileRef`、
+`BreathProfile.id`；NC1 使用的复合列 `内功 → 调息档案` 仅接受恰好一个
+`sk_* → txp_*` 映射。只写“按 `mfr_<move>` 派生”或只列 `mv_*` / 模板不会
+自动生成定义，缺少显式实例仍按“引用但未定义”报告。
+
 候选、建议、示例、占位、迁移、重命名、旧 ID、别名、历史、不采纳、开放问题、
 参考资料等上下文不建立正式定义或活跃引用；同句“禁止 / 不新增 / 只作迁移源”等
 否定措辞同理。规则按小节标题、表头、代码块 schema 与行内语义判定，不按具体旧 ID
@@ -134,7 +143,8 @@ ID 加反引号；这样既便于阅读，也能被检查器稳定识别。
 | `tal_` / `tmpl_` / `arch_` | `design/03` |
 | `origin_` | `design/01` |
 | `mer_` / `ap_` / `zt_` | `design/15` |
-| `mfr_` / `qnl_` / `dxl_` / `txp_` | `design/21` |
+| `mfr_` / `txp_` | `design/21` 的模式、共享模板与示例；`catalog/skills-*.md` 的具体武学实例 |
+| `qnl_` / `dxl_` | `design/21` |
 | `res_` / `sv_` / `job_` | `design/16` |
 | `rp_` / `biz_` | 对应 `design/chapters/NN-*` 的书界实例 |
 | `city_` / `offmap_` / `post_` / `port_` / `route_` | `design/19` 与地图 YAML |

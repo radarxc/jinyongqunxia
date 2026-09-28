@@ -273,7 +273,9 @@ skills:
         undefined = {item["id"] for item in report["issues"]["undefined_references"]}
         self.assertNotIn("ap_keyed", undefined)
 
-    def test_meridian_runtime_families_are_defined_only_by_design_21(self) -> None:
+    def test_catalog_can_define_route_and_breath_instances_but_not_profiles(
+        self,
+    ) -> None:
         identifiers = (
             "mfr_owner_route",
             "qnl_owner_profile",
@@ -293,26 +295,102 @@ skills:
                 + "\n",
             )
             repo.write(
-                "docs/design/05-martial-arts-system.md",
-                "# 错误归属\n\n| ID | 名称 |\n|---|---|\n"
-                "| `mfr_wrong_owner` | 误放路线 |\n"
+                "docs/design/catalog/skills-test.md",
+                "# 图鉴实例\n\n| ID | 名称 |\n|---|---|\n"
+                "| `mfr_catalog_route` | 具体路线 |\n"
+                "| `txp_catalog_breath` | 具体调息 |\n"
                 "| `qnl_wrong_owner` | 误放擒拿 |\n"
                 "| `dxl_wrong_owner` | 误放点穴 |\n"
-                "| `txp_wrong_owner` | 误放调息 |\n",
             )
 
             report = check_ids.build_report(repo.root, [])
 
         undefined = {item["id"] for item in report["issues"]["undefined_references"]}
-        self.assertTrue(set(identifiers).isdisjoint(undefined))
+        self.assertTrue(
+            set(identifiers)
+            .union({"mfr_catalog_route", "txp_catalog_breath"})
+            .isdisjoint(undefined)
+        )
+        self.assertTrue(
+            {"qnl_wrong_owner", "dxl_wrong_owner"}.issubset(undefined)
+        )
+
+    def test_catalog_instance_headers_define_explicit_route_and_breath_ids(
+        self,
+    ) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            path = repo.write(
+                "docs/design/catalog/skills-test.md",
+                """# 图鉴实例
+
+| 武学 | moveRef | 路线 id |
+|---|---|---|
+| `sk_alpha` | `mv_alpha_hit` | `mfr_alpha_hit` |
+
+| 轻功 | movementRouteRef | 模板 |
+|---|---|---|
+| `sk_step` | `mfr_step_move` | M4 |
+
+| 内功 | breathProfileRef | 输入 |
+|---|---|---|
+| `sk_inner_a` | `txp_inner_a` | A |
+
+| 内功 | `BreathProfile.id` | 输入 |
+|---|---|---|
+| `sk_inner_b` | `txp_inner_b` | B |
+
+| 内功 → 调息档案 | 输入 |
+|---|---|
+| `sk_inner_c → txp_inner_c` | C |
+| `txp_missing_skill` | 非法：缺少武学 |
+| `sk_inner_d → txp_inner_d → txp_extra` | 非法：多个调息档案 |
+""",
+            )
+            warnings: List[str] = []
+            prefixes = list(check_ids.DEFAULT_PREFIXES)
+            regex = check_ids.compile_id_regex(prefixes)
+            doc = check_ids.load_document(path, repo.root, warnings)
+            self.assertIsNotNone(doc)
+
+            _, definitions = check_ids.extract_occurrences(
+                [doc], prefixes, regex  # type: ignore[list-item]
+            )
+
+        defined = {item.id for item in definitions}
         self.assertTrue(
             {
-                "mfr_wrong_owner",
-                "qnl_wrong_owner",
-                "dxl_wrong_owner",
-                "txp_wrong_owner",
-            }.issubset(undefined)
+                "mfr_alpha_hit",
+                "mfr_step_move",
+                "txp_inner_a",
+                "txp_inner_b",
+                "txp_inner_c",
+            }
+            <= defined
         )
+        self.assertTrue(
+            {"txp_missing_skill", "txp_inner_d", "txp_extra"}.isdisjoint(
+                defined
+            )
+        )
+
+    def test_catalog_implicit_route_derivation_does_not_define_instance(
+        self,
+    ) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/catalog/skills-test.md",
+                "# 图鉴实例\n\n"
+                "| 武学 | 逐招 `mv_*：用途/模板` |\n|---|---|\n"
+                "| `sk_alpha` | `mv_alpha_hit：attack/A4` |\n\n"
+                "运行时引用 `mfr_alpha_hit`。\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertIn("mfr_alpha_hit", undefined)
 
     def test_unique_owners_reject_legacy_npc_sect_and_main_quest_definitions(
         self,
@@ -789,6 +867,49 @@ class IssueCategoryTests(unittest.TestCase):
         self.assertEqual(["it_local", "it_same"], [item["id"] for item in issues])
         self.assertEqual(["丁", "丙"], issues[0]["values"])
         self.assertEqual(["乙", "甲"], issues[1]["values"])
+
+    def test_category_2_reports_cross_layer_meridian_instance_duplicates(
+        self,
+    ) -> None:
+        definitions = [
+            check_ids.Definition(
+                "mfr_shared",
+                check_ids.Location(
+                    "docs/design/21-meridian-flow-and-moves.md", 10, 1
+                ),
+                None,
+                "yaml-id",
+            ),
+            check_ids.Definition(
+                "mfr_shared",
+                check_ids.Location(
+                    "docs/design/catalog/skills-test.md", 20, 1
+                ),
+                None,
+                "table",
+            ),
+            check_ids.Definition(
+                "txp_shared",
+                check_ids.Location(
+                    "docs/design/21-meridian-flow-and-moves.md", 30, 1
+                ),
+                "同名调息",
+                "table",
+            ),
+            check_ids.Definition(
+                "txp_shared",
+                check_ids.Location(
+                    "docs/design/catalog/skills-test.md", 40, 1
+                ),
+                "同名调息",
+                "table",
+            ),
+        ]
+
+        issues = check_ids.duplicate_issues(definitions)
+
+        self.assertEqual(["mfr_shared", "txp_shared"], [item["id"] for item in issues])
+        self.assertTrue(all(item["field"] == "owner" for item in issues))
 
     def test_category_3_reports_close_defined_and_undefined_spellings(self) -> None:
         occurrences = [
