@@ -89,3 +89,22 @@ python3 tools/balance/damage_sim.py --check
 ```
 
 五档伤害锚点固定使用 10 段攻击路线，与 `design/21` §14.9 一致；不要把普通攻击默认 2 段误用于该隔离回归。
+
+## 逐单位 Boss / 精英节奏估算
+
+`boss_pacing.py` 以当界标准玩家为对手，复用上述两个脚本的模板轮数与经脉纯函数；输入七项参数及血量 / 防御倍率，输出 `estimatedRounds` 和留余量的 `recommendedMultiplierToWindow`。直接传参：
+
+```bash
+python3 tools/balance/boss_pacing.py --chapter 2 --kind boss \
+  --name 欧阳锋 --eff-grade 10 --eff-layer 9 --inner-nature yin \
+  --hp-multiplier 1 --defense-multiplier 1
+```
+
+批量输入可为单对象、对象数组或 `{"units":[...]}`；字段示例为 `chapter`、`kind`、`effGrade`、`effLayer`、`mpRatioBp`、`practiceBp`、`capacityScaleBp`、`innerNature`、`openPolicy`、`milestones`、`hpMultiplier`、`defenseMultiplier`：
+
+```bash
+python3 tools/balance/boss_pacing.py --json /tmp/boss-units.json
+python3 tools/balance/boss_pacing.py --check
+```
+
+Boss / 精英窗口分别为 12–25 / 6–10 轮。超窗时优先把血量与防御倍率乘积调到工具推荐值或用阶段机制减总耐久，不得压低主运经脉；多人战按整场总耐久 / 目标计。静态估算不模拟路线风险与行动表，生产仍须固定 RNG 回放。
