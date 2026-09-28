@@ -5736,7 +5736,8 @@
         "NXc2",
         "NXr1",
         "NXr2",
-        "NL2"
+        "NL2",
+        "NL3"
       ],
       "writes": [
         "docs/**",
@@ -6994,7 +6995,8 @@
       "deps": [
         "NU5p",
         "NA2",
-        "NL2"
+        "NL2",
+        "NL3"
       ],
       "writes": [
         "docs/design/catalog/skills-shaolin.md",
@@ -7088,7 +7090,8 @@
       "deps": [
         "NU5p",
         "NA2",
-        "NL2"
+        "NL2",
+        "NL3"
       ],
       "writes": [
         "docs/design/catalog/skills-xiake-bixue.md",
@@ -7539,6 +7542,46 @@
       "prompt": "NL2-route-unique.md",
       "deps": [
         "NA2"
+      ],
+      "writes": [
+        "tools/lint/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/lint/check_skill_catalogs.py"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NL3",
+      "phase": "G",
+      "wave": 6,
+      "kind": "tool",
+      "title": "图鉴检查脚本：绝招配额改为按规则逐门判定（读 NU5p 裁定表）",
+      "prompt": "NL3-quota-rules.md",
+      "deps": [
+        "NL2",
+        "NU5p"
       ],
       "writes": [
         "tools/lint/**"
