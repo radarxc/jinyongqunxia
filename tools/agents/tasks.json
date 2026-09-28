@@ -5751,7 +5751,8 @@
         "NXB12",
         "NXB13",
         "NXB14",
-        "NXfix"
+        "NXfix",
+        "NXT"
       ],
       "writes": [
         "docs/**",
@@ -8810,7 +8811,8 @@
         "NXB12",
         "NXB13",
         "NXB14",
-        "NR2"
+        "NR2",
+        "NXT"
       ],
       "writes": [
         "docs/design/catalog/skills-shaolin.md",
@@ -8892,6 +8894,140 @@
             "tools/lint/check_skill_catalogs.py",
             "--strict",
             "--diversity-strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXT",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "天阶扩容：为顶尖人物补具名天阶主运，并登记作者三项决定（扩容 / 音功 / 大手印掌风）",
+      "prompt": "NXT-tianjie-expand.md",
+      "deps": [
+        "NXB01",
+        "NXB02",
+        "NXB03",
+        "NXB04",
+        "NXB05",
+        "NXB06",
+        "NXB07",
+        "NXB08",
+        "NXB09",
+        "NXB10",
+        "NXB11",
+        "NXB12",
+        "NXB13",
+        "NXB14",
+        "M5c1",
+        "M5c2",
+        "NR0"
+      ],
+      "writes": [
+        "docs/00-canon.md",
+        "docs/decisions/author-requirements.md",
+        "docs/decisions/ultimate-counts-tianzhong-dizhong.md",
+        "docs/design/21-meridian-flow-and-moves.md",
+        "docs/decisions/canon-proposals-v1.2.md",
+        "docs/design/catalog/skills-bulu-02-shediao.md",
+        "docs/design/catalog/skills-bulu-04-yitian.md",
+        "docs/design/catalog/skills-bulu-05-xiaoao.md",
+        "docs/design/chapters/02-shediao.md",
+        "docs/design/chapters/03-shendiao.md",
+        "docs/design/chapters/04-yitian.md",
+        "docs/design/chapters/05-xiaoao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/00-canon.md",
+          "docs/decisions/author-requirements.md",
+          "docs/decisions/ultimate-counts-tianzhong-dizhong.md",
+          "docs/design/21-meridian-flow-and-moves.md",
+          "docs/decisions/canon-proposals-v1.2.md",
+          "docs/design/catalog/skills-bulu-02-shediao.md",
+          "docs/design/catalog/skills-bulu-04-yitian.md",
+          "docs/design/catalog/skills-bulu-05-xiaoao.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md"
+        ],
+        "fences": [
+          "docs/00-canon.md",
+          "docs/decisions/author-requirements.md",
+          "docs/decisions/ultimate-counts-tianzhong-dizhong.md",
+          "docs/design/21-meridian-flow-and-moves.md",
+          "docs/decisions/canon-proposals-v1.2.md",
+          "docs/design/catalog/skills-bulu-02-shediao.md",
+          "docs/design/catalog/skills-bulu-04-yitian.md",
+          "docs/design/catalog/skills-bulu-05-xiaoao.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/chapters/02-shediao.md",
+            "docs/design/chapters/03-shendiao.md",
+            "docs/design/chapters/04-yitian.md",
+            "docs/design/chapters/05-xiaoao.md"
           ],
           [
             "{python}",
