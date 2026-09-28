@@ -1,12 +1,13 @@
 # 05 · 武学体系（Martial Arts System）
 
 > 归属（基准 §18）：武功数据结构、层数、招式预算、内功接口、修炼、装配栏规则、武学图鉴。
-> 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
+> 上游：`00-canon.md` v1.3（唯一事实来源；尚未登记本次 AR-14 数量追加）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：携带、外来压制、残篇/残承 → `design/02-timeline-and-world-tiers.md`；属性公式、`MPREF` 与技艺 ID → `design/03-attributes.md`；伤害公式与乘区 → `design/04-damage-formula.md`；Buff 定义与目录 → `design/06-buff-system.md`；套装定义 → `design/07-set-system.md`；地形/轻功阈值 → `design/08-terrain-and-qinggong.md`；六角范围模板、集气、运劲、合击、反击流程与 AI → `design/09-combat-system.md`；物品/丹药/兵器属性 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务、关系与门派玩法 → `design/12-quests-npc-factions.md`；角色经验与等级 → `design/13-progression-and-endings.md`；穴道、经脉、冲穴与周天 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；门派名录、历史与时代开放 → `design/17-sects-compendium.md`；NPC 身份、同伴与生卒 → `design/18-npc-and-companions.md`；地图节点、坐标与时代地图资产 → `design/19-world-map.md`；后人、宝藏、跨年代残本、信物、配方与投放 → `design/20-legacy-inheritance.md`；战斗经脉运行、攻防/轻功路线、绝招补充、护体内劲、擒拿/点穴、调息与逐单位模拟 → `design/21-meridian-flow-and-moves.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.2（跨文档同步；全局审计，2026-09-27）；经脉系统落地（2026-09-27）。
+> 版本：v1.3（AR-14 绝招数量追加：天 2–3、地 1–2、玄上 1；M4，2026-09-27）；v1.2（跨文档同步；全局审计，2026-09-27）；经脉系统落地（2026-09-27）。
 > 变更记录：v1.2 接收 `design/15` 的 20 个正式经脉 ID、专精倍率与校验边界，补齐 `design/17`–`20` 的唯一归属引用，明确 `recalled` 仅为基础图鉴状态上的“再续朱印”，并将已落盘的跨文档待决项改为已解决。C14 图鉴实数重定与 CN-05 独孤六式预算结论保持不变。
 > 变更记录（2026-09-27，经脉系统落地）：接收 `design/21` v2.0 的武学侧接口：招式引用攻/防/轻功路线，内功引用调息档案并声明护体内劲能力，轻功提供常驻速度路线；路线段时间只计 `flowCt`，经脉攻防乘区独立于 `power` 预算；§14 数量与品阶总账不变。
+> 变更记录（2026-09-27，AR-14 追加）：绝招数量按十二品改为天阶 2–3、地阶 1–2、仅玄上 1；默认第一 / 第二 / 第三绝招在 7 / 9 / 10 重解锁，增加共享气势、武学级绝招冷却、连续重复限制与天上三绝招完整示例。
 > 全局审计：接入 `legacy_fragment` / `legacy_synthesis` 与 `legacy_complete` 形态，按 11 册最终图鉴重算 1,138 门库存和十四书界静态可习得池，并同步六角范围与正式套装闭合结果。
 
 ---
@@ -223,6 +224,8 @@ L         = 0.5 + 0.1 × effLayer                                            // 
 - 武学施加的 Buff 品阶 = `effGrade`（基准 §10"通常继承来源武功品阶"）。
 - **修炼消耗与修为门槛使用绝对 `grade`**（防止"在低武书界便宜地修高阶外来武学"）。
 
+每门已装配武学的绝招轮换使用下列**战斗临时态**，不写回持久 `SkillState`：`ultimateCooldown: 0|1` 与 `lastUltimateMoveId: moveId|null`。同门任一绝招结算后置冷却 1，并记录其 `moveId`；设置冷却的当前行动不递减，紧接着的下一次自身行动全程禁止同门绝招，待该行动结束才清零。即便冷却已经归零，下一次绝招仍不得与 `lastUltimateMoveId` 相同；先施放同门另一绝招或任一同门非绝招后，才解除重复限制。完整行动时序由 `design/09` 接入。
+
 ### 2.7 招式威力管线（交给 design/04 Z1）
 
 ```
@@ -344,20 +347,18 @@ moves:
     name: 金刚掌印
     unlock: 7
     kind: attack
-    ultimate: true
-    rageCost: 100
     target: enemy
     range: { min: 1, max: 1 }
     aoe: { tpl: aoe_single }
     delivery: melee
     mpCost: 0.10
-    cd: 0
+    cd: 2
     recovery: 1200
-    power: 3.00
+    power: 1.50
     parryable: true
     buffs:
       - { id: bf_neishang, chance: 0.6, dur: 3, grade: inherit, to: target }
-    friendlyFire: none
+    friendlyFire: none           # 普通招：1+0.24+0.20+0.14−0.10×0.60=1.52→1.50
 passives:
   - id: ps_tieshazhang_shazhang
     name: 砂掌
@@ -654,23 +655,32 @@ effLayer = min(trueLayer, effectiveTierCap(context), gateCap(grade, displayLevel
 
 每门武学的 `layers` 必须满足下列节奏（数据校验见 §16）：
 
-| 层 | 黄阶 | 玄阶 | 地阶 | 天阶 |
-|---|---|---|---|---|
-| 1 | 招式 ×1–2 + 核心被动（弱） | 招式 ×1–2 + 核心被动 | 招式 ×2 + 核心被动 | 招式 ×2 + 核心被动 |
-| 2–3 | （可空） | 招式 ×1 | 招式 ×1 | 招式 ×1–2 |
-| 4–6 | 招式 ×1 或被动 ×1 | 招式 ×1 + 被动 ×1（"小成"） | 招式 ×1–2 + 被动 ×1 | 招式 ×1–2 + 被动 ×1–2 |
-| 7 | 被动 ×1 | 招式 ×1 或**绝招**（可选） | **绝招** | **绝招** |
-| 8–9 | — | 被动 ×1 | 进阶招/被动 | 进阶招/被动 |
-| 10 | "圆满"被动（小） | "大成"被动 | "大成"机制被动（可含"绝招 +20%"） | "大成"机制被动（可含"绝招 +20%"）；可另设第二绝招 |
+| 层 | 黄阶 | 玄下 / 玄中 | 玄上 | 地阶 | 天阶 |
+|---|---|---|---|---|---|
+| 1 | 招式 ×1–2 + 核心被动（弱） | 招式 ×1–2 + 核心被动 | 招式 ×1–2 + 核心被动 | 招式 ×2 + 核心被动 | 招式 ×2 + 核心被动 |
+| 2–3 | （可空） | 招式 ×1 | 招式 ×1 | 招式 ×1 | 招式 ×1–2 |
+| 4–6 | 招式 ×1 或被动 ×1 | 招式 ×1 + 被动 ×1（"小成"） | 招式 ×1 + 被动 ×1（"小成"） | 招式 ×1–2 + 被动 ×1 | 招式 ×1–2 + 被动 ×1–2 |
+| 7 | 被动 ×1 | 招式或被动 | **第一绝招** | **第一绝招** | **第一绝招** |
+| 8 | — | 被动 ×1 | 被动 ×1 | 进阶招 / 被动 | 进阶招 / 被动 |
+| 9 | — | 被动 ×1 | 被动 ×1 | 配额为 2 时解锁**第二绝招** | **第二绝招** |
+| 10 | "圆满"被动（小） | "大成"被动 | "大成"被动 | "大成"机制被动 | 配额为 3 时解锁**第三绝招**；另可有大成机制 |
 
-**绝招解锁层硬规则**：核心武学（内功/拳脚/兵器）的**第一个绝招解锁层 ≤ 7**——低武书界层数上限为 8，绝招若放在 9、10 重，带入中/低武书界后将被天道封印（design/02 §2.4 的要求）。第 9、10 重只放"满重终式"：大成被动、绝招强化、天阶可选的第二绝招。非核心武学（轻功/暗器/杂学）不受此限。
+**绝招解锁层硬规则**：核心武学（内功 / 拳脚 / 兵器）的**第一个绝招解锁层 ≤ 7**，默认正好在 7 重；第二、第三绝招默认在 9、10 重。这样低武层上限 8 时仍保有第一绝招，中武层上限 9 时可用第二绝招，第三绝招只在 10 重完整发挥。提前解锁第一绝招须写逐门理由；不得把第二 / 第三绝招前移来绕开轮换节奏。非核心武学不受“第一绝招 ≤ 7”的硬门槛，但仍建议使用 7 / 9 / 10。
 
-| 数量规范 | 黄 | 玄 | 地 | 天 |
-|---|---|---|---|---|
-| 普通招式总数 | 2–3 | 3–5 | 4–7 | 5–10 |
-| 绝招 | 0 | 0–1 | 1 | 1–2 |
-| 被动 | 1–2 | 2–4 | 3–4 | 4–7 |
-| 招式栏 `moveSlots` | 3 | 3 | 4 | 5 |
+| grade / 品阶 | 普通招式总数 | 绝招数 | 被动 | `moveSlots` |
+|---|---:|---:|---:|---:|
+| 1–3 黄下 / 中 / 上 | 2–3 | 0 | 1–2 | 3 |
+| 4 玄下 | 3–5 | 0 | 2–4 | 3 |
+| 5 玄中 | 3–5 | 0 | 2–4 | 3 |
+| 6 玄上 | 3–5 | 1 | 2–4 | 3 |
+| 7 地下 | 4–7 | 1 | 3–4 | 4 |
+| 8 地中 | 4–7 | 1–2 | 3–4 | 4 |
+| 9 地上 | 4–7 | 2 | 3–4 | 4 |
+| 10 天下 | 5–10 | 2 | 4–7 | 5 |
+| 11 天中 | 5–10 | 2–3 | 4–7 | 5 |
+| 12 天上 | 5–10 | 3 | 4–7 | 5 |
+
+“九品玄”暂按玄阶最高一品玄上（grade 6）换算，**待作者确认**；确认前以本表为构建规则。地中、天中的区间不是随机值：逐门按已有招式数、原著或可靠武术来源中可区分的战术职责选 1 / 2 或 2 / 3，并在图鉴说明。
 
 原著给出定数招名的武学（降龙十八掌 18 掌、独孤九剑 9 式、龙爪手 8 式等）可突破“普通招式总数”，但招式栏数不变。内功以贡献与被动为主，运功招式 1–4 个即可，不受"普通招式总数"下限约束。
 
@@ -759,7 +769,7 @@ power = AF(tpl) × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σco
 | `cost_disp` | 击退每格 0.05；拉拽 0.10；突进/跳斩（自身位移）0.10；换位/绕背 0.15 |
 | AF | 按最大可命中六角格数 `Nmax` 计算，见 §4.3（唯一公式归 design/09 §5.3.3） |
 
-**例**：降龙十八掌·震惊百里：六角 `aoe_around` 命中 6 格，AF 0.75；`cd 3` 为 +0.36，天阶基准 8%、实际 10% 为 +0.10，眩晕 30% 扣 `0.25×0.30=0.075`，故 `0.75×(1+0.36+0.10)−0.075=1.020`，取 **1.00**（在 ±0.05 手调范围内）。
+**绝招例**：降龙十八掌·震惊百里现按 §4.8 的单体绝招基准 3.00 配表；六角 `aoe_around` 命中 6 格，`AF=0.75`，眩晕 30% 扣 `0.25×0.30=0.075`，故 `3.00×0.75−0.075=2.175`，取 **2.15**（在 ±0.05 手调范围内）。其 `recovery=1200`，另加 21 §12.1 的 9 段 × 85 CT 路线后为 `1200+765=1965≤2000`；路线 CT 不反写进 `power`。
 
 **支援类预算**（治疗与护盾，公式归 design/04）：标准单体治疗 = 目标 `hpMax` 的 18%（大阶基准耗内、`cd 2`）；护体真气（`shield`）按治疗量 × 1.2 等价；群体治疗按 AF 折算。
 
@@ -770,6 +780,8 @@ MoveDef.recovery + Σ route.steps[].segmentCt ≤ 2000
 ```
 
 例如 `mv_xianglong18_lianhuan` 仍按范围、绝招和位移预算得 `power=2.00`；其 10 段路线每段 80 CT，只另得 `flowCt=10×80=800`，故完整收招为 `1200+800=2000`。经脉攻强时的额外伤害在 Z5M 独立兑现，不能反写成更高 `power`。公式、取整、卡住后只计已尝试段以及 `rec_eff∈[500,2000]` 的最终钳制见 design/21 §3.5；本文仅保存路线引用。
+
+绝招沿用同一范围 / 效果扣费方式，只把单体基准从 1.00 换为 3.00。玄上默认单体绝招因此为 `power=3.00`；其耗内为 `玄阶 6%+2%=8% MPREF`、气势 100、收招 1200。推荐 6–8 段路线时，若每段 80–100 CT，则完整收招为 `1200+480..800=1680..2000`，正好落在硬上限内；范围、控制或位移仍须像普通招一样从 3.00 基准扣除，不能因玄上只配一招而超预算。
 
 ### 4.2.1 经脉路线用途与武学侧接口
 
@@ -782,7 +794,7 @@ MoveDef.recovery + Σ route.steps[].segmentCt ≤ 2000
 
 - `MoveDef` 不内嵌 `steps` / `segmentCt` 数组，也不重复保存 `purpose`；二者由 `mfr_*` 路线对象唯一给出。一个招式至多一条主路线；触发路线只用于被动防守 / 身法，不能再给同一次主动动作叠第二条路线。
 - `meridianRouteRef` / `routeOnTriggerRef` 引用的是已展开的稳定路线对象；21 §5 的“短发 / 顺经 / 换脉 / 周流”等模板只是配表方法，不另设 `routeTemplateRef`，也不能把 A–G 排版别名写进 `MoveDef`。`segmentCt` 留在路线 `steps[]`，运行后时间只从 `FlowResult.flowCt` 进入 09。
-- `ultimate` 仍是绝招唯一真值。路线对象可镜像 `ultimate` 作构建期一致性断言，但不得覆写招式；地 / 天阶的绝招数量继续由 §3.5、§4.8 控制。
+- `ultimate` 仍是绝招唯一真值。路线对象可镜像 `ultimate` 作构建期一致性断言，但不得覆写招式；天 / 地 / 玄上的绝招数量继续由 §3.5、§4.8 控制。同门每个绝招各有唯一不同路线 ID，不能用一个路线对象承载多个绝招。
 - 防守路线、轻功路线和攻击路线共享同一单位经脉实例；共用穴位的迟滞、点穴与胀损必须互相可见。实例粒度和调用接口见 design/21 §11，每个可独立施展武学的我方 / 敌方单位各一实例。
 - 旧内容缺路线时只允许按 design/21 §4.6 的 2 段短路迁移；正式发布不得留下运行时默认路线。
 
@@ -863,17 +875,17 @@ AF(N) = clamp(floor(rawAF(N) × 20 + 0.5) / 20, 0.35, 1.00)
 
 | 规则 | 值 |
 |---|---|
-| 消耗 | 气势 `rage` 100（基准 §8），另加耗内 = 大阶基准 + 2% |
-| 预算基准 | `power` 基准 3.00（单体），其余同 §4.2；核心武学第一绝招解锁层 ≤ 7（§3.5）；第 10 重大成被动可给绝招 `power` +20%（在 Z1 招式倍率上乘算） |
-| 冷却 | 无（由气势限制） |
+| 消耗 | 共用角色气势槽 `rage 0..100`；每个绝招均耗 100（基准 §8），另加耗内 = 大阶基准 + 2%，即黄 / 玄 / 地 / 天为 7% / 8% / 9% / 10% `MPREF` |
+| 预算基准 | 单体 `power` 基准 3.00，其余同 §4.2；多绝招不平分也不叠加同一招的预算，每一招按自身范围、效果与代价独立核算。玄上默认绝招即 `power 3.00`、耗内 `0.08×MPREF`、气势 100、收招 1200；核心第一绝招 ≤7 重，第二 / 第三默认 9 / 10 重 |
+| 冷却 / 轮换 | `MoveDef.cd` 仍用于招式自身冷却；此外同门绝招共享 1 次自身行动的武学级冷却。任一绝招结算后同门绝招全部锁住紧接着的下一次自身行动，且不在设置冷却的当前行动末递减；该行动结束归零后，仍不得连续两次选择同一绝招，须先用同门另一绝招或任一同门非绝招 |
 | 收招 | 默认 1200 |
 | 招架 | 可设为可招架，但 Z9 招架减免减半（**建议**，design/04 确认） |
 | 霸体 | 施放过程不可被打断（`charge` 不可用于绝招） |
 | 封绝 | 受"封绝"类 Buff（如 `bf_miyun`）时不可施放 |
 | 演出 | 立绘切入（`anim.cutin`），≤ 1.2 秒，可在设置中关闭 |
-| 数量 | 每门武学 ≤ 2 个；内功绝招以自身/友方效果为主 |
+| 数量 | 按 §3.5 十二品表：天 2–3、地 1–2、玄上 1，玄中 / 玄下与黄阶 0；内功绝招以自身 / 友方效果为主 |
 
-绝招与经脉路线是正交字段：`ultimate:true` 仍只表示气势、解锁、预算与演出语义；需要运气的绝招同时填写 `meridianRouteRef`，并遵守 §4.2.1。路线对象的 `ultimate` 只是与本字段相等的构建期断言。长路线能够按 design/21 §3.5 更充分兑现攻守强度差，但逐段增加 `flowCt`，且卡住仍消耗已支付的内力 / 气势；预检已知未开通、胀损或 9 级点穴封路时则禁用且不扣资源。不得用“绝招”绕过 `recovery+满路线 flowCt≤2000`，也不得再把路线收益算入 `power`。
+绝招与经脉路线是正交字段：`ultimate:true` 仍是绝招唯一真值；需要运气的每个绝招各自填写一个 `meridianRouteRef`，并遵守 §4.2.1。路线对象的 `ultimate` 只是与本字段相等的构建期断言。同门多个绝招不得共用路线 ID，且须区分攻 / 防 / 轻功职责或范围、目标与效果，避免只剩纸面伤害排序。长路线能够按 design/21 §3.5 更充分兑现攻守强度差，但逐段增加 `flowCt`，且卡住仍消耗已支付的内力 / 气势；预检已知未开通、胀损或 9 级点穴封路时则禁用且不扣资源、不启动共享冷却。不得用“绝招”绕过 `recovery+满路线 flowCt≤2000`，也不得再把路线收益算入 `power`。
 
 ### 4.9 招式栏（`moveSlots`）
 
@@ -1746,7 +1758,7 @@ special:
 |---|---|
 | 品阶 | `min(gA, gB) − 1`，**上限 9（地上）**（基准 §4：天级只收原著武学） |
 | 初始层数 | 真实层数 5，`sourceCap 10`，经验曲线按产物品阶 × 1.2 |
-| 招式 | 从 A、B 的普通招式中选至多 `moveSlots` 个（每招 `power × 0.95`，其余字段保留）＋至多 1 个绝招 |
+| 招式 | 从 A、B 的普通招式中选至多 `moveSlots` 个（每招 `power × 0.95`，其余字段保留）＋按产物品阶配绝招；产物上限地上 9，故地下 1、地中 1–2、地上 2，且每个绝招各有独立路线 |
 | 被动 | 从 A、B 中选 2 个；机制类被动仅当 A、B 品阶均 ≥ 10 时可选 |
 | 套装 | 只继承 1 个 `setTags` |
 | 内外比例 | `wOut`/`wIn` 取平均（步长 0.05 取整） |
@@ -1767,6 +1779,7 @@ special:
 
 > 9 门示例覆盖：天上掌法（降龙十八掌）、天上剑法（独孤九剑）、天上内功 ×2（易筋经、九阳神功）、黄上"人强则强"（太祖长拳）、玄阶（全真剑法）、地阶（龙爪手）、黄阶入门（罗汉拳），以及 §2.8 的铁砂掌（玄中）。
 > 招式效果设计为**原创扩展**（原著只给招名与意象）；招名出处有疑者标"待考"。所有 `power` 已按 §4.2 预算公式核算，核算过程写在行尾注释。
+> **M4 配额边界**：本节只有降龙十八掌已展示新规则下的完整三绝招配额；独孤九剑、易筋经、九阳神功等旧示例仍用于字段与预算演示，不代表生产图鉴已满足 §3.5。逐门选择既有招式升级并补独立路线归 NU1–NU4；在其落盘前，V9 应如实报告这些条目未通过，不能用示例省略绕过硬校验。
 
 ### 13.1 降龙十八掌 `sk_xianglong18`（天上 · 拳脚·掌 · 丐帮）
 
@@ -1797,13 +1810,13 @@ layers:
   - { n: 1,  unlock: [mv_xianglong18_kanglong, mv_xianglong18_jianlong, ps_xianglong18_gangmeng] }
   - { n: 2,  unlock: [mv_xianglong18_qianlong, mv_xianglong18_hongjian] }
   - { n: 3,  unlock: [mv_xianglong18_lishe, mv_xianglong18_turu, ps_xianglong18_longyin] }
-  - { n: 4,  unlock: [mv_xianglong18_zhenjing, mv_xianglong18_huoyue] }
+  - { n: 4,  unlock: [mv_xianglong18_huoyue] }
   - { n: 5,  unlock: [mv_xianglong18_shuanglong, mv_xianglong18_yuyue, ps_xianglong18_youyu] }
   - { n: 6,  unlock: [mv_xianglong18_feilong, mv_xianglong18_shicheng] }
   - { n: 7,  unlock: [mv_xianglong18_miyun, mv_xianglong18_sunze, mv_xianglong18_lianhuan] }
   - { n: 8,  unlock: [mv_xianglong18_longzhan, mv_xianglong18_lvshuang, ps_xianglong18_zhigang] }
   - { n: 9,  unlock: [mv_xianglong18_diyang, mv_xianglong18_shenlong] }
-  - { n: 10, unlock: [ps_xianglong18_dacheng] }
+  - { n: 10, unlock: [mv_xianglong18_zhenjing, ps_xianglong18_dacheng] }
 moves:   # 天阶耗内基准 8%
   - { id: mv_xianglong18_kanglong,  name: 亢龙有悔, unlock: 1, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.10, cd: 1, recovery: 1100, power: 1.20, parryable: true,
       buffs: [ {id: bf_liuli, chance: 1.0, dur: 1, grade: inherit, to: self, cond: notKill} ],
@@ -1818,8 +1831,8 @@ moves:   # 天阶耗内基准 8%
       tags: [qigong], note: "掌风越过深水/浅水格不衰减" }                                   # 0.75×1.17×0.85
   - { id: mv_xianglong18_turu,      name: 突如其来, unlock: 3, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.07, cd: 1, recovery: 750, power: 0.90, parryable: true,
       note: "若为本场自身首次出手：暴击 +20" }                                               # 1+0.12−0.05−0.175
-  - { id: mv_xianglong18_zhenjing,  name: 震惊百里, unlock: 4, kind: attack, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_around}, delivery: melee, mpCost: 0.10, cd: 3, recovery: 1000, power: 1.00, parryable: true,
-      buffs: [ {id: bf_xuanyun, chance: 0.3, dur: 1, grade: inherit, to: target} ] }      # 0.75×1.46−0.075=1.020→1.00（六角6格）
+  - { id: mv_xianglong18_zhenjing,  name: 震惊百里, unlock: 10, kind: attack, ultimate: true, rageCost: 100, meridianRouteRef: mfr_xianglong18_zhenjing, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_around}, delivery: melee, mpCost: 0.10, cd: 0, recovery: 1200, power: 2.15, parryable: true,
+      buffs: [ {id: bf_xuanyun, chance: 0.3, dur: 1, grade: inherit, to: target} ], anim: {cutin: cutin/xianglong18_zhenjing} } # 3.0×AF(6=0.75)−0.25×0.30=2.175→2.15
   - { id: mv_xianglong18_huoyue,    name: 或跃在渊, unlock: 4, kind: stance, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_self}, delivery: self, mpCost: 0.05, cd: 2, recovery: 900, power: 0,
       displacement: {type: retreat, n: 2},
       trigger: {on: meleeAttacked, chance: 1.0, perRound: 1, counterPower: 1.00, expires: nextOwnAction} }
@@ -1841,9 +1854,8 @@ moves:   # 天阶耗内基准 8%
       note: "履霜：每层速度 −5%（上限 4 层）；满 4 层时'冰至'：清空层数，追加一段 0.8 倍伤害并定身 1 回合" }
   - { id: mv_xianglong18_diyang,    name: 羝羊触藩, unlock: 9, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_dash, n: 3}, delivery: melee, mpCost: 0.09, cd: 2, recovery: 1000, power: 1.05, parryable: true,
       buffs: [ {id: bf_dingshen, chance: 0.6, dur: 1, grade: inherit, to: target} ] }      # 1.29 −0.10 −0.15
-  - { id: mv_xianglong18_shenlong,  name: 神龙摆尾, unlock: 9, kind: attack, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_cone, r: 1, angle: 120, dirCount: 6}, delivery: melee, mpCost: 0.08, cd: 1, recovery: 1000, power: 0.95, parryable: true,
-      trigger: {on: backAttacked, chance: 0.5, perRound: 1, counterPower: 1.20},
-      note: "主动：以自身当前朝向的反方向为 aim，横扫身后三格；被动：遭背击时 50% 反身一掌" } # 六角120° r1为3格，0.85×1.12=0.952→0.95
+  - { id: mv_xianglong18_shenlong,  name: 神龙摆尾, unlock: 9, kind: attack, ultimate: true, rageCost: 100, meridianRouteRef: mfr_xianglong18_shenlong, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_cone, r: 1, angle: 120, dirCount: 6}, delivery: melee, mpCost: 0.10, cd: 0, recovery: 1200, power: 2.55, parryable: true,
+      note: "主动绝招：以自身当前朝向的反方向为 aim，横扫身后三格；用于反制背后围攻，不再保留自动触发" } # 3.0×AF(3=0.85)=2.55
   - { id: mv_xianglong18_lianhuan,  name: 十八掌连环, unlock: 7, kind: attack, ultimate: true, rageCost: 100, meridianRouteRef: mfr_eighteen_palms_chain, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_cone, r: 3, angle: 60, dirCount: 6}, delivery: melee, mpCost: 0.10, cd: 0, recovery: 1200, power: 2.00, hits: 6, parryable: true,
       displacement: {type: knock, n: 2}, anim: {cutin: cutin/xianglong18},
       note: "（原创扩展命名）十八掌一气呵成：演出依次打出十八掌意象；10 重大成后 ×1.2" }     # 六角7格 AF0.70：3.0×0.70−0.10=2.00
@@ -1853,7 +1865,7 @@ passives:
       text: "连续使用不同的降龙掌：每层降龙招式伤害 +4%，至多 5 层" }
   - { id: ps_xianglong18_youyu,    name: 有余不尽, unlock: 5, kind: effect, value: {mpCostMult: 0.9, killRefund: 0.3}, scope: self, text: "降龙招式耗内 −10%；击杀时返还 30% 耗内（亢龙有悔为 50%）" }
   - { id: ps_xianglong18_zhigang,  name: 至刚至阳, unlock: 8, kind: stat, zone: Z0, value: 15, scope: self, cond: {mainInnerNature: yang}, text: "主运为阳时，降龙招式破招 +15" }
-  - { id: ps_xianglong18_dacheng,  name: 降龙大成, unlock: 10, kind: mechanic, value: {cdMinus: 1, moveSlotsPlus: 1, ultPowerMult: 1.2}, scope: self, text: "所有降龙招式冷却 −1（最低 0）；招式栏 +1；十八掌连环威力 ×1.2" }
+  - { id: ps_xianglong18_dacheng,  name: 降龙大成, unlock: 10, kind: mechanic, value: {cdMinus: 1, moveSlotsPlus: 1, ultPowerMult: 1.2}, scope: self, text: "所有降龙招式自身冷却 −1（最低 0；不减武学级绝招共享冷却）；招式栏 +1；三记绝招威力 ×1.2" }
 setTags: [set_gaibang_bangzhu, set_guojing_xiazhe, set_qidan_xiaofeng]  # C22；套装本体归 design/07
 conflicts: []
 weaponReq: null
@@ -2220,8 +2232,8 @@ moves:   # 玄阶耗内基准 6%
       note: "（原创扩展命名）" }                                                             # 0.85×1.29
   - { id: mv_quanzhenjian_sanqing,  name: 三清朝元, unlock: 6, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_line, n: 3}, delivery: melee, mpCost: 0.08, cd: 2, recovery: 1000, power: 0.95, parryable: true,
       buffs: [ {id: bf_jianshi, dur: 2, grade: inherit, to: self} ], note: "（原创扩展命名）剑势：自身暴击 +10，2 回合" }   # 0.8×1.34 −0.10
-  - { id: mv_quanzhenjian_chongyang, name: 重阳遗意, unlock: 7, kind: attack, ultimate: true, rageCost: 100, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 0, recovery: 1200, power: 3.00, parryable: true,
-      note: "（原创扩展命名）" }
+  - { id: mv_quanzhenjian_chongyang, name: 重阳遗意, unlock: 7, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 2, recovery: 1200, power: 1.50, parryable: true,
+      note: "（原创扩展命名）玄中普通进阶招，不是绝招" }                              # 1+0.10+0.24+0.14=1.48→1.50
 passives:
   - { id: ps_quanzhenjian_xuanmen, name: 玄门正宗, unlock: 2, kind: stat, zone: Z3, value: 0.08, cond: {mainInnerSect: sect_quanzhen}, scope: self }
   - { id: ps_quanzhenjian_jiansui, name: 剑随身走, unlock: 5, kind: trigger, trigger: {on: turnStart, cond: movedTilesGte2ThisAction}, value: {hit: 10}, scope: self,
@@ -2382,7 +2394,7 @@ description: >-
 | 密云不雨 | `rageDrain{value:30}` |
 | 损则有孚 | `refundHpCostOnKill{}` |
 | 履霜冰至 | `stackDetonate{buff:bf_lvshuang, at:4, extraPower:0.8, applyBuff:bf_dingshen, dur:1}` |
-| 神龙摆尾 | `aoe.facing = back`；`trigger{on:backAttacked}` |
+| 神龙摆尾 | `aoe.facing = back`；主动绝招，不再配置 `trigger` |
 | 总诀式 | `buffs[bf_duguyi]`（剑意叠层，效果由 Buff 定义） |
 | 破枪式 | `ignoreReach{}` |
 | 破箭式 | `deflectProjectile{chance:[0.35,0.60], reflectFromLayer:9, reflectPct:0.5}` |
@@ -2398,11 +2410,11 @@ description: >-
 
 | 武学 | 招式 | P | 备注 |
 |---|---|---|---|
-| 降龙十八掌 | 亢龙有悔 / 双龙取水 / 十八掌连环 | 6.30 / 6.83 / 12.60（锥形每目标，含大成 ×1.2） | `3.5×1.5×1.20=6.30`；`3.5×1.5×1.30=6.825`；绝招 `3.5×1.5×2.00×1.20=12.60`。7 重尚无大成：`3.5×1.2×2.00=8.40` |
+| 降龙十八掌 | 亢龙有悔 / 双龙取水 / 十八掌连环 / 神龙摆尾 / 震惊百里 | 6.30 / 6.83 / 12.60 / 16.07 / 13.55（后三者各目标，均含大成 ×1.2） | 普通招 `3.5×1.5×1.20=6.30`、`3.5×1.5×1.30=6.825`；三绝招依次为 `3.5×1.5×2.00×1.20=12.60`、`3.5×1.5×2.55×1.20=16.065`、`3.5×1.5×2.15×1.20=13.545`。7 重连环尚无大成：`3.5×1.2×2.00=8.40` |
 | 独孤九剑 | 总诀式 / 破 X 式 / 无招胜有招 | 4.73 / 5.78（另有 Z5 +29%、破招架） / 15.75（含大成 ×1.2） | 六个 `power:1.10` 的类别匹配式预算为 `(1+0.12+0.30)×0.85−0.06=1.147`，与配置差 `−0.047`；实战值 `3.5×1.5×1.10=5.775≈5.78`。依赖克制，打无匹配目标时弱于降龙 |
 | 太祖长拳（Lv 70） | 冲阵斩将 / 长拳贯日 | 3.41 / 4.02 | ≈ 地下 10 重水准 |
 | 龙爪手 | 批亢式 / 三十六路 | 3.96 / 8.91 | 控制强 |
-| 全真剑法 | 定阳针 / 重阳遗意 | 2.33 / 6.98 | |
+| 全真剑法 | 定阳针 / 重阳遗意 | 2.33 / 3.49 | 玄中按新规则无绝招；后者为普通进阶招，`1.55×1.5×1.50=3.4875≈3.49` |
 | 铁砂掌 | 开碑手 | 2.44 | |
 | 罗汉拳 | 罗汉撞钟 | 1.58 | |
 
@@ -2680,7 +2692,7 @@ description: >-
 |---|---|---|
 | **已入基准 v1.1 的前缀** | `ps_<武功拼音>_<拼音>` 被动；`aoe_<名>` 范围模板；`vow_<拼音>` 誓约 | 基准 V11-04；不是本轮新造前缀 |
 | 经脉运行（仅引用 design/21 的拟登记前缀） | `mfr_*` 招式路线；`txp_*` 调息档案；`qnl_*` 擒拿严重度；`dxl_*` 点穴严重度 | 本文 schema 直接引用 `mfr_*` / `txp_*`；不创建定义。`qnl_*` / `dxl_*` 仅为交互语义引用；四前缀待 Canon 接纳 M2-P01 |
-| 经脉运行示例（仅引用） | `mfr_eighteen_palms_chain`、`txp_harmony_supreme` | 均已由 design/21 §12.1 定义；05 不登记第二份对象 |
+| 经脉运行示例（仅引用） | `mfr_xianglong18_zhenjing`、`mfr_eighteen_palms_chain`、`mfr_xianglong18_shenlong`、`txp_harmony_supreme` | 均已由 design/21 §12.1 定义；05 不登记第二份对象 |
 | 范围模板（仅引用 design/09 的生产 ID） | 基础：`aoe_single` `aoe_self` `aoe_ring` `aoe_around` `aoe_disk` `aoe_line` `aoe_bolt` `aoe_spokes` `aoe_cone` `aoe_zone` `aoe_allies` `aoe_field` `aoe_ally_all`；行为/组合：`aoe_wave` `aoe_pierce` `aoe_leap` `aoe_dash` `aoe_pull` `aoe_knock` `aoe_chain` `aoe_multi` `aoe_behind` `aoe_swap` `aoe_boomerang` `aoe_sequence` | §4.3；旧方格 ID 仅为迁移别名，不列生产清单 |
 | 武学（本文新增，非基准 §13） | `sk_basic` `sk_tieshazhang` `sk_taizuchangquan` `sk_quanzhenjian` `sk_longzhaoshou` `sk_luohanquan` `sk_qishangquan` `sk_jiuyinbaigu` `sk_zichuang01`–`03` | 完整定义于本文 |
 | 武学（仅引用，待 catalog 定义） | `sk_mianzhang` 绵掌、`sk_yunvjian` 玉女剑法、`sk_shaolinqinna` 少林擒拿手、`sk_huagong` 化功大法 | catalog |
@@ -2717,7 +2729,7 @@ description: >-
 | V6 | `layers[].n`、招式/被动 `unlock` 为整数 1–10；每个解锁对象恰好出现一次且不超过 `maxLayer` | 失败 |
 | V7 | 按 §3.5 检查解锁节奏、普通招式/被动数量和 `moveSlots`；原著有定数的招式只豁免数量上限，不豁免栏位 | 警告 |
 | V8 | 普通招式 `power` 与 §4.2 预算差值 ≤ 0.05；AF 必须由 design/09 的 `HexShape` 最大格数计算；显式特例须有说明 | 警告 |
-| V9 | 绝招 `rageCost=100`，每门 ≤2，黄阶不得有；核心武学第一绝招 `unlock≤7`；地、天阶核心武学至少一项 | 失败 |
+| V9 | `ultimate:true` 为唯一真值且每项 `rageCost=100`；按绝对 `grade` 校验绝招数：1–5 为 0、6 为 1、7 为 1、8 为 1–2、9 为 2、10 为 2、11 为 2–3、12 为 3；核心武学第一绝招 `unlock≤7`，第二 / 第三默认 9 / 10 | 失败 |
 | V10 | `layerStats` 第 10 重合计不超过 §3.6 大阶上限；内功 `stats` 与 `layerStats` 不重复计同一增益 | 警告 |
 | V11 | `setTags` 与 design/07 成员清单双向一致；自创武学至多继承一个套装 | 失败 |
 | V12 | 引用的 `bf_*` 存在于 design/06；武学来源默认 `grade: inherit`；不得在 05 重定义同 ID 的 Buff 本体 | 失败 |
@@ -2740,6 +2752,7 @@ description: >-
 | V29 | 所引路线 1–18 段、穴位不重复、逐段 CT 40–120、风险 0–1200；凡由 `MoveDef` 引用者须满足 `recovery + ΣsegmentCt≤2000`。`segmentCt/steps/purpose` 只在 21 路线对象中定义，不得复制进 `MoveDef` | 失败 |
 | V30 | 每门内功必须引用已存在且性质匹配的 `txp_*` 并填 `innerGuard`；`reflectBp` 为整数 0–2000，非零必须有原招 / Buff 反震语义；来袭 `breakGuardBp` 只能从招式 / Buff 来源投影且为整数 0–8000 | 失败 |
 | V31 | `category:movement` 必须有 `movementRouteRef` 且路线用途为 movement；主动轻功覆写也必须为 movement；经脉速度不得写回轻功面板、08 门禁或 `Q_skill` | 失败 |
+| V32 | 每个绝招恰有一个独立 `mfr_*`，同门绝招不得共用路线 ID；任一绝招结算后同门共享冷却置 1，且下一绝招 `moveId != lastUltimateMoveId`，直到施放同门另一绝招或非绝招 | 失败 |
 
 ### 16.2 金标准测试用例
 
@@ -2772,6 +2785,8 @@ description: >-
 | T25 | 防守触发只填 `routeOnTriggerRef`；攻击招同时填第二条主路线；路线第 4 段卡住 | 前者合法且走 defense；第二种失败；卡住只计前 4 段 CT，不以完成段重算 `power` |
 | T26 | 调和内功引用 `txp_harmony_supreme`，`innerGuard={enabled:true,reflectBp:0}`；阳内功误引该档；另填 `reflectBp=2001` | 第一种可解析且 `tiaoxi` 不另耗内；后两种失败；来袭 `breakGuardBp` 由事件输入，护体结果不写入 `SkillState` |
 | T27 | 轻功武学缺 `movementRouteRef`、引用 attack 路线、引用 movement 路线；标准对标准 | 前两种失败；后一种合法且 `meridianSpeedBp=10000`，基础轻功值与门禁输入不变 |
+| T28 | 依次校验 grade 1–12 的绝招数 `0/0/0/0/0/1/1/1–2/2/2/2–3/3`；再令玄中有 1 项、天上只有 2 项 | 前十二组通过；后两组均构建失败 |
+| T29 | 降龙三绝招：7 重连环、9 重神龙、10 重震惊；连环结算当行动末检查冷却；下一次自身行动尝试神龙；该行动改用其他武学后再选连环；随后用同门普通掌再选连环 | 设置当行动末仍为 1；下一自身行动选神龙失败（共享冷却），行动结束后清零；冷却后重复连环失败；施放同门普通掌清重复限制后连环合法；三招各解析不同路线 |
 
 ---
 
@@ -2833,6 +2848,7 @@ description: >-
 | P-11 | 在基准数量约束登记 AR-01：天阶封闭 51 门，全目录目标 1,100–1,150，品阶约 1:3:9:9 | **建议 v1.2 合入**：§14 已按当前只增不减边界采用 51/169/459/459=1,138；替代旧总量口径 |
 | P-12 | Canon §12 登记 `mfr_* / qnl_* / dxl_* / txp_*`，§18 登记 21 对战斗经脉、攻防 / 轻功路线、护体内劲、控制与调息的唯一归属 | **建议 v1.3 合入（M2-P01、M3-P04）**：05 已开始稳定引用 `mfr_*` / `txp_*`；前缀与归属不入基准会令 schema 无法区分正式定义和未知引用 |
 | P-13 | Canon §9 接受 Z4M / Z5M 与护体内劲插入点，§11 接受经脉速度接口，§19 接受一单位一实例 / 唯一 `battle` RNG / golden | **建议 v1.3 合入（M2-P03、M3-P01～P03）**：本文的武学侧字段需要全局结算顺序与确定性契约；具体数值仍由 21 唯一拥有 |
+| P-14 | Canon §4 / §8 登记十二品绝招数量 `0/0/0/0/0/1/1/1–2/2/2/2–3/3`，以及多绝招共享气势、同门共享 1 次自身行动冷却、不得连续重复同一绝招 | **建议 v1.3 合入（AR-14 追加）**：作者新规则高于当前基准；05 §3.5、§4.8 已执行，基准需补全局硬约束与 09 调度接口 |
 
 AR-01 的 C3 同步已完成：§14 以 920 门实际快照为起点，采用 1,138 门受控目标，并把四个 CX 扩充缺口与十四书界池审计分别列明。
 本轮经脉接口不改变 §14 的武学数量、品阶、类别、书界池或图鉴配额：路线 / 调息档案是依附既有武学的配置对象，不计作新武学。
@@ -2886,4 +2902,6 @@ AR-01 的 C3 同步已完成：§14 以 920 门实际快照为起点，采用 1,
 | P49 | 射雕/神雕少林以背景和有限入门为主；射雕保留易筋完整线，神雕不新增易筋完整来源 | §7.1、§13.3 |
 
 AR-14 的开放项沿用 21 §18.5，不另起第二套决定：四个新前缀默认按 M2-P01 纳入 v1.3；调息经脉处理默认不另耗内；9 级点穴默认不能自行调息解；战斗胀损默认战后深度调息清除；待机轻防路线默认 ≤3 段 / 240 CT；同场速度参考默认取可选敌方经脉强度中位数；护体内劲默认不反震。上述默认若被作者改动，05 只迁移引用 / 字段，不复制修改 21 的算法。
+
+AR-14 追加只剩一项作者确认：**“九品玄”是否确指玄上（grade 6）？** 默认是，因此玄上 1 个、玄中 / 玄下 0 个；作者若纠正，只改 §3.5 的十二品映射并重新跑 V9 / T28，不改变 `ultimate:true` 唯一真值、7 / 9 / 10 重节奏或单招预算。图鉴逐门补足由 NU1–NU4 完成；本文的非降龙完整示例仍保留旧条目，仅作为待同步样本，不应据此判定全库已满足 V9。
 
