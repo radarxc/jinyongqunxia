@@ -7695,7 +7695,7 @@
       "vars": {
         "group_name": "武学图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
         "doc_set": "- `docs/design/catalog/skills-shaolin.md`\n- `docs/design/catalog/skills-daojia.md`\n- `docs/design/catalog/skills-general.md`\n- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-xiaoyao.md`\n- `docs/design/catalog/skills-yitian.md`",
-        "extra": "NXc 补录的新武学与 M5c 标记的外放招式一并纳入检查；外放招式改写后仍须满足外放端点白名单。"
+        "extra": "跨组重复的分工：与另一组图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）完全相同的序列，本组保留、不改，由之后运行的 NR2 改写它那一侧的副本；本组内部的完全相同组全部由你处理。NXc 补录的新武学与 M5c 标记的外放招式一并纳入检查；外放招式改写后仍须满足外放端点白名单。"
       },
       "validate": {
         "exists": [
@@ -7779,7 +7779,8 @@
       "prompt": "NR-route-diversify.md",
       "deps": [
         "NR0",
-        "M5c2"
+        "M5c2",
+        "NR1"
       ],
       "writes": [
         "docs/design/catalog/skills-xiake-bixue.md",
@@ -7793,7 +7794,7 @@
       "vars": {
         "group_name": "武学图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
         "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`\n- `docs/design/catalog/skills-wuyue.md`\n- `docs/design/catalog/skills-kangxi.md`\n- `docs/design/catalog/skills-qianlong.md`\n- `docs/design/catalog/skills-gulong.md`",
-        "extra": "NXc 补录的新武学与 M5c 标记的外放招式一并纳入检查；外放招式改写后仍须满足外放端点白名单。"
+        "extra": "你在 NR1 合入之后运行：与少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天完全相同的序列，由你改写本组一侧的副本（NR1 已按约定保留那一侧）。完成后对全部 11 册运行 `python3 tools/lint/check_skill_catalogs.py --strict --diversity-strict`（不带路径即全量），必须为 0。NXc 补录的新武学与 M5c 标记的外放招式一并纳入检查；外放招式改写后仍须满足外放端点白名单。"
       },
       "validate": {
         "exists": [
@@ -7860,6 +7861,12 @@
             "docs/design/catalog/skills-kangxi.md",
             "docs/design/catalog/skills-qianlong.md",
             "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict"
           ]
         ]
       }
