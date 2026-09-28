@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定见 `decisions/rulings-v1.md`；正邪主线与锚点以 `design/story/09-liancheng.md` 为唯一剧情源。
 > 引用而不重定义：核心循环与锚点总览 → `design/01`；年代、境界、书眠与跨书连续性 → `design/02`；属性与等级模板 → `design/03`；伤害公式 → `design/04`；武学条目 → `design/05` 与 `design/catalog/skills-kangxi.md`、`skills-general.md`；Buff → `design/06`；套装 → `design/07`；地形与轻功门禁 → `design/08`；战斗、Boss 与合击 → `design/09`；物品与神兵 → `design/10`；开放世界与内容预算 → `design/11`；任务、门派、羁绊 → `design/12`；成长、天书之力与结局 → `design/13`；穴位、冲穴、通脉、周天与九转 → `design/15`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；门派时代矩阵 → `design/17`；NPC 名录与重逢 → `design/18`；地图资产与时代地名 → `design/19`、`design/map/*`；跨年代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v1.0（D09，2026-09-26）；审校 D09.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）。
+> 版本：v1.0（D09，2026-09-26）；审校 D09.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）。
 
 ---
 
@@ -1084,22 +1084,30 @@ Boss 首杀的随机掉落池在 Lv46、`luk=0` 时建议分布为黄中至地�
 
 每名 Boss 固定主运 1、辅运 2；同场具名或模板精英也给出确定配装，不再使用“有则读取、否则回退”。七项参数依次为 `effGrade/effLayer；mpRatioBp/practiceBp/capacityScaleBp；innerNature；openPolicy`。通行补位均为**（原创扩展配置）**，不改人物原著归属。
 
-| 单位 | 门派 / 来源 | 主运内功 | 辅运内功（2 格） | 外功（逐门标品阶） | 经脉七项参数 | `milestones` | 节奏复核 |
-|---|---|---|---|---|---|---|---|
-| 宝象 | 血刀门 | `sk_xuedaoxinfa`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_xuedaofa`（地中8）、`sk_xuedaoqinfa`（玄上6）、`sk_xuedaojichudao`（黄上3）、`sk_xuedaorumenquan`（黄中2） | `5/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | Boss 标准 18.2；弱档 20、强守 22，均在 12–25 |
-| 万圭 | 万家门 | `sk_wanjiaxinfa`（玄下4） | `sk_tunaqianjue`（黄上3）、`sk_dantianyangqi`（黄中2） | `sk_wanjiajian`（玄下4）、`sk_wanjiaquan`（黄上3）、`sk_wanjiajibenjian`（黄中2） | `4/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 18.2；弱档 20、强守 22，均合格 |
-| 凌退思 | 荆州官府 / 江湖代理 | `sk_wuguanxinfa`（玄下4） | `sk_zhuangxingong`（黄中2）、`sk_tunaqianjue`（黄上3） | `sk_wuyingshou`（玄中5）、`sk_yuzhongqinna`（玄下4）、`sk_huiliuquan`（玄下4）、`sk_tongxingfeishi`（黄下1） | `4/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:false, greatCycle:false, twelveCycle:false, turns:0}` | 旧 `1/1/harmony` → `4/8/harmony`；18.2→18.2 标准锚，具名回放 **（待实测）** |
-| 言达平 | 梅念笙一门 | `sk_meinianshengxinfa`（玄上6） | `sk_xiangxituna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_tangshijian`（地中8）、`sk_qingfengjian`（玄上6）、`sk_wuyingshou`（玄中5）、`sk_jianghurumenjian`（黄上3） | `6/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 18.2；弱档 / 强守为 20 / 22 |
-| 万震山 | 万家门 / 梅念笙一门 | `sk_meinianshengxinfa`（玄上6） | `sk_wanjiaxinfa`（玄下4）、`sk_xiangxituna`（黄上3） | `sk_tangshijian`（地中8）、`sk_wanjiajian`（玄下4）、`sk_wanjiaquan`（黄上3）、`sk_wanjiajibenjian`（黄中2） | `6/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 18.2；弱档 / 强守为 20 / 22 |
-| 戚长发 | 梅念笙一门 | `sk_meinianshengxinfa`（玄上6） | `sk_xiangxituna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_tangshijian`（地中8）、`sk_qingfengjian`（玄上6）、`sk_huiliuquan`（玄下4）、`sk_jianghurumenjian`（黄上3） | `6/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:3}` | 18.2；弱档 / 强守为 20 / 22 |
-| 血刀老祖 | 血刀门 | `sk_xuedaojing`（地上9） | `sk_xuedaoxinfa`（玄中5）、`sk_huxixingqi`（黄下1） | `sk_xuedaofa`（地中8）、`sk_xuedaoqinfa`（玄上6）、`sk_xuedaojichudao`（黄上3）、`sk_xuedaorumenquan`（黄中2） | `9/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:6}` | 18.2；雪地机制后固定 RNG **（待实测）** |
-| 万家门人精英（每名） | 万家门 | `sk_wanjiaxinfa`（玄下4） | `sk_tunaqianjue`（黄上3）、`sk_dantianyangqi`（黄中2） | `sk_wanjiajian`（玄下4）、`sk_wanjiaquan`（黄上3）、`sk_wanjiajibenjian`（黄中2） | `4/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 精英标准 7.7，落在 6–10 |
-| 荆州官差精英（每名） | 官府 / 军伍 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_duanzhenqiang`（玄上6）、`sk_junwuduandao`（黄上3）、`sk_gongshou`（黄中2） | `5/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 精英标准 7.7，落在 6–10 |
-| 血刀门精英（每名） | 血刀门 | `sk_xuedaoxinfa`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_xuedaoqinfa`（玄上6）、`sk_xuedaojichudao`（黄上3）、`sk_xuedaorumenquan`（黄中2） | `5/8；10500/7500/10500；yin；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 精英标准 7.7，落在 6–10 |
+| 单位 | 门派 / 来源 | 主运内功 | 辅运内功（2 格） | 外功（逐门标品阶） | 经脉七项参数 | `milestones` | 血量 / 防御倍率 | 逐单位估算轮数 | 机制备注 |
+|---|---|---|---|---|---|---|---|---:|---|
+| 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主运解析（不得低于玄中5） | 按来源解析两门玄 / 黄基础内功 | 按行动表解析 3–5 门 | `5/8；10500/7500/10500；由主运解析；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.79` | 唯一锚点 |
+| 宝象 | 血刀门 | `sk_xuedaoxinfa`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_xuedaofa`（地中8）、`sk_xuedaoqinfa`（玄上6）、`sk_xuedaojichudao`（黄上3）、`sk_xuedaorumenquan`（黄中2） | `5/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `20.00` | 雪地机制固定 RNG **（待实测）** |
+| 万圭 | 万家门 | `sk_jianghutuna`（玄中5，调和）**（原创扩展配置·待补专属）** | `sk_wanjiaxinfa`（玄下4）、`sk_tunaqianjue`（黄上3） | `sk_wuyingshou`（玄中5）、`sk_wanjiajian`（玄下4）、`sk_wanjiaquan`（黄上3）、`sk_wanjiajibenjian`（黄中2） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `19.62→20.00` | 通行补位不改万家门归属 |
+| 凌退思 | 荆州官府 / 江湖代理 | `sk_jianghutuna`（玄中5，调和）**（原创扩展配置·待补专属）** | `sk_wuguanxinfa`（玄下4）、`sk_zhuangxingong`（黄中2） | `sk_wuyingshou`（玄中5）、`sk_yuzhongqinna`（玄下4）、`sk_huiliuquan`（玄下4）、`sk_tongxingfeishi`（黄下1） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:false, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `19.33→19.71` | 官府江湖代理 **（原创扩展配置）** |
+| 言达平 | 梅念笙一门 | `sk_meinianshengxinfa`（玄上6） | `sk_xiangxituna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_tangshijian`（地中8）、`sk_qingfengjian`（玄上6）、`sk_wuyingshou`（玄中5）、`sk_jianghurumenjian`（黄上3） | `6/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `1.00 / 1.00` | `21.07` | — |
+| 万震山 | 万家门 / 梅念笙一门 | `sk_meinianshengxinfa`（玄上6） | `sk_wanjiaxinfa`（玄下4）、`sk_xiangxituna`（黄上3） | `sk_tangshijian`（地中8）、`sk_wanjiajian`（玄下4）、`sk_wanjiaquan`（黄上3）、`sk_wanjiajibenjian`（黄中2） | `6/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `1.00 / 1.00` | `21.07` | — |
+| 戚长发 | 梅念笙一门 | `sk_meinianshengxinfa`（玄上6） | `sk_xiangxituna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_tangshijian`（地中8）、`sk_qingfengjian`（玄上6）、`sk_huiliuquan`（玄下4）、`sk_jianghurumenjian`（黄上3） | `6/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:3}` | `1.00 / 1.00` | `21.15` | — |
+| 血刀老祖 | 血刀门 | `sk_xuedaojing`（地上9） | `sk_xuedaoxinfa`（玄中5）、`sk_huxixingqi`（黄下1） | `sk_xuedaofa`（地中8）、`sk_xuedaoqinfa`（玄上6）、`sk_xuedaojichudao`（黄上3）、`sk_xuedaorumenquan`（黄中2） | `9/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:6}` | `1.00 / 1.00` | `22.60` | 雪地机制固定 RNG **（待实测）** |
+| 万家门人精英（每名） | 万家门 | `sk_wanjiaxinfa`（玄下4） | `sk_tunaqianjue`（黄上3）、`sk_dantianyangqi`（黄中2） | `sk_wanjiajian`（玄下4）、`sk_wanjiaquan`（黄上3）、`sk_wanjiajibenjian`（黄中2） | `4/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.63` | — |
+| 荆州官差精英（每名） | 官府 / 军伍 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_duanzhenqiang`（玄上6）、`sk_junwuduandao`（黄上3）、`sk_gongshou`（黄中2） | `5/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.79` | — |
+| 血刀门精英（每名） | 血刀门 | `sk_xuedaoxinfa`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_xuedaoqinfa`（玄上6）、`sk_xuedaojichudao`（黄上3）、`sk_xuedaorumenquan`（黄中2） | `5/8；10500/7500/10500；yin；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.79` | — |
 
-Boss 阶段切换不清经脉伤势；普通敌人仍按 `9000/6200/9000`、`routeOnly`、五里程碑全 0 逐单位初始化，修为三项按主运解析，无主运用 `1/1/harmony`。路线乘区按 21 固定插入 04 的 Z4M / Z5M；护体真气 → 护体内劲 → `mpGuard` → 气血；速度先经脉再擒拿，首轮冻结，后续 CT / 移动脏重算。绝招仅读 `MoveDef.ultimate`。点穴 / 擒拿在本次伤害完成后分别调用 `applyAcupointSeal` / `applyGrapple`；调息仅修战斗临时态，不推进第六转。
+Boss 阶段切换不清经脉伤势；普通敌人仍按 `9000/6200/9000`、`routeOnly`、五里程碑全 0 逐单位初始化，修为三项按主运解析；只有普通敌人无主运时才可用 `1/1/harmony`。路线乘区按 21 固定插入 04 的 Z4M / Z5M；护体真气 → 护体内劲 → `mpGuard` → 气血；速度先经脉再擒拿，首轮冻结，后续 CT / 移动脏重算。绝招仅读 `MoveDef.ultimate`。点穴 / 擒拿在本次伤害完成后分别调用 `applyAcupointSeal` / `applyGrapple`；调息仅修战斗临时态，不推进第六转。
 
-当前 04 基线为 `3.6 / 7.7 / 18.2`。标准对标准的攻防与速度均为 10000 bp，接入后仍为原值，三项均在 `3–5 / 6–10 / 12–25`。玩家弱一档时用 9157 bp 作伤害压力包络，Boss 约 `ceil(18.2×10000/9157)=20` 轮；强守方攻方 9200、防守 9361 时，1000 输入结算为 861，约 `ceil(18.2×1000/861)=22` 轮，仍在上限。速度强档 12239 bp 不再折算为伤害；具名 `full`、雪地走位与阶段门仍须固定 RNG 实战回放 **（待实测）**。
+#### 本界首领配装图鉴缺口
+
+| 人物 | 缺的专属内功 / 外功 | 当前替补 |
+|---|---|---|
+| 万圭 | 至少 5 品万家主运；至少 5 品安身拳脚 | `sk_jianghutuna`、`sk_wuyingshou` |
+| 凌退思 | 至少 5 品人物内功；人物专属外功 | `sk_jianghutuna`；官府 / 江湖通行外功 |
+
+当前 04 基线为 `3.6 / 7.7 / 18.2`。`boss_pacing.py` 逐单位结果为 Boss `19.71–22.60`、精英 `7.63–7.79`，均在 `12–25 / 6–10`，故血量与防御倍率保持 `1.00×1.00`；例如万圭升档后由 `19.62` 变为 `20.00`，没有用经脉降档调节。速度强档不再折算为伤害；具名 `full`、雪地走位与阶段门仍须固定 RNG 实战回放 **（待实测）**。
 
 ## 13. 原创扩展清单与考据备注
 

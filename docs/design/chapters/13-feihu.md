@@ -4,7 +4,7 @@
 > 上游：`docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`、`docs/00-canon.md` v1.2、`docs/decisions/rulings-v1.md`；主线唯一剧情源为 `design/story/13-feihu.md`。
 > 引用而不重定义：核心循环与锚点总览 → `design/01`；年代、境界、书眠、携带与压制 → `design/02`；属性与 Boss 模板 → `design/03`；伤害公式 → `design/04`；武学 → `design/05` 与图鉴；地形/轻功 → `design/08`；战斗/合击 → `design/09`；物品/神兵 → `design/10`；开放世界 → `design/11`；任务/门派 → `design/12`；成长/天书 → `design/13`；穴位、冲穴、通脉、周天与九转 → `design/15`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21`；资源/营生 → `design/16`；门派名录 → `design/17`；人物名录 → `design/18`；地图 → `design/19`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给可用数值并在文末登记。
-> 版本：v1.0（D13 初稿，2026-09-26）；审校 D13.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）。
+> 版本：v1.0（D13 初稿，2026-09-26）；审校 D13.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）。
 
 
 ## 0. 阅读指引
@@ -1001,29 +1001,53 @@ BossPhases      = 2–3
 
 ### 12.7 Boss / 精英经脉配置与节奏回归
 
-本节只配置 `design/21` §11.9 的敌方初始化输入；穴位、周天与九转成长归 `design/15`。飞狐为中武追赶窗口，故 `effLayer≤9`。`effGrade/effLayer/innerNature` 只读取当前主运内功经压制后的值，外功、轻功与毒术品阶不得代填；下表已为全部武学行动者固定主运，不允许再因别处摘要省略而回退 `1/1/harmony`。`routeRefs` 由行动表 attack / defense / movement 三类 `MoveDef.meridianRouteRef` 编译、展开并去重；本章不创设 `mfr_*`。
+本节只配置 `design/21` §11.9 的敌方初始化输入；穴位、周天与九转成长归 `design/15`。飞狐为中武追赶窗口，本界精英锚 `G=6`，Boss 默认 9 重、精英 8 重且至多小周天。除苗人凤的地位下限兜底外，`effGrade/effLayer/innerNature` 同取最终主运；外功、轻功与毒术品阶不得代填。普通 Boss 四档检索未得到 6 品本门内功，统一临时取通行图鉴的 `sk_hunyuanfangzhuang` 7 品，不反写人物师承；苗人凤依原著地位、9 品苗家剑与本界排序暂取 9 品下限 **【建议值】**。`routeRefs` 由行动表 attack / defense / movement 三类 `MoveDef.meridianRouteRef` 编译、展开并去重；本章不创设 `mfr_*`。
 
-主运 1 格、辅运 2 格即完整内功栏；七项参数按 `effGrade/effLayer；mpRatioBp/practiceBp/capacityScaleBp；innerNature；openPolicy` 排列。Boss 固定后三项为 `13000/9000/13000；fullTemplate`，精英为 `10500/7500/10500；schoolCore`。药王门图鉴仅有黄上内功，三名歧途同门遂以本界可得的 `sk_jianghutuna` 作玄中主运、药王吐纳作底子，属于**（原创扩展配置）**，不反写原著师承。
+主运 1 格、辅运 2 格即完整内功栏；七项参数按 `effGrade/effLayer；mpRatioBp/practiceBp/capacityScaleBp；innerNature；openPolicy` 排列。Boss 固定后三项为 `13000/9000/13000；fullTemplate`，精英为 `10500/7500/10500；schoolCore`。药王门图鉴只有 3 品内功，故具名歧途同门暂以 7 品通行内功补主运、以药王吐纳保留底子；这只是敌方构筑，不反写原著师承或玩家来源。
 
-| 单位 | 门派 / 来源 | 主运内功 | 辅运内功（2 格） | 外功（逐门标品阶） | 经脉七项参数 | `milestones` | 节奏复核 |
-|---|---|---|---|---|---|---|---|
-| 商老太 | 商家堡 / 八卦门渊源 | `sk_jianghutuna`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_zhuangxingong`（黄中2） | `sk_baguadao`（地下7）、`sk_baguazhang`（玄上6）、`sk_shangjiadao`（玄中5）、`sk_shangjiaquan`（玄下4） | `5/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 旧 `1/1/harmony` → `5/9/harmony`；Boss 15.2，弱档 / 强守 17 / 18；火场另为环境行动者 |
-| 凤天南 | 南海武林 / 通行刀拳代理 **（原创扩展配置）** | `sk_jianghutuna`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_dantianyangqi`（黄中2） | `sk_wuhuduandandao`（玄中5）、`sk_hutiaodaofa`（玄下4）、`sk_wuguandao`（黄中2）、`sk_jianghuchangquan`（黄下1） | `5/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | 旧 `1/1/harmony` → `5/9/harmony`；15.2；证据降士气 / 逼退目标保持 12–25 **（待实测）** |
-| 袁紫衣 | 八仙剑 / 多门见闻 **（待考）** | `sk_jianghutuna`（玄中5） | `sk_baxianxinfa`（黄上3）、`sk_tunaqianjue`（黄上3） | `sk_baxianjian`（玄上6）、`sk_qingfengjian`（玄上6）、`sk_baxianrumenjian`（黄上3）、`sk_jianghurumenjian`（黄上3） | `5/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | 旧 `1/1/harmony` → `5/9/harmony`；15.2；三姿态共享实例、30% 认输线 **（待实测）** |
-| 苗人凤 | 苗家 | `sk_miaojiaxinfa`（玄中5） | `sk_miaojialianqi`（黄上3）、`sk_tunaqianjue`（黄上3） | `sk_miaojiajian`（地上9）、`sk_miaojiaquan`（玄上6）、`sk_miaojiajiangong`（黄上3） | `5/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:7}` | 15.2；蒙眼 / 复明不重建，非致死停手保持 12–25 **（待实测）** |
-| 田归农 | 天龙门北宗 | `sk_guanwaixinfa`（玄下4） | `sk_tunaqianjue`（黄上3）、`sk_dantianyangqi`（黄中2） | `sk_tianlongjian`（玄上6）、`sk_tianlongbeidao`（玄中5）、`sk_tianlongrumenjian`（黄上3）、`sk_guanwaichangquan`（黄中2） | `4/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:6}` | 15.2；弱档 / 强守 17 / 18，亲信换位不交换动态态 |
-| 慕容景岳 | 药王门歧途同门 | `sk_jianghutuna`（玄中5） | `sk_yaowangtuna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_yaowangzhenfa`（玄中5）、`sk_feishahuangshi`（玄下4）、`sk_yaowanghushou`（黄中2）、`sk_tongxingfeishi`（黄下1） | `5/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | 旧 `3/9/yin` → `5/9/harmony`；15.2；毒烛无实例、封账减援手 |
-| 薛鹊 | 药王门歧途同门 | `sk_jianghutuna`（玄中5） | `sk_yaowangtuna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_yaowangzhenfa`（玄中5）、`sk_feishahuangshi`（玄下4）、`sk_yaowanghushou`（黄中2）、`sk_tongxingfeishi`（黄下1） | `5/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | 旧 `3/9/yin` → `5/9/harmony`；双首领各自实例，阵营翻转不清状态 **（待实测）** |
-| 石万嗔 | 药王门叛徒 | `sk_jianghutuna`（玄中5） | `sk_yaowangtuna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_qixinhaitang`（地中8）、`sk_yaowangzhenfa`（玄中5）、`sk_feishahuangshi`（玄下4）、`sk_yaowanghushou`（黄中2）；战斗杂学 `sk_yaowangdujing`（地中8） | `5/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | 旧 `3/9/yin` → `5/9/harmony`；15.2；三线各去一项优势、毒雾不获免费倍率 **（待实测）** |
-| 商家堡追兵（每名精英） | 商家堡 | `sk_wuguanxinfa`（玄下4） | `sk_tunaqianjue`（黄上3）、`sk_zhuangxingong`（黄中2） | `sk_shangjiadao`（玄中5）、`sk_shangjiaquan`（玄下4）、`sk_shangjiarumenquan`（黄中2） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 精英 8.1，落在 6–10；火场本身不建实例 |
-| 凤家护院（每名精英） | 凤家 / 武馆代理 **（原创扩展配置）** | `sk_wuguanxinfa`（玄下4） | `sk_tunaqianjue`（黄上3）、`sk_zhuangxingong`（黄中2） | `sk_wuhuduandandao`（玄中5）、`sk_hutiaodaofa`（玄下4）、`sk_huyuanquan`（黄中2） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 精英 8.1，证据公开后只降护阵士气，不改配装 |
-| 八极试武者（每名精英） | 八极拳会武支系 **（待考）** | `sk_wuguanxinfa`（玄下4） | `sk_bajizhuang`（黄上3）、`sk_zhamabu`（黄下1） | `sk_bajiquan`（玄上6）、`sk_tieshankao`（玄中5）、`sk_bajirumenquan`（黄上3） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 精英 8.1，点到为止；胜败均给情报 |
-| 药王门武学援手（每名精英） | 药王门歧途支 | `sk_jianghutuna`（玄中5） | `sk_yaowangtuna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_yaowangzhenfa`（玄中5）、`sk_feishahuangshi`（玄下4）、`sk_yaowanghushou`（黄中2） | `5/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 精英 8.1；毒烛 / 毒雾仍不建实例 |
-| 天龙门亲信（每名精英） | 田归农控制支 | `sk_guanwaixinfa`（玄下4） | `sk_tunaqianjue`（黄上3）、`sk_dantianyangqi`（黄中2） | `sk_tianlongjian`（玄上6）、`sk_tianlongbeidao`（玄中5）、`sk_tianlongrumenjian`（黄上3）、`sk_guanwaichangquan`（黄中2） | `4/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 精英 8.1；证据可令其溃逃，换位不交换 backlog / 点穴 |
+| 单位 | 门派 / 来源 | 主运内功 | 辅运内功（2 格） | 外功（逐门标品阶） | 经脉七项参数 | `milestones` | 血量 / 防御倍率 | 逐单位估算轮数 | 机制备注 |
+|---|---|---|---|---|---|---|---|---:|---|
+| 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主运解析（不得低于玄上6） | 按来源解析两门玄 / 黄基础内功 | 按行动表解析 3–5 门 | `6/8；10500/7500/10500；由主运解析；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.26` | 唯一锚点 |
+| 商老太 | 商家堡 / 八卦门渊源 | `sk_hunyuanfangzhuang`（地下7，调和）**（原创扩展配置·待补专属）** | `sk_jianghutuna`（玄中5）、`sk_zhuangxingong`（黄中2） | `sk_baguadao`（地下7）、`sk_baguazhang`（玄上6）、`sk_shangjiadao`（玄中5）、`sk_shangjiaquan`（玄下4） | `7/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `1.00 / 1.00` | `17.20→17.97` | 火场为环境行动者；不另建经脉实例 |
+| 凤天南 | 南海武林 / 通行刀拳代理 | `sk_hunyuanfangzhuang`（地下7，调和）**（原创扩展配置·待补专属）** | `sk_jianghutuna`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_jiebiaodaofa`（玄上6）、`sk_tongbeijin`（玄上6）、`sk_wuhuduandandao`（玄中5）、`sk_hutiaodaofa`（玄下4）**（原创扩展配置·待补专属）** | `7/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | `1.00 / 1.00` | `17.13→17.91` | 证据降士气 / 逼退；跨刀拳两类各有 6 品补位 |
+| 袁紫衣 | 八仙剑 / 多门见闻 **（待考）** | `sk_hunyuanfangzhuang`（地下7，调和）**（原创扩展配置·待补专属）** | `sk_jianghutuna`（玄中5）、`sk_baxianxinfa`（黄上3） | `sk_baxianjian`（玄上6）、`sk_qingfengjian`（玄上6）、`sk_baxianrumenjian`（黄上3）、`sk_jianghurumenjian`（黄上3） | `7/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | `1.00 / 1.00` | `17.73→18.22` | 三姿态共享实例；30% 非致死认输线 **（待实测）** |
+| 苗人凤 | 苗家 | 缺专属 9 品主运 **（原创扩展配置·待补专属）** | `sk_miaojiaxinfa`（玄中5）、`sk_miaojialianqi`（黄上3） | `sk_miaojiajian`（地上9）、`sk_miaojiaquan`（玄上6）、`sk_miaojiajiangong`（黄上3） | `9/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:7}` | `1.00 / 1.00` | `17.74→18.70` | 9 品地位下限 **【建议值】**；性质暂沿已确认的 `sk_miaojiaxinfa` |
+| 田归农 | 天龙门北宗 | `sk_hunyuanfangzhuang`（地下7，调和）**（原创扩展配置·待补专属）** | `sk_guanwaixinfa`（玄下4）、`sk_tunaqianjue`（黄上3） | `sk_tianlongjian`（玄上6）、`sk_junzhongdao`（玄上6）、`sk_tianlongbeidao`（玄中5）、`sk_guanwaichangquan`（黄中2）**（原创扩展配置·待补专属）** | `7/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:6}` | `1.00 / 1.00` | `17.54→18.22` | 亲信换位不交换动态态；刀剑双类各有 6 品 |
+| 慕容景岳 | 药王门歧途同门 | `sk_hunyuanfangzhuang`（地下7，调和）**（原创扩展配置·待补专属）** | `sk_jianghutuna`（玄中5）、`sk_yaowangtuna`（黄上3） | `sk_qixinhaitang`（地中8）、`sk_tongbeijin`（玄上6）、`sk_yaowangzhenfa`（玄中5）、`sk_yaowanghushou`（黄中2）**（原创扩展配置·待补专属）** | `7/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `1.00 / 1.00` | `17.67→18.22` | 暗器 / 拳掌各有 ≥6 品；毒烛无实例，封账减援手 |
+| 薛鹊 | 药王门歧途同门 | `sk_hunyuanfangzhuang`（地下7，调和）**（原创扩展配置·待补专属）** | `sk_jianghutuna`（玄中5）、`sk_yaowangtuna`（黄上3） | `sk_qixinhaitang`（地中8）、`sk_tongbeijin`（玄上6）、`sk_yaowangzhenfa`（玄中5）、`sk_yaowanghushou`（黄中2）**（原创扩展配置·待补专属）** | `7/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `1.00 / 1.00` | `17.67→18.22` | 暗器 / 拳掌各有 ≥6 品；阵营翻转不清状态 **（待实测）** |
+| 石万嗔 | 药王门叛徒 | `sk_hunyuanfangzhuang`（地下7，调和）**（原创扩展配置·待补专属）** | `sk_jianghutuna`（玄中5）、`sk_yaowangtuna`（黄上3） | `sk_qixinhaitang`（地中8）、`sk_yaowangdujing`（地中8）、`sk_tongbeijin`（玄上6）、`sk_yaowangzhenfa`（玄中5）**（原创扩展配置·待补专属）** | `7/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | `1.00 / 1.00` | `17.74→18.22` | 暗器 / 拳掌均 ≥6 品；三线各去一项优势 **（待实测）** |
+| 商家堡追兵（每名精英） | 商家堡 | `sk_jianghutuna`（玄中5，调和）**（原创扩展配置·待补专属）** | `sk_wuguanxinfa`（玄下4）、`sk_zhuangxingong`（黄中2） | `sk_tongbeijin`（玄上6）、`sk_shangjiadao`（玄中5）、`sk_shangjiaquan`（玄下4）、`sk_shangjiarumenquan`（黄中2） | `5/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.86→8.10` | 火场本身不建实例 |
+| 凤家护院（每名精英） | 凤家 / 武馆代理 | `sk_jianghutuna`（玄中5，调和）**（原创扩展配置·待补专属）** | `sk_wuguanxinfa`（玄下4）、`sk_zhuangxingong`（黄中2） | `sk_tongbeijin`（玄上6）、`sk_wuhuduandandao`（玄中5）、`sk_hutiaodaofa`（玄下4）、`sk_huyuanquan`（黄中2）**（原创扩展配置·待补专属）** | `5/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.86→8.10` | 证据公开后只降护阵士气 |
+| 八极试武者（每名精英） | 八极拳会武支系 **（待考）** | `sk_jianghutuna`（玄中5，调和）**（原创扩展配置·待补专属）** | `sk_wuguanxinfa`（玄下4）、`sk_bajizhuang`（黄上3） | `sk_bajiquan`（玄上6）、`sk_tieshankao`（玄中5）、`sk_bajirumenquan`（黄上3） | `5/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.86→8.10` | 点到为止；胜败均给情报 |
+| 药王门武学援手（每名精英） | 药王门歧途支 | `sk_jianghutuna`（玄中5，调和）**（原创扩展配置·待补专属）** | `sk_yaowangtuna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_tongbeijin`（玄上6）、`sk_yaowangzhenfa`（玄中5）、`sk_feishahuangshi`（玄下4）、`sk_yaowanghushou`（黄中2）**（原创扩展配置·待补专属）** | `5/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.10` | 毒烛 / 毒雾仍不建实例 |
+| 天龙门亲信（每名精英） | 田归农控制支 | `sk_jianghutuna`（玄中5，调和）**（原创扩展配置·待补专属）** | `sk_guanwaixinfa`（玄下4）、`sk_dantianyangqi`（黄中2） | `sk_tianlongjian`（玄上6）、`sk_tianlongbeidao`（玄中5）、`sk_tianlongrumenjian`（黄上3）、`sk_guanwaichangquan`（黄中2） | `5/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.86→8.10` | 证据可令其溃逃；换位不交换 backlog / 点穴 |
+
+#### 本界首领配装图鉴缺口
+
+| 人物 / 槽位 | 缺的专属内功 / 外功 | 当前替补 |
+|---|---|---|
+| 商老太 | 7 品以上商家堡 / 八卦门专属内功 | `sk_hunyuanfangzhuang` |
+| 凤天南 | 7 品以上南海五虎门内功；6 品以上专属刀法、拳法 | `sk_hunyuanfangzhuang`；`sk_jiebiaodaofa`、`sk_tongbeijin` |
+| 袁紫衣 | 7 品以上与其师承相符的专属内功 **（待考）** | `sk_hunyuanfangzhuang` |
+| 苗人凤 | 9 品苗家专属内功 | 主运暂缺；性质沿 `sk_miaojiaxinfa`，七参按地位下限兜底 |
+| 田归农 | 7 品以上天龙门内功；6 品以上本门刀法 | `sk_hunyuanfangzhuang`；`sk_junzhongdao` |
+| 慕容景岳、薛鹊 | 7 品以上药王门内功；6 品以上本门战斗外功 | `sk_hunyuanfangzhuang`；`sk_tongbeijin` |
+| 石万嗔 | 7 品以上药王门专属内功 | `sk_hunyuanfangzhuang` |
+| 商家堡追兵 | 5 品以上商家堡内功 | `sk_jianghutuna` |
+| 凤家护院 | 5 品以上凤家内功；6 品以上专属外功 | `sk_jianghutuna`；`sk_tongbeijin` |
+| 八极试武者 | 5 品以上八极支系内功 | `sk_jianghutuna` |
+| 药王门武学援手 | 5 品以上药王门内功；6 品以上本门战斗外功 | `sk_jianghutuna`；`sk_tongbeijin` |
+| 天龙门亲信 | 5 品以上天龙门内功 | `sk_jianghutuna` |
+
+`sk_hunyuanfangzhuang` 的既有 `sourceChapters` 包含飞狐，`sk_jianghutuna` 及表内通行外功也都有既有 ID；此处“替补”仍只代表 `design/21` §11.9.1 的敌方临时构筑，不把通行武学改写成人物专属师承。
+
+#### 逐单位节奏结论
+
+按 `Rraw=R0×10000²/(A×D)×H` 逐行调用 `boss_pacing.py`。八 Boss 升档前后依次为：商老太 `17.20→17.97`、凤天南 `17.13→17.91`、袁紫衣 `17.73→18.22`、苗人凤 `17.74→18.70`、田归农 `17.54→18.22`、慕容景岳 / 薛鹊各 `17.67→18.22`、石万嗔 `17.74→18.22`。四类 4 品精英均为 `7.86→8.10`，药王门援手保持 `8.10`，唯一 6 品锚为 `8.26`。全数落入 Boss 12–25 / 精英 6–10，故血量与防御倍率均保持 `1.00×1.00`；双首领只对整场共享总耐久计一次，不给两人重复完整 Boss 血池。
 
 未列普通敌人取 `9000/6200/9000`、`routeOnly` 与五里程碑全 0；武学型精英必须绑定上表确定模板，缺失即构建失败。每个行动者各有一份实例，阶段切换或阵营翻转不重建；火势、毒烛、毒雾等纯环境对象不实例化。攻防分别接 04 的 Z5M / Z4M；护体真气后结算护体内劲，再过 `mpGuard`。速度先经脉后擒拿，首轮冻结；绝招仅读 `MoveDef.ultimate`。针法点穴与外功擒拿都在本次伤害后调用目标实例的 `applyAcupointSeal` / `applyGrapple`；调息仅修战斗态，不推进永久经脉。
 
-04 当前基线 `4.0 / 8.1 / 15.2` 在标准对标准 10000 bp 下保持不变。玩家弱一档时 Boss 约 `ceil(15.2×10000/9157)=17` 轮；强守方净伤害 861/1000 时约 `ceil(15.2×1000/861)=18` 轮，仍在 12–25。玩家强两档 14456 bp 时约 11 轮，只作高配敏感性，不作为标准配装。经脉速度强档 / 封路档必须分别验证首轮、CT 与移动，不能折算成额外伤害。三毒、双首领、援军和非致死阈值仍须固定 RNG 实战回放 **（待实测）**。
+04 当前基线 `4.0 / 8.1 / 15.2` 不变；上述逐单位计算取代旧的统一 15.2 近似。经脉速度强档 / 封路档必须分别验证首轮、CT 与移动，不能折算成额外伤害。三毒、双首领、援军和非致死阈值仍须固定 RNG 实战回放 **（待实测）**。
 
 ---
 
@@ -1195,3 +1219,4 @@ BossPhases      = 2–3
 - 冷月宝刀的永久持有窗口：默认墓前仍归刀，只有天书余韵期且胡斐明确授权时才开放借 / 受传。
 - 洛阳泥人、荆州神照遗绪是否生成：默认服从 `design/20` 硬过滤；不命中前代状态时隐藏，不补偿假宝藏。
 - 具体地望若考据与当前挂点冲突：默认只迁移 `sc_13_*` 挂点和导航文案，不改五锚点、人物生命态或跨书结果。
+- 苗人凤是否采用 9 品主运地位下限：默认采用；以原著顶尖地位、9 品苗家剑及相对本界其他 Boss 的排序为依据，在图鉴补专属内功前仅按七参兜底，性质沿 `sk_miaojiaxinfa`，待作者确认。
