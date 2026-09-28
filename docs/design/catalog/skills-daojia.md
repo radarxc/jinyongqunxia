@@ -1,9 +1,9 @@
 # 门派武学图鉴 · 道家与神雕诸派（`skills-daojia`）
 
-版本：v1.2（CXd 扩充；全局审计，2026-09-27）
+版本：v1.2（CXd 扩充；全局审计）；经脉系统落地（2026-09-27）
 
 > **归属**（基准 §18）：`design/catalog/skills-*.md` 门派武学图鉴。本文件覆盖：**全真教、古墓派（含李莫愁一系）、杨过自创与传承（含独孤求败剑冢剑意）、武当派（倚天 → 笑傲 → 侠客 → 书剑 → 飞狐）、绝情谷**。
-> **上游**：`decisions/author-decisions.md`、`decisions/author-requirements.md`、`00-canon.md`、`decisions/rulings-v1.md`。数据结构、层数节奏、招式预算、范围模板、特殊武学规则以 `design/05` 为准；附带效果只引用 `design/06` 目录中已有的 `bf_` ID；属性与资质 ID 见 `design/03`；书界、境界、残篇、再遇、印证见 `design/02`；合击与阵法流程归 `design/09`；兵器与名器归 `design/10`；套装本体归 `design/07`；门派身份、职级和月钱归 `design/12`、门派资料见 `design/17`；冲穴只接入 `design/15`；资源、资源点与营生只接入 `design/16`；大地图与时代图层只接入 `design/11`；NPC 招募、生卒与跨书界同伴归 `design/18`；正邪主线与选择节点归 `design/story/`，本文任务号仅是武学来源接口。
+> **上游**：`decisions/author-decisions.md`、`decisions/author-requirements.md`（含 AR-14）、`00-canon.md`、`decisions/rulings-v1.md`、`design/21` v2.0。数据结构、层数节奏、招式预算、范围模板、特殊武学规则以 `design/05` 为准；附带效果只引用 `design/06` 目录中已有的 `bf_` ID；属性与资质 ID 见 `design/03`；书界、境界、残篇、再遇、印证见 `design/02`；合击与阵法流程归 `design/09`；兵器与名器归 `design/10`；套装本体归 `design/07`；门派身份、职级和月钱归 `design/12`、门派资料见 `design/17`；战斗经脉运行、招式路线、调息、护体内劲与经脉速度归 `design/21`；经脉、穴位、冲穴、周天与九转只接入 `design/15`；资源、资源点与营生只接入 `design/16`；大地图与时代图层只接入 `design/11`；NPC 招募、生卒与跨书界同伴归 `design/18`；正邪主线与选择节点归 `design/story/`，本文任务号仅是武学来源接口。
 > **跨组引用（只引用 ID，不在本文定义）**：九阴真经系 `sk_jiuyin`；周伯通 `sk_zuoyouhubo`、`sk_kongming`；独孤九剑 `sk_dugu9`（五岳组）；一阳指 `sk_yiyangzhi`（大理组）；蛤蟆功 `sk_hama`、铁掌功 `sk_tiezhang`（西域组）；铁砂掌 `sk_tieshazhang`（05）；玄冥神掌 `sk_xuanming`；**武当九阳功**（倚天组定义，本文暂记 `sk_wudangjiuyang`，以倚天组 ID 为准）。
 > **引用而不重定义**：本文定义本组武学内容卡与候选套装成员关系；上述系统的通用规则均只引用归属文档。跨文档尚未同步时，以本段上游优先级为准。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、暂给可用数值并在文末登记。**★** = 该书界原著未见本门派或本武学，可习得属原创扩展（门派存续推定），须由 `chapters/` 采纳。已由上游定稿的数值不再统称建议值；尚未归属文档定稿者逐项标 **【建议值】**。
@@ -22,6 +22,7 @@
 | §6 | 绝情谷 `sect_jueqinggu` |
 | §7 | 套装候选（交 design/07 定稿） |
 | §8 | 本组统计（门派 × 品阶、类别、原生书界） |
+| §8.7 | AR-14 经脉运行绑定：路线模板、高阶逐招、轻功、内功调息与护体档 |
 | §9 | 本文新增术语与 ID |
 | §10 | 数据校验规则与测试用例 |
 | §11 | 待决事项 / 依赖 |
@@ -2002,6 +2003,143 @@
 
 ---
 
+### 8.7 AR-14 经脉运行绑定（`design/21` v2.0）
+
+#### 8.7.1 接口边界与路线码
+
+本节只登记本册既有 `sk_* / mv_*` 与 21 的路线、调息接口，不重定义河流状态、乘区、护体内劲或速度公式。`MoveDef.meridianRouteRef` 指向 `MeridianRouteDef`；太极被动使用 `routeOnTriggerRef`；内功以 `breathProfileRef` 指向 `BreathProfile`。固定结算次序仍是 `Z0–Z4 → Z4M → Z5 → Z5M → Z6–Z10 → 护体真气 → 护体内劲 → mpGuard → 气血`；每个独立单位各有一个 `MeridianFlowModule`，`preview` 无写入、无 RNG 消耗（21 §4.4、§11–§12）。
+落库字段严格复用 21 §12：`MeridianRouteDef.id/moveRef/ultimate/purpose/requiredNature/steps`，其中 `RouteStep.acupointRef/segmentCt/riskBp`；`BreathProfile.id/grade/layer/nature/scope/ct/mpCostBp`。
+
+- 路线 ID 为 `mfr_<完整 move ID 去掉 mv_>`，调息档案为 `txp_<完整 skill ID 去掉 sk_>`；二者是 21 §16.2 / M2-P01 的拟登记前缀。路线码只用于本文排版，构建时必须展开真实 `ap_*`。
+- `AT/DF/MV` 对应 `purpose:attack/defense/movement`；`Y/I/H` 对应阳 / 阴 / 调和几何。中性武学用 H 且 `requiredNature:[yin,yang,harmony]`，不得写 `neutral`。治疗、纯支援路线不套攻击乘区。
+- `★` 断言已有 `MoveDef.ultimate:true`，且 `route.ultimate` 必须相等。`IG` 表示附 `innerGuard:{enabled:true,reflectBp:0}`；显示档不提供额外倍率，既有反震继续由 06 单一结算。
+
+模板引用 21 §5.2 已完整列出的 A 任脉、B 督脉、C 手太阴、D 手厥阴、E 手阳明、F 腰腿、G 带督片段：
+
+| 码 | `purpose / requiredNature` | 片段 / 段数 | `segmentCt` | `riskBp`（按段） |
+|---|---|---|---|---|
+| `AT-Y4/6/8/10★` | attack / `[yang,harmony]` | `E` / `B+E前2` / `B+E` / `B+E+A前2` | 普通 70；绝招 80 | `4=80/100/120/140`；`6=80/100/120/140/350/150`；`8=80/100/120/140/400/100/120/140`；`10=8段值+450/150` |
+| `AT-I4/6/8/10★` | attack / `[yin,harmony]` | `C` / `D+C首穴` / `C+D前4` / `C+D前4+A前2` | 普通 70；绝招 80 | `4=80/100/120/140`；`6=80/100/120/140/160/350`；`8=80/100/120/140/400/100/120/140`；`10=8段值+450/150` |
+| `AT-H4/6/8/10★` | attack / `[yin,yang,harmony]` | `F` / `G+D前2` / `G+C` / `A+G+D前2` | 普通 70；绝招 80 | `4=80/100/120/140`；`6=80/100/120/140/400/120`；`8=80/100/120/140/400/100/120/140`；`10=8段值+450/150` |
+| `DF-Y4/6` | defense / `[yang,harmony]` | `B` / `B+E前2` | 普通 70；绝招 90 | `50/70/90/110[/300/100]` |
+| `DF-I4/6` | defense / `[yin,harmony]` | `A` / `A+D前2` | 普通 70；绝招 90 | `50/70/90/110[/300/100]` |
+| `DF-H4/6` | defense / `[yin,yang,harmony]` | `G` / `G+D前2` | 普通 70；绝招 90 | `50/70/90/110[/300/100]` |
+| `MV-Y4/8` | movement / `[yang,harmony]` | 阳跷前 4 / 8 穴 | 普通 60；绝招 75 | `50/70/90/110[/250/70/90/110]` |
+| `MV-I4/8` | movement / `[yin,harmony]` | 阴跷前 4；阴跷六穴再接 `ap_shoujueyin_tianchi → ap_shoujueyin_quze` | 普通 60；绝招 75 | `50/70/90/110[/250/70/90/110]` |
+| `MV-H4/8` | movement / `[yin,yang,harmony]` | `F` / `F+G` | 普通 60；绝招 75 | `50/70/90/110[/250/70/90/110]` |
+
+普通攻击 4/6/8 段 `ΣCT=280/420/560`，普通移动 4/6/8 段为 `240/360/480`；绝招 6/8/10 段 `ΣCT=540/600/800`。全部 1–18 段、穴位不重复、单段 CT 40–120、风险 0–1200；配合本册 800–1200 收招均满足 `recovery+ΣsegmentCt≤2000`。
+
+#### 8.7.2 天 / 地阶逐招绑定（全真、古墓）
+
+每个表列 `mv_*` 都绑定同名派生 `mfr_*`。例如 `mv_xiantiangong_gangqi → mfr_xiantiangong_gangqi`。
+
+| 武学（品阶 / 性质） | 逐招 `mv_*：用途/模板` |
+|---|---|
+| 先天功 `sk_xiantiangong`（天中 / 阳） | `mv_xiantiangong_gangqi：defense/DF-Y6+IG`；`mv_xiantiangong_yiqi：attack/AT-Y8`；`mv_xiantiangong_wuqi★：attack/AT-Y10★` |
+| 天罡北斗阵 `sk_tiangang`（天下 / 阳） | `mv_tiangang_buzhen：defense/DF-Y6`；`mv_tiangang_hewei：attack/AT-Y8`；`mv_tiangang_doubing：movement/MV-Y8`；`mv_tiangang_tianshu：defense/DF-Y6`；`mv_tiangang_guiyi★：attack/AT-Y10★` |
+| 金关玉锁二十四诀 `sk_jinguanyusuo`（地中 / 调和） | `mv_jinguanyusuo_suoqiao：defense/DF-H6`；`mv_jinguanyusuo_kaiguan：defense/DF-H6`；`mv_jinguanyusuo_zhoutian★：defense/DF-H6★+IG`（群体支援绝招短路，1200+540=1740 CT） |
+| 同归剑法 `sk_tongguijian`（地下 / 阳） | `mv_tongguijian_boming：attack/AT-Y6`；`mv_tongguijian_yushi：attack/AT-Y8`；`mv_tongguijian_liangbai：defense/DF-Y4`；`mv_tongguijian_pofu：defense/DF-Y4`；`mv_tongguijian_tonggui★：attack/AT-Y10★`；`mv_tongguijian_bugong：attack/AT-Y8` |
+| 玉女心经 `sk_yunvxinjing`（天下 / 阴） | `mv_yunvxinjing_sanre：defense/DF-I6`；`mv_yunvxinjing_hufa：defense/DF-I6+IG`；`mv_yunvxinjing_bingxin★：defense/DF-I6★+IG`（群体支援绝招短路） |
+| 赤练神掌 `sk_chilianshenzhang`（地下 / 阴） | `mv_chilianshenzhang_tuxin：attack/AT-I6`；`mv_chilianshenzhang_zhangyin：attack/AT-I6`；`mv_chilianshenzhang_chanshen：attack/AT-I8`；`mv_chilianshenzhang_fanlin：attack/AT-I8`；`mv_chilianshenzhang_xiangxu★：attack/AT-I10★`；`mv_chilianshenzhang_wudu：attack/AT-I8` |
+| 金铃索法 `sk_jinlingsuo`（地下 / 阴） | `mv_jinlingsuo_dianxue：attack/AT-I6`；`mv_jinlingsuo_lingyin：attack/AT-I6`；`mv_jinlingsuo_chanwan：attack/AT-I8`；`mv_jinlingsuo_huifeng：attack/AT-I8`；`mv_jinlingsuo_shepo★：attack/AT-I10★`；`mv_jinlingsuo_lingshe：attack/AT-I8` |
+| 冰魄银针 `sk_bingpoyinzhen`（地下 / 阴） | `mv_bingpoyinzhen_danzhen：attack/AT-I6`；`mv_bingpoyinzhen_sanzhen：attack/AT-I6`；`mv_bingpoyinzhen_mantian：attack/AT-I8`；`mv_bingpoyinzhen_shehun★：attack/AT-I10★` |
+| 古墓轻功 `sk_gumuqinggong`（地上 / 阴） | `mv_gumuqinggong_jueji：movement/MV-I4`；`mv_gumuqinggong_tabi：movement/MV-I8`；`mv_gumuqinggong_youshen：movement/MV-I8`；`mv_gumuqinggong_fenying★：movement/MV-I8★` |
+
+#### 8.7.3 天 / 地阶逐招绑定（杨过与剑冢）
+
+| 武学（品阶 / 性质） | 逐招 `mv_*：用途/模板` |
+|---|---|
+| 黯然销魂掌 `sk_anran`（天中 / 阴） | `mv_anran_xinjing：attack/AT-I6`；`mv_anran_tuoni：attack/AT-I6`；`mv_anran_qiren：attack/AT-I8`；`mv_anran_wuzhong：attack/AT-I6`；`mv_anran_paihuai：attack/AT-I8`；`mv_anran_libucongxin：defense/DF-I6`；`mv_anran_xingshi：attack/AT-I8`；`mv_anran_yongren：attack/AT-I8`；`mv_anran_daoxing：attack/AT-I8`；`mv_anran_feiqin：attack/AT-I6`；`mv_anran_guxing：attack/AT-I8`；`mv_anran_yinhen：defense/DF-I6+IG`；`mv_anran_liushen：attack/AT-I8`；`mv_anran_qiongtu：attack/AT-I8`；`mv_anran_xiaohun★：attack/AT-I10★`；`mv_anran_mianwu：attack/AT-I8`；`mv_anran_xiangru：attack/AT-I8`；`mv_anran_daimu：attack/AT-I8` |
+| 玄铁剑法 `sk_xuantie`（天中 / 中性） | `mv_xuantie_wufeng：attack/AT-H6`；`mv_xuantie_daqiao：attack/AT-H6`；`mv_xuantie_shanhong：attack/AT-H8`；`mv_xuantie_haichao：attack/AT-H8`；`mv_xuantie_diaoyi：attack/AT-H8`；`mv_xuantie_zangfeng：defense/DF-H6`；`mv_xuantie_qianjun★：attack/AT-H10★`；`mv_xuantie_caomu：attack/AT-H8` |
+| 玉女素心剑法 `sk_suxin`（天中 / 调和） | `mv_suxin_langji：attack/AT-H8`；`mv_suxin_huaqian：attack/AT-H8`；`mv_suxin_qingyin：defense/DF-H6`；`mv_suxin_fuqin：attack/AT-H8`；`mv_suxin_songxia：defense/DF-H6`；`mv_suxin_chibian：attack/AT-H8`；`mv_suxin_saoxue：attack/AT-H8`；`mv_suxin_hebi★：attack/AT-H10★`；`mv_suxin_juan：defense/DF-H6` |
+| 重剑意 `sk_zhongjianyi`（地中 / 中性） | `mv_zhongjianyi_fujian：defense/DF-H4`；`mv_zhongjianyi_chenjian：defense/DF-H6`；`mv_zhongjianyi_hengxing★：defense/DF-H6★`（增益绝招短路，1000+540=1540 CT） |
+| 木剑意 `sk_mujianyi`（地上 / 中性） | `mv_mujianyi_zhezhi：defense/DF-H4`；`mv_mujianyi_caomu：defense/DF-H6`；`mv_mujianyi_wanwu★：attack/AT-H10★` |
+
+#### 8.7.4 天 / 地阶逐招绑定（武当）
+
+| 武学（品阶 / 性质） | 逐招 `mv_*：用途/模板` |
+|---|---|
+| 太极拳 `sk_taijiquan`（天中 / 调和） | `mv_taijiquan_lanque：attack/AT-H6`；`mv_taijiquan_danbian：attack/AT-H6`；`mv_taijiquan_baihe：defense/DF-H6`；`mv_taijiquan_louxi：attack/AT-H8`；`mv_taijiquan_shouhui：attack/AT-H8`；`mv_taijiquan_banlan：attack/AT-H8`；`mv_taijiquan_rufeng：defense/DF-H6`；`mv_taijiquan_shizi：attack/AT-H8`；`mv_taijiquan_baohu★：attack/AT-H10★`；`mv_taijiquan_yunshou：attack/AT-H8`。被动 `ps_taijiquan_siliang.routeOnTriggerRef=mfr_taijiquan_rufeng`，复用既有卸力防线，不创建 `mfr_ps_*` |
+| 太极剑 `sk_taijijian`（天中 / 调和） | `mv_taijijian_sanhuan：attack/AT-H6`；`mv_taijijian_dakuixing：defense/DF-H4`；`mv_taijijian_yanzi：attack/AT-H8`；`mv_taijijian_lansao：attack/AT-H8`；`mv_taijijian_xiaokuixing：defense/DF-H6`；`mv_taijijian_jianquan：defense/DF-H6`；`mv_taijijian_zhanjian：attack/AT-H8`；`mv_taijijian_liangyi★：attack/AT-H10★` |
+| 纯阳无极功 `sk_chunyangwuji`（地中 / 阳） | `mv_chunyangwuji_quhan：defense/DF-Y6`；`mv_chunyangwuji_guiyi：defense/DF-Y6+IG`；`mv_chunyangwuji_zhenhuo★：attack/AT-Y10★`（伤害与群体支援并存，按主要攻击用途） |
+| 虎爪绝户手 `sk_huzhaojuehushou`（地下 / 阳） | `mv_huzhaojuehushou_huzhao：attack/AT-Y6`；`mv_huzhaojuehushou_yaoyan：attack/AT-Y6`；`mv_huzhaojuehushou_pushi：attack/AT-Y8`；`mv_huzhaojuehushou_fenjin：attack/AT-Y8`；`mv_huzhaojuehushou_juehu★：attack/AT-Y10★` |
+| 无极玄功拳 `sk_wujixuangongquan`（地下 / 阳） | `mv_wujixuangongquan_qishou：attack/AT-Y6`；`mv_wujixuangongquan_guanquan：attack/AT-Y6`；`mv_wujixuangongquan_lianhuan：attack/AT-Y8`；`mv_wujixuangongquan_zhenshan：attack/AT-Y8`；`mv_wujixuangongquan_huoshou★：attack/AT-Y10★` |
+| 柔云剑术 `sk_rouyunjian`（地下 / 调和） | `mv_rouyunjian_liuyun：attack/AT-H6`；`mv_rouyunjian_chuxiu：attack/AT-H6`；`mv_rouyunjian_chanyun：attack/AT-H8`；`mv_rouyunjian_yunshen：attack/AT-H8`；`mv_rouyunjian_wanli★：attack/AT-H10★` |
+| 神门十三剑 `sk_shenmen13`（地下 / 阳） | `mv_shenmen13_cixue：attack/AT-Y6`；`mv_shenmen13_lianci：attack/AT-Y6`；`mv_shenmen13_fengwan：attack/AT-Y8`；`mv_shenmen13_duobing：attack/AT-Y8`；`mv_shenmen13_shisan★：attack/AT-Y10★` |
+| 倚天屠龙功 `sk_yitiantulonggong`（地中 / 调和） | `mv_yitiantulonggong_wulin：attack/AT-H6`；`mv_yitiantulonggong_tulong：attack/AT-H6`；`mv_yitiantulonggong_haoling：attack/AT-H8`；`mv_yitiantulonggong_mogan：attack/AT-H8`；`mv_yitiantulonggong_yitian：defense/DF-H6`；`mv_yitiantulonggong_zhengfeng★：attack/AT-H10★` |
+| 梯云纵 `sk_tiyunzong`（地中 / 阳） | `mv_tiyunzong_bashen：movement/MV-Y4`；`mv_tiyunzong_tiyun：movement/MV-Y8`；`mv_tiyunzong_zongyue：movement/MV-Y8`；`mv_tiyunzong_fuyao★：movement/MV-Y8★` |
+| 真武七截阵 `sk_zhenwuqijie`（地中 / 阳） | `mv_zhenwuqijie_jiezhen：defense/DF-Y6`；`mv_zhenwuqijie_guishe：attack/AT-Y8`；`mv_zhenwuqijie_guishou：defense/DF-Y6`；`mv_zhenwuqijie_shejin：movement/MV-Y8`；`mv_zhenwuqijie_guizhen★：attack/AT-Y10★` |
+
+#### 8.7.5 天 / 地阶逐招绑定（绝情谷）与覆盖核算
+
+| 武学（品阶 / 性质） | 逐招 `mv_*：用途/模板` |
+|---|---|
+| 闭穴功 `sk_bixuegong`（地下 / 阴） | `mv_bixuegong_bixue：defense/DF-I6+IG`；`mv_bixuegong_chongxue：defense/DF-I6`；`mv_bixuegong_suoyuan★：defense/DF-I6★+IG`（护体绝招短路，1000+540=1540 CT） |
+| 阴阳倒乱刃法 `sk_yinyangdaoluan`（地中 / 调和） | `mv_yinyangdaoluan_huyi：attack/AT-H6`；`mv_yinyangdaoluan_heijian：attack/AT-H6`；`mv_yinyangdaoluan_jindao：attack/AT-H8`；`mv_yinyangdaoluan_daoluan：attack/AT-H8`；`mv_yinyangdaoluan_qinghua：attack/AT-H8`；`mv_yinyangdaoluan_liangyi★：attack/AT-H10★` |
+
+至此覆盖本册天 / 地阶 26 门、146 个既有招式；每门至少一记既有绝招，未新增招名。`route.ultimate` 必须逐项等于 `MoveDef.ultimate`；防守、阵法、治疗与支援短路的路线仍消耗 `flowCt`，但不套攻击乘区。
+
+#### 8.7.6 玄 / 黄阶确定性模板与全轻功速度路线
+
+| 大阶 | 伤害招 | 防守 / 支援招 | 位移 / 闪避招 | 绝招 |
+|---|---|---|---|---|
+| 玄 | 按性质取 `AT-Y/I/H6`，轻击可取对应 4 段 | 对应 `DF-Y/I/H4`；明确护体取 6 段并挂 `innerGuard` | 对应 `MV-Y/I/H4`；长跃、追击取 8 段 | 既有攻击绝招取 8 段，守 / 移绝招取 6 / 8 段并使用绝招 CT |
+| 黄 | 对应 4 段攻击模板的前 2–4 段，按现有招式次序递进 | 对应 4 段防守模板的前 2–4 段 | 对应 4 段移动模板的前 2–4 段 | 黄阶无绝招 |
+
+正式数据须展开为每招唯一 `mfr_<move>`，不保存模板码或“前 N 段”。所有轻功的战斗移动、追击、腾跃、脱离与闪避招均挂 movement 路线；速度 Profile 如下，门禁仍读取未修正轻功值：
+
+| 轻功 | 性质 / 品阶 | 速度路线族 |
+|---|---|---|
+| `sk_jinyangong`、`sk_qixingbu` | 阳 / 玄 | `MV-Y4`，长跃 / 闪避 `MV-Y8` |
+| `sk_xuanmenxingbu` | 调和 / 黄 | `MV-H4` 前 2–4 段 |
+| `sk_buquegong` | 阴 / 黄 | `MV-I4` 前 2–4 段 |
+| `sk_gumuqinggong` | 阴 / 地 | §8.7.2 已逐招绑定 `MV-I4/8` |
+| `sk_muzhongyixing` | 阴 / 玄 | `MV-I4`，长跃 / 闪避 `MV-I8` |
+| `sk_muzhongbu` | 阴 / 黄 | `MV-I4` 前 2–4 段 |
+| `sk_diaopubu` | 中性 / 玄 | `MV-H4`，长跃 / 闪避 `MV-H8` |
+| `sk_shanhongbu` | 中性 / 黄 | `MV-H4` 前 2–4 段 |
+| `sk_wudangyunbu` | 阳 / 黄 | `MV-Y4` 前 2–4 段 |
+| `sk_tiyunzong` | 阳 / 地 | §8.7.4 已逐招绑定 `MV-Y4/8` |
+| `sk_liangyibu` | 调和 / 玄 | `MV-H4`，长跃 / 闪避 `MV-H8` |
+| `sk_wudangxingbu`、`sk_songxibu` | 调和 / 黄 | `MV-H4` 前 2–4 段 |
+| `sk_qinghuabufa` | 阴 / 玄 | `MV-I4`，长跃 / 闪避 `MV-I8` |
+| `sk_gudibu` | 调和 / 黄 | `MV-H4` 前 2–4 段 |
+
+速度输出只消费 21 §4.9 已归一的 Profile，不再传原始 `routeQualityBp`；`openingQinggong`、`spd'`、移动与 `evadeRatingDelta` 的投影及“先经脉后擒拿”归 21 / 09。
+
+#### 8.7.7 全内功调息档案与护体显示档
+
+每门内功以 `breathProfileRef` 指向同名 `txp_*`；下表是固定 10 重展示，正式字段依次为 `grade/layer/nature/scope/ct/mpCostBp`，其中 `ct=1000`、`mpCostBp=0`。运行时按 `effGrade/effLayer` 重算；护体 I / II / III / IV 仅对应黄 / 玄 / 地 / 天 UI 档，不增加倍率。
+
+| 内功 → 调息档案 | `grade/10/nature/scope/1000/0` | 10 重 `reliefBp / repairUnits` | 护体档 |
+|---|---|---:|:---:|
+| `sk_quanzhentunajue → txp_quanzhentunajue` | `2/10/yang/1/1000/0` | `1500 / 348` | I |
+| `sk_quanzhenxinfa → txp_quanzhenxinfa` | `5/10/yang/2/1000/0` | `1800 / 420` | II |
+| `sk_jinguanyusuo → txp_jinguanyusuo` | `8/10/harmony/3/1000/0` | `2205 / 516` | III |
+| `sk_xiantiangong → txp_xiantiangong` | `11/10/yang/3/1000/0` | `2400 / 564` | IV |
+| `sk_beidouxinfa → txp_beidouxinfa` | `5/10/yang/2/1000/0` | `1800 / 420` | II |
+| `sk_baiyunguanxinfa → txp_baiyunguanxinfa` | `2/10/harmony/1/1000/0` | `1575 / 365` | I |
+| `sk_gumuxinfa → txp_gumuxinfa` | `3/10/yin/1/1000/0` | `1600 / 372` | I |
+| `sk_hanyuxinjue → txp_hanyuxinjue` | `6/10/yin/2/1000/0` | `1900 / 444` | II |
+| `sk_yunvxinjing → txp_yunvxinjing` | `10/10/yin/3/1000/0` | `2300 / 540` | IV |
+| `sk_hanyujinggong → txp_hanyujinggong` | `5/10/yin/2/1000/0` | `1800 / 420` | II |
+| `sk_gumudaoyin → txp_gumudaoyin` | `2/10/yin/1/1000/0` | `1500 / 348` | I |
+| `sk_jianzhongtuna → txp_jianzhongtuna` | `2/10/harmony/1/1000/0` | `1575 / 365` | I |
+| `sk_taihegong → txp_taihegong` | `2/10/harmony/1/1000/0` | `1575 / 365` | I |
+| `sk_liangyixinfa → txp_liangyixinfa` | `5/10/harmony/2/1000/0` | `1890 / 441` | II |
+| `sk_chunyangwuji → txp_chunyangwuji` | `8/10/yang/3/1000/0` | `2100 / 492` | III |
+| `sk_wudangyangshenggong → txp_wudangyangshenggong` | `5/10/harmony/2/1000/0` | `1890 / 441` | II |
+| `sk_xuanzhenxinfa → txp_xuanzhenxinfa` | `5/10/yang/2/1000/0` | `1800 / 420` | II |
+| `sk_wudangtuna → txp_wudangtuna` | `1/10/yang/1/1000/0` | `1400 / 324` | I |
+| `sk_zhenwudaoyin → txp_zhenwudaoyin` | `2/10/harmony/1/1000/0` | `1575 / 365` | I |
+| `sk_zhenwuzhuang → txp_zhenwuzhuang` | `3/10/yang/1/1000/0` | `1600 / 372` | I |
+| `sk_jueqingxinjue → txp_jueqingxinjue` | `3/10/yin/1/1000/0` | `1600 / 372` | I |
+| `sk_bixuegong → txp_bixuegong` | `7/10/yin/3/1000/0` | `2000 / 468` | III |
+| `sk_jueqingdaoyin → txp_jueqingdaoyin` | `2/10/yin/1/1000/0` | `1500 / 348` | I |
+
+调和核算例：金关玉锁 `min(2500,floor((500+800+800)×1.05))=2205`，修复 `floor((120+192+180)×1.05)=516`；非调和纯阳无极功为 `500+800+800=2100`、`120+192+180=492`。标准对标准攻 / 防 / 速度均为 10000 bp；护体内劲按 21 §4.8 的拳脚 / 持械 / 暗器 / 外放适用率 `10000/2500/0/4000`，且严格在护体真气后、`mpGuard` 前结算。
+
 ## 9. 本文新增术语与 ID
 
 **本文规则术语**
@@ -2011,6 +2149,7 @@
 | 有效实际阵员 | 同阵营、装配对应阵法、未倒地且未受硬控的真实战斗单位；起阵和维持都按此计数 | 本文只给两阵的成员条件；阵法生命周期归 `design/09` |
 | 虚拟阵位 | 六个有效实际单位在阵且阵主对应阵法有效 10 重时补出的第七阵位 | 只补阵位与满阵加成，不生成单位、CT、追击或反击，不降低起阵/维持门槛 |
 | `anran_bieli` | 黯然销魂掌获取条件的存档旗标：当书界内羁绊 ≥ 3 的同伴曾离队或倒下 | 事件写入归 `chapters/03` 与 `design/12`；本文只读取 |
+| 路线 / 调息引用 | `mfr_<完整 move ID 去掉 mv_>` / `txp_<完整 skill ID 去掉 sk_>` | 对象与 schema 归 `design/21`；本文只登记一一绑定，前缀待 Canon 采纳 M2-P01 |
 
 **ID 盘点**
 
@@ -2026,6 +2165,7 @@
 | NPC（引用/岗位槽） | 具名 18；岗位槽 3 | 具名：`npc_mayu` `npc_qiuchuji` `npc_yideng` `npc_xiaolongnv` `npc_limochou` `npc_zhoubotong` `npc_yangguo` `npc_zhangsanfeng` `npc_songyuanqiao` `npc_yulianzhou` `npc_zhangcuishan` `npc_chongxu` `npc_lufeiqing` `npc_liyuanzhi` `npc_zhangzhaozhong` `npc_gongsunzhi` `npc_qiuqianchi` `npc_fanyiweng`；岗位槽：全真知客道人、白云观道长、游方武当道人 |
 | 任务（占位，本文件号段 `_71`–`_96`） | 24 | `q_02_bond_72` `q_02_faction_73` `q_02_qiyu_74` `q_02_bond_75` `q_02_faction_77` `q_03_side_76` `q_03_side_79` `q_03_faction_80` `q_03_qiyu_81` `q_03_bond_82` `q_03_qiyu_83` `q_03_qiyu_84` `q_03_bond_86` `q_03_faction_94` `q_03_side_95` `q_03_qiyu_96` `q_04_bond_85` `q_04_main_87` `q_04_main_88` `q_04_bond_91` `q_04_qiyu_92` `q_04_faction_93` `q_12_faction_89` `q_12_bond_90` |
 | 其他 | 2 | 存档旗标 `anran_bieli`（黯然"别离"门槛）；地形建议 `tr_qinghuacong` 情花丛（design/08） |
+| 经脉路线 / 调息档案（引用） | 146 / 23 | 高阶 146 招均有同名 `mfr_*`；玄黄在实体化时按 §8.7.6 生成；23 门内功引用 §8.7.7 的 `txp_*`。均由 21 拥有，不计本文新增 ID |
 
 ---
 
@@ -2070,6 +2210,10 @@
 | DJ-V12 | 文档结构 | 目录与一级/二级标题一致，Markdown 表格列数一致，代码围栏成对，无截断句或占位词 |
 | DJ-V13 | AR-01 新增量 | 与 v1.1 比较只新增玄 19、黄 31；天、地均为 0；玄阶预算样本 ≥30%，黄阶 46 门均出现在八字段一行表 |
 | DJ-V14 | 装配覆盖（05 §14.6 #4） | 每界内功 / 拳脚 / 兵器及同类兵器链均 ≥3；本组不足的书界必须明确由 `skills-general` §11.1 `ALL14` 补齐，不得把携带武学当本土来源 |
+| DJ-V15 | 经脉高阶覆盖（AR-14） | §8.7 恰覆盖 26 门天 / 地阶、146 个既有 `mv_*`；每门至少一记 `ultimate:true`，且 `route.ultimate` 同值；路线 ID 必须为同名派生 `mfr_*` |
+| DJ-V16 | 路线 schema 与约束 | `purpose` 仅 attack / defense / movement；中性只允许 `requiredNature:[yin,yang,harmony]`；路线 1–18 段、穴位不重复、CT 40–120、风险 0–1200，且 `recovery+ΣsegmentCt≤2000` |
+| DJ-V17 | 调息与护体 | 23 门内功各且仅引用一个 `txp_*`；字段为 `id/grade/layer/nature/scope/ct/mpCostBp`，scope 1–3、CT 1000、耗内 0；护体档只显示，`innerGuard.reflectBp=0` |
+| DJ-V18 | 速度与单位隔离 | 16 门轻功全部有 movement 路线族；不把经脉速度写回 `Q_skill` / 门禁；每个独立单位一个 `MeridianFlowModule`，preview 不写状态且不耗 RNG |
 
 ### 10.2 二十三门内功 IP 复算
 
@@ -2111,6 +2255,10 @@
 | 残承边界 | 笑傲取得太极拳或太极剑 | 保存 `partial` 与 `lineageGrade=10`，不得计入笑傲完整天级池或自动补成 11 |
 | 虎爪门规 | 对一时敌对但并非邪派的目标使用虎爪绝户手 | 按 P26 扣品德；“敌对”不自动等同“邪派” |
 | 毒刃与淬毒 | 五毒秘传毒刃触发，或装备已有 `poisonCoat` | 只施加既有 `bf_zhongdu` / `bf_judu`；不得生成 `bf_cuidu` |
+| 同档零漂移 | 攻、防、速度双方均为标准强度，路线完整提交 | 三个独立乘区均为 10000 bp；不改变原伤害、减伤与速度 |
+| 太极卸力触发 | `ps_taijiquan_siliang` 成功触发 | 通过 `routeOnTriggerRef=mfr_taijiquan_rufeng` 运行防线；不另造被动路线 ID |
+| 护体内劲顺序 | 纯阳无极功或闭穴功合法护体、承受拳脚伤害 | 护体真气后消费护体内劲，再到 `mpGuard` 与气血；资源守恒 trace 与 21 一致 |
+| 调息档案 | 金关玉锁 8 品、10 重、调和、scope 3 | `reliefBp=2205`、`repairUnits=516`；不推进 15 的永久冲穴进度 |
 
 ---
 
@@ -2148,6 +2296,7 @@
 | U-3 | AR-02 | 23 门内功全部显式标 `nature`：`yin=8`、`yang=8`、`harmony=7`；阴阳相性与冲穴只引用 05 和 `design/15`，本文不重定义 |
 | U-4 | AR-07、AR-08；`design/17` | 五级 L1–L5 与现行门派资料对齐：全真/武当用 T02；古墓用 §7.3 小规模 T04 变体；绝情谷用 §7.6 T04。月钱、资源与营生只引用 12/16 |
 | U-5 | AR-12 | **已解决**：活跃招式已移除旧方格专用十字/九宫与临时占位，统一使用 09 §5.3、§13.1 的 `aoe_disk` / 结构化 `aoe_zone`；直接伤害按 05 §4.2 的 AF=0.70 重算（见 D-18） |
+| U-6 | AR-14；`design/21` v2.0 | **已解决（本文侧）**：26 门天 / 地阶、146 招逐一绑定；玄黄使用确定性模板；16 门轻功接 movement 路线；23 门内功接调息与护体显示档。公式、状态与结算顺序仍由 21 唯一定义（见 §8.7） |
 
 ### 11.3 对基准的修改提案
 
@@ -2160,6 +2309,7 @@
 | 登记 `ps_`、`aoe_`、`it_miji_` 等前缀 | **已采纳（v1.1）** | 基准 V11-04、§12 |
 | 玩家队伍六人上限与剧情 AI 友军分开 | **已采纳（v1.1）** | 基准 V11-36、§8；七人阵仍按 C13 作游戏改编 |
 | 总武学 661 门、神雕玄阶 16→22 | **已撤回 / 被覆盖** | AR-01 改为全局约 1,100–1,150 门、比例约 1:3:9:9；逐界数量由 05 C3 重定，不在基准另写旧值 |
+| 登记 `mfr_* / txp_*` 前缀及经脉动态唯一归属 | **待采纳** | 采用 21 §18.3 M2-P01、M3-P04；本文已按拟登记前缀引用，不在图鉴越权定义 |
 
 ### 11.4 原著考据待办
 
@@ -2194,3 +2344,4 @@
 | O-3 | 黯然销魂掌是否保留当书界羁绊 ≥ 3 同伴离队或倒下的“别离”门槛 | **已解决（作者决定 P24）**：保留；事件旗标为 `anran_bieli`，由 `chapters/03` / `design/12` 写入（见 §4.3、§9） |
 | O-4 | 虎爪绝户手对非邪派目标使用是否扣品德 | **已解决（作者决定 P26）**：保留；临时敌对不等于邪派，目标须按其既有阵营/行为标签判定（见 §5.4、§10.3） |
 | O-5 | 六角范围占位模板的最终 ID 与 AF | **已解决**：09/05 已定稿生产 schema；本文已迁为 `aoe_disk {r:1}` / `aoe_zone {inner:{tpl:aoe_disk,r:1},duration:N}`，直接伤害使用 N=7、AF=0.70，持续地表效果单独审查（见 D-18） |
+| O-6 | 经脉路线、独立乘区、护体与速度是否由图鉴各自定义 | **已解决：否**。本文仅给绑定，河流状态、调息、攻防 / 速度乘区、护体内劲与逐单位实例统一见 `design/21` §3–§12；前缀登记仍待 Canon v1.3（见 §8.7） |

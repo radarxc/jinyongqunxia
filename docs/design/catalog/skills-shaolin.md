@@ -1,9 +1,9 @@
 # 门派武学图鉴 · 少林（skills-shaolin）
 
-> **版本**：v1.2（AR-01 扩充；全局审计，2026-09-27）。
+> **版本**：v1.2（AR-01 扩充；全局审计）；经脉系统落地（2026-09-27）。
 > **归属（基准 §18）**：`design/catalog/skills-*.md`——门派武学图鉴。本文定义少林派（嵩山少林）、南少林及其旁支武学；门派制度、Buff、阵法、套装与书界投放只登记接口。
-> **上游**：`docs/decisions/author-requirements.md` AR-01/02/07/08；`docs/decisions/author-decisions.md` P06/P09/P32/P47/P49；`docs/00-canon.md` v1.2（§2–§4、§6–§7、§12–§13、§16、§18、§20）；`docs/decisions/rulings-v1.md` C12/C14/C17/C22/C23；`design/03`、`design/05`。
-> **引用而不重定义**：属性与技艺 ID 见 `design/03`；武学字段、招式预算、层数、内功与学习门槛见 `design/05`；Buff 目录见 `design/06`；套装规则与最终效果见 `design/07`；阵法与合击见 `design/09`；门派制度见 `design/12` 与 `design/17`；冲穴见 `design/15`；资源、月钱与营生见 `design/16`；时代地图见 `design/11`。`sk_yijinjing`、`sk_longzhaoshou`、`sk_luohanquan`、`sk_tieshazhang` 的完整数据以 `design/05` 为准，本文只给摘要与需同步接口。
+> **上游**：`docs/decisions/author-requirements.md` AR-01/02/07/08/14；`docs/decisions/author-decisions.md` P06/P09/P32/P47/P49；`docs/00-canon.md` v1.2（§2–§4、§6–§7、§12–§13、§16、§18、§20）；`docs/decisions/rulings-v1.md` C12/C14/C17/C22/C23；`design/03`、`design/05`、`design/21` v2.0。
+> **引用而不重定义**：属性与技艺 ID 见 `design/03`；武学字段、招式预算、层数、内功与学习门槛见 `design/05`；战斗经脉运行、招式路线、调息、护体内劲与经脉速度见 `design/21`；Buff 目录见 `design/06`；套装规则与最终效果见 `design/07`；阵法与合击见 `design/09`；门派制度见 `design/12` 与 `design/17`；经脉、穴位、冲穴、周天与九转见 `design/15`；资源、月钱与营生见 `design/16`；时代地图见 `design/11`。`sk_yijinjing`、`sk_longzhaoshou`、`sk_luohanquan`、`sk_tieshazhang` 的完整数据以 `design/05` 为准，本文只给摘要与需同步接口。
 > **标注约定**：**（原创扩展）**＝原著没有；**（待考）**＝须按三联／广州修订版逐字核对且写明书名、人物或情节；**（待核实）**＝版本、API 等技术事实尚未确认；**（待实测）**＝须真机或真账号验证；**【建议值】**＝依赖归属文档、本文先给可用值并在 §8 登记。
 
 ---
@@ -21,6 +21,7 @@
 | §3 | 旁支：西域金刚门、叛僧成昆（幻阴指）、五台山清凉寺；敌人专用武学 |
 | §4 | 套装候选（门派套装 ×7、人物传承套装 ×4；含用户示例 `set_shaolin_jingang`） |
 | §5 | 统计（门派 × 12 品阶、类别、原生书界）、预算口径、境界覆盖与可习得池比例 |
+| §5.7 | AR-14 经脉运行绑定：路线模板、高阶逐招、轻功、内功调息与护体档 |
 | §6 | 本文新增术语与 ID |
 | §7 | 数据校验规则与测试用例 |
 | §8 | 待决事项 / 依赖 |
@@ -1049,6 +1050,136 @@
 
 ---
 
+### 5.7 AR-14 经脉运行绑定（`design/21` v2.0）
+
+#### 5.7.1 边界、字段与展开约定
+
+本节只把本册既有武学与招式绑定到 `design/21` 的运行接口，不复制河流公式、独立乘区或结算规则。`MoveDef.meridianRouteRef` 引用 `MeridianRouteDef`；被动触发路线用 `routeOnTriggerRef`；内功调息引用 `BreathProfile`。战斗仍按 `Z0–Z4 → Z4M → Z5 → Z5M → Z6–Z10 → 护体真气 → 护体内劲 → mpGuard → 气血`，每个我方、敌方独立行动单位各持一个 `MeridianFlowModule`，`preview` 不写状态也不耗 RNG（均见 21 §4.4、§11–§12）。
+落库字段严格复用 21 §12：`MeridianRouteDef.id/moveRef/ultimate/purpose/requiredNature/steps`，其中 `RouteStep.acupointRef/segmentCt/riskBp`；`BreathProfile.id/grade/layer/nature/scope/ct/mpCostBp`。
+
+- 具体路线 ID 采用 `mfr_<完整 move ID 去掉 mv_>`；调息档案采用 `txp_<完整 skill ID 去掉 sk_>`。两前缀仍是 21 §16.2 / M2-P01 的**拟登记前缀**，不是本文越权登记。
+- 表内 `AT/DF/MV` 分别展开为 `purpose:attack/defense/movement`；`Y/I/H` 为阳 / 阴 / 调和路线。中性武学使用调和几何但 `requiredNature:[yin,yang,harmony]`，不虚构 `neutral` 内力性质。
+- `★` 仅断言现有 `MoveDef.ultimate:true`；`route.ultimate` 必须与之相等。支援、治疗、布阵的路线用于运行与时间成本，不把攻击乘区套到治疗或原有效果。
+- `innerGuard:{enabled:true,reflectBp:0}` 只挂于表中 `IG` 的护体防线；运行值由实际 `MeridianProfile` 计算。“护体档”只是 UI 档位，不增乘区。已有 `bf_fanzhen` 仍归 06，故路线反震固定 0，避免双算。
+- 玄 / 黄阶不逐招造表：每个现有伤害招、架势 / 护体招、轻功招分别按 §5.7.5 的确定性模板展开唯一 `mfr_<move>`；纯探索 / 对话动作不强制战斗路线。旧内容缺引用时仅可用 21 §4.6 的 2 段迁移短路，正式发布前必须写回稳定引用。
+
+#### 5.7.2 本册路线模板（排版码，不是 ID）
+
+以下穴位均已在 `design/15` 登记；数组顺序即 `steps` 顺序，每项写作 `穴位/segmentCt/riskBp`。同一模板可生成多个独立 `mfr_*`，但正式数据必须展开，不把模板码传给 Core。
+
+| 码 | `purpose` / `requiredNature` | `steps`（依次） | ΣCT | 适用 |
+|---|---|---|---:|---|
+| `AT-Y4` | attack / `[yang,harmony]` | `ap_shouyangming_quchi/70/80 → ap_shouyangming_shousanli/70/100 → ap_shouyangming_hegu/70/120 → ap_shouyangming_shangyang/70/140` | 280 | 阳性短攻 |
+| `AT-Y6` | attack / `[yang,harmony]` | `ap_dumai_mingmen/70/80 → ap_dumai_zhiyang/70/100 → ap_dumai_shendao/70/120 → ap_dumai_baihui/70/140 → ap_shouyangming_quchi/70/350 → ap_shouyangming_hegu/70/150` | 420 | 阳性换脉攻 |
+| `AT-Y8` | attack / `[yang,harmony]` | 督脉 B 四穴后接手阳明 E 四穴；CT 均 70，风险 `80/100/120/140/400/100/120/140` | 560 | 阳性地阶重招 |
+| `AT-Y10★` | attack / `[yang,harmony]` | `AT-Y8` 后接 `ap_renmai_qihai/80/450 → ap_renmai_guanyuan/80/150`；前八段 CT 改 80 | 800 | 阳性地 / 天绝招 |
+| `AT-I4` | attack / `[yin,harmony]` | 手太阴 C 四穴；CT 均 70，风险 `80/100/120/140` | 280 | 阴性短攻 |
+| `AT-I6` | attack / `[yin,harmony]` | 手厥阴 D 五穴后接 `ap_shoutaiyin_yunmen`；CT 均 70，风险 `80/100/120/140/160/350` | 420 | 阴性换脉攻 |
+| `AT-I8` | attack / `[yin,harmony]` | 手太阴 C 四穴后接手厥阴 D 前四穴；CT 均 70，风险 `80/100/120/140/400/100/120/140` | 560 | 阴性地阶重招 |
+| `AT-I10★` | attack / `[yin,harmony]` | `AT-I8` 后接 `ap_renmai_qihai/80/450 → ap_renmai_guanyuan/80/150`；前八段 CT 改 80 | 800 | 阴性地 / 天绝招 |
+| `AT-H4` | attack / `[yin,yang,harmony]` | 腰腿 F 四穴；CT 均 70，风险 `80/100/120/140` | 280 | 调和 / 中性短攻 |
+| `AT-H6` | attack / `[yin,yang,harmony]` | 带督 G 四穴后接手厥阴 D 前二穴；CT 均 70，风险 `80/100/120/140/400/120` | 420 | 调和 / 中性换脉攻 |
+| `AT-H8` | attack / `[yin,yang,harmony]` | 带督 G 四穴后接手太阴 C 四穴；CT 均 70，风险 `80/100/120/140/400/100/120/140` | 560 | 调和 / 中性地阶重招 |
+| `AT-H10★` | attack / `[yin,yang,harmony]` | 任脉 A 四穴→带督 G 四穴→手厥阴 D 前二穴；CT 均 80，风险 `80/100/120/140/400/100/120/140/450/150` | 800 | 调和 / 中性地 / 天绝招 |
+| `DF-Y4` | defense / `[yang,harmony]` | 督脉 B 四穴；CT 均 70，风险 `50/70/90/110` | 280 | 阳性架势 |
+| `DF-Y6` | defense / `[yang,harmony]` | 督脉 B 四穴→手阳明 E 前二穴；CT 均 70，风险 `50/70/90/110/300/100` | 420 | 阳性护体；绝招改 90/段 |
+| `DF-I4` | defense / `[yin,harmony]` | 任脉 A 四穴；CT 均 70，风险 `50/70/90/110` | 280 | 阴性架势 |
+| `DF-I6` | defense / `[yin,harmony]` | 任脉 A 四穴→手厥阴 D 前二穴；CT 均 70，风险 `50/70/90/110/300/100` | 420 | 阴性护体；绝招改 90/段 |
+| `DF-H4` | defense / `[yin,yang,harmony]` | 带督 G 四穴；CT 均 70，风险 `50/70/90/110` | 280 | 调和 / 中性架势 |
+| `DF-H6` | defense / `[yin,yang,harmony]` | 带督 G 四穴→手厥阴 D 前二穴；CT 均 70，风险 `50/70/90/110/300/100` | 420 | 调和 / 中性护体；绝招改 90/段 |
+| `MV-Y4/8` | movement / `[yang,harmony]` | 阳跷前 4 / 8 穴；CT 均 60（绝招 75），风险前四 `50/70/90/110`、后四 `250/70/90/110` | 240 / 480 | 阳性轻功 |
+| `MV-I4/8` | movement / `[yin,harmony]` | 阴跷前 4；八段为阴跷六穴→`ap_shoujueyin_tianchi → ap_shoujueyin_quze`；CT 均 60（绝招 75），风险前四 `50/70/90/110`，后四 `250/70/90/110` | 240 / 480 | 阴性轻功 |
+| `MV-H4/8` | movement / `[yin,yang,harmony]` | 腰腿 F 四穴 / F 后接带督 G 四穴；CT 均 60（绝招 75），风险前四 `50/70/90/110`、后四 `250/70/90/110` | 240 / 480 | 调和 / 中性轻功 |
+
+每个模板均为 1–18 段、穴位不重复、`segmentCt=60/70/75/80/90`、`riskBp=50..450`。普通 4/6/8 段分别增加 240–560 CT；绝招 6 段增加 540 CT、8 段增加 600 CT、10 段增加 800 CT，配合本册既有 800–1200 收招均不超过 2000。
+
+#### 5.7.3 天 / 地阶逐招绑定（上）
+
+表中每个 `mv_*` 绑定同名派生 `mfr_*`；例如 `mv_yijinjing_xisui → mfr_yijinjing_xisui`。冒号后为 `purpose/模板`，`★` 表示该现有招式是绝招。对“攻击同时自护”的招式仍以主要伤害用途挂 attack；其既有效果不变。
+
+| 武学（品阶 / 性质） | 逐招 `mv_*：用途/模板` |
+|---|---|
+| 易筋经 `sk_yijinjing`（天上 / 调和） | `mv_yijinjing_xisui：defense/DF-H6`；`mv_yijinjing_weituo：defense/DF-H6`；`mv_yijinjing_daozhuai：attack/AT-H8`；`mv_yijinjing_huangu★：defense/DF-H6★`（支援绝招短于 10 段：不造成伤害，6×90=540 CT） |
+| 金刚不坏体 `sk_jingangbuhuai`（天下 / 阳） | `mv_jingangbuhuai_shoushi：defense/DF-Y4`；`mv_jingangbuhuai_shouquan：defense/DF-Y4`；`mv_jingangbuhuai_hushen：defense/DF-Y6+IG`；`mv_jingangbuhuai_hanshan：attack/AT-Y8`；`mv_jingangbuhuai_jinshen★：defense/DF-Y6★+IG`（21 §4.7 示例；1200+6×90=1740 CT） |
+| 狮子吼 `sk_shizihou`（天下 / 阳） | `mv_shizihou_zhenhou：attack/AT-Y8`；`mv_shizihou_shehun：attack/AT-Y8`；`mv_shizihou_pozhen：attack/AT-Y8`；`mv_shizihou_hexing：defense/DF-Y6`；`mv_shizihou_juyin：attack/AT-Y8`；`mv_shizihou_shizihou★：attack/AT-Y10★` |
+| 铁布衫 `sk_tiebushan`（地下 / 阳） | `mv_tiebushan_yingjie：defense/DF-Y4`；`mv_tiebushan_tiebei：attack/AT-Y6`；`mv_tiebushan_qianjinzhui：defense/DF-Y4`；`mv_tiebushan_tieniu：attack/AT-Y6`；`mv_tiebushan_gangqi★：defense/DF-Y6★+IG`（护体绝招短路；1200+540=1740 CT） |
+| 金钟罩 `sk_jinzhongzhao`（地中 / 阳） | `mv_jinzhongzhao_huti：defense/DF-Y6+IG`；`mv_jinzhongzhao_zhongming：attack/AT-Y6`；`mv_jinzhongzhao_fanzhen：defense/DF-Y4+IG`；`mv_jinzhongzhao_hongzhong：attack/AT-Y6`；`mv_jinzhongzhao_bupo★：defense/DF-Y6★+IG`（护体绝招短路；反震仍由 `bf_fanzhen`，路线 `reflectBp:0`） |
+| 少林九阳功 `sk_shaolinjiuyang`（地中 / 阳） | `mv_shaolinjiuyang_huti：defense/DF-Y6+IG`（同类于 21 §4.7 九阳护体示例）；`mv_shaolinjiuyang_chunyang：attack/AT-Y6`；`mv_shaolinjiuyang_liaoshang：defense/DF-Y4`；`mv_shaolinjiuyang_zhoutian★：defense/DF-Y6★+IG`（自疗绝招短路） |
+| 洗髓经 `sk_xisuijing`（地上 / 调和） | `mv_xisuijing_famao：defense/DF-H4`；`mv_xisuijing_chengxin：defense/DF-H6`；`mv_xisuijing_huanmai：defense/DF-H6`；`mv_xisuijing_huanyuan★：defense/DF-H6★`（群体支援绝招短路） |
+| 大金刚拳 `sk_dajingangquan`（地下 / 阳） | `mv_dajingangquan_kaishan：attack/AT-Y6`；`mv_dajingangquan_zhenmo：attack/AT-Y6`；`mv_dajingangquan_numu：attack/AT-Y6`；`mv_dajingangquan_daochu：attack/AT-Y8`；`mv_dajingangquan_yinu★：attack/AT-Y10★` |
+| 大金刚掌 `sk_dajingangzhang`（地下 / 阳） | `mv_dajingangzhang_tuotian：attack/AT-Y6`；`mv_dajingangzhang_moyun：attack/AT-Y6`；`mv_dajingangzhang_lieshi：attack/AT-Y8`；`mv_dajingangzhang_cuishan：attack/AT-Y8`；`mv_dajingangzhang_dali★：attack/AT-Y10★` |
+| 般若掌 `sk_boruozhang`（地中 / 调和） | `mv_boruozhang_rushi：attack/AT-H6`；`mv_boruozhang_kongxiang：attack/AT-H6`；`mv_boruozhang_zhaojian：attack/AT-H8`；`mv_boruozhang_duyi：defense/DF-H6`；`mv_boruozhang_boluomi★：attack/AT-H10★` |
+| 韦陀杵 `sk_weituochu`（地中 / 阳） | `mv_weituochu_xiangmo：attack/AT-Y6`；`mv_weituochu_hufa：defense/DF-Y4`；`mv_weituochu_zhenyue：attack/AT-Y8`；`mv_weituochu_dachu：attack/AT-Y8`；`mv_weituochu_fumo★：attack/AT-Y10★` |
+| 须弥山掌 `sk_xumishanzhang`（地上 / 阳） | `mv_xumishanzhang_yashan：attack/AT-Y6`；`mv_xumishanzhang_chenzhang：attack/AT-Y6`；`mv_xumishanzhang_bafeng：defense/DF-Y4`；`mv_xumishanzhang_jiezi：attack/AT-Y8`；`mv_xumishanzhang_yading★：attack/AT-Y10★` |
+| 千手如来掌 `sk_qianshourulaizhang`（地上 / 调和） | `mv_qianshourulaizhang_qianshou：attack/AT-H6`；`mv_qianshourulaizhang_zhangying：attack/AT-H6`；`mv_qianshourulaizhang_jieyin：attack/AT-H8`；`mv_qianshourulaizhang_rulai：defense/DF-H4`；`mv_qianshourulaizhang_wanfo★：attack/AT-H10★` |
+| 摩诃指 `sk_mohezhi`（地下 / 阳） | `mv_mohezhi_dazhi：attack/AT-Y6`；`mv_mohezhi_dianxue：attack/AT-Y6`；`mv_mohezhi_poqi：attack/AT-Y8`；`mv_mohezhi_lianzhi：attack/AT-Y8`；`mv_mohezhi_wuliang★：attack/AT-Y10★` |
+| 多罗叶指 `sk_duoluoyezhi`（地下 / 调和） | `mv_duoluoyezhi_yeluo：attack/AT-H6`；`mv_duoluoyezhi_beiye：attack/AT-H6`；`mv_duoluoyezhi_jingye：attack/AT-H8`；`mv_duoluoyezhi_luanye：attack/AT-H8`；`mv_duoluoyezhi_mantian★：attack/AT-H10★` |
+
+#### 5.7.4 天 / 地阶逐招绑定（下）
+
+| 武学（品阶 / 性质） | 逐招 `mv_*：用途/模板` |
+|---|---|
+| 大力金刚指 `sk_dalijingangzhi`（地中 / 阳） | `mv_dalijingangzhi_niegu：attack/AT-Y6`；`mv_dalijingangzhi_zhaxue：attack/AT-Y6`；`mv_dalijingangzhi_cuogu：attack/AT-Y8`；`mv_dalijingangzhi_chuanshi：attack/AT-Y8`；`mv_dalijingangzhi_suigu★：attack/AT-Y10★` |
+| 一指禅 `sk_yizhichan`（地中 / 调和） | `mv_yizhichan_yizhi：attack/AT-H6`；`mv_yizhichan_chanding：defense/DF-H4`；`mv_yizhichan_guanding：attack/AT-H8`；`mv_yizhichan_jiexue：defense/DF-H6`；`mv_yizhichan_qiankun★：attack/AT-H10★` |
+| 拈花指 `sk_nianhuazhi`（地上 / 调和） | `mv_nianhuazhi_nianhua：attack/AT-H6`；`mv_nianhuazhi_weixiao：defense/DF-H4`；`mv_nianhuazhi_wuxing：attack/AT-H8`；`mv_nianhuazhi_sanhua：attack/AT-H8`；`mv_nianhuazhi_jiaye★：attack/AT-H10★` |
+| 无相劫指 `sk_wuxiangjiezhi`（地上 / 调和） | `mv_wuxiangjiezhi_wuxiang：attack/AT-H6`；`mv_wuxiangjiezhi_jiehuo：attack/AT-H6`；`mv_wuxiangjiezhi_kongjie：attack/AT-H8`；`mv_wuxiangjiezhi_wuxiangjie：attack/AT-H8`；`mv_wuxiangjiezhi_jiejin★：attack/AT-H10★` |
+| 如影随形腿 `sk_ruyingsuixingtui`（地下 / 阳） | `mv_ruyingsuixingtui_ruying：movement/MV-Y4`；`mv_ruyingsuixingtui_suixing：defense/DF-Y4`；`mv_ruyingsuixingtui_lianhuan：attack/AT-Y8`；`mv_ruyingsuixingtui_raoying：movement/MV-Y8`；`mv_ruyingsuixingtui_yingzong★：attack/AT-Y10★` |
+| 龙爪手 `sk_longzhaoshou`（地中 / 阳） | `mv_longzhaoshou_bufeng：attack/AT-Y6`；`mv_longzhaoshou_zhuoying：attack/AT-Y6`；`mv_longzhaoshou_fuqin：attack/AT-Y8`；`mv_longzhaoshou_guse：attack/AT-Y8`；`mv_longzhaoshou_pikang：attack/AT-Y8`；`mv_longzhaoshou_daoxu：attack/AT-Y8`；`mv_longzhaoshou_sanshiliu★：attack/AT-Y10★`；`mv_longzhaoshou_baocan：defense/DF-Y6`；`mv_longzhaoshou_shouque：defense/DF-Y6`（九招与绝招真值均来自 05 §13.7） |
+| 伏魔杖法 `sk_fumozhangfa`（地中 / 阳） | `mv_fumozhangfa_fumo：attack/AT-Y6`；`mv_fumozhangfa_hengsao：attack/AT-Y6`；`mv_fumozhangfa_zhenzhang：attack/AT-Y8`；`mv_fumozhangfa_juding：movement/MV-Y8`；`mv_fumozhangfa_xiangmo★：attack/AT-Y10★` |
+| 燃木刀法 `sk_ranmudaofa`（地上 / 阳） | `mv_ranmudaofa_ranmu：attack/AT-Y6`；`mv_ranmudaofa_liyan：attack/AT-Y6`；`mv_ranmudaofa_fenxiang：attack/AT-Y8`；`mv_ranmudaofa_liaoyuan：attack/AT-Y8`；`mv_ranmudaofa_yehuo★：attack/AT-Y10★` |
+| 达摩剑法 `sk_damojianfa`（地下 / 调和） | `mv_damojianfa_mianbi：defense/DF-H4`；`mv_damojianfa_zhizhi：attack/AT-H6`；`mv_damojianfa_yiwei：movement/MV-H8`；`mv_damojianfa_zhilv：movement/MV-H8`；`mv_damojianfa_jianxing★：attack/AT-H10★` |
+| 袈裟伏魔功 `sk_jiashafumogong`（地中 / 调和） | `mv_jiashafumogong_juan：attack/AT-H6`；`mv_jiashafumogong_fu：attack/AT-H6`；`mv_jiashafumogong_zhao：attack/AT-H8`；`mv_jiashafumogong_fuqi：defense/DF-H6`；`mv_jiashafumogong_fumo★：attack/AT-H10★` |
+| 一苇渡江 `sk_yiweidujiang`（地上 / 中性） | `mv_yiweidujiang_yiwei：movement/MV-H4`；`mv_yiweidujiang_tawei：movement/MV-H8`；`mv_yiweidujiang_suibo：movement/MV-H8`；`mv_yiweidujiang_feidu★：movement/MV-H8★`（移动绝招短于 8 段下限的例外不发生：恰为 8 段；1000+600=1600 CT） |
+| 金刚伏魔圈 `sk_jingangfumoquan`（地上 / 阳） | `mv_jingangfumoquan_buquan：defense/DF-Y6`；`mv_jingangfumoquan_suona：attack/AT-Y8`；`mv_jingangfumoquan_chanxin：defense/DF-Y6`；`mv_jingangfumoquan_fumo★：attack/AT-Y10★` |
+| 虎鹤双形拳 `sk_huheshuangxingquan`（地下 / 阳） | `mv_huheshuangxingquan_hu：movement/MV-Y4`；`mv_huheshuangxingquan_he：defense/DF-Y4`；`mv_huheshuangxingquan_hubao：attack/AT-Y8`；`mv_huheshuangxingquan_hezui：attack/AT-Y8`；`mv_huheshuangxingquan_shuangxing★：attack/AT-Y10★` |
+| 幻阴指 `sk_huanyinzhi`（地中 / 阴） | `mv_huanyinzhi_huanyin：attack/AT-I6`；`mv_huanyinzhi_anxi：movement/MV-I8`；`mv_huanyinzhi_hanjin：attack/AT-I8`；`mv_huanyinzhi_huanying：defense/DF-I6`；`mv_huanyinzhi_wuxiang★：attack/AT-I10★` |
+
+共覆盖本册天 / 地阶 29 门、145 个现有招式，每门均至少一记既有绝招；未新增招名。治疗 / 解穴 / 阵法支援挂 defense 是运行用途，不改其 `power` 或效果目标；纯位移挂 movement，不额外取得攻击倍率。
+
+#### 5.7.5 玄 / 黄阶路线模板与全轻功绑定
+
+玄 / 黄阶按现有招式语义逐招确定性展开，保证不会以“整门武学一条万能路线”替代招式路线：
+
+| 大阶 | 伤害招 | 防守 / 支援招 | 位移 / 闪避招 | 绝招 |
+|---|---|---|---|---|
+| 玄 | 同武学性质用 `AT-Y4/AT-I4/AT-H4`；重击、点穴、范围或换脉表现用对应 6 段 | `DF-Y4/DF-I4/DF-H4`；明确护体者用 6 段并挂 `innerGuard` | `MV-Y4/MV-I4/MV-H4`；长跃、追击用 8 段 | 若既有 `ultimate:true`，攻击用同性质 8 段、守 / 移用 6 段并将 CT 改 75/段 |
+| 黄 | 同武学性质取对应 4 段模板的前 2–4 段；完整卡有 3 招时按 2/3/4 段递进 | 对应 `DF-*4` 的前 2–4 段 | 对应 `MV-*4` 的前 2–4 段 | 黄阶无绝招 |
+
+性质“中性”的外功统一按 H 模板并允许 `[yin,yang,harmony]`。每条正式路线仍生成唯一 `mfr_<move>`，不得保存“前 N 段”或表内模板码。玄 / 黄正式数据须继续满足 `recovery+ΣsegmentCt≤2000`；治疗 / 纯支援只获得经脉运行结果及 CT，不套攻击乘区。
+
+所有五门轻功都接入速度路线族；高阶逐招已在上表列出，玄 / 黄未列 `mv_*` 的一行卡由构建器在招式实体化时按下表生成，不凭空新建招名：
+
+| 轻功 | 性质 / 品阶 | 武学速度路线 | 已有招式绑定 / 生成规则 |
+|---|---|---|---|
+| `sk_yiweidujiang` | 中性 / 地上 | `MV-H8` | 四招见 §5.7.4；`mfr_yiweidujiang_*` 均为 movement |
+| `sk_bihuyouqiang` | 中性 / 玄上 | `MV-H4`，长跃 / 闪避用 `MV-H8` | 每个既有移动、跃起、追击、脱离、闪避招生成 `mfr_<move>` |
+| `sk_meihuazhuang` | 中性 / 玄中 | `MV-H4` | 同上；木桩 / 高低差资格仍归 08 |
+| `sk_luohanbu` | 中性 / 黄中 | `MV-H4` 前 3 段 | 同上；门禁仍读未修正有效轻功 |
+| `sk_chanmenshenfa` | 中性 / 黄上 | `MV-H4` | 同上 |
+
+速度输出只消费 21 §4.9 已归一的 `MeridianProfile`；不得再输入原始 `routeQualityBp`。`openingQinggong`、`spd`、`move`、`evadeRatingDelta` 的投影与先经脉后擒拿顺序均归 21 / 09，本册不把倍率写回 `QS` 或 08 的门禁。
+
+#### 5.7.6 全内功调息档案与护体内劲显示档
+
+每门内功的 `breathProfileRef` 指向同名 `txp_*`。表内固定展示 10 重输入；正式字段仅为 `id/grade/layer/nature/scope/ct/mpCostBp`，其中 `ct=1000`、`mpCostBp=0`。核算列仅是 21 §10.2 通式的审阅结果，不写进 schema；运行态以压制后的实际 `effGrade/effLayer` 重算。护体显示档按黄 / 玄 / 地 / 天为 I / II / III / IV；只有执行合法自然护体短路或带 `IG` 的防守路线才启用，不自带倍率。
+
+| 内功 → 调息档案 | 正式字段 `grade/layer/nature/scope/ct/mpCostBp` | 10 重核算 `reliefBp / repairUnits` | 护体显示档 |
+|---|---|---:|:---:|
+| `sk_yijinjing → txp_yijinjing` | `12/10/harmony/4/1000/0` | `min(2500,floor((500+1200+800)×1.05))=2500 / floor((120+288+180)×1.05)=617`；专精修复 `floor(617×12000/10000)=740`（21 §10.4，非档案字段） | IV |
+| `sk_jingangbuhuai → txp_jingangbuhuai` | `10/10/yang/3/1000/0` | `2300 / 540` | IV |
+| `sk_xisuijing → txp_xisuijing` | `9/10/harmony/3/1000/0` | `floor(2200×1.05)=2310 / floor(516×1.05)=541` | III |
+| `sk_jinzhongzhao → txp_jinzhongzhao` | `8/10/yang/3/1000/0` | `2100 / 492` | III |
+| `sk_shaolinjiuyang → txp_shaolinjiuyang` | `8/10/yang/3/1000/0` | `2100 / 492` | III |
+| `sk_tiebushan → txp_tiebushan` | `7/10/yang/3/1000/0` | `2000 / 468` | III |
+| `sk_tongrenhenglian → txp_tongrenhenglian` | `6/10/yang/2/1000/0` | `1900 / 444` | II |
+| `sk_damoxinjing → txp_damoxinjing` | `5/10/harmony/2/1000/0` | `floor(1800×1.05)=1890 / floor(420×1.05)=441` | II |
+| `sk_tongzigong → txp_tongzigong` | `4/10/yang/2/1000/0` | `1700 / 396` | II |
+| `sk_shaolinxinfa → txp_shaolinxinfa` | `2/10/yang/1/1000/0` | `1500 / 348` | I |
+| `sk_shaolinzhuanggong → txp_shaolinzhuanggong` | `1/10/yang/1/1000/0` | `1400 / 324` | I |
+| `sk_tiexiangong → txp_tiexiangong` | `5/10/yang/2/1000/0` | `1800 / 420` | II |
+
+标准对标准的攻、防、速度输出均为 10000 bp。护体内劲仅按 21 §4.8 对拳脚 / 持械 / 暗器 / 外放分别取 10000 / 2500 / 0 / 4000 bp 的适用率，并严格位于护体真气之后、`mpGuard` 之前；本册不另存抵消倍率。
+
 ## 6. 本文新增术语与 ID
 
 | 类别 | 数量 | ID |
@@ -1063,6 +1194,7 @@
 | AR-01 新增武学 | **4** | `sk_shaolinchangquan`、`sk_shaolinhushangun`、`sk_chanmenshenfa`、`sk_nanshaolinqiaoshou`；写入前全仓精确查重均为 0 命中 |
 | 套装候选 `set_*` | 11（新增 9） | 新增：`legacy-set:shaolin_henglian` `legacy-set:shaolin_banruo` `legacy-set:shaolin_gunseng` `set_shaolin_damo` `legacy-set:nanshaolin_hongmen` `set_saodiseng` `set_fangzheng` `legacy-set:sandu` `legacy-set:chengguan`；沿用：`set_shaolin_jingang`（基准）、`set_shaolin_luohan`（05 建议） |
 | 特殊规则 / 字段 | 3 | `special.liqi`（七十二绝技·戾气，§1.3.1）；"制服"（慈悲，§1.3.2）；"开口泄气"（金刚不坏体 × 音功，§1.5.2） |
+| 经脉路线 / 调息档案（引用） | 高阶 145 / 内功 12 | 天 / 地招式均以同名派生 `mfr_*` 绑定；玄黄实体化时按 §5.7.5 生成；12 门内功引用同名 `txp_*`。对象均归 21，不计本文新增 ID |
 | Buff | **0** | 本文不新增 Buff；引用的 73 个 `bf_*` 已逐一核对存在于 06 目录（含 06 §8.11 已收录的 `bf_shouque`） |
 | NPC（命名接口） | 具名引用 12；岗位槽 8 | 具名：`npc_xuanci` `npc_kongwen` `npc_kongzhi` `npc_duee` `npc_asan` `npc_fangsheng` `npc_huicong` `npc_chengguan` `npc_haidafu` `npc_tianhong` `npc_jiumozhi` `npc_xiexun`；岗位槽：少林当代方丈、罗汉堂、般若堂、戒律院、达摩院、十八罗汉、代掌寺务长老与南少林罗汉堂，均不注册静态 `npc_*` |
 | 任务（占位） | 6 | `q_01_qiyu_81`（藏经阁扫地僧指点）`q_01_qiyu_82`（达摩洞面壁）`q_04_qiyu_81`（空见遗泽）`q_04_qiyu_82`（楔子闻经）`q_04_qiyu_83`（圆真遗册）`q_NN_faction_81`（闯铜人巷，各少林书界） |
@@ -1121,6 +1253,9 @@
 | V-SL-13 | 黄阶八字段索引 | 18 门黄阶全部且仅出现一次于 §1.8／§2.5，列齐 ID、名称、门派/来源、类别、原生书界、核心效果、前置、出处 | ✅；嵩山 15＋南少林 3 = 18 |
 | V-SL-14 | AR-01 新条目 | 新增恰为黄中 1、黄上 3；无新增天／地／玄、内功、Buff、套装成员 | ✅；`0/0/0/4` |
 | V-SL-15 | 装配与池比例 | 十四界三类底座均可由 `skills-general` §11.1 的 `ALL14` 补满；池比例按新增来源重算 | ⚠️；目录覆盖通过，实际非互斥与前置可达性待章节验证；十四界比例仍待 F2／章节重配，见 §5.5–§5.6 |
+| V-SL-16 | 经脉高阶覆盖（AR-14） | 29 门天 / 地阶、145 个既有招式逐一绑定；每门至少一记既有绝招，`route.ultimate == MoveDef.ultimate` | ✅；见 §5.7.3–§5.7.4，未新增招名 |
+| V-SL-17 | 路线硬约束 | 每条 1–18 段、穴位不重复、CT 40–120、风险 0–1200，且 `recovery+ΣsegmentCt≤2000`；中性不用非法 `neutral` | ✅；最大为 1200+800=2000 CT，见 §5.7.2 |
+| V-SL-18 | 轻功与调息全覆盖 | 5 门轻功均接 movement；12 门内功均有 `txp_*`，scope / CT / 耗内合法；护体显示档不加倍率 | ✅；见 §5.7.5–§5.7.6 |
 
 **V-SL-08 期望集合（构建器按 ID 集合等值断言，不从“同上”“全部少林书界”等展示短语猜测）：**
 
@@ -1171,6 +1306,9 @@
 11. **AR-01 配额**：加载图鉴后玩家可习得 ID 恰为 74；新增集合须严格等于 `{sk_shaolinchangquan, sk_shaolinhushangun, sk_chanmenshenfa, sk_nanshaolinqiaoshou}`，四门 `grade≤3`，天级集合与扩充前完全相同。
 12. **黄阶索引**：从 §1.8 与 §2.5 解析 18 行，ID 集合与全图鉴 `grade∈{1,2,3}` 的玩家可习得集合等值；南少林桥手只原生书剑，其余三门新增不得进入倚天白名单。
 13. **装配底座**：逐个展开 `ALL14`，每界检查 §5.5 所列 3 内功、3 拳脚、3 剑均有本土来源，且前置链在同界闭合；任一章节把三条底座来源设为互斥即失败。
+14. **经脉零漂移**：标准强度对标准强度时攻、防、速度均为 10000 bp；不得把路线质量再写入 Z3、`Q_skill` 或轻功门禁。
+15. **护体顺序**：金刚不坏或少林九阳的合法 IG 防线受拳脚伤害时，依次经过护体真气、护体内劲、`mpGuard`、气血；路线 `reflectBp=0`，既有反震只结算一次。
+16. **逐单位隔离**：两名同阵营单位施展相同武学仍各有一个 `MeridianFlowModule`；对任一单位 `preview` 后双方状态与 RNG 游标均不变。
 
 ---
 
@@ -1200,6 +1338,7 @@
 | D-10 | 西域/吐蕃归属图鉴 | 补 `sk_huoyandao × sk_ranmudaofa` synergy 的反向登记 |
 | D-11 | `design/05`、F2、`chapters/*` | 按 §5.6 的更新快照重算十四书界全部路线唯一 ID 并集并重配来源；当前十四界仍未完整命中高／中／低武目标区间 |
 | D-12 | `chapters/05/06/08/12` | 为少林长拳、少林护山棍、禅门身法与南少林桥手建立可达且不破坏前置闭包的实际授艺来源；书剑前三门须把门派条件覆写为 `sect_nanshaolin` |
+| D-13 | AR-14；`design/21` v2.0 | **已解决（本文侧）**：29 门天 / 地、145 招逐一绑定，5 门轻功接速度路线，12 门内功接调息档案与护体显示档；动态公式与实例仍由 21 唯一拥有（见 §5.7） |
 
 ### 8.3 对基准的修改提案
 
@@ -1210,6 +1349,7 @@
 | BP-3 | 洗髓经保持地上 9，不新增天级 | **已采纳（v1.1）**：基准 §13 天级封闭集合不含洗髓经，本文不得越权升阶 |
 | BP-4 | 七十二绝技“戾气”列入 05 §10.2 走火触发源 | **仍提案**：这是组合装配规则，不计单门代价型配额；公式见 §1.3.1 |
 | BP-5 | 铁布衫、金钟罩、一苇渡江以原创纳入方式计入 `lg_shaolin72` | **仍提案**：影响同源加速及戾气计数；在基准未收录前保持“原创扩展”，不宣称原著定数 |
+| BP-6 | Canon §12 / §18 登记 `mfr_*`、`txp_*` 及 21 的战斗经脉唯一归属 | **待采纳**：沿用 21 §18.3 的 M2-P01、M3-P04；本文先按拟登记前缀引用，不越权定义 |
 
 ### 8.4 原著考据待办
 
@@ -1242,3 +1382,4 @@
 | O-6 | 易筋经 `nature` 与天级观摩 | **已解决**：`harmony`（P06）；三门天级默认均不可观摩（P09；见 §0.3、§0 通用约定） |
 | O-7 | 三项技艺门槛建议值 | 默认采用 S-1/S-2；待 05/09 配表时校准，未拍板前不改变武学品阶或来源 |
 | O-8 | 单册名义 `3/9/27/27` 与受控配额冲突 | **已解决**：默认服从 `design/05` §14.5 与全目录 1,138 总闸，终态为 `3/26/27/18`；不删除 17 门既有地阶，也不越配额再补 9 门黄阶 |
+| O-9 | 少林图鉴是否自行定义攻防 / 速度乘区与护体内劲公式 | **已解决：否**。本文只登记绑定；公式、调息、结算顺序、逐单位状态与 preview 契约统一见 `design/21` §3–§12（见 §5.7） |

@@ -1,15 +1,17 @@
 # 门派武学图鉴 · 江湖通用武学与杂学总表（`skills-general`）
 
-> **版本**：v1.2（审校 C1f.R；全局审计，2026-09-27）。
+> **版本**：v1.2（审校 C1f.R；全局审计）；经脉系统落地（2026-09-27）。
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 门派武学图鉴之一。本文唯一收录无门派通行武学、军中／镖局／武馆传承、序章《越女剑》教学武学、蓬莱派，以及不属于任何门派的医、毒、蛊、阵法、音律、书画、棋、易容、驭兽、音功与心神杂学。
-> **上游**：`docs/decisions/author-requirements.md` AR-01～AR-03、AR-07～AR-08、AR-12～AR-13；`docs/decisions/author-decisions.md` P33、P35；`docs/00-canon.md` v1.2 §3～§7、§12～§13、§16、§20；`docs/decisions/rulings-v1.md` C12、C14～C17、C22～C23、§3～§5。
-> **引用而不重定义**：字段、层数、招式与内功预算见 `design/05`；Buff 定义见 `design/06`；属性与技艺见 `design/03`；书界、压制、残篇与印证见 `design/02`；轻功门禁见 `design/08`；套装规则及最终数值交 `design/07`；门派历史、开放时代与职级称谓见 `design/17`；跨年代三卷、信物、配方、概率和投放见 `design/20`。门派内杂学仍归各门派图鉴，本文 §1.4 只作 ID 索引。
+> **上游**：`docs/decisions/author-requirements.md` AR-01～AR-03、AR-07～AR-08、AR-12～AR-14；`docs/decisions/author-decisions.md` P33、P35；`docs/00-canon.md` v1.2 §3～§7、§12～§13、§16、§20；`docs/decisions/rulings-v1.md` C12、C14～C17、C22～C23、§3～§5；`design/21` v2.0。
+> **引用而不重定义**：字段、层数、招式与内功预算见 `design/05`；战斗经脉运行、招式路线、调息、护体内劲与经脉速度见 `design/21`；经脉与穴位本体、冲穴、周天和九转见 `design/15`；Buff 定义见 `design/06`；属性与技艺见 `design/03`；书界、压制、残篇与印证见 `design/02`；轻功门禁见 `design/08`；套装规则及最终数值交 `design/07`；门派历史、开放时代与职级称谓见 `design/17`；跨年代三卷、信物、配方、概率和投放见 `design/20`。门派内杂学仍归各门派图鉴，本文 §1.4 只作 ID 索引。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或投放；**（原创扩展命名）**为原著有其人其事而无正式武学名；**（待考）**为须以三联／广州修订版逐字核对的原著事实；【建议值】在 §14 登记。
 
 ---
 
 ## 0. 阅读指引与统一记法
+
+章节顺序：§1 总目录与统计；§2–§8 各来源武学；§9 套装；§10 统计；§11 境界、装配与经脉绑定（§11.6）；§12 术语与 ID；§13 校验；§14 待决事项。
 
 ### 0.1 数量、边界与书界缩写
 
@@ -1125,6 +1127,115 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 
 ---
 
+### 11.6 AR-14 经脉运行绑定（`design/21` v2.0）
+
+#### 11.6.1 边界、字段与路线模板
+
+本节只登记本册 `MoveDef.meridianRouteRef`、被动 `routeOnTriggerRef` 与内功 `breathProfileRef`，不重定义河流、乘区、护体内劲或速度公式。路线 ID 为 `mfr_<完整 move ID 去掉 mv_>`，调息 ID 为 `txp_<完整 skill ID 去掉 sk_>`；均是 21 §16.2 / M2-P01 的拟登记前缀。每个我方、敌方独立单位各有一个 `MeridianFlowModule`，`preview` 不写状态、不耗 RNG（21 §11–§12）。
+落库字段严格复用 21 §12：`MeridianRouteDef.id/moveRef/ultimate/purpose/requiredNature/steps`，其中 `RouteStep.acupointRef/segmentCt/riskBp`；`BreathProfile.id/grade/layer/nature/scope/ct/mpCostBp`。
+
+- `AT/DF/MV` 分别为 `purpose:attack/defense/movement`；`Y/I/H` 的 `requiredNature` 分别为 `[yang,harmony]`、`[yin,harmony]`、`[yin,yang,harmony]`。中性外功用 H，不写非法 `neutral`。
+- `★` 必须同时满足 `MoveDef.ultimate:true` 与 `route.ultimate:true`。治疗、布阵、支援可挂 defense，但不套攻击乘区；战斗位移、闪避与换位挂 movement。
+- `IG` 展开 `innerGuard:{enabled:true,reflectBp:0}`；护体档只作 UI 显示，反震仍由既有 Buff 单一结算。
+
+模板复用 21 §5.2 的 A 任脉、B 督脉、C 手太阴、D 手厥阴、E 手阳明、F 腰腿、G 带督片段；正式数据必须展开真实 `ap_*`，不得保存下列排版码：
+
+| 码 | `purpose / requiredNature` | 路径 | CT / 段 | 风险约束 |
+|---|---|---|---:|---|
+| `AT-Y4/6/8/10★` | attack / `[yang,harmony]` | `E` / `B+E前2` / `B+E` / `B+E+A前2` | 普通70；绝招80 | `4=80/100/120/140`；`6=80/100/120/140/350/150`；`8=80/100/120/140/400/100/120/140`；`10=8段值+450/150` |
+| `AT-I4/6/8/10★` | attack / `[yin,harmony]` | `C` / `D+C首穴` / `C+D前4` / `C+D前4+A前2` | 普通70；绝招80 | `4=80/100/120/140`；`6=80/100/120/140/160/350`；`8=80/100/120/140/400/100/120/140`；`10=8段值+450/150` |
+| `AT-H4/6/8/10★` | attack / `[yin,yang,harmony]` | `F` / `G+D前2` / `G+C` / `A+G+D前2` | 普通70；绝招80 | `4=80/100/120/140`；`6=80/100/120/140/400/120`；`8=80/100/120/140/400/100/120/140`；`10=8段值+450/150` |
+| `DF-Y/I/H4/6` | defense / 对应性质 | Y=`B(+E前2)`；I=`A(+D前2)`；H=`G(+D前2)` | 普通70；绝招90 | 50–300 bp |
+| `MV-Y4/8` | movement / `[yang,harmony]` | 阳跷前4 / 8穴 | 普通60；绝招75 | 50–250 bp |
+| `MV-I4/8` | movement / `[yin,harmony]` | 阴跷前4；阴跷六穴+D前二 | 普通60；绝招75 | 50–250 bp |
+| `MV-H4/8` | movement / `[yin,yang,harmony]` | `F` / `F+G` | 普通60；绝招75 | 50–250 bp |
+
+普通攻击 4 / 6 / 8 段 `ΣCT=280/420/560`，攻击绝招 10 段为 800；防守绝招 6 段为 540；移动 4 / 8 段为 240 / 480，移动绝招 8 段为 600。全部路线 1–18 段、穴位不重复、单段 CT 40–120、风险 0–1200，配合本册 900–1200 收招满足 `recovery+ΣsegmentCt≤2000`。
+
+#### 11.6.2 地阶逐招绑定（序章、蓬莱、军伍）
+
+每个 `mv_*` 绑定同名派生 `mfr_*`；下列名称全部来自现有完整卡，未新增招名。
+
+| 武学（品阶 / 性质） | 逐招 `mv_*：用途/模板` |
+|---|---|
+| 越女剑 `sk_yuenvjian`（地上 / 调和） | `mv_yuenvjian_zhuying：attack/AT-H6`；`mv_yuenvjian_huizhi：attack/AT-H8`；`mv_yuenvjian_yixian：attack/AT-H8`；`mv_yuenvjian_wuhen★：attack/AT-H10★` |
+| 东海潮生掌 `sk_donghaichaoshengzhang`（地中 / 调和） | `mv_donghaichaoshengzhang_chaoqi：attack/AT-H6`；`mv_donghaichaoshengzhang_dielang：attack/AT-H8`；`mv_donghaichaoshengzhang_huichao：attack/AT-H8`；`mv_donghaichaoshengzhang_haitian★：attack/AT-H10★` |
+| 破军枪法 `sk_pojunqiangfa`（地上 / 阳） | `mv_pojunqiangfa_polie：attack/AT-Y6`；`mv_pojunqiangfa_hengshuo：attack/AT-Y8`；`mv_pojunqiangfa_xianzhen：attack/AT-Y8`；`mv_pojunqiangfa_cuifeng★：attack/AT-Y10★` |
+| 百战心法 `sk_baizhanxinfa`（地中 / 阳） | `mv_baizhanxinfa_pijian：defense/DF-Y6+IG`；`mv_baizhanxinfa_junhun★：defense/DF-Y6★+IG`（群体支援绝招短路，1200+540=1740 CT） |
+| 雁门骑射 `sk_yanmengqishe`（地中 / 阳） | `mv_yanmengqishe_zouma：attack/AT-Y6`；`mv_yanmengqishe_lianzhu：attack/AT-Y8`；`mv_yanmengqishe_huima：attack/AT-Y8`；`mv_yanmengqishe_yanluo★：attack/AT-Y10★` |
+| 守城军阵 `sk_shouchengzhen`（地下 / 调和） | `mv_shouchengzhen_juduo：defense/DF-H6`；`mv_shouchengzhen_huanfang：movement/MV-H8`；`mv_shouchengzhen_juma：attack/AT-H8`；`mv_shouchengzhen_bushi★：defense/DF-H6★`（群体支援绝招短路） |
+
+#### 11.6.3 地阶逐招绑定（镖局、武馆、江湖）
+
+| 武学（品阶 / 性质） | 逐招 `mv_*：用途/模板` |
+|---|---|
+| 四海镖刀 `sk_sihaibiaodao`（地中 / 阳） | `mv_sihaibiaodao_hubiao：attack/AT-Y6`；`mv_sihaibiaodao_xiema：attack/AT-Y8`；`mv_sihaibiaodao_kailu：attack/AT-Y8`；`mv_sihaibiaodao_sihai★：attack/AT-Y10★` |
+| 护围缨枪 `sk_huweiyingqiang`（地下 / 调和） | `mv_huweiyingqiang_huche：attack/AT-H6`；`mv_huweiyingqiang_tiaosuo：attack/AT-H8`；`mv_huweiyingqiang_huima：attack/AT-H8`；`mv_huweiyingqiang_bafang★：attack/AT-H10★` |
+| 开门劈挂拳 `sk_kaimenpiguaquan`（地中 / 阳） | `mv_kaimenpiguaquan_kaimen：attack/AT-Y6`；`mv_kaimenpiguaquan_guazhang：attack/AT-Y8`；`mv_kaimenpiguaquan_tongbi：attack/AT-Y8`；`mv_kaimenpiguaquan_kaihe★：attack/AT-Y10★` |
+| 通背剑 `sk_tongbeijian`（地下 / 调和） | `mv_tongbeijian_shubi：attack/AT-H6`；`mv_tongbeijian_huijian：attack/AT-H8`；`mv_tongbeijian_lianhuan：attack/AT-H8`；`mv_tongbeijian_jianzou★：attack/AT-H10★` |
+| 混元方桩 `sk_hunyuanfangzhuang`（地下 / 调和） | `mv_hunyuanfangzhuang_chenjian：defense/DF-H6+IG`；`mv_hunyuanfangzhuang_kaiyun★：defense/DF-H6★+IG`（支援绝招短路） |
+| 江湖百战剑 `sk_jianghubaizhanjian`（地中 / 调和） | `mv_jianghubaizhanjian_shouzhong：attack/AT-H6`；`mv_jianghubaizhanjian_hengmen：attack/AT-H8`；`mv_jianghubaizhanjian_zhuke：attack/AT-H8`；`mv_jianghubaizhanjian_guifeng★：attack/AT-H10★` |
+| 燕子三抄水 `sk_yanzisanchaoshui`（地下 / 调和） | `mv_yanzisanchaoshui_lueshui：movement/MV-H4`；`mv_yanzisanchaoshui_yichao：movement/MV-H8`（移动中攻击，速度 Profile 为主）；`mv_yanzisanchaoshui_huiyan：movement/MV-H8`；`mv_yanzisanchaoshui_sanchao★：movement/MV-H8★` |
+
+#### 11.6.4 地阶逐招绑定（医毒、阵法与百艺）
+
+| 武学（品阶 / 性质） | 逐招 `mv_*：用途/模板` |
+|---|---|
+| 岐黄秘法 `sk_qihuangmifa`（地中 / 调和） | `mv_qihuangmifa_qiemai：defense/DF-H4`；`mv_qihuangmifa_tuigong：defense/DF-H6`；`mv_qihuangmifa_bianzheng：defense/DF-H6`；`mv_qihuangmifa_jinzhen：defense/DF-H6`；`mv_qihuangmifa_qichenke★：defense/DF-H6★`（治疗绝招短路） |
+| 百毒辨证 `sk_baidubianzheng`（地中 / 阴） | `mv_baidubianzheng_chase：defense/DF-I4`；`mv_baidubianzheng_yindu：attack/AT-I6`；`mv_baidubianzheng_gongwei：attack/AT-I8`；`mv_baidubianzheng_xiangzhi：defense/DF-I6`；`mv_baidubianzheng_guizheng★：attack/AT-I10★` |
+| 奇门布阵 `sk_qimenbuzhen`（地中 / 调和） | `mv_qimenbuzhen_dingmen：defense/DF-H4`；`mv_qimenbuzhen_yinlu：attack/AT-H6`；`mv_qimenbuzhen_fumen：attack/AT-H8`；`mv_qimenbuzhen_yiwei：movement/MV-H8`；`mv_qimenbuzhen_bamen★：defense/DF-H6★`（阵法支援绝招短路） |
+| 清心曲谱 `sk_qingxinqupu`（地中 / 调和） | `mv_qingxinqupu_dingxian：defense/DF-H4`；`mv_qingxinqupu_hesheng：defense/DF-H6`；`mv_qingxinqupu_qingxin：defense/DF-H6`；`mv_qingxinqupu_jiefen：defense/DF-H6`；`mv_qingxinqupu_wanlai★：defense/DF-H6★`（群体支援绝招短路） |
+| 幻易容术 `sk_huanyirongshu`（地下 / 调和） | `mv_huanyirongshu_gaimao：defense/DF-H4`；`mv_huanyirongshu_nisheng：defense/DF-H4`；`mv_huanyirongshu_suogu：defense/DF-H4`；`mv_huanyirongshu_huanbu：movement/MV-H8`；`mv_huanyirongshu_huanxing★：movement/MV-H8★`（拟声 / 缩骨只在战斗调用时运行路线；探索调用不创建战斗模块或 CT） |
+| 百兽御诀 `sk_baishouyujue`（地下 / 调和） | `mv_baishouyujue_anfu：defense/DF-H4`；`mv_baishouyujue_quxing：defense/DF-H6`；`mv_baishouyujue_yingji：attack/AT-H8`；`mv_baishouyujue_sherao：attack/AT-H8`；`mv_baishouyujue_guixin★：defense/DF-H6★`（群体支援绝招短路） |
+
+上述 19 门共 78 个既有 `mv_*`，全部绑定路线；每门均至少一记既有绝招，未新增招名。战斗调用时 `route.ultimate` 必须逐项等于 `MoveDef.ultimate`；纯探索调用不创建 `MeridianFlowModule`。
+
+#### 11.6.5 玄 / 黄阶确定性模板与全轻功速度路线
+
+玄阶伤害 / 防守 / 位移按武学性质分别取对应 `AT/DF/MV` 4–6 段，重击或长跃取 8 段；既有攻击绝招取 8 段，守 / 移绝招取 6 / 8 段并使用绝招 CT。黄阶取相应 4 段模板的前 2–4 段；黄阶无绝招。每个战斗招仍生成唯一 `mfr_<move>`，不得把模板码写入 Core。
+
+| 轻功 | 性质 / 品阶 | 速度路线族 |
+|---|---|---|
+| `sk_xijiantoubu` | 中性 / 黄 | `MV-H4` 前 2 段 |
+| `sk_haifengbu` | 调和 / 黄 | `MV-H4` 前 2–4 段 |
+| `sk_xingjunbu` | 阳 / 玄 | `MV-Y4`，长距 / 闪避取 `MV-Y8` |
+| `sk_liezhengbu` | 中性 / 黄 | `MV-H4` 前 2 段 |
+| `sk_tanluobu` | 调和 / 玄 | `MV-H4`，长距 / 闪避取 `MV-H8` |
+| `sk_ganyebu` | 中性 / 黄 | `MV-H4` 前 2 段 |
+| `sk_yanzisanchaoshui` | 调和 / 地 | §11.6.3 已逐招绑定 `MV-H4/8` |
+| `sk_dengpingdushui` | 调和 / 玄 | `MV-H4`，踏水 / 长距取 `MV-H8` |
+| `sk_xingqizhou` | 调和 / 玄 | `MV-H4`，换位 / 长距取 `MV-H8` |
+| `sk_yexinggong` | 阴 / 玄 | `MV-I4`，腾跃 / 夜袭取 `MV-I8` |
+| `sk_yanxingbu`、`sk_caoshangfei` | 调和 / 黄；中性 / 黄 | 分别取 `MV-H4` 前 2–4 段 |
+| `sk_yueyingshenfa` | 调和 / 玄 | `MV-H4`，越溪 / 换位取 `MV-H8` |
+
+速度只消费 21 §4.9 已归一的 Profile，不再传 `routeQualityBp`，也不写回 `Q_skill` 或 08 门禁；首轮、`spd'`、移动、闪避和“先经脉后擒拿”顺序见 21 / 09。
+
+21 §7.2 的现实形意样本仍只是 `sk_changquanrumen` 的“待图鉴选录”，本册不据此新造招式 ID；若后续从既有黄阶条目中选录，“进退连环”固定为 `F 前四穴 → E 前二穴`、6 段、75 CT / 段，“安身炮”固定为 `A 前二穴 → F 前二穴 → B 前二穴`、6 段、90 CT / 段，合计分别为 `1000+6×75=1450`、`1200+6×90=1740≤2000`。动作与路线解释均为**（原创扩展）**，现实武术出处只引用 21 §7.2 / §7.4；正式选录前不生成 `mv_*` / `mfr_*`。
+
+#### 11.6.6 全内功调息档案与护体显示档
+
+每门内功的 `breathProfileRef` 指向同名 `txp_*`。下表按 10 重展示，正式字段为 `id/grade/layer/nature/scope/ct/mpCostBp`，固定 `ct=1000`、`mpCostBp=0`；运行时按压制后的 `effGrade/effLayer` 重算。护体 I / II / III 只是黄 / 玄 / 地 UI 档，不增加倍率。
+
+| 内功 → 调息档案 | `grade/10/nature/scope/1000/0` | 10 重 `reliefBp / repairUnits` | 护体档 |
+|---|---|---:|:---:|
+| `sk_shanyetuna → txp_shanyetuna` | `3/10/harmony/1/1000/0` | `1680 / 390` | I |
+| `sk_chaoyinxinfa → txp_chaoyinxinfa` | `5/10/harmony/2/1000/0` | `1890 / 441` | II |
+| `sk_baizhanxinfa → txp_baizhanxinfa` | `8/10/yang/3/1000/0` | `2100 / 492` | III |
+| `sk_jundituna → txp_jundituna` | `5/10/yang/2/1000/0` | `1800 / 420` | II |
+| `sk_junzhangtuna → txp_junzhangtuna` | `2/10/yang/1/1000/0` | `1500 / 348` | I |
+| `sk_jindunxinfa → txp_jindunxinfa` | `4/10/yang/2/1000/0` | `1700 / 396` | II |
+| `sk_zhuangxingong → txp_zhuangxingong` | `2/10/yang/1/1000/0` | `1500 / 348` | I |
+| `sk_hunyuanfangzhuang → txp_hunyuanfangzhuang` | `7/10/harmony/3/1000/0` | `2100 / 491` | III |
+| `sk_wuguanxinfa → txp_wuguanxinfa` | `4/10/harmony/2/1000/0` | `1785 / 415` | II |
+| `sk_zhamabu → txp_zhamabu` | `1/10/yang/1/1000/0` | `1400 / 324` | I |
+| `sk_jianghutuna → txp_jianghutuna` | `5/10/harmony/2/1000/0` | `1890 / 441` | II |
+| `sk_tunaqianjue → txp_tunaqianjue` | `3/10/harmony/1/1000/0` | `1680 / 390` | I |
+| `sk_dantianyangqi → txp_dantianyangqi` | `2/10/yang/1/1000/0` | `1500 / 348` | I |
+| `sk_huxixingqi → txp_huxixingqi` | `1/10/harmony/1/1000/0` | `1470 / 340` | I |
+
+调和 7 品示例：`relief=floor((500+700+800)×1.05)=2100`，`repair=floor((120+168+180)×1.05)=491`；阳性 8 品为 `500+800+800=2100` 与 `120+192+180=492`。标准对标准的攻、防、速度输出均为 10000 bp。护体内劲按 21 §4.8 对拳脚 / 持械 / 暗器 / 外放取 `10000/2500/0/4000` bp，严格位于护体真气后、`mpGuard` 前；本册不另存抵消倍率。
+
 ## 12. 本文新增术语与 ID
 
 ### 12.1 武学 ID
@@ -1149,6 +1260,7 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 |---|---|---|
 | 明写完整 ID 的招式 `mv_*` | 78 | 来自 19 张地阶完整卡；玄阶紧凑卡以 `mv_<武学拼音>_<文内后缀>` 展开，短后缀不是独立 ID |
 | 明写完整 ID 的被动 `ps_*` | 56 | 来自地阶完整卡；玄阶紧凑卡以 `ps_<武学拼音>_<文内后缀>` 展开 |
+| 经脉路线 / 调息档案（引用） | 地阶 78 条 / 内功 14 档 | 19 门地阶的 78 招均以同名派生 `mfr_*` 绑定，纯探索调用不提交战斗路线；玄黄按 §11.6.5 实体化；14 门内功引用同名 `txp_*`。对象均归 21，不计本文新增 ID |
 | 套装候选 `set_*` | 本文 15；跨组引用 1 | 本文：`legacy-set:yuenv_jianyuan` `set_penglai_chaosheng` `set_junwu_baizhan` `legacy-set:junwu_yanmeng` `legacy-set:biaoju_sihai` `legacy-set:wuguan_jiben` `set_jianghu_baijia` `legacy-set:xinglin_qihuang` `legacy-set:dujia_baicao` `legacy-set:guchong_mifa` `legacy-set:qimen_jianghu` `legacy-set:yayue_qingxin` `legacy-set:hanmo_yiqi` `legacy-set:huanyirong` `legacy-set:baishou_xunyuan`；跨组只引用 `set_qidan_xiaofeng` |
 | 经脉引用 `mer_*` | 8 | `mer_renmai` `mer_dumai` `mer_chongmai` `mer_daimai` `mer_yinqiao` `mer_yangqiao` `mer_yinwei` `mer_yangwei`；均已命中 `design/15` 正式 ID |
 | 正式门派 `sect_*` | 0 新增 | 只复用 `sect_penglai`；名称、时代与五级模板均服从 `design/17` |
@@ -1163,6 +1275,8 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | `_被动后缀` | 玄阶紧凑卡内的被动短写 | 展开为 `ps_<所属武学拼音>_<后缀>` |
 | 裸写 `bf_*` | Buff 引用的排版短写 | 展开为 `{id:bf_*,grade:inherit}`；不得省略继承品阶 |
 | “来源地名／职业” | `learnSources` 的策划语义 | 章节实现必须补正式任务／NPC ID、`chapter` 与 `maxLayer` |
+| `AT/DF/MV-Y/I/H` | §11.6 的经脉路线排版码 | 构建时展开完整 `MeridianRouteDef.steps`，不得作为 ID 或枚举落库 |
+| `mfr_*` / `txp_*` | 招式路线 / 调息档案引用 | 按 21 §16.2 命名；前缀待 Canon M2-P01 采纳，本文不重定义对象 |
 
 ---
 
@@ -1238,6 +1352,10 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | GEN-V14 | 8 个 `mer_*` 仍是建议接口；`design/15` 定稿后必须通过迁移映射，不能静默生成第二套经脉枚举 | 警告 |
 | GEN-V15 | `sourceChapters:ALL14` 在导出时展开；具体 `learnSources` 的 `chapter∈sourceChapters` 且至少一项 `maxLayer≥1` | 失败 |
 | GEN-V16 | 按最终全目录重新计算各书界可习得池；逐界命中 `design/05` §14.4 高／中／低武比例，不沿用旧 90 门 general 汇总 | 失败 |
+| GEN-V17 | §11.6 覆盖 19 门地阶、78 个既有 `mv_*` 与同名 `mfr_*`；每门至少一记既有绝招；纯探索调用不提交战斗路线 | 失败 |
+| GEN-V18 | `purpose`、`requiredNature`、`ultimate` 与招式一致；路线 1–18 段、穴位不重复、CT 40–120、风险 0–1200，且 `recovery+ΣsegmentCt≤2000` | 失败 |
+| GEN-V19 | 13 门轻功全部接 movement 路线，不写回 `Q_skill` / 门禁；14 门内功各有合法 `txp_*`，CT 1000、耗内 0、scope 1–3 | 失败 |
+| GEN-V20 | 每个独立行动单位一个 `MeridianFlowModule`；preview 不写状态、不耗 RNG；结算顺序与 21 的 Z4M / Z5M、护体内劲位置一致 | 失败 |
 
 ### 13.2 金标准测试用例
 
@@ -1259,6 +1377,10 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | GEN-T14 | 对 §9 的任一 `(setId,skillId)` 关系做双向查询 | `skillId∈SetDef.members` 与 `setId∈SkillDef.setTags` 同时为真 |
 | GEN-T15 | 扫描正文全部 `bf_*` | 与 06／A5 的允许集合差集为空；不因描述出现通配 ID 而放行 |
 | GEN-T16 | 导入本文内功的经脉引用 | 8 个 `mer_*` 必须命中 `design/15` 正式枚举；效果仍只由 15 定义 |
+| GEN-T17 | 标准强度双方提交完整攻、防、速度路线 | 三个乘区均为 10000 bp，原伤害、减伤与速度零漂移 |
+| GEN-T18 | 混元方桩 7 品、10 重、调和、scope 3 调息 | `reliefBp=2100`、`repairUnits=491`，且不推进 15 的永久冲穴 |
+| GEN-T19 | 燕子三抄水绝招执行 | `mfr_yanzisanchaoshui_sanchao` 为 movement、8 段、600 CT；1200+600=1800≤2000 |
+| GEN-T20 | 百战心法护体后承受拳脚伤害 | 按护体真气→护体内劲→`mpGuard`→气血顺序，路线 `reflectBp=0` |
 
 ### 13.3 人工审阅清单
 
@@ -1268,6 +1390,8 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 4. 搜索 `set_*`，确认 §9 成员没有漏掉反向标签，也没有条目标签指向未登记候选。
 5. 搜索常见占位语、弃用前置字段、非法技艺键与敌专标记；正式条目定义不得命中，校验规则中的反例说明不计。
 6. 核对 `design/15` 正式经脉枚举、`design/07` 套装唯一成员表及 `chapters/*` 学习来源后，再生成运行数据。
+7. 将 §11.6 的模板全部展开为真实 `ap_*` 后，逐条检查路线 `ultimate`、CT、风险、穴位去重及 `recovery+flowCt`；不得把模板码交给 Core。
+8. 对两个同场单位的相同招式分别提交、取消与 preview，确认状态、RNG 游标和 trace 互不串扰。
 
 ---
 
@@ -1297,6 +1421,7 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | U-5 | `design/06` 目录与裁定 A5／C23 | 本文 44 个 `bf_*` 只作引用；状态语义、叠加、免疫及品阶对抗归 06 |
 | U-6 | `design/08` §4.6 | 草上飞、登萍渡水、燕子三抄水的 ID、品阶、来源和轻功门禁特技 |
 | U-7 | `design/17` §1.4、§3.1、§6.7 | 蓬莱 `sect_penglai`、天龙开放、T03/T02 五级称谓；其余通行来源不建门派 |
+| U-8 | AR-14；`design/21` v2.0 | **已解决（本文侧）**：19 门地阶 78 招完成用途判定，13 门轻功接速度路线，14 门内功接调息档案与护体显示档；动态公式、结算与逐单位状态仍归 21（见 §11.6） |
 
 ### 14.3 对基准的修改提案
 
@@ -1306,6 +1431,7 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | P-2 | 由 C3／`design/05` 按全部图鉴最终 `sourceChapters` 重算十四书界可习得池，不把本文新增 `11/20/14` 机械叠加到旧 general 池 | 旧逐界表是为90门分配；直接叠加会破坏多个高／中／低武目标，且 `ALL14` 只是当前候选投放语义 |
 | P-3 | 在 `design/05` §14.6 明确“每界三类≥3”按可同时获得的非互斥本土来源校验，并要求兵器是同一子类 | 只按目录总数或剑／刀／枪各一门会产生无法填满同类兵器栏的假阳性 |
 | P-4 | `design/05` 的 `SkillDef`／导出规范接受 catalog 排版别名 `ALL14`，但要求构建前展开，或统一禁止别名并提供生成器 | 本文大量通行来源逐项写14个 ID 会显著降低可读性；运行数据仍应保持严格枚举 |
+| P-5 | Canon §12 / §18 登记 `mfr_*`、`txp_*` 及 21 的战斗经脉唯一归属 | 沿用 21 §18.3 M2-P01、M3-P04；图鉴已按拟登记前缀引用，不能借用 `route_*` 或自行复制公式 |
 
 ### 14.4 原著考据待办
 
@@ -1328,6 +1454,8 @@ AR-01 的 0～1 天阶例外按旧目标 90 扩为 `90×1.5=135`；本文实际�
 | O-5 | 通行武馆的“五虎断门刀（民间式）”是否与其他图鉴同名条目合并 | 不合并；本文使用 `sk_wuhuduandandao`，只作武馆整理套路，具名门派版本保留其 ID 与归属 |
 | O-6 | 蓬莱“天王补心针”最终是否保留原著名目 | 暂保留 `sk_tianwangbuxin` 并标待考；若考据不成立，改显示名与 `canonExpanded→expanded`，不改变玄上配额 |
 | O-7 | 玄阶紧凑卡在数据化时是否需要全部展开逐招公式 | 需要；本文只按 AR-01 展示 21／58 抽样，导出器仍对58门全部倍率执行 lint |
+| O-8 | 幻易容术“拟声 / 缩骨”是否在探索时运行经脉模块 | 默认否；二者仍有稳定 defense `mfr_*` 供战斗调用，但探索检定 / 门禁不创建战斗模块、不支付 `flowCt`（见 §11.6.4） |
+| O-9 | 通行图鉴是否自行定义攻防 / 速度乘区与护体内劲公式 | **已解决：否**。本文仅登记绑定；公式、调息、结算顺序、逐单位状态与 preview 契约统一见 `design/21` §3–§12 |
 
 ---
 
