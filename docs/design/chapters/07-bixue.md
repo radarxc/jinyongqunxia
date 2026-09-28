@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：`ch07_bixue` 的时代图层、开局投放、主线索引、锚点落地、支线、门派实例、人物投放、Boss、产出、特色系统及前后书界衔接。
 > 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；主线唯一事实源为 `design/story/07-bixue.md`。
-> 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05` 与 `design/catalog/skills-xiake-bixue.md`、`skills-general.md`；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备与神兵 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、结局与余韵 → `design/13`；静态经脉成长 → `design/15`；战斗经脉运行、招式路线、绝招、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承源、残本、信物与校合 → `design/20`。
+> 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05` 与 `design/catalog/skills-xiake-bixue.md`、`skills-bulu-07-bixue.md`、`skills-general.md`；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备与神兵 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、结局与余韵 → `design/13`；静态经脉成长 → `design/15`；战斗经脉运行、招式路线、绝招、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承源、残本、信物与校合 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.0（D07，2026-09-26）；审校 D07.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）。
+> 版本：v1.0（D07，2026-09-26）；审校 D07.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）。
 
 ---
 
@@ -908,18 +908,18 @@ AND npc_hongniangzi.state == alive
 
 ### 8.8 八场 Boss 资产总表
 
-“Boss 8”按独立战斗资产 / 脚本计，不按唯一人物数计。玉真子在崇政殿与华山使用同一人物引用、不同脚本和阶段；前者是逃生阻截，后者是终战，因此计两项。`npc_yuzhenzi` 已进入正式 NPC 名录；§12.8 已按 9 品地位下限给出过渡七参与合法现有武学，现有 8 品外功已满足本界 `G=7` 闸门；9 品专属主运、装备、先天与完整 `full` 数值画像仍待内容实例化。
+“Boss 8”按独立战斗资产 / 脚本计，不按唯一人物数计。玉真子在崇政殿与华山使用同一人物引用、不同脚本和阶段；前者是逃生阻截，后者是终战，因此计两项。`npc_yuzhenzi` 已进入正式 NPC 名录；§12.8 已按 9 品地位下限配装铁剑门高阶主运 `sk_tiejianxuangong`，现有 8 品 `sk_tiejianjianfa` 亦满足本界 `G=7` 外功闸门。装备、先天与完整 `full` 数值画像仍待内容实例化。
 
 | # | Boss 脚本 ID | 名称 | 场景 / 任务 | Lv | 核心武学或威胁品阶 | 阶段数 | 胜利目标 |
 |---:|---|---|---|---:|---|---:|---|
-| 1 | `bsc_shanzong_zhuibing` | 山宗追兵 | 圣峰嶂追兵；共有 01 | 48 | `sk_shanzongquanfa` 玄中 5；追兵通行武学 | 2 | 护住两项 `dc_07_01` 目标后撤离，不要求全歼 |
+| 1 | `bsc_shanzong_zhuibing` | 山宗追兵 | 圣峰嶂追兵；共有 01 | 48 | `sk_shanzongzhengqigong` 地下 7；山宗拳枪链 | 2 | 护住两项 `dc_07_01` 目标后撤离，不要求全歼 |
 | 2 | `bsc_jinshedong_shoushi` | 金蛇洞守势 | 金蛇洞机关守势；共有 02 | 49 | 机关威胁按玄上 6；引用 `sk_jinshezhui` 的投射意象但不授武学 | 3 | 解出三段机关并护住遗物分配 |
-| 3 | `bsc_wenjia_wuxingzhen` | 温家五行阵 | 石梁五行阵；正 / 邪 01 | 50 | `sk_wenjiawuxingzhen` 地中 8；个体支招最高玄上 6 | 3 | 破阵眼、护证人；非击杀五老 |
-| 4 | `bsc_jiaozhai_zhidou` | 焦宅止斗 | 焦宅三方止斗；正 / 邪 02 | 52 | `sk_shangqingjianfa07` 地下 7、`sk_huweijian` 玄中 5 | 2 | 压低三方敌意并保住两封信 |
+| 3 | `bsc_wenjia_wuxingzhen` | 温家五行阵 | 石梁五行阵；正 / 邪 01 | 50 | `sk_shiliangwuxinggong`、`sk_wenjiawuxingzhen` 均地中 8 | 3 | 破阵眼、护证人；非击杀五老 |
+| 4 | `bsc_jiaozhai_zhidou` | 焦宅止斗 | 焦宅三方止斗；正 / 邪 02 | 52 | 焦公礼 `sk_jinlongbangxinfa`、闵子华 `sk_xianduyunqi` 均地下 7 | 2 | 压低三方敌意并保住两封信 |
 | 5 | `bsc_guixinshu_jiaoyi` | 归辛树较艺 | 华山同门较技；正 / 邪 03 | 54 | `sk_hunyuangong` 地上 9、`sk_hunyuanzhang` 玄上 6 | 2 | 达成较技阈值 / 展示证据，不击杀 `npc_guixinshu` |
-| 6 | `bsc_yuzhenzi_chongzhengdian` | 玉真子·崇政殿 | 崇政殿阻截；正 / 邪 06 | 55 | 目标地上 9·9；主运暂用 §12.8 地位兜底，`sk_tiejianxinfa` 5 品下移辅运 | 3 | 毁炮目标完成后撤离；行刺皇太极不得成功 |
-| 7 | `bsc_kuyin_sanfang` | 库银三方 | 库银三方 / 宫禁救援；正 / 邪 08 | 56 | 军中 / 宫禁池最高地下 7；不生成天级随机武学 | 3 | 救援、分辨赈济银与私库、带阿九撤离 |
-| 8 | `bsc_yuzhenzi_huashan` | 玉真子·华山 | 华山终战；正 / 邪 10 | 56 | 威胁预算与主运七参均锁地上 9·9；§12.8 暂以地位下限兜底，待补专属主运 | 3 | 保护侧翼，由袁承志完成核心决战 |
+| 6 | `bsc_yuzhenzi_chongzhengdian` | 玉真子·崇政殿 | 崇政殿阻截；正 / 邪 06 | 55 | `sk_tiejianxuangong` 地上 9·9；`sk_tiejianxinfa` 5 品下移辅运 | 3 | 毁炮目标完成后撤离；行刺皇太极不得成功 |
+| 7 | `bsc_kuyin_sanfang` | 库银三方 | 库银三方 / 宫禁救援；正 / 邪 08 | 56 | `sk_minggonghuyuangong` 地下 7；两支军伍用 `sk_baizhanxinfa` 地中 8 | 3 | 救援、分辨赈济银与私库、带阿九撤离 |
+| 8 | `bsc_yuzhenzi_huashan` | 玉真子·华山 | 华山终战；正 / 邪 10 | 56 | `sk_tiejianxuangong` 地上 9·9；威胁预算与主运七参一致 | 3 | 保护侧翼，由袁承志完成核心决战 |
 
 本界不登记 `capExempt`：`design/02` §3.4 的碧血终盘锚点明确是玉真子 Lv56（相对上限 +0）。中武“至多 2 名、最多 +4”只是许可上限，不是必须使用的配额；所有八场脚本都在 56 内。
 
@@ -944,17 +944,17 @@ AND npc_hongniangzi.state == alive
 
 ### 9.1 本土武学池与品阶核对
 
-本节只安排来源和取得节奏。武学定义、招式、前置、层数、内功贡献和套装反向标签均以 `design/catalog/skills-xiake-bixue.md` 为准；学习与装配规则见 `design/05`。本界原生池恰为 44 门：
+本节只安排来源和取得节奏。基础武学定义以 `design/catalog/skills-xiake-bixue.md` 为准，首领缺口追加定义以 `design/catalog/skills-bulu-07-bixue.md` 为准；学习与装配规则见 `design/05`。基础册 44 门，补录册追加 7 门地阶内功，当前本界本土可学池合计 51 门：
 
 | 大阶 | 数量 | 占本土池 | 正式 ID |
 |---|---:|---:|---|
-| 天 | 2 | `2÷44=4.55%` | `sk_jinshejian`、`sk_shenxing` |
-| 地 | 6 | `6÷44=13.64%` | `sk_hunyuangong`、`sk_tiejianjianfa`、`sk_wenjiawuxingzhen`、`sk_xieweibian`、`sk_shangqingjianfa07`、`sk_fuhuzhang` |
-| 玄 | 18 | `18÷44=40.91%` | 见 §9.3 六组来源 |
-| 黄 | 18 | `18÷44=40.91%` | 见 §9.3 六组来源 |
-| **合计** | **44** | **100%** | `2+6+18+18=44` |
+| 天 | 2 | `2÷51=3.92%` | `sk_jinshejian`、`sk_shenxing` |
+| 地 | 13 | `13÷51=25.49%` | 基础册 6 门见 §9.2；补录册为 `5×地下7+1×地中8+1×地上9=7` 门 |
+| 玄 | 18 | `18÷51=35.29%` | 见 §9.3 六组来源 |
+| 黄 | 18 | `18÷51=35.29%` | 见 §9.3 六组来源 |
+| **合计** | **51** | **100%** | `2+13+18+18=51` |
 
-该分布是图鉴已锁定的单书界新增池，不拿通行武学稀释，也不把前代残承 `sk_zixiashengong` 重计为第 45 门。中武“可习得池”最终比例须与 `skills-general` 的复现来源合并校验，本文只保证本土内容量和单周目装配可行。
+51 门只合并本书基础册与本次首领补录册，不拿通行武学稀释，也不把前代残承 `sk_zixiashengong` 重计为本土武学。补录七门均有门派职级、非排他秘籍或奇遇来源，不是 Boss-only；具体前置与取得条件见补录册各卡。中武“可习得池”最终比例仍须与 `skills-general` 的复现来源合并校验。
 
 ### 9.2 天级与地级取得
 
@@ -1326,7 +1326,7 @@ enemyStatMul = 0.85 + 0.05 × D
 | 标准 Boss 模板 | Lv48–52 为玄上 6·7/8；Lv54–56 为地下 7·8 | 7–8 | 模板值只供非具名原型 / 预算 |
 | 具名玉真子 | 地上 9·9 重 | 9 | `full` 手配；NPC 名录与武学装配已落，装备、先天与最终属性仍待内容实例化 |
 
-具名人物用 `full` 管线：先天、武学、装备都须有合法数据，攻击仅乘 D6 的 1.15，不再乘模板的 ×1.25；防御、评级、速度和 Boss 抗性仍可取模板修正，HP 可按同级 Boss 模板的 0.6–1.2 配置。`npc_yuzhenzi` 已进入正式 NPC 名录；§12.8 依 `design/21` §11.9.1 暂以地位下限写 `effGrade=9`，并把 `sk_tiejianxinfa` 5 品下移辅运；现有 8 品外功已满足本界 `G=7` 闸门。9 品专属主运、装备、先天和全项数值画像尚未闭合，故该兜底只供过渡七参与节奏验收，不能冒充最终 `full` 武学事实。
+具名人物用 `full` 管线：先天、武学、装备都须有合法数据，攻击仅乘 D6 的 1.15，不再乘模板的 ×1.25；防御、评级、速度和 Boss 抗性仍可取模板修正，HP 可按同级 Boss 模板的 0.6–1.2 配置。`npc_yuzhenzi` 已进入正式 NPC 名录；§12.8 的 `effGrade=9`、`effLayer=9` 与 `innerNature=harmony` 现同取新增主运 `sk_tiejianxuangong`，`sk_tiejianxinfa` 5 品下移辅运，8 品 `sk_tiejianjianfa` 满足本界 `G=7` 外功闸门。武学缺口已经闭合；装备、先天和全项数值画像仍待内容实例化。
 
 ### 12.3 八场 Boss 标准模板核算
 
@@ -1359,8 +1359,8 @@ P_actual     = G(9) × L(9) = 2.40 × 1.40 = 3.36
 
 玉真子 `full` 面板落地前必须满足：
 
-- 玉真子的人物条目已闭合；§12.8 的 9 品主运目前是地位下限兜底，现有 8 品外功已满足 `G=7`；最终 `full` 画像仍须补合法专属主运、先天、装备与各武学真实层数；
-- 地上 9 同时是终战威胁预算与 AR-15 地位下限，但不是现有 `sk_tiejianxinfa` 的品阶；正式替换仍须先有图鉴 ID 再引用；
+- 玉真子的人物条目与 9 品主运已经闭合；§12.8 使用可由铁剑门第四职级或木桑手录奇遇习得的 `sk_tiejianxuangong`，并非人物排他专属；最终 `full` 画像仍须补先天、装备与各武学真实层数；
+- 地上 9 同时是终战威胁预算与 AR-15 地位下限；正式主运及两记绝招、路线、调息档案均见 `skills-bulu-07-bixue` §5、§7；
 - HP 取 Lv56 标准 Boss 模板的 0.6–1.2，即 `134,100×[0.6,1.2]=80,460–160,920` **【建议值】**；最终值须跑 `full` 模拟；
 - 不使用模板攻击 ×1.25 二次放大；D6 1.15 仍作用于 `full` 攻击；
 - 三阶段分别有预警、可读弱点和失败保护；60 轮平局、狂暴与控制递减引用 `design/09`。
@@ -1404,47 +1404,49 @@ I(ch07) = 2 × 主武器价 × incomeCoeff
 
 ### 12.8 首领 / Boss 武学配装与多单位隔离
 
-本节只消费 `design/21` §11.9 的敌人模板；静态经脉、穴位、周天与第四转的成长定义仍见 `design/15`。`routeRefs` 必须由每个单位实际行动表中已解析的 `MoveDef.meridianRouteRef` 去重生成，不在章节里手填路线 ID。以下只使用 `skills-xiake-bixue` 与 `skills-general` 已登记且本界 / 来源合法的 `sk_*`，参数均为 **【建议值】**：
+本节只消费 `design/21` §11.9 的敌人模板；静态经脉、穴位、周天与第四转的成长定义仍见 `design/15`。`routeRefs` 必须由每个单位实际行动表中已解析的 `MoveDef.meridianRouteRef` 去重生成，不在章节里手填路线 ID。以下只使用 `skills-xiake-bixue`、`skills-bulu-07-bixue` 与 `skills-general` 已登记且本界 / 来源合法的 `sk_*`，参数均为 **【建议值】**：
 
-| 单位 | 门派 / 来源 | 主运内功 | 辅运内功 | 外功（逐门品阶） | 经脉七项参数 | 血量 / 防御倍率 | 逐单位估算轮数（调倍率前→后） | 节奏复核 / 说明 |
+| 单位 | 门派 / 来源 | 主运内功 | 辅运内功 | 外功（逐门品阶） | 经脉七项参数 | 血量 / 防御倍率 | 逐单位估算轮数（替补→正式） | 节奏复核 / 说明 |
 |---|---|---|---|---|---|---|---|---|
 | 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主武学解析 | 按单位来源的基础内功解析 | 按单位行动表解析 | `elite; 7/8; 10500; 7500; 10500; 由主武学解析; schoolCore; M7E` | `1.000 / 1.000` | `9.08→9.08` | 在精英 6–10 窗口；精英至多小周天 |
-| 山宗追兵武学首领 | 山宗 / 闯军旧部 | `sk_hunyuanfangzhuang` 混元方桩（地下7，调和；**原创扩展配置·待补专属**） | `sk_shanzongxinfa`（玄中5）、`sk_chuangwangtuna`（黄中2） | `sk_fuhuzhang`（地下7）、`sk_shuangqiangqiangfa`（玄上6）、`sk_shanzongquanfa`（玄中5）、`sk_chuangwangchangquan`（黄中2）、`sk_chuangwangqiangji`（黄上3） | `boss; 7/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `19.76→19.76` | `5→7`；第四档通行补位 |
-| `npc_wenfangda` 温方达 | 石梁温家 L4 | `sk_baizhanxinfa` 百战心法（地中8，阳；**原创扩展配置·待补专属**） | `sk_jianghutuna`（玄中5）、`sk_wenjiagong`（黄中2） | `sk_wenjiawuxingzhen`（地中8）、`sk_kaimenpiguaquan`（地中8；**原创扩展配置**）、`sk_shiliangwuxingzhang`（玄中5）、`sk_shilianggun`（黄上3） | `boss; 8/9; 13000; 9000; 13000; yang; fullTemplate; M7B` | `1.000 / 1.000` | `19.97→19.97` | `5→8`；地位下限 8，整场总耐久共用 |
-| `npc_wenfangyi` 温方义 | 石梁温家 L4 | `sk_baizhanxinfa` 百战心法（地中8，阳；**原创扩展配置·待补专属**） | `sk_jianghutuna`（玄中5）、`sk_wenjiagong`（黄中2） | `sk_wenjiawuxingzhen`（地中8）、`sk_kaimenpiguaquan`（地中8；**原创扩展配置**）、`sk_shiliangwuxingzhang`（玄中5）、`sk_shilianggun`（黄上3） | `boss; 8/9; 13000; 9000; 13000; yang; fullTemplate; M7B` | `1.000 / 1.000` | `19.97→19.97` | `5→8`；地位下限 8，整场总耐久共用 |
-| `npc_wenfangshi` 温方施 | 石梁温家 | `sk_baizhanxinfa` 百战心法（地中8，阳；**原创扩展配置·待补专属**） | `sk_jianghutuna`（玄中5）、`sk_wenjiagong`（黄中2） | `sk_wenjiawuxingzhen`（地中8）、`sk_kaimenpiguaquan`（地中8；**原创扩展配置**）、`sk_shiliangwuxingzhang`（玄中5）、`sk_shilianggun`（黄上3） | `boss; 8/9; 13000; 9000; 13000; yang; fullTemplate; M7B` | `1.000 / 1.000` | `19.97→19.97` | `5→8`；地位下限 8，整场总耐久共用 |
-| 温家五老·群体槽甲（不建 NPC ID） | 石梁温家 L4 | `sk_baizhanxinfa` 百战心法（地中8，阳；**原创扩展配置·待补专属**） | `sk_jianghutuna`（玄中5）、`sk_wenjiagong`（黄中2） | `sk_wenjiawuxingzhen`（地中8）、`sk_kaimenpiguaquan`（地中8；**原创扩展配置**）、`sk_shiliangwuxingzhang`（玄中5）、`sk_shilianggun`（黄上3） | `boss; 8/9; 13000; 9000; 13000; yang; fullTemplate; M7B` | `1.000 / 1.000` | `19.97→19.97` | `5→8`；地位下限 8，整场总耐久共用 |
-| 温家五老·群体槽乙（不建 NPC ID） | 石梁温家 L4 | `sk_baizhanxinfa` 百战心法（地中8，阳；**原创扩展配置·待补专属**） | `sk_jianghutuna`（玄中5）、`sk_wenjiagong`（黄中2） | `sk_wenjiawuxingzhen`（地中8）、`sk_kaimenpiguaquan`（地中8；**原创扩展配置**）、`sk_shiliangwuxingzhang`（玄中5）、`sk_shilianggun`（黄上3） | `boss; 8/9; 13000; 9000; 13000; yang; fullTemplate; M7B` | `1.000 / 1.000` | `19.97→19.97` | `5→8`；地位下限 8，整场总耐久共用 |
-| `npc_jiaogongli` 焦公礼 | 金龙帮 L5 / 通行护院链 | `sk_hunyuanfangzhuang` 混元方桩（地下7，调和；**原创扩展配置·待补专属**） | `sk_jindunxinfa`（玄下4）、`sk_zhuangxingong`（黄中2） | `sk_sihaibiaodao`（地中8；**原创扩展配置**）、`sk_fuhuzhang`（地下7）、`sk_huweijian`（玄中5）、`sk_biaojujianfa`（黄上3）、`sk_huyuanquan`（黄中2） | `boss; 7/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `19.76→19.76` | `5→7`；第四档通行补位，三方共用总耐久 |
-| `npc_minzihua` 闵子华 | 仙都关联**（待考）** / 后世武馆 | `sk_hunyuanfangzhuang` 混元方桩（地下7，调和；**原创扩展配置·待补专属**） | `sk_xianduxinfa`（玄中5）、`sk_xiandutuna`（黄中2） | `sk_shangqingjianfa07`（地下7）、`sk_liangyijianfa07`（玄上6）、`sk_lingbaoquan`（玄下4）、`sk_xiandurumenjian`（黄上3） | `boss; 7/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `19.76→19.76` | `5→7`；第四档通行补位 |
-| `npc_sunzhongjun` 孙仲君 | 华山·归辛树一系 L3 / 后世武馆 | `sk_hunyuanfangzhuang` 混元方桩（地下7，调和；**原创扩展配置·待补专属**） | `sk_jianghutuna`（玄中5）、`sk_huashantuna07`（黄中2） | `sk_jianghubaizhanjian`（地中8；**原创扩展配置**）、`sk_hunyuanzhang`（玄上6）、`sk_tiezhijue`（玄中5）、`sk_poyuquan`（玄中5）、`sk_huashanrujian07`（黄上3） | `boss; 7/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `19.76→19.76` | `5→7`；不提前取得 L4 混元功，改用第四档通行补位 |
-| `npc_guixinshu` 归辛树 | 华山·穆人清一脉 | `sk_hunyuangong` 混元功（地上9，阳） | `sk_huashantuna07`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_jianghubaizhanjian`（地中8；**原创扩展配置**）、`sk_hunyuanzhang`（玄上6）、`sk_tiezhijue`（玄中5）、`sk_poyuquan`（玄中5）、`sk_huashanrujian07`（黄上3） | `boss; 9/9; 13000; 9000; 13000; yang; fullTemplate; M7B` | `1.000 / 1.000` | `20.19→20.19` | 地位下限 9；补 ≥`G` 外功以闭合闸门 |
-| `npc_yuzhenzi` 玉真子（崇政殿 / 华山共用静态画像） | 铁剑门支系 / 后金宫廷护卫 | 缺专属主运（目标地上9；**原创扩展配置·待补专属**） | `sk_tiejianxinfa`（玄中5）、`sk_tiejantuna`（黄中2） | `sk_jianghubaizhanjian`（地中8；**原创扩展配置**）、`sk_tiejianjianfa`（地中8）、`sk_mantianhuayu`（玄上6）、`sk_tiejianqipanjian`（玄中5）、`sk_tiejianrujian`（黄上3） | `boss; 9/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `20.19→20.19` | 明列地位下限 9；8 品外功已满足本界 `G=7` 闸门 |
-| 库银三方·内监亲随首领 | 明廷宫禁 / 通行护院链 | `sk_hunyuanfangzhuang` 混元方桩（地下7，调和；**原创扩展配置·待补专属**） | `sk_jindunxinfa`（玄下4）、`sk_zhuangxingong`（黄中2） | `sk_sihaibiaodao`（地中8；**原创扩展配置**）、`sk_huweijian`（玄中5）、`sk_feihuangshi`（玄下4）、`sk_biaojujianfa`（黄上3）、`sk_huyuanquan`（黄中2） | `boss; 7/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `19.76→19.76` | `5→7`；第四档通行补位，三方共用总耐久 |
+| 山宗追兵武学首领 | 山宗 / 闯军旧部 | `sk_shanzongzhengqigong` 山宗正气功（地下7，阳） | `sk_shanzongxinfa`（玄中5）、`sk_chuangwangtuna`（黄中2） | `sk_fuhuzhang`（地下7）、`sk_shuangqiangqiangfa`（玄上6）、`sk_shanzongquanfa`（玄中5）、`sk_chuangwangchangquan`（黄中2）、`sk_chuangwangqiangji`（黄上3） | `boss; 7/9; 13000; 9000; 13000; yang; fullTemplate; M7B` | `1.000 / 1.000` | `19.76→19.76` | `5→7`；山宗同源主运已补录 |
+| `npc_wenfangda` 温方达 | 石梁温家 L4 | `sk_shiliangwuxinggong` 石梁五行功（地中8，调和） | `sk_jianghutuna`（玄中5）、`sk_wenjiagong`（黄中2） | `sk_wenjiawuxingzhen`（地中8）、`sk_shiliangwuxingzhang`（玄中5）、`sk_shilianggun`（黄上3） | `boss; 8/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `19.97→19.97` | 地位下限 8；五人分别实例化，整场总耐久共用 |
+| `npc_wenfangyi` 温方义 | 石梁温家 L4 | `sk_shiliangwuxinggong` 石梁五行功（地中8，调和） | `sk_jianghutuna`（玄中5）、`sk_wenjiagong`（黄中2） | `sk_wenjiawuxingzhen`（地中8）、`sk_shiliangwuxingzhang`（玄中5）、`sk_shilianggun`（黄上3） | `boss; 8/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `19.97→19.97` | 地位下限 8；五人分别实例化，整场总耐久共用 |
+| `npc_wenfangshi` 温方施 | 石梁温家 | `sk_shiliangwuxinggong` 石梁五行功（地中8，调和） | `sk_jianghutuna`（玄中5）、`sk_wenjiagong`（黄中2） | `sk_wenjiawuxingzhen`（地中8）、`sk_shiliangwuxingzhang`（玄中5）、`sk_shilianggun`（黄上3） | `boss; 8/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `19.97→19.97` | 地位下限 8；五人分别实例化，整场总耐久共用 |
+| 温家五老·群体槽甲（不建 NPC ID） | 石梁温家 L4 | `sk_shiliangwuxinggong` 石梁五行功（地中8，调和） | `sk_jianghutuna`（玄中5）、`sk_wenjiagong`（黄中2） | `sk_wenjiawuxingzhen`（地中8）、`sk_shiliangwuxingzhang`（玄中5）、`sk_shilianggun`（黄上3） | `boss; 8/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `19.97→19.97` | 地位下限 8；五人分别实例化，整场总耐久共用 |
+| 温家五老·群体槽乙（不建 NPC ID） | 石梁温家 L4 | `sk_shiliangwuxinggong` 石梁五行功（地中8，调和） | `sk_jianghutuna`（玄中5）、`sk_wenjiagong`（黄中2） | `sk_wenjiawuxingzhen`（地中8）、`sk_shiliangwuxingzhang`（玄中5）、`sk_shilianggun`（黄上3） | `boss; 8/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `19.97→19.97` | 地位下限 8；五人分别实例化，整场总耐久共用 |
+| `npc_jiaogongli` 焦公礼 | 金龙帮 L5 | `sk_jinlongbangxinfa` 金龙帮心法（地下7，调和） | `sk_jindunxinfa`（玄下4）、`sk_zhuangxingong`（黄中2） | `sk_fuhuzhang`（地下7）、`sk_huweijian`（玄中5）、`sk_biaojujianfa`（黄上3）、`sk_huyuanquan`（黄中2） | `boss; 7/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `19.76→19.76` | 金龙帮同源主运已补录；三方共用总耐久 |
+| `npc_minzihua` 闵子华 | 仙都关联**（待考）** | `sk_xianduyunqi` 仙都运气诀（地下7，调和；**原创扩展**） | `sk_xianduxinfa`（玄中5）、`sk_xiandutuna`（黄中2） | `sk_shangqingjianfa07`（地下7）、`sk_liangyijianfa07`（玄上6）、`sk_lingbaoquan`（玄下4）、`sk_xiandurumenjian`（黄上3） | `boss; 7/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `19.76→19.76` | 仙都同源主运已补录；人物关系仍待考 |
+| `npc_sunzhongjun` 孙仲君 | 华山·归辛树一系 L3 | `sk_huashanqigong07` 华山养气功·碧血（地下7，阳；**原创扩展命名**） | `sk_jianghutuna`（玄中5）、`sk_huashantuna07`（黄中2） | `sk_jianghubaizhanjian`（地中8；**原创扩展配置**）、`sk_hunyuanzhang`（玄上6）、`sk_tiezhijue`（玄中5）、`sk_poyuquan`（玄中5） | `boss; 7/9; 13000; 9000; 13000; yang; fullTemplate; M7B` | `1.000 / 1.000` | `19.76→19.76` | 不提前取得 L4 混元功；通行剑维持外功闸门 |
+| `npc_guixinshu` 归辛树 | 华山·穆人清一脉 | `sk_hunyuangong` 混元功（地上9，阳） | `sk_huashantuna07`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_jianghubaizhanjian`（地中8；**原创扩展配置**）、`sk_hunyuanzhang`（玄上6）、`sk_tiezhijue`（玄中5）、`sk_poyuquan`（玄中5）、`sk_huashanrujian07`（黄上3） | `boss; 9/9; 13000; 9000; 13000; yang; fullTemplate; M7B` | `1.000 / 1.000` | `20.19→20.19` | 地位下限 9；通行剑闭合 ≥`G` 外功闸门 |
+| `npc_yuzhenzi` 玉真子（崇政殿 / 华山共用静态画像） | 铁剑门支系 / 后金宫廷护卫 | `sk_tiejianxuangong` 铁剑玄功（地上9，调和；**原创扩展命名**） | `sk_tiejianxinfa`（玄中5）、`sk_tiejantuna`（黄中2） | `sk_tiejianjianfa`（地中8）、`sk_mantianhuayu`（玄上6）、`sk_tiejianqipanjian`（玄中5）、`sk_tiejianrujian`（黄上3） | `boss; 9/9; 13000; 9000; 13000; harmony; fullTemplate; M7B` | `1.000 / 1.000` | `20.19→20.19` | 地位下限 9；同门 8 品剑法已满足 `G=7` 外功闸门 |
+| 库银三方·内监亲随首领 | 明廷宫禁 | `sk_minggonghuyuangong` 明宫护院功（地下7，阳；**原创扩展**） | `sk_jindunxinfa`（玄下4）、`sk_zhuangxingong`（黄中2） | `sk_sihaibiaodao`（地中8；**原创扩展配置**）、`sk_huweijian`（玄中5）、`sk_biaojujianfa`（黄上3）、`sk_huyuanquan`（黄中2） | `boss; 7/9; 13000; 9000; 13000; yang; fullTemplate; M7B` | `1.000 / 1.000` | `19.76→19.76` | 宫禁同源主运已补录；三方共用总耐久 |
 | 库银三方·宫禁守军首领 | 明廷守军 / 军伍百战链 | `sk_baizhanxinfa` 百战心法（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_shouchengzhen`（地下7）、`sk_zhenqijian`（玄上6）、`sk_junzhongdao`（玄上6）、`sk_bubingcao`（黄中2） | `boss; 8/9; 13000; 9000; 13000; yang; fullTemplate; M7B` | `1.000 / 1.000` | `19.97→19.97` | `5→8`；军伍第二档合法主运，三方共用总耐久 |
-| 库银三方·失纪闯军首领 | 闯王军 / 山宗链 | `sk_baizhanxinfa` 百战心法（地中8，阳；**原创扩展配置**） | `sk_shanzongxinfa`（玄中5）、`sk_chuangwangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_fuhuzhang`（地下7）、`sk_shuangqiangqiangfa`（玄上6）、`sk_shanzongquanfa`（玄中5）、`sk_chuangwangqiangji`（黄上3） | `boss; 8/9; 13000; 9000; 13000; yang; fullTemplate; M7B` | `1.000 / 1.000` | `19.97→19.97` | `5→8`；同阵营军伍补位，三方共用总耐久 |
+| 库银三方·失纪闯军首领 | 闯王军 / 山宗链 | `sk_baizhanxinfa` 百战心法（地中8，阳；**原创扩展配置**） | `sk_shanzongxinfa`（玄中5）、`sk_chuangwangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_fuhuzhang`（地下7）、`sk_shuangqiangqiangfa`（玄上6）、`sk_shanzongquanfa`（玄中5）、`sk_chuangwangqiangji`（黄上3） | `boss; 8/9; 13000; 9000; 13000; yang; fullTemplate; M7B` | `1.000 / 1.000` | `19.97→19.97` | 同阵营军伍补位；三方共用总耐久 |
 
-表内先写 `kind`，随后七项参数固定为 `effGrade/effLayer; mpRatioBp; practiceBp; capacityScaleBp; innerNature; openPolicy; milestones`；`M7E={meridianComplete:true,smallCycle:true,greatCycle:false,twelveCycle:false,turns:0}`，`M7B={meridianComplete:true,smallCycle:true,greatCycle:true,twelveCycle:true,turns:4}`。精英至多小周天；Boss 使用本界第四转。表中 14 个武学行动画像都占 1 个主运槽、2 门玄 / 黄辅运、4–5 门外功；玉真子两战复用静态画像，但每场重新初始化动态实例。
+表内先写 `kind`，随后七项参数固定为 `effGrade/effLayer; mpRatioBp; practiceBp; capacityScaleBp; innerNature; openPolicy; milestones`；`M7E={meridianComplete:true,smallCycle:true,greatCycle:false,twelveCycle:false,turns:0}`，`M7B={meridianComplete:true,smallCycle:true,greatCycle:true,twelveCycle:true,turns:4}`。精英至多小周天；Boss 使用本界第四转。表中 14 个武学行动画像都占 1 个主运槽、2 门玄 / 黄辅运、3–5 门外功；玉真子两战复用静态画像，但每场重新初始化动态实例。
 
-本界 `G=7`，Boss 主运至少 7。温家五人依明列地位下限 8 改用本界军伍 `sk_baizhanxinfa` 第四档补位；玉真子与归辛树取 9，其中玉真子因四档仍无 9 品主运而使用地位兜底。山宗首领、焦公礼、闵子华、孙仲君和内监亲随均改用本界可取得的后世武馆 `sk_hunyuanfangzhuang`；宫禁守军与失纪闯军用 `sk_baizhanxinfa` 闭合。温家阵法已满足 8 品外功，归辛树与普通江湖 / 护院画像补本界可用通行外功；玉真子的 8 品剑法同样已超过本界外功门槛，仍缺的是承载 9 品地位下限的专属主运。闵子华的仙都归属仍**（待考）**。
+本界 `G=7`，Boss 主运至少 7。山宗、温家五老、焦公礼、闵子华、孙仲君、玉真子和内监亲随现分别使用补录册中的同门 / 同来源主运；温家依地位下限取 8，玉真子与归辛树取 9，宫禁守军与失纪闯军继续使用来源合法的军伍 `sk_baizhanxinfa`。温家阵法、焦公礼伏虎掌、孙仲君与归辛树的通行百战剑、玉真子铁剑门剑法、内监亲随四海镖刀分别闭合外功 `≥G` 闸门。保留的同来源 / 通行武学仍按 `design/21` §11.9.1 标**（原创扩展配置）**；它们是可共享武学，不是人物专属。闵子华的仙都归属仍**（待考）**。
 
 金蛇洞守势是机关核心、配重与安全格组成的纯环境遭遇，不配武学且不创建 `MeridianFlowModule`。五行阵五人、焦宅三方、库银三方以及所有武学型召唤物必须一单位一实例，不能因共享阵眼、敌意槽、阶段耐久或控制者而共享节点、控制或调息态；玉真子两场脚本也必须按每次遭遇新建实例。模块不持有 RNG；Core 仅在成功命令事务中注入唯一全局 `battle` 流，按既定 `unitIndex` / 提交顺序消费并与状态原子提交，不派生单位子流。`effGrade/effLayer` 只取主运内功经 `design/13` 压制后的最终有效值，不能取阵法、外功或场景威胁上限。
 
 攻防 Z5M / Z4M、护体内劲、经脉速度、调息、绝招及点穴 / 擒拿均只引用 `design/21` §4、§8–§11。护体内劲在护盾后、`mpGuard` 前结算；经脉速度在擒拿移动倍率前结算，`evadeRatingDelta` 与擒拿 `evadeBp` 各只应用一次。Boss 身份不豁免经脉控制；9 级硬控只按通用递减与终局保护响应。
 
-逐单位静态复核统一使用 `python3 tools/balance/boss_pacing.py` 的 10 / 6 段代表路线：精英锚 9.08；7 / 8 / 9 品 Boss 分别为 19.76 / 19.97 / 20.19 轮，均在 12–25，故 HP 与防御倍率保持 1.000。五行阵、焦宅三方和库银三方只把该轮数作为整场总耐久预算，不为每个槽位复制完整 Boss HP；缺口行的轮数是补齐目标主运后的验收值，不代表当前低阶主运可发布。完整多体阵容仍须固定 RNG 回放 **（待实测）**。
+逐单位静态复核统一使用 `python3 tools/balance/boss_pacing.py` 的 10 / 6 段代表路线：精英锚 9.08；7 / 8 / 9 品 Boss 分别为 19.76 / 19.97 / 20.19 轮，均在 12–25，故 HP 与防御倍率保持 1.000。新增主运与原替补目标品阶一致，因此替换前后估算轮数不变。五行阵、焦宅三方和库银三方只把该轮数作为整场总耐久预算，不为每个槽位复制完整 Boss HP；完整多体阵容仍须固定 RNG 回放 **（待实测）**。
 
-#### 12.8.1 图鉴缺口
+#### 12.8.1 图鉴缺口闭合
 
-| 人物 / 单位 | 缺的专属内功 / 外功 | 当前替补 |
-|---|---|---|
-| 山宗追兵武学首领 | 7 品山宗 / 闯军主运 | 通行 `sk_hunyuanfangzhuang`；原山宗心法下移辅运 |
-| 温家五老（五人） | 各自可承载地位下限 8 的温家主运 | 通行 `sk_baizhanxinfa`；温家桩功辅运 |
-| 焦公礼 | 7 品金龙帮主运 | 通行 `sk_hunyuanfangzhuang`；护院基础内功辅运 |
-| 闵子华 | 7 品仙都同源主运 | 通行 `sk_hunyuanfangzhuang`；现有仙都心法下移辅运 |
-| 孙仲君 | 7 品、符合其 L3 身份的华山主运 | 通行 `sk_hunyuanfangzhuang`，不提前授混元功 |
-| 玉真子 | 9 品专属主运；更贴合人物的高阶专属外功 | 地位兜底 `9/9/harmony`；铁剑基础内功辅运；现有 8 品外功已过 `G=7` 闸门 |
-| 内监亲随首领 | 7 品宫禁 / 护院主运 | 通行 `sk_hunyuanfangzhuang`；护院基础内功辅运 |
+| 人物 / 单位 | 原缺口 | 处理结果 | 状态 |
+|---|---|---|---|
+| 山宗追兵武学首领 | 7 品山宗 / 闯军主运 | 新增 `sk_shanzongzhengqigong`；原山宗心法下移辅运 | 已补 |
+| 温家五老（五人） | 各自可承载地位下限 8 的温家主运 | 五人共用同门可学的 `sk_shiliangwuxinggong`，但各自持独立实例 | 已补 |
+| 焦公礼 | 7 品金龙帮主运 | 新增 `sk_jinlongbangxinfa`；护院基础内功仍作辅运 | 已补 |
+| 闵子华 | 7 品仙都同源主运 | 新增 `sk_xianduyunqi`；仙都关系保留**（待考）** | 已补，考据待办 |
+| 孙仲君 | 7 品、符合其 L3 身份的华山主运 | 新增 `sk_huashanqigong07`，不提前授混元功 | 已补 |
+| 玉真子 | 9 品铁剑门高阶主运 | 新增门内可共享的 `sk_tiejianxuangong`；既有 8 品铁剑门剑法已过外功闸门 | 已补 |
+| 内监亲随首领 | 7 品宫禁 / 护院主运 | 新增 `sk_minggonghuyuangong` | 已补 |
+
+七门均见 `design/catalog/skills-bulu-07-bixue.md`；本轮来源扩展登记与跨书界待替换均为“无”。华山（碧血一系）的归辛树 / 归二娘也在本书负责范围内，但鹿鼎书界已直接使用既有 `sk_hunyuangong`，无需新增同物或等待收尾替换。
 
 ---
 
@@ -1504,6 +1506,7 @@ I(ch07) = 2 × 主武器价 × incomeCoeff
 | BX-X27 | 金蛇剑、归氏证据、闯王宝藏种子在鹿鼎 / 飞狐 / 雪山的彩蛋接口 | §11.4 | 只写事实键与回响，不替下游预写锚点结果 |
 | BX-X28 | 华山、明亡遗民、闯王宝藏、侠客岛与铁剑五条连续性提交表 | §11.6 | 书眠与回响归 `design/02`，前代载体、残本与校合归 `design/20` |
 | BX-X29 | 五条本地预配置前代传承候选在本时代七区的缓存落点与守传者表现 | §9.7 | 只消费 `design/20` 的既有来源、卷位和信物；不穷举全局候选，匿名载体不倒推原著血缘 |
+| BX-X30 | 山宗、石梁温家、金龙帮、仙都、华山碧血支、铁剑门与明宫七门首领内功及 28 记招式 | §9.1、§12.8；`skills-bulu-07-bixue` | 全部明确原创扩展或原创扩展命名；按门派 / 来源正常途径可学，不设人物排他条件 |
 
 ### 13.5 原著事实核对清单
 
@@ -1661,11 +1664,11 @@ I(ch07) = 2 × 主武器价 × incomeCoeff
 | BX-T03 | 时长 | `4.95+3.85+1.65+0.55=11h`，且在 8–15h |
 | BX-T04 | 门派经济 | `I=2×21×1.0=42 两/h`；`B_sect=0.05×42×11=23.10 两` |
 | BX-T05 | 书眠年份 | `1630−1583=47`；`1669−1645=24` |
-| BX-T06 | 武学分阶 | 天 / 地 / 玄 / 黄 = `2/6/18/18`，合计 44 |
+| BX-T06 | 武学分阶（基础册 + 补录册） | 天 / 地 / 玄 / 黄 = `2/13/18/18`，合计 `44+7=51` |
 | BX-T07 | Lv48 Boss 模板 | HP / MP / 双攻 / 双防 = `83,580 / 7,572 / 2,477 / 2,177 / 1,718 / 1,535` |
 | BX-T08 | Lv54 Boss 模板 | HP / MP / 双攻 / 双防 = `124,751 / 10,602 / 3,328 / 3,048 / 2,330 / 2,163` |
 | BX-T09 | Lv56 Boss 模板 | HP / MP / 双攻 / 双防 = `134,100 / 11,394 / 3,576 / 3,276 / 2,504 / 2,325` |
-| BX-T10 | 玉真子地位兜底品阶威力 | `P_actual=G(9)×L(9)=2.40×1.40=3.36`；仅供 §12.8 过渡七参与节奏验收，图鉴主运补齐后重算 |
+| BX-T10 | 玉真子正式主运品阶威力 | `sk_tiejianxuangong` 9 品 9 重：`P_actual=G(9)×L(9)=2.40×1.40=3.36` |
 | BX-T11 | Lv56 `full` HP 建议带 | `134,100×[0.6,1.2]=80,460–160,920` |
 | BX-T12 | 鹿鼎压制例 | `sk_jinshejian` 天下 10 → `max(1,10−4)=6` 玄上；9 重 → 有效 8 重 |
 | BX-T29 | 前代主载体 / 后人预算 | `ceil(7/2)=4`；`ceil(4/2)=2` |
@@ -1719,8 +1722,8 @@ I(ch07) = 2 × 主武器价 × incomeCoeff
 | BX-D03 | `design/15` | 穆人清 / 木桑 / 何铁手指点暂用 `rateBp=1500`、`successBp=800`、`costReduceBp=500`；缺项为 0 | 指点来源目录确认人物级参数后回填 |
 | BX-D04 | `design/12` / story | 宝藏“公账三分”使民间、闯军声望各升 1 档；“暗留二成”写 `bx_stance−2`；“据为己有”写 `morality−12` 并锁邪线至 `dc_07_08` | 选择原子与声望动作采用正式 DSL 后回填 |
 | BX-D05 | `design/09` | **已解决：**§12.8 静态估算为 19.76 轮，HP / 防御倍率取 1.000；护送目标按整场总耐久计，不另乘旧 ×0.85 | 遭遇编组与护送耐久实装后，以固定 RNG 回放复核 |
-| BX-D06 | `design/03` / `09` | 玉真子 Lv56 `full` HP 初始搜索区间 80,460–160,920，即标准 Boss HP 134,100 的 0.6–1.2；§12.8 静态复核暂取 1.000 得 20.19 轮 | 正式主运、外功、先天和装备入库并完成 `full` 模拟后回填 |
-| BX-D07 | `design/21` / 遭遇数据 | 精英用 `7/8,10500,7500,10500,schoolCore`；Boss 用表列品阶 / 9 重与 `13000,9000,13000,fullTemplate`，按十二经周流 + 第四转初始化 | 路线、武学性质与多体固定 RNG 回放闭合后转正式配置 |
+| BX-D06 | `design/03` / `09` | 玉真子 Lv56 `full` HP 初始搜索区间 80,460–160,920，即标准 Boss HP 134,100 的 0.6–1.2；§12.8 静态复核暂取 1.000 得 20.19 轮 | 主运与外功已入图鉴；先天、装备入库并完成 `full` 模拟后回填 |
+| BX-D07 | `design/21` / 遭遇数据 | 精英用 `7/8,10500,7500,10500,schoolCore`；Boss 用表列品阶 / 9 重与 `13000,9000,13000,fullTemplate`，按十二经周流 + 第四转初始化 | 武学性质与静态路线已闭合；多体固定 RNG 回放后转正式配置 |
 
 ### 本文依赖的上游事实
 
@@ -1732,11 +1735,11 @@ I(ch07) = 2 × 主武器价 × incomeCoeff
 | `design/03` / `04` / `09` | **已解决：**D6 模板、伤害边界、Boss / 合击 / 大规模战斗规则可用；具名玉真子仍须正式 `full` 数据 |
 | `design/08`、`11`、`19` 与 `design/map/*` | **已解决：**采用全局 7 区、16 城、正式地形 / qg 门禁及 `jianghu-ch07.svg`；不创建 `rg_07_*` |
 | `design/12` / `16` / `17` | **已解决：**任务、五级晋升、资源营生、时代门派矩阵已有规则；本文只登记碧血实例 |
-| `design/18` 与 `catalog/npcs-ch07-bixue.md` | **部分解决：**八名重点队友与 14 名原待补具名 story 角色均已登记；哑巴师兄使用角色槽；玉真子过渡七参及现有武学见 §12.8，现有 8 品外功已满足 `G=7`；9 品专属主运、最终 `full` 装备、先天与数值画像仍待内容实例化 |
-| `catalog/skills-xiake-bixue.md`、`skills-general.md`、`skills-wuyue.md` | **已解决：**44 门本土武学、通行保底和紫霞残承有正式 ID；以图鉴覆盖 `design/17` 的旧候选 |
+| `design/18` 与 `catalog/npcs-ch07-bixue.md` | **部分解决：**八名重点队友与 14 名原待补具名 story 角色均已登记；哑巴师兄使用角色槽；玉真子 9 品主运、8 品外功与七参见 §12.8，最终 `full` 装备、先天与数值画像仍待内容实例化 |
+| `catalog/skills-xiake-bixue.md`、`skills-bulu-07-bixue.md`、`skills-general.md`、`skills-wuyue.md` | **已解决：**44 门基础本土武学、7 门首领补录内功、通行保底和紫霞残承均有正式 ID；以图鉴覆盖 `design/17` 的旧候选 |
 | `design/07-set-system.md` | **已解决：**§9.5 已改为两套正式引用；件数、Buff、成员与 ID 所有权均只读 07 |
 | `design/20-legacy-inheritance.md` | **已解决：**§9.7 引用其五条本地预配置候选、既有三卷 / 信物、硬过滤与 4 / 2 / 8 / 4 投放预算；`locationHints` 不作绝对门槛，实际入选与可完成合成依存档确定 |
-| `design/21` | **部分解决：**§12.8 已接七参数、逐单位实例与攻防 / 护体 / 速度 / 控制接口；玉真子及各多体 Boss 的图鉴逐招路线解析、完整阵容回放仍待上游 |
+| `design/21` | **部分解决：**§12.8 已接七参数、逐单位实例与攻防 / 护体 / 速度 / 控制接口；补录武学的逐招路线、调息和护体字段已闭合，完整多体阵容回放仍待实测 |
 | `tech/04` / `tech/05` | **待对接：**章节 YAML 的字段名、原子提交、引用解析和存档迁移尚须纳入 schema / 引擎 |
 
 ### 对基准的修改提案
@@ -1776,12 +1779,12 @@ I(ch07) = 2 × 主武器价 × incomeCoeff
 | BX-O02 | **已解决：**旧候选是否可先实现 | 不可；只启用 `design/07` 正式两套，旧候选不输出 ID、不计件，见 §9.5 |
 | BX-O03 | **已解决：**前代传承是否允许本章先造残本与合成 | 不先造；现仅引用 `design/20` §9 已登记来源与配方，运行时按其 §2.7 / §4 / §7 调度和校合（见 §9.7） |
 | BX-O04 | story 中未入 ch07 名录的人物能否直接生成 | 默认不可；可在剧情文本中引用，进入生产前必须补名录、生卒 / 年龄、D 级和能力画像 |
-| BX-O05 | 玉真子最终 `full` 面板 | 默认锁 Lv56、地上 9·9 威胁 / 地位下限和 80,460–160,920 HP 搜索区间；§12.8 暂取 1.000 倍得 20.19 轮，现有 8 品外功已过 `G=7` 闸门；9 品专属主运、具体攻击、防御、先天与装备待人物数据补齐后模拟 |
+| BX-O05 | 玉真子最终 `full` 面板 | **部分解决：**主运采用 `sk_tiejianxuangong` 9 品 9 重，现有 8 品外功已过 `G=7`；默认锁 Lv56 和 80,460–160,920 HP 搜索区间，§12.8 暂取 1.000 倍得 20.19 轮，具体攻击、防御、先天与装备待人物数据补齐后模拟 |
 | BX-O06 | “闯王宝藏”是否与飞狐 / 雪山宝藏确认为同一实体 | 默认只提交 `legendSeed`，不确认同一批资产；由后世 story / 传承文档决定 |
 | BX-O07 | 李岩 / 红娘子改命后在鹿鼎时代是否活体重逢 | 默认只出现无署名抄本与互助传闻；没有后世 lifespan / appearance 正证据不生成高龄活体 |
 | BX-O08 | 渤海派是否保留五级可加入内容位 | 默认保留 `design/17` 的 O 状态和本章第八制作位，但只授通行剑链；图鉴补录前无独门武学 |
 | BX-O09 | 本章四组合击是否进入通用合击目录 | 默认保留为候选 `ComboDef`；正式倍率、范围、资源与动画均由 `design/09` 审核，本文不预设数值 |
 | BX-O10 | 冲穴指点建议值是否按人物区分 | 默认三人同用 BX-D03，避免凭名气造隐藏差；完成实测后才允许差异化 |
-| BX-O11 | 本界 Boss 经脉建议值何时转正式配置 | 默认沿 §12.8；玉真子与多体组须在图鉴路线全量解析后，用固定 RNG 多实例实跑并回填 |
+| BX-O11 | 本界 Boss 经脉建议值何时转正式配置 | **部分解决：**补录图鉴的路线与七参已解析；默认沿 §12.8，玉真子与多体组仍须用固定 RNG 多实例实跑并回填 |
 
 至此，所有缺失上游、建议值和待考项均有可继续制作的保守默认；任何默认都不得越过原著锚点、正式图鉴或唯一归属文档。
