@@ -1,11 +1,11 @@
 # 门派武学图鉴 · 康熙前后四书（`skills-kangxi`）
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 门派武学图鉴之一。本文只定义《鹿鼎记》《连城诀》《白马啸西风》《鸳鸯刀》组的武学条目、学习关系与套装成员候选。
-> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-01/02/03/07/08/14、`docs/00-canon.md` §3–§7/§9/§12/§13/§16/§20、`docs/decisions/rulings-v1.md` C12/C14–C17/C22/C23 与 §3–§5、`design/17`、`design/21` v2.0。
+> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-01/02/03/07/08/14/16、`docs/00-canon.md` §3–§7/§9/§12/§13/§16/§20、`docs/decisions/rulings-v1.md` C12/C14–C17/C22/C23 与 §3–§5、`design/17`、`design/21` v2.0。
 > **引用而不重定义**：字段、层数、招式与内功预算见 `design/05`；战斗经脉运行、路线、护体内劲、速度修正与调息见 `design/21`；经脉 / 穴位与永久成长见 `design/15`；伤害乘区见 `design/04`；Buff 本体见 `design/06`；轻功值与门禁见 `design/03`、`design/08`；合击运行见 `design/09` §6.7.4；物品见 `design/10`；门派时代、职级称谓见 `design/17`；套装规则与奖励留给 `design/07`。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（原创扩展命名）**为原著有其人其事而无固定武学名；**（待考）**须以三联/广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
 >
-> **版本**：初稿 C1d；审校 C1d.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）。
+> **版本**：初稿 C1d；审校 C1d.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记（2026-09-28）。
 
 ---
 
@@ -251,7 +251,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
 |---|---:|---|---:|---|---|---|---|
-| 神龙吐息 `mv_shenlongxinfa_tuxi` **（原创扩展）** | 1 | 单体·1–4·远程 | 0.95 | 8%/1/1000 | `bf_zhenshe` 25%·1 | 可 | `1×(1+0.12+0.05)×0.85−0.15×0.25=0.96≈0.95` |
+| 神龙吐息 `mv_shenlongxinfa_tuxi` **（原创扩展）** | 1 | 单体·1–4·远程 | 0.95 | 8%/1/1000 | `bf_zhenshe` 25%·1 | 可 | `1×(1+0.12+0.05)×0.85−0.15×0.25=0.96≈0.95`；`MoveDef{range:{min:1,max:4}; aoe:{tpl:aoe_single}; projection:true; projectionSpreadSteps:[{tpl:aoe_single},{tpl:aoe_single},{tpl:aoe_single}]; DamageKind:'projected'; meridianRouteRef:mfr_shenlongxinfa_tuxi}` |
 | 坐镇 `mv_shenlongxinfa_zuozhen`（绝招，**原创扩展**） | 7 | 自身·支援 | 0 | 9%/—/1200 | `bf_shoushi` 100%·3；气势 100 | — | `power=0`；支援绝招以气势 100、地阶基准耗内 +2pp 与收招 1200 支付；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 | 万寿护体 `mv_shenlongxinfa_wanshou`（绝招，**原创扩展**） | 9 | 自身·支援 | 0 | 9%/—/1200 | `bf_hutizhenqi` 100%·3，护体=`hpMax×18%×1.2=21.6%` | — | 支援预算：地阶标准治疗 18% 等价护体 ×1.2；气势 100；`MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 
@@ -422,7 +422,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 |---|---:|---|---:|---|---|---|---|
 | 绵掌 `mv_huagumianzhang_mianzhang` **（原创扩展命名）** | 1 | 单体·1·近身 | 0.95 | 7%/0/1000 | `bf_huagu` 40%·5 | 可 | `1−0.10×0.40=0.96≈0.95` |
 | 潜劲入骨 `mv_huagumianzhang_qianjin` **（原创扩展命名）** | 3 | 单体·1·近身 | 1.25 | 8%/2/1100 | `bf_huagu` 70%·5 | 可 | `1×(1+0.24+0.05+0.07)−0.10×0.70=1.29`；手调 −0.04 → 1.25 |
-| 隔衣传劲 `mv_huagumianzhang_geyi` **（原创扩展命名）** | 5 | 单体·1–3·远程 | 1.05 | 9%/2/1000 | `bf_huagu` 50%·5 | 可 | `1×(1+0.24+0.10)×0.85−0.05=1.09≈1.10`；隐蔽命中优势手调 −0.05 → 1.05 |
+| 隔衣传劲 `mv_huagumianzhang_geyi` **（原创扩展命名）** | 5 | 单体·1–3·远程 | 1.05 | 9%/2/1000 | `bf_huagu` 50%·5 | 可 | `1×(1+0.24+0.10)×0.85−0.05=1.09≈1.10`；隐蔽命中优势手调 −0.05 → 1.05；`MoveDef{range:{min:1,max:3}; aoe:{tpl:aoe_single}; projection:true; projectionSpreadSteps:[{tpl:aoe_single},{tpl:aoe_single},{tpl:aoe_single}]; DamageKind:'projected'; meridianRouteRef:mfr_huagumianzhang_geyi}` |
 | 绵劲回环 `mv_huagumianzhang_huihuan`（绝招，**原创扩展命名**） | 7 | 单体·1·近身 | 2.95 | 9%/—/1200 | `bf_huagu` 50%·5；气势 100 | 可 | `3.00−0.10×0.50=2.95`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 | 绵里藏针 `mv_huagumianzhang_cangzhen`（绝招，**原创扩展命名**） | 9 | 单体·1·近身 | 2.80 | 9%/—/1200 | `bf_huagu` 100%·5；`bf_pojia` 50%·2 | 可 | `3−0.10−0.10×0.50=2.85`；手调 −0.05 → 2.80；`MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 
@@ -1142,6 +1142,30 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 
 这里的“可选组合技”与“强制多人合击”严格区分：`sk_fuqidaofa` 单人有完整招式与补偿被动；只有额外满足 `design/09` 的双方装配、羁绊、距离条件时才建立 `cmb_fuqidao`。
 
+### 15.3 外放统计与候选审计
+
+本册逐招审计后共标记 **2** 招外放，均为地阶：天／地／玄／黄为 **0／2／0／0**。下表是 `tech/04` 构建 `projection-coverage.json` 的本文输入，按 `moveId` 排序；实体箭、针和火器只走既有投射／暗器通道。
+
+| moveId | 结论 | 依据 | 所在位置 |
+|---|---|---|---|
+| `mv_hasakeqishe_benshe` | `not_projected` | 射出实体箭矢 | §4.2 |
+| `mv_hasakeqishe_chuanshe` | `not_projected` | 多发实体箭矢穿阵 | §4.2 |
+| `mv_hasakeqishe_dajian` | `not_projected` | 弓具与箭类弹药的实体投射 | §4.2 |
+| `mv_hasakeqishe_huishen` | `not_projected` | 回身射出实体箭矢 | §4.2 |
+| `mv_hasakeqishe_sanshi` | `not_projected` | 三枚实体箭矢，不因范围模板而外放 | §4.2 |
+| `mv_huagumianzhang_cangzhen` | `not_projected` | “藏针”为绵劲隐蔽的比喻，原卡仍是近身掌击 | §2.8 |
+| `mv_huagumianzhang_geyi` | `projected` | 掌中真气离体隔衣传劲；基础单体 1–3，三档均单体 | §2.8 |
+| `mv_huagumianzhang_huihuan` | `not_projected` | 近身掌劲回环，未配置离体表现 | §2.8 |
+| `mv_manchuqishe_chishe` | `not_projected` | 骑射实体箭矢 | §6.8 |
+| `mv_manchuqishe_fuan` | `not_projected` | 两段实体箭矢投射 | §6.12 |
+| `mv_manchuqishe_huima` | `not_projected` | 回马发射实体箭矢 | §6.12 |
+| `mv_meirensanzhao_feiyan` | `not_projected` | 原卡的投射通道与后跃动作未声明离体真气；默认按实体／动作投送 | §2.4 |
+| `mv_shenlongxinfa_tuxi` | `projected` | 运息后以掌端送出离体真气**（原创扩展）**；基础单体 1–4，三档均单体 | §2.2 |
+| `mv_shenlongzhang_futan` | `not_projected` | 近身震袖扇面掌击，未声明离体掌风 | §6.12 |
+| `mv_shenlongzhang_yazhen` | `not_projected` | 单体近身掌击，不按同门心法批量标记 | §6.2 |
+
+黄阶 `sk_luochahuoqi` 尚无逐招全局 `moveId`；其伤害来自 `eq_luochaduanchong` 的实体弹药，明确不计外放，后续生成局部招式时也必须继承 `not_projected`。
+
 ---
 
 ## 16. 境界覆盖与装配可行性
@@ -1257,13 +1281,13 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | 武学 / 性质 | 逐招路线 |
 |---|---|
 | `sk_ningxue` / 阴 | `mv_ningxue_yizhua→mfr_ningxue_yizhua/false/attack/K-Y5`；`mv_ningxue_tanmai→mfr_ningxue_tanmai/false/attack/K-Y5`；`mv_ningxue_jiemai→mfr_ningxue_jiemai/false/attack/K-Y5`；`mv_ningxue_zhuihun→mfr_ningxue_zhuihun/false/attack/K-Y5`；`mv_ningxue_fengmen→mfr_ningxue_fengmen/true/attack/显式（见本册绝招显式路线索引）`；`mv_ningxue_jueming→mfr_ningxue_jueming/true/attack/显式（见本册绝招显式路线索引）` |
-| `sk_shenlongxinfa` / 阳 | `mv_shenlongxinfa_tuxi→mfr_shenlongxinfa_tuxi/false/attack/K-A5`；`mv_shenlongxinfa_zuozhen→mfr_shenlongxinfa_zuozhen/true/defense/显式（见本册绝招显式路线索引）`；`mv_shenlongxinfa_wanshou→mfr_shenlongxinfa_wanshou/true/defense/显式（见本册绝招显式路线索引）` |
+| `sk_shenlongxinfa` / 阳 | `mv_shenlongxinfa_tuxi→mfr_shenlongxinfa_tuxi/false/attack/外放显式（见下表）`；`mv_shenlongxinfa_zuozhen→mfr_shenlongxinfa_zuozhen/true/defense/显式（见本册绝招显式路线索引）`；`mv_shenlongxinfa_wanshou→mfr_shenlongxinfa_wanshou/true/defense/显式（见本册绝招显式路线索引）` |
 | `sk_yingxiongsanzhao` / 阳 | `mv_yingxiongsanzhao_zixu→mfr_yingxiongsanzhao_zixu/false/attack/K-A5`；`mv_yingxiongsanzhao_luda→mfr_yingxiongsanzhao_luda/false/attack/K-A5`；`mv_yingxiongsanzhao_diqing→mfr_yingxiongsanzhao_diqing/true/attack/显式（见本册绝招显式路线索引）`；`mv_yingxiongsanzhao_huishi→mfr_yingxiongsanzhao_huishi/false/attack/K-A5`；`mv_yingxiongsanzhao_sanxiong→mfr_yingxiongsanzhao_sanxiong/false/attack/K-A5` |
 | `sk_meirensanzhao` / 阴 | `mv_meirensanzhao_guifei→mfr_meirensanzhao_guifei/false/attack/K-Y5`；`mv_meirensanzhao_xiaolian→mfr_meirensanzhao_xiaolian/false/defense/K-YD4`；`mv_meirensanzhao_feiyan→mfr_meirensanzhao_feiyan/true/attack/显式（见本册绝招显式路线索引）`；`mv_meirensanzhao_huishen→mfr_meirensanzhao_huishen/false/attack/K-Y5`；`mv_meirensanzhao_sanmei→mfr_meirensanzhao_sanmei/false/attack/K-Y5` |
 | `sk_hongyingjian` / 中 | `mv_hongyingjian_dianwan→mfr_hongyingjian_dianwan/false/attack/K-H5`；`mv_hongyingjian_jiaofeng→mfr_hongyingjian_jiaofeng/false/attack/K-H5`；`mv_hongyingjian_jieren→mfr_hongyingjian_jieren/false/defense/K-HD4`；`mv_hongyingjian_huifeng→mfr_hongyingjian_huifeng/false/attack/K-H5`；`mv_hongyingjian_tongxin→mfr_hongyingjian_tongxin/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_mufuhujian` / 阳 | `mv_mufuhujian_hengjian→mfr_mufuhujian_hengjian/false/attack/K-A5`；`mv_mufuhujian_dianjian→mfr_mufuhujian_dianjian/false/attack/K-A5`；`mv_mufuhujian_huishen→mfr_mufuhujian_huishen/false/defense/K-AD4`；`mv_mufuhujian_yindi→mfr_mufuhujian_yindi/false/attack/K-A5`；`mv_mufuhujian_sheshen→mfr_mufuhujian_sheshen/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_wangwuposhijian` / 中 | `mv_wangwuposhi_xiaoshi→mfr_wangwuposhi_xiaoshi/false/attack/K-H5`；`mv_wangwuposhi_henglan→mfr_wangwuposhi_henglan/false/attack/K-H5`；`mv_wangwuposhi_jiepo→mfr_wangwuposhi_jiepo/false/attack/K-H5`；`mv_wangwuposhi_jielu→mfr_wangwuposhi_jielu/false/attack/K-H5`；`mv_wangwuposhi_kaishan→mfr_wangwuposhi_kaishan/true/attack/显式（见本册绝招显式路线索引）` |
-| `sk_huagumianzhang` / 阴 | `mv_huagumianzhang_mianzhang→mfr_huagumianzhang_mianzhang/false/attack/K-Y5`；`mv_huagumianzhang_qianjin→mfr_huagumianzhang_qianjin/false/attack/K-Y5`；`mv_huagumianzhang_geyi→mfr_huagumianzhang_geyi/false/attack/K-Y5`；`mv_huagumianzhang_huihuan→mfr_huagumianzhang_huihuan/true/attack/显式（见本册绝招显式路线索引）`；`mv_huagumianzhang_cangzhen→mfr_huagumianzhang_cangzhen/true/attack/显式（见本册绝招显式路线索引）` |
+| `sk_huagumianzhang` / 阴 | `mv_huagumianzhang_mianzhang→mfr_huagumianzhang_mianzhang/false/attack/K-Y5`；`mv_huagumianzhang_qianjin→mfr_huagumianzhang_qianjin/false/attack/K-Y5`；`mv_huagumianzhang_geyi→mfr_huagumianzhang_geyi/false/attack/外放显式（见下表）`；`mv_huagumianzhang_huihuan→mfr_huagumianzhang_huihuan/true/attack/显式（见本册绝招显式路线索引）`；`mv_huagumianzhang_cangzhen→mfr_huagumianzhang_cangzhen/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_shenzhao` / 和 | `mv_shenzhao_tuna→mfr_shenzhao_tuna/false/defense/K-HD4`；`mv_shenzhao_xumai→mfr_shenzhao_xumai/true/defense/显式（见本册绝招显式路线索引）`；`mv_shenzhao_huming→mfr_shenzhao_huming/true/defense/显式（见本册绝招显式路线索引）` |
 | `sk_xuedaojing` / 阴 | `mv_xuedaojing_cuiren→mfr_xuedaojing_cuiren/false/attack/K-Y5`；`mv_xuedaojing_yinren→mfr_xuedaojing_yinren/true/attack/显式（见本册绝招显式路线索引）`；`mv_xuedaojing_zhaoxue→mfr_xuedaojing_zhaoxue/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_xuedaofa` / 阴 | `mv_xuedaofa_furen→mfr_xuedaofa_furen/false/attack/K-Y5`；`mv_xuedaofa_tiexue→mfr_xuedaofa_tiexue/false/attack/K-Y5`；`mv_xuedaofa_huidao→mfr_xuedaofa_huidao/false/attack/K-Y5`；`mv_xuedaofa_cangfeng→mfr_xuedaofa_cangfeng/true/attack/显式（见本册绝招显式路线索引）`；`mv_xuedaofa_henggu→mfr_xuedaofa_henggu/true/attack/显式（见本册绝招显式路线索引）` |
@@ -1274,6 +1298,15 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | `sk_weixinliandao` / 阳 | `mv_weixinliandao_huche→mfr_weixinliandao_huche/false/attack/K-A5`；`mv_weixinliandao_landao→mfr_weixinliandao_landao/false/attack/K-A5`；`mv_weixinliandao_jiebiao→mfr_weixinliandao_jiebiao/false/attack/K-A5`；`mv_weixinliandao_yazhen→mfr_weixinliandao_yazhen/false/attack/K-A5`；`mv_weixinliandao_lianying→mfr_weixinliandao_lianying/true/attack/显式（见本册绝招显式路线索引）` |
 
 以上 75/75 个高阶 `mv_*` 都有唯一稳定路线，16/16 门均达到统一裁定表的绝招定数：天下 2、地上 2、地中按逐门裁定取 1 或 2、地下 1。支援绝招使用对应品阶的防守路线；伤害式即使带位移仍以 `attack` 为唯一主用途，避免同招重复提交攻路与速度路。
+
+#### 外放普通招式显式路线
+
+下列覆写优先于 §16A.1 的通用骨架；保持地阶普通招 5 段、总 CT 360 与原性质，只把掌劲／吐息的动作末端收束到 `design/21` §4.2.1、§4.4.1.4 要求的手部穴位，均为**（原创扩展）**。
+
+| 武学 | moveRef | 路线 id | purpose / requiredNature | 显式 steps（`acupointRef/segmentCt/riskBp`） | 段数 | 路线 CT |
+|---|---|---|---|---|---:|---:|
+| `sk_huagumianzhang` | `mv_huagumianzhang_geyi` | `mfr_huagumianzhang_geyi` | attack / `[yin,harmony]` | `ap_renmai_qihai/70/100 → ap_renmai_danzhong/70/150 → ap_shoujueyin_quze/80/300 → ap_shoujueyin_neiguan/70/150 → ap_shoujueyin_laogong/70/100` | 5 | 360 |
+| `sk_shenlongxinfa` | `mv_shenlongxinfa_tuxi` | `mfr_shenlongxinfa_tuxi` | attack / `[yang,harmony]` | `ap_dumai_mingmen/70/100 → ap_dumai_zhiyang/70/150 → ap_shouyangming_quchi/70/150 → ap_shoujueyin_neiguan/80/300 → ap_shoujueyin_laogong/70/100` | 5 | 360 |
 
 ### 16A.3 玄 / 黄阶模板引用与轻功速度路线
 
@@ -1435,6 +1468,8 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | KX-V19 | 经脉路线 | 高阶 75/75 逐招唯一挂接；9 条玄上绝招显式挂接；模板展开后 `moveRef` 存在、`ultimate` 相等、用途唯一，且满足 21 MF-V01–V05 | 一招同时挂攻路与位移路，或收招加路线 CT 超过 2000 |
 | KX-V20 | 调息与护体 | 16 门内功各有唯一 `txp_*`；档案范围满足 21 MF-V09，护体适用率与结算顺序不在图鉴另写变体 | 用检索档名代替按实例计算的 `capacity` |
 | KX-V21 | 实例隔离 | 每个独立行动单位各有一个 `MeridianFlowModule`；只共享静态路线，不共享节点状态 / RNG | 两个同模板敌人共用 `nodes` |
+| KX-V22 | 外放静态契约 | §15.3 两条 `projected` 均有 `projection:true`、0 档 `range/aoe`、三项且 `[0]` 深等于 `aoe` 的 `projectionSpreadSteps`、所有伤害段 `DamageKind:'projected'` 与唯一 attack 路线 | 把弓箭的 `delivery:projectile` 推断成外放，或在静态数据写当前档／扩大后射程 |
+| KX-V23 | 外放路线与覆盖 | 两条外放路线均以劳宫为掌端并命中 13 穴白名单；§15.3 审计表按 `moveId` 严格排序，结论计数为 2，天／地／玄／黄为 0／2／0／0 | 外放路线无合法端点，或漏审实体箭／针／火器反例 |
 
 ### 18.2 最小测试向量
 
@@ -1458,6 +1493,8 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | T-KX-16 路线 CT 上界 | 普通最大 `1100+360`；玄上绝招 `1200+600`；地绝招 `1200+720`；天绝招 `1200+800` | 分别为 1460 / 1800 / 1920 / 2000，全部不超过 2000 |
 | T-KX-17 调息档案 | 扫描 §16A.4 的 16 门内功 | 16 个唯一 `txp_*`；`ct=1000`、`mpCostBp=0`；9 级点穴禁止自调息 |
 | T-KX-18 同模板双敌 | 两个同模板敌人初始化后，仅令 A 走一段 | A 状态与 RNG 前进；B 的节点、版本均不变 |
+| T-KX-19 外放基础档 | 标准档分别加载神龙吐息、隔衣传劲 | 射程分别为 1–4、1–3，范围均 `aoe_single`；只在运行时按 `design/21` 取得 +0/+2/+4 射程 |
+| T-KX-20 实体投射反例 | 扫描哈萨克／满洲骑射、美人三招飞燕回翔与罗刹火器 | 均保持 `not_projected`，不因远程、投射或范围模板误挂外放字段 |
 
 ---
 

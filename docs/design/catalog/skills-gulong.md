@@ -1,10 +1,10 @@
 # 门派武学图鉴 · 古龙门派武学（`skills-gulong`）
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 门派武学图鉴之一。本文定义 `design/17` §11 选定的十五个古龙组织之可学武学；门派历史、驻地、时代开放与正式职级称谓仍唯一归 `design/17`。
-> **上游**：`decisions/author-decisions.md`（G1 / P33）、`00-canon.md`（§3–§7、§9、§12–§13、§16、§18、§20）、`decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-12、AR-14、`decisions/rulings-v1.md` C14、C16–C17、C22–C23、`design/17` §1.11–§1.14、§3.4、§11、`design/21` v2.0。
+> **上游**：`decisions/author-decisions.md`（G1 / P33）、`00-canon.md`（§3–§7、§9、§12–§13、§16、§18、§20）、`decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-12、AR-14、AR-16、`decisions/rulings-v1.md` C14、C16–C17、C22–C23、`design/17` §1.11–§1.14、§3.4、§11、`design/21` v2.0。
 > **引用而不重定义**：字段、层数、招式预算、内功贡献与学习规则见 `design/05`；战斗经脉运行、路线、护体内劲、速度修正与调息见 `design/21`；经脉、穴位、冲穴、周天与九转见 `design/15`；Buff 本体见 `design/06`；六角范围与阵法流程见 `design/09`；机关、毒物、兵器与弹药见 `design/10`；套装规则与最终数值见 `design/07`。
 > **标注约定**：**（原创扩展）** = 原著没有的武学、招名或投放；**（原创扩展命名）** = 原著有其人、兵器或行为而无可确认武学名；**（待考）** = 须以正式出版的古龙作品逐字核对。本文不编造引文与回目号。
-> **版本**：C1g 初稿；审校 C1g.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）。
+> **版本**：C1g 初稿；审校 C1g.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记（2026-09-28）。
 
 ---
 
@@ -254,7 +254,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
 |---|---:|---|---:|---|---|---|---|
-| 凝玉 `mv_mingyugong_ningyu` **（原创扩展命名）** | 1 | 单体·1–3·远程 | 1.00 | 8%/1/1000 | `bf_hanqi·承·30%·3` | ✓ | `(1+0.12+0.05)×0.85−0.03=0.9645→1.00` |
+| 凝玉 `mv_mingyugong_ningyu` **（原创扩展命名）** | 1 | 单体·1–3·远程 | 1.00 | 8%/1/1000 | 掌端离体寒劲 **（原创扩展）**；`bf_hanqi·承·30%·3` | ✓ | `(1+0.12+0.05)×0.85−0.03=0.9645→1.00`；`MoveDef{range:{min:1,max:3}; aoe:{tpl:aoe_single}; projection:true; projectionSpreadSteps:[{tpl:aoe_single},{tpl:aoe_single},{tpl:aoe_single}]; DamageKind:'projected'; meridianRouteRef:mfr_mingyugong_ningyu}` |
 | 寒玉护体 `mv_mingyugong_hanyu` **（原创扩展命名）** | 3 | 自身·支援 | 0 | 8%/3/900 | `bf_hutizhenqi·承·100%·3`，护体为自身 hpMax 18% | — | 支援核对：`18%≤18%×1.2=21.6%` 标准护体，且 cd 3 |
 | 明玉回流 `mv_mingyugong_huiliu`（绝招，**原创扩展命名**） | 7 | 自身·支援 | 0 | 9%/—/1200 | `bf_huinei·承·100%·2`；每次回合开始回 6% mpMax，共两次；气势 100 | — | 支援绝招以气势 100、地阶基准耗内 +2pp 与收招 1200 支付；回内仍按每回合合计 6% 截断；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 | 明玉照夜 `mv_mingyugong_zhaoye` **（绝招，原创扩展命名）** | 9 | `aoe_around` 周身六格·近身 | 2.15 | 9%/—/1200 | `bf_hanqi·承·100%·3`，气势 100 | ✓ | `3.00×0.75−0.10=2.15`；`MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
@@ -453,7 +453,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
 |---|---:|---|---:|---|---|---|---|
-| 纳流 `mv_shenshuineigong_naliu` **（原创扩展命名）** | 1 | 单体·1–3·远程 | 1.00 | 8%/1/1000 | `bf_hanqi·承·30%·2` | ✓ | `(1+0.12+0.05)×0.85−0.03=0.9645→1.00` |
+| 纳流 `mv_shenshuineigong_naliu` **（原创扩展命名）** | 1 | 单体·1–3·远程 | 1.00 | 8%/1/1000 | 掌端离体水劲 **（原创扩展）**；`bf_hanqi·承·30%·2` | ✓ | `(1+0.12+0.05)×0.85−0.03=0.9645→1.00`；`MoveDef{range:{min:1,max:3}; aoe:{tpl:aoe_single}; projection:true; projectionSpreadSteps:[{tpl:aoe_single},{tpl:aoe_single},{tpl:aoe_single}]; DamageKind:'projected'; meridianRouteRef:mfr_shenshuineigong_naliu}` |
 | 水幕 `mv_shenshuineigong_shuimu` **（原创扩展命名）** | 3 | 自身·支援 | 0 | 8%/3/1000 | `bf_hutizhenqi·承·100%·3`；护体 hpMax 18% | — | 支援核对：`18%≤18%×1.2=21.6%` 标准护体，且 cd 3 |
 | 回澜 `mv_shenshuineigong_huilan`（绝招，**原创扩展命名**） | 7 | 自身·支援 | 0 | 9%/—/1200 | `bf_huinei·承·100%·2`，每次回合开始回 5% mpMax，共两次；气势 100 | — | 支援绝招以气势 100、地阶基准耗内 +2pp 与收招 1200 支付；回内仍按每回合合计 6% 截断；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
 | 神水重潮 `mv_shenshuineigong_zhongchao` **（绝招，原创扩展命名）** | 9 | `aoe_cone {r:3,angle:60}` 六角扇形·近身 | 2.00 | 9%/—/1200 | `bf_jiansu·承·100%·2`，气势 100 | ✓ | `3.00×0.70−0.10=2.00`；`MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200}` |
@@ -1256,6 +1256,35 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 - 9 门内功全部写 `nature`：阴 3（明玉功、神水内功、唐门避毒诀）、阳 2（嫁衣神功、青龙护心功）、调和 4（大旗吐纳、无争心法、青龙护心诀、青龙吐纳）。逐 ID 见 §20.2。
 - IP：地上 3 门各 94.5；玄上 3 门各 57；黄上 1 门为 30、黄中 2 门各 24，均等于 `design/05` §5.5 预算。
 
+### 18.4 外放统计与候选审计
+
+本册逐门、逐招复核后标记外放 **2 招**，均为地阶：天／地／玄／黄为 **0／2／0／0**。`range`、`aoe` 保存 0 档基础值，三档预审形状均保持单体；当前档、扩大后射程、额外耗内与外放 Z5M 只在运行时按 `design/21` §4.4.1 计算。下表是 `tech/04` 构建 `projection-coverage.json` 的本文输入，按 `moveId` 排序。
+
+| moveId | 结论 | 依据 | 所在位置 |
+|---|---|---|---|
+| `mv_erengushengcun_cangzhen` | `not_projected` | 近身藏针式未声明离体真气；即使使用实体针也只走暗器通道 | §3.2 |
+| `mv_kongquelingfa_huihu` | `not_projected` | 孔雀翎机括发射实体暗器并掩护友方 | §11.2 |
+| `mv_kongquelingfa_kaiping` | `not_projected` | 名器机括扇域发射实体暗器 | §11.2 |
+| `mv_kongquelingfa_shouping` | `not_projected` | 名器机括单体实体投射 | §11.2 |
+| `mv_kongquelingfa_zhanping` | `not_projected` | 名器机括扇域发射实体暗器 | §11.2 |
+| `mv_longfengshuanghuan_huihuan` | `not_projected` | 双环实体兵刃往返，不因回旋距离而视为气劲外放 | §12.2 |
+| `mv_mingyugong_ningyu` | `projected` | 掌端发出离体寒劲**（原创扩展）**；基础单体 1–3，三档均单体 | §2.2 |
+| `mv_mingyugong_zhaoye` | `not_projected` | 周身六格近身寒劲，未配置离体段 | §2.2 |
+| `mv_shenshuineigong_naliu` | `projected` | 掌端发出离体水劲**（原创扩展）**；基础单体 1–3，三档均单体 | §5.2 |
+| `mv_shenshuineigong_zhongchao` | `not_projected` | 近身扇形水势，未配置离体段 | §5.2 |
+| `mv_tangmenanshou_baoyu` | `not_projected` | 多枚实体暗器覆盖圆盘 | §10.2 |
+| `mv_tangmenanshou_cangshou` | `not_projected` | 单枚实体暗器 | §10.2 |
+| `mv_tangmenanshou_lianxing` | `not_projected` | 连发实体暗器 | §10.2 |
+| `mv_tangmenanshou_poqi` | `not_projected` | 实体暗器破器 | §10.2 |
+| `mv_tangmenanshou_zhuixing` | `not_projected` | 实体暗器沿直线投射 | §10.2 |
+| `mv_tianyishenshui_fengxia` | `not_projected` | 封匣运用虚构毒物，不是真气离体 | §5.3 |
+| `mv_tianyishenshui_jielu` | `not_projected` | 借用实体毒物，未声明离体真气 | §5.3 |
+| `mv_yanluosuo_huisuo` | `not_projected` | 阎罗索实体兵刃横扫 | §9.2 |
+| `mv_yanluosuo_suohun` | `not_projected` | 阎罗索实体兵刃擒拿 | §9.2 |
+| `mv_yanluosuo_tuoying` | `not_projected` | 阎罗索实体兵刃拉拽 | §9.2 |
+
+两条外放招沿用 §19A.1 阴性攻击骨架的 5 段／360 CT 预算，但以不同蓄劲主干显式展开；路线均包含白名单穴 `ap_shoujueyin_neiguan` 并以掌端 `ap_shoujueyin_laogong` 收束，满足 `design/21` §4.2.1、§4.4.1.4。本册当前没有具全局 `moveId` 的飞刀招式；以后若增补，一律先按实体飞刀 `not_projected`，除非招式正文另有可核验的真气离体伤害段。
+
 ---
 
 ## 19. 境界覆盖与装配可行性
@@ -1362,11 +1391,20 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 
 格式为“`moveRef→mfr/ultimate/purpose/骨架`”。路线只引用 §2–§15 正文已登记的招式；本轮新增或新标的绝招名称、出处标注、效果与倍率均以正文为准，路线表不重复定义。
 
+#### 外放普通招式显式路线
+
+下列定义沿用 §19A.1 `G-Y5` 的 5 段、360 CT 预算，并按两式动作差异显式展开，保持 `purpose:attack` 不变；两路均经过内关并在掌端劳宫收束，满足 `design/21` §4.2.1、§4.4.1.4。离体寒劲／水劲表现均为**（原创扩展）**。
+
+| 武学 | moveRef | 路线 id | purpose | requiredNature | 显式 steps（`acupointRef/segmentCt/riskBp`） | 段数 | 路线 CT |
+|---|---|---|---|---|---|---:|---:|
+| `sk_mingyugong` | `mv_mingyugong_ningyu` | `mfr_mingyugong_ningyu` | attack | `[yin,harmony]` | `ap_renmai_qihai/70/100 → ap_renmai_danzhong/70/150 → ap_shoujueyin_tianchi/80/300 → ap_shoujueyin_neiguan/70/150 → ap_shoujueyin_laogong/70/100` | 5 | 360 |
+| `sk_shenshuineigong` | `mv_shenshuineigong_naliu` | `mfr_shenshuineigong_naliu` | attack | `[yin,harmony]` | `ap_renmai_qihai/70/100 → ap_zushaoyin_taixi/70/150 → ap_shoujueyin_quze/80/300 → ap_shoujueyin_neiguan/70/150 → ap_shoujueyin_laogong/70/100` | 5 | 360 |
+
 | 武学 / 性质 | 逐招路线 |
 |---|---|
-| `sk_mingyugong` / 阴 | `mv_mingyugong_ningyu→mfr_mingyugong_ningyu/false/attack/G-Y5`；`mv_mingyugong_hanyu→mfr_mingyugong_hanyu/false/defense/G-YD4`；`mv_mingyugong_huiliu→mfr_mingyugong_huiliu/true/defense/显式（见本册绝招显式路线索引）`；`mv_mingyugong_zhaoye→mfr_mingyugong_zhaoye/true/attack/显式（见本册绝招显式路线索引）` |
+| `sk_mingyugong` / 阴 | `mv_mingyugong_ningyu→mfr_mingyugong_ningyu/false/attack/外放显式（见上表）`；`mv_mingyugong_hanyu→mfr_mingyugong_hanyu/false/defense/G-YD4`；`mv_mingyugong_huiliu→mfr_mingyugong_huiliu/true/defense/显式（见本册绝招显式路线索引）`；`mv_mingyugong_zhaoye→mfr_mingyugong_zhaoye/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_jiayishengong` / 阳 | `mv_jiayishengong_cangfeng→mfr_jiayishengong_cangfeng/false/attack/G-A5`；`mv_jiayishengong_huyi→mfr_jiayishengong_huyi/false/defense/G-AD4`；`mv_jiayishengong_chongzhen→mfr_jiayishengong_chongzhen/true/defense/显式（见本册绝招显式路线索引）`；`mv_jiayishengong_liehuo→mfr_jiayishengong_liehuo/true/attack/显式（见本册绝招显式路线索引）` |
-| `sk_shenshuineigong` / 阴 | `mv_shenshuineigong_naliu→mfr_shenshuineigong_naliu/false/attack/G-Y5`；`mv_shenshuineigong_shuimu→mfr_shenshuineigong_shuimu/false/defense/G-YD4`；`mv_shenshuineigong_huilan→mfr_shenshuineigong_huilan/true/defense/显式（见本册绝招显式路线索引）`；`mv_shenshuineigong_zhongchao→mfr_shenshuineigong_zhongchao/true/attack/显式（见本册绝招显式路线索引）` |
+| `sk_shenshuineigong` / 阴 | `mv_shenshuineigong_naliu→mfr_shenshuineigong_naliu/false/attack/外放显式（见上表）`；`mv_shenshuineigong_shuimu→mfr_shenshuineigong_shuimu/false/defense/G-YD4`；`mv_shenshuineigong_huilan→mfr_shenshuineigong_huilan/true/defense/显式（见本册绝招显式路线索引）`；`mv_shenshuineigong_zhongchao→mfr_shenshuineigong_zhongchao/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_qinglongcisha` / 阴 | `mv_qinglongcisha_cangren→mfr_qinglongcisha_cangren/false/attack/G-Y5`；`mv_qinglongcisha_liuji→mfr_qinglongcisha_liuji/false/attack/G-Y5`；`mv_qinglongcisha_duanxian→mfr_qinglongcisha_duanxian/false/attack/G-Y5`；`mv_qinglongcisha_fenghou→mfr_qinglongcisha_fenghou/false/attack/G-Y5`；`mv_qinglongcisha_yici→mfr_qinglongcisha_yici/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_tangmenanshou` / 阴 | `mv_tangmenanshou_cangshou→mfr_tangmenanshou_cangshou/false/attack/G-Y5`；`mv_tangmenanshou_lianxing→mfr_tangmenanshou_lianxing/false/attack/G-Y5`；`mv_tangmenanshou_poqi→mfr_tangmenanshou_poqi/false/attack/G-Y5`；`mv_tangmenanshou_zhuixing→mfr_tangmenanshou_zhuixing/false/attack/G-Y5`；`mv_tangmenanshou_baoyu→mfr_tangmenanshou_baoyu/true/attack/显式（见本册绝招显式路线索引）` |
 | `sk_kongquelingfa` / 和 | `mv_kongquelingfa_yanling→mfr_kongquelingfa_yanling/false/defense/G-HD4`；`mv_kongquelingfa_zhanping→mfr_kongquelingfa_zhanping/false/attack/G-H5`；`mv_kongquelingfa_huihu→mfr_kongquelingfa_huihu/false/attack/G-H5`；`mv_kongquelingfa_shouping→mfr_kongquelingfa_shouping/true/attack/显式（见本册绝招显式路线索引）`；`mv_kongquelingfa_kaiping→mfr_kongquelingfa_kaiping/true/attack/显式（见本册绝招显式路线索引）` |
@@ -1541,6 +1579,8 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | `GL-V011A` | 绝招数按地上 2、地中逐门服从统一裁定表、地下 1、玄上 1；玄中 / 玄下 / 黄为 0 | 失败即阻断发布 |
 | `GL-V012` | 9 门内功各有唯一 `txp_*`，`ct=1000`、`mpCostBp=0`、`outOfBattleScaleBp=15000`；护体路线按性质匹配，反震只能来自既有语义 | 通过：9/9；本册反震均为 0 |
 | `GL-V013` | 每个独立行动单位恰有一个 `MeridianFlowModule`，静态定义可共享但节点状态与 RNG 不共享 | 失败即阻断战斗创建 |
+| `GL-V014` | 外放静态契约：§18.4 两条 `projected` 均有 `projection:true`、0 档 `range/aoe`、恰三项且 `[0]` 深等于 `aoe` 的 `projectionSpreadSteps`、所有伤害段 `DamageKind:'projected'` 与唯一 attack 路线；实体暗器／机括／普通兵刃结论不得带外放字段 | 失败即阻断发布 |
+| `GL-V015` | 外放路线与覆盖：两条外放路线均包含内关并以劳宫掌端收束；§18.4 审计表按 `moveId` 严格排序，外放计数为天／地／玄／黄 0／2／0／0 | 失败即阻断发布 |
 
 ### 21.2 最小验收用例
 
@@ -1557,6 +1597,8 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | `GL-T09` 高阶路线闭合 | 扫描 §19A.2–§19A.3 的 `moveRef/mfr/ultimate/purpose` | 47 个地阶 `mv_*` 各一次、26 个玄上绝招各一次；绝招总数按地 / 玄上为 18 / 26 |
 | `GL-T10` 路线 CT 上界 | 普通最大 `1100+360`；玄上绝招 `1200+600`；地阶绝招 `1200+720` | 1460 / 1800 / 1920，均不超过 2000 |
 | `GL-T11` 调息与隔离 | 扫描 9 个 `txp_*`；两个同模板敌人只让 A 跑一段 | 档案唯一且合法；A 状态前进，B 节点 / 版本不变 |
+| `GL-T12` 外放基础档 | 标准档分别加载凝玉、纳流 | 两者基础射程均为 1–3、范围均为 `aoe_single`；只在运行时按 `design/21` 取得 +0/+2/+4 射程 |
+| `GL-T13` 实体投射反例 | 扫描唐门暗手、孔雀翎、龙凤双环与阎罗索审计条目 | 实体暗器、机括和普通兵刃均保持 `not_projected`，不因投射、回旋或范围模板误挂外放字段 |
 
 ---
 

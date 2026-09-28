@@ -1,10 +1,10 @@
 # 门派武学图鉴 · 乾隆三部曲（`skills-qianlong`）
 
 > **归属**（基准 §18）：`design/catalog/skills-*.md` 门派武学图鉴之一。本文覆盖《书剑恩仇录》《飞狐外传》《雪山飞狐》的红花会、回部、天池怪侠与天山双鹰散承、关东六魔、辽东胡家、苗家、商家堡、药王门、太极门、八卦门、天龙门及掌门人大会具名小派。
-> **上游**：`00-canon.md`（§3–§5、§9、§12–§13、§16、§20）；`decisions/author-requirements.md` AR-01–03、AR-07–08、AR-14；`decisions/author-decisions.md` P33、P38；`decisions/rulings-v1.md` C16、C17、C22、C23；`design/17` 的门派 ID、时代状态与职级称谓；`design/21` v2.0。
+> **上游**：`00-canon.md`（§3–§5、§9、§12–§13、§16、§20）；`decisions/author-requirements.md` AR-01–03、AR-07–08、AR-14、AR-16；`decisions/author-decisions.md` P33、P38；`decisions/rulings-v1.md` C16、C17、C22、C23；`design/17` 的门派 ID、时代状态与职级称谓；`design/21` v2.0。
 > **引用而不重定义**：字段、层数、招式预算、内功贡献、学习与残承 → `design/05`；战斗经脉运行、路线、护体内劲、速度修正与调息 → `design/21`；经脉 / 穴位与永久成长 → `design/15`；Buff → `design/06`；轻功值 → `design/03`；书界、印证与残承 → `design/02`；套装规则与最终数值 → `design/07`；装备 → `design/10`；门派史与开放矩阵 → `design/17`。
 > **标注约定**：**（原创扩展）** = 原著没有的武学、招名或机制；**（原创扩展命名）** = 原著有其人其事或器械而无正式武学名；**（待考）** = 须以三联 / 广州修订版逐字核对。本文不编造引文与回目号。
-> **版本**：初稿 C1e；审校 C1e.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）。
+> **版本**：初稿 C1e；审校 C1e.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记（2026-09-28）。
 
 ---
 
@@ -642,7 +642,7 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 招式 | ID | 层 | 倍率 | 一句效果 | 核算 |
 |---|---|---:|---:|---|---|
 | 笛点中庭 | `mv_jindifa_zhongting` | 1 | 0.95 | 单体近身，`bf_xueweishoufeng(level:9,acupointRef:sourcePrimary)` 25%·1 | `1−0.20×0.25=0.95` |
-| 金声乱耳 | `mv_jindifa_luaner` | 3 | 0.70 | `aoe_spokes {r:1}` 气劲，`bf_shiheng` 40%·1 | N=7、AF=0.70；`0.70×1.24×0.85−0.10×0.4=0.70` |
+| 金声乱耳 | `mv_jindifa_luaner` | 3 | 0.70 | `aoe_spokes {r:1}` 气劲，`bf_shiheng` 40%·1 | N=7、AF=0.70；`0.70×1.24×0.85−0.10×0.4=0.70`；`MoveDef{range:{min:0,max:0}; aoe:{tpl:aoe_spokes,r:1}; projection:true; projectionSpreadSteps:[{tpl:aoe_spokes,r:1},{tpl:aoe_spokes,r:2},{tpl:aoe_spokes,r:3}]; DamageKind:'projected'; meridianRouteRef:mfr_jindifa_luaner}` |
 | 笛影三叠 | `mv_jindifa_sandie` | 5 | 1.30 | 单体 3 段，8% 内、cd2 | `1+0.24+0.10=1.34≈1.30` |
 | 清音护伴（绝招，**原创扩展命名**） | `mv_jindifa_huban` | 7 | 0 | 友方单体驱散 1 个 `mind`，获 `bf_wenzhong` 2 回合；耗内 8%、气势 100、收招 1200 | 支援绝招，`power=0`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 
@@ -1065,6 +1065,32 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | 九龙鞭 | `sk_jiulongrumenquan` | 入门拳 → 九龙鞭 → 掌门博艺 | `legacy-set:jiulong_chanrao` |
 | 天池 / 关东散承 | `sk_tianchiyinlu` / 无独立门派要求 | 引路 → 天池步 → 鹰扬；短刀 → 六魔刀 → 掌门博艺 | 各有散承套装 |
 
+### 8.5 外放统计与候选审计
+
+本册逐招审计后共标记 **1** 招外放：天／地／玄／黄为 **0／0／1／0**。下表是 `tech/04` 构建 `projection-coverage.json` 的本文输入，按 `moveId` 排序；实体花叶、飞针、箭矢与普通长兵器攻击均不因远程而外放。
+
+| moveId | 结论 | 依据 | 所在位置 |
+|---|---|---|---|
+| `mv_jindifa_huban` | `not_projected` | 友方驱散／守势，纯支援绝招 | §5.1 |
+| `mv_jindifa_luaner` | `projected` | 金笛以内力催发离体音劲**（原创扩展）**；基础周身六芒 r1，三档 r1/r2/r3 | §5.1 |
+| `mv_jindifa_sandie` | `not_projected` | 以金笛近身三段点打，未声明离体气劲 | §5.1 |
+| `mv_qixinhaitang_cangfeng` | `not_projected` | 投掷实体七心海棠暗器 | §4.3 |
+| `mv_qixinhaitang_chifa` | `not_projected` | 实体暗器形成延迟毒区 | §4.3 |
+| `mv_qixinhaitang_liuxiang` | `not_projected` | 投掷实体七心海棠暗器 | §4.3 |
+| `mv_qixinhaitang_shuangye` | `not_projected` | 两枚实体花叶暗器 | §4.3 |
+| `mv_qixinhaitang_wuse` | `not_projected` | 投掷实体七心海棠暗器 | §4.3 |
+| `mv_qixinhaitang_wusheng` | `not_projected` | 实体暗器绝招，不因无声或远程而外放 | §4.3 |
+| `mv_tianshanqishe_chishe` | `not_projected` | 射出实体箭矢 | §5.2 |
+| `mv_tianshanqishe_huishen` | `not_projected` | 回身射出实体箭矢 | §5.2 |
+| `mv_tianshanqishe_lianzhu` | `not_projected` | 三段实体箭矢 | §5.2 |
+| `mv_tianshanqishe_luoyan` | `not_projected` | 实体箭矢形成直线投射 | §5.2 |
+| `mv_yaowangzhenfa_duyao` | `not_projected` | 实体针具递药且无伤害段 | §5.3 |
+| `mv_yaowangzhenfa_fengmai` | `not_projected` | 实体飞针封穴 | §5.3 |
+| `mv_yaowangzhenfa_jiexue` | `not_projected` | 实体针具支援且无伤害段 | §5.3 |
+| `mv_yaowangzhenfa_renxue` | `not_projected` | 实体飞针点穴 | §5.3 |
+
+`mv_jindifa_luaner` 以自身为六芒原点，故基础 `range:{min:0,max:0}`；高／顶尖档只扩 `aoe_spokes` 半径到 2／3，射程增量不另产生可选落点。
+
 ---
 
 ## 9. 境界覆盖与装配可行性
@@ -1192,6 +1218,14 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | `sk_jiulongbian` / 阴 | `mv_jiulongbian_guiyi→mfr_jiulongbian_guiyi/true/attack/显式（见本册绝招显式路线索引）`（`requiredNature:[yin,harmony]`） |
 
 十条路线收招上界均为 `1200+6×100=1800 CT`，不得退回 2 段迁移短路。
+
+#### 玄阶外放普通招式显式路线
+
+`mv_jindifa_luaner` 不沿用调和普通骨架：它是持笛音劲，须同时满足持械导引端与外放白名单。以下 4 段、280 CT 路线为**（原创扩展）**；末端阳池既表达持笛导引，也命中 `design/21` §4.4.1.4 白名单。
+
+| 武学 | moveRef | 路线 id | MeridianRouteDef | 显式 steps（`acupointRef/segmentCt/riskBp`） | 段数 | 路线 CT |
+|---|---|---|---|---|---:|---:|
+| `sk_jindifa` | `mv_jindifa_luaner` | `mfr_jindifa_luaner` | `MeridianRouteDef{moveRef:mv_jindifa_luaner; ultimate:false; purpose:attack; requiredNature:[harmony]}` | `ap_daimai_zulinqi/70/90 → ap_daimai_weidao/70/90 → ap_shoushaoyang_waiguan/70/90 → ap_shoushaoyang_yangchi/70/90` | 4 | 280 |
 
 | 大阶 / 语义 | 稳定展开 |
 |---|---|
@@ -1321,6 +1355,8 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | QL-V15A | 绝招数按天下 2、地上 2、地中逐门服从统一裁定表、地下 1、玄上 1；玄中 / 玄下 / 黄为 0 | 失败 |
 | QL-V16 | 11 门内功各有唯一 `txp_*`，`ct=1000`、`mpCostBp=0`；自然护体路线按性质匹配，反震只能来自既有语义 | 失败 |
 | QL-V17 | 每个独立行动单位各持一个 `MeridianFlowModule`；只共享静态路线，不共享节点状态或 RNG | 失败 |
+| QL-V18 | 外放静态契约：§8.5 唯一 `projected` 招须有 `projection:true`、基础 `range/aoe`、恰三项且 `[0]` 深等于 `aoe` 的 `projectionSpreadSteps`、所有伤害段 `DamageKind:'projected'` 与唯一 attack 路线；其余结论不得携带外放字段 | 失败 |
+| QL-V19 | 外放路线与覆盖：`mfr_jindifa_luaner` 含持械导引／白名单端点；§8.5 按 `moveId` 严格排序且外放计数为天／地／玄／黄 0／0／1／0 | 失败 |
 
 ### 11.2 最小测试集
 
@@ -1344,6 +1380,8 @@ power = AF × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σcost_di
 | QL-T16 高阶路线闭合 | 扫描 §9A.2–§9A.3 | 73 个高阶 `mv_*` 各出现一次；10 个玄上绝招显式登记；绝招总数按天下 / 地 / 玄上为 6 / 10 / 10 |
 | QL-T17 路线 CT 上界 | 普通 `1100+360`、玄上绝招 `1200+600`、地绝招 `1200+720`、天绝招 `1200+800`、轻功绝招 `1200+640` | 1460 / 1800 / 1920 / 2000 / 1840，全部不超过 2000 |
 | QL-T18 调息与隔离 | 扫描 11 个 `txp_*`；两个同模板敌人只令 A 运行一段 | 档案唯一且范围合法；A 前进，B 的节点 / 版本不变 |
+| QL-T19 金声乱耳外放档 | 以标准／高／顶尖档加载 `mv_jindifa_luaner` | 基础射程 0；范围依次为 `aoe_spokes r1/r2/r3`，路线 4 段 280 CT 且含阳池 |
+| QL-T20 实体投射反例 | 扫描七心海棠、天山骑射与药王针法的审计条目 | 花叶、箭和针均保持 `not_projected`，不因远程、投射或范围模板误挂外放字段 |
 
 ---
 
