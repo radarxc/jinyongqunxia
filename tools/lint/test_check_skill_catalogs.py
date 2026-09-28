@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 from io import StringIO
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 from tools.lint import check_skill_catalogs as checker
@@ -56,12 +57,14 @@ class CatalogParserTests(unittest.TestCase):
                 path.write_text(text, encoding="utf-8")
                 definitions = checker.parse_route_step_definitions(text, path.name)
                 audits = checker.audit_paths([path])
-            self.assertEqual(["mfr_alpha_one"], [item.route_id for item in definitions])
-            self.assertEqual(0, audits[0].duplicate_step_definitions)
-            self.assertFalse(any(
-                "steps defined more than once" in error
-                for error in audits[0].errors
-            ))
+                self.assertEqual(
+                    ["mfr_alpha_one"], [item.route_id for item in definitions]
+                )
+                self.assertEqual(0, audits[0].duplicate_step_definitions)
+                self.assertFalse(any(
+                    "steps defined more than once" in error
+                    for error in audits[0].errors
+                ))
 
     def test_route_steps_repeated_with_different_sequences_reports_both_locations(self) -> None:
         first = self.ROUTE_DEFINITION_SHAPES["front_index"]
@@ -189,6 +192,206 @@ class CatalogParserTests(unittest.TestCase):
         self.assertEqual((90, 90), cts)
         self.assertEqual((100, 120), risks)
 
+    def test_route_tokens_require_a_word_boundary(self) -> None:
+        text = "| xmfr_alpha | xap_alpha/80/100 | mfr_beta | ap_beta/80/100 |"
+        definitions = checker.parse_route_step_definitions(text, "fixture.md")
+        self.assertEqual(1, len(definitions))
+        self.assertEqual("mfr_beta", definitions[0].route_id)
+        self.assertEqual(("ap_beta",), definitions[0].steps)
+
+    def test_each_grade_uses_its_rule_quota(self) -> None:
+        expected = {
+            1: (0, 0), 2: (0, 0), 3: (0, 0), 4: (0, 0),
+            5: (0, 0), 6: (1, 1), 7: (1, 1), 8: (1, 2),
+            9: (2, 2), 10: (2, 2), 11: (2, 3), 12: (3, 3),
+        }
+        for grade, quota in expected.items():
+            with self.subTest(grade=grade):
+                self.assertEqual(
+                    quota, checker.ultimate_quota(grade, "sk_new", {})
+                )
+
+    def test_tianzhong_and_dizhong_use_exact_rulings(self) -> None:
+        rulings = {"sk_tian": 2, "sk_di": 1}
+        self.assertEqual((2, 2), checker.ultimate_quota(11, "sk_tian", rulings))
+        self.assertEqual((1, 1), checker.ultimate_quota(8, "sk_di", rulings))
+
+    def test_actual_ruling_table_parses_all_rows(self) -> None:
+        rulings = checker.parse_ultimate_rulings(checker.ULTIMATE_RULINGS_PATH)
+        self.assertEqual(75, len(rulings))
+        self.assertEqual(1, rulings["sk_jinzhongzhao"])
+        self.assertEqual(3, rulings["sk_dagou"])
+
+    def test_malformed_ruling_row_is_an_explicit_error(self) -> None:
+        text = """
+## 3. 全局逐门裁定表
+| 图鉴 | `sk_*` / 名称 | 现→裁（变动） |
+|---|---|---|
+| 测试 | `sk_alpha` | 2→坏（0） |
+## 4. 汇总
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "rulings.md"
+            path.write_text(text, encoding="utf-8")
+            with self.assertRaisesRegex(
+                checker.UltimateRulingsError, "cannot parse skill/count"
+            ):
+                checker.parse_ultimate_rulings(path)
+
+    def test_missing_ruling_table_is_an_explicit_error(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            missing = Path(directory) / "missing.md"
+            with self.assertRaisesRegex(
+                checker.UltimateRulingsError, "cannot read ultimate rulings"
+            ):
+                checker.parse_ultimate_rulings(missing)
+
+    def test_main_returns_two_when_ruling_table_is_unreadable(self) -> None:
+        original = checker.ULTIMATE_RULINGS_PATH
+        try:
+            checker.ULTIMATE_RULINGS_PATH = Path("/missing/nu5p-rulings.md")
+            with redirect_stderr(StringIO()) as stderr:
+                result = checker.main([str(checker.CATALOG_PATHS[0])])
+        finally:
+            checker.ULTIMATE_RULINGS_PATH = original
+        self.assertEqual(2, result)
+        self.assertIn("ERROR: cannot read ultimate rulings", stderr.getvalue())
+
+    def test_unlisted_mid_grade_outside_range_warns_and_fails_quota(self) -> None:
+        path = checker.CATALOG_DIR / "skills-nl3-fixture.md"
+        text = """
+| `sk_new_tian` | 新天中 | 11 天中 |
+| `sk_new_di` | 新地中 | 8 地中 |
+"""
+        original_read_text = Path.read_text
+
+        def fake_read_text(target: Path, *args: object, **kwargs: object) -> str:
+            if target == path:
+                return text
+            return original_read_text(target, *args, **kwargs)
+
+        with mock.patch.object(Path, "read_text", fake_read_text):
+            audit = checker.audit_catalog(path, {})
+        self.assertEqual(2, len(audit.warnings))
+        self.assertTrue(all("未入裁定表" in item for item in audit.warnings))
+        self.assertEqual(2, audit.ultimate_quota_violations)
+        self.assertEqual(2, len(audit.errors))
+
+        self.assertEqual((2, 3), checker.ultimate_quota(11, "sk_new_tian", {}))
+        self.assertEqual((1, 2), checker.ultimate_quota(8, "sk_new_di", {}))
+        self.assertIn("提示=2", checker.summary_row(audit))
+
+    def test_unlisted_mid_grade_inside_range_has_warning_only(self) -> None:
+        path = checker.CATALOG_DIR / "skills-nl3-fixture.md"
+        original_read_text = Path.read_text
+        fake_text = VALID_INSTANCE.replace(
+            "sk_alpha | 12 天上", "sk_alpha | 11 天中"
+        ).replace(
+            "| 12 天上 | sk_alpha |", "| 11 天中 | sk_alpha |"
+        ).replace(
+            "<!-- skill-catalog-audit:end -->",
+            "| 11 天中 | sk_alpha | mv_alpha_two "
+            "MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; "
+            "cd:0; recovery:1200; meridianRouteRef:mfr_alpha_two} | "
+            "mfr_alpha_two MeridianRouteDef{moveRef:mv_alpha_two; "
+            "ultimate:true; purpose:attack} | "
+            "ap_dumai_mingmen/80/100→ap_dumai_zhiyang/80/120 |\n"
+            "<!-- skill-catalog-audit:end -->",
+        ).replace(
+            "<!-- skill-catalog-audit:start -->",
+            "| mv_alpha_two MoveDef{unlock:9; ultimate:true; rageCost:100; "
+            "mpCost:10%; cd:0; recovery:1200} |\n"
+            "| mv_alpha_two→mfr_alpha_two/true/attack/显式 |\n"
+            "<!-- skill-catalog-audit:start -->",
+        ) + "\n| txp_alpha | outOfBattleScaleBp:15000 |\n"
+
+        def fake_read_text(target: Path, *args: object, **kwargs: object) -> str:
+            if target == path:
+                return fake_text
+            return original_read_text(target, *args, **kwargs)
+
+        with mock.patch.object(Path, "read_text", fake_read_text):
+            audit = checker.audit_catalog(path, {})
+        quota_errors = [
+            item for item in audit.errors if "ultimates, expected" in item
+        ]
+        self.assertEqual([], quota_errors)
+        self.assertEqual(0, audit.ultimate_quota_violations)
+        self.assertEqual(1, len(audit.warnings))
+        self.assertIn("未入裁定表", audit.warnings[0])
+
+    def test_official_catalog_inventory_includes_zero_ultimate_low_grade(self) -> None:
+        path = checker.CATALOG_DIR / "skills-nl3-fixture.md"
+        original_read_text = Path.read_text
+        text = "| `sk_low` | 入门武学 | 1 黄下 |\n"
+
+        def fake_read_text(target: Path, *args: object, **kwargs: object) -> str:
+            if target == path:
+                return text
+            return original_read_text(target, *args, **kwargs)
+
+        with mock.patch.object(Path, "read_text", fake_read_text):
+            audit = checker.audit_catalog(path, {})
+        self.assertEqual(0, audit.ultimate_quota_violations)
+        self.assertEqual([], audit.errors)
+
+    def test_official_catalog_rejects_low_grade_ultimate(self) -> None:
+        path = checker.CATALOG_DIR / "skills-nl3-fixture.md"
+        original_read_text = Path.read_text
+        text = VALID_INSTANCE.replace(
+            "sk_alpha | 12 天上", "sk_alpha | 5 玄中"
+        ).replace(
+            "| 12 天上 | sk_alpha |", "| 5 玄中 | sk_alpha |"
+        ) + "\n| txp_alpha | outOfBattleScaleBp:15000 |\n"
+
+        def fake_read_text(target: Path, *args: object, **kwargs: object) -> str:
+            if target == path:
+                return text
+            return original_read_text(target, *args, **kwargs)
+
+        with mock.patch.object(Path, "read_text", fake_read_text):
+            audit = checker.audit_catalog(path, {})
+        self.assertEqual(1, audit.ultimate_quota_violations)
+        self.assertTrue(any(
+            "grade 5 has 1 ultimates, expected 0..0" in error
+            for error in audit.errors
+        ))
+
+    def test_quota_counts_body_ultimate_without_route_target(self) -> None:
+        path = checker.CATALOG_DIR / "skills-nl3-fixture.md"
+        original_read_text = Path.read_text
+        text = """
+#### `sk_new_di` 新地中（8 地中）
+| 招式 | ID | 运行字段 |
+|---|---|---|
+| 一式 | `mv_new_di_one` | `MoveDef{ultimate:true}` |
+| 二式 | `mv_new_di_two` | `MoveDef{ultimate:true}` |
+"""
+
+        def fake_read_text(target: Path, *args: object, **kwargs: object) -> str:
+            if target == path:
+                return text
+            return original_read_text(target, *args, **kwargs)
+
+        with mock.patch.object(Path, "read_text", fake_read_text):
+            audit = checker.audit_catalog(path, {"sk_new_di": 1})
+        self.assertEqual(1, audit.ultimate_quota_violations)
+        self.assertEqual(2, audit.body_ultimate_count)
+        self.assertEqual(2, audit.tier_counts["地"]["body_ultimates"])
+        self.assertTrue(any(
+            "sk_new_di grade 8 has 2 ultimates, expected 1..1" in error
+            for error in audit.errors
+        ))
+
+    def test_unowned_body_ultimate_is_explicit_error(self) -> None:
+        counts, issues = checker.parse_body_ultimate_counts(
+            "`MoveDef{ultimate:true}`", {}, {}
+        )
+        self.assertEqual({}, counts)
+        self.assertEqual(
+            [(1, "ultimate MoveDef has no formal skill owner")], issues
+        )
+
     def test_each_breath_profile_needs_field_on_its_own_row(self) -> None:
         text = """
 | id | outOfBattleScaleBp |
@@ -293,7 +496,7 @@ class CatalogParserTests(unittest.TestCase):
         b = a[:4] + tuple(f"ap_b{i}" for i in range(4))
         self.assertIsNone(checker._route_similarity_reason(a, b))
 
-    def test_skill_counts_are_derived_only_from_target_set(self) -> None:
+    def test_summary_skill_counts_include_formal_skills_without_targets(self) -> None:
         text = VALID_INSTANCE + """
 | sk_unrelated | 9 地上 | no ultimate |
 | txp_alpha | outOfBattleScaleBp:15000 |
@@ -303,7 +506,7 @@ class CatalogParserTests(unittest.TestCase):
             path.write_text(text, encoding="utf-8")
             audit = checker.audit_catalog(path)
         self.assertEqual(1, audit.tier_counts["天"]["skills"])
-        self.assertEqual(0, audit.tier_counts["地"]["skills"])
+        self.assertEqual(1, audit.tier_counts["地"]["skills"])
 
     def test_missing_body_counts_as_unlock_and_implicit_route_violation(self) -> None:
         text = """

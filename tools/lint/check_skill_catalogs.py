@@ -23,33 +23,26 @@ from typing import Iterable
 
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG_DIR = ROOT / "docs" / "design" / "catalog"
-CATALOG_NAMES = (
-    "shaolin", "daojia", "general", "wujue", "xiaoyao",
-    "yitian", "xiake-bixue", "wuyue", "kangxi", "qianlong",
-    "gulong",
-)
-CATALOG_PATHS = tuple(CATALOG_DIR / f"skills-{name}.md" for name in CATALOG_NAMES)
 ACUPOINT_REGISTRY = ROOT / "docs" / "design" / "15-meridians-and-acupoints.md"
+ULTIMATE_RULINGS_PATH = (
+    ROOT / "docs" / "decisions" / "ultimate-counts-tianzhong-dizhong.md"
+)
+OFFICIAL_CATALOG_PATTERN = re.compile(r"skills-[a-z0-9-]+\.md")
+CATALOG_PATHS = tuple(sorted(
+    path for path in CATALOG_DIR.glob("skills-*.md")
+    if OFFICIAL_CATALOG_PATTERN.fullmatch(path.name)
+))
 
-# Canon/design-05 quotas, recorded here so CI catches a catalog silently
-# changing both its move cards and its route mirror in the same patch.
-EXPECTED = {
-    "shaolin": {"天": (3, 7), "地": (26, 44), "玄上": (10, 10)},
-    "daojia": {"天": (8, 21), "地": (18, 24), "玄上": (22, 22)},
-    "general": {"天": (0, 0), "地": (19, 29), "玄上": (17, 17)},
-    "wujue": {"天": (13, 29), "地": (23, 29), "玄上": (27, 27)},
-    "xiaoyao": {"天": (10, 22), "地": (14, 19), "玄上": (26, 26)},
-    "yitian": {"天": (4, 9), "地": (12, 16), "玄上": (16, 16)},
-    "xiake-bixue": {"天": (4, 9), "地": (12, 13), "玄上": (12, 12)},
-    "wuyue": {"天": (4, 9), "地": (12, 14), "玄上": (15, 15)},
-    "kangxi": {"天": (2, 4), "地": (14, 23), "玄上": (9, 9)},
-    "qianlong": {"天": (3, 6), "地": (9, 13), "玄上": (10, 10)},
-    "gulong": {"天": (0, 0), "地": (10, 19), "玄上": (26, 26)},
-}
 GRADE_LABELS = {
     "黄下": 1, "黄中": 2, "黄上": 3, "玄下": 4, "玄中": 5,
     "玄上": 6, "地下": 7, "地中": 8, "地上": 9, "天下": 10,
     "天中": 11, "天上": 12,
+}
+GRADE_LONG_LABELS = {
+    "黄阶下品": 1, "黄阶中品": 2, "黄阶上品": 3,
+    "玄阶下品": 4, "玄阶中品": 5, "玄阶上品": 6,
+    "地阶下品": 7, "地阶中品": 8, "地阶上品": 9,
+    "天阶下品": 10, "天阶中品": 11, "天阶上品": 12,
 }
 OLD_BUFFS = ("bf_fengxue", "bf_fengnei", "bf_fengjingmai", "bf_chanrao")
 EXPLANATION_HINTS = ("迁移", "旧 ID", "旧ID", "兼容", "替换为", "历史")
@@ -65,9 +58,104 @@ EXTERNAL_LAYERS = {
     "mv_xianglong18_shenlong": 9,
     "mv_xianglong18_zhenjing": 10,
 }
-ULTIMATE_QUOTA = {6: (1, 1), 7: (1, 1), 8: (1, 2), 9: (2, 2),
-                  10: (2, 2), 11: (2, 3), 12: (3, 3)}
-AUDIT_VERSION = "图鉴一致性审计（2026-09-28）"
+ULTIMATE_QUOTA = {
+    1: (0, 0), 2: (0, 0), 3: (0, 0), 4: (0, 0), 5: (0, 0),
+    6: (1, 1), 7: (1, 1), 8: (1, 2), 9: (2, 2),
+    10: (2, 2), 11: (2, 3), 12: (3, 3),
+}
+
+
+class UltimateRulingsError(ValueError):
+    """The NU5p per-skill ruling table is missing or malformed."""
+
+
+def parse_ultimate_rulings(path: Path) -> dict[str, int]:
+    """Parse the ``sk_*`` and decided count columns from NU5p section 3."""
+    try:
+        text = path.read_text(encoding="utf-8")
+    except OSError as exc:
+        raise UltimateRulingsError(
+            f"cannot read ultimate rulings {path}: {exc.strerror or exc}"
+        ) from exc
+
+    in_table_section = False
+    saw_section = False
+    skill_column: int | None = None
+    count_column: int | None = None
+    rulings: dict[str, int] = {}
+    for line_number, line in enumerate(text.splitlines(), 1):
+        if line.startswith("## 3. "):
+            in_table_section = True
+            saw_section = True
+            continue
+        if in_table_section and line.startswith("## 4. "):
+            break
+        if not in_table_section or not line.lstrip().startswith("|"):
+            continue
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if any("现→裁" in cell for cell in cells):
+            skill_column = next(
+                (index for index, cell in enumerate(cells) if "sk_*" in cell), None
+            )
+            count_column = next(
+                (index for index, cell in enumerate(cells) if "现→裁" in cell), None
+            )
+            if skill_column is None or count_column is None:
+                raise UltimateRulingsError(
+                    f"{path}:{line_number}: ruling table lacks required columns"
+                )
+            continue
+        all_ids = re.findall(r"\bsk_[a-z0-9_]+\b", line)
+        if not all_ids:
+            continue
+        if skill_column is None or count_column is None:
+            raise UltimateRulingsError(
+                f"{path}:{line_number}: ruling row appears before a valid header"
+            )
+        if max(skill_column, count_column) >= len(cells):
+            raise UltimateRulingsError(
+                f"{path}:{line_number}: ruling row has too few columns"
+            )
+        skill_ids = re.findall(r"\bsk_[a-z0-9_]+\b", cells[skill_column])
+        match = re.fullmatch(
+            r"(\d+)\s*→\s*(\d+)\s*（([+＋\-−－]?\d+)）",
+            cells[count_column],
+        )
+        if len(skill_ids) != 1 or match is None:
+            raise UltimateRulingsError(
+                f"{path}:{line_number}: cannot parse skill/count ruling row"
+            )
+        skill_id = skill_ids[0]
+        current, decided = int(match.group(1)), int(match.group(2))
+        delta = int(match.group(3).translate(str.maketrans("＋−－", "+--")))
+        if decided - current != delta or decided not in (1, 2, 3):
+            raise UltimateRulingsError(
+                f"{path}:{line_number}: inconsistent ruling for {skill_id}"
+            )
+        if skill_id in rulings:
+            raise UltimateRulingsError(
+                f"{path}:{line_number}: duplicate ruling for {skill_id}"
+            )
+        rulings[skill_id] = decided
+    if not saw_section or not rulings:
+        raise UltimateRulingsError(
+            f"{path}: missing section 3 per-skill ruling rows"
+        )
+    return rulings
+
+
+def is_official_catalog(path: Path) -> bool:
+    return (path.parent.resolve() == CATALOG_DIR.resolve()
+            and OFFICIAL_CATALOG_PATTERN.fullmatch(path.name) is not None)
+
+
+def ultimate_quota(
+    grade: int, skill_id: str, rulings: dict[str, int]
+) -> tuple[int, int]:
+    if grade in (8, 11) and skill_id in rulings:
+        decided = rulings[skill_id]
+        return decided, decided
+    return ULTIMATE_QUOTA.get(grade, (0, 0))
 
 
 @dataclass
@@ -143,7 +231,9 @@ class CatalogAudit:
     old_buff_runtime_refs: int = 0
     body_index_mismatches: int = 0
     duplicate_step_definitions: int = 0
+    ultimate_quota_violations: int = 0
     errors: list[str] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=list)
 
 
 def catalog_name(path: Path) -> str:
@@ -164,6 +254,9 @@ def grade_tier(grade: int | None) -> str | None:
 
 def _grade_from_line(line: str) -> int | None:
     # Both ``12 天上`` and ``天上 12`` occur; compact cards often omit a space.
+    for label, number in GRADE_LONG_LABELS.items():
+        if label in line:
+            return number
     for label, number in GRADE_LABELS.items():
         if re.search(rf"(?:{number}\s*{label}|{label}\s*{number})", line):
             return number
@@ -171,21 +264,35 @@ def _grade_from_line(line: str) -> int | None:
 
 
 def parse_skill_grades(text: str) -> tuple[dict[str, int], dict[str, int]]:
-    """Return skill->grade and the first defining line for each skill."""
+    """Return formal skill definitions, excluding references and mirrors."""
     grades: dict[str, int] = {}
     lines: dict[str, int] = {}
-    current: str | None = None
+    in_audit_projection = False
     for number, line in enumerate(text.splitlines(), 1):
-        ids = re.findall(r"sk_[a-z0-9_]+", line)
+        if "<!-- skill-catalog-audit:start -->" in line:
+            in_audit_projection = True
+            continue
+        if "<!-- skill-catalog-audit:end -->" in line:
+            in_audit_projection = False
+            continue
+        if in_audit_projection:
+            continue
+        ids = re.findall(r"\bsk_[a-z0-9_]+", line)
         grade = _grade_from_line(line)
-        if ids and grade is not None:
-            # The first ID in a heading/card is the card owner.  References in
-            # prerequisite prose are later in the same row and never win.
-            current = ids[0]
-            grades.setdefault(current, grade)
-            lines.setdefault(current, number)
-        elif re.match(r"^#{2,4} ", line) and not ids:
-            current = None
+        if not ids or grade is None:
+            continue
+        is_heading = re.match(r"^#{2,5}\s", line) is not None
+        is_skill_first_table = re.match(
+            r"^\s*\|\s*(?:\*\*)?`?sk_[a-z0-9_]+", line
+        ) is not None
+        is_bold_card = re.match(
+            r"^\s*(?:-\s*)?\*\*`?sk_[a-z0-9_]+", line
+        ) is not None
+        if not (is_heading or is_skill_first_table or is_bold_card):
+            continue
+        # The first ID owns the heading/card.  Later IDs are prerequisites.
+        grades.setdefault(ids[0], grade)
+        lines.setdefault(ids[0], number)
     return grades, lines
 
 
@@ -399,6 +506,106 @@ def parse_body_moves(text: str, route_mirrors: dict[str, RouteMirror] | None = N
     return result
 
 
+def parse_body_ultimate_counts(
+    text: str, grades: dict[str, int], targets: dict[str, RouteMirror]
+) -> tuple[Counter[str], list[tuple[int, str]]]:
+    """Count body ``MoveDef.ultimate:true`` contracts by formal skill.
+
+    This scan is independent of the route target set: a newly added body
+    ultimate must affect its skill's quota even when its route mirror is
+    accidentally absent.  Owners are resolved from the defining card/row, a
+    known move target, the conventional move prefix, or the enclosing card.
+    """
+    counts: Counter[str] = Counter()
+    issues: list[tuple[int, str]] = []
+    persistent_owner: str | None = None
+    persistent_level: int | None = None
+    persistent_kind: str | None = None
+    excluded_level: int | None = None
+    in_audit_projection = False
+
+    def line_owner(line: str) -> tuple[str | None, str | None]:
+        grade = _grade_from_line(line)
+        ids = re.findall(r"\bsk_[a-z0-9_]+", line)
+        if grade is None or not ids or ids[0] not in grades:
+            return None, None
+        if re.match(r"^#{2,5}\s", line):
+            return ids[0], "heading"
+        if re.match(r"^\s*\|\s*(?:\*\*)?`?sk_[a-z0-9_]+", line):
+            return ids[0], "table"
+        if re.match(r"^\s*(?:-\s*)?\*\*`?sk_[a-z0-9_]+", line):
+            return ids[0], "bold"
+        return None, None
+
+    def owner_from_moves(line: str) -> tuple[str | None, bool]:
+        owners: list[str] = []
+        for move_id in dict.fromkeys(re.findall(
+            r"(?<![A-Za-z0-9_])mv_[a-z0-9_]+", line
+        )):
+            target = targets.get(move_id)
+            if target is not None and target.skill_id is not None:
+                owners.append(target.skill_id)
+                continue
+            stem = move_id.removeprefix("mv_")
+            candidates = [
+                skill for skill in grades
+                if stem.startswith(skill.removeprefix("sk_") + "_")
+            ]
+            if candidates:
+                owners.append(max(candidates, key=len))
+        unique = list(dict.fromkeys(owners))
+        return (unique[0] if len(unique) == 1 else None, len(unique) > 1)
+
+    for number, line in enumerate(text.splitlines(), 1):
+        if "<!-- skill-catalog-audit:start -->" in line:
+            in_audit_projection = True
+            continue
+        if "<!-- skill-catalog-audit:end -->" in line:
+            in_audit_projection = False
+            continue
+        heading = re.match(r"^(#{1,6})\s", line)
+        level = len(heading.group(1)) if heading else None
+        if level is not None:
+            if excluded_level is not None and level <= excluded_level:
+                excluded_level = None
+            if (persistent_kind == "bold" or (persistent_level is not None
+                    and level <= persistent_level)):
+                persistent_owner = persistent_level = persistent_kind = None
+            if re.search(
+                r"数据校验|测试用例|待决事项|开放问题|修改提案|考据待办",
+                line,
+            ):
+                excluded_level = level
+        direct_owner, owner_kind = line_owner(line)
+        if owner_kind == "heading":
+            persistent_owner, persistent_level = direct_owner, level
+            persistent_kind = owner_kind
+        elif owner_kind == "bold":
+            persistent_owner, persistent_level = direct_owner, None
+            persistent_kind = owner_kind
+        if in_audit_projection or excluded_level is not None:
+            continue
+        contracts = [
+            item.group(0) for item in re.finditer(r"MoveDef\{[^}]*}", line)
+            if _line_has_explicit_ultimate(item.group(0)) is True
+        ]
+        if not contracts:
+            continue
+        move_owner, ambiguous_moves = owner_from_moves(line)
+        if ambiguous_moves:
+            issues.append((number, "ultimate MoveDefs span multiple skills"))
+            continue
+        owner = direct_owner or move_owner or persistent_owner
+        if owner is None:
+            issues.append((number, "ultimate MoveDef has no formal skill owner"))
+            continue
+        if direct_owner and move_owner and direct_owner != move_owner:
+            issues.append((number, "ultimate MoveDef skill owner is ambiguous"))
+            continue
+        counts[owner] += len(contracts)
+    return counts, issues
+
+
 def _route_flag(fragment: str) -> bool | None:
     match = re.search(r"/\s*(true|false)\s*/", fragment, re.I)
     if match:
@@ -430,8 +637,10 @@ def parse_final_instances(text: str) -> dict[str, FinalInstance]:
             continue
         skills = re.findall(r"sk_[a-z0-9_]+", line)
         moves = re.findall(r"mv_[a-z0-9_]+", line)
-        routes = re.findall(r"mfr_[a-z0-9_]+", line)
-        points = tuple(re.findall(r"ap_[a-z0-9_]+", line))
+        routes = re.findall(r"(?<![A-Za-z0-9_])mfr_[a-z0-9_]+", line)
+        points = tuple(re.findall(
+            r"(?<![A-Za-z0-9_])ap_[a-z0-9_]+", line
+        ))
         if len(skills) != 1 or len(set(moves)) != 1 or len(set(routes)) != 1 or not points:
             continue
         grade = _grade_from_line(line)
@@ -442,7 +651,9 @@ def parse_final_instances(text: str) -> dict[str, FinalInstance]:
         route_cell = next((cell for cell in cells if "MeridianRouteDef{" in cell), "")
         if not body_cell or not route_cell:
             continue
-        triples = re.findall(r"(ap_[a-z0-9_]+)/(\d+)/(\d+)", line)
+        triples = re.findall(
+            r"(?<![A-Za-z0-9_])(ap_[a-z0-9_]+)/(\d+)/(\d+)", line
+        )
         result[moves[0]] = FinalInstance(
             move_id=moves[0], skill_id=skills[0], route_id=routes[0], grade=grade,
             line=number, layer=_resource_value(body_cell, ("unlock",)),
@@ -459,7 +670,7 @@ def parse_final_instances(text: str) -> dict[str, FinalInstance]:
 
 
 def _explicit_signature(line: str) -> tuple[str, ...] | None:
-    points = re.findall(r"ap_[a-z0-9_]+", line)
+    points = re.findall(r"(?<![A-Za-z0-9_])ap_[a-z0-9_]+", line)
     return tuple(points) if points else None
 
 
@@ -478,8 +689,12 @@ def parse_route_step_definitions(
     for number, line in enumerate(text.splitlines(), 1):
         if not line.lstrip().startswith("|"):
             continue
-        route_ids = list(dict.fromkeys(re.findall(r"mfr_[a-z0-9_]+", line)))
-        steps = tuple(re.findall(r"ap_[a-z0-9_]+", line))
+        route_ids = list(dict.fromkeys(re.findall(
+            r"(?<![A-Za-z0-9_])mfr_[a-z0-9_]+", line
+        )))
+        steps = tuple(re.findall(
+            r"(?<![A-Za-z0-9_])ap_[a-z0-9_]+", line
+        ))
         if len(route_ids) != 1 or not steps:
             continue
         result.append(RouteStepDefinition(route_ids[0], source, number, steps))
@@ -520,7 +735,7 @@ def parse_route_mirrors(text: str) -> dict[str, RouteMirror]:
             current_skill = skill_ids[0]
         # Explicit move -> route slash declarations (the dominant format).
         pair_pattern = re.compile(
-            r"(mv_[a-z0-9_]+)\s*→\s*(mfr_[a-z0-9_]+)([^；|]*)"
+            r"(mv_[a-z0-9_]+)\s*→\s*((?<![A-Za-z0-9_])mfr_[a-z0-9_]+)([^；|]*)"
         )
         for match in pair_pattern.finditer(line):
             move_id, route_id, tail = match.groups()
@@ -536,7 +751,9 @@ def parse_route_mirrors(text: str) -> dict[str, RouteMirror]:
         # Four-column route tables put move and route in separate cells, then
         # use 是/否 in the fourth column.
         move_ids = re.findall(r"mv_[a-z0-9_]+", line)
-        route_ids = re.findall(r"mfr_[a-z0-9_]+", line)
+        route_ids = re.findall(
+            r"(?<![A-Za-z0-9_])mfr_[a-z0-9_]+", line
+        )
         flag = _route_flag(line)
         if len(move_ids) == len(route_ids) == 1 and flag is not None:
             move_id, route_id = move_ids[0], route_ids[0]
@@ -546,7 +763,9 @@ def parse_route_mirrors(text: str) -> dict[str, RouteMirror]:
             )
 
         # Legacy wujue/xiaoyao indexes omitted moveRef and derived it from mfr.
-        for match in re.finditer(r"(mfr_[a-z0-9_]+)([^；|]*)", line):
+        for match in re.finditer(
+            r"((?<![A-Za-z0-9_])mfr_[a-z0-9_]+)([^；|]*)", line
+        ):
             route_id, tail = match.groups()
             flag = _route_flag(tail)
             if flag is None or route_id in {r.route_id for r in result.values()}:
@@ -575,7 +794,9 @@ def parse_target_routes(text: str, name: str = "") -> dict[str, RouteMirror]:
     for number, line in enumerate(text.splitlines(), 1):
         skills = list(dict.fromkeys(re.findall(r"sk_[a-z0-9_]+", line)))
         moves = list(dict.fromkeys(re.findall(r"mv_[a-z0-9_]+", line)))
-        routes = list(dict.fromkeys(re.findall(r"mfr_[a-z0-9_]+", line)))
+        routes = list(dict.fromkeys(re.findall(
+            r"(?<![A-Za-z0-9_])mfr_[a-z0-9_]+", line
+        )))
         if len(skills) != 1 or len(moves) != 1 or len(routes) != 1:
             continue
         if grades.get(skills[0]) == 6:
@@ -703,8 +924,12 @@ def parse_explicit_ultimate_routes(text: str) -> dict[str, RouteMirror]:
         if skill_ids and line.startswith("|"):
             current_skill = skill_ids[0]
         move_ids = re.findall(r"mv_[a-z0-9_]+", line)
-        route_ids = re.findall(r"mfr_[a-z0-9_]+", line)
-        points = tuple(re.findall(r"ap_[a-z0-9_]+", line))
+        route_ids = re.findall(
+            r"(?<![A-Za-z0-9_])mfr_[a-z0-9_]+", line
+        )
+        points = tuple(re.findall(
+            r"(?<![A-Za-z0-9_])ap_[a-z0-9_]+", line
+        ))
         flag = _route_flag(line)
         if len(move_ids) == len(route_ids) == 1 and flag is not None and points:
             result[move_ids[0]] = RouteMirror(
@@ -755,8 +980,12 @@ def explicit_route_signatures(text: str) -> dict[str, tuple[str, ...]]:
     signatures: dict[str, tuple[str, ...]] = {}
     for line in text.splitlines():
         move_ids = re.findall(r"mv_[a-z0-9_]+", line)
-        route_ids = re.findall(r"mfr_[a-z0-9_]+", line)
-        points = tuple(re.findall(r"ap_[a-z0-9_]+", line))
+        route_ids = re.findall(
+            r"(?<![A-Za-z0-9_])mfr_[a-z0-9_]+", line
+        )
+        points = tuple(re.findall(
+            r"(?<![A-Za-z0-9_])ap_[a-z0-9_]+", line
+        ))
         if len(move_ids) == len(route_ids) == 1 and points and move_ids[0] in final_ids:
             signatures[move_ids[0]] = points
     return signatures
@@ -775,7 +1004,9 @@ def parse_audit_instances(text: str) -> dict[str, FinalInstance]:
             continue
         skills = list(dict.fromkeys(re.findall(r"sk_[a-z0-9_]+", line)))
         moves = list(dict.fromkeys(re.findall(r"mv_[a-z0-9_]+", line)))
-        routes = list(dict.fromkeys(re.findall(r"mfr_[a-z0-9_]+", line)))
+        routes = list(dict.fromkeys(re.findall(
+            r"(?<![A-Za-z0-9_])mfr_[a-z0-9_]+", line
+        )))
         points, segment_ct, risks = _route_values(line, routes[0]) if routes else ((), (), ())
         grade = _grade_from_line(line)
         if len(skills) != 1 or len(moves) != 1 or len(routes) != 1 or not points or grade is None:
@@ -804,7 +1035,9 @@ def _route_values(line: str, route_id: str) -> tuple[tuple[str, ...], tuple[int,
     """Return acupoints, segment CT and risk from one instance row."""
     start = line.find(route_id)
     fragment = line[start:] if start >= 0 else line
-    triples = re.findall(r"(ap_[a-z0-9_]+)/(\d+)/(\d+)", fragment)
+    triples = re.findall(
+        r"(?<![A-Za-z0-9_])(ap_[a-z0-9_]+)/(\d+)/(\d+)", fragment
+    )
     if triples:
         return (
             tuple(item[0] for item in triples),
@@ -814,7 +1047,9 @@ def _route_values(line: str, route_id: str) -> tuple[tuple[str, ...], tuple[int,
     # Wujue/xiaoyao keep CT in a dedicated ``N×CT`` cell and encode each
     # step as ``acupoint/riskBp``.  It is still an explicit route: expand the
     # scalar CT to the array that the runtime object receives.
-    pairs = re.findall(r"(ap_[a-z0-9_]+)/(\d+)(?!/)", fragment)
+    pairs = re.findall(
+        r"(?<![A-Za-z0-9_])(ap_[a-z0-9_]+)/(\d+)(?!/)", fragment
+    )
     timing = re.search(r"(\d+)\s*[×x]\s*(\d+)", fragment)
     if pairs and timing and int(timing.group(1)) == len(pairs):
         return (
@@ -873,7 +1108,9 @@ def _route_similarity_reason(
     return None
 
 
-def audit_catalog(path: Path) -> CatalogAudit:
+def audit_catalog(
+    path: Path, ultimate_rulings: dict[str, int] | None = None
+) -> CatalogAudit:
     text = path.read_text(encoding="utf-8")
     text_lines = text.splitlines()
     name = catalog_name(path)
@@ -888,7 +1125,8 @@ def audit_catalog(path: Path) -> CatalogAudit:
             move_id, item.route_id, item.skill_id, item.line, True,
             item.signature, True,
         ))
-    if not targets and name not in EXPECTED:
+    official = is_official_catalog(path)
+    if not targets and not official:
         targets = {
             move_id: RouteMirror(
                 move_id, item.route_id, item.skill_id, item.line,
@@ -927,9 +1165,20 @@ def audit_catalog(path: Path) -> CatalogAudit:
     breaths = parse_breath_profiles(text)
     audit = CatalogAudit(name=name)
     explicit_routes = parse_explicit_ultimate_routes(text)
+    quota_body_counts: Counter[str] | None = None
+    if official:
+        quota_body_counts, owner_issues = parse_body_ultimate_counts(
+            text, grades, targets
+        )
+        if name == "wujue":
+            for skill_id, _route_id, _grade in EXTERNAL_WUJUE.values():
+                quota_body_counts[skill_id] += 1
+        for line, reason in owner_issues:
+            audit.errors.append(f"{path.name}:{line}: {reason}")
     registered_acupoints = set(re.findall(
-        r"ap_[a-z0-9_]+", ACUPOINT_REGISTRY.read_text(encoding="utf-8")
-    )) if name in EXPECTED else set()
+        r"(?<![A-Za-z0-9_])ap_[a-z0-9_]+",
+        ACUPOINT_REGISTRY.read_text(encoding="utf-8")
+    )) if official else set()
     explicit_signatures = {
         move_id: route.signature
         for move_id, route in explicit_routes.items()
@@ -942,15 +1191,20 @@ def audit_catalog(path: Path) -> CatalogAudit:
     target_skills = {
         route.skill_id for route in targets.values() if route.skill_id is not None
     }
-    for skill in target_skills:
-        grade = grades.get(skill)
+    for skill, grade in grades.items():
         tier = grade_tier(grade)
         if tier in ("天", "地", "玄上"):
             skills_by_tier[tier].add(skill)
-    for move in body.values():
-        tier = grade_tier(grades.get(move.skill_id or ""))
-        if move.ultimate is True and tier:
-            body_by_tier[tier] += 1
+    if quota_body_counts is not None:
+        for skill_id, count in quota_body_counts.items():
+            tier = grade_tier(grades.get(skill_id))
+            if tier:
+                body_by_tier[tier] += count
+    else:
+        for move in body.values():
+            tier = grade_tier(grades.get(move.skill_id or ""))
+            if move.ultimate is True and tier:
+                body_by_tier[tier] += 1
     for route in mirrors.values():
         fallback = body.get(route.move_id)
         skill_id = route.skill_id or (fallback.skill_id if fallback else None)
@@ -965,7 +1219,10 @@ def audit_catalog(path: Path) -> CatalogAudit:
             "route_ultimates": route_by_tier[tier],
         } for tier in ("天", "地", "玄上")
     }
-    audit.body_ultimate_count = sum(1 for item in body.values() if item.ultimate is True)
+    audit.body_ultimate_count = (
+        sum(quota_body_counts.values()) if quota_body_counts is not None
+        else sum(1 for item in body.values() if item.ultimate is True)
+    )
     audit.route_ultimate_count = sum(1 for item in mirrors.values() if item.ultimate)
 
     for item in final_instances.values():
@@ -1163,43 +1420,40 @@ def audit_catalog(path: Path) -> CatalogAudit:
         buffs = sorted(set(re.findall(r"bf_(?:fengxue|fengnei|fengjingmai|chanrao)", source)))
         audit.errors.append(f"{path.name}:{line}: legacy runtime buff {','.join(buffs)}")
 
-    expected = EXPECTED.get(name, {})
-    for tier, (skills, ultimates) in expected.items():
-        got = audit.tier_counts[tier]
-        if got["skills"] != skills:
-            audit.errors.append(
-                f"{path.name}: {tier} skill count {got['skills']} != {skills}"
-            )
-        if got["body_ultimates"] != ultimates:
-            audit.errors.append(
-                f"{path.name}: {tier} body ultimate count {got['body_ultimates']} != {ultimates}"
-            )
-        if got["route_ultimates"] != ultimates:
-            audit.errors.append(
-                f"{path.name}: {tier} route ultimate count {got['route_ultimates']} != {ultimates}"
-            )
-    if name in EXPECTED and AUDIT_VERSION not in text:
-        audit.errors.append(f"{path.name}: version line lacks {AUDIT_VERSION}")
-
-    if name in EXPECTED:
-        for skill in target_skills:
-            grade = grades.get(skill)
-            if grade is None:
-                continue
-            if grade < 6:
-                continue
-            count = len([m for m in body.values() if m.skill_id == skill and m.ultimate is True])
-            minimum, maximum = ULTIMATE_QUOTA.get(grade, (0, 0))
-            if not minimum <= count <= maximum:
-                audit.errors.append(
-                    f"{path.name}:{grade_lines.get(skill, 1)}: {skill} grade {grade} has {count} ultimates, expected {minimum}..{maximum}"
+    if official:
+        if ultimate_rulings is None:
+            ultimate_rulings = parse_ultimate_rulings(ULTIMATE_RULINGS_PATH)
+        assert quota_body_counts is not None
+        for skill, grade in grades.items():
+            count = quota_body_counts[skill]
+            minimum, maximum = ultimate_quota(grade, skill, ultimate_rulings)
+            if grade in (8, 11) and skill not in ultimate_rulings:
+                audit.warnings.append(
+                    f"{path.name}:{grade_lines[skill]}: {skill} grade {grade} "
+                    f"未入裁定表; fallback quota {minimum}..{maximum}"
                 )
+            if not minimum <= count <= maximum:
+                audit.ultimate_quota_violations += 1
+                audit.errors.append(
+                    f"{path.name}:{grade_lines[skill]}: {skill} grade {grade} "
+                    f"has {count} ultimates, expected {minimum}..{maximum}"
+                )
+        # A target that cannot be tied to a formal definition must not vanish
+        # merely because the quota pass iterates the formal skill inventory.
+        for skill in target_skills - grades.keys():
+            audit.errors.append(
+                f"{path.name}: {skill} ultimate owner has no formal grade definition"
+            )
     return audit
 
 
-def audit_paths(paths: Iterable[Path]) -> list[CatalogAudit]:
+def audit_paths(
+    paths: Iterable[Path], ultimate_rulings: dict[str, int] | None = None
+) -> list[CatalogAudit]:
     path_list = list(paths)
-    audits = [audit_catalog(path) for path in path_list]
+    if ultimate_rulings is None and any(is_official_catalog(path) for path in path_list):
+        ultimate_rulings = parse_ultimate_rulings(ULTIMATE_RULINGS_PATH)
+    audits = [audit_catalog(path, ultimate_rulings) for path in path_list]
     definitions_by_route: dict[
         str, list[tuple[CatalogAudit, RouteStepDefinition]]
     ] = defaultdict(list)
@@ -1227,6 +1481,8 @@ def summary_row(audit: CatalogAudit) -> str:
         f"{audit.name}: {tiers}; 解锁={audit.unlock_violations}; "
         f"同门重复={audit.duplicate_routes}; 隐式路线={audit.implicit_routes}; "
         f"重复步骤定义={audit.duplicate_step_definitions}; "
+        f"配额违规={audit.ultimate_quota_violations}; "
+        f"提示={len(audit.warnings)}; "
         f"缺离战倍率={audit.missing_out_of_battle_scale}; "
         f"旧Buff={audit.old_buff_runtime_refs}; "
         f"正文≠索引={audit.body_index_mismatches}; errors={len(audit.errors)}"
@@ -1247,7 +1503,11 @@ def main(argv: list[str] | None = None) -> int:
         for path in missing:
             print(f"ERROR: missing catalog {path}", file=sys.stderr)
         return 2
-    audits = audit_paths(paths)
+    try:
+        audits = audit_paths(paths)
+    except UltimateRulingsError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
     if args.json:
         print(json.dumps([asdict(audit) for audit in audits], ensure_ascii=False, indent=2))
     else:
@@ -1256,6 +1516,8 @@ def main(argv: list[str] | None = None) -> int:
             if args.details:
                 for error in audit.errors:
                     print(f"  - {error}")
+                for warning in audit.warnings:
+                    print(f"  ! {warning}")
         print(f"catalogs={len(audits)} errors={sum(len(a.errors) for a in audits)}")
     return 1 if args.strict and any(audit.errors for audit in audits) else 0
 

@@ -208,17 +208,27 @@ python3 tools/lint/check_skill_catalogs.py --json
 python3 tools/lint/check_skill_catalogs.py --strict
 ```
 
-除 V-M01 三方一致、各品配额、7 / 9 / 10 重解锁层、显式路线、同门路线相似度、
+除 V-M01 三方一致、逐门绝招配额、7 / 9 / 10 重解锁层、显式路线、同门路线相似度、
 `outOfBattleScaleBp` 与旧 Buff 外，检查器还要求每个 `mfr_*` 的具体步骤序列在本次
-扫描的全部图鉴中只定义一次。它识别文首“绝招显式路线索引”、NU1–NU3 的“同门
-第二／第三绝招显式路线”表，以及 NU2S 的 §0.12.1 最终绝招路线表；判据是同一表行
-含恰好一个 `mfr_*` 和至少一个具体 `ap_*` 步骤。第二次及以后定义无论序列相同还是
-不同均报错，诊断同时给出首次定义与重复定义的文件和行号。只列路线 ID，或步骤列写
-“见文首索引”等且不再列 `ap_*` 的行按引用处理。
+扫描的全部图鉴中只定义一次。路线定义识别不依赖章节编号或固定版式：判据是同一
+Markdown 表格行含恰好一个 `mfr_*` 和至少一个具体 `ap_*` 步骤，因此 §0.12.x 及后续
+同形表格均可识别。第二次及以后定义无论序列相同还是不同均报错，诊断同时给出首次
+定义与重复定义的文件和行号。只列路线 ID，或步骤列写“见文首索引”等且不再列
+`ap_*` 的行按引用处理。
 
-人读模式的 `重复步骤定义` 与 JSON 字段 `duplicate_step_definitions` 统计第二次及以后
-的定义；这些错误和其他审计错误一样，在 `--strict` 下令进程退出 `1`。专项与全部
-lint 测试分别可运行：
+逐门配额按品阶判定：黄阶、玄下、玄中为 0，玄上与地下为 1，地上与天下为 2，
+天上为 3。天中与地中优先读取
+`docs/decisions/ultimate-counts-tianzhong-dizhong.md` §3 的 `sk_*` 与“现→裁（变动）”
+列并作精确核对；未入裁定表的新武学分别退回 2–3 与 1–2，并输出“未入裁定表”提示，
+提示不计入 `errors`、也不令 `--strict` 失败。裁定表缺失、§3 不存在、表头/数据行无法
+解析、重复 ID 或算术不一致均为配置错误，命令输出明确 `ERROR` 并退出 `2`。正式扫描
+范围由 `docs/design/catalog/skills-*.md` 路径模式决定，不维护易漂移的整册门数/绝招
+总数快照；`MoveDef.ultimate:true` 仍是绝招真值，降龙十八掌的跨文档定义例外不变。
+
+人读模式的 `配额违规` / `重复步骤定义` 与 JSON 字段
+`ultimate_quota_violations` / `duplicate_step_definitions` 分别统计逐门配额错误和第二次
+及以后的步骤定义；JSON 的 `warnings` 保存非失败提示。错误在 `--strict` 下令进程退出
+`1`。专项与全部 lint 测试分别可运行：
 
 ```shell
 python3 -m unittest -v tools.lint.test_check_skill_catalogs
