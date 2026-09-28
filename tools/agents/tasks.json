@@ -5728,7 +5728,12 @@
         "M5",
         "M5b",
         "M5c1",
-        "M5c2"
+        "M5c2",
+        "NU5p",
+        "NU5a",
+        "NU5b",
+        "NX1",
+        "NX2"
       ],
       "writes": [
         "docs/**",
@@ -6698,7 +6703,8 @@
       "deps": [
         "M5",
         "NA1",
-        "NA1t"
+        "NA1t",
+        "NU5p"
       ],
       "writes": [
         "docs/design/05-martial-arts-system.md",
@@ -6769,7 +6775,8 @@
       "prompt": "M5c-projection-catalog.md",
       "deps": [
         "M5b",
-        "NA2"
+        "NA2",
+        "NU5a"
       ],
       "writes": [
         "docs/design/catalog/skills-shaolin.md",
@@ -6841,7 +6848,8 @@
       "prompt": "M5c-projection-catalog.md",
       "deps": [
         "M5b",
-        "NA2"
+        "NA2",
+        "NU5b"
       ],
       "writes": [
         "docs/design/catalog/skills-xiake-bixue.md",
@@ -6896,6 +6904,413 @@
             "docs/design/catalog/skills-kangxi.md",
             "docs/design/catalog/skills-qianlong.md",
             "docs/design/catalog/skills-gulong.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NU5p",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "天中 / 地中绝招数统一裁定表（作者决定）",
+      "prompt": "NU5p-ultimate-rulings.md",
+      "deps": [
+        "NU1",
+        "NU2S",
+        "NU3",
+        "NU4"
+      ],
+      "writes": [
+        "docs/decisions/ultimate-counts-tianzhong-dizhong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/decisions/ultimate-counts-tianzhong-dizhong.md"
+        ],
+        "fences": [
+          "docs/decisions/ultimate-counts-tianzhong-dizhong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NU5a",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "按统一裁定表调整天中 / 地中绝招数 · 武学图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
+      "prompt": "NU5-ultimate-apply.md",
+      "deps": [
+        "NU5p",
+        "NA2"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-shaolin.md",
+        "docs/design/catalog/skills-daojia.md",
+        "docs/design/catalog/skills-general.md",
+        "docs/design/catalog/skills-wujue.md",
+        "docs/design/catalog/skills-xiaoyao.md",
+        "docs/design/catalog/skills-yitian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
+        "doc_set": "- `docs/design/catalog/skills-shaolin.md`\n- `docs/design/catalog/skills-daojia.md`\n- `docs/design/catalog/skills-general.md`\n- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-xiaoyao.md`\n- `docs/design/catalog/skills-yitian.md`",
+        "extra": "NA2 已统一 V-M01、显式路线与调息字段，并可能新增了 lint 检查；改动后这些检查必须继续通过。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md",
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md",
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md",
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md",
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-shaolin.md",
+            "docs/design/catalog/skills-daojia.md",
+            "docs/design/catalog/skills-general.md",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NU5b",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "按统一裁定表调整天中 / 地中绝招数 · 武学图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
+      "prompt": "NU5-ultimate-apply.md",
+      "deps": [
+        "NU5p",
+        "NA2"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-xiake-bixue.md",
+        "docs/design/catalog/skills-wuyue.md",
+        "docs/design/catalog/skills-kangxi.md",
+        "docs/design/catalog/skills-qianlong.md",
+        "docs/design/catalog/skills-gulong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "武学图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
+        "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`\n- `docs/design/catalog/skills-wuyue.md`\n- `docs/design/catalog/skills-kangxi.md`\n- `docs/design/catalog/skills-qianlong.md`\n- `docs/design/catalog/skills-gulong.md`",
+        "extra": "NA2 已统一 V-M01、显式路线与调息字段，并可能新增了 lint 检查；改动后这些检查必须继续通过。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md",
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md",
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "docs/design/catalog/skills-wuyue.md",
+            "docs/design/catalog/skills-kangxi.md",
+            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-gulong.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NX1",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "补录首领专属武学并替换替补配装 · 书界 01–07",
+      "prompt": "NX-boss-arts.md",
+      "deps": [
+        "NB4a",
+        "M5b",
+        "NU5p"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-shouling-01-07.md",
+        "docs/design/chapters/01-tianlong.md",
+        "docs/design/chapters/02-shediao.md",
+        "docs/design/chapters/03-shendiao.md",
+        "docs/design/chapters/04-yitian.md",
+        "docs/design/chapters/05-xiaoao.md",
+        "docs/design/chapters/06-xiake.md",
+        "docs/design/chapters/07-bixue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "书界 01–07",
+        "doc_set": "- `docs/design/chapters/01-tianlong.md`\n- `docs/design/chapters/02-shediao.md`\n- `docs/design/chapters/03-shendiao.md`\n- `docs/design/chapters/04-yitian.md`\n- `docs/design/chapters/05-xiaoao.md`\n- `docs/design/chapters/06-xiake.md`\n- `docs/design/chapters/07-bixue.md`",
+        "catalog": "docs/design/catalog/skills-shouling-01-07.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shouling-01-07.md",
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/chapters/07-bixue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shouling-01-07.md",
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/chapters/07-bixue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-shouling-01-07.md",
+            "docs/design/chapters/01-tianlong.md",
+            "docs/design/chapters/02-shediao.md",
+            "docs/design/chapters/03-shendiao.md",
+            "docs/design/chapters/04-yitian.md",
+            "docs/design/chapters/05-xiaoao.md",
+            "docs/design/chapters/06-xiake.md",
+            "docs/design/chapters/07-bixue.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NX2",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "补录首领专属武学并替换替补配装 · 书界 08–14",
+      "prompt": "NX-boss-arts.md",
+      "deps": [
+        "NB4b",
+        "M5b",
+        "NU5p"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-shouling-08-14.md",
+        "docs/design/chapters/08-luding.md",
+        "docs/design/chapters/09-liancheng.md",
+        "docs/design/chapters/10-baima.md",
+        "docs/design/chapters/11-yuanyang.md",
+        "docs/design/chapters/12-shujian.md",
+        "docs/design/chapters/13-feihu.md",
+        "docs/design/chapters/14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "书界 08–14",
+        "doc_set": "- `docs/design/chapters/08-luding.md`\n- `docs/design/chapters/09-liancheng.md`\n- `docs/design/chapters/10-baima.md`\n- `docs/design/chapters/11-yuanyang.md`\n- `docs/design/chapters/12-shujian.md`\n- `docs/design/chapters/13-feihu.md`\n- `docs/design/chapters/14-xueshan.md`",
+        "catalog": "docs/design/catalog/skills-shouling-08-14.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shouling-08-14.md",
+          "docs/design/chapters/08-luding.md",
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/chapters/10-baima.md",
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/chapters/14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shouling-08-14.md",
+          "docs/design/chapters/08-luding.md",
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/chapters/10-baima.md",
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/chapters/14-xueshan.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-shouling-08-14.md",
+            "docs/design/chapters/08-luding.md",
+            "docs/design/chapters/09-liancheng.md",
+            "docs/design/chapters/10-baima.md",
+            "docs/design/chapters/11-yuanyang.md",
+            "docs/design/chapters/12-shujian.md",
+            "docs/design/chapters/13-feihu.md",
+            "docs/design/chapters/14-xueshan.md"
           ]
         ]
       }
