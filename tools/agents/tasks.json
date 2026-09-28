@@ -5717,7 +5717,10 @@
         "NU3",
         "NU4",
         "NB1",
-        "NB2"
+        "NB2",
+        "NB3",
+        "NB4a",
+        "NB4b"
       ],
       "writes": [
         "docs/**",
@@ -5752,6 +5755,11 @@
           [
             "{python}",
             "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
             "--check"
           ]
         ]
@@ -6145,6 +6153,183 @@
           [
             "{python}",
             "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NB3",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "统一首领 / Boss 配装口径（AR-15）与逐单位节奏估算",
+      "prompt": "NB3-boss-policy.md",
+      "deps": [
+        "NB1",
+        "NB2"
+      ],
+      "writes": [
+        "docs/design/21-meridian-flow-and-moves.md",
+        "docs/decisions/author-requirements.md",
+        "tools/balance/boss_pacing.py",
+        "tools/balance/README.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/21-meridian-flow-and-moves.md",
+          "docs/decisions/author-requirements.md",
+          "tools/balance/boss_pacing.py"
+        ],
+        "fences": [
+          "docs/design/21-meridian-flow-and-moves.md",
+          "docs/decisions/author-requirements.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NB4a",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "首领配装按统一口径修正与逐单位节奏复核（书界 01–07）",
+      "prompt": "NB4-boss-apply.md",
+      "deps": [
+        "NB3"
+      ],
+      "writes": [
+        "docs/design/chapters/01-tianlong.md",
+        "docs/design/chapters/02-shediao.md",
+        "docs/design/chapters/03-shendiao.md",
+        "docs/design/chapters/04-yitian.md",
+        "docs/design/chapters/05-xiaoao.md",
+        "docs/design/chapters/06-xiake.md",
+        "docs/design/chapters/07-bixue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "书界 01–07",
+        "doc_set": "- `docs/design/chapters/01-tianlong.md`\n- `docs/design/chapters/02-shediao.md`\n- `docs/design/chapters/03-shendiao.md`\n- `docs/design/chapters/04-yitian.md`\n- `docs/design/chapters/05-xiaoao.md`\n- `docs/design/chapters/06-xiake.md`\n- `docs/design/chapters/07-bixue.md`",
+        "extra": "NB1 的 41 名主运不达标的行动者与萧峰、段延庆、裘千仞、玄冥二老、波斯三使、玉真子的品阶下调是本组重点：按口径逐一升档并复核。02 / 03 / 05 / 06 的多名 Boss 逐单位约 25–31 轮（方证、金轮、欧阳锋、岳不群等），按倍率表拉回窗口。NB1 把 02 的王府 / 君山 / 蒙古三类头目与 04 的六派指挥、绿柳宿卫改按精英结算；若与口径不符，说明理由后调整。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/chapters/07-bixue.md"
+        ],
+        "fences": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/chapters/07-bixue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NB4b",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "首领配装按统一口径修正与逐单位节奏复核（书界 08–14）",
+      "prompt": "NB4-boss-apply.md",
+      "deps": [
+        "NB3"
+      ],
+      "writes": [
+        "docs/design/chapters/08-luding.md",
+        "docs/design/chapters/09-liancheng.md",
+        "docs/design/chapters/10-baima.md",
+        "docs/design/chapters/11-yuanyang.md",
+        "docs/design/chapters/12-shujian.md",
+        "docs/design/chapters/13-feihu.md",
+        "docs/design/chapters/14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "书界 08–14",
+        "doc_set": "- `docs/design/chapters/08-luding.md`\n- `docs/design/chapters/09-liancheng.md`\n- `docs/design/chapters/10-baima.md`\n- `docs/design/chapters/11-yuanyang.md`\n- `docs/design/chapters/12-shujian.md`\n- `docs/design/chapters/13-feihu.md`\n- `docs/design/chapters/14-xueshan.md`",
+        "extra": "NB2 的替补配置按口径复核，替补标注统一。鹿鼎假太后、神龙舰队首领用了地上 9 的 `sk_shenlongxinfa`，按口径核对鹿鼎（低武）的本土品阶上限，超出则换主运或写明例外。08–11 为低武，12–14 为中武（雪山文档自标中武，以书界文档为准）。鹿鼎、雪山的 Boss 模板本在 23.4 / 24.5 轮附近，逐单位复核上沿。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/08-luding.md",
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/chapters/10-baima.md",
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/chapters/14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/chapters/08-luding.md",
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/chapters/10-baima.md",
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/chapters/14-xueshan.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
             "--check"
           ]
         ]
