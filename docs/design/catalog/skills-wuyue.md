@@ -1,6 +1,6 @@
 # 门派武学图鉴 · 五岳剑派与日月神教（`skills-wuyue`）
 
-> **版本**：v1.2（审校 C1c.R；全局审计，2026-09-27）；经脉系统落地（2026-09-27）。
+> **版本**：v1.2（审校 C1c.R；全局审计，2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）。
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 门派武学图鉴。本文件唯一收录笑傲书界的五岳剑派（华山气宗/剑宗、嵩山、泰山、南衡山、北恒山）、日月神教及梅庄四友、福威镖局与林家、青城派、五仙教，以及桃谷六仙、田伯光、不戒和尚等散人传承。
 > **上游**：`00-canon.md` §3–§5、§7、§9、§12–§13、§16、§20；`decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-14（含 2026-09-27 作者决定）；`decisions/author-decisions.md` P33；`decisions/rulings-v1.md` C14–C17、C22–C23 与 §3–§5；`design/17-sects-compendium.md` §1、§3、§6、§8–§9；`design/21` v2.0。
@@ -26,6 +26,7 @@
 - 招式附带写作 `bf_ID·承·概率·持续`；“承”即 `grade: inherit`。Buff 只取 `design/06` 已有目录或裁定已收录 ID。
 - `sourceChapters: [ch05_xiaoao]` 是完整原生来源；紫霞神功在碧血仅有 8 品残承，记入来源说明而不把 `ch07_bixue` 写成完整原生书界。
 - NPC、任务与秘籍 ID 尚归章节文档，本图鉴只写稳定的来源类型与人物/地点，不虚造最终任务 ID。
+- 绝招数量按 2026-09-27 作者规则执行：天上3、天中2、天下2，地上2、地中／地下1，玄上1，玄中／玄下／黄阶0。本文只升格既有招式，不新增招式；升格项显式写 `ultimate:true`、气势100、1200 CT收招，玄上逐条路线见 §15.5。
 
 ### 0.2 招式表列与核算
 
@@ -182,7 +183,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | weaponReq | `{category:sword, altCategories:{unlockLayer:9,categories:[staff,exotic],mult:0.90}}` |
 | reqs | `attrs:{wis:70}; aptitude:{apSword:50}; morality:{min:0}; hard:[morality]` |
 | layerStats | `counter:[5,15], hit:[1,5]`，合计 20（天阶上限） |
-| 层数要点 | 1 总诀/破剑/料敌 ｜ 2 破刀 ｜ 3 破枪/有进无退 ｜ 4 破鞭 ｜ 5 破索 ｜ 6 破掌 ｜ 7 破箭/绝招 ｜ 8 破气 ｜ 9 以物代剑 ｜ 10 无招大成 |
+| 层数要点 | 1 总诀/破剑/料敌 ｜ 2 破刀 ｜ 3 破枪/有进无退 ｜ 4 破鞭 ｜ 5 破索 ｜ 6 破掌 ｜ 7 第一绝招无招胜有招 ｜ 8 破箭 ｜ 9 第二绝招破箭/以物代剑 ｜ 10 第三绝招破气/无招大成；七门早层破式仍为普通招 |
 | setTags | `[set_dugu_jianzhong]`；前者补齐 `skills-daojia` 已列的跨组反向成员 |
 | conflicts / special | `[]` / `{fusible:true, autoGroup:dugu_po}` |
 | learnSources | `master`：风清扬，思过崖事件链，`maxLayer:10`；非华山身份可由令狐冲高羁绊引荐**（原创扩展）** |
@@ -198,8 +199,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | 破鞭式 `mv_dugu9_pobian` | 4 | 单体·1·近身 | 1.10 | 8%/1/1000 | 对奇门；`bf_pozhao` 60% | 否 | 同破剑式（05 固定值） |
 | 破索式 `mv_dugu9_posuo` | 5 | 单体·1–2·近身 | 1.05 | 8%/1/1000 | 对鞭索；`bf_jiaoxie` 30% | 否 | 05 §13.2 固定 1.05；指定兵器类按罕见条件 +0.30：`(1+0.12+0.30)×0.85−0.20×0.30=1.147`，配置差 −0.097；该式另按射程 2 的情境折价 **【建议值】0.05** 后中心 1.097，配置差 −0.047 |
 | 破掌式 `mv_dugu9_pozhang` | 6 | 单体·1·近身 | 1.10 | 8%/1/1000 | 对空手；`bf_pozhao` 60% | 否 | 同破剑式（05 固定值） |
-| 破箭式 `mv_dugu9_poanqi` | 7 | 单体·1·近身 | 1.10 | 8%/1/1000 | 对暗器；拨开投射，9重起反射 | 否 | 主动倍率沿 05 §13.2 固定值；拨开/反射按 05 触发钩子独立结算 |
-| 破气式 `mv_dugu9_poqi` | 8 | 单体·1·近身 | 1.25 | 10%/2/1000 | 对地阶以上主运或护体；破内防 | 否 | `(1+0.24+0.10+0.15)×0.85−0.02=1.25` |
+| **破箭式** `mv_dugu9_poanqi`（绝招） | 9 | 单体·1·近身·绝招 | 2.55 | 10%/气势100/1200 | `ultimate:true`；对暗器；拨开投射并可反射 | 否 | 第二绝招；`3×1×1×0.85=2.55`；拨开/反射按 05 触发钩子独立结算 |
+| **破气式** `mv_dugu9_poqi`（绝招） | 10 | 单体·1·近身·绝招 | 2.55 | 10%/气势100/1200 | `ultimate:true`；对地阶以上主运或护体；破内防 | 否 | 第三绝招；`3×1×1×0.85−0.02=2.53→2.55` |
 | **无招胜有招** `mv_dugu9_wuzhao` | 7 | 单体·1·近身·绝招 | 2.50 | 10%/—/1100 | 清 1 个 stance/guard；不可反击 | 否 | `3×0.85−0.07=2.48→2.50` |
 
 | 被动 ID | 名称 | 重 | 效果 |
@@ -224,7 +225,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | reqs | `sect:{id:sect_huashan,rank:4}; prereq:[{skill:sk_huashanxinfa,layer:6}]; attrs:{con:50,wil:50}; aptitude:{apInner:50}; hard:[sect,prereq]` |
 | inner.contribution | `mpMaxPct:34, hpMaxPct:20, attrs:{con:6,wil:5,wis:3}, mpRegen:2.5`；`34+20+2×14+5×2.5=94.5` |
 | inner.stats | `resInjury:8, atkIn:7`，合计 15（地阶上限） |
-| 层数要点 | 1 紫气 ｜ 3 朝阳吐纳 ｜ 5 紫霞护体 ｜ 7 霞映长空 ｜ 8 残承上限 ｜ 10 紫霞大成 |
+| 层数要点 | 1 紫气 ｜ 3 朝阳吐纳 ｜ 5 紫霞贯日/紫霞护体 ｜ 7 第一绝招霞映长空 ｜ 8 残承上限 ｜ 9 第二绝招紫霞贯日 ｜ 10 紫霞大成；早层两记运功招保留普通用途 |
 | setTags / conflicts | `[set_huashan_qijian]` / 无 |
 | special / observable | `{fusible:true}` / `false` |
 | learnSources | 华山气宗 L4 由岳不群传授；掌门密室秘籍；碧血华山残承 `sourceGrade:8,maxLayer:8`（原创扩展） |
@@ -233,9 +234,9 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
 |---|---:|---|---:|---|---|---|---|
 | 朝阳吐纳 `mv_zixiashengong_chaoyang`（原创扩展命名） | 3 | 自身·支援 | 0 | 6%/3/900 | `bf_huinei` 3 | — | 支援招，不进入倍率公式 |
-| 紫霞贯日 `mv_zixiashengong_guangri`（原创扩展命名） | 5 | 单体·1–3·远程 | 1.10 | 8%/2/1000 | — | 可 | `(1+0.24+0.05)×0.85=1.10` |
+| **紫霞贯日** `mv_zixiashengong_guangri`（绝招，原创扩展命名） | 9 | 单体·1–3·远程·绝招 | 2.55 | 9%/气势100/1200 | `ultimate:true` | 可 | 第二绝招；`3×1×0.85×1=2.55` |
 | 紫霞护体 `mv_zixiashengong_huti`（原创扩展命名） | 5 | 自身·支援 | 0 | 7%/3/900 | `bf_hutizhenqi` 3 | — | 支援招；护体值按 06 |
-| **霞映长空** `mv_zixiashengong_changkong`（绝招，原创扩展命名） | 7 | 周身 `aoe_around` | 2.05 | 9%/—/1200 | 自身 `bf_neijin_sheng` 3 | 可 | N=6、AF=0.75；`3×0.75−0.20=2.05` |
+| **霞映长空** `mv_zixiashengong_changkong`（绝招，原创扩展命名） | 7 | 周身 `aoe_around` | 2.05 | 9%/气势100/1200 | `ultimate:true`；自身 `bf_neijin_sheng` 3 | 可 | N=6、AF=0.75；`3×0.75−0.20=2.05` |
 
 | 被动 ID | 名称 | 重 | 效果 |
 |---|---|---:|---|
@@ -277,12 +278,12 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质·外/内 | `reqs`（结构化） | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_huashanjianfa` 华山剑法 | 6玄上·兵器/剑·harmony·0.75/0.25 | `sect:{id:sect_huashan,rank:2}; prereq:[{skill:sk_huashanrumenjian,layer:4}]; hard:[sect,prereq]` | 白云出岫 1.00；苍松迎客 0.90（`bf_shoushi` 2）；金雁横空 1.05（突进） | `set_huashan_qijian` | 《笑傲江湖》华山门人所习；分式出处**（待考）** |
-| `sk_yangwujian` 养吾剑 | 6玄上·兵器/剑·yang·0.65/0.35 | `sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashanjianfa,layer:5}]; hard:[sect,prereq]` | 养气 0（`bf_neijin_sheng`）；浩然一剑 1.15；守中 0.90（自身守势） | `set_huashan_qijian` | 《笑傲江湖》华山剑法名目；招效**（原创扩展）** |
+| `sk_huashanjianfa` 华山剑法 | 6玄上·兵器/剑·harmony·0.75/0.25 | `sect:{id:sect_huashan,rank:2}; prereq:[{skill:sk_huashanrumenjian,layer:4}]; hard:[sect,prereq]` | 白云出岫1.00；苍松迎客0.90；金雁横空 `mv_huashanjianfa_jinyan`（L7绝招，`ultimate:true`，突进2.90，8%/气势100/1200；`3−.10=2.90`） | `set_huashan_qijian` | 《笑傲江湖》华山门人所习；分式出处**（待考）** |
+| `sk_yangwujian` 养吾剑 | 6玄上·兵器/剑·yang·0.65/0.35 | `sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashanjianfa,layer:5}]; hard:[sect,prereq]` | 养气0；浩然一剑 `mv_yangwujian_haoran`（L7绝招，`ultimate:true`，单体3.00，8%/气势100/1200；`3×1=3.00`）；守中0.90 | `set_huashan_qijian` | 《笑傲江湖》华山剑法名目；招效**（原创扩展）** |
 | `sk_xiyijian` 希夷剑 | 5玄中·兵器/剑·harmony·0.80/0.20 | `sect:{id:sect_huashan,rank:2}; prereq:[{skill:sk_huashanrumenjian,layer:4}]; hard:[sect,prereq]` | 视之不见 1.05（命中后 `bf_polu` 30%）；听之不闻 0.90（不可反击） | — | 《笑傲江湖》华山剑招名目；细节**（待考）** |
 | `sk_yunvjian19` 玉女剑十九式 | 5玄中·兵器/剑·yin·0.80/0.20 | `sect:{id:sect_huashan,rank:2}; prereq:[{skill:sk_huashanjianfa,layer:4}]; hard:[sect,prereq]` | 玉女投梭 1.05；弄玉吹箫 0.90（`bf_luanxin` 30%） | — | 《笑傲江湖》华山剑法；十九式与分式逐字**（待考）**，勿与古墓玉女剑混同 |
-| `sk_huashanxinfa` 华山心法 | 6玄上·内功·`harmony`·0/1 | `sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashantuna,layer:5}]; hard:[sect,prereq]` | 抱元 0（`bf_guben` 3）；气御剑 0（下一剑 `bf_ruiyi`） | `set_huashan_qijian` | **（原创扩展）**；`meridians:[mer_renmai]`；IP `20+12+2×8+5×1.8=57` |
-| `sk_kuangfengkuaijian` 狂风快剑 | 6玄上·兵器/剑·neutral·0.90/0.10 | `sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashanrumenjian,layer:5}]; hard:[sect,prereq]` | 狂风骤雨 0.95（3段）；一剑快似一剑 1.10（得 `bf_lianzhao`） | `set_huashan_qijian` | 《笑傲江湖》·剑宗封不平所使，招名与段数**（待考）** |
+| `sk_huashanxinfa` 华山心法 | 6玄上·内功·`harmony`·0/1 | `sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashantuna,layer:5}]; hard:[sect,prereq]` | 抱元0；气御剑 `mv_huashanxinfa_qiyujian`（L7支援绝招，`ultimate:true`，0，8%/气势100/1200，下一剑获`bf_ruiyi`；不走伤害预算） | `set_huashan_qijian` | **（原创扩展）**；`meridians:[mer_renmai]`；IP `20+12+2×8+5×1.8=57` |
+| `sk_kuangfengkuaijian` 狂风快剑 | 6玄上·兵器/剑·neutral·0.90/0.10 | `sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashanrumenjian,layer:5}]; hard:[sect,prereq]` | 狂风骤雨0.95；一剑快似一剑 `mv_kuangfengkuaijian_yijian`（L7绝招，`ultimate:true`，单体3.00，8%/气势100/1200，得`bf_lianzhao`；`3×1=3.00`） | `set_huashan_qijian` | 《笑傲江湖》·剑宗封不平所使，招名与段数**（待考）** |
 
 抽样核算（6/6 门，≥30%）：华山剑法·白云出岫 `1.00`；养吾剑·浩然一剑 `1+0.12=1.12→1.10`；希夷剑 `1+0.12−0.03=1.09→1.10`（表取1.05，−0.04）；玉女剑 `1+0.12−0.03=1.09→1.10`；华山心法两招为支援 `power 0`；狂风骤雨 `AF 0.85×(1+0.24)−0.10=0.95`。
 
@@ -323,7 +324,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | reqs | `sect:{id:sect_songshan,rank:4}; prereq:[{skill:sk_songyangxinfa,layer:6},{skill:sk_songshanjianfa,layer:6}]; attrs:{con:50,wil:55}; aptitude:{apInner:50}; hard:[sect,prereq]` |
 | inner.contribution | `mpMaxPct:34, hpMaxPct:20, attrs:{con:6,wil:6,wis:2}, mpRegen:2.5`；`34+20+2×14+5×2.5=94.5` |
 | inner.stats | `resCold:10, effHit:5`，合计 15 |
-| 层数要点 | 1 凝霜 ｜ 3 寒劲伏脉 ｜ 5 寒冰掌 ｜ 7 寒潮封岳 ｜ 8 寒冰护体 ｜ 10 冰心大成 |
+| 层数要点 | 1 凝霜 ｜ 3 寒劲伏脉 ｜ 5 寒冰掌 ｜ 6 冰封经脉 ｜ 7 第一绝招寒潮封岳 ｜ 8 寒冰护体 ｜ 9 第二绝招冰封经脉 ｜ 10 冰心大成；早层两记攻击与护体仍为普通招 |
 | setTags / conflicts | `[set_songshan_hanbing]` / `{with:sk_xixing,type:counter}`，按 `design/06` `rx_hanbingxixing` 结算 |
 | special / observable | `{fusible:false}` / `false` |
 | learnSources | 左冷禅亲授或掌门密室；击败左冷禅只得 6 重残页**（原创扩展）** |
@@ -333,8 +334,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 |---|---:|---|---:|---|---|---|---|
 | 凝霜劲 `mv_hanbingzhenqi_ningshuang`（原创扩展命名） | 1 | 单体·1–3·远程 | 1.05 | 8%/2/1000 | `bf_hanqi` 50%·1层 | 可 | `(1+0.24+0.05)×0.85−0.10×0.5=1.05` |
 | 寒冰掌 `mv_hanbingzhenqi_hanbingzhang`（原创扩展命名） | 5 | 单体·1·近身 | 1.10 | 7%/2/1000 | `bf_hanqi` 100%·2层 | 可 | `1+0.24−0.05−0.10=1.09→1.10` |
-| 冰封经脉 `mv_hanbingzhenqi_fengmai`（原创扩展命名） | 6 | 单体·1·近身 | 1.10 | 7%/2/1000 | `bf_fengnei` 50%·1 | 可 | `1+0.24−0.05−0.20×0.5=1.09→1.10` |
-| **寒潮封岳** `mv_hanbingzhenqi_fengyue`（绝招，原创扩展命名） | 7 | 周身 `aoe_around` | 2.05 | 9%/—/1200 | 敌方 `bf_hanqi` 100%·2层 | 可 | N=6、AF=0.75；`3×0.75−0.20=2.05` |
+| **冰封经脉** `mv_hanbingzhenqi_fengmai`（绝招，原创扩展命名） | 9 | 单体·1·近身·绝招 | 2.90 | 9%/气势100/1200 | `ultimate:true`；`bf_fengnei` 50%·1 | 可 | 第二绝招；`3×1×1×1−0.20×0.5=2.90` |
+| **寒潮封岳** `mv_hanbingzhenqi_fengyue`（绝招，原创扩展命名） | 7 | 周身 `aoe_around` | 2.05 | 9%/气势100/1200 | `ultimate:true`；敌方 `bf_hanqi` 100%·2层 | 可 | N=6、AF=0.75；`3×0.75−0.20=2.05` |
 | 寒冰护体 `mv_hanbingzhenqi_huti`（原创扩展命名） | 8 | 自身·支援 | 0 | 7%/3/900 | `bf_mian_han` 3；近身攻击者得寒气1层 | — | 支援招，反击强度由被动预算承担 |
 
 | 被动 ID | 名称 | 重 | 效果 |
@@ -347,8 +348,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_songshanjianfa` 嵩山剑法 | 6玄上·兵器/剑·yang | `sect:{id:sect_songshan,rank:2}; prereq:[{skill:sk_songshanrumenjian,layer:4}]; hard:[sect,prereq]` | 万岳朝宗 1.10（六向横扫）；开门见山 1.15（破甲40%） | `set_songshan_hanbing` | 《笑傲江湖》·嵩山太保；分式名**（原创扩展命名）** |
-| `sk_songyangxinfa` 嵩阳心法 | 6玄上·内功·`yang` | `sect:{id:sect_songshan,rank:3}; prereq:[{skill:sk_songyangtuna,layer:5}]; hard:[sect,prereq]` | 嵩阳吐纳 0（回内）；峻岳护体 0（守势） | `set_songshan_hanbing` | **（原创扩展）**；`meridians:[mer_dumai]`；IP `20+12+2×8+5×1.8=57` |
+| `sk_songshanjianfa` 嵩山剑法 | 6玄上·兵器/剑·yang | `sect:{id:sect_songshan,rank:2}; prereq:[{skill:sk_songshanrumenjian,layer:4}]; hard:[sect,prereq]` | 万岳朝宗1.10；开门见山 `mv_songshanjianfa_kaimen`（L7绝招，`ultimate:true`，单体2.95，8%/气势100/1200，破甲40%；`3−.10×.40=2.96≈2.95`） | `set_songshan_hanbing` | 《笑傲江湖》·嵩山太保；分式名**（原创扩展命名）** |
+| `sk_songyangxinfa` 嵩阳心法 | 6玄上·内功·`yang` | `sect:{id:sect_songshan,rank:3}; prereq:[{skill:sk_songyangtuna,layer:5}]; hard:[sect,prereq]` | 嵩阳吐纳0；峻岳护体 `mv_songyangxinfa_junyue`（L7支援绝招，`ultimate:true`，0，8%/气势100/1200，守势；不走伤害预算） | `set_songshan_hanbing` | **（原创扩展）**；`meridians:[mer_dumai]`；IP `20+12+2×8+5×1.8=57` |
 | `sk_dayinyangshou` 大阴阳手 | 5玄中·拳脚/拳·harmony | `sect:{id:sect_songshan,rank:3}; prereq:[{skill:sk_songyangrumenzhang,layer:5}]; hard:[sect,prereq]` | 阴掌 1.10（寒气30%）；阳手 1.10（击退1） | `set_songshan_hanbing` | 《笑傲江湖》·乐厚号“大阴阳手”，武学是否正式具名**（待考）** |
 | `sk_songshanzhuangong` 嵩山桩功 | 4玄下·拳脚/拳·yang | `sect:{id:sect_songshan,rank:2}; prereq:[{skill:sk_songyangrumenzhang,layer:4}]; hard:[sect,prereq]` | 立岳 0（`bf_wenzhong`）；撞山 1.05（击退1） | — | **（原创扩展）** |
 
@@ -413,7 +414,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_taishanjianfa` 泰山剑法 | 6玄上·兵器/剑·harmony | `sect:{id:sect_taishan,rank:2}; prereq:[{skill:sk_taishanrumenjian,layer:4}]; hard:[sect,prereq]` | 石关回马1.00；东岳横云1.05（六向横扫） | `[]` | 《笑傲江湖》泰山门人剑术；分式**（原创扩展命名）** |
+| `sk_taishanjianfa` 泰山剑法 | 6玄上·兵器/剑·harmony | `sect:{id:sect_taishan,rank:2}; prereq:[{skill:sk_taishanrumenjian,layer:4}]; hard:[sect,prereq]` | 石关回马1.00；东岳横云 `mv_taishanjianfa_dongyue`（L7绝招，`ultimate:true`，六向横扫2.55，8%/气势100/1200；N=3、AF=.85，`3×.85=2.55`） | `[]` | 《笑傲江湖》泰山门人剑术；分式**（原创扩展命名）** |
 | `sk_taishan18pan` 泰山十八盘 | 5玄中·轻功·neutral | `sect:{id:sect_taishan,rank:3}; prereq:[{skill:sk_shibanshanbu,layer:5}]; hard:[sect,prereq]` | 盘道0（连走3格得疾行）；回折0（换位） | `[]` | 泰山地名借作身法，武学**（原创扩展）**；`Q_skill=65` |
 | `sk_taishanxinfa` 泰山心法 | 5玄中·内功·`harmony` | `sect:{id:sect_taishan,rank:3}; prereq:[{skill:sk_taishantuna,layer:5}]; hard:[sect,prereq]` | 镇岳0（固本）；观日0（回内） | `[]` | **（原创扩展）**；`meridians:[mer_zuyangming]`；IP `17+10+14+7.5=48.5` |
 | `sk_taishanquan` 泰山拳 | 4玄下·拳脚/拳·yang | `sect:{id:sect_taishan,rank:2}; prereq:[{skill:sk_taishanrumenquan,layer:4}]; hard:[sect,prereq]` | 盘石1.00；落石1.05（击退1） | — | **（原创扩展）** |
@@ -537,7 +538,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_huifengluoyan` 回风落雁剑 | 6玄上·兵器/剑·yin | `sect:{id:sect_hengshan_nan,rank:3}; prereq:[{skill:sk_hengshanrumenjian,layer:4}]; hard:[sect,prereq]` | 回风0.95（绕背）；落雁1.25（目标低血时+条件） | `[]` | 《笑傲江湖》·衡山剑法，招式细节**（待考）** |
+| `sk_huifengluoyan` 回风落雁剑 | 6玄上·兵器/剑·yin | `sect:{id:sect_hengshan_nan,rank:3}; prereq:[{skill:sk_hengshanrumenjian,layer:4}]; hard:[sect,prereq]` | 回风0.95；落雁 `mv_huifengluoyan_luoyan`（L7绝招，`ultimate:true`，单体3.15，8%/气势100/1200，目标低血时可用；`3+.15=3.15`） | `[]` | 《笑傲江湖》·衡山剑法，招式细节**（待考）** |
 | `sk_hengshanwushenjian` 衡山五神剑 | 5玄中·兵器/剑·harmony | `sect:{id:sect_hengshan_nan,rank:3}; prereq:[{skill:sk_hengshanrumenjian,layer:5}]; hard:[sect,prereq]` | 祝融剑1.00；芙蓉剑0.95（直线2） | `[]` | 《笑傲江湖》衡山剑法名目；五式细目**（待考）** |
 | `sk_hengshanxinfa` 衡山心法 | 5玄中·内功·`yin` | `sect:{id:sect_hengshan_nan,rank:2}; prereq:[{skill:sk_hengshantuna,layer:5}]; hard:[sect,prereq]` | 抚弦调息0（回内）；云心0（飘忽） | `[]` | **（原创扩展）**；`meridians:[mer_shoushaoyin]`；IP48.5 |
 抽样核算（4/4，含 §5.3 重点紧凑卡）：回风 `AF.90×(1+.24)−.15=.97→.95`；落雁 `1+.12+.15=1.27→1.25`（须目标低血）；祝融1.00；芙蓉 `.85×1.12=.95`；衡山心法为支援0；《笑傲江湖》曲谱的伤害招见 §5.3 逐招核算。
@@ -601,7 +602,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_hengshanbeijianfa` 恒山剑法 | 6玄上·兵器/剑·yin | `sect:{id:sect_hengshan_bei,rank:3}; prereq:[{skill:sk_hengshanbeirumenjian,layer:4}]; hard:[sect,prereq]` | 绵针1.00；守门户0.90（自身守势） | `[]` | 《笑傲江湖》恒山群尼剑术；分式**（原创扩展命名）** |
+| `sk_hengshanbeijianfa` 恒山剑法 | 6玄上·兵器/剑·yin | `sect:{id:sect_hengshan_bei,rank:3}; prereq:[{skill:sk_hengshanbeirumenjian,layer:4}]; hard:[sect,prereq]` | 绵针1.00；守门户 `mv_hengshanbeijianfa_shoumenhu`（L7绝招，`ultimate:true`，单体2.90，8%/气势100/1200，自身守势；`3−.10=2.90`） | `[]` | 《笑傲江湖》恒山群尼剑术；分式**（原创扩展命名）** |
 | `sk_tianchangzhangfa` 天长掌法 | 5玄中·拳脚/拳·harmony | `sect:{id:sect_hengshan_bei,rank:3}; prereq:[{skill:sk_hengshanbeirumenquan,layer:5}]; hard:[sect,prereq]` | 天长1.10；地久1.10（虚弱30%） | `[]` | 《笑傲江湖》恒山掌法名目**（待考）** |
 | `sk_hengshanbeixinfa` 恒山心法 | 5玄中·内功·`harmony` | `sect:{id:sect_hengshan_bei,rank:2}; prereq:[{skill:sk_hengshanbeituna,layer:5}]; hard:[sect,prereq]` | 慈航0（回春）；守心0（定心） | `[]` | **（原创扩展）**；`meridians:[mer_shoutaiyin]`；IP48.5 |
 | `sk_hengshanbeishenfa` 恒山身法 | 4玄下·轻功·neutral | `sect:{id:sect_hengshan_bei,rank:2}; prereq:[{skill:sk_hengshanbeibu,layer:5}]; hard:[sect,prereq]` | 回廊0（换位）；护阵0（友方援护） | — | **（原创扩展）**；`Q_skill=56` |
@@ -646,7 +647,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | reqs | `sect:{id:sect_riyue,rank:4}; attrs:{con:55,wil:60}; aptitude:{apInner:55}; prereq:[{skill:sk_riyuexinfa,layer:6}]; morality:{max:50}; hard:[sect,prereq]`；梅庄铁板来源以 `reqsOverride:{sect:null}` 删除门派身份，不删除前置 |
 | inner.contribution | `mpMaxPct:48, hpMaxPct:29, attrs:{con:8,wil:8,wis:5}, mpRegen:3.3`；`48+29+2×21+5×3.3=135.5` |
 | inner.stats | `effHit:10, resInjury:10`，合计20（天阶上限） |
-| 层数要点 | 1 吸星真气 ｜ 3 吸星 ｜ 5 反吸 ｜ 7 万流归海 ｜ 8 异种化解 ｜ 10 任脉归流 |
+| 层数要点 | 1 吸星真气 ｜ 3 吸星 ｜ 5 反吸 ｜ 6 散功 ｜ 7 第一绝招万流归海 ｜ 8 异种化解 ｜ 9 第二绝招散功 ｜ 10 任脉归流；吸星、反吸与化解保留普通运功职责 |
 | setTags / conflicts | `[set_riyue_heimu]` / `sk_yijinjing counter`；北冥主运为 `synergy`，见 05 §9.1.3 |
 | special / observable | `{cost:yizhongZhenqi,fusible:false}` / `false` |
 | learnSources | 梅庄湖底铁板刻文 `maxLayer:10, reqsOverride:{sect:null}`；任我行传授 `maxLayer:10`；仅偷看交战不得观摩 |
@@ -656,8 +657,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 |---|---:|---|---:|---|---|---|---|
 | 吸星 `mv_xixing_xixing` | 3 | 单体·1·近身 | 1.10 | 8%/2/1000 | 吸内=伤害30%；装配时得 `bf_xixing` | 可 | `1+0.24−0.15=1.09→1.10` |
 | 反吸 `mv_xixing_fanxi`（原创扩展命名） | 5 | 自身·架势 | 0 | 7%/2/900 | 2回合强化受击反吸；仍产生异种真气 | — | 架势，不进入伤害公式 |
-| 散功 `mv_xixing_sangong`（原创扩展命名） | 6 | 单体·1·近身 | 1.05 | 8%/2/1000 | 吸内；`bf_xuruo` 50% | 可 | `1+0.24−0.15−0.05=1.04→1.05` |
-| **万流归海** `mv_xixing_wanliu`（绝招，原创扩展命名） | 7 | 周身 `aoe_around` | 2.10 | 10%/—/1200 | 每个命中目标各吸内，合计受单招上限 | 可 | N=6、AF=0.75；`3×0.75−0.15=2.10` |
+| **散功** `mv_xixing_sangong`（绝招，原创扩展命名） | 9 | 单体·1·近身·绝招 | 2.80 | 10%/气势100/1200 | `ultimate:true`；吸内；`bf_xuruo` 50% | 可 | 第二绝招；`3×1×1×1−0.15−0.05=2.80` |
+| **万流归海** `mv_xixing_wanliu`（绝招，原创扩展命名） | 7 | 周身 `aoe_around` | 2.10 | 10%/气势100/1200 | `ultimate:true`；每个命中目标各吸内，合计受单招上限 | 可 | N=6、AF=0.75；`3×0.75−0.15=2.10` |
 | 运功化解 `mv_xixing_huajie` | 8 | 自身·支援 | 0 | 10%/3/1000 | 移除3层 `bf_yizhongzhenqi` | — | 05 §9.1.3 固定行动 |
 
 | 被动 ID | 名称 | 重 | 效果 |
@@ -679,7 +680,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | reqs | `vow:vow_duanchen; attrs:{agi:65,wil:55}; aptitude:{apInner:55}; hard:[vow]` |
 | inner.contribution | `mpMaxPct:48, hpMaxPct:29, attrs:{agi:10,wis:6,wil:5}, mpRegen:3.3`；`48+29+42+16.5=135.5` |
 | inner.stats | `spd:12, eva:8`，合计20 |
-| 层数要点 | 1 葵花真气 ｜ 3 飞针 ｜ 4 鬼魅 ｜ 6 刺目 ｜ 7 万针归宗 ｜ 9 针剑相通 ｜ 10 葵花极速 |
+| 层数要点 | 1 葵花真气 ｜ 3 飞针 ｜ 4 鬼魅 ｜ 6 刺目 ｜ 7 第一绝招万针归宗 ｜ 9 第二绝招刺目/针剑相通 ｜ 10 葵花极速；飞针与鬼魅行保留普通招 |
 | setTags / conflicts | `[set_riyue_heimu, set_linjia_bixie]` / 与 `sk_bixie` 同源但不互斥，套装只计一个核心阈值 |
 | special / observable | `{vowGate:vow_duanchen,fusible:false}` / `false` |
 | learnSources | 黑木崖秘库；东方不败剧情路线只可在终盘取得；必须先完成 05 §9.1.4 的冷静期与二次确认 |
@@ -689,8 +690,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 |---|---:|---|---:|---|---|---|---|
 | 飞针 `mv_kuihua_feizhen` | 3 | 连锁3·1–5·投射 | 0.90/首跳 | 8%/2/1000 | `bf_shimang` 30%；后跳×0.8 | 可 | `.80×(1+.24)×.92−.03=.88→.90` |
 | 鬼魅行 `mv_kuihua_guimei`（原创扩展命名） | 4 | 自身·位移 | 0 | 7%/3/800 | 移至6格内合法格；得 `bf_canying` 2层 | — | 位移/增益招，不计伤害 |
-| 刺目 `mv_kuihua_cimu` | 6 | 单体·1·近身 | 1.30 | 8%/4/1000 | 目标无相邻友方时可用；`bf_shimang` 100%·2 | 否 | `(1+.48+.15)×.85−.10=1.29→1.30` |
-| **万针归宗** `mv_kuihua_wanzhen`（绝招，原创扩展命名） | 7 | 连锁5·1–5·投射 | 2.15/首跳 | 10%/—/1200 | `bf_shimang` 30%、`bf_fengxue` 15%；后跳×0.8 | 可 | `3×.80×.92−.03−.03=2.15` |
+| **刺目** `mv_kuihua_cimu`（绝招） | 9 | 单体·1·近身·绝招 | 2.60 | 10%/气势100/1200 | `ultimate:true`；目标无相邻友方时可用；`bf_shimang` 100%·2 | 否 | 第二绝招；`3×1×1×.85+.15−.10=2.60` |
+| **万针归宗** `mv_kuihua_wanzhen`（绝招，原创扩展命名） | 7 | 连锁5·1–5·投射 | 2.15/首跳 | 10%/气势100/1200 | `ultimate:true`；`bf_shimang` 30%、`bf_fengxue` 15%；后跳×0.8 | 可 | `3×.80×.92−.03−.03=2.15` |
 
 > 东方不败 Boss 若需更高倍率，应由 `design/09` 的遭遇脚本定稿，不反写武学通用数据。
 
@@ -764,8 +765,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_riyuejianfa` 日月剑法 | 6玄上·兵器/剑·yin | `sect:{id:sect_riyue,rank:2}; prereq:[{skill:sk_heimuyarumenjian,layer:4}]; hard:[sect,prereq]` | 日升1.10；月落1.10（破绽40%） | `set_riyue_heimu` | **（原创扩展）** |
-| `sk_riyuexinfa` 日月心法 | 6玄上·内功·`yin` | `sect:{id:sect_riyue,rank:2}; prereq:[{skill:sk_heimutuna,layer:5}]; hard:[sect,prereq]` | 黑木运气0（回内）；日月同辉0（内劲提升） | `[set_riyue_heimu]` | **（原创扩展）**；`meridians:[mer_chongmai]`；IP57 |
+| `sk_riyuejianfa` 日月剑法 | 6玄上·兵器/剑·yin | `sect:{id:sect_riyue,rank:2}; prereq:[{skill:sk_heimuyarumenjian,layer:4}]; hard:[sect,prereq]` | 日升1.10；月落 `mv_riyuejianfa_yueluo`（L7绝招，`ultimate:true`，单体2.95，8%/气势100/1200，破绽40%；`3−.10×.40=2.96≈2.95`） | `set_riyue_heimu` | **（原创扩展）** |
+| `sk_riyuexinfa` 日月心法 | 6玄上·内功·`yin` | `sect:{id:sect_riyue,rank:2}; prereq:[{skill:sk_heimutuna,layer:5}]; hard:[sect,prereq]` | 黑木运气0；日月同辉 `mv_riyuexinfa_riyue`（L7支援绝招，`ultimate:true`，0，8%/气势100/1200，内劲提升；不走伤害预算） | `[set_riyue_heimu]` | **（原创扩展）**；`meridians:[mer_chongmai]`；IP57 |
 | `sk_shigudaxuebi` 石鼓打穴笔法 | 5玄中·兵器/奇门（笔）·harmony | `skills:{art:45}; prereq:[{skill:sk_heimutuna,layer:4}]; hard:[prereq]` | 落笔1.00；石鼓文0.95（点穴30%） | `[]` | 《笑傲江湖》·秃笔翁以书法入武；正式名与字帖细节**（待考）** |
 | `sk_pomopimajian` 泼墨披麻剑法 | 5玄中·兵器/剑·neutral | `skills:{art:45}; prereq:[{skill:sk_heimutuna,layer:4}]; hard:[prereq]` | 泼墨1.05（六向横扫）；披麻1.00（连招） | `[]` | 《笑傲江湖》·丹青生剑法；招式细目**（待考）** |
 | `sk_xuantianzhi` 玄天指 | 5玄中·拳脚/指·yin | `skills:{chess:45}; prereq:[{skill:sk_heimutuna,layer:4}]; hard:[prereq]` | 落子1.00；封眼0.95（封穴30%） | `[]` | 《笑傲江湖》·黑白子武学；正式名与交手细节**（待考）** |
@@ -809,7 +810,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | weaponReq | `{category:sword}` |
 | reqs | `vow:vow_duanchen; attrs:{agi:60,wil:50}; aptitude:{apSword:50}; prereq:[{skill:sk_linjiajianfa,layer:5}]; hard:[vow,prereq]`；无誓约仅按05“有形无实”降为5品/5重 |
 | layerStats | `spd:[5,15], crit:[1,5]`，合计20 |
-| 层数要点 | 1 流星赶月 ｜ 3 花开见佛 ｜ 5 飞燕穿柳 ｜ 7 群邪辟易 ｜ 9 鬼魅 ｜ 10 七十二路归一 |
+| 层数要点 | 1 流星赶月 ｜ 3 花开见佛 ｜ 5 飞燕穿柳 ｜ 7 第一绝招群邪辟易 ｜ 9 第二绝招飞燕穿柳/鬼魅 ｜ 10 七十二路归一；两记早层剑式保留普通招 |
 | setTags / conflicts | `[set_linjia_bixie]` / 与 `sk_kuihua` 同源；不额外叠两份断尘代价 |
 | special / observable | `{vowGate:{vow:vow_duanchen,without:{gradeOverride:5,layerCap:5}},fusible:false}` / `false` |
 | learnSources | 林家老宅袈裟真谱；岳不群/林平之相关剧情仅在符合路线时取得；林家口传只解锁有形无实版 |
@@ -819,8 +820,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 |---|---:|---|---:|---|---|---|---|
 | 流星赶月 `mv_bixie_liuxingganyue` | 1 | 突进3·近身 | 0.85 | 8%/1/900 | 突进；自身 `bf_lianzhao` ×1 | 可 | `1+.12−.07−.10−.10=.85` |
 | 花开见佛 `mv_bixie_huakaijianfo` | 3 | 单体·1·3段 | 1.20 | 9%/2/900 | `bf_polu` 40% | 可 | `1+.24+.05−.07−.04=1.18→1.20` |
-| 飞燕穿柳 `mv_bixie_feiyanchuanliu` | 5 | 直线3·近身 | 0.90 | 9%/2/900 | 穿过首个目标后停至空格 | 可 | N=3、AF=.85；`.85×1.29−.07−.10=.9265→.90` |
-| **群邪辟易** `mv_bixie_qunxie`（绝招） | 7 | 乱击6·半径2 | 2.10 | 10%/—/1200 | 自身 `bf_lianzhao` ×1 | 否 | `3×.85×.85−.10=2.07→2.10` |
+| **飞燕穿柳** `mv_bixie_feiyanchuanliu`（绝招） | 9 | 直线3·近身·绝招 | 2.45 | 10%/气势100/1200 | `ultimate:true`；穿过首个目标后停至空格 | 可 | 第二绝招；N=3、AF=.85；`3×.85−.10=2.45` |
+| **群邪辟易** `mv_bixie_qunxie`（绝招） | 7 | 乱击6·半径2 | 2.10 | 10%/气势100/1200 | `ultimate:true`；自身 `bf_lianzhao` ×1 | 否 | `3×.85×.85−.10=2.07→2.10` |
 
 | 被动 ID | 名称 | 重 | 效果 |
 |---|---|---:|---|
@@ -925,7 +926,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_songfengjianfa` 松风剑法 | 6玄上·兵器/剑·yin | `sect:{id:sect_qingcheng,rank:3}; prereq:[{skill:sk_qingchengrumenjian,layer:4}]; hard:[sect,prereq]` | 松涛1.00；风过青城1.00（突进） | `[]` | 《笑傲江湖》青城派剑法；分式**（原创扩展命名）** |
+| `sk_songfengjianfa` 松风剑法 | 6玄上·兵器/剑·yin | `sect:{id:sect_qingcheng,rank:3}; prereq:[{skill:sk_qingchengrumenjian,layer:4}]; hard:[sect,prereq]` | 松涛1.00；风过青城 `mv_songfengjianfa_fengguoqingcheng`（L7绝招，`ultimate:true`，突进2.90，8%/气势100/1200；`3−.10=2.90`） | `[]` | 《笑傲江湖》青城派剑法；分式**（原创扩展命名）** |
 | `sk_qingchengxinfa` 青城心法 | 5玄中·内功·`yin` | `sect:{id:sect_qingcheng,rank:2}; prereq:[{skill:sk_qingchengtuna,layer:5}]; hard:[sect,prereq]` | 松息0（回内）；藏劲0（精准） | `[]` | **（原创扩展）**；`meridians:[mer_zujueyin]`；IP48.5 |
 
 抽样核算（2/2）：松涛1.00；风过青城 `1+.12−.10=1.02→1.00`；心法支援0。
@@ -990,7 +991,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_wuxianduzhang` 五仙毒掌 | 6玄上·拳脚/拳·yin | `sect:{id:sect_wuxian,rank:3}; prereq:[{skill:sk_wuxianrumenzhang,layer:4}]; skills:{poi:35}; hard:[sect,prereq]` | 蛇影掌0.90（中毒100%）；回风毒雾0.75（六向锥2、中毒） | `[]` | **（原创扩展命名）**；据五仙教用毒传统 |
+| `sk_wuxianduzhang` 五仙毒掌 | 6玄上·拳脚/拳·yin | `sect:{id:sect_wuxian,rank:3}; prereq:[{skill:sk_wuxianrumenzhang,layer:4}]; skills:{poi:35}; hard:[sect,prereq]` | 蛇影掌0.90；回风毒雾 `mv_wuxianduzhang_huifengduwu`（L7绝招，`ultimate:true`，锥形1.95，8%/气势100/1200，中毒100%；N=4、AF=.80，`3×.80×.85−.10=1.94≈1.95`） | `[]` | **（原创扩展命名）**；据五仙教用毒传统 |
 | `sk_wuxiandujing` 五仙毒经 | 5玄中·杂学/毒·yin | `sect:{id:sect_wuxian,rank:2}; prereq:[{skill:sk_miaozhaidufa,layer:5}]; skills:{poi:40,antidote:30}; hard:[sect,prereq]` | 辨毒0（精准）；施毒0（下次攻击附普通中毒） | `[]` | **（原创扩展）** |
 
 抽样核算（2/2）：蛇影掌 `1−.10=.90`；毒雾按 N=4、AF=.80，`.80×1.24×.85−.10=.743→.75`；毒经支援0。
@@ -1016,7 +1017,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
 | `sk_taoguliuxianshou` 桃谷六仙手 | 5玄中·拳脚/擒拿·neutral | `attrs:{str:35,agi:35}` | 六手齐拿1.05（缴械30%）；分筋1.10（骨伤30%） | `[]` | 《笑傲江湖》桃谷六仙合力擒人与撕扯敌手；武学名**（原创扩展命名）**，表现弱化暴烈细节 |
-| `sk_wanliduxing` 万里独行 | 6玄上·轻功·neutral | `attrs:{agi:45}; aptitude:{apLight:40}` | 远遁0（`bf_dunzou`2）；掠影0（移动≤4） | `[]` | 田伯光绰号借作轻功名，**（原创扩展命名）**；`Q_skill=74`，与 `design/08` 对齐 |
+| `sk_wanliduxing` 万里独行 | 6玄上·轻功·neutral | `attrs:{agi:45}; aptitude:{apLight:40}` | 远遁 `mv_wanliduxing_yuandun`（L7身法绝招，`ultimate:true`，0，8%/气势100/1200，`bf_dunzou`2；不走伤害预算）；掠影0 | `[]` | 田伯光绰号借作轻功名，**（原创扩展命名）**；`Q_skill=74`，与 `design/08` 对齐 |
 | `sk_bujiezhang` 不戒掌 | 5玄中·拳脚/拳·yang | `attrs:{str:40,con:35}; prereq:[{skill:sk_bujiecuquan,layer:5}]; hard:[prereq]` | 破门1.05（击退1）；大喝0.95（震慑50%） | `[]` | 《笑傲江湖》不戒和尚武力高强；武学名与招式均**（原创扩展命名）** |
 
 抽样核算（3/3）：六手齐拿 `1+.12−.20×.30=1.06→1.05`；分筋 `1+.12−.03=1.09→1.10`；万里独行为支援0；破门 `1+.12−.05=1.07→1.05`；大喝 `1−.10×.5=.95`。
@@ -1095,6 +1096,19 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | 门派进阶链 | **9 / 9** | §1.2 每个组织均有黄→玄→地链；散人传承非门派，不虚造组织链 |
 | 门派入门拳或剑 | **9 / 9** | 华山、嵩山、泰山、南衡山、北恒山、日月、福威、青城、五仙均至少一门黄阶拳或剑 |
 | 门派成套组合 | **9 / 9** | §1.2 与 §12 双向登记；散人另有 `legacy-set:xiaoao_yiren` |
+| 绝招数量 | **天9／地14／玄上15** | 天上3、天中各2、天下2；地上各2、地中／地下各1；15门玄上各1。调整前为天4／地12／玄上1 |
+
+天中／地中区间取值逐门理由：
+
+| 武学 | 取值 | 理由 |
+|---|---:|---|
+| `sk_xixing` | 天中 2 | 单体散功与范围夺内分别承担破阵、清场；其余三招是吸取、反吸、化解的普通循环。 |
+| `sk_kuihua` | 天中 2 | 单体致盲与连锁飞针已有两种清晰职责，仅余飞针、位移两记普通招，不足以支撑第三绝招。 |
+| `sk_taiyuesanqingfeng` | 地中 1 | 三峰合一是三式铺垫后的唯一终结，前三峰必须保留普通招。 |
+| `sk_daizongruhe` | 地中 1 | 阴阳割昏晓承担推演终结，戴、奇路与造化维持计算／支援循环。 |
+| `sk_baibianqianhuan` | 地中 1 | 云雾十三式已是范围终结，云起、雾合、百变保留普通变化。 |
+| `sk_hengshanyunwubu` | 地中 1 | 雾锁千山承担支援脱身，入雾、回峰、云影保留常规机动。 |
+| `sk_qixianwuxingjian` | 地中 1 | 七弦齐鸣承担全场音控，泛音、乱弦、无形剑气保留蓄势与单体压制。 |
 
 ### 13.4 原生书界与既定池差异
 
@@ -1209,11 +1223,11 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | 〃 | `mv_dugu9_pobian` | `mfr_dugu9_pobian` | 否／A6H |
 | 〃 | `mv_dugu9_posuo` | `mfr_dugu9_posuo` | 否／A6H |
 | 〃 | `mv_dugu9_pozhang` | `mfr_dugu9_pozhang` | 否／A6H |
-| 〃 | `mv_dugu9_poanqi` | `mfr_dugu9_poanqi` | 否／A6H；主动伤害为主，拨开投射为附带语义 |
-| 〃 | `mv_dugu9_poqi` | `mfr_dugu9_poqi` | 否／A6H |
+| 〃 | `mv_dugu9_poanqi` | `mfr_dugu9_poanqi` | 是／见下表 |
+| 〃 | `mv_dugu9_poqi` | `mfr_dugu9_poqi` | 是／见下表 |
 | 〃 | `mv_dugu9_wuzhao` | `mfr_dugu9_wuzhao` | 是／A10H |
 | `sk_zixiashengong` | `mv_zixiashengong_chaoyang` | `mfr_zixiashengong_chaoyang` | 否／D4Y |
-| 〃 | `mv_zixiashengong_guangri` | `mfr_zixiashengong_guangri` | 否／A6Y |
+| 〃 | `mv_zixiashengong_guangri` | `mfr_zixiashengong_guangri` | 是／见下表 |
 | 〃 | `mv_zixiashengong_huti` | `mfr_zixiashengong_huti` | 否／D6Y |
 | 〃 | `mv_zixiashengong_changkong` | `mfr_zixiashengong_changkong` | 是／A8Y |
 | `sk_taiyuesanqingfeng` | `mv_taiyuesanqingfeng_yifeng` | `mfr_taiyuesanqingfeng_yifeng` | 否／A4H |
@@ -1222,7 +1236,7 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | 〃 | `mv_taiyuesanqingfeng_sanfengheyi` | `mfr_taiyuesanqingfeng_sanfengheyi` | 是／A8H |
 | `sk_hanbingzhenqi` | `mv_hanbingzhenqi_ningshuang` | `mfr_hanbingzhenqi_ningshuang` | 否／A6I |
 | 〃 | `mv_hanbingzhenqi_hanbingzhang` | `mfr_hanbingzhenqi_hanbingzhang` | 否／A6I |
-| 〃 | `mv_hanbingzhenqi_fengmai` | `mfr_hanbingzhenqi_fengmai` | 否／A6I |
+| 〃 | `mv_hanbingzhenqi_fengmai` | `mfr_hanbingzhenqi_fengmai` | 是／见下表 |
 | 〃 | `mv_hanbingzhenqi_fengyue` | `mfr_hanbingzhenqi_fengyue` | 是／A8I |
 | 〃 | `mv_hanbingzhenqi_huti` | `mfr_hanbingzhenqi_huti` | 否／D6I |
 | `sk_daizongruhe` | `mv_daizongruhe_dai` | `mfr_daizongruhe_dai` | 否／A4H |
@@ -1250,12 +1264,12 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 |---|---|---|---|
 | `sk_xixing` | `mv_xixing_xixing` | `mfr_xixing_xixing` | 否／A6I |
 | 〃 | `mv_xixing_fanxi` | `mfr_xixing_fanxi` | 否／D6I |
-| 〃 | `mv_xixing_sangong` | `mfr_xixing_sangong` | 否／A6I |
+| 〃 | `mv_xixing_sangong` | `mfr_xixing_sangong` | 是／见下表 |
 | 〃 | `mv_xixing_wanliu` | `mfr_xixing_wanliu` | 是／A10I |
 | 〃 | `mv_xixing_huajie` | `mfr_xixing_huajie` | 否／D6I |
 | `sk_kuihua` | `mv_kuihua_feizhen` | `mfr_kuihua_feizhen` | 否／A6I |
 | 〃 | `mv_kuihua_guimei` | `mfr_kuihua_guimei` | 否／M6I |
-| 〃 | `mv_kuihua_cimu` | `mfr_kuihua_cimu` | 否／A6I |
+| 〃 | `mv_kuihua_cimu` | `mfr_kuihua_cimu` | 是／见下表 |
 | 〃 | `mv_kuihua_wanzhen` | `mfr_kuihua_wanzhen` | 是／A10I |
 | `sk_heimuyajianfa` | `mv_heimuyajianfa_yatu` | `mfr_heimuyajianfa_yatu` | 否／A4I |
 | 〃 | `mv_heimuyajianfa_duanlu` | `mfr_heimuyajianfa_duanlu` | 否／A4I |
@@ -1267,7 +1281,7 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | 〃 | `mv_qixianwuxingjian_qiming` | `mfr_qixianwuxingjian_qiming` | 是／A8I |
 | `sk_bixie` | `mv_bixie_liuxingganyue` | `mfr_bixie_liuxingganyue` | 否／A6I |
 | 〃 | `mv_bixie_huakaijianfo` | `mfr_bixie_huakaijianfo` | 否／A6I |
-| 〃 | `mv_bixie_feiyanchuanliu` | `mfr_bixie_feiyanchuanliu` | 否／A6I |
+| 〃 | `mv_bixie_feiyanchuanliu` | `mfr_bixie_feiyanchuanliu` | 是／见下表 |
 | 〃 | `mv_bixie_qunxie` | `mfr_bixie_qunxie` | 是／A10I |
 | `sk_fantianzhang` | `mv_fantianzhang_tuotian` | `mfr_fantianzhang_tuotian` | 否／A4Y |
 | 〃 | `mv_fantianzhang_fanzhang` | `mfr_fantianzhang_fanzhang` | 否／A4Y |
@@ -1282,9 +1296,23 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | 〃 | `mv_wuxianbaidugong_duyin` | `mfr_wuxianbaidugong_duyin` | 否／A4I |
 | 〃 | `mv_wuxianbaidugong_wangu` | `mfr_wuxianbaidugong_wangu` | 是／A8I |
 
+#### 同门第二／第三绝招显式路线
+
+下表只展开同门中未保留原模板者；各路以不同穴序、CT、风险承载不同职责。
+
+| 武学 | moveRef | 路线 ID | purpose | 职责 | 显式步骤（`ap_*/CT/风险`） | 段数 | 路线 CT | 收招 + 路线 |
+|---|---|---|---|---|---|---:|---:|---:|
+| `sk_dugu9` | `mv_dugu9_poanqi` | `mfr_dugu9_poanqi` | attack | 投射反制 | `ap_daimai_zulinqi/70/110 → ap_daimai_weidao/70/120 → ap_daimai_daimai/70/130 → ap_dumai_zhiyang/70/140 → ap_renmai_qihai/70/120 → ap_renmai_guanyuan/70/120 → ap_shoujueyin_tianchi/70/150 → ap_shoujueyin_quze/70/160 → ap_shoujueyin_neiguan/70/170 → ap_shoujueyin_laogong/70/180` | 10 | 700 | 1900 |
+| 〃 | `mv_dugu9_poqi` | `mfr_dugu9_poqi` | attack | 护体破阵 | `ap_shoujueyin_laogong/75/120 → ap_shoujueyin_neiguan/75/130 → ap_shoujueyin_quze/75/140 → ap_shoujueyin_tianchi/75/150 → ap_daimai_daimai/75/140 → ap_daimai_weidao/75/150 → ap_daimai_zulinqi/75/160 → ap_dumai_zhiyang/75/170 → ap_renmai_guanyuan/75/170 → ap_renmai_qihai/75/180` | 10 | 750 | 1950 |
+| `sk_zixiashengong` | `mv_zixiashengong_guangri` | `mfr_zixiashengong_guangri` | attack | 远程点杀 | `ap_shouyangming_quchi/75/100 → ap_shouyangming_shousanli/75/110 → ap_shouyangming_hegu/75/120 → ap_shouyangming_shangyang/75/130 → ap_renmai_qihai/75/110 → ap_renmai_guanyuan/75/120 → ap_dumai_zhiyang/75/140 → ap_dumai_baihui/75/150` | 8 | 600 | 1800 |
+| `sk_hanbingzhenqi` | `mv_hanbingzhenqi_fengmai` | `mfr_hanbingzhenqi_fengmai` | attack | 单体封内 | `ap_shoutaiyin_chize/75/100 → ap_shoutaiyin_taiyuan/75/110 → ap_shoutaiyin_shaoshang/75/120 → ap_shoutaiyin_yunmen/75/130 → ap_renmai_qihai/75/110 → ap_renmai_guanyuan/75/120 → ap_shoujueyin_tianchi/75/140 → ap_shoujueyin_quze/75/150` | 8 | 600 | 1800 |
+| `sk_xixing` | `mv_xixing_sangong` | `mfr_xixing_sangong` | attack | 单体散功 | `ap_shoutaiyin_chize/75/120 → ap_shoutaiyin_taiyuan/75/130 → ap_shoutaiyin_shaoshang/75/140 → ap_shoutaiyin_yunmen/75/150 → ap_renmai_qihai/75/120 → ap_renmai_guanyuan/75/120 → ap_renmai_zhongwan/75/140 → ap_shoujueyin_tianchi/75/150 → ap_shoujueyin_quze/75/160 → ap_shoujueyin_neiguan/75/170` | 10 | 750 | 1950 |
+| `sk_kuihua` | `mv_kuihua_cimu` | `mfr_kuihua_cimu` | attack | 单体致盲 | `ap_shoujueyin_laogong/70/110 → ap_shoujueyin_neiguan/70/120 → ap_shoujueyin_quze/70/130 → ap_shoujueyin_tianchi/70/140 → ap_shoutaiyin_shaoshang/70/130 → ap_shoutaiyin_taiyuan/70/140 → ap_shoutaiyin_chize/70/150 → ap_shoutaiyin_yunmen/70/160 → ap_renmai_qihai/70/160 → ap_renmai_guanyuan/70/170` | 10 | 700 | 1900 |
+| `sk_bixie` | `mv_bixie_feiyanchuanliu` | `mfr_bixie_feiyanchuanliu` | attack | 穿线位移 | `ap_zushaoyin_yongquan/70/110 → ap_zushaoyin_taixi/70/120 → ap_zutaiyang_weizhong/70/130 → ap_dumai_mingmen/70/140 → ap_shoutaiyin_yunmen/70/130 → ap_shoutaiyin_chize/70/140 → ap_shoutaiyin_taiyuan/70/150 → ap_shoutaiyin_shaoshang/70/160 → ap_shoujueyin_tianchi/70/160 → ap_shoujueyin_quze/70/170` | 10 | 700 | 1900 |
+
 ### 15.5 玄／黄阶路线模板绑定
 
-玄、黄阶不逐招重列路线，按 `design/21` §4.2 的品阶段数边界引用下表。构建器须先为紧凑卡／一行卡每招分配完整 `mv_<skill-body>_<move-body>`，再生成唯一 `mfr_<skill-body>_<move-body>` 并展开 §15.2；伤害=`attack`，护盾／招架／卸力／护体／纯治疗驱散=`defense`，纯位移／换位／脱离／闪避身法=`movement`。
+除玄上绝招须在下方逐条显式绑定外，其余玄、黄阶不逐招重列路线，按 `design/21` §4.2 的品阶段数边界引用下表。构建器须先为紧凑卡／一行卡每招分配完整 `mv_<skill-body>_<move-body>`，再生成唯一 `mfr_<skill-body>_<move-body>` 并展开 §15.2；伤害=`attack`，护盾／招架／卸力／护体／纯治疗驱散=`defense`，纯位移／换位／脱离／闪避身法=`movement`。
 
 | 大阶／性质 | 非绝招 | 已有绝招可用模板 |
 |---|---|---|
@@ -1294,6 +1322,26 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | 黄·阳 | `A4Y`；防 `D3Y`；身法 `M4Y` | 不新增绝招 |
 | 黄·阴 | `A4I`；防 `D3I`；身法 `M4I` | 不新增绝招 |
 | 黄·调和或 neutral | `A4H`；防 `D3H`；身法 `M4H` | 不新增绝招 |
+
+玄上 15 门各确认一记既有招式为绝招；模板完整穴位序列见 §15.2。每条均为6段、镜像 `ultimate:true`，且 `1200+路线CT≤2000`。
+
+| 武学 | moveRef | 路线 id | 模板或显式穴位序列 | 段数 | 单段 CT | 路线 CT | 风险 |
+|---|---|---|---|---:|---:|---:|---|
+| `sk_huashanjianfa` | `mv_huashanjianfa_jinyan` | `mfr_huashanjianfa_jinyan` | A6H（§15.2） | 6 | 75 | 450 | 中 |
+| `sk_yangwujian` | `mv_yangwujian_haoran` | `mfr_yangwujian_haoran` | A6Y（§15.2） | 6 | 75 | 450 | 中 |
+| `sk_huashanxinfa` | `mv_huashanxinfa_qiyujian` | `mfr_huashanxinfa_qiyujian` | D6H（§15.2） | 6 | 90 | 540 | 中 |
+| `sk_kuangfengkuaijian` | `mv_kuangfengkuaijian_yijian` | `mfr_kuangfengkuaijian_yijian` | A6H（§15.2） | 6 | 75 | 450 | 中 |
+| `sk_songshanjianfa` | `mv_songshanjianfa_kaimen` | `mfr_songshanjianfa_kaimen` | A6Y（§15.2） | 6 | 75 | 450 | 中 |
+| `sk_songyangxinfa` | `mv_songyangxinfa_junyue` | `mfr_songyangxinfa_junyue` | D6Y（§15.2） | 6 | 90 | 540 | 中 |
+| `sk_taishanjianfa` | `mv_taishanjianfa_dongyue` | `mfr_taishanjianfa_dongyue` | A6H（§15.2） | 6 | 75 | 450 | 中 |
+| `sk_xiaoaojianghuqu` | `mv_xiaoaojianghuqu_tongsheng` | `mfr_xiaoaojianghuqu_tongsheng` | A6H（§15.2） | 6 | 75 | 450 | 中 |
+| `sk_huifengluoyan` | `mv_huifengluoyan_luoyan` | `mfr_huifengluoyan_luoyan` | A6I（§15.2） | 6 | 75 | 450 | 中 |
+| `sk_hengshanbeijianfa` | `mv_hengshanbeijianfa_shoumenhu` | `mfr_hengshanbeijianfa_shoumenhu` | A6I（§15.2） | 6 | 75 | 450 | 中 |
+| `sk_riyuejianfa` | `mv_riyuejianfa_yueluo` | `mfr_riyuejianfa_yueluo` | A6I（§15.2） | 6 | 75 | 450 | 中 |
+| `sk_riyuexinfa` | `mv_riyuexinfa_riyue` | `mfr_riyuexinfa_riyue` | D6I（§15.2） | 6 | 90 | 540 | 中 |
+| `sk_songfengjianfa` | `mv_songfengjianfa_fengguoqingcheng` | `mfr_songfengjianfa_fengguoqingcheng` | A6I（§15.2） | 6 | 75 | 450 | 中 |
+| `sk_wuxianduzhang` | `mv_wuxianduzhang_huifengduwu` | `mfr_wuxianduzhang_huifengduwu` | A6I（§15.2） | 6 | 75 | 450 | 中 |
+| `sk_wanliduxing` | `mv_wanliduxing_yuandun` | `mfr_wanliduxing_yuandun` | M6H（§15.2） | 6 | 65 | 390 | 中 |
 
 模板不创造或取消 `ultimate:true`。同招只生成一条主路线；若被动触发另需防守／移动发力，才另挂 `routeOnTriggerRef`，不得让同一 `mfr_*` 兼任两种 purpose。
 
@@ -1361,7 +1409,7 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | 其中沿用上游固定 / 既有建议 ID | **6** | 基准 §13 固定：`sk_dugu9`、`sk_xixing`、`sk_kuihua`、`sk_bixie`；`design/08` / `design/09` 先行建议：`sk_wanliduxing`、`sk_xiaoaojianghuqu`，正式定义均归本文 |
 | 本文新确立的武学 ID | **82** | 除上列 6 个外，§2–§11 的全部武学 ID；入库前仍由全局构建器作最终唯一性检查 |
 | 跨组只引用、不定义 | **5** | `sk_yijinjing`、`sk_taijiquan`、`sk_taijijian`、`sk_dagou`、`sk_cuixinzhang` |
-| 本文登记招式 `mv_*` | **76**（首次新增 64；沿用 12） | 天 / 地完整卡及曲谱重点卡的招式；均以所属武学 ID 为前缀 |
+| 本文登记招式 `mv_*` | **76**（首次新增 64；沿用 12） | 天 / 地完整卡及曲谱重点卡的招式；绝招调整只升格既有招式，未新增招式。紧凑卡短名数据化时展开为所属武学前缀 |
 | 本文登记被动 `ps_*` | **56**（首次新增 51；沿用 5） | 天 / 地完整卡及曲谱重点卡的被动；均以所属武学 ID 为前缀 |
 
 新确立的 82 个 `sk_*` 按组织汇总如下，避免正文再复制一份 82 行主数据：
@@ -1387,7 +1435,7 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | 跨组既有套装 | 1 | `set_dugu_jianzhong` | 定义见 `catalog/skills-daojia` §7；本文补 `sk_dugu9` 反向标签 |
 | 门派 ID | 9 | `sect_huashan`、`sect_songshan`、`sect_taishan`、`sect_hengshan_nan`、`sect_hengshan_bei`、`sect_riyue`、`sect_fuwei`、`sect_qingcheng`、`sect_wuxian` | 全部沿用 `rulings-v1` §3，并已与 `design/17` §3 的笑傲 `O` 状态及 §6/§8/§9 的模板核对；非本文新增 |
 | 经脉正式引用 | 10 | `mer_renmai`、`mer_dumai`、`mer_chongmai`、`mer_daimai`、`mer_shoutaiyin`、`mer_shoushaoyin`、`mer_zuyangming`、`mer_zushaoyang`、`mer_zutaiyin`、`mer_zujueyin` | 已全部命中 `design/15` 正式 ID；本文不定义经脉 |
-| 经脉路线 `mfr_*` | 84 个拟登记引用 | §15.3–§15.4 天／地逐招 72、§15.6 轻功 12；玄黄按 §15.5 数据化生成 | 对象归 `design/21`，不计武学／招式数 |
+| 经脉路线 `mfr_*` | 99 个拟登记引用 | §15.3–§15.4 天／地逐招72、§15.5玄上绝招15、§15.6轻功12；其余玄黄按§15.5数据化生成 | 对象归 `design/21`，不计武学／招式数 |
 | 调息档案 `txp_*` | 21 个拟登记引用 | §15.7 逐门绑定 | 对象归 `design/21`，不替代内功 `sk_*` |
 | 新 Buff | **0** | — | 正文引用 41 个唯一 `bf_*`，均已在 `design/06` 或 `rulings-v1` A5 登记 |
 
@@ -1447,7 +1495,7 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | WU-V03 | `category/subType/nature/origin` 枚举检查 | 内功 `nature` 只能 `yin/yang/harmony`；非内功可 `neutral`；不得出现中文枚举值 |
 | WU-V04 | `reqs` schema 检查 | `sect:{id,rank}`；技艺键仅限 C17 白名单；`prereq` 外层 AND、`anyOf` 内层 OR；`hard` 路径必须存在 |
 | WU-V05 | 前置图做拓扑与来源可达性检查 | 禁止自依赖、空 OR、无入口闭环；§1.2 九条黄→玄→地链均可达 |
-| WU-V06 | 完整卡的 `wOut+wIn`、`layerStats`、绝招层数 | 和为1；地≤15、天≤20；地/天都有绝招，核心首绝招≤7重 |
+| WU-V06 | 完整卡的 `wOut+wIn`、`layerStats`、绝招层数与数量 | 和为1；地≤15、天≤20；天上/天中/天下为3/2/2记，地上/地中/地下为2/1/1记，玄上1记，核心首绝招≤7重 |
 | WU-V07 | 招式预算复算 | 独孤六式按 CN-05 以罕见条件 +0.30 复算为 1.147，配置 1.10 差 −0.047；其余完整卡伤害招与公式差≤0.05；玄阶抽样覆盖≥30%；黄阶按节模板复核 |
 | WU-V08 | 内功贡献 | 21 门均有 `nature`；完整卡有 `inner.contribution` 且 IP 在品阶预算±5%；紧凑卡写 IP 核算值 |
 | WU-V09 | Buff 外键 | 正文每个 `bf_*` 必须存在于 06 或 A5，施加品阶默认 `inherit` |
@@ -1457,7 +1505,7 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | WU-V13 | 敌人专用隔离 | `enemyOnly:true` 不进入 88 门统计；本文期望为 0 |
 | WU-V14 | ID 全局唯一 | 本文新确立的 82 个 `sk_*` 不得在其他图鉴再次定义；上游名录 / 建议引用不误报为重复定义 |
 | WU-V15 | Markdown 完整性 | 表头列数一致，围栏成对，目录标题连续，无截断句和占位词 |
-| WU-V16 | 天／地路线覆盖 | §15.3–§15.4 恰有 16 门、72 个唯一 `moveRef`／`mfr_*`；每门至少一记绝招且路线 `ultimate` 镜像原招真值 |
+| WU-V16 | 招式路线覆盖 | §15.3–§15.4 恰有16门、72个唯一天地 `moveRef`／`mfr_*`；§15.5另有15记玄上绝招显式路线；路线 `ultimate` 镜像原招真值 |
 | WU-V17 | 路线结构与时间 | 展开后每条 1–18 段、穴位不重复、`segmentCt 40–120`、`riskBp 0–1200`，且 `recovery+ΣsegmentCt≤2000` |
 | WU-V18 | 轻功／内功接口 | 12 门轻功各有唯一 movement 路线；21 门内功各有性质匹配的 `txp_*` 与 `innerGuard`，且内功不得配置来袭侧 `breakGuardBp` |
 
@@ -1480,7 +1528,7 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | WU-T13 | 五仙 / 五毒隔离 | 笑傲五仙与碧血五毒同名别称 | 分别解析 `sect_wuxian` / `sect_wudu`，不共享门派身份 |
 | WU-T14 | 梅庄来源覆写 | 以梅庄铁板学习吸星，应用 `{sect:null}` 来源覆写 | 仅移除门派身份条件，仍保留日月心法6重前置与显式 `hard:[prereq]` |
 | WU-T15 | 地阶比例 | 扫描12门地阶的 `vow/cost/requiredCombo/enemyOnly` | 代价/誓约0，必需合击0，敌用0；均满足上限 |
-| WU-T16 | 路线覆盖 | 删除 `mv_dugu9_pojian` 的绑定或把 `mfr_dugu9_wuzhao` 的绝招镜像改假 | WU-V16 失败并定位缺项／真值漂移 |
+| WU-T16 | 路线覆盖 | 删除 `mv_dugu9_pojian` 的绑定、任一玄上绝招路线，或把 `mfr_dugu9_wuzhao` 的绝招镜像改假 | WU-V16 失败并定位缺项／真值漂移 |
 | WU-T17 | 收招上界 | `recovery=1200` 的天阶绝招配 A10*，地阶绝招配 A8* | 分别为 `1200+800=2000`、`1200+640=1840`，均合法 |
 | WU-T18 | 速度与调息 | 标准对标准运行衡山云雾步；紫霞神功 9 品满层调息 | 前者 `meridianSpeedBp=10000` 且 `Q_skill` 不变；后者基础 `2200/516/scope3` |
 
@@ -1519,7 +1567,7 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | WU-P01 | `design/05` §4.2 / §13.2 独孤九剑示例 | **已解决：**按 CN-05 / C3 将指定兵器／徒手类别匹配归罕见条件 +0.30；六式预算 1.147，保留 `power:1.10` | 配置差 −0.047，落入 ±0.05 容差（见本文 §2.2） |
 | WU-P02 | `design/05` §14.1–§14.5 | 依据 AR-01 和十册新图鉴重算全局总量、品阶及笑傲首现 / 可习得池；旧 519 门、笑傲 44 门只能作为历史规划 | P33 已明确被 AR-01 覆盖；本文依硬要求扩为88门，继续沿用旧分母会产生伪冲突 |
 | WU-P03 | `design/05` §2 / 技术 schema | 确认 `special.optionalCombo`、`special.equipSynergy`、`special.cost` 的承载方式；若不接受自由键，提供等价 `effects/conditions` 结构 | 本文需表达可选合奏、既有装备协同与吸星既有代价，但不应另造 Buff |
-| WU-P04 | Canon §12、§18 | 接纳 `design/21` M2-P01／M3-P04，登记 `mfr_*`、`txp_*` 及唯一归属 | 本文已形成 72 条天地阶路线、12 条轻功路线与 21 个调息档案；未接纳前只能作为稳定提案引用 |
+| WU-P04 | Canon §12、§18 | 接纳 `design/21` M2-P01／M3-P04，登记 `mfr_*`、`txp_*` 及唯一归属 | 本文已形成72条天地阶逐招路线、15条玄上绝招路线、12条轻功路线与21个调息档案；未接纳前只能作为稳定提案引用 |
 
 ### 18.4 原著考据待办
 
@@ -1544,6 +1592,7 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | WU-O05 | 套装是否纳入绣花针、七弦琴等装备？ | 当前不纳入；待 07 能与 10 双向同步后再加 | 保持 C22 当前闭合 |
 | WU-O06 | 五仙是否补独立兵器路线？ | 不补；以拳、毒、内功为门派特色，兵器栏从其他笑傲本土组织补齐 | 保持原著辨识度与 1:3:9:9 数量 |
 | WU-O07 | `mfr_*`／`txp_*` 何时可进入生产数据？ | 默认待 Canon v1.3 接纳 M2-P01；此前保留稳定拟登记值，不按显示名临时生成 | 避免与地图 `route_*` 或 Buff ID 混用 |
+| WU-O08 | 绝招数量调整是否新增招名？ | 默认只升格既有招式：天9、地14、玄上15；新招式0，玄中以下不设绝招 | 保持原著边界与既有目录稳定；后续仅同步 `ultimate`、倍率、耗内、收招和路线 |
 
 ### 18.6 需下游同步
 
@@ -1554,7 +1603,7 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | `design/09` | 曲谱合奏 | 继续只引用 `sk_xiaoaojianghuqu`；确认 optional combo 不被实现成必需多人合击 |
 | `design/10` | 绣花针、七弦琴 | 保留 `eq_xiuhuazhen` / `eq_qixianqin` 联动；若进套装再补装备侧标签 |
 | `design/15` | 经脉 ID 表 | **已解决：**§16.2 的 10 个 `mer_*` 已正式存在；本文只引用开穴／周天快照，不再要求新增经脉 ID |
-| Canon §12 / `design/21` 内容库 | ID 前缀与内容装载 | 接纳 M2-P01，并登记 §15 的 84 个 `mfr_*` 与 21 个 `txp_*`；此前不得作为已获 Canon 前缀 |
+| Canon §12 / `design/21` 内容库 | ID 前缀与内容装载 | 接纳 M2-P01，并登记 §15 的99个 `mfr_*`（含15个玄上绝招路线）与21个 `txp_*`；此前不得作为已获 Canon 前缀 |
 | `design/17` | §6.1、§6.5–§6.6、§6.8、§9.6–§9.7、§14.3 | 其武学索引仍是先行候选，需以本图鉴正式定义回写 ID / 品阶 / 类别：至少 `sk_zixia→sk_zixiashengong`、`sk_daiyiruhe→sk_daizongruhe`、`sk_songshanjian→sk_songshanjianfa`、`sk_baibianqianhuanyunwushijian→sk_baibianqianhuan`、`sk_wanwushengmie→sk_wanhuajianfa`、`sk_cuixinzhang_qingcheng→sk_qingchengcuixinzhang`、`sk_songfengjian→sk_songfengjianfa`；门派 ID、XA 状态与职级模板已对齐 |
 | `chapters/05` | 门派、梅庄、黑木崖、林家与五仙节点 | 为所有 `learnSources` 落实际任务 / NPC / 秘籍 ID；保证九条入门链可达 |
 | `chapters/07` | 华山残承 | 紫霞神功只引用同一 `sk_zixiashengong`，来源品阶8，不另建武学 |
