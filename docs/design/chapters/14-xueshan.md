@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：`ch14_xueshan` 的时代图层、开局投放、主线索引、锚点落地、支线、门派实例、人物投放、Boss、产出、特色系统及前后书界衔接。
 > 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；主线唯一事实源为 `design/story/14-xueshan.md`。
-> 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05` 与 `design/catalog/skills-qianlong.md`、`skills-general.md`；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备与神兵 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、结局与余韵 → `design/13`；经脉 → `design/15`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承 → `design/20`。
+> 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05` 与 `design/catalog/skills-qianlong.md`、`skills-general.md`；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备与神兵 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、结局与余韵 → `design/13`；穴位、冲穴、通脉、周天与九转 → `design/15`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.0（D14，2026-09-26）；审校 D14.R（2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.0（D14，2026-09-26）；审校 D14.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）。
 
 ---
 
@@ -852,7 +852,7 @@ Boss 的精确模板值见 §12。武学品阶从图鉴读取；机制名称是�
 | B01 `enc_14_xueluduoxiang` | 争盒群豪首领模板 Lv48 | `sk_tianlongrumenjian` 黄上3、`sk_biaojurumen` 黄阶 | 2 | 多方抢箱；占点封存、救人或令三方停手均可胜，击倒不是唯一解 | C01 |
 | B02 `enc_14_shuangtongweidou` | 左右双童双精英 Lv50 | 胡家基础画像待人物配表；不预建招名 | 2 | 两单位共享脱离目标；援护、隔开群豪、保住绳路可胜 | C02 |
 | B03 `enc_14_baoshuduzheng` | 宝树 Lv52 | `sk_yaowangtuna` 黄上3、`sk_yaowanghushou` 黄中2；更高毒术只按已收录项核配 | 2 | 三份证词与毒具分置；识破谎言削护，保护原卷或控卷均有胜利条件 | C03 / Z01 / X01 |
-| B04 `enc_14_xueyajiuhu` | 雪崖误斗 Lv54 | 胡斐 `sk_hujiadao` 天下10（剧情限制层数）、天龙门既有武学 | 2 | 风雪、断索、坠崖；保安全格链与救曹云奇，不能以击倒胡斐结算 | Z02 / X02 |
+| B04 `enc_14_xueyajiuhu` | 雪崖误斗 Lv54 | 胡斐 `sk_hujiadao` 天下10（剧情限制层数）、当前主运 `sk_hujiadaoxinfa` 玄中5、天龙门既有武学 **（原创扩展配置）** | 2 | 风雪、断索、坠崖；保安全格链与救曹云奇，不能以击倒胡斐结算 | Z02 / X02 |
 | B05 `enc_14_baocangqunhao` | 宝洞群豪 Lv56 | 天龙门、通用镖局与刀兵已有 ID | 3 | 契约改变阵营，金银拾取增加仇恨；火源、退路、伤者三目标竞争 | Z05 / X05 |
 | B06 `enc_14_qingtingfuwang` | 赛总管围网 Lv58 | `sk_junzhongdao` 玄上6、`sk_jundituna` 玄中5、`sk_bubingcao` 黄中2 | 3 | 号令链与两波援军；夺令、拆网、助捕后止杀均可结算 | Z07 / X07 |
 | B07 `enc_14_miaorenfeng_xueya` | 苗人凤 Lv62 `capExempt` | `sk_miaojiajian` 地上9、`sk_miaojiaquan` 玄上6、`sk_miaojiaxinfa` 玄中5 | 3 | 不以击杀为目标；冰壁映照双方破绽、苗人凤救胡斐并弃地利、最后进入不限时抉择 | Z09 / X09 |
@@ -1245,6 +1245,27 @@ P_actual = G(9) × L(9)
 - §7 已按 `I(ch14)=42 两/小时` 核算五级月钱与配给；资源点、营生、任务和宝藏必须共用唯一 `economySource`，不能四次发放同一货物价值。
 - 取得第十四天书只把真实等级补至 70；余韵期间敌人、门禁、装备有效品阶和玩家显示面板仍按 Lv58 / 中武 / −2 计算。
 
+### 12.6 Boss / 精英经脉配置与节奏回归
+
+本节仅提供 `design/21` §11.9 的敌方初始化输入；穴位、周天和九转唯一归 `design/15`。雪山战内 `effLayer≤9`；第九转还要求进入 `ch15_guimeng`，因此所有本章战斗模板 `turns≤8`，不得把“取得第十四天书”提前解释为九转圆满。`effGrade/effLayer/innerNature` 只读取当前主运内功的压制后值，无主运严格用 `1/1/harmony`。`routeRefs` 从行动表全部 attack / defense / movement `MoveDef.meridianRouteRef` 编译为并集、展开并去重；章节不新建 `mfr_*`。`milestones` 对每个实例显式写全五字段。
+
+| 遭遇 / 独立行动者 | 当前主运 → `effGrade/effLayer` | `mpRatioBp/practiceBp/capacityScaleBp` | `innerNature` / `openPolicy` | `milestones` | 实例边界 |
+|---|---:|---:|---|---|---|
+| B01 争盒群豪首领 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 首领一实例；各方武学型精英按单位实例化，三方士气不共享节点 |
+| B02 左童（精英） | 无 → 1 / 1 | 10500 / 7500 / 10500 | `harmony` / `schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 与右童各一实例；共享脱离目标但不共享动态经脉态 |
+| B02 右童（精英） | 无 → 1 / 1 | 10500 / 7500 / 10500 | `harmony` / `schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 与左童各一实例；共享脱离目标但不共享动态经脉态 |
+| B03 宝树 | `sk_yaowangtuna` → 3 / 9 | 13000 / 9000 / 13000 | `yin` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | 本人一实例；毒具与证词无实例 |
+| B04 胡斐 | `sk_hujiadaoxinfa` → 5 / 9 | 13000 / 9000 / 13000 | `yang` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | 本人一实例；剧情限制层数先产出最终 `effGrade/effLayer` 再初始化 |
+| B05 宝洞群豪首领 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | 每个独立出手者一实例；财货、火源与退路无实例 |
+| B05 宝洞群豪精英（每名） | 无 → 1 / 1 | 10500 / 7500 / 10500 | `harmony` / `schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 若人物配表另有合法主运则在构建期覆盖本兜底，不共享状态 |
+| B06 赛总管 | `sk_jundituna` → 5 / 9 | 13000 / 9000 / 13000 | `yang` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | 与每名武学援军各一实例；号令链不共享状态 |
+| B06 援军（每名精英） | `sk_jundituna` → 5 / 8 | 10500 / 7500 / 10500 | `yang` / `schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 每名援军各一实例；自身配表未装该内功时回退 `1/1/harmony` |
+| B07 苗人凤 | `sk_miaojiaxinfa` → 5 / 9 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | 本人一实例；三阶段锁血、弃地利与悬刀选择均不清节点伤势 |
+
+其余普通敌人取 `9000/6200/9000`、`routeOnly`、`{meridianComplete:false, smallCycle:false, greatCycle:false, twelveCycle:false, turns:0}`，修为三项逐单位读主运，无主运即 `1/1/harmony`。攻防路线分别接 04 Z5M / Z4M；护体真气 → 护体内劲 → `mpGuard` → 气血。速度先乘 `meridianSpeedBp` 再乘 `grappleMoveBp`，首轮冻结 `openingQinggong` 与修正后 `spd`。绝招仅读 `MoveDef.ultimate`；点穴 / 擒拿在伤害后调用 `applyAcupointSeal` / `applyGrapple`；战斗调息不推进第九转。
+
+04 当前基线 `4.1 / 9.3 / 24.5` 在标准对标准 10000 bp 下零漂移，三项仍落在 `3–5 / 6–10 / 12–25`，但 Boss 仅余 0.5 轮裕量。玩家弱一档时纯伤害包络为 `ceil(24.5×10000/9157)=27`，越过上限；因此 B07 标准配装必须保持相对强度中性，或由双破绽 / 弃地利使有效进度回到 ≤25，不能再叠无条件长无敌窗。玩家强一档 12053 bp 时约 `ceil(24.5×10000/12053)=21`，合法。速度强档 12239 bp / 封路 6500 bp 只影响首轮、CT、移动与纯经脉闪避修正，不另乘伤害；七场具名配置必须固定 RNG 实战回放 **（待实测）**。
+
 ---
 
 ## 13. 原创扩展清单与考据备注
@@ -1441,6 +1462,8 @@ P_actual = G(9) × L(9)
 | XS-V24 | 系统幂等 | 罗生门原始层不可覆盖；悬刀结算原子写入；重放不重复发证词、天书、经验、装备或死亡 | error |
 | XS-V25 | 书眠与归梦 | 只存在 `vid_sleep_13_14`；余韵显示 58 且保留压制；`FN_ENTER` 后显示 70；不存在天书 15 | error |
 | XS-V26 | Markdown 完整 | 表格列数一致，围栏成对，无截断句、空标题或占位词；章节链接目标存在 | error |
+| XS-V27 | Boss / 精英经脉 | 七场实际武学行动者均有 §12.6 七组输入，层数 ≤9 且 `turns≤8`；双童 / 群豪 / 援军独立实例，纯环境无实例；路线由 `MoveDef` 编译 | error |
+| XS-V28 | 经脉节奏 | 标准档保持 4.1 / 9.3 / 24.5；Z4M / Z5M、护体、速度与控制顺序匹配 `design/21`；固定 RNG 回放 Boss 仍为 12–25 | error |
 
 ### 数值金标准
 
@@ -1518,6 +1541,7 @@ P_actual = G(9) × L(9)
 | `design/12` / `16` / `17` | **已解决：**任务、五级晋升、资源营生与时代门派矩阵已有规则；本文只登记雪山实例 |
 | `design/18` 与 `catalog/npcs-ch14-xueshan.md` | **已解决：**人物形态、D 级、appearance 与跨书重逢有正式数据；精确生卒未知者仍保持年龄段 |
 | `catalog/skills-qianlong.md`、`skills-general.md` | **已解决：**本土 4 / 5 / 9 装配池和雪山唯一原生天级 `sk_hujiadao` 均有图鉴 ID |
+| `design/15` / `21` | **已解决：**永久穴位 / 周天 / 九转归 15；§12.6 已接入 21 的战斗经脉模板、路线、护体、速度与控制接口；雪山战内 `turns≤8` |
 | `design/10` / `15` / `20` | **部分解决：**神兵、冲穴、五个传承源与配方可引用；建议救济、指点参数和同界主载体仍待生产验证 |
 | `design/07-set-system.md` | **已解决：**§9 只引用正式 `set_hujia_lengyue`；件数、Buff、成员与效果均只读 07 |
 | `tech/04` / `tech/05` | **待对接：**两个章节系统的 YAML、原子提交、旗标注册和旧存档缺省值须纳入 schema / 引擎 |

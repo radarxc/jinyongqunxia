@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：`ch11_yuanyang` 的时代内容编排——开局、时代图层、主支线接口、门派与人物投放、产出、特色机制、前后界衔接及本界数值落点。
 > 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/11-yuanyang.md`。
-> 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；经脉 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；前代传承 → `design/20-legacy-inheritance.md`。
+> 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；穴位、冲穴、通脉、周天与九转 → `design/15-meridians-and-acupoints.md`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21-meridian-flow-and-moves.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；前代传承 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v0.2（D11 初稿，2026-09-26；审校 D11.R，2026-09-26）；全局审计（2026-09-26）。
+> 版本：v0.2（D11 初稿，2026-09-26；审校 D11.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）。
 
 
 ## 0. 阅读指引
@@ -722,8 +722,8 @@ chapterResolution:
 | `enc_11_zhuo_zaoxiang` | 卓天雄，Lv42 | `sk_daneishuangdao` 玄下；其原著掌法未入图鉴，不预建 ID | 假盲阶段不主动回避；识破后转点穴与夺匣；毒墨可信度可逼退 | 欺敌、撤离或擒拿，登记 `dumo_zhazhuo` |
 | `enc_11_zhuo_zizhu` | 卓天雄，Lv44 | 同上；清宫通行身法只在图鉴合法时装配 | 焚庵威胁倒计时、平民安全区、袁萧合击教学 | 逼退 / 擒获；庵中人安全后登记 `zizhu_tuizhuo` |
 | `enc_11_linren_yanwu` | 林玉龙 + 任飞燕，Lv42 / 42 | `sk_linyulongdao`、`sk_renfeiyandao` 玄上；`sk_linrenhexinfa` 玄中 | 双人争合演武，打错一方会抬高另一方怒气 | 同时压至演武阈值或完成调停，不计击杀 |
-| `enc_11_xiaofu_weizhan` | 大内统领代理，Lv46 | `sk_yulinjichudao` 黄中、`sk_daneishuangdao` 玄下 | 三路增援、平民撤离门、文书停战；统领为模板头目而非新静态 NPC | 开放撤离、出示具结或降服，登记 `xiaofu_weizhan` |
-| `enc_11_zhongtiao_jiaoge` | 卓天雄或官府追队，Lv48 | `sk_daneishuangdao` 玄下；路线决定援军 | 真刀 / 假刀、证物、保管权三槽；满足证据可无战斗结案 | 谈判、交换或降服；不另增加第五证明键 |
+| `enc_11_xiaofu_weizhan` | 大内统领代理，Lv46 | `sk_yulinjichudao` 黄中、`sk_daneishuangdao` 玄下；当前主运 `sk_jundituna` 玄中 **（原创扩展配置）** | 三路增援、平民撤离门、文书停战；统领为模板头目而非新静态 NPC | 开放撤离、出示具结或降服，登记 `xiaofu_weizhan` |
+| `enc_11_zhongtiao_jiaoge` | 卓天雄或官府追队，Lv48 | 卓用 `sk_daneishuangdao` 玄下且无主运内功；官府追队头目当前主运 `sk_jundituna` 玄中 **（原创扩展配置）**；路线决定援军 | 真刀 / 假刀、证物、保管权三槽；满足证据可无战斗结案 | 谈判、交换或降服；不另增加第五证明键 |
 
 Boss 战斗流程、阶段、控制递减与脚本 ID 归 `design/09`；本文只登记遭遇。所有具名人物均走 `full` 属性管线，表内模板数值只是配表目标，详见 §12。
 
@@ -1230,6 +1230,24 @@ B = I×H = 19×8 = 152 两
 - `dc_11_06`、`dc_11_07`、`dc_11_08` 的不可逆后果只在玩家看见交割对象、保管依据和改命影响后确认，不由隐藏 RNG 决定。
 - Boss 控制抗性、递减、倒地、投降、撤离和保护目标引用 `design/09`；章节脚本不得把“降到 0 HP”默认翻译成死亡。
 
+### 12.8 Boss / 精英经脉配置与节奏回归
+
+本节只配置 `design/21` §11.9 敌人模板的输入；穴位、通脉、周天与九转归 `design/15`。本章是低武追赶窗口，所有单位 `effLayer≤8`，且不会因玩家可追赶而自动抬高敌人里程碑。修为三项只读当前主运内功的压制后 `effGrade/effLayer/nature`，无主运严格用 `1/1/harmony`。`routeRefs` 由每个单位行动表的 attack / defense / movement `MoveDef.meridianRouteRef` 在构建期汇总、展开、去重；不在章节造 `mfr_*`。`milestones` 每行显式写全五字段。
+
+| 遭遇 / 独立行动者 | 当前主运 → `effGrade/effLayer` | `mpRatioBp/practiceBp/capacityScaleBp` | `innerNature` / `openPolicy` | `milestones` | 实例边界 |
+|---|---:|---:|---|---|---|
+| 太岳四侠（每人） | `sk_taiyuehuxi` → 2 / 8 | 10500 / 7500 / 10500 | `yang` / `schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 四个精英实例；共享“面子”士气但不共享穴位动态态 |
+| 卓天雄·枣林 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 识破假盲只切行动表 |
+| 卓天雄·紫竹庵 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 同一人物在单场阶段内复用实例；跨遭遇按战斗新建但不改人物永久画像 |
+| 林玉龙 / 任飞燕（各） | 各 `sk_linrenhexinfa` → 各 5 / 8 | 各 13000 / 9000 / 13000 | 各 `harmony` / `fullTemplate` | 各 `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 两个独立实例；合演与怒气互锁不合并节点 |
+| 大内统领代理 | `sk_jundituna` → 5 / 8 | 13000 / 9000 / 13000 | `yang` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 代理一实例；三路武学援军按精英档逐单位初始化 |
+| 终局卓天雄 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | 路线二选一时仅实际生成者建实例；不因终局阶段臆配内功 |
+| 官府追队头目 | `sk_jundituna` → 5 / 8 | 13000 / 9000 / 13000 | `yang` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | 路线二选一时仅实际生成者建实例；追队武学成员各自实例化 |
+
+同场其他精英使用 `10500/7500/10500、schoolCore` 与 `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}`；普通使用 `9000/6200/9000、routeOnly` 与 `{meridianComplete:false, smallCycle:false, greatCycle:false, twelveCycle:false, turns:0}`。两类都逐单位读主运三项，无主运即 `1/1/harmony`。攻防路线分别进入 04 的 Z5M / Z4M；护体真气后结算护体内劲，再进 `mpGuard`；速度先经脉后 `grappleMoveBp`，首轮冻结。绝招只看 `MoveDef.ultimate`；卓天雄点穴或玩家擒拿均在当次伤害后调用目标实例的 `applyAcupointSeal` / `applyGrapple`，不得反改该击。调息只修动态伤势，不推进永久成长。
+
+04 基线 `3.5 / 7.1 / 14.3` 在标准对标准 10000 bp 下保持不变。玩家弱一档时 Boss 伤害轮约 `ceil(14.3×10000/9157)=16`；强守方净伤害 861/1000 时约 `ceil(14.3×1000/861)=17`，均在 12–25。玩家强两档时约 `ceil(14.3×10000/14456)=10`，故该档只作碾压敏感性，不作为标准 Boss 验收；标准档仍须 12–25。速度强档 12239 bp 与封路 6500 bp 另测首轮 / CT / 移动，禁止折回伤害倍率。四侠、林任双人和援军场须以独立模块固定 RNG 回放 **（待实测）**。
+
 ---
 
 ## 13. 原创扩展清单与考据备注
@@ -1389,6 +1407,8 @@ B = I×H = 19×8 = 152 两
 | YY-V18 | 前代传承最多 3 载体、2 后人、6 新残本、3 新信物 | 本界反投 `lgs_yuanyang_fuqi`，或把开放区外图内地点 / 真正图外节点变成自由步行区 |
 | YY-V19 | `eq_yuanyangdao` 全局唯一；任务中两柄只是部件引用 | 生成两件永久装备、赝品读铭或托管同时入包 |
 | YY-V20 | Markdown 代码围栏成对、表格列数一致；已实现的必需引用路径存在；明确声明缺失并采用降级方案的可选归属文件不计断链 | 截断句、未闭合围栏、必需引用断链、未声明的可选依赖缺失或占位语 |
+| YY-V21 | Boss / 精英经脉输入齐全；低武层数 ≤8；四侠 / 林任 / 援军逐武学行动者独立实例，环境物无实例；`routeRefs` 只由 `MoveDef` 编译 | 漏输入、共享动态节点、层数越界或自建 `mfr_*` |
+| YY-V22 | 标准档保持 3.5 / 7.1 / 14.3；Z4M / Z5M、护体、速度、点穴 / 擒拿顺序匹配 `design/21`；Boss 回放 12–25 | 重复乘区、旧顺序或节奏越界 |
 
 ### 数值与流程用例
 
@@ -1448,6 +1468,7 @@ rg -n 'rg_11_|mer_ren\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/design/chapt
 - `design/11`、`design/19`、`map/regions.yaml`、`map/cities.yaml` 和 `map/jianghu-ch11.svg` 提供时代地图；区域归属冲突时服从 `design/11`，故汉中按 `rg_qinba` 处理；已存在的 `map/jianghu-ch12.svg` 仅用于下一界引用。
 - `design/03` / `04` 提供 Boss 模板和战斗节奏；`design/16` 提供资源、营生、月钱与 152 两经济总账。
 - `design/15` 提供正式经脉、师父、静室和丹药接口；`design/20` 提供传承源、三卷、信物、合成与跨书保存。
+- **已解决：**`design/21` 提供战斗经脉路线、护体、速度、点穴 / 擒拿和敌人模板；§12.8 已接入，具体 `mfr_*` 等图鉴正式登记。
 - **已解决：**`design/07-set-system.md` 已定稿；本文只消费其中正式套装，不在章节内定义或承诺额外效果。
 - 已解决：`docs/design/chapters/12-shujian.md` §3.13、§11.2 已接收天书主题、`carry:eq_yuanyangdao`、`legacy/fuqi/manual_lost`、人物健在重验及仁字镖旗 / 威信记录；四个本地 `endingKey` 尚未各自登记正式 `echo_*`，未覆盖差异继续降级为文本。
 

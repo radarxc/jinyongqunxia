@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：`ch09_liancheng` 的时代图层、区域内容、任务投放、门派实例、人物编组、Boss 配置、特色系统与前后书界衔接。
 > 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定见 `decisions/rulings-v1.md`；正邪主线与锚点以 `design/story/09-liancheng.md` 为唯一剧情源。
-> 引用而不重定义：核心循环与锚点总览 → `design/01`；年代、境界、书眠与跨书连续性 → `design/02`；属性与等级模板 → `design/03`；伤害公式 → `design/04`；武学条目 → `design/05` 与 `design/catalog/skills-kangxi.md`、`skills-general.md`；Buff → `design/06`；套装 → `design/07`；地形与轻功门禁 → `design/08`；战斗、Boss 与合击 → `design/09`；物品与神兵 → `design/10`；开放世界与内容预算 → `design/11`；任务、门派、羁绊 → `design/12`；成长、天书之力与结局 → `design/13`；冲穴 → `design/15`；资源与营生 → `design/16`；门派时代矩阵 → `design/17`；NPC 名录与重逢 → `design/18`；地图资产与时代地名 → `design/19`、`design/map/*`；跨年代传承 → `design/20`。
+> 引用而不重定义：核心循环与锚点总览 → `design/01`；年代、境界、书眠与跨书连续性 → `design/02`；属性与等级模板 → `design/03`；伤害公式 → `design/04`；武学条目 → `design/05` 与 `design/catalog/skills-kangxi.md`、`skills-general.md`；Buff → `design/06`；套装 → `design/07`；地形与轻功门禁 → `design/08`；战斗、Boss 与合击 → `design/09`；物品与神兵 → `design/10`；开放世界与内容预算 → `design/11`；任务、门派、羁绊 → `design/12`；成长、天书之力与结局 → `design/13`；穴位、冲穴、通脉、周天与九转 → `design/15`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；门派时代矩阵 → `design/17`；NPC 名录与重逢 → `design/18`；地图资产与时代地名 → `design/19`、`design/map/*`；跨年代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v1.0（D09，2026-09-26）；审校 D09.R（2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.0（D09，2026-09-26）；审校 D09.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）。
 
 ---
 
@@ -636,7 +636,7 @@ effLayer = min(trueLayer', tierCapEff, gateCap(absGrade, displayLevel), specialC
 | 宝象 `npc_baoxiang` Lv38 | `sk_xuedaojichudao` 黄上、`sk_xuedaoxinfa` 玄中 | P1 追杀；P2 饥饿与中毒使出招失序 | 警告毒汤、封锅、缴械或说服退追；可非致命招募 |
 | 万圭 `npc_wangui` Lv39 | `sk_wanjiajian` 玄下、`sk_wanjiaxinfa` 玄下 | P1 门人援护；P2 以匕首逼近证人 | 公开供状令援军退场；先撤母女可直接转拘捕目标 |
 | 凌退思 `npc_lingtusi` Lv40 | 通行 `sk_yuzhongqinna` 玄下；毒计 / 亲卫为主要威胁 | P1 官差阵；P2 毒花封路 | 案卷、官印与亲卫证词可完成政治制伏；不塑造成绝顶高手 |
-| 言达平 `npc_yandaping` Lv41 | `sk_tangshijian` 地中、`sk_lianchengjianli` 玄中 | P1 老丐伪装；P2 露出剑路后争谱 | 识破身份并交叉三门旧债，可令其退出终幕 |
+| 言达平 `npc_yandaping` Lv41 | `sk_tangshijian` 地中、`sk_lianchengjianli` 玄中；当前主运 `sk_meinianshengxinfa` 玄上 **（原创扩展配置）** | P1 老丐伪装；P2 露出剑路后争谱 | 识破身份并交叉三门旧债，可令其退出终幕 |
 | 万震山 `npc_wanzhenshan` Lv43 | `sk_tangshijian` 地中、`sk_wanjiajian` 玄下、`sk_wanjiaxinfa` 玄下 | P1 砌墙 / 假伤扰乱目标；P2 夹墙伏击 | 桃红线索、砖灰、砌墙动作取二可破伪装并会审 |
 | 戚长发 `npc_qichangfa` Lv44 | `sk_tangshijian` 地中、`sk_meinianshengxinfa` 玄上 | P1 与玩家短暂同阵；P2 背刺优先攻击持码者 | 提前公开背刺证据、卸下诱饵或以戚芳对质，转受控结算 |
 | 血刀老祖 `npc_xuedaolaozu` Lv48 | `sk_xuedaojing` 地上、`sk_xuedaofa` 地中、`sk_xuedaoqinfa` 玄上、`eq_xuedao` 地上 | P1 踏雪游斗；65% 阶段门后 P2 借深雪、薄冰与雪崩反击 | 发警讯救援、断其雪路、引至薄冰；击败后按主线死亡 |
@@ -1078,6 +1078,26 @@ Boss 首杀的随机掉落池在 Lv46、`luk=0` 时建议分布为黄中至地�
 - 血刀老祖是唯一 `capExempt`，`48−46=2≤6`；其地上 9 主力满足“终盘 Boss 品阶 ≥ 外来天上压制后地中 8 −1”的不变式。
 - 自动测试至少覆盖：D4 只乘 HP / 攻击、七行模板整数快照、普通 / 精英品阶和为 100%、80 场经验偏差 ≤10%、书眠后白马压制预览与实战使用同一 `effGrade/effLayer`。
 
+### 12.7 Boss / 精英经脉配置与节奏回归
+
+本节只提供 `design/21` §11.9 的初始化参数，不复制 21 的路线、乘区、护体或控制公式；穴位与第六转成长仍唯一见 `design/15`。低武有效层数钳为 8。所有 `routeRefs` 在构建期由单位行动表中 attack / defense / movement 三类 `MoveDef.meridianRouteRef` 汇总、展开并去重；本章不因当前图鉴尚未合入路线而新造 `mfr_*`。
+
+`milestones` 每行都显式写全五字段。Boss 均取 `mpRatioBp/practiceBp/capacityScaleBp=13000/9000/13000`、`openPolicy=fullTemplate`；`effGrade/effLayer/innerNature` 只读当前主运内功的压制后值，无主运严格回退 `1/1/harmony`，不得用剑法或擒拿品阶替代。同场精英取 `10500/7500/10500`、`schoolCore`，修为三项逐单位按同一规则解析，里程碑至多小周天。第六转是玩家章节投放，不自动成为敌方 `turns=6`。
+
+| Boss / 行动者 | 当前主运 → `effGrade/effLayer` | `innerNature` | `milestones` | 独立实例与接口重点 |
+|---|---:|---|---|---|
+| 宝象 | `sk_xuedaoxinfa` → 5 / 8 | `yin` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 本人一实例；追杀与退追阶段复用；缴械擒拿成功后才调目标 `applyGrapple` |
+| 万圭 | `sk_wanjiaxinfa` → 4 / 8 | `yang` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 本人与每名门人精英分别实例化；匕首逼近不共享经脉节点 |
+| 凌退思 | 无 → 1 / 1 | `harmony` | `{meridianComplete:true, smallCycle:false, greatCycle:false, twelveCycle:false, turns:0}` | 官差按精英档逐单位实例化，毒花地形无实例 |
+| 言达平 | `sk_meinianshengxinfa` → 6 / 8 | `harmony` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 本人一实例；伪装只改 AI / 行动表，不重建动态态 |
+| 万震山 | `sk_wanjiaxinfa` → 4 / 8 | `yang` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 本人一实例；砌墙机关不实例化，伏击门人逐单位实例化 |
+| 戚长发 | `sk_meinianshengxinfa` → 6 / 8 | `harmony` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:3}` | 同阵转敌对只切阵营，保留同一实例的 backlog、迟滞与点穴 |
+| 血刀老祖 | `sk_xuedaojing` → 9 / 8 | `yin` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:6}` | 本人一实例；踏雪 movement 路线参与速度；薄冰 / 雪崩为纯环境 |
+
+Boss 阶段切换不清经脉伤势；普通敌人仍按 `9000/6200/9000`、`routeOnly`、五里程碑全 0 逐单位初始化，修为三项按主运解析，无主运用 `1/1/harmony`。路线乘区按 21 固定插入 04 的 Z4M / Z5M；护体真气 → 护体内劲 → `mpGuard` → 气血；速度先经脉再擒拿，首轮冻结，后续 CT / 移动脏重算。绝招仅读 `MoveDef.ultimate`。点穴 / 擒拿在本次伤害完成后分别调用 `applyAcupointSeal` / `applyGrapple`；调息仅修战斗临时态，不推进第六转。
+
+当前 04 基线为 `3.6 / 7.7 / 18.2`。标准对标准的攻防与速度均为 10000 bp，接入后仍为原值，三项均在 `3–5 / 6–10 / 12–25`。玩家弱一档时用 9157 bp 作伤害压力包络，Boss 约 `ceil(18.2×10000/9157)=20` 轮；强守方攻方 9200、防守 9361 时，1000 输入结算为 861，约 `ceil(18.2×1000/861)=22` 轮，仍在上限。速度强档 12239 bp 不再折算为伤害；具名 `full`、雪地走位与阶段门仍须固定 RNG 实战回放 **（待实测）**。
+
 ## 13. 原创扩展清单与考据备注
 
 ### 13.1 原创扩展集中清单
@@ -1163,6 +1183,8 @@ Boss 首杀的随机掉落池在 Lv46、`luk=0` 时建议分布为黄中至地�
 | LC09-D16 | 书眠 | `vid_sleep_08_09` 与 `vid_sleep_09_10` 只作逻辑过场引用；后一段 `1725−1712=13` 年，队友 / 身份按通则卸载 |
 | LC09-D17 | 前代传承 | 六组候选的 `lgs_* / cache_* / frag_* / it_xinwu_*`、`lg_taiji` 与 `rs_jianzhong/rs_wudang` 均可解析；本界配额不超过主载体 / 后人 / 新残本 / 新信物 `3/2/6/3`；神照 / 血刀 / 唐诗三源不得在 ch09 入池 |
 | LC09-D18 | 套装失败关闭 | 正式套装注册表未随包加载时失败关闭；不得从图鉴 `setTags` 或旧候选反推套装效果 |
+| LC09-D19 | 经脉模板 | 七 Boss 均有 §12.7 七组输入，层数 ≤8；每个武学行动者独立实例，纯环境不实例化；`routeRefs` 只由 `MoveDef` 编译 |
+| LC09-D20 | 经脉节奏 | 标准档保持 3.6 / 7.7 / 18.2；Z4M / Z5M、护体、速度与控制顺序匹配 `design/21`；具名回放 Boss 仍为 12–25 |
 
 核心回归用例：无前书存档仍可完成五锚点；三开局都能汇入公共入狱事件；正 / 邪 × 原著 / 改命四象限均可达；错过任一支线仍有主线证据替代；不加入门派、拒绝赌博、无轻功 qg3、无 `med` 或无 `art` 均不软锁；重复领取任务、资源点、门派月钱、Boss 首杀和天书均被幂等键拒绝。
 
@@ -1184,6 +1206,7 @@ Boss 首杀的随机掉落池在 Lv46、`luk=0` 时建议分布为黄中至地�
 - `docs/00-canon.md` 的连城固定参数与 §17 模板；`design/story/09-liancheng.md` 的十幕双线、九选择、五锚点和四象限。
 - `design/01–06`、`08–13`、`15–20` 的循环、年代、公式、系统、名录、时代地图、任务预算与前代传承目录；武学只取现有图鉴。
 - **已解决：**`design/07-set-system.md` 已定稿；本章只消费其中正式套装，运行包缺注册表时仍失败关闭，不据标签推造效果。
+- **已解决：**`design/21` 战斗经脉接口已在 §12.7 落地；路线 ID 仍依赖武学图鉴回填，章节不创建平行 `mfr_*`。
 
 ### 对基准的修改提案
 

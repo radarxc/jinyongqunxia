@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：`ch10_baima` 的时代内容编排——开局、时代图层、主支线接口、门派与人物投放、产出、特色机制、前后界衔接及本界数值落点。
 > 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/10-baima.md`。
-> 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；经脉 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；跨年代传承 → `design/20-legacy-inheritance.md`。
+> 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；穴位、冲穴、通脉、周天与九转 → `design/15-meridians-and-acupoints.md`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21-meridian-flow-and-moves.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；跨年代传承 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v0.2（D10 初稿；审校 D10.R，2026-09-26）；全局审计（2026-09-26）。
+> 版本：v0.2（D10 初稿；审校 D10.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）。
 
 ---
 
@@ -1114,11 +1114,11 @@ STD_E(L,W=36,tier=LOW,kind=boss)
 
 | 敌种 | 主角击倒所需整队标准命中等价 | 主角行动轮 | 敌方击倒主角所需命中 | 敌行动轮 | 主 / 敌命中率 | 普通招式耗内 |
 |---|---:|---:|---:|---:|---:|---:|
-| 普通 | 3.1 | 3.1 | 11.9 | 14.0 | 99.0% / 85.0% | 7% |
-| 精英 | 6.6 | 6.6 | 12.7 | 14.2 | 99.0% / 89.4% | 7% |
-| Boss | 38.9 | 13.5 | 10.9 | 11.4 | 93.0% / 95.4% | 7% |
+| 普通 | 3.4 | 3.4 | 11.7 | 13.7 | 99.0% / 85.0% | 7% |
+| 精英 | 7.2 | 7.3 | 12.7 | 14.2 | 99.0% / 89.4% | 7% |
+| Boss | 42.9 | 14.9 | 10.9 | 11.4 | 93.0% / 95.4% | 7% |
 
-Boss 行采用四人队每主角行动贡献 3.1 次标准命中等价，所以 `38.9/3.1≈12.55` 只是纯除法近似；正式模拟含节奏与取整后为约 13.5 主角行动轮。关卡机制不应再无条件叠加第二条大血条。
+Boss 行采用四人队每主角行动贡献 3.1 次标准命中等价；正式模拟含命中与回合取整后为约 14.9 主角行动轮。关卡机制不应再无条件叠加第二条大血条。以上是 2026-09-27 当前脚本输出；旧 `3.1 / 6.6 / 13.5` 快照已失效。
 
 ### 12.6 经济与成长总账
 
@@ -1138,6 +1138,25 @@ B = 11.4×8 = 91.2 两
 - `dc_10_07`–`09` 的不可逆只来自玩家看见后确认的选择，不来自 RNG。
 - Boss 控制抗性、递减、倒地、投降、拆招与保护目标引用 `design/09`；剧情非杀伤胜利不得偷换成“气血归零即死亡”。
 - 外来压制下有效武学仍按 `design/02` 重算；本土新学不受 −4，但受 Lv46 与 8 重上限。
+
+### 12.8 Boss / 精英经脉配置与节奏回归
+
+本节仅配置 `design/21` §11.9 的敌方 `MeridianFlowModule` 输入；穴位、周天和第七转仍归 `design/15`。低武 `effLayer≤8`。`effGrade/effLayer/innerNature` 必须取当前主运内功经压制后的值；只会外功、轻功或机关术不算主运，无主运用 `1/1/harmony`。`routeRefs` 必须由行动表中 attack / defense / movement 三类 `MoveDef.meridianRouteRef` 编译为并集；现阶段不造 `mfr_*`，未知路线或默认迁移短路不得发布。`milestones` 对每个实例显式写全五字段。
+
+| 遭遇 / 独立行动者 | 当前主运 → `effGrade/effLayer` | `mpRatioBp/practiceBp/capacityScaleBp` | `innerNature` / `openPolicy` | `milestones` | 实例边界 |
+|---|---:|---:|---|---|---|
+| 霍元龙 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 骑追坐骑不共享动态节点 |
+| 陈达海 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 人质 / 撤退点无实例 |
+| 瓦耳拉齐 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | 本人一实例；夜行 movement 路线参与速度，揭示身份不重置 |
+| 马家骏 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | 本人一实例；图鉴补内功前不虚构性质 |
+| 双人剧情战·瓦耳拉齐 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | 同场独立实例；仇恨互锁不共享经脉，封针 / 缴刃只改本人状态 |
+| 双人剧情战·马家骏 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | 同场独立实例；仇恨互锁不共享经脉，封针 / 缴刃只改本人状态 |
+| 假鬼机关阵 | 不适用（无实例） | 不适用（无实例） | 不适用（无实例） | 不适用（无实例） | 纯声源与落石不创建实例；`sk_gaochangjiguan` 仅为机关行为标签，不得白拿路线加成 |
+| 守藏机关傀儡（每个） | `sk_gaochanggong` → 5 / 8 | 13000 / 9000 / 13000 | `harmony` / `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 因确实以高昌武学攻击而创建实例；每个可独立出手傀儡各一份 |
+
+本界其他精英统一取 `10500/7500/10500`、`schoolCore`、`{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}`；普通取 `9000/6200/9000`、`routeOnly`、`{meridianComplete:false, smallCycle:false, greatCycle:false, twelveCycle:false, turns:0}`。两类的修为三项都逐单位读取当前主运，无主运即 `1/1/harmony`。阶段或灯位切换不清 backlog / 迟滞 / 胀损。攻防分别接 Z5M / Z4M；护体顺序是护体真气 → 护体内劲 → `mpGuard` → 气血；速度先乘经脉、再乘擒拿，首轮冻结。绝招仅读 `MoveDef.ultimate`；点穴 / 擒拿在伤害后调用 `applyAcupointSeal` / `applyGrapple`，调息不推进第七转。
+
+当前脚本基线 `3.4 / 7.3 / 14.9` 在标准对标准 10000 bp 下零漂移。玩家弱一档时 Boss 伤害轮包络为 `ceil(14.9×10000/9157)=17`；面对强守方 861/1000 的净伤害则约 `ceil(14.9×1000/861)=18`，均在 12–25。强两档 14456 bp 时约 `ceil(14.9×10000/14456)=11`，低于下限，因此 Boss 不允许玩家以“强两档”作为标准配装验收；标准配装仍按 10000 bp，同步以阶段目标、撤离和保护条件阻止纯秒杀。速度变化只改首轮 / CT / 移动，不再乘一次伤害；双人战与傀儡实装后须固定 RNG 回放 **（待实测）**。
 
 ---
 
@@ -1276,6 +1295,8 @@ B = 11.4×8 = 91.2 两
 | BM-V15 | 代码围栏成对、Markdown 表列数一致、相对链接存在 | 任一结构错误 |
 | BM-V16 | 前代传承只引用 `design/20` 已定义的 `lgs_* / frag_* / cache_* / it_xinwu_*`，且本界主载体≤3、后人≤2、新卷≤6、新信物≤3 | 自建传承 ID、把 `lg_* / rs_*` 当新源实例、超配额，或把不在六区的荆襄源硬搬入本界 |
 | BM-V17 | D07 地上9牺牲遗物槽与玄上6 `it_gaochangguwu` 分离 | 普通高昌古物的取得 / 放弃改变 `high_relic_abandoned`，或未登记遗物 ID 被写入背包 |
+| BM-V18 | Boss / 精英经脉：§12.8 参数齐全、层数 ≤8；双人 / 傀儡逐武学行动者独立，纯机关无实例；路线只从 `MoveDef` 编译 | 任一漏实例、共享动态态或出现手造 `mfr_*` |
+| BM-V19 | 经脉节奏：标准档为 3.4 / 7.3 / 14.9；结算顺序匹配 `design/21`，具名与双人战固定 RNG 回放 Boss 为 12–25 | 仍用旧 3.1 / 6.6 / 13.5，或经脉乘区 / 速度被重复计算 |
 
 ### 数值与流程用例
 
@@ -1292,7 +1313,7 @@ B = 11.4×8 = 91.2 两
 | BM-T09 | `dc_10_07` 先取遗物后尝试丢弃 | `rescue_before_treasure=false`，改命仍永久关闭，不能靠丢物反悔 |
 | BM-T10 | `dc_10_08` 双人战 | 两个 `full` 单位、一个阶段；不是两阶段 Boss |
 | BM-T11 | Lv42 / Lv45 D3 模板 Boss | 核心目标分别为 hp 53,953 / 61,796，atkOut 1,606 / 1,838，defOut 1,273 / 1,457 |
-| BM-T12 | 白马 Lv46 Boss 节奏 | 约 38.9 整队命中等价 / 13.5 主角行动；敌约 10.9 命中 / 11.4 行动；命中 93.0% / 95.4% |
+| BM-T12 | 白马 Lv46 Boss 节奏 | 约 42.9 整队命中等价 / 14.9 主角行动；敌约 10.9 命中 / 11.4 行动；命中 93.0% / 95.4% |
 | BM-T13 | 搭档 `ct=299/300` | 299 合击不可用；300 可用，结算后搭档 ct=0 |
 | BM-T14 | 取得天书后选“了却尘缘” | 进入余韵，未锁支线可继续；资源 / 合同直到正式书眠才结清 |
 | BM-T15 | 6 个开放区进入传承调度 | `legacyCarrierCap=ceil(6/2)=3`、`heirCarrierCap=ceil(3/2)=2`、新残本≤6、新信物≤3；8 条候选按硬过滤和确定性 RNG 取舍 |
@@ -1334,6 +1355,7 @@ rg -n 'rg_10_|rg_xiyu\b|mer_du\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/des
 - **已解决：**`design/07-set-system.md` 已定稿；本章只引用 §9.5 指定的正式套装，仍不定义套装效果。
 - 已解决：`design/20-legacy-inheritance.md` 已落盘，本章 §9.7 已按其目录、区域过滤与白马配额回填前代传承候选及可完成校合。
 - `design/10` 尚未给 D07 地上9牺牲遗物登记正式 `it_*`；本章以不可入包的剧情槽实现，并与 `it_gaochangguwu` 分离。
+- **已解决：**`design/21` 的敌方经脉模板与攻防 / 护体 / 速度 / 控制接口已写入 §12.8；具体招式路线仍等待图鉴正式 `mfr_*`。
 
 ### 对基准的修改提案
 

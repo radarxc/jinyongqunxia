@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：`ch08_luding` 书界 DLC 的时代内容、区域落点、剧情接口、任务投放、人物与本界特色机制。
 > 上游：`docs/00-canon.md` v1.2；作者新增需求与决定见 `docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`；正邪主线与选择节点唯一叙事源见 `docs/design/story/08-luding.md`。
-> 引用而不重定义：时间线、书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害公式 → `design/04`；武学规则与图鉴 → `design/05`、`design/catalog/skills-*.md`；Buff → `design/06`；地形与轻功门禁 → `design/08`；战斗、Boss 与合击 → `design/09`；物品与神兵 → `design/10`；统一地图与时代图层 → `design/11`；任务、门派与羁绊 → `design/12`；成长、天书与结局 → `design/13`；经脉与冲穴 → `design/15`；资源与营生 → `design/16`；门派时代矩阵 → `design/17`；NPC 与跨书重逢 → `design/18`；前代传承 → `design/20`。
+> 引用而不重定义：时间线、书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害公式 → `design/04`；武学规则与图鉴 → `design/05`、`design/catalog/skills-*.md`；Buff → `design/06`；地形与轻功门禁 → `design/08`；战斗、Boss 与合击 → `design/09`；物品与神兵 → `design/10`；统一地图与时代图层 → `design/11`；任务、门派与羁绊 → `design/12`；成长、天书与结局 → `design/13`；穴位、冲穴、通脉、周天与九转 → `design/15`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；门派时代矩阵 → `design/17`；NPC 与跨书重逢 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v1.0（D08 初稿，2026-09-26）；审校 D08.R（2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.0（D08 初稿，2026-09-26）；审校 D08.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）。
 
 ---
 
@@ -1464,6 +1464,31 @@ chapterBalance:
 
 数值配置应从公式生成或在构建期比对，不允许 YAML 成为第二份手工事实源。
 
+### 12.8 Boss / 精英经脉配置与节奏回归
+
+本节只配置 `design/21` §11.9 的敌人初始化输入；穴位、周天与九转仍归 `design/15`，路线算法、乘区和控制效果均不在本章重定义。鹿鼎为低武界，故下列 `effLayer` 一律不超过 8。`routeRefs` 不手写尚未合入的 `mfr_*`：构建器必须从该单位行动表中每个 `MoveDef.meridianRouteRef`（含 attack / defense / movement）取并集，展开、去重后初始化；未知路线或迁移期默认短路在发布构建中均报错。
+
+`milestones` 每行都显式写全 `meridianComplete/smallCycle/greatCycle/twelveCycle/turns`。Boss 采用 21 的 `13000/9000/13000/fullTemplate` 档；`effGrade/effLayer/innerNature` 必须读取当前主运内功经压制后的值，不能拿最高攻击武学回填；无主运严格用 `1/1/harmony`。同场精英统一采用 `10500/7500/10500/schoolCore`，其修为三项也按同一规则逐单位解析，里程碑最多小周天。
+
+| 遭遇 / 独立武学行动者 | 当前主运 → `effGrade/effLayer` | `mpRatioBp/practiceBp/capacityScaleBp` | `innerNature` | `openPolicy` | `milestones` | 实例与控制接口 |
+|---|---:|---:|---|---|---|---|
+| 鳌拜 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` | `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 本人一实例；布库党羽逐精英一实例；摔跤擒拿命中后调 `applyGrapple` |
+| 海大富 / 假太后 | 各无 → 各 1 / 1 | 各 13000 / 9000 / 13000 | 各 `harmony` | 各 `fullTemplate` | 各 `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | 两个单位各一实例；追逐换阶段不重建或清伤势 |
+| 桑结 | `sk_zhuohuogong` → 4 / 8 | 13000 / 9000 / 13000 | `yang` | `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 本人一实例；会施武学的番僧逐单位实例化 |
+| 王屋冲突首领 | `sk_wangwuxinfa` → 3 / 8 | 13000 / 9000 / 13000 | `yang` | `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | 首领一实例；断栈、落石是纯环境，不实例化 |
+| 洪安通 | `sk_shenlongxinfa` → 9 / 8 | 13000 / 9000 / 13000 | `yang` | `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | 本人一实例；每名五龙使 / 教众独立；三阶段复用动态节点 |
+| 吴三桂军阵首领 | `sk_pingxituna` → 2 / 8 | 13000 / 9000 / 13000 | `yang` | `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 吴三桂或实际出手头目一实例；护卫按精英档逐单位实例化 |
+| 神龙舰队首领 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` | `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 首领与武学型接舷精英各一实例；火势 / 船旗不实例化 |
+| 归辛树 / 归二娘 | 各 `sk_hunyuangong` → 各 9 / 8 | 各 13000 / 9000 / 13000 | 各 `yang` | 各 `fullTemplate` | 各 `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | 两人各一实例，不合并血条或经脉态；救援阶段保留各自伤势 |
+| 郑氏 / 冯锡范角色槽 | 各无 → 各 1 / 1 | 各 13000 / 9000 / 13000 | 各 `harmony` | 各 `fullTemplate` | 各 `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 实际施展武学者逐人实例化；图鉴未定武学时发布失败，不猜性质或路线 |
+| 雅克萨守军首领 | 无 → 1 / 1 | 13000 / 9000 / 13000 | `harmony` | `fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | 火器攻击仍由首领实例发起；纯弹药 / 装填机关无实例 |
+
+表中“无”包括只装拳掌、兵器、轻功或火器而未装内功的角色；攻击武学的品阶 / 性质不得冒充主运。第五转是本章玩家成长投放，不自动赠给所有敌人；只有首领表显式写 `turns`。普通敌人的三项模板倍率仍取 `9000/6200/9000`、`openPolicy=routeOnly`、五里程碑全 0；修为三项逐单位读主运，无主运即 `1/1/harmony`，不得为省算力省略实例。
+
+攻防与节奏接口如下：攻击路线在 04 的 Z5 后进入 Z5M，防守路线在 Z4 后进入 Z4M；护体真气后先结算护体内劲，再进 `mpGuard`；拳脚伤害可被护体内劲抵消。速度先乘 `meridianSpeedBp`，再乘 `grappleMoveBp`；首轮冻结 `openingQinggong` 与修正后 `spd`，战中变化只重算后续 CT / 移动。绝招只读取 `MoveDef.ultimate`；点穴 / 擒拿在当次伤害后的 06 阶段分别调用 `applyAcupointSeal` / `applyGrapple`，不得反改本次伤害。
+
+节奏以 04 当前模板基线 `3.9 / 8.0 / 23.4` 为零漂移锚（普通 / 精英 / Boss 主角行动轮）。标准对标准时 Z4M/Z5M 和速度均为 10000 bp，所以仍为 `3.9 / 8.0 / 23.4`，落在 `3–5 / 6–10 / 12–25`。压力包络仅用于回归：玩家对强一档首领时攻击 9157 bp，Boss 纯伤害轮近似 `ceil(23.4×10000/9157)=26`，已越上限，必须以宝训 / 内乱削弱或短路线兑现拉回 ≤25；玩家强两档时 14456 bp，`ceil(23.4×10000/14456)=17`，仍在区间。速度强档 12239 bp 只改变首轮 / CT / 移动，不能再乘伤害；具名阵容实装后须按固定 RNG 重跑，不能用上述比例代替回放。
+
 ---
 
 ## 13. 原创扩展清单与考据备注
@@ -1630,6 +1655,8 @@ chapterBalance:
 | V08-C17 | 校验传承预算 | 开 7 区时 `carrierCap=ceil(7/2)=4`、后人 ≤2、新残本 ≤8、新信物 ≤4；`lgs_tiejian_shenxing` 被原生来源过滤 | `chapter_legacy_budget_invalid` |
 | V08-C18 | 校验文档标注 | 原创内容带“（原创扩展）”或由 §13 集中归类；未核原著事实进入 K08 清单；所有“【建议值】”进入 C.1 | `chapter_annotation_ledger_missing` |
 | V08-C19 | 校验轻功门禁 | 20 个内容实例按 qg1–qg5 恰为 6 / 9 / 4 / 1 / 0；唯一 qg4 是紫禁城隐藏“屋脊飞渡”；qg4/qg5 地形收益不计内容门禁；正式 `gate_*` 由 `design/08` 分配 | `chapter_qg_gate_budget_invalid` |
+| V08-C20 | 校验经脉实例 | 十场首领表均有 §12.8 七组输入；双人 / 援军逐武学行动者独立实例；纯环境无实例；层数 ≤8；`routeRefs` 全由 `MoveDef` 编译 | `chapter_meridian_template_invalid` |
+| V08-C21 | 校验经脉节奏 | 标准档保持 3.9 / 8.0 / 23.4；攻防只进 Z5M / Z4M，护体与速度顺序符合 `design/21`；Boss 固定 RNG 回放仍为 12–25 | `chapter_meridian_ttk_out_of_range` |
 
 ### B.2 关键流程测试
 
@@ -1695,6 +1722,7 @@ chapterBalance:
 - **已解决：套装。** `design/07-set-system.md` 已定稿 44 套；本章只消费 §18.3 的鹿鼎可达结论，旧“韦爵爷”候选按 §19 不进入 v1。
 - 假太后 / 桑结等具名角色和六个候选 `echo_*` 尚未全部由其归属文档正式登记，发布数据依赖这些上游补项；海大富已登记为 `npc_haidafu`，白云观授艺者已按 `design/18` 的岗位槽口径收口。
 - 洪安通完整属性依赖 `design/03` §10.9；本文采用正式 `spd=113`，旧 103 / 123 均不构成第二真相源。
+- **已解决：战斗经脉接口。** §12.8 已按 `design/21` §11.9 配齐 Boss / 精英初始化、实例粒度、路线编译、攻防 / 护体 / 速度 / 控制顺序；具体 `mfr_*` 仍由武学图鉴登记后生成。
 
 ### 对基准的修改提案
 

@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：`design/chapters/*.md` 中《飞狐外传》书界的时代内容、区域投放、任务接口、人物出场、特色机制与本地平衡。
 > 上游：`docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`、`docs/00-canon.md` v1.2、`docs/decisions/rulings-v1.md`；主线唯一剧情源为 `design/story/13-feihu.md`。
-> 引用而不重定义：核心循环与锚点总览 → `design/01`；年代、境界、书眠、携带与压制 → `design/02`；属性与 Boss 模板 → `design/03`；伤害公式 → `design/04`；武学 → `design/05` 与图鉴；地形/轻功 → `design/08`；战斗/合击 → `design/09`；物品/神兵 → `design/10`；开放世界 → `design/11`；任务/门派 → `design/12`；成长/天书 → `design/13`；经脉/冲穴 → `design/15`；资源/营生 → `design/16`；门派名录 → `design/17`；人物名录 → `design/18`；地图 → `design/19`；前代传承 → `design/20`。
+> 引用而不重定义：核心循环与锚点总览 → `design/01`；年代、境界、书眠、携带与压制 → `design/02`；属性与 Boss 模板 → `design/03`；伤害公式 → `design/04`；武学 → `design/05` 与图鉴；地形/轻功 → `design/08`；战斗/合击 → `design/09`；物品/神兵 → `design/10`；开放世界 → `design/11`；任务/门派 → `design/12`；成长/天书 → `design/13`；穴位、冲穴、通脉、周天与九转 → `design/15`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21`；资源/营生 → `design/16`；门派名录 → `design/17`；人物名录 → `design/18`；地图 → `design/19`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给可用数值并在文末登记。
-> 版本：v1.0（D13 初稿，2026-09-26）；审校 D13.R（2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.0（D13 初稿，2026-09-26）；审校 D13.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）。
 
 
 ## 0. 阅读指引
@@ -672,7 +672,7 @@ hpTarget ∈ [0.6, 1.2] × hpTemplateBossSameLevel
 | 苗人凤 `npc_miaorenfeng` / 待 `design/09` 登记 | 55 / 否 | `sk_miaojiajian` 9 地上、`sk_miaojiaquan` 6 玄上、`sk_miaojiaxinfa` 5 玄中 | `120,468×0.75=90,351` | P1 蒙眼守位仅用听风反击；复明后的可选切磋转 P2 寻隙；攻击苗若兰保护位立即终止盟约 | 只允许认输、停手或切磋胜负；不能在普通战斗杀死后书核心 |
 | 田归农 `npc_tianguinong` / 待 `design/09` 登记 | 59 / 是 | `sk_tianlongjian` 6 玄上、`sk_tianlongbeidao` 5 玄中、`sk_guanwaixinfa` 4 玄下 | `148,774×0.90=133,896.6≈133,897` | P1 借亲信换位；P2 证据揭开后亲信可溃逃；P3 墓碑后三尺区域成为争夺点，但交互不能复制冷月刀 | 墓前败退按 story；不得在此预判雪山生死 |
 | 慕容景岳 `npc_murongjingyue` / 待 `design/09` 登记 | 51 / 否 | `sk_yaowangzhenfa` 5 玄中、`sk_yaowangtuna` 3 黄上、`sk_yaowanghushou` 2 黄中 | `103,702×0.65=67,406.3≈67,406` | 毒烛格按可见预警轮换；封存毒账可移除一波援手；不展示现实毒理步骤 **（原创扩展机制）** | 可制伏、受审或逃走；不自动死亡 |
-| 薛鹊 `npc_xueque` / 待 `design/09` 登记 | 52 / 否 | `sk_yaowangzhenfa` 5 玄中、`sk_yaowanghushou` 2 黄中；高阶毒术只作剧情状态，不私建武学 | `107,773×0.62=66,819.26≈66,819` | 与慕容景岳的敌我标记可因证据翻转一次；反证成功时其阶段目标由击倒改为脱离 **（原创扩展机制）** | 与上一战可合并为双首领，但两份 NPC 状态仍独立 |
+| 薛鹊 `npc_xueque` / 待 `design/09` 登记 | 52 / 否 | `sk_yaowangzhenfa` 5 玄中、`sk_yaowanghushou` 2 黄中；当前主运 `sk_yaowangtuna` 3 黄上；高阶毒术只作剧情状态，不私建武学 **（原创扩展配置）** | `107,773×0.62=66,819.26≈66,819` | 与慕容景岳的敌我标记可因证据翻转一次；反证成功时其阶段目标由击倒改为脱离 **（原创扩展机制）** | 与上一战可合并为双首领，但两份 NPC 状态仍独立 |
 | 石万嗔 `npc_shiwuchen` / 待 `design/09` 登记 | 57 / 是 | `sk_yaowangdujing` 8 地中、`sk_qixinhaitang` 8 地中、`sk_yaowangtuna` 3 黄上 | `129,334×0.85=109,933.9≈109,934` | P1 三种剧情毒态互相牵制；P2 预告后换毒雾区；完成医 / 毒 / 解毒三线各移除一项脚本优势 **（原创扩展机制）** | 毒性只用 Buff / 地形接口；不提供现实配方。其倒地与程灵素命运事务分开提交 |
 
 模板攻击参照依次为：Lv47 `2,377/2,089`、Lv49 `2,580/2,267`、Lv50 `2,689/2,415`、Lv51 `2,796/2,511`、Lv52 `2,905/2,609`、Lv55 `3,246/2,916`、Lv57 `3,485/3,130`、Lv59 `3,967/3,633`（外 / 内攻）。具名 `full` 构建的最终攻击可围绕相应参照调校，但必须由合法先天、武学、装备和 `×1.15` 算出；不得直接把参照硬写进角色表。防御同理不叠乘 D6。
@@ -999,6 +999,27 @@ BossPhases      = 2–3
 - 标准、宗师、天劫各跑一次具名 Boss 构建校验；难度档与 D6 分别乘一次，不得双乘防御或评级。
 - 本节数值为静态公式核对；完整阵容、手机 UI 与真实操作节奏仍 **（待实测）**。
 
+### 12.7 Boss / 精英经脉配置与节奏回归
+
+本节只落 `design/21` §11.9 的敌方初始化参数；穴位、周天与九转成长归 `design/15`。飞狐为中武追赶窗口，所有 `effLayer≤9`，不假设敌我已经完成第八转。`effGrade/effLayer/innerNature` 只读取当前主运内功经压制后的值；无主运严格用 `1/1/harmony`，外功、轻功与毒术品阶不得代填。`routeRefs` 必须由行动表 attack / defense / movement 三类 `MoveDef.meridianRouteRef` 编译为并集并展开去重；不在本章创设 `mfr_*`。`milestones` 每行显式写全五字段。
+
+八名具名 Boss 均取 `mpRatioBp/practiceBp/capacityScaleBp=13000/9000/13000`、`openPolicy=fullTemplate`：
+
+| Boss | 当前主运 → `effGrade/effLayer` | `innerNature` | `milestones` | 实例与招式接口 |
+|---|---:|---|---|---|
+| 商老太 | 无 → 1 / 1 | `harmony` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | 本人一实例；火场是纯环境，不实例化 |
+| 凤天南 | 无 → 1 / 1 | `harmony` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | 本人一实例；家丁护阵逐精英实例化，通行代理武学不改变原著归属 |
+| 袁紫衣 | 无 → 1 / 1 | `harmony` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | 本人一实例；三姿态切换行动表但保留节点伤势 |
+| 苗人凤 | `sk_miaojiaxinfa` → 5 / 9 | `harmony` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:7}` | 本人一实例；蒙眼不改变经脉强度，复明切磋不重建 |
+| 田归农 | `sk_guanwaixinfa` → 4 / 9 | `yang` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:6}` | 本人与每名亲信各一实例，换位不交换 backlog / 点穴 |
+| 慕容景岳 | `sk_yaowangtuna` → 3 / 9 | `yin` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | 本人一实例；毒烛地形无实例，武学型援手逐单位创建 |
+| 薛鹊 | `sk_yaowangtuna` → 3 / 9 | `yin` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | 与慕容景岳合场时仍为独立实例；阵营翻转不清动态态 |
+| 石万嗔 | `sk_yaowangtuna` → 3 / 9 | `yin` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | 本人一实例；毒雾只走 Buff / 地形，不获得免费路线倍率 |
+
+本界精英取 `10500/7500/10500`、`schoolCore` 与 `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}`；普通取 `9000/6200/9000`、`routeOnly` 与 `{meridianComplete:false, smallCycle:false, greatCycle:false, twelveCycle:false, turns:0}`。两类逐单位读取当前主运三项，无主运即 `1/1/harmony`。攻防分别接 04 的 Z5M / Z4M；护体真气后结算护体内劲，再过 `mpGuard`。速度先经脉后擒拿，首轮冻结；绝招仅读 `MoveDef.ultimate`。针法点穴与外功擒拿都在本次伤害后调用目标实例的 `applyAcupointSeal` / `applyGrapple`；调息仅修战斗态，不推进永久经脉。
+
+04 当前基线 `4.0 / 8.1 / 15.2` 在标准对标准 10000 bp 下保持不变。玩家弱一档时 Boss 约 `ceil(15.2×10000/9157)=17` 轮；强守方净伤害 861/1000 时约 `ceil(15.2×1000/861)=18` 轮，仍在 12–25。玩家强两档 14456 bp 时约 11 轮，只作高配敏感性，不作为标准配装。经脉速度强档 / 封路档必须分别验证首轮、CT 与移动，不能折算成额外伤害。三毒、双首领、援军和非致死阈值仍须固定 RNG 实战回放 **（待实测）**。
+
 ---
 
 ## 13. 原创扩展清单与考据备注
@@ -1110,6 +1131,8 @@ BossPhases      = 2–3
 | 冲穴接口 | 章节只发 `MeridianGuidance`；未确认 `meridianAid` 的丹药加成为 0 | 删除直接开穴或伪造丹药标签 |
 | Boss 构建 | D6 只乘一次 1.15；仅田归农、石万嗔可 `capExempt`，且 `Ld≤59`；其余 `Ld≤55` | 退回 `design/03` `full` 管线重算 |
 | YAML 与存档 | 三段 YAML 均可解析；§10 的承诺键和大会键均位于 `story13`，无未登记全局实体 | 阻断读档兼容测试 |
+| Boss / 精英经脉 | 八 Boss 均有 §12.7 七组输入、层数 ≤9；双首领 / 援军逐武学行动者独立实例，纯毒雾 / 火场无实例；路线由 `MoveDef` 编译 | 阻断章节发布 |
+| 经脉节奏 | 标准档保持 4.0 / 8.1 / 15.2；攻防 / 护体 / 速度 / 控制顺序匹配 `design/21`，具名回放 Boss 为 12–25 | 退回配表与脚本调校 |
 
 ### 最小测试用例
 
@@ -1146,6 +1169,7 @@ BossPhases      = 2–3
 - 开局、26 个稳定任务、十个选择节点、五锚点与正邪结算依赖 `design/story/13-feihu.md`；9 个制作幕组的预算依赖 `design/11`，本文不拥有剧情真源。
 - 区域、城市时代名、地形和轻功门禁依赖地图 SVG、`cities.yaml`、`design/08`；门派、人物和跨书判定依赖 `design/17`、`18`。
 - 战斗、任务、成长、装备、冲穴、营生与前代传承分别依赖 `design/03`、`04`、`09`、`12`、`13`、`10`、`15`、`16`、`20`。
+- **已解决：**战斗经脉、招式路线、护体、速度、点穴 / 擒拿和敌方模板依赖 `design/21`；§12.7 已接入，图鉴路线登记仍由其归属方完成。
 - 武学 ID 与来源上限依赖 `catalog/skills-qianlong.md`、`skills-general.md`；套装候选未被正式套装归属文档接纳前保持禁用。
 
 ### 对基准的修改提案
