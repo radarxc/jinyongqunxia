@@ -2,10 +2,11 @@
 
 > 归属（基准 §18）：武功数据结构、层数、招式预算、内功接口、修炼、装配栏规则、武学图鉴。
 > 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
-> 引用而不重定义：携带、外来压制、残篇/残承 → `design/02-timeline-and-world-tiers.md`；属性公式、`MPREF` 与技艺 ID → `design/03-attributes.md`；伤害公式与乘区 → `design/04-damage-formula.md`；Buff 定义与目录 → `design/06-buff-system.md`；套装定义 → `design/07-set-system.md`；地形/轻功阈值 → `design/08-terrain-and-qinggong.md`；六角范围模板、集气、运劲、合击、反击流程与 AI → `design/09-combat-system.md`；物品/丹药/兵器属性 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务、关系与门派玩法 → `design/12-quests-npc-factions.md`；角色经验与等级 → `design/13-progression-and-endings.md`；穴道、经脉、冲穴与周天 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；门派名录、历史与时代开放 → `design/17-sects-compendium.md`；NPC 身份、同伴与生卒 → `design/18-npc-and-companions.md`；地图节点、坐标与时代地图资产 → `design/19-world-map.md`；后人、宝藏、跨年代残本、信物、配方与投放 → `design/20-legacy-inheritance.md`。
+> 引用而不重定义：携带、外来压制、残篇/残承 → `design/02-timeline-and-world-tiers.md`；属性公式、`MPREF` 与技艺 ID → `design/03-attributes.md`；伤害公式与乘区 → `design/04-damage-formula.md`；Buff 定义与目录 → `design/06-buff-system.md`；套装定义 → `design/07-set-system.md`；地形/轻功阈值 → `design/08-terrain-and-qinggong.md`；六角范围模板、集气、运劲、合击、反击流程与 AI → `design/09-combat-system.md`；物品/丹药/兵器属性 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务、关系与门派玩法 → `design/12-quests-npc-factions.md`；角色经验与等级 → `design/13-progression-and-endings.md`；穴道、经脉、冲穴与周天 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；门派名录、历史与时代开放 → `design/17-sects-compendium.md`；NPC 身份、同伴与生卒 → `design/18-npc-and-companions.md`；地图节点、坐标与时代地图资产 → `design/19-world-map.md`；后人、宝藏、跨年代残本、信物、配方与投放 → `design/20-legacy-inheritance.md`；战斗经脉运行、攻防/轻功路线、绝招补充、护体内劲、擒拿/点穴、调息与逐单位模拟 → `design/21-meridian-flow-and-moves.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.2（跨文档同步；全局审计，2026-09-27）。
+> 版本：v1.2（跨文档同步；全局审计，2026-09-27）；经脉系统落地（2026-09-27）。
 > 变更记录：v1.2 接收 `design/15` 的 20 个正式经脉 ID、专精倍率与校验边界，补齐 `design/17`–`20` 的唯一归属引用，明确 `recalled` 仅为基础图鉴状态上的“再续朱印”，并将已落盘的跨文档待决项改为已解决。C14 图鉴实数重定与 CN-05 独孤六式预算结论保持不变。
+> 变更记录（2026-09-27，经脉系统落地）：接收 `design/21` v2.0 的武学侧接口：招式引用攻/防/轻功路线，内功引用调息档案并声明护体内劲能力，轻功提供常驻速度路线；路线段时间只计 `flowCt`，经脉攻防乘区独立于 `power` 预算；§14 数量与品阶总账不变。
 > 全局审计：接入 `legacy_fragment` / `legacy_synthesis` 与 `legacy_complete` 形态，按 11 册最终图鉴重算 1,138 门库存和十四书界静态可习得池，并同步六角范围与正式套装闭合结果。
 
 ---
@@ -17,8 +18,8 @@
 | §1 | 设计目标与约束 | 全体 |
 | §2 | 武功数据结构（字段表、枚举、完整 YAML、TS 类型、运行时状态、派生管线） | 程序、配表 |
 | §3 | 层数：层数系数 L(n)、经验曲线、修为门槛、有效层数、每层解锁规范 | 数值、程序 |
-| §4 | 招式：字段、预算公式、六角范围接口、位移、友伤、绝招、招式栏 | 数值、程序、战斗 |
-| §5 | 内功：主运/辅运、性质与相性（Z5）、贡献、内劲/经脉与运劲接口 | 数值、程序 |
+| §4 | 招式：字段、预算公式、经脉路线接口、六角范围接口、位移、友伤、绝招、招式栏 | 数值、程序、战斗 |
+| §5 | 内功：主运/辅运、性质与相性（Z5）、贡献、冲穴内劲、调息与护体内劲接口 | 数值、程序 |
 | §6 | 装配规则：栏位、兵器匹配、空手/持械、切换武器、套装计件 | 程序、战斗 |
 | §7 | 学习：途径、门槛、秘籍、观摩偷学、残页、解谜、合击领悟、印证挂接 | 策划、程序 |
 | §8 | 修炼：实战经验分配、闭关、师父指点、丹药、顿悟 | 数值、程序 |
@@ -59,7 +60,7 @@
 | 绝招消耗气势 100 | §1、§8 | §4.8 |
 | "回合" = 持有者自身一次行动 | §8 | 冷却、持续均以此计 |
 | Buff 品阶对抗、标签 | §10 | 武学施加的 Buff 品阶 = 来源武学有效品阶 |
-| 乘区 Z0–Z10 名称与顺序 | §9 | 本文所有增伤标明乘区 |
+| 既有乘区 Z0–Z10 名称与顺序 | §9 | 本文所有既有增伤标明乘区；AR-14 新增的 Z4M/Z5M 只引用 design/21 §4.4 与待采纳 M3-P01，不在本文重定义 |
 
 ---
 
@@ -89,6 +90,7 @@
 | `inner` | InnerDef | 内功必填 | 内功专属：贡献预算、辅运模式、性质跟随等（§5） | |
 | `layers` | LayerDef[] | ✅ | 1–10 重每重解锁（招式/被动/绝招/里程碑），见 §3.5；无解锁的层可省略 | |
 | `moves` | MoveDef[] | ✅ | 招式列表（§4）；轻功/部分杂学可为空 | |
+| `movementRouteRef` | `MeridianRouteId` | 轻功必填 | 轻功武学的常驻速度路线；必须引用 design/21 `purpose: movement` 的 `mfr_*`，主动轻功招式可由 `MoveDef.meridianRouteRef` 覆写 | `mfr_*` |
 | `moveSlots` | int | 自动 | 战斗中可同时装配的普通招式数（§4.9），黄/玄 3、地 4、天 5 | `5` |
 | `passives` | PassiveDef[] | | 被动（§2.5） | |
 | `setTags` | setId[] | | 所属套装 ID（`set_<拼音>`）；套装本体归 design/07，构建时双向校验 | `[set_shaolin_jingang]` |
@@ -242,6 +244,8 @@ D1 = floor(ATK_mix × 1.24 × P_actual / P_ref(Ld_attacker, tier))
 ```
 
 `ATK_mix = wOut × atkOut + wIn × atkIn`，`P_ref` 引用 design/03 §3.5；Z2–Z10 不再除 `P_ref`，也不得用本次 `P_actual` 充当分母（C01）。
+
+AR-14 的经脉路线不改变本式：`P_actual` 与 `move.power` 都不预乘路线收益。守方路线在 Z4 后由 design/21 §4.4 输出独立的 Z4M，攻方路线在 Z5 后输出独立的 Z5M；即 `…Z4 → floor(Z4×meridianDefenseBp/10000) → Z5 → floor(Z5×meridianAttackBp/10000) → Z6…`，两处各自向下取整，且标准对标准都是 10000 bp。本文只提供路线引用，不复制乘区曲线。
 
 ### 2.8 完整 YAML 示例（字段全集演示：铁砂掌，玄中）
 
@@ -404,6 +408,8 @@ assets: { icon: skill/tieshazhang, art: illus/skill/tieshazhang }
 export type Grade = 1|2|3|4|5|6|7|8|9|10|11|12;
 export type Nature = 'yang'|'yin'|'harmony'|'neutral';
 export type MeridianId = import('./meridian/types').MeridianId; // 唯一目录与运行时白名单见 design/15 §2、§11.4
+export type MeridianRouteId = string; // 拟登记 mfr_*；定义、步骤与 purpose 唯一见 design/21 §12
+export type BreathProfileId = string; // 拟登记 txp_*；对象定义与公式唯一见 design/21 §10、§12
 export type Category = 'inner'|'unarmed'|'weapon'|'movement'|'hidden'|'misc';
 export type Zone = 'Z0'|'Z1'|'Z2'|'Z3'|'Z4'|'Z5'|'Z6'|'Z7'|'Z8'|'Z9'|'Z10'|'settle'|'none';
 export type HexShape = import('./battle/types').HexShape;     // 唯一判别联合见 design/09 §13.1
@@ -463,6 +469,7 @@ export interface SkillDef {
   reqs: Reqs; maxLayer?: number;
   layerStats?: Partial<Record<StatId, [number, number]>>;
   inner?: InnerDef; layers: LayerDef[]; moves: MoveDef[]; moveSlots?: number;
+  movementRouteRef?: MeridianRouteId; // category=movement 必填；purpose 必须为 movement
   passives?: PassiveDef[]; setTags?: `set_${string}`[]; conflicts?: Conflict[];
   weaponReq?: WeaponReq | null; hiddenKind?: HiddenKind; learnSources: LearnSource[];
   forms?: { legacy_complete?: SkillFormDef };
@@ -490,6 +497,8 @@ export interface MoveDef {
   condition?: MoveCondition;     // 如"目标主武器为 blade"
   autoGroup?: string;            // 自动选式组（独孤九剑"破招"）
   yunjinMode?: YunjinMode;       // 专属招式覆写对应通用运劲分支
+  meridianRouteRef?: MeridianRouteId; // 一条主路线；attack/defense/movement 与招式用途一致
+  routeOnTriggerRef?: MeridianRouteId; // 仅触发型防守/身法；purpose=defense|movement
   effects?: EffectHook[]; note?: string;
   tags?: string[]; anim?: AnimRef; ai?: AiHint;
 }
@@ -497,6 +506,8 @@ export interface MoveDef {
 export interface InnerDef {
   contribution: InnerContribution;
   meridians: MeridianId[];
+  breathProfileRef: BreathProfileId;
+  innerGuard: { enabled: boolean; reflectBp?: number };
   yunjin?: YunjinMode[];
   auxYunjin?: YunjinMode[];
   bridge?: boolean; natureFollowAux?: boolean; auxOverride?: number;
@@ -714,6 +725,9 @@ effLayer = min(trueLayer, effectiveTierCap(context), gateCap(grade, displayLevel
 | `condition` | `MoveCondition` | — | 使用条件，如 `{targetWeapon: [blade]}`、`{fromBehind: true}`、`{selfHpBelow: 0.3}`；正式键见 §4.11 |
 | `autoGroup` | string | — | 自动选式组：UI 只显示一个按钮，按目标自动解析为组内合法招式 |
 | `yunjinMode` | enum | — | 此内功专属招式覆写的运劲分支；枚举引用 design/09 §4.8.4，不与通用运劲重复叠加 |
+| `meridianRouteRef` | `MeridianRouteId` | 需运气招式必填 | 主路线 `mfr_*`；路线对象的 `purpose` 必须与本次招式用途 `attack` / `defense` / `movement` 一致。路线步骤、每段 `segmentCt`、`riskBp`、性质与模板唯一见 design/21 §4–§5、§12 |
+| `routeOnTriggerRef` | `MeridianRouteId` | — | 触发式防守 / 身法的路线；仅允许 `purpose:defense|movement`，如太极卸力被动。主动招式仍只用 `meridianRouteRef` |
+| `flowCt` | 派生 int | — | 不写入内容；从所引路线实际尝试的 `steps[].segmentCt` 求和。预检硬封为 0，中途卡住仍计已尝试段；交 design/09 计入收招 |
 | `tags` | string[] | — | 表现与判定标签：`palm` `finger` `qigong`（气劲） `sonic` `fire` `cold` `poison` `hard` `soft` … |
 | `anim` | object | — | `{clip, vfx, sfx, cutin?}` 素材键（素材规范归 `tech/06`） |
 | `ai` | object | — | `{weight, prefer: opener\|finisher\|aoe\|control\|heal}` 供 design/09 AI 使用 |
@@ -748,6 +762,29 @@ power = AF(tpl) × (1 + Σadj) × K_delivery × K_parry − Σcost_buff − Σco
 **例**：降龙十八掌·震惊百里：六角 `aoe_around` 命中 6 格，AF 0.75；`cd 3` 为 +0.36，天阶基准 8%、实际 10% 为 +0.10，眩晕 30% 扣 `0.25×0.30=0.075`，故 `0.75×(1+0.36+0.10)−0.075=1.020`，取 **1.00**（在 ±0.05 手调范围内）。
 
 **支援类预算**（治疗与护盾，公式归 design/04）：标准单体治疗 = 目标 `hpMax` 的 18%（大阶基准耗内、`cd 2`）；护体真气（`shield`）按治疗量 × 1.2 等价；群体治疗按 AF 折算。
+
+**经脉乘区不进入本预算。** `power` 仍只由上式与绝招预算产生；不得把路线段数、`routeQualityBp`、攻方 `meridianAttackBp`、守方 `meridianDefenseBp`、护体内劲抵消量或 `meridianSpeedBp` 预乘进 `power`，也不得为“经脉强”额外增加 `adj`。战斗中先由逐单位经脉实例运行 `meridianRouteRef`，再按 design/21 §4.4 把 Z4M 放在 Z4 后、Z5M 放在 Z5 后，各向下取整一次；标准对标准两者均为 10000 bp，所以本节基准 `power=1.00` 不漂移。路线只通过实际尝试段的 `flowCt=ΣsegmentCt` 增加 09 收招，且必须满足：
+
+```text
+MoveDef.recovery + Σ route.steps[].segmentCt ≤ 2000
+```
+
+例如 `mv_xianglong18_lianhuan` 仍按范围、绝招和位移预算得 `power=2.00`；其 10 段路线每段 80 CT，只另得 `flowCt=10×80=800`，故完整收招为 `1200+800=2000`。经脉攻强时的额外伤害在 Z5M 独立兑现，不能反写成更高 `power`。公式、取整、卡住后只计已尝试段以及 `rec_eff∈[500,2000]` 的最终钳制见 design/21 §3.5；本文仅保存路线引用。
+
+### 4.2.1 经脉路线用途与武学侧接口
+
+| 武学侧内容 | 路线用途 | 配置规则 | 结算输出（只引用 21） |
+|---|---|---|---|
+| 伤害招式、普攻、反击 | `attack` | `MoveDef.meridianRouteRef`；同一整招一条主路线，多段 / 范围共享攻方提交结果 | Z5M `meridianAttackBp`；普攻迁移短路为 2 段 |
+| 招架、格挡、卸力、护体 | `defense` | 主动防守填 `meridianRouteRef`；被动触发填 `routeOnTriggerRef` | Z4M `meridianDefenseBp`；护体路线可开启 §5.10 的护体内劲 |
+| 移动、跃起、追击、闪避身法 | `movement` | 主动招式填 `meridianRouteRef`；轻功武学另填顶层 `movementRouteRef` 作为常驻速度路线 | `meridianSpeedBp`、`openingQinggong`、`spd`、移动增量与纯经脉闪避评级差 |
+| 治疗 / 驱散 | 依动作意图 | 需要运气时可挂路线，但不得把攻击乘区套给治疗量 | 只运行路线状态与 `flowCt`；效果强度仍归 04 / 06 |
+
+- `MoveDef` 不内嵌 `steps` / `segmentCt` 数组，也不重复保存 `purpose`；二者由 `mfr_*` 路线对象唯一给出。一个招式至多一条主路线；触发路线只用于被动防守 / 身法，不能再给同一次主动动作叠第二条路线。
+- `meridianRouteRef` / `routeOnTriggerRef` 引用的是已展开的稳定路线对象；21 §5 的“短发 / 顺经 / 换脉 / 周流”等模板只是配表方法，不另设 `routeTemplateRef`，也不能把 A–G 排版别名写进 `MoveDef`。`segmentCt` 留在路线 `steps[]`，运行后时间只从 `FlowResult.flowCt` 进入 09。
+- `ultimate` 仍是绝招唯一真值。路线对象可镜像 `ultimate` 作构建期一致性断言，但不得覆写招式；地 / 天阶的绝招数量继续由 §3.5、§4.8 控制。
+- 防守路线、轻功路线和攻击路线共享同一单位经脉实例；共用穴位的迟滞、点穴与胀损必须互相可见。实例粒度和调用接口见 design/21 §11，每个可独立施展武学的我方 / 敌方单位各一实例。
+- 旧内容缺路线时只允许按 design/21 §4.6 的 2 段短路迁移；正式发布不得留下运行时默认路线。
 
 ### 4.3 六角范围模板接口（唯一归属：design/09 §5.3）
 
@@ -836,6 +873,8 @@ AF(N) = clamp(floor(rawAF(N) × 20 + 0.5) / 20, 0.35, 1.00)
 | 演出 | 立绘切入（`anim.cutin`），≤ 1.2 秒，可在设置中关闭 |
 | 数量 | 每门武学 ≤ 2 个；内功绝招以自身/友方效果为主 |
 
+绝招与经脉路线是正交字段：`ultimate:true` 仍只表示气势、解锁、预算与演出语义；需要运气的绝招同时填写 `meridianRouteRef`，并遵守 §4.2.1。路线对象的 `ultimate` 只是与本字段相等的构建期断言。长路线能够按 design/21 §3.5 更充分兑现攻守强度差，但逐段增加 `flowCt`，且卡住仍消耗已支付的内力 / 气势；预检已知未开通、胀损或 9 级点穴封路时则禁用且不扣资源。不得用“绝招”绕过 `recovery+满路线 flowCt≤2000`，也不得再把路线收益算入 `power`。
+
 ### 4.9 招式栏（`moveSlots`）
 
 - 每门装配中的武学，战斗中最多暴露 `moveSlots` 个普通招式（黄/玄 3、地 4、天 5）＋全部已解锁绝招。
@@ -845,8 +884,8 @@ AF(N) = clamp(floor(rawAF(N) × 20 + 0.5) / 20, 0.35, 1.00)
 
 ### 4.10 触发型招式与普攻
 
-- **触发型招式**：`trigger.on` ∈ `meleeAttacked`、`backAttacked`、`parrySuccess`、`allyAttacked`、`enemyEnterAdjacent`。触发时不占行动、不耗气势；照常耗内（不足则不触发）；每次来袭最多触发 1 个（按 `chance` 高者优先）；`perRound` 为每回合上限（此处"回合" = 持有者自身一次行动间隔）。反击的判定时序归 design/09。
-- **普攻**：每个角色都有隐藏武学 `sk_basic`（基本功，grade 1，固定 5 重，L = 1.0，不计入图鉴、不参与携带），招式 `mv_basic_strike`（普通一击：单体、近身、`power 0.80`、耗内 0、`recovery 900`）。内力不足时仍可行动。
+- **触发型招式**：`trigger.on` ∈ `meleeAttacked`、`backAttacked`、`parrySuccess`、`allyAttacked`、`enemyEnterAdjacent`。触发时不占行动、不耗气势；照常耗内（不足则不触发）；每次来袭最多触发 1 个（按 `chance` 高者优先）；`perRound` 为每回合上限（此处"回合" = 持有者自身一次行动间隔）。触发反击用 `purpose:attack` 的 `meridianRouteRef`；招架、卸力或闪避触发用 `routeOnTriggerRef` 且用途为 `defense` / `movement`。路线照常产生 `flowCt` 与共享节点伤势，不能因“不占行动”变成免费运气；反应额度、恢复债务与判定时序归 design/09。
+- **普攻**：每个角色都有隐藏武学 `sk_basic`（基本功，grade 1，固定 5 重，L = 1.0，不计入图鉴、不参与携带），招式 `mv_basic_strike`（普通一击：单体、近身、`power 0.80`、耗内 0、`recovery 900`）。内力不足时仍可行动；它引用 design/21 §4.2 的 2 段 `purpose:attack` 短路线，单段 70 CT，故完整 `flowCt=2×70=140`、总收招 `900+140=1040≤2000`。普攻也参与 Z5M，但短路线只部分兑现强度差。
 
 ### 4.11 效果钩子（`effects`）
 
@@ -1012,6 +1051,8 @@ restore = floor(真实 mpMax × mpRegen / 100)
 |---|---|---|
 | `contribution` | object | §5.5 |
 | `meridians` | `MeridianId[]` | 冲穴专精经脉；只允许 `design/15` §2 的 20 个正式 ID，空数组表示无专精而非全专精 |
+| `breathProfileRef` | `BreathProfileId` | 必填；引用 design/21 §10、§12 的 `txp_*` 调息档案。档案持有品阶 / 层数投影、性质、触及节点数、1000 CT 与 0 额外内力成本；05 不复制其公式 |
+| `innerGuard` | object | 必填；武学侧防守档 `{enabled, reflectBp?}`。`enabled` 表示主运可通过自然护体或 `purpose:defense` 护体路线启用护体内劲；`reflectBp` 只桥接已有固定反震语义，省略为 0，见 §5.10 |
 | `yunjin` | YunjinMode[] | 此内功开放的通用运劲分支；枚举唯一归 design/09 §4.8.4 |
 | `auxYunjin` | YunjinMode[] | 作辅运时仍可作为来源的运劲分支；省略即辅运不能驱动通用运劲 |
 | `bridge` | bool | 视为桥接（§5.4） |
@@ -1030,7 +1071,29 @@ restore = floor(真实 mpMax × mpRegen / 100)
 
 ### 5.9 运劲接口（AR-12）
 
-运劲是内功驱动的战斗行动。行动时序、消耗、强度公式、Buff 与七个子类 `tiaoxi|huti|xuli|bidu|liaoshang|cuiqinggong|huajie` 唯一归 design/09 §4.8.4。主运默认只可使用该内功 `inner.yunjin` 列出的分支；辅运还必须列入 `inner.auxYunjin`。内功专属招式若填 `move.yunjinMode`，代表覆写同子类通用运劲，不得同次叠加。运劲不推进冲穴进度。
+运劲是内功驱动的战斗行动。行动时序、通用回内 / 防护、消耗与七个子类 `tiaoxi|huti|xuli|bidu|liaoshang|cuiqinggong|huajie` 归 design/09 §4.8.4；`tiaoxi` 对战斗经脉的理顺、卸积、修复和解穴参数归 design/21 §10。主运默认只可使用该内功 `inner.yunjin` 列出的分支；辅运还必须列入 `inner.auxYunjin`。内功专属招式若填 `move.yunjinMode`，代表覆写同子类通用运劲，不得同次叠加。运劲与战斗调息均不推进冲穴进度。
+
+### 5.10 调息档案与护体内劲接口（AR-14）
+
+每门内功必须引用一份 `inner.breathProfileRef: txp_*`。`txp_*` 定义、通用生成式、触及节点全序、解穴门槛及战内 / 战外倍率唯一见 design/21 §10、§12；本文只负责把内功映射到档案。未定制者也必须引用由 21 的内容构建步骤预先登记、且按有效品阶、有效层数和性质投影的稳定档案，不能在运行时用显示名临时拼 ID，也不能把性质不同的现有档案临时复用。调息继续使用 `{t:yunjin, mode:tiaoxi}`：基础 1000 CT、经脉处理不另耗内力；9 级点穴禁自行调息。
+
+`inner.innerGuard` 是护体内劲的武学侧参数，不保存抵消公式：
+
+| 字段 | 范围 / 默认 | 说明 |
+|---|---|---|
+| `enabled` | bool；无主运时 false | 主运内功能否在合法自然护体短路或护体防守路线下启用；仅有字段不能跳过路线封闭 / 胀损 |
+| `reflectBp` | 可选 int 0–2000；默认 0 | 只承载已有的固定反震值；层数曲线 / Buff 值由 06 在当前有效层数结算后投影到运行时，不能在这里写上限值冒充全层固定值。护体内劲本身不自动赠送反震，且沿用 04 的防递归标记 |
+
+完整顺序只引用 design/21 §4.8：既有护体真气之后 → 护体内劲 → `mpGuard` → 气血；适用伤害类别、比例、内力兑换、容量与击穿公式均不进入 `InnerDef`，以 21 为唯一真值。来袭侧破体 / 破气由招式或 06 Buff 投影为 `InnerGuardInput.breakGuardBp`，取合格来源最高值、钳在 0–8000 bp；它不是防守内功自身的常量字段。击穿产生的迟滞、胀损风险与 CT 由逐单位 `MeridianFlowModule` 写回，不存入 `SkillState`。同一角色的攻击、防守、轻功与调息必须命中同一个经脉实例；我方与每个敌方单位各自独立，不能共享节点状态。
+
+### 5.11 轻功武学的速度路线
+
+`category: movement` 的武学必须填顶层 `movementRouteRef`，引用 `purpose: movement` 的稳定 `mfr_*`，作为装配该轻功后的常驻移动、首轮、CT、追击与闪避投影。轻功主动招式若发力路线不同，可在招式级 `meridianRouteRef` 覆写；未覆写时继承武学顶层路线。
+
+- `movementRouteRef` 不改变 03 的面板轻功与基础 `spd`，也不改变 08 的 20 / 50 / 90 / 140 / 200 门禁或逐格地形成本；它只把 21 §4.9 的 `meridianSpeedBp` 交给 09。
+- `movementRouteRef` 与招式 `meridianRouteRef` 都只存引用，不保存 `routeQualityBp` 或速度结果；这些是战斗实例的动态输出。
+- 点穴、迟滞或胀损封住该路线时，09 使用 21 输出的降速 / 禁用结果；不得静默回退为无惩罚基础速度。
+- §14 统计武学门数而非路线数；新增这些字段不增加任何武学、招式或绝招配额。
 
 ---
 
@@ -1781,7 +1844,7 @@ moves:   # 天阶耗内基准 8%
   - { id: mv_xianglong18_shenlong,  name: 神龙摆尾, unlock: 9, kind: attack, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_cone, r: 1, angle: 120, dirCount: 6}, delivery: melee, mpCost: 0.08, cd: 1, recovery: 1000, power: 0.95, parryable: true,
       trigger: {on: backAttacked, chance: 0.5, perRound: 1, counterPower: 1.20},
       note: "主动：以自身当前朝向的反方向为 aim，横扫身后三格；被动：遭背击时 50% 反身一掌" } # 六角120° r1为3格，0.85×1.12=0.952→0.95
-  - { id: mv_xianglong18_lianhuan,  name: 十八掌连环, unlock: 7, kind: attack, ultimate: true, rageCost: 100, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_cone, r: 3, angle: 60, dirCount: 6}, delivery: melee, mpCost: 0.10, cd: 0, recovery: 1200, power: 2.00, hits: 6, parryable: true,
+  - { id: mv_xianglong18_lianhuan,  name: 十八掌连环, unlock: 7, kind: attack, ultimate: true, rageCost: 100, meridianRouteRef: mfr_eighteen_palms_chain, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_cone, r: 3, angle: 60, dirCount: 6}, delivery: melee, mpCost: 0.10, cd: 0, recovery: 1200, power: 2.00, hits: 6, parryable: true,
       displacement: {type: knock, n: 2}, anim: {cutin: cutin/xianglong18},
       note: "（原创扩展命名）十八掌一气呵成：演出依次打出十八掌意象；10 重大成后 ×1.2" }     # 六角7格 AF0.70：3.0×0.70−0.10=2.00
 passives:
@@ -1919,6 +1982,8 @@ reqs:
 inner:
   contribution: { mpMaxPct: 56, hpMaxPct: 40, attrs: { con: 10, str: 4, wil: 8 }, mpRegen: 3.0, stats: { resInjury: 20 } }   # IP 155
   meridians: [mer_renmai, mer_dumai]                    # 【建议值】专精接口；正式效应归 design/15
+  breathProfileRef: txp_harmony_supreme                  # 21 §12.1 已有档案；有效品阶/层数随战斗快照投影
+  innerGuard: { enabled: true, reflectBp: 0 }
   yunjin: [tiaoxi, huti, liaoshang, huajie]
   auxYunjin: [liaoshang, huajie]
   bridge: true
@@ -1975,6 +2040,8 @@ description: >-
 
 设计要点："他强由他强，清风拂山岗；他横由他横，明月照大江"（原著九阳真经口诀）→ 对强敌减伤与反震；寒毒克星；"触类旁通"加速其他武学（原著张无忌凭九阳根基速成乾坤大挪移与太极；**待考：《倚天屠龙记》相关练功段落的速度描写**）。
 
+> 经脉接线边界：21 §12.1 当前只给出调和性质的 `txp_harmony_supreme` fixture；九阳是阳性内功，不能为凑字段误绑该档案。本例先落实不依赖新 ID 的 `innerGuard`，性质匹配的稳定调息档案由 21 / 图鉴内容批次登记，见 §17 D23。
+
 ```yaml
 id: sk_jiuyang
 name: 九阳神功
@@ -1997,6 +2064,7 @@ reqs:
 inner:
   contribution: { mpMaxPct: 60, hpMaxPct: 36, attrs: { con: 8, str: 6, wil: 6 }, mpRegen: 3.6, stats: { resCold: 20 } }   # IP 154
   meridians: [mer_renmai, mer_dumai]                    # 【建议值】与倚天图鉴接口一致；正式效应归 design/15
+  innerGuard: { enabled: true }                   # 反震由 ps_jiuyang_taheng 的层数值投影，不能写死 10 重的 1200 bp
   yunjin: [tiaoxi, huti, bidu, liaoshang, cuiqinggong]
   auxYunjin: [liaoshang]
   seclusionCap: 8
@@ -2343,6 +2411,7 @@ description: >-
 ## 14. 武学数量与品阶分布规划（`design/catalog/` 的约束）
 
 > 本节统计快照为 2026-09-27。计数单位是图鉴中唯一归属、玩家可习得的 `sk_*` 定义；不计 `sk_basic`、玩家自创武学、`enemyOnly: true` 条目，也不把 `sk_yuenvjian@legacy_complete` 形态重复算作新武学。序章教学武学计入定义库。古龙图鉴是 AR-08 的补充图鉴，纳入全局规模与类别统计，但不是十册金庸核心图鉴之一。
+> 经脉系统落地不改变本节数量：`mfr_*` 路线与 `txp_*` 调息档案都是附着于既有 `sk_*` / `mv_*` 的配置对象，不计作武学、招式或新的绝招配额。
 
 ### 14.1 总量
 
@@ -2574,6 +2643,11 @@ description: >-
 | 内功成长系数 | `innerScale(n)` | `0.30 + 0.07n` | §5.5 |
 | 内劲 | — | 05 输出给冲穴系统的速率输入；不是战斗资源 `mp`，公式归 design/15 | §5.8 |
 | 专精经脉 | `inner.meridians` / `MeridianId` | 内功向冲穴系统声明的经脉 ID 列表；只允许 design/15 §2 的 20 个正式 ID，单门专精只令自身内劲贡献 ×1.20 | §5.7–§5.8 |
+| 招式经脉路线 | `meridianRouteRef` / `routeOnTriggerRef` | 武学侧只保存对 `mfr_*` 主路线或触发路线的引用；用途、节点、段时间、风险和运行结果归 design/21 | §4.1–§4.2.1 |
+| 轻功速度路线 | `movementRouteRef` | 轻功武学的常驻 `purpose:movement` 路线；输出经脉速度而不改基础轻功 / 门禁 | §2.1、§5.11 |
+| 路线段时间 / 经脉收招 | `segmentCt` / `flowCt` | `segmentCt` 属于 21 路线步骤；05 校验招式 `recovery +` 满路线总 CT，运行时只消费派生 `flowCt` | §4.1–§4.2 |
+| 调息档案 | `inner.breathProfileRef` / `txp_*` | 内功引用 21 的调息参数投影；理顺、修复与解穴公式不在 05 重定义 | §5.7、§5.10 |
+| 护体内劲参数 | `inner.innerGuard` / `InnerGuardInput.breakGuardBp` | 内功声明启用与既有反震语义；来袭破体 / 破气由招式 / Buff 投影，抵消公式和实例状态归 design/21 | §5.10 |
 | 运劲分支 | `inner.yunjin` / `inner.auxYunjin` / `move.yunjinMode` | 内功开放的通用运劲、辅运许可及专属招式覆写；枚举与行动归 design/09 | §5.7、§5.9 |
 | 易运 | — | 战斗中切换主运 | §5.6 |
 | 持械系数 | `Mod_armed` | 持兵器使用拳脚的折算 | §6.3 |
@@ -2605,6 +2679,8 @@ description: >-
 | 类别 | ID | 备注 |
 |---|---|---|
 | **已入基准 v1.1 的前缀** | `ps_<武功拼音>_<拼音>` 被动；`aoe_<名>` 范围模板；`vow_<拼音>` 誓约 | 基准 V11-04；不是本轮新造前缀 |
+| 经脉运行（仅引用 design/21 的拟登记前缀） | `mfr_*` 招式路线；`txp_*` 调息档案；`qnl_*` 擒拿严重度；`dxl_*` 点穴严重度 | 本文 schema 直接引用 `mfr_*` / `txp_*`；不创建定义。`qnl_*` / `dxl_*` 仅为交互语义引用；四前缀待 Canon 接纳 M2-P01 |
+| 经脉运行示例（仅引用） | `mfr_eighteen_palms_chain`、`txp_harmony_supreme` | 均已由 design/21 §12.1 定义；05 不登记第二份对象 |
 | 范围模板（仅引用 design/09 的生产 ID） | 基础：`aoe_single` `aoe_self` `aoe_ring` `aoe_around` `aoe_disk` `aoe_line` `aoe_bolt` `aoe_spokes` `aoe_cone` `aoe_zone` `aoe_allies` `aoe_field` `aoe_ally_all`；行为/组合：`aoe_wave` `aoe_pierce` `aoe_leap` `aoe_dash` `aoe_pull` `aoe_knock` `aoe_chain` `aoe_multi` `aoe_behind` `aoe_swap` `aoe_boomerang` `aoe_sequence` | §4.3；旧方格 ID 仅为迁移别名，不列生产清单 |
 | 武学（本文新增，非基准 §13） | `sk_basic` `sk_tieshazhang` `sk_taizuchangquan` `sk_quanzhenjian` `sk_longzhaoshou` `sk_luohanquan` `sk_qishangquan` `sk_jiuyinbaigu` `sk_zichuang01`–`03` | 完整定义于本文 |
 | 武学（仅引用，待 catalog 定义） | `sk_mianzhang` 绵掌、`sk_yunvjian` 玉女剑法、`sk_shaolinqinna` 少林擒拿手、`sk_huagong` 化功大法 | catalog |
@@ -2659,6 +2735,11 @@ description: >-
 | V24 | `sourceGrade/sourceCap` 不得被书眠、现影、微光或终局自动抬到完整来源；九阳神雕闻经只写图鉴 `heard` 与 `jiuyang_echo` | 失败 |
 | V25 | `displacement` 不得声明旧字段 `collideDmg`；撞击固定按 §4.5 的 `0.20/0.10 × D_hit` 结算且每次位移至多一次 | 失败 |
 | V26 | `MoveCondition` 与 `EffectHook` 只能使用 §2.9/§4.11 登记键；`any` 必须非空且禁止未知嵌套键；`night`/`moonlitTile` 只读上游世界与场景事实 | 失败 |
+| V27 | 需运气的伤害 / 防守 / 轻功招式必须引用已存在 `mfr_*`；路线 `moveRef` 回指本招、`purpose` 与 attack / defense / movement 用途一致；一招至多一条主路线，触发路线仅限 defense / movement；正式发布无默认迁移短路 | 失败 |
+| V28 | 路线对象的 `ultimate` 必须等于 `MoveDef.ultimate ?? false`；绝招仍满足 V9，路线不得自立第二真值 | 失败 |
+| V29 | 所引路线 1–18 段、穴位不重复、逐段 CT 40–120、风险 0–1200；凡由 `MoveDef` 引用者须满足 `recovery + ΣsegmentCt≤2000`。`segmentCt/steps/purpose` 只在 21 路线对象中定义，不得复制进 `MoveDef` | 失败 |
+| V30 | 每门内功必须引用已存在且性质匹配的 `txp_*` 并填 `innerGuard`；`reflectBp` 为整数 0–2000，非零必须有原招 / Buff 反震语义；来袭 `breakGuardBp` 只能从招式 / Buff 来源投影且为整数 0–8000 | 失败 |
+| V31 | `category:movement` 必须有 `movementRouteRef` 且路线用途为 movement；主动轻功覆写也必须为 movement；经脉速度不得写回轻功面板、08 门禁或 `Q_skill` | 失败 |
 
 ### 16.2 金标准测试用例
 
@@ -2687,6 +2768,10 @@ description: >-
 | T21 | 九阳神雕闻经事件；倚天取得完整来源 | 前者仅图鉴 `heard`＋`jiuyang_echo`，无 `SkillState`；后者才创建可学习来源 |
 | T22 | 解析内功缺 `nature`、空 `meridians`、含非法 `mer_x`、重复同一正式经脉、辅运分支不在主清单 | 缺性质失败；空专精合法且不代表全专精；非法或重复经脉失败；非法辅运子集失败 |
 | T23 | 解析 `curveLos`、七个图鉴条件键及未知 `condition.foo` | 正式钩子/条件全部通过；未知键构建失败；`night`/`moonlitTile` 不允许内容侧改写时钟或场景标签 |
+| T24 | 十八掌连环 `recovery=1200`、路线 10 段且每段 80 CT；标准对标准；另把路线 `purpose` 改为 defense | `flowCt=800`、总收招 `2000`；`power` 仍为 2.00，Z4M/Z5M 都是 10000；错误用途构建失败 |
+| T25 | 防守触发只填 `routeOnTriggerRef`；攻击招同时填第二条主路线；路线第 4 段卡住 | 前者合法且走 defense；第二种失败；卡住只计前 4 段 CT，不以完成段重算 `power` |
+| T26 | 调和内功引用 `txp_harmony_supreme`，`innerGuard={enabled:true,reflectBp:0}`；阳内功误引该档；另填 `reflectBp=2001` | 第一种可解析且 `tiaoxi` 不另耗内；后两种失败；来袭 `breakGuardBp` 由事件输入，护体结果不写入 `SkillState` |
+| T27 | 轻功武学缺 `movementRouteRef`、引用 attack 路线、引用 movement 路线；标准对标准 | 前两种失败；后一种合法且 `meridianSpeedBp=10000`，基础轻功值与门禁输入不变 |
 
 ---
 
@@ -2710,6 +2795,9 @@ description: >-
 | D19 | design/15 | `inner.meridians` 的 `mer_renmai/mer_dumai` 是易筋经、九阳示例的专精映射；冲穴读取有效品阶、有效层数、真实 `mpMax`、主运性质与辅运折算 | **已解决**：15 §2、§4 已冻结 20 个正式 ID 和单门自身贡献 ×1.20；05 已收口 `MeridianId` 与 V4/T22，示例映射保持 **【建议值】**，见 §5.7–§5.8、§13.3–§13.4 |
 | D20 | design/20 | 后人、宝藏/遗迹、上中下残本、关键信物与合成全本只可生成或升级 `LearnSource/sourceGrade/sourceCap`，不得与本文 `fragment`（书眠残篇）或 design/02 `partial`（残承）合并 | **已解决**：20 已落盘并冻结三类传承来源、事件载荷与合成结果；本文 §7 已同步消费其接口 |
 | D21 | design/10、catalog | `WeaponReq` 消费 `hands`/成对/副手规则，暗器改用 `hiddenKind`，特殊装备兼容用 `offHand/altItems`；丹药 `sxpGrant.pctNext` 黄/玄/地/天为 `0.10/0.20/0.35/0.50` | **已解决（接口）**：10 §2–§3、§8.2 已定枚举和档位，05 已补 schema/§6.2/V3；具体图鉴条目仍须逐项迁移并解析装备 ID |
+| D22 | design/21、武学图鉴 | `MoveDef` 用 `meridianRouteRef` / `routeOnTriggerRef` 引用 attack / defense / movement 路线；绝招继续以 `ultimate` 为唯一真值；轻功武学用 `movementRouteRef` | **已解决（05 接口，见 design/21 §4、§12）**：本文 §2.1、§2.9、§4.1–§4.2.1、§4.8–§4.10、V27–V31 已定；路线对象和逐招内容仍归 21 / 图鉴 |
+| D23 | design/21、design/09、武学图鉴 | 内功 `breathProfileRef` 引用 `txp_*`；调息并入既有 `yunjin:tiaoxi`，基础 1000 CT 且经脉处理不另耗内；战斗调息不推进永久冲穴 | **已解决（05 接口，见 design/21 §10、§12）；登记遗留**：本文 §5.7、§5.9–§5.10 已采用；21 §12.1 已有调和顶级 fixture，九阳等性质 / 特色档案仍须由 21 / 图鉴登记后再引用，不能在 05 越权造 ID |
+| D24 | design/21、design/04、design/06 | 内功通过 `innerGuard` 声明护体内劲启用与既有反震；来袭侧以 `InnerGuardInput.breakGuardBp` 投影破体 / 破气；settle 顺序为护体真气 → 护体内劲 → `mpGuard` → 气血 | **已解决（05 接口，见 design/21 §4.8）**：字段和边界见 §5.10；抵消公式、类别适用率及击穿状态仍唯一归 21 §4.8，最终伤害链 / Buff 由 04 / 06 同步 |
 
 ### 17.2 本文依赖的上游事实
 
@@ -2724,6 +2812,7 @@ description: >-
 | D12 | design/13 | `dm_sxp`、角色经验与武学经验分账、终局 Lv70 `gateCap`、断尘/自创结局修饰 | **已解决**：§3.4、§8.1–§8.2、§9.1.4、§12 |
 | D13 | design/02 | `sourceGrade/sourceCap`、`trueLayer/effLayer`、`nativeTo`、积蕴、印证、残篇忆起 ×2 及自创半额压制 | **已解决**：02 已改用 `L(n)=0.5+0.1n`，天级 GF 相对地上约 `1.21/1.37/1.58`，不另乘 ×2；§2.6、§3、§7.8–§7.9、§12.3 |
 | D14 | design/11、design/19 | 安全点、观景点、解谜场景、时代图层、地图坐标与奖励挂点 | **已解决（接口）**：11 已定 `safePoint/vista/inspect` 等 POI、休整和时代层，19 已定权威坐标/地图资产；05 只消费事件与地点引用，闭关倍率由章节事件载荷显式给出，不再要求不存在的 `seclusionSpot` 字段。见 §7.6、§8.3、§8.6 |
+| D22-U | design/21 | 战斗动态河流、路线对象 / 模板、攻防独立乘区、护体内劲、经脉速度、擒拿 / 点穴、调息参数与每单位实例 | **已解决（上游已定）**：全文统一引用 21 v2.0 §3–§12；05 不保存节点运行态、乘区曲线或模拟器 RNG |
 
 既有跨文档评审记录继续有效：design/02 的“核心武学第一绝招 `unlock≤7`”已采纳（§3.5、§4.8、V9）；其旧 `L(n)=0.5+0.05n` 与“天级经验统一为地上 ×2”均未采纳，02 当前正文已同步。design/03 的 `trainMul`、学习门槛 `5g−5`、`MPREF` 与 `mpRegen` 接口已采纳；其旧 `dualWield` 0–3 仍须按本文 §9.3.2 同步。调和相性已由 design/04 §4.5 接收。
 
@@ -2742,8 +2831,11 @@ description: >-
 | P-9 | §6/§9 增补：每门内功必须显式 `mpNature/nature`；调和主运无惩罚，对阳/阴 `+6%`、调和 `+12%`、中性 `+2%` | **建议 v1.2 合入（AR-02）**：让作者需求进入跨文档硬约束；§5.3 已执行 |
 | P-10 | §18 增登记 design/15 的穴道/经脉/冲穴/周天、design/16 的资源/家业/营生归属，并把相关经济定义从 12 分流到 16 | **建议 v1.2 合入（AR-03、AR-05～AR-07）**：本文仅保留 §5.8 和修炼成本接口 |
 | P-11 | 在基准数量约束登记 AR-01：天阶封闭 51 门，全目录目标 1,100–1,150，品阶约 1:3:9:9 | **建议 v1.2 合入**：§14 已按当前只增不减边界采用 51/169/459/459=1,138；替代旧总量口径 |
+| P-12 | Canon §12 登记 `mfr_* / qnl_* / dxl_* / txp_*`，§18 登记 21 对战斗经脉、攻防 / 轻功路线、护体内劲、控制与调息的唯一归属 | **建议 v1.3 合入（M2-P01、M3-P04）**：05 已开始稳定引用 `mfr_*` / `txp_*`；前缀与归属不入基准会令 schema 无法区分正式定义和未知引用 |
+| P-13 | Canon §9 接受 Z4M / Z5M 与护体内劲插入点，§11 接受经脉速度接口，§19 接受一单位一实例 / 唯一 `battle` RNG / golden | **建议 v1.3 合入（M2-P03、M3-P01～P03）**：本文的武学侧字段需要全局结算顺序与确定性契约；具体数值仍由 21 唯一拥有 |
 
 AR-01 的 C3 同步已完成：§14 以 920 门实际快照为起点，采用 1,138 门受控目标，并把四个 CX 扩充缺口与十四书界池审计分别列明。
+本轮经脉接口不改变 §14 的武学数量、品阶、类别、书界池或图鉴配额：路线 / 调息档案是依附既有武学的配置对象，不计作新武学。
 
 ### 17.4 原著考据待办
 
@@ -2792,4 +2884,6 @@ AR-01 的 C3 同步已完成：§14 以 920 门实际快照为起点，采用 1,
 | P38、P39 | 残承来源限制不自动补全；抵消、现影、微光仍检查来源/修为边界 | §2.6、§3.4、§7.8 |
 | P45 | 速战武学经验 ×0.5，与角色经验 ×0.8 分账 | §8.2 |
 | P49 | 射雕/神雕少林以背景和有限入门为主；射雕保留易筋完整线，神雕不新增易筋完整来源 | §7.1、§13.3 |
+
+AR-14 的开放项沿用 21 §18.5，不另起第二套决定：四个新前缀默认按 M2-P01 纳入 v1.3；调息经脉处理默认不另耗内；9 级点穴默认不能自行调息解；战斗胀损默认战后深度调息清除；待机轻防路线默认 ≤3 段 / 240 CT；同场速度参考默认取可选敌方经脉强度中位数；护体内劲默认不反震。上述默认若被作者改动，05 只迁移引用 / 字段，不复制修改 21 的算法。
 
