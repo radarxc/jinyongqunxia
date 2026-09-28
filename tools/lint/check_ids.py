@@ -44,6 +44,7 @@ DEFAULT_PREFIXES: Tuple[str, ...] = (
     "sv_", "biz_", "job_", "city_", "sc_", "poi_",
     "offmap_", "post_", "port_", "route_", "dc_", "lgs_",
     "frag_", "cache_", "vid_",
+    "mfr_", "qnl_", "dxl_", "txp_",
 )
 
 # Configurable ownership map derived from Canon section 18 and the concrete
@@ -138,6 +139,10 @@ OWNERSHIP: Mapping[str, Tuple[str, ...]] = {
     "cache_": ("docs/design/20-legacy-inheritance.md",),
     "vid_": ("docs/design/02-timeline-and-world-tiers.md",
               "docs/tech/07-asset-generation.md"),
+    "mfr_": ("docs/design/21-meridian-flow-and-moves.md",),
+    "qnl_": ("docs/design/21-meridian-flow-and-moves.md",),
+    "dxl_": ("docs/design/21-meridian-flow-and-moves.md",),
+    "txp_": ("docs/design/21-meridian-flow-and-moves.md",),
 }
 
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")

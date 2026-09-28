@@ -45,6 +45,10 @@ CANON_WITH_PREFIXES = """# Canon
 | 视频 | `vid_<pinyin>` |
 | 路线 | `route_<pinyin>` |
 | 经脉 | `mer_<pinyin>` |
+| 招式经脉路线 | `mfr_<semantic>` |
+| 擒拿档案 | `qnl_<semantic>` |
+| 点穴档案 | `dxl_<semantic>` |
+| 调息档案 | `txp_<semantic>` |
 | 测试扩展 | `zz_<pinyin>` |
 
 ## 13. 其他
@@ -109,6 +113,9 @@ class PrefixParsingTests(unittest.TestCase):
 
         self.assertFalse(used_fallback)
         self.assertIn("zz_", prefixes)
+        self.assertTrue(
+            {"mfr_", "qnl_", "dxl_", "txp_"}.issubset(prefixes)
+        )
         self.assertIn("ch", prefixes)
         self.assertEqual([], warnings)
 
@@ -121,6 +128,9 @@ class PrefixParsingTests(unittest.TestCase):
 
         self.assertTrue(used_fallback)
         self.assertIn("bsc_", prefixes)
+        self.assertTrue(
+            {"mfr_", "qnl_", "dxl_", "txp_"}.issubset(prefixes)
+        )
         self.assertTrue(any("built-in prefixes" in item for item in warnings))
 
 
@@ -262,6 +272,47 @@ skills:
 
         undefined = {item["id"] for item in report["issues"]["undefined_references"]}
         self.assertNotIn("ap_keyed", undefined)
+
+    def test_meridian_runtime_families_are_defined_only_by_design_21(self) -> None:
+        identifiers = (
+            "mfr_owner_route",
+            "qnl_owner_profile",
+            "dxl_owner_profile",
+            "txp_owner_profile",
+        )
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            owner_rows = "\n".join(
+                "| `{}` | 正式定义 |".format(identifier)
+                for identifier in identifiers
+            )
+            repo.write(
+                "docs/design/21-meridian-flow-and-moves.md",
+                "# 经脉运行\n\n| ID | 名称 |\n|---|---|\n"
+                + owner_rows
+                + "\n",
+            )
+            repo.write(
+                "docs/design/05-martial-arts-system.md",
+                "# 错误归属\n\n| ID | 名称 |\n|---|---|\n"
+                "| `mfr_wrong_owner` | 误放路线 |\n"
+                "| `qnl_wrong_owner` | 误放擒拿 |\n"
+                "| `dxl_wrong_owner` | 误放点穴 |\n"
+                "| `txp_wrong_owner` | 误放调息 |\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertTrue(set(identifiers).isdisjoint(undefined))
+        self.assertTrue(
+            {
+                "mfr_wrong_owner",
+                "qnl_wrong_owner",
+                "dxl_wrong_owner",
+                "txp_wrong_owner",
+            }.issubset(undefined)
+        )
 
     def test_unique_owners_reject_legacy_npc_sect_and_main_quest_definitions(
         self,

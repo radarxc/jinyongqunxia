@@ -134,6 +134,7 @@ ID 加反引号；这样既便于阅读，也能被检查器稳定识别。
 | `tal_` / `tmpl_` / `arch_` | `design/03` |
 | `origin_` | `design/01` |
 | `mer_` / `ap_` / `zt_` | `design/15` |
+| `mfr_` / `qnl_` / `dxl_` / `txp_` | `design/21` |
 | `res_` / `sv_` / `job_` | `design/16` |
 | `rp_` / `biz_` | 对应 `design/chapters/NN-*` 的书界实例 |
 | `city_` / `offmap_` / `post_` / `port_` / `route_` | `design/19` 与地图 YAML |
