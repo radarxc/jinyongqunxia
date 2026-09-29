@@ -13,6 +13,7 @@
 ## 要做的事
 
 1. **跨书界替换**：
+   - 神雕（03）铁掌功残承（NXfix-wujue 已在五绝册按"神雕残承"登记：`partial:true, lineageGrade:9, maxLayer:9`，神雕可习得池 154→155）：在第 3 章获取表（约第 735 行附近）补 9 品残承的玩家来源并登记任务 ID；裘千尺本人仍按 10 品完整携带。
    - 神雕（03）：NXT 已把重阳七星阵首、裘千尺换成具名主运（见 `tools/agents/reports/NXT.md` §6），**只核对，不要重复替换**。核对三点：裘千尺外功 `sk_tiezhang`（10）按门派图鉴收尾任务 NXfix-wujue（`sk_tiezhang` 在五绝册）对神雕天阶池的处理方式标注（残承或只作首领配装）；裘千尺性质为阳；霍都主运（阳）与雪山铁扇（阴）的相性惩罚（05 §5.3 −12%），不合理就在书界写明或调整。
    - 雪山（14，NXB13 报告 §7.4 映射）：B01 / B05 天龙门槽 → 天龙门心法 + 天龙合宗剑（7）+ 天龙正刀（7）；B02 左右童、B04 胡斐 → 胡家玄功（9）；B07 苗人凤 → 苗家玄功（9）+ 苗家守正掌（7）。
    - 碧血（07）与鹿鼎（08）：归辛树的 8 品首槽外功换成 NXfixC 新增的 `sk_huashandiejinquan07`（华山叠劲拳·碧血，8 地中）——`chapters/07-bixue.md` 约第 1421 行替换 `sk_jianghubaizhanjian`，`chapters/08-luding.md` 约第 1484 行替换 `sk_kaimenpiguaquan`（行号以实际为准，见 `tools/agents/reports/NXfixC.md`）。
