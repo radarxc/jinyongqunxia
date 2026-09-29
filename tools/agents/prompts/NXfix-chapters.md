@@ -21,9 +21,10 @@
 3. **秘籍发放与整场耐久**（NAu-rulesA 报告 §6，10 V25–V26、09 §8.8.11）：
    - 连城（09）、白马（10）、雪山（14）接入衙门武册、华辉遗谱、宝树旧稿三份秘籍的 7 条单武学发放（按组 2 / 3 / 2 条原子发放），写明安全条件与"禁止尸体掉落"规则。
    - 雪山（14）B06：在遭遇级声明一次 `totalHp=112536`，附稳定分配表，不给每个行动者复制。B05 104,948、B07 138,411 两个锚点标明须按 09 回放门禁实测。
-4. **标注**：去掉已落实来源扩展的"（来源扩展待登记）"标注（以门派图鉴收尾任务 `NXfix-<册>` 的报告为准）；"待补专属"统一改为"待补本门武学"（仍缺的保留）。
-5. **Buff 迁移**：书界中运行时仍引用 `bf_fengxue` / `bf_fengnei` / `bf_fengjingmai` / `bf_chanrao` 的地方，按 06 迁移表改为新状态加等级。
-6. **外放后的节奏复核**：外放标记后，经脉强的敌人用外放招输出会上升：每部书界至少 2 个 Boss（含顶尖人物）用 `boss_pacing.py` 复核，超窗的按 21 §11.9.2 调整并写回。
+4. **不得残留兜底**（Canon V17-04：首领表里的"地位下限兜底"会阻断生产构建，只有 `boss_pacing.py` 的 `estimateOnly=true` 可读取）：逐部 grep 14 部书界首领表里的兜底、临时主运、"无 ID 的地位画像"一类措辞，全部换成合法 `sk_*`（雪山胡斐、苗人凤见第 1 项）。确实没有合法武学可换的，列入报告并写明原因。
+5. **标注**：去掉已落实来源扩展的"（来源扩展待登记）"标注（以门派图鉴收尾任务 `NXfix-<册>` 的报告为准）；"待补专属"统一改为"待补本门武学"（仍缺的保留）。
+6. **Buff 迁移**：书界中运行时仍引用 `bf_fengxue` / `bf_fengnei` / `bf_fengjingmai` / `bf_chanrao` 的地方，按 06 迁移表改为新状态加等级。
+7. **外放后的节奏复核**：外放标记后，经脉强的敌人用外放招输出会上升：每部书界至少 2 个 Boss（含顶尖人物）用 `boss_pacing.py` 复核，超窗的按 21 §11.9.2 调整并写回。
 
 检查：`python3 tools/lint/check_ids.py --strict`、`python3 -m unittest discover -s tools/lint -p "test_*.py"`、`python3 tools/balance/damage_sim.py --check`、`python3 tools/balance/boss_pacing.py --check`、`python3 tools/agents/check_undefined_in.py` 加 14 部书界路径 必须通过。
 
