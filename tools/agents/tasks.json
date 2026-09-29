@@ -8967,7 +8967,7 @@
       "phase": "G",
       "wave": 6,
       "kind": "revise",
-      "title": "终审·规则文档乙（03 / 04 / 12 / 17 / 18、人物档案、剧情）",
+      "title": "终审·规则文档乙（02 / 03 / 04 / 12 / 17 / 18 / 20、人物档案、剧情）",
       "prompt": "NAu-rulesB.md",
       "deps": [
         "NXT",
@@ -8987,6 +8987,8 @@
         "NXB14"
       ],
       "writes": [
+        "docs/design/20-legacy-inheritance.md",
+        "docs/design/02-timeline-and-world-tiers.md",
         "docs/design/03-attributes.md",
         "docs/design/04-damage-formula.md",
         "docs/design/12-quests-npc-factions.md",
@@ -9026,6 +9028,8 @@
       "vars": {},
       "validate": {
         "exists": [
+          "docs/design/20-legacy-inheritance.md",
+          "docs/design/02-timeline-and-world-tiers.md",
           "docs/design/03-attributes.md",
           "docs/design/04-damage-formula.md",
           "docs/design/12-quests-npc-factions.md",
@@ -9061,6 +9065,8 @@
           "docs/design/story/14-xueshan.md"
         ],
         "fences": [
+          "docs/design/20-legacy-inheritance.md",
+          "docs/design/02-timeline-and-world-tiers.md",
           "docs/design/03-attributes.md",
           "docs/design/04-damage-formula.md",
           "docs/design/12-quests-npc-factions.md",
@@ -9659,6 +9665,78 @@
       }
     },
     {
+      "id": "NAu-nxt",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·NXT 同步（05 / tech 04 / tech 05 / 检查脚本：天阶 59、补录定义源、音功分支与端点）",
+      "prompt": "NAu-nxt.md",
+      "deps": [
+        "NXT",
+        "NAu-rulesA",
+        "NAu-lint",
+        "NAu-tech"
+      ],
+      "writes": [
+        "docs/design/05-martial-arts-system.md",
+        "docs/tech/04-data-pipeline.md",
+        "docs/tech/05-gameplay-engine.md",
+        "tools/lint/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/05-martial-arts-system.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/05-gameplay-engine.md"
+        ],
+        "fences": [
+          "docs/design/05-martial-arts-system.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/05-gameplay-engine.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
       "id": "NAu-final",
       "phase": "G",
       "wave": 6,
@@ -9672,6 +9750,7 @@
         "NAu-rulesB",
         "NAu-21",
         "NAu-canon",
+        "NAu-nxt",
         "NXfixA",
         "NXfixB",
         "NXfixC",

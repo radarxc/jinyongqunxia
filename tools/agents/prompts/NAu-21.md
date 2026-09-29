@@ -17,6 +17,11 @@
 5. **§12.1 降龙十八掌三记绝招路线**（十八掌连环、神龙摆尾、震惊百里）：标外放，路线经内关→劳宫收束，仍满足硬约束、同门互异与全仓无完全相同路线。
 6. **小问题**：MF-T19 用例描述"18 段"与夹具 10 段统一；§0 的"v2.1 变更摘要"恢复并保留 v2.3 / v2.4 摘要。
 7. **参考实现**：`tools/balance/meridian_flow_sim.py` 把 21 的 MF-T17 与 05 的 V9（多绝招共享冷却、禁止连用、7 / 9 / 10 重解锁）写成可执行断言；脚本近 1,200 行上限，可先精简；不得破坏 `tools/balance/boss_pacing.py` 与 `projection_sim.py` 对它的引用。
+8. **`projection_sim.py` 接入音功分支**（NXT 报告 §6，21 §4.4.1 / Canon V16-03）：
+   - 音功外放 0 档：`projectionBoostActive=false`，用普通 Z5M、基础范围、零额外耗内；1 / 2 档才用外放威力曲线、范围扩张与额外耗内。
+   - 外放端点：人声发劲的音功另可取 `ap_yinwei_tiantu`（天突）、`ap_yinwei_lianquan`（廉泉）；琴、箫、笛等持乐器音功仍须取手 / 腕端点。其他外放招的 13 个手部端点不变。
+   - 把 21 新增的 MF-T23 / MF-T24 写成可执行断言（NXT 已在 21 写了用例描述，先读原文再实现）。
+   - 大手印跃击：只有落点掌风一段按外放结算，跃迁位移不另算伤害段。
 
 检查：`python3 tools/lint/check_ids.py --strict`、`python3 -m unittest discover -s tools/lint -p "test_*.py"`、`python3 tools/balance/damage_sim.py --check`、`python3 tools/balance/meridian_flow_sim.py --check`、`python3 tools/balance/boss_pacing.py --check`、`python3 tools/balance/projection_sim.py --check`、`python3 tools/lint/check_skill_catalogs.py --strict` 必须通过。
 
