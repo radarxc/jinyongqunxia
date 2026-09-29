@@ -134,6 +134,32 @@ def is_running(root: Path, tid: str) -> bool:
     return bool(cur) and not Path(cur["exit"]).exists() and pid_alive(int(cur["pid"]))
 
 
+# ---------------------------------------------------------------- 并发上限（按池）
+# 文档类任务与素材类任务（ID 以 ART 开头）各自一池；上限可在 tasks.json defaults.max_parallel
+# 或环境变量 TIANSHU_MAX_PARALLEL_<POOL> 中调整。start 在文件锁内计数，满了就排队等空位。
+POOL_CAPS_DEFAULT = {"docs": 8, "assets": 8}
+
+
+def pool_of(tid: str) -> str:
+    return "assets" if tid.upper().startswith("ART") else "docs"
+
+
+def pool_cap(g, pool: str) -> int:
+    env = os.environ.get(f"TIANSHU_MAX_PARALLEL_{pool.upper()}")
+    if env:
+        return int(env)
+    caps = g.defaults.get("max_parallel") or {}
+    return int(caps.get(pool, POOL_CAPS_DEFAULT.get(pool, 8)))
+
+
+def running_in_pool(root: Path, pool: str, exclude: str | None = None) -> list:
+    base = root / ".agents" / "logs"
+    if not base.is_dir():
+        return []
+    return sorted(d.name for d in base.iterdir()
+                  if d.is_dir() and d.name != exclude and pool_of(d.name) == pool and is_running(root, d.name))
+
+
 def find_bin(explicit: str | None, defaults: dict) -> str:
     cands = [explicit] if explicit else []
     cands += [os.environ.get("TRAEX_BIN") or ""]
@@ -252,15 +278,32 @@ def cmd_start(a) -> int:
                 break
         else:
             raise R.Fatal("所有候选模型都无响应（探测超时），请稍后再试或用 --no-probe 强制启动")
-    st.update(t.id, attempts=attempt)  # 探针通过、确定启动后才计入运行次数
-    argv = build_argv(binary, model, effort, wt, lastf, t.web or a.search, t.agent_args)
-    logf.write_text(f"# {t.id} · {t.title}\n# 开始：{now_s()}\n# 命令：{shlex.join(argv)} < {pf}\n"
-                    f"# 工作区：{wt}\n# 基点：{base}\n\n", encoding="utf-8")
-    pid = launch(argv, pf, logf, exitf, wt, {"TIANSHU_TASK_ID": t.id})
-    (ld / "current.json").write_text(json.dumps({
-        "attempt": attempt, "pid": pid, "model": model, "effort": effort, "started": now_s(),
-        "prompt": str(pf), "log": str(logf), "exit": str(exitf), "last": str(lastf), "wt": str(wt), "base": base,
-    }, ensure_ascii=False, indent=1), encoding="utf-8")
+    pool, cap = pool_of(t.id), pool_cap(g, pool_of(t.id))
+    lockf = root / ".agents" / "slots.lock"
+    deadline = time.time() + a.slot_wait_min * 60
+    announced = False
+    while True:
+        with open(lockf, "w") as lf:
+            fcntl.flock(lf, fcntl.LOCK_EX)
+            busy = running_in_pool(root, pool, exclude=t.id)
+            if len(busy) < cap:
+                st.update(t.id, attempts=attempt)  # 探针通过、确定启动后才计入运行次数
+                argv = build_argv(binary, model, effort, wt, lastf, t.web or a.search, t.agent_args)
+                logf.write_text(f"# {t.id} · {t.title}\n# 开始：{now_s()}\n# 命令：{shlex.join(argv)} < {pf}\n"
+                                f"# 工作区：{wt}\n# 基点：{base}\n\n", encoding="utf-8")
+                pid = launch(argv, pf, logf, exitf, wt, {"TIANSHU_TASK_ID": t.id})
+                (ld / "current.json").write_text(json.dumps({
+                    "attempt": attempt, "pid": pid, "model": model, "effort": effort, "started": now_s(),
+                    "prompt": str(pf), "log": str(logf), "exit": str(exitf), "last": str(lastf), "wt": str(wt), "base": base,
+                }, ensure_ascii=False, indent=1), encoding="utf-8")
+                break
+        if time.time() >= deadline:
+            raise R.Fatal(f"并行已满（{pool} 池 {len(busy)}/{cap}：{'、'.join(busy)}）。这不是任务失败："
+                          f"请后台运行 `python3 tools/agents/step.py slot {t.id} --max-min 25` 等到空位后再 start")
+        if not announced:
+            print(f"… {pool} 池并行已满（{len(busy)}/{cap}），排队等空位（最多 {a.slot_wait_min:g} 分钟）", flush=True)
+            announced = True
+        time.sleep(20)
     print(f"▶ {t.id} 第 {attempt} 次运行已启动（pid {pid}，模型 {model}，推理强度 {effort or '默认'}，"
           f"联网搜索 {'开' if (t.web or a.search) else '关'}）\n  工作区：{wt}\n  提示词：{pf}\n  日志：{logf}\n"
           f"  下一步：python tools/agents/step.py wait {t.id}")
@@ -414,6 +457,25 @@ def cmd_merge(a) -> int:
     return 0
 
 
+# ---------------------------------------------------------------- slot
+def cmd_slot(a) -> int:
+    """等到本任务所在池有空位（不占位；随后仍需 start）。"""
+    root = R.repo_root()
+    g = R.Graph()
+    pool = pool_of(a.id)
+    cap = pool_cap(g, pool)
+    deadline = time.time() + a.max_min * 60
+    while True:
+        busy = running_in_pool(root, pool, exclude=a.id)
+        if len(busy) < cap:
+            print(f"SLOT-FREE {pool} {len(busy)}/{cap}")
+            return 0
+        if time.time() >= deadline:
+            print(f"SLOT-BUSY {pool} {len(busy)}/{cap}：{'、'.join(busy)}")
+            return 3
+        time.sleep(30)
+
+
 # ---------------------------------------------------------------- kill / status / smoke
 
 def cmd_kill(a) -> int:
@@ -503,7 +565,13 @@ def build_parser():
     p.add_argument("--force", action="store_true", help="任务已在分支历史中完成时仍启动")
     p.add_argument("--no-probe", action="store_true", help="启动前不探测模型是否应答（默认探测，无响应时自动换备用模型）")
     p.add_argument("--probe-sec", type=float, default=150, help="探测超时秒数（默认 150）")
+    p.add_argument("--slot-wait-min", type=float, default=8, help="并行已满时排队等空位的分钟数（默认 8；超时报错，可改用 slot 子命令后台等待）")
     p.set_defaults(func=cmd_start)
+
+    p = sub.add_parser("slot", help="等到本任务所在并发池有空位（后台运行，SLOT-FREE 后再 start）")
+    p.add_argument("id")
+    p.add_argument("--max-min", type=float, default=25, help="最多等待分钟数（默认 25；到时打印 SLOT-BUSY，退出码 3）")
+    p.set_defaults(func=cmd_slot)
 
     p = sub.add_parser("wait", help="等待本次运行结束")
     p.add_argument("id")
