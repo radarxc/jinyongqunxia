@@ -10243,11 +10243,11 @@
       }
     },
     {
-      "id": "NXfixD",
+      "id": "NXfixD-01",
       "phase": "G",
       "wave": 6,
       "kind": "revise",
-      "title": "收尾·14 部书界（跨书替换、小问题、Buff 迁移、节奏复核）（含人物档案同步）",
+      "title": "收尾·书界 01《天龙八部》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
       "prompt": "NXfix-chapters.md",
       "deps": [
         "NXfix-shaolin",
@@ -10265,83 +10265,24 @@
       ],
       "writes": [
         "docs/design/chapters/01-tianlong.md",
-        "docs/design/chapters/02-shediao.md",
-        "docs/design/chapters/03-shendiao.md",
-        "docs/design/chapters/04-yitian.md",
-        "docs/design/chapters/05-xiaoao.md",
-        "docs/design/chapters/06-xiake.md",
-        "docs/design/chapters/07-bixue.md",
-        "docs/design/chapters/08-luding.md",
-        "docs/design/chapters/09-liancheng.md",
-        "docs/design/chapters/10-baima.md",
-        "docs/design/chapters/11-yuanyang.md",
-        "docs/design/chapters/12-shujian.md",
-        "docs/design/chapters/13-feihu.md",
-        "docs/design/chapters/14-xueshan.md",
-        "docs/design/catalog/npcs-ch01-tianlong.md",
-        "docs/design/catalog/npcs-ch02-shediao.md",
-        "docs/design/catalog/npcs-ch03-shendiao.md",
-        "docs/design/catalog/npcs-ch04-yitian.md",
-        "docs/design/catalog/npcs-ch05-xiaoao.md",
-        "docs/design/catalog/npcs-ch06-xiake.md",
-        "docs/design/catalog/npcs-ch07-bixue.md",
-        "docs/design/catalog/npcs-ch08-luding.md",
-        "docs/design/catalog/npcs-ch09-liancheng.md",
-        "docs/design/catalog/npcs-ch10-baima.md",
-        "docs/design/catalog/npcs-ch11-yuanyang.md",
-        "docs/design/catalog/npcs-ch12-shujian.md",
-        "docs/design/catalog/npcs-ch13-feihu.md",
-        "docs/design/catalog/npcs-ch14-xueshan.md"
+        "docs/design/catalog/npcs-ch01-tianlong.md"
       ],
       "review": false,
       "web": false,
-      "vars": {},
+      "vars": {
+        "book_no": "01",
+        "book_name": "天龙八部",
+        "chapter": "docs/design/chapters/01-tianlong.md",
+        "npcs": "docs/design/catalog/npcs-ch01-tianlong.md"
+      },
       "validate": {
         "exists": [
           "docs/design/chapters/01-tianlong.md",
-          "docs/design/chapters/02-shediao.md",
-          "docs/design/chapters/03-shendiao.md",
-          "docs/design/chapters/04-yitian.md",
-          "docs/design/chapters/05-xiaoao.md",
-          "docs/design/chapters/06-xiake.md",
-          "docs/design/chapters/07-bixue.md",
-          "docs/design/chapters/08-luding.md",
-          "docs/design/chapters/09-liancheng.md",
-          "docs/design/chapters/10-baima.md",
-          "docs/design/chapters/11-yuanyang.md",
-          "docs/design/chapters/12-shujian.md",
-          "docs/design/chapters/13-feihu.md",
-          "docs/design/chapters/14-xueshan.md",
-          "docs/design/catalog/npcs-ch01-tianlong.md",
-          "docs/design/catalog/npcs-ch02-shediao.md",
-          "docs/design/catalog/npcs-ch03-shendiao.md",
-          "docs/design/catalog/npcs-ch04-yitian.md",
-          "docs/design/catalog/npcs-ch05-xiaoao.md",
-          "docs/design/catalog/npcs-ch06-xiake.md",
-          "docs/design/catalog/npcs-ch07-bixue.md",
-          "docs/design/catalog/npcs-ch08-luding.md",
-          "docs/design/catalog/npcs-ch09-liancheng.md",
-          "docs/design/catalog/npcs-ch10-baima.md",
-          "docs/design/catalog/npcs-ch11-yuanyang.md",
-          "docs/design/catalog/npcs-ch12-shujian.md",
-          "docs/design/catalog/npcs-ch13-feihu.md",
-          "docs/design/catalog/npcs-ch14-xueshan.md"
+          "docs/design/catalog/npcs-ch01-tianlong.md"
         ],
         "fences": [
           "docs/design/chapters/01-tianlong.md",
-          "docs/design/chapters/02-shediao.md",
-          "docs/design/chapters/03-shendiao.md",
-          "docs/design/chapters/04-yitian.md",
-          "docs/design/chapters/05-xiaoao.md",
-          "docs/design/chapters/06-xiake.md",
-          "docs/design/chapters/07-bixue.md",
-          "docs/design/chapters/08-luding.md",
-          "docs/design/chapters/09-liancheng.md",
-          "docs/design/chapters/10-baima.md",
-          "docs/design/chapters/11-yuanyang.md",
-          "docs/design/chapters/12-shujian.md",
-          "docs/design/chapters/13-feihu.md",
-          "docs/design/chapters/14-xueshan.md"
+          "docs/design/catalog/npcs-ch01-tianlong.md"
         ],
         "cmd": [
           [
@@ -10373,19 +10314,1008 @@
             "{python}",
             "tools/agents/check_undefined_in.py",
             "docs/design/chapters/01-tianlong.md",
+            "docs/design/catalog/npcs-ch01-tianlong.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD-02",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·书界 02《射雕英雄传》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/02-shediao.md",
+        "docs/design/catalog/npcs-ch02-shediao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "02",
+        "book_name": "射雕英雄传",
+        "chapter": "docs/design/chapters/02-shediao.md",
+        "npcs": "docs/design/catalog/npcs-ch02-shediao.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/catalog/npcs-ch02-shediao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/catalog/npcs-ch02-shediao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
             "docs/design/chapters/02-shediao.md",
+            "docs/design/catalog/npcs-ch02-shediao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD-03",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·书界 03《神雕侠侣》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/03-shendiao.md",
+        "docs/design/catalog/npcs-ch03-shendiao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "03",
+        "book_name": "神雕侠侣",
+        "chapter": "docs/design/chapters/03-shendiao.md",
+        "npcs": "docs/design/catalog/npcs-ch03-shendiao.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/catalog/npcs-ch03-shendiao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/catalog/npcs-ch03-shendiao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
             "docs/design/chapters/03-shendiao.md",
+            "docs/design/catalog/npcs-ch03-shendiao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD-04",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·书界 04《倚天屠龙记》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/04-yitian.md",
+        "docs/design/catalog/npcs-ch04-yitian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "04",
+        "book_name": "倚天屠龙记",
+        "chapter": "docs/design/chapters/04-yitian.md",
+        "npcs": "docs/design/catalog/npcs-ch04-yitian.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/catalog/npcs-ch04-yitian.md"
+        ],
+        "fences": [
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/catalog/npcs-ch04-yitian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
             "docs/design/chapters/04-yitian.md",
+            "docs/design/catalog/npcs-ch04-yitian.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD-05",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·书界 05《笑傲江湖》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/05-xiaoao.md",
+        "docs/design/catalog/npcs-ch05-xiaoao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "05",
+        "book_name": "笑傲江湖",
+        "chapter": "docs/design/chapters/05-xiaoao.md",
+        "npcs": "docs/design/catalog/npcs-ch05-xiaoao.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/catalog/npcs-ch05-xiaoao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/catalog/npcs-ch05-xiaoao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
             "docs/design/chapters/05-xiaoao.md",
+            "docs/design/catalog/npcs-ch05-xiaoao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD-06",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·书界 06《侠客行》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/06-xiake.md",
+        "docs/design/catalog/npcs-ch06-xiake.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "06",
+        "book_name": "侠客行",
+        "chapter": "docs/design/chapters/06-xiake.md",
+        "npcs": "docs/design/catalog/npcs-ch06-xiake.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/catalog/npcs-ch06-xiake.md"
+        ],
+        "fences": [
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/catalog/npcs-ch06-xiake.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
             "docs/design/chapters/06-xiake.md",
+            "docs/design/catalog/npcs-ch06-xiake.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD-07",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·书界 07《碧血剑》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/07-bixue.md",
+        "docs/design/catalog/npcs-ch07-bixue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "07",
+        "book_name": "碧血剑",
+        "chapter": "docs/design/chapters/07-bixue.md",
+        "npcs": "docs/design/catalog/npcs-ch07-bixue.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/07-bixue.md",
+          "docs/design/catalog/npcs-ch07-bixue.md"
+        ],
+        "fences": [
+          "docs/design/chapters/07-bixue.md",
+          "docs/design/catalog/npcs-ch07-bixue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
             "docs/design/chapters/07-bixue.md",
+            "docs/design/catalog/npcs-ch07-bixue.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD-08",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·书界 08《鹿鼎记》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/08-luding.md",
+        "docs/design/catalog/npcs-ch08-luding.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "08",
+        "book_name": "鹿鼎记",
+        "chapter": "docs/design/chapters/08-luding.md",
+        "npcs": "docs/design/catalog/npcs-ch08-luding.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/08-luding.md",
+          "docs/design/catalog/npcs-ch08-luding.md"
+        ],
+        "fences": [
+          "docs/design/chapters/08-luding.md",
+          "docs/design/catalog/npcs-ch08-luding.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
             "docs/design/chapters/08-luding.md",
+            "docs/design/catalog/npcs-ch08-luding.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD-09",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·书界 09《连城诀》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/09-liancheng.md",
+        "docs/design/catalog/npcs-ch09-liancheng.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "09",
+        "book_name": "连城诀",
+        "chapter": "docs/design/chapters/09-liancheng.md",
+        "npcs": "docs/design/catalog/npcs-ch09-liancheng.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/catalog/npcs-ch09-liancheng.md"
+        ],
+        "fences": [
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/catalog/npcs-ch09-liancheng.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
             "docs/design/chapters/09-liancheng.md",
+            "docs/design/catalog/npcs-ch09-liancheng.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD-10",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·书界 10《白马啸西风》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/10-baima.md",
+        "docs/design/catalog/npcs-ch10-baima.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "10",
+        "book_name": "白马啸西风",
+        "chapter": "docs/design/chapters/10-baima.md",
+        "npcs": "docs/design/catalog/npcs-ch10-baima.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/10-baima.md",
+          "docs/design/catalog/npcs-ch10-baima.md"
+        ],
+        "fences": [
+          "docs/design/chapters/10-baima.md",
+          "docs/design/catalog/npcs-ch10-baima.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
             "docs/design/chapters/10-baima.md",
+            "docs/design/catalog/npcs-ch10-baima.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD-11",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·书界 11《鸳鸯刀》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/11-yuanyang.md",
+        "docs/design/catalog/npcs-ch11-yuanyang.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "11",
+        "book_name": "鸳鸯刀",
+        "chapter": "docs/design/chapters/11-yuanyang.md",
+        "npcs": "docs/design/catalog/npcs-ch11-yuanyang.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/catalog/npcs-ch11-yuanyang.md"
+        ],
+        "fences": [
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/catalog/npcs-ch11-yuanyang.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
             "docs/design/chapters/11-yuanyang.md",
+            "docs/design/catalog/npcs-ch11-yuanyang.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD-12",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·书界 12《书剑恩仇录》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/12-shujian.md",
+        "docs/design/catalog/npcs-ch12-shujian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "12",
+        "book_name": "书剑恩仇录",
+        "chapter": "docs/design/chapters/12-shujian.md",
+        "npcs": "docs/design/catalog/npcs-ch12-shujian.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/catalog/npcs-ch12-shujian.md"
+        ],
+        "fences": [
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/catalog/npcs-ch12-shujian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
             "docs/design/chapters/12-shujian.md",
+            "docs/design/catalog/npcs-ch12-shujian.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD-13",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·书界 13《飞狐外传》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/13-feihu.md",
+        "docs/design/catalog/npcs-ch13-feihu.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "13",
+        "book_name": "飞狐外传",
+        "chapter": "docs/design/chapters/13-feihu.md",
+        "npcs": "docs/design/catalog/npcs-ch13-feihu.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/catalog/npcs-ch13-feihu.md"
+        ],
+        "fences": [
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/catalog/npcs-ch13-feihu.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
             "docs/design/chapters/13-feihu.md",
-            "docs/design/chapters/14-xueshan.md"
+            "docs/design/catalog/npcs-ch13-feihu.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD-14",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·书界 14《雪山飞狐》（跨书替换、小问题、兜底清理、Buff 迁移、节奏复核、人物档案同步）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/14-xueshan.md",
+        "docs/design/catalog/npcs-ch14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "14",
+        "book_name": "雪山飞狐",
+        "chapter": "docs/design/chapters/14-xueshan.md",
+        "npcs": "docs/design/catalog/npcs-ch14-xueshan.md"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/14-xueshan.md",
+          "docs/design/catalog/npcs-ch14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/chapters/14-xueshan.md",
+          "docs/design/catalog/npcs-ch14-xueshan.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/14-xueshan.md",
+            "docs/design/catalog/npcs-ch14-xueshan.md"
           ]
         ]
       }
@@ -11707,7 +12637,20 @@
         "NXfix-qianlong",
         "NXfix-gulong",
         "NXfixC",
-        "NXfixD",
+        "NXfixD-01",
+        "NXfixD-02",
+        "NXfixD-03",
+        "NXfixD-04",
+        "NXfixD-05",
+        "NXfixD-06",
+        "NXfixD-07",
+        "NXfixD-08",
+        "NXfixD-09",
+        "NXfixD-10",
+        "NXfixD-11",
+        "NXfixD-12",
+        "NXfixD-13",
+        "NXfixD-14",
         "NR3-shaolin",
         "NR3-daojia",
         "NR3-general",

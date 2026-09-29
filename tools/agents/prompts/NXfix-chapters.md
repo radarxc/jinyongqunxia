@@ -1,4 +1,4 @@
-# 本任务：终审子任务·收尾（14 部书界）
+# 本任务：终审子任务·收尾（书界）· 第 {{book_no}} 部《{{book_name}}》
 
 你负责"经脉系统落地（AR-14 / AR-15 / AR-16）最终审计"拆出来的一个并行子任务。审计已按写集拆成多个任务同时运行，**只改本任务写集内的文件**；写集外发现的问题写进报告第 7 节"交其他任务"。
 
@@ -8,7 +8,7 @@
 
 通用要求：每次写入不超过约 150 行；只改相关段落，不删无关内容（调度器拒绝缩短 15% 以上）；改动的文档版本行 / 变更记录追加"经脉落地终审（{{date}}）"；ID 先 `grep -rn` 查重，不新造无依据的 ID。
 
-写集：`docs/design/chapters/01…14-*.md` 与人物档案 `docs/design/catalog/npcs-ch01…14-*.md`（档案只同步首领武学栏与相关注记）。先读 NXfixC（补录图鉴收尾）的报告第 7 节，取归辛树华山外功的 ID 与补录去重结果。
+本任务的书界：第 {{book_no}} 部《{{book_name}}》。**只改** `{{chapter}}` 与人物档案 `{{npcs}}`（档案只同步首领武学栏与相关注记）。书界收尾已按书拆成 14 个并行任务（`NXfixD-01`…`NXfixD-14`）：下列第 1–3 项中注明属于其他书界的事项，跳过；第 4–8 项的通用事项只在本书界内做。先读 NXfixC（补录图鉴收尾）的报告第 7 节，取归辛树华山外功的 ID 与补录去重结果。
 
 ## 要做的事
 
@@ -23,13 +23,13 @@
 3. **秘籍发放与整场耐久**（NAu-rulesA 报告 §6，10 V25–V26、09 §8.8.11）：
    - 连城（09）、白马（10）、雪山（14）接入衙门武册、华辉遗谱、宝树旧稿三份秘籍的 7 条单武学发放（按组 2 / 3 / 2 条原子发放），写明安全条件与"禁止尸体掉落"规则。
    - 雪山（14）B06：在遭遇级声明一次 `totalHp=112536`，附稳定分配表，不给每个行动者复制。B05 104,948、B07 138,411 两个锚点标明须按 09 回放门禁实测。
-4. **不得残留兜底**（Canon V17-04：首领表里的"地位下限兜底"会阻断生产构建，只有 `boss_pacing.py` 的 `estimateOnly=true` 可读取）：逐部 grep 14 部书界首领表里的兜底、临时主运、"无 ID 的地位画像"一类措辞，全部换成合法 `sk_*`（雪山胡斐、苗人凤见第 1 项）。确实没有合法武学可换的，列入报告并写明原因。
+4. **不得残留兜底**（Canon V17-04：首领表里的"地位下限兜底"会阻断生产构建，只有 `boss_pacing.py` 的 `estimateOnly=true` 可读取）：grep 本书界首领表里的兜底、临时主运、"无 ID 的地位画像"一类措辞，全部换成合法 `sk_*`（雪山胡斐、苗人凤见第 1 项）。确实没有合法武学可换的，列入报告并写明原因。
 5. **标注**：去掉已落实来源扩展的"（来源扩展待登记）"标注（以门派图鉴收尾任务 `NXfix-<册>` 的报告为准）；"待补专属"统一改为"待补本门武学"（仍缺的保留）。
 6. **Buff 迁移**：书界中运行时仍引用 `bf_fengxue` / `bf_fengnei` / `bf_fengjingmai` / `bf_chanrao` 的地方，按 06 迁移表改为新状态加等级。
-7. **外放后的节奏复核**：外放标记后，经脉强的敌人用外放招输出会上升：每部书界至少 2 个 Boss（含顶尖人物）用 `boss_pacing.py` 复核，超窗的按 21 §11.9.2 调整并写回。
+7. **外放后的节奏复核**：外放标记后，经脉强的敌人用外放招输出会上升：本书界至少 2 个 Boss（含顶尖人物；本书界首领不足 2 个的全部复核）用 `boss_pacing.py` 复核，超窗的按 21 §11.9.2 调整并写回。
 8. **人物档案同步**（NAu-rulesB 报告交办）：凡本任务改了首领配装的，同步对应 `npcs-chNN` 档案的武学栏——含 ch07 / ch08 归辛树、归二娘换 `sk_huashandiejinquan07` 后的行；雪山（14）落实 B01 / B02 / B04 / B05 / B07 的飞狐补录主运后，删去 npcs-ch14 的"待 NXfixD 落章"注记。
 
-检查：`python3 tools/lint/check_ids.py --strict`、`python3 -m unittest discover -s tools/lint -p "test_*.py"`、`python3 tools/balance/damage_sim.py --check`、`python3 tools/balance/boss_pacing.py --check`、`python3 tools/agents/check_undefined_in.py` 加 14 部书界路径 必须通过。
+检查：`python3 tools/lint/check_ids.py --strict`、`python3 -m unittest discover -s tools/lint -p "test_*.py"`、`python3 tools/balance/damage_sim.py --check`、`python3 tools/balance/boss_pacing.py --check`、`python3 tools/agents/check_undefined_in.py {{chapter}} {{npcs}}` 必须通过。
 
 ## 报告
 
