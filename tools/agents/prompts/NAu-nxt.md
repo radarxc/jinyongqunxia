@@ -21,12 +21,13 @@ NXT（天阶扩容与作者三项决定）合入时，规则文档甲（NAu-rule
 3. **tech/04**（`docs/tech/04-data-pipeline.md`）：
    - 构建器落实 21 的 MF-V16 / MF-V17（NXT 新增，先读 21 原文，不要凭标题猜）；
    - 补录图鉴与门派图鉴一并扫描；
-   - 天阶名录校验按 59 门，书界天阶池上限按高武 6–18 / 中武 1–6。
+   - 天阶名录校验按 59 门，书界天阶池上限按高武 6–18 / 中武 1–6；
+   - MF-V14 补例外（NAu-rulesA 报告 §6、开放问题 RA-O03）：外放反击架势可引用 `purpose:defense` 路线，但须命中合法外放端点；普通伤害招仍要求 attack 路线。
 4. **检查脚本**（`tools/lint/`）：`check_skill_catalogs.py` 的末端规则检查（NAu-lint 新开的开关）接入音功端点。
    - 人声发劲的音功另可取 `ap_yinwei_tiantu`（天突）、`ap_yinwei_lianquan`（廉泉）作外放端点；琴、箫、笛等持乐器音功仍须取手 / 腕端点；其余外放招的 13 个手部端点不变。
    - "人声 / 持乐器"的判定依据写清楚。有可靠字段（出招方式、兵器）就用字段；没有就只放行明确列出的人声音功 `sk_*`，把清单写进代码并在报告列出。
    - 补单元测试。不要写死会随图鉴变化的计数（如裁定表行数），改为结构性断言。
-5. **前序遗留**：NAu-lint、NAu-rulesA、NAu-tech 三份报告第 7 节里，落在本任务写集（05、tech/04、tech/05、`tools/lint/`）的"交其他任务"条目，逐条处理或说明不处理的理由。
+5. **前序遗留**：NAu-lint、NAu-rulesA、NAu-tech 三份报告第 6、7 节里，落在本任务写集（05、tech/04、tech/05、`tools/lint/`）的"交其他任务"条目，逐条处理或说明不处理的理由。
 
 检查：`python3 tools/lint/check_ids.py --strict`、`python3 -m unittest discover -s tools/lint -p "test_*.py"`、`python3 tools/lint/check_skill_catalogs.py --strict`、`python3 tools/balance/damage_sim.py --check`、`python3 tools/balance/meridian_flow_sim.py --check`、`python3 tools/balance/projection_sim.py --check` 必须通过。另跑一次末端规则检查（NAu-lint 新开关），命中数写进报告。
 
