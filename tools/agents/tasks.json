@@ -12623,6 +12623,325 @@
       }
     },
     {
+      "id": "NXfixE-a",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界补漏 · 01–05（天龙八部、射雕英雄传、神雕侠侣、倚天屠龙记、笑傲江湖）：多人战整场耐久、完整对手入首领表",
+      "prompt": "NXfixE-group.md",
+      "deps": [
+        "NXfixD-01",
+        "NXfixD-02",
+        "NXfixD-03",
+        "NXfixD-04",
+        "NXfixD-05",
+        "NXfixD-06",
+        "NXfixD-07",
+        "NXfixD-08",
+        "NXfixD-09",
+        "NXfixD-10",
+        "NXfixD-11",
+        "NXfixD-12",
+        "NXfixD-13",
+        "NXfixD-14"
+      ],
+      "writes": [
+        "docs/design/chapters/01-tianlong.md",
+        "docs/design/catalog/npcs-ch01-tianlong.md",
+        "docs/design/chapters/02-shediao.md",
+        "docs/design/catalog/npcs-ch02-shediao.md",
+        "docs/design/chapters/03-shendiao.md",
+        "docs/design/catalog/npcs-ch03-shendiao.md",
+        "docs/design/chapters/04-yitian.md",
+        "docs/design/catalog/npcs-ch04-yitian.md",
+        "docs/design/chapters/05-xiaoao.md",
+        "docs/design/catalog/npcs-ch05-xiaoao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "书界 01–05（天龙八部、射雕英雄传、神雕侠侣、倚天屠龙记、笑傲江湖）",
+        "doc_set": "- `docs/design/chapters/01-tianlong.md`\n- `docs/design/catalog/npcs-ch01-tianlong.md`\n- `docs/design/chapters/02-shediao.md`\n- `docs/design/catalog/npcs-ch02-shediao.md`\n- `docs/design/chapters/03-shendiao.md`\n- `docs/design/catalog/npcs-ch03-shendiao.md`\n- `docs/design/chapters/04-yitian.md`\n- `docs/design/catalog/npcs-ch04-yitian.md`\n- `docs/design/chapters/05-xiaoao.md`\n- `docs/design/catalog/npcs-ch05-xiaoao.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/catalog/npcs-ch01-tianlong.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/catalog/npcs-ch02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/catalog/npcs-ch03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/catalog/npcs-ch04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/catalog/npcs-ch05-xiaoao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/catalog/npcs-ch01-tianlong.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/catalog/npcs-ch02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/catalog/npcs-ch03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/catalog/npcs-ch04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/catalog/npcs-ch05-xiaoao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/01-tianlong.md",
+            "docs/design/catalog/npcs-ch01-tianlong.md",
+            "docs/design/chapters/02-shediao.md",
+            "docs/design/catalog/npcs-ch02-shediao.md",
+            "docs/design/chapters/03-shendiao.md",
+            "docs/design/catalog/npcs-ch03-shendiao.md",
+            "docs/design/chapters/04-yitian.md",
+            "docs/design/catalog/npcs-ch04-yitian.md",
+            "docs/design/chapters/05-xiaoao.md",
+            "docs/design/catalog/npcs-ch05-xiaoao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixE-b",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界补漏 · 06–10（侠客行、碧血剑、鹿鼎记、连城诀、白马啸西风）：多人战整场耐久、完整对手入首领表",
+      "prompt": "NXfixE-group.md",
+      "deps": [
+        "NXfixD-01",
+        "NXfixD-02",
+        "NXfixD-03",
+        "NXfixD-04",
+        "NXfixD-05",
+        "NXfixD-06",
+        "NXfixD-07",
+        "NXfixD-08",
+        "NXfixD-09",
+        "NXfixD-10",
+        "NXfixD-11",
+        "NXfixD-12",
+        "NXfixD-13",
+        "NXfixD-14"
+      ],
+      "writes": [
+        "docs/design/chapters/06-xiake.md",
+        "docs/design/catalog/npcs-ch06-xiake.md",
+        "docs/design/chapters/07-bixue.md",
+        "docs/design/catalog/npcs-ch07-bixue.md",
+        "docs/design/chapters/08-luding.md",
+        "docs/design/catalog/npcs-ch08-luding.md",
+        "docs/design/chapters/09-liancheng.md",
+        "docs/design/catalog/npcs-ch09-liancheng.md",
+        "docs/design/chapters/10-baima.md",
+        "docs/design/catalog/npcs-ch10-baima.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "书界 06–10（侠客行、碧血剑、鹿鼎记、连城诀、白马啸西风）",
+        "doc_set": "- `docs/design/chapters/06-xiake.md`\n- `docs/design/catalog/npcs-ch06-xiake.md`\n- `docs/design/chapters/07-bixue.md`\n- `docs/design/catalog/npcs-ch07-bixue.md`\n- `docs/design/chapters/08-luding.md`\n- `docs/design/catalog/npcs-ch08-luding.md`\n- `docs/design/chapters/09-liancheng.md`\n- `docs/design/catalog/npcs-ch09-liancheng.md`\n- `docs/design/chapters/10-baima.md`\n- `docs/design/catalog/npcs-ch10-baima.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/catalog/npcs-ch06-xiake.md",
+          "docs/design/chapters/07-bixue.md",
+          "docs/design/catalog/npcs-ch07-bixue.md",
+          "docs/design/chapters/08-luding.md",
+          "docs/design/catalog/npcs-ch08-luding.md",
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/catalog/npcs-ch09-liancheng.md",
+          "docs/design/chapters/10-baima.md",
+          "docs/design/catalog/npcs-ch10-baima.md"
+        ],
+        "fences": [
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/catalog/npcs-ch06-xiake.md",
+          "docs/design/chapters/07-bixue.md",
+          "docs/design/catalog/npcs-ch07-bixue.md",
+          "docs/design/chapters/08-luding.md",
+          "docs/design/catalog/npcs-ch08-luding.md",
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/catalog/npcs-ch09-liancheng.md",
+          "docs/design/chapters/10-baima.md",
+          "docs/design/catalog/npcs-ch10-baima.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/06-xiake.md",
+            "docs/design/catalog/npcs-ch06-xiake.md",
+            "docs/design/chapters/07-bixue.md",
+            "docs/design/catalog/npcs-ch07-bixue.md",
+            "docs/design/chapters/08-luding.md",
+            "docs/design/catalog/npcs-ch08-luding.md",
+            "docs/design/chapters/09-liancheng.md",
+            "docs/design/catalog/npcs-ch09-liancheng.md",
+            "docs/design/chapters/10-baima.md",
+            "docs/design/catalog/npcs-ch10-baima.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixE-c",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "书界补漏 · 11–14（鸳鸯刀、书剑恩仇录、飞狐外传、雪山飞狐）：多人战整场耐久、完整对手入首领表",
+      "prompt": "NXfixE-group.md",
+      "deps": [
+        "NXfixD-01",
+        "NXfixD-02",
+        "NXfixD-03",
+        "NXfixD-04",
+        "NXfixD-05",
+        "NXfixD-06",
+        "NXfixD-07",
+        "NXfixD-08",
+        "NXfixD-09",
+        "NXfixD-10",
+        "NXfixD-11",
+        "NXfixD-12",
+        "NXfixD-13",
+        "NXfixD-14"
+      ],
+      "writes": [
+        "docs/design/chapters/11-yuanyang.md",
+        "docs/design/catalog/npcs-ch11-yuanyang.md",
+        "docs/design/chapters/12-shujian.md",
+        "docs/design/catalog/npcs-ch12-shujian.md",
+        "docs/design/chapters/13-feihu.md",
+        "docs/design/catalog/npcs-ch13-feihu.md",
+        "docs/design/chapters/14-xueshan.md",
+        "docs/design/catalog/npcs-ch14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "书界 11–14（鸳鸯刀、书剑恩仇录、飞狐外传、雪山飞狐）",
+        "doc_set": "- `docs/design/chapters/11-yuanyang.md`\n- `docs/design/catalog/npcs-ch11-yuanyang.md`\n- `docs/design/chapters/12-shujian.md`\n- `docs/design/catalog/npcs-ch12-shujian.md`\n- `docs/design/chapters/13-feihu.md`\n- `docs/design/catalog/npcs-ch13-feihu.md`\n- `docs/design/chapters/14-xueshan.md`\n- `docs/design/catalog/npcs-ch14-xueshan.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/catalog/npcs-ch11-yuanyang.md",
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/catalog/npcs-ch12-shujian.md",
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/catalog/npcs-ch13-feihu.md",
+          "docs/design/chapters/14-xueshan.md",
+          "docs/design/catalog/npcs-ch14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/catalog/npcs-ch11-yuanyang.md",
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/catalog/npcs-ch12-shujian.md",
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/catalog/npcs-ch13-feihu.md",
+          "docs/design/chapters/14-xueshan.md",
+          "docs/design/catalog/npcs-ch14-xueshan.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/11-yuanyang.md",
+            "docs/design/catalog/npcs-ch11-yuanyang.md",
+            "docs/design/chapters/12-shujian.md",
+            "docs/design/catalog/npcs-ch12-shujian.md",
+            "docs/design/chapters/13-feihu.md",
+            "docs/design/catalog/npcs-ch13-feihu.md",
+            "docs/design/chapters/14-xueshan.md",
+            "docs/design/catalog/npcs-ch14-xueshan.md"
+          ]
+        ]
+      }
+    },
+    {
       "id": "NAu-final",
       "phase": "G",
       "wave": 6,
@@ -12674,7 +12993,10 @@
         "NR3-kangxi",
         "NR3-qianlong",
         "NR3-gulong",
-        "NR3-bulu"
+        "NR3-bulu",
+        "NXfixE-a",
+        "NXfixE-b",
+        "NXfixE-c"
       ],
       "writes": [
         "docs/**",
