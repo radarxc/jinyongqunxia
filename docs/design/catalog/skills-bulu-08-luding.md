@@ -5,7 +5,7 @@
 > **上游**：`docs/00-canon.md` v1.3、作者决定与需求、`design/05`、`design/15`、`design/17`、`design/21` §4.3–§4.4/§11.9、`skills-kangxi`、`skills-xiaoyao`。
 > **引用而不重定义**：武学字段与预算见 `design/05`；经脉路线、调息及外放见 `design/21`；穴位见 `design/15`；门派与职级见 `design/17`；既有武学只引用其原图鉴。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**为三联 / 广州修订版尚待逐字核对；**【建议值】**为待上游确认的数值。
-> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）。
+> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）。
 
 ---
 
@@ -33,7 +33,7 @@
 | 7 地下 | `sk_pingxixingqijue` | `mv_pingxixingqijue_lianzhen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_pingxixingqijue_lianzhen}` | `mfr_pingxixingqijue_lianzhen` | `MeridianRouteDef{moveRef:mv_pingxixingqijue_lianzhen; ultimate:true; purpose:defense}`；`ap_renmai_zhongji/90/100→ap_renmai_shuifen/90/120→ap_zutaiyin_xuehai/90/140→ap_zushaoyin_rangu/90/160→ap_yinqiao_zhaohai/90/180→ap_shoujueyin_quze/90/200→ap_shoushaoyin_shaohai/90/220→ap_shoutaiyin_taiyuan/90/240` |
 | 8 地中 | `sk_shenlonghaichaojing` | `mv_shenlonghaichaojing_zhenzhou` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_shenlonghaichaojing_zhenzhou}` | `mfr_shenlonghaichaojing_zhenzhou` | `MeridianRouteDef{moveRef:mv_shenlonghaichaojing_zhenzhou; ultimate:true; purpose:defense}`；`ap_dumai_zhiyang/90/100→ap_yangwei_benshen/90/120→ap_zushaoyang_riyue/90/140→ap_zutaiyang_shenshu/90/160→ap_yangqiao_pucan/90/180→ap_shoushaoyang_yangchi/90/200→ap_shoutaiyang_xiaohai/90/220→ap_shouyangming_hegu/90/240` |
 | 7 地下 | `sk_shenlongfanzhougong` | `mv_shenlongfanzhougong_dinglang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_shenlongfanzhougong_dinglang}` | `mfr_shenlongfanzhougong_dinglang` | `MeridianRouteDef{moveRef:mv_shenlongfanzhougong_dinglang; ultimate:true; purpose:defense}`；`ap_renmai_shuifen/90/100→ap_chongmai_qichong/90/120→ap_daimai_daimai/90/140→ap_zushaoyang_yangbai/90/160→ap_zutaiyang_kunlun/90/180→ap_shoutaiyang_wangu/90/200→ap_shoushaoyang_waiguan/90/220→ap_shouyangming_quchi/90/240` |
-| 8 地中 | `sk_yanpinghaifangxinfa` | `mv_yanpinghaifangxinfa_zhencang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_yanpinghaifangxinfa_zhencang}` | `mfr_yanpinghaifangxinfa_zhencang` | `MeridianRouteDef{moveRef:mv_yanpinghaifangxinfa_zhencang; ultimate:true; purpose:defense}`；`ap_renmai_qihai/90/100→ap_chongmai_henggu/90/120→ap_daimai_wushu/90/140→ap_zuyangming_zusanli/90/160→ap_zutaiyang_chengshan/90/180→ap_shouyangming_quchi/90/200→ap_shoushaoyang_waiguan/90/220→ap_shoutaiyang_yanggu/90/240` |
+| 8 地中 | `sk_yanpinghaifangxinfa` | `mv_yanpinghaifangxinfa_zhencang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_yanpinghaifangxinfa_zhencang}` | `mfr_yanpinghaifangxinfa_zhencang` | `MeridianRouteDef{moveRef:mv_yanpinghaifangxinfa_zhencang; ultimate:true; purpose:defense}`；`ap_renmai_qihai/90/100→ap_chongmai_henggu/90/120→ap_daimai_wushu/90/140→ap_daimai_zhangmen/90/160→ap_zutaiyang_chengshan/90/180→ap_renmai_zhongwan/90/200→ap_shoushaoyang_waiguan/90/220→ap_shoutaiyang_yanggu/90/240` |
 | 7 地下 | `sk_yanpingfanchaojue` | `mv_yanpingfanchaojue_hujia` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_yanpingfanchaojue_hujia}` | `mfr_yanpingfanchaojue_hujia` | `MeridianRouteDef{moveRef:mv_yanpingfanchaojue_hujia; ultimate:true; purpose:defense}`；`ap_dumai_yaoyangguan/90/100→ap_chongmai_qichong/90/120→ap_zutaiyin_gongsun/90/140→ap_zushaoyin_yongquan/90/160→ap_yinwei_zhubin/90/180→ap_shoujueyin_neiguan/90/200→ap_shoushaoyin_lingdao/90/220→ap_shoutaiyin_chize/90/240` |
 | 8 地中 | `sk_yanpingzhenhaijian` | `mv_yanpingzhenhaijian_jiefeng` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_yanpingzhenhaijian_jiefeng}` | `mfr_yanpingzhenhaijian_jiefeng` | `MeridianRouteDef{moveRef:mv_yanpingzhenhaijian_jiefeng; ultimate:true; purpose:attack}`；`ap_daimai_daimai/90/100→ap_zushaoyang_zuqiaoyin/90/120→ap_zutaiyang_weizhong/90/140→ap_zuyangming_fenglong/90/160→ap_dumai_shenzhu/90/180→ap_shouyangming_hegu/90/200→ap_shoushaoyang_yangchi/90/220→ap_shoutaiyang_wangu/90/240` |
 | 8 地中 | `sk_yijianxinfa` | `mv_yijianxinfa_shoucang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_yijianxinfa_shoucang}` | `mfr_yijianxinfa_shoucang` | `MeridianRouteDef{moveRef:mv_yijianxinfa_shoucang; ultimate:true; purpose:defense}`；`ap_renmai_zhongwan/90/100→ap_chongmai_futonggu/90/120→ap_daimai_wushu/90/140→ap_zujueyin_taichong/90/160→ap_zushaoyin_taixi/90/180→ap_shoujueyin_tianchi/90/200→ap_shoushaoyin_shaofu/90/220→ap_shoutaiyin_taiyuan/90/240` |
@@ -183,6 +183,12 @@
 
 - 舱阵吐息 `mv_yanpinghaifangxinfa_tuxi`（L1，自身，7% / cd2 / 1000，`bf_wenzhong`2）。
 - 镇舱 `mv_yanpinghaifangxinfa_zhencang`（L7 绝招，**原创扩展**）：自身与相邻友方 `bf_shoushi`2；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_yanpinghaifangxinfa_zhencang}`。
+
+路线叙事：镇舱由任脉气海起舱，经冲脉承力、带脉横束，再以足太阳定步、任脉收中，末由手少阳、手太阳归腕，表达甲板守位而非摄心行气。
+
+| 路线叙事第三轮同步镜像 | 模板代号 | 段数 | 路线 CT | 收招合计 | 风险列表 / 总风险 |
+|---|---|---:|---:|---:|---|
+| `mfr_yanpinghaifangxinfa_zhencang` | 见文首索引 | 8 | `8×90=720` | `1200+720=1920 CT` | `[100,120,140,160,180,200,220,240]` / `1360` |
 
 ### 6.2 `sk_yanpingfanchaojue` 延平泛潮诀（7 地下 · 内功）**（原创扩展）**
 

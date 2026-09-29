@@ -5,7 +5,7 @@
 > **引用而不重定义**：字段、层数、招式与内功预算见 `design/05`；经脉路线、护体内劲、外放与调息算法见 `design/21`；穴位拓扑见 `design/15`；Buff 本体见 `design/06`；任务、人物、门派时代与既有武学分别见 `design/chapters/12`、`design/18`、`design/17` 与既有十一册图鉴。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**须以三联 / 广州修订版逐字核对；**（待核实）**为尚未联网确认的技术事实；**（待实测）**为需战斗回放验证；**【建议值】**为待唯一归属文档确认的数值。
 > **覆盖声明**：本册不改写 `skills-qianlong.md` 或 `skills-general.md`。三门新增武学均可由主角与其他满足条件者正常习得；没有首领专用、敌方专用或不可获得条目。
-> **版本**：首领所缺武学补录（2026-09-28）；经脉落地终审（2026-09-29）。
+> **版本**：首领所缺武学补录（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）。
 
 ---
 
@@ -21,7 +21,7 @@
 | 7 地下 | `sk_tiedanzhuangxinfa` | `mv_tiedanzhuangxinfa_shouzhuang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_tiedanzhuangxinfa_shouzhuang}` | `mfr_tiedanzhuangxinfa_shouzhuang` | `MeridianRouteDef{moveRef:mv_tiedanzhuangxinfa_shouzhuang; ultimate:true; purpose:defense}`；`ap_dumai_mingmen/90/100→ap_yangwei_fengfu/90/120→ap_zuyangming_zusanli/90/140→ap_shouyangming_quchi/90/160→ap_renmai_qihai/90/180→ap_dumai_baihui/90/200→ap_yangqiao_shenmai/90/220→ap_shoutaiyang_houxi/90/240` |
 | 7 地下 | `sk_tiedanzhuangquan` | `mv_tiedanzhuangquan_zhenmen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_tiedanzhuangquan_zhenmen}` | `mfr_tiedanzhuangquan_zhenmen` | `MeridianRouteDef{moveRef:mv_tiedanzhuangquan_zhenmen; ultimate:true; purpose:attack}`；`ap_dumai_mingmen/90/100→ap_dumai_shenzhu/90/120→ap_yangwei_fengfu/90/140→ap_zuyangming_zusanli/90/160→ap_yangqiao_jianyu/90/180→ap_shouyangming_quchi/90/200→ap_shouyangming_shousanli/90/220→ap_shouyangming_hegu/90/240` |
 | 9 地上 | `sk_tianchishengong` | `mv_tianchishengong_shouyi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_tianchishengong_shouyi}` | `mfr_tianchishengong_shouyi` | `MeridianRouteDef{moveRef:mv_tianchishengong_shouyi; ultimate:true; purpose:defense}`；`ap_renmai_qihai/90/100→ap_renmai_danzhong/90/120→ap_dumai_mingmen/90/140→ap_dumai_zhiyang/90/160→ap_yangwei_fengfu/90/180→ap_yangqiao_shenmai/90/200→ap_shoujueyin_neiguan/90/220→ap_zushaoyin_taixi/90/240` |
-| 9 地上 | `sk_tianchishengong` | `mv_tianchishengong_guiyuan` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_tianchishengong_guiyuan}` | `mfr_tianchishengong_guiyuan` | `MeridianRouteDef{moveRef:mv_tianchishengong_guiyuan; ultimate:true; purpose:defense}`；`ap_zushaoyin_yongquan/90/100→ap_zushaoyin_taixi/90/120→ap_zutaiyang_weizhong/90/140→ap_dumai_mingmen/90/160→ap_daimai_zulinqi/90/180→ap_daimai_weidao/90/200→ap_daimai_daimai/90/220→ap_renmai_danzhong/90/240` |
+| 9 地上 | `sk_tianchishengong` | `mv_tianchishengong_guiyuan` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_tianchishengong_guiyuan}` | `mfr_tianchishengong_guiyuan` | `MeridianRouteDef{moveRef:mv_tianchishengong_guiyuan; ultimate:true; purpose:defense}`；`ap_zushaoyin_rangu/90/100→ap_chongmai_dahe/90/120→ap_renmai_shimen/90/140→ap_renmai_shenque/90/160→ap_dumai_yaoshu/90/180→ap_dumai_shenzhu/90/200→ap_shoujueyin_jianshi/90/220→ap_shoujueyin_daling/90/240` |
 <!-- skill-catalog-audit:end -->
 
 ### 0.2 口径与去重结论
@@ -29,7 +29,7 @@
 | 缺口 | 先复用结论 | 本册处理 |
 |---|---|---|
 | 周仲英 | 通行 `sk_hunyuanfangzhuang` / `sk_tongbeijian` 达档但不体现周氏家传 | 新增 7 品铁胆庄内功与拳法，二者均可通过家传许可或谱本学习 |
-| 假旗队领、兆惠 | `sk_baizhanxinfa` 已是 8 品、可共享的历代军伍行气法 | 不造人物专属武学；登记 `ch12_shujian` 来源扩展 |
+| 假旗队领、兆惠 | `sk_baizhanxinfa` 已是 8 品、可共享的历代军伍行气法 | 不造人物专属武学；`ch12_shujian` 来源扩展已由通行册落实 |
 | 陈家洛 | `sk_honghuaxinfa` 只有 5 品；既有袁士霄传承缺一门 9 品内功 | 新增 9 品天池神功；传承开放给所有满足师承 / 遗谱条件者 |
 
 三门新武学均为**（原创扩展）**，名称不冒充原著术语。“袁士霄传陈家洛武学、周仲英为铁胆庄庄主”等人物与组织关系只作来源依据，具体运功名、招名、谱本及传授流程均为玩法扩写。
@@ -125,17 +125,21 @@
 
 调息：`txp_tianchishengong` = `BreathProfile{id:txp_tianchishengong;grade:9;layer:10;nature:harmony;scope:3;ct:1000;mpCostBp:0;outOfBattleScaleBp:15000}`。10 重通用调和公式为 `reliefBp=floor((500+100×9+80×10)×1.05)=2310`、`repairUnits=floor((120+24×9+18×10)×1.05)=541`；内劲抵消为地调和档 III，`reflectBp:0`。
 
-两记绝招只共享 `ap_renmai_danzhong`、`ap_dumai_mingmen`、`ap_zushaoyin_taixi` 三穴，即 `3/8=37.5%≤50%`。守一路线由任督蓄气转上肢内关后收于太溪，职责为护体；归元路线由涌泉起，经足部与带脉横向归于膻中，职责为调息，非轮换或逆序。
+两记绝招共享 `0/8=0%≤50%`。守一路线由任督蓄气转上肢内关后收于太溪，职责为护体；百花归元改由足少阴起，经冲、任、督纵向归元，再沿手厥阴收束，职责为调息，非轮换或逆序。
+
+| 路线叙事第三轮同步镜像 | 模板代号 | 段数 | 路线 CT | 收招合计 | 风险列表 / 总风险 |
+|---|---|---:|---:|---:|---|
+| `mfr_tianchishengong_guiyuan` | 见文首索引 | 8 | `8×90=720` | `1200+720=1920 CT` | `[100,120,140,160,180,200,220,240]` / `1360` |
 
 ---
 
 ## 3. 来源扩展登记
 
-本表只登记既有武学新增可得书界，不复制武学定义；由收尾任务 NXfix 回写其唯一归属图鉴。回写前，书界配装与学习来源以“来源扩展待登记”显式标记，不把本表误作第二张武学卡。
+本表只登记既有武学新增可得书界，不复制武学定义；收尾任务已将本册条目回写其唯一归属图鉴。本表保留“已解决”状态用于追溯，不把它误作第二张武学卡。
 
 | 武学 ID | 唯一归属图鉴 | 需加入的 `sourceChapters` | 依据 | 本书用途 / 状态 |
 |---|---|---|---|---|
-| `sk_baizhanxinfa` | `skills-general.md` | `ch12_shujian` | 该卡已定义为“历代军伍行气法汇编”，并非某位首领独门；书剑清军将领与军中假旗队均符合军伍传承来源 | 假旗队领、兆惠主运；**来源扩展待登记** |
+| `sk_baizhanxinfa` | `skills-general.md` | `ch12_shujian` | 该卡已定义为“历代军伍行气法汇编”，并非某位首领独门；书剑清军将领与军中假旗队均符合军伍传承来源 | **已解决：**假旗队领、兆惠主运；通行册已落实来源扩展 |
 
 本书没有跨书界待替换项。`sk_baizhanxinfa` 的品阶、性质、招式、调息与习得门槛均继续以 `skills-general.md` 为准；本文只扩展可得书界。
 
@@ -166,7 +170,7 @@
 | 招式 | 9 | 普通 / 支援 5、绝招 4 |
 | 绝招 | 4 | 地上 2、地下各 1；解锁为 7 / 9 重 |
 | 被动 | 9 | 每门 3 个 |
-| 显式绝招路线 | 4 | 每招一条；同门共享穴位最高为铁胆庄 `4/8=50%`，天池为 `3/8=37.5%` |
+| 显式绝招路线 | 4 | 每招一条；同门共享穴位最高为铁胆庄 `4/8=50%`，天池为 `0/8=0%` |
 | 调息档案 | 2 | 两门内功各 1 个，均含 `outOfBattleScaleBp:15000` |
 | 外放招式 / 路线 | 0 / 0 | 九招均 `projection:false` |
 | 来源扩展 | 1 | `sk_baizhanxinfa → ch12_shujian` |
@@ -205,7 +209,7 @@
 | SJ-BL-V04 | 外功成长 | 铁胆庄拳 10 重 `layerStats=8+7=15`，不越地阶上限 |
 | SJ-BL-V05 | 绝招资源 | 四招均为气势 100、内力 9%、`cd:0`、收招 1200；总 CT `1200+8×90=1920≤2000` |
 | SJ-BL-V06 | 路线合法与唯一 | 每条 8 段、单段 90 CT、风险 100–240 bp、无重复穴；不得与全库既有路线完全相同 |
-| SJ-BL-V07 | 同源互异 | 铁胆庄两路线共享 `4/8=50%`，天池两路线共享 `3/8=37.5%`，均 ≤50%，且不是轮换或逆序 |
+| SJ-BL-V07 | 同源互异 | 铁胆庄两路线共享 `4/8=50%`，天池两路线共享 `0/8=0%`，均 ≤50%，且不是轮换或逆序 |
 | SJ-BL-V08 | 调息 / 护体 | 两个 `txp_*` 均有 `outOfBattleScaleBp:15000`；10 重公式值准确；`reflectBp:0` |
 | SJ-BL-V09 | 外放字段 | 九招全部显式 `projection:false` 且 `projectionSpreadSteps:null`；不存在漏登记的离体伤害 / 控制 |
 | SJ-BL-V10 | 可习得性 | 三门新武学均有非敌专途径；`sk_baizhanxinfa` 只扩展来源，不复制定义 |
@@ -220,10 +224,10 @@
 | T-SJ-BL-03 绝招计数 | 按 `ultimate:true` 分组 | `sk_tiedanzhuangxinfa=1`、`sk_tiedanzhuangquan=1`、`sk_tianchishengong=2` |
 | T-SJ-BL-04 路线 CT | 任一路线 `8×90`，绝招收招 1200 | `flowCt=720`、总计 1920 CT |
 | T-SJ-BL-05 铁胆庄互异 | 比较两条铁胆庄路线穴位集合 | 只共享命门、风府、足三里、曲池，`4/8=50%`；拳招末三段为曲池、手三里、合谷 |
-| T-SJ-BL-06 天池互异 | 比较两条天池路线穴位集合 | 只共享膻中、命门、太溪，`3/8=37.5%` |
+| T-SJ-BL-06 天池互异 | 比较两条天池路线穴位集合 | 无共享穴位，`0/8=0%` |
 | T-SJ-BL-07 调和调息 | 9 品 10 重调和 | `reliefBp=2310`、`repairUnits=541` |
 | T-SJ-BL-08 正常习得 | 非 Boss 角色满足属性、前置及师承 / 谱本许可 | 可研习对应新武学；不检查 `enemyOnly` |
-| T-SJ-BL-09 来源扩展 | 构建 `ch12_shujian` 可得池 | 回写后包含 `sk_baizhanxinfa`；回写前产生明确待登记提示而非复制定义 |
+| T-SJ-BL-09 来源扩展 | 构建 `ch12_shujian` 可得池 | **已解决：**通行册已包含 `sk_baizhanxinfa`，本文只保留追溯登记而不复制定义 |
 | T-SJ-BL-10 外放审计 | 枚举本文九个 `mv_*` | 全为非外放，外放路线数为 0 |
 
 ---
@@ -235,7 +239,7 @@
 | # | 下游 | 建议值 | 当前默认 |
 |---|---|---|---|
 | SJ-BL-D01 | `chapters/12` | **已解决：**周仲英主运 / 外功用 `sk_tiedanzhuangxinfa` / `sk_tiedanzhuangquan`；陈家洛主运用 `sk_tianchishengong`（见 `chapters/12` §12.9） | 已按地位下限 7 / 9 装配，七项参数读取真实主运 |
-| SJ-BL-D02 | NXfix / `skills-general.md` | 为 `sk_baizhanxinfa.sourceChapters` 加 `ch12_shujian` | 回写前保留“来源扩展待登记”标记 |
+| SJ-BL-D02 | NXfix / `skills-general.md` | **已解决：**已为 `sk_baizhanxinfa.sourceChapters` 加入 `ch12_shujian` | 通行册已落实；本文 §3 保留追溯记录 |
 | SJ-BL-D03 | `chapters/12` | **已解决：**三门新增武学分别落入铁胆庄误会收束、袁士霄奇遇 / 陈家洛羁绊余韵（见 `chapters/12` §6.4–§6.5、§9.6） | 只复用现有事件，不新增敌专掉落 |
 
 ### 8.2 本文依赖的上游事实
@@ -264,4 +268,4 @@
 | SJ-BL-O01 | 是否把铁胆庄登记为正式 `sect_*`？ | 不登记；维持 `sect:null` 与 lineage | 若未来 17 建档，三门卡只需迁移门派外键，不改数值 |
 | SJ-BL-O02 | 考据发现陈家洛内功原著专名后，是否替换“天池神功”？ | 暂保留原创名；有可靠版本证据再走重命名表 | 影响 ID / 名称迁移，不影响 9 品主运职责 |
 | SJ-BL-O03 | 袁士霄遗谱是否允许陈家洛之外的人物学习？ | 允许满足前置、羁绊与许可者学习，符合作者决定 | 若收紧，只改取得门槛，不能把首领配装改成 `enemyOnly` |
-| SJ-BL-O04 | **已解决（决策）：**`sk_baizhanxinfa` 是否接受书剑来源扩展？ | 接受；但唯一归属 `skills-general.md` 尚未加入 `ch12_shujian`，继续按 §3 标“来源扩展待登记” | 若回写被撤销，假旗队领与兆惠仍缺可共享的 8 品真实主运 |
+| SJ-BL-O04 | **已解决：**`sk_baizhanxinfa` 是否接受并落实书剑来源扩展？ | 接受；唯一归属 `skills-general.md` 已加入 `ch12_shujian`（见 §3） | 假旗队领与兆惠已有可共享的 8 品真实主运 |

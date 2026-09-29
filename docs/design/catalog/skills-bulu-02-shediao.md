@@ -5,7 +5,7 @@
 > **上游**：作者决定与 `docs/decisions/author-requirements.md` AR-14～AR-16、`docs/00-canon.md`、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/15`、`design/17`、`design/21`、`design/chapters/02-shediao.md`。
 > **引用而不重定义**：字段、预算与习得规则见 `design/05`；穴位事实见 `design/15`；路线、调息、护体内劲、外放与首领主运见 `design/21`；组织与职级见 `design/17`；同体系既有武学见 `skills-wujue` / `skills-daojia`。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**须按三联 / 广州修订版逐字核对；**（待核实）**为尚未联网确认的技术事实；**（待实测）**为需实机回放；**【建议值】**为待唯一归属文档确认的数值。
-> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）。
+> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）。
 
 ---
 
@@ -25,7 +25,7 @@
 | 10 天下 | `sk_tiezhangyunqigong` | `mv_tiezhangyunqigong_shoufeng` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_tiezhangyunqigong_shoufeng}` | `mfr_tiezhangyunqigong_shoufeng` | `MeridianRouteDef{moveRef:mv_tiezhangyunqigong_shoufeng; ultimate:true; purpose:defense; requiredNature:[yang,harmony]; innerGuard:{enabled:true,reflectBp:0}}`；`ap_yangqiao_shenmai/80/100→ap_yangqiao_juliao/80/140→ap_yangqiao_jianyu/80/180→ap_yangwei_jianjing/80/200→ap_dumai_mingmen/80/260→ap_dumai_shendao/80/320→ap_shoushaoyang_tianjing/80/230→ap_shoushaoyang_waiguan/80/170→ap_shoushaoyang_yangchi/80/120→ap_shoushaoyin_shenmen/80/100` |
 | 11 天中 | `sk_taohuaguiyuanjue` | `mv_taohuaguiyuanjue_bihui` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_taohuaguiyuanjue_bihui}` | `mfr_taohuaguiyuanjue_bihui` | `MeridianRouteDef{moveRef:mv_taohuaguiyuanjue_bihui; ultimate:true; purpose:defense; requiredNature:[harmony]; innerGuard:{enabled:true,reflectBp:0}}`；`ap_yinwei_zhubin/80/100→ap_yinwei_fushe/80/120→ap_yinwei_daheng/80/140→ap_yinwei_fuai/80/160→ap_yinwei_qimen/80/220→ap_renmai_zhongwan/80/180→ap_renmai_danzhong/80/140→ap_dumai_shenzhu/80/260→ap_dumai_shendao/80/180→ap_dumai_baihui/80/100` |
 | 11 天中 | `sk_taohuaguiyuanjue` | `mv_taohuaguiyuanjue_guanchao` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_taohuaguiyuanjue_guanchao}` | `mfr_taohuaguiyuanjue_guanchao` | `MeridianRouteDef{moveRef:mv_taohuaguiyuanjue_guanchao; ultimate:true; purpose:defense; requiredNature:[harmony]; innerGuard:{enabled:true,reflectBp:0}}`；`ap_chongmai_henggu/80/100→ap_chongmai_siman/80/120→ap_chongmai_zhongzhu/80/140→ap_chongmai_youmen/80/160→ap_daimai_zhangmen/80/260→ap_daimai_jingmen/80/200→ap_daimai_wushu/80/160→ap_renmai_shimen/80/180→ap_renmai_qihai/80/140→ap_renmai_guanyuan/80/100` |
-| 9 地上 | `sk_quanzhenzhoutiangong` | `mv_quanzhenzhoutiangong_sanyuan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_quanzhenzhoutiangong_sanyuan}` | `mfr_quanzhenzhoutiangong_sanyuan` | `MeridianRouteDef{moveRef:mv_quanzhenzhoutiangong_sanyuan; ultimate:true; purpose:defense; requiredNature:[yang,harmony]; innerGuard:{enabled:true,reflectBp:0}}`；`ap_renmai_huiyin/90/100→ap_renmai_zhongji/90/140→ap_renmai_guanyuan/90/180→ap_renmai_qihai/90/220→ap_dumai_mingmen/90/280→ap_dumai_zhiyang/90/230→ap_dumai_shendao/90/170→ap_dumai_baihui/90/120` |
+| 9 地上 | `sk_quanzhenzhoutiangong` | `mv_quanzhenzhoutiangong_sanyuan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_quanzhenzhoutiangong_sanyuan}` | `mfr_quanzhenzhoutiangong_sanyuan` | `MeridianRouteDef{moveRef:mv_quanzhenzhoutiangong_sanyuan; ultimate:true; purpose:defense; requiredNature:[yang,harmony]; innerGuard:{enabled:true,reflectBp:0}}`；`ap_yangwei_jinmen/90/100→ap_yangwei_yangjiao/90/140→ap_renmai_guanyuan/90/180→ap_renmai_qihai/90/220→ap_dumai_mingmen/90/280→ap_dumai_zhiyang/90/230→ap_dumai_shendao/90/170→ap_dumai_baihui/90/120` |
 | 9 地上 | `sk_quanzhenzhoutiangong` | `mv_quanzhenzhoutiangong_qixing` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_quanzhenzhoutiangong_qixing}` | `mfr_quanzhenzhoutiangong_qixing` | `MeridianRouteDef{moveRef:mv_quanzhenzhoutiangong_qixing; ultimate:true; purpose:defense; requiredNature:[yang,harmony]; innerGuard:{enabled:true,reflectBp:0}}`；`ap_dumai_changqiang/90/100→ap_dumai_yaoshu/90/140→ap_dumai_jizhong/90/180→ap_yangqiao_jianyu/90/300→ap_yangqiao_jugu/90/220→ap_shoushaoyang_zhigou/90/360→ap_shoushaoyang_yifeng/90/240→ap_shoushaoyin_shenmen/90/440` |
 <!-- skill-catalog-audit:end -->
 
@@ -55,7 +55,7 @@
 
 | 既有武学 ID | 需加入书界 | 依据 | 状态 |
 |---|---|---|---|
-| `sk_tiezhang` | `ch03_shendiao` | 裘千尺承铁掌帮家传，神雕画像需 10 品门派外功；本武学现归 `skills-wujue`，本任务不改既有图鉴 | 来源扩展待登记；由 NXfix 统一写回 |
+| `sk_tiezhang` | `ch03_shendiao` | 裘千尺承铁掌帮家传，神雕画像需 10 品门派外功；本武学现归 `skills-wujue`，本任务不改既有图鉴 | **已解决：**五绝册已按神雕 9 品残承落实 |
 
 ## 1. 铁掌帮
 
@@ -153,6 +153,12 @@
 | 七星守宫 **（原创扩展）** | `mv_quanzhenzhoutiangong_qixing` | 9 | 防守绝招；自身与相邻全真阵员获得 `bf_shoushi` 2 回合；不新增阵法人数或追击 | `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_quanzhenzhoutiangong_qixing}` |
 
 - **被动**：`ps_quanzhenzhoutiangong_shouyi` 守一（主运时 `resMind +4→10`）；`ps_quanzhenzhoutiangong_tongqi` 同气（相邻全真阵员存在时 `resSeal +3→8`）；`ps_quanzhenzhoutiangong_yuanman` 周流圆成（10 重时调息 `repairUnits +10%`，只向下取整一次）。
+- **路线叙事与互异**：“三元归一”由阳维定势，归入任脉丹田，再沿督脉上守百会；“七星守宫”则由督脉起势，经阳跷转向手少阳收宫。两路共享 0/8 穴，不是轮换或逆序。
+
+| 路线叙事第三轮同步镜像 | 模板代号 | 段数 | 路线 CT | 收招合计 | 风险列表 / 总风险 |
+|---|---|---:|---:|---:|---|
+| `mfr_quanzhenzhoutiangong_sanyuan` | 见文首索引 | 8 | `8×90=720` | `1200+720=1920 CT` | `[100,140,180,220,280,230,170,120]` / `1440` |
+
 - **外放判定**：3 招均为自身 / 近邻阵员调息与护体，`projection:false`；没有外放伤害段。
 
 ---
@@ -270,7 +276,7 @@
 | 内功调息档案 | 5 | 与五门内功一一对应，均含 `outOfBattleScaleBp:15000` |
 | 外放招式 | 0 | 调息 / 运劲 / 护体不算外放 |
 | 原创扩展命名 | 5 | 未把门派背景或待考行功包装成原著固定武学名 |
-| 来源扩展待登记 | 1 | `sk_tiezhang → ch03_shendiao` |
+| 来源扩展已落实 | 1 | `sk_tiezhang → ch03_shendiao`；五绝册已按神雕 9 品残承登记 |
 
 ### 8.3 主书界复用边界
 
@@ -290,7 +296,7 @@
 
 - **按书补录册**：不改既有门派图鉴，由门派主书界补齐首领 / 精英构筑缺口的正式图鉴；其 `sk_*` 对玩家与 NPC 使用同一规则。
 - **九阴下卷邪练支**：本作对黑风双煞盗经、错练所形成传承的中性来源称呼 **（原创扩展）**；不等同桃花岛正传，也不声称原著如此命名。
-- **来源扩展登记**：既有武学本身无需重定义，只需给原图鉴增加可得书界；本册登记后由 NXfix 统一落实。
+- **来源扩展登记**：既有武学本身无需重定义，只需给原图鉴增加可得书界；`sk_tiezhang → ch03_shendiao` 已由门派收尾任务在五绝册落实。
 
 ### 武学 ID（5）
 
@@ -322,7 +328,7 @@
 | SB02-V06 | 调息 | 5 个 `txp_*` 唯一；`scope:3`；离战倍率均 15000；护体不反震 |
 | SB02-V07 | 外放 | 18 招外放数为 0；无 `projectionSpreadSteps` |
 | SB02-V08 | 习得 | 五门均有门派 / 秘籍 / 奇遇路径；无首领专属与敌人专用 |
-| SB02-V09 | 跨书界 | 桃花 / 铁掌 / 全真新功含 `ch03_shendiao`；桃花射雕为10品残承、神雕为完整11品；既有 `sk_tiezhang` 单列来源扩展 |
+| SB02-V09 | 跨书界 | 桃花 / 铁掌 / 全真新功含 `ch03_shendiao`；桃花射雕为10品残承、神雕为完整11品；既有 `sk_tiezhang` 来源扩展已在五绝册落实 |
 
 最小测试：构建黄药师（射雕 / 神雕）、裘千仞、陈玄风、梅超风、君山阵首、裘千尺与重阳七星阵首；验证主运取自实际武学，绝招只按 `MoveDef.ultimate` 识别，调息不推进永久经脉；对九记绝招做固定 RNG 路线回放，并运行 `check_route_unique_for.py`。
 
@@ -353,5 +359,5 @@
 ### 开放问题（附默认值）
 
 - **已解决：**黄药师（射雕 10 / 神雕 11）统一使用 `sk_taohuaguiyuanjue` 的残承 / 完整来源；裘千仞使用升阶后的 `sk_tiezhangyunqigong`（见 §1–§2）。
-- `sk_tiezhang` 的神雕来源扩展由谁落盘尚未写入既有图鉴。默认：NXfix 按本册 §0.2 写回 `skills-wujue`，本任务不越权修改。
+- **已解决：**`sk_tiezhang` 的神雕来源扩展已由门派收尾任务写回 `skills-wujue`，按神雕 9 品残承登记（见 §0.2）。
 

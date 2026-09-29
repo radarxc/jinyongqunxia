@@ -6,7 +6,7 @@
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（原创扩展命名）**为人物、兵器或表现有据但固定武学名无据；**（待考）**须以三联／广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
 >
 > **覆盖声明**：本文新增 7 门 9 品地上武学，供古墓赤练支、绝情谷、吐蕃密宗金轮一脉与蒙古军伍按正常门派／职级／秘籍途径习得；没有一门以“仅首领可学”作为硬条件。全真、桃花岛、铁掌帮缺口归书界 02，不在本文造同门重复项。
-> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）。
+> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）。
 
 ---
 
@@ -20,7 +20,7 @@
 | 品阶 | 武学 | MoveDef（正文卡镜像） | 路线 ID | steps（acupointRef/segmentCt/riskBp） |
 |---|---|---|---|---|
 | 9 地上 | `sk_chiliandugong` | `mv_chiliandugong_humai` `MoveDef{unlock:7;ultimate:true;rageCost:100;mpCost:9%;cd:0;recovery:1200;projection:false;meridianRouteRef:mfr_chiliandugong_humai}` | `mfr_chiliandugong_humai` | `MeridianRouteDef{moveRef:mv_chiliandugong_humai;ultimate:true;purpose:defense;requiredNature:[yin,harmony]}`；`ap_yinwei_qimen/90/100→ap_yinwei_daheng/90/120→ap_zujueyin_ququan/90/140→ap_shoujueyin_quze/90/160→ap_shoushaoyin_shenmen/90/180→ap_renmai_danzhong/90/200→ap_renmai_qihai/90/220→ap_renmai_guanyuan/90/240` |
-| 9 地上 | `sk_chiliandugong` | `mv_chiliandugong_duhuo` `MoveDef{unlock:9;ultimate:true;rageCost:100;mpCost:9%;cd:0;recovery:1200;projection:false;meridianRouteRef:mfr_chiliandugong_duhuo}` | `mfr_chiliandugong_duhuo` | `MeridianRouteDef{moveRef:mv_chiliandugong_duhuo;ultimate:true;purpose:attack;requiredNature:[yin,harmony]}`；`ap_yinqiao_zhaohai/90/100→ap_zushaoyin_taixi/90/120→ap_zutaiyin_yinlingquan/90/140→ap_zujueyin_taichong/90/160→ap_renmai_danzhong/90/180→ap_shoujueyin_quze/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_laogong/90/240` |
+| 9 地上 | `sk_chiliandugong` | `mv_chiliandugong_duhuo` `MoveDef{unlock:9;ultimate:true;rageCost:100;mpCost:9%;cd:0;recovery:1200;projection:false;meridianRouteRef:mfr_chiliandugong_duhuo}` | `mfr_chiliandugong_duhuo` | `MeridianRouteDef{moveRef:mv_chiliandugong_duhuo;ultimate:true;purpose:attack;requiredNature:[yin,harmony]}`；`ap_yinqiao_zhaohai/90/100→ap_zushaoyin_rangu/90/120→ap_zutaiyin_yinlingquan/90/140→ap_zujueyin_xingjian/90/160→ap_renmai_danzhong/90/180→ap_shoujueyin_quze/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_laogong/90/240` |
 | 9 地上 | `sk_chilianfuchen` | `mv_chilianfuchen_suomai` `MoveDef{unlock:7;ultimate:true;rageCost:100;mpCost:9%;cd:0;recovery:1200;projection:false;meridianRouteRef:mfr_chilianfuchen_suomai}` | `mfr_chilianfuchen_suomai` | `MeridianRouteDef{moveRef:mv_chilianfuchen_suomai;ultimate:true;purpose:attack;requiredNature:[yin,harmony]}`；`ap_zushaoyin_dazhong/90/100→ap_zushaoyin_yingu/90/120→ap_zutaiyin_xuehai/90/140→ap_renmai_danzhong/90/160→ap_shoushaoyin_lingdao/90/180→ap_shoutaiyin_taiyuan/90/200→ap_shoutaiyang_wangu/90/220→ap_shouyangming_hegu/90/240` |
 | 9 地上 | `sk_chilianfuchen` | `mv_chilianfuchen_chilian` `MoveDef{unlock:9;ultimate:true;rageCost:100;mpCost:9%;cd:0;recovery:1200;projection:false;meridianRouteRef:mfr_chilianfuchen_chilian}` | `mfr_chilianfuchen_chilian` | `MeridianRouteDef{moveRef:mv_chilianfuchen_chilian;ultimate:true;purpose:attack;requiredNature:[yin,harmony]}`；`ap_yinwei_zhubin/90/100→ap_zushaoyin_fuliu/90/120→ap_renmai_shuifen/90/140→ap_zutaiyin_diji/90/160→ap_zujueyin_yinlian/90/180→ap_shoujueyin_quze/90/200→ap_shoushaoyang_yangchi/90/220→ap_shoutaiyang_yanggu/90/240` |
 | 9 地上 | `sk_jueqingbixuejue` | `mv_jueqingbixuejue_bixue` `MoveDef{unlock:7;ultimate:true;rageCost:100;mpCost:9%;cd:0;recovery:1200;projection:false;meridianRouteRef:mfr_jueqingbixuejue_bixue}` | `mfr_jueqingbixuejue_bixue` | `MeridianRouteDef{moveRef:mv_jueqingbixuejue_bixue;ultimate:true;purpose:defense;requiredNature:[yin,harmony]}`；`ap_renmai_qihai/90/100→ap_renmai_guanyuan/90/120→ap_renmai_zhongji/90/140→ap_renmai_huiyin/90/160→ap_zushaoyin_taixi/90/180→ap_zutaiyin_xuehai/90/200→ap_shoujueyin_neiguan/90/220→ap_renmai_danzhong/90/240` |
@@ -89,6 +89,12 @@
 | 毒中行气 | `ps_chiliandugong_duzhong` | 1 | 自身带 `poison` 标签状态时，调息的 `reliefBp` +10%；不减毒伤 |
 | 以身试毒 | `ps_chiliandugong_yishen` | 8 | `resPoison +5→+12`；仍须通过免疫与效果检定 |
 | 毒功大成 | `ps_chiliandugong_dacheng` | 10 | 本门招式施加毒状态的效果命中 +10pp，毒层数仍受 06 上限 |
+
+- **路线叙事与互异**：“赤练护脉”由阴维与足厥阴起势，转手厥阴后归任脉护住丹田；“毒火攻心”由阴跷和足三阴起，经膻中保留攻击内功的任脉核心，最后沿曲泽—内关—劳宫发掌。两路共享 2/8 穴，不是轮换或逆序。
+
+| 路线叙事第三轮同步镜像 | 模板代号 | 段数 | 路线 CT | 收招合计 | 风险列表 / 总风险 |
+|---|---|---:|---:|---:|---|
+| `mfr_chiliandugong_duhuo` | 见文首索引 | 8 | `8×90=720` | `1200+720=1920 CT` | `[100,120,140,160,180,200,220,240]` / `1360` |
 
 ### 1.2 `sk_chilianfuchen` 赤练拂尘（9 地上 · 兵器/鞭索（拂尘）· 古墓派李莫愁一系）
 

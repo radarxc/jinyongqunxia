@@ -3,9 +3,9 @@
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 的书界补录图鉴。本文只定义书界 14 首领缺口中新建的个人散承武学，并登记本界对既有武学的来源扩展请求。
 > **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14/15/16、`docs/00-canon.md` §3–§5/§9/§12/§13/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/21`、`design/catalog/npcs-ch14-xueshan.md`。
 > **引用而不重定义**：武学字段、预算与招式公式见 `design/05`；经脉路线、外放、护体内劲与调息见 `design/21`；穴位见 `design/15`；Buff 见 `design/06`；既有乾隆医毒、军伍与通行武学分别见 `skills-qianlong.md`、`skills-general.md`。
-> **覆盖声明**：本文不修改现有门派图鉴。胡家、苗家、天龙门与药王门的缺口由主书界 13 负责；本文只为无门派的宝树 / 阎基补两门个人散承，并把清廷军伍来源扩展交收尾任务统一回填。
+> **覆盖声明**：本文不修改现有门派图鉴。胡家、苗家、天龙门与药王门的缺口由主书界 13 负责；本文只为无门派的宝树 / 阎基补两门个人散承；清廷军伍来源扩展已由通行册落实。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**为尚须按三联 / 广州修订版逐字核对的原著事实；**【建议值】**为等待归属文档确认但可先生产的数值。
-> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）。
+> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）。
 
 ---
 
@@ -17,10 +17,14 @@
 | 品阶 | 武学 | MoveDef（正文卡镜像） | 路线 ID | steps（acupointRef/segmentCt/riskBp） |
 |---|---|---|---|---|
 | 7 地下 | `sk_cangfengxingqi` | `mv_cangfengxingqi_huming` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_cangfengxingqi_huming; projection:false; projectionSpreadSteps:[]}` | `mfr_cangfengxingqi_huming` | `MeridianRouteDef{moveRef:mv_cangfengxingqi_huming; ultimate:true; purpose:defense; requiredNature:[yin,harmony]; allowOpposedNature:true}`；`ap_zushaoyin_taixi/90/100→ap_zutaiyin_yinlingquan/90/120→ap_zujueyin_ququan/90/140→ap_yinwei_zhubin/90/160→ap_renmai_guanyuan/90/180→ap_renmai_qihai/90/200→ap_dumai_mingmen/90/220→ap_dumai_shenzhu/90/240` |
-| 7 地下 | `sk_cuomaifanzhang` | `mv_cuomaifanzhang_fanmai` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_cuomaifanzhang_fanmai; projection:false; projectionSpreadSteps:[]}` | `mfr_cuomaifanzhang_fanmai` | `MeridianRouteDef{moveRef:mv_cuomaifanzhang_fanmai; ultimate:true; purpose:attack; requiredNature:[yin,harmony]}`；`ap_yinqiao_zhaohai/90/100→ap_zushaoyin_fuliu/90/120→ap_zutaiyin_xuehai/90/140→ap_shoujueyin_quze/90/160→ap_shoushaoyin_qingling/90/180→ap_shoutaiyin_chize/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_laogong/90/240` |
+| 7 地下 | `sk_cuomaifanzhang` | `mv_cuomaifanzhang_fanmai` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_cuomaifanzhang_fanmai; projection:false; projectionSpreadSteps:[]}` | `mfr_cuomaifanzhang_fanmai` | `MeridianRouteDef{moveRef:mv_cuomaifanzhang_fanmai; ultimate:true; purpose:attack; requiredNature:[yin,harmony]}`；`ap_yinqiao_zhaohai/90/100→ap_zushaoyin_fuliu/90/120→ap_zutaiyin_xuehai/90/140→ap_shoujueyin_quze/90/160→ap_shoujueyin_ximen/90/180→ap_shoujueyin_jianshi/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_laogong/90/240` |
 <!-- skill-catalog-audit:end -->
 
-两路共享穴位 `0/8=0%≤50%`，既非轮换也非逆序。`藏锋护命` 由足三阴蓄息，经任脉丹田转督脉护背；末两段跨入阳性督脉，故显式 `allowOpposedNature:true` 并提高风险。`翻掌错脉` 从阴跷起势，经足三阴转入手三阴，以“内关 → 劳宫”收于接触掌击末端。每路 `flowCt=8×90=720`，与绝招收招合计 `1200+720=1920≤2000`。
+两路共享穴位 `0/8=0%≤50%`，既非轮换也非逆序。`藏锋护命` 由足三阴蓄息，经任脉丹田转督脉护背；末两段跨入阳性督脉，故显式 `allowOpposedNature:true` 并提高风险。`翻掌错脉` 从阴跷起势，经足三阴转入手厥阴，以“曲泽 → 郄门 → 间使 → 内关 → 劳宫”完成接触掌击。每路 `flowCt=8×90=720`，与绝招收招合计 `1200+720=1920≤2000`。
+
+| 路线叙事第三轮同步镜像 | 模板代号 | 段数 | 路线 CT | 收招合计 | 风险列表 / 总风险 |
+|---|---|---:|---:|---:|---|
+| `mfr_cuomaifanzhang_fanmai` | 见文首索引 | 8 | `8×90=720` | `1200+720=1920 CT` | `[100,120,140,160,180,200,220,240]` / `1360` |
 
 ## 1. 补录边界与来源扩展登记
 
@@ -32,8 +36,8 @@
 
 | 既有武学 | 需加入书界 | 依据 | 本文处理 |
 |---|---|---|---|
-| `sk_baizhanxinfa` | `ch14_xueshan` | 本界有清廷围捕、军伍精英与赛总管；既有卡定位为历代军伍行气法汇编，非特定朝代门派 | 章节可先装配并标“来源扩展待登记”；由 NXfix 回填 `skills-general.md` |
-| `sk_pojunqiangfa` | `ch14_xueshan` | 同一清廷军伍来源；既有卡定位为历代军镇重枪破阵总名 | 章节可先装配并标“来源扩展待登记”；由 NXfix 回填 `skills-general.md` |
+| `sk_baizhanxinfa` | `ch14_xueshan` | 本界有清廷围捕、军伍精英与赛总管；既有卡定位为历代军伍行气法汇编，非特定朝代门派 | **已解决：**通行册已落实 `ch14_xueshan` 来源 |
+| `sk_pojunqiangfa` | `ch14_xueshan` | 同一清廷军伍来源；既有卡定位为历代军镇重枪破阵总名 | **已解决：**通行册已落实 `ch14_xueshan` 来源 |
 
 `sk_hunyuanfangzhuang`、`sk_sihaibiaodao`、`sk_huweiyingqiang` 等既有卡已经覆盖雪山，不再登记。胡家、苗家和天龙门的高阶缺口只保留跨书界替补，待主书界 13 补录。
 
@@ -183,7 +187,7 @@
 |---|---|
 | `catalog/npcs-ch14-xueshan.md` | **已解决：**宝树为无门派 / 医者伪装，本文不把两门武学写成药王门传承 |
 | `skills-qianlong.md` | **已解决：**只复用 `sk_yaowangtuna`、`sk_yaowanghushou` 作公共医毒学习前置，不改其归属 |
-| `skills-general.md` | **待同步：**`sk_baizhanxinfa`、`sk_pojunqiangfa` 的 `sourceChapters` 尚无雪山；见 §1.2 |
+| `skills-general.md` | **已解决：**`sk_baizhanxinfa`、`sk_pojunqiangfa` 的 `sourceChapters` 已由通行册加入雪山；见 §1.2 |
 
 ### 对基准的修改提案
 

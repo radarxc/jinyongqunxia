@@ -5,7 +5,7 @@
 > **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-15、`docs/00-canon.md` §3–§5/§9/§12–§13/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/15`、`design/17`、`design/21`。
 > **引用而不重定义**：品阶、招式预算与 `MoveDef` 见 `design/05`；Buff 见 `design/06`；门派边界见 `design/17`；穴位、路线、护体内劲、外放与调息见 `design/15`、`design/21`。
 > **标注约定**：**（原创扩展）**为原著没有的武学或机制；**（原创扩展命名）**为原著有人物或动作依据、但名称非原著定名；**（待考）**须按三联 / 广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
-> **版本**：首领所缺武学补录（2026-09-28）；经脉落地终审（2026-09-29）。
+> **版本**：首领所缺武学补录（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）。
 
 ---
 
@@ -19,7 +19,7 @@
 | 品阶 | 武学 | MoveDef（正文卡镜像） | 路线 ID | steps（acupointRef/segmentCt/riskBp） |
 |---|---|---|---|---|
 | 10 天下 | `sk_huashanziqijue` | `mv_huashanziqijue_yingfeng` `MoveDef{unlock:7;ultimate:true;rageCost:100;mpCost:10%;cd:0;recovery:1200;meridianRouteRef:mfr_huashanziqijue_yingfeng;projection:false}` | `mfr_huashanziqijue_yingfeng` | `MeridianRouteDef{moveRef:mv_huashanziqijue_yingfeng;ultimate:true;purpose:defense;requiredNature:[yang,harmony];innerGuard:{enabled:true,reflectBp:0}}`；`ap_renmai_huiyin/80/100→ap_renmai_qugu/80/120→ap_renmai_zhongji/80/140→ap_renmai_qihai/80/160→ap_dumai_mingmen/80/240→ap_dumai_zhiyang/80/200→ap_dumai_shendao/80/180→ap_dumai_shenzhu/80/160→ap_dumai_baihui/80/140→ap_dumai_shangxing/80/100` |
-| 10 天下 | `sk_huashanziqijue` | `mv_huashanziqijue_guiyuan` `MoveDef{unlock:9;ultimate:true;rageCost:100;mpCost:10%;cd:0;recovery:1200;meridianRouteRef:mfr_huashanziqijue_guiyuan;projection:false}` | `mfr_huashanziqijue_guiyuan` | `MeridianRouteDef{moveRef:mv_huashanziqijue_guiyuan;ultimate:true;purpose:defense;requiredNature:[yang,harmony];innerGuard:{enabled:true,reflectBp:0}}`；`ap_zuyangming_zusanli/80/100→ap_zuyangming_fenglong/80/120→ap_zuyangming_tianshu/80/140→ap_yangwei_jianjing/80/180→ap_yangqiao_jianyu/80/160→ap_dumai_yaoyangguan/80/240→ap_dumai_jizhong/80/200→ap_shouyangming_quchi/80/160→ap_shouyangming_shousanli/80/140→ap_shouyangming_hegu/80/100` |
+| 10 天下 | `sk_huashanziqijue` | `mv_huashanziqijue_guiyuan` `MoveDef{unlock:9;ultimate:true;rageCost:100;mpCost:10%;cd:0;recovery:1200;meridianRouteRef:mfr_huashanziqijue_guiyuan;projection:false}` | `mfr_huashanziqijue_guiyuan` | `MeridianRouteDef{moveRef:mv_huashanziqijue_guiyuan;ultimate:true;purpose:defense;requiredNature:[yang,harmony];innerGuard:{enabled:true,reflectBp:0}}`；`ap_yangwei_jinmen/80/100→ap_yangwei_yangjiao/80/120→ap_yangwei_tianliao/80/140→ap_yangwei_jianjing/80/180→ap_yangqiao_jianyu/80/160→ap_dumai_yaoyangguan/80/240→ap_dumai_jizhong/80/200→ap_shouyangming_quchi/80/160→ap_shouyangming_shousanli/80/140→ap_shouyangming_hegu/80/100` |
 | 8 地中 | `sk_qingchengyunqi` | `mv_qingchengyunqi_cuixin` `MoveDef{unlock:7;ultimate:true;rageCost:100;mpCost:9%;cd:0;recovery:1200;meridianRouteRef:mfr_qingchengyunqi_cuixin;projection:false}` | `mfr_qingchengyunqi_cuixin` | `MeridianRouteDef{moveRef:mv_qingchengyunqi_cuixin;ultimate:true;purpose:defense}`；`ap_renmai_qihai/85/100→ap_yinwei_daheng/85/120→ap_zujueyin_taichong/85/140→ap_zushaoyin_taixi/85/160→ap_shoujueyin_neiguan/85/180→ap_renmai_danzhong/85/200→ap_dumai_baihui/85/220→ap_renmai_guanyuan/85/240` |
 | 8 地中 | `sk_songshanzhenqi` | `mv_songshanzhenqi_songyue` `MoveDef{unlock:7;ultimate:true;rageCost:100;mpCost:9%;cd:0;recovery:1200;meridianRouteRef:mfr_songshanzhenqi_songyue;projection:false}` | `mfr_songshanzhenqi_songyue` | `MeridianRouteDef{moveRef:mv_songshanzhenqi_songyue;ultimate:true;purpose:defense}`；`ap_dumai_mingmen/85/100→ap_dumai_zhiyang/85/120→ap_yangwei_fengfu/85/140→ap_yangwei_jianjing/85/160→ap_zuyangming_zusanli/85/180→ap_shouyangming_quchi/85/200→ap_dumai_shenzhu/85/220→ap_renmai_qihai/85/240` |
 | 8 地中 | `sk_jianzongxingqi` | `mv_jianzongxingqi_yujian` `MoveDef{unlock:7;ultimate:true;rageCost:100;mpCost:9%;cd:0;recovery:1200;meridianRouteRef:mfr_jianzongxingqi_yujian;projection:false}` | `mfr_jianzongxingqi_yujian` | `MeridianRouteDef{moveRef:mv_jianzongxingqi_yujian;ultimate:true;purpose:attack}`；`ap_chongmai_qichong/85/100→ap_daimai_wushu/85/120→ap_dumai_shenzhu/85/140→ap_yangqiao_jianyu/85/160→ap_zushaoyang_fengshi/85/180→ap_shoushaoyang_waiguan/85/200→ap_shoutaiyang_wangu/85/220→ap_shouyangming_hegu/85/240` |
@@ -112,7 +112,11 @@
 | 守岳 | `ps_huashanziqijue_shouyue` | 8 | 本回合未移动时招架 `+5→+12` |
 | 紫气圆成 | `ps_huashanziqijue_dacheng` | 10 | 每战首次护体内劲被击穿时获得 `bf_wenzhong` 1 回合 |
 
-- **路线叙事与互异**：“迎峰守一”自任脉蓄气转督脉直上，表现正面守峰；“紫气归元”由足阳明稳下盘，经阳维 / 阳跷转督，再从手阳明回收。两路共享 0/10 穴，不是轮换或逆序；普通三招分别表达吐纳、随剑、护体。
+- **路线叙事与互异**：“迎峰守一”自任脉蓄气转督脉直上，表现正面守峰；“紫气归元”改由阳维起势，经阳跷、督脉转接，再从手阳明回收。两路共享 0/10 穴，不是轮换或逆序；普通三招分别表达吐纳、随剑、护体。
+
+| 路线叙事第三轮同步镜像 | 模板代号 | 段数 | 路线 CT | 收招合计 | 风险列表 / 总风险 |
+|---|---|---:|---:|---:|---|
+| `mfr_huashanziqijue_guiyuan` | 见文首索引 | 10 | `10×80=800` | `1200+800=2000 CT` | `[100,120,140,180,160,240,200,160,140,100]` / `1540` |
 - **learnSources**：华山气宗 L5 且紫霞神功 9 重，由掌门传功 / 历代掌门密卷可学至 10 重；完成思过崖气剑辨义并经气宗长老印证可学至 8 重。主角与其他满足门规者均可学，不是岳不群专属。
 - **外放判定**：五招均为自身吐纳、运劲与护体，`projection:false`；本功不继承紫霞神功个别外放招的投送属性。
 

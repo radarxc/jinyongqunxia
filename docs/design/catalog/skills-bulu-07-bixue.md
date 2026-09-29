@@ -5,7 +5,7 @@
 > **引用而不重定义**：武学字段、品阶、招式 / 内功预算与学习规则见 `design/05`；Buff 本体见 `design/06`；门派 ID、职级与时代状态见 `design/17`；经脉 / 穴位见 `design/15`；战斗经脉路线、外放、调息和护体内劲见 `design/21`；原图鉴已有条目均只引用。
 > **覆盖声明**：本册是 `skills-xiake-bixue` 的追加册，不覆写、不升阶、不重复定义既有 `sk_*`。华山（碧血一系）、铁剑门、石梁温家、仙都派、山宗 / 闯军及金龙帮在其他书界复现时复用本册 ID；明宫护院仅属明代宫禁来源，不反推清宫传承。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（原创扩展命名）**为人物、组织或武学表现有依据但名称未见原著明载；**（待考）**须以三联 / 广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
-> **版本**：v1.2（首领武学补录，2026-09-28）；经脉落地终审（2026-09-29）；归辛树外功返修补录（2026-09-29）。
+> **版本**：v1.2（首领武学补录，2026-09-28）；经脉落地终审（2026-09-29）；归辛树外功返修补录（2026-09-29）；路线叙事第三轮（2026-09-29）。
 
 ---
 
@@ -20,16 +20,21 @@
 |---|---|---|---|---|
 | 7 地下 | `sk_shanzongzhengqigong` | `mv_shanzongzhengqigong_shouzhen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_shanzongzhengqigong_shouzhen}` | `mfr_shanzongzhengqigong_shouzhen` | `MeridianRouteDef{moveRef:mv_shanzongzhengqigong_shouzhen; ultimate:true; purpose:defense}`；`ap_dumai_changqiang/90/100→ap_dumai_yaoshu/90/110→ap_dumai_mingmen/90/120→ap_dumai_jizhong/90/130→ap_dumai_zhiyang/90/140→ap_dumai_shendao/90/150→ap_dumai_shenzhu/90/160→ap_dumai_baihui/90/170` |
 | 8 地中 | `sk_shiliangwuxinggong` | `mv_shiliangwuxinggong_hezhen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_shiliangwuxinggong_hezhen}` | `mfr_shiliangwuxinggong_hezhen` | `MeridianRouteDef{moveRef:mv_shiliangwuxinggong_hezhen; ultimate:true; purpose:defense}`；`ap_daimai_zulinqi/90/100→ap_daimai_weidao/90/110→ap_daimai_daimai/90/120→ap_daimai_wushu/90/130→ap_daimai_zhangmen/90/140→ap_daimai_jingmen/90/150→ap_renmai_qihai/90/180→ap_renmai_guanyuan/90/190` |
-| 7 地下 | `sk_jinlongbangxinfa` | `mv_jinlongbangxinfa_dingzhuang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_jinlongbangxinfa_dingzhuang}` | `mfr_jinlongbangxinfa_dingzhuang` | `MeridianRouteDef{moveRef:mv_jinlongbangxinfa_dingzhuang; ultimate:true; purpose:defense}`；`ap_chongmai_qichong/90/100→ap_chongmai_qixue/90/110→ap_chongmai_siman/90/120→ap_chongmai_zhongzhu/90/130→ap_chongmai_huangshu/90/140→ap_chongmai_shangqu/90/150→ap_chongmai_shiguan/90/160→ap_chongmai_youmen/90/170` |
+| 7 地下 | `sk_jinlongbangxinfa` | `mv_jinlongbangxinfa_dingzhuang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_jinlongbangxinfa_dingzhuang}` | `mfr_jinlongbangxinfa_dingzhuang` | `MeridianRouteDef{moveRef:mv_jinlongbangxinfa_dingzhuang; ultimate:true; purpose:defense}`；`ap_chongmai_qichong/90/100→ap_chongmai_qixue/90/110→ap_chongmai_siman/90/120→ap_chongmai_zhongzhu/90/130→ap_chongmai_huangshu/90/140→ap_chongmai_shangqu/90/150→ap_renmai_qihai/90/160→ap_renmai_guanyuan/90/170` |
 | 7 地下 | `sk_xianduyunqi` | `mv_xianduyunqi_shouzheng` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_xianduyunqi_shouzheng}` | `mfr_xianduyunqi_shouzheng` | `MeridianRouteDef{moveRef:mv_xianduyunqi_shouzheng; ultimate:true; purpose:defense}`；`ap_renmai_huiyin/90/100→ap_renmai_qugu/90/110→ap_renmai_zhongji/90/120→ap_renmai_shimen/90/130→ap_renmai_qihai/90/140→ap_renmai_shenque/90/150→ap_renmai_shuifen/90/160→ap_renmai_zhongwan/90/170` |
 | 7 地下 | `sk_huashanqigong07` | `mv_huashanqigong07_yangzhang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_huashanqigong07_yangzhang}` | `mfr_huashanqigong07_yangzhang` | `MeridianRouteDef{moveRef:mv_huashanqigong07_yangzhang; ultimate:true; purpose:attack}`；`ap_dumai_mingmen/90/100→ap_dumai_jizhong/90/110→ap_dumai_zhiyang/90/120→ap_dumai_shendao/90/130→ap_dumai_shenzhu/90/140→ap_shouyangming_quchi/90/180→ap_shouyangming_shousanli/90/190→ap_shouyangming_hegu/90/200` |
 | 8 地中 | `sk_huashandiejinquan07` | `mv_huashandiejinquan07_sandie` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_huashandiejinquan07_sandie}` | `mfr_huashandiejinquan07_sandie` | `MeridianRouteDef{moveRef:mv_huashandiejinquan07_sandie; ultimate:true; purpose:attack; requiredNature:[yang,harmony]}`；`ap_dumai_mingmen/90/100→ap_dumai_jizhong/90/120→ap_chongmai_shangqu/90/140→ap_yangqiao_jianyu/90/160→ap_shoutaiyin_chize/90/180→ap_shouyangming_quchi/90/200→ap_shouyangming_shousanli/90/220→ap_shouyangming_hegu/90/240` |
 | 9 地上 | `sk_tiejianxuangong` | `mv_tiejianxuangong_guiyi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_tiejianxuangong_guiyi}` | `mfr_tiejianxuangong_guiyi` | `MeridianRouteDef{moveRef:mv_tiejianxuangong_guiyi; ultimate:true; purpose:defense}`；`ap_renmai_huiyin/90/100→ap_renmai_zhongji/90/110→ap_renmai_qihai/90/120→ap_renmai_danzhong/90/130→ap_shoujueyin_tianchi/90/150→ap_shoujueyin_quze/90/160→ap_shoujueyin_neiguan/90/170→ap_shoujueyin_laogong/90/180` |
 | 9 地上 | `sk_tiejianxuangong` | `mv_tiejianxuangong_huanfeng` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_tiejianxuangong_huanfeng}` | `mfr_tiejianxuangong_huanfeng` | `MeridianRouteDef{moveRef:mv_tiejianxuangong_huanfeng; ultimate:true; purpose:attack}`；`ap_dumai_changqiang/90/100→ap_dumai_yaoshu/90/110→ap_dumai_yaoyangguan/90/120→ap_dumai_yinjiao/90/140→ap_shoushaoyang_tianjing/90/160→ap_shoushaoyang_waiguan/90/170→ap_shoushaoyang_yangchi/90/180→ap_shoutaiyang_wangu/90/190` |
-| 7 地下 | `sk_minggonghuyuangong` | `mv_minggonghuyuangong_gongwei` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_minggonghuyuangong_gongwei}` | `mfr_minggonghuyuangong_gongwei` | `MeridianRouteDef{moveRef:mv_minggonghuyuangong_gongwei; ultimate:true; purpose:defense}`；`ap_yangwei_jinmen/90/100→ap_yangwei_yangjiao/90/110→ap_yangwei_toulinqi/90/120→ap_yangwei_benshen/90/130→ap_yangwei_tianliao/90/140→ap_yangwei_jianjing/90/150→ap_yangwei_fengfu/90/160→ap_yangwei_yamen/90/170` |
+| 7 地下 | `sk_minggonghuyuangong` | `mv_minggonghuyuangong_gongwei` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_minggonghuyuangong_gongwei}` | `mfr_minggonghuyuangong_gongwei` | `MeridianRouteDef{moveRef:mv_minggonghuyuangong_gongwei; ultimate:true; purpose:defense}`；`ap_yangwei_jinmen/90/100→ap_yangwei_yangjiao/90/110→ap_yangwei_toulinqi/90/120→ap_yangwei_benshen/90/130→ap_yangwei_tianliao/90/140→ap_yangwei_jianjing/90/150→ap_dumai_shendao/90/160→ap_dumai_baihui/90/170` |
 <!-- skill-catalog-audit:end -->
 
-路线叙事：山宗、华山养气、明宫三门阳性内功分别以督脉守阵、督脉蓄劲后整臂发掌、阳维护卫线表达不同动作；华山叠劲拳由腰背、冲脉与肩肘逐节贯拳，末三段严格落 `曲池→手三里→合谷`；温家以带脉横向轮转、金龙帮以冲脉盘旋承接、仙都以任脉守中；铁剑玄功的“归一”由任脉收于掌心，“还锋”则由督脉转手三阳至持械腕端。铁剑两绝招共享穴位为 `0/8`，满足同门 ≤50%；九条序列均非轮换或逆序。
+路线叙事：山宗、华山养气、明宫三门阳性内功分别以督脉守阵、督脉蓄劲后整臂发掌、阳维六段后以神道—百会拱卫收束；华山叠劲拳由腰背、冲脉与肩肘逐节贯拳，末三段严格落 `曲池→手三里→合谷`；温家以带脉横向轮转，金龙帮由冲脉六段后以气海—关元定桩，仙都以任脉守中；铁剑玄功的“归一”由任脉收于掌心，“还锋”则由督脉转手三阳至持械腕端。两条调整后的护体 / 蓄气路线均含任督；铁剑两绝招共享穴位为 `0/8`，满足同门 ≤50%；九条序列均非轮换或逆序。
+
+| 路线叙事第三轮同步镜像 | 模板代号 | 段数 | 路线 CT | 收招合计 | 风险列表 / 总风险 |
+|---|---|---:|---:|---:|---|
+| `mfr_jinlongbangxinfa_dingzhuang` | 见文首索引 | 8 | `8×90=720` | `1200+720=1920 CT` | `[100,110,120,130,140,150,160,170]` / `1080` |
+| `mfr_minggonghuyuangong_gongwei` | 见文首索引 | 8 | `8×90=720` | `1200+720=1920 CT` | `[100,110,120,130,140,150,160,170]` / `1080` |
 
 正文路线注册表声明 `ultimate` 布尔真值；上方索引仅镜像完整实例：
 
@@ -120,18 +125,18 @@
 
 | 项 | 内容 |
 |---|---|
-| 基础字段 | `category:inner`；`subType:inner`；`grade:7`；`origin:expanded`；`sect:null`；`lineage:焦公礼一系 / 金龙帮`；`sourceChapters:[ch07_bixue]` |
+| 基础字段 | `category:inner`；`subType:inner`；`grade:7`；`origin:expanded`；`sect:sect_jinlongbang`；`lineage:焦公礼一系 / 金龙帮`；`sourceChapters:[ch07_bixue]` |
 | 来源归属 | 接 `skills-xiake-bixue` §13 的江湖盟友来源。焦公礼及金龙帮有原著依据，独立心法名、盘龙意象与招式层次为本作补名。 |
 | 性质 / 权重 / 栏位 | `harmony`；`wOut/wIn:0.20/0.80`；`moveSlots:4` |
-| reqs | `attrs:{con:35,wil:30}; aptitude:{apInner:30}; prereq:[{skill:sk_zhuangxingong,layer:5}]; hard:[prereq]`；帮中第三职级来源另校验组织资格，不新造 `sect_*` |
+| reqs | `attrs:{con:35,wil:30}; aptitude:{apInner:30}; sect:{id:sect_jinlongbang,rank:3}; prereq:[{skill:sk_zhuangxingong,layer:5}]; hard:[sect,prereq]`；正式门派与职级见 `design/17` §8.9 |
 | inner.contribution | `{mpMaxPct:26,hpMaxPct:16,attrs:{con:4,wil:3,agi:3},mpRegen:2.0}`；`IP=26+16+2×10+5×2=72`；`stats:{parry:8,effRes:7}`，合计 15 |
-| 经脉 / 调息 / 护体 | `meridians:[mer_chongmai,mer_daimai]`；`breathProfileRef:txp_jinlongbangxinfa`；`innerGuard:{enabled:true,reflectBp:0}` |
+| 经脉 / 调息 / 护体 | `meridians:[mer_chongmai,mer_daimai]`；`breathProfileRef:txp_jinlongbangxinfa`；`innerGuard:{enabled:true,reflectBp:0}`；绝招以冲脉为核心，末两段转任脉定桩 |
 | layerStats | —（内功不用 `layerStats`；成长由 `inner.contribution` 按层缩放） |
 | 层数要点 | 1 重盘息；4 重守势；7 重绝招盘龙定桩；10 重回环不散 |
 | learnSources | `master`：金龙帮第三职级传授，`maxLayer:10`；`manual`：焦宅止斗且帮争平息后取得合规秘籍，`maxLayer:8`。正式任务 / 物品 ID 由 `design/12` 分配。主角与其他满足前置者均可修习，不绑定焦公礼本人。 |
 | setTags / conflicts | `[]` / `[]`；无逐门额外冲突，主辅运性质关系仍统一见 `design/05` §5.2–§5.4 |
 | special / observable | `{fusible:true}` / `true` |
-| 图鉴文本 | 以冲脉纵贯、带脉横束表现帮会护阵与盘桩，服务于调停和守护，不是敌方首领专用能力。 |
+| 图鉴文本 | 以冲脉纵贯、带脉横束表现日常行功；绝招由冲脉六段转任脉气海、关元定桩，服务于调停和守护，不是敌方首领专用能力。 |
 
 | 招式（ID） | 重 | 范围 / 倍率 | 资源 | 效果、外放与路线 |
 |---|---:|---|---|---|
@@ -422,7 +427,7 @@
 |---|---|
 | `design/05` / `21` | **已解决：**采用地阶招式数、绝招数 / 解锁层、9% 耗内、IP、路线和调息规则 |
 | `skills-xiake-bixue` | **已解决：**复用六组既有基础 / 进阶前置，不升阶或重定义旧 ID |
-| `design/17` | **部分解决：**华山、铁剑、石梁、仙都、闯军 ID 与职级可引用；金龙帮和明宫只作来源，不新建门派 ID |
+| `design/17` | **部分解决：**华山、铁剑、石梁、仙都、闯军及金龙帮 ID 与职级可引用；明宫只作来源，不新建门派 ID |
 
 ### 对基准的修改提案
 
@@ -448,4 +453,4 @@
 | BX07-SK-O01 | **已解决：**新增地中 `sk_shiliangwuxinggong` 取一记还是两记绝招 | 取 1 记；门派知名度与招式丰富度不支持上浮，已由 `ultimate-counts-tianzhong-dizhong.md` §3.1B 显式裁定 |
 | BX07-SK-O04 | **已解决：**归辛树 8 品华山拳掌首槽是否存在可复用卡 | 全图鉴无可复用的 ≥7 品华山拳掌，新增 `sk_huashandiejinquan07`；书界替换位置见 §9 |
 | BX07-SK-O02 | 明宫护院是否日后建立正式门派 / 组织 ID | 默认不建；它是明代宫禁来源标签，避免和清宫体系混同 |
-| BX07-SK-O03 | 金龙帮是否日后建立正式门派 ID | 默认不建；沿 `skills-xiake-bixue` §13 作为江湖盟友学习来源即可 |
+| BX07-SK-O03 | **已解决：**金龙帮是否建立正式门派 ID | 已在 `design/17` §8.9 登记 `sect_jinlongbang`；本卡已同步正式门派与第三职级门槛 |
