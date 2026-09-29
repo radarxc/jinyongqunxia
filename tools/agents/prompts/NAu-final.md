@@ -8,15 +8,15 @@
 
 通用要求：每次写入不超过约 150 行；只改相关段落，不删无关内容（调度器拒绝缩短 15% 以上）；改动的文档版本行 / 变更记录追加"经脉落地终审（{{date}}）"；ID 先 `grep -rn` 查重，不新造无依据的 ID。
 
-前序子任务均已合入：NAu-lint、NAu-tech、NAu-rulesA、NAu-rulesB、NAu-21、NAu-canon、NAu-nxt、门派图鉴按册收尾 11 个（`NXfix-shaolin`、`-daojia`、`-general`、`-wujue`、`-xiaoyao`、`-yitian`、`-xiakebixue`、`-wuyue`、`-kangxi`、`-qianlong`、`-gulong`）、NXfixC、NXfixD。你是最后一道关卡，可以修改 `docs/` 下任何文档、`tools/lint/`、`tools/balance/` 与 `TODO.md`。
+前序子任务均已合入：NAu-lint、NAu-tech、NAu-rulesA、NAu-rulesB、NAu-21、NAu-canon、NAu-nxt、门派图鉴按册收尾 11 个（`NXfix-shaolin`、`-daojia`、`-general`、`-wujue`、`-xiaoyao`、`-yitian`、`-xiakebixue`、`-wuyue`、`-kangxi`、`-qianlong`、`-gulong`）、NXfixC、NXfixD，以及路线叙事第三轮 12 个（`NR3-<册>` 与 `NR3-bulu`，处理跨武学 ≥80% 相似配对与新增末端规则）。你是最后一道关卡，可以修改 `docs/` 下任何文档、`tools/lint/`、`tools/balance/` 与 `TODO.md`。
 
 ## 要做的事
 
-1. **收拢遗留**：读全部任务报告第 5 节（对基准的修改提案，如少林册 NXSL-P01～P03）与第 7 节（含上述 20 个子任务的"交其他任务"），处理尚未被处理的条目；需要整节重写的列入遗留。补录图鉴待合并清单（NXfixC）若有，按清单合并并同步书界引用。NXfixC 与门派图鉴收尾并行，补录图鉴"来源扩展登记表"中已由 `NXfix-<册>` 落实、但 NXfixC 没来得及标"已落实"的条目，补标。
+1. **收拢遗留**：读全部任务报告第 5 节（对基准的修改提案，如少林册 NXSL-P01～P03）与第 7 节（含上述 32 个子任务的"交其他任务"），处理尚未被处理的条目；需要整节重写的列入遗留。补录图鉴待合并清单（NXfixC）若有，按清单合并并同步书界引用。NXfixC 与门派图鉴收尾并行，补录图鉴"来源扩展登记表"中已由 `NXfix-<册>` 落实、但 NXfixC 没来得及标"已落实"的条目，补标。
 2. **绝招条件加成的写法统一**：门派图鉴收尾任务各自处理时出现三种做法：加法（`3.00+0.30=3.30`，古龙、五岳）、乘法（`3.00×(1+0.30)=3.90`，五绝、康熙，如康熙夜隙一闪 3.15→3.45）、只把条件当触发门槛不抬倍率（乾隆）。先查 `docs/decisions/author-requirements.md` 有没有作者对此的决定；有就按决定统一全部图鉴（含补录）。没有就按 05 §4.2 公式的字面读法 `power = 3.00 × AF × (1+Σadj)`（乘法）统一，并列入"需作者确认"。在 05 §4.8 写明唯一算法（含"条件只作门槛"是否允许）；改动逐条列表（招式 / 改前 / 改后），数值变化超过 ±0.05 手调范围的同步检查 `damage_sim.py`。
 3. **武学总数**（参考 NXfixC-P01：补录 99 门，全目录 59/251/468/459 合计 1,237，以收尾后实测为准）：基准 §4 与 05 §14 的武学总数、天阶总数，以及基准的天中 / 地中合计（NAu-canon 暂写为"裁定表 v1.1 快照"），按收尾后的实数更新（含 14 本补录图鉴、NXT 与 NXfixC 补登的裁定表）。NXT 只定了天阶 59 门（`9/18/32`），补录图鉴的地 / 玄 / 黄增量当时没统计，门派图鉴 11 册仍是 `51/169/459/459=1,138` 基线——现在按收尾后的实数统一重算，区分"门派图鉴基线"与"含补录总数"两个口径。
 4. **跨文档一致**：design/10 给 `eq_changchangfengshibei` 补 exotic/misc 分类；design/07 审补录天级套装与崆峒七伤套装；05 同步龙爪手第二绝招口径（NXfixC 报告）；21 的收尾同步（NAu-21 已合入，交来三项）——§4.4.1.1 穿云啸一行补"断喝 / 回声"（`mv_chuanyunxiao_duanhe` / `mv_chuanyunxiao_huisheng`，判为外放，人声发劲，路线收于天突 / 廉泉，见通行册 AR-16 表）；§18.6 音功逐招清单按各门派收尾任务合入后的实际标记刷新；§18 中"04 / 05 / tech/04 音功分支尚未同步"按 NAu-rulesB、NAu-nxt 合入后的实况回填。斩马"目标骑乘"条件的正式 `MoveCondition` 键（复用 `targetHasTag` 或新增，写进 05 的条件键清单）；design/10 的物品占位 ID（`it_ningxue_miji`、`it_shenzhao_yuwen`、`it_canye_xuedaojing`，康熙册 D-03）定正式 ID 并同步图鉴引用；design/09 的录像契约补 `commandPrefix`（Canon V17-08，与 tech/01 / 05 / 08 的 hash 数组一致）；21 与 04 / 05 / 06 / 08 / 09 / 13 / 14 / 15 / 03 / tech / 武学图鉴 / 书界 的字段名、ID、结算顺序、数值一致；抽查每册图鉴至少 5 门天 / 地 / 玄上武学（绝招数量与解锁层、路线硬约束与末端规则、外放标记）；抽查每部书界 1 个 Boss 的配装与经脉配置；抽查每册 3 个外放招式的射程 / 范围 / 威力与 `projection_sim.py --report` 一致；核对全仓音功与大手印标记与 21 一致。
-5. **检查全部通过**：`check_ids.py --strict`（必要时刷新基线并在 tech/04 §11 记录债务数）、lint 全部单测、四个平衡脚本 `--check`、`check_skill_catalogs.py --strict --diversity-strict`（全量）；末端规则检查（`--delivery`）的命中数写入报告，清零则新增独立严格开关（不改旧 `--strict` 语义，NAu-lint 的 NAu-O01）；玄上路线未登记穴位检查（NAu-nxt 扩展）命中清零后同样转为严格。
+5. **检查全部通过**：全量跑一次 `python3 tools/agents/nr3_assign.py`，报告剩余 ≥80% 配对数，并抽查 NR3 写的理由条目是否满足 21 §4.3.4 第 4 条；`check_ids.py --strict`（必要时刷新基线并在 tech/04 §11 记录债务数）、lint 全部单测、四个平衡脚本 `--check`、`check_skill_catalogs.py --strict --diversity-strict`（全量）；末端规则检查（`--delivery`）的命中数写入报告，清零则新增独立严格开关（不改旧 `--strict` 语义，NAu-lint 的 NAu-O01）；玄上路线未登记穴位检查（NAu-nxt 扩展）命中清零后同样转为严格。
 6. **需求状态**：`--diversity-strict` 与各只报告开关何时纳入常态 CI，在 tech/04 与 `TODO.md` 写明现状与条件；`TODO.md` §7.1 的 AR-14、AR-15、AR-16 行（覆盖章节与剩余缺口，含 NAu-rulesA 登记的"正式具名 Boss 固定种子回放夹具 `BattleReplayV1` 尚未落盘"）；`docs/README.md` 清理旧的"51 门 / 1,138"总目录叙述（按第 2 条的两个口径改写），并登记新增文档与工具（14 本补录图鉴、裁定表、`boss_pacing.py`、`projection_sim.py`、`check_skill_catalogs.py` 等，行数实测）。
 
 ## 报告

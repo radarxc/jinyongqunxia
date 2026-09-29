@@ -10435,6 +10435,1224 @@
       }
     },
     {
+      "id": "NR3-shaolin",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "路线叙事第三轮 · 少林（跨武学高相似路线与动作末端规则）",
+      "prompt": "NR3-unit.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC",
+        "NAu-nxt"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-shaolin.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "shaolin",
+        "unit_name": "少林",
+        "doc_set": "- `docs/design/catalog/skills-shaolin.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-shaolin.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-shaolin.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-shaolin.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "shaolin"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR3-daojia",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "路线叙事第三轮 · 道家（跨武学高相似路线与动作末端规则）",
+      "prompt": "NR3-unit.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC",
+        "NAu-nxt"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-daojia.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "daojia",
+        "unit_name": "道家",
+        "doc_set": "- `docs/design/catalog/skills-daojia.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-daojia.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-daojia.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "daojia"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR3-general",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "路线叙事第三轮 · 通行（跨武学高相似路线与动作末端规则）",
+      "prompt": "NR3-unit.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC",
+        "NAu-nxt"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-general.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "general",
+        "unit_name": "通行",
+        "doc_set": "- `docs/design/catalog/skills-general.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-general.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-general.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-general.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-general.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-general.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "general"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR3-wujue",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "路线叙事第三轮 · 五绝（跨武学高相似路线与动作末端规则）",
+      "prompt": "NR3-unit.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC",
+        "NAu-nxt"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-wujue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "wujue",
+        "unit_name": "五绝",
+        "doc_set": "- `docs/design/catalog/skills-wujue.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wujue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wujue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "wujue"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR3-xiaoyao",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "路线叙事第三轮 · 逍遥（跨武学高相似路线与动作末端规则）",
+      "prompt": "NR3-unit.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC",
+        "NAu-nxt"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-xiaoyao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "xiaoyao",
+        "unit_name": "逍遥",
+        "doc_set": "- `docs/design/catalog/skills-xiaoyao.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "xiaoyao"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR3-yitian",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "路线叙事第三轮 · 倚天（跨武学高相似路线与动作末端规则）",
+      "prompt": "NR3-unit.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC",
+        "NAu-nxt"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-yitian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "yitian",
+        "unit_name": "倚天",
+        "doc_set": "- `docs/design/catalog/skills-yitian.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "yitian"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR3-xiakebixue",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "路线叙事第三轮 · 侠客碧血（跨武学高相似路线与动作末端规则）",
+      "prompt": "NR3-unit.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC",
+        "NAu-nxt"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-xiake-bixue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "xiake-bixue",
+        "unit_name": "侠客碧血",
+        "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiake-bixue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiake-bixue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "xiake-bixue"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR3-wuyue",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "路线叙事第三轮 · 五岳（跨武学高相似路线与动作末端规则）",
+      "prompt": "NR3-unit.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC",
+        "NAu-nxt"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-wuyue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "wuyue",
+        "unit_name": "五岳",
+        "doc_set": "- `docs/design/catalog/skills-wuyue.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "wuyue"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR3-kangxi",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "路线叙事第三轮 · 康熙（跨武学高相似路线与动作末端规则）",
+      "prompt": "NR3-unit.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC",
+        "NAu-nxt"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-kangxi.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "kangxi",
+        "unit_name": "康熙",
+        "doc_set": "- `docs/design/catalog/skills-kangxi.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-kangxi.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-kangxi.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "kangxi"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR3-qianlong",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "路线叙事第三轮 · 乾隆（跨武学高相似路线与动作末端规则）",
+      "prompt": "NR3-unit.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC",
+        "NAu-nxt"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-qianlong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "qianlong",
+        "unit_name": "乾隆",
+        "doc_set": "- `docs/design/catalog/skills-qianlong.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-qianlong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-qianlong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "qianlong"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR3-gulong",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "路线叙事第三轮 · 古龙（跨武学高相似路线与动作末端规则）",
+      "prompt": "NR3-unit.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC",
+        "NAu-nxt"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-gulong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "gulong",
+        "unit_name": "古龙",
+        "doc_set": "- `docs/design/catalog/skills-gulong.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "gulong"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR3-bulu",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "路线叙事第三轮 · 14 本补录图鉴（跨武学高相似路线与动作末端规则）",
+      "prompt": "NR3-unit.md",
+      "deps": [
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
+        "NXfixC",
+        "NAu-nxt"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-bulu-01-tianlong.md",
+        "docs/design/catalog/skills-bulu-02-shediao.md",
+        "docs/design/catalog/skills-bulu-03-shendiao.md",
+        "docs/design/catalog/skills-bulu-04-yitian.md",
+        "docs/design/catalog/skills-bulu-05-xiaoao.md",
+        "docs/design/catalog/skills-bulu-06-xiake.md",
+        "docs/design/catalog/skills-bulu-07-bixue.md",
+        "docs/design/catalog/skills-bulu-08-luding.md",
+        "docs/design/catalog/skills-bulu-09-liancheng.md",
+        "docs/design/catalog/skills-bulu-10-baima.md",
+        "docs/design/catalog/skills-bulu-11-yuanyang.md",
+        "docs/design/catalog/skills-bulu-12-shujian.md",
+        "docs/design/catalog/skills-bulu-13-feihu.md",
+        "docs/design/catalog/skills-bulu-14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "bulu",
+        "unit_name": "14 本补录图鉴",
+        "doc_set": "- `docs/design/catalog/skills-bulu-01-tianlong.md`\n- `docs/design/catalog/skills-bulu-02-shediao.md`\n- `docs/design/catalog/skills-bulu-03-shendiao.md`\n- `docs/design/catalog/skills-bulu-04-yitian.md`\n- `docs/design/catalog/skills-bulu-05-xiaoao.md`\n- `docs/design/catalog/skills-bulu-06-xiake.md`\n- `docs/design/catalog/skills-bulu-07-bixue.md`\n- `docs/design/catalog/skills-bulu-08-luding.md`\n- `docs/design/catalog/skills-bulu-09-liancheng.md`\n- `docs/design/catalog/skills-bulu-10-baima.md`\n- `docs/design/catalog/skills-bulu-11-yuanyang.md`\n- `docs/design/catalog/skills-bulu-12-shujian.md`\n- `docs/design/catalog/skills-bulu-13-feihu.md`\n- `docs/design/catalog/skills-bulu-14-xueshan.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-bulu-01-tianlong.md",
+          "docs/design/catalog/skills-bulu-02-shediao.md",
+          "docs/design/catalog/skills-bulu-03-shendiao.md",
+          "docs/design/catalog/skills-bulu-04-yitian.md",
+          "docs/design/catalog/skills-bulu-05-xiaoao.md",
+          "docs/design/catalog/skills-bulu-06-xiake.md",
+          "docs/design/catalog/skills-bulu-07-bixue.md",
+          "docs/design/catalog/skills-bulu-08-luding.md",
+          "docs/design/catalog/skills-bulu-09-liancheng.md",
+          "docs/design/catalog/skills-bulu-10-baima.md",
+          "docs/design/catalog/skills-bulu-11-yuanyang.md",
+          "docs/design/catalog/skills-bulu-12-shujian.md",
+          "docs/design/catalog/skills-bulu-13-feihu.md",
+          "docs/design/catalog/skills-bulu-14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-bulu-01-tianlong.md",
+          "docs/design/catalog/skills-bulu-02-shediao.md",
+          "docs/design/catalog/skills-bulu-03-shendiao.md",
+          "docs/design/catalog/skills-bulu-04-yitian.md",
+          "docs/design/catalog/skills-bulu-05-xiaoao.md",
+          "docs/design/catalog/skills-bulu-06-xiake.md",
+          "docs/design/catalog/skills-bulu-07-bixue.md",
+          "docs/design/catalog/skills-bulu-08-luding.md",
+          "docs/design/catalog/skills-bulu-09-liancheng.md",
+          "docs/design/catalog/skills-bulu-10-baima.md",
+          "docs/design/catalog/skills-bulu-11-yuanyang.md",
+          "docs/design/catalog/skills-bulu-12-shujian.md",
+          "docs/design/catalog/skills-bulu-13-feihu.md",
+          "docs/design/catalog/skills-bulu-14-xueshan.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "bulu"
+          ]
+        ]
+      }
+    },
+    {
       "id": "NAu-final",
       "phase": "G",
       "wave": 6,
@@ -10461,7 +11679,19 @@
         "NXfix-qianlong",
         "NXfix-gulong",
         "NXfixC",
-        "NXfixD"
+        "NXfixD",
+        "NR3-shaolin",
+        "NR3-daojia",
+        "NR3-general",
+        "NR3-wujue",
+        "NR3-xiaoyao",
+        "NR3-yitian",
+        "NR3-xiakebixue",
+        "NR3-wuyue",
+        "NR3-kangxi",
+        "NR3-qianlong",
+        "NR3-gulong",
+        "NR3-bulu"
       ],
       "writes": [
         "docs/**",
