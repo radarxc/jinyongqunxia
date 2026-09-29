@@ -1,10 +1,10 @@
 # 11 · 鸳鸯刀（书界 DLC）
 
 > 归属（基准 §18）：`ch11_yuanyang` 的时代内容编排——开局、时代图层、主支线接口、门派与人物投放、产出、特色机制、前后界衔接及本界数值落点。
-> 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/11-yuanyang.md`。
+> 上游：`00-canon.md` v1.7（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/11-yuanyang.md`。
 > 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；穴位、冲穴、通脉、周天与九转 → `design/15-meridians-and-acupoints.md`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21-meridian-flow-and-moves.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；前代传承 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v0.2（D11 初稿，2026-09-26；审校 D11.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）。
+> 版本：v0.2（D11 初稿，2026-09-26；审校 D11.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）。
 
 
 ## 0. 阅读指引
@@ -718,14 +718,14 @@ chapterResolution:
 
 | 遭遇 ID | Boss / 等级 | 武学与品阶（已有 ID） | 机制 | 非致命收束 |
 |---|---|---|---|---|
-| `enc_11_sixia_lanjie` | 太岳四侠协同，Lv38 | `sk_taiyuequan` 黄中、`sk_taiyuehuxi` 黄中、`sk_taiyueqigong` 玄下、`sk_taiyueshibeishou` 玄上 | 四人共享“面子”士气；揭穿夸口会降士气但不造成伤害 | 降服 / 止伤 / 议和，登记 `songlin_jiebiao` |
-| `enc_11_zhuo_zaoxiang` | 卓天雄，Lv42 | `sk_zhentiansanshizhang` 地下、`sk_wuyingshou` 玄中、`sk_daneishuangdao` 玄下；掌法名称 **（待考）**，卡片机制 **（原创扩展）** | 假盲阶段不主动回避；识破后转点穴与夺匣；毒墨可信度可逼退 | 欺敌、撤离或擒拿，登记 `dumo_zhazhuo` |
+| `enc_11_sixia_lanjie` | 太岳四侠协同，Lv38 | 主运 `sk_wuguanxinfa` 玄下；`sk_taiyuequan` 黄中、`sk_taiyuehuxi` 黄中、`sk_taiyueqigong` 玄下、`sk_taiyueshibeishou` 玄上 | 四人共享“面子”士气；揭穿夸口会降士气但不造成伤害 | 降服 / 止伤 / 议和，登记 `songlin_jiebiao` |
+| `enc_11_zhuo_zaoxiang` | 卓天雄，Lv42 | 主运 `sk_jundituna` 玄中；外功 `sk_zhentiansanshizhang` 地下、`sk_wuyingshou` 玄中、`sk_daneishuangdao` 玄下、`sk_yulinjichudao` 黄中；掌法名称 **（待考）**，卡片机制 **（原创扩展）** | 假盲阶段不主动回避；识破后转点穴与夺匣；毒墨可信度可逼退 | 欺敌、撤离或擒拿，登记 `dumo_zhazhuo` |
 | `enc_11_zhuo_zizhu` | 卓天雄，Lv44 | 同上；清宫通行身法只在图鉴合法时装配 | 焚庵威胁倒计时、平民安全区、袁萧合击教学 | 逼退 / 擒获；庵中人安全后登记 `zizhu_tuizhuo` |
-| `enc_11_linren_yanwu` | 林玉龙 + 任飞燕，Lv42 / 42 | `sk_linyulongdao`、`sk_renfeiyandao` 玄上；`sk_linrenhexinfa` 玄中 | 双人争合演武，打错一方会抬高另一方怒气 | 同时压至演武阈值或完成调停，不计击杀 |
-| `enc_11_xiaofu_weizhan` | 大内统领代理，Lv46 | `sk_yulinjichudao` 黄中、`sk_daneishuangdao` 玄下；当前主运 `sk_jundituna` 玄中 **（原创扩展配置）** | 三路增援、平民撤离门、文书停战；统领为模板头目而非新静态 NPC | 开放撤离、出示具结或降服，登记 `xiaofu_weizhan` |
+| `enc_11_linren_yanwu` | 林玉龙 + 任飞燕，Lv42 / 42 | 主运 `sk_linrenhexinfa` 玄中；外功 `sk_fuqidaofa` 地中、`sk_linyulongdao`、`sk_renfeiyandao` 玄上、`sk_linrenjichudao` 黄上 | 双人争合演武，打错一方会抬高另一方怒气 | 同时压至演武阈值或完成调停，不计击杀 |
+| `enc_11_xiaofu_weizhan` | 大内统领代理，Lv46 | 主运 `sk_jundituna` 玄中 **（原创扩展配置）**；外功 `sk_junzhongdao` 玄上、`sk_daneishuangdao` 玄下、`sk_yulinjichudao` 黄中、`sk_gongshou` 黄中 | 三路增援、平民撤离门、文书停战；统领为模板头目而非新静态 NPC | 开放撤离、出示具结或降服，登记 `xiaofu_weizhan` |
 | `enc_11_zhongtiao_jiaoge` | 卓天雄或官府追队，Lv48 | 卓与官府追队头目均以 `sk_jundituna` 玄中主运，外功分别见 §12.8 **（原创扩展配置）**；路线决定援军 | 真刀 / 假刀、证物、保管权三槽；满足证据可无战斗结案 | 谈判、交换或降服；不另增加第五证明键 |
 
-Boss 战斗流程、阶段、控制递减与脚本 ID 归 `design/09`；本文只登记遭遇。所有具名人物均走 `full` 属性管线，表内模板数值只是配表目标，详见 §12。
+Boss 战斗流程、阶段、控制递减与脚本 ID 归 `design/09`；本文只登记遭遇。所有具名人物均走 `full` 属性管线，表内模板数值只是配表目标，详见 §12。完整主运 / 辅运 / 外功及七参以 §12.8 为准。
 
 ---
 
@@ -742,7 +742,7 @@ Boss 战斗流程、阶段、控制递减与脚本 ID 归 `design/09`；本文�
 | 玄阶 4–6 | 9 | 林任双路、镖局、太岳、双刀与大内体系 | C02 后逐步开放，终幕前均有至少一次合法来源 | 是主要构筑层 |
 | 黄阶 1–3 | 9 | 两派入门、林任底式、太岳呼吸、仁者吐纳 | 开局至中段 | 负责补栏和前置 |
 
-前代传承合成另走 `design/20` 的 `learnSource=legacy_synthesis`；按其当前 AR-13 执行默认，本界 `legacyWorldCap=9`，但该字段尚属基准修改提案，详见 §9.8 与文末依赖。
+前代传承合成另走 `design/20` 的 `learnSource=legacy_synthesis`；Canon v1.2 §3 规则 12 已写为执行默认，本界 `legacyWorldCap=9`（⚠️ 待作者确认），详见 §9.8 与 YY-P04。
 
 ### 9.2 地阶武学（完整图鉴引用）
 
@@ -763,7 +763,7 @@ Boss 战斗流程、阶段、控制递减与脚本 ID 归 `design/09`；本文�
 | `sk_linyulongdao` | 6 玄上；刀 | 林玉龙 R2 后演武 | 与任路非互斥，可分别取得 |
 | `sk_renfeiyandao` | 6 玄上；刀 | 任飞燕 R2 后演武 | 与林路非互斥，可分别取得 |
 | `sk_linrenhexinfa` | 5 玄中；内功 | `q_11_bond_03` 和解演武 | 先满足林 / 任任一路刀法 4 重 |
-| `sk_taiyueshibeishou` | 6 玄上；奇门 | 常长风 R3、碑背链 | 石碑装备兼容尚待 `design/10` 同步；武学本身仍可登记 |
+| `sk_taiyueshibeishou` | 6 玄上；奇门 | 常长风 R3、碑背链 | 已由 `design/10` §3.2 / §5.4 与图鉴 `weaponReq.altItems` 双向闭合；仅具名墓碑可兼容 `exotic/misc` |
 | `sk_taiyueqigong` | 4 玄下；拳 | `q_11_bond_05` 四项关系任务 | 不要求四侠变成门派 |
 | `sk_yuanyangshuangdao` | 5 玄中；刀 | 袁萧 R2、合法持双刀或训练木刀 | `eq_yuanyangdao` 未归玩家时可用成对木刀练习，不复制神兵 |
 | `sk_daneishuangdao` | 4 玄下；刀 | 清宫 L2 押运考校 | 单人可用；不把“合围”误作强制两人 |
@@ -808,7 +808,7 @@ Boss 战斗流程、阶段、控制递减与脚本 ID 归 `design/09`；本文�
 |---|---|---|---|---|
 | `eq_yuanyangdao` | 天下 10；刀（成对） | `dc_11_08` 选“玩家独占双刀”时取得合法剧情归属；或后续明确允许的外来携带 | 独占会强制原著结果，不能同时取得改命变体 | 一件成对兵器，占主 / 副两格；神兵效果只见 `design/10` §5.2 |
 | `ins_renzhe` | 铭文学识 | `anc_11_04` 读出刀铭，或 `q_11_qiyu_05` 取得拓片后解锁 | 不论刀由后人共管、镖局托管或官府封存，学识均可获得 | 效果只见 `design/10` §6.4；本章不重复数值 |
-| `eq_changchangfengshibei` | 玄上；副手 · 牌 · `heavy` | 太岳四侠喜剧支线中由常长风授权使用 | 非致命降服或议和均可取得，不要求击杀 | 装备定义见 `design/10`；其 `exotic/misc` 武学兼容桥尚待图鉴归属方与装备归属方同步，未完成前不能满足 `sk_taiyueshibeishou.weaponReq` |
+| `eq_changchangfengshibei` | 玄上；副手 · 牌 · `heavy` | 太岳四侠喜剧支线中由常长风授权使用 | 非致命降服或议和均可取得，不要求击杀 | 装备定义见 `design/10`；已通过具名 `altItems` 白名单满足 `sk_taiyueshibeishou` 的 `exotic/misc` 介质要求，仍只结算副手牌属性 |
 | 镖局刀、鞭与护具 | 黄上至玄中 | 门派任务、商店、Boss 固定件 | 不要求杀死持有者；降服后可由组织授权 / 缴获 | 名录外装备最高地上 9 |
 | 清宫押运装备 | 黄上至玄上 | 官凭任务、清宫配给 | 离派后归还制式公物，个人合法奖励除外 | 不把官库当无限商店 |
 | 随机掉落 | 普通 ≤地下7、精英 / Boss ≤地中8 | 服从低武池 | 概率由 `design/02` 品阶骰 | 不随机产天级装备或秘籍 |
@@ -840,7 +840,7 @@ Boss 战斗流程、阶段、控制递减与脚本 ID 归 `design/09`；本文�
 
 三个源最多占满三载体；若调度命中别的合法源，应替换最末优先项而非突破上限。荆州、吐鲁番属于全局图内、但在本界六区之外，只能经任务专线抵达并在完成后返回接入城市；真正图外节点另按 `design/19` 处理。`cache_*` 是一次性宝藏点，不是可经营的 `rp_*`；后人无可靠血缘时只称门下再传 / 守传者。
 
-按 `design/20` 当前 AR-13 默认，三项完整合成在鸳鸯界的结果为：神照真实 10、当界有效 `min(10,9)=9`；唐诗真实 8、有效 8；高昌守护剑真实 9、有效 9。层数仍受本界上限 8，合成不免费升层。`legacyWorldCap=9` 尚待基准接纳；若提案未采纳，回退 Canon 现行分支——本土校合不截品阶，只保留 8 重上限。
+按 `design/20` 当前 AR-13 默认，三项完整合成在鸳鸯界的结果为：神照真实 10、当界有效 `min(10,9)=9`；唐诗真实 8、有效 8；高昌守护剑真实 9、有效 9。层数仍受本界上限 8，合成不免费升层。Canon v1.2 §3 规则 12 已把 `legacyWorldCap=9` 写为执行默认，数值仍 **（待作者确认）**；作者作出相反决定并提供迁移方案前，不保留旧规则并行分支。
 
 本界来源 `lgs_yuanyang_fuqi` **不得**反投本界。只在余韵选择“将合招手记托付江湖”时提交 `legacy/fuqi/manual_lost`；自 `ch12_shujian` 起才可调度 `frag_fuqi_linlu`、`frag_fuqi_renlu`、`frag_fuqi_tongxin` 与 `it_xinwu_fuqi_shuangpu`。默认不提交，让林任 / 袁萧的正常传授继续存在。
 
@@ -1241,7 +1241,7 @@ B = I×H = 19×8 = 152 两
 | 单位 | 门派 / 来源 | 主运内功 | 辅运内功（2 格） | 外功（逐门标品阶） | 经脉七项参数 | `milestones` | 血量 / 防御倍率 | 逐单位估算轮数 | 机制备注 |
 |---|---|---|---|---|---|---|---|---:|---|
 | 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主运解析（不得低于玄中5） | 按来源解析两门玄 / 黄基础内功 | 按行动表解析 3–5 门 | `5/8；10500/7500/10500；由主运解析；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.17` | 唯一锚点 |
-| 太岳四侠（每人，精英） | 太岳四侠散承 | `sk_wuguanxinfa`（玄下4） | `sk_taiyuehuxi`（黄中2）、`sk_zhamabu`（黄下1） | `sk_taiyueshibeishou`（玄上6）、`sk_taiyueqigong`（玄下4）、`sk_taiyuequan`（黄中2） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.03` | 武学已复用；仅装备兼容桥待 `design/10` 同步 |
+| 太岳四侠（每人，精英） | 太岳四侠散承 | `sk_wuguanxinfa`（玄下4） | `sk_taiyuehuxi`（黄中2）、`sk_zhamabu`（黄下1） | `sk_taiyueshibeishou`（玄上6）、`sk_taiyueqigong`（玄下4）、`sk_taiyuequan`（黄中2） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.03` | 武学及具名墓碑 `altItems` 兼容桥均已闭合 |
 | 卓天雄·枣林 | 卓天雄个人传承 / 清宫军伍 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_daneishuangdao`（玄下4）、`sk_wuyingshou`（玄中5）、`sk_yulinjichudao`（黄中2）、`sk_zhentiansanshizhang`（地下7） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `15.70` | 地位目标 `G=5`；新掌法不改主运七参 |
 | 卓天雄·紫竹庵 | 卓天雄个人传承 / 清宫军伍 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_daneishuangdao`（玄下4）、`sk_wuyingshou`（玄中5）、`sk_yulinjichudao`（黄中2）、`sk_zhentiansanshizhang`（地下7） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `15.70` | 救人 / 逼退不延长节奏 **（待实测）** |
 | 林玉龙 | 林任夫妇 | `sk_linrenhexinfa`（玄中5） | `sk_renzhetuna`（黄上3）、`sk_taiyuehuxi`（黄中2） | `sk_fuqidaofa`（地中8）、`sk_linyulongdao`（玄上6）、`sk_linrenjichudao`（黄上3） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `1.00 / 1.00`（夫妻共享） | `16.29` | 双人总耐久只计一次 **（待实测）** |
@@ -1258,9 +1258,9 @@ B = I×H = 19×8 = 152 两
 | 人物 / 模板 | 原缺口 | 本轮结论 | 配装 / 后续 |
 |---|---|---|---|
 | 卓天雄（三场共用画像） | 掌法正式图鉴条目 | **已补录**：`sk_zhentiansanshizhang`（7 地下），见 `catalog/skills-bulu-11-yuanyang.md` §1.1；名称 **（待考）**，拆招与机制 **（原创扩展）** | 三场均以该掌法替换 `sk_daneichangquan`；主运不变，轮数仍为 `15.70 / 15.70 / 16.23` |
-| 太岳四侠 | 太岳石碑桥接 | **武学已复用**：`sk_taiyueshibeishou`（6 玄上）已在 `skills-kangxi.md`，且来源已有 `ch11_yuanyang` | 不新增武学；只待 `design/10` 给 `eq_changchangfengshibei` 登记 `exotic/misc` 兼容 |
+| 太岳四侠 | 太岳石碑桥接 | **已解决**：`sk_taiyueshibeishou`（6 玄上）已在 `skills-kangxi.md`，来源已有 `ch11_yuanyang`，并以 `weaponReq.altItems:[eq_changchangfengshibei]` 接收装备侧 `exotic/misc` 介质 | 不新增武学；墓碑仍占副手且只结算牌属性，不泛化其他副手牌 |
 
-04 基线 `3.5 / 7.1 / 14.3`；替换后以不变的主运七参复跑 `boss_pacing.py`，卓天雄枣林 / 紫竹庵均为 `15.6979728595≈15.70`，终局为 `16.2258180196≈16.23`；全表 Boss 仍为 `15.70–16.29`、精英 `7.03–7.17`，故统一保持 `1.00×1.00`。林任夫妻与多波援军仍只使用一次整场耐久预算。速度强档与封路档另测首轮 / CT / 移动，禁止折回伤害倍率；固定 RNG 回放仍 **（待实测）**。
+04 基线 `3.5 / 7.1 / 14.3`。经脉落地终审再次用现行 `boss_pacing.py` 复跑：卓天雄枣林 / 紫竹庵均为 `15.6979728595≈15.70`，终局为 `16.2258180196≈16.23`，林任夫妻整场为 `16.2917010533≈16.29`；工具均输出 `estimateOnly=true`，全部落在 Boss `12–25` 窗内，故统一保持血量 / 防御 `1.00×1.00`。本书补录掌法及卓、林任行动表没有 `projection:true` 招式，外放标记后伤害分支未新增；这次复核仍覆盖当前经脉强度与防守路线对耐久的影响。林任夫妻与多波援军各只使用一次整场耐久预算。速度强档与封路档另测首轮 / CT / 移动，禁止折回伤害倍率；固定 RNG 回放仍 **（待实测）**。
 
 ---
 
@@ -1423,6 +1423,8 @@ B = I×H = 19×8 = 152 两
 | YY-V20 | Markdown 代码围栏成对、表格列数一致；已实现的必需引用路径存在；明确声明缺失并采用降级方案的可选归属文件不计断链 | 截断句、未闭合围栏、必需引用断链、未声明的可选依赖缺失或占位语 |
 | YY-V21 | Boss / 精英经脉输入齐全；低武层数 ≤8；四侠 / 林任 / 援军逐武学行动者独立实例，环境物无实例；`routeRefs` 只由 `MoveDef` 编译 | 漏输入、共享动态节点、层数越界或自建 `mfr_*` |
 | YY-V22 | 标准档保持 3.5 / 7.1 / 14.3；Z4M / Z5M、护体、速度、点穴 / 擒拿顺序匹配 `design/21`；Boss 回放 12–25 | 重复乘区、旧顺序或节奏越界 |
+| YY-V23 | 首领表的主运、辅运与外功均引用合法 `sk_*`；七参只从主运派生；离线节奏输出必须有 `estimateOnly=true` | 用人物地位伪造七参、把估算值写入发布 IR，或缺合法主运仍放行 |
+| YY-V24 | 新战斗只创建 `bf_xueweishoufeng` / `bf_shouqin` 等现行状态；本界对 `design/06` §8.14.3 四个旧控制状态的活跃引用为 0 | 旧状态出现在章节运行态、掉落或招式效果中 |
 
 ### 数值与流程用例
 
@@ -1445,10 +1447,11 @@ B = I×H = 19×8 = 152 两
 | YY-T15 | 独占双刀 | 永久装备实例恰 1；强制 canon，不同时保留两件任务部件 |
 | YY-T16 | `cmb_fuqidao` 搭档 `ct=299/300` | 299 不可合击；300 可用，结算后搭档 CT 依 `design/09` 扣 300 |
 | YY-T17 | qg0 角色走任一主线场景 | 存在 qg≤2 的成长 / 同行 / 替代路径；qg3 仅捷径或隐藏奖励 |
-| YY-T18 | `legacyWorldCap=9` 开关启用 / 未采纳回退 | 启用时传承合成当界有效≤9；关闭时按现行 Canon 本土规则且仍受 8 重上限 |
+| YY-T18 | `legacyWorldCap=9` 执行默认；普通规则 / `rule_wutiandao` 对照 | 传承合成当界有效≤9；普通本土习得不读该上限，`rule_wutiandao` 明确关闭该专用上限；三者不得随机并存 |
 | YY-T19 | 取得天书后选择“了却尘缘” | 进入余韵，未锁支线可继续；资源 / 合同 / 职位到正式书眠才结清 |
 | YY-T20 | 同一实体卓连续出现 | 复用生死、伤势和关系；不得刷新为三个互不相关 `full` 实例 |
 | YY-T21 | 卓天雄三场把 `sk_daneichangquan` 替换为 `sk_zhentiansanshizhang`，主运与七参不变 | `boss_pacing.py` 仍得枣林 / 紫竹庵 `15.70`、终局 `16.23`；均在 Boss `12–25` 窗内，耐久维持 `1.00×1.00` |
+| YY-T22 | 林任夫妻按同一整场耐久复核；两人都使用现行配装与里程碑 | `boss_pacing.py` 输出 `estimateOnly=true`、`16.2917010533≈16.29`；只结算一次整场目标，耐久维持 `1.00×1.00` |
 
 ### 建议执行命令
 
@@ -1473,7 +1476,7 @@ rg -n 'rg_11_|mer_ren\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/design/chapt
 | YY-S04 | 具名 Boss 气血取同级模板 0.60–0.90；六场具体比例见 §12.4 | 属性手配后用 `full` 管线和伤害模拟替换，不照抄模板其他字段 |
 | YY-S05 | 喜剧 `comicBeat` 为 0–3，连续两个 3 后下一幕≤1；未解释易手≤1 | 剧情 / UI 回放验证笑点密度和信息可读性 |
 | YY-S06 | 章节“留手意图”只请求既有降服收束，不保证成功 | `design/09` 实装校验追击、DOT、第三方击杀归因 |
-| YY-S07 | `legacyWorldCap(ch11)=9` 默认开启 | 仅作为 `design/20` H1-P04 的版本化开关；基准未采纳时回退现行 Canon |
+| YY-S07 | `legacyWorldCap(ch11)=9` 默认开启 | 按 Canon v1.2 §3 规则 12 与 `design/20` §7.6 / H1-P04 执行默认，仍待作者确认；作者作出相反决定并提供迁移前不保留回退分支 |
 
 ### 本文依赖的上游事实
 
@@ -1494,9 +1497,9 @@ rg -n 'rg_11_|mer_ren\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/design/chapt
 | YY-P01 | 已解决：基准 §17 已采用“时代图层：全局 `rg_*` + 本界 `sc_NN_*` + `cities.yaml` 时代名” | Canon v1.2 已落实 AR-04 / AR-11，旧 `rg_NN_*` 不再新建 |
 | YY-P02 | 已解决：基准 §18 已增列 `design/15`–`20`、`design/story/*` 与 `design/map/*` 的唯一归属 | Canon v1.2 已采纳并生效 |
 | YY-P03 | 部分解决：基准 §12 已登记 `sc_*`、`rp_*`、`biz_*`、`dc_*` 与回响前缀；`anc_*` 按 CP-39 不升格 | 稳定跨文档对象已登记；锚点仍保持 story 局部键 |
-| YY-P04 | 待作者确认：Canon v1.2 §3 已按默认写入 `legacyWorldCap=9`，仅作用于 `legacy_synthesis`，`rule_wutiandao` 关闭 | 对应 CP-22 / O-A3-02；本文保留默认与回退，不冒充最终拍板 |
+| YY-P04 | 待作者确认数值：Canon v1.2 §3 已按执行默认写入 `legacyWorldCap=9`，仅作用于 `legacy_synthesis`，`rule_wutiandao` 关闭 | 对应 CP-22 / O-A3-02；本文执行默认且不保留旧规则并行分支，不冒充作者已最终拍板 |
 | YY-P05 | 已解决：基准 §17 已允许章节索引 story 的共有幕与正 / 邪各 8–14 幕，并按 6–10 个制作阶段编组 | 鸳鸯单轮 12 幕合法，章节不再维护第二份剧情 |
-| YY-P06 | 待统一收口：按书补录结束后，以实际汇总更新 Canon §4 / `design/05` §14 的正式武学总量；本任务新增地阶 1 门，单独计为 `51/170/459/459=1,139` | 作者要求补齐首领武学，高于旧 1,138 闭合口径；本章无权删改基准或拿既有武学作替换名额 |
+| YY-P06 | **已解决（计数）：**14 册补录已逐卡汇总为 `+8/+82/+9/+0=99`，全目录应由门派图鉴基线 `51/169/459/459=1,138` 更新为 `59/251/468/459=1,237`；Canon §4 / `design/05` §14 的权威行仍待其归属任务回写 | 本书贡献 `sk_zhentiansanshizhang` 地阶 +1；统一总账见 `catalog/skills-bulu-11-yuanyang.md` 与 NXfixC 报告，不再沿用本书单分支的 1,139 临时快照 |
 
 ### 原著考据待办
 
@@ -1509,13 +1512,13 @@ rg -n 'rg_11_|mer_ren\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/design/chapt
 | YY-O01 | 威信镖局 L5 是否可在主线中取得 | 否；周威信在任时玩家最高 L4，余韵才可由行业推举 |
 | YY-O02 | 清宫 L5 是否允许普通玩家取得 | 否；仅保留称谓与数据层，普通玩家本界最高 L4 |
 | YY-O03 | 卓天雄缺失的原著掌法如何配表 | **已解决：**按书补录 `sk_zhentiansanshizhang`（7 地下），三场替换 `sk_daneichangquan`（见 `catalog/skills-bulu-11-yuanyang.md` §1.1、本文 §12.8）；名称与原著归属继续 **（待考）**，拆招、机制及存活具结 + R3 传授条件为 **（原创扩展）【建议值】** |
-| YY-O04 | `eq_changchangfengshibei` 与 `sk_taiyueshibeishou` 的装备兼容如何实现 | 已解决一半：复用 `design/10` 已登记的玄上副手牌 `eq_changchangfengshibei`；其 `exotic/misc` 兼容桥仍待装备 / 图鉴归属方补登记，桥接前武学可学但不能由该装备满足 `weaponReq` |
+| YY-O04 | `eq_changchangfengshibei` 与 `sk_taiyueshibeishou` 的装备兼容如何实现 | **已解决：**`design/10` §3.2 / §5.4 把具名墓碑作为 `exotic/misc` 兼容介质，`skills-kangxi.md` §9.6 以 `weaponReq.altItems` 明列该 ID；仍占副手并只结算牌属性，不把全部副手牌泛化为奇门 |
 | YY-O05 | 本界是否投放具体冲穴丹药 | 暂不投；当前无已确认 `meridianAid` 药物 ID，只给线索和普通药材 |
 | YY-O06 | **已解决：**本界套装候选及件数 | 只消费 `design/07` 正式目录；不以旧候选或散件标签冒充套装，件数和效果只读 07 |
 | YY-O07 | 白马同伴能否在 ch11 实体重逢 | 默认 0；只有 `design/18` 增加同一 NPC 的 ch11 appearance 后开放 |
 | YY-O08 | 四类本地结局键如何映射到 ch12 正式回响 | 已解决主要入口：ch12 §11.2 已接天书主题、双刀、手记、人物与仁字镖旗 / 威信条件；四个 `endingKey` 未逐项登记 `echo_*` 的差异仍降级为书灵回顾文本，不发数值、不影响通关 |
 | YY-O09 | `lgs_yuanyang_fuqi` 是否在本界余韵提交流散 | 默认不提交；只有玩家明确托付手记才写旗标，并从 ch12 起调度 |
-| YY-O10 | `legacyWorldCap=9` 尚未并入基准时采用哪条规则 | 以版本化开关默认执行 AR-13；若提案被否决，回退现行 Canon 的本土完整来源规则，仍限 8 重 |
+| YY-O10 | `legacyWorldCap=9` 的待确认数值采用哪条规则 | Canon v1.2 §3 规则 12 已把 9 写为执行默认；作者作出相反决定并提供迁移前，不启用旧规则并行分支，仍限 8 重 |
 | YY-O11 | ch12 对双刀携带、官凭与威信口碑接哪些接口 | 已解决主要接口：ch12 §11.2 已接双刀“有刀 / 无刀”、仁字镖旗 / 无人死亡改命收束及人物重验；官凭不继承官职，未登记的个别口碑只作文本回响 |
 | YY-O12 | 玩法定年是否固定为 1740 | 保留为原创定年，直到纸本考据和时间线归属文档给出更可靠锚点 |
-| YY-O13 | `sk_babuganchan` 是否进入正式可学库存 | 默认不进入、生产禁用；本章现有投放只保留为待实现接口。须由归属图鉴在 1,138 门闭合库存内给出替换项后，才开放 `q_11_qiyu_01` 的武学奖励；未获批时只给四侠关系与文本彩蛋 |
+| YY-O13 | `sk_babuganchan` 是否进入正式可学库存 | 默认不进入、生产禁用；本章现有投放只保留为待实现接口。须由归属图鉴正式定义并纳入权威目录后，才开放 `q_11_qiyu_01` 的武学奖励；未获批时只给四侠关系与文本彩蛋 |
