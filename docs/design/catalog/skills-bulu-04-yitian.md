@@ -3,7 +3,7 @@
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 的按书补录册。本文只定义《倚天屠龙记》首领配装确实缺少的武学、学习来源及其经脉接口；既有门派图鉴仍是原条目的唯一归属。
 > **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14/15/16、`docs/00-canon.md` §3–§5/§9/§12/§13/§16/§18/§20、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/21`。
 > **引用而不重定义**：既有倚天武学见 `skills-yitian.md`；少林武学见 `skills-shaolin.md`；通行武学见 `skills-general.md`；招式预算见 `design/05`；经脉路线、护体内劲与调息见 `design/21`；Buff 本体见 `design/06`；装备见 `design/10`；门派职级见 `design/17`。
-> **覆盖声明**：本册补录明教 / 波斯总教、成昆旁支、昆仑、崆峒、华山倚天支与玄冥二老所缺条目，不修改十一册既有图鉴，不新增天级武学。首领只是这些武学的使用者之一；除个人旁支外，主角与其他人物均可依门派、职级、秘籍或奇遇正常习得。
+> **覆盖声明**：本册补录明教 / 波斯总教、成昆旁支、昆仑、崆峒、华山倚天支与玄冥二老所缺条目，不修改十一册既有图鉴。首领只是这些武学的使用者之一；除个人旁支外，主角与其他人物均可依门派、职级、秘籍或奇遇正常习得。
 > **标注约定**：**（原创扩展）**为原著没有的武学或玩法；**（原创扩展命名）**为原著有人物 / 兵器 / 劲力表现而总名或招名由本作补出；**（待考）**须以三联 / 广州修订版逐字核对；**【建议值】**为待归属文档确认的数值。
 > **版本**：v1.0（首领武学补录与替补替换，2026-09-28）。
 
@@ -11,11 +11,15 @@
 
 ## 0. 阅读指引与绝招显式路线索引
 
-本册新增 10 门地阶武学：3 门地上、7 门地中。原创地中均按统一裁定的回退下限取 1 记绝招；地上各 2 记。路线遵循 `design/21` §4.3：地阶每条 8 段、每段 90 CT，故 `1200+8×90=1920≤2000`。同门多绝招无共享穴位；所有序列均在全库查重。
+本册新增 12 门武学：2 门天下、3 门地上、7 门地中。天下 / 地上各 2 记绝招，原创地中按统一裁定的回退下限取 1 记。路线遵循 `design/21` §4.3：天下每条 10 段、每段 80 CT，地阶每条 8 段、每段 90 CT，完整收招均不超过 2000 CT。同门多绝招共享穴位不超过 50%；所有序列均在全库查重。
 
 <!-- skill-catalog-audit:start -->
 | 品阶 | 武学 | MoveDef（正文卡镜像） | 路线 ID | steps（acupointRef/segmentCt/riskBp） |
 |---|---|---|---|---|
+| 10 天下 | `sk_bosishenghuoxuangong` | `mv_bosishenghuoxuangong_huanming` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_bosishenghuoxuangong_huanming; projection:false}` | `mfr_bosishenghuoxuangong_huanming` | `MeridianRouteDef{moveRef:mv_bosishenghuoxuangong_huanming;ultimate:true;purpose:defense;requiredNature:[harmony];innerGuard:{enabled:true,reflectBp:0}}`；`ap_chongmai_qichong/80/100→ap_chongmai_qixue/80/120→ap_chongmai_huangshu/80/140→ap_chongmai_shangqu/80/160→ap_daimai_zhangmen/80/240→ap_daimai_jingmen/80/200→ap_daimai_wushu/80/160→ap_renmai_zhongwan/80/180→ap_renmai_danzhong/80/140→ap_renmai_guanyuan/80/100` |
+| 10 天下 | `sk_bosishenghuoxuangong` | `mv_bosishenghuoxuangong_shouling` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_bosishenghuoxuangong_shouling; projection:false}` | `mfr_bosishenghuoxuangong_shouling` | `MeridianRouteDef{moveRef:mv_bosishenghuoxuangong_shouling;ultimate:true;purpose:defense;requiredNature:[harmony];innerGuard:{enabled:true,reflectBp:0}}`；`ap_daimai_zulinqi/80/100→ap_daimai_weidao/80/120→ap_daimai_daimai/80/140→ap_yangqiao_fuyang/80/180→ap_yangqiao_shenmai/80/160→ap_dumai_yaoyangguan/80/240→ap_dumai_zhiyang/80/200→ap_dumai_shendao/80/160→ap_renmai_qihai/80/140→ap_renmai_shimen/80/100` |
+| 10 天下 | `sk_xuanminghanyuangong` | `mv_xuanminghanyuangong_hanbi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_xuanminghanyuangong_hanbi; projection:false}` | `mfr_xuanminghanyuangong_hanbi` | `MeridianRouteDef{moveRef:mv_xuanminghanyuangong_hanbi;ultimate:true;purpose:defense;requiredNature:[yin];innerGuard:{enabled:true,reflectBp:0}}`；`ap_zushaoyin_yongquan/80/100→ap_zushaoyin_taixi/80/120→ap_zushaoyin_fuliu/80/140→ap_yinqiao_zhaohai/80/160→ap_yinqiao_jiaoxin/80/180→ap_renmai_huiyin/80/220→ap_renmai_zhongji/80/180→ap_renmai_shimen/80/160→ap_renmai_qihai/80/140→ap_renmai_guanyuan/80/100` |
+| 10 天下 | `sk_xuanminghanyuangong` | `mv_xuanminghanyuangong_shuangyuan` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_xuanminghanyuangong_shuangyuan; projection:false}` | `mfr_xuanminghanyuangong_shuangyuan` | `MeridianRouteDef{moveRef:mv_xuanminghanyuangong_shuangyuan;ultimate:true;purpose:defense;requiredNature:[yin];innerGuard:{enabled:true,reflectBp:0}}`；`ap_yinwei_zhubin/80/100→ap_yinwei_fushe/80/120→ap_yinwei_daheng/80/140→ap_yinwei_fuai/80/160→ap_yinwei_qimen/80/180→ap_zujueyin_taichong/80/220→ap_zujueyin_zhongdu/80/180→ap_shoujueyin_neiguan/80/160→ap_shoujueyin_daling/80/140→ap_renmai_danzhong/80/100` |
 | 9 地上 | `sk_mingjiaohujiaogong` | `mv_mingjiaohujiaogong_huguang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_mingjiaohujiaogong_huguang; projection:false}` | `mfr_mingjiaohujiaogong_huguang` | `MeridianRouteDef{moveRef:mv_mingjiaohujiaogong_huguang; ultimate:true; purpose:defense}`；`ap_chongmai_qichong/90/100→ap_chongmai_dahe/90/110→ap_chongmai_huangshu/90/120→ap_daimai_wushu/90/130→ap_renmai_qihai/90/140→ap_renmai_guanyuan/90/150→ap_dumai_shendao/90/160→ap_dumai_baihui/90/170` |
 | 9 地上 | `sk_mingjiaohujiaogong` | `mv_mingjiaohujiaogong_zhenjiao` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_mingjiaohujiaogong_zhenjiao; projection:false}` | `mfr_mingjiaohujiaogong_zhenjiao` | `MeridianRouteDef{moveRef:mv_mingjiaohujiaogong_zhenjiao; ultimate:true; purpose:defense}`；`ap_daimai_jingmen/90/100→ap_daimai_zhangmen/90/110→ap_chongmai_youmen/90/120→ap_chongmai_shiguan/90/130→ap_renmai_zhongwan/90/140→ap_renmai_danzhong/90/150→ap_shoujueyin_neiguan/90/160→ap_shoujueyin_laogong/90/170` |
 | 9 地上 | `sk_huanyinxinfa` | `mv_huanyinxinfa_cangxi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_huanyinxinfa_cangxi; projection:false}` | `mfr_huanyinxinfa_cangxi` | `MeridianRouteDef{moveRef:mv_huanyinxinfa_cangxi; ultimate:true; purpose:defense}`；`ap_yinwei_qimen/90/100→ap_yinwei_fuai/90/110→ap_yinqiao_jiaoxin/90/120→ap_yinqiao_sanyinjiao/90/130→ap_zujueyin_taichong/90/140→ap_zujueyin_ququan/90/150→ap_renmai_shenque/90/160→ap_renmai_qihai/90/170` |
@@ -32,6 +36,19 @@
 <!-- skill-catalog-audit:end -->
 
 路线命名均为 `mfr_<move suffix>`。绝招动作末端分别服从内功护体、掌、杖、暗器、笔的叙事终点；实体暗器和普通兵刃招均不算真气外放。
+
+### 0.1 天下内功普通招式显式路线
+
+| 武学 / 招式 | 路线 ID | 路线用途与 steps（acupointRef/segmentCt/riskBp） |
+|---|---|---|
+| `sk_bosishenghuoxuangong` / `mv_bosishenghuoxuangong_tuna` | `mfr_bosishenghuoxuangong_tuna` | `MeridianRouteDef{moveRef:mv_bosishenghuoxuangong_tuna;ultimate:false;purpose:defense;requiredNature:[harmony];innerGuard:{enabled:true,reflectBp:0}}`；`ap_chongmai_henggu/70/80→ap_chongmai_dahe/70/100→ap_daimai_wushu/70/180→ap_renmai_qihai/70/140→ap_renmai_guanyuan/70/100` |
+| `sk_bosishenghuoxuangong` / `mv_bosishenghuoxuangong_zhuanhuan` | `mfr_bosishenghuoxuangong_zhuanhuan` | `MeridianRouteDef{moveRef:mv_bosishenghuoxuangong_zhuanhuan;ultimate:false;purpose:defense;requiredNature:[harmony];innerGuard:{enabled:true,reflectBp:0}}`；`ap_daimai_zhangmen/70/80→ap_daimai_jingmen/70/100→ap_chongmai_siman/70/140→ap_chongmai_zhongzhu/70/120→ap_renmai_zhongwan/70/100` |
+| `sk_bosishenghuoxuangong` / `mv_bosishenghuoxuangong_huti` | `mfr_bosishenghuoxuangong_huti` | `MeridianRouteDef{moveRef:mv_bosishenghuoxuangong_huti;ultimate:false;purpose:defense;requiredNature:[harmony];innerGuard:{enabled:true,reflectBp:0}}`；`ap_yangqiao_shenmai/75/80→ap_yangqiao_juliao/75/100→ap_daimai_daimai/75/140→ap_dumai_mingmen/75/260→ap_dumai_shendao/75/160→ap_renmai_qihai/75/100` |
+| `sk_xuanminghanyuangong` / `mv_xuanminghanyuangong_tuna` | `mfr_xuanminghanyuangong_tuna` | `MeridianRouteDef{moveRef:mv_xuanminghanyuangong_tuna;ultimate:false;purpose:defense;requiredNature:[yin];innerGuard:{enabled:true,reflectBp:0}}`；`ap_zushaoyin_yongquan/70/80→ap_zushaoyin_taixi/70/100→ap_yinqiao_zhaohai/70/140→ap_renmai_qihai/70/160→ap_renmai_guanyuan/70/100` |
+| `sk_xuanminghanyuangong` / `mv_xuanminghanyuangong_ningyuan` | `mfr_xuanminghanyuangong_ningyuan` | `MeridianRouteDef{moveRef:mv_xuanminghanyuangong_ningyuan;ultimate:false;purpose:defense;requiredNature:[yin];innerGuard:{enabled:true,reflectBp:0}}`；`ap_yinwei_zhubin/70/80→ap_yinwei_daheng/70/120→ap_zujueyin_taichong/70/140→ap_shoujueyin_neiguan/70/160→ap_renmai_danzhong/70/100` |
+| `sk_xuanminghanyuangong` / `mv_xuanminghanyuangong_huhan` | `mfr_xuanminghanyuangong_huhan` | `MeridianRouteDef{moveRef:mv_xuanminghanyuangong_huhan;ultimate:false;purpose:defense;requiredNature:[yin];innerGuard:{enabled:true,reflectBp:0}}`；`ap_zutaiyin_dadu/75/80→ap_zutaiyin_taibai/75/100→ap_yinwei_fuai/75/140→ap_renmai_shenque/75/180→ap_renmai_zhongwan/75/140→ap_renmai_guanyuan/75/100` |
+
+六条普通路线均为 5–6 段；最大收招为 `1000+6×75=1450≤2000 CT`。两门内功各自的三招以不同起点、换脉与末端表达吐纳、转换 / 凝元、护体，不复用完整序列。
 
 ---
 
@@ -122,7 +139,32 @@
 | 花落听声 | `ps_jinhuabiaofa_tingsheng` | 6 | 对本回合已移动目标命中 +4→+10 |
 | 花落无声 | `ps_jinhuabiaofa_dacheng` | 10 | 每回合首枚暗器的射程惩罚减半；不增加基础射程 |
 
-波斯三使的 10 品主运未补。`sk_qiankun` 是明教 L5 教主镇教心法，非教主经张无忌私传也只到 8 重；三使不满足 9 重主运条件。波斯总教遣黛绮丝来中土求取心法、三使以圣火令武功见长的原著前提**（待考）**，也不支持直接复用；天级 51 门闭集不得新增，故按章节 §12.5 维持地位兜底并阻断正式构建。
+### 1.4 `sk_bosishenghuoxuangong` 波斯圣火玄功（10 天下 · 内功 · 调和）**（原创扩展）**
+
+- **出处与边界**：原著有明教波斯总教、宝树王、风云月三使及圣火令武功；总教遣人来中土所涉教主心法前提须逐字核对**（待考）**。未见“波斯圣火玄功”这一固定名，名称、招式、机制与数值均为**（原创扩展）**。本功是波斯总教自身传承，不是 `sk_qiankun`，也不改写其教主门槛。
+- **字段**：`category:inner`；`subType:inner`；`grade:10`；`origin:expanded`；`sect:sect_mingjiao`；`lineage:波斯总教·圣火令行功`；`sourceChapters:[ch04_yitian]`；`nature:harmony`；`wOut/wIn:0/1`；`moveSlots:5`；`special:{fusible:true}`；`observable:false`。
+- **reqs**：`attrs:{agi:55,wis:55,wil:50}`；`aptitude:{apInner:55}`；`prereq:[{skill:sk_shenghuoxinfa,layer:6},{skill:sk_shenghuoling,layer:7}]`；`sect:{id:sect_mingjiao,branch:persia,rank:4}`；`hard:[sect,prereq]`。
+- **内功**：`inner.contribution:{mpMaxPct:42,hpMaxPct:25,attrs:{agi:6,wis:6,wil:3,con:3},mpRegen:3.0,stats:{resMind:10,eva:10}}`；`IP=42+25+2×(6+6+3+3)+5×3.0=118`；`meridians:[mer_chongmai,mer_daimai,mer_yangqiao]`；`breathProfileRef:txp_bosishenghuoxuangong`；`innerGuard:{enabled:true,reflectBp:0}`。
+- **层数**：1 重圣火吐纳｜3 重回环转换｜5 重护令｜**7 重第一绝招·幻明归环**｜8 重三使同息｜**9 重第二绝招·守令归真**｜10 重玄功圆成。
+
+| 招式（ID；归属本功） | 重 | 范围·效果 | 耗内/cd/收招 | MoveDef |
+|---|---:|---|---|---|
+| 圣火吐纳 `mv_bosishenghuoxuangong_tuna` **（原创扩展）** | 1 | 自身；`bf_dingxin` 2 | 6%/2/900 | `MoveDef{unlock:1;ultimate:false;mpCost:6%;cd:2;recovery:900;meridianRouteRef:mfr_bosishenghuoxuangong_tuna;projection:false}` |
+| 回环转换 `mv_bosishenghuoxuangong_zhuanhuan` **（原创扩展）** | 3 | 自身；`bf_piaohu` 2 | 7%/3/950 | `MoveDef{unlock:3;ultimate:false;mpCost:7%;cd:3;recovery:950;meridianRouteRef:mfr_bosishenghuoxuangong_zhuanhuan;projection:false}` |
+| 护令 `mv_bosishenghuoxuangong_huti` **（原创扩展）** | 5 | 自身；`bf_hutizhenqi` 2，`shieldPctHpMax:0.10` | 8%/3/1000 | `MoveDef{unlock:5;ultimate:false;mpCost:8%;cd:3;recovery:1000;meridianRouteRef:mfr_bosishenghuoxuangong_huti;projection:false}` |
+| 幻明归环 `mv_bosishenghuoxuangong_huanming`（绝招，**原创扩展**） | 7 | 自身；`bf_youshi` 3、`bf_wenzhong` 2 | 10%/0/1200 | `MoveDef{unlock:7;ultimate:true;rageCost:100;mpCost:10%;cd:0;recovery:1200;meridianRouteRef:mfr_bosishenghuoxuangong_huanming;projection:false}` |
+| 守令归真 `mv_bosishenghuoxuangong_shouling`（绝招，**原创扩展**） | 9 | 自身；回复 `mpMax×20%`、`bf_shoushi` 3 | 10%/0/1200 | `MoveDef{unlock:9;ultimate:true;rageCost:100;mpCost:10%;cd:0;recovery:1200;meridianRouteRef:mfr_bosishenghuoxuangong_shouling;projection:false}` |
+
+| 被动 | ID | 层 | 效果 |
+|---|---|---:|---|
+| 回环 | `ps_bosishenghuoxuangong_huihuan` | 1 | 带脉接冲脉的首次换脉风险 `−80→−200 bp`，最低 0 |
+| 护令 | `ps_bosishenghuoxuangong_huling` | 5 | 装配 `sk_shenghuoling` 时招架 `+4→+10` |
+| 三使同息 | `ps_bosishenghuoxuangong_tongxi` | 8 | 相邻同源使用者存在时 `resMind +5→+12`，不按人数叠加 |
+| 玄功圆成 | `ps_bosishenghuoxuangong_dacheng` | 10 | 每战首次护体内劲被击穿时获得 `bf_piaohu` 1 回合 |
+
+- **路线叙事与互异**：“幻明归环”由冲脉承力，经带脉横转、任脉收中；“守令归真”由带脉转阳跷稳身，再接督脉护体、任脉回气。两路共享 0/10 穴，职责与换脉方向均不同。
+- **learnSources**：波斯总教 L4、圣火令武功 7 重，经宝树王议会考校后可学至 10 重；中土线取得三使译谱并完成圣火令文义复核可学至 8 重。玩家与合资格人物均可走该传承，不要求三使身份。
+- **外放判定**：五招均为自身运劲 / 护体，`projection:false`；圣火意象与圣火令实体兵器均不自动构成真气外放。
 
 ---
 
@@ -245,7 +287,32 @@
 | 双笔分守 | `ps_hezuibifa_shuangbi` | 6 | 满足 `weaponReq.dual` 时招架 +4→+10 |
 | 双笔归一 | `ps_hezuibifa_dacheng` | 10 | 对已有穴位受封的目标 Z3 +8%；不提高封穴等级 |
 
-**未闭合主运**：现有 `sk_xuanmingxinfa` 仅 6 品，`sk_xuanming` 是 10 品外功。天级武学只能来自 Canon 闭集，故本册不能为二老另造 10 品内功；§11.5 与书界 §12.5 继续保留 `10/9/yin` 地位兜底并阻断正式画像。
+### 3.3 `sk_xuanminghanyuangong` 玄冥寒元功（10 天下 · 内功 · 阴）**（原创扩展）**
+
+- **出处与边界**：原著有玄冥二老与玄冥神掌的阴寒内力表现；是否另有具名成套上乘内功未见，故“玄冥寒元功”、招名、机制与数值均为**（原创扩展）**。它是玄冥一系共传，不是鹿杖客或鹤笔翁个人专属。
+- **字段**：`category:inner`；`subType:inner`；`grade:10`；`origin:expanded`；`sect:sect_ruyangwangfu`；`lineage:玄冥一系`；`sourceChapters:[ch04_yitian]`；`nature:yin`；`wOut/wIn:0/1`；`moveSlots:5`；`special:{fusible:true}`；`observable:false`。
+- **reqs**：`attrs:{con:55,wil:55,wis:48}`；`aptitude:{apInner:55}`；`prereq:[{skill:sk_xuanmingxinfa,layer:7},{skill:sk_xuanming,layer:7}]`；`sect:{id:sect_ruyangwangfu,rank:4}`；`hard:[prereq]`。人物传承可用 `reqsOverride` 解除王府身份，不解除两门前置。
+- **内功**：`inner.contribution:{mpMaxPct:42,hpMaxPct:25,attrs:{con:6,wil:6,wis:3,str:3},mpRegen:3.0,stats:{resCold:10,resInjury:10}}`；`IP=42+25+2×(6+6+3+3)+5×3.0=118`；`meridians:[mer_zushaoyin,mer_yinqiao,mer_yinwei,mer_renmai]`；`breathProfileRef:txp_xuanminghanyuangong`；`innerGuard:{enabled:true,reflectBp:0}`。
+- **层数**：1 重玄冥吐纳｜3 重凝元｜5 重护寒｜**7 重第一绝招·寒壁守元**｜8 重双源同脉｜**9 重第二绝招·霜元归一**｜10 重寒元圆成。
+
+| 招式（ID；归属本功） | 重 | 范围·效果 | 耗内/cd/收招 | MoveDef |
+|---|---:|---|---|---|
+| 玄冥吐纳 `mv_xuanminghanyuangong_tuna` **（原创扩展）** | 1 | 自身；`bf_dingxin` 2 | 6%/2/900 | `MoveDef{unlock:1;ultimate:false;mpCost:6%;cd:2;recovery:900;meridianRouteRef:mfr_xuanminghanyuangong_tuna;projection:false}` |
+| 凝元 `mv_xuanminghanyuangong_ningyuan` **（原创扩展）** | 3 | 自身；`bf_wenzhong` 2 | 7%/3/950 | `MoveDef{unlock:3;ultimate:false;mpCost:7%;cd:3;recovery:950;meridianRouteRef:mfr_xuanminghanyuangong_ningyuan;projection:false}` |
+| 护寒 `mv_xuanminghanyuangong_huhan` **（原创扩展）** | 5 | 自身；`bf_hutizhenqi` 2，`shieldPctHpMax:0.10` | 8%/3/1000 | `MoveDef{unlock:5;ultimate:false;mpCost:8%;cd:3;recovery:1000;meridianRouteRef:mfr_xuanminghanyuangong_huhan;projection:false}` |
+| 寒壁守元 `mv_xuanminghanyuangong_hanbi`（绝招，**原创扩展**） | 7 | 自身；`bf_jiangu` 3、`bf_renjin` 2 | 10%/0/1200 | `MoveDef{unlock:7;ultimate:true;rageCost:100;mpCost:10%;cd:0;recovery:1200;meridianRouteRef:mfr_xuanminghanyuangong_hanbi;projection:false}` |
+| 霜元归一 `mv_xuanminghanyuangong_shuangyuan`（绝招，**原创扩展**） | 9 | 自身；回复 `hpMax×20%`，清 1 个 `injury` | 10%/0/1200 | `MoveDef{unlock:9;ultimate:true;rageCost:100;mpCost:10%;cd:0;recovery:1200;meridianRouteRef:mfr_xuanminghanyuangong_shuangyuan;projection:false}` |
+
+| 被动 | ID | 层 | 效果 |
+|---|---|---:|---|
+| 寒元 | `ps_xuanminghanyuangong_hanyuan` | 1 | 主运时 `resCold +4→+10`；不赋予寒毒免疫 |
+| 掌息相承 | `ps_xuanminghanyuangong_zhangxi` | 5 | 装配 `sk_xuanming` 时下一记玄冥掌耗内 `−3%→−8%` |
+| 双源同脉 | `ps_xuanminghanyuangong_tongmai` | 8 | 相邻玄冥同源使用者存在时 `resInjury +5→+12`，不按人数叠加 |
+| 寒元圆成 | `ps_xuanminghanyuangong_dacheng` | 10 | 每战首次护体内劲被击穿时获得 `bf_renjin` 1 回合 |
+
+- **路线叙事与互异**：“寒壁守元”以足少阴起、阴跷承接，最终沿任脉收丹田；“霜元归一”由阴维转足厥阴与手厥阴，最终归膻中。两路共享 0/10 穴，不是轮换或逆序；普通招分别承担吐纳、凝元、护寒。
+- **learnSources**：玄冥一系师门传承可至 10 重；鹿杖客或鹤笔翁羁绊 / 换俘授艺可至 10 重；汝阳王府玄冥密谱可至 8 重。主角与其他满足前置者均可学，不以首领身份为硬门槛。
+- **外放判定**：五招只在体内凝元、调息、护体，`projection:false`；配合 `sk_xuanming` 时由掌法卡自身决定外放，本功不重复投送。
 
 ---
 
@@ -342,7 +409,7 @@
 
 ## 5. 来源扩展登记
 
-本任务没有只缺 `sourceChapters` 的复用项；下列两项已由原图鉴原生登记 `ch04_yitian`，故不产生待 NXfix 落实的来源扩展。波斯三使主运未补，不把 `sk_qiankun` 登记为复用项：
+本任务没有只缺 `sourceChapters` 的复用项；下列两项已由原图鉴原生登记 `ch04_yitian`，故不产生待 NXfix 落实的来源扩展。波斯三使使用本册新定义的总教主运，不把 `sk_qiankun` 登记为复用项：
 
 | 武学 | 本书用途 | 原图鉴与依据 | 处理 |
 |---|---|---|---|
@@ -359,18 +426,21 @@
 | `sk_huanyinshou` | 近身掌手 | `false` | 全部接触命中；“阴劲”性质不等于外放 |
 | `sk_jinhuazhangfa`、`sk_lutouzhangfa`、`sk_hezuibifa` | 杖、鹿杖、鹤嘴双笔的实体挥击 | `false` | 普通兵刃挥击不算外放 |
 | `sk_jinhuabiaofa` | 实体花形暗器 | `false` | 暗器投掷即使有 4 格射程也不算真气外放 |
+| `sk_bosishenghuoxuangong`、`sk_xuanminghanyuangong` | 自身吐纳、凝元、转换与护体 | `false` | 内功不离体伤敌；所配外功另按自身卡判定 |
 | 昆仑 / 崆峒 / 华山三门新增内功 | 护体、运劲、驱散 | `false` | 无离体伤害段 |
 
-因此本册新增 40 个 `MoveDef` 全为 `projection:false`，不填写 `projectionSpreadSteps`；13 条绝招路线无需满足外放手部端点条件。
+因此本册新增 50 个 `MoveDef` 全为 `projection:false`，不填写 `projectionSpreadSteps`；17 条绝招路线无需满足外放手部端点条件。
 
 ---
 
 ## 7. 内功调息档案与护体内劲
 
-字段和算法唯一见 `design/21` §10；本册只登记实例。五门内功均为满 10 重、`scope:3`、`ct:1000`、`mpCostBp:0`、`outOfBattleScaleBp:15000`。9 品非调和为 `2200/516`，调和乘 10500 bp 为 `2310/541`；8 品非调和为 `2100/492`，调和为 `2205/516`。
+字段和算法唯一见 `design/21` §10；本册只登记实例。七门内功均为满 10 重、`scope:3`、`ct:1000`、`mpCostBp:0`、`outOfBattleScaleBp:15000`。10 品非调和为 `2300/540`，调和为 `2415/567`；9 品非调和为 `2200/516`，调和为 `2310/541`；8 品调和为 `2205/516`。
 
 | 内功 | breathProfileRef / 正式档案 | `relief/repair` | innerGuard |
 |---|---|---|---|
+| `sk_bosishenghuoxuangong` | `txp_bosishenghuoxuangong` `BreathProfile{grade:10;layer:10;nature:harmony;scope:3;ct:1000;mpCostBp:0;outOfBattleScaleBp:15000}` | `floor((500+100×10+80×10)×1.05)=2415` / `floor((120+24×10+18×10)×1.05)=567` | `{enabled:true,guard:harmony-high,reflectBp:0}`；显示档 IV |
+| `sk_xuanminghanyuangong` | `txp_xuanminghanyuangong` `BreathProfile{grade:10;layer:10;nature:yin;scope:3;ct:1000;mpCostBp:0;outOfBattleScaleBp:15000}` | `500+100×10+80×10=2300` / `120+24×10+18×10=540` | `{enabled:true,guard:yin-high,reflectBp:0}`；显示档 IV |
 | `sk_mingjiaohujiaogong` | `txp_mingjiaohujiaogong` `BreathProfile{grade:9;layer:10;nature:harmony;scope:3;ct:1000;mpCostBp:0;outOfBattleScaleBp:15000}` | `floor((500+100×9+80×10)×1.05)=2310` / `floor((120+24×9+18×10)×1.05)=541` | `{enabled:true,guard:harmony-high,reflectBp:0}`；自然 `K-HN2`；`mv_mingjiaohujiaogong_huguang→K-HD4` |
 | `sk_huanyinxinfa` | `txp_huanyinxinfa` `BreathProfile{grade:9;layer:10;nature:yin;scope:3;ct:1000;mpCostBp:0;outOfBattleScaleBp:15000}` | `500+100×9+80×10=2200` / `120+24×9+18×10=516` | `{enabled:true,guard:yin-high,reflectBp:0}`；自然 `K-YN2`；`mv_huanyinxinfa_niliu→K-YD4` |
 | `sk_kunlunliangyixinfa` | `txp_kunlunliangyixinfa` `BreathProfile{grade:8;layer:10;nature:harmony;scope:3;ct:1000;mpCostBp:0;outOfBattleScaleBp:15000}` | `floor((500+100×8+80×10)×1.05)=2205` / `floor((120+24×8+18×10)×1.05)=516` | `{enabled:true,guard:harmony-high,reflectBp:0}`；自然 `K-HN2`；`mv_kunlunliangyixinfa_heyi→K-HD4` |
@@ -383,22 +453,22 @@
 
 ## 8. 统计表
 
-| 归属 | 9 地上 | 8 地中 | 内功 | 拳脚 | 兵器 | 暗器 | 合计 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 明教 / 波斯总教 | 1 | 2 | 1 | 0 | 1 | 1 | 3 |
-| 成昆个人旁支 | 2 | 0 | 1 | 1 | 0 | 0 | 2 |
-| 玄冥二老 | 0 | 2 | 0 | 0 | 2 | 0 | 2 |
-| 昆仑 / 崆峒 / 华山倚天支 | 0 | 3 | 3 | 0 | 0 | 0 | 3 |
-| **合计** | **3** | **7** | **5** | **1** | **3** | **1** | **10** |
+| 归属 | 10 天下 | 9 地上 | 8 地中 | 内功 | 拳脚 | 兵器 | 暗器 | 合计 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| 明教 / 波斯总教 | 1 | 1 | 2 | 2 | 0 | 1 | 1 | 4 |
+| 成昆个人旁支 | 0 | 2 | 0 | 1 | 1 | 0 | 0 | 2 |
+| 玄冥二老 | 1 | 0 | 2 | 1 | 0 | 2 | 0 | 3 |
+| 昆仑 / 崆峒 / 华山倚天支 | 0 | 0 | 3 | 3 | 0 | 0 | 0 | 3 |
+| **合计** | **2** | **3** | **7** | **7** | **1** | **3** | **1** | **12** |
 
 | 指标 | 结果 | 判定 |
 |---|---|---|
-| 绝招 | 地上 `3×2=6`；地中 `7×1=7`；合计 13 | ✅ 地中未列逐门裁定，按回退下限 1 |
-| 招式 / 被动 | `10×4=40` 个可施放招式，其中 13 绝招；`10×3=30` 个被动 | ✅ 每门总招式 4，地阶栏位 4 |
-| 天级闭集 | 新增 0；只引用 `sk_jingangbuhuai` | ✅ 不突破 Canon §4 / §13；三使主运未补 |
-| 内功 IP | 地上 `2×94.5`；地中 `3×83` | ✅ 精确命中 `design/05` §5.5 |
-| 路线 CT | `13×(8×90)`；单招完整收招 `1200+720=1920` | ✅ 不超过 2000 |
-| 真气外放 | 0 / 40 | ✅ 全部逐招显式 `projection:false` |
+| 绝招 | 天下 `2×2=4`；地上 `3×2=6`；地中 `7×1=7`；合计 17 | ✅ 解锁层为天下 / 地上 7、9，地中 7 |
+| 招式 / 被动 | 50 个可施放招式，其中 17 绝招；38 个被动 | ✅ 天下每门 5 招 4 被动；原地阶卡维持 4 招 3 被动 |
+| 天阶扩容 | 新增 `sk_bosishenghuoxuangong`、`sk_xuanminghanyuangong` | ✅ 服从作者 2026-09-28 扩容决定 |
+| 内功 IP | 天下 `2×118`；地上 `2×94.5`；地中 `3×83` | ✅ 精确命中 `design/05` §5.5 |
+| 路线 CT | 天下 `4×(10×80)`；地阶 `13×(8×90)` | ✅ 加收招均不超过 2000 |
+| 真气外放 | 0 / 50 | ✅ 全部逐招显式 `projection:false` |
 | 敌人专用 | 0 | ✅ 均有玩家 / 其他角色可达来源；个人旁支另待作者确认满层路径 |
 | 来源扩展待登记 | 0 | ✅ 两门复用项原生均含倚天；三使主运不作不合法复用 |
 
@@ -408,13 +478,13 @@
 
 | 类别 | 新增 ID |
 |---|---|
-| 武学 `sk_*` | `sk_mingjiaohujiaogong`、`sk_jinhuazhangfa`、`sk_jinhuabiaofa`、`sk_huanyinxinfa`、`sk_huanyinshou`、`sk_lutouzhangfa`、`sk_hezuibifa`、`sk_kunlunliangyixinfa`、`sk_kongtongwuxingxinfa`、`sk_huashanliangyixinfa04` |
-| 绝招 `mv_*` | 文首索引 13 项；其余普通招式见各卡，共 40 项 |
-| 路线 `mfr_*` | 文首索引 13 项，与绝招一一对应 |
-| 调息档案 `txp_*` | `txp_mingjiaohujiaogong`、`txp_huanyinxinfa`、`txp_kunlunliangyixinfa`、`txp_kongtongwuxingxinfa`、`txp_huashanliangyixinfa04` |
-| 被动 `ps_*` | 各卡 3 项，共 30 项 |
+| 武学 `sk_*` | `sk_mingjiaohujiaogong`、`sk_jinhuazhangfa`、`sk_jinhuabiaofa`、`sk_bosishenghuoxuangong`、`sk_huanyinxinfa`、`sk_huanyinshou`、`sk_lutouzhangfa`、`sk_hezuibifa`、`sk_xuanminghanyuangong`、`sk_kunlunliangyixinfa`、`sk_kongtongwuxingxinfa`、`sk_huashanliangyixinfa04`，共 12 项 |
+| 绝招 `mv_*` | 文首索引 17 项；其余普通招式见各卡，共 50 项 |
+| 路线 `mfr_*` | 文首索引 17 项绝招路线，加 §0.1 六项普通路线；原卡普通招路线仍由既有索引拥有 |
+| 调息档案 `txp_*` | `txp_mingjiaohujiaogong`、`txp_bosishenghuoxuangong`、`txp_huanyinxinfa`、`txp_xuanminghanyuangong`、`txp_kunlunliangyixinfa`、`txp_kongtongwuxingxinfa`、`txp_huashanliangyixinfa04`，共 7 项 |
+| 被动 `ps_*` | 两门天下各 4 项、原十卡各 3 项，共 38 项 |
 
-本册不新增 `sect_*`、`eq_*`、`bf_*` 或天级 `sk_*`；所有引用均复用其唯一归属。
+本册不新增 `sect_*`、`eq_*` 或 `bf_*`；两门天下内功是作者扩容决定的正式新增，其他引用仍复用其唯一归属。
 
 ---
 
@@ -424,16 +494,16 @@
 
 | 编号 | 校验 | 通过条件 | 失败级别 |
 |---|---|---|---|
-| `B04-V01` | ID 唯一 | 10 个 `sk_*`、40 个 `mv_*`、30 个 `ps_*`、13 个 `mfr_*` 与 5 个 `txp_*` 均在全仓唯一 | error |
-| `B04-V02` | 天级闭集 | 本册 `grade>=10` 定义为 0；只引用既有 `sk_jingangbuhuai`；三使主运显式未补并阻断正式构建 | error |
-| `B04-V03` | 品阶与绝招 | 地上 3 门各 2 记绝招且在 7 / 9 重解锁；地中 7 门各 1 记且在 7 重解锁 | error |
-| `B04-V04` | 卡片容量 | 每门恰有 4 个招式和 3 个被动；绝招计入 4 个招式 | error |
-| `B04-V05` | 绝招资源 | 13 招均为 `rageCost:100;mpCost:9%;cd:0;recovery:1200` | error |
-| `B04-V06` | 路线闭合 | 13 个正文绝招与索引一一镜像；每路 8 段、每段 90 CT、穴位不自复用，完整收招 1920 CT | error |
+| `B04-V01` | ID 唯一 | 12 个 `sk_*`、50 个 `mv_*`、38 个 `ps_*`、新增 23 个 `mfr_*` 与 7 个 `txp_*` 均在全仓唯一 | error |
+| `B04-V02` | 天阶扩容 | 本册新增两门天下内功，均列入 Canon 扩容名录；三使不引用 `sk_qiankun` | error |
+| `B04-V03` | 品阶与绝招 | 天下 / 地上各门 2 记绝招且在 7 / 9 重解锁；地中各 1 记且在 7 重解锁 | error |
+| `B04-V04` | 卡片容量 | 两门天下各 5 招 / 4 被动；原地阶卡各 4 招 / 3 被动 | error |
+| `B04-V05` | 绝招资源 | 天下 4 招耗内 10%，地阶 13 招耗内 9%；均 `rageCost:100;cd:0;recovery:1200` | error |
+| `B04-V06` | 路线闭合 | 17 个正文绝招与索引一一镜像；天下每路 10×80、地阶每路 8×90，完整收招均不超过 2000 CT | error |
 | `B04-V07` | 路线唯一 | 不与全仓既有路线完全相同；同门两招共享穴位不超过 50%，且不以轮换或逆序伪造差异 | error |
-| `B04-V08` | 外放判定 | 40 招均显式 `projection:false`，且不存在 `projectionSpreadSteps`；暗器实体和普通兵刃挥击不误判外放 | error |
-| `B04-V09` | 内功预算 | 地上两门 IP 各 94.5；地中三门 IP 各 83；贡献项和 `stats` 均不越 `design/05` §5.5 | error |
-| `B04-V10` | 调息 | 5 门内功各有唯一 `txp_*`；`scope:3;ct:1000;mpCostBp:0;outOfBattleScaleBp:15000` | error |
+| `B04-V08` | 外放判定 | 50 招均显式 `projection:false`，且不存在 `projectionSpreadSteps`；暗器实体和普通兵刃挥击不误判外放 | error |
+| `B04-V09` | 内功预算 | 天下两门 IP 各 118；地上两门各 94.5；地中三门各 83 | error |
+| `B04-V10` | 调息 | 7 门内功各有唯一 `txp_*`；`scope:3;ct:1000;mpCostBp:0;outOfBattleScaleBp:15000` | error |
 | `B04-V11` | 来源可达 | 门派武学均有正常门派 / 职级 / 秘籍 / 奇遇路径；个人旁支有默认玩家路径并在 §11.5 请求确认 | error |
 | `B04-V12` | 原著边界 | 原著无固定名称者标原创扩展或原创扩展命名；待核动作不写引文、回目号或伪招名 | error |
 
@@ -441,9 +511,9 @@
 
 | 用例 | 输入 / 操作 | 精确期望 |
 |---|---|---|
-| `B04-T01` 数量 | 扫描正式武学卡标题 | 地 / 玄 / 黄 / 天为 `10/0/0/0`；地上 / 地中为 `3/7` |
-| `B04-T02` 绝招 | 对照正文卡与文首索引 | `6+7=13` 个唯一绝招与 13 个唯一 `mfr_*`，无隐式路线 |
-| `B04-T03` 路线 CT | 任取一记绝招 | `1200+8×90=1920≤2000` |
+| `B04-T01` 数量 | 扫描正式武学卡标题 | 天 / 地 / 玄 / 黄为 `2/10/0/0`；天下 / 地上 / 地中为 `2/3/7` |
+| `B04-T02` 绝招 | 对照正文卡与文首索引 | `4+6+7=17` 个唯一绝招与 17 个唯一 `mfr_*`，无隐式路线 |
+| `B04-T03` 路线 CT | 任取一记绝招 | 天下 `1200+10×80=2000`；地阶 `1200+8×90=1920` |
 | `B04-T04` 同门差异 | 比较明教护教功、幻阴心法、幻阴手各自两路 | 各对共享穴位 ≤4，且序列不构成轮换或逆序 |
 | `B04-T05` 调和地上 IP | `34+20+2×14+5×2.5` | `94.5` |
 | `B04-T06` 阴性地上 IP | `34+20+2×14+5×2.5` | `94.5` |
@@ -453,6 +523,8 @@
 | `B04-T10` 暗器外放 | 施放 `mv_jinhuabiaofa_sanzhan` | 由实体暗器完成投送；`projection=false`，不建立真气扩散路线 |
 | `B04-T11` 玩家可学 | 用合格明教 L4 角色完成护教考校 | 可取得 `sk_mingjiaohujiaogong` 并练至 10 重，不要求 Boss 身份 |
 | `B04-T12` 个人旁支 | 走成昆遗册而非私授 | 两门幻阴旁支最高 8 重；不因拾取遗册自动补满 |
+| `B04-T13` 三使主运 | 构建风云月三使任一画像 | 主运为 `sk_bosishenghuoxuangong` 9 重，不得回退 `sk_qiankun` |
+| `B04-T14` 二老主运 | 构建鹿杖客 / 鹤笔翁画像 | 主运为 `sk_xuanminghanyuangong` 9 重，无空外键或地位兜底 |
 
 ---
 
@@ -464,21 +536,21 @@
 |---|---|---|
 | `B04-S01` | 门派考校 / 亲授可至 10 重，观摩或残谱多限 6–8 重 | `design/12` / `chapters/04`：落正式 `LearnSource` 时保留层数差，不把首领配装转成掉落 |
 | `B04-S02` | 个人独门满层默认只走本人私授、受控同行或羁绊 / 换俘；遗册最高 8 重 | `design/12`：作者确认前按此实现，并保证主角与其他合格角色均可走来源 |
-| `B04-S03` | 五门内功的调息档案与护体路线按 §7、文首索引接线 | `design/21` / 数据管线：固定 RNG 回放后只调遭遇 HP / 防御，不压低主运品阶 |
+| `B04-S03` | 七门内功的调息档案与护体路线按 §7、文首索引接线 | `design/21` / 数据管线：固定 RNG 回放后只调遭遇 HP / 防御，不压低主运品阶 |
 
 ### 11.2 本文依赖的上游事实
 
-- 天级闭集、品阶与本土书界依赖 Canon §4 / §13；本册不新增或改名天级武学。
+- 天阶扩容、品阶与本土书界依赖 Canon §4 / §13 及作者决定 AR-17；本册新增两门天下内功。
 - 武学字段、IP、招式容量、绝招资源与 Buff 引用依赖 `design/05`、`design/06`；路线、调息、护体及外放依赖 `design/21`。
-- 既有明教 / 波斯总教、六派、玄冥与成昆条目依赖 `skills-yitian.md`、`skills-shaolin.md`；两项合规复用来源见 §5，三使主运缺口见章节 §12.5。
+- 既有明教 / 波斯总教、六派、玄冥与成昆条目依赖 `skills-yitian.md`、`skills-shaolin.md`；两项合规复用来源见 §5，两门新主运由本册唯一定义。
 - 门派职级、任务来源、装备兼容与人物主记录分别依赖 `design/17`、`design/12`、`design/10`、`design/18`。
 
 ### 11.3 对基准的修改提案
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| `B04-P01` | 在 Canon §13 的非天级图鉴入口登记按书补录册为正式武学定义来源 | 当前十一册门派图鉴之外需要按书补缺；若不登记，构建器无法区分正式补录与章节临时配置 |
-| `B04-P02` | 明确地位兜底不能替代合法主运武学外键，正式构建遇空主运须报错 | 玄冥二老虽可用 `10/9/yin` 估算节奏，仍没有 10 品内功实体，不能把七参数当作武学定义 |
+| `B04-P01` | **已解决：**在 Canon §13 / §18 登记按书补录册为正式武学定义来源 | 构建器据此把补录卡作为正式定义而非章节临时配置 |
+| `B04-P02` | **已解决：**地位兜底不替代合法主运外键；玄冥二老与波斯三使分别接入本册两门新功 | 作者决定扩容后已可实体化，章节不得继续保留空外键 |
 | `B04-P03` | 若采纳崆峒五行心法为套装件，在 `design/07` 的 `set_kongtong_qishang` 成员表补入该 ID | 本册不能单向写 `setTags`；未双向登记会违反套装闭合校验，故当前默认不加入 |
 
 ### 11.4 原著考据待办
@@ -494,6 +566,6 @@
 |---|---|---|---|
 | `B04-O01` | 成昆个人旁支能否由玩家练满？ | 可以，但只限成昆私授 / 受控同行；遗册最高 8 重且承担品德代价 | 玩家收集、邪线奖励 |
 | `B04-O02` | 鹿杖客、鹤笔翁的个人兵器分支能否由其他人物练满？ | 可以，经本人羁绊或换俘授艺至 10 重；缴获残谱最高 8 重 | 王府支线、非敌专约束 |
-| `B04-O03` | 玄冥二老的 10 品主运如何闭合？ | 不新增天级武学；保留 `10/9/yin` 地位估算但正式构建阻断，等待从既有 51 门天级闭集找到有据内功或由作者另行裁定 | 首领画像、构建门禁 |
+| `B04-O03` | **已解决：**玄冥二老的 10 品主运如何闭合？ | 使用 `sk_xuanminghanyuangong` 9 重；按玄冥传承正常可学，解除构建阻断 | 首领画像、构建门禁 |
 | `B04-O04` | “明教护教功”是否改为更具原著依据的名称？ | 保留明确标注的原创扩展名，不宣称原著有同名秘籍 | 本地化、图鉴命名 |
 | `B04-O05` | 崆峒五行心法是否加入既有崆峒七伤套装？ | 默认不加入，保持 `setTags:[]`；若作者采纳，须由 `design/07` 同步正式成员与本卡反向标签 | 套装闭合、ID lint |

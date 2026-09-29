@@ -1,10 +1,10 @@
 # 05 · 笑傲江湖书界（DLC）
 
 > 归属（基准 §18）：`ch05_xiaoao` 的时代图层、非主线任务、门派投放、人物招募、书界产出、特色玩法与难度落地；主线剧情唯一归属为 `design/story/05-xiaoao.md`，本文只建索引与系统接口。
-> 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定与重命名见 `decisions/rulings-v1.md`。
+> 上游：`00-canon.md` v1.6；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定与重命名见 `decisions/rulings-v1.md`。
 > 引用而不重定义：核心循环与锚点 → `design/01`；年代、境界、书眠与残承 → `design/02`；属性、伤害、武学与 Buff → `design/03`–`06`；套装、地形、战斗与装备 → `design/07`–`10`；开放世界与任务 → `design/11`–`12`；成长与天书 → `design/13`；静态经脉成长 → `design/15`；战斗经脉运行、招式路线、绝招、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；门派矩阵 → `design/17`；人物名录 → `design/18`；世界地图 → `design/19`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v1.0（D05 初稿，2026-09-26）；审校 D05.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）。
+> 版本：v1.0（D05 初稿，2026-09-26）；审校 D05.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；NXT 天阶具名主运闭合（2026-09-28）。
 
 ---
 
@@ -78,7 +78,7 @@
 1. **名门也要投票**：五岳不再是同色阵营；玩家收集授权、胁迫证据和退出条款，在公开程序与暗线制衡间选择。
 2. **一曲跨正邪**：琴箫不是剧情钥匙的单向消费品，既可独奏支援，也可双人合奏；能不能合奏取决于器物、武学、羁绊与战场压力。
 3. **力量带着债**：吸星大法能夺内，却把异种真气留在体内；治疗、少林印证和调息安排是长期构筑的一部分。
-4. **衰败并非贫瘠**：武运由 95 降至 75、上限由 70 降至 60，但五门原生天级孤本、八派争衡和密集人物网使横向选择更丰富。
+4. **衰败并非贫瘠**：武运由 95 降至 75、上限由 70 降至 60，但六门原生天级孤本、八派争衡和密集人物网使横向选择更丰富。
 5. **自在不是不负责**：正线拒绝以名义吞人，邪线拒绝以筹码占人；两线都须让令狐冲、任盈盈、仪琳和刘曲保有自己的决定。
 
 ### 1.3 状态轴与结局组合
@@ -710,7 +710,7 @@ powerId = flg_05_liuqu_fate == rescued
 
 | 门派 | 模板 | L1 可学 | L2 可学 | L3 可学 | L4 可学 | L5 与配给特例 |
 |---|---|---|---|---|---|---|
-| 华山 | T03 | `sk_huashanrumenjian`、`sk_huashanjichuquan`、`sk_huashantuna`、`sk_huashanxingbu` | `sk_huashanjianfa`、`sk_xiyijian`、`sk_yunvjian19` | `sk_yangwujian`、`sk_kuangfengkuaijian`、`sk_huashanxinfa` | `sk_taiyuesanqingfeng`、`sk_zixiashengong` | 全谱；`sk_dugu9` 仍为风清扬奇遇；粮药 / 绳索 |
+| 华山 | T03 | `sk_huashanrumenjian`、`sk_huashanjichuquan`、`sk_huashantuna`、`sk_huashanxingbu` | `sk_huashanjianfa`、`sk_xiyijian`、`sk_yunvjian19` | `sk_yangwujian`、`sk_kuangfengkuaijian`、`sk_huashanxinfa` | `sk_taiyuesanqingfeng`、`sk_zixiashengong` | 气宗 L5 且紫霞 9 重开放 `sk_huashanziqijue` 掌门传功 / 密卷来源；`sk_dugu9` 仍为风清扬奇遇；粮药 / 绳索 |
 | 嵩山 | T03 | `sk_songshanrumenjian`、`sk_songyangrumenzhang`、`sk_songyangtuna`、`sk_songshanxingbu` | `sk_songshanjianfa`、`sk_songshanzhuangong` | `sk_dayinyangshou`、`sk_songyangxinfa` | `sk_hanbingzhenqi` | 全谱；铁器 / 御寒药 |
 | 泰山 | T03/T02 | `sk_taishanrumenjian`、`sk_taishanrumenquan`、`sk_taishantuna`、`sk_shibanshanbu` | `sk_taishanjianfa`、`sk_taishanquan` | `sk_taishan18pan`、`sk_taishanxinfa` | `sk_daizongruhe` | 全谱；药材 / 纸墨 |
 | 南衡山 | T03 | `sk_hengshanrumenjian`、`sk_hengshanrumenzhang`、`sk_hengshantuna`、`sk_hengshanqingbu` | `sk_hengshanxinfa` | `sk_huifengluoyan`、`sk_hengshanwushenjian` | `sk_baibianqianhuan`、`sk_hengshanyunwubu` | 全谱；琴弦 / 木料 |
@@ -827,9 +827,9 @@ effLayer = min(trueLayer, tierCapEff, gateCap, special.layerCap ?? 10)
 
 ## 9. 武学与装备产出
 
-### 9.1 五门完整原生天级与单周目预算
+### 9.1 六门完整原生天级与单周目预算
 
-本界完整原生天级池固定为 **5 门**：`skills-wuyue` 的四门，加少林图鉴中的 `sk_yijinjing`。太极拳、太极剑是另外两门 10 品残承，不得混入这 5 门。品阶、招式、层数、内功贡献、誓约和反噬均只读 `design/05` 与相应图鉴；本节只负责把合法来源挂到本界内容节点。
+本界完整原生天级池固定为 **6 门**：`skills-wuyue` 的四门、少林图鉴中的 `sk_yijinjing`，以及补录册中的 `sk_huashanziqijue`。太极拳、太极剑是另外两门 10 品残承，不得混入这 6 门。品阶、招式、层数、内功贡献、誓约和反噬均只读 `design/05` 与相应图鉴；本节只负责把合法来源挂到本界内容节点。
 
 | 武学 | 绝对品阶 / 类别 | 固定获取节点 | 本界门槛与代价 | 互斥 / 预算处理 |
 |---|---|---|---|---|
@@ -838,6 +838,7 @@ effLayer = min(trueLayer, tierCapEff, gateCap, special.layerCap ?? 10)
 | `sk_xixing` 吸星大法 | 11 天中 / 内功 | `enc_05_meizhuang_poju` 后读湖底铁板，或任我行合法授艺 | 须有 `sk_riyuexinfa` 6 重；选择研习即开启异种真气教学 | 消耗 1 名额；与易筋并不互斥，但同时取得占 2 名额 |
 | `sk_kuihua` 葵花宝典 | 11 天中 / 内功 | `enc_05_heimuya` 后的教藏结算 | 黑木崖秘库来源、冷静期、二次确认与 `vow_duanchen` 全部满足；仅看残页不算取得 | 与辟邪同属本界“葵花源”最多取得 1 门；消耗 1 名额 |
 | `sk_bixie` 辟邪剑法 | 10 天下 / 兵器·剑 | 林家老宅袈裟真谱；由 `dc_05_01` 与 `q_05_bond_20` 决定合法读取窗 | `sk_linjiajianfa≥5`；完整修炼须 `vow_duanchen`；无誓约只能按图鉴得 5 品 / 5 重“有形无实”，此时不算天级取得 | 与葵花同源最多取得 1 门；完整来源才消耗 1 名额 |
+| `sk_huashanziqijue` 华山紫气诀**（原创扩展）** | 10 天下 / 内功 | 华山气宗 L5 且紫霞神功 9 重后，由掌门传功或历代掌门密卷授艺 | 气宗身份与 `sk_zixiashengong≥9` 均为硬门槛；气剑辨义支线只开放至 8 重 | 完整传功消耗 1 名额；主角及其他合格华山气宗门人均可正常习得 |
 
 中武的 `playerTianBudget=3`，所以所有完整来源、残承新学和完整补传都进入同一章节计数器；改门派、队友代领、撤销拜师或重放节点都不能刷新。最外层预算组与葵花源子组如下；`budgetKey` / `sourceKey` 是 `tianExclusiveGroup` 字段内局部键，不申请新的全局 ID：
 
@@ -853,6 +854,7 @@ tianExclusiveGroup:
       - {skillId: sk_xixing, sourceKind: full}
       - {skillId: sk_kuihua, sourceKind: full}
       - {skillId: sk_bixie, sourceKind: full}
+      - {skillId: sk_huashanziqijue, sourceKind: full}
       - {skillId: sk_taijiquan, sourceKind: partial, sourceGrade: 10}
       - {skillId: sk_taijijian, sourceKind: partial, sourceGrade: 10}
     countRules:
@@ -865,7 +867,7 @@ tianExclusiveGroup:
     members: [sk_kuihua, sk_bixie]
 ```
 
-合法路线的上界是 `min(3, 5 个完整候选 + 2 个残承候选)=3`；例如“独孤 + 易筋 + 吸星”正好用满 3，“太极拳残承 + 太极剑残承 + 辟邪”也正好用满 3。取得第四项时，UI 必须显示已占用的三个来源并要求放弃当前新来源，不得先发放再回收。葵花 / 辟邪子组使两者不能靠不同任务同时绕过同源限制；“有形无实”的 5 品辟邪不占名额，但以后补成 10 品时才计 1。
+合法路线的上界是 `min(3, 6 个完整候选 + 2 个残承候选)=3`；例如“独孤 + 易筋 + 吸星”正好用满 3，“太极拳残承 + 太极剑残承 + 华山紫气诀”也正好用满 3。取得第四项时，UI 必须显示已占用的三个来源并要求放弃当前新来源，不得先发放再回收。葵花 / 辟邪子组使两者不能靠不同任务同时绕过同源限制；“有形无实”的 5 品辟邪不占名额，但以后补成 10 品时才计 1。
 
 ### 9.2 两门太极残承：与完整池分列
 
@@ -874,7 +876,7 @@ tianExclusiveGroup:
 | `sk_taijiquan` 太极拳 | `partial`，`lineageGrade=10` | 冲虚 / 武当访学的拳理印证 **（原创扩展）**；武当 L4 或守约外客，高品德 | 若从倚天携完整 11 入界：`max(11−2,10)=10`；若本界新学：`sourceGrade=10` | 本界新学再入侠客为 `10−2=8`，不是按完整 11 算 9 |
 | `sk_taijijian` 太极剑 | `partial`，`lineageGrade=10` | 冲虚对剑后的剑圈印证；挂少林三战 / 并派见证窗，不能靠普通观摩自动取得 | 携完整 11 同样为 `max(11−2,10)=10`；新学固定来源 10 | 保存 `partial`、`sourceGrade=10`、`nativeTo=ch04_yitian`，书眠不自动补全 |
 
-两门各自计入本界 3 份天级获取预算，但不把“完整原生 5 门”写成 7 门。若玩家携带完整太极来笑傲，只做 10 品印证而不计新取得；若玩家原本只有残篇，本界首次形成 10 品来源，则计 1。`design/20` 的三卷校合将来可补回 11 品，但仍须三卷、信物和配方齐全；章节的冲虚印证不能越权替代校合。
+两门各自计入本界 3 份天级获取预算，但不把“完整原生 6 门”写成 8 门。若玩家携带完整太极来笑傲，只做 10 品印证而不计新取得；若玩家原本只有残篇，本界首次形成 10 品来源，则计 1。`design/20` 的三卷校合将来可补回 11 品，但仍须三卷、信物和配方齐全；章节的冲虚印证不能越权替代校合。
 
 ### 9.3 地、玄、黄阶代表与装配补齐
 
@@ -1308,17 +1310,17 @@ Boss 的 71.5 是四人队标准命中等价，不是要求主角单人出手 71
 | 左冷禅（少林 / 夺帅复用） | 嵩山 L5 | `sk_hanbingzhenqi`（地上9，阴） | `sk_songyangxinfa`（玄上6）、`sk_songyangtuna`（黄上3） | `sk_songshankaihezhang`（地中8；见 `catalog/skills-bulu-05-xiaoao.md` §2.2）、`sk_songshanjianfa`（玄上6）、`sk_dayinyangshou`（玄中5）、`sk_songshanzhuangong`（玄下4）、`sk_songshanrumenjian`（黄上3） | `boss; 9/9; 13000; 9000; 13000; yin; fullTemplate; M5` | `0.7984 / 1.000` | `28.81→23.00` | 合法主运已达标；嵩山公传掌法闭合 `G=8` 闸门 |
 | 日月来袭首领 | 日月神教 L4 | `sk_heimuxuangong`（地中8，阴；见 `catalog/skills-bulu-05-xiaoao.md` §4.1） | `sk_riyuexinfa`（玄上6）、`sk_heimutuna`（黄上3） | `sk_heimuyajianfa`（地下7）、`sk_riyuejianfa`（玄上6）、`sk_duandashou`（玄下4）、`sk_heimuyarumenjian`（黄上3） | `boss; 8/9; 13000; 9000; 13000; yin; fullTemplate; M5` | `0.8127 / 1.000` | `28.30→23.00` | 地位下限 8；日月公传主运已补录 |
 | 东方不败 | 日月神教教主 / 葵花传承 | `sk_kuihua`（天中11，阴） | `sk_riyuexinfa`（玄上6）、`sk_heimutuna`（黄上3） | `sk_kuihuafeizhen`（地上9；见 `catalog/skills-bulu-05-xiaoao.md` §4.3）、`sk_heimuyajianfa`（地下7）、`sk_riyuejianfa`（玄上6）、`sk_heimuyarumenjian`（黄上3）、`sk_riyuejichuquan`（黄中2） | `boss; 11/9; 13000; 9000; 13000; yin; fullTemplate; M5` | `0.7612 / 1.000` | `30.22→23.00` | 地位下限 11；实体绣花针外功替换通行百战剑 |
-| 岳不群 | 华山气宗掌门 / 辟邪传承 | 地位兜底主运（目标天下10；待 `D05-B09` 裁定） | `sk_huashanxinfa`（玄上6）、`sk_huashantuna`（黄上3） | `sk_bixie`（天下10）、`sk_taiyuesanqingfeng`（地中8）、`sk_huashanjianfa`（玄上6）、`sk_yangwujian`（玄上6）、`sk_huashanrumenjian`（黄上3） | `boss; 10/9; 13000; 9000; 13000; yang; fullTemplate; M5` | `0.7739 / 1.000` | `29.72→23.00` | 地位下限 10；不以辟邪外功冒充主运 |
+| 岳不群 | 华山气宗掌门 / 辟邪传承 | `sk_huashanziqijue` 华山紫气诀（天下10，阳；见 `catalog/skills-bulu-05-xiaoao.md` §1.1） | `sk_huashanxinfa`（玄上6）、`sk_huashantuna`（黄上3） | `sk_bixie`（天下10）、`sk_taiyuesanqingfeng`（地中8）、`sk_huashanjianfa`（玄上6）、`sk_yangwujian`（玄上6）、`sk_huashanrumenjian`（黄上3） | `boss; 10/9; 13000; 9000; 13000; yang; fullTemplate; M5` | `0.7739 / 1.000` | `29.72→23.00` | 具名主运替换地位兜底 |
 
 表内先写 `kind`，随后七项参数固定为 `effGrade/effLayer; mpRatioBp; practiceBp; capacityScaleBp; innerNature; openPolicy; milestones`；`M5={meridianComplete:true,smallCycle:true,greatCycle:true,twelveCycle:false,turns:2}`，表示本界已开放的小 / 大周天与第二转，不是 20 脉全开。九个首领画像共占 27 个内功槽、43 门外功；同一角色跨遭遇复用静态画像，每场动态态重建。
 
 每名使者、围攻头目、少林三战参与者与独立武学行动者各持一个 `MeridianFlowModule`；同场多人仍共享 §12.3 的遭遇耐久，不得逐人复制整份 Boss HP。琴音、黑暗、索道等纯环境状态不配武学且无实例。任我行的个人掌法与东方不败所用实体针术现分别由 `sk_renwoxingzhang`、`sk_kuihuafeizhen` 承载；后者不把投掷实体暗器误作真气外放。模块不持有 RNG；Core 只在成功命令事务中注入唯一全局 `battle` 流。`effGrade/effLayer` 只取主运内功经 `design/13` 压制后的最终有效值。
 
-本界 `G=8`，Boss 主运至少 8。全量检索既有图鉴后，`sk_baizhanxinfa` 来源不含笑傲，也没有可合法复用的 8 品同门内功；故按主书界职责在 `catalog/skills-bulu-05-xiaoao.md` 补录青城、嵩山、华山剑宗、日月四门公传主运，并以门派掌法 / 人物来源外功替换通行百战剑。上述门派公传均允许主角和其他合格人物按正常途径学习，任我行掌法及葵花飞针才另设指点 / 秘谱条件。岳不群仍按地位下限 10 使用兜底：Canon §13 的 51 门天级闭集没有可新增的华山 10 品内功，且不能以 9 品紫霞或 10 品辟邪外功冒充主运。
+本界 `G=8`，Boss 主运至少 8。全量检索既有图鉴后，`sk_baizhanxinfa` 来源不含笑傲，也没有可合法复用的 8 品同门内功；故按主书界职责在 `catalog/skills-bulu-05-xiaoao.md` 补录青城、嵩山、华山剑宗、日月四门公传主运，并以门派掌法 / 人物来源外功替换通行百战剑。上述门派公传均允许主角和其他合格人物按正常途径学习，任我行掌法及葵花飞针才另设指点 / 秘谱条件。作者决定扩容后，岳不群也改用华山气宗正常传承的 10 品 `sk_huashanziqijue`：气宗 L5 且紫霞 9 重可由掌门传功 / 密卷习得，具名主运外键与地位下限均已闭合。
 
 按 `design/21` §4.9，东方不败原有约 216 的基础 / 脚本速度先经 `meridianSpeedBp` 投影，再用于首轮与 CT；不得把经脉速度再写进基础 `spd`，也不得用它越过 qg 门禁。随后才乘擒拿移动倍率；纯经脉 `evadeRatingDelta` 与擒拿 `evadeBp` 各一次。攻防分别走 Z5M / Z4M，护体内劲位于护盾后、`mpGuard` 前；吸星的异种真气和经脉 backlog 是两套状态，不相互冒充或重复计罚。
 
-逐单位静态复核统一用 10 / 6 段代表路线：精英锚 9.61；四组 8 品首领 28.30 轮，以 `23/28.30=0.8127` 调整 HP；左冷禅 28.81 轮用 `23/28.81=0.7984`；岳不群 29.72 轮用 `23/29.72=0.7739`；任我行 / 东方不败 30.22 轮用 `23/30.22=0.7612`；方证 30.93 轮用 `23/30.93=0.7435`。替换武学 ID 不改变七参数，故替换前后静态轮数相同，防御倍率均保持 1.000，不降低经脉。多人 / 复用遭遇只把倍率施加到整场总耐久，每场动态实例仍重建；完整 `full` 配置须固定 RNG 实跑 **（待实测）**。
+逐单位静态复核统一用 10 / 6 段代表路线：精英锚 9.61；四组 8 品首领 28.30 轮，以 `23/28.30=0.8127` 调整 HP；左冷禅 28.81 轮用 `23/28.81=0.7984`；岳不群换为具名主运后七项仍为 `10/9;13000;9000;13000;yang;fullTemplate;M5`，故仍是 29.72 轮并用 `23/29.72=0.7739` 调整至 23.00；任我行 / 东方不败 30.22 轮用 `23/30.22=0.7612`；方证 30.93 轮用 `23/30.93=0.7435`。替换武学 ID 不改变七参数，防御倍率均保持 1.000，不降低经脉。多人 / 复用遭遇只把倍率施加到整场总耐久，每场动态实例仍重建；完整 `full` 配置须固定 RNG 实跑 **（待实测）**。
 
 #### 12.6.1 图鉴缺口与处理结果
 
@@ -1331,7 +1333,7 @@ Boss 的 71.5 是四人队标准命中等价，不是要求主角单人出手 71
 | 任我行 | 可单列的个人外功 | 新增 `sk_renwoxingzhang`（地上9），替换通行百战剑 | 已补；遗谱取得方式需作者确认，见补录图鉴 §4.2 |
 | 东方不败 | 可单列的实体针外功 | 新增 `sk_kuihuafeizhen`（地上9），替换通行百战剑；实体针不算外放 | 已补；秘谱 / 特殊授艺方式需作者确认，见补录图鉴 §4.3 |
 | 左冷禅 | 8 品以上嵩山外功 | 新增公传 `sk_songshankaihezhang`（地中8），替换通行百战剑 | 已补；见补录图鉴 §2.2 |
-| 岳不群 | 10 品合法主运 | 保留地位兜底 `10/9/yang`；Canon §13 天级闭集无可新增的华山 10 品内功 | 未补；需作者先裁定是否修改固定天级闭集 / 紫霞品阶 |
+| 岳不群 | 10 品合法主运 | 新增 `sk_huashanziqijue`（天下10，阳），以气宗 L5 + 紫霞 9 重的正常传承替换地位兜底 | 已补；见 `catalog/skills-bulu-05-xiaoao.md` §1.1 |
 
 本书是日月神教、五岳剑派、青城派的主书界，本轮没有“待其他主书界补录”项，也没有来源扩展待登记项。他书若出现这些门派人物，应复用本补录册 ID，由收尾任务统一替换。
 
@@ -1452,7 +1454,7 @@ Boss 的 71.5 是四人队标准命中等价，不是要求主角单人出手 71
 | `CH05-V11` | 门派 | 笑傲矩阵计数 `O15/H19/P1/N41/D23/M0=99`；10 个完整制作位均有加入 / 门规 / 五级称谓 / 武学 / 月钱与配给 | error |
 | `CH05-V12` | 人物 | 重点招募至少 6，本文 9；每人有 D 级与任务门槛；前界可确认活体重逢为 0 | error |
 | `CH05-V13` | NPC 引用 | 所有可招募和具名 `full` 角色能在 `npcs-ch05-xiaoao` / `design/18` 解析；名录缺口只用显示角色组 | error |
-| `CH05-V14` | 武学引用 | `sk_*` 均解析到指定图鉴；完整原生天级恰 5，太极 10 品残承恰 2，单周目新增 / 补传 / 残承上限 3 | error |
+| `CH05-V14` | 武学引用 | `sk_*` 均解析到指定图鉴；完整原生天级恰 6，太极 10 品残承恰 2，单周目新增 / 补传 / 残承上限 3 | error |
 | `CH05-V15` | 低阶装配 | 从零携带仍有非互斥内功、拳脚、兵器各三门合法来源，且不越图鉴 `maxLayer` | error |
 | `CH05-V16` | 特色接口 | 琴箫门槛 / 中断、票务四证、吸星 10/15/20 阈值逐项等于上游；`feat_*` 始终标提案态 | error |
 | `CH05-V17` | Boss 数值 | D7 仅乘 HP / 攻击 1.20；模板 MP 乘 2；`full` 不乘 Boss 攻击 1.25；多人战不复制整份单 Boss 耐久 | error |
@@ -1546,7 +1548,7 @@ Boss 的 71.5 是四人队标准命中等价，不是要求主角单人出手 71
 | `D05-B06` | **已解决（不升格）：**`openingCredential_05` 作为章节 / 任务局部状态，按 `design/12` §2.6 在迁移 manifest 中登记映射、单写者与版本，不进入 Canon 全局前缀 | CP-39 已拒绝 `opening_*` 升格，同时保留三种履历的可迁移存档语义 |
 | `D05-B07` | **已解决：**`design/07-set-system.md` 已建立并收敛五岳图鉴十个旧候选 | 本章只引用 §14 四套正式项；其余按 07 §19 去向处理，章节不再降级猜测 |
 | `D05-B08` | **章节侧已解决**：具名 `full` HP 按同级模板完成取整后再乘个体比例；请 `design/09` 将东方不败旧值同步为 122,626 | `design/03` 已定 0.6–1.2 合法区间；108,000 实际约为模板的 0.528 倍 |
-| `D05-B09` | 为岳不群 10 品主运先裁定：调整 `sk_zixiashengong` 品阶，或允许 Canon §13 固定 51 门天级闭集增加华山内功；未裁定前不新增 ID | AR-15 要求顶尖人物达到地位下限，但现有 9 品紫霞不足，10 品辟邪是外功，擅自增天级会破坏闭集 |
+| `D05-B09` | **已解决：**作者决定扩容，新增 `sk_huashanziqijue`（天下10，阳）作为岳不群与合格华山气宗门人的正常主运（见 Canon v1.6 V16-01、补录 §1.1） | 不调整 9 品紫霞，也不以 10 品辟邪外功冒充主运；七项参数保持 `10/9/yang` |
 
 ### 原著考据待办
 
@@ -1567,5 +1569,5 @@ Boss 的 71.5 是四人队标准命中等价，不是要求主角单人出手 71
 | `D05-O09` | 套装候选何时可作为正式奖励？ | `design/07` 建立并登记前一律不可；单件和武学照常掉落 / 授艺 | 装备成长、收集与构建校验 |
 | `D05-O10` | 生卒未知的刘曲等改命人物能否在侠客肉身重逢？ | 读 `design/18`；健在则必须可重逢，未知则只给传闻 / 后跋，不按 57 年直觉裁定 | 后界人物、演出与存档兼容 |
 | `D05-O11` | 东方不败与其余具名 Boss 经脉建议值何时定稿？ | 默认沿 §12.6；补录图鉴路线已齐，下一步固定 RNG 逐战复跑，24.9 上沿越界先调阶段耐久 / 路线 CT | Boss 节奏、AI 与 QA |
-| `D05-O12` | 岳不群 10 品主运如何满足地位下限？ | 先保留 `10/9/yang` 地位兜底；作者裁定 Canon 天级闭集或紫霞品阶前，不新建天下内功 | 武学闭集、Boss 画像与全局数量 |
+| `D05-O12` | **已解决：**岳不群 10 品主运如何满足地位下限？ | 作者决定扩容；使用可正常习得的 `sk_huashanziqijue`，仍为 `10/9/yang`（见 Canon v1.6 V16-01、补录 §1.1） | 武学名录、Boss 画像与全局数量已闭合 |
 | `D05-O13` | 任我行掌法与葵花飞针的玩家获取方式是否采用？ | 任我行指点 / 梅庄后手录，以及黑木崖秘库针谱 / 特殊授艺；均保留高阶前置且不由击败必掉 | 个人独门可得性与唯一物权 |
