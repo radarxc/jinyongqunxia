@@ -5689,130 +5689,6 @@
       }
     },
     {
-      "id": "NAudit",
-      "phase": "G",
-      "wave": 7,
-      "kind": "revise",
-      "title": "经脉系统落地一致性审计（21 回填、跨文档一致、README / TODO）",
-      "prompt": "NAudit-meridian.md",
-      "deps": [
-        "A4",
-        "N04",
-        "N05",
-        "N06",
-        "N09",
-        "N15",
-        "N1314",
-        "Ntech",
-        "NC1",
-        "NC2",
-        "NC3",
-        "NC4",
-        "NCh1",
-        "NCh2",
-        "M4",
-        "NL",
-        "NU1",
-        "NU2",
-        "NU3",
-        "NU4",
-        "NB1",
-        "NB2",
-        "NB3",
-        "NB4a",
-        "NB4b",
-        "NU2S",
-        "NA1",
-        "NA1t",
-        "NA2",
-        "M5",
-        "M5b",
-        "M5c1",
-        "M5c2",
-        "NU5p",
-        "NU5a",
-        "NU5b",
-        "NL2",
-        "NL3",
-        "NR0",
-        "NR1",
-        "NR2",
-        "NXB01",
-        "NXB02",
-        "NXB03",
-        "NXB04",
-        "NXB05",
-        "NXB06",
-        "NXB07",
-        "NXB08",
-        "NXB09",
-        "NXB10",
-        "NXB11",
-        "NXB12",
-        "NXB13",
-        "NXB14",
-        "NXfix",
-        "NXT"
-      ],
-      "writes": [
-        "docs/**",
-        "tools/lint/**",
-        "tools/balance/**",
-        "TODO.md"
-      ],
-      "review": false,
-      "web": false,
-      "vars": {},
-      "validate": {
-        "exists": [
-          "docs/design/21-meridian-flow-and-moves.md"
-        ],
-        "cmd": [
-          [
-            "{python}",
-            "-m",
-            "unittest",
-            "discover",
-            "-s",
-            "tools/lint",
-            "-p",
-            "test_*.py"
-          ],
-          [
-            "{python}",
-            "tools/lint/check_ids.py",
-            "--strict"
-          ],
-          [
-            "{python}",
-            "tools/balance/damage_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/balance/meridian_flow_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/balance/boss_pacing.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/balance/projection_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/lint/check_skill_catalogs.py",
-            "--strict",
-            "--diversity-strict"
-          ]
-        ]
-      }
-    },
-    {
       "id": "M4",
       "phase": "G",
       "wave": 6,
@@ -8790,135 +8666,6 @@
       }
     },
     {
-      "id": "NXfix",
-      "phase": "G",
-      "wave": 6,
-      "kind": "revise",
-      "title": "首领武学补录收尾：来源扩展落实、跨书界替换、补录图鉴互查",
-      "prompt": "NXfix-cross-book.md",
-      "deps": [
-        "NXB01",
-        "NXB02",
-        "NXB03",
-        "NXB04",
-        "NXB05",
-        "NXB06",
-        "NXB07",
-        "NXB08",
-        "NXB09",
-        "NXB10",
-        "NXB11",
-        "NXB12",
-        "NXB13",
-        "NXB14",
-        "NR2",
-        "NXT"
-      ],
-      "writes": [
-        "docs/design/catalog/skills-shaolin.md",
-        "docs/design/catalog/skills-daojia.md",
-        "docs/design/catalog/skills-general.md",
-        "docs/design/catalog/skills-wujue.md",
-        "docs/design/catalog/skills-xiaoyao.md",
-        "docs/design/catalog/skills-yitian.md",
-        "docs/design/catalog/skills-xiake-bixue.md",
-        "docs/design/catalog/skills-wuyue.md",
-        "docs/design/catalog/skills-kangxi.md",
-        "docs/design/catalog/skills-qianlong.md",
-        "docs/design/catalog/skills-gulong.md",
-        "docs/design/catalog/skills-bulu-*.md",
-        "docs/design/chapters/01-tianlong.md",
-        "docs/design/chapters/02-shediao.md",
-        "docs/design/chapters/03-shendiao.md",
-        "docs/design/chapters/04-yitian.md",
-        "docs/design/chapters/05-xiaoao.md",
-        "docs/design/chapters/06-xiake.md",
-        "docs/design/chapters/07-bixue.md",
-        "docs/design/chapters/08-luding.md",
-        "docs/design/chapters/09-liancheng.md",
-        "docs/design/chapters/10-baima.md",
-        "docs/design/chapters/11-yuanyang.md",
-        "docs/design/chapters/12-shujian.md",
-        "docs/design/chapters/13-feihu.md",
-        "docs/design/chapters/14-xueshan.md",
-        "docs/decisions/ultimate-counts-tianzhong-dizhong.md"
-      ],
-      "review": false,
-      "web": false,
-      "vars": {},
-      "validate": {
-        "exists": [
-          "docs/design/catalog/skills-shaolin.md",
-          "docs/design/catalog/skills-daojia.md",
-          "docs/design/catalog/skills-general.md",
-          "docs/design/catalog/skills-wujue.md",
-          "docs/design/catalog/skills-xiaoyao.md",
-          "docs/design/catalog/skills-yitian.md",
-          "docs/design/catalog/skills-xiake-bixue.md",
-          "docs/design/catalog/skills-wuyue.md",
-          "docs/design/catalog/skills-kangxi.md",
-          "docs/design/catalog/skills-qianlong.md",
-          "docs/design/catalog/skills-gulong.md"
-        ],
-        "fences": [
-          "docs/design/catalog/skills-shaolin.md",
-          "docs/design/catalog/skills-daojia.md",
-          "docs/design/catalog/skills-general.md",
-          "docs/design/catalog/skills-wujue.md",
-          "docs/design/catalog/skills-xiaoyao.md",
-          "docs/design/catalog/skills-yitian.md",
-          "docs/design/catalog/skills-xiake-bixue.md",
-          "docs/design/catalog/skills-wuyue.md",
-          "docs/design/catalog/skills-kangxi.md",
-          "docs/design/catalog/skills-qianlong.md",
-          "docs/design/catalog/skills-gulong.md"
-        ],
-        "cmd": [
-          [
-            "{python}",
-            "tools/lint/check_ids.py",
-            "--strict"
-          ],
-          [
-            "{python}",
-            "-m",
-            "unittest",
-            "discover",
-            "-s",
-            "tools/lint",
-            "-p",
-            "test_*.py"
-          ],
-          [
-            "{python}",
-            "tools/lint/check_skill_catalogs.py",
-            "--strict",
-            "--diversity-strict"
-          ],
-          [
-            "{python}",
-            "tools/balance/damage_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/balance/meridian_flow_sim.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/balance/boss_pacing.py",
-            "--check"
-          ],
-          [
-            "{python}",
-            "tools/balance/projection_sim.py",
-            "--check"
-          ]
-        ]
-      }
-    },
-    {
       "id": "NXT",
       "phase": "G",
       "wave": 6,
@@ -9048,6 +8795,949 @@
             "{python}",
             "tools/balance/projection_sim.py",
             "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAu-lint",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·检查脚本（NL3 / NR0 遗留、出招方式末端规则检查）",
+      "prompt": "NAu-lint.md",
+      "deps": [
+        "NL3",
+        "NR0"
+      ],
+      "writes": [
+        "tools/lint/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/lint/check_skill_catalogs.py"
+        ],
+        "fences": [],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAu-tech",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·技术文档（tech/01 / 04 / 05 / 08）",
+      "prompt": "NAu-tech.md",
+      "deps": [
+        "M5b",
+        "NA1t",
+        "NB3"
+      ],
+      "writes": [
+        "docs/tech/01-architecture.md",
+        "docs/tech/04-data-pipeline.md",
+        "docs/tech/05-gameplay-engine.md",
+        "docs/tech/08-backend-and-online.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/tech/01-architecture.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/05-gameplay-engine.md",
+          "docs/tech/08-backend-and-online.md"
+        ],
+        "fences": [
+          "docs/tech/01-architecture.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/05-gameplay-engine.md",
+          "docs/tech/08-backend-and-online.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAu-rulesA",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·规则文档甲（05 / 06 / 09 / 10）",
+      "prompt": "NAu-rulesA.md",
+      "deps": [
+        "M5c1",
+        "M5c2",
+        "NB4a",
+        "NB4b"
+      ],
+      "writes": [
+        "docs/design/05-martial-arts-system.md",
+        "docs/design/06-buff-system.md",
+        "docs/design/09-combat-system.md",
+        "docs/design/10-items-and-equipment.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/06-buff-system.md",
+          "docs/design/09-combat-system.md",
+          "docs/design/10-items-and-equipment.md"
+        ],
+        "fences": [
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/06-buff-system.md",
+          "docs/design/09-combat-system.md",
+          "docs/design/10-items-and-equipment.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAu-rulesB",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·规则文档乙（03 / 04 / 12 / 17 / 18、人物档案、剧情）",
+      "prompt": "NAu-rulesB.md",
+      "deps": [
+        "NXT",
+        "NXB01",
+        "NXB02",
+        "NXB03",
+        "NXB04",
+        "NXB05",
+        "NXB06",
+        "NXB07",
+        "NXB08",
+        "NXB09",
+        "NXB10",
+        "NXB11",
+        "NXB12",
+        "NXB13",
+        "NXB14"
+      ],
+      "writes": [
+        "docs/design/03-attributes.md",
+        "docs/design/04-damage-formula.md",
+        "docs/design/12-quests-npc-factions.md",
+        "docs/design/17-sects-compendium.md",
+        "docs/design/18-npc-and-companions.md",
+        "docs/design/catalog/npcs-ch01-tianlong.md",
+        "docs/design/catalog/npcs-ch02-shediao.md",
+        "docs/design/catalog/npcs-ch03-shendiao.md",
+        "docs/design/catalog/npcs-ch04-yitian.md",
+        "docs/design/catalog/npcs-ch05-xiaoao.md",
+        "docs/design/catalog/npcs-ch06-xiake.md",
+        "docs/design/catalog/npcs-ch07-bixue.md",
+        "docs/design/catalog/npcs-ch08-luding.md",
+        "docs/design/catalog/npcs-ch09-liancheng.md",
+        "docs/design/catalog/npcs-ch10-baima.md",
+        "docs/design/catalog/npcs-ch11-yuanyang.md",
+        "docs/design/catalog/npcs-ch12-shujian.md",
+        "docs/design/catalog/npcs-ch13-feihu.md",
+        "docs/design/catalog/npcs-ch14-xueshan.md",
+        "docs/design/story/01-tianlong.md",
+        "docs/design/story/02-shediao.md",
+        "docs/design/story/03-shendiao.md",
+        "docs/design/story/04-yitian.md",
+        "docs/design/story/05-xiaoao.md",
+        "docs/design/story/06-xiake.md",
+        "docs/design/story/07-bixue.md",
+        "docs/design/story/08-luding.md",
+        "docs/design/story/09-liancheng.md",
+        "docs/design/story/10-baima.md",
+        "docs/design/story/11-yuanyang.md",
+        "docs/design/story/12-shujian.md",
+        "docs/design/story/13-feihu.md",
+        "docs/design/story/14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/03-attributes.md",
+          "docs/design/04-damage-formula.md",
+          "docs/design/12-quests-npc-factions.md",
+          "docs/design/17-sects-compendium.md",
+          "docs/design/18-npc-and-companions.md",
+          "docs/design/catalog/npcs-ch01-tianlong.md",
+          "docs/design/catalog/npcs-ch02-shediao.md",
+          "docs/design/catalog/npcs-ch03-shendiao.md",
+          "docs/design/catalog/npcs-ch04-yitian.md",
+          "docs/design/catalog/npcs-ch05-xiaoao.md",
+          "docs/design/catalog/npcs-ch06-xiake.md",
+          "docs/design/catalog/npcs-ch07-bixue.md",
+          "docs/design/catalog/npcs-ch08-luding.md",
+          "docs/design/catalog/npcs-ch09-liancheng.md",
+          "docs/design/catalog/npcs-ch10-baima.md",
+          "docs/design/catalog/npcs-ch11-yuanyang.md",
+          "docs/design/catalog/npcs-ch12-shujian.md",
+          "docs/design/catalog/npcs-ch13-feihu.md",
+          "docs/design/catalog/npcs-ch14-xueshan.md",
+          "docs/design/story/01-tianlong.md",
+          "docs/design/story/02-shediao.md",
+          "docs/design/story/03-shendiao.md",
+          "docs/design/story/04-yitian.md",
+          "docs/design/story/05-xiaoao.md",
+          "docs/design/story/06-xiake.md",
+          "docs/design/story/07-bixue.md",
+          "docs/design/story/08-luding.md",
+          "docs/design/story/09-liancheng.md",
+          "docs/design/story/10-baima.md",
+          "docs/design/story/11-yuanyang.md",
+          "docs/design/story/12-shujian.md",
+          "docs/design/story/13-feihu.md",
+          "docs/design/story/14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/03-attributes.md",
+          "docs/design/04-damage-formula.md",
+          "docs/design/12-quests-npc-factions.md",
+          "docs/design/17-sects-compendium.md",
+          "docs/design/18-npc-and-companions.md",
+          "docs/design/catalog/npcs-ch01-tianlong.md",
+          "docs/design/catalog/npcs-ch02-shediao.md",
+          "docs/design/catalog/npcs-ch03-shendiao.md",
+          "docs/design/catalog/npcs-ch04-yitian.md",
+          "docs/design/catalog/npcs-ch05-xiaoao.md",
+          "docs/design/catalog/npcs-ch06-xiake.md",
+          "docs/design/catalog/npcs-ch07-bixue.md",
+          "docs/design/catalog/npcs-ch08-luding.md",
+          "docs/design/catalog/npcs-ch09-liancheng.md",
+          "docs/design/catalog/npcs-ch10-baima.md",
+          "docs/design/catalog/npcs-ch11-yuanyang.md",
+          "docs/design/catalog/npcs-ch12-shujian.md",
+          "docs/design/catalog/npcs-ch13-feihu.md",
+          "docs/design/catalog/npcs-ch14-xueshan.md",
+          "docs/design/story/01-tianlong.md",
+          "docs/design/story/02-shediao.md",
+          "docs/design/story/03-shendiao.md",
+          "docs/design/story/04-yitian.md",
+          "docs/design/story/05-xiaoao.md",
+          "docs/design/story/06-xiake.md",
+          "docs/design/story/07-bixue.md",
+          "docs/design/story/08-luding.md",
+          "docs/design/story/09-liancheng.md",
+          "docs/design/story/10-baima.md",
+          "docs/design/story/11-yuanyang.md",
+          "docs/design/story/12-shujian.md",
+          "docs/design/story/13-feihu.md",
+          "docs/design/story/14-xueshan.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAu-21",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·21 号文档回填与参考实现",
+      "prompt": "NAu-21.md",
+      "deps": [
+        "NXT"
+      ],
+      "writes": [
+        "docs/design/21-meridian-flow-and-moves.md",
+        "tools/balance/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/21-meridian-flow-and-moves.md"
+        ],
+        "fences": [
+          "docs/design/21-meridian-flow-and-moves.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAu-canon",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·基准与决策记录",
+      "prompt": "NAu-canon.md",
+      "deps": [
+        "NXT"
+      ],
+      "writes": [
+        "docs/00-canon.md",
+        "docs/decisions/author-requirements.md",
+        "docs/decisions/canon-proposals-v1.2.md",
+        "docs/decisions/rulings-v1.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/00-canon.md",
+          "docs/decisions/author-requirements.md",
+          "docs/decisions/canon-proposals-v1.2.md",
+          "docs/decisions/rulings-v1.md"
+        ],
+        "fences": [
+          "docs/00-canon.md",
+          "docs/decisions/author-requirements.md",
+          "docs/decisions/canon-proposals-v1.2.md",
+          "docs/decisions/rulings-v1.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixA",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·门派图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
+      "prompt": "NXfix-sect.md",
+      "deps": [
+        "NXT",
+        "NR1"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-shaolin.md",
+        "docs/design/catalog/skills-daojia.md",
+        "docs/design/catalog/skills-general.md",
+        "docs/design/catalog/skills-wujue.md",
+        "docs/design/catalog/skills-xiaoyao.md",
+        "docs/design/catalog/skills-yitian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天",
+        "doc_set": "- `docs/design/catalog/skills-shaolin.md`\n- `docs/design/catalog/skills-daojia.md`\n- `docs/design/catalog/skills-general.md`\n- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-xiaoyao.md`\n- `docs/design/catalog/skills-yitian.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md",
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md",
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md",
+          "docs/design/catalog/skills-daojia.md",
+          "docs/design/catalog/skills-general.md",
+          "docs/design/catalog/skills-wujue.md",
+          "docs/design/catalog/skills-xiaoyao.md",
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-shaolin.md",
+            "docs/design/catalog/skills-daojia.md",
+            "docs/design/catalog/skills-general.md",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-shaolin.md",
+            "docs/design/catalog/skills-daojia.md",
+            "docs/design/catalog/skills-general.md",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixB",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·门派图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
+      "prompt": "NXfix-sect.md",
+      "deps": [
+        "NXT",
+        "NR2"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-xiake-bixue.md",
+        "docs/design/catalog/skills-wuyue.md",
+        "docs/design/catalog/skills-kangxi.md",
+        "docs/design/catalog/skills-qianlong.md",
+        "docs/design/catalog/skills-gulong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙",
+        "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`\n- `docs/design/catalog/skills-wuyue.md`\n- `docs/design/catalog/skills-kangxi.md`\n- `docs/design/catalog/skills-qianlong.md`\n- `docs/design/catalog/skills-gulong.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md",
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiake-bixue.md",
+          "docs/design/catalog/skills-wuyue.md",
+          "docs/design/catalog/skills-kangxi.md",
+          "docs/design/catalog/skills-qianlong.md",
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "docs/design/catalog/skills-wuyue.md",
+            "docs/design/catalog/skills-kangxi.md",
+            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "docs/design/catalog/skills-wuyue.md",
+            "docs/design/catalog/skills-kangxi.md",
+            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-gulong.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixC",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·14 本补录图鉴与裁定表",
+      "prompt": "NXfix-bulu.md",
+      "deps": [
+        "NXT",
+        "NR2"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-bulu-01-tianlong.md",
+        "docs/design/catalog/skills-bulu-02-shediao.md",
+        "docs/design/catalog/skills-bulu-03-shendiao.md",
+        "docs/design/catalog/skills-bulu-04-yitian.md",
+        "docs/design/catalog/skills-bulu-05-xiaoao.md",
+        "docs/design/catalog/skills-bulu-06-xiake.md",
+        "docs/design/catalog/skills-bulu-07-bixue.md",
+        "docs/design/catalog/skills-bulu-08-luding.md",
+        "docs/design/catalog/skills-bulu-09-liancheng.md",
+        "docs/design/catalog/skills-bulu-10-baima.md",
+        "docs/design/catalog/skills-bulu-11-yuanyang.md",
+        "docs/design/catalog/skills-bulu-12-shujian.md",
+        "docs/design/catalog/skills-bulu-13-feihu.md",
+        "docs/design/catalog/skills-bulu-14-xueshan.md",
+        "docs/decisions/ultimate-counts-tianzhong-dizhong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-bulu-01-tianlong.md",
+          "docs/design/catalog/skills-bulu-02-shediao.md",
+          "docs/design/catalog/skills-bulu-03-shendiao.md",
+          "docs/design/catalog/skills-bulu-04-yitian.md",
+          "docs/design/catalog/skills-bulu-05-xiaoao.md",
+          "docs/design/catalog/skills-bulu-06-xiake.md",
+          "docs/design/catalog/skills-bulu-07-bixue.md",
+          "docs/design/catalog/skills-bulu-08-luding.md",
+          "docs/design/catalog/skills-bulu-09-liancheng.md",
+          "docs/design/catalog/skills-bulu-10-baima.md",
+          "docs/design/catalog/skills-bulu-11-yuanyang.md",
+          "docs/design/catalog/skills-bulu-12-shujian.md",
+          "docs/design/catalog/skills-bulu-13-feihu.md",
+          "docs/design/catalog/skills-bulu-14-xueshan.md",
+          "docs/decisions/ultimate-counts-tianzhong-dizhong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-bulu-01-tianlong.md",
+          "docs/design/catalog/skills-bulu-02-shediao.md",
+          "docs/design/catalog/skills-bulu-03-shendiao.md",
+          "docs/design/catalog/skills-bulu-04-yitian.md",
+          "docs/design/catalog/skills-bulu-05-xiaoao.md",
+          "docs/design/catalog/skills-bulu-06-xiake.md",
+          "docs/design/catalog/skills-bulu-07-bixue.md",
+          "docs/design/catalog/skills-bulu-08-luding.md",
+          "docs/design/catalog/skills-bulu-09-liancheng.md",
+          "docs/design/catalog/skills-bulu-10-baima.md",
+          "docs/design/catalog/skills-bulu-11-yuanyang.md",
+          "docs/design/catalog/skills-bulu-12-shujian.md",
+          "docs/design/catalog/skills-bulu-13-feihu.md",
+          "docs/design/catalog/skills-bulu-14-xueshan.md",
+          "docs/decisions/ultimate-counts-tianzhong-dizhong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfixD",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "收尾·14 部书界（跨书替换、小问题、Buff 迁移、节奏复核）",
+      "prompt": "NXfix-chapters.md",
+      "deps": [
+        "NXfixA",
+        "NXfixB",
+        "NXfixC"
+      ],
+      "writes": [
+        "docs/design/chapters/01-tianlong.md",
+        "docs/design/chapters/02-shediao.md",
+        "docs/design/chapters/03-shendiao.md",
+        "docs/design/chapters/04-yitian.md",
+        "docs/design/chapters/05-xiaoao.md",
+        "docs/design/chapters/06-xiake.md",
+        "docs/design/chapters/07-bixue.md",
+        "docs/design/chapters/08-luding.md",
+        "docs/design/chapters/09-liancheng.md",
+        "docs/design/chapters/10-baima.md",
+        "docs/design/chapters/11-yuanyang.md",
+        "docs/design/chapters/12-shujian.md",
+        "docs/design/chapters/13-feihu.md",
+        "docs/design/chapters/14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/chapters/07-bixue.md",
+          "docs/design/chapters/08-luding.md",
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/chapters/10-baima.md",
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/chapters/14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/chapters/07-bixue.md",
+          "docs/design/chapters/08-luding.md",
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/chapters/10-baima.md",
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/chapters/14-xueshan.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/01-tianlong.md",
+            "docs/design/chapters/02-shediao.md",
+            "docs/design/chapters/03-shendiao.md",
+            "docs/design/chapters/04-yitian.md",
+            "docs/design/chapters/05-xiaoao.md",
+            "docs/design/chapters/06-xiake.md",
+            "docs/design/chapters/07-bixue.md",
+            "docs/design/chapters/08-luding.md",
+            "docs/design/chapters/09-liancheng.md",
+            "docs/design/chapters/10-baima.md",
+            "docs/design/chapters/11-yuanyang.md",
+            "docs/design/chapters/12-shujian.md",
+            "docs/design/chapters/13-feihu.md",
+            "docs/design/chapters/14-xueshan.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAu-final",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·最终核对（AR-14 / 15 / 16 收尾）",
+      "prompt": "NAu-final.md",
+      "deps": [
+        "NAu-lint",
+        "NAu-tech",
+        "NAu-rulesA",
+        "NAu-rulesB",
+        "NAu-21",
+        "NAu-canon",
+        "NXfixA",
+        "NXfixB",
+        "NXfixC",
+        "NXfixD"
+      ],
+      "writes": [
+        "docs/**",
+        "tools/lint/**",
+        "tools/balance/**",
+        "TODO.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/21-meridian-flow-and-moves.md",
+          "TODO.md",
+          "docs/README.md"
+        ],
+        "fences": [
+          "docs/design/21-meridian-flow-and-moves.md",
+          "TODO.md",
+          "docs/README.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict"
           ]
         ]
       }
