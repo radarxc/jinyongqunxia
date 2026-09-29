@@ -3,15 +3,16 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/05-gameplay-engine.md` |
-| 版本 | v1.5（经脉落地终审：音功 0 档特判与外放执行契约，2026-09-29）；v1.4（AR-16 外放预估、原子支付与回放同步；绝招候选时序对齐，2026-09-28）；v1.3（经脉 v2.1 与绝招轮换同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
-| 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03（冲穴）、AR-04（统一大地图与时代图层）、AR-05（资源与家丁）、AR-06（营生职位）、AR-07（门派职级与月钱）、AR-09（NPC 与跨书界同伴）、AR-12（六角战棋）、AR-13（跨年代传承）、AR-14（经脉运行、路线、绝招与擒拿点穴）、AR-16（外放范围与威力加持）；AR-17（作者本任务决定的音功与掌风外放口径，正式条目待 NXT 合入） |
-| 上游基准 | `docs/00-canon.md` v1.5 §3–§5（成长、数值、节奏）、§8–§10（战斗、外放、伤害乘区、Buff）、§12（ID）、§18（唯一归属）、§19（技术基线） |
+| 版本 | v1.6（经脉落地终审：NXT 音功判定点与大手印单伤害段同步，2026-09-29）；v1.5（经脉落地终审：音功 0 档特判与外放执行契约，2026-09-29）；v1.4（AR-16 外放预估、原子支付与回放同步；绝招候选时序对齐，2026-09-28）；v1.3（经脉 v2.1 与绝招轮换同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
+| 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03（冲穴）、AR-04（统一大地图与时代图层）、AR-05（资源与家丁）、AR-06（营生职位）、AR-07（门派职级与月钱）、AR-09（NPC 与跨书界同伴）、AR-12（六角战棋）、AR-13（跨年代传承）、AR-14（经脉运行、路线、绝招与擒拿点穴）、AR-16（外放范围与威力加持）、AR-17（音功 1 档起外放与大手印掌风外放） |
+| 上游基准 | `docs/00-canon.md` v1.6 §3–§5（成长、数值、节奏）、§8–§10（战斗、外放、伤害乘区、Buff）、§12（ID）、§18（唯一归属）、§19（技术基线） |
 | 强依赖 | `tech/01` §3、§6、§8.3（架构、运行时、确定性 D1–D9）；`tech/03` §2、§6、§8（性能与 Worker）；`tech/04` §3、§5–§8（schema、经脉 / 外放配表、书界包、Ink 桥）；`tech/08` §3、§10（TSAV、迁移与录像）；`design/04`（Z0–Z10）；`design/05`（武学与外放静态字段）；`design/06` §2、§4–§6（Buff DSL）；`design/08`（地形）；`design/09` §2–§8、§13（战斗、范围与候选）；`design/11`（开放世界、时代层与世界时钟）；`design/12`（任务、门派流程）；`design/13`（成长与规则开关）；`design/15`（永久经脉与穴位）；`design/16`（资源与营生）；`design/17`（门派名录）；`design/18`（NPC/同伴）；`design/19`（全国地图）；`design/20`（跨年代传承）；`design/21` §4.4.1、§11–§12（战斗经脉、招式路线、控制、外放与音功分档） |
 | 下游 | `apps/game` 的 `CoreHost`；`packages/ui`、`packages/render` 的只读投影与事件消费；`tools/balance`；`tech/09` 路线图 |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手 |
 | 本文职责 | `packages/core` 的纯 TypeScript、无 DOM、确定性内部设计：状态、命令事务、探索 tick、六角格、战斗、伤害执行器、Buff/任务 DSL 运行时、AI、存档状态、录像与测试 |
 | 引用而不重定义 | 数值公式、武学内容、Buff 语义、地形规则、战斗平衡、任务剧情、NPC 事实、存档容器分别归上述设计/技术文档；本文只固定实现契约、执行顺序与确定性护栏 |
 | 标注约定 | **（待核实）**版本/API/限额未联网确认；**（待实测）**需真机或真账号验证；**【建议值】**等待上游定稿替换；**（原创扩展）**仅在涉及玩法内容提案时使用 |
+| 本次变更 | 经脉落地终审（2026-09-29）：正式消费 Canon v1.6 / `design/21` v2.6（commit `f62de7d`），冻结 `projectionBoostActive` 的 F0 判定与结算顺序，接入 `ProjectionInput.voice`，并将大手印跃迁与唯一落点掌风伤害段分离 |
 
 > **结论先行（TL;DR）**
 >
@@ -33,6 +34,7 @@
 > 16. 绝招轮换只存在于当前战斗：每单位、每门已装配武学记录 `ultimateCooldown: 0|1` 与 `lastUltimateMoveId`，战后丢弃且不写持久 `SkillState`；录像 / 内存检查点把它们纳入协议 2 状态哈希，降龙 `cdMinus` 只减招式自身 CD。
 > 17. AR-16 外放在 F0 由同一可用性查询冻结 `projectionStep`、射程、范围、额外耗内与 Profile 版本；预估零写入 / 零 RNG，F2 才与原招成本原子支付。命令、AI 候选、录像与 hash 都携带所选档；Z5M 只在既有位置二选一执行一次。
 > 18. AR-17 只给“深厚内力驱动且可主动控制伤敌音波”的招式静态外放资格；音功 0 档仍是基础音波（基础范围、零外放增耗、普通 Z5M），1 / 2 档才激活外放。静态 `DamageKind='projected'` 与护体内劲 40% 适用率暂不动态切换。
+> 19. `mv_dashouyin_dashouyin` 先执行非伤害跃迁，再于落点生成唯一掌风伤害段；只有掌风段走 `projected`、同一次外放 Z5M 与原 attack 路线，跃迁不产生第二伤害段、第二 Z5M 或第二路线提交。
 
 ---
 
@@ -1089,7 +1091,7 @@ open heap 的全序键为：
 
 `projectProjection` 不枚举格，也不读取表现层；本节不重算经脉阈值或额外耗内。旧 `bf_zhenqiwaifang` 与 AR-16 的 `rangeBonus` 先取较大值而不相加，其余独立射程修正再由 `design/09` §5.2 的固定顺序合入。预览、玩家 F0、AI 和敌方均调用同一组合函数；目标、朝向或 Profile revision 变化后必须重新枚举，禁止复用旧格集合。
 
-音功只在 `MoveDef.tags` 含 `sonic` 且已由内容构建确认 `projection:true` 时进入特殊分支：0 档返回 `projectionBoostActive=false`，并冻结基础射程、`projectionSpreadSteps[0]` 与 0 外放增耗；1 / 2 档返回 true，才使用对应扩张和 200 / 400 bp MPREF 增耗。非音功外放的 0 档仍返回 true；几何层只消费冻结结果，禁止凭伤害类型、门派或表现名自行推断。
+音功只在 `MoveDef.tags` 含 `sonic` 且已由内容构建确认 `projection:true` 时进入特殊分支：0 档返回 `projectionBoostActive=false`，并冻结基础射程、`projectionSpreadSteps[0]` 与 0 外放增耗；1 / 2 档返回 true，才使用对应扩张和 200 / 400 bp MPREF 增耗。`ProjectionInput.voice` 逐字取 `MoveDef.voice===true`，只供路线端点 / 表现消费，不参与激活式；非音功外放的 0 档仍返回 true。几何层只消费冻结结果，禁止凭伤害类型、门派或表现名自行推断。
 
 ```ts
 export function disk(center: HexCoord, radius: number, out: HexCoord[]): number {
@@ -1311,7 +1313,9 @@ interface MoveAvailabilityView {
 
 `query.moveAvailability(unit)` 返回上述 `MoveAvailabilityView`：普通招只列装配槽，绝招列全部已解锁项；每门只给一份共享冷却与上次绝招。非外放招的 `maxProjectionStep/projectionSteps` 必须省略；外放招固定返回 0、1、2 三项，逐项含 `projectionBoostActive`、总耗内、有效射程、审核模板及档级原因，超过当前上限的档保留用于解释但 `available=false`。结果、F0 与 AI 使用同一个 helper 和同一原因序，不耗 RNG、不填缓存以外状态。音功 0 档必须可见地显示为“基础音波”，不能因该布尔值为 false 就从可选档中删掉。
 
-F0 把所选档（外放缺省 0）、经脉 `stateVersion`、`maxProjectionStep`、`projectionBoostActive`、有效射程、审核模板、外放额外耗内和原招总成本冻结进内部 `MoveUsePlan`；目标格 / 朝向用这份冻结结果枚举和校验。非外放招携带 `projectionStep`，或外放招显式档越过上限，均返回 `PROJECTION_STEP_UNAVAILABLE`。左右互搏 a / b 独立冻结、过滤和计费；任一段非法则整条命令拒绝。
+`projectionBoostActive` 的唯一判定点在 F0 的纯 `projectProjection`，且发生在范围枚举和资源支付之前。输入只能取已构建的 `MoveDef.projection`、`tags` 中的 `sonic`、规范化后的所选档、同一版本 Profile / 里程碑及路线预检；判定式为 `projection && (!sonic || projectionStep >= 1)`。`voice = (MoveDef.voice === true)` 同时投影进 `ProjectionInput`，但绝不进入该判定式。非外放招不调用该分支；音功 0 档得到 false，音功 1 / 2 档与所有非音功外放合法档得到 true。此布尔值随后只随本次 `MoveUsePlan` 冻结，F1～伤害结算不得重新判定，也不得写回 `GameState`。
+
+F0 把所选档（外放缺省 0）、经脉 `stateVersion`、`maxProjectionStep`、`projectionBoostActive`、有效射程、审核模板、外放额外耗内和原招总成本冻结进内部 `MoveUsePlan`；结算顺序固定为：先以该结果选基础 / 审核范围并枚举目标，再完成所有合法性与总资源校验；F2 原子扣原招成本和外放增耗；F3～F5 提交路线并冻结攻守 Profile；F6 在唯一 Z5M 根据该布尔值选择普通或外放曲线；F7 仍按静态 `DamageKind` 做护体内劲适用率。目标格 / 朝向用这份冻结结果枚举和校验。非外放招携带 `projectionStep`，或外放招显式档越过上限，均返回 `PROJECTION_STEP_UNAVAILABLE`。左右互搏 a / b 独立冻结、过滤和计费；任一段非法则整条命令拒绝。
 
 F2 在同一事务一次支付原招成本与外放额外耗内，再设置招式自身冷却；若为绝招，同时支付共享气势并立即设置本门 `ultimateCooldown=1 / lastUltimateMoveId=moveId / freshTurnToken=turnToken`。同门非绝招只有成功越过 F2 并完成本招结算后才清空 `lastUltimateMoveId`；其他武学、免费动作、道具、防御、待机或被跳过行动不清空。
 
@@ -1328,6 +1332,10 @@ BattleCommand 从 09 §13.2 的生成契约导入，act 的平铺移动字段对
 ### 7.5 招式、多段与反应队列
 
 一招解析为 AttackFrame 序列：普通范围按 target.unitIndex，同目标按 segmentIndex；每段完整调用 §8。默认最后一段后每目标判一次附加 Buff，perHit 才逐段判；正常段之后依次连击、位移、P8 反应入队。
+
+`mv_dashouyin_dashouyin` 使用明确的“两阶段、一伤害段”执行计划：F0 / F1 先预估并校验跃迁落点；越过 F2 且 F3～F5 提交唯一 attack 路线后，先写入跃迁位移。该阶段不创建 `AttackFrame`、不触发命中 / 招架 / Z0–Z10，也不消费第二份攻击路线。随后以最终落点为范围原点，为落点掌风按稳定目标序创建且只创建一组 `AttackFrame`；这些 frame 是该招唯一 `DamageKind='projected'` 伤害段，共享 F0 冻结的外放档与同一次路线提交，并各自只执行一次 §8 的唯一 Z5M。F0 / F1 无合法落点时整招零副作用拒绝；越过 F2 后沿既有事务、中途卡住与回滚规则处理，不为跃迁另设退款，也不可退化成“位移撞击伤害”或补发第二掌风。
+
+引擎对该招设置结构不变量：执行计划中 `movementPhase.damageFrames.length === 0`，掌风语义段数恰为 1；多目标只是在该段内按 `unitIndex` 展开 frame，不算第二伤害段。不得因 `aoe_leap`、落地动画、碰撞或表现事件再生成伤害，不得让跃迁与掌风分别 commit 路线，也不得在掌风前后各跑一遍 Z5M。
 
 ```ts
 interface ReactionItem {
@@ -1589,6 +1597,8 @@ DOT/HOT 不伪装成普通招式：DOT 按 `design/04` §6.5 的抗性、半额�
 | D-10 | Node 与 WebKit 重放 | 每段 zone 值、settlement、终局哈希一致 |
 | D-11 | 外放招分别预估 0 / 1 / 2 档各 100 次 | GameState、全部经脉 snapshot、五流与事件队列逐字段不变；格集合与总耗内重复一致 |
 | D-12 | 外放伤害段 | `projection:true` 只出现一个 Z5M，选 0 / 1 / 2 档不改变该档之外的 Z5M 曲线；普通与外放曲线不叠乘 |
+| D-13 | `sonic && projection:true` 依次选 0 / 1 / 2 档 | F0 唯一判定 `projectionBoostActive=false/true/true`；范围为基础 / `[1]` / `[2]`，增耗为 0 / 200 / 400 bp MPREF，Z5M 为普通 / 外放 / 外放；三档静态 `projected` 的护体适用率均为 40% |
+| D-14 | `mv_dashouyin_dashouyin` 跃迁后落点掌风命中多目标 | 跃迁阶段 0 个 frame；只有 1 个掌风语义伤害段，按目标展开；attack 路线只 commit 一次，每个 frame 只跑一次 Z5M，不产生位移伤害 |
 
 ## 9. Buff DSL 编译与运行时
 
@@ -1878,7 +1888,7 @@ interface MeridianFlowRuntimePort {
 }
 ```
 
-`ProjectionInput` 必须包含由静态招式标签投影的 `sonic:boolean`；`ProjectionResult` 必须包含单次命令派生的 `projectionBoostActive:boolean`。后者不写入单位长期状态：非音功外放恒为 true，音功仅当所选档 `>=1` 为 true。其余字段形状逐字消费 `design/21` §12.3 的生成类型；这里不另写一份公式或枚举。`mfr_* / qnl_* / dxl_* / txp_*` 已由 Canon v1.3 `V13-05` 正式登记并归 `design/21`；`tech/04` 阻断越权定义与旧 provisional 标记，core 不动态拼 ID。`initialize` 的固定流程是：
+`ProjectionInput` 必须包含由静态招式投影的 `sonic:boolean` 与 `voice:boolean`：前者取 `MoveDef.tags` 是否含 `sonic`，后者严格取 `MoveDef.voice===true`。`ProjectionResult` 必须包含单次命令派生的 `projectionBoostActive:boolean`；`voice` 不参与该派生。后者不写入单位长期状态：非音功外放恒为 true，音功仅当所选档 `>=1` 为 true。其余字段形状逐字消费 `design/21` v2.6 §12.3 的生成类型；这里不另写一份公式或枚举。`mfr_* / qnl_* / dxl_* / txp_*` 已由 Canon v1.3 `V13-05` 正式登记并归 `design/21`；`tech/04` 阻断越权定义与旧 provisional 标记，core 不动态拼 ID。`initialize` 的固定流程是：
 
 1. 从最终解析的 `MoveDef.meridianRouteRef` 与触发器路线收集 attack / defense / movement 路线，展开 `ap_*` 后去重、按 ASCII 排序；
 2. 主角 / 同伴逐穴读取永久投影，敌人应用 `routeOnly / schoolCore / fullTemplate`；
@@ -1887,7 +1897,7 @@ interface MeridianFlowRuntimePort {
 5. 创建 `schema:'meridian-flow-state.v1'`、`rulesProtocol:2` 的零动态态；节点按 `ap_*` ASCII 序写入；
 6. 不传 seed、不复制 RNG；完成后才参与 §7.1 的经脉速度与首轮排序。
 
-模块调用必须处于一条 Core 命令事务内。外放招在 F0 先调纯 `projectProjection`，校验档位 / 总资源并冻结 Profile `stateVersion`、范围与模板；`design/09` 再从该冻结结果枚举目标格。预检硬封路发生在资源支付前；通过后固定走 `design/21` §11.4 的 F1–F10：冻结双方 Profile 与节点引用，F2 原子支付招式成本和外放增量（绝招同时设置本门共享冷却），逐段提交，汇总质量，可选防守路线，Z4M / 唯一 Z5M，护体内劲，效果 / 控制，`flowCt` 与事件，最后让节点态和 RNG 一起提交。途中卡住是合法结果，保留已付资源、共享冷却、实际尝试段 CT 与伤势；命中失败也不撤销已经运气。只有命令非法、P1 前被反应作废或引擎异常才整笔回滚。
+模块调用必须处于一条 Core 命令事务内。外放招在 F0 先调纯 `projectProjection`：从静态 `projection/sonic` 与所选档唯一派生 `projectionBoostActive`，同时原样投影 `voice`，校验档位 / 总资源并冻结 Profile `stateVersion`、范围与模板；`design/09` 再从该冻结结果枚举目标格。此后不重判激活位。预检硬封路发生在资源支付前；通过后固定走 `design/21` §11.4 的 F1–F10：F1 冻结双方 Profile 与节点引用，F2 原子支付招式成本和外放增量，F3～F5 逐段提交，F6 二选一执行唯一 Z5M，F7 按静态 `DamageKind` 结算护体内劲，F8～F10 处理效果、`flowCt`、事件并提交状态与 RNG。途中卡住保留已付资源、实际尝试段 CT 与伤势；只有命令非法、P1 前被反应作废或引擎异常才整笔回滚。
 
 `flowCt` 只累计实际尝试段的 `segmentCt`，作为 §7.2 `recFlat` 的一项；预检失败为 0。攻方一次整招只 `commit` 一次，多段 / 范围共享该攻方路线质量；每个守方对同一 `causeId` 至多提交一次防守路线。反击、追击、左右互搏两招与合击的每名真实参与者各自提交，且都操作自己的实例。
 
@@ -1895,7 +1905,7 @@ interface MeridianFlowRuntimePort {
 
 点穴与擒拿的来源、持续、互斥、递减和图标仍由 `design/06` 的 Buff 实例拥有；模块只保存用于路线 / 速度查询的镜像。效果成功后调用 `applyAcupointSeal/applyGrapple`；时间轴推进时按 `unitIndex` 调 `tick({battleTick,...Buff剩余投影})`：模块根据 snapshot 内上次 tick 与目标 `battleTick` 求非负 `dt`，等价地令所有节点 `water=0`、有 backlog 的 dirty 节点减 `dt`（最低 0），再把自身 tick 写到目标值。持续字段只同步、不自建第二个时钟；投影值为 0 才清镜像，字段未传则保持。
 
-`preview`、`estimateMultipliers`、`projectProjection`、`estimateInnerGuard` 与 `projectSpeed` 允许 UI / AI 调用，但必须只读。`projectProjection` 的输入输出逐字消费 `design/21` §12.3，Core 不复制档位阈值或外放 Z5M 算式；它不枚举六角格，枚举唯一归 §6.5。缓存键至少含实例 `stateVersion`、路线、有效层数、里程碑、`sonic`、所选档与 Buff revision；任何提交即失效。Worker 超时可用状态版本仍匹配的最近完整预览或合法待机，UI 可跳动画，低内存可丢预览缓存；任何降级都不得省略敌方实例、卡住判定、音功 0 档分支、整数取整或控制镜像。
+`preview`、`estimateMultipliers`、`projectProjection`、`estimateInnerGuard` 与 `projectSpeed` 允许 UI / AI 调用，但必须只读。`projectProjection` 的输入输出逐字消费 `design/21` §12.3，Core 不复制档位阈值或外放 Z5M 算式；它不枚举六角格，枚举唯一归 §6.5。缓存键至少含实例 `stateVersion`、路线、有效层数、里程碑、`sonic`、`voice`、所选档与 Buff revision；任何提交即失效。Worker 超时可用状态版本仍匹配的最近完整预览或合法待机，UI 可跳动画，低内存可丢预览缓存；任何降级都不得省略敌方实例、卡住判定、音功 0 档分支、整数取整或控制镜像。
 
 ### 11.3 资源点、库存与家丁
 
@@ -2176,7 +2186,7 @@ Node/V8 与 Playwright WebKit/JSC 都跑同一录像。Playwright WebKit 不是�
 | 传承确定性 | LEG-T01–T15、10,000 seeds；发布候选 30 份 V8/JSC 完整录像 | 合并与发布 **（待实测）**；30 份为【建议值】 |
 | 经脉慢模型 | TypeScript 对 `tools/balance/meridian_flow_golden.json` 全字段，Node + WebKit 各跑 | 每次提交；不得只比最终伤害 |
 | 绝招轮换 | 同门多绝招的共享冷却、禁止连续同招、同门普通招解除、`cdMinus` 隔离；录像中途恢复后逐字段相同 | 每次提交；Node + WebKit |
-| 外放加持 | 三档射程 / 模板 / 成本、点穴降档、统一过滤、唯一 Z5M、音功 0 档特判、敌方 AI、多次预估零副作用、命令档位与 replay hash | 每次提交；Node + WebKit；对拍 `projection_sim.py --check` |
+| 外放加持 | 三档射程 / 模板 / 成本、点穴降档、统一过滤、F0 唯一 `projectionBoostActive` 判定、唯一 Z5M、音功 0 档特判、大手印非伤害跃迁 + 单掌风伤害段、敌方 AI、多次预估零副作用、命令档位与 replay hash | 每次提交；Node + WebKit；对拍 `projection_sim.py --check` |
 
 确定性 fixture 至少覆盖：普通战、环境战、多段范围、反应深度、合击/阵法、Boss 阶段、跨日周期、任务与 Ink、书眠及同伴重逢，以及传承的调度 / 配额 / 挖掘 / 校合 / 书眠。随机测试失败时记录业务 seed 和最小化命令序列，不能只保存测试框架内部 seed。
 
@@ -2184,7 +2194,7 @@ CI 不通过“重录全部 golden”修失败。先定位规则变化，若属�
 
 经脉 oracle 固定读取 `fixtureVersion=2`、`rulesProtocol=2`、`rngProtocol=1`、`masterSeed=20260927` 与 `vectorSha256=af33dcd10dc196e18811fe485870666ab139c03a17342fa47113ecc19552cd76`。TypeScript runner 必须逐字段对拍 `inputs` 及 `outputs`：路线逐段 trace、到达 / 卡住率、质量与 `flowCt`，四单位独立提交及三段 `battleRng` 状态，攻防乘区、护体四伤害类 / 容量与内力击穿、速度 / 封路 / 擒拿、点穴 / 调息、归一化与五档 TTK。Python snake_case 不是协议，golden 的 camelCase 才是交换键。
 
-最低集成断言还包括：1 次与 100 次 preview 后的 commit / RNG / hash 相同；两单位同穴状态互不串；snapshot→修改→restore 逐字段相同；普通→精英→Boss 提交后合格自行解穴严格推进同一全局流；标准对标准 Z4M / Z5M 均为 10000 且旧伤害 golden 零漂移。绝招另以三招序列证明“F2 设置后当次 E2 仍为 1 → 下一次自身行动拒绝同门任一绝招 → 该行动 E2 后归零 → 同一绝招仍拒绝 → 同门普通招后可再用”，并断言事务失败整体回滚、`cdMinus` 不改变该序列。外放另证明 0 / 1 / 2 档命令产生固定 +0 / +2 / +4 射程与 0 / 200 / 400 bp MPREF 增量、点穴后旧 2 档以 `PROJECTION_STEP_UNAVAILABLE` 零副作用拒绝、预估前后 GameState / 经脉 snapshot / 五流 / 事件队列相同，以及仅改变命令档位会改变命令字节与 replay hash。音功专例还须证明：同一 `sonic && projection:true` 招式的 0 档派生 `projectionBoostActive=false`、基础范围、0 增耗与普通 Z5M，1 / 2 档派生 true 并分别走审核范围、200 / 400 bp MPREF 与外放 Z5M；三档均只结算一个 Z5M，0 档仍按静态 `projected` 接受护体内劲 40% 适用率。只有归属规则经评审并同步提升 fixture / rules protocol 后，才允许显式执行 `--write-golden`；CI 只执行 `--check`。
+最低集成断言还包括：1 次与 100 次 preview 后的 commit / RNG / hash 相同；两单位同穴状态互不串；snapshot→修改→restore 逐字段相同；普通→精英→Boss 提交后合格自行解穴严格推进同一全局流；标准对标准 Z4M / Z5M 均为 10000 且旧伤害 golden 零漂移。绝招另以三招序列证明“F2 设置后当次 E2 仍为 1 → 下一次自身行动拒绝同门任一绝招 → 该行动 E2 后归零 → 同一绝招仍拒绝 → 同门普通招后可再用”，并断言事务失败整体回滚、`cdMinus` 不改变该序列。外放另证明 0 / 1 / 2 档命令产生固定 +0 / +2 / +4 射程与 0 / 200 / 400 bp MPREF 增量、点穴后旧 2 档以 `PROJECTION_STEP_UNAVAILABLE` 零副作用拒绝、预估前后 GameState / 经脉 snapshot / 五流 / 事件队列相同，以及仅改变命令档位会改变命令字节与 replay hash。音功专例还须证明：同一 `sonic && projection:true` 招式的 0 档在 F0 派生 `projectionBoostActive=false`、基础范围、0 增耗与普通 Z5M，1 / 2 档派生 true 并分别走审核范围、200 / 400 bp MPREF 与外放 Z5M；F1 以后不能重判，三档均只结算一个 Z5M，0 档仍按静态 `projected` 接受护体内劲 40% 适用率。大手印专例还须证明跃迁阶段不创建 `AttackFrame`，落点仅有一个掌风语义段，共享一次 attack 路线和一次 Z5M，不因多目标或落地表现产生第二伤害段。只有归属规则经评审并同步提升 fixture / rules protocol 后，才允许显式执行 `--write-golden`；CI 只执行 `--check`。
 
 ## 16. 性能预算与观测
 
@@ -2244,7 +2254,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 
 - `docs/00-canon.md`；`docs/decisions/author-requirements.md`；`docs/decisions/author-decisions.md`；`docs/decisions/rulings-v1.md`。
 - `docs/design/04-damage-formula.md`、`05-martial-arts-system.md`、`06-buff-system.md`、`08-terrain-and-qinggong.md`、`09-combat-system.md`、`11-open-world.md`、`12-quests-npc-factions.md`、`13-progression-and-endings.md`、`15-meridians-and-acupoints.md`、`16-resources-and-estates.md`、`17-sects-compendium.md`、`18-npc-and-companions.md`、`19-world-map.md`、`20-legacy-inheritance.md`。
-- `docs/design/21-meridian-flow-and-moves.md`（当前工作副本 v2.4；AR-17 正式登记待 NXT v2.5 合入）；`tools/balance/meridian_flow_sim.py`、`tools/balance/meridian_flow_golden.json` 与 `tools/balance/projection_sim.py`（战斗经脉、外放规则、慢模型与跨语言黄金）。
+- `docs/design/21-meridian-flow-and-moves.md` v2.6（commit `f62de7d`；含 §4.4.1、`ProjectionInput.voice`、MF-V16 / V17 与 MF-T23 / T24）；`tools/balance/meridian_flow_sim.py`、`tools/balance/meridian_flow_golden.json` 与 `tools/balance/projection_sim.py`（战斗经脉、外放规则、慢模型与跨语言黄金）。
 - `docs/tech/01-architecture.md`、`03-mobile-performance.md`、`04-data-pipeline.md`、`08-backend-and-online.md`。
 
 ### 外部技术资料（2026-09-26 访问）
@@ -2279,6 +2289,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | 绝招轮换态 | `BattleUnitActionState.ultimateBySkill` 中每单位、每门已装配武学的 `ultimateCooldown:0|1`、`lastUltimateMoveId` 与 `freshTurnToken`；仅属本战 |
 | 外放命令档 | `projectionStep:0|1|2`；随招式命令选择并进入 replay/hash，绑定当前档射程、审核模板与额外耗内 |
 | 音功外放激活 | `projectionBoostActive` 是 `projectProjection` 的单次派生结果；非音功外放恒为 true，音功只在 `projectionStep>=1` 时为 true，不是持久修为或第二状态源 |
+| 两阶段单伤害段 | 大手印跃击先执行非伤害跃迁，再从落点生成唯一掌风语义伤害段；多目标 frame 不改变“只有一段”的内容语义 |
 | `MoveAvailabilityView` | `query.moveAvailability(unit)` 的只读 DTO；普通招槽、全部已解锁绝招、共享冷却、路线原因和外放逐档结果的单一消费接口 |
 
 本文没有新增玩法内容 ID；所有示例均复用既有前缀或使用局部 key。
@@ -2294,11 +2305,12 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 - **已解决（AR-12）**：战斗为 pointy-top 六角轴坐标，首轮按轻功；旧方格运行时接口不保留。
 - **已解决（作者 P08/P14/P16/P41/P56，G1 采用默认）**：自创武学倚天后开放且最多 3 门；称号属性默认开启可关闭；最近一次守卷外观与誓言默认启用可关闭；两种天道规则开关互斥；化险为夷按每战一次、指定对象与 0–30% 公式执行（见 §3.2–§3.4、§14.3、§9.4、§7.7）。
 - **已解决（AR-13 / H1）**：`design/20` 已落盘；本文已接入 `legacy.v1` 状态、两类条件、六项 opcode、家丁挖掘、`qiyu` RNG、双配额收据、书眠顺序与 12 / 10 / 9 专用上限（见 §3.2、§10、§11.7、§15）。
-- **已解决（AR-14）**：`design/21` v2.4 已确定每单位实例、Core 唯一 `battle` 流、无副作用 preview、Z4M / Z5M、护体内劲、速度 / 控制 / 调息接口与 golden；本文已按 §7–§8、§11.2、§14–§16 接入。
+- **已解决（AR-14）**：`design/21` v2.6 已确定每单位实例、Core 唯一 `battle` 流、无副作用 preview、Z4M / Z5M、护体内劲、速度 / 控制 / 调息接口与 golden；本文已按 §7–§8、§11.2、§14–§16 接入。
 - **已解决（M4 绝招轮换）**：§3.3、§7.3–§7.4、§14–§15 已接入仅战斗存在的 `ultimateCooldown / lastUltimateMoveId`，并明确 `cdMinus` 不减武学级共享冷却。
 - **已解决（AR-16 / M6-P01～P03）**：§6–§8、§11.2、§13–§15 已接 `projectProjection`、逐档六角枚举、F2 原子支付、唯一外放 Z5M、AI 同规与命令 replay/hash；静态字段和构建约束由 `design/05`、`tech/04` 提供。
 - **已解决（NA1 绝招时序）**：§7.3–§7.4 已把同门共享冷却设置点前移至 F2，并以 `freshTurnToken` 保证设置当次 E2 不减；玩家、AI、一键重复与 F0 共用四段有序过滤器，拒绝零资源 / 零 RNG。
-- **已解决（AR-17 / NXT-D01，本文执行契约）**：§6.5、§7.4、§8.3、§11.2 与 §15 已接音功唯一特殊分支：0 档为基础音波、零外放增耗与普通 Z5M，1 档起才激活外放；静态 `projected` 及护体内劲 40% 语义保持。上游正式登记仍以 NXT 的 Canon v1.6 / `design/21` v2.5 合入为完成条件。
+- **已解决（AR-17 / NXT-D01）**：Canon v1.6 与 `design/21` v2.6 已正式登记；§6.5、§7.4、§8.3、§11.2 与 §15 已接音功唯一特殊分支、`voice` 投影及 F0 判定点：0 档为基础音波、零外放增耗与普通 Z5M，1 档起才激活外放；静态 `projected` 及护体内劲 40% 语义保持。
+- **已解决（AR-17 / MF-V17）**：§7.5、§8 与 §15 已把 `mv_dashouyin_dashouyin` 实现为非伤害跃迁 + 唯一落点掌风伤害段；不创建位移伤害、第二路线或第二 Z5M。
 
 ### 本文采用的建议值（含已解决追溯）
 
@@ -2321,7 +2333,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `design/15` | 已定稿；使用 `MeridianProgress`、session 快照、keyed RNG 与 S0–S8 | 上游升 schema / 公式时按迁移版本重算派生奖励并重跑 V15-01～V15-15 |
 | `design/16` | 已定稿；使用资源、点、家丁、合同、家业、公账与 Estate DSL | 上游升 schema / 数值时迁移当界运行态并重跑 RES/BIZ/SLEEP 门禁 |
 | `design/20` | 已定稿；使用 `legacy.v1`、`LegacySourceState`、配额 / 机会 / 校合收据、书眠矩阵与 LEG-V/T | 上游升 schema / RNG 消费或生命周期时升规则与存档版本，并重跑 10,000 seeds 和跨引擎录像 |
-| `design/21` | 当前 v2.4 提供逐单位模块、路线 / 控制 / 调息档案、Z4M / Z5M、护体内劲、速度、外放档、`meridian-flow-state.v1`、绝招路线约束与 golden；音功激活分支按作者本任务决定实现，待 NXT v2.5 合入转为正式上游 | 路线数组、外放档 / 曲线、音功分支、取整点或 RNG 消费改变须升 `rulesProtocol`，保留旧 runner 并逐字段评审 golden |
+| `design/21` | v2.6 提供逐单位模块、路线 / 控制 / 调息档案、Z4M / Z5M、护体内劲、速度、外放档、`ProjectionInput.voice`、音功激活分支、大手印掌风边界、`meridian-flow-state.v1`、绝招路线约束与 golden | 路线数组、外放档 / 曲线、音功分支、大手印伤害段、取整点或 RNG 消费改变须升 `rulesProtocol`，保留旧 runner 并逐字段评审 golden |
 | `design/18` | 同伴快照、健在与重逢合并正式契约 | 内容考据修订需 legacy timeline 迁移 |
 | `tech/03/08` | 性能预算、TSAV、录像运输 | 真机实测和限额变化不得反写玩法结果 |
 

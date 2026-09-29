@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from contextlib import redirect_stderr, redirect_stdout
+from dataclasses import asdict
 from io import StringIO
 import re
 import tempfile
@@ -522,6 +523,100 @@ class CatalogParserTests(unittest.TestCase):
 """
         self.assertEqual({}, checker.parse_target_routes(text))
 
+    def test_grade_six_signature_checks_only_unregistered_warning(self) -> None:
+        text = """
+| sk_alpha | 6 玄上 | 定义 |
+| mv_alpha_one MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200} |
+| mv_alpha_one→mfr_alpha_one/true/attack/显式；ap_fixture_unknown/200/100 |
+<!-- skill-catalog-audit:start -->
+| 品阶 | 武学 | MoveDef（正文真值） | MeridianRouteDef（路线镜像） | steps |
+|---|---|---|---|---|
+| 6 玄上 | sk_alpha | mv_alpha_one MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_alpha_one} | mfr_alpha_one MeridianRouteDef{moveRef:mv_alpha_one; ultimate:true; purpose:attack} | ap_fixture_unknown/200/100→ap_fixture_unknown/200/100 |
+<!-- skill-catalog-audit:end -->
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            registry = Path(directory) / "acupoints.md"
+            path.write_text(text, encoding="utf-8")
+            registry.write_text(
+                "`ap_renmai_qihai` `ap_renmai_guanyuan`", encoding="utf-8"
+            )
+            with mock.patch.object(checker, "is_official_catalog", return_value=True), \
+                    mock.patch.object(checker, "ACUPOINT_REGISTRY", registry):
+                audit = checker.audit_catalog(path, {})
+
+        self.assertEqual(1, audit.unregistered_acupoint_warnings)
+        self.assertIn("未登记穴位提示=1", checker.summary_row(audit))
+        self.assertTrue(any(
+            "mfr_alpha_one uses unregistered acupoints ap_fixture_unknown"
+            in warning for warning in audit.warnings
+        ))
+        self.assertFalse(any(
+            "unregistered acupoints" in error for error in audit.errors
+        ))
+        self.assertFalse(any(
+            token in error for error in audit.errors
+            for token in ("repeats an acupoint", "segmentCt outside")
+        ))
+
+    def test_registered_acupoint_check_ignores_external_route_sentinel(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-wujue.md"
+            registry = Path(directory) / "acupoints.md"
+            path.write_text("# fixture\n", encoding="utf-8")
+            registry.write_text("`ap_renmai_qihai`", encoding="utf-8")
+            with mock.patch.object(
+                checker, "is_official_catalog", return_value=True
+            ), mock.patch.object(checker, "ACUPOINT_REGISTRY", registry):
+                audit = checker.audit_catalog(path, {})
+
+        self.assertFalse(any(
+            "unregistered acupoints external:" in error
+            for error in audit.errors
+        ))
+
+    def test_final_signature_unregistered_is_warning_for_heaven_and_earth(self) -> None:
+        for grade in (9, 12):
+            text = VALID_INSTANCE.replace(
+                "12 天上", f"{grade} {'地上' if grade == 9 else '天上'}"
+            ).replace("ap_renmai_guanyuan/80/120", "ap_fixture_unknown/80/120")
+            if grade == 9:
+                text = text.replace("mpCost:10%", "mpCost:9%")
+            with self.subTest(grade=grade), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "skills-fixture.md"
+                registry = Path(directory) / "acupoints.md"
+                path.write_text(text, encoding="utf-8")
+                registry.write_text("`ap_renmai_qihai`", encoding="utf-8")
+                with mock.patch.object(checker, "is_official_catalog", return_value=True), \
+                        mock.patch.object(checker, "ACUPOINT_REGISTRY", registry):
+                    audit = checker.audit_catalog(path, {})
+            self.assertEqual(1, audit.unregistered_acupoint_warnings)
+            self.assertFalse(any(
+                "unregistered acupoints" in error for error in audit.errors
+            ))
+
+    def test_route_line_unregistered_keeps_legacy_strict_error(self) -> None:
+        text = VALID_INSTANCE.replace(
+            "mv_alpha_one→mfr_alpha_one/true/attack/显式",
+            "mv_alpha_one→mfr_alpha_one/true/attack/显式；"
+            "ap_renmai_qihai/80/100→ap_fixture_unknown/80/120",
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            registry = Path(directory) / "acupoints.md"
+            path.write_text(text, encoding="utf-8")
+            registry.write_text(
+                "`ap_renmai_qihai` `ap_renmai_guanyuan`", encoding="utf-8"
+            )
+            with mock.patch.object(checker, "is_official_catalog", return_value=True), \
+                    mock.patch.object(checker, "ACUPOINT_REGISTRY", registry):
+                audit = checker.audit_catalog(path, {})
+        self.assertTrue(any(
+            "uses unregistered acupoints ap_fixture_unknown" in error
+            for error in audit.errors
+        ))
+        self.assertEqual(0, audit.unregistered_acupoint_warnings)
+
     def test_wujue_external_xianglong_targets_are_canonical(self) -> None:
         targets = checker.parse_target_routes("", "wujue")
         self.assertEqual(set(checker.EXTERNAL_WUJUE), set(targets))
@@ -843,11 +938,14 @@ class DeliveryTests(unittest.TestCase):
         self, delivery: str | None, points: tuple[str, ...], *,
         purpose: str = "attack", projection: bool = False,
         skill_id: str = "sk_alpha", move_id: str = "mv_alpha_one",
+        ultimate: bool = True, voice: bool | None = None,
+        nature: str | None = None, allow_opposed_nature: bool = False,
     ) -> checker.DeliveryRoute:
         return checker.DeliveryRoute(
             "fixture", "skills-fixture.md", 7, skill_id, move_id,
             "mfr_" + move_id.removeprefix("mv_"), points, delivery,
-            purpose, projection,
+            purpose, projection, ultimate, voice, nature,
+            allow_opposed_nature,
         )
 
     def test_all_six_delivery_rules_accept_matching_endpoints(self) -> None:
@@ -862,6 +960,157 @@ class DeliveryTests(unittest.TestCase):
         report = checker.analyze_delivery_routes(routes)
         self.assertEqual(0, len(report.findings))
         self.assertEqual(6, report.checked_rule_count)
+
+    def test_vocal_projection_accepts_throat_endpoints_only_for_allowlist(self) -> None:
+        vocal_routes = [
+            self.route(
+                None, (endpoint,), projection=True, skill_id=skill_id,
+                move_id=f"mv_{skill_id.removeprefix('sk_')}_voice",
+            )
+            for index, skill_id in enumerate(sorted(checker.VOCAL_SONIC_SKILLS))
+            for endpoint in (
+                "ap_yinwei_tiantu", "ap_yinwei_lianquan"
+            )[index % 2:index % 2 + 1]
+        ]
+        instrument = self.route(
+            None, ("ap_yinwei_tiantu",), projection=True,
+            skill_id="sk_jindifa", move_id="mv_jindifa_luaner",
+        )
+
+        report = checker.analyze_delivery_routes([*vocal_routes, instrument])
+
+        self.assertEqual(
+            ["mv_jindifa_luaner"],
+            [finding.route.move_id for finding in report.findings
+             if finding.rule == "projection"],
+        )
+        self.assertEqual(
+            {
+                "sk_shizihou",
+                "sk_jingangnuhou",
+                "sk_chuanyunxiao",
+                "sk_chuanyinsouhun",
+                "sk_damingzhou",
+            },
+            set(checker.VOCAL_SONIC_SKILLS),
+        )
+
+    def test_voice_field_precedes_vocal_allowlist(self) -> None:
+        explicit_true = self.route(
+            None, ("ap_yinwei_tiantu",), projection=True,
+            skill_id="sk_not_allowlisted", voice=True,
+            move_id="mv_not_allowlisted_voice",
+        )
+        explicit_false = self.route(
+            None, ("ap_yinwei_lianquan",), projection=True,
+            skill_id="sk_shizihou", voice=False,
+            move_id="mv_shizihou_instrument",
+        )
+        fallback = self.route(
+            None, ("ap_yinwei_lianquan",), projection=True,
+            skill_id="sk_shizihou", voice=None,
+            move_id="mv_shizihou_legacy",
+        )
+        findings = checker.analyze_delivery_routes(
+            [explicit_true, explicit_false, fallback]
+        ).findings
+        self.assertEqual(
+            ["mv_shizihou_instrument"],
+            [item.route.move_id for item in findings if item.rule == "projection"],
+        )
+
+    def test_compact_bold_palm_and_fist_grapple_classification(self) -> None:
+        self.assertEqual(
+            "palm", checker._delivery_from_context(
+                "**鹰扬掌**（8 地中 · 拳脚/拳掌）", "双鹰并击"
+            )
+        )
+        self.assertEqual(
+            "fist-grapple", checker._delivery_from_context(
+                "`sk_test` 擒拿；subType:grapple", "锁腕"
+            )
+        )
+        self.assertIsNone(checker._delivery_from_context(
+            "`sk_test` 拳掌；subType:fist", "阴阳吞吐"
+        ))
+
+    def test_fist_grapple_endpoint_rules_cover_pass_missing_and_tail(self) -> None:
+        routes = [
+            self.route("fist-grapple", ("ap_shouyangming_quchi",)),
+            self.route("fist-grapple", ("ap_renmai_qihai",),
+                       move_id="mv_alpha_missing"),
+            self.route(
+                "fist-grapple",
+                ("ap_shouyangming_hegu", "ap_a", "ap_b", "ap_c"),
+                move_id="mv_alpha_tail",
+            ),
+        ]
+        report = checker.analyze_delivery_routes(routes)
+        self.assertEqual(
+            ["mv_alpha_missing"],
+            [item.route.move_id for item in report.findings
+             if item.rule == "fist-grapple"],
+        )
+        self.assertEqual(
+            ["mv_alpha_tail"],
+            [item.route.move_id for item in report.tail_findings
+             if item.rule == "fist-grapple-tail"],
+        )
+
+    def test_movement_uses_registry_meridian_not_id_prefix_guess(self) -> None:
+        mapping = {
+            "ap_step": "mer_yangqiao",
+            "ap_zushaoyang_fake": "mer_renmai",
+        }
+        with mock.patch.object(checker, "load_acupoint_meridians",
+                               return_value=mapping):
+            report = checker.analyze_delivery_routes([
+                self.route("movement", ("ap_step",), purpose="movement"),
+                self.route("movement", ("ap_zushaoyang_fake",),
+                           purpose="movement", move_id="mv_alpha_fake"),
+            ])
+        self.assertEqual(
+            ["mv_alpha_fake"],
+            [item.route.move_id for item in report.findings
+             if item.rule == "movement"],
+        )
+
+    def test_inner_defense_requires_ren_du_and_rejects_fake_dantian(self) -> None:
+        mapping = {"ap_renmai_qihai": "mer_renmai"}
+        with mock.patch.object(checker, "load_acupoint_meridians",
+                               return_value=mapping):
+            report = checker.analyze_delivery_routes([
+                self.route("inner", ("ap_renmai_qihai",), purpose="defense"),
+                self.route("inner", ("ap_yinwei_fuai",), purpose="defense",
+                           move_id="mv_alpha_no_ren_du"),
+                self.route("inner", ("ap_dantian",), purpose="defense",
+                           move_id="mv_alpha_fake_dantian"),
+            ])
+        by_move = {item.route.move_id: item.rule for item in report.findings}
+        self.assertEqual("inner-defense", by_move["mv_alpha_no_ren_du"] )
+        self.assertEqual("inner-dantian", by_move["mv_alpha_fake_dantian"] )
+
+    def test_route_nature_conflict_and_allow_opposed_override(self) -> None:
+        mapping = {
+            "ap_yin_a": "mer_renmai", "ap_yin_b": "mer_yinwei",
+            "ap_yang": "mer_dumai", "ap_unknown": None,
+        }
+        with mock.patch.object(checker, "load_acupoint_meridians",
+                               return_value=mapping):
+            report = checker.analyze_delivery_routes([
+                self.route(None, ("ap_yin_a", "ap_yin_b"), nature="yang"),
+                self.route(None, ("ap_yin_a", "ap_yin_b"), nature="yang",
+                           allow_opposed_nature=True, move_id="mv_alpha_allowed"),
+                self.route(None, ("ap_yin_a", "ap_yang", "ap_unknown"),
+                           nature="yang", move_id="mv_alpha_tie"),
+            ])
+        self.assertEqual(
+            ["mv_alpha_one"],
+            [item.route.move_id for item in report.nature_findings],
+        )
+        self.assertEqual("harmony", checker.route_nature(
+            ("ap_yin_a", "ap_yang", "ap_unknown"), mapping
+        ))
 
     def test_leg_accepts_any_foot_yang_acupoint(self) -> None:
         routes = [
@@ -963,20 +1212,144 @@ class DeliveryTests(unittest.TestCase):
         self.assertEqual("palm", routes[0].delivery)
         self.assertTrue(routes[0].projection)
 
+    def test_collects_nonultimate_projection_but_not_projection_false(self) -> None:
+        text = """
+### `sk_alpha` 测试音功（8 地中 · 杂学 / 音功；nature:yin）
+| 外放 `mv_alpha_wave` | `MoveDef{ultimate:false; projection:true; voice:true}` |
+| 普通 `mv_alpha_plain` | `MoveDef{ultimate:false; projection:false}` |
+| `sk_alpha` | `mv_alpha_wave` | `mfr_alpha_wave` | `[yin]` | `ap_yinwei_tiantu/70/90` |
+| `sk_alpha` | `mv_alpha_plain` | `mfr_alpha_plain` | `[yin]` | `ap_yinwei_tiantu/70/90` |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            routes = checker.collect_delivery_routes([path])
+        self.assertEqual(["mv_alpha_wave"], [route.move_id for route in routes])
+        self.assertFalse(routes[0].ultimate)
+        self.assertTrue(routes[0].voice)
+
+    def test_compact_card_keeps_own_move_def_after_semicolon(self) -> None:
+        text = """
+### `sk_alpha` 测试掌（6 玄上 · 拳脚 / 拳掌；nature:yin）
+**招式**：外放 `mv_alpha_wave`（远程，拉敌 1；`MoveDef{range:{min:1,max:3}; projection:true; ultimate:false}`）、近击 `mv_alpha_plain`（近身；`MoveDef{projection:false; ultimate:false}`）。
+| `sk_alpha` | `mv_alpha_wave` | `mfr_alpha_wave` | `[yin]` | `ap_shoutaiyin_shaoshang/70/90` |
+| `sk_alpha` | `mv_alpha_plain` | `mfr_alpha_plain` | `[yin]` | `ap_renmai_qihai/70/90` |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            routes = checker.collect_delivery_routes([path])
+        self.assertEqual(["mv_alpha_wave"], [route.move_id for route in routes])
+        self.assertEqual("mfr_alpha_wave", routes[0].route_id)
+
+    def test_collects_nonultimate_projection_from_route_first_row(self) -> None:
+        text = """
+### `sk_chuanyunxiao` 穿云啸（8 地中 · 杂学 / 音功；nature:yang）
+| 人声 `mv_chuanyunxiao_chuanyun` | `MoveDef{ultimate:false; projection:true}` |
+| `mfr_chuanyunxiao_chuanyun` | `mv_chuanyunxiao_chuanyun`；`MeridianRouteDef{moveRef:mv_chuanyunxiao_chuanyun; ultimate:false; purpose:attack; requiredNature:[yang,harmony]}` | `ap_dumai_mingmen/70/100→ap_yinwei_tiantu/80/320→ap_yinwei_lianquan/70/160` |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            routes = checker.collect_delivery_routes([path])
+        self.assertEqual(1, len(routes))
+        self.assertEqual("mfr_chuanyunxiao_chuanyun", routes[0].route_id)
+        self.assertFalse(routes[0].ultimate)
+        self.assertEqual(0, checker.analyze_delivery_routes(
+            routes
+        ).nonultimate_projection_violations)
+
+    def test_voice_field_is_parsed_as_explicit_tristate(self) -> None:
+        text = """
+### `sk_shizihou` 狮子吼（10 天下 · 杂学/音功；nature:yang）
+| 人声 `mv_alpha_true` | `MoveDef{ultimate:true; projection:true; voice:true}` |
+| 乐器 `mv_alpha_false` | `MoveDef{ultimate:true; projection:true; voice:false}` |
+| 旧卡 `mv_alpha_legacy` | `MoveDef{ultimate:true; projection:true}` |
+| 10 天下 | sk_shizihou | mv_alpha_true MoveDef{ultimate:true} | mfr_alpha_true MeridianRouteDef{moveRef:mv_alpha_true; ultimate:true; purpose:attack} | ap_yinwei_tiantu/80/100 |
+| 10 天下 | sk_shizihou | mv_alpha_false MoveDef{ultimate:true} | mfr_alpha_false MeridianRouteDef{moveRef:mv_alpha_false; ultimate:true; purpose:attack} | ap_yinwei_tiantu/80/100 |
+| 10 天下 | sk_shizihou | mv_alpha_legacy MoveDef{ultimate:true} | mfr_alpha_legacy MeridianRouteDef{moveRef:mv_alpha_legacy; ultimate:true; purpose:attack} | ap_yinwei_tiantu/80/100 |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            routes = checker.collect_delivery_routes([path])
+        self.assertEqual([True, False, None], [route.voice for route in routes])
+
+    def test_nonultimate_projection_has_separate_report_totals(self) -> None:
+        report = checker.analyze_delivery_routes([
+            self.route(None, ("ap_renmai_qihai",), projection=True),
+            self.route(None, ("ap_renmai_qihai",), projection=True,
+                       ultimate=False, move_id="mv_alpha_normal"),
+        ])
+        self.assertEqual(1, report.route_count)
+        self.assertEqual(1, report.nonultimate_projection_routes)
+        self.assertEqual(1, report.nonultimate_projection_violations)
+        self.assertEqual(1, report.catalogs[0].routes)
+        self.assertEqual(1, len(report.routes))
+        self.assertTrue(all(route.ultimate for route in report.routes))
+        self.assertEqual(1, len(report.nonultimate_projection_route_details))
+
+    def test_vocal_allowlist_entries_are_defined_and_sonic(self) -> None:
+        definitions: dict[str, tuple[Path, int]] = {}
+        for path in checker.CATALOG_PATHS:
+            text = path.read_text(encoding="utf-8")
+            grades, _lines = checker.parse_skill_grades(text)
+            for skill_id in checker.VOCAL_SONIC_SKILLS & grades.keys():
+                formal_lines = [
+                    line for line in text.splitlines()
+                    if skill_id in line and checker._grade_from_line(line) is not None
+                    and "音功" in line
+                ]
+                self.assertTrue(formal_lines, f"{skill_id} lacks sonic definition")
+                definitions[skill_id] = (path, grades[skill_id])
+        self.assertEqual(set(checker.VOCAL_SONIC_SKILLS), set(definitions))
+
+    def test_delivery_json_exposes_new_independent_totals(self) -> None:
+        report = checker.analyze_delivery_routes([
+            self.route(None, ("ap_renmai_qihai",), projection=True,
+                       ultimate=False, nature="yang"),
+        ])
+        self.assertEqual(1, report.nonultimate_projection_routes)
+        self.assertEqual(1, report.nonultimate_projection_violations)
+        self.assertEqual(1, len(report.nature_findings))
+        payload = asdict(report)
+        self.assertEqual((), payload["routes"])
+        self.assertEqual(
+            1, len(payload["nonultimate_projection_route_details"])
+        )
+
     def test_ambiguous_fist_palm_bucket_does_not_turn_fists_into_palms(self) -> None:
         fist = "#### `sk_qishangquan` 七伤拳（9 地上 · 拳脚／拳掌）"
         palm = "##### 大金刚掌 `sk_dajingangzhang`（地下 7 · 拳脚·掌）"
         legacy = "`legacy-set:xinglin_qihuang`；推宫治疗"
-        self.assertIsNone(checker._delivery_from_context(fist, "阴阳吞吐"))
+        self.assertEqual(
+            "fist-grapple", checker._delivery_from_context(fist, "阴阳吞吐")
+        )
         self.assertEqual(
             "palm", checker._delivery_from_context(palm, "大力")
         )
         self.assertIsNone(checker._delivery_from_context("", legacy))
 
+    def test_fist_name_ignores_misc_prerequisite_chain(self) -> None:
+        misc = (
+            "| `sk_honghuahuiheji` | 红花会合击 | 7 地下 | 杂学/阵法 | "
+            "红花长拳 → 红花心法 → 本门 |"
+        )
+        own_fist = "| `sk_alphaquan` | 测试拳 | 7 地下 | 拳脚/拳掌 |"
+        self.assertIsNone(
+            checker._delivery_from_context(misc, "十四当家合击")
+        )
+        self.assertEqual(
+            "fist-grapple",
+            checker._delivery_from_context(own_fist, "第一式"),
+        )
+
     def test_fist_subtype_defers_to_explicit_palm_action(self) -> None:
         fist = "`sk_qishangquan` 七伤拳；subType:fist"
         palm = "`sk_donghaichaoshengzhang` 东海潮生掌；subType:fist"
-        self.assertIsNone(checker._delivery_from_context(fist, "阴阳吞吐"))
+        self.assertEqual(
+            "fist-grapple", checker._delivery_from_context(fist, "阴阳吞吐")
+        )
         self.assertEqual(
             "palm", checker._delivery_from_context(palm, "怒海潮生")
         )

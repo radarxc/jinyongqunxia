@@ -69,6 +69,11 @@ EXTERNAL_WUJUE_ROUTE_IDS = frozenset(
     item[1] for item in EXTERNAL_WUJUE.values()
 )
 PALM_ENDPOINTS = frozenset({"ap_shoujueyin_laogong"})
+FIST_GRAPPLE_ENDPOINTS = frozenset({
+    "ap_shouyangming_quchi",
+    "ap_shouyangming_shousanli",
+    "ap_shouyangming_hegu",
+})
 FINGER_ENDPOINTS = frozenset({
     "ap_shoutaiyin_shaoshang",
     "ap_shouyangming_shangyang",
@@ -102,6 +107,26 @@ PROJECTION_ENDPOINTS = frozenset(
     | WEAPON_GUIDE_ENDPOINTS
     | {"ap_shoujueyin_neiguan", "ap_shoujueyin_laogong"}
 )
+VOCAL_SONIC_ENDPOINTS = frozenset({
+    "ap_yinwei_tiantu",
+    "ap_yinwei_lianquan",
+})
+# New cards use MoveDef.voice.  This allowlist is the compatibility fallback
+# for older cards that do not yet expose that field; explicit false overrides it.
+VOCAL_SONIC_SKILLS = frozenset({
+    "sk_shizihou",
+    "sk_jingangnuhou",
+    "sk_chuanyunxiao",
+    "sk_chuanyinsouhun",
+    "sk_damingzhou",
+})
+MOVEMENT_MERIDIANS = frozenset({
+    "mer_zushaoyang", "mer_daimai", "mer_yangqiao",
+})
+REN_DU_MERIDIANS = frozenset({"mer_renmai", "mer_dumai"})
+LEGAL_DANTIAN_ACUPOINTS = frozenset({
+    "ap_renmai_qihai", "ap_renmai_guanyuan",
+})
 
 
 class UltimateRulingsError(ValueError):
@@ -362,6 +387,10 @@ class DeliveryRoute:
     delivery: str | None
     purpose: str | None
     projection: bool
+    ultimate: bool = True
+    voice: bool | None = None
+    nature: str | None = None
+    allow_opposed_nature: bool = False
 
     @property
     def location(self) -> str:
@@ -377,6 +406,9 @@ class DeliveryCatalogSummary:
     violations: int
     tail_violations: int
     unclassified: int
+    nonultimate_projection_routes: int = 0
+    nonultimate_projection_violations: int = 0
+    nature_conflicts: int = 0
 
 
 @dataclass(frozen=True)
@@ -393,14 +425,39 @@ class DeliveryReport:
     findings: tuple[DeliveryFinding, ...]
     tail_findings: tuple[DeliveryFinding, ...]
     tail_violations: int
+    nonultimate_projection_route_details: tuple[DeliveryRoute, ...] = ()
+    nonultimate_projection_findings: tuple[DeliveryFinding, ...] = ()
+    nature_findings: tuple[DeliveryFinding, ...] = ()
+    nonultimate_projection_routes: int = 0
+    nature_conflicts: int = 0
 
     @property
     def route_count(self) -> int:
         return len(self.routes)
 
     @property
+    def ultimate_route_count(self) -> int:
+        return len(self.routes)
+
+    @property
+    def nonultimate_projection_violations(self) -> int:
+        return len(self.nonultimate_projection_findings)
+
+    @property
     def checked_rule_count(self) -> int:
         return sum(item.checked_rules for item in self.catalogs)
+
+    @property
+    def classified_count(self) -> int:
+        return sum(item.classified for item in self.catalogs)
+
+    @property
+    def violation_count(self) -> int:
+        return len(self.findings)
+
+    @property
+    def unclassified_count(self) -> int:
+        return sum(item.unclassified for item in self.catalogs)
 
 
 @dataclass
@@ -417,12 +474,47 @@ class CatalogAudit:
     body_index_mismatches: int = 0
     duplicate_step_definitions: int = 0
     ultimate_quota_violations: int = 0
+    unregistered_acupoint_warnings: int = 0
     errors: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
 
 
 def catalog_name(path: Path) -> str:
     return path.stem.removeprefix("skills-")
+
+
+def load_meridian_natures(
+    path: Path = ACUPOINT_REGISTRY,
+) -> dict[str, str]:
+    """Read meridian gameplay natures from design/15 section 2.1."""
+    result: dict[str, str] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        match = re.match(
+            r"^\| `?(mer_[a-z0-9_]+)`? \|.*\| (yin|yang|harmony) \|",
+            line,
+        )
+        if match:
+            result[match.group(1)] = match.group(2)
+    return result
+
+
+def load_acupoint_meridians(
+    path: Path = ACUPOINT_REGISTRY,
+) -> dict[str, str]:
+    """Read section-3 game ownership; never infer it from an ID prefix."""
+    result: dict[str, str] = {}
+    current: str | None = None
+    for line in path.read_text(encoding="utf-8").splitlines():
+        heading = re.match(r"^### 3\.\d+ .*`(mer_[a-z0-9_]+)`", line)
+        if heading:
+            current = heading.group(1)
+            continue
+        if line.startswith("## 4."):
+            break
+        if current and line.startswith("|"):
+            for point in re.findall(r"`(ap_[a-z0-9_]+)`", line):
+                result[point] = current
+    return result
 
 
 def grade_tier(grade: int | None) -> str | None:
@@ -1331,6 +1423,183 @@ def _skill_contexts(text: str) -> dict[str, str]:
     return {skill: " ".join(lines) for skill, lines in contexts.items()}
 
 
+def _skill_identity_context(skill_context: str) -> str:
+    """Keep this skill's display name/category, excluding prerequisites."""
+    skill = re.search(r"\bsk_[a-z0-9_]+", skill_context)
+    if skill is None:
+        return skill_context.split("｜", 1)[0]
+    skill_id = skill.group(0)
+    identities: list[str] = []
+    definitions = re.split(
+        r"\s+(?=(?:#{1,6}\s+|\*\*`?sk_))", skill_context
+    )
+    for line in definitions:
+        match = re.search(rf"\b{re.escape(skill_id)}\b", line)
+        if match is None:
+            continue
+        if line.lstrip().startswith("|"):
+            cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+            index = next(i for i, cell in enumerate(cells) if skill_id in cell)
+            own_fields = []
+            for cell in cells[index:index + 4]:
+                if re.search(r"\b(?:mv|mfr)_[a-z0-9_]+", cell):
+                    break
+                own_fields.append(cell)
+            identities.append(" ".join(own_fields))
+        else:
+            own_line = line.split("｜", 1)[0]
+            identities.append(
+                re.sub(r"^\s*(?:#{1,6}\s+|-\s+)?", "", own_line)
+            )
+    return " ".join(identities)
+
+
+def _explicit_bool(context: str, field_name: str) -> bool | None:
+    match = re.search(
+        rf"\b{re.escape(field_name)}\s*[:：]\s*(true|false)",
+        context, re.I,
+    )
+    return None if match is None else match.group(1).lower() == "true"
+
+
+def _explicit_nature(context: str) -> str | None:
+    match = re.search(
+        r"\bnature\s*[:：]\s*(yin|yang|harmony|neutral)",
+        context, re.I,
+    )
+    return match.group(1).lower() if match else None
+
+
+def _skill_natures(text: str) -> dict[str, str]:
+    """Read only explicit skill nature fields or standalone table cells."""
+    result: dict[str, str] = {}
+    labels = {
+        "yin": "yin", "阴": "yin", "阴性": "yin",
+        "yang": "yang", "阳": "yang", "阳性": "yang",
+        "harmony": "harmony", "调和": "harmony",
+        "neutral": "neutral", "中性": "neutral",
+    }
+    for line in text.splitlines():
+        skills = list(dict.fromkeys(re.findall(r"\bsk_[a-z0-9_]+", line)))
+        if len(skills) != 1:
+            continue
+        nature = _explicit_nature(line)
+        if nature is None and line.lstrip().startswith("|"):
+            cells = [
+                re.sub(r"[`*\s]", "", cell)
+                for cell in line.strip().strip("|").split("|")
+            ]
+            nature = next((labels[cell] for cell in cells if cell in labels), None)
+        if nature is None and _grade_from_line(line) is not None:
+            match = re.search(
+                r"[·・]\s*(阴性?|阳性?|调和|中性)\s*(?:[·・）)])", line
+            )
+            nature = labels.get(match.group(1)) if match else None
+        if nature is not None:
+            result.setdefault(skills[0], nature)
+    return result
+
+
+def _move_contexts(text: str) -> dict[str, str]:
+    result: dict[str, list[str]] = defaultdict(list)
+    for line in text.splitlines():
+        if "MoveDef{" not in line:
+            continue
+        move_ids = list(dict.fromkeys(re.findall(r"mv_[a-z0-9_]+", line)))
+        for move_id in move_ids:
+            fragment = _local_move_fragment(line, move_id) if len(move_ids) > 1 else line
+            match = _move_match(line, move_id)
+            next_move = (
+                re.search(r"\bmv_[a-z0-9_]+", line[match.end():])
+                if match else None
+            )
+            limit = match.end() + next_move.start() if next_move and match else len(line)
+            definition = line.find("MoveDef{", match.end(), limit) if match else -1
+            if "MoveDef{" not in fragment and definition >= 0:
+                depth = 0
+                for index in range(line.find("{", definition), limit):
+                    depth += (line[index] == "{") - (line[index] == "}")
+                    if depth == 0:
+                        fragment = line[match.start():index + 1]
+                        break
+            result[move_id].append(fragment)
+    return {move_id: " ".join(parts) for move_id, parts in result.items()}
+
+
+def _move_owners(text: str) -> dict[str, str]:
+    """Resolve a move to its enclosing formal skill card."""
+    owners: dict[str, str] = {}
+    current: str | None = None
+    for line in text.splitlines():
+        skills = list(dict.fromkeys(re.findall(r"\bsk_[a-z0-9_]+", line)))
+        if len(skills) == 1 and (
+            _grade_from_line(line) is not None
+            or line.lstrip().startswith(("#", "**"))
+        ):
+            current = skills[0]
+        moves = list(dict.fromkeys(re.findall(r"\bmv_[a-z0-9_]+", line)))
+        if len(skills) == 1 and len(moves) == 1:
+            owners[moves[0]] = skills[0]
+        elif current and "MoveDef{" in line:
+            for move_id in moves:
+                owners.setdefault(move_id, current)
+    return owners
+
+
+def _purpose(context: str) -> str | None:
+    match = re.search(
+        r"purpose\s*[:：]\s*(attack|defense|movement)", context, re.I
+    )
+    return match.group(1).lower() if match else None
+
+
+def _collect_nonultimate_projection_routes(
+    path: Path, text: str, contexts: dict[str, str],
+    move_contexts: dict[str, str], move_owners: dict[str, str],
+    skill_natures: dict[str, str],
+) -> list[DeliveryRoute]:
+    """Collect explicit normal routes whose MoveDef opts into projection."""
+    mirrors = parse_route_mirrors(text)
+    rows: dict[str, tuple[int, str, tuple[str, ...], str]] = {}
+    for number, line in enumerate(text.splitlines(), 1):
+        moves = list(dict.fromkeys(re.findall(r"\bmv_[a-z0-9_]+", line)))
+        route_ids = list(dict.fromkeys(re.findall(
+            r"(?<![A-Za-z0-9_])mfr_[a-z0-9_]+", line
+        )))
+        points = tuple(re.findall(
+            r"(?<![A-Za-z0-9_])ap_[a-z0-9_]+", line
+        ))
+        if len(moves) == len(route_ids) == 1 and points:
+            rows[moves[0]] = (number, route_ids[0], points, line)
+    result: list[DeliveryRoute] = []
+    for move_id, move_context in move_contexts.items():
+        if _explicit_bool(move_context, "projection") is not True:
+            continue
+        mirror = mirrors.get(move_id)
+        explicit_ultimate = _explicit_bool(move_context, "ultimate")
+        if explicit_ultimate is True or (
+            explicit_ultimate is None and mirror and mirror.ultimate
+        ):
+            continue
+        row = rows.get(move_id)
+        if row is None:
+            continue
+        line, route_id, points, route_context = row
+        skill_id = move_owners.get(move_id) or (mirror.skill_id if mirror else None)
+        if skill_id is None:
+            continue
+        skill_context = contexts.get(skill_id, "")
+        result.append(DeliveryRoute(
+            catalog_name(path), path.name, line, skill_id, move_id, route_id,
+            points, _delivery_from_context(skill_context, move_context),
+            _purpose(route_context) or (mirror and _purpose(text.splitlines()[mirror.line - 1])) or "attack",
+            True, False, _explicit_bool(move_context, "voice"),
+            _explicit_nature(move_context) or skill_natures.get(skill_id),
+            _explicit_bool(route_context, "allowOpposedNature") is True,
+        ))
+    return result
+
+
 def _delivery_from_context(skill_context: str, move_context: str) -> str | None:
     context = f"{skill_context} {move_context}"
     subtype = re.search(
@@ -1341,6 +1610,10 @@ def _delivery_from_context(skill_context: str, move_context: str) -> str | None:
         value = subtype.group(1).lower()
         if value == "inner":
             return "inner"
+        if value == "movement":
+            return "movement"
+        if value == "grapple":
+            return "fist-grapple"
         if value in {"finger", "leg"}:
             return value
         if value in {"sword", "blade", "staff", "spear", "whip", "exotic"}:
@@ -1348,10 +1621,12 @@ def _delivery_from_context(skill_context: str, move_context: str) -> str | None:
         # ``fist`` / ``grapple`` are legacy coarse buckets: they do not prove
         # a palm action, but must not hide an explicit skill name or move such
         # as 东海潮生掌 / 掌风外吐.  Other subtypes are authoritative here.
-        if value not in {"fist", "grapple"}:
+        if value != "fist":
             return None
     if re.search(r"category\s*[:：]\s*(?:inner|内功)", context, re.I):
         return "inner"
+    if re.search(r"category\s*[:：]\s*movement", context, re.I):
+        return "movement"
     if re.search(
         r"category\s*[:：]\s*(?:weapon|sword|blade|staff|spear|whip|exotic)",
         context, re.I,
@@ -1373,10 +1648,13 @@ def _delivery_from_context(skill_context: str, move_context: str) -> str | None:
         return "weapon"
     if re.search(r"(?:^|[（(·| /／])内功(?:[·| /／）)]|$)", context):
         return "inner"
+    if re.search(r"(?:^|[（(·| /／])(?:轻功|身法)(?:[·| /／）)]|$)",
+                 skill_context):
+        return "movement"
     # ``拳脚/拳掌`` is an old broad catalog bucket, not an action.  Inspect
     # explicit fine types and display names only after removing that token.
     named_skill = re.sub(r"拳脚\s*[/／·]\s*拳掌", "", skill_context)
-    if re.search(r"(?:掌法|[^拳]掌)(?=[\s|（(·；;，,:：。]|$)", named_skill):
+    if re.search(r"(?:掌法|[^拳]掌)(?=[*\s|（(·；;，,:：。]|$)", named_skill):
         return "palm"
     if re.search(r"(?:指法|[^定]指)(?=[\s|（(·]|$)", named_skill):
         return "finger"
@@ -1392,6 +1670,24 @@ def _delivery_from_context(skill_context: str, move_context: str) -> str | None:
         return "leg"
     if re.search(r"(?:持械|剑招|刀招|棍招|枪招|鞭招)", move_context):
         return "weapon"
+    fist_skill = re.sub(
+        r"拳脚\s*[/／·]\s*拳掌", "",
+        _skill_identity_context(skill_context),
+    )
+    if re.search(r"(?:拳法|[^掌]拳)(?=[*\s|（(·；;，,:：。]|$)", fist_skill):
+        return "fist-grapple"
+    fist_action_context = (
+        move_context
+        if re.search(r"(?:misc|杂学)\s*[/／·]", fist_skill, re.I)
+        else context
+    )
+    if re.search(r"(?:拳法|擒拿)", fist_skill) or re.search(
+        r"(?:拳法|拳招|出拳|拳击|拳劲|擒拿|拿握|锁腕)",
+        fist_action_context,
+    ):
+        return "fist-grapple"
+    if re.search(r"(?:护体|疗伤)", move_context):
+        return "inner"
     return None
 
 
@@ -1405,22 +1701,14 @@ def collect_delivery_routes(paths: Iterable[Path]) -> list[DeliveryRoute]:
         )
         text = path.read_text(encoding="utf-8")
         contexts = _skill_contexts(text)
+        skill_natures = _skill_natures(text)
+        move_contexts = _move_contexts(text)
+        move_owners = _move_owners(text)
         lines = text.splitlines()
         for item in parse_audit_instances(text).values():
             if item.body_ultimate is not True or item.route_ultimate is not True:
                 continue
-            move_fragments: list[str] = []
-            for line in lines:
-                if not _move_match(line, item.move_id) or "MoveDef{" not in line:
-                    continue
-                move_ids = list(dict.fromkeys(re.findall(
-                    r"(?<![A-Za-z0-9_])mv_[a-z0-9_]+", line
-                )))
-                move_fragments.append(
-                    _local_move_fragment(line, item.move_id)
-                    if len(move_ids) > 1 else line
-                )
-            move_context = " ".join(move_fragments)
+            move_context = move_contexts.get(item.move_id, "")
             route_line = lines[item.line - 1]
             purpose_match = re.search(
                 r"purpose\s*[:：]\s*(attack|defense|movement)", route_line, re.I
@@ -1431,7 +1719,14 @@ def collect_delivery_routes(paths: Iterable[Path]) -> list[DeliveryRoute]:
                 _delivery_from_context(contexts.get(item.skill_id, ""), move_context),
                 purpose_match.group(1).lower() if purpose_match else None,
                 bool(re.search(r"projection\s*[:：]\s*true", move_context, re.I)),
+                True, _explicit_bool(move_context, "voice"),
+                _explicit_nature(move_context)
+                or skill_natures.get(item.skill_id),
+                _explicit_bool(route_line, "allowOpposedNature") is True,
             ))
+        routes.extend(_collect_nonultimate_projection_routes(
+            path, text, contexts, move_contexts, move_owners, skill_natures
+        ))
     if include_external_wujue:
         routes.extend(parse_external_wujue_delivery_routes(MERIDIAN_FLOW_PATH))
     return sorted(routes, key=lambda item: (item.catalog, item.line, item.route_id))
@@ -1458,14 +1753,66 @@ def _action_endpoint_findings(
     return [], []
 
 
+def route_nature(
+    signature: tuple[str, ...],
+    acupoint_meridians: dict[str, str] | None = None,
+    meridian_natures: dict[str, str] | None = None,
+) -> str:
+    """Apply design/21 §2.4 reading 1: yin/yang vote; ties harmonize."""
+    ownership = acupoint_meridians or load_acupoint_meridians()
+    natures = meridian_natures or load_meridian_natures()
+    votes = Counter(
+        natures.get(ownership.get(point, ""))
+        for point in signature
+    )
+    yin, yang = votes["yin"], votes["yang"]
+    if yin == yang:
+        return "harmony"
+    return "yin" if yin > yang else "yang"
+
+
+def _has_game_meridian(
+    route: DeliveryRoute, allowed: frozenset[str],
+    ownership: dict[str, str],
+) -> bool:
+    return any(ownership.get(point) in allowed for point in route.signature)
+
+
+def _is_vocal_projection(route: DeliveryRoute) -> bool:
+    if route.voice is not None:
+        return route.voice
+    return route.skill_id in VOCAL_SONIC_SKILLS
+
+
 def _delivery_findings(
-    route: DeliveryRoute,
+    route: DeliveryRoute, ownership: dict[str, str] | None = None,
 ) -> tuple[list[DeliveryFinding], list[DeliveryFinding]]:
     findings: list[DeliveryFinding] = []
     tail_findings: list[DeliveryFinding] = []
+    if not route.ultimate:
+        if route.projection:
+            vocal = _is_vocal_projection(route)
+            allowed = PROJECTION_ENDPOINTS | (
+                VOCAL_SONIC_ENDPOINTS if vocal else frozenset()
+            )
+            finding = _endpoint_finding(
+                route, "projection", allowed,
+                "projection hand endpoint or vocal throat endpoint"
+                if vocal else "one of the 13 projection hand endpoints",
+            )
+            if finding:
+                findings.append(finding)
+        return findings, tail_findings
     if route.delivery == "palm":
         current, tails = _action_endpoint_findings(
             route, "palm", PALM_ENDPOINTS, "ap_shoujueyin_laogong"
+        )
+        findings.extend(current)
+        tail_findings.extend(tails)
+    elif route.delivery == "fist-grapple":
+        current, tails = _action_endpoint_findings(
+            route, "fist-grapple", FIST_GRAPPLE_ENDPOINTS,
+            "Quchi, Shousanli, or Hegu",
         )
         findings.extend(current)
         tail_findings.extend(tails)
@@ -1498,16 +1845,44 @@ def _delivery_findings(
         )
         findings.extend(current)
         tail_findings.extend(tails)
-    elif route.delivery == "inner" and route.purpose == "attack":
+    if route.delivery == "inner" and route.purpose == "attack":
+        # Preserve the pre-NXT report exactly; new mapping-based checks below
+        # are additive and report-only.
         if not any(point.startswith(("ap_renmai_", "ap_dumai_"))
                    for point in route.signature):
             findings.append(DeliveryFinding(
                 route, "inner-attack", "one Ren or Du acupoint"
             ))
+    ownership = ownership or load_acupoint_meridians()
+    if route.delivery == "inner" and route.purpose == "defense":
+        if not _has_game_meridian(route, REN_DU_MERIDIANS, ownership):
+            findings.append(DeliveryFinding(
+                route, "inner-defense", "one Ren or Du acupoint"
+            ))
+        if any("dantian" in point and point not in LEGAL_DANTIAN_ACUPOINTS
+               for point in route.signature):
+            findings.append(DeliveryFinding(
+                route, "inner-dantian", "Qihai or Guanyuan for dantian"
+            ))
+    if route.purpose == "movement" or route.delivery == "movement":
+        if (not _has_game_meridian(route, MOVEMENT_MERIDIANS, ownership)
+                and "ap_zushaoyin_yongquan" not in route.signature):
+            findings.append(DeliveryFinding(
+                route, "movement", "footwork meridian or Yongquan"
+            ))
     if route.projection:
+        vocal = _is_vocal_projection(route)
+        allowed = (
+            PROJECTION_ENDPOINTS | VOCAL_SONIC_ENDPOINTS
+            if vocal else PROJECTION_ENDPOINTS
+        )
         finding = _endpoint_finding(
-            route, "projection", PROJECTION_ENDPOINTS,
-            "one of the 13 projection hand endpoints",
+            route, "projection", allowed,
+            (
+                "one of the 13 projection hand endpoints or a vocal "
+                "Tiantu/Lianquan endpoint"
+                if vocal else "one of the 13 projection hand endpoints"
+            ),
         )
         if finding:
             findings.append(finding)
@@ -1518,22 +1893,59 @@ def analyze_delivery_routes(routes: Iterable[DeliveryRoute]) -> DeliveryReport:
     route_list = tuple(sorted(
         routes, key=lambda item: (item.catalog, item.line, item.route_id)
     ))
-    finding_groups = tuple(_delivery_findings(route) for route in route_list)
-    findings = tuple(
+    ultimate_routes = tuple(route for route in route_list if route.ultimate)
+    nonultimate_projection_route_details = tuple(
+        route for route in route_list if not route.ultimate and route.projection
+    )
+    ownership = load_acupoint_meridians()
+    meridian_natures = load_meridian_natures()
+    finding_groups = tuple(
+        _delivery_findings(route, ownership) for route in route_list
+    )
+    all_findings = tuple(
         finding for current, _tails in finding_groups for finding in current
+    )
+    findings = tuple(
+        finding for finding in all_findings if finding.route.ultimate
     )
     tail_findings = tuple(
         finding for _current, tails in finding_groups for finding in tails
+        if finding.route.ultimate
+    )
+    nature_findings = tuple(
+        DeliveryFinding(
+            route, "nature-conflict",
+            f"route={route_nature(route.signature, ownership, meridian_natures)}; "
+            f"declared={route.nature}",
+        )
+        for route in route_list
+        if route.nature in {"yin", "yang"}
+        and route_nature(
+            route.signature, ownership, meridian_natures
+        ) in {"yin", "yang"}
+        and route_nature(
+            route.signature, ownership, meridian_natures
+        ) != route.nature
+        and not route.allow_opposed_nature
+    )
+    nonultimate_projection_findings = tuple(
+        finding for finding in all_findings
+        if not finding.route.ultimate and finding.rule == "projection"
     )
     by_catalog: dict[str, list[DeliveryRoute]] = defaultdict(list)
     for route in route_list:
         by_catalog[route.catalog].append(route)
     summaries: list[DeliveryCatalogSummary] = []
     for name in sorted(by_catalog):
-        items = by_catalog[name]
+        all_items = by_catalog[name]
+        items = [route for route in all_items if route.ultimate]
         checked = sum(
-            (route.delivery in {"palm", "finger", "leg", "weapon"})
+            (route.delivery in {
+                "palm", "finger", "fist-grapple", "leg", "weapon",
+            })
             + (route.delivery == "inner" and route.purpose == "attack")
+            + (route.delivery == "inner" and route.purpose == "defense")
+            + (route.purpose == "movement" or route.delivery == "movement")
             + route.projection
             for route in items
         )
@@ -1546,10 +1958,27 @@ def analyze_delivery_routes(routes: Iterable[DeliveryRoute]) -> DeliveryReport:
                 finding.route.catalog == name for finding in tail_findings
             ),
             unclassified=sum(route.delivery is None for route in items),
+            nonultimate_projection_routes=sum(
+                not route.ultimate and route.projection for route in all_items
+            ),
+            nonultimate_projection_violations=sum(
+                finding.route.catalog == name
+                for finding in nonultimate_projection_findings
+            ),
+            nature_conflicts=sum(
+                finding.route.catalog == name for finding in nature_findings
+            ),
         ))
     return DeliveryReport(
-        route_list, tuple(summaries), findings, tail_findings,
-        len(tail_findings),
+        routes=ultimate_routes, catalogs=tuple(summaries), findings=findings,
+        tail_findings=tail_findings, tail_violations=len(tail_findings),
+        nonultimate_projection_route_details=(
+            nonultimate_projection_route_details
+        ),
+        nonultimate_projection_findings=nonultimate_projection_findings,
+        nature_findings=nature_findings,
+        nonultimate_projection_routes=len(nonultimate_projection_route_details),
+        nature_conflicts=len(nature_findings),
     )
 
 
@@ -1565,8 +1994,16 @@ def analyze_delivery(paths: Iterable[Path]) -> DeliveryReport:
         for path in sorted(path_list, key=lambda item: catalog_name(item))
     )
     return DeliveryReport(
-        report.routes, all_summaries, report.findings, report.tail_findings,
-        report.tail_violations,
+        routes=report.routes, catalogs=all_summaries,
+        findings=report.findings, tail_findings=report.tail_findings,
+        tail_violations=report.tail_violations,
+        nonultimate_projection_route_details=(
+            report.nonultimate_projection_route_details
+        ),
+        nonultimate_projection_findings=report.nonultimate_projection_findings,
+        nature_findings=report.nature_findings,
+        nonultimate_projection_routes=report.nonultimate_projection_routes,
+        nature_conflicts=report.nature_conflicts,
     )
 
 
@@ -1642,9 +2079,9 @@ def parse_external_wujue_delivery_routes(path: Path) -> list[DeliveryRoute]:
     """Project the three 05/21-owned Xianglong routes into Wujue.
 
     The author decision classifies all three ultimate palm-force moves as
-    projection attacks.  Their MoveDefs have not yet received the field in
-    05, so this explicit cross-document exception lets the endpoint audit
-    expose that content debt instead of silently omitting the routes.
+    projection attacks, and design/05 v1.6 now declares ``projection:true``.
+    Their concrete routes remain owned by design/21, so this cross-document
+    mapping keeps them in the catalog delivery audit.
     """
     base_routes = parse_external_wujue_diversity_routes(path)
     lines = path.read_text(encoding="utf-8").splitlines()
@@ -2071,16 +2508,46 @@ def audit_catalog(
     for move_id, target in targets.items():
         move = body.get(move_id)
         grade = grades.get(target.skill_id or "")
-        if grade_tier(grade) not in ("天", "地"):
+        tier = grade_tier(grade)
+        if tier not in ("天", "地", "玄上"):
             continue
         signature = explicit_signatures.get(move_id)
         if signature is None:
+            if tier == "玄上":
+                # Grade-six route coverage is being cleaned up catalog by
+                # catalog.  Only unregistered IDs are report-only in this
+                # transition; existing route-completeness behavior stays put.
+                continue
             audit.implicit_routes += 1
             audit.errors.append(
                 f"{path.name}:{move.line if move else target.line}: {move_id} lacks explicit mfr_* + ap_* route"
             )
         else:
             route = explicit_routes.get(move_id) or mirrors.get(move_id)
+            unknown = sorted(
+                point for point in set(signature)
+                if official and point.startswith("ap_")
+                and point not in registered_acupoints
+            )
+            legacy_unknown: set[str] = set()
+            if route and route.line > 0:
+                route_points, _cts, _risks = _route_values(
+                    text_lines[route.line - 1], route.route_id
+                )
+                legacy_unknown = set(route_points) - registered_acupoints
+            report_only = (
+                unknown if tier == "玄上" else
+                [point for point in unknown if point not in legacy_unknown]
+            )
+            if report_only:
+                audit.unregistered_acupoint_warnings += 1
+                audit.warnings.append(
+                    f"{path.name}:{move.line if move else target.line}: "
+                    f"{target.route_id} uses unregistered acupoints "
+                    f"{','.join(report_only)} (grade {tier})"
+                )
+            if tier == "玄上":
+                continue
             if route is None or not route.explicit_move_ref or route.ultimate is not True:
                 audit.errors.append(
                     f"{path.name}:{move.line if move else target.line}: {move_id} explicit route lacks true mirror"
@@ -2223,6 +2690,7 @@ def summary_row(audit: CatalogAudit) -> str:
         f"同门重复={audit.duplicate_routes}; 隐式路线={audit.implicit_routes}; "
         f"重复步骤定义={audit.duplicate_step_definitions}; "
         f"配额违规={audit.ultimate_quota_violations}; "
+        f"未登记穴位提示={audit.unregistered_acupoint_warnings}; "
         f"提示={len(audit.warnings)}; "
         f"缺离战倍率={audit.missing_out_of_battle_scale}; "
         f"旧Buff={audit.old_buff_runtime_refs}; "
@@ -2299,21 +2767,36 @@ def print_delivery_report(report: DeliveryReport, details: bool = False) -> None
             f"classified={item.classified}; checked_rules={item.checked_rules}; "
             f"violations={item.violations}; "
             f"tail_violations={item.tail_violations}; "
-            f"unclassified={item.unclassified}"
+            f"unclassified={item.unclassified}; "
+            f"nonultimate_projection_routes="
+            f"{item.nonultimate_projection_routes}; "
+            f"nonultimate_projection_violations="
+            f"{item.nonultimate_projection_violations}; "
+            f"nature_conflicts={item.nature_conflicts}"
         )
     print(
         f"delivery: routes={report.route_count}; "
+        f"classified={report.classified_count}; "
         f"checked_rules={report.checked_rule_count}; "
         f"violations={len(report.findings)}; "
         f"tail_violations={report.tail_violations}; "
-        f"unclassified={sum(item.unclassified for item in report.catalogs)}"
+        f"unclassified={report.unclassified_count}; "
+        f"nonultimate_projection_routes="
+        f"{report.nonultimate_projection_routes}; "
+        f"nonultimate_projection_violations="
+        f"{report.nonultimate_projection_violations}; "
+        f"nature_conflicts={report.nature_conflicts}"
     )
     if not details:
         return
-    for finding in report.findings + report.tail_findings:
+    for finding in (
+        report.findings + report.tail_findings
+        + report.nonultimate_projection_findings + report.nature_findings
+    ):
         route = finding.route
         print(
             f"  DELIVERY rule={finding.rule}; required={finding.required}; "
+            f"scope={'ultimate' if route.ultimate else 'normal-projection'}; "
             f"{route.catalog}:{route.skill_id}/{route.move_id}/{route.route_id}"
             f"@{route.location}"
         )

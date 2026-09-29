@@ -271,17 +271,32 @@ overlapBp = floor(10000 * |set(A) ∩ set(B)| / min(|set(A)|, |set(B)|))
 
 ### 出招方式末端检查
 
-`--delivery` 对最终绝招路线执行 `design/21` §4.3.1 与 §4.4.1.4 的末端规则审计：
+`--delivery` 对最终绝招路线执行 `design/21` §4.3.1 与 §4.4.1.4 的末端规则审计，
+并以独立字段审计非绝招的显式外放路线与路线性质冲突；其中紧凑卡标题识别允许
+武学名紧接 Markdown `**`，避免“鹰扬掌**（…”一类掌法漏分类：
 
 - 掌招须包含劳宫；指招须包含六个指端之一，六脉具名招还须命中招名对应指端；
 - 腿招须包含足阳明、足太阳或足少阳的任一穴；推荐端点为厉兑、至阴或足窍阴。
   兵器招须包含腕骨、阳谷、阳池、外关或合谷；
-- `purpose:attack` 的内功绝招须包含任脉或督脉穴；
-- `projection:true` 的外放招须另含 13 个手部端点之一，因此同一路线可能同时检查
-  动作末端与外放端点两条规则。
+- 拳、擒拿须含曲池、手三里、合谷之一；轻功 / 位移须含 15 登记的足少阳、带脉、
+  阳跷穴之一或涌泉；`purpose:attack` 的内功绝招，以及可可靠识别的护体 / 疗伤招，
+  须包含任脉或督脉穴，且丹田只接受气海 / 关元；
+- `projection:true` 的外放招通常须另含 13 个手部端点之一，因此同一路线可能同时检查
+  动作末端与外放端点两条规则。人声发劲的音功另可用天突
+  `ap_yinwei_tiantu` 或廉泉 `ap_yinwei_lianquan`；琴、箫、笛等持乐器音功仍只能用
+  13 个手／腕端点。
+- 非绝招外放同时支持“武学 / 招式 / 路线 / steps”覆写行及“路线 / 招式 +
+  `MeridianRouteDef{ultimate:false}` / steps”行；只有对应 `MoveDef.projection:true` 才纳入。
 
-动作类型优先读取明确的 `category` / `subType`、武学名与招式动作描述；旧“拳掌”
-大类和 `subType:fist` 本身不等于掌招，无法可靠判断的路线计入 `unclassified` 而不猜测。
+人声判定优先读取 `MoveDef.voice`：显式 true 放行喉部端点，显式 false 即使命中旧清单
+也不放行；未写字段才保守回退到明确的人声武学 `sk_shizihou`、
+`sk_jingangnuhou`、`sk_chuanyunxiao`、
+`sk_chuanyinsouhun`、`sk_damingzhou`；其余技能即使属于音功，也不会仅凭名称获得喉部
+端点例外。白名单只作旧内容兼容。
+
+动作类型优先读取明确的 `category` / `subType`、武学名与招式动作描述；
+`subType:grapple` 可判为擒拿，`subType:fist` 本身仍不能证明是拳，须由武学名或动作
+明确“拳”。旧“拳掌”大类本身不等于掌招，无法可靠判断的路线计入 `unclassified`。
 掌、指、腿、兵器所需穴位原则上应在最后三段；路线包含所需穴位但位置更靠前时，
 另报 `rule=<原规则>-tail`。完全不含仍只报原规则，两类诊断不重复计数。内功攻击的
 任 / 督穴与外放 13 端点只要求“至少经过”，不做位置检查。
@@ -292,8 +307,17 @@ overlapBp = floor(10000 * |set(A) ∩ set(B)| / min(|set(A)|, |set(B)|))
 该开关当前只报告：违规不会改变退出码，也不会被原有 `--strict` 执行；`--details`
 展开每条 `DELIVERY` 诊断。按册字段依次为 `delivery_routes`、`classified`、
 `checked_rules`、`violations`、`tail_violations`、`unclassified`；合计与 JSON 也显式
-包含 `tail_violations`，逐条位置诊断位于 `tail_findings`。`--json --delivery` 把顶层改为 `audits` 与
-`delivery`；同时使用多样性开关时再并列 `diversity`。
+包含 `tail_violations`。`nonultimate_projection_*` 与 `nature_conflicts` 独立计数，不改变
+上述绝招口径；JSON 的原 `routes` 仍只列绝招，普通外放明细另列在
+`nonultimate_projection_route_details`。性质按 15 §3 的穴位归属及 §2.1 游戏性质计票：yin / yang 多数决，
+harmony 不计票，平票（含 0:0）取 harmony；显式 `allowOpposedNature:true` 豁免冲突。
+`--json --delivery` 顶层为 `audits` 与 `delivery`；并用多样性开关时再列 `diversity`。
+
+天、地阶既有“路线索引行”检查保持原样：只有该行自身带 `ap/CT/risk` 三元组时，
+未登记穴位及重复、段数、CT、风险等才按旧语义计入 `errors`。另按最终 signature 对
+天、地、玄上三档补做未登记穴位提示，均只加入 `warnings`，文本摘要为
+`未登记穴位提示`，JSON 字段为 `unregistered_acupoint_warnings`；同一穴位已被旧检查报错
+时不重复提示。玄上不运行其余路线严格检查。提示清零后由 NAu-final 统一转严格。
 
 人读模式的 `配额违规` / `重复步骤定义` 与 JSON 字段
 `ultimate_quota_violations` / `duplicate_step_definitions` 分别统计逐门配额错误和第二次
