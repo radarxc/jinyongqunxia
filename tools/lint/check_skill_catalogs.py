@@ -68,6 +68,40 @@ DIVERSITY_OVERLAP_BP = 8000
 EXTERNAL_WUJUE_ROUTE_IDS = frozenset(
     item[1] for item in EXTERNAL_WUJUE.values()
 )
+PALM_ENDPOINTS = frozenset({"ap_shoujueyin_laogong"})
+FINGER_ENDPOINTS = frozenset({
+    "ap_shoutaiyin_shaoshang",
+    "ap_shouyangming_shangyang",
+    "ap_shoujueyin_zhongchong",
+    "ap_shoushaoyin_shaochong",
+    "ap_shoutaiyang_shaoze",
+    "ap_shoushaoyang_guanchong",
+})
+FINGER_ENDPOINT_BY_MOVE_TOKEN = {
+    "shaoshang": "ap_shoutaiyin_shaoshang",
+    "shangyang": "ap_shouyangming_shangyang",
+    "zhongchong": "ap_shoujueyin_zhongchong",
+    "shaochong": "ap_shoushaoyin_shaochong",
+    "shaoze": "ap_shoutaiyang_shaoze",
+    "guanchong": "ap_shoushaoyang_guanchong",
+}
+LEG_ACUPOINT_PREFIXES = (
+    "ap_zuyangming_",
+    "ap_zutaiyang_",
+    "ap_zushaoyang_",
+)
+WEAPON_GUIDE_ENDPOINTS = frozenset({
+    "ap_shoutaiyang_wangu",
+    "ap_shoutaiyang_yanggu",
+    "ap_shoushaoyang_yangchi",
+    "ap_shoushaoyang_waiguan",
+    "ap_shouyangming_hegu",
+})
+PROJECTION_ENDPOINTS = frozenset(
+    FINGER_ENDPOINTS
+    | WEAPON_GUIDE_ENDPOINTS
+    | {"ap_shoujueyin_neiguan", "ap_shoujueyin_laogong"}
+)
 
 
 class UltimateRulingsError(ValueError):
@@ -178,6 +212,15 @@ class BodyMove:
     visible_mp_pct: int | None = None
     visible_cd: int | None = None
     visible_recovery: int | None = None
+
+
+@dataclass(frozen=True)
+class BodyUltimate:
+    """One authoritative body ``MoveDef.ultimate:true`` occurrence."""
+
+    move_id: str
+    skill_id: str
+    line: int
 
 
 @dataclass
@@ -305,6 +348,59 @@ class DiversityReport:
     @property
     def cross_catalog_similar_pair_count(self) -> int:
         return sum(pair.left.catalog != pair.right.catalog for pair in self.pairs)
+
+
+@dataclass(frozen=True)
+class DeliveryRoute:
+    catalog: str
+    source: str
+    line: int
+    skill_id: str
+    move_id: str
+    route_id: str
+    signature: tuple[str, ...]
+    delivery: str | None
+    purpose: str | None
+    projection: bool
+
+    @property
+    def location(self) -> str:
+        return f"{self.source}:{self.line}"
+
+
+@dataclass(frozen=True)
+class DeliveryCatalogSummary:
+    name: str
+    routes: int
+    classified: int
+    checked_rules: int
+    violations: int
+    tail_violations: int
+    unclassified: int
+
+
+@dataclass(frozen=True)
+class DeliveryFinding:
+    route: DeliveryRoute
+    rule: str
+    required: str
+
+
+@dataclass(frozen=True)
+class DeliveryReport:
+    routes: tuple[DeliveryRoute, ...]
+    catalogs: tuple[DeliveryCatalogSummary, ...]
+    findings: tuple[DeliveryFinding, ...]
+    tail_findings: tuple[DeliveryFinding, ...]
+    tail_violations: int
+
+    @property
+    def route_count(self) -> int:
+        return len(self.routes)
+
+    @property
+    def checked_rule_count(self) -> int:
+        return sum(item.checked_rules for item in self.catalogs)
 
 
 @dataclass
@@ -693,6 +789,95 @@ def parse_body_ultimate_counts(
             continue
         counts[owner] += len(contracts)
     return counts, issues
+
+
+def parse_body_ultimates(
+    text: str, grades: dict[str, int], targets: dict[str, RouteMirror]
+) -> list[BodyUltimate]:
+    """Return identifiable body ultimates independently of route indexes.
+
+    Owner tracking deliberately mirrors ``parse_body_ultimate_counts``.  This
+    narrower inventory exists so a body truth cannot disappear merely because
+    the author forgot every ``mfr_*`` declaration for it.
+    """
+    result: list[BodyUltimate] = []
+    persistent_owner: str | None = None
+    excluded_level: int | None = None
+    in_audit_projection = False
+    for number, line in enumerate(text.splitlines(), 1):
+        if "<!-- skill-catalog-audit:start -->" in line:
+            in_audit_projection = True
+            continue
+        if "<!-- skill-catalog-audit:end -->" in line:
+            in_audit_projection = False
+            continue
+        heading = re.match(r"^(#{1,6})\s", line)
+        level = len(heading.group(1)) if heading else None
+        if level is not None:
+            if excluded_level is not None and level <= excluded_level:
+                excluded_level = None
+            owner_ids = re.findall(r"\bsk_[a-z0-9_]+", line)
+            persistent_owner = (
+                owner_ids[0]
+                if owner_ids and owner_ids[0] in grades and _grade_from_line(line)
+                else None
+            )
+            if re.search(
+                r"数据校验|测试用例|待决事项|开放问题|修改提案|考据待办",
+                line,
+            ):
+                excluded_level = level
+        if in_audit_projection or excluded_level is not None:
+            continue
+        direct_ids = re.findall(r"\bsk_[a-z0-9_]+", line)
+        direct_owner = next((item for item in direct_ids if item in grades), None)
+        move_ids = list(dict.fromkeys(re.findall(
+            r"(?<![A-Za-z0-9_])mv_[a-z0-9_]+", line
+        )))
+        ultimate_contracts = [
+            item for item in re.finditer(r"MoveDef\{[^}]*}", line)
+            if _line_has_explicit_ultimate(item.group(0)) is True
+        ]
+        if not ultimate_contracts:
+            continue
+        for contract in ultimate_contracts:
+            if len(move_ids) == 1:
+                move_id = move_ids[0]
+            elif len(ultimate_contracts) > 1:
+                # Compact prose may place several complete move contracts on
+                # one line.  Each contract belongs to its nearest preceding
+                # move token; the single trailing-contract layout below still
+                # uses the explicit ``绝招`` label instead.
+                preceding = [
+                    match.group(0) for match in re.finditer(
+                        r"(?<![A-Za-z0-9_])mv_[a-z0-9_]+", line
+                    ) if match.end() <= contract.start()
+                ]
+                move_id = preceding[-1] if preceding else None
+            else:
+                labelled = [
+                    move_id for move_id in move_ids
+                    if re.search(
+                        re.escape(move_id)
+                        + r"(?![a-z0-9_])[^；|]{0,100}(?:绝招|ultimate\s*[:：]\s*true)",
+                        line, re.I,
+                    )
+                ]
+                move_id = labelled[0] if len(labelled) == 1 else None
+            if move_id is None:
+                continue
+            target = targets.get(move_id)
+            owner = direct_owner or (target.skill_id if target else None)
+            if owner is None:
+                stem = move_id.removeprefix("mv_")
+                candidates = [
+                    skill for skill in grades
+                    if stem.startswith(skill.removeprefix("sk_") + "_")
+                ]
+                owner = max(candidates, key=len) if candidates else persistent_owner
+            if owner is not None:
+                result.append(BodyUltimate(move_id, owner, number))
+    return result
 
 
 def _route_flag(fragment: str) -> bool | None:
@@ -1120,6 +1305,271 @@ def parse_audit_instances(text: str) -> dict[str, FinalInstance]:
     return result
 
 
+def _skill_contexts(text: str) -> dict[str, str]:
+    """Collect definition lines that reliably state each skill's type."""
+    contexts: dict[str, list[str]] = defaultdict(list)
+    in_audit_projection = False
+    for line in text.splitlines():
+        if "<!-- skill-catalog-audit:start -->" in line:
+            in_audit_projection = True
+            continue
+        if "<!-- skill-catalog-audit:end -->" in line:
+            in_audit_projection = False
+            continue
+        if in_audit_projection:
+            continue
+        skills = list(dict.fromkeys(re.findall(r"\bsk_[a-z0-9_]+", line)))
+        if len(skills) != 1:
+            continue
+        defining = bool(
+            _grade_from_line(line) is not None
+            and (line.lstrip().startswith(("#", "|", "**"))
+                 or "category:" in line or "subType:" in line)
+        )
+        if defining or "category:" in line or "subType:" in line:
+            contexts[skills[0]].append(line)
+    return {skill: " ".join(lines) for skill, lines in contexts.items()}
+
+
+def _delivery_from_context(skill_context: str, move_context: str) -> str | None:
+    context = f"{skill_context} {move_context}"
+    subtype = re.search(
+        r"subType\s*[:：]\s*([a-z]+)",
+        context, re.I,
+    )
+    if subtype:
+        value = subtype.group(1).lower()
+        if value == "inner":
+            return "inner"
+        if value in {"finger", "leg"}:
+            return value
+        if value in {"sword", "blade", "staff", "spear", "whip", "exotic"}:
+            return "weapon"
+        # ``fist`` / ``grapple`` are legacy coarse buckets: they do not prove
+        # a palm action, but must not hide an explicit skill name or move such
+        # as 东海潮生掌 / 掌风外吐.  Other subtypes are authoritative here.
+        if value not in {"fist", "grapple"}:
+            return None
+    if re.search(r"category\s*[:：]\s*(?:inner|内功)", context, re.I):
+        return "inner"
+    if re.search(
+        r"category\s*[:：]\s*(?:weapon|sword|blade|staff|spear|whip|exotic)",
+        context, re.I,
+    ):
+        return "weapon"
+    # A mind-state / stance skill is not an attack delivery type.  Its effect
+    # text may name a later action (for example, "下次剑招"), which must not
+    # classify the current move as a weapon strike.
+    if re.search(
+        r"(?:misc\s*[/／·]\s*mind|杂学\s*[/／·]\s*心神)",
+        skill_context, re.I,
+    ):
+        return None
+    if re.search(r"拳脚\s*[/／·]\s*(?:指法|指)", context):
+        return "finger"
+    if re.search(r"拳脚\s*[/／·]\s*(?:腿法|腿)", context):
+        return "leg"
+    if re.search(r"兵器\s*[/／·]", context):
+        return "weapon"
+    if re.search(r"(?:^|[（(·| /／])内功(?:[·| /／）)]|$)", context):
+        return "inner"
+    # ``拳脚/拳掌`` is an old broad catalog bucket, not an action.  Inspect
+    # explicit fine types and display names only after removing that token.
+    named_skill = re.sub(r"拳脚\s*[/／·]\s*拳掌", "", skill_context)
+    if re.search(r"(?:掌法|[^拳]掌)(?=[\s|（(·；;，,:：。]|$)", named_skill):
+        return "palm"
+    if re.search(r"(?:指法|[^定]指)(?=[\s|（(·]|$)", named_skill):
+        return "finger"
+    if re.search(r"(?:腿法|腿)(?=[\s|（(·]|$)", named_skill):
+        return "leg"
+    if re.search(r"(?:掌招|掌力|掌风|出掌|掌击|手印)", move_context):
+        return "palm"
+    if re.search(r"[^拳]掌(?=[\s|（(·；;，,:：。`]|$)", move_context):
+        return "palm"
+    if re.search(r"(?:指招|指力|指劲|点穴)", move_context):
+        return "finger"
+    if re.search(r"(?:腿招|踢击|扫腿)", move_context):
+        return "leg"
+    if re.search(r"(?:持械|剑招|刀招|棍招|枪招|鞭招)", move_context):
+        return "weapon"
+    return None
+
+
+def collect_delivery_routes(paths: Iterable[Path]) -> list[DeliveryRoute]:
+    """Collect final routes plus conservative body-derived action facts."""
+    routes: list[DeliveryRoute] = []
+    include_external_wujue = False
+    for path in paths:
+        include_external_wujue |= (
+            is_official_catalog(path) and catalog_name(path) == "wujue"
+        )
+        text = path.read_text(encoding="utf-8")
+        contexts = _skill_contexts(text)
+        lines = text.splitlines()
+        for item in parse_audit_instances(text).values():
+            if item.body_ultimate is not True or item.route_ultimate is not True:
+                continue
+            move_fragments: list[str] = []
+            for line in lines:
+                if not _move_match(line, item.move_id) or "MoveDef{" not in line:
+                    continue
+                move_ids = list(dict.fromkeys(re.findall(
+                    r"(?<![A-Za-z0-9_])mv_[a-z0-9_]+", line
+                )))
+                move_fragments.append(
+                    _local_move_fragment(line, item.move_id)
+                    if len(move_ids) > 1 else line
+                )
+            move_context = " ".join(move_fragments)
+            route_line = lines[item.line - 1]
+            purpose_match = re.search(
+                r"purpose\s*[:：]\s*(attack|defense|movement)", route_line, re.I
+            )
+            routes.append(DeliveryRoute(
+                catalog_name(path), path.name, item.line, item.skill_id,
+                item.move_id, item.route_id, item.signature,
+                _delivery_from_context(contexts.get(item.skill_id, ""), move_context),
+                purpose_match.group(1).lower() if purpose_match else None,
+                bool(re.search(r"projection\s*[:：]\s*true", move_context, re.I)),
+            ))
+    if include_external_wujue:
+        routes.extend(parse_external_wujue_delivery_routes(MERIDIAN_FLOW_PATH))
+    return sorted(routes, key=lambda item: (item.catalog, item.line, item.route_id))
+
+
+def _endpoint_finding(
+    route: DeliveryRoute, rule: str, allowed: frozenset[str], label: str
+) -> DeliveryFinding | None:
+    if set(route.signature) & allowed:
+        return None
+    return DeliveryFinding(route, rule, label)
+
+
+def _action_endpoint_findings(
+    route: DeliveryRoute, rule: str, allowed: frozenset[str], label: str
+) -> tuple[list[DeliveryFinding], list[DeliveryFinding]]:
+    missing = _endpoint_finding(route, rule, allowed, label)
+    if missing:
+        return [missing], []
+    if not set(route.signature[-3:]) & allowed:
+        return [], [DeliveryFinding(
+            route, f"{rule}-tail", f"{label} within final 3 steps"
+        )]
+    return [], []
+
+
+def _delivery_findings(
+    route: DeliveryRoute,
+) -> tuple[list[DeliveryFinding], list[DeliveryFinding]]:
+    findings: list[DeliveryFinding] = []
+    tail_findings: list[DeliveryFinding] = []
+    if route.delivery == "palm":
+        current, tails = _action_endpoint_findings(
+            route, "palm", PALM_ENDPOINTS, "ap_shoujueyin_laogong"
+        )
+        findings.extend(current)
+        tail_findings.extend(tails)
+    elif route.delivery == "finger":
+        specific = next((
+            endpoint for token, endpoint in FINGER_ENDPOINT_BY_MOVE_TOKEN.items()
+            if re.search(rf"(?:^|_){token}(?:_|$)", route.move_id)
+        ), None)
+        allowed = frozenset({specific}) if specific else FINGER_ENDPOINTS
+        current, tails = _action_endpoint_findings(
+            route, "finger-specific" if specific else "finger", allowed,
+            specific or "one of six finger endpoints",
+        )
+        findings.extend(current)
+        tail_findings.extend(tails)
+    elif route.delivery == "leg":
+        allowed = frozenset(
+            point for point in route.signature
+            if point.startswith(LEG_ACUPOINT_PREFIXES)
+        )
+        current, tails = _action_endpoint_findings(
+            route, "leg", allowed, "one foot-yang acupoint"
+        )
+        findings.extend(current)
+        tail_findings.extend(tails)
+    elif route.delivery == "weapon":
+        current, tails = _action_endpoint_findings(
+            route, "weapon", WEAPON_GUIDE_ENDPOINTS,
+            "one wrist/weapon-guide endpoint",
+        )
+        findings.extend(current)
+        tail_findings.extend(tails)
+    elif route.delivery == "inner" and route.purpose == "attack":
+        if not any(point.startswith(("ap_renmai_", "ap_dumai_"))
+                   for point in route.signature):
+            findings.append(DeliveryFinding(
+                route, "inner-attack", "one Ren or Du acupoint"
+            ))
+    if route.projection:
+        finding = _endpoint_finding(
+            route, "projection", PROJECTION_ENDPOINTS,
+            "one of the 13 projection hand endpoints",
+        )
+        if finding:
+            findings.append(finding)
+    return findings, tail_findings
+
+
+def analyze_delivery_routes(routes: Iterable[DeliveryRoute]) -> DeliveryReport:
+    route_list = tuple(sorted(
+        routes, key=lambda item: (item.catalog, item.line, item.route_id)
+    ))
+    finding_groups = tuple(_delivery_findings(route) for route in route_list)
+    findings = tuple(
+        finding for current, _tails in finding_groups for finding in current
+    )
+    tail_findings = tuple(
+        finding for _current, tails in finding_groups for finding in tails
+    )
+    by_catalog: dict[str, list[DeliveryRoute]] = defaultdict(list)
+    for route in route_list:
+        by_catalog[route.catalog].append(route)
+    summaries: list[DeliveryCatalogSummary] = []
+    for name in sorted(by_catalog):
+        items = by_catalog[name]
+        checked = sum(
+            (route.delivery in {"palm", "finger", "leg", "weapon"})
+            + (route.delivery == "inner" and route.purpose == "attack")
+            + route.projection
+            for route in items
+        )
+        summaries.append(DeliveryCatalogSummary(
+            name=name, routes=len(items),
+            classified=sum(route.delivery is not None for route in items),
+            checked_rules=checked,
+            violations=sum(finding.route.catalog == name for finding in findings),
+            tail_violations=sum(
+                finding.route.catalog == name for finding in tail_findings
+            ),
+            unclassified=sum(route.delivery is None for route in items),
+        ))
+    return DeliveryReport(
+        route_list, tuple(summaries), findings, tail_findings,
+        len(tail_findings),
+    )
+
+
+def analyze_delivery(paths: Iterable[Path]) -> DeliveryReport:
+    path_list = list(paths)
+    report = analyze_delivery_routes(collect_delivery_routes(path_list))
+    summaries = {item.name: item for item in report.catalogs}
+    all_summaries = tuple(
+        summaries.get(catalog_name(path), DeliveryCatalogSummary(
+            name=catalog_name(path), routes=0, classified=0, checked_rules=0,
+            violations=0, tail_violations=0, unclassified=0,
+        ))
+        for path in sorted(path_list, key=lambda item: catalog_name(item))
+    )
+    return DeliveryReport(
+        report.routes, all_summaries, report.findings, report.tail_findings,
+        report.tail_violations,
+    )
+
+
 def collect_diversity_routes(paths: Iterable[Path]) -> list[DiversityRoute]:
     """Collect final ultimate routes from each catalog's audit projection."""
     routes: list[DiversityRoute] = []
@@ -1185,6 +1635,41 @@ def parse_external_wujue_diversity_routes(path: Path) -> list[DiversityRoute]:
     missing = sorted(set(owner_by_route) - {route.route_id for route in routes})
     if missing:
         raise ValueError(f"{path}: missing external routes {','.join(missing)}")
+    return routes
+
+
+def parse_external_wujue_delivery_routes(path: Path) -> list[DeliveryRoute]:
+    """Project the three 05/21-owned Xianglong routes into Wujue.
+
+    The author decision classifies all three ultimate palm-force moves as
+    projection attacks.  Their MoveDefs have not yet received the field in
+    05, so this explicit cross-document exception lets the endpoint audit
+    expose that content debt instead of silently omitting the routes.
+    """
+    base_routes = parse_external_wujue_diversity_routes(path)
+    lines = path.read_text(encoding="utf-8").splitlines()
+    routes: list[DeliveryRoute] = []
+    for route in base_routes:
+        index = route.line - 1
+        end = next((
+            cursor for cursor in range(index + 1, len(lines))
+            if re.match(r"^(?:  - id: mfr_|\S)", lines[cursor])
+        ), len(lines))
+        block = "\n".join(lines[index:end])
+        purpose = re.search(
+            r"^    purpose: (attack|defense|movement)$", block, re.M
+        )
+        if purpose is None:
+            raise ValueError(
+                f"{path}:{route.line}: external route {route.route_id} "
+                "lacks a supported purpose"
+            )
+        routes.append(DeliveryRoute(
+            catalog=route.catalog, source=route.source, line=route.line,
+            skill_id=route.skill_id, move_id=route.move_id,
+            route_id=route.route_id, signature=route.signature,
+            delivery="palm", purpose=purpose.group(1), projection=True,
+        ))
     return routes
 
 
@@ -1417,6 +1902,15 @@ def audit_catalog(
                 quota_body_counts[skill_id] += 1
         for line, reason in owner_issues:
             audit.errors.append(f"{path.name}:{line}: {reason}")
+        body_ultimates = parse_body_ultimates(text, grades, targets)
+        routed_move_ids = set(targets) | set(final_instances)
+        for item in body_ultimates:
+            if item.move_id not in routed_move_ids:
+                audit.implicit_routes += 1
+                audit.errors.append(
+                    f"{path.name}:{item.line}: {item.move_id} 正文 "
+                    "ultimate:true 缺路线（需 mfr_* 镜像与显式 ap_* steps）"
+                )
     registered_acupoints = set(re.findall(
         r"(?<![A-Za-z0-9_])ap_[a-z0-9_]+",
         ACUPOINT_REGISTRY.read_text(encoding="utf-8")
@@ -1669,6 +2163,11 @@ def audit_catalog(
         for skill, grade in grades.items():
             count = quota_body_counts[skill]
             minimum, maximum = ultimate_quota(grade, skill, ultimate_rulings)
+            if skill in ultimate_rulings and grade not in (8, 11):
+                audit.warnings.append(
+                    f"{path.name}:{grade_lines[skill]}: {skill} grade {grade} "
+                    "过时裁定; 当前品阶不再使用天中 / 地中逐门裁定"
+                )
             if grade in (8, 11) and skill not in ultimate_rulings:
                 audit.warnings.append(
                     f"{path.name}:{grade_lines[skill]}: {skill} grade {grade} "
@@ -1738,7 +2237,9 @@ def _route_label(route: DiversityRoute) -> str:
     )
 
 
-def print_diversity_report(report: DiversityReport, details: bool = False) -> None:
+def print_diversity_report(
+    report: DiversityReport, details: bool = False, strict: bool = False
+) -> None:
     """Print stable per-catalog totals plus actionable global findings."""
     for item in report.catalogs:
         print(
@@ -1762,11 +2263,13 @@ def print_diversity_report(report: DiversityReport, details: bool = False) -> No
         f"cross_catalog_pairs_ge80={report.cross_catalog_similar_pair_count}"
     )
     if report.exact_groups:
-        print("ERROR: identical ordered sequences exist across different skills")
+        marker = "ERROR" if strict else "EXACT"
+        print(f"{marker}: identical ordered sequences exist across different skills")
     for group in report.exact_groups:
         labels = ", ".join(_route_label(route) for route in group.routes)
+        detail_marker = "ERROR exact" if strict else "EXACT"
         print(
-            f"  ERROR exact sequence: skills={group.skill_count}; "
+            f"  {detail_marker} sequence: skills={group.skill_count}; "
             f"routes={len(group.routes)}; {labels}"
         )
     if report.warning_pair_count:
@@ -1788,6 +2291,34 @@ def print_diversity_report(report: DiversityReport, details: bool = False) -> No
         )
 
 
+def print_delivery_report(report: DeliveryReport, details: bool = False) -> None:
+    """Print report-only §4.3.1 / §4.4.1.4 endpoint findings."""
+    for item in report.catalogs:
+        print(
+            f"{item.name}: delivery_routes={item.routes}; "
+            f"classified={item.classified}; checked_rules={item.checked_rules}; "
+            f"violations={item.violations}; "
+            f"tail_violations={item.tail_violations}; "
+            f"unclassified={item.unclassified}"
+        )
+    print(
+        f"delivery: routes={report.route_count}; "
+        f"checked_rules={report.checked_rule_count}; "
+        f"violations={len(report.findings)}; "
+        f"tail_violations={report.tail_violations}; "
+        f"unclassified={sum(item.unclassified for item in report.catalogs)}"
+    )
+    if not details:
+        return
+    for finding in report.findings + report.tail_findings:
+        route = finding.route
+        print(
+            f"  DELIVERY rule={finding.rule}; required={finding.required}; "
+            f"{route.catalog}:{route.skill_id}/{route.move_id}/{route.route_id}"
+            f"@{route.location}"
+        )
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("paths", nargs="*", type=Path)
@@ -1801,6 +2332,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--diversity-strict", action="store_true",
         help="fail on identical cross-skill routes; warn at 80%% overlap",
+    )
+    parser.add_argument(
+        "--delivery", action="store_true",
+        help="report action/projection endpoint rules without changing exit status",
     )
     args = parser.parse_args(argv)
     paths = args.paths or list(CATALOG_PATHS)
@@ -1818,13 +2353,15 @@ def main(argv: list[str] | None = None) -> int:
     diversity_report = None
     if args.diversity or args.diversity_strict:
         diversity_report = analyze_route_diversity(paths)
+    delivery_report = analyze_delivery(paths) if args.delivery else None
     if args.json:
         payload: object = [asdict(audit) for audit in audits]
-        if diversity_report is not None:
-            payload = {
-                "audits": payload,
-                "diversity": asdict(diversity_report),
-            }
+        if diversity_report is not None or delivery_report is not None:
+            payload = {"audits": payload}
+            if diversity_report is not None:
+                payload["diversity"] = asdict(diversity_report)
+            if delivery_report is not None:
+                payload["delivery"] = asdict(delivery_report)
         print(json.dumps(payload, ensure_ascii=False, indent=2))
     else:
         for audit in audits:
@@ -1836,7 +2373,12 @@ def main(argv: list[str] | None = None) -> int:
                     print(f"  ! {warning}")
         print(f"catalogs={len(audits)} errors={sum(len(a.errors) for a in audits)}")
         if diversity_report is not None:
-            print_diversity_report(diversity_report, details=args.details)
+            print_diversity_report(
+                diversity_report, details=args.details,
+                strict=args.diversity_strict,
+            )
+        if delivery_report is not None:
+            print_delivery_report(delivery_report, details=args.details)
     existing_failure = args.strict and any(audit.errors for audit in audits)
     diversity_failure = (
         args.diversity_strict

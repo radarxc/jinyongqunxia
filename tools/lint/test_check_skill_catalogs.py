@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from contextlib import redirect_stderr, redirect_stdout
 from io import StringIO
+import re
 import tempfile
 import unittest
 from unittest import mock
@@ -231,7 +232,17 @@ class CatalogParserTests(unittest.TestCase):
 
     def test_actual_ruling_table_parses_all_rows(self) -> None:
         rulings = checker.parse_ultimate_rulings(checker.ULTIMATE_RULINGS_PATH)
-        self.assertEqual(75, len(rulings))
+        text = checker.ULTIMATE_RULINGS_PATH.read_text(encoding="utf-8")
+        section = text.split("## 3. ", 1)[1].split("## 4. ", 1)[0]
+        expected = {}
+        for line in section.splitlines():
+            if not line.lstrip().startswith("|"):
+                continue
+            skill = re.search(r"\bsk_[a-z0-9_]+\b", line)
+            decided = re.search(r"\d+\s*→\s*(\d+)\s*（", line)
+            if skill and decided:
+                expected[skill.group(0)] = int(decided.group(1))
+        self.assertEqual(expected, rulings)
         self.assertEqual(1, rulings["sk_jinzhongzhao"])
         self.assertEqual(3, rulings["sk_dagou"])
 
@@ -394,6 +405,74 @@ class CatalogParserTests(unittest.TestCase):
         self.assertTrue(any(
             "sk_new_di grade 8 has 2 ultimates, expected 1..1" in error
             for error in audit.errors
+        ))
+        self.assertEqual(2, sum(
+            "缺路线" in error for error in audit.errors
+        ))
+
+    def test_body_ultimate_without_route_has_named_missing_route_error(self) -> None:
+        path = checker.CATALOG_DIR / "skills-nl3-fixture.md"
+        text = """
+#### `sk_alpha` 测试武学（6 玄上）
+| 招式 | 层 | 字段 |
+|---|---:|---|
+| 无路绝招 `mv_alpha_lost` | 7 | `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+"""
+        original_read_text = Path.read_text
+
+        def fake_read_text(target: Path, *args: object, **kwargs: object) -> str:
+            if target == path:
+                return text
+            return original_read_text(target, *args, **kwargs)
+
+        with mock.patch.object(Path, "read_text", fake_read_text):
+            audit = checker.audit_catalog(path, {})
+        self.assertTrue(any(
+            "mv_alpha_lost" in error and "缺路线" in error
+            for error in audit.errors
+        ))
+
+    def test_trailing_contract_belongs_to_the_move_labelled_ultimate(self) -> None:
+        text = """
+#### `sk_alpha` 测试武学（6 玄上）
+- 招式：绝式 `mv_alpha_final`（绝招，单体）；换手 `mv_alpha_swap`（换位）；收势 `mv_alpha_close`（防守）。；`MoveDef{unlock:7; ultimate:true}`
+"""
+        grades, _ = checker.parse_skill_grades(text)
+        items = checker.parse_body_ultimates(text, grades, {})
+        self.assertEqual(["mv_alpha_final"], [item.move_id for item in items])
+
+    def test_parallel_inline_contracts_are_bound_to_their_own_moves(self) -> None:
+        text = """
+#### `sk_alpha` 测试武学（9 地上）
+- `mv_alpha_first` `MoveDef{ultimate:true}`；`mv_alpha_second` `MoveDef{ultimate:true}`
+"""
+        grades, _ = checker.parse_skill_grades(text)
+        items = checker.parse_body_ultimates(text, grades, {})
+        self.assertEqual(
+            ["mv_alpha_first", "mv_alpha_second"],
+            [item.move_id for item in items],
+        )
+
+    def test_ruling_for_non_mid_grade_is_reported_as_stale(self) -> None:
+        path = checker.CATALOG_DIR / "skills-nl3-fixture.md"
+        text = """
+#### `sk_old_ruling` 测试武学（9 地上）
+| 一式 `mv_old_ruling_one` | `MoveDef{ultimate:true}` |
+| 二式 `mv_old_ruling_two` | `MoveDef{ultimate:true}` |
+"""
+        original_read_text = Path.read_text
+
+        def fake_read_text(target: Path, *args: object, **kwargs: object) -> str:
+            if target == path:
+                return text
+            return original_read_text(target, *args, **kwargs)
+
+        with mock.patch.object(Path, "read_text", fake_read_text):
+            audit = checker.audit_catalog(path, {"sk_old_ruling": 1})
+        self.assertEqual(0, audit.ultimate_quota_violations)
+        self.assertTrue(any(
+            "sk_old_ruling" in warning and "过时裁定" in warning
+            for warning in audit.warnings
         ))
 
     def test_unowned_body_ultimate_is_explicit_error(self) -> None:
@@ -728,14 +807,22 @@ class DiversityTests(unittest.TestCase):
             warning = self.write_catalog(directory, "warning", warning_rows)
             with redirect_stdout(StringIO()) as output:
                 report_code = checker.main(["--diversity", str(exact)])
-            with redirect_stdout(StringIO()):
+            with redirect_stdout(StringIO()) as strict_output:
                 strict_code = checker.main(["--diversity-strict", str(exact)])
             with redirect_stdout(StringIO()) as warning_output:
                 warning_code = checker.main(["--diversity-strict", str(warning)])
 
         self.assertEqual(0, report_code)
         self.assertIn("exact_groups=1", output.getvalue())
+        self.assertIn("EXACT sequence", output.getvalue())
+        self.assertNotIn("ERROR exact sequence", output.getvalue())
         self.assertEqual(1, strict_code)
+        self.assertIn(
+            "ERROR: identical ordered sequences exist across different skills",
+            strict_output.getvalue(),
+        )
+        self.assertIn("ERROR exact sequence", strict_output.getvalue())
+        self.assertNotIn("  EXACT sequence", strict_output.getvalue())
         self.assertEqual(0, warning_code)
         self.assertIn("WARNING", warning_output.getvalue())
         self.assertIn("mfr_a", output.getvalue())
@@ -749,6 +836,269 @@ class DiversityTests(unittest.TestCase):
             ), redirect_stdout(StringIO()):
                 result = checker.main(["--strict", str(path)])
         self.assertEqual(0, result)
+
+
+class DeliveryTests(unittest.TestCase):
+    def route(
+        self, delivery: str | None, points: tuple[str, ...], *,
+        purpose: str = "attack", projection: bool = False,
+        skill_id: str = "sk_alpha", move_id: str = "mv_alpha_one",
+    ) -> checker.DeliveryRoute:
+        return checker.DeliveryRoute(
+            "fixture", "skills-fixture.md", 7, skill_id, move_id,
+            "mfr_" + move_id.removeprefix("mv_"), points, delivery,
+            purpose, projection,
+        )
+
+    def test_all_six_delivery_rules_accept_matching_endpoints(self) -> None:
+        routes = [
+            self.route("palm", ("ap_dumai_mingmen", "ap_shoujueyin_laogong")),
+            self.route("finger", ("ap_renmai_qihai", "ap_shoutaiyin_shaoshang")),
+            self.route("leg", ("ap_daimai_daimai", "ap_zuyangming_lidui")),
+            self.route("weapon", ("ap_dumai_zhiyang", "ap_shoutaiyang_wangu")),
+            self.route("inner", ("ap_renmai_qihai", "ap_shouyangming_hegu")),
+            self.route(None, ("ap_dumai_mingmen", "ap_shoushaoyang_waiguan"), projection=True),
+        ]
+        report = checker.analyze_delivery_routes(routes)
+        self.assertEqual(0, len(report.findings))
+        self.assertEqual(6, report.checked_rule_count)
+
+    def test_leg_accepts_any_foot_yang_acupoint(self) -> None:
+        routes = [
+            self.route(
+                "leg", ("ap_daimai_daimai", "ap_zuyangming_zusanli"),
+                move_id="mv_alpha_pass",
+            ),
+            self.route(
+                "leg", ("ap_daimai_daimai", "ap_zushaoyin_taixi"),
+                move_id="mv_alpha_fail",
+            ),
+        ]
+        report = checker.analyze_delivery_routes(routes)
+        self.assertEqual(1, len(report.findings))
+        self.assertEqual("mv_alpha_fail", report.findings[0].route.move_id)
+        self.assertEqual("leg", report.findings[0].rule)
+
+    def test_delivery_rules_report_each_missing_endpoint(self) -> None:
+        routes = [
+            self.route("palm", ("ap_dumai_mingmen",)),
+            self.route("finger", ("ap_renmai_qihai",)),
+            self.route("leg", ("ap_daimai_daimai",)),
+            self.route("weapon", ("ap_dumai_zhiyang",)),
+            self.route("inner", ("ap_yinwei_fuai",)),
+            self.route(None, ("ap_zushaoyin_taixi",), projection=True),
+        ]
+        report = checker.analyze_delivery_routes(routes)
+        self.assertEqual(6, len(report.findings))
+        self.assertEqual(0, len(report.tail_findings))
+        self.assertEqual(
+            {"palm", "finger", "leg", "weapon", "inner-attack", "projection"},
+            {item.rule for item in report.findings},
+        )
+
+    def test_action_endpoint_must_be_within_last_three_steps(self) -> None:
+        in_tail = self.route(
+            "palm",
+            ("ap_shoujueyin_laogong", "ap_a", "ap_b"),
+            move_id="mv_alpha_tail",
+        )
+        too_early = self.route(
+            "weapon",
+            ("ap_shoutaiyang_wangu", "ap_a", "ap_b", "ap_c"),
+            move_id="mv_alpha_early",
+        )
+        report = checker.analyze_delivery_routes([in_tail, too_early])
+        self.assertEqual(0, len(report.findings))
+        self.assertEqual(1, len(report.tail_findings))
+        self.assertEqual(1, report.tail_violations)
+        self.assertEqual("weapon-tail", report.tail_findings[0].rule)
+        self.assertEqual(0, report.catalogs[0].violations)
+        self.assertEqual(1, report.catalogs[0].tail_violations)
+
+    def test_inner_and_projection_rules_do_not_check_tail_position(self) -> None:
+        routes = [
+            self.route(
+                "inner", ("ap_renmai_qihai", "ap_a", "ap_b", "ap_c")
+            ),
+            self.route(
+                None,
+                ("ap_shoujueyin_laogong", "ap_a", "ap_b", "ap_c"),
+                projection=True, move_id="mv_alpha_projection",
+            ),
+        ]
+        report = checker.analyze_delivery_routes(routes)
+        self.assertEqual(0, len(report.findings))
+        self.assertEqual(0, len(report.tail_findings))
+        self.assertEqual(0, report.tail_violations)
+
+    def test_named_six_meridians_finger_uses_corresponding_endpoint(self) -> None:
+        route = self.route(
+            "finger", ("ap_shoutaiyang_shaoze",),
+            move_id="mv_liumai_shaoshang",
+        )
+        findings = checker.analyze_delivery_routes([route]).findings
+        self.assertEqual(1, len(findings))
+        self.assertEqual("finger-specific", findings[0].rule)
+        self.assertIn("ap_shoutaiyin_shaoshang", findings[0].required)
+
+    def test_unclassified_non_projection_route_is_not_guessed(self) -> None:
+        report = checker.analyze_delivery_routes([
+            self.route(None, ("ap_dumai_mingmen",))
+        ])
+        self.assertEqual(0, report.checked_rule_count)
+        self.assertEqual(1, report.catalogs[0].unclassified)
+        self.assertEqual(0, len(report.findings))
+
+    def test_collect_delivery_reads_body_type_and_projection(self) -> None:
+        text = """
+### `sk_alpha` 测试掌（9 地上 · 拳脚 / 拳掌）
+| 绝招 `mv_alpha_one` | `MoveDef{ultimate:true; projection:true}` |
+| 9 地上 | sk_alpha | mv_alpha_one MoveDef{ultimate:true} | mfr_alpha_one MeridianRouteDef{moveRef:mv_alpha_one; ultimate:true; purpose:attack} | ap_dumai_mingmen/80/100→ap_shoujueyin_laogong/80/120 |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            routes = checker.collect_delivery_routes([path])
+        self.assertEqual(1, len(routes))
+        self.assertEqual("palm", routes[0].delivery)
+        self.assertTrue(routes[0].projection)
+
+    def test_ambiguous_fist_palm_bucket_does_not_turn_fists_into_palms(self) -> None:
+        fist = "#### `sk_qishangquan` 七伤拳（9 地上 · 拳脚／拳掌）"
+        palm = "##### 大金刚掌 `sk_dajingangzhang`（地下 7 · 拳脚·掌）"
+        legacy = "`legacy-set:xinglin_qihuang`；推宫治疗"
+        self.assertIsNone(checker._delivery_from_context(fist, "阴阳吞吐"))
+        self.assertEqual(
+            "palm", checker._delivery_from_context(palm, "大力")
+        )
+        self.assertIsNone(checker._delivery_from_context("", legacy))
+
+    def test_fist_subtype_defers_to_explicit_palm_action(self) -> None:
+        fist = "`sk_qishangquan` 七伤拳；subType:fist"
+        palm = "`sk_donghaichaoshengzhang` 东海潮生掌；subType:fist"
+        self.assertIsNone(checker._delivery_from_context(fist, "阴阳吞吐"))
+        self.assertEqual(
+            "palm", checker._delivery_from_context(palm, "怒海潮生")
+        )
+        self.assertEqual(
+            "palm", checker._delivery_from_context(fist, "掌风外吐")
+        )
+        self.assertEqual(
+            "palm", checker._delivery_from_context(fist, "烈阳贯掌 `mv_test`")
+        )
+
+    def test_mind_skill_effect_reference_does_not_imply_weapon_delivery(self) -> None:
+        mind = "`sk_wanmeixinjing` 万梅静境（6 玄上 · misc/mind）"
+        effect = "静候（绝招，架势；下次剑招获得加成），无伤害"
+        weapon = "`sk_sanwusanbushou` 三无三不手（兵器/鞭索）"
+        palm = "`sk_huoyandao` 火焰刀（拳脚/拳掌（刀气））"
+        self.assertIsNone(checker._delivery_from_context(mind, effect))
+        self.assertEqual(
+            "weapon", checker._delivery_from_context(weapon, "拂尘挥击")
+        )
+        self.assertEqual(
+            "palm", checker._delivery_from_context(palm, "掌力化作刀气")
+        )
+
+    def test_external_wujue_delivery_routes_are_palm_and_projection(self) -> None:
+        blocks = []
+        for index, (move_id, owner) in enumerate(
+            checker.EXTERNAL_WUJUE.items(), 1
+        ):
+            _skill_id, route_id, _grade = owner
+            endpoint = (
+                "ap_zushaoyin_yongquan" if move_id.endswith("shenlong")
+                else "ap_shoujueyin_laogong"
+            )
+            blocks.append(
+                f"  - id: {route_id}\n"
+                f"    moveRef: {move_id}\n"
+                "    ultimate: true\n"
+                "    purpose: attack\n"
+                "    steps:\n"
+                f"      - {{ acupointRef: {endpoint} }}"
+            )
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "21.md"
+            path.write_text("\n".join(blocks), encoding="utf-8")
+            routes = checker.parse_external_wujue_delivery_routes(path)
+
+        self.assertEqual(3, len(routes))
+        self.assertTrue(all(route.delivery == "palm" for route in routes))
+        self.assertTrue(all(route.projection for route in routes))
+        findings = checker.analyze_delivery_routes(routes).findings
+        self.assertEqual(
+            {"palm", "projection"},
+            {item.rule for item in findings if item.route.move_id.endswith("shenlong")},
+        )
+
+    def test_projection_does_not_leak_between_moves_on_one_line(self) -> None:
+        text = """
+### `sk_alpha` 测试掌（9 地上 · 拳脚 / 拳掌）
+| 外放 `mv_alpha_other` `MoveDef{projection:true}`；绝招 `mv_alpha_final` `MoveDef{ultimate:true; projection:false}` |
+| 9 地上 | sk_alpha | mv_alpha_final MoveDef{ultimate:true} | mfr_alpha_final MeridianRouteDef{moveRef:mv_alpha_final; ultimate:true; purpose:attack} | ap_shoujueyin_laogong/80/100 |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            routes = checker.collect_delivery_routes([path])
+        self.assertFalse(routes[0].projection)
+
+    def test_analyze_delivery_lists_catalog_with_zero_routes(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            empty = Path(directory) / "skills-empty.md"
+            full = Path(directory) / "skills-full.md"
+            empty.write_text("", encoding="utf-8")
+            full.write_text(
+                diversity_row(
+                    "sk_alpha", "mv_alpha_one", "mfr_alpha_one",
+                    ("ap_shoujueyin_laogong",),
+                ),
+                encoding="utf-8",
+            )
+            report = checker.analyze_delivery([empty, full])
+        self.assertEqual(["empty", "full"], [x.name for x in report.catalogs])
+        self.assertEqual(0, report.catalogs[0].routes)
+
+    def test_delivery_cli_reports_but_never_changes_exit_status(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(
+                "### `sk_alpha` 测试掌（9 地上 · 拳脚 / 拳掌）\n"
+                + diversity_row(
+                    "sk_alpha", "mv_alpha_one", "mfr_alpha_one",
+                    ("ap_dumai_mingmen",),
+                ),
+                encoding="utf-8",
+            )
+            with redirect_stdout(StringIO()) as output:
+                code = checker.main(["--delivery", "--details", str(path)])
+        self.assertEqual(0, code)
+        self.assertIn("delivery: routes=1", output.getvalue())
+        self.assertIn("rule=palm", output.getvalue())
+        self.assertIn("tail_violations=0", output.getvalue())
+
+    def test_existing_strict_does_not_run_delivery(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-empty.md"
+            path.write_text("", encoding="utf-8")
+            with mock.patch.object(
+                checker, "analyze_delivery",
+                side_effect=AssertionError("delivery must be opt-in"),
+            ), redirect_stdout(StringIO()):
+                result = checker.main(["--strict", str(path)])
+        self.assertEqual(0, result)
+
+    def test_delivery_json_is_added_without_changing_audit_shape_otherwise(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-empty.md"
+            path.write_text("", encoding="utf-8")
+            with redirect_stdout(StringIO()) as output:
+                code = checker.main(["--json", "--delivery", str(path)])
+        self.assertEqual(0, code)
+        self.assertIn('"delivery"', output.getvalue())
+        self.assertIn('"tail_violations": 0', output.getvalue())
+        self.assertIn('"tail_findings"', output.getvalue())
 
 
 if __name__ == "__main__":

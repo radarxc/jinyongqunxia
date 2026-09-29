@@ -197,7 +197,7 @@ ID 加反引号；这样既便于阅读，也能被检查器稳定识别。
 
 ## 武学图鉴一致性检查器
 
-`check_skill_catalogs.py` 审计 11 册 `docs/design/catalog/skills-*.md` 的绝招、
+`check_skill_catalogs.py` 审计当前 25 册 `docs/design/catalog/skills-*.md` 的绝招、
 经脉路线与调息档案。默认扫描全部图鉴，也可在命令末尾传入一册或多册；多册参数会
 作为同一次审计共同检查。
 
@@ -209,6 +209,8 @@ python3 tools/lint/check_skill_catalogs.py --strict
 python3 tools/lint/check_skill_catalogs.py --diversity
 python3 tools/lint/check_skill_catalogs.py --diversity --details
 python3 tools/lint/check_skill_catalogs.py --diversity-strict
+python3 tools/lint/check_skill_catalogs.py --delivery
+python3 tools/lint/check_skill_catalogs.py --delivery --details
 ```
 
 除 V-M01 三方一致、逐门绝招配额、7 / 9 / 10 重解锁层、显式路线、同门路线相似度、
@@ -227,6 +229,9 @@ Markdown 表格行含恰好一个 `mfr_*` 和至少一个具体 `ap_*` 步骤，
 解析、重复 ID 或算术不一致均为配置错误，命令输出明确 `ERROR` 并退出 `2`。正式扫描
 范围由 `docs/design/catalog/skills-*.md` 路径模式决定，不维护易漂移的整册门数/绝招
 总数快照；`MoveDef.ultimate:true` 仍是绝招真值，降龙十八掌的跨文档定义例外不变。
+正文真值若没有任何路线目标，会单独报“缺路线”，避免因 `mfr_*` 镜像整体漏写而
+从检查范围消失。已经进入逐门裁定表、后来又改到天中 / 地中以外品阶的武学会输出
+“过时裁定”提示；提示不计入 `errors`，用于提醒维护者清理或更新裁定源。
 该例外的三条最终路线实际定义在 `design/21` §12.1；默认正式扫描会把它们计入
 `wujue` 的多样性统计，但不会把 `design/21` 当成第十二册图鉴。传入临时文件或不含
 正式五绝册的局部路径时，不附加这三条路线。
@@ -241,8 +246,9 @@ signature = tuple(acupointRef)
 overlapBp = floor(10000 * |set(A) ∩ set(B)| / min(|set(A)|, |set(B)|))
 ```
 
-- 不同武学的 `signature` 完全相同：精确重复，属于严格失败；CT、风险或路线 ID 不同
-  不能把同一穴位序列变成不同路线。
+- 不同武学的 `signature` 完全相同：精确重复；只报告的 `--diversity` 以 `EXACT`
+  标记，`--diversity-strict` 以 `ERROR` 标记并作为严格失败。CT、风险或路线 ID
+  不同不能把同一穴位序列变成不同路线。
 - 不同武学 `overlapBp >= 8000`：要求人工说明共同内功 / 门派底子与动作差异。非完全
   相同只警告；同穴逆序或重排是 10000 bp 警告，而不是有序精确重复。
 - 分母取较短路线，避免一条长路线完整包住短路线却被长度稀释。正式路线已由既有检查
@@ -255,13 +261,39 @@ overlapBp = floor(10000 * |set(A) ∩ set(B)| / min(|set(A)|, |set(B)|))
 | 无 / `--strict` | 不运行多样性分析 | 无；`--strict` 只按既有图鉴错误退出 1 |
 | `--diversity` | 按册汇总、全局汇总、所有精确组、非精确警告总数 | 始终不改变退出码 |
 | `--diversity --details` | 再展开每一对非精确 `>=80%` 路线及位置 | 始终不改变退出码 |
-| `--diversity-strict` | 与 `--diversity` 相同 | 存在至少一组跨武学精确重复时退出 1；仅高重合仍为 0 |
+| `--diversity-strict` | 同项统计，但精确组标题 / 明细使用 `ERROR` / `ERROR exact sequence` | 存在至少一组跨武学精确重复时退出 1；仅高重合仍为 0 |
 
 按册字段中 `exact_groups/exact_pairs/similar_pairs_ge80/warnings` 只统计册内配对；
 `cross_catalog_*` 统计该册与其他册之间的配对，每个全局跨册对会在所涉及的两册各记
 一次。全局 `similar_pairs_ge80` 包含精确对，`warnings` 仅指非完全相同的高重合对。
 `--json` 与任一多样性开关合用时，顶层为 `audits` 与 `diversity`；不加多样性开关时
 仍保持原有审计数组形状。
+
+### 出招方式末端检查
+
+`--delivery` 对最终绝招路线执行 `design/21` §4.3.1 与 §4.4.1.4 的末端规则审计：
+
+- 掌招须包含劳宫；指招须包含六个指端之一，六脉具名招还须命中招名对应指端；
+- 腿招须包含足阳明、足太阳或足少阳的任一穴；推荐端点为厉兑、至阴或足窍阴。
+  兵器招须包含腕骨、阳谷、阳池、外关或合谷；
+- `purpose:attack` 的内功绝招须包含任脉或督脉穴；
+- `projection:true` 的外放招须另含 13 个手部端点之一，因此同一路线可能同时检查
+  动作末端与外放端点两条规则。
+
+动作类型优先读取明确的 `category` / `subType`、武学名与招式动作描述；旧“拳掌”
+大类和 `subType:fist` 本身不等于掌招，无法可靠判断的路线计入 `unclassified` 而不猜测。
+掌、指、腿、兵器所需穴位原则上应在最后三段；路线包含所需穴位但位置更靠前时，
+另报 `rule=<原规则>-tail`。完全不含仍只报原规则，两类诊断不重复计数。内功攻击的
+任 / 督穴与外放 13 端点只要求“至少经过”，不做位置检查。
+默认全仓扫描含全部 `skills-bulu-*.md`；五绝册另把 `design/21` §12.1 所定义的降龙
+三条路线计入，并按作者决定作为掌招、外放招分别核对。局部扫描不含正式五绝册时
+不会注入这项跨文档例外。
+
+该开关当前只报告：违规不会改变退出码，也不会被原有 `--strict` 执行；`--details`
+展开每条 `DELIVERY` 诊断。按册字段依次为 `delivery_routes`、`classified`、
+`checked_rules`、`violations`、`tail_violations`、`unclassified`；合计与 JSON 也显式
+包含 `tail_violations`，逐条位置诊断位于 `tail_findings`。`--json --delivery` 把顶层改为 `audits` 与
+`delivery`；同时使用多样性开关时再并列 `diversity`。
 
 人读模式的 `配额违规` / `重复步骤定义` 与 JSON 字段
 `ultimate_quota_violations` / `duplicate_step_definitions` 分别统计逐门配额错误和第二次
