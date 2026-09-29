@@ -1,10 +1,10 @@
 # 12 · 书剑恩仇录（书界 DLC）
 
 > 归属（基准 §18）：`ch12_shujian` 的时代图层、章节内容编排、主线接口、支线、区域投放、人物出场、门派内容位与本书特色机制。
-> 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定见 `decisions/rulings-v1.md`；已审校正邪主线唯一见 `design/story/12-shujian.md`。
+> 上游：`00-canon.md` v1.7；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定见 `decisions/rulings-v1.md`；已审校正邪主线唯一见 `design/story/12-shujian.md`。
 > 引用而不重定义：核心循环与锚点边界 → `design/01`；年代、书眠、携带与外来压制 → `design/02`；属性 / 敌人模板 / 伤害 → `design/03`、`04`；武学与图鉴 → `design/05` 及 `design/catalog/skills-*`；套装 → `design/07`；地形与轻功门禁 → `design/08`；战斗、Boss 与合击 → `design/09`；物品与神兵 → `design/10`；全局地图与预算 → `design/11`；任务、关系与门派流程 → `design/12`；成长、天书与结局 → `design/13`；穴位、冲穴、通脉、周天与九转 → `design/15`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21`；资源点与营生 → `design/16`；门派时代矩阵 → `design/17`；人物与重逢 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：D12 初稿（2026-09-26）；审校 D12.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）。
+> 版本：D12 初稿（2026-09-26）；审校 D12.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -704,14 +704,14 @@ grant fateRoute12 == fate ? tsp_12_fate : tsp_12_canon
 
 - **时代 / 入门**：`SJ=O`；只有邪线官面身份、投诚或特定终幕后短窗可进入 T08。帝王与皇子不属于职级线，L5 也不能成为皇帝。
 - **门规**：军令、轮值、军费和俘虏处置分别留痕；服从非法灭口命令会触发品德与关系后果，拒绝则进入追捕 / 转线。
-- **武学边界**：“满洲骑射”“大内身法”“布库摔跤”在 `design/17` 仍为待图鉴候选，本章不得发放。只使用 `skills-general` 已登记且来源含书剑或 `ALL14` 的军伍通行武学，保持 `sect:null`；唯一新增来源是该册既有 `sk_baizhanxinfa` 的书剑军伍传习，已在补录图鉴 §3 登记并等待 NXfix 回写，不能借此开放其他仅属外界的条目。
+- **武学边界**：“满洲骑射”“大内身法”“布库摔跤”在 `design/17` 仍为待图鉴候选，本章不得发放。只使用 `skills-general` 已登记且来源含书剑或 `ALL14` 的军伍通行武学，保持 `sect:null`；唯一新增来源是该册既有 `sk_baizhanxinfa` 的书剑军伍传习，已由 `NXfix-general` 写入唯一归属卡的 `sourceChapters`，不能借此开放其他仅属外界的条目。
 
 | 级 / T08 内廷称谓 | 本界可接触的已入图鉴武学 | 本门职责与配给特例 |
 |---|---|---|
 | L1 侍卫学员 / 军士 | `sk_changqiangrumen`、`sk_junwuduandao`、`sk_junwuchangjian`、`sk_gongshou`、`sk_bubingcao`、`sk_junzhangtuna`、`sk_liezhengbu` | 报酬 L1；禄米、箭材；操练与门岗 |
 | L2 三等侍卫 / 队正 | `sk_jundituna`、`sk_xingjunbu` | 报酬 L2；军粮 / 皮革；巡防与点验 |
 | L3 一等侍卫 / 都头 / 亲随 | `sk_junzhongdao`、`sk_bianshe`，仍逐门满足图鉴前置 | 报酬 L3；武备 / 马料；护送和带队 |
-| L4 统领 / 将军 / 供奉 | 复修已开军伍目录并取得带队授艺权限；可按前置传授 `sk_baizhanxinfa` **（来源扩展待登记）**，不补发其他无书剑来源的地阶或阵旗链 | 报酬 L4；军械额度；军费与伤亡账 |
+| L4 统领 / 将军 / 供奉 | 复修已开军伍目录并取得带队授艺权限；可按前置传授 `sk_baizhanxinfa`（书剑来源已登记），不补发其他无书剑来源的地阶或阵旗链 | 报酬 L4；军械额度；军费与伤亡账 |
 | L5 大内总管 / 总教头 | 已开军伍目录的授艺 / 调度权；无清宫候选技能抢跑 | 报酬 L5；内廷议定份额，皇帝不在此晋升链 |
 
 ### 7.11 敌对与可变关系
@@ -803,8 +803,8 @@ Boss 的阶段、预警、弱点、控制递减、连动与胜负目标只调用
 | `bsc_zhouzhongying_tiedanzhuang` / Lv42 | `npc_zhouzhongying`；主运 `sk_tiedanzhuangxinfa` 7 地下，外功 `sk_tiedanzhuangquan` 7 地下、`sk_feishahuangshi` 4 玄下、`sk_huyuanquan` 2 黄中；`eq_tiedan` 6 玄上 | P1 庄门守客：庄客护住三处门位；P2 误会激化：每次对庄客造成重伤会提高“家门怒”槽 | 目标是出示证词、拆掉误会或令其气血到 40%，不能击杀；保护庄民、接住一次铁胆投掷可降槽 |
 | `bsc_zhangzhaozhong_chitaodu` / Lv44 | `npc_zhangzhaozhong`；`sk_wujixuangongquan` 7 地下、`sk_rouyunjian` 7 地下、`sk_tiyunzong` 8 地中；`eq_ningbijian` 8 地中 | P1 断桥截路：剑路封窄口；P2 退守渡船：拳剑切换、点燃浮油并准备撤离 | 撑到接应信号且至少一名船工撤离即胜；清掉浮油或封住桥侧机关令其失衡，不可在此杀死 / 收押 |
 | `bsc_zhangzhaozhong_liuheta` / Lv48 | 同上，主力层数随剧情提升但不超过 9 | P1 塔阶追截：高差与门扇分割队伍；P2 火场封路：他优先阻止救囚而非追残血 | 救出文泰来并完成撤离即胜；打开河港水路可跳过一次预警，击倒只触发张召重撤走 |
-| `bsc_jiaqiduiling_yeerqiang` / Lv46 | 无具名 NPC；假旗队领模板，主运 `sk_baizhanxinfa` 8 地中**（来源扩展待登记）**，外功 `sk_shouchengzhen` 7 地下、`sk_zhenqijian` 6 玄上、`sk_bianshe` 5 玄中、`sk_junwuchangjian` 3 黄上 | P1 两面旗：每轮伪装成一方并引诱误伤；P2 印记败露：弓手从市集边缘增援 | 辨出马蹄 / 粮印并保护两方证人即胜；同时击毁两面假旗使其失去指挥，不要求歼灭 |
-| `bsc_zhaohui_heishuiying` / Lv50 | `npc_zhaohui`；主运 `sk_baizhanxinfa` 8 地中**（来源扩展待登记）**，外功 `sk_pojunqiangfa` 9 地上、`sk_shouchengzhen` 7 地下及军伍链；不虚构人物独门武学 | P1 旗阵传令：四个传令点使援军轮替；P2 断水突围：水源与民用廊道成为互斥目标 | 正线破旗 / 截传令迫其收缩，邪线护廊道促成止战；每失去一个传令点，援军波次 −1。不得以处决投降士卒通关 |
+| `bsc_jiaqiduiling_yeerqiang` / Lv46 | 无具名 NPC；假旗队领模板，主运 `sk_baizhanxinfa` 8 地中（书剑来源已登记），外功 `sk_shouchengzhen` 7 地下、`sk_zhenqijian` 6 玄上、`sk_bianshe` 5 玄中、`sk_junwuchangjian` 3 黄上 | P1 两面旗：每轮伪装成一方并引诱误伤；P2 印记败露：弓手从市集边缘增援 | 辨出马蹄 / 粮印并保护两方证人即胜；同时击毁两面假旗使其失去指挥，不要求歼灭 |
+| `bsc_zhaohui_heishuiying` / Lv50 | `npc_zhaohui`；主运 `sk_baizhanxinfa` 8 地中（书剑来源已登记），外功 `sk_pojunqiangfa` 9 地上、`sk_shouchengzhen` 7 地下及军伍链；不虚构人物独门武学 | P1 旗阵传令：四个传令点使援军轮替；P2 断水突围：水源与民用廊道成为互斥目标 | 正线破旗 / 截传令迫其收缩，邪线护廊道促成止战；每失去一个传令点，援军波次 −1。不得以处决投降士卒通关 |
 | `bsc_zhangzhaozhong_shacheng` / Lv52 | `npc_zhangzhaozhong`；`sk_wujixuangongquan` 7 地下、`sk_rouyunjian` 7 地下、`sk_tiyunzong` 8 地中、`sk_chunyangwuji` 8 地中；`eq_ningbijian` | P1 沙坡追逐：软沙、视线与狼群路线；P2 绝路：拳剑换势，狼群逼近但不作玩家免费伤害按钮 | `dc_12_06` 可令其原著死亡、救出收押或由陆菲青劝返；切断三处血腥诱饵可开安全收押路 |
 | `bsc_chenjialuo_tianchishizhao` / Lv52 | `npc_chenjialuo`；主运 `sk_tianchishengong` 9 地上，外功 `sk_baihuacuo` 10 天下、`sk_paoding` 10 天下，辅运 `sk_honghuaxinfa` 5 玄中 | P1 百家错置：每回合预告下一拳路；P2 庖丁见隙：只攻击被标出的结构弱点，迫玩家换位 | 这是 `q_12_qiyu_14` 的非致死授艺试招；识破三次拳理或降至 35% 即胜。主角借高低武压制后的实际有效层数结算，陈家洛也受本界 9 重上限 |
 | `bsc_qianlong_gongjin` / Lv52 | `npc_qianlong` 为不可击杀的 `full` 指挥锚；本人不用虚构绝学，护卫只用图鉴已有军伍链 | P1 封锁值 100：换班、弓位与三道宫门；P2 背约合围：两支伏兵和撤离时钟，四旗标可提前移除接应封锁 | 破坏封锁、送群雄离场并制住而非击杀乾隆；公开背约、换俘或取道对应 `dc_12_08`。每完成一条既有撤离路线令 `gauge_fengsuo −25` **【建议值】** |
@@ -875,7 +875,7 @@ Z2 后基伤 = floor(7,333×0.6075398…) = 4,455
 | 层级 | 本土 / 当代代表 | 主要来源 | 章节投放 |
 |---|---|---|---|
 | 地阶 | `sk_tianshanyingyang` 8 地中、`sk_honghuahuiheji` 7 地下、`sk_baguadao` 7 地下、`sk_huibuqijian` 7 地下；`sk_tiedanzhuangxinfa` / `sk_tiedanzhuangquan` 7 地下、`sk_tianchishengong` 9 地上 | 天池散承、红花会 L4、八卦门 L4、回部 L4；周氏铁胆庄家传、袁士霄传承 | `q_12_qiyu_14`、`q_12_faction_02/03`、保定镖路门派链；铁胆庄误会收束 / 终幕谱本 |
-| 地阶来源扩展 | `sk_baizhanxinfa` 8 地中**（来源扩展待登记）** | 历代军伍行气法汇编；非假旗队领或兆惠独门 | 清军 L4 将领授艺或大型守城线军书残卷；须先满足图鉴前置，见 `skills-bulu-12-shujian.md` §3 |
+| 地阶来源扩展 | `sk_baizhanxinfa` 8 地中（书剑来源已登记） | 历代军伍行气法汇编；非假旗队领或兆惠独门 | 清军 L4 将领授艺或大型守城线军书残卷；须先满足图鉴前置，见 `skills-general.md` §4.1–§4.2 与 `skills-bulu-12-shujian.md` §3 |
 | 地阶访学 | `sk_tiebushan` 7 地下、`sk_yizhichan` 8 地中、`sk_huheshuangxingquan` 7 地下；`sk_wujixuangongquan` 7 地下、`sk_rouyunjian` 7 地下、`sk_tiyunzong` 8 地中、`sk_chunyangwuji` 8 地中 | 南少林 / 武当；品阶与前置见 `skills-shaolin`、`skills-daojia` | 南少林证物后访学、`q_12_faction_04`；不得因完成主线自动全开 |
 | 玄阶 | `sk_honghuaxinfa` 5、`sk_jindifa` 6、`sk_tianchibu` 4、`sk_yingyangzhang` 6、`sk_guandongliumodao` 4、`sk_huibujianshu` 6、`sk_tianshanqishe` 5、`sk_huibushuaijiao` 4、`sk_taijimenquan` 6、`sk_taijimenjian` 5、`sk_guangpingxinfa` 4、`sk_baguazhang` 6、`sk_youshenbu` 4 | 红花会、天池、敌方残谱、回部、太极门、八卦门 | 对应 §6–§7 任务与职级；敌方残谱允许制服 / 缴械，不以击杀为前提 |
 | 玄阶访学 | `sk_wulangbaguagun` 6、`sk_tiexiangong` 5、`sk_wuxingquan` 5、`sk_bazhandao` 5；`sk_mianzhang` 5、`sk_liangyixinfa` 5、`sk_furongjinzhen` 6；`sk_jundituna` 5、`sk_junzhongdao` 6、`sk_tongbeijin` 6、`sk_wuguanxinfa` 4、`sk_qingfengjian` 6 | 南少林、武当、军伍、武馆、江湖通行 | 门派 / 城市服务与任务来源；清宫、镖局不得发尚未入图鉴候选 |
@@ -917,7 +917,7 @@ Z2 后基伤 = floor(7,333×0.6075398…) = 4,455
 |---|---|---|---|
 | 师父亲授 | 陈家洛 / 袁士霄线、周仲英、陆菲青线、南少林罗汉堂、门派 L1–L4 | `q_12_bond_01`、`q_12_qiyu_14`、铁胆庄误会收束、`q_12_faction_04`、`q_12_qiyu_07/08` | 生成 `learnSource=master`；`sk_tianchishengong`、`sk_tiedanzhuangxinfa` / `sk_tiedanzhuangquan` 仍检查补录图鉴 `reqs` 与 `maxLayer` |
 | 家传谱本 | 周氏心法 / 拳谱、天池遗谱**（原创扩展）** | 铁胆庄终幕后；陈家洛羁绊与 `q_12_qiyu_14` 后的余韵 | 生成 `learnSource=manual` 并记录本人或传承许可；不是 Boss 掉落，其他满足条件者亦可学 |
-| 军伍汇编 | `sk_baizhanxinfa`**（来源扩展待登记）** | 清军 L4 将领授艺，或大型守城线军书残卷拼合 | 先修 `sk_jundituna` 6 重；由 NXfix 把 `ch12_shujian` 回写到 `skills-general.md`，本章不复制其武学卡 |
+| 军伍汇编 | `sk_baizhanxinfa`（书剑来源已登记） | 清军 L4 将领授艺，或大型守城线军书残卷拼合 | 先修 `sk_jundituna` 6 重；`NXfix-general` 已把 `ch12_shujian` 写入 `skills-general.md` 唯一武学卡，本章不复制定义 |
 | 悟道 | `sk_paoding` | `q_12_qiyu_13` | 生成 `learnSource=insight`，不得伪造一本原著秘籍 |
 | 敌方残谱 / 缴械记录 | `sk_guandongduandao`、`sk_guandongliumodao` | 本幕关东三魔遭遇；技能名与套装标签按组织总称沿用“关东六魔”；制服、缴械或搜证皆可 | 生成图鉴已允许的学习来源；不要求杀敌；后续文档须采用同一上下文显示规则 |
 | 正式秘籍候选 | `it_miji_liangyixinfa`、`it_miji_wujixuangongquan` | 前者为武当借阅候选，后者为张召重处置候选 | 两 ID 当前只在道家图鉴作建议，未见 `design/10` 正式物品条目；本章**不生成实物掉落**，待 10 登记后方可启用 |
@@ -1316,7 +1316,7 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 
 本节仅配置 `design/21` §11.9 的 `MeridianFlowModule` 初始化输入；穴位、周天与第八转仍归 `design/15`。书剑是中武界，故 `effLayer≤9`。`effGrade/effLayer/innerNature` 只读取当前主运内功经压制后的值，不得拿拳、剑或轻功品阶替代；下表已为所有实际武学行动者固定主运，不允许再回退 `1/1/harmony`。`routeRefs` 从行动表全部 attack / defense / movement `MoveDef.meridianRouteRef` 编译为并集、展开并去重；章节不新建 `mfr_*`，未知引用或迁移默认短路在发布构建中失败。`milestones` 每行显式写全五字段。
 
-主运 1 格、辅运 2 格即完整内功栏；七项参数按 `effGrade/effLayer；mpRatioBp/practiceBp/capacityScaleBp；innerNature；openPolicy` 排列。张召重三战沿用同一武当人物配装，只随遭遇保留不同 `milestones`，不再因 §8.5 的摘要省略主运而回退。普通 Boss 最低 6 品；陈家洛的 9 品地位下限仍按本书界总舵主、两门天级拳掌及相对张召重的叙事排序取值 **【建议值】**，但已由可习得的 `sk_tianchishengong` 提供真实主运，不再直接用地位档替代武学。
+主运 1 格、辅运 2 格即完整内功栏；七项参数按 `effGrade/effLayer；mpRatioBp/practiceBp/capacityScaleBp；innerNature；openPolicy` 排列。张召重三战沿用同一武当人物配装，只随遭遇保留不同 `milestones`，不再因 §8.5 的摘要省略主运而回退。普通 Boss 最低 6 品；陈家洛的 `9/9` 地位下限已由 `design/21` §11.9.1 正式登记，并由可习得的 `sk_tianchishengong` 提供真实主运，不得直接用地位档替代武学。
 
 | 单位 | 门派 / 来源 | 主运内功 | 辅运内功（2 格） | 外功（逐门标品阶） | 经脉七项参数 | `milestones` | 血量 / 防御倍率 | 逐单位估算轮数 | 机制备注 |
 |---|---|---|---|---|---|---|---|---:|---|
@@ -1324,10 +1324,10 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 | 周仲英 | 周氏铁胆庄家传 | `sk_tiedanzhuangxinfa`（地下7，阳） | `sk_jianghutuna`（玄中5）、`sk_zhuangxingong`（黄中2） | `sk_tiedanzhuangquan`（地下7）、`sk_liuxingchui`（玄中5）、`sk_feishahuangshi`（玄下4）、`sk_huyuanquan`（黄中2） | `7/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `17.70` | 铁胆庄武学可由符合条件者正常习得 |
 | 张召重·赤套渡 | 武当 / 清廷 | `sk_chunyangwuji`（地中8） | `sk_liangyixinfa`（玄中5）、`sk_taihegong`（黄中2） | `sk_wujixuangongquan`（地下7）、`sk_rouyunjian`（地下7）、`sk_taijituishou`（玄上6）、`sk_wudangrumenjian`（黄上3） | `8/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:6}` | `1.00 / 1.00` | `18.66` | 撤离目标 **（待实测）** |
 | 张召重·六和塔 | 武当 / 清廷 | `sk_chunyangwuji`（地中8） | `sk_liangyixinfa`（玄中5）、`sk_taihegong`（黄中2） | `sk_wujixuangongquan`（地下7）、`sk_rouyunjian`（地下7）、`sk_taijituishou`（玄上6）、`sk_wudangrumenjian`（黄上3） | `8/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:7}` | `1.00 / 1.00` | `18.66` | 救囚 / 撤离目标 **（待实测）** |
-| 假旗队领 | 军伍模板 | `sk_baizhanxinfa`（地中8，阳）**（来源扩展待登记）** | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_shouchengzhen`（地下7）、`sk_zhenqijian`（玄上6）、`sk_bianshe`（玄中5）、`sk_junwuchangjian`（黄上3） | `8/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | `1.00 / 1.00` | `18.46` | 破双旗可提前收束；非人物专属 |
-| 兆惠 | 清军 / 军伍 | `sk_baizhanxinfa`（地中8，阳）**（来源扩展待登记）** | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_shouchengzhen`（地下7）、`sk_junzhongdao`（玄上6）、`sk_duanzhenqiang`（玄上6）、`sk_zhenqijian`（玄上6） | `8/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:3}` | `1.00 / 1.00` | `18.60` | 断传令减援军；非人物专属 |
+| 假旗队领 | 军伍模板 | `sk_baizhanxinfa`（地中8，阳；书剑来源已登记） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_shouchengzhen`（地下7）、`sk_zhenqijian`（玄上6）、`sk_bianshe`（玄中5）、`sk_junwuchangjian`（黄上3） | `8/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | `1.00 / 1.00` | `18.46` | 破双旗可提前收束；非人物专属 |
+| 兆惠 | 清军 / 军伍 | `sk_baizhanxinfa`（地中8，阳；书剑来源已登记） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_shouchengzhen`（地下7）、`sk_junzhongdao`（玄上6）、`sk_duanzhenqiang`（玄上6）、`sk_zhenqijian`（玄上6） | `8/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:3}` | `1.00 / 1.00` | `18.60` | 断传令减援军；非人物专属 |
 | 张召重·沙城 | 武当 / 清廷 | `sk_chunyangwuji`（地中8） | `sk_liangyixinfa`（玄中5）、`sk_taihegong`（黄中2） | `sk_wujixuangongquan`（地下7）、`sk_rouyunjian`（地下7）、`sk_taijituishou`（玄上6）、`sk_wudangrumenjian`（黄上3） | `8/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | `1.00 / 1.00` | `18.66` | 狼群不另加免费伤害 |
-| 陈家洛·天池试招 | 红花会 / 天池怪侠传承 | `sk_tianchishengong`（地上9，调和） | `sk_honghuaxinfa`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_baihuacuo`（天下10）、`sk_paoding`（天下10）、`sk_honghuachangquan`（黄上3）、`sk_honghuajian`（黄上3） | `9/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | `1.00 / 1.00` | `18.92` | 识破三次或 35% 气血停手；真实主运达地位下限 |
+| 陈家洛·天池试招 | 红花会 / 天池怪侠传承 | `sk_tianchishengong`（地上9，调和） | `sk_honghuaxinfa`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_baihuacuo`（天下10）、`sk_paoding`（天下10）、`sk_honghuachangquan`（黄上3）、`sk_honghuajian`（黄上3） | `9/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | `1.00 / 1.00` | `18.91` | 识破三次或 35% 气血停手；真实主运达地位下限 |
 | 乾隆宫禁护卫（每名精英） | 清宫 / 军伍 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_junzhongdao`（玄上6）、`sk_zhenqijian`（玄上6）、`sk_bianshe`（玄中5）、`sk_gongshou`（黄中2） | `5/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.11` | 乾隆本人不建武学实例 |
 | 军伍 / 传令精英（每名） | 清军 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_duanzhenqiang`（玄上6）、`sk_bianshe`（玄中5）、`sk_junwuchangjian`（黄上3） | `5/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.11` | 每名独立实例 |
 
@@ -1338,15 +1338,15 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 | 人物 / 模板 | 原缺口 / 替补 | 处理结果 | 状态 |
 |---|---|---|---|
 | 周仲英 | 7 品铁胆庄内功与同档拳掌；原用 `sk_hunyuanfangzhuang`、`sk_tongbeijian` 通行补位 | 新增并装配 `sk_tiedanzhuangxinfa`、`sk_tiedanzhuangquan`，见 `skills-bulu-12-shujian.md` §1 | **已补录** |
-| 假旗队领 | 原把 `sk_baizhanxinfa` 标为待补专属 | 复用 `sk_baizhanxinfa`；它本就是可共享的历代军伍行气法，不另造假旗人物专属武学 | **来源扩展待登记**：主书界仍为本书，NXfix 回写 `ch12_shujian` |
-| 兆惠 | 原把 `sk_baizhanxinfa` 标为待补专属 | 同上；外功继续用已登记军伍百战链，不虚构史实独门功夫 | **来源扩展待登记**：与假旗队领共用一次登记 |
-| 陈家洛 | 缺少达到 9 品地位下限的真实主运，原直接以七参兜底 | 新增并装配可正常习得的 `sk_tianchishengong`，见 `skills-bulu-12-shujian.md` §2 | **已补录**；地位下限无需再替代武学 |
+| 假旗队领 | 原误列为本门武学缺口 | 复用 `sk_baizhanxinfa`；它本就是可共享的历代军伍行气法，不另造假旗人物专属武学 | **已登记**：`NXfix-general` 已将 `ch12_shujian` 写入唯一归属卡 |
+| 兆惠 | 原误列为本门武学缺口 | 同上；外功继续用已登记军伍百战链，不虚构史实独门功夫 | **已登记**：与假旗队领共用同一书剑来源 |
+| 陈家洛 | 原主运只有 5 品 `sk_honghuaxinfa`，9 品地位下限没有合法主运承接 | 新增并装配可正常习得的 `sk_tianchishengong`，见 `skills-bulu-12-shujian.md` §2 | **已补录**；地位下限由真实武学承接 |
 
-`sk_baizhanxinfa` 的唯一武学定义仍归 `skills-general.md`；本书补录图鉴 §3 只登记把 `ch12_shujian` 加入其 `sourceChapters`，本章在统一回写前保留“来源扩展待登记”。四个原缺口均已有可运行映射，没有跨书界待替换或未能补项。
+`sk_baizhanxinfa` 的唯一武学定义仍归 `skills-general.md`；`NXfix-general` 已依据本书补录图鉴 §3 把 `ch12_shujian` 写入其 `sourceChapters`。四个原缺口均已有可运行映射，没有跨书界待替换或未能补项；正式构建不再需要来源登记例外。
 
 攻防路线分别在 04 的 Z5 后 / Z4 后进入 Z5M / Z4M；护体真气 → 护体内劲 → `mpGuard` → 气血。速度先乘 `meridianSpeedBp`，再乘擒拿移动倍率；首轮冻结 `openingQinggong` 与修正后 `spd`，战中只影响后续 CT / 移动。点穴 / 擒拿效果在当次伤害后调用 `applyAcupointSeal` / `applyGrapple`；调息不增加永久第八转进度。
 
-逐单位数由 `boss_pacing.py` 按最终七参重算：周仲英由原替补口径 `16.86` 变为真实阳性 7 品主运 `17.70`；假旗队领由原临时画像 `17.32` 变为真实 8 品军伍主运 `18.46`；兆惠 `17.46→18.60`；陈家洛由原 5 品主运 / 地位兜底口径 `17.94` 变为真实调和 9 品主运 `18.92`。精确工具值依次为 `17.7036 / 18.4617 / 18.6041 / 18.9150`。张召重三场均为 `18.66`，两类 5 品精英均为 `8.11`，唯一 6 品锚点为 `8.28`；全部落入 Boss 12–25 / 精英 6–10，`recommendedMultiplierToWindow=1.0`，故血量 / 防御倍率保持 `1.00 / 1.00`。经脉速度强档只调首轮、后续 CT 与移动，不再乘伤害；张召重拳剑换势、陈家洛绝招、宫禁多护卫仍须固定 RNG 逐单位回放 **（待实测）**。
+逐单位数由 `boss_pacing.py` 按最终七参重算：周仲英由旧通行替补口径 `16.86` 变为真实阳性 7 品主运 `17.70`；假旗队领由旧 5 品军伍主运估算 `17.32` 变为真实 8 品军伍主运 `18.46`；兆惠 `17.46→18.60`；陈家洛由旧 5 品主运估算 `17.94` 变为真实调和 9 品主运 `18.91`。精确工具值依次为 `17.7036 / 18.4617 / 18.6041 / 18.9149609`；陈家洛工具值 `18.9149609` 低于 `18.915`，四舍五入到两位小数为 `18.91`。四名均输出 `estimateOnly=true`，落入 Boss 12–25，`recommendedMultiplierToWindow=1.0`，故血量 / 防御倍率保持 `1.00 / 1.00`。张召重三场均为 `18.66`，两类 5 品精英均为 `8.11`，唯一 6 品锚点为 `8.28`；经脉速度强档只调首轮、后续 CT 与移动，不再乘伤害。陈家洛本次外功均为近身、未取得外放加持；兆惠的军伍枪法同样没有 `projection:true`，故外放后静态轮数不变。张召重拳剑换势、陈家洛绝招、宫禁多护卫仍须固定 RNG 逐单位回放 **（待实测）**。
 
 ---
 
@@ -1527,9 +1527,9 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 | `D12-T22` | 跑 `damage_sim.py --report/--check` | 书剑 4.0 / 8.2 / 15.4 主角行动轮；全局公式不变量通过；若模板字段改变则须重算 §8 / §12 |
 | `D12-T23` | 在一场营生护送中同时推进支线 | 写两类叙事进度但 `economySource` 只有一个，不能同时记任务桶和营生桶 |
 | `D12-T24` | 同屏将超过 24 个活动单位 **（待实测）** | 非关键会众转场外或后续波次；玩家队仍 ≤6，目标和因果不丢失 |
-| `D12-T25` | 加载周仲英、假旗队领、兆惠、陈家洛最终配装并运行 `boss_pacing.py` | 逐单位轮数依次约 `17.70 / 18.46 / 18.60 / 18.92`，均落在 12–25；血量 / 防御倍率保持 `1.00 / 1.00` |
+| `D12-T25` | 加载周仲英、假旗队领、兆惠、陈家洛最终配装并运行 `boss_pacing.py` | 逐单位轮数依次约 `17.70 / 18.46 / 18.60 / 18.91`，均落在 12–25；血量 / 防御倍率保持 `1.00 / 1.00` |
 | `D12-T26` | 非 Boss 角色满足补录武学属性、前置及师承 / 谱本许可 | 可学习对应武学；三个新增技能均无 `enemyOnly` 或 Boss 身份条件 |
-| `D12-T27` | NXfix 回写前 / 后构建书剑军伍可得池 | 回写前对 `sk_baizhanxinfa` 给出“来源扩展待登记”；回写后唯一归属卡含 `ch12_shujian` 且不生成重复定义 |
+| `D12-T27` | 构建书剑军伍可得池并核对唯一归属 | `sk_baizhanxinfa` 的唯一归属卡含 `ch12_shujian`，可得池正常收录且不生成重复定义 |
 
 ### 人工审校清单
 
@@ -1571,8 +1571,8 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 | `design/21` | 战斗经脉、招式路线、护体内劲、速度、点穴 / 擒拿、调息与敌方模板 | **已解决：**§12.9 已配置实例输入与结算接口；路线 ID 仍由武学图鉴登记 |
 | `design/map/jianghu-ch12.svg`、`cities.yaml` | 本时代地图与 18 城显示名 | 已解决：见 §3.1、§3.10 |
 | `design/07-set-system.md` | 套装唯一归属 | **已解决：**本章只引用正式 `set_honghua_shisidangjia`；旧候选全部关闭 |
-| `skills-bulu-12-shujian.md` | 三门新增武学卡、绝招路线、调息档案与来源扩展登记 | **已解决：**§8.5、§9、§12.9 已消费；`sk_baizhanxinfa` 的唯一卡仍待 NXfix 回写 |
-| NXfix / `skills-general.md` | `sk_baizhanxinfa.sourceChapters` 加入 `ch12_shujian` | 待同步：回写前所有书剑引用保留“来源扩展待登记” |
+| `skills-bulu-12-shujian.md` | 三门新增武学卡、绝招路线、调息档案与来源扩展登记 | **已解决：**§8.5、§9、§12.9 已消费；`sk_baizhanxinfa` 仍只在通用册保留唯一卡 |
+| NXfix / `skills-general.md` | `sk_baizhanxinfa.sourceChapters` 加入 `ch12_shujian` | **已解决：**`NXfix-general` 已完成唯一归属卡回写，见 §7.10、§9.3、§12.9 |
 
 ### 对基准的修改提案
 
@@ -1609,6 +1609,6 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 | D12-O11 | **已解决：**旧候选 tag 如何处理？ | 不展示、不计件；只消费 `design/07` 正式目录，运行注册表缺失时整项失败关闭 |
 | D12-O12 | 乾隆身世 UI 是否显示可信度百分比？ | 不显示；只用 `unverified / corroborated / contested` 与来源关系，避免把小说线索包装成史实概率 |
 | D12-O13 | **已解决：**陈家洛是否有真实 9 品主运承接地位下限？ | 已新增可正常习得的 `sk_tianchishengong` 并装配，七参读取真实调和内功，不再以地位档或 `sk_honghuaxinfa` 替代（见 §9.3、§12.9 与补录图鉴 §2） |
-| D12-O14 | 陈家洛“总舵主 = 主运至少 9 品”的地位下限是否应写入跨书统一表？ | 默认继续按本章 §12.9 使用 9 品，并由真实武学承接；请作者确认后由 `design/21` §11.9.1 登记或明确只作书剑个例 |
+| D12-O14 | **已解决：**陈家洛“总舵主 = 主运至少 9 品”的地位下限已写入跨书统一表 | `design/21` §11.9.1 已正式登记 `9/9`，本章 §12.9 由真实武学 `sk_tianchishengong` 承接 |
 
 
