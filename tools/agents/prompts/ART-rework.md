@@ -30,7 +30,7 @@
 3. **登记**：更新 manifest 对应条目：
    - `prompt`、`negative` 写实际使用的全文；
    - `source_path`、`created`、`size`、`sha256` 实测；
-   - `notes` 写明"按作者第 1 轮审批意见返修"并照录意见原文；
+   - `notes` 写明"按作者{{round}}审批意见返修"并照录意见原文；
    - `status` 保持 `candidate`。
 4. **模板**：把作者意见沉淀出的规则写进 `{{prompt_file}}`（风格关键词、排除项、质检要点），后续批量生成据此执行；过时的表述删掉。
 5. **额外事项**：{{extra}}
