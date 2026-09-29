@@ -4,7 +4,7 @@
 > 年代：1093–1094，引用 `design/02`；人物生卒多为小说未明，按年龄段或（待考）登记。
 > 标注：出处均以三联 / 广州修订版为基线；未逐字核对回目号者明确写“回目待考”，不编造编号。
 > 版本：v1.4；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
-> 首领配装同步：本轮复核 `chapters/01-tianlong.md` §12.8，段延庆、萧峰、童姥、游坦之、玄慈的已登记主运 / 外功仍与章节一致；未发生新的首领配装替换，其他人物能力栏不据章节反向扩写。
+> 首领配装同步：本轮复核 `chapters/01-tianlong.md` §12.8，段延庆、萧峰、童姥、游坦之、玄慈的已登记主运 / 外功仍与章节一致；新增游骥、游驹完整实战配装。二人当前同源主运仅 5 品，低于手配精英 `G−1=6`，正式生产须按章节所列缺口阻断。
 
 | ID | 人物 / 原著身份 | 生卒 / 年龄 | 门派 / 阵营 | 层级 | 招募要点 | 能力要点 | 跨书 | 出处定位 |
 |---|---|---|---|---|---|---|---|---|
@@ -30,8 +30,8 @@
 | `npc_suxinghe` | 苏星河，聪辩先生 | 中老年；卒年待考 | `sect_xiaoyao` | D4 | 解珍珑外围谜题并保护函谷门人 | 逍遥杂学按图鉴核配 | 否 | 回目待考：擂鼓山 |
 | `npc_xuemuhua` | 薛慕华，阎王敌 | 中年；卒年待考 | `sect_xiaoyao` | D4 | 聚贤庄救治抉择、医者责任 | `pers_yizhe`；医术技能待图鉴 | 否 | 回目待考：聚贤庄救阿朱 |
 | `npc_youtanzhi` | 游坦之，聚贤庄少主 | 青年；命定死亡待考 | `sect_juxianzhuang` / 星宿关系 | D4 | 阿紫线与自我选择；避免纯工具化 | 主运 `sk_yijinjing`；外功 `sk_bingcanduzhang`、`sk_youshishuangqiang`、`sk_shuangxiongdundao`、`sk_zhuangkequan` | 改命后可 | 回目待考：冰蚕、少室山 |
-| `npc_youji` | 游骥，聚贤庄主之一 | 中年；命定死亡待考 | `sect_juxianzhuang` | D4 | 英雄宴前调停 / 改命 | 头目 `full`；武学待图鉴核配 | 改命后可 | 回目待考：聚贤庄英雄宴 |
-| `npc_youju` | 游驹，聚贤庄主之一 | 中年；命定死亡待考 | `sect_juxianzhuang` | D4 | 与游骥共享危机但各自招募状态 | 头目 `full`；武学待图鉴核配 | 改命后可 | 回目待考：聚贤庄英雄宴 |
+| `npc_youji` | 游骥，聚贤庄主之一 | 中年；命定死亡待考 | `sect_juxianzhuang` | D4 | 英雄宴前调停 / 改命 | `full`；主运 `sk_juxianyijue`；辅运 `sk_dantianyangqi`、`sk_huxixingqi`；外功 `sk_youshishuangqiang`、`sk_shuangxiongdundao`、`sk_youjiaduanqiang`、`sk_zhuangkequan`；主运品阶缺口见章节 §12.8.1 | 改命后可 | 回目待考：聚贤庄英雄宴 |
+| `npc_youju` | 游驹，聚贤庄主之一 | 中年；命定死亡待考 | `sect_juxianzhuang` | D4 | 与游骥共享危机但各自招募状态 | `full`；主运 `sk_juxianyijue`；辅运 `sk_dantianyangqi`、`sk_huxixingqi`；外功 `sk_shuangxiongdundao`、`sk_youjiadao`、`sk_hengdaorumenzhao`、`sk_zhuangkequan`；主运品阶缺口见章节 §12.8.1 | 改命后可 | 回目待考：聚贤庄英雄宴 |
 | `npc_xuanci` | 玄慈，少林方丈 | 老年；命定死亡待考 | `sect_shaolin` L5 | D5 | 带头大哥真相与寺规承担 | 主运 `sk_jinzhongzhao`；外功 `sk_nianhuazhi`、`sk_boruozhang`、`sk_dajingangquan`、`sk_longzhaoshou`、`sk_luohanquan` | 改命后可 | 回目待考：少室山身世揭晓 |
 | `npc_saodiseng` | 扫地僧，藏经阁无名高僧 | 耄耋；生卒不详 | `sect_shaolin` | D5 | 藏经阁止斗后短时同行 / 结盟 | `sk_yijinjing` 等需谨慎核配 | 否 | 回目待考：藏经阁止息慕容萧氏 |
 | `npc_abi` | 阿碧，慕容家侍女 | 青年；卒年待考 | `sect_murong` | D3 | 琴韵小筑、忠诚与慕容复结局 | 乐理 / 水路辅助，武学待核配 | 否 | 回目待考：琴韵小筑、结局陪伴 |
