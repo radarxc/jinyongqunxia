@@ -9,7 +9,7 @@
 | `npc_hufei` | 胡斐，胡一刀之子 | 青年；生卒待考 | `sect_hujia` | D5 | 商家堡、凤天南与药王庄全链 | 主运 `sk_hujiaxuangong`；胡家刀拳按现行配装核配 | →雪山 | 回目待考：商家堡、佛山、掌门大会 |
 | `npc_chenglinsu` | 程灵素，毒手药王关门弟子 | 青年；第 20 章命定死亡 | `sect_yaowangmen` | D5 | 药王庄同门、三线准备与胡斐中毒全链；原著轴 `dead`，条件齐备的唯一主改命轴 `fate_rescued` | 七心海棠 / 药王术待图鉴 | 改命后可 → 雪山重逢候选 | 第 20 章：为胡斐解三毒而死；具体动作待指定版本终校 |
 | `npc_yuanziyi` | 袁紫衣（圆性），凤天南之女 | 青年；生卒待考 | 佛门 / 多门武艺 | D5 | 复仇、夺掌门与出家誓约 | 主运 `sk_huiwuguixin`；多派外功按现行配装核配 | 否 | 回目待考：佛山、掌门大会 |
-| `npc_miaorenfeng` | 苗人凤，打遍天下无敌手 | 中年；生卒待考 | `sect_miaojia` L5 | D5 | 胡苗旧怨、眼伤治疗与女儿保护 | 主运 `sk_miaojiaxuangong`；苗家剑法与 `sk_miaojiazhang` 按现行配装核配 | →雪山 | 回目待考：中毒失明、与胡斐比试 |
+| `npc_miaorenfeng` | 苗人凤，打遍天下无敌手 | 中年；生卒待考 | `sect_miaojia` L5 | D5 | 胡苗旧怨、眼伤治疗与女儿保护 | 主运 `sk_miaojiaxuangong`；外功 `sk_miaojiajian`、`sk_miaojiaquan`、`sk_miaojiajiangong`（本界首领配装）；`sk_miaojiazhang` 为苗家 L4 可学掌法，供雪山 B07 画像使用 | →雪山 | 回目待考：中毒失明、与胡斐比试 |
 | `npc_tianguinong` | 田归农，天龙门北宗掌门 | 中年；命定死亡待考 | `sect_tianlongmen` L5 | D5 | 胡苗旧怨与南兰线；邪线高背叛 | 主运 `sk_tianlongmenxinfa`；外功以 `sk_tianlongzhengdao` 为核心 | →雪山前史 | 回目待考：苗家变故 |
 | `npc_nanlan` | 南兰，苗若兰之母 | 青年 / 中年；命定结局待考 | 苗家 / 田归农关系 | D4 | 选择、悔悟与保护女儿 | 非战斗同伴 | →雪山前史 | 回目待考：离苗家、田归农败亡 |
 | `npc_miaoruolan` | 苗若兰，苗人凤之女 | 幼年 / 少女；生卒待考 | `sect_miaojia` | D3（飞狐期） | 儿童保护形态，不进入战斗位 | 非战斗 | →雪山 | 回目待考：苗家人物关系 |
