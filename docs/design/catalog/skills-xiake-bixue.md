@@ -1,6 +1,6 @@
 # 门派武学图鉴 · 侠客行 / 碧血剑（`skills-xiake-bixue`）
 
-> **版本**：v1.2（审校 C1b.R；全局审计，2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记（2026-09-28）。
+> **版本**：v1.2（审校 C1b.R；全局审计，2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记（2026-09-28）；绝招路线叙事化（2026-09-29）。
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 门派武学图鉴之一。本文唯一定义《侠客行》《碧血剑》分工内的武学、招式、被动与套装成员反向标签。
 > **上游**：`decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-14、AR-16（含 2026-09-27 作者决定）；`00-canon.md` §3–§7、§9、§12–§13、§16、§20；`decisions/rulings-v1.md` C14–C17、C22–C23 与 §3.2–§4；`design/21` v2.0。
@@ -22,31 +22,31 @@
 | 12 天上 | `sk_taixuan` | `mv_taixuan_sada` `MoveDef{unlock:10; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_taixuan_sada}` | `mfr_taixuan_sada` | `MeridianRouteDef{moveRef:mv_taixuan_sada; ultimate:true; purpose:attack}`；`ap_daimai_weidao/75/120 → ap_daimai_daimai/75/130 → ap_dumai_zhiyang/75/140 → ap_renmai_qihai/75/120 → ap_renmai_guanyuan/75/120 → ap_renmai_zhongwan/75/140 → ap_shoujueyin_tianchi/75/150 → ap_shoujueyin_quze/75/160 → ap_shoujueyin_neiguan/75/170 → ap_shoujueyin_laogong/75/180` |
 | 12 天上 | `sk_taixuan` | `mv_taixuan_guiyi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_taixuan_guiyi}` | `mfr_taixuan_guiyi` | `MeridianRouteDef{moveRef:mv_taixuan_guiyi; ultimate:true; purpose:attack}`；`ap_shoutaiyin_kongzui/80/100→ap_yinqiao_jingming/80/120→ap_yinwei_qimen/80/140→ap_zujueyin_yinlian/80/160→ap_zushaoyin_taixi/80/180→ap_zutaiyin_xuehai/80/200→ap_renmai_shenque/80/220→ap_shoujueyin_neiguan/80/240→ap_shoushaoyin_shaochong/80/260→ap_shoutaiyin_taiyuan/80/280` |
 | 10 天下 | `sk_luohanfumo` | `mv_luohanfumo_huti` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_luohanfumo_huti}` | `mfr_luohanfumo_huti` | `MeridianRouteDef{moveRef:mv_luohanfumo_huti; ultimate:true; purpose:defense}`；`ap_renmai_huiyin/80/100→ap_renmai_zhongji/80/120→ap_shoujueyin_tianchi/80/140→ap_shoushaoyin_shaochong/80/160→ap_shoutaiyin_kongzui/80/180→ap_shoutaiyin_zhongfu/80/200→ap_yinwei_daheng/80/220→ap_zujueyin_dadun/80/240→ap_zujueyin_zhongdu/80/260→ap_zushaoyin_shuiquan/80/280` |
-| 10 天下 | `sk_luohanfumo` | `mv_luohanfumo_zhuxiang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_luohanfumo_zhuxiang}` | `mfr_luohanfumo_zhuxiang` | `MeridianRouteDef{moveRef:mv_luohanfumo_zhuxiang; ultimate:true; purpose:attack}`；`ap_shoujueyin_neiguan/80/100→ap_shoushaoyin_lingdao/80/120→ap_shoushaoyin_yinxi/80/140→ap_shoutaiyin_yuji/80/160→ap_yinqiao_sanyinjiao/80/180→ap_yinwei_tiantu/80/200→ap_zujueyin_xingjian/80/220→ap_zushaoyin_rangu/80/240→ap_zutaiyin_dadu/80/260→ap_zutaiyin_yinlingquan/80/280` |
+| 10 天下 | `sk_luohanfumo` | `mv_luohanfumo_zhuxiang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_luohanfumo_zhuxiang}` | `mfr_luohanfumo_zhuxiang` | `MeridianRouteDef{moveRef:mv_luohanfumo_zhuxiang; ultimate:true; purpose:attack}`；`ap_chongmai_qichong/80/100→ap_chongmai_huangshu/80/120→ap_renmai_qihai/80/140→ap_renmai_danzhong/80/160→ap_dumai_mingmen/80/180→ap_dumai_shendao/80/200→ap_shouyangming_quchi/80/220→ap_shouyangming_shousanli/80/240→ap_shoujueyin_neiguan/80/260→ap_shoujueyin_laogong/80/280` |
 | 8 地中 | `sk_xiakedaozhangfa` | `mv_xiakedaozhangfa_heyin` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_xiakedaozhangfa_heyin}` | `mfr_xiakedaozhangfa_heyin` | `MeridianRouteDef{moveRef:mv_xiakedaozhangfa_heyin; ultimate:true; purpose:attack}`；`ap_dumai_baihui/90/100→ap_dumai_shuigou/90/120→ap_shoushaoyang_tianjing/90/140→ap_shoutaiyang_houxi/90/160→ap_shoutaiyang_yanggu/90/180→ap_shouyangming_shangyang/90/200→ap_yangqiao_jugu/90/220→ap_yangwei_fengfu/90/240` |
 | 8 地中 | `sk_taxuewuhen` | `mv_taxuewuhen_lingxiao` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_taxuewuhen_lingxiao}` | `mfr_taxuewuhen_lingxiao` | `MeridianRouteDef{moveRef:mv_taxuewuhen_lingxiao; ultimate:true; purpose:attack}`；`ap_shoutaiyang_tinggong/90/100→ap_shouyangming_pianli/90/120→ap_yangqiao_dicang/90/140→ap_yangqiao_pucan/90/160→ap_yangwei_toulinqi/90/180→ap_zushaoyang_waiqiu/90/200→ap_zutaiyang_feishu/90/220→ap_zuyangming_chengqi/90/240` |
-| 7 地下 | `sk_wuxingliuhezhang` | `mv_wuxingliuhezhang_guihuan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_wuxingliuhezhang_guihuan}` | `mfr_wuxingliuhezhang_guihuan` | `MeridianRouteDef{moveRef:mv_wuxingliuhezhang_guihuan; ultimate:true; purpose:attack}`；`ap_zutaiyang_chengshan/90/100→ap_zutaiyang_xinshu/90/120→ap_zuyangming_renying/90/140→ap_dumai_mingmen/90/160→ap_dumai_yinjiao/90/180→ap_shoushaoyang_yemen/90/200→ap_shoutaiyang_tianzong/90/220→ap_shouyangming_hegu/90/240` |
-| 8 地中 | `sk_heibaijianfa` | `mv_heibaijianfa_heguang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_heibaijianfa_heguang}` | `mfr_heibaijianfa_heguang` | `MeridianRouteDef{moveRef:mv_heibaijianfa_heguang; ultimate:true; purpose:attack}`；`ap_yangqiao_fuyang/90/100→ap_yangqiao_shenmai/90/120→ap_yangwei_yamen/90/140→ap_zushaoyang_xuanzhong/90/160→ap_zutaiyang_kunlun/90/180→ap_zuyangming_fenglong/90/200→ap_zuyangming_zusanli/90/220→ap_dumai_shenzhu/90/240` |
-| 7 地下 | `sk_piguadao` | `mv_piguadao_guidao` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_piguadao_guidao}` | `mfr_piguadao_guidao` | `MeridianRouteDef{moveRef:mv_piguadao_guidao; ultimate:true; purpose:attack}`；`ap_dumai_changqiang/90/100→ap_dumai_yaoshu/90/120→ap_shoushaoyang_waiguan/90/140→ap_shoutaiyang_qiangu/90/160→ap_shoutaiyang_yanglao/90/180→ap_shouyangming_shousanli/90/200→ap_yangqiao_juliao/90/220→ap_yangwei_jianjing/90/240` |
+| 7 地下 | `sk_wuxingliuhezhang` | `mv_wuxingliuhezhang_guihuan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_wuxingliuhezhang_guihuan}` | `mfr_wuxingliuhezhang_guihuan` | `MeridianRouteDef{moveRef:mv_wuxingliuhezhang_guihuan; ultimate:true; purpose:attack}`；`ap_chongmai_qichong/90/100→ap_chongmai_shangqu/90/120→ap_daimai_zhangmen/90/140→ap_daimai_daimai/90/160→ap_shouyangming_quchi/90/180→ap_shouyangming_shousanli/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_laogong/90/240` |
+| 8 地中 | `sk_heibaijianfa` | `mv_heibaijianfa_heguang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_heibaijianfa_heguang}` | `mfr_heibaijianfa_heguang` | `MeridianRouteDef{moveRef:mv_heibaijianfa_heguang; ultimate:true; purpose:attack}`；`ap_chongmai_henggu/90/100→ap_chongmai_shangqu/90/120→ap_daimai_wushu/90/140→ap_daimai_daimai/90/160→ap_shoushaoyang_tianjing/90/180→ap_shoutaiyang_wangu/90/200→ap_shoushaoyang_waiguan/90/220→ap_shouyangming_hegu/90/240` |
+| 7 地下 | `sk_piguadao` | `mv_piguadao_guidao` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_piguadao_guidao}` | `mfr_piguadao_guidao` | `MeridianRouteDef{moveRef:mv_piguadao_guidao; ultimate:true; purpose:attack}`；`ap_chongmai_qichong/90/100→ap_daimai_zhangmen/90/120→ap_dumai_yaoyangguan/90/140→ap_zushaoyang_yanglingquan/90/160→ap_shoushaoyang_tianjing/90/180→ap_shoushaoyang_waiguan/90/200→ap_shoutaiyang_yanggu/90/220→ap_shouyangming_hegu/90/240` |
 | 7 地下 | `sk_shangqingjianfa06` | `mv_shangqingjianfa06_guizhen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_shangqingjianfa06_guizhen}` | `mfr_shangqingjianfa06_guizhen` | `MeridianRouteDef{moveRef:mv_shangqingjianfa06_guizhen; ultimate:true; purpose:attack}`；`ap_shouyangming_hegu/90/100→ap_shouyangming_yingxiang/90/120→ap_yangqiao_naoshu/90/140→ap_yangwei_tianliao/90/160→ap_zushaoyang_tongziliao/90/180→ap_zutaiyang_cuanzhu/90/200→ap_zutaiyang_zhiyin/90/220→ap_zuyangming_sibai/90/240` |
-| 9 地上 | `sk_hunyuangong` | `mv_hunyuangong_yangqi` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_hunyuangong_yangqi}` | `mfr_hunyuangong_yangqi` | `MeridianRouteDef{moveRef:mv_hunyuangong_yangqi; ultimate:true; purpose:attack}`；`ap_renmai_qihai/75/100 → ap_renmai_guanyuan/75/110 → ap_dumai_zhiyang/75/120 → ap_dumai_baihui/75/130 → ap_shouyangming_quchi/75/110 → ap_shouyangming_shousanli/75/120 → ap_shoujueyin_neiguan/75/140 → ap_shoujueyin_laogong/75/150` |
-| 9 地上 | `sk_hunyuangong` | `mv_hunyuangong_yiqi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_hunyuangong_yiqi}` | `mfr_hunyuangong_yiqi` | `MeridianRouteDef{moveRef:mv_hunyuangong_yiqi; ultimate:true; purpose:attack}`；`ap_zushaoyang_riyue/90/100→ap_zutaiyang_chengshan/90/120→ap_zutaiyang_xinshu/90/140→ap_zuyangming_renying/90/160→ap_dumai_mingmen/90/180→ap_dumai_yinjiao/90/200→ap_shoushaoyang_yemen/90/220→ap_shoutaiyang_tianzong/90/240` |
+| 9 地上 | `sk_hunyuangong` | `mv_hunyuangong_yangqi` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_hunyuangong_yangqi}` | `mfr_hunyuangong_yangqi` | `MeridianRouteDef{moveRef:mv_hunyuangong_yangqi; ultimate:true; purpose:attack}`；`ap_renmai_shenque/75/100 → ap_renmai_zhongwan/75/110 → ap_dumai_shendao/75/120 → ap_dumai_baihui/75/130 → ap_shoushaoyang_waiguan/75/110 → ap_shouyangming_quchi/75/120 → ap_shoujueyin_neiguan/75/140 → ap_shoujueyin_laogong/75/150` |
+| 9 地上 | `sk_hunyuangong` | `mv_hunyuangong_yiqi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_hunyuangong_yiqi}` | `mfr_hunyuangong_yiqi` | `MeridianRouteDef{moveRef:mv_hunyuangong_yiqi; ultimate:true; purpose:attack}`；`ap_chongmai_qichong/90/100→ap_chongmai_huangshu/90/120→ap_renmai_shimen/90/140→ap_dumai_mingmen/90/160→ap_yangwei_jianjing/90/180→ap_shouyangming_shousanli/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_laogong/90/240` |
 | 10 天下 | `sk_shenxing` | `mv_shenxing_taxi` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_shenxing_taxi}` | `mfr_shenxing_taxi` | `MeridianRouteDef{moveRef:mv_shenxing_taxi; ultimate:true; purpose:attack}`；`ap_zushaoyin_yongquan/70/110 → ap_zushaoyin_taixi/70/120 → ap_zutaiyang_weizhong/70/130 → ap_dumai_mingmen/70/140 → ap_daimai_zulinqi/70/130 → ap_daimai_weidao/70/140 → ap_daimai_daimai/70/150 → ap_dumai_zhiyang/70/160 → ap_shoujueyin_tianchi/70/160 → ap_shoujueyin_quze/70/170` |
-| 10 天下 | `sk_shenxing` | `mv_shenxing_dunying` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_shenxing_dunying}` | `mfr_shenxing_dunying` | `MeridianRouteDef{moveRef:mv_shenxing_dunying; ultimate:true; purpose:attack}`；`ap_yinwei_qimen/80/100→ap_zujueyin_xiguan/80/120→ap_zushaoyin_lingxu/80/140→ap_zutaiyin_dabao/80/160→ap_zutaiyin_yinbai/80/180→ap_renmai_qugu/80/200→ap_shoujueyin_daling/80/220→ap_shoujueyin_ximen/80/240→ap_shoushaoyin_shaohai/80/260→ap_shoutaiyin_taiyuan/80/280` |
-| 8 地中 | `sk_tiejianjianfa` | `mv_tiejianjianfa_manpan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_tiejianjianfa_manpan}` | `mfr_tiejianjianfa_manpan` | `MeridianRouteDef{moveRef:mv_tiejianjianfa_manpan; ultimate:true; purpose:attack}`；`ap_dumai_shuigou/90/100→ap_shoushaoyang_tianjing/90/120→ap_shoutaiyang_houxi/90/140→ap_shoutaiyang_yanggu/90/160→ap_shouyangming_shangyang/90/180→ap_yangqiao_jugu/90/200→ap_yangwei_fengfu/90/220→ap_zushaoyang_fengshi/90/240` |
-| 10 天下 | `sk_jinshejian` | `mv_jinshejian_nilinhui` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_jinshejian_nilinhui}` | `mfr_jinshejian_nilinhui` | `MeridianRouteDef{moveRef:mv_jinshejian_nilinhui; ultimate:true; purpose:attack}`；`ap_shoutaiyin_chize/75/120 → ap_shoutaiyin_taiyuan/75/130 → ap_shoutaiyin_shaoshang/75/140 → ap_shoutaiyin_yunmen/75/150 → ap_renmai_qihai/75/120 → ap_renmai_guanyuan/75/120 → ap_renmai_zhongwan/75/140 → ap_shoujueyin_tianchi/75/150 → ap_shoujueyin_quze/75/160 → ap_shoujueyin_neiguan/75/170` |
+| 10 天下 | `sk_shenxing` | `mv_shenxing_dunying` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_shenxing_dunying}` | `mfr_shenxing_dunying` | `MeridianRouteDef{moveRef:mv_shenxing_dunying; ultimate:true; purpose:attack}`；`ap_zushaoyin_yongquan/80/100→ap_yangqiao_fuyang/80/120→ap_yangqiao_shenmai/80/140→ap_daimai_zulinqi/80/160→ap_daimai_weidao/80/180→ap_zushaoyang_yanglingquan/80/200→ap_zushaoyang_guangming/80/220→ap_zutaiyang_chengshan/80/240→ap_zutaiyang_weizhong/80/260→ap_zushaoyang_zuqiaoyin/80/280` |
+| 8 地中 | `sk_tiejianjianfa` | `mv_tiejianjianfa_manpan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_tiejianjianfa_manpan}` | `mfr_tiejianjianfa_manpan` | `MeridianRouteDef{moveRef:mv_tiejianjianfa_manpan; ultimate:true; purpose:attack}`；`ap_renmai_qihai/90/100→ap_chongmai_shangqu/90/120→ap_daimai_wushu/90/140→ap_yangqiao_jianyu/90/160→ap_shouyangming_quchi/90/180→ap_shoushaoyang_waiguan/90/200→ap_shoutaiyang_wangu/90/220→ap_shoushaoyang_yangchi/90/240` |
+| 10 天下 | `sk_jinshejian` | `mv_jinshejian_nilinhui` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_jinshejian_nilinhui}` | `mfr_jinshejian_nilinhui` | `MeridianRouteDef{moveRef:mv_jinshejian_nilinhui; ultimate:true; purpose:attack}`；`ap_zushaoyin_yongquan/75/120 → ap_zushaoyin_taixi/75/130 → ap_zujueyin_taichong/75/140 → ap_yinwei_qimen/75/150 → ap_yinqiao_lieque/75/120 → ap_shoujueyin_tianchi/75/120 → ap_shoujueyin_quze/75/140 → ap_shoushaoyang_waiguan/75/150 → ap_shoutaiyang_yanggu/75/160 → ap_shouyangming_hegu/75/170` |
 | 10 天下 | `sk_jinshejian` | `mv_jinshejian_kuangwu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_jinshejian_kuangwu}` | `mfr_jinshejian_kuangwu` | `MeridianRouteDef{moveRef:mv_jinshejian_kuangwu; ultimate:true; purpose:attack}`；`ap_shoujueyin_tianquan/80/100→ap_shoushaoyin_shaofu/80/120→ap_shoutaiyin_shaoshang/80/140→ap_yinqiao_jiaoxin/80/160→ap_yinwei_fuai/80/180→ap_zujueyin_ligou/80/200→ap_zujueyin_zhongfeng/80/220→ap_zushaoyin_taixi/80/240→ap_zutaiyin_shangqiu/80/260→ap_renmai_guanyuan/80/280` |
 | 8 地中 | `sk_wenjiawuxingzhen` | `mv_wenjiawuxingzhen_lunzhuan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_wenjiawuxingzhen_lunzhuan}` | `mfr_wenjiawuxingzhen_lunzhuan` | `MeridianRouteDef{moveRef:mv_wenjiawuxingzhen_lunzhuan; ultimate:true; purpose:attack}`；`ap_shoutaiyang_shaoze/90/100→ap_shouyangming_erjian/90/120→ap_shouyangming_yangxi/90/140→ap_yangqiao_juliao_wei/90/160→ap_yangwei_jinmen/90/180→ap_zushaoyang_riyue/90/200→ap_zutaiyang_chengshan/90/220→ap_zutaiyang_xinshu/90/240` |
-| 8 地中 | `sk_xieweibian` | `mv_xieweibian_baizu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_xieweibian_baizu}` | `mfr_xieweibian_baizu` | `MeridianRouteDef{moveRef:mv_xieweibian_baizu; ultimate:true; purpose:attack}`；`ap_shoutaiyang_wangu/90/100→ap_shouyangming_quchi/90/120→ap_yangqiao_fuyang/90/140→ap_yangqiao_shenmai/90/160→ap_yangwei_yamen/90/180→ap_zushaoyang_xuanzhong/90/200→ap_zutaiyang_kunlun/90/220→ap_zuyangming_fenglong/90/240` |
-| 7 地下 | `sk_shangqingjianfa07` | `mv_shangqingjianfa07_yunkai` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_shangqingjianfa07_yunkai}` | `mfr_shangqingjianfa07_yunkai` | `MeridianRouteDef{moveRef:mv_shangqingjianfa07_yunkai; ultimate:true; purpose:attack}`；`ap_shoutaiyang_wangu/90/100→ap_shouyangming_quchi/90/120→ap_yangqiao_fuyang/90/140→ap_yangqiao_shenmai/90/160→ap_yangwei_yamen/90/180→ap_zushaoyang_xuanzhong/90/200→ap_zutaiyang_kunlun/90/220→ap_zuyangming_fenglong/90/240` |
-| 7 地下 | `sk_fuhuzhang` | `mv_fuhuzhang_zhenguan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_fuhuzhang_zhenguan}` | `mfr_fuhuzhang_zhenguan` | `MeridianRouteDef{moveRef:mv_fuhuzhang_zhenguan; ultimate:true; purpose:attack}`；`ap_zushaoyang_tongziliao/90/100→ap_zutaiyang_cuanzhu/90/120→ap_zutaiyang_zhiyin/90/140→ap_zuyangming_sibai/90/160→ap_dumai_shangxing/90/180→ap_dumai_zhiyang/90/200→ap_shoushaoyang_yifeng/90/220→ap_shoutaiyang_tinggong/90/240` |
+| 8 地中 | `sk_xieweibian` | `mv_xieweibian_baizu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_xieweibian_baizu}` | `mfr_xieweibian_baizu` | `MeridianRouteDef{moveRef:mv_xieweibian_baizu; ultimate:true; purpose:attack}`；`ap_zujueyin_dadun/90/100→ap_zujueyin_ligou/90/120→ap_yinwei_zhubin/90/140→ap_yinqiao_jiaoxin/90/160→ap_shoujueyin_quze/90/180→ap_shoushaoyang_waiguan/90/200→ap_shoutaiyang_wangu/90/220→ap_shoushaoyang_yangchi/90/240` |
+| 7 地下 | `sk_shangqingjianfa07` | `mv_shangqingjianfa07_yunkai` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_shangqingjianfa07_yunkai}` | `mfr_shangqingjianfa07_yunkai` | `MeridianRouteDef{moveRef:mv_shangqingjianfa07_yunkai; ultimate:true; purpose:attack}`；`ap_renmai_qihai/90/100→ap_chongmai_shiguan/90/120→ap_daimai_daimai/90/140→ap_dumai_shenzhu/90/160→ap_shouyangming_quchi/90/180→ap_shoushaoyang_waiguan/90/200→ap_shoutaiyang_yanggu/90/220→ap_shouyangming_hegu/90/240` |
+| 7 地下 | `sk_fuhuzhang` | `mv_fuhuzhang_zhenguan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_fuhuzhang_zhenguan}` | `mfr_fuhuzhang_zhenguan` | `MeridianRouteDef{moveRef:mv_fuhuzhang_zhenguan; ultimate:true; purpose:attack}`；`ap_dumai_changqiang/90/100→ap_dumai_yaoshu/90/120→ap_dumai_shenzhu/90/140→ap_yangwei_jianjing/90/160→ap_shouyangming_quchi/90/180→ap_shouyangming_shousanli/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_laogong/90/240` |
 | 6 玄上 | `sk_bizhenqingzhang` | `mv_bizhenqingzhang_yixian` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_bizhenqingzhang_yixian}` | `mfr_bizhenqingzhang_yixian` | `MeridianRouteDef{moveRef:mv_bizhenqingzhang_yixian; ultimate:true; purpose:attack}`；`ap_shoutaiyin_yuji/100/100→ap_shouyangming_sanjian/100/120→ap_yangqiao_jianyu/100/140→ap_yangwei_benshen/100/160→ap_yangwei_yangjiao/100/180→ap_yinwei_daheng/100/200` |
-| 6 玄上 | `sk_xueshanjianfa` | `mv_xueshanjianfa_feixue` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_xueshanjianfa_feixue}` | `mfr_xueshanjianfa_feixue` | `MeridianRouteDef{moveRef:mv_xueshanjianfa_feixue; ultimate:true; purpose:attack}`；`ap_chongmai_yindu/100/100→ap_daimai_zhangmen/100/120→ap_dumai_shendao/100/140→ap_qihai/100/160→ap_renmai_shenque/100/180→ap_shoujueyin_jianshi/100/200` |
+| 6 玄上 | `sk_xueshanjianfa` | `mv_xueshanjianfa_feixue` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_xueshanjianfa_feixue}` | `mfr_xueshanjianfa_feixue` | `MeridianRouteDef{moveRef:mv_xueshanjianfa_feixue; ultimate:true; purpose:attack}`；`ap_chongmai_yindu/100/100→ap_daimai_zhangmen/100/120→ap_dumai_shendao/100/140→ap_renmai_qihai/100/160→ap_renmai_shenque/100/180→ap_shoutaiyang_wangu/100/200` |
 | 6 玄上 | `sk_wuwangshengong` | `mv_wuwangshengong_weide` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_wuwangshengong_weide}` | `mfr_wuwangshengong_weide` | `MeridianRouteDef{moveRef:mv_wuwangshengong_weide; ultimate:true; purpose:attack}`；`ap_shoushaoyin_shaohai/100/100→ap_shoutaiyang_tianzong/100/120→ap_shoutaiyin_kongzui/100/140→ap_shoutaiyin_zhongfu/100/160→ap_shouyangming_shousanli/100/180→ap_yangqiao_juliao/100/200` |
-| 6 玄上 | `sk_jinwudaofa` | `mv_jinwudaofa_rongxue` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_jinwudaofa_rongxue}` | `mfr_jinwudaofa_rongxue` | `MeridianRouteDef{moveRef:mv_jinwudaofa_rongxue; ultimate:true; purpose:attack}`；`ap_zutaiyang_shenshu/100/100→ap_zutaiyin_diji/100/120→ap_zuyangming_chengqi/100/140→ap_zuyangming_tianshu/100/160→ap_chongmai_qichong/100/180→ap_chongmai_zhongzhu/100/200` |
-| 6 玄上 | `sk_hunyuanzhang` | `mv_hunyuanzhang_hezhang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_hunyuanzhang_hezhang}` | `mfr_hunyuanzhang_hezhang` | `MeridianRouteDef{moveRef:mv_hunyuanzhang_hezhang; ultimate:true; purpose:attack}`；`ap_renmai_danzhong/100/100→ap_renmai_shuifen/100/120→ap_shoujueyin_neiguan/100/140→ap_shoushaoyang_sizhukong/100/160→ap_shoushaoyang_zhongzhu/100/180→ap_shoushaoyin_shenmen/100/200` |
-| 6 玄上 | `sk_mantianhuayu` | `mv_mantianhuayu_huayu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_mantianhuayu_huayu}` | `mfr_mantianhuayu_huayu` | `MeridianRouteDef{moveRef:mv_mantianhuayu_huayu; ultimate:true; purpose:attack}`；`ap_zujueyin_zhongfeng/100/100→ap_zushaoyang_yangbai/100/120→ap_zushaoyin_shufu/100/140→ap_zutaiyang_feishu/100/160→ap_zutaiyin_dabao/100/180→ap_zutaiyin_yinbai/100/200` |
-| 6 玄上 | `sk_jinsheyouzhang` | `mv_jinsheyouzhang_chanshen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_jinsheyouzhang_chanshen}` | `mfr_jinsheyouzhang_chanshen` | `MeridianRouteDef{moveRef:mv_jinsheyouzhang_chanshen; ultimate:true; purpose:attack}`；`ap_zujueyin_xiguan/100/100→ap_zushaoyang_riyue/100/120→ap_zushaoyin_dazhong/100/140→ap_zushaoyin_yingu/100/160→ap_zutaiyang_tianzhu/100/180→ap_zutaiyin_gongsun/100/200` |
+| 6 玄上 | `sk_jinwudaofa` | `mv_jinwudaofa_rongxue` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_jinwudaofa_rongxue}` | `mfr_jinwudaofa_rongxue` | `MeridianRouteDef{moveRef:mv_jinwudaofa_rongxue; ultimate:true; purpose:attack}`；`ap_dumai_shenzhu/100/100→ap_yangwei_fengfu/100/120→ap_shoushaoyang_tianjing/100/140→ap_shoushaoyang_waiguan/100/160→ap_shoutaiyang_wangu/100/180→ap_shouyangming_hegu/100/200` |
+| 6 玄上 | `sk_hunyuanzhang` | `mv_hunyuanzhang_hezhang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_hunyuanzhang_hezhang}` | `mfr_hunyuanzhang_hezhang` | `MeridianRouteDef{moveRef:mv_hunyuanzhang_hezhang; ultimate:true; purpose:attack}`；`ap_dumai_yaoshu/100/100→ap_yangwei_tianliao/100/120→ap_shouyangming_yangxi/100/140→ap_shouyangming_quchi/100/160→ap_shoujueyin_neiguan/100/180→ap_shoujueyin_laogong/100/200` |
+| 6 玄上 | `sk_mantianhuayu` | `mv_mantianhuayu_huayu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_mantianhuayu_huayu}` | `mfr_mantianhuayu_huayu` | `MeridianRouteDef{moveRef:mv_mantianhuayu_huayu; ultimate:true; purpose:attack}`；`ap_zujueyin_xingjian/100/100→ap_yinwei_tiantu/100/120→ap_shoutaiyin_chize/100/140→ap_shoujueyin_neiguan/100/160→ap_shouyangming_hegu/100/180→ap_shoutaiyin_shaoshang/100/200` |
+| 6 玄上 | `sk_jinsheyouzhang` | `mv_jinsheyouzhang_chanshen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_jinsheyouzhang_chanshen}` | `mfr_jinsheyouzhang_chanshen` | `MeridianRouteDef{moveRef:mv_jinsheyouzhang_chanshen; ultimate:true; purpose:attack}`；`ap_zujueyin_taichong/100/100→ap_yinwei_qimen/100/120→ap_renmai_danzhong/100/140→ap_shoujueyin_quze/100/160→ap_shoujueyin_neiguan/100/180→ap_shoujueyin_laogong/100/200` |
 | 6 玄上 | `sk_jinshezhui` | `mv_jinshezhui_huizhui` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_jinshezhui_huizhui}` | `mfr_jinshezhui_huizhui` | `MeridianRouteDef{moveRef:mv_jinshezhui_huizhui; ultimate:true; purpose:attack}`；`ap_yangwei_tianliao/100/100→ap_yinqiao_lougu/100/120→ap_yinwei_qimen/100/140→ap_zujueyin_taichong/100/160→ap_zushaoyang_guangming/100/180→ap_zushaoyang_zuqiaoyin/100/200` |
 | 6 玄上 | `sk_ruanhongzhusuo` | `mv_ruanhongzhusuo_luowang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_ruanhongzhusuo_luowang}` | `mfr_ruanhongzhusuo_luowang` | `MeridianRouteDef{moveRef:mv_ruanhongzhusuo_luowang; ultimate:true; purpose:attack}`；`ap_dumai_changqiang/100/100→ap_dumai_yaoshu/100/120→ap_renmai_guanyuan/100/140→ap_renmai_yinjiao/100/160→ap_shoujueyin_quze/100/180→ap_shoushaoyang_tianjing/100/200` |
 | 6 玄上 | `sk_wuduxinfa` | `mv_wuduxinfa_duyin` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_wuduxinfa_duyin}` | `mfr_wuduxinfa_duyin` | `MeridianRouteDef{moveRef:mv_wuduxinfa_duyin; ultimate:true; purpose:defense}`；`ap_chongmai_siman/100/100→ap_daimai_wushu/100/120→ap_dumai_shangxing/100/140→ap_dumai_zhiyang/100/160→ap_renmai_qugu/100/180→ap_shoujueyin_daling/100/200` |
@@ -1331,41 +1331,41 @@
 | 〃 | `mv_taixuan_shibu` | `mfr_taixuan_shibu` | 是／见下表；`ultimate:true` |
 | 〃 | `mv_taixuan_sada` | `mfr_taixuan_sada` | 是／见下表；`ultimate:true` |
 | 〃 | `mv_taixuan_wuyue` | `mfr_taixuan_wuyue` | 否／见 §17.4 外放普通招式覆写表 |
-| 〃 | `mv_taixuan_guiyi` | `mfr_taixuan_guiyi` | 是／A10H；`ultimate:true` |
+| 〃 | `mv_taixuan_guiyi` | `mfr_taixuan_guiyi` | 是／见文首索引；`ultimate:true` |
 | `sk_luohanfumo` | `mv_luohanfumo_zhenqi` | `mfr_luohanfumo_zhenqi` | 否／见 §17.4 外放普通招式覆写表 |
 | 〃 | `mv_luohanfumo_zhouliu` | `mfr_luohanfumo_zhouliu` | 否／D4H |
-| 〃 | `mv_luohanfumo_huti` | `mfr_luohanfumo_huti` | 是／D6H；支援绝招短路；`ultimate:true` |
-| 〃 | `mv_luohanfumo_zhuxiang` | `mfr_luohanfumo_zhuxiang` | 是／A10H；`ultimate:true` |
+| 〃 | `mv_luohanfumo_huti` | `mfr_luohanfumo_huti` | 是／见文首索引；支援绝招；`ultimate:true` |
+| 〃 | `mv_luohanfumo_zhuxiang` | `mfr_luohanfumo_zhuxiang` | 是／见文首索引；`ultimate:true` |
 | `sk_xiakedaozhangfa` | `mv_xiakedaozhangfa_shangshan` | `mfr_xiakedaozhangfa_shangshan` | 否／A4H |
 | 〃 | `mv_xiakedaozhangfa_fae` | `mfr_xiakedaozhangfa_fae` | 否／A4H |
 | 〃 | `mv_xiakedaozhangfa_lingsui` | `mfr_xiakedaozhangfa_lingsui` | 否／A4H |
 | 〃 | `mv_xiakedaozhangfa_gangrou` | `mfr_xiakedaozhangfa_gangrou` | 否／D4H |
-| 〃 | `mv_xiakedaozhangfa_heyin` | `mfr_xiakedaozhangfa_heyin` | 是／A8H；`ultimate:true` |
+| 〃 | `mv_xiakedaozhangfa_heyin` | `mfr_xiakedaozhangfa_heyin` | 是／见文首索引；`ultimate:true` |
 | `sk_taxuewuhen` | `mv_taxuewuhen_xueshang` | `mfr_taxuewuhen_xueshang` | 否／M6I |
 | 〃 | `mv_taxuewuhen_bingbu` | `mfr_taxuewuhen_bingbu` | 否／M6I |
 | 〃 | `mv_taxuewuhen_wuhen` | `mfr_taxuewuhen_wuhen` | 否／M6I |
 | 〃 | `mv_taxuewuhen_zhufeng` | `mfr_taxuewuhen_zhufeng` | 否／M6I |
-| 〃 | `mv_taxuewuhen_lingxiao` | `mfr_taxuewuhen_lingxiao` | 是／A8I；跳斩以伤害为主路线；`ultimate:true` |
+| 〃 | `mv_taxuewuhen_lingxiao` | `mfr_taxuewuhen_lingxiao` | 是／见文首索引；跳斩以伤害为主路线；`ultimate:true` |
 | `sk_wuxingliuhezhang` | `mv_wuxingliuhezhang_jinshui` | `mfr_wuxingliuhezhang_jinshui` | 否／A4H |
 | 〃 | `mv_wuxingliuhezhang_mutu` | `mfr_wuxingliuhezhang_mutu` | 否／A4H |
 | 〃 | `mv_wuxingliuhezhang_shuihuo` | `mfr_wuxingliuhezhang_shuihuo` | 否／A4H |
 | 〃 | `mv_wuxingliuhezhang_fengmen` | `mfr_wuxingliuhezhang_fengmen` | 否／A4H |
-| 〃 | `mv_wuxingliuhezhang_guihuan` | `mfr_wuxingliuhezhang_guihuan` | 是／A8H；`ultimate:true` |
+| 〃 | `mv_wuxingliuhezhang_guihuan` | `mfr_wuxingliuhezhang_guihuan` | 是／见文首索引；`ultimate:true` |
 | `sk_heibaijianfa` | `mv_heibaijianfa_xuan` | `mfr_heibaijianfa_xuan` | 否／A4H |
 | 〃 | `mv_heibaijianfa_su` | `mfr_heibaijianfa_su` | 否／A4H |
 | 〃 | `mv_heibaijianfa_xiangji` | `mfr_heibaijianfa_xiangji` | 否／A4H |
 | 〃 | `mv_heibaijianfa_zhaoying` | `mfr_heibaijianfa_zhaoying` | 否／D4H |
-| 〃 | `mv_heibaijianfa_heguang` | `mfr_heibaijianfa_heguang` | 是／A8H；`ultimate:true` |
+| 〃 | `mv_heibaijianfa_heguang` | `mfr_heibaijianfa_heguang` | 是／见文首索引；`ultimate:true` |
 | `sk_piguadao` | `mv_piguadao_kaishan` | `mfr_piguadao_kaishan` | 否／A4H |
 | 〃 | `mv_piguadao_hanshi` | `mfr_piguadao_hanshi` | 否／A4H |
 | 〃 | `mv_piguadao_huidao` | `mfr_piguadao_huidao` | 否／A4H |
 | 〃 | `mv_piguadao_lianhuan` | `mfr_piguadao_lianhuan` | 否／A4H |
-| 〃 | `mv_piguadao_guidao` | `mfr_piguadao_guidao` | 是／A8H；`ultimate:true` |
+| 〃 | `mv_piguadao_guidao` | `mfr_piguadao_guidao` | 是／见文首索引；`ultimate:true` |
 | `sk_shangqingjianfa06` | `mv_shangqingjianfa06_qingju` | `mfr_shangqingjianfa06_qingju` | 否／A4H |
 | 〃 | `mv_shangqingjianfa06_yunkai` | `mfr_shangqingjianfa06_yunkai` | 否／A4H |
 | 〃 | `mv_shangqingjianfa06_shouxin` | `mfr_shangqingjianfa06_shouxin` | 否／D4H |
 | 〃 | `mv_shangqingjianfa06_xuansu` | `mfr_shangqingjianfa06_xuansu` | 否／A4H |
-| 〃 | `mv_shangqingjianfa06_guizhen` | `mfr_shangqingjianfa06_guizhen` | 是／A8H；`ultimate:true` |
+| 〃 | `mv_shangqingjianfa06_guizhen` | `mfr_shangqingjianfa06_guizhen` | 是／见文首索引；`ultimate:true` |
 
 ### 17.4 天／地阶逐招路线（二）
 
@@ -1374,44 +1374,44 @@
 | `sk_hunyuangong` | `mv_hunyuangong_tuna` | `mfr_hunyuangong_tuna` | 否／D4Y |
 | 〃 | `mv_hunyuangong_yangqi` | `mfr_hunyuangong_yangqi` | 是／见下表；`ultimate:true` |
 | 〃 | `mv_hunyuangong_shouyi` | `mfr_hunyuangong_shouyi` | 否／D6Y |
-| 〃 | `mv_hunyuangong_yiqi` | `mfr_hunyuangong_yiqi` | 是／A8Y；`ultimate:true` |
+| 〃 | `mv_hunyuangong_yiqi` | `mfr_hunyuangong_yiqi` | 是／见文首索引；`ultimate:true` |
 | `sk_shenxing` | `mv_shenxing_yixing` | `mfr_shenxing_yixing` | 否／M6H |
 | 〃 | `mv_shenxing_baibian` | `mfr_shenxing_baibian` | 否／M6H |
 | 〃 | `mv_shenxing_taxi` | `mfr_shenxing_taxi` | 是／见下表；绕背攻击为主路线；`ultimate:true` |
 | 〃 | `mv_shenxing_qubi` | `mfr_shenxing_qubi` | 否／M6H |
 | 〃 | `mv_shenxing_jiexi` | `mfr_shenxing_jiexi` | 否／M6H |
-| 〃 | `mv_shenxing_dunying` | `mfr_shenxing_dunying` | 是／A10H；突进攻击为主路线；`ultimate:true` |
+| 〃 | `mv_shenxing_dunying` | `mfr_shenxing_dunying` | 是／见文首索引；突进攻击为主路线；`ultimate:true` |
 | `sk_tiejianjianfa` | `mv_tiejianjianfa_luozi` | `mfr_tiejianjianfa_luozi` | 否／A4H |
 | 〃 | `mv_tiejianjianfa_lianxing` | `mfr_tiejianjianfa_lianxing` | 否／A4H |
 | 〃 | `mv_tiejianjianfa_fenglu` | `mfr_tiejianjianfa_fenglu` | 否／A4H |
 | 〃 | `mv_tiejianjianfa_qizi` | `mfr_tiejianjianfa_qizi` | 否／A4H |
-| 〃 | `mv_tiejianjianfa_manpan` | `mfr_tiejianjianfa_manpan` | 是／A8H；`ultimate:true` |
+| 〃 | `mv_tiejianjianfa_manpan` | `mfr_tiejianjianfa_manpan` | 是／见文首索引；`ultimate:true` |
 | `sk_jinshejian` | `mv_jinshejian_shexing` | `mfr_jinshejian_shexing` | 否／A6I |
 | 〃 | `mv_jinshejian_tuxin` | `mfr_jinshejian_tuxin` | 否／A6I |
 | 〃 | `mv_jinshejian_panshen` | `mfr_jinshejian_panshen` | 否／D6I |
 | 〃 | `mv_jinshejian_zhuijian` | `mfr_jinshejian_zhuijian` | 否／A6I |
 | 〃 | `mv_jinshejian_nilinhui` | `mfr_jinshejian_nilinhui` | 是／见下表；`ultimate:true` |
-| 〃 | `mv_jinshejian_kuangwu` | `mfr_jinshejian_kuangwu` | 是／A10I；`ultimate:true` |
+| 〃 | `mv_jinshejian_kuangwu` | `mfr_jinshejian_kuangwu` | 是／见文首索引；`ultimate:true` |
 | `sk_wenjiawuxingzhen` | `mv_wenjiawuxingzhen_tushou` | `mfr_wenjiawuxingzhen_tushou` | 否／D4H |
 | 〃 | `mv_wenjiawuxingzhen_muxing` | `mfr_wenjiawuxingzhen_muxing` | 否／A4H |
 | 〃 | `mv_wenjiawuxingzhen_jinwei` | `mfr_wenjiawuxingzhen_jinwei` | 否／A4H |
 | 〃 | `mv_wenjiawuxingzhen_shuihuo` | `mfr_wenjiawuxingzhen_shuihuo` | 否／M4H |
-| 〃 | `mv_wenjiawuxingzhen_lunzhuan` | `mfr_wenjiawuxingzhen_lunzhuan` | 是／A8H；`ultimate:true` |
+| 〃 | `mv_wenjiawuxingzhen_lunzhuan` | `mfr_wenjiawuxingzhen_lunzhuan` | 是／见文首索引；`ultimate:true` |
 | `sk_xieweibian` | `mv_xieweibian_xiezhen` | `mfr_xieweibian_xiezhen` | 否／A4I |
 | 〃 | `mv_xieweibian_daogou` | `mfr_xieweibian_daogou` | 否／A4I |
 | 〃 | `mv_xieweibian_juanbing` | `mfr_xieweibian_juanbing` | 否／A4I |
 | 〃 | `mv_xieweibian_yousi` | `mfr_xieweibian_yousi` | 否／A4I |
-| 〃 | `mv_xieweibian_baizu` | `mfr_xieweibian_baizu` | 是／A8I；`ultimate:true` |
+| 〃 | `mv_xieweibian_baizu` | `mfr_xieweibian_baizu` | 是／见文首索引；`ultimate:true` |
 | `sk_shangqingjianfa07` | `mv_shangqingjianfa07_qingguang` | `mfr_shangqingjianfa07_qingguang` | 否／A4H |
 | 〃 | `mv_shangqingjianfa07_huifeng` | `mfr_shangqingjianfa07_huifeng` | 否／A4H |
 | 〃 | `mv_shangqingjianfa07_guiyi` | `mfr_shangqingjianfa07_guiyi` | 否／A4H |
 | 〃 | `mv_shangqingjianfa07_hushen` | `mfr_shangqingjianfa07_hushen` | 否／D4H |
-| 〃 | `mv_shangqingjianfa07_yunkai` | `mfr_shangqingjianfa07_yunkai` | 是／A8H；`ultimate:true` |
+| 〃 | `mv_shangqingjianfa07_yunkai` | `mfr_shangqingjianfa07_yunkai` | 是／见文首索引；`ultimate:true` |
 | `sk_fuhuzhang` | `mv_fuhuzhang_anhu` | `mfr_fuhuzhang_anhu` | 否／A4Y |
 | 〃 | `mv_fuhuzhang_fushen` | `mfr_fuhuzhang_fushen` | 否／A4Y |
 | 〃 | `mv_fuhuzhang_zhendan` | `mfr_fuhuzhang_zhendan` | 否／A4Y |
 | 〃 | `mv_fuhuzhang_kaishan` | `mfr_fuhuzhang_kaishan` | 否／A4Y |
-| 〃 | `mv_fuhuzhang_zhenguan` | `mfr_fuhuzhang_zhenguan` | 是／A8Y；`ultimate:true` |
+| 〃 | `mv_fuhuzhang_zhenguan` | `mfr_fuhuzhang_zhenguan` | 是／见文首索引；`ultimate:true` |
 
 #### 外放普通招式显式路线
 
@@ -1451,22 +1451,22 @@
 | 黄·阴 | `A4I`；防 `D3I`；身法 `M4I` | 不新增绝招 |
 | 黄·调和或 neutral | `A4H`；防 `D3H`；身法 `M4H` | 不新增绝招 |
 
-玄上 12 门各确认一记既有招式为绝招；模板完整穴位序列见 §17.2。每条均为6段，且 `1200+路线CT≤2000`。
+玄上 12 门各确认一记既有招式为绝招；具体步骤以文首索引为唯一来源。每条均为 6 段、单段 100 CT，路线 `6×100=600 CT`，`1200+600=1800≤2000 CT`；风险列均为 `[100,120,140,160,180,200]`，总风险 900。
 
 | 武学 | moveRef | 路线 id | 模板或显式穴位序列 | 段数 | 单段 CT | 路线 CT | 风险 |
 |---|---|---|---|---:|---:|---:|---|
-| `sk_bizhenqingzhang` | `mv_bizhenqingzhang_yixian` | `mfr_bizhenqingzhang_yixian` | A6I（§17.2） | 6 | 75 | 450 | 中；`ultimate:true` |
-| `sk_xueshanjianfa` | `mv_xueshanjianfa_feixue` | `mfr_xueshanjianfa_feixue` | A6I（§17.2） | 6 | 75 | 450 | 中；`ultimate:true` |
-| `sk_wuwangshengong` | `mv_wuwangshengong_weide` | `mfr_wuwangshengong_weide` | A6Y（§17.2） | 6 | 75 | 450 | 中；`ultimate:true` |
-| `sk_jinwudaofa` | `mv_jinwudaofa_rongxue` | `mfr_jinwudaofa_rongxue` | A6Y（§17.2） | 6 | 75 | 450 | 中；`ultimate:true` |
-| `sk_hunyuanzhang` | `mv_hunyuanzhang_hezhang` | `mfr_hunyuanzhang_hezhang` | A6Y（§17.2） | 6 | 75 | 450 | 中；`ultimate:true` |
-| `sk_mantianhuayu` | `mv_mantianhuayu_huayu` | `mfr_mantianhuayu_huayu` | A6I（§17.2） | 6 | 75 | 450 | 中；`ultimate:true` |
-| `sk_jinsheyouzhang` | `mv_jinsheyouzhang_chanshen` | `mfr_jinsheyouzhang_chanshen` | A6I（§17.2） | 6 | 75 | 450 | 中；`ultimate:true` |
-| `sk_jinshezhui` | `mv_jinshezhui_huizhui` | `mfr_jinshezhui_huizhui` | A6I（§17.2） | 6 | 75 | 450 | 中；`ultimate:true` |
-| `sk_ruanhongzhusuo` | `mv_ruanhongzhusuo_luowang` | `mfr_ruanhongzhusuo_luowang` | A6I（§17.2） | 6 | 75 | 450 | 中；`ultimate:true` |
-| `sk_wuduxinfa` | `mv_wuduxinfa_duyin` | `mfr_wuduxinfa_duyin` | D6I（§17.2） | 6 | 90 | 540 | 中；`ultimate:true` |
-| `sk_liangyijianfa07` | `mv_liangyijianfa07_huanzhuan` | `mfr_liangyijianfa07_huanzhuan` | A6H（§17.2） | 6 | 75 | 450 | 中；`ultimate:true` |
-| `sk_shuangqiangqiangfa` | `mv_shuangqiangqiangfa_huima` | `mfr_shuangqiangqiangfa_huima` | A6H（§17.2） | 6 | 75 | 450 | 中；`ultimate:true` |
+| `sk_bizhenqingzhang` | `mv_bizhenqingzhang_yixian` | `mfr_bizhenqingzhang_yixian` | 见文首索引 | 6 | 100 | 600 | 900；`ultimate:true` |
+| `sk_xueshanjianfa` | `mv_xueshanjianfa_feixue` | `mfr_xueshanjianfa_feixue` | 见文首索引 | 6 | 100 | 600 | 900；`ultimate:true` |
+| `sk_wuwangshengong` | `mv_wuwangshengong_weide` | `mfr_wuwangshengong_weide` | 见文首索引 | 6 | 100 | 600 | 900；`ultimate:true` |
+| `sk_jinwudaofa` | `mv_jinwudaofa_rongxue` | `mfr_jinwudaofa_rongxue` | 见文首索引 | 6 | 100 | 600 | 900；`ultimate:true` |
+| `sk_hunyuanzhang` | `mv_hunyuanzhang_hezhang` | `mfr_hunyuanzhang_hezhang` | 见文首索引 | 6 | 100 | 600 | 900；`ultimate:true` |
+| `sk_mantianhuayu` | `mv_mantianhuayu_huayu` | `mfr_mantianhuayu_huayu` | 见文首索引 | 6 | 100 | 600 | 900；`ultimate:true` |
+| `sk_jinsheyouzhang` | `mv_jinsheyouzhang_chanshen` | `mfr_jinsheyouzhang_chanshen` | 见文首索引 | 6 | 100 | 600 | 900；`ultimate:true` |
+| `sk_jinshezhui` | `mv_jinshezhui_huizhui` | `mfr_jinshezhui_huizhui` | 见文首索引 | 6 | 100 | 600 | 900；`ultimate:true` |
+| `sk_ruanhongzhusuo` | `mv_ruanhongzhusuo_luowang` | `mfr_ruanhongzhusuo_luowang` | 见文首索引 | 6 | 100 | 600 | 900；`ultimate:true` |
+| `sk_wuduxinfa` | `mv_wuduxinfa_duyin` | `mfr_wuduxinfa_duyin` | 见文首索引 | 6 | 100 | 600 | 900；`ultimate:true` |
+| `sk_liangyijianfa07` | `mv_liangyijianfa07_huanzhuan` | `mfr_liangyijianfa07_huanzhuan` | 见文首索引 | 6 | 100 | 600 | 900；`ultimate:true` |
+| `sk_shuangqiangqiangfa` | `mv_shuangqiangqiangfa_huima` | `mfr_shuangqiangqiangfa_huima` | 见文首索引 | 6 | 100 | 600 | 900；`ultimate:true` |
 
 模板不创造或取消 `ultimate:true`。同一招只生成一个主路线；触发被动另需防守／移动发力时才用 `routeOnTriggerRef`，不得令同一 `mfr_*` 兼具两种 purpose。
 
