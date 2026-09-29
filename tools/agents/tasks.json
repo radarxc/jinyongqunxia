@@ -13284,6 +13284,53 @@
       }
     },
     {
+      "id": "ART-B-bldmap",
+      "phase": "ART",
+      "wave": 7,
+      "kind": "draft",
+      "title": "素材基线 · 建筑·地图拼接（45 度，默认风格包）",
+      "prompt": "ART-baseline.md",
+      "deps": [
+        "ART-B-town",
+        "ART-B-building"
+      ],
+      "writes": [
+        "assets/default/baseline/building-map/**",
+        "assets/default/prompts/building-map.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_id": "building-map",
+        "cat_name": "建筑·地图拼接（45 度）",
+        "style_rule": "**写实古风，45 度视角**。作者原话：「建筑分两种， 一种是类似立绘，另一种是要拼到城市地图上，第二种要45度」；另有「城市图要45度视角（主角要能在城市地图上移动）」。本类是第二种：要拼进 45 度城市地图的单体建筑。视角、投影方向、光源方向、比例须与城镇 45 度基线（`assets/default/baseline/town/`、`assets/default/prompts/town.md`）一致，以城镇模板里的规定为准；形制、瓦作、斗拱、材质按书界年代写实，可参考立绘式建筑基线（`assets/default/baseline/building/`）。",
+        "subjects": "（1）北宋·大理国都一座可复用的沿街建筑（天龙书界，约 1093，如客栈或茶肆，体现白族与宋式交融）；（2）南宋·临安一座可复用的沿街建筑（射雕书界，约 1220 年代，如茶坊或药铺，宋式）。两座都要能直接放进同书界的城镇 45 度基线图里。",
+        "out_dir": "assets/default/baseline/building-map",
+        "prompt_file": "assets/default/prompts/building-map.md",
+        "extra": "先读城镇 45 度基线的 manifest、模板和图（用 `view_image` 载入），照它的视角、投影方向和光源出图；可以把城镇基线图作为参考图输入 `image_gen`，参考图登记进 `references`。单体建筑单独成图，四周留空，纯色背景便于抠图（工具若能直接出透明底更好，如实登记）；占地轮廓 / 台基清楚。模板里写明与城市地图网格对齐的建议：占地几格、锚点位置、遮挡与前后排序的注意点。出图后把建筑和同书界城镇基线并排目检，投影方向、光源、比例一致才算合格，对比结果写进报告。可另写 `assets/default/baseline/building-map/preview.html`，用 CSS 把建筑叠放在城镇基线图上做合成预览，供作者审批；预览只作 QA，不另存合成位图，不进 manifest。游戏里的格子尺寸、遮挡排序等技术规格不在本任务范围，报告里列为\"需同步到其他文档\"即可。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/building-map/manifest.yaml",
+          "assets/default/prompts/building-map.md"
+        ],
+        "fences": [
+          "assets/default/prompts/building-map.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/building-map",
+            "--min",
+            "1",
+            "--max",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
       "id": "ART-B-male",
       "phase": "ART",
       "wave": 7,
