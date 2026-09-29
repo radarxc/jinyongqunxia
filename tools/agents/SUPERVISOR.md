@@ -26,6 +26,7 @@
    - `VERDICT: FAIL` → 把其中的"返修说明"整理进续作 `--note`，在原工作区返修，返修后再审一轮；`VERDICT: PASS` → 再 `finish <ID>` 提交。
    - 退出码 2（超时或报错）重跑一次；仍失败就在汇报里说明，不要自己代审。
    - 监督代理自己不看图、不逐段审内容做质量判断，只做机械核对（校验脚本、`git diff --stat` 写集范围、sha 等）并转述审核结论。机械核对不通过时，以机械核对为准。
+   - **素材任务（ID 以 ART 开头）先给作者看图再合入**（作者 2026-09-29 规定）：GPT 审核 PASS 后不要 `finish` 提交、不要 `merge`，保留工作区原样，直接交汇报（写明工作区路径、新图路径与 sha256、审核结论文件）。协调者把图放上审批页，作者同意后由协调者 `finish` + `merge`；作者要改，协调者会通知续作。
    `python3 tools/agents/step.py finish <ID>`：通过 → 工作区提交并打印 SHA；不通过 → 读 `.agents/logs/<ID>/last_failure.md`（不要读日志原文），再 `start <ID>` 续作（最多 3 次；进程级错误如鉴权 / 限流先重试一次再换模型）。
 4. `python3 tools/agents/step.py merge <ID>`：cherry-pick 到主分支并清理工作区。若提示主检出不干净：`git status --short` 看一眼，不要动它，等 2 分钟重试 merge；仍不行就在汇报里说明（工作区会保留）。
 5. 有审校任务 `<ID>.R` 的，在 `merge <ID>` 成功后对 `<ID>.R` 重复第 1–4 步。

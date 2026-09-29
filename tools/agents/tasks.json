@@ -13350,7 +13350,8 @@
         "out_dir": "assets/default/baseline/character/male",
         "prompt_file": "assets/default/prompts/character-male.md",
         "items": "- `ref_npc_xiaofeng__ch01_base01`（萧峰，天龙，北宋约 1093–1094）\n  - 作者意见（原文）：「英雄气不够，再加英雄气，再魁梧一些，贴近港版经典造型。」\n  - 协调说明：加强英雄气——顶天立地的站姿、宽阔的肩背与胸膛、坚毅豪迈的神情；体格更魁梧。\"港版经典造型\"只取服饰类型、发型、气质这类通用要素，用文字描述，不复刻剧中造型；脸不能像任何演员。\n- `ref_npc_linghuchong__ch05_base01`（令狐冲，笑傲，明中叶）\n  - 作者意见（原文）：「不够飘逸，要有浪子味道，贴近育碧的笑傲江湖令狐冲的画像。」\n  - 协调说明：加强飘逸——衣袂、发带、衣带有风动感，姿态松弛；浪子味道——潇洒不羁、似笑非笑，可按原著嗜酒的设定带酒葫芦。明代服饰要点可以保留，但让位于作者要的气质。所提游戏画像只作气质方向，不复刻其设计。",
-        "extra": "两张保持全身、竖幅 2:3、暖灰纸底与统一光照；与已通过的女性人物基线（`assets/default/baseline/character/female/`）放在一起风格协调（男性偏写实，女性偏美丽）。"
+        "extra": "两张保持全身、竖幅 2:3、暖灰纸底与统一光照；与已通过的女性人物基线（`assets/default/baseline/character/female/`）放在一起风格协调（男性偏写实，女性偏美丽）。",
+        "round": "第 1 轮"
       },
       "validate": {
         "exists": [
@@ -13393,7 +13394,8 @@
         "out_dir": "assets/default/baseline/vfx",
         "prompt_file": "assets/default/prompts/vfx.md",
         "items": "- `ref_mv_xianglong18_kanglong__ch02_base01`（降龙十八掌·亢龙有悔，射雕）\n  - 作者意见（原文）：「降龙十八掌应该是金色，龙应该从整个掌面透出，而不是从掌心（现在看起来像在喷墨不好）。要气势磅礴」\n  - 协调说明：主色改为金色，可与水墨的虚实结合；龙形从整个掌面透出、化出，不要从掌心一点喷出；整体气势磅礴（尺度、动势、力量感）；保留本类\"水墨意境：虚实、透明\"的风格。\n- `ref_sk_liumai__ch01_base01`（六脉神剑，天龙）及其演示代码 `ref_sk_liumai__ch01_base01/index.html`\n  - 作者意见（原文）：「六脉神剑需要更飘逸，颜色要符合六脉神剑描述的颜色。现在看起来像长指甲，很丑。」\n  - 协调说明：剑气与手指要明显分开，是从指端射出、离指后才成形的气剑，不能看起来像指甲变长；整体更飘逸。颜色先查仓库设定（图鉴里六脉神剑的条目；`docs/design/15-meridians-and-acupoints.md` §10.4 的线色规则与六脉各自所属的经脉），再对照原著描述，报告里写明颜色依据。演示代码同步改成新的颜色与飘逸感。\n  - 作者追加意见（原文）：「六脉神剑的动画效果不对，不应该是水墨的，六脉神剑类是气剑，应该是一股靠内力凝缩的气剑的效果，而不是一笔画出，然后晕染的水墨效果。」\n  - 协调说明：六脉神剑的图与演示都改为\"气剑\"——内力在指端凝缩成形、高度压缩、边缘锐利、有能量密度的半透明气刃（可带空气扭曲或折射、微光、震荡波纹），离指成剑、有穿透力，然后消散；不要水墨笔触、不要一笔画出再晕染、不要墨迹飞白。演示按\"内力凝聚 → 气剑成形射出 → 消散\"的节奏。",
-        "extra": "演示代码保持自包含：不联网、不依赖外部资源、不用 localStorage、不访问父页面，能在 `<iframe sandbox=\"allow-scripts\" srcdoc>` 里运行（审批页这样嵌入）。时间允许的话，给降龙十八掌也做一个同样自包含的演示 `ref_mv_xianglong18_kanglong__ch02_base01/index.html`，并在 manifest 登记 `code`。"
+        "extra": "演示代码保持自包含：不联网、不依赖外部资源、不用 localStorage、不访问父页面，能在 `<iframe sandbox=\"allow-scripts\" srcdoc>` 里运行（审批页这样嵌入）。时间允许的话，给降龙十八掌也做一个同样自包含的演示 `ref_mv_xianglong18_kanglong__ch02_base01/index.html`，并在 manifest 登记 `code`。",
+        "round": "第 1 轮"
       },
       "validate": {
         "exists": [
@@ -13436,7 +13438,8 @@
         "out_dir": "assets/default/baseline/item",
         "prompt_file": "assets/default/prompts/item.md",
         "items": "- `ref_eq_yitianjian__ch04_base01`（倚天剑，倚天书界，元末）\n  - 作者意见（原文）：「这个倚天剑太普通了，要参考著名游戏倚天剑造型。」\n  - 协调说明：做出天下名剑的辨识度与华贵感——更独特的剑形轮廓、精致的护手与剑首纹样、剑身的冷光与锋芒；形制与来历按图鉴与原著设定（查 `docs/design/catalog/` 里倚天剑的条目）。\"著名游戏造型\"只作\"华丽、辨识度高\"的方向，不复刻任何游戏的具体设计。剑刃不要日本刀式的波浪刃文。",
-        "extra": "九阴真经图已通过，不要动。画风与九阴真经图保持同一套细墨线、薄罩染与底色，两张放在一起要统一。"
+        "extra": "九阴真经图已通过，不要动。画风与九阴真经图保持同一套细墨线、薄罩染与底色，两张放在一起要统一。",
+        "round": "第 1 轮"
       },
       "validate": {
         "exists": [
@@ -13451,6 +13454,52 @@
             "{python}",
             "tools/agents/check_assets.py",
             "assets/default/baseline/item",
+            "--min",
+            "1",
+            "--max",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-R2-vfx",
+      "phase": "ART",
+      "wave": 8,
+      "kind": "draft",
+      "title": "素材返修 · 招式·六脉神剑（作者第 2 轮审批意见）",
+      "prompt": "ART-rework.md",
+      "deps": [
+        "ART-R1-vfx"
+      ],
+      "writes": [
+        "assets/default/baseline/vfx/**",
+        "assets/default/prompts/vfx.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_id": "vfx",
+        "cat_name": "招式",
+        "out_dir": "assets/default/baseline/vfx",
+        "prompt_file": "assets/default/prompts/vfx.md",
+        "round": "第 2 轮",
+        "items": "- `ref_sk_liumai__ch01_base01`（六脉神剑，天龙）及其演示代码 `ref_sk_liumai__ch01_base01/index.html`\n  - 作者第 2 轮意见（原文）：「不是气刃，应该是类似港版天龙八部那种线性的，持续的」\n  - 之前的意见仍然有效（原文）：「六脉神剑需要更飘逸，颜色要符合六脉神剑描述的颜色。现在看起来像长指甲，很丑。」「六脉神剑的动画效果不对，不应该是水墨的，六脉神剑类是气剑，应该是一股靠内力凝缩的气剑的效果，而不是一笔画出，然后晕染的水墨效果。」\n  - 协调说明：把上一版\"离指飞出的一枚枚短气刃\"改为从指端射出的细长线性剑气——连续、持续的一道道气线 / 光束，像持续激射的剑气，而不是飞出去的一片刃。仍是内力凝缩的气，不用水墨。剑气与手指之间要看得出是\"射出的气\"，不能像指甲变长（例如指端有凝聚点，气线从凝聚点发出）。\"港版\"只作方向参考，不复刻剧中特效。演示代码改为：指端凝聚 → 线性剑气持续激射一段时间 → 收束消散。",
+        "extra": "降龙十八掌的图与演示本轮不要动（文件与 manifest 条目逐字节保持）。演示代码继续自包含：不联网、不依赖外部资源、不用 localStorage、不访问父页面，能在 `<iframe sandbox=\"allow-scripts\" srcdoc>` 里运行。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/vfx/manifest.yaml",
+          "assets/default/prompts/vfx.md"
+        ],
+        "fences": [
+          "assets/default/prompts/vfx.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/vfx",
             "--min",
             "1",
             "--max",
