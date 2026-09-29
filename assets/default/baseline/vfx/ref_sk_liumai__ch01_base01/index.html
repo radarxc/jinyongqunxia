@@ -1,261 +1,641 @@
 <!doctype html>
 <!--
-六脉神剑 · 默认风格包视觉实验（原创扩展）
-用法：直接用支持 Canvas 2D 的浏览器打开本文件；无需服务、网络、图片或字体文件。
-参数：CONFIG.cycle = 5.6 秒；CONFIG.dprCap = 2；CONFIG.seed = 601；
-      墨浓滑杆 40–140%，速度滑杆 0.5–1.5 倍，均为审美参数，不是战斗数值。
-六个抽象指端分两组：右手五路、左小指一路；仅展示并列的剑气视觉语汇，
-左右手配置是本轮审美默认，原著指法待考；不定义发招顺序、命中规则或战斗 CT。
-依据：STYLE.md「招式」；design/02 §1.3.1 天龙书界（游戏推定 1093–1094，待考）；
-      design/catalog/skills-wujue.md §5.3 六脉神剑。剑意形容词仍待原著校勘。
-无实体剑、激光、真人肖像；以飞白核心、淡墨断边、透明叠化表现无形。
-空格切换播放，R 重播；原生按钮和滑杆支持 Tab/方向键操作。
-系统开启 reduced motion 时默认停在审阅静帧，可手动播放；失焦页暂停推进时间。
+六脉神剑 · 作者第 1 轮返修与追加意见 · 原创视觉实验。
+用法：完全自包含，可直接打开或置于 iframe sandbox="allow-scripts" 的 srcdoc。
+内力在指端凝聚，离指至少 150 逻辑像素才凝成锐利、半透明的气剑，随后射出并消散。
+手、袖、环境、气剑全部采用清晰连续表面；不使用笔触、墨迹、纸纹或晕染。
+配色依据 design/15 §10.4「阴青、阳赤」及各穴归经：少商/中冲/少冲青，商阳/关冲/少泽赤。
+#2A9D8F / #C44536 为原创实现值，非原著固定剑气颜色；原著可见色待考。
+右手五路与左小指一路为视觉来源示意，手势与并列发射是原创表现，不定义原著动作。
+参数：cycle=5.6秒；每路延迟0.06秒；凝聚0–0.8秒，成形/射出0.8–3.0秒，消散3.0–4.1秒。
+96–326逻辑像素气剑长度参数、速度/强度滑杆、时间均为审美参数，不是战斗数值。
+空格播放/暂停，R重播；减少动态默认静帧；隐藏时不推进时钟；DPR上限2。
 -->
 <html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light">
-<title>六脉神剑 · 水墨视觉实验</title>
-<style>
-  :root { color-scheme:light; --paper:#f4f0e6; --ink:#2b2622; --muted:#766e61; --rule:#d2cabb; --red:#943f33; }
-  * { box-sizing:border-box; }
-  body { margin:0; color:var(--ink); background:#e8e1d3; font-family:"Songti SC","Noto Serif CJK SC",serif; }
-  main { width:min(1180px,calc(100% - 64px)); margin:36px auto; }
-  header { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:20px; }
-  .eyebrow { color:var(--muted); font:11px/1.7 ui-sans-serif,system-ui,sans-serif; letter-spacing:.2em; }
-  h1 { margin:10px 0 3px; font-size:clamp(28px,4vw,43px); letter-spacing:.14em; font-weight:500; }
-  .subtitle { margin:0; color:var(--muted); font-size:13px; letter-spacing:.13em; }
-  .edition { color:var(--muted); font:11px/1.8 ui-sans-serif,system-ui,sans-serif; text-align:right; }
-  .stage { position:relative; overflow:hidden; background:var(--paper); border:1px solid #d1c8b8; aspect-ratio:16/9; }
-  canvas { display:block; width:100%; height:100%; }
-  .stage::after { content:""; position:absolute; pointer-events:none; inset:14px; border:1px solid #82705c18; }
-  .caption { display:flex; gap:18px; align-items:baseline; justify-content:space-between; margin:14px 0 25px; color:var(--muted); font-size:12px; line-height:1.8; }
-  .caption strong { color:var(--ink); font-weight:400; white-space:nowrap; letter-spacing:.13em; }
-  .controls { display:flex; align-items:center; gap:14px 22px; flex-wrap:wrap; border-top:1px solid var(--rule); padding-top:20px; font:12px/1.5 ui-sans-serif,system-ui,sans-serif; }
-  button { min-width:80px; min-height:40px; padding:8px 15px; font:inherit; color:var(--ink); background:transparent; border:1px solid #9e9280; border-radius:0; cursor:pointer; }
-  button.primary { color:var(--paper); background:var(--ink); border-color:var(--ink); }
-  button:hover { border-color:var(--red); }
-  button:focus-visible, input:focus-visible { outline:2px solid var(--red); outline-offset:4px; }
-  .control { display:grid; grid-template-columns:auto 100px 34px; align-items:center; gap:10px; }
-  input[type=range] { width:100px; accent-color:var(--red); cursor:pointer; }
-  output { font-variant-numeric:tabular-nums; color:var(--muted); text-align:right; }
-  .state { margin-left:auto; color:var(--muted); min-width:110px; text-align:right; }
-  .state::before { content:""; display:inline-block; width:5px; height:5px; margin-right:8px; border-radius:50%; background:var(--red); vertical-align:middle; }
-  footer { margin-top:23px; display:flex; justify-content:space-between; gap:24px; color:var(--muted); font:11px/1.8 ui-sans-serif,system-ui,sans-serif; }
-  footer p { margin:0; }
-  .keyhelp { white-space:nowrap; }
-  @media(max-width:680px) {
-    main { width:calc(100% - 28px); margin:24px auto; }
-    header { align-items:start; gap:8px; } .edition { max-width:95px; font-size:10px; }
-    .stage { aspect-ratio:4/3; } .caption { display:block; margin-bottom:18px; }
-    .caption strong { display:block; margin-bottom:4px; } .state { margin-left:0; }
-    footer { display:block; } .keyhelp { margin-top:8px; }
-  }
-</style>
-</head>
-<body>
-<main>
-  <header>
-    <div><div class="eyebrow">天书录 / DEFAULT · VFX 02</div><h1>六脉神剑</h1><p class="subtitle">有势无形 · 淡墨留白</p></div>
-    <div class="edition">天龙八部 · 大理<br>1093–1094 · 游戏推定<br>基线候选 / 待审批</div>
-  </header>
-  <section class="stage" aria-label="六道指端剑气视觉舞台">
-    <canvas id="ink" role="img" aria-label="六个抽象指端向右释出剑气，淡墨边缘围出留白路径；水迹逐层扩散，再消隐于纸面。">此演示需要支持 Canvas 2D 的浏览器。</canvas>
-  </section>
-  <div class="caption"><strong>墨显其势，白藏其锋。</strong><span>六个抽象指端：上组右手五路，下组左小指一路。以气痕示意，不作解剖示范。</span></div>
-  <div class="controls" aria-label="视觉审阅控制">
-    <button id="toggle" class="primary" type="button" aria-pressed="true">暂停</button>
-    <button id="restart" type="button">重播</button>
-    <label class="control" for="density">墨浓 <input id="density" type="range" min="40" max="140" value="82" step="1"><output id="densityValue" for="density">82%</output></label>
-    <label class="control" for="speed">速度 <input id="speed" type="range" min="50" max="150" value="100" step="5"><output id="speedValue" for="speed">1.0×</output></label>
-    <span class="state" id="state" role="status" aria-live="polite">循环播放</span>
-  </div>
-  <footer><p>原创视觉实验 · 透明叠化 / 墨迹晕染 / 飞白<br>5.6 秒为审美循环；不模拟战斗 CT、命中范围或发招顺序。</p><p class="keyhelp">空格 播放 / 暂停 · R 重播</p></footer>
-</main>
-<script>
-(() => {
-  'use strict';
-  const CONFIG = { cycle:5.6, dprCap:2, seed:601, width:1400, height:780 };
-  const canvas = document.getElementById('ink'), ctx = canvas.getContext('2d');
-  const toggle = document.getElementById('toggle'), restart = document.getElementById('restart');
-  const density = document.getElementById('density'), speed = document.getElementById('speed');
-  const densityValue = document.getElementById('densityValue'), speedValue = document.getElementById('speedValue');
-  const state = document.getElementById('state'), motion = matchMedia('(prefers-reduced-motion: reduce)');
-  if (!ctx) { state.textContent = '浏览器不支持 Canvas 2D'; toggle.disabled = restart.disabled = true; return; }
-  const paper = document.createElement('canvas'), pctx = paper.getContext('2d');
-  let seed = CONFIG.seed, frame = 0, elapsed = CONFIG.cycle * .4, lastTime = 0;
-  let playing = !motion.matches, width = 1, height = 1, dpr = 1;
-  const random = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
-  const clamp = (n,a=0,b=1) => Math.max(a,Math.min(b,n));
-  const smooth = n => { n = clamp(n); return n*n*(3-2*n); };
-  const ink = alpha => `rgba(45,44,39,${clamp(alpha)})`;
-  const rays = [
-    { x:277,y:216,endX:1190,endY:122,bend:-14,thick:1.25 },
-    { x:318,y:288,endX:1280,endY:253,bend:9,thick:.76 },
-    { x:333,y:364,endX:1300,endY:390,bend:-10,thick:1.1 },
-    { x:307,y:442,endX:1220,endY:506,bend:14,thick:.91 },
-    { x:270,y:512,endX:1130,endY:611,bend:-8,thick:.7 },
-    { x:247,y:631,endX:990,endY:710,bend:-20,thick:.8 }
-  ].map((ray,index) => ({...ray,index, flecks:Array.from({length:140},() => ({
-    u:random(), offset:(random()-.5)*2, size:.35+random()*2.7, alpha:.02+random()*.12, phase:random()*6.28
-  }))}));
-  function point(ray,u,time=0) {
-    const taper = Math.sin(Math.PI*u);
-    return { x:ray.x+(ray.endX-ray.x)*u,
-      y:ray.y+(ray.endY-ray.y)*u + ray.bend*taper + Math.sin(u*17+ray.index*2+time*.55)*taper*2.3 };
-  }
-  function strokePath(ray,from,to,offset,lineWidth,alpha,time,roughness=0) {
-    if (to <= from || alpha <= 0) return;
-    const segments = Math.max(2,Math.ceil((to-from)*100));
-    ctx.beginPath();
-    for (let j=0;j<=segments;j++) {
-      const u = from+(to-from)*j/segments, p = point(ray,u,time);
-      const spread = .45+Math.sin(Math.PI*u)*.7;
-      const grit = (Math.sin(u*179+ray.index*7)+Math.sin(u*83))*roughness;
-      const y = p.y + offset*spread + grit;
-      if (!j) ctx.moveTo(p.x,y); else ctx.lineTo(p.x,y);
-    }
-    ctx.lineWidth = lineWidth; ctx.strokeStyle = ink(alpha); ctx.lineCap = 'round'; ctx.stroke();
-  }
-  function wash(x,y,rx,ry,alpha) {
-    ctx.save(); ctx.translate(x,y); ctx.scale(rx,ry);
-    const gradient = ctx.createRadialGradient(0,0,.02,0,0,1);
-    gradient.addColorStop(0,ink(alpha)); gradient.addColorStop(.38,ink(alpha*.45)); gradient.addColorStop(1,ink(0));
-    ctx.fillStyle=gradient; ctx.beginPath(); ctx.arc(0,0,1,0,Math.PI*2); ctx.fill(); ctx.restore();
-  }
-  function buildPaper() {
-    paper.width=CONFIG.width; paper.height=CONFIG.height;
-    pctx.fillStyle='#f4f0e6'; pctx.fillRect(0,0,paper.width,paper.height);
-    seed=CONFIG.seed+1;
-    for (let i=0;i<10500;i++) {
-      const x=random()*paper.width,y=random()*paper.height;
-      pctx.fillStyle=`rgba(124,106,76,${.015+random()*.025})`;
-      pctx.fillRect(x,y,.3+random()*1.1,.5+random()*2.5);
-    }
-    for (let i=0;i<240;i++) {
-      const x=random()*paper.width,y=random()*paper.height;
-      pctx.strokeStyle='rgba(124,106,76,.025)'; pctx.lineWidth=.4;
-      pctx.beginPath(); pctx.moveTo(x,y); pctx.lineTo(x+random()*18-9,y+random()*3); pctx.stroke();
-    }
-  }
-  function drawTips() {
-    for (const ray of rays) {
-      const {x,y}=ray;
-      wash(x-28,y,44,17,.07);
-      ctx.lineWidth=1.1; ctx.strokeStyle=ink(.3); ctx.beginPath();
-      ctx.moveTo(x-83,y-9); ctx.bezierCurveTo(x-51,y-12,x-17,y-12,x-7,y-9);
-      ctx.bezierCurveTo(x+4,y-6,x+5,y+5,x-6,y+9);
-      ctx.bezierCurveTo(x-25,y+12,x-62,y+10,x-84,y+13); ctx.stroke();
-      ctx.strokeStyle=ink(.12); ctx.beginPath(); ctx.moveTo(x-30,y-7);
-      ctx.quadraticCurveTo(x-18,y-5,x-17,y+5); ctx.stroke();
-      const fade=ctx.createLinearGradient(x-90,0,x-42,0);
-      fade.addColorStop(0,'#f4f0e6'); fade.addColorStop(1,'#f4f0e600');
-      ctx.fillStyle=fade; ctx.fillRect(x-95,y-22,58,46);
-    }
-  }
-  function drawRay(ray,phase,time,amount) {
-    const local=phase-ray.index*.014;
-    if(local<0) return;
-    const reach=smooth(local/.35), presence=smooth(local/.09)*(1-smooth((local-.56)/.34));
-    if (presence<.001) return;
-    const dissolve=smooth((local-.43)/.43), opacity=presence*amount;
-    const spread=1+dissolve*2.8;
-    // 低透明度多层淡墨，层宽渐增；不使用发光滤镜。
-    for(let layer=6;layer>=0;layer--) {
-      const lw=(4+layer*4.7)*ray.thick*spread;
-      strokePath(ray,.012,reach,0,lw,opacity*(.008+(.006-layer*.0005)),time,.35);
-    }
-    for (let k=0;k<13;k++) {
-      const u=k/13+.005;
-      if (u>reach) break;
-      const p=point(ray,u,time), radius=(9+Math.sin(k*2+ray.index)*4)*spread;
-      wash(p.x,p.y+Math.sin(k*2.1)*radius*.55,34+dissolve*30,radius,opacity*.025);
-    }
-    // 上下断续笔锋围出纸白核心：看到的是气流扰墨的边界，而非实物剑身。
-    for (let side=-1;side<=1;side+=2) {
-      for(let segment=0;segment<12;segment++) {
-        const start=segment/12+.009, end=Math.min(reach,start+.042+(Math.sin(segment*7+ray.index)+1)*.012);
-        const edge=side*(3.3+ray.thick*1.8)*spread;
-        strokePath(ray,start,end,edge,.55+ray.thick*.45,opacity*(.15-dissolve*.095),time,1.1);
-        strokePath(ray,start+.009,end-.007,edge+side*2.2,1.5,opacity*.032,time,1.9);
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>六脉神剑 · 凝气成锋</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #101f27;
+        --panel: #142b35;
+        --text: #e6eee9;
+        --muted: #9eb3b5;
+        --line: #304951;
+        --accent: #67c2b3
       }
-    }
-    ctx.save(); ctx.strokeStyle=`rgba(244,240,230,${opacity*.92})`;
-    ctx.lineWidth=(2.8+dissolve*3)*ray.thick; ctx.lineCap='round'; ctx.beginPath();
-    for(let j=0;j<=90;j++) {
-      const p=point(ray,reach*j/90,time); if(j===0) ctx.moveTo(p.x,p.y); else ctx.lineTo(p.x,p.y);
-    }
-    ctx.stroke(); ctx.restore();
-    for(const fleck of ray.flecks) {
-      if(fleck.u>reach) continue;
-      const p=point(ray,fleck.u,time), s=Math.sin(Math.PI*fleck.u);
-      const drift=dissolve*(12+fleck.size*4);
-      const off=fleck.offset*(10+s*19)*spread;
-      ctx.fillStyle=ink(opacity*fleck.alpha*(1-dissolve*.5));
-      ctx.beginPath(); ctx.ellipse(p.x+drift,p.y+off+Math.sin(time*.6+fleck.phase)*dissolve*3,
-        fleck.size*(1+dissolve),fleck.size*.35,Math.atan2(ray.endY-ray.y,ray.endX-ray.x),0,Math.PI*2); ctx.fill();
-    }
-    const front=point(ray,reach,time);
-    wash(front.x,front.y,26+20*dissolve,6*spread,opacity*.045);
-  }
-  function paint() {
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    ctx.fillStyle='#f4f0e6'; ctx.fillRect(0,0,width,height);
-    const scale=Math.min(width/CONFIG.width,height/CONFIG.height);
-    ctx.translate((width-CONFIG.width*scale)/2,(height-CONFIG.height*scale)/2);
-    ctx.scale(scale,scale); ctx.drawImage(paper,0,0); drawTips();
-    const phase=(elapsed%CONFIG.cycle)/CONFIG.cycle, amount=Number(density.value)/100;
-    for (const ray of rays) drawRay(ray,phase,elapsed,amount);
-  }
-  function resize() {
-    const rect=canvas.getBoundingClientRect();
-    width=Math.max(1,rect.width); height=Math.max(1,rect.height);
-    dpr=Math.min(CONFIG.dprCap,window.devicePixelRatio||1);
-    canvas.width=Math.round(width*dpr); canvas.height=Math.round(height*dpr); paint();
-  }
-  function syncControls() {
-    toggle.textContent=playing?'暂停':'播放';
-    toggle.setAttribute('aria-pressed',String(playing));
-    state.textContent=playing?'循环播放':(motion.matches?'静帧 · 减少动态':'已暂停');
-  }
-  function schedule() {
-    if (playing && !document.hidden && !frame) frame=requestAnimationFrame(tick);
-  }
-  function tick(now) {
-    frame=0;
-    if(!playing || document.hidden) { lastTime=0; return; }
-    if(lastTime) elapsed=(elapsed+Math.min((now-lastTime)/1000,.08)*Number(speed.value)/100)%CONFIG.cycle;
-    lastTime=now; paint(); schedule();
-  }
-  function setPlaying(value) {
-    playing=value; lastTime=0;
-    if(!playing) { cancelAnimationFrame(frame); frame=0; }
-    syncControls(); paint(); schedule();
-  }
-  function replay() { elapsed=0; setPlaying(true); }
-  toggle.addEventListener('click',()=>setPlaying(!playing));
-  restart.addEventListener('click',replay);
-  density.addEventListener('input',()=> { densityValue.value=density.value+'%'; paint(); });
-  speed.addEventListener('input',()=> { speedValue.value=(Number(speed.value)/100).toFixed(2).replace(/0$/,'')+'×'; });
-  document.addEventListener('keydown',event=> {
-    if(event.ctrlKey || event.metaKey || event.altKey || event.repeat) return;
-    if(event.target instanceof HTMLElement && event.target.closest('input,button,textarea,select,[contenteditable]')) return;
-    if(event.code==='Space') { event.preventDefault(); setPlaying(!playing); }
-    if(event.key.toLowerCase()==='r') { event.preventDefault(); replay(); }
-  });
-  document.addEventListener('visibilitychange',()=> {
-    lastTime=0;
-    if(document.hidden) { cancelAnimationFrame(frame); frame=0; } else schedule();
-  });
-  motion.addEventListener('change',()=> {
-    if(motion.matches) { elapsed=CONFIG.cycle*.4; setPlaying(false); }
-  });
-  buildPaper(); resize(); syncControls(); schedule();
-  new ResizeObserver(resize).observe(canvas);
-  window.addEventListener('resize',resize);
-})();
-</script>
-</body>
+
+      * {
+        box-sizing: border-box
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Songti SC", serif
+      }
+
+      main {
+        width: min(1180px, calc(100% - 48px));
+        margin: 30px auto
+      }
+
+      header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 20px
+      }
+
+      .eyebrow {
+        color: var(--accent);
+        font: 10px/1.8 system-ui, sans-serif;
+        letter-spacing: .25em
+      }
+
+      h1 {
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 500;
+        letter-spacing: .14em;
+        margin: 7px 0
+      }
+
+      .subtitle,
+      .edition {
+        font-size: 12px;
+        line-height: 1.8;
+        color: var(--muted);
+        letter-spacing: .1em
+      }
+
+      .edition {
+        text-align: right
+      }
+
+      .stage {
+        aspect-ratio: 16/9;
+        border: 1px solid var(--line);
+        background: var(--panel)
+      }
+
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%
+      }
+
+      .caption {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.9;
+        margin: 13px 0 22px
+      }
+
+      .caption strong {
+        color: var(--text);
+        font-weight: 400;
+        white-space: nowrap
+      }
+
+      .controls {
+        display: flex;
+        align-items: center;
+        gap: 14px 22px;
+        flex-wrap: wrap;
+        border-top: 1px solid var(--line);
+        padding-top: 20px;
+        font: 12px/1.5 system-ui, sans-serif
+      }
+
+      button {
+        min-width: 78px;
+        min-height: 40px;
+        padding: 8px 15px;
+        background: transparent;
+        color: var(--text);
+        font: inherit;
+        border: 1px solid #6b858a;
+        cursor: pointer
+      }
+
+      .primary {
+        background: #c9e3da;
+        color: #173039;
+        border-color: #c9e3da
+      }
+
+      button:hover {
+        border-color: var(--accent)
+      }
+
+      button:focus-visible,
+      input:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px
+      }
+
+      .control {
+        display: grid;
+        grid-template-columns: auto 100px 35px;
+        align-items: center;
+        gap: 9px
+      }
+
+      input[type=range] {
+        width: 100px;
+        accent-color: var(--accent)
+      }
+
+      output {
+        color: var(--muted);
+        text-align: right;
+        font-variant-numeric: tabular-nums
+      }
+
+      .state {
+        margin-left: auto;
+        color: var(--accent)
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-top: 22px;
+        color: var(--muted);
+        font: 11px/1.8 system-ui, sans-serif
+      }
+
+      footer p {
+        margin: 0
+      }
+
+      @media(max-width:680px) {
+        main {
+          width: calc(100% - 28px);
+          margin: 22px auto
+        }
+
+        header {
+          align-items: start
+        }
+
+        .edition {
+          max-width: 105px;
+          font-size: 10px
+        }
+
+        .caption,
+        footer {
+          display: block
+        }
+
+        .caption strong {
+          display: block
+        }
+
+        .state {
+          margin-left: 0
+        }
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <header>
+        <div>
+          <div class="eyebrow">天书录 / DEFAULT · VFX 02</div>
+          <h1>六脉神剑</h1>
+          <div class="subtitle">内力凝缩 · 离指成锋</div>
+        </div>
+        <div class="edition">气剑视觉实验<br>基线候选 / 待审批</div>
+      </header>
+      <section class="stage" aria-label="六脉气剑演示舞台"><canvas id="stage" role="img"
+          aria-label="两只五指清晰的手，六路青赤内力在指端凝聚，留出空气间隔后形成半透明锐利气剑，向远方射出并消散。">此演示需要支持 Canvas 2D 的浏览器。</canvas></section>
+      <div class="caption"><strong>凝气于指，离手成锋。</strong><span>阴青：少商 / 中冲 / 少冲　｜　阳赤：商阳 / 关冲 / 少泽</span></div>
+      <div class="controls" aria-label="视觉审阅控制"><button id="toggle" class="primary" type="button"
+          aria-pressed="true">暂停</button><button id="restart" type="button">重播</button><label class="control"
+          for="strength">强度 <input id="strength" type="range" min="40" max="140" value="100"><output
+            id="strengthValue">100%</output></label><label class="control" for="speed">速度 <input id="speed" type="range"
+            min="50" max="150" step="5" value="100"><output id="speedValue">1.0×</output></label><span class="state"
+          id="state" role="status" aria-live="polite">循环播放</span></div>
+      <footer>
+        <p>原创视觉表现 · 指法与并列发射仅作视觉示意<br>5.6 秒审美循环，不模拟战斗 CT、命中或发招顺序。</p>
+        <p>空格 播放 / 暂停 · R 重播</p>
+      </footer>
+    </main>
+    <script>
+      (() => {
+        'use strict';
+        const CONFIG = {
+          width: 1400,
+          height: 788,
+          cycle: 5.6,
+          dprCap: 2
+        };
+        const canvas = document.getElementById('stage'),
+          ctx = canvas.getContext('2d');
+        const toggle = document.getElementById('toggle'),
+          restart = document.getElementById('restart'),
+          strength = document.getElementById('strength'),
+          speed = document.getElementById('speed');
+        const strengthValue = document.getElementById('strengthValue'),
+          speedValue = document.getElementById('speedValue'),
+          state = document.getElementById('state'),
+          motion = matchMedia('(prefers-reduced-motion: reduce)');
+        if (!ctx) {
+          state.textContent = '浏览器不支持 Canvas 2D';
+          toggle.disabled = restart.disabled = true;
+          return;
+        }
+        let width = 1,
+          height = 1,
+          dpr = 1,
+          elapsed = 1.9,
+          playing = !motion.matches,
+          frame = 0,
+          lastTime = 0;
+        const clamp = (n, a = 0, b = 1) => Math.max(a, Math.min(b, n)),
+          smooth = n => {
+            n = clamp(n);
+            return n * n * (3 - 2 * n);
+          };
+        const rays = [{
+            name: '少商',
+            x: 285,
+            y: 208,
+            dy: -90,
+            yin: true
+          },
+          {
+            name: '商阳',
+            x: 369,
+            y: 277,
+            dy: -52,
+            yin: false
+          },
+          {
+            name: '中冲',
+            x: 397,
+            y: 332,
+            dy: 3,
+            yin: true
+          },
+          {
+            name: '关冲',
+            x: 370,
+            y: 391,
+            dy: 43,
+            yin: false
+          },
+          {
+            name: '少冲',
+            x: 322,
+            y: 444,
+            dy: 87,
+            yin: true
+          },
+          {
+            name: '少泽',
+            x: 278,
+            y: 590,
+            dy: 40,
+            yin: false
+          }
+        ];
+        const rgba = (ray, a) => `rgba(${ray.yin?'42,157,143':'196,69,54'},${clamp(a)})`;
+        // 按给定路径和描边参数绘制一条轮廓。
+        function line(path, color, width = 1) {
+          ctx.beginPath();
+          path(ctx);
+          ctx.strokeStyle = color;
+          ctx.lineWidth = width;
+          ctx.stroke();
+        }
+        // 绘制石庭背景，作为观察气剑透明度和折射的参照。
+        function background() {
+          const grad = ctx.createLinearGradient(0, 0, 1400, 788);
+          grad.addColorStop(0, '#233c45');
+          grad.addColorStop(.58, '#182d37');
+          grad.addColorStop(1, '#0c1f29');
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, 1400, 788);
+          // 简洁石庭的轮廓为折射提供参照，表面连续清晰，无纸纹或随机墨点。
+          ctx.fillStyle = '#30464a';
+          ctx.fillRect(0, 682, 1400, 106);
+          ctx.fillStyle = '#293e43';
+          ctx.fillRect(0, 682, 1400, 4);
+          for (let i = 0; i < 8; i++) {
+            line(c => {
+              c.moveTo(150 + i * 210, 682);
+              c.lineTo(-180 + i * 300, 788);
+            }, '#4b606022');
+          }
+          for (const x of [1070, 1240]) {
+            ctx.fillStyle = '#78908b0c';
+            ctx.fillRect(x, 50, 18, 630);
+            ctx.fillStyle = '#bdccc606';
+            ctx.fillRect(x + 18, 50, 2, 630);
+          }
+          ctx.fillStyle = '#bacfc207';
+          ctx.beginPath();
+          ctx.ellipse(1010, 211, 246, 163, -.14, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        // 按位置、缩放和镜像参数绘制手部与衣袖。
+        function hand(tx, ty, scale, mirror = false) {
+          ctx.save();
+          ctx.translate(tx, ty);
+          ctx.scale(scale, mirror ? -scale : scale);
+          const sleeve = ctx.createLinearGradient(0, 290, 180, 450);
+          sleeve.addColorStop(0, '#597576');
+          sleeve.addColorStop(1, '#1e3a43');
+          ctx.fillStyle = sleeve;
+          ctx.beginPath();
+          ctx.moveTo(-35, 278);
+          ctx.lineTo(118, 269);
+          ctx.quadraticCurveTo(143, 337, 148, 409);
+          ctx.lineTo(-35, 446);
+          ctx.closePath();
+          ctx.fill();
+          line(c => {
+            c.moveTo(85, 276);
+            c.quadraticCurveTo(104, 339, 112, 417);
+          }, '#9ba99d66', 6);
+          line(c => {
+            c.moveTo(-5, 321);
+            c.quadraticCurveTo(56, 319, 104, 352);
+          }, '#a5b7aa24', 2);
+          const skin = ctx.createLinearGradient(120, 230, 330, 448);
+          skin.addColorStop(0, '#c6bba4');
+          skin.addColorStop(.48, '#e0cdb1');
+          skin.addColorStop(1, '#a79881');
+          ctx.fillStyle = skin;
+          ctx.strokeStyle = '#e4d3b733';
+          ctx.lineWidth = 1.3;
+          ctx.beginPath();
+          ctx.moveTo(114, 290);
+          ctx.bezierCurveTo(149, 287, 166, 268, 189, 249);
+          ctx.lineTo(258, 197);
+          ctx.bezierCurveTo(278, 184, 294, 196, 285, 213);
+          ctx.lineTo(229, 276);
+          ctx.quadraticCurveTo(222, 288, 241, 288);
+          ctx.lineTo(347, 263);
+          ctx.bezierCurveTo(373, 257, 381, 280, 363, 289);
+          ctx.lineTo(258, 319);
+          ctx.quadraticCurveTo(251, 324, 262, 326);
+          ctx.lineTo(379, 320);
+          ctx.bezierCurveTo(404, 317, 414, 340, 389, 347);
+          ctx.lineTo(259, 356);
+          ctx.quadraticCurveTo(249, 358, 260, 363);
+          ctx.lineTo(352, 377);
+          ctx.bezierCurveTo(379, 380, 388, 401, 362, 406);
+          ctx.lineTo(249, 389);
+          ctx.quadraticCurveTo(237, 386, 244, 398);
+          ctx.lineTo(312, 429);
+          ctx.bezierCurveTo(336, 440, 327, 461, 304, 454);
+          ctx.lineTo(206, 416);
+          ctx.quadraticCurveTo(167, 406, 139, 397);
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+          line(c => {
+            c.moveTo(172, 296);
+            c.bezierCurveTo(206, 296, 221, 325, 214, 364);
+          }, '#88796766', 1.5);
+          line(c => {
+            c.moveTo(184, 379);
+            c.quadraticCurveTo(217, 345, 261, 344);
+          }, '#88796755', 1.2);
+          line(c => {
+            c.moveTo(151, 324);
+            c.quadraticCurveTo(158, 349, 173, 356);
+          }, '#fff0cb2b', 3);
+          for (const [x, y, angle] of [
+              [259, 229, -.7],
+              [324, 287, -.25],
+              [347, 334, 0],
+              [325, 387, .2],
+              [286, 434, .4]
+            ]) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            line(c => {
+              c.moveTo(-2, -6);
+              c.quadraticCurveTo(-5, 0, -2, 6);
+            }, '#8b7e6a55', 1);
+            ctx.restore();
+          }
+          ctx.restore();
+        }
+        // 绘制指端凝聚阶段的微光与震荡环。
+        function glow(x, y, ray, power) {
+          ctx.save();
+          ctx.translate(x, y);
+          const g = ctx.createRadialGradient(0, 0, 1, 0, 0, 24);
+          g.addColorStop(0, rgba(ray, .6 * power));
+          g.addColorStop(.18, rgba(ray, .35 * power));
+          g.addColorStop(1, rgba(ray, 0));
+          ctx.fillStyle = g;
+          ctx.fillRect(-24, -24, 48, 48);
+          ctx.strokeStyle = rgba(ray, power * .52);
+          ctx.lineWidth = .8;
+          ctx.beginPath();
+          ctx.ellipse(0, 0, 3 + power * 5, 5 + power * 7, 0, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+        }
+        // 按各路延迟绘制气剑的凝聚、成形射出和消散。
+        function blade(ray, index, time, amount) {
+          const t = (time - index * .06 + CONFIG.cycle) % CONFIG.cycle;
+          const charge = smooth(t / .65) * (1 - smooth((t - .85) / .4));
+          glow(ray.x, ray.y, ray, charge * amount);
+          if (t < .8 || t > 4.1)
+            return;
+          const flight = clamp((t - .8) / 2.2),
+            formation = smooth((t - .8) / .42),
+            fade = 1 - smooth((t - 3) / 1.1),
+            power = formation * fade * amount;
+          const x = ray.x + 150 + flight * 510,
+            y = ray.y + ray.dy * flight + Math.sin(flight * Math.PI) * Math.sin(index * 1.8) * 18;
+          const length = (96 + index % 3 * 20 + 190 * formation) * (1 - .22 * flight),
+            half = (6 + index % 3 * 1.5) * formation,
+            angle = Math.atan2(ray.dy, 710) + Math.sin(flight * Math.PI) * .028;
+          ctx.save();
+          ctx.translate(x, y);
+          ctx.rotate(angle);
+          // 气剑是独立的扁梭锐刃，渐窄到尖端；不延长指甲，不画实体剑柄或直线光柱。
+          const body = ctx.createLinearGradient(0, -half, 0, half);
+          body.addColorStop(0, rgba(ray, .66 * power));
+          body.addColorStop(.18, rgba(ray, .16 * power));
+          body.addColorStop(.48, `rgba(219,255,244,${.55*power})`);
+          body.addColorStop(.58, rgba(ray, .18 * power));
+          body.addColorStop(1, rgba(ray, .44 * power));
+          ctx.fillStyle = body;
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.bezierCurveTo(length * .14, -half * .85, length * .48, -half, length, 0);
+          ctx.bezierCurveTo(length * .5, half * .4, length * .2, half * .9, 0, 0);
+          ctx.fill();
+          line(c => {
+            c.moveTo(length * .04, 0);
+            c.bezierCurveTo(length * .24, -half * .75, length * .58, -half * .64, length, 0);
+          }, rgba(ray, .78 * power), 1.2);
+          line(c => {
+            c.moveTo(length * .13, 0);
+            c.quadraticCurveTo(length * .57, -half * .16, length * .96, 0);
+          }, `rgba(227,255,247,${power*.58})`, .8);
+          // 有规律的薄弧表现空气折射与压力波；清晰边缘、不铺开为晕染。
+          for (let j = 0; j < 3; j++) {
+            const q = (flight * .8 + j * .33) % 1;
+            ctx.strokeStyle = rgba(ray, power * .18 * (1 - q));
+            ctx.lineWidth = .7;
+            ctx.beginPath();
+            ctx.ellipse(length * (.24 + .2 * j), 0, 2 + q * 8, half + 6 + q * 23, 0, -1.3, 1.3);
+            ctx.stroke();
+          }
+          for (let j = 0; j < 2; j++) {
+            line(c => {
+              c.moveTo(length * .08, half * (j ? 1.7 : -1.7));
+              c.bezierCurveTo(length * .29, half * (j ? 2.6 : -2.6), length * .65, half * (j ? 1.2 : -1.2),
+                length * .89, 0);
+            }, rgba(ray, power * .13), .8);
+          }
+          if (t > 3) {
+            for (let j = 0; j < 12; j++) {
+              const u = (j + .5) / 12,
+                drift = (t - 3) * 35;
+              ctx.fillStyle = rgba(ray, power * .45);
+              ctx.beginPath();
+              ctx.ellipse(length * u + drift, Math.sin(j * 2.3) * drift * .35, 1.3, .7, 0, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+          ctx.restore();
+        }
+        // 在逻辑画布中依次绘制背景、手部与六路气剑。
+        function paint() {
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          ctx.fillStyle = '#152b35';
+          ctx.fillRect(0, 0, width, height);
+          const scale = Math.min(width / CONFIG.width, height / CONFIG.height);
+          ctx.translate((width - CONFIG.width * scale) / 2, (height - CONFIG.height * scale) / 2);
+          ctx.scale(scale, scale);
+          background();
+          hand(56, 895, .69, true);
+          hand(0, 0, 1);
+          const amount = Number(strength.value) / 100;
+          for (let i = 0; i < rays.length; i++)
+            blade(rays[i], i, elapsed, amount);
+        }
+        // 按容器尺寸和像素密度上限调整画布并重绘。
+        function resize() {
+          const r = canvas.getBoundingClientRect();
+          width = Math.max(1, r.width);
+          height = Math.max(1, r.height);
+          dpr = Math.min(CONFIG.dprCap, window.devicePixelRatio || 1);
+          canvas.width = Math.round(width * dpr);
+          canvas.height = Math.round(height * dpr);
+          paint();
+        }
+        // 同步播放按钮与状态提示。
+        function sync() {
+          toggle.textContent = playing ? '暂停' : '播放';
+          toggle.setAttribute('aria-pressed', String(playing));
+          state.textContent = playing ? '循环播放' : (motion.matches ? '静帧 · 减少动态' : '已暂停');
+        }
+        // 仅在播放且页面可见时安排下一帧。
+        function schedule() {
+          if (playing && !document.hidden && !frame)
+            frame = requestAnimationFrame(tick);
+        }
+        // 按速度推进循环时钟并绘制当前帧。
+        function tick(now) {
+          frame = 0;
+          if (!playing || document.hidden) {
+            lastTime = 0;
+            return;
+          }
+          if (lastTime)
+            elapsed = (elapsed + Math.min((now - lastTime) / 1000, .08) * Number(speed.value) / 100) % CONFIG.cycle;
+          lastTime = now;
+          paint();
+          schedule();
+        }
+        // 切换播放状态，同时重置帧间计时并同步界面。
+        function setPlaying(value) {
+          playing = value;
+          lastTime = 0;
+          if (!playing) {
+            cancelAnimationFrame(frame);
+            frame = 0;
+          }
+          sync();
+          paint();
+          schedule();
+        }
+        // 从循环起点重新播放。
+        function replay() {
+          elapsed = 0;
+          setPlaying(true);
+        }
+        toggle.addEventListener('click', () => setPlaying(!playing));
+        restart.addEventListener('click', replay);
+        strength.addEventListener('input', () => {
+          strengthValue.value = strength.value + '%';
+          paint();
+        });
+        speed.addEventListener('input', () => {
+          speedValue.value = (Number(speed.value) / 100).toFixed(2).replace(/0$/, '') + '×';
+        });
+        document.addEventListener('keydown', e => {
+          if (e.ctrlKey || e.metaKey || e.altKey || e.repeat)
+            return;
+          if (e.target instanceof HTMLElement && e.target.closest(
+              'input,button,textarea,select,[contenteditable]'))
+            return;
+          if (e.code === 'Space') {
+            e.preventDefault();
+            setPlaying(!playing);
+          }
+          if (e.key.toLowerCase() === 'r') {
+            e.preventDefault();
+            replay();
+          }
+        });
+        document.addEventListener('visibilitychange', () => {
+          lastTime = 0;
+          if (document.hidden) {
+            cancelAnimationFrame(frame);
+            frame = 0;
+          } else schedule();
+        });
+        motion.addEventListener('change', () => {
+          if (motion.matches) {
+            elapsed = 1.9;
+            setPlaying(false);
+          }
+        });
+        resize();
+        sync();
+        schedule();
+        new ResizeObserver(resize).observe(canvas);
+        window.addEventListener('resize', resize);
+      })();
+
+    </script>
+  </body>
+
 </html>
