@@ -4,12 +4,13 @@
 > 上游：`00-canon.md` v1.5（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：携带、外来压制、残篇/残承 → `design/02-timeline-and-world-tiers.md`；属性公式、`MPREF` 与技艺 ID → `design/03-attributes.md`；伤害公式与乘区 → `design/04-damage-formula.md`；Buff 定义与目录 → `design/06-buff-system.md`；套装定义 → `design/07-set-system.md`；地形/轻功阈值 → `design/08-terrain-and-qinggong.md`；六角范围模板、集气、运劲、合击、反击流程与 AI → `design/09-combat-system.md`；物品/丹药/兵器属性 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务、关系与门派玩法 → `design/12-quests-npc-factions.md`；角色经验与等级 → `design/13-progression-and-endings.md`；穴道、经脉、冲穴与周天 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；门派名录、历史与时代开放 → `design/17-sects-compendium.md`；NPC 身份、同伴与生卒 → `design/18-npc-and-companions.md`；地图节点、坐标与时代地图资产 → `design/19-world-map.md`；后人、宝藏、跨年代残本、信物、配方与投放 → `design/20-legacy-inheritance.md`；战斗经脉运行、攻防/轻功路线、绝招补充、护体内劲、擒拿/点穴、调息与逐单位模拟 → `design/21-meridian-flow-and-moves.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.5（AR-16 外放加持与绝招数量作者决定同步，2026-09-28）；v1.4（绝招与经脉规则同步，2026-09-27）；v1.3（AR-14 绝招数量追加；M4，2026-09-27）；v1.2（跨文档同步；全局审计，2026-09-27）。
+> 版本：v1.6（经脉落地终审，2026-09-29）；v1.5（AR-16 外放加持与绝招数量作者决定同步，2026-09-28）；v1.4（绝招与经脉规则同步，2026-09-27）；v1.3（AR-14 绝招数量追加；M4，2026-09-27）；v1.2（跨文档同步；全局审计，2026-09-27）。
 > 变更记录：v1.2 接收 `design/15` 的 20 个正式经脉 ID、专精倍率与校验边界，补齐 `design/17`–`20` 的唯一归属引用，明确 `recalled` 仅为基础图鉴状态上的“再续朱印”，并将已落盘的跨文档待决项改为已解决。C14 图鉴实数重定与 CN-05 独孤六式预算结论保持不变。
 > 变更记录（2026-09-27，经脉系统落地）：接收 `design/21` v2.0 的武学侧接口：招式引用攻/防/轻功路线，内功引用调息档案并声明护体内劲能力，轻功提供常驻速度路线；路线段时间只计 `flowCt`，经脉攻防乘区独立于 `power` 预算；§14 数量与品阶总账不变。
 > 变更记录（2026-09-27，AR-14 追加）：绝招数量按十二品改为天阶 2–3、地阶 1–2、仅玄上 1；默认第一 / 第二 / 第三绝招在 7 / 9 / 10 重解锁，增加共享气势、武学级绝招冷却、连续重复限制与天上三绝招完整示例。
 > 变更记录 v1.4：接入 Canon V13-C01、V14-01～02；同步 11 册图鉴的独孤九剑、易筋经、九阳神功、龙爪手实例；补齐 12 门无主动招轻功的局部基础移动招构建契约；旧封穴引用迁移为 `bf_xueweishoufeng` 参数化实例；普通招式推荐下限暂按普通招式与绝招合计，待作者确认。
 > 变更记录 v1.5：按作者 2026-09-27 决定确认“九品玄”按玄上执行，并引用统一绝招数量裁定表；接入 AR-16 的逐招 `projection`、三档范围模板和外放判定接口，算法与数值唯一引用 `design/21`。
+> 变更记录 v1.6（经脉落地终审，2026-09-29）：按作者决定将降龙十八掌除纯蓄力“潜龙勿用”外的 18 个伤人招全部闭合为外放，补齐三档范围、伤害类别与路线引用；同时冻结外放反击架势“只扩大反击命中范围、不增加瞄准射程”的口径。
 > 全局审计：接入 `legacy_fragment` / `legacy_synthesis` 与 `legacy_complete` 形态，按 11 册最终图鉴重算 1,138 门库存和十四书界静态可习得池，并同步六角范围与正式套装闭合结果。
 
 ---
@@ -833,6 +834,7 @@ MoveDef.recovery + Σ route.steps[].segmentCt ≤ 2000
 - `projectionSpreadSteps` 正好三项，依次对应 0 / 1 / 2 档；`[0]` 必须与 `aoe` 深相等。单体招可以三项相同，范围招只能使用 design/09 已登记且由图鉴逐招审核的模板。
 - `projection:true` 的每个伤害段必须使用既有 `DamageKind='projected'`；反向不成立，旧 `projected` 伤害不得自动补 `projection:true`。
 - 射程增量 `+0/+2/+4`、额外耗内 `0/2%/4% MPREF`、档位门槛、外放 Z5M 与路线端点白名单只引用 design/21 §4.4.1；这些运行值不写回招式静态数据。
+- **外放反击架势**（如“明王护法”“或跃在渊”）的主动动作始终以自身为中心，保持 `target:self`、`range:{min:0,max:0}`；所选档随架势快照保存。触发时令 `s=projectionStep`，把 `projectionSpreadSteps[s]` **改以架势持有者所在格为原点**枚举反击命中格，三档都不产生远端锚点；`+0/+2/+4` 不加入 `range.max`，也不允许另选远处单位为反击目标。触发者在通过原触发条件后必为主目标；反应语义下的 `aoe_self` 规范化为“仅触发者”，不会打中持有者自己。其余格才是扩大档追加的次目标。故外放只可放大反击命中范围，不增加架势射程；若三项均为 `aoe_self`，三档都仍只反击触发者。具体格集合、遮挡、结算顺序与稳定排序见 design/09 §6.3。
 - 玩家、敌人和召唤物使用同一字段与判定。M5c 应逐招复核，不得按整门武学批量替换。
 
 | 示例 | 可标的表现 | 不可批量推断的边界 | 0 / 1 / 2 档示例 |
@@ -941,7 +943,7 @@ AF(N) = clamp(floor(rawAF(N) × 20 + 0.5) / 20, 0.35, 1.00)
 
 ### 4.10 触发型招式与普攻
 
-- **触发型招式**：`trigger.on` ∈ `meleeAttacked`、`backAttacked`、`parrySuccess`、`allyAttacked`、`enemyEnterAdjacent`。触发时不占行动、不耗气势；照常耗内（不足则不触发）；每次来袭最多触发 1 个（按 `chance` 高者优先）；`perRound` 为每回合上限（此处"回合" = 持有者自身一次行动间隔）。触发反击用 `purpose:attack` 的 `meridianRouteRef`；招架、卸力或闪避触发用 `routeOnTriggerRef` 且用途为 `defense` / `movement`。路线照常产生 `flowCt` 与共享节点伤势，不能因“不占行动”变成免费运气；反应额度、恢复债务与判定时序归 design/09。
+- **触发型招式**：`trigger.on` ∈ `meleeAttacked`、`backAttacked`、`parrySuccess`、`allyAttacked`、`enemyEnterAdjacent`。触发时不占行动、不耗气势；照常耗内（不足则不触发）；每次来袭最多触发 1 个（按 `chance` 高者优先）；`perRound` 为每回合上限（此处"回合" = 持有者自身一次行动间隔）。独立攻击型触发招用 `purpose:attack` 的 `meridianRouteRef`；招架、卸力或闪避触发用 `routeOnTriggerRef` 且用途为 `defense` / `movement`。主动防守架势自带的 `stanceCounter`（如“或跃在渊”）沿用该招唯一的 `purpose:defense` 主路线，触发伤害段不再创建第二条 attack 路线。路线照常产生 `flowCt` 与共享节点伤势，不能因“不占行动”变成免费运气；外放反击架势按 §4.2.2 保持自身中心且不增加瞄准射程；反应额度、恢复债务与判定时序归 design/09。
 - **普攻**：每个角色都有隐藏武学 `sk_basic`（基本功，grade 1，固定 5 重，L = 1.0，不计入图鉴、不参与携带），招式 `mv_basic_strike`（普通一击：单体、近身、`power 0.80`、耗内 0、`recovery 900`）。内力不足时仍可行动；它引用 design/21 §4.2 的 2 段 `purpose:attack` 短路线，单段 70 CT，故完整 `flowCt=2×70=140`、总收招 `900+140=1040≤2000`。普攻也参与 Z5M，但短路线只部分兑现强度差。
 
 ### 4.11 效果钩子（`effects`）
@@ -1841,6 +1843,8 @@ special:
 
 **招名核对**：十八掌名采用通行列表：亢龙有悔、飞龙在天、见龙在田、鸿渐于陆、潜龙勿用、利涉大川、突如其来、震惊百里、或跃在渊、双龙取水、鱼跃于渊、时乘六龙、密云不雨、损则有孚、龙战于野、履霜冰至、羝羊触藩、神龙摆尾。多数名目见于《射雕》洪七公授郭靖诸回，名目多取自《易经》卦爻辞；**（待考：《射雕英雄传》洪七公传授郭靖降龙掌诸段，核对逐字出处与传授顺序，尤其“鱼跃于渊”“双龙取水”“突如其来”）**。另：新修版《天龙》有"降龙廿八掌"删繁为十八掌之说，本作以修订版为基线，不采用。
 
+**外放与伤害段口径**：除纯蓄力“潜龙勿用”外，下列 18 个动作均以 `projection:true` 标记；这 18 个外放动作的**所有实际伤害段**统一使用既有 `DamageKind='projected'`，包括“飞龙在天”的溅射段、“履霜冰至”的“冰至”追加段及“时乘六龙”的各段。“或跃在渊”的主动架势本身不生成伤害段，只有触发反击段使用 `projected`。`DamageKind` 是结算伤害段类型，不是 `MoveDef` 顶层字段；构建器须按 tech/04 的展开规则生成并校验，避免向严格 `MoveDefSchema` 写入未登记键。
+
 ```yaml
 id: sk_xianglong18
 name: 降龙十八掌
@@ -1874,45 +1878,45 @@ layers:
   - { n: 9,  unlock: [mv_xianglong18_diyang, mv_xianglong18_shenlong] }
   - { n: 10, unlock: [mv_xianglong18_zhenjing, ps_xianglong18_dacheng] }
 moves:   # 天阶耗内基准 8%
-  - { id: mv_xianglong18_kanglong,  name: 亢龙有悔, unlock: 1, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.10, cd: 1, recovery: 1100, power: 1.20, parryable: true,
+  - { id: mv_xianglong18_kanglong,  name: 亢龙有悔, unlock: 1, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, projection: true, projectionSpreadSteps: [{tpl: aoe_single}, {tpl: aoe_single}, {tpl: aoe_single}], meridianRouteRef: mfr_xianglong18_kanglong, delivery: melee, mpCost: 0.10, cd: 1, recovery: 1100, power: 1.20, parryable: true,
       buffs: [ {id: bf_liuli, chance: 1.0, dur: 1, grade: inherit, to: self, cond: notKill} ],
       note: "有悔：击杀则返还 50% 耗内；未击杀则得'留力'（下一降龙招式 +15%，Z3）" }      # 1+0.12+0.10+0.07=1.29 −0.10(自增益)≈1.20
-  - { id: mv_xianglong18_jianlong,  name: 见龙在田, unlock: 1, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_line, n: 2}, delivery: melee, mpCost: 0.08, cd: 0, recovery: 1000, power: 0.80, parryable: true,
+  - { id: mv_xianglong18_jianlong,  name: 见龙在田, unlock: 1, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_line, n: 2}, projection: true, projectionSpreadSteps: [{tpl: aoe_line, n: 2}, {tpl: aoe_line, n: 3}, {tpl: aoe_line, n: 4}], meridianRouteRef: mfr_xianglong18_jianlong, delivery: melee, mpCost: 0.08, cd: 0, recovery: 1000, power: 0.80, parryable: true,
       displacement: {type: knock, n: 1} }                                                  # 0.85 −0.05
   - { id: mv_xianglong18_qianlong,  name: 潜龙勿用, unlock: 2, kind: stance, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_self}, delivery: self, mpCost: 0.04, cd: 2, recovery: 700, power: 0,
       buffs: [ {id: bf_xuli, dur: 1, grade: inherit, to: self}, {id: bf_qianlong, dur: 1, grade: inherit, to: self} ],
       note: "蓄力：下一降龙招式 +40%（Z3）；至下次行动前受到伤害 −15%（Z4）" }
-  - { id: mv_xianglong18_hongjian,  name: 鸿渐于陆, unlock: 2, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_dash, n: 3}, delivery: melee, mpCost: 0.09, cd: 1, recovery: 1000, power: 1.05, parryable: true }  # 1+0.12+0.05 −0.10
-  - { id: mv_xianglong18_lishe,     name: 利涉大川, unlock: 3, kind: attack, target: enemy, range: {min: 1, max: 4}, aoe: {tpl: aoe_line, n: 4}, delivery: ranged, mpCost: 0.09, cd: 1, recovery: 1000, power: 0.75, parryable: true,
+  - { id: mv_xianglong18_hongjian,  name: 鸿渐于陆, unlock: 2, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_dash, n: 3}, projection: true, projectionSpreadSteps: [{tpl: aoe_dash, n: 3}, {tpl: aoe_dash, n: 3}, {tpl: aoe_dash, n: 3}], meridianRouteRef: mfr_xianglong18_hongjian, delivery: melee, mpCost: 0.09, cd: 1, recovery: 1000, power: 1.05, parryable: true }  # 1+0.12+0.05 −0.10
+  - { id: mv_xianglong18_lishe,     name: 利涉大川, unlock: 3, kind: attack, target: enemy, range: {min: 1, max: 4}, aoe: {tpl: aoe_line, n: 4}, projection: true, projectionSpreadSteps: [{tpl: aoe_line, n: 4}, {tpl: aoe_line, n: 5}, {tpl: aoe_line, n: 6}], meridianRouteRef: mfr_xianglong18_lishe, delivery: ranged, mpCost: 0.09, cd: 1, recovery: 1000, power: 0.75, parryable: true,
       tags: [qigong], note: "掌风越过深水/浅水格不衰减" }                                   # 0.75×1.17×0.85
-  - { id: mv_xianglong18_turu,      name: 突如其来, unlock: 3, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.07, cd: 1, recovery: 750, power: 0.90, parryable: true,
+  - { id: mv_xianglong18_turu,      name: 突如其来, unlock: 3, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, projection: true, projectionSpreadSteps: [{tpl: aoe_single}, {tpl: aoe_single}, {tpl: aoe_single}], meridianRouteRef: mfr_xianglong18_turu, delivery: melee, mpCost: 0.07, cd: 1, recovery: 750, power: 0.90, parryable: true,
       note: "若为本场自身首次出手：暴击 +20" }                                               # 1+0.12−0.05−0.175
-  - { id: mv_xianglong18_zhenjing,  name: 震惊百里, unlock: 10, kind: attack, ultimate: true, rageCost: 100, meridianRouteRef: mfr_xianglong18_zhenjing, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_around}, delivery: melee, mpCost: 0.10, cd: 0, recovery: 1200, power: 2.15, parryable: true,
+  - { id: mv_xianglong18_zhenjing,  name: 震惊百里, unlock: 10, kind: attack, ultimate: true, rageCost: 100, meridianRouteRef: mfr_xianglong18_zhenjing, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_around}, projection: true, projectionSpreadSteps: [{tpl: aoe_around}, {tpl: aoe_disk, r: 2}, {tpl: aoe_disk, r: 3}], delivery: melee, mpCost: 0.10, cd: 0, recovery: 1200, power: 2.15, parryable: true,
       buffs: [ {id: bf_xuanyun, chance: 0.3, dur: 1, grade: inherit, to: target} ], anim: {cutin: cutin/xianglong18_zhenjing} } # 3.0×AF(6=0.75)−0.25×0.30=2.175→2.15
-  - { id: mv_xianglong18_huoyue,    name: 或跃在渊, unlock: 4, kind: stance, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_self}, delivery: self, mpCost: 0.05, cd: 2, recovery: 900, power: 0,
+  - { id: mv_xianglong18_huoyue,    name: 或跃在渊, unlock: 4, kind: stance, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_self}, projection: true, projectionSpreadSteps: [{tpl: aoe_self}, {tpl: aoe_self}, {tpl: aoe_self}], meridianRouteRef: mfr_xianglong18_huoyue, delivery: self, mpCost: 0.05, cd: 2, recovery: 900, power: 0,
       displacement: {type: retreat, n: 2},
       trigger: {on: meleeAttacked, chance: 1.0, perRound: 1, counterPower: 1.00, expires: nextOwnAction} }
-  - { id: mv_xianglong18_shuanglong, name: 双龙取水, unlock: 5, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.09, cd: 2, recovery: 1000, power: 1.30, hits: 2, parryable: true }  # 1+0.24+0.05
-  - { id: mv_xianglong18_yuyue,     name: 鱼跃于渊, unlock: 5, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_leap}, delivery: melee, mpCost: 0.08, cd: 2, recovery: 1000, power: 1.00, parryable: true,
+  - { id: mv_xianglong18_shuanglong, name: 双龙取水, unlock: 5, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, projection: true, projectionSpreadSteps: [{tpl: aoe_single}, {tpl: aoe_single}, {tpl: aoe_single}], meridianRouteRef: mfr_xianglong18_shuanglong, delivery: melee, mpCost: 0.09, cd: 2, recovery: 1000, power: 1.30, hits: 2, parryable: true }  # 1+0.24+0.05
+  - { id: mv_xianglong18_yuyue,     name: 鱼跃于渊, unlock: 5, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_leap}, projection: true, projectionSpreadSteps: [{tpl: aoe_leap}, {tpl: aoe_leap}, {tpl: aoe_leap}], meridianRouteRef: mfr_xianglong18_yuyue, delivery: melee, mpCost: 0.08, cd: 2, recovery: 1000, power: 1.00, parryable: true,
       note: "跃起高差上限 jump+3；仰攻不受 Z7 低打高惩罚" }                               # 0.9×1.24 −0.10
-  - { id: mv_xianglong18_feilong,   name: 飞龙在天, unlock: 6, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_leap, splash: {tpl: aoe_disk, r: 1}}, delivery: melee, mpCost: 0.11, cd: 3, recovery: 1050, power: 1.25, parryable: true,
+  - { id: mv_xianglong18_feilong,   name: 飞龙在天, unlock: 6, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_leap, splash: {tpl: aoe_disk, r: 1}}, projection: true, projectionSpreadSteps: [{tpl: aoe_leap, splash: {tpl: aoe_disk, r: 1}}, {tpl: aoe_leap, splash: {tpl: aoe_disk, r: 1}}, {tpl: aoe_leap, splash: {tpl: aoe_disk, r: 1}}], meridianRouteRef: mfr_xianglong18_feilong, delivery: melee, mpCost: 0.11, cd: 3, recovery: 1050, power: 1.25, parryable: true,
       note: "主目标 1.25；六角圆盘 r1 的其余 6 格溅射 ×0.5；自高处下击时 Z7 高低差加成 ×2" } # 主目标按无溅射 leap 0.9×1.51−0.10=1.259→1.25；溅射另乘0.5
-  - { id: mv_xianglong18_shicheng,  name: 时乘六龙, unlock: 6, kind: attack, target: tile, range: {min: 1, max: 2}, aoe: {tpl: aoe_multi, n: 6, r: 2}, delivery: ranged, mpCost: 0.12, cd: 3, recovery: 1050, power: 1.30, hits: 6, parryable: true }  # 0.85×1.56（远程已含于乱击 AF）
-  - { id: mv_xianglong18_miyun,     name: 密云不雨, unlock: 7, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.09, cd: 3, recovery: 1000, power: 0.80, parryable: true,
+  - { id: mv_xianglong18_shicheng,  name: 时乘六龙, unlock: 6, kind: attack, target: tile, range: {min: 1, max: 2}, aoe: {tpl: aoe_multi, n: 6, r: 2}, projection: true, projectionSpreadSteps: [{tpl: aoe_multi, n: 6, r: 2}, {tpl: aoe_multi, n: 7, r: 3}, {tpl: aoe_multi, n: 8, r: 4}], meridianRouteRef: mfr_xianglong18_shicheng, delivery: ranged, mpCost: 0.12, cd: 3, recovery: 1050, power: 1.30, hits: 6, parryable: true }  # 0.85×1.56（远程已含于乱击 AF）
+  - { id: mv_xianglong18_miyun,     name: 密云不雨, unlock: 7, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, projection: true, projectionSpreadSteps: [{tpl: aoe_single}, {tpl: aoe_single}, {tpl: aoe_single}], meridianRouteRef: mfr_xianglong18_miyun, delivery: melee, mpCost: 0.09, cd: 3, recovery: 1000, power: 0.80, parryable: true,
       buffs: [ {id: bf_miyun, chance: 1.0, dur: 2, grade: inherit, to: target} ],
       note: "封绝：2 回合不能施放绝招；目标气势 −30" }                                   # 1.41 −0.40 −0.20
-  - { id: mv_xianglong18_sunze,     name: 损则有孚, unlock: 7, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, hpCost: 0.08, cd: 2, recovery: 1000, power: 1.70, parryable: true,
+  - { id: mv_xianglong18_sunze,     name: 损则有孚, unlock: 7, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, projection: true, projectionSpreadSteps: [{tpl: aoe_single}, {tpl: aoe_single}, {tpl: aoe_single}], meridianRouteRef: mfr_xianglong18_sunze, delivery: melee, mpCost: 0.08, hpCost: 0.08, cd: 2, recovery: 1000, power: 1.70, parryable: true,
       note: "有孚：击杀目标时返还所损气血" }                                               # 1+0.48+0.24
-  - { id: mv_xianglong18_longzhan,  name: 龙战于野, unlock: 8, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_cone, r: 3, angle: 60, dirCount: 6}, delivery: melee, mpCost: 0.11, cd: 3, recovery: 1100, power: 1.05, parryable: true,
+  - { id: mv_xianglong18_longzhan,  name: 龙战于野, unlock: 8, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_cone, r: 3, angle: 60, dirCount: 6}, projection: true, projectionSpreadSteps: [{tpl: aoe_cone, r: 3, angle: 60, dirCount: 6}, {tpl: aoe_cone, r: 4, angle: 60, dirCount: 6}, {tpl: aoe_cone, r: 5, angle: 60, dirCount: 6}], meridianRouteRef: mfr_xianglong18_longzhan, delivery: melee, mpCost: 0.11, cd: 3, recovery: 1100, power: 1.05, parryable: true,
       displacement: {type: knock, n: 1} }                                                  # 六角7格 AF0.70×1.58−0.05=1.056→1.05
-  - { id: mv_xianglong18_lvshuang,  name: 履霜冰至, unlock: 8, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, delivery: melee, mpCost: 0.08, cd: 0, recovery: 1000, power: 0.90, parryable: true,
+  - { id: mv_xianglong18_lvshuang,  name: 履霜冰至, unlock: 8, kind: attack, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_single}, projection: true, projectionSpreadSteps: [{tpl: aoe_single}, {tpl: aoe_single}, {tpl: aoe_single}], meridianRouteRef: mfr_xianglong18_lvshuang, delivery: melee, mpCost: 0.08, cd: 0, recovery: 1000, power: 0.90, parryable: true,
       buffs: [ {id: bf_lvshuang, chance: 1.0, dur: 3, stacks: 1, grade: inherit, to: target} ],
       note: "履霜：每层速度 −5%（上限 4 层）；满 4 层时'冰至'：清空层数，追加一段 0.8 倍伤害并定身 1 回合" }
-  - { id: mv_xianglong18_diyang,    name: 羝羊触藩, unlock: 9, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_dash, n: 3}, delivery: melee, mpCost: 0.09, cd: 2, recovery: 1000, power: 1.05, parryable: true,
+  - { id: mv_xianglong18_diyang,    name: 羝羊触藩, unlock: 9, kind: attack, target: enemy, range: {min: 1, max: 3}, aoe: {tpl: aoe_dash, n: 3}, projection: true, projectionSpreadSteps: [{tpl: aoe_dash, n: 3}, {tpl: aoe_dash, n: 3}, {tpl: aoe_dash, n: 3}], meridianRouteRef: mfr_xianglong18_diyang, delivery: melee, mpCost: 0.09, cd: 2, recovery: 1000, power: 1.05, parryable: true,
       buffs: [ {id: bf_dingshen, chance: 0.6, dur: 1, grade: inherit, to: target} ] }      # 1.29 −0.10 −0.15
-  - { id: mv_xianglong18_shenlong,  name: 神龙摆尾, unlock: 9, kind: attack, ultimate: true, rageCost: 100, meridianRouteRef: mfr_xianglong18_shenlong, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_cone, r: 1, angle: 120, dirCount: 6}, delivery: melee, mpCost: 0.10, cd: 0, recovery: 1200, power: 2.55, parryable: true,
+  - { id: mv_xianglong18_shenlong,  name: 神龙摆尾, unlock: 9, kind: attack, ultimate: true, rageCost: 100, meridianRouteRef: mfr_xianglong18_shenlong, target: self, range: {min: 0, max: 0}, aoe: {tpl: aoe_cone, r: 1, angle: 120, dirCount: 6}, projection: true, projectionSpreadSteps: [{tpl: aoe_cone, r: 1, angle: 120, dirCount: 6}, {tpl: aoe_cone, r: 2, angle: 120, dirCount: 6}, {tpl: aoe_cone, r: 3, angle: 120, dirCount: 6}], delivery: melee, mpCost: 0.10, cd: 0, recovery: 1200, power: 2.55, parryable: true,
       note: "主动绝招：以自身当前朝向的反方向为 aim，横扫身后三格；用于反制背后围攻，不再保留自动触发" } # 3.0×AF(3=0.85)=2.55
-  - { id: mv_xianglong18_lianhuan,  name: 十八掌连环, unlock: 7, kind: attack, ultimate: true, rageCost: 100, meridianRouteRef: mfr_eighteen_palms_chain, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_cone, r: 3, angle: 60, dirCount: 6}, delivery: melee, mpCost: 0.10, cd: 0, recovery: 1200, power: 2.00, hits: 6, parryable: true,
+  - { id: mv_xianglong18_lianhuan,  name: 十八掌连环, unlock: 7, kind: attack, ultimate: true, rageCost: 100, meridianRouteRef: mfr_eighteen_palms_chain, target: enemy, range: {min: 1, max: 1}, aoe: {tpl: aoe_cone, r: 3, angle: 60, dirCount: 6}, projection: true, projectionSpreadSteps: [{tpl: aoe_cone, r: 3, angle: 60, dirCount: 6}, {tpl: aoe_cone, r: 4, angle: 60, dirCount: 6}, {tpl: aoe_cone, r: 5, angle: 60, dirCount: 6}], delivery: melee, mpCost: 0.10, cd: 0, recovery: 1200, power: 2.00, hits: 6, parryable: true,
       displacement: {type: knock, n: 2}, anim: {cutin: cutin/xianglong18},
       note: "（原创扩展命名）十八掌一气呵成：演出依次打出十八掌意象；10 重大成后 ×1.2" }     # 六角7格 AF0.70：3.0×0.70−0.10=2.00
 passives:
@@ -2819,6 +2823,7 @@ description: >-
 | V34 | `projection` 只允许出现在 `MoveDef`；为 true 时 `projectionSpreadSteps` 必须恰有三项且 `[0]` 与 `aoe` 深相等，每项均通过 09 `HexShape` 校验；为 false / 缺省时不得保留该数组 | 失败 |
 | V35 | `projection:true` 的每个伤害段必须为 `DamageKind='projected'`，反向不自动补标；档位只允许 0 / 1 / 2，对应射程增量 0 / 2 / 4 与额外耗内 0 / 200 / 400 bp MPREF | 失败 |
 | V36 | `projection:true` 的 `meridianRouteRef` 至少经过 design/21 §4.4.1.4 的一个合法外放端点；不得在静态招式保存当前档、扩大后射程、外放 Z5M 或按整门武学生成标记 | 失败 |
+| V37 | `sk_xianglong18` 除 `mv_xianglong18_qianlong` 外恰有 18 个 `projection:true` 招式且各有三项 `projectionSpreadSteps`；潜龙勿用不得带外放字段。三绝招的 `[0]` 必须与 `aoe` 深相等，并分别保持连环 60° 锥 `r3/r4/r5`、神龙 120° 锥 `r1/r2/r3`、震惊 `around/disk r2/disk r3` | 失败 |
 
 ### 16.2 金标准测试用例
 
@@ -2859,6 +2864,7 @@ description: >-
 | T33 | 弹指外放招：`range.max=5`、三档均单体；合法强档；再删第三项、令 `[0]≠aoe`、将伤害段改为非 projected | 合法档只读得射程 5 / 7 / 9；后三种均构建失败，不在内容侧补默认 |
 | T34 | 独孤同门含一记剑气外放与一记近身破剑；尝试按 `SkillDef` 或 `delivery:ranged` 批量补标 | 只显式剑气招为外放；近身招不变，批量推断构建失败；剑气表现保留“原创扩展”标注 |
 | T35 | 降龙外放招路线命中 `ap_shoujueyin_laogong`；改成完全不含 21 端点白名单；敌方加载同一招 | 前者通过、后者失败；敌方与玩家得到同一静态字段和档位边界 |
+| T36 | 构建降龙十八掌并统计逐招外放字段；再分别读取三绝招的 0 / 1 / 2 档范围 | 19 个具名动作中恰有 18 个外放，唯一例外为纯蓄力“潜龙勿用”；连环为 60° 锥 `r3/r4/r5`，神龙为 120° 锥 `r1/r2/r3`，震惊为 `around/disk r2/disk r3`，且三者 0 档均与基础 `aoe` 深相等 |
 
 ---
 

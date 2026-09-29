@@ -1,10 +1,11 @@
 # 06 · Buff 体系（Buff System）
 
 > **归属**（基准 §18）：Buff 规则与完整目录——数据结构、品阶强度与品阶对抗、叠加与冲突、持续与结算时机、触发器与效果原语（DSL 语义）、驱散与免疫、蛊毒专章、UI 表现规则、平衡约束。
-> **版本**：v1.3（跨文档同步、全局审计，2026-09-26；经脉系统落地，2026-09-27）。
-> **上游**：`decisions/author-requirements.md`（AR-03 冲穴接口、AR-12 战斗状态清单、AR-14 经脉运行）、`decisions/author-decisions.md`（G1、P27、P31、P39）、`00-canon.md`（§4 品阶、§6 属性 ID、§7 兵器类别、§8 战斗模型与"回合"定义、§9 乘区、§10 Buff 基础规则、§12 ID 规范、§13 天级武学、§14 神兵）、`decisions/rulings-v1.md`（C07–C09、C11–C12、C23）。
+> **版本**：v1.4（经脉落地终审，2026-09-29）；v1.3（跨文档同步、全局审计，2026-09-26；经脉系统落地，2026-09-27）。
+> **上游**：`decisions/author-requirements.md`（AR-03 冲穴接口、AR-12 战斗状态清单、AR-14 经脉运行、AR-16 外放加持）、`decisions/author-decisions.md`（G1、P27、P31、P39）、`00-canon.md`（§4 品阶、§6 属性 ID、§7 兵器类别、§8 战斗模型与"回合"定义、§9 乘区、§10 Buff 基础规则、§12 ID 规范、§13 天级武学、§14 神兵）、`decisions/rulings-v1.md`（C07–C09、C11–C12、C23）。
 > **引用而不重定义**：属性形态与修饰种类（`flat`/`flatLv`/`pct`/`mult`/`pp`）→ `design/03-attributes.md`；伤害、治疗、命中/招架/暴击、效果命中公式 → `design/04-damage-formula.md`；武功被动、招式 `buffs` 字段、层数系数、辅运比例、走火入魔触发条件、"破 X"的获取 → `design/05-martial-arts-system.md`；Buff 只登记战斗经脉状态的生命周期与投影，河流模型、招式路线、经脉乘区、护体内劲算法、擒拿 / 点穴严重度及调息唯一见 `design/21-meridian-flow-and-moves.md`；穴位拓扑、冲穴、周天与九转唯一见 `design/15-meridian-acupoint-system.md`；套装 → `design/07-set-system.md`；地形与轻功 → `design/08-terrain-and-qinggong.md`；集气/反击/合击/AI/Boss 阶段 → `design/09-combat-system.md`；物品与丹药 → `design/10-items-and-equipment.md`；时辰/昼夜/节令 → `design/11-open-world.md`；NPC 与任务 → `design/12-quests-npc-factions.md`；天书之力、难度模式 → `design/13-progression-and-endings.md`；DSL 解释器实现 → `tech/05`（玩法引擎）。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术版本、价格、API 或限额尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖他文档、本文先给出可用数值并在 §15 登记。
+> **变更记录 v1.4（经脉落地终审，2026-09-29）**：将 `bf_zhenqiwaifang` 收口为 AR-16 的兼容射程来源；外放招与所选档增量取较大值、不相加，非外放旧内容继续按原规则迁移。
 
 ---
 
@@ -1339,7 +1340,7 @@ P自解穴 = clamp(5%, 95%, 25% + 15% × (g主运内功 − g点穴) + 0.3% × (
 | `bf_zhuiji` | 追击 | E+ | 1–12 | `onAllyHit`：友方命中距持有者 ≤ 2 格的敌人后，持有者对其追加一次基础招式 ×0.4（`followup`，每回合 1 次） | 3⁺ | R | boost | 破 | 天罡北斗阵（射雕·全真；合击细则 09）；双剑合璧 |
 | `bf_jieji` | 截击 | E+ | 1–12 | `onEnemyEnterAdjacent`：敌方进入相邻格即终止其移动，并受一次基础招式 ×0.5（每回合 1 次） | 2⁺ | R | boost | 破 | 打狗棒法"封字诀"（射雕/神雕·丐帮）；长枪拒马（原创扩展） |
 | `bf_xianji` | 先机 | E+ | 1–12 | 首轮固定排序 `openingPriority +100×G`（缺省 0；天上 +350）；不再额外移动开场 CT | ∞（被动） | H | boost.tempo | ✗ | 独孤九剑“料敌机先”；神行百变（数值原创扩展） |
-| `bf_zhenqiwaifang` | 真气外放 | E+ | 7–12 | 拳脚/兵器招式射程 +1（天阶 +2）；以延伸射程命中时该击 `Z3 −10%` | 3⁺；被动 ∞ | R | boost | 破 | 六脉神剑（天龙·段誉，常驻）；剑气（原创扩展） |
+| `bf_zhenqiwaifang` | 真气外放 | E+ | 7–12 | **兼容来源**：对拳脚 / 兵器招式提供旧射程增量 `buffRangeBonus=+1`（地阶）/ `+2`（天阶）。若招式 `projection:true`，实际兼容增量为 `max(buffRangeBonus,[0,2,4][projectionStep])`，不相加且不得突破基础 `range.max+4`；其范围模板、额外耗内与 Z5M 仍只由 AR-16 档位决定，Buff 不替代档位门槛。若 `projection` 缺省 / false，旧内容仍按本 Buff 原语加射程；仅由这段旧增量命中时该击 `Z3 −10%` | 3⁺；被动 ∞ | R | boost | 破 | 六脉神剑（天龙·段誉，常驻）；剑气（原创扩展）；AR-16 迁移兼容 |
 | `bf_zhuanjin` | 转劲 | E+ | 4–12 | Z1 前：招式外劲部分的 `5%×G` 转为内劲（`convertDamage`），用于破高外防目标 | 3 | R | boost | 破 | 空明拳"以柔克刚"（射雕·周伯通；机制解释为原创扩展） |
 
 ### 8.5 效果类 · 持续伤害与毒（14 条）
@@ -2057,7 +2058,7 @@ AR-14 日志在上述公共字段外允许 `level`、`acupointRef`、`remainingO
 | 12.3 | 属性（03） | 修饰器（`flat`/`flatLv`/`pct`/`pp`/`override`）及族上限 | 叠加管线 §11.2、`floor_S = 0.2`、`resGrade`（§6.3）、`shieldMax`、`hpRegen`/`mpRegen`/`rageGain` 次级属性 |
 | 12.4 | 套装（07） | 套装加成以 `origin: set` 的永久被动 Buff 实现；品阶 = 套装当前档位品阶；数值同样计入族上限。例（用户示例"少林金刚"）："拿穴 +XX%" → `attr:seal pp`；"伤害 +XX%" → `Z3`；"招架 +YY%" → `attr:parry pct` | 套装档位与数值 |
 | 12.5 | 地形与轻功（08） | `onTerrainEnter`/`onTerrainStay` 挂载地形 Buff（毒沼→中毒、火场→灼烧、雪原→寒气、入水→解除灼烧/失明）；`bf_shenqing` 临时抬高轻功值可跨门禁；`bf_fengqinggong` 使门禁判定按 `qinggong = 0`；击退/牵引的坠落与撞击 | 地形目录与地形 Buff 品阶；坠落伤害公式 |
-| 12.6 | 战斗（09） | `ctShift`、`skipAction`、`aiOverride` 各模式、反应队列深度 3、`extraAction` 规则、Boss 豁免与控制递减（§11.4） | 行动"运功调息/运功护体/运功逼毒/运功化解/拾回兵器/挣脱"的本体；AI 各接管模式的行为；Boss 阶段脚本；合击（天罡北斗阵）挂载锁定/追击 |
+| 12.6 | 战斗（09） | `ctShift`、`skipAction`、`aiOverride` 各模式、反应队列深度 3、`extraAction` 规则、Boss 豁免与控制递减（§11.4）；`bf_zhenqiwaifang` 提供 `buffRangeBonus` 兼容源 | 行动"运功调息/运功护体/运功逼毒/运功化解/拾回兵器/挣脱"的本体；AI 各接管模式的行为；Boss 阶段脚本；合击（天罡北斗阵）挂载锁定/追击；外放招按 09 §5.2.1 取档位与本 Buff 增量的较大值 |
 | 12.7 | 书眠与多周目（02/13） | **书眠净化**：书眠时移除全部非 `permanent` 实例（含蛊、受制、生死符、跨战斗内伤）；`permanent` 实例随来源在新书界按有效品阶重算；`bf_duanchen` 等跨书界永久代价保留；天书之力以 `origin: tsp` 永久被动实现 | 书眠流程的叙事表现；天书之力效果目录（13） |
 | 12.8 | 开放世界（11，AR-04/11） | `onWorldTick`/`onRest`/`onAreaEnter`/`onCalendar` 钩子；跨战斗 Buff 的世界态规则（§5.4）；Buff 只消费统一大地图、时代图层、区域与天气上下文 | 11/19 定义时辰、日历、时代图层、区域/城市/门派地点、节令、休息与闭关时间成本、天气/区域寒热；本文不复制地图和历史城市规则 |
 | 12.9 | 物品（10） | 解药/丹药的驱散语义（`antidote` 类型，按物品品阶与标签）；神兵免疫（`bf_mian_pobing`）；断兵的修复入口 | 丹药/解药目录与品阶；锻造修复 |
@@ -2193,6 +2194,7 @@ AR-14 日志在上述公共字段外允许 `level`、`acupointRef`、`remainingO
 | V21 | 新内容不得施加 `bf_fengxue` / `bf_fengnei` / `bf_fengjingmai` / `bf_chanrao`；它们只能进入 §8.14.3 迁移器，写档不得再输出旧 ID | 错误 |
 | V22 | `bf_hutineijin` 必有合法 `routeId`；只有有效自然护体短路 / 护体防守路线可创建，`reflectBp` 缺省 0 且非零时必须同时存在既有反震语义 | 错误 |
 | V23 | `bf_shouqin` / `bf_xueweishoufeng` 必在本次伤害 settle 后施加；反击 / 合击必须调用实际行动者 / 目标自己的模块，不得共享状态 | 错误 |
+| V24 | `bf_zhenqiwaifang` 只能提供 `buffRangeBonus=1/2` 兼容源；对 `projection:true` 必须与 `[0,2,4][projectionStep]` 取 `max`、禁止求和，且不得改写 `projectionSpreadSteps`、额外耗内或 Z5M | 错误 |
 
 ### 14.2 测试用例（玩法核心单元测试，期望值精确）
 
@@ -2231,6 +2233,7 @@ AR-14 日志在上述公共字段外允许 `level`、`acupointRef`、`remainingO
 | T31 | 护体链守恒 | `postShield=1600` 拳脚，护体容量足但 `currentMp=300` | `cancelled=600`、`mpSpent=ceil(600/2)=300`、`damageBeforeMpGuard=1000`；`1600=600+1000`，再由 `mpGuard` 处理 1000 |
 | T32 | 护体反震与破气 | 多个破气来源 3000/6000/9000 bp，护体同源反震 2500 bp，`cancelled=1000` | `breakGuardBp=min(8000,max(...))=8000`；`reflectBp=2000`，反震 `floor(1000×2000/10000)=200` 且带 `reflected` |
 | T33 | 模块实例隔离 | 我方、普通敌、Boss 各挂迟滞 / 点穴；只对普通敌调息 | 只改变普通敌模块及其派生视图；另两份 snapshot 逐字段不变 |
+| T34 | 旧真气外放兼容 | 地阶 / 天阶 `bf_zhenqiwaifang` 分别配外放 0 / 1 / 2 档；另测非外放旧招 | 外放增量依次 `max(1,0)=1`、`max(2,2)=2`、`max(2,4)=4`，绝不为 1 / 4 / 6；非外放旧招仍分别 +1 / +2，且 Buff 不扩大 `aoe` |
 
 ---
 
@@ -2250,6 +2253,7 @@ AR-14 日志在上述公共字段外允许 `level`、`acupointRef`、`remainingO
 | 数量上限 | 增益 10 / 减益 10 / 机制 4 | §11.2 |
 | `bf_poqi.breakGuardBp` | 地 3000 / 天 6000；多来源取最高，最终钳 8000 | §8.6、21 §4.8；05 可按具体招式覆写但不得越硬界 |
 | 护体内劲反震上限 | `reflectBp≤2000`，默认 0 | §8.4、§8.14；只有原招 / Buff 已有反震语义才启用 |
+| `bf_zhenqiwaifang` 与 AR-16 | **已解决**：兼容增量与所选档 `max(+1/+2,+0/+2/+4)`，不相加；AR-16 自身硬顶基础 +4 | §8.4、§12.6；design/09 §5.2.1 |
 
 ### 15.2 本文依赖的上游事实
 
@@ -2261,7 +2265,7 @@ AR-14 日志在上述公共字段外允许 `level`、`acupointRef`、`remainingO
 | D2 | 03 属性 | 03 §5.6“客栈休息移除品阶 ≤ 3 的 injury/poison”“战后移除所有持续回合类减益”与本文 §5.4.2 的逐条规则不一致；建议 03 §5.6 的“减益”列改为“见 06 §5.4.2”，且“持续回合类”明确为“非 `persist` 实例” | 本文以 §5.4.2 为准 |
 | D3 | 05 武学 | 破 X 的 Z5/招架数值以 05 §9.4 为准，Buff 分阶语义以本文 §8.6 为准；05 §4.5 尚留旧 `collideDmg` 字段，须改为引用 C11 的 `D_hit` 唯一公式；05 的 38 个先行 Buff ID 已全部收录 | 本文提供 `ultimateUnbreakable`、破招、装备低品运行实例与 C11 撞击接口 |
 | D4 | 02 时间线 | **已解决**：02 §2.6–§2.7 已按 C07 写明九阳只授寒免、十重仅毒持续减半；书眠净化继续引用本文 §12.7 | 本文保持相同边界 |
-| D5 | 09 战斗 | 行动“运功逼毒/运功护体/运功化解/拾回兵器/挣脱”本体；`aiOverride` 各模式行为；Boss 阶段脚本（无敌/锁血/狂暴时机）；“连动”；合击挂载锁定/追击 | 本文只定义 Buff 侧语义 |
+| D5 | 09 战斗 | **已解决（外放兼容）**：`bf_zhenqiwaifang` 与 AR-16 档位按 §8.4 取较大值、不相加；其余仍由 09 提供行动“运功逼毒/运功护体/运功化解/拾回兵器/挣脱”本体、`aiOverride`、Boss 阶段脚本、“连动”与合击挂载 | 本文定义 Buff 来源与合并语义；战斗按 09 §5.2.1 的固定射程顺序消费 |
 | D6 | 10 物品 | **Buff 覆写接口已接收**：`BuffRef.params/valueMul/dur`、`af_fanzhen`、`ultimateUnbreakable` 见本文 §2.5；仍需 10/12/章节定稿 §13.5 的解药、丹药、任务 ID 与断兵修复费用 | 本文不复制物品定义 |
 | D7 | 11 开放世界 | 时辰单位与日历（含 `sanshi_annual` 年度期限键）、休息/运功疗伤/闭关的时间成本、战斗消耗的世界时间、寒区判定 | 按“1 日 = 12 时辰”建议；节令待考前不得硬编码 |
 | D8 | 12 NPC/任务 | 名医 NPC 的技艺值；解蛊/解受制/根治三尸脑神丹的任务链；`onTalk` 的强制选项表现 | 本文只定义接口，待 12 分配事件与任务 ID |
