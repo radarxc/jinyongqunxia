@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024" role="img" aria-labelledby="title desc">
+  <title id="title">天龙书界苍山洱海 · 地名标注叠加层</title>
+  <desc id="desc">叠加于同名 PNG；北上东右，位置按生成图估算。苍山在西，洱海在东，大理国都在苍洱之间，崇圣寺三塔在城西北。往无量山为南偏东的图外方向，不表示距离或可走路线。约1093至1094年为项目推定，城池、塔院及湖岸未作考古复原。崇圣寺与小说天龙寺映射见 design/17 §5.3；这里不标天宁寺。</desc>
+  <defs>
+    <marker id="direction-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#554c3e" stroke-width="1.5"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: "STKaiti", "KaiTi", "Noto Serif CJK SC", "Songti SC", serif; fill: #211f1a; paint-order: stroke fill; stroke: #eee4cc; stroke-width: 5; stroke-linejoin: round; }
+    .geo { font-size: 40px; letter-spacing: 12px; writing-mode: vertical-rl; text-orientation: upright; }
+    .place { font-size: 28px; }
+    .small { font-size: 18px; }
+    .leader { fill: none; stroke: #554c3e; stroke-width: 1.7; stroke-linecap: round; }
+    .anchor { fill: #211f1a; stroke: #eee4cc; stroke-width: 1.5; }
+  </style>
+  <!-- Transparent overlay; geographic names are editable text, never baked into the PNG. -->
+  <g id="landscape-names" aria-label="山水">
+    <text class="geo" x="235" y="456">苍山</text>
+    <text class="geo" x="1110" y="413" style="fill:#435a59">洱海</text>
+  </g>
+  <g id="three-pagodas" aria-label="崇圣寺三塔">
+    <path class="leader" d="M607 398 L659 342 L710 342"/>
+    <circle class="anchor" cx="607" cy="398" r="3"/>
+    <text class="place" x="717" y="348">崇圣寺三塔</text>
+  </g>
+  <g id="dali-city" data-source-id="city_dali" aria-label="大理国都">
+    <path class="leader" d="M813 588 L898 590 L947 590"/>
+    <circle class="anchor" cx="813" cy="588" r="3"/>
+    <text class="place" x="957" y="598">大理国都</text>
+    <text class="small" x="958" y="625">羊苴咩城</text>
+  </g>
+  <g id="wuliang-direction" aria-label="往无量山，仅示南偏东方向">
+    <path class="leader" d="M1022 930 Q1052 953 1079 995" stroke-dasharray="6 5" marker-end="url(#direction-arrow)"/>
+    <text class="place" x="1130" y="926">往无量山</text>
+    <text class="small" x="1131" y="954">图外 · 南偏东方向示意</text>
+  </g>
+  <g id="caption" aria-label="图名与用途">
+    <text x="60" y="956" font-size="30">天龙书界 · 苍山洱海</text>
+    <text class="small" x="60" y="987">大理国 · 约1093—1094年 · 地名位置示意</text>
+    <path class="leader" d="M1455 894 L1455 842 M1447 856 L1455 842 L1463 856"/>
+    <text class="place" x="1455" y="827" text-anchor="middle">北</text>
+  </g>
+</svg>
