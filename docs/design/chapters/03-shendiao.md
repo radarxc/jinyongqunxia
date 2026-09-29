@@ -1,10 +1,10 @@
 # 03 · 神雕侠侣书界（Shendiao Chapter）
 
 > 归属（基准 §18）：《神雕侠侣》书界的时代图层、章节内容投放、主线接口、支线、门派参与方式、人物出场、奖励来源、特色机制与跨书衔接。
-> 上游：`docs/00-canon.md` v1.6；作者需求与决定见 `docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`；冲突裁定见 `docs/decisions/rulings-v1.md`；正邪主线唯一叙事源为 `design/story/03-shendiao.md`。
+> 上游：`docs/00-canon.md` v1.7；作者需求与决定见 `docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`；冲突裁定见 `docs/decisions/rulings-v1.md`；正邪主线唯一叙事源为 `design/story/03-shendiao.md`。
 > 引用而不重定义：年代、书眠、携带与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害公式 → `design/04`；武学与 Buff → `design/05`、`06`及图鉴（本书补录见 `design/catalog/skills-bulu-03-shendiao.md`，跨书主运见 `design/catalog/skills-bulu-02-shediao.md`）；地形与轻功 → `design/08`；战斗、合击与 Boss → `design/09`；装备与物品 → `design/10`；开放世界 → `design/11`；任务、门派与羁绊 → `design/12`；成长、天书与结局 → `design/13`；静态经脉成长 → `design/15`；战斗经脉运行、招式路线、绝招、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；时代门派 → `design/17`；人物 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联／广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要完整存档或设备验证；**【建议值】** = 依赖上游定稿、先给可用数值并在文末登记。
-> 版本：v1.0（D03 初稿，2026-09-26）；审校 D03.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；NXT 天阶具名主运闭合（2026-09-28）。
+> 版本：v1.0（D03 初稿，2026-09-26）；审校 D03.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；NXT 天阶具名主运闭合（2026-09-28）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -476,7 +476,7 @@ AR-10 已把身份锁为行脚采药人，优先于基准 §17 的“2–3 个�
 | `q_03_side_02` | 北驿三箱伤药 | 太湖江南→关中 | 选择北驿通行签 | 选择稳路或 qg2 快路护药，不可拆箱倒卖 | `biz_jiaxing_escort_01` 行脚资格、银两 | 北上终南 **（原创扩展）** |
 | `q_03_side_03` | 雪峰两位旧人 | 华山 | Z/X03 后听闻异响 | 送食、见证、收殓；改命条件另设严门槛 | `sk_dagou` 观摩链入口、洪欧状态 | 洪七公与欧阳锋华山终局 |
 | `q_03_side_04` | 风陵三种传闻 | 关中题签／襄阳 | C02 后抵达风陵渡线索点 | 用证物辨认神雕侠真迹与冒名者 | 郭襄关系、Z/X10 情报捷径 | 风陵夜话；地望 **（待考）** |
-| `q_03_side_05` | 三世恩怨 | 湖湘百花谷 | 一灯、周伯通任一关系达 3 | 护送旧人相见并防外围仇家干扰 | `sk_wantongmizong` 或医理指点 | 周伯通、瑛姑、一灯、慈恩旧事；细节 **（待考）** |
+| `q_03_side_05` | 三世恩怨 | 湖湘百花谷 | 一灯、周伯通任一关系达 3 | 护送旧人相见并防外围仇家干扰 | `sk_wantongmizong` 或医理指点；慈恩线开启旧寨试掌与铁掌残谱入口 | 周伯通、瑛姑、一灯、慈恩旧事；细节 **（待考）** |
 | `q_03_side_06` | 武氏两封家书 | 襄阳府 | 武氏兄弟均在城 | 分别完成职责并促成不以争偶相斗的和解 | 两人招募门槛、`sk_tiannanxinfa` 观摩 | 武氏家事 **（待考）** |
 | `q_03_side_07` | 金国遗民的旧债 | 中原 | 完颜萍或耶律齐在队外 | 用证词、决斗或放下处理耶律家旧仇 | 完颜萍关系、耶律齐关系、声望 | 完颜萍刺耶律楚材相关情节 **（待考）** |
 | `q_03_side_08` | 一张南征军契 | 漠北→襄阳 | 取得蒙古文牒 | 核对马料、工匠与攻城器流向，可公开或封存 | 军图、`rp_mobei_mapi_01` 经营候选 | 蒙古攻宋背景；流程 **（原创扩展）** |
@@ -484,7 +484,7 @@ AR-10 已把身份锁为行脚采药人，优先于基准 §17 的“2–3 个�
 | `q_03_side_10` | 丹房只余一枚 | 绝情谷 | 取得两方药账 | 查清绝情丹流向并决定谁保管，不复制唯一丹 | `it_jueqingdan` 剧情使用权、绿萼关系 | 绝情丹争夺；细节 **（待考）** |
 | `q_03_side_76` | 石室全真篇 | 古墓 | `dc_03_02` 后、解机关 | 对照石刻与全真口诀，不带走石壁 | `sk_jinguanyusuo` 最多 8 重 | 杨龙据石刻参习全真武学 |
 | `q_03_side_79` | 玉女心经末章 | 古墓 | 古墓身份或小龙女同行 | 完成护法、散热与石室谜题 | `sk_yunvxinjing` 正式来源 | 古墓石刻与心经；玩法 **（原创扩展）** |
-| `q_03_side_95` | 谷底枣核与闭穴 | 绝情谷地穴 | 救出裘千尺且羁绊 ≥3 | 以药、证词或放下复仇换一次口授 | `sk_zaoheding`；或 `sk_bixuegong` 最多 8 重 | 裘千尺以枣核钉对敌；授艺流程 **（原创扩展）** |
+| `q_03_side_95` | 谷底枣核与闭穴 | 绝情谷地穴 | 救出裘千尺且羁绊 ≥3 | 以药、证词或放下复仇换一次口授；脱战且地穴救援结算成功后才写奖励 | 本次口授三选一：`sk_zaoheding`、`sk_bixuegong`（最多 8 重）或满足铁掌旧传条件时登记 `sk_tiezhang` 9 品残承；未选铁掌仍可走入口 B 旧寨残谱 | 裘千尺以枣核钉对敌；授艺流程与铁掌残承投放 **（原创扩展）** |
 
 ### 6.3 门派任务链（8 条）
 
@@ -732,7 +732,7 @@ AR-10 已把身份锁为行脚采药人，优先于基准 §17 的“2–3 个�
 
 ### 7.6 铁掌残脉与其他敌对势力
 
-`sect_tiezhangbang` 只提供慈恩、旧帮寨和遗谱叙事：旧制可映射为帮众—香主—堂主—长老—帮主，但五档都不可申请、不可领月钱。玩家可从慈恩印证 `sk_shuishangpiao`、从遗谱学习 `sk_tiezhangxinfa`；完成 `q_03_side_05` 且通过旧帮寨试掌后，可由慈恩印证或完整遗谱传授 `sk_tiezhangyunqigong` 至 10 重。`sk_tiezhang` 本界不新增完整玩家来源，裘千尺的 10 品外功仅属人物传承。
+`sect_tiezhangbang` 只提供慈恩、旧帮寨和遗谱叙事：旧制可映射为帮众—香主—堂主—长老—帮主，但五档都不可申请、不可领月钱。玩家可从慈恩印证 `sk_shuishangpiao`、从遗谱学习 `sk_tiezhangxinfa`；完成 `q_03_side_05` 且通过旧帮寨试掌后，可由慈恩印证或完整遗谱传授 `sk_tiezhangyunqigong` 至 10 重。`sk_tiezhang` 不新增完整玩家来源，只开放一份 `partial:true, lineageGrade:9, maxLayer:9` 的 9 品残承：入口 A 是在 `q_03_side_95` 的三选一口授中选择裘千尺旧传，入口 B 是完成 `q_03_side_05` 后通过旧帮寨试掌并取得残谱；入口 A 未选铁掌不关闭入口 B。两入口分别由各自任务效果执行 `learnSource/unlock`，各按 `<questId>/<stageId>/<effectLocalId>` 独立幂等；技能层按同一 `sk_tiezhang` 的本界 `sourceGrade=9/sourceCap=9` 去重，任一路先结算后另一条只作印证。两路的 `LearnSource` 均写 `reqsOverride:{sect:null}`，仅移除本界不可加入铁掌帮造成的身份死锁，仍保留属性、拳掌资质和 `sk_tiezhangxinfa≥5` 等其余门槛；且只可在脱战、安全交接、任务成功时写入，禁止从裘千尺、慈恩或旧寨敌人的尸体掉落。裘千尺本人仍完整携带绝对 10 品 `sk_tiezhang`，不得套用玩家残承上限。
 
 | 势力／人物群 | 战场立场 | 可否和解 | 失败或转化接口 |
 |---|---|---|---|
@@ -852,12 +852,12 @@ AR-10 已把身份锁为行脚采药人，优先于基准 §17 的“2–3 个�
 | 遭遇槽／场景 | 敌手与 Lv | 核心武学（品阶） | 数值口径 | 机制与解法 | 结果边界 |
 |---|---:|---|---|---|---|
 | 终南追索 | `npc_limochou` Lv54 | `sk_chiliandugong` 地上9、`sk_chilianfuchen` 地上9、`sk_chilianshenzhang` 地下7、`sk_bingpoyinzhen` 地下7 | `full×tmpl_boss` 防御／评级／速度，气血取同级模板 0.75×1.30 | 银针预警、毒区与追索目标；烧断绳桥或救出目标可提前结束 | 击退而非强制杀死，留给后续改命窗 |
-| 重阳七星阵首 | 三代阵首 Lv52（姓名待补录） | `sk_dabeidouzhen` 玄中5、`sk_quanzhenjian` 玄中5 | `template boss` 气血 ×6.5×1.30 | 七阵眼共享援护；先断两阵眼再压阵首 | 切磋／误会战，禁止处决 |
+| 重阳七星阵首 | 三代阵首 Lv52（姓名待补录） | 主运 `sk_quanzhenzhoutiangong` 地上9；`sk_tiangang` 天下10、`sk_dabeidouzhen` 玄中5、`sk_quanzhenjian` 玄中5 | `template boss` 气血 ×6.5×1.30 | 七阵眼共享援护；先断两阵眼再压阵首 | 切磋／误会战，禁止处决 |
 | 大胜关国师 | `npc_jinlunfawang` Lv58 | `sk_longxiang` 天中11、`sk_wulundazhuan` 地上9 | `full`，同级模板气血 0.80×1.30 | 五轮控制回旋线路；破坏落点或救会场侧翼，不夺杨龙对局 | 达到剧情阈值撤退，不在此杀死 |
 | 谷主两刃 | `npc_gongsunzhi` Lv59 | `sk_jueqingbixuejue` 地上9、`sk_jindaoheijianjue` 地上9、`sk_yinyangdaoluan` 地中8 | `full`，同级模板气血 0.90×1.30 | 刀剑姿态互换、闭穴反控制；揭示两印可强制换相 | 生死由 `dc_03_04` 与后续剧情结算 |
-| 地穴枣核局 | `npc_qiuqianchi` Lv57 | `sk_zaoheding` 玄上6、`sk_bixuegong` 地下7 | `full`，同级模板气血 0.65×1.30 | 环境压迫遭遇：掩体、枣核预警与吊索；可谈判而非打空血条 | 救援／谈判优先，不以击杀作为胜利条件 |
-| 丐帮伪会主 | `npc_huodu` Lv56 | `sk_jinganghufagong` 地上9、`sk_xueshantieshan` 地上9、`sk_huodushanfa` 玄上6 | `full`，同级模板气血 0.75×1.30 | 伪装资源槽、扇中暗器、逃跑路线；证据可跳过一阶段 | `dc_03_08` 决定帮议、交换或处决 |
-| 桃林岛主试艺 | `npc_huangyaoshi` Lv62 | `sk_tanzhi` 天下10、`sk_bihai` 天下10、`sk_taohuazhen` 地下7 | `full`，切磋气血阈值 35%，不启用死亡 | 音律干扰、阵眼换位；识阵或撑过 8 个 Boss 行动即胜 | 只授目录资格，不掉落秘籍 |
+| 地穴枣核局 | `npc_qiuqianchi` Lv57 | 主运 `sk_tiezhangyunqigong` 9 品／9 重（阳）；完整 `sk_tiezhang` 天下10、`sk_zaoheding` 玄上6、`sk_duanfengzhang` 玄上6 | `full`，同级模板气血 0.65×1.30 | 环境压迫遭遇：掩体、枣核预警与吊索；主要出手阴性 `sk_zaoheding` 在阳主运下按 `design/05` §5.3 于 Z5 计 `−12%`，无人物豁免；三运同源的阳招额外 `+4%` 照常计；阴性闭穴功只作 `q_03_side_95` 可授武学，不入首领画像，故不触发 `design/05` §5.4 的内功相冲 | 救援／谈判优先；其完整铁掌不得作击杀掉落，玩家残承见 §7.6 |
+| 丐帮伪会主 | `npc_huodu` Lv56 | 主运 `sk_jinganghufagong` 地上9（阳）；`sk_xueshantieshan` 地上9（阴）、`sk_huodushanfa` 玄上6（阴） | `full`，同级模板气血 0.75×1.30 | 伪装资源槽、扇中暗器、逃跑路线；阳主运施展两门阴性扇法时均按 `design/05` §5.3 在 Z5 计 `−12%`，无人物豁免；三运同源的阳招额外 `+4%` 照常计 | `dc_03_08` 决定帮议、交换或处决 |
+| 桃林岛主试艺 | `npc_huangyaoshi` Lv62 | 主运 `sk_taohuaguiyuanjue` 天中11；`sk_tanzhi` 天下10、`sk_bihai` 天下10、`sk_yuxiaojianfa` 地中8 | `full`，切磋气血阈值 35%，不启用死亡 | 音律干扰、阵眼换位；`sk_taohuazhen` 依 §12.8 视作纯环境行为、无人物武学实例；识阵或撑过 8 个 Boss 行动即胜 | 只授目录资格，不掉落秘籍 |
 | 重剑校艺 | `npc_yangguo` Lv65，`capExempt` 1/2 | `sk_xuantie` 天中11、`sk_anran` 天中11、`sk_jiuyin` 天上12 | `full`，切磋气血阈值 30%，攻击仍 ×1.30 | 重剑蓄力预警；离别状态改变招式池，玩家以地形卸力 | 可选终局切磋；不改变蒙哥事件归属 |
 | 蒙古攻城百户 | 模板军官 Lv62（姓名不建 ID） | `sk_caoyuanjunzhenxinfa` 地上9、`sk_pojunqiangfa` 地上9、`sk_mengguqishe` 玄中5 | `template boss`：化境气血 ×7.0×1.30 | 号令两个战阵、火箭预警；击破号角令援军延后 | 可俘虏；不替代主线历史人物 |
 | 襄阳高台国师 | `npc_jinlunfawang` Lv65，`capExempt` 2/2 | `sk_longxiang` 天中11、`sk_wulundazhuan` 地上9 | `full`；CN-09 后模板回归锚为 `floor(237,186×0.72)=170,773`，具名画像另跑 | 三至四阶段、救郭襄、轮阵与高台坠落风险；杨过为 AI 友军 | 击倒或护送郭襄离台即过；命运由故事稿锁定 |
@@ -883,12 +883,12 @@ encounterHp = floor(237,186 × 0.72) = 170,773
 
 ### 9.1 全路线武学池与统计口径
 
-本界全路线可习得池沿用按章节来源去重的阶段性口径：NXT 前为 `16/45/147/155=363`，本次新增此前不在池内的 `sk_taohuaguiyuanjue`、`sk_tiezhangyunqigong` 两门天阶后，暂计为 `18/45/147/155=365`。Canon v1.6 §13 只正式确认本界完整原生天阶 18 门；地 / 玄 / 黄仍待 `design/05` 汇总各书补录后统一重算。单周目可取得天级最多 7 门，绝不把“完整原生 18 门”写成一次流程可全拿。
+本界全路线可习得池沿用按章节来源去重的阶段性口径：NXT 前为 `16/45/147/155=363`，NXT 新增此前不在池内的 `sk_taohuaguiyuanjue`、`sk_tiezhangyunqigong` 两门天阶后为 `18/45/147/155=365`；NXfix-wujue 再把 `sk_tiezhang` 的神雕 9 品残承纳入地阶，故本版暂计 `18/46/147/155=366`。五绝册神雕子池相应为 `154→155（10/19/63/63）`；这只是该册的章节来源子池，不与本文总池重复相加。Canon v1.7 §13 只正式确认本界完整原生天阶 18 门；地 / 玄 / 黄仍待 `design/05` 汇总各书补录后统一重算。单周目可取得天级最多 7 门，绝不把“完整原生 18 门”写成一次流程可全拿。
 
 | 统计口径 | 数量 | 纳入 | 排除 |
 |---|---:|---|---|
 | 完整原生天级池 | 18 | 下表 18 个 `sk_*`，每个至少有一条固定来源 | 九阳见闻、外来携带、敌人展示 |
-| 本界全路线可习得池（暂计） | 365 | 天／地／玄／黄 `18/45/147/155`；同 ID 多来源只计一次 | 仅敌人展示、九阳见闻、无本界合法来源的外来武学 |
+| 本界全路线可习得池（暂计） | 366 | 天／地／玄／黄 `18/46/147/155`；同 ID 多来源只计一次；`sk_tiezhang` 只按 9 品残承计地阶 | 仅敌人展示、九阳见闻、无本界合法来源的外来武学 |
 | 单周目天级预算 | ≤7 | 首次学会、补成完整、非核心忆起均占名额 | 已计数同 ID 的重复授艺、完本印证 |
 | 本界携带栏 | 3 内／3 拳脚／3 兵器 | 射雕带入并可在本界使用 | 轻功、暗器、杂学不可跨书携带 |
 
@@ -939,11 +939,11 @@ assert tianTaken <= 7
 
 ### 9.4 地、玄、黄阶代表与本土装配保底
 
-完整天阶池以图鉴与 Canon v1.6 §13 为上游权威；本界全路线可习得池暂计 365 门。本节只列玩家在本时代实际会用到的代表。地阶承担门派进阶和主机制，玄阶承担构筑骨架，黄阶保证不靠跨界携带也能开局。
+完整天阶池以图鉴与 Canon v1.7 §13 为上游权威；本界全路线可习得池暂计 366 门。本节只列玩家在本时代实际会用到的代表。地阶承担门派进阶和主机制，玄阶承担构筑骨架，黄阶保证不靠跨界携带也能开局。
 
 | 大阶 | 内功代表 | 拳脚代表 | 兵器代表 | 其他代表 |
 |---|---|---|---|---|
-| 地 | `sk_jinguanyusuo`、`sk_nizhuanjingmai`、`sk_bitaoxuangong`、`sk_chiliandugong`、`sk_jueqingbixuejue`、`sk_jinganghufagong`、`sk_caoyuanjunzhenxinfa` | `sk_chilianshenzhang`、`sk_lingshequan`、`sk_luoyingshenjianzhang`、`sk_lanhuafuxueshou` | `sk_tongguijian`、`sk_yinyangdaoluan`、`sk_wulundazhuan`、`sk_yuxiaojianfa`、`sk_chilianfuchen`、`sk_jindaoheijianjue`、`sk_xueshantieshan` | `sk_gumuqinggong`、`sk_zhongjianyi`、`sk_mujianyi`、`sk_dagouzhen` |
+| 地 | `sk_jinguanyusuo`、`sk_nizhuanjingmai`、`sk_bitaoxuangong`、`sk_chiliandugong`、`sk_jueqingbixuejue`、`sk_jinganghufagong`、`sk_caoyuanjunzhenxinfa` | `sk_chilianshenzhang`、`sk_lingshequan`、`sk_luoyingshenjianzhang`、`sk_lanhuafuxueshou`、`sk_tiezhang`（神雕残承按 9 品） | `sk_tongguijian`、`sk_yinyangdaoluan`、`sk_wulundazhuan`、`sk_yuxiaojianfa`、`sk_chilianfuchen`、`sk_jindaoheijianjue`、`sk_xueshantieshan` | `sk_gumuqinggong`、`sk_zhongjianyi`、`sk_mujianyi`、`sk_dagouzhen` |
 | 玄 | `sk_quanzhenxinfa`、`sk_hanyuxinjue`、`sk_wuguanxinfa`、`sk_jindunxinfa` | `sk_meinvquan`、`sk_sanhuajudingzhang`、`sk_suohouqinnashou`、`sk_tongbeijin` | `sk_quanzhenjian`、`sk_yunvjian`、`sk_jinlingsuo`、`sk_huweijian` | `sk_jinyangong`、`sk_yufengzhen`、`sk_lijianyi`、`sk_ruanjianyi` |
 | 黄 | `sk_gumuxinfa`、`sk_quanzhentunajue`、`sk_zhuangxingong`、`sk_zhamabu` | `sk_tianluodiwang`、`sk_sanqingzhang`、`sk_huyuanquan`、`sk_changquanrumen` | `sk_hantanjian`、`sk_zhongnanjian`、`sk_biaojujianfa`、`sk_wuguanjian` | `sk_buquegong`、`sk_ganyebu`、`sk_lianhualuo` |
 
@@ -991,6 +991,7 @@ assert tianTaken <= 7
 | 门派课业 | 全真、古墓、丐帮、密宗、绝情谷表内武学 | 同时验身份、职级、前置与贡献 | 退派后清账再重复领天级名额 |
 | 人物羁绊 | `sk_hama`、`sk_anran`、`sk_suxin` | 任务与关系门槛都满足才授 | 用礼物跳过关键人生节点 |
 | 观摩后补诀 | `sk_dagou`、`sk_wulundazhuan` 等 | 观摩只到图鉴标注层数，补诀另验导师 | 把 NPC 已会武学全部转成玩家来源 |
+| 残承授艺／残谱 | `sk_tiezhang`（神雕按 9 品、最高 9 重） | `q_03_side_95` 三选一口授中的裘千尺旧传，或 `q_03_side_05` 后旧寨试掌；入口 A 未选仍可走入口 B；各任务效果独立幂等，技能层按同一 9 品／9 重来源去重；`reqsOverride:{sect:null}` 只移除门派身份 | 从裘千尺、慈恩或旧寨敌人尸体掉落；绕过 `sk_tiezhangxinfa≥5` 等其余门槛；双入口重复领取；误计完整天阶 |
 | 前代校合 | §3.9 列出的五个传承源 | 只按 `design/20` 校合；本界暂计池按 `sk_*` 去重，不重复计来源 | 自创新 `sk_*` 或忽略信物唯一性 |
 
 若上游已经为秘籍定义 `it_miji_*`／`it_canye_*`，章节只引用；没有正式物品 ID 时，本章以“授艺记录／任务态残拓”结算，不抢先造物品 ID。
@@ -1493,21 +1494,35 @@ B = I × H = 200 × 15 = 3,000 两
 | 重阳七星阵首 | 全真三代 / 北斗阵 | `sk_quanzhenzhoutiangong` 全真周天功（地上9，阳；**原创扩展**） | `sk_quanzhenxinfa`（玄中5）、`sk_quanzhentunajue`（黄中2） | `sk_tiangang`（天下10）、`sk_dabeidouzhen`（玄中5）、`sk_quanzhenjian`（玄中5）、`sk_sanqingzhang`（黄中2）、`sk_quanzhenqinna`（黄上3） | `boss; 9/9; 13000; 9000; 13000; yang; fullTemplate; M1` | `0.8370 / 1.000` | `27.48→23.00` | 主运与 ≥9 外功均由书界 02 图鉴闭合；生产构建阻断解除 |
 | 金轮法王（大胜关 / 襄阳复用画像） | 吐蕃密宗 | `sk_longxiang` 龙象般若功（天中11，阳） | `sk_mizonghufashen`（玄上6）、`sk_zhuohuogong`（玄下4） | `sk_wulundazhuan`（地上9）、`sk_dashouyin`（玄上6）、`sk_jingangxiangmochu`（玄上6）、`sk_falunshou`（玄中5） | `boss; 11/8; 13000; 9000; 13000; yang; fullTemplate; M1` | `0.7959 / 1.000` | `28.90→23.00` | 作者决定（2026-09-27）：金轮低于五绝；主运天中11 使 10 品不可行，以 `effLayer=8` 在同品内体现次序；两战各建动态态 |
 | 公孙止 | 绝情谷 | `sk_jueqingbixuejue` 绝情闭穴诀（地上9，阴） | `sk_jueqingxinjue`（黄上3）、`sk_jueqingdaoyin`（黄中2） | `sk_jindaoheijianjue`（地上9）、`sk_yinyangdaoluan`（地中8）、`sk_jueqingjian`（黄上3）、`sk_jindaojichu`（黄上3） | `boss; 9/9; 13000; 9000; 13000; yin; fullTemplate; M1` | `0.8370 / 1.000` | `27.48→23.00` | 主运与 ≥9 外功均由本书补录闭合；闭穴仍走 Buff／路线 |
-| 裘千尺 | 铁掌传承 / 绝情谷 | `sk_tiezhangyunqigong` 铁掌运气功（绝对天下10；个人残承按地上9、9重，阳；**原创扩展**） | `sk_tiezhangxinfa`（玄中5）、`sk_tiezhangzhuang`（黄中2） | `sk_tiezhang`（天下10）、`sk_zaoheding`（玄上6）、`sk_duanfengzhang`（玄上6）、`sk_heishazhang`（黄中2） | `boss; 9/9; 13000; 9000; 13000; yang; fullTemplate; M1` | `0.8370 / 1.000` | `27.48→23.00` | 个人实例记 `partial:true,lineageGrade:9,maxLayer:9`；伤前具体传承层级仍 **（待考）**，构建阻断解除 |
-| 霍都 | 密宗弟子 / 蒙古王子 | `sk_jinganghufagong` 金刚护法功（地上9，阳） | `sk_mizonghufashen`（玄上6）、`sk_zhuohuogong`（玄下4） | `sk_xueshantieshan`（地上9）、`sk_huodushanfa`（玄上6）、`sk_falunshou`（玄中5）、`sk_jingangjue`（黄上3） | `boss; 9/9; 13000; 9000; 13000; yang; fullTemplate; M1` | `0.8370 / 1.000` | `27.48→23.00` | 主运与 ≥9 外功均由本书补录闭合；不设首领专用学习锁 |
-| 黄药师 | 桃花岛 | `sk_taohuaguiyuanjue` 桃花归元诀（天中11，调和；**原创扩展**） | `sk_taohuatunaxi`（玄下4）、`sk_yaoputunaxi`（黄中2） | `sk_tanzhi`（天下10）、`sk_bihai`（天下10）、`sk_lanhuafuxueshou`（地中8）、`sk_yuxiaojianfa`（地中8）、`sk_luoyingshenjianzhang`（地下7） | `boss; 11/9; 13000; 9000; 13000; harmony; fullTemplate; M1` | `0.7885 / 1.000` | `29.17→23.00` | 神雕使用完整 11 品来源；具名主运保持五绝 11/9 地位，不再依赖无 ID 兜底 |
+| 裘千尺 | 铁掌传承 / 绝情谷 | `sk_tiezhangyunqigong` 铁掌运气功（绝对天下10；裘千尺来源实例按地上9、9重，阳；**原创扩展**） | `sk_tiezhangxinfa`（玄中5）、`sk_tiezhangzhuang`（黄中2） | `sk_tiezhang`（完整天下10）、`sk_zaoheding`（玄上6、阴）、`sk_duanfengzhang`（玄上6）、`sk_heishazhang`（黄中2） | `boss; 9/9; 13000; 9000; 13000; yang; fullTemplate; M1` | `0.8370 / 1.000` | `27.48→23.00` | 三门内功全阳，同性质阳招按 `design/05` §5.3 取 `+12%+4%`；主要出手阴性 `sk_zaoheding` 则取 Z5 `−12%`，无豁免。主运来源实例记 `partial:true,lineageGrade:9,maxLayer:9`；完整 10 品铁掌与 §7.6 玩家残承分开；伤前具体传承层级仍 **（待考）** |
+| 霍都 | 密宗弟子 / 蒙古王子 | `sk_jinganghufagong` 金刚护法功（地上9，阳） | `sk_mizonghufashen`（玄上6）、`sk_zhuohuogong`（玄下4） | `sk_xueshantieshan`（地上9，阴）、`sk_huodushanfa`（玄上6、阴）、`sk_falunshou`（玄中5）、`sk_jingangjue`（黄上3） | `boss; 9/9; 13000; 9000; 13000; yang; fullTemplate; M1` | `0.8370 / 1.000` | `27.48→23.00` | 三门内功全阳，同性质阳招按 `design/05` §5.3 取 `+12%+4%`；阳主运施展阴性 `sk_xueshantieshan` 或 `sk_huodushanfa` 时均取 Z5 `−12%`，无人物豁免 |
+| 黄药师 | 桃花岛 | `sk_taohuaguiyuanjue` 桃花归元诀（天中11，调和；**原创扩展**） | `sk_taohuatunaxi`（玄下4）、`sk_yaoputunaxi`（黄中2） | `sk_tanzhi`（天下10）、`sk_bihai`（天下10）、`sk_lanhuafuxueshou`（地中8）、`sk_yuxiaojianfa`（地中8）、`sk_luoyingshenjianzhang`（地下7） | `boss; 11/9; 13000; 9000; 13000; harmony; fullTemplate; M1` | `0.7885 / 1.000` | `29.17→23.00` | 神雕使用完整 11 品来源；具名主运固定五绝 `11/9` 画像 |
 | 杨过 | 古墓 / 白驼 / 剑冢传承 | `sk_jiuyin` 九阴真经（天上12，调和） | `sk_hanyuxinjue`（玄上6）、`sk_hanyujinggong`（玄中5） | `sk_anran`（天中11）、`sk_xuantie`（天中11）、`sk_suxin`（天中11）、`sk_tanzhi`（天下10）、`sk_yunvjian`（玄上6） | `boss; 12/9; 13000; 9000; 13000; harmony; fullTemplate; M1` | `0.7646 / 1.000` | `30.08→23.00` | 复用 `skills-wujue` 的古墓石刻来源；不另造个人专属主运 |
 | 蒙古攻城百户 | 蒙古军伍 | `sk_caoyuanjunzhenxinfa` 草原军阵心法（地上9，阳） | `sk_jundituna`（玄中5）、`sk_caoyuantunaxi`（黄上3） | `sk_pojunqiangfa`（地上9）、`sk_yanmengqishe`（地中8）、`sk_mengguqishe`（玄中5）、`sk_qimawandaofa`（玄中5）、`sk_mengguduanmao`（玄中5） | `boss; 9/9; 13000; 9000; 13000; yang; fullTemplate; M1` | `0.8370 / 1.000` | `27.48→23.00` | 新主运闭合 9 品门槛；9 品外功继续复用 `sk_pojunqiangfa` |
 
 表内先写 `kind`，随后七项参数固定为 `effGrade/effLayer; mpRatioBp; practiceBp; capacityScaleBp; innerNature; openPolicy; milestones`；`M1={meridianComplete:true,smallCycle:true,greatCycle:false,twelveCycle:false,turns:0}`，只表示路线所涉经脉全通 + 小周天，不表示 20 脉全开。七星阵各阵眼、战阵军官与一切独立出手召唤物各有一个 `MeridianFlowModule`；音律场、毒区、号角、投石等纯环境行为无实例。金轮两次出战复用静态画像但各建动态态；杨过、金轮的 `capExempt` 只改显示等级，不绕过中武 / 高武压制。模块不持有 RNG；Core 仅在成功命令事务中注入唯一全局 `battle` 流，按既定提交顺序消费并与状态原子提交，不派生单位子流。`effGrade/effLayer` 只取主运内功的最终有效品阶 / 层数。九个首领画像共配 27 门内功、40 门外功；每人内功 3 门、外功 4–5 门。
 
-本界 `G=9`，所以所有武学型 Boss 主运至少 9。李莫愁、公孙止、霍都和蒙古百户已由配套补录图鉴补齐真实 9 品主运，其中前三者也补齐 9 品外功；杨过复用已有 `sk_jiuyin`，不再使用地位兜底冒充具体武学。作者决定（2026-09-27）将神雕地位次序定为金轮 10、五绝 11、杨过 12；金轮因专属主运已是天中11，继续用 `effLayer=8`，从而以 `11/8 < 11/9 < 12/9` 落实严格次序。书界 02 补录已为重阳七星阵首、裘千尺和黄药师分别提供 `sk_quanzhenzhoutiangong`、`sk_tiezhangyunqigong` 残承与 `sk_taohuaguiyuanjue` 完整来源；三者均绑定实际 ID，旧跨书占位与构建阻断已解除。
+本界 `G=9`，所以所有武学型 Boss 主运至少 9。李莫愁、公孙止、霍都和蒙古百户已由配套补录图鉴补齐真实 9 品主运，其中前三者也补齐 9 品外功；杨过复用已有 `sk_jiuyin`，以合法具名主运固定 `12/9/harmony` 画像。作者决定（2026-09-27）落实为金轮 `11/8`、五绝黄药师 `11/9`、杨过 `12/9`，严格满足 `11/8 < 11/9 < 12/9`。书界 02 补录已为重阳七星阵首、裘千尺和黄药师分别提供 `sk_quanzhenzhoutiangong`、`sk_tiezhangyunqigong` 残承与 `sk_taohuaguiyuanjue` 完整来源；三者均绑定实际 ID，生产配装闭合。
 
 神雕按 `design/21` §13.4 开放擒拿 / 点穴 1–9、逆催与多路线反制；公孙止“闭穴”只能由图鉴路线 / Buff 表达，不获得脚本免疫。Z4M / Z5M 各取整一次，护体内劲位于护盾后、`mpGuard` 前，经脉速度先于擒拿移动倍率；9 级控制仍走 06 的硬控递减与终局保护。
 
-逐单位静态复核统一用 10 / 6 段代表路线：精英锚 9.80 轮；六个 9 品行均为 27.48 轮，以 `23/27.478726=0.837011≈0.8370` 调整整场 HP；金轮 28.90 轮以 `23/28.899847=0.795852≈0.7959` 调至 23，黄药师 29.17 轮以 `23/29.170000=0.788481≈0.7885` 调至约 23，杨过改为调和性质后仍为 30.08 轮，以 `23/30.079652=0.764637≈0.7646` 调至 23。重阳阵首、裘千尺和黄药师从同七参的无 ID 替补换为具名主运，调倍率前后轮数分别仍是 `27.48→23.00`、`27.48→23.00`、`29.17→约23.00`；不压经脉，也不追加血量 / 防御调整。襄阳高台与多体阵战仍须以具名 `full` 阵容固定 RNG 回放 **（待实测）**。
+逐单位静态复核统一用 10 / 6 段代表路线：精英锚 9.80 轮；六个 9 品行均为 27.48 轮，以 `23/27.478726=0.837011≈0.8370` 调整整场 HP；金轮 28.90 轮以 `23/28.899847=0.795852≈0.7959` 调至 23，黄药师 29.17 轮以 `23/29.170000=0.788481≈0.7885` 调至约 23，杨过改为调和性质后仍为 30.08 轮，以 `23/30.079652=0.764637≈0.7646` 调至 23。重阳阵首、裘千尺和黄药师接入具名主运后七参未变，调倍率前后仍分别为 `27.48→23.00`、`27.48→23.00`、`29.17→约23.00`；不压经脉，也不追加血量 / 防御调整。
 
-#### 12.8.1 图鉴缺口
+#### 12.8.1 外放标记后的节奏复核
+
+`boss_pacing.py` 是 `estimateOnly=true` 的耐久估算器，不模拟敌方外放招的射程、范围或 Z5M 输出。因此外放标记不会改变下表的“玩家击破该单位”静态轮数，但会提高具名战斗的敌方输出威胁；结论只可用于确认耐久仍在 Boss 12–25 轮窗口，不能替代固定 RNG 回放。
+
+| 单位 | 本次纳入的外放招来源 | 七参 / HP / DEF | 工具复核（原记录→本次） | 结论 |
+|---|---|---|---:|---|
+| 金轮法王 | `sk_dashouyin` 的大手印落点掌风；实体飞轮不按外放 | `11/8/13000/9000/13000/yang/fullTemplate/M1`；`0.7959/1.000` | `23.00→23.0014` | 在窗；不改 HP / DEF |
+| 黄药师 | `sk_tanzhi` 离体指力、`sk_bihai` 内力驱动伤敌音波、`sk_yuxiaojianfa` 的 `mv_yuxiaojianfa_jianqi` 箫中剑气 | `11/9/13000/9000/13000/harmony/fullTemplate/M1`；`0.7885/1.000` | `23.00→23.0005` | 在窗；不改 HP / DEF |
+| 杨过 | `sk_xuantie` 的离体剑气、`sk_tanzhi` 离体指力、`sk_yunvjian` 的 `mv_yunvjian_lengyue` 远程剑气 | `12/9/13000/9000/13000/harmony/fullTemplate/M1`；`0.7646/1.000` | `23.00→22.9989` | 在窗；不改 HP / DEF |
+| 裘千尺 | `sk_tiezhang` 无新增外放；复核完整外功与 9 品主运组合 | `9/9/13000/9000/13000/yang/fullTemplate/M1`；`0.8370/1.000` | `23.00→22.9997` | 在窗；`sk_zaoheding` 为主要阴招，输出回放须计 Z5 `−12%`；阳招照常计三运同源 `+4%` |
+| 霍都 | `sk_xueshantieshan`、`sk_huodushanfa` 均为实体扇招、非外放；另核 Z5 异性惩罚 | `9/9/13000/9000/13000/yang/fullTemplate/M1`；`0.8370/1.000` | `23.00→22.9997` | 在窗；两门阴性扇法输出回放均须计 `−12%`；阳招照常计三运同源 `+4%` |
+
+五人均保持既定七参和耐久倍率；尤其不得为抵消外放输出而压低经脉。襄阳高台、桃林试艺、重剑校艺及多体阵战仍须以具名 `full` 行动表固定 RNG 回放 **（待实测）**，越界时按 `design/21` §11.9.2 先调整整场 HP / 阶段耐久或防御，不改主运品阶、层数与经脉完成度。裘千尺与霍都另按上表落实阳主运使用阴招的 Z5 `−12%`；两人三门内功均为阳，同性质阳招的三运同源 `+4%` 仍照常叠加，固定 RNG 回放不得漏算。
+
+#### 12.8.2 图鉴缺口
 
 | 人物 / 单位 | 原缺口 | 本轮处理 / 当前状态 |
 |---|---|---|
@@ -1516,7 +1531,7 @@ B = I × H = 200 × 15 = 3,000 两
 | 公孙止 | 9 品主运；至少一门 ≥9 外功 | 已补 `sk_jueqingbixuejue`、`sk_jindaoheijianjue`（均地上9）；阻断解除 |
 | 裘千尺 | 9 品铁掌同源主运；至少一门 ≥9 外功 | **已补：**`sk_tiezhangyunqigong` 个人 9 品残承 + `sk_tiezhang`（天下10）；七参性质改为 `yang`，阻断解除 |
 | 霍都 | 9 品主运；至少一门 ≥9 外功 | 已补 `sk_jinganghufagong`、`sk_xueshantieshan`（均地上9）；阻断解除 |
-| 黄药师 | 11 品桃花岛同源主运 | **已补：**`sk_taohuaguiyuanjue`（天中11）完整来源；具名 `11/9/harmony` 替换五绝兜底 |
+| 黄药师 | 11 品桃花岛同源主运 | **已补：**`sk_taohuaguiyuanjue`（天中11）完整来源；固定具名 `11/9/harmony` 五绝画像 |
 | 杨过 | 12 品真实主运 | 已复用 `sk_jiuyin`（天上12、调和），参数改为 `12/9/harmony`；不新增个人专属武学 |
 | 蒙古攻城百户 | 9 品军伍主运 | 已补 `sk_caoyuanjunzhenxinfa`（地上9）；外功继续复用 `sk_pojunqiangfa`（地上9），阻断解除 |
 
@@ -1645,7 +1660,7 @@ B = I × H = 200 × 15 = 3,000 两
 | D03-V14 | 五级职级 | L1–L5 贡献门槛 0/300/900/2400/6000；月给／配给由 `I=200` 算为 6/4、12/8、20/14、32/20、44/30 |
 | D03-V15 | 招募名单 | 重点 11 ≥6；每人有 D 级、任务硬门槛、窗口、协同和补救；未入 `design/18` 者无新 `npc_*` |
 | D03-V16 | 可学武学 ID 全仓检索 | 每个 `sk_*` 均存在于既有图鉴或配套补录图鉴；`sk_jiuyang` 只有 `heard`，不生成学习实例 |
-| D03-V17 | 天级与全池统计 | 完整原生天级 18；本界全路线可习得池暂计天／地／玄／黄 `18/45/147/155`、总计 365；单周目天级唯一计数 ≤7 |
+| D03-V17 | 天级与全池统计 | 完整原生天级 18；本界全路线可习得池暂计天／地／玄／黄 `18/46/147/155`、总计 366；五绝册子池 155（10/19/63/63）；单周目天级唯一计数 ≤7 |
 | D03-V18 | 装配保底 | 非互斥来源中内功、拳脚、兵器各至少 3 门；前 60% 流程可接触 |
 | D03-V19 | 冲穴累计 | 新增 3 脉、18,180H；累计 78 穴、8 通脉、36,540H；任督皆通才得小周天 |
 | D03-V20 | 情花毒 | 进入每次移动最多 2 检、进入／停留各 25%、品阶 8、每回合至多发作 1 次、两种专属根治均可达 |
@@ -1658,9 +1673,13 @@ B = I × H = 200 × 15 = 3,000 两
 | D03-V27 | 前后回响 | 射雕读入 ≥5、倚天写出 ≥5；77 年重逢逐人过 `design/18`，回响不改倚天起点 |
 | D03-V28 | YAML 片段 | 三段示例可由 YAML 解析器加载；引用 ID 均存在或在本文新增表登记 |
 | D03-V29 | Markdown 完整性 | 围栏成对、表格无截断、目录与正文一致；无未完成占位语 |
-| D03-V30 | 修改范围 | NXB03 交付只含本文、配套 `skills-bulu-03-shendiao.md` 与 `tools/agents/reports/NXB03.md`；同时覆盖未跟踪新文件 |
+| D03-V30 | 修改范围 | NXfixD-03 交付只含本文、`catalog/npcs-ch03-shendiao.md` 与 `tools/agents/reports/NXfixD-03.md` |
 | D03-V31 | 经脉配置 | §12.8 的精英 / Boss 七参数齐全；各独立武学行动者一实例，路线引用仅来自 `MoveDef.meridianRouteRef` |
 | D03-V32 | 经脉回归 | 标准对标准 Z4M / Z5M / 速度均 10000 bp，行动轮 `5.0/9.7/24.8`；结算与控制顺序逐项符合 `design/21` |
+| D03-V33 | 铁掌残承双入口 | `q_03_side_95` 的三选一口授可选铁掌；未选时仍可走 `q_03_side_05` 后旧寨入口。两入口各以任务效果键独立幂等；技能层按同一 `sourceGrade=9/sourceCap=9` 残承去重，结果固定 `partial:true,lineageGrade:9,maxLayer:9`，重复入口只作印证 |
+| D03-V34 | 铁掌发放边界 | 两入口均写 `reqsOverride:{sect:null}`，但保留属性、拳掌资质和 `sk_tiezhangxinfa≥5`；仅脱战、安全交接、任务成功后结算，三类人物均无尸体掉落；裘千尺外功仍为完整 10 品 |
+| D03-V35 | 阴阳相性 | 霍都施展阴性 `sk_xueshantieshan`、`sk_huodushanfa`，裘千尺施展阴性 `sk_zaoheding` 时，阳主运均在 Z5 恰计 `−12%`，不设人物豁免；两人使用同性质阳招时，三运同源 `+4%` 照常计 |
+| D03-V36 | 外放后静态节奏 | 金轮 23.0014、黄药师 23.0005、杨过 22.9989，均在 Boss 12–25 窗口；黄药师“箫中剑气”和杨过“冷月窥人”已纳入外放清单；工具输出须带 `estimateOnly=true`，具名固定 RNG 仍标 **（待实测）** |
 
 ---
 
@@ -1674,7 +1693,7 @@ B = I × H = 200 × 15 = 3,000 两
 | D03-S02 | 陆庄外围选择的品德变化 | −3..+3 **【建议值】** | `design/12` 按任务伦理分配，不超过本界单步尺度 |
 | D03-S03 | 凌波前代校合技艺门槛 | `formation≥40` **【建议值】** | 已引用 `design/20` 的建议值；待 `design/03` 技艺尺度联调后定稿 |
 | D03-S04 | 名医／高僧经脉指导 | `rateBp=1500`、`successBp=800`、`costReduceBp=500` **【建议值】** | 复用 `design/15` 建议，待 `design/12` 落指导额度 |
-| D03-S05 | **已解决：**书界 02 补录结果 | 重阳七星阵首使用 `sk_quanzhenzhoutiangong` + `sk_tiangang`；裘千尺使用 `sk_tiezhangyunqigong` 9 品残承 + `sk_tiezhang`；黄药师使用完整 `sk_taohuaguiyuanjue` | §12.8 已替换具名 ID；三个跨书占位与构建阻断均解除 |
+| D03-S05 | **已解决：**书界 02 补录结果 | 重阳七星阵首使用 `sk_quanzhenzhoutiangong` + `sk_tiangang`；裘千尺使用 `sk_tiezhangyunqigong` 9 品残承 + 完整 10 品 `sk_tiezhang`；黄药师使用完整 `sk_taohuaguiyuanjue` | §12.8 已替换具名 ID；三个跨书占位与构建阻断均解除 |
 
 ### 本文依赖的上游事实
 
@@ -1695,7 +1714,7 @@ B = I × H = 200 × 15 = 3,000 两
 | D03-P02 | **已解决：**Canon v1.2 §12 已将旧 `rg_NN_*` 迁为全局 `rg_*`，并登记章节场景 `sc_NN_*` | 时代图层与章节场景已分域 |
 | D03-P03 | **已解决：**Canon v1.2 §12 已登记 `city_*`、`rp_*`、`biz_*`、`frag_*`、`lgs_*` 等命名空间 | AR-04～06、AR-13 所需前缀已纳入基准 |
 | D03-P04 | **已解决：**`design/02` §6.3 已规定通用 `echo_NN_fate`；书眠适配器从既有 `ch03.fate_echo` 单向派生 | 当前唯一剧情单写者仍是故事稿的 `ch03.fate_echo`；章节不得自行创造或双写同义状态 |
-| D03-P05 | 汇总本界地 / 玄 / 黄全路线可习得池并替换阶段性统计 | **未决：**本次由 `16/45/147/155=363` 加两门新天阶，暂计 `18/45/147/155=365`；天阶部分已由 Canon v1.6 接收，待 `design/05` 汇总各书补录后统一重算其余三阶 |
+| D03-P05 | 汇总本界地 / 玄 / 黄全路线可习得池并替换阶段性统计 | **未决：**NXT 由 `16/45/147/155=363` 加两门新天阶至 `18/45/147/155=365`，NXfix-wujue 再加入一门地上残承，本文暂计 `18/46/147/155=366`；天阶部分已由 Canon v1.7 接收，待 `design/05` 汇总各书补录后统一重算其余三阶 |
 
 ### 原著考据待办
 
@@ -1711,7 +1730,9 @@ B = I × H = 200 × 15 = 3,000 两
 | D03-O04 | 神雕主改命跨书旗标最终保留哪一个？ | **已解决：**剧情只写故事稿定义的 `ch03.fate_echo`；书眠适配器按 `design/02` §6.3 派生标准 `echo_NN_fate` 投影，章节不双写 |
 | D03-O05 | 任务当量采用 179 还是 180？ | 先按分项 180 布点，再由 `expScale` 锁到 344,050；上游修正后跟随正式值 |
 | D03-O06 | 襄阳 XL 战低端设备是否减少单位？ | 是；规则仍 ≤24，`low` 档把同类单位合并为战阵／预备队，不删战线和目标 |
-| D03-O07 | 神雕具名 Boss 经脉参数何时定稿？ | 默认先用 §12.8；待图鉴路线全量挂接后固定 RNG 复跑，尤其守住 24.8 轮上沿，不以模板零漂移冒充具名实测 |
-| D03-O08 | **已解决：**书界 02 的全真、铁掌与桃花补录何时替换本界三项跨书占位？ | NXT 已在 §12.8 直接替换为三个具名 `sk_*`，并保持原七参、轮数与地位次序；NXfix 仅需把 `sk_tiezhang` 的神雕来源写回其归属图鉴 |
+| D03-O07 | 神雕具名 Boss 经脉参数何时定稿？ | **部分解决：**外放后静态估算已在 §12.8.1 复跑并全部落在 12–25 轮；仍待具名行动表固定 RNG 复跑输出威胁，不以 `estimateOnly` 结果冒充实测 |
+| D03-O08 | **已解决：**书界 02 的全真、铁掌与桃花补录何时替换本界三项跨书占位？ | NXT 已在 §12.8 替换为三个具名 `sk_*`；NXfix-wujue 已登记 `sk_tiezhang` 神雕 9 品残承，本文已落玩家双入口、安全发放及 366 门阶段性总池 |
+| D03-O09 | 霍都是否应为两门阴性扇法另换主运或获得相性豁免？ | 否；当前没有合法、同源且 9 品的阴／调和主运，默认保留阳性 `sk_jinganghufagong`，施展 `sk_xueshantieshan`、`sk_huodushanfa` 时均严格承受 Z5 `−12%`；阳招仍取三运同源 `+4%`。若上游调整性质或新增合法来源，再按七参重跑 |
+| D03-O10 | 裘千尺是否应为主要出手 `sk_zaoheding` 另换主运或获得相性豁免？ | 否；保留铁掌同源阳性 `sk_tiezhangyunqigong`，阴性枣核钉严格承受 Z5 `−12%`，阳性铁掌／断峰掌仍取三运同源 `+4%`；七参、HP／DEF 不变 |
 
 
