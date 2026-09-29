@@ -1,0 +1,261 @@
+<!doctype html>
+<!--
+六脉神剑 · 默认风格包视觉实验（原创扩展）
+用法：直接用支持 Canvas 2D 的浏览器打开本文件；无需服务、网络、图片或字体文件。
+参数：CONFIG.cycle = 5.6 秒；CONFIG.dprCap = 2；CONFIG.seed = 601；
+      墨浓滑杆 40–140%，速度滑杆 0.5–1.5 倍，均为审美参数，不是战斗数值。
+六个抽象指端分两组：右手五路、左小指一路；仅展示并列的剑气视觉语汇，
+左右手配置是本轮审美默认，原著指法待考；不定义发招顺序、命中规则或战斗 CT。
+依据：STYLE.md「招式」；design/02 §1.3.1 天龙书界（游戏推定 1093–1094，待考）；
+      design/catalog/skills-wujue.md §5.3 六脉神剑。剑意形容词仍待原著校勘。
+无实体剑、激光、真人肖像；以飞白核心、淡墨断边、透明叠化表现无形。
+空格切换播放，R 重播；原生按钮和滑杆支持 Tab/方向键操作。
+系统开启 reduced motion 时默认停在审阅静帧，可手动播放；失焦页暂停推进时间。
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>六脉神剑 · 水墨视觉实验</title>
+<style>
+  :root { color-scheme:light; --paper:#f4f0e6; --ink:#2b2622; --muted:#766e61; --rule:#d2cabb; --red:#943f33; }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); background:#e8e1d3; font-family:"Songti SC","Noto Serif CJK SC",serif; }
+  main { width:min(1180px,calc(100% - 64px)); margin:36px auto; }
+  header { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:20px; }
+  .eyebrow { color:var(--muted); font:11px/1.7 ui-sans-serif,system-ui,sans-serif; letter-spacing:.2em; }
+  h1 { margin:10px 0 3px; font-size:clamp(28px,4vw,43px); letter-spacing:.14em; font-weight:500; }
+  .subtitle { margin:0; color:var(--muted); font-size:13px; letter-spacing:.13em; }
+  .edition { color:var(--muted); font:11px/1.8 ui-sans-serif,system-ui,sans-serif; text-align:right; }
+  .stage { position:relative; overflow:hidden; background:var(--paper); border:1px solid #d1c8b8; aspect-ratio:16/9; }
+  canvas { display:block; width:100%; height:100%; }
+  .stage::after { content:""; position:absolute; pointer-events:none; inset:14px; border:1px solid #82705c18; }
+  .caption { display:flex; gap:18px; align-items:baseline; justify-content:space-between; margin:14px 0 25px; color:var(--muted); font-size:12px; line-height:1.8; }
+  .caption strong { color:var(--ink); font-weight:400; white-space:nowrap; letter-spacing:.13em; }
+  .controls { display:flex; align-items:center; gap:14px 22px; flex-wrap:wrap; border-top:1px solid var(--rule); padding-top:20px; font:12px/1.5 ui-sans-serif,system-ui,sans-serif; }
+  button { min-width:80px; min-height:40px; padding:8px 15px; font:inherit; color:var(--ink); background:transparent; border:1px solid #9e9280; border-radius:0; cursor:pointer; }
+  button.primary { color:var(--paper); background:var(--ink); border-color:var(--ink); }
+  button:hover { border-color:var(--red); }
+  button:focus-visible, input:focus-visible { outline:2px solid var(--red); outline-offset:4px; }
+  .control { display:grid; grid-template-columns:auto 100px 34px; align-items:center; gap:10px; }
+  input[type=range] { width:100px; accent-color:var(--red); cursor:pointer; }
+  output { font-variant-numeric:tabular-nums; color:var(--muted); text-align:right; }
+  .state { margin-left:auto; color:var(--muted); min-width:110px; text-align:right; }
+  .state::before { content:""; display:inline-block; width:5px; height:5px; margin-right:8px; border-radius:50%; background:var(--red); vertical-align:middle; }
+  footer { margin-top:23px; display:flex; justify-content:space-between; gap:24px; color:var(--muted); font:11px/1.8 ui-sans-serif,system-ui,sans-serif; }
+  footer p { margin:0; }
+  .keyhelp { white-space:nowrap; }
+  @media(max-width:680px) {
+    main { width:calc(100% - 28px); margin:24px auto; }
+    header { align-items:start; gap:8px; } .edition { max-width:95px; font-size:10px; }
+    .stage { aspect-ratio:4/3; } .caption { display:block; margin-bottom:18px; }
+    .caption strong { display:block; margin-bottom:4px; } .state { margin-left:0; }
+    footer { display:block; } .keyhelp { margin-top:8px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div><div class="eyebrow">天书录 / DEFAULT · VFX 02</div><h1>六脉神剑</h1><p class="subtitle">有势无形 · 淡墨留白</p></div>
+    <div class="edition">天龙八部 · 大理<br>1093–1094 · 游戏推定<br>基线候选 / 待审批</div>
+  </header>
+  <section class="stage" aria-label="六道指端剑气视觉舞台">
+    <canvas id="ink" role="img" aria-label="六个抽象指端向右释出剑气，淡墨边缘围出留白路径；水迹逐层扩散，再消隐于纸面。">此演示需要支持 Canvas 2D 的浏览器。</canvas>
+  </section>
+  <div class="caption"><strong>墨显其势，白藏其锋。</strong><span>六个抽象指端：上组右手五路，下组左小指一路。以气痕示意，不作解剖示范。</span></div>
+  <div class="controls" aria-label="视觉审阅控制">
+    <button id="toggle" class="primary" type="button" aria-pressed="true">暂停</button>
+    <button id="restart" type="button">重播</button>
+    <label class="control" for="density">墨浓 <input id="density" type="range" min="40" max="140" value="82" step="1"><output id="densityValue" for="density">82%</output></label>
+    <label class="control" for="speed">速度 <input id="speed" type="range" min="50" max="150" value="100" step="5"><output id="speedValue" for="speed">1.0×</output></label>
+    <span class="state" id="state" role="status" aria-live="polite">循环播放</span>
+  </div>
+  <footer><p>原创视觉实验 · 透明叠化 / 墨迹晕染 / 飞白<br>5.6 秒为审美循环；不模拟战斗 CT、命中范围或发招顺序。</p><p class="keyhelp">空格 播放 / 暂停 · R 重播</p></footer>
+</main>
+<script>
+(() => {
+  'use strict';
+  const CONFIG = { cycle:5.6, dprCap:2, seed:601, width:1400, height:780 };
+  const canvas = document.getElementById('ink'), ctx = canvas.getContext('2d');
+  const toggle = document.getElementById('toggle'), restart = document.getElementById('restart');
+  const density = document.getElementById('density'), speed = document.getElementById('speed');
+  const densityValue = document.getElementById('densityValue'), speedValue = document.getElementById('speedValue');
+  const state = document.getElementById('state'), motion = matchMedia('(prefers-reduced-motion: reduce)');
+  if (!ctx) { state.textContent = '浏览器不支持 Canvas 2D'; toggle.disabled = restart.disabled = true; return; }
+  const paper = document.createElement('canvas'), pctx = paper.getContext('2d');
+  let seed = CONFIG.seed, frame = 0, elapsed = CONFIG.cycle * .4, lastTime = 0;
+  let playing = !motion.matches, width = 1, height = 1, dpr = 1;
+  const random = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+  const clamp = (n,a=0,b=1) => Math.max(a,Math.min(b,n));
+  const smooth = n => { n = clamp(n); return n*n*(3-2*n); };
+  const ink = alpha => `rgba(45,44,39,${clamp(alpha)})`;
+  const rays = [
+    { x:277,y:216,endX:1190,endY:122,bend:-14,thick:1.25 },
+    { x:318,y:288,endX:1280,endY:253,bend:9,thick:.76 },
+    { x:333,y:364,endX:1300,endY:390,bend:-10,thick:1.1 },
+    { x:307,y:442,endX:1220,endY:506,bend:14,thick:.91 },
+    { x:270,y:512,endX:1130,endY:611,bend:-8,thick:.7 },
+    { x:247,y:631,endX:990,endY:710,bend:-20,thick:.8 }
+  ].map((ray,index) => ({...ray,index, flecks:Array.from({length:140},() => ({
+    u:random(), offset:(random()-.5)*2, size:.35+random()*2.7, alpha:.02+random()*.12, phase:random()*6.28
+  }))}));
+  function point(ray,u,time=0) {
+    const taper = Math.sin(Math.PI*u);
+    return { x:ray.x+(ray.endX-ray.x)*u,
+      y:ray.y+(ray.endY-ray.y)*u + ray.bend*taper + Math.sin(u*17+ray.index*2+time*.55)*taper*2.3 };
+  }
+  function strokePath(ray,from,to,offset,lineWidth,alpha,time,roughness=0) {
+    if (to <= from || alpha <= 0) return;
+    const segments = Math.max(2,Math.ceil((to-from)*100));
+    ctx.beginPath();
+    for (let j=0;j<=segments;j++) {
+      const u = from+(to-from)*j/segments, p = point(ray,u,time);
+      const spread = .45+Math.sin(Math.PI*u)*.7;
+      const grit = (Math.sin(u*179+ray.index*7)+Math.sin(u*83))*roughness;
+      const y = p.y + offset*spread + grit;
+      if (!j) ctx.moveTo(p.x,y); else ctx.lineTo(p.x,y);
+    }
+    ctx.lineWidth = lineWidth; ctx.strokeStyle = ink(alpha); ctx.lineCap = 'round'; ctx.stroke();
+  }
+  function wash(x,y,rx,ry,alpha) {
+    ctx.save(); ctx.translate(x,y); ctx.scale(rx,ry);
+    const gradient = ctx.createRadialGradient(0,0,.02,0,0,1);
+    gradient.addColorStop(0,ink(alpha)); gradient.addColorStop(.38,ink(alpha*.45)); gradient.addColorStop(1,ink(0));
+    ctx.fillStyle=gradient; ctx.beginPath(); ctx.arc(0,0,1,0,Math.PI*2); ctx.fill(); ctx.restore();
+  }
+  function buildPaper() {
+    paper.width=CONFIG.width; paper.height=CONFIG.height;
+    pctx.fillStyle='#f4f0e6'; pctx.fillRect(0,0,paper.width,paper.height);
+    seed=CONFIG.seed+1;
+    for (let i=0;i<10500;i++) {
+      const x=random()*paper.width,y=random()*paper.height;
+      pctx.fillStyle=`rgba(124,106,76,${.015+random()*.025})`;
+      pctx.fillRect(x,y,.3+random()*1.1,.5+random()*2.5);
+    }
+    for (let i=0;i<240;i++) {
+      const x=random()*paper.width,y=random()*paper.height;
+      pctx.strokeStyle='rgba(124,106,76,.025)'; pctx.lineWidth=.4;
+      pctx.beginPath(); pctx.moveTo(x,y); pctx.lineTo(x+random()*18-9,y+random()*3); pctx.stroke();
+    }
+  }
+  function drawTips() {
+    for (const ray of rays) {
+      const {x,y}=ray;
+      wash(x-28,y,44,17,.07);
+      ctx.lineWidth=1.1; ctx.strokeStyle=ink(.3); ctx.beginPath();
+      ctx.moveTo(x-83,y-9); ctx.bezierCurveTo(x-51,y-12,x-17,y-12,x-7,y-9);
+      ctx.bezierCurveTo(x+4,y-6,x+5,y+5,x-6,y+9);
+      ctx.bezierCurveTo(x-25,y+12,x-62,y+10,x-84,y+13); ctx.stroke();
+      ctx.strokeStyle=ink(.12); ctx.beginPath(); ctx.moveTo(x-30,y-7);
+      ctx.quadraticCurveTo(x-18,y-5,x-17,y+5); ctx.stroke();
+      const fade=ctx.createLinearGradient(x-90,0,x-42,0);
+      fade.addColorStop(0,'#f4f0e6'); fade.addColorStop(1,'#f4f0e600');
+      ctx.fillStyle=fade; ctx.fillRect(x-95,y-22,58,46);
+    }
+  }
+  function drawRay(ray,phase,time,amount) {
+    const local=phase-ray.index*.014;
+    if(local<0) return;
+    const reach=smooth(local/.35), presence=smooth(local/.09)*(1-smooth((local-.56)/.34));
+    if (presence<.001) return;
+    const dissolve=smooth((local-.43)/.43), opacity=presence*amount;
+    const spread=1+dissolve*2.8;
+    // 低透明度多层淡墨，层宽渐增；不使用发光滤镜。
+    for(let layer=6;layer>=0;layer--) {
+      const lw=(4+layer*4.7)*ray.thick*spread;
+      strokePath(ray,.012,reach,0,lw,opacity*(.008+(.006-layer*.0005)),time,.35);
+    }
+    for (let k=0;k<13;k++) {
+      const u=k/13+.005;
+      if (u>reach) break;
+      const p=point(ray,u,time), radius=(9+Math.sin(k*2+ray.index)*4)*spread;
+      wash(p.x,p.y+Math.sin(k*2.1)*radius*.55,34+dissolve*30,radius,opacity*.025);
+    }
+    // 上下断续笔锋围出纸白核心：看到的是气流扰墨的边界，而非实物剑身。
+    for (let side=-1;side<=1;side+=2) {
+      for(let segment=0;segment<12;segment++) {
+        const start=segment/12+.009, end=Math.min(reach,start+.042+(Math.sin(segment*7+ray.index)+1)*.012);
+        const edge=side*(3.3+ray.thick*1.8)*spread;
+        strokePath(ray,start,end,edge,.55+ray.thick*.45,opacity*(.15-dissolve*.095),time,1.1);
+        strokePath(ray,start+.009,end-.007,edge+side*2.2,1.5,opacity*.032,time,1.9);
+      }
+    }
+    ctx.save(); ctx.strokeStyle=`rgba(244,240,230,${opacity*.92})`;
+    ctx.lineWidth=(2.8+dissolve*3)*ray.thick; ctx.lineCap='round'; ctx.beginPath();
+    for(let j=0;j<=90;j++) {
+      const p=point(ray,reach*j/90,time); if(j===0) ctx.moveTo(p.x,p.y); else ctx.lineTo(p.x,p.y);
+    }
+    ctx.stroke(); ctx.restore();
+    for(const fleck of ray.flecks) {
+      if(fleck.u>reach) continue;
+      const p=point(ray,fleck.u,time), s=Math.sin(Math.PI*fleck.u);
+      const drift=dissolve*(12+fleck.size*4);
+      const off=fleck.offset*(10+s*19)*spread;
+      ctx.fillStyle=ink(opacity*fleck.alpha*(1-dissolve*.5));
+      ctx.beginPath(); ctx.ellipse(p.x+drift,p.y+off+Math.sin(time*.6+fleck.phase)*dissolve*3,
+        fleck.size*(1+dissolve),fleck.size*.35,Math.atan2(ray.endY-ray.y,ray.endX-ray.x),0,Math.PI*2); ctx.fill();
+    }
+    const front=point(ray,reach,time);
+    wash(front.x,front.y,26+20*dissolve,6*spread,opacity*.045);
+  }
+  function paint() {
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.fillStyle='#f4f0e6'; ctx.fillRect(0,0,width,height);
+    const scale=Math.min(width/CONFIG.width,height/CONFIG.height);
+    ctx.translate((width-CONFIG.width*scale)/2,(height-CONFIG.height*scale)/2);
+    ctx.scale(scale,scale); ctx.drawImage(paper,0,0); drawTips();
+    const phase=(elapsed%CONFIG.cycle)/CONFIG.cycle, amount=Number(density.value)/100;
+    for (const ray of rays) drawRay(ray,phase,elapsed,amount);
+  }
+  function resize() {
+    const rect=canvas.getBoundingClientRect();
+    width=Math.max(1,rect.width); height=Math.max(1,rect.height);
+    dpr=Math.min(CONFIG.dprCap,window.devicePixelRatio||1);
+    canvas.width=Math.round(width*dpr); canvas.height=Math.round(height*dpr); paint();
+  }
+  function syncControls() {
+    toggle.textContent=playing?'暂停':'播放';
+    toggle.setAttribute('aria-pressed',String(playing));
+    state.textContent=playing?'循环播放':(motion.matches?'静帧 · 减少动态':'已暂停');
+  }
+  function schedule() {
+    if (playing && !document.hidden && !frame) frame=requestAnimationFrame(tick);
+  }
+  function tick(now) {
+    frame=0;
+    if(!playing || document.hidden) { lastTime=0; return; }
+    if(lastTime) elapsed=(elapsed+Math.min((now-lastTime)/1000,.08)*Number(speed.value)/100)%CONFIG.cycle;
+    lastTime=now; paint(); schedule();
+  }
+  function setPlaying(value) {
+    playing=value; lastTime=0;
+    if(!playing) { cancelAnimationFrame(frame); frame=0; }
+    syncControls(); paint(); schedule();
+  }
+  function replay() { elapsed=0; setPlaying(true); }
+  toggle.addEventListener('click',()=>setPlaying(!playing));
+  restart.addEventListener('click',replay);
+  density.addEventListener('input',()=> { densityValue.value=density.value+'%'; paint(); });
+  speed.addEventListener('input',()=> { speedValue.value=(Number(speed.value)/100).toFixed(2).replace(/0$/,'')+'×'; });
+  document.addEventListener('keydown',event=> {
+    if(event.ctrlKey || event.metaKey || event.altKey || event.repeat) return;
+    if(event.target instanceof HTMLElement && event.target.closest('input,button,textarea,select,[contenteditable]')) return;
+    if(event.code==='Space') { event.preventDefault(); setPlaying(!playing); }
+    if(event.key.toLowerCase()==='r') { event.preventDefault(); replay(); }
+  });
+  document.addEventListener('visibilitychange',()=> {
+    lastTime=0;
+    if(document.hidden) { cancelAnimationFrame(frame); frame=0; } else schedule();
+  });
+  motion.addEventListener('change',()=> {
+    if(motion.matches) { elapsed=CONFIG.cycle*.4; setPlaying(false); }
+  });
+  buildPaper(); resize(); syncControls(); schedule();
+  new ResizeObserver(resize).observe(canvas);
+  window.addEventListener('resize',resize);
+})();
+</script>
+</body>
+</html>
