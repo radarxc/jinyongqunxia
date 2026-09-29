@@ -15,7 +15,7 @@ from typing import Optional, Sequence
 
 from meridian_flow_sim import (
     BP, MOB_PROFILE, STANDARD_PROFILE, STRONG_PROFILE, VERY_STRONG_PROFILE,
-    MeridianProfile, clamp, lerp_anchors, meridian_strength_bp,
+    MeridianProfile, attack_meridian_mult_bp, clamp, lerp_anchors, meridian_strength_bp,
     mul_bp_floor, route_reach_bp, speed_meridian_mult_bp,
 )
 
@@ -31,8 +31,8 @@ PROJECTED_ATTACK_RANGE_BP = (6_500, 22_000)
 RANGE_BONUS_BY_STEP = (0, 2, 4)
 EXTRA_MP_COST_BP_BY_STEP = (0, 200, 400)
 
-# A projected route must touch at least one hand, fingertip, palm or
-# weapon-guiding point already registered by design/15.
+# A projected route normally touches a hand/wrist point registered by
+# design/15; controlled human voice may instead use one of two throat points.
 PROJECTION_ROUTE_POINTS = frozenset({
     "ap_shoutaiyin_shaoshang",
     "ap_shouyangming_shangyang", "ap_shouyangming_hegu",
@@ -44,11 +44,18 @@ PROJECTION_ROUTE_POINTS = frozenset({
     "ap_shoushaoyang_guanchong", "ap_shoushaoyang_yangchi",
     "ap_shoushaoyang_waiguan",
 })
+VOICE_PROJECTION_ROUTE_POINTS = frozenset({
+    "ap_yinwei_tiantu", "ap_yinwei_lianquan",
+})
 
 
-def projection_route_has_endpoint(acupoint_refs: Sequence[str]) -> bool:
+def projection_route_has_endpoint(
+    acupoint_refs: Sequence[str], *, sonic: bool = False, voice: bool = False,
+) -> bool:
     """Whether a full route touches an approved projection endpoint."""
-    return not PROJECTION_ROUTE_POINTS.isdisjoint(acupoint_refs)
+    endpoints = (PROJECTION_ROUTE_POINTS | VOICE_PROJECTION_ROUTE_POINTS
+                 if sonic and voice else PROJECTION_ROUTE_POINTS)
+    return not endpoints.isdisjoint(acupoint_refs)
 
 
 @dataclass(frozen=True)
@@ -76,10 +83,13 @@ class ProjectionMove:
     base_range: int
     spread_steps: tuple[str, str, str]
     route_length: int = 10
+    sonic: bool = False
 
     def validate(self) -> None:
         if self.base_range < 0:
             raise ValueError("base range must be non-negative")
+        if not isinstance(self.sonic, bool):
+            raise ValueError("sonic must be boolean")
         if len(self.spread_steps) != 3 or any(not item for item in self.spread_steps):
             raise ValueError("a projected move needs exactly three spread steps")
         route_reach_bp(self.route_length)  # validates the shared 1..18 bound
@@ -96,6 +106,7 @@ class ProjectionResult:
     extra_mp_cost_bp: int
     extra_mp_cost: int
     attack_mult_bp: int
+    projection_boost_active: bool
 
 
 def projected_attack_mult_bp(
@@ -119,6 +130,17 @@ def projected_attack_mult_bp(
     else:
         result_bp = BP - mul_bp_floor(BP - target_bp, realise_bp)
     return clamp(result_bp, *PROJECTED_ATTACK_RANGE_BP)
+
+
+def _z5m_factors_bp(
+    move: ProjectionMove, attacker: MeridianProfile, defender: MeridianProfile,
+    selected_step: int,
+) -> tuple[int]:
+    """Choose exactly one ordinary/projected Z5M factor."""
+    factor = (attack_meridian_mult_bp(attacker, defender, move.route_length)
+              if move.sonic and selected_step == 0
+              else projected_attack_mult_bp(attacker, defender, move.route_length))
+    return (factor,)
 
 
 def max_expansion_step(
@@ -175,15 +197,15 @@ def projection_result(
     speed_bp = speed_meridian_mult_bp(
         attacker, reference, sealed=sealed, ruptured=ruptured,
     )
+    boost_active = not move.sonic or chosen >= 1
+    (attack_bp,) = _z5m_factors_bp(move, attacker, defender, chosen)
     return ProjectionResult(
         move_id=move.move_id, speed_bp=speed_bp, max_step=maximum,
         selected_step=chosen,
         effective_range=move.base_range + RANGE_BONUS_BY_STEP[chosen],
         spread=move.spread_steps[chosen], extra_mp_cost_bp=extra_bp,
         extra_mp_cost=extra_mp,
-        attack_mult_bp=projected_attack_mult_bp(
-            attacker, defender, move.route_length,
-        ),
+        attack_mult_bp=attack_bp, projection_boost_active=boost_active,
     )
 
 
@@ -214,6 +236,45 @@ EXAMPLE_TIERS = (
     ("高", STRONG_PROFILE, HIGH_MILESTONES),
     ("顶尖", VERY_STRONG_PROFILE, TOP_MILESTONES),
 )
+SONIC_FIXTURE = ProjectionMove(
+    "fixture_voice_sonic", "人声音功夹具", 3,
+    ("圆形 r1", "圆形 r2", "圆形 r3"), 8, True,
+)
+
+
+@dataclass(frozen=True)
+class ActionStage:
+    kind: str
+    damage_kind: Optional[str] = None
+
+
+DASHOUYIN_FIXTURE = (
+    "mv_dashouyin_dashouyin", True,
+    ("圆形 r1", "圆形 r2", "圆形 r3"),
+    ("ap_chongmai_henggu", "ap_chongmai_qichong",
+     "ap_shoutaiyang_wangu", "ap_zutaiyin_yinlingquan",
+     "ap_zushaoyin_taixi", "ap_shouyangming_quchi",
+     "ap_shouyangming_shousanli", "ap_shouyangming_hegu"),
+    (ActionStage("leap"), ActionStage("landing_palm_wind", "projected")),
+)
+
+
+def validate_dashouyin_fixture(fixture: tuple) -> None:
+    """Validate the MF-T24 leap/landing split used by the content gate."""
+    move_id, projection, spreads, route, stages = fixture
+    if move_id != "mv_dashouyin_dashouyin" or projection is not True:
+        raise ValueError("large handprint must be marked projected")
+    if len(spreads) != 3 or any(not spread for spread in spreads):
+        raise ValueError("large handprint needs three reviewed range steps")
+    if not projection_route_has_endpoint(route):
+        raise ValueError("large handprint route needs a hand/wrist endpoint")
+    leaps = [stage for stage in stages if stage.kind == "leap"]
+    if not leaps or any(stage.damage_kind is not None for stage in leaps):
+        raise ValueError("leap movement must not deal damage")
+    damage_stages = [stage for stage in stages if stage.damage_kind is not None]
+    if (len(damage_stages) != 1
+            or damage_stages[0] != ActionStage("landing_palm_wind", "projected")):
+        raise ValueError("only the landing palm wind may deal projected damage")
 
 
 def example_rows(mp_ref: int = 10_000) -> list[tuple[str, str, ProjectionResult]]:
@@ -234,6 +295,10 @@ def run_checks() -> None:
     ))
     assert not projection_route_has_endpoint(("ap_renmai_danzhong",))
     assert not projection_route_has_endpoint(())
+    assert projection_route_has_endpoint(("ap_yinwei_tiantu",), sonic=True, voice=True)
+    assert projection_route_has_endpoint(("ap_yinwei_lianquan",), sonic=True, voice=True)
+    assert not projection_route_has_endpoint(("ap_yinwei_tiantu",), sonic=True)
+    assert not projection_route_has_endpoint(("ap_yinwei_lianquan",), voice=True)
 
     # Standard versus standard is exactly neutral in range, spread and Z5M.
     for move in AUTHOR_EXAMPLES:
@@ -286,6 +351,53 @@ def run_checks() -> None:
         assert "hard-blocked" in str(exc)
     else:
         raise AssertionError("a hard-blocked projected route must be rejected")
+
+    # MF-T23: only sonic steps 1/2 activate projection; each resolves one Z5M.
+    sonic_results = (
+        projection_result(SONIC_FIXTURE, STRONG_PROFILE,
+                          milestones=HIGH_MILESTONES, selected_step=0, mp_ref=12_345),
+        projection_result(SONIC_FIXTURE, STRONG_PROFILE,
+                          milestones=HIGH_MILESTONES, selected_step=1, mp_ref=12_345),
+        projection_result(SONIC_FIXTURE, VERY_STRONG_PROFILE,
+                          milestones=TOP_MILESTONES, selected_step=2, mp_ref=12_345),
+    )
+    ordinary_zero = attack_meridian_mult_bp(
+        STRONG_PROFILE, STANDARD_PROFILE, SONIC_FIXTURE.route_length)
+    assert (sonic_results[0].projection_boost_active,
+            sonic_results[0].effective_range, sonic_results[0].extra_mp_cost_bp,
+            sonic_results[0].attack_mult_bp) == (False, 3, 0, ordinary_zero)
+    assert [(r.projection_boost_active, r.effective_range, r.extra_mp_cost_bp)
+            for r in sonic_results[1:]] == [(True, 5, 200), (True, 7, 400)]
+    assert sonic_results[1].attack_mult_bp == projected_attack_mult_bp(
+        STRONG_PROFILE, STANDARD_PROFILE, SONIC_FIXTURE.route_length)
+    assert sonic_results[2].attack_mult_bp == projected_attack_mult_bp(
+        VERY_STRONG_PROFILE, STANDARD_PROFILE, SONIC_FIXTURE.route_length)
+    assert [result.extra_mp_cost for result in sonic_results] == [0, 247, 494]
+    assert all(len(_z5m_factors_bp(
+        SONIC_FIXTURE, profile, STANDARD_PROFILE, step)) == 1
+        for profile, step in ((STRONG_PROFILE, 0), (STRONG_PROFILE, 1),
+                              (VERY_STRONG_PROFILE, 2)))
+
+    # MF-T24: the real eight-node route passes; four broken variants fail.
+    validate_dashouyin_fixture(DASHOUYIN_FIXTURE)
+    move_id, projection, spreads, route, stages = DASHOUYIN_FIXTURE
+    bad_fixtures = (
+        (move_id, projection, spreads, route,
+         (ActionStage("leap", "projected"), stages[1])),
+        (move_id, projection, spreads, route,
+         (stages[0], ActionStage("landing_palm_wind", "unarmed"))),
+        (move_id, projection, spreads, route,
+         (stages[0], stages[1], ActionStage("aftershock", "projected"))),
+        (move_id, projection, spreads,
+         ("ap_chongmai_henggu", "ap_zushaoyin_taixi"), stages),
+    )
+    for fixture in bad_fixtures:
+        try:
+            validate_dashouyin_fixture(fixture)
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("an invalid MF-T24 fixture must be rejected")
 
     # Frozen author-example table: catches accidental curve or fixture drift.
     expected = {

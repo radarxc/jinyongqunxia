@@ -183,6 +183,7 @@ def estimate(spec: PacingInput) -> dict[str, Any]:
     return {
         "name": spec.name, "chapter": index + 1,
         "chapterName": CHAPTER_NAMES[index], "kind": spec.kind,
+        "estimateOnly": True,
         "standardGrade": standard_grade, "standardLayer": 8,
         "templateRounds": template, "unitRaw": unit_raw,
         "standardRaw": standard_raw, "profile": asdict(profile),
@@ -266,6 +267,7 @@ def run_checks() -> None:
                 "milestones": asdict(chapter_milestones(chapter, "elite")),
             })
             result = estimate(neutral)
+            assert result["estimateOnly"] is True
             assert result["strengthBp"] == flow.BP
             assert result["playerAttackBp"] == flow.BP
             assert result["bossDefenseBp"] == flow.BP

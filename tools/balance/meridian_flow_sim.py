@@ -1029,6 +1029,9 @@ def run_checks() -> None:
         for length in (1, 6, 10, 18):
             values = [(attack_meridian_mult_bp(p, STANDARD_PROFILE, length), defense_meridian_mult_bp(p, STANDARD_PROFILE, length), attack_meridian_mult_bp(STANDARD_PROFILE, p, length), defense_meridian_mult_bp(STANDARD_PROFILE, p, length), speed_meridian_mult_bp(p, STANDARD_PROFILE)) for p in profiles]
             assert all(a[0] <= b[0] and a[1] >= b[1] and a[2] >= b[2] and a[3] <= b[3] and a[4] <= b[4] for a, b in zip(values, values[1:])), (component, length)
+
+    from ultimate_rotation_sim import run_checks as check_ultimate_rotation
+    check_ultimate_rotation()  # MF-T17 / design/05 V9.
     units = make_units()
     hero = units["hero"]
     battle_rng = Sfc32(20260927, "battle")
