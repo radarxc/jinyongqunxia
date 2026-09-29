@@ -211,6 +211,8 @@ def launch(argv: list, prompt_file: Path, log: Path, exit_file: Path, cwd: Path,
 
 
 def tail(path: Path, n: int = 40, drop_hooks: bool = True) -> str:
+    if n <= 0:
+        return ""  # --tail 0：不打印日志（lines[-0:] 会取全部）
     if not path.exists():
         return "（无）"
     lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
