@@ -2,7 +2,7 @@
 
 > 归属：`design/18-npc-and-companions.md` 的主线重要 NPC 数据。年代 1630–1645，引用 `design/02`。
 > 史实人物用史实生卒辅助存在性，小说行为仍依原著；武学未收录者不预建 ID。
-> 版本：v1.4；经脉落地终审（2026-09-29）；书界 07 配装同步（2026-09-29）。
+> 版本：v1.5；经脉落地终审、书界 07 配装与完整实战对手同步（2026-09-29）。
 
 | ID | 人物 / 原著身份 | 生卒 / 年龄 | 门派 / 阵营 | 层级 | 招募要点 | 能力要点 | 跨书 | 出处定位 |
 |---|---|---|---|---|---|---|---|---|
@@ -10,12 +10,12 @@
 | `npc_wenqingqing` | 温青青（夏青青），金蛇郎君之女 | 青年；生卒待考 | `sect_shiliang` | D5 | 石梁温家、妒意与共同成长线 | 金蛇传承待对应图鉴收录 | 否 | 回目待考：石梁庄、金蛇洞 |
 | `npc_xiaxueyi` | 夏雪宜，金蛇郎君 | 壮年；主线前已故 | 金蛇传承 | D5（回忆 / 改命） | 前史改命或书卷投影；常规时代不可活体招募 | 金蛇剑法待图鉴收录 | 传承 | 回目待考：温仪追述、金蛇洞遗骨 |
 | `npc_wenyi` | 温仪，温家女子 / 青青之母 | 中年；命定死亡待考 | `sect_shiliang` | D5 | 温家囚禁与母女团聚改命 | 非战斗 / 医护辅助 | 改命后可 | 回目待考：石梁庄 |
-| `npc_hetieshou` | 何铁手，五毒教主 | 青年；生卒待考 | `sect_wudu` L5 | D5 | 正邪线由敌转友；拜师 / 改名细节待考 | 五毒武学待对应图鉴收录 | 否 | 回目待考：五毒教、华山归服 |
+| `npc_hetieshou` | 何铁手，五毒教主 | 青年；生卒待考 | `sect_wudu` L5 | D5 | 正邪线由敌转友；拜师 / 改名细节待考 | 主运 `sk_hunyuanfangzhuang`；辅运 `sk_wuduxinfa`、`sk_wudutuna`；外功 `sk_xieweibian`、`sk_ruanhongzhusuo`、`sk_hanshasheying`、`sk_wuduquan`；通行主运为**（原创扩展配置·待补本门武学）** | 否 | 回目待考：五毒教、华山归服；第四档 7 品主运与本门图鉴缺口见 `chapters/07-bixue.md` §12.8 |
 | `npc_murenqing` | 穆人清，神剑仙猿 | 老年；生卒待考 | `sect_huashan` L5 | D5 | 华山门规与袁承志师门链 | 华山武学待专项图鉴 | 否 | 回目待考：华山授艺 |
 | `npc_musang` | 木桑道人，铁剑门前辈 | 老年；生卒待考 | `sect_tiejian` | D4 | 棋局、轻功与阿九传承 | 神行百变待对应图鉴收录 | →鹿鼎传承 | 回目待考：华山 / 北京、收阿九 |
 | `npc_huangzhen` | 黄真，铜笔铁算盘 | 中老年；生卒待考 | `sect_huashan` L4→L5 | D4 | 同门许可、军饷与华山善后 | 华山武学待图鉴 | 否 | 回目待考：师门相认、北京 |
 | `npc_guixinshu` | 归辛树，神拳无敌 | 中老年；鹿鼎命定死亡 | `sect_huashan` L4 | D5 | 华山同门与误会；后世刺驾回响 | 主运 `sk_hunyuangong`；外功 `sk_huashandiejinquan07`、`sk_hunyuanzhang`、`sk_tiezhijue`、`sk_poyuquan`、`sk_huashanrujian07` | →鹿鼎 | 回目待考：华山同门、鹿鼎刺驾前史；拳法名为**（原创扩展命名）** |
-| `npc_guierniang` | 归二娘，归辛树之妻 | 中年；鹿鼎命定死亡 | `sect_huashan` | D4 | 患儿救治、家庭与同门线 | 主运 `sk_hunyuangong`；外功 `sk_huashandiejinquan07`、`sk_hunyuanzhang`、`sk_poyuquan`、`sk_tiezhijue`、`sk_huashanquan07` | →鹿鼎 | 回目待考：归家三口；拳法名为**（原创扩展命名）**；首领配装见 `chapters/08-luding.md` §12.8，首槽由书界 08 收尾同步 |
+| `npc_guierniang` | 归二娘，归辛树之妻 | 中年；鹿鼎命定死亡 | `sect_huashan` | D4 | 患儿救治、家庭与同门线 | 主运 `sk_hunyuangong`；辅运 `sk_huashantuna07`、`sk_dantianyangqi`；外功 `sk_huashandiejinquan07`、`sk_hunyuanzhang`、`sk_poyuquan`、`sk_tiezhijue`、`sk_huashanquan07` | →鹿鼎 | 回目待考：归家三口；拳法名为**（原创扩展命名）**；本界试锋与后世首领配装分别见 `chapters/07-bixue.md`、`chapters/08-luding.md` §12.8 |
 | `npc_ajiu` | 阿九，长平公主 / 后来的九难 | 小说生卒待考；历史原型约 1629/1630–1646（两者分离）[H04] | 明宫 / `sect_tiejian` | D5 | 宫变断臂与撤离改命；碧血曾入队可在鹿鼎重逢 | 神行百变待图鉴；剑法核配 | →鹿鼎 | 回目待考：宫中相识、北京城破 |
 | `npc_chengqingzhu` | 程青竹，青竹帮主 | 中老年；生卒待考 | 江湖帮会 | D4 | 护送军饷、帮会声望 | 竹器武学待图鉴 | 否 | 回目待考：军饷争夺 |
 | `npc_jiaowaner` | 焦宛儿，金龙帮人物 | 青年；生卒待考 | `sect_jinlongbang` | D4 | 父仇、帮会重建与袁承志援助 | 金龙帮武学待图鉴 | 否 | 回目待考：金龙帮变故 |
@@ -35,7 +35,7 @@
 | `npc_liyan` | 李岩，闯军将领 / 谋士 | 壮年；原著命定死亡（生卒待考） | `sect_chuangwangjun` | D5 | 军饷、军纪与劝谏链；`dc_07_08` 证据齐备方可与红娘子同时改命 | 军务 / 民生 / 谋略画像 | 改命后可留回响 | 回目待考：闯军会盟、李自成猜忌 |
 | `npc_hongniangzi` | 红娘子，李岩伴侣与军中行动者 | 青壮；原著命定死亡（生卒待考） | `sect_chuangwangjun` | D5 | 暗语、撤离网与独立意愿链；主改命须与李岩同时成立 | 骑战 / 撤离组织待图鉴核配 | 改命后可留回响 | 回目待考：闯军线、李岩遇害后 |
 | `npc_yuzhenzi` | 玉真子，后金宫廷护卫强敌 | 中老年；命定死亡（生卒待考） | 铁剑门支系 / 后金 | D5 | 宫廷敌对与华山终战；仅可受制短时同行，不作无代价常驻 | 主运 `sk_tiejianxuangong`；铁剑门外功按图鉴核配 | 否 | 回目待考：后金宫廷、华山决战 |
-| `npc_hehongyao` | 何红药，五毒教人物 | 中年；命定死亡（生卒待考） | `sect_wudu` | D5 | 夏雪宜旧怨、何铁手关系与金蛇洞终局 | 五毒武学待图鉴核配 | 否 | 回目待考：五毒教、金蛇洞 |
+| `npc_hehongyao` | 何红药，五毒教人物 | 中年；命定死亡（生卒待考） | `sect_wudu` | D5 | 夏雪宜旧怨、何铁手关系与金蛇洞终局 | 主运 `sk_wuduxinfa`；辅运 `sk_wudutuna`、`sk_jianghutuna`；外功 `sk_xieweibian`、`sk_ruanhongzhusuo`、`sk_hanshasheying`、`sk_wuduruobian` | 否 | 回目待考：五毒教、金蛇洞；完整精英配装见 `chapters/07-bixue.md` §12.8 |
 | `npc_sunzhongshou` | 孙仲寿，袁崇焕旧部 / 山宗骨干 | 中老年；生卒待考 | 山宗 / 袁党 | D4 | 囚车、护饷与出海 / 留守窗口；须先完成袁党旧案链 | 军务 / 护卫画像 | 否 | 回目待考：开篇旧案、护送军饷 |
 | `npc_zhangchaotang` | 张朝唐，浡泥来客 | 中年；生卒待考 | 海外来客 / 袁党友方 | D4 | 开篇传讯与海外尾声首尾相接；完成护送和出海信息链后可同行 | 非战斗传讯 / 航路辅助 | 否 | 回目待考：开篇浡泥来客、海外尾声 |
 | `npc_cuiqiushan` | 崔秋山，袁党友人 | 中年；生卒待考 | 袁党 | D4 | 保护幼年袁承志、伤势处置与伏虎掌传承链 | 伏虎掌待图鉴核配 | 否 | 回目待考：幼年袁承志获救 |

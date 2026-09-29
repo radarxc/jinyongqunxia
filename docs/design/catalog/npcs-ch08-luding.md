@@ -2,14 +2,14 @@
 
 > 归属：`design/18-npc-and-companions.md` 的主线重要 NPC 数据。年代 1669–1690，引用 `design/02`。
 > 史实人物标史实年；小说塑造与历史评价分离。出处回目待按三联 / 广州修订版核对。
-> 版本：v1.3；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
+> 版本：v1.3；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；完整实战对手补漏（2026-09-29）。
 
 | ID | 人物 / 原著身份 | 生卒 / 年龄 | 门派 / 阵营 | 层级 | 招募要点 | 能力要点 | 跨书 | 出处定位 |
 |---|---|---|---|---|---|---|---|---|
 | `npc_weixiaobao` | 韦小宝，天地会香主 / 鹿鼎公 | 少年→青年；生卒待考 | `sect_tiandihui` / `sect_qinggong` | D5 | 宫廷、天地会双重身份与七位家人安全 | 低武机变；神行百变待图鉴收录 | 否 | 回目待考：入宫、擒鳌拜、退隐 |
 | `npc_kangxi` | 康熙帝玄烨 | 1654–1722（史实）[H05] | 清廷 / 紫禁城（皇帝，非门派职级） | D5 | 小玄子阶段可演练同行；亲政后仅任务 / 战役短窗 | 布库摔跤 `sk_menggushuaijiao`；非绝顶武者 | 否 | 回目待考：布库房、三藩、雅克萨 |
 | `npc_chenjinnan` | 陈近南，天地会总舵主 | 中年；命定死亡 | `sect_tiandihui` L5 | D5 | 拜师、反清承诺与郑克塽刺杀改命 | 武学待对应图鉴收录 | 改命后可 | 回目待考：收徒、通吃岛遇害 |
-| `npc_ajiu` | 九难师太（阿九 / 长平公主） | 小说生卒待考；历史原型约 1629/1630–1646（两者分离）[H05] | `sect_tiejian` | D5 | 若碧血曾入队则重逢；刺康熙前处理旧明执念 | 神行百变待图鉴收录 | ←碧血 | 回目待考：收阿珂、刺驾 |
+| `npc_ajiu` | 九难师太（阿九 / 长平公主） | 小说生卒待考；历史原型约 1629/1630–1646（两者分离）[H05] | `sect_tiejian` | D5 | 若碧血曾入队则重逢；刺康熙前处理旧明执念 | 主运 `sk_tiejianxuangong` **（原创扩展配置）**；外功 `sk_tiejianjianfa`、`sk_mantianhuayu`、`sk_tiejianqipanjian`，轻功 `sk_shenxing`；五台实战七参与节奏见 chapters/08 §12.8 | ←碧血 | 回目待考：收阿珂、刺驾 |
 | `npc_hongantong` | 洪安通，神龙教主 | 老年；命定死亡待考 | `sect_shenlongjiao` L5 | D5 | 神龙岛邪线或受制；教内崩解前窗口 | 主运 `sk_shenlongxinfa`；外功 `sk_yingxiongsanzhao`、`sk_meirensanzhao`、`sk_shenlongzhang`、`sk_shenlongrumenquan`；完整属性见 03 §10.9 | 否 | 回目待考：神龙岛内乱 |
 | `npc_suquan` | 苏荃，神龙教教主夫人 | 青年；生卒待考 | `sect_shenlongjiao` L4 | D5 | 神龙岛倒戈与摆脱控制 | 主运 `sk_shenlongxinfa`；外功 `sk_meirensanzhao`、`sk_shenlongzhang`、`sk_wuyingshou`、`sk_shenlongrumenquan`；`pers_jiaozha` | 否 | 回目待考：神龙岛 |
 | `npc_shuanger` | 双儿，庄家义婢 / 韦小宝知己 | 青年；生卒待考 | 庄家 / 天地会友方 | D4 | 庄家线与长期信任 | 护主画像；武学待图鉴 | 否 | 回目待考：庄家赠婢、各地同行 |
@@ -17,9 +17,9 @@
 | `npc_jianning` | 建宁公主 | 约 1662–?（小说人物，推算） | `sect_qinggong` | D5 | 宫廷与婚使主线；高冲突性 | 鞭法 / 机变待图鉴 | 否 | 回目待考：宫中、云南婚使 |
 | `npc_fangyi` | 方怡，沐王府人物 | 青年；生卒待考 | `sect_muwangfu` | D4 | 沐王府、神龙教受制与解药线 | 沐王府武学待图鉴 | 否 | 回目待考：宫中行刺、神龙教 |
 | `npc_mujianping` | 沐剑屏，沐王府郡主 | 少女；生卒待考 | `sect_muwangfu` | D4 | 宫中藏匿与沐王府信任 | 基础剑法待图鉴 | 否 | 回目待考：宫中相识 |
-| `npc_zengrou` | 曾柔，王屋派弟子 | 青年；生卒待考 | `sect_wangwu` | D4 | 王屋派冲突与放还任务 | 王屋派内外功按现行图鉴核配 | 否 | 回目待考：王屋派行刺 |
+| `npc_zengrou` | 曾柔，王屋派弟子 | 青年；生卒待考 | `sect_wangwu` | D4 | 王屋派冲突与放还任务 | 主运 `sk_wangwuhushangong`；外功 `sk_wangwuposhijian`、`sk_wangwujian`、`sk_wangwuzhang`、`sk_wangwujibenjian`；不使用首领专用 `sk_wangwuzhenshanxinfa` | 否 | 回目待考：王屋派行刺 |
 | `npc_mujiansheng` | 沐剑声，沐王府首领 | 青年；生卒待考 | `sect_muwangfu` L5 | D4 | 反清路线协调与天地会矛盾 | 沐王府武学待图鉴 | 否 | 回目待考：沐王府线 |
-| `npc_xutianchuan` | 徐天川，天地会八臂猿猴 | 中老年；生卒待考 | `sect_tiandihui` L4 | D4 | 青木堂任务与徐柳冲突 | 擒拿 / 多兵器待图鉴 | 否 | 回目待考：青木堂、扬州 |
+| `npc_xutianchuan` | 徐天川，天地会八臂猿猴 | 中老年；生卒待考 | `sect_tiandihui` L4 | D4 | 青木堂任务与徐柳冲突 | 主运 `sk_yanpinghaifangxinfa`；辅运 `sk_jianghutuna`、`sk_wuguanxinfa`；外功 `sk_kaimenpiguaquan`、`sk_hongyingjian`、`sk_tiandihuidao`、`sk_tiandihuiquan`、`sk_wuyingshou`；郑氏同势力主运与通行外功均为 **（原创扩展配置）**，七参与节奏见 chapters/08 §12.8 | 否 | 回目待考：青木堂、扬州 |
 | `npc_wuliuqi` | 吴六奇，雪中神丐 / 清将 | 中年；命定死亡待考 | 丐帮 / 天地会友方 | D5 | 身份揭露与归家庄救援改命 | 丐帮武学按图鉴核配 | 改命后可 | 回目待考：茅十八旧识、归家庄 |
 | `npc_maoshiba` | 茅十八，江洋好汉 | 壮年；命定结局待考 | 无门派 | D4 | 扬州初遇、押赴刑场救援 | 五虎断门刀待图鉴收录 | 改命后可 | 回目待考：扬州、北京刑场 |
 | `npc_haidafu` | 海大富，清宫老太监 | 老年；生卒待考 | `sect_qinggong` | D5 | 宫闱经书与假太后旧案；只作剧情限定同行 / 对手，不开放常规招募 | 主运 `sk_haidafuhuagujing`；外功 `sk_huagumianzhang`、`sk_dacidabeiqianyeshou` 等按现行配装核配；个人心法名 **（原创扩展）** | 否 | 回目待考：宫中经书、与假太后冲突 |
@@ -43,8 +43,9 @@
 | 王屋冲突首领槽（不建静态 ID） | 王屋派当场领队；姓名待考 | 壮年 / 中年；生卒待考 | `sect_wangwu` | D5 | 只在王屋冲突中按谈判、救援或制服目标生成 | 主运 `sk_wangwuzhenshanxinfa`；外功 `sk_wangwudangguanjian` | 否 | 回目待考：王屋派冲突；不虚构实名 |
 | 神龙舰队首领槽（不建静态 ID） | 神龙教水战领队；姓名待考 | 壮年 / 中年；生卒待考 | `sect_shenlongjiao` | D5 | 只在舰队遭遇中生成，夺旗 / 救俘 / 灭火共享目标进度 | 主运 `sk_shenlonghaichaojing`；外功按神龙教现行配装核配 | 否 | 回目待考：神龙岛海路；不虚构实名 |
 | 雅克萨守军首领槽（不建静态 ID） | 罗刹守军当场指挥者；姓名待考 | 壮年 / 中年；生卒待考 | 罗刹守军 | D5 | 只在雅克萨止战遭遇中生成，达到交换伤员 / 谈判门槛即停 | 主运 `sk_luochazhenliecao`；外功以 `sk_luochaciqiangshu` 为核心 | 否 | 回目待考：雅克萨段；不虚构实名 |
+| 风际中角色槽（正式 ID 待 `design/18`） | 风际中，天地会内奸 | 壮年 / 中年；生卒待考 | 天地会潜伏身份 / 清廷内奸 | D5 | `z07/x07` 揭露后直接战或假会期收网；只制伏 / 护会众撤离 | 主运 `sk_hunyuanfangzhuang`；辅运 `sk_jianghutuna`、`sk_wuguanxinfa`；外功 `sk_hongyingjian`、`sk_tiandihuidao`、`sk_tiandihuiquan`、`sk_wuyingshou`；通行主运为 **（原创扩展配置·待补本门武学）**，七参与节奏见 chapters/08 §12.8 | 否 | 回目待考：通吃岛内奸暴露；正式 ID 不在本文件抢建 |
 
-合计：34 名静态 NPC；另有 3 个不建静态 ID 的首领角色槽。
+合计：34 名静态 NPC；另有 3 个不建静态 ID 的首领角色槽与 1 个待 `design/18` 登记的具名角色槽。
 
 ### 史实来源
 
