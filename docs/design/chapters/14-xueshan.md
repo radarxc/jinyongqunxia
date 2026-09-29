@@ -1,10 +1,10 @@
 # 14 · 雪山飞狐书界 DLC
 
 > 归属（基准 §18）：`ch14_xueshan` 的时代图层、开局投放、主线索引、锚点落地、支线、门派实例、人物投放、Boss、产出、特色系统及前后书界衔接。
-> 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；主线唯一事实源为 `design/story/14-xueshan.md`。
-> 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05` 与 `design/catalog/skills-qianlong.md`、`skills-general.md`、`skills-bulu-14-xueshan.md`；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备与神兵 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、结局与余韵 → `design/13`；穴位、冲穴、通脉、周天与九转 → `design/15`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承 → `design/20`。
+> 上游：`00-canon.md` v1.7；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；主线唯一事实源为 `design/story/14-xueshan.md`。
+> 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05` 与 `design/catalog/skills-qianlong.md`、`skills-general.md`、`skills-bulu-13-feihu.md`、`skills-bulu-14-xueshan.md`；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备与神兵 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、结局与余韵 → `design/13`；穴位、冲穴、通脉、周天与九转 → `design/15`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.0（D14，2026-09-26）；审校 D14.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）。
+> 版本：v1.0（D14，2026-09-26）；审校 D14.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -682,7 +682,7 @@ canLiangquan = crossBookEvidence
 | L1 | 门客 | `q_14_faction_01` 起链；先护谱与护人，不问出身 | `sk_hujiaxiaolianquan`、`sk_liaodonghushendao` | 木材、普通药材、护具修料 |
 | L2 | 记名 | 完成一次不以夺谱为目的的护送 | `sk_hujiadaoxinfa` 入门 | 御寒药材、刀具保养铁器 |
 | L3 | 嫡传 | 胡斐认可；不得公开贩卖家谱 | `sk_hujiaquan` | 玄阶药材额度、刀谱抄录时段 |
-| L4 | 护谱人 | 集齐胡刀三卷并守住首二页信物 | `sk_hujiadao` 修习资格，仍过图鉴前置 | 专精铁器与闭关食粮 |
+| L4 | 护谱人 | 集齐胡刀三卷并守住首二页信物 | `sk_hujiadao`、`sk_hujiaxuangong` 修习资格，仍过各自图鉴前置 | 专精铁器与闭关食粮 |
 | L5 | 家主 | 仅两全 / 胡斐明确让位后的候选；本界默认由胡斐持有 | 胡刀圆满印证，不另造武学 | 家传资产分配权，受一掌门位限制 |
 
 门规底线是“不以残谱诱杀同道、不把胡家旧仇转为后代滥杀”**（原创扩展表述）**。`eq_lengyuedao` 是器合神兵，不是入门凭证或宝藏钥匙。
@@ -694,7 +694,7 @@ canLiangquan = crossBookEvidence
 | L1 | 家仆 / 门客 | `q_14_faction_02` 起链；保护苗若兰且不偷谱 | `sk_miaojiajiangong`、`sk_miaojialianqi` | 练剑木料、基础药材 |
 | L2 | 子弟 | 完成剑痕复核并归还原拓 | `sk_miaojiaxinfa` | 护腕铁器、行旅口粮 |
 | L3 | 嫡传 | 苗人凤认可；用拆招保护而非羞辱对手 | `sk_miaojiaquan` | 玄阶药材、剑室时段 |
-| L4 | 护剑家老 | 集齐苗剑三卷与剑心记，完成胡苗互照 | `sk_miaojiajian` | 专精铁器、静室配给 |
+| L4 | 护剑家老 | 集齐苗剑三卷与剑心记，完成胡苗互照 | `sk_miaojiajian`、`sk_miaojiaxuangong`、`sk_miaojiazhang` 修习资格，仍过各自图鉴前置 | 专精铁器、静室配给 |
 | L5 | 家主 | 默认苗人凤；分支死亡后也不自动把玩家抬为家主 | 苗剑圆满印证，不另造招式 | 家传账目与配给议定权 |
 
 苗家不等同现实族群组织；名称只指小说人物姓氏家传。终战看见破绽不会自动教授 `sk_miaojiajian`。
@@ -706,7 +706,7 @@ canLiangquan = crossBookEvidence
 | L1 | 外门 / 馆徒 | 选南、北或调停履历；不得冒称大理天龙寺 | `sk_tianlongrumenjian`、`sk_guanwaichangquan` | 口粮、练习木剑 |
 | L2 | 内门弟子 | 完成一次同门非死斗并救下败者 | `sk_guanwaixinfa` | 低阶铁器、伤药 |
 | L3 | 亲传 / 闭门弟子 | 南北同封至少保住一份真证 | `sk_tianlongbeidao` | 刀剑修料、驿路名额 |
-| L4 | 长老 / 教习 | 调停或堂战胜出，且未杀本门投降者 | `sk_tianlongjian` | 专精铁器、教场时段 |
+| L4 | 长老 / 教习 | 调停或堂战胜出，且未杀本门投降者 | `sk_tianlongjian`、`sk_tianlongmenxinfa`、`sk_tianlonghezongjian`、`sk_tianlongzhengdao`，仍过各自图鉴前置 | 专精铁器、教场时段 |
 | L5 | 掌门 / 总馆主 | 解决田归农余波；本界默认不开玩家直升 | `sk_zhangmenboyi` 的前置见闻之一 | 南北宗公账议定权 |
 
 南北宗是分支关系，不拆成两个 `sect_*`。门规差异影响任务对白和贡献来源，不改变五级抽象与月钱公式。
@@ -730,7 +730,7 @@ canLiangquan = crossBookEvidence
 | L1 | 侍卫学员 / 小太监 | 宫档或边关勤务；玩家只取侍卫支，不强制内廷身份 | `sk_bubingcao`、`sk_junzhangtuna` | 口粮、普通铁器 |
 | L2 | 三等侍卫 | 完成护印且未伪造官档 | `sk_jundituna`、`sk_changqiangrumen` | 军帐药材、兵器修料 |
 | L3 | 一等侍卫 / 亲随 | 经刘元鹤或赛总管授权，完成一次围捕外勤 | `sk_junzhongdao` | 玄阶铁器、驿马额度 |
-| L4 | 统领 / 供奉 | 统筹队伍且承担平民伤亡后果 | `sk_shouchengfa`；`sk_baizhanxinfa`、`sk_pojunqiangfa`（后两者来源扩展待登记，仍检查图鉴前置） | 军需调配、教场时段 |
+| L4 | 统领 / 供奉 | 统筹队伍且承担平民伤亡后果 | `sk_shouchengfa`；`sk_baizhanxinfa`、`sk_pojunqiangfa`（后两者来源已由通行图鉴登记，仍检查图鉴前置） | 军需调配、教场时段 |
 | L5 | 大内总管 / 总教头 | 本章不开放常规晋升；仅结局任命候选 | 不另造清宫秘学；可继续通用军中线 | 预算内议定权 |
 
 皇帝、皇子不是晋升位。`design/17` 提到的清宫专属武学尚未进入本任务必读图鉴，故本章不预建 / 不引用未确认 ID，以通用军中池承载可学习内容。`sk_baizhanxinfa` 与 `sk_pojunqiangfa` 不是赛总管专属：玩家或其他人物可通过 L4 教头授艺或军功兑换正常学习，但仍须满足 `skills-general.md` 的前置。
@@ -850,12 +850,12 @@ Boss 的精确模板值见 §12。武学品阶从图鉴读取；机制名称是�
 | # / 遭遇 ID | Boss / 等级 | 武学与品阶 | 阶段 | 核心机制与反制 | 主线挂点 |
 |---|---|---|---:|---|---|
 | B01 `enc_14_xueluduoxiang` | 争盒群豪首领模板 Lv48 | 完整 7 品主运及 4 门外功见 §12.6；整场有效耐久 `0.85` | 2 | 多方抢箱；占点封存、救人或令三方停手均可胜，击倒不是唯一解 | C01 |
-| B02 `enc_14_shuangtongweidou` | 左右双童双精英 Lv50 | 完整 7 品主运及 3 门外功见 §12.6；二人共享脱离目标 | 2 | 援护、隔开群豪、保住绳路可胜；不复制整场 Boss 耐久 | C02 |
+| B02 `enc_14_shuangtongweidou` | 左右双童双精英 Lv50 | 完整 9 品主运及 3 门外功见 §12.6；二人共享非击杀目标进度 | 2 | 制止围攻并护送双童各自离场可胜；击倒不是目标，不复制整场 Boss 耐久 | C02 |
 | B03 `enc_14_baoshuduzheng` | 宝树 Lv52 | 完整 7 品主运及 4 门外功见 §12.6；整场有效耐久 `0.75` | 2 | 三份证词与毒具分置；识破谎言削护，保护原卷或控卷均有胜利条件 | C03 / Z01 / X01 |
-| B04 `enc_14_xueyajiuhu` | 雪崖误斗 Lv54 | 胡斐 9 品地位下限、胡刀与胡家拳见 §12.6；整场有效耐久 `0.75` **【建议值】** | 2 | 风雪、断索、坠崖；保安全格链与救曹云奇，不能以击倒胡斐结算 | Z02 / X02 |
+| B04 `enc_14_xueyajiuhu` | 雪崖误斗 Lv54 | `sk_hujiaxuangong` 9 品主运、胡刀与胡家拳见 §12.6；整场有效耐久 `0.75` **【建议值】** | 2 | 风雪、断索、坠崖；保安全格链与救曹云奇，不能以击倒胡斐结算 | Z02 / X02 |
 | B05 `enc_14_baocangqunhao` | 宝洞群豪 Lv56 | 首领及三类精英完整配装见 §12.6；共享总耐久 104,948 | 3 | 契约改变阵营，金银拾取增加仇恨；火源、退路、伤者三目标竞争 | Z05 / X05 |
-| B06 `enc_14_qingtingfuwang` | 赛总管围网 Lv58 | 完整 7 品主运及 4 门外功见 §12.6；整场有效耐久 `0.75` | 3 | 号令链与两波援军；夺令、拆网、助捕后止杀均可结算 | Z07 / X07 |
-| B07 `enc_14_miaorenfeng_xueya` | 苗人凤 Lv62 `capExempt` | 9 品地位下限与苗剑 / 拳见 §12.6；有效耐久 `0.75`、目标 HP 138,411 **【建议值】** | 3 | 不以击杀为目标；冰壁映照双方破绽、苗人凤救胡斐并弃地利、最后进入不限时抉择 | Z09 / X09 |
+| B06 `enc_14_qingtingfuwang` | 赛总管围网 Lv58 | 完整 8 品主运及 4 门外功见 §12.6；整场 `totalHp=112536`，含两波援军 | 3 | 号令链与两波援军；夺令、拆网、助捕后止杀均可结算 | Z07 / X07 |
+| B07 `enc_14_miaorenfeng_xueya` | 苗人凤 Lv62 `capExempt` | `sk_miaojiaxuangong` 9 品主运与苗剑 / 苗掌见 §12.6；有效耐久 `0.75`、目标 HP 138,411 **【建议值】** | 3 | 不以击杀为目标；冰壁映照双方破绽、苗人凤救胡斐并弃地利、最后进入不限时抉择 | Z09 / X09 |
 
 ### 8.9 Boss 阶段与可读反制
 
@@ -871,12 +871,12 @@ Boss 的精确模板值见 §12。武学品阶从图鉴读取；机制名称是�
 
 ### 9.1 产出边界与本土武学池
 
-本节只安排学习来源、产出节奏和装配可行性；既有武学的品阶、招式、前置与层数以 `design/catalog/skills-qianlong.md`、`skills-general.md` 为准，宝树个人散承两门见 `skills-bulu-14-xueshan.md`，学习与装配规则见 `design/05`。雪山完整原生天级仅 1 门，不把飞狐的 9 品残承或前代合成重复算入原生池。
+本节只安排学习来源、产出节奏和装配可行性；既有武学的品阶、招式、前置与层数以 `design/catalog/skills-qianlong.md`、`skills-general.md` 为准，胡家、苗家与天龙门跨书槽见 `skills-bulu-13-feihu.md`，宝树个人散承两门见 `skills-bulu-14-xueshan.md`，学习与装配规则见 `design/05`。雪山完整原生天级仅 1 门，不把飞狐补录的地阶武学或前代合成重复算入原生天阶池。
 
 | 大阶 | 本界代表（正式 ID） | 主要来源 | 边界 |
 |---|---|---|---|
 | 天 | `sk_hujiadao` 胡家刀法（天下 10） | 胡家 L4、胡刀三卷、胡斐切磋与首二页印证 | 基准 §13 唯一含雪山的原生天级武学 |
-| 地 | `sk_miaojiajian` 地上 9；`sk_yaowangdujing`、`sk_qixinhaitang`、`sk_tianshanyingyang` 地中 8；`sk_hujiaquan`、`sk_baguadao` 地下 7 | 苗家、药王遗承、鹰踪奇遇、胡家、八卦门 | 七心海棠法仅在传承状态允许时开放；不展示现实制毒方法 |
+| 地 | `sk_miaojiajian`、`sk_miaojiaxuangong`、`sk_hujiaxuangong` 地上 9；`sk_yaowangdujing`、`sk_qixinhaitang`、`sk_tianshanyingyang` 地中 8；`sk_hujiaquan`、`sk_baguadao`、`sk_tianlongmenxinfa`、`sk_tianlonghezongjian`、`sk_tianlongzhengdao`、`sk_miaojiazhang` 地下 7 | 苗家、药王遗承、鹰踪奇遇、胡家、八卦门、天龙门 | 飞狐补录六门按本界来源正常开放；七心海棠法仅在传承状态允许时开放；不展示现实制毒方法 |
 | 玄 | `sk_miaojiaquan`、`sk_baguazhang`、`sk_tianlongjian`、`sk_hujiadaoxinfa`、`sk_miaojiaxinfa`、`sk_yaowangzhenfa`、`sk_tianlongbeidao`、`sk_youshenbu`、`sk_guanwaixinfa` | 五派职级与人物羁绊 | 奖励只开来源，不越过图鉴 `reqs` |
 | 黄 | `sk_hujiaxiaolianquan`、`sk_liaodonghushendao`、`sk_miaojiajiangong`、`sk_miaojialianqi`、`sk_yaowanghushou`、`sk_yaowangtuna`、`sk_baguarumenquan`、`sk_baguachujidao`、`sk_tianlongrumenjian`、`sk_guanwaichangquan` | 入门、旁听、残本与支线试教 | 名称中标为原创的性质沿图鉴，不在本章重新解释 |
 | 补录 | `sk_cangfengxingqi`、`sk_cuomaifanzhang`（均地下 7） | 宝树当面对质 / 交换后的传授，或处置后的旧稿学习动作 **（原创扩展）** | 两门均为个人医毒散承，不归药王门；正常来源向主角与其他人物开放，详见补录图鉴 §2 |
@@ -893,6 +893,9 @@ Boss 的精确模板值见 §12。武学品阶从图鉴读取；机制名称是�
 | `sk_qixinhaitang` | 雪谷药囊后且飞狐传承状态有效 | 仅合法遗承与材料状态同时满足时开来源 | 前界传承中断则不投放；不以宝树偷配替代 |
 | `sk_tianshanyingyang` | `q_14_qiyu_04` | 隐世传人试步、保住雪路同行者并满足天池步前置 | 不影响主线门禁；只关闭高阶轻功来源 |
 | `sk_hujiaquan` / `sk_baguadao` | 对应门派 L3 / L4 | 逐级师授并检查前置 | 通用拳、刀池可补栏，但不替代家传资格 |
+| `sk_hujiaxuangong` | 胡家 L4 或胡斐认可后 | 胡家刀谱内篇、胡斐指点或胡一刀遗泽奇遇，按图鉴前置修至 10 重 | 不设胡斐个人专属；未获家传认可时只留见闻 |
+| `sk_miaojiaxuangong` / `sk_miaojiazhang` | 苗家 L4 或胡苗旧怨互证后 | 家主 / 教习传授，或家谱内篇与拳理旁篇，按各自图鉴前置升层 | 不因终战看见破绽自动授艺 |
+| `sk_tianlongmenxinfa` / `sk_tianlonghezongjian` / `sk_tianlongzhengdao` | 天龙门 L4 | 南北宗清理 / 和解后合授；合宗剑另可由两宗剑谱互证取得 | 不与大理天龙寺混同；三门均非掌门独占 |
 
 `sk_hujiadao` 是完整天阶武学，`eq_lengyuedao` 是独立的天下 10 神兵；获得其一不自动获得另一项。
 
@@ -916,9 +919,10 @@ Boss 的精确模板值见 §12。武学品阶从图鉴读取；机制名称是�
 | `it_chuangwangjundao` 闯王军刀 | `key` | 主线随铁盒 / 藏宝线流转，按契约交还、共持或封存 | 只解宝藏方位，不是可装备冷月刀 |
 | 胡家刀谱三卷 | 传承残卷 | 辽东、沧州线索与胡斐切磋补齐 | 合成见 §9.6；“三卷齐”也仍需信物与人物认可 |
 | 苗家剑谱三卷 | 传承残卷 | 沧州试剑、互照与苗家关系取得 | 不通过偷看终战破绽直接掉落 |
+| `it_miji_cangfengxingqi`、`it_miji_cuomaifanzhang` 宝树旧稿 | 地下 7 残本秘籍，`partial` / 8 重 | 当面对质 / 交换并保全旧稿，或在处置线由任务结算；同一事务原子发放两条 **（原创扩展）** | 任一写入失败则整组回滚；不得由宝树尸体、普通掉落或商店产出；持有仍不豁免武学前置，也不授药王门身份 |
 | `it_dingshendan` 定神丹 | 地中 8 丹药 | 高风险冲穴后的固定救济节点可得 1 枚**【建议值】** | 只把走火等级降 1，不直接开穴 |
 
-套装只引用 `design/07` §15.8 定稿的 `set_hujia_lengyue`；胡苗百年与苗家剑心主题均已并入该套。八卦游龙、天龙南北、药王医毒旧候选按 §19.3 不进入 v1；章节保留相关武学与剧情投放，不输出旧 `set_*`。件数阈值、Buff 与数值只读 `design/07`。
+宝树旧稿的两个 `ItemDef` 唯一定义与成组事务见 `design/10` §10.1.1；章节只决定取得时点，不创建带 `skills[]` 的复合秘籍。套装只引用 `design/07` §15.8 定稿的 `set_hujia_lengyue`；胡苗百年与苗家剑心主题均已并入该套。八卦游龙、天龙南北、药王医毒旧候选按 §19.3 不进入 v1；章节保留相关武学与剧情投放，不输出旧 `set_*`。件数阈值、Buff 与数值只读 `design/07`。
 
 ### 9.5 冲穴相关内容（AR-03）
 
@@ -1223,19 +1227,55 @@ P_actual = G(9) × L(9)
          = 3.36
 ```
 
-该值进入 `design/04` Z1，并且只除一次 `P_ref(62,MID)`。按 §12.6 的 9 品地位下限与逐单位复核，B07 有效耐久改取同级模板的 0.75：`round(184,548×0.75)=138,411` **【建议值】**，静态轮数 `29.20×0.75=21.90`；其余攻击、防御、评级和实际 TTK 必须待人物全量配置后跑 `full` 模拟，不能把上表模板值冒充最终人物面板。
+该值进入 `design/04` Z1，并且只除一次 `P_ref(62,MID)`。按 §12.6 的正式 9 品主运与逐单位复核，B07 有效耐久取同级模板的 0.75：`round(184,548×0.75)=138,411` **【建议值】**，静态轮数 `29.20×0.75=21.90`；该锚点仍须通过 `design/09` 的 `BattleReplayV1` 固定种子回放门禁 **（待实测）**。其余攻击、防御、评级和实际 TTK 必须待人物全量配置后跑 `full` 模拟，不能把上表模板值冒充最终人物面板。
 
 ### 12.4 机制偏离与失败保护
 
 | 遭遇 | 对模板的使用 | 机制偏离 / 胜利条件 |
 |---|---|---|
 | B01 | 群豪首领共享一份 Boss 预算 | 令三方停手、封存箱或救人均可胜；不把每方都配完整 HP |
-| B02 | 两名精英合计耐久不超过 Lv50 Boss 预算 | 隔开追兵并保绳路即胜；双童脱离，不擅定死亡 |
+| B02 | 两名精英各用 §12.6 配装，共享 `deescalationBp=10000` | 制止三次围攻各 `+2000`，左右童各安全撤至离场格 `+2000`，合计 `3×2000+2×2000=10000` 即按精英遭遇结算；击倒不是目标 **（原创扩展机制）** |
 | B03 | 宝树最终走 `full`；模板只定阶段耐久 | 每确认一条独立事实削一层护持，守原卷 / 控卷皆可结算 |
 | B04 | 胡斐走 `full`，剧情限制胡刀层数 | 救曹云奇、保安全格链；气血到阈值锁定并转场 |
-| B05 | 多方共享总耐久取 `round(139,931×0.75)=104,948`**【建议值】** | 救援、火源、退路三目标都计入同一预算；捡金银增加仇恨，不要求全歼 |
-| B06 | 赛总管走 `full`，援军用普通 / 精英模板 | 夺令或拆网可提前结束一波；助捕线仍必须给阻止处决窗口 |
-| B07 | 苗人凤走 Lv62 `full` | 三阶段锁血；完成救援、双破绽与悬刀选择，不以击杀结算 |
+| B05 | 多方共享 `totalHp=round(139931×0.75)=104948` **【建议值】** | 救援、火源、退路三目标都计入同一预算；捡金银增加仇恨，不要求全歼；须过 `design/09` 回放门禁 **（待实测）** |
+| B06 | 遭遇级只声明一次 `totalHp=round(150048×0.75)=112536`；赛总管走 `full`，两波援军各用 1 名精英模板 | 两波援军和号令 / 围网目标均消费同一总耐久；夺令或拆网可提前结束一波；助捕线仍须给阻止处决窗口 |
+| B07 | 苗人凤走 Lv62 `full`，`totalHp=round(184548×0.75)=138411` **【建议值】** | 三阶段锁血；完成救援、双破绽与悬刀选择，不以击杀结算；须过 `design/09` 回放门禁 **（待实测）** |
+
+B05 的稳定分配只写在遭遇级，不向行动者复制。算法为：首领取 4000 bp，其余三名精英与三个目标各取 1000 bp；先向下取整，再按下表稳定顺序把 5 点余数补给小数余数同为 0.8 的前五项。非单位目标以 `unitIndex=null` 表示，并固定排在数值 `unitIndex` 之后：
+
+| 稳定顺序（`unitIndex → phaseIndex → objectiveKey`） | 类型 / 编成 | 运行时初始 HP / 等价进度 | 阶段回复 / 新血条 | 审计说明 |
+|---|---|---:|---:|---|
+| `00 → 0 → null` | 首领槽 1 名（Lv56 Boss 模板） | 41,979 | 0 | 只实例化 §12.6 所列天龙门槽首领；镖局、山寨 / 散人、清宫 / 军伍为下方三类精英 |
+| `10 → 0 → null` | 镖局精英 1 名（Lv56 精英模板） | 10,495 | 0 | 模板 HP 27,986；0 名普通单位 |
+| `20 → 0 → null` | 山寨 / 散人精英 1 名（Lv56 精英模板） | 10,495 | 0 | 模板 HP 27,986；0 名普通单位 |
+| `30 → 0 → null` | 清宫 / 军伍精英 1 名（Lv56 精英模板） | 10,495 | 0 | 模板 HP 27,986；0 名普通单位 |
+| `null → 0 → rescue` | 救援目标 | 10,495 | 0 | 护送伤者或把求援者移出塌方格 |
+| `null → 1 → fireControl` | 火源目标 | 10,495 | 0 | 控火或夺取火源均消费此进度 |
+| `null → 2 → exitRoute` | 退路目标 | 10,494 | 0 | 打通、守住或利用退路均消费此进度 |
+| 合计 | 1 首领 + 3 精英 + 3 目标 | 104,948 | 0 | `41979+5×10495+10494=104948` |
+
+救人留证、持契控人、趁乱劫宝三条可达分支共用这张分配；三目标是中性的整场耐久槽，各分支都须以本分支对应的救援 / 控火 / 退路动作消费，不能因阵营翻转再生成血池。
+
+B06 的算法为 5000 / 1500 / 1500 / 2000 bp：先向下取整，唯一余数 1 点归最后的分支目标。两波各编成 1 名 Lv58 精英、0 名普通单位；每名精英运行时初始 HP 为 16,880（静态模板 HP 30,010），不共享波内血条：
+
+| 稳定顺序（`unitIndex → phaseIndex → objectiveKey`） | 类型 / 编成 | 运行时初始 HP / 等价进度 | 阶段回复 / 新血条 |
+|---|---|---:|---:|
+| `00 → 0 → null` | 赛总管 1 名（Lv58 Boss 模板） | 56,268 | 0 |
+| `10 → 1 → null` | 第一波援军：精英 1 名、普通 0 名 | 16,880 | 0 |
+| `20 → 2 → null` | 第二波援军：精英 1 名、普通 0 名 | 16,880 | 0 |
+| `null → 2 → 分支目标` | 三选一的终局目标 | 22,508 | 0 |
+
+三条终局分支共用前三项，只替换最后的 `objectiveKey`；逐支均为 `56268+16880+16880+22508=112536`：
+
+| 分支 | 最后一项 `objectiveKey` | 对手 / 目标差异 | 合计 |
+|---|---|---|---:|
+| 夺令 | `seizeCommand` | 赛总管与两波援军敌对；夺取号令结算目标进度 | 112,536 |
+| 拆网 | `breakNet` | 赛总管与两波援军敌对；拆除两处绳网结算目标进度 | 112,536 |
+| 助捕后止杀 | `stopExecution` | 赛总管及援军由暂时同阵营翻为敌对时沿用原 HP；阻止处决结算目标进度 | 112,536 |
+
+阶段切换只消费余额，援军刷新与阵营翻转均不回复、不重建实例或预算；该值也须过 `design/09` 回放门禁 **（待实测）**。B06 整场静态轮数仍以 0.75 整场倍率核算为 21.67，落在 12–25；不降低经脉。
+
+B07 为单单位三阶段，同一 `hpMax=138411` 从头消费：第一阶段在 70%（`round(138411×0.70)=96888`）锁血转段，第二阶段在 35%（`round(138411×0.35)=48444`）锁血转段，第三阶段在 1 HP 锁血转悬刀结算；无阶段回复、复起或新血条，`pi / bupi / liangquan` 三种终局共用此分配。
 
 所有强机制提前至少 1 个 Boss 回合预警；目标战败后的软出口不重复发经验、物品、事实旗标或天书。标准模式以合法本土 / 通用配装、无外来天上武学为基线，Boss 目标仍为 `design/09` 的 12–25 个玩家行动轮；具名配置实装后必须补模拟夹具。
 
@@ -1248,50 +1288,54 @@ P_actual = G(9) × L(9)
 
 ### 12.6 Boss / 精英经脉配置与节奏回归
 
-本节仅提供 `design/21` §11.9 的敌方初始化输入；穴位、周天和九转唯一归 `design/15`。雪山为中武，本界精英锚 `G=7`，Boss 默认 9 重，精英 8 重且至多小周天；第九转还要求进入 `ch15_guimeng`，故本章 `turns≤8`。除胡斐、苗人凤的 9 品地位下限兜底外，`effGrade/effLayer/innerNature` 同取最终主运；所有普通 Boss 缺达标本门内功时依第四档临时取 `sk_hunyuanfangzhuang` 7 品。`routeRefs` 从行动表全部 attack / defense / movement `MoveDef.meridianRouteRef` 编译、展开并去重；章节不新建 `mfr_*`。
+本节仅提供 `design/21` §11.9 的敌方初始化输入；穴位、周天和九转唯一归 `design/15`。雪山为中武，本界精英锚 `G=7`，Boss 默认 9 重，精英 8 重且至多小周天；第九转还要求进入 `ch15_guimeng`，故本章 `turns≤8`。所有生产行动者的 `effGrade/effLayer/innerNature` 均取表内合法主运 `sk_*`；未逐列的普通精英只允许从其来源图鉴解析合法主运，解析失败即构建失败。`routeRefs` 从行动表全部 attack / defense / movement `MoveDef.meridianRouteRef` 编译、展开并去重；章节不新建 `mfr_*`。
 
-主运 1 格、辅运 2 格即完整内功栏；七项参数按 `effGrade/effLayer；mpRatioBp/practiceBp/capacityScaleBp；innerNature；openPolicy` 排列。胡斐、苗人凤依原著地位、各自 9 品以上代表外功与终章排序暂取 9 品下限 **【建议值】**，性质分别沿已确认的胡家 / 苗家心法。B01 / B05 的“首领槽”只从所列固定变体选一并共享该场耐久预算。左右书僮在人物目录标为非战斗槽、而本章 B02 将其设为双精英；本节仅给章节战斗资产的代理配表 **（原创扩展配置）**，冲突待 `design/18` 收口。
+主运 1 格、辅运 2 格即完整内功栏；七项参数按 `effGrade/effLayer；mpRatioBp/practiceBp/capacityScaleBp；innerNature；openPolicy` 排列。胡斐与左右童用阳性 `sk_hujiaxuangong`，苗人凤用调和 `sk_miaojiaxuangong`；三项均直接从正式主运解析，不再以外功或人物地位代填。胡斐、苗人凤采用 `design/21` §11.9.1 的地位下限 9 / 9，只作构建校验目标，分别由 `sk_hujiaxuangong`、`sk_miaojiaxuangong` 在 9 重达到。B01 / B05 的“首领槽”只从所列固定变体选一并共享该场耐久预算。左右书僮按人物目录的 B02 双精英战斗槽实例化，本节的非击杀代理配表为**（原创扩展配置）**。
+
+下表“血量 / 防御倍率”和“逐单位估算轮数”只作为 `design/21` §11.9.1 所述逐单位配装闸门的静态输入；多人组逐单位过配装闸门，但耐久按 §12.4 的整场口径验收，运行时 `hpMax` 与目标进度以该节稳定分配为准。不得把表内静态整场倍率或模板 HP 抄给每名行动者。
 
 | 遭遇 / 独立行动者 | 门派 / 来源 | 主运内功 | 辅运内功（2 格） | 外功（逐门标品阶） | 经脉七项参数 | `milestones` | 血量 / 防御倍率 | 逐单位估算轮数 | 机制备注 |
 |---|---|---|---|---|---|---|---|---:|---|
 | 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主运解析（不得低于地下7） | 按来源解析两门玄 / 黄基础内功 | 按行动表解析 3–5 门 | `7/8；10500/7500/10500；由主运解析；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `9.39` | 唯一锚点 |
-| B01 争盒首领（天龙门槽） | 天龙门 | `sk_hunyuanfangzhuang`（地下7，调和；跨书界替补，待书界 13 补录） | `sk_guanwaixinfa`（玄下4）、`sk_dantianyangqi`（黄中2） | `sk_jianghubaizhanjian`（地中8）、`sk_sihaibiaodao`（地中8）、`sk_tianlongjian`（玄上6）、`sk_tianlongbeidao`（玄中5）（跨书界替补，待书界 13 补录） | `7/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `0.85 / 1.00` | `26.70→27.86→23.68` | 剑 / 刀各有 ≥7 品；只生成一个首领槽，倍率作用一次共享耐久 |
+| B01 争盒首领（天龙门槽） | 天龙门 | `sk_tianlongmenxinfa`（地下7，调和） | `sk_guanwaixinfa`（玄下4）、`sk_dantianyangqi`（黄中2） | `sk_tianlonghezongjian`（地下7）、`sk_tianlongzhengdao`（地下7）、`sk_tianlongjian`（玄上6）、`sk_tianlongbeidao`（玄中5） | `7/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `0.85 / 1.00` | `26.70→27.86→23.68` | 剑 / 刀各有 7 品本门外功；只生成一个首领槽，倍率作用一次共享耐久 |
 | B01 争盒首领（镖局 / 山寨槽） | 平通镖局或饮马川散承 | `sk_hunyuanfangzhuang`（地下7，调和） | `sk_jianghutuna`（玄中5）、`sk_zhuangxingong`（黄中2） | `sk_sihaibiaodao`（地中8）、`sk_huweiyingqiang`（地下7）、`sk_jiebiaodaofa`（玄上6）、`sk_huyuanquan`（黄中2） | `7/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `0.85 / 1.00` | `26.70→27.86→23.68` | 既有武学来源覆盖雪山；三方共享停手 / 封箱 / 救人预算 |
-| B02 左童（精英代理） | 胡家随行槽 **（与人物目录待同步）** | `sk_hunyuanfangzhuang`（地下7，调和；跨书界替补，待书界 13 补录） | `sk_hujiadaoxinfa`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_hujiaquan`（地下7）、`sk_tongbeijin`（玄上6）、`sk_liaodonghushendao`（黄上3） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.39` | 与右童各自实例，共享脱离目标；胡家高阶主运由主书界 13 补录 |
-| B02 右童（精英代理） | 胡家随行槽 **（与人物目录待同步）** | `sk_hunyuanfangzhuang`（地下7，调和；跨书界替补，待书界 13 补录） | `sk_hujiadaoxinfa`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_hujiaquan`（地下7）、`sk_tongbeijin`（玄上6）、`sk_liaodonghushendao`（黄上3） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.39` | 双童整场只计一次 Lv50 Boss 耐久上限；胡家高阶主运由主书界 13 补录 |
+| B02 左童（精英代理） | 胡家随行槽 | `sk_hujiaxuangong`（地上9，阳） | `sk_hujiadaoxinfa`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_hujiaquan`（地下7）、`sk_tongbeijin`（玄上6）、`sk_liaodonghushendao`（黄上3） | `9/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.73` | 与右童各自实例；共享 `deescalationBp=10000`，击倒不结算胜利 |
+| B02 右童（精英代理） | 胡家随行槽 | `sk_hujiaxuangong`（地上9，阳） | `sk_hujiadaoxinfa`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_hujiaquan`（地下7）、`sk_tongbeijin`（玄上6）、`sk_liaodonghushendao`（黄上3） | `9/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.73` | 两人分别抵达离场格才各计 `+2000`，不复制 Boss 耐久 |
 | B03 宝树 | 无门派 / 个人医毒散承 | `sk_cangfengxingqi`（地下7，阴） | `sk_jianghutuna`（玄中5）、`sk_yaowangtuna`（黄上3） | `sk_qixinhaitang`（地中8）、`sk_cuomaifanzhang`（地下7）、`sk_yaowangzhenfa`（玄中5）、`sk_feishahuangshi`（玄下4） | `7/9；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `0.75 / 1.00` | `27.41→28.57→21.43` | 两门新增卡见 `skills-bulu-14-xueshan.md` §2；暗器 / 拳掌各有 ≥7 品；倍率含拆谎阶段目标 |
-| B04 胡斐 | 辽东胡家 | 缺 9 品胡家主运（跨书界待替换，主书界 13） | `sk_hujiadaoxinfa`（玄中5）、`sk_jianghutuna`（玄中5） | `sk_hujiadao`（天下10，剧情限制有效层）、`sk_hujiaquan`（地下7）、`sk_liaodonghushendao`（黄上3）、`sk_hujiaxiaolianquan`（黄上3） | `9/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | `0.75 / 1.00` | `27.81→29.20→21.90` | 9 品地位下限 **【建议值】**；性质沿 `sk_hujiadaoxinfa`，非击倒结算 |
-| B05 宝洞首领（天龙门槽） | 天龙门南 / 北宗 | `sk_hunyuanfangzhuang`（地下7，调和；跨书界替补，待书界 13 补录） | `sk_guanwaixinfa`（玄下4）、`sk_dantianyangqi`（黄中2） | `sk_jianghubaizhanjian`（地中8）、`sk_sihaibiaodao`（地中8）、`sk_tianlongjian`（玄上6）、`sk_tianlongbeidao`（玄中5）（跨书界替补，待书界 13 补录） | `7/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | `0.75 / 1.00` | `27.52→28.57→21.43` | 剑 / 刀各有 ≥7 品；全场共享 `104,948` 总耐久 / 目标进度 |
-| B05 镖局精英（每名） | 平通镖局 | `sk_hunyuanfangzhuang`（地下7，调和） | `sk_jianghutuna`（玄中5）、`sk_zhuangxingong`（黄中2） | `sk_sihaibiaodao`（地中8）、`sk_huweiyingqiang`（地下7）、`sk_jiebiaodaofa`（玄上6）、`sk_huyuanquan`（黄中2） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.39` | 既有来源覆盖雪山；个体过闸门，耐久计入 B05 整场预算 |
-| B05 山寨 / 散人精英（每名） | 饮马川 / 江湖散承 | `sk_hunyuanfangzhuang`（地下7，调和） | `sk_jianghutuna`（玄中5）、`sk_wuguanxinfa`（玄下4） | `sk_huweiyingqiang`（地下7）、`sk_tongbeijin`（玄上6）、`sk_luoyedao`（玄中5）、`sk_hutiaodaofa`（玄下4） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.47→9.39` | 既有来源覆盖雪山；个体过闸门，耐久计入 B05 整场预算 |
-| B05 清宫 / 军伍精英（每名） | 刘元鹤护卫 / 清军 | `sk_baizhanxinfa`（地中8，阳；来源扩展待登记） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9，来源扩展待登记）、`sk_junzhongdao`（玄上6）、`sk_zhenqijian`（玄上6）、`sk_bianshe`（玄中5） | `8/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.56` | 阵营翻转不清动态态；来源扩展见 `skills-bulu-14-xueshan.md` §1.2 |
-| B06 赛总管 | 清宫 / 军伍 | `sk_baizhanxinfa`（地中8，阳；来源扩展待登记） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9，来源扩展待登记）、`sk_junzhongdao`（玄上6）、`sk_duanzhenqiang`（玄上6）、`sk_zhenqijian`（玄上6） | `8/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `0.75 / 1.00` | `27.41→28.89→21.67` | 军伍主运与兵器来源一致；夺令 / 拆网已计入整场倍率 |
-| B06 援军（每名精英） | 清宫 / 军伍 | `sk_baizhanxinfa`（地中8，阳；来源扩展待登记） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9，来源扩展待登记）、`sk_junzhongdao`（玄上6）、`sk_duanzhenqiang`（玄上6）、`sk_zhenqijian`（玄上6） | `8/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.56` | 每名各自实例；号令链不共享状态；来源扩展见补录图鉴 §1.2 |
-| B07 苗人凤 | 苗家 | 缺 9 品苗家主运（跨书界待替换，主书界 13） | `sk_miaojiaxinfa`（玄中5）、`sk_miaojialianqi`（黄上3） | `sk_miaojiajian`（地上9）、`sk_kaimenpiguaquan`（地中8，跨书界替补，待书界 13 补录苗家拳掌）、`sk_miaojiaquan`（玄上6）、`sk_miaojiajiangong`（黄上3） | `9/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | `0.75 / 1.00` | `27.81→29.20→21.90` | 9 品地位下限 **【建议值】**；三阶段非击杀 |
+| B04 胡斐 | 辽东胡家 | `sk_hujiaxuangong`（地上9，阳） | `sk_hujiadaoxinfa`（玄中5）、`sk_jianghutuna`（玄中5） | `sk_hujiadao`（天下10，剧情限制有效层）、`sk_hujiaquan`（地下7）、`sk_liaodonghushendao`（黄上3）、`sk_hujiaxiaolianquan`（黄上3） | `9/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | `0.75 / 1.00` | `27.81→29.20→21.90` | 地位下限 9 / 9 由正式主运达到；非击倒结算 |
+| B05 宝洞首领（天龙门槽） | 天龙门南 / 北宗 | `sk_tianlongmenxinfa`（地下7，调和） | `sk_guanwaixinfa`（玄下4）、`sk_dantianyangqi`（黄中2） | `sk_tianlonghezongjian`（地下7）、`sk_tianlongzhengdao`（地下7）、`sk_tianlongjian`（玄上6）、`sk_tianlongbeidao`（玄中5） | `7/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | `0.75 / 1.00` | `27.52→28.57→21.43` | 运行时初始 HP 41,979；全场共享 `104,948` 总耐久 / 目标进度 |
+| B05 镖局精英（每名） | 平通镖局 | `sk_hunyuanfangzhuang`（地下7，调和） | `sk_jianghutuna`（玄中5）、`sk_zhuangxingong`（黄中2） | `sk_sihaibiaodao`（地中8）、`sk_huweiyingqiang`（地下7）、`sk_jiebiaodaofa`（玄上6）、`sk_huyuanquan`（黄中2） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.39` | 1 名，运行时初始 HP 10,495；既有来源覆盖雪山 |
+| B05 山寨 / 散人精英（每名） | 饮马川 / 江湖散承 | `sk_hunyuanfangzhuang`（地下7，调和） | `sk_jianghutuna`（玄中5）、`sk_wuguanxinfa`（玄下4） | `sk_huweiyingqiang`（地下7）、`sk_tongbeijin`（玄上6）、`sk_luoyedao`（玄中5）、`sk_hutiaodaofa`（玄下4） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.47→9.39` | 1 名，运行时初始 HP 10,495；既有来源覆盖雪山 |
+| B05 清宫 / 军伍精英（每名） | 刘元鹤护卫 / 清军 | `sk_baizhanxinfa`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_junzhongdao`（玄上6）、`sk_zhenqijian`（玄上6）、`sk_bianshe`（玄中5） | `8/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.56` | 1 名，运行时初始 HP 10,495；阵营翻转不清动态态 |
+| B06 赛总管 | 清宫 / 军伍 | `sk_baizhanxinfa`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_junzhongdao`（玄上6）、`sk_duanzhenqiang`（玄上6）、`sk_zhenqijian`（玄上6） | `8/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `0.75 / 1.00` | `27.41→28.89→21.67` | 静态倍率用于整场估算；运行时初始 HP 56,268 |
+| B06 援军（每名精英） | 清宫 / 军伍 | `sk_baizhanxinfa`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_junzhongdao`（玄上6）、`sk_duanzhenqiang`（玄上6）、`sk_zhenqijian`（玄上6） | `8/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.56` | 每波 1 名且各自实例；每名运行时初始 HP 16,880 |
+| B07 苗人凤 | 苗家 | `sk_miaojiaxuangong`（地上9，调和） | `sk_miaojiaxinfa`（玄中5）、`sk_miaojialianqi`（黄上3） | `sk_miaojiajian`（地上9）、`sk_miaojiazhang`（地下7）、`sk_miaojiaquan`（玄上6）、`sk_miaojiajiangong`（黄上3） | `9/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | `0.75 / 1.00` | `27.81→29.20→21.90` | 地位下限 9 / 9 由正式主运达到；运行时初始 HP 138,411，阶段不回复 |
 
 #### 本界首领配装图鉴缺口结案表
 
 | 人物 / 槽位 | 原缺口 | 处理结果 | 状态 |
 |---|---|---|---|
-| B01 天龙门首领槽 | 7 品以上天龙门内功；剑 / 刀两类 7 品以上本门外功 | 暂留 `sk_hunyuanfangzhuang`、`sk_jianghubaizhanjian`、`sk_sihaibiaodao` | **跨书界待替换：**天龙门主书界为 13《飞狐外传》，由该界补录 |
+| B01 天龙门首领槽 | 7 品以上天龙门内功；剑 / 刀两类 7 品以上本门外功 | `sk_tianlongmenxinfa`、`sk_tianlonghezongjian`、`sk_tianlongzhengdao` | **已解决：**飞狐补录三门均登记 `ch14_xueshan`，见 `skills-bulu-13-feihu.md` §4、§9.3 |
 | B01 镖局 / 山寨首领槽 | 7 品以上本势力内功 | 复用 `sk_hunyuanfangzhuang` | **已解决：**既有来源覆盖雪山及平通镖局 / 饮马川散承，不再要求人物独门武学 |
-| B02 左右童 | 7 品以上胡家随行内功 | 暂留 `sk_hunyuanfangzhuang` | **跨书界待替换：**胡家主书界为 13；人物目录仍须确认左右童是否为战斗单位 |
+| B02 左右童 | 7 品以上胡家随行内功；确认战斗身份 | `sk_hujiaxuangong` | **已解决：**按 B02 双精英实例与共享非击杀进度落地，见 §12.4、§12.6；正式主运见 `skills-bulu-13-feihu.md` §1.2 |
 | B03 宝树 | 7 品以上个人散承内功与拳掌 | 新增 `sk_cangfengxingqi`、`sk_cuomaifanzhang` | **已解决：**见 `skills-bulu-14-xueshan.md` §2；二者不冒称药王门 |
-| B04 胡斐 | 9 品胡家主运 | 主运暂缺；先按 9 品地位下限与 `sk_hujiadaoxinfa` 性质兜底 | **跨书界待替换：**胡家主书界为 13 |
-| B05 天龙门首领槽 | 7 品以上天龙门内功；剑 / 刀两类 7 品以上本门外功 | 暂留 `sk_hunyuanfangzhuang`、`sk_jianghubaizhanjian`、`sk_sihaibiaodao` | **跨书界待替换：**天龙门主书界为 13 |
+| B04 胡斐 | 9 品胡家主运 | `sk_hujiaxuangong` | **已解决：**正式主运直接承接 `9/9/yang` 七参，见 `skills-bulu-13-feihu.md` §1.2 |
+| B05 天龙门首领槽 | 7 品以上天龙门内功；剑 / 刀两类 7 品以上本门外功 | `sk_tianlongmenxinfa`、`sk_tianlonghezongjian`、`sk_tianlongzhengdao` | **已解决：**飞狐补录三门均登记 `ch14_xueshan`，见 `skills-bulu-13-feihu.md` §4、§9.3 |
 | B05 镖局、山寨 / 散人精英 | 7 品以上各自来源内功 | 复用 `sk_hunyuanfangzhuang` | **已解决：**既有来源覆盖雪山，不另造首领专属武学 |
-| B05 清宫 / 军伍精英、B06 赛总管及援军 | 7 品以上军伍内功与兵器 | 复用 `sk_baizhanxinfa`、`sk_pojunqiangfa` | **来源扩展待登记：**本书加入两门军伍武学的可得书界，见补录图鉴 §1.2 |
-| B07 苗人凤 | 9 品苗家主运；7 品以上苗家拳掌 | 主运暂缺；拳掌暂留 `sk_kaimenpiguaquan` | **跨书界待替换：**苗家主书界为 13 |
+| B05 清宫 / 军伍精英、B06 赛总管及援军 | 7 品以上军伍内功与兵器 | 复用 `sk_baizhanxinfa`、`sk_pojunqiangfa` | **已解决：**两门的 `sourceChapters` 已含 `ch14_xueshan`，见 `skills-general.md` §4.2 |
+| B07 苗人凤 | 9 品苗家主运；7 品以上苗家拳掌 | `sk_miaojiaxuangong`、`sk_miaojiazhang` | **已解决：**正式主运与本门掌法均登记 `ch14_xueshan`，见 `skills-bulu-13-feihu.md` §1.1、§4.4 |
 
-本次只为宝树新增个人医毒散承武学；其余先复用既有通行 / 军伍图鉴，或依主书界规则留待 13《飞狐外传》。`sk_hunyuanfangzhuang` 的既有 `sourceChapters` 已含雪山；`sk_baizhanxinfa`、`sk_pojunqiangfa` 只缺书界来源登记，不改武学定义。以上敌方构筑不反写人物师承；所有新增或扩展来源仍须按补录图鉴的正常习得途径向主角与其他人物开放。
+宝树个人散承、飞狐跨书槽与军伍来源现均有正式图鉴承接；本表不再保留无 ID 画像或估算专用替补。`sk_hunyuanfangzhuang` 仅由镖局 / 山寨等已有合法来源的槽位正常复用。以上敌方构筑不反写人物师承；所有新增或扩展来源仍须按图鉴正常习得途径向主角与其他人物开放。
 
 #### 逐单位节奏结论
 
-按 `Rraw=R0×10000²/(A×D)×H` 逐行调用 `boss_pacing.py`。B01 两槽替换前后均为 `26.70→27.86→23.68`（`H=0.85`）；B03 为 `27.41→28.57→21.43`，替换前后同为 `21.43`；B05 天龙门 Boss 为 `27.52→28.57→21.43`，替换前后不变；B06 赛总管由替换前 `21.43` 变为 `27.41→28.89→21.67`（`H=0.75`）；胡斐、苗人凤替换前后均为 `27.81→29.20→21.90`。普通 7 / 8 调和精英替换前后均为 `9.39`；军伍 8 / 8 阳精英的替换前最终值为 `9.39`，替换后由基础 `8.72` 经经脉修正为 `9.56`，仍在 6–10 轮闸门内，无需调耐久。多人遭遇的倍率只作用一次整场共享总耐久 / 目标进度；B05 据此为 `round(139,931×0.75)=104,948`，不得逐单位复制。
+按 `Rraw=R0×10000²/(A×D)×H` 逐行调用 `boss_pacing.py`。正式接入前后：B01 天龙门槽 `23.68→23.68`，B02 左童 / 右童各 `9.39→9.73`，B04 胡斐 `21.90→21.90`，B05 天龙门槽 `21.43→21.43`，B07 苗人凤 `21.90→21.90`；同品阶替换不改变七参，B02 因 7 品调和改为 9 品阳性而上升 0.34 轮，仍在 6–10 窗口。既有 B03 为 `21.43`，B06 为 `21.67`，军伍精英为 `9.56`。全数过窗，无需按 `design/21` §11.9.2 调血量或防御。多人遭遇倍率只作用一次整场共享总耐久 / 目标进度：B05 为 104,948，B06 为 112,536，B07 为 138,411；不得逐行动者复制。
+
+外放复核覆盖顶尖人物 B04 胡斐、B07 苗人凤，并复核 B06 赛总管：三者当前行动表所用图鉴招式均无 `projection:true`，飞狐补录 41 招与雪山补录 8 招的外放数也均为 0，故本轮没有新增外放加持伤害。仍以正式七参运行工具，结果分别为 `21.90 / 21.90 / 21.67`，不调整耐久；这只是 `estimateOnly=true` 的静态复核，不能替代固定 RNG 回放。
 
 未列普通敌人取 `9000/6200/9000`、`routeOnly` 与五里程碑全 0；所有武学型精英须绑定上表确定模板，缺失即构建失败。每个行动者各有独立实例；阶段切换、共享脱离目标或阵营翻转不重建，财货、火源、绳路与证词不实例化。攻防路线分别接 04 Z5M / Z4M；护体真气 → 护体内劲 → `mpGuard` → 气血。速度先乘 `meridianSpeedBp` 再乘 `grappleMoveBp`，首轮冻结 `openingQinggong` 与修正后 `spd`。绝招仅读 `MoveDef.ultimate`；点穴 / 擒拿在伤害后调用 `applyAcupointSeal` / `applyGrapple`；战斗调息不推进第九转。
 
-04 的模板基线仍为 `4.1 / 9.3 / 24.5`，但最终验收以本节逐单位结果为准；Boss 均回到 `21.43–23.68`，精英为 `9.39–9.56`。速度强档 12239 bp / 封路 6500 bp 只影响首轮、CT、移动与纯经脉闪避修正，不另乘伤害；七场具名配置仍须固定 RNG 实战回放 **（待实测）**。
+04 的模板基线仍为 `4.1 / 9.3 / 24.5`，但最终验收以本节逐单位结果为准；Boss 均回到 `21.43–23.68`，精英为 `9.39–9.73`。速度强档 12239 bp / 封路 6500 bp 只影响首轮、CT、移动与纯经脉闪避修正，不另乘伤害；七场具名配置仍须固定 RNG 实战回放 **（待实测）**。
 
 ---
 
@@ -1334,7 +1378,7 @@ P_actual = G(9) × L(9)
 | XS-X15 | 七名重点人物的受控同行窗口、招募硬门槛与失败补救 | §8.2–§8.3 | 生卒、appearance 与 D 等级仍以 `design/18` / 人物图鉴为准 |
 | XS-X16 | 四组羁绊 / 合击方向 | §8.4 | 仅为建议方向，不登记 `cmb_*`，不得绕过 `design/09` |
 | XS-X17 | 七场 Boss 的阶段、战场目标、弱点、锁血和软出口 | §8.8–§8.9、§12 | 人物 / 事件只作骨架；机制脚本均为本作创作 |
-| XS-X18 | 宝树控卷、宝洞三目标、清廷号令链与冰壁双破绽等非单血条目标 | §8.9、§12.4 | 多单位总耐久受同级 Boss 预算约束 |
+| XS-X18 | 宝树控卷、双童 `deescalationBp`、宝洞三目标、清廷号令链与冰壁双破绽等非单血条目标 | §8.9、§12.4 | 多单位总耐久 / 目标进度只消费一次遭遇级预算 |
 | XS-X19 | “劈”导致苗人凤死、“不劈”导致胡斐死的两种演绎 | §5、§10.2 | 小说止于举刀留白；两种死亡结果均为**（原创补写）** |
 | XS-X20 | “两全”中玩家弃先手、示证并叫破双方破绽的操作链 | §5.3、§10.2 | 作为改命达成方式；最终停手仍由胡苗本人决定 |
 
@@ -1344,6 +1388,7 @@ P_actual = G(9) × L(9)
 |---|---|---|---|
 | XS-X21 | 本土 4 内功、5 拳脚、9 兵器的章节基础投放节奏 | §9.1–§9.3 | 基础装配证明只复用既有图鉴 ID；另补宝树个人散承两门，不改变 4 / 5 / 9 保底核算 |
 | XS-X29 | 宝树 / 阎基个人散承的 `sk_cangfengxingqi`、`sk_cuomaifanzhang` 及学习来源 | §9.1、§12.6、补录图鉴 §2 | 全部武学名、招名与机制均为原创扩展；不归药王门，也不限制为 Boss 专属 |
+| XS-X30 | 宝树旧稿拆为两条单武学秘籍并在安全任务结算中原子发放 | §9.4、`design/10` §10.1.1 | 不从尸体 / 普通掉落 / 商店产出；组内失败整体回滚，秘籍不豁免前置 |
 | XS-X22 | 固定救济定神丹与三项指点参数 | §9.5 | 仅为建议值；冲穴公式和封顶归 `design/15` |
 | XS-X23 | 五条前代传承在本界的线索地点、载体绑定和胡刀 / 苗剑合成节奏 | §9.6 | 目录与配方只引用 `design/20`，本章不改跨书持久化 |
 | XS-X24 | 罗生门的原始事实层、公开 / 受控 / 篡改版本及知识卡 UI | §10.1 | 原始层不可改写；任务运行时与存档归属仍由通用系统接纳 |
@@ -1392,6 +1437,8 @@ P_actual = G(9) × L(9)
 | 主载体 | 传承预算 | 同一书界承担完整高价值缓存的一条传承线 | 预算概念来自 `design/20`；不改配方 |
 | 时代图层 | 地图实例 | 全局区域 / 城市在 1780 年的名称、势力、入口与内容状态 | 规则归 `design/11` / `19` |
 | 制作阶段 | 生产预算 | 把 21 个主线节点归并为 8 组关卡 / 美术里程碑 | 不取代任务 ID 或剧情幕 |
+| `deescalationBp` | 章节局部目标进度 | B02 双童非击杀目标进度；累计至 10000 即按精英遭遇结算 | 通用目标进度规则归 `design/09`；本章只登记实例 |
+| B05 / B06 `objectiveKey` 值 | 章节局部分配键 | `rescue / fireControl / exitRoute` 与 `seizeCommand / breakNet / stopExecution` | 字段及稳定汇总规则归 `design/09`；本章只登记枚举值 |
 
 ### 本章正式登记的内容 ID
 
@@ -1480,10 +1527,10 @@ P_actual = G(9) × L(9)
 | XS-V14 | 人物与招募 | 7 名重点队友均有 D 级、任务门槛、本人同意、受控窗口与离开边界；回忆人物不得生成 1780 活体 | error |
 | XS-V15 | NPC 生产性 | 所有运行时 `npc_*` 可在 ch14 名录或合法跨书同 ID 中解析；无 1780 appearance 者只生成远讯 / 史笺 | error |
 | XS-V16 | Boss 数量与管线 | 7 个唯一 `enc_14_*`；D7、`ai_expert`、2–3 阶段；仅苗人凤 Lv62 为 `capExempt`；具名人物用 `full` | error |
-| XS-V17 | Boss 耐久 | 多单位战倍率只作用一次整场共享预算；B05 采用 `totalHp=round(139931×0.75)=104948` | error |
-| XS-V18 | 武学引用 | 可学 / 奖励 `sk_*` 均存在于既有或本书补录图鉴；两门新增卡及原创招名只在补录图鉴定义，本章不改既有品阶、不因看见破绽自动授艺 | error |
+| XS-V17 | Boss 耐久 | 多单位战倍率只作用一次整场共享预算；B05 / B06 / B07 的 `totalHp` 分别为 `104948 / 112536 / 138411`；三场稳定分配各自精确等于该值，且无阶段回复 / 新血条 | error |
+| XS-V18 | 武学引用 | 可学 / 奖励 `sk_*` 均存在于既有、飞狐或本书补录图鉴；B01 / B02 / B04 / B05 / B07 的每个生产槽都绑定可解析的正式主运与外功；本章不重定义招式 | error |
 | XS-V19 | 装配保底 | 本土内功 4、拳脚 5、兵器 9；至少一条非互斥路径可把 2/2/2 补成 3/3/3 | error |
-| XS-V20 | 物品与学习分离 | `eq_lengyuedao` 唯一；`it_chuangwangjundao` 仅为钥匙；持有神兵、军刀或谱卷均不自动授予武学 | error |
+| XS-V20 | 物品与学习分离 | `eq_lengyuedao` 唯一；`it_chuangwangjundao` 仅为钥匙；宝树旧稿原子发两条单武学秘籍、失败全回滚且禁止尸体掉落；持有物品均不自动豁免武学前置 | error |
 | XS-V21 | 资源与营生 | 12 个 `rp_*`、14 个 `biz_*` 唯一，12 城各至少一处营生；任务 / 产业 / 资源共用唯一 `economySource` | error |
 | XS-V22 | 冲穴接口 | 只使用 `design/15` 正式 `mer_*`；指点缺字段按 0；定神丹只降走火 1 级且固定救济最多 1 枚 | error |
 | XS-V23 | 前代传承 | 五个 `lgs_*`、三卷和信物均可在 `design/20` 解析；系统上限为 3/2/6/3，本章排期仅一条高价值主载体 | error |
@@ -1491,7 +1538,8 @@ P_actual = G(9) × L(9)
 | XS-V25 | 书眠与归梦 | 只存在 `vid_sleep_13_14`；余韵显示 58 且保留压制；`FN_ENTER` 后显示 70；不存在天书 15 | error |
 | XS-V26 | Markdown 完整 | 表格列数一致，围栏成对，无截断句、空标题或占位词；章节链接目标存在 | error |
 | XS-V27 | Boss / 精英经脉 | 七场实际武学行动者均有 §12.6 七组输入，层数 ≤9 且 `turns≤8`；双童 / 群豪 / 援军独立实例，纯环境无实例；路线由 `MoveDef` 编译 | error |
-| XS-V28 | 经脉节奏 | 逐单位静态值为 Boss `21.43–23.68`、精英 `9.39–9.56`；Z4M / Z5M、护体、速度与控制顺序匹配 `design/21`；固定 RNG 回放仍须过窗 | error |
+| XS-V28 | 经脉节奏 | 逐单位静态值为 Boss `21.43–23.68`、精英 `9.39–9.73`；Z4M / Z5M、护体、速度与控制顺序匹配 `design/21`；固定 RNG 回放仍须过窗 | error |
+| XS-V29 | 旧状态与生产配装 | 运行时不引用旧风雪 / 缠绕状态；首领表每个生产行动者都绑定合法武学外键，解析失败即构建拒绝 | error |
 
 ### 数值金标准
 
@@ -1508,8 +1556,12 @@ P_actual = G(9) × L(9)
 | XS-T09 | 苗人凤越级 | `Ld=min(70,70,58+4)=62`，且是唯一 `capExempt` |
 | XS-T10 | Lv62 Boss | HP / MP / 双攻 / 双防 = `184548 / 13947 / 4568 / 4184 / 3065 / 2846` |
 | XS-T11 | 苗剑威力 | `P_actual=G(9)×L(9)=2.40×1.40=3.36` |
-| XS-T12 | 苗人凤建议气血 | `round(184548×0.75)=138411`；`29.20×0.75=21.90`，仍须具名 `full` 夹具验证 |
+| XS-T12 | 苗人凤建议气血 | `round(184548×0.75)=138411`；`29.20×0.75=21.90`，仍须具名 `full` 夹具验证 **（待实测）** |
 | XS-T13 | 五级月钱 / 配给 | 月钱 `1.26/2.52/4.20/6.72/9.24` 两；配给 `0.84/1.68/2.94/4.20/6.30` 两 |
+| XS-T29 | 赛总管围网整场耐久 | `round(150048×0.75)=112536`；每条分支均为 `56268+16880+16880+22508=112536`，两波各 1 名精英且仅声明一次 |
+| XS-T30 | 双童非击杀进度 | `deescalationBp=3×2000+2×2000=10000`；三次止围攻 + 双童各自安全离场 |
+| XS-T32 | 宝洞群豪整场耐久 | `41979+10495+10495+10495+10495+10495+10494=104948`；1 首领、3 精英、3 目标无回复 |
+| XS-T33 | 苗人凤三阶段耐久 | 单一 `hpMax=138411`；70% / 35% / 1 HP 锁血，无阶段回复或新血条 |
 
 ### 剧情、恢复与跨书测试
 
@@ -1530,6 +1582,12 @@ P_actual = G(9) × L(9)
 | XS-T26 | 载入缺少三个指点字段的旧存档 | `rateBp/successBp/costReduceBp` 缺项按 0，不由名医 / 高僧称谓补值 |
 | XS-T27 | B05 三方各装完整 Lv56 Boss 耐久 | 构建拒绝；整场共享总耐久取 `round(139931×0.75)=104948` |
 | XS-T28 | B07 加载标准模板而非具名配置 | 构建拒绝；必须 Lv62 `full`、三阶段锁血且不以击杀结算 |
+| XS-T29A | B06 为赛总管及两波援军分别复制 112536 | 构建拒绝；遭遇级仅有一个 `totalHp=112536`，分配合计必须精确相等 |
+| XS-T29B | B05 任一分支加载稳定分配 | 1 首领、3 精英、3 目标逐项求和恰为 104948；任一分支不得增删第二份耐久 |
+| XS-T29C | B06 分别加载夺令 / 拆网 / 助捕后止杀 | 三支只替换最后的 `objectiveKey`，逐支求和均为 112536；阵营翻转不回复 HP |
+| XS-T29D | B07 连续跨越两道阶段门 | 只消费同一 138411；在 96888 / 48444 / 1 HP 锁血，不回复、不复起、不新建血条 |
+| XS-T30A | 宝树旧稿组内第二条写入失败或以击杀掉落 | 两条秘籍均回滚且不写已领取标记；尸体掉落路径构建拒绝 |
+| XS-T31 | B02 完成三次制止围攻并让双童各自安全离场 | 共享进度恰为 10000 并按精英遭遇结算；不得要求击倒双童 |
 
 ### 人工验收
 
@@ -1556,6 +1614,7 @@ P_actual = G(9) × L(9)
 | XS-D05 | `design/15` / 人物指点目录 | 指点暂用 `rateBp=1500`、`successBp=800`、`costReduceBp=500`，缺项按 0 | 胡斐、苗人凤、雪谷医者等人物级 `meridianAid` 定稿后回填 |
 | XS-D06 | `design/03` / `09` | **已解决：**按 `design/21` §11.9.2，苗人凤 Lv62 `full` 初始气血暂取 138,411，即标准 Boss 184,548 的 0.75 | 正式先天、武学、装备入库并完成低 / 中 / 高配 TTK 模拟后再验证 |
 | XS-D07 | `design/09` | **已解决：**按 `design/21` §11.9.2，B05 多方整场共享总耐久取 `round(139,931×0.75)=104,948` | 编组、目标物耐久与撤离脚本实装后再验证 |
+| XS-D08 | `design/09` | **已解决：**B06 遭遇级只声明一次 `totalHp=round(150,048×0.75)=112,536`，两波援军与目标进度均计入 | 编组、援军与号令 / 围网脚本实装后过 `BattleReplayV1` 门禁 **（待实测）** |
 
 ### 本文依赖的上游事实
 
@@ -1568,10 +1627,10 @@ P_actual = G(9) × L(9)
 | `design/08`、`11`、`19` 与 `design/map/*` | **部分解决：**采用 6 区、12 城、正式地形 / qg 门禁及 `jianghu-ch14.svg`；`cities.yaml` 的旧 19 区映射仍待迁移 |
 | `design/12` / `16` / `17` | **已解决：**任务、五级晋升、资源营生与时代门派矩阵已有规则；本文只登记雪山实例 |
 | `design/18` 与 `catalog/npcs-ch14-xueshan.md` | **已解决：**人物形态、D 级、appearance 与跨书重逢有正式数据；精确生卒未知者仍保持年龄段 |
-| `catalog/skills-qianlong.md`、`skills-general.md`、`skills-bulu-14-xueshan.md` | **部分解决：**本土 4 / 5 / 9 基础装配池、宝树两门个人散承与雪山唯一原生天级 `sk_hujiadao` 均有图鉴 ID；军伍两门来源扩展及书界 13 跨界替换仍待回填 |
-| 书界 13《飞狐外传》补录 / NXfix | **待同步：**胡家、苗家、天龙门为书界 13 主归属；B01 / B02 / B04 / B05 / B07 的替补只在 §12.6 暂留，待统一替换 |
+| `catalog/skills-qianlong.md`、`skills-general.md`、`skills-bulu-13-feihu.md`、`skills-bulu-14-xueshan.md` | **已解决：**本土基础装配池、宝树两门个人散承、军伍来源及 B01 / B02 / B04 / B05 / B07 正式跨书槽均有图鉴 ID 与雪山来源 |
+| 书界 13《飞狐外传》补录 / NXfix | **已解决：**胡家、苗家、天龙门六门正式武学已接入 §7、§9、§12.6；不再保留跨书替补或地位画像 |
 | `design/15` / `21` | **已解决：**永久穴位 / 周天 / 九转归 15；§12.6 已接入 21 的战斗经脉模板、路线、护体、速度与控制接口；雪山战内 `turns≤8` |
-| `design/10` / `15` / `20` | **部分解决：**神兵、冲穴、五个传承源与配方可引用；建议救济、指点参数和同界主载体仍待生产验证 |
+| `design/10` / `15` / `20` | **部分解决：**神兵、宝树旧稿两条正式秘籍、冲穴、五个传承源与配方可引用；建议救济、指点参数和同界主载体仍待生产验证 |
 | `design/07-set-system.md` | **已解决：**§9 只引用正式 `set_hujia_lengyue`；件数、Buff、成员与效果均只读 07 |
 | `tech/04` / `tech/05` | **待对接：**两个章节系统的 YAML、原子提交、旗标注册和旧存档缺省值须纳入 schema / 引擎 |
 
@@ -1608,8 +1667,8 @@ P_actual = G(9) × L(9)
 | XS-O02 | 四组合击是否进入正式图鉴 | 默认不建 ID，只实现平阿四援护脚本；避免候选占用正式内容预算 |
 | XS-O03 | 胡刀与苗剑哪条是雪山主载体 | 默认玩家较早完成并获家传认可者锁主载体；另一条保留授艺与关系奖励 |
 | XS-O04 | 罗生门与劈刀系统是否采用本文 YAML 字段 | 默认只把 YAML 当接口样例；上游 schema 可改字段名，但须保留不可篡改原始层和原子结算语义 |
-| XS-O05 | 苗人凤与 B05 的正式耐久 | **已解决：**默认分别用 138,411 与整场 104,948 起跑（见 §12.3、§12.4、§12.6）；固定 RNG 未通过时只调机制 / 耐久，不降低经脉 |
-| XS-O07 | 胡斐、苗人凤 9 品地位下限 | 默认采用 9 品：二人为终章同级顶尖人物，且各有 9 品以上代表外功；待作者确认，图鉴补内功后恢复三项同取主运 |
+| XS-O05 | 苗人凤、B05 与 B06 的正式耐久 | **已解决：**默认分别用 138,411、整场 104,948 与整场 112,536 起跑（见 §12.3、§12.4、§12.6）；固定 RNG 未通过时只调机制 / 耐久，不降低经脉 |
+| XS-O07 | 胡斐、苗人凤 9 品主运来源 | **已解决：**分别由 `sk_hujiaxuangong`（阳）与 `sk_miaojiaxuangong`（调和）正式承接七参，见 §12.6 与 `skills-bulu-13-feihu.md` §1 |
 | XS-O06 | 余韵是否自动进入归梦 | 默认不自动；玩家主动确认后才进入 `FN_ENTER`，保证最后一界可清支线、冲穴和传承 |
 | XS-O08 | 宝树两门个人散承是否永久可学，以及旧稿层数上限 | 默认允许正常获取：当面对质 / 交换后传授至 10 重，处置后旧稿至 8 重；不要求成为 Boss，也不授药王门身份 |
-| XS-O09 | 宝树旧稿是否建立正式物品 ID | 默认暂不建立；在 `design/10` 接纳前由任务奖励直接执行学习解锁，避免悬空物品引用 |
+| XS-O09 | 宝树旧稿是否建立正式物品 ID | **已解决：**`design/10` §10.1.1 已建立 `it_miji_cangfengxingqi`、`it_miji_cuomaifanzhang`；本章按 §9.4 原子发放 |
