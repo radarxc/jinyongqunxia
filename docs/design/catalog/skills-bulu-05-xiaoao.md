@@ -5,7 +5,7 @@
 > **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-15、`docs/00-canon.md` §3–§5/§9/§12–§13/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/15`、`design/17`、`design/21`。
 > **引用而不重定义**：品阶、招式预算与 `MoveDef` 见 `design/05`；Buff 见 `design/06`；门派边界见 `design/17`；穴位、路线、护体内劲、外放与调息见 `design/15`、`design/21`。
 > **标注约定**：**（原创扩展）**为原著没有的武学或机制；**（原创扩展命名）**为原著有人物或动作依据、但名称非原著定名；**（待考）**须按三联 / 广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
-> **版本**：首领所缺武学补录（2026-09-28）。
+> **版本**：首领所缺武学补录（2026-09-28）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -459,7 +459,7 @@ repair = floor((120 + 24×8 + 18×10) × natureBp / 10000)
 
 - 品阶、IP、绝招预算与招式倍率只依 `design/05`；经脉路线、护体内劲、调息和外放只依 `design/21`。
 - 门派层级与教学权限依 `design/17`；若职级表调整，只改习得门槛，不改变八门武学的来源归属。
-- 五门地中尚未列入 `ultimate-counts-tianzhong-dizhong.md` 的逐门裁定表；本文按其 fallback 判据取每门 1 个绝招，待裁定表同步后移除工具提示。华山紫气诀为天下，固定 2 绝招。
+- **已解决：**五门地中已列入 `ultimate-counts-tianzhong-dizhong.md` §3.1B，逐门裁定均为 1 个绝招；不再依赖 fallback。华山紫气诀为天下，固定 2 绝招。
 
 ### 对基准的修改提案
 
@@ -476,4 +476,4 @@ repair = floor((120 + 24×8 + 18×10) × natureBp / 10000)
 |---|---|---|
 | `BL05-O01` | 任我行个人掌法是否允许玩家取得？ | 允许，但只经本人指点或唯一后手录奇遇，最高 10 重且不可击败掉落 |
 | `BL05-O02` | 葵花飞针是否独立于葵花宝典装配？ | 独立外功，但硬前置 `sk_kuihua` 7 重与针类暗器 |
-| `BL05-O03` | 五门地中绝招数是否保持 fallback 结果？ | 保持每门 1 招，直至裁定表显式收录 |
+| `BL05-O03` | **已解决：**五门地中绝招数是否保持原 fallback 结果？ | 保持每门 1 招；已由 `ultimate-counts-tianzhong-dizhong.md` §3.1B 逐门显式收录 |

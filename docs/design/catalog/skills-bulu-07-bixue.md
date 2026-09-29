@@ -1,11 +1,11 @@
 # 门派武学补录图鉴 · 书界 07《碧血剑》（`skills-bulu-07-bixue`）
 
-> **归属（基准 §18）**：`design/catalog/skills-*.md` 的《碧血剑》首领缺口增量。本册只定义本轮新增的七门内功、对应招式 / 路线 / 调息实例，以及来源扩展登记；既有 44 门本土武学仍唯一见 `design/catalog/skills-xiake-bixue.md`。
+> **归属（基准 §18）**：`design/catalog/skills-*.md` 的《碧血剑》首领缺口增量。本册只定义本轮新增的七门内功、一门拳法、对应招式 / 路线 / 调息实例，以及来源扩展登记；既有 44 门本土武学仍唯一见 `design/catalog/skills-xiake-bixue.md`。
 > **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14–AR-16、`docs/00-canon.md` §3–§5/§9/§12/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/15`、`design/17`、`design/21`。
 > **引用而不重定义**：武学字段、品阶、招式 / 内功预算与学习规则见 `design/05`；Buff 本体见 `design/06`；门派 ID、职级与时代状态见 `design/17`；经脉 / 穴位见 `design/15`；战斗经脉路线、外放、调息和护体内劲见 `design/21`；原图鉴已有条目均只引用。
 > **覆盖声明**：本册是 `skills-xiake-bixue` 的追加册，不覆写、不升阶、不重复定义既有 `sk_*`。华山（碧血一系）、铁剑门、石梁温家、仙都派、山宗 / 闯军及金龙帮在其他书界复现时复用本册 ID；明宫护院仅属明代宫禁来源，不反推清宫传承。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（原创扩展命名）**为人物、组织或武学表现有依据但名称未见原著明载；**（待考）**须以三联 / 广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
-> **版本**：v1.0（首领武学补录，2026-09-28）。
+> **版本**：v1.2（首领武学补录，2026-09-28）；经脉落地终审（2026-09-29）；归辛树外功返修补录（2026-09-29）。
 
 ---
 
@@ -13,7 +13,7 @@
 
 ### 0.1 绝招显式路线索引（镜像正文卡，非覆写层；2026-09-28）
 
-本索引镜像正文卡的 `MoveDef` 真值，并在全册唯一一次展开绝招路线。八条路线均为**（原创扩展）**；每段 `segmentCt=90`，故路线 CT 为 `8×90=720`，与收招合计 `1200+720=1920≤2000`。
+本索引镜像正文卡的 `MoveDef` 真值，并在全册唯一一次展开绝招路线。九条路线均为**（原创扩展）**；每段 `segmentCt=90`，故路线 CT 为 `8×90=720`，与收招合计 `1200+720=1920≤2000`。
 
 <!-- skill-catalog-audit:start -->
 | 品阶 | 武学 | MoveDef（正文卡镜像） | 路线 ID | steps（acupointRef/segmentCt/riskBp） |
@@ -23,12 +23,13 @@
 | 7 地下 | `sk_jinlongbangxinfa` | `mv_jinlongbangxinfa_dingzhuang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_jinlongbangxinfa_dingzhuang}` | `mfr_jinlongbangxinfa_dingzhuang` | `MeridianRouteDef{moveRef:mv_jinlongbangxinfa_dingzhuang; ultimate:true; purpose:defense}`；`ap_chongmai_qichong/90/100→ap_chongmai_qixue/90/110→ap_chongmai_siman/90/120→ap_chongmai_zhongzhu/90/130→ap_chongmai_huangshu/90/140→ap_chongmai_shangqu/90/150→ap_chongmai_shiguan/90/160→ap_chongmai_youmen/90/170` |
 | 7 地下 | `sk_xianduyunqi` | `mv_xianduyunqi_shouzheng` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_xianduyunqi_shouzheng}` | `mfr_xianduyunqi_shouzheng` | `MeridianRouteDef{moveRef:mv_xianduyunqi_shouzheng; ultimate:true; purpose:defense}`；`ap_renmai_huiyin/90/100→ap_renmai_qugu/90/110→ap_renmai_zhongji/90/120→ap_renmai_shimen/90/130→ap_renmai_qihai/90/140→ap_renmai_shenque/90/150→ap_renmai_shuifen/90/160→ap_renmai_zhongwan/90/170` |
 | 7 地下 | `sk_huashanqigong07` | `mv_huashanqigong07_yangzhang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_huashanqigong07_yangzhang}` | `mfr_huashanqigong07_yangzhang` | `MeridianRouteDef{moveRef:mv_huashanqigong07_yangzhang; ultimate:true; purpose:attack}`；`ap_dumai_mingmen/90/100→ap_dumai_jizhong/90/110→ap_dumai_zhiyang/90/120→ap_dumai_shendao/90/130→ap_dumai_shenzhu/90/140→ap_shouyangming_quchi/90/180→ap_shouyangming_shousanli/90/190→ap_shouyangming_hegu/90/200` |
+| 8 地中 | `sk_huashandiejinquan07` | `mv_huashandiejinquan07_sandie` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_huashandiejinquan07_sandie}` | `mfr_huashandiejinquan07_sandie` | `MeridianRouteDef{moveRef:mv_huashandiejinquan07_sandie; ultimate:true; purpose:attack; requiredNature:[yang,harmony]}`；`ap_dumai_mingmen/90/100→ap_dumai_jizhong/90/120→ap_chongmai_shangqu/90/140→ap_yangqiao_jianyu/90/160→ap_shoutaiyin_chize/90/180→ap_shouyangming_quchi/90/200→ap_shouyangming_shousanli/90/220→ap_shouyangming_hegu/90/240` |
 | 9 地上 | `sk_tiejianxuangong` | `mv_tiejianxuangong_guiyi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_tiejianxuangong_guiyi}` | `mfr_tiejianxuangong_guiyi` | `MeridianRouteDef{moveRef:mv_tiejianxuangong_guiyi; ultimate:true; purpose:defense}`；`ap_renmai_huiyin/90/100→ap_renmai_zhongji/90/110→ap_renmai_qihai/90/120→ap_renmai_danzhong/90/130→ap_shoujueyin_tianchi/90/150→ap_shoujueyin_quze/90/160→ap_shoujueyin_neiguan/90/170→ap_shoujueyin_laogong/90/180` |
 | 9 地上 | `sk_tiejianxuangong` | `mv_tiejianxuangong_huanfeng` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_tiejianxuangong_huanfeng}` | `mfr_tiejianxuangong_huanfeng` | `MeridianRouteDef{moveRef:mv_tiejianxuangong_huanfeng; ultimate:true; purpose:attack}`；`ap_dumai_changqiang/90/100→ap_dumai_yaoshu/90/110→ap_dumai_yaoyangguan/90/120→ap_dumai_yinjiao/90/140→ap_shoushaoyang_tianjing/90/160→ap_shoushaoyang_waiguan/90/170→ap_shoushaoyang_yangchi/90/180→ap_shoutaiyang_wangu/90/190` |
 | 7 地下 | `sk_minggonghuyuangong` | `mv_minggonghuyuangong_gongwei` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_minggonghuyuangong_gongwei}` | `mfr_minggonghuyuangong_gongwei` | `MeridianRouteDef{moveRef:mv_minggonghuyuangong_gongwei; ultimate:true; purpose:defense}`；`ap_yangwei_jinmen/90/100→ap_yangwei_yangjiao/90/110→ap_yangwei_toulinqi/90/120→ap_yangwei_benshen/90/130→ap_yangwei_tianliao/90/140→ap_yangwei_jianjing/90/150→ap_yangwei_fengfu/90/160→ap_yangwei_yamen/90/170` |
 <!-- skill-catalog-audit:end -->
 
-路线叙事：山宗、华山、明宫三门阳性内功分别以督脉守阵、督脉蓄劲后整臂发掌、阳维护卫线表达不同动作；温家以带脉横向轮转、金龙帮以冲脉盘旋承接、仙都以任脉守中；铁剑玄功的“归一”由任脉收于掌心，“还锋”则由督脉转手三阳至持械腕端。铁剑两绝招共享穴位为 `0/8`，满足同门 ≤50%；八条序列均非轮换或逆序。
+路线叙事：山宗、华山养气、明宫三门阳性内功分别以督脉守阵、督脉蓄劲后整臂发掌、阳维护卫线表达不同动作；华山叠劲拳由腰背、冲脉与肩肘逐节贯拳，末三段严格落 `曲池→手三里→合谷`；温家以带脉横向轮转、金龙帮以冲脉盘旋承接、仙都以任脉守中；铁剑玄功的“归一”由任脉收于掌心，“还锋”则由督脉转手三阳至持械腕端。铁剑两绝招共享穴位为 `0/8`，满足同门 ≤50%；九条序列均非轮换或逆序。
 
 正文路线注册表声明 `ultimate` 布尔真值；上方索引仅镜像完整实例：
 
@@ -39,6 +40,7 @@
 | `sk_jinlongbangxinfa` | `mv_jinlongbangxinfa_dingzhuang→mfr_jinlongbangxinfa_dingzhuang/true/defense/显式（见文首索引）` |
 | `sk_xianduyunqi` | `mv_xianduyunqi_shouzheng→mfr_xianduyunqi_shouzheng/true/defense/显式（见文首索引）` |
 | `sk_huashanqigong07` | `mv_huashanqigong07_yangzhang→mfr_huashanqigong07_yangzhang/true/attack/显式（见文首索引）` |
+| `sk_huashandiejinquan07` | `mv_huashandiejinquan07_sandie→mfr_huashandiejinquan07_sandie/true/attack/显式（见文首索引）` |
 | `sk_tiejianxuangong` | `mv_tiejianxuangong_guiyi→mfr_tiejianxuangong_guiyi/true/defense/显式（见文首索引）`；`mv_tiejianxuangong_huanfeng→mfr_tiejianxuangong_huanfeng/true/attack/显式（见文首索引）` |
 | `sk_minggonghuyuangong` | `mv_minggonghuyuangong_gongwei→mfr_minggonghuyuangong_gongwei/true/defense/显式（见文首索引）` |
 
@@ -63,6 +65,10 @@
 | `sk_huashanqigong07` | `mv_huashanqigong07_tiaoxi` | `mfr_huashanqigong07_tiaoxi` | `MeridianRouteDef{moveRef:mv_huashanqigong07_tiaoxi; ultimate:false; purpose:defense}`；`ap_dumai_changqiang/90/70→ap_dumai_mingmen/90/80→ap_dumai_zhiyang/90/90→ap_dumai_baihui/90/100` |
 | 〃 | `mv_huashanqigong07_tuizhang` | `mfr_huashanqigong07_tuizhang` | `MeridianRouteDef{moveRef:mv_huashanqigong07_tuizhang; ultimate:false; purpose:attack}`；`ap_dumai_zhiyang/90/80→ap_dumai_shenzhu/90/90→ap_shouyangming_quchi/90/110→ap_shouyangming_hegu/90/120` |
 | 〃 | `mv_huashanqigong07_baoyuan` | `mfr_huashanqigong07_baoyuan` | `MeridianRouteDef{moveRef:mv_huashanqigong07_baoyuan; ultimate:false; purpose:defense}`；`ap_renmai_huiyin/90/70→ap_renmai_zhongji/90/80→ap_dumai_mingmen/90/100→ap_dumai_shendao/90/110` |
+| `sk_huashandiejinquan07` | `mv_huashandiejinquan07_lijia` | `mfr_huashandiejinquan07_lijia` | `MeridianRouteDef{moveRef:mv_huashandiejinquan07_lijia; ultimate:false; purpose:attack}`；`ap_dumai_yaoyangguan/80/80→ap_dumai_jizhong/80/100→ap_shouyangming_quchi/80/120→ap_shouyangming_shousanli/80/140→ap_shouyangming_hegu/80/160` |
+| 〃 | `mv_huashandiejinquan07_diejin` | `mfr_huashandiejinquan07_diejin` | `MeridianRouteDef{moveRef:mv_huashandiejinquan07_diejin; ultimate:false; purpose:attack}`；`ap_zuyangming_zusanli/80/80→ap_dumai_shenzhu/80/100→ap_shoushaoyang_waiguan/80/120→ap_shouyangming_quchi/80/140→ap_shouyangming_shousanli/80/160→ap_shouyangming_hegu/80/180` |
+| 〃 | `mv_huashandiejinquan07_jinquan` | `mfr_huashandiejinquan07_jinquan` | `MeridianRouteDef{moveRef:mv_huashandiejinquan07_jinquan; ultimate:false; purpose:attack}`；`ap_chongmai_qichong/80/80→ap_chongmai_huangshu/80/100→ap_yangqiao_jianyu/80/120→ap_shoutaiyin_chize/80/140→ap_shouyangming_quchi/80/160→ap_shouyangming_shousanli/80/180→ap_shouyangming_hegu/80/200` |
+| 〃 | `mv_huashandiejinquan07_huishen` | `mfr_huashandiejinquan07_huishen` | `MeridianRouteDef{moveRef:mv_huashandiejinquan07_huishen; ultimate:false; purpose:attack}`；`ap_daimai_zulinqi/80/80→ap_daimai_weidao/80/100→ap_dumai_zhiyang/80/120→ap_shoushaoyang_tianjing/80/140→ap_shouyangming_quchi/80/160→ap_shouyangming_shousanli/80/180→ap_shouyangming_hegu/80/200` |
 | `sk_tiejianxuangong` | `mv_tiejianxuangong_yunqi` | `mfr_tiejianxuangong_yunqi` | `MeridianRouteDef{moveRef:mv_tiejianxuangong_yunqi; ultimate:false; purpose:defense}`；`ap_renmai_huiyin/90/70→ap_renmai_qihai/90/80→ap_dumai_mingmen/90/100→ap_yangwei_yamen/90/110` |
 | 〃 | `mv_tiejianxuangong_tiebi` | `mfr_tiejianxuangong_tiebi` | `MeridianRouteDef{moveRef:mv_tiejianxuangong_tiebi; ultimate:false; purpose:defense}`；`ap_yangwei_jinmen/90/80→ap_yangwei_yangjiao/90/90→ap_yangwei_jianjing/90/100→ap_yangwei_fengfu/90/110` |
 | `sk_minggonghuyuangong` | `mv_minggonghuyuangong_shoumen` | `mfr_minggonghuyuangong_shoumen` | `MeridianRouteDef{moveRef:mv_minggonghuyuangong_shoumen; ultimate:false; purpose:defense}`；`ap_dumai_changqiang/90/70→ap_dumai_yaoshu/90/80→ap_dumai_mingmen/90/90→ap_yangwei_yamen/90/110` |
@@ -78,6 +84,7 @@
 | 金龙帮 | `sk_jinlongbangxinfa` | 焦公礼 7 品主运 | 接该册 §13 的江湖盟友来源 |
 | 仙都派 | `sk_xianduyunqi` | 闵子华 7 品主运 | 与该册 §12 同体系；人物归属仍**（待考）** |
 | 华山·碧血支 | `sk_huashanqigong07` | 孙仲君 L3 的 7 品主运 | 与该册 §8 同体系 |
+| 华山·碧血支 | `sk_huashandiejinquan07` | 归辛树 8 品华山拳掌外功 | 接该册 §8 的混元掌、破玉拳链；不替代其定义 |
 | 铁剑门 | `sk_tiejianxuangong` | 玉真子 9 品主运 | 与该册 §9 同体系 |
 | 明代宫禁 | `sk_minggonghuyuangong` | 内监亲随首领 7 品主运 | 本书新来源，不并入 `skills-kangxi` 的清宫体系 |
 
@@ -163,7 +170,7 @@
 
 被动：步位 `ps_shiliangwuxinggong_buwei`（2 重，每名相邻同门 parry +2，至多 +6）；生克 `ps_shiliangwuxinggong_shengke`（5 重，连续使用不同招式时下一次 Z3 +5%）；一人成阵 `ps_shiliangwuxinggong_yirenchengzhen`（10 重，无相邻友军时 hit / parry 各 +4）。
 
-地中绝招数取 1：本功名声局限于温家、功能浑厚而非多套著名绝学，按 `ultimate-counts-tianzhong-dizhong.md` 的 F/M/T 判据取下限；待裁定表纳入该新增 ID 后以其为准。
+地中绝招数取 1：本功名声局限于温家、功能浑厚而非多套著名绝学，按 `ultimate-counts-tianzhong-dizhong.md` §3.1B 的 F/M/T 逐门裁定取下限；该 ID 已显式入表。
 
 ## 3. 仙都派
 
@@ -195,7 +202,7 @@
 
 ## 4. 华山·碧血支
 
-### `sk_huashanqigong07` 华山养气功·碧血（7 地下 · 内功 · 华山）**（原创扩展命名）**
+### 4.1 `sk_huashanqigong07` 华山养气功·碧血（7 地下 · 内功 · 华山）**（原创扩展命名）**
 
 | 项 | 内容 |
 |---|---|
@@ -220,6 +227,32 @@
 | **养气成掌** `mv_huashanqigong07_yangzhang` **（原创扩展）** | 7 | 单体·1·近身 / 3.00 | 9%/0/1200，气势100 | 无附带，绝招基准 `3.00`；`projection:false`；`meridianRouteRef:mfr_huashanqigong07_yangzhang`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_huashanqigong07_yangzhang}` |
 
 被动：养掌 `ps_huashanqigong07_yangzhang`（2 重，拳掌招式耗内 −5%）；沉稳 `ps_huashanqigong07_chenwen`（5 重，未移动时 parry +4）；内外相济 `ps_huashanqigong07_neiwai`（10 重，拳掌命中后下一次本功调息效果 +10%）。
+
+### 4.2 `sk_huashandiejinquan07` 华山叠劲拳·碧血（8 地中 · 拳脚 / 拳 · 华山）**（原创扩展命名）**
+
+> **考据边界**：归辛树有“神拳无敌”称谓，但其相应拳掌是否另有原著正式名目须核《碧血剑》三联 / 广州修订版相关人物与交手段落**（待考）**；“华山叠劲拳·碧血”及下列招名、机制均为**（原创扩展命名）**，不冒充原著定名。
+
+| 项 | 内容 |
+|---|---|
+| 基础字段 | `category:unarmed`；`subType:fist`；`grade:8`；`origin:expanded`；`sect:sect_huashan`；`lineage:华山·碧血支（穆人清—归辛树一系）`；`sourceChapters:[ch07_bixue,ch08_luding]` |
+| 性质 / 权重 / 栏位 | `yang`；`wOut/wIn:0.75/0.25`；`moveSlots:5` |
+| reqs | `attrs:{str:45,con:42}; aptitude:{apFist:45}; sect:{id:sect_huashan,rank:4}; prereq:[{anyOf:[{skill:sk_hunyuanzhang,layer:6},{skill:sk_poyuquan,layer:6}]}]; hard:[sect,prereq]` |
+| layerStats | `{hit:[3,8],pierce:[2,7]}`，10 重合计 `8+7=15`，不越地阶上限 15 |
+| 层数要点 | 1 重立架；3 重叠劲；5 重进拳；6 重回身；**7 重绝招三叠贯臂**；10 重拳势圆成 |
+| learnSources | `master`：华山碧血支第四职级按门规传授，`maxLayer:10`；`master`：穆人清 / 归辛树认可后授艺，`maxLayer:10`。两路均保留属性、拳掌资质与本门前置；主角和其他合格人物均可学，不设击败掉落或人物专属。 |
+| setTags / conflicts | `[] / []`；与既有混元掌、破玉拳是同一进阶链的高阶拳术，但未获 `design/07` 双向登记前不单向加入套装 |
+| special / observable | `{fusible:true}` / `true`；观摩只到 6 重，绝招须正式授艺 |
+| 图鉴文本 | 以混元掌或破玉拳为根基，将腰背、肩肘与拳锋逐节贯通的高阶拳路；为归辛树的 8 品外功槽提供可正常习得的本门武学。 |
+
+| 招式（ID） | 重 | 范围 / 倍率 | 资源 | 效果、外放与路线 |
+|---|---:|---|---|---|
+| 立架冲拳 `mv_huashandiejinquan07_lijia` **（原创扩展命名）** | 1 | 单体·1·近身 / 1.00 | 7%/0/1000 | 标准单体；`projection:false`；`meridianRouteRef:mfr_huashandiejinquan07_lijia` |
+| 叠劲 `mv_huashandiejinquan07_diejin` **（原创扩展命名）** | 3 | 单体·1·近身 / 1.10 | 7%/1/1000 | 未移动时 hit +5；`1×(1+0.12)=1.12≈1.10`；`projection:false`；`meridianRouteRef:mfr_huashandiejinquan07_diejin` |
+| 进拳 `mv_huashandiejinquan07_jinquan` **（原创扩展命名）** | 5 | `aoe_line n2`·1·近身 / 1.20 | 8%/2/1100 | N=2、AF=0.90；`0.90×(1+0.24+0.05+0.07)=1.224≈1.20`；`projection:false`；`meridianRouteRef:mfr_huashandiejinquan07_jinquan` |
+| 回身架 `mv_huashandiejinquan07_huishen` **（原创扩展命名）** | 6 | 单体·1·近身 / 1.20 | 8%/2/1000 | 命中后自身获 `bf_wenzhong`·承·1；`1×(1+0.24+0.05)−0.10=1.19≈1.20`；`projection:false`；`meridianRouteRef:mfr_huashandiejinquan07_huishen` |
+| **三叠贯臂** `mv_huashandiejinquan07_sandie` **（原创扩展命名）** | 7 | 单体·1·近身 / 2.90 | 9%/0/1200，气势100 | 命中后自身获 `bf_wenzhong`·承·1；`3.00−0.10=2.90`；`projection:false`；`meridianRouteRef:mfr_huashandiejinquan07_sandie`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_huashandiejinquan07_sandie}` |
+
+被动：拳架 `ps_huashandiejinquan07_quanjia`（2 重，未移动时 parry +4）；叠劲 `ps_huashandiejinquan07_diejin`（5 重，同一目标连续受到本武学伤害时下一拳 Z3 +5%，每回合 1 次）；圆成 `ps_huashandiejinquan07_yuancheng`（10 重，本武学成功招架后下一拳 hit +6）。五招均为接触拳击，统一 `projection:false`；拳法路线均以手阳明拳端收束，绝招末三段严格为 `曲池→手三里→合谷`。
 
 ## 5. 铁剑门
 
@@ -298,6 +331,7 @@
 | 武学 | 招式范围 | 判定 | `projectionSpreadSteps` | 理由 |
 |---|---:|---|---|---|
 | 七门新增内功的 28 记招式 | 自身 / 相邻支援或单体 1 格近身 | 全部 `projection:false` | 不填写 | 调息、守势、护体与近身掌拳均无离体真气伤害；支援范围不等于外放。 |
+| 本卡新增的 5 记拳招 | 单体或近身线 2 | 全部 `projection:false` | 不填写 | 均以拳锋接触命中；叠劲不等于离体拳风。 |
 
 审计结果：外放候选 0，外放招式 0。不存在实体暗器、飞刀、弓弩或普通兵刃挥击被误标为外放的情形，也无需校验外放端点白名单。
 
@@ -306,8 +340,16 @@
 | `sk_*` | 需加入的书界 | 依据 | 状态 |
 |---|---|---|---|
 | — | — | 本轮配装所用既有武学均已覆盖 `ch07_bixue`；七门新武学已在各卡直接登记 `[ch07_bixue]` | 无来源扩展待登记 |
+| `sk_huashandiejinquan07` | `ch08_luding` | 归辛树跨书复现，且卡已登记 `[ch07_bixue,ch08_luding]` | 图鉴侧已落实；书界配装待替换 |
 
-本书是华山（碧血一系）/ 归辛树、归二娘的主书界；鹿鼎书界二人已直接复用既有 `sk_hunyuangong`，本轮不另造同物 ID，也不产生跨书界待替换项。
+本书是华山（碧血一系）/ 归辛树、归二娘的主书界；鹿鼎书界继续复用既有 `sk_hunyuangong`，新增外功则跨书复用本册同一 ID，不另造同物 ID。
+
+**归辛树外功终审补录**：全图鉴没有可复用的 ≥7 品华山拳掌；`sk_hunyuanzhang`（6 玄上）与 `sk_poyuquan`（5 玄中）已占次槽，`sk_fuhuzhang` 又属山宗 / 闯军，均不能闭合 8 品首槽。因此新增 `sk_huashandiejinquan07`（8 地中），仍以前两者之一 6 重为本门前置。
+
+| 跨书界待替换位置 | 当前 ID | 替换为 | 执行方 |
+|---|---|---|---|
+| `chapters/07-bixue.md` §12.8（返修前约 L1421，归辛树首槽） | `sk_jianghubaizhanjian` | `sk_huashandiejinquan07` | 书界 07 收尾任务 |
+| `chapters/08-luding.md` §12.8（返修前约 L1484，归辛树首槽） | `sk_kaimenpiguaquan` | `sk_huashandiejinquan07` | 书界 08 收尾任务 |
 
 ## 10. 统计表
 
@@ -319,34 +361,35 @@
 | 石梁温家 | 0 | 1 | 0 | 1 |
 | 金龙帮 | 1 | 0 | 0 | 1 |
 | 仙都派 | 1 | 0 | 0 | 1 |
-| 华山·碧血支 | 1 | 0 | 0 | 1 |
+| 华山·碧血支 | 1 | 1 | 0 | 2 |
 | 铁剑门 | 0 | 0 | 1 | 1 |
 | 明代宫禁 | 1 | 0 | 0 | 1 |
-| **合计** | **5** | **1** | **1** | **7** |
+| **合计** | **5** | **2** | **1** | **8** |
 
 ### 10.2 招式、路线与可习得性
 
 | 项 | 数量 | 核对 |
 |---|---:|---|
 | 新增内功 | 7 | 全为首领所缺主运；无人物排他武学 |
-| 新增普通招式 | 20 | 地下 / 地中各卡 3，地上卡 2；与绝招合计均在 4–7 招范围 |
-| 新增绝招 | 8 | 地下 `5×1=5`；地中 `1×1=1`；地上 `1×2=2` |
-| 显式绝招路线 | 8 | 每招独立 `mfr_*`；每条 8 段；`1200+720=1920≤2000` |
-| 显式普通路线 | 20 | 每招独立 `mfr_*`；每条 4 段；普通收招与路线 CT 之和不超过 1560 |
+| 新增拳法 | 1 | 8 地中；华山碧血支正常传授，非归辛树人物专属 |
+| 新增普通招式 | 24 | 七门内功 20 记、拳法 4 记；各卡与绝招合计均在 4–7 招范围 |
+| 新增绝招 | 9 | 地下 `5×1=5`；地中 `2×1=2`；地上 `1×2=2` |
+| 显式绝招路线 | 9 | 每招独立 `mfr_*`；每条 8 段；`1200+720=1920≤2000` |
+| 显式普通路线 | 24 | 每招独立 `mfr_*`；内功每条 4 段，拳法每条 5–7 段；均满足收招加路线 CT 上限 |
 | 调息档案 | 7 | 均有 `outOfBattleScaleBp:15000` 与内劲抵消 III 档 |
-| 外放招式 | 0 | 28 招逐招审计，均 `projection:false` |
-| 门派正常途径 | 7 | 职级传授或非排他秘籍 / 奇遇；主角与其他合格人物都可学 |
+| 外放招式 | 0 | 33 招逐招审计，均 `projection:false` |
+| 正常习得途径 | 8 | 职级传授或非排他秘籍 / 奇遇；主角与其他合格人物都可学 |
 
-新增七门是首领缺口增量，不修改 `skills-xiake-bixue` 已锁定的 44 门本土池统计；全项目统计需要把本册作为追加册合并计算，不能误报为原册仍只有 44 门。
+新增八门是首领缺口增量，不修改 `skills-xiake-bixue` 已锁定的 44 门本土池统计；全项目统计需要把本册作为追加册合并计算，不能误报为原册仍只有 44 门。
 
 ## 11. 本文新增术语与 ID
 
 | 类型 | 数量 | ID |
 |---|---:|---|
-| 武学 `sk_*` | 7 | `sk_shanzongzhengqigong`、`sk_shiliangwuxinggong`、`sk_jinlongbangxinfa`、`sk_xianduyunqi`、`sk_huashanqigong07`、`sk_tiejianxuangong`、`sk_minggonghuyuangong` |
-| 招式 `mv_*` | 28 | 各卡“招式”表所列 20 记普通招与 8 记绝招 |
-| 被动 `ps_*` | 22 | 六门各 3 个；铁剑玄功 4 个 |
-| 路线 `mfr_*` | 28 | 与 28 个 `mv_*` 去掉前缀后一一同名 |
+| 武学 `sk_*` | 8 | `sk_shanzongzhengqigong`、`sk_shiliangwuxinggong`、`sk_jinlongbangxinfa`、`sk_xianduyunqi`、`sk_huashanqigong07`、`sk_huashandiejinquan07`、`sk_tiejianxuangong`、`sk_minggonghuyuangong` |
+| 招式 `mv_*` | 33 | 各卡“招式”表所列 24 记普通招与 9 记绝招 |
+| 被动 `ps_*` | 25 | 七门各 3 个；铁剑玄功 4 个 |
+| 路线 `mfr_*` | 33 | 与 33 个 `mv_*` 去掉前缀后一一同名 |
 | 调息档案 `txp_*` | 7 | 与七个 `sk_*` 去掉前缀后一一同名 |
 
 `mfr_*` / `txp_*` 的 schema 与运行算法仍归 `design/21`；本册只定义逐武学实例。
@@ -355,12 +398,12 @@
 
 | ID | 校验 | 期望 |
 |---|---|---|
-| BX07-SK-T01 | 统计所有正式 `sk_*` 卡 | 7 门且全为内功；品阶 7/8/9 为 5/1/1 |
-| BX07-SK-T02 | 逐卡复算 IP | 地下 72、地中 83、地上 94.5，且 `stats` 合计不超过 15 |
-| BX07-SK-T03 | 绝招数量与解锁层 | 地下各 1、地中 1、地上 2；按 7 / 9 重解锁 |
+| BX07-SK-T01 | 统计所有正式 `sk_*` 卡 | 8 门：内功 7、拳法 1；品阶 7/8/9 为 5/2/1 |
+| BX07-SK-T02 | 逐卡复算 | 内功 IP 为地下 72、地中 83、地上 94.5；拳法 `layerStats` 为 `8+7=15`，均不越地阶上限 |
+| BX07-SK-T03 | 绝招数量与解锁层 | 地下各 1、两门地中各 1、地上 2；按 7 / 9 重解锁 |
 | BX07-SK-T04 | 绝招资源与路线时长 | 气势 100、耗内 9%、cd 0、收招 1200；每条 `1200+8×90=1920≤2000` |
 | BX07-SK-T05 | 路线合法性 | 每条穴位不重复；绝招路线两两不完全相同；铁剑两路共享 0/8；所有穴位可在 `design/15` 解析 |
-| BX07-SK-T06 | 外放字段 | 28 招均 `projection:false`，无 `projectionSpreadSteps` |
+| BX07-SK-T06 | 外放字段 | 33 招均 `projection:false`，无 `projectionSpreadSteps` |
 | BX07-SK-T07 | 调息与护体 | 七个 `txp_*` 均为 10 重、scope 3、CT 1000、耗内 0、离战倍率 15000；innerGuard III 且反震 0 |
 | BX07-SK-T08 | 可习得性 | 每卡至少有门派职级或合规秘籍 / 奇遇来源；不存在 Boss-only 或人物专属硬条件 |
 | BX07-SK-T09 | 重复与引用 | `sk_* / mv_* / ps_* / mfr_* / txp_*` 全仓唯一；旧图鉴只被引用，不被重定义 |
@@ -396,11 +439,13 @@
 | BX07-SK-K03 | 核对焦公礼、金龙帮可确认的武艺源流 | 保留帮会归属，心法名和盘龙招名标原创扩展命名 |
 | BX07-SK-K04 | 核对闵子华与仙都派关系、仙都武学名称 | 关系继续标（待考），本卡明确为原创扩展 |
 | BX07-SK-K05 | 核对木桑—玉真子一脉可确认的内功称谓与传授边界 | 保留铁剑门关系，高阶心法与招名标原创扩展命名 |
+| BX07-SK-K06 | 核对归辛树“神拳无敌”相关拳掌是否有正式名目 | 未核定前保留 `sk_huashandiejinquan07` 的原创扩展命名，不写回目或引文 |
 
 ### 开放问题（附默认值）
 
 | 编号 | 需作者 / 上游拍板 | 本版默认值 / 理由 |
 |---|---|---|
-| BX07-SK-O01 | 新增地中 `sk_shiliangwuxinggong` 取一记还是两记绝招 | 默认 1 记；门派知名度与招式丰富度不支持上浮，且符合地中 1–2 范围 |
+| BX07-SK-O01 | **已解决：**新增地中 `sk_shiliangwuxinggong` 取一记还是两记绝招 | 取 1 记；门派知名度与招式丰富度不支持上浮，已由 `ultimate-counts-tianzhong-dizhong.md` §3.1B 显式裁定 |
+| BX07-SK-O04 | **已解决：**归辛树 8 品华山拳掌首槽是否存在可复用卡 | 全图鉴无可复用的 ≥7 品华山拳掌，新增 `sk_huashandiejinquan07`；书界替换位置见 §9 |
 | BX07-SK-O02 | 明宫护院是否日后建立正式门派 / 组织 ID | 默认不建；它是明代宫禁来源标签，避免和清宫体系混同 |
 | BX07-SK-O03 | 金龙帮是否日后建立正式门派 ID | 默认不建；沿 `skills-xiake-bixue` §13 作为江湖盟友学习来源即可 |

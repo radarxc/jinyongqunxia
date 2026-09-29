@@ -5,7 +5,7 @@
 > **引用而不重定义**：字段、层数、招式与内功预算见 `design/05`；经脉路线、护体内劲、外放与调息算法见 `design/21`；穴位拓扑见 `design/15`；Buff 本体见 `design/06`；任务、人物、门派时代与既有武学分别见 `design/chapters/12`、`design/18`、`design/17` 与既有十一册图鉴。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**须以三联 / 广州修订版逐字核对；**（待核实）**为尚未联网确认的技术事实；**（待实测）**为需战斗回放验证；**【建议值】**为待唯一归属文档确认的数值。
 > **覆盖声明**：本册不改写 `skills-qianlong.md` 或 `skills-general.md`。三门新增武学均可由主角与其他满足条件者正常习得；没有首领专用、敌方专用或不可获得条目。
-> **版本**：首领所缺武学补录（2026-09-28）。
+> **版本**：首领所缺武学补录（2026-09-28）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -104,13 +104,13 @@
 
 | 字段 | 值 |
 |---|---|
-| 基础 | `category:inner`；`subType:inner`；`grade:9`；`origin:expanded`；`sect:null`；`lineage:天池怪侠袁士霄→陈家洛`；`sourceChapters:[ch12_shujian]`；`nature:harmony`；`wOut/wIn:0.15/0.85`；`moveSlots:4` |
+| 基础 | `category:inner`；`subType:inner`；`grade:9`；`origin:expanded`；`sect:sect_honghuahui`；`lineage:天池怪侠袁士霄→陈家洛`；`sourceChapters:[ch12_shujian]`；`nature:harmony`；`wOut/wIn:0.15/0.85`；`moveSlots:4` |
 | reqs | `attrs:{con:45,wil:45,wis:40}`；`aptitude:{apInner:40}`；`prereq:[{skill:sk_honghuaxinfa,layer:7}]`；`hard:[prereq]` |
 | inner.contribution | `mpMaxPct:34,hpMaxPct:20,attrs:{con:6,wil:5,wis:3},mpRegen:2.5,stats:{defOut:8,resMind:7}`；`34+20+2×(6+5+3)+5×2.5=94.5` |
 | inner / 经脉 | `meridians:[mer_renmai,mer_dumai]`；`breathProfileRef:txp_tianchishengong`；`innerGuard:{enabled:true,reflectBp:0}`；地阶护体 III，仅作显示档 |
 | 层数要点 | `layerStats:null`；1 重守息、3 重百家归一、5 重静观；**7 重第一绝招天池守一**；**9 重第二绝招百花归元**；10 重神完气足 |
 | setTags / conflicts / special | `[]` / 无 / `{fusible:true}`；不并入百花错拳的天级计数，也不提高其品阶 |
-| 习得途径 | `q_12_qiyu_14` 后由袁士霄亲授；或完成陈家洛羁绊、持天池引见并在余韵取得遗谱研习许可。主角与其他人物均须满足前置，不因陈家洛配装自动学会 |
+| 习得途径 | `q_12_qiyu_14` 后由袁士霄亲授；或完成陈家洛羁绊、持天池引见并在余韵取得遗谱研习许可。`sect` 依同源 `sk_baihuacuo` 统一登记为红花会获取组织，但不新增门派职级硬前置；主角与其他人物均须满足既有前置，不因陈家洛配装自动学会 |
 | 图鉴文本 | 袁士霄一系用于统摄百家拳理的调和内功。名称、运功层次、遗谱与数值均为**（原创扩展）**；原著传艺具体段落及陈家洛内功名仍**（待考）** |
 
 #### `sk_tianchishengong`
@@ -264,4 +264,4 @@
 | SJ-BL-O01 | 是否把铁胆庄登记为正式 `sect_*`？ | 不登记；维持 `sect:null` 与 lineage | 若未来 17 建档，三门卡只需迁移门派外键，不改数值 |
 | SJ-BL-O02 | 考据发现陈家洛内功原著专名后，是否替换“天池神功”？ | 暂保留原创名；有可靠版本证据再走重命名表 | 影响 ID / 名称迁移，不影响 9 品主运职责 |
 | SJ-BL-O03 | 袁士霄遗谱是否允许陈家洛之外的人物学习？ | 允许满足前置、羁绊与许可者学习，符合作者决定 | 若收紧，只改取得门槛，不能把首领配装改成 `enemyOnly` |
-| SJ-BL-O04 | `sk_baizhanxinfa` 是否接受书剑来源扩展？ | 接受，由 NXfix 回写 `ch12_shujian` | 若否决，假旗队领与兆惠仍缺可共享的 8 品真实主运 |
+| SJ-BL-O04 | **已解决（决策）：**`sk_baizhanxinfa` 是否接受书剑来源扩展？ | 接受；但唯一归属 `skills-general.md` 尚未加入 `ch12_shujian`，继续按 §3 标“来源扩展待登记” | 若回写被撤销，假旗队领与兆惠仍缺可共享的 8 品真实主运 |

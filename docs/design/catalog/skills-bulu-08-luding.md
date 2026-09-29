@@ -5,7 +5,7 @@
 > **上游**：`docs/00-canon.md` v1.3、作者决定与需求、`design/05`、`design/15`、`design/17`、`design/21` §4.3–§4.4/§11.9、`skills-kangxi`、`skills-xiaoyao`。
 > **引用而不重定义**：武学字段与预算见 `design/05`；经脉路线、调息及外放见 `design/21`；穴位见 `design/15`；门派与职级见 `design/17`；既有武学只引用其原图鉴。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**为三联 / 广州修订版尚待逐字核对；**【建议值】**为待上游确认的数值。
-> **版本**：首领武学补录与替补替换（2026-09-28）。
+> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -98,18 +98,20 @@
 |---|---|
 | 依据 / 归属 | 桑结为西藏密宗高手、大手印功夫精深见 `skills-xiaoyao`；此心法名与机制为**（原创扩展）**；`sect_mizong / 桑结一系` |
 | nature / meridians | `yang`；`wOut/wIn:0/1`；`[mer_dumai,mer_yangwei]` |
-| reqs / 习得 | `con:50,wil:50,apInner:50`；密宗 L4、桑结传授或五台护经奇遇 `maxLayer:8`；主角与其他门人均可学 |
+| reqs / 习得 | `con:50,wil:50,apInner:50`；前置“密宗护法身”6 重（ID 见 `skills-xiaoyao` §6.4）；密宗 L4、桑结传授或五台护经奇遇 `maxLayer:8`；主角与其他门人均可学 |
 | contribution | `{mpMaxPct:29,hpMaxPct:18,attrs:{con:7,wil:5},mpRegen:2.4}`；`29+18+24+12=83` |
 | 层数 / 特性 | 1 持息、4 护法、7 伏魔；抗击退 + 护持；`setTags:[]`；`observable:true` |
 
 - 护法持息 `mv_sangjiehufagong_chixi`（L1，自身，7% / cd2 / 1000，`bf_wenzhong`2）。
 - 伏魔护持 `mv_sangjiehufagong_fumo`（L7 绝招，**原创扩展**）：自身与相邻友军获 `bf_shoushi`2；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_sangjiehufagong_fumo}`。
 
+前置 ID：`sk_mizonghufashen`（密宗护法身）6 重。
+
 ### 2.2 `sk_fansenghutigong` 番僧护体功（7 地下 · 内功）**（原创扩展）**
 
 `expanded / sect_mizong / 后世番僧通传`；阳；`meridians:[mer_renmai,mer_dumai]`；`con:42,wil:38,apInner:40`，密宗 L3 或桑结门下传授，前置 `sk_mizonghufashen` 5 重。贡献 `{mpMaxPct:25,hpMaxPct:13,attrs:{con:6,wil:4},mpRegen:2.8}`，`25+13+20+14=72`。
 
-- 金刚护体 `mv_fansenghutigong_jingang`（L7 绝招，**原创扩展**）：自身护体16%；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_fansenghutigong_jingang}`。
+- 护法铁衣 `mv_fansenghutigong_jingang`（L7 绝招，**原创扩展**）：自身护体16%；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_fansenghutigong_jingang}`。仅改显示名以区别 `sk_jinganghufagong` 的“金刚护体”，稳定 ID 不变。
 - 基础外功复用 `sk_dashouyin`：它已在 `skills-xiaoyao` 以鹿鼎桑结来源登记，并作为下节高阶护法手的习得前置。
 
 ### 2.3 `sk_xueyuhufashou` 雪域护法手（8 地中 · 拳脚 / 掌）**（原创扩展）**
