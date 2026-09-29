@@ -12492,7 +12492,7 @@
         "unit": "bulu",
         "unit_name": "14 本补录图鉴",
         "doc_set": "- `docs/design/catalog/skills-bulu-01-tianlong.md`\n- `docs/design/catalog/skills-bulu-02-shediao.md`\n- `docs/design/catalog/skills-bulu-03-shendiao.md`\n- `docs/design/catalog/skills-bulu-04-yitian.md`\n- `docs/design/catalog/skills-bulu-05-xiaoao.md`\n- `docs/design/catalog/skills-bulu-06-xiake.md`\n- `docs/design/catalog/skills-bulu-07-bixue.md`\n- `docs/design/catalog/skills-bulu-08-luding.md`\n- `docs/design/catalog/skills-bulu-09-liancheng.md`\n- `docs/design/catalog/skills-bulu-10-baima.md`\n- `docs/design/catalog/skills-bulu-11-yuanyang.md`\n- `docs/design/catalog/skills-bulu-12-shujian.md`\n- `docs/design/catalog/skills-bulu-13-feihu.md`\n- `docs/design/catalog/skills-bulu-14-xueshan.md`",
-        "extra": "`skills-bulu-12-shujian.md` 的过期\"来源扩展待登记 / 尚未加入 ch12_shujian\"（§3 导语与表行、T-SJ-BL-09、SJ-BL-D02、SJ-BL-O04）改为已解决（通行册已落实）；`skills-bulu-01-tianlong.md` 清理\"51→54\"旧天阶统计（Canon v1.6 起为 59）；各补录册\"来源扩展登记表\"中已由门派收尾任务落实的条目标\"已落实\"（以 `tools/agents/reports/NXfix-*.md` 为准）。"
+        "extra": "`skills-bulu-12-shujian.md` 的过期\"来源扩展待登记 / 尚未加入 ch12_shujian\"（§3 导语与表行、T-SJ-BL-09、SJ-BL-D02、SJ-BL-O04）改为已解决（通行册已落实）；`skills-bulu-01-tianlong.md` 清理\"51→54\"旧天阶统计（Canon v1.6 起为 59）；各补录册\"来源扩展登记表\"中已由门派收尾任务落实的条目标\"已落实\"（以 `tools/agents/reports/NXfix-*.md` 为准）。`skills-bulu-02-shediao.md` 文末开放问题\"`sk_tiezhang` 神雕来源尚未写入既有图鉴\"已过时（五绝册已按神雕 9 品残承登记），改为已解决。"
       },
       "validate": {
         "exists": [
