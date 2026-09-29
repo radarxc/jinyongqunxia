@@ -2,7 +2,7 @@
 
 > 归属：`design/18-npc-and-companions.md` 的主线重要 NPC 数据。年代 1217–1227（楔子 1199），引用 `design/02`。
 > 跨书人物必须复用同一 `npc_*`；江南七怪命定死亡与改命以 `design/01` 为上游。以下章号与章题已于 2026-09-26 逐章检索“金庸网《射雕英雄传》修订版”在线转录 [N01]，只作交叉核对；该站版本元数据与文字可靠性不等同纸本，发布前仍须按三联 / 广州修订版终校。
-> 版本：v1.3；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；NXfixD-02 首领武学栏同步（2026-09-29）。
+> 版本：v1.4；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；NXfixD-02 / NXfixE-a 首领武学栏同步（2026-09-29）。
 
 | ID | 人物 / 原著身份 | 生卒 / 年龄 | 门派 / 阵营 | 层级 | 招募要点 | 能力要点 | 跨书 | 出处定位 |
 |---|---|---|---|---|---|---|---|---|
@@ -10,9 +10,9 @@
 | `npc_huangrong` | 黄蓉，桃花岛主之女 | 少女（推算）–? | `sect_taohuadao` / `sect_gaibang` | D5 | 食艺、丐帮继任与郭靖关系链 | `sk_dagou`、`sk_jiuyin`、桃花岛已收录武学 | →神雕 | [N01] 第07章《比武招亲》；第27章《轩辕台前》 |
 | `npc_huangyaoshi` | 黄药师，东邪 | 中老年；生卒待考 | `sect_taohuadao` L5 | D5 | 桃花岛考验与门人旧案 | 主运 `sk_taohuaguiyuanjue`（射雕残承 10 品 9 重）；辅运 `sk_taohuatunaxi`、`sk_yaoputunaxi`；外功 `sk_tanzhi`、`sk_bihai`、`sk_lanhuafuxueshou`、`sk_yuxiaojianfa`、`sk_luoyingshenjianzhang` | →神雕 | [N01] 第14章《桃花岛主》；第40章《华山论剑》 |
 | `npc_ouyangfeng` | 欧阳锋，西毒 | 中老年；卒于神雕华山（年份待考） | `sect_baituoshan` L5 | D5 | 射雕邪线；逆经后关系重构 | 主运 `sk_hama`；辅运 `sk_dumaihuqigong`、`sk_shexingtunaxi`；外功 `sk_lingshezhangfa`、`sk_lingshequan`、`sk_shentuoxueshanzhang`、`sk_duwushou`、`sk_shamozhang`；`sk_nizhuanjingmai` 仅为桃花 / 华山逆行能力的叙事来源与脚本姿态，不入首领装配 | →神雕 | [N01] 第15章《神龙摆尾》；第40章《华山论剑》 |
-| `npc_hongqigong` | 洪七公，北丐 | 老年；卒于神雕华山（年份待考） | `sect_gaibang` L5 | D5 | 美食与侠义线；帮务窗口 | `sk_xianglong18`、`sk_dagou` | →神雕 | [N01] 第12章《亢龙有悔》；第40章《华山论剑》 |
+| `npc_hongqigong` | 洪七公，北丐 | 老年；卒于神雕华山（年份待考） | `sect_gaibang` L5 | D5 | 美食与侠义线；帮务窗口 | 主运 `sk_xianglongxinggong`；辅运 `sk_jiudaixingong`、`sk_gaibanghuxinfa`；外功 `sk_xianglong18`、`sk_dagou`、`sk_xiaoyaoyou`、`sk_lianhuazhang`；单人华山请教不装 `sk_dagouzhen` | →神雕 | [N01] 第12章《亢龙有悔》；第40章《华山论剑》 |
 | `npc_yideng` | 一灯大师（段智兴），南帝 | 中老年；生卒待考 | `sect_dali` | D5 | 瑛姑 / 周伯通旧事与疗伤抉择 | `sk_yiyangzhi`；先天功待对应图鉴收录（不预建 ID） | →神雕 | [N01] 第30章《一灯大师》；旧事见第31章《鸳鸯锦帕》 |
-| `npc_zhoubotong` | 周伯通，老顽童 | 中老年；生卒待考 | `sect_quanzhen` | D4 | 桃花岛脱困与游戏式试炼 | `sk_kongming`、`sk_zuoyouhubo` | →神雕 | [N01] 第17章《双手互搏》 |
+| `npc_zhoubotong` | 周伯通，老顽童 | 中老年；生卒待考 | `sect_quanzhen` | D4 | 桃花岛脱困与游戏式试炼 | 主运 `sk_jiuyin`；辅运 `sk_quanzhentunajue`、`sk_quanzhenxinfa`；外功 `sk_kongming`、`sk_zuoyouhubo`、`sk_dafumoquan`、`sk_wantongshuangxi`、`sk_sanhuajudingzhang` | →神雕 | [N01] 第17章《双手互搏》 |
 | `npc_qiuchuji` | 丘处机，长春子 | 小说生命轴待考；史实 1148–1227 [H01] | `sect_quanzhen` L4 | D4 | 牛家村赌约善后、门派任务 | 全真图鉴已收录武学核配 | 史实影响 | [N01] 第01章《风雪惊变》；第11章《长春服输》 |
 | `npc_wangchuyi` | 王处一，玉阳子 | 小说生命轴待考；史实 1142–1217 [H01] | `sect_quanzhen` L4 | D3 | 王府毒伤与全真关系 | 全真图鉴已收录武学核配 | 否 | [N01] 第06章《崖顶疑阵》；第08章《各显神通》 |
 | `npc_mayu` | 马钰，丹阳子 | 小说生命轴待考；史实 1123–1183 [H01]，与小说出场分离 | `sect_quanzhen` L5 | D4 | 大漠授功与掌教许可 | `sk_quanzhenxinfa` 等 | 小说化 | [N01] 第06章《崖顶疑阵》（大漠授功段） |
