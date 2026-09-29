@@ -417,6 +417,10 @@ def current_branch(root: Path):
 _FENCE = re.compile(r"^\s*(```|~~~)")
 
 
+BINARY_EXT = (".png", ".jpg", ".jpeg", ".webp", ".gif", ".ico", ".pdf", ".ttf", ".otf", ".woff", ".woff2",
+              ".mp3", ".ogg", ".wav", ".mp4", ".webm", ".zip")
+
+
 def baseline_lines(wt: Path, t: Task, base: str) -> dict:
     """任务开始时，写入范围内已有文件的行数（用于防截断检查）。"""
     out = {}
@@ -425,9 +429,12 @@ def baseline_lines(wt: Path, t: Task, base: str) -> dict:
     p = git(["ls-tree", "-r", "--name-only", "-z", base], wt, check=False)
     for rel in p.stdout.split("\0"):
         if rel and matches_any(rel, t.writes):
+            if rel.lower().endswith(BINARY_EXT):
+                out[rel] = -1  # 二进制素材只查是否被删除，不按行数比较（图片由 check_assets 校验）
+                continue
             q = git(["show", f"{base}:{rel}"], wt, check=False)
             if q.returncode == 0:
-                out[rel] = count_lines(q.stdout)
+                out[rel] = -1 if "\0" in q.stdout else count_lines(q.stdout)
     return out
 
 
