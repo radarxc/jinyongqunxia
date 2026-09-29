@@ -1,17 +1,17 @@
 # 09 · 连城诀书界 DLC
 
 > 归属（基准 §18）：`ch09_liancheng` 的时代图层、区域内容、任务投放、门派实例、人物编组、Boss 配置、特色系统与前后书界衔接。
-> 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定见 `decisions/rulings-v1.md`；正邪主线与锚点以 `design/story/09-liancheng.md` 为唯一剧情源。
+> 上游：`00-canon.md` v1.7；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；冲突裁定见 `decisions/rulings-v1.md`；正邪主线与锚点以 `design/story/09-liancheng.md` 为唯一剧情源。
 > 引用而不重定义：核心循环与锚点总览 → `design/01`；年代、境界、书眠与跨书连续性 → `design/02`；属性与等级模板 → `design/03`；伤害公式 → `design/04`；武学条目 → `design/05` 与 `design/catalog/skills-kangxi.md`、`skills-general.md`、`skills-bulu-09-liancheng.md`；Buff → `design/06`；套装 → `design/07`；地形与轻功门禁 → `design/08`；战斗、Boss 与合击 → `design/09`；物品与神兵 → `design/10`；开放世界与内容预算 → `design/11`；任务、门派、羁绊 → `design/12`；成长、天书之力与结局 → `design/13`；穴位、冲穴、通脉、周天与九转 → `design/15`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；门派时代矩阵 → `design/17`；NPC 名录与重逢 → `design/18`；地图资产与时代地名 → `design/19`、`design/map/*`；跨年代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v1.0（D09，2026-09-26）；审校 D09.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）。
+> 版本：v1.0（D09，2026-09-26）；审校 D09.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）。
 
 ---
 
 ## 0. 阅读指引
 
 - 本文只定义连城书界的时代图层、开放内容、制作配置与跨书接口；主线幕、选择节点、锚点及结局以 `design/story/09-liancheng.md` 为唯一事实来源。
-- 固定数值先核对 Canon v1.2 与 `design/02`、`03`、`04`、`13`；任务、人物、地图、武学、传承分别引用各自归属文档，不在本章建立平行定义。
+- 固定数值先核对 Canon v1.7 与 `design/02`、`03`、`04`、`13`；任务、人物、地图、武学、传承分别引用各自归属文档，不在本章建立平行定义。
 - 建议按 §1–§5 锁定书界主骨架，再由 §6–§10 配置支线与玩法，最后用 §11–§13 和文末校验表检查跨书、数值及考据边界。
 
 ## 1. 书界概览
@@ -203,7 +203,7 @@
 | 城市 / 场景 | 拉萨、昌都地区所指治所 **（待考）**；`sc_09_xuedaomen`、`sc_09_xuegu_rukou`、`sc_09_xuegu`、`sc_09_xuegu_shandong`。 |
 | 地貌与 `tr_*` | 高原碎石 `tr_suishi`，雪地 `tr_xuedi`、深雪 `tr_shenxue`、冰面 `tr_bingmian` / `tr_baobing`、峭壁 `tr_qiaobi`、洞穴段 `tr_bingku`。 |
 | 轻功门禁 | 主路 qg0–qg2，雪崩后靠挖掘 / 绳索；支线崖台 qg3 可取补给或救人；隐藏也止于 qg3。轻功不能越过剧情暴雪边界。 |
-| 主要 NPC | `npc_xuedaolaozu`、`npc_baoxiang`、`npc_buyuan`、`npc_shencheng`、`npc_shuisheng`、`npc_lutianshu`、`npc_shuidao`、`npc_liurenfeng`、`npc_huantiegan`；汪啸风 ID 待名录补齐。 |
+| 主要 NPC | `npc_xuedaolaozu`、`npc_baoxiang`、`npc_buyuan`、`npc_shencheng`、`npc_shuisheng`、`npc_wangxiaofeng`、`npc_lutianshu`、`npc_shuidao`、`npc_liurenfeng`、`npc_huantiegan`。 |
 | 可学武功 | `sk_xuedaorumenquan`、`sk_xuedaojichudao`、`sk_xuedaoxinfa`、`sk_xuedaojibu`、`sk_xuedaoqinfa`、`sk_xuedaofa`、`sk_xuedaojing`、`sk_xueguhushou`。 |
 | 敌人等级 | 40–46；血刀弟子 40–43，南四奇事件敌 42–45，血刀老祖显示 48（超限规则见 §12）。 |
 | 秘境 / 奇遇 | 雪下旧营、融雪冰窟 **（原创扩展）**；“雪下戒刀踪”“融雪回声”两个机会点分别挂 `q_09_faction_04` 与 `q_09_bond_05/06`。雪谷主事件不重复计为奇遇链。 |
@@ -535,7 +535,7 @@ chapterCompletion:
 |---|---|---|---|
 | 梅念笙传承 | 由丁典、狄云与遗留剑痕承接；只看信任、前置和是否守住师承用途 | `sk_xiangxituna` → `sk_meinianshengxinfa` → `sk_shenzhao`；诗剑旁支 `sk_lianchengjianli` / `sk_tangshijian` | 贩卖真码或背弃丁凌会关闭快速传授；不删除已学武学 |
 | 南四奇 | 四人独立生命与关系，不设统一贡献；救援、证词、相邻协防构成任务链 | `sk_nansiqijibenjian` → `sk_luohualiushuijian`，以及 `sk_xueguhushou` | 利用伤亡牟利会令幸存者敌对；花铁干不代表全组 |
-| 荆州官府 / 凌府 | 官面身份、牢钥、案卷和亲卫警戒；关系不是武林门派贡献 | `sk_jingzhouguanfuqinfa`、`sk_jingzhouyangqigong` 在官府关系 **≥40** 或持有效官府身份时由衙门教头传授，也可由衙门武册开放；门槛为**（原创扩展）【建议值】**，不发“凌府绝学” | 揭露毒棺后转敌对；卸任、交账也只改变人物处分 |
+| 荆州官府 / 凌府 | 官面身份、牢钥、案卷和亲卫警戒；关系不是武林门派贡献 | `sk_jingzhouguanfuqinfa`、`sk_jingzhouyangqigong` 在官府关系 **≥40** 或持有效官府身份时由衙门教头传授；另一来源是 §9.6 原子发放的两条“衙门武册”秘籍。门槛为**（原创扩展）【建议值】**，不发“凌府绝学” | 揭露毒棺后转敌对；卸任、交账也只改变人物处分 |
 
 ### 7.6 敌对势力与关系变化
 
@@ -552,17 +552,18 @@ chapterCompletion:
 
 ### 8.1 年代、年龄与名录口径
 
-数据源为 `design/catalog/npcs-ch09-liancheng.md` 的 24 名静态 NPC。原著没有可用于本项目的精确生卒年；因此本节不伪造年份，只写年龄段。约 1705–1712 是游戏图层定年 **（原创扩展）**，不是把人物年龄反推成原著事实。具名人物一律走 `design/03` 的 `full` 管线，年龄只修正画像输入，不另创战斗公式。
+数据源为 `design/catalog/npcs-ch09-liancheng.md` 的 27 名静态 NPC。原著没有可用于本项目的精确生卒年；因此本节不伪造年份，只写年龄段。约 1705–1712 是游戏图层定年 **（原创扩展）**，不是把人物年龄反推成原著事实。具名人物一律走 `design/03` 的 `full` 管线，年龄只修正画像输入，不另创战斗公式。
 
 | 年龄段 | 本时代人物 | 生卒口径 |
 |---|---|---|
-| 青年 / 少女 | 狄云、水笙、戚芳、凌霜华、万圭 | 生卒待考；只按青年形象建模 |
+| 青年 / 少女 | 狄云、水笙、戚芳、凌霜华、万圭、汪啸风、桃红 | 生卒待考；只按青年形象建模 |
 | 青壮 / 壮年 | 丁典、宝象、鲁坤、周圻、孙均、卜垣、吴坎、冯坦、沈城 | 生卒待考；丁典 / 宝象依名录写壮年 |
 | 中年 | 水岱、刘乘风、陆天抒 | 命定死亡者保留 `canonicalDied`，救回后运行时卒年为空 |
 | 中老年 | 花铁干、戚长发、万震山、言达平、凌退思 | 结局多有不确定项；未明确演出者写 `unknown` |
 | 老年 | 血刀老祖；梅念笙（前史） | 老祖主线死于雪谷；梅念笙只作回忆 / 传承，不在当代复活 |
+| 幼童 | 空心菜 | 只作非战斗保护对象 |
 
-汪啸风、桃红、空心菜在剧情稿中有必要职责，但当前名录未分配正式 ID；本章只以显示名引用，不擅建 `npc_*`。三者须在生产数据构建前由 `design/18` 补齐。
+汪啸风、桃红、空心菜已分别登记为 `npc_wangxiaofeng`、`npc_taohong`、`npc_kongxincai`；生产引用必须使用这些正式 ID。空心菜不进入战斗或付费雇佣池。
 
 ### 8.2 七名核心可招募同伴
 
@@ -633,11 +634,11 @@ effLayer = min(trueLayer', tierCapEff, gateCap(absGrade, displayLevel), specialC
 
 | Boss / 等级 | 武学与装备（已有 ID） | 两阶段机制 | 破局与非战接口 |
 |---|---|---|---|
-| 宝象 `npc_baoxiang` Lv38 | `sk_xuedaojichudao` 黄上、`sk_xuedaoxinfa` 玄中 | P1 追杀；P2 饥饿与中毒使出招失序 | 警告毒汤、封锅、缴械或说服退追；可非致命招募 |
+| 宝象 `npc_baoxiang` Lv38 | `sk_xuedaoxinfa` 玄中、`sk_xuedaofa` 地中、`sk_xuedaoqinfa` 玄上、`sk_xuedaojichudao` 黄上 | P1 追杀；P2 饥饿与中毒使出招失序 | 警告毒汤、封锅、缴械或说服退追；可非致命招募 |
 | 万圭 `npc_wangui` Lv39 | `sk_wanjiazhengqi` 玄中、`sk_wanjiaanshenquan` 玄中、`sk_wanjiajian` / `sk_wanjiaxinfa` 玄下 | P1 门人援护；P2 以匕首逼近证人 | 公开供状令援军退场；先撤母女可直接转拘捕目标 |
 | 凌退思 `npc_lingtusi` Lv40 | `sk_jingzhouyangqigong` 玄中、`sk_jingzhouguanfuqinfa` 玄中；毒计 / 亲卫为主要威胁 | P1 官差阵；P2 毒花封路 | 案卷、官印与亲卫证词可完成政治制伏；仍不塑造成绝顶高手 |
-| 言达平 `npc_yandaping` Lv41 | `sk_tangshijian` 地中、`sk_lianchengjianli` 玄中；当前主运 `sk_meinianshengxinfa` 玄上 **（原创扩展配置）** | P1 老丐伪装；P2 露出剑路后争谱 | 识破身份并交叉三门旧债，可令其退出终幕 |
-| 万震山 `npc_wanzhenshan` Lv43 | `sk_tangshijian` 地中、`sk_wanjiajian` 玄下、`sk_wanjiaxinfa` 玄下 | P1 砌墙 / 假伤扰乱目标；P2 夹墙伏击 | 桃红线索、砖灰、砌墙动作取二可破伪装并会审 |
+| 言达平 `npc_yandaping` Lv41 | `sk_meinianshengxinfa` 玄上、`sk_tangshijian` 地中、`sk_qingfengjian` 玄上 **（原创扩展配置）** | P1 老丐伪装；P2 露出剑路后争谱 | 识破身份并交叉三门旧债，可令其退出终幕 |
+| 万震山 `npc_wanzhenshan` Lv43 | `sk_meinianshengxinfa` 玄上、`sk_tangshijian` 地中、`sk_wanjiajian` 玄下、`sk_wanjiaxinfa` 玄下 | P1 砌墙 / 假伤扰乱目标；P2 夹墙伏击 | 桃红线索、砖灰、砌墙动作取二可破伪装并会审 |
 | 戚长发 `npc_qichangfa` Lv44 | `sk_tangshijian` 地中、`sk_meinianshengxinfa` 玄上 | P1 与玩家短暂同阵；P2 背刺优先攻击持码者 | 提前公开背刺证据、卸下诱饵或以戚芳对质，转受控结算 |
 | 血刀老祖 `npc_xuedaolaozu` Lv48 | `sk_xuedaojing` 地上、`sk_xuedaofa` 地中、`sk_xuedaoqinfa` 玄上、`eq_xuedao` 地上 | P1 踏雪游斗；65% 阶段门后 P2 借深雪、薄冰与雪崩反击 | 发警讯救援、断其雪路、引至薄冰；击败后按主线死亡 |
 
@@ -688,7 +689,7 @@ effLayer = min(trueLayer', tierCapEff, gateCap(absGrade, displayLevel), specialC
 | 玄阶 · 血刀 | `sk_xuedaoqinfa`、`sk_xuedaojibu`、`sk_xuedaoxinfa` | `q_09_faction_03/04`、血刀门 L2–L4、雪谷敌人观摩；观摩只开放试学，不跳过门派硬条件 |
 | 玄阶 · 万家 | `sk_wanjiajian`、`sk_wanjiaxinfa`、`sk_wanjiazhengqi`、`sk_wanjiaanshenquan` | `q_09_faction_01/02` 与万家 L2–L3；两门 5 品进阶分别前置心法 6 重 / 万家拳 5 重，供状线可用“师叔代授”但仍扣贡献 |
 | 玄阶 · 梅门 | `sk_meinianshengxinfa`、`sk_lianchengjianli` | 丁典追述、旧屋剑痕、三门旧债；先取得 `sk_xiangxituna` 或相应前置 |
-| 玄阶 · 官差 / 南四奇 / 狱中 | `sk_jingzhouguanfuqinfa`、`sk_jingzhouyangqigong`；`sk_luohualiushuijian`、`sk_yuzhongqinna` | 官府关系 **≥40** 或持有效官府身份时由衙门教头传授，也可取得衙门武册后按卡面条件学习**（原创扩展）【建议值】**；雪谷协防与刘乘风羁绊；狱中互信与夺钥训练 |
+| 玄阶 · 官差 / 南四奇 / 狱中 | `sk_jingzhouguanfuqinfa`、`sk_jingzhouyangqigong`；`sk_luohualiushuijian`、`sk_yuzhongqinna` | 官府关系 **≥40** 或持有效官府身份时由衙门教头传授；衙门武册则按 §9.6 原子发放并逐卡校验**（原创扩展）【建议值】**；雪谷协防与刘乘风羁绊；狱中互信与夺钥训练 |
 | 黄阶 · 血刀 | `sk_xuedaorumenquan`、`sk_xuedaojichudao` | 血衣投名、缴械研究或 L1–L2 传授；研究来源不授门派被动 |
 | 黄阶 · 万家 | `sk_wanjiaquan`、`sk_wanjiajibenjian` | 万府试剑与 L1–L2 日课 |
 | 黄阶 · 梅门 / 南四奇 | `sk_xiangxituna`、`sk_nansiqijibenjian` | 药篓与旧伤、旧屋剑痕、南四奇协防 |
@@ -731,6 +732,15 @@ effLayer = min(trueLayer', tierCapEff, gateCap(absGrade, displayLevel), specialC
 
 路线互斥只影响“最快来源”：正线拒绝邪派仍可通过残页与观摩了解血刀武学，邪线失去丁典信任仍可整理狱墙留字至 6 重。任何路线都不能同时领取同一 `sourceInstanceId` 的人物传授、手册和残页三份经济价值。
 
+**衙门武册原子发放（原创扩展）。** 该叙事载体只在 `q_09_main_z_10` / `q_09_main_x_10` 完成荆州官府处置结算后开放，执行下列二选一安全来源：① 会审成立、毒物与私账已封存，由未涉案且留任的衙门教头当面移交；② 玩家取得合法搜查 / 缴获依据，从空置值房或封存案柜清点武册。凌退思是否死亡不参与物品判定，任何敌人、尸体、普通掉落、商店或可重复搜刮容器都不得产出本组。
+
+| 同一事务的单武学秘籍 | 目标武学 | 安全与学习门槛 |
+|---|---|---|
+| `it_miji_jingzhouguanfuqinfa` | `sk_jingzhouguanfuqinfa` | 取得武册不要求官府关系 / 身份，但研读仍检查本卡属性与擒拿资质 |
+| `it_miji_jingzhouyangqigong` | `sk_jingzhouyangqigong` | 与上一条同时发放；研读仍须 `sk_jingzhouguanfuqinfa` 4 重及本卡属性、内功资质 |
+
+结算顺序固定为“校验终幕资格、安全来源成立、组内两条均未领取 → 同一事务写入两条 `unique` 全本 → 写共享载体已领取状态”。任一写入失败则两条与领取状态全部回滚；任一条已持有或共享状态已写入时拒绝整组重领，不补发、不折银。两条保存独立阅读进度，可分别交给不同角色，但须按 `design/10` §10.2 在安全点研读（含本章 §9.7 的荆州医馆后院、雪谷复营地）；持有秘籍不等于立即学会。物品定义、`full/10` 上限及“不跨书眠”见 `design/10` §10.1.1。
+
 ### 9.7 冲穴与第六转投放（AR-03）
 
 冲穴本体、20 经脉、180 穴、失败与走火入魔均引用 `design/15`。连城是第六转投放章：入章目标已开 180 穴、20 脉并完成第五转；本章新增工作量 `10,000H`，章末累计 `129,045+10,000=139,045H`。这是标准玩家的内容供给目标，不是主线硬门禁；天书余韵期仍可补做。
@@ -748,7 +758,8 @@ effLayer = min(trueLayer', tierCapEff, gateCap(absGrade, displayLevel), specialC
 | 内功 | 正式经脉 | 用途 |
 |---|---|---|
 | `sk_xiangxituna`、`sk_meinianshengxinfa` | `mer_renmai` | 正线调和、护脉与第六转行气构筑 |
-| `sk_wanjiaxinfa` | `mer_dumai` | 阳性守御路线；不因门派贡献直接开穴 |
+| `sk_wanjiaxinfa`、`sk_wanjiazhengqi` | `mer_dumai` | 阳性守御路线；不因门派贡献直接开穴 |
+| `sk_jingzhouyangqigong` | `mer_renmai`、`mer_dumai` | 调和官差路线；只引用补录卡的建议字段，不因取得武册直接开穴 |
 | `sk_xuedaoxinfa` | `mer_chongmai` | 邪线阴性 / 冲脉构筑；不继承血刀经尚未学会的加成 |
 
 `mer_ren`、`mer_du`、`mer_chong` 只可作为旧存档迁移输入，本文不把它们写入运行态。第六转完成条件、`H` 消耗、失败回落与 keyed RNG 均不在本章重定义。
@@ -1088,8 +1099,8 @@ Boss 首杀的随机掉落池在 Lv46、`luk=0` 时建议分布为黄中至地�
 |---|---|---|---|---|---|---|---|---:|---|
 | 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主运解析（不得低于玄中5） | 按来源解析两门玄 / 黄基础内功 | 按行动表解析 3–5 门 | `5/8；10500/7500/10500；由主运解析；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.79` | 唯一锚点 |
 | 宝象 | 血刀门 | `sk_xuedaoxinfa`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_xuedaofa`（地中8）、`sk_xuedaoqinfa`（玄上6）、`sk_xuedaojichudao`（黄上3）、`sk_xuedaorumenquan`（黄中2） | `5/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `20.00` | 雪地机制固定 RNG **（待实测）** |
-| 万圭 | 万家门 | `sk_wanjiazhengqi`（玄中5，阳） | `sk_wanjiaxinfa`（玄下4）、`sk_tunaqianjue`（黄上3） | `sk_wanjiaanshenquan`（玄中5）、`sk_wanjiajian`（玄下4）、`sk_wanjiaquan`（黄上3）、`sk_wanjiajibenjian`（黄中2） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `19.62→20.00→20.00` | 原 4 品画像 → NB4 临时替补 → 本次正式武学；万家门 L3 公传，非人物独占 |
-| 凌退思 | 荆州官府 / 江湖代理 | `sk_jingzhouyangqigong`（玄中5，调和） | `sk_wuguanxinfa`（玄下4）、`sk_zhuangxingong`（黄中2） | `sk_jingzhouguanfuqinfa`（玄中5）、`sk_yuzhongqinna`（玄下4）、`sk_huiliuquan`（玄下4）、`sk_tongxingfeishi`（黄下1） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:false, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `19.33→19.71→19.71` | 原 4 品画像 → NB4 临时替补 → 本次正式武学；官府关系 **≥40** 或持有效官府身份时由衙门教头传授，也可由武册开放**（原创扩展）【建议值】**；凌退思失势后改由会审留任教头或缴获武册提供来源，仍按卡面条件学习；非人物独占 |
+| 万圭 | 万家门 | `sk_wanjiazhengqi`（玄中5，阳） | `sk_wanjiaxinfa`（玄下4）、`sk_tunaqianjue`（黄上3） | `sk_wanjiaanshenquan`（玄中5）、`sk_wanjiajian`（玄下4）、`sk_wanjiaquan`（黄上3）、`sk_wanjiajibenjian`（黄中2） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `20.00` | 四档检索已闭合为正式本门武学；万家门 L3 公传，非人物独占 |
+| 凌退思 | 荆州官府 / 江湖代理 | `sk_jingzhouyangqigong`（玄中5，调和） | `sk_wuguanxinfa`（玄下4）、`sk_zhuangxingong`（黄中2） | `sk_jingzhouguanfuqinfa`（玄中5）、`sk_yuzhongqinna`（玄下4）、`sk_huiliuquan`（玄下4）、`sk_tongxingfeishi`（黄下1） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:false, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `19.71` | 四档检索已闭合为正式同来源武学；教头传授或 §9.6 武册原子发放**（原创扩展）【建议值】**，非人物独占 |
 | 言达平 | 梅念笙一门 | `sk_meinianshengxinfa`（玄上6） | `sk_xiangxituna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_tangshijian`（地中8）、`sk_qingfengjian`（玄上6）、`sk_wuyingshou`（玄中5）、`sk_jianghurumenjian`（黄上3） | `6/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `1.00 / 1.00` | `21.07` | — |
 | 万震山 | 万家门 / 梅念笙一门 | `sk_meinianshengxinfa`（玄上6） | `sk_wanjiaxinfa`（玄下4）、`sk_xiangxituna`（黄上3） | `sk_tangshijian`（地中8）、`sk_wanjiajian`（玄下4）、`sk_wanjiaquan`（黄上3）、`sk_wanjiajibenjian`（黄中2） | `6/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `1.00 / 1.00` | `21.07` | — |
 | 戚长发 | 梅念笙一门 | `sk_meinianshengxinfa`（玄上6） | `sk_xiangxituna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_tangshijian`（地中8）、`sk_qingfengjian`（玄上6）、`sk_huiliuquan`（玄下4）、`sk_jianghurumenjian`（黄上3） | `6/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:3}` | `1.00 / 1.00` | `21.15` | — |
@@ -1102,12 +1113,14 @@ Boss 阶段切换不清经脉伤势；普通敌人仍按 `9000/6200/9000`、`rou
 
 #### 本界首领配装图鉴缺口
 
-| 人物 | 原缺口 / 原替补 | 处理结果 | 状态 |
+| 人物 | 历史缺口 / 已废止替代项 | 处理结果 | 状态 |
 |---|---|---|---|
 | 万圭 | 至少 5 品万家主运 / 安身拳脚；`sk_jianghutuna`、`sk_wuyingshou` | 新增并替换为 `sk_wanjiazhengqi`、`sk_wanjiaanshenquan`（均玄中5） | 已补；见 `skills-bulu-09-liancheng` §1 |
 | 凌退思 | 至少 5 品官差来源内功 / 外功；`sk_jianghutuna`、`sk_wuyingshou` | 新增并替换为 `sk_jingzhouyangqigong`、`sk_jingzhouguanfuqinfa`（均玄中5） | 已补；见 `skills-bulu-09-liancheng` §2 |
 
-当前 04 基线为 `3.6 / 7.7 / 18.2`。`boss_pacing.py` 以 §11.9 七参实算三阶段历史：万圭为原 4 品画像 `19.6173` → NB4 的 5 品临时替补 `19.9995` → 本次 5 品正式武学 `19.9995`（显示 `19.62→20.00→20.00`）；凌退思为 `19.3333→19.7113→19.7113`（显示 `19.33→19.71→19.71`）。本次正式武学与临时替补同品阶、同七参强度，因此替换本身不改变静态轮数；其余 Boss 不变，故全体仍为 `19.71–22.60`，精英仍为 `7.63–7.79`，均在 `12–25 / 6–10`。两人血量与防御倍率保持 `1.00×1.00`，没有用经脉降档调节。速度强档不再折算为伤害；具名 `full`、雪地走位与阶段门仍须固定 RNG 实战回放 **（待实测）**。
+当前 04 基线为 `3.6 / 7.7 / 18.2`。`boss_pacing.py` 以 §11.9 七参重跑七名 Boss，正式结果依次为宝象 `20.00`、万圭 `20.00`、凌退思 `19.71`、言达平 `21.07`、万震山 `21.07`、戚长发 `21.15`、血刀老祖 `22.60`；精英仍为 `7.63–7.79`，均在 `12–25 / 6–10`。万圭由旧 4 品画像 `19.62` 校正为正式配装 `20.00`，凌退思由 `19.33` 校正为 `19.71`；这两段旧值只作历史审计（替换已由 NB4 / NXB09 完成，本次终审只清理过渡措辞），不进入生产表。全体血量与防御倍率保持 `1.00×1.00`，没有用经脉降档调节。
+
+**外放后专项复核。** 本界图鉴已逐招审计：七名 Boss 的现行行动表没有 `projection:true` 招式；血刀经 / 血刀刀法的贴身催刃、回刀与刀势，以及唐诗剑法的近身剑招都不能仅凭“内力深厚”推成刀罡 / 剑气。故外放 Z5M 对本界净增益为 0，仍以普通 `attackMeridianMultBp` 估算。专项抽查顶尖人物血刀老祖 `22.6034` 轮与三徒中终盘等级最高的戚长发 `21.1537` 轮，均无需调血量或防御；其余五名同批复算也在窗内。脚本结果均为 `estimateOnly=true`，具名 `full`、雪地走位与阶段门仍须固定 RNG `BattleReplayV1` 实战回放 **（待实测）**。
 
 ## 13. 原创扩展清单与考据备注
 
@@ -1170,7 +1183,7 @@ Boss 阶段切换不清经脉伤势；普通敌人仍按 `9000/6200/9000`、`rou
 - 主线 `q_09_main_{z,x,c}_*`、选择 `dc_09_01..09`、天书 `tsp_09_canon/fate` 来自已审校剧情稿或上游，不由本文重复创设。
 - 全部 `rg_*`、`city_*`、`npc_*`、`sk_*`、`eq_*`、`it_*`、`mer_*`、`bf_*`、`tr_*`、`sect_*` 均须解析到归属文档；本轮新增武学只由 `skills-bulu-09-liancheng` 定义，本文不创建装备、丹药、Buff、经脉或门派。
 - `lc09.*` 是存档状态命名空间，`lc09-feature.v1` 是本章候选序列化版本；二者都不是基准 §12 的全局对象 ID。
-- 游方武当授艺者使用局部 `roleKey: wudang_wandering_teacher`，不得升格为静态 `npc_*`。汪啸风、桃红、空心菜是具名叙事人物，仍只可用显示名阻断构建，不得临时造 ID。
+- 游方武当授艺者使用局部 `roleKey: wudang_wandering_teacher`，不得升格为静态 `npc_*`。汪啸风、桃红、空心菜复用人物档案已经登记的 `npc_wangxiaofeng`、`npc_taohong`、`npc_kongxincai`，不得再以显示名或临时 ID 写入生产数据。
 
 ## 数据校验规则与测试用例
 
@@ -1182,7 +1195,7 @@ Boss 阶段切换不清经脉伤势；普通敌人仍按 `9000/6200/9000`、`rou
 | LC09-D04 | 主线图 | 正 / 邪各 10 幕、共有事件包 5 个、选择节点 9 个；每条路线可到 `q_09_main_c_05` |
 | LC09-D05 | 锚点闭集 | 五锚点必经；丁凌恰为 `canon/fate` 一种，其他次级救援不改 `tsp_09_*` |
 | LC09-D06 | 天书唯一 | 一周目只发 `tsp_09_canon` 或 `tsp_09_fate`；重复提交幂等 |
-| LC09-D07 | 人物引用 | 24 个正式 ch09 NPC 可解析；游方武当、汪啸风、桃红、空心菜在登记前令生产构建失败 |
+| LC09-D07 | 人物引用 | 27 个正式 ch09 NPC 可解析；汪啸风、桃红、空心菜分别只使用 `npc_wangxiaofeng`、`npc_taohong`、`npc_kongxincai`；游方武当仍为局部角色键 |
 | LC09-D08 | 武学引用 | 所有 `sk_*` 均在图鉴；外来压制只改实例，不改目录；武当五门仅余韵传授 |
 | LC09-D09 | 时代门派 | LC 只允许万家门、血刀门正式加入；武当 `H` 且无身份、月钱、配给 |
 | LC09-D10 | 生存原子性 | 资源扣除、阶段推进、Buff 引用同事务；不足可续行，不双扣地形伤害 |
@@ -1197,6 +1210,8 @@ Boss 阶段切换不清经脉伤势；普通敌人仍按 `9000/6200/9000`、`rou
 | LC09-D19 | 经脉模板 | 七 Boss 均有 §12.7 七组输入，层数 ≤8；每个武学行动者独立实例，纯环境不实例化；`routeRefs` 只由 `MoveDef` 编译 |
 | LC09-D20 | 经脉节奏 | 标准档保持 3.6 / 7.7 / 18.2；Z4M / Z5M、护体、速度与控制顺序匹配 `design/21`；具名回放 Boss 仍为 12–25 |
 | LC09-D21 | 首领补录 | 万圭、凌退思不再引用 `sk_jianghutuna` / `sk_wuyingshou` 作主力替补；四个新 `sk_*` 均解析到 `skills-bulu-09-liancheng`，玄中 0 绝招 |
+| LC09-D22 | 衙门武册 | 终幕安全来源成立时一次写入两条正式 `it_miji_*`；组内任一失败则全回滚，重复领取不补发、不折银，凌退思尸体与普通掉落表均不得引用 |
+| LC09-D23 | 旧状态与首领发布 | 扫描本章运行时引用，旧封穴 / 缠绕状态数为 0；首领表不得出现无合法 `sk_*` 的估值字段或过渡配置，七名 Boss 静态节奏全在 12–25 |
 
 核心回归用例：无前书存档仍可完成五锚点；三开局都能汇入公共入狱事件；正 / 邪 × 原著 / 改命四象限均可达；错过任一支线仍有主线证据替代；不加入门派、拒绝赌博、无轻功 qg3、无 `med` 或无 `art` 均不软锁；重复领取任务、资源点、门派月钱、Boss 首杀和天书均被幂等键拒绝。
 
@@ -1220,6 +1235,7 @@ Boss 阶段切换不清经脉伤势；普通敌人仍按 `9000/6200/9000`、`rou
 - **已解决：**`design/07-set-system.md` 已定稿；本章只消费其中正式套装，运行包缺注册表时仍失败关闭，不据标签推造效果。
 - **已解决：**`design/21` 战斗经脉接口已在 §12.7 落地；路线 ID 仍依赖武学图鉴回填，章节不创建平行 `mfr_*`。
 - **已解决：**万圭、凌退思的主运与主力外功替补已由 `skills-bulu-09-liancheng` 补齐；四门均按门派 / 官差体系正常来源开放，不设人物独占取得条件。
+- **已解决：**`NXB09` §4 的三项书界遗留均已收口：衙门武册两条单武学秘籍按 §9.6 原子发放，万家改组后的授艺由 §7.3 未涉案总管 / 师叔承接，两门新内功的经脉字段按 §9.7 引用补录卡落章。
 
 ### 对基准的修改提案
 
@@ -1240,7 +1256,7 @@ Boss 阶段切换不清经脉伤势；普通敌人仍按 `9000/6200/9000`、`rou
 | LC09-O01 | `lc09-feature.v1` 是否并入通用任务 schema？ | 先作为局部候选；生产序列化前由 `design/12` 映射，未知字段即构建失败 |
 | LC09-O02 | 前代传承与套装如何投放？ | **已解决：**前代传承按 `design/20` 调度六组合法候选；套装只按 `design/07` 正式注册表启用，注册表未加载则失败关闭 |
 | LC09-O03 | 游方武当是否成为正式人物？ | 先仅作余韵占位，复用 `q_09_faction_05`；补名录后才生成实体，永不授 LC 武当身份 |
-| LC09-O04 | 汪啸风、桃红、空心菜的 ID 与 D 级？ | 暂只显示名；建议前两者 D4、空心菜为非战斗保护对象，最终由 `design/18` 定 |
+| LC09-O04 | 汪啸风、桃红、空心菜的 ID 与 D 级？ | **已解决：**人物档案已登记 `npc_wangxiaofeng` / `npc_taohong` / `npc_kongxincai`；前两者 D4，空心菜 D3（非战斗），见 §8.1 与 `npcs-ch09-liancheng` |
 | LC09-O05 | 主线制作预算按 8 幕还是 10 幕？ | 服从 AR-10 / 审校剧情稿，正邪各 10 幕；`design/11` 应同步 |
 | LC09-O06 | 任务当量总数 156 还是 157？ | 暂按总栏 156 做总预算；分项 `55+55+47=157` 不强行改写，等 `design/13` 统一舍入 |
 | LC09-O07 | 藏边雪谷地图挂点如何表述？ | 挂 `rg_qingzang`，以昌都方向作最近玩法落点；UI 只称“藏边雪谷” |
