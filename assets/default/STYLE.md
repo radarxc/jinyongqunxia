@@ -47,3 +47,23 @@
 - 年代依据：`docs/design/02-timeline-and-world-tiers.md`（书界年代）、`docs/tech/07-asset-generation.md` §2.7（服饰时代感）；城市依据：`docs/design/19-world-map.md`。
 - 禁止项沿用 `docs/tech/07` §2.9 与 §9：不用真人演员肖像、不仿在世画师风格名、不以受版权保护的具体画作做图生图源。作者"人物可以再加上知名作品的角色画像"一条，用于后续正式生成，具体来源与授权范围待作者确认后再启用。
 - 每张素材都要在所在目录的 `manifest.yaml` 登记（字段见 `assets/README.md`）。
+
+## 审批记录
+
+作者在审批页逐张审批，结果由 `tools/agents/apply_reviews.py` 写入各 `manifest.yaml` 的 `status`（通过 → approved；需修改 → 保持 candidate，按意见返修后重新审批）。
+
+### 第 1 轮（2026-09-29）
+| 日期 | 素材 ID | 决定 | 作者意见（原文） |
+|---|---|---|---|
+| 2026-09-29 | `ref_city_beijing__ch08_jiaolou_base01` | 通过 | — |
+| 2026-09-29 | `ref_eq_yitianjian__ch04_base01` | 需修改 | 这个倚天剑太普通了，要参考著名游戏倚天剑造型。 |
+| 2026-09-29 | `ref_it_miji_jiuyin_shang__ch02_base01` | 通过 | — |
+| 2026-09-29 | `ref_map_dali__ch01_base01` | 通过 | — |
+| 2026-09-29 | `ref_map_jianghu__ch01_base01` | 通过 | — |
+| 2026-09-29 | `ref_mv_xianglong18_kanglong__ch02_base01` | 需修改 | 降龙十八掌应该是金色，龙应该从整个掌面透出，而不是从掌心（现在看起来像在喷墨不好）。要气势磅礴 |
+| 2026-09-29 | `ref_npc_linghuchong__ch05_base01` | 需修改 | 不够飘逸，要有浪子味道，贴近育碧的笑傲江湖令狐冲的画像。 |
+| 2026-09-29 | `ref_npc_wangyuyan__ch01_base01` | 通过 | — |
+| 2026-09-29 | `ref_npc_xiaofeng__ch01_base01` | 需修改 | 英雄气不够，再加英雄气，再魁梧一些，贴近港版经典造型。 |
+| 2026-09-29 | `ref_npc_xiaolongnv__ch03_base01` | 通过 | — |
+| 2026-09-29 | `ref_sect_shaolin__ch01_base01` | 通过 | — |
+| 2026-09-29 | `ref_sk_liumai__ch01_base01` | 需修改 | 六脉神剑需要更飘逸，颜色要符合六脉神剑描述的颜色。现在看起来像长指甲，很丑。 |

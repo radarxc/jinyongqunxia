@@ -64,7 +64,7 @@
   source_path: "/Users/bytedance/.codex/generated_images/01a0ef06-b104-73f3-97bc-1dffa5132507/exec-cf04698d-bff4-4673-be4e-c5f801e35477.png"
   size: "1254x1254"
   sha256: "69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6"
-  status: candidate
+  status: approved
   notes: |-
     年代依据：docs/00-canon.md §2、docs/design/02-timeline-and-world-tiers.md §1.5、docs/design/chapters/02-shediao.md §1；不以docs/design/19-world-map.md §3.2的单年图层摘要替代书界时间范围。
     复用it_miji_jiuyin_shang，见docs/design/10-items-and-equipment.md §10.4及chapters/02 §9.3；武学关联sk_jiuyin见catalog/skills-wujue.md §7。本图只画上卷单册，不定义新的全本ID，也不表示上下卷同时出现。

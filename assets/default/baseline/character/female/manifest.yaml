@@ -25,7 +25,7 @@
   source_path: "/Users/bytedance/.codex/generated_images/01a0eef5-aa1e-7b10-8b45-72faed3f6b5a/exec-d1856387-8f61-4921-bb2e-b24356486c62.png"
   size: "1024x1536"
   sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-  status: candidate
+  status: approved
   notes: |-
     依据：docs/design/02-timeline-and-world-tiers.md §1.3.1、docs/design/19-world-map.md §4/§5.2、docs/design/chapters/01-tianlong.md §3、docs/design/catalog/npcs-ch01-tianlong.md 与 skills-xiaoyao.md 的博学定位；不会武功及娴雅气质按本任务明确要求。淡藕色褙子、素玉簪、束髻与衣纹是（原创扩展）视觉选择；原著衣饰段落逐字校勘和服饰史专项考证（待考）。已目检完整全身、无兵器、简洁纸底、未见明显手部畸形或左衽。与另一候选的五官和半束发较近，留待作者判断辨识度。
     本轮两次内置 image_gen 调用各生成一张，各保留一张；无输入图、无落选图。原始 PNG 按字节复制入库，无裁切、镜像、重新编码或水印去除；RGB、不透明背景，非正式 RGBA 立绘母版。status 为 candidate，仅待作者审批；后续不得当成已审定基线。created 取原始文件生成落盘时的修改时间（UTC，含时区）。model/effort 按任务指定执行标签登记，工具未回传底层图像模型或推理档位凭据；本轮不声称已验证该底层配置。
@@ -56,7 +56,7 @@
   source_path: "/Users/bytedance/.codex/generated_images/01a0eef5-aa1e-7b10-8b45-72faed3f6b5a/exec-27b8df78-0c16-4f75-a4a7-3723ab9588c5.png"
   size: "1024x1536"
   sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-  status: candidate
+  status: approved
   notes: |-
     依据：docs/design/02-timeline-and-world-tiers.md §1.3.3、docs/design/19-world-map.md §5.2、docs/design/catalog/npcs-ch03-shendiao.md、docs/design/catalog/skills-daojia.md；白衣清冷按本任务明确要求，tech/07 §2.7 允许古墓派素白长衣原创造型。具体白衣裁制、腰带、白布束髻及衣纹为（原创扩展）；原著肖像段落逐字校勘和服饰史专项考证（待考）。已目检完整全身、白衣层次可辨、无兵器或法术、未见明显手部畸形。外覆襟由画面右上向左下，未见明显左衽；同色领层辨读较弱、裙裾层叠较艺术化，精确版型待复核。
     本轮两次内置 image_gen 调用各生成一张，各保留一张；无输入图、无落选图。原始 PNG 按字节复制入库，无裁切、镜像、重新编码或水印去除；RGB、不透明背景，非正式 RGBA 立绘母版。status 为 candidate，仅待作者审批；后续不得当成已审定基线。created 取原始文件生成落盘时的修改时间（UTC，含时区）。model/effort 按任务指定执行标签登记，工具未回传底层图像模型或推理档位凭据；本轮不声称已验证该底层配置。
