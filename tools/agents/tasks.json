@@ -13150,6 +13150,358 @@
           ]
         ]
       }
+    },
+    {
+      "id": "ART-B-map",
+      "phase": "ART",
+      "wave": 7,
+      "kind": "draft",
+      "title": "素材基线 · 地图（默认风格包）",
+      "prompt": "ART-baseline.md",
+      "deps": [],
+      "writes": [
+        "assets/default/baseline/map/**",
+        "assets/default/prompts/map.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_id": "map",
+        "cat_name": "地图",
+        "style_rule": "**古风水墨**：山水写意、留白、纸本质感，以墨色浓淡表现山川水系、城池与道路；地名等文字不画进图里（另做 SVG 叠加层）。",
+        "subjects": "（1）天龙书界（北宋，约 11 世纪末）江湖大地图：大宋、大辽、西夏、大理、吐蕃的山川形胜总览；（2）局部地图：大理国苍山洱海一带（大理城、崇圣寺三塔、无量山方向）。地理与城市依据 `docs/design/19-world-map.md` 与天龙书界章节。",
+        "out_dir": "assets/default/baseline/map",
+        "prompt_file": "assets/default/prompts/map.md",
+        "extra": "为每张地图另写一个 SVG 标注叠加层（`<同名>.labels.svg`，与图同尺寸，地名用规范中文，位置按图估算），并在 manifest 条目里用 `notes` 注明；SVG 不计入图片数量。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/map/manifest.yaml",
+          "assets/default/prompts/map.md"
+        ],
+        "fences": [
+          "assets/default/prompts/map.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/map",
+            "--min",
+            "1",
+            "--max",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-B-town",
+      "phase": "ART",
+      "wave": 7,
+      "kind": "draft",
+      "title": "素材基线 · 城镇（默认风格包）",
+      "prompt": "ART-baseline.md",
+      "deps": [],
+      "writes": [
+        "assets/default/baseline/town/**",
+        "assets/default/prompts/town.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_id": "town",
+        "cat_name": "城镇",
+        "style_rule": "**写实古风**：按具体城市与所属书界年代生成，城墙、街市、店招、屋顶形制、车马与人群服饰都须符合年代特征；写实光影与材质。",
+        "subjects": "（1）北宋·大理国都城（羊苴咩城 / 大理城，天龙书界，约 1090 年代）街市或鸟瞰，体现大理国白族与宋式交融的建筑与服饰；（2）南宋·临安城（射雕书界，约 1200 年代）御街或西湖畔街市。两张须能看出年代差异。",
+        "out_dir": "assets/default/baseline/town",
+        "prompt_file": "assets/default/prompts/town.md",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/town/manifest.yaml",
+          "assets/default/prompts/town.md"
+        ],
+        "fences": [
+          "assets/default/prompts/town.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/town",
+            "--min",
+            "1",
+            "--max",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-B-building",
+      "phase": "ART",
+      "wave": 7,
+      "kind": "draft",
+      "title": "素材基线 · 建筑（默认风格包）",
+      "prompt": "ART-baseline.md",
+      "deps": [],
+      "writes": [
+        "assets/default/baseline/building/**",
+        "assets/default/prompts/building.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_id": "building",
+        "cat_name": "建筑",
+        "style_rule": "**写实古风**：单体或建筑群的形制、斗拱、屋脊、瓦作、彩画、材质须符合年代特征（宋 / 元 / 明 / 清等），写实光影。",
+        "subjects": "（1）北宋·嵩山少林寺山门与大雄宝殿（天龙书界，宋式大木作与斗拱）；（2）清初·紫禁城一角（鹿鼎书界，清式官式建筑，如角楼或宫门）。两张须能看出宋式与清式的形制差异。",
+        "out_dir": "assets/default/baseline/building",
+        "prompt_file": "assets/default/prompts/building.md",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/building/manifest.yaml",
+          "assets/default/prompts/building.md"
+        ],
+        "fences": [
+          "assets/default/prompts/building.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/building",
+            "--min",
+            "1",
+            "--max",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-B-male",
+      "phase": "ART",
+      "wave": 7,
+      "kind": "draft",
+      "title": "素材基线 · 人物·男（默认风格包）",
+      "prompt": "ART-baseline.md",
+      "deps": [],
+      "writes": [
+        "assets/default/baseline/character/male/**",
+        "assets/default/prompts/character-male.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_id": "character-male",
+        "cat_name": "人物·男",
+        "style_rule": "**武侠，男性偏写实**：真实骨相、皮肤与布料质感，神态有江湖气；服饰、发式、兵器符合书界年代与人物身份；全身或七分身立像，背景简洁（淡墨或纯色），便于作为设定参考。",
+        "subjects": "（1）萧峰（天龙书界，北宋，丐帮帮主时期，契丹血统，豪迈刚猛，身形魁梧）；（2）令狐冲（笑傲书界，明代，华山派弟子，洒脱不羁，持剑）。人物形象以原著描写为准，不参考任何影视剧演员或剧照。",
+        "out_dir": "assets/default/baseline/character/male",
+        "prompt_file": "assets/default/prompts/character-male.md",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/character/male/manifest.yaml",
+          "assets/default/prompts/character-male.md"
+        ],
+        "fences": [
+          "assets/default/prompts/character-male.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/character/male",
+            "--min",
+            "1",
+            "--max",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-B-female",
+      "phase": "ART",
+      "wave": 7,
+      "kind": "draft",
+      "title": "素材基线 · 人物·女（默认风格包）",
+      "prompt": "ART-baseline.md",
+      "deps": [],
+      "writes": [
+        "assets/default/baseline/character/female/**",
+        "assets/default/prompts/character-female.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_id": "character-female",
+        "cat_name": "人物·女",
+        "style_rule": "**武侠，女性偏美丽**：古典东方审美，气质清丽，面容精致而不低幼、不网红化；服饰、发式、首饰符合书界年代；全身或七分身立像，背景简洁（淡墨或纯色），便于作为设定参考。",
+        "subjects": "（1）王语嫣（天龙书界，北宋，江南曼陀山庄，娴雅博学、不会武功却精通武学典籍）；（2）小龙女（神雕书界，南宋，古墓派，白衣清冷、超尘出世）。人物形象以原著描写为准，不参考任何影视剧演员或剧照。",
+        "out_dir": "assets/default/baseline/character/female",
+        "prompt_file": "assets/default/prompts/character-female.md",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/character/female/manifest.yaml",
+          "assets/default/prompts/character-female.md"
+        ],
+        "fences": [
+          "assets/default/prompts/character-female.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/character/female",
+            "--min",
+            "1",
+            "--max",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-B-vfx",
+      "phase": "ART",
+      "wave": 7,
+      "kind": "draft",
+      "title": "素材基线 · 招式（默认风格包）",
+      "prompt": "ART-baseline.md",
+      "deps": [],
+      "writes": [
+        "assets/default/baseline/vfx/**",
+        "assets/default/prompts/vfx.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_id": "vfx",
+        "cat_name": "招式",
+        "style_rule": "**水墨意境**：虚实相生、透明叠化、墨迹晕染与飞白；可交付可运行的视觉效果代码（自包含 HTML / Canvas 2D 或 WebGL，无外部依赖）配概念图。",
+        "subjects": "（1）降龙十八掌·亢龙有悔：刚猛掌劲化作墨色龙形气劲自掌心（劳宫）透出，半透明、虚实交错；（2）六脉神剑：六道无形剑气自指端射出，以淡墨线与留白表现\"无形\"。",
+        "out_dir": "assets/default/baseline/vfx",
+        "prompt_file": "assets/default/prompts/vfx.md",
+        "extra": "为其中一招另写可运行的效果代码：`assets/default/baseline/vfx/<素材 ID>/index.html`，自包含、无外部依赖、打开即循环播放，用 Canvas 2D 或 WebGL 表现墨迹晕染、透明叠化与虚实变化，文件头注释说明参数与用法。在对应图片的 manifest 条目里用 `code` 字段写相对路径；代码不计入图片数量。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/vfx/manifest.yaml",
+          "assets/default/prompts/vfx.md"
+        ],
+        "fences": [
+          "assets/default/prompts/vfx.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/vfx",
+            "--min",
+            "1",
+            "--max",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-B-item",
+      "phase": "ART",
+      "wave": 7,
+      "kind": "draft",
+      "title": "素材基线 · 物品（默认风格包）",
+      "prompt": "ART-baseline.md",
+      "deps": [],
+      "writes": [
+        "assets/default/baseline/item/**",
+        "assets/default/prompts/item.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_id": "item",
+        "cat_name": "物品",
+        "style_rule": "**武侠**：兵器、秘籍、丹药等器物，质感清晰、造型考究、符合年代，适合作图鉴插画与图标裁切；背景简洁（淡墨或纯色）。",
+        "subjects": "（1）倚天剑（倚天书界，元末，锋锐古朴的名剑）；（2）《九阴真经》秘籍（射雕书界，南宋，古籍线装书册的质感）。",
+        "out_dir": "assets/default/baseline/item",
+        "prompt_file": "assets/default/prompts/item.md",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/item/manifest.yaml",
+          "assets/default/prompts/item.md"
+        ],
+        "fences": [
+          "assets/default/prompts/item.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/item",
+            "--min",
+            "1",
+            "--max",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-B-meridian",
+      "phase": "ART",
+      "wave": 7,
+      "kind": "draft",
+      "title": "素材基线 · 经脉图等（其他·写实）（默认风格包）",
+      "prompt": "ART-baseline.md",
+      "deps": [],
+      "writes": [
+        "assets/default/baseline/meridian/**",
+        "assets/default/prompts/meridian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_id": "meridian",
+        "cat_name": "经脉图等（其他·写实）",
+        "style_rule": "**写实**：解剖写实风格的经脉图，人体结构准确、经脉走向清楚、穴位点位可辨；经脉与穴位以 `docs/design/15-meridians-and-acupoints.md` 为准；图中不画文字。",
+        "subjects": "（1）任督二脉全身图（正面任脉、背面督脉，写实人体线描加淡彩，标出主要穴位点位）；（2）手厥阴心包经上肢图（内关、劳宫等穴位点位；作者 AR-18 以劳宫为阳掌\"气过阴门\"的出口）。",
+        "out_dir": "assets/default/baseline/meridian",
+        "prompt_file": "assets/default/prompts/meridian.md",
+        "extra": "为每张经脉图另写一个 SVG 标注叠加层（`<同名>.labels.svg`，与图同尺寸，穴位名与经脉名用 15 号文档的规范名称与 `ap_*` ID 对照），并在 manifest 条目里用 `notes` 注明；SVG 不计入图片数量。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/meridian/manifest.yaml",
+          "assets/default/prompts/meridian.md"
+        ],
+        "fences": [
+          "assets/default/prompts/meridian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/meridian",
+            "--min",
+            "1",
+            "--max",
+            "2"
+          ]
+        ]
+      }
     }
   ]
 }
