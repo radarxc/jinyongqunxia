@@ -24,7 +24,7 @@
   source_path: "/Users/bytedance/.codex/generated_images/01a0eef5-a1be-7c71-acf5-455c831ff20e/exec-2a9d3d55-fdf4-4e28-ae00-e55cf24bf24c.png"
   size: "1536x1024"
   sha256: b109e6d771320b80f97750d1fc612f1a26f1da1e8bd5d5d0baca7c27cffa256f
-  status: candidate
+  status: approved
   notes: |-
     年代见 docs/design/02-timeline-and-world-tiers.md §1.3.1；地望见 docs/design/19-world-map.md §5.2、chapters/01 §3.3–3.4；关联 sect_shaolin、city_dengfeng、rg_zhongyuan、sc_01_shaoshishan。灰瓦、宽出檐、较大斗拱、暗朱木柱与石材形成宋式风格候选。三间/五间及殿序只是提示词设计目标，未按测绘确认生成图的开间数；山门、大殿形制、栏杆灯幢、地貌及彩画在1093–1094的实貌（待考），本图空间布局为（原创扩展）。初祖庵资料 https://wwj.zhengzhou.gov.cn/country/3175053.jhtml 仅作宋构年代边界研究，非参考输入；不能将1125年记录直接冒充1093年大雄宝殿。未见可读文字、人物或现代设施。 每题材各一次内置 image_gen 文生图，无输入图片、无改图、无后期重编码；复制原PNG并保留工具原生溯源信息。prompt 为完整实际调用文本（含排除项），negative 为其中排除项原文。model/effort 按任务指定的编排配置记录；工具回执未公开底层图像模型版本或seed，不将其推断为 gpt-6-astra。created 为原图文件保存时间（UTC）。status=candidate，仅供作者审批，未经审批不得作为已审定基线投入批量生成。
 
@@ -54,6 +54,6 @@
   source_path: "/Users/bytedance/.codex/generated_images/01a0ef09-1311-7182-91b5-7a53fd392694/exec-5724184c-0fa3-4850-9c22-bb734da1e8ac.png"
   size: "1536x1024"
   sha256: 9ef1bc720813c73b887e8f8b49addd81c6c0c9888618f24afc4b2671288b5c79
-  status: candidate
+  status: approved
   notes: |-
     年代见 docs/design/02-timeline-and-world-tiers.md §1.3.8；地望见 docs/design/19-world-map.md §5.2、chapters/08 §3.3–3.4；关联 city_beijing、sect_qinggong、rg_yanjing_zhili、sc_08_zijincheng。地图1685只为代表切片，不替代书界区间。故宫博物院 https://www.dpm.org.cn/explore/building/236522.html 的角楼资料及 https://www.dpm.org.cn/explore/building/236508.html 的条石陡直驳岸资料仅作文字依据；本次沿用监督已核实事实，未联网、未输入网页图片。第1版因城墙无雉堞、灰瓦墙帽近似院墙、河岸加栏杆及外凸石砌墩台而淘汰；原图仍留工具来源目录，旧SHA-256为16f75ef5403c91c369a6edbc99e8eee7cad8e0f53cdb3e7e79e35544db9f8e0b。本次纯文生图1张，经view_image和独立审图后采用：高厚红城墙外沿雉堞连续，角楼及石栏在城隅墙顶，条石驳岸无栏杆，无成排树木或外凸墩台；黄琉璃复合屋顶、小密斗拱、蓝绿点金彩画保持可读，未见文字、水印、人物或现代设施。约10米为提示词尺度目标，不从图中宣称实测高度；须弥座下部被垛口遮挡，岸带压缩，墙面朱红/赭红颜色、城墙与河岸间地带及清初附属建筑（待考）；精确十字平面、屋面接合、台基栏杆、康熙彩画及脊兽仍（待考），空间简化为（原创扩展），不作实景测绘复原。无输入图片、无改图、无后期重编码；复制原PNG并保留工具原生溯源信息。prompt为完整实际调用文本（含排除项），negative为其中排除项原文。model/effort按任务指定的编排配置记录；工具回执未公开底层图像模型版本或seed，不将其推断为gpt-6-astra。created为原图文件保存时间（UTC）。status=candidate，仅供作者审批，未经审批不得作为已审定基线投入批量生成。
