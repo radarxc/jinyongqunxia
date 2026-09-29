@@ -25,6 +25,15 @@
    - 康熙册文首索引 `mfr_meirensanzhao_feiyan`、`mfr_fuqidaofa_tongxin` 的用途（defense → attack）核对；
    - 乾隆册 §12.5 QL-O08 行多一格，修正表格；
    - 不同武学间高度相同的路线（如 `mfr_taixuan_shibu` 与 `mfr_shenxing_taxi`）酌情区分。
+   - **文首索引与镜像表的 purpose 不一致**（NR1 / NR2 按任务要求没改，见 `tools/agents/reports/NR2.md` §4、§6）：
+     - 康熙 2 处：`mfr_hongyingjian_tongxin`、`mfr_mufuhujian_sheshen`；
+     - 乾隆 4 处：`mfr_honghuahuiheji_shisidangjia`、`mfr_hujiaquan_quandao`、`mfr_huibuqijian_huifeng`、`mfr_zhangmenboyi_baipai`；
+     - 古龙 5 处：`mfr_mingyugong_zhaoye`、`mfr_jiayishengong_liehuo`、`mfr_shenshuineigong_zhongchao`、`mfr_kongquelingfa_shouping`、`mfr_kongquelingfa_kaiping`；
+     - 少林约 17 处（自行逐条比对找出）。
+
+     以正文武学卡里该招的实际效果为准，改错的一侧，两边只留一个值。明玉照夜、收屏、拳刀一理的正文是伤害招，索引却写 defense，多半是索引错了。判不清的列入"需作者确认"。
+   - **未在 15 号文档登记的穴位 ID**：通行册 `ap_baihui` 1 处、倚天册 `ap_qihai` 1 处，改为 15 中已登记的 ID（NR2 在本组第二批已同类修正 5 处，可参照）。
+   - **过期镜像**：少林、道家、通行、倚天约 100 行镜像的模板代号、CT、总风险早已过期。按文首索引的显式路线重算并同步，做法同 NR2：模板代号改为"见文首索引"，重算段数、路线 CT、收招合计、总风险与风险列表。
 4. **索引**：本组门派图鉴开头或索引处加一行"本门补录武学见 `skills-bulu-NN-*.md`"（只在确有补录的门派加）。
 5. 改路线时守住：21 硬约束、同门互异、外放端点白名单、步骤只定义一次、不低于建议段数、终点合出招方式；改了路线就同步本册镜像表与说明文字。
 
