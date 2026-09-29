@@ -3,7 +3,7 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/08-backend-and-online.md` |
-| 版本 | v1.3（经脉协议 2 存档 / 录像登记，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
+| 版本 | v1.4（经脉落地终审：外放档命令 / 回放 / hash 契约，2026-09-29）；v1.3（经脉协议 2 存档 / 录像登记，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
 | 作者决定覆盖 | `docs/decisions/author-decisions.md` P03：暂不备案，不做国内 / 香港镜像；当前只规划 Cloudflare 方案 |
 | 上游基准 | `docs/00-canon.md` §0（"Online" = 随时随地在浏览器中继续同一份存档；非商业、**不公开分发**）、§8（确定性战斗）、§18（文档归属）、§19（存档：IndexedDB 本地优先 + 云端同步；后端：轻量 Serverless，国内/海外两套部署方案） |
 | 强依赖 | `tech/01`（monorepo、`services/api`、`packages/platform`、存档时机 §6.9、确定性 §8.3、CI §7.6）；`tech/06`（同一 Worker 托管应用 + API + 素材闸门、会话 Cookie `ts_s` 由本文签发；其国内 / 香港镜像旧规划须按作者 P03 收口）；`design/13` §9（存档槽、回档规则、`MetaProfile` 合并规则）；`design/02` §4.5（书眠永久存档）；`tech/05` §14.3（`BattleReplayV1`、战斗开局快照与状态哈希）；`design/21` §12.4（`rulesProtocol=2`、`meridian-flow-state.v1`）；`tech/04`（书界包 `contentHash` 与 ID 重映射） |
@@ -23,7 +23,7 @@
 > 8. **AI NPC 自由对话（可选，默认关闭）**：独立的 AI Worker（placement 靠近上游 API）；原评测基线为 `claude-opus-5` + `effort: "low"` + 流式输出，但该模型截至 2026-09-26 已被官方列为 **Legacy**，因此生产配置不设默认模型，启用前必须重新选型并重跑金标评测；人设卡 + 按幕截止的原著知识 + 分层提示缓存；AI 只能**提出**好感/旗标变化，由 core 规则校验、封顶后生效；会话分段而不删改历史；失败时回退到预写台词。**Anthropic 支持地区不含中国大陆、香港、澳门**：作者常驻上述地区时不得启用这条路线（不借代理规避地区限制），改为关闭，或另选当地可合规使用的模型服务。
 > 9. **启用 AI 时默认请求服务端回退**：通过 §9.0 全部门槛后，请求带 `fallbacks: "default"`（beta `server-side-fallback-2026-07-01`），安全分类器拒答时由服务端改用推荐模型重跑；beta 撤回或语义变化则关闭。AI 功能本身仍默认关闭。
 > 10. **离线 AI 辅助内容生产**：Batches API（五折）+ Zod 结构化输出 → 草稿区 → `content:validate` → 人工审核 → 入库。全项目文本起草估算不超过 $150。
-> 11. **遥测（可选）**：战斗日志 = 战斗域开局快照 + 动态自创武学闭包 + 命令序列 + 中间 / 终局哈希（可离线重放，与 `tech/05` §14.3 对接），不包含完整 `GameState`；以 NDJSON.gz 存入 R2，用 DuckDB 分析，只采作者本人数据。
+> 11. **遥测（可选）**：战斗日志 = 战斗域开局快照 + 动态自创武学闭包 + 命令序列 + 中间 / 终局哈希（可离线重放，与 `tech/05` §14.3 对接），不包含完整 `GameState`；`skill` 及 `dual.a/b` 原样保留所选 `projectionStep`，hash 覆盖该命令事实，但不保存由它推导的范围 / 命中格集合；以 NDJSON.gz 存入 R2，用 DuckDB 分析，只采作者本人数据。
 > 12. **运维（个人级）**：D1 Time Travel（免费版 7 天）+ 每日导出加密备份 + R2 每周同步到第二家存储；UptimeRobot / Healthchecks.io 免费告警；玩家随时可导出完整存档（JSON / TSAV / ZIP）。
 
 > **调研要点（均非致命，但改变了若干细节决策；来源见文末）**
@@ -94,7 +94,7 @@
 | D19 | AI 效果 | 只以工具调用 `propose_effects` 提出建议；core 按白名单与封顶校验后以命令落地（可录像重放） | 不破坏确定性与平衡；§9.7 |
 | D20 | AI 成本 | 分层提示缓存 + 会话分段 + 日 / 月美元上限（默认 $0.8 / $10）+ Console 花费上限兜底 | §9.9 |
 | D21 | 离线内容 AI | `tools/content-ai`（TS）+ Batches API + Zod 结构化输出 → 草稿区 → 人工审核 | §9.13 |
-| D22 | 遥测 | 可选；战斗摘要全量、可重放日志抽样；NDJSON.gz → R2 → DuckDB | §10 |
+| D22 | 遥测 | 可选；战斗摘要全量、可重放日志抽样；已接受的外放档进入命令与 hash，推导格集合不入录像；NDJSON.gz → R2 → DuckDB | §10 |
 | D23 | 备份 | D1 Time Travel + 每日加密导出（GitHub Actions）+ R2 周同步第二家 + 季度恢复演练 | §12.2 |
 | D24 | 私有托管 | 除登录页、健康检查、PWA 清单与图标外，全部路径走会话闸门；关闭 `workers.dev` 与预览 URL；全站 `noindex` | 基准 §0；§5.9 |
 
@@ -524,7 +524,7 @@ export function migrateSave(state: AnyState, ctx: MigrationCtx): { state: AnySta
 | TSAV 容器 | `containerVersion=1` | TSAV 固定前导 | 只决定封装与压缩，不代表玩法规则版本 |
 | 持久存档结构 | `GameState.meta.saveSchema` | 普通 TSAV 负载 | 按 §3.5 纯函数链迁移；具体整数随发布递增，示例 `SAVE_SCHEMA=7` 不是永恒协议号 |
 | 录像信封 | `BattleReplayV1.schema` / NDJSON `header.schema=1` | 录像对象 | 只决定记录形状；不替代 `rulesProtocol` |
-| 战斗规则 | `rulesProtocol=2` | `BattleSession`、录像 header、同进程战斗 checkpoint | 必须由五元键选择匹配 runner；协议 1 不得用协议 2 逻辑重算 |
+| 战斗规则 | `rulesProtocol=2` | `BattleSession`、录像 header、同进程战斗 checkpoint | 必须由五元键选择匹配 runner；已接受的 `skill.projectionStep` 与 `dual.a/b.projectionStep` 属命令事实并进入 hash；协议 1 不得用协议 2 逻辑重算 |
 | RNG | `rngProtocol=1` | `BattleSession`、录像 header | 与规则版本分别校验；单位经脉 snapshot 不得复制 RNG |
 | 单位经脉态 | `schema='meridian-flow-state.v1'` | 协议 2 的 `battle.meridianByUnit[].flow` | 逐单位保存并与唯一 `BattleSession.battleRng` 一起进入 hash；不能脱离所属 battle 单独恢复 |
 
@@ -2001,19 +2001,20 @@ content/drafts/ai/<jobId>/*.json
 {"t":"header","schema":1,"battleId":"btl_01K…","appBuild":"20260927-a1b2c3d","coreVersion":"0.1.0","rulesProtocol":2,"rngProtocol":1,"contentHash":"sha256:…","encounterId":"enc_08_shenlongdao","difficultyId":"diff_xiake","startedAt":"2026-09-27T19:00:00Z","sample":"replay"}
 {"t":"opening","session":{"battle":{},"battleRng":[],"aiRng":[],"acceptedOrdinal":0,"decisionOrdinal":0},"registryRefs":[],"runtimeMartialArts":[],"openingHash":"sha256:…"}
 {"t":"command","seq":0,"command":{"t":"battle/deploy","placements":[]},"accepted":true,"afterHash":"sha256:…"}
-{"t":"command","seq":1,"command":{"t":"battle/act","actor":"…","action":{"t":"wait"}},"accepted":true,"afterHash":"sha256:…"}
+{"t":"command","seq":1,"command":{"t":"battle/act","actor":"…","action":{"t":"skill","move":"mv_…","target":{"unit":"…"},"projectionStep":1}},"accepted":true,"afterHash":"sha256:…"}
 {"t":"finish","result":"win","commandCount":2,"terminalHash":"sha256:…","summary":{"rounds":1,"actions":2,"damageBySkill":{},"healingBySkill":{},"downs":0},"endedAt":"2026-09-26T19:01:10Z"}
 ```
 
 约束如下：
 
 1. 第一行必须是 `header`、最后一行必须是 `finish`；`seq` 从 0 连续递增。摘要模式只含 `header(sample=summary)` 与 `finish`，不伪装成可重放日志。
-2. 只记录 core **已经接受**的命令；输入层拒绝的点击不影响状态，不进主序列，可在本地开发日志另记。AI 选择最终也必须落成普通确定性命令，录像不记录模型思考或 prompt。
+2. 只记录 core **已经接受**的命令；输入层拒绝的点击不影响状态，不进主序列，可在本地开发日志另记。AI 选择最终也必须落成普通确定性命令，录像不记录模型思考或 prompt。`skill` 原样保留规范化后的 `projectionStep`；左右互搏 `dual.a` 与 `dual.b` 各自保留本段所选档，不能提升为 dual 共用一档、删除 0 档或在重放时自动选择当前最高档。非外放招不得伪造该字段。
 3. runner 由完整五元键 `appBuild + coreVersion + rulesProtocol + rngProtocol + contentHash` 选择；现行经脉录像登记为 `rulesProtocol=2`、`rngProtocol=1`，且每个单位的 `meridianByUnit[].flow.schema` 必须为 `meridian-flow-state.v1`。缺任一匹配工件就报 `schema_unsupported` / `content_missing`，不得拿“最新” runner 猜修。协议 1 只交旧 runner；旧 runner 不可用时保留录像为“不可验证”，若载荷来自进行中战斗 checkpoint 则回到登记的战前检查点。`appBuild` 定位可部署应用工件，`coreVersion` 定位玩法 runner，不引入运输字段 `coreBuild`。
 4. `runtimeMartialArts` 必须带上本战实际可达的动态自创武学完整定义闭包，并按 ID 全序；`registryRefs` 只核验静态内容闭包，不能替代 `contentHash`。重放不得用当前存档同槽定义覆盖录像定义。
-5. `openingHash`、采样的 `afterHash`、`terminalHash` 均调用 `tech/05` 的同一规范域：UTF-8 规范 JSON 数组 `["tianshu:battle-replay:v1", appBuild, coreVersion, rulesProtocol, rngProtocol, contentHash, runtimeMartialArts, session]`；hash 字段自身与 `startedAt` / `endedAt` 等墙钟在域外。逐步 hash 便于定位首个分歧，生产采样可只留每 10 条命令一个 `afterHash` **【建议值】**，终局 hash 不可省。
+5. `openingHash`、采样的 `afterHash`、`terminalHash` 均调用 `tech/05` 的同一规范域：UTF-8 规范 JSON 数组 `["tianshu:battle-replay:v1", appBuild, coreVersion, rulesProtocol, rngProtocol, contentHash, runtimeMartialArts, commandPrefix, session]`。`commandPrefix` 是截至采样点的已接受记录按 `seq` 升序后仅投影其规范 `command` 载荷所得数组，开局为空；`seq/accepted/afterHash`、墙钟和诊断字段不进入该数组，避免摘要自引用。故 `skill.projectionStep` 与 `dual.a/b.projectionStep` 即使恰巧导出同一格集也直接进入 hash。复放还须严格 dispatch 该字段，以重算后的 session 生成摘要，不得删档、自动升档或以保存的格集合覆盖。逐步 hash 便于定位首个分歧，生产采样可只留每 10 条命令一个 `afterHash` **【建议值】**，终局 hash 不可省。
 6. 单对象压缩后 ≤ 2 MiB、声明的未压缩大小 ≤ 16 MiB（§6.5）。超过时不切成语义不完整的分片，而是降级成摘要，并在本地标记 `replay_oversize`。服务端不解压；离线导入器先检查 gzip trailer 与流式解压累计字节，达到 16 MiB 立即中止，防压缩炸弹。
 7. `header.schema` 是遥测信封版本，不等于 `BattleReplayV1.schema` 或 `saveSchema`。解析器对未知记录类型跳过但计数；不认识的 schema 整个隔离，不能猜测解释。
+8. 录像、同进程 checkpoint 与遥测摘要都不得保存 `previewTiles`、`effectiveTiles`、`hitTiles`、`targetUnits` 等由档位、目标、朝向、内容、地形与单位位置推导出的格 / 命中集合。重放以锁定的 `contentHash`、开局战斗态、经脉 snapshot 和命令中的每段 `projectionStep` 重新调用 `projectProjection` 与六角枚举器；派生集合若为诊断临时输出，只能留在 hash 域外的本地 trace，不能参与恢复或覆盖重算结果。
 
 摘要字段只存**原始可加总量**，不上传客户端算好的“强 / 弱”“异常 / 正常”结论。伤害、命中、暴击、破招、治疗等术语和计算口径引用 `design/03`、`design/04`、`design/05`、`design/09`；本文不重定义公式。任何比例由分析脚本以分子 / 分母重算，避免平均数的平均数。
 
@@ -2051,7 +2052,7 @@ pnpm telemetry:replay .local/telemetry --engine node
 pnpm telemetry:replay .local/telemetry --engine webkit
 ```
 
-流程为：校验 gzip / NDJSON schema → 按五元键选择 runner 并根据 `contentHash` 找到只读书界包 → 用 `BattleStartSnapshot`（含 `runtimeMartialArts`）初始化战斗 runner → 顺序 dispatch 命令 → 每个采样点按同一战斗域比对 hash → 比对终局。全程不构造或上传完整 `GameState`；结果只回写本地派生表，不改原始 R2 对象：
+流程为：校验 gzip / NDJSON schema → 按五元键选择 runner 并根据 `contentHash` 找到只读书界包 → 用 `BattleStartSnapshot`（含 `runtimeMartialArts`）初始化战斗 runner → 顺序 dispatch 命令（含 `skill` 与 `dual.a/b` 各自的 `projectionStep`）→ 由当时内容 / 地形 / 经脉态重新推导有效范围与命中格 → 每个采样点按同一战斗域比对 hash → 比对终局。全程不构造或上传完整 `GameState`，也不从录像读取预先保存的格集合；结果只回写本地派生表，不改原始 R2 对象：
 
 | 结果 | 含义 | 动作 |
 |---|---|---|
@@ -2919,6 +2920,7 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 | “即兴闲谈” | AI 生成文本的固定来源标识；它不属于主线 Ink 台词，失败始终可回退作者预写句 |
 | 可重放战斗日志 | `BattleReplayV1` 战斗域快照 + `battle` / `ai` RNG + 动态武学闭包 + 已接受命令 + 中间 / 终局 hash；不含完整 `GameState`，服务端只存、不执行 replay |
 | 协议 2 经脉录像态 | `rulesProtocol=2` 的 battle / replay 逐单位承载 `meridian-flow-state.v1`，唯一 `battleRng` 留在 `BattleSession`；旧协议只交匹配 runner，不做局部升级（§3.5.1、§10.2） |
+| 外放档录像事实 | 已接受 `skill.projectionStep` 与 `dual.a/b.projectionStep` 原样进入 command JSON、replay 和 hash；范围 / 命中格只由重放重算，不另存为恢复事实（§10.2、§10.4） |
 | 三层数据恢复 | L0 D1 Time Travel、L1 每日加密逻辑导出、L2 R2 异地私有副本；Git / 构建工件另为可重建层 L3（§12.2） |
 | 云端完整导出快照 | `export_jobs` + `export_items` 固定 `snapshot_seq` / `meta_rev`、审计截止时间及 save / telemetry 引用；服务端生成清单，客户端流式下载并组 ZIP |
 
@@ -2938,6 +2940,7 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 | 6 | AI NPC 是否成为主线依赖、是否默认打开 | **已解决：**AI 是 Phase 4+ 可选项且默认关闭；主线与每个 NPC 都有预写回退，地区、预算或上游失败不影响游戏（见 §9）。 |
 | 7 | 遥测是否上传玩家数据并自动调数值 | **已解决：**只采作者本人且默认关闭；不采文本 / 身份，分析只生成带样本量的人工报告，绝不由远程配置热改数值（见 §10–§11）。 |
 | 8 | 经脉协议 2 如何进入存档 / 录像兼容表 | **已解决：**§3.5.1 登记 `rulesProtocol=2`、`rngProtocol=1` 与 `meridian-flow-state.v1`；§10.2 的现行录像示例已升协议 2，协议 1 仅由匹配旧 runner 读取。 |
+| 9 | 外放档是否只记派生范围或由重放自动选档 | **已解决：**`skill` 与 `dual.a/b` 各自的 `projectionStep` 是命令事实，进入 replay/hash；不保存推导格集合，复放按锁定内容与状态重算（见 §10.2、§10.4）。 |
 
 ### 开放问题（附默认值）
 
@@ -2979,7 +2982,7 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 | `tech/01` | monorepo 路径、`GameState` / core 边界、存档触发、确定性规则、Phase 0–4 | 使用本文 §13 目录与 §14 阶段映射；不让服务端 import core |
 | `tech/03` | 作者决定 P01 的真机矩阵、IndexedDB / PWA 存储压力与 F14 隔离行为 | 主力手机 + 中端 Android + iPad；所有容器按独立设备处理 |
 | `tech/04` | 书界 manifest、`contentHash`、`idRemaps` 与旧内容工件保留 | 云端只透传 hash；缺旧包时录像 / 旧档隔离，不拿新内容猜修 |
-| `tech/05` | `BattleReplayV1`、规范序列化、命令与状态 hash | §10 字段仅作运输接口；不得另定义战斗语义 |
+| `tech/05` | `BattleReplayV1`、规范序列化、命令与状态 hash，包括 `skill` / `dual.a/b` 的 `projectionStep` | §10 字段仅作运输接口；不得另定义战斗语义或保存派生格集合作第二事实源 |
 | `tech/06` | Static Assets、素材路由、缓存和 `ts-runtime` 桶 | 本文 `ts_s` 与闸门为鉴权权威；公开 Pages 示例不采用 |
 | `design/13` §9 | 槽 ID、可读 / 回档资格、`MetaProfile` 字段与合并公式 | 本文只定义云键、版本与传输，不扩大玩法可读范围 |
 | `design/18` / `design/12` §5.7 | NPC 人设、性格与好感总刻度 / 节点效果白名单、封顶和三类回退 | AI 效果只提议已登记的 ±1 好感或旗标；无合格投影卡和三类回退就不开该 NPC |
@@ -3001,7 +3004,7 @@ Phase 2 后端 MVP 同时满足以下条件才算完成：
 | `docs/tech/01-architecture.md` | §6.9、§7.6、§11–§12、待决 P6 | **已对齐：**冲突仲裁改为本文 §4 的服务端 `rev` CAS + 玩家选择；删除公开 Pages 路径，改成同一 Worker 私有 Static Assets；接受 `services/api` 独立 Vitest 4；P6 已标为解决 |
 | `docs/tech/03-mobile-performance.md` | F14、真机矩阵、存储 / Worker 预算 | **已对齐：**Safari ↔ iOS 主屏复用 8 位、5 分钟临时配对码；仍需协同验收 Cookie / IndexedDB 独立容器、8 MiB 哈希 / 上传、Ed25519 / Passkey、流式 ZIP 与 outbox |
 | `docs/tech/04-*` | manifest、内容版本与迁移 | **已对齐接口：**固定 `contentHash` 与 `idRemaps` 数据契约；旧书界包须按 hash 保留，供旧档修复与录像复放；实际工件保留由发布实现验收 |
-| `docs/tech/05-*` | 战斗录像与确定性 | **已对齐：**导出 `BattleReplayV1`、规范战斗域 hash 与跨 V8/JSC fixture；§3.5.1 / §10.2 已登记协议 2 经脉态和旧 runner 边界；服务端不重放或重定义战斗公式 |
+| `docs/tech/05-*` | 战斗录像与确定性 | **已对齐：**导出 `BattleReplayV1`、规范战斗域 hash 与跨 V8/JSC fixture；§3.5.1 / §10.2 已登记协议 2 经脉态、`skill` / `dual.a/b` 外放档和旧 runner 边界；服务端不重放、保存派生格集合或重定义战斗公式 |
 | `docs/tech/06-asset-storage.md` | §7、§9、§12–§13、待决 7/8/15 | **已对齐：**会话格式与免检路由引用本文 §5；app / API / 素材同 Worker；P03 已移除现行国内 / 香港镜像与 `ts-runtime-cn` 规划 |
 | `docs/design/18-npc-and-companions.md` / `docs/design/12-quests-npc-factions.md` §5.7 | NPC 人物投影 / 任务节点接口 | **已对齐：**`NpcAiCard` 的人物事实来自 `design/18`；节点效果封顶与普通 / 网络 / 拒绝三类回退来自 `design/12`，本文仅定义技术投影 |
 | `docs/design/13-progression-and-endings.md` | §9 存档与 Meta | 引用本文 `cloudSlotKey`、ETag / CAS、冲突历史和 `POST /meta/merge`；确认 Meta 事件稳定 ID 与 512 KiB 上限 |
