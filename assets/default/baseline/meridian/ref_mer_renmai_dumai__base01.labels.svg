@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1254" height="1254" viewBox="0 0 1254 1254" role="img" aria-labelledby="title desc">
+  <title id="title">任督二脉全身图 · 主要可见穴位标注层</title>
+  <desc id="desc">透明叠加层；与同名 PNG 同尺寸同原点使用。任脉六穴、督脉七穴。名称与 ID 取自 design/15 §3.14–3.15。像素坐标只对齐艺术图，不是医学定位。其余穴位未示。</desc>
+  <metadata>ART-B-meridian; candidate; 2026-09-29; source=docs/design/15-meridians-and-acupoints.md; bitmap=ref_mer_renmai_dumai__base01.png; selected_points=13</metadata>
+  <style>
+    text { font-family: "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #302a25; paint-order: stroke fill; stroke: #faf5e9; stroke-width: 4; stroke-linejoin: round; }
+    .heading { font-size: 27px; font-weight: 600; } .name { font-size: 21px; font-weight: 500; }
+    .key { font-family: ui-monospace, "SFMono-Regular", monospace; font-size: 12px; fill: #554c43; stroke-width: 3; }
+    .sub { font-size: 16px; fill: #655b51; } .leader { fill: none; stroke: #746b61; stroke-width: 1.2; }
+    .ren .key { font-size: 11px; } .anchor { fill: none; stroke-width: 1.2; } .ren .anchor { stroke: #315b82; } .du .anchor { stroke: #b83926; }
+  </style>
+  <text x="32" y="45" class="heading">任督二脉 · 全身图</text>
+  <g id="mer_renmai" data-meridian-id="mer_renmai">
+    <text x="32" y="103" class="heading">任脉 · 正面</text><text x="32" y="128" class="key">mer_renmai</text>
+  </g>
+  <g id="mer_dumai" data-meridian-id="mer_dumai">
+    <text x="990" y="103" class="heading">督脉 · 背面</text><text x="990" y="128" class="key">mer_dumai</text>
+  </g>
+  <g id="ap_renmai_chengjiang" class="ren" data-meridian-id="mer_renmai" data-standard-code="CV24" data-point-x="402" data-point-y="177">
+    <title>承浆 · CV24 · ap_renmai_chengjiang</title>
+    <polyline class="leader" points="392,177 287,194 256,194"/><circle class="anchor" cx="402" cy="177" r="10"/>
+    <text x="20" y="202" class="name">承浆 · CV24</text><text x="20" y="222" class="key">ap_renmai_chengjiang</text>
+  </g>
+  <g id="ap_renmai_danzhong" class="ren" data-meridian-id="mer_renmai" data-standard-code="CV17" data-point-x="402" data-point-y="331">
+    <title>膻中 · CV17 · ap_renmai_danzhong</title>
+    <polyline class="leader" points="392,331 287,296 256,296"/><circle class="anchor" cx="402" cy="331" r="10"/>
+    <text x="20" y="304" class="name">膻中 · CV17</text><text x="20" y="324" class="key">ap_renmai_danzhong</text>
+  </g>
+  <g id="ap_renmai_zhongwan" class="ren" data-meridian-id="mer_renmai" data-standard-code="CV12" data-point-x="402" data-point-y="418">
+    <title>中脘 · CV12 · ap_renmai_zhongwan</title>
+    <polyline class="leader" points="392,418 287,399 256,399"/><circle class="anchor" cx="402" cy="418" r="10"/>
+    <text x="20" y="407" class="name">中脘 · CV12</text><text x="20" y="427" class="key">ap_renmai_zhongwan</text>
+  </g>
+  <g id="ap_renmai_shenque" class="ren" data-meridian-id="mer_renmai" data-standard-code="CV8" data-point-x="402" data-point-y="484">
+    <title>神阙 · CV8 · ap_renmai_shenque</title>
+    <polyline class="leader" points="392,484 287,471 256,471"/><circle class="anchor" cx="402" cy="484" r="10"/>
+    <text x="20" y="479" class="name">神阙 · CV8</text><text x="20" y="499" class="key">ap_renmai_shenque</text>
+  </g>
+  <g id="ap_renmai_qihai" class="ren" data-meridian-id="mer_renmai" data-standard-code="CV6" data-point-x="402" data-point-y="532">
+    <title>气海 · CV6 · ap_renmai_qihai</title>
+    <polyline class="leader" points="392,532 287,543 256,543"/><circle class="anchor" cx="402" cy="532" r="10"/>
+    <text x="20" y="551" class="name">气海 · CV6</text><text x="20" y="571" class="key">ap_renmai_qihai</text>
+  </g>
+  <g id="ap_renmai_guanyuan" class="ren" data-meridian-id="mer_renmai" data-standard-code="CV4" data-point-x="402" data-point-y="566">
+    <title>关元 · CV4 · ap_renmai_guanyuan</title>
+    <polyline class="leader" points="392,566 287,615 256,615"/><circle class="anchor" cx="402" cy="566" r="10"/>
+    <text x="20" y="623" class="name">关元 · CV4</text><text x="20" y="643" class="key">ap_renmai_guanyuan</text>
+  </g>
+  <g id="ap_dumai_baihui" class="du" data-meridian-id="mer_dumai" data-standard-code="GV20" data-point-x="850" data-point-y="67">
+    <title>百会 · GV20 · ap_dumai_baihui</title>
+    <polyline class="leader" points="860,67 945,67 945,173 1087,173"/><circle class="anchor" cx="850" cy="67" r="10"/>
+    <text x="1097" y="181" class="name">百会 · GV20</text><text x="1097" y="201" class="key">ap_dumai_baihui</text>
+  </g>
+  <g id="ap_dumai_shenzhu" class="du" data-meridian-id="mer_dumai" data-standard-code="GV12" data-point-x="852" data-point-y="281">
+    <title>身柱 · GV12 · ap_dumai_shenzhu</title>
+    <polyline class="leader" points="862,281 1070,255 1087,255"/><circle class="anchor" cx="852" cy="281" r="10"/>
+    <text x="1097" y="263" class="name">身柱 · GV12</text><text x="1097" y="283" class="key">ap_dumai_shenzhu</text>
+  </g>
+  <g id="ap_dumai_shendao" class="du" data-meridian-id="mer_dumai" data-standard-code="GV11" data-point-x="852" data-point-y="328">
+    <title>神道 · GV11 · ap_dumai_shendao</title>
+    <polyline class="leader" points="862,328 1070,322 1087,322"/><circle class="anchor" cx="852" cy="328" r="10"/>
+    <text x="1097" y="330" class="name">神道 · GV11</text><text x="1097" y="350" class="key">ap_dumai_shendao</text>
+  </g>
+  <g id="ap_dumai_zhiyang" class="du" data-meridian-id="mer_dumai" data-standard-code="GV9" data-point-x="852" data-point-y="371">
+    <title>至阳 · GV9 · ap_dumai_zhiyang</title>
+    <polyline class="leader" points="862,371 1070,389 1087,389"/><circle class="anchor" cx="852" cy="371" r="10"/>
+    <text x="1097" y="397" class="name">至阳 · GV9</text><text x="1097" y="417" class="key">ap_dumai_zhiyang</text>
+  </g>
+  <g id="ap_dumai_jizhong" class="du" data-meridian-id="mer_dumai" data-standard-code="GV6" data-point-x="852" data-point-y="412">
+    <title>脊中 · GV6 · ap_dumai_jizhong</title>
+    <polyline class="leader" points="862,412 1070,456 1087,456"/><circle class="anchor" cx="852" cy="412" r="10"/>
+    <text x="1097" y="464" class="name">脊中 · GV6</text><text x="1097" y="484" class="key">ap_dumai_jizhong</text>
+  </g>
+  <g id="ap_dumai_mingmen" class="du" data-meridian-id="mer_dumai" data-standard-code="GV4" data-point-x="852" data-point-y="477">
+    <title>命门 · GV4 · ap_dumai_mingmen</title>
+    <polyline class="leader" points="862,477 1070,523 1087,523"/><circle class="anchor" cx="852" cy="477" r="10"/>
+    <text x="1097" y="531" class="name">命门 · GV4</text><text x="1097" y="551" class="key">ap_dumai_mingmen</text>
+  </g>
+  <g id="ap_dumai_yaoyangguan" class="du" data-meridian-id="mer_dumai" data-standard-code="GV3" data-point-x="852" data-point-y="529">
+    <title>腰阳关 · GV3 · ap_dumai_yaoyangguan</title>
+    <polyline class="leader" points="862,529 1070,590 1087,590"/><circle class="anchor" cx="852" cy="529" r="10"/>
+    <text x="1097" y="598" class="name">腰阳关 · GV3</text><text x="1097" y="618" class="key">ap_dumai_yaoyangguan</text>
+  </g>
+  <text x="32" y="1202" class="sub">主要可见穴位：任脉 6 穴 · 督脉 7 穴；其余穴位未示</text>
+  <text x="32" y="1227" class="sub">艺术示意 · 点位待审</text>
+</svg>
