@@ -11422,7 +11422,8 @@
       "vars": {
         "unit": "shaolin",
         "unit_name": "少林",
-        "doc_set": "- `docs/design/catalog/skills-shaolin.md`"
+        "doc_set": "- `docs/design/catalog/skills-shaolin.md`",
+        "extra": "无。"
       },
       "validate": {
         "exists": [
@@ -11517,7 +11518,8 @@
       "vars": {
         "unit": "daojia",
         "unit_name": "道家",
-        "doc_set": "- `docs/design/catalog/skills-daojia.md`"
+        "doc_set": "- `docs/design/catalog/skills-daojia.md`",
+        "extra": "无。"
       },
       "validate": {
         "exists": [
@@ -11612,7 +11614,8 @@
       "vars": {
         "unit": "general",
         "unit_name": "通行",
-        "doc_set": "- `docs/design/catalog/skills-general.md`"
+        "doc_set": "- `docs/design/catalog/skills-general.md`",
+        "extra": "无。"
       },
       "validate": {
         "exists": [
@@ -11707,7 +11710,8 @@
       "vars": {
         "unit": "wujue",
         "unit_name": "五绝",
-        "doc_set": "- `docs/design/catalog/skills-wujue.md`"
+        "doc_set": "- `docs/design/catalog/skills-wujue.md`",
+        "extra": "无。"
       },
       "validate": {
         "exists": [
@@ -11802,7 +11806,8 @@
       "vars": {
         "unit": "xiaoyao",
         "unit_name": "逍遥",
-        "doc_set": "- `docs/design/catalog/skills-xiaoyao.md`"
+        "doc_set": "- `docs/design/catalog/skills-xiaoyao.md`",
+        "extra": "无。"
       },
       "validate": {
         "exists": [
@@ -11897,7 +11902,8 @@
       "vars": {
         "unit": "yitian",
         "unit_name": "倚天",
-        "doc_set": "- `docs/design/catalog/skills-yitian.md`"
+        "doc_set": "- `docs/design/catalog/skills-yitian.md`",
+        "extra": "无。"
       },
       "validate": {
         "exists": [
@@ -11992,7 +11998,8 @@
       "vars": {
         "unit": "xiake-bixue",
         "unit_name": "侠客碧血",
-        "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`"
+        "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`",
+        "extra": "`sk_taixuan.reqs` 的 `lore {max:40}` 与 05 §7.6、03 D-16、ch06 §9.3 的 `lore≤20` 硬门槛不一致，统一为 ≤20（NXfixD-06 报告）。"
       },
       "validate": {
         "exists": [
@@ -12087,7 +12094,8 @@
       "vars": {
         "unit": "wuyue",
         "unit_name": "五岳",
-        "doc_set": "- `docs/design/catalog/skills-wuyue.md`"
+        "doc_set": "- `docs/design/catalog/skills-wuyue.md`",
+        "extra": "无。"
       },
       "validate": {
         "exists": [
@@ -12182,7 +12190,8 @@
       "vars": {
         "unit": "kangxi",
         "unit_name": "康熙",
-        "doc_set": "- `docs/design/catalog/skills-kangxi.md`"
+        "doc_set": "- `docs/design/catalog/skills-kangxi.md`",
+        "extra": "无。"
       },
       "validate": {
         "exists": [
@@ -12277,7 +12286,8 @@
       "vars": {
         "unit": "qianlong",
         "unit_name": "乾隆",
-        "doc_set": "- `docs/design/catalog/skills-qianlong.md`"
+        "doc_set": "- `docs/design/catalog/skills-qianlong.md`",
+        "extra": "无。"
       },
       "validate": {
         "exists": [
@@ -12372,7 +12382,8 @@
       "vars": {
         "unit": "gulong",
         "unit_name": "古龙",
-        "doc_set": "- `docs/design/catalog/skills-gulong.md`"
+        "doc_set": "- `docs/design/catalog/skills-gulong.md`",
+        "extra": "无。"
       },
       "validate": {
         "exists": [
@@ -12480,7 +12491,8 @@
       "vars": {
         "unit": "bulu",
         "unit_name": "14 本补录图鉴",
-        "doc_set": "- `docs/design/catalog/skills-bulu-01-tianlong.md`\n- `docs/design/catalog/skills-bulu-02-shediao.md`\n- `docs/design/catalog/skills-bulu-03-shendiao.md`\n- `docs/design/catalog/skills-bulu-04-yitian.md`\n- `docs/design/catalog/skills-bulu-05-xiaoao.md`\n- `docs/design/catalog/skills-bulu-06-xiake.md`\n- `docs/design/catalog/skills-bulu-07-bixue.md`\n- `docs/design/catalog/skills-bulu-08-luding.md`\n- `docs/design/catalog/skills-bulu-09-liancheng.md`\n- `docs/design/catalog/skills-bulu-10-baima.md`\n- `docs/design/catalog/skills-bulu-11-yuanyang.md`\n- `docs/design/catalog/skills-bulu-12-shujian.md`\n- `docs/design/catalog/skills-bulu-13-feihu.md`\n- `docs/design/catalog/skills-bulu-14-xueshan.md`"
+        "doc_set": "- `docs/design/catalog/skills-bulu-01-tianlong.md`\n- `docs/design/catalog/skills-bulu-02-shediao.md`\n- `docs/design/catalog/skills-bulu-03-shendiao.md`\n- `docs/design/catalog/skills-bulu-04-yitian.md`\n- `docs/design/catalog/skills-bulu-05-xiaoao.md`\n- `docs/design/catalog/skills-bulu-06-xiake.md`\n- `docs/design/catalog/skills-bulu-07-bixue.md`\n- `docs/design/catalog/skills-bulu-08-luding.md`\n- `docs/design/catalog/skills-bulu-09-liancheng.md`\n- `docs/design/catalog/skills-bulu-10-baima.md`\n- `docs/design/catalog/skills-bulu-11-yuanyang.md`\n- `docs/design/catalog/skills-bulu-12-shujian.md`\n- `docs/design/catalog/skills-bulu-13-feihu.md`\n- `docs/design/catalog/skills-bulu-14-xueshan.md`",
+        "extra": "`skills-bulu-12-shujian.md` 的过期\"来源扩展待登记 / 尚未加入 ch12_shujian\"（§3 导语与表行、T-SJ-BL-09、SJ-BL-D02、SJ-BL-O04）改为已解决（通行册已落实）；`skills-bulu-01-tianlong.md` 清理\"51→54\"旧天阶统计（Canon v1.6 起为 59）；各补录册\"来源扩展登记表\"中已由门派收尾任务落实的条目标\"已落实\"（以 `tools/agents/reports/NXfix-*.md` 为准）。"
       },
       "validate": {
         "exists": [
