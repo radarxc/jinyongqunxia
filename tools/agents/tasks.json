@@ -13212,7 +13212,7 @@
       "vars": {
         "cat_id": "town",
         "cat_name": "城镇",
-        "style_rule": "**写实古风**：按具体城市与所属书界年代生成，城墙、街市、店招、屋顶形制、车马与人群服饰都须符合年代特征；写实光影与材质。 作者追加（原文）：「城市图要45度视角（主角要能在城市地图上移动）」——本类基线改为 45 度视角、主角可在上面行走的城市地图区块：固定 45 度俯视的 2.5D 斜视角，两张方向统一，无透视消失点；街道、广场、城门、桥与主要建筑之间的通路清楚，可行走区域与阻挡物边界一眼可辨。",
+        "style_rule": "**写实古风**：按具体城市与所属书界年代生成，城墙、街市、店招、屋顶形制、车马与人群服饰都须符合年代特征；写实光影与材质。 作者追加（原文）：「城市图要45度视角（主角要能在城市地图上移动）」——本类基线改为 45 度视角、主角可在上面行走的城市地图区块：固定 45 度俯视的 2.5D 斜视角，两张方向统一，无透视消失点；街道、广场、城门、桥与主要建筑之间的通路清楚，可行走区域与阻挡物边界一眼可辨。 作者看过 45 度图后的意见（原文）：大理「可以更多参考历史图片，大理的本土植物。大理没有那么发达，是不是不会覆盖全部的青砖。大理信佛，佛教元素可以多一些。」；临安「临安可以再繁华一些」。改图时保持当前 45 度投影方向、视角高度与光源方向不变（地图拼接建筑按它对齐）。",
         "subjects": "（1）北宋·大理国都（羊苴咩城，天龙书界，约 1090 年代）的 45 度城市地图区块，体现大理国白族与宋式交融的建筑（如千寻塔、苍山背景）；（2）南宋·临安城（射雕书界，约 1220 年代）的 45 度城市地图区块（如御街砖铺与宋式街坊）。人物极少或没有；两张须能看出年代与地域差异。",
         "out_dir": "assets/default/baseline/town",
         "prompt_file": "assets/default/prompts/town.md",
@@ -13307,7 +13307,7 @@
         "subjects": "（1）北宋·大理国都一座可复用的沿街建筑（天龙书界，约 1093，如客栈或茶肆，体现白族与宋式交融）；（2）南宋·临安一座可复用的沿街建筑（射雕书界，约 1220 年代，如茶坊或药铺，宋式）。两座都要能直接放进同书界的城镇 45 度基线图里。",
         "out_dir": "assets/default/baseline/building-map",
         "prompt_file": "assets/default/prompts/building-map.md",
-        "extra": "先读城镇 45 度基线的 manifest、模板和图（用 `view_image` 载入），照它的视角、投影方向和光源出图；可以把城镇基线图作为参考图输入 `image_gen`，参考图登记进 `references`。单体建筑单独成图，四周留空，纯色背景便于抠图（工具若能直接出透明底更好，如实登记）；占地轮廓 / 台基清楚。模板里写明与城市地图网格对齐的建议：占地几格、锚点位置、遮挡与前后排序的注意点。出图后把建筑和同书界城镇基线并排目检，投影方向、光源、比例一致才算合格，对比结果写进报告。可另写 `assets/default/baseline/building-map/preview.html`，用 CSS 把建筑叠放在城镇基线图上做合成预览，供作者审批；预览只作 QA，不另存合成位图，不进 manifest。游戏里的格子尺寸、遮挡排序等技术规格不在本任务范围，报告里列为\"需同步到其他文档\"即可。"
+        "extra": "城镇 45 度基线还没合入、正在按作者意见返修：先读 `/Users/bytedance/Projects/jinyongqunxia/.agents/wt/ART-B-town/assets/default/baseline/town/`（manifest 与两张图）和 `/Users/bytedance/Projects/jinyongqunxia/.agents/wt/ART-B-town/assets/default/prompts/town.md`，按其中的 45 度投影方向、视角高度与光源方向出图（城镇返修只改内容，不改这些）。作者对城镇 45 度图的意见（原文），建筑也要照顾到：大理「可以更多参考历史图片，大理的本土植物。大理没有那么发达，是不是不会覆盖全部的青砖。大理信佛，佛教元素可以多一些。」；临安「临安可以再繁华一些」。大理那座可选佛教相关的小型建筑或带本地植物的本土民居 / 客栈，临安那座要有繁华商铺感。 先读城镇 45 度基线的 manifest、模板和图（用 `view_image` 载入），照它的视角、投影方向和光源出图；可以把城镇基线图作为参考图输入 `image_gen`，参考图登记进 `references`。单体建筑单独成图，四周留空，纯色背景便于抠图（工具若能直接出透明底更好，如实登记）；占地轮廓 / 台基清楚。模板里写明与城市地图网格对齐的建议：占地几格、锚点位置、遮挡与前后排序的注意点。出图后把建筑和同书界城镇基线并排目检，投影方向、光源、比例一致才算合格，对比结果写进报告。可另写 `assets/default/baseline/building-map/preview.html`，用 CSS 把建筑叠放在城镇基线图上做合成预览，供作者审批；预览只作 QA，不另存合成位图，不进 manifest。游戏里的格子尺寸、遮挡排序等技术规格不在本任务范围，报告里列为\"需同步到其他文档\"即可。"
       },
       "validate": {
         "exists": [
@@ -13500,6 +13500,50 @@
             "{python}",
             "tools/agents/check_assets.py",
             "assets/default/baseline/vfx",
+            "--min",
+            "1",
+            "--max",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-R2-male",
+      "phase": "ART",
+      "wave": 8,
+      "kind": "draft",
+      "title": "素材返修 · 人物·男·萧峰发型（作者第 2 轮审批意见）",
+      "prompt": "ART-rework.md",
+      "deps": [],
+      "writes": [
+        "assets/default/baseline/character/male/**",
+        "assets/default/prompts/character-male.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_id": "male",
+        "cat_name": "人物·男",
+        "out_dir": "assets/default/baseline/character/male",
+        "prompt_file": "assets/default/prompts/character-male.md",
+        "round": "第 2 轮",
+        "items": "- `ref_npc_xiaofeng__ch01_base01`（萧峰，天龙，北宋约 1093–1094）\n  - 作者第 2 轮意见（原文）：「头发太凌乱，整齐一些」——作者看的是第 1 轮返修版。\n  - 第 1 轮意见仍然有效（原文）：「英雄气不够，再加英雄气，再魁梧一些，贴近港版经典造型。」\n  - 协调说明：以第 1 轮返修版为起点，只把头发改整齐（束发、裹巾收拢，不要散乱的碎发），英雄气、魁梧体格、服饰与光照保持第 1 轮返修版的样子。优先用 image_gen 编辑第 1 轮返修版，而不是重画。\n- `ref_npc_linghuchong__ch05_base01`（令狐冲）：保持第 1 轮返修版原样（作者还没审），只复制过来，不改图。",
+        "extra": "起点：第 1 轮返修（ART-R1-male）的成果没有合入，在 `/Users/bytedance/Projects/jinyongqunxia/.agents/wt/ART-R1-male` 工作区里：`/Users/bytedance/Projects/jinyongqunxia/.agents/wt/ART-R1-male/assets/default/baseline/character/male/` 下两张 PNG 与 manifest.yaml、`/Users/bytedance/Projects/jinyongqunxia/.agents/wt/ART-R1-male/assets/default/prompts/character-male.md`、`/Users/bytedance/Projects/jinyongqunxia/.agents/wt/ART-R1-male/tools/agents/reports/ART-R1-male.md`。先把两张 PNG、manifest.yaml、模板逐字节复制到本工作区对应位置作为起点，再按上面的意见只改萧峰；令狐冲图与其 manifest 条目保持第 1 轮返修版原样。报告里写明起点来自 ART-R1-male 工作区（提交 fc1f0cd）。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/character/male/manifest.yaml",
+          "assets/default/prompts/character-male.md"
+        ],
+        "fences": [
+          "assets/default/prompts/character-male.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/character/male",
             "--min",
             "1",
             "--max",
