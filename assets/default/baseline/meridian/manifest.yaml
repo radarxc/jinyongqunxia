@@ -25,7 +25,7 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0ef0e-f293-7083-9599-8f699d08a910/exec-cff2ca6d-938a-45ee-8225-c57d832d5cbc.png
   size: 1254x1254
   sha256: 75878d76bcb02cd09e392e6e26a84e72f93214ad1e1c6406c2b6bc3e74aa1299
-  status: candidate
+  status: approved
   notes: |
     同尺寸透明标注层：ref_mer_renmai_dumai__base01.labels.svg；名称与 ap_* / mer_* ID 依据 design/15 §3.14–3.15；SVG 不嵌入位图，叠在 PNG 上方同原点、同尺寸显示。
     任脉六穴：承浆、膻中、中脘、神阙、气海、关元；督脉七穴：百会、身柱、神道、至阳、脊中、命门、腰阳关；全身构图不等于全部穴位或完整循行。
@@ -105,7 +105,7 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0ef0e-f293-7083-9599-8f699d08a910/exec-0ec8110a-a0f0-49e6-93a9-8cc61c8f7117.png
   size: 1536x1024
   sha256: 03f8e5918be1ebe77ada432cc9252e1acbd0556006ae7eaa67ee4c6f1f51c9f9
-  status: candidate
+  status: approved
   notes: |
     同尺寸透明标注层：ref_mer_shoujueyin__base01.labels.svg；名称与 ap_* / mer_shoujueyin ID 依据 design/15 §3.10；SVG 不嵌入位图，叠在 PNG 上方同原点、同尺寸显示。
     九穴：天池、天泉、曲泽、郄门、间使、内关、大陵、劳宫、中冲。原图内关为腕上点，劳宫红心双环；标准经脉线继续至中冲，不以劳宫冒充全经终点。
