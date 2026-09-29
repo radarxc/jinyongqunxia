@@ -12942,6 +12942,93 @@
       }
     },
     {
+      "id": "NYY",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "阴阳基础理论修正（作者 AR-18）：内功阴阳按主修经脉、路线性质按体段判定、阳掌气过阴门与阳经手穴",
+      "prompt": "NYY-yinyang.md",
+      "deps": [
+        "NAu-nxt",
+        "NAu-21",
+        "NAu-canon",
+        "NAu-rulesA"
+      ],
+      "writes": [
+        "docs/decisions/author-requirements.md",
+        "docs/00-canon.md",
+        "docs/decisions/canon-proposals-v1.2.md",
+        "docs/design/21-meridian-flow-and-moves.md",
+        "docs/design/05-martial-arts-system.md",
+        "docs/design/15-meridians-and-acupoints.md",
+        "tools/lint/**",
+        "tools/balance/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/decisions/author-requirements.md",
+          "docs/00-canon.md",
+          "docs/decisions/canon-proposals-v1.2.md",
+          "docs/design/21-meridian-flow-and-moves.md",
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/15-meridians-and-acupoints.md"
+        ],
+        "fences": [
+          "docs/decisions/author-requirements.md",
+          "docs/00-canon.md",
+          "docs/decisions/canon-proposals-v1.2.md",
+          "docs/design/21-meridian-flow-and-moves.md",
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/15-meridians-and-acupoints.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
       "id": "NAu-final",
       "phase": "G",
       "wave": 6,
@@ -12996,7 +13083,8 @@
         "NR3-bulu",
         "NXfixE-a",
         "NXfixE-b",
-        "NXfixE-c"
+        "NXfixE-c",
+        "NYY"
       ],
       "writes": [
         "docs/**",
