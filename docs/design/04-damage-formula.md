@@ -4,10 +4,11 @@
 > **上游**：`00-canon.md`（§3 境界、§4 品阶、§5 节奏、§6 属性 ID、§8 战斗模型、§9 乘区）；`decisions/author-requirements.md`（AR-02、AR-12、AR-14、AR-16）；`decisions/rulings-v1.md`（C01、C02、C03、C11）；`design/02`（书界、压制、等级带）；`design/03`（属性、`STD`、敌人模板）；`design/05`（武学威力与招式字段）；`design/06`（Buff 时序与 DOT/HOT）；`design/08`（地形、高差、坠落）；`design/09`（行动、反应、合击）；`design/15`（经脉静态总账与触发边界）；`design/21`（战斗经脉路线、外放加持与模拟接口）。
 > **引用而不重定义**：属性成长与敌人生成 → `design/03-attributes.md`；武学层数、绝招、代价、招式与范围模板 → `design/05-martial-arts-system.md`；Buff 目录、叠加、品阶对抗与时序 → `design/06-buff-system.md`；六角格距、方向枚举、范围格集合与战斗时序 → `design/09-combat-system.md`；经脉运行、路线曲线、护体内劲与实例状态 → `design/21-meridian-flow-and-moves.md`。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖他文档、本文先给可用数值并在 §13 登记。
-> **版本**：v1.4（AR-16 外放威力接入 Z5M，2026-09-27）。
+> **版本**：v1.4（AR-16 外放威力接入 Z5M，2026-09-27）；经脉落地终审（2026-09-29）。
 > **变更记录**：v1.2 落实 CN-09：玩家普通武器/装备由错误沿用内功 10–12 品改为最高 9 品，`STD(70).hpMax` 由 41,314 改为 40,409（`mpMax` 仍为 28,887）；重校 §9 遭遇系数和 42 行金标准，并新增 `design/15` 经脉三档回归。同步补齐调和相性、同时结算共享资源、天书修饰与内部守恒边界。
 > **变更记录**：v1.3 按 AR-14 与 `design/21` v2.0 接入 Z4M / Z5M、经脉闪避评级与护体内劲；新增五档 TTK、标准档零漂移及击穿守恒回归。
 > **变更记录**：v1.4 按 AR-16 令外放招式在既有 Z5M 位置改用 21 的外放专用曲线；不新增乘区，标准档和既有 42 行节奏零漂移。
+> **变更记录**：经脉落地终审按 Canon V13-02～04、V15-03、V16-03 接入音功 0 档运行时分支、掌风伤害段边界与多人战整场耐久口径（2026-09-29）。
 
 ---
 
@@ -102,7 +103,7 @@ D10 = floor(D9 × variance), variance ∈ [0.95,1.05]
 | 类别 | 必需输入 | 读取时点 | 说明 |
 |---|---|---|---|
 | 攻方快照 | `Ld`、四项攻防中的攻击侧、资质、判定评级、`critDmg` | 整招 P1 | 后段不因攻方本招自增益追溯改值；明确写“即时读取”的效果例外 |
-| 招式快照 | `g_eff`、`layer_eff`、`powerBp`、`wInBp`、`projection`、伤害标签、判定开关 | 整招 P1 | 外来压制及 21 外放档预检必须先完成；本文不保存绝对品阶的第二份结果 |
+| 招式快照 | `g_eff`、`layer_eff`、`powerBp`、`wInBp`、`projection`、`sonic`、`projectionStep`、伤害标签、判定开关 | 整招 P1 | 外来压制及 21 外放档预检必须先完成；本文不保存绝对品阶的第二份结果 |
 | 经脉快照 | 双方 `MeridianProfile`、`meridianAttackBp`、`meridianDefenseBp`、`evadeRatingDelta` | 路线提交后 / 每段 | 普通 / 外放曲线选择与路线状态归 21；04 只消费唯一结果；无防守路线传 10000 |
 | 守方即时值 | 防御、闪避、招架、韧性、Z4、抗性、护体、当前气血/内力 | 每段 P3/P5 | 前段破盾、驱散或倒地会影响后段；已经离场的目标不再接收后段 |
 | 几何上下文 | 来源格、目标格、六向朝向、高度差、地形修正 | 每段 P3 | 方位枚举由 09 给出，04 只接受 `front/side/back` 与数值修正 |
@@ -260,16 +261,21 @@ D5 = floor(D4M×A_ap×F_aff)
 
 `D5M=floor(D5×meridianAttackBp/10000)`。`meridianAttackBp` 由 `design/21` §3.5、§4.4 计算并钳于 6500–22000 bp；标准对标准严格为 10000。它不进入 Z3 加算池，也不重复读取品阶压制、相性或境界差。整招可共享一次攻击路线结果，但面对不同目标仍以各自 Profile 求倍率。
 
-AR-16 外放招式仍只走这一格：若 `MoveDef.projection=true`，用 `design/21` §4.4.1 的 `projectedAttackMultBp(attackerProfile,defenderProfile,routeLength)` **替代**普通 `attackMeridianMultBp`；否则用普通曲线。二者不能相乘、相加或先后各取整；旧内容只有 `DamageKind='projected'` 而没有新标记时仍走普通曲线。统一伪代码为：
+AR-16 外放招式仍只走这一格。通常 `MoveDef.projection=true` 时，用 `design/21` §4.4.1 的 `projectedAttackMultBp(attackerProfile,defenderProfile,routeLength)` **替代**普通 `attackMeridianMultBp`；Canon V16-03 规定音功是唯一运行时例外：静态标为外放候选的音功在 `projectionStep=0` 时仍走普通音波曲线，只有 1 档起才启用外放曲线。二者不能相乘、相加或先后各取整；旧内容只有 `DamageKind='projected'` 而没有新标记时仍走普通曲线。统一伪代码为：
 
 ```text
-meridianAttackBp = move.projection
+projectionBoostActive =
+  move.projection && (!move.sonic || projectionStep >= 1)
+
+meridianAttackBp = projectionBoostActive
   ? projectedAttackMultBp(attackerProfile, defenderProfile, routeLength)
   : attackMeridianMultBp(attackerProfile, defenderProfile, routeLength)
 D5M = floor(D5 × clamp(meridianAttackBp,6500,22000) / 10000)
 ```
 
-外放曲线、修为输入、范围档和 6500–22000 总硬界唯一见 21 §4.4.1；本文不复制锚点。范围选择 0 / 1 / 2 档只改变目标集合、射程与 P1 耗内，不在这里追加威力。标准对标准时普通与外放都得到 10000，故 `D5M=D5`；扩大至 2 档也不能制造第二个乘区。若同一整招命中多目标，可共享攻方路线提交，但仍须按每名守方 Profile 分别求外放 Z5M，并在每个伤害段的 Z5M 边界向下取整一次。
+外放曲线、修为输入、范围档和 6500–22000 总硬界唯一见 21 §4.4.1；本文不复制锚点。非音功外放的 0 / 1 / 2 档均使用外放曲线，档位只改变范围与成本；音功 0 档则使用普通 Z5M、图鉴基础范围且额外耗内为 0，音功 1 / 2 档才分别取得 `+2 / +4` 射程、`+1 / +2` 范围档和 `2% / 4% MPREF` 额外耗内。音功 0 档的静态 `DamageKind='projected'` 不变，护体内劲适用率仍为 40%，不能因动态未激活加持而改伤害类别。
+
+标准对标准时普通与外放都得到 10000，故 `D5M=D5`；扩大至 2 档也不能制造第二个乘区。若同一整招命中多目标，可共享攻方路线提交，但仍须按每名守方 Profile 分别求外放 Z5M，并在每个伤害段的 Z5M 边界向下取整一次。大手印跃击仅其**落点掌风伤害段**可令 `projectionBoostActive=true`；跃迁本身是位移，不得伪造第二段外放伤害。
 
 ### 4.6 Z6 · 暴击 `crit`
 
@@ -562,6 +568,8 @@ python3 tools/balance/damage_sim.py --check
 
 耐久只乘模板 `hpMax`；敌方普攻预算只乘模板普通招的期望伤害，不改具名 `full` NPC、面板属性或 Z1 常数。Boss 轮数采用 `design/03` §10.8 的四人队 3.1 次标准命中等价。它们应落在遭遇/AI 配置而非角色属性中。鹿鼎 Boss 洪安通另按 `design/02` §3.1 的 `localDifficulty=8` 建模，并采用 `design/03` §10.9 已定的“同级模板 Boss `hpMax ×0.75`”；这是具名角色覆盖，不污染 LOW 境全局参数。相较旧的非法装备基线，限制项曾变为普通战 5.16 轮、精英 10.32 轮、Boss 28.61 轮；上表重校后对应最紧行分别为 4.95、9.94、24.91 轮。LOW 普通敌预算由 1.76 调至 1.79，使满九转防守成长下最紧的白马行仍为 11.96 次命中，不越过 12 次上限。
 
+多人 Boss 按 `design/21` §11.9.2 以整场共享总血量、全部阶段有效耐久或非击杀目标总进度计一次轮数；每个单位虽各自行动并独立结算伤害，不得各复制一份完整 Boss 耐久。召唤、转阶段和停手阈值都折进同一总预算。若超出 Boss 12–25 轮 / 精英 6–10 轮，先调有效耐久、阶段或目标机制，并用 `drag=10000²/(A×D)`、`Rraw=R0×drag×H` 复算；Boss / 精英超窗的推荐倍率分别为 `23/Rraw`、`9/Rraw`。禁止为追窗口而压低主运、里程碑或经脉七参。
+
 ### 9.2 生成表
 
 <!-- 由 python tools/balance/damage_sim.py --report 生成；勿手改数值。 -->
@@ -709,7 +717,8 @@ calcEffectChance(ctx, effect): number;
 | `BP` / `mulBp` | 10000 为 100%的整数比例单位 / 乘后向下取整 |
 | `D1`…`D10` / `D4M` / `D5M` | 既有乘区及两个经脉独立乘区结束时的整数快照 |
 | `meridianDefenseBp` / `meridianAttackBp` | 21 给出的 Z4M 承伤 / Z5M 攻击倍率；不是内容 ID |
-| `projected` / `projection` | 参考实现运行参数 / 05 待同步的逐招静态字段；为真时 Z5M 选择 21 外放曲线，不是新伤害区 |
+| `projected` / `projection` | 静态伤害类别 / 逐招外放候选字段；通常选择 21 外放曲线，音功 0 档按 V16-03 例外走普通 Z5M；不是新伤害区 |
+| `projectionBoostActive` | `projection && (!sonic || projectionStep>=1)`；仅决定 Z5M 曲线，绝不改写静态 `projected` 类别 |
 | `evadeRatingDelta` | 21 给出的纯经脉闪避评级差，只在 Z0 加一次 |
 | `damageBeforeMpGuard` | 护体真气与护体内劲后、既有 `mpGuard` 前的剩余伤害 |
 | `P_actual` | 有效品阶、层数、招式与特殊倍率合成的实际威力指数 |
@@ -749,7 +758,9 @@ calcEffectChance(ctx, effect): number;
 | V17 | `meridianAttackBp` 6500–22000、`meridianDefenseBp` 5000–13000；标准对标准均为 10000 | 错误 |
 | V18 | `damageBeforeMpGuard=postShield-innerGuard.cancelled`；内劲与 `mpGuard` 合计耗内不得超过段前内力 | 错误 |
 | V19 | `evadeRatingDelta` 只能来自 21 且在 −35…+35；擒拿 `evadeBp` 不得重复折入 | 错误 |
-| V20 | `projection=true` 时 Z5M 只可选 21 外放曲线；普通 / 外放结果二选一并钳 6500–22000，不得双乘 | 错误 |
+| V20 | `projectionBoostActive` 为真时 Z5M 只可选 21 外放曲线；否则只选普通曲线，结果钳 6500–22000 且不得双乘 | 错误 |
+| V21 | `sonic && projection && projectionStep=0` 使用普通 Z5M、基础范围、额外耗内 0；1 / 2 档才启用外放曲线与扩张成本，静态 `projected` 及护体内劲 40% 不变 | 错误 |
+| V22 | 大手印跃击只给落点掌风伤害段外放语义；多人 Boss 的轮数按整场共享耐久 / 目标进度计算 | 错误 |
 
 ### 12.2 核心测试
 
@@ -798,6 +809,7 @@ calcEffectChance(ctx, effect): number;
 | T35 | 三经脉档 × 内劲占比 0/50/100% × 42 遭遇 | 378 行；相对同内劲比基线的轮数下降 ≤8%、敌方命中增长 ≤3%，且 65/35 代表招全过硬区间 |
 | T36 | 经脉触发确定性回放 | 开战/每行动限次与 30% 下穿只触发一次；九转仅拒绝首次 `bf_neishang` create，不拒绝 stack/refresh |
 | T37 | 10 段，标准 / 强一档攻方对标准守方，分别普通与 `projection=true` | 标准两者均 10000；强一档普通 12053、外放 13581；外放 `D5M=floor(D5×13581/10000)` 只取整一次 |
+| T38 | 强一档音功 `projection=true`，分别选 0 / 1 档 | 0 档 Z5M=12053、基础范围、额外耗内 0；1 档 Z5M=13581、射程 +2 / 范围 +1、额外耗内 `round(2% MPREF)`；两档伤害类别均为 `projected`、护体内劲适用率均 40% |
 
 ---
 
@@ -836,8 +848,9 @@ calcEffectChance(ctx, effect): number;
 | C02 `MPREF=STD.mpMax` | **采纳** | §1、§9；Lv35=4697 |
 | C03 `mpRegen≤6%` | **采纳** | 作为 V11 接口约束，不在伤害区重复定义属性 |
 | C11 撞击 | **采纳** | §7.4；不附赠眩晕 |
-| 21 v2.0 战斗经脉接口 | **采纳** | Z4M / Z5M 见 §2、§4；闪避见 §3；护体内劲见 §6；曲线与状态仍归 21 |
-| 21 v2.3 / AR-16 外放接口 | **采纳** | `projection=true` 在同一 Z5M 改用外放曲线；范围 / 成本仍归 21、05、09，见 §2、§4.5.1、§9.4.1 |
+| Canon V13-02～04 / 21 战斗经脉接口 | **已采纳** | Z4M / Z5M 见 §2、§4；闪避见 §3；护体内劲见 §6；曲线与状态仍归 21 |
+| Canon V15-02～03 / AR-16 外放接口 | **已采纳（默认值继续执行）** | `projectionBoostActive` 在同一 Z5M 改用外放曲线；范围 / 成本仍归 21、05、09，见 §2、§4.5.1、§9.4.1 |
+| Canon V16-03 / AR-17 音功与掌风边界 | **已采纳** | 音功 0 档走普通 Z5M，1 档起外放；大手印只认落点掌风伤害段，见 §4.5.1 |
 
 `STD` 当前仍含 `design/03` 自身登记的装备主属性【建议值】，且其合法装备集合尚需由 `design/10` 复核；模拟结论因此是当前上游基线，不冒充最终内容实测。
 
@@ -847,9 +860,9 @@ calcEffectChance(ctx, effect): number;
 |---|---|---|
 | P-04-1 | 基准 §9 后补“整数比例统一用 10000 bp，Z1–Z10 及 Z4M / Z5M 每区向下取整” | 固化 `tech/01` D4/P2 的跨平台确定性契约 |
 | P-04-2 | 基准 §8 的“斜45°等距网格”按 AR-12 改为六角格，并指向 09 | 作者新增需求已高于基准正文，避免旧四/八向继续传播 |
-| M3-P01 | 基准 §9 在 Z4 后 / Z5 后加入 Z4M / Z5M，分别取整 | 落实 AR-14 独立乘区，同时保持标准档零漂移 |
-| M3-P02 | 基准 §8 / §9 登记护体内劲位于护体真气后、`mpGuard` 前 | 固化资源守恒与“强则无敌”的拳脚抵消语义 |
-| M6-P02 | 基准 §9 登记外放招式以 21 外放曲线替代普通 Z5M；仍在 Z5 后只向下取整一次、总界 6500–22000、标准对标准 10000 | 落实 AR-16 的威力剧增，同时阻止同一经脉优势双算 |
+| M3-P01 | **已采纳（Canon V13-02）**：基准 §9 已在 Z4 后 / Z5 后加入 Z4M / Z5M，分别取整 | 落实 AR-14 独立乘区，同时保持标准档零漂移 |
+| M3-P02 | **已采纳（Canon V13-03）**：基准 §8 / §9 已登记护体内劲位于护体真气后、`mpGuard` 前 | 固化资源守恒与“强则无敌”的拳脚抵消语义 |
+| M6-P02 | **已采纳（Canon V15-03）**：外放招式以 21 外放曲线替代普通 Z5M；仍在 Z5 后只向下取整一次、总界 6500–22000、标准对标准 10000 | 落实 AR-16 的威力剧增，同时阻止同一经脉优势双算 |
 
 ### 13.4 原著考据待办
 
@@ -864,5 +877,5 @@ calcEffectChance(ctx, effect): number;
 | Q3 | `hpCost` 是否允许施放者自倒 | 默认不允许，至少留 1；仅显式 `canDownSelf` 例外 |
 | Q4 | `asHigh` 没有给高度级数时按几级 | 默认攻方高 1 级 |
 | Q5 | Z10 是否每段独立掷骰 | 默认每段独立；保持多段有波动但总伤更稳定 |
-| Q6 | 基准何时正式吸收 M3-P01 / M3-P02 | 默认先按作者决定与 21 v2.0 执行；待基准维护任务登记 |
+| Q6 | **已解决**：基准已正式吸收 M3-P01 / M3-P02 | Canon V13-02 / V13-03 已采纳；本文直接引用，不再保留待吸收状态 |
 | Q7 | AR-16 外放曲线是否维持当前陡度 | 默认按 21 §4.4.1 与 `projection_sim.py`；10 段高 / 顶尖对标准为 13581 / 19046 bp，待作者确认 |

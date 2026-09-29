@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2；`decisions/author-requirements.md` AR-04、AR-09、AR-10；`decisions/author-decisions.md`；`design/01-vision-and-core-loop.md` §7.6；`design/02-timeline-and-world-tiers.md`；`design/13-progression-and-endings.md` §4、§6.6、§7.12；`design/17-sects-compendium.md`；`design/18-npc-and-companions.md`。
 > 引用而不重定义：属性、品德与声望阈值 → `design/03`；武学与异种真气 → `design/05`、`design/06`、各武学图鉴；战斗、Boss、琴箫合奏与五岳夺帅 → `design/09`；地图与历史地名 → `design/11`、`design/map/`；任务 DSL → `design/12`（已落盘；本文夹具仍须迁移验证）；天书之力 → `design/13`；门派 → `design/17`；NPC、招募、生卒与跨书界 → `design/18`。`chapters/05-xiaoao.md` 的“主线”只索引本文。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v1.1（P05 完成稿；审校 P05.R，2026-09-26）；全局审计（2026-09-26）。原著考据基线为三联 / 广州修订版；40 回回目及第 1–2、5、7–18、23–30、35–40 回关键因果已联网逐章核对，网络文本与指定纸本可能存在的逐字差异仍标 **（待考）**。
+> 版本：v1.1（P05 完成稿；审校 P05.R，2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。原著考据基线为三联 / 广州修订版；40 回回目及第 1–2、5、7–18、23–30、35–40 回关键因果已联网逐章核对，网络文本与指定纸本可能存在的逐字差异仍标 **（待考）**。
 
 ## 0. 阅读指引与剧情总览
 
@@ -861,6 +861,8 @@ powerId = (flg_05_liuqu_fate == rescued)
 | `sect_shaolin` | 少林寺 / 登封县 | 围寺、三战、易筋 | 结盟 / 印证不等于受戒入门 |
 | `sect_wudang` | 武当山 | 冲虚、太极试招 | 笑傲太极残承来源规则引用图鉴与基准 |
 
+首领补录武学的剧情来源统一引用 `design/catalog/skills-bulu-05-xiaoao.md`：华山气宗 L5 / 历代掌门密卷或思过崖辨义开放 `sk_huashanziqijue`，剑宗 L4 / 支线武册开放 `sk_jianzongxingqi`；嵩山 L4 或门内武册开放 `sk_songshanzhenqi`、`sk_songshankaihezhang`；青城 L4 或赎罪线秘籍开放 `sk_qingchengyunqi`；日月神教 L4 / 教务武册开放 `sk_heimuxuangong`。`sk_renwoxingzhang` 只经任我行合法指点或梅庄后手录，`sk_kuihuafeizhen` 只经黑木崖秘库针谱或满足葵花前置的特殊授艺；两者均不得由击败首领直接掉落。
+
 ### 8.5 正式名录尚缺的具名配角
 
 以下人物是原著事件不可省略的配角，但 `catalog/npcs-ch05-xiaoao.md` 尚无正式人物记录。本文只用中文名或群体标签，不擅自预占 `npc_*`；稳定 ID 统一由 `design/18` 命名后，生产任务数据再替换。
@@ -1099,7 +1101,7 @@ mergeAt: dc_05_03
 | 类别 | ID |
 |---|---|
 | 天书 | `tsp_05_canon`、`tsp_05_fate` |
-| 武学 | `sk_dugu9`、`sk_xixing`、`sk_kuihua`、`sk_bixie`、`sk_xiaoaojianghuqu`、`sk_yijinjing`、`sk_taijijian` 等；本文不新建 `sk_*` |
+| 武学 | `sk_dugu9`、`sk_xixing`、`sk_kuihua`、`sk_bixie`、`sk_xiaoaojianghuqu`、`sk_yijinjing`、`sk_taijijian` 及 §8.4 所引补录武学等；本文不新建 `sk_*` |
 | Buff / 合击 | `bf_yizhongzhenqi`、`cmb_qinxiao` |
 | 地图 | `city_fuzhou`、`city_hengyang`、`city_huayin`、`city_luoyang`、`city_hangzhou`、`city_dengfeng`、`city_datong` 及相应 `rg_*` |
 | NPC / 门派 | §8.2、§8.4 所列；定义仍归 `design/18` / `design/17` |

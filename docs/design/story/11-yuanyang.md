@@ -4,7 +4,7 @@
 > 上游：`docs/decisions/author-requirements.md` AR-04、AR-09、AR-10；`docs/decisions/author-decisions.md`；`docs/00-canon.md` v1.2 §2、§15–§18；`design/01-vision-and-core-loop.md` §7.12；`design/02-timeline-and-world-tiers.md`；`design/13-progression-and-endings.md` §4.3–§4.4；`design/17-sects-compendium.md`；`design/18-npc-and-companions.md`。
 > 引用而不重定义：属性与品德量表 → `design/03`；武学与招式 → `design/05` 及 `catalog/skills-kangxi`、`catalog/skills-general`；战斗、降服、Boss 阶段与合击 → `design/09`；装备 → `design/10`；区域、城市与时代图层 → `design/11`、`design/19`；任务 DSL → `design/12`；天书与结局系统 → `design/13`；NPC、生卒、招募与跨书重逢 → `design/18`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需在实现环境验证；**【建议值】** = 依赖其他文档、先给可执行默认值并在文末登记。
-> 版本：v1.0（P11 定稿，2026-09-26）；审校 P11.R（2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.0（P11 定稿，2026-09-26）；审校 P11.R（2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -1104,11 +1104,12 @@ fateQualified = allKeyNpcAlive
 | 林任和心 | `sk_linrenhexinfa` | 两人和解且玩家完成调停**（原创扩展传承）** | 数值、前置引用图鉴 |
 | 夫妻刀法 | `sk_fuqidaofa` | `anc_11_03` 后、林任共同认可、满足图鉴前置 | 单人可用；`cmb_fuqidao` 另按 `design/09` |
 | 太岳四侠入门 / 奇攻 / 石碑手 | `sk_taiyuequan`、`sk_taiyuehuxi`、`sk_taiyueqigong`、`sk_taiyueshibeishou` | 对应四侠专属事件 | 石碑装备兼容桥仍待 `design/10` 同步 |
+| 卓天雄个人掌法 | `sk_zhentiansanshizhang` | 卓天雄存活，完成 `q_11_side_08` 的释放具结并达 R3；或观摩至 6 重 | 名称与原著掌法仍 **（待考）**；人物任职清宫不等于清宫职级可授，条件以 `skills-bulu-11-yuanyang.md` 为准 |
 | 威信镖局进阶 | `sk_weixinliandao` | 镖局职级与周威信 R5 | 其余进阶链引用图鉴 |
 | 双刀持用 | `sk_yuanyangshuangdao` | 合法保管 `eq_yuanyangdao` 且满足图鉴条件 | 装备成对计一件，不拆成两个实例 |
 | 清宫押刀 | `sk_daneishuangdao` | `sect_qinggong` 关系 / 任务授权 | 阶段同盟不等于永久传授 |
 
-本文不新增武学 ID，不把卓天雄原著掌法、太岳四侠夸张名号或老尼临场招式编成秘籍。
+本文不在故事稿新建武学 ID；已由补录图鉴登记的卓天雄掌法 `sk_zhentiansanshizhang` 在此只作剧情来源引用。太岳四侠继续复用 `sk_taiyueshibeishou`，其余夸张名号或老尼临场招式不编成秘籍。
 
 ---
 
@@ -1396,7 +1397,7 @@ Canon v1.2 §12 已正式登记路线段 `c/z/x` 与 `dc_*`；本文使用的 `q
 | `P11-V08` | `fateQualified` 同时检查十四名关键 NPC 存活、`chapterKillCount=0`、不同非致命遭遇 ≥3、最终不独占 | 构建失败 |
 | `P11-V09` | 非致命记录按 `nonLethalProofKeys` 的本地证明键去重；同一战斗反复降服同一敌人不增加计数，也不得临时新造 `enc_*` | 构建失败 |
 | `P11-V10` | 所有 `npc_*` 可在 `catalog/npcs-ch11-yuanyang.md` 解析；所有 `sect_*` 可在 `design/17` 解析 | 构建失败 |
-| `P11-V11` | 所有授艺 / 秘籍 `sk_*` 可在现有图鉴解析；不存在本文新造招式或未登记秘籍 | 构建失败 |
+| `P11-V11` | 所有授艺 / 秘籍 `sk_*` 可在现有图鉴解析；`sk_zhentiansanshizhang` 必须解析到 `skills-bulu-11-yuanyang.md`，不存在本文新造招式或未登记秘籍 | 构建失败 |
 | `P11-V12` | `city_xian`、`city_linfen`、`city_taiyuan` 与两个 `rg_*` 可在地图源解析；清代显示名分别采用西安府、平阳府、太原府 | 构建失败 |
 | `P11-V13` | `it_tianshu_11` 只授予一次，且 `tsp_11_canon` / `tsp_11_fate` 必须二选一 | 构建失败 |
 | `P11-V14` | YAML 可解析；所有 `next` 可达；品德 / 声望 / 组织关系只发业务事件、不直接写归属字段；须按 `design/12` §2.6 以显式 manifest 迁入 `quest.v1`，不能静默丢条件 | 构建失败 |

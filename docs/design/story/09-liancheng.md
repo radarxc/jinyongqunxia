@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md` AR-04、AR-09、AR-10 与 `decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：锚点与改命总览 → `design/01-vision-and-core-loop.md` §7.10；年代、低武非战斗约束、书眠与跨书钩子 → `design/02-timeline-and-world-tiers.md`；品德 / 声望 → `design/03-attributes.md` §8.3–8.4；武学 → `design/05-martial-arts-system.md` 与 `design/catalog/skills-kangxi.md`；战斗 / Boss → `design/09-combat-system.md`；城市 / 区域 → `design/11-open-world.md` 与 `design/19-world-map.md`；天书与结局接口 → `design/13-progression-and-endings.md`；门派 → `design/17-sects-compendium.md`；NPC、生卒、D1–D5 与跨书同伴 → `design/18-npc-and-companions.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v0.9（剧情初稿，2026-09-26）；审校 P09.R（2026-09-26）；全局审计（2026-09-26）。原著基线为三联 / 广州修订版；本文不编造逐字引文、回目号以外的小标题或原著招名。
+> 版本：v0.9（剧情初稿，2026-09-26）；审校 P09.R（2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。原著基线为三联 / 广州修订版；本文不编造逐字引文、回目号以外的小标题或原著招名。
 
 ---
 
@@ -142,7 +142,7 @@ flowchart TD
 | 24 | 五·老鼠汤 | 宝象、狄云 | 江岸 / 破庙 | 宝象沿江追杀狄云，狄云削发去须仍难脱身 | 双线共有；`z04/x04` 两种处置 |
 | 25 | 五 | 宝象、丁典、狄云 | 破庙 | 宝象刀伤丁典遗体；老鼠啮食中毒尸身后死亡，狄云用死鼠煮汤，宝象喝汤后在池塘搏斗中毒发而亡 **（网络章节已定位，指定版纸本待终校）** | 双线共有原著结果；玩家不能把狄云明知死鼠异常仍煮汤的动作淡化成纯粹误食，也不能包装成正义处决 |
 | 26 | 五 | 狄云、宝象 | 破庙 | 狄云此前已穿着乌蚕衣；为避宝象识出来历而以泥遮掩，宝象死后再取得其僧衣与《血刀经》载体 **（网络章节已定位，指定版纸本待终校）** | 双线共有载荷；武学只引用 `sk_xuedaojing`，装备只引用 `eq_wucanyi`，不把破庙段误写成乌蚕衣取得点 |
-| 27 | 五 | 水笙、汪啸风、狄云 | 赴藏边途中 | 水笙一方误把狄云当血刀恶僧，冲突中狄云受伤 | 选择节点 `dc_09_04`；汪啸风 ID 待上游补 |
+| 27 | 五 | 水笙、汪啸风、狄云 | 赴藏边途中 | 水笙一方误把狄云当血刀恶僧，冲突中狄云受伤 | 选择节点 `dc_09_04`；汪啸风使用 `npc_wangxiaofeng` |
 | 28 | 五至六 | 血刀老祖、水笙、狄云 | 藏边驿路 | 血刀老祖劫走水笙，并把被误认的狄云卷入同行 | 双线共有；正线暗护，邪线公开交易 |
 | 29 | 六·血刀老祖 | 汪啸风、南四奇、群豪 | 藏边山路 | 追兵循迹追赶血刀老祖，狄云的身份误会加深 | 双线共有追逐；正邪对追踪线索用途相反 |
 | 30 | 六 | 血刀老祖、水笙、狄云、南四奇 | 藏边雪谷 | 雪崩 / 大雪封路，把双方困入绝谷 **（确切地望待考）** | 锚点三“雪谷困局”；公共 `c03` |
@@ -309,7 +309,7 @@ flowchart TD
 
 - **原著对应事件（回目）**：第五章“老鼠汤”至第六章“血刀老祖”；事件 27–30。
 - **地点**：由湖广赴藏边的驿路、昌都地区所指治所 `city_qamdo` **（待考）**、藏边雪谷 `rg_qingzang` **（原著确址待考）**。
-- **参与 NPC**：`npc_diyun`、`npc_shuisheng`、汪啸风（正式 ID 尚待 `design/18` 登记）、`npc_xuedaolaozu`、`npc_shuidao`、`npc_liurenfeng`、`npc_lutianshu`、`npc_huantiegan`。
+- **参与 NPC**：`npc_diyun`、`npc_shuisheng`、`npc_wangxiaofeng`、`npc_xuedaolaozu`、`npc_shuidao`、`npc_liurenfeng`、`npc_lutianshu`、`npc_huantiegan`。
 - **目标与流程**：
   1. 处理血刀僧衣造成的误认：公开出示宝象追杀证据，或保持伪装以追查血刀老祖，但不得主动嫁祸无辜僧人。
   2. 初遇水笙与汪啸风时选择收刀、护住伤者并让狄云陈述；误会不会因一次成功口才立刻消失。
@@ -345,7 +345,7 @@ flowchart TD
 
 - **原著对应事件（回目）**：第八章“羽衣”；事件 36–38。
 - **地点**：藏边雪谷洞穴、冰壁、雪融出口；`rg_qingzang`。
-- **参与 NPC**：`npc_diyun`、`npc_shuisheng`、`npc_huantiegan`、汪啸风（正式 ID 尚待 `design/18` 登记）；获救的南四奇成员按状态加入。
+- **参与 NPC**：`npc_diyun`、`npc_shuisheng`、`npc_huantiegan`、`npc_wangxiaofeng`；获救的南四奇成员按状态加入。
 - **目标与流程**：
   1. 建立每日燃料、食物、伤情与看守轮换；玩法规则归书界文档，本文只规定剧情用途。
   2. 见证花铁干从吃马肉到侵夺死者、威胁活人的升级，不用一个“饥饿值”替其免责。
@@ -363,7 +363,7 @@ flowchart TD
 
 - **原著对应事件（回目）**：第九章“梁山泊·祝英台”、第十章《唐诗选辑》；事件 39–43。
 - **地点**：辰州府沅陵南郊麻溪铺 `city_chenzhou_yuanling` / `rg_huxiang` → 荆州府 `city_jingzhou`。
-- **参与 NPC**：`npc_diyun`、`npc_yandaping`、`npc_wanzhenshan`、`npc_wangui`、`npc_qichangfa`（踪迹）、`npc_qifang`、`npc_wukan`、桃红（正式 ID 尚待 `design/18` 登记，见 §8）。
+- **参与 NPC**：`npc_diyun`、`npc_yandaping`、`npc_wanzhenshan`、`npc_wangui`、`npc_qichangfa`（踪迹）、`npc_qifang`、`npc_wukan`、`npc_taohong`。
 - **目标与流程**：
   1. 回麻溪铺查看被掘宅地，以土层、工具痕和三路脚印区分言达平、万家与戚长发踪迹。
   2. 目睹 / 介入三方争斗和万圭中毒，不以“敌人中毒活该”跳过解药抉择。
@@ -399,7 +399,7 @@ flowchart TD
 
 - **原著对应事件（回目）**：第十二章“大宝藏”；事件 49–54；五锚点之四、之五。
 - **地点**：荆州府墓地 / 凌府旧址、城南天宁寺、尾声藏边雪谷；`city_jingzhou` → `rg_qingzang`。
-- **参与 NPC**：`npc_diyun`、`npc_dingdian`、`npc_lingshuanghua`、`npc_yandaping`、`npc_qichangfa`、`npc_wanzhenshan`、`npc_lingtusi`、`npc_huantiegan`、汪啸风（正式 ID 尚待 `design/18` 登记）、`npc_shuisheng`、`npc_qifang`（按生死状态）。
+- **参与 NPC**：`npc_diyun`、`npc_dingdian`、`npc_lingshuanghua`、`npc_yandaping`、`npc_qichangfa`、`npc_wanzhenshan`、`npc_lingtusi`、`npc_huantiegan`、`npc_wangxiaofeng`、`npc_shuisheng`、`npc_qifang`（按生死状态）。
 - **目标与流程**：
   1. 原著分支完成丁典、凌霜华合葬并读取棺盖数字；改命分支由凌霜华在安全处亲交数字并说明它不是给贪者的许诺。
   2. 以数字、`sk_tangshijian` 次序和《唐诗选辑》完成取字谜题；不显示伪造的原诗全文。
@@ -496,7 +496,7 @@ flowchart TD
 
 - **原著对应事件（回目）**：第五章“老鼠汤”至第六章“血刀老祖”；事件 27–30。
 - **地点**：赴藏边驿路、昌都地区所指治所 `city_qamdo` **（待考）**、藏边雪谷 `rg_qingzang`。
-- **参与 NPC**：`npc_diyun`、`npc_shuisheng`、汪啸风（正式 ID 尚待 `design/18` 登记）、`npc_xuedaolaozu` 与南四奇。
+- **参与 NPC**：`npc_diyun`、`npc_shuisheng`、`npc_wangxiaofeng`、`npc_xuedaolaozu` 与南四奇。
 - **目标与流程**：
   1. 让水笙一方继续把狄云误作血刀僧，以假身份接近血刀老祖；不可让玩家冒充原著具名人物宝象本人。
   2. 向老祖交出一半口令 / 伪造死因，换取短时同行；在契约中把水笙列为“不得伤害的活筹码” **（原创扩展）**。
@@ -532,7 +532,7 @@ flowchart TD
 
 - **原著对应事件（回目）**：第八章“羽衣”；事件 36–38。
 - **地点**：藏边雪谷洞穴、雪融出口与群豪营地；`rg_qingzang`。
-- **参与 NPC**：`npc_diyun`、`npc_shuisheng`、`npc_huantiegan`、汪啸风（正式 ID 尚待 `design/18` 登记），南四奇幸存者依状态出现。
+- **参与 NPC**：`npc_diyun`、`npc_shuisheng`、`npc_huantiegan`、`npc_wangxiaofeng`，南四奇幸存者依状态出现。
 - **目标与流程**：
   1. 维持三人 / 多人过冬，使花铁干的食人、威胁与改口都被可核查地记录。
   2. 允许狄云、水笙完成羽衣与互信段落；玩家可以利用关系，却不能把水笙写成交换物。
@@ -550,7 +550,7 @@ flowchart TD
 
 - **原著对应事件（回目）**：第九章“梁山泊·祝英台”至第十章《唐诗选辑》；事件 39–43。
 - **地点**：辰州府沅陵南郊麻溪铺、荆州府万府；`city_chenzhou_yuanling` → `city_jingzhou`。
-- **参与 NPC**：`npc_diyun`、`npc_yandaping`、`npc_wanzhenshan`、`npc_wangui`、`npc_qichangfa`（暗踪）、`npc_qifang`、桃红（正式 ID 尚待 `design/18` 登记）。
+- **参与 NPC**：`npc_diyun`、`npc_yandaping`、`npc_wanzhenshan`、`npc_wangui`、`npc_qichangfa`（暗踪）、`npc_qifang`、`npc_taohong`。
 - **目标与流程**：
   1. 回麻溪铺找出三组掘地者，分别给言达平、万家一条“对方已得真谱”的半真线索。
   2. 在双方冲突中控制解药，不必救万圭，却须留一个能进入万府的活口 / 身份。
@@ -586,7 +586,7 @@ flowchart TD
 
 - **原著对应事件（回目）**：第十二章“大宝藏”；事件 49–54；五锚点之四、之五。
 - **地点**：荆州府墓地 / 凌府旧址、城南天宁寺、尾声藏边雪谷；`city_jingzhou` → `rg_qingzang`。
-- **参与 NPC**：`npc_diyun`、`npc_dingdian`、`npc_lingshuanghua`、`npc_yandaping`、`npc_qichangfa`、`npc_wanzhenshan`、`npc_lingtusi`、`npc_huantiegan`、汪啸风（正式 ID 尚待 `design/18` 登记）、`npc_shuisheng`、`npc_qifang`（依生死状态）。
+- **参与 NPC**：`npc_diyun`、`npc_dingdian`、`npc_lingshuanghua`、`npc_yandaping`、`npc_qichangfa`、`npc_wanzhenshan`、`npc_lingtusi`、`npc_huantiegan`、`npc_wangxiaofeng`、`npc_shuisheng`、`npc_qifang`（依生死状态）。
 - **目标与流程**：
   1. 原著分支由合葬与棺盖数字得真码；改命分支履行与丁、凌的契约，换取一次由本人监督的解码机会。
   2. 制作三份地图：真入口、无毒空室与会暴露争宝阵营的假入口 **（后二者为原创扩展）**；不伪造会杀死无辜者的毒陷阱。
@@ -797,7 +797,7 @@ RESCUE_EXECUTING
 - 改命后两人先隐匿至荆州城外，不改变狄云入狱、雪谷和万府后段。1712 年结局远景中可种菊；约 1725 年主角醒入白马书界时，若二人曾入队且仍健在，可由 `design/18` 的重逢规则重新邀请。
 - `npc_qifang`、`npc_shuidao`、`npc_liurenfeng`、`npc_lutianshu`、`npc_wukan` 的救援是次级改命：各自更新生命状态和跨书资格，不改变 `tsp_09_*`，也不强迫另一角色代死。
 - `npc_xuedaolaozu` 在当前主线默认仍死于雪谷。名录中“改命后可跨书”如未来采用，必须由书界 DLC 另设次级极难支线，且不得洗白其伤害、不得替换丁凌主改命、不得让锚点三失去原著走向。
-- `npc_huantiegan` 在原著终段明确出现中毒发狂，但在线定位段落未继续明载死讯；本文原著路径先写 `unknown`，玩家救离 / 分流成功可写 `alive`，只有出现明确死亡演出才写 `dead`。名录“命定死亡待考”仍须据指定版纸本终校，不在此先写死唯一年份。汪啸风（正式 ID 尚待 `design/18` 登记）若走原著终段也采用相同的 `unknown` 口径。
+- `npc_huantiegan` 在原著终段明确出现中毒发狂，但在线定位段落未继续明载死讯；本文原著路径先写 `unknown`，玩家救离 / 分流成功可写 `alive`，只有出现明确死亡演出才写 `dead`。名录“命定死亡待考”仍须据指定版纸本终校，不在此先写死唯一年份。`npc_wangxiaofeng` 若走原著终段也采用相同的 `unknown` 口径。
 
 ---
 
@@ -898,16 +898,19 @@ endingId = endingTable[finalStance][fateAxis]
 | `npc_wukan` | 吴坎 / D4 | 早期伤害狄云、后来纠缠戚芳、被灭口窗口 | `dc_09_07` 前救下并完成证人保护；正式加入还需戚芳不反对、本人公开供认 | 原著被万震山杀害；获救不等于免罪，仍可被交官 |
 | `npc_fengtan` | 冯坦 / D3 | 万门证词、夹墙外围守卫 | D3 门派条件 + 在会审时退场 / 作证 | 拒绝作证时留在万家残部，不强制死亡 |
 | `npc_shencheng` | 沈城 / D3 | 入狱第四年向狄云带婚讯；探监操纵证据 | D3 门派条件 + 交出谁让其探监的口供 | 若隐瞒口供，正线拒绝；邪线可短时雇用但高流失 |
+| `npc_wangxiaofeng` | 汪啸风 / D4 | 误认、追逐、出谷证言与天宁寺群豪线 | 澄清身份并完成证言责任后可短时同行；招募仍服从人物档案 | 终段若无明确死亡演出写 `unknown`，不可由中毒发狂直接推定死亡 |
+| `npc_taohong` | 桃红 / D4 | 早期伪证责任、被逐后的砌墙线索与保护取证 | 保护取证后作为非战斗证人同行；不以证言自动免除早期责任 | 作证或安置后离队；最终去向仍 **（待考）** |
+| `npc_kongxincai` | 空心菜 / D3（非战斗） | 戚芳之女、托孤与归雪谷锚点的保护对象 | 只能随监护人 / 可信照料人同行，不进入战斗或付费雇佣池 | 安全安置后随监护人；不得作为胁迫道具 |
 
-### 8.2 上游未登记人物与一般角色槽
+### 8.2 已解决的人物缺口与一般角色槽
 
-以下人物在剧情中不可省略，但 `design/catalog/npcs-ch09-liancheng.md` 当前没有正式 ID。本文按“上游未登记”列出，不越权创建 `npc_*` 定义：
+以下三项原为上游未登记人物，现已由 `design/catalog/npcs-ch09-liancheng.md` 建档。本文保留追溯记录并改用正式 ID，不再进入 `unresolvedCast`：
 
-| 人物 | 当前写法 | 为什么必须出现 | 建议同步位置 |
+| 人物 | 已解决的正式引用 | 为什么必须出现 | 状态 |
 |---|---|---|---|
-| 汪啸风 | “汪啸风（正式 ID 尚待 `design/18` 登记）” | 水笙表哥 / 同行，参与误认、追逐、出谷后不信水笙及天宁寺群豪线 **（具体细节待考）** | `design/18` 连城名录；D4 或 D5 由该文定 |
-| 桃红 | “桃红（正式 ID 尚待 `design/18` 登记）” | 参与早期伪证、后被逐并留下夜间砌墙线索的重要人物；是否被迫作伪仍待指定版纸本考据 | `design/18` 连城名录；建议 D4，最终由该文定 |
-| 空心菜 | “空心菜（正式 ID 尚待 `design/18` 登记）” | 戚芳之女、托孤与归雪谷锚点的关键人物；儿童不可进入付费战斗雇佣池 | `design/18` 连城名录；应为非战斗随行 / 保护对象，D 级由该文定 |
+| 汪啸风 | `npc_wangxiaofeng` | 水笙表兄 / 同行，参与误认、追逐、出谷后不信水笙及天宁寺群豪线 **（具体细节待考）** | 已解决：D4，终段生死不明 |
+| 桃红 | `npc_taohong` | 参与早期伪证、后被逐并留下夜间砌墙线索；是否被迫作伪仍待指定版纸本考据 | 已解决：D4 非战斗证人 |
+| 空心菜 | `npc_kongxincai` | 戚芳之女、托孤与归雪谷锚点的关键人物；儿童不可进入付费战斗雇佣池 | 已解决：D3 非战斗保护对象 |
 
 狱卒、书吏、棺工、向导、群豪、药铺帮工等只消费 `design/18` 的设施 / 路人模板，不在本文新建静态 ID。若下游认为某人需要跨幕保存，须先回填 `design/18`，不能在任务 YAML 内临时造 `npc_*`。
 
@@ -920,6 +923,8 @@ endingId = endingTable[finalStance][fateAxis]
 | lineage | 梅念笙—丁典—狄云 | 非正式门派，不创建 `sect_*` | 狱中传承、神照与诗剑谜题 | `sk_shenzhao` 等武学定义见图鉴；剧情来源不等于无条件习得 |
 | lineage | 南四奇“落花流水” | 江湖合称，不创建 `sect_*` | 雪谷盟军、救援与证人链 | 武学只引用既有 `sk_luohualiushuijian` 等；本文不造门派职级 |
 | 官府 / 凌府 | 剧情阵营 | 不是可加入武林门派 | 狱门权限、私账、毒棺追兵 | 不为凌府创建正式门派 ID，也不抢先创建“龙沙帮”ID；其关系事实尚待考 |
+
+首领补录武学只引用 `design/catalog/skills-bulu-09-liancheng.md`：万家门可按 L3 与前置学习 `sk_wanjiazhengqi`、`sk_wanjiaanshenquan`；荆州官差可由衙门教头、官府关系或武册获得 `sk_jingzhouguanfuqinfa`、`sk_jingzhouyangqigong`。万圭、凌退思装配这些武学不构成击败即掉落。
 
 ### 8.4 同伴加入 / 离开时机总表
 
@@ -998,7 +1003,7 @@ endingId = endingTable[finalStance][fateAxis]
 4. 战斗只记录 `combatTier` 与 `combatRulesRef`，数值、阶段脚本、AI 与六角地形不在剧情 YAML 重定义。
 5. 非战斗 / 战斗路径用同一个 `rewardEquivalenceKey`；实际经验必须在 ±10%，最终配额由书界文档与 `design/13` 分配。
 6. 历史地名和项目地图 ID 同时保留：`historicalName` 用于台词 / UI，`cityId` / `regionId` 用于导航。确址不稳时写 `canonCertainty: pendingResearch`。
-7. NPC 缺 ID 时 YAML 不写伪 `npc_*`；先用 `unresolvedCast` 明确阻断生产构建，待 `design/18` 回填。
+7. NPC 缺 ID 时 YAML 不写伪 `npc_*`；先用 `unresolvedCast` 明确阻断生产构建，待 `design/18` 回填。已建档的汪啸风、桃红、空心菜直接使用正式 ID。
 8. 状态键集中在 `lc09` 命名空间；它们是存档路径，不冒充基准 §12 的全局对象 ID。
 
 ### 10.2 幕数据字段
@@ -1334,7 +1339,7 @@ chapterSettlement:
     protectedState:
       - npc: npc_diyun
         not: dead
-      - unresolvedNpc: "空心菜"
+      - npc: npc_kongxincai
         not: dead
   derive:
     tianshuPower:
@@ -1427,7 +1432,8 @@ chapterSettlement:
 - 门派：`sect_wanjia`、`sect_xuedaomen`。
 - 武学：`sk_shenzhao`、`sk_xuedaojing`、`sk_xuedaofa`、`sk_tangshijian`、`sk_xuedaoqinfa`、`sk_xuedaojibu`、`sk_xuedaoxinfa`、`sk_wanjiajian`、`sk_wanjiaxinfa`、`sk_meinianshengxinfa`、`sk_lianchengjianli`、`sk_luohualiushuijian`、`sk_yuzhongqinna`、`sk_yuzhongduanquan`。
 - 装备：`eq_wucanyi`。
-- NPC：§8.1 的 24 个 `npc_*` 全部复用 `design/catalog/npcs-ch09-liancheng.md`；汪啸风、桃红、空心菜没有在本文擅建 ID。
+- NPC：§8.1 的 27 个 `npc_*` 全部复用 `design/catalog/npcs-ch09-liancheng.md`；其中汪啸风、桃红、空心菜分别使用 `npc_wangxiaofeng`、`npc_taohong`、`npc_kongxincai`。
+- 首领补录武学：`sk_wanjiazhengqi`、`sk_wanjiaanshenquan`、`sk_jingzhouguanfuqinfa`、`sk_jingzhouyangqigong`；定义与习得边界均见 `design/catalog/skills-bulu-09-liancheng.md`。
 
 ---
 
@@ -1448,7 +1454,7 @@ chapterSettlement:
 | LC09-V09 | 锚点闭集 | 五锚点全必经；丁凌结果恰有 `canon` / `fate` 一个为真；其他救人不改天书变体 | 存档结算失败 |
 | LC09-V10 | 四象限 | 正 / 邪 × 原著 / 改命四个局部结局键均可达；正邪先按含终局增量的累计立场分判定，仅中立区由终局选项破局；天书只由命运轴定 | 内容构建失败 |
 | LC09-V11 | 天书唯一 | 一周目只授予 `tsp_09_canon` 或 `tsp_09_fate` 一种，且效果不在本文复制 / 改写 | 存档结算失败 |
-| LC09-V12 | NPC 引用 | 24 个正式 `npc_*` 均解析到连城名录；汪啸风、桃红、空心菜只在 `unresolvedCast` / 上游未登记表出现，生产构建前必须由人物归属文档登记 | 缺口阶段为警告；生产数据构建失败 |
+| LC09-V12 | NPC 引用 | 27 个正式 `npc_*` 均解析到连城名录；汪啸风、桃红、空心菜必须分别解析为 `npc_wangxiaofeng`、`npc_taohong`、`npc_kongxincai`，不得再进入 `unresolvedCast` | 生产数据构建失败 |
 | LC09-V13 | 技能 / 门派 / 地图引用 | 所有武学、门派、城市、区域正式 ID 能在各自归属文档解析；不使用 `design/11` 已废弃的旧荆楚粗区别名 | 内容构建失败 |
 | LC09-V14 | 地名与年代 | UI 使用清初“荆州府”“辰州府”；游戏定年始终标原创；昌都映射和雪谷确址始终标待考 | 文案审校失败 |
 | LC09-V15 | 原著边界 | 不含伪造逐字引文、回目号或原创招名冒充原著；未稳事实标待考；扩展见 §9.3 | 文案审校失败 |
@@ -1485,7 +1491,7 @@ chapterSettlement:
 | LC09-T14 戚芳次级改命 | `dc_09_07=A`，丁凌走原著 | 戚芳生还但天书仍 `tsp_09_canon` |
 | LC09-T15 水岱次级改命 | `med` / 物资达标并在窗口选 `05B` | 水岱重伤生还；不替换他人死亡，不改变天书轴 |
 | LC09-T16 花铁干反咬 | 邪线控其口供但没有密封副本 | 出谷后先失去舆论；启用第二证人兜底，主线仍连通 |
-| LC09-T17 缺人物 ID | 生产 YAML 的 `cast` 直接写一个未登记的人物 ID | 构建失败；只能在策划稿 `unresolvedCast: ["汪啸风"]` 等待上游补 ID |
+| LC09-T17 缺人物 ID | 生产 YAML 的 `cast` 直接写一个未登记的人物 ID | 构建失败；策划稿可用 `unresolvedCast` 等待上游补 ID，但汪啸风、桃红、空心菜不得再走此分支 |
 
 ### 12.4 谜题、战斗替代与奖励测试
 
@@ -1537,12 +1543,12 @@ chapterSettlement:
 | `design/01` §7.10 | 五锚点、唯一主改命对象与代价概述 | 已逐项一致 |
 | `design/02` | 约 1705–1712、低武 N1–N5、书眠与前后钩子 | 主线落实 N1–N3 / 终盘智取；N4 / N5 待书界配表最终验证 |
 | `design/03` | `morality`、`fame` 范围与书眠语义 | 已引用；本文数值标建议 |
-| `design/05` / 图鉴 | 诗谜入口和既有 `sk_*` | 已复用，无新增武学 |
+| `design/05` / 图鉴 | 诗谜入口、既有 `sk_*` 与 `skills-bulu-09-liancheng.md` 四门首领补录武学 | 已复用；故事稿不重定义卡面 |
 | `design/09` | 战斗、Boss、援护、非致命与 AI | 仅引用；具体脚本待下游 |
 | `design/11` / `design/19` | 城市、区域、历史名与地图 ID | 已落实；雪谷确址仍待考 |
 | `design/13` | 天书变体、余韵 / 债务、结局 / 书眠接口 | 已落实；不重定义效果 |
 | `design/17` | 万家门、血刀门及连城开放状态 | 已引用，无新增门派 |
-| `design/18` 与连城名录 | D1–D5、生死、跨书与 24 个 NPC ID | 已引用；三个人物缺口与一项生死事实待同步 |
+| `design/18` 与连城名录 | D1–D5、生死、跨书与 27 个 NPC ID | 已引用；三个人物缺口已解决，花铁干生死事实仍待同步 |
 
 ### 13.3 对基准的修改提案
 
@@ -1572,7 +1578,7 @@ chapterSettlement:
 | LC09-O04 | 花铁干原著死亡事实如何落库？ | 原著路径已明确中毒发狂、但在线定位段未明载死讯，先写 `unknown`；玩家分流 / 救离成功写 `alive`，仅明确死亡演出才写 `dead` | 影响 `design/18` 生卒与后书招募 |
 | LC09-O05 | 藏边雪谷对应哪个地图城？ | 导航挂 `rg_qingzang`，最近玩法落点 `city_qamdo`；剧情 UI 只写“藏边雪谷” | 避免把项目地图布点误写成原著确址 |
 | LC09-O06 | 邪线可否获得部分宝藏货币？ | 默认不获得带毒金银；只给掌契 / 掌门 / 掌谜和下游固定非毒奖励 | 保护经济与主题，不制造无限资产 |
-| LC09-O07 | 汪啸风、桃红、空心菜的正式 ID / D 级为何？ | 本文只标上游未登记；建议前两者具名 D4，空心菜为非战斗保护对象，最终由 `design/18` 定 | 登记前生产 YAML 阻断，但策划文档完整 |
+| LC09-O07 | 已解决：汪啸风、桃红、空心菜的正式 ID / D 级为何？ | `npc_wangxiaofeng` / D4、`npc_taohong` / D4、`npc_kongxincai` / D3 非战斗，见人物档案 | 生产 YAML 已改用正式 ID；原著细节仍按 **（待考）** 处理 |
 | LC09-O08 | 三种穿越开局是否全纳入 `chapters/09`？ | 纳入两种默认 + 已有隐藏狱卒；三路在 `c01` 汇合 | 影响开场资源 / 台词，不改锚点 |
 | LC09-O09 | 正邪幕是否拆出公共任务实体？ | 保留 20 个可游玩主幕 + 5 个被调用的公共事件包，不把公共包重复计作路线幕 | 影响任务运行器嵌套方式，不影响故事结构 |
 
@@ -1583,7 +1589,7 @@ chapterSettlement:
 | `docs/design/chapters/09-liancheng.md` | 穿越开局 / 主线 / 特色系统 / 奖励表 | 采用 §2 三开局；主线只索引本文；狱中、雪谷生存、识谎、唐诗密码做玩法实现；落实经验 ±10% 与地阶以上固定来源 >=70% |
 | `docs/design/12-quests-npc-factions.md` | 任务 / 选择 DSL | 已落实迁移总则；后续 manifest 按 §10 映射路由覆盖、时机窗、软失败与 `unresolvedCast`，不得直接装载剧情草稿 YAML |
 | `docs/design/13-progression-and-endings.md` | 书界局部结局索引 | 可索引四象限标题；若需全局 `end_*`，由该文统一命名；天书效果与取得通则保持不变 |
-| `docs/design/18-npc-and-companions.md` / 连城名录 | 连城人物表 | 补汪啸风、桃红、空心菜；核对花铁干死亡；评估血刀老祖跨书候选；把本文真实任务 ID 写入 D4 / D5 门槛 |
+| `docs/design/18-npc-and-companions.md` / 连城名录 | 连城人物表 | 已解决：汪啸风、桃红、空心菜已补；仍需核对花铁干死亡、评估血刀老祖跨书候选，并把本文真实任务 ID 写入 D4 / D5 门槛 |
 | `docs/design/09-combat-system.md` / 书界 Boss 配置 | 连城遭遇 | 为雪谷薄冰、夹墙双供状、天宁寺识毒 / 伪码配置阶段移除接口；数值由其归属定义 |
 | `docs/design/11-open-world.md` / 地图数据 | 连城 POI | 增加万府夹墙、荆州大牢、天宁寺、麻溪铺与藏边雪谷场景键；雪谷不宣称 `city_qamdo` 为原著确址 |
 | `docs/00-canon.md` | §12、§18 | 已解决：Canon v1.2 已采纳 LC09-P01–P03 的选择 / 分支任务命名和剧情唯一归属 |

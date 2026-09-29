@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：`ch03_shendiao` 的主线剧情、正邪路线、选择节点、锚点落实、结局与剧情任务 ID；本书界 DLC 文档 `chapters/03-shendiao.md` 的“主线”只应索引本文。
 > 上游：`00-canon.md` v1.2；作者新增需求 AR-04、AR-09、AR-10 与 `decisions/author-decisions.md`；锚点以 `design/01-vision-and-core-loop.md` §7.4 为准，年代与书眠以 `design/02-timeline-and-world-tiers.md` 为准，天书变体以后者及 `design/13-progression-and-endings.md` §4 为准。
-> 引用而不重定义：属性、品德与声望 → `design/03-attributes.md`；武学与授艺 → `design/05-martial-arts-system.md` 及四册技能图鉴；Boss 与剧情战 → `design/09-combat-system.md`；区域、城市与旅行 → `design/11-open-world.md`、`design/19-world-map.md`；任务 DSL → `design/12-quests-npc-factions.md`（策划夹具落盘仍须经 `tech/04-data-pipeline.md` 校验）；天书、结局与成长 → `design/13-progression-and-endings.md`；门派 → `design/17-sects-compendium.md`；NPC、生卒与招募 → `design/18-npc-and-companions.md`。
+> 引用而不重定义：属性、品德与声望 → `design/03-attributes.md`；武学与授艺 → `design/05-martial-arts-system.md`、既有技能图鉴及 `design/catalog/skills-bulu-02-shediao.md`、`skills-bulu-03-shendiao.md`；Boss 与剧情战 → `design/09-combat-system.md`；区域、城市与旅行 → `design/11-open-world.md`、`design/19-world-map.md`；任务 DSL → `design/12-quests-npc-factions.md`（策划夹具落盘仍须经 `tech/04-data-pipeline.md` 校验）；天书、结局与成长 → `design/13-progression-and-endings.md`；门派 → `design/17-sects-compendium.md`；NPC、生卒与招募 → `design/18-npc-and-companions.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.1（P03 初稿；审校 P03.R，2026-09-26）；全局审计（2026-09-26）。原著考据以三联 / 广州修订版为基线；联网目录与可访问章节只用于交叉定位，不代替指定纸本逐字校勘。
+> 版本：v1.1（P03 初稿；审校 P03.R，2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。原著考据以三联 / 广州修订版为基线；联网目录与可访问章节只用于交叉定位，不代替指定纸本逐字校勘。
 
 ---
 
@@ -1185,6 +1185,8 @@ routeReady = evac_route_segments >= 3
 | `sect_baituoshan` | 欧阳锋残脉与华山旧人 | 支线读取 | 不因欧阳锋关系重建完整门派主线 |
 | `sect_tiezhangbang` | 裘千尺、慈恩旧传承 | 绝情谷与三世恩怨旁线 | 神雕时代状态引用 17，不把旧传承等同活跃总舵 |
 | `sect_kunlun` | 何足道前身 / 末段钩子 | 彩蛋与倚天前缘 | 神雕列为前身态；不可提前套用倚天完整门派 |
+
+本界补录来源统一引用 `design/catalog/skills-bulu-03-shendiao.md`：李莫愁支线 / 五毒秘传校合开放 `sk_chiliandugong`、`sk_chilianfuchen`；绝情谷 L4 或旧案后谱图校合开放 `sk_jueqingbixuejue`、`sk_jindaoheijianjue`；密宗 L3 护经、达尔巴辨伪或护经批注开放 `sk_jinganghufagong`、`sk_xueshantieshan`；蒙古军伍 L4 考核或百户阵图校合开放 `sk_caoyuanjunzhenxinfa`。跨书复用的 `sk_tiezhangyunqigong`、`sk_quanzhenzhoutiangong` 与校成后的完整 `sk_taohuaguiyuanjue`，仍按 `skills-bulu-02-shediao.md` 的神雕来源执行；故事稿不重定义卡面或首领掉落。
 
 ### 8.4 同伴加入、离开与任务门槛摘要
 

@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：`ch02_shediao` 主线剧情、正邪立场路径、选择节点、幕级状态与五个锚点的最终脚本口径。
 > 上游：`docs/decisions/author-requirements.md` AR-04、AR-09、AR-10；`docs/decisions/author-decisions.md`；`docs/00-canon.md` v1.2 §2、§12、§15–§18；`design/01` §7.3；`design/02`；`design/13`；`design/18`。
-> 引用而不重定义：地图 / 城市 / 时代图层 → `design/11`；任务 DSL、品德与门派关系变化 → `design/12`（已落盘；§9.4–9.5 仍是待迁移验证的策划夹具）；战斗与 Boss 机制 → `design/09`；门派开放与职级 → `design/17`；NPC 生卒、招募等级、跨书重逢 → `design/18`；武学数据 → `catalog/skills-wujue.md`、`skills-daojia.md`、`skills-general.md`；华山论剑、九阴收集、黄蓉厨艺、西征大战的玩法规则 → `chapters/02-shediao.md`。
+> 引用而不重定义：地图 / 城市 / 时代图层 → `design/11`；任务 DSL、品德与门派关系变化 → `design/12`（已落盘；§9.4–9.5 仍是待迁移验证的策划夹具）；战斗与 Boss 机制 → `design/09`；门派开放与职级 → `design/17`；NPC 生卒、招募等级、跨书重逢 → `design/18`；武学数据 → `catalog/skills-wujue.md`、`skills-daojia.md`、`skills-general.md`、`skills-bulu-02-shediao.md`；华山论剑、九阴收集、黄蓉厨艺、西征大战的玩法规则 → `chapters/02-shediao.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v1.0（P02，2026-09-26）；审校 P02.R（2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.0（P02，2026-09-26）；审校 P02.R（2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -973,6 +973,8 @@ A4 的剧情单写者是 `anchor_02_taohua` 与五人生命事实；书眠适配
 | `sect_shaolin` | 可选有限入门与易筋完整线 | 按作者决定 P49：背景 + 入门为主；主线不强塞少林段 |
 | —（待补 ID） | 金赵王府 / 金廷阵营 | `design/17` 未登记规范 `sect_*`；暂用任务 faction key，不得伪造门派 ID |
 
+补录武学来源统一引用 `design/catalog/skills-bulu-02-shediao.md`：铁掌 L4 / 帮中遗谱开放 `sk_tiezhangyunqigong`；桃花岛试潮或潮汐图只开放 `sk_taohuaguiyuanjue` 的射雕残承（10 品、最高 9 重，不计完整天阶池）；全真 L4 且修复七处阵位开放 `sk_quanzhenzhoutiangong`；梅超风认可亲授或持九阴下卷触发危险奇遇开放 `sk_jiuyinxieliangong`；丐帮 L4、七袋以上且完成门派任务开放 `sk_gaibangjuyigong`。本文不复制卡面，也不把首领配装等同掉落。
+
 ### 8.4 原未登记具名人物交接表
 
 本表保留历史交接并标出已补项。尚未登记者只保留中文名与职责，避免抢占 ID；`design/18` 补齐后，生产 YAML 必须逐项替换。
@@ -1196,7 +1198,7 @@ mergeAt: dc_02_07
 | `ST02-V10` | 失败不锁死 | 每幕依次注入失败 | 除主动结局确认外均有失败继续 / 补证 / 降级路径 |
 | `ST02-V11` | NPC 引用 | 全部 `npc_*` | 均存在 `design/18` / 名录；未登记人物只写姓名并列待补，不造 ID |
 | `ST02-V12` | 门派引用 | 全部 `sect_*` | 均存在 `design/17`；金赵王府不伪造 `sect_*` |
-| `ST02-V13` | 武学引用 | 全部 `sk_*` | 均存在三个必读图鉴或仓库其他唯一归属；不定义新武学 |
+| `ST02-V13` | 武学引用 | 全部 `sk_*` | 均存在对应图鉴或补录册的唯一归属；不定义新武学 |
 | `ST02-V14` | 地名时代化 | 全部 `city_*` / `rg_*` | 采用 `design/11` 当前稳定 ID 与 ch02 显示名；不把 1217 燕京称当时金都 |
 | `ST02-V15` | 天书唯一性 | 四结局 | 只发 `it_tianshu_02`；变体恰一项 `tsp_02_canon/fate` |
 | `ST02-V16` | 跨书生存 | A4=`fate` 后进入 1237 | 五名七怪写 alive，允许按 `design/18` 重邀；A4=`canon` 时只柯镇恶沿原著生还 |

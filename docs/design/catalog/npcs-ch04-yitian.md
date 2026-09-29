@@ -2,14 +2,15 @@
 
 > 归属：`design/18-npc-and-companions.md` 的主线重要 NPC 数据。主体年代 1336–1363、楔子约 1262，引用 `design/02`。
 > 史实人物与小说人物分开标注；武学只引用现有图鉴。出处回目待按三联 / 广州修订版逐字核对。
-> 版本：v1.2；全局审计（2026-09-26）。
+> 版本：v1.3；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
 
 | ID | 人物 / 原著身份 | 生卒 / 年龄 | 门派 / 阵营 | 层级 | 招募要点 | 能力要点 | 跨书 | 出处定位 |
 |---|---|---|---|---|---|---|---|---|
 | `npc_zhangwuji` | 张无忌，明教教主 | 青年；生卒待考 | `sect_mingjiao` L5 / 武当渊源 | D5 | 光明顶后开放；赵敏 / 周芷若等选择与退隐窗口 | `sk_jiuyang`、`sk_qiankun`、`sk_shenghuoling` | 否 | 回目待考：冰火岛身世、光明顶、退隐 |
 | `npc_zhaomin` | 赵敏，汝阳王府郡主 | 青年；生卒待考 | `sect_ruyangwangfu` | D5 | 正邪线多次互信选择；离元廷后可长期同行 | `sk_qiankun` 见闻；剑法待图鉴核配 | 否 | 回目待考：绿柳庄、万安寺、濠州 |
-| `npc_zhouzhiruo` | 周芷若，峨眉弟子 / 掌门 | 青年；生卒待考 | `sect_emei` L3→L5 | D5 | 汉水旧缘、师命、刀剑秘密与悔悟线 | `sk_emeijiuyang`、`sk_jiuyinbaigu`、`sk_jiuyin` | 否 | 回目待考：汉水、灵蛇岛、屠狮大会 |
+| `npc_zhouzhiruo` | 周芷若，峨眉弟子 / 掌门 | 青年；生卒待考 | `sect_emei` L3→L5 | D5 | 汉水旧缘、师命、刀剑秘密与悔悟线 | 主运 `sk_jiuyin`；外功 `sk_jiuyinbaigu`、`sk_baimangbianfa`、`sk_miejuejian`、`sk_jindingjiushi`、`sk_piaoxuechuanyunzhang` | 否 | 回目待考：汉水、灵蛇岛、屠狮大会 |
 | `npc_xiaozhao` | 小昭，明教总教圣女继承者 | 少女；生卒待考 | `sect_mingjiao` / 波斯总教 | D5 | 光明顶同行；灵蛇岛后受总教责任限制 | `sk_qiankun` 辅助；圣火令系待画像核配 | 否 | 回目待考：光明顶密道、灵蛇岛 |
+| `npc_daiqisi` | 黛绮丝（金花婆婆 / 紫衫龙王） | 中年；生卒待考 | `sect_mingjiao` / 波斯总教 | D5 | 蝴蝶谷与灵蛇岛身份线；解开总教追责后可限定同行 | 主运 `sk_mingjiaohujiaogong`；外功 `sk_dajiutianshou`、`sk_jinhuazhangfa`、`sk_jinhuabiaofa` | 否 | 回目待考：蝴蝶谷、灵蛇岛与身份揭露 |
 | `npc_yinli` | 殷离（蛛儿），天鹰教外孙女 | 少女；卒年待考 | `sect_tianyingjiao` | D4 | 蝴蝶谷救助与身份相认；毁容不作能力惩罚 | 毒功待对应图鉴收录（不预建 ID） | 否 | 回目待考：蝴蝶谷、灵蛇岛 |
 | `npc_zhangsanfeng` | 张三丰，武当开山祖师 | 高龄；小说生卒待考 | `sect_wudang` L5 | D5 | 神雕张君宝旧识可重逢；百岁寿宴后门派许可 | `sk_taijiquan`、`sk_taijijian`、`sk_chunyangwuji` | ←神雕 | 回目待考：楔子、百岁寿宴、太极初传 |
 | `npc_zhangcuishan` | 张翠山，武当五侠 | 壮年；命定死亡 | `sect_wudang` L3 | D5 | 冰火岛归来至寿宴短窗；秘密化解可改命 | `sk_yitiantulonggong` 等武当图鉴核配 | 改命后可 | 回目待考：王盘山、冰火岛、寿宴 |
@@ -23,23 +24,28 @@
 | `npc_songqingshu` | 宋青书，武当三代首徒 | 青年；命定结局待考 | `sect_wudang` L3 | D5 | 嫉妒、丐帮阴谋与赎罪 / 邪线 | 武当图鉴项、九阴速成视分支 | 改命后可 | 回目待考：丐帮事件、屠狮大会 |
 | `npc_songyuanqiao` | 宋远桥，武当大弟子 | 中年；卒年待考 | `sect_wudang` L4 | D4 | 寿宴守山、宋青书家事与掌门许可 | `sk_chunyangwuji` 等武当图鉴核配 | 否 | 回目待考：武当诸役 |
 | `npc_yudaiyan` | 俞岱岩，武当三侠 | 中年；卒年待考 | `sect_wudang` L3 | D4 | 伤残治疗、龙门镖局真相与宽恕线 | 武当武学历史层数保留；伤残状态表现 | 否 | 回目待考：屠龙刀开篇、寿宴 |
-| `npc_chengkun` | 成昆，混元霹雳手 / 圆真 | 中老年；命定结局待考 | 少林化名 / 明教仇敌 | D5 | 邪线潜伏或正线揭罪后受制；高背叛风险 | `sk_huanyinzhi` 等倚天图鉴核配 | 否 | 回目待考：光明顶密道、屠狮大会 |
+| `npc_chengkun` | 成昆，混元霹雳手 / 圆真 | 中老年；命定结局待考 | 少林化名 / 明教仇敌 | D5 | 邪线潜伏或正线揭罪后受制；高背叛风险 | 主运 `sk_huanyinxinfa`；外功 `sk_huanyinshou`、`sk_huanyinzhi` | 否 | 回目待考：光明顶密道、屠狮大会 |
+| `npc_luzhangke` | 鹿杖客，玄冥二老之一 | 中老年；生卒待考 | 玄冥一系 / `sect_ruyangwangfu` | D5 | 王府敌线；换俘或羁绊支线后仅开放高风险限定同行 | 主运 `sk_xuanminghanyuangong`；外功 `sk_xuanming`、`sk_lutouzhangfa` | 否 | 回目待考：玄冥神掌与鹿角杖交手段落 |
+| `npc_hebiweng` | 鹤笔翁，玄冥二老之一 | 中老年；生卒待考 | 玄冥一系 / `sect_ruyangwangfu` | D5 | 与鹿杖客独立求值；换俘或羁绊支线后仅开放高风险限定同行 | 主运 `sk_xuanminghanyuangong`；外功 `sk_xuanming`、`sk_hezuibifa` | 否 | 回目待考：玄冥神掌与鹤嘴双笔交手段落 |
 | `npc_kongwen` | 空闻，少林方丈 | 老年；卒年待考 | `sect_shaolin` L5 | D4 | 六派关系、屠狮大会与寺规 | 少林图鉴已有绝技核配 | 否 | 回目待考：光明顶、屠狮大会 |
-| `npc_duee` | 渡厄，金刚伏魔圈三僧之一 | 高龄；卒年待考 | `sect_shaolin` L4 | D5 | 屠狮大会后以化解仇怨 / 阵法试炼招募 | `sk_jingangfumoquan`；阵法条目按图鉴 | 否 | 回目待考：少林金刚伏魔圈 |
-| `npc_dujie` | 渡劫，三渡之一 | 高龄；卒年待考 | `sect_shaolin` L4 | D5 | 屠狮大会后短窗；先获渡厄许可，再完成西阵眼守阵且选择不伤俘（原创扩展） | `sk_jingangfumoquan` | 否 | 回目待考：屠狮大会 |
-| `npc_dunan` | 渡难，三渡之一 | 高龄；卒年待考 | `sect_shaolin` L4 | D5 | 屠狮大会后短窗；完成南阵眼护僧并拒绝借阵复仇（原创扩展） | `sk_jingangfumoquan` | 否 | 回目待考：屠狮大会 |
+| `npc_duee` | 渡厄，金刚伏魔圈三僧之一 | 高龄；卒年待考 | `sect_shaolin` L4 | D5 | 屠狮大会后以化解仇怨 / 阵法试炼招募 | 主运 `sk_jingangbuhuai`；外功 `sk_jingangfumoquan` 等按少林图鉴核配 | 否 | 回目待考：少林金刚伏魔圈 |
+| `npc_dujie` | 渡劫，三渡之一 | 高龄；卒年待考 | `sect_shaolin` L4 | D5 | 屠狮大会后短窗；先获渡厄许可，再完成西阵眼守阵且选择不伤俘（原创扩展） | 主运 `sk_jingangbuhuai`；外功 `sk_jingangfumoquan` 等按少林图鉴核配 | 否 | 回目待考：屠狮大会 |
+| `npc_dunan` | 渡难，三渡之一 | 高龄；卒年待考 | `sect_shaolin` L4 | D5 | 屠狮大会后短窗；完成南阵眼护僧并拒绝借阵复仇（原创扩展） | 主运 `sk_jingangbuhuai`；外功 `sk_jingangfumoquan` 等按少林图鉴核配 | 否 | 回目待考：屠狮大会 |
 | `npc_zhoudian` | 周颠，明教五散人 | 中年；卒年待考 | `sect_mingjiao` L4 | D4 | 光明顶同生共死、教主许可 | 明教拳掌待图鉴核配 | 否 | 回目待考：光明顶 |
 | `npc_pengyingyu` | 彭莹玉，彭和尚 | ?–约 1352/1353（史实原型；卒年待考；小说化）[H03] | `sect_mingjiao` L4 | D4 | 红巾军支线与救援 | 明教图鉴项；`pers_zhenfa` | 否 | 回目待考：蝴蝶谷 / 起义线 |
 | `npc_changyuchun` | 常遇春，明教义军将领 | 1329/1330–1369（史实；生年待考）[H03] | `sect_mingjiao` / 义军 | D4 | 汉水救助与军务短时同行 | 军阵 / 枪兵画像，武学待图鉴 | 否 | 回目待考：汉水护送周芷若 |
 | `npc_xuda` | 徐达，明教义军将领 | 1332–1385（史实）[H03] | `sect_mingjiao` / 义军 | D4 | 义军声望与屠龙刀兵书线 | `sk_wumuyishu`（兵法） | 否 | 回目待考：书末兵书交付 |
 | `npc_zhuyuanzhang` | 朱元璋，义军领袖 | 1328–1398（史实）[H03] | 明教 / 义军 | D5 | 政治线；短时同行，背叛与夺权风险 | 统帅画像；非绝顶武者 | 否 | 回目待考：濠州与书末夺权 |
-| `npc_wangbaobao` | 王保保（扩廓帖木儿），元军统帅 | 生年不详；约 1375/1376 卒（史实；卒年待考）[H03] | `sect_ruyangwangfu` / 元廷 | D5 | 赵敏亲族与战争立场；战役短时同行 | `pers_zhenfa`；军阵画像 | 否 | 回目待考：元廷追击线 |
+| `npc_wangbaobao` | 王保保（扩廓帖木儿），元军统帅 | 生年不详；约 1375/1376 卒（史实；卒年待考）[H03] | `sect_ruyangwangfu` / 元廷 | D5 | 赵敏亲族与战争立场；战役短时同行 | 主运 `sk_baizhanxinfa`；外功 `sk_pojunqiangfa`、`sk_shouchengzhen`、`sk_zhenqijian`、`sk_caoyuansheyi`、`sk_wangfuchangquan`；`pers_zhenfa` | 否 | 回目待考：元廷追击线 |
 | `npc_yulianzhou` | 俞莲舟，武当二侠 | 中年；生卒待考 | `sect_wudang` L4 | D4 | 武当守山、同门责任与张三丰许可 | 武当武学按图鉴既有来源核配 | 否 | 回目待考：武当诸役 |
 | `npc_kongzhi` | 空智，少林高僧 | 老年；生卒待考 | `sect_shaolin` L4 | D4 | 六派与屠狮大会立场；止战并取得方丈许可 | 少林图鉴既有武学核配 | 否 | 回目待考：六派西征、屠狮大会 |
 | `npc_kongxing` | 空性，少林高僧 | 老年；命定死亡待考 | `sect_shaolin` L4 | D5 | 万安寺前短窗；若开放改命须处理阿三一战 | 少林龙爪手等按图鉴来源 | 改命后可 | 回目待考：万安寺前后 |
 | `npc_asan` | 阿三，赵敏麾下金刚门高手 | 中年；命定结局待考 | `sect_ruyangwangfu` / 金刚门传承 | D5 | 元廷邪线或问责后的受制短窗；伤人旧账不可略过 | 少林外传指爪按图鉴来源 | 否 | 回目待考：万安寺、武当山 |
+| `npc_liuyunshi` | 流云使，波斯总教使者 | 壮年；生卒待考 | 波斯总教 | D5 | 灵蛇岛和解后须取得本人及总教许可；不因战败自动招募 | 主运 `sk_bosishenghuoxuangong`；外功 `sk_shenghuoling` 等总教武学 | 否 | 原著称谓、分工与动作待考：灵蛇岛三使 |
+| `npc_miaofengshi` | 妙风使，波斯总教使者 | 壮年；生卒待考 | 波斯总教 | D5 | 与其余二使独立求值；和解后仅限定同行 | 主运 `sk_bosishenghuoxuangong`；外功 `sk_shenghuoling` 等总教武学 | 否 | 原著称谓、分工与动作待考：灵蛇岛三使 |
+| `npc_huiyueshi` | 辉月使，波斯总教使者 | 壮年；生卒待考 | 波斯总教 | D5 | 与其余二使独立求值；和解后仅限定同行 | 主运 `sk_bosishenghuoxuangong`；外功 `sk_shenghuoling` 等总教武学 | 否 | 原著称谓、分工与动作待考：灵蛇岛三使 |
 
-合计：32 名。
+合计：38 名。
 
 ### 史实来源
 

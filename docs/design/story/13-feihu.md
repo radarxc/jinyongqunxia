@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求 AR-04、AR-09、AR-10 见 `decisions/author-requirements.md`；作者决定见 `decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：锚点总览 → `design/01` §7.14；年代与书眠 → `design/02`；品德、声望与技艺 → `design/03`；武学 → `design/05` 与 `catalog/skills-qianlong`；Boss 机制 → `design/09`；任务 DSL → `design/12`；天书与结局 → `design/13`；门派 → `design/17`；NPC、生卒、招募与跨书界同伴 → `design/18`；城市 → `design/19` 与 `design/map/cities.yaml`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.1（P13 初稿；审校 P13.R，2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.1（P13 初稿；审校 P13.R，2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -1117,11 +1117,11 @@ fateReady =
 
 | ID / 状态 | 名称 | 本剧情用途 | 可引用武学 | 数据处理 |
 |---|---|---|---|---|
-| `sect_hujia` | 辽东胡家 | 胡斐传承、墓前旧事、雪山印证 | `sk_hujiadao`、`sk_hujiaquan`、`sk_hujiadaoxinfa` | 引用 `design/17` §7.9 与图鉴；刀谱飞狐上限见 §7.4 |
-| `sect_miaojia` | 苗家 | 苗人凤、胡苗旧怨、复明 | `sk_miaojiajian`、`sk_miaojiaquan`、`sk_miaojiaxinfa` | 引用 `design/17` §7.10 |
-| `sect_shangjiabao` | 商家堡 | 火局、复仇与遗脉 | `sk_shangjiadao`、`sk_shangjiaquan` | 引用 `design/17` §7.11 |
-| `sect_yaowangmen` | 药王门 | 程灵素、同门毒局、主改命准备 | `sk_yaowangdujing`、`sk_qixinhaitang`、`sk_yaowangzhenfa` | 引用 `design/17` §7.17；不写现实毒方 |
-| `sect_tianlongmen` | 天龙门 | 田归农、墓前围攻、大会刀剑 | `sk_tianlongjian`、`sk_tianlongbeidao`、`sk_guanwaixinfa` | 与 `sect_tianlongsi` 严格分立 |
+| `sect_hujia` | 辽东胡家 | 胡斐传承、墓前旧事、雪山印证 | `sk_hujiadao`、`sk_hujiaquan`、`sk_hujiadaoxinfa`、`sk_hujiaxuangong` | 引用 `design/17` §7.9 与图鉴；刀谱飞狐上限见 §7.4 |
+| `sect_miaojia` | 苗家 | 苗人凤、胡苗旧怨、复明 | `sk_miaojiajian`、`sk_miaojiaquan`、`sk_miaojiaxinfa`、`sk_miaojiaxuangong`、`sk_miaojiazhang` | 引用 `design/17` §7.10 与补录图鉴 |
+| `sect_shangjiabao` | 商家堡 | 火局、复仇与遗脉 | `sk_shangjiadao`、`sk_shangjiaquan`、`sk_shangjiabaoqi` | 引用 `design/17` §7.11 与补录图鉴 |
+| `sect_yaowangmen` | 药王门 | 程灵素、同门毒局、主改命准备 | `sk_yaowangdujing`、`sk_qixinhaitang`、`sk_yaowangzhenfa`、`sk_yaowangneigong`、`sk_yaowanghushoufa` | 引用 `design/17` §7.17 与补录图鉴；不写现实毒方 |
+| `sect_tianlongmen` | 天龙门 | 田归农、墓前围攻、大会刀剑 | `sk_tianlongjian`、`sk_tianlongbeidao`、`sk_guanwaixinfa`、`sk_tianlongmenxinfa`、`sk_tianlongzhengdao`、`sk_tianlonghezongjian` | 与 `sect_tianlongsi` 严格分立；南北宗清理 / 和解门槛见补录图鉴 |
 | `sect_qinggong` | 清宫 | 福康安与大会政治势力 | — | 只作势力与身份；不虚构宫廷绝学 |
 | `sect_honghuahui` | 红花会 | 赵半山、书剑重逢、夺杯破局 | `sk_baihuacuo`、`sk_paoding` 仅按飞狐 9 品残承；赵半山另用太极门链 | 引用 `design/17` §8.4；不把两门天级写成会内制式 |
 | `sect_taijimen` | 太极门 | 赵半山与商家堡旧案、大会见证 | `sk_taijimenquan`、`sk_taijimenjian`、`sk_guangpingxinfa` | 与武当太极分立 |
@@ -1136,8 +1136,12 @@ fateReady =
 | —（上游未登记：西岳华拳门） | 西岳华拳门；艺、成、行、天、涯五支 **（待考版次差异）** | 为马春花争取医治场地、胡斐冒名掌门与归位之诺 | — | 原著在线定位已见该称谓；仍须三联 / 广州版核对，再由 17 / 图鉴决定 ID 与武学 |
 | —（上游未登记：二郎拳） | 黄希节所属 | 大会竞技与见证 | — | 上游 NPC 已有，组织 ID 尚缺 |
 | —（上游未登记：燕青拳） | 欧阳公政所属 | 大会竞技与见证 | — | 上游 NPC 已有，组织 ID 尚缺 |
+| —（南海五虎 / 凤家来源） | 佛山案与凤家武馆 | 凤天南、凤一鸣及护院武学来源 | `sk_nanhaiwuhuxinfa`、`sk_wuhudaofa`、`sk_fengjiawuhuquan` | 不据此新建门派 ID；合法移交谱册或脱离凤家的教习才可授艺 |
+| —（大会会武融汇） | 多门会武所得 | 袁紫衣及大会参与者的融汇路线 | `sk_huiwuguixin`、`sk_bajixingqi` | 只开放补录卡所列会武 / 师授入口，不把观战当自动习得 |
 
 倪不大、倪不小是第十九回会合画面中的具名人物：当前在线文本显示二人与常氏兄弟协同行动，且会合时分别抱着马春花的两个孩子；目标版次与逐步次序仍 **（待考）**。二人不在 `catalog/npcs-ch13-feihu.md`，本文不私建 `npc_*`；在上游补 ID 前只作为不可招募的叙事人物出现，故不计入 §8.1 的 29 个已登记 NPC ID。
+
+上述新增来源及胡、苗、商、天龙、药王门进阶项只引用 `design/catalog/skills-bulu-13-feihu.md` 的现行卡面与习得途径；故事稿不复制品阶、经脉、绝招或 Boss 配装，也不把击败首领等同于获得秘籍。
 
 ### 8.3 核心同伴加入 / 离开时机
 
@@ -1666,7 +1670,7 @@ story13:
 | `design/03` | **已对齐：**品德 −100…100、声望 100 / 300 / 800 / 1600 / 3000、技艺 0…100；本文数值只作事件建议 |
 | `design/09` | **已对齐：**所有战斗只给普通 / 精英 / Boss 与胜败语义，不复制数值机制 |
 | `design/13` | **已对齐：**两种天书效果只引用；改命第一次成功支付 2 点修为余韵，不足记债。其 §2.5 当前采用飞狐任务当量 `148（59 / 52 / 37）`，且 `59+52+37=148` |
-| `design/17`、`design/18` | 已引用门派、26 名飞狐 NPC、3 名书剑跨书 NPC、D 级、生卒与重逢规则；飞马镖局等缺失组织 ID 见 §8.2，倪不大 / 倪不小缺失 NPC ID 见 §8.2 与 F13-O09 |
+| `design/17`、`design/18`、补录图鉴 | 已引用门派、26 名飞狐 NPC、3 名书剑跨书 NPC、D 级、生卒、重逢规则及 `skills-bulu-13-feihu.md` 的现行首领武学；飞马镖局等缺失组织 ID 见 §8.2，倪不大 / 倪不小缺失 NPC ID 见 §8.2 与 F13-O09 |
 | `design/12` | 已落盘；本文剧情稿依其 §2.6 经显式 manifest 迁入 `quest.v1`，状态和意图动作不得静默丢失 |
 | `design/chapters/13-feihu.md` | 已落盘；承诺系统、掌门人大会玩法、支线、遭遇配额和主线索引均已接入，剧情仍以本文为唯一源 |
 

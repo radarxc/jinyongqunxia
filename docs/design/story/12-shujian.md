@@ -4,7 +4,7 @@
 > 上游：`docs/00-canon.md` v1.2；作者需求 `decisions/author-requirements.md` AR-04、AR-09、AR-10；作者决定 `decisions/author-decisions.md`；锚点见 `design/01` §7.13；年代与书眠见 `design/02`；任务接口见 `design/12`；天书与结局见 `design/13`；门派与人物事实见 `design/17`、`design/18`。
 > 引用而不重定义：战斗机制与 Boss 脚本 → `design/09`；区域、历史城市与时代状态 → `design/11` / `design/map/*.yaml`；任务 DSL、品德与势力关系 → `design/12` / `design/03`；天书之力 → `design/13`；NPC 生卒、招募等级、跨书重逢 → `design/18`；门派开放与职级 → `design/17`；武学数据 → `design/catalog/skills-*.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.0（P12 初稿；审校 P12.R，2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.0（P12 初稿；审校 P12.R，2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -1297,12 +1297,15 @@ else:
 | 来源 | 可引用 ID | 剧情入口 |
 |---|---|---|
 | 陈家洛 / 红花会高阶 | `sk_baihuacuo`、`sk_paoding`、`sk_honghuahuiheji` | 总舵主个人链、红花会 L4 / 图鉴前置 |
+| 陈家洛 / 天池传承 | `sk_tianchishengong` | `q_12_qiyu_14` 袁士霄亲授，或陈家洛羁绊 + 天池引见后的余韵遗谱许可；仍须满足补录卡前置 |
 | 红花会基础 | `sk_honghuaxinfa`、`sk_honghuajian`、`sk_honghuachangquan`、`sk_honghuabu` | 入会、贡献与群像任务 |
+| 铁胆庄 | `sk_tiedanzhuangxinfa`、`sk_tiedanzhuangquan` | 周仲英误会收束、关系达标与庄民保护；心法 5 重后才开放拳法 |
 | 回部 | `sk_huibuqijian`、`sk_huibujianshu`、`sk_huibushuaijiao`、`sk_tianshanqishe` | 归经、护民、黑水营与门派前置 |
 | 武当 | `sk_rouyunjian`、`sk_tiyunzong`、`sk_furongjinzhen` | 陆菲青 / 李沅芷师门线；仍受图鉴职级前置 |
 | 南少林 | `sk_huheshuangxingquan`、`sk_wulangbaguagun`、`sk_hongquan` | 南少林访学；其中原创纳入项沿图鉴标注 |
+| 清军军伍 | `sk_baizhanxinfa` | 兆惠 / 假旗队领的军伍岗位、缴获或合规传授；只登记补录册明确要求的书剑来源扩展，不造人物专属武学 |
 
-任何主线选择都不直接把天级武学塞入背包；任务只开启传授 / 考验入口，最终取得仍由图鉴的属性、职级、前置和层数规则判定。
+`sk_baizhanxinfa` 的唯一归属卡 `skills-general.md` 回写 `ch12_shujian` 来源前，玩家习得失败闭合并提示“来源扩展待登记”。兆惠现行首领配装可继续引用外来携带的 `sk_pojunqiangfa`，但本书补录册未为该卡登记 `ch12_shujian` 来源，故不得由清军岗位、战利品或本书事件开放给玩家。任何主线选择都不直接把天级武学塞入背包；任务只开启传授 / 考验入口，最终取得仍由图鉴的属性、职级、前置和层数规则判定。三门新增卡以 `design/catalog/skills-bulu-12-shujian.md` 为唯一准据；军伍复用项继续以原图鉴为准。
 
 ### 8.5 地点与历史名称边界
 

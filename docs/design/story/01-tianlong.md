@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求与决定见 `decisions/author-requirements.md` AR-04、AR-09、AR-10 与 `decisions/author-decisions.md` P05、P30、P42、P47、P48；跨文档裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：锚点与改命边界 → `design/01` §7.2；年代、书眠与时代图层 → `design/02`；品德与声望 → `design/03` §8；地形 / 轻功门禁 → `design/08`；战斗及 Boss 机制 → `design/09`；正式区域 ID 与旅行 → `design/11`；任务 DSL → `design/12`；天书之力与结局总规则 → `design/13`；门派 → `design/17`；NPC、招募、生卒与跨书界 → `design/18`；城市 ID、坐标与时代名 → `design/19`、`design/map/*`；武学 → `design/catalog/skills-*`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给可用数值并在文末登记。
-> 版本：v1.1（P01 成稿；审校 P01.R，2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.1（P01 成稿；审校 P01.R，2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
 
 ## 0. 阅读指引与剧情总览
 
@@ -953,6 +953,8 @@ fateReady = size(crossFactionRescueFactions) >= 2
 
 以上 15 个 ID 全部引用 `design/17`，本文不新定开放年代、驻地、职级或武学。无量剑派、神农帮等在后世为 `D` 的状态也不由本剧情改写。
 
+首领补录武学的剧情来源统一引用 `design/catalog/skills-bulu-01-tianlong.md`：段氏 L4 护谱有功或天龙寺护谱后参详行功图，可开放 `sk_duanshiyangjue`；完成萧峰守诺与身份尊重链后可开放其本人传授的 `sk_xianglongxinggong`；灵鹫 L4、虚竹认可或石壁行功图奇遇可开放 `sk_tianshanliuyangxinfa`。本文只开放授艺 / 参详资格，不复制卡面，不把首领战胜利写成完整武学掉落。
+
 ### 8.5 同伴加入 / 离开关键门槛
 
 | 时段 | 可形成正式邀请的代表 | 任务门槛 | 强制离队 / 暂离 | 队伍兜底 |
@@ -1316,7 +1318,7 @@ source:
 - 书界 / 过场：`ch01_tianlong`、`ch00_yuenv`、`ch02_shediao`、`vid_sleep_01_02`。
 - 天书：`tsp_01_canon`、`tsp_01_fate`；效果唯一归属 `design/13`。
 - 战斗：`enc_01_juxianzhuang`、`bsc_xiaofeng_juxianzhuang`；机制唯一归属 `design/09`。
-- 武学：`sk_beiming`、`sk_lingbo`、`sk_liumai`、`sk_bingcanduzhang`、`sk_shengsifu`；定义均在图鉴，本文不新定招式或数值。
+- 武学：`sk_beiming`、`sk_lingbo`、`sk_liumai`、`sk_bingcanduzhang`、`sk_shengsifu`，以及补录册中的 `sk_duanshiyangjue`、`sk_xianglongxinggong`、`sk_tianshanliuyangxinfa`；定义均在图鉴，本文不新定招式或数值。
 - NPC：§8.2 的 30 个 `npc_*` 全部来自 `design/catalog/npcs-ch01-tianlong.md`；§8.3 的缺失人物没有预建 ID。
 - 门派：§8.4 的 15 个 `sect_*` 全部来自 `design/17`。
 - 城市：本文所有 `city_*` 均引用 `design/19` / `design/map/cities.yaml`；区域：所有 `rg_*` 均引用 `design/11` 的三十区终稿（其中拆分后的新区域尚待原子回写 `design/map/*.yaml`）；`placeKey` 仅是区域内地貌建议键。
@@ -1458,7 +1460,7 @@ Canon v1.2 §12 已登记 `dc_*`，本文拥有九个选择节点的剧情定义
 | 天书、余韵与全局结局 | `design/13` §4、§6.6、§7 | 只引用两种 `tsp`；同伴改命每书界首次 2 余韵 |
 | NPC、同伴、生命轴 | `design/18`、天龙 NPC 目录 | 已引用现有 30 人与 D 级；26 组剧情所需人物 / 群体仍待上游建档 |
 | 门派 | `design/17` | 已引用 15 个稳定势力 ID，不重定职级 / 开放期 |
-| 武学 | 四份指定技能图鉴 | 只引用五个已有 `sk_*`，不在剧情文档造招 |
+| 武学 | 既有技能图鉴与 `skills-bulu-01-tianlong.md` | 只引用已登记 `sk_*`，补录册来源按 §8.4 开放，不在剧情文档造招 |
 
 ### 13.3 对基准的修改提案
 

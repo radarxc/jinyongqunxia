@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：`ch06_xiake` 的书界主线、正邪立场分支、选择节点、原著事件去向、锚点落地与本书结局；这是本书界主线剧情的唯一归属文档。
 > 上游：`docs/00-canon.md` v1.2；`docs/decisions/author-requirements.md` AR-04、AR-09、AR-10；`docs/decisions/author-decisions.md` G1；`design/01` §7.7；`design/02`；`design/13` §4；`design/17`；`design/18`。
-> 引用而不重定义：年代、书眠、携带与外来压制 → `design/02`；品德与声望 → `design/03`；武学与习得 → `design/05` 及 `design/catalog/skills-xiake-bixue.md`；Boss、战斗失败与非致死结算 → `design/09`；城市、区域与路线 → `design/11` 及 `design/map/*.yaml`；任务 DSL → `design/12`（已落盘；本文兼容契约仍须迁移校验）；天书之力与结局规则 → `design/13`；门派 → `design/17`；NPC、生卒、招募与跨书界 → `design/18`。
+> 引用而不重定义：年代、书眠、携带与外来压制 → `design/02`；品德与声望 → `design/03`；武学与习得 → `design/05`、`design/catalog/skills-xiake-bixue.md` 及 `skills-bulu-06-xiake.md`；Boss、战斗失败与非致死结算 → `design/09`；城市、区域与路线 → `design/11` 及 `design/map/*.yaml`；任务 DSL → `design/12`（已落盘；本文兼容契约仍须迁移校验）；天书之力与结局规则 → `design/13`；门派 → `design/17`；NPC、生卒、招募与跨书界 → `design/18`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要实际构建或游玩验证；**【建议值】** = 依赖其他文档，先给可用值并在文末登记。
-> 版本：v1.1（P06 初稿；审校 P06.R，2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.1（P06 初稿；审校 P06.R，2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -1459,6 +1459,8 @@ variant = canon | fate
 
 本文不创建任何新 `sk_*`。正文出现的“动作札记”“众证谱”是剧情记录，不是新武学，也不得被内容构建器自动转成技能。
 
+首领补录武学的习得来源统一引用 `design/catalog/skills-bulu-06-xiake.md`：谢烟客本人指点或玄铁令守诺后手录开放 `sk_motianyunqi`、`sk_motianzhang`；丁氏认可或 `q_06_bond_02` 非伤害化解开放 `sk_dingshixinfa`、`sk_dingshiqinnashou`；侠客岛 L4 / 自愿归返与赏罚复核开放 `sk_xiakedaoqigong`；雪山派 L4 或门规修复后的门内抄本开放 `sk_lingxiaozhenyuegong`。这些来源只授资格，不把 Boss 战、石壁观摩或众证记录转换为自动掉落。
+
 ---
 
 ## 9. 考据、数据契约与交付校验
@@ -1787,7 +1789,7 @@ saveBeforeCommit: true
 | `docs/design/17-sects-compendium.md` | 本时代开放门派、职级和关系归属 | §8.3 只列参演门派，不重定义门派系统 |
 | `docs/design/18-npc-and-companions.md` 与 `catalog/npcs-ch06-xiake.md` | 26 名本书 NPC 的 ID、D 级、生卒与跨界口径 | §8.1 全量引用；建议等级待 NPC 数据定稿 |
 | 地图 `cities.yaml` / `regions.yaml` / `sects.yaml` / `routes.yaml` | 城市、区域、门派驻地和路线 ID | 新内容采用 `rg_zhedong`、`rg_nanhai_islands`；旧粗区只作底表别名，不作为新叙事 ID |
-| `catalog/skills-xiake-bixue.md`、`catalog/skills-general.md` | 可授艺、展示或作为前置的已有 `sk_*` | §8.4 不新增招名，不把观察记录当武学 |
+| `catalog/skills-xiake-bixue.md`、`catalog/skills-general.md`、`catalog/skills-bulu-06-xiake.md` | 可授艺、展示或作为前置的已有 `sk_*` | §8.4 不新增招名；补录来源按图鉴执行，不把观察记录当武学 |
 
 任务 DSL 的归属文件已经形成；本文 §9.3–§9.5 仍作为待迁移契约，按 `design/12` §2.6 落盘时必须保留 ID、原子提交与失败回补语义。
 

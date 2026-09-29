@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2；作者新增需求 AR-04、AR-09、AR-10 见 `decisions/author-requirements.md`；作者决定见 `decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：核心锚点与改命总览 → `design/01-vision-and-core-loop.md` §7.15；年代、书眠与跨书回响 → `design/02-timeline-and-world-tiers.md`；品德与声望 → `design/03-attributes.md` §8；武学 → `design/05-martial-arts-system.md` 及图鉴；战斗与 Boss → `design/09-combat-system.md`；物件 → `design/10-items-and-equipment.md`；区域与时代地名 → `design/11-open-world.md`；任务结构、DSL、旗标与效果动作 → `design/12-quests-npc-factions.md` §1–§4、§8、§11–§13；天书、结局与雪山抉择 → `design/13-progression-and-endings.md` §4.3、§7；门派 → `design/17-sects-compendium.md`；NPC、招募等级与跨书同伴 → `design/18-npc-and-companions.md` 及 `design/catalog/npcs-ch14-xueshan.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 三联 / 广州修订版原文尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需在游戏构建中验证；**【建议值】** = 依赖归属文档后续落盘或作者决定、先给可执行值并在文末登记。
-> 版本：v1.1（P14.R 审校，2026-09-26；修正原著事件归属并接入正式 `quest.v1` DSL）；全局审计（2026-09-26）。
+> 版本：v1.1（P14.R 审校，2026-09-26；修正原著事件归属并接入正式 `quest.v1` DSL）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -1288,10 +1288,10 @@ canLiangquan = crossBookEvidence
 
 | ID / 组织项 | 本书状态 | 剧情职责 | 关系变化入口 |
 |---|---|---|---|
-| `sect_hujia` 辽东胡家 | `O` | 胡斐、平阿四、胡一刀回忆与胡家证词；`sk_hujiadao` 印证 | 护证、救人、是否让胡斐背锅、雪崖结果 |
-| `sect_miaojia` 苗家 | `O` | 苗人凤、苗若兰、苗家证词与 `sk_miaojiajian` 破绽 | 护女、破围捕、归还证物、雪崖结果 |
-| `sect_tianlongmen` 天龙门 | `O` | 南北宗争盒、田归农余波、当代群豪冲突 | 峰下战、南北宗调停、地图归属；不与大理天龙寺混同 |
-| `sect_qinggong` 清宫 | `O` | 刘元鹤、赛总管的夺图、围捕与官藏方案 | 交图 / 假图、助捕 / 反制、宝藏去向 |
+| `sect_hujia` 辽东胡家 | `O` | 胡斐、平阿四、胡一刀回忆与胡家证词；`sk_hujiadao`、`sk_hujiaxuangong` 印证 | 护证、救人、是否让胡斐背锅、雪崖结果 |
+| `sect_miaojia` 苗家 | `O` | 苗人凤、苗若兰、苗家证词与 `sk_miaojiajian`、`sk_miaojiaxuangong`、`sk_miaojiazhang` 破绽 | 护女、破围捕、归还证物、雪崖结果 |
+| `sect_tianlongmen` 天龙门 | `O` | 南北宗争盒、田归农余波、当代群豪冲突；补录 `sk_tianlongmenxinfa`、`sk_tianlonghezongjian`、`sk_tianlongzhengdao` | 峰下战、南北宗调停、地图归属；不与大理天龙寺混同 |
+| `sect_qinggong` 清宫 | `O` | 刘元鹤、赛总管的夺图、围捕与官藏方案；军伍复用 `sk_baizhanxinfa`、`sk_pojunqiangfa` | 交图 / 假图、助捕 / 反制、宝藏去向 |
 | `sect_chuangwangjun` 闯王军 | `H` | 四卫士与宝藏的历史来源，只作遗民 / 旧史标签 | 无 1780 入门线；不得表现为仍在活动的军队 |
 | 玉笔山庄（不预建 `sect_*`） | 活动据点 | 门客身份、吊篮、库房和机关权限 | 守庄 / 借庄牟利 |
 | 饮马川山寨（不预建 `sect_*`） | 活动势力 | 陶氏父子的来路与利益 | 铁盒、父子安全、分契 |
@@ -1307,13 +1307,17 @@ canLiangquan = crossBookEvidence
 
 | 类别 | 可引用 ID | 剧情限制 |
 |---|---|---|
-| 胡家 | `sk_hujiadao`、`sk_hujiaquan`、`sk_hujiadaoxinfa` | 主线只开放见闻 / 印证窗口；完整学习仍过图鉴前置，不因听证词自动获得 |
-| 苗家 | `sk_miaojiajian`、`sk_miaojiaquan`、`sk_miaojiaxinfa` | 冰镜只揭示叙事破绽，不直接赠送苗家剑法 |
-| 天龙门 | `sk_tianlongjian`、`sk_tianlongbeidao`、`sk_guanwaixinfa` | 南北宗具体套路名未校勘处不另造招名 |
+| 胡家 | `sk_hujiadao`、`sk_hujiaquan`、`sk_hujiadaoxinfa`、`sk_hujiaxuangong` | 主线只开放见闻 / 印证窗口；完整学习仍过图鉴前置，不因听证词自动获得；左右书僮与胡斐的配装不构成掉落 |
+| 苗家 | `sk_miaojiajian`、`sk_miaojiaquan`、`sk_miaojiaxinfa`、`sk_miaojiaxuangong`、`sk_miaojiazhang` | 冰镜只揭示叙事破绽，不直接赠送苗家武学 |
+| 天龙门 | `sk_tianlongjian`、`sk_tianlongbeidao`、`sk_guanwaixinfa`、`sk_tianlongmenxinfa`、`sk_tianlonghezongjian`、`sk_tianlongzhengdao` | 南北宗清理 / 和解后按职级、师授或谱本习得；未校勘处不另造招名 |
+| 宝树个人散承 | `sk_cangfengxingqi`、`sk_cuomaifanzhang` | 须完成当面对质 / 交易或取得旧稿，并满足医毒、属性与前置；不是药王门身份奖励 |
+| 清廷军伍 | `sk_baizhanxinfa`、`sk_pojunqiangfa` | 赛总管与军伍精英按岗位装配；玩家仅走军伍传授 / 缴获等原卡途径。唯一归属卡 `skills-general.md` 回写 `ch14_xueshan` 来源前，玩家习得失败闭合并提示“来源扩展待登记” |
 | 旁支 | `sk_baguadao` | 只在对应人物 / 授艺支线满足图鉴前置时引用，不作为胡苗主线奖励 |
 | 神兵 | `eq_lengyuedao` | 胡家传承 / 器合接口；绝不作为藏宝钥匙 |
 | 钥匙物 | `it_chuangwangjundao` | 与苗若兰珠钗暗图共同定位宝藏 |
 | 跨书证据 | `echo_13_hushixueshu` | 两全首选硬条件；是回响旗标，不当普通背包物复制 |
+
+胡、苗与天龙门进阶卡沿用 `design/catalog/skills-bulu-13-feihu.md`，宝树散承及雪山来源扩展见 `design/catalog/skills-bulu-14-xueshan.md`；本剧情只登记窗口，不重定义卡面。
 
 ### 8.7 生卒与跨书状态断言
 

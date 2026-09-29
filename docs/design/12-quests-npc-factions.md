@@ -4,7 +4,7 @@
 > 上游：`docs/00-canon.md` v1.2；作者新增需求与已采用决定见 `docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`；跨文档裁定见 `docs/decisions/rulings-v1.md`。
 > 引用而不重定义：NPC、同伴、招募难度、生卒、好感 / 羁绊、书眠与重逢 → `design/18-npc-and-companions.md`；NPC 的区域时代层地点日程与 `ScheduleBlock` → `design/11-open-world.md` §6.3；门派史、时代状态、驻地、人物、称谓模板、武学索引与原著依据 → `design/17-sects-compendium.md`；地图 → `design/11-open-world.md`；武学传授 → `design/05-martial-arts-system.md`；战斗队伍与合击 → `design/09-combat-system.md`；物品、配方、丹药、菜肴、锻造和价格基值 → `design/10-items-and-equipment.md`；成长与结局 → `design/13-progression-and-endings.md`；冲穴与打坐 → `design/15-meridians-and-acupoints.md`；资源、家丁与城市营生 → `design/16-resources-and-estates.md`；跨年代传承源、残本、信物、机会收据、缓存与校合 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给可用数值并在文末登记。
-> 版本：v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -913,6 +913,66 @@ sectTrainingMult = (10000 + deltaBp) / 10000
 
 同一 `sourceKey` 重放只计一次；互斥状态同时存在、重复键不同值或输出小于 0 均为存档 / 内容错误，不以数组顺序择一。消费者不得再乘每项效果。当前注册表只有 `sect.shaolin.tonsured`：须为未冻结的 `sect_shaolin` 正式成员、处于剃度状态，且 `skillSectId=sect_shaolin` 时 `deltaBp=1000`，故 `sectTrainingMult=1.10`；其他情况均为 1.00。还俗、离门、逐出、叛出、身份冻结或书眠清理该 active 效果，同时恢复情缘资格；再次入门不自动恢复剃度状态。
 
+#### 6.7.1 十四书界补录武学的授艺登记（经脉落地终审）
+
+本表只登记任务侧的“谁在什么状态下授艺 / 何事件签发谱本资格”，不复制武学参数。技能卡与层数上限唯一归 `catalog/skills-bulu-NN-*`；组织职级解释见 `design/17`。同一格列多门时，来源与硬前置逐门仍以卡片为准；“谱 / 手录”只表示来源凭据，未获 `design/10` 正式物品 ID 前不得生成可交易物。
+
+| 书界 | 武学 ID | 正常来源与任务条件 |
+|---|---|---|
+| 天龙 | `sk_duanshiyangjue` | 大理段氏 L4 且护谱有功，由段正明授至 10；`q_01_faction_01` 后参详天龙寺行功图至 8 |
+| 天龙 | `sk_xianglongxinggong` | `q_01_bond_71` 后萧峰授至 10；射雕洪七公以丐帮 L5 或高羁绊授至 10，均保留卡片前置 |
+| 天龙 | `sk_tianshanliuyangxinfa` | 灵鹫 L4 且六阳掌 7 重由童姥授至 10；虚竹按逍遥 / 灵鹫 L4 授至 10；`q_01_side_72` 石壁图至 8 |
+| 射雕 | `sk_tiezhangyunqigong` | 铁掌帮 L4 + `q_02_faction_05` 后师授 / 遗谱至 10；神雕慈恩印证或旧寨完整遗谱至 10；裘千尺个人残承仅 9 品 9 重 |
+| 射雕 | `sk_taohuaguiyuanjue` | 桃花岛 L4 + 碧涛玄功 8 重 + 听潮试炼；射雕师授 / 潮汐图只得 10 品 9 重残承，神雕百花谷论武后得完整 11 品 |
+| 射雕 | `sk_quanzhenzhoutiangong` | 全真 L4；射雕先修复 `q_02_faction_01` 七处阵位，神雕先解重阳宫之围并复核门规，掌教 / 都讲授至 10 |
+| 射雕 | `sk_jiuyinxieliangong` | `q_02_bond_05` 后梅超风认可授至 10；持 `it_miji_jiuyin_xia` 完成“误读真经”危险奇遇至 8，并承受邪练代价 |
+| 射雕 | `sk_gaibangjuyigong` | 丐帮 L4、七袋以上且完成 `q_02_faction_02`，由洪七公、黄蓉或九袋传功长老授至 10 |
+| 神雕 | `sk_chiliandugong`、`sk_chilianfuchen` | `q_03_faction_80` 李莫愁邪线师授至 10；前者还可由陆无双归还《五毒秘传》并解毒后得批注至 8，后者可用拂尘与秘传校合至 8 |
+| 神雕 | `sk_jueqingbixuejue`、`sk_jindaoheijianjue` | 绝情谷 L4，由谷主 / 剑室试炼授至 10；旧案行气图或谷主刀剑谱经长辈校合至 8 |
+| 神雕 | `sk_jinganghufagong`、`sk_xueshantieshan` | 密宗 L3：护经试炼后师授至 10；达尔巴护经批注 / 霍都扇谱校合至 8，铁扇正谱须达尔巴辨伪与护法许可 |
+| 神雕 | `sk_caoyuanjunzhenxinfa` | 蒙古军伍 L4，守营、整队、军令考核后授至 10；百户阵图经军旅教头校合至 8 |
+| 神雕（既有卡来源扩展） | `sk_tiezhang` | 本次只确认裘千尺的铁掌家传可作为 `ch03_shendiao` 来源；在唯一归属卡补入该书界及合法 `learnSources` 前，玩家仍只能走原卡的铁掌帮 L4 / 裘千仞授艺或中指峰遗谱，不能因击败裘千尺而得全谱 |
+| 倚天 | `sk_mingjiaohujiaogong`、`sk_jinhuazhangfa`、`sk_jinhuabiaofa` | 明教 L3–L4 考校；黛绮丝 / 灵蛇岛支线可授或留谱，层数分别按各卡 7–10 重 |
+| 倚天 | `sk_bosishenghuoxuangong` | 波斯总教 L4 + 圣火令武功 7 重，经议会考校至 10；三使译谱并复核文义至 8 |
+| 倚天 | `sk_huanyinxinfa`、`sk_huanyinshou` | 成昆受控同行时私授至 10；`q_04_qiyu_83` 圆真遗册复核至 8，并结算既有品德代价 |
+| 倚天 | `sk_lutouzhangfa`、`sk_hezuibifa`、`sk_xuanminghanyuangong` | 玄冥师承或二老羁绊 / 换俘授艺至 10；王府对应残谱 / 密谱至 8；不由王府职级自动赠送 |
+| 倚天 | `sk_kunlunliangyixinfa`、`sk_kongtongwuxingxinfa`、`sk_huashanliangyixinfa04` | 各派 L4 考校授至 10；人物授艺、救治归谱或门派支线校合至 8；昆仑仅观摩至 6 |
+| 笑傲 | `sk_huashanziqijue` | 华山气宗 L5 + 紫霞 9 重，掌门 / 密卷至 10；思过崖辨义并由气宗长老印证至 8 |
+| 笑傲 | `sk_jianzongxingqi`、`sk_songshanzhenqi`、`sk_songshankaihezhang`、`sk_qingchengyunqi`、`sk_heimuxuangong` | 对应支派 L4 正常授至 10；门派支线或武册至 8 |
+| 笑傲 | `sk_renwoxingzhang`、`sk_kuihuafeizhen` | 前者只由任我行合法指点至 10 或梅庄后手录至 8；后者由特殊授艺至 10 或黑木崖秘库针谱至 8；均不可作击败必掉 |
+| 侠客 | `sk_motianyunqi`、`sk_motianzhang` | 谢烟客本人指点，或玄铁令守诺后取得手录；保留各卡属性、资质与前置，不由击败掉落 |
+| 侠客 | `sk_dingshixinfa`、`sk_dingshiqinnashou` | 丁氏家传认可；或完成 `q_06_bond_02` 并以非伤害方式化解舟行冲突后获校注 / 授艺 |
+| 侠客 | `sk_xiakedaoqigong`、`sk_lingxiaozhenyuegong` | 侠客岛 L4 或自愿归返、赏罚复核后岛主授艺；雪山派 L4 或门规修复、寒地守望后得门内抄本 |
+| 碧血 | `sk_shanzongzhengqigong`、`sk_jinlongbangxinfa`、`sk_xianduyunqi`、`sk_huashanqigong07` | 山宗 / 闯军、金龙帮、仙都、华山碧血支均以 L3 师授至 10；军纪整顿、焦宅止斗、错谱和解等支线抄本至 8；华山亦可由穆人清 / 归辛树认可授艺 |
+| 碧血 | `sk_shiliangwuxinggong`、`sk_tiejianxuangong` | 石梁温家 L4 或旧案和解、族议认可后抄本至 8；铁剑门 L4 或木桑手录奇遇至 10，均不得以击败直接夺全谱 |
+| 碧血 | `sk_minggonghuyuangong` | 宫禁调查取得护院武册至 8；非击杀处理内监亲随首领后师授至 10，不授予清代宫廷身份 |
+| 鹿鼎 | `sk_aobaihengliangong`、`sk_bukuhengshuai`、`sk_bukuhutiaogong` | 清宫 L3–L4 / 布库教头正常传授；鳌拜案校场抄本至 8，横摔可由校场夺魁奇遇取得 |
+| 鹿鼎 | `sk_sangjiehufagong`、`sk_fansenghutigong`、`sk_xueyuhufashou` | 密宗 L3–L4、桑结 / 门下授艺或五台护经奇遇；护法手保留大手印 6 重前置 |
+| 鹿鼎 | `sk_wangwuzhenshanxinfa`、`sk_wangwuhushangong`、`sk_wangwudangguanjian` | 王屋 L4–L5；护寨结局掌门手录或司徒伯雷遗谱仅按卡片层数开放 |
+| 鹿鼎 | `sk_pingxizhentaixinfa`、`sk_pingxixingqijue` | 校尉 / 军阵护卫岗位传授，或反三藩、云南粮台线缴获军册；不要求效忠吴三桂本人 |
+| 鹿鼎 | `sk_shenlonghaichaojing`、`sk_shenlongfanzhougong` | 神龙教舰队 L3–L4 岗位传授；救俘 / 夺旗奇遇的舰队抄本至 8 |
+| 鹿鼎 | `sk_yanpinghaifangxinfa`、`sk_yanpingfanchaojue`、`sk_yanpingzhenhaijian` | 郑氏将领、水师教头或护卫岗位授艺；通吃岛双印 / 护送支线签发军册或剑谱 |
+| 鹿鼎 | `sk_yijianxinfa`、`sk_yijianwuxue` | 冯锡范本人认可授艺，或遗谱奇遇；不并入昆仑公传，具体师承仍（待考） |
+| 鹿鼎 | `sk_luochazhenliecao`、`sk_luochabujunhuxi`、`sk_luochaciqiangshu` | 雅克萨守军教官，或止战交换后训练札记；不得以屠城作为来源 |
+| 鹿鼎 | `sk_haidafuhuagujing` | 仅海大富秘密传授或宫中遗谱奇遇；不随普通清宫职级开放 |
+| 连城 | `sk_wanjiazhengqi`、`sk_wanjiaanshenquan` | 万家门 L3，清白门人 / 护院教习或门内武册；问责改组后由未涉案门人代授 |
+| 连城 | `sk_jingzhouguanfuqinfa`、`sk_jingzhouyangqigong` | 官府关系 ≥40 或有效官府开局身份，由衙门教头传授；亦可研读衙门武册，养气功另需擒法 4 重 |
+| 白马 | `sk_huahuixinfa`、`sk_walalizhi`、`sk_majiajunfeizhen` | 瓦耳拉齐 / 马家骏信任线亲授至 10；`q_10_bond_05` 后由李文秀辨认未淬毒练习谱至 8；指法亦可由改命后的李文秀转授至 8 |
+| 白马 | `sk_hasakeyunqi` | 哈萨克庄园 `job_jiaotou`：L3 亲随且完成救援、守诺、演武认可后师授至 10；共同体接纳后观摩至 6 |
+| 鸳鸯 | `sk_zhentiansanshizhang` | 卓天雄存活，完成 `q_11_side_08` 释放具结且关系 R3 后授至 10；观摩至 6，不并入清宫职级谱 |
+| 书剑 | `sk_tiedanzhuangxinfa`、`sk_tiedanzhuangquan` | 铁胆庄误会收束且关系达标后周仲英授艺 / 周氏谱本；拳另需心法 5 重与庄民保护目标 |
+| 书剑 | `sk_tianchishengong` | `q_12_qiyu_14` 后袁士霄亲授；或完成陈家洛羁绊、持天池引见，在余韵取得遗谱研习许可 |
+| 书剑（既有卡来源扩展） | `sk_baizhanxinfa` | 清军军伍按 T08 达 L4 后由合资格将领 / 教头授艺，或完成大型守城线后拼合军书残卷；仍检查 `sk_jundituna` 6 重。唯一归属卡补入 `ch12_shujian` 前，来源解析须明确报“待登记”，不得静默放开 |
+| 飞狐 | `sk_miaojiaxuangong`、`sk_miaojiazhang`、`sk_hujiaxuangong` | 苗家 L4 家主 / 教习或胡苗旧怨互证后家谱；胡家玄功由刀谱内篇、胡斐指点或胡一刀遗泽奇遇 |
+| 飞狐 | `sk_shangjiabaoqi`、`sk_huiwuguixin` | 商家堡 L4 或堡毁后幸存者多数认可授谱；掌门大会会武笔记奇遇并满足博艺前置 |
+| 飞狐 | `sk_nanhaiwuhuxinfa`、`sk_wuhudaofa`、`sk_fengjiawuhuquan` | 南海五虎传人 / 合法移交武馆谱册；凤家拳可由脱离凤天南的护院教习传授 |
+| 飞狐 | `sk_tianlongmenxinfa`、`sk_tianlongzhengdao`、`sk_tianlonghezongjian` | 关外天龙门 L4；南北宗清理 / 和解后长老、教习合授，合宗剑亦可由两宗剑谱互证奇遇取得 |
+| 飞狐 | `sk_yaowangneigong`、`sk_yaowanghushoufa`、`sk_bajixingqi` | 药王门 L3 且医毒解毒至少两线合格或程灵素认可；护手为药王 L2 / 羁绊授谱；八极支系 L2 或守约会武交流 |
+| 雪山 | `sk_cangfengxingqi`、`sk_cuomaifanzhang` | 宝树受控同行 / 履约交换时授至 10；对质并保全旧稿或处置后所得旧稿按卡片至 8；均为个人医毒散承，不归药王门 |
+| 雪山（既有卡来源扩展） | `sk_baizhanxinfa`、`sk_pojunqiangfa` | 清宫 / 军伍按 T08 达 L4 后走原卡的将领 / 教头授艺或大型守城军功来源；分别仍检查 `sk_jundituna` 6 重、`sk_duanzhenqiang` 5 重。唯一归属卡补入 `ch14_xueshan` 前只供已配装单位引用，玩家学习须失败闭合 |
+
+授艺动作必须同时校验武学卡 `reqs`、门派状态、来源事件、教师可用性与 `maxLayer`。首领已装配某武学不构成掉落或传授资格；谱本来源也不得把 8 重残谱静默升级为 10 重。上表三组“既有卡来源扩展”还须由唯一归属图鉴回写 `sourceChapters / learnSources`；回写前不得把本任务表当作第二张武学卡或自动解锁依据。
+
 ### 6.8 叛出、逐出与兼并
 
 | 退出方式 | 主动性 | 状态 | 回归 |
@@ -1716,6 +1776,8 @@ q_06_qiyu_90
 | QST-V17 | error | 书眠事务只把当界 `fame` 累加 `fameTotal` 一次，随后归零；现金、门派身份和当界经营状态清零 |
 | QST-V18 | error | 技艺 ID 恰为十项闭集，值在 0–100；未达 `T(g)` 禁止尝试；`gMax` 钳在 12；烹饪不得读 `alchemy` 或新增 `cook` |
 | QST-V19 | error | AI 提案每次 ≤3 项；好感单项 −1..+1、每段累计绝对值 ≤3；旗标已登记；禁止其他持久效果 |
+| QST-V27 | error | `catalog/skills-bulu-NN-*` 中每个补录 `sk_*` 必须在 §6.7.1 恰有一条来源登记；门派公传的最低职级与 `design/17` §2.1 一致；个人散承不得被任一组织职级自动开放 |
+| QST-V28 | error | 师授 / 谱本同时检查卡片 `reqs`、事件、教师可用性与 `maxLayer`；8 重残谱不得静默升成 10 重，首领装配不得自动生成掉落或授艺来源 |
 | QST-V20 | error | 所有 YAML 可无损转 JSON；禁止 anchor、alias、merge、多文档、重复键、未知键、NaN / Infinity 与隐式日期 |
 | QST-V21 | error | 99 个规范 `sect_*` 与 `design/17` 集合相等；每个有 14 个状态；计数矩阵逐格、逐列等于 §7.3 |
 | QST-V22 | warning→发布 error | 原创、待考和建议值有规范标注；正式内容不得含 fixture 名、占位依赖、未完成标记或省略正文的占位语 |

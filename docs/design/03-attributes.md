@@ -5,7 +5,7 @@
 > 引用而不重定义：伤害、治疗与 Z0–Z10 → `design/04-damage-formula.md`；武功层数、内功相性与左右互搏 → `design/05-martial-arts-system.md`；Buff 目录、持续类型与跨战清理 → `design/06-buff-system.md`；套装 → `design/07-set-system.md`；六角地形、轻功门禁与水性行为 → `design/08-terrain-and-qinggong.md`；集气、首轮排序、移动点与战后流程 → `design/09-combat-system.md`；装备数值与合法名录 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务与门派层级 → `design/12-quests-npc-factions.md`；经验、`expFp`、修为余韵、终局与天书之力 → `design/13-progression-and-endings.md`；冲穴、经脉、周天与九转 → `design/15-meridians-and-acupoints.md`；资源、家丁与营生 → `design/16-resources-and-estates.md`；门派历史、称谓与时代矩阵 → `design/17-sects-compendium.md`；NPC 与跨书界同伴 → `design/18-npc-and-companions.md`；地图坐标、区域、城市与路线数据 → `design/19-world-map.md`；后人、宝藏、残本与合成 → `design/20`；战斗经脉动态、攻 / 防 / 轻功路线、护体内劲与经脉模拟模块 → `design/21`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他归属文档、先给出可用数值并在文末登记。
 
-> 版本：v1.2（跨文档同步、全局审计，2026-09-26）；经脉系统落地（2026-09-27）。
+> 版本：v1.2（跨文档同步、全局审计，2026-09-26）；经脉系统落地（2026-09-27）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -1257,6 +1257,17 @@ UI：被压制的武功/装备在图标上显示"天道"角标，品阶色按 `g
 | 倚天 Lv70（W95，普通） | 8·7 | 28,469 | 18,151 | 4,029 | 3,630 | 3,400 | 3,114 |
 | 倚天 Lv70（精英） | 9·8 | 30,222 | 19,708 | 4,196 | 3,942 | 3,557 | 3,383 |
 
+#### 10.2.1 武学型 Boss 发布构建闸门
+
+`STD_E` 只提供数值基线，不能替代实际武学配装。所有武学型 Boss / 首领在发布前逐单位执行 `design/21` §11.9.1 的闸门：
+
+1. 内功恰为 **1 门主运 + 2 门辅运**；两门辅运必须是玄 / 黄阶基础内功。主运须达到当章“本界精英默认”给出的最低目标 `G` 与人物地位下限，并能由同一主运解析 `effGrade / effLayer / innerNature`；七项经脉参数与路线均须完整。
+2. 外功为 **3–5 门**，至少 1 门有效品阶 `≥G`；若人物的主要战斗身份横跨两类外功（如拳掌兼兵器），至少 2 门外功 `≥G`。具体可共享性、来源与补位顺序只引用 21 §11.9.1。
+3. “地位下限兜底 / 缺专属主运”标记只允许离线节奏估算工具 `boss_pacing.py` 读取，且输出必须带 `estimateOnly=true`、不得进入发布 IR。正式生产构建若仍见任一标记，或七参只有 `effGrade / effLayer / innerNature` 而没有可解析的主运 `sk_*` 外键，一律按 `tech/04` 的 `TS-CONTENT-BOSS-021` 以 **error 阻断**，不降为 warning，也不得因节奏超窗而降档。其他资料缺失同样不得静默回退为 `1 / 1 / harmony`。
+4. 纯落石、火场、门闩等没有武学行动的机关 / 环境物可豁免内外功和经脉实例；武学型机关若低于目标或豁免，必须在遭遇数据中写明例外类型、叙事 / 机制理由与实际目标值。
+
+多人首领组仍逐单位通过以上配装闸门；这不表示每个单位各自获得一份完整 Boss 耐久，节奏验收统一见 §10.8。
+
 ### 10.3 模板倍率表
 
 | 模板 | ID | `hpMax` | `atkOut`/`atkIn` | `defOut`/`defIn` | `mpMax` | 评级加值（`hit` `eva` `parry` `pierce` `crit` `tough` `effHit` `effRes`） | `spd` | 抗性加值（8 项） | 威力归一 `tmplPower`（§10.6） | 其他 |
@@ -1317,6 +1328,8 @@ python3 tools/balance/damage_sim.py --check
 ```
 
 修改本节的 `STD`、敌人模板、`MPREF` 或 `P_ref` 后，必须同步脚本并重新生成 `design/04` §9；不得手改显示值。**已解决（CN-09）**：脚本已把玩家普通装备拆成 `gWeapon=min(gMain,9)` 与 `gGear=min(gref,9)`，并据此重生 04 §9 的 42 行节奏表及经脉三档回归；现行结果可由 `python3 tools/balance/damage_sim.py --check` 复现。
+
+多人 Boss 的轮数以**整场**共享总血量、全部阶段有效耐久，或非击杀目标的总进度计一次；不得给每名可行动单位复制一份完整 Boss 耐久。召唤、转阶段、停手阈值均须换算进同一总预算。超出 Boss 12–25 轮 / 精英 6–10 轮时，按 `design/21` §11.9.2 先调有效耐久、阶段或目标机制，禁止通过降低主运、里程碑或经脉七参压回窗口；静态通过后仍由 `design/09` 的具名固定 RNG 回放验收。
 
 ### 10.9 越级 Boss 示例：洪安通（鹿鼎，`full` 完整法）
 
@@ -1657,6 +1670,8 @@ declare function toMeridianAttributeInput(
 | V03-15 | `MeridianAttributeInput.mpRatioBp == clamp(floor(mpMax×10000/MPREF(displayLevel)),5000,20000)`，且 `currentMp/innerNature/effectiveQinggong/baseSpd/baseMove` 与其余字段来自同一已完成属性 / 移动快照 | 混用不同 tick / 等级快照，从当前 `mp` 反推 `mpMax`，或把 `mpNature/qinggong/spd/mov` 原键无声明直传 |
 | V03-16 | `StatSheet.qinggong/spd` 保持未乘经脉速度；21 的战斗投影只序列化 `openingQinggong/spd/move`，公式别名 `spd'/move'` 不作键名 | 把 `meridianSpeedBp` 写进 `Q_skill`、`Σpct_spd`，用修正后轻功通过 08 门禁，或把撇号别名写进 schema |
 | V03-17 | `meridianAttackBp/meridianDefenseBp` 不进入 `StatModifier.mult`；`evadeRatingDelta` 不含擒拿；护体输出名为 `damageBeforeMpGuard` | 经脉攻防重复乘、擒拿重复罚闪避，或把护体剩余量当实际 `hpDamage` |
+| V03-18 | 每个武学型 Boss 逐单位满足 §10.2.1：1 主运 + 2 玄 / 黄基础辅运、3–5 外功且至少 1 门 `≥G`；跨两类主要身份时至少 2 门 `≥G` | 配装数量 / 品阶不足、七参或路线不可解析、静默回退 `1/1/harmony`，或仍带“地位下限兜底 / 缺专属主运”标记 |
+| V03-19 | 多人 Boss 的耐久预算按整场共享总耐久 / 总目标进度计算；纯机关豁免须与武学型机关区分 | 按行动单位复制完整 Boss 耐久，或武学型机关无理由豁免 |
 
 ### 14.2 金标准数值用例
 
@@ -1686,10 +1701,12 @@ declare function toMeridianAttributeInput(
 | T03-20 | Lv35 STD：管线内 `qinggong=97.794`，交换边界 `effectiveQinggong=roundHalfUp(97.794)=98`；`mpMax=MPREF=4697`、`baseSpd=106`，21 标准 Profile 且无擒拿 | `mpRatioBp=10000`；`meridianSpeedBp=combinedSpeedBp=10000`；`openingQinggong=98`、结果 `spd=106`，与 21 §14.11 的 `98/106/6/0` 一致；未修正面板轻功仍显示 98，08 门禁输入不变 |
 | T03-21 | 同一基础快照，21 强者 `meridianSpeedBp=12239`、5 级擒拿 `grappleMoveBp=6000`、`baseMove=6` | `combinedSpeedBp=floor(12239×6000/10000)=7343`；`openingQinggong=71`、`spd'=77`、`move'=5`；纯经脉 `evadeRatingDelta=+22`，擒拿闪避只由 04 / 06 另算一次 |
 | T03-22 | 护体真气后剩 1000 拳脚伤害，21 抵消 1000、耗内 500 | `damageBeforeMpGuard=0` 且 `1000=1000+0`；属性层只把 `mp` 扣 500，不改变 `mpMax/atkIn/defIn` |
+| T03-23 | 双首领各自通过配装闸门；遭遇共享总耐久 180,000，第二阶段再召唤一名可行动单位 | 节奏分母仍为整场 180,000 加阶段有效量，不扩成 2 或 3 份 180,000；超窗只调耐久 / 阶段 / 目标 |
+| T03-24 | 同一条“地位下限兜底 / 缺专属主运”行分别送入正式生产构建与 `boss_pacing.py` | 生产构建报 `TS-CONTENT-BOSS-021` 并阻断；离线估算可读，但输出必须有 `estimateOnly=true` 且不得进入发布 IR |
 
 ### 14.3 验收闸门
 
-1. 修改 §2–§10 任一公式后，重算 T03-01～T03-22，并同步 §3.5、§4.9、§10.2、§10.7、§10.10 中受影响的显示表。
+1. 修改 §2–§10 任一公式后，重算 T03-01～T03-24，并同步 §3.5、§4.9、§10.2、§10.7、§10.10 中受影响的显示表。
 2. 修改 `STD`、`MPREF`、`P_ref` 或敌模板后，运行 `python3 tools/balance/damage_sim.py --check`；脚本必须先采用本文的合法普通装备上限，不能用旧脚本结果反向覆盖正文。
 3. 修改类型或 ID 后，对 `docs` 与 `tools` 执行精确搜索，确认旧重命名 ID 为 0 个运行态命中，并检查 06 的 Buff 目录与 10 的装备名录。
 4. 合并前检查 Markdown 表列数、代码围栏成对、标题顺序、引用路径和 TypeScript 语法；无 YAML 代码块时记录“无适用项”，不得伪称解析通过。

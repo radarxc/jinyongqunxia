@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：`ch07_bixue` 的唯一主线剧情、正邪路线、选择节点、锚点落地、结局条件与剧情任务 ID。
 > 上游：`00-canon.md` v1.2；`decisions/author-requirements.md` AR-04、AR-09、AR-10；`decisions/author-decisions.md`；`decisions/rulings-v1.md`；`design/01` §7.8；`design/02` §1.3.7、§4；`design/13` §4.3、§4.4、§6.6、§7；`design/17`；`design/18`。
-> 引用而不重定义：属性与 `morality` / `fame` → `design/03` §8.3–§8.4；武学与授艺 → `design/05` 及 `design/catalog/skills-xiake-bixue.md`；战斗与 Boss 阶段机制 → `design/09`；城市、区域与时代名称 → `design/19`、`design/map/*.yaml`；任务 DSL → `design/12`（已落盘；本文夹具仍须按 `tech/04` §3.4、§5.3 迁移校验）；天书之力 → `design/13` §4.3；NPC 招募、生卒与跨书界 → `design/18`；书界特色系统（金蛇秘籍解谜、闯王宝藏） → `design/chapters/07-bixue.md`。
+> 引用而不重定义：属性与 `morality` / `fame` → `design/03` §8.3–§8.4；武学与授艺 → `design/05`、`design/catalog/skills-xiake-bixue.md` 及 `skills-bulu-07-bixue.md`；战斗与 Boss 阶段机制 → `design/09`；城市、区域与时代名称 → `design/19`、`design/map/*.yaml`；任务 DSL → `design/12`（已落盘；本文夹具仍须按 `tech/04` §3.4、§5.3 迁移校验）；天书之力 → `design/13` §4.3；NPC 招募、生卒与跨书界 → `design/18`；书界特色系统（金蛇秘籍解谜、闯王宝藏） → `design/chapters/07-bixue.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给可用数值并在文末登记。
-> 版本：v0.2（P07 初稿；审校 P07.R，2026-09-26）；全局审计（2026-09-26）。
+> 版本：v0.2（P07 初稿；审校 P07.R，2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -1218,6 +1218,8 @@ A07-4 是本界主改命的唯一剧情真值；书眠适配器按 A07-4=`fate` 
 | `sk_hanshasheying` | 五毒暗器警示 | 归属原著性按图鉴（待考） |
 | `sk_fuhuzhang` | 崔秋山序幕传承 | 只开放合法来源，不复制层数 / 属性门槛 |
 | `sk_shuangqiangqiangfa` | 闯军 / 山宗战斗画像候选 | 图鉴既有原创命名，不断言原著招名 |
+
+本书补录来源统一引用 `design/catalog/skills-bulu-07-bixue.md`：山宗 / 闯军第三职级或军纪整顿抄本开放 `sk_shanzongzhengqigong`；金龙帮第三职级或焦宅止斗后的合规秘籍开放 `sk_jinlongbangxinfa`；石梁第四职级或旧案和解后的公传抄本开放 `sk_shiliangwuxinggong`；仙都第三职级或错谱争端校正抄本开放 `sk_xianduyunqi`；华山碧血支第三职级、穆人清 / 归辛树认可开放 `sk_huashanqigong07`；铁剑门第四职级或木桑手录奇遇开放 `sk_tiejianxuangong`；宫禁调查武册或非击杀处理内监亲随首领开放 `sk_minggonghuyuangong`。本文不复制卡面，首领战也不自动掉落完整武学。
 
 ---
 

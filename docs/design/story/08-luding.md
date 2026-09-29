@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2；作者新增需求 AR-04、AR-09、AR-10、AR-12；作者已采用决定见 `decisions/author-decisions.md`；锚点以 `design/01` §7.9 为准。
 > 引用而不重定义：年代、天道压制与书眠 → `design/02`；品德、声望与口才 → `design/03`；武学 → `design/05` 与各 catalog；战斗 / Boss → `design/09`；地图 → `design/11`、`design/19` 与 `design/map/*`；任务 DSL → `design/12`；天书、结局与余韵 → `design/13`；门派 → `design/17`；NPC、生卒与招募 → `design/18`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要实现后验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v1.0（2026-09-26）；审校 P08.R（2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.0（2026-09-26）；审校 P08.R（2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -388,7 +388,7 @@ flowchart TD
 |---|---|
 | 原著对应事件 | 第17–25回：庄家与双儿、少林、五台山顺治、神龙教初现、王屋派赌局、九难刺驾 |
 | 地点 | 京师顺天府 `city_beijing` → 登封县 `city_dengfeng` → 五台山（无正式城市 ID，`placeKey: mt_wutai`） |
-| 参与 NPC | `npc_shuanger`、`npc_chengguan`、`npc_kangxi`、`npc_ajiu`、`npc_zengrou`、`npc_weixiaobao`；庄家遗属、顺治 / 行痴、桑结（正式 ID 尚待 `design/18` 登记） |
+| 参与 NPC | `npc_shuanger`、`npc_chengguan`、`npc_kangxi`、`npc_ajiu`、`npc_zengrou`、`npc_weixiaobao`、`npc_sangjie`；庄家遗属、顺治 / 行痴（正式 ID 尚待 `design/18` 登记） |
 | 本幕目标 | 护住顺治的出家选择而非把他变回政治筹码，并让九难看见“刺一人会牵连谁” |
 
 **目标与流程**：
@@ -430,7 +430,7 @@ flowchart TD
 |---|---|
 | 原著对应事件 | 第26–29回：九难与阿珂、拜师、河间杀龟大会、郑克塽与陈近南冲突 |
 | 地点 | 河间府 `city_hejian`、直隶官道 → 京师顺天府 `city_beijing` 天地会园中土屋 |
-| 参与 NPC | `npc_ajiu`、`npc_ake`、`npc_chenjinnan`、`npc_zhengkeshuang`、`npc_mujiansheng`、`npc_weixiaobao`；冯锡范（正式 ID 尚待 `design/18` 登记） |
+| 参与 NPC | `npc_ajiu`、`npc_ake`、`npc_chenjinnan`、`npc_zhengkeshuang`、`npc_mujiansheng`、`npc_weixiaobao`、`npc_fengxifan` |
 | 本幕目标 | 把“杀吴三桂”的共同口号拆成可执行的救人、查军饷与止内斗方案，并记录郑克塽敌意的来源 |
 
 **目标与流程**：
@@ -634,7 +634,7 @@ flowchart TD
 |---|---|
 | 原著对应事件 | 第44–48回：神龙教终局与通吃岛会战、陈近南遇害、风际中暴露、台湾归清、返京与雅克萨边事 |
 | 地点 | 神龙岛 `city_shenlongdao` → 通吃岛（`cityId: null`，`placeKey: tongchi_island`）→ 承天府 `city_tainan` → 雅克萨城 `city_yakesa` |
-| 参与 NPC | `npc_hongantong`、`npc_suquan`、`npc_chenjinnan`、`npc_zhengkeshuang`、`npc_shilang`、`npc_kangxi`、`npc_suofeiya`、`npc_weixiaobao`、`npc_shuanger`；五龙使、冯锡范、风际中（正式 ID 尚待 `design/18` 登记） |
+| 参与 NPC | `npc_hongantong`、`npc_suquan`、`npc_chenjinnan`、`npc_zhengkeshuang`、`npc_shilang`、`npc_kangxi`、`npc_suofeiya`、`npc_weixiaobao`、`npc_shuanger`、`npc_fengxifan`；五龙使、风际中（正式 ID 尚待 `design/18` 登记） |
 | 本幕目标 | 在第44回顺序内完成洪安通终战、转往通吃岛处理陈近南锚点，再把台湾与雅克萨大势写成“玩家影响具体人和谈判条件、不取代历史主角” |
 
 **目标与流程**：
@@ -781,7 +781,7 @@ flowchart TD
 |---|---|
 | 原著对应事件 | 第17–25回：庄家与双儿、少林 / 五台护驾、经书劫案、苏荃初现、王屋派、九难 |
 | 地点 | 京师顺天府 `city_beijing` → 登封县 `city_dengfeng` → 五台山 `placeKey: mt_wutai` |
-| 参与 NPC | `npc_shuanger`、`npc_chengguan`、`npc_zengrou`、`npc_ajiu`、`npc_kangxi`、`npc_weixiaobao`；顺治 / 行痴、桑结（正式 ID 尚待 `design/18` 登记） |
+| 参与 NPC | `npc_shuanger`、`npc_chengguan`、`npc_zengrou`、`npc_ajiu`、`npc_kangxi`、`npc_weixiaobao`、`npc_sangjie`；顺治 / 行痴（正式 ID 尚待 `design/18` 登记） |
 | 本幕目标 | 用顺治行踪、少林通行与神龙教经书情报做三角交易，同时确保交易本身不会把清凉寺变成战场 |
 
 **目标与流程**：
@@ -823,7 +823,7 @@ flowchart TD
 |---|---|
 | 原著对应事件 | 第26–29、35回：九难 / 阿珂、河间杀龟大会、郑克塽与陈近南矛盾、神龙教海战前奏 |
 | 地点 | 河间府 `city_hejian` → 京师顺天府 `city_beijing` 天地会园中土屋 → 没沟营 / 辽河口 **（待考）** `city_yingkou` |
-| 参与 NPC | `npc_ajiu`、`npc_ake`、`npc_chenjinnan`、`npc_zhengkeshuang`、`npc_hongantong`、`npc_suquan`、`npc_fangyi`；冯锡范（正式 ID 尚待 `design/18` 登记） |
+| 参与 NPC | `npc_ajiu`、`npc_ake`、`npc_chenjinnan`、`npc_zhengkeshuang`、`npc_hongantong`、`npc_suquan`、`npc_fangyi`、`npc_fengxifan` |
 | 本幕目标 | 从反吴群雄大会取走三方身份样本，以假经书夹页换取神龙岛公开入口，并保留陈 / 郑冲突证据 |
 
 **目标与流程**：
@@ -998,7 +998,7 @@ flowchart TD
 |---|---|
 | 原著对应事件 | 第44–48回：神龙教终局与通吃岛会战、陈近南遇害、风际中暴露、台湾归清、雅克萨 |
 | 地点 | 神龙岛 `city_shenlongdao` → 通吃岛（`placeKey: tongchi_island`）→ 承天府 `city_tainan` → 雅克萨城 `city_yakesa` |
-| 参与 NPC | `npc_hongantong`、`npc_suquan`、`npc_chenjinnan`、`npc_zhengkeshuang`、`npc_shilang`、`npc_suofeiya`、`npc_kangxi`、`npc_weixiaobao`、`npc_shuanger`；五龙使、冯锡范、风际中（正式 ID 尚待 `design/18` 登记） |
+| 参与 NPC | `npc_hongantong`、`npc_suquan`、`npc_chenjinnan`、`npc_zhengkeshuang`、`npc_shilang`、`npc_suofeiya`、`npc_kangxi`、`npc_weixiaobao`、`npc_shuanger`、`npc_fengxifan`；五龙使、风际中（正式 ID 尚待 `design/18` 登记） |
 | 本幕目标 | 先在第44回时序完成洪安通终战，再用匿名泄密线索与清 / 郑两枚印把 `dc_08_08` 落在致命一剑前，随后确认内奸并以边事筹码换暗网撤离 |
 
 **目标与流程**：
@@ -1411,7 +1411,7 @@ flowchart TD
 
 ### 8.2 主线所需但图鉴缺失的具名角色
 
-下列人物有原著主线功能，但 `npcs-ch08-luding.md` 尚无正式 ID。本文不擅造 `npc_*`，统一以角色槽引用，待 `design/18` 补录；海大富已以 `npc_haidafu` 补入名录，不再列为缺项：
+下列人物有原著主线功能，但 `npcs-ch08-luding.md` 尚无正式 ID。本文不擅造 `npc_*`，统一以角色槽引用，待 `design/18` 补录；海大富、桑结与冯锡范已分别以 `npc_haidafu`、`npc_sangjie`、`npc_fengxifan` 补入名录，不再列为缺项：
 
 | 角色槽 | 本文位置 | 需要补的最小资料 |
 |---|---|---|
@@ -1421,8 +1421,6 @@ flowchart TD
 | 吴应熊 | `z04/x04` | 正式 ID、生卒、送婚 / 人质状态 |
 | 刘一舟 | `z01/x01` 与方怡支线 | 正式 ID、沐王府关系和招募门槛 |
 | 风际中 | `z07/x07` | 正式 ID、内奸状态、揭露与战斗画像 |
-| 冯锡范 | 陈 / 郑冲突和台湾段 **（具体参与待考）** | 正式 ID、回目定位、武学映射 |
-| 桑结 | 五台番僧对手 | 正式 ID、`sect_mizong` 身份、D4 / D5 判定 |
 | 神龙教五龙使 | `c02` | 各自姓名 / ID / 状态；若制作预算合并，需保留具名档案 |
 | 吴之荣 | `z05/x05` | 正式 ID、明史案告密角色、污点证人状态 |
 | 庄家遗属 | `z02/x02`、`z05/x05` | 具名角色与群体槽边界、双儿关系 |
@@ -1494,7 +1492,12 @@ flowchart TD
 | 清宫 | `sk_daneichangquan`、`sk_yulinjian`、`sk_daneishenfa`、`sk_bukushuaijiao`、`sk_manchuqishe`、`sk_huagumianzhang` | 化骨绵掌仍只走海大富个人来源 |
 | 铁剑门 | `sk_shenxing`、`sk_tiejianjianfa` | 九难授艺须满足 catalog；跨书旧技能只印证 / 恢复 |
 | 少林 | `sk_boruozhang`、`sk_nianhuazhi`、`sk_fumozhangfa`、`sk_tongrenhenglian`、`sk_dacidabeiqianyeshou`、`sk_shaolingunfa`、`sk_yinshougun`、`sk_yachagun`、`sk_luohanzhen` | 澄观 / 少林身份与层数前置照图鉴 |
-| 密宗支段 | `sk_zhuohuogong`、`sk_dashouyin`、`sk_jingangjue` | 均已有图鉴；本作扩展来源需标原创，不冒充小说招名 |
+| 密宗支段 | `sk_zhuohuogong`、`sk_dashouyin`、`sk_jingangjue`；补录 `sk_sangjiehufagong`、`sk_fansenghutigong`、`sk_xueyuhufashou` | 桑结本人、密宗职级或护经奇遇按补录卡判定；Boss 配装不等于自动习得 |
+| 清宫 / 布库 | 补录 `sk_aobaihengliangong`、`sk_bukuhengshuai`、`sk_bukuhutiaogong`、`sk_haidafuhuagujing` | 清宫职级、校场抄本 / 夺魁或海大富个人传承；个人心法不得按清宫通传发放 |
+| 王屋、平西军与神龙舰队 | 补录 `sk_wangwuzhenshanxinfa`、`sk_wangwuhushangong`、`sk_wangwudangguanjian`、`sk_pingxizhentaixinfa`、`sk_pingxixingqijue`、`sk_shenlonghaichaojing`、`sk_shenlongfanzhougong` | 分别走门派职级、军伍岗位 / 缴获军册、舰队岗位 / 救俘夺旗奇遇 |
+| 郑氏 / 冯锡范与雅克萨 | 补录 `sk_yanpinghaifangxinfa`、`sk_yanpingfanchaojue`、`sk_yanpingzhenhaijian`、`sk_yijianxinfa`、`sk_yijianwuxue`、`sk_luochazhenliecao`、`sk_luochabujunhuxi`、`sk_luochaciqiangshu` | 郑氏军伍、冯锡范个人传承或停战后的守军训练札记；以 `skills-bulu-08-luding.md` 各卡为唯一准据 |
+
+上述补录武学的品阶、经脉与绝招均只引用 `design/catalog/skills-bulu-08-luding.md`，故事稿不重定义卡面。
 
 ---
 
@@ -1818,7 +1821,7 @@ source:
 #### 本文依赖的上游事实
 
 1. 已解决：§9.4–9.5 已迁移到 `design/12` 的 `quest.v1`，并采用其条件 AST、动作白名单、稳定 effect ID、主线失败回退和门派 / 经济接口。
-2. `design/18` 与 `npcs-ch08-luding.md` 是 NPC ID、生卒、D 级和跨书规则唯一归属；§8.2 的缺失角色必须由其补录。
+2. `design/18` 与 `npcs-ch08-luding.md` 是 NPC ID、生卒、D 级和跨书规则唯一归属；已解决：桑结与冯锡范已建档，§8.2 仅保留其余缺失角色。
 3. `design/17` 是门派 ID / 时代状态归属；平西王府、台湾郑氏、罗刹国是否建立 faction ID 待任务系统统一，不应为了本文硬建 `sect_*`。
 4. `design/09` 的“8.9 Boss 示例一”是洪安通遭遇唯一机制来源；若其 ID 或战前标记变化，本文只同步引用。
 5. 地图尚无通吃岛正式 `city_*`；本文使用 `cityId: null + placeKey: tongchi_island`，符合 `design/18` 的地点接口。
