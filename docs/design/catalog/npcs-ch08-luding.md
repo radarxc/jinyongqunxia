@@ -28,8 +28,8 @@
 | `npc_wusangui` | 吴三桂，平西王 | 1612–1678（史实）[H05] | 平西王府 | D5 | 云南政治线、三藩战争；战役限定同行 | 军阵首领画像主运 `sk_pingxizhentaixinfa`；外功按平西军现行配装核配 | ←碧血 | 回目待考：云南、三藩 |
 | `npc_lizicheng` | 李自成，闯王旧主 | 1606–1645?（史实结局争议；小说另设在世）[H05] | `sect_chuangwangjun` | D5 | 与历史年份冲突必须用小说 appearance；陈圆圆线 | 刀法待图鉴 | ←碧血 | 回目待考：云南相逢 |
 | `npc_chenyuanyuan` | 陈圆圆，阿珂之母 | 约 1623–?（史实生卒争议）[H05] | 平西王府 / 隐居 | D4 | 身世揭露与脱离权力线 | 非战斗同伴 | ←碧血 | 回目待考：云南身世 |
-| `npc_guixinshu` | 归辛树，华山高手 | 老年；命定死亡 | `sect_huashan` | D5 | 刺康熙计划；可用碧血旧识阻止误判 | 主运 `sk_hunyuangong`；外功 `sk_kaimenpiguaquan`、`sk_hunyuanzhang`、`sk_poyuquan`、`sk_tiezhijue`、`sk_huashanquan07` | ←碧血 | 回目待考：入宫刺驾 |
-| `npc_guierniang` | 归二娘，华山人物 | 老年；命定死亡 | `sect_huashan` | D5 | 与归辛树共同刺驾、独立救援目标 | 主运 `sk_hunyuangong`；外功 `sk_kaimenpiguaquan`、`sk_hunyuanzhang`、`sk_poyuquan`、`sk_tiezhijue`、`sk_huashanquan07` | ←碧血 | 回目待考：入宫刺驾 |
+| `npc_guixinshu` | 归辛树，华山高手 | 老年；命定死亡 | `sect_huashan` | D5 | 刺康熙计划；可用碧血旧识阻止误判 | 主运 `sk_hunyuangong`；外功 `sk_huashandiejinquan07`、`sk_hunyuanzhang`、`sk_poyuquan`、`sk_tiezhijue`、`sk_huashanquan07` | ←碧血 | 回目待考：入宫刺驾 |
+| `npc_guierniang` | 归二娘，华山人物 | 老年；命定死亡 | `sect_huashan` | D5 | 与归辛树共同刺驾、独立救援目标 | 主运 `sk_hunyuangong`；外功 `sk_huashandiejinquan07`、`sk_hunyuanzhang`、`sk_poyuquan`、`sk_tiezhijue`、`sk_huashanquan07` | ←碧血 | 回目待考：入宫刺驾 |
 | `npc_guisong` | 归钟，归辛树之子 | 青壮；命定死亡 | `sect_huashan` | D5 | 健康与家庭保护；同一锚点可改命 | 华山基础武学待图鉴 | 否 | 回目待考：入宫刺驾 |
 | `npc_zhengkeshuang` | 郑克塽，延平王府公子 | 1670–1707（史实）[H05] | 台湾郑氏 | D5 | 阿珂与陈近南事件；邪线合作 / 正线问责 | 郑氏角色槽主运 `sk_yanpinghaifangxinfa`；外功以 `sk_yanpingzhenhaijian` 为核心 | 否 | 回目待考：通吃岛与台湾 |
 | `npc_shilang` | 施琅，清水师将领 | 1621–1696（史实）[H05] | 清廷水师 | D5 | 台湾战役短时同行；军务与私人恩怨分开 | 水军阵法画像 | 否 | 回目待考：台湾战事 |

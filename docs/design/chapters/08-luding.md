@@ -4,7 +4,7 @@
 > 上游：`docs/00-canon.md` v1.2；作者新增需求与决定见 `docs/decisions/author-requirements.md`、`docs/decisions/author-decisions.md`；正邪主线与选择节点唯一叙事源见 `docs/design/story/08-luding.md`。
 > 引用而不重定义：时间线、书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害公式 → `design/04`；武学规则与图鉴 → `design/05`、`design/catalog/skills-*.md`；Buff → `design/06`；地形与轻功门禁 → `design/08`；战斗、Boss 与合击 → `design/09`；物品与神兵 → `design/10`；统一地图与时代图层 → `design/11`；任务、门派与羁绊 → `design/12`；成长、天书与结局 → `design/13`；穴位、冲穴、通脉、周天与九转 → `design/15`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；门派时代矩阵 → `design/17`；NPC 与跨书重逢 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v1.0（D08 初稿，2026-09-26）；审校 D08.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）。
+> 版本：v1.0（D08 初稿，2026-09-26）；审校 D08.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）。
 
 ---
 
@@ -843,16 +843,16 @@ LD=`H` 的 `sect_quanzhen` 只开放北京白云观式史实宗教 / 残承接�
 
 | # | Boss / 角色槽 | 地点 / 等级 / 局部 D | 武学与品阶 | 预算数值（HP / 外攻 / 外防） | 核心机制与非致死边界 |
 |---:|---|---|---|---|---|
-| 1 | `npc_aobai` 鳌拜 | 紫禁城；Lv34；D5 | `sk_bukushuaijiao` 玄中 5、`sk_daneichangquan` 黄中 2；横练画像待核配 | 34,924 / 1,140 / 816 | 布库桌椅作掩体，康熙与韦小宝完成核心擒拿；玩家处理党羽、锁门和救小吏 |
-| 2 | `npc_haidafu` / 假太后局部角色槽 | 紫禁城；Lv36；D5 | `sk_huagumianzhang` 地上 9、`sk_dacidabeiqianyeshou` 玄上 6；对手用 `sk_shenlongzhang` 玄上 6 | 38,853 / 1,267 / 908 | 双阶段追逐；玩家保经书线索或证人，不取代原著胜负；海大富已登记，假太后正式 NPC ID 待 `design/18` 登记 |
-| 3 | 桑结局部角色槽 | 五台山；Lv37；D5 | `sk_zhuohuogong` 玄下 4、`sk_dashouyin` 玄上 6、`sk_jingangjue` 黄上 3、`sk_damingzhou` 黄中 2 | 40,978 / 1,336 / 957 | 护持三目标；经函、钟声和身份可减少参战番僧；正式 NPC ID 待登记 |
-| 4 | 王屋冲突首领局部角色槽 | 王屋山；Lv36；D5 | `sk_wangwuposhijian` 地下 7、`sk_wangwujian` 玄中 5、`sk_wangwuxinfa` 黄上 3 | 38,853 / 1,267 / 908 | 窄道击退、断栈和矿工保护；允许谈判 / 救援胜利，不把覆灭当唯一解 |
-| 5 | `npc_hongantong` 洪安通 | 神龙岛；Lv50；D8 | `sk_shenlongxinfa` 地上 9、`sk_yingxiongsanzhao` 地中 8、`sk_shenlongzhang` 玄上 6 | **71,300 / 3,066 / 2,438**；`spd=113`，`hit/eva=161/131` | 正式 `enc_08_shenlongdao` / `bsc_hongantong_shenlongdao`；宝训、奉承、英雄三招、苏荃倒戈、蛇窟与三阶段只见 `design/09` §8.9 |
-| 6 | `npc_wusangui` 平西王府军阵画像 | 云南府；Lv40；D6 | `sk_pingxituna` 黄中 2、`sk_pingxijundao` 玄下 4 | 49,880 / 1,624 / 1,113 | 战阵护卫、军令与粮路；胜利目标是取证 / 撤离，不以击杀史实人物收束 |
-| 7 | 神龙海战舰队首领槽 | 辽河口 / 海面；Lv41；D6 | `sk_shenlongzhang` 玄上 6、`sk_shenlongshebu` 玄下 4 | 57,111 / 1,704 / 1,168 | 船旗、火势、俘虏与接舷；毁旗舰不是唯一胜利条件 |
-| 8 | `npc_guixinshu` / `npc_guierniang` 救援战 | 京畿；Lv44；D7 | `sk_hunyuangong` 地上 9、`sk_hunyuanzhang` 玄上 6、`sk_poyuquan` 玄中 5 | 68,463 / 2,042 / 1,341 | 双人互援且保护 `npc_guisong`；目标为劝停 / 制服 / 引离，明确禁用自动了断 |
-| 9 | 郑氏 / 冯锡范局部角色槽 | 通吃岛；Lv43；D7 | 郑氏剑术尚待图鉴核配；不得拿通行剑法冒充原著专属武学 | 65,436 / 1,952 / 1,282 | 背刺预警、两枚印与观察者；战斗只是 `dc_08_08` 的现场接口，不能事后补打改命 |
-| 10 | 雅克萨守军首领槽 | 雅克萨木城；Lv44；D7 | `sk_luochahuoqi` 黄上 3 + `eq_luochaduanchong` 地中 8 | 68,463 / 2,042 / 1,341 | 弹药 2、装填、掩体与交换伤员；打到谈判门槛即停，不把止战写成屠城 |
+| 1 | `npc_aobai` 鳌拜 | 紫禁城；Lv34；D5 | 主运 `sk_aobaihengliangong` 地中 8；外功 `sk_bukuhengshuai` 地中 8、`sk_bukushuaijiao` 玄中 5、`sk_daneichangquan` 黄中 2 | 34,924 / 1,140 / 816 | 布库桌椅作掩体，康熙与韦小宝完成核心擒拿；玩家处理党羽、锁门和救小吏 |
+| 2 | `npc_haidafu` / 假太后局部角色槽 | 紫禁城；Lv36；D5 | 主运 `sk_haidafuhuagujing` 地上 9；外功 `sk_huagumianzhang` 地上 9、`sk_dacidabeiqianyeshou` 玄上 6；对手用 `sk_shenlongzhang` 玄上 6 | 38,853 / 1,267 / 908 | 双阶段追逐；玩家保经书线索或证人，不取代原著胜负；海大富已登记，假太后正式 NPC ID 待 `design/18` 登记 |
+| 3 | `npc_sangjie` 桑结 | 五台山；Lv37；D5 | 主运 `sk_sangjiehufagong` 地中 8；外功 `sk_xueyuhufashou` 地中 8、`sk_dashouyin` 玄上 6、`sk_falunshou` 玄中 5、`sk_jingangjue` 黄上 3 | 40,978 / 1,336 / 957 | 护持三目标；经函、钟声和身份可减少参战番僧 |
+| 4 | 王屋冲突首领局部角色槽 | 王屋山；Lv36；D5 | 主运 `sk_wangwuzhenshanxinfa` 地中 8；外功 `sk_wangwudangguanjian` 地中 8、`sk_wangwuposhijian` 地下 7、`sk_wangwujian` 玄中 5、`sk_wangwuzhang` 玄下 4 | 38,853 / 1,267 / 908 | 窄道击退、断栈和矿工保护；允许谈判 / 救援胜利，不把覆灭当唯一解 |
+| 5 | `npc_hongantong` 洪安通 | 神龙岛；Lv50；D8 | 主运 `sk_shenlongxinfa` 地上 9；外功 `sk_yingxiongsanzhao` 地中 8、`sk_meirensanzhao` 地中 8、`sk_shenlongzhang` 玄上 6 | **71,300 / 3,066 / 2,438**；`spd=113`，`hit/eva=161/131` | 正式 `enc_08_shenlongdao` / `bsc_hongantong_shenlongdao`；宝训、奉承、英雄三招、苏荃倒戈、蛇窟与三阶段只见 `design/09` §8.9 |
+| 6 | `npc_wusangui` 平西王府军阵画像 | 云南府；Lv40；D6 | 主运 `sk_pingxizhentaixinfa` 地中 8；外功 `sk_kaimenpiguaquan` 地中 8、`sk_shouchengzhen` 地下 7、`sk_pingxijundao` 玄下 4 | 49,880 / 1,624 / 1,113 | 战阵护卫、军令与粮路；胜利目标是取证 / 撤离，不以击杀史实人物收束 |
+| 7 | 神龙海战舰队首领槽 | 辽河口 / 海面；Lv41；D6 | 主运 `sk_shenlonghaichaojing` 地中 8；外功 `sk_meirensanzhao` 地中 8、`sk_shenlongzhang` 玄上 6、`sk_shenlongrumenquan` 黄中 2 | 57,111 / 1,704 / 1,168 | 船旗、火势、俘虏与接舷；毁旗舰不是唯一胜利条件 |
+| 8 | `npc_guixinshu` / `npc_guierniang` 救援战 | 京畿；Lv44；D7 | 主运 `sk_hunyuangong` 地上 9；外功 `sk_huashandiejinquan07` 地中 8、`sk_hunyuanzhang` 玄上 6、`sk_poyuquan` 玄中 5 | 68,463 / 2,042 / 1,341 | 双人互援且保护 `npc_guisong`；目标为劝停 / 制服 / 引离，明确禁用自动了断 |
+| 9 | 郑氏 / `npc_fengxifan` 冯锡范角色槽 | 通吃岛；Lv43；D7 | 郑氏用 `sk_yanpinghaifangxinfa` / `sk_yanpingzhenhaijian`；冯锡范用 `sk_yijianxinfa` / `sk_yijianwuxue`，两系不混源 | 65,436 / 1,952 / 1,282 | 背刺预警、两枚印与观察者；战斗只是 `dc_08_08` 的现场接口，不能事后补打改命 |
+| 10 | 雅克萨守军首领槽 | 雅克萨木城；Lv44；D7 | 主运 `sk_luochazhenliecao` 地中 8；外功 `sk_luochaciqiangshu` 地中 8、`sk_luochahuoqi` 黄上 3；火器装备 `eq_luochaduanchong` | 68,463 / 2,042 / 1,341 | 弹药 2、装填、掩体与交换伤员；打到谈判门槛即停，不把止战写成屠城 |
 
 模板样例核算（#1）：Lv34 属一流段，Boss 气血倍率 5.5，D5 系数 `0.85+0.05×5=1.10`；脚本基准裸表约 HP 5,772.6、外攻 829.1、外防 680，故 `round(5,772.6×5.5×1.10)=34,924`，`round(829.1×1.25×1.10)=1,140`，`round(680×1.20)=816`。难度系数只乘 HP 与攻击，不二次乘防御。
 
@@ -915,6 +915,7 @@ bosses:
 | 品阶 | 代表武学 | 主要取得节点 | 用途与分支边界 |
 |---|---|---|---|
 | 地上 9 | `sk_shenlongxinfa` | `q_08_faction_02` / `q_08_faction_03` 查清药账后，由苏荃 / 旧部提供合法传承；或神龙 L5 路线 | 不使用图鉴语义占位任务键；洪安通战败也不会直接掉落“满层秘籍” |
+| 地上 9 | `sk_haidafuhuagujing` | 海大富羁绊的秘密传授，或宫中遗谱奇遇 **（原创扩展）** | 不随清宫职级开放，不由击败海大富或尸体掉落；完整十重是否开放仍见 O08-10 |
 | 地上 9 | `sk_huagumianzhang` | 海大富相关宫闱支线与观摩窗口 **（具体授艺情节待考）** | 清宫 L4 只开放接触机会，不因职级自动授予个人秘技 |
 | 地中 8 | `sk_yingxiongsanzhao`、`sk_meirensanzhao` | 神龙护法线 / 苏荃羁绊；两者可分线取得 | 可作为 `sk_shenlongxinfa` 的 OR 前置，不要求两门全学 |
 | 地下 7 | `sk_hongyingjian` | 天地会 L4 与陈近南认可 | 与凝血神爪同属传承链，但不把反清立场兑换成额外伤害 |
@@ -1473,7 +1474,7 @@ chapterBalance:
 | 单位 | 门派 / 来源 | 主运内功 | 辅运内功（2 格） | 外功（逐门标品阶） | 经脉七项参数 | `milestones` | 血量 / 防御倍率 | 逐单位估算轮数 | 机制备注 |
 |---|---|---|---|---|---|---|---|---:|---|
 | 鳌拜 | 清宫 / 军伍 | `sk_aobaihengliangong`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_bukuhengshuai`（地中8）、`sk_bukushuaijiao`（玄中5）、`sk_manchuqishe`（玄上6）、`sk_daneichangquan`（黄中2） | `8/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `0.85 / 1.00` | `25.69→21.84` | 本门补录已闭合；以布库协力 / 锁门目标收束 **（待实测）** |
-| 海大富 | 清宫；个人传承 | `sk_haidafuhuagujing`（地上9，阴） | `sk_tongzigong`（玄下4）、`sk_shaolinxinfa`（黄中2） | `sk_huagumianzhang`（地上9）、`sk_dacidabeiqianyeshou`（玄上6）、`sk_jingangzhi`（玄下4）、`sk_bukushuaijiao`（玄中5） | `9/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | `0.85 / 1.00` | `26.73→22.72` | 个人心法名为原创扩展；追逐取证达成即停 **（待实测）** |
+| 海大富 | 清宫；个人传承 | `sk_haidafuhuagujing`（地上9，阴；**原创扩展配置**） | `sk_tongzigong`（玄下4）、`sk_shaolinxinfa`（黄中2） | `sk_huagumianzhang`（地上9）、`sk_dacidabeiqianyeshou`（玄上6）、`sk_jingangzhi`（玄下4）、`sk_bukushuaijiao`（玄中5） | `9/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | `0.85 / 1.00` | `26.73→22.72` | 具名个人传承补录依 `design/21` §11.9.1 标 **（原创扩展配置）**；心法名与机制 **（原创扩展）**，仅秘密传授 / 宫中遗谱，不随清宫职级开放；追逐取证达成即停 **（待实测）** |
 | 假太后角色槽 | 神龙教 | `sk_shenlongxinfa`（地上9，阳；具名本土例外） | `sk_jianghutuna`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_meirensanzhao`（地中8）、`sk_shenlongzhang`（玄上6）、`sk_shenlongrumenquan`（黄中2）、`sk_wuyingshou`（玄中5） | `9/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | `0.85 / 1.00` | `26.73→22.72` | 图鉴明确鹿鼎本土来源，非随机池；证人 / 经书目标可提前收束 **（待实测）** |
 | 桑结 | 密宗通传 | `sk_sangjiehufagong`（地中8，阳） | `sk_mizonghufashen`（玄上6）、`sk_zhuohuogong`（玄下4） | `sk_xueyuhufashou`（地中8）、`sk_falunshou`（玄中5）、`sk_dashouyin`（玄上6）、`sk_jingangjue`（黄上3） | `8/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `0.85 / 1.00` | `25.69→21.84` | 密宗同源补录；护持 / 减员目标 **（待实测）** |
 | 王屋冲突首领 | 王屋派 / 江湖 | `sk_wangwuzhenshanxinfa`（地中8，调和） | `sk_jianghutuna`（玄中5）、`sk_wangwuxinfa`（黄上3） | `sk_wangwudangguanjian`（地中8）、`sk_wangwuposhijian`（地下7）、`sk_wangwujian`（玄中5）、`sk_wangwuzhang`（玄下4） | `8/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:1}` | `0.85 / 1.00` | `26.26→22.32` | 谈判 / 救援 / 断栈目标共享进度 **（待实测）** |
@@ -1481,8 +1482,8 @@ chapterBalance:
 | 苏荃（终战头目） | 神龙教 / 苏荃一系 | `sk_shenlongxinfa`（地上9，阳） | `sk_jianghutuna`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_meirensanzhao`（地中8）、`sk_shenlongzhang`（玄上6）、`sk_wuyingshou`（玄中5）、`sk_shenlongrumenquan`（黄中2） | `9/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `0.85 / 1.00`（终战共享） | `26.82→22.80` | 袖手 / 倒戈只改共享进度，不复制耐久 **（待实测）** |
 | 吴三桂军阵首领 | 平西军 | `sk_pingxizhentaixinfa`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_pingxituna`（黄中2） | `sk_kaimenpiguaquan`（地中8）、`sk_shouchengzhen`（地下7）、`sk_junzhongdao`（玄上6）、`sk_duanzhenqiang`（玄上6）、`sk_pingxijundao`（玄下4） | `8/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `0.85 / 1.00` | `25.69→21.84` | 取证 / 撤离目标提前结算 **（待实测）** |
 | 神龙舰队首领 | 神龙教 / 水战泛化槽 | `sk_shenlonghaichaojing`（地中8，阳） | `sk_jianghutuna`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_meirensanzhao`（地中8）、`sk_shenlongzhang`（玄上6）、`sk_wuyingshou`（玄中5）、`sk_shenlongrumenquan`（黄中2） | `8/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `0.85 / 1.00`（舰队共享） | `26.36→22.40` | 泛化槽不得越低武随机池 8 品；夺旗 / 救俘 / 灭火共用进度 **（待实测）** |
-| 归辛树 | 华山混元一脉 | `sk_hunyuangong`（地上9，阳；地位下限9） | `sk_huashantuna07`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_kaimenpiguaquan`（地中8）**（待书界 07 补录）**、`sk_hunyuanzhang`（玄上6）、`sk_poyuquan`（玄中5）、`sk_tiezhijue`（玄中5）、`sk_huashanquan07`（黄中2） | `9/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `0.85 / 1.00`（夫妻共享） | `27.23→23.15` | 劝停 / 制服阈值与归二娘共计一次整场耐久 **（待实测）** |
-| 归二娘 | 华山混元一脉 | `sk_hunyuangong`（地上9，阳） | `sk_huashantuna07`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_kaimenpiguaquan`（地中8）**（待书界 07 补录）**、`sk_hunyuanzhang`（玄上6）、`sk_poyuquan`（玄中5）、`sk_tiezhijue`（玄中5）、`sk_huashanquan07`（黄中2） | `9/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `0.85 / 1.00`（夫妻共享） | `27.23→23.15` | 单位估算用于强度校验；不可给夫妻各复制完整血池 **（待实测）** |
+| 归辛树 | 华山混元一脉 | `sk_hunyuangong`（地上9，阳；地位下限9） | `sk_huashantuna07`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_huashandiejinquan07`（地中8）、`sk_hunyuanzhang`（玄上6）、`sk_poyuquan`（玄中5）、`sk_tiezhijue`（玄中5）、`sk_huashanquan07`（黄中2） | `9/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `0.85 / 1.00`（夫妻共享） | `27.23→23.15` | 劝停 / 制服阈值与归二娘共计一次整场耐久 **（待实测）** |
+| 归二娘 | 华山混元一脉 | `sk_hunyuangong`（地上9，阳） | `sk_huashantuna07`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_huashandiejinquan07`（地中8）、`sk_hunyuanzhang`（玄上6）、`sk_poyuquan`（玄中5）、`sk_tiezhijue`（玄中5）、`sk_huashanquan07`（黄中2） | `9/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `0.85 / 1.00`（夫妻共享） | `27.23→23.15` | 单位估算用于强度校验；不可给夫妻各复制完整血池 **（待实测）** |
 | 郑氏角色槽 | 台湾郑氏 / 海防武备 | `sk_yanpinghaifangxinfa`（地中8，调和） | `sk_jianghutuna`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_yanpingzhenhaijian`（地中8）、`sk_qingfengjian`（玄上6）、`sk_huweijian`（玄中5）、`sk_jianghurumenjian`（黄上3） | `8/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `0.85 / 1.00` | `26.36→22.40` | 双印 / 护送目标；海防武备不与冯锡范混源 **（待实测）** |
 | 冯锡范角色槽 | 个人传承；昆仑出身待考 | `sk_yijianxinfa`（地中8，阴） | `sk_jianghutuna`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_yijianwuxue`（地中8）、`sk_qingfengjian`（玄上6）、`sk_wuyingshou`（玄中5）、`sk_jianghurumenjian`（黄上3） | `8/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `0.85 / 1.00` | `26.36→22.40` | 打断刺杀 / 撤离即停；师承仍 **（待考）** |
 | 雅克萨守军首领 | 罗刹守军 | `sk_luochazhenliecao`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_luochaciqiangshu`（地中8）、`sk_shouchengzhen`（地下7）、`sk_wuyingshou`（玄中5）、`sk_luochahuoqi`（黄上3）、`sk_junwuduandao`（黄上3） | `8/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `0.85 / 1.00` | `25.69→21.84` | 本国训练已补录；交换伤员 / 谈判门槛收束 **（待实测）** |
@@ -1508,12 +1509,16 @@ chapterBalance:
 | 神龙舰队首领 / 精英 | 8 / 7 品非教主内功 | 已补 `sk_shenlonghaichaojing` / `sk_shenlongfanzhougong` |
 | 郑氏、冯锡范及护卫 | 8 / 7 品内功与剑术 | 已按海防武备 / 个人传承分流补录 5 门，不混写同源 |
 | 雅克萨首领 / 火器精英 | 8 / 7 品本国训练内功及高阶外功 | 已补两门内功与 `sk_luochaciqiangshu`；火铳继续用既有 `sk_luochahuoqi` |
-| 海大富 | 人物明确绑定的 8 品以上内功 | 已补 9 品 `sk_haidafuhuagujing`；名称与机制均标原创扩展 |
-| 归辛树 / 归二娘 | 夫妻画像仍含通行 8 品外功替补 | **跨书界待替换**：主书界 07《碧血剑》补录后由 NXfix 统一替换 |
+| 海大富 | 原缺达标且来源合法的 8 品以上内功 | **已解决：**补 9 品 `sk_haidafuhuagujing` 并依 `design/21` §11.9.1 标 **（原创扩展配置）**；仅秘密传授 / 宫中遗谱，不随清宫职级开放 |
+| 归辛树 / 归二娘 | 夫妻画像原含通行 8 品外功替补 | **已解决：**主书界 07 已补 `sk_huashandiejinquan07`（地中8），本表与人物档案均已替换 |
 
 攻防与节奏接口如下：攻击路线在 04 的 Z5 后进入 Z5M，防守路线在 Z4 后进入 Z4M；护体真气后先结算护体内劲，再进 `mpGuard`；拳脚伤害可被护体内劲抵消。速度先乘 `meridianSpeedBp`，再乘 `grappleMoveBp`；首轮冻结 `openingQinggong` 与修正后 `spd`，战中变化只重算后续 CT / 移动。绝招只读取 `MoveDef.ultimate`；点穴 / 擒拿在当次伤害后的 06 阶段分别调用 `applyAcupointSeal` / `applyGrapple`，不得反改本次伤害。
 
-节奏以 04 当前模板基线 `3.9 / 8.0 / 23.4` 为零漂移锚。表内逐单位数由 `boss_pacing.py` 按最终七参重算；所有 Boss 以有效耐久 `H=hpMultiplier×defenseMultiplier=0.85` 回拉，算式例为鳌拜 `25.6893×0.85=21.8359`，落在 12–25。主运替换不改品阶 / 层数 / 里程碑；海大富改为阴、王屋与郑氏改为调和、冯锡范改为阴后，工具按当前整数模型仍分别四舍五入为 `22.72 / 22.32 / 22.40 / 22.40`。洪安通 / 苏荃终战、归氏夫妻战与舰队战的 `0.85` 只作用一次整场共享总耐久或目标进度，不能逐单位重复乘成多份血池；七类手配精英均为 `7.92`（精确复核 `7.9184`），锚点为 `8.07`。速度强档只改变首轮 / CT / 移动，不能再乘伤害；固定 RNG 具名回放仍 **（待实测）**。
+外放逐招事实以图鉴为准：桑结 / 番僧的 `mv_dashouyin_dashouyin` 仅落点掌风与溅射伤害进入外放 Z5M，跃迁本身无伤害；神龙配装中 `mv_shenlongxinfa_tuxi` 是外放，`mv_meirensanzhao_feiyan` 是动作投送，`mv_shenlongzhang_futan` / `mv_shenlongzhang_yazhen` 是近身掌击，均不得因同门批量继承外放。神龙招式只按康熙册的解锁层与条件取加成：本界 `effLayer=8` 可读未移动、受位移 / 硬控等已解锁被动，不得提前读取 10 重的低血护体 / 圆满被动，也不得在首领表另加无条件倍率。
+
+节奏以 04 当前模板基线 `3.9 / 8.0 / 23.4` 为零漂移锚。表内逐单位数由 `boss_pacing.py` 按最终七参重算；所有 Boss 以有效耐久 `H=hpMultiplier×defenseMultiplier=0.85` 回拉，算式例为鳌拜 `25.6893×0.85=21.8359`，落在 12–25。终审复核洪安通为 `23.423226×1.162535×0.85=23.145776→23.15`，桑结为 `23.423226×1.096743×0.85=21.835875→21.84`；归氏换入同为 8 品且非外放的 `sk_huashandiejinquan07`，主运七参和静态轮数均不变，仍为 `27.23×0.85=23.15`。三者均在 12–25 窗内，无须再调血量或防御倍率。
+
+海大富改为阴、王屋与郑氏改为调和、冯锡范改为阴后，工具按当前整数模型仍分别四舍五入为 `22.72 / 22.32 / 22.40 / 22.40`。洪安通 / 苏荃终战、归氏夫妻战与舰队战的 `0.85` 只作用一次整场共享总耐久或目标进度，不能逐单位重复乘成多份血池；七类手配精英均为 `7.92`（精确复核 `7.9184`），锚点为 `8.07`。速度强档只改变首轮 / CT / 移动，不能再乘伤害。上述工具输出均为 `estimateOnly=true`；外放招选择频率、条件触发与具名阵容仍须固定 RNG 生产回放 **（待实测）**。
 
 ---
 
@@ -1681,7 +1686,7 @@ chapterBalance:
 | V08-C17 | 校验传承预算 | 开 7 区时 `carrierCap=ceil(7/2)=4`、后人 ≤2、新残本 ≤8、新信物 ≤4；`lgs_tiejian_shenxing` 被原生来源过滤 | `chapter_legacy_budget_invalid` |
 | V08-C18 | 校验文档标注 | 原创内容带“（原创扩展）”或由 §13 集中归类；未核原著事实进入 K08 清单；所有“【建议值】”进入 C.1 | `chapter_annotation_ledger_missing` |
 | V08-C19 | 校验轻功门禁 | 20 个内容实例按 qg1–qg5 恰为 6 / 9 / 4 / 1 / 0；唯一 qg4 是紫禁城隐藏“屋脊飞渡”；qg4/qg5 地形收益不计内容门禁；正式 `gate_*` 由 `design/08` 分配 | `chapter_qg_gate_budget_invalid` |
-| V08-C20 | 校验经脉实例 | 十场首领表均有 §12.8 七组输入；双人 / 援军逐武学行动者独立实例；纯环境无实例；层数 ≤8；`routeRefs` 全由 `MoveDef` 编译 | `chapter_meridian_template_invalid` |
+| V08-C20 | 校验经脉实例 | 十场首领表均有 §12.8 七组输入；归氏首槽解析为 `sk_huashandiejinquan07`；双人 / 援军逐武学行动者独立实例；纯环境无实例；层数 ≤8；`routeRefs` 全由 `MoveDef` 编译 | `chapter_meridian_template_invalid` |
 | V08-C21 | 校验经脉节奏 | 标准档保持 3.9 / 8.0 / 23.4；攻防只进 Z5M / Z4M，护体与速度顺序符合 `design/21`；Boss 固定 RNG 回放仍为 12–25 | `chapter_meridian_ttk_out_of_range` |
 
 ### B.2 关键流程测试
@@ -1717,7 +1722,7 @@ chapterBalance:
 - **战斗实测**：在正式阵容与地图落地后复测洪安通无准备约 22–26 轮、完成内乱约 13–15 轮，并核对苏荃阵营切换、援军删除、宝训优先级和失败重试。
 - **经济实测**：以 13 小时样本覆盖三条身份、至少两个门派和赌场自我限制，确认主线 / 门派 / 资源 / 营生不会重复结算同一事件。
 - **UI 实测**：窄屏下检查权谋三槽、2×4 经书格、宝训阈值、不可逆预警、身份暴露和文本 / 图标双编码；本章没有真机结果，均保留 **（待实测）**。
-- **构建审校**：假太后 / 桑结等具名角色及候选 `echo_*` 未在归属文档登记前，发布构建必须明确报阻塞或禁用对应可选内容；海大富已登记为 `npc_haidafu`；白云观游方道长则按已登记的岗位槽生成规则校验，不得提升为静态 `npc_*`。
+- **构建审校**：假太后及王屋 / 雅克萨未具名首领、候选 `echo_*` 未在归属文档登记前，发布构建必须明确报阻塞或禁用对应可选内容；海大富、桑结、冯锡范已有正式 NPC；白云观游方道长则按已登记的岗位槽生成规则校验，不得提升为静态 `npc_*`。
 
 ---
 
@@ -1746,7 +1751,7 @@ chapterBalance:
 - **已解决（Canon v1.2 V12-11）**：门派开放 / 隐世状态及五级称谓归 `design/17`；人物生卒、D4 / D5 招募与跨书合并归 `design/18`；冲穴和前代传承分别归 `design/15`、`design/20`。本章只引用这些接口。
 - 武学、物品、地形、战斗、任务、成长、资源分别依赖 `design/05/10/08/09/12/13/16` 及图鉴。章节 YAML 只示意接口，不可成为第二份规则源。
 - **已解决：套装。** `design/07-set-system.md` 已定稿 44 套；本章只消费 §18.3 的鹿鼎可达结论，旧“韦爵爷”候选按 §19 不进入 v1。
-- 假太后 / 桑结等具名角色和六个候选 `echo_*` 尚未全部由其归属文档正式登记，发布数据依赖这些上游补项；海大富已登记为 `npc_haidafu`，白云观授艺者已按 `design/18` 的岗位槽口径收口。
+- 假太后及王屋 / 雅克萨未具名首领和六个候选 `echo_*` 尚未全部由其归属文档正式登记，发布数据依赖这些上游补项；海大富、桑结、冯锡范已登记正式 NPC，白云观授艺者已按 `design/18` 的岗位槽口径收口。
 - 洪安通完整属性依赖 `design/03` §10.9；本文采用正式 `spd=113`，旧 103 / 123 均不构成第二真相源。
 - **已解决：战斗经脉接口。** §12.8 已按 `design/21` §11.9 配齐 Boss / 精英初始化、实例粒度、路线编译、攻防 / 护体 / 速度 / 控制顺序；具体 `mfr_*` 仍由武学图鉴登记后生成。
 
@@ -1777,10 +1782,13 @@ chapterBalance:
 |---|---|---|
 | O08-01 | 白云观史实名称 / 主持不成立时是否保留补位？ | 保留作者决定 P25 的四门低武和 `q_08_qiyu_01` 后半链；人物显示为“不指认真实住持的游方道长”，不开放全真职级 |
 | O08-02 | 八部经书逐部持有人与颜色尚未考定，如何生产？ | 保留 `it_sishierzhangjing_1..8` 唯一槽；未知项不显示持有人 / 颜色，主线只读两类可信线索 |
-| O08-03 | 假太后、桑结、王屋首领、冯锡范和雅克萨守将尚缺全部正式 NPC / 遭遇 ID | 海大富已补 `npc_haidafu`；其余使用“局部角色槽 + 遭遇预算画像”，没有归属登记就不造 `npc_* / enc_* / bsc_*` |
+| O08-03 | 假太后及王屋 / 雅克萨未具名首领尚缺静态 NPC，九场非洪安通遭遇尚缺正式 `enc_* / bsc_*` | 海大富、桑结、冯锡范已分别登记 `npc_haidafu`、`npc_sangjie`、`npc_fengxifan`；未具名者继续使用“局部角色槽 + 遭遇预算画像”，没有归属登记就不造静态 ID |
 | O08-04 | 九场非洪安通 Boss 的最终数值与机制由谁收口？ | `design/03` 建人物完整画像、`design/09` 建遭遇脚本；本章表仅供预算，禁止直接实装 |
 | O08-05 | **已解决：**旧“韦爵爷”候选如何结算？ | 不进入 v1；鹿鼎只激活 `design/07` §18.3 已定稿且双向闭合的正式套装 |
 | O08-06 | 六个候选跨章 `echo_*` 是否全部进入正式回响表？ | 上游未登记者默认禁用；物品 / NPC 原状态仍通过通用书眠快照保存 |
 | O08-07 | 苏荃、韦小宝等“长期招募”与战役同行在终局后的可用范围 | 维持 §8.2：满足 D5 可转长期，否则保留战役同行 / 盟友；活动编组仍最多 5 名同伴 |
 | O08-08 | 明史案、鹿鼎山与罗刹路线考据未完成是否阻塞整章？ | 不阻塞无争议主线；相关可选场景保留 `researchPending`，上线文案使用中性地望和无引文版本 |
 | O08-09 | 连城章节是否接“神龙残党入湘西”与韦爵爷传闻？ | 默认只输出候选回响，不替 chapters/09 创建任务；后章不接也不影响鹿鼎完成态 |
+| O08-10 | 海大富个人心法是否开放完整十重？ | 默认仅由海大富秘密传授或宫中遗谱奇遇开放；不随清宫职级发放，禁止击杀 / 尸体掉落 |
+| O08-11 | 冯锡范个人传承是否并入昆仑派？ | 默认不并入；维持 `sect:null` 的个人 `lineage`，待核用名与师承 **（待考）** |
+| O08-12 | 具名 Boss 固定 RNG 回放是否已经完成？ | 尚未；§12.8 静态估算已通过，生产阵容与行动表仍 **（待实测）** |
