@@ -8,9 +8,11 @@
 
 通用要求：每次写入不超过约 150 行；只改相关段落，不删无关内容（调度器拒绝缩短 15% 以上）；改动的文档版本行 / 变更记录追加"经脉落地终审（{{date}}）"；ID 先 `grep -rn` 查重，不新造无依据的 ID。
 
-本组门派图鉴：
+本任务的门派图鉴：
 
 {{doc_set}}
+
+门派图鉴收尾已按册拆成 11 个并行任务（`NXfix-<册>`），**本任务只改上面这一册**。下列事项中属于其他册的，跳过；跨册成对的问题（如两门武学路线相近），只处理本册这一侧。
 
 ## 要做的事
 
@@ -32,15 +34,20 @@
      - 少林约 17 处（自行逐条比对找出）。
 
      以正文武学卡里该招的实际效果为准，改错的一侧，两边只留一个值。明玉照夜、收屏、拳刀一理的正文是伤害招，索引却写 defense，多半是索引错了。判不清的列入"需作者确认"。
-   - **未在 15 号文档登记的穴位 ID**：通行册 `ap_baihui` 1 处、倚天册 `ap_qihai` 1 处，改为 15 中已登记的 ID（NR2 在本组第二批已同类修正 5 处，可参照）。
+   - **未在 15 号文档登记的穴位 ID**：通行册 `mfr_tuinaliaofa_tuigong` 的 `ap_baihui` → `ap_dumai_baihui`；倚天册圣火心法的 `ap_qihai` → 15 中登记的正式 ID；乾隆册 `mfr_baguazhang_bafang` 的 `ap_baihui`（NR2 可能已修，核对）。检查脚本的未登记穴位检查目前只查天 / 地阶路线，**本册玄上路线的穴位 ID 也要对照 15 自行核对**，未登记的改为登记 ID。
    - **五绝册降龙十八掌**（NAu-rulesA 报告 §6）：05 §13.1 已定 19 个动作中 18 个外放（潜龙勿用不标），三记绝招（十八掌连环、神龙摆尾、震惊百里）的 0 档等于基础 `aoe`。把五绝册降龙的 AR-16 审计、V-P01 与统计从"待考 / 待同步"改为已外放（外放统计 39 → 42），范围与 05 §13.1 三档一致。这三记绝招的路线定义在 21 §12.1，由 NAu-21 同时在改，**本任务不改这三条路线**。
    - **康熙册**：`sk_taiyueshibeishou.weaponReq.altItems` 加入 `eq_changchangfengshibei`（常长风墓碑，10 已登记具名兼容）。
    - **过期镜像**：少林、道家、通行、倚天约 100 行镜像的模板代号、CT、总风险早已过期。按文首索引的显式路线重算并同步，做法同 NR2：模板代号改为"见文首索引"，重算段数、路线 CT、收招合计、总风险与风险列表。
 4. **索引**：本组门派图鉴开头或索引处加一行"本门补录武学见 `skills-bulu-NN-*.md`"（只在确有补录的门派加）。
-5. 改路线时守住：21 硬约束、同门互异、外放端点白名单、步骤只定义一次、不低于建议段数、终点合出招方式；改了路线就同步本册镜像表与说明文字。
+5. **出招方式末端规则**（NAu-lint 新开关，只报告不阻断）：先跑 `python3 tools/lint/check_skill_catalogs.py --delivery --details` 加本册路径，取得本册的逐条诊断。
+   - 规则（21 §4.3.1）：掌须含劳宫；指须含指端；腿须含足三阳穴；兵器须含腕部导引穴；内功攻击绝招须含任 / 督；外放须含 13 个手部端点之一（人声音功另可取天突 / 廉泉，见 21 §4.4.1）。掌、指、腿、兵器的关键穴须在最后 1–3 段。
+   - 逐条修正"缺失"和"位置"两类诊断。不能靠删改动作事实（把掌招改写成别的出招方式）来规避检查；确实不适用的写明理由。
+   - 无法可靠分类的路线不强行补类型。
+   - 报告写本册改前 / 改后的命中数。
+6. 改路线时守住：21 硬约束、同门互异、外放端点白名单、步骤只定义一次、不低于建议段数、终点合出招方式；改了路线就同步本册镜像表与说明文字。
 
-检查：`python3 tools/lint/check_ids.py --strict`、`python3 -m unittest discover -s tools/lint -p "test_*.py"`、`python3 tools/balance/damage_sim.py --check`、`python3 tools/balance/meridian_flow_sim.py --check`、`python3 tools/balance/projection_sim.py --check`、`python3 tools/lint/check_skill_catalogs.py --strict --diversity-strict` 加本组各册路径、`python3 tools/agents/check_undefined_in.py` 加本组各册路径 必须通过。
+检查：`python3 tools/lint/check_ids.py --strict`、`python3 -m unittest discover -s tools/lint -p "test_*.py"`、`python3 tools/balance/damage_sim.py --check`、`python3 tools/balance/meridian_flow_sim.py --check`、`python3 tools/balance/projection_sim.py --check`、`python3 tools/lint/check_skill_catalogs.py --strict --diversity-strict` 加本册路径、`python3 tools/agents/check_route_unique_for.py` 加本册路径（本册路线不得与全仓任何路线完全相同）、`python3 tools/agents/check_undefined_in.py` 加本册路径 必须通过。
 
 ## 报告
 
-第 7 节写：来源扩展落实清单（逐条）、改标外放清单、遗留处理表、交其他任务的条目。
+第 7 节写：来源扩展落实清单（逐条）、改标外放清单、遗留处理表、末端规则命中数（改前 / 改后）、交其他任务的条目。

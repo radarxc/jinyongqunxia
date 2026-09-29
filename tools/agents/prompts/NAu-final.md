@@ -8,14 +8,14 @@
 
 通用要求：每次写入不超过约 150 行；只改相关段落，不删无关内容（调度器拒绝缩短 15% 以上）；改动的文档版本行 / 变更记录追加"经脉落地终审（{{date}}）"；ID 先 `grep -rn` 查重，不新造无依据的 ID。
 
-前序子任务均已合入：NAu-lint、NAu-tech、NAu-rulesA、NAu-rulesB、NAu-21、NAu-canon、NAu-nxt、NXfixA、NXfixB、NXfixC、NXfixD。你是最后一道关卡，可以修改 `docs/` 下任何文档、`tools/lint/`、`tools/balance/` 与 `TODO.md`。
+前序子任务均已合入：NAu-lint、NAu-tech、NAu-rulesA、NAu-rulesB、NAu-21、NAu-canon、NAu-nxt、门派图鉴按册收尾 11 个（`NXfix-shaolin`、`-daojia`、`-general`、`-wujue`、`-xiaoyao`、`-yitian`、`-xiakebixue`、`-wuyue`、`-kangxi`、`-qianlong`、`-gulong`）、NXfixC、NXfixD。你是最后一道关卡，可以修改 `docs/` 下任何文档、`tools/lint/`、`tools/balance/` 与 `TODO.md`。
 
 ## 要做的事
 
-1. **收拢遗留**：读全部任务报告第 7 节（含上述 11 个子任务的"交其他任务"），处理尚未被处理的条目；需要整节重写的列入遗留。补录图鉴待合并清单（NXfixC）若有，按清单合并并同步书界引用。
+1. **收拢遗留**：读全部任务报告第 7 节（含上述 20 个子任务的"交其他任务"），处理尚未被处理的条目；需要整节重写的列入遗留。补录图鉴待合并清单（NXfixC）若有，按清单合并并同步书界引用。NXfixC 与门派图鉴收尾并行，补录图鉴"来源扩展登记表"中已由 `NXfix-<册>` 落实、但 NXfixC 没来得及标"已落实"的条目，补标。
 2. **武学总数**：基准 §4 与 05 §14 的武学总数、天阶总数按收尾后的实数更新（含 14 本补录图鉴与 NXT）。NXT 只定了天阶 59 门（`9/18/32`），补录图鉴的地 / 玄 / 黄增量当时没统计，门派图鉴 11 册仍是 `51/169/459/459=1,138` 基线——现在按收尾后的实数统一重算，区分"门派图鉴基线"与"含补录总数"两个口径。
 3. **跨文档一致**：21 与 04 / 05 / 06 / 08 / 09 / 13 / 14 / 15 / 03 / tech / 武学图鉴 / 书界 的字段名、ID、结算顺序、数值一致；抽查每册图鉴至少 5 门天 / 地 / 玄上武学（绝招数量与解锁层、路线硬约束与末端规则、外放标记）；抽查每部书界 1 个 Boss 的配装与经脉配置；抽查每册 3 个外放招式的射程 / 范围 / 威力与 `projection_sim.py --report` 一致；核对全仓音功与大手印标记与 21 一致。
-4. **检查全部通过**：`check_ids.py --strict`（必要时刷新基线并在 tech/04 §11 记录债务数）、lint 全部单测、四个平衡脚本 `--check`、`check_skill_catalogs.py --strict --diversity-strict`（全量）；末端规则检查（NAu-lint 新开关）的命中数写入报告，清零则计入 `--strict`。
+4. **检查全部通过**：`check_ids.py --strict`（必要时刷新基线并在 tech/04 §11 记录债务数）、lint 全部单测、四个平衡脚本 `--check`、`check_skill_catalogs.py --strict --diversity-strict`（全量）；末端规则检查（`--delivery`）的命中数写入报告，清零则新增独立严格开关（不改旧 `--strict` 语义，NAu-lint 的 NAu-O01）；玄上路线未登记穴位检查（NAu-nxt 扩展）命中清零后同样转为严格。
 5. **需求状态**：`TODO.md` §7.1 的 AR-14、AR-15、AR-16 行（覆盖章节与剩余缺口，含 NAu-rulesA 登记的"正式具名 Boss 固定种子回放夹具 `BattleReplayV1` 尚未落盘"）；`docs/README.md` 清理旧的"51 门 / 1,138"总目录叙述（按第 2 条的两个口径改写），并登记新增文档与工具（14 本补录图鉴、裁定表、`boss_pacing.py`、`projection_sim.py`、`check_skill_catalogs.py` 等，行数实测）。
 
 ## 报告

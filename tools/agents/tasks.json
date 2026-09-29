@@ -9240,45 +9240,432 @@
       }
     },
     {
-      "id": "NXfixA",
+      "id": "NXfix-shaolin",
       "phase": "G",
       "wave": 6,
       "kind": "revise",
-      "title": "收尾·门派图鉴（少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天）",
+      "title": "终审·收尾（门派图鉴）· 少林",
       "prompt": "NXfix-sect.md",
       "deps": [
         "NXT",
-        "NR1"
+        "NR1",
+        "NAu-lint",
+        "NAu-rulesA"
       ],
       "writes": [
-        "docs/design/catalog/skills-shaolin.md",
-        "docs/design/catalog/skills-daojia.md",
-        "docs/design/catalog/skills-general.md",
-        "docs/design/catalog/skills-wujue.md",
-        "docs/design/catalog/skills-xiaoyao.md",
+        "docs/design/catalog/skills-shaolin.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "少林",
+        "doc_set": "- `docs/design/catalog/skills-shaolin.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-shaolin.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-shaolin.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-shaolin.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfix-daojia",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·收尾（门派图鉴）· 道家",
+      "prompt": "NXfix-sect.md",
+      "deps": [
+        "NXT",
+        "NR1",
+        "NAu-lint",
+        "NAu-rulesA"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-daojia.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "道家",
+        "doc_set": "- `docs/design/catalog/skills-daojia.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-daojia.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-daojia.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-daojia.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfix-general",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·收尾（门派图鉴）· 通行",
+      "prompt": "NXfix-sect.md",
+      "deps": [
+        "NXT",
+        "NR1",
+        "NAu-lint",
+        "NAu-rulesA"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-general.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "通行",
+        "doc_set": "- `docs/design/catalog/skills-general.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-general.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-general.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-general.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-general.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-general.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfix-wujue",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·收尾（门派图鉴）· 五绝",
+      "prompt": "NXfix-sect.md",
+      "deps": [
+        "NXT",
+        "NR1",
+        "NAu-lint",
+        "NAu-rulesA"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-wujue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "五绝",
+        "doc_set": "- `docs/design/catalog/skills-wujue.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wujue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wujue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-wujue.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfix-xiaoyao",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·收尾（门派图鉴）· 逍遥",
+      "prompt": "NXfix-sect.md",
+      "deps": [
+        "NXT",
+        "NR1",
+        "NAu-lint",
+        "NAu-rulesA"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-xiaoyao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "逍遥",
+        "doc_set": "- `docs/design/catalog/skills-xiaoyao.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfix-yitian",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·收尾（门派图鉴）· 倚天",
+      "prompt": "NXfix-sect.md",
+      "deps": [
+        "NXT",
+        "NR1",
+        "NAu-lint",
+        "NAu-rulesA"
+      ],
+      "writes": [
         "docs/design/catalog/skills-yitian.md"
       ],
       "review": false,
       "web": false,
       "vars": {
-        "group_name": "少林 / 道家 / 通行 / 五绝 / 逍遥 / 倚天",
-        "doc_set": "- `docs/design/catalog/skills-shaolin.md`\n- `docs/design/catalog/skills-daojia.md`\n- `docs/design/catalog/skills-general.md`\n- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-xiaoyao.md`\n- `docs/design/catalog/skills-yitian.md`"
+        "group_name": "倚天",
+        "doc_set": "- `docs/design/catalog/skills-yitian.md`"
       },
       "validate": {
         "exists": [
-          "docs/design/catalog/skills-shaolin.md",
-          "docs/design/catalog/skills-daojia.md",
-          "docs/design/catalog/skills-general.md",
-          "docs/design/catalog/skills-wujue.md",
-          "docs/design/catalog/skills-xiaoyao.md",
           "docs/design/catalog/skills-yitian.md"
         ],
         "fences": [
-          "docs/design/catalog/skills-shaolin.md",
-          "docs/design/catalog/skills-daojia.md",
-          "docs/design/catalog/skills-general.md",
-          "docs/design/catalog/skills-wujue.md",
-          "docs/design/catalog/skills-xiaoyao.md",
           "docs/design/catalog/skills-yitian.md"
         ],
         "cmd": [
@@ -9317,63 +9704,368 @@
             "tools/lint/check_skill_catalogs.py",
             "--strict",
             "--diversity-strict",
-            "docs/design/catalog/skills-shaolin.md",
-            "docs/design/catalog/skills-daojia.md",
-            "docs/design/catalog/skills-general.md",
-            "docs/design/catalog/skills-wujue.md",
-            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
             "docs/design/catalog/skills-yitian.md"
           ],
           [
             "{python}",
             "tools/agents/check_undefined_in.py",
-            "docs/design/catalog/skills-shaolin.md",
-            "docs/design/catalog/skills-daojia.md",
-            "docs/design/catalog/skills-general.md",
-            "docs/design/catalog/skills-wujue.md",
-            "docs/design/catalog/skills-xiaoyao.md",
             "docs/design/catalog/skills-yitian.md"
           ]
         ]
       }
     },
     {
-      "id": "NXfixB",
+      "id": "NXfix-xiakebixue",
       "phase": "G",
       "wave": 6,
       "kind": "revise",
-      "title": "收尾·门派图鉴（侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙）",
+      "title": "终审·收尾（门派图鉴）· 侠客碧血",
       "prompt": "NXfix-sect.md",
       "deps": [
         "NXT",
-        "NR2"
+        "NR2",
+        "NAu-lint",
+        "NAu-rulesA"
       ],
       "writes": [
-        "docs/design/catalog/skills-xiake-bixue.md",
-        "docs/design/catalog/skills-wuyue.md",
-        "docs/design/catalog/skills-kangxi.md",
-        "docs/design/catalog/skills-qianlong.md",
+        "docs/design/catalog/skills-xiake-bixue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "侠客碧血",
+        "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiake-bixue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiake-bixue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfix-wuyue",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·收尾（门派图鉴）· 五岳",
+      "prompt": "NXfix-sect.md",
+      "deps": [
+        "NXT",
+        "NR2",
+        "NAu-lint",
+        "NAu-rulesA"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-wuyue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "五岳",
+        "doc_set": "- `docs/design/catalog/skills-wuyue.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-wuyue.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfix-kangxi",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·收尾（门派图鉴）· 康熙",
+      "prompt": "NXfix-sect.md",
+      "deps": [
+        "NXT",
+        "NR2",
+        "NAu-lint",
+        "NAu-rulesA"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-kangxi.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "康熙",
+        "doc_set": "- `docs/design/catalog/skills-kangxi.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-kangxi.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-kangxi.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-kangxi.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfix-qianlong",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·收尾（门派图鉴）· 乾隆",
+      "prompt": "NXfix-sect.md",
+      "deps": [
+        "NXT",
+        "NR2",
+        "NAu-lint",
+        "NAu-rulesA"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-qianlong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "group_name": "乾隆",
+        "doc_set": "- `docs/design/catalog/skills-qianlong.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-qianlong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-qianlong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-qianlong.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NXfix-gulong",
+      "phase": "G",
+      "wave": 6,
+      "kind": "revise",
+      "title": "终审·收尾（门派图鉴）· 古龙",
+      "prompt": "NXfix-sect.md",
+      "deps": [
+        "NXT",
+        "NR2",
+        "NAu-lint",
+        "NAu-rulesA"
+      ],
+      "writes": [
         "docs/design/catalog/skills-gulong.md"
       ],
       "review": false,
       "web": false,
       "vars": {
-        "group_name": "侠客碧血 / 五岳 / 康熙 / 乾隆 / 古龙",
-        "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`\n- `docs/design/catalog/skills-wuyue.md`\n- `docs/design/catalog/skills-kangxi.md`\n- `docs/design/catalog/skills-qianlong.md`\n- `docs/design/catalog/skills-gulong.md`"
+        "group_name": "古龙",
+        "doc_set": "- `docs/design/catalog/skills-gulong.md`"
       },
       "validate": {
         "exists": [
-          "docs/design/catalog/skills-xiake-bixue.md",
-          "docs/design/catalog/skills-wuyue.md",
-          "docs/design/catalog/skills-kangxi.md",
-          "docs/design/catalog/skills-qianlong.md",
           "docs/design/catalog/skills-gulong.md"
         ],
         "fences": [
-          "docs/design/catalog/skills-xiake-bixue.md",
-          "docs/design/catalog/skills-wuyue.md",
-          "docs/design/catalog/skills-kangxi.md",
-          "docs/design/catalog/skills-qianlong.md",
           "docs/design/catalog/skills-gulong.md"
         ],
         "cmd": [
@@ -9412,19 +10104,16 @@
             "tools/lint/check_skill_catalogs.py",
             "--strict",
             "--diversity-strict",
-            "docs/design/catalog/skills-xiake-bixue.md",
-            "docs/design/catalog/skills-wuyue.md",
-            "docs/design/catalog/skills-kangxi.md",
-            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
             "docs/design/catalog/skills-gulong.md"
           ],
           [
             "{python}",
             "tools/agents/check_undefined_in.py",
-            "docs/design/catalog/skills-xiake-bixue.md",
-            "docs/design/catalog/skills-wuyue.md",
-            "docs/design/catalog/skills-kangxi.md",
-            "docs/design/catalog/skills-qianlong.md",
             "docs/design/catalog/skills-gulong.md"
           ]
         ]
@@ -9561,8 +10250,17 @@
       "title": "收尾·14 部书界（跨书替换、小问题、Buff 迁移、节奏复核）",
       "prompt": "NXfix-chapters.md",
       "deps": [
-        "NXfixA",
-        "NXfixB",
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
         "NXfixC"
       ],
       "writes": [
@@ -9751,8 +10449,17 @@
         "NAu-21",
         "NAu-canon",
         "NAu-nxt",
-        "NXfixA",
-        "NXfixB",
+        "NXfix-shaolin",
+        "NXfix-daojia",
+        "NXfix-general",
+        "NXfix-wujue",
+        "NXfix-xiaoyao",
+        "NXfix-yitian",
+        "NXfix-xiakebixue",
+        "NXfix-wuyue",
+        "NXfix-kangxi",
+        "NXfix-qianlong",
+        "NXfix-gulong",
         "NXfixC",
         "NXfixD"
       ],
