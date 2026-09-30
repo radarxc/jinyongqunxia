@@ -61,9 +61,25 @@ def main() -> int:
         print(("✔ " if rc == 0 else "✘ ") + f"{tid}：{line}")
         if rc == 0:
             V.set_status(tid, "MERGED", detail="协调者准出并合入")
+            if tid.upper().startswith("ART-P-"):
+                rc_all |= refresh_portrait_index(tid)
         else:
             rc_all = 1
     return rc_all
+
+
+def refresh_portrait_index(tid: str) -> int:
+    """ART-P-* 合入后重新生成人物立绘提示词总索引（嵌入 GUIDE、汇总各书界提示词），有变化就立即提交。"""
+    index = "assets/default/prompts/characters/INDEX.md"
+    p = subprocess.run([sys.executable, "tools/agents/build_portrait_index.py"], cwd=ROOT, capture_output=True, text=True)
+    print(("  " if p.returncode == 0 else "  ✘ ") + (p.stdout + p.stderr).strip().replace("\n", "\n  "))
+    if not subprocess.run(["git", "status", "--porcelain", "--", index], cwd=ROOT, capture_output=True, text=True).stdout.strip():
+        return p.returncode
+    subprocess.run(["git", "add", "--", index], cwd=ROOT, check=True)
+    c = subprocess.run(["git", "commit", "-m", f"assets: 重新生成人物立绘提示词总索引（{tid} 合入后）", "--", index],
+                       cwd=ROOT, capture_output=True, text=True)
+    print(("  ✔ " if c.returncode == 0 else "  ✘ 索引提交失败：") + (c.stdout + c.stderr).strip().splitlines()[0][:200])
+    return p.returncode or c.returncode
 
 
 if __name__ == "__main__":
