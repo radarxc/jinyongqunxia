@@ -13029,6 +13029,1177 @@
       }
     },
     {
+      "id": "NR4-shaolin",
+      "phase": "NR4",
+      "wave": 6,
+      "kind": "draft",
+      "title": "阴阳性质落地 · 少林（AR-18：主修经脉、内功性质、路线性质）",
+      "prompt": "NR4-unit.md",
+      "deps": [
+        "NYY"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-shaolin.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "shaolin",
+        "unit_name": "少林",
+        "doc_set": "- `docs/design/catalog/skills-shaolin.md`",
+        "counts": "路线性质冲突 23 条、内功性质冲突 0 张、缺主修经脉 12 张（改动后以检查脚本实测为准）",
+        "extra": "普通外放的 3 条性质冲突（`mfr_shizihou_shehun`、`mfr_shizihou_zhenhou`、`mfr_jingangnuhou_nuhou`）一并处理，音功出口按 21 §4.4.1.1 的规则。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-shaolin.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-shaolin.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-shaolin.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-shaolin.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "shaolin"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4-daojia",
+      "phase": "NR4",
+      "wave": 6,
+      "kind": "draft",
+      "title": "阴阳性质落地 · 道家（AR-18：主修经脉、内功性质、路线性质）",
+      "prompt": "NR4-unit.md",
+      "deps": [
+        "NYY"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-daojia.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "daojia",
+        "unit_name": "道家",
+        "doc_set": "- `docs/design/catalog/skills-daojia.md`",
+        "counts": "路线性质冲突 16 条、内功性质冲突 2 张、缺主修经脉 19 张（改动后以检查脚本实测为准）",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-daojia.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-daojia.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "daojia"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4-general",
+      "phase": "NR4",
+      "wave": 6,
+      "kind": "draft",
+      "title": "阴阳性质落地 · 通行（AR-18：主修经脉、内功性质、路线性质）",
+      "prompt": "NR4-unit.md",
+      "deps": [
+        "NYY"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-general.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "general",
+        "unit_name": "通行",
+        "doc_set": "- `docs/design/catalog/skills-general.md`",
+        "counts": "路线性质冲突 7 条、内功性质冲突 3 张、缺主修经脉 1 张（改动后以检查脚本实测为准）",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-general.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-general.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-general.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-general.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-general.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-general.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "general"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4-wujue",
+      "phase": "NR4",
+      "wave": 6,
+      "kind": "draft",
+      "title": "阴阳性质落地 · 五绝（AR-18：主修经脉、内功性质、路线性质）",
+      "prompt": "NR4-unit.md",
+      "deps": [
+        "NYY"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-wujue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "wujue",
+        "unit_name": "五绝",
+        "doc_set": "- `docs/design/catalog/skills-wujue.md`",
+        "counts": "路线性质冲突 16 条、内功性质冲突 6 张、缺主修经脉 17 张（改动后以检查脚本实测为准）",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wujue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wujue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "wujue"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4-xiaoyao",
+      "phase": "NR4",
+      "wave": 6,
+      "kind": "draft",
+      "title": "阴阳性质落地 · 逍遥（AR-18：主修经脉、内功性质、路线性质）",
+      "prompt": "NR4-unit.md",
+      "deps": [
+        "NYY"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-xiaoyao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "xiaoyao",
+        "unit_name": "逍遥",
+        "doc_set": "- `docs/design/catalog/skills-xiaoyao.md`",
+        "counts": "路线性质冲突 13 条、内功性质冲突 0 张、缺主修经脉 23 张（改动后以检查脚本实测为准）",
+        "extra": "本册有 8 条绝招路线，其所属武学没写性质（NYY 报告）：按 AR-18 为这些武学补上性质（内功按主修经脉计票，外功按其依托的内功与设定），再核对路线性质。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "xiaoyao"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4-yitian",
+      "phase": "NR4",
+      "wave": 6,
+      "kind": "draft",
+      "title": "阴阳性质落地 · 倚天（AR-18：主修经脉、内功性质、路线性质）",
+      "prompt": "NR4-unit.md",
+      "deps": [
+        "NYY"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-yitian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "yitian",
+        "unit_name": "倚天",
+        "doc_set": "- `docs/design/catalog/skills-yitian.md`",
+        "counts": "路线性质冲突 4 条、内功性质冲突 7 张、缺主修经脉 0 张（改动后以检查脚本实测为准）",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "yitian"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4-xiakebixue",
+      "phase": "NR4",
+      "wave": 6,
+      "kind": "draft",
+      "title": "阴阳性质落地 · 侠客碧血（AR-18：主修经脉、内功性质、路线性质）",
+      "prompt": "NR4-unit.md",
+      "deps": [
+        "NYY"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-xiake-bixue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "xiakebixue",
+        "unit_name": "侠客碧血",
+        "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`",
+        "counts": "路线性质冲突 2 条、内功性质冲突 2 张、缺主修经脉 11 张（改动后以检查脚本实测为准）",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiake-bixue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiake-bixue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "xiakebixue"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4-wuyue",
+      "phase": "NR4",
+      "wave": 6,
+      "kind": "draft",
+      "title": "阴阳性质落地 · 五岳（AR-18：主修经脉、内功性质、路线性质）",
+      "prompt": "NR4-unit.md",
+      "deps": [
+        "NYY"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-wuyue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "wuyue",
+        "unit_name": "五岳",
+        "doc_set": "- `docs/design/catalog/skills-wuyue.md`",
+        "counts": "路线性质冲突 4 条、内功性质冲突 12 张、缺主修经脉 0 张（改动后以检查脚本实测为准）",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "wuyue"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4-kangxi",
+      "phase": "NR4",
+      "wave": 6,
+      "kind": "draft",
+      "title": "阴阳性质落地 · 康熙（AR-18：主修经脉、内功性质、路线性质）",
+      "prompt": "NR4-unit.md",
+      "deps": [
+        "NYY"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-kangxi.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "kangxi",
+        "unit_name": "康熙",
+        "doc_set": "- `docs/design/catalog/skills-kangxi.md`",
+        "counts": "路线性质冲突 0 条、内功性质冲突 3 张、缺主修经脉 7 张（改动后以检查脚本实测为准）",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-kangxi.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-kangxi.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "kangxi"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4-qianlong",
+      "phase": "NR4",
+      "wave": 6,
+      "kind": "draft",
+      "title": "阴阳性质落地 · 乾隆（AR-18：主修经脉、内功性质、路线性质）",
+      "prompt": "NR4-unit.md",
+      "deps": [
+        "NYY"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-qianlong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "qianlong",
+        "unit_name": "乾隆",
+        "doc_set": "- `docs/design/catalog/skills-qianlong.md`",
+        "counts": "路线性质冲突 0 条、内功性质冲突 2 张、缺主修经脉 6 张（改动后以检查脚本实测为准）",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-qianlong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-qianlong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "qianlong"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4-gulong",
+      "phase": "NR4",
+      "wave": 6,
+      "kind": "draft",
+      "title": "阴阳性质落地 · 古龙（AR-18：主修经脉、内功性质、路线性质）",
+      "prompt": "NR4-unit.md",
+      "deps": [
+        "NYY"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-gulong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "gulong",
+        "unit_name": "古龙",
+        "doc_set": "- `docs/design/catalog/skills-gulong.md`",
+        "counts": "路线性质冲突 0 条、内功性质冲突 2 张、缺主修经脉 3 张（改动后以检查脚本实测为准）",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "gulong"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4-bulu",
+      "phase": "NR4",
+      "wave": 6,
+      "kind": "draft",
+      "title": "阴阳性质落地 · 14 本补录图鉴（AR-18：主修经脉、内功性质、路线性质）",
+      "prompt": "NR4-unit.md",
+      "deps": [
+        "NYY"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-bulu-01-tianlong.md",
+        "docs/design/catalog/skills-bulu-02-shediao.md",
+        "docs/design/catalog/skills-bulu-03-shendiao.md",
+        "docs/design/catalog/skills-bulu-04-yitian.md",
+        "docs/design/catalog/skills-bulu-05-xiaoao.md",
+        "docs/design/catalog/skills-bulu-06-xiake.md",
+        "docs/design/catalog/skills-bulu-07-bixue.md",
+        "docs/design/catalog/skills-bulu-08-luding.md",
+        "docs/design/catalog/skills-bulu-09-liancheng.md",
+        "docs/design/catalog/skills-bulu-10-baima.md",
+        "docs/design/catalog/skills-bulu-11-yuanyang.md",
+        "docs/design/catalog/skills-bulu-12-shujian.md",
+        "docs/design/catalog/skills-bulu-13-feihu.md",
+        "docs/design/catalog/skills-bulu-14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "bulu",
+        "unit_name": "14 本补录图鉴",
+        "doc_set": "- `docs/design/catalog/skills-bulu-01-tianlong.md`\n- `docs/design/catalog/skills-bulu-02-shediao.md`\n- `docs/design/catalog/skills-bulu-03-shendiao.md`\n- `docs/design/catalog/skills-bulu-04-yitian.md`\n- `docs/design/catalog/skills-bulu-05-xiaoao.md`\n- `docs/design/catalog/skills-bulu-06-xiake.md`\n- `docs/design/catalog/skills-bulu-07-bixue.md`\n- `docs/design/catalog/skills-bulu-08-luding.md`\n- `docs/design/catalog/skills-bulu-09-liancheng.md`\n- `docs/design/catalog/skills-bulu-10-baima.md`\n- `docs/design/catalog/skills-bulu-11-yuanyang.md`\n- `docs/design/catalog/skills-bulu-12-shujian.md`\n- `docs/design/catalog/skills-bulu-13-feihu.md`\n- `docs/design/catalog/skills-bulu-14-xueshan.md`",
+        "counts": "路线性质冲突 8 条、内功性质冲突 17 张、缺主修经脉 8 张（改动后以检查脚本实测为准）",
+        "extra": "无。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-bulu-01-tianlong.md",
+          "docs/design/catalog/skills-bulu-02-shediao.md",
+          "docs/design/catalog/skills-bulu-03-shendiao.md",
+          "docs/design/catalog/skills-bulu-04-yitian.md",
+          "docs/design/catalog/skills-bulu-05-xiaoao.md",
+          "docs/design/catalog/skills-bulu-06-xiake.md",
+          "docs/design/catalog/skills-bulu-07-bixue.md",
+          "docs/design/catalog/skills-bulu-08-luding.md",
+          "docs/design/catalog/skills-bulu-09-liancheng.md",
+          "docs/design/catalog/skills-bulu-10-baima.md",
+          "docs/design/catalog/skills-bulu-11-yuanyang.md",
+          "docs/design/catalog/skills-bulu-12-shujian.md",
+          "docs/design/catalog/skills-bulu-13-feihu.md",
+          "docs/design/catalog/skills-bulu-14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-bulu-01-tianlong.md",
+          "docs/design/catalog/skills-bulu-02-shediao.md",
+          "docs/design/catalog/skills-bulu-03-shendiao.md",
+          "docs/design/catalog/skills-bulu-04-yitian.md",
+          "docs/design/catalog/skills-bulu-05-xiaoao.md",
+          "docs/design/catalog/skills-bulu-06-xiake.md",
+          "docs/design/catalog/skills-bulu-07-bixue.md",
+          "docs/design/catalog/skills-bulu-08-luding.md",
+          "docs/design/catalog/skills-bulu-09-liancheng.md",
+          "docs/design/catalog/skills-bulu-10-baima.md",
+          "docs/design/catalog/skills-bulu-11-yuanyang.md",
+          "docs/design/catalog/skills-bulu-12-shujian.md",
+          "docs/design/catalog/skills-bulu-13-feihu.md",
+          "docs/design/catalog/skills-bulu-14-xueshan.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "bulu"
+          ]
+        ]
+      }
+    },
+    {
       "id": "NAu-final",
       "phase": "G",
       "wave": 6,
@@ -13084,7 +14255,19 @@
         "NXfixE-a",
         "NXfixE-b",
         "NXfixE-c",
-        "NYY"
+        "NYY",
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
       ],
       "writes": [
         "docs/**",
