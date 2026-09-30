@@ -275,7 +275,11 @@ overlapBp = floor(10000 * |set(A) ∩ set(B)| / min(|set(A)|, |set(B)|))
 并以独立字段审计非绝招的显式外放路线与路线性质冲突；其中紧凑卡标题识别允许
 武学名紧接 Markdown `**`，避免“鹰扬掌**（…”一类掌法漏分类：
 
-- 掌招须包含劳宫；指招须包含六个指端之一，六脉具名招还须命中招名对应指端；
+- 掌招始终可收劳宫；明确“手刀 / 掌刃 / 掌缘 / 掌侧 / 劈掌”还可收后溪，明确
+  “劈 / 切 / 抓 / 虎口”可收合谷，明确“格挡 / 靠打 / 反背摔掌”可收外关。多类动作
+  同时命中时合法端点取并集，不设互斥优先级；无法可靠分类的掌招仍须劳宫。指招须
+  包含六个指端之一，六脉具名招还须
+  命中招名对应指端；
 - 腿招须包含足阳明、足太阳或足少阳的任一穴；推荐端点为厉兑、至阴或足窍阴。
   兵器招须包含腕骨、阳谷、阳池、外关或合谷；
 - 拳、擒拿须含曲池、手三里、合谷之一；轻功 / 位移须含 15 登记的足少阳、带脉、
@@ -285,6 +289,14 @@ overlapBp = floor(10000 * |set(A) ∩ set(B)| / min(|set(A)|, |set(B)|))
   动作末端与外放端点两条规则。人声发劲的音功另可用天突
   `ap_yinwei_tiantu` 或廉泉 `ap_yinwei_lianquan`；琴、箫、笛等持乐器音功仍只能用
   13 个手／腕端点。
+- 后溪只满足掌刃动作末端，目前不自动加入外放 13 端点白名单；外放掌刃须另经腕骨、
+  外关等既有白名单穴。
+- 动作词只从武学 / 招式表头明确标识的名称、招式、描述、说明、动作、效果或文本列读取；
+  不读获取 / 获取方式、来源 / 出处、`reqs`、`prereq`、前置 / 学习条件、
+  `sourceChapters` 或审计投影。无规范表头的旧卡只保守读取所属武学 / 招式单元格。
+  合谷的“切”排除“一切 / 切磋 / 亲切 / 切换 / 迫切 /
+  切勿 / 切记 / 密切 / 确切 / 急切 / 恳切 / 切实”；“劈空”只作掌名或掌风语义，
+  不单独证明劈砍动作。
 - 非绝招外放同时支持“武学 / 招式 / 路线 / steps”覆写行及“路线 / 招式 +
   `MeridianRouteDef{ultimate:false}` / steps”行；只有对应 `MoveDef.projection:true` 才纳入。
 
@@ -307,10 +319,23 @@ overlapBp = floor(10000 * |set(A) ∩ set(B)| / min(|set(A)|, |set(B)|))
 该开关当前只报告：违规不会改变退出码，也不会被原有 `--strict` 执行；`--details`
 展开每条 `DELIVERY` 诊断。按册字段依次为 `delivery_routes`、`classified`、
 `checked_rules`、`violations`、`tail_violations`、`unclassified`；合计与 JSON 也显式
-包含 `tail_violations`。`nonultimate_projection_*` 与 `nature_conflicts` 独立计数，不改变
-上述绝招口径；JSON 的原 `routes` 仍只列绝招，普通外放明细另列在
-`nonultimate_projection_route_details`。性质按 15 §3 的穴位归属及 §2.1 游戏性质计票：yin / yang 多数决，
-harmony 不计票，平票（含 0:0）取 harmony；显式 `allowOpposedNature:true` 豁免冲突。
+包含 `tail_violations`，并增加 `palm_routes` / `palm_endpoint_matches` 统计最终绝招掌法路线与
+合规动作出口命中。`nonultimate_projection_*` 与 `nature_conflicts` 独立计数；JSON 的原
+`routes` 仍只列绝招，普通外放明细另列在 `nonultimate_projection_route_details`，但
+`nature_conflicts` 覆盖绝招与普通外放两类路线。性质按 15 §3 的**游戏归属经脉**及 §2.1
+游戏性质对
+**体段节点**计票：动作规则命中的最后 1–3 段出口不投票（劳宫命中时，同在尾三段的
+内关可作为阴门引导一并排除），其余节点逐个投票；yin / yang 多数决，harmony 不计票，
+平票（含 0:0）取 harmony。穴位表的“标准归经”不参与计算：交会 / 借穴按 15 的唯一
+游戏归属处理，例如气冲按冲脉而不是足阳明计票。不是固定删除尾三段；显式
+`allowOpposedNature:true` 豁免冲突。
+同一 `--delivery` 报告还按正式卡 ID 去重审计全部内功：`inner_nature=A/B` 表示 B 张内功
+中 A 张显式填写 `inner.meridians`（显式 `[]` 也计入，并推导为 harmony），另列
+`inner_missing_meridians`（仅统计真正缺字段）与声明性质不等于主修
+经脉票的 `inner_nature_conflicts`；`--details` 逐条输出 `INNER_NATURE`。该审计和路线性质
+冲突都只报告，不改变 `--strict` 的退出码。2026-09-29 全仓基线为
+`inner_nature=147/254`、`inner_missing_meridians=107`、`inner_nature_conflicts=56`；
+数字随图鉴补录而变化，文档迁移清单见 `design/05` §5.3.1。
 `--json --delivery` 顶层为 `audits` 与 `delivery`；并用多样性开关时再列 `diversity`。
 
 天、地阶既有“路线索引行”检查保持原样：只有该行自身带 `ap/CT/risk` 三元组时，

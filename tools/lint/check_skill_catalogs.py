@@ -68,7 +68,11 @@ DIVERSITY_OVERLAP_BP = 8000
 EXTERNAL_WUJUE_ROUTE_IDS = frozenset(
     item[1] for item in EXTERNAL_WUJUE.values()
 )
-PALM_ENDPOINTS = frozenset({"ap_shoujueyin_laogong"})
+PALM_BASE_ENDPOINTS = frozenset({"ap_shoujueyin_laogong"})
+PALM_HEGU_ENDPOINT = "ap_shouyangming_hegu"
+PALM_HOUXI_ENDPOINT = "ap_shoutaiyang_houxi"
+PALM_WAIGUAN_ENDPOINT = "ap_shoushaoyang_waiguan"
+PALM_INNER_GATE = "ap_shoujueyin_neiguan"
 FIST_GRAPPLE_ENDPOINTS = frozenset({
     "ap_shouyangming_quchi",
     "ap_shouyangming_shousanli",
@@ -391,6 +395,7 @@ class DeliveryRoute:
     voice: bool | None = None
     nature: str | None = None
     allow_opposed_nature: bool = False
+    action_context: str = ""
 
     @property
     def location(self) -> str:
@@ -409,6 +414,12 @@ class DeliveryCatalogSummary:
     nonultimate_projection_routes: int = 0
     nonultimate_projection_violations: int = 0
     nature_conflicts: int = 0
+    palm_routes: int = 0
+    palm_endpoint_matches: int = 0
+    inner_nature_total: int = 0
+    inner_nature_with_meridians: int = 0
+    inner_nature_missing_meridians: int = 0
+    inner_nature_conflicts: int = 0
 
 
 @dataclass(frozen=True)
@@ -416,6 +427,27 @@ class DeliveryFinding:
     route: DeliveryRoute
     rule: str
     required: str
+
+
+@dataclass(frozen=True)
+class InnerNatureFinding:
+    catalog: str
+    source: str
+    line: int
+    skill_id: str
+    declared: str | None
+    derived: str
+    meridians: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class InnerNatureAudit:
+    catalog: str
+    source: str
+    total: int
+    with_meridians: int
+    missing_meridians: tuple[str, ...]
+    findings: tuple[InnerNatureFinding, ...]
 
 
 @dataclass(frozen=True)
@@ -430,6 +462,11 @@ class DeliveryReport:
     nature_findings: tuple[DeliveryFinding, ...] = ()
     nonultimate_projection_routes: int = 0
     nature_conflicts: int = 0
+    inner_nature_findings: tuple[InnerNatureFinding, ...] = ()
+    inner_nature_total: int = 0
+    inner_nature_with_meridians: int = 0
+    inner_nature_missing_meridians: int = 0
+    inner_nature_conflicts: int = 0
 
     @property
     def route_count(self) -> int:
@@ -458,6 +495,14 @@ class DeliveryReport:
     @property
     def unclassified_count(self) -> int:
         return sum(item.unclassified for item in self.catalogs)
+
+    @property
+    def palm_route_count(self) -> int:
+        return sum(item.palm_routes for item in self.catalogs)
+
+    @property
+    def palm_endpoint_match_count(self) -> int:
+        return sum(item.palm_endpoint_matches for item in self.catalogs)
 
 
 @dataclass
@@ -1400,8 +1445,189 @@ def parse_audit_instances(text: str) -> dict[str, FinalInstance]:
 def _skill_contexts(text: str) -> dict[str, str]:
     """Collect definition lines that reliably state each skill's type."""
     contexts: dict[str, list[str]] = defaultdict(list)
+    current_detail: str | None = None
     in_audit_projection = False
     for line in text.splitlines():
+        if "<!-- skill-catalog-audit:start -->" in line:
+            in_audit_projection = True
+            current_detail = None
+            continue
+        if "<!-- skill-catalog-audit:end -->" in line:
+            in_audit_projection = False
+            continue
+        if in_audit_projection:
+            continue
+        owner = _formal_card_owner(line)
+        ids = list(dict.fromkeys(re.findall(r"\bsk_[a-z0-9_]+", line)))
+        if owner is None and len(ids) == 1 and _grade_from_line(line) is not None:
+            if line.lstrip().startswith(("#", "|", "**")):
+                owner = ids[0]
+        if owner is not None:
+            contexts[owner].append(_skill_definition_fragment(line, owner))
+            current_detail = owner if re.match(
+                r"^(?:#{2,6}\s|\s*(?:-\s*)?\*\*`?sk_)", line
+            ) else None
+            continue
+        if re.match(r"^#{1,6}\s", line):
+            current_detail = None
+        if current_detail and re.search(r"(?:category|subType)\s*[:：]", line):
+            mentioned = re.findall(r"\bsk_[a-z0-9_]+", line)
+            if not mentioned or current_detail in mentioned:
+                contexts[current_detail].extend(re.findall(
+                r"(?:category|subType)\s*[:：]\s*[a-zA-Z/／·]+", line
+                ))
+    return {skill: " ".join(lines) for skill, lines in contexts.items()}
+
+
+def _table_cells(line: str) -> list[str]:
+    if not line.lstrip().startswith("|"):
+        return []
+    return [cell.strip() for cell in line.strip().strip("|").split("|")]
+
+
+def _table_headers_by_line(text: str) -> dict[int, tuple[str, ...]]:
+    """Map Markdown data rows to their table headers."""
+    lines = text.splitlines()
+    result: dict[int, tuple[str, ...]] = {}
+    active: tuple[str, ...] | None = None
+    for index, line in enumerate(lines):
+        cells = _table_cells(line)
+        if not cells:
+            active = None
+            continue
+        separator = all(re.fullmatch(r":?-{3,}:?", cell) for cell in cells)
+        next_cells = _table_cells(lines[index + 1]) if index + 1 < len(lines) else []
+        next_separator = bool(next_cells) and all(
+            re.fullmatch(r":?-{3,}:?", cell) for cell in next_cells
+        )
+        if next_separator:
+            active = tuple(cells)
+            continue
+        if separator:
+            continue
+        if active is not None:
+            result[index + 1] = active
+    return result
+
+
+def _header_is_metadata(header: str) -> bool:
+    plain = re.sub(r"[`*\s_/（）()]+", "", header).lower()
+    return bool(re.search(
+        r"获取|来源|出处|前置|学习条件|解锁条件|reqs?|prereq|source",
+        plain, re.I,
+    ))
+
+
+def _header_is_action_text(header: str) -> bool:
+    if _header_is_metadata(header):
+        return False
+    plain = re.sub(r"[`*\s_/（）()]+", "", header).lower()
+    return bool(re.search(r"招式|名称|描述|说明|动作|效果|文本", plain))
+
+
+def _header_is_skill_action(header: str) -> bool:
+    if _header_is_metadata(header):
+        return False
+    plain = re.sub(r"[`*\s_/（）()]+", "", header).lower()
+    return plain.startswith("武学") or _header_is_action_text(header)
+
+
+def _formal_card_owner(line: str) -> str | None:
+    """Return the first ID only when this line opens a formal skill card."""
+    if _grade_from_line(line) is None:
+        return None
+    ids = re.findall(r"\bsk_[a-z0-9_]+", line)
+    if not ids:
+        return None
+    if re.match(r"^#{2,6}\s", line):
+        return ids[0]
+    if re.match(r"^\s*(?:-\s*)?\*\*`?sk_[a-z0-9_]+", line):
+        return ids[0]
+    # Some overview cards put grade before the ID.  The first ``sk_*`` still
+    # owns the row; any later ID is a prerequisite, not another card owner.
+    if _table_cells(line):
+        return ids[0]
+    return None
+
+
+def _skill_definition_fragment(line: str, owner: str) -> str:
+    """Keep display name/type fields, never requirements or provenance."""
+    metadata = r"(?:reqs?|prereq|sourceChapters)\b|获取(?:方式|信息)?"
+    cells = _table_cells(line)
+    if cells:
+        owner_cell = next(
+            (index for index, cell in enumerate(cells) if owner in cell), 0
+        )
+        identity: list[str] = []
+        for cell in cells[owner_cell:owner_cell + 6]:
+            marker = re.search(metadata, cell, re.I)
+            if identity and (marker or re.search(
+                r"MoveDef|\bmv_|\bmfr_", cell, re.I
+            )):
+                if marker and marker.start():
+                    identity.append(cell[:marker.start()])
+                break
+            identity.append(cell)
+        return " | ".join(identity or cells[owner_cell:owner_cell + 1])
+    return re.split(metadata, line, 1, flags=re.I)[0]
+
+
+_ACTION_METADATA_KEY = re.compile(
+    r"(?:reqs?|prereq|sourceChapters)\b"
+    r"|获取(?:方式|信息)?|前置(?:条件)?|来源|出处",
+    re.I,
+)
+_ACTION_METADATA_SEPARATORS = frozenset("；;｜|。")
+_ACTION_METADATA_CLOSERS = frozenset("）)}]")
+_ACTION_METADATA_GROUPS = {"（": "）", "(": ")", "{": "}", "[": "]"}
+
+
+def _strip_action_metadata(text: str) -> str:
+    """Remove field-like metadata while retaining nearby action prose."""
+    kept: list[str] = []
+    cursor = 0
+    while marker := _ACTION_METADATA_KEY.search(text, cursor):
+        kept.append(text[cursor:marker.start()])
+        value_start = marker.end()
+        while (
+            value_start < len(text)
+            and text[value_start] in " `*_\t\r\n"
+        ):
+            value_start += 1
+        if value_start < len(text) and text[value_start] in "：:":
+            value_start += 1
+            while value_start < len(text) and text[value_start].isspace():
+                value_start += 1
+
+        end = value_start
+        if end < len(text) and text[end] in _ACTION_METADATA_GROUPS:
+            stack = [_ACTION_METADATA_GROUPS[text[end]]]
+            end += 1
+            while end < len(text) and stack:
+                char = text[end]
+                if char in _ACTION_METADATA_GROUPS:
+                    stack.append(_ACTION_METADATA_GROUPS[char])
+                elif char == stack[-1]:
+                    stack.pop()
+                end += 1
+        else:
+            while (
+                end < len(text)
+                and text[end] not in _ACTION_METADATA_SEPARATORS
+                and text[end] not in _ACTION_METADATA_CLOSERS
+            ):
+                end += 1
+        cursor = max(end, marker.end())
+    kept.append(text[cursor:])
+    return "".join(kept)
+
+
+def _skill_action_contexts(text: str) -> dict[str, str]:
+    """Keep only skill names/descriptions that can describe an action."""
+    result: dict[str, list[str]] = defaultdict(list)
+    table_headers = _table_headers_by_line(text)
+    in_audit_projection = False
+    for number, line in enumerate(text.splitlines(), 1):
         if "<!-- skill-catalog-audit:start -->" in line:
             in_audit_projection = True
             continue
@@ -1410,17 +1636,29 @@ def _skill_contexts(text: str) -> dict[str, str]:
             continue
         if in_audit_projection:
             continue
-        skills = list(dict.fromkeys(re.findall(r"\bsk_[a-z0-9_]+", line)))
-        if len(skills) != 1:
+        owner = _formal_card_owner(line)
+        if owner is None:
             continue
-        defining = bool(
-            _grade_from_line(line) is not None
-            and (line.lstrip().startswith(("#", "|", "**"))
-                 or "category:" in line or "subType:" in line)
-        )
-        if defining or "category:" in line or "subType:" in line:
-            contexts[skills[0]].append(line)
-    return {skill: " ".join(lines) for skill, lines in contexts.items()}
+        cells = _table_cells(line)
+        headers = table_headers.get(number, ())
+        if cells and len(headers) == len(cells):
+            selected = [
+                cell for header, cell in zip(headers, cells)
+                if _header_is_skill_action(header)
+            ]
+        elif cells:
+            selected = [next(
+                (cell for cell in cells if owner in cell), cells[0]
+            )]
+        else:
+            selected = [line]
+        selected = [
+            cleaned for cell in selected
+            if (cleaned := _strip_action_metadata(cell).strip())
+        ]
+        if selected:
+            result[owner].append(" ".join(selected))
+    return {skill: " ".join(parts) for skill, parts in result.items()}
 
 
 def _skill_identity_context(skill_context: str) -> str:
@@ -1451,7 +1689,11 @@ def _skill_identity_context(skill_context: str) -> str:
             identities.append(
                 re.sub(r"^\s*(?:#{1,6}\s+|-\s+)?", "", own_line)
             )
-    return " ".join(identities)
+    identity = " ".join(identities)
+    return re.split(
+        r"(?:reqs?|prereq|sourceChapters)\b|获取(?:方式|信息)?",
+        identity, 1, flags=re.I,
+    )[0]
 
 
 def _explicit_bool(context: str, field_name: str) -> bool | None:
@@ -1471,43 +1713,235 @@ def _explicit_nature(context: str) -> str | None:
 
 
 def _skill_natures(text: str) -> dict[str, str]:
-    """Read only explicit skill nature fields or standalone table cells."""
+    """Read explicit nature from its formal card, never a prerequisite."""
     result: dict[str, str] = {}
+    priorities: dict[str, int] = {}
     labels = {
         "yin": "yin", "阴": "yin", "阴性": "yin",
         "yang": "yang", "阳": "yang", "阳性": "yang",
         "harmony": "harmony", "调和": "harmony",
+        "和": "harmony",
         "neutral": "neutral", "中性": "neutral",
     }
-    for line in text.splitlines():
-        skills = list(dict.fromkeys(re.findall(r"\bsk_[a-z0-9_]+", line)))
-        if len(skills) != 1:
-            continue
-        nature = _explicit_nature(line)
-        if nature is None and line.lstrip().startswith("|"):
-            cells = [
-                re.sub(r"[`*\s]", "", cell)
-                for cell in line.strip().strip("|").split("|")
-            ]
-            nature = next((labels[cell] for cell in cells if cell in labels), None)
-        if nature is None and _grade_from_line(line) is not None:
+    label_pattern = r"yin|yang|harmony|neutral|阴性?|阳性?|调和|中性|和"
+
+    def candidate(line: str, owns_line: bool) -> tuple[str | None, int]:
+        plain = re.sub(r"[`*]", "", line)
+        # Named fields are strongest.  The negative lookbehind keeps
+        # ``requiredNature`` from masquerading as the skill-card property.
+        match = re.search(
+            rf"(?<![A-Za-z])\bnature(?:\s*/\s*[A-Za-z]+)?"
+            rf"\s*(?::|：|\s)\s*({label_pattern})\b",
+            plain, re.I,
+        )
+        if match:
+            return labels[match.group(1).lower()], 5
+
+        cells = _table_cells(plain)
+        if cells:
+            # Full cards commonly use ``性质 / 权重`` or
+            # ``source / nature`` in the key cell and put the value first in
+            # the adjacent cell.
+            for index, cell in enumerate(cells[:-1]):
+                if re.search(r"(?:性质|(?<![A-Za-z])nature(?![A-Za-z]))", cell, re.I):
+                    match = re.search(rf"(?:^|[；; /])\s*({label_pattern})\b",
+                                      cells[index + 1], re.I)
+                    if match:
+                        return labels[match.group(1).lower()], 5
+            normalized = [re.sub(r"\s", "", cell) for cell in cells]
+            exact = next((labels[cell.lower()] for cell in normalized
+                          if cell.lower() in labels), None)
+            if exact is not None:
+                return exact, 3
+            # Qianlong/Kangxi mirrors encode ``sk_id / 和`` in one cell.
+            if owns_line:
+                own_cell = next((cell for cell in normalized
+                                 if re.search(r"\bsk_[a-z0-9_]+", cell)), "")
+                match = re.search(rf"/({label_pattern})$", own_cell, re.I)
+                if match:
+                    return labels[match.group(1).lower()], 4
+
+        # Compact cards put nature between middle dots; stripping Markdown
+        # quotes is required for forms such as ``内功·`harmony`·0/1``.
+        if owns_line or (
+            re.search(r"(?:性质|nature|字段|基本)", plain, re.I)
+            and re.search(r"(?:wOut|wIn|layerStats|meridians)", plain, re.I)
+        ):
             match = re.search(
-                r"[·・]\s*(阴性?|阳性?|调和|中性)\s*(?:[·・）)])", line
+                rf"[·・]\s*({label_pattern})\s*"
+                rf"(?=·|・|）|\)|/|\||$)", plain, re.I
             )
-            nature = labels.get(match.group(1)) if match else None
-        if nature is not None:
-            result.setdefault(skills[0], nature)
+            if match:
+                return labels[match.group(1).lower()], 3
+
+        # Several supplemental full cards use a semicolon record instead of
+        # a table.  Require a schema-like companion token so ordinary prose
+        # mentioning 阴/阳 cannot become a declaration.
+        if re.search(r"(?:wOut|wIn|meridians|apInner|expanded|canonExpanded)",
+                     plain, re.I):
+            match = re.search(
+                rf"(?:^|[；;])\s*({label_pattern})\s*(?=[；;])", plain, re.I
+            )
+            if match:
+                return labels[match.group(1).lower()], 4
+        return None, 0
+
+    for target, _line, block in _skill_card_blocks(text):
+        for index, line in enumerate(block.splitlines()):
+            nature, priority = candidate(line, index == 0)
+            if nature is not None and priority >= priorities.get(target, -1):
+                result[target] = nature
+                priorities[target] = priority
+    # Route registries in Qianlong/Kangxi use an ID/nature pair without a
+    # grade, so they are not card starts.  Accept only the exact first-cell
+    # shape; later prerequisite IDs and route IDs cannot become owners.
+    in_audit_projection = False
+    for line in text.splitlines():
+        if "<!-- skill-catalog-audit:start -->" in line:
+            in_audit_projection = True
+            continue
+        if "<!-- skill-catalog-audit:end -->" in line:
+            in_audit_projection = False
+            continue
+        if in_audit_projection:
+            continue
+        cells = _table_cells(line)
+        if not cells:
+            continue
+        match = re.fullmatch(
+            rf"`?(sk_[a-z0-9_]+)`?\s*/\s*`?({label_pattern})`?",
+            cells[0], re.I,
+        )
+        if match and priorities.get(match.group(1), -1) < 4:
+            result[match.group(1)] = labels[match.group(2).lower()]
+            priorities[match.group(1)] = 4
     return result
+
+
+def _skill_card_blocks(text: str) -> list[tuple[str, int, str]]:
+    """Split formal cards so field rows inherit only their card owner."""
+    blocks: list[tuple[str, int, list[str]]] = []
+    current: tuple[str, int, list[str]] | None = None
+    in_audit_projection = False
+    for number, line in enumerate(text.splitlines(), 1):
+        if "<!-- skill-catalog-audit:start -->" in line:
+            in_audit_projection = True
+        if "<!-- skill-catalog-audit:end -->" in line:
+            in_audit_projection = False
+            continue
+        if in_audit_projection:
+            continue
+        owner = _formal_card_owner(line)
+        if owner is None and re.match(r"^#{1,6}\s", line):
+            if current is not None:
+                blocks.append(current)
+                current = None
+            continue
+        if owner is not None:
+            if current is not None:
+                blocks.append(current)
+            current = (owner, number, [line])
+        elif current is not None:
+            current[2].append(line)
+    if current is not None:
+        blocks.append(current)
+    return [(skill, line, "\n".join(lines)) for skill, line, lines in blocks]
+
+
+def _inner_meridians(card: str) -> tuple[str, ...] | None:
+    match = re.search(
+        r"(?:inner\.)?meridians(?:\s*/\s*(?:InnerDef|breathProfileRef))?"
+        r"\s*(?::|：|\||\s)\s*"
+        r"`?\[([^]]*)]`?", card, re.I,
+    )
+    if match is None:
+        # Full cards often put the field name in the left cell and value in
+        # the right one, separated by Markdown's table bar.
+        match = re.search(
+            r"(?:meridians|经脉(?:\s*/[^|]*)?)\s*\|\s*[^|]*?"
+            r"`?\[([^]]*)]`?",
+            card, re.I,
+        )
+    if match is None:
+        return None
+    return tuple(dict.fromkeys(re.findall(r"mer_[a-z0-9_]+", match.group(1))))
+
+
+def _nature_from_meridians(
+    meridians: Iterable[str], meridian_natures: dict[str, str],
+) -> str:
+    votes = Counter(meridian_natures.get(item) for item in meridians)
+    if votes["yin"] == votes["yang"]:
+        return "harmony"
+    return "yin" if votes["yin"] > votes["yang"] else "yang"
+
+
+def audit_inner_natures(
+    catalog: str, source: str, text: str, meridian_natures: dict[str, str],
+) -> InnerNatureAudit:
+    """Report declared nature versus card-local ``inner.meridians``."""
+    contexts = _skill_contexts(text)
+    natures = _skill_natures(text)
+    grades, grade_lines = parse_skill_grades(text)
+    blocks: dict[str, list[tuple[int, str]]] = defaultdict(list)
+    for skill_id, line, card in _skill_card_blocks(text):
+        blocks[skill_id].append((line, card))
+    inner_cards: list[tuple[str, int, tuple[str, ...] | None]] = []
+    for skill_id in grades:
+        if _delivery_from_context(contexts.get(skill_id, ""), "") != "inner":
+            continue
+        candidates = [
+            (line, _inner_meridians(card)) for line, card in blocks[skill_id]
+        ]
+        with_meridians = [item for item in candidates if item[1] is not None]
+        line, meridians = (
+            with_meridians[-1] if with_meridians
+            else (candidates[-1] if candidates else (grade_lines[skill_id], None))
+        )
+        inner_cards.append((skill_id, line, meridians))
+    missing = tuple(
+        skill for skill, _line, meridians in inner_cards if meridians is None
+    )
+    findings = tuple(
+        InnerNatureFinding(
+            catalog, source, line, skill, natures.get(skill),
+            _nature_from_meridians(meridians, meridian_natures), meridians,
+        )
+        for skill, line, meridians in inner_cards
+        if meridians is not None
+        and natures.get(skill) != _nature_from_meridians(
+            meridians, meridian_natures
+        )
+    )
+    return InnerNatureAudit(
+        catalog, source, len(inner_cards), len(inner_cards) - len(missing),
+        missing, findings,
+    )
 
 
 def _move_contexts(text: str) -> dict[str, str]:
     result: dict[str, list[str]] = defaultdict(list)
+    in_audit_projection = False
     for line in text.splitlines():
+        if "<!-- skill-catalog-audit:start -->" in line:
+            in_audit_projection = True
+            continue
+        if "<!-- skill-catalog-audit:end -->" in line:
+            in_audit_projection = False
+            continue
+        if in_audit_projection:
+            continue
         if "MoveDef{" not in line:
             continue
         move_ids = list(dict.fromkeys(re.findall(r"mv_[a-z0-9_]+", line)))
         for move_id in move_ids:
-            fragment = _local_move_fragment(line, move_id) if len(move_ids) > 1 else line
+            # A normal card row has one move: retain its display name and
+            # trailing description for action recognition.  Multi-move compact
+            # rows still need isolation so a neighbour cannot lend metadata.
+            fragment = (
+                line if len(move_ids) == 1
+                else _local_move_fragment(line, move_id)
+            )
             match = _move_match(line, move_id)
             next_move = (
                 re.search(r"\bmv_[a-z0-9_]+", line[match.end():])
@@ -1526,23 +1960,162 @@ def _move_contexts(text: str) -> dict[str, str]:
     return {move_id: " ".join(parts) for move_id, parts in result.items()}
 
 
+def _move_action_context(move_context: str) -> str:
+    """Keep move name/description while dropping metadata-only fields."""
+    cells = _table_cells(move_context)
+    if cells:
+        move_cell = next(
+            (index for index, cell in enumerate(cells)
+             if re.search(r"\bmv_[a-z0-9_]+", cell)),
+            None,
+        )
+        if move_cell is not None:
+            owned = [cells[move_cell]]
+            # Some cards put the machine contract and move description in the
+            # immediately following cell.  No later metadata cell is owned.
+            if (move_cell + 1 < len(cells)
+                    and "MoveDef{" in cells[move_cell + 1]):
+                owned.append(cells[move_cell + 1])
+            move_context = " ".join(owned)
+    context = re.sub(r"MoveDef\{[^}]*\}", "", move_context)
+    return _strip_action_metadata(context)
+
+
+def _local_move_action_fragment(text: str, move_id: str) -> str:
+    """Keep one move's label and body without borrowing a neighbour's."""
+    matches = list(re.finditer(r"\bmv_[a-z0-9_]+", text))
+    target = next(
+        (index for index, match in enumerate(matches)
+         if match.group(0) == move_id),
+        None,
+    )
+    if target is None or len(matches) == 1:
+        return text
+
+    separators: list[int] = []
+    brace_depth = 0
+    bracket_depth = 0
+    paren_depth = 0
+    in_code = False
+    for index, char in enumerate(text):
+        if char == "`":
+            in_code = not in_code
+            continue
+        if in_code:
+            continue
+        if char == "{":
+            brace_depth += 1
+        elif char == "}" and brace_depth:
+            brace_depth -= 1
+        elif char == "[":
+            bracket_depth += 1
+        elif char == "]" and bracket_depth:
+            bracket_depth -= 1
+        elif char in "（(":
+            paren_depth += 1
+        elif char in "）)" and paren_depth:
+            paren_depth -= 1
+        elif (char in "；;。" and brace_depth == 0
+              and bracket_depth == 0 and paren_depth == 0):
+            separators.append(index)
+
+    match = matches[target]
+    start = 0
+    if target:
+        boundaries = [
+            point for point in separators
+            if matches[target - 1].end() <= point < match.start()
+        ]
+        start = boundaries[-1] + 1 if boundaries else match.start()
+    end = len(text)
+    if target + 1 < len(matches):
+        boundaries = [
+            point for point in separators
+            if match.end() <= point < matches[target + 1].start()
+        ]
+        end = boundaries[-1] if boundaries else match.end()
+    return text[start:end].strip()
+
+
+def _move_action_contexts(text: str) -> dict[str, str]:
+    """Extract action words from named table fields, excluding metadata."""
+    result: dict[str, list[str]] = defaultdict(list)
+    table_headers = _table_headers_by_line(text)
+    in_audit_projection = False
+    for number, line in enumerate(text.splitlines(), 1):
+        if "<!-- skill-catalog-audit:start -->" in line:
+            in_audit_projection = True
+            continue
+        if "<!-- skill-catalog-audit:end -->" in line:
+            in_audit_projection = False
+            continue
+        if in_audit_projection or "MoveDef{" not in line:
+            continue
+        move_ids = list(dict.fromkeys(re.findall(r"mv_[a-z0-9_]+", line)))
+        cells = _table_cells(line)
+        headers = table_headers.get(number, ())
+        for move_id in move_ids:
+            if cells and len(headers) == len(cells):
+                selected: list[str] = []
+                for header, cell in zip(headers, cells):
+                    if _header_is_metadata(header):
+                        continue
+                    if (
+                        _header_is_action_text(header)
+                        or move_id in cell
+                        or ("MoveDef{" in cell and re.search(
+                            r"定义|字段|movedef", header, re.I
+                        ))
+                    ):
+                        selected.append(
+                            _local_move_action_fragment(cell, move_id)
+                            if move_id in cell else cell
+                        )
+                fragment = " ".join(selected)
+            else:
+                fragment = (
+                    line if len(move_ids) == 1
+                    else _local_move_action_fragment(line, move_id)
+                )
+            action = _move_action_context(fragment).strip()
+            if action:
+                result[move_id].append(action)
+    return {move_id: " ".join(parts) for move_id, parts in result.items()}
+
+
 def _move_owners(text: str) -> dict[str, str]:
     """Resolve a move to its enclosing formal skill card."""
     owners: dict[str, str] = {}
+    move_lines: list[tuple[str, str | None]] = []
+    formal_skills = set(parse_skill_grades(text)[0])
     current: str | None = None
     for line in text.splitlines():
+        card_owner = _formal_card_owner(line)
+        if card_owner is not None:
+            current = card_owner
+            formal_skills.add(card_owner)
         skills = list(dict.fromkeys(re.findall(r"\bsk_[a-z0-9_]+", line)))
-        if len(skills) == 1 and (
-            _grade_from_line(line) is not None
-            or line.lstrip().startswith(("#", "**"))
-        ):
-            current = skills[0]
         moves = list(dict.fromkeys(re.findall(r"\bmv_[a-z0-9_]+", line)))
-        if len(skills) == 1 and len(moves) == 1:
-            owners[moves[0]] = skills[0]
-        elif current and "MoveDef{" in line:
-            for move_id in moves:
+        for move_id in moves:
+            move_lines.append((move_id, current))
+            if card_owner is not None:
+                owners[move_id] = card_owner
+            elif len(skills) == 1 and skills[0] in formal_skills:
+                owners[move_id] = skills[0]
+            elif current and "MoveDef{" in line:
                 owners.setdefault(move_id, current)
+    # A move's conventional stem is stronger than incidental card proximity.
+    for move_id, nearby in move_lines:
+        stem = move_id.removeprefix("mv_")
+        candidates = [
+            skill for skill in formal_skills
+            if stem == skill.removeprefix("sk_")
+            or stem.startswith(skill.removeprefix("sk_") + "_")
+        ]
+        if candidates:
+            owners[move_id] = max(candidates, key=len)
+        elif nearby:
+            owners.setdefault(move_id, nearby)
     return owners
 
 
@@ -1556,7 +2129,8 @@ def _purpose(context: str) -> str | None:
 def _collect_nonultimate_projection_routes(
     path: Path, text: str, contexts: dict[str, str],
     move_contexts: dict[str, str], move_owners: dict[str, str],
-    skill_natures: dict[str, str],
+    skill_action_contexts: dict[str, str],
+    move_action_contexts: dict[str, str], skill_natures: dict[str, str],
 ) -> list[DeliveryRoute]:
     """Collect explicit normal routes whose MoveDef opts into projection."""
     mirrors = parse_route_mirrors(text)
@@ -1596,6 +2170,8 @@ def _collect_nonultimate_projection_routes(
             True, False, _explicit_bool(move_context, "voice"),
             _explicit_nature(move_context) or skill_natures.get(skill_id),
             _explicit_bool(route_context, "allowOpposedNature") is True,
+                f"{skill_action_contexts.get(skill_id, '')} "
+                f"{move_action_contexts.get(move_id, '')}",
         ))
     return result
 
@@ -1608,12 +2184,14 @@ def _delivery_from_context(skill_context: str, move_context: str) -> str | None:
     )
     if subtype:
         value = subtype.group(1).lower()
-        if value == "inner":
+        if value in {"inner", "xinfa"}:
             return "inner"
         if value == "movement":
             return "movement"
         if value == "grapple":
             return "fist-grapple"
+        if value == "palm":
+            return "palm"
         if value in {"finger", "leg"}:
             return value
         if value in {"sword", "blade", "staff", "spear", "whip", "exotic"}:
@@ -1654,7 +2232,10 @@ def _delivery_from_context(skill_context: str, move_context: str) -> str | None:
     # ``拳脚/拳掌`` is an old broad catalog bucket, not an action.  Inspect
     # explicit fine types and display names only after removing that token.
     named_skill = re.sub(r"拳脚\s*[/／·]\s*拳掌", "", skill_context)
-    if re.search(r"(?:掌法|[^拳]掌)(?=[*\s|（(·；;，,:：。]|$)", named_skill):
+    if re.search(
+        r"(?:掌法|掌功|掌力|[^拳]掌)(?=[*\s|（(·；;，,:：。]|$)",
+        named_skill,
+    ):
         return "palm"
     if re.search(r"(?:指法|[^定]指)(?=[\s|（(·]|$)", named_skill):
         return "finger"
@@ -1701,8 +2282,10 @@ def collect_delivery_routes(paths: Iterable[Path]) -> list[DeliveryRoute]:
         )
         text = path.read_text(encoding="utf-8")
         contexts = _skill_contexts(text)
+        skill_action_contexts = _skill_action_contexts(text)
         skill_natures = _skill_natures(text)
         move_contexts = _move_contexts(text)
+        move_action_contexts = _move_action_contexts(text)
         move_owners = _move_owners(text)
         lines = text.splitlines()
         for item in parse_audit_instances(text).values():
@@ -1723,12 +2306,21 @@ def collect_delivery_routes(paths: Iterable[Path]) -> list[DeliveryRoute]:
                 _explicit_nature(move_context)
                 or skill_natures.get(item.skill_id),
                 _explicit_bool(route_line, "allowOpposedNature") is True,
+                f"{skill_action_contexts.get(item.skill_id, '')} "
+                f"{move_action_contexts.get(item.move_id, '')}",
             ))
         routes.extend(_collect_nonultimate_projection_routes(
-            path, text, contexts, move_contexts, move_owners, skill_natures
+            path, text, contexts, move_contexts, move_owners,
+            skill_action_contexts, move_action_contexts, skill_natures,
         ))
     if include_external_wujue:
-        routes.extend(parse_external_wujue_delivery_routes(MERIDIAN_FLOW_PATH))
+        wujue_text = (CATALOG_DIR / "skills-wujue.md").read_text(
+            encoding="utf-8"
+        )
+        routes.extend(parse_external_wujue_delivery_routes(
+            MERIDIAN_FLOW_PATH,
+            _skill_natures(wujue_text).get("sk_xianglong18"),
+        ))
     return sorted(routes, key=lambda item: (item.catalog, item.line, item.route_id))
 
 
@@ -1753,17 +2345,70 @@ def _action_endpoint_findings(
     return [], []
 
 
+def palm_endpoints(action_context: str) -> frozenset[str]:
+    """Return AR-18 palm outlets using conservative action recognition."""
+    outlets = set(PALM_BASE_ENDPOINTS)
+    if re.search(r"手刀|掌刃|掌缘|掌侧|劈掌", action_context):
+        outlets.add(PALM_HOUXI_ENDPOINT)
+    cut_exclusions = (
+        "一切", "切磋", "亲切", "切换", "迫切", "切勿",
+        "切记", "密切", "确切", "急切", "恳切", "切实",
+    )
+    reliable = action_context
+    for token in (*cut_exclusions, "劈空"):
+        reliable = reliable.replace(token, "")
+    if re.search(r"劈|切|抓|虎口", reliable):
+        outlets.add(PALM_HEGU_ENDPOINT)
+    if re.search(r"格挡|靠打|反背摔掌", action_context):
+        outlets.add(PALM_WAIGUAN_ENDPOINT)
+    return frozenset(outlets)
+
+
+def route_outlet_points(route: DeliveryRoute) -> frozenset[str]:
+    """Identify only action-matched outlets occurring in the final 3 steps."""
+    if route.delivery == "palm":
+        allowed = palm_endpoints(route.action_context)
+        matched = set(route.signature[-3:]) & allowed
+        # Neiguan may be the lead-in to the Laogong inner-gate outlet.
+        if "ap_shoujueyin_laogong" in matched:
+            matched |= set(route.signature[-3:]) & {PALM_INNER_GATE}
+        return frozenset(matched)
+    if route.delivery == "fist-grapple":
+        allowed = FIST_GRAPPLE_ENDPOINTS
+    elif route.delivery == "finger":
+        allowed = FINGER_ENDPOINTS
+    elif route.delivery == "leg":
+        allowed = frozenset(
+            point for point in route.signature
+            if point.startswith(LEG_ACUPOINT_PREFIXES)
+        )
+    elif route.delivery == "weapon":
+        allowed = WEAPON_GUIDE_ENDPOINTS
+    else:
+        return frozenset()
+    return frozenset(set(route.signature[-3:]) & allowed)
+
+
 def route_nature(
     signature: tuple[str, ...],
     acupoint_meridians: dict[str, str] | None = None,
     meridian_natures: dict[str, str] | None = None,
+    outlet_points: Iterable[str] = (),
 ) -> str:
-    """Apply design/21 §2.4 reading 1: yin/yang vote; ties harmonize."""
+    """Vote on body steps only; AR-18 action outlets do not vote."""
     ownership = acupoint_meridians or load_acupoint_meridians()
     natures = meridian_natures or load_meridian_natures()
+    excluded = Counter(outlet_points)
+    body_points: list[str] = []
+    # Remove only the matched trailing occurrences, not every identical point.
+    for point in reversed(signature):
+        if excluded[point]:
+            excluded[point] -= 1
+        else:
+            body_points.append(point)
     votes = Counter(
         natures.get(ownership.get(point, ""))
-        for point in signature
+        for point in reversed(body_points)
     )
     yin, yang = votes["yin"], votes["yang"]
     if yin == yang:
@@ -1804,8 +2449,9 @@ def _delivery_findings(
                 findings.append(finding)
         return findings, tail_findings
     if route.delivery == "palm":
+        allowed = palm_endpoints(route.action_context)
         current, tails = _action_endpoint_findings(
-            route, "palm", PALM_ENDPOINTS, "ap_shoujueyin_laogong"
+            route, "palm", allowed, "Laogong or an action-matched palm outlet"
         )
         findings.extend(current)
         tail_findings.extend(tails)
@@ -1899,6 +2545,17 @@ def analyze_delivery_routes(routes: Iterable[DeliveryRoute]) -> DeliveryReport:
     )
     ownership = load_acupoint_meridians()
     meridian_natures = load_meridian_natures()
+    route_natures = {
+        (route.catalog, route.source, route.line, route.route_id): route_nature(
+            route.signature, ownership, meridian_natures,
+            route_outlet_points(route),
+        )
+        for route in route_list
+    }
+    def derived_nature(route: DeliveryRoute) -> str:
+        return route_natures[(
+            route.catalog, route.source, route.line, route.route_id,
+        )]
     finding_groups = tuple(
         _delivery_findings(route, ownership) for route in route_list
     )
@@ -1915,17 +2572,12 @@ def analyze_delivery_routes(routes: Iterable[DeliveryRoute]) -> DeliveryReport:
     nature_findings = tuple(
         DeliveryFinding(
             route, "nature-conflict",
-            f"route={route_nature(route.signature, ownership, meridian_natures)}; "
-            f"declared={route.nature}",
+            f"route={derived_nature(route)}; declared={route.nature}",
         )
         for route in route_list
         if route.nature in {"yin", "yang"}
-        and route_nature(
-            route.signature, ownership, meridian_natures
-        ) in {"yin", "yang"}
-        and route_nature(
-            route.signature, ownership, meridian_natures
-        ) != route.nature
+        and derived_nature(route) in {"yin", "yang"}
+        and derived_nature(route) != route.nature
         and not route.allow_opposed_nature
     )
     nonultimate_projection_findings = tuple(
@@ -1968,6 +2620,11 @@ def analyze_delivery_routes(routes: Iterable[DeliveryRoute]) -> DeliveryReport:
             nature_conflicts=sum(
                 finding.route.catalog == name for finding in nature_findings
             ),
+            palm_routes=sum(route.delivery == "palm" for route in items),
+            palm_endpoint_matches=sum(
+                route.delivery == "palm" and bool(route_outlet_points(route))
+                for route in items
+            ),
         ))
     return DeliveryReport(
         routes=ultimate_routes, catalogs=tuple(summaries), findings=findings,
@@ -1985,16 +2642,36 @@ def analyze_delivery_routes(routes: Iterable[DeliveryRoute]) -> DeliveryReport:
 def analyze_delivery(paths: Iterable[Path]) -> DeliveryReport:
     path_list = list(paths)
     report = analyze_delivery_routes(collect_delivery_routes(path_list))
+    meridian_natures = load_meridian_natures()
+    inner_audits = tuple(
+        audit_inner_natures(
+            catalog_name(path), path.name, path.read_text(encoding="utf-8"),
+            meridian_natures,
+        )
+        for path in path_list
+    )
+    inner_by_catalog = {item.catalog: item for item in inner_audits}
     summaries = {item.name: item for item in report.catalogs}
-    all_summaries = tuple(
-        summaries.get(catalog_name(path), DeliveryCatalogSummary(
-            name=catalog_name(path), routes=0, classified=0, checked_rules=0,
+    all_summaries: list[DeliveryCatalogSummary] = []
+    for path in sorted(path_list, key=lambda item: catalog_name(item)):
+        name = catalog_name(path)
+        summary = summaries.get(name, DeliveryCatalogSummary(
+            name=name, routes=0, classified=0, checked_rules=0,
             violations=0, tail_violations=0, unclassified=0,
         ))
-        for path in sorted(path_list, key=lambda item: catalog_name(item))
+        inner = inner_by_catalog[name]
+        all_summaries.append(DeliveryCatalogSummary(
+            **{**asdict(summary),
+               "inner_nature_total": inner.total,
+               "inner_nature_with_meridians": inner.with_meridians,
+               "inner_nature_missing_meridians": len(inner.missing_meridians),
+               "inner_nature_conflicts": len(inner.findings)},
+        ))
+    inner_findings = tuple(
+        finding for audit in inner_audits for finding in audit.findings
     )
     return DeliveryReport(
-        routes=report.routes, catalogs=all_summaries,
+        routes=report.routes, catalogs=tuple(all_summaries),
         findings=report.findings, tail_findings=report.tail_findings,
         tail_violations=report.tail_violations,
         nonultimate_projection_route_details=(
@@ -2004,6 +2681,15 @@ def analyze_delivery(paths: Iterable[Path]) -> DeliveryReport:
         nature_findings=report.nature_findings,
         nonultimate_projection_routes=report.nonultimate_projection_routes,
         nature_conflicts=report.nature_conflicts,
+        inner_nature_findings=inner_findings,
+        inner_nature_total=sum(item.total for item in inner_audits),
+        inner_nature_with_meridians=sum(
+            item.with_meridians for item in inner_audits
+        ),
+        inner_nature_missing_meridians=sum(
+            len(item.missing_meridians) for item in inner_audits
+        ),
+        inner_nature_conflicts=len(inner_findings),
     )
 
 
@@ -2075,7 +2761,9 @@ def parse_external_wujue_diversity_routes(path: Path) -> list[DiversityRoute]:
     return routes
 
 
-def parse_external_wujue_delivery_routes(path: Path) -> list[DeliveryRoute]:
+def parse_external_wujue_delivery_routes(
+    path: Path, nature: str | None = None,
+) -> list[DeliveryRoute]:
     """Project the three 05/21-owned Xianglong routes into Wujue.
 
     The author decision classifies all three ultimate palm-force moves as
@@ -2106,6 +2794,7 @@ def parse_external_wujue_delivery_routes(path: Path) -> list[DeliveryRoute]:
             skill_id=route.skill_id, move_id=route.move_id,
             route_id=route.route_id, signature=route.signature,
             delivery="palm", purpose=purpose.group(1), projection=True,
+            nature=nature, action_context="降龙十八掌",
         ))
     return routes
 
@@ -2772,7 +3461,14 @@ def print_delivery_report(report: DeliveryReport, details: bool = False) -> None
             f"{item.nonultimate_projection_routes}; "
             f"nonultimate_projection_violations="
             f"{item.nonultimate_projection_violations}; "
-            f"nature_conflicts={item.nature_conflicts}"
+            f"nature_conflicts={item.nature_conflicts}; "
+            f"palm_routes={item.palm_routes}; "
+            f"palm_endpoint_matches={item.palm_endpoint_matches}; "
+            f"inner_nature={item.inner_nature_with_meridians}/"
+            f"{item.inner_nature_total}; "
+            f"inner_missing_meridians="
+            f"{item.inner_nature_missing_meridians}; "
+            f"inner_nature_conflicts={item.inner_nature_conflicts}"
         )
     print(
         f"delivery: routes={report.route_count}; "
@@ -2785,7 +3481,13 @@ def print_delivery_report(report: DeliveryReport, details: bool = False) -> None
         f"{report.nonultimate_projection_routes}; "
         f"nonultimate_projection_violations="
         f"{report.nonultimate_projection_violations}; "
-        f"nature_conflicts={report.nature_conflicts}"
+        f"nature_conflicts={report.nature_conflicts}; "
+        f"palm_routes={report.palm_route_count}; "
+        f"palm_endpoint_matches={report.palm_endpoint_match_count}; "
+        f"inner_nature={report.inner_nature_with_meridians}/"
+        f"{report.inner_nature_total}; "
+        f"inner_missing_meridians={report.inner_nature_missing_meridians}; "
+        f"inner_nature_conflicts={report.inner_nature_conflicts}"
     )
     if not details:
         return
@@ -2799,6 +3501,13 @@ def print_delivery_report(report: DeliveryReport, details: bool = False) -> None
             f"scope={'ultimate' if route.ultimate else 'normal-projection'}; "
             f"{route.catalog}:{route.skill_id}/{route.move_id}/{route.route_id}"
             f"@{route.location}"
+        )
+    for finding in report.inner_nature_findings:
+        print(
+            f"  INNER_NATURE skill={finding.skill_id}; "
+            f"declared={finding.declared}; derived={finding.derived}; "
+            f"meridians={','.join(finding.meridians)}; "
+            f"{finding.catalog}@{finding.source}:{finding.line}"
         )
 
 

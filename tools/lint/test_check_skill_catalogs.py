@@ -940,12 +940,96 @@ class DeliveryTests(unittest.TestCase):
         skill_id: str = "sk_alpha", move_id: str = "mv_alpha_one",
         ultimate: bool = True, voice: bool | None = None,
         nature: str | None = None, allow_opposed_nature: bool = False,
+        action_context: str | None = None,
     ) -> checker.DeliveryRoute:
+        kwargs = {} if action_context is None else {
+            "action_context": action_context
+        }
         return checker.DeliveryRoute(
             "fixture", "skills-fixture.md", 7, skill_id, move_id,
             "mfr_" + move_id.removeprefix("mv_"), points, delivery,
             purpose, projection, ultimate, voice, nature,
             allow_opposed_nature,
+            **kwargs,
+        )
+
+    def test_nature_parser_reads_id_and_chinese_nature_in_one_cell(self) -> None:
+        text = """
+| `sk_baihuacuo` | 百花错拳 | 拳脚 | 10 天下 |
+| 武学 / 性质 | 逐招路线 |
+| `sk_baihuacuo` / 和 | `mv_baihuacuo_luanhua` |
+"""
+        self.assertEqual(
+            "harmony", checker._skill_natures(text)["sk_baihuacuo"]
+        )
+
+    def test_nature_parser_assigns_idless_field_to_enclosing_card(self) -> None:
+        text = """
+### `sk_jueqingbixuejue` 绝情碧血诀（7 地下 · 内功）
+| nature · wOut/wIn · moveSlots | `yin` · `0/1` · 4 |
+"""
+        self.assertEqual(
+            "yin", checker._skill_natures(text)["sk_jueqingbixuejue"]
+        )
+
+    def test_nature_parser_reads_field_table_and_semicolon_cards(self) -> None:
+        text = """
+### `sk_table` 表格功（8 地中 · 内功）
+| source / nature | `[ch08_luding]`；`yang`；`wOut/wIn:0/1`；`meridians:[mer_dumai]` |
+### `sk_semicolon` 行文功（7 地下 · 内功）
+`expanded / sect_demo`；调和；`meridians:[mer_chongmai]`。
+"""
+        self.assertEqual(
+            {"sk_table": "yang", "sk_semicolon": "harmony"},
+            checker._skill_natures(text),
+        )
+
+    def test_nature_parser_uses_compact_card_owner_not_prerequisite(self) -> None:
+        text = """
+| `sk_huashanjianfa` 华山剑法 | 5玄中·兵器/剑·neutral·0.8/0.2 | 无 |
+| `sk_yangwujian` 养吾剑 | 6玄上·兵器/剑·yang·0.65/0.35 | prereq sk_huashanjianfa |
+"""
+        natures = checker._skill_natures(text)
+        self.assertEqual("yang", natures["sk_yangwujian"])
+        self.assertEqual("neutral", natures["sk_huashanjianfa"])
+
+    def test_nature_field_does_not_belong_to_prerequisite_id(self) -> None:
+        text = """
+#### `sk_gaibanghuxinfa` 丐帮护心法（5 玄中 · 内功）
+**字段**｜`nature:harmony`；`inner.meridians:[mer_renmai,mer_dumai]`
+#### `sk_jiudaixingong` 九袋行功（6 玄上 · 内功）
+**字段**｜`nature:yang`；`reqs:{prereq:[{skill:sk_gaibanghuxinfa}]}`；`inner.meridians:[mer_dumai]`
+"""
+        natures = checker._skill_natures(text)
+        self.assertEqual("yang", natures["sk_jiudaixingong"])
+        self.assertEqual("harmony", natures["sk_gaibanghuxinfa"])
+
+    def test_move_owner_uses_first_card_id_and_matching_skill_stem(self) -> None:
+        text = """
+**`sk_xuanfengsaoyetui` 旋风扫叶腿**（5 玄中 · 拳脚/腿）
+**`sk_pikongzhang` 劈空掌**（5 玄中；prereq sk_bibozhang）
+- `mv_pikongzhang_pikong` `MoveDef{projection:true}`
+| `sk_luohanquan` 罗汉拳 | 1黄下·拳脚/拳·yang | 无 |
+> `mv_jingangzhi_zhili` `MoveDef{projection:true}`
+| `sk_jingangzhi` 金刚指 | 4玄下·拳脚/指·yang | 无 |
+"""
+        owners = checker._move_owners(text)
+        self.assertEqual("sk_pikongzhang", owners["mv_pikongzhang_pikong"])
+        self.assertNotEqual(
+            "sk_xuanfengsaoyetui", owners["mv_pikongzhang_pikong"]
+        )
+        self.assertEqual("sk_jingangzhi", owners["mv_jingangzhi_zhili"])
+
+    def test_move_context_ignores_generated_audit_projection(self) -> None:
+        text = """
+### `sk_alpha` 测试掌（6 玄上 · 拳脚/掌）
+| 真劈 `mv_alpha_one` | `MoveDef{ultimate:true}` |
+<!-- skill-catalog-audit:start -->
+| `mv_alpha_one` 切磋镜像 | `MoveDef{ultimate:true}` |
+<!-- skill-catalog-audit:end -->
+"""
+        self.assertNotIn(
+            "切磋", checker._move_contexts(text)["mv_alpha_one"]
         )
 
     def test_all_six_delivery_rules_accept_matching_endpoints(self) -> None:
@@ -1112,6 +1196,457 @@ class DeliveryTests(unittest.TestCase):
             ("ap_yin_a", "ap_yang", "ap_unknown"), mapping
         ))
 
+    def test_nonultimate_nature_checks_override_and_inner_gate(self) -> None:
+        mapping = {
+            "ap_yin": "mer_renmai",
+            "ap_yang": "mer_dumai",
+            "ap_shoujueyin_neiguan": "mer_shoujueyin",
+            "ap_shoujueyin_laogong": "mer_shoujueyin",
+        }
+        natures = {
+            "mer_renmai": "yin", "mer_dumai": "yang",
+            "mer_shoujueyin": "yin",
+        }
+        routes = [
+            self.route(
+                None, ("ap_yin",), projection=True, ultimate=False,
+                nature="yang", move_id="mv_alpha_conflict",
+            ),
+            self.route(
+                None, ("ap_yin",), projection=True, ultimate=False,
+                nature="yang", allow_opposed_nature=True,
+                move_id="mv_alpha_allowed",
+            ),
+            self.route(
+                "palm",
+                (
+                    "ap_yang", "ap_shoujueyin_neiguan",
+                    "ap_shoujueyin_laogong",
+                ),
+                projection=True, ultimate=False, nature="yang",
+                move_id="mv_alpha_inner_gate",
+            ),
+        ]
+        with mock.patch.object(
+            checker, "load_acupoint_meridians", return_value=mapping
+        ), mock.patch.object(
+            checker, "load_meridian_natures", return_value=natures
+        ):
+            report = checker.analyze_delivery_routes(routes)
+
+        self.assertEqual(
+            ["mv_alpha_conflict"],
+            [item.route.move_id for item in report.nature_findings],
+        )
+
+    def test_route_nature_uses_game_owner_for_confluent_acupoint(self) -> None:
+        ownership = checker.load_acupoint_meridians()
+        natures = checker.load_meridian_natures()
+        self.assertEqual("mer_chongmai", ownership["ap_chongmai_qichong"])
+        self.assertEqual(
+            "harmony",
+            checker.route_nature(
+                ("ap_chongmai_qichong",), ownership, natures
+            ),
+        )
+
+    def test_palm_outlet_does_not_vote_on_yang_body_nature(self) -> None:
+        mapping = {
+            "ap_body": "mer_dumai",
+            "ap_shoujueyin_neiguan": "mer_shoujueyin",
+            "ap_shoujueyin_laogong": "mer_shoujueyin",
+        }
+        natures = {"mer_dumai": "yang", "mer_shoujueyin": "yin"}
+        route = self.route(
+            "palm",
+            (
+                "ap_body",
+                "ap_shoujueyin_neiguan",
+                "ap_shoujueyin_laogong",
+            ),
+            nature="yang",
+        )
+        with mock.patch.object(
+            checker, "load_acupoint_meridians", return_value=mapping
+        ), mock.patch.object(
+            checker, "load_meridian_natures", return_value=natures
+        ):
+            report = checker.analyze_delivery_routes([route])
+
+        self.assertEqual([], list(report.nature_findings))
+        self.assertEqual(
+            "yang",
+            checker.route_nature(
+                route.signature, mapping, natures,
+                outlet_points={
+                    "ap_shoujueyin_neiguan",
+                    "ap_shoujueyin_laogong",
+                },
+            ),
+        )
+
+    def test_palm_action_endpoints_are_conservative_and_unionized(self) -> None:
+        routes = [
+            self.route(
+                "palm", ("ap_dumai_mingmen", "ap_shoutaiyang_houxi"),
+                move_id="mv_alpha_shoudao", action_context="手刀劈落",
+            ),
+            self.route(
+                "palm", ("ap_dumai_mingmen", "ap_shouyangming_hegu"),
+                move_id="mv_alpha_pizhang", action_context="虎口劈掌",
+            ),
+            self.route(
+                "palm", ("ap_dumai_mingmen", "ap_shoushaoyang_waiguan"),
+                move_id="mv_alpha_fanbei", action_context="反背摔掌",
+            ),
+            self.route(
+                "palm", ("ap_dumai_mingmen", "ap_shoutaiyang_houxi"),
+                move_id="mv_alpha_ambiguous", action_context="正面掌击",
+            ),
+            self.route(
+                "palm", ("ap_dumai_mingmen", "ap_shouyangming_hegu"),
+                move_id="mv_alpha_priority", action_context="掌刃劈击",
+            ),
+            self.route(
+                "palm", ("ap_dumai_mingmen", "ap_shoutaiyang_houxi"),
+                move_id="mv_alpha_pizhang_houxi", action_context="迎面劈掌",
+            ),
+        ]
+
+        report = checker.analyze_delivery_routes(routes)
+
+        self.assertEqual(
+            ["mv_alpha_ambiguous"],
+            [finding.route.move_id for finding in report.findings
+             if finding.rule == "palm"],
+        )
+        self.assertEqual(6, report.catalogs[0].palm_routes)
+        self.assertEqual(5, report.catalogs[0].palm_endpoint_matches)
+        self.assertEqual(6, report.palm_route_count)
+        self.assertEqual(5, report.palm_endpoint_match_count)
+        self.assertEqual(
+            {
+                "ap_shoujueyin_laogong",
+                "ap_shouyangming_hegu",
+                "ap_shoutaiyang_houxi",
+            },
+            checker.palm_endpoints("掌刃劈击"),
+        )
+
+    def test_palm_action_rejects_non_action_cut_and_pikong_words(self) -> None:
+        for phrase in (
+            "一切", "切磋", "亲切", "切换", "迫切", "切勿",
+            "切记", "密切", "确切", "急切", "恳切", "切实",
+            "劈空掌",
+        ):
+            with self.subTest(phrase=phrase):
+                self.assertEqual(
+                    {"ap_shoujueyin_laogong"},
+                    checker.palm_endpoints(phrase),
+                )
+        self.assertIn(
+            "ap_shouyangming_hegu", checker.palm_endpoints("横切敌腕")
+        )
+
+    def test_palm_action_context_ignores_requirement_and_source_fields(self) -> None:
+        text = """
+| `sk_alpha` 测试掌 | 6玄上·拳脚/掌·yang·0.6/0.4 | reqs: 与师父切磋；sourceChapters: 劈空旧闻 | 掌击 `mv_alpha_one` `MoveDef{ultimate:true}` |
+| 6 玄上 | sk_alpha | mv_alpha_one MoveDef{ultimate:true} | mfr_alpha_one MeridianRouteDef{moveRef:mv_alpha_one; ultimate:true; purpose:attack} | ap_dumai_mingmen/80/100→ap_shouyangming_hegu/80/120 |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            route = checker.collect_delivery_routes([path])[0]
+        self.assertEqual({"ap_shoujueyin_laogong"}, checker.palm_endpoints(
+            route.action_context
+        ))
+
+    def test_palm_action_context_excludes_unlabelled_metadata(self) -> None:
+        cases = (
+            (
+                "prerequisite",
+                "prereq sk_beta 劈掌5重",
+                "正面掌击",
+                "ap_shouyangming_hegu",
+            ),
+            (
+                "braced_reqs",
+                "reqs {note:掌刃考核}",
+                "正面掌击",
+                "ap_shoutaiyang_houxi",
+            ),
+            (
+                "acquisition_column",
+                "",
+                "正面掌击",
+                "ap_shoushaoyang_waiguan",
+            ),
+        )
+        for label, heading_metadata, move_name, endpoint in cases:
+            acquisition = " | 获取 | 外关格挡考核" if label == "acquisition_column" else ""
+            text = f"""
+### `sk_alpha` 测试掌（9 地上 · 拳脚/掌；{heading_metadata}）
+| {move_name} `mv_alpha_one` `MoveDef{{ultimate:true}}`{acquisition} |
+"""
+            action_context = (
+                checker._skill_identity_context(
+                    checker._skill_contexts(text)["sk_alpha"]
+                )
+                + " "
+                + checker._move_action_context(
+                    checker._move_contexts(text)["mv_alpha_one"]
+                )
+            )
+            with self.subTest(case=label):
+                self.assertEqual(
+                    {"ap_shoujueyin_laogong"},
+                    checker.palm_endpoints(action_context),
+                )
+                self.assertNotIn(endpoint, checker.palm_endpoints(action_context))
+
+    def test_acquisition_header_cannot_supply_palm_action(self) -> None:
+        cases = (
+            ("chop", "完成劈掌考核", "ap_shouyangming_hegu"),
+            ("edge", "完成掌刃考核", "ap_shoutaiyang_houxi"),
+            ("block", "完成格挡考核", "ap_shoushaoyang_waiguan"),
+        )
+        for label, acquisition, endpoint in cases:
+            text = f"""
+| ID | 名称 | 大类/子类 | 品阶 | 性质 | 获取方式 |
+|---|---|---|---|---|---|
+| `sk_alpha` | 测试掌 | 拳脚/拳掌 | 9 地上 | 阳 | {acquisition} |
+| 招式 | 定义 |
+| 正面掌击 `mv_alpha_one` | `MoveDef{{ultimate:true; projection:false}}` |
+| 9 地上 | sk_alpha | mv_alpha_one MoveDef{{ultimate:true}} | mfr_alpha_one MeridianRouteDef{{moveRef:mv_alpha_one; ultimate:true; purpose:attack}} | ap_dumai_mingmen/80/100→{endpoint}/80/120 |
+"""
+            with tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "skills-fixture.md"
+                path.write_text(text, encoding="utf-8")
+                route = checker.collect_delivery_routes([path])[0]
+                report = checker.analyze_delivery_routes([route])
+            with self.subTest(case=label):
+                self.assertEqual(
+                    {"ap_shoujueyin_laogong"},
+                    checker.palm_endpoints(route.action_context),
+                )
+                self.assertEqual(
+                    ["palm"],
+                    [finding.rule for finding in report.findings],
+                )
+
+    def test_skill_metadata_cannot_authorize_houxi_outlet(self) -> None:
+        cases = (
+            (
+                "headerless_skill_cell_prereq",
+                """
+| `sk_alpha` 测试掌；prereq sk_beta 掌刃5重 | 9地上·拳脚/掌·yang·0.6/0.4 |
+""",
+            ),
+            (
+                "skill_cell_reqs",
+                """
+| ID | 武学 | 大类/子类 | 品阶 | 性质 |
+|---|---|---|---|---|
+| `sk_alpha` | 测试掌；reqs {note:掌刃考核} | 拳脚/拳掌 | 9 地上 | 阳 |
+""",
+            ),
+            (
+                "heading_prerequisite",
+                """
+### `sk_alpha` 测试掌（9 地上 · 拳脚 / 拳掌；nature:yang；前置：掌刃5重）
+""",
+            ),
+        )
+        body = """
+| 招式 | 定义 |
+|---|---|
+| 正面掌击 `mv_alpha_one` | `MoveDef{ultimate:true; projection:false}` |
+| 品阶 | 武学 | MoveDef（正文真值） | MeridianRouteDef（路线镜像） | steps |
+|---|---|---|---|---|
+| 9 地上 | sk_alpha | mv_alpha_one MoveDef{ultimate:true} | mfr_alpha_one MeridianRouteDef{moveRef:mv_alpha_one; ultimate:true; purpose:attack} | ap_renmai_qihai/80/100→ap_shoutaiyang_houxi/80/120 |
+"""
+        for label, card in cases:
+            with self.subTest(case=label), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "skills-fixture.md"
+                path.write_text(card + body, encoding="utf-8")
+                route = checker.collect_delivery_routes([path])[0]
+                report = checker.analyze_delivery_routes([route])
+
+                self.assertEqual("yang", route.nature)
+                self.assertIn("测试掌", route.action_context)
+                self.assertIn("正面掌击", route.action_context)
+                self.assertNotIn("掌刃", route.action_context)
+                self.assertEqual(
+                    {"ap_shoujueyin_laogong"},
+                    checker.palm_endpoints(route.action_context),
+                )
+                self.assertEqual(frozenset(), checker.route_outlet_points(route))
+                self.assertEqual(
+                    "harmony",
+                    checker.route_nature(
+                        route.signature,
+                        outlet_points=checker.route_outlet_points(route),
+                    ),
+                )
+                self.assertEqual(
+                    ["palm"],
+                    [finding.rule for finding in report.findings],
+                )
+                self.assertEqual(
+                    [],
+                    [finding.required for finding in report.nature_findings
+                     if finding.required == "route=yin; declared=yang"],
+                )
+
+    def test_move_metadata_cannot_authorize_houxi_outlet(self) -> None:
+        text = """
+### `sk_alpha` 测试掌（9 地上 · 拳脚 / 拳掌；nature:yang）
+| 正面掌击 `mv_alpha_one`；前置：掌刃5重 | `MoveDef{ultimate:true; projection:false}` |
+| 9 地上 | sk_alpha | mv_alpha_one MoveDef{ultimate:true} | mfr_alpha_one MeridianRouteDef{moveRef:mv_alpha_one; ultimate:true; purpose:attack} | ap_renmai_qihai/80/100→ap_shoutaiyang_houxi/80/120 |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            route = checker.collect_delivery_routes([path])[0]
+            report = checker.analyze_delivery_routes([route])
+
+        self.assertEqual(
+            {"ap_shoujueyin_laogong"},
+            checker.palm_endpoints(route.action_context),
+        )
+        self.assertEqual(frozenset(), checker.route_outlet_points(route))
+        self.assertEqual(
+            "harmony",
+            checker.route_nature(
+                route.signature,
+                outlet_points=checker.route_outlet_points(route),
+            ),
+        )
+        self.assertEqual(
+            ["palm"], [finding.rule for finding in report.findings]
+        )
+        self.assertEqual([], list(report.nature_findings))
+
+    def test_same_yin_point_votes_in_body_but_not_as_tail_outlet(self) -> None:
+        mapping = {
+            "ap_body_yang": "mer_dumai",
+            "ap_shoujueyin_laogong": "mer_shoujueyin",
+        }
+        natures = {"mer_dumai": "yang", "mer_shoujueyin": "yin"}
+        early = self.route(
+            "palm",
+            ("ap_shoujueyin_laogong", "ap_a", "ap_b", "ap_c"),
+            move_id="mv_alpha_early_yin", nature="yang",
+        )
+        trailing = self.route(
+            "palm", ("ap_body_yang", "ap_a", "ap_shoujueyin_laogong"),
+            move_id="mv_alpha_tail_yin", nature="yang",
+        )
+        with mock.patch.object(
+            checker, "load_acupoint_meridians", return_value=mapping
+        ), mock.patch.object(
+            checker, "load_meridian_natures", return_value=natures
+        ):
+            report = checker.analyze_delivery_routes([early, trailing])
+        self.assertEqual(frozenset(), checker.route_outlet_points(early))
+        self.assertEqual(
+            frozenset({"ap_shoujueyin_laogong"}),
+            checker.route_outlet_points(trailing),
+        )
+        self.assertEqual(
+            ["mv_alpha_early_yin"],
+            [finding.route.move_id for finding in report.nature_findings],
+        )
+
+    def test_inner_nature_audit_counts_missing_and_mismatched_cards(self) -> None:
+        text = """
+### `sk_yang` 阳功（6 玄上 · 内功）
+| nature · wOut/wIn | `yang` · 0/1 |
+| meridians | `[mer_dumai,mer_shouyangming]` |
+### `sk_wrong` 错标功（5 玄中 · 内功）
+**字段**｜`nature:yin`；`inner.meridians:[mer_dumai]`；`reqs:{prereq:[{skill:sk_yang}]} `
+### `sk_missing` 无脉功（4 玄下 · 内功）
+| nature · wOut/wIn | `harmony` · 0/1 |
+### `sk_outer` 外掌（4 玄下 · 拳脚/掌）
+| nature · wOut/wIn | `yang` · 0.8/0.2 |
+| 经脉 | `meridians:[mer_renmai]`；招式路线 |
+"""
+        result = checker.audit_inner_natures(
+            "fixture", "skills-fixture.md", text,
+            {
+                "mer_dumai": "yang",
+                "mer_shouyangming": "yang",
+                "mer_renmai": "yin",
+            },
+        )
+        self.assertEqual(3, result.total)
+        self.assertEqual(2, result.with_meridians)
+        self.assertEqual(("sk_missing",), result.missing_meridians)
+        self.assertEqual(1, len(result.findings))
+        self.assertEqual("sk_wrong", result.findings[0].skill_id)
+        self.assertEqual("yin", result.findings[0].declared)
+        self.assertEqual("yang", result.findings[0].derived)
+
+    def test_inner_nature_audit_deduplicates_index_and_reads_field_variants(self) -> None:
+        text = """
+| `sk_alpha` | 6 玄上 | 内功 |
+### `sk_alpha` 甲功（6 玄上 · 内功）
+| source / nature | `[ch01]`；`yang`；`wOut/wIn:0/1` |
+| meridians / breathProfileRef | `[mer_dumai]` / `txp_alpha` |
+### `sk_beta` 乙功（5 玄中 · 内功）
+**字段**｜`nature:yin`；`meridians [mer_renmai]`
+"""
+        result = checker.audit_inner_natures(
+            "fixture", "skills-fixture.md", text,
+            {"mer_dumai": "yang", "mer_renmai": "yin"},
+        )
+        self.assertEqual(2, result.total)
+        self.assertEqual(2, result.with_meridians)
+        self.assertEqual((), result.missing_meridians)
+        self.assertEqual((), result.findings)
+
+    def test_inner_nature_audit_distinguishes_empty_field_from_missing(self) -> None:
+        text = """
+### `sk_empty_harmony` 空脉调和功（5 玄中 · 内功）
+| nature | `harmony` |
+| inner.meridians | `[]` |
+### `sk_empty_yang` 空脉阳功（5 玄中 · 内功）
+| nature | `yang` |
+| meridians | `[]` |
+### `sk_missing` 缺字段功（5 玄中 · 内功）
+| nature | `harmony` |
+"""
+        result = checker.audit_inner_natures(
+            "fixture", "skills-fixture.md", text, {}
+        )
+        self.assertEqual(3, result.total)
+        self.assertEqual(2, result.with_meridians)
+        self.assertEqual(("sk_missing",), result.missing_meridians)
+        self.assertEqual(1, len(result.findings))
+        self.assertEqual("sk_empty_yang", result.findings[0].skill_id)
+        self.assertEqual("harmony", result.findings[0].derived)
+        self.assertEqual((), result.findings[0].meridians)
+
+    def test_delivery_report_includes_inner_nature_audit_without_failure(self) -> None:
+        text = """
+### `sk_wrong` 错标功（5 玄中 · 内功）
+**字段**｜`nature:yin`；`inner.meridians:[mer_dumai]`
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            with mock.patch.object(
+                checker, "load_meridian_natures",
+                return_value={"mer_dumai": "yang"},
+            ), redirect_stdout(StringIO()) as output:
+                report = checker.analyze_delivery([path])
+                checker.print_delivery_report(report, details=True)
+                code = checker.main(["--delivery", "--strict", str(path)])
+        self.assertEqual(1, report.inner_nature_total)
+        self.assertEqual(1, report.inner_nature_conflicts)
+        self.assertIn("INNER_NATURE skill=sk_wrong", output.getvalue())
+        self.assertEqual(0, code)
+
     def test_leg_accepts_any_foot_yang_acupoint(self) -> None:
         routes = [
             self.route(
@@ -1211,6 +1746,115 @@ class DeliveryTests(unittest.TestCase):
         self.assertEqual(1, len(routes))
         self.assertEqual("palm", routes[0].delivery)
         self.assertTrue(routes[0].projection)
+        self.assertIn("测试掌", routes[0].action_context)
+
+    def test_collect_delivery_keeps_move_action_for_palm_outlet(self) -> None:
+        text = """
+### `sk_alpha` 测试掌（9 地上 · 拳脚 / 拳掌；nature:yang）
+| 手刀 `mv_alpha_one` | `MoveDef{ultimate:true; projection:false}`；掌刃劈落 |
+| 9 地上 | sk_alpha | mv_alpha_one MoveDef{ultimate:true} | mfr_alpha_one MeridianRouteDef{moveRef:mv_alpha_one; ultimate:true; purpose:attack} | ap_dumai_mingmen/80/100→ap_shoutaiyang_houxi/80/120 |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            routes = checker.collect_delivery_routes([path])
+
+        self.assertIn("掌刃", routes[0].action_context)
+        self.assertEqual(0, len(checker.analyze_delivery_routes(routes).findings))
+
+    def test_named_move_table_drives_palm_outlet_and_body_nature(self) -> None:
+        cases = (
+            ("hand_knife", "手刀", "ap_shoutaiyang_houxi"),
+            ("tiger_chop", "虎口劈掌", "ap_shouyangming_hegu"),
+            ("back_throw", "反背摔掌", "ap_shoushaoyang_waiguan"),
+            ("union", "掌刃抓拿", "ap_shoutaiyang_houxi"),
+        )
+        expected_by_case = {
+            "hand_knife": {
+                "ap_shoujueyin_laogong", "ap_shoutaiyang_houxi",
+            },
+            "tiger_chop": {
+                "ap_shoujueyin_laogong", "ap_shouyangming_hegu",
+                "ap_shoutaiyang_houxi",
+            },
+            "back_throw": {
+                "ap_shoujueyin_laogong", "ap_shoushaoyang_waiguan",
+            },
+            "union": {
+                "ap_shoujueyin_laogong", "ap_shouyangming_hegu",
+                "ap_shoutaiyang_houxi",
+            },
+        }
+        for label, move_name, endpoint in cases:
+            text = f"""
+### `sk_alpha` 测试掌（9 地上 · 拳脚 / 拳掌；nature:yang）
+| 招式 | 定义 |
+|---|---|
+| {move_name} `mv_alpha_one` | `MoveDef{{ultimate:true; projection:false}}` |
+| 品阶 | 武学 | MoveDef（正文真值） | MeridianRouteDef（路线镜像） | steps |
+|---|---|---|---|---|
+| 9 地上 | sk_alpha | mv_alpha_one MoveDef{{ultimate:true}} | mfr_alpha_one MeridianRouteDef{{moveRef:mv_alpha_one; ultimate:true; purpose:attack}} | ap_renmai_qihai/80/100→{endpoint}/80/120 |
+"""
+            with tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "skills-fixture.md"
+                path.write_text(text, encoding="utf-8")
+                routes = checker.collect_delivery_routes([path])
+                report = checker.analyze_delivery_routes(routes)
+
+            with self.subTest(case=label):
+                self.assertEqual(1, len(routes))
+                self.assertEqual(
+                    expected_by_case[label],
+                    checker.palm_endpoints(routes[0].action_context),
+                )
+                self.assertFalse(any(
+                    finding.rule == "palm" for finding in report.findings
+                ))
+                self.assertEqual(
+                    ["mv_alpha_one"],
+                    [finding.route.move_id
+                     for finding in report.nature_findings],
+                )
+                self.assertEqual(
+                    "route=yin; declared=yang",
+                    report.nature_findings[0].required,
+                )
+
+    def test_move_action_table_isolates_moves_and_metadata(self) -> None:
+        text = """
+### `sk_alpha` 测试掌（9 地上 · 拳脚 / 拳掌；nature:yang）
+| 招式 | 定义 | 获取方式 |
+|---|---|---|
+| 手刀 `mv_alpha_one`；反背摔掌 `mv_alpha_two` | `mv_alpha_one` `MoveDef{ultimate:true; projection:false}`；`mv_alpha_two` `MoveDef{ultimate:true; projection:false}` | 完成虎口劈掌考核 |
+| 品阶 | 武学 | MoveDef（正文真值） | MeridianRouteDef（路线镜像） | steps |
+|---|---|---|---|---|
+| 9 地上 | sk_alpha | mv_alpha_one MoveDef{ultimate:true} | mfr_alpha_one MeridianRouteDef{moveRef:mv_alpha_one; ultimate:true; purpose:attack} | ap_renmai_qihai/80/100→ap_shoutaiyang_houxi/80/120 |
+| 9 地上 | sk_alpha | mv_alpha_two MoveDef{ultimate:true} | mfr_alpha_two MeridianRouteDef{moveRef:mv_alpha_two; ultimate:true; purpose:attack} | ap_renmai_qihai/80/100→ap_shoushaoyang_waiguan/80/120 |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            routes = checker.collect_delivery_routes([path])
+            report = checker.analyze_delivery_routes(routes)
+
+        by_move = {route.move_id: route for route in routes}
+        self.assertEqual(
+            {"ap_shoujueyin_laogong", "ap_shoutaiyang_houxi"},
+            checker.palm_endpoints(by_move["mv_alpha_one"].action_context),
+        )
+        self.assertEqual(
+            {"ap_shoujueyin_laogong", "ap_shoushaoyang_waiguan"},
+            checker.palm_endpoints(by_move["mv_alpha_two"].action_context),
+        )
+        self.assertEqual(
+            [],
+            [finding.route.move_id for finding in report.findings
+             if finding.rule == "palm"],
+        )
+        self.assertEqual(
+            ["mv_alpha_one", "mv_alpha_two"],
+            [finding.route.move_id for finding in report.nature_findings],
+        )
 
     def test_collects_nonultimate_projection_but_not_projection_false(self) -> None:
         text = """
@@ -1311,6 +1955,8 @@ class DeliveryTests(unittest.TestCase):
         ])
         self.assertEqual(1, report.nonultimate_projection_routes)
         self.assertEqual(1, report.nonultimate_projection_violations)
+        # Normal projection routes retain endpoint totals and the historical
+        # nature-audit coverage, now evaluated with AR-18 body-step voting.
         self.assertEqual(1, len(report.nature_findings))
         payload = asdict(report)
         self.assertEqual((), payload["routes"])
