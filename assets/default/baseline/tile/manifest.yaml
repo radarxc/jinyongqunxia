@@ -537,115 +537,194 @@
   file: tex_town_song_southern_water__v01.png
   category: tile
   style: default
-  subject: 南宋江南临安约1223年通用意象；灰绿色连续水面静态相位（原创扩展；非考古复原）
-  prompt: 'Use case: historical-scene. Create exactly ONE flat grey-green canal WATER texture rhombus for a Southern Song Chinese town game. This is a repeating ground texture, NOT a rendered object: ABSOLUTELY NO directional lighting or brightness gradient. Uniform base RGB approximately (111,126,119) everywhere including all edges and center. The only detail is extremely subtle fine irregular water micro-ripples, range of brightness less than 3%, no large shapes, no bands. It must appear almost like a solid grey-jade swatch at thumbnail size. Seamless uniform texture, equal brightness and color on every edge, NO distinguishable highlight, NO visible white ripples, NO shading, NO dark sides. Single top surface perfect 2:1 diamond, left-right width twice top-bottom height, orthographic isometric projection yaw45 pitch30. All four edges ruler-straight. Zero thickness, no side faces. Rhombus fully opaque, outside true RGBA transparent background with generous transparent margins. Subdued realistic ancient environmental material, not illustration, not cartoon, not fabric. No land, no banks, no plants, no objects, no sky/trees/building reflections, no words/watermark/UI, no border, no shadow. It will be downsampled to64x32 and tiled over a giant river: exact consistency matters more than visible waves. Water static phase01.'
-  negative: 文字、水印、现代物、侧壁、台座、边框、外投影、草木、固定岸、船与倒影、棋盘假透明
+  subject: 南宋江南临安约1223年，运河/西湖灰绿细波纹静态水面 v01（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Jiangnan Southern Song canal and West Lake water, subdued natural green-grey jade palette, mean color near RGB(104,128,117), slightly green, gentle soft greenish glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
   references: []
   tool: codex exec · image_gen
-  model: image_gen 内置模型；工具未返回具体图像模型版本
-  effort: tool default; no image effort field exposed
-  created: '2026-09-30T08:37:02.714169+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-tiles/assets/default/baseline/tile/source/tex_town_song_southern_water__v01__source.png
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:04:31.762614+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-d3b5125c-9531-44d2-a530-5bfa6a542640.png
   size: 64x32
-  sha256: 7d96eab7c12a81950040b06f2c96b9033febfbca7adb481fcd39364451da1f0c
+  sha256: 44b0adb9ab695364f75ea28aa9d9569c9e25a7f08c1cf6f49c6c6e3f753e6ea5
   status: candidate
   tile:
     kind: water
-    footprint:
-    - 1
-    - 1
+    footprint: [1, 1]
     variant: v01
     autotile_mask: null
-  source_copy: source/tex_town_song_southern_water__v01__rev3_raw.png
-  source_sha256: 70c0e01ecf5da5aee3b53001d59741d70de3f4155dcbae7e1552d3c652d4ab6a
-  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+  source_copy: source/tex_town_song_southern_water__texture_c01.png
+  source_sha256: 4b5edcaa75b5b192ef0a141069d41ecd321916258ebe1c312466494758465124
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[0,176,512,688)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
 - id: tex_town_song_southern_water__v02
   file: tex_town_song_southern_water__v02.png
   category: tile
   style: default
-  subject: 南宋江南临安约1223年通用意象；灰绿色连续水面静态相位（原创扩展；非考古复原）
-  prompt: 'Use case: historical-scene. Create exactly ONE flat grey-green canal WATER texture rhombus for a Southern Song Chinese town game. This is a repeating ground texture, NOT a rendered object: ABSOLUTELY NO directional lighting or brightness gradient. Uniform base RGB approximately (111,126,119) everywhere including all edges and center. The only detail is extremely subtle fine irregular water micro-ripples, range of brightness less than 3%, no large shapes, no bands. It must appear almost like a solid grey-jade swatch at thumbnail size. Seamless uniform texture, equal brightness and color on every edge, NO distinguishable highlight, NO visible white ripples, NO shading, NO dark sides. Single top surface perfect 2:1 diamond, left-right width twice top-bottom height, orthographic isometric projection yaw45 pitch30. All four edges ruler-straight. Zero thickness, no side faces. Rhombus fully opaque, outside true RGBA transparent background with generous transparent margins. Subdued realistic ancient environmental material, not illustration, not cartoon, not fabric. No land, no banks, no plants, no objects, no sky/trees/building reflections, no words/watermark/UI, no border, no shadow. It will be downsampled to64x32 and tiled over a giant river: exact consistency matters more than visible waves. Water static phase02. Use reference only for matching color, exact brightness and tiny ripple density. Change only tiny ripple distribution; do not change brightness, color, contrast, pattern scale, geometry.'
-  negative: 文字、水印、现代物、侧壁、台座、边框、外投影、草木、固定岸、船与倒影、棋盘假透明
-  references:
-  - file: assets/default/baseline/tile/source/tex_town_song_southern_water__v01__source.png
-    sha256: 70c0e01ecf5da5aee3b53001d59741d70de3f4155dcbae7e1552d3c652d4ab6a
-    note: 历史生成参考；按目录精简要求未随包保留。
+  subject: 南宋江南临安约1223年，运河/西湖灰绿细波纹静态水面 v02（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Jiangnan Southern Song canal and West Lake water, subdued natural green-grey jade palette, mean color near RGB(104,128,117), slightly green, gentle soft greenish glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
   tool: codex exec · image_gen
-  model: image_gen 内置模型；工具未返回具体图像模型版本
-  effort: tool default; no image effort field exposed
-  created: '2026-09-30T08:41:26.645222+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f169-dade-70f2-a97b-402c55dd5dac/exec-c882c7c5-c691-4457-8001-52d18c9fc6ee.png
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:04:31.762614+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-d3b5125c-9531-44d2-a530-5bfa6a542640.png
   size: 64x32
-  sha256: 23f465dac17fc154af0f85815cc8cb7d680b66d36251343ca5e4c2bd40152598
+  sha256: ae1ff21e9635b74f82d1fa1fe5356f1a1cde8cf37949dee7955dfc65618df9a9
   status: candidate
   tile:
     kind: water
-    footprint:
-    - 1
-    - 1
+    footprint: [1, 1]
     variant: v02
     autotile_mask: null
-  source_copy: source/tex_town_song_southern_water__v02__source.png
-  source_sha256: 77de479c89d65e758d2e86ce3d277019a4f55bff7cdc26e8d63ad173d724f957
-  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+  source_copy: source/tex_town_song_southern_water__texture_c01.png
+  source_sha256: 4b5edcaa75b5b192ef0a141069d41ecd321916258ebe1c312466494758465124
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[176,224,688,736)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
 - id: tex_town_song_southern_water__v03
   file: tex_town_song_southern_water__v03.png
   category: tile
   style: default
-  subject: 南宋江南临安约1223年通用意象；灰绿色连续水面静态相位（原创扩展；非考古复原）
-  prompt: 'Use case: historical-scene. Create exactly ONE flat grey-green canal WATER texture rhombus for a Southern Song Chinese town game. This is a repeating ground texture, NOT a rendered object: ABSOLUTELY NO directional lighting or brightness gradient. Uniform base RGB approximately (111,126,119) everywhere including all edges and center. The only detail is extremely subtle fine irregular water micro-ripples, range of brightness less than 3%, no large shapes, no bands. It must appear almost like a solid grey-jade swatch at thumbnail size. Seamless uniform texture, equal brightness and color on every edge, NO distinguishable highlight, NO visible white ripples, NO shading, NO dark sides. Single top surface perfect 2:1 diamond, left-right width twice top-bottom height, orthographic isometric projection yaw45 pitch30. All four edges ruler-straight. Zero thickness, no side faces. Rhombus fully opaque, outside true RGBA transparent background with generous transparent margins. Subdued realistic ancient environmental material, not illustration, not cartoon, not fabric. No land, no banks, no plants, no objects, no sky/trees/building reflections, no words/watermark/UI, no border, no shadow. It will be downsampled to64x32 and tiled over a giant river: exact consistency matters more than visible waves. Water static phase03. Use reference only for matching color, exact brightness and tiny ripple density. Change only tiny ripple distribution; do not change brightness, color, contrast, pattern scale, geometry.'
-  negative: 文字、水印、现代物、侧壁、台座、边框、外投影、草木、固定岸、船与倒影、棋盘假透明
-  references:
-  - file: assets/default/baseline/tile/source/tex_town_song_southern_water__v01__source.png
-    sha256: 70c0e01ecf5da5aee3b53001d59741d70de3f4155dcbae7e1552d3c652d4ab6a
-    note: 历史生成参考；按目录精简要求未随包保留。
+  subject: 南宋江南临安约1223年，运河/西湖灰绿细波纹静态水面 v03（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Jiangnan Southern Song canal and West Lake water, subdued natural green-grey jade palette, mean color near RGB(104,128,117), slightly green, gentle soft greenish glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
   tool: codex exec · image_gen
-  model: image_gen 内置模型；工具未返回具体图像模型版本
-  effort: tool default; no image effort field exposed
-  created: '2026-09-30T08:40:52.974035+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-tiles/assets/default/baseline/tile/source/tex_town_song_southern_water__v03__source.png
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:04:31.762614+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-d3b5125c-9531-44d2-a530-5bfa6a542640.png
   size: 64x32
-  sha256: 50f39c60fb3f4b5eaeeb8a547e201b5a991a23bc3bce9b4f31b23d3eaf09ecfa
+  sha256: 274f9b6a65148da499740e5b4a68f7b65f08c63ba09732abfa105bdb0d60faaf
   status: candidate
   tile:
     kind: water
-    footprint:
-    - 1
-    - 1
+    footprint: [1, 1]
     variant: v03
     autotile_mask: null
-  source_copy: source/tex_town_song_southern_water__v03__rev3_raw.png
-  source_sha256: c94cba31738b835b10befa306f103863a6732a2ddad0bee8512a4884d66dd237
-  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+  source_copy: source/tex_town_song_southern_water__texture_c01.png
+  source_sha256: 4b5edcaa75b5b192ef0a141069d41ecd321916258ebe1c312466494758465124
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[352,240,864,752)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
 - id: tex_town_song_southern_water__v04
   file: tex_town_song_southern_water__v04.png
   category: tile
   style: default
-  subject: 南宋江南临安约1223年通用意象；灰绿色连续水面静态相位（原创扩展；非考古复原）
-  prompt: 'Use case: historical-scene. Create exactly ONE flat grey-green canal WATER texture rhombus for a Southern Song Chinese town game. This is a repeating ground texture, NOT a rendered object: ABSOLUTELY NO directional lighting or brightness gradient. Uniform base RGB approximately (111,126,119) everywhere including all edges and center. The only detail is extremely subtle fine irregular water micro-ripples, range of brightness less than 3%, no large shapes, no bands. It must appear almost like a solid grey-jade swatch at thumbnail size. Seamless uniform texture, equal brightness and color on every edge, NO distinguishable highlight, NO visible white ripples, NO shading, NO dark sides. Single top surface perfect 2:1 diamond, left-right width twice top-bottom height, orthographic isometric projection yaw45 pitch30. All four edges ruler-straight. Zero thickness, no side faces. Rhombus fully opaque, outside true RGBA transparent background with generous transparent margins. Subdued realistic ancient environmental material, not illustration, not cartoon, not fabric. No land, no banks, no plants, no objects, no sky/trees/building reflections, no words/watermark/UI, no border, no shadow. It will be downsampled to64x32 and tiled over a giant river: exact consistency matters more than visible waves. Water static phase04. Use reference only for matching color, exact brightness and tiny ripple density. Change only tiny ripple distribution; do not change brightness, color, contrast, pattern scale, geometry.'
-  negative: 文字、水印、现代物、侧壁、台座、边框、外投影、草木、固定岸、船与倒影、棋盘假透明
-  references:
-  - file: assets/default/baseline/tile/source/tex_town_song_southern_water__v01__source.png
-    sha256: 70c0e01ecf5da5aee3b53001d59741d70de3f4155dcbae7e1552d3c652d4ab6a
-    note: 历史生成参考；按目录精简要求未随包保留。
+  subject: 南宋江南临安约1223年，运河/西湖灰绿细波纹静态水面 v04（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Jiangnan Southern Song canal and West Lake water, subdued natural green-grey jade palette, mean color near RGB(104,128,117), slightly green, gentle soft greenish glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
   tool: codex exec · image_gen
-  model: image_gen 内置模型；工具未返回具体图像模型版本
-  effort: tool default; no image effort field exposed
-  created: '2026-09-30T08:41:58.911402+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f169-dade-70f2-a97b-402c55dd5dac/exec-29876161-8544-4176-b937-6b3bb1fde367.png
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:04:31.762614+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-d3b5125c-9531-44d2-a530-5bfa6a542640.png
   size: 64x32
-  sha256: 3b0e0b18f166343c48c257b89b6ac8a9bbf234eb985c49d692e4bcefde7d4ba9
+  sha256: 723476f5e759c2192a5aecf5faf9a02e1f0561d2ec71bd6e008a8f6aa8d9c6da
   status: candidate
   tile:
     kind: water
-    footprint:
-    - 1
-    - 1
+    footprint: [1, 1]
     variant: v04
     autotile_mask: null
-  source_copy: source/tex_town_song_southern_water__v04__source.png
-  source_sha256: 7246bf5b77849615cc5cd375d23bde5e70bde547553ef86bb5683af9ad1d0a6c
-  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+  source_copy: source/tex_town_song_southern_water__texture_c01.png
+  source_sha256: 4b5edcaa75b5b192ef0a141069d41ecd321916258ebe1c312466494758465124
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[512,368,1024,880)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
+- id: tex_town_song_dali_water__v01
+  file: tex_town_song_dali_water__v01.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年，桃溪/洱海蓝绿细波纹静态水面 v01（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Dali Taoxi stream and Erhai lake water, subdued natural blue-green grey palette, mean color near RGB(96,126,126), slightly cooler and bluer than Jiangnan water, gentle soft turquoise-grey glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:05:15.629633+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-0d1de382-520f-418c-9515-70e55d5ad2b9.png
+  size: 64x32
+  sha256: c48aa22558b817e8a754caec013f660f11367d3e92a5954b586d143a4cefe9ba
+  status: candidate
+  tile:
+    kind: water
+    footprint: [1, 1]
+    variant: v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_water__texture_c01.png
+  source_sha256: 57d92d81c435790b10760c80245e864da22c1b7a279991a1bdff171529ae16d9
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[0,112,512,624)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
+- id: tex_town_song_dali_water__v02
+  file: tex_town_song_dali_water__v02.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年，桃溪/洱海蓝绿细波纹静态水面 v02（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Dali Taoxi stream and Erhai lake water, subdued natural blue-green grey palette, mean color near RGB(96,126,126), slightly cooler and bluer than Jiangnan water, gentle soft turquoise-grey glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:05:15.629633+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-0d1de382-520f-418c-9515-70e55d5ad2b9.png
+  size: 64x32
+  sha256: b5d600f8a7eeaa3f360561d1dfd336ec6f91ca213f4b422a767492f793e04a1b
+  status: candidate
+  tile:
+    kind: water
+    footprint: [1, 1]
+    variant: v02
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_water__texture_c01.png
+  source_sha256: 57d92d81c435790b10760c80245e864da22c1b7a279991a1bdff171529ae16d9
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[176,144,688,656)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
+- id: tex_town_song_dali_water__v03
+  file: tex_town_song_dali_water__v03.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年，桃溪/洱海蓝绿细波纹静态水面 v03（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Dali Taoxi stream and Erhai lake water, subdued natural blue-green grey palette, mean color near RGB(96,126,126), slightly cooler and bluer than Jiangnan water, gentle soft turquoise-grey glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:05:15.629633+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-0d1de382-520f-418c-9515-70e55d5ad2b9.png
+  size: 64x32
+  sha256: 4461ae0cd4355f954377b5e722715f487685e0d319346d593d20d5a4444321ac
+  status: candidate
+  tile:
+    kind: water
+    footprint: [1, 1]
+    variant: v03
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_water__texture_c01.png
+  source_sha256: 57d92d81c435790b10760c80245e864da22c1b7a279991a1bdff171529ae16d9
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[352,208,864,720)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
+- id: tex_town_song_dali_water__v04
+  file: tex_town_song_dali_water__v04.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年，桃溪/洱海蓝绿细波纹静态水面 v04（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Dali Taoxi stream and Erhai lake water, subdued natural blue-green grey palette, mean color near RGB(96,126,126), slightly cooler and bluer than Jiangnan water, gentle soft turquoise-grey glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:05:15.629633+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-0d1de382-520f-418c-9515-70e55d5ad2b9.png
+  size: 64x32
+  sha256: c2807c6fa9e394cf7a08089bd3f25919b857f3f81fa10b22eb5c6167fa4fcdfc
+  status: candidate
+  tile:
+    kind: water
+    footprint: [1, 1]
+    variant: v04
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_water__texture_c01.png
+  source_sha256: 57d92d81c435790b10760c80245e864da22c1b7a279991a1bdff171529ae16d9
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[512,272,1024,784)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
 - id: tex_town_song_dali_riverbank__n
   file: tex_town_song_dali_riverbank__n.png
   category: tile
