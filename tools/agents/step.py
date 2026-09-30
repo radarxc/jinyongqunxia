@@ -39,8 +39,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import run as R  # noqa: E402  复用 run.py
 
-DEFAULT_MODEL = "gpt-6-astra"   # 作者 2026-09-30：一律调用本机 GPT CLI（Codex），不再调用 traex
-DEFAULT_EFFORT = "ultra"  # 执行默认 ultra；审核默认 xhigh（作者 2026-09-30："gpt 6 astra ultra 和 extra high"）
+DEFAULT_MODEL = "GPT-6-Astra"  # 作者 2026-09-30：GPT 额度用完，改用 traex CLI 调 gpt6 max   # 作者 2026-09-30：一律调用本机 GPT CLI（Codex），不再调用 traex
+DEFAULT_EFFORT = "max"  # 执行默认 ultra；审核默认 xhigh（作者 2026-09-30："gpt 6 astra ultra 和 extra high"）
 CODEX_BIN = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex"
 
 
@@ -167,16 +167,17 @@ def running_in_pool(root: Path, pool: str, exclude: str | None = None) -> list:
 
 
 def find_bin(explicit: str | None, defaults: dict) -> str:
+    """执行器：作者 2026-09-30 「gpt额度没有了，用traex cli调用 gpt6 max吧」——默认 traex / traecli；Codex 只作最后备选。"""
     cands = [explicit] if explicit else []
-    cands += [os.environ.get("CODEX_BIN") or ""]
-    cands += list(defaults.get("bin", [CODEX_BIN])) + [CODEX_BIN]
+    cands += [os.environ.get("TRAEX_BIN") or "", os.environ.get("CODEX_BIN") or ""]
+    cands += list(defaults.get("bin", ["traex", "traecli"])) + ["traex", "traecli", CODEX_BIN]
     for c in cands:
         if not c:
             continue
         found = R.shutil.which(c)
         if found:
             return found
-    raise R.Fatal("找不到 GPT CLI（Codex），请确认 ChatGPT.app 已安装（或用 --bin / 环境变量 CODEX_BIN 指定）")
+    raise R.Fatal("找不到 traex / traecli（或 Codex），请确认 TraeX CLI 已安装并在 PATH 中（或用 --bin / 环境变量 TRAEX_BIN 指定）")
 
 
 def build_argv(binary: str, model: str, effort: str, wt: Path, last: Path, search: bool, extra: list | None = None) -> list:
@@ -190,7 +191,7 @@ def build_argv(binary: str, model: str, effort: str, wt: Path, last: Path, searc
 
 
 WRAPPER = '"$@" < "$TS_PROMPT" >> "$TS_LOG" 2>&1; rc=$?; echo "$rc" > "$TS_EXIT"; exit $rc'
-FALLBACK_MODELS: list = []  # 不再回退到 traex 的模型；探测失败就报错，由协调者处理
+FALLBACK_MODELS: list = ["GPT-5.6-Sol"]  # traex 的 GPT-6-Astra 09-26 曾整段挂死：探测不应答时回退
 
 
 def probe_model(binary: str, model: str, effort: str, timeout_s: int = 90) -> bool:
