@@ -21542,6 +21542,38 @@
           ]
         ]
       }
+    },
+    {
+      "id": "ART-P-guide-R1",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "revise",
+      "title": "人物立绘生成与存放规程 · 按审核意见修两处（非人形主体、族群左衽）",
+      "prompt": "ART-portrait-guide-fix.md",
+      "deps": [
+        "ART-P-guide"
+      ],
+      "writes": [
+        "assets/default/prompts/characters/GUIDE.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "assets/default/prompts/characters/GUIDE.md"
+        ],
+        "fences": [
+          "assets/default/prompts/characters/GUIDE.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-c",
+            "import sys; t=open('assets/default/prompts/characters/GUIDE.md',encoding='utf-8').read(); sys.exit(0 if len(t.splitlines())>=100 and '## ' in t else 1)"
+          ]
+        ]
+      }
     }
   ]
 }
