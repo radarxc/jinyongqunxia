@@ -476,7 +476,7 @@ def validate(t: Task, wt: Path, baseline: dict, cfg: Config) -> list:
     exempt = v.get("shrink_exempt", [])  # 预期会大幅缩短的文件（如检查基线在债务清零后）
     for rel, before in baseline.items():
         s = text(rel)
-        if exempt and s is not None and matches_any(rel, exempt):
+        if exempt and matches_any(rel, exempt):  # 豁免的文件允许缩短，也允许删除（重写 / 删旧代码是任务要求）
             continue
         if s is None:
             problems.append(f"{rel}：文件被删除")
