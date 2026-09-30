@@ -83,6 +83,17 @@ def now() -> str:
     return _dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
+def proc_alive(pid: int) -> bool:
+    """进程是否真的还在跑（僵尸进程不算：驱动进程被 kill 后若父进程没回收，kill -0 仍然成功）。"""
+    if not S.pid_alive(pid):
+        return False
+    try:
+        out = subprocess.run(["ps", "-o", "stat=", "-p", str(pid)], capture_output=True, text=True).stdout.strip()
+    except OSError:
+        return True
+    return bool(out) and not out.startswith("Z")
+
+
 def cdir(tid: str) -> Path:
     d = ROOT / ".agents" / "coord" / tid
     d.mkdir(parents=True, exist_ok=True)
@@ -323,7 +334,7 @@ def attach(tid: str) -> int:
             print(summary(tid))
             return 0 if state in ("READY", "MERGED") else (1 if state.startswith("HOLD") else 2)
         pid = st.get("pid")
-        if pid and not S.pid_alive(int(pid)):
+        if pid and not proc_alive(int(pid)):
             time.sleep(3)
             st = get_status(tid)
             if st.get("state") in TERMINAL:
@@ -366,7 +377,7 @@ def main() -> int:
     if a.attach:
         return attach(a.id)
     st = get_status(a.id)
-    if not a.worker and st.get("state") == "RUNNING" and st.get("pid") and S.pid_alive(int(st["pid"])):
+    if not a.worker and st.get("state") == "RUNNING" and st.get("pid") and proc_alive(int(st["pid"])):
         print(f"{a.id} 已有驱动进程在跑（pid {st['pid']}），改为接入等待")
         return attach(a.id)
     if a.detach and not a.worker:

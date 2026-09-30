@@ -29,7 +29,7 @@ def main() -> int:
             state = st.get("state")
             if state in V.TERMINAL:
                 done.append(tid)
-            elif st.get("pid") and not S.pid_alive(int(st["pid"])):
+            elif st.get("pid") and not V.proc_alive(int(st["pid"])):
                 dead.append(tid)
         if done or dead:
             for tid in done:
