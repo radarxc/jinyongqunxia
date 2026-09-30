@@ -55,3 +55,10 @@
 - **NAu-final 已拆分**：NAuF-sysA / NAuF-rules / NAuF-cat×12 / NAuF-book×14 / NAuF-lint / NAuF-assets / NAuF-canon，NAu-final 改为收口（7a8e494）。需作者确认的总表由收口任务汇总。
 - **skill 建设**（作者 2026-09-30 问"城镇地图、建筑图片、武功招式这几个基线和 skill 建设都完成了吗"）：仓库里此前没有任何 skill 产物。协调者的理解与计划：每类素材基线通过后，把生成流程固化成 GPT CLI 可复用的 skill（SKILL.md + 提示词模板 + 参考图清单 + 质检脚本）；城镇与招式以 `tools/town`、`tools/vfx` 为核心。待作者确认这个理解；任务待登记（SKILL-town / SKILL-building / SKILL-vfx，依赖 TOWN-render、VFX-tool 合入）。
 
+
+## 2026-09-30 · 素材线按作者"几张图 + 代码"口径重排（协调者裁定，待作者复核）
+- **贴片**：TOWN-tiles 三轮审核的 ❌（34 家族齐全、47 种岸线形状、门洞像素宽度、墙件接缝、接触影 alpha）全部裁定不再要求（作者：「贴片就是一些素材，四五十个差不多就行了」）；现有 60 张作为基线，缺形状由渲染器用 8 向边件叠。收尾轮只做清理。若成图暴露问题再按图补。
+- **招式**：合成与动效改用 Three.js（VFX-three）；VFX-plates 的 Python 合成版作废（工作区保留到 VFX-three 合入）。旧的单图 + 图层动画路线（ART-R2-vfx / ART-R3-vfx，未合入，审批页"招式"类两张卡）**建议作废**，只把它们的图作为效果参考——待作者在审批页表态；若作者通过了它们，合入时与 VFX-three 的 manifest 会冲突，需手工合并条目。
+- **城镇**：布局以联网搜索到的历史平面图复原（TOWN-layout），史料之间有分歧时执行者择一并写明；作者若有自己认可的复原方案 / 图，请给链接或图，重跑即可。TOWN-design 当时无联网写的原创布局作废。
+- **合入受阻**：主检出里出图代理的未提交改动挡住 `step.py merge`；协调者不绕过，等作者决定（让该代理提交，或允许放宽为"只拒绝暂存 / 重叠文件"）。
+- **人物立绘提示词**：ART-P-ch01 定稿合入时用 `git cherry-pick -X theirs` 覆盖先行快照；但出图代理已在主检出直接改了 `ch01-tianlong/npc_wangyuyan.md`、`protagonist/npc_zhujue__f_ch00.md`（加了作者本轮指定的水墨风格参考图 `.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png`），合入定稿前要先看这些改动是否要保留。
