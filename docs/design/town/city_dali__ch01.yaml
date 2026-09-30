@@ -1,0 +1,272 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_dali
+chapter_id: ch01
+book_world: ch01_tianlong
+display_name: 大理国都（羊苴咩城）
+historical_year: 1093
+era_kit: song_dali
+seed: 109301
+design_intent:
+  prosperity: modest_capital
+  notes:
+    - "苍山意象在西，洱海方向在东；均作场外背板，不从全国地图经纬度换算"
+    - "土面与草地权重高于砖石，建筑留院落与植物空隙，不做满铺青砖"
+    - "佛寺、塔与小佛龛形成高频识别点；具体1093年细部（待考）"
+grid: {width: 96, height: 96, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -48, r_min: 1, q_slot_count: 131, r_slot_count: 96, q_band_slots: [66, 65], r_band_slots: [96], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+wall:
+  polygon:
+    points:
+      - {x: 8, z: 8}
+      - {x: 88, z: 8}
+      - {x: 88, z: 84}
+      - {x: 10, z: 88}
+      - {x: 6, z: 58}
+  inside_margin_cells: 2
+  basis: "src_dali_capital_plan附图五已目视，只有区域山水城址且无指北针，不能给出城内墙线；src_dali_archaeology支持北墙遗迹。闭合边界与折角为96格原创概化，城内历史图面对应仍未完成，非1093年逐尺复原（网络资料，待核；原创扩展）"
+gates:
+  - {id: south_gate, side: south, at: {x: 48, z: 8}, width_cells: 6, asset_type: tex_town_song_dali_city_gate, rotation_deg: 0, footprint_cells: {w: 10, h: 4}, passage_cells: {w: 6, h: 4}, road_ref: main_north_south, primary: true, basis: "src_dali_settlement：唐代文字记南北门相对；1093延用待考，48列与南墙门位为游戏化入口，尚无图面定位（原创扩展）"}
+  - {id: north_gate, side: north, at: {x: 48, z: 86}, width_cells: 5, asset_type: tex_town_song_dali_city_gate, rotation_deg: 180, footprint_cells: {w: 9, h: 4}, passage_cells: {w: 5, h: 4}, road_ref: main_north_south, primary: false, basis: "src_dali_settlement：唐代文字记南北门相对；1093延用待考，48列与北墙门位为游戏化出口，尚无图面定位（原创扩展）"}
+  - {id: east_gate, side: east, at: {x: 88, z: 44}, width_cells: 4, asset_type: tex_town_song_dali_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_market, primary: false, basis: "面向洱海与商路的设计概化（原创扩展）"}
+streets:
+  - id: main_north_south
+    class: main_axis
+    width_cells: 5
+    points: [{x: 48, z: 8}, {x: 48, z: 86}]
+    surface: dirt_road
+    priority: 100
+    basis: "src_dali_settlement：《蛮书》卷五阳苴咩城段记南北门相对及太和通衢，仅取唐代南北贯通拓扑；1093延用、x=48线位、78格长度与土路铺装均为设计概化，未取得城内历史图面（网络资料，待核；原创扩展）"
+  - id: east_west_market
+    class: secondary
+    width_cells: 4
+    points: [{x: 8, z: 44}, {x: 88, z: 44}]
+    surface: stone_slab
+    priority: 90
+    basis: "服务市场、住宅与东门的东西横街；《蛮书》已核段落不支持此线，未以现代街网倒推1093，z=44及4格宽均为原创扩展"
+  - id: west_temple_lane
+    class: secondary
+    width_cells: 3
+    points: [{x: 27, z: 20}, {x: 27, z: 54}, {x: 44, z: 54}, {x: 44, z: 68}, {x: 30, z: 68}]
+    surface: dirt_road
+    priority: 80
+    basis: "服务城西北寺塔与住宅的生成连路；西段东移以容纳15×12营生庄园，塔区东侧接驳寺殿入口（原创扩展）"
+  - id: east_residential_lane
+    class: secondary
+    width_cells: 3
+    points: [{x: 72, z: 18}, {x: 72, z: 76}]
+    surface: dirt_road
+    priority: 80
+    basis: "服务城东住宅与洱海方向出入口的生成连路（原创扩展）"
+  - id: palace_cross_lane
+    class: alley
+    width_cells: 2
+    points: [{x: 45, z: 60}, {x: 68, z: 60}]
+    surface: rammed_earth
+    priority: 70
+    basis: "王府与主街之间的可玩连路；西端止于寺区外，保留两座寺殿所需连续地块（原创扩展）"
+  - id: administrative_lane
+    class: alley
+    width_cells: 2
+    points: [{x: 9, z: 64}, {x: 25, z: 64}]
+    surface: rammed_earth
+    priority: 72
+    basis: "官署北门连接寺路的生成连路（原创扩展）"
+  - id: west_residential_cross
+    class: alley
+    width_cells: 2
+    points: [{x: 11, z: 24}, {x: 27, z: 24}]
+    surface: dirt_road
+    priority: 70
+    basis: "西南住宅横巷为院门与营生庄园提供6格内接街路径，改善连续院落地块利用（原创扩展）"
+rivers:
+  - id: cangshan_stream
+    width_cells: 3
+    points: [{x: 7, z: 50}, {x: 24, z: 49}, {x: 48, z: 48}, {x: 58, z: 47}, {x: 81, z: 47}, {x: 85, z: 50}, {x: 89, z: 51}]
+    flow: east
+    navigable: false
+    basis: "src_dali_excavation_plan报道西侧道路、房址与排水遗迹，仅支持排水设施存在，不支持本溪渠线位；苍山东坡向洱海的溪渠意象，东段留陆岸且入东墙前北弯避开门墩，非历史水道复原（网络资料，待核；原创扩展）"
+bridges:
+  - {id: bridge_west_lane, at: {x: 27, z: 49}, river_ref: cangshan_stream, road_ref: west_temple_lane, length_cells: 5, width_cells: 3, rotation_deg: 0, basis: "道路与概化溪渠交点固定桥位；随寺路同步东移（原创扩展）"}
+  - {id: bridge_main_axis, at: {x: 48, z: 48}, river_ref: cangshan_stream, road_ref: main_north_south, length_cells: 5, width_cells: 5, rotation_deg: 0, basis: "主街连通性所需固定桥位（原创扩展）"}
+  - {id: bridge_east_lane, at: {x: 72, z: 47}, river_ref: cangshan_stream, road_ref: east_residential_lane, length_cells: 5, width_cells: 3, rotation_deg: 0, basis: "道路与概化溪渠交点固定桥位；两端各留陆地桥头（原创扩展）"}
+zones:
+  - id: zone_palace_central
+    kind: princely
+    geometry: {rect: {min: {x: 45, z: 52}, max: {x: 72, z: 78}}}
+    priority: 100
+    density: 0.38
+    allowed_building_types: [bld_kit_song_dali_wangfu, bld_kit_song_dali_yamen, bld_kit_song_dali_courtyard, bld_kit_song_dali_manor]
+    ground_mix: {rammed_earth: 70, stone_slab: 30}
+    basis: "大理段氏王府为章节内地点；其在本场景的中心偏北位置为原创扩展"
+  - id: zone_religious_northwest
+    kind: religious
+    geometry:
+      polygon:
+        points: [{x: 28, z: 54}, {x: 44, z: 54}, {x: 44, z: 84}, {x: 28, z: 84}, {x: 28, z: 86}, {x: 10, z: 86}, {x: 10, z: 68}, {x: 28, z: 68}]
+    priority: 95
+    density: 0.25
+    allowed_building_types: [bld_lm_ch01_chongshengsi_pagoda, bld_lm_ch01_chongshengsi_pagoda_small, bld_kit_song_dali_temple_hall, bld_kit_song_dali_shrine]
+    ground_mix: {rammed_earth: 50, grass: 35, stone_slab: 15}
+    basis: "src_dali_santta与src_dali_archaeology支持崇圣寺三塔在古城北郊/西北方向；寺院边界仍待考"
+  - id: zone_administrative_east
+    kind: administrative
+    geometry: {rect: {min: {x: 9, z: 51}, max: {x: 25, z: 65}}}
+    priority: 90
+    density: 0.42
+    allowed_building_types: [bld_kit_song_dali_yamen, bld_kit_song_dali_courtyard]
+    ground_mix: {rammed_earth: 65, stone_slab: 35}
+    basis: "官署位于王府西南、临寺路与东西溪渠，具体位置为原创扩展；与王府、寺塔区无优先级覆盖"
+  - id: zone_commercial_south
+    kind: commercial
+    geometry: {rect: {min: {x: 40, z: 12}, max: {x: 70, z: 43}}}
+    priority: 85
+    density: 0.48
+    allowed_building_types: [bld_kit_song_dali_shop, bld_kit_song_dali_inn, bld_kit_song_dali_restaurant, bld_kit_song_dali_casino, bld_kit_song_dali_biaoju]
+    ground_mix: {rammed_earth: 55, stone_slab: 25, grass: 20}
+    basis: "商旅设施靠南门与主街集中布置；西界内收为住宅与院落留地，体现较低商业发达度（原创扩展）"
+  - id: zone_market_east
+    kind: market
+    geometry: {rect: {min: {x: 58, z: 34}, max: {x: 84, z: 48}}}
+    priority: 86
+    density: 0.35
+    allowed_building_types: [bld_kit_song_dali_market_stall, bld_kit_song_dali_shop, bld_kit_song_dali_restaurant]
+    ground_mix: {rammed_earth: 50, stone_slab: 30, grass: 20}
+    basis: "靠东门与横街设置周期市场，精确位置为原创扩展"
+  - id: zone_residential_west
+    kind: residential
+    geometry: {rect: {min: {x: 10, z: 10}, max: {x: 43, z: 66}}}
+    priority: 40
+    density: 0.34
+    allowed_building_types: [bld_kit_song_dali_house, bld_kit_song_dali_courtyard, bld_kit_song_dali_manor, bld_kit_song_dali_shrine]
+    ground_mix: {rammed_earth: 55, grass: 40, stone_slab: 5}
+    basis: "院落与本地植物留白落实作者意见；南沿延至墙内2格退距，结合西南横巷容纳必需民居与庄园（原创扩展）"
+  - id: zone_residential_east
+    kind: residential
+    geometry: {rect: {min: {x: 53, z: 14}, max: {x: 85, z: 82}}}
+    priority: 35
+    density: 0.32
+    allowed_building_types: [bld_kit_song_dali_house, bld_kit_song_dali_courtyard, bld_kit_song_dali_shrine]
+    ground_mix: {rammed_earth: 50, grass: 45, stone_slab: 5}
+    basis: "低密住宅延伸至洱海方向，水岸只作远景（原创扩展）"
+  - id: zone_gate_service_south
+    kind: gate_service
+    geometry: {rect: {min: {x: 38, z: 8}, max: {x: 58, z: 17}}}
+    priority: 88
+    density: 0.28
+    allowed_building_types: [bld_kit_song_dali_guardhouse, bld_kit_song_dali_stable]
+    ground_mix: {rammed_earth: 80, stone_slab: 20}
+    basis: "主城门内设置守门与牲口空间（原创扩展）"
+landmarks:
+  - id: lm_chongsheng_pagoda_center
+    type: bld_lm_ch01_chongshengsi_pagoda
+    origin: {x: 19, z: 75}
+    size: {w: 7, h: 7}
+    rotation_deg: 0
+    zone_ref: zone_religious_northwest
+    poi: null
+    basis: "src_dali_santta：崇圣寺三塔在古城北郊、苍山东坡；在96格场景内压缩为西北地标（网络资料，待核）"
+  - id: lm_chongsheng_pagoda_north
+    type: bld_lm_ch01_chongshengsi_pagoda_small
+    origin: {x: 14, z: 80}
+    size: {w: 4, h: 4}
+    rotation_deg: 0
+    zone_ref: zone_religious_northwest
+    poi: null
+    basis: "src_dali_santta：一大二小三塔关系；小塔资料所列建造年代晚于1093，本规格提前出现为原创扩展；间距为可读性压缩"
+  - id: lm_chongsheng_pagoda_south
+    type: bld_lm_ch01_chongshengsi_pagoda_small
+    origin: {x: 13, z: 70}
+    size: {w: 4, h: 4}
+    rotation_deg: 0
+    zone_ref: zone_religious_northwest
+    poi: null
+    basis: "src_dali_santta：一大二小三塔关系；小塔资料所列建造年代晚于1093，本规格提前出现为原创扩展；间距为可读性压缩"
+  - id: lm_dali_wangfu
+    type: bld_kit_song_dali_wangfu
+    origin: {x: 51, z: 62}
+    size: {w: 18, h: 14}
+    rotation_deg: 0
+    zone_ref: zone_palace_central
+    poi: null
+    basis: "src_project_city：沿用city_dali、羊苴咩城名称、1093项目年代与王府剧情地点；位置和占地为原创扩展；南门经短接驳巷连宫署横巷且不压主轴"
+building_quotas:
+  - {type: bld_kit_song_dali_wangfu, zone_refs: [zone_palace_central], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: sect_dali, placement_note: "固定地标已占配额；南门朝主街"}
+  - {type: bld_kit_song_dali_yamen, zone_refs: [zone_administrative_east], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "目录S门允许0/180度；当前见证取180度，北入口接官署巷，并留4格集散缓冲"}
+  - {type: bld_kit_song_dali_temple_hall, zone_refs: [zone_religious_northwest], count: {min: 2, max: 3}, required: true, business_ref: null, institution_ref: sect_tianlongsi, placement_note: "寺殿不遮三塔轮廓；天龙寺与崇圣寺关系及具体位置（待考）"}
+  - {type: bld_kit_song_dali_shrine, zone_refs: [zone_religious_northwest, zone_residential_west, zone_residential_east], count: {min: 3, max: 6}, required: true, business_ref: null, institution_ref: null, placement_note: "小佛龛分散，不堵巷"}
+  - {type: bld_kit_song_dali_biaoju, zone_refs: [zone_commercial_south], count: {min: 0, max: 1}, required: false, business_ref: null, institution_ref: null, placement_note: "ch01大理未登记镖局biz，不绑定营生；若生成仅作普通商队院（原创扩展）"}
+  - {type: bld_kit_song_dali_casino, zone_refs: [zone_commercial_south], count: {min: 1, max: 1}, required: true, business_ref: biz_dali_casino_01, institution_ref: null, placement_note: "入口朝主街；可按设置隐藏交互但保留建筑"}
+  - {type: bld_kit_song_dali_manor, zone_refs: [zone_palace_central, zone_residential_west], count: {min: 1, max: 1}, required: true, business_ref: biz_dali_manor_01, institution_ref: null, placement_note: "王府外围营生实例，不与王府主体重叠"}
+  - {type: bld_kit_song_dali_inn, zone_refs: [zone_commercial_south], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "靠南门但留6格入城集散区"}
+  - {type: bld_kit_song_dali_restaurant, zone_refs: [zone_commercial_south, zone_market_east], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "通用tavern设施，临街留客流缓冲；不新造biz ID"}
+  - {type: bld_kit_song_dali_shop, zone_refs: [zone_commercial_south, zone_market_east], count: {min: 5, max: 9}, required: true, business_ref: null, institution_ref: null, placement_note: "店面朝横街或主街"}
+  - {type: bld_kit_song_dali_market_stall, zone_refs: [zone_market_east], count: {min: 6, max: 12}, required: true, business_ref: null, institution_ref: null, placement_note: "2至4摊成组并留3格消防/通行缝"}
+  - {type: bld_kit_song_dali_house, zone_refs: [zone_residential_west, zone_residential_east], count: {min: 18, max: 28}, required: true, business_ref: null, institution_ref: null, placement_note: "密度低于临安，院间穿插植物"}
+  - {type: bld_kit_song_dali_courtyard, zone_refs: [zone_residential_west, zone_residential_east, zone_palace_central], count: {min: 5, max: 9}, required: true, business_ref: null, institution_ref: null, placement_note: "优先离主街2格以上"}
+  - {type: bld_kit_song_dali_guardhouse, zone_refs: [zone_gate_service_south], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "不侵入城门6格净宽"}
+  - {type: bld_kit_song_dali_stable, zone_refs: [zone_gate_service_south], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "靠城门、背离住宅"}
+vegetation:
+  palette: [prp_song_dali_camellia, prp_song_dali_bamboo, prp_song_dali_broadleaf, prp_song_dali_grass]
+  density: 0.16
+  avoid_road_cells: 1
+  cluster_rule: "住宅院落2至5株成簇，寺塔净空3格，主街两侧不连续成行"
+  basis: "src_author_feedback：落实design_intent较低繁华度、ground_mix少砖多土、佛教元素与本地植物要求；物种只作风格候选，1093年栽植（待考）"
+sources:
+  - key: src_project_city
+    kind: project
+    title: design/19城市记录与chapters/01时代状态
+    url: null
+    accessed: null
+    confidence: project_fact
+    supports: [city_id, display_name, historical_year, city_role, palace_and_temple_story_locations]
+    note: "沿用city_dali与约1093至1094年的项目事实"
+  - key: src_dali_archaeology
+    kind: archaeology_report
+    title: 云南大理古城发现唐代南诏国古城墙遗址
+    url: "https://www.mct.gov.cn/whzx/qgwhxxlb/yn/201307/t20130711_791318.htm"
+    accessed: "2026-09-29"
+    confidence: pending_review
+    supports: [walled_capital, city_north_and_santta_relation]
+    note: "文化和旅游部转载考古消息；网络资料，待核原始发掘报告"
+  - key: src_dali_capital_plan
+    kind: academic
+    title: "《洱海区域古代城市体系研究》第四章附图五：大理古都示意图"
+    url: "https://www.mokecn.com/culture/info_15245.html"
+    accessed: "2026-09-30"
+    confidence: pending_review
+    supports: [west_cangshan, east_erhai, capital_relative_position, mountain_lake_adaptation]
+    note: "正文第二图20051123_002，图文件https://www.mokecn.com/pic/culture/201709211559409.jpg；本轮已目视350×524缓存，题签图五大理古都示意图，苍山左/洱海右、龙首关上/龙尾关下，无指北针及城内街网；仅取区域方位并按规划北上表达。版次、页码和1093层位仍待核，不能充当城内历史平面；图像哈希见design/22 §11.1（网络资料，待核）"
+  - key: src_dali_excavation_plan
+    kind: archaeology_report
+    title: "大理考古惊世一掘 古城下还睡着个千年古都（旧图条目待复核）"
+    url: "https://news.sina.cn/sa/2005-03-31/detail-ikkntiam3113212.d.html?vt=4"
+    accessed: "2026-09-29"
+    confidence: pending_review
+    supports: [archaeological_roads, drains, houses, excavation_location]
+    note: "上轮目视400×355旧缓存：现代古城绿色轮廓与街线、城西两处发掘区，无指北针，缓存来源链/绘者仍待核。https://www.sxhm.com/info/industry/detail/13738.html转载2005-03-31报道支持西侧道路/排水/房址；本轮仅将其用于溪渠basis的排水设施背景，不取现代线位。原始《大理羊苴咩城遗址大凤公路沿线考古发掘简报》图号、层位、方向及1093城内映射尚未取得（网络资料，待核）"
+  - key: src_dali_santta
+    kind: official_web
+    title: 崇圣寺三塔
+    url: "https://www.dali.gov.cn/dlzrmzf/c101724/pc/content/1968887530844688384/content_1968887530844688384.html"
+    accessed: "2026-09-30"
+    confidence: verified_summary
+    supports: [royal_temple, three_pagodas, northwest_landmark]
+    note: "大理州政府资料；三塔在古城北郊、苍山东坡。资料列两座小塔建于1108–1172年，晚于本规格1093年；默认提前并置为三塔整体意象（原创扩展）"
+  - key: src_dali_settlement
+    kind: gazetteer
+    title: "唐樊绰《蛮书》四库全书本卷五·六𫎨第五·阳苴咩城段"
+    url: "https://www.shidianguji.com/ens/book/SK0946/chapter/1jurfk0h8xgyu"
+    accessed: "2026-09-30"
+    confidence: pending_review
+    supports: [tang_north_south_gate_topology, tang_capital_thoroughfare]
+    note: "已读电子全文，段落明确以阳苴咩城起、以邆川城结束，不是太和城段。仅作唐代南诏层位文字依据；四库本为后世传本，无平面图/方向针/图号，1093延续待考，不支撑东西街或米制坐标。旧未核聚落论文移design/22 §11.1检索待办（网络资料，待核）"
+  - key: src_author_feedback
+    kind: project
+    title: 作者2026-09-29城镇与大理返修意见
+    url: null
+    accessed: null
+    confidence: project_fact
+    supports: [lower_prosperity, local_plants, limited_brick, buddhist_elements]
+    note: "本规格的美术与密度硬约束"
