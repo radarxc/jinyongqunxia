@@ -6,7 +6,7 @@
 ## 0. 一句话现状
 
 仓库 `/Users/bytedance/Projects/jinyongqunxia`，分支 `claude/vigilant-wright-2unuk1`（远超 origin，**未 push，push 前必须问作者**）。两条线并行：
-1. **文档线**：作者的阴阳理论 AR-18 已落地（NYY），12 册武学图鉴的性质落地（NR4-*）进行中：康熙、古龙、五岳、乾隆、通行、道家、侠客碧血已合入，其余 5 册在"GPT 审核 → 返修"循环里；之后是 LINT-outlets → 按书界同步 NR4S-NN → 最终汇总 NAu-final。
+1. **文档线**：作者的阴阳理论 AR-18 已落地（NYY），12 册武学图鉴的性质落地（NR4-*）进行中：康熙、古龙、五岳、乾隆、通行、道家、侠客碧血、倚天已合入，其余 4 册在"GPT 审核 → 返修"循环里；之后是 LINT-outlets → 按书界同步 NR4S-NN → 最终汇总 NAu-final。
 2. **素材线**：默认风格包 `assets/default/` 的基线图由作者在审批页逐张审批；城镇改为程序化生成（TOWN-*），招式演示改为图层动画（ART-R3-vfx）；几张返修图 GPT 审核已过、停在工作区等作者看。
 
 ## 1. 工作方式（硬规则）
@@ -57,12 +57,12 @@
 - 读作者结论：ArtifactData `list` 集合 `reviews`（doc id = 素材 ID；字段 decision approve/revise/reject、comment、sha 前 16 位、updatedAt）。`sha` 与当前图不符 = 审的是旧图。用 `ArtifactData list … out_dir=<目录>` 导出后：`python3 tools/agents/apply_reviews.py <目录> [--write]` 把 approve→approved、reject→rejected 写进 manifest，并打印可贴进 STYLE.md 审批记录的表。
 - 演示动画：页面把 `manifest.code` 指向的 index.html 内嵌为 `<iframe sandbox="allow-scripts" srcdoc>`，所以演示必须自包含（不联网、不访问 parent）。
 
-**当前等作者审的**：萧峰（ART-R2-male 工作区，PASS）、令狐冲（同上，R1 版）、六脉神剑图（ART-R2-vfx 工作区，PASS）、倚天剑与降龙十八掌图（已合入，candidate）。作者同意后：`step.py finish ART-R2-male && step.py merge ART-R2-male`（会把 ART-R1-male 的令狐冲一起带入；**ART-R1-male 本身不要合**）；ART-R2-vfx 同理，但 ART-R3-vfx 正以它的工作区为起点重做演示，合入顺序：R2-vfx 先、R3-vfx 后。
+**当前等作者审的**：小龙女（ART-R1-female 工作区，PASS）、萧峰（ART-R2-male 工作区，PASS）、令狐冲（同上，R1 版）、六脉神剑图（ART-R2-vfx 工作区，PASS）、倚天剑与降龙十八掌图（已合入，candidate）。作者同意后：`step.py finish ART-R2-male && step.py merge ART-R2-male`（会把 ART-R1-male 的令狐冲一起带入；**ART-R1-male 本身不要合**）；ART-R2-vfx 同理，但 ART-R3-vfx 正以它的工作区为起点重做演示，合入顺序：R2-vfx 先、R3-vfx 后。
 
 ## 4. 各线状态与下一步
 
 ### 4.1 文档线：AR-18 落地
-- **NR4-\***（12 册，验收 `tools/agents/check_nr4_unit.py <图鉴>` 三项计数清零）：已合入 kangxi 62268d4、gulong 4919d3a、wuyue d11695e、qianlong a99b5dc、general 4c23117、daojia ebdd0be、xiakebixue fe19164。未合入 5 册见快照；多数停在"第 3 轮 FAIL 只剩小问题"，协调者已逐个批准再修一轮（只改剩余项）。
+- **NR4-\***（12 册，验收 `tools/agents/check_nr4_unit.py <图鉴>` 三项计数清零）：已合入 kangxi 62268d4、gulong 4919d3a、wuyue d11695e、qianlong a99b5dc、general 4c23117、daojia ebdd0be、xiakebixue fe19164、yitian 778cbda。未合入 4 册见快照；多数停在"第 3 轮 FAIL 只剩小问题"，协调者已逐个批准再修一轮（只改剩余项）。
 - 之后：**LINT-outlets**（已登记，deps=全部 NR4）修检查脚本两处（route_outlet_points 剥离位移 / 内功出口；check_route_unique_for 扩到普通路线），修后重测 12 册；若出现新命中另派任务。
 - 之后：**NR4S-NN 按书界同步**（模板 `prompts/NR4S-book.md`，尚未登记任务）：汇总各 `reports/NR4-*.md` 的"交其他任务"按书分发，写集 `chapters/NN` + `npcs-chNN`。已知条目在 `FOLLOWUPS.md`"NR4 阶段"。
 - 最后：**NAu-final**（deps 62 个，提示词 `prompts/NAu-final.md`）收拢全部报告的提案与交办、统一公式、更新计数、同步作者的素材 / 城镇 / 气剑决定到 tech/07、tech/06、author-decisions、TODO。

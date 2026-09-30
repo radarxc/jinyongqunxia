@@ -18,8 +18,9 @@ BASE = REPO / "assets/default/baseline"
 # 还没合入、要先给作者看的类别：从任务工作区读图（作者说"先给我看图再合入"）
 WT_OVERRIDE = {"male": REPO / ".agents/wt/ART-R2-male/assets/default/baseline/character/male",
                # "town": 第 8 次运行未结束，图还会变，先显示占位
-               "vfx": REPO / ".agents/wt/ART-R2-vfx/assets/default/baseline/vfx"}
-WT_BADGE = {"male": "GPT 审核已过 · 未合入，你看过再合", "town": "45 度新图 · GPT 审核进行中 · 未合入", "vfx": "GPT 审核已过 · 未合入，你看过再合"}
+               "vfx": REPO / ".agents/wt/ART-R2-vfx/assets/default/baseline/vfx",
+               "female": REPO / ".agents/wt/ART-R1-female/assets/default/baseline/character/female"}
+WT_BADGE = {"male": "GPT 审核已过 · 未合入，你看过再合", "town": "45 度新图 · GPT 审核进行中 · 未合入", "vfx": "GPT 审核已过 · 未合入，你看过再合", "female": "GPT 审核已过 · 未合入，你看过再合"}
 
 CATS = [  # (cat key, label, manifest dir relative to baseline)
     ("map", "地图", "map"),
@@ -94,7 +95,8 @@ NOTES.update({
 NOTES.update({  # 第 2 / 3 轮
     "ref_sk_liumai__ch01_base01": ("第 2 轮：按你“不是气刃，应该是……线性的，持续的”的意见，改成从指端凝聚点连续射出的细长气线，动画为“凝聚 → 持续激射约 2.8 秒 → 收束”；全画面不用水墨。配色为近无色主体加淡青 / 淡赤刃缘（原著没写颜色，按设定“阴青阳赤”定的原创配色）。",
         ["线性、持续的感觉对吗？请点“播放”看动画。", "配色（近无色 + 青 / 赤刃缘）可以吗？"]),
-    "ref_npc_xiaolongnv__ch03_base01": ("已通过的版本。按你刚提的意见（加白手套、佩剑、铃铛——书中经典形象）返修中，新图出来后这张会替换，届时需要重新审批。", []),
+    "ref_npc_xiaolongnv__ch03_base01": ("第 3 轮：按你“加白手套、佩剑、铃铛（书中经典形象）”的意见，在已通过的原图上只加三样：素白五指薄手套；左腰入鞘中式直剑（淑女剑）；手中白绸两端各一枚小金铃（金铃索）。脸、发式、白衣、构图、光照不变。",
+        ["三样东西的大小、位置和画风协调吗？", "腰侧系带上端被袖子挡住、屈指部分被遮挡，可以吗？"]),
 })
 
 PENDING = {  # category -> (subjects, reason) while the supervisor has it in rework
