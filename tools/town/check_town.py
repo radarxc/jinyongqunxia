@@ -139,6 +139,7 @@ def validate_spec(spec):
     zones = {z["id"]: z for z in spec["zones"]}
     streets = {r["id"]: r for r in spec["streets"]}
     rivers = {r["id"]: r for r in spec["rivers"]}
+    lakes = {lake["id"]: lake for lake in spec.get("lakes", [])}
     width, height = spec["grid"]["width"], spec["grid"]["height"]
     def add(code, message, path, at=None):
         result.append(issue(code, message, path, at))
@@ -152,11 +153,15 @@ def validate_spec(spec):
             for i, child in enumerate(value):
                 check_points(child, f"{path}[{i}]")
     check_points(spec)
-    for group in ("gates", "streets", "rivers", "bridges", "zones", "landmarks", "building_quotas"):
+    for group in ("gates", "streets", "rivers", "lakes", "bridges", "zones", "landmarks", "building_quotas"):
         key = "type" if group == "building_quotas" else "id"
-        if len({row[key] for row in spec[group]}) != len(spec[group]):
+        if len({row[key] for row in spec.get(group, [])}) != len(spec.get(group, [])):
             add("TOWN_GEOMETRY_DUPLICATE_ID", "局部键重复", group)
+    if rivers.keys() & lakes.keys():
+        add("TOWN_GEOMETRY_DUPLICATE_ID", "河流与湖体共用局部 ID，不能重名", "lakes")
     polygons = [("wall.polygon", spec["wall"]["polygon"]["points"])]
+    polygons += [(f"lakes[{i}].polygon", lake["polygon"]["points"])
+                 for i, lake in enumerate(spec.get("lakes", []))]
     for i, zone in enumerate(spec["zones"]):
         path = f"zones[{i}]"
         geometry = zone["geometry"]
@@ -237,9 +242,10 @@ def validate_spec(spec):
                 or gate["asset_type"] != "tex_town_" + spec["era_kit"] + "_city_gate"):
             add("TOWN_GATE_GEOMETRY", "门楼占地、孔宽、方向或资产 ID 不符合契约", f"gates[{i}]")
     for i, bridge in enumerate(spec["bridges"]):
-        if bridge["road_ref"] not in streets or bridge["river_ref"] not in rivers:
-            add("TOWN_ID_REF_BRIDGE", "桥引用不存在的道路/河流", f"bridges[{i}]")
-        elif not rivers[bridge["river_ref"]]["width_cells"] <= bridge["length_cells"] <= 20:
+        if bridge["road_ref"] not in streets or bridge["river_ref"] not in rivers.keys() | lakes.keys():
+            add("TOWN_ID_REF_BRIDGE", "桥引用不存在的道路/河流或湖体", f"bridges[{i}]")
+        elif (bridge["river_ref"] in rivers
+              and not rivers[bridge["river_ref"]]["width_cells"] <= bridge["length_cells"] <= 20):
             add("TOWN_SCHEMA_BRIDGE_LENGTH", "桥长必须为河宽至 20 格", f"bridges[{i}]")
     if any(s["surface"] == "water" for s in spec["streets"]):
         add("TOWN_SCHEMA_ROAD_SURFACE", "街道路面不能为 water", "streets")
@@ -255,8 +261,10 @@ def validate_spec(spec):
 
 
 def check_fixed_geometry(spec, masks):
-    from common import catalog, gate_cells, rectangle, building_size, zone_winners, segment_distance, polyline_cells
+    from common import catalog, gate_cells, rectangle, zone_winners, segment_distance
+    from roads import GenerationError, bridge_footprint_cells, planning_bridge_groups
     result, occupied = [], set()
+    bridge_footprints = bridge_footprint_cells(masks)
     def add(code, text, path, cells=None):
         result.append(issue(code, text, path, first(cells)))
     for i, gate in enumerate(spec["gates"]):
@@ -274,19 +282,25 @@ def check_fixed_geometry(spec, masks):
             add("TOWN_GATE_ON_WATER", "城门楼/孔压水", f"gates[{i}]", footprint & masks["water"])
         if not passage <= footprint:
             add("TOWN_GATE_PASSAGE", "通行孔超出门楼占地", f"gates[{i}]")
+    try:
+        planning_bridge_groups(spec["bridges"])
+    except GenerationError as exc:
+        result.append(exc.issue)
     for i, bridge in enumerate(spec["bridges"]):
         rect = masks["bridge_rectangles"][bridge["id"]]
         road = masks["roads"][bridge["road_ref"]]
         at = (bridge["at"]["x"], bridge["at"]["z"])
-        river = next(r for r in spec["rivers"] if r["id"] == bridge["river_ref"])
-        if at not in road & polyline_cells(river["points"], river["width_cells"]):
-            add("TOWN_BRIDGE_OFF_WATER", "桥锚点須在所引用河流与道路交点", f"bridges[{i}]", {at})
-        segments = list(zip(river["points"], river["points"][1:]))
-        a, b = min(segments, key=lambda pair: segment_distance(at, *pair))
-        dx, dz = b["x"] - a["x"], b["z"] - a["z"]
-        along = abs(dz) if bridge["rotation_deg"] in (0, 180) else abs(dx)
-        if dx * dx + dz * dz and along / math.hypot(dx, dz) > math.sqrt(0.5) + 1e-9:
-            add("TOWN_BRIDGE_ORIENTATION", "桥轴偏离河流局部法向超过 45°", f"bridges[{i}]")
+        water = masks["water_bodies"][bridge["river_ref"]]
+        if at not in road & water:
+            add("TOWN_BRIDGE_OFF_WATER", "桥锚点须在所引用水体与道路交点", f"bridges[{i}]", {at})
+        river = next((r for r in spec["rivers"] if r["id"] == bridge["river_ref"]), None)
+        if river is not None:
+            segments = list(zip(river["points"], river["points"][1:]))
+            a, b = min(segments, key=lambda pair: segment_distance(at, *pair))
+            dx, dz = b["x"] - a["x"], b["z"] - a["z"]
+            along = abs(dz) if bridge["rotation_deg"] in (0, 180) else abs(dx)
+            if dx * dx + dz * dz and along / math.hypot(dx, dz) > math.sqrt(0.5) + 1e-9:
+                add("TOWN_BRIDGE_ORIENTATION", "桥轴偏离河流局部法向超过 45°", f"bridges[{i}]")
         if not rect & masks["water"]:
             add("TOWN_BRIDGE_OFF_WATER", "桥矩形未覆盖水面", f"bridges[{i}]")
         axis = 1 if bridge["rotation_deg"] in (0, 180) else 0
@@ -305,12 +319,14 @@ def check_fixed_geometry(spec, masks):
             add("TOWN_ID_REF_TYPE", f"未知建筑 {kind}", path)
             continue
         entry = catalog()[kind]
-        rotated = building_size(entry["w"], entry["h"], landmark["rotation_deg"])
-        if landmark["size"] != {"w": rotated[0], "h": rotated[1]}:
-            add("TOWN_BUILDING_SIZE", "固定建筑尺寸与目录旋转尺寸不一致", path)
+        if landmark["size"] != {"w": entry["w"], "h": entry["h"]}:
+            add("TOWN_BUILDING_SIZE", "固定建筑尺寸须等于目录原生 0° 占地", path)
+        if landmark["rotation_deg"] != 0:
+            add("TOWN_BUILDING_ROTATION", "单视图建筑只允许原生 0°", path)
         footprint = rectangle(landmark["origin"], landmark["size"])
         for forbidden, code in ((occupied, "TOWN_BUILDING_OVERLAP"),
                                 (masks["water"], "TOWN_BUILDING_ON_WATER"),
+                                (bridge_footprints, "TOWN_BUILDING_ON_BRIDGE"),
                                 (roads, "TOWN_BUILDING_ON_ROAD"),
                                 (masks["hard"], "TOWN_BUILDING_ON_WALL"),
                                 (masks["gate_footprints"], "TOWN_BUILDING_ON_GATE")):
@@ -338,8 +354,11 @@ def validate_layout(spec, layout, strict_assets=False, tile_manifest=None, build
     result = validate_schema(layout, "TownLayout")
     if result:
         return result
-    from common import geometry_masks, rectangle, catalog, building_size, building_entrance, zone_winners
+    from common import geometry_masks, rectangle, catalog, building_entrance, zone_winners
+    from placement import access_edges
+    from roads import bridge_footprint_cells
     masks, entries = geometry_masks(spec), catalog()
+    bridge_footprints = bridge_footprint_cells(masks)
     width, height = spec["grid"]["width"], spec["grid"]["height"]
     def add(code, text, path, cells=None):
         result.append(issue(code, text, path, first(cells)))
@@ -382,10 +401,12 @@ def validate_layout(spec, layout, strict_assets=False, tile_manifest=None, build
             add("TOWN_ID_REF_TYPE", f"目录不存在 {kind}", path)
             continue
         entry = entries[kind]
-        size = building_size(entry["w"], entry["h"], building["rotation_deg"])
-        if building["size"] != {"w": size[0], "h": size[1]} or building["rotation_deg"] not in entry["rotations"]:
-            add("TOWN_BUILDING_SIZE", "占地/允许旋转与目录不一致", path)
+        if building["size"] != {"w": entry["w"], "h": entry["h"]}:
+            add("TOWN_BUILDING_SIZE", "占地须等于目录原生 0° 尺寸，不可交换宽高", path)
+        if building["rotation_deg"] != 0:
+            add("TOWN_BUILDING_ROTATION", "单视图建筑只允许原生 0°", path)
         for forbidden, code in ((occupied, "TOWN_BUILDING_OVERLAP"), (water, "TOWN_BUILDING_ON_WATER"),
+                                (bridge_footprints, "TOWN_BUILDING_ON_BRIDGE"),
                                 (masks["hard"], "TOWN_BUILDING_ON_WALL"),
                                 (roads, "TOWN_BUILDING_ON_ROAD"), (masks["gate_footprints"], "TOWN_BUILDING_ON_GATE")):
             if footprint & forbidden:
@@ -396,10 +417,10 @@ def validate_layout(spec, layout, strict_assets=False, tile_manifest=None, build
         if zone not in zones or kind not in zones[zone]["allowed_building_types"] or not footprint <= winners.get(zone, set()):
             add("TOWN_BUILDING_ZONE", "占地须全属于允许此 type 的同一胜出分区", path)
         possible = {building_entrance(building["origin"], entry["w"], entry["h"], building["rotation_deg"], edge)[0]
-                    for edge in entry["entrance_edges"]}
+                    for edge in access_edges(entry)}
         actual = points(building["entrance_cells"])
         if not actual <= possible or len(actual) != len(building["entrance_cells"]):
-            add("TOWN_ENTRANCE_GEOMETRY", "入口须从未旋转目录局部格中心旋转得出", path)
+            add("TOWN_ENTRANCE_GEOMETRY", "接入点须位于原生占地某一边的外侧中心格", path)
         if not actual <= masks["margin"]:
             add("TOWN_ENTRANCE_OUTSIDE_WALL", "入口不满足墙内退距", path, actual - masks["margin"])
         if len(building["entrance_hexes"]) != len(building["entrance_cells"]):
@@ -478,6 +499,8 @@ def validate_layout(spec, layout, strict_assets=False, tile_manifest=None, build
 
 def check_layout_details(spec, layout, masks, road_map, walk, footprints):
     from common import building_entrance, catalog, entrance_path, expand, polyline_cells, rectangle, zone_winners
+    from placement import access_edges
+    from roads import bridge_footprint_cells
     result, entries = [], catalog()
     winners = zone_winners(spec)
     roads = set().union(*road_map.values()) if road_map else set()
@@ -501,7 +524,7 @@ def check_layout_details(spec, layout, masks, road_map, walk, footprints):
             add("TOWN_BUILDING_LANDMARK_CLEARANCE", "建筑侵入固定塔净空", path)
         entry = entries[kind]
         normals = dict(building_entrance(building["origin"], entry["w"], entry["h"], building["rotation_deg"], edge)
-                       for edge in entry["entrance_edges"])
+                       for edge in access_edges(entry))
         for cell in points(building["entrance_cells"]):
             if cell not in normals:
                 continue
@@ -533,8 +556,7 @@ def check_layout_details(spec, layout, masks, road_map, walk, footprints):
         if kind in entries and count > entries[kind]["max_per_zone"]:
             add("TOWN_QUOTA_CATALOG_MAX", f"{kind} 在 {zone} 超过目录每区上限", "buildings")
     zone_kinds = {z["id"]: z["kind"] for z in spec["zones"]}
-    navigable_water = set().union(*(polyline_cells(r["points"], r["width_cells"])
-                                   for r in spec["rivers"] if r["navigable"]))
+    navigable_water = masks["navigable_water"]
     for i, building in enumerate(layout["buildings"]):
         foot = footprints[building["id"]]
         kind = building["type"]
@@ -588,7 +610,8 @@ def check_layout_details(spec, layout, masks, road_map, walk, footprints):
     for zone, rows in layout["zone_coverage"].items():
         try:
             actual = decode_zone(rows, spec["grid"]["width"], spec["grid"]["height"])
-            expected = winners.get(zone, set()) & masks["margin"] - frozen_roads - masks["water"] - masks["gate_footprints"] - tower_ring - fixed_buffer
+            expected = (winners.get(zone, set()) & masks["margin"] - frozen_roads - masks["water"]
+                        - bridge_footprint_cells(masks) - masks["gate_footprints"] - tower_ring - fixed_buffer)
             if actual != expected:
                 add("TOWN_ZONE_COVERAGE", "覆盖须为阶段 D 冻结分母（保留固定占地）", "zone_coverage." + zone, actual ^ expected)
         except (ValueError, TypeError) as exc:
@@ -596,7 +619,7 @@ def check_layout_details(spec, layout, masks, road_map, walk, footprints):
     seen, last = set(), None
     avoid = spec["vegetation"]["avoid_road_cells"]
     excluded = roads if avoid == 1 else expand(roads, avoid - 1) if avoid > 1 else set()
-    allowed = walk & masks["interior"] - masks["water"] - masks["bridges"] - tower_ring - all_buffer - excluded
+    allowed = walk & masks["interior"] - masks["water"] - bridge_footprint_cells(masks) - tower_ring - all_buffer - excluded
     for i, decoration in enumerate(layout["decorations"]):
         cell = (decoration["at"]["x"], decoration["at"]["z"])
         order = cell[1], cell[0], decoration["asset_id"]
@@ -641,9 +664,56 @@ def check_hex(spec, layout, masks, road_map, walk):
     return result
 
 
+def asset_metadata_issues(asset, label, path, *, isolated=False, footprint=False, release=False):
+    """Validate the actual decoded sprite, including candidate adaptations.
+
+    Ground / seam tiles may intentionally touch their canvas edges. Independent
+    buildings and vegetation must retain transparent margins; no stored QA result
+    can substitute for inspecting the PNG that the renderer will actually load.
+    """
+    image, meta = asset
+    result = []
+    def add(code, message, severity="error"):
+        result.append(issue(code, f"{label}: {message}", path, severity=severity))
+    def finite(value):
+        return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+    if image.mode != "RGBA":
+        add("TOWN_ASSET_RGBA", "素材须为 RGBA")
+    else:
+        bounds = image.getchannel("A").getbbox()
+        if not bounds:
+            add("TOWN_ASSET_EMPTY", "素材完全透明")
+        elif isolated and (bounds[0] == 0 or bounds[1] == 0 or bounds[2] == image.width or bounds[3] == image.height):
+            add("TOWN_ASSET_CROPPED", "独立对象非透明轮廓触画布边")
+    anchor = meta.get("anchor_px")
+    if isinstance(anchor, dict):
+        anchor = [anchor.get("x"), anchor.get("y")]
+    if (not isinstance(anchor, (list, tuple)) or len(anchor) != 2
+            or not all(finite(n) for n in anchor)
+            or not 0 <= anchor[0] <= image.width or not 0 <= anchor[1] <= image.height):
+        add("TOWN_ASSET_ANCHOR", "缺有效图内锚点")
+    if footprint:
+        width = meta.get("footprint_width_px")
+        size = meta.get("footprint_cells", meta.get("footprint_m"))
+        if isinstance(size, dict):
+            size = [size.get("w"), size.get("h")]
+        valid_size = (isinstance(size, (list, tuple)) and len(size) == 2
+                      and all(finite(n) and n > 0 for n in size))
+        # The renderer prefers an explicitly supplied pixel width. A malformed
+        # width must not be hidden by otherwise valid logical dimensions.
+        if not ((finite(width) and width > 0) if width is not None else valid_size):
+            add("TOWN_ASSET_FOOTPRINT", "缺有效正数底面尺度")
+    if release and meta.get("status") != "approved":
+        add("TOWN_ASSET_NOT_APPROVED", "素材未 approved")
+    for adaptation in meta.get("adaptations", []):
+        add("TOWN_ASSET_SUBSTITUTION", str(adaptation), "error" if release else "warning")
+    return result
+
+
 def validate_assets(spec, layout, strict=False, tile_manifest=None, building_manifest=None, release=False):
     from assets import AssetLibrary
-    from render_town import autotile_mask
+    from edge_assembly import shore_bank_masks
+    from render_town import autotile_mask, visible_wall_cells
     from common import gate_cells, polyline_cells
     result = []
     severity = "error" if strict else "warning"
@@ -656,23 +726,21 @@ def validate_assets(spec, layout, strict=False, tile_manifest=None, building_man
             asset = buildings.resolve(kind, rotation_deg=rotation)
             if asset is None:
                 result.append(issue("TOWN_ASSET_MISSING", f"建筑素材缺失 {kind} rotation={rotation}", "assets.buildings", severity=severity))
-            elif release and asset[1].get("status") != "approved":
-                result.append(issue("TOWN_ASSET_NOT_APPROVED", f"建筑未 approved: {kind}", "assets.buildings"))
-            elif asset:
-                image, meta = asset
-                alpha = image.convert("RGBA").getchannel("A")
-                bounds = alpha.getbbox()
-                if bounds and (bounds[0] == 0 or bounds[1] == 0 or bounds[2] == image.width or bounds[3] == image.height):
-                    result.append(issue("TOWN_ASSET_CROPPED", f"独立建筑非透明轮廓触画布边 {kind}", "assets.buildings"))
-                anchor = meta.get("anchor_px")
-                if isinstance(anchor, list) and (len(anchor) != 2 or not 0 <= anchor[0] <= image.width or not 0 <= anchor[1] <= image.height):
-                    result.append(issue("TOWN_ASSET_ANCHOR", f"锚点超出图像 {kind}", "assets.buildings"))
+            else:
+                result += asset_metadata_issues(asset, f"{kind} rotation={rotation}", "assets.buildings",
+                                                isolated=True, footprint=True, release=release)
+                size = asset[1].get("footprint_cells")
+                for building in (b for b in used if b["rotation_deg"] == rotation):
+                    if size != building["size"]:
+                        result.append(issue("TOWN_BUILDING_VIEW_FOOTPRINT",
+                            f"{building['id']} 视图底面 {size} 与布局 {building['size']} 不符",
+                            "assets.buildings", severity=severity))
     for gate in spec["gates"]:
         asset = tiles.resolve(gate["asset_type"], rotation_deg=gate["rotation_deg"], width_cells=gate["width_cells"])
         if asset is None:
             result.append(issue("TOWN_ASSET_MISSING", f"完整城门变体缺失 {gate['id']}", "assets.gates", severity=severity))
-        elif release and asset[1].get("status") != "approved":
-            result.append(issue("TOWN_ASSET_NOT_APPROVED", f"城门未 approved: {gate['id']}", "assets.gates"))
+        else:
+            result += asset_metadata_issues(asset, gate["id"], "assets.gates", footprint=True, release=release)
     grounds = decode_ground(layout["ground_cells"], spec["grid"]["width"], spec["grid"]["height"])
     required_tiles = {(f"tex_town_{spec['era_kit']}_{row['ground']}", None, None) for row in grounds}
     road_cells = set().union(*(points(rows) for rows in layout["roads"].values()))
@@ -681,31 +749,39 @@ def validate_assets(spec, layout, strict=False, tile_manifest=None, building_man
     surfaces = {}
     for cell in road_cells - water_cells:
         surfaces.setdefault(ground_map[cell]["ground"], set()).add(cell)
-    for suffix, cells in [("road_edge", group) for group in surfaces.values()] + [("riverbank", water_cells)]:
+    for suffix, cells in [("road_edge", group) for group in surfaces.values()]:
         required_tiles.update((f"tex_town_{spec['era_kit']}_{suffix}", mask, None)
-                              for x, z in cells if (mask := autotile_mask(x, z, cells)) != 255)
+                              for x, z in cells if (mask := autotile_mask(x, z, cells)) & 85 != 85)
+    required_tiles.update((f"tex_town_{spec['era_kit']}_riverbank", mask, None)
+                          for mask in shore_bank_masks(water_cells, set(ground_map)).values())
     wall_points = spec["wall"]["polygon"]["points"]
     covered = set().union(*(gate_cells(g) for g in spec["gates"]))
     wall = polyline_cells(wall_points, vertices=True, closed=True) - covered
-    orientations = {}
-    for a, b in zip(wall_points, wall_points[1:] + wall_points[:1]):
-        rotation = 0 if abs(a["x"] - b["x"]) >= abs(a["z"] - b["z"]) else 90
-        for cell in polyline_cells([a, b], vertices=True):
-            orientations.setdefault(cell, rotation)
-    corners = points(wall_points)
-    required_tiles |= {(f"tex_town_{spec['era_kit']}_" + ("wall_corner" if cell in corners else "wall"),
-                        None, orientations.get(cell, 0)) for cell in wall}
+    if visible_wall_cells(spec, wall):
+        # WallAssembly reprojects native face materials onto the cell union;
+        # it never places the old doubled corner or borrows a rotated wall.
+        required_tiles.add((f"tex_town_{spec['era_kit']}_wall", None, 0))
     if spec["bridges"]:
         required_tiles.add((f"tex_town_{spec['era_kit']}_bridge_deck", None, None))
         required_tiles |= {(f"tex_town_{spec['era_kit']}_{suffix}", None, bridge["rotation_deg"])
                            for suffix in ("bridge_deck", "bridge_rail") for bridge in spec["bridges"]}
     for asset_id, mask, rotation in sorted(required_tiles, key=lambda row: (row[0], *(-1 if v is None else v for v in row[1:]))):
-        asset = tiles.resolve(asset_id, mask=mask, rotation_deg=rotation)
-        if asset is None:
-            detail = (f" mask={mask}" if mask is not None else "") + (f" rotation={rotation}" if rotation is not None else "")
-            result.append(issue("TOWN_ASSET_MISSING", f"贴片缺失 {asset_id}{detail}", "assets.tiles", severity=severity))
-        elif release and asset[1].get("status") != "approved":
-            result.append(issue("TOWN_ASSET_NOT_APPROVED", f"贴片未 approved: {asset_id}", "assets.tiles"))
+        detail = (f" mask={mask}" if mask is not None else "") + (f" rotation={rotation}" if rotation is not None else "")
+        # Four native ground variants are selected by the renderer's hash. Check
+        # each actual image, not merely v01; single-image records repeat safely.
+        is_ground = mask is None and rotation is None
+        checked = set()
+        for variant in range(4 if is_ground else 1):
+            asset = tiles.resolve(asset_id, mask=mask, rotation_deg=rotation, variant_index=variant)
+            if asset is None:
+                result.append(issue("TOWN_ASSET_MISSING", f"贴片缺失 {asset_id}{detail}", "assets.tiles", severity=severity))
+                continue
+            key = (id(asset[0]), asset[1].get("file"))
+            if key in checked:
+                continue
+            checked.add(key)
+            result += asset_metadata_issues(asset, asset_id + detail, "assets.tiles",
+                                            footprint=rotation is not None, release=release)
     plant_sizes = {"prp_song_dali_camellia": ((136, 131), (68, 95)),
                    "prp_song_dali_bamboo": ((136, 190), (68, 154)),
                    "prp_song_dali_broadleaf": ((136, 229), (68, 193)),
@@ -721,6 +797,8 @@ def validate_assets(spec, layout, strict=False, tile_manifest=None, building_man
                 result.append(issue("TOWN_ASSET_MISSING", f"植物素材缺失 {kind} v{variant + 1:02d}", "assets.vegetation", severity=severity))
                 continue
             image, meta = asset
+            result += asset_metadata_issues(asset, f"{kind} v{variant + 1:02d}", "assets.vegetation",
+                                            isolated=True, footprint=True, release=release)
             variants.append(meta.get("file", meta.get("png")))
             size, anchor = plant_sizes[kind]
             invalid = (image.size != size or tuple(meta.get("anchor_px", ())) != anchor
@@ -731,8 +809,6 @@ def validate_assets(spec, layout, strict=False, tile_manifest=None, building_man
                 invalid = True
             if invalid:
                 result.append(issue("TOWN_VEGETATION_ASSET_INVALID", f"植物域/尺寸/根锚/透明下沿不符 {kind}", "assets.vegetation"))
-            if release and meta.get("status") != "approved":
-                result.append(issue("TOWN_ASSET_NOT_APPROVED", f"植物变体未 approved: {kind} v{variant + 1:02d}", "assets.vegetation"))
         if len(variants) == 2 and variants[0] == variants[1]:
             result.append(issue("TOWN_ASSET_MISSING", f"植物必须交付不同文件的两变体 {kind}", "assets.vegetation", severity=severity))
     for library, path in ((tiles, "assets.tiles"), (buildings, "assets.buildings")):

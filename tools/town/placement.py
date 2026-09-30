@@ -6,7 +6,12 @@ from collections import Counter
 from dataclasses import dataclass
 
 from common import building_entrance, catalog, cells_to_json, expand, point, rectangle, substream
-from roads import DIRECTIONS, GenerationError, add_connector, road_union
+from roads import DIRECTIONS, GenerationError, add_connector, bridge_footprint_cells, road_union
+
+
+def access_edges(entry):
+    """原图门向优先；其他边可接步道，不因此旋转素材或拒绝可用占地。"""
+    return list(entry["entrance_edges"]) + [e for e in "NESW" if e not in entry["entrance_edges"]]
 
 
 def entrance_path(start, walkable, roads, limit=6, full_width=False):
@@ -86,13 +91,15 @@ def fixed_buildings(spec):
     for landmark in spec["landmarks"]:
         entry = entries[landmark["type"]]
         entrance, normal = building_entrance(landmark["origin"], entry["w"], entry["h"],
-                                             landmark["rotation_deg"], entry["entrance_edges"][0])
-        foot = rectangle(landmark["origin"], landmark["size"])
+                                             0, entry["entrance_edges"][0])
+        size = dict(w=entry["w"], h=entry["h"])
+        foot = rectangle(landmark["origin"], size)
         occupied |= foot
         if "pagoda" in landmark["type"]:
             clearance |= expand(foot, 3) - foot
         quota = quotas.get(landmark["type"], {})
-        building = {key: landmark[key] for key in ("type", "origin", "size", "rotation_deg", "zone_ref", "poi")}
+        building = {key: landmark[key] for key in ("type", "origin", "zone_ref", "poi")}
+        building.update(size=size, rotation_deg=0)
         building.update(id=f"bi_{len(result)+1:04d}", entrance_cells=cells_to_json({entrance}),
                         entrance_hexes=[], business_ref=quota.get("business_ref"))
         result.append(building)
@@ -104,7 +111,7 @@ def entrance_buffers(buildings):
     result = set()
     for b in buildings:
         entry = catalog()[b["type"]]
-        for edge in entry["entrance_edges"]:
+        for edge in access_edges(entry):
             at, normal = building_entrance(b["origin"], entry["w"], entry["h"], b["rotation_deg"], edge)
             if at in {point(p) for p in b["entrance_cells"]}:
                 depth = 4 if b["type"].endswith("_yamen") else 1
@@ -116,7 +123,6 @@ def entrance_buffers(buildings):
 def candidates_for(spec, quota, masks, coverage, roads, fixed, clearance, root_seed):
     """每个画幅内矩形恰抽一次抖动，非法矩形同样消费；按沿街评分贪心。"""
     import numpy as np
-    from common import building_size
     entry = catalog()[quota["type"]]
     width, height = spec["grid"]["width"], spec["grid"]["height"]
     zones = {z["id"]: z for z in spec["zones"]}
@@ -124,10 +130,11 @@ def candidates_for(spec, quota, masks, coverage, roads, fixed, clearance, root_s
     nearest = road_distances(roads, masks["bounds"])
     occupied = set().union(*(rectangle(b["origin"], b["size"]) for b in fixed))
     fixed_buffers = entrance_buffers(fixed)
-    base = masks["margin"] - masks["gate_footprints"] - masks["water"] - road_cells - occupied - clearance - fixed_buffers
+    base = (masks["margin"] - masks["gate_footprints"] - masks["water"] - road_cells
+            - bridge_footprint_cells(masks) - occupied - clearance - fixed_buffers)
     walk = masks["walkable"] - occupied
     buffer_allowed = (walk & masks["margin"])-clearance
-    navigable = set().union(*(polyline_water(r) for r in spec["rivers"] if r["navigable"]))
+    navigable = masks["navigable_water"]
     result = []
     for zid in sorted(quota["zone_refs"], key=lambda z: (-zones[z]["priority"], z)):
         allowed = base & coverage[zid]
@@ -136,8 +143,9 @@ def candidates_for(spec, quota, masks, coverage, roads, fixed, clearance, root_s
             invalid[z, x] = 0
         integral = np.pad(invalid.cumsum(0).cumsum(1), ((1,0),(1,0)))
         rng = substream(root_seed, "buildings", zid, quota["type"])
-        for rotation in entry["rotations"]:
-            w, h = building_size(entry["w"], entry["h"], rotation)
+        # 当前素材只有原生 0°；沿路入口加分，但不旋转占地来强求朝路。
+        for rotation in (0,):
+            w, h = entry["w"], entry["h"]
             for z in range(height-h+1):
                 for x in range(width-w+1):
                     jitter = rng.uniform(10)
@@ -147,14 +155,15 @@ def candidates_for(spec, quota, masks, coverage, roads, fixed, clearance, root_s
                     if quota["type"].endswith("_wharf") and not any(
                             (px+dx,pz+dz) in navigable for px,pz in foot for dx,dz in DIRECTIONS):
                         continue
-                    for edge in entry["entrance_edges"]:
+                    for edge in access_edges(entry):
                         entrance, normal = building_entrance((x,z), entry["w"], entry["h"], rotation, edge)
                         depth = 4 if quota["type"].endswith("_yamen") else 1
                         buffer = frozenset((entrance[0]+normal[0]*i,entrance[1]+normal[1]*i) for i in range(depth))
                         if not buffer <= buffer_allowed or buffer & foot:
                             continue
                         distance, rid = nearest.get(entrance, (10**9, "~"))
-                        score = 1000*(entrance in road_cells) + 40*w*h - 25*distance + jitter
+                        score = (1000*(entrance in road_cells) + 40*w*h - 25*distance + jitter
+                                 + 50*(edge in entry["entrance_edges"]))
                         rotated_edge = dict(zip(DIRECTIONS, "NESW"))[normal]
                         building = dict(type=quota["type"], origin=dict(x=x,z=z), size=dict(w=w,h=h),
                                         rotation_deg=rotation, zone_ref=zid, poi=None,
@@ -218,14 +227,12 @@ def pair_clearance(candidate, placed, zones):
 
 def subdivide(spec, coverage, available):
     """required 后切余地；左下最小格起最大空矩形，再按目录中位数切片。"""
-    from common import building_size
     parcels = []
     entries = catalog()
     fixed_types = {b["type"] for b in spec["landmarks"]}
     for zone in sorted(spec["zones"], key=lambda z: (-z["priority"], z["id"])):
-        sizes = [building_size(entries[t]["w"],entries[t]["h"],rotation)
-                 for t in zone["allowed_building_types"] if t not in fixed_types
-                 for rotation in entries[t]["rotations"]]
+        sizes = [(entries[t]["w"], entries[t]["h"])
+                 for t in zone["allowed_building_types"] if t not in fixed_types]
         if not sizes:
             continue
         def middle(values):
@@ -365,19 +372,21 @@ def place_buildings(spec, masks, coverage, roads, connectors, fixed, clearance,
                                   "building_quotas." + typ)
     # 每轮各通用类型至多放一栋，避免大院先吃完住宅、商铺先吃完市场。
     # min不影响候选和停止条件：调低验收下限不会反过来改变构造结果。
-    pools = [(q, iter(candidates_for(spec, q, masks, coverage, roads, placed, clearance, rng_root)))
-             for q in quotas if is_generic(q)]
-    while pools:
-        following = []
-        for quota, candidates in pools:
-            if counts[quota["type"]] >= quota["count"]["max"]:
-                continue
-            for c in candidates:
-                if attempt(c):
-                    following.append((quota, candidates))
-                    break
-        pools = following
-    parcels = subdivide(spec, coverage, masks["margin"] - masks["water"] - occupied
+    # 可选仓储等补位不得抢占必需商铺/住宅仍可使用的完整原生占地。
+    for required in (True, False):
+        pools = [(q, iter(candidates_for(spec, q, masks, coverage, roads, placed, clearance, rng_root)))
+                 for q in quotas if is_generic(q) and q["required"] == required]
+        while pools:
+            following = []
+            for quota, candidates in pools:
+                if counts[quota["type"]] >= quota["count"]["max"]:
+                    continue
+                for c in candidates:
+                    if attempt(c):
+                        following.append((quota, candidates))
+                        break
+            pools = following
+    parcels = subdivide(spec, coverage, masks["margin"] - masks["water"] - bridge_footprint_cells(masks) - occupied
                         - reserve - clearance - road_union(roads))
     return (placed, occupied, reserve, roads, connectors,
             dict(placement_attempts=attempts, parcels=len(parcels)), parcels)

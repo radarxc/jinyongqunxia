@@ -82,6 +82,8 @@ rivers:
     flow: east
     navigable: false
     basis: "图名：桃溪；src_dali_archaeology北墙沿溪南侧，src_dali_santta寺塔南面为桃溪；保留旧局部键便于追溯，实际线由城中原创溪渠移至城北，宽度与转折为原创缩景"
+lakes:
+  - {"id": "erhai_edge", "polygon": {"points": [{"x": 96, "z": 6}, {"x": 95, "z": 8}, {"x": 94, "z": 18}, {"x": 93, "z": 32}, {"x": 92, "z": 46}, {"x": 92, "z": 62}, {"x": 93, "z": 76}, {"x": 94, "z": 88}, {"x": 96, "z": 94}]}, "basis": "图名：洱海西岸（画幅边缘推定）；src_dali_archaeology记北墙东至洱海边，src_dali_santta支持寺塔东望洱海；沿原稿x>90方位，在x92..96截取城外水缘，与桃溪末段相接。9点曲线、入画范围及1093湖岸均为推定（待考）；x96是画幅裁切线，不是洱海东岸，不改城墙、桃溪、街道与建筑坐标。"}
 bridges:
   - {id: bridge_west_lane, at: {x: 37, z: 64}, river_ref: cangshan_stream, road_ref: west_temple_lane, length_cells: 5, width_cells: 3, rotation_deg: 0, basis: "图名：寺前便桥（拟）；寺道跨桃溪交点(37,64)，桥名、桥型与古代桥址无证，均原创扩展"}
 zones:

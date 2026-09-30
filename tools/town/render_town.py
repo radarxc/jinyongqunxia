@@ -13,12 +13,16 @@ import sys
 import time
 
 import yaml
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageChops, ImageDraw, ImageFont, ImageStat
 
 try:
     from .assets import AssetLibrary, DEFAULT_BUILDINGS, DEFAULT_TILES, ROOT
+    from .edge_assembly import shore_bank_masks, water_fringe_mask
+    from .water_material import WaterMaterial
 except ImportError:
     from assets import AssetLibrary, DEFAULT_BUILDINGS, DEFAULT_TILES, ROOT
+    from edge_assembly import shore_bank_masks, water_fringe_mask
+    from water_material import WaterMaterial
 
 NEIGHBORS = ((0, 1), (1, 1), (1, 0), (1, -1),
              (0, -1), (-1, -1), (-1, 0), (-1, 1))
@@ -52,6 +56,14 @@ def footprint_corners(building: dict) -> list[tuple[float, float]]:
     x, z = building["origin"]["x"], building["origin"]["z"]
     w, h = building["size"]["w"], building["size"]["h"]
     return [(x, z), (x + w, z), (x + w, z + h), (x, z + h)]
+
+
+def visible_wall_cells(spec: dict, cells: set[tuple[int, int]]) -> set[tuple[int, int]]:
+    """The Dali temple envelope is a planning boundary, not an excavated wall."""
+    if spec.get("city_id") == "city_dali" and "游戏包络" in spec["wall"].get("basis", ""):
+        north = next(g for g in spec["gates"] if g["side"] == "north")["at"]["z"]
+        return {(x, z) for x, z in cells if z <= north}
+    return cells
 
 
 def building_sort_key(building: dict, height: int) -> tuple:
@@ -105,11 +117,16 @@ def _positive_number(value) -> bool:
 
 
 def _paste(canvas: Image.Image, sprite: Image.Image, at: tuple[float, float],
-           anchor: tuple[float, float], ratio: float) -> None:
+           anchor: tuple[float, float], ratio: float, *, clip_polygon: list[tuple] | None = None) -> None:
     size = max(1, round(sprite.width * ratio)), max(1, round(sprite.height * ratio))
     if sprite.size != size:
         sprite = sprite.resize(size, Image.Resampling.LANCZOS)
     offset = round(at[0] - anchor[0] * ratio), round(at[1] - anchor[1] * ratio)
+    if clip_polygon is not None:
+        mask = Image.new("L", sprite.size)
+        ImageDraw.Draw(mask).polygon([(x - offset[0], y - offset[1]) for x, y in clip_polygon], fill=255)
+        sprite = sprite.copy()
+        sprite.putalpha(ImageChops.multiply(sprite.getchannel("A"), mask))
     canvas.alpha_composite(sprite, offset)
 
 
@@ -138,7 +155,24 @@ class Painter:
         self.height = layout["grid"]["height"]
         self.width = layout["grid"]["width"]
         span = self.width + self.height
-        self.canvas = Image.new("RGBA", (round(span * 32 * scale), round(span * 16 * scale)),
+        # Tall northern landmarks may project above the terrain diamond.
+        min_y = 0.0
+        for instance in layout.get("buildings", []):
+            found = buildings.resolve(instance["type"], rotation_deg=instance.get("rotation_deg", 0))
+            if not found:
+                continue
+            sprite, meta = found
+            anchor, source_width = _anchor(meta), meta.get("footprint_width_px")
+            bounds = sprite.getchannel("A").getbbox()
+            if anchor and bounds and _positive_number(source_width):
+                x = instance["origin"]["x"] + instance["size"]["w"] / 2
+                z = instance["origin"]["z"] + instance["size"]["h"] / 2
+                ratio = 32 * (instance["size"]["w"] + instance["size"]["h"]) / source_width
+                y = project(x, z, self.height)[1] + (bounds[1] - anchor[1]) * ratio
+                min_y = min(min_y, y)
+        self.top_padding = math.ceil(-min_y + 32) if min_y < 0 else 0
+        self.height += self.top_padding / 16
+        self.canvas = Image.new("RGBA", (round(span * 32 * scale), round((span * 16 + self.top_padding) * scale)),
                                 "#ede8d9")
         self.draw = ImageDraw.Draw(self.canvas)
         self.era = spec["era_kit"]
@@ -146,11 +180,23 @@ class Painter:
         self.root = int(root, 0) if isinstance(root, str) else int(root)
         self.ground = ground_records(layout)
         self.draw_order = []
+        self.ground_colors = {}
+        self.water_material = None
+        self.water_metrics = {}
 
     def tile(self, x: int, z: int, kind: str, *, mask: int | None = None,
-             rotation_deg: int | None = None) -> bool:
+             rotation_deg: int | None = None, opaque_ground: bool = False,
+             alpha_mask: Image.Image | None = None) -> bool:
         asset_id = kind if kind.startswith("tex_") else f"tex_town_{self.era}_{kind}"
-        found = self.tiles.resolve(asset_id, variant_index=variant_hash(self.root, x, z, asset_id),
+        if kind == "water":
+            if self.water_material is None:
+                self.water_material = WaterMaterial(self.tiles, asset_id, self.root)
+            elevation = self.ground.get((x, z), {}).get("elevation_m", 0)
+            return self.water_material.paint(self.canvas,
+                _polygon(x, z, self.height, self.scale, elevation=elevation),
+                self.scale, alpha_mask)
+        variant = variant_hash(self.root, x, z, asset_id)
+        found = self.tiles.resolve(asset_id, variant_index=variant,
                                    mask=mask, rotation_deg=rotation_deg)
         if found is None:
             return False
@@ -163,11 +209,26 @@ class Painter:
         if not _positive_number(tile_width):
             self.tiles.missing.add(asset_id + "/tile_px")
             return False
-        _paste(self.canvas, sprite, at, anchor, self.scale * 64 / tile_width)
+        if opaque_ground:
+            key = meta.get("id", asset_id)
+            if key not in self.ground_colors:
+                mean = ImageStat.Stat(sprite.convert("RGB"), sprite.getchannel("A")).mean
+                self.ground_colors[key] = tuple(round(v) for v in mean)
+            # Real sprites have antialiased diamond edges: cover their subpixel gaps
+            # with the same material color instead of exposing the paper background.
+            self.draw.polygon(_polygon(x, z, self.height, self.scale, elevation=elevation),
+                              fill=self.ground_colors[key])
+        if alpha_mask is not None:
+            sprite = sprite.copy()
+            sprite.putalpha(ImageChops.multiply(sprite.getchannel("A"), alpha_mask))
+        clip = (_polygon(x, z, self.height, self.scale, elevation=elevation)
+                if mask is not None or alpha_mask is not None else None)
+        _paste(self.canvas, sprite, at, anchor, self.scale * 64 / tile_width,
+               clip_polygon=clip)
         return True
 
     def flat(self, x: int, z: int, kind: str) -> None:
-        if self.tile(x, z, kind):
+        if self.tile(x, z, kind, opaque_ground=True):
             return
         elevation = self.ground[x, z].get("elevation_m", 0)
         polygon = _polygon(x, z, self.height, self.scale, elevation=elevation)
@@ -180,27 +241,31 @@ class Painter:
         p = _polygon(x, z, self.height, self.scale)
         color = "#456674" if kind == "riverbank" else "#9e886a"
         thickness = max(1, round(2 * self.scale))
-        # N/E/S/W are actual planning edges; missing diagonals form concave corners.
+        # N/E/S/W are actual planning edges. Concave joins come from adjacent
+        # dry cells, never short diagonal strokes inside a water tile.
         for bit, a, b in ((1, 3, 2), (4, 2, 1), (16, 1, 0), (64, 0, 3)):
             if not mask & bit:
                 self.draw.line([p[a], p[b]], fill=color, width=thickness)
-        for bit, adjacent, corner in ((2, 5, 2), (8, 20, 1), (32, 80, 0), (128, 65, 3)):
-            if mask & adjacent == adjacent and not mask & bit:
-                a, b, c = p[(corner - 1) % 4], p[corner], p[(corner + 1) % 4]
-                ends = [(.18 * a[0] + .82 * b[0], .18 * a[1] + .82 * b[1]),
-                        (.18 * c[0] + .82 * b[0], .18 * c[1] + .82 * b[1])]
-                self.draw.line(ends, fill=color, width=thickness)
 
     def terrain(self) -> None:
         water = _points(self.layout.get("water_cells", []))
-        bridges = _points(self.layout.get("bridge_cells", []))
         roads = set().union(*(_points(value) for value in self.layout.get("roads", {}).values()))
         surfaces = defaultdict(set)
         for point in roads - water:
             surfaces[self.ground[point]["ground"]].add(point)
         # All masks are derived from immutable data before any pass is drawn.
         road_masks = {p: autotile_mask(*p, group) for group in surfaces.values() for p in group}
-        bank_masks = {p: autotile_mask(*p, water) for p in water}
+        bank_masks = shore_bank_masks(water, set(self.ground))
+        self.water_metrics = {
+            "water_cells": len(water),
+            "sampling": "global_continuous",
+            "material_variants": 4 if water else 0,
+            "brightness_range": list(WaterMaterial.BRIGHTNESS_RANGE) if water else [],
+            "brightness_mode": "seeded_continuous_low_frequency",
+            "shore_water_cells": len(set(bank_masks) & water),
+            "shore_land_cells": len(set(bank_masks) - water),
+            "land_water_fringe_cells": .16,
+        }
         for (x, z), cell in sorted(self.ground.items(), key=lambda item: (item[0][1], item[0][0])):
             kind = cell["ground"]
             self.flat(x, z, "rammed_earth" if kind in ("water", "bridge_deck") else kind)
@@ -211,9 +276,10 @@ class Painter:
             self.flat(x, z, "water")
         for (x, z), mask in sorted(bank_masks.items()):
             if mask != 255:
+                if (x, z) not in water:
+                    self.tile(x, z, "water", alpha_mask=water_fringe_mask(mask))
                 self.edge(x, z, "riverbank", mask)
-        for x, z in sorted(bridges):
-            self.flat(x, z, "bridge_deck")
+        # A bridge sprite describes the entire span, never one sprite per water cell.
         self.bridge_details()
         for (x, z), cell in sorted(self.ground.items()):
             overlay = cell.get("overlay")
@@ -224,37 +290,11 @@ class Painter:
 
     def bridge_details(self) -> None:
         try:
-            from .common import bridge_rectangle
+            from .bridge_assembly import assemble_bridges
         except ImportError:
-            from common import bridge_rectangle
-        for bridge in self.spec.get("bridges", []):
-            cells = bridge_rectangle(bridge)
-            lo_x, hi_x = min(x for x, z in cells), max(x for x, z in cells) + 1
-            lo_z, hi_z = min(z for x, z in cells), max(z for x, z in cells) + 1
-            rotation = bridge["rotation_deg"]
-            # Draw complete spans, including land bridgeheads; water semantic stays intact.
-            for x, z in sorted(cells):
-                if (x, z) not in self.ground:
-                    continue
-                if not self.tile(x, z, "bridge_deck", rotation_deg=rotation):
-                    self.draw.polygon(_polygon(x, z, self.height, self.scale), fill=COLORS["bridge_deck"])
-            edges = ([(lo_x, lo_z), (lo_x, hi_z)], [(hi_x, lo_z), (hi_x, hi_z)])
-            if rotation % 180:
-                edges = ([(lo_x, lo_z), (hi_x, lo_z)], [(lo_x, hi_z), (hi_x, hi_z)])
-            rail_id = f"tex_town_{self.era}_bridge_rail"
-            found = self.tiles.resolve(rail_id, rotation_deg=rotation)
-            if found is not None and _anchor(found[1]):
-                at = project((lo_x + hi_x)/2, (lo_z + hi_z)/2, self.height, self.scale)
-                _paste(self.canvas, found[0], at, _anchor(found[1]), self.scale)
-                continue
-            if found is not None:
-                self.tiles.missing.add(rail_id + "/anchor_px")
-            for edge in edges:
-                ground = [project(x, z, self.height, self.scale) for x, z in edge]
-                rail = [(x, y - 12 * self.scale) for x, y in ground]
-                self.draw.line(rail, fill="#675d47", width=max(1, round(3*self.scale)))
-                for a, b in zip(ground, rail):
-                    self.draw.line([a, b], fill="#675d47", width=max(1, round(2*self.scale)))
+            from bridge_assembly import assemble_bridges
+        assemble_bridges(self.canvas, self.spec, self.tiles,
+                         lambda x, z: project(x, z, self.height, self.scale), self.scale)
 
     def block(self, building: dict, color: str = "#85765f", tall: float = 2.0,
               label: bool = True) -> None:
@@ -315,42 +355,49 @@ class Painter:
     def gate(self, gate: dict) -> None:
         try:
             from .common import gate_cells
+            from .gate_assembly import assemble_gate
         except ImportError:
             from common import gate_cells
+            from gate_assembly import assemble_gate
         x, z = gate["at"]["x"], gate["at"]["z"]
         found = self.tiles.resolve(gate["asset_type"], rotation_deg=gate["rotation_deg"],
                                    width_cells=gate["width_cells"])
-        if found is not None and _anchor(found[1]):
-            _paste(self.canvas, found[0], project(x + .5, z + .5, self.height, self.scale),
-                   _anchor(found[1]), self.scale)
+        full, passage = gate_cells(gate), gate_cells(gate, passage=True)
+        if found and assemble_gate(self.canvas, found, full, passage, gate["rotation_deg"],
+                                   lambda x, z: project(x, z, self.height, self.scale),
+                                   self.scale, self.tiles):
+            return
+        lo_x, hi_x = min(p[0] for p in full), max(p[0] for p in full) + 1
+        lo_z, hi_z = min(p[1] for p in full), max(p[1] for p in full) + 1
+        if found is not None and _anchor(found[1]) and _positive_number(found[1].get("footprint_width_px")):
+            target_width = 32 * (hi_x - lo_x + hi_z - lo_z)
+            _paste(self.canvas, found[0],
+                   project((lo_x + hi_x)/2, (lo_z + hi_z)/2, self.height, self.scale),
+                   _anchor(found[1]), self.scale * target_width / found[1]["footprint_width_px"])
             return
         if found is not None:
             self.tiles.missing.add(gate["asset_type"] + "/anchor_px")
-        full, passage = gate_cells(gate), gate_cells(gate, passage=True)
         # Pillars never paint a solid ground-level wall across the passage.
         for a, b in sorted(full - passage, key=lambda p: p[0] - p[1]):
             block = {"id": gate["id"], "origin": {"x": a, "z": b}, "size": {"w": 1, "h": 1}}
             self.block(block, "#7c8071", 3.5, label=False)
-        lo_x, hi_x = min(p[0] for p in full), max(p[0] for p in full) + 1
-        lo_z, hi_z = min(p[1] for p in full), max(p[1] for p in full) + 1
         roof = _polygon(lo_x, lo_z, self.height, self.scale, hi_x - lo_x, hi_z - lo_z, 4)
         self.draw.polygon(roof, fill="#666c5a", outline="#393e36")
 
     def objects(self) -> None:
         try:
             from .common import gate_cells, polyline_cells
+            from .seam_assembly import WallAssembly
         except ImportError:
             from common import gate_cells, polyline_cells
+            from seam_assembly import WallAssembly
         gates = self.spec.get("gates", [])
         covered = set().union(*(gate_cells(gate) for gate in gates))
         vertices = self.spec["wall"]["polygon"]["points"]
-        wall = polyline_cells(vertices, vertices=True, closed=True) - covered
-        orientations = {}
-        for a, b in zip(vertices, vertices[1:] + vertices[:1]):
-            rotation = 0 if abs(a["x"] - b["x"]) >= abs(a["z"] - b["z"]) else 90
-            for point in polyline_cells([a, b], vertices=True):
-                orientations.setdefault(point, rotation)
-        corners = {(point["x"], point["z"]) for point in vertices}
+        all_wall = polyline_cells(vertices, vertices=True, closed=True) - covered
+        wall = visible_wall_cells(self.spec, all_wall)
+        walls = WallAssembly(self, wall, covered)
+        # Nonphysical planning envelopes belong only in planning views, never the PNG.
         objects = []
         for x, z in wall:
             item = {"id": f"wall_{z}_{x}", "origin": {"x": x, "z": z}, "size": {"w": 1, "h": 1}}
@@ -369,8 +416,7 @@ class Painter:
         for _, kind, item in sorted(objects, key=lambda item: item[0]):
             if kind == "wall":
                 x, z = item["origin"]["x"], item["origin"]["z"]
-                texture = "wall_corner" if (x, z) in corners else "wall"
-                if not self.tile(x, z, texture, rotation_deg=orientations.get((x, z), 0)):
+                if not walls.draw_cell(x, z):
                     self.block(item, "#858678", 1.5, label=False)
             elif kind == "building":
                 self.draw_order.append(item["id"])
@@ -382,10 +428,10 @@ class Painter:
 
 
 def write_overlay(layout: dict, spec: dict, path: Path, image_path: Path,
-                  size: tuple[int, int], missing: list[str]) -> None:
+                  size: tuple[int, int], missing: list[str], top_padding: int = 0) -> None:
     """SVG uses master-pixel viewBox; all debug groups can be toggled separately."""
     width, height = layout["grid"]["width"], layout["grid"]["height"]
-    master_w, master_h = (width + height) * 32, (width + height) * 16
+    master_w, master_h = (width + height) * 32, (width + height) * 16 + top_padding
     lines = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{size[0]}" height="{size[1]}" '
              f'viewBox="0 0 {master_w} {master_h}">',
              '<style>text{font-family:monospace;font-size:16px;paint-order:stroke;stroke:#f8f5e9;'
@@ -396,6 +442,7 @@ def write_overlay(layout: dict, spec: dict, path: Path, image_path: Path,
     if path.parent.resolve() == image_path.parent.resolve():
         lines += ['<g id="preview">', f'<image href="{escape(image_path.name, quote=True)}" '
                   f'width="{master_w}" height="{master_h}"/>', '</g>']
+    lines.append(f'<g id="planning" transform="translate(0 {top_padding})">')
 
     def coords(points):
         return " ".join(f"{a:.2f},{b:.2f}" for a, b in (project(x, z, height) for x, z in points))
@@ -436,6 +483,10 @@ def write_overlay(layout: dict, spec: dict, path: Path, image_path: Path,
             lines.append(f'<polyline points="{coords(points)}" stroke="{color}" stroke-width="3" '
                          f'stroke-dasharray="9 4"><title>{escape(item["id"])} '
                          f'width={item["width_cells"]}</title></polyline>')
+    for lake in spec.get("lakes", []):
+        points = [(p["x"], p["z"]) for p in lake["polygon"]["points"]]
+        lines.append(f'<polygon points="{coords(points)}" stroke="#186b8d" stroke-width="3" '
+                     f'stroke-dasharray="9 4"><title>{escape(lake["id"])} lake boundary</title></polygon>')
     for item in layout.get("generated_connectors", []):
         points = item.get("cells", [])
         if points:
@@ -480,7 +531,7 @@ def write_overlay(layout: dict, spec: dict, path: Path, image_path: Path,
             x, y = project(at["x"] + .5, at["z"] + .5, height)
             lines.append(f'<circle cx="{x}" cy="{y}" r="18" fill="none" stroke="#df2436" stroke-width="4">'
                          f'<title>{escape(issue["message"])}</title></circle>')
-    lines.append('</g></svg>')
+    lines.append('</g></g></svg>')
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -539,11 +590,17 @@ def render_layout(layout: dict, output: str | Path, *, spec: dict | None = None,
     painter.canvas.save(output, format="PNG")
     missing = sorted(tiles.missing | buildings.missing)
     if overlay is not None:
-        write_overlay(layout, spec, Path(overlay), output, painter.canvas.size, missing)
+        write_overlay(layout, spec, Path(overlay), output, painter.canvas.size, missing,
+                      painter.top_padding)
     return {"output": str(output), "size_px": list(painter.canvas.size), "scale": scale,
             "diagnostic": incomplete is not None,
             "elapsed_seconds": round(time.perf_counter() - started, 4),
+            "top_padding_master_px": painter.top_padding,
+            "water_surface": painter.water_metrics,
             "missing_assets": missing, "warnings": sorted(warnings),
+            "used_asset_ids": sorted(tiles.used_ids | buildings.used_ids),
+            "asset_substitutions": [dict(requested_id=a, actual_id=b, reason=c)
+                                    for a, b, c in sorted(tiles.substitutions | buildings.substitutions)],
             "building_draw_order": painter.draw_order,
             "overlay": str(overlay) if overlay is not None else None}
 
