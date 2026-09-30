@@ -20,6 +20,11 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Iterable
 
+if __package__:
+    from . import route_checks
+else:
+    import route_checks
+
 
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG_DIR = ROOT / "docs" / "design" / "catalog"
@@ -130,6 +135,15 @@ MOVEMENT_MERIDIANS = frozenset({
 REN_DU_MERIDIANS = frozenset({"mer_renmai", "mer_dumai"})
 LEGAL_DANTIAN_ACUPOINTS = frozenset({
     "ap_renmai_qihai", "ap_renmai_guanyuan",
+})
+# NAuF-lint / NAu-O01: fixed, reviewed zero-debt rules, never inferred from
+# the scanned subset.  Missing weapon guides and route-nature conflicts still
+# have content debt; keep reporting them without weakening either check.
+DELIVERY_STRICT_RULES = frozenset({
+    "palm", "palm-tail", "finger", "finger-tail",
+    "finger-specific", "finger-specific-tail",
+    "fist-grapple", "fist-grapple-tail", "leg", "leg-tail", "weapon-tail",
+    "inner-attack", "inner-defense", "inner-dantian", "movement", "projection",
 })
 
 
@@ -3615,6 +3629,33 @@ def print_delivery_report(report: DeliveryReport, details: bool = False) -> None
         )
 
 
+def delivery_gate_counts(report: DeliveryReport) -> dict[str, int]:
+    """Count only the explicitly promoted endpoint rules, including normals."""
+    findings = (report.findings + report.tail_findings
+                + report.nonultimate_projection_findings)
+    counts = Counter(finding.rule for finding in findings)
+    return {rule: counts[rule] for rule in sorted(DELIVERY_STRICT_RULES)}
+
+
+def print_route_report(report: route_checks.RouteAuditReport, details: bool) -> None:
+    """Expose concrete coverage so empty index rows cannot look like success."""
+    for item in report.catalogs:
+        coverage = "; ".join(
+            f"{tier}={item.parsed_by_tier[tier]}/{item.expected_by_tier[tier]}"
+            for tier in route_checks.TIERS
+        )
+        print(f"{item.catalog}: route_values {coverage}; "
+              + "; ".join(f"{code}={count}" for code, count in item.findings.items()))
+    print(f"route_values: parsed={sum(route.parsed for route in report.routes)}/"
+          f"{len(report.routes)}; "
+          + "; ".join(f"{code}={count}" for code, count in report.counts.items()))
+    if details:
+        for finding in report.findings:
+            print(f"  ROUTE rule={finding.code}; grade={finding.tier}; "
+                  f"{finding.catalog}:{finding.skill_id}/{finding.move_id}/"
+                  f"{finding.route_id}@{finding.source}:{finding.line}; {finding.detail}")
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("paths", nargs="*", type=Path)
@@ -3633,6 +3674,27 @@ def main(argv: list[str] | None = None) -> int:
         "--delivery", action="store_true",
         help="report action/projection endpoint rules without changing exit status",
     )
+    parser.add_argument(
+        "--delivery-strict", action="store_true",
+        help="fail on cleared endpoint rules; missing weapon guides and route "
+             "nature remain report-only (see README)",
+    )
+    parser.add_argument(
+        "--inner-nature-strict", action="store_true",
+        help="fail on missing inner.meridians or inconsistent inner nature",
+    )
+    parser.add_argument(
+        "--routes", action="store_true",
+        help="report actual ultimate route values and parsing coverage",
+    )
+    parser.add_argument(
+        "--routes-strict", action="store_true",
+        help="fail on actual heaven/earth route values; grade-six registry/parse only",
+    )
+    parser.add_argument(
+        "--acupoints-strict", action="store_true",
+        help="fail on unregistered or unparsed heaven/earth/grade-six routes",
+    )
     args = parser.parse_args(argv)
     paths = args.paths or list(CATALOG_PATHS)
     paths = [path if path.is_absolute() else ROOT / path for path in paths]
@@ -3649,15 +3711,48 @@ def main(argv: list[str] | None = None) -> int:
     diversity_report = None
     if args.diversity or args.diversity_strict:
         diversity_report = analyze_route_diversity(paths)
-    delivery_report = analyze_delivery(paths) if args.delivery else None
+    delivery_report = (
+        analyze_delivery(paths)
+        if args.delivery or args.delivery_strict or args.inner_nature_strict
+        else None
+    )
+    route_report = None
+    if args.routes or args.routes_strict or args.acupoints_strict:
+        try:
+            route_report = route_checks.audit_routes(paths)
+        except (OSError, ValueError) as exc:
+            print(f"ERROR: route audit input: {exc}", file=sys.stderr)
+            return 2
+    gates: dict[str, dict[str, int]] = {}
+    if args.delivery_strict:
+        gates["delivery"] = delivery_gate_counts(delivery_report)
+    if args.inner_nature_strict:
+        gates["inner_nature"] = {
+            "missing_meridians": delivery_report.inner_nature_missing_meridians,
+            "nature_conflicts": delivery_report.inner_nature_conflicts,
+        }
+    if args.routes_strict:
+        gates["route_values"] = route_report.counts
+    if args.acupoints_strict:
+        gates["acupoints"] = {
+            code: route_report.counts[code] for code in ("unparsed", "unregistered")
+        }
     if args.json:
         payload: object = [asdict(audit) for audit in audits]
-        if diversity_report is not None or delivery_report is not None:
+        if any(report is not None for report in (
+            diversity_report, delivery_report, route_report,
+        )):
             payload = {"audits": payload}
             if diversity_report is not None:
                 payload["diversity"] = asdict(diversity_report)
             if delivery_report is not None:
                 payload["delivery"] = asdict(delivery_report)
+            if route_report is not None:
+                payload["route_values"] = {
+                    **asdict(route_report), "counts": route_report.counts,
+                }
+            if gates:
+                payload["gates"] = gates
         print(json.dumps(payload, ensure_ascii=False, indent=2))
     else:
         for audit in audits:
@@ -3675,13 +3770,19 @@ def main(argv: list[str] | None = None) -> int:
             )
         if delivery_report is not None:
             print_delivery_report(delivery_report, details=args.details)
+        if route_report is not None:
+            print_route_report(route_report, details=args.details)
+        for gate, counts in gates.items():
+            print(f"{gate}_gate: errors={sum(counts.values())}; "
+                  + "; ".join(f"{code}={count}" for code, count in counts.items()))
     existing_failure = args.strict and any(audit.errors for audit in audits)
     diversity_failure = (
         args.diversity_strict
         and diversity_report is not None
         and bool(diversity_report.exact_groups)
     )
-    return 1 if existing_failure or diversity_failure else 0
+    gate_failure = any(any(counts.values()) for counts in gates.values())
+    return 1 if existing_failure or diversity_failure or gate_failure else 0
 
 
 if __name__ == "__main__":

@@ -9,9 +9,11 @@ replay remains the authority for named encounter production data.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
+from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -253,6 +255,128 @@ def read_inputs(path: Path) -> list[PacingInput]:
     return [input_from_dict(row) for row in rows]
 
 
+def resolved_input(spec: PacingInput) -> dict[str, Any]:
+    """Emit every resolved input in the public, round-trippable JSON dialect."""
+    return {
+        "chapter": spec.chapter, "kind": spec.kind, "name": spec.name,
+        "effGrade": spec.eff_grade, "effLayer": spec.eff_layer,
+        "mpRatioBp": spec.mp_ratio_bp, "practiceBp": spec.practice_bp,
+        "capacityScaleBp": spec.capacity_scale_bp,
+        "innerNature": spec.inner_nature, "openPolicy": spec.open_policy,
+        "hpMultiplier": spec.hp_multiplier,
+        "defenseMultiplier": spec.defense_multiplier,
+        "attackRouteLength": spec.attack_route_length,
+        "defenseRouteLength": spec.defense_route_length,
+        "milestones": {
+            "meridianComplete": spec.milestones.meridian_complete,
+            "smallCycle": spec.milestones.small_cycle,
+            "greatCycle": spec.milestones.great_cycle,
+            "twelveCycle": spec.milestones.twelve_cycle,
+            "turns": spec.milestones.turns,
+        },
+    }
+
+
+def display_rounds(value: float) -> str:
+    """Round only the display cell; calculations retain the original float."""
+    return str(Decimal(str(value)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP))
+
+
+def build_report(specs: Iterable[PacingInput]) -> dict[str, Any]:
+    """Versioned audit envelope; never changes estimate() or window decisions."""
+    source_dir = Path(__file__).resolve().parent
+    sources = ("boss_pacing.py", "damage_sim.py", "meridian_flow_sim.py",
+               "projection_sim.py")
+    rows = []
+    for spec in specs:
+        result = estimate(spec)
+        rounds = result["estimatedRounds"]
+        low, high = result["window"]
+        rows.append({
+            "input": resolved_input(spec), "result": result,
+            "estimatedRoundsDisplay": display_rounds(rounds),
+            "windowStatus": "below" if rounds < low else "above" if rounds > high else "within",
+        })
+    return {
+        "schema": "tianshu.boss-pacing.report", "schemaVersion": 1,
+        "estimateOnly": True,
+        "model": {
+            "reference": "docs/design/21-meridian-flow-and-moves.md#11.9.2",
+            "formula": "templateRounds * 10000^2 / (playerAttackBp * bossDefenseBp) * hpMultiplier * defenseMultiplier",
+            "assumptions": [
+                "Fully completed legal representative routes; qualityBp=10000.",
+                "Chapter reference: retained grade G, layer 8, elite milestones.",
+                "No route risk/RNG, turn timeline, or named encounter replay.",
+                "Shared encounter durability is applied once, not per actor.",
+            ],
+            "sourceSha256": {
+                name: hashlib.sha256((source_dir / name).read_bytes()).hexdigest()
+                for name in sources
+            },
+        },
+        "comparisonPolicy": {
+            "integerAndBoolean": "exact",
+            "float": {
+                "absoluteTolerance": 1e-9, "relativeTolerance": 1e-12,
+                "rule": "abs(actual-expected) <= max(absoluteTolerance, relativeTolerance*max(abs(actual),abs(expected)))",
+            },
+            "documentRounds": {
+                "decimalPlaces": 2, "rounding": "ROUND_HALF_UP",
+                "rule": "Compare the exact estimatedRoundsDisplay string for a two-decimal table cell.",
+                "maximumRoundingError": 0.005,
+            },
+            "window": "Use unrounded estimatedRounds and inclusive bounds; no display or float tolerance widens the window.",
+        },
+        "units": rows,
+    }
+
+
+def report_json(specs: Iterable[PacingInput]) -> str:
+    return json.dumps(build_report(specs), ensure_ascii=False, sort_keys=True,
+                      indent=2, allow_nan=False)
+
+
+def run_report_checks() -> None:
+    spec = input_from_dict({
+        "chapter": 14, "kind": "boss", "name": "报告复核",
+        "effGrade": 9, "effLayer": 9, "mpRatioBp": 12_500,
+        "practiceBp": 8_500, "capacityScaleBp": 12_000,
+        "innerNature": "yang", "openPolicy": "fullTemplate",
+        "hpMultiplier": 0.75, "defenseMultiplier": 1.05,
+        "attackRouteLength": 8, "defenseRouteLength": 0,
+        "milestones": {"meridianComplete": True, "smallCycle": True,
+                       "greatCycle": True, "twelveCycle": False, "turns": 3},
+    })
+    assert input_from_dict(resolved_input(spec)) == spec
+    report = build_report([spec, replace(spec, name="第二单位")])
+    assert report["schema"] == "tianshu.boss-pacing.report"
+    assert report["schemaVersion"] == 1 and report["estimateOnly"] is True
+    assert report["units"][0]["result"] == estimate(spec)
+    assert [row["input"]["name"] for row in report["units"]] == ["报告复核", "第二单位"]
+    assert report["comparisonPolicy"]["float"]["absoluteTolerance"] == 1e-9
+    assert report["comparisonPolicy"]["float"]["relativeTolerance"] == 1e-12
+    assert len(report["model"]["sourceSha256"]) == 4
+    assert all(len(value) == 64 for value in report["model"]["sourceSha256"].values())
+    encoded = report_json([spec])
+    assert encoded == report_json([spec])
+    assert input_from_dict(json.loads(encoded)["units"][0]["input"]) == spec
+    # Chapter 12 documents Chen Jialuo's below-half tie explicitly.
+    assert display_rounds(18.9149609) == "18.91"
+    assert display_rounds(18.915) == "18.92"
+    assert display_rounds(9.0) == "9.00"
+    # A displayed boundary must never turn an out-of-window raw value green.
+    for kind in ("boss", "elite"):
+        base = input_from_dict({"chapter": 2, "kind": kind})
+        base_rounds = estimate(base)["estimatedRounds"]
+        low, high = WINDOWS[kind]
+        for target, status in ((low - 0.004, "below"), (high + 0.004, "above")):
+            adjusted = replace(base, hp_multiplier=target / base_rounds)
+            row = build_report([adjusted])["units"][0]
+            assert row["windowStatus"] == status
+            assert row["estimatedRoundsDisplay"] == display_rounds(low if status == "below" else high)
+            assert row["result"]["recommendedMultiplierToWindow"] != 1.0
+
+
 def run_checks() -> None:
     for chapter in range(1, 15):
         for kind in ("boss", "elite"):
@@ -302,12 +426,16 @@ def run_checks() -> None:
     assert unadjusted["estimatedRounds"] > 25.0
     assert math.isclose(recommended, 23.0 / unadjusted["estimatedRounds"])
     assert 12.0 <= adjusted["estimatedRounds"] <= 25.0
+    run_report_checks()
     print("boss_pacing: all checks passed")
 
 
 def parser() -> argparse.ArgumentParser:
     result = argparse.ArgumentParser(description=__doc__)
-    result.add_argument("--check", action="store_true")
+    mode = result.add_mutually_exclusive_group()
+    mode.add_argument("--check", action="store_true")
+    mode.add_argument("--report", action="store_true",
+                      help="versioned JSON report with resolved inputs and comparison tolerances")
     result.add_argument("--json", type=Path, help="JSON object/list input")
     result.add_argument("--chapter", default=1)
     result.add_argument("--kind", choices=("boss", "elite"), default="boss")
@@ -363,7 +491,10 @@ def main(argv: Iterable[str] | None = None) -> int:
         run_checks()
         return 0
     specs = read_inputs(args.json) if args.json else [direct_input(args)]
-    print(json.dumps([estimate(spec) for spec in specs], ensure_ascii=False, indent=2))
+    if args.report:
+        print(report_json(specs))
+    else:
+        print(json.dumps([estimate(spec) for spec in specs], ensure_ascii=False, indent=2))
     return 0
 
 
