@@ -1,0 +1,339 @@
+schema_version: town.schema.v1
+title: 城镇规格与生成布局契约
+status: design_contract
+field_contract:
+  required_default: true
+  unit_default: none
+  required_rule: "definition.required overrides default; otherwise every declared field is required, including nullable fields"
+  example_scope: "examples validate the named field and its child fields; cross-record references use a matching CitySpec context"
+  definition_checks: "each field requires type, range and example; omitted unit resolves to unit_default"
+  source_reference_checks: "recursively collect src_[a-z0-9_]+ tokens from basis strings outside sources; every token resolves to one unique sources.key and every sources.key occurs in that set; supports/note/title never count as citations"
+  source_reference_errors: "duplicate key=TOWN_SOURCE_DUPLICATE; unknown basis token=TOWN_SOURCE_REF_MISSING; source with no basis citation=TOWN_SOURCE_UNUSED; historical support still requires human review"
+units:
+  grid: 1 m x 1 m planning square
+  world: metre
+  pixel: CSS pixel at base scale
+coordinate_convention:
+  origin: southwest grid corner
+  x_axis: east
+  z_axis: north
+  grid_cell: "[x,z] names the 1 m square [x,x+1) x [z,z+1)"
+  rotation_deg: "clockwise on north-up planning map; 0=no rotation, local north maps north"
+  projection: "yaw 45 deg, pitch 30 deg; base diamond 64x32 px"
+  runtime_world_axes: "tech/02: +x east, +z south, +y up"
+  planning_to_world_vertex: "x_world=x_planning; z_world=grid.height-z_planning"
+  planning_to_world_cell_center: "x_world=x+0.5; z_world=grid.height-z-0.5"
+  rotation_to_world_yaw: "worldYawDeg=(rotation_deg+270)%360"
+  runtime_conversion: "enumerate tech/02 hex centers in world axes, then sample planning masks at x_p=x_w,z_p=height-z_w"
+geometry_contract:
+  building_rotation: "w0,h0 are unrotated catalog dimensions; rotate local point (u,v) by 0:(u,v),90:(v,w0-u),180:(w0-u,h0-v),270:(h0-v,u); add rotated instance origin; size=(h0,w0) for 90/270 else (w0,h0)"
+  building_entrance: "select unrotated local cell N:(floor((w0-1)/2),h0),E:(w0,floor((h0-1)/2)),S:(floor((w0-1)/2),-1),W:(-1,floor((h0-1)/2)); rotate its center (i+0.5,j+0.5), add instance origin, then floor to entrance cell; never reselect the midpoint on the rotated edge"
+  entrance_buffer: "extend from the transformed entrance cell along rotated outward normal; depth counts the entrance cell; ordinary depth=1, yamen depth=4; recompute buffer,connector and hex mapping after rotation"
+  bridge_rectangle: "at is a cell index; spans=(width,length) for 0/180 else (length,width); min=at-floor(spans/2); max=min+spans excluded; even spans bias negative"
+  bridge_mask: "bridge_cells=rectangle intersect water; every road-water intersection must be covered by a declared bridge; both bridge ends connect dry road"
+  gate_rectangle: "unrotated offsets x=-floor((w-1)/2)..ceil((w-1)/2),z=-1..2; rotate offsets clockwise around at cell center; even w biases local +x"
+  gate_collision: "P=union of all gate passage masks,G=union of all gate footprints; hard mask=(wall supercover minus P) union (G minus P); exactly one primary gate; overhead beam is not ground collision"
+  gate_walk_domain: "wall-interior cell centers union P, minus hard collision and non-bridge water; trim road end caps only at walls/exterior; P is the wall-margin passage exception"
+  entrance_path: "4-neighbor BFS <=6 edges; N/E/S/W; ties by length,road id,target z/x,full z/x path lexicographically"
+  entrance_hex: "valid sampled hex center within 1.5m of entrance cell center, unobstructed centerline to entrance; choose primary-gate-connected candidate by squared distance,r,q"
+  gate_hex: "valid hex center inside wall and in road_ref union P, within 4m of at center; order distance,r,q; primary selects root, others must join root component"
+  placement_backtrack: "check hex connectivity at each tentative building; reserve entrance seven sample cells; rollback footprint,connector,hex reservations and mappings together"
+  hex_repair: "remove optional buildings in reverse placement order then resume required DFS; each repair changes hard footprints; no road-label-only widening; shared 100000 placement-node budget"
+  road_connectivity: "stage B requires primary gate at in union(main_axis cells) only; multiple main-axis components are allowed; stage C lays secondary/alley roads then joins non-primary components before rebuilding buildable masks; 4-neighbor components over union(roads.values) only, with bridge road cells included; repeat after zone and entrance connectors and at final validation; walkable empty ground never substitutes for a road"
+  primary_target_reachability: "check at end of stage C, after all component and zone connectors; among palace/princely/commercial/market zones select maximum priority; primary road component must intersect or 4-neighbor-touch a winning-cell boundary of at least one tied zone; missing or unreachable target raises TOWN_ROAD_PRIMARY_DISCONNECTED; component-repair failure raises TOWN_ROAD_COMPONENT_DISCONNECTED first"
+enums:
+  era_kit: [song_dali, song_southern, yuan, ming, qing_early]
+  zone_kind: [palace, princely, administrative, commercial, market, residential, religious, escort, waterfront, gate_service, garden]
+  ground_type: [rammed_earth, grey_brick, stone_slab, dirt_road, grass, water, bridge_deck]
+  street_class: [main_axis, secondary, alley]
+  gate_side: [north, east, south, west]
+  rotation_deg: [0, 90, 180, 270]
+  validation_severity: [error, warning, info]
+definitions:
+  GridPoint:
+    description: planning-grid vertex or cell coordinate
+    fields:
+      x: {type: integer, unit: m/grid, range: "0..grid.width", example: 48}
+      z: {type: integer, unit: m/grid, range: "0..grid.height", example: 10}
+  HexPoint:
+    description: runtime pointy-top hex coordinate from tech/02
+    fields:
+      q: {type: integer, unit: hex, range: derived_grid_extent, example: 12}
+      r: {type: integer, unit: hex, range: derived_grid_extent, example: 7}
+  DesignIntent:
+    fields:
+      prosperity: {type: string, unit: none, range: "non_empty stable tag", example: modest_capital}
+      notes: {type: "string[1..N]", unit: none, range: non_empty_items, example: ["土面多于砖面"]}
+  GridSpec:
+    fields:
+      width: {type: integer, unit: m/grid, range: "one of [64,96,160]", example: 96}
+      height: {type: integer, unit: m/grid, range: "one of [64,96,160]", example: 96}
+      cell_m: {type: integer, unit: m, range: 1, example: 1}
+      chunk_cells: {type: integer, unit: planning_cells, range: 32, example: 32}
+  RuntimePartitionSpec:
+    required: [q_min, r_min, q_slot_count, r_slot_count, q_band_slots, r_band_slots, formal_scene_refs]
+    fields:
+      q_min: {type: integer, unit: axial_slots, range: "minimum global q among sampled centers", example: -48}
+      r_min: {type: integer, unit: axial_slots, range: "minimum global r among sampled centers; v1=1", example: 1}
+      q_slot_count: {type: integer, unit: axial_slots, range: "1..256", example: 131}
+      r_slot_count: {type: integer, unit: axial_slots, range: "1..256", example: 96}
+      q_band_slots: {type: "integer[1..N]", unit: axial_slots, range: "each 1..96; sum=q_slot_count", example: [66, 65]}
+      r_band_slots: {type: "integer[1..N]", unit: axial_slots, range: "each 1..96; sum=r_slot_count", example: [96]}
+      formal_scene_refs: {type: "string[]|null", unit: scene_id, range: "null until design/11 registers exactly len(q_bands)*len(r_bands) existing sc_* IDs", example: null}
+  ProjectionSpec:
+    fields:
+      tile_px: {type: "[integer,integer]", unit: CSS_px, range: "exactly [64,32]", example: [64, 32]}
+      pitch_deg: {type: integer, unit: degree, range: 30, example: 30}
+      yaw_deg: {type: integer, unit: degree, range: "one of [45,135,225,315]", example: 45}
+  Rect:
+    description: half-open rectangle; max is excluded
+    fields:
+      min: {type: GridPoint, unit: m/grid, range: inside_grid, example: {x: 12, z: 12}}
+      max: {type: GridPoint, unit: m/grid, range: "min < max <= grid size", example: {x: 30, z: 40}}
+  Polygon:
+    description: simple non-self-intersecting polygon; last point is implicitly joined to first
+    fields:
+      points: {type: "GridPoint[3..N]", unit: m/grid, range: inside_grid, example: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}]}
+  WallSpec:
+    fields:
+      polygon: {type: Polygon, unit: m/grid, range: simple_inside_grid, example: {points: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}, {x: 8, z: 88}]}}
+      inside_margin_cells: {type: integer, unit: planning_cells, range: "0..8", example: 2}
+      basis: {type: string, unit: none, range: non_empty, example: "历史城垣比例概化；网络资料，待核"}
+  Polyline:
+    description: ordered centerline expanded by width_cells during rasterization
+    fields:
+      id: {type: string, range: "unique within file; [a-z][a-z0-9_]*", example: main_north_south}
+      class: {type: enum.street_class, range: enum, example: main_axis}
+      width_cells: {type: integer, unit: m/grid, range: "1..12", example: 4}
+      points: {type: "GridPoint[2..N]", unit: m/grid, range: inside_grid, example: [{x: 48, z: 8}, {x: 48, z: 88}]}
+      surface: {type: enum.ground_type, range: "not water", example: stone_slab}
+      priority: {type: integer, unit: none, range: "0..100; higher wins", example: 90}
+      basis: {type: string, unit: none, range: non_empty, example: "历史平面图概化；网络资料，待核"}
+  GateSpec:
+    fields:
+      id: {type: string, range: "unique within file", example: south_gate}
+      side: {type: enum.gate_side, range: enum, example: south}
+      at: {type: GridPoint, unit: m/grid, range: on_wall_raster, example: {x: 48, z: 8}}
+      width_cells: {type: integer, unit: m/grid, range: "4..8; complete gatehouse asset variants", example: 6}
+      asset_type: {type: string, unit: asset_id, range: "tex_town_<era_kit>_city_gate; complete gatehouse asset", example: tex_town_song_dali_city_gate}
+      rotation_deg: {type: enum.rotation_deg, unit: degree, range: "south=0,west=90,north=180,east=270", example: 0}
+      footprint_cells: {type: "{w:int,h:int}", unit: m/grid, range: "unrotated w=width_cells+4,h=4; G from gate_rectangle", example: {w: 10, h: 4}}
+      passage_cells: {type: "{w:int,h:int}", unit: m/grid, range: "unrotated w=width_cells,h=4; P from gate_rectangle; unobstructed opening", example: {w: 6, h: 4}}
+      road_ref: {type: Polyline.id, range: existing_street, example: main_north_south}
+      primary: {type: boolean, range: true_or_false, example: true}
+      basis: {type: string, range: non_empty, example: "城市主入口的设计概化（原创扩展）"}
+  RiverSpec:
+    fields:
+      id: {type: string, range: "unique within file", example: east_canal}
+      width_cells: {type: integer, unit: m/grid, range: "2..16", example: 4}
+      points: {type: "GridPoint[2..N]", unit: m/grid, range: inside_grid, example: [{x: 80, z: 8}, {x: 82, z: 88}]}
+      flow: {type: enum, range: [north, east, south, west, unknown], example: south}
+      navigable: {type: boolean, range: true_or_false, example: false}
+      basis: {type: string, range: non_empty, example: "历史水系概化；网络资料，待核"}
+  BridgeSpec:
+    description: "rectangle anchor and even-size bias are fixed by geometry_contract.bridge_rectangle; never use image bounding-box center"
+    fields:
+      id: {type: string, range: "unique within file", example: bridge_market}
+      at: {type: GridPoint, unit: m/grid, range: on_river_and_road, example: {x: 81, z: 42}}
+      river_ref: {type: RiverSpec.id, range: existing_river, example: east_canal}
+      road_ref: {type: Polyline.id, range: existing_street, example: market_cross_street}
+      length_cells: {type: integer, unit: m/grid, range: "river width..20", example: 6}
+      width_cells: {type: integer, unit: m/grid, range: "2..10", example: 4}
+      rotation_deg: {type: enum.rotation_deg, range: enum, example: 90}
+      basis: {type: string, range: non_empty, example: "桥位为历史格局的比例压缩（原创扩展）"}
+  ZoneSpec:
+    fields:
+      id: {type: string, range: "unique within file; zone_[a-z0-9_]+", example: zone_commercial_south}
+      kind: {type: enum.zone_kind, range: enum, example: commercial}
+      geometry: {type: "exactly one of rect or polygon", unit: m/grid, range: inside_wall, example: {rect: {min: {x: 30, z: 10}, max: {x: 66, z: 36}}}}
+      priority: {type: integer, unit: none, range: "0..100; higher wins overlaps", example: 80}
+      density: {type: number, unit: footprint_ratio, range: "0.0..0.85", example: 0.55}
+      allowed_building_types: {type: "string[1..N]", range: registered_building_type, example: [bld_kit_song_southern_shop_2f]}
+      ground_mix: {type: "map<ground_type,integer>", unit: integer_percent_weight, range: "each 1..100; sum=100; non-water ground keys sorted lexicographically for sampling", example: {stone_slab: 60, rammed_earth: 40}}
+      basis: {type: string, range: non_empty, example: "御街沿线坊市相融；网络资料，待核"}
+  LandmarkSpec:
+    fields:
+      id: {type: string, range: "unique within file; local key, not global content ID", example: lm_pagoda_center}
+      type: {type: string, range: registered_building_type, example: bld_lm_ch01_chongshengsi_pagoda}
+      origin: {type: GridPoint, unit: m/grid, range: footprint_inside_grid, example: {x: 18, z: 75}}
+      size: {type: "{w:int,h:int}", unit: m/grid, range: "w,h >= 1 and match building catalog", example: {w: 7, h: 7}}
+      rotation_deg: {type: enum.rotation_deg, range: allowed_by_type, example: 0}
+      zone_ref: {type: ZoneSpec.id, range: existing_zone, example: zone_religious_northwest}
+      poi: {type: "string|null", range: "existing poi_* or null", example: null}
+      basis: {type: string, range: non_empty, example: "三塔位于城西北；官方资料与考古报道，比例压缩"}
+  BuildingQuota:
+    fields:
+      type: {type: string, range: registered_building_type, example: bld_kit_song_dali_biaoju}
+      zone_refs: {type: "ZoneSpec.id[1..N]", range: existing_zones, example: [zone_commercial_south]}
+      count: {type: "{min:int,max:int}", unit: instances, range: "0 <= min <= max", example: {min: 1, max: 1}}
+      required: {type: boolean, range: true_or_false, example: true}
+      business_ref: {type: "string|null", range: "existing biz_* or null", example: null}
+      institution_ref: {type: "string|null", range: "existing sect_* or null", example: null}
+      placement_note: {type: string, range: non_empty, example: "入口朝主街；不占地标净空"}
+  VegetationSpec:
+    description: "v1 terrestrial decorations only; palette range enumerates allowed items and items must be unique; aquatic plants including lotus are excluded; delivery contract is design/22 section 4.4"
+    fields:
+      palette: {type: "string[1..7]", unit: asset_id, range: [prp_song_dali_camellia, prp_song_dali_bamboo, prp_song_dali_broadleaf, prp_song_dali_grass, prp_song_willow, prp_song_bamboo, prp_song_broadleaf], example: [prp_song_dali_camellia]}
+      density: {type: number, unit: seed_probability, range: "0.0..0.5; probability per eligible seed cell, not final cluster coverage", example: 0.12}
+      avoid_road_cells: {type: integer, unit: planning_cells, range: "0..8", example: 1}
+      cluster_rule: {type: string, unit: none, range: "descriptive intent; executable cluster rule is design/22 section 6.8", example: "2至5株成组"}
+      basis: {type: string, unit: none, range: non_empty, example: "作者美术要求（原创扩展）"}
+  CitySpec:
+    description: hand-authored historical abstraction consumed by generator
+    required: [schema_version, kind, city_id, chapter_id, book_world, display_name, historical_year, era_kit, seed, design_intent, grid, runtime_partition, projection, wall, gates, streets, rivers, bridges, zones, landmarks, building_quotas, vegetation, sources]
+    fields:
+      schema_version: {type: string, range: town.city_spec.v1, example: town.city_spec.v1}
+      kind: {type: string, range: CitySpec, example: CitySpec}
+      city_id: {type: string, range: existing_city_id, example: city_dali}
+      chapter_id: {type: string, range: "ch01..ch14", example: ch01}
+      book_world: {type: string, range: "existing full chapter ID", example: ch01_tianlong}
+      display_name: {type: string, range: non_empty, example: 大理国都（羊苴咩城）}
+      historical_year: {type: integer, unit: CE, range: "900..1800", example: 1093}
+      era_kit: {type: enum.era_kit, range: enum, example: song_dali}
+      seed: {type: integer, unit: uint32, range: "0..4294967295", example: 109301}
+      design_intent: {type: DesignIntent, unit: none, range: valid_fields, example: {prosperity: modest_capital, notes: ["低密院落"]}}
+      grid: {type: GridSpec, unit: m/grid, range: valid_fields, example: {width: 96, height: 96, cell_m: 1, chunk_cells: 32}}
+      runtime_partition: {type: RuntimePartitionSpec, unit: axial_slots, range: "bands obey design/11 scene limits; prefix sums from q_min/r_min; local chunks start at each band minimum", example: {q_min: -48, r_min: 1, q_slot_count: 131, r_slot_count: 96, q_band_slots: [66, 65], r_band_slots: [96], formal_scene_refs: null}}
+      projection: {type: ProjectionSpec, unit: degree_and_CSS_px, range: valid_fields, example: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}}
+      wall: {type: WallSpec, unit: m/grid, range: valid_fields, example: {polygon: {points: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}, {x: 8, z: 88}]}, inside_margin_cells: 2, basis: "历史格局概化"}}
+      gates: {type: "GateSpec[1..N]", range: unique_ids, example: [{id: south_gate, side: south, at: {x: 48, z: 8}, width_cells: 6, asset_type: tex_town_song_dali_city_gate, rotation_deg: 0, footprint_cells: {w: 10, h: 4}, passage_cells: {w: 6, h: 4}, road_ref: main_north_south, primary: true, basis: "主入口的设计概化（原创扩展）"}]}
+      streets: {type: "Polyline[1..N]", range: "unique_ids; raster union connected to primary gate after deterministic stage C repair", example: [{id: main_north_south, class: main_axis, width_cells: 5, points: [{x: 48, z: 8}, {x: 48, z: 86}], surface: dirt_road, priority: 100, basis: "南北主街的设计概化（原创扩展）"}]}
+      rivers: {type: "RiverSpec[0..N]", range: unique_ids, example: []}
+      bridges: {type: "BridgeSpec[0..N]", range: unique_ids, example: []}
+      zones: {type: "ZoneSpec[1..N]", range: unique_ids, example: [{id: zone_commercial_south, kind: commercial, geometry: {rect: {min: {x: 26, z: 12}, max: {x: 70, z: 43}}}, priority: 85, density: 0.48, allowed_building_types: [bld_kit_song_dali_shop], ground_mix: {rammed_earth: 100}, basis: "沿主街商铺的设计概化（原创扩展）"}]}
+      landmarks: {type: "LandmarkSpec[0..N]", range: non_overlapping, example: []}
+      building_quotas: {type: "BuildingQuota[1..N]", range: unique type per quota row, example: [{type: bld_kit_song_dali_shop, zone_refs: [zone_commercial_south], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "临主街放置"}]}
+      vegetation: {type: VegetationSpec, unit: mixed, range: valid_fields, example: {palette: [prp_song_dali_camellia], density: 0.12, avoid_road_cells: 1, cluster_rule: "2至5株成组", basis: "作者要求"}}
+      sources: {type: "SourceRef[1..N]", range: each cited by basis key, example: [{key: src_layout_design, kind: design_interpretation, title: "道路与分区的设计概化", url: null, accessed: null, confidence: original_extension, supports: [layout], note: "坐标与尺寸为原创扩展"}]}
+  SourceRef:
+    fields:
+      key: {type: string, range: "unique within file", example: src_local_gov}
+      kind: {type: enum, range: [project, official_web, museum, archaeology_report, gazetteer, academic, design_interpretation], example: official_web}
+      title: {type: string, range: non_empty, example: 崇圣寺三塔}
+      url: {type: "string|null", range: URL_or_null, example: "https://example.invalid/"}
+      accessed: {type: "string|null", range: "quoted ISO-8601 full-date or null", example: "2026-09-29"}
+      confidence: {type: enum, range: [project_fact, verified_summary, pending_review, original_extension], example: pending_review}
+      supports: {type: "string[1..N]", range: non_empty, example: [landmark_position]}
+      note: {type: string, range: non_empty, example: "网络资料，待核；不用于一比一复原"}
+  GroundCell:
+    fields:
+      at: {type: GridPoint, unit: m/grid, range: cell_inside_grid, example: {x: 10, z: 10}}
+      ground: {type: enum.ground_type, range: enum, example: rammed_earth}
+      walkable: {type: boolean, range: true_or_false, example: true}
+      elevation_m: {type: number, unit: m, range: "-4..16", example: 0}
+      overlay: {type: "string|null", range: registered_tile_id_or_null, example: null}
+  BuildingInstance:
+    fields:
+      id: {type: string, range: "unique generated local key; bi_[0-9]{4}", example: bi_0042}
+      type: {type: string, range: registered_building_type, example: bld_kit_song_southern_shop_2f}
+      origin: {type: GridPoint, unit: m/grid, range: footprint_inside_wall, example: {x: 60, z: 32}}
+      size: {type: "{w:int,h:int}", unit: m/grid, range: matches_type_after_rotation, example: {w: 8, h: 6}}
+      rotation_deg: {type: enum.rotation_deg, range: allowed_by_type, example: 0}
+      zone_ref: {type: ZoneSpec.id, range: existing_actual_zone, example: zone_commercial_yujie}
+      entrance_cells: {type: "GridPoint[1..N]", unit: m/grid, range: "derived by geometry_contract.building_entrance; walkable with connector <=6 edges", example: [{x: 63, z: 31}]}
+      entrance_hexes: {type: "HexPoint[1..N]", unit: hex, range: "one per entrance_cells in identical order; selected by geometry_contract.entrance_hex; connected to primary gate", example: [{q: -9, r: 128}]}
+      poi: {type: "string|null", range: "existing poi_* or null", example: null}
+      business_ref: {type: "string|null", range: "existing biz_* compatible with building function or null", example: null}
+  SourceSpecRef:
+    required: [path, sha256, city_id, chapter_id, seed]
+    fields:
+      path: {type: string, unit: repo_relative_path, range: "docs/design/town/city_*__chNN.yaml", example: docs/design/town/city_dali__ch01.yaml}
+      sha256: {type: string, unit: hex, range: "^[0-9a-f]{64}$ over raw source bytes", example: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"}
+      city_id: {type: string, unit: content_id, range: "equals source city_id", example: city_dali}
+      chapter_id: {type: string, unit: content_id, range: "equals source chapter_id", example: ch01}
+      seed: {type: integer, unit: uint32, range: "0..4294967295; equals source seed", example: 109301}
+  GeneratorRef:
+    required: [name, version, rng, algorithm_revision, root_seed_u64]
+    fields:
+      name: {type: string, unit: none, range: non_empty, example: town-gen}
+      version: {type: string, unit: semver, range: '^[0-9]+\.[0-9]+\.[0-9]+$', example: 1.0.0}
+      rng: {type: string, unit: none, range: pcg32-xsh-rr-64-32, example: pcg32-xsh-rr-64-32}
+      algorithm_revision: {type: integer, unit: none, range: "1..2147483647", example: 1}
+      root_seed_u64: {type: string, unit: hex_u64, range: "^0x[0-9a-f]{16}$", example: "0x6a461730c6982b98"}
+  GeneratedConnector:
+    description: "cells is the center chain; roads[id] is its width-expanded cell union under design/22 section 6.3"
+    required: [id, zone_ref, from, to, cells, width_cells, surface, reason]
+    fields:
+      id: {type: string, unit: local_key, range: "gc_[0-9]{4}; unique", example: gc_0001}
+      zone_ref: {type: "ZoneSpec.id|null", unit: local_key, range: "existing zone; null for road_component_disconnected or a shared entrance connector spanning zones", example: zone_religious_northwest}
+      from: {type: GridPoint, unit: m/grid, range: "cell inside grid; zone_unconnected starts inside zone_ref; road_component_disconnected starts in selected non-primary road component", example: {x: 30, z: 68}}
+      to: {type: GridPoint, unit: m/grid, range: "existing road cell; road_component_disconnected ends in primary-gate road component", example: {x: 32, z: 68}}
+      cells: {type: "GridPoint[1..N]", unit: planning_cells, range: "ordered simple 4-neighbor chain; first=from,last=to; every cell inside grid and in roads[id]", example: [{x: 30, z: 68}, {x: 31, z: 68}, {x: 32, z: 68}]}
+      width_cells: {type: integer, unit: m/grid, range: "2..4; default=2 but field remains required; full expanded mask must avoid hard collision", example: 2}
+      surface: {type: enum.ground_type, unit: none, range: "not water", example: dirt_road}
+      reason: {type: enum, unit: none, range: [road_component_disconnected, zone_unconnected, required_entrance_unconnected], example: zone_unconnected}
+  WalkLayer:
+    required: [planning_walkable, runtime_hex_walkable, runtime_hex_blocked, sample_rule]
+    fields:
+      planning_walkable: {type: "GridPoint[]", unit: planning_cells, range: "unique; sorted z then x; equals walkable GroundCell set; v1 does not encode this field as RLE", example: [{x: 48, z: 8}]}
+      runtime_hex_walkable: {type: "HexPoint[]", unit: axial_slots, range: "unique centers inside source extent; sorted r then q", example: [{q: 10, r: 8}]}
+      runtime_hex_blocked: {type: "HexPoint[]", unit: axial_slots, range: "unique; disjoint from runtime_hex_walkable; union covers sampled centers", example: [{q: 11, r: 8}]}
+      sample_rule: {type: string, unit: none, range: planning-mask-center-and-six-vertices-v1, example: planning-mask-center-and-six-vertices-v1}
+  DecorationInstance:
+    description: "v1 terrestrial vegetation anchored at the center of one planning cell; visual canopy may extend beyond it; always walk-through and never changes collision; resolve metadata and two variants by design/22 section 4.4"
+    required: [id, asset_id, at]
+    fields:
+      id: {type: string, unit: local_key, range: "^dec_[0-9]{4,}$; unique; numbered after sorting at.z,at.x,asset_id", example: dec_0001}
+      asset_id: {type: string, unit: asset_id, range: "one of source vegetation.palette; terrestrial prop from design/22 section 4.4; resolves to its own prop/model asset, not a terrain alias", example: prp_song_dali_camellia}
+      at: {type: GridPoint, unit: planning_cell, range: "unique walkable land cell inside wall passing design/22 section 6.8 exclusions; never water or bridge; anchor=(x+0.5,z+0.5)", example: {x: 18, z: 20}}
+  ValidationIssue:
+    required: [code, severity, message, path, at]
+    fields:
+      code: {type: string, unit: stable_error_code, range: "^TOWN_[A-Z0-9_]+$", example: TOWN_BUILDING_WATER_OVERLAP}
+      severity: {type: enum.validation_severity, unit: none, range: enum, example: error}
+      message: {type: string, unit: none, range: non_empty, example: "building bi_0042 overlaps water"}
+      path: {type: string, unit: data_path, range: non_empty, example: "buildings[42]"}
+      at: {type: "GridPoint|HexPoint|null", unit: planning_cell_or_axial_slot, range: valid_or_null, example: {x: 10, z: 10}}
+  ValidationSummary:
+    required: [errors, warnings, infos, connected_components, unreachable_required_pois, checks_run, issues]
+    fields:
+      errors: {type: integer, unit: issues, range: "0..N; equals error issue count", example: 0}
+      warnings: {type: integer, unit: issues, range: "0..N; equals warning issue count", example: 0}
+      infos: {type: integer, unit: issues, range: "0..N; equals info issue count", example: 0}
+      connected_components: {type: integer, unit: components, range: "count distinct walkable components containing primary gate, required entrances, other gates or explicit poi; decorative islands without targets excluded; 0..N, release requires 1", example: 1}
+      unreachable_required_pois: {type: integer, unit: instances, range: "0..N; release requires 0", example: 0}
+      checks_run: {type: "string[1..N]", unit: check_id, range: "unique stable check names", example: [schema, overlap, connectivity]}
+      issues: {type: "ValidationIssue[]", unit: issues, range: "sort severity(error=0,warning=1,info=2),code,path,coordinate(planning before hex before null; z,x or r,q)", example: []}
+  TownLayout:
+    description: deterministic generator output; materialized arrays may be RLE encoded without semantic change
+    required: [schema_version, kind, source_spec, generator, grid, runtime_partition, ground_cells, roads, generated_connectors, water_cells, bridge_cells, buildings, decorations, zone_coverage, walk_layer, validation]
+    fields:
+      schema_version: {type: string, range: town.layout.v1, example: town.layout.v1}
+      kind: {type: string, range: TownLayout, example: TownLayout}
+      source_spec: {type: SourceSpecRef, range: valid_fields, example: {path: docs/design/town/city_dali__ch01.yaml, sha256: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef", city_id: city_dali, chapter_id: ch01, seed: 109301}}
+      generator: {type: GeneratorRef, range: valid_fields, example: {name: town-gen, version: 1.0.0, rng: pcg32-xsh-rr-64-32, algorithm_revision: 1, root_seed_u64: "0x6a461730c6982b98"}}
+      grid: {type: GridSpec, range: exactly_same_as_source, example: {width: 96, height: 96, cell_m: 1, chunk_cells: 32}}
+      runtime_partition: {type: RuntimePartitionSpec, unit: axial_slots, range: "exact copy of source runtime_partition; chunk indices use each band local origin", example: {q_min: -48, r_min: 1, q_slot_count: 131, r_slot_count: 96, q_band_slots: [66, 65], r_band_slots: [96], formal_scene_refs: null}}
+      ground_cells: {type: "GroundCell[width*height] or lossless RLE", unit: planning_cells, range: "complete exactly once; RLE value has ground,walkable,elevation_m,overlay and derives at from run index", example: [[0, 9216, {ground: rammed_earth, walkable: false, elevation_m: 0, overlay: null}]]}
+      roads: {type: "map<street_id_or_connector_id,GridPoint[]>", unit: planning_cells, range: "key is source street id or generated connector id; full width-expanded cells except wall/gate domain trim per geometry_contract; unique walkable cells sorted z,x; crossings may occur in several values", example: {main_north_south: [{x: 48, z: 8}]}}
+      generated_connectors: {type: "GeneratedConnector[]", unit: connectors, range: "stable id order; each has exactly one roads[id] width-expanded set containing its center chain", example: []}
+      water_cells: {type: "GridPoint[]", range: unique_non_walkable_unless_bridge, example: []}
+      bridge_cells: {type: "GridPoint[]", range: subset_water_and_walkable, example: []}
+      buildings: {type: "BuildingInstance[]", range: non_overlapping, example: []}
+      decorations: {type: "DecorationInstance[]", unit: instances, range: "unique id and at; sorted at.z,at.x,asset_id; empty is valid", example: [{id: dec_0001, asset_id: prp_song_dali_camellia, at: {x: 18, z: 20}}]}
+      zone_coverage: {type: "map<zone_id,GridPoint[] or RLE>", range: each_buildable_cell_at_most_one_winner, example: {}}
+      walk_layer: {type: WalkLayer, range: valid_fields, example: {planning_walkable: [], runtime_hex_walkable: [], runtime_hex_blocked: [], sample_rule: planning-mask-center-and-six-vertices-v1}}
+      validation: {type: ValidationSummary, range: valid_fields, example: {errors: 0, warnings: 0, infos: 0, connected_components: 1, unreachable_required_pois: 0, checks_run: [schema, connectivity], issues: []}}
+encoding:
+  rle:
+    order: row_major_z_then_x
+    run: "[start_index,length,value]; start_index=z*width+x"
+    start_index: {type: integer, unit: planning_cell_index, range: "0..width*height-1", example: 0}
+    length: {type: integer, unit: planning_cells, range: "1..width*height-start_index", example: 9216}
+    ground_value: "required fields ground,walkable,elevation_m,overlay follow GroundCell; at is derived and must not appear in value"
+    zone_value: "boolean; true means member of that zone; false means outside that zone"
+    coverage: "runs sorted by start_index partition all width*height cells without gaps or overlap; adjacent equal values merged"
+    allowed_fields: [TownLayout.ground_cells, TownLayout.zone_coverage]
+  canonicalization:
+    maps: lexicographic_key_order
+    sets: "sort by z, then x"
+    buildings: "fixed landmarks first by declaration; generated instances by zone priority desc, type, z, x"
+    decorations: "sort by at.z,at.x,asset_id; assign dec_0001 onward after sorting"
+    validation_issues: "severity(error=0,warning=1,info=2),code,path,coordinate(planning before hex before null; z,x or r,q)"
+    float_rule: "avoid floats except density/elevation; serialize to at most 4 decimals"
+compatibility:
+  unknown_fields: error
+  missing_optional_fields: use_documented_default_only
+  null_policy: "null is an explicit value only for nullable types; never substitutes for a missing required field"
+  date_policy: "ISO-8601 full-date must be a quoted string; native YAML date/timestamp objects forbidden"
+  id_policy: "content IDs remain owned by their source documents; local geometry keys are file-scoped"
