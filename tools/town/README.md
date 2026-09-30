@@ -5,7 +5,7 @@
 | 归属 | `design/22` 城镇布局契约的离线 Python 实现 |
 | 上游 | `docs/design/town/schema.yaml`、两城 `CitySpec`、`docs/design/22-town-layout-and-generation.md`、`docs/tech/02-rendering.md` |
 | 环境 | Python 3.11；标准库、Pillow、NumPy、PyYAML |
-| 输出 | `TownLayout` YAML、统计 JSON、整城 PNG、可开关调试层 SVG |
+| 输出 | `TownLayout` YAML、统计 JSON、北向上平面 SVG / PNG、45° 整城 PNG、可开关调试层 SVG |
 | 范围 | 默认 45° 静态预览；运行时 GLB、分片、压缩与正式素材总装交 TOWN-assemble |
 
 ## 结论先行（TL;DR）
@@ -21,6 +21,7 @@
 ```bash
 python3 tools/town/gen_layout.py docs/design/town/city_dali__ch01.yaml -o /tmp/tianshu_town_dali.yaml --stats /tmp/tianshu_town_dali.stats.json
 python3 tools/town/check_town.py docs/design/town/city_dali__ch01.yaml /tmp/tianshu_town_dali.yaml
+python3 tools/town/plan_view.py docs/design/town/city_dali__ch01.yaml /tmp/tianshu_town_dali.yaml -o docs/design/town/history/dali_plan.svg
 python3 tools/town/render_town.py /tmp/tianshu_town_dali.yaml -o /tmp/tianshu_town_dali.png --scale 0.25 --overlay /tmp/tianshu_town_dali.overlay.svg --placeholders-only --report /tmp/tianshu_town_dali.render.json
 python3 -m unittest discover -s tools/town -p "test_*.py"
 python3 tools/lint/check_ids.py --strict
@@ -28,7 +29,7 @@ python3 tools/lint/check_ids.py --strict
 
 临安改用 `docs/design/town/city_hangzhou__ch02.yaml`。渲染器通过 `layout.source_spec.path` 读取墙、城门、桥和调试分区；搬移文件后可加 `--spec <CitySpec路径>`。布局来源使用仓库相对路径，外部输入只记文件名；不会写入绝对路径或时间戳。
 
-三个主脚本操作成功返回 0，输入错误、生成失败或校验 error 返回 1；校验 warning 不改变退出码。功能建筑或几何失败不写目标文件；通用欠配额仍导出含 `validation.errors` 的布局并返回 1，供调整源规格。调用方必须检查退出码与校验结果，不能将欠配额布局交总装。
+四个主脚本操作成功返回 0，输入错误、生成失败或校验 error 返回 1；校验 warning 不改变退出码。功能建筑或几何失败不写目标文件；通用欠配额仍导出含 `validation.errors` 的布局并返回 1，供调整源规格。调用方必须检查退出码与校验结果，不能将欠配额布局交总装。
 
 ## 2. 命令行选项
 
@@ -40,6 +41,9 @@ python3 tools/lint/check_ids.py --strict
 | 同上 | `--strict-assets` | 缺素材从 warning 提升为 error |
 | 同上 | `--release` | 发布前额外检查正式场景引用、素材 approved 等；包含严格素材检查 |
 | 同上 | `--json` | 输出机器可读问题数组 |
+| `plan_view.py` | `<spec> <layout> -o <svg>` | 输出北向上平面 SVG 和同名 PNG；拒绝源 SHA-256 不一致、网格不一致或含 validation error 的布局 |
+| 同上 | `--cell-px <n>` | 每游戏格像素，默认地图长边 960 px；允许 2–24，整图最多 20 MP |
+| 同上 | `--font <ttf/otf/ttc>` | 指定本地中文字体；自动查找黑体、苹方、Noto CJK、文泉驿、微软雅黑，找不到则明确失败 |
 | `render_town.py` | `<layout> -o <png>` | 合成完整城镇预览 |
 | 同上 | `--scale <n>` | 相对 64×32 母版缩放，直接按目标比例绘制 |
 | 同上 | `--overlay <svg>` | 输出调试图层；与 PNG 同目录时自动引用该 PNG |
@@ -48,6 +52,14 @@ python3 tools/lint/check_ids.py --strict
 | 校验 / 渲染 | `--tile-manifest`、`--building-manifest` | 覆盖默认两份素材清单路径 |
 
 默认清单为 `assets/default/baseline/tile/manifest.yaml` 与 `assets/default/baseline/building-map/manifest.yaml`。校验器另支持 `--assets <风格包根目录>`。`--release` 是静态门禁；斜率、光向、接缝、四视图外观与真机表现仍交 TOWN-assemble 验收。
+
+### 2.1 北向上布局图
+
+`plan_view.py` 从布局的道路 / 水 / 桥 / 建筑掩膜和规格的城垣 / 分区绘图，复用同一坐标生成 SVG 与 PNG。SVG 保留 `<text>`，PNG 用 Pillow 和本地中文字体直接绘制，不依赖浏览器、SVG 转换服务或新增下载。两种输出共享几何；字体排版可能随查看器的本地字体略有不同。2026-09-30 本机实测 Pillow 12.1.1；这是验证版本，不是最新版声明。
+
+schema v1 不增加名称字段。在既有 `basis` 说明开头写 `图名：和宁门；后续依据文字` 即可标注规范汉字；其他五类要素同理。未提供图名时按城门方位、道路级别、分区用途给中文通名，并把未知名称标为待考。城门 / 街道 / 水系 / 桥 / 分区 / 固定地标依次编号 G / R / W / B / Z / L，右栏列全名；密集处只移动编号并保留引线，几何坐标不移动。SVG 节点标题与 `desc` 保留局部 ID、坐标和依据原文。
+
+灰褐矩形是建筑底面，红褐矩形是固定地标；分区按优先级着色，显示游戏用途，不代表史料可信度。`basis` 含“游戏包络”时边界用虚线，其他城垣按实际阻挡格显示。图上的“据 / 推 / 创 / 综 / 待”仅从依据说明归纳为来源引用、推定、原创、混合、待考提示，不能认证坐标精度；完整来源等级与历史缩比见 `docs/design/town/history/dali.md` / `linan.md`。比例尺只标游戏格，不把压缩城市误读为历史实尺。
 
 ## 3. 数据流与确定性
 
@@ -132,10 +144,12 @@ report = render_layout(layout, output_png, spec=spec, scale=0.25,
 - `docs/design/town/schema.yaml`：字段、RLE 和错误结构。
 - `docs/tech/02-rendering.md` §1.1–§1.6：相机、世界轴与六角坐标。
 - `assets/README.md`、`assets/default/STYLE.md`：逐图来源、审批和风格。
+- [Pillow ImageDraw](https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html)：二维线、矩形与中文文本绘制 API；访问 2026-09-30。
+- [Pillow ImageFont](https://pillow.readthedocs.io/en/stable/reference/ImageFont.html)：`truetype()` 本地字体加载与字体集合；访问 2026-09-30。
 
 ## 本文新增术语/约定
 
-没有新增玩法或资产 ID。`--stats` / `--report` JSON 为工具统计，不回写 TownLayout schema；200 MP 是离线内存保护限额。PNG 实例 ID 只存在于占位建筑。
+没有新增玩法或资产 ID。`--stats` / `--report` JSON 为工具统计，不回写 TownLayout schema；200 MP 是 45° 预览的离线内存保护限额，平面图另限 20 MP。PNG 实例 ID 只存在于 45° 占位建筑；平面图 G / R / W / B / Z / L 编号仅为图例序号，不是内容 ID。`图名：…；` 是 `basis` 说明文字的可选呈现约定，不改变 schema 字段。
 
 ## 待决事项 / 依赖
 

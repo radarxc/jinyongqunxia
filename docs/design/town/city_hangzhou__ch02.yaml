@@ -1,291 +1,104 @@
-schema_version: town.city_spec.v1
-kind: CitySpec
-city_id: city_hangzhou
-chapter_id: ch02
-book_world: ch02_shediao
-display_name: 临安府（行在）
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_hangzhou"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+display_name: "临安府（行在）"
 historical_year: 1223
-era_kit: song_southern
+era_kit: "song_southern"
 seed: 122302
-design_intent:
-  prosperity: imperial_metropolis
-  notes:
-    - "南端皇城、御街北行，坊巷与商业沿街混合"
-    - "河渠与桥构成次级交通骨架，商铺密度显著高于大理"
-    - "160格是可玩核心的比例压缩，不是一比一复原临安城"
-grid: {width: 160, height: 160, cell_m: 1, chunk_cells: 32}
-runtime_partition: {q_min: -80, r_min: 1, q_slot_count: 219, r_slot_count: 160, q_band_slots: [73, 73, 73], r_band_slots: [80, 80], formal_scene_refs: null}
-projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
-wall:
-  polygon:
-    points:
-      - {x: 22, z: 10}
-      - {x: 136, z: 8}
-      - {x: 151, z: 42}
-      - {x: 148, z: 137}
-      - {x: 119, z: 151}
-      - {x: 48, z: 148}
-      - {x: 14, z: 116}
-      - {x: 12, z: 48}
-  inside_margin_cells: 2
-  basis: "src_linan_map：已核1830重刊版本元数据与上西下东方向说明，北上须逆时针90度；尚未目视墙线，无图上控制点。8折点是160格玩法概化，1268层位也晚于1223，图面对应未完成（网络资料，待核；原创扩展）"
-gates:
-  - {id: south_gate, side: south, at: {x: 116, z: 8}, width_cells: 8, asset_type: tex_town_song_southern_city_gate, rotation_deg: 0, footprint_cells: {w: 12, h: 4}, passage_cells: {w: 8, h: 4}, road_ref: riverfront_street, primary: true, basis: "南侧城门与河岸商路入口的可玩概化；锚点在南墙实际栅格，门楼与通行孔均避开主渠，不声称对应具名历史城门（原创扩展）"}
-  - {id: north_gate, side: north, at: {x: 76, z: 149}, width_cells: 7, asset_type: tex_town_song_southern_city_gate, rotation_deg: 180, footprint_cells: {w: 11, h: 4}, passage_cells: {w: 7, h: 4}, road_ref: imperial_street, primary: false, basis: "御街北向城市出口的可玩概化（原创扩展）"}
-  - {id: east_water_gate, side: east, at: {x: 149, z: 78}, width_cells: 6, asset_type: tex_town_song_southern_city_gate, rotation_deg: 270, footprint_cells: {w: 10, h: 4}, passage_cells: {w: 6, h: 4}, road_ref: east_market_street, primary: false, basis: "河渠与东部商路出入口的合并表达（原创扩展）"}
-  - {id: west_lake_gate, side: west, at: {x: 13, z: 96}, width_cells: 5, asset_type: tex_town_song_southern_city_gate, rotation_deg: 90, footprint_cells: {w: 9, h: 4}, passage_cells: {w: 5, h: 4}, road_ref: west_lake_street, primary: false, basis: "连接西湖方向的场景出口，不声称对应具体历史城门（待考）"}
+design_intent: {"prosperity": "imperial_metropolis", "notes": ["依据history/linan.md六项已读来源重写；北上，城南皇城、城西湖缘、纵向多河并列", "采用全城拓扑压缩，保留13旱门和御街折西终点；不是1223实测街坊图", "92×144格城垣外框；横向为素材占地放大，实际尺度参照御街4185米，详见复原依据"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+wall: {"polygon": {"points": [{"x": 50, "z": 8}, {"x": 100, "z": 8}, {"x": 100, "z": 24}, {"x": 118, "z": 24}, {"x": 118, "z": 50}, {"x": 132, "z": 50}, {"x": 132, "z": 120}, {"x": 124, "z": 120}, {"x": 124, "z": 152}, {"x": 48, "z": 152}, {"x": 48, "z": 140}, {"x": 40, "z": 140}, {"x": 40, "z": 60}, {"x": 48, "z": 60}, {"x": 48, "z": 28}, {"x": 50, "z": 28}]}, "inside_margin_cells": 2, "basis": "图名：临安外城；src_linan_walls、src_linan_citymap支持南北长、西湖东岸及凤凰山外包轮廓；16点为折线概化（推定），非测绘控制点；未套用元明清十门城。"}
 streets:
-  - id: imperial_street
-    class: main_axis
-    width_cells: 8
-    points: [{x: 80, z: 37}, {x: 80, z: 62}, {x: 84, z: 94}, {x: 80, z: 128}, {x: 76, z: 149}]
-    surface: stone_slab
-    priority: 100
-    basis: "src_yujie：御街北行与沿线商业的文字依据；4185米仅作长度参照，124格及折点为非等比玩法抽象，尚未目视古图弯折；北延接场景门不等同历史终点景灵宫（网络资料，待核；原创扩展）"
-  - id: riverfront_street
-    class: main_axis
-    width_cells: 6
-    points: [{x: 116, z: 8}, {x: 116, z: 18}, {x: 114, z: 58}, {x: 114, z: 100}, {x: 116, z: 142}]
-    surface: stone_slab
-    priority: 95
-    basis: "城市河渠沿岸商路的合并表达；中段西移保留主渠陆岸，南端接实际墙格；精确河街名称与线位待《临安志》核对（待考；原创扩展）"
-  - id: south_official_street
-    class: secondary
-    width_cells: 5
-    points: [{x: 30, z: 48}, {x: 136, z: 48}]
-    surface: grey_brick
-    priority: 90
-    basis: "src_linan_study：御街南段邻近中央官署的关系概化（网络资料，待核）"
-  - id: east_market_street
-    class: secondary
-    width_cells: 5
-    points: [{x: 48, z: 84}, {x: 136, z: 84}, {x: 149, z: 78}]
-    surface: stone_slab
-    priority: 90
-    basis: "沿御街、河桥展开市场的可玩骨架；跨主渠段拉直且远离支渠汇口，东端接原城门（原创扩展）"
-  - id: west_lake_street
-    class: secondary
-    width_cells: 4
-    points: [{x: 13, z: 96}, {x: 58, z: 96}, {x: 82, z: 94}]
-    surface: stone_slab
-    priority: 88
-    basis: "src_qinghefang：清河坊依傍吴山、西湖且长期为商贸中心；本线仅表达西向联系（网络资料，待核）"
-  - id: north_cross_street
-    class: secondary
-    width_cells: 4
-    points: [{x: 34, z: 124}, {x: 136, z: 124}]
-    surface: grey_brick
-    priority: 85
-    basis: "北部坊巷与河桥的生成连路（原创扩展）"
-  - id: west_residential_lane
-    class: alley
-    width_cells: 2
-    points: [{x: 44, z: 36}, {x: 44, z: 136}]
-    surface: rammed_earth
-    priority: 70
-    basis: "街巷制住宅支路（原创扩展）"
-  - id: east_residential_lane
-    class: alley
-    width_cells: 2
-    points: [{x: 100, z: 66}, {x: 100, z: 142}]
-    surface: grey_brick
-    priority: 70
-    basis: "高密街巷与河埠连接；南端止于官署北缘，保留三座衙门的连续地块（原创扩展）"
+  - {"id": "imperial_street", "class": "main_axis", "width_cells": 6, "points": [{"x": 74, "z": 42}, {"x": 74, "z": 56}, {"x": 80, "z": 64}, {"x": 80, "z": 94}, {"x": 62, "z": 94}, {"x": 62, "z": 118}, {"x": 52, "z": 118}, {"x": 52, "z": 122}], "surface": "stone_slab", "priority": 100, "basis": "图名：御街；src_yujie、src_linan_exhibition：和宁门北行，经众安桥(62,104)再北行至118，继而折西通景灵宫；观桥未单设，曲折为推定。"}
+  - {"id": "riverfront_street", "class": "main_axis", "width_cells": 4, "points": [{"x": 95, "z": 8}, {"x": 95, "z": 26}, {"x": 110, "z": 30}, {"x": 110, "z": 116}, {"x": 116, "z": 122}, {"x": 116, "z": 146}], "surface": "stone_slab", "priority": 100, "basis": "图名：东部运输街；src_linan_waterways：盐桥河两岸运输；线位原创扩展。"}
+  - {"id": "south_official_street", "class": "secondary", "width_cells": 4, "points": [{"x": 50, "z": 46}, {"x": 118, "z": 46}], "surface": "stone_slab", "priority": 80, "basis": "图名：南部官街；src_linan_citymap：南部官署关系；连路线位原创扩展。"}
+  - {"id": "qinghefang_street", "class": "secondary", "width_cells": 4, "points": [{"x": 48, "z": 62}, {"x": 132, "z": 62}], "surface": "stone_slab", "priority": 80, "basis": "图名：清河坊横街；src_linan_map：清河坊商业；横街仅推定。"}
+  - {"id": "zhongan_cross_street", "class": "secondary", "width_cells": 4, "points": [{"x": 40, "z": 84}, {"x": 132, "z": 84}], "surface": "stone_slab", "priority": 80, "basis": "图名：中部坊巷横街；src_linan_waterways：多河桥巷交错；线位为原创扩展，非众安桥街。"}
+  - {"id": "east_market_street", "class": "secondary", "width_cells": 4, "points": [{"x": 80, "z": 108}, {"x": 132, "z": 108}], "surface": "stone_slab", "priority": 80, "basis": "图名：东青门街；src_linan_walls：东青门；门内连路原创扩展。"}
+  - {"id": "north_cross_street", "class": "secondary", "width_cells": 4, "points": [{"x": 80, "z": 140}, {"x": 124, "z": 140}], "surface": "stone_slab", "priority": 80, "basis": "图名：北部仓街；src_linan_waterways：北端仓营；连路原创扩展。"}
+  - {"id": "north_gate_street", "class": "secondary", "width_cells": 4, "points": [{"x": 110, "z": 146}, {"x": 110, "z": 142}, {"x": 92, "z": 142}, {"x": 92, "z": 152}], "surface": "stone_slab", "priority": 80, "basis": "图名：余杭门街；src_linan_walls：北面余杭门；连路原创扩展。"}
+  - {"id": "west_lake_street", "class": "secondary", "width_cells": 4, "points": [{"x": 40, "z": 100}, {"x": 52, "z": 100}, {"x": 52, "z": 62}, {"x": 48, "z": 62}, {"x": 48, "z": 40}, {"x": 74, "z": 40}], "surface": "stone_slab", "priority": 80, "basis": "图名：西湖门路；src_linan_walls：西门通湖；连路原创扩展。"}
+  - {"id": "qiantang_gate_street", "class": "secondary", "width_cells": 4, "points": [{"x": 40, "z": 124}, {"x": 52, "z": 124}], "surface": "stone_slab", "priority": 80, "basis": "图名：钱塘门街；src_linan_walls：西北钱塘门；连路原创扩展。"}
+  - {"id": "qingbo_gate_street", "class": "secondary", "width_cells": 4, "points": [{"x": 40, "z": 72}, {"x": 52, "z": 72}], "surface": "stone_slab", "priority": 80, "basis": "图名：清波门街；src_linan_walls：清波门；连路原创扩展。"}
+  - {"id": "houchao_gate_street", "class": "secondary", "width_cells": 4, "points": [{"x": 110, "z": 34}, {"x": 118, "z": 34}], "surface": "stone_slab", "priority": 80, "basis": "图名：候潮门街；src_linan_walls：候潮门；连路原创扩展。"}
+  - {"id": "bian_gate_street", "class": "secondary", "width_cells": 4, "points": [{"x": 95, "z": 18}, {"x": 100, "z": 18}], "surface": "stone_slab", "priority": 80, "basis": "图名：便门街；src_linan_walls：便门；连路原创扩展。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 95, "z": 8}, "width_cells": 4, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "riverfront_street", "primary": true, "basis": "图名：嘉会门；src_linan_walls记门名与方位；锚点、门楼形制为推定，未复原瓮城。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 92, "z": 152}, "width_cells": 4, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "north_gate_street", "primary": false, "basis": "图名：余杭门；src_linan_walls记门名与方位；锚点、门楼形制为推定，未复原瓮城。"}
+  - {"id": "bian_gate", "side": "east", "at": {"x": 100, "z": 18}, "width_cells": 4, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "bian_gate_street", "primary": false, "basis": "图名：便门；src_linan_walls记门名与方位；锚点、门楼形制为推定，未复原瓮城。"}
+  - {"id": "houchao_gate", "side": "east", "at": {"x": 118, "z": 34}, "width_cells": 4, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "houchao_gate_street", "primary": false, "basis": "图名：候潮门；src_linan_walls记门名与方位；锚点、门楼形制为推定，未复原瓮城。"}
+  - {"id": "baoan_gate", "side": "east", "at": {"x": 118, "z": 46}, "width_cells": 4, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "south_official_street", "primary": false, "basis": "图名：保安门；src_linan_walls记门名与方位；锚点、门楼形制为推定，未复原瓮城。"}
+  - {"id": "xin_gate", "side": "east", "at": {"x": 132, "z": 62}, "width_cells": 4, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "qinghefang_street", "primary": false, "basis": "图名：新开门；src_linan_walls记门名与方位；锚点、门楼形制为推定，未复原瓮城。"}
+  - {"id": "chongxin_gate", "side": "east", "at": {"x": 132, "z": 84}, "width_cells": 4, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "zhongan_cross_street", "primary": false, "basis": "图名：崇新门；src_linan_walls记门名与方位；锚点、门楼形制为推定，未复原瓮城。"}
+  - {"id": "east_water_gate", "side": "east", "at": {"x": 132, "z": 108}, "width_cells": 4, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "east_market_street", "primary": false, "basis": "图名：东青门；src_linan_walls记门名与方位；锚点、门楼形制为推定，未复原瓮城。"}
+  - {"id": "genshan_gate", "side": "east", "at": {"x": 124, "z": 140}, "width_cells": 4, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "north_cross_street", "primary": false, "basis": "图名：艮山门；src_linan_walls记门名与方位；锚点、门楼形制为推定，未复原瓮城。"}
+  - {"id": "qianhu_gate", "side": "west", "at": {"x": 48, "z": 40}, "width_cells": 4, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "west_lake_street", "primary": false, "basis": "图名：钱湖门；src_linan_walls记门名与方位；锚点、门楼形制为推定，未复原瓮城。"}
+  - {"id": "qingbo_gate", "side": "west", "at": {"x": 40, "z": 72}, "width_cells": 4, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "qingbo_gate_street", "primary": false, "basis": "图名：清波门；src_linan_walls记门名与方位；锚点、门楼形制为推定，未复原瓮城。"}
+  - {"id": "fengyu_gate", "side": "west", "at": {"x": 40, "z": 100}, "width_cells": 4, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "west_lake_street", "primary": false, "basis": "图名：丰豫门；src_linan_walls记门名与方位；锚点、门楼形制为推定，未复原瓮城。"}
+  - {"id": "west_lake_gate", "side": "west", "at": {"x": 40, "z": 124}, "width_cells": 4, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "qiantang_gate_street", "primary": false, "basis": "图名：钱塘门；src_linan_walls记门名与方位；锚点、门楼形制为推定，未复原瓮城。"}
 rivers:
-  - id: east_canal
-    width_cells: 5
-    points: [{x: 126, z: 10}, {x: 124, z: 42}, {x: 126, z: 76}, {x: 124, z: 112}, {x: 128, z: 146}]
-    flow: south
-    navigable: true
-    basis: "src_linan_map：京城图记录渠道与桥梁；多条水系在可玩场景合并为一条主渠（网络资料，待核）"
-  - id: central_canal
-    width_cells: 4
-    points: [{x: 30, z: 70}, {x: 62, z: 72}, {x: 96, z: 70}, {x: 126, z: 76}]
-    flow: east
-    navigable: true
-    basis: "临安城内水网的比例化支渠（原创扩展；精确线位待考）"
+  - {"id": "east_canal", "width_cells": 4, "points": [{"x": 102, "z": 32}, {"x": 102, "z": 156}], "flow": "unknown", "navigable": true, "basis": "图名：盐桥运河；src_linan_waterways：河流相对方位，折点及宽度推定。"}
+  - {"id": "central_canal", "width_cells": 3, "points": [{"x": 72, "z": 72}, {"x": 72, "z": 144}, {"x": 88, "z": 148}, {"x": 102, "z": 148}], "flow": "unknown", "navigable": true, "basis": "图名：市河；src_linan_waterways：河流相对方位，折点及宽度推定。"}
+  - {"id": "qinghu_canal", "width_cells": 3, "points": [{"x": 56, "z": 85}, {"x": 56, "z": 104}, {"x": 68, "z": 104}, {"x": 68, "z": 144}, {"x": 72, "z": 144}], "flow": "unknown", "navigable": true, "basis": "图名：清湖河；src_linan_waterways：河流相对方位，折点及宽度推定。"}
+  - {"id": "maoshan_remnant", "width_cells": 2, "points": [{"x": 119, "z": 112}, {"x": 119, "z": 132}, {"x": 102, "z": 136}], "flow": "unknown", "navigable": false, "basis": "图名：茅山河残段；src_linan_waterways：南中段废塞，仅选北段示意；1223确切残段待考，不将整河绘作通航干线。"}
+  - {"id": "west_lake_edge", "width_cells": 16, "points": [{"x": 24, "z": 78}, {"x": 24, "z": 128}], "flow": "unknown", "navigable": false, "basis": "图名：西湖东岸（截取湖缘）；src_linan_citymap、src_linan_walls：西湖位于西墙外；16格宽带仅表示画幅中的东岸水面，不是完整湖形。"}
 bridges:
-  - {id: bridge_central_west, at: {x: 44, z: 71}, river_ref: central_canal, road_ref: west_residential_lane, length_cells: 6, width_cells: 3, rotation_deg: 0, basis: "道路与支渠交点固定桥位（原创扩展）"}
-  - {id: bridge_central_imperial, at: {x: 82, z: 71}, river_ref: central_canal, road_ref: imperial_street, length_cells: 8, width_cells: 10, rotation_deg: 0, basis: "矩形覆盖御街斜段全宽水路交集，两端留陆地桥头；具体历史桥名待考（原创扩展）"}
-  - {id: bridge_central_east, at: {x: 101, z: 71}, river_ref: central_canal, road_ref: east_residential_lane, length_cells: 8, width_cells: 3, rotation_deg: 0, basis: "道路与支渠交点固定桥位，两端留陆地桥头（原创扩展）"}
-  - {id: bridge_central_riverfront, at: {x: 115, z: 74}, river_ref: central_canal, road_ref: riverfront_street, length_cells: 10, width_cells: 6, rotation_deg: 0, basis: "河岸街跨支渠的固定桥位，覆盖全部6格路宽（原创扩展）"}
-  - {id: bridge_official_canal, at: {x: 125, z: 48}, river_ref: east_canal, road_ref: south_official_street, length_cells: 10, width_cells: 5, rotation_deg: 90, basis: "官街跨主渠的固定桥位，覆盖全部5格路宽（原创扩展）"}
-  - {id: bridge_market_canal, at: {x: 125, z: 84}, river_ref: east_canal, road_ref: east_market_street, length_cells: 10, width_cells: 5, rotation_deg: 90, basis: "市场横街在支渠汇口北侧垂直跨主渠，两端留陆地桥头（原创扩展）"}
-  - {id: bridge_north_canal, at: {x: 126, z: 124}, river_ref: east_canal, road_ref: north_cross_street, length_cells: 8, width_cells: 4, rotation_deg: 90, basis: "北部横街跨主渠的固定桥位（原创扩展）"}
+  - {"id": "bridge_official", "at": {"x": 102, "z": 46}, "river_ref": "east_canal", "road_ref": "south_official_street", "length_cells": 8, "width_cells": 4, "rotation_deg": 90, "basis": "图名：官街桥；路水交点的通行占位（原创扩展），不指认历史桥址。"}
+  - {"id": "bridge_qinghe", "at": {"x": 102, "z": 62}, "river_ref": "east_canal", "road_ref": "qinghefang_street", "length_cells": 8, "width_cells": 4, "rotation_deg": 90, "basis": "图名：清河坊桥；路水交点的通行占位（原创扩展），不指认历史桥址。"}
+  - {"id": "bridge_zhongan_east", "at": {"x": 102, "z": 84}, "river_ref": "east_canal", "road_ref": "zhongan_cross_street", "length_cells": 8, "width_cells": 4, "rotation_deg": 90, "basis": "图名：东段通行桥；路水交点的通行占位（原创扩展），不指认历史桥址。"}
+  - {"id": "bridge_zhongan_market", "at": {"x": 72, "z": 84}, "river_ref": "central_canal", "road_ref": "zhongan_cross_street", "length_cells": 8, "width_cells": 4, "rotation_deg": 90, "basis": "图名：市河通行桥；路水交点的通行占位（原创扩展），不指认历史桥址。"}
+  - {"id": "bridge_qinghu_lower", "at": {"x": 56, "z": 84}, "river_ref": "qinghu_canal", "road_ref": "zhongan_cross_street", "length_cells": 8, "width_cells": 4, "rotation_deg": 90, "basis": "图名：清湖河南段通行桥；路水交点占位（原创扩展），不指认历史桥址。"}
+  - {"id": "bridge_dongqing", "at": {"x": 102, "z": 108}, "river_ref": "east_canal", "road_ref": "east_market_street", "length_cells": 8, "width_cells": 4, "rotation_deg": 90, "basis": "图名：东青门街桥；路水交点的通行占位（原创扩展），不指认历史桥址。"}
+  - {"id": "bridge_imperial_market", "at": {"x": 72, "z": 94}, "river_ref": "central_canal", "road_ref": "imperial_street", "length_cells": 8, "width_cells": 8, "rotation_deg": 90, "basis": "图名：御街市河桥；路水交点的通行占位（原创扩展），不指认历史桥址。"}
+  - {"id": "bridge_zhongan", "at": {"x": 62, "z": 104}, "river_ref": "qinghu_canal", "road_ref": "imperial_street", "length_cells": 8, "width_cells": 8, "rotation_deg": 0, "basis": "图名：众安桥；src_linan_waterways记清湖河众安桥，src_yujie记御街经过众安桥；锚点(62,104)位于御街北行段，过桥续北后折西，桥址及河折点为推定。"}
+  - {"id": "bridge_north", "at": {"x": 102, "z": 140}, "river_ref": "east_canal", "road_ref": "north_cross_street", "length_cells": 8, "width_cells": 4, "rotation_deg": 90, "basis": "图名：仓街桥；路水交点的通行占位（原创扩展），不指认历史桥址。"}
+  - {"id": "bridge_gate_north", "at": {"x": 102, "z": 142}, "river_ref": "east_canal", "road_ref": "north_gate_street", "length_cells": 8, "width_cells": 6, "rotation_deg": 90, "basis": "图名：北门连路桥；路水交点的通行占位（原创扩展），不指认历史桥址。"}
+  - {"id": "bridge_maoshan", "at": {"x": 116, "z": 133}, "river_ref": "maoshan_remnant", "road_ref": "riverfront_street", "length_cells": 8, "width_cells": 6, "rotation_deg": 0, "basis": "图名：北部连路桥；路水交点的通行占位（原创扩展），不指认历史桥址。"}
+  - {"id": "bridge_north_shihe", "at": {"x": 92, "z": 148}, "river_ref": "central_canal", "road_ref": "north_gate_street", "length_cells": 8, "width_cells": 6, "rotation_deg": 0, "basis": "图名：北部连路桥；路水交点的通行占位（原创扩展），不指认历史桥址。"}
 zones:
-  - id: zone_palace_south
-    kind: palace
-    geometry: {rect: {min: {x: 51, z: 12}, max: {x: 108, z: 42}}}
-    priority: 100
-    density: 0.45
-    allowed_building_types: [bld_lm_ch02_linan_palace_gate, bld_kit_song_southern_palace_hall, bld_kit_song_southern_yamen]
-    ground_mix: {grey_brick: 55, stone_slab: 35, grass: 10}
-    basis: "src_linan_palace：皇城位于凤凰山东麓、城市南部；场景仅表现北缘与门前官署（网络资料，待核）"
-  - id: zone_administrative_south
-    kind: administrative
-    geometry: {rect: {min: {x: 28, z: 38}, max: {x: 118, z: 66}}}
-    priority: 92
-    density: 0.52
-    allowed_building_types: [bld_kit_song_southern_yamen, bld_kit_song_southern_courtyard]
-    ground_mix: {grey_brick: 50, stone_slab: 35, rammed_earth: 15}
-    basis: "src_linan_study：御街南段三省六部等官署集中；精确边界为比例概化（网络资料，待核）"
-  - id: zone_commercial_yujie
-    kind: commercial
-    geometry:
-      polygon:
-        points: [{x: 60, z: 50}, {x: 102, z: 50}, {x: 105, z: 138}, {x: 58, z: 138}]
-    priority: 88
-    density: 0.72
-    allowed_building_types: [bld_kit_song_southern_shop_1f, bld_kit_song_southern_shop_2f, bld_kit_song_southern_inn, bld_kit_song_southern_restaurant, bld_kit_song_southern_casino, bld_kit_song_southern_biaoju]
-    ground_mix: {stone_slab: 55, grey_brick: 35, rammed_earth: 10}
-    basis: "src_yujie：御街两旁为长期商业中心；密度与边界为原创扩展"
-  - id: zone_market_east
-    kind: market
-    geometry: {rect: {min: {x: 106, z: 58}, max: {x: 145, z: 108}}}
-    priority: 90
-    density: 0.68
-    allowed_building_types: [bld_kit_song_southern_market_stall, bld_kit_song_southern_shop_1f, bld_kit_song_southern_shop_2f, bld_kit_song_southern_inn, bld_kit_song_southern_restaurant, bld_kit_song_southern_warehouse]
-    ground_mix: {stone_slab: 45, grey_brick: 30, rammed_earth: 25}
-    basis: "河渠、桥与御街交会处设高密市场，位置为历史格局启发的原创扩展"
-  - id: zone_waterfront_east
-    kind: waterfront
-    geometry:
-      polygon:
-        points: [{x: 116, z: 18}, {x: 139, z: 18}, {x: 147, z: 43}, {x: 145, z: 136}, {x: 128, z: 143}, {x: 116, z: 140}]
-    priority: 87
-    density: 0.54
-    allowed_building_types: [bld_kit_song_southern_wharf, bld_kit_song_southern_warehouse, bld_kit_song_southern_shop_1f]
-    ground_mix: {stone_slab: 45, rammed_earth: 35, grey_brick: 20}
-    basis: "src_linan_map所示渠道与桥梁支撑水运界面；码头组合为原创扩展"
-  - id: zone_residential_west
-    kind: residential
-    geometry:
-      polygon:
-        points: [{x: 18, z: 48}, {x: 62, z: 48}, {x: 62, z: 140}, {x: 41, z: 140}, {x: 18, z: 116}]
-    priority: 45
-    density: 0.58
-    allowed_building_types: [bld_kit_song_southern_house, bld_kit_song_southern_courtyard, bld_kit_song_southern_manor, bld_kit_song_southern_temple_hall]
-    ground_mix: {rammed_earth: 45, grey_brick: 35, stone_slab: 20}
-    basis: "坊中有巷、坊市相融的街巷制解释；西北顶点内收以符合城墙边界，地块为原创扩展（网络资料，待核）"
-  - id: zone_residential_north
-    kind: residential
-    geometry:
-      polygon:
-        points: [{x: 52, z: 112}, {x: 139, z: 112}, {x: 145, z: 136}, {x: 126, z: 146}, {x: 52, z: 146}]
-    priority: 48
-    density: 0.62
-    allowed_building_types: [bld_kit_song_southern_house, bld_kit_song_southern_courtyard, bld_kit_song_southern_temple_hall]
-    ground_mix: {rammed_earth: 35, grey_brick: 40, stone_slab: 25}
-    basis: "都城北段高密坊巷的可玩概化（原创扩展）"
-  - id: zone_religious_west
-    kind: religious
-    geometry:
-      polygon:
-        points: [{x: 20, z: 100}, {x: 60, z: 100}, {x: 60, z: 132}, {x: 32, z: 132}, {x: 20, z: 116}]
-    priority: 82
-    density: 0.35
-    allowed_building_types: [bld_kit_song_southern_temple_hall, bld_kit_song_southern_pagoda]
-    ground_mix: {stone_slab: 30, rammed_earth: 35, grass: 35}
-    basis: "src_linan_map记有寺庙分布；西北顶点内收至城墙内，东界由50扩至60为三座功能寺殿保留沿巷地块，此处不指名具体寺院（原创扩展）"
-  - id: zone_gate_service_north
-    kind: gate_service
-    geometry:
-      polygon:
-        points: [{x: 62, z: 130}, {x: 94, z: 130}, {x: 94, z: 148}, {x: 62, z: 148}]
-    priority: 91
-    density: 0.30
-    allowed_building_types: [bld_kit_song_southern_guardhouse, bld_kit_song_southern_stable]
-    ground_mix: {grey_brick: 35, rammed_earth: 65}
-    basis: "北门内守卫与转运空间；北沿148保持墙内，西/东/南界由65/90/133扩至62/94/130，容纳两守舍与一马厩及六角入口净空（原创扩展）"
+  - {"id": "zone_palace_south", "kind": "palace", "geometry": {"rect": {"min": {"x": 52, "z": 10}, "max": {"x": 100, "z": 42}}}, "priority": 100, "density": 0.4, "allowed_building_types": ["bld_kit_song_southern_palace_hall", "bld_lm_ch02_linan_palace_gate"], "ground_mix": {"stone_slab": 45, "grey_brick": 35, "rammed_earth": 20}, "basis": "图名：凤凰山皇城；src_linan_citymap：南端凤凰山麓；区间为玩法推定。"}
+  - {"id": "zone_administrative_south", "kind": "administrative", "geometry": {"rect": {"min": {"x": 50, "z": 44}, "max": {"x": 116, "z": 64}}}, "priority": 92, "density": 0.5, "allowed_building_types": ["bld_kit_song_southern_yamen", "bld_kit_song_southern_courtyard"], "ground_mix": {"stone_slab": 45, "grey_brick": 35, "rammed_earth": 20}, "basis": "图名：南部官署；src_linan_map：皇城以北官署聚集；区间为玩法推定。"}
+  - {"id": "zone_commercial_yujie", "kind": "commercial", "geometry": {"rect": {"min": {"x": 76, "z": 64}, "max": {"x": 100, "z": 126}}}, "priority": 88, "density": 0.72, "allowed_building_types": ["bld_kit_song_southern_shop_1f", "bld_kit_song_southern_shop_2f", "bld_kit_song_southern_inn", "bld_kit_song_southern_restaurant", "bld_kit_song_southern_biaoju", "bld_kit_song_southern_casino"], "ground_mix": {"stone_slab": 45, "grey_brick": 35, "rammed_earth": 20}, "basis": "图名：御街商市；src_linan_map：御街中段沿街商业；区间为玩法推定。"}
+  - {"id": "zone_market_east", "kind": "market", "geometry": {"rect": {"min": {"x": 106, "z": 64}, "max": {"x": 130, "z": 118}}}, "priority": 90, "density": 0.7, "allowed_building_types": ["bld_kit_song_southern_market_stall", "bld_kit_song_southern_shop_1f", "bld_kit_song_southern_shop_2f", "bld_kit_song_southern_inn", "bld_kit_song_southern_restaurant", "bld_kit_song_southern_warehouse"], "ground_mix": {"stone_slab": 45, "grey_brick": 35, "rammed_earth": 20}, "basis": "图名：桥市与瓦子意象；src_linan_map：桥市、瓦子；东部整合场地为原创扩展；区间为玩法推定。"}
+  - {"id": "zone_waterfront_east", "kind": "waterfront", "geometry": {"rect": {"min": {"x": 84, "z": 126}, "max": {"x": 101, "z": 149}}}, "priority": 93, "density": 0.6, "allowed_building_types": ["bld_kit_song_southern_wharf", "bld_kit_song_southern_warehouse", "bld_kit_song_southern_shop_1f"], "ground_mix": {"stone_slab": 45, "grey_brick": 35, "rammed_earth": 20}, "basis": "图名：盐桥河西岸河仓；src_linan_waterways：北端西岸仓库；沿用旧zone局部键避免引用漂移，实际方位以坐标为准；区间为玩法推定。"}
+  - {"id": "zone_residential_west", "kind": "residential", "geometry": {"rect": {"min": {"x": 43, "z": 64}, "max": {"x": 72, "z": 116}}}, "priority": 45, "density": 0.6, "allowed_building_types": ["bld_kit_song_southern_house", "bld_kit_song_southern_courtyard", "bld_kit_song_southern_manor", "bld_kit_song_southern_temple_hall"], "ground_mix": {"stone_slab": 45, "grey_brick": 35, "rammed_earth": 20}, "basis": "图名：西部坊巷；src_linan_waterways：西河两岸府宅与坊巷混杂；区间为玩法推定。"}
+  - {"id": "zone_residential_north", "kind": "residential", "geometry": {"rect": {"min": {"x": 76, "z": 126}, "max": {"x": 122, "z": 149}}}, "priority": 48, "density": 0.62, "allowed_building_types": ["bld_kit_song_southern_house", "bld_kit_song_southern_courtyard", "bld_kit_song_southern_temple_hall"], "ground_mix": {"stone_slab": 45, "grey_brick": 35, "rammed_earth": 20}, "basis": "图名：北部坊巷；src_linan_map：城北坊巷；不作为全城人口抽样；区间为玩法推定。"}
+  - {"id": "zone_religious_west", "kind": "religious", "geometry": {"rect": {"min": {"x": 43, "z": 126}, "max": {"x": 61, "z": 140}}}, "priority": 82, "density": 0.4, "allowed_building_types": ["bld_kit_song_southern_temple_hall", "bld_kit_song_southern_pagoda"], "ground_mix": {"stone_slab": 45, "grey_brick": 35, "rammed_earth": 20}, "basis": "图名：景灵宫一带；src_linan_exhibition：御街北端终到景灵宫；不是普通寺院群；区间为玩法推定。"}
+  - {"id": "zone_gate_service_north", "kind": "gate_service", "geometry": {"polygon": {"points": [{"x": 106, "z": 100}, {"x": 130, "z": 100}, {"x": 130, "z": 118}, {"x": 122, "z": 118}, {"x": 122, "z": 147}, {"x": 106, "z": 147}]}}, "priority": 91, "density": 0.5, "allowed_building_types": ["bld_kit_song_southern_guardhouse", "bld_kit_song_southern_stable"], "ground_mix": {"stone_slab": 45, "grey_brick": 35, "rammed_earth": 20}, "basis": "图名：盐桥河东岸军营；src_linan_waterways：北端东岸禁军寨舍；以守舍马厩模块替代，区间为玩法推定。"}
 landmarks:
-  - id: lm_linan_palace_gate
-    type: bld_lm_ch02_linan_palace_gate
-    origin: {x: 73, z: 25}
-    size: {w: 14, h: 8}
-    rotation_deg: 0
-    zone_ref: zone_palace_south
-    poi: null
-    basis: "src_project_city：沿用city_hangzhou、临安府（行在）名称与1223项目年代；src_linan_palace：皇城在城市南部；本场景只固定北向入口意象，门制待考"
+  - {"id": "lm_linan_palace_gate", "type": "bld_lm_ch02_linan_palace_gate", "origin": {"x": 67, "z": 30}, "size": {"w": 14, "h": 8}, "rotation_deg": 0, "zone_ref": "zone_palace_south", "poi": null, "basis": "图名：和宁门（位置意象）；src_linan_exhibition：御街南起和宁门；src_project_city：city_hangzhou宫禁；门楼沿用无字素材，具体门制待考。"}
+  - {"id": "lm_jingling_palace", "type": "bld_kit_song_southern_temple_hall", "origin": {"x": 46, "z": 128}, "size": {"w": 13, "h": 10}, "rotation_deg": 0, "zone_ref": "zone_religious_west", "poi": null, "basis": "图名：景灵宫（位置意象）；src_linan_exhibition：御街北端目的地；src_linan_waterways：清湖河在西北；复用殿堂模块表达位置，不声称宋代皇帝祭祖建筑等同普通寺院（原创扩展）。"}
 building_quotas:
-  - {type: bld_lm_ch02_linan_palace_gate, zone_refs: [zone_palace_south], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "固定地标，前方保留8格御街净宽"}
-  - {type: bld_kit_song_southern_palace_hall, zone_refs: [zone_palace_south], count: {min: 2, max: 4}, required: true, business_ref: null, institution_ref: null, placement_note: "只露皇城北缘，不铺满宫殿"}
-  - {type: bld_kit_song_southern_yamen, zone_refs: [zone_administrative_south], count: {min: 3, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "入口朝官街或御街，不杜撰匾额"}
-  - {type: bld_kit_song_southern_biaoju, zone_refs: [zone_commercial_yujie], count: {min: 1, max: 1}, required: true, business_ref: biz_hangzhou_escort_01, institution_ref: null, placement_note: "入口朝御街，后院朝次巷"}
-  - {type: bld_kit_song_southern_casino, zone_refs: [zone_commercial_yujie], count: {min: 1, max: 1}, required: true, business_ref: biz_hangzhou_casino_01, institution_ref: null, placement_note: "入口朝侧街；可隐藏赌博入口但保留建筑"}
-  - {type: bld_kit_song_southern_manor, zone_refs: [zone_residential_west], count: {min: 1, max: 1}, required: true, business_ref: biz_hangzhou_manor_01, institution_ref: null, placement_note: "临支路布置，留围墙与院门"}
-  - {type: bld_kit_song_southern_inn, zone_refs: [zone_commercial_yujie, zone_market_east], count: {min: 3, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "沿街成组但入口不相撞"}
-  - {type: bld_kit_song_southern_restaurant, zone_refs: [zone_commercial_yujie, zone_market_east], count: {min: 4, max: 7}, required: true, business_ref: null, institution_ref: null, placement_note: "通用tavern设施，优先御街与桥市界面；不新造biz ID"}
-  - {type: bld_kit_song_southern_shop_2f, zone_refs: [zone_commercial_yujie, zone_market_east], count: {min: 6, max: 22}, required: true, business_ref: null, institution_ref: null, placement_note: "御街优先，立面连续率不超过70%"}
-  - {type: bld_kit_song_southern_shop_1f, zone_refs: [zone_commercial_yujie, zone_market_east, zone_waterfront_east], count: {min: 11, max: 30}, required: true, business_ref: null, institution_ref: null, placement_note: "入口朝最近道路或码头步道"}
-  - {type: bld_kit_song_southern_market_stall, zone_refs: [zone_market_east], count: {min: 18, max: 30}, required: true, business_ref: null, institution_ref: null, placement_note: "3至6摊成组，每组留3格横向通道"}
-  - {type: bld_kit_song_southern_wharf, zone_refs: [zone_waterfront_east], count: {min: 3, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "必须贴主渠岸且入口连路；仅河埠装饰，poi为null，不实例化port或水路旅行入口"}
-  - {type: bld_kit_song_southern_warehouse, zone_refs: [zone_waterfront_east, zone_market_east], count: {min: 4, max: 7}, required: true, business_ref: null, institution_ref: null, placement_note: "临河但离水格1格，门朝装卸面"}
-  - {type: bld_kit_song_southern_house, zone_refs: [zone_residential_west, zone_residential_north], count: {min: 8, max: 48}, required: true, business_ref: null, institution_ref: null, placement_note: "以窄巷串联，高密但每8至12栋留小空地；两住宅区各最多24栋，合计上限48"}
-  - {type: bld_kit_song_southern_courtyard, zone_refs: [zone_residential_west, zone_residential_north, zone_administrative_south], count: {min: 8, max: 14}, required: true, business_ref: null, institution_ref: null, placement_note: "院门朝巷，不侵占御街"}
-  - {type: bld_kit_song_southern_temple_hall, zone_refs: [zone_religious_west, zone_residential_west, zone_residential_north], count: {min: 3, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "无具名寺院时不加匾额"}
-  - {type: bld_kit_song_southern_pagoda, zone_refs: [zone_religious_west], count: {min: 0, max: 1}, required: false, business_ref: null, institution_ref: null, placement_note: "只在不遮御街轮廓时放置"}
-  - {type: bld_kit_song_southern_guardhouse, zone_refs: [zone_gate_service_north], count: {min: 2, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: "不侵入城门7格净宽"}
-  - {type: bld_kit_song_southern_stable, zone_refs: [zone_gate_service_north], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "靠门外运输面，远离密集商铺"}
-vegetation:
-  palette: [prp_song_willow, prp_song_bamboo, prp_song_broadleaf]
-  density: 0.07
-  avoid_road_cells: 1
-  cluster_rule: "水岸柳树稀列、院内竹木点缀；御街与市场不形成连续林带"
-  basis: "src_author_feedback：design_intent更繁华、分区铺装及商铺密度高于大理；植被density降低为0.07，给建筑和人流界面留地（原创扩展）"
+  - {"type": "bld_lm_ch02_linan_palace_gate", "zone_refs": ["zone_palace_south"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "固定地标，前方接6格御街；门楼前接驳由生成器保证"}
+  - {"type": "bld_kit_song_southern_palace_hall", "zone_refs": ["zone_palace_south"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "按所属分区净地与素材占地贪心填充；数量为压缩场景建议值（原创扩展）。"}
+  - {"type": "bld_kit_song_southern_yamen", "zone_refs": ["zone_administrative_south"], "count": {"min": 1, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "按所属分区净地与素材占地贪心填充；数量为压缩场景建议值（原创扩展）。"}
+  - {"type": "bld_kit_song_southern_biaoju", "zone_refs": ["zone_commercial_yujie"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": "biz_hangzhou_escort_01", "institution_ref": null, "placement_note": "复用既有营生；位置为原创扩展，不作为宋代镖局或赌场制度史证据。"}
+  - {"type": "bld_kit_song_southern_casino", "zone_refs": ["zone_commercial_yujie"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": "biz_hangzhou_casino_01", "institution_ref": null, "placement_note": "复用既有营生；位置为原创扩展，不作为宋代镖局或赌场制度史证据。"}
+  - {"type": "bld_kit_song_southern_manor", "zone_refs": ["zone_residential_west"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": "biz_hangzhou_manor_01", "institution_ref": null, "placement_note": "复用既有营生；位置为原创扩展，不作为宋代镖局或赌场制度史证据。"}
+  - {"type": "bld_kit_song_southern_inn", "zone_refs": ["zone_commercial_yujie", "zone_market_east"], "count": {"min": 1, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "按所属分区净地与素材占地贪心填充；数量为压缩场景建议值（原创扩展）。"}
+  - {"type": "bld_kit_song_southern_restaurant", "zone_refs": ["zone_commercial_yujie", "zone_market_east"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "按所属分区净地与素材占地贪心填充；数量为压缩场景建议值（原创扩展）。"}
+  - {"type": "bld_kit_song_southern_shop_2f", "zone_refs": ["zone_commercial_yujie", "zone_market_east"], "count": {"min": 2, "max": 10}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "按所属分区净地与素材占地贪心填充；数量为压缩场景建议值（原创扩展）。"}
+  - {"type": "bld_kit_song_southern_shop_1f", "zone_refs": ["zone_commercial_yujie", "zone_market_east", "zone_waterfront_east"], "count": {"min": 5, "max": 16}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "按所属分区净地与素材占地贪心填充；数量为压缩场景建议值（原创扩展）。"}
+  - {"type": "bld_kit_song_southern_market_stall", "zone_refs": ["zone_market_east"], "count": {"min": 8, "max": 18}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "按所属分区净地与素材占地贪心填充；数量为压缩场景建议值（原创扩展）。"}
+  - {"type": "bld_kit_song_southern_wharf", "zone_refs": ["zone_waterfront_east"], "count": {"min": 1, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "沿盐桥河，纯装饰河埠；poi为空，不新增port或航线。"}
+  - {"type": "bld_kit_song_southern_warehouse", "zone_refs": ["zone_waterfront_east", "zone_market_east"], "count": {"min": 1, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "按所属分区净地与素材占地贪心填充；数量为压缩场景建议值（原创扩展）。"}
+  - {"type": "bld_kit_song_southern_house", "zone_refs": ["zone_residential_west", "zone_residential_north"], "count": {"min": 8, "max": 24}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "按所属分区净地与素材占地贪心填充；数量为压缩场景建议值（原创扩展）。"}
+  - {"type": "bld_kit_song_southern_courtyard", "zone_refs": ["zone_residential_west", "zone_residential_north", "zone_administrative_south"], "count": {"min": 2, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "按所属分区净地与素材占地贪心填充；数量为压缩场景建议值（原创扩展）。"}
+  - {"type": "bld_kit_song_southern_temple_hall", "zone_refs": ["zone_religious_west", "zone_residential_north"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "含景灵宫位置意象1座；通用模块不等于具名历史寺观。"}
+  - {"type": "bld_kit_song_southern_pagoda", "zone_refs": ["zone_religious_west"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "按所属分区净地与素材占地贪心填充；数量为压缩场景建议值（原创扩展）。"}
+  - {"type": "bld_kit_song_southern_guardhouse", "zone_refs": ["zone_gate_service_north"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "按所属分区净地与素材占地贪心填充；数量为压缩场景建议值（原创扩展）。"}
+  - {"type": "bld_kit_song_southern_stable", "zone_refs": ["zone_gate_service_north"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "按所属分区净地与素材占地贪心填充；数量为压缩场景建议值（原创扩展）。"}
+vegetation: {"palette": ["prp_song_willow", "prp_song_bamboo", "prp_song_broadleaf"], "density": 0.07, "avoid_road_cells": 1, "cluster_rule": "水岸柳树稀列、院内竹木点缀；御街与市场不形成连续林带", "basis": "src_layout_design：保持商业通道净空，密度0.07为视觉建议（原创扩展）。"}
 sources:
-  - key: src_project_city
-    kind: project
-    title: design/19城市记录与chapters/02时代状态
-    url: null
-    accessed: null
-    confidence: project_fact
-    supports: [city_id, display_name, historical_year, capital_role]
-    note: "沿用city_hangzhou、临安府（行在）与1217至1227年代范围"
-  - key: src_linan_map
-    kind: museum
-    title: 《咸淳临安志》里的城市蓝图
-    url: "https://www.grandcanalmuseum.cn/yunboxinwen/1091.html"
-    accessed: "2026-09-30"
-    confidence: pending_review
-    supports: [wall, palace, offices, wards, temples, canals, bridges]
-    note: "图注为清道光十年1830仿宋重刊本《咸淳临安志·京城图》，上西下东、左南右北；图文件https://www.grandcanalmuseum.cn/uploads/20251219/e86970f52e9b3c1601466b9fa9481846.png。本轮仍下载/读取失败，版本与方向只核正文，图号/叶码未核。1268咸淳层位与1830重刊不能直接等同1223；supports仅列待对照对象，不代表已目视，逐项缺口见design/22 §8.2（网络资料，待核）"
-  - key: src_yujie
-    kind: official_web
-    title: 走在杭州南宋御街感受千年烟火
-    url: "https://www.chinanews.com.cn/sh/2024/04-24/10205146.shtml"
-    accessed: "2026-09-29"
-    confidence: pending_review
-    supports: [imperial_street_axis, commercial_frontage, street_length]
-    note: "媒体引述地方研究，给出约4185米与线路摘要；网络资料，待核原始文献"
-  - key: src_linan_palace
-    kind: official_web
-    title: 皇城遗风·南宋皇城遗址
-    url: "https://wgly.hangzhou.gov.cn/cn/hzzx/syqx/sywh/hcyf/index.html"
-    accessed: "2026-09-29"
-    confidence: verified_summary
-    supports: [palace_south, phoenix_hill_east]
-    note: "杭州市文化广电旅游局资料；场景不据现代边界一比一复原"
-  - key: src_qinghefang
-    kind: official_web
-    title: 2020南宋文化节遇上全新清河坊
-    url: "https://wgly.hangzhou.gov.cn/art/2020/9/25/art_1229505585_58935369.html"
-    accessed: "2026-09-29"
-    confidence: pending_review
-    supports: [west_commercial_link, market_character]
-    note: "杭州文旅资料；现代保护街区说明不能直接证明1223年每条街线，网络资料，待核"
-  - key: src_linan_study
-    kind: academic
-    title: 南宋临安城的制度与特征
-    url: "https://iwate-u.repo.nii.ac.jp/record/14427/files/arhs-v4p79-89.pdf"
-    accessed: "2026-09-29"
-    confidence: pending_review
-    supports: [palace_south_city_north, imperial_street, offices_near_south_axis]
-    note: "学术论文；网络资料，待核全文与引用史料"
-  - key: src_author_feedback
-    kind: project
-    title: 作者2026-09-29临安返修意见
-    url: null
-    accessed: null
-    confidence: project_fact
-    supports: [higher_prosperity]
-    note: "以更高建筑、商铺、摊位与铺装密度落实‘临安可以再繁华一些’"
+  - {"key": "src_linan_map", "kind": "museum", "title": "《咸淳临安志》里的城市蓝图", "url": "https://www.grandcanalmuseum.cn/yunboxinwen/1091.html", "accessed": "2026-09-30", "confidence": "verified_summary", "supports": ["districts", "map_orientation"], "note": "L1：正文已读；1830仿宋重刊与1268层位已区分；图片尚未目视，不能据图取控制点。"}
+  - {"key": "src_linan_exhibition", "kind": "archaeology_report", "title": "御街行——考古发现中的南宋临安", "url": "https://xxgk.fudan.edu.cn/9d/8a/c5200a499082/page.htm", "accessed": "2026-09-30", "confidence": "verified_summary", "supports": ["imperial_street_endpoints"], "note": "L2：复旦大学与杭州市文物考古研究所联合展说明，支持两端地名；不是完整发掘报告。"}
+  - {"key": "src_linan_citymap", "kind": "academic", "title": "南宋临安都城图", "url": "https://www.dili360.com/ch/article/p64f0664a79d9087.htm", "accessed": "2026-09-30", "confidence": "verified_summary", "supports": ["wall_shape", "palace"], "note": "L3：中华遗产专题图文，正文已读、图像403；南北长及皇城尺度为概述。"}
+  - {"key": "src_linan_waterways", "kind": "academic", "title": "林正秋：南宋杭州的河道与整治", "url": "https://www.hzzx.gov.cn/hzzx/content/2010-10/26/content_5138325.htm", "accessed": "2026-09-30", "confidence": "verified_summary", "supports": ["waterways", "bridges", "warehouses"], "note": "L4：杭州政协网站学者文章，依地方志叙述河网及废塞；淳祐、咸淳信息后于1223，精确河线待考。"}
+  - {"key": "src_yujie", "kind": "official_web", "title": "走在杭州南宋御街感受千年烟火", "url": "https://www.chinanews.com.cn/sh/2024/04-24/10205146.shtml", "accessed": "2026-09-30", "confidence": "verified_summary", "supports": ["imperial_street_length", "imperial_street_turn"], "note": "L5：中新社实地采访考古学者，4185米用于缩比参照，非逐段实测。"}
+  - {"key": "src_linan_walls", "kind": "academic", "title": "杭州城墙：两宋", "url": "https://zh.wikipedia.org/wiki/杭州城墙", "accessed": "2026-09-30", "confidence": "verified_summary", "supports": ["gates", "wall_extent"], "note": "L6：百科汇编追溯城池研究，13旱门5水门；门址与1223逐门沿革待核原志；类型academic仅为schema对参考汇编的归档。"}
+  - {"key": "src_project_city", "kind": "project", "title": "chapters/02 §3.2临安与宫禁", "url": null, "accessed": null, "confidence": "project_fact", "supports": ["city_id", "story"], "note": "不将牛家村、嘉兴故事地点移入临安城内。"}
+  - {"key": "src_layout_design", "kind": "design_interpretation", "title": "TOWN-layout压缩与植被", "url": null, "accessed": null, "confidence": "original_extension", "supports": ["density"], "note": "比例、数量与通用建筑位置见history/linan.md。"}
