@@ -199,3 +199,5 @@
 - **主检出仍在跑**：TOWN-assemble 第 6 次（西湖多边形 + 岸边贴片 + 水面变化），过审后 `finish` 并挑入 `_prod`（叠在 TOWN-layout 上，cherry-pick 应无冲突），再更新审批页。
 - **批量调度器**（15:04 起在 `_prod` 后台跑）：`cd .agents/wt/_prod && nohup python3 tools/agents/batch_run.py --queue-file .agents/coord/_batch_queue.txt --parallel 12 --interval 60 > .agents/coord/_batch/batch.log`。维持 12 路并发、过审自动合入、FAIL 返修后自动复审（每任务最多 2 次）、依赖未合入的等；状态 `.agents/coord/_batch/batch.json`，`--status` 看队列。加任务：往队列文件追加 ID 后重启脚本（幂等）。停住（HOLD-VALIDATE / ERROR / 复审仍 FAIL）的任务在日志"停住待协调者"里，用 `gate.py` 看。
 - **CITY 线待重启**：TOWN-assemble（主检出）过审后 `finish` → 挑入 `_prod` → `prod_plan.py register --group cities --band … --kit …` → 追加队列。首批 12 个城镇登记已撤销（文件名前缀 bug 已修）。
+- **执行器切换（15:50，作者：「gpt额度没有了，用traex cli调用 gpt6 max吧」）**：默认改为 `traex exec -m GPT-6-Astra -c model_reasoning_effort="max"`（traex 是 Codex 分支，参数相同），审核 `GPT-6-Astra xhigh`；探测不应答回退 `GPT-5.6-Sol`。改动在 `step.py` / `supervise.py` / `gpt_review.py` 默认值与 `tasks.json defaults`（主检出与 `_prod` 都已改）。集成分支上的驱动与 batch_run 已重启（正在跑的 Codex 执行器不杀，跑完后续阶段用 traex）。
+- **TOWN-assemble（湖体多边形版）r6 PASS**，工作区已提交 24ae723 并挑入 `_prod`；首批城镇（宋套件可用）已登记并入队。
