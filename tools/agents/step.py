@@ -24,6 +24,7 @@ run.py 是全自动调度器；本脚本把同一套机制拆成可单独调用�
 from __future__ import annotations
 
 import argparse
+import re
 import datetime as _dt
 import fcntl
 import json
@@ -442,6 +443,28 @@ def cmd_finish(a) -> int:
 
 # ---------------------------------------------------------------- merge
 
+# 多个任务都往同一份"追加型"markdown 文末加小节（各套件往 prompts/*.md 加自己的一节、FOLLOWUPS 追加条目），
+# cherry-pick 时两边都是新增行会报冲突；这类文件按"两边都保留"自动解决，其他文件冲突仍中止。
+UNION_MERGE_GLOBS = ("assets/default/prompts/*.md", "tools/agents/FOLLOWUPS.md", "assets/default/STYLE.md")
+_CONFLICT = re.compile(r"<<<<<<< [^\n]*\n(.*?)=======\n(.*?)>>>>>>> [^\n]*\n", re.S)
+
+
+def union_resolve(root: Path) -> bool:
+    files = [f for f in R.git(["diff", "--name-only", "--diff-filter=U"], root, check=False).stdout.split("\n") if f]
+    if not files or not all(R.matches_any(f, list(UNION_MERGE_GLOBS)) for f in files):
+        return False
+    for f in files:
+        fp = root / f
+        text = fp.read_text(encoding="utf-8")
+        merged = _CONFLICT.sub(lambda m: m.group(1) + ("" if m.group(1).endswith("\n") or not m.group(1) else "\n") + m.group(2), text)
+        if "<<<<<<<" in merged or ">>>>>>>" in merged:
+            return False
+        fp.write_text(merged, encoding="utf-8")
+        R.git(["add", "--", f], root)
+    print("  冲突按“两边都保留”自动解决：" + "、".join(files))
+    return True
+
+
 def cmd_merge(a) -> int:
     root, g, t, st = load(a.id)
     wt = R.wt_path(root, t.id)
@@ -467,6 +490,8 @@ def cmd_merge(a) -> int:
                 break
             if "index.lock" not in (p.stderr + p.stdout):
                 break
+        if p is not None and p.returncode != 0 and union_resolve(root):
+            p = R.git(["-c", "core.editor=true", "cherry-pick", "--continue"], root, check=False)
         if p is None or p.returncode != 0:
             R.git(["cherry-pick", "--abort"], root, check=False)
             raise R.Fatal(f"cherry-pick 失败：{(p.stderr or p.stdout).strip()[:400] if p else '未知'}")
