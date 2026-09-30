@@ -1,6 +1,6 @@
 # 协调者交接文档（2026-09-29 晚）
 
-> 给下一位协调者（任何 agent）的完整交接。读完本文件、`SUPERVISOR.md`、`FOLLOWUPS.md` 三份就能接手，不需要之前的聊天记录。
+> 给下一位协调者（任何 agent）的操作手册。**先读 `TODO.md` §8**（整体规划、已做、坑、待做），再读本文件、`SUPERVISOR.md`、`FOLLOWUPS.md`，不需要之前的聊天记录。
 > 当前状态快照随时可重跑：`python3 tools/agents/status_snapshot.py`（加 `--all` 看含依赖未满足的）。
 
 ## 0. 一句话现状
