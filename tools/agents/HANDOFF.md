@@ -187,3 +187,13 @@
 - **文档 / 提示词线**：18 个任务已 READY 且在各自工作区 `finish` 提交（NAuF-rules / lint / book-04 / 05 / 12 / 13；ART-P-ch01–09、12–14），等主检出干净后 `step.py merge`（ART-P-ch01 需 `-X theirs`）。NAuF-rules 合入后可启动 NAuF-cat-<12 单元>（各自还依赖对应 NR5 单元，NR5 多数被暂停未跑）。
 - **已知瑕疵待下一轮**：降龙根部竖直切口（加根部羽化）；六脉偏细偏灰（等作者定是否重出原料）；城镇水面为平色贴片、西湖是矩形；大理塔与城比例偏大。
 - **驱动脚本新增**：`HOLD-VALIDATE`（同一校验失败两次即停）、`--base`、`shrink_exempt` 同时豁免删除。
+
+### 9.7 批量生产（2026-09-30 14:10 起，作者指示）
+
+作者原话：「然后调用gpt分别做所有城市（城市X年代）和所有天/地级武功招式，再做普通招式，玄级武功如果有外放则统一外放气效果（颜色取决于内力阴阳），没有外放则以残影。黄级武功就是普通招式。验收gpt做，但是不要太复杂，按照现在的基线设计出口验收即可。」「立绘是另一个agent在做，你不用管」「城镇水面是平色贴片、西湖是个矩形 这个优化一下，西湖按照实际坐标来格子化…边界格子里的贴图同时有岸边和水」（已录入 STYLE.md）。
+
+- **集成分支**：主检出被出图代理的未提交改动挡住合入，改在 `.agents/wt/_prod`（分支 `claude/production-20260930`，自 7b7dc7b 起）做集成：已挑入 NAuF-rules / lint / book-04 / 05 / 12 / 13、TOWN-render、TOWN-layout、VFX-three、TOWN-tiles、TOWN-buildings 与后续协调提交。**所有批量生产任务在这里跑**：`cd .agents/wt/_prod && python3 tools/agents/supervise.py <ID> --checks .agents/coord/PROD/<要点> --max-reviews 1 --max-runs 3 --auto-merge --worker`（ROOT 自动为 `_prod`，任务工作区在 `_prod/.agents/wt/`，状态 `_prod/.agents/state.json`）。过审即自动合入 `_prod`（作者：验收 GPT 做）。主分支干净后由作者或协调者把 `claude/production-20260930` 合回主分支。
+- **规模**（`python3 tools/agents/prod_plan.py list`）：城市×年代带 1000（都城 78、大城 650、小城 255、遗址 17）；天级 45 门 / 281 招，地级 211 门 / 888 招，玄级 165 门 / 430 招，黄级 82 门 / 310 招。
+- **登记 / 启动**：`tools/agents/prod_plan.py register --group kits|cities|skills [--band] [--kit] [--tier] [--limit]`；模板 `prompts/{KIT,CITY,VFX-skill,VFX-emitters,VFX-templates}.md`；审核要点 `.agents/coord/PROD/review_checks_{kit,city,vfx_skill,vfx_foundation}.md`（每类只审 5–6 条，最多 1 轮返修）。
+- **顺序**：① VFX-emitters（12 种发出方图）+ VFX-templates（玄 / 黄级模板、`bind_moves.py` 绑定表、`check_skill_suite.py`）→ ② VFX-<sk> 天级 45 门（已登记）→ 地级 211 门（`register --group skills --tier 地`）；玄 / 黄级由绑定表 + 模板覆盖，不逐门做。① 建筑套件 KIT-×11（宋北方、辽金、元北 / 南、明北 / 南、清北 / 南、西域、吐蕃、蒙古；首批 7 个在跑）→ ② CITY-<city>__<band>（都城 + 大城优先；已有宋套件的 12 个已登记，3 个在跑）→ 其余按套件就绪逐批 `register --group cities --band … --kit …`；小城 / 遗址（272 个）建议用同年代套件的程序化模板不做史料复原（待作者确认）。
+- **主检出仍在跑**：TOWN-assemble 第 6 次（西湖多边形 + 岸边贴片 + 水面变化），过审后 `finish` 并挑入 `_prod`（叠在 TOWN-layout 上，cherry-pick 应无冲突），再更新审批页。
