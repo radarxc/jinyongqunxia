@@ -14736,6 +14736,50 @@
       }
     },
     {
+      "id": "ART-R1-female",
+      "phase": "ART",
+      "wave": 8,
+      "kind": "draft",
+      "title": "素材返修 · 人物·女·小龙女经典形象（作者第 3 轮意见）",
+      "prompt": "ART-rework.md",
+      "deps": [],
+      "writes": [
+        "assets/default/baseline/character/female/**",
+        "assets/default/prompts/character-female.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_id": "female",
+        "cat_name": "人物·女",
+        "out_dir": "assets/default/baseline/character/female",
+        "prompt_file": "assets/default/prompts/character-female.md",
+        "round": "第 3 轮",
+        "items": "- `ref_npc_xiaolongnv__ch03_base01`（小龙女，神雕，南宋）\n  - 作者意见（原文）：「小龙女增加白手套，佩剑，和铃铛」「这是书中的经典形象」\n  - 协调说明：以已通过的这张为起点，优先用 image_gen 编辑已通过的原图。脸、气质、白衣、发式、构图、光照与画风都保持不变，只加三样原著经典物件：\n    - 白手套：原著中她捉玉蜂、使金铃索时戴的白色（金丝）手套；\n    - 佩剑：腰间佩一柄剑（原著中与君子剑成对的淑女剑），形制合南宋年代与原著描述，不要日式、不要夸张；\n    - 铃铛：原著\"金铃索\"——白色绸带末端系着的小金铃，可绕臂或持在手中。\n    细节以原著与仓库资料（`docs/design/catalog/npcs-ch03-shendiao.md`、相关武学与物品图鉴）为准，查不到的标（待考）。\n- `ref_npc_wangyuyan__ch01_base01`（王语嫣）：已通过，文件与 manifest 条目逐字节不动。",
+        "extra": "小龙女这条原为 approved，返修后 `status` 改回 `candidate`，等作者重审。手部结构、剑与剑鞘结构要正确；女性偏美丽的画风与已通过版一致。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/character/female/manifest.yaml",
+          "assets/default/prompts/character-female.md"
+        ],
+        "fences": [
+          "assets/default/prompts/character-female.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/character/female",
+            "--min",
+            "1",
+            "--max",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
       "id": "ART-B-male",
       "phase": "ART",
       "wave": 7,
