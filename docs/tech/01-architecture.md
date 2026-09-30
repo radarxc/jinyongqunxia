@@ -3,7 +3,7 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/01-architecture.md` |
-| 版本 | v1.4（经脉落地终审，2026-09-29）；v1.3（经脉协议 2 架构同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
+| 版本 | v1.5（经脉落地终审（2026-09-30）：规范命令前缀一致性复核）；v1.4（经脉落地终审，2026-09-29）；v1.3（经脉协议 2 架构同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
 | 上游基准 | `docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md`、`docs/00-canon.md` v1.5、`docs/decisions/rulings-v1.md` |
 | 下游文档 | `tech/02` 渲染、`tech/03` 性能、`tech/04` 数据管线、`tech/05` 玩法引擎、`tech/06` 素材存储、`tech/07` 素材生成、`tech/08` 后端、`tech/09` 路线图 |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手（Claude Code 等） |
@@ -1465,7 +1465,7 @@ export default defineConfig(
 | D6 RNG 分流 | `battle`、`loot`、`world`、`ai`、`qiyu` 各自独立流；一场战斗只有 Core 持有并注入的一条 `battle` 流，经脉实例不得各持子流。新增一次 UI / 经脉预览不得消耗任何流。AI 请求只预览下一 `aiSeed`，同一状态重请求复用；只有携带匹配 `AiDecisionProof` 的命令成功提交才消费该值 | 查询函数签名不接收 `rng`；经脉 preview 前后状态字节与五流游标相等；拒绝/取消/过期响应的流状态断言 |
 | D7 第三方库的隐性随机 | inkjs 的 `StoryState` 构造时用 `new Date().getTime()` 生成 `storySeed`（本文已在 inkjs 2.4.0 源码核实）→ core 创建 Story 后立即以 `world` 流覆盖 `story.state.storySeed` | 封装 `createStory()` + 单测 |
 | D8 状态可序列化 | `GameState` 只含 JSON 值；无 `Map/Set/class/undefined 字段` | `serialize→parse→deepEqual` 属性测试 |
-| D9 录像回归 | 协议 2 的 hash 域固定为规范 JSON 数组 `["tianshu:battle-replay:v1", appBuild, coreVersion, rulesProtocol, rngProtocol, contentHash, runtimeMartialArts, commandPrefix, session]`；`commandPrefix` 是截至该采样点的已接受记录按 `seq` 升序后仅投影其规范 `command` 载荷所得数组，排除 `seq/accepted/afterHash` 等运输字段，`session` 含按 `unitIndex` 排序的 `meridian-flow-state.v1`、按 `skillId` 排序的 `ultimateBySkill` 与唯一 `battleRng`。`skill` 及 `dual.a/b` 保留所选 `projectionStep`，不得保存其推导格集合作为第二事实源。不哈希或上传完整 `GameState`，摘要字段自身也不入域；旧协议必须交给匹配 runner，不能静默按协议 2 重算 | CI golden 测试；Node（V8）与 Playwright WebKit（JSC）复跑 |
+| D9 录像回归 | 协议 2 的 hash 域固定为规范 JSON 数组 `["tianshu:battle-replay:v1", appBuild, coreVersion, rulesProtocol, rngProtocol, contentHash, runtimeMartialArts, commandPrefix, session]`；`commandPrefix` 是截至该采样点的已接受记录按 `seq` 升序后仅投影其规范 `command` 载荷所得数组，开局为空，排除 `seq/accepted/afterHash` 等运输字段、墙钟和诊断字段，`session` 含按 `unitIndex` 排序的 `meridian-flow-state.v1`、按 `skillId` 排序的 `ultimateBySkill` 与唯一 `battleRng`。`skill` 及 `dual.a/b` 保留所选 `projectionStep`，不得保存其推导格集合作为第二事实源。不哈希或上传完整 `GameState`，摘要字段自身也不入域；旧协议必须交给匹配 runner，不能静默按协议 2 重算 | CI golden 测试；Node（V8）与 Playwright WebKit（JSC）复跑 |
 
 ```ts
 // packages/shared/src/rng.ts —— sfc32 + splitmix32 播种；状态 4×uint32 可直接存档
