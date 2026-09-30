@@ -38,3 +38,5 @@
 - 审批页待作者审：萧峰（R2）、令狐冲（R1）、六脉神剑图（R2）、倚天剑（R1）、降龙十八掌图（R1）；小龙女加白手套 / 佩剑 / 铃铛（ART-R1-female）出图中。
 - NR4-shaolin（返修中）：少林九阳功主修经脉依据标"待考《倚天》楔子觉远诵经情节"；11 门补录经脉为原创扩展；交 LINT-outlets 的四处脚本盲区已并入其提示词。
 - NR4-general（4c23117）交其他任务：chapters/09、13 §12 主运 `sk_jianghutuna` 调和→阴并重算调息 / TTK；chapters/10、11 §12 `sk_jianghutuna` / `sk_wuguanxinfa` 主运行改阴重算；npcs-ch01 L33–34 与 chapters/01 L1417–1418 游氏兄弟辅运 `sk_huxixingqi` 调和→阴；skills-bulu-12 L54 `sk_zhuangxingong` 前置性质假设（阳→阴）；chapters/03 L948/954/1010 壮行功、扎马步性质标签；chapters/09 + npcs-ch09 辅运 `sk_huxixingqi` / `sk_tunaqianjue` 改阴复核；各书界与 NPC 图鉴中 `sk_tunaqianjue` / `sk_huxixingqi` / `sk_zhuangxingong` 的显式性质引用；07-set-system、bulu-06/07/09、skills-shaolin 的套装 / 前置 / 底座隐藏性质假设。
+- 协调者裁定（供作者复核）：模板绑定的普通路线不受 21 §4.3.4"不完全相同"约束（图鉴 §17.5 规定按共享模板引用；工具同口径）。NR4-xiakebixue 据此合入。若作者希望普通路线也各不相同，需要另开任务给全部模板绑定路线写显式路线，工作量很大。
+- NR4-xiakebixue 交其他任务：chapters/06 §12.7 展飞 `sk_changlexinfa` 调和→阴、辅运 `sk_changletuna` 改阴；design/20 §10.7 混元功传承门槛 C9 阳→调和；chapters/07 §12.7 归二娘、归辛树混元功 阳→调和并复核七参；chapters/08 §9.4 / §12.8 同上。
