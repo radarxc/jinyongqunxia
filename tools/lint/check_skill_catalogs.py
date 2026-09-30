@@ -1470,6 +1470,13 @@ def _skill_contexts(text: str) -> dict[str, str]:
             continue
         if re.match(r"^#{1,6}\s", line):
             current_detail = None
+        if current_detail and re.match(r"^\s*-\s*\*\*简述\*\*", line):
+            # Formation cards may declare a held weapon in their synopsis,
+            # rather than their broad misc/formation category.  Keep only
+            # explicit handling words; do not borrow names from prerequisites.
+            contexts[current_detail].extend(re.findall(
+                r"持(?:长|鞭)?索", _strip_action_metadata(line)
+            ))
         if current_detail and re.search(r"(?:category|subType)\s*[:：]", line):
             mentioned = re.findall(r"\bsk_[a-z0-9_]+", line)
             if not mentioned or current_detail in mentioned:
@@ -2083,6 +2090,27 @@ def _move_action_contexts(text: str) -> dict[str, str]:
     return {move_id: " ".join(parts) for move_id, parts in result.items()}
 
 
+def _route_action_contexts(text: str) -> dict[str, str]:
+    """Read route-local action columns, never change logs or requirements."""
+    result: dict[str, list[str]] = defaultdict(list)
+    table_headers = _table_headers_by_line(text)
+    for number, line in enumerate(text.splitlines(), 1):
+        cells = _table_cells(line)
+        headers = table_headers.get(number, ())
+        route_ids = set(re.findall(r"\bmfr_[a-z0-9_]+", line))
+        if len(route_ids) != 1 or not cells or len(headers) != len(cells):
+            continue
+        route_id = next(iter(route_ids))
+        for header, cell in zip(headers, cells):
+            if ("动作" not in header or "换穴" in header
+                    or _header_is_metadata(header)):
+                continue
+            action = _strip_action_metadata(cell).strip()
+            if action:
+                result[route_id].append(action)
+    return {route: " ".join(parts) for route, parts in result.items()}
+
+
 def _move_owners(text: str) -> dict[str, str]:
     """Resolve a move to its enclosing formal skill card."""
     owners: dict[str, str] = {}
@@ -2126,23 +2154,60 @@ def _purpose(context: str) -> str | None:
     return match.group(1).lower() if match else None
 
 
+def route_sequence_points(
+    row: str, headers: Iterable[str] = (),
+) -> tuple[str, ...]:
+    """Read concrete steps only, excluding endpoint hints and template binds.
+
+    Header-aware callers may supply a steps/sequence column containing bare
+    acupoint IDs. Otherwise a slash-valued step or an arrow is required; an
+    endpoint list beside a shared template is not an explicit route.
+    """
+    cells = _table_cells(row)
+    names = tuple(headers)
+    selected: list[tuple[str, bool]] = []
+    if cells and len(cells) == len(names):
+        selected = [
+            (cell, True) for name, cell in zip(names, cells)
+            if re.search(r"steps|序列|步骤|穴位.*顺序|顺序.*穴位", name, re.I)
+            and not re.search(r"端点|提示", name)
+        ]
+    if not selected:
+        selected = [(cell, False) for cell in cells] if cells else [(row, False)]
+    point = r"(?<![A-Za-z0-9_])ap_[a-z0-9_]+"
+    step = rf"{point}(?:\s*/\s*\d+){{0,2}}"
+    chain = re.compile(rf"{step}(?:(?:\s*(?:→|->|、|,|，)\s*|\s+){step})*")
+    for cell, named_steps in selected:
+        plain = cell.replace("`", "")
+        sequences = []
+        for match in chain.finditer(plain):
+            value = match.group(0)
+            if named_steps or re.search(r"/\s*\d|→|->", value):
+                sequences.append(tuple(re.findall(point, value)))
+        if sequences:
+            # Prose may repeat a lone endpoint after the full chain. Keep
+            # the chain intact, including a repeated node if actually written.
+            return max(sequences, key=len)
+    return ()
+
+
 def _collect_nonultimate_projection_routes(
     path: Path, text: str, contexts: dict[str, str],
     move_contexts: dict[str, str], move_owners: dict[str, str],
     skill_action_contexts: dict[str, str],
     move_action_contexts: dict[str, str], skill_natures: dict[str, str],
+    route_action_contexts: dict[str, str],
 ) -> list[DeliveryRoute]:
     """Collect explicit normal routes whose MoveDef opts into projection."""
     mirrors = parse_route_mirrors(text)
+    table_headers = _table_headers_by_line(text)
     rows: dict[str, tuple[int, str, tuple[str, ...], str]] = {}
     for number, line in enumerate(text.splitlines(), 1):
         moves = list(dict.fromkeys(re.findall(r"\bmv_[a-z0-9_]+", line)))
         route_ids = list(dict.fromkeys(re.findall(
             r"(?<![A-Za-z0-9_])mfr_[a-z0-9_]+", line
         )))
-        points = tuple(re.findall(
-            r"(?<![A-Za-z0-9_])ap_[a-z0-9_]+", line
-        ))
+        points = route_sequence_points(line, table_headers.get(number, ()))
         if len(moves) == len(route_ids) == 1 and points:
             rows[moves[0]] = (number, route_ids[0], points, line)
     result: list[DeliveryRoute] = []
@@ -2163,15 +2228,21 @@ def _collect_nonultimate_projection_routes(
         if skill_id is None:
             continue
         skill_context = contexts.get(skill_id, "")
+        delivery = _delivery_from_context(skill_context, move_context)
+        action = ""
+        if delivery is None:
+            action = route_action_contexts.get(route_id, "")
+            delivery = _delivery_from_context(skill_context, action)
         result.append(DeliveryRoute(
             catalog_name(path), path.name, line, skill_id, move_id, route_id,
-            points, _delivery_from_context(skill_context, move_context),
+            points, delivery,
             _purpose(route_context) or (mirror and _purpose(text.splitlines()[mirror.line - 1])) or "attack",
             True, False, _explicit_bool(move_context, "voice"),
             _explicit_nature(move_context) or skill_natures.get(skill_id),
             _explicit_bool(route_context, "allowOpposedNature") is True,
                 f"{skill_action_contexts.get(skill_id, '')} "
-                f"{move_action_contexts.get(move_id, '')}",
+                f"{move_action_contexts.get(move_id, '')}"
+                f"{' ' + action if action else ''}",
         ))
     return result
 
@@ -2198,8 +2269,9 @@ def _delivery_from_context(skill_context: str, move_context: str) -> str | None:
             return "weapon"
         # ``fist`` / ``grapple`` are legacy coarse buckets: they do not prove
         # a palm action, but must not hide an explicit skill name or move such
-        # as 东海潮生掌 / 掌风外吐.  Other subtypes are authoritative here.
-        if value != "fist":
+        # as 东海潮生掌 / 掌风外吐.  Hidden weapons need an explicit physical
+        # implement below: the broad hidden bucket also contains powder.
+        if value not in {"fist", "hidden"}:
             return None
     if re.search(r"category\s*[:：]\s*(?:inner|内功)", context, re.I):
         return "inner"
@@ -2224,11 +2296,18 @@ def _delivery_from_context(skill_context: str, move_context: str) -> str | None:
         return "leg"
     if re.search(r"兵器\s*[/／·]", context):
         return "weapon"
-    if re.search(r"(?:^|[（(·| /／])内功(?:[·| /／）)]|$)", context):
+    if re.search(r"(?:^|[（(·| /／])内功(?:[·| /／（）()]|$)", context):
         return "inner"
     if re.search(r"(?:^|[（(·| /／])(?:轻功|身法)(?:[·| /／）)]|$)",
                  skill_context):
         return "movement"
+    identity = _skill_identity_context(skill_context)
+    physical_action = _strip_action_metadata(f"{identity} {move_context}")
+    if re.search(r"持(?:长|鞭)?索", physical_action):
+        return "weapon"
+    if (re.search(r"暗器|(?:category|subType)\s*[:：]\s*hidden", identity, re.I)
+            and re.search(r"飞刀|飞针|袖箭|银针|毒针|金针|飞镖", physical_action)):
+        return "weapon"
     # ``拳脚/拳掌`` is an old broad catalog bucket, not an action.  Inspect
     # explicit fine types and display names only after removing that token.
     named_skill = re.sub(r"拳脚\s*[/／·]\s*拳掌", "", skill_context)
@@ -2263,11 +2342,11 @@ def _delivery_from_context(skill_context: str, move_context: str) -> str | None:
         else context
     )
     if re.search(r"(?:拳法|擒拿)", fist_skill) or re.search(
-        r"(?:拳法|拳招|出拳|拳击|拳劲|擒拿|拿握|锁腕)",
+        r"(?:拳法|拳招|出拳|拳击|拳劲|成拳|擒拿|拿握|锁腕)",
         fist_action_context,
     ):
         return "fist-grapple"
-    if re.search(r"(?:护体|疗伤)", move_context):
+    if re.search(r"(?:护体|疗伤|蓄气)", move_context):
         return "inner"
     return None
 
@@ -2286,12 +2365,19 @@ def collect_delivery_routes(paths: Iterable[Path]) -> list[DeliveryRoute]:
         skill_natures = _skill_natures(text)
         move_contexts = _move_contexts(text)
         move_action_contexts = _move_action_contexts(text)
+        route_action_contexts = _route_action_contexts(text)
         move_owners = _move_owners(text)
         lines = text.splitlines()
         for item in parse_audit_instances(text).values():
             if item.body_ultimate is not True or item.route_ultimate is not True:
                 continue
             move_context = move_contexts.get(item.move_id, "")
+            skill_context = contexts.get(item.skill_id, "")
+            delivery = _delivery_from_context(skill_context, move_context)
+            action = ""
+            if delivery is None:
+                action = route_action_contexts.get(item.route_id, "")
+                delivery = _delivery_from_context(skill_context, action)
             route_line = lines[item.line - 1]
             purpose_match = re.search(
                 r"purpose\s*[:：]\s*(attack|defense|movement)", route_line, re.I
@@ -2299,7 +2385,7 @@ def collect_delivery_routes(paths: Iterable[Path]) -> list[DeliveryRoute]:
             routes.append(DeliveryRoute(
                 catalog_name(path), path.name, item.line, item.skill_id,
                 item.move_id, item.route_id, item.signature,
-                _delivery_from_context(contexts.get(item.skill_id, ""), move_context),
+                delivery,
                 purpose_match.group(1).lower() if purpose_match else None,
                 bool(re.search(r"projection\s*[:：]\s*true", move_context, re.I)),
                 True, _explicit_bool(move_context, "voice"),
@@ -2307,11 +2393,13 @@ def collect_delivery_routes(paths: Iterable[Path]) -> list[DeliveryRoute]:
                 or skill_natures.get(item.skill_id),
                 _explicit_bool(route_line, "allowOpposedNature") is True,
                 f"{skill_action_contexts.get(item.skill_id, '')} "
-                f"{move_action_contexts.get(item.move_id, '')}",
+                f"{move_action_contexts.get(item.move_id, '')}"
+                f"{' ' + action if action else ''}",
             ))
         routes.extend(_collect_nonultimate_projection_routes(
             path, text, contexts, move_contexts, move_owners,
             skill_action_contexts, move_action_contexts, skill_natures,
+            route_action_contexts,
         ))
     if include_external_wujue:
         wujue_text = (CATALOG_DIR / "skills-wujue.md").read_text(
@@ -2364,16 +2452,18 @@ def palm_endpoints(action_context: str) -> frozenset[str]:
     return frozenset(outlets)
 
 
-def route_outlet_points(route: DeliveryRoute) -> frozenset[str]:
+def route_outlet_points(
+    route: DeliveryRoute, ownership: dict[str, str] | None = None,
+) -> frozenset[str]:
     """Identify only action-matched outlets occurring in the final 3 steps."""
+    allowed: frozenset[str] = frozenset()
+    tail = set(route.signature[-3:])
     if route.delivery == "palm":
         allowed = palm_endpoints(route.action_context)
-        matched = set(route.signature[-3:]) & allowed
         # Neiguan may be the lead-in to the Laogong inner-gate outlet.
-        if "ap_shoujueyin_laogong" in matched:
-            matched |= set(route.signature[-3:]) & {PALM_INNER_GATE}
-        return frozenset(matched)
-    if route.delivery == "fist-grapple":
+        if "ap_shoujueyin_laogong" in tail:
+            allowed |= {PALM_INNER_GATE}
+    elif route.delivery == "fist-grapple":
         allowed = FIST_GRAPPLE_ENDPOINTS
     elif route.delivery == "finger":
         allowed = FINGER_ENDPOINTS
@@ -2384,9 +2474,23 @@ def route_outlet_points(route: DeliveryRoute) -> frozenset[str]:
         )
     elif route.delivery == "weapon":
         allowed = WEAPON_GUIDE_ENDPOINTS
-    else:
-        return frozenset()
-    return frozenset(set(route.signature[-3:]) & allowed)
+    # §4.3.1 names whole movement / Ren-Du meridians, so use the registered
+    # game ownership (§2.4), never a point's possibly historical ID prefix.
+    movement = route.delivery == "movement" or route.purpose == "movement"
+    if movement or route.delivery == "inner":
+        if ownership is None:
+            ownership = load_acupoint_meridians()
+        meridians = MOVEMENT_MERIDIANS if movement else REN_DU_MERIDIANS
+        allowed |= frozenset(
+            point for point in tail if ownership.get(point) in meridians
+        )
+        if movement:
+            allowed |= {"ap_zushaoyin_yongquan"}
+    # §4.4.1.4 adds vocal outlets; explicit voice:false overrides the legacy
+    # vocal-skill allowlist and cannot silently gain throat outlets.
+    if _is_vocal_projection(route):
+        allowed |= VOCAL_SONIC_ENDPOINTS
+    return frozenset(tail & allowed)
 
 
 def route_nature(
@@ -2548,7 +2652,7 @@ def analyze_delivery_routes(routes: Iterable[DeliveryRoute]) -> DeliveryReport:
     route_natures = {
         (route.catalog, route.source, route.line, route.route_id): route_nature(
             route.signature, ownership, meridian_natures,
-            route_outlet_points(route),
+            route_outlet_points(route, ownership),
         )
         for route in route_list
     }
