@@ -13309,7 +13309,8 @@
         "NYY"
       ],
       "writes": [
-        "docs/design/catalog/skills-wujue.md"
+        "docs/design/catalog/skills-wujue.md",
+        "docs/design/21-meridian-flow-and-moves.md"
       ],
       "review": false,
       "web": false,
@@ -13318,7 +13319,7 @@
         "unit_name": "五绝",
         "doc_set": "- `docs/design/catalog/skills-wujue.md`",
         "counts": "路线性质冲突 16 条、内功性质冲突 6 张、缺主修经脉 17 张（改动后以检查脚本实测为准）",
-        "extra": "无。"
+        "extra": "本册的 3 条性质冲突来自 `docs/design/21-meridian-flow-and-moves.md` §12.1 定义的降龙绝招路线（`mfr_xianglong18_zhenjing`、`mfr_eighteen_palms_chain`、`mfr_xianglong18_shenlong`，检查脚本投影进五绝册）。协调者已把 21 加进本任务写集：只改 §12.1 这三条路线的体段穴位使其计票为阳（段数、逐段 CT / 风险、收招合计、动作末端 内关→劳宫、出招方式都不变），同步 21 内的镜像与说明；21 的其他章节一律不动。"
       },
       "validate": {
         "exists": [
