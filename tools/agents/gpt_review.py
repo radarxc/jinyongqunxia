@@ -14,6 +14,7 @@
 import argparse
 import json
 import os
+import shutil
 import subprocess
 import sys
 import time
@@ -62,9 +63,9 @@ def main():
     ap = argparse.ArgumentParser(description="用 GPT CLI 做合入前审核（只读）")
     ap.add_argument("task")
     ap.add_argument("--checks", default="", help="监督代理补充的审核要点：文件路径或文本")
-    ap.add_argument("--model", default="gpt-6-astra")
+    ap.add_argument("--model", default="GPT-6-Astra")
     ap.add_argument("--effort", default="ultra", help="none/minimal/low/medium/high/xhigh/max/ultra（默认最高档）")
-    ap.add_argument("--bin", default=os.environ.get("CODEX_BIN", CODEX))
+    ap.add_argument("--bin", default=os.environ.get("TRAEX_BIN") or shutil.which("traex") or shutil.which("traecli") or os.environ.get("CODEX_BIN", CODEX))
     ap.add_argument("--timeout-min", type=float, default=45)
     ap.add_argument("--max-images", type=int, default=8)
     ap.add_argument("--dry-run", action="store_true", help="只打印提示词与命令，不调用模型")
