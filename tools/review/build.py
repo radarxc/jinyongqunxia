@@ -233,6 +233,31 @@ def add_building_sheets(items, files, img_dir):
     return True
 
 
+TILE_WT = REPO / ".agents/wt/TOWN-tiles/assets/default/baseline/tile"
+
+
+def add_tile_sheet(items, files, img_dir):
+    """底图贴片（TOWN-tiles，未合入）：一张带编号总览图；64×32 的小贴片放大 4 倍显示。"""
+    if not (TILE_WT / "manifest.yaml").exists():
+        return False
+    out = img_dir / "sheet_tile.jpg"
+    info = CS.build(TILE_WT, out, cols=6, cell=240, upscale_small=4)
+    if not info:
+        return False
+    files[f"img/{out.name}"] = str(out)
+    by_id = {a["id"]: a for a in load_manifest(TILE_WT / "manifest.yaml")}
+    sha = hashlib.sha256("".join(x[2] for x in info).encode()).hexdigest()[:16]
+    listing = "\n".join(f"{n}. {i}（{size}）{by_id[i].get('subject', '')}" for n, i, _, size in info)
+    items.append({"id": "sheet_tile", "cat": "tile", "catLabel": "城镇·底图贴片", "state": "ready", "sha": sha,
+                  "subject": f"城镇底图贴片 {len(info)} 张（宋套件：大理 / 临安共用）——地面各 4 变体、河岸与路缘 8 向、城门、城墙、桥、植物、接触影",
+                  "prompt": "编号对应的素材：\n" + listing, "negative": "", "size": f"{len(info)} 张", "preview": f"img/{out.name}",
+                  "wide": True,
+                  "review": "你说“贴片就是一些素材，四五十个差不多就行了”，所以就这 60 张作为基线，不再补清单。地面贴片实际只有 64×32 像素（一格），图上放大了 4 倍才看得清；渲染时由代码平铺，河岸 / 路缘缺的形状由代码用 8 向边件叠。整批给一个结论，要改的写编号。",
+                  "ask": ["地面材质（夯土、土路、草地、青砖、石板、水面）的色调与颗粒感可以吗？", "城门、城墙、桥、树的画风和 45 度视角与建筑单体统一吗？", "哪几张不要或要改？写编号。"],
+                  "badge": gpt_badge("TOWN-tiles")})
+    return True
+
+
 def load_manifest(p):
     d = yaml.safe_load(p.read_text(encoding="utf-8"))
     return d["assets"] if isinstance(d, dict) else d
@@ -259,6 +284,7 @@ def main():
     items = []
     add_vfx_two_part(items, files, img_dir)          # 本轮新增的放最前
     have_bld = add_building_sheets(items, files, img_dir)
+    add_tile_sheet(items, files, img_dir)
     for cat, label, rel in CATS:
         if cat == "building-map" and have_bld and not (BASE / rel / "manifest.yaml").exists():
             continue
