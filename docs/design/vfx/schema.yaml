@@ -1,7 +1,8 @@
 $schema: https://json-schema.org/draft/2020-12/schema
 title: 外放招式两段式制作数据 v1
 description: >-
-  JSON Schema 的 YAML 表示；仅约束离线 EffectSet、EmitterPlate、Composition。
+  JSON Schema 的 YAML 表示；约束制作侧 EffectSet、EmitterPlate、Composition。
+  Composition 可导出 JSON 供 Three.js 播放器消费，不定义玩法运行时契约。
   路径相对所属 YAML，限制在同一素材套件目录内；见 design/23 §6、§11。
   x-unit 是单位注解，default 是建议而非自动补值；required 字段须显式写出。
 $comment: >-
@@ -211,6 +212,7 @@ $defs:
         scale_from: 1
         drift_fraction: 0
         brightness: [0.9, 1, 1, 1, 0.9]
+        directional_mask: {enabled: true, softness: 0.045}
     properties:
       interpolation: {type: string, enum: [crossfade, hold], description: 预乘线性插值或保持关键帧。, x-unit: enum, default: crossfade, examples: [crossfade]}
       scale_from: {type: number, exclusiveMinimum: 0, maximum: 1, description: 凝聚阶段根部缩放由此值到1，气剑强制1。, x-unit: ratio, default: 0.95, examples: [1]}
@@ -223,6 +225,21 @@ $defs:
         description: 五个阶段边界的线性 RGB 增益，只作用效果；高于1须检查过曝。
         x-unit: ratio
         examples: [[0.9, 1, 1, 1, 0.9]]
+      directional_mask: {$ref: '#/$defs/DirectionalMask'}
+  DirectionalMask:
+    type: object
+    additionalProperties: false
+    required: [enabled, softness]
+    description: >-
+      可选沿发出方向的推进遮罩；缺省关闭以兼容既有 Composition。
+      凝聚从根部显现，发出/持续全显，消散从根部向前端擦除；
+      只调制原图 alpha，不生成轮廓，总时长终点必须全退；见 design/23 §6.1。
+    examples:
+      - {enabled: true, softness: 0.08}
+      - {enabled: true, softness: 0.045}
+    properties:
+      enabled: {type: boolean, description: 是否启用方向推进；不影响整体包络。, x-unit: boolean, default: false, examples: [true]}
+      softness: {type: number, exclusiveMinimum: 0, maximum: 0.5, description: 前沿软带全宽占 reference_length_px 的比例；界限为前沿加减 softness/2。, x-unit: ratio, default: 0.08, examples: [0.08, 0.045]}
   Output:
     type: object
     additionalProperties: false
@@ -236,18 +253,18 @@ $defs:
         html_max_bytes: 3000000
         optional_animation: none
     properties:
-      fps: {type: integer, minimum: 1, maximum: 60, description: 重采样帧率；N=ceil(T*fps)+1。, x-unit: 'frame/s', default: 20, examples: [20]}
+      fps: {type: integer, minimum: 1, maximum: 60, description: 保留的采样参考帧率；Three.js 按真实时间连续求值，不烘焙帧序列。, x-unit: 'frame/s', default: 20, examples: [20]}
       loop: {type: boolean, description: 只循环观看，不循环玩法事件。, x-unit: boolean, examples: [true]}
       loop_gap_s: {type: number, minimum: 0, description: 终点帧的循环间隔；不计入战斗节奏。, x-unit: s, default: 0.4, examples: [0.4]}
       peak_phase: {type: number, minimum: 0, maximum: 1, description: peak.png 的精确相位；默认(c+r)/T，须显式记录。, x-unit: ratio, examples: [0.3333333333333333]}
-      preview_size_px: {$ref: '#/$defs/Size', description: HTML 编码帧尺寸，须等比缩放；母版不变。, examples: [[768, 512]]}
-      html_max_bytes: {type: integer, const: 3000000, description: 自包含 HTML 字节硬上限，十进制3 MB。, x-unit: byte, examples: [3000000]}
-      optional_animation: {type: string, enum: [none, apng, webp], description: 可选动图格式，PNG帧/HTML/peak始终必需。, x-unit: enum, default: none, examples: [none]}
+      preview_size_px: {$ref: '#/$defs/Size', description: HTML 画布展示尺寸，须与母版等比；纹理仍来自分离的 RGBA 原料帧。, examples: [[768, 512]]}
+      html_max_bytes: {type: integer, const: 3000000, description: HTML 字节硬上限，十进制3 MB；唯一允许外链见 design/23 §5.3。, x-unit: byte, examples: [3000000]}
+      optional_animation: {type: string, enum: [none, apng, webp], description: 保留旧数据枚举；Three.js 打包器只支持 none，非 none 明确拒绝，不再由 Python 烘焙动图。, x-unit: enum, default: none, examples: [none]}
   Composition:
     type: object
     additionalProperties: false
     required: [kind, version, asset_id, subject_ref, mode, effect_set, emitter_plate, canvas_px, background, emit_at_px, angle_deg, range_hex, pixels_per_hex, scale, emitter_scale, rhythm, transition, output]
-    description: 单个有向效果与一个独立发出方的离线合成，不承载命中或伤害算法。
+    description: 单个有向效果与一个独立发出方的制作/播放参数，不承载命中或伤害算法；JSON 打包附带 effect/emitter 对象不回写此 YAML。
     properties:
       kind: {type: string, const: Composition, description: 文档类型。, x-unit: enum, examples: [Composition]}
       version: {$ref: '#/$defs/Version'}

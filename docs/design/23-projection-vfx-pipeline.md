@@ -1,10 +1,10 @@
 # 23 · 外放招式特效管线（Projection VFX Pipeline）
 
 > 归属（基准 §18）：本文承接 `tech/07` 素材生产、`tech/02` 特效呈现的外放素材制作子契约；`EffectSet / EmitterPlate / Composition` 在本文定义，增列归属的提案见 §12.3，尚未修改基准。
-> 上游：`00-canon.md` v1.8；`decisions/author-decisions.md`、`decisions/author-requirements.md` AR-16～18；作者 2026-09-29 两段式制作决定与 `assets/default/STYLE.md` 原文、审批意见；`decisions/rulings-v1.md`。
+> 上游：`00-canon.md` v1.8；`decisions/author-decisions.md`、`decisions/author-requirements.md` AR-16～18；作者 2026-09-29 两段式制作决定、2026-09-30 Three.js 合成决定与 `assets/default/STYLE.md` 原文、审批意见；`decisions/rulings-v1.md`。
 > 引用而不重定义：外放判定、修为档位与端点 → `design/21` §4.4.1、§12.3；招式与 `anim` → `design/05` §4.1；六角格、范围和出招节奏 → `design/09` §5、§10.2；资产 ID、美术圣经与生产登记 → `tech/07` §1.4、§2、§5.9；相机、精灵和特效层 → `tech/02` §0.3、§2.5–2.6、§6；素材入库 → `assets/README.md`。
 > 标注约定：**（原创扩展）** = 本作视觉设计而非原著事实；**（待考）** = 原著事实待逐字核对；**（待核实）** = 技术事实未联网确认；**（待实测）** = 需实际素材、浏览器或真机验证；**【建议值】** = 可先执行、在文末登记的参数。
-> 版本：v1.0，2026-09-30。本文是设计交接，不代表工具、图片或游戏运行时已经实现。
+> 版本：v1.1，2026-09-30。本文约定制作与播放分工；工具和两招候选的实测状态见 `tools/agents/reports/VFX-three.md`，不代表游戏运行时已接入。
 
 ## 目录
 
@@ -24,7 +24,7 @@
 
 ## 0. 结论先行（TL;DR）
 
-**外放效果与发出方分别生成：连续白底效果图 → Python 切帧、抠成 RGBA；独立透明发出方图 → 标注发出点；两者按方向、长度和根部宽度合成 → 帧序列与自包含动效演示。** 造型来自生成图，程序只采样、裁切、抠图、变换、遮罩、混合和过渡，不画手、龙或气剑造型。测试用色块与占位样例须明确标识，不能进入正式素材 manifest。
+**外放效果与发出方分别生成：连续白底效果图 → Python 切帧、抠成 RGBA；独立透明发出方图 → 标注发出点；两者按方向、长度和根部宽度交给 Three.js 合成播放。合成与动效在 Three.js 里做，Python 只切帧。** Python 另可按同一 Composition 导出一张静态 `peak.png` 和打包演示，绝不烘焙动效帧。造型来自生成图，程序只采样、裁切、抠图、变换、遮罩、混合和过渡，不画手、龙或气剑造型。测试用色块与占位样例须明确标识，不能进入正式素材 manifest。
 
 ```mermaid
 flowchart LR
@@ -33,8 +33,9 @@ flowchart LR
   D[透明发出方图] --> E[EmitterPlate + 发出点]
   C --> F[Composition 方向与射程映射]
   E --> F
-  F --> G[整图 PNG 帧序列]
-  G --> H[过渡 + demo.html + peak.png]
+  F --> G[Three.js 实时合成与过渡]
+  G --> H[demo.html]
+  F --> I[单张 peak.png]
 ```
 
 水墨类保留虚实透明；降龙使用金色、宽根部覆盖整个掌面；气剑类保持内力凝缩、线性持续，不画成墨笔晕染、实体长指甲或离指短气刃。以上是作者的美术决定；具象金龙和气剑显色属于**（原创扩展）**，不冒充小说逐字描写。
@@ -45,27 +46,24 @@ flowchart LR
 
 ### 1.1 当前基线与新产物
 
-截至本文核查，`assets/default/baseline/vfx/` 有两张 1536×1024 RGB 整图、两个旧 `index.html` 和 manifest；两条 `ref_*` 均为 `candidate`。旧 HTML 仍含程序绘制造型，未发现可复用的 `layers/` 包。任务中提及的图层动画按后续成果接入，不能当作已验收资源；旧坐标也不能当作新图的实测锚点。
+原 VFX-design 核查时，`assets/default/baseline/vfx/` 有两张 1536×1024 RGB 整图、两个旧 `index.html` 和 manifest；两条 `ref_*` 均为 `candidate`。旧 HTML 仍含程序绘制造型，未发现可复用的 `layers/` 包。该记录保留为历史；当前两招候选与工具状态见 VFX-three 报告，旧坐标不能当作新图的实测锚点。
 
-后续 VFX-plates 保留旧整图和旧条目，新增以下目录。`<主体ID>` 优先用已有招式 ID；六脉首批是武学整体风格样例，允许沿用 `sk_liumai` 目录，但接入具体出招时必须绑定已有 `mv_*`。
+VFX-three 复用 VFX-plates 原料，保留旧整图和旧条目，套件按以下目录交付。`<主体ID>` 优先用已有招式 ID；六脉首批是武学整体风格样例，允许沿用 `sk_liumai` 目录，但接入具体出招时必须绑定已有 `mv_*`。
 
 ```text
 assets/default/baseline/vfx/<主体ID>/
-  effect/source_01.png          # 白底生成原件，逐字节保留
+  effect/source_sheet.png       # 白底生成原件，逐字节保留
   effect/frame_000.png          # 切帧、抠图后的母版；从 000 起
   effect/effect-set.yaml        # EffectSet
-  effect/preview_black.png     # --preview 质检，不作新造型
-  effect/preview_gray.png
-  emitter/plate.png            # 原生透明 RGBA 发出方
+  emitter/source_*.png          # 原生透明 RGBA 发出方
   emitter/emitter-plate.yaml   # EmitterPlate
   composition.yaml             # Composition，引用上述两个 YAML
-  frames/key_000.png           # compose 导出的整图关键帧
-  frames/frame_0000.png         # animate 重采样后的整图帧
-  demo.html                    # 图片、样式、脚本全部内嵌
+  composition.json             # YAML 导出并附带 effect/emitter 元数据
+  demo.html                    # 原料与播放器内嵌；Three.js 唯一外链见 §5.3
   peak.png                     # 峰值静帧、manifest 的主 file
 ```
 
-可选动图命名为 `animation.apng` / `animation.webp`。原图、关键帧和重采样帧分别登记，禁止覆盖原件。文件序号是局部序号，不注册为玩法 ID。
+不交付烘焙整图帧、`animation.json` 或可选动图；黑/灰/白质检可在临时目录生成，不进入最终套件。原图与切帧分别登记，禁止覆盖原件。文件序号是局部序号，不注册为玩法 ID。
 
 ### 1.2 命名与登记
 
@@ -225,13 +223,21 @@ p_out = E + δ(t) v + R(θ) diag(sx k(t), sy k(t)) R(−φ) (p − a)
 
 ### 5.3 输出与脚本分工
 
-`compose.py` 输出每个相位的 `key_NNN.png` 并保留 Composition/原图引用；`animate.py` 接收这些关键帧及同一 Composition，在中间时刻调用共用图层采样逻辑，输出完整 `frame_NNNN.png`。正式模式必须能解析 EffectSet、EmitterPlate 及原料帧，原料缺失即拒绝。位移、缩放与亮度必须在分离图层上应用；若只提供烘好的整图，工具只能做标明降级的 whole-frame crossfade/hold，必须拒绝非零 drift、非 1 scale_from 或非恒定 brightness，不能把手一起移动。输出清单记录两种采样的区别，禁止重复施加包络。
+| 执行者 | 唯一职责 | 产物 |
+|---|---|---|
+| `cut_frames.py` | 依 §2 切格、白底转 straight RGBA；保留生成原件 | `effect/frame_*.png`、EffectSet |
+| `web/timeline.js` | 无 Three.js 依赖的纯函数；按 §5.1–5.2 求帧索引/混合、包络、缩放、位移、亮度和阶段 | 当前时刻的采样状态；用 Node 测试 |
+| `web/vfx_player.js` | 正交像素相机、分离平面、根部对齐、预乘帧插值和方向推进遮罩；按 §4 混合 | Three.js 实时画面 |
+| `compose.py` | 仅按同一份 Composition 在精确 `peak_phase` 采样一张静态整图 | `peak.png`，用于缩略图和审批 |
+| `build_demo.py` | YAML 转 JSON，内嵌播放器、分离原料 data URI 和控件；不生成动画帧 | `composition.json`、`demo.html` |
 
-默认 20 fps【建议值】；`N=ceil(T×fps)+1`，第 i 帧采样 `t_i=min(i/fps,T)`，例如 0.6 s 为 13 帧。相邻帧显示时长为 `t_(i+1)−t_i`，终点帧仅持有循环间隔 `loop_gap_s=0.4`【建议值】，不再偷偷增加一个帧间隔。`loop=false` 到末帧停住；`loop=true` 仅循环观看，绝不循环伤害。静帧默认 `peak_phase=(c+r)/T`，六脉为 1/3；`peak.png` 在精确该时刻采样，减少动态或首次未播放时展示它。
+播放器接口为 `createVfxPlayer(THREE, { canvas, composition, emitterImage, effectFrames }) → { play, pause, seek, setSpeed, dispose, duration, onFrame }`；模块本身不导入 Three.js，游戏传入自己的实例。位移、缩放、亮度与推进遮罩只作用效果层，手部保持独立。ShaderMaterial 对相邻两张原料帧做根部对齐后的预乘 alpha 插值，不以两次 source-over 代替插值，不绘制造型。旧 `animate.py`、Canvas 帧播放器与程序造型占位路线退出交付。
 
-演示 Canvas 只画合成图片，资源以 WebP data URI 内嵌；提供播放/暂停、速度调节、减少动态静帧，能在 `<iframe sandbox="allow-scripts" srcdoc>` 中运行；无网络请求、外部脚本、字体或路径依赖。单 HTML 硬门为 **≤3,000,000 bytes**（本任务按十进制 3 MB 执行），默认先将展示帧缩到 768×512【建议值】并做 WebP 编码；母版及 peak 保留 1536×1024。失败时降演示尺寸/编码质量并报告，不覆盖母版。
+浏览器按真实时间连续求值；`output.fps=20` 只保留为采样参考【建议值】，不再生成 `ceil(T×fps)+1` 张整图。`loop=false` 在 T 停止；`loop=true` 在 T 后持有 `loop_gap_s=0.4`【建议值】再从 0 开始，循环只用于观看。0.6 s 效果加 0.4 s 间隔仍为 1.0 s，不增加伤害事件。首次加载和减少动态均停在 `peak_phase×T`；默认 `peak_phase=(c+r)/T`，六脉为 1/3，Python 静态图也精确取该时刻。
 
-例如 13 帧每帧约 90,000 bytes，仅是预算假设：Base64 约 `13×4×ceil(90000/3)=1,560,000 bytes`，再留控件和脚本空间；实际以文件字节数验收**（待实测）**。可选 APNG/WebP 动图复用同一时间表；编码器能力与浏览器实际显示须由 VFX-tool/VFX-plates 验证，不用可选编码失败替代必需 HTML。
+演示提供播放/暂停、速度、减少动态开关。除 importmap 将 `three` 映射到 `https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.min.js` 外，其余资源、脚本和样式全部内嵌；版本沿用 `tech/01`，地址为本任务指定，CDN 可用性**（待核实）**。单 HTML 硬门为 **≤3,000,000 bytes**（十进制 3 MB）；默认展示 768×512【建议值】，逻辑画幅和峰值图保留母版尺寸。不得为减包覆盖母版、漏原料帧或退回 Python 烘焙动效。
+
+体积按实际内嵌的发出方和原料帧核算：图片二进制合计 B 时，Base64 约为 `4×Σceil(B_i/3)`，另加 JSON、播放器、控件与 importmap；不再乘浏览器显示帧数。预算超限应明确失败并报告。`--html` 检查字节数、唯一许可外链及内联脚本的 `node --check`；真正的 WebGL、纹理色彩、CDN 模块依赖和 `<iframe sandbox="allow-scripts" srcdoc>` 运行由协调者浏览器验收**（待实测）**，静态检查不构成通过证明。
 
 ## 6. 数据格式与最小实例
 
@@ -243,11 +249,19 @@ p_out = E + δ(t) v + R(θ) diag(sx k(t), sy k(t)) R(−φ) (p − a)
 |---|---|---|
 | EffectSet | 素材 ID、尺寸、颜色/alpha、风格、方向、参考长/根宽、混合、来源裁格/抠图参数、帧路径/锚点/phase | px、单位向量、0–1 相位；4–8 帧 |
 | EmitterPlate | RGBA 文件、尺寸、颜色/alpha、类别、发出点、方向、发出截面宽 | px、单位向量；不另设玩法 ID |
-| Composition | 套件素材 ID、主体引用、两个 YAML、画幅/底色、E/角度、示意距离/标尺/可选投影长度、两轴缩放、节奏、过渡、输出 | hex、px、px/hex、度、秒、倍率、fps、bytes |
+| Composition | 套件素材 ID、主体引用、两个 YAML、画幅/底色、E/角度、示意距离/标尺/可选投影长度、两轴缩放、节奏、过渡及可选推进遮罩、输出 | hex、px、px/hex、度、秒、倍率、fps、bytes |
 
 YAML 只允许 JSON 兼容值；拒绝重复键、非有限数、可执行标签与循环引用。路径相对**持有该字段的 YAML 文件**，先解析再检查仍位于同一个 `<主体ID>/` 套件内；拒绝网络 URL、绝对路径及经 `..` 或符号链接逃出根目录的路径。元数据里的路径必须指向实际文件，示例除外。
 
 `mode: baseline` 是独立风格样例，不声称某次战斗合法；`resolved_preview` 必须提供 `move_ref`、`length_px` 和已解算诊断字段，由上游适配器验证其来源。`projection_step / projection_boost_active` 分别映射 `projectionStep / projectionBoostActive`；`effective_range_max_hex` 取 `design/09` 的最终 `range.max_eff`，不能直接拿 `design/21` 的中间 `effectiveRange` 替代独立修正后的结果。三项均只读，不是第二份玩法定义；后续工具不能据 `subject_ref` 自动填档位。
+
+`build_demo.py` 先校验三份 YAML，再导出 JSON：保留 Composition 的全部字段，并附加 `effect`（完整 EffectSet）和 `emitter`（完整 EmitterPlate）。这些展开对象供 `timeline.js` 和播放器读取，图片由 `effectFrames`、`emitterImage` 参数按帧序单独传入；JSON 中的原始路径仍用于来源追溯。它不是新增的玩法契约，也不把附加对象回写 Composition YAML；schema 对 YAML 的 `additionalProperties: false` 保持不变。
+
+新增可选 `transition.directional_mask: { enabled, softness }`。缺省不启用，兼容旧 Composition；新候选启用。以原料局部像素 p、该帧锚点 a、单位方向 d̂ 定义 `q=dot(p−a,d̂)/reference_length_px`，即从根部到参考前端的比例。凝聚期前沿为 §5.1 的 `S(t/c)`，从根部向前端显现；发出/持续期完整显示原图；消散期擦除前沿为 `S((t−c−r−s)/d)`，从根部向前端退去。阶段时长为 0 时沿用 §5.1 的跳过规则；`c=0` 时 t=0 可直接发出/持续，不强制空白，但 t=T 必须无效果，不能因软边残留末端亮点。
+
+`softness∈(0,0.5]` 是前沿软带全宽占参考长度的比例，软带界限为 `前沿±softness/2`；凝聚遮罩取 `1−smoothstep(左界,右界,q)`，消散取其互补。遮罩乘原图 alpha，再乘 §5.1 包络，不新增颜色或轮廓。通用 `0.08`、六脉 `0.045` 为**【建议值，待实测】**：六脉窄软带强调线性推进，不能据此扩展命中长度；相同几何变换作用于原图与遮罩，旋转后仍沿发出方向。阶段端点须直接切到全显/全退，兼顾 q<0 的根部柔边与 q>1 的尾部像素。`scale_from / drift_fraction / brightness` 仍按原公式；气剑保持 `1 / 0`，只调整亮度、混合和遮罩。
+
+`output.fps` 留作采样参考，不限制 `requestAnimationFrame` 时间精度；`preview_size_px` 为等比显示尺寸；`optional_animation` 保留旧枚举以读取历史 YAML，新打包流程只支持 `none`，其他值明确报错。`html_max_bytes=3000000` 不变，外链例外严格按 §5.3。
 
 ### 6.2 EffectSet 实例
 
@@ -329,6 +343,7 @@ transition:
   scale_from: 1
   drift_fraction: 0
   brightness: [0.9, 1, 1, 1, 0.9]
+  directional_mask: {enabled: true, softness: 0.045}
 output:
   fps: 20
   loop: true
@@ -339,7 +354,7 @@ output:
   optional_animation: none
 ```
 
-该图长度 `5×128=640 px`，沿向缩放 `640/800=0.8`，横向 `24/24=1`；0.6 s、20 fps 产生 13 个含端点采样，循环 1.0 s。5 格只作基线示意；接入具体 `mv_liumai_shangyang` 时由其现行图鉴卡与 Core 解算重新验证。
+该图长度 `5×128=640 px`，沿向缩放 `640/800=0.8`，横向 `24/24=1`；效果 0.6 s、加间隔循环 1.0 s，Three.js 连续采样。遮罩软带在参考图上为 `0.045×800=36 px`，变换后沿向为 `36×0.8=28.8 px`。5 格只作基线示意；接入具体 `mv_liumai_shangyang` 时由其现行图鉴卡与 Core 解算重新验证。
 
 ## 7. 类别默认参数与玩法字段映射
 
@@ -409,11 +424,13 @@ RGBA 真透明背景，{width}×{height}；保留必要的手/腕/袖或兵器�
 
 ## 9. 下游交接、同步清单与参考资料
 
-### 9.1 交 VFX-tool / VFX-plates
+### 9.1 交 VFX-three / VFX-plates
 
-VFX-tool 按 §2–6 实现四个 CLI；使用标准库、PIL、numpy、PyYAML，Python 3.11，依赖范围沿用该任务。无需新增 jsonschema 运行依赖：可依本 YAML 编写对应检查器，但不得忽略 required、未知键与 §11 跨字段规则。本文自检使用本机已有 jsonschema 只验证格式设计。原料缺失、超界、非法向量和 HTML 超预算均必须明确失败，不能悄悄降级为程序造型。
+VFX-three 按 §2–6 接替旧动效执行段：Python 仅用标准库、Pillow、numpy、PyYAML 负责切帧/抠图、单张峰值和演示打包；JS 无额外第三方依赖，Three.js 由调用方传入。无需新增 jsonschema 运行依赖；检查器不得忽略 required、未知键与 §11 跨字段规则。`timeline.js` 用 `node --test tools/vfx/web/` 测试，`vfx_player.js` 做 `node --check` 和代码复核；浏览器不可用时必须如实登记“未在浏览器实跑”，不得冒充 GPU 已验证。原料缺失、超界、非法向量和 HTML 超预算均明确失败。
 
-VFX-plates 生成两套正式候选：降龙亢龙有悔、六脉线性气剑；实际跑抠图、合成、动效和检查，记录实测参数/哈希/尺寸。主 manifest 仍保留原两条 `ref_*`，新增两条 `vfx_*`，共 4 条；新增主图用短边至少 512 的 peak，套件内部文件列清单。示例配置不等于图片已存在，也不等于作者批准。
+VFX-plates 的两套原料由 VFX-three 原样接续：降龙十八掌·亢龙有悔、六脉线性气剑；不因六脉偏细偏灰重新生图，先在 Composition 调亮度、混合和推进遮罩，原料是否重出及手部画法交作者审批。按 §1.1 整理套件，导出 JSON、静态 peak 和 Three.js demo，记录实测大小/哈希。manifest 保留原两条 `ref_*` 与旧文件，两条 `vfx_*` 的 `file=peak.png`、`code=demo.html`、`pipeline=two-part`、`status=candidate`；示例与技术检查不等于作者批准。
+
+协调者浏览器验收：CDN/importmap 模块能加载；首屏精确峰值；播放/暂停、变速、seek、循环间隔和减少动态生效；两种手部与根部持续对齐；任意角度及前沿无切口、白边或残影；screen/lighter 的色彩与静态峰值对照；重复创建/销毁释放纹理与 WebGL 资源；sandbox srcdoc 可用。离线首次打开不保证库可用，错误必须可见；唯一直接外链限制不能替代真实网络请求核对。
 
 ### 9.2 需同步到其他文档（本任务不修改）
 
@@ -455,7 +472,7 @@ VFX-plates 生成两套正式候选：降龙亢龙有悔、六脉线性气剑；
 2. **文件与坐标**：路径安全且 PNG/YAML 类型正确；裁格落在原图内；v1 不隐式缩放裁格，裁格 w/h 必须等于 size_px。帧尺寸一致、RGBA 含真实透明/非透明像素；方向非零且单位化；锚点与输出 E 在各自画幅内。源图白边、全部帧变换并集安全距离及白边指标按 §2、§4 检查，棋盘格和造型仍须人工验收。
 3. **抠图**：`opaque_luma<white_cutoff_8bit/255`；`key_full_8bit>255−white_cutoff_8bit`；epsilon 不超过1/255；保存 RGB 为 straight，0 alpha 的 RGB 归0。每种模式做白底重建与黑/灰预览，不能仅检查 PNG 的通道数。
 4. **跨对象**：`qi_sword` 必须 `scale_from=1, drift_fraction=0` 且 blend 为 screen/lighter；金龙根宽必须与真实掌面匹配；path 指向的对象 kind 正确。`resolved_preview` 的沿向 scale 必须1，引用合法既有招式，并由上游验证最终范围/音功分支；离线工具不重算玩法。
-5. **时间与产物**：总时长>0；帧数/末帧时间按 §5.3；预览尺寸与母版同宽高比；正式 animate 能读到分离原料；存在 PNG、peak、单 HTML。HTML ≤3,000,000 bytes 且实际无外部依赖；对网络 API/外部 src、href、CSS url 做检查并在断网及 sandbox srcdoc 下运行，单纯 grep 不是完整证明。
+5. **时间与产物**：总时长>0；连续采样与循环按 §5.3；预览尺寸与母版同宽高比；打包器能读到分离原料；存在 RGBA 原料帧、JSON、peak、单 HTML。HTML ≤3,000,000 bytes，直接外链仅限 §5.3 的 importmap 地址；检查网络 API/外部 src、href、CSS url 及内联脚本语法，真实网络和 sandbox srcdoc 另行实跑，静态扫描不是完整证明。
 6. **状态与诚实**：工具失败要非零退出并指出字段/文件；材质、浏览器/设备、编码和人工审美未验证的保留标记。文档示例不是生产候选，程序测试图必须标识测试用途；已批准状态不能由检查器自动写入。
 
 ### 11.2 必备测试矩阵
@@ -473,9 +490,10 @@ VFX-plates 生成两套正式候选：降龙亢龙有悔、六脉线性气剑；
 | 近战但 projection=true | 可选用本管线，不自动改变 delivery |
 | 反击：range_hex=0、max=0、length_px>0 | 合法触发事件可表现；不把画面触发者距离与主动0射程比较，不扩大触发瞄准 |
 | 音功0档、1档；大手印一次落点事件 | 0档无强化气浪；1档消费已解算结果；插帧/循环不增加事件 |
-| 0.6 s、20 fps、gap0.4 s | 13帧含端点；t=0/T效果alpha0；循环1.0 s；peak精确取相位 |
+| 0.6 s、gap0.4 s与零时长阶段 | 连续采样、循环1.0 s；凝聚>0时t=0效果alpha0，T恒0；零阶段跳过、重复亮度边界取后值；peak精确取相位 |
+| 推进遮罩、任意角度与端点 | 根部至前端显现/擦除；softness按参考长度且为全宽；持续全显，终点无残影；缺省关闭保持兼容 |
 | 原料缺失、虚假透明、超预算HTML | 明确失败；不生成程序替代造型、不静默截帧 |
-| 离线 / sandbox srcdoc / 减少动态 | 无网络依赖，控件正常；减少动态停在peak；真机另测 |
+| CDN / sandbox srcdoc / 减少动态 | 库可加载且控件正常；库不可用时明确显示错误；减少动态停在peak；真机另测 |
 
 ### 11.3 本任务门禁
 
@@ -484,7 +502,7 @@ python3 -c "import yaml; yaml.safe_load(open('docs/design/vfx/schema.yaml'))"
 python3 tools/lint/check_ids.py --strict
 ```
 
-另以本机 JSON Schema 验证器核对 schema 与 §6 三份 YAML 示例。上表是后续实现的验收用例；本文未交付工具，不能把这些用例写成已跑通真实素材。实际执行结果见 `tools/agents/reports/VFX-design.md`。
+上表是实现验收清单，不等于浏览器或真机已通过；历史格式自检见 `tools/agents/reports/VFX-design.md`，当前工具、素材检查与未实跑项目见 `tools/agents/reports/VFX-three.md`。
 
 ## 12. 待决事项 / 依赖
 
@@ -499,7 +517,8 @@ python3 tools/lint/check_ids.py --strict
 | 抠图质量线 | 8 px边框alpha残留0、白边≤1%、重建误差≤2/255 | VFX-tool 报告；不能取代人工验收 |
 | 节奏 | pulse/linear 0.6 s、wave0.9 s；20fps；gap0.4 s；peak=(c+r)/T | 09预算与 tech/02 动作事件；真机可读性 |
 | 变换与底色 | 墨/金scale_from0.95、drift0（余韵至多0.05）；气剑1/0；纸底，金光可另试深墨底 | STYLE 作者审批；不得程序补形 |
-| HTML | 展示768×512，单文件≤3,000,000 bytes；WebP data URI；可选动图默认不出 | VFX-tool 已定任务上限、浏览器编码实测；母版保留 |
+| 推进遮罩 | 旧配置缺省关闭，新候选启用；softness通用0.08、六脉0.045 | §6.1；视觉软带需浏览器/真机确认，不影响命中 |
+| HTML | 展示768×512，单文件≤3,000,000 bytes；分离原料data URI；唯一Three.js外链见§5.3；可选动图不出 | 已解决：执行分工改为Three.js（§5.3）；母版保留，浏览器仍待实测 |
 
 ### 12.2 本文依赖的上游事实
 
@@ -529,7 +548,8 @@ python3 tools/lint/check_ids.py --strict
 | VFX-O04 | 人物整身与独立手图如何衔接 | 基线仅独立手图；运行时另接逐帧掌/指/剑尖挂点，待tech/02落实 |
 | VFX-O05 | 持续气剑是否需要更慢的鉴赏播放 | 保留0.6 s母时间轴，用播放器减速观察；不加战斗CT或伤害段 |
 | VFX-O06 | 前景遮挡、透明效果原件/人工遮罩输入 | v1暂不支持，优先重出可用图；新增字段须版本化，不隐式处理 |
-| VFX-O07 | 手机显示与WebP/APNG编码质量 | 以PNG+HTML为必需交付，可选动图默认none；真机/实际编码待测 |
+| VFX-O07 | 手机显示与WebP/APNG编码质量 | 已解决：Python动图编码退出当前交付，保留none（§5.3）；PNG+Three.js HTML必需，CDN、浏览器/手机显示仍待核实或实测 |
 | VFX-O08 | 旧图层演示是否可作为原料 | 已核查当前无图层包；保留旧整图/HTML对照，未来图层包须重新验证，不继承旧程序锚点 |
+| VFX-O09 | 六脉原料与两招手部是否需要重出 | 当前复用现有原料，仅调Composition亮度/混合/推进；原料造型、六脉颜色与手部画法交作者审批，不自动重出 |
 
 已解决：两段式制作、气剑不用水墨、降龙金色与全掌面透出均已有作者决定（见 STYLE 与本文 §0），不再重复列为等待批准的问题。其余建议可先执行，作者未另确认的不能写为已批准。

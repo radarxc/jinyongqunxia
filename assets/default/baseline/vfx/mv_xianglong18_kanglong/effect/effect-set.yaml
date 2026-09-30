@@ -1,0 +1,48 @@
+kind: EffectSet
+version: 1
+asset_id: vfx_sk_xianglong_dragon
+size_px: [680, 320]
+color_space: srgb
+alpha_mode: straight
+style: gold_ink
+direction: [1, 0]
+reference_length_px: 554
+root_width_px: 183
+blend: lighter
+source:
+  mode: grid
+  files: [source_sheet.png]
+  rects:
+  - file_index: 0
+    rect_px: [20, 24, 680, 320]
+  - file_index: 0
+    rect_px: [734, 24, 680, 320]
+  - file_index: 0
+    rect_px: [20, 376, 680, 320]
+  - file_index: 0
+    rect_px: [734, 376, 680, 320]
+  - file_index: 0
+    rect_px: [20, 729, 680, 320]
+  - file_index: 0
+    rect_px: [734, 729, 680, 320]
+  keying: {method: white_key, white_cutoff_8bit: 250, opaque_luma: 0.2, key_full_8bit: 163, epsilon: 0.00392156862745098,
+    dewhite: true}
+frames:
+- file: frame_000.png
+  anchor_px: [76, 160.5]
+  phase: 0
+- file: frame_001.png
+  anchor_px: [76, 160]
+  phase: 0.16666666666666666
+- file: frame_002.png
+  anchor_px: [76, 160]
+  phase: 0.2916666666666667
+- file: frame_003.png
+  anchor_px: [76, 159.5]
+  phase: 0.4166666666666667
+- file: frame_004.png
+  anchor_px: [76, 160]
+  phase: 0.8333333333333334
+- file: frame_005.png
+  anchor_px: [76, 160.5]
+  phase: 1

@@ -1,0 +1,221 @@
+{
+  "kind": "Composition",
+  "version": 1,
+  "asset_id": "vfx_mv_xianglong18_kanglong__ch02_base01",
+  "subject_ref": "mv_xianglong18_kanglong",
+  "mode": "baseline",
+  "effect_set": "effect/effect-set.yaml",
+  "emitter_plate": "emitter/emitter-plate.yaml",
+  "canvas_px": [
+    3072,
+    2048
+  ],
+  "background": "#4A433C",
+  "emit_at_px": [
+    1040,
+    1180
+  ],
+  "angle_deg": 0,
+  "range_hex": 1,
+  "pixels_per_hex": 128,
+  "length_px": 1700,
+  "scale": [
+    1,
+    2
+  ],
+  "emitter_scale": 0.6,
+  "rhythm": {
+    "charge_s": 0.1,
+    "release_s": 0.15,
+    "sustain_s": 0.25,
+    "dissipate_s": 0.1
+  },
+  "transition": {
+    "interpolation": "crossfade",
+    "scale_from": 0.95,
+    "drift_fraction": 0,
+    "brightness": [
+      0.8,
+      1,
+      1,
+      1,
+      0.8
+    ],
+    "directional_mask": {
+      "enabled": true,
+      "softness": 0.08
+    }
+  },
+  "output": {
+    "fps": 20,
+    "loop": true,
+    "loop_gap_s": 0.4,
+    "peak_phase": 0.4166666666666667,
+    "preview_size_px": [
+      768,
+      512
+    ],
+    "html_max_bytes": 3000000,
+    "optional_animation": "none"
+  },
+  "effect": {
+    "kind": "EffectSet",
+    "version": 1,
+    "asset_id": "vfx_sk_xianglong_dragon",
+    "size_px": [
+      680,
+      320
+    ],
+    "color_space": "srgb",
+    "alpha_mode": "straight",
+    "style": "gold_ink",
+    "direction": [
+      1,
+      0
+    ],
+    "reference_length_px": 554,
+    "root_width_px": 183,
+    "blend": "lighter",
+    "source": {
+      "mode": "grid",
+      "files": [
+        "source_sheet.png"
+      ],
+      "rects": [
+        {
+          "file_index": 0,
+          "rect_px": [
+            20,
+            24,
+            680,
+            320
+          ]
+        },
+        {
+          "file_index": 0,
+          "rect_px": [
+            734,
+            24,
+            680,
+            320
+          ]
+        },
+        {
+          "file_index": 0,
+          "rect_px": [
+            20,
+            376,
+            680,
+            320
+          ]
+        },
+        {
+          "file_index": 0,
+          "rect_px": [
+            734,
+            376,
+            680,
+            320
+          ]
+        },
+        {
+          "file_index": 0,
+          "rect_px": [
+            20,
+            729,
+            680,
+            320
+          ]
+        },
+        {
+          "file_index": 0,
+          "rect_px": [
+            734,
+            729,
+            680,
+            320
+          ]
+        }
+      ],
+      "keying": {
+        "method": "white_key",
+        "white_cutoff_8bit": 250,
+        "opaque_luma": 0.2,
+        "key_full_8bit": 163,
+        "epsilon": 0.00392156862745098,
+        "dewhite": true
+      }
+    },
+    "frames": [
+      {
+        "file": "frame_000.png",
+        "anchor_px": [
+          76,
+          160.5
+        ],
+        "phase": 0
+      },
+      {
+        "file": "frame_001.png",
+        "anchor_px": [
+          76,
+          160
+        ],
+        "phase": 0.16666666666666666
+      },
+      {
+        "file": "frame_002.png",
+        "anchor_px": [
+          76,
+          160
+        ],
+        "phase": 0.2916666666666667
+      },
+      {
+        "file": "frame_003.png",
+        "anchor_px": [
+          76,
+          159.5
+        ],
+        "phase": 0.4166666666666667
+      },
+      {
+        "file": "frame_004.png",
+        "anchor_px": [
+          76,
+          160
+        ],
+        "phase": 0.8333333333333334
+      },
+      {
+        "file": "frame_005.png",
+        "anchor_px": [
+          76,
+          160.5
+        ],
+        "phase": 1
+      }
+    ]
+  },
+  "emitter": {
+    "kind": "EmitterPlate",
+    "version": 1,
+    "file": "source_palm.png",
+    "size_px": [
+      1254,
+      1254
+    ],
+    "color_space": "srgb",
+    "alpha_mode": "straight",
+    "category": "palm",
+    "emit_point_px": [
+      850,
+      704
+    ],
+    "direction": [
+      1,
+      0
+    ],
+    "emission_width_px": 320
+  }
+}
