@@ -14497,6 +14497,71 @@
       }
     },
     {
+      "id": "LINT-outlets",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "draft",
+      "title": "检查脚本维护 · 路线出口剥离与普通路线唯一性（NR4 交来）",
+      "prompt": "LINT-outlets.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "tools/lint/check_skill_catalogs.py",
+        "tools/lint/test_check_skill_catalogs.py",
+        "tools/lint/README.md",
+        "tools/agents/check_route_unique_for.py",
+        "tools/agents/check_nr4_unit.py"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/lint/check_skill_catalogs.py"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
       "id": "NAu-final",
       "phase": "G",
       "wave": 6,
@@ -14564,7 +14629,8 @@
         "NR4-kangxi",
         "NR4-qianlong",
         "NR4-gulong",
-        "NR4-bulu"
+        "NR4-bulu",
+        "LINT-outlets"
       ],
       "writes": [
         "docs/**",
