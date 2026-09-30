@@ -147,6 +147,10 @@
 
 ### 9.4 进度（随做随更新）
 - NR4 十二册全部合入：少林 364c030、逍遥 e1771ac；全部 25 册图鉴 `check_nr4_unit.py` 为 0/0/0。
-- 已登记并启动（47c828e）：LINT-outlets、NR4S-01…14（按书界同步）、NR4S-rules（design/03、05、07、10、20、21 与图鉴互引的性质同步）。
-- 素材线在跑：TOWN-design（第 3 次运行，接 r1 返修）、VFX-design（重新开工）、ART-R3-vfx（第 3 次运行，接 r1 返修）。
+- 已合入：LINT-outlets（f1c683e）、NR4S-rules（e2ded88）、NR4S-01…14（09 返修中，其余已合入或正在合入）、VFX-design（a9f804b）。
+- 已登记并在跑：NR5-<15 单元>（显式普通路线的完全相同 / 高相似配对，070b49f）；NAu-final 拆分的 NAuF-sysA / NAuF-rules / NAuF-lint / NAuF-book-NN（各书界 NR4S 合入后逐个启动）；VFX-tool。
+- 还没启动（等依赖）：NAuF-cat-<12 单元>（等 NAuF-rules 与对应 NR5）、NAuF-assets（等 TOWN-design）、NAuF-canon（等 NR4S 全部、TOWN-design）、NAu-final 收口（等全部 NAuF / NR5）；VFX-plates（等 VFX-tool 与 ART-R3-vfx）；TOWN-tiles / TOWN-buildings / TOWN-render（等 TOWN-design）。
+- 素材线在跑：TOWN-design（r2 仍 FAIL，返修中）、ART-R3-vfx（r2 FAIL 后返修，r3 审核中）。
+- 准出用 `python3 tools/agents/accept.py <ID>…`（READY + PASS → finish + merge；素材任务要加 `--author-approved`）。
+- 每类审核要点文件：`.agents/coord/{NR4S,NR5,NAuF,TOWN,VFX}/review_checks*.md`。
 
