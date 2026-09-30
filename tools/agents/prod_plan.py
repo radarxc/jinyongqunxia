@@ -135,14 +135,14 @@ def register_cities(d, band=None, kit=None, limit=None, importance=("capital", "
             "id": tid, "title": f"城镇 · {display}（{c['modern_name']} · {BAND_DESC[b]} · {'/'.join(chs)}）", "phase": "PROD", "wave": 10,
             "kind": "draft", "prompt": "CITY.md", "deps": ["TOWN-assemble"] + ([f"KIT-{k}"] if k not in ("song_dali", "song_southern") else []),
             "review": False, "web": True,
-            "writes": [f"docs/design/town/city_{cid}__*.yaml", f"docs/design/town/history/{cid}__{b}*", f"assets/default/town/{cid}__*/**"],
+            "writes": [f"docs/design/town/{cid}__*.yaml", f"docs/design/town/history/{cid}__{b}*", f"assets/default/town/{cid}__*/**"],
             "vars": {"city_id": cid, "display_name": display, "band": b, "band_desc": BAND_DESC[b], "year": str(BAND_YEAR[b]),
                      "chapters": "/".join(chs), "ch_primary": primary, "ch_others": "、".join(chs[1:]) or "（无）",
                      "kit_id": k, "story_refs": story},
             "validate": {"exists": [f"docs/design/town/history/{cid}__{b}.md", f"docs/design/town/history/{cid}__{b}_plan.png"]
                                    + [f"assets/default/town/{cid}__{ch}/{f}" for ch in chs for f in ("town.png", "preview.png", "layout.yaml", "manifest.yaml")],
-                         "cmd": sum(([["{python}", "tools/town/gen_layout.py", f"docs/design/town/city_{cid}__{ch}.yaml", "-o", f"/tmp/tianshu_{cid}_{ch}.yaml"],
-                                      ["{python}", "tools/town/check_town.py", f"docs/design/town/city_{cid}__{ch}.yaml", f"assets/default/town/{cid}__{ch}/layout.yaml", "--strict-assets"],
+                         "cmd": sum(([["{python}", "tools/town/gen_layout.py", f"docs/design/town/{cid}__{ch}.yaml", "-o", f"/tmp/tianshu_{cid}_{ch}.yaml"],
+                                      ["{python}", "tools/town/check_town.py", f"docs/design/town/{cid}__{ch}.yaml", f"assets/default/town/{cid}__{ch}/layout.yaml", "--strict-assets"],
                                       ["{python}", "tools/agents/check_assets.py", f"assets/default/town/{cid}__{ch}", "--min", "1", "--max", "1", "--min-side", "512"]]
                                      for ch in chs), []) + [["{python}", "tools/lint/check_ids.py", "--strict"]]}})
         n += 1
