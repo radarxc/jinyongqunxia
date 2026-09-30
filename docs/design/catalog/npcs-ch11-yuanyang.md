@@ -2,21 +2,21 @@
 
 > 归属：`design/18-npc-and-companions.md` 的主线重要 NPC 数据。游戏定年约 1740（原创扩展），引用 `design/02`。
 > 原著及史实原型具名人物共 14 名；另设 6 名明确标注 `origin=expanded` 的原创支线人物，使静态 NPC 达到 20 名。表末仍保留 6 个无名职能槽作为额外生成位，但不把它们计入静态人物下限。
-> 版本：v1.3；经脉落地终审（2026-09-29，首领武学栏同步）。
+> 版本：v1.4；多人战整场耐久与完整对手复核（2026-09-29，首领武学栏同步）。
 
 | ID / 槽 | 人物 / 原著身份 | 生卒 / 年龄 | 门派 / 阵营 | 层级 | 招募要点 | 能力要点 | 跨书 | 出处定位 |
 |---|---|---|---|---|---|---|---|---|
-| `npc_yuanguannan` | 袁冠南，袁氏遗孤 | 青年；生卒待考 | 袁氏传承 | D5 | 双刀身世、萧府祝寿与夫妻刀法 | 夫妻刀法待对应图鉴收录 | 否 | 回目待考：夺刀、祝寿、身世 |
-| `npc_xiaozhonghui` | 萧中慧（杨中慧），杨伯冲之女 | 18 岁（文本线索，待逐字核） | 萧府 / 杨氏传承 | D5 | 离家夺刀、真实身世与袁冠南关系 | 夫妻刀法待对应图鉴收录 | 否 | 回目待考：夺刀、萧府祝寿 |
-| `npc_xiaobanhe` | 萧半和（萧义），晋阳大侠 | 中老年；生卒待考 | 萧府 | D5 | 宫中旧事、收养两家遗孤与抗清身份 | 内宫武学待图鉴 | 否 | 回目待考：祝寿揭示身世 |
+| `npc_yuanguannan` | 袁冠南，袁氏遗孤 | 青年；生卒待考 | 袁氏传承 | D5 | 双刀身世、萧府祝寿与夫妻刀法 | 主运 `sk_linrenhexinfa`；辅运 `sk_renzhetuna`、`sk_taiyuehuxi`；外功 `sk_fuqidaofa`、`sk_yuanyangshuangdao`、`sk_yuanyangjibenjian` | 否 | 回目待考：夺刀、祝寿、身世 |
+| `npc_xiaozhonghui` | 萧中慧（杨中慧），杨伯冲之女 | 18 岁（文本线索，待逐字核） | 萧府 / 杨氏传承 | D5 | 离家夺刀、真实身世与袁冠南关系 | 主运 `sk_linrenhexinfa`；辅运 `sk_renzhetuna`、`sk_taiyuehuxi`；外功 `sk_fuqidaofa`、`sk_yuanyangshuangdao`、`sk_yuanyangjibenjian` | 否 | 回目待考：夺刀、萧府祝寿 |
+| `npc_xiaobanhe` | 萧半和（萧义），晋阳大侠 | 中老年；生卒待考 | 萧府 | D5 | 宫中旧事、收养两家遗孤与抗清身份 | 主运 `sk_jundituna`；辅运 `sk_junzhangtuna`、`sk_dantianyangqi`；外功 `sk_junzhongdao`、`sk_daneishuangdao`、`sk_wuyingshou`、`sk_yulinjichudao` **（原创扩展配置）** | 否 | 回目待考：祝寿揭示身世 |
 | `npc_linyulong` | 林玉龙，任飞燕之夫 | 青壮；生卒待考 | 夫妻刀法传承 | D4 | 夫妻争执调解、传授刀法 | 主运 `sk_linrenhexinfa`；外功 `sk_fuqidaofa`、`sk_linyulongdao`、`sk_linrenjichudao` | 否 | 回目待考：尼姑庵 / 萧府传艺 |
 | `npc_renfeiyan` | 任飞燕，林玉龙之妻 | 青壮；生卒待考 | 夫妻刀法传承 | D4 | 与林玉龙共同任务但独立关系状态 | 主运 `sk_linrenhexinfa`；外功 `sk_fuqidaofa`、`sk_renfeiyandao`、`sk_linrenjichudao` | 否 | 回目待考：夫妻斗嘴交手 |
-| `npc_zhouweixin` | 周威信，威信镖局总镖头 | 中年；生卒待考 | `sect_weixinbiaoju` L5 | D4 | 押刀、家眷被挟与镖局责任 | 铁鞭武学待图鉴 | 否 | 回目待考：押送鸳鸯刀 |
+| `npc_zhouweixin` | 周威信，威信镖局总镖头 | 中年；生卒待考 | `sect_weixinbiaoju` L5 | D4 | 押刀、家眷被挟与镖局责任 | 主运 `sk_jianghutuna`；辅运 `sk_tunaqianjue`、`sk_dantianyangqi`；外功 `sk_weixinliandao`、`sk_weixinbian`、`sk_biaojudaofa`、`sk_weixinbiaoquan`、`sk_weixinjian` **（原创扩展配置）** | 否 | 回目待考：押送鸳鸯刀 |
 | `npc_zhuotianxiong` | 卓天雄，大内高手 | 中老年；结局待考 | `sect_qinggong` | D5 | 夺刀敌线；败后受制 / 邪线同行 | 主运 `sk_jundituna`；外功 `sk_daneishuangdao`、`sk_wuyingshou`、`sk_yulinjichudao`、`sk_zhentiansanshizhang`；掌法名称版本依据 **（待考）** | 否 | 回目待考：追夺双刀、萧府 |
-| `npc_xiaoyaozi11` | 逍遥子，太岳四侠之首 | 中年；生卒待考 | 太岳四侠 | D4 | 劫镖闹剧、仁者选择 | 主运 `sk_wuguanxinfa`；外功 `sk_taiyueshibeishou`、`sk_taiyueqigong`、`sk_taiyuequan` | 否 | 回目待考：拦镖、再夺双刀 |
-| `npc_changchangfeng` | 常长风，太岳四侠之二 | 中年；生卒待考 | 太岳四侠 | D4 | 劫镖闹剧链中替他承认误判强弱，并在萧府窗前调停四侠争功 | 主运 `sk_wuguanxinfa`；外功 `sk_taiyueshibeishou`、`sk_taiyueqigong`、`sk_taiyuequan` | 否 | 回目待考：拦镖 |
-| `npc_huajianying` | 花剑影，太岳四侠之三 | 中年；生卒待考 | 太岳四侠 | D4 | 劫镖闹剧链中保全镖客、拒绝滥杀，再于萧府时机窗完成会合 | 主运 `sk_wuguanxinfa`；外功 `sk_taiyueshibeishou`、`sk_taiyueqigong`、`sk_taiyuequan` | 否 | 回目待考：拦镖 |
-| `npc_gaiyiming` | 盖一鸣，太岳四侠之四 | 中年；生卒待考 | 太岳四侠 | D4 | 劫镖闹剧链中归还错夺财物、取得其本人认可，并赶上萧府会合窗 | 主运 `sk_wuguanxinfa`；外功 `sk_taiyueshibeishou`、`sk_taiyueqigong`、`sk_taiyuequan` | 否 | 回目待考：拦镖 |
+| `npc_xiaoyaozi11` | 逍遥子，太岳四侠之首 | 中年；生卒待考 | 太岳四侠 | D4 | 劫镖闹剧、仁者选择 | 主运 `sk_wuguanxinfa`；辅运 `sk_taiyuehuxi`、`sk_zhamabu`；外功 `sk_taiyueshibeishou`、`sk_taiyueqigong`、`sk_taiyuequan` | 否 | 回目待考：拦镖、再夺双刀 |
+| `npc_changchangfeng` | 常长风，太岳四侠之二 | 中年；生卒待考 | 太岳四侠 | D4 | 劫镖闹剧链中替他承认误判强弱，并在萧府窗前调停四侠争功 | 主运 `sk_wuguanxinfa`；辅运 `sk_taiyuehuxi`、`sk_zhamabu`；外功 `sk_taiyueshibeishou`、`sk_taiyueqigong`、`sk_taiyuequan` | 否 | 回目待考：拦镖 |
+| `npc_huajianying` | 花剑影，太岳四侠之三 | 中年；生卒待考 | 太岳四侠 | D4 | 劫镖闹剧链中保全镖客、拒绝滥杀，再于萧府时机窗完成会合 | 主运 `sk_wuguanxinfa`；辅运 `sk_taiyuehuxi`、`sk_zhamabu`；外功 `sk_taiyueshibeishou`、`sk_taiyueqigong`、`sk_taiyuequan` | 否 | 回目待考：拦镖 |
+| `npc_gaiyiming` | 盖一鸣，太岳四侠之四 | 中年；生卒待考 | 太岳四侠 | D4 | 劫镖闹剧链中归还错夺财物、取得其本人认可，并赶上萧府会合窗 | 主运 `sk_wuguanxinfa`；辅运 `sk_taiyuehuxi`、`sk_zhamabu`；外功 `sk_taiyueshibeishou`、`sk_taiyueqigong`、`sk_taiyuequan` | 否 | 回目待考：拦镖 |
 | `npc_yuanfuren` | 袁夫人，袁冠南生母 | 中年；生卒待考 | 萧府 / 袁氏 | D4 | 信物与身世揭晓；非战斗同行 | 非战斗 / 情报 | 否 | 回目待考：萧府祝寿 |
 | `npc_yangfuren` | 杨夫人，萧中慧生母 | 中年；生卒待考 | 萧府 / 杨氏 | D4 | 信物与身世揭晓；非战斗同行 | 非战斗 / 情报 | 否 | 回目待考：萧府祝寿 |
 | `npc_liuyuyi` | 刘於义，小说称“川陕总督” | 1675–1748（史实原型）[H06] | `sect_qinggong` | D5 | 官府押刀线；短时巡视 / 结盟 | 非核心武者；官府调度 | 否 | 回目待考：押刀委任；史实 1732 年口径为署陕西总督，须与小说官衔分开 |

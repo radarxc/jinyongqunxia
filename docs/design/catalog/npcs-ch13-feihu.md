@@ -2,11 +2,11 @@
 
 > 归属：`design/18-npc-and-companions.md` 的主线重要 NPC 数据。游戏定年约 1766–1771，引用 `design/02`。
 > 与《雪山飞狐》共用人物 ID；两书画像、年龄与招募窗口分开配置。出处回目待逐字核对。
-> 版本：v1.3；经脉落地终审（2026-09-29）。
+> 版本：v1.5；经脉落地终审、完整对手配装与稳定人物 ID 同步（2026-09-29）。
 
 | ID | 人物 / 原著身份 | 生卒 / 年龄 | 门派 / 阵营 | 层级 | 招募要点 | 能力要点 | 跨书 | 出处定位 |
 |---|---|---|---|---|---|---|---|---|
-| `npc_hufei` | 胡斐，胡一刀之子 | 青年；生卒待考 | `sect_hujia` | D5 | 商家堡、凤天南与药王庄全链 | 主运 `sk_hujiaxuangong`；胡家刀拳按现行配装核配 | →雪山 | 回目待考：商家堡、佛山、掌门大会 |
+| `npc_hufei` | 胡斐，胡一刀之子 | 青年；生卒待考 | `sect_hujia` | D5 | 商家堡、凤天南与药王庄全链；实战印证 / 胡苗切磋时以非致死 `full` 对手出场 | 主运 `sk_hujiaxuangong`；辅运 `sk_hujiadaoxinfa`、`sk_jianghutuna`；外功 `sk_hujiadao`（本界来源上限 9 重）、`sk_hujiaquan`、`sk_liaodonghushendao`、`sk_hujiaxiaolianquan`；七参与节奏见书界 13 §12.7 | →雪山 | 回目待考：商家堡、佛山、掌门大会 |
 | `npc_chenglinsu` | 程灵素，毒手药王关门弟子 | 青年；第 20 章命定死亡 | `sect_yaowangmen` | D5 | 药王庄同门、三线准备与胡斐中毒全链；原著轴 `dead`，条件齐备的唯一主改命轴 `fate_rescued` | 七心海棠 / 药王术待图鉴 | 改命后可 → 雪山重逢候选 | 第 20 章：为胡斐解三毒而死；具体动作待指定版本终校 |
 | `npc_yuanziyi` | 袁紫衣（圆性），凤天南之女 | 青年；生卒待考 | 佛门 / 多门武艺 | D5 | 复仇、夺掌门与出家誓约 | 主运 `sk_huiwuguixin`；多派外功按现行配装核配 | 否 | 回目待考：佛山、掌门大会 |
 | `npc_miaorenfeng` | 苗人凤，打遍天下无敌手 | 中年；生卒待考 | `sect_miaojia` L5 | D5 | 胡苗旧怨、眼伤治疗与女儿保护 | 主运 `sk_miaojiaxuangong`；外功 `sk_miaojiajian`、`sk_miaojiaquan`、`sk_miaojiajiangong`（本界首领配装）；`sk_miaojiazhang` 为苗家 L4 可学掌法，供雪山 B07 画像使用 | →雪山 | 回目待考：中毒失明、与胡斐比试 |
@@ -22,20 +22,25 @@
 | `npc_shanglaotai` | 商老太，商剑鸣之妻 | 老年；命定死亡待考 | `sect_shangjiabao` | D5 | 复仇、火烧堡与止恶改命 | 主运 `sk_shangjiabaoqi`；外功按八卦 / 商家堡现行配装核配 | 改命后可 | 回目待考：商家堡火劫 |
 | `npc_shangbaozhen` | 商宝震，商剑鸣之子 | 青年；命定死亡待考 | `sect_shangjiabao` | D4 | 复仇教育与商家堡逃生 | 八卦刀待图鉴 | 改命后可 | 回目待考：商家堡 |
 | `npc_fengtianan` | 凤天南，佛山恶霸 | 中年；命定结局待考 | 南海武林 / 官绅 | D5 | 钟家血案问责；邪线短时合作 | 主运 `sk_nanhaiwuhuxinfa`；外功 `sk_wuhudaofa`、`sk_fengjiawuhuquan` | 改命后可 | 回目待考：佛山钟家案 |
-| `npc_fengyiming` | 凤一鸣，凤天南之子 | 青年；结局待考 | 凤家 | D4 | 家族罪责、与袁紫衣比武 | 刀法待图鉴 | 否 | 回目待考：佛山 |
+| `npc_fengyiming` | 凤一鸣，凤天南之子 | 青年；结局待考 | 凤家 | D4 | 家族罪责、与袁紫衣比武；佛山正线可作非致死 `full` 精英对手 | 主运 `sk_nanhaiwuhuxinfa`；辅运 `sk_wuguanxinfa`、`sk_zhuangxingong`；外功 `sk_wuhudaofa`、`sk_fengjiawuhuquan`、`sk_hutiaodaofa`、`sk_huyuanquan`；书界 13 §12.7 完整对手配装为（原创扩展配置），具体师承待考 | 否 | 回目待考：佛山 |
 | `npc_zhongasi` | 钟阿四，佛山乡民 | 中年；命定死亡待考 | 平民 | D4 | 田地霸占与灭门救援 | 非战斗 / 农事 | 改命后可 | 回目待考：胡斐追杀凤天南缘起 |
+| `npc_zhongzhaowen` | 钟兆文，钟氏三雄之一 | 青壮；生卒待考 | 江湖人士（门派待考） | D4 | 阻止毒信、误会交手与苗宅守援；误会战以非致死 `full` 精英对手出场 | 主运 `sk_jianghutuna`；辅运 `sk_wuguanxinfa`、`sk_tunaqianjue`；外功 `sk_tongbeijin`、`sk_tantui_tongxing`、`sk_huiliuquan`、`sk_duandashou`；书界 13 §12.7 配装为（原创扩展配置·待补本门武学） | 否 | 回目待考：毒信与苗宅求医段 |
+| `npc_zhongzhaoying` | 钟兆英，钟氏三雄之一 | 青壮；生卒待考 | 江湖人士（门派待考） | D4 | 与钟兆文、钟兆能阻止毒信；误会战以非致死 `full` 精英对手出场 | 主运 `sk_jianghutuna`；辅运 `sk_wuguanxinfa`、`sk_tunaqianjue`；外功 `sk_tongbeijin`、`sk_tantui_tongxing`、`sk_huiliuquan`、`sk_duandashou`；书界 13 §12.7 配装为（原创扩展配置·待补本门武学） | 否 | 回目待考：毒信与苗宅守援段 |
+| `npc_zhongzhaoneng` | 钟兆能，钟氏三雄之一 | 青壮；生卒待考 | 江湖人士（门派待考） | D4 | 与钟兆文、钟兆英阻止毒信；误会战以非致死 `full` 精英对手出场 | 主运 `sk_jianghutuna`；辅运 `sk_wuguanxinfa`、`sk_tunaqianjue`；外功 `sk_tongbeijin`、`sk_tantui_tongxing`、`sk_huiliuquan`、`sk_duandashou`；书界 13 §12.7 配装为（原创扩展配置·待补本门武学） | 否 | 回目待考：毒信与苗宅守援段 |
+| `npc_zhangyunfei` | 张云飞，苗宅来袭者 | 青壮；生卒待考 | 江湖人士（具体师承待考） | D4 | 毒信送达后乘隙来袭；守宅战以非致死 `full` 精英领队出场 | 主运 `sk_jianghutuna`；辅运 `sk_wuguanxinfa`、`sk_tunaqianjue`；外功 `sk_tongbeijin`、`sk_tantui_tongxing`、`sk_huiliuquan`、`sk_duandashou`；书界 13 §12.7 配装为 **（原创扩展配置·待补本门武学）** | 否 | 第 8 章苗宅来袭段；具体师承与动作待指定版本终校 |
+| `npc_qinnaizhi` | 秦耐之，福府差使一方武人 | 青壮；生卒待考 | 八极拳支系 / 福府差使（待考） | D4 | 石屋围困中与胡斐非致死比武，停手后说明差使；以 `full` 精英对手出场 | 主运 `sk_bajixingqi`；辅运 `sk_wuguanxinfa`、`sk_bajizhuang`；外功 `sk_bajiquan`、`sk_tieshankao`、`sk_bajirumenquan`；书界 13 §12.7 配装为（原创扩展配置），具体身份与师承待考 | 否 | 回目待考：古怪盗党 / 石屋段 |
 | `npc_shiwuchen` | 石万嗔，毒手药王叛徒 | 中老年；命定结局待考 | `sect_yaowangmen` 叛徒 | D5 | 药王庄毒局与程灵素命运 | 主运 `sk_yaowangneigong`；外功以 `sk_yaowanghushoufa` 为核心，毒术按现行配装核配 | 否 | 回目待考：药王庄、三毒相会 |
 | `npc_murongjingyue` | 慕容景岳，药王门人物 | 中年；命定结局待考 | `sect_yaowangmen` | D4 | 同门争斗与毒局 | 主运 `sk_yaowangneigong`；外功以 `sk_yaowanghushoufa` 为核心 | 否 | 回目待考：药王庄 |
 | `npc_xueque` | 薛鹊，药王门人物 | 青年；命定结局待考 | `sect_yaowangmen` | D4 | 同门争斗与毒局 | 主运 `sk_yaowangneigong`；外功以 `sk_yaowanghushoufa` 为核心 | 否 | 回目待考：药王庄 |
 | `npc_fukangan` | 福康安，清廷权臣 | 约 1754–1796（史实；生年待考）[H08] | `sect_qinggong` | D5 | 马春花悲剧、掌门大会与政治线 | 非绝顶武者；护卫 / 权术 | →雪山传闻 | 回目待考：京城、掌门大会 |
 | `npc_zhaobanshan` | 赵半山，红花会三当家 | 中老年；生卒待考 | `sect_honghuahui` / `sect_taijimen` | D4 | 书剑曾入队则重逢；调解胡斐与官府线 | 太极门 / 暗器待图鉴 | ←书剑 | 回目待考：与胡斐结交 |
 | `npc_dazhichanshi` | 大智禅师，少林方丈 | 老年；生卒待考 | `sect_shaolin` L5 | D4 | 掌门大会后辨是非 | 少林图鉴已有武学核配 | 否 | 回目待考：天下掌门人大会 |
-| `npc_huangxijie` | 黄希节，二郎拳掌门 | 中年；生卒待考 | 掌门大会小派 | D3 | 大会竞技与揭露福康安目的 | 拳法待图鉴 | 否 | 回目待考：掌门人大会 |
-| `npc_ouyanggongzheng` | 欧阳公政，燕青拳掌门 | 中年；生卒待考 | 掌门大会小派 | D3 | 大会竞技 | 拳法待图鉴 | 否 | 回目待考：掌门人大会 |
+| `npc_huangxijie` | 黄希节，二郎拳掌门 | 中年；生卒待考 | 掌门大会小派 | D3 | 大会竞技与揭露福康安目的；个人挑战时为非致死 `full` 精英对手 | 主运 `sk_jianghutuna`；辅运 `sk_wuguanxinfa`、`sk_tunaqianjue`；外功 `sk_tongbeijin`、`sk_tantui_tongxing`、`sk_huiliuquan`、`sk_duandashou`；书界 13 §12.7 配装为（原创扩展配置·待补本门武学） | 否 | 回目待考：掌门人大会 |
+| `npc_ouyanggongzheng` | 欧阳公政，燕青拳掌门 | 中年；生卒待考 | 掌门大会小派 | D3 | 大会竞技；个人挑战时为非致死 `full` 精英对手 | 主运 `sk_jianghutuna`；辅运 `sk_wuguanxinfa`、`sk_tunaqianjue`；外功 `sk_tongbeijin`、`sk_tantui_tongxing`、`sk_huiliuquan`、`sk_duandashou`；书界 13 §12.7 配装为（原创扩展配置·待补本门武学），不得误用段延庆武学 | 否 | 回目待考：掌门人大会 |
 | `npc_nibuda` | 倪不大，倪氏兄弟之一 | 青壮；生卒待考 | 江湖人士（门派待考） | D4 | 第一次抢救双生子失败后由常氏救出；大会散乱后再入福府，须与倪不小共同完成救孩链 | 武学门类待图鉴核配 | 否 | 第十七、十九回动作次序待指定版终校 |
 | `npc_nibuxiao` | 倪不小，倪氏兄弟之一 | 青壮；生卒待考 | 江湖人士（门派待考） | D4 | 与倪不大、常氏协同行动；第二次救援成功，会合时各抱一子（待考） | 武学门类待图鉴核配 | 否 | 第十七、十九回动作次序待指定版终校 |
 
-合计：28 名。
+合计：33 名。
 
 ### 史实来源
 

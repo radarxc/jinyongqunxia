@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.7（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/11-yuanyang.md`。
 > 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；穴位、冲穴、通脉、周天与九转 → `design/15-meridians-and-acupoints.md`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21-meridian-flow-and-moves.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；前代传承 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v0.2（D11 初稿，2026-09-26；审校 D11.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）。
+> 版本：v1.1（D11 初稿，2026-09-26；审校 D11.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；多人整场耐久与完整对手补漏（2026-09-29）。
 
 
 ## 0. 阅读指引
@@ -719,10 +719,10 @@ chapterResolution:
 | 遭遇 ID | Boss / 等级 | 武学与品阶（已有 ID） | 机制 | 非致命收束 |
 |---|---|---|---|---|
 | `enc_11_sixia_lanjie` | 太岳四侠协同，Lv38 | 主运 `sk_wuguanxinfa` 玄下；`sk_taiyuequan` 黄中、`sk_taiyuehuxi` 黄中、`sk_taiyueqigong` 玄下、`sk_taiyueshibeishou` 玄上 | 四人共享“面子”士气；揭穿夸口会降士气但不造成伤害 | 降服 / 止伤 / 议和，登记 `songlin_jiebiao` |
-| `enc_11_zhuo_zaoxiang` | 卓天雄，Lv42 | 主运 `sk_jundituna` 玄中；外功 `sk_zhentiansanshizhang` 地下、`sk_wuyingshou` 玄中、`sk_daneishuangdao` 玄下、`sk_yulinjichudao` 黄中；掌法名称 **（待考）**，卡片机制 **（原创扩展）** | 假盲阶段不主动回避；识破后转点穴与夺匣；毒墨可信度可逼退 | 欺敌、撤离或擒拿，登记 `dumo_zhazhuo` |
-| `enc_11_zhuo_zizhu` | 卓天雄，Lv44 | 同上；清宫通行身法只在图鉴合法时装配 | 焚庵威胁倒计时、平民安全区、袁萧合击教学 | 逼退 / 擒获；庵中人安全后登记 `zizhu_tuizhuo` |
+| `enc_11_zhuo_zaoxiang` | 正线卓天雄，Lv42；邪线周威信、萧中慧、林玉龙、任飞燕、袁冠南 | 具名人物均走 §12.8 的 `full` 配装；掌法名称 **（待考）**，卡片机制 **（原创扩展）** | 正线由卓假盲、点穴、夺匣；邪线 P1 帮卓多目标擒拿，P2 应对袁冠南判官笔与毒墨智斗 | 欺敌、交换解穴、撤离或擒拿，登记 `dumo_zhazhuo` |
+| `enc_11_zhuo_zizhu` | 正线卓天雄，Lv44；邪线林玉龙、任飞燕、袁冠南、萧中慧 | 各具名 `full` 配装见 §12.8；清宫通行身法只在图鉴合法时装配 | 正线为焚庵威胁、平民安全区与袁萧合击教学；邪线为两波连续精英战 **（原创扩展配置）** | 正线逼退 / 擒获卓；邪线迫持刀者交刀或停战；庵中人安全后登记 `zizhu_tuizhuo` |
 | `enc_11_linren_yanwu` | 林玉龙 + 任飞燕，Lv42 / 42 | 主运 `sk_linrenhexinfa` 玄中；外功 `sk_fuqidaofa` 地中、`sk_linyulongdao`、`sk_renfeiyandao` 玄上、`sk_linrenjichudao` 黄上 | 双人争合演武，打错一方会抬高另一方怒气 | 同时压至演武阈值或完成调停，不计击杀 |
-| `enc_11_xiaofu_weizhan` | 大内统领代理，Lv46 | 主运 `sk_jundituna` 玄中 **（原创扩展配置）**；外功 `sk_junzhongdao` 玄上、`sk_daneishuangdao` 玄下、`sk_yulinjichudao` 黄中、`sk_gongshou` 黄中 | 三路增援、平民撤离门、文书停战；统领为模板头目而非新静态 NPC | 开放撤离、出示具结或降服，登记 `xiaofu_weizhan` |
+| `enc_11_xiaofu_weizhan` | 正线卓天雄；邪线萧半和、袁冠南、萧中慧；Lv46 遭遇 | 具名人物均用 §12.8 的 `full` 配装；仅余下护卫槽使用清宫 / 萧府模板 **（原创扩展配置）** | 两路线互斥复用一个首领槽、三个精英槽和平民撤离门；不得在槽外追加具名人物 HP | 开放撤离、出示具结或降服，登记 `xiaofu_weizhan` |
 | `enc_11_zhongtiao_jiaoge` | 卓天雄或官府追队，Lv48 | 卓与官府追队头目均以 `sk_jundituna` 玄中主运，外功分别见 §12.8 **（原创扩展配置）**；路线决定援军 | 真刀 / 假刀、证物、保管权三槽；满足证据可无战斗结案 | 谈判、交换或降服；不另增加第五证明键 |
 
 Boss 战斗流程、阶段、控制递减与脚本 ID 归 `design/09`；本文只登记遭遇。所有具名人物均走 `full` 属性管线，表内模板数值只是配表目标，详见 §12。完整主运 / 辅运 / 外功及七参以 §12.8 为准。
@@ -1190,12 +1190,36 @@ D3 难度乘区只再次作用于 `hpMax` 与 `atkOut/atkIn`；不能乘防御�
 
 | 遭遇 | 管线 | 气血目标核算【建议值】 | 配表约束与机制预算 |
 |---|---|---:|---|
-| `enc_11_sixia_lanjie` | 四个独立 `full` | 每人 `0.60×40,661=24,396.6≈24,397` | 四人共享“面子”士气；四人的气血不能相加后冒充一个 Boss，降服一人应改变队形 |
-| `enc_11_zhuo_zaoxiang` | 卓天雄 `full` | `0.85×53,953=45,860.05≈45,860` | 假盲 / 识破只切 AI 与招式权重；毒墨退敌替代耗尽气血 |
-| `enc_11_zhuo_zizhu` | 卓天雄 `full` | `0.90×59,120=53,208` | 比枣林提高约 16.0%；新增的是平民撤离压力，不加第二血条 |
-| `enc_11_linren_yanwu` | 两个独立 `full` | 每人 `0.60×53,953=32,371.8≈32,372` | 共享演武收束阈值；任何一方到阈值后进入守势，不结算死亡 |
-| `enc_11_xiaofu_weizhan` | 非具名 `template` | Lv46 直接使用 `64,534` | 大内统领代理可用整行模板；三路增援计小怪预算，不复制统领 |
-| `enc_11_zhongtiao_jiaoge` | 卓 `full` 或追队 `template` | 卓：`0.90×70,193=63,173.7≈63,174`；模板追队头目：`70,193` | 证据齐全可零战斗结案；路线二选一，不把两套头目叠加 |
+| `enc_11_sixia_lanjie` | 四个独立 `full` | 遭遇级 `totalHp=40,661` | 四人共享“面子”士气；按下表拆分一份耐久，降服一人应改变队形 |
+| `enc_11_zhuo_zaoxiang` | 正线卓天雄 `full`；邪线周威信、萧中慧、林玉龙、任飞燕、袁冠南五个独立 `full` | `totalHp=roundHalfUp(0.85×53,953)=45,860` | 正线假盲 / 识破只切 AI；邪线 P1 擒拿、P2 袁冠南智斗与终局目标共用一池，毒墨退敌替代耗尽气血 |
+| `enc_11_zhuo_zizhu` | 正线卓天雄 `full`；邪线袁冠南、萧中慧、林玉龙、任飞燕四个独立 `full` | `totalHp=0.90×59,120=53,208` | `z_05→z_06` 与 `x_05→x_06` 是互斥分支并复用一次整场预算；前者由卓占首领槽，后者为两波连续精英战，不叠加两路血量 |
+| `enc_11_linren_yanwu` | 两个独立 `full` | 遭遇级 `totalHp=53,953` | 共享演武收束阈值；任何一方到阈值后进入守势，不结算死亡 |
+| `enc_11_xiaofu_weizhan` | 具名 `full` 与护卫 `template` 混编 | 遭遇级 `totalHp=64,534` | 正线卓 + 清宫援军；邪线 `x_08` 敌方卓与 `x_09` 萧义互斥接续同一首领槽，袁萧 + 萧府护卫占精英槽；撤离 / 停战仍只消费这一份预算 |
+| `enc_11_zhongtiao_jiaoge` | 卓 `full` 或追队 `template` | 两个互斥分支共用 `totalHp=70,193` | 证据齐全可零战斗结案；路线二选一，不把两套头目叠加 |
+
+多人、多阶段与目标型遭遇按 `design/09` §8.8.11 只声明一次整场耐久；初始 HP / 等价进度按各槽 bp 算出精确份额后先分别向下取整，剩余点数按小数余数从大到小各补 1；小数余数并列时依 `unitIndex → phaseIndex → objectiveKey` 的稳定顺序裁决，且 `unitIndex=null` 的目标排在数值单位之后。直接指定的整数槽不再二次比例换算。本表各行已按这套最大余数法闭合；目标进度与单位 HP 是同一预算的互斥消费，同一伤害不得重复入账。
+
+| 遭遇 / 可达分支 | 稳定分配（初始 HP 或等价进度） | 阶段回复 / 新血条 | 合计校验 |
+|---|---|---:|---:|
+| `enc_11_sixia_lanjie` | 四侠 `unitIndex=00/10/20/30`：`10,166 / 10,165 / 10,165 / 10,165` | 0 | `10,166+3×10,165=40,661` |
+| `enc_11_zhuo_zaoxiang`·正线 `q_11_main_z_02→z_03` | 卓天雄 `unitIndex=00`：`roundHalfUp(53,953×0.85)=45,860` | 0 | `45,860` |
+| `enc_11_zhuo_zaoxiang`·邪线 `q_11_main_x_02→x_03` | P1 周威信 / 萧中慧 / 林玉龙 / 任飞燕 `unitIndex=00/10/20/30, phaseIndex=10`：各 `4,586`；P2 袁冠南 `unitIndex=40, phaseIndex=20`：`18,344`；交换解穴 / 撤离 `objectiveKey=zaoxiang_x_finish`：`9,172` | 0 | `4×4,586+18,344+9,172=45,860` |
+| `enc_11_zhuo_zizhu`·正线 `q_11_main_z_05→z_06` | 卓天雄 `unitIndex=00, phaseIndex=10`：`59,120×0.90=53,208` | 0 | `53,208` |
+| `enc_11_zhuo_zizhu`·邪线 `q_11_main_x_05→x_06` | P1 林玉龙 / 任飞燕 `unitIndex=00/10, phaseIndex=10`：各 `13,302`；P2 袁冠南 / 萧中慧 `unitIndex=20/30, phaseIndex=20`：各 `13,302` | 0 | `4×13,302=53,208` |
+| `enc_11_linren_yanwu` | 林玉龙 `unitIndex=00`：`26,977`；任飞燕 `unitIndex=10`：`26,976` | 0 | `26,977+26,976=53,953` |
+| `enc_11_xiaofu_weizhan`·正线救人 | 卓天雄 `unitIndex=00`：`25,814`；三路清宫援军 `10/20/30`：各 `9,680`；撤离 / 停战 `objectiveKey=xiaofu_exit`：`9,680` | 0 | `25,814+4×9,680=64,534` |
+| `enc_11_xiaofu_weizhan`·邪线 `x_08→x_09` | `x_08` 敌方卓天雄 `unitIndex=00, phaseIndex=00`：`25,814`；`x_09` 萧义 `unitIndex=00, phaseIndex=10` 只承接前槽当前余额；袁冠南 / 萧中慧 / 萧府护卫精英 `unitIndex=10/20/30, phaseIndex=10`：各 `9,680`；撤离 / 停战 `objectiveKey=xiaofu_exit`：`9,680` | 0 | 初始分配仍为 `25,814+4×9,680=64,534`；阶段承接不加总 |
+| `enc_11_zhongtiao_jiaoge`·拒交卓线 | 卓天雄 `unitIndex=00`：`63,174`；交割 `objectiveKey=blade_handover`：`7,019` | 0 | `63,174+7,019=70,193` |
+| `enc_11_zhongtiao_jiaoge`·官府追队线 | 头目 `unitIndex=00`：`49,135`；必经援军 `unitIndex=10`：`10,529`；交割 `objectiveKey=blade_handover`：`10,529` | 0 | `49,135+2×10,529=70,193` |
+| `enc_11_zhongtiao_jiaoge`·证据充分零战线 | 无数值单位；交割 `unitIndex=null, objectiveKey=blade_handover`：`70,193` | 0 | `70,193` |
+
+围府两条路线只替换槽位操作者：具名 `full` 面板先通过 §12.8 配装闸门，运行时初始 HP 再取本表槽值；正线不生成萧义 / 袁萧敌方实例。邪线保留 `x_08` 阻止卓抓萧的短时 Boss 夺人战：卓以敌方身份占 `unitIndex=00, phaseIndex=00`，切断挟持、迫其停手与直接伤害都只消费该槽；进入 `x_09` 后不再生成第二个敌方卓实例，而把该槽**当前剩余值**一对一迁到萧义的 `unitIndex=00, phaseIndex=10`。若 `x_08` 以追踪 / 谈判跳过，萧义承接完整 `25,814`；若卓已受压至 9,000，则萧义只承接 9,000，绝不回复到 25,814。袁冠南、萧中慧、萧府护卫及撤离目标各自仍只有 `9,680`；其中任一保持中立、倒戈或先行撤离时，对应槽尚未消费的 HP 只在首次终局事务中一对一迁移至 `xiaofu_exit`，不得保留原槽后再计一次目标进度。
+
+相邻故事幕的遭遇边界固定如下：甘亭 `c_02`、`z_01` 或 `x_01` 只有在误会升级为实战时才生成一次 `enc_11_linren_yanwu`，跨幕叙述不得重复生成；萧府 `z_08/x_08` 的夺人冲突若开战即作为 `enc_11_xiaofu_weizhan` 的前置阶段，`z_09/x_09` 围府继续消费同一 `64,534`，若前幕以追踪 / 谈判完成则到围府时才建池。邪线前置阶段明确允许敌方卓天雄出场，边界是 `x_08` 切断挟持后即停手，随后按上段把首领槽余额交给 `x_09` 萧义；二者均禁止按任务幕各发一份耐久。
+
+其余提前收束同样守恒：四侠议和、毒墨退卓、紫竹庵撤离、林任停演与中条山交割，均把所有未消费单位 HP 一次迁移到本分支终局 `objectiveKey`；伤害、士气 / 证据进度与迁移余额不能重复记同一点。枣林正线 `z_02→z_03` 只生成卓的敌方槽；邪线 `x_02→x_03` 中玩家协助卓，P1 实际敌方为周威信、萧中慧、林玉龙、任飞燕，目标是逐一降服、禁止补刀，P2 仅袁冠南继续占敌方行动槽，目标改为识破毒墨后交换解穴、有限追击或撤离。两段是同一 `enc_11_zhuo_zaoxiang`，不在 `x_03` 重置 `45,860`；若擒拿提前结束、角色倒戈或袁的骗局提前收束，只把当前与尚未生成槽的未消费余额一次迁入 `zaoxiang_x_finish`，已经造成的伤害仍为已消费值。
+
+紫竹庵正线 `z_05` 只建立庵中人安全前置，`z_06` 才生成卓天雄的完整 Boss 槽，目标为守住授艺并逼卓撤离；邪线 `x_05` 生成 P1 林任、P2 袁萧四名实际敌方，`x_06` 只是同一遭遇继续，目标为封路后迫持刀者交刀或停战，绝不重置 `53,208`。两波次顺序为 **（原创扩展配置）**；若喊话、授艺完成或停战令某波提前结束，该波及尚未生成波次的未消费余额须在首次终局事务一次迁入互斥目标 `objectiveKey=zizhu_retreat`，不得同时保留单位 HP。中条山证据充分的零战斗路径，以 `objectiveKey=blade_handover` 的等价进度消费同一 `70,193`，不得另建血池。六场所有状态 / 阶段切换都不恢复 HP；可绕过召唤、纯拖延演出及非必经环境伤害不占预算。正式具名脚本均须提交 `design/09` §8.8.11 的低 / 中 / 高配与四难度中配 `BattleReplayV1` 回放门禁，当前均 **（待实测）**；静态分配表不能替代回放。
 
 卓天雄在枣林、紫竹庵与终局若为同一存活实体，应复用人物状态并按剧情休整规则恢复，不能把三场都解释为三个独立副本。其掌法现以本书补录图鉴的 `sk_zhentiansanshizhang` 正式手配；名称与原著归属仍 **（待考）**，具体招式与机制为 **（原创扩展）**。
 
@@ -1241,7 +1265,14 @@ B = I×H = 19×8 = 152 两
 | 单位 | 门派 / 来源 | 主运内功 | 辅运内功（2 格） | 外功（逐门标品阶） | 经脉七项参数 | `milestones` | 血量 / 防御倍率 | 逐单位估算轮数 | 机制备注 |
 |---|---|---|---|---|---|---|---|---:|---|
 | 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主运解析（不得低于玄中5） | 按来源解析两门玄 / 黄基础内功 | 按行动表解析 3–5 门 | `5/8；10500/7500/10500；由主运解析；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.17` | 唯一锚点 |
-| 太岳四侠（每人，精英） | 太岳四侠散承 | `sk_wuguanxinfa`（玄下4） | `sk_taiyuehuxi`（黄中2）、`sk_zhamabu`（黄下1） | `sk_taiyueshibeishou`（玄上6）、`sk_taiyueqigong`（玄下4）、`sk_taiyuequan`（黄中2） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.03` | 武学及具名墓碑 `altItems` 兼容桥均已闭合 |
+| 逍遥子（精英） | 太岳四侠散承 | `sk_wuguanxinfa`（玄下4） | `sk_taiyuehuxi`（黄中2）、`sk_zhamabu`（黄下1） | `sk_taiyueshibeishou`（玄上6）、`sk_taiyueqigong`（玄下4）、`sk_taiyuequan`（黄中2） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.03` | `full` 具名单位；外放招为 0 |
+| 常长风（精英） | 太岳四侠散承 | `sk_wuguanxinfa`（玄下4） | `sk_taiyuehuxi`（黄中2）、`sk_zhamabu`（黄下1） | `sk_taiyueshibeishou`（玄上6）、`sk_taiyueqigong`（玄下4）、`sk_taiyuequan`（黄中2） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.03` | `full` 具名单位；墓碑 `altItems` 兼容桥已闭合；外放招为 0 |
+| 花剑影（精英） | 太岳四侠散承 | `sk_wuguanxinfa`（玄下4） | `sk_taiyuehuxi`（黄中2）、`sk_zhamabu`（黄下1） | `sk_taiyueshibeishou`（玄上6）、`sk_taiyueqigong`（玄下4）、`sk_taiyuequan`（黄中2） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.03` | `full` 具名单位；外放招为 0 |
+| 盖一鸣（精英） | 太岳四侠散承 | `sk_wuguanxinfa`（玄下4） | `sk_taiyuehuxi`（黄中2）、`sk_zhamabu`（黄下1） | `sk_taiyueshibeishou`（玄上6）、`sk_taiyueqigong`（玄下4）、`sk_taiyuequan`（黄中2） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.03` | `full` 具名单位；外放招为 0 |
+| 袁冠南（精英） | 袁氏 / 双侠传承 | `sk_linrenhexinfa`（玄中5） | `sk_renzhetuna`（黄上3）、`sk_taiyuehuxi`（黄中2） | `sk_fuqidaofa`（地中8）、`sk_yuanyangshuangdao`（玄中5）、`sk_yuanyangjibenjian`（黄上3） | `5/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.17` | 邪线具名精英智斗；地位目标 `G−1=4`，合法 5 品主运达标；外放招为 0 |
+| 萧中慧（精英） | 萧府 / 双侠传承 | `sk_linrenhexinfa`（玄中5） | `sk_renzhetuna`（黄上3）、`sk_taiyuehuxi`（黄中2） | `sk_fuqidaofa`（地中8）、`sk_yuanyangshuangdao`（玄中5）、`sk_yuanyangjibenjian`（黄上3） | `5/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.17` | 正邪线误会 / 连续精英战；地位目标 `G−1=4`，主运达标；外放招为 0 |
+| 周威信（精英） | `sect_weixinbiaoju` | `sk_jianghutuna`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_dantianyangqi`（黄中2） | `sk_weixinliandao`（地下7）、`sk_weixinbian`（玄中5）、`sk_biaojudaofa`（玄下4）、`sk_weixinbiaoquan`（黄中2）、`sk_weixinjian`（黄上3） | `5/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.17` | 邪线一对一降服；地位目标 `G−1=4`，主运达标；外放招为 0 |
+| 萧半和 | 萧府 / 宫中旧学 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_junzhongdao`（玄上6）、`sk_daneishuangdao`（玄下4）、`sk_wuyingshou`（玄中5）、`sk_yulinjichudao`（黄中2） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `1.00 / 1.00` | `16.29` | 邪线围府多阵营实战；地位目标 `G=5`，配装 **（原创扩展配置）**；外放招为 0 |
 | 卓天雄·枣林 | 卓天雄个人传承 / 清宫军伍 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_daneishuangdao`（玄下4）、`sk_wuyingshou`（玄中5）、`sk_yulinjichudao`（黄中2）、`sk_zhentiansanshizhang`（地下7） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `15.70` | 地位目标 `G=5`；新掌法不改主运七参 |
 | 卓天雄·紫竹庵 | 卓天雄个人传承 / 清宫军伍 | `sk_jundituna`（玄中5） | `sk_junzhangtuna`（黄中2）、`sk_dantianyangqi`（黄中2） | `sk_daneishuangdao`（玄下4）、`sk_wuyingshou`（玄中5）、`sk_yulinjichudao`（黄中2）、`sk_zhentiansanshizhang`（地下7） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `15.70` | 救人 / 逼退不延长节奏 **（待实测）** |
 | 林玉龙 | 林任夫妇 | `sk_linrenhexinfa`（玄中5） | `sk_renzhetuna`（黄上3）、`sk_taiyuehuxi`（黄中2） | `sk_fuqidaofa`（地中8）、`sk_linyulongdao`（玄上6）、`sk_linrenjichudao`（黄上3） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `1.00 / 1.00`（夫妻共享） | `16.29` | 双人总耐久只计一次 **（待实测）** |
@@ -1260,7 +1291,7 @@ B = I×H = 19×8 = 152 两
 | 卓天雄（三场共用画像） | 掌法正式图鉴条目 | **已补录**：`sk_zhentiansanshizhang`（7 地下），见 `catalog/skills-bulu-11-yuanyang.md` §1.1；名称 **（待考）**，拆招与机制 **（原创扩展）** | 三场均以该掌法替换 `sk_daneichangquan`；主运不变，轮数仍为 `15.70 / 15.70 / 16.23` |
 | 太岳四侠 | 太岳石碑桥接 | **已解决**：`sk_taiyueshibeishou`（6 玄上）已在 `skills-kangxi.md`，来源已有 `ch11_yuanyang`，并以 `weaponReq.altItems:[eq_changchangfengshibei]` 接收装备侧 `exotic/misc` 介质 | 不新增武学；墓碑仍占副手且只结算牌属性，不泛化其他副手牌 |
 
-04 基线 `3.5 / 7.1 / 14.3`。经脉落地终审再次用现行 `boss_pacing.py` 复跑：卓天雄枣林 / 紫竹庵均为 `15.6979728595≈15.70`，终局为 `16.2258180196≈16.23`，林任夫妻整场为 `16.2917010533≈16.29`；工具均输出 `estimateOnly=true`，全部落在 Boss `12–25` 窗内，故统一保持血量 / 防御 `1.00×1.00`。本书补录掌法及卓、林任行动表没有 `projection:true` 招式，外放标记后伤害分支未新增；这次复核仍覆盖当前经脉强度与防守路线对耐久的影响。林任夫妻与多波援军各只使用一次整场耐久预算。速度强档与封路档另测首轮 / CT / 移动，禁止折回伤害倍率；固定 RNG 回放仍 **（待实测）**。
+04 基线 `3.5 / 7.1 / 14.3`。经脉落地终审再次用现行 `boss_pacing.py` 复跑：卓天雄枣林 / 紫竹庵均为 `15.6979728595≈15.70`，终局为 `16.2258180196≈16.23`，林任夫妻与萧半和均为 `16.2917010533≈16.29`；袁冠南、萧中慧、周威信同一精英输入均为 `7.1742623635≈7.17`。工具均输出 `estimateOnly=true`，前三名精英落在 `6–10`、Boss 落在 `12–25` 窗内，故统一保持血量 / 防御 `1.00×1.00`。上述新列四人的行动表均无 `projection:true` 招式；外放招为“无”，不是遗漏。地位下限只作构建校验目标，七参继续从合法主运派生；超窗只调整整场耐久、防御倍率或阶段机制，不压经脉。本书补录掌法及卓、林任行动表也没有外放招，外放标记后伤害分支未新增；这次复核仍覆盖当前经脉强度与防守路线对耐久的影响。林任夫妻与多波援军各只使用一次整场耐久预算。速度强档与封路档另测首轮 / CT / 移动，禁止折回伤害倍率；固定 RNG 回放仍 **（待实测）**。
 
 ---
 
@@ -1421,7 +1452,7 @@ B = I×H = 19×8 = 152 两
 | YY-V18 | 前代传承最多 3 载体、2 后人、6 新残本、3 新信物 | 本界反投 `lgs_yuanyang_fuqi`，或把开放区外图内地点 / 真正图外节点变成自由步行区 |
 | YY-V19 | `eq_yuanyangdao` 全局唯一；任务中两柄只是部件引用 | 生成两件永久装备、赝品读铭或托管同时入包 |
 | YY-V20 | Markdown 代码围栏成对、表格列数一致；已实现的必需引用路径存在；明确声明缺失并采用降级方案的可选归属文件不计断链 | 截断句、未闭合围栏、必需引用断链、未声明的可选依赖缺失或占位语 |
-| YY-V21 | Boss / 精英经脉输入齐全；低武层数 ≤8；四侠 / 林任 / 援军逐武学行动者独立实例，环境物无实例；`routeRefs` 只由 `MoveDef` 编译 | 漏输入、共享动态节点、层数越界或自建 `mfr_*` |
+| YY-V21 | Boss / 精英经脉输入齐全；低武层数 ≤8；四侠四人须逐人命中完整对手行，林任 / 援军也须逐武学行动者独立实例，环境物无实例；`routeRefs` 只由 `MoveDef` 编译 | 以组合行替代具名 `full` 单位、漏输入、共享动态节点、层数越界或自建 `mfr_*` |
 | YY-V22 | 标准档保持 3.5 / 7.1 / 14.3；Z4M / Z5M、护体、速度、点穴 / 擒拿顺序匹配 `design/21`；Boss 回放 12–25 | 重复乘区、旧顺序或节奏越界 |
 | YY-V23 | 首领表的主运、辅运与外功均引用合法 `sk_*`；七参只从主运派生；离线节奏输出必须有 `estimateOnly=true` | 用人物地位伪造七参、把估算值写入发布 IR，或缺合法主运仍放行 |
 | YY-V24 | 新战斗只创建 `bf_xueweishoufeng` / `bf_shouqin` 等现行状态；本界对 `design/06` §8.14.3 四个旧控制状态的活跃引用为 0 | 旧状态出现在章节运行态、掉落或招式效果中 |
@@ -1432,9 +1463,9 @@ B = I×H = 19×8 = 152 两
 |---|---|---|
 | YY-T01 | D=3 | `enemyStatMul=0.85+0.05×3=1.00`；精英词条 1；基础 Boss 阶段 1 |
 | YY-T02 | `W=40, LOW, boss, Lv42/44/46/48` | hp 分别 53,953 / 59,120 / 64,534 / 70,193；D3 不再乘防御与评级 |
-| YY-T03 | 太岳四侠每人 Lv38，0.60 模板气血 | `40,661×0.60≈24,397`；四个 `full` 单位、一个遭遇阶段 |
+| YY-T03 | 太岳四侠整场 `totalHp=40,661`，稳定序为 `unitIndex=00/10/20/30` | 初始 HP 严格为 `10,166 / 10,165 / 10,165 / 10,165`，四个 `full` 单位只消费一份遭遇预算，合计 40,661 |
 | YY-T04 | 卓 Lv42 / Lv44 / Lv48 建议比例 | `53,953×.85≈45,860`；`59,120×.90=53,208`；`70,193×.90≈63,174` |
-| YY-T05 | 林任各 Lv42，0.60 模板气血 | 各约 32,372；任一到演武阈值后不死亡 |
+| YY-T05 | 林任演武整场 `totalHp=53,953`，林 / 任为 `unitIndex=00/10` | 初始 HP 为 `26,977 / 26,976`，合计 53,953；任一到演武阈值后不死亡、不刷新血条 |
 | YY-T06 | 鸳鸯 Lv48 Boss 节奏 | 41.4 次整队命中等价、约 14.3 主角行动；敌约 11.3 命中 / 11.9 行动 |
 | YY-T07 | I=`2×9.5×1.0`，H=8 | I=19，两；B=152 两 |
 | YY-T08 | B=152 按 40/25/10/10/8/5/2% | 60.8 / 38 / 15.2 / 15.2 / 12.16 / 7.6 / 3.04，两；合计 152 |
@@ -1452,6 +1483,12 @@ B = I×H = 19×8 = 152 两
 | YY-T20 | 同一实体卓连续出现 | 复用生死、伤势和关系；不得刷新为三个互不相关 `full` 实例 |
 | YY-T21 | 卓天雄三场把 `sk_daneichangquan` 替换为 `sk_zhentiansanshizhang`，主运与七参不变 | `boss_pacing.py` 仍得枣林 / 紫竹庵 `15.70`、终局 `16.23`；均在 Boss `12–25` 窗内，耐久维持 `1.00×1.00` |
 | YY-T22 | 林任夫妻按同一整场耐久复核；两人都使用现行配装与里程碑 | `boss_pacing.py` 输出 `estimateOnly=true`、`16.2917010533≈16.29`；只结算一次整场目标，耐久维持 `1.00×1.00` |
+| YY-T23 | 以逍遥子、常长风、花剑影、盖一鸣四个 NPC ID 反查 §12.8 | 每人恰命中一条具名完整对手行；七参均为 `4/8；10500/7500/10500；harmony；schoolCore`，估算均为 `7.03`，外放招均为 0 |
+| YY-T24 | 以袁冠南、萧中慧、周威信、萧半和四个 NPC ID 反查 story 实战入口、§12.8 与人物目录 | 每人恰命中一条具名完整对手行及一条同步武学栏；前三人七参均为 `5/8；10500/7500/10500；harmony；schoolCore`、估算 `7.1742623635≈7.17`，萧半和为 `5/8；13000/9000/13000；yang；fullTemplate`、估算 `16.2917010533≈16.29`；外放均为 0 |
+| YY-T25 | 分别加载紫竹庵 `z_05→z_06` 与 `x_05→x_06`，并在首波后提前停战 | 正线仅生成卓天雄 53,208；邪线依次生成林 / 任、袁 / 萧四个 13,302 槽，两个任务段共用同一 `totalHp=53,208`；提前终局只迁移未消费余额一次 |
+| YY-T26 | 分别加载枣林 `z_02→z_03` 与 `x_02→x_03`，并在擒拿阶段提前交换解穴 | 正线仅生成卓天雄 45,860；邪线 P1 周 / 萧 / 林 / 任各 4,586、P2 袁 18,344、终局 9,172，共用同一 `totalHp=45,860`；提前收束只将尚未消费余额一次迁入 `zaoxiang_x_finish` |
+| YY-T27 | 令甘亭误会跨 `c_02→z_01/x_01`，再令夺人战跨 `z_08/x_08→z_09/x_09` | 前者至多生成一次 `enc_11_linren_yanwu=53,953`；后者至多生成一次 `enc_11_xiaofu_weizhan=64,534`，相邻任务切换均不刷新耐久 |
+| YY-T28 | 邪线在 `x_08` 阻止卓天雄抓萧中慧，再进入 `x_09` 围府 | `x_08` 生成卓天雄 00 槽 25,814；切幕时把该槽当前余额原值迁给萧义，不生成第二个卓实例、不回复；袁 / 萧 / 护卫 / 撤离四槽仍各 9,680，总消费恒为 64,534 |
 
 ### 建议执行命令
 
@@ -1473,7 +1510,7 @@ rg -n 'rg_11_|mer_ren\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/design/chapt
 | YY-S01 | 三种行动身份首次对应检定 +10；开局 35–50 分钟 | `design/12` / 剧情实装按检定分布、移动与对白时长校准 |
 | YY-S02 | 威信 / 清宫贡献：基础考核 100、关键职责 150、锚点级职责 300；职责块 L1–L5 为 2/3/4/5/6 | 任务与经济实现验证单轮不越贡献 / 日程预算 |
 | YY-S03 | 林任指点 2 次，通用 `1500/800/500bp`；紫竹庵和中条山静室质量 1 | `design/12` / `15` 接入师父额度与静室状态 |
-| YY-S04 | 具名 Boss 气血取同级模板 0.60–0.90；六场具体比例见 §12.4 | 属性手配后用 `full` 管线和伤害模拟替换，不照抄模板其他字段 |
+| YY-S04 | 六场唯一整场 `totalHp` 依次为 `40,661 / 45,860 / 53,208 / 53,953 / 64,534 / 70,193`，多人及目标槽按 §12.4 稳定分配 | 属性手配后仍走 `full` / `template` 既定管线；运行时不得给行动者复制整池，须以 `BattleReplayV1` 校准但不照抄模板其他字段 |
 | YY-S05 | 喜剧 `comicBeat` 为 0–3，连续两个 3 后下一幕≤1；未解释易手≤1 | 剧情 / UI 回放验证笑点密度和信息可读性 |
 | YY-S06 | 章节“留手意图”只请求既有降服收束，不保证成功 | `design/09` 实装校验追击、DOT、第三方击杀归因 |
 | YY-S07 | `legacyWorldCap(ch11)=9` 默认开启 | 按 Canon v1.2 §3 规则 12 与 `design/20` §7.6 / H1-P04 执行默认，仍待作者确认；作者作出相反决定并提供迁移前不保留回退分支 |
