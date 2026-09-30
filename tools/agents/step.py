@@ -145,6 +145,8 @@ ASSET_PREFIXES = ("ART", "TOWN", "VFX", "SKILL")  # 素材线（作者 2026-09-3
 
 
 def pool_of(tid: str) -> str:
+    if tid.upper().startswith("ART-P-"):  # 人物立绘提示词（只写文本，不出图）：单独一池，不挤占出图任务
+        return "prompts"
     return "assets" if tid.upper().startswith(ASSET_PREFIXES) else "docs"
 
 

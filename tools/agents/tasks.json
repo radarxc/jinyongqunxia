@@ -30,7 +30,8 @@
     "comment_model": "作者 2026-09-30：执行 / 出图 / 多模态校验一律调用本机 GPT CLI（Codex，gpt-6-astra），不再调用 traex；effort 只用 ultra（执行默认）与 xhigh（审核默认）。Codex 接受 none/minimal/low/medium/high/xhigh/max/ultra；exec 下 `--search` 不可用。",
     "max_parallel": {
       "docs": 3,
-      "assets": 10
+      "assets": 10,
+      "prompts": 9
     }
   },
   "tasks": [
@@ -20949,6 +20950,595 @@
             "1",
             "--max",
             "2"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch01",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 01《天龙八部》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch01-tianlong/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "01",
+        "book_name": "天龙八部",
+        "book_key": "ch01",
+        "book_slug": "tianlong",
+        "catalog": "docs/design/catalog/npcs-ch01-tianlong.md",
+        "chapter": "docs/design/chapters/01-tianlong.md",
+        "story": "docs/design/story/01-tianlong.md",
+        "out_dir": "assets/default/prompts/characters/ch01-tianlong"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch01-tianlong",
+            "--book",
+            "ch01",
+            "--catalog",
+            "docs/design/catalog/npcs-ch01-tianlong.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch02",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 02《射雕英雄传》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch02-shediao/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "02",
+        "book_name": "射雕英雄传",
+        "book_key": "ch02",
+        "book_slug": "shediao",
+        "catalog": "docs/design/catalog/npcs-ch02-shediao.md",
+        "chapter": "docs/design/chapters/02-shediao.md",
+        "story": "docs/design/story/02-shediao.md",
+        "out_dir": "assets/default/prompts/characters/ch02-shediao"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch02-shediao",
+            "--book",
+            "ch02",
+            "--catalog",
+            "docs/design/catalog/npcs-ch02-shediao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch03",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 03《神雕侠侣》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch03-shendiao/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "03",
+        "book_name": "神雕侠侣",
+        "book_key": "ch03",
+        "book_slug": "shendiao",
+        "catalog": "docs/design/catalog/npcs-ch03-shendiao.md",
+        "chapter": "docs/design/chapters/03-shendiao.md",
+        "story": "docs/design/story/03-shendiao.md",
+        "out_dir": "assets/default/prompts/characters/ch03-shendiao"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch03-shendiao",
+            "--book",
+            "ch03",
+            "--catalog",
+            "docs/design/catalog/npcs-ch03-shendiao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch04",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 04《倚天屠龙记》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch04-yitian/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "04",
+        "book_name": "倚天屠龙记",
+        "book_key": "ch04",
+        "book_slug": "yitian",
+        "catalog": "docs/design/catalog/npcs-ch04-yitian.md",
+        "chapter": "docs/design/chapters/04-yitian.md",
+        "story": "docs/design/story/04-yitian.md",
+        "out_dir": "assets/default/prompts/characters/ch04-yitian"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch04-yitian",
+            "--book",
+            "ch04",
+            "--catalog",
+            "docs/design/catalog/npcs-ch04-yitian.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch05",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 05《笑傲江湖》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch05-xiaoao/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "05",
+        "book_name": "笑傲江湖",
+        "book_key": "ch05",
+        "book_slug": "xiaoao",
+        "catalog": "docs/design/catalog/npcs-ch05-xiaoao.md",
+        "chapter": "docs/design/chapters/05-xiaoao.md",
+        "story": "docs/design/story/05-xiaoao.md",
+        "out_dir": "assets/default/prompts/characters/ch05-xiaoao"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch05-xiaoao",
+            "--book",
+            "ch05",
+            "--catalog",
+            "docs/design/catalog/npcs-ch05-xiaoao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch06",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 06《侠客行》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch06-xiake/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "06",
+        "book_name": "侠客行",
+        "book_key": "ch06",
+        "book_slug": "xiake",
+        "catalog": "docs/design/catalog/npcs-ch06-xiake.md",
+        "chapter": "docs/design/chapters/06-xiake.md",
+        "story": "docs/design/story/06-xiake.md",
+        "out_dir": "assets/default/prompts/characters/ch06-xiake"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch06-xiake",
+            "--book",
+            "ch06",
+            "--catalog",
+            "docs/design/catalog/npcs-ch06-xiake.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch07",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 07《碧血剑》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch07-bixue/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "07",
+        "book_name": "碧血剑",
+        "book_key": "ch07",
+        "book_slug": "bixue",
+        "catalog": "docs/design/catalog/npcs-ch07-bixue.md",
+        "chapter": "docs/design/chapters/07-bixue.md",
+        "story": "docs/design/story/07-bixue.md",
+        "out_dir": "assets/default/prompts/characters/ch07-bixue"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch07-bixue",
+            "--book",
+            "ch07",
+            "--catalog",
+            "docs/design/catalog/npcs-ch07-bixue.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch08",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 08《鹿鼎记》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch08-luding/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "08",
+        "book_name": "鹿鼎记",
+        "book_key": "ch08",
+        "book_slug": "luding",
+        "catalog": "docs/design/catalog/npcs-ch08-luding.md",
+        "chapter": "docs/design/chapters/08-luding.md",
+        "story": "docs/design/story/08-luding.md",
+        "out_dir": "assets/default/prompts/characters/ch08-luding"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch08-luding",
+            "--book",
+            "ch08",
+            "--catalog",
+            "docs/design/catalog/npcs-ch08-luding.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch09",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 09《连城诀》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch09-liancheng/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "09",
+        "book_name": "连城诀",
+        "book_key": "ch09",
+        "book_slug": "liancheng",
+        "catalog": "docs/design/catalog/npcs-ch09-liancheng.md",
+        "chapter": "docs/design/chapters/09-liancheng.md",
+        "story": "docs/design/story/09-liancheng.md",
+        "out_dir": "assets/default/prompts/characters/ch09-liancheng"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch09-liancheng",
+            "--book",
+            "ch09",
+            "--catalog",
+            "docs/design/catalog/npcs-ch09-liancheng.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch10",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 10《白马啸西风》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch10-baima/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "10",
+        "book_name": "白马啸西风",
+        "book_key": "ch10",
+        "book_slug": "baima",
+        "catalog": "docs/design/catalog/npcs-ch10-baima.md",
+        "chapter": "docs/design/chapters/10-baima.md",
+        "story": "docs/design/story/10-baima.md",
+        "out_dir": "assets/default/prompts/characters/ch10-baima"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch10-baima",
+            "--book",
+            "ch10",
+            "--catalog",
+            "docs/design/catalog/npcs-ch10-baima.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch11",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 11《鸳鸯刀》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch11-yuanyang/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "11",
+        "book_name": "鸳鸯刀",
+        "book_key": "ch11",
+        "book_slug": "yuanyang",
+        "catalog": "docs/design/catalog/npcs-ch11-yuanyang.md",
+        "chapter": "docs/design/chapters/11-yuanyang.md",
+        "story": "docs/design/story/11-yuanyang.md",
+        "out_dir": "assets/default/prompts/characters/ch11-yuanyang"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch11-yuanyang",
+            "--book",
+            "ch11",
+            "--catalog",
+            "docs/design/catalog/npcs-ch11-yuanyang.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch12",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 12《书剑恩仇录》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch12-shujian/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "12",
+        "book_name": "书剑恩仇录",
+        "book_key": "ch12",
+        "book_slug": "shujian",
+        "catalog": "docs/design/catalog/npcs-ch12-shujian.md",
+        "chapter": "docs/design/chapters/12-shujian.md",
+        "story": "docs/design/story/12-shujian.md",
+        "out_dir": "assets/default/prompts/characters/ch12-shujian"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch12-shujian",
+            "--book",
+            "ch12",
+            "--catalog",
+            "docs/design/catalog/npcs-ch12-shujian.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch13",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 13《飞狐外传》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch13-feihu/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "13",
+        "book_name": "飞狐外传",
+        "book_key": "ch13",
+        "book_slug": "feihu",
+        "catalog": "docs/design/catalog/npcs-ch13-feihu.md",
+        "chapter": "docs/design/chapters/13-feihu.md",
+        "story": "docs/design/story/13-feihu.md",
+        "out_dir": "assets/default/prompts/characters/ch13-feihu"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch13-feihu",
+            "--book",
+            "ch13",
+            "--catalog",
+            "docs/design/catalog/npcs-ch13-feihu.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-ch14",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 书界 14《雪山飞狐》",
+      "prompt": "ART-portrait-book.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/ch14-xueshan/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "14",
+        "book_name": "雪山飞狐",
+        "book_key": "ch14",
+        "book_slug": "xueshan",
+        "catalog": "docs/design/catalog/npcs-ch14-xueshan.md",
+        "chapter": "docs/design/chapters/14-xueshan.md",
+        "story": "docs/design/story/14-xueshan.md",
+        "out_dir": "assets/default/prompts/characters/ch14-xueshan"
+      },
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/ch14-xueshan",
+            "--book",
+            "ch14",
+            "--catalog",
+            "docs/design/catalog/npcs-ch14-xueshan.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-pc",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 主角（男女两版 × 各时代）与书灵",
+      "prompt": "ART-portrait-pc.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/protagonist/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_portrait_prompts.py",
+            "--dir",
+            "assets/default/prompts/characters/protagonist",
+            "--min",
+            "31"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-P-guide",
+      "phase": "ARTP",
+      "wave": 11,
+      "kind": "draft",
+      "title": "人物立绘提示词 · 生成与存放规程（GUIDE.md）",
+      "prompt": "ART-portrait-guide.md",
+      "deps": [],
+      "writes": [
+        "assets/default/prompts/characters/GUIDE.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "assets/default/prompts/characters/GUIDE.md"
+        ],
+        "fences": [
+          "assets/default/prompts/characters/GUIDE.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-c",
+            "import sys; t=open('assets/default/prompts/characters/GUIDE.md',encoding='utf-8').read(); sys.exit(0 if len(t.splitlines())>=100 and '## ' in t else 1)"
           ]
         ]
       }
