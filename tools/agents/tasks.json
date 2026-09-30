@@ -14431,7 +14431,12 @@
       "writes": [
         "assets/default/baseline/town/**",
         "assets/default/prompts/town.md",
-        "tools/town/**"
+        "tools/town/**",
+        "docs/design/town/city_hangzhou__ch02.yaml",
+        "docs/design/town/city_dali__ch01.yaml",
+        "docs/design/town/schema.yaml",
+        "docs/design/22-town-layout-and-generation.md",
+        "docs/design/town/history/**"
       ],
       "review": false,
       "web": false,
@@ -14476,6 +14481,11 @@
             "assets/default/baseline/town/town_hangzhou__ch02.layout.yaml",
             "--strict-assets"
           ]
+        ],
+        "shrink_exempt": [
+          "docs/design/town/**",
+          "assets/default/baseline/town/**",
+          "tools/town/**"
         ]
       }
     },
