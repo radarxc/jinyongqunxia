@@ -13584,7 +13584,7 @@
       "review": false,
       "web": false,
       "vars": {
-        "unit": "xiakebixue",
+        "unit": "xiake-bixue",
         "unit_name": "侠客碧血",
         "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`",
         "counts": "路线性质冲突 2 条、内功性质冲突 2 张、缺主修经脉 11 张（改动后以检查脚本实测为准）",
@@ -13653,7 +13653,7 @@
           [
             "{python}",
             "tools/agents/check_nr3_unit.py",
-            "xiakebixue"
+            "xiake-bixue"
           ]
         ]
       }

@@ -98,6 +98,8 @@ def main():
     checks = a.checks
     if checks and Path(checks).is_file():
         checks = Path(checks).read_text(encoding="utf-8")
+    elif checks and ("/" in checks or checks.endswith(".md")) and "\n" not in checks:
+        sys.exit(f"✘ --checks 看起来是文件路径但不存在：{checks}（临时目录可能已被清空，请重写要点文件）")
     checks = f"\n监督代理补充的审核要点：\n{checks.strip()}\n" if checks.strip() else ""
 
     out_dir = ROOT / ".agents" / "reviews"
