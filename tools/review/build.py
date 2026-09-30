@@ -258,6 +258,51 @@ def add_tile_sheet(items, files, img_dir):
     return True
 
 
+LAYOUT_WT = REPO / ".agents/wt/TOWN-layout"
+LAYOUT_CITIES = [
+    ("dali", "大理国都（羊苴咩城）· 天龙 · 约 1093", "town_dali__ch01"),
+    ("linan", "南宋临安府 · 射雕 · 约 1223", "town_hangzhou__ch02"),
+]
+
+
+def add_layout_cards(items, files, img_dir):
+    """城镇布局图（TOWN-layout，未合入）：俯视坐标布局图为主图，45 度占位预览与史料来源为附图 / 说明。"""
+    hist = LAYOUT_WT / "docs/design/town/history"
+    if not hist.is_dir():
+        return False
+    for key, title, pre in LAYOUT_CITIES:
+        plan = hist / f"{key}_plan.png"
+        if not plan.exists():
+            continue
+        out = img_dir / f"layout_{key}.jpg"
+        to_jpg(plan, out, maxpx=1800)
+        files[f"img/{out.name}"] = str(out)
+        h = hashlib.sha256(plan.read_bytes())
+        extras = []
+        prev = LAYOUT_WT / f"assets/default/baseline/town/preview/{pre}_layout.png"
+        if prev.exists():
+            h.update(prev.read_bytes())
+            o2 = img_dir / f"layout_{key}__iso.jpg"
+            to_jpg(prev, o2, maxpx=1800)
+            files[f"img/{o2.name}"] = str(o2)
+            extras.append({"src": f"img/{o2.name}", "caption": "代码按这份布局变换出的 45 度占位预览（方块 = 建筑占地；真贴片与建筑正在总装）"})
+        md = hist / f"{key}.md"
+        src_lines = []
+        if md.exists():
+            for ln in md.read_text(encoding="utf-8").splitlines():
+                if ln.startswith("| ") and "http" in ln:
+                    cells = [c.strip() for c in ln.strip("|").split("|")]
+                    src_lines.append(f"- {cells[1]}（{cells[2]}）" if len(cells) > 2 else "- " + ln)
+        items.append({"id": f"layout_{key}", "cat": "layout", "catLabel": "城镇·布局图", "state": "ready",
+                      "sha": h.hexdigest()[:16], "subject": f"{title} · 坐标布局图（北向上；城门 / 街道 / 水系 / 桥 / 分区 / 地标，编号见右栏）",
+                      "prompt": "史料来源（联网搜索并实际读过的页面，完整依据表在 docs/design/town/history/" + key + ".md）：\n" + "\n".join(src_lines),
+                      "negative": "", "size": "布局图", "preview": f"img/{out.name}", "wide": True, "extras": extras,
+                      "review": "按你的要求：先搜历史 / 考古平面图复原布局坐标，再由代码出 45 度图。标记含义：据 = 有来源；推 = 推定；创 = 原创扩展；待 = 待考。史料之间有分歧时执行者择一并在依据表里写明。",
+                      "ask": ["城垣轮廓、城门数量与方位、主街走向、水系和桥的关系，与你了解的史料对得上吗？", "分区（皇城 / 王府、官署、商市、住宅、寺塔、军营 / 仓）的位置合理吗？", "缩比取舍（保留拓扑与方位、压缩绝对尺度）可以吗？要改的写在意见里。"],
+                      "badge": gpt_badge("TOWN-layout")})
+    return True
+
+
 def load_manifest(p):
     d = yaml.safe_load(p.read_text(encoding="utf-8"))
     return d["assets"] if isinstance(d, dict) else d
@@ -285,6 +330,7 @@ def main():
     add_vfx_two_part(items, files, img_dir)          # 本轮新增的放最前
     have_bld = add_building_sheets(items, files, img_dir)
     add_tile_sheet(items, files, img_dir)
+    add_layout_cards(items, files, img_dir)
     for cat, label, rel in CATS:
         if cat == "building-map" and have_bld and not (BASE / rel / "manifest.yaml").exists():
             continue
