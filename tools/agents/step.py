@@ -40,7 +40,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import run as R  # noqa: E402  复用 run.py
 
 DEFAULT_MODEL = "GPT-5.6-Sol"   # GPT-6-Astra 2026-09-26 全天反复静默挂死，改为备用
-DEFAULT_EFFORT = "max"
+DEFAULT_EFFORT = "ultra"  # 作者 2026-09-29：推理强度一律最高
 
 
 def now_s() -> str:

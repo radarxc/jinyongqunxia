@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """合入前审核：让 GPT CLI（Codex，只读沙箱）审一个任务工作区里的产出。
 
-作者要求审核也交给 GPT（gpt-6-astra，推理强度 xhigh，即 Codex 界面里的 "Extra high"）。
+作者要求审核也交给 GPT（gpt-6-astra），推理强度一律用最高档 ultra（作者 2026-09-29）。
 监督代理在 `step.py finish <ID> --no-commit` 之后运行本脚本（建议后台运行）：
 
     python3 tools/agents/gpt_review.py <ID> [--checks FILE|TEXT]
@@ -63,7 +63,7 @@ def main():
     ap.add_argument("task")
     ap.add_argument("--checks", default="", help="监督代理补充的审核要点：文件路径或文本")
     ap.add_argument("--model", default="gpt-6-astra")
-    ap.add_argument("--effort", default="xhigh", help="none/minimal/low/medium/high/xhigh/max")
+    ap.add_argument("--effort", default="ultra", help="none/minimal/low/medium/high/xhigh/max/ultra（默认最高档）")
     ap.add_argument("--bin", default=os.environ.get("CODEX_BIN", CODEX))
     ap.add_argument("--timeout-min", type=float, default=45)
     ap.add_argument("--max-images", type=int, default=8)
