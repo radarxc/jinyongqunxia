@@ -18,15 +18,12 @@ BASE = REPO / "assets/default/baseline"
 # 还没合入、要先给作者看的类别：从任务工作区读图（作者说"先给我看图再合入"）
 WT_OVERRIDE = {"male": REPO / ".agents/wt/ART-R2-male/assets/default/baseline/character/male",
                # "town": 第 8 次运行未结束，图还会变，先显示占位
-               "vfx": REPO / ".agents/wt/ART-R2-vfx/assets/default/baseline/vfx",
+               "vfx": REPO / ".agents/wt/ART-R3-vfx/assets/default/baseline/vfx",  # 含 R2 的六脉图与 R3 的图层动画演示
                "female": REPO / ".agents/wt/ART-R1-female/assets/default/baseline/character/female"}
 WT_BADGE = {"male": "GPT 审核已过 · 未合入，你看过再合", "town": "45 度新图 · GPT 审核进行中 · 未合入", "vfx": "GPT 审核已过 · 未合入，你看过再合", "female": "GPT 审核已过 · 未合入，你看过再合"}
 
 # 演示暂不内嵌的素材（旧的 Canvas 手绘演示作者已否定；图层动画 ART-R3-vfx 返修中，修好后去掉这里的条目并把 WT_OVERRIDE["vfx"] 指向它的工作区）
-DEMO_HOLD = {
-    "ref_mv_xianglong18_kanglong__ch02_base01": "演示：按你“这个特效看起来太蠢了，跟渲染的图完全不一样”的意见，旧的代码手绘演示已作废；改用这张图拆图层做的动画还在返修（过程帧有切边），修好后本页更新。两段式新管线（效果帧 + 发出方图，程序合成）的样例另行出图。本卡先只审这张图。",
-    "ref_sk_liumai__ch01_base01": "演示：图层动画版已做好，和降龙的演示一起更新到本页。两段式新管线的样例另行出图。本卡先只审这张图。",
-}
+DEMO_HOLD = {}  # 图层动画 ART-R3-vfx 已过 GPT 审核（r4），演示恢复内嵌
 
 CATS = [  # (cat key, label, manifest dir relative to baseline)
     ("map", "地图", "map"),
@@ -103,6 +100,13 @@ NOTES.update({  # 第 2 / 3 轮
         ["线性、持续的感觉对吗？请点“播放”看动画。", "配色（近无色 + 青 / 赤刃缘）可以吗？"]),
     "ref_npc_xiaolongnv__ch03_base01": ("第 3 轮：按你“加白手套、佩剑、铃铛（书中经典形象）”的意见，在已通过的原图上只加三样：素白五指薄手套；左腰入鞘中式直剑（淑女剑）；手中白绸两端各一枚小金铃（金铃索）。脸、发式、白衣、构图、光照不变。",
         ["三样东西的大小、位置和画风协调吗？", "腰侧系带上端被袖子挡住、屈指部分被遮挡，可以吗？"]),
+})
+
+NOTES.update({  # 第 3 轮演示：图层动画（ART-R3-vfx）
+    "ref_mv_xianglong18_kanglong__ch02_base01": ("图是按你第 1 轮意见返修的那张（金色为主，气从掌根、鱼际、指根整片透出，巨龙回卷前冲），没有再改。演示按你“这个特效看起来太蠢了，跟渲染的图完全不一样”的意见重做：直接用这张图拆出的图层做动画——掌面先亮 → 龙气沿脊线显现到龙首 → 龙首凝势、金点飞溅 → 由尾向首消散，循环 5.6 秒；代码里不再画任何造型，峰值帧就是这张图。",
+        ["点“播放”看动画：显现和消散的节奏对吗？", "金色力度和龙首的具象程度合适吗？", "龙角尖贴近画面顶边，可以吗？"]),
+    "ref_sk_liumai__ch01_base01": ("图是按你“不是气刃，应该是……线性的，持续的”的意见改的：从指端凝聚点连续射出的细长气线，全画面不用水墨；配色为近无色主体加淡青 / 淡赤缘（原著没写颜色，按设定“阴青阳赤”定的原创配色）。演示同样改成用这张图的图层做动画：指端凝聚 → 六道剑气相继显现 → 线性持续激射约 3 秒 → 收束消散。",
+        ["线性、持续的感觉对吗？请点“播放”看动画。", "配色（近无色 + 青 / 赤缘）可以吗？"]),
 })
 
 PENDING = {  # category -> (subjects, reason) while the supervisor has it in rework
