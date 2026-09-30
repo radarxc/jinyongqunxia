@@ -40,6 +40,12 @@ header .lede{color:var(--muted);max-width:62ch;margin:.6em 0 0}
 .fig{position:relative;background:var(--chip);cursor:zoom-in;border:0;padding:0;display:block;width:100%}
 .fig img{display:block;width:100%;height:auto;max-height:560px;object-fit:contain;background:var(--chip)}
 .fig.land img{max-height:none}
+.card.wide{grid-column:1/-1}
+.card.wide .fig img{max-height:none}
+.extras{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding:8px;border-top:1px solid var(--line)}
+.extras button{border:1px solid var(--line);background:var(--chip);padding:0;cursor:zoom-in;display:flex;flex-direction:column;min-width:0}
+.extras img{display:block;width:100%;height:150px;object-fit:contain;background:var(--chip)}
+.extras span{font-size:12px;color:var(--muted);padding:4px 6px;text-align:left;background:var(--sheet)}
 .stack{display:grid}
 .stack>img{grid-area:1/1}
 .stack>img.labels{width:100%;height:100%;pointer-events:none;background:transparent}
@@ -69,6 +75,7 @@ details pre{white-space:pre-wrap;word-break:break-word;font:12.5px/1.65 var(--f-
 .play{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--ink);background:transparent;color:var(--ink);
   border-radius:4px;cursor:pointer}
 .demo-frame{display:block;width:100%;height:min(80vh,640px);border:1px solid var(--line);background:#efe9dc}
+.card.wide .demo-frame{height:min(80vh,720px)}
 .decide{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
 .decide button{font:500 14px/1 var(--f-body);padding:11px 6px;border:1px solid var(--line);background:var(--paper);
   color:var(--ink);cursor:pointer;border-radius:4px}
@@ -172,7 +179,7 @@ button:focus-visible,textarea:focus-visible,a:focus-visible,input:focus-visible{
 
   function card(a) {
     if (a.state !== "ready") return pendingCard(a);
-    const el = mk("article", "card"); el.id = "c-" + a.id;
+    const el = mk("article", "card" + (a.wide ? " wide" : "")); el.id = "c-" + a.id;
     const fig = mk("button", "fig" + (a.labels ? " land" : ""));
     fig.type = "button"; fig.setAttribute("aria-label", "放大查看 " + a.id);
     const stack = mk("span", "stack");
@@ -186,6 +193,17 @@ button:focus-visible,textarea:focus-visible,a:focus-visible,input:focus-visible{
     fig.appendChild(stack);
     fig.addEventListener("click", () => openLb(a, !!lab && !lab.hidden));
     el.appendChild(fig);
+    if (a.extras && a.extras.length) {
+      const ex = mk("div", "extras");
+      for (const x of a.extras) {
+        const b = mk("button"); b.type = "button"; b.setAttribute("aria-label", "放大查看 " + x.caption);
+        const im = mk("img"); im.src = x.src; im.alt = x.caption; im.loading = "lazy"; im.decoding = "async";
+        b.append(im, mk("span", null, x.caption));
+        b.addEventListener("click", () => openLb({ preview: x.src, subject: x.caption, id: a.id }, false));
+        ex.appendChild(b);
+      }
+      el.appendChild(ex);
+    }
 
     const body = mk("div", "body");
     const meta = mk("div", "meta");
@@ -210,7 +228,7 @@ button:focus-visible,textarea:focus-visible,a:focus-visible,input:focus-visible{
         let f = d.querySelector("iframe");
         if (f) { f.remove(); btn.textContent = "▶ 播放可运行的特效演示"; return; }
         f = mk("iframe", "demo-frame");
-        f.setAttribute("sandbox", "allow-scripts"); f.title = "水墨特效演示 " + a.id;
+        f.setAttribute("sandbox", "allow-scripts"); f.title = "特效演示 " + a.id;
         f.srcdoc = a.demoHtml;
         d.appendChild(f); btn.textContent = "■ 收起演示";
       });

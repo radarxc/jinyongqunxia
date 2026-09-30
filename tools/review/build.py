@@ -10,6 +10,9 @@ from pathlib import Path
 import yaml
 from PIL import Image
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import contact_sheet as CS  # noqa: E402
+
 REPO = Path("/Users/bytedance/Projects/jinyongqunxia")
 HERE = Path(__file__).resolve().parent
 OUT = REPO / ".agents" / "coord" / "review"   # 生成物不入库（.agents/ 在 .gitignore 里）
@@ -111,7 +114,7 @@ NOTES.update({  # 第 3 轮演示：图层动画（ART-R3-vfx）
 
 PENDING = {  # category -> (subjects, reason) while the supervisor has it in rework
     "town": (["大理国都（天龙，约 1093）", "南宋临安（射雕，约 1220s）"],
-             "按你的决定改为程序化生成（城市规格 → 生成布局 → 贴片渲染底图 → 按坐标贴建筑）：设计文档在做第 3 轮审核，贴片与建筑单体正在出图，渲染工具随后开工。两张城镇图组装出来后放在这里。"),
+             "程序化生成：城市规格 → 代码生成布局 → 代码用贴片渲染底图 → 按坐标贴建筑。建筑 38 张已出（见“建筑·地图拼接”两张总览图）；底图贴片 60 张候选已有；布局生成器在返工（原规格放不下，已改成先放功能建筑、民居商铺沿街填充）。生成器跑通后用这些图拼出两张城镇图放在这里。"),
     "building-map": (["大理国都沿街建筑，如客栈或茶肆（天龙，约 1093）", "南宋临安沿街建筑，如茶坊或药铺（射雕，约 1220s）"],
              "出图中（宋套件）：要拼到城市地图上的 45 度单体建筑，透明底、按占地格数出图，视角与光源对齐城镇图；大理带佛教元素与本地植物，临安要有繁华商铺感。GPT 审核通过后放在这里。"),
     "male": (["萧峰（天龙）", "令狐冲（笑傲，明代）"],
@@ -119,6 +122,116 @@ PENDING = {  # category -> (subjects, reason) while the supervisor has it in rew
     "meridian": (["任督二脉（正反面）", "手厥阴心包经"],
                  "监督复核未通过：任督配色与设定相反（应为阴青阳赤）；心包经前臂三穴位置不按寸数。正在修图。"),
 }
+
+def supervise_state(tid):
+    try:
+        return json.loads((REPO / ".agents/coord" / tid / "supervise.status.json").read_text(encoding="utf-8")).get("state")
+    except (OSError, ValueError):
+        return None
+
+
+def gpt_badge(tid):
+    st = supervise_state(tid)
+    if st in ("READY", "MERGED"):
+        return "GPT 审核已过 · 未合入，你看过再合"
+    if st == "RUNNING":
+        return "GPT 审核进行中 · 未合入，先给你看"
+    return "GPT 审核未过 · 未合入，先给你看方向"
+
+
+def to_jpg(src, out, checker=False, maxpx=1400):
+    im = Image.open(src)
+    if im.mode == "RGBA" or checker:
+        im = im.convert("RGBA")
+        bg = CS.checker(im.width, im.height, step=max(12, im.width // 60)).convert("RGBA")
+        bg.alpha_composite(im)
+        im = bg
+    im = im.convert("RGB")
+    im.thumbnail((maxpx, maxpx), Image.LANCZOS)
+    im.save(out, "JPEG", quality=84, optimize=True, progressive=True)
+
+
+VFX2_WT = REPO / ".agents/wt/VFX-plates/assets/default/baseline/vfx"
+VFX2_NOTES = {
+    "vfx_mv_xianglong18_kanglong__ch02_base01": (
+        "两段式样例。原料只有两张生成图：① 白底金龙 6 帧（一张图）；② 透明底的掌。其余都是代码做的：切出 6 帧并抠掉白底 → 按掌面方向把金龙叠到掌上 → 帧间过渡出动效。上面大图是峰值帧，下面小图是两张原料和代码抠出的 6 帧。",
+        ["金色、龙从整个掌面透出、气势——到位了吗？", "这只掌接近照片质感，和手绘人物放在一起可以吗，还是要改成手绘画法？",
+         "点“播放”看动效：凝聚 → 发出 → 持续 → 消散的节奏对吗？"]),
+    "vfx_sk_liumai__ch01_base01": (
+        "两段式样例。原料只有两张生成图：① 白底气剑 6 帧（一张图）；② 透明底的指。单束、线性、持续，银灰主体加淡赤缘，全程不用水墨；代码切帧、叠到指尖、做过渡。上面大图是峰值帧，下面小图是原料。",
+        ["线性、持续的气剑感觉对吗？现在偏细、偏灰，有点像一根细棍——要不要更亮、更有内力凝缩的感觉？", "颜色（银灰 + 淡赤缘）可以吗？原著没写颜色。",
+         "这只手同样接近照片质感，可以吗？", "点“播放”看动效。"]),
+}
+
+
+def add_vfx_two_part(items, files, img_dir):
+    """两段式招式样例（VFX-plates，未合入）：峰值帧 + 演示 + 两张原料图。"""
+    mf = VFX2_WT / "manifest.yaml"
+    if not mf.exists():
+        return
+    for a in load_manifest(mf):
+        if a.get("pipeline") != "two-part":
+            continue
+        suite = (VFX2_WT / a["file"]).parent
+        srcs = [("生成图 1 · 白底效果帧（6 帧一张图）", suite / "effect/source_sheet.png")]
+        srcs += [("生成图 2 · 发出方（透明底）", f) for f in sorted((suite / "emitter").glob("source_*.png"))]
+        srcs += [("代码抠出的 6 帧（黑底预览）", suite / "effect/preview_black.png")]
+        h = hashlib.sha256((VFX2_WT / a["file"]).read_bytes())
+        extras = []
+        for i, (cap, f) in enumerate(srcs):
+            if not f.exists():
+                continue
+            h.update(f.read_bytes())
+            out = img_dir / f"{a['id']}__x{i + 1}.jpg"
+            to_jpg(f, out)
+            files[f"img/{out.name}"] = str(out)
+            extras.append({"src": f"img/{out.name}", "caption": cap})
+        out = img_dir / f"{a['id']}.jpg"
+        to_jpg(VFX2_WT / a["file"], out)
+        files[f"img/{out.name}"] = str(out)
+        note, ask = VFX2_NOTES.get(a["id"], ("两段式样例。", []))
+        it = {"id": a["id"], "cat": "vfx2", "catLabel": "招式·两段式（新）", "state": "ready", "sha": h.hexdigest()[:16],
+              "subject": a.get("subject", ""), "prompt": a.get("prompt", ""), "negative": a.get("negative", ""),
+              "size": a.get("size", ""), "preview": f"img/{out.name}", "review": note, "ask": ask,
+              "badge": gpt_badge("VFX-plates"), "extras": extras}
+        code = VFX2_WT / a["code"] if a.get("code") else None
+        if code and code.exists():
+            it["demoHtml"] = code.read_text(encoding="utf-8")
+        items.append(it)
+
+
+BLD_WT = REPO / ".agents/wt/TOWN-buildings/assets/default/baseline/building-map"
+BLD_GROUPS = [
+    ("dali__ch01", "大理国都（天龙，约 1093）", lambda a: "_dali_" in a["id"] or "_ch01_" in a["id"]),
+    ("linan__ch02", "南宋临安（射雕，约 1223）", lambda a: "_southern_" in a["id"] or "_ch02_" in a["id"]),
+]
+
+
+def add_building_sheets(items, files, img_dir):
+    """地图拼接建筑（TOWN-buildings，未合入）：按城市各拼一张带编号的总览图，整批给一个结论，要改的写编号。"""
+    if not (BLD_WT / "manifest.yaml").exists():
+        return False
+    by_id = {a["id"]: a for a in load_manifest(BLD_WT / "manifest.yaml")}
+    for key, title, pred in BLD_GROUPS:
+        out = img_dir / f"sheet_building_map_{key}.jpg"
+        info = CS.build(BLD_WT, out, cols=5, cell=300, only=pred)
+        if not info:
+            continue
+        files[f"img/{out.name}"] = str(out)
+        sha = hashlib.sha256("".join(x[2] for x in info).encode()).hexdigest()[:16]
+        listing = "\n".join(f"{n}. {i}（{size}，占地 {'×'.join(str(v) for v in (by_id[i].get('building') or {}).get('footprint', []))} 格）"
+                            f" {by_id[i].get('subject', '')}" for n, i, _, size in info)
+        items.append({"id": f"sheet_building_map_{key}", "cat": "building-map", "catLabel": "建筑·地图拼接",
+                      "state": "ready", "sha": sha, "subject": f"{title} · 要拼到城市地图上的建筑单体 {len(info)} 张",
+                      "prompt": "编号对应的素材：\n" + listing + "\n\n每张的完整提示词在工作区 manifest 与 assets/default/prompts/building-map.md。",
+                      "negative": "", "size": f"{len(info)} 张", "preview": f"img/{out.name}", "wide": True,
+                      "review": "斜 45 度、透明底、左上光，按占地格数出图；渲染时由代码按坐标贴到城镇底图上。整批给一个结论；哪几张要改，在意见里写编号（图上红色数字）。点图放大。",
+                      "ask": ["整体画风、45 度视角、光向和建筑之间的统一程度可以吗？",
+                              "年代和地域感：大理要有佛教元素与本地特征，临安要有繁华商铺感——看得出来吗？",
+                              "哪几张不要或要改？写编号。"],
+                      "badge": gpt_badge("TOWN-buildings")})
+    return True
+
 
 def load_manifest(p):
     d = yaml.safe_load(p.read_text(encoding="utf-8"))
@@ -144,7 +257,11 @@ def main():
     img_dir.mkdir()
     files = {}
     items = []
+    add_vfx_two_part(items, files, img_dir)          # 本轮新增的放最前
+    have_bld = add_building_sheets(items, files, img_dir)
     for cat, label, rel in CATS:
+        if cat == "building-map" and have_bld and not (BASE / rel / "manifest.yaml").exists():
+            continue
         mdir = WT_OVERRIDE.get(cat) if WT_OVERRIDE.get(cat, Path("/nonexistent")).is_dir() else BASE / rel
         mf = mdir / "manifest.yaml"
         if not mf.exists():
