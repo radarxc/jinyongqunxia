@@ -64,11 +64,17 @@ def render(groups: dict) -> str:
            "> 本文件由 `tools/agents/build_portrait_index.py` 生成，不要手改；改提示词就改各人物文件，改规程就改 `GUIDE.md`，然后重新生成。",
            "> 每个人物一份提示词文件（`<分组>/<id>.md`）：文首 frontmatter 写明立绘素材 ID、输出文件与登记清单的位置，正文是人物要点、完整提示词、排除项与质检要点。",
            "",
-           f"共 **{total}** 份：" + "、".join(f"{GENDER.get(k, k)} {v}" for k, v in sorted(by_gender.items()))
-           + "；品质档 " + "、".join(f"{k} {v}" for k, v in sorted(by_tier.items())) + "。",
+           (f"已合入 **{total}** 份：" + "、".join(f"{GENDER.get(k, k)} {v}" for k, v in sorted(by_gender.items()))
+            + "；品质档 " + "、".join(f"{k} {v}" for k, v in sorted(by_tier.items())) + "。") if total
+           else "提示词正在撰写，目前还没有已合入的文件；进度见下表。",
            "", "## 目录", "", "- [生成与存放规程](#生成与存放规程)"]
     for g, rows in groups.items():
         out.append(f"- [{title_of(g)}](#{anchor_of(g)})（{len(rows)} 份）")
+    prog = progress(groups)
+    if any("已合入" not in r for r in prog):
+        out += ["", "## 撰写进度", "",
+                "提示词由 GPT CLI 按书界并行撰写，逐个书界过审后合入；本表在每次合入后重新生成。全部合入后本节自动消失。", "",
+                "| 分组 | 目录 | 状态 |", "|---|---|---|"] + prog
     out += ["", "## 生成与存放规程", ""]
     guide = BASE / "GUIDE.md"
     if guide.exists():
@@ -91,6 +97,28 @@ def render(groups: dict) -> str:
                        f"{AGE.get(str(fm.get('age_variant')), fm.get('age_variant'))} | {fm.get('tier', '')} | [{f.name}]({rel}) | "
                        f"`{fm.get('asset_id', '')}` | `{fm.get('output', '')}` | {fm.get('status', '')} |")
     return "\n".join(out) + "\n"
+
+
+def progress(groups: dict) -> list:
+    """各分组的撰写进度：已合入主分支的份数；没合入的看任务工作区里已经写了多少份草稿。"""
+    import json
+    tasks = json.loads((ROOT / "tools/agents/tasks.json").read_text(encoding="utf-8"))["tasks"]
+    rows = []
+    for t in tasks:
+        if not t["id"].startswith("ART-P-") or t["id"] == "ART-P-guide":
+            continue
+        group = t["writes"][0].split("/")[-2]
+        merged = len(groups.get(group, []))
+        wt = ROOT / ".agents" / "wt" / t["id"] / "assets/default/prompts/characters" / group
+        draft = len([f for f in wt.glob("*.md")]) if wt.is_dir() else 0
+        if merged:
+            state = f"已合入 {merged} 份"
+        elif draft:
+            state = f"撰写 / 审核中，草稿已写 {draft} 份（未合入，草稿在 `.agents/wt/{t['id']}/assets/default/prompts/characters/{group}/`）"
+        else:
+            state = "撰写中，尚无草稿" if wt.parent.parent.parent.parent.parent.exists() else "未开工"
+        rows.append(f"| {title_of(group)} | `{group}/` | {state} |")
+    return rows
 
 
 def title_of(group: str) -> str:
