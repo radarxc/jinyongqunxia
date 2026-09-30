@@ -14350,7 +14350,10 @@
       ],
       "writes": [
         "tools/town/**",
-        "assets/default/baseline/town/preview/**"
+        "assets/default/baseline/town/preview/**",
+        "docs/design/town/city_dali__ch01.yaml",
+        "docs/design/town/city_hangzhou__ch02.yaml",
+        "docs/design/22-town-layout-and-generation.md"
       ],
       "review": false,
       "web": false,
