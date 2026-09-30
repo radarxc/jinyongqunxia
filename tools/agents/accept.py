@@ -5,7 +5,7 @@
 
 逐个任务：确认 supervise 状态为 READY 且最新审核首行是 VERDICT: PASS（--force 跳过这两项核对，
 用于协调者裁定放行的任务），然后 `step.py finish`（重新校验并在工作区提交）+ `step.py merge`。
-素材任务（ID 以 ART 开头，或 tasks.json 里 phase 为 ART）默认拒绝：要作者看过图才合入，确认后加 --author-approved。
+素材任务（ID 以 ART 开头、phase 为 ART，或写集含 assets/ 且不是代码任务）默认拒绝：要作者看过图才合入，确认后加 --author-approved。
 """
 import argparse
 import subprocess
@@ -18,6 +18,7 @@ import supervise as V  # noqa: E402
 import run as R  # noqa: E402
 
 ROOT = V.ROOT
+CODE_TASKS = {"TOWN-render", "VFX-tool"}  # 写 assets/ 下占位预览的代码任务，不算素材任务
 
 
 def main() -> int:
@@ -30,7 +31,9 @@ def main() -> int:
     rc_all = 0
     for tid in a.ids:
         t = g[tid]
-        if (tid.upper().startswith("ART") or t.phase == "ART") and not a.author_approved:
+        is_asset = (tid.upper().startswith("ART") or t.phase == "ART"
+                    or (any(w.startswith("assets/") for w in t.writes) and tid not in CODE_TASKS))
+        if is_asset and not a.author_approved:
             print(f"✘ {tid}：素材任务，要作者看过图才合入（确认后加 --author-approved）")
             rc_all = 1
             continue
