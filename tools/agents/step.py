@@ -141,8 +141,11 @@ def is_running(root: Path, tid: str) -> bool:
 POOL_CAPS_DEFAULT = {"docs": 8, "assets": 8}
 
 
+ASSET_PREFIXES = ("ART", "TOWN", "VFX", "SKILL")  # 素材线（作者 2026-09-30：优先把 assets 任务跑完）单独一池，不和文档任务抢位
+
+
 def pool_of(tid: str) -> str:
-    return "assets" if tid.upper().startswith("ART") else "docs"
+    return "assets" if tid.upper().startswith(ASSET_PREFIXES) else "docs"
 
 
 def pool_cap(g, pool: str) -> int:
