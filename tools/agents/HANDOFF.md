@@ -1,4 +1,4 @@
-# 协调者交接文档（2026-09-29 晚）
+# 协调者交接文档（2026-09-29 晚；2026-09-30 起的变更见文末 §9，**与前文冲突处以 §9 为准**）
 
 > 给下一位协调者（任何 agent）的操作手册。**先读 `TODO.md` §8**（整体规划、已做、坑、待做），再读本文件、`SUPERVISOR.md`、`FOLLOWUPS.md`，不需要之前的聊天记录。
 > 当前状态快照随时可重跑：`python3 tools/agents/status_snapshot.py`（加 `--all` 看含依赖未满足的）。
@@ -126,3 +126,27 @@
 | 审批页 | 版本 4：小龙女第 3 轮、萧峰 R2、令狐冲 R1、六脉 R2、倚天剑 R1、降龙 R1 待审 | — | 作者审完：`ArtifactData list reviews` 导出 → `apply_reviews.py <dir> --write` → 记 STYLE.md 审批记录 → 按结论合入或开返修任务 |
 
 已合入待启动：**LINT-outlets**（deps 全部 NR4，少林、逍遥合入后即可启动，traex Sol ultra）→ 之后登记并启动 **NR4S-NN**（模板 `prompts/NR4S-book.md`，条目取 `FOLLOWUPS.md`"NR4 阶段"）→ **NAu-final**。
+
+## 9. 接手记录（2026-09-30 起）——与前文冲突处以本节为准
+
+### 9.1 作者新指示（原话，2026-09-30）
+- 「阅读TODO内容，继续完成任务。注意，我用其他Agent完成了许多工作，你要根据todo继续推进完成。你负责规划、拆解和准出，任务的执行/图像生成/多模态校验调用gpt cli(gpt 6 astra ultra 和 extra high）来完成。」
+- 「调用gpt，不要调用traex cli，我有gpt」
+
+### 9.2 落实
+- **执行器一律是本机 GPT CLI**（Codex，`/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex`，模型 `gpt-6-astra`）：文档、代码、出图、审核都走它；**不再调用 traex**。`tasks.json` defaults 与 `step.py` 默认值已改（5412878），`step.py start <ID>` 不带参数就是 Codex gpt-6-astra ultra。
+- **推理强度只用两档**：执行 / 出图 / 返修 `ultra`；审核（含多模态校验）默认 `xhigh`，设计文档与终审类任务的审核用 `ultra`（`supervise.py --review-effort`）。
+- **协调者的职责**：规划、拆解（登记任务、写提示词与审核要点）、准出（读审核结论 + 机械核对后 `finish` + `merge`）。不写文档正文、不出图、不写业务代码。
+- **监督方式**：不再为每个任务起 Claude 监督子代理，改用脚本 `tools/agents/supervise.py <ID> [--note …] [--checks …] --detach`：`start → wait（停滞 / 超时自动续作）→ finish --no-commit → gpt_review → FAIL 自动把审核意见整理成续作说明返修再审（默认最多 3 轮）→ READY`。状态在 `.agents/coord/<ID>/supervise.status.json`，过程在同目录 `supervise.log`。终态 `READY`（待准出）/ `HOLD-REVIEWS`（3 轮仍 FAIL，协调者裁定）/ `HOLD-RUNS` / `ERROR`。驱动进程脱离终端运行，会话断了也不受影响；重新运行同一命令会自动接入（执行器在跑就接着等；已跑完用 `--from validate` 或 `--from review`）。`tools/agents/wait_any.py ID…` 等一组任务里任意一个进入终态。
+- **准出口径**：`READY` = 调度器校验通过 + GPT 审核 `VERDICT: PASS`。协调者再做机械核对（写集范围、`git diff --stat`、关键检查命令在主检出复跑）后 `step.py finish <ID>` + `merge <ID>`；一批合入后在主检出跑全量检查。素材任务（ART / TOWN 素材 / VFX-plates）`READY` 后**不合入**，等作者看图。
+- **审核要点文件**放 `.agents/coord/<ID>/review_checks*.md`（NR4S 共用 `.agents/coord/NR4S/`）。口径：正文 / 数据 / 代码 / 图片有任何不到位判 FAIL；报告里不影响结论的纯笔误只列出、不单独判 FAIL。
+
+### 9.3 审批页
+- 旧审批页 `https://claude.ai/artifact/NhZGycmwB5QdyiwntJGkyG` 是别的会话 / 账号发布的，本会话读不到（artifact not found），其数据库里作者点过的结论也读不到。
+- 处理：下一批素材就绪后用 `tools/review/build.py` 重新生成，在本账号**新发布**一页（新地址登记在这里），请作者在新页上重新点结论（或直接在对话里说）。
+
+### 9.4 进度（随做随更新）
+- NR4 十二册全部合入：少林 364c030、逍遥 e1771ac；全部 25 册图鉴 `check_nr4_unit.py` 为 0/0/0。
+- 已登记并启动（47c828e）：LINT-outlets、NR4S-01…14（按书界同步）、NR4S-rules（design/03、05、07、10、20、21 与图鉴互引的性质同步）。
+- 素材线在跑：TOWN-design（第 3 次运行，接 r1 返修）、VFX-design（重新开工）、ART-R3-vfx（第 3 次运行，接 r1 返修）。
+

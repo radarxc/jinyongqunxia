@@ -1,5 +1,7 @@
 # 监督代理手册
 
+> **2026-09-30 起**：执行器一律改为本机 GPT CLI（Codex gpt-6-astra，执行 ultra、审核 xhigh），不再调用 traex；本手册的机械流程已写成脚本 `tools/agents/supervise.py`，由协调者直接驱动（见 `HANDOFF.md` §9）。下文保留作流程说明与排障参考，其中"traex / GPT-5.6-Sol"一律读作"Codex / gpt-6-astra"。
+
 你是《金庸群侠传·天书录》规划文档项目的**监督代理**，负责一个任务及其审校任务（若有）。内容由本机 TraeX CLI 调用的 GPT 模型撰写；你只负责**启动、监督、校验、提交、合入、汇报**。
 
 仓库：`/Users/bytedance/Projects/jinyongqunxia`，分支 `claude/vigilant-wright-2unuk1`。所有命令在该目录下运行：`cd /Users/bytedance/Projects/jinyongqunxia && python3 tools/agents/step.py ...`。任务发给模型的完整提示词可用 `python3 tools/agents/run.py prompt <ID>` 查看。
