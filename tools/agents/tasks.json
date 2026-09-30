@@ -27,7 +27,11 @@
     "web_args": [],
     "prompt_via": "stdin",
     "shrink_guard": 0.85,
-    "comment_model": "作者 2026-09-30：执行 / 出图 / 多模态校验一律调用本机 GPT CLI（Codex，gpt-6-astra），不再调用 traex；effort 只用 ultra（执行默认）与 xhigh（审核默认）。Codex 接受 none/minimal/low/medium/high/xhigh/max/ultra；exec 下 `--search` 不可用。"
+    "comment_model": "作者 2026-09-30：执行 / 出图 / 多模态校验一律调用本机 GPT CLI（Codex，gpt-6-astra），不再调用 traex；effort 只用 ultra（执行默认）与 xhigh（审核默认）。Codex 接受 none/minimal/low/medium/high/xhigh/max/ultra；exec 下 `--search` 不可用。",
+    "max_parallel": {
+      "docs": 10,
+      "assets": 6
+    }
   },
   "tasks": [
     {
@@ -14500,6 +14504,1222 @@
       }
     },
     {
+      "id": "NR4S-01",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 01《天龙八部》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/01-tianlong.md",
+        "docs/design/catalog/npcs-ch01-tianlong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "01",
+        "book_name": "天龙八部",
+        "chapter": "docs/design/chapters/01-tianlong.md",
+        "npcs": "docs/design/catalog/npcs-ch01-tianlong.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-general）`npcs-ch01` 约第 33–34 行、`chapters/01` 约第 1417–1418 行：游氏兄弟辅运 `sk_huxixingqi` 已由调和改阴，同步性质 / 调息投影并复核相性。\n   - （NR4-wujue）`chapters/01` 约第 1419 行：段延庆按当前调和主运，辅运段氏养生功（`sk_duanshiyangshenggong`，调和→阴）的辅运比例 0.50→0.40；按 design/05 §5.2–§5.4 重算辅运贡献、相冲与节奏。\n   - 逍遥册、少林册在 NR4 中没有内功改性质（只补主修经脉、改路线、给 7 门原先没写性质的外功 / 轻功 / 杂学补了性质）；本书界引用这两册武学处若写了性质，按图鉴现值核对。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/catalog/npcs-ch01-tianlong.md"
+        ],
+        "fences": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/catalog/npcs-ch01-tianlong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/01-tianlong.md",
+            "docs/design/catalog/npcs-ch01-tianlong.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-02",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 02《射雕英雄传》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/02-shediao.md",
+        "docs/design/catalog/npcs-ch02-shediao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "02",
+        "book_name": "射雕英雄传",
+        "chapter": "docs/design/chapters/02-shediao.md",
+        "npcs": "docs/design/catalog/npcs-ch02-shediao.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-bulu）§12.6（约第 1229、1260、1263 行）：桃花归元诀 `sk_taohuaguiyuanjue` 调和→阴，同步黄药师 `innerNature` 并复核派生节奏；约第 1265 行：全真周天功 `sk_quanzhenzhoutiangong` 阳→调和，同步重阳七星阵首七参并复核节奏。\n   - （NR4-wujue）`chapters/02` 约第 1226–1233 行与 `npcs-ch02` 约第 11–13、35–36 行：陈玄风、梅超风的桃花吐纳息辅运比例 0.40→0.25（无品阶 ≥7 调和桥接，新引入阴阳相冲风险，写明代价）；洪七公与君山阵首的丐帮护心法（阳→调和）辅运比例 0.50→0.40 且失去三运同源 +4%；黄药师按当前调和主运，桃花吐纳息与药圃吐纳息均改阴，两门辅运各 0.50→0.40；欧阳锋蛇形吐纳息阴→调和、辅运比例 0.25→0.40，但毒脉护气功仍为阴，整套相冲风险未消——默认保持配装并写明相冲代价，列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/catalog/npcs-ch02-shediao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/catalog/npcs-ch02-shediao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/02-shediao.md",
+            "docs/design/catalog/npcs-ch02-shediao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-03",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 03《神雕侠侣》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/03-shendiao.md",
+        "docs/design/catalog/npcs-ch03-shendiao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "03",
+        "book_name": "神雕侠侣",
+        "chapter": "docs/design/chapters/03-shendiao.md",
+        "npcs": "docs/design/catalog/npcs-ch03-shendiao.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-bulu）§12.8（约第 1513 行）：全真周天功阳→调和，同步重阳七星阵首七参并复核节奏；约第 1518、1553 行：桃花归元诀调和→阴，同步黄药师 `innerNature` 并复核节奏。\n   - （NR4-daojia）§11.9 重阳七星阵首配装：主运全真周天功、辅运全真心法 + 全真吐纳诀；全真吐纳诀改阴后与主运形成阴阳相冲——作者未定，默认保持配装并写明相冲代价，列入\"需作者确认\"（接受相冲还是改辅运）。\n   - （NR4-general）约第 948、954、1010 行：壮行功已改阴（保留任脉专精镜像），扎马步仍为督脉阳；同步黄阶性质标签并保留经脉专精映射。\n   - （NR4-wujue）约第 1518 行：黄药师按当前调和主运，桃花吐纳息、药圃吐纳息辅运各 0.50→0.40。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/catalog/npcs-ch03-shendiao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/catalog/npcs-ch03-shendiao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/03-shendiao.md",
+            "docs/design/catalog/npcs-ch03-shendiao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-04",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 04《倚天屠龙记》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/04-yitian.md",
+        "docs/design/catalog/npcs-ch04-yitian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "04",
+        "book_name": "倚天屠龙记",
+        "chapter": "docs/design/chapters/04-yitian.md",
+        "npcs": "docs/design/catalog/npcs-ch04-yitian.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-bulu）§12.8 与待决项（约第 1285、1286、1291、1584 行）：波斯圣火玄功调和→阳、崆峒五行心法调和→阴、华山两仪心法04 调和→阳；同步波斯三使 / 六派指挥的七参与节奏。\n   - （NR4-yitian）§12.5 六派战区·峨眉指挥：`sk_emeijiuyang` 的\"（地中8，阳）\"改阴，该单位七参 `innerNature` yang→yin。\n   - （NR4-yitian）倚天册另有改性：`sk_jiuyang` 阳→调和、`sk_shenghuoxinfa` 调和→阳、`sk_emeixinfa` 调和→阴、`sk_kunlunxinfa` 调和→阳、`sk_kongtongyangshenggong` 调和→阴、`sk_tieniuyaogong` 阳→调和（以图鉴现值为准）：凡本书界以它们为主运 / 辅运的人物（张无忌等）配装 `innerNature`、相冲、调息与节奏都要复核重算。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/catalog/npcs-ch04-yitian.md"
+        ],
+        "fences": [
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/catalog/npcs-ch04-yitian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/04-yitian.md",
+            "docs/design/catalog/npcs-ch04-yitian.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-05",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 05《笑傲江湖》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/05-xiaoao.md",
+        "docs/design/catalog/npcs-ch05-xiaoao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "05",
+        "book_name": "笑傲江湖",
+        "chapter": "docs/design/chapters/05-xiaoao.md",
+        "npcs": "docs/design/catalog/npcs-ch05-xiaoao.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-bulu）§12.8（约第 1324 行）：剑宗行气诀调和→阳，同步剑宗首领七参与节奏。\n   - （NR4-wuyue）§12.6 首领 / Boss 配装：任我行主运吸星大法及 `innerNature` 阴→调和；东方不败主运葵花宝典阴→阳；重跑两人的逐单位估算。五岳册另有 10 门改性（`sk_zixiashengong` 阳→调和，`sk_huashanxinfa`、`sk_huashantuna`、`sk_hengshanbeixinfa`、`sk_hengshanbeituna` 调和→阴，`sk_taishanxinfa`、`sk_taishantuna` 调和→阳，`sk_riyuexinfa`、`sk_heimutuna`、`sk_wuxianbaidugong` 阴→调和；以图鉴现值为准），以之为主运 / 辅运的首领、精英逐一复核。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/catalog/npcs-ch05-xiaoao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/catalog/npcs-ch05-xiaoao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/05-xiaoao.md",
+            "docs/design/catalog/npcs-ch05-xiaoao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-06",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 06《侠客行》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/06-xiake.md",
+        "docs/design/catalog/npcs-ch06-xiake.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "06",
+        "book_name": "侠客行",
+        "chapter": "docs/design/chapters/06-xiake.md",
+        "npcs": "docs/design/catalog/npcs-ch06-xiake.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-bulu）§12.7（约第 1407、1409 行）：丁氏心法调和→阴，同步丁不三、丁不四七参与节奏。\n   - （NR4-xiakebixue）§12.7（约第 1404 行）：展飞主运 `sk_changlexinfa` 调和→阴，七参性质同步为 yin；辅运 `sk_changletuna` 也已改阴。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/catalog/npcs-ch06-xiake.md"
+        ],
+        "fences": [
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/catalog/npcs-ch06-xiake.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/06-xiake.md",
+            "docs/design/catalog/npcs-ch06-xiake.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-07",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 07《碧血剑》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/07-bixue.md",
+        "docs/design/catalog/npcs-ch07-bixue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "07",
+        "book_name": "碧血剑",
+        "chapter": "docs/design/chapters/07-bixue.md",
+        "npcs": "docs/design/catalog/npcs-ch07-bixue.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-bulu）§12.8（约第 1417–1424、1426 行）及其说明（约第 1330 行）：石梁五行功、仙都运气诀调和→阴；华山养气功07 阳→调和；铁剑玄功调和→阳；同步七参与节奏。\n   - （NR4-xiakebixue）§12.7（约第 1415、1425 行）：归二娘、归辛树的混元功阳→调和，七参性质 yang→harmony，按调和 Profile 复核派生数值。\n   - （NR4-wuyue）§9.7 葵花前代传承候选（约第 1046 行）：现写\"阴性 8 品 7 重内功\"，葵花已改阳，按现值重审并更新（与 design/20 §9.5.3 的新口径一致；design/20 由 NR4S-rules 同步，本任务只改本章节的对应句）。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/07-bixue.md",
+          "docs/design/catalog/npcs-ch07-bixue.md"
+        ],
+        "fences": [
+          "docs/design/chapters/07-bixue.md",
+          "docs/design/catalog/npcs-ch07-bixue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/07-bixue.md",
+            "docs/design/catalog/npcs-ch07-bixue.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-08",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 08《鹿鼎记》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/08-luding.md",
+        "docs/design/catalog/npcs-ch08-luding.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "08",
+        "book_name": "鹿鼎记",
+        "chapter": "docs/design/chapters/08-luding.md",
+        "npcs": "docs/design/catalog/npcs-ch08-luding.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-bulu）§12.8（约第 1480、1481、1495、1496、1499–1501 行）：九难主运铁剑玄功，`innerNature` harmony→yang；王屋首领及五类精英配置同步补录册 08 的最终性质（`sk_bukuhutiaogong`、`sk_fansenghutigong` 阳→调和，`sk_luochabujunhuxi`、`sk_wangwuzhenshanxinfa`、`sk_yanpingfanchaojue` 调和→阴，`sk_pingxixingqijue` 阳→阴；以图鉴现值为准）；复核全部派生节奏。\n   - （NR4-kangxi）平西军配装：主运平西行气诀者的七参由阳改阴并复核节奏；平西军吐纳仅作辅运时不直接改变主运七参。\n   - （NR4-daojia）§8.3 白云观岗位说明：\"基础阳性内功\"改为\"基础阴性内功\"（全真吐纳诀恢复任脉后的性质）。\n   - （NR4-xiakebixue）§9.4、§12.8（约第 1006、1487–1488 行）：`C9 阳性`改为与调和兼容的新口径；归辛树、归二娘的混元功和七参性质改为调和并复核 Profile。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/08-luding.md",
+          "docs/design/catalog/npcs-ch08-luding.md"
+        ],
+        "fences": [
+          "docs/design/chapters/08-luding.md",
+          "docs/design/catalog/npcs-ch08-luding.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/08-luding.md",
+            "docs/design/catalog/npcs-ch08-luding.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-09",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 09《连城诀》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/09-liancheng.md",
+        "docs/design/catalog/npcs-ch09-liancheng.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "09",
+        "book_name": "连城诀",
+        "chapter": "docs/design/chapters/09-liancheng.md",
+        "npcs": "docs/design/catalog/npcs-ch09-liancheng.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-general）§12 对手配装：花铁干、水岱、刘乘风、陆天抒的主运 `sk_jianghutuna` 仍显式写\"调和\"，改为阴，并按阴性主运复核 `nature`、调息与 TTK 镜像；`npcs-ch09` 与 §12 里多名角色辅运 `sk_huxixingqi`、另有 `sk_tunaqianjue`，两者均改阴，复核辅运相性、调息档案。\n   - （NR4-kangxi）§9.6 附近：湘西吐纳、梅门心法由调和改阴；血刀心法由阴改调和。§12.7 配装：宝象、血刀门精英主运血刀心法的 `innerNature` 改调和；言达平、万震山、戚长发主运梅门心法的 `innerNature` 改阴，并复核节奏值。血刀老祖主运仍是血刀经，不因辅运变化而改。\n   - （NR4-wuyue）§9.8 前代传承槽：吸星候选仍写 `C11（阴）`，改为调和并复核本界校合门槛。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/catalog/npcs-ch09-liancheng.md"
+        ],
+        "fences": [
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/catalog/npcs-ch09-liancheng.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/09-liancheng.md",
+            "docs/design/catalog/npcs-ch09-liancheng.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-10",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 10《白马啸西风》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/10-baima.md",
+        "docs/design/catalog/npcs-ch10-baima.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "10",
+        "book_name": "白马啸西风",
+        "chapter": "docs/design/chapters/10-baima.md",
+        "npcs": "docs/design/catalog/npcs-ch10-baima.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-general）§12 对手配装：霍元龙、陈达海以 `sk_jianghutuna` 主运，吕梁 / 镖局精英以 `sk_wuguanxinfa` 主运；当前行仍用 harmony 模板，改为阴并重算调息 / TTK。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/10-baima.md",
+          "docs/design/catalog/npcs-ch10-baima.md"
+        ],
+        "fences": [
+          "docs/design/chapters/10-baima.md",
+          "docs/design/catalog/npcs-ch10-baima.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/10-baima.md",
+            "docs/design/catalog/npcs-ch10-baima.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-11",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 11《鸳鸯刀》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/11-yuanyang.md",
+        "docs/design/catalog/npcs-ch11-yuanyang.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "11",
+        "book_name": "鸳鸯刀",
+        "chapter": "docs/design/chapters/11-yuanyang.md",
+        "npcs": "docs/design/catalog/npcs-ch11-yuanyang.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-general）§12 对手配装：太岳四侠以 `sk_wuguanxinfa` 主运、周威信以 `sk_jianghutuna` 主运；当前行仍用 harmony 模板，改为阴并重算调息 / TTK。\n   - （NR4-kangxi）§9.6：林任合心诀旧 `mer_ren` 改正式 `mer_renmai`；太岳呼吸法登记督脉，仁者吐纳登记任督，移除\"未登记专精\"的旧说法。§12.8 配装：袁冠南、萧中慧、林玉龙、任飞燕主运林任合心诀的 `innerNature` 由调和改阴，并复核节奏值。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/catalog/npcs-ch11-yuanyang.md"
+        ],
+        "fences": [
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/catalog/npcs-ch11-yuanyang.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/11-yuanyang.md",
+            "docs/design/catalog/npcs-ch11-yuanyang.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-12",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 12《书剑恩仇录》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/12-shujian.md",
+        "docs/design/catalog/npcs-ch12-shujian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "12",
+        "book_name": "书剑恩仇录",
+        "chapter": "docs/design/chapters/12-shujian.md",
+        "npcs": "docs/design/catalog/npcs-ch12-shujian.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-qianlong）§9.6 附近：广平心法、回部吐纳改为阴；相关主修经脉措辞改用正式 `inner.meridians` 字段。\n   - （NR4-daojia）§11.4.2 张召重三套 Boss 配装：主运纯阳无极功、辅运两仪心法 + 太和功；太和功改阴后形成阴阳相冲——作者未定，默认保持配装并写明相冲代价，列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/catalog/npcs-ch12-shujian.md"
+        ],
+        "fences": [
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/catalog/npcs-ch12-shujian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/12-shujian.md",
+            "docs/design/catalog/npcs-ch12-shujian.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-13",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 13《飞狐外传》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/13-feihu.md",
+        "docs/design/catalog/npcs-ch13-feihu.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "13",
+        "book_name": "飞狐外传",
+        "chapter": "docs/design/chapters/13-feihu.md",
+        "npcs": "docs/design/catalog/npcs-ch13-feihu.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-bulu）§12.8 袁紫衣行（约第 1056 行）：会武归心诀调和→阴，`innerNature` harmony→yin，复核派生节奏。\n   - （NR4-general）§12 对手配装：钟兆文、钟兆英、钟兆能、张云飞、黄希节、欧阳公政的主运 `sk_jianghutuna` 仍显式写\"调和\"，改为阴并重算相关档案。\n   - （NR4-qianlong）§9.6 附近：\"苗家调和指点\"等旧口径改为阴并复核本土池性质说明；苗人凤主运仍是调和的 `sk_miaojiaxuangong`，七参 `innerNature:harmony` 不随辅助内功改变。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/catalog/npcs-ch13-feihu.md"
+        ],
+        "fences": [
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/catalog/npcs-ch13-feihu.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/13-feihu.md",
+            "docs/design/catalog/npcs-ch13-feihu.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-14",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 书界 14《雪山飞狐》（AR-18 落地后的章节与人物档案同步）",
+      "prompt": "NR4S-book.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/chapters/14-xueshan.md",
+        "docs/design/catalog/npcs-ch14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "14",
+        "book_name": "雪山飞狐",
+        "chapter": "docs/design/chapters/14-xueshan.md",
+        "npcs": "docs/design/catalog/npcs-ch14-xueshan.md",
+        "items": "\n   - （通用，各书界都要查）通行册 `skills-general.md` 的黄阶内功在 NR4 中改了性质：`sk_jianghutuna`、`sk_wuguanxinfa`、`sk_tunaqianjue`、`sk_huxixingqi`、山野吐纳由调和改阴，`sk_zhuangxingong` 由阳改阴，`sk_jindunxinfa` 由阳改调和（均以图鉴现值为准）。本书界凡把它们作主运 / 辅运 / 技能池并显式写了性质、`innerNature`、调息或相性镜像的地方都要核查并重算；纯 ID 引用不改。行号是各报告当时的约数，以 `grep -n` 实际定位为准。\n   - （NR4-qianlong）§9.6 附近：`sk_miaojiaxinfa` 的\"调和\"说明改为阴；苗人凤主运仍是调和的 `sk_miaojiaxuangong`，七参 `innerNature:harmony` 不变。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/14-xueshan.md",
+          "docs/design/catalog/npcs-ch14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/chapters/14-xueshan.md",
+          "docs/design/catalog/npcs-ch14-xueshan.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/14-xueshan.md",
+            "docs/design/catalog/npcs-ch14-xueshan.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NR4S-rules",
+      "phase": "NR4",
+      "wave": 9,
+      "kind": "revise",
+      "title": "阴阳性质同步 · 规则文档与图鉴互引（AR-18 落地后的系统文档同步）",
+      "prompt": "NR4S-rules.md",
+      "deps": [
+        "NR4-shaolin",
+        "NR4-daojia",
+        "NR4-general",
+        "NR4-wujue",
+        "NR4-xiaoyao",
+        "NR4-yitian",
+        "NR4-xiakebixue",
+        "NR4-wuyue",
+        "NR4-kangxi",
+        "NR4-qianlong",
+        "NR4-gulong",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/03-attributes.md",
+        "docs/design/05-martial-arts-system.md",
+        "docs/design/07-set-system.md",
+        "docs/design/10-items-and-equipment.md",
+        "docs/design/20-legacy-inheritance.md",
+        "docs/design/21-meridian-flow-and-moves.md",
+        "docs/design/catalog/skills-*.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/03-attributes.md",
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/07-set-system.md",
+          "docs/design/10-items-and-equipment.md",
+          "docs/design/20-legacy-inheritance.md",
+          "docs/design/21-meridian-flow-and-moves.md"
+        ],
+        "fences": [
+          "docs/design/03-attributes.md",
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/07-set-system.md",
+          "docs/design/10-items-and-equipment.md",
+          "docs/design/20-legacy-inheritance.md",
+          "docs/design/21-meridian-flow-and-moves.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md",
+            "docs/design/catalog/skills-daojia.md",
+            "docs/design/catalog/skills-general.md",
+            "docs/design/catalog/skills-gulong.md",
+            "docs/design/catalog/skills-kangxi.md",
+            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-shaolin.md",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-wuyue.md",
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md"
+          ]
+        ]
+      }
+    },
+    {
       "id": "LINT-outlets",
       "phase": "NR4",
       "wave": 9,
@@ -14765,7 +15985,22 @@
         "NR4-qianlong",
         "NR4-gulong",
         "NR4-bulu",
-        "LINT-outlets"
+        "LINT-outlets",
+        "NR4S-01",
+        "NR4S-02",
+        "NR4S-03",
+        "NR4S-04",
+        "NR4S-05",
+        "NR4S-06",
+        "NR4S-07",
+        "NR4S-08",
+        "NR4S-09",
+        "NR4S-10",
+        "NR4S-11",
+        "NR4S-12",
+        "NR4S-13",
+        "NR4S-14",
+        "NR4S-rules"
       ],
       "writes": [
         "docs/**",
