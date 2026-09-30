@@ -20,7 +20,9 @@ GPT CLI（Codex，gpt-6-astra，推理强度 ultra / xhigh）。本脚本不做�
 
 状态写在 .agents/coord/<ID>/supervise.status.json，过程记在同目录 supervise.log（只含状态行，不含模型日志）。
 终态：READY（校验与审核都通过，待协调者准出）、MERGED（--auto-merge 且已合入）、
-      HOLD-REVIEWS（审核轮数用尽仍 FAIL）、HOLD-RUNS（执行次数用尽）、ERROR（流程性错误）。
+      HOLD-REVIEWS（审核轮数用尽仍 FAIL）、HOLD-RUNS（执行次数用尽）、
+      HOLD-VALIDATE（同一条调度器校验失败连续出现两次：多半是校验命令或写集之外的文件有问题，
+      执行器修不了，等协调者看 .agents/logs/<ID>/last_failure.md）、ERROR（流程性错误）。
 退出码：0 = READY / MERGED，1 = HOLD-*，2 = ERROR。
 """
 from __future__ import annotations
@@ -42,7 +44,7 @@ import step as S  # noqa: E402  复用 step.py / run.py 的状态查询
 
 CODEX = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex"
 PY = sys.executable
-TERMINAL = ("READY", "MERGED", "HOLD-REVIEWS", "HOLD-RUNS", "ERROR")
+TERMINAL = ("READY", "MERGED", "HOLD-REVIEWS", "HOLD-RUNS", "HOLD-VALIDATE", "ERROR")
 STATUS_LINE = re.compile(r"^(FINISHED|RUNNING|STALLED|EXITED-NO-CODE)\b.*$", re.M)
 
 RESUME_NOTE = """## 续作说明（上一次运行被中断：{why}）
@@ -235,6 +237,7 @@ def worker(a) -> int:
     set_status(tid, "RUNNING", runs=runs, reviews=reviews, detail=f"phase={phase}", pid=os.getpid(),
                effort=a.effort, review_effort=a.review_effort)
     review_errors = 0
+    last_failure = None
     while True:
         if phase == "start":
             if runs >= a.max_runs:
@@ -270,6 +273,13 @@ def worker(a) -> int:
             elif rc == 1:
                 lf = ROOT / ".agents" / "logs" / tid / "last_failure.md"
                 failure = lf.read_text(encoding="utf-8").strip() if lf.exists() else out.strip()[-3000:]
+                # 同一条校验失败连续两次：执行器已经试过一次没修掉，再跑只是空耗次数
+                #（2026-09-30 VFX-plates：校验命令本身写错，白跑 8 次）。停下等协调者。
+                if failure == last_failure and not a.no_same_failure_stop:
+                    set_status(tid, "HOLD-VALIDATE", runs=runs, reviews=reviews,
+                               detail="同一条校验失败连续两次，等协调者看 last_failure.md")
+                    return 1
+                last_failure = failure
                 n = int((S.LockedState(ROOT / ".agents" / "state.json").get(tid) or {}).get("attempts", 0)) + 1
                 note = VALIDATE_NOTE.format(attempt=n, failure=failure)
                 phase = "start"
@@ -361,6 +371,8 @@ def main() -> int:
     ap.add_argument("--max-images", type=int, default=8)
     ap.add_argument("--max-reviews", type=int, default=3, help="本次驱动最多审核轮数（FAIL 后自动返修再审）")
     ap.add_argument("--max-runs", type=int, default=8, help="本次驱动最多启动执行器次数")
+    ap.add_argument("--no-same-failure-stop", action="store_true",
+                    help="同一条校验失败连续两次也继续续作（默认停在 HOLD-VALIDATE）")
     ap.add_argument("--stall-min", type=float, default=25)
     ap.add_argument("--run-timeout-min", type=float, default=200)
     ap.add_argument("--no-review", action="store_true", help="校验通过即 READY，不跑 GPT 审核")
