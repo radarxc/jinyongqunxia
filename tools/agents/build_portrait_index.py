@@ -3,9 +3,12 @@
 
     python3 tools/agents/build_portrait_index.py            # 生成 / 更新 INDEX.md
     python3 tools/agents/build_portrait_index.py --check    # 只检查：INDEX.md 是否最新、asset_id 与 output 是否全库唯一
+    python3 tools/agents/build_portrait_index.py --queue [--book ch01] [--json]
+                                                            # 出图队列：status 为 ready、图片与 manifest 条目都还不存在的行
 
 索引内容全部来自各提示词文件的 frontmatter（由 ART-P-* 任务撰写）与同目录的 GUIDE.md（生成与存放规程，
 由 ART-P-guide 任务撰写，原样嵌入）。本脚本不写任何人物内容，只做汇总。
+ART-P-* 任务经 accept.py 合入后会自动重跑本脚本并提交 INDEX.md。
 """
 import argparse
 import sys
@@ -67,7 +70,14 @@ def render(groups: dict) -> str:
            (f"已合入 **{total}** 份：" + "、".join(f"{GENDER.get(k, k)} {v}" for k, v in sorted(by_gender.items()))
             + "；品质档 " + "、".join(f"{k} {v}" for k, v in sorted(by_tier.items())) + "。") if total
            else "提示词正在撰写，目前还没有已合入的文件；进度见下表。",
-           "", "## 目录", "", "- [生成与存放规程](#生成与存放规程)"]
+           "", "## 出图 agent 怎么用", "",
+           "1. 把本文件交给有 `view_image`、`image_gen` 的 GPT CLI 会话，在仓库根目录执行。本文件已嵌入完整的生成与存放规程；"
+           "每个人物的完整提示词在「人物索引」表的「提示词」链接里。",
+           "2. 一个书界一个批次。先列出这一批能做的行（`status: ready`、图片和 manifest 条目都还不存在，已按 S → A → B 排好）：",
+           "   `python3 tools/agents/build_portrait_index.py --queue --book ch01`（加 `--json` 给脚本用）。",
+           "3. 对队列里的每一行，按下面「生成与存放规程」§2–§7 执行：核对身份 → 载入已批准参考 → 出 2 张候选选 1 张 → 按 `output` 存原图 → 追加 manifest → 校验交审。",
+           "4. 不要手改本文件；提示词合入后协调者会重新生成。队列为空，说明这一书界的提示词还没合入，或者已经全部出过图。",
+           "", "## 目录", "", "- [出图 agent 怎么用](#出图-agent-怎么用)", "- [生成与存放规程](#生成与存放规程)"]
     for g, rows in groups.items():
         out.append(f"- [{title_of(g)}](#{anchor_of(g)})（{len(rows)} 份）")
     prog = progress(groups)
@@ -81,8 +91,12 @@ def render(groups: dict) -> str:
         body = guide.read_text(encoding="utf-8").strip().splitlines()
         if body and body[0].startswith("# "):
             body = body[1:]
-        # 规程里的标题降两级，避免和索引的章节混在一起
-        out += [("##" + ln if ln.startswith("#") else ln) for ln in body]
+        # 规程嵌在「## 生成与存放规程」下，标题降一级（## → ###）；代码块里以 # 开头的行（注释）不动
+        in_code = False
+        for ln in body:
+            if ln.lstrip().startswith("```"):
+                in_code = not in_code
+            out.append("#" + ln if ln.startswith("#") and not in_code else ln)
     else:
         out.append("（规程文件 `GUIDE.md` 尚未写好。）")
     out += ["", "## 人物索引", "",
@@ -134,11 +148,48 @@ def anchor_of(group: str) -> str:
     return keep
 
 
+def queue(groups: dict, book: str | None) -> list:
+    """出图队列：status 为 ready，且 output 图片与 manifest 同 id 条目都还不存在；按书界、S → A → B 排序。"""
+    rows = []
+    for items in groups.values():
+        for fm, f in items:
+            if fm.get("status") != "ready":
+                continue
+            bk = str(fm.get("book", ""))[:4]
+            if book and bk != book:
+                continue
+            out, man = ROOT / str(fm.get("output", "")), ROOT / str(fm.get("manifest", ""))
+            done = out.exists()
+            if not done and man.is_file():
+                entries = yaml.safe_load(man.read_text(encoding="utf-8")) or []
+                done = isinstance(entries, list) and any(isinstance(e, dict) and e.get("id") == fm["asset_id"] for e in entries)
+            if done:
+                continue
+            rows.append(dict(book=bk, tier=str(fm.get("tier", "")), asset_id=fm["asset_id"], name=fm.get("name", ""),
+                             gender=fm.get("gender", ""), prompt=f.relative_to(ROOT).as_posix(),
+                             output=fm.get("output", ""), manifest=fm.get("manifest", "")))
+    order = {"S": 0, "A": 1, "B": 2}
+    return sorted(rows, key=lambda r: (r["book"], order.get(r["tier"], 9), r["asset_id"]))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--queue", action="store_true", help="列出可出图的行（不写文件）")
+    ap.add_argument("--book", help="与 --queue 合用：只列某书界，如 ch01；主角序章用 ch00")
+    ap.add_argument("--json", action="store_true", help="与 --queue 合用：输出 JSON")
     a = ap.parse_args()
     groups, problems = collect()
+    if a.queue:
+        import json
+        rows = queue(groups, a.book)
+        if a.json:
+            print(json.dumps(rows, ensure_ascii=False, indent=2))
+        else:
+            for r in rows:
+                print("\t".join([r["book"], r["tier"], r["asset_id"], str(r["name"]), r["prompt"], r["output"]]))
+        print(f"共 {len(rows)} 行可出图" + (f"（{a.book}）" if a.book else ""), file=sys.stderr)
+        return 0
     ids = Counter(fm["asset_id"] for rows in groups.values() for fm, _ in rows)
     outs = Counter(str(fm.get("output")) for rows in groups.values() for fm, _ in rows)
     problems += [f"asset_id 重复：{k}（{v} 次）" for k, v in ids.items() if v > 1]
