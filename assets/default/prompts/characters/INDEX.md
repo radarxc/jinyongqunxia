@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_portrait_index.py` 生成，不要手改；改提示词就改各人物文件，改规程就改 `GUIDE.md`，然后重新生成。
 > 每个人物一份提示词文件（`<分组>/<id>.md`）：文首 frontmatter 写明立绘素材 ID、输出文件与登记清单的位置，正文是人物要点、完整提示词、排除项与质检要点。
 
-已合入 **40** 份：女 11、男 29；品质档 A 17、B 7、S 16。
+已合入 **60** 份：女 15、男 45；品质档 A 29、B 11、S 20。
 
 ## 出图 agent 怎么用
 
@@ -18,6 +18,7 @@
 - [出图 agent 怎么用](#出图-agent-怎么用)
 - [生成与存放规程](#生成与存放规程)
 - [ch01 · 《天龙八部》](#ch01--天龙八部)（40 份）
+- [ch11 · 《鸳鸯刀》](#ch11--鸳鸯刀)（20 份）
 
 ## 撰写进度
 
@@ -35,7 +36,7 @@
 | ch08 · 《鹿鼎记》 | `ch08-luding/` | 撰写 / 审核中，草稿已写 34 份（未合入，草稿在 `.agents/wt/ART-P-ch08/assets/default/prompts/characters/ch08-luding/`） |
 | ch09 · 《连城诀》 | `ch09-liancheng/` | 撰写 / 审核中，草稿已写 27 份（未合入，草稿在 `.agents/wt/ART-P-ch09/assets/default/prompts/characters/ch09-liancheng/`） |
 | ch10 · 《白马啸西风》 | `ch10-baima/` | 撰写 / 审核中，草稿已写 21 份（未合入，草稿在 `.agents/wt/ART-P-ch10/assets/default/prompts/characters/ch10-baima/`） |
-| ch11 · 《鸳鸯刀》 | `ch11-yuanyang/` | 撰写 / 审核中，草稿已写 20 份（未合入，草稿在 `.agents/wt/ART-P-ch11/assets/default/prompts/characters/ch11-yuanyang/`） |
+| ch11 · 《鸳鸯刀》 | `ch11-yuanyang/` | 已合入 20 份 |
 | ch12 · 《书剑恩仇录》 | `ch12-shujian/` | 撰写 / 审核中，草稿已写 36 份（未合入，草稿在 `.agents/wt/ART-P-ch12/assets/default/prompts/characters/ch12-shujian/`） |
 | ch13 · 《飞狐外传》 | `ch13-feihu/` | 撰写 / 审核中，草稿已写 33 份（未合入，草稿在 `.agents/wt/ART-P-ch13/assets/default/prompts/characters/ch13-feihu/`） |
 | ch14 · 《雪山飞狐》 | `ch14-xueshan/` | 撰写 / 审核中，草稿已写 23 份（未合入，草稿在 `.agents/wt/ART-P-ch14/assets/default/prompts/characters/ch14-xueshan/`） |
@@ -267,3 +268,28 @@ git diff --check
 | 38 | 云中鹤 | `npc_yunzhonghe` | 男 | 壮年 | A | [npc_yunzhonghe.md](ch01-tianlong/npc_yunzhonghe.md) | `por_npc_yunzhonghe__ch01_prime_baseform_base` | `assets/default/character/male/ch01/por_npc_yunzhonghe__ch01_prime_baseform_base.png` | ready |
 | 39 | 钟灵 | `npc_zhongling` | 女 | 少年 / 青年 | A | [npc_zhongling.md](ch01-tianlong/npc_zhongling.md) | `por_npc_zhongling__ch01_youth_diaoalive_base` | `assets/default/character/female/ch01/por_npc_zhongling__ch01_youth_diaoalive_base.png` | ready |
 | 40 | 左子穆 | `npc_zuozimu` | 男 | 壮年 | B | [npc_zuozimu.md](ch01-tianlong/npc_zuozimu.md) | `por_npc_zuozimu__ch01_prime_wuliang_base` | `assets/default/character/male/ch01/por_npc_zuozimu__ch01_prime_wuliang_base.png` | ready |
+
+### ch11 · 《鸳鸯刀》
+
+| # | 人物 | 主体 ID | 性别 | 年龄段 | 档 | 提示词 | 立绘素材 ID | 输出文件 | 状态 |
+|---:|---|---|---|---|---|---|---|---|---|
+| 1 | 常长风 | `npc_changchangfeng` | 男 | 壮年 | A | [npc_changchangfeng.md](ch11-yuanyang/npc_changchangfeng.md) | `por_npc_changchangfeng__ch11_prime_road_base` | `assets/default/character/male/ch11/por_npc_changchangfeng__ch11_prime_road_base.png` | ready |
+| 2 | 程墨 | `npc_chengmo11` | 男 | 少年 / 青年 | B | [npc_chengmo11.md](ch11-yuanyang/npc_chengmo11.md) | `por_npc_chengmo11__ch11_base` | `assets/default/character/male/ch11/por_npc_chengmo11__ch11_base.png` | ready |
+| 3 | 盖一鸣 | `npc_gaiyiming` | 男 | 壮年 | A | [npc_gaiyiming.md](ch11-yuanyang/npc_gaiyiming.md) | `por_npc_gaiyiming__ch11_prime_road_base` | `assets/default/character/male/ch11/por_npc_gaiyiming__ch11_prime_road_base.png` | ready |
+| 4 | 何谦 | `npc_heqian11` | 男 | 少年 / 青年 | B | [npc_heqian11.md](ch11-yuanyang/npc_heqian11.md) | `por_npc_heqian11__ch11_base` | `assets/default/character/male/ch11/por_npc_heqian11__ch11_base.png` | ready |
+| 5 | 花剑影 | `npc_huajianying` | 男 | 壮年 | A | [npc_huajianying.md](ch11-yuanyang/npc_huajianying.md) | `por_npc_huajianying__ch11_prime_road_base` | `assets/default/character/male/ch11/por_npc_huajianying__ch11_prime_road_base.png` | ready |
+| 6 | 林玉龙 | `npc_linyulong` | 男 | 少年 / 青年 | A | [npc_linyulong.md](ch11-yuanyang/npc_linyulong.md) | `por_npc_linyulong__ch11_youth_road_base` | `assets/default/character/male/ch11/por_npc_linyulong__ch11_youth_road_base.png` | ready |
+| 7 | 刘於义 | `npc_liuyuyi` | 男 | 老年 | A | [npc_liuyuyi.md](ch11-yuanyang/npc_liuyuyi.md) | `por_npc_liuyuyi__ch11_base` | `assets/default/character/male/ch11/por_npc_liuyuyi__ch11_base.png` | ready |
+| 8 | 鲁忱 | `npc_luchen11` | 男 | 壮年 | B | [npc_luchen11.md](ch11-yuanyang/npc_luchen11.md) | `por_npc_luchen11__ch11_base` | `assets/default/character/male/ch11/por_npc_luchen11__ch11_base.png` | ready |
+| 9 | 罗宁 | `npc_luoning11` | 男 | 壮年 | A | [npc_luoning11.md](ch11-yuanyang/npc_luoning11.md) | `por_npc_luoning11__ch11_base` | `assets/default/character/male/ch11/por_npc_luoning11__ch11_base.png` | ready |
+| 10 | 任飞燕 | `npc_renfeiyan` | 女 | 少年 / 青年 | A | [npc_renfeiyan.md](ch11-yuanyang/npc_renfeiyan.md) | `por_npc_renfeiyan__ch11_youth_road_base` | `assets/default/character/female/ch11/por_npc_renfeiyan__ch11_youth_road_base.png` | ready |
+| 11 | 石望 | `npc_shiwang11` | 男 | 壮年 | A | [npc_shiwang11.md](ch11-yuanyang/npc_shiwang11.md) | `por_npc_shiwang11__ch11_base` | `assets/default/character/male/ch11/por_npc_shiwang11__ch11_base.png` | ready |
+| 12 | 萧半和 | `npc_xiaobanhe` | 男 | 老年 | S | [npc_xiaobanhe.md](ch11-yuanyang/npc_xiaobanhe.md) | `por_npc_xiaobanhe__ch11_elder_birthday_base` | `assets/default/character/male/ch11/por_npc_xiaobanhe__ch11_elder_birthday_base.png` | ready |
+| 13 | 逍遥子 | `npc_xiaoyaozi11` | 男 | 壮年 | A | [npc_xiaoyaozi11.md](ch11-yuanyang/npc_xiaoyaozi11.md) | `por_npc_xiaoyaozi11__ch11_prime_road_base` | `assets/default/character/male/ch11/por_npc_xiaoyaozi11__ch11_prime_road_base.png` | ready |
+| 14 | 萧中慧 | `npc_xiaozhonghui` | 女 | 少年 / 青年 | S | [npc_xiaozhonghui.md](ch11-yuanyang/npc_xiaozhonghui.md) | `por_npc_xiaozhonghui__ch11_youth_departure_base` | `assets/default/character/female/ch11/por_npc_xiaozhonghui__ch11_youth_departure_base.png` | ready |
+| 15 | 杨夫人 | `npc_yangfuren` | 女 | 壮年 | A | [npc_yangfuren.md](ch11-yuanyang/npc_yangfuren.md) | `por_npc_yangfuren__ch11_base` | `assets/default/character/female/ch11/por_npc_yangfuren__ch11_base.png` | ready |
+| 16 | 严和 | `npc_yanhe11` | 男 | 壮年 | B | [npc_yanhe11.md](ch11-yuanyang/npc_yanhe11.md) | `por_npc_yanhe11__ch11_base` | `assets/default/character/male/ch11/por_npc_yanhe11__ch11_base.png` | ready |
+| 17 | 袁夫人 | `npc_yuanfuren` | 女 | 壮年 | A | [npc_yuanfuren.md](ch11-yuanyang/npc_yuanfuren.md) | `por_npc_yuanfuren__ch11_prime_reunion_base` | `assets/default/character/female/ch11/por_npc_yuanfuren__ch11_prime_reunion_base.png` | ready |
+| 18 | 袁冠南 | `npc_yuanguannan` | 男 | 少年 / 青年 | S | [npc_yuanguannan.md](ch11-yuanyang/npc_yuanguannan.md) | `por_npc_yuanguannan__ch11_youth_scholar_base` | `assets/default/character/male/ch11/por_npc_yuanguannan__ch11_youth_scholar_base.png` | ready |
+| 19 | 周威信 | `npc_zhouweixin` | 男 | 壮年 | A | [npc_zhouweixin.md](ch11-yuanyang/npc_zhouweixin.md) | `por_npc_zhouweixin__ch11_base` | `assets/default/character/male/ch11/por_npc_zhouweixin__ch11_base.png` | ready |
+| 20 | 卓天雄 | `npc_zhuotianxiong` | 男 | 老年 | S | [npc_zhuotianxiong.md](ch11-yuanyang/npc_zhuotianxiong.md) | `por_npc_zhuotianxiong__ch11_elder_feignedblind_base` | `assets/default/character/male/ch11/por_npc_zhuotianxiong__ch11_elder_feignedblind_base.png` | ready |
