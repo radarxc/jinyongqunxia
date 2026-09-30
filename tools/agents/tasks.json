@@ -3,10 +3,11 @@
   "comment": "任务图：由 tools/agents/run.py 读取。deps 引用基础任务 ID；若被依赖任务有审校（review: true），自动解析为其审校任务 <ID>.R。",
   "defaults": {
     "bin": [
-      "/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex"
+      "traex",
+      "traecli"
     ],
-    "model": "gpt-6-astra",
-    "effort": "ultra",
+    "model": "GPT-6-Astra",
+    "effort": "max",
     "jobs": 3,
     "timeout_min": 180,
     "retries": 1,
