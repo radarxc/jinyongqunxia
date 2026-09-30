@@ -25309,6 +25309,58 @@
           ]
         ]
       }
+    },
+    {
+      "id": "TOWN-tiles-water",
+      "title": "城镇底图贴片 · 水面贴片重出（细波纹、无缝平铺；江南 4 + 大理 4）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "TILE-water.md",
+      "deps": [
+        "TOWN-tiles"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/baseline/tile/**",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {},
+      "validate": {
+        "exists": [
+          "assets/default/baseline/tile/manifest.yaml",
+          "assets/default/baseline/tile/tex_town_song_southern_water__v01.png",
+          "assets/default/baseline/tile/tex_town_song_southern_water__v02.png",
+          "assets/default/baseline/tile/tex_town_song_southern_water__v03.png",
+          "assets/default/baseline/tile/tex_town_song_southern_water__v04.png",
+          "assets/default/baseline/tile/tex_town_song_dali_water__v01.png",
+          "assets/default/baseline/tile/tex_town_song_dali_water__v02.png",
+          "assets/default/baseline/tile/tex_town_song_dali_water__v03.png",
+          "assets/default/baseline/tile/tex_town_song_dali_water__v04.png"
+        ],
+        "shrink_exempt": [
+          "assets/default/baseline/tile/**"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/tile",
+            "--min",
+            "40",
+            "--max",
+            "70",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
     }
   ]
 }
