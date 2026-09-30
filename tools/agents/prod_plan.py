@@ -40,7 +40,7 @@ KITS = {
     "song_dali": ("宋 · 大理国套件（基线，已有）", "北宋同期大理国，白族与宋式交融，佛教元素多", "大理", ["northern_song", "southern_song_jin_mongol"], ["rg_dali_cangshan", "rg_yundian_qianzhong"]),
     "song_southern": ("宋 · 江南套件（基线，已有）", "南宋江南，河桥密、商住混合", "临安", ["northern_song", "southern_song_jin_mongol"], ["rg_jiangnan_taihu", "rg_zhedong", "rg_jianghuai", "rg_fujian", "rg_jingxiang", "rg_huxiang", "rg_bashu", "rg_lingnan", "rg_jiangxi", "rg_guangxi", "rg_qinba", "rg_donghai_islands", "rg_nanhai_islands", "rg_taiwan"]),
     "song_north": ("宋 · 北方中原套件", "北宋中原大城：东京开封、西京洛阳；开放街巷、瓦子、汴河；北方院落、砖瓦城门", "开封、洛阳、大名", ["northern_song"], ["rg_zhongyuan", "rg_guanzhong", "rg_hedong_jinzhong", "rg_qilu", "rg_hexilongyou", "rg_xixia_helan", "rg_qinba"]),
-    "liao_jin_north": ("辽 · 金北方套件", "辽南京 / 金中都、辽上京、大同：契丹女真与汉式并存，土城砖门、佛塔", "燕京、大同、上京", ["northern_song", "southern_song_jin_mongol"], ["rg_yanjing_zhili", "rg_liaodong", "rg_liaoxi", "rg_dongbei", "rg_hedong_jinzhong"]),
+    "liao_jin_north": ("辽 · 金北方套件", "辽南京 / 金中都、辽上京、大同，及金代中原：契丹女真与汉式并存，土城砖门、佛塔", "燕京、大同、上京、开封（金）", ["northern_song", "southern_song_jin_mongol"], ["rg_yanjing_zhili", "rg_liaodong", "rg_liaoxi", "rg_dongbei", "rg_hedong_jinzhong", "rg_zhongyuan", "rg_guanzhong", "rg_qilu", "rg_hexilongyou", "rg_xixia_helan", "rg_monan"]),
     "yuan_north": ("元 · 北方套件", "元大都 / 路城：正交干道、规整坊块、宫城皇城层级、驿路马市", "大都、大同、开封", ["yuan"], ["rg_yanjing_zhili", "rg_zhongyuan", "rg_guanzhong", "rg_hedong_jinzhong", "rg_qilu", "rg_liaodong", "rg_liaoxi", "rg_dongbei", "rg_hexilongyou", "rg_xixia_helan"]),
     "yuan_south": ("元 · 江南套件", "元末江南：沿用宋河网街巷，替换官署（路府）、宗教与防务", "杭州路、集庆路、平江路", ["yuan"], ["rg_jiangnan_taihu", "rg_zhedong", "rg_jianghuai", "rg_fujian", "rg_jingxiang", "rg_huxiang", "rg_bashu", "rg_lingnan", "rg_jiangxi", "rg_guangxi", "rg_qinba", "rg_donghai_islands", "rg_nanhai_islands", "rg_taiwan"]),
     "ming_north": ("明 · 北方套件", "明代北方府城：规整城垣、瓮城、官署轴线、会馆当铺、硬山灰瓦院落", "北京、大同、西安", ["ming"], ["rg_yanjing_zhili", "rg_zhongyuan", "rg_guanzhong", "rg_hedong_jinzhong", "rg_qilu", "rg_liaodong", "rg_liaoxi", "rg_dongbei", "rg_hexilongyou", "rg_xixia_helan"]),
@@ -125,7 +125,7 @@ def register_cities(d, band=None, kit=None, limit=None, importance=("capital", "
         if k not in kits_ready:
             continue
         tid = f"CITY-{cid[5:]}__{b}"
-        if tid in have:
+        if tid in have or (cid, b) in DONE_BASELINE:
             continue
         chs = sorted(u["chapters"])
         primary = chs[0]
@@ -150,6 +150,8 @@ def register_cities(d, band=None, kit=None, limit=None, importance=("capital", "
             break
     return n
 
+
+DONE_BASELINE = {("city_hangzhou", "southern_song_jin_mongol"), ("city_dali", "northern_song")}  # 基线已做（临安 ch02、大理 ch01），其余章节另开小任务复制规格
 
 TIER = lambda g: "天" if g >= 10 else "地" if g >= 7 else "玄" if g >= 4 else "黄"
 EMITTER = {"palm": "palm", "finger": "finger", "fist-grapple": "fist", "leg": "leg", "movement": "palm", "inner": "palm", "None": "palm", "weapon": "sword"}
