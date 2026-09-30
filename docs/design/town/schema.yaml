@@ -26,6 +26,8 @@ coordinate_convention:
   rotation_to_world_yaw: "worldYawDeg=(rotation_deg+270)%360"
   runtime_conversion: "enumerate tech/02 hex centers in world axes, then sample planning masks at x_p=x_w,z_p=height-z_w"
 geometry_contract:
+  lake_raster: "lake polygon follows Polygon constraints; integer grid vertices, implicit last-first edge, simple and non-zero area; cell center inside or on boundary is water; union lake and river masks before road, zone, building and walkability checks"
+  water_body_reference: "RiverSpec.id and LakeSpec.id share one unique namespace; BridgeSpec.river_ref retains its historical name and resolves either kind; lake bridges require the same anchor and dry-road ends but have no river-tangent orientation rule"
   building_rotation: "w0,h0 are unrotated catalog dimensions; rotate local point (u,v) by 0:(u,v),90:(v,w0-u),180:(w0-u,h0-v),270:(h0-v,u); add rotated instance origin; size=(h0,w0) for 90/270 else (w0,h0)"
   building_entrance: "select unrotated local cell N:(floor((w0-1)/2),h0),E:(w0,floor((h0-1)/2)),S:(floor((w0-1)/2),-1),W:(-1,floor((h0-1)/2)); rotate its center (i+0.5,j+0.5), add instance origin, then floor to entrance cell; never reselect the midpoint on the rotated edge"
   entrance_buffer: "extend from the transformed entrance cell along rotated outward normal; depth counts the entrance cell; ordinary depth=1, yamen depth=4; recompute buffer,connector and hex mapping after rotation"
@@ -91,7 +93,7 @@ definitions:
       min: {type: GridPoint, unit: m/grid, range: inside_grid, example: {x: 12, z: 12}}
       max: {type: GridPoint, unit: m/grid, range: "min < max <= grid size", example: {x: 30, z: 40}}
   Polygon:
-    description: simple non-self-intersecting polygon; last point is implicitly joined to first
+    description: simple non-self-intersecting polygon with non-zero area; no repeated closing point; last point is implicitly joined to first
     fields:
       points: {type: "GridPoint[3..N]", unit: m/grid, range: inside_grid, example: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}]}
   WallSpec:
@@ -124,20 +126,26 @@ definitions:
       basis: {type: string, range: non_empty, example: "城市主入口的设计概化（原创扩展）"}
   RiverSpec:
     fields:
-      id: {type: string, range: "unique within file", example: east_canal}
+      id: {type: string, range: "unique across rivers and lakes in this file", example: east_canal}
       width_cells: {type: integer, unit: m/grid, range: "2..16", example: 4}
       points: {type: "GridPoint[2..N]", unit: m/grid, range: inside_grid, example: [{x: 80, z: 8}, {x: 82, z: 88}]}
       flow: {type: enum, range: [north, east, south, west, unknown], example: south}
       navigable: {type: boolean, range: true_or_false, example: false}
       basis: {type: string, range: non_empty, example: "历史水系概化；网络资料，待核"}
+  LakeSpec:
+    description: "lake or cropped lake shore; no centerline or width; no navigability implied"
+    fields:
+      id: {type: string, range: "unique across rivers and lakes in this file", example: west_lake_edge}
+      polygon: {type: Polygon, unit: m/grid, range: simple_inside_grid, example: {points: [{x: 0, z: 24}, {x: 18, z: 32}, {x: 24, z: 50}, {x: 16, z: 74}, {x: 0, z: 84}]}}
+      basis: {type: string, range: non_empty, example: "西墙外湖岸关系有史料；折点为非等比缩景推定（待考）"}
   BridgeSpec:
     description: "rectangle anchor and even-size bias are fixed by geometry_contract.bridge_rectangle; never use image bounding-box center"
     fields:
       id: {type: string, range: "unique within file", example: bridge_market}
-      at: {type: GridPoint, unit: m/grid, range: on_river_and_road, example: {x: 81, z: 42}}
-      river_ref: {type: RiverSpec.id, range: existing_river, example: east_canal}
+      at: {type: GridPoint, unit: m/grid, range: on_referenced_water_body_and_road, example: {x: 81, z: 42}}
+      river_ref: {type: string, range: "existing RiverSpec.id or LakeSpec.id in shared unique namespace; field name kept for compatibility", example: east_canal}
       road_ref: {type: Polyline.id, range: existing_street, example: market_cross_street}
-      length_cells: {type: integer, unit: m/grid, range: "river width..20", example: 6}
+      length_cells: {type: integer, unit: m/grid, range: "2..20; river bridge at least river width; lake bridge spans crossed water to both dry-road ends", example: 6}
       width_cells: {type: integer, unit: m/grid, range: "2..10", example: 4}
       rotation_deg: {type: enum.rotation_deg, range: enum, example: 90}
       basis: {type: string, range: non_empty, example: "桥位为历史格局的比例压缩（原创扩展）"}
@@ -199,6 +207,7 @@ definitions:
       gates: {type: "GateSpec[1..N]", range: unique_ids, example: [{id: south_gate, side: south, at: {x: 48, z: 8}, width_cells: 6, asset_type: tex_town_song_dali_city_gate, rotation_deg: 0, footprint_cells: {w: 10, h: 4}, passage_cells: {w: 6, h: 4}, road_ref: main_north_south, primary: true, basis: "主入口的设计概化（原创扩展）"}]}
       streets: {type: "Polyline[1..N]", range: "unique_ids; raster union connected to primary gate after deterministic stage C repair", example: [{id: main_north_south, class: main_axis, width_cells: 5, points: [{x: 48, z: 8}, {x: 48, z: 86}], surface: dirt_road, priority: 100, basis: "南北主街的设计概化（原创扩展）"}]}
       rivers: {type: "RiverSpec[0..N]", range: unique_ids, example: []}
+      lakes: {type: "LakeSpec[0..N]", required: false, range: "unique_ids_across_rivers_and_lakes; optional with default [] for existing v1 inputs", example: []}
       bridges: {type: "BridgeSpec[0..N]", range: unique_ids, example: []}
       zones: {type: "ZoneSpec[1..N]", range: unique_ids, example: [{id: zone_commercial_south, kind: commercial, geometry: {rect: {min: {x: 26, z: 12}, max: {x: 70, z: 43}}}, priority: 85, density: 0.48, allowed_building_types: [bld_kit_song_dali_shop], ground_mix: {rammed_earth: 100}, basis: "沿主街商铺的设计概化（原创扩展）"}]}
       landmarks: {type: "LandmarkSpec[0..N]", range: non_overlapping, example: []}
@@ -307,7 +316,7 @@ definitions:
       ground_cells: {type: "GroundCell[width*height] or lossless RLE", unit: planning_cells, range: "complete exactly once; RLE value has ground,walkable,elevation_m,overlay and derives at from run index", example: [[0, 9216, {ground: rammed_earth, walkable: false, elevation_m: 0, overlay: null}]]}
       roads: {type: "map<street_id_or_connector_id,GridPoint[]>", unit: planning_cells, range: "key is source street id or generated connector id; full width-expanded cells except wall/gate domain trim per geometry_contract; unique walkable cells sorted z,x; crossings may occur in several values", example: {main_north_south: [{x: 48, z: 8}]}}
       generated_connectors: {type: "GeneratedConnector[]", unit: connectors, range: "stable id order; each has exactly one roads[id] width-expanded set containing its center chain", example: []}
-      water_cells: {type: "GridPoint[]", range: unique_non_walkable_unless_bridge, example: []}
+      water_cells: {type: "GridPoint[]", range: "unique_union_of_rivers_and_lakes; non_walkable_unless_bridge", example: []}
       bridge_cells: {type: "GridPoint[]", range: subset_water_and_walkable, example: []}
       buildings: {type: "BuildingInstance[]", range: non_overlapping, example: []}
       decorations: {type: "DecorationInstance[]", unit: instances, range: "unique id and at; sorted at.z,at.x,asset_id; empty is valid", example: [{id: dec_0001, asset_id: prp_song_dali_camellia, at: {x: 18, z: 20}}]}

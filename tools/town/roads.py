@@ -18,6 +18,31 @@ class GenerationError(ValueError):
                           at=None if at is None else dict(x=at[0], z=at[1]))
 
 
+def planning_bridge_groups(bridges):
+    """同河同向的矩形并集只生成一座桥，其余相交桥禁止进入布局。
+
+    复用渲染器的真实桥面分组，保留所有源桥坐标及道路引用；输出的
+    桥格使用这些互不重叠的并集，不通过移动桥或填平水面解决冲突。
+    """
+    from bridge_assembly import bridge_groups
+    groups = bridge_groups(bridges)
+    occupied = set()
+    for members, cells in groups:
+        overlap = occupied & cells
+        if overlap:
+            names = ", ".join(b.get("id", "<bridge>") for b in members)
+            raise GenerationError("TOWN_BRIDGE_OVERLAP",
+                                  f"桥 {names} 与其他桥重叠，且不能合并为同河同向矩形", "bridges",
+                                  min(overlap, key=lambda p: (p[1], p[0])))
+        occupied |= cells
+    return groups
+
+
+def bridge_footprint_cells(masks):
+    """整座桥的落地占格，含两岸桥头；bridge_cells 仅保留水上通行语义。"""
+    return set().union(*masks["bridge_rectangles"].values())
+
+
 def component(cells, root):
     if root not in cells:
         return set()

@@ -15,11 +15,13 @@ from common import (HexGrid, ROOT, TownError, canonical_bytes, cells_to_json,
                     expand, geometry_masks, hexes_to_json, load_yaml, point,
                     rectangle, root_seed, substream, zone_winners)
 from placement import entrance_buffers, fixed_buildings, map_entrances, place_buildings
-from roads import GenerationError, component, components, prepare_roads, road_union
+from roads import (GenerationError, bridge_footprint_cells, component, components, planning_bridge_groups,
+                   prepare_roads, road_union)
 
 
 def decorate(spec, masks, roads, occupied, reserve, clearance, rng_root):
-    allowed = masks["walkable"] & masks["interior"] - occupied - reserve - clearance - masks["water"]
+    allowed = (masks["walkable"] & masks["interior"] - occupied - reserve - clearance
+               - masks["water"] - bridge_footprint_cells(masks))
     radius = spec["vegetation"]["avoid_road_cells"]
     if radius:
         allowed -= expand(road_union(roads),radius-1)
@@ -95,13 +97,15 @@ def generate_layout(spec, source_path="<memory>", source_bytes=None):
     if errors:
         first = errors[0]
         raise GenerationError(first["code"],first["message"],first["path"])
+    bridge_groups = planning_bridge_groups(spec["bridges"])
     masks = geometry_masks(spec)
+    masks["bridges"] = set().union(*(cells for _, cells in bridge_groups)) & masks["water"]
     coverage = zone_winners(spec)
     winners = {p:zid for zid,cells in coverage.items() for p in cells}
     fixed,occupied,clearance = fixed_buildings(spec)
     roads,connectors = prepare_roads(spec,masks,winners,occupied|clearance)
     fixed_buffers = entrance_buffers(fixed)
-    excluded = road_union(roads)|masks["water"]|masks["gate_footprints"]|clearance|fixed_buffers
+    excluded = road_union(roads)|masks["water"]|masks["gate_footprints"]|bridge_footprint_cells(masks)|clearance|fixed_buffers
     density_coverage = {zid:cells & masks["margin"] - excluded for zid,cells in coverage.items()}
     rng_root = root_seed(spec)
     grid = HexGrid(spec["grid"]["width"],spec["grid"]["height"])
@@ -151,7 +155,7 @@ def generate_layout(spec, source_path="<memory>", source_bytes=None):
     layout = dict(schema_version="town.layout.v1",kind="TownLayout",
         source_spec=dict(path=str(source_path),sha256=hashlib.sha256(raw).hexdigest(),
                          city_id=spec["city_id"],chapter_id=spec["chapter_id"],seed=spec["seed"]),
-        generator=dict(name="town-gen",version="1.1.0",rng="pcg32-xsh-rr-64-32",algorithm_revision=2,
+        generator=dict(name="town-gen",version="1.4.0",rng="pcg32-xsh-rr-64-32",algorithm_revision=6,
                        root_seed_u64=f"0x{rng_root:016x}"),grid=spec["grid"],runtime_partition=spec["runtime_partition"],
         ground_cells=ground_layer(spec,winners,roads,masks,walkable,rng_root),
         roads={rid:cells_to_json(cells) for rid,cells in sorted(roads.items())},
@@ -164,6 +168,10 @@ def generate_layout(spec, source_path="<memory>", source_bytes=None):
                         checks_run=["schema","overlap","water","wall","roads","entrances","hex","quotas"],
                         issues=sort_issues(failures+warnings)))
     stats.update(city_id=spec["city_id"],road_cells=len(all_roads),buildings=len(buildings),building_types=dict(sorted(counts.items())),
+                 water_cells=len(masks["water"]),
+                 lake_cells={key:len(cells) for key,cells in sorted(masks["lake_cells"].items())},
+                 source_bridges=len(spec["bridges"]),assembled_bridges=len(bridge_groups),
+                 merged_bridge_groups=[[b["id"] for b in members] for members, _ in bridge_groups if len(members)>1],
                  planning_walkable=len(walkable),runtime_hex_walkable=len(mapping[2]),road_components=1,
                  required_components=1,complete=not failures,
                  missing_required={q["type"]:q["count"]["min"]-quota_counts[q["type"]] for q in spec["building_quotas"]

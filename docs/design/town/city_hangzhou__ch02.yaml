@@ -45,7 +45,8 @@ rivers:
   - {"id": "central_canal", "width_cells": 3, "points": [{"x": 72, "z": 72}, {"x": 72, "z": 144}, {"x": 88, "z": 148}, {"x": 102, "z": 148}], "flow": "unknown", "navigable": true, "basis": "图名：市河；src_linan_waterways：河流相对方位，折点及宽度推定。"}
   - {"id": "qinghu_canal", "width_cells": 3, "points": [{"x": 56, "z": 85}, {"x": 56, "z": 104}, {"x": 68, "z": 104}, {"x": 68, "z": 144}, {"x": 72, "z": 144}], "flow": "unknown", "navigable": true, "basis": "图名：清湖河；src_linan_waterways：河流相对方位，折点及宽度推定。"}
   - {"id": "maoshan_remnant", "width_cells": 2, "points": [{"x": 119, "z": 112}, {"x": 119, "z": 132}, {"x": 102, "z": 136}], "flow": "unknown", "navigable": false, "basis": "图名：茅山河残段；src_linan_waterways：南中段废塞，仅选北段示意；1223确切残段待考，不将整河绘作通航干线。"}
-  - {"id": "west_lake_edge", "width_cells": 16, "points": [{"x": 24, "z": 78}, {"x": 24, "z": 128}], "flow": "unknown", "navigable": false, "basis": "图名：西湖东岸（截取湖缘）；src_linan_citymap、src_linan_walls：西湖位于西墙外；16格宽带仅表示画幅中的东岸水面，不是完整湖形。"}
+lakes:
+  - {"id": "west_lake_edge", "polygon": {"points": [{"x": 0, "z": 47}, {"x": 8, "z": 49}, {"x": 17, "z": 55}, {"x": 26, "z": 67}, {"x": 31, "z": 82}, {"x": 33, "z": 99}, {"x": 30, "z": 116}, {"x": 23, "z": 129}, {"x": 13, "z": 138}, {"x": 3, "z": 142}, {"x": 0, "z": 140}]}, "basis": "图名：西湖东岸（截取湖缘）；src_linan_citymap、src_linan_walls支持湖在西墙外及湖城之间陆地；依作者2026-09-30意见以11个格顶点表达画幅内东岸弧线、南北收窄，最东x33与西墙x40间保留至少7格陆带；x0为画幅裁切线，不是西湖西岸。折点为非等比缩景推定（待考），未取得1223实测岸线，不能当完整湖形或地理配准坐标。"}
 bridges:
   - {"id": "bridge_official", "at": {"x": 102, "z": 46}, "river_ref": "east_canal", "road_ref": "south_official_street", "length_cells": 8, "width_cells": 4, "rotation_deg": 90, "basis": "图名：官街桥；路水交点的通行占位（原创扩展），不指认历史桥址。"}
   - {"id": "bridge_qinghe", "at": {"x": 102, "z": 62}, "river_ref": "east_canal", "road_ref": "qinghefang_street", "length_cells": 8, "width_cells": 4, "rotation_deg": 90, "basis": "图名：清河坊桥；路水交点的通行占位（原创扩展），不指认历史桥址。"}

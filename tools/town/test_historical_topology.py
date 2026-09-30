@@ -2,7 +2,7 @@
 
 import unittest
 
-from common import ROOT, load_yaml, point, polyline_cells
+from common import ROOT, load_yaml, point, polygon_cells, polyline_cells
 from plan_view import display_name
 
 
@@ -76,9 +76,17 @@ class HistoricalTopologyTests(unittest.TestCase):
         self.assertGreater(palace["origin"]["z"], bz)
         self.assertLessEqual(palace["origin"]["x"], route[-1][0])
         self.assertLessEqual(route[-1][0], palace["origin"]["x"] + palace["size"]["w"])
-        lake = record(spec, "rivers", "west_lake_edge")
-        water = polyline_cells(lake["points"], lake["width_cells"])
-        self.assertLess(max(x for x, _ in water), min(p["x"] for p in spec["wall"]["polygon"]["points"]))
+        lake = record(spec, "lakes", "west_lake_edge")
+        vertices = lake["polygon"]["points"]
+        self.assertGreaterEqual(len(vertices), 8)
+        self.assertLessEqual(len(vertices), 14)
+        water = polygon_cells(vertices, spec["grid"]["width"], spec["grid"]["height"])
+        row_width = {z: sum(pz == z for _, pz in water) for z in {pz for _, pz in water}}
+        widest = max(row_width.values())
+        self.assertLess(row_width[min(row_width)], widest, "南端须收窄")
+        self.assertLess(row_width[max(row_width)], widest, "北端须收窄")
+        west_wall = min(p["x"] for p in spec["wall"]["polygon"]["points"])
+        self.assertLess(max(x for x, _ in water) + 1, west_wall, "东岸与西墙之间须有干陆带")
         canal = [point(p) for p in record(spec, "rivers", "east_canal")["points"]]
         for key, expected in (("zone_waterfront_east", "west"),
                               ("zone_gate_service_north", "east")):

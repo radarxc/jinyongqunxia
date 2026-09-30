@@ -311,8 +311,15 @@ def geometry_masks(spec: dict) -> dict:
     gates = set().union(*(gate_cells(gate) for gate in spec["gates"])) & bounds
     hard = (wall - passages) | (gates - passages)
     domain = (interior | passages) - hard
-    water = set().union(*(polyline_cells(r["points"], r["width_cells"])
-                          for r in spec.get("rivers", []))) & bounds
+    river_cells = {r["id"]: polyline_cells(r["points"], r["width_cells"]) & bounds
+                   for r in spec.get("rivers", [])}
+    lake_cells = {lake["id"]: polygon_cells(lake["polygon"]["points"], width, height)
+                  for lake in spec.get("lakes", [])}
+    water_bodies = {**river_cells, **lake_cells}
+    water = set().union(*water_bodies.values())
+    navigable_water = set().union(*(water_bodies[body["id"]]
+        for body in [*spec.get("rivers", []), *spec.get("lakes", [])]
+        if body.get("navigable", False)))
     rectangles = {b["id"]: bridge_rectangle(b) & bounds for b in spec.get("bridges", [])}
     bridges = set().union(*rectangles.values()) & water
     raw_roads = {s["id"]: polyline_cells(s["points"], s["width_cells"])
@@ -321,6 +328,8 @@ def geometry_masks(spec: dict) -> dict:
     margin = wall_margin_cells(points, width, height, spec["wall"]["inside_margin_cells"])
     return dict(bounds=bounds, interior=interior, wall=wall, passages=passages,
                 gate_footprints=gates, hard=hard, water=water, bridges=bridges,
+                river_cells=river_cells, lake_cells=lake_cells, water_bodies=water_bodies,
+                navigable_water=navigable_water,
                 bridge_rectangles=rectangles, raw_roads=raw_roads, roads=roads,
                 walkable=domain - (water - bridges), margin=margin)
 

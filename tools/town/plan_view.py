@@ -17,10 +17,10 @@ from PIL import Image, ImageDraw, ImageFont
 
 try:
     from .common import (TownError, cells_from_json, geometry_masks, load_yaml,
-                         point, zone_winners)
+                         point, polygon_cells, zone_winners)
 except ImportError:
     from common import (TownError, cells_from_json, geometry_masks, load_yaml,
-                        point, zone_winners)
+                        point, polygon_cells, zone_winners)
 
 ZONE_COLORS = {"palace": "#e8c8be", "princely": "#e8c8be",
                "administrative": "#d3cce2", "commercial": "#f1d6a3",
@@ -160,10 +160,11 @@ def _middle(points):
 
 def label_records(spec, winners):
     labels = []
+    records = {**spec, "water_bodies": [*spec.get("rivers", []), *spec.get("lakes", [])]}
     groups = (("G", "gates"), ("R", "streets"), ("W", "rivers"),
               ("B", "bridges"), ("Z", "zones"), ("L", "landmarks"))
     for category, key in groups:
-        for number, record in enumerate(spec.get(key, []), 1):
+        for number, record in enumerate(records.get("water_bodies" if category == "W" else key, []), 1):
             if "at" in record:
                 x, z = point(record["at"])
                 at = x + 0.5, z + 0.5
@@ -173,7 +174,11 @@ def label_records(spec, winners):
             elif "points" in record:
                 at = tuple(v + 0.5 for v in _middle([point(p) for p in record["points"]]))
             else:
-                cells = winners.get(record["id"], set())
+                if "polygon" in record:
+                    cells = polygon_cells(record["polygon"]["points"],
+                                          spec["grid"]["width"], spec["grid"]["height"])
+                else:
+                    cells = winners.get(record["id"], set())
                 if not cells:
                     continue
                 center = tuple(sum(p[i] for p in cells) / len(cells) for i in (0, 1))

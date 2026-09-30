@@ -1,0 +1,214 @@
+{
+  "output": "assets/default/baseline/town/town_dali__ch01.preview.png",
+  "size_px": [
+    1536,
+    899
+  ],
+  "scale": 0.25,
+  "diagnostic": false,
+  "elapsed_seconds": 1.9961,
+  "top_padding_master_px": 523,
+  "water_surface": {
+    "water_cells": 526,
+    "sampling": "global_continuous",
+    "material_variants": 4,
+    "brightness_range": [
+      0.985,
+      1.015
+    ],
+    "brightness_mode": "seeded_continuous_low_frequency",
+    "shore_water_cells": 276,
+    "shore_land_cells": 280,
+    "land_water_fringe_cells": 0.16
+  },
+  "missing_assets": [],
+  "warnings": [],
+  "used_asset_ids": [
+    "bld_kit_song_dali_casino",
+    "bld_kit_song_dali_courtyard",
+    "bld_kit_song_dali_guardhouse",
+    "bld_kit_song_dali_house",
+    "bld_kit_song_dali_inn",
+    "bld_kit_song_dali_manor",
+    "bld_kit_song_dali_market_stall",
+    "bld_kit_song_dali_restaurant",
+    "bld_kit_song_dali_shop",
+    "bld_kit_song_dali_shrine",
+    "bld_kit_song_dali_stable",
+    "bld_kit_song_dali_temple_hall",
+    "bld_kit_song_dali_wangfu",
+    "bld_kit_song_dali_yamen",
+    "bld_lm_ch01_chongshengsi_pagoda",
+    "bld_lm_ch01_chongshengsi_pagoda_small",
+    "prp_song_dali_bamboo__v01",
+    "prp_song_dali_bamboo__v02",
+    "prp_song_dali_broadleaf__v01",
+    "prp_song_dali_broadleaf__v02",
+    "prp_song_dali_camellia__v01",
+    "prp_song_dali_camellia__v02",
+    "prp_song_dali_grass__v01",
+    "prp_song_dali_grass__v02",
+    "tex_town_song_dali_bridge_deck__w3_l5_r000_v01",
+    "tex_town_song_dali_bridge_rail__w3_l5_r000_v01",
+    "tex_town_song_dali_city_gate__k5_r180_v01",
+    "tex_town_song_dali_city_gate__k6_r000_v01",
+    "tex_town_song_dali_dirt_road__v01",
+    "tex_town_song_dali_dirt_road__v02",
+    "tex_town_song_dali_dirt_road__v03",
+    "tex_town_song_dali_dirt_road__v04",
+    "tex_town_song_dali_grass__v01",
+    "tex_town_song_dali_grass__v02",
+    "tex_town_song_dali_grass__v03",
+    "tex_town_song_dali_grass__v04",
+    "tex_town_song_dali_rammed_earth__v01",
+    "tex_town_song_dali_rammed_earth__v02",
+    "tex_town_song_dali_rammed_earth__v03",
+    "tex_town_song_dali_rammed_earth__v04",
+    "tex_town_song_dali_riverbank__e",
+    "tex_town_song_dali_riverbank__n",
+    "tex_town_song_dali_riverbank__ne",
+    "tex_town_song_dali_riverbank__nw",
+    "tex_town_song_dali_riverbank__s",
+    "tex_town_song_dali_riverbank__se",
+    "tex_town_song_dali_riverbank__sw",
+    "tex_town_song_dali_riverbank__w",
+    "tex_town_song_dali_wall__earth_r000_v01",
+    "tex_town_song_southern_road_edge__e",
+    "tex_town_song_southern_road_edge__n",
+    "tex_town_song_southern_road_edge__ne",
+    "tex_town_song_southern_road_edge__nw",
+    "tex_town_song_southern_road_edge__s",
+    "tex_town_song_southern_road_edge__se",
+    "tex_town_song_southern_road_edge__sw",
+    "tex_town_song_southern_road_edge__w",
+    "tex_town_song_southern_stone_slab__v01",
+    "tex_town_song_southern_stone_slab__v02",
+    "tex_town_song_southern_stone_slab__v03",
+    "tex_town_song_southern_stone_slab__v04",
+    "tex_town_song_southern_water__v01",
+    "tex_town_song_southern_water__v02",
+    "tex_town_song_southern_water__v03",
+    "tex_town_song_southern_water__v04"
+  ],
+  "asset_substitutions": [
+    {
+      "requested_id": "tex_town_song_dali_road_edge",
+      "actual_id": "tex_town_song_southern_road_edge__e",
+      "reason": "shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge"
+    },
+    {
+      "requested_id": "tex_town_song_dali_road_edge",
+      "actual_id": "tex_town_song_southern_road_edge__n",
+      "reason": "shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge"
+    },
+    {
+      "requested_id": "tex_town_song_dali_road_edge",
+      "actual_id": "tex_town_song_southern_road_edge__ne",
+      "reason": "shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge"
+    },
+    {
+      "requested_id": "tex_town_song_dali_road_edge",
+      "actual_id": "tex_town_song_southern_road_edge__nw",
+      "reason": "shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge"
+    },
+    {
+      "requested_id": "tex_town_song_dali_road_edge",
+      "actual_id": "tex_town_song_southern_road_edge__s",
+      "reason": "shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge"
+    },
+    {
+      "requested_id": "tex_town_song_dali_road_edge",
+      "actual_id": "tex_town_song_southern_road_edge__se",
+      "reason": "shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge"
+    },
+    {
+      "requested_id": "tex_town_song_dali_road_edge",
+      "actual_id": "tex_town_song_southern_road_edge__sw",
+      "reason": "shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge"
+    },
+    {
+      "requested_id": "tex_town_song_dali_road_edge",
+      "actual_id": "tex_town_song_southern_road_edge__w",
+      "reason": "shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge"
+    },
+    {
+      "requested_id": "tex_town_song_dali_stone_slab",
+      "actual_id": "tex_town_song_southern_stone_slab__v01",
+      "reason": "shared-material:tex_town_song_dali_stone_slab->tex_town_song_southern_stone_slab"
+    },
+    {
+      "requested_id": "tex_town_song_dali_stone_slab",
+      "actual_id": "tex_town_song_southern_stone_slab__v02",
+      "reason": "shared-material:tex_town_song_dali_stone_slab->tex_town_song_southern_stone_slab"
+    },
+    {
+      "requested_id": "tex_town_song_dali_stone_slab",
+      "actual_id": "tex_town_song_southern_stone_slab__v03",
+      "reason": "shared-material:tex_town_song_dali_stone_slab->tex_town_song_southern_stone_slab"
+    },
+    {
+      "requested_id": "tex_town_song_dali_stone_slab",
+      "actual_id": "tex_town_song_southern_stone_slab__v04",
+      "reason": "shared-material:tex_town_song_dali_stone_slab->tex_town_song_southern_stone_slab"
+    },
+    {
+      "requested_id": "tex_town_song_dali_water",
+      "actual_id": "tex_town_song_southern_water__v01",
+      "reason": "shared-material:tex_town_song_dali_water->tex_town_song_southern_water"
+    },
+    {
+      "requested_id": "tex_town_song_dali_water",
+      "actual_id": "tex_town_song_southern_water__v02",
+      "reason": "shared-material:tex_town_song_dali_water->tex_town_song_southern_water"
+    },
+    {
+      "requested_id": "tex_town_song_dali_water",
+      "actual_id": "tex_town_song_southern_water__v03",
+      "reason": "shared-material:tex_town_song_dali_water->tex_town_song_southern_water"
+    },
+    {
+      "requested_id": "tex_town_song_dali_water",
+      "actual_id": "tex_town_song_southern_water__v04",
+      "reason": "shared-material:tex_town_song_dali_water->tex_town_song_southern_water"
+    }
+  ],
+  "building_draw_order": [
+    "bi_0002",
+    "bi_0005",
+    "bi_0003",
+    "bi_0001",
+    "bi_0032",
+    "bi_0006",
+    "bi_0028",
+    "bi_0031",
+    "bi_0033",
+    "bi_0027",
+    "bi_0034",
+    "bi_0029",
+    "bi_0007",
+    "bi_0030",
+    "bi_0020",
+    "bi_0023",
+    "bi_0021",
+    "bi_0026",
+    "bi_0024",
+    "bi_0013",
+    "bi_0025",
+    "bi_0018",
+    "bi_0014",
+    "bi_0010",
+    "bi_0004",
+    "bi_0015",
+    "bi_0011",
+    "bi_0009",
+    "bi_0012",
+    "bi_0019",
+    "bi_0016",
+    "bi_0022",
+    "bi_0017",
+    "bi_0008",
+    "bi_0035",
+    "bi_0036"
+  ],
+  "overlay": null
+}
