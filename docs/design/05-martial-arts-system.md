@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.8（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：携带、外来压制、残篇/残承 → `design/02-timeline-and-world-tiers.md`；属性公式、`MPREF` 与技艺 ID → `design/03-attributes.md`；伤害公式与乘区 → `design/04-damage-formula.md`；Buff 定义与目录 → `design/06-buff-system.md`；套装定义 → `design/07-set-system.md`；地形/轻功阈值 → `design/08-terrain-and-qinggong.md`；六角范围模板、集气、运劲、合击、反击流程与 AI → `design/09-combat-system.md`；物品/丹药/兵器属性 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务、关系与门派玩法 → `design/12-quests-npc-factions.md`；角色经验与等级 → `design/13-progression-and-endings.md`；穴道、经脉、冲穴与周天 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；门派名录、历史与时代开放 → `design/17-sects-compendium.md`；NPC 身份、同伴与生卒 → `design/18-npc-and-companions.md`；地图节点、坐标与时代地图资产 → `design/19-world-map.md`；后人、宝藏、跨年代残本、信物、配方与投放 → `design/20-legacy-inheritance.md`；战斗经脉运行、攻防/轻功路线、绝招补充、护体内劲、擒拿/点穴、调息与逐单位模拟 → `design/21-meridian-flow-and-moves.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.7.1（AR-18 内功性质审计返修，2026-09-29）；v1.7（AR-18 内功阴阳按主修经脉，2026-09-29）；v1.6（经脉落地终审，2026-09-29）；v1.5（AR-16 外放加持与绝招数量作者决定同步，2026-09-28）；v1.4（绝招与经脉规则同步，2026-09-27）；v1.3（AR-14 绝招数量追加；M4，2026-09-27）；v1.2（跨文档同步；全局审计，2026-09-27）。
+> 版本：阴阳性质同步 AR-18（2026-09-30）；v1.7.1（AR-18 内功性质审计返修，2026-09-29）；v1.7（AR-18 内功阴阳按主修经脉，2026-09-29）；v1.6（经脉落地终审，2026-09-29）；v1.5（AR-16 外放加持与绝招数量作者决定同步，2026-09-28）；v1.4（绝招与经脉规则同步，2026-09-27）；v1.3（AR-14 绝招数量追加；M4，2026-09-27）；v1.2（跨文档同步；全局审计，2026-09-27）。
 > 变更记录：v1.2 接收 `design/15` 的 20 个正式经脉 ID、专精倍率与校验边界，补齐 `design/17`–`20` 的唯一归属引用，明确 `recalled` 仅为基础图鉴状态上的“再续朱印”，并将已落盘的跨文档待决项改为已解决。C14 图鉴实数重定与 CN-05 独孤六式预算结论保持不变。
 > 变更记录（2026-09-27，经脉系统落地）：接收 `design/21` v2.0 的武学侧接口：招式引用攻/防/轻功路线，内功引用调息档案并声明护体内劲能力，轻功提供常驻速度路线；路线段时间只计 `flowCt`，经脉攻防乘区独立于 `power` 预算；§14 数量与品阶总账不变。
 > 变更记录（2026-09-27，AR-14 追加）：绝招数量按十二品改为天阶 2–3、地阶 1–2、仅玄上 1；默认第一 / 第二 / 第三绝招在 7 / 9 / 10 重解锁，增加共享气势、武学级绝招冷却、连续重复限制与天上三绝招完整示例。
@@ -1047,9 +1047,9 @@ AF(N) = clamp(floor(rawAF(N) × 20 + 0.5) / 20, 0.35, 1.00)
 
 | 性质 | ID | 特点 | 原著代表（本作设定，性质归属多为游戏化判断） |
 |---|---|---|---|
-| 阳 | `yang` | 主修督脉或手足三阳；可表现为刚猛、炽热、爆发 | 九阳神功、先天功、龙象般若功、蛤蟆功 |
-| 阴 | `yin` | 主修任脉或手足三阴；可表现为绵长、阴寒、柔韧 | 玉女心经、吸星大法、葵花宝典、寒冰真气 |
-| 调和 | `harmony` | 阴阳主修票平衡，或只主修不投票的冲 / 带（含无专精回退） | 易筋经、九阴真经（总纲）、太玄经、小无相功 |
+| 阳 | `yang` | 主修督脉或手足三阳；可表现为刚猛、炽热、爆发 | 先天功、龙象般若功、蛤蟆功、葵花宝典 |
+| 阴 | `yin` | 主修任脉或手足三阴；可表现为绵长、阴寒、柔韧 | 玉女心经、寒冰真气、峨眉九阳功 |
+| 调和 | `harmony` | 阴阳主修票平衡，或只主修不投票的冲 / 带（含无专精回退） | 易筋经、九阴真经（总纲）、九阳神功、吸星大法、太玄经、小无相功 |
 | 中性 | `neutral` | **仅外功**：招意不依内力性质 | 独孤九剑、太祖长拳、多数黄阶外功 |
 
 表现词只用于叙事校验，不能压过主修经脉。例如阳刚掌势可经劳宫“气过阴门”，其动作出口属于“用”，不会把阳性内功改成阴；详见 `design/21` §2.4、§4.3.1。“阴阳交泰”可解释高阶阳刚掌在末端借阴经收敛导引、降低失控风险，但不新增 Z5、走火或减伤乘区。
@@ -1070,7 +1070,7 @@ AF(N) = clamp(floor(rawAF(N) × 20 + 0.5) / 20, 0.35, 1.00)
 
 #### 5.3.1 AR-18 图鉴静态性质审计（只读，不在本文改卡）
 
-2026-09-29 以 `python3 tools/lint/check_skill_catalogs.py --delivery --details` 对 `design/catalog/skills-*.md` 做正式武学卡归属与唯一 `sk_*` 去重审计：识别 254 张内功卡（跨册无重复正式 ID），其中 147 张显式列出可解析的 `inner.meridians`，107 张缺该字段而不能按 AR-18 审计；可审部分按上文多数票重算，有 56 张的声明 `nature` 与主修经脉不符。下表“现值→应值”是后续图鉴任务的迁移清单，不是本文对图鉴的原地修改。
+**NYY 历史基线（2026-09-29，保留追溯）**：当时以 `python3 tools/lint/check_skill_catalogs.py --delivery --details` 对 `design/catalog/skills-*.md` 做正式武学卡归属与唯一 `sk_*` 去重审计，识别 254 张内功卡（跨册无重复正式 ID），其中 147 张显式列出可解析的 `inner.meridians`，107 张缺该字段而不能按 AR-18 审计；可审部分按上文多数票重算，有 56 张的声明 `nature` 与主修经脉不符。下表“现值→应值”均指当时快照，不作为现行性质；NR4 完成值见本节后附“NR4 落地结果”。
 
 | 正式定义册 | 内功卡 | 有主修经脉 | 缺 `inner.meridians` | 性质不符 |
 |---|---:|---:|---:|---:|
@@ -1106,9 +1106,129 @@ AF(N) = clamp(floor(rawAF(N) × 20 + 0.5) / 20, 0.35, 1.00)
 
 三张紧凑格式卡已由脚本按卡归属核对且不列异常：`sk_aobaihengliangong=yang`（督脉＋手阳明）、`sk_hasakeyunqi=yang`（督脉＋阳维）、`sk_huahuixinfa=yin`（任脉＋阴维）。`sk_motianzhang`、`sk_dingshiqinnashou`、`sk_yunvjian19`、`sk_qixianwuxingjian` 虽出现 `meridians` 字样但属于外功路线说明，已排除，不能误改为内功。
 
-缺字段的 107 张须先由后续图鉴任务补主修经脉，不能仅凭现有 `nature` 倒推；集中于 `bulu-13-feihu` 8、`daojia` 19、`general` 1、`gulong` 3、`kangxi` 7、`qianlong` 6、`shaolin` 12、`wujue` 17、`xiake-bixue` 11、`xiaoyao` 23。尤其 `skills-shaolin.md` 的 12 张与 `skills-xiaoyao.md` 的 23 张内功全部缺字段，本轮均不列入“不符”而列为不可审计。
+历史快照中缺字段的 107 张当时须先由后续图鉴任务补主修经脉，不能仅凭旧 `nature` 倒推；集中于 `bulu-13-feihu` 8、`daojia` 19、`general` 1、`gulong` 3、`kangxi` 7、`qianlong` 6、`shaolin` 12、`wujue` 17、`xiake-bixue` 11、`xiaoyao` 23。尤其 `skills-shaolin.md` 的 12 张与 `skills-xiaoyao.md` 的 23 张内功当时全部缺字段，NYY 轮不列入“不符”而列为不可审计。**已解决：NR4 已补齐，见下文现值表。**
 
 后续迁移须把同卡的 `nature`、`BreathProfile.nature`、`requiredNature`、护体档显示与引用处一并核对；若作者改变 AR-18a，先重跑本表再改卡。仅靠把 `nature` 改成推导值而保留相反的主修经脉或调息档，仍视为未闭合。
+
+##### NR4 落地结果（2026-09-30）
+
+**已解决：十二个 NR4 单元、25 个图鉴文件现已落地。**重新运行 `python3 tools/lint/check_skill_catalogs.py --delivery --details` 与 `python3 tools/agents/check_nr4_unit.py docs/design/catalog/skills-*.md`，全库三项计数为：路线性质冲突 `0`、缺主修经脉 `0`、内功性质冲突 `0`；各册亦均为 `0 / 0 / 0`。脚本观测为 `inner_nature=254/254`，不能把此数直接当成全库内功卡总数。
+
+一次性卡片扫描沿用检查器的正式卡归属、显式性质与主修经脉读取，再补识别“内功（品阶·性质）”黄阶一行格式：另得通用册 6 张、倚天册 5 张，故完整现值为 **265 = 254 + 6 + 5**，全部有主修经脉且与声明性质一致。独立以逐武学 `txp_*` 核对，也是 265 个，与内功 ID 同后缀一一对应。完整 ID / 中文名 / 现性质表与生成说明见 `tools/agents/reports/NR4S-rules.md` §7；检查器的漏识别交工具归属任务修复，不在本文改脚本。
+
+| 正式定义册 | 内功卡（完整扫描） | 有主修经脉 | 性质不符 | 检查器识别卡数 |
+|---|---:|---:|---:|---:|
+| `skills-bulu-01-tianlong` | 3 | 3 | 0 | 3 |
+| `skills-bulu-02-shediao` | 5 | 5 | 0 | 5 |
+| `skills-bulu-03-shendiao` | 4 | 4 | 0 | 4 |
+| `skills-bulu-04-yitian` | 7 | 7 | 0 | 7 |
+| `skills-bulu-05-xiaoao` | 5 | 5 | 0 | 5 |
+| `skills-bulu-06-xiake` | 4 | 4 | 0 | 4 |
+| `skills-bulu-07-bixue` | 7 | 7 | 0 | 7 |
+| `skills-bulu-08-luding` | 16 | 16 | 0 | 16 |
+| `skills-bulu-09-liancheng` | 2 | 2 | 0 | 2 |
+| `skills-bulu-10-baima` | 2 | 2 | 0 | 2 |
+| `skills-bulu-11-yuanyang` | 0 | 0 | 0 | 0 |
+| `skills-bulu-12-shujian` | 2 | 2 | 0 | 2 |
+| `skills-bulu-13-feihu` | 8 | 8 | 0 | 8 |
+| `skills-bulu-14-xueshan` | 1 | 1 | 0 | 1 |
+| `skills-daojia` | 23 | 23 | 0 | 23 |
+| `skills-general` | 14 | 14 | 0 | 8 |
+| `skills-gulong` | 9 | 9 | 0 | 9 |
+| `skills-kangxi` | 16 | 16 | 0 | 16 |
+| `skills-qianlong` | 11 | 11 | 0 | 11 |
+| `skills-shaolin` | 12 | 12 | 0 | 12 |
+| `skills-wujue` | 29 | 29 | 0 | 29 |
+| `skills-wuyue` | 21 | 21 | 0 | 21 |
+| `skills-xiake-bixue` | 23 | 23 | 0 | 23 |
+| `skills-xiaoyao` | 23 | 23 | 0 | 23 |
+| `skills-yitian` | 18 | 18 | 0 | 13 |
+| **合计** | **265** | **265** | **0** | **254** |
+
+NR4 改性总清单由十二份报告 §7 的改性质记录取旧值、按 ID 去重，再逐卡核实新值；排除“性质不变”与外功补字段项，共 **80 = 基线 56 + 追加 24**。追加项包括原缺字段卡补齐后才可判定者，以及黄阶单行解析漏项；不能把原来 56 张历史清单当作全部改性。道家为 7 门（原 2＋追加 5），五绝为 9 门（原 6＋追加 3）；少林、逍遥内功改性均为 0。下表“基线”指上方 NYY 的 56 张，其他均标“追加”。
+
+| 正式定义册 | 内功 ID / 中文名 | 改前 → 现值 | 清单来源 |
+|---|---|---|---|
+| `skills-bulu-02-shediao` | `sk_taohuaguiyuanjue` 桃花归元诀 | `harmony → yin` | 基线 |
+| `skills-bulu-02-shediao` | `sk_quanzhenzhoutiangong` 全真周天功 | `yang → harmony` | 基线 |
+| `skills-bulu-04-yitian` | `sk_bosishenghuoxuangong` 波斯圣火玄功 | `harmony → yang` | 基线 |
+| `skills-bulu-04-yitian` | `sk_kongtongwuxingxinfa` 崆峒五行心法 | `harmony → yin` | 基线 |
+| `skills-bulu-04-yitian` | `sk_huashanliangyixinfa04` 华山两仪心法 | `harmony → yang` | 基线 |
+| `skills-bulu-05-xiaoao` | `sk_jianzongxingqi` 剑宗行气诀 | `harmony → yang` | 基线 |
+| `skills-bulu-06-xiake` | `sk_dingshixinfa` 丁氏心法 | `harmony → yin` | 基线 |
+| `skills-bulu-07-bixue` | `sk_shiliangwuxinggong` 石梁五行功 | `harmony → yin` | 基线 |
+| `skills-bulu-07-bixue` | `sk_xianduyunqi` 仙都运气诀 | `harmony → yin` | 基线 |
+| `skills-bulu-07-bixue` | `sk_huashanqigong07` 华山养气功 | `yang → harmony` | 基线 |
+| `skills-bulu-07-bixue` | `sk_tiejianxuangong` 铁剑玄功 | `harmony → yang` | 基线 |
+| `skills-bulu-08-luding` | `sk_bukuhutiaogong` 布库护腰功 | `yang → harmony` | 基线 |
+| `skills-bulu-08-luding` | `sk_fansenghutigong` 番僧护体功 | `yang → harmony` | 基线 |
+| `skills-bulu-08-luding` | `sk_wangwuzhenshanxinfa` 王屋镇山心法 | `harmony → yin` | 基线 |
+| `skills-bulu-08-luding` | `sk_pingxixingqijue` 平西行气诀 | `yang → yin` | 基线 |
+| `skills-bulu-08-luding` | `sk_yanpingfanchaojue` 延平泛潮诀 | `harmony → yin` | 基线 |
+| `skills-bulu-08-luding` | `sk_luochabujunhuxi` 罗刹步军呼吸 | `harmony → yin` | 基线 |
+| `skills-bulu-13-feihu` | `sk_huiwuguixin` 会武归心诀 | `harmony → yin` | 追加 |
+| `skills-daojia` | `sk_quanzhentunajue` 全真吐纳诀 | `yang → yin` | 追加 |
+| `skills-daojia` | `sk_baiyunguanxinfa` 白云观心法 | `harmony → yin` | 追加 |
+| `skills-daojia` | `sk_beidouxinfa` 北斗心法 | `yang → harmony` | 基线 |
+| `skills-daojia` | `sk_jianzhongtuna` 剑冢吐纳 | `harmony → yang` | 追加 |
+| `skills-daojia` | `sk_taihegong` 太和功 | `harmony → yin` | 追加 |
+| `skills-daojia` | `sk_wudangyangshenggong` 武当养生功 | `harmony → yin` | 基线 |
+| `skills-daojia` | `sk_zhenwudaoyin` 真武导引 | `harmony → yin` | 追加 |
+| `skills-general` | `sk_shanyetuna` 山野吐纳 | `harmony → yin` | 追加 |
+| `skills-general` | `sk_jindunxinfa` 金盾心法 | `yang → harmony` | 基线 |
+| `skills-general` | `sk_wuguanxinfa` 武馆心法 | `harmony → yin` | 基线 |
+| `skills-general` | `sk_jianghutuna` 江湖吐纳 | `harmony → yin` | 基线 |
+| `skills-general` | `sk_zhuangxingong` 壮行功 | `yang → yin` | 追加 |
+| `skills-general` | `sk_tunaqianjue` 吐纳浅诀 | `harmony → yin` | 追加 |
+| `skills-general` | `sk_huxixingqi` 呼吸行气 | `harmony → yin` | 追加 |
+| `skills-gulong` | `sk_daqixinfa` 大旗吐纳 | `harmony → yin` | 基线 |
+| `skills-gulong` | `sk_qinglongtuna` 青龙吐纳 | `harmony → yin` | 基线 |
+| `skills-kangxi` | `sk_xuedaoxinfa` 血刀心法 | `yin → harmony` | 基线 |
+| `skills-kangxi` | `sk_meinianshengxinfa` 梅门心法 | `harmony → yin` | 基线 |
+| `skills-kangxi` | `sk_linrenhexinfa` 林任合心诀 | `harmony → yin` | 基线 |
+| `skills-kangxi` | `sk_xiangxituna` 湘西吐纳 | `harmony → yin` | 追加 |
+| `skills-kangxi` | `sk_pingxituna` 平西军吐纳 | `yang → yin` | 追加 |
+| `skills-qianlong` | `sk_miaojiaxinfa` 苗家心法 | `harmony → yin` | 基线 |
+| `skills-qianlong` | `sk_guangpingxinfa` 广平心法 | `harmony → yin` | 基线 |
+| `skills-qianlong` | `sk_huibutunaxi` 回部吐纳 | `harmony → yin` | 追加 |
+| `skills-qianlong` | `sk_miaojialianqi` 苗家炼气 | `harmony → yin` | 追加 |
+| `skills-wujue` | `sk_gaibanghuxinfa` 丐帮护心法 | `yang → harmony` | 基线 |
+| `skills-wujue` | `sk_taohuatunaxi` 桃花吐纳息 | `harmony → yin` | 基线 |
+| `skills-wujue` | `sk_baituotunadu` 白驼吐纳术 | `yin → harmony` | 基线 |
+| `skills-wujue` | `sk_duanshiyangshenggong` 段氏养生功 | `harmony → yin` | 基线 |
+| `skills-wujue` | `sk_jiuyintiaoxipian` 九阴调息篇 | `harmony → yin` | 基线 |
+| `skills-wujue` | `sk_biguqipian` 辟谷气篇 | `harmony → yin` | 基线 |
+| `skills-wujue` | `sk_yaoputunaxi` 药圃吐纳息 | `harmony → yin` | 追加 |
+| `skills-wujue` | `sk_shexingtunaxi` 蛇形吐纳息 | `yin → harmony` | 追加 |
+| `skills-wujue` | `sk_wangfutunaxi` 王府吐纳息 | `yang → yin` | 追加 |
+| `skills-wuyue` | `sk_xixing` 吸星大法 | `yin → harmony` | 基线 |
+| `skills-wuyue` | `sk_kuihua` 葵花宝典 | `yin → yang` | 基线 |
+| `skills-wuyue` | `sk_zixiashengong` 紫霞神功 | `yang → harmony` | 基线 |
+| `skills-wuyue` | `sk_huashanxinfa` 华山心法 | `harmony → yin` | 基线 |
+| `skills-wuyue` | `sk_huashantuna` 华山吐纳 | `harmony → yin` | 基线 |
+| `skills-wuyue` | `sk_taishanxinfa` 泰山心法 | `harmony → yang` | 基线 |
+| `skills-wuyue` | `sk_taishantuna` 泰山吐纳 | `harmony → yang` | 基线 |
+| `skills-wuyue` | `sk_hengshanbeixinfa` 恒山心法 | `harmony → yin` | 基线 |
+| `skills-wuyue` | `sk_hengshanbeituna` 恒山吐纳 | `harmony → yin` | 基线 |
+| `skills-wuyue` | `sk_riyuexinfa` 日月心法 | `yin → harmony` | 基线 |
+| `skills-wuyue` | `sk_heimutuna` 黑木吐纳 | `yin → harmony` | 基线 |
+| `skills-wuyue` | `sk_wuxianbaidugong` 五仙百毒功 | `yin → harmony` | 基线 |
+| `skills-xiake-bixue` | `sk_changlexinfa` 长乐心法 | `harmony → yin` | 基线 |
+| `skills-xiake-bixue` | `sk_hunyuangong` 混元功 | `yang → harmony` | 基线 |
+| `skills-xiake-bixue` | `sk_changletuna` 长乐吐纳 | `harmony → yin` | 追加 |
+| `skills-xiake-bixue` | `sk_xuansuzhuanggong` 玄素桩功 | `harmony → yin` | 追加 |
+| `skills-xiake-bixue` | `sk_shangqingtuna06` 上清吐纳·侠客 | `harmony → yin` | 追加 |
+| `skills-xiake-bixue` | `sk_tiejantuna` 铁剑吐纳 | `harmony → yin` | 追加 |
+| `skills-xiake-bixue` | `sk_xiandutuna` 仙都吐纳 | `harmony → yin` | 追加 |
+| `skills-yitian` | `sk_jiuyang` 九阳神功 | `yang → harmony` | 基线 |
+| `skills-yitian` | `sk_emeijiuyang` 峨眉九阳功 | `yang → yin` | 基线 |
+| `skills-yitian` | `sk_shenghuoxinfa` 圣火心法 | `harmony → yang` | 基线 |
+| `skills-yitian` | `sk_emeixinfa` 峨眉心法 | `harmony → yin` | 基线 |
+| `skills-yitian` | `sk_kunlunxinfa` 昆仑心法 | `harmony → yang` | 基线 |
+| `skills-yitian` | `sk_kongtongyangshenggong` 崆峒养生功 | `harmony → yin` | 基线 |
+| `skills-yitian` | `sk_tieniuyaogong` 铁牛腰功 | `yang → harmony` | 基线 |
+| `skills-yitian` | `sk_emeitunajue` 峨眉吐纳诀 | `harmony → yin` | 追加 |
+| `skills-yitian` | `sk_kunluntunajue` 昆仑吐纳诀 | `harmony → yang` | 追加 |
 
 ### 5.4 阴阳相冲与桥接
 
@@ -1166,8 +1286,8 @@ restore = floor(真实 mpMax × mpRegen / 100)
 
 基础回内为 1 个百分点，所有来源合计上限 6%；每次自身行动开始回复且不超过资源上限。封内力等暂停规则见 design/06。耗内以 `MPREF` 计价、回内以角色真实 `mpMax` 计量，二者不能直接相减；5% 基准招式可能被 6% 回内覆盖，不作“所有招式必然净耗内”的保证。
 
-**例**：主运易筋经 10 重（天上预算 IP 156；本条目实际 IP 155）＋辅运九阳神功 8 重（天上，阳；调和主运 → 辅运比例 0.40）：
-九阳贡献 = 九阳 contribution × innerScale(8)=0.86 × 0.40 = 34.4%。若九阳 `mpMaxPct` 为 60，则提供 mpMax +20.6%。
+**例（AR-18 同步；以下均为有效品阶 / 层数）**：主运易筋经 10 重（天上预算 IP 156；本条目实际 IP 155）＋辅运九阳神功 8 重（天上，调和）。两门均为调和，§5.2 基础辅运比例为 `0.50`；本例主运已解锁“易筋大成”，故实际 `auxRatio=min(0.60,0.50+0.10)=0.60`。
+九阳贡献比例为 `innerScale(8)×auxRatio=(0.30+0.07×8)×0.60=0.86×0.60=51.6%`；其 `mpMaxPct=60`，故增加基础 mpMax 的 `60%×0.516=30.96%`（显示一位小数为 `+31.0%`）。若“易筋大成”未生效，则取 `0.50`，贡献比例 `43%`、mpMax 增幅 `25.8%`；不得继续套用旧的“调和主运＋阳辅运”`0.40`。
 
 ### 5.6 易运（切换主运）
 
@@ -1679,7 +1799,7 @@ special:
 | 3 | 叙事改变 | 书灵对白、后续书界部分 NPC 反应与结局文本变体（design/13） |
 
 **收益**：
-- 葵花宝典（天中内功，阴）：**硬门槛 `vow: vow_duanchen`**；内功贡献以 `agi` 与 `spd` 为主，特有"鬼魅身法"类被动；运功招式可以绣花针为投射物（原著东方不败以绣花针为兵刃）。
+- 葵花宝典（天中内功，阳；现值见 `catalog/skills-wuyue.md` 葵花卡）：**硬门槛 `vow: vow_duanchen`**；内功贡献以 `agi` 与 `spd` 为主，特有"鬼魅身法"类被动；运功招式可以绣花针为投射物（原著东方不败以绣花针为兵刃）。
 - 辟邪剑法（天下剑法）：立誓者为真本；**未立誓者只能得其形**——`effGrade` 按玄中（5）计算、`special.layerCap = 5`（原著中林家后人只传剑招，威力平平），不触发走火入魔。
 
 ```yaml
@@ -2182,11 +2302,13 @@ description: >-
   求之愈切，得之愈难。
 ```
 
-### 13.4 九阳神功 `sk_jiuyang`（天上 · 内功 · 阳）
+### 13.4 九阳神功 `sk_jiuyang`（天上 · 内功 · 调和）
 
 设计要点："他强由他强，清风拂山岗；他横由他横，明月照大江"（原著九阳真经口诀）→ 对强敌减伤与反震；寒毒克星；"触类旁通"加速其他武学（原著张无忌凭九阳根基速成乾坤大挪移与太极；**待考：《倚天屠龙记》相关练功段落的速度描写**）。
 
 > 经脉接线边界：本例镜像倚天图鉴定义的逐武学档案 `txp_jiuyang` 与三条独立路线；schema、算法和共享模板仍只见 `design/21`。**待作者确认**：该卡三记可施放招式全是绝招，故 1–6 重没有主动招式；默认保留图鉴现状，不另编招名。
+
+AR-18 依赖展示：`catalog/skills-yitian.md` 九阳卡主修任脉、督脉，各计阴 / 阳一票，故本例静态 `nature`、主运 `mpNature` 与 `txp_jiuyang.nature` 均为 `harmony`；三条路线门槛读取该册现行 `[yin,yang,harmony]`。护体采用调和档；有效品阶 ≥7 时可按 §5.4 桥接，辅运比例按 §5.2 查表。调息值及护体公式只引用该册档案与 `design/21` §4.8、§10，“寒毒不侵”等特色仍按既有被动触发，不由性质推导。
 
 ```yaml
 id: sk_jiuyang
@@ -2200,7 +2322,7 @@ sect: null
 lineage: 觉远 → 张三丰/郭襄/无色（各得部分）；张无忌得猿腹经书全本
 sourceChapters: [ch04_yitian]
 canonRef: 神雕末回觉远临终诵经（伏笔）；倚天张无忌于昆仑山谷白猿腹中得经
-nature: yang
+nature: harmony
 wOut: 0
 wIn: 1
 reqs:
@@ -2253,7 +2375,7 @@ learnSources:
 special: { fusible: true }
 observable: false
 description: >-
-  《九阳真经》所载内功，至刚至阳，内力生生不息，百脉通畅，寒毒不侵。"他强由他强，清风拂山岗"——
+  《九阳真经》所载内功，本作按任督并修归为调和；内力生生不息，百脉通畅，寒毒不侵。"他强由他强，清风拂山岗"——
   对手越强，越难撼动其根基。
 ```
 
@@ -2977,7 +3099,7 @@ description: >-
 | D22 | design/21、武学图鉴 | `MoveDef` 用 `meridianRouteRef` / `routeOnTriggerRef` 引用 attack / defense / movement 路线；绝招继续以 `ultimate` 为唯一真值；轻功武学用 `movementRouteRef` | **已解决（见 Canon v1.3 澄清、design/21 §4、§12）**：本文 §2.1、§2.9、§4.1–§4.2.1、§4.8–§4.10、V27–V33 已定；21 拥有 schema、算法、共享模板与示例，各图鉴拥有具体武学实例 |
 | D23 | design/21、design/09、武学图鉴 | 内功 `breathProfileRef` 引用 `txp_*`；调息并入既有 `yunjin:tiaoxi`，基础 1000 CT 且经脉处理不另耗内；战斗调息不推进永久冲穴 | **已解决（见 Canon v1.3 澄清、design/21 §10、§12）**：本文 §5.7、§5.9–§5.10 已采用；共享档案 / 示例归 21，九阳、易筋等逐武学档案由所属图鉴定义，05 仅镜像引用 |
 | D24 | design/21、design/04、design/06 | 内功通过 `innerGuard` 声明护体内劲启用与既有反震；来袭侧以 `InnerGuardInput.breakGuardBp` 投影破体 / 破气；settle 顺序为护体真气 → 护体内劲 → `mpGuard` → 气血 | **已解决（05 接口，见 design/21 §4.8）**：字段和边界见 §5.10；抵消公式、类别适用率及击穿状态仍唯一归 21 §4.8，最终伤害链 / Buff 由 04 / 06 同步 |
-| D25 | catalog/skills-yitian | 九阳 `innerGuard.reflectBp:1200` 是“他横由他横”10 重上限值，违反本文 §5.10；请改为 0 / 省略，由 `ps_jiuyang_taheng` 按当前有效层数投影，避免双算 | **待图鉴一致性任务（NA2）同步** |
+| D25 | catalog/skills-yitian | 九阳旧 `innerGuard.reflectBp:1200` 是“他横由他横”10 重上限值，违反本文 §5.10；应改为 0 / 省略，由 `ps_jiuyang_taheng` 按当前有效层数投影，避免双算 | **已解决**：`catalog/skills-yitian` §10.6 已填 0 并明确按有效层数投影；本次复核 §13.4 继续省略固定反震值 |
 
 ### 17.2 本文依赖的上游事实
 
@@ -3056,7 +3178,7 @@ AR-01 的 C3 历史同步已完成：§14 以 920 门快照为起点形成 11 �
 | O5 / P10 | 九阳能否在神雕完整学习 | 不能；神雕只作 `heard` 伏笔，倚天才创建学习来源 | **已解决**：§13.4、V24、T21；文本边界留 K7 |
 | O6 | 绝招由既有招式升格后，天 / 地阶非内功武学的“普通招式下限”是否仍按不含绝招计 | 默认按“普通招式＋绝招”的可施放招式总数计；完整卡仍不足时逐卡登记豁免，不为凑数编招 | **待作者确认**：§3.5、V7；若改为纯普通招式下限，须由各图鉴补豁免或有据招式并重跑全库校验 |
 | O7 | 九阳神功是否允许 1–6 重没有主动招式 | 默认允许并保留图鉴三绝招现状；低层只提供被动 / 内功贡献，不自动生成主动招 | **待作者确认**：§13.4、T32；若否，须先确定有原著依据或明确标原创扩展的招式，不在本轮臆造 |
-| O8 / AR-18a | 冲脉、带脉是否参加内功主修经脉性质投票 | 默认保持两脉 `harmony` 且不投票；只有冲 / 带或空专精时回退调和 | **待作者确认**：§5.3、§5.3.1；若改为逐脉参与，须先定阴阳归属并重跑 254 卡覆盖审计 |
+| O8 / AR-18a | 冲脉、带脉是否参加内功主修经脉性质投票 | 默认保持两脉 `harmony` 且不投票；只有冲 / 带或空专精时回退调和 | **待作者确认**：§5.3、§5.3.1；若改为逐脉参与，须先定阴阳归属并重跑完整 265 卡覆盖审计（当前检查器仅识别其中 254 卡，另 11 卡须补查） |
 
 其余与本文直接相关的作者决定也已落实：
 
@@ -3075,4 +3197,3 @@ AR-01 的 C3 历史同步已完成：§14 以 920 门快照为起点形成 11 �
 AR-14 的开放项沿用 21 §18.5，不另起第二套决定：四个新前缀已按 Canon v1.3 登记；调息经脉处理默认不另耗内；9 级点穴默认不能自行调息解；战斗胀损默认战后深度调息清除；待机轻防路线默认 ≤3 段 / 240 CT；同场速度参考默认取可选敌方经脉强度中位数；护体内劲默认不反震。上述默认若被作者改动，05 只迁移引用 / 字段，不复制修改 21 的算法。
 
 AR-14 数量口径的“九品玄”已解决：作者于 2026-09-27 确认按玄上（grade 6）执行，因此玄上 1 个、玄中 / 玄下 0 个（见 §3.5、V9 / T28）。图鉴逐门补足已由 NU1–NU4 完成，本文示例已同步其最终实例；另有 O6 / O7 两项体验口径待作者确认。
-
