@@ -12,6 +12,7 @@ from unittest import mock
 from pathlib import Path
 
 from tools.lint import check_skill_catalogs as checker
+from tools.agents import check_route_unique_for as route_unique
 
 
 VALID_INSTANCE = """
@@ -931,6 +932,202 @@ class DiversityTests(unittest.TestCase):
             ), redirect_stdout(StringIO()):
                 result = checker.main(["--strict", str(path)])
         self.assertEqual(0, result)
+
+
+class OutletRegressionTests(unittest.TestCase):
+    def route(
+        self, delivery: str | None, points: tuple[str, ...], *,
+        voice: bool | None = None, purpose: str = "attack",
+        skill_id: str = "sk_fixture",
+    ) -> checker.DeliveryRoute:
+        return checker.DeliveryRoute(
+            "fixture", "skills-fixture.md", 1, skill_id, "mv_fixture_one",
+            "mfr_fixture_one", points, delivery, purpose, voice is True,
+            True, voice,
+        )
+
+    def test_each_outlet_type_excludes_tail_but_keeps_same_point_in_body(self) -> None:
+        cases = (
+            ("palm", "ap_shoujueyin_laogong", None),
+            ("fist-grapple", "ap_shouyangming_hegu", None),
+            ("finger", "ap_shoutaiyin_shaoshang", None),
+            ("leg", "ap_zuyangming_lidui", None),
+            ("weapon", "ap_shoushaoyang_yangchi", None),
+            ("weapon", "ap_shoushaoyang_waiguan", None),
+            (None, "ap_yinwei_tiantu", True),
+            (None, "ap_yinwei_lianquan", True),
+            ("movement", "ap_zushaoyang_zuqiaoyin", None),
+            ("movement", "ap_yangqiao_shenmai", None),
+            ("movement", "ap_zushaoyin_yongquan", None),
+            ("inner", "ap_renmai_qihai", None),
+            ("inner", "ap_dumai_mingmen", None),
+        )
+        ownership = checker.load_acupoint_meridians()
+        natures = checker.load_meridian_natures()
+        for delivery, point, voice in cases:
+            with self.subTest(delivery=delivery, point=point):
+                point_nature = natures[ownership[point]]
+                other = ("ap_renmai_qihai" if point_nature == "yang"
+                         else "ap_dumai_mingmen")
+                route = self.route(delivery, (
+                    point, other, "ap_unknown_a", "ap_unknown_b", point,
+                ), voice=voice)
+                outlets = checker.route_outlet_points(route, ownership)
+                self.assertEqual({point}, outlets)
+                self.assertEqual(point_nature, checker.route_nature(
+                    route.signature, ownership, natures,
+                ))
+                self.assertEqual("harmony", checker.route_nature(
+                    route.signature, ownership, natures, outlets,
+                ))
+
+    def test_movement_uses_registered_meridian_and_keeps_unmatched_tail(self) -> None:
+        route = self.route("movement", (
+            "ap_daimai_wushu", "ap_zutaiyang_chengshan",
+            "ap_zushaoyang_xuanzhong",
+        ))
+        self.assertEqual(
+            {"ap_daimai_wushu", "ap_zushaoyang_xuanzhong"},
+            checker.route_outlet_points(route),
+        )
+        self.assertEqual("yang", checker.route_nature(
+            route.signature, outlet_points=checker.route_outlet_points(route),
+        ))
+        # Ownership, not a misleading legacy ID prefix, selects the outlet.
+        remapped = self.route(None, (
+            "ap_alias_step", "ap_zushaoyang_fake",
+        ), purpose="movement")
+        self.assertEqual({"ap_alias_step"}, checker.route_outlet_points(
+            remapped, {"ap_alias_step": "mer_daimai",
+                       "ap_zushaoyang_fake": "mer_shoutaiyin"},
+        ))
+
+    def test_inner_tail_only_excludes_registered_ren_du_points(self) -> None:
+        route = self.route("inner", (
+            "ap_dumai_mingmen", "ap_shouyangming_hegu", "ap_renmai_qihai",
+        ), purpose="defense")
+        self.assertEqual(
+            {"ap_dumai_mingmen", "ap_renmai_qihai"},
+            checker.route_outlet_points(route),
+        )
+        self.assertEqual("yang", checker.route_nature(
+            route.signature, outlet_points=checker.route_outlet_points(route),
+        ))
+
+    def test_card_actions_classify_fist_rope_and_physical_hidden_weapon(self) -> None:
+        cases = (
+            ("sk_fist", "测试拳", "拳脚/拳掌", "", "fist-grapple",
+             "ap_shouyangming_hegu"),
+            ("sk_rope", "索阵", "杂学/阵法",
+             "- **简述**：三人各持长索结阵。\n", "weapon",
+             "ap_shoushaoyang_yangchi"),
+            ("sk_dagger", "水榭飞刀", "暗器", "", "weapon",
+             "ap_shoushaoyang_waiguan"),
+        )
+        for skill, name, category, synopsis, expected, point in cases:
+            with self.subTest(skill=skill):
+                text = (
+                    f"### `{skill}` {name}（9 地上 · {category}）\n"
+                    + synopsis
+                    + "| 绝招 `mv_fixture_one` | `MoveDef{ultimate:true}` |\n"
+                    + diversity_row(skill, "mv_fixture_one", "mfr_fixture_one",
+                                    ("ap_dumai_mingmen", point))
+                )
+                with tempfile.TemporaryDirectory() as directory:
+                    path = Path(directory) / "skills-fixture.md"
+                    path.write_text(text, encoding="utf-8")
+                    routes = checker.collect_delivery_routes([path])
+                self.assertEqual(1, len(routes))
+                self.assertEqual(expected, routes[0].delivery)
+                self.assertIn(point, checker.route_outlet_points(routes[0]))
+
+    def test_hidden_or_formation_category_alone_does_not_prove_held_weapon(self) -> None:
+        for skill, move in (
+            ("`sk_smoke` 毒烟（暗器）", "毒雾外散"),
+            ("`sk_insect` 毒虫（subType:hidden）", "放虫"),
+            ("`sk_pattern` 合阵（杂学/阵法）", "阵势支援"),
+            ("`sk_coarse` 旧拳掌（拳脚/拳掌）", "第一式"),
+            ("`sk_xinyiba` 心意把（拳脚/拳掌）", "第一式"),
+            ("`sk_pattern` 合阵（杂学/阵法）；前置：持长索", "第一式"),
+            ("`sk_coarse` 旧拳掌；prereq:[sk_xinyiba]", "第一式"),
+            ("`sk_smoke` 毒煙（暗器）；reqs:{note:飞刀}", "第一式"),
+        ):
+            with self.subTest(skill=skill):
+                self.assertIsNone(checker._delivery_from_context(skill, move))
+        for context in ("持索击敌", "持长索结阵", "持鞭索锁拿"):
+            with self.subTest(context=context):
+                self.assertEqual("weapon", checker._delivery_from_context(
+                    "`sk_pattern` 合阵（杂学/阵法）", context,
+                ))
+        self.assertEqual("weapon", checker._delivery_from_context(
+            "`sk_needle` 飞针；category:hidden; subType:hidden", "投针",
+        ))
+
+    def test_route_action_fallback_requires_own_explicit_action_column(self) -> None:
+        cases = (
+            ("动作末端或关键段", "末以天泉—合谷成拳", "mfr_fixture_one",
+             "fist-grapple"),
+            ("本轮换穴", "末以天泉—合谷成拳", "mfr_fixture_one", None),
+            ("前置动作", "末以天泉—合谷成拳", "mfr_fixture_one", None),
+            ("动作末端", "第一式；前置：成拳", "mfr_fixture_one", None),
+            ("动作末端", "末以天泉—合谷成拳", "mfr_other_one", None),
+            ("动作末端", "成拳", "mfr_fixture_one mfr_other_one", None),
+        )
+        for header, description, reference, expected in cases:
+            with self.subTest(header=header, description=description,
+                              reference=reference):
+                text = (
+                    "### `sk_arbitrary` 无名把（9 地上 · 拳脚/拳掌）\n"
+                    "| 绝招 `mv_fixture_one` | `MoveDef{ultimate:true}` |\n"
+                    + diversity_row("sk_arbitrary", "mv_fixture_one",
+                                    "mfr_fixture_one",
+                                    ("ap_dumai_mingmen", "ap_shouyangming_hegu"))
+                    + f"\n\n| 路线 | {header} | 前置 | 本轮换穴 |\n"
+                    "|---|---|---|---|\n"
+                    f"| {reference} | {description} | 成拳 | 成拳 |\n"
+                )
+                with tempfile.TemporaryDirectory() as directory:
+                    path = Path(directory) / "skills-fixture.md"
+                    path.write_text(text, encoding="utf-8")
+                    route = checker.collect_delivery_routes([path])[0]
+                self.assertEqual(expected, route.delivery)
+                if expected:
+                    self.assertIn("成拳", route.action_context)
+                    self.assertEqual({"ap_shouyangming_hegu"},
+                                     checker.route_outlet_points(route))
+
+    def test_route_action_fallback_does_not_override_a_classified_palm(self) -> None:
+        text = (
+            "### `sk_alpha` 测试掌（9 地上 · 拳脚/拳掌）\n"
+            "| 绝招 `mv_fixture_one` | `MoveDef{ultimate:true}` |\n"
+            + diversity_row("sk_alpha", "mv_fixture_one", "mfr_fixture_one",
+                            ("ap_dumai_mingmen", "ap_shouyangming_hegu"))
+            + "\n\n| 路线 | 动作末端 |\n|---|---|\n"
+            "| mfr_fixture_one | 虎口抓拿成拳 |\n"
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            route = checker.collect_delivery_routes([path])[0]
+        self.assertEqual("palm", route.delivery)
+        self.assertNotIn("虎口抓拿成拳", route.action_context)
+        self.assertEqual(set(), checker.route_outlet_points(route))
+
+    def test_vocal_false_overrides_legacy_and_other_types_do_not_gain_outlets(self) -> None:
+        points = ("ap_yinwei_tiantu", "ap_yinwei_lianquan")
+        for voice, expected in ((True, set(points)), (None, set(points)),
+                                (False, set())):
+            with self.subTest(voice=voice):
+                route = self.route(None, points, voice=voice,
+                                   skill_id="sk_shizihou")
+                self.assertEqual(expected, checker.route_outlet_points(route))
+        for delivery, point in ((None, "ap_yinwei_tiantu"),
+                                ("weapon", "ap_zushaoyin_yongquan"),
+                                ("palm", "ap_renmai_qihai")):
+            with self.subTest(delivery=delivery, point=point):
+                self.assertEqual(set(), checker.route_outlet_points(
+                    self.route(delivery, (point,)),
+                ))
 
 
 class DeliveryTests(unittest.TestCase):
@@ -2118,6 +2315,226 @@ class DeliveryTests(unittest.TestCase):
         self.assertIn('"delivery"', output.getvalue())
         self.assertIn('"tail_violations": 0', output.getvalue())
         self.assertIn('"tail_findings"', output.getvalue())
+
+
+class OutletParsingRegressionTests(unittest.TestCase):
+    def test_sequence_column_excludes_endpoint_hints(self) -> None:
+        headers = ("路线 ID", "合法端点", "显式步骤", "核算提示")
+        row = (
+            "| mfr_alpha | ap_shouyangming_hegu | "
+            "ap_renmai_qihai/70/80→ap_dumai_mingmen/70/90→"
+            "ap_shouyangming_hegu/70/100 | 出口 ap_shouyangming_hegu |"
+        )
+        self.assertEqual(
+            ("ap_renmai_qihai", "ap_dumai_mingmen", "ap_shouyangming_hegu"),
+            checker.route_sequence_points(row, headers),
+        )
+
+    def test_sequence_parser_keeps_repeated_nodes_but_not_prose_endpoints(self) -> None:
+        self.assertEqual(
+            ("ap_renmai_qihai", "ap_dumai_mingmen", "ap_renmai_qihai"),
+            checker.route_sequence_points(
+                "路线 `ap_renmai_qihai/80/100→ap_dumai_mingmen/80/120→"
+                "ap_renmai_qihai/80/150`；终点说明：`ap_renmai_qihai`。"
+            ),
+        )
+        self.assertEqual(
+            ("ap_renmai_qihai", "ap_dumai_mingmen"),
+            checker.route_sequence_points(
+                "| mfr_alpha | ap_renmai_qihai ap_dumai_mingmen |",
+                ("路线", "有序穴位序列"),
+            ),
+        )
+
+    def test_template_endpoint_hints_are_not_explicit_routes(self) -> None:
+        self.assertEqual((), checker.route_sequence_points(
+            "| mfr_alpha | mv_alpha | P6LG | "
+            "ap_shoujueyin_neiguan、ap_shoujueyin_laogong |",
+            ("路线 ID", "moveRef", "展开码", "合法外放端点"),
+        ))
+
+    def test_projection_collector_uses_steps_once_and_ignores_template_hints(self) -> None:
+        text = """
+### `sk_alpha` 测试音功（8 地中 · 杂学 / 音功；nature:yin）
+| 人声 `mv_alpha_wave` | `MoveDef{ultimate:false; projection:true; voice:true}` |
+| 共享 `mv_alpha_shared` | `MoveDef{ultimate:false; projection:true; voice:true}` |
+| 路线 ID | moveRef | 展开码 / 显式步骤 | 合法外放端点 |
+|---|---|---|---|
+| mfr_alpha_wave | mv_alpha_wave | ap_renmai_qihai/70/90→ap_renmai_danzhong/70/90→ap_yinwei_lianquan/70/90→ap_yinwei_tiantu/70/90 | ap_yinwei_lianquan、ap_yinwei_tiantu |
+| mfr_alpha_shared | mv_alpha_shared | P6LG | ap_yinwei_tiantu |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-fixture.md"
+            path.write_text(text, encoding="utf-8")
+            routes = checker.collect_delivery_routes([path])
+        self.assertEqual(["mv_alpha_wave"], [route.move_id for route in routes])
+        self.assertEqual((
+            "ap_renmai_qihai", "ap_renmai_danzhong",
+            "ap_yinwei_lianquan", "ap_yinwei_tiantu",
+        ), routes[0].signature)
+
+    def test_yellow_one_line_inner_cards_count_fields_and_conflicts(self) -> None:
+        text = """
+| 武学 ID | 名称 | 来源 | 类别 | 书界 | 核心效果 | 前置 |
+|---|---|---|---|---|---|---|
+| sk_alpha | 甲吐纳 | 山民 | 内功（3 黄上·yin） | 序章 | inner.meridians:[mer_renmai] | 无 |
+| sk_beta | 乙养气 | 拳师 | 内功(2 黄中·yin) | ALL14 | inner.meridians:[mer_dumai] | sk_alpha≥1 |
+| sk_empty | 空脉 | 山民 | 内功（1 黄下·harmony） | 序章 | inner.meridians:[] | 无 |
+| sk_missing | 缺脉 | 山民 | 内功（1 黄下·yang） | 序章 | IP=19 | 无 |
+| sk_outer | 丙掌 | 山民 | 拳脚（1 黄下·yang） | 序章 | 掌击 | sk_missing≥1 |
+"""
+        result = checker.audit_inner_natures(
+            "fixture", "skills-fixture.md", text,
+            {"mer_renmai": "yin", "mer_dumai": "yang"},
+        )
+        self.assertEqual(4, result.total)
+        self.assertEqual(3, result.with_meridians)
+        self.assertEqual(("sk_missing",), result.missing_meridians)
+        self.assertEqual([("sk_beta", "yin", "yang")], [
+            (finding.skill_id, finding.declared, finding.derived)
+            for finding in result.findings
+        ])
+
+    def test_yitian_and_general_inner_audit_includes_yellow_cards(self) -> None:
+        natures = checker.load_meridian_natures()
+        for catalog, expected in (("yitian", 18), ("general", 14)):
+            with self.subTest(catalog=catalog):
+                path = checker.ROOT / "docs/design/catalog" / f"skills-{catalog}.md"
+                result = checker.audit_inner_natures(
+                    catalog, path.name, path.read_text(encoding="utf-8"), natures,
+                )
+                self.assertEqual(expected, result.total)
+                self.assertEqual(expected, result.with_meridians)
+                self.assertEqual((), result.missing_meridians)
+                self.assertEqual((), result.findings)
+
+
+class NormalRouteUniquenessTests(unittest.TestCase):
+    POINTS = tuple(f"ap_test_{index}" for index in range(5))
+
+    def test_collects_explicit_normal_steps_without_projection_or_template_expansion(self):
+        text = """
+| 武学 | 招式 | 路线 | 配置 | steps | 合法端点提示 |
+|---|---|---|---|---|---|
+| sk_alpha | mv_alpha_a MoveDef{ultimate:false; projection:false} | mfr_alpha_a | MeridianRouteDef{ultimate:false; purpose:defense} | ap_a/70/80→ap_b/70/80→ap_c/70/80 | ap_b / ap_c |
+| sk_beta | mv_beta_a MoveDef{ultimate:false} | mfr_beta_a | DF-Y3 | 见共享模板 | ap_b / ap_c |
+| sk_gamma | mv_gamma_a MoveDef{ultimate:false} | mfr_gamma_a | MeridianRouteDef{ultimate:false} | ap_a, ap_d, ap_e | ap_e |
+| sk_delta | mv_delta_a MoveDef{ultimate:false} | mfr_delta_a | MeridianRouteDef{ultimate:false} | ap_a -> ap_f -> ap_g | ap_g |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-test.md"
+            path.write_text(text, encoding="utf-8")
+            routes = route_unique.collect_normal_routes([path])
+        by_id = {route.route_id: route for route in routes}
+        self.assertEqual({"mfr_alpha_a", "mfr_gamma_a", "mfr_delta_a"}, set(by_id))
+        self.assertEqual(("ap_a", "ap_b", "ap_c"), by_id["mfr_alpha_a"].signature)
+        self.assertEqual(("ap_a", "ap_d", "ap_e"), by_id["mfr_gamma_a"].signature)
+        self.assertEqual(("ap_a", "ap_f", "ap_g"), by_id["mfr_delta_a"].signature)
+
+    def test_collects_skill_local_alias_but_not_unbound_shared_template(self):
+        text = """
+| 武学 | 局部模板别名 | steps |
+|---|---|---|
+| sk_alpha | D3I-ALPHA | ap_a/70/80→ap_b/70/80→ap_c/70/80 |
+| 无绑定武学的共享模板 | D3I | ap_a/70/80→ap_b/70/80→ap_c/70/80 |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-test.md"
+            path.write_text(text, encoding="utf-8")
+            routes = route_unique.collect_normal_routes([path])
+        self.assertEqual(1, len(routes))
+        self.assertEqual("D3I-ALPHA", routes[0].route_id)
+        self.assertEqual("sk_alpha", routes[0].skill_id)
+
+    def test_normal_collection_excludes_ultimate_routes(self):
+        text = diversity_row("sk_alpha", "mv_alpha_a", "mfr_alpha_a", self.POINTS)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-test.md"
+            path.write_text(text, encoding="utf-8")
+            self.assertEqual([], route_unique.collect_normal_routes([path]))
+
+    def test_collects_explicit_derived_steps_before_runtime_ids_are_assigned(self):
+        text = """
+| 武学／招式 | 路线定义 | steps |
+|---|---|---|
+| sk_alpha／mv_alpha_a | 同体派生；不提前登记 ID | ap_a/70/80→ap_b/70/80→ap_c/70/80 |
+
+| 内功 | requiredNature | 专属 steps |
+|---|---|---|
+| sk_beta | [yin,harmony] | ap_d/70/80→ap_e/70/80→ap_f/70/80 |
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "skills-test.md"
+            path.write_text(text, encoding="utf-8")
+            routes = route_unique.collect_normal_routes([path])
+        self.assertEqual({"sk_alpha", "sk_beta"}, {r.skill_id for r in routes})
+        self.assertEqual({("ap_a", "ap_b", "ap_c"), ("ap_d", "ap_e", "ap_f")},
+                         {r.signature for r in routes})
+
+    def test_target_filter_reports_cross_catalog_counterparts_only(self):
+        report = route_unique.analyze_routes([
+            self.route("a", source="mine.md"), self.route("b"), self.route("c"),
+        ], targets={"mine.md"})
+        self.assertEqual(2, len(report["pairs"]))
+        self.assertTrue(all("mine.md" in (p["left"]["source"], p["right"]["source"])
+                            for p in report["pairs"]))
+
+    def route(self, name, kind="normal", points=None, source=None, skill=None):
+        return route_unique.CatalogRoute(
+            catalog=name, source=source or f"skills-{name}.md", line=10,
+            skill_id=skill or f"sk_{name}", move_id=f"mv_{name}",
+            route_id=f"mfr_{name}", signature=points or self.POINTS,
+            kind=kind,
+        )
+
+    def test_normal_exact_pairs_include_ultimate_and_normal_counterparts(self):
+        report = route_unique.analyze_routes([
+            self.route("a", "ultimate"), self.route("b"), self.route("c"),
+        ])
+        self.assertEqual(2, report["summary"]["normal_route_count"])
+        self.assertEqual(3, report["summary"]["normal_exact_pair_count"])
+        self.assertEqual(3, len(report["pairs"]))
+        self.assertTrue(all(pair["exact"] for pair in report["pairs"]))
+
+    def test_normal_similarity_includes_eighty_percent_and_reordered_routes(self):
+        report = route_unique.analyze_routes([
+            self.route("a", "ultimate"),
+            self.route("b", points=self.POINTS[:4] + ("ap_other",)),
+            self.route("c", points=tuple(reversed(self.POINTS))),
+        ])
+        self.assertEqual(0, report["summary"]["normal_exact_pair_count"])
+        self.assertEqual([8000, 8000, 10000], sorted(
+            pair["overlap_bp"] for pair in report["pairs"]
+        ))
+
+    def test_normal_similarity_uses_shorter_denominator_and_excludes_same_skill(self):
+        a = self.route("a", "ultimate")
+        report = route_unique.analyze_routes([
+            a, self.route("b", points=self.POINTS[:3]),
+            self.route("c", points=self.POINTS[:3] + ("ap_other",)),
+            self.route("d", skill=a.skill_id),
+        ])
+        pairs = {frozenset((p["left"]["route_id"], p["right"]["route_id"]))
+                 for p in report["pairs"]}
+        self.assertIn(frozenset(("mfr_a", "mfr_b")), pairs)
+        self.assertNotIn(frozenset(("mfr_a", "mfr_c")), pairs)
+        self.assertNotIn(frozenset(("mfr_a", "mfr_d")), pairs)
+
+    def test_normal_cli_defaults_to_report_and_strict_only_rejects_exact(self):
+        cases = [
+            ([self.route("a"), self.route("b")], 0, 1),
+            ([self.route("a", "ultimate"), self.route("b")], 0, 1),
+            ([self.route("a", "ultimate"), self.route("b", "ultimate")], 1, 1),
+            ([self.route("a"), self.route("b", points=tuple(reversed(self.POINTS)))], 0, 0),
+        ]
+        for routes, default_code, strict_code in cases:
+            with self.subTest(routes=routes), mock.patch.object(
+                route_unique, "collect_routes", return_value=routes
+            ), redirect_stdout(StringIO()):
+                self.assertEqual(default_code, route_unique.main(["--all"]))
+                self.assertEqual(strict_code, route_unique.main([
+                    "--all", "--strict-normal",
+                ]))
 
 
 if __name__ == "__main__":

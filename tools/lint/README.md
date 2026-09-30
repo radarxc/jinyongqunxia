@@ -269,6 +269,30 @@ overlapBp = floor(10000 * |set(A) ∩ set(B)| / min(|set(A)|, |set(B)|))
 `--json` 与任一多样性开关合用时，顶层为 `audits` 与 `diversity`；不加多样性开关时
 仍保持原有审计数组形状。
 
+### 显式普通路线与绝招的全仓配对
+
+`tools/agents/check_route_unique_for.py` 补充普通路线检查，沿用上述有序签名、较短
+路线集合分母与 `8000 bp` 阈值，并排除同一 `skill_id` 内的配对。检查范围包括
+绝招对普通、普通对普通，以及原有的绝招对绝招；普通路线不要求 `projection:true`。
+仅采集图鉴中明确展开的穴位序列，包括技能局部覆写和专属派生配置；按各册 §17.5
+只绑定共享模板、未显式展开的路线不纳入，也不把模板展开后复制到每门武学。这沿用
+协调者 2026-09-29 裁定（NR4-xiakebixue r4），不新增普通路线互异设计规则。
+
+```shell
+python3 tools/agents/check_route_unique_for.py docs/design/catalog/skills-shaolin.md
+python3 tools/agents/check_route_unique_for.py --all
+python3 tools/agents/check_route_unique_for.py --all --json
+python3 tools/agents/check_route_unique_for.py --all --strict-normal
+```
+
+指定图鉴时仍与全仓比较，只输出至少一端属于指定文件的配对；`--all` 输出全仓清单。
+输出包含双方路线种类、武学 / 路线 ID、文件行号、重合基点及是否完全相同。
+涉及普通路线的完全重复默认只报告，只有 `--strict-normal` 才导致退出 1；
+非完全相同的 `>=80%` 配对始终只报告。绝招对绝招的完全重复保留原有失败语义。
+此补充检查独立于 `check_skill_catalogs.py --diversity`，后者仍只统计绝招，因而
+`--strict`、`--strict --details`、`--strict --diversity-strict` 三种既有模式及额外的
+`--strict --diversity` 组合均保持原输出与退出码。
+
 ### 出招方式末端检查
 
 `--delivery` 对最终绝招路线执行 `design/21` §4.3.1 与 §4.4.1.4 的末端规则审计，
@@ -299,6 +323,9 @@ overlapBp = floor(10000 * |set(A) ∩ set(B)| / min(|set(A)|, |set(B)|))
   不单独证明劈砍动作。
 - 非绝招外放同时支持“武学 / 招式 / 路线 / steps”覆写行及“路线 / 招式 +
   `MeridianRouteDef{ultimate:false}` / steps”行；只有对应 `MoveDef.projection:true` 才纳入。
+  步骤采集优先使用 `steps` / 序列 / 步骤列；无表头时要求具体逐段值或箭头链。
+  合法端点提示不再次拼入 signature，仅绑定模板旁的提示穴位也不算显式路线。
+  真正写在步骤链中的重复穴位保留，不用全局去重掩盖路线数据问题。
 
 人声判定优先读取 `MoveDef.voice`：显式 true 放行喉部端点，显式 false 即使命中旧清单
 也不放行；未写字段才保守回退到明确的人声武学 `sk_shizihou`、
@@ -309,6 +336,10 @@ overlapBp = floor(10000 * |set(A) ∩ set(B)| / min(|set(A)|, |set(B)|))
 动作类型优先读取明确的 `category` / `subType`、武学名与招式动作描述；
 `subType:grapple` 可判为擒拿，`subType:fist` 本身仍不能证明是拳，须由武学名或动作
 明确“拳”。旧“拳掌”大类本身不等于掌招，无法可靠判断的路线计入 `unclassified`。
+持索动作及暗器中的实体飞刀、飞针等按持械导引穴检查；只有暗器大类或毒烟、毒虫
+描述不足以判为持械。正式卡的简述可提供“持长索”等明确动作依据。
+原类型仍无法分类时，可从仅含本路线 ID 的明确“动作”列读取“成拳”等动作；不读取
+换穴、前置或其他路线说明，也不按武学 ID 硬编码拳法。已可靠分类的类型保持原判定。
 掌、指、腿、兵器所需穴位原则上应在最后三段；路线包含所需穴位但位置更靠前时，
 另报 `rule=<原规则>-tail`。完全不含仍只报原规则，两类诊断不重复计数。内功攻击的
 任 / 督穴与外放 13 端点只要求“至少经过”，不做位置检查。
@@ -329,13 +360,19 @@ overlapBp = floor(10000 * |set(A) ∩ set(B)| / min(|set(A)|, |set(B)|))
 平票（含 0:0）取 harmony。穴位表的“标准归经”不参与计算：交会 / 借穴按 15 的唯一
 游戏归属处理，例如气冲按冲脉而不是足阳明计票。不是固定删除尾三段；显式
 `allowOpposedNature:true` 豁免冲突。
+轻功 / `purpose:movement` 的尾三段按 15 的游戏归属匹配足少阳、带脉、阳跷，
+或涌泉；内功 / 护体 / 疗伤 / 蓄气按任督匹配尾段。人声按上述 `voice` 优先规则
+排除尾段的天突 / 廉泉。三类均只剥离命中的尾节点，非出口尾节点以及相同穴位在
+更前体段的出现照常投票；不得按穴位 ID 前缀猜位移 / 任督归属。
 同一 `--delivery` 报告还按正式卡 ID 去重审计全部内功：`inner_nature=A/B` 表示 B 张内功
 中 A 张显式填写 `inner.meridians`（显式 `[]` 也计入，并推导为 harmony），另列
 `inner_missing_meridians`（仅统计真正缺字段）与声明性质不等于主修
 经脉票的 `inner_nature_conflicts`；`--details` 逐条输出 `INNER_NATURE`。该审计和路线性质
-冲突都只报告，不改变 `--strict` 的退出码。2026-09-29 全仓基线为
-`inner_nature=147/254`、`inner_missing_meridians=107`、`inner_nature_conflicts=56`；
-数字随图鉴补录而变化，文档迁移清单见 `design/05` §5.3.1。
+冲突都只报告，不改变 `--strict` 的退出码。黄阶一行卡也纳入，包括“内功（3 黄上·yin）”
+与英文括号形式；前置武学 ID 不取得本卡字段的归属。2026-09-30 本次实测覆盖
+`inner_nature=265/265`（倚天 `18/18`、通行 `14/14`），缺字段及内功性质冲突均为 0。
+原 2026-09-29 迁移前基线 `147/254`、缺字段 107、性质冲突 56 保留作历史追溯；
+数字随图鉴补录而变化，文档迁移规则见 `design/05` §5.3.1。
 `--json --delivery` 顶层为 `audits` 与 `delivery`；并用多样性开关时再列 `diversity`。
 
 天、地阶既有“路线索引行”检查保持原样：只有该行自身带 `ap/CT/risk` 三元组时，
