@@ -18,10 +18,10 @@
 2. `python3 tools/agents/step.py wait <ID> --max-min 25`（后台运行）。看输出首行：
    - `FINISHED` → 第 3 步。
    - `RUNNING` → 再次后台 wait。
-   - `STALLED`（日志 20 分钟无增长）或 `EXITED-NO-CODE` → `python3 tools/agents/step.py kill <ID>`，然后在同一工作区续作。**最可靠的续作方式**（已验证多次，3–19 分钟收尾）：`start <ID> --model GPT-5.6-Sol --effort high --no-probe --note "<只写操作：工作区里已有哪些产物；先写/补完报告；每次补丁 ≤ 50 行、分几次写；不要重新通读全文、不要重打大 diff；联网任务写明"不要再联网检索"；只做必要收尾>"`（`--note` 可以直接写文字，也可以给文件路径）。第二次续作用 `--effort medium`，并把任务收窄到"只写报告"（P11.R 连停四次后用这个办法 1.5 分钟完成）。不要改用 GPT-6-Astra（2026-09-26 全天挂死）。审校任务停滞后，续作说明里要提醒"先用 `git diff --stat` 核对上次运行留下的改动是否有误删 / 误改，有就恢复"。
+   - `STALLED`（日志 20 分钟无增长）或 `EXITED-NO-CODE` → `python3 tools/agents/step.py kill <ID>`，然后在同一工作区续作。**最可靠的续作方式**（已验证多次，3–19 分钟收尾）：`start <ID> --model GPT-5.6-Sol --effort ultra --no-probe --note "<只写操作：工作区里已有哪些产物；先写/补完报告；每次补丁 ≤ 50 行、分几次写；不要重新通读全文、不要重打大 diff；联网任务写明"不要再联网检索"；只做必要收尾>"`（`--note` 可以直接写文字，也可以给文件路径）。第二次续作仍用 `--effort ultra`（作者 2026-09-29 要求推理强度一律最高，续作也不降档），把任务收窄到"只写报告"、每次补丁 ≤ 50 行。不要改用 GPT-6-Astra（2026-09-26 全天挂死）。审校任务停滞后，续作说明里要提醒"先用 `git diff --stat` 核对上次运行留下的改动是否有误删 / 误改，有就恢复"。
    - 单次运行超过 150 分钟但日志仍在增长：继续等到 180 分钟，之后 kill 并续作。
 3. **先 `python3 tools/agents/step.py finish <ID> --no-commit` 只校验不提交**，再做合入前复核；复核发现问题时，工作区尚未提交，仍可在原工作区 `start` 续作返修。复核通过后再 `finish <ID>` 提交（一旦提交，就不能再在该工作区续作）。
-   **合入前复核交给 GPT 审核**（作者 2026-09-29 要求：审核也由 GPT CLI 做，gpt-6-astra、推理强度 xhigh，即 Codex 界面的 Extra high）：
+   **合入前复核交给 GPT 审核**（作者 2026-09-29 要求：审核也由 GPT CLI 做，gpt-6-astra、推理强度最高档 ultra）：
    - 后台运行 `python3 tools/agents/gpt_review.py <ID> --checks "<任务提示词里没有、但续作说明或作者后来追加的要求>"`，结束后只读 `.agents/reviews/<ID>.r<N>.md`，不要读同名 `.log`。
    - `VERDICT: FAIL` → 把其中的"返修说明"整理进续作 `--note`，在原工作区返修，返修后再审一轮；`VERDICT: PASS` → 再 `finish <ID>` 提交。
    - 退出码 2（超时或报错）重跑一次；仍失败就在汇报里说明，不要自己代审。
