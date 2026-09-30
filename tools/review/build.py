@@ -1,7 +1,7 @@
 """生成素材基线审批页（claude.ai artifact）。
 
 用法：python3 tools/review/build.py  → 输出到 .agents/coord/review/{index.html,baseline-review.html,img/,vfx/,files.json}
-然后用 Artifact 工具以 url=https://claude.ai/artifact/NhZGycmwB5QdyiwntJGkyG 重新发布 baseline-review.html，
+然后用 Artifact 工具重新发布 baseline-review.html（地址登记在 tools/agents/HANDOFF.md §9.3；旧页 NhZGycmwB5Qd… 已读不到），
 files 传 files.json 里的图片路径（root=.agents/coord/review）。作者的审批结论用 ArtifactData list 读集合 `reviews`，
 再用 tools/agents/apply_reviews.py 写回 manifest。WT_OVERRIDE 指向未合入的任务工作区，让作者先看图再合入。
 """
@@ -21,6 +21,12 @@ WT_OVERRIDE = {"male": REPO / ".agents/wt/ART-R2-male/assets/default/baseline/ch
                "vfx": REPO / ".agents/wt/ART-R2-vfx/assets/default/baseline/vfx",
                "female": REPO / ".agents/wt/ART-R1-female/assets/default/baseline/character/female"}
 WT_BADGE = {"male": "GPT 审核已过 · 未合入，你看过再合", "town": "45 度新图 · GPT 审核进行中 · 未合入", "vfx": "GPT 审核已过 · 未合入，你看过再合", "female": "GPT 审核已过 · 未合入，你看过再合"}
+
+# 演示暂不内嵌的素材（旧的 Canvas 手绘演示作者已否定；图层动画 ART-R3-vfx 返修中，修好后去掉这里的条目并把 WT_OVERRIDE["vfx"] 指向它的工作区）
+DEMO_HOLD = {
+    "ref_mv_xianglong18_kanglong__ch02_base01": "演示：按你“这个特效看起来太蠢了，跟渲染的图完全不一样”的意见，旧的代码手绘演示已作废；改用这张图拆图层做的动画还在返修（过程帧有切边），修好后本页更新。两段式新管线（效果帧 + 发出方图，程序合成）的样例另行出图。本卡先只审这张图。",
+    "ref_sk_liumai__ch01_base01": "演示：图层动画版已做好，和降龙的演示一起更新到本页。两段式新管线的样例另行出图。本卡先只审这张图。",
+}
 
 CATS = [  # (cat key, label, manifest dir relative to baseline)
     ("map", "地图", "map"),
@@ -101,9 +107,9 @@ NOTES.update({  # 第 2 / 3 轮
 
 PENDING = {  # category -> (subjects, reason) while the supervisor has it in rework
     "town": (["大理国都（天龙，约 1093）", "南宋临安（射雕，约 1220s）"],
-             "按你第 2 轮意见返修中：大理多用本地植物、少铺青砖、多加佛教元素；临安更繁华。45 度视角与光源保持不变。新图出来后放在这里。"),
+             "按你的决定改为程序化生成（城市规格 → 生成布局 → 贴片渲染底图 → 按坐标贴建筑）：设计文档在做第 3 轮审核，贴片与建筑单体正在出图，渲染工具随后开工。两张城镇图组装出来后放在这里。"),
     "building-map": (["大理国都沿街建筑，如客栈或茶肆（天龙，约 1093）", "南宋临安沿街建筑，如茶坊或药铺（射雕，约 1220s）"],
-             "出图中：要拼到城市地图上的 45 度单体建筑，视角与光源对齐城镇图；大理带佛教元素或本地植物，临安要有繁华商铺感。新图出来后放在这里。"),
+             "出图中（宋套件）：要拼到城市地图上的 45 度单体建筑，透明底、按占地格数出图，视角与光源对齐城镇图；大理带佛教元素与本地植物，临安要有繁华商铺感。GPT 审核通过后放在这里。"),
     "male": (["萧峰（天龙）", "令狐冲（笑傲，明代）"],
              "监督复核未通过：令狐冲剑鞘过短、衣服撕裂过重、缺明代网巾与直身；萧峰年龄偏老、面相不符原著。正在重出。"),
     "meridian": (["任督二脉（正反面）", "手厥阴心包经"],
@@ -168,7 +174,10 @@ def main():
                 shutil.copyfile(lab, dst)
                 files[f"img/{lab.name}"] = str(dst)
                 it["labels"] = f"img/{lab.name}"
-            if a.get("code"):
+            if a["id"] in DEMO_HOLD:
+                it["review"] = (it["review"].replace("；新增可运行动画", "") + " " if it["review"] else "") + DEMO_HOLD[a["id"]]
+                it["ask"] = [q for q in it["ask"] if "播放" not in q and "动画" not in q]
+            elif a.get("code"):
                 code = mdir / a["code"]
                 dst = OUT / "vfx" / f"{a['id']}.html"
                 dst.parent.mkdir(exist_ok=True)
@@ -179,6 +188,7 @@ def main():
     data = json.dumps(items, ensure_ascii=False).replace("</", "<\\/").replace("<!--", "<\\u0021--")
     tpl = (HERE / "page.tpl.html").read_text(encoding="utf-8")
     (OUT / "index.html").write_text(tpl.replace("__DATA__", data), encoding="utf-8")
+    shutil.copyfile(OUT / "index.html", OUT / "baseline-review.html")
     (OUT / "files.json").write_text(json.dumps(files, indent=1), encoding="utf-8")
     ready = sum(1 for i in items if i["state"] == "ready")
     print(f"items={len(items)} ready={ready} files={len(files)} html={len((OUT/'index.html').read_bytes())}B")
