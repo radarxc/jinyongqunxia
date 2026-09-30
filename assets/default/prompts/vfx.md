@@ -176,6 +176,39 @@ HTML 内嵌播放器、展开的 Composition JSON、发出方与六张效果图�
 旧 `ref_*/index.html` 历史参数仅用于解释对照：逻辑画布 1400×788、DPR 上限 2、循环 5.6 秒，强度 / 浓淡 40–140%、速度 0.5–1.5×；六脉曾为指端凝聚后离指 150 px 成短刃，每路错开 0.06 秒；降龙曾为 0–1.9 秒生发、3.8 秒退隐、浓淡 82%。旧演示做过 JS 语法、隔离 Canvas / 控件与外部资源扫描，真实浏览器当时未完成。这些历史参数不再是新效果帧管线的生成、动画或验收默认值。
 
 ## 8. 发出方图池
+### 7.1 统一模板原料（玄 / 黄级）
+
+分流、颜色和播放参数只引用 `design/23` §7.3 与 `docs/design/vfx/palette.yaml`。玄级外放只生成中性明灰轮廓，青 / 赤 / 淡金 / 素白由shader在去白后着色；原图不按四种nature重复生成。残影没有独立效果原图，复用真实发出方或运行时角色图。普通招用normal、不发光；不能把内功性质颜色变成黄级光束。
+
+```text
+Use case: stylized-concept
+Asset type: neutral qi animation sprite sheet for a Chinese wuxia game.
+Primary request: one white-background sheet containing EXACTLY FOUR frames of the SAME {shape}.
+Layout: 2x2 equal square cells, left-to-right then top-to-bottom; no visible grid, border, labels or text.
+Subject: {fan: palm air fan narrow at left root and broad at right / beam: thin straight filament / impact: short thick air pulse / rings: concentric oval sound ripples}.
+Motion: gather, extend, full peak, dissipate; all four point RIGHT, fixed root and viewing angle.
+Color: neutral light silver-gray, readable medium-gray contours and internal value structure; no baked cyan/red/gold hue.
+Background: perfectly flat pure white RGB(255,255,255), no paper grain, scenery, shadow or checkerboard.
+Framing: each effect stays inside its cell, at least 24px clear border; preserve thin wisps and root.
+Avoid: figures, hands, sleeves, weapons, text, labels, symbols, magic circles, ink splatter, flames, electricity.
+```
+
+```text
+Use case: stylized-concept
+Asset type: ordinary non-glowing martial-arts strike sprite sheet.
+Primary request: one wide sheet with EXACTLY THREE equal cells in one horizontal row, one successive frame per cell.
+Subject: {impact: compact fist/kick impact air strokes / arc: a tapered weapon swing crescent / wave: a short rounded palm-wind push ridge}.
+Frames: small initial motion, readable peak, fading trace; consistent RIGHT direction and stable root.
+Style: restrained hand-painted medium neutral-gray physical motion; no glow, luminous rim, magic energy or colored halo.
+Background: pure white, no texture, shadows, visible grid or checkerboard; 32px clear cell margins.
+Avoid: actual fists/feet/hands/weapons/figures, scenery, text, labels, flames, electricity or magical symbols.
+```
+
+本轮使用内置 `image_gen`，实际请求全文、编辑链与生成源位置登记在 `assets/default/vfx/templates/manifest.yaml` 和 `source_requests.json`；模型名称与推理档位未由工具返回，记录为未返回而不猜测。4张玄级原图实际1254²、每格627²；3张普通招原图实际2172×724、每格724²。请求尺寸并非交付保证，EffectSet写实测矩形。掌风第一帧初稿朝左，已用image_gen编辑为朝右；原始生成与定向编辑提示均保留。
+
+透明派生共 `4×4+3×3=25` 帧，由 `cut_frames.py` 的既有去白算法生成；原件逐字节保留。复现时对每份 `effect.yaml` 执行 `python3 tools/vfx/cut_frames.py --config <effect.yaml> --output <effect.yaml> --root assets/default/vfx/templates`，再按 `design/23` §7.3生成HTML。所有候选仍待协调者浏览器和作者美术验收。
+
+## 8. 本文新增术语与 ID
 
 按发出方式共用，同类招式引用一张发出方图；具体选图读取已配置的发出动作，不依据武学名推断外放。池位于 `assets/default/vfx/emitters/`；每类交付 `source_<type>.png` 和 `emitter-plate.yaml`，总清单为该目录的 `manifest.yaml`，12 条均为 `candidate`。图池是**（原创扩展）**的制作资产，不注册新招式、兵器或经脉端点。
 
@@ -250,6 +283,8 @@ done
 
 ### 11.1 替下游给出的建议值
 
+统一模板的0.6 / 0.48 / 0.32秒、4份残影、28px间距及两项待审色值只见 `design/23` §7.3、§12.1；模板单格尺寸以实际原料为准，不回改旧两段式6帧默认。
+
 旧 3:2、左侧起势、掌劲约 40% / 剑气约 50% 留白条目保留追溯；现按 `design/23` 的同帧一致尺寸、掌面宽源、线性连源与全帧安全边距制作，不宣称固定达到旧留白比例。抠图 250 / 0.20 / 25 是试验起点，最终参数取各 EffectSet 和本任务报告，换原图须重新验证。新增六脉五边界亮度与两套遮罩软带仅为 §6.3 的候选美术值，默认先交浏览器和作者验收。
 
 ### 11.2 本文依赖的上游事实
@@ -265,6 +300,8 @@ done
 亢龙出掌姿势 / 洪七公授掌顺序，六脉左右手、各剑对应发指、剑意与可见色仍须三联 / 广州修订版逐字核对。默认不编造引文、回目，不把近无色意象解释为原著固定六色；网络对读线索与旧核查限制保留见 `ART-R1-vfx` 报告 §3。
 
 ### 11.5 开放问题（附默认值）
+
+- 统一模板色板：调和默认 `#E8D6A3`、中性默认 `#F4F4F4`，待作者确认；阴青阳赤按既定要求。共享发出方目录尚未在本工作副本交付，模板demo显式复用已有掌 / 指基线图，后续换图须重验锚点。
 
 - 作者审批：旧两张与新两套件均以 manifest 实际状态为准；新套件默认 `candidate`。金色力度、虚实透明、宽根接掌、气线可见程度、淡赤色缘及手势审美待作者审批，不以自检代替批准。
 - 手部精度：已解决：旧降龙缺小指 / 掌面不清、旧六脉长指甲 / 水墨方向的上一轮返修见 `ART-R1-vfx` §7。旧六脉下手遮挡、旧降龙角尖边距、侧前角度偏差仍留作历史限制，不作为解剖 / 严格 45° 母版；本次独立手图仍为姿态示意，默认不宣称原著手势书证。

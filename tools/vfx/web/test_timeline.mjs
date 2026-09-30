@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {sampleTimeline, durationOf, playbackTime, directionalMaskAt} from './timeline.js';
+import {sampleTimeline, durationOf, playbackTime, directionalMaskAt, sampleTemplateEnvelope} from './timeline.js';
 
 const fixture = () => ({
   effect: {frames: [0, 0.2, 0.4, 0.6, 0.8, 1].map(phase => ({phase, anchor_px: [10, 20]}))},
@@ -109,4 +109,62 @@ test('loop gap holds precisely the endpoint without one extra FPS interval', () 
   assert.equal(playbackTime(c, T).ended, true);
   assert.equal(playbackTime(c, T - 0.001).ended, false);
   assert.throws(() => playbackTime(c, Infinity), /finite/);
+});
+
+test('plain strike has a brief cubic attack, no brightness gain and zero endpoints', () => {
+  for (const phase of [0, 0.09, 0.18, 0.5, 1]) {
+    const state = sampleTemplateEnvelope('plain_strike', phase);
+    assert.equal(state.brightness, 1); assert.equal(state.mask.enabled, false);
+    assert.equal(state.driftPx, 0);
+  }
+  near(sampleTemplateEnvelope('plain_strike', 0.09).alpha, 0.5);
+  near(sampleTemplateEnvelope('plain_strike', 0.18).alpha, 1);
+  near(sampleTemplateEnvelope('plain_strike', 0.59).alpha, 0.5);
+  near(sampleTemplateEnvelope('plain_strike', 0).alpha, 0);
+  near(sampleTemplateEnvelope('plain_strike', 1).alpha, 0);
+});
+
+test('afterimages share the original image, progress along direction and fade by copy', () => {
+  const params = {copies: 4, spacing_px: 28, stretch: 0.04};
+  const peak = sampleTemplateEnvelope('afterimage', 0.18, params);
+  assert.equal(peak.ghosts.length, 4); assert.equal(peak.alpha, 0);
+  near(peak.ghosts[0].alpha, 0.44); near(peak.ghosts[3].stretch, 1.16);
+  near(peak.ghosts[0].offsetPx, 28); near(peak.ghosts[3].offsetPx, 112);
+  for (let i = 1; i < peak.ghosts.length; i++) {
+    assert.ok(peak.ghosts[i].offsetPx > peak.ghosts[i - 1].offsetPx);
+    assert.ok(peak.ghosts[i].alpha < peak.ghosts[i - 1].alpha);
+  }
+  for (const phase of [0, 1]) {
+    for (const ghost of sampleTemplateEnvelope('afterimage', phase, params).ghosts) {
+      near(ghost.alpha, 0); near(ghost.stretch, 1);
+    }
+  }
+  assert.ok(sampleTemplateEnvelope('afterimage', 0.8, params).ghosts[0].offsetPx > peak.ghosts[0].offsetPx);
+  for (const copies of [2, 6, 3.5])
+    assert.throws(() => sampleTemplateEnvelope('afterimage', 0.5, {...params, copies}), /copies/);
+  assert.throws(() => sampleTemplateEnvelope('afterimage', 0.5, {...params, spacing_px: -1}), /geometry/);
+});
+
+test('template timelines tolerate absent effect frames and preserve the qi envelope', () => {
+  const c = fixture(), baseline = sampleTimeline(c, 0.05);
+  c.template = {mode: 'qi_projection', params: {duration_s: 0.6}};
+  assert.deepEqual(sampleTimeline(c, 0.05), baseline);
+  c.template = {mode: 'afterimage', params: {duration_s: 0.6, copies: 3, spacing_px: 20, stretch: 0.02}};
+  c.effect = null;
+  assert.equal(sampleTimeline(c, 0.108).ghosts.length, 3);
+  assert.ok(sampleTimeline(c, durationOf(c)).ghosts.every(ghost => ghost.alpha === 0));
+  assert.throws(() => sampleTemplateEnvelope('unknown', 0.5), /Unknown/);
+  assert.throws(() => sampleTemplateEnvelope('plain_strike', NaN), /finite/);
+});
+
+test('runtime enforces plain duration and rejects conflicting template rhythm', () => {
+  const c = fixture();
+  c.template = {mode: 'plain_strike', params: {duration_s: 0.6}};
+  assert.throws(() => durationOf(c), /0.4 seconds/);
+  c.template.params.duration_s = 0.32;
+  assert.throws(() => sampleTimeline(c, 0.1), /must equal/);
+  c.rhythm = {charge_s: 0.04, release_s: 0.06, sustain_s: 0, dissipate_s: 0.22};
+  near(durationOf(c), 0.32);
+  near(sampleTimeline(c, 0).alpha, 0);
+  near(sampleTimeline(c, 0.32).alpha, 0);
 });

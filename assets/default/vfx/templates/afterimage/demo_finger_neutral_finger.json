@@ -1,0 +1,91 @@
+{
+  "kind": "TemplateComposition",
+  "version": 1,
+  "template": {
+    "mode": "afterimage",
+    "nature": "neutral",
+    "delivery": "finger",
+    "shape": null,
+    "color": "#F4F4F4",
+    "params": {
+      "duration_s": 0.48,
+      "copies": 4,
+      "spacing_px": 28,
+      "stretch": 0.04
+    }
+  },
+  "canvas_px": [
+    1024,
+    512
+  ],
+  "background": "#282623",
+  "emit_at_px": [
+    300,
+    256
+  ],
+  "angle_deg": 0,
+  "emitter_scale": 0.20733652312599682,
+  "scale": [
+    1,
+    1
+  ],
+  "length_px": 560,
+  "range_hex": 0,
+  "pixels_per_hex": 100,
+  "rhythm": {
+    "charge_s": 0.08639999999999999,
+    "release_s": 0.0576,
+    "sustain_s": 0.0,
+    "dissipate_s": 0.33599999999999997
+  },
+  "transition": {
+    "interpolation": "crossfade",
+    "scale_from": 1,
+    "drift_fraction": 0,
+    "brightness": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "directional_mask": {
+      "enabled": false,
+      "softness": 0.08
+    }
+  },
+  "output": {
+    "fps": 20,
+    "optional_animation": "none",
+    "peak_phase": 0.18,
+    "loop": true,
+    "loop_gap_s": 0.5,
+    "html_max_bytes": 3000000,
+    "preview_size_px": [
+      1024,
+      512
+    ]
+  },
+  "effect": null,
+  "emitter": {
+    "kind": "EmitterPlate",
+    "version": 1,
+    "file": "source_finger.png",
+    "size_px": [
+      1254,
+      1254
+    ],
+    "color_space": "srgb",
+    "alpha_mode": "straight",
+    "category": "finger",
+    "emit_point_px": [
+      1178,
+      468
+    ],
+    "direction": [
+      1,
+      0
+    ],
+    "emission_width_px": 43
+  }
+}

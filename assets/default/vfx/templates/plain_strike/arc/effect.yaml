@@ -1,0 +1,61 @@
+kind: EffectSet
+version: 1
+asset_id: vfx_template_plain_strike_arc
+size_px:
+- 724
+- 724
+color_space: srgb
+alpha_mode: straight
+style: plain_strike
+direction:
+- 1
+- 0
+reference_length_px: 500
+root_width_px: 80
+blend: normal
+source:
+  mode: grid
+  files:
+  - source_sheet.png
+  rects:
+  - file_index: 0
+    rect_px:
+    - 0
+    - 0
+    - 724
+    - 724
+  - file_index: 0
+    rect_px:
+    - 724
+    - 0
+    - 724
+    - 724
+  - file_index: 0
+    rect_px:
+    - 1448
+    - 0
+    - 724
+    - 724
+  keying:
+    method: white_key
+    white_cutoff_8bit: 250
+    opaque_luma: 0.2
+    key_full_8bit: 25
+    epsilon: 0.00392156862745098
+    dewhite: true
+frames:
+- file: frame_000.png
+  anchor_px:
+  - 140
+  - 200
+  phase: 0.0
+- file: frame_001.png
+  anchor_px:
+  - 100
+  - 200
+  phase: 0.5
+- file: frame_002.png
+  anchor_px:
+  - 85
+  - 200
+  phase: 1.0
