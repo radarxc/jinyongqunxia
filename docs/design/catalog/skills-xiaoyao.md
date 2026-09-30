@@ -1,7 +1,7 @@
 # 门派武学图鉴 · 天龙八部诸派与吐蕃密宗（skills-xiaoyao）
 
 > 归属（基准 §18）：`design/catalog/skills-*.md` 门派武学图鉴。
-> 版本：v1.3（AR-01 扩充；全局审计；经脉系统落地；绝招数量调整；绝招真值回写（2026-09-27））；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记、绝招路线叙事化（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
+> 版本：v1.3（AR-01 扩充；全局审计；经脉系统落地；绝招数量调整；绝招真值回写（2026-09-27））；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记、绝招路线叙事化（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）；路线唯一性第五轮（2026-09-30）。
 > 上游：`decisions/author-decisions.md`、`decisions/author-requirements.md`、`00-canon.md` v1.8（§4 品阶、§6 属性 ID、§7 分类、§12 ID、§13 天级总表、§16 改编原则、§20 装配栏）、`decisions/rulings-v1.md`（C14/C17/C22/C23）、`design/05-martial-arts-system.md` v1.7.1（SkillDef、AR-14 / AR-18 接口、层数、招式预算、相性、特殊规则、§14 分布约束）、`design/21-meridian-flow-and-moves.md` v2.7.2（AR-14–AR-18）、`design/06-buff-system.md`（Buff 唯一目录）、`design/17-sects-compendium.md`（门派 ID、时代与五级称谓）、`design/03-attributes.md`、`design/02-timeline-and-world-tiers.md`。
 > 覆盖：逍遥派、灵鹫宫、星宿派、姑苏慕容、吐蕃密宗（大轮寺·金轮一脉·后世番僧）、西夏一品堂、四大恶人、无量剑派、契丹（辽）、聚贤庄、神农帮。其余门派由同事图鉴负责，本文只引用其 ID。
 > 引用而不重定义：武学 schema、倍率与相性见 `design/05`；战斗经脉运行、路线 / 调息 schema 与算法、共享模板和示例、护体内劲及模拟模块见 `design/21`（本组逐武学 `mfr_* / txp_*` 实例由本文定义）；穴位、冲穴、周天与九转见 `design/15`；Buff 见 `design/06`；六角格范围与行动时序见 `design/09`；大地图与时代图层见 `design/11`；门派晋升、任务与 NPC 后果见 `design/12`；资源、月钱与营生见 `design/16`；组织史、驻地、时代开放与称谓见 `design/17`。本文只定义本组武学条目及其接口。
@@ -262,7 +262,7 @@ reqs:
 | `mfr_canhezhi_yanhui` | `mv_canhezhi_yanhui` | `[yin,harmony]` | `A4I` | `ap_shoutaiyin_shaoshang` |
 | `mfr_chuanyinsouhun_duohun` | `mv_chuanyinsouhun_duohun` | `[yin,harmony]` | 显式：`ap_renmai_qihai/70/90→ap_renmai_danzhong/70/90→ap_yinwei_lianquan/70/90→ap_yinwei_tiantu/70/90` | `ap_yinwei_lianquan`、`ap_yinwei_tiantu`（人声） |
 | `mfr_damingzhou_hezhou` | `mv_damingzhou_hezhou` | `[yang,harmony]` | 显式：`ap_dumai_mingmen/70/90→ap_dumai_zhiyang/70/90→ap_zuyangming_fenglong/70/90→ap_zushaoyang_yanglingquan/70/90→ap_yinwei_tiantu/70/90→ap_yinwei_lianquan/70/90` | `ap_yinwei_tiantu`、`ap_yinwei_lianquan`（人声） |
-| `mfr_hanguqiyin_luoyin` | `mv_hanguqiyin_luoyin` | `[yin,yang,harmony]` | 显式：`ap_chongmai_henggu/70/90→ap_daimai_weidao/70/90→ap_shoushaoyang_waiguan/70/90→ap_shoushaoyang_yangchi/70/90` | `ap_shoushaoyang_waiguan`、`ap_shoushaoyang_yangchi`（持乐器） |
+| `mfr_hanguqiyin_luoyin` | `mv_hanguqiyin_luoyin` | `[yin,yang,harmony]` | 显式：`ap_chongmai_qichong/70/90→ap_daimai_weidao/70/90→ap_shoushaoyang_waiguan/70/90→ap_shoushaoyang_yangchi/70/90` | `ap_shoushaoyang_waiguan`、`ap_shoushaoyang_yangchi`（持乐器） |
 | `mfr_huoduozhang_duhuo` | `mv_huoduozhang_duhuo` | `[yin,harmony]` | `P6LG` | `ap_shoujueyin_neiguan`、`ap_shoujueyin_laogong` |
 | `mfr_huoyandao_duanxiang` | `mv_huoyandao_duanxiang` | `[yang,harmony]` | `P6LG` | `ap_shoujueyin_neiguan`、`ap_shoujueyin_laogong` |
 | `mfr_huoyandao_fenxin` | `mv_huoyandao_fenxin` | `[yang,harmony]` | `P6LG` | `ap_shoujueyin_neiguan`、`ap_shoujueyin_laogong` |
@@ -274,6 +274,8 @@ reqs:
 | `mfr_qinlonggong_qinlong` | `mv_qinlonggong_qinlong` | `[yang,harmony]` | `A4Y` | `ap_shouyangming_hegu`、`ap_shouyangming_shangyang` |
 
 传音搜魂的夺魂普通路线、失心绝招路线与大明咒的人声音功按 21 §4.4.1.4 走廉泉 / 天突；失心先以内关作上肢导引，再由天突→廉泉收束。函谷七音以持乐器动作走外关 / 阳池。§0.7 三条显式普通路线中，夺魂、落音各为 4 段、`ΣCT=280`，喝咒为 6 段、`ΣCT=420`；每条只服务对应 `moveRef`。
+
+落音配路为**（原创扩展）**：以冲脉气冲蓄势，经带脉维道转换，再由外关→阳池控制琴箫落音。NR5 **只换穴**：首穴横骨改为气冲；4 段的 CT 列表仍为 `[70,70,70,70]`，风险列表仍为 `[90,90,90,90]`，`ΣCT=4×70=280`，`ΣriskBp=4×90=360`（段风险之和，不是联合失败概率）。普通招收招沿用 05 §4.1 默认 `1000`，合计 `1000+280=1280≤2000 CT`。按 21 §2.4，气冲、维道分别按游戏归属冲脉、带脉不投票，末两段外关 / 阳池为持乐器出口不计票，体段阴 / 阳仍为 `0/0 → harmony`。与琅嬛剑法凌虚路线的重合由 `4/4=10000 bp` 降为 `floor(10000×3/4)=7500 bp`；与本武学七音归一共享 `0/4`，与清音、和音的 D4H 支援模板各共享 `1/4`。
 
 ### 0.8 天 / 地阶逐招路线索引（一）
 
@@ -754,6 +756,7 @@ reqs:
 **`sk_hanguqiyin` 函谷七音**（6 玄上 · 杂学·音功 · 调和 · 0.2/0.8 · 原创扩展）——取函谷八友精通琴箫等艺的设定，七音均为玩法概括，不冒充原著招名。
 - 招式：`mv_hanguqiyin_qingyin` 清音（L1·援·友方 1–4·6%/2·`bf_qingxin` 2）；`mv_hanguqiyin_luoyin` 落音（L3·远 1–5·音功不可招架·**0.85**·6%/2·`bf_dongyao` 25%；抽样核算 `1×1.24×.85×.85−.25×.25=.833`）；`mv_hanguqiyin_heyin` 和音（L5·`aoe_allies r2`·7%/3·`bf_dingxin` 2）；`mv_hanguqiyin_qiyin` 七音归一（L7·绝招，`ultimate:true`、`rageCost:100`，`aoe_disk r1` 远 1–4·音功不可招架·**1.45**·8%/0/1200·`bf_luanxin` 20%；`3.00×.70×.85×.85−.25×.20=1.467≈1.45`）。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - **AR-16 外放字段**：落音、七音归一均以内力控制琴箫伤害音波，伤害段均为 `DamageKind:'projected'`、`tags:[sonic]`；清音、和音只有支援段，仍不标外放。`mv_hanguqiyin_luoyin` → `MoveDef{projection:true; range:{min:1,max:5}; aoe:{tpl:aoe_single}; projectionSpreadSteps:[{tpl:aoe_single},{tpl:aoe_single},{tpl:aoe_single}]; DamageKind:'projected'; tags:[sonic]; meridianRouteRef:mfr_hanguqiyin_luoyin}`；`mv_hanguqiyin_qiyin` → `MoveDef{projection:true; range:{min:1,max:4}; aoe:{tpl:aoe_disk,r:1}; projectionSpreadSteps:[{tpl:aoe_disk,r:1},{tpl:aoe_disk,r:2},{tpl:aoe_disk,r:3}]; DamageKind:'projected'; tags:[sonic]; meridianRouteRef:mfr_hanguqiyin_qiyin}`。0 档保持基础音波、普通 Z5M、零额外耗内；1 / 2 档才启用外放加持。
+- **落音普通路线镜像**（正式实例见 §0.7，**原创扩展**）：`mfr_hanguqiyin_luoyin` = `ap_chongmai_qichong/70/90→ap_daimai_weidao/70/90→ap_shoushaoyang_waiguan/70/90→ap_shoushaoyang_yangchi/70/90`。NR5 只换穴，保持冲脉蓄势→带脉转换→手腕控音；体段阴 / 阳 `0/0`，4 段、`ΣCT=280`、含收招 `1280 CT`、`riskBp=[90,90,90,90]`、`ΣriskBp=360` 均不变。
 - 被动：L1 知音（`music` 检定 +5）；L6 宫商相生（和音效果命中 +10pp）；L10 大成（清音额外驱散 `mind` 1）。门槛/获取：`skills {music: 30}`、`sect_xiaoyao` rank 2；函谷八友传授｜setTags：—。
 
 **`sk_qingfengyujian` 清风御剑**（5 玄中 · 兵器·剑 · 调和 · 0.6/0.4 · 原创扩展）——逍遥门下由轻身转剑势的中阶剑术。
