@@ -1,0 +1,65 @@
+id: tex_town_song_north_wall__earth_r000_v01
+file: tex_town_song_north_wall__earth_r000_v01.png
+category: tile
+style: default
+subject: 北宋中原·wall（原创扩展）；建筑细部待考
+prompt: 'Use case: style-transfer. Transform the reference rammed-earth wall tile into one realistic Northern Song north China defensive wall
+  STRAIGHT SEGMENT. Preserve coarse compacted yellow-brown earth layers and restrained gray-tan palette, matching the established realistic Song
+  building sprites, not sand-colored plastic. Orthographic yaw45 pitch30 exact2:1 dimetric, ground axes slopes +0.5 and -0.5, verticals upright.
+  Footprint1m east-west by1m north-south, height2.5m (game-scaled module). Solid slightly weathered square-section earthen wall block with a level
+  compressed earth cap and only minimal dark gray brick coping at top edge. No crenellation, tower, stairs, roots, plants, rocks or brick cladding
+  over the whole wall. Two parallel clean vertical butt ends ready for repeat placement, base corners readable, not a thick diorama plinth. Upper-left
+  light, short right-down contact shadow. ONE object completely inside image with broad transparent margin; real RGBA transparent backdrop, no
+  halo, no scenery, no text or watermark.'
+negative: 无人物、文字、背景、厚底台、假棋盘；不改alpha伪造透明
+references:
+- {file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/tile/tex_town_song_dali_wall__earth_r000_v01.png,
+  sha256: 755d578dea3dfa959f44642f37a7d0a1e6ecfb1e9a3c5bc4f9d6446b3aaabfcf, role: 实际输入：宋基线风格参考或本件首候选编辑目标}
+tool: built-in image_gen
+model: image_gen (underlying model undisclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:19:17.626140+00:00'
+created_time_basis: 源PNG文件mtime
+source_path: /Users/bytedance/.codex/generated_images/01a0f426-f9e3-79d3-9163-e8824f174953/exec-afdaac90-cf87-4a13-875c-9c243fa935e1.png
+source_copy: sources/tex_town_song_north_wall__earth_r000_v01__source.png
+source_sha256: 2a68c59ea5bbb245285dbc98c8218c190217b18201106bf209c4f7b484401118
+size: 127x208
+sha256: c856cab9c50513d8672e4663f6898171f57cf821511ae23d84e73acb905e2062
+status: candidate
+tile:
+  kind: wall
+  footprint: [1, 1]
+  variant: earth_r000_v01
+  autotile_mask: null
+anchor_px: [64.8737, 158.4862]
+era: song_north
+allowRotation: false
+candidate_count: 1
+processing:
+  crop_box: [0, 19, 899, 1689]
+  uniform_scale: 0.10543657331136738
+  resized_size: [95, 176]
+  paste_offset: [16, 16]
+  source_anchor_px: [462.5, 1371.0]
+  steps: [crop alpha>0 bbox, uniform LANCZOS resize with integer rounding, 'transparent padding; preserve RGBA; no warp, alpha cleanup or repaint']
+geometry_qa:
+  source_points_lfr:
+  - [159, 1365]
+  - [460, 1561]
+  - [766, 1377]
+  source_axis_slopes: [0.651163, -0.601307]
+  target_axis_slopes: [0.5, -0.5]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_axis_ratio: 0.98366
+  target_axis_ratio: 1.0
+  uncertainty_source_px: 5
+  ground_width_target_px: 64
+  measurement: 人工量取可见底面；墙角按缺角包络推算；不代表3D测绘或精确拼接通过
+pixel_qa:
+  mode: RGBA
+  alpha_extrema: [0, 255]
+  alpha_nonzero_bbox: [30, 19, 100, 181]
+  alpha_zero_pixels: 17206
+  transparent_padding_px: 16
+notes: 夯土墙身与局部压顶砖；地面轴线偏陡，重复接缝待总装。 源图及成品逐张view_image；源alpha原样保留，缩放可产生255，隐藏RGB不当作可见背景。

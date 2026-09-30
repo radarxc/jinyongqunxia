@@ -275,9 +275,51 @@ The source will be uniformly fit into {native_canvas} with ground/root anchor {a
 python3 tools/agents/check_assets.py assets/default/baseline/building-map/props --min 14 --max 14 --min-side 60
 ```
 
+## 11. 宋 · 北方中原套件 `song_north`
+
+本批面向北宋东京开封、西京洛阳、大名的匿名拼装建筑，年代窗口约1093；不是某城逐栋复原。制作继续使用上文宋套件的写实材质、45°斜向 / 30°俯仰 / 2:1地面投影、左上光和右下短接触影。所有组合为**（原创扩展）**，具体屋顶、窗棂、彩画与栽植位置**（待考）**。
+
+### 11.1 年代差异与占地来源
+
+- 普通民居用暖灰泥土墙、局部灰砖台基、哑光木构与灰陶瓦；院落强调围墙和较完整的正房 / 厢房。此为美术取舍，不把明清北京四合院定式或江南马头墙倒推到宋代。
+- 商铺沿街开敞，用货架、布棚、竹帘区别业态；酒楼 / 茶肆以楼层和廊栏表达繁华。参考故宫《清明上河图》馆藏介绍，不照搬现代复建景区。
+- 官署、寺观、宫殿用克制赭朱木构和局部装饰，避免清式和玺 / 旋子彩画、宫廷黄瓦泛化。1103刊行《营造法式》只作时代参照，不宣称准确复原1093构件尺度。
+- 佛塔取开封铁塔的八角、褐色琉璃砖母题；成图层数与细部以实际候选记录为准，不以金属铁架表现“铁塔”。
+- `biaoju` 用货栈 / 护运行院落表达；宋代成熟“镖局”称谓仍待考。赌场、山庄为项目功能外观，不新增营生或具名机构ID。河埠不带船、水景或旅行入口。
+
+| 本套件后缀（均加 `bld_kit_song_north_`） | 占地 `[w,h]` | 依据 |
+|---|---|---|
+| house_small / house_large | `[6,5]` / `[7,6]` | 小型复用§3.3民居；大型借§3.4 house骨架为【建议值】，非元代造型 |
+| courtyard / shop_1f / shop_2f | `[10,8]` / `[6,5]` / `[8,6]` | design/22 §3.3同功能项 |
+| inn / restaurant / market_stall | `[12,9]` / `[12,9]` / `[3,2]` | 同上 |
+| yamen / biaoju / casino | `[16,12]` / `[14,11]` / `[10,8]` | 同上 |
+| manor / palace_hall / temple_hall | `[16,13]` / `[18,14]` / `[13,10]` | 同上 |
+| pagoda / guardhouse / stable | `[7,7]` / `[7,5]` / `[9,7]` | 同上 |
+| warehouse / wharf | `[10,8]` / `[10,4]` | 同上 |
+
+### 11.2 提示词差异片段与交付
+
+在§5模板中替换城市 / 年代 / 类型 / 占地，并附本片段；逐件实发全文、实际参考输入及源SHA以 `building-map/song_north/manifest.yaml` 为准。
+
+```text
+Northern Song north-central China, circa1093, anonymous Kaifeng/Luoyang regional module.
+Quiet realistic Song building-sprite detail, matte weathered dark timber, grey clay tiles,
+warm grey earth-plaster walls, restrained brick footings; clear northern courtyard enclosure.
+Open-front urban commerce where appropriate, no Ming-Qing tourism streets or horse-head walls.
+No Qing imperial polychrome or ubiquitous yellow glazed roofs; no text or named institution.
+South entrance faces lower left. Genuine RGBA, readable base edges and base-centre anchor.
+Keep yaw45 / pitch30 / 2:1 orthographic ground axes and upper-left light of the Song kit.
+```
+
+每件最多2候选选1；只做裁切、一次等比缩放和透明扩边，不用非等比变形修正几何。短边≥256、透明边≥16px为本任务门槛，区别于早期宋基线短边512；`32(w+h)`仍只标定底面宽度。保持 `candidate` 和单视图 `allowRotation=false`，精确斜率 / 占地比残差在条目中保留，不能以清单校验通过代替总装验收。
+
+历史来源及访问状态见 `tools/agents/reports/KIT-song_north.md` §7；底层图像模型 / seed / 价格未由内置工具披露，不编造版本或费用。地域风格、塔层概化与正式上游目录接纳交作者确认，默认沿用本批候选；门洞、遮挡与真机效果仍**（待实测）**。
+
 ## 本文新增术语与 ID
 
 不新增玩法 ID；复用 §3 的38个建筑资产ID与最新§4.4的7个植物资产ID。植物文件使用`<asset_id>__v01/v02.png`，双下划线后是变体键，不是新玩法ID。`building.anchor`为最终PNG底面中心像素，`sources/`为归档生成来源，`meta/`为逐type制作元数据。它们是本批资产约定，不扩大`town/schema.yaml`的现有定义范围。
+
+§11另登记19个 `bld_kit_song_north_*` 资产ID，具体后缀与占地见§11.1；它们是本任务授权的同构套件，不新增玩法、城市、机构或营生ID。`song_north` 尚须由下游接入正式城市目录 / schema，不能假称本素材任务已完成该上游变更。
 
 ## 待决事项 / 依赖
 

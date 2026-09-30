@@ -1,0 +1,96 @@
+id: bld_kit_song_north_palace_hall
+file: bld_kit_song_north_palace_hall.png
+category: building-map
+style: default
+subject: 北宋中原 王府/宫殿殿堂模块（原创扩展；建筑细部待考）
+prompt: "Use case: sketch-to-render. FINISH THIS EXACT ATTACHED BLOCKOUT AS A REALISTIC NORTHERN SONG WOODEN PALACE HALL GAME SPRITE. Keep the input image camera and shape geometry pixel-faithful. Do not redesign the composition or rotate the building. Keep EVERY floor outline and roof edge in its current position. The input is a metrically exact orthographic 2:1 dimetric render of an18x14 rectangular footprint. The three OUTERMOST GROUND corners must remain left(100,650),front(856,1028),right(1444,734) on1536x1152 canvas, allowing only uniform scale plus translation. The ground edges must have absolute slope0.500 and horizontal spans756:588. The depth is14 while width18, so front face is only1.285714times the side face horizontal span; never make a long shallow hall. Render precisely these supplied surfaces into a real Northern Song main hall with believable photographic antique material textures: grey clay tiled roof, gently curved shallow eaves, ONE uninterrupted hipped roof without dormer or extra gables, simple modest ridge ends, sober exposed dougong under eaves, aged muted red structural columns, plain weathered timber lattice door panels, subtle faded teal/ochre beam accents, low thin stone base. Close the walls between columns. Add central front stairs contained within existing paper-thin footprint. The contact-outline diamond remains clearly legible without grass or extra ground outside it. Finished texture/material depth should be realistic fine ancient game art, no outlines, not polygon art, not toy, no plastic or painterly blur. Lit from upper-left with subdued lower-right contact shadow. TRUE RGBA transparency outside the supplied footprint and roof silhouette. No text or labels, writing, watermarks, people, background environment, checkerboard, modern items, yellow roof, gold ornament, carved gold panels, thick plinth or multilevel terrace. Preserve the input deep plan and exact camera above all else. This is one original historical palace module, not a full complex."
+negative: 文字、水印、现代元素、人物、场景背景、厚底座、塑料感、清式重彩、黄琉璃宫顶、透视汇聚
+references:
+- {file: assets/default/building-map/song_north/sources/bld_kit_song_north_palace_hall.round3-geometry-guide.png, sha256: 08a0d9f5a497630879f8195e5a61d1db0ad689c0561124c687369c69bca4d2c7, role: 程序生成18×14几何体与镜头参考；非历史来源；未将示意像素写入成品}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:26:40.502435+00:00'
+created_time_basis: 源PNG文件mtime；非服务端披露调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f469-f707-7993-a326-e1f819955db5/exec-6bff5f01-c4dc-40c3-90ce-4961271c123e.png
+source_sha256: 669ff494833aeffc2d4778ec107d3a23138d05ec1e31ad81f2e6849e61ca3be2
+size: 1120x896
+sha256: cfe4590071eaa8f3fb5c4cc562a2705d731592e1041002ad5dac63aa04d2a3bd
+status: candidate
+building:
+  type: bld_kit_song_north_palace_hall
+  footprint: [18, 14]
+  anchor: [566.985, 576.856]
+  era: song_north
+footprint_m: [18, 14]
+anchor_px: [566.985, 576.856]
+allowRotation: false
+views: [S]
+entrance: {edge: S}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [1024, 512]
+  camera_target: yaw45 pitch30 orthographic 2:1
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+candidate_count: 2
+selected_candidate: 2
+source_record: sources/bld_kit_song_north_palace_hall.round3-candidate2.json
+processing:
+  source_archive: sources/bld_kit_song_north_palace_hall.round3-candidate2.png
+  source_size: [1448, 1086]
+  crop_box: [73, 17, 1412, 1060]
+  uniform_scale_requested: 0.7876923076923077
+  resized_size: [1055, 822]
+  rounded_effective_scale: [0.7879014189693802, 0.788111217641419]
+  paste_offset: [32, 37, 1087, 859]
+  final_canvas: [1120, 896]
+  steps: [crop alpha>0 bounding box, one uniform LANCZOS resize with integer size rounding, 'pad RGBA; original alpha preserved; no thresholding,
+      repaint, warp or flip']
+geometry_qa:
+  source_corners_px:
+    left: [102, 646]
+    front: [841, 1027]
+    right: [1402, 758]
+  anchor_method: (left+right)/2; rear inferred as left+right-front
+  source_axis_slopes: [0.5155615696887687, -0.47950089126559714]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.3172905525846703
+  expected_width_depth_ratio: 1.2857142857142858
+  ratio_relative_error: 0.024559318676965702
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 4
+  precision_note: 人工量取可见纸薄地面外缘三角点，alpha≥128外轮廓复核；后角遮挡推算，非测绘；残差不以几何变形修正
+  anchor_rounding_correction:
+    historical_round: 1
+    previous_anchor_px: [552.2374, 562.4079]
+    corrected_anchor_px: [552.373, 562.553]
+    reason: 按整数resize后的sx/sy转换，避免requested scale的亚像素偏移；未改图像或底面测点
+pixel_qa:
+  mode: RGBA
+  size: [1120, 896]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 575652
+  alpha_partial_pixels: 427047
+  alpha_opaque_pixels: 821
+  alpha_near_opaque_pixels: 412309
+  alpha_nonzero_bbox: [32, 37, 1087, 859]
+  transparent_margins_px: [32, 37, 33, 37]
+  border_alpha_max: 0
+notes: 本轮两候选与最终PNG均view_image。选本轮第二候选：仅精确3D块体作为几何参考，加深殿身与屋顶，保持灰瓦、旧木、褪色朱柱和克制梁枋；原前宽后浅问题已在量测容差内修复。两轴斜率残差≤0.021，占地比误差2.456%；64×32格等比缩放，无非等比变形。单视图；运行时拼接待实测；形制组合为原创扩展，细部待考。
+repair_round2:
+  historical: true
+  result: unresolved_original_retained
+  candidate_count_this_round: 2
+  selected_candidate: null
+  review_record: sources/buildings-round2-review.json
+  reason: 两个新候选均未同时纠正投影和占地比；达到本轮候选上限，保留旧成品，不宣称修复。
+repair_round3:
+  result: selected_candidate2_geometry_pass_with_measurement_tolerance
+  candidate_count_this_round: 2
+  selected_candidate: 2
+  review_record: sources/bld_kit_song_north_palace_hall.round3-review.json
+  previous_provenance: sources/bld_kit_song_north_palace_hall.provenance.json
+  reason: 去除旧成品相机干扰；第二候选两地轴落在±0.5±0.03内，宽深比1.317291对18/14误差2.456%。

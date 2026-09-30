@@ -1,0 +1,64 @@
+id: tex_town_song_north_wall_corner__outer_ne_v01
+file: tex_town_song_north_wall_corner__outer_ne_v01.png
+category: tile
+style: default
+subject: 北宋中原·wall_corner（原创扩展）；建筑细部待考
+prompt: 'Use case: style-transfer. Create one OUTER RIGHT-ANGLE wall corner for Northern Song Kaifeng map, matching the provided earth wall corner
+  shape and realistic Song kit. Coarse rammed yellow-brown earth, visible compacted layers, gray-brown narrow brick coping only at top, not full
+  brick-clad Ming city wall. L-shaped top plan fitting2m by2m bounding square, arms1m thick, height2.5m; two joining arms form one corner, open
+  interior angle faces lower viewer. Uniform construction and level wall tops, clean squared butt ends. Camera orthographic yaw45 pitch30, ground
+  slopes exactly+0.5/-0.5, no perspective. Thin readable base contact lines, no thick ground pedestal. Sun upper left, short shadow lower right.
+  One isolated object, muted detailed realistic surface, no vegetation or scattered rocks, no crenellation, no tower, no figures. Fully transparent
+  RGBA background, complete silhouette and empty margin on every side, no writing/watermark/checkerboard.'
+negative: 无人物、文字、背景、厚底台、假棋盘；不改alpha伪造透明
+references:
+- {file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/tile/tex_town_song_dali_wall_corner__outer_ne_v01.png,
+  sha256: e3b2a9a2e7ffe32619c939955a089baf46c08f745e058364a96f24f7af1961b5, role: 实际输入：宋基线风格参考或本件首候选编辑目标}
+tool: built-in image_gen
+model: image_gen (underlying model undisclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:20:40.859818+00:00'
+created_time_basis: 源PNG文件mtime
+source_path: /Users/bytedance/.codex/generated_images/01a0f426-f9e3-79d3-9163-e8824f174953/exec-064911ac-1ebc-4481-9a8d-b136fbf07245.png
+source_copy: sources/tex_town_song_north_wall_corner__outer_ne_v01__source.png
+source_sha256: 63b734597d0118c7c7f41abd5eefcb828feb4126868463c4f847be79abf8b8db
+size: 164x165
+sha256: d8c1cb8369aaef58a42166bbc8b5a1fcbfd78e8128c594d2bffa669de16c8ea9
+status: candidate
+tile:
+  kind: wall_corner
+  footprint: [2, 2]
+  variant: outer_ne_v01
+  autotile_mask: null
+anchor_px: [80.8832, 136.0912]
+era: song_north
+allowRotation: false
+candidate_count: 1
+processing:
+  crop_box: [74, 9, 1256, 1199]
+  uniform_scale: 0.11208406304728546
+  resized_size: [132, 133]
+  paste_offset: [16, 16]
+  source_anchor_px: [655.0, 1083.5]
+  steps: [crop alpha>0 bbox, uniform LANCZOS resize with integer rounding, 'transparent padding; preserve RGBA; no warp, alpha cleanup or repaint']
+geometry_qa:
+  source_points_lfr:
+  - [84, 1068]
+  - [665, 1438]
+  - [1226, 1099]
+  source_axis_slopes: [0.636833, -0.604278]
+  target_axis_slopes: [0.5, -0.5]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_axis_ratio: 1.035651
+  target_axis_ratio: 1.0
+  uncertainty_source_px: 5
+  ground_width_target_px: 128
+  measurement: 人工量取可见底面；墙角按缺角包络推算；不代表3D测绘或精确拼接通过
+pixel_qa:
+  mode: RGBA
+  alpha_extrema: [0, 255]
+  alpha_nonzero_bbox: [16, 16, 147, 147]
+  alpha_zero_pixels: 14964
+  transparent_padding_px: 16
+notes: L形墙角；底面L/R可见，缺失前角按墙顶平移的后角[645,729]推算，非实体；包络中心落在L形内空处。墙厚与直段未精确匹配。 源图及成品逐张view_image；源alpha原样保留，缩放可产生255，隐藏RGB不当作可见背景。

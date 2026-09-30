@@ -1,0 +1,17 @@
+{
+"type": "market_stall",
+"w": 3,
+"h": 2,
+"subject": "市场棚",
+"prompt": "Use case: historical-scene. Generate exactly ONE complete isolated building sprite for tianshu default building-map. Reference image is only a style and fine material texture reference; create the new northern subject described. Northern Song Kaifeng/Luoyang urban architecture, grey clay tiled roofs with restrained eave curves, matte weathered timber, wooden lattice shutters, muted warm grey earthen plaster and rough grey brick lower walls, low saturation. True orthographic dimetric yaw45 pitch30: ground edges at precisely +0.5 and -0.5 slopes, 2:1 ground projection; parallel edges never converge. A very thin flush rectangular ground contact footprint with left, front and right corners clearly visible. No thick plinth. South entrance faces screen lower-left. Main light screen upper-left, short soft lower-right contact shadow. Match reference's realistic fine details and density. Real RGBA transparent background, whole eaves and base uncut, generous transparent margin on ALL sides. No people, animals, text, readable signs, labels, lantern rows, Qing paintwork, horsehead walls, modern objects, scene background, sky, checkerboard, watermark, perspective convergence. Asset bld_kit_song_north_market_stall. Single tiny Northern Song street market stall: four unpainted timber posts, a beige woven cloth canopy tied to horizontal poles, low wooden counter with a few pottery jars and cloth bundles, no masonry building, no tiled house, no surrounding street. Rectangle ground3 by2 planning cells, exactly3:2 axis ratio. Thin small flush dirt contact footprint; cast short contact shadow. Highly realistic weathered fabric and wood, modest lived-in northern urban market. Pure transparent isolated surroundings.",
+"source": "/Users/bytedance/.codex/generated_images/01a0f428-3a13-73a2-b64f-f05bceba7950/exec-75d570a3-b435-4bfc-9901-b539bc7cd3a9.png",
+"candidate_count": 1,
+"corners": [[300, 590], [897, 916], [1265, 717]],
+"references": [{"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png", "sha256": "0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7", "role": "style/material only;实际referenced_image_paths输入，已view_image"}],
+"alternates": [],
+"id": "bld_kit_song_north_market_stall",
+"source_sha256": "d745e9e9d8fde162bd79c60661b0272327f844ffb0bee98b26ddc99eecdbd648",
+"source_size": [1536, 1024],
+"source_viewed": true,
+"selected_reason": "布顶市场棚用途可辨；源图柱数超过提示四柱，属支撑构造变体。"
+}

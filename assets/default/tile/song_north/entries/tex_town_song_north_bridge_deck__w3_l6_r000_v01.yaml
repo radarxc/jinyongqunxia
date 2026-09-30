@@ -1,0 +1,64 @@
+id: tex_town_song_north_bridge_deck__w3_l6_r000_v01
+file: tex_town_song_north_bridge_deck__w3_l6_r000_v01.png
+category: tile
+style: default
+subject: 北宋中原·bridge_deck（原创扩展）；建筑细部待考
+prompt: Edit this wooden bridge to be SHORTER and BROADER in plan. Preserve realistic muted weathered timber, gentle timber arch, low wooden railings,
+  interlocking braces, two complete bridgeheads, transparent background, light upper-left. Current plan is too long and narrow. Required ground
+  length:width EXACTLY2:1 (6m north-south length by3m east-west width). Shorten span substantially by roughly one third while keeping bridge width.
+  Orthographic yaw45 pitch30, ground width down-right slope+0.5, span up-right slope-0.5; two end sills at same world height; NOT a ramp uphill.
+  Highest point at midspan then descends to far bridgehead. All four sill corners readable. No under-bridge central pier. Keep rails simple without
+  modern metal. ONE complete Northern Song small wood arch bridge, no river, bank, stone abutment, land slab, people, labels, text. Wide transparent
+  margins on all four sides, whole bridge fully contained.
+negative: 无人物、文字、背景、厚底台、假棋盘；不改alpha伪造透明
+references:
+- {file: assets/default/tile/song_north/sources/tex_town_song_north_bridge_deck__w3_l6_r000_v01__candidate1.png, sha256: 837cff898fcb8f6f1d7327eb2f316edbf7047610d6335bb73084d8973fd8879b,
+  role: 实际输入：宋基线风格参考或本件首候选编辑目标}
+tool: built-in image_gen
+model: image_gen (underlying model undisclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:23:45.626262+00:00'
+created_time_basis: 源PNG文件mtime
+source_path: /Users/bytedance/.codex/generated_images/01a0f426-f9e3-79d3-9163-e8824f174953/exec-98bedd6c-77f1-43c8-be16-a765cec3d6a5.png
+source_copy: sources/tex_town_song_north_bridge_deck__w3_l6_r000_v01__source.png
+source_sha256: a1b31755a875fcf8da9a0c944e499e3929f758d2782c971696c50722228a3ac0
+size: 323x237
+sha256: 26cd5926a5cb0480626e07928ed0cc6d3a4cd7bcd7611440cc08e4fa7f10e7a2
+status: candidate
+tile:
+  kind: bridge_deck
+  footprint: [3, 6]
+  variant: w3_l6_r000_v01
+  autotile_mask: null
+anchor_px: [161.1786, 137.9932]
+era: song_north
+allowRotation: false
+candidate_count: 2
+processing:
+  crop_box: [144, 21, 1502, 978]
+  uniform_scale: 0.21412639405204462
+  resized_size: [291, 205]
+  paste_offset: [16, 16]
+  source_anchor_px: [821.5, 590.5]
+  steps: [crop alpha>0 bbox, uniform LANCZOS resize with integer rounding, 'transparent padding; preserve RGBA; no warp, alpha cleanup or repaint']
+geometry_qa:
+  source_points_lfr:
+  - [149, 701]
+  - [537, 933]
+  - [1494, 480]
+  source_axis_slopes: [0.597938, -0.473354]
+  target_axis_slopes: [0.5, -0.5]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_axis_ratio: 0.405434
+  target_axis_ratio: 0.5
+  uncertainty_source_px: 5
+  ground_width_target_px: 288
+  measurement: 人工量取可见底面；墙角按缺角包络推算；不代表3D测绘或精确拼接通过
+pixel_qa:
+  mode: RGBA
+  alpha_extrema: [0, 255]
+  alpha_nonzero_bbox: [16, 38, 307, 214]
+  alpha_zero_pixels: 51708
+  transparent_padding_px: 16
+notes: 选第二候选，较首版短阔；整桥含栏杆，只供静态合成，未拆近侧遮挡层。借贯木拱母题，不是虹桥工程复原，桥头接路仍有残差。 源图及成品逐张view_image；源alpha原样保留，缩放可产生255，隐藏RGB不当作可见背景。

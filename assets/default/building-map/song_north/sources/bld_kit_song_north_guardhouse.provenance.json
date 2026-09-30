@@ -1,0 +1,190 @@
+{
+  "entry": {
+    "id": "bld_kit_song_north_guardhouse",
+    "file": "bld_kit_song_north_guardhouse.png",
+    "category": "building-map",
+    "style": "default",
+    "subject": "北宋中原 城门守舍（原创扩展；建筑细部待考）",
+    "prompt": "Use case: historical-scene. Generate exactly ONE isolated production city-map building sprite for tianshu, Northern Song central plains Kaifeng/Luoyang around 1093. Reference images supply only realistic ancient materials and detail density; never copy reference camera mistakes or southern lush vegetation. Historical realistic grey clay tile, warm grey plaster over earth and rough bricks, matte weathered timber; restrained subtle ochre and red where structural. NOT toy, plastic, miniature diorama or ink wash. Orthographic yaw45 elevation30, ground axes EXACT slopes +0.5/-0.5 (2:1 dimetric), parallel opposite edges, upright columns, NO perspective. South entrance faces screen LOWER LEFT. Entire isolated footprint on one extremely thin flat ground-contact parallelogram with left, bottom/front and right corners clearly visible for grid calibration. Only a shallow masonry contact strip, NO thick plinth. Upper-left screen illumination, short contact shadow towards lower-right. TRUE transparent RGBA background, at least10% clear margins all sides. All roof ends and ground corners visible. No text, writing, signs, symbols, watermark, people, surrounding city, sky, trees outside footprint, modern objects, Qing ornament, imperial yellow roofs, thick bases or checkerboard. Subject: one modest rectangular Northern Song gate-guard dwelling, single-storey warm-grey brick walls, dark wood south doorway and small plain lattice windows, grey clay tile gable roof, short simple porch. NOT gate tower, no city gate arch, no flags or weapons. Footprint7m east-west by5m north-south, lower-left face long/front edge. Ground corner targets in1536x1024: left(150,560),front(850,910),right(1350,660),back(650,310), up to uniform scaling and translation. Exact screen axis slopes+0.5/-0.5. All background alpha zero.",
+    "negative": "文字、水印、现代元素、人物、场景背景、厚底座、塑料感、清式重彩、黄琉璃宫顶、透视汇聚",
+    "references": [
+      {
+        "id": "bld_kit_song_southern_guardhouse",
+        "file": "assets/default/baseline/building-map/bld_kit_song_southern_guardhouse.png",
+        "sha256": "a6e49400035e5030a82b3be42bf9a450e577b109a0e85c61c9b6c29d05b60efe",
+        "role": "宋套件仅材质与写实细节参考；非本图几何或历史准确性背书"
+      }
+    ],
+    "tool": "built-in image_gen",
+    "model": "image_gen (underlying model not disclosed)",
+    "effort": "not exposed by image tool",
+    "created": "2026-09-30T21:22:18.985294+00:00",
+    "created_time_basis": "源PNG文件mtime；非服务端披露调用时间",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-8576-7390-a428-7025aed217c6/exec-1a12091c-318b-4749-b2a7-62ac1c695e77.png",
+    "source_sha256": "4692c69472fa71119b922551e1ec1b408c45b6369e51f01f52c1a7e1601e3e40",
+    "size": "528x368",
+    "sha256": "2576f2aeea69fba72e7401cb3f6963a9194a7b4d582704cc87a7c8a69eeed2e5",
+    "status": "candidate",
+    "building": {
+      "type": "bld_kit_song_north_guardhouse",
+      "footprint": [
+        7,
+        5
+      ],
+      "anchor": [
+        277.2665,
+        229.2117
+      ],
+      "era": "song_north"
+    },
+    "footprint_m": [
+      7,
+      5
+    ],
+    "anchor_px": [
+      277.2665,
+      229.2117
+    ],
+    "allowRotation": false,
+    "views": [
+      "S"
+    ],
+    "entrance": {
+      "edge": "S"
+    },
+    "projection_contract": {
+      "tile_px": [
+        64,
+        32
+      ],
+      "ground_bbox_px": [
+        384,
+        192
+      ],
+      "camera_target": "yaw45 pitch30 orthographic 2:1",
+      "light": "screen_upper_left",
+      "shadow": "screen_lower_right_contact_only"
+    },
+    "candidate_count": 1,
+    "selected_candidate": 1,
+    "source_record": "sources/bld_kit_song_north_guardhouse.provenance.json",
+    "processing": {
+      "source_archive": "sources/bld_kit_song_north_guardhouse.candidate1.png",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "crop_box": [
+        0,
+        32,
+        1484,
+        1024
+      ],
+      "uniform_scale_requested": 0.30260047281323876,
+      "resized_size": [
+        449,
+        300
+      ],
+      "rounded_effective_scale": [
+        0.3025606469002695,
+        0.3024193548387097
+      ],
+      "paste_offset": [
+        39,
+        34,
+        488,
+        334
+      ],
+      "final_canvas": [
+        528,
+        368
+      ],
+      "steps": [
+        "crop alpha>0 bounding box",
+        "one uniform LANCZOS resize with integer size rounding",
+        "pad RGBA; original alpha preserved; no thresholding, repaint, warp or flip"
+      ]
+    },
+    "geometry_qa": {
+      "source_corners_px": {
+        "left": [
+          153,
+          621
+        ],
+        "front": [
+          889,
+          990
+        ],
+        "right": [
+          1422,
+          734
+        ]
+      },
+      "anchor_method": "(left+right)/2; rear inferred as left+right-front",
+      "source_axis_slopes": [
+        0.501358695652174,
+        -0.4803001876172608
+      ],
+      "axis_tolerance": 0.03,
+      "axis_pass": true,
+      "source_width_depth_ratio": 1.3808630393996248,
+      "expected_width_depth_ratio": 1.4,
+      "ratio_relative_error": 0.013669257571696458,
+      "ratio_tolerance_suggestion": 0.1,
+      "ratio_pass": true,
+      "measurement_uncertainty_source_px": 4,
+      "precision_note": "人工量可见薄底面三角点；后角遮挡推算，非测绘；残差不以几何变形修正",
+      "anchor_rounding_correction": {
+        "previous_anchor_px": [
+          277.2979,
+          229.3286
+        ],
+        "corrected_anchor_px": [
+          277.2665,
+          229.2117
+        ],
+        "reason": "按整数resize后的sx/sy转换，避免requested scale的亚像素偏移；未改图像或底面测点"
+      }
+    },
+    "pixel_qa": {
+      "mode": "RGBA",
+      "size": [
+        528,
+        368
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 136809,
+      "alpha_partial_pixels": 56709,
+      "alpha_opaque_pixels": 786,
+      "alpha_near_opaque_pixels": 54902,
+      "alpha_nonzero_bbox": [
+        39,
+        49,
+        478,
+        328
+      ],
+      "transparent_margins_px": [
+        39,
+        49,
+        50,
+        40
+      ],
+      "border_alpha_max": 0
+    },
+    "notes": "已逐张view_image原图与最终PNG自查。单层守舍完整；灰瓦木构和低砖基一致，门朝左下，地面量测近2:1。单视图；运行时拼接待实测；形制组合为原创扩展，细部待考。"
+  },
+  "candidates": [
+    {
+      "number": 1,
+      "prompt": "Use case: historical-scene. Generate exactly ONE isolated production city-map building sprite for tianshu, Northern Song central plains Kaifeng/Luoyang around 1093. Reference images supply only realistic ancient materials and detail density; never copy reference camera mistakes or southern lush vegetation. Historical realistic grey clay tile, warm grey plaster over earth and rough bricks, matte weathered timber; restrained subtle ochre and red where structural. NOT toy, plastic, miniature diorama or ink wash. Orthographic yaw45 elevation30, ground axes EXACT slopes +0.5/-0.5 (2:1 dimetric), parallel opposite edges, upright columns, NO perspective. South entrance faces screen LOWER LEFT. Entire isolated footprint on one extremely thin flat ground-contact parallelogram with left, bottom/front and right corners clearly visible for grid calibration. Only a shallow masonry contact strip, NO thick plinth. Upper-left screen illumination, short contact shadow towards lower-right. TRUE transparent RGBA background, at least10% clear margins all sides. All roof ends and ground corners visible. No text, writing, signs, symbols, watermark, people, surrounding city, sky, trees outside footprint, modern objects, Qing ornament, imperial yellow roofs, thick bases or checkerboard. Subject: one modest rectangular Northern Song gate-guard dwelling, single-storey warm-grey brick walls, dark wood south doorway and small plain lattice windows, grey clay tile gable roof, short simple porch. NOT gate tower, no city gate arch, no flags or weapons. Footprint7m east-west by5m north-south, lower-left face long/front edge. Ground corner targets in1536x1024: left(150,560),front(850,910),right(1350,660),back(650,310), up to uniform scaling and translation. Exact screen axis slopes+0.5/-0.5. All background alpha zero.",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-8576-7390-a428-7025aed217c6/exec-1a12091c-318b-4749-b2a7-62ac1c695e77.png",
+      "reference_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_guardhouse.png",
+      "source_archive": "sources/bld_kit_song_north_guardhouse.candidate1.png",
+      "source_sha256": "4692c69472fa71119b922551e1ec1b408c45b6369e51f01f52c1a7e1601e3e40"
+    }
+  ],
+  "geometry_formula": "s=32(w+h)/(Rx-Lx); image size rounded; anchor[i]=(source_anchor[i]-crop[i])*resized_size[i]/crop_size[i]+paste_offset[i]"
+}

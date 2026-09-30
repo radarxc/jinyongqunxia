@@ -1,0 +1,198 @@
+{
+  "entry": {
+    "id": "bld_kit_song_north_palace_hall",
+    "file": "bld_kit_song_north_palace_hall.png",
+    "category": "building-map",
+    "style": "default",
+    "subject": "北宋中原 王府/宫殿殿堂模块（原创扩展；建筑细部待考）",
+    "prompt": "Use case: historical-scene. Generate exactly ONE isolated production city-map building sprite for tianshu, Northern Song central plains Kaifeng/Luoyang around 1093. Reference images supply only realistic ancient materials and detail density; never copy reference camera mistakes or southern lush vegetation. Historical realistic grey clay tile, warm grey plaster over earth and rough bricks, matte weathered timber; restrained subtle ochre and red where structural. NOT toy, plastic, miniature diorama or ink wash. Orthographic yaw45 elevation30, ground axes EXACT slopes +0.5/-0.5 (2:1 dimetric), parallel opposite edges, upright columns, NO perspective. South entrance faces screen LOWER LEFT. Entire isolated footprint on one extremely thin flat ground-contact parallelogram with left, bottom/front and right corners clearly visible for grid calibration. Only a shallow masonry contact strip, NO thick plinth. Upper-left screen illumination, short contact shadow towards lower-right. TRUE transparent RGBA background, at least10% clear margins all sides. All roof ends and ground corners visible. No text, writing, signs, symbols, watermark, people, surrounding city, sky, trees outside footprint, modern objects, Qing ornament, imperial yellow roofs, thick bases or checkerboard. Subject: ONE Northern Song imperial or prince's main hall MODULE, not whole palace, low broad hipped grey-tiled roof with shallow eave curves, structurally readable sober bracket sets, muted vermilion wooden columns and restrained faded teal/ochre simple beam accents, lattice doors, shallow one-tier stone platform and central stairs toward lower-left. NO Qing swirling gilded painted decoration, no huge dragon ridge, no yellow glazed tile, no multi-level marble terraces. Footprint18m east-west by14m north-south; front down-right edge / up-right edge ratio18/14. Paper-thin ground-contact perimeter beyond platform makes corners visible. Original abstract historical game module. All background alpha zero, no ambient haze or ground glow. Mandatory changes from reference: remove ALL dormer-like projecting gables and decorative carved gold panels. One uninterrupted hipped grey roof with one main ridge, sober broad Song timber hall under it. Simple visible bracket sets and muted red columns. Geometry priority: ground contact LEFT(70,660),FRONT(826,1038),RIGHT(1414,744),BACK(658,366) in1536x1152, up to uniform scale/translation, slopes exactly +/-0.5. No labels, no dormer, no huge finials. The rear ground corner can be hidden but left/front/right ground corners stay visible.",
+    "negative": "文字、水印、现代元素、人物、场景背景、厚底座、塑料感、清式重彩、黄琉璃宫顶、透视汇聚",
+    "references": [
+      {
+        "id": "bld_kit_song_southern_palace_hall",
+        "file": "assets/default/baseline/building-map/bld_kit_song_southern_palace_hall.png",
+        "sha256": "3b8380abd96c1762512fa25efb105fb73a02e5dfa745a1dd183cd23eb15dd51c",
+        "role": "宋套件仅材质与写实细节参考；非本图几何或历史准确性背书"
+      }
+    ],
+    "tool": "built-in image_gen",
+    "model": "image_gen (underlying model not disclosed)",
+    "effort": "not exposed by image tool",
+    "created": "2026-09-30T21:20:05.578624+00:00",
+    "created_time_basis": "源PNG文件mtime；非服务端披露调用时间",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-8576-7390-a428-7025aed217c6/exec-53194588-2972-4844-a954-fd878d0376dc.png",
+    "source_sha256": "2c06f8d3674626f1728d60bce606e8cd01fb0a0380443d5fb01f157046c5b414",
+    "size": "1104x864",
+    "sha256": "8e7914c4f61b7ac669b0166c37a43f81de14bde8bffc1ecae62c13bab786ba2a",
+    "status": "candidate",
+    "building": {
+      "type": "bld_kit_song_north_palace_hall",
+      "footprint": [
+        18,
+        14
+      ],
+      "anchor": [
+        552.373,
+        562.553
+      ],
+      "era": "song_north"
+    },
+    "footprint_m": [
+      18,
+      14
+    ],
+    "anchor_px": [
+      552.373,
+      562.553
+    ],
+    "allowRotation": false,
+    "views": [
+      "S"
+    ],
+    "entrance": {
+      "edge": "S"
+    },
+    "projection_contract": {
+      "tile_px": [
+        64,
+        32
+      ],
+      "ground_bbox_px": [
+        1024,
+        512
+      ],
+      "camera_target": "yaw45 pitch30 orthographic 2:1",
+      "light": "screen_upper_left",
+      "shadow": "screen_lower_right_contact_only"
+    },
+    "candidate_count": 2,
+    "selected_candidate": 2,
+    "source_record": "sources/bld_kit_song_north_palace_hall.provenance.json",
+    "processing": {
+      "source_archive": "sources/bld_kit_song_north_palace_hall.candidate2.png",
+      "source_size": [
+        1420,
+        1108
+      ],
+      "crop_box": [
+        27,
+        21,
+        1405,
+        1088
+      ],
+      "uniform_scale_requested": 0.7458120903131829,
+      "resized_size": [
+        1028,
+        796
+      ],
+      "rounded_effective_scale": [
+        0.7460087082728593,
+        0.7460168697282099
+      ],
+      "paste_offset": [
+        38,
+        34,
+        1066,
+        830
+      ],
+      "final_canvas": [
+        1104,
+        864
+      ],
+      "steps": [
+        "crop alpha>0 bounding box",
+        "one uniform LANCZOS resize with integer size rounding",
+        "pad RGBA; original alpha preserved; no thresholding, repaint, warp or flip"
+      ]
+    },
+    "geometry_qa": {
+      "source_corners_px": {
+        "left": [
+          30,
+          690
+        ],
+        "front": [
+          866,
+          1036
+        ],
+        "right": [
+          1403,
+          769
+        ]
+      },
+      "anchor_method": "(left+right)/2; rear inferred as left+right-front",
+      "source_axis_slopes": [
+        0.4138755980861244,
+        -0.4972067039106145
+      ],
+      "axis_tolerance": 0.03,
+      "axis_pass": false,
+      "source_width_depth_ratio": 1.5567970204841712,
+      "expected_width_depth_ratio": 1.2857142857142858,
+      "ratio_relative_error": 0.21084212704324412,
+      "ratio_tolerance_suggestion": 0.1,
+      "ratio_pass": false,
+      "measurement_uncertainty_source_px": 4,
+      "precision_note": "人工量可见薄底面三角点；后角遮挡推算，非测绘；残差不以几何变形修正",
+      "anchor_rounding_correction": {
+        "previous_anchor_px": [
+          552.2374,
+          562.4079
+        ],
+        "corrected_anchor_px": [
+          552.373,
+          562.553
+        ],
+        "reason": "按整数resize后的sx/sy转换，避免requested scale的亚像素偏移；未改图像或底面测点"
+      }
+    },
+    "pixel_qa": {
+      "mode": "RGBA",
+      "size": [
+        1104,
+        864
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 551325,
+      "alpha_partial_pixels": 401509,
+      "alpha_opaque_pixels": 1022,
+      "alpha_near_opaque_pixels": 391245,
+      "alpha_nonzero_bbox": [
+        38,
+        34,
+        1066,
+        830
+      ],
+      "transparent_margins_px": [
+        38,
+        34,
+        38,
+        34
+      ],
+      "border_alpha_max": 0
+    },
+    "notes": "已逐张view_image原图与最终PNG自查。第二候选去除前置突兀小山墙和金饰面板，历史气质更克制；长短轴占地比例误差较大，须重出后用于严格拼接。单视图；运行时拼接待实测；形制组合为原创扩展，细部待考。"
+  },
+  "candidates": [
+    {
+      "number": 1,
+      "prompt": "Use case: historical-scene. Generate exactly ONE isolated production city-map building sprite for tianshu, Northern Song central plains Kaifeng/Luoyang around 1093. Reference images supply only realistic ancient materials and detail density; never copy reference camera mistakes or southern lush vegetation. Historical realistic grey clay tile, warm grey plaster over earth and rough bricks, matte weathered timber; restrained subtle ochre and red where structural. NOT toy, plastic, miniature diorama or ink wash. Orthographic yaw45 elevation30, ground axes EXACT slopes +0.5/-0.5 (2:1 dimetric), parallel opposite edges, upright columns, NO perspective. South entrance faces screen LOWER LEFT. Entire isolated footprint on one extremely thin flat ground-contact parallelogram with left, bottom/front and right corners clearly visible for grid calibration. Only a shallow masonry contact strip, NO thick plinth. Upper-left screen illumination, short contact shadow towards lower-right. TRUE transparent RGBA background, at least10% clear margins all sides. All roof ends and ground corners visible. No text, writing, signs, symbols, watermark, people, surrounding city, sky, trees outside footprint, modern objects, Qing ornament, imperial yellow roofs, thick bases or checkerboard. Subject: ONE Northern Song imperial or prince's main hall MODULE, not whole palace, low broad hipped grey-tiled roof with shallow eave curves, structurally readable sober bracket sets, muted vermilion wooden columns and restrained faded teal/ochre simple beam accents, lattice doors, shallow one-tier stone platform and central stairs toward lower-left. NO Qing swirling gilded painted decoration, no huge dragon ridge, no yellow glazed tile, no multi-level marble terraces. Footprint18m east-west by14m north-south; front down-right edge / up-right edge ratio18/14. Paper-thin ground-contact perimeter beyond platform makes corners visible. Original abstract historical game module. All background alpha zero, no ambient haze or ground glow.",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-8576-7390-a428-7025aed217c6/exec-a179a440-baf2-45a5-8238-f952deefb561.png",
+      "reference_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_palace_hall.png",
+      "source_archive": "sources/bld_kit_song_north_palace_hall.candidate1.png",
+      "source_sha256": "9c7e1345fcdcf32df00795e5c4a1bb3228938df8ec3b6c4fa7e51e90a4b35f42"
+    },
+    {
+      "number": 2,
+      "prompt": "Use case: historical-scene. Generate exactly ONE isolated production city-map building sprite for tianshu, Northern Song central plains Kaifeng/Luoyang around 1093. Reference images supply only realistic ancient materials and detail density; never copy reference camera mistakes or southern lush vegetation. Historical realistic grey clay tile, warm grey plaster over earth and rough bricks, matte weathered timber; restrained subtle ochre and red where structural. NOT toy, plastic, miniature diorama or ink wash. Orthographic yaw45 elevation30, ground axes EXACT slopes +0.5/-0.5 (2:1 dimetric), parallel opposite edges, upright columns, NO perspective. South entrance faces screen LOWER LEFT. Entire isolated footprint on one extremely thin flat ground-contact parallelogram with left, bottom/front and right corners clearly visible for grid calibration. Only a shallow masonry contact strip, NO thick plinth. Upper-left screen illumination, short contact shadow towards lower-right. TRUE transparent RGBA background, at least10% clear margins all sides. All roof ends and ground corners visible. No text, writing, signs, symbols, watermark, people, surrounding city, sky, trees outside footprint, modern objects, Qing ornament, imperial yellow roofs, thick bases or checkerboard. Subject: ONE Northern Song imperial or prince's main hall MODULE, not whole palace, low broad hipped grey-tiled roof with shallow eave curves, structurally readable sober bracket sets, muted vermilion wooden columns and restrained faded teal/ochre simple beam accents, lattice doors, shallow one-tier stone platform and central stairs toward lower-left. NO Qing swirling gilded painted decoration, no huge dragon ridge, no yellow glazed tile, no multi-level marble terraces. Footprint18m east-west by14m north-south; front down-right edge / up-right edge ratio18/14. Paper-thin ground-contact perimeter beyond platform makes corners visible. Original abstract historical game module. All background alpha zero, no ambient haze or ground glow. Mandatory changes from reference: remove ALL dormer-like projecting gables and decorative carved gold panels. One uninterrupted hipped grey roof with one main ridge, sober broad Song timber hall under it. Simple visible bracket sets and muted red columns. Geometry priority: ground contact LEFT(70,660),FRONT(826,1038),RIGHT(1414,744),BACK(658,366) in1536x1152, up to uniform scale/translation, slopes exactly +/-0.5. No labels, no dormer, no huge finials. The rear ground corner can be hidden but left/front/right ground corners stay visible.",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-8576-7390-a428-7025aed217c6/exec-53194588-2972-4844-a954-fd878d0376dc.png",
+      "reference_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_palace_hall.png",
+      "source_archive": "sources/bld_kit_song_north_palace_hall.candidate2.png",
+      "source_sha256": "2c06f8d3674626f1728d60bce606e8cd01fb0a0380443d5fb01f157046c5b414"
+    }
+  ],
+  "geometry_formula": "s=32(w+h)/(Rx-Lx); image size rounded; anchor[i]=(source_anchor[i]-crop[i])*resized_size[i]/crop_size[i]+paste_offset[i]"
+}

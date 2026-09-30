@@ -1,0 +1,99 @@
+id: bld_kit_song_north_courtyard
+file: bld_kit_song_north_courtyard.png
+category: building-map
+style: default
+subject: 北宋中原·北方院落（原创扩展模块，非具名建筑测绘复原）
+prompt: 'Use case: historical-scene. Generate exactly ONE complete isolated building sprite for tianshu default building-map. Reference image
+  is only a style and fine material texture reference; create the new northern subject described. Northern Song Kaifeng/Luoyang urban architecture,
+  grey clay tiled roofs with restrained eave curves, matte weathered timber, wooden lattice shutters, muted warm grey earthen plaster and rough
+  grey brick lower walls, low saturation. True orthographic dimetric yaw45 pitch30: ground edges at precisely +0.5 and -0.5 slopes, 2:1 ground
+  projection; parallel edges never converge. A very thin flush rectangular ground contact footprint with left, front and right corners clearly
+  visible. No thick plinth. South entrance faces screen lower-left. Main light screen upper-left, short soft lower-right contact shadow. Match
+  reference''s realistic fine details and density. Real RGBA transparent background, whole eaves and base uncut, generous transparent margin on
+  ALL sides. No people, animals, text, readable signs, labels, lantern rows, Qing paintwork, horsehead walls, modern objects, scene background,
+  sky, checkerboard, watermark, perspective convergence. SECOND candidate bld_kit_song_north_courtyard. Make a northern Song courtyard residence,
+  rear hall and side wings around open rectangular yard, low front grey-brick wall and plain timber gate. Footprint10 cells across FRONT facade,
+  8 cells SIDE depth; FRONT base edge must be 25 percent longer than SIDE base edge. The reference ground is too steep: camera use EXACT2:1 ground
+  edges. Ground vectors front=(1000,500), side=(800,-400). Plain grey tiles, rough brick wall lower courses, warm grey earth plaster; no decorative
+  porch. Full rectangle foundation at same thin plane. Truly transparent.'
+negative: 人物、可读文字、招牌字、水印、现代物、晚清彩画、马头墙、密集灯笼、厚地台、透视消失点、天空与不透明背景。
+references: [/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png]
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:25:36.884156+00:00'
+created_time_basis: 源PNG文件mtime；非工具披露的服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f428-3a13-73a2-b64f-f05bceba7950/exec-946f15bd-c7ff-4da4-9954-45aa0d636684.png
+source_sha256: 41e76babfeb7ff45bdd6096b7319c428699a16edd20ce357530947360d4b5229
+size: 659x512
+sha256: 95a6bada907e9bf4a055f730c777cf599cff82dc0b23b49399f7bffc90c27acb
+status: candidate
+building:
+  type: bld_kit_song_north_courtyard
+  footprint: [10, 8]
+  anchor: [349.4276, 271.6956]
+  era: song_north
+footprint_m: [10, 8]
+anchor_px: [349.4276, 271.6956]
+allowRotation: false
+entrance: {edge: S, screen: lower_left}
+candidate_count: 2
+source_record: sources/bld_kit_song_north_courtyard.json
+provenance:
+  source_archive: sources/bld_kit_song_north_courtyard.png
+  source_sha256: 41e76babfeb7ff45bdd6096b7319c428699a16edd20ce357530947360d4b5229
+  references:
+  - {path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png,
+    sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7, role: style/material only;实际referenced_image_paths输入，已view_image}
+  actual_tool: image_gen__imagegen
+  transparent_background: true
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_target_px: [576, 288]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+processing:
+  crop_box: [0, 68, 1491, 1024]
+  uniform_scale_requested: 0.4152847873107426
+  resized_size: [619, 397]
+  rounded_effective_scale: [0.4151576123407109, 0.41527196652719667]
+  paste_offset: [20, 57]
+  steps: [crop alpha>0 bbox, 'uniform LANCZOS resize, integer dimensions rounded', 'pad transparent RGBA; preserve alpha; no warp, repaint, flip
+      or alpha thresholding']
+geometry_qa:
+  source_corners_px:
+    left: [100, 572]
+    front: [894, 958]
+    right: [1487, 598]
+  inferred_back_px: [693, 212]
+  source_anchor_px: [793.5, 585.0]
+  anchor_method: 可见同一底面左/前/右角；后角=L+R-F，中心=(L+R)/2；非alpha包围框底中点。
+  source_axis_slopes: [0.48614609571788414, -0.6070826306913997]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.2726359756216201
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.01810878049729614
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  max_vertex_residual_px: 21.202595529920693
+  residual_method: 以L为原点，比较等比缩放后的F/R与(32w,16w)/(32(w+h),16(w-h))；未做拉伸纠偏。
+  measurement_uncertainty_source_px: 4
+  release_ready: false
+  anchor_rounding_correction:
+    previous_anchor_px: [349.5285, 271.7022]
+    corrected_anchor_px: [349.4276, 271.6956]
+    reason: 按整数resize后的sx/sy转换，避免requested scale的亚像素偏移；未改图像或底面测点
+pixel_qa:
+  mode: RGBA
+  size: [659, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 220955
+  alpha_partial_pixels: 115475
+  alpha_opaque_pixels: 978
+  alpha_nonzero_bbox: [44, 63, 639, 451]
+  transparent_margins_px: [44, 63, 20, 61]
+  source_view_image: true
+  final_view_image: true
+  saturated_red_pixels_alpha_gt16: 3
+notes: 第二候选前墙更宽；生成附加小灌木在院内，非独立植物资产；右侧底边偏陡。 人工量取底角±4px；保留几何残差与candidate状态，不能当release资产。 已view_image复核最终PNG：主体完整，透明留边与清晰底角保留。 自动像素抽查检出少量高饱和红色且alpha>16像素，边缘存在零星色点；未擅自抠除，保留待作者审看。

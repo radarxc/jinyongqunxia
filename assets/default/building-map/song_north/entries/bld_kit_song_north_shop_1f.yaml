@@ -1,0 +1,102 @@
+id: bld_kit_song_north_shop_1f
+file: bld_kit_song_north_shop_1f.png
+category: building-map
+style: default
+subject: 北宋中原·单层商铺（原创扩展模块，非具名建筑测绘复原）
+prompt: 'Use case: historical-scene. Generate exactly ONE complete isolated building sprite for tianshu default building-map. Reference image
+  is only a style and fine material texture reference; create the new northern subject described. Northern Song Kaifeng/Luoyang urban architecture,
+  grey clay tiled roofs with restrained eave curves, matte weathered timber, wooden lattice shutters, muted warm grey earthen plaster and rough
+  grey brick lower walls, low saturation. True orthographic dimetric yaw45 pitch30: ground edges at precisely +0.5 and -0.5 slopes, 2:1 ground
+  projection; parallel edges never converge. A very thin flush rectangular ground contact footprint with left, front and right corners clearly
+  visible. No thick plinth. South entrance faces screen lower-left. Main light screen upper-left, short soft lower-right contact shadow. Match
+  reference''s realistic fine details and density. Real RGBA transparent background, whole eaves and base uncut, generous transparent margin on
+  ALL sides. No people, animals, text, readable signs, labels, lantern rows, Qing paintwork, horsehead walls, modern objects, scene background,
+  sky, checkerboard, watermark, perspective convergence. Asset bld_kit_song_north_shop_1f. One Northern Song single-storey open-front street shop,
+  broad unlettered timber beam above shopfront, rolled bamboo shutters, a modest wooden counter with closed pottery jars and cloth bundles entirely
+  within the footprint, timber facade with rough brick side wall, simple grey tiled gable roof. Footprint6 by5 cells,6:5 ground axis lengths.
+  Shallow ground slopes exactly +0.5/-0.5, not steep isometric. No separate canopy, no porch, no surrounding street. Pure transparent empty backdrop
+  without glow. SECOND candidate: correct foundation too-steep angles. The front ground edge must have slope exactly +0.5, side -0.5. Render the
+  front wall LOWER in perceived height and the ground shallower than reference; no perspective convergence. Footprint six by five cells, ground
+  quadrilateral on screen with approximate vertices left(180,650), front(780,950), right(1280,700), rear(680,400). The roof is above this ground;
+  these numbers are invisible compositional guidance, never draw marks.'
+negative: 人物、可读文字、招牌字、水印、现代物、晚清彩画、马头墙、密集灯笼、厚地台、透视消失点、天空与不透明背景。
+references: [/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png]
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:27:16.358414+00:00'
+created_time_basis: 源PNG文件mtime；非工具披露的服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f428-3a13-73a2-b64f-f05bceba7950/exec-fef4769c-a2c7-4bf5-9215-1be8568f304e.png
+source_sha256: 15ba0c9e8dbcf0ae68b1d4c992423d163e0b8a02820aa3f981208d7b6ac27429
+size: 512x512
+sha256: e6b70aef544445cfd52cdd1fa8c60f9db905acba3ea6dcad5e3847b17e7332c4
+status: candidate
+building:
+  type: bld_kit_song_north_shop_1f
+  footprint: [6, 5]
+  anchor: [264.908, 316.4204]
+  era: song_north
+footprint_m: [6, 5]
+anchor_px: [264.908, 316.4204]
+allowRotation: false
+entrance: {edge: S, screen: lower_left}
+candidate_count: 2
+source_record: sources/bld_kit_song_north_shop_1f.json
+provenance:
+  source_archive: sources/bld_kit_song_north_shop_1f.png
+  source_sha256: 15ba0c9e8dbcf0ae68b1d4c992423d163e0b8a02820aa3f981208d7b6ac27429
+  references:
+  - {path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png,
+    sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7, role: style/material only;实际referenced_image_paths输入，已view_image}
+  actual_tool: image_gen__imagegen
+  transparent_background: true
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_target_px: [352, 176]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+processing:
+  crop_box: [65, 21, 1484, 982]
+  uniform_scale_requested: 0.3134461264470169
+  resized_size: [445, 301]
+  rounded_effective_scale: [0.31360112755461594, 0.31321540062434966]
+  paste_offset: [33, 105]
+  steps: [crop alpha>0 bbox, 'uniform LANCZOS resize, integer dimensions rounded', 'pad transparent RGBA; preserve alpha; no warp, repaint, flip
+      or alpha thresholding']
+geometry_qa:
+  source_corners_px:
+    left: [243, 665]
+    front: [855, 967]
+    right: [1366, 727]
+  inferred_back_px: [754, 425]
+  source_anchor_px: [804.5, 696.0]
+  anchor_method: 可见同一底面左/前/右角；后角=L+R-F，中心=(L+R)/2；非alpha包围框底中点。
+  source_axis_slopes: [0.4934640522875817, -0.46966731898238745]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.2088437227415774
+  expected_width_depth_ratio: 1.2
+  ratio_relative_error: 0.007369768951314581
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  max_vertex_residual_px: 3.433659839715048
+  residual_method: 以L为原点，比较等比缩放后的F/R与(32w,16w)/(32(w+h),16(w-h))；未做拉伸纠偏。
+  measurement_uncertainty_source_px: 4
+  release_ready: false
+  anchor_rounding_correction:
+    previous_anchor_px: [264.7934, 316.5761]
+    corrected_anchor_px: [264.908, 316.4204]
+    reason: 按整数resize后的sx/sy转换，避免requested scale的亚像素偏移；未改图像或底面测点
+pixel_qa:
+  mode: RGBA
+  size: [512, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 207831
+  alpha_partial_pixels: 53589
+  alpha_opaque_pixels: 724
+  alpha_nonzero_bbox: [86, 134, 455, 405]
+  transparent_margins_px: [86, 134, 57, 107]
+  source_view_image: true
+  final_view_image: true
+  saturated_red_pixels_alpha_gt16: 9
+notes: 第二候选底边更浅；开放柜台与竹帘可辨，浅色墙体较基线相似。 人工量取底角±4px；保留几何残差与candidate状态，不能当release资产。 已view_image复核最终PNG：主体完整，透明留边与清晰底角保留。 自动像素抽查检出少量高饱和红色且alpha>16像素，边缘存在零星色点；未擅自抠除，保留待作者审看。

@@ -154,3 +154,47 @@ python3 tools/lint/check_ids.py --strict
 | 无缝颜色、门楼孔与斜率未通过 | 水面已完成偏移与 3×3 目视检查（见 TOWN-tiles-water 报告 §7）；其他地面接缝、门洞对格和墙件接缝仍保留原限制，按样例城效果后补 |
 | 风格、意象年代与植物可读性 | 保持 candidate，交作者审批；未回复不视为 approved |
 | 水面纹理方向与运行时接缝 | 默认静态错位取样；仍有自然波向，远近缩放及 GPU 采样表现 **（待实测）**，不承诺逐像素周期等边 |
+
+## 10. 宋 · 北方中原贴片 `song_north`
+
+此套件服务约1093年的开封 / 洛阳 / 大名城镇意象；地形、布局和运行时碰撞继续引用 `design/22` §1、§4.3，不在素材模板新增玩法。匿名门楼、压缩墙高、木桥和植物组合均为**（原创扩展）**；完整实发提示、实际输入参考、来源路径及SHA登记在 `tile/song_north/manifest.yaml`。
+
+### 10.1 年代要点与清单
+
+北宋东京顺天门考古资料支持夯土墙身与门区包砖，故墙件采用夯土层理、局部灰砖压顶，门墩采用灰砖；不统一套明清全包砖高城墙。历史顺天门为一门三道，本批单孔门只是拼装简化，不能称顺天门复原。木桥取汴水贯木拱的结构意象，无水中桥墩；不是复建景区虹桥的复制品。
+
+| ID 后缀（均加 `tex_town_song_north_`） | kind / footprint / variant | 制作差异 |
+|---|---|---|
+| city_gate__k4_r000_v01 | city_gate / `[8,4]` / k4_r000_v01 | 标称净宽4，灰砖双墩、灰瓦低楼 |
+| city_gate__k6_r000_v01 | city_gate / `[10,4]` / k6_r000_v01 | 标称净宽6，较宽门楼；非同图缩放 |
+| wall__earth_r000_v01 | wall / `[1,1]` / earth_r000_v01 | 黄褐夯土、局部灰砖压顶 |
+| wall_corner__outer_ne_v01 | wall_corner / `[2,2]` / outer_ne_v01 | 同材质L形转角 |
+| bridge_deck__w3_l6_r000_v01 | bridge_deck / `[3,6]` / w3_l6_r000_v01 | 整体木拱桥含栏杆，静态候选 |
+| tree_cluster__willow_v01 | tree_cluster / `[3,3]` / willow_v01 | 单株垂柳，疏枝、低饱和绿 |
+| tree_cluster__scholar_tree_v01 | tree_cluster / `[3,3]` / scholar_tree_v01 | 单株国槐意象，具体栽植史待考 |
+
+`autotile_mask:null` 表示独立物件，不声明完整自动拼接邻接表。门楼朝南原向、仅r000；墙角仅所列一向，不能镜像假称补齐四向。桥为整件静态展示图，近栏遮挡未拆层。植物不替代 `design/22` §4.4 的 `prp_*`，须另由下游显式选用。
+
+### 10.2 提示词差异片段
+
+```text
+Northern Song north-central China circa1093, realistic muted Song map-sprite style.
+Gate: grey brick-faced piers, modest dusky red-brown timber pavilion, grey clay-tiled roof.
+Earth wall: compacted yellow-brown layers, restrained brick coping, no Ming-Qing full cladding.
+Bridge: small original timber arch, interlocking beam motif, wooden rails, no central water pier.
+Willow/scholar tree: natural muted crown, single tree, root visible, no soil pedestal.
+Orthographic yaw45 pitch30, ground axes +0.5/-0.5, upper-left light, short lower-right shadow.
+True RGBA including open gate passage; no scenery, words, figures, checkerboard or cropped edges.
+```
+
+每件先view参考、逐张调用内置image_gen、最多2候选；仅裁原alpha非零框、等比LANCZOS、透明扩边。不能用RGB颜色抠图、alpha阈值或非等比变形修正本批精灵。源PNG的alpha=0隐藏RGB可能在某些预览里显出光晕，应检查实际alpha及合成效果，不能据此假判背景不透明。
+
+### 10.3 几何、来源与待决
+
+沿用§4.3城门公式：外占地 `[k+4,4]`，通道 `[k,4]`；k=4/6时底面理论包围框为384×192 / 448×224px，计算为 `32(w+h) × 16(w+h)`。墙1×1、角2×2沿用基线登记，桥3×6为**【建议值】**；植物3×3为冠幅放置包络，不是实心占地。
+
+实际门楼仍有轴线、宽深比及门洞净宽残差，`gate.precise_mask_verified:false`；条目同时保留标称宽度、正面归一化孔宽比例和成品孔端点向量。比例估值不是64×32格实测净宽，不能把标称值当像素实测。墙角包络中心按可见端点推算；树锚为根，建筑贴片锚为底面包络中心。所有尺寸与锚点以manifest为准，不按透明画布宽再次缩放。
+
+参考资料（访问2026-09-30）：[顺天门考古简报](https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf)仅核到检索摘录，未阅全文图版；[故宫汴水贯木拱虹桥研究](https://www.dpm.org.cn/study_detail/100191.html)已读网页；[Pillow Image文档](https://pillow.readthedocs.io/en/stable/reference/Image.html)核对裁切、RGBA及resize接口。完整建筑史来源及使用边界见任务报告§7。
+
+开放问题默认值：沿用7件candidate作为风格候选；四向、精确门洞mask、墙角接缝、桥栏遮挡交总装另验**（待实测）**。两种植物的物种细部、季节和历史栽植位置**（待考）**；不默认批准，不修改上游schema枚举或城门碰撞规则。

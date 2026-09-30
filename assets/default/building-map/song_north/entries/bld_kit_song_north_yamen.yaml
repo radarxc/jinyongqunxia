@@ -1,0 +1,98 @@
+id: bld_kit_song_north_yamen
+file: bld_kit_song_north_yamen.png
+category: building-map
+style: default
+subject: 北宋中原 官署衙门（原创扩展；建筑细部待考）
+prompt: 'Use case: historical-scene. Generate exactly ONE isolated production city-map building sprite for tianshu, Northern Song central plains
+  Kaifeng/Luoyang around 1093. Reference images supply only realistic ancient materials and detail density; never copy reference camera mistakes
+  or southern lush vegetation. Historical realistic grey clay tile, warm grey plaster over earth and rough bricks, matte weathered timber; restrained
+  subtle ochre and red where structural. NOT toy, plastic, miniature diorama or ink wash. Orthographic yaw45 elevation30, ground axes EXACT slopes
+  +0.5/-0.5 (2:1 dimetric), parallel opposite edges, upright columns, NO perspective. South entrance faces screen LOWER LEFT. Entire isolated
+  footprint on one extremely thin flat ground-contact parallelogram with left, bottom/front and right corners clearly visible for grid calibration.
+  Only a shallow masonry contact strip, NO thick plinth. Upper-left screen illumination, short contact shadow towards lower-right. TRUE transparent
+  RGBA background, at least10% clear margins all sides. All roof ends and ground corners visible. No text, writing, signs, symbols, watermark,
+  people, surrounding city, sky, trees outside footprint, modern objects, Qing ornament, imperial yellow roofs, thick bases or checkerboard. Subject:
+  one Northern Song administrative yamen compound, a sober broad grey-tile timber main audience hall, one low side office wing and a small gatehouse
+  in rough warm grey brick courtyard walls, open paved court. All within footprint 16m east-west by12m north-south; screen down-right front edge
+  length / up-right edge length must be exactly16/12. Large wooden south gate on lower-left face, restrained structural bracketwork, unpainted
+  lattice windows, blank surfaces. Original non-site-specific design, not a exact named heritage reconstruction. No gardens, no flags or drums.
+  Geometry priority: make projected ground parallelogram corners in a1536x1024 canvas precisely left(90,535),front(858,919),right(1434,631),back(666,247),
+  up to uniform scaling and translation. Its front long side points down-right slope0.5, short side points up-right slope-0.5. These are construction
+  instructions, do NOT draw labels or guides. Place wall bottom edges exactly along this parallelogram. Keep the architecture shorter so the roof
+  fits above. Make the ground boundary a paper-thin contact edge. All background must have alpha zero, no glow, no haze, no ambient gradient.'
+negative: 文字、水印、现代元素、人物、场景背景、厚底座、塑料感、清式重彩、黄琉璃宫顶、透视汇聚
+references:
+- {id: bld_kit_song_southern_yamen, file: assets/default/baseline/building-map/bld_kit_song_southern_yamen.png, sha256: 4a255313b6c1c776a046158f4cadb26c008500f41c304277889aea66c0b00fb0,
+  role: 宋套件仅材质与写实细节参考；非本图几何或历史准确性背书}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:14:20.728890+00:00'
+created_time_basis: 源PNG文件mtime；非服务端披露调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f428-8576-7390-a428-7025aed217c6/exec-0fceebd7-022f-4356-87fe-9cc9ca9ac992.png
+source_sha256: aaff7cbb46907f58f7f853b90155a4dd4f0af1324658b46245ea1da4fa3c3a19
+size: 976x688
+sha256: cc15215918d28e0964f524c1530e6e9788a44b182a8d5d5bf995d707dd1a99c7
+status: candidate
+building:
+  type: bld_kit_song_north_yamen
+  footprint: [16, 12]
+  anchor: [487.3607, 390.0439]
+  era: song_north
+footprint_m: [16, 12]
+anchor_px: [487.3607, 390.0439]
+allowRotation: false
+views: [S]
+entrance: {edge: S}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [896, 448]
+  camera_target: yaw45 pitch30 orthographic 2:1
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+candidate_count: 2
+selected_candidate: 2
+source_record: sources/bld_kit_song_north_yamen.provenance.json
+processing:
+  source_archive: sources/bld_kit_song_north_yamen.candidate2.png
+  source_size: [1536, 1024]
+  crop_box: [70, 25, 1484, 982]
+  uniform_scale_requested: 0.6390870185449358
+  resized_size: [904, 612]
+  rounded_effective_scale: [0.6393210749646393, 0.6394984326018809]
+  paste_offset: [36, 38, 940, 650]
+  final_canvas: [976, 688]
+  steps: [crop alpha>0 bounding box, one uniform LANCZOS resize with integer size rounding, 'pad RGBA; original alpha preserved; no thresholding,
+      repaint, warp or flip']
+geometry_qa:
+  source_corners_px:
+    left: [75, 554]
+    front: [851, 944]
+    right: [1477, 597]
+  anchor_method: (left+right)/2; rear inferred as left+right-front
+  source_axis_slopes: [0.5025773195876289, -0.5543130990415336]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.2396166134185302
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.07028753993610226
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 4
+  precision_note: 人工量可见薄底面三角点；后角遮挡推算，非测绘；残差不以几何变形修正
+  anchor_rounding_correction:
+    previous_anchor_px: [487.1954, 389.8174]
+    corrected_anchor_px: [487.3607, 390.0439]
+    reason: 按整数resize后的sx/sy转换，避免requested scale的亚像素偏移；未改图像或底面测点
+pixel_qa:
+  mode: RGBA
+  size: [976, 688]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 412326
+  alpha_partial_pixels: 258284
+  alpha_opaque_pixels: 878
+  alpha_near_opaque_pixels: 251675
+  alpha_nonzero_bbox: [36, 38, 940, 650]
+  transparent_margins_px: [36, 38, 36, 38]
+  border_alpha_max: 0
+notes: 已逐张view_image原图与最终PNG自查。第二候选院落完整；入口左下，右轴仍偏陡，未以拉伸纠正。单视图；运行时拼接待实测；形制组合为原创扩展，细部待考。
