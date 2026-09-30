@@ -1,6 +1,6 @@
 # 门派武学图鉴 · 少林（skills-shaolin）
 
-> **版本**：v1.5（阴阳性质落地 AR-18，2026-09-29）；v1.4（路线叙事第三轮，2026-09-29）；v1.3（经脉落地终审，2026-09-29）；v1.2（AR-01 扩充；全局审计）；经脉系统落地、绝招数量调整（2026-09-27）；M4 返修（解锁层 7/9/10、同门绝招独立路线）；图鉴一致性审计、天中 / 地中绝招数统一、外放标记、绝招路线叙事化（2026-09-28）。
+> **版本**：v1.5（阴阳性质落地 AR-18，2026-09-29）；v1.4（路线叙事第三轮，2026-09-29）；v1.3（经脉落地终审，2026-09-29）；v1.2（AR-01 扩充；全局审计）；经脉系统落地、绝招数量调整（2026-09-27）；M4 返修（解锁层 7/9/10、同门绝招独立路线）；图鉴一致性审计、天中 / 地中绝招数统一、外放标记、绝招路线叙事化（2026-09-28）；路线唯一性第五轮（2026-09-30）。
 > **归属（基准 §18）**：`design/catalog/skills-*.md`——门派武学图鉴。本文定义少林派（嵩山少林）、南少林及其旁支武学；门派制度、Buff、阵法、套装与书界投放只登记接口。
 > **上游**：`docs/decisions/author-requirements.md` AR-01/02/07/08/14–18；`docs/decisions/author-decisions.md` P06/P09/P32/P47/P49；`docs/00-canon.md` v1.8（§2–§4、§6–§8、§12–§13、§16、§18、§20）；`docs/decisions/rulings-v1.md` C12/C14/C17/C22/C23；`design/03`、`design/05` v1.7.1、`design/21` v2.7.2。
 > **引用而不重定义**：属性与技艺 ID 见 `design/03`；武学字段、招式预算、层数、内功与学习门槛见 `design/05`；战斗经脉运行、招式路线、调息、护体内劲与经脉速度见 `design/21`；Buff 目录见 `design/06`；套装规则与最终效果见 `design/07`；阵法与合击见 `design/09`；门派制度见 `design/12` 与 `design/17`；经脉、穴位、冲穴、周天与九转见 `design/15`；资源、月钱与营生见 `design/16`；时代地图见 `design/11`。`sk_yijinjing`、`sk_longzhaoshou`、`sk_luohanquan`、`sk_tieshazhang` 的完整数据以 `design/05` 为准，本文只给摘要与需同步接口。
@@ -71,6 +71,15 @@
 <!-- skill-catalog-audit:end -->
 
 > **路线互异说明（经脉落地终审；AR-18 复核）**：少林九阳周天由阳维金门入命门，经肾俞、至阳、身柱回护，区别铁掌吐纳的曲池—合谷收束，也区别易筋经倒拽九牛尾的命门—气冲换力与阴维借势；铜人巷由命门、天宗、曲池、肩髃转膻中再出合谷，表现横练聚躯外撞。铁布衫罡气以腰阳关—命门—身柱撑背、曲池—小海架臂，韦陀降魔杵则由外关至阳谷导兵器；大力金刚掌由至阳提势、曲池导臂并归劳宫发掌，金刚怒吼由命门、身柱、丰隆提气，经天突或廉泉发声；须弥压顶由腰阳关—委中—丰隆转肩髃沉掌，归劳宫发力，区别嵩山开合掌的肩井起势，五郎破阵则由腕骨、外关导棍。各路线因而在关键穴、体段阴阳计票与动作末端上均有职责区分。
+
+### 普通显式路线索引（NR5 改线镜像，2026-09-30）
+
+仅镜像本轮改动的两条普通路线，正式实例见 §5.7.2，招式事实见 §1.5.3；不是新增路线或覆写层。两条均为 `ultimate:false`、`purpose:attack`、`requiredNature:[yang,harmony]`；**只换穴**，段数、逐段 CT、风险、收招及出招方式不变。风险总和是逐段 `riskBp` 之和，不是整招失败概率。
+
+| 武学 / 招式 | 路线 ID | 显式步骤来源 / 本轮换穴 | 段数 / 路线 CT / 收招合计 | 风险列表 / 总风险 |
+|---|---|---|---|---|
+| `sk_shizihou` / `mv_shizihou_pozhen` | `mfr_shizihou_pozhen` | 见 §5.7.2 普通外放路线实例；第 2／3 穴换为腰俞／身柱 | 8 / 560 / 1560 CT | `[80,100,120,140,400,100,120,140]` / 1200 |
+| `sk_shizihou` / `mv_shizihou_zhenhou` | `mfr_shizihou_zhenhou` | 见 §5.7.2 普通外放路线实例；第 2／3 穴换为脊中／心俞 | 8 / 560 / 1560 CT | `[80,100,120,140,400,100,120,140]` / 1200 |
 
 
 | 章节 | 内容 |
@@ -336,6 +345,7 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 - **获取**：`{master, ch04_yitian, npc_kongzhi, maxLayer 10, note: 屠狮大会后（原创扩展）}`；`{master, ch04_yitian, npc_xiexun, reqsOverride {sect: null, prereq: [], hard: []}, note: 由倚天组/chapters/04 配置}`。`observable: false`。
 - **反制**："塞耳"物品/定力 ≥ 80 免疫附带的心神类（05 §4.6；数值归 06/10）。
 - **AR-16 音功外放 / 人声输入**：六招均显式标 `voice:true`，作为人声发劲的静态出招事实（`design/05` §4.2.2）；五记伤害招在 F0 逐字投影为 `ProjectionInput.voice`（`design/21` §12.3），用于人声外放端点（天突 / 廉泉）判定，并按 `design/21` §4.4.1 标 `projection:true`。0 档仍用基础范围、普通 Z5M、零外放增耗，1／2 档才激活外放曲线与扩张；当头棒喝无伤害段，保持非外放。
+- **NR5 普通路线（原创扩展）**：破阵吼由气海蓄气，经腰俞—身柱—神道提背劲，转膻中束气，经天突向前发声，曲池—合谷维持定向架势；狮吼震由腰阳关—脊中起势，经心俞—肺俞撑展背胸、丰隆稳身，仍以曲池—天突—劳宫导引周围声劲。两招只换体段第 2／3 穴，尾三段不变；仍各 8 段、路线 560 CT、收招合计 1560 CT、风险总和 1200，完整步骤与核算见 §0 普通显式路线索引、§5.7.2 及 §5.7.4 后的跨武学高相似路线说明。
 
 ### 1.6 地阶条目卡（嵩山少林 24 门）
 
@@ -1288,9 +1298,9 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 | `mfr_mohezhi_poqi` | `mv_mohezhi_poqi` | `[yang,harmony]` | `AT-Y8` | `ap_shouyangming_hegu`、`ap_shouyangming_shangyang` |
 | `mfr_nianhuazhi_nianhua` | `mv_nianhuazhi_nianhua` | `[yin,yang,harmony]` | `AT-H6` | `ap_shoujueyin_neiguan`、`ap_shoujueyin_zhongchong` |
 | `mfr_nianhuazhi_sanhua` | `mv_nianhuazhi_sanhua` | `[yin,yang,harmony]` | `AT-H8` | `ap_shoutaiyin_shaoshang` |
-| `mfr_shizihou_pozhen` | `mv_shizihou_pozhen` | `[yang,harmony]` | 显式：`MeridianRouteDef{moveRef:mv_shizihou_pozhen; ultimate:false; purpose:attack; requiredNature:[yang,harmony]}`；`ap_renmai_qihai/70/80→ap_dumai_mingmen/70/100→ap_dumai_zhiyang/70/120→ap_dumai_shendao/70/140→ap_renmai_danzhong/70/400→ap_yinwei_tiantu/70/100→ap_shouyangming_quchi/70/120→ap_shouyangming_hegu/70/140` | `ap_yinwei_tiantu`、`ap_shouyangming_hegu` |
+| `mfr_shizihou_pozhen` | `mv_shizihou_pozhen` | `[yang,harmony]` | 显式：`MeridianRouteDef{moveRef:mv_shizihou_pozhen; ultimate:false; purpose:attack; requiredNature:[yang,harmony]}`；`ap_renmai_qihai/70/80→ap_dumai_yaoshu/70/100→ap_dumai_shenzhu/70/120→ap_dumai_shendao/70/140→ap_renmai_danzhong/70/400→ap_yinwei_tiantu/70/100→ap_shouyangming_quchi/70/120→ap_shouyangming_hegu/70/140` | `ap_yinwei_tiantu`、`ap_shouyangming_hegu` |
 | `mfr_shizihou_shehun` | `mv_shizihou_shehun` | `[yang,harmony]` | 显式：`MeridianRouteDef{moveRef:mv_shizihou_shehun; ultimate:false; purpose:attack; requiredNature:[yang,harmony]}`；`ap_dumai_mingmen/70/80→ap_dumai_shenzhu/70/100→ap_yangwei_jianjing/70/120→ap_zuyangming_fenglong/70/140→ap_shoutaiyang_xiaohai/70/400→ap_dumai_zhiyang/70/100→ap_yinwei_lianquan/70/120→ap_shoujueyin_neiguan/70/140` | `ap_yinwei_lianquan`、`ap_shoujueyin_neiguan` |
-| `mfr_shizihou_zhenhou` | `mv_shizihou_zhenhou` | `[yang,harmony]` | 显式：`MeridianRouteDef{moveRef:mv_shizihou_zhenhou; ultimate:false; purpose:attack; requiredNature:[yang,harmony]}`；`ap_dumai_yaoyangguan/70/80→ap_dumai_mingmen/70/100→ap_dumai_zhiyang/70/120→ap_zutaiyang_feishu/70/140→ap_zuyangming_fenglong/70/400→ap_shouyangming_quchi/70/100→ap_yinwei_tiantu/70/120→ap_shoujueyin_laogong/70/140` | `ap_yinwei_tiantu`、`ap_shoujueyin_laogong` |
+| `mfr_shizihou_zhenhou` | `mv_shizihou_zhenhou` | `[yang,harmony]` | 显式：`MeridianRouteDef{moveRef:mv_shizihou_zhenhou; ultimate:false; purpose:attack; requiredNature:[yang,harmony]}`；`ap_dumai_yaoyangguan/70/80→ap_dumai_jizhong/70/100→ap_zutaiyang_xinshu/70/120→ap_zutaiyang_feishu/70/140→ap_zuyangming_fenglong/70/400→ap_shouyangming_quchi/70/100→ap_yinwei_tiantu/70/120→ap_shoujueyin_laogong/70/140` | `ap_yinwei_tiantu`、`ap_shoujueyin_laogong` |
 | `mfr_wuxiangjiezhi_jiehuo` | `mv_wuxiangjiezhi_jiehuo` | `[yin,yang,harmony]` | `AT-H6` | `ap_shoujueyin_neiguan`、`ap_shoujueyin_zhongchong` |
 | `mfr_wuxiangjiezhi_kongjie` | `mv_wuxiangjiezhi_kongjie` | `[yin,yang,harmony]` | `AT-H8` | `ap_shoutaiyin_shaoshang` |
 | `mfr_wuxiangjiezhi_wuxiang` | `mv_wuxiangjiezhi_wuxiang` | `[yin,yang,harmony]` | `AT-H6` | `ap_shoujueyin_neiguan`、`ap_shoujueyin_zhongchong` |
@@ -1364,7 +1374,7 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 #### 跨武学高相似路线说明（21 §4.3.4）
 
-前轮接收的 24 对跨武学高相似路线全部选择改开，不使用共同传承理由豁免；AR-18 又改动其中 10 条路线的体段。下表 bp 已按当前路线以 `floor(10000×|A∩B|/min(|A|,|B|))` 复算，换穴列同时保留前轮与 AR-18 追溯。完整步骤以文首索引为准，出招方式、段数、逐段 CT、风险序列、收招与总风险均不变；当前全仓无新增 `overlapBp≥8000` 配对。下述动作—穴位映射均属玩法层**（原创扩展）**，不作为原著招式考据。
+前轮接收的 24 对跨武学高相似路线全部选择改开，不使用共同传承理由豁免；AR-18 又改动其中 10 条路线的体段。下表 bp 已按当前路线以 `floor(10000×|A∩B|/min(|A|,|B|))` 复算，换穴列同时保留前轮与 AR-18 追溯。完整步骤以文首绝招索引为准，出招方式、段数、逐段 CT、风险序列、收招与总风险均不变；该轮未新增 `overlapBp≥8000` 配对。显式普通路线纳入全仓比较后新增的本任务 4 对见下方 NR5 表，不把前轮绝招口径的清零结论扩展为全仓普通路线清零。下述动作—穴位映射均属玩法层**（原创扩展）**，不作为原著招式考据。
 
 | 本册路线 | 名下配对数；改前 bp → 改后 bp | 本轮换穴（移出 → 移入） | 动作末端或关键段 | 镜像 / 段数 / 路线 CT / 收招合计 | 风险序列 / 总风险 |
 |---|---|---|---|---|---|
@@ -1383,7 +1393,25 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 | `mfr_dajingangzhang_dali` | 1；`8333 → 3333` | 前轮：天池、孔最 → 至阳、曲池；AR-18：少冲、中府 → 小海、肩井 | 至阳提势，小海—曲池—肩井导臂，末由内关—劳宫吐掌 | 显式（见文首索引）/ 8 / 720 / 1920 CT | `[100,120,140,160,180,200,220,240]` / 1360 |
 | `mfr_luohanzhen_shibaluohan` | 1；`8000 → 2000` | 命门、神门 → 身柱、内关 | 身柱—至阳—神道串联阵员躯干，内关协调合击，关元收束护阵 | 显式（见文首索引）/ 8 / 600 / 1800 CT | `[100,110,120,130,140,150,160,170]` / 1080 |
 
-第 4 次返修另按穴位集合复核跨册普通路线：少林九阳周天以肾俞替换曲池后，与铁掌运气功吐纳由共用“命门、至阳、身柱、曲池”`4/5=80%` 降为共用“命门、至阳、身柱”`3/5=60%`；须弥压顶以肩髃替换肩井后，与嵩山开合掌合岳由共用“肩井、丰隆、内关、劳宫”`4/4=100%` 降为共用“丰隆、内关、劳宫”`3/4=75%`。两次替换均为阳性体段换阳性体段，未改变段数、CT、风险、收招或动作末端；全仓复算未新增其他 `overlapBp≥8000` 配对。
+第 4 次返修另按穴位集合复核跨册普通路线：少林九阳周天以肾俞替换曲池后，与铁掌运气功吐纳由共用“命门、至阳、身柱、曲池”`4/5=80%` 降为共用“命门、至阳、身柱”`3/5=60%`；须弥压顶以肩髃替换肩井后，与嵩山开合掌合岳由共用“肩井、丰隆、内关、劳宫”`4/4=100%` 降为共用“丰隆、内关、劳宫”`3/4=75%`。两次替换均为阳性体段换阳性体段，未改变段数、CT、风险、收招或动作末端；该轮全仓复算未新增其他 `overlapBp≥8000` 配对。
+
+**路线唯一性第五轮（2026-09-30）**：按 LINT-outlets 的显式普通路线口径，名下 4 对全部改开，不使用理由豁免。只修改下表本册普通路线，另一侧及本册绝招保持既定步骤；共享模板绑定的普通路线不展开纳入跨武学比较（2026-09-29 协调者裁定）。
+
+| 本册普通路线 | 相似路线 | 改前 bp（共享 / 分母） | 改后 bp（共享 / 分母） | 处理：只换穴（移出 → 移入） |
+|---|---|---:|---:|---|
+| `mfr_shizihou_zhenhou` | `mfr_jingangnuhou_zhenshe` | 8333（5/6） | 6666（4/6） | 命门、至阳 → 脊中、心俞 |
+| `mfr_shizihou_pozhen` | `mfr_shanzongzhengqigong_tiqi` | 10000（4/4） | 5000（2/4） | 命门、至阳 → 腰俞、身柱 |
+| `mfr_shizihou_zhenhou` | `mfr_shenlongxinfa_tuxi` | 8000（4/5） | 4000（2/5） | 命门、至阳 → 脊中、心俞 |
+| `mfr_shizihou_pozhen` | `mfr_tiezhangyunqigong_tuna` | 8000（4/5） | 6000（3/5） | 命门、至阳 → 腰俞、身柱 |
+
+两条均换 `floor(0.2×8)+1=2` 穴。破阵吼保留气海蓄气，以腰俞—身柱—神道提背劲、膻中束气，支持向前扇面破阵；狮吼震保留腰阳关起势，以脊中—心俞—肺俞撑展背胸，丰隆稳身后向周围震慑。两者继续以督脉作为少林核心；天突发声与既有手部导引尾段均不变，不借换出招方式避开检查。
+
+| 本册路线 | 体段阴:阳（改前 → 改后） | 段数 / 路线 CT / 收招合计（不变） | 风险列表 / 总风险（不变） |
+|---|---|---|---|
+| `mfr_shizihou_pozhen` | `2:5 → 2:5`，均阳；天突不投票，曲池、合谷仍投体段票 | 8 / `8×70=560` / `1000+560=1560≤2000` CT | `[80,100,120,140,400,100,120,140]` / `80+100+120+140+400+100+120+140=1200` |
+| `mfr_shizihou_zhenhou` | `1:6 → 1:6`，均阳；天突不投票，曲池、劳宫仍投体段票 | 8 / `8×70=560` / `1000+560=1560≤2000` CT | `[80,100,120,140,400,100,120,140]` / `1200` |
+
+完整步骤只定义于 §5.7.2 正式实例，文首普通显式路线索引镜像其引用、换穴、段数、CT 与风险；§5.7.3 继续引用同一 ID。两条均保留 8 段，处于天下普通路线建议 5–12 段内；CT / 风险数组均为 8 项，各段 70 CT、风险 80–400，符合 `design/21` §4.6 / §17.1。全仓 654 条绝招＋207 条显式普通路线中，改动两条与其他武学的最大重合均为 7500 bp，完全相同及新增 ≥8000 bp 配对均为 0。另将当头棒喝模板展开，仅用于同武学复核：狮子吼六招的 15 对共享均 ≤50%，最高为狮吼震 / 狮子吼绝招 `4/8`、狮子吼绝招 / 当头棒喝 `3/6`；没有同序、轮换或逆序。
 
 ##### AR-18 路线性质复核
 
@@ -1412,7 +1440,7 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 | `mfr_jingangnuhou_zhenshe` | `4:1 阴 → 1:4 阳` | 气海、膻中、尺泽 → 身柱、丰隆、曲池 | 6 / 600 / 1800 | `[100,120,140,160,180,200]` / 900 |
 | `mfr_wulangbaguagun_pozhen` | `4:0 阴 → 0:4 阳` | 大都、阴陵泉、神阙、间使 → 腰阳关、足三里、肩井、委中 | 6 / 600 / 1800 | `[100,120,140,160,180,200]` / 900 |
 | `mfr_shizihou_shehun` | `5:2 阴 → 1:6 阳` | 极泉、尺泽、曲泽、膻中 → 肩井、丰隆、小海、至阳 | 8 / 560 / 1560 | `[80,100,120,140,400,100,120,140]` / 1200 |
-| `mfr_shizihou_zhenhou` | `4:3 阴 → 1:6 阳` | 气海、膻中、尺泽 → 腰阳关、肺俞、丰隆 | 8 / 560 / 1560 | `[80,100,120,140,400,100,120,140]` / 1200 |
+| `mfr_shizihou_zhenhou` | `4:3 阴 → 1:6 阳`；NR5 仍 `1:6 阳` | AR-18：气海、膻中、尺泽 → 腰阳关、肺俞、丰隆；NR5：命门、至阳 → 脊中、心俞（只换穴） | 8 / 560 / 1560 | `[80,100,120,140,400,100,120,140]` / 1200 |
 | `mfr_jingangnuhou_nuhou` | `3:2 阴 → 1:4 阳` | 气海、膻中 → 身柱、丰隆 | 6 / 420 / 1420 | `[80,100,120,140,160,180]` / 780 |
 
 #### 5.7.5 玄 / 黄阶路线模板与全轻功绑定
@@ -1563,7 +1591,7 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 | V-SL-19 | 绝招数量新规 | 天上 3、天下 2；地上 2、地中按统一裁定 1–2、地下 1；玄上 1；玄中以下 0 | ✅；天 / 地 / 玄上总数 `7/35/10`，本轮前为 `7/44/10` |
 | V-SL-20 | AR-16 逐招覆盖 | 审计表按 `moveId` 排序；每个 `projected` 条目均有 `projection:true`、基础 `range/aoe`、恰三项 spread，且 `[0] == aoe`；不从远程、招名或旧伤害类型反推 | ✅；外放 30（天/地/玄/黄 `5/22/3/0`），待考 7，易误判且已审不标 2；7 记音功按新口径改标 |
 | V-SL-21 | AR-16 伤害与路线 | 外放招全部伤害段为 `DamageKind='projected'`；攻击路线至少含 21 §4.4.1.4 的合法上肢端点；人声音功另含天突或廉泉 | ✅；阳性模板已有合谷，调和 `AT-H6` 改由内关转中冲，`AT-H8` 含少商；7 记音功路线兼具喉部与手部端点 |
-| V-SL-22 | 跨武学路线互异 | 不得与全仓其他绝招使用完全相同的有序穴位序列；本轮名下 24 对均须 `overlapBp<8000`，且不得新造 `overlapBp≥8000` 配对 | ✅；24 对全部改开至 0–6666 bp，新增高相似配对 0，见 §5.7.4 后的专项说明 |
+| V-SL-22 | 跨武学路线互异 | 显式普通路线及绝招纳入全仓比较；名下配对须改开或逐对写足理由，完全同序不得豁免，且不得新造 `overlapBp≥8000` 配对；共享模板绑定普通路线按协调者裁定不展开 | ✅；NR3 名下 24 对仍改开至 0–6666 bp；NR5 名下 4 对全部改开至 4000–6666 bp，无理由豁免、新造配对 0，见 §5.7.4 后的专项说明 |
 | V-SL-23 | 人声输入字段 | 狮子吼 6 招、金刚怒吼 2 招均显式 `voice:true`；纯支援“当头棒喝”不得因此取得 `projection:true` | ✅；8 招均结构化登记，绝招索引同步 3 招；字段语义见 `design/05` §4.1 / §4.2.2、`design/21` §12.3 |
 | V-SL-24 | AR-18 路线性质 | 52 条显式交付路线按体段计票；动作出口只取尾部规则命中点；阴阳武学不得走相反性质路线 | ✅；23 条原冲突均改为阳，`nature-conflict=0`；端点违规 0，见 §5.7.4 |
 
@@ -1656,7 +1684,7 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 | D-13 | AR-14；`design/21` v2.7.2 | **已解决（本文侧）**：29 门天 / 地、145 招逐一显式绑定，10 条玄上绝招路线显式登记，5 门轻功接速度路线，12 门内功接含离战倍率的调息档案与护体显示档；动态公式仍由 21 唯一拥有（见 §5.7） |
 | D-14 | `design/05` §13.7、§2.8 | **已解决**：铁砂掌 `mv_tieshazhang_jingang` 已降为普通招并统一参数；龙爪手已登记 `mv_longzhaoshou_sanshiliu`（7 重）与 `mv_longzhaoshou_daoxu`（9 重）两记独立绝招，后二者均为 `ultimate:true`、耗内 9%、收招 1200 |
 | D-15 | `design/05` §4.1 / §4.2.2、`design/21` §4.4.1 / §12.3、`tech/04`、`tech/05` | **已解决（本文侧）**：狮子吼 6 招、金刚怒吼 2 招均显式补 `voice:true`；其中七记伤害音功另有 `projection:true`、三档范围、`DamageKind='projected'` 与合法路线。实现侧仍须保持音功 0 档普通 Z5M / 零外放增耗、1／2 档才激活外放曲线 |
-| D-16 | Canon V17-06、`design/21` §4.3.4 | **已解决（本文侧）**：名下 24 对跨武学高相似路线全部改开至 0–6666 bp，无理由豁免、无新增 8000 bp 以上配对；见 §5.7.4 后的专项说明 |
+| D-16 | Canon V17-06、`design/21` §4.3.4；LINT-outlets 显式普通路线比较口径 | **已解决（本文侧）**：NR3 名下 24 对跨武学高相似路线仍改开至 0–6666 bp；NR5 名下 4 对全部改开至 4000–6666 bp，无理由豁免、无新增 8000 bp 以上配对；见 §5.7.4 后的专项说明。涉及本册但归其他任务的既有配对仍由其负责普通路线一侧处理 |
 | D-17 | Canon v1.8 V18-01～04、`design/05` §5.3.1、`design/15`、`design/21` §4.3.1 | **已解决（本文侧）**：12 门内功补齐 `inner.meridians`，声明性质与主修经脉计票一致；23 条原冲突路线改为阳性体段，出招方式与动作末端不变，见 §5.7.4–§5.7.6 |
 
 ### 8.3 对基准的修改提案
