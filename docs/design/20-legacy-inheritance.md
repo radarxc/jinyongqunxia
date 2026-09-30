@@ -1,10 +1,10 @@
 # 20 · 跨年代传承：后人、宝藏、残本与合成（Legacy Inheritance）
 
 > 归属（基准 §18）：传承源、消隐判定、后人 / 宝藏候选、三卷残本、关键信物、跨年代合成与其投放预算。
-> 上游：`docs/00-canon.md` v1.2；作者需求 `decisions/author-requirements.md` AR-01、AR-04、AR-08、AR-09、AR-13；作者决定 `decisions/author-decisions.md`，尤其 P35；跨文档裁定 `decisions/rulings-v1.md`。
+> 上游：`docs/00-canon.md` v1.8；作者需求 `decisions/author-requirements.md` AR-01、AR-04、AR-08、AR-09、AR-13、AR-18；作者决定 `decisions/author-decisions.md`，尤其 P35；跨文档裁定 `decisions/rulings-v1.md`。
 > 引用而不重定义：年代、书眠、残篇 / 残承 / 藏史与 `rs_*` → `design/02-timeline-and-world-tiers.md`；属性与 `lore` / `luk` / `wis` / `morality` → `design/03-attributes.md`；武学、层数、`sourceGrade` / `sourceCap` 与学习途径 → `design/05-martial-arts-system.md`；地图、时代图层与奇遇触点 → `design/11-open-world.md`、`design/19-world-map.md`；任务 DSL → `design/12-quests-npc-factions.md`，确定性、RNG 与事务 → `tech/05-gameplay-engine.md`；天书之力、多周目与成就 → `design/13-progression-and-endings.md`；家丁与资源点 → `design/16-resources-and-estates.md`；门派时代矩阵 → `design/17-sects-compendium.md`；NPC 生卒、后人与生成规则 → `design/18-npc-and-companions.md`；物品与秘籍 → `design/10-items-and-equipment.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.0（作者需求 AR-13 首稿，2026-09-26）；审校 H1.R（2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
+> 版本：v1.0（作者需求 AR-13 首稿，2026-09-26）；审校 H1.R（2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；阴阳性质同步 AR-18（2026-09-30）。
 
 ---
 
@@ -760,11 +760,26 @@ all SkillDef hard reqs / oath / route gates still pass
 
 ### 7.3 内功性质
 
-- 内功目标默认要求同性质内功；目标为 `harmony` 时要求调和内功。
+- 内功目标默认要求同性质内功；目标为 `harmony` 时要求调和内功。目标性质读取所属图鉴现值，判定规则见 `design/05` §5.3；残卷名、刚柔表现和正逆周天不作为性质条件。
 - 外功、轻功、暗器、杂学由配方声明 `allowedInnerNatures`；未声明则三性质皆可。
 - `design/05` 的 `inner.bridge` 可视为性质满足，但其内功品阶与层数仍须达标。
 - “中性”不是内功性质；目录不得为内功写 `neutral`。
 - 内功性质与合法 `inner.bridge` 属于硬条件：阴阳相冲时按钮置灰，不能用 §7.5 的强行校合软化；专属誓约同样永远不能强行绕过。
+
+#### 7.3.1 AR-18 同步后的校合可达性
+
+§9 全部 27 条带性质的 `Cn（…）` 已对照所属图鉴；其中 15 条为内功目标，九阳、吸星、葵花、混元四项随 NR4 改性，其余性质条件不变。12 条外功 / 轻功门槛是配方显式收窄，仍按各自目标与图鉴前置检查，不因内功示例改性而自动改写。
+
+下表只引用已登记内功作满足条件的实例，沿用 §7.1 的 `sourceGrade/trueLayer`；配方并不强制玩家选择该实例。品阶与层数要求分别为 `max(4,g−3)`、`ceil(g/2)+1`：C12 得 `9/7`，C11 得 `8/7`，C9 得 `6/6`。目标残本真实 7 重、相关武学、悟性 / 学识、三卷与信物以及有效硬门槛仍须同时满足。
+
+| 目标 / 条目 | 现性质与校合内功条件 | 已登记的可达实例 |
+|---|---|---|
+| 九阳神功 `sk_jiuyang` / §9.4.3 | 调和；C12：来源品阶≥9、真实层数≥7 | 笑傲华山正常完整来源的紫霞神功 `sk_zixiashengong`，9 品调和，练至 7 重：`9≥12−3`、`7=ceil(12/2)+1`；见 `catalog/skills-wuyue` §2.3。九阳传承最早 ch05，与此来源时序相容 |
+| 吸星大法 `sk_xixing` / §9.5.2 | 调和；C11：来源品阶≥8、真实层数≥7 | 将倚天合法取得的九阳神功 12 品调和练至 7 重，经笑傲携入 ch06，`12≥11−3=8`、`7=ceil(11/2)+1`；笑傲另学日月心法至 6 重并一同携入，合计两门内功满足 ch06 的 2 栏携带限额。日月前置与有效身份 / 来源覆写仍按 `catalog/skills-wuyue` §7.2 检查 |
+| 葵花宝典 `sk_kuihua` / §9.5.3 | 阳；C11：来源品阶≥8、真实层数≥7 | 倚天 / 笑傲合法取得的纯阳无极功 `sk_chunyangwuji`，8 品阳，练至 7 重携入 ch06 或后世：`8=11−3`、`7=ceil(11/2)+1`；见 `catalog/skills-daojia` §5.4。成年与断尘之誓仍为目标硬门槛 |
+| 混元功 `sk_hunyuangong` / §9.6.6 | 调和；C9：来源品阶≥6、真实层数≥6 | 碧血紫霞残承 `sk_zixiashengong` 的 `sourceGrade=8,maxLayer=8`，练至 6 重携入 ch08 或后世：`8≥max(4,9−3)=6`、`6=ceil(9/2)+1≤8`；见 `catalog/skills-wuyue` §2.3。这里只用其作校合内功，不替代混元掌 8 重前置，也不将紫霞列为混元必修或满层材料（见 `catalog/skills-xiake-bixue` §8.2） |
+
+表中用于满足性质与品阶的内功各占一门携带名额；吸星实例另带日月心法，共两门，明确选择中武 ch06 完成。其他目标前置按其类别另计携带名额或在当界合法取得；境界压制不降低已保留的 `sourceGrade/trueLayer`。每条目标的失落事实、守传认可及有效来源仍按 §2.7、§9 检查，不由可达实例自动授予。
 
 ### 7.4 时间与材料代价
 
@@ -1118,8 +1133,8 @@ innerMinLayer = ceil(10/2) + 1 = 6
 
 - **时序**：来源 `ch04_yitian`；白猿腹中全本被取出后的后续去向须章节提交 `legacy/jiuyang/manual_lost`，方可在 `ch05–ch14` 投放。
 - **载体 / 投放**：觉远残诵的三支校记、昆仑旧洞藏页或医家抄本；`cache_jiuyang_kunlun`，优先 `rg_xiyu_nanjiang`，不重复制造第二只藏经白猿。
-- **三卷 / 信物**：`frag_jiuyang_yangmai`《阳脉卷》、`frag_jiuyang_huti`《护体卷》、`frag_jiuyang_yuanyuan`《源流卷》；`it_xinwu_jiuyang_jiaoben` 三家九阳校本。
-- **条件 / 产物**：C12（阳），保留 `sk_jiuyang` 有效资质门槛；产物 `sk_jiuyang` 12 天上；关键源，昆仑探索和三家印证二选一。
+- **三卷 / 信物**：`frag_jiuyang_yangmai`《阳脉卷》、`frag_jiuyang_huti`《护体卷》、`frag_jiuyang_yuanyuan`《源流卷》；`it_xinwu_jiuyang_jiaoben` 三家九阳校本。《阳脉卷》沿用叙事名，不声明全本性质；九阳现为调和，见 `catalog/skills-yitian` §2.1。
+- **条件 / 产物**：C12（调和），保留 `sk_jiuyang` 有效资质门槛；产物 `sk_jiuyang` 12 天上；关键源，昆仑探索和三家印证二选一；性质门槛可达实例见 §7.3.1。
 
 #### 9.4.4 18 · 明教乾坤 `lgs_mingjiao_qiankun`
 
@@ -1142,14 +1157,14 @@ innerMinLayer = ceil(10/2) + 1 = 6
 - **时序**：来源 `ch05_xiaoao`；日月神教后世为 H 不等于完整秘籍失传，须 `legacy/xixing/manual_lost`；`ch06–ch14` 可投。
 - **载体 / 投放**：地牢刻诀拓本、教中隐脉或疗伤医案；`cache_xixing_meizhuang`，优先 `rg_jiangnan_taihu`。
 - **三卷 / 信物**：`frag_xixing_najin`《纳劲卷》、`frag_xixing_sangong`《散功卷》、`frag_xixing_guiqi`《归气卷》；`it_xinwu_xixing_tiesuo` 地牢铁牌拓。
-- **条件 / 产物**：C11（阴），保留异种真气代价及与北冥的同源 / 联动约束；产物 `sk_xixing` 11 天中；低品德只影响出现率，不免除校合风险。
+- **条件 / 产物**：C11（调和），保留异种真气代价及与北冥的同源 / 联动约束；产物 `sk_xixing` 11 天中；低品德只影响出现率，不免除校合风险；性质见 `catalog/skills-wuyue` §7.2，可达实例见 §7.3.1。
 
 #### 9.5.3 21 · 葵花宝典 `lgs_kuihua_baodian`
 
 - **时序**：来源 `ch05_xiaoao`；完整教藏关闭并提交 `legacy/kuihua/manual_lost` 后，`ch06–ch14` 可投；日月神教 H 不构成唯一充分条件。
 - **载体 / 投放**：宫中旧档、教藏抄本或失名内侍传线；`cache_kuihua_gongdang`，优先 `city_beijing/rg_yanjing_zhili`。
 - **三卷 / 信物**：`frag_kuihua_xingqi`《行气卷》、`frag_kuihua_xunji`《迅疾卷》、`frag_kuihua_zhenfa`《针法卷》；`it_xinwu_kuihua_hongyin` 红印校记。
-- **条件 / 产物**：C11（阴），`sk_kuihua` 的专属代价 / 誓约仍是不可强行绕过的硬门槛；产物 `sk_kuihua` 11 天中；仅限成年角色，载体偏密档解谜。
+- **条件 / 产物**：C11（阳），`sk_kuihua` 的专属代价 / 誓约仍是不可强行绕过的硬门槛；产物 `sk_kuihua` 11 天中；仅限成年角色，载体偏密档解谜；性质见 `catalog/skills-wuyue` §7.3，可达实例见 §7.3.1。
 
 #### 9.5.4 22 · 林家辟邪 `lgs_fuwei_bixie`
 
@@ -1200,7 +1215,7 @@ innerMinLayer = ceil(10/2) + 1 = 6
 - **时序**：来源 `ch07_bixue`；华山在 `ch08–ch12/ch14` 为 H，故这些界可投；`ch13` 为 O，有完整原生来源时排除。
 - **载体 / 投放**：华山隐院门下、掌谱夹注或崖壁吐纳图；`cache_hunyuan_huashan`，优先 `city_huayin/rg_guanzhong`。
 - **三卷 / 信物**：`frag_hunyuan_yangqi`《养气卷》、`frag_hunyuan_zhangjin`《掌劲卷》、`frag_hunyuan_heyi`《内外合卷》；`it_xinwu_hunyuan_zhangyin` 混元掌印谱。
-- **条件 / 产物**：C9（阳），保留 `sk_hunyuangong` 的混元掌 / 华山前置或守传覆写；产物 `sk_hunyuangong` 9 地上；隐脉授艺优先。
+- **条件 / 产物**：C9（调和），保留 `sk_hunyuangong` 的混元掌 / 华山前置或守传覆写；产物 `sk_hunyuangong` 9 地上；隐脉授艺优先；性质见 `catalog/skills-xiake-bixue` §8.2，可达实例见 §7.3.1。
 
 ### 9.7 鹿鼎、连城遗绪（29–34）
 
