@@ -3,10 +3,9 @@
   "comment": "任务图：由 tools/agents/run.py 读取。deps 引用基础任务 ID；若被依赖任务有审校（review: true），自动解析为其审校任务 <ID>.R。",
   "defaults": {
     "bin": [
-      "traex",
-      "traecli"
+      "/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex"
     ],
-    "model": "GPT-5.6-Sol",
+    "model": "gpt-6-astra",
     "effort": "ultra",
     "jobs": 3,
     "timeout_min": 180,
@@ -28,7 +27,7 @@
     "web_args": [],
     "prompt_via": "stdin",
     "shrink_guard": 0.85,
-    "comment_model": "模型名以 `traex models` 输出为准（GPT-6-Astra / GPT-5.6-Sol 等）；effort 取 none/minimal/low/medium/high/xhigh/max/ultra；exec 下模型自带 web_search 工具（`--search` 仅交互式 CLI 接受，勿加）。"
+    "comment_model": "作者 2026-09-30：执行 / 出图 / 多模态校验一律调用本机 GPT CLI（Codex，gpt-6-astra），不再调用 traex；effort 只用 ultra（执行默认）与 xhigh（审核默认）。Codex 接受 none/minimal/low/medium/high/xhigh/max/ultra；exec 下 `--search` 不可用。"
   },
   "tasks": [
     {
