@@ -8,6 +8,8 @@ It intentionally uses only the standard library, integers and basis points.
 
 import argparse
 import json
+import re
+from collections import Counter
 from dataclasses import asdict, dataclass, replace
 from hashlib import sha256
 from math import isqrt
@@ -20,6 +22,11 @@ RNG_PROTOCOL = 1
 G_BP = (0, 10_000, 11_000, 12_000, 14_000, 15_500, 17_000,
         20_000, 22_000, 24_000, 28_000, 31_000, 35_000)
 GOLDEN_PATH = Path(__file__).with_name("meridian_flow_golden.json")
+PALM_LAOGONG = "ap_shoujueyin_laogong"
+PALM_NEIGUAN = "ap_shoujueyin_neiguan"
+PALM_HEGU = "ap_shouyangming_hegu"
+PALM_HOUXI = "ap_shoutaiyang_houxi"
+PALM_WAIGUAN = "ap_shoushaoyang_waiguan"
 def clamp(value: int, lo: int, hi: int) -> int:
     return min(hi, max(lo, value))
 def ceil_div(numerator: int, denominator: int) -> int:
@@ -34,6 +41,51 @@ def affinity_bp(inner: str, meridian: str) -> int:
     if meridian == "harmony":
         return BP
     return 11_000 if inner == meridian else 8_800
+def palm_outlet_candidates(action_context: str) -> frozenset[str]:
+    """AR-18 palm outlets; ambiguous actions retain Laogong only."""
+    outlets = {PALM_LAOGONG}
+    if re.search(r"手刀|掌刃|掌缘|掌侧|劈掌", action_context):
+        outlets.add(PALM_HOUXI)
+    reliable = action_context
+    for token in (
+        "一切", "切磋", "亲切", "切换", "迫切", "切勿",
+        "切记", "密切", "确切", "急切", "恳切", "切实",
+        "劈空",
+    ):
+        reliable = reliable.replace(token, "")
+    if re.search(r"劈|切|抓|虎口", reliable):
+        outlets.add(PALM_HEGU)
+    if re.search(r"格挡|靠打|反背摔掌", action_context):
+        outlets.add(PALM_WAIGUAN)
+    return frozenset(outlets)
+def trailing_palm_outlets(
+    nodes: Sequence[str], action_context: str,
+) -> frozenset[str]:
+    """Find action-matched outlets only within the final 1--3 steps."""
+    tail = set(nodes[-3:])
+    matched = tail & palm_outlet_candidates(action_context)
+    if PALM_LAOGONG in matched and PALM_NEIGUAN in tail:
+        matched.add(PALM_NEIGUAN)
+    return frozenset(matched)
+def route_body_nature(
+    nodes: Sequence[str], acupoint_meridians: dict[str, str],
+    meridian_natures: dict[str, str], outlet_points: Iterable[str] = (),
+) -> str:
+    """Derive route nature from body steps; AR-18 outlets do not vote."""
+    excluded = Counter(outlet_points)
+    body: list[str] = []
+    for point in reversed(nodes):
+        if excluded[point]:
+            excluded[point] -= 1
+        else:
+            body.append(point)
+    votes = Counter(
+        meridian_natures.get(acupoint_meridians.get(point, ""))
+        for point in reversed(body)
+    )
+    if votes["yin"] == votes["yang"]:
+        return "harmony"
+    return "yin" if votes["yin"] > votes["yang"] else "yang"
 def lerp_anchors(value: int, anchors: Sequence[tuple[int, int]]) -> int:
     """Piecewise-linear integer lookup, clamped to the end anchors."""
     if value <= anchors[0][0]:
@@ -1005,6 +1057,61 @@ def sensitivity_rows() -> list[dict[str, int | str]]:
 
 
 def run_checks() -> None:
+    nature_by_meridian = {
+        "mer_dumai": "yang", "mer_shouyangming": "yang",
+        "mer_shoutaiyang": "yang", "mer_shoushaoyang": "yang",
+        "mer_renmai": "yin", "mer_shoujueyin": "yin",
+        "mer_chongmai": "harmony", "mer_daimai": "harmony",
+    }
+    owner = {
+        "ap_dumai_mingmen": "mer_dumai",
+        "ap_shoujueyin_neiguan": "mer_shoujueyin",
+        "ap_shoujueyin_laogong": "mer_shoujueyin",
+        "ap_shouyangming_hegu": "mer_shouyangming",
+        "ap_shoutaiyang_houxi": "mer_shoutaiyang",
+        "ap_shoushaoyang_waiguan": "mer_shoushaoyang",
+        "ap_renmai_qihai": "mer_renmai",
+        "ap_chongmai_qixue": "mer_chongmai",
+        # 15 §3 owns gameplay routing: Qichong is standard ST30 but votes as
+        # its unique game owner Chong Mai, whose §2.1 nature is harmony.
+        "ap_chongmai_qichong": "mer_chongmai",
+        "ap_daimai_daimai": "mer_daimai",
+    }
+    inner_gate = (
+        "ap_dumai_mingmen", PALM_NEIGUAN, PALM_LAOGONG,
+    )
+    assert trailing_palm_outlets(inner_gate, "掌心吐力") == {
+        PALM_NEIGUAN, PALM_LAOGONG,
+    }
+    assert route_body_nature(
+        inner_gate, owner, nature_by_meridian,
+        trailing_palm_outlets(inner_gate, "掌心吐力"),
+    ) == "yang"
+    assert route_body_nature(inner_gate, owner, nature_by_meridian) == "yin"
+    assert palm_outlet_candidates("掌刃劈落") == {
+        PALM_LAOGONG, PALM_HOUXI, PALM_HEGU,
+    }
+    assert palm_outlet_candidates("虎口劈掌") == {
+        PALM_LAOGONG, PALM_HOUXI, PALM_HEGU,
+    }
+    assert palm_outlet_candidates("迎面劈掌") == {
+        PALM_LAOGONG, PALM_HOUXI, PALM_HEGU,
+    }
+    assert palm_outlet_candidates("反背摔掌") == {PALM_LAOGONG, PALM_WAIGUAN}
+    assert palm_outlet_candidates("正面掌击") == {PALM_LAOGONG}
+    assert palm_outlet_candidates("一切招理只作切磋") == {PALM_LAOGONG}
+    assert palm_outlet_candidates("劈空掌") == {PALM_LAOGONG}
+    assert route_body_nature(
+        ("ap_renmai_qihai", "ap_dumai_mingmen"),
+        owner, nature_by_meridian,
+    ) == "harmony"
+    assert route_body_nature(
+        ("ap_chongmai_qixue", "ap_daimai_daimai"),
+        owner, nature_by_meridian,
+    ) == "harmony"
+    assert route_body_nature(
+        ("ap_chongmai_qichong",), owner, nature_by_meridian,
+    ) == "harmony"
     reaches = [route_reach_bp(n) for n in range(1, 19)]
     assert all(a < b for a, b in zip(reaches, reaches[1:])), reaches
     assert reaches[0] == 3_388 and reaches[-1] == BP

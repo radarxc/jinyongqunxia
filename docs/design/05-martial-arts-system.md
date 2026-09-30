@@ -1,16 +1,18 @@
 # 05 · 武学体系（Martial Arts System）
 
 > 归属（基准 §18）：武功数据结构、层数、招式预算、内功接口、修炼、装配栏规则、武学图鉴。
-> 上游：`00-canon.md` v1.6（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
+> 上游：`00-canon.md` v1.8（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：携带、外来压制、残篇/残承 → `design/02-timeline-and-world-tiers.md`；属性公式、`MPREF` 与技艺 ID → `design/03-attributes.md`；伤害公式与乘区 → `design/04-damage-formula.md`；Buff 定义与目录 → `design/06-buff-system.md`；套装定义 → `design/07-set-system.md`；地形/轻功阈值 → `design/08-terrain-and-qinggong.md`；六角范围模板、集气、运劲、合击、反击流程与 AI → `design/09-combat-system.md`；物品/丹药/兵器属性 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务、关系与门派玩法 → `design/12-quests-npc-factions.md`；角色经验与等级 → `design/13-progression-and-endings.md`；穴道、经脉、冲穴与周天 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；门派名录、历史与时代开放 → `design/17-sects-compendium.md`；NPC 身份、同伴与生卒 → `design/18-npc-and-companions.md`；地图节点、坐标与时代地图资产 → `design/19-world-map.md`；后人、宝藏、跨年代残本、信物、配方与投放 → `design/20-legacy-inheritance.md`；战斗经脉运行、攻防/轻功路线、绝招补充、护体内劲、擒拿/点穴、调息与逐单位模拟 → `design/21-meridian-flow-and-moves.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.6（经脉落地终审，2026-09-29）；v1.5（AR-16 外放加持与绝招数量作者决定同步，2026-09-28）；v1.4（绝招与经脉规则同步，2026-09-27）；v1.3（AR-14 绝招数量追加；M4，2026-09-27）；v1.2（跨文档同步；全局审计，2026-09-27）。
+> 版本：v1.7.1（AR-18 内功性质审计返修，2026-09-29）；v1.7（AR-18 内功阴阳按主修经脉，2026-09-29）；v1.6（经脉落地终审，2026-09-29）；v1.5（AR-16 外放加持与绝招数量作者决定同步，2026-09-28）；v1.4（绝招与经脉规则同步，2026-09-27）；v1.3（AR-14 绝招数量追加；M4，2026-09-27）；v1.2（跨文档同步；全局审计，2026-09-27）。
 > 变更记录：v1.2 接收 `design/15` 的 20 个正式经脉 ID、专精倍率与校验边界，补齐 `design/17`–`20` 的唯一归属引用，明确 `recalled` 仅为基础图鉴状态上的“再续朱印”，并将已落盘的跨文档待决项改为已解决。C14 图鉴实数重定与 CN-05 独孤六式预算结论保持不变。
 > 变更记录（2026-09-27，经脉系统落地）：接收 `design/21` v2.0 的武学侧接口：招式引用攻/防/轻功路线，内功引用调息档案并声明护体内劲能力，轻功提供常驻速度路线；路线段时间只计 `flowCt`，经脉攻防乘区独立于 `power` 预算；§14 数量与品阶总账不变。
 > 变更记录（2026-09-27，AR-14 追加）：绝招数量按十二品改为天阶 2–3、地阶 1–2、仅玄上 1；默认第一 / 第二 / 第三绝招在 7 / 9 / 10 重解锁，增加共享气势、武学级绝招冷却、连续重复限制与天上三绝招完整示例。
 > 变更记录 v1.4：接入 Canon V13-C01、V14-01～02；同步 11 册图鉴的独孤九剑、易筋经、九阳神功、龙爪手实例；补齐 12 门无主动招轻功的局部基础移动招构建契约；旧封穴引用迁移为 `bf_xueweishoufeng` 参数化实例；普通招式推荐下限暂按普通招式与绝招合计，待作者确认。
 > 变更记录 v1.5：按作者 2026-09-27 决定确认“九品玄”按玄上执行，并引用统一绝招数量裁定表；接入 AR-16 的逐招 `projection`、三档范围模板和外放判定接口，算法与数值唯一引用 `design/21`。
 > 变更记录 v1.6（经脉落地终审，2026-09-29）：按作者决定将降龙十八掌除纯蓄力“潜龙勿用”外的 18 个伤人招全部闭合为外放，补齐三档范围、伤害类别与路线引用；冻结外放反击架势“只扩大反击命中范围、不增加瞄准射程”；同步 Canon V16-01～04 的普通天阶 59 门、补录册正式定义源、音功 0 档兼容分支与大手印落点掌风边界。
+> 变更记录 v1.7（AR-18，2026-09-29）：内功 `nature` 改按 `inner.meridians` 所列主修经脉投票；任 / 督分别计阴 / 阳，阴阳跷维随侧计票，冲 / 带不投票；初版审计曾登记 43 张明显不符卡，v1.7.1 已按正式卡归属纠正，实例修订仍交后续图鉴任务。
+> 变更记录 v1.7.1（AR-18 返修，2026-09-29）：按正式武学卡归属重做全量审计；254 张唯一内功卡中 147 张可由主修经脉推导、107 张缺 `inner.meridians`，可审部分 56 张声明性质不符。
 > 全局审计：接入 `legacy_fragment` / `legacy_synthesis` 与 `legacy_complete` 形态；11 册门派图鉴 `51/169/459/459=1,138` 保留为 2026-09-27 基线，现行普通天阶另按 59 门执行，含补录的地 / 玄 / 黄与总量待 NXfixC 收口后由 NAu-final 重算；六角范围与正式套装闭合结果不变。
 
 ---
@@ -1032,16 +1034,25 @@ AF(N) = clamp(floor(rawAF(N) × 20 + 0.5) / 20, 0.35, 1.00)
 
 ### 5.3 内力性质与外功相性矩阵（交 design/04 Z5）
 
-每门 `category: inner` 的武学都必须显式填写 `nature: yang|yin|harmony`；`neutral` 只允许外功。该分类属于本作规则化判断，原著未给出统一三分法处均按**（原创扩展）**处理（AR-02）。
+每门 `category: inner` 的武学都必须显式填写 `nature: yang|yin|harmony`；`neutral` 只允许外功。`nature` 不是按招式刚柔、寒热表现或正逆周天猜测，而是按该卡 `inner.meridians` 所列**主修经脉**判定（AR-18）：
+
+1. 督脉与手足三阳经投阳票，任脉与手足三阴经投阴票；阴跷 / 阴维投阴，阳跷 / 阳维投阳。每个主修经脉投一票，不因某脉穴位较多重复加权。
+2. 阳票多即 `yang`，阴票多即 `yin`；两侧均有票且平票即 `harmony`。冲脉 / 带脉自身维持调和，默认不投票；若清单只有冲 / 带或为空，则性质取 `harmony`。冲 / 带是否应参加内功性质投票为 AR-18a **（待作者确认）**。
+3. `inner.meridians: []` 仍表示无专精；它只按本条回退为 `harmony`，不获得任何全经脉专精。`natureFollowAux:true` 等运行时特例仍按字段说明结算，不反写卡片静态性质。
+4. 正 / 逆周天只决定真气用途：正行偏养生、敛气入骨，逆行偏武击、逼气出体；不决定阴阳。阴、阳内功均可逆行发招。招式路线另按 `design/21` §2.4 的体段判定，劳宫等动作出口不反推内功性质。
+
+该分类属于本作规则化判断，原著未给出统一三分法处均按**（原创扩展）**处理（AR-02、AR-18）。
 
 性质定义：
 
 | 性质 | ID | 特点 | 原著代表（本作设定，性质归属多为游戏化判断） |
 |---|---|---|---|
-| 阳 | `yang` | 刚猛、炽热，利于刚劲外功 | 九阳神功、先天功、龙象般若功、蛤蟆功 |
-| 阴 | `yin` | 阴柔、寒凉，利于阴柔外功 | 玉女心经、吸星大法、葵花宝典、寒冰真气 |
-| 调和 | `harmony` | 阴阳相济，全面但峰值较低 | 易筋经、九阴真经（总纲）、太玄经、小无相功 |
+| 阳 | `yang` | 主修督脉或手足三阳；可表现为刚猛、炽热、爆发 | 九阳神功、先天功、龙象般若功、蛤蟆功 |
+| 阴 | `yin` | 主修任脉或手足三阴；可表现为绵长、阴寒、柔韧 | 玉女心经、吸星大法、葵花宝典、寒冰真气 |
+| 调和 | `harmony` | 阴阳主修票平衡，或只主修不投票的冲 / 带（含无专精回退） | 易筋经、九阴真经（总纲）、太玄经、小无相功 |
 | 中性 | `neutral` | **仅外功**：招意不依内力性质 | 独孤九剑、太祖长拳、多数黄阶外功 |
+
+表现词只用于叙事校验，不能压过主修经脉。例如阳刚掌势可经劳宫“气过阴门”，其动作出口属于“用”，不会把阳性内功改成阴；详见 `design/21` §2.4、§4.3.1。“阴阳交泰”可解释高阶阳刚掌在末端借阴经收敛导引、降低失控风险，但不新增 Z5、走火或减伤乘区。
 
 **相性矩阵**（攻方**主运性质** × 所用**招式性质**，结果为 Z5 的加算项）：
 
@@ -1056,6 +1067,48 @@ AF(N) = clamp(floor(rawAF(N) × 20 + 0.5) / 20, 0.35, 1.00)
 - **调和规则（AR-02）**：调和主运没有阴/阳相性惩罚；与阳招或阴招匹配时，取得同性质峰值 `+12%` 的一半，即 `+6%`。调和招仍为 +12%，中性招 +2%。此作者需求已同步至 design/04 §4.5。
 - 内功自身的运功招式按其 `nature` 与主运性质查同一张表（主运使用自己的招式时天然"同源"）。
 - 寒/热类效果（`cold`/`heat` 标签的 Buff 与抗性）独立于本矩阵，归 design/06。
+
+#### 5.3.1 AR-18 图鉴静态性质审计（只读，不在本文改卡）
+
+2026-09-29 以 `python3 tools/lint/check_skill_catalogs.py --delivery --details` 对 `design/catalog/skills-*.md` 做正式武学卡归属与唯一 `sk_*` 去重审计：识别 254 张内功卡（跨册无重复正式 ID），其中 147 张显式列出可解析的 `inner.meridians`，107 张缺该字段而不能按 AR-18 审计；可审部分按上文多数票重算，有 56 张的声明 `nature` 与主修经脉不符。下表“现值→应值”是后续图鉴任务的迁移清单，不是本文对图鉴的原地修改。
+
+| 正式定义册 | 内功卡 | 有主修经脉 | 缺 `inner.meridians` | 性质不符 |
+|---|---:|---:|---:|---:|
+| `skills-bulu-01-tianlong` / `02-shediao` / `03-shendiao` | 3 / 5 / 4 | 3 / 5 / 4 | 0 / 0 / 0 | 0 / 2 / 0 |
+| `skills-bulu-04-yitian` / `05-xiaoao` / `06-xiake` | 7 / 5 / 4 | 7 / 5 / 4 | 0 / 0 / 0 | 3 / 1 / 1 |
+| `skills-bulu-07-bixue` / `08-luding` / `09-liancheng` | 7 / 16 / 2 | 7 / 16 / 2 | 0 / 0 / 0 | 4 / 6 / 0 |
+| `skills-bulu-10-baima` / `11-yuanyang` / `12-shujian` | 2 / 0 / 2 | 2 / 0 / 2 | 0 / 0 / 0 | 0 / 0 / 0 |
+| `skills-bulu-13-feihu` / `14-xueshan` | 8 / 1 | 0 / 1 | 8 / 0 | 0 / 0 |
+| `skills-daojia` / `general` / `gulong` | 23 / 8 / 9 | 4 / 7 / 6 | 19 / 1 / 3 | 2 / 3 / 2 |
+| `skills-kangxi` / `qianlong` / `shaolin` | 16 / 11 / 12 | 9 / 5 / 0 | 7 / 6 / 12 | 3 / 2 / 0 |
+| `skills-wujue` / `wuyue` | 29 / 21 | 12 / 21 | 17 / 0 | 6 / 12 |
+| `skills-xiake-bixue` / `xiaoyao` / `yitian` | 23 / 23 / 13 | 12 / 0 / 13 | 11 / 23 / 0 | 2 / 0 / 7 |
+| **合计** | **254** | **147** | **107** | **56** |
+
+| 正式定义册 | 明显不符（`skillId 现值→应值`） | 数量 |
+|---|---|---:|
+| `skills-bulu-02-shediao` | `sk_quanzhenzhoutiangong yang→harmony`；`sk_taohuaguiyuanjue harmony→yin` | 2 |
+| `skills-bulu-04-yitian` | `sk_bosishenghuoxuangong harmony→yang`；`sk_kongtongwuxingxinfa harmony→yin`；`sk_huashanliangyixinfa04 harmony→yang` | 3 |
+| `skills-bulu-05-xiaoao` | `sk_jianzongxingqi harmony→yang` | 1 |
+| `skills-bulu-06-xiake` | `sk_dingshixinfa harmony→yin` | 1 |
+| `skills-bulu-07-bixue` | `sk_huashanqigong07 yang→harmony`；`sk_shiliangwuxinggong harmony→yin`；`sk_tiejianxuangong harmony→yang`；`sk_xianduyunqi harmony→yin` | 4 |
+| `skills-bulu-08-luding` | `sk_bukuhutiaogong yang→harmony`；`sk_fansenghutigong yang→harmony`；`sk_luochabujunhuxi harmony→yin`；`sk_pingxixingqijue yang→yin`；`sk_wangwuzhenshanxinfa harmony→yin`；`sk_yanpingfanchaojue harmony→yin` | 6 |
+| `skills-daojia` | `sk_beidouxinfa yang→harmony`；`sk_wudangyangshenggong harmony→yin` | 2 |
+| `skills-general` | `sk_jianghutuna harmony→yin`；`sk_jindunxinfa yang→harmony`；`sk_wuguanxinfa harmony→yin` | 3 |
+| `skills-gulong` | `sk_daqixinfa harmony→yin`；`sk_qinglongtuna harmony→yin` | 2 |
+| `skills-kangxi` | `sk_linrenhexinfa harmony→yin`；`sk_meinianshengxinfa harmony→yin`；`sk_xuedaoxinfa yin→harmony` | 3 |
+| `skills-qianlong` | `sk_guangpingxinfa harmony→yin`；`sk_miaojiaxinfa harmony→yin` | 2 |
+| `skills-wujue` | `sk_baituotunadu yin→harmony`；`sk_biguqipian harmony→yin`；`sk_duanshiyangshenggong harmony→yin`；`sk_gaibanghuxinfa yang→harmony`；`sk_jiuyintiaoxipian harmony→yin`；`sk_taohuatunaxi harmony→yin` | 6 |
+| `skills-wuyue` | `sk_xixing yin→harmony`；`sk_kuihua yin→yang`；`sk_zixiashengong yang→harmony`；`sk_huashanxinfa harmony→yin`；`sk_huashantuna harmony→yin`；`sk_taishanxinfa harmony→yang`；`sk_taishantuna harmony→yang`；`sk_hengshanbeixinfa harmony→yin`；`sk_hengshanbeituna harmony→yin`；`sk_riyuexinfa yin→harmony`；`sk_heimutuna yin→harmony`；`sk_wuxianbaidugong yin→harmony` | 12 |
+| `skills-xiake-bixue` | `sk_changlexinfa harmony→yin`；`sk_hunyuangong yang→harmony` | 2 |
+| `skills-yitian` | `sk_jiuyang yang→harmony`；`sk_emeijiuyang yang→yin`；`sk_shenghuoxinfa harmony→yang`；`sk_emeixinfa harmony→yin`；`sk_kunlunxinfa harmony→yang`；`sk_kongtongyangshenggong harmony→yin`；`sk_tieniuyaogong yang→harmony` | 7 |
+| **合计** | 15 册、56 张唯一内功卡 | **56** |
+
+三张紧凑格式卡已由脚本按卡归属核对且不列异常：`sk_aobaihengliangong=yang`（督脉＋手阳明）、`sk_hasakeyunqi=yang`（督脉＋阳维）、`sk_huahuixinfa=yin`（任脉＋阴维）。`sk_motianzhang`、`sk_dingshiqinnashou`、`sk_yunvjian19`、`sk_qixianwuxingjian` 虽出现 `meridians` 字样但属于外功路线说明，已排除，不能误改为内功。
+
+缺字段的 107 张须先由后续图鉴任务补主修经脉，不能仅凭现有 `nature` 倒推；集中于 `bulu-13-feihu` 8、`daojia` 19、`general` 1、`gulong` 3、`kangxi` 7、`qianlong` 6、`shaolin` 12、`wujue` 17、`xiake-bixue` 11、`xiaoyao` 23。尤其 `skills-shaolin.md` 的 12 张与 `skills-xiaoyao.md` 的 23 张内功全部缺字段，本轮均不列入“不符”而列为不可审计。
+
+后续迁移须把同卡的 `nature`、`BreathProfile.nature`、`requiredNature`、护体档显示与引用处一并核对；若作者改变 AR-18a，先重跑本表再改卡。仅靠把 `nature` 改成推导值而保留相反的主修经脉或调息档，仍视为未闭合。
 
 ### 5.4 阴阳相冲与桥接
 
@@ -1129,7 +1182,7 @@ restore = floor(真实 mpMax × mpRegen / 100)
 | 字段 | 类型 | 说明 |
 |---|---|---|
 | `contribution` | object | §5.5 |
-| `meridians` | `MeridianId[]` | 冲穴专精经脉；只允许 `design/15` §2 的 20 个正式 ID，空数组表示无专精而非全专精 |
+| `meridians` | `MeridianId[]` | 主修兼冲穴专精经脉；只允许 `design/15` §2 的 20 个正式 ID，按 §5.3 推导静态 `nature`；空数组表示无专精并回退调和，而非全专精 |
 | `breathProfileRef` | `BreathProfileId` | 必填；引用 design/21 §10、§12 的 `txp_*` 调息档案。档案持有品阶 / 层数投影、性质、触及节点数、1000 CT 与 0 额外内力成本；05 不复制其公式 |
 | `innerGuard` | object | 必填；武学侧防守档 `{enabled, reflectBp?}`。`enabled` 表示主运可通过自然护体或 `purpose:defense` 护体路线启用护体内劲；`reflectBp` 只桥接已有固定反震语义，省略为 0，见 §5.10 |
 | `yunjin` | YunjinMode[] | 此内功开放的通用运劲分支；枚举唯一归 design/09 §4.8.4 |
@@ -2815,7 +2868,7 @@ description: >-
 | V1 | `id` 符合 `sk_<拼音>` 且全局唯一；招式 `mv_<武功拼音>_*`、被动 `ps_<武功拼音>_*` 与所属武学同前缀；迁移别名不得作为第二定义 | 失败 |
 | V2 | `grade` 为整数 1–12；`grade ≥ 10` 的 ID、绝对品阶和原生书界与基准 §13 一致；残承另填 `lineageGrade`，不得改写绝对品阶 | 失败 |
 | V3 | `category/subType` 组合合法；`weapon` 必须有匹配的 `weaponReq` 且不得填 `hiddenKind`；`hidden` 必须填 design/10 合法 `hiddenKind` 且不得填 `weaponReq`；左右互搏只能是 `misc/mind`，弓箭/火器只能是 `hidden/hidden` 且分别用 `bow/gun`；`offHand/altItems` 引用的类别、标签与装备 ID 必须可解析 | 失败 |
-| V4 | 每门内功显式填 `nature: yang\|yin\|harmony`、`inner.contribution` 与 `inner.meridians`；`meridians` 只含 design/15 §2 的 20 个正式 `MeridianId`、不得重复，空数组合法且表示无专精；外功才允许 `neutral`；IP 偏离 §5.5 预算超过 ±5% 报警 | 失败 / IP 为警告 |
+| V4 | 每门内功显式填 `nature: yang\|yin\|harmony`、`inner.contribution` 与 `inner.meridians`；`meridians` 只含 design/15 §2 的 20 个正式 `MeridianId`、不得重复，空数组合法且表示无专精；按 §5.3 主修经脉投票所得性质必须等于声明性质（冲 / 带默认不投票，平票 / 无票调和）；外功才允许 `neutral`；IP 偏离 §5.5 预算超过 ±5% 报警 | 失败 / IP 为警告 |
 | V5 | `wOut + wIn = 1` 且二者是 0.05 的倍数；招式覆写亦同 | 失败 |
 | V6 | `layers[].n`、招式/被动 `unlock` 为整数 1–10；每个解锁对象恰好出现一次且不超过 `maxLayer` | 失败 |
 | V7 | 按 §3.5 检查解锁节奏、可施放招式总数 / 被动数量和 `moveSlots`；默认下限计普通招式＋绝招，完整卡不足时必须有逐卡豁免理由；原著有定数的招式只豁免数量上限，不豁免栏位 | 警告 |
@@ -2879,7 +2932,8 @@ description: >-
 | T19 | 地阶残页 4/6 页 | `sourceCap=ceil(10×4/6)=7` |
 | T20 | 天上＋天中武学融会贯通，随后进入普通低武 | 产物 `grade=9`、`trueLayer=5`；半额压制 `ceil(4/2)=2` 后 `effGrade=7` |
 | T21 | 九阳神雕闻经事件；倚天取得完整来源 | 前者仅图鉴 `heard`＋`jiuyang_echo`，无 `SkillState`；后者才创建可学习来源 |
-| T22 | 解析内功缺 `nature`、空 `meridians`、含非法 `mer_x`、重复同一正式经脉、辅运分支不在主清单 | 缺性质失败；空专精合法且不代表全专精；非法或重复经脉失败；非法辅运子集失败 |
+| T22 | 解析内功缺 `nature`、空 `meridians`、含非法 `mer_x`、重复同一正式经脉、辅运分支不在主清单 | 缺性质失败；空专精合法、回退调和且不代表全专精；非法或重复经脉失败；非法辅运子集失败 |
+| T40 | 主修 `[督脉,手阳明]` 声明阳；`[任脉,手太阴]` 声明阴；`[任脉,督脉]`、`[冲脉,带脉]` 与空数组声明调和；另把前两项声明互换 | 前五项按 §5.3 推导为 `yang/yin/harmony/harmony/harmony` 并通过；互换的两项失败。正 / 逆周天字段变化不改变结果 |
 | T23 | 解析 `curveLos`、七个图鉴条件键及未知 `condition.foo` | 正式钩子/条件全部通过；未知键构建失败；`night`/`moonlitTile` 不允许内容侧改写时钟或场景标签 |
 | T24 | 十八掌连环 `recovery=1200`、路线 10 段且每段 80 CT；标准对标准；另把路线 `purpose` 改为 defense | `flowCt=800`、总收招 `2000`；`power` 仍为 2.00，Z4M/Z5M 都是 10000；错误用途构建失败 |
 | T25 | 防守触发只填 `routeOnTriggerRef`；攻击招同时填第二条主路线；路线第 4 段卡住 | 前者合法且走 defense；第二种失败；卡住只计前 4 段 CT，不以完成段重算 `power` |
@@ -2962,6 +3016,7 @@ description: >-
 | P-14 | Canon §4 / §8 登记十二品绝招数量 `0/0/0/0/0/1/1/1–2/2/2/2–3/3`，以及多绝招共享气势、同门共享 1 次自身行动冷却、不得连续重复同一绝招 | **已采纳（v1.4 V14-01～02）**：05 §3.5、§4.8 与 V9 / V32 已执行；战斗候选、AI 与表现分别由 09 / 14 消费 |
 | P-15 | Canon §8 / §9 / §18 登记 AR-16：逐招外放的 0 / 1 / 2 档固定为射程 `+0/+2/+4`、范围模板第 0 / 1 / 2 项、额外耗内 `0/2%/4% MPREF`；外放曲线在同一 Z5M 替代普通曲线 | **已采纳（v1.5 V15-02～04）**：字段与逐招判定见 §4.1、§4.2.2；算法、端点与曲线唯一见 design/21 §4.4.1，09 / 14 / tech/04 / tech/05 分别消费 |
 | P-16 | Canon 登记天阶扩容、补录正式定义源及音功 / 大手印边界 | **已采纳（v1.6 V16-01～04）**：§11.1、§14、V38～V40 已同步；算法仍唯一见 `design/21` §4.4.1 |
+| P-17 | Canon 登记 AR-18：内功阴阳按主修经脉判定，正逆周天不决定阴阳 | **已采纳（v1.8 V18-01～02）**：§5.3 已采用；体段 / 出口段与掌法动作穴唯一见 `design/21` §2.4、§4.3.1 |
 
 AR-01 的 C3 历史同步已完成：§14 以 920 门快照为起点形成 11 册 1,138 门基线，并把四个 CX 扩充缺口与十四书界池审计分别列明。AR-17 已按作者决定把普通天阶扩为 59；含补录的地 / 玄 / 黄与全目录总量待 NXfixC 收口后由 NAu-final 重算。
 经脉路线 / 调息档案仍是依附既有武学的配置对象，不计作新武学；数量变化只来自已登记的补录武学定义。
@@ -3001,6 +3056,7 @@ AR-01 的 C3 历史同步已完成：§14 以 920 门快照为起点形成 11 �
 | O5 / P10 | 九阳能否在神雕完整学习 | 不能；神雕只作 `heard` 伏笔，倚天才创建学习来源 | **已解决**：§13.4、V24、T21；文本边界留 K7 |
 | O6 | 绝招由既有招式升格后，天 / 地阶非内功武学的“普通招式下限”是否仍按不含绝招计 | 默认按“普通招式＋绝招”的可施放招式总数计；完整卡仍不足时逐卡登记豁免，不为凑数编招 | **待作者确认**：§3.5、V7；若改为纯普通招式下限，须由各图鉴补豁免或有据招式并重跑全库校验 |
 | O7 | 九阳神功是否允许 1–6 重没有主动招式 | 默认允许并保留图鉴三绝招现状；低层只提供被动 / 内功贡献，不自动生成主动招 | **待作者确认**：§13.4、T32；若否，须先确定有原著依据或明确标原创扩展的招式，不在本轮臆造 |
+| O8 / AR-18a | 冲脉、带脉是否参加内功主修经脉性质投票 | 默认保持两脉 `harmony` 且不投票；只有冲 / 带或空专精时回退调和 | **待作者确认**：§5.3、§5.3.1；若改为逐脉参与，须先定阴阳归属并重跑 254 卡覆盖审计 |
 
 其余与本文直接相关的作者决定也已落实：
 
