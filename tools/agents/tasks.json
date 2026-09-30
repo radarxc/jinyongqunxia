@@ -14494,6 +14494,9 @@
             "--max",
             "2"
           ]
+        ],
+        "shrink_exempt": [
+          "assets/default/baseline/vfx/*/index.html"
         ]
       }
     },
