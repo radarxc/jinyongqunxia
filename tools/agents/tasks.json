@@ -22091,6 +22091,59 @@
           ]
         ]
       }
+    },
+    {
+      "id": "CITY-generic",
+      "title": "小城 / 遗址程序化城市规格生成器（作者：不做史料复原）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY-generic.md",
+      "deps": [
+        "TOWN-layout"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "tools/town/**",
+        "docs/design/town/*.yaml",
+        "docs/design/22-town-layout-and-generation.md"
+      ],
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/town/make_generic_city.py"
+        ],
+        "shrink_exempt": [
+          "tools/town/**",
+          "docs/design/22-town-layout-and-generation.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/town",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/town/make_generic_city.py",
+            "--all",
+            "--importance",
+            "secondary,site",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
     }
   ]
 }
