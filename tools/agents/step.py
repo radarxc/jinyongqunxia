@@ -40,7 +40,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import run as R  # noqa: E402  复用 run.py
 
-DEFAULT_MODEL = "GPT-6-Astra"  # 作者 2026-09-30：GPT 额度用完，改用 traex CLI 调 gpt6 max   # 作者 2026-09-30：一律调用本机 GPT CLI（Codex），不再调用 traex
+DEFAULT_MODEL = "GPT-5.6-Sol"  # 2026-09-30 16:55：traex 的 GPT-6-Astra 整体挂起（SSE transport error 反复重连），按既定回退用 Sol；GPT-6 恢复后改回
 DEFAULT_EFFORT = "max"  # 执行默认 ultra；审核默认 xhigh（作者 2026-09-30："gpt 6 astra ultra 和 extra high"）
 CODEX_BIN = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex"
 
@@ -192,7 +192,7 @@ def build_argv(binary: str, model: str, effort: str, wt: Path, last: Path, searc
 
 
 WRAPPER = '"$@" < "$TS_PROMPT" >> "$TS_LOG" 2>&1; rc=$?; echo "$rc" > "$TS_EXIT"; exit $rc'
-FALLBACK_MODELS: list = ["GPT-5.6-Sol"]  # traex 的 GPT-6-Astra 09-26 曾整段挂死：探测不应答时回退
+FALLBACK_MODELS: list = ["GPT-5.5"]  # 主模型不应答时回退
 
 
 def probe_model(binary: str, model: str, effort: str, timeout_s: int = 90) -> bool:
