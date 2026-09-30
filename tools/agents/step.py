@@ -257,8 +257,20 @@ def cmd_start(a) -> int:
             R.wt_remove(root, wt)
         if not R.main_is_clean(root):
             print("⚠ 主检出有未提交的改动；工作区仍从 HEAD 创建，但 merge 前需要清理")
+        # --base：从另一个任务已 finish（带尾注）的工作区提交上叠着开工（那个任务还没合入主分支时用），
+        # 或直接给一个提交号。基点记进 state，finish 只提交相对该基点的改动，等前一个任务合入后再 cherry-pick 就不冲突。
+        start_ref = "HEAD"
+        if getattr(a, "base", None):
+            other = R.wt_path(root, a.base)
+            if R.wt_exists(other):
+                if not R.head_has_trailer(other, a.base):
+                    raise R.Fatal(f"--base {a.base}：那个工作区还没有带尾注的提交，请先对它 finish")
+                start_ref = R.git(["rev-parse", "HEAD"], other).stdout.strip()
+            else:
+                start_ref = R.git(["rev-parse", "--verify", a.base + "^{commit}"], root).stdout.strip()
+            print(f"  基点取自 --base {a.base}：{start_ref[:12]}")
         wt.parent.mkdir(parents=True, exist_ok=True)
-        R.git(["worktree", "add", "--detach", str(wt), "HEAD"], root)
+        R.git(["worktree", "add", "--detach", str(wt), start_ref], root)
         base = R.git(["rev-parse", "HEAD"], wt).stdout.strip()
         st.update(t.id, base=base, attempts=0, last_failure=None)
         failure = note
@@ -571,6 +583,7 @@ def build_parser():
     p.add_argument("--search", action="store_true", help="开启联网搜索（web 任务自动开启）")
     p.add_argument("--note", help="续作说明：文件路径或直接写文字（附在提示词末尾；默认用上次校验失败原因）")
     p.add_argument("--force", action="store_true", help="任务已在分支历史中完成时仍启动")
+    p.add_argument("--base", help="从另一个任务已 finish 的工作区提交（给任务 ID）或指定提交号上叠着开工；那个任务须先合入")
     p.add_argument("--no-probe", action="store_true", help="启动前不探测模型是否应答（默认探测，无响应时自动换备用模型）")
     p.add_argument("--probe-sec", type=float, default=150, help="探测超时秒数（默认 150）")
     p.add_argument("--slot-wait-min", type=float, default=8, help="并行已满时排队等空位的分钟数（默认 8；超时报错，可改用 slot 子命令后台等待）")

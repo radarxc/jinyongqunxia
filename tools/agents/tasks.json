@@ -21599,6 +21599,199 @@
           ]
         ]
       }
+    },
+    {
+      "id": "TOWN-layout",
+      "title": "城镇布局复原 · 大理国都与南宋临安（联网搜索历史平面图复原坐标布局，代码出 45 度预览）",
+      "phase": "TOWN",
+      "wave": 9,
+      "kind": "draft",
+      "prompt": "TOWN-layout.md",
+      "deps": [
+        "TOWN-render"
+      ],
+      "writes": [
+        "docs/design/town/city_dali__ch01.yaml",
+        "docs/design/town/city_hangzhou__ch02.yaml",
+        "docs/design/town/history/**",
+        "docs/design/22-town-layout-and-generation.md",
+        "tools/town/**",
+        "assets/default/baseline/town/preview/**"
+      ],
+      "review": false,
+      "web": true,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/town/history/dali.md",
+          "docs/design/town/history/linan.md",
+          "docs/design/town/history/dali_plan.svg",
+          "docs/design/town/history/dali_plan.png",
+          "docs/design/town/history/linan_plan.svg",
+          "docs/design/town/history/linan_plan.png",
+          "tools/town/plan_view.py",
+          "assets/default/baseline/town/preview/town_dali__ch01_layout.png",
+          "assets/default/baseline/town/preview/town_hangzhou__ch02_layout.png"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/town",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_dali__ch01.yaml",
+            "-o",
+            "/tmp/tianshu_town_dali.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_dali__ch01.yaml",
+            "/tmp/tianshu_town_dali.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_hangzhou__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_town_hz.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_hangzhou__ch02.yaml",
+            "/tmp/tianshu_town_hz.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/plan_view.py",
+            "docs/design/town/city_dali__ch01.yaml",
+            "/tmp/tianshu_town_dali.yaml",
+            "-o",
+            "/tmp/tianshu_dali_plan.svg"
+          ],
+          [
+            "{python}",
+            "tools/town/plan_view.py",
+            "docs/design/town/city_hangzhou__ch02.yaml",
+            "/tmp/tianshu_town_hz.yaml",
+            "-o",
+            "/tmp/tianshu_linan_plan.svg"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-three",
+      "title": "外放招式 · Three.js 合成播放器与两招样例（降龙、六脉；Python 只切帧）",
+      "phase": "VFX",
+      "wave": 9,
+      "kind": "draft",
+      "prompt": "VFX-three.md",
+      "deps": [
+        "VFX-tool"
+      ],
+      "writes": [
+        "tools/vfx/**",
+        "docs/design/23-projection-vfx-pipeline.md",
+        "docs/design/vfx/**",
+        "assets/default/baseline/vfx/**",
+        "assets/default/prompts/vfx.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/vfx/web/vfx_player.js",
+          "tools/vfx/web/timeline.js",
+          "tools/vfx/build_demo.py",
+          "tools/vfx/cut_frames.py",
+          "assets/default/baseline/vfx/manifest.yaml",
+          "assets/default/baseline/vfx/mv_xianglong18_kanglong/demo.html",
+          "assets/default/baseline/vfx/mv_xianglong18_kanglong/peak.png",
+          "assets/default/baseline/vfx/mv_xianglong18_kanglong/composition.json",
+          "assets/default/baseline/vfx/mv_xianglong18_kanglong/effect/source_sheet.png",
+          "assets/default/baseline/vfx/sk_liumai/demo.html",
+          "assets/default/baseline/vfx/sk_liumai/peak.png",
+          "assets/default/baseline/vfx/sk_liumai/composition.json",
+          "assets/default/baseline/vfx/sk_liumai/effect/source_sheet.png"
+        ],
+        "fences": [
+          "assets/default/prompts/vfx.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/vfx",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "node",
+            "--test",
+            "tools/vfx/web/"
+          ],
+          [
+            "node",
+            "--check",
+            "tools/vfx/web/vfx_player.js"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/baseline/vfx/mv_xianglong18_kanglong/effect/effect-set.yaml",
+            "assets/default/baseline/vfx/mv_xianglong18_kanglong/emitter/emitter-plate.yaml",
+            "assets/default/baseline/vfx/mv_xianglong18_kanglong/composition.yaml",
+            "--root",
+            "assets/default/baseline/vfx/mv_xianglong18_kanglong",
+            "--html",
+            "assets/default/baseline/vfx/mv_xianglong18_kanglong/demo.html"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/baseline/vfx/sk_liumai/effect/effect-set.yaml",
+            "assets/default/baseline/vfx/sk_liumai/emitter/emitter-plate.yaml",
+            "assets/default/baseline/vfx/sk_liumai/composition.yaml",
+            "--root",
+            "assets/default/baseline/vfx/sk_liumai",
+            "--html",
+            "assets/default/baseline/vfx/sk_liumai/demo.html"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/vfx",
+            "--min",
+            "2",
+            "--max",
+            "4"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
     }
   ]
 }
