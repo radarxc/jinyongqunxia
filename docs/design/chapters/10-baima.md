@@ -1,10 +1,10 @@
 # 10 · 白马啸西风（书界 DLC）
 
 > 归属（基准 §18）：`ch10_baima` 的时代内容编排——开局、时代图层、主支线接口、门派与人物投放、产出、特色机制、前后界衔接及本界数值落点。
-> 上游：`00-canon.md` v1.7（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/10-baima.md`。
+> 上游：`00-canon.md` v1.8（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`（含 AR-18）、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；正邪剧情唯一来源为 `design/story/10-baima.md`。
 > 引用而不重定义：核心循环与锚点总览 → `design/01-vision-and-core-loop.md`；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；属性与敌人模板 → `design/03-attributes.md`；伤害公式 → `design/04-damage-formula.md`；武学 → `design/05-martial-arts-system.md` 与图鉴；套装 → `design/07-set-system.md`；地形与轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗、合击与 Boss → `design/09-combat-system.md`；物品与神兵 → `design/10-items-and-equipment.md`；世界地图 → `design/11-open-world.md`、`design/19-world-map.md`；任务、门派与队友 → `design/12-quests-npc-factions.md`；成长、天书与结局 → `design/13-progression-and-endings.md`；穴位、冲穴、通脉、周天与九转 → `design/15-meridians-and-acupoints.md`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21-meridian-flow-and-moves.md`；资源与营生 → `design/16-resources-and-estates.md`；时代门派 → `design/17-sects-compendium.md`；人物名录 → `design/18-npc-and-companions.md`；跨年代传承 → `design/20-legacy-inheritance.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档，先给出可用数值并在文末登记。
-> 版本：v0.2（D10 初稿；审校 D10.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）。
+> 版本：v0.2（D10 初稿；审校 D10.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；阴阳性质同步 AR-18（2026-09-30）。
 
 ---
 
@@ -802,6 +802,8 @@ Boss 模板另含 atk ×1.25、def ×1.20、mp ×2、评级 +15、spd ×1.06、�
 | 拳脚 3 | `sk_tongbeijin` 玄上6、`sk_tantui_tongxing` 玄上6、`sk_duandashou` 玄下4 | C04 前通过西安府 / 商路师父 | 3 门，同属拳脚栏 |
 | 兵器 3（同类剑） | `sk_jianghurumenjian` 黄上3、`sk_qingfengjian` 玄上6、`sk_jianghubaizhanjian` 地中8 | 入门剑 C02 后、清风剑 C04 前、百战剑迷宫后段 | 3 门共用剑类主武器，不以三种兵器伪充 |
 
+上述内功三门只证明可填满栏位。按 AR-18 后的 `skills-general` 现值，军旅吐纳为阳，武馆心法与江湖吐纳为阴；三者同时装配且无桥接时存在相冲。默认保留取得池，主运军旅时两格阴辅运各按 0.25，主运江湖或武馆时阳辅运按 0.25、另一阴辅运按 0.50；开战风险与闭关代价见 `design/05` §5.4。玩家可从下述本土池调整搭配，三格齐备不代表无相冲。
+
 本土组织还提供内功 `sk_gaochangtuna` / `sk_gaochanggong`、`sk_hasakehuxi` / `sk_hasakexinfa` / `sk_hasakeyunqi`，拳脚 `sk_caoyuanquan` / `sk_hasakeshuai` / `sk_lvliangquan` / `sk_walalizhi`，兵器 `sk_gaochangjibenjian` / `sk_gaochangjian` / `sk_caoyuandao` 等；华辉线另给 `sk_huahuixinfa` 与 `sk_majiajunfeizhen`，因此玩家不加入某一组织也有替代路线。通行拳 `sk_taizuchangquan` 可作为额外补位，但不计入上述最低证明。
 
 ### 9.4 秘籍、师父与互斥获取
@@ -850,8 +852,8 @@ Boss 模板另含 atk ×1.25、def ×1.20、mp ×2、评级 +15、spd ×1.06、�
 | 来源 | 本界内容 | 接口 | 限制 |
 |---|---|---|---|
 | 名医 / 药商指点 | `npc_shenqinghe10` 完成 `q_10_qiyu_03` 后提供辨药、调息环境与指导 **（原创扩展）** | `MeridianGuidance {rateBp:1500, successBp:800, costReduceBp:500}`【建议值】 | 每次绑定一条经脉并消耗指导额度；非现实医疗建议 |
-| 高昌内功 | `sk_gaochanggong` 专精 `mer_daimai` | 图鉴建议字段 | 只提高对应修炼适配，不直接开穴 |
-| 草原内功 | `sk_hasakexinfa` 专精正式 ID `mer_dumai` | 将图鉴旧迁移值 `mer_du` 视为待同步，不在新数据使用 | 前置仍为 `sk_hasakehuxi` 4 重 |
+| 高昌内功 | `sk_gaochanggong` 专精 `mer_daimai`，性质调和 | 主修经脉与性质只读 `skills-kangxi` §8.2；AR-18a 默认带脉不投票 | 只提高对应修炼适配，不直接开穴 |
+| 草原内功 | `sk_hasakexinfa` 专精正式 ID `mer_dumai`，性质阳 | 已解决：图鉴已采用 `mer_dumai`（见 `skills-kangxi` §8.5），旧迁移值不用于新数据 | 前置仍为 `sk_hasakehuxi` 4 重 |
 | 清静地点 | `sc_10_qingzang_yaolu` 风洞、迷宫静室 | `meditationQuality` 只按 `design/15` 合法档配置 | 不与普通打坐恢复重复计奖 |
 | 丹药 | 仅接受 `design/10` 明确带 `meridianAid` 的物品 | 当前白马没有已确认专属条目 | `it_jinchuangyao` 等普通治疗药只治疗，不虚称冲穴 |
 
@@ -859,15 +861,17 @@ Boss 模板另含 atk ×1.25、def ×1.20、mp ×2、评级 +15、spd ×1.06、�
 
 本节只把 `design/20` §9 的既有传承源挂到本界开放区域，不重定义概率、三卷修炼、关键信物、校合条件或防刷。白马开放 6 区，所以按 `ceil(6/2)=3`：单周目主载体最多 3、其中后人最多 2、新残本最多 6、新信物最多 3；下表 8 条是**合法候选池**，不是一轮全部出现。每条仍须通过 `design/20` §2.7 的完整来源、消隐事件、路线、地点与 NPC 生存态硬过滤；需 `manual_lost` / `lineage_broken` 而存档未提交者保持 `sealed`。
 
+AR-18 同步：九阳与混元目标现均为调和，分别以 `skills-yitian`、`skills-xiake-bixue` 现值按 `design/20` §7.3 的同性质规则读取校合门槛；该文 §9.4.3 / §9.6.6 的旧“阳”标签待归属任务同步。合法桥接替代仍只按其 §7.3，不另减品阶、层数或前置条件；传承源、卷名与信物 ID 均保持。
+
 | 传承源 | 本界合法落点与载体 | 三卷 / 关键信物 | 白马可否完成校合 | 关键前置与当界结果 |
 |---|---|---|---|---|
 | `lgs_huangshang_jiuyin` | `rg_guanzhong` 终南支点；`cache_jiuyin_zhongnan` 文献 / 石刻链 | `frag_jiuyin_zonggang`、`frag_jiuyin_lianqi`、`frag_jiuyin_yongfa`；`it_xinwu_jiuyin_jiaokan` | 可；材料与硬条件齐全时 | 须已有 `legacy/jiuyin/manual_lost`，并满足 C12 与任一 `lg_jiuyin` 武学 6 重；真实 12、当界默认有效 9、≤8 重 |
 | `lgs_gumu_yunv` | `rg_guanzhong` 终南隐脉；`cache_yunv_gumu` 密室 / 守传者链 | `frag_yunv_shierduo`、`frag_yunv_shiershao`、`frag_yunv_suxin`；`it_xinwu_yunv_shuangyin` | 可 | C10、阴性内功、古墓心法前置与羁绊≥60 的护法同伴【建议值】；卷名对应仍 **（待考）**；真实 10、当界默认有效 9、≤8 重 |
-| `lgs_jiuyang_zhenjing` | `rg_xiyu_nanjiang` 昆仑山道局部点；`cache_jiuyang_kunlun` 洞藏 / 医家校本链 | `frag_jiuyang_yangmai`、`frag_jiuyang_huti`、`frag_jiuyang_yuanyuan`；`it_xinwu_jiuyang_jiaoben` | 可 | 须已有 `legacy/jiuyang/manual_lost`，并满足 C12 与资质硬门槛；真实 12、当界默认有效 9、≤8 重 |
+| `lgs_jiuyang_zhenjing` | `rg_xiyu_nanjiang` 昆仑山道局部点；`cache_jiuyang_kunlun` 洞藏 / 医家校本链 | `frag_jiuyang_yangmai`、`frag_jiuyang_huti`、`frag_jiuyang_yuanyuan`；`it_xinwu_jiuyang_jiaoben` | 可 | 须已有 `legacy/jiuyang/manual_lost`，并满足 C12、调和内功与资质硬门槛；真实 12、当界默认有效 9、≤8 重 |
 | `lgs_mingjiao_qiankun` | `rg_xiyu_nanjiang` 光明顶秘道专线；`cache_qiankun_guangming` 石刻 / 旧部链 | `frag_qiankun_yinqian`、`frag_qiankun_nuoyi`、`frag_qiankun_qiceng`；`it_xinwu_qiankun_shenghuolingyin` | 可 | C11、光明心法 / 九阳 OR 前置与守传认可；真实 11、当界默认有效 9、≤8 重 |
 | `lgs_dugu_jiujian` | `rg_guanzhong` 华山局部点，时代名引用 `city_huayin`“华阴县”；`cache_dugu_siguoya` 试招链 | `frag_dugu_zongjue`、`frag_dugu_pobing`、`frag_dugu_poqi`；`it_xinwu_dugu_jianshi` | 可 | 须已有 `legacy/dugu9/lineage_broken`，满足 C12 并见识四类兵器；真实 12、当界默认有效 9、≤8 重 |
 | `lgs_xueshan_taxue` | `rg_qingzang` 雪线 / 风洞；`cache_taxue_xuegu` 足迹石刻链 | `frag_taxue_lingxue`、`frag_taxue_wuhen`、`frag_taxue_lingxiao`；`it_xinwu_taxue_xueyin` | 可 | C8、阴性内功、雪山剑法前置或有效覆写；真实 / 有效均 8、≤8 重 |
-| `lgs_huashan_hunyuan` | `rg_guanzhong` 华山局部点，时代名引用 `city_huayin`“华阴县”；`cache_hunyuan_huashan` 隐院 / 崖壁链 | `frag_hunyuan_yangqi`、`frag_hunyuan_zhangjin`、`frag_hunyuan_heyi`；`it_xinwu_hunyuan_zhangyin` | 可 | C9、阳性内功、混元掌 / 华山前置或守传覆写；真实 / 有效均 9、≤8 重 |
+| `lgs_huashan_hunyuan` | `rg_guanzhong` 华山局部点，时代名引用 `city_huayin`“华阴县”；`cache_hunyuan_huashan` 隐院 / 崖壁链 | `frag_hunyuan_yangqi`、`frag_hunyuan_zhangjin`、`frag_hunyuan_heyi`；`it_xinwu_hunyuan_zhangyin` | 可 | C9、调和内功、混元掌 / 华山前置或守传覆写；真实 / 有效均 9、≤8 重 |
 | `lgs_xuedao_jing` | `rg_qingzang` 雪谷遗物；`cache_xuedao_xuegu` 残页经匣链 | `frag_xuedao_xuexi`、`frag_xuedao_fuxue`、`frag_xuedao_jingdao`；`it_xinwu_xuedao_xueyin` | 可，是 `ch09_liancheng` 最直接的本界续接 | C9、阴性内功，保留血刀基础 / 心法与路线硬条件；真实 / 有效均 9、≤8 重 |
 
 `lgs_shenzhao_jing` 与 `lgs_liancheng_tangshi` 虽从 `ch10` 起时序合法，但目录首选 `city_jingzhou/rg_jingxiang`，不在本界六个开放区；本版不把它们硬搬到回疆。若玩家先前已取得其卷或信物，它们按 `design/20` §11 随书眠保留；一旦三卷、信物与配方硬条件齐全，也可在本界安全据点校合，本章只是不新增两源的地表载体。
@@ -1168,8 +1172,8 @@ B = 11.4×8 = 91.2 两
 | 单位 | 门派 / 来源 | 主运内功 | 辅运内功（2 格） | 外功（逐门标品阶） | 经脉七项参数 | `milestones` | 血量 / 防御倍率 | 逐单位估算轮数 | 机制备注 |
 |---|---|---|---|---|---|---|---|---:|---|
 | 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主运解析（不得低于玄中5） | 按来源解析两门玄 / 黄基础内功 | 按行动表解析 3–5 门 | `5/8；10500/7500/10500；由主运解析；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.42` | 唯一锚点 |
-| 霍元龙 | 吕梁三杰 / 晋威镖局 | `sk_jianghutuna`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_zhuangxingong`（黄中2） | `sk_jiebiaodaofa`（玄上6）、`sk_lvliangzhuifengdao`（玄中5）、`sk_lvliangquan`（黄上3）、`sk_huyuanquan`（黄中2） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `16.32` | — |
-| 陈达海 | 晋威镖局 / 江湖剑士 | `sk_jianghutuna`（玄中5） | `sk_tunaqianjue`（黄上3）、`sk_zhuangxingong`（黄中2） | `sk_qingfengjian`（玄上6）、`sk_huweijian`（玄中5）、`sk_biaojujianfa`（黄上3）、`sk_jianghurumenjian`（黄上3） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `16.32` | — |
+| 霍元龙 | 吕梁三杰 / 晋威镖局 | `sk_jianghutuna`（玄中5，阴） | `sk_tunaqianjue`（黄上3）、`sk_zhuangxingong`（黄中2） | `sk_jiebiaodaofa`（玄上6）、`sk_lvliangzhuifengdao`（玄中5）、`sk_lvliangquan`（黄上3）、`sk_huyuanquan`（黄中2） | `5/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `16.32` | 保留阳外功相性代价；见下文 AR-18 复核 |
+| 陈达海 | 晋威镖局 / 江湖剑士 | `sk_jianghutuna`（玄中5，阴） | `sk_tunaqianjue`（黄上3）、`sk_zhuangxingong`（黄中2） | `sk_qingfengjian`（玄上6）、`sk_huweijian`（玄中5）、`sk_biaojujianfa`（黄上3）、`sk_jianghurumenjian`（黄上3） | `5/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `16.32` | 三阴同源；调和 / 中性剑相性见下文 |
 | 瓦耳拉齐 | 华辉散承 | `sk_huahuixinfa`（地上9，阴） | `sk_jianghutuna`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_walalizhi`（地上9）、`sk_huahuijian`（玄上6）、`sk_huahuiyexing`（玄下4）、`sk_huahuijibenjian`（黄上3） | `9/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | `1.00 / 1.00`（双人战共享） | `18.44` | 真实主运闭合；灯位破局 **（待实测）** |
 | 马家骏 | 华辉前弟子 / 江湖 | `sk_huahuixinfa`（地上9，阴） | `sk_jianghutuna`（玄中5）、`sk_wuguanxinfa`（玄下4） | `sk_majiajunfeizhen`（地上9）、`sk_huahuijian`（玄上6）、`sk_huahuiyexing`（玄下4）、`sk_huahuijibenjian`（黄上3） | `9/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `1.00 / 1.00`（双人战共享） | `18.44` | 真实主运闭合；非致死阈值 **（待实测）** |
 | 双人剧情战·瓦耳拉齐 | 华辉散承 | `sk_huahuixinfa`（地上9，阴） | `sk_jianghutuna`（玄中5）、`sk_tunaqianjue`（黄上3） | `sk_walalizhi`（地上9）、`sk_huahuijian`（玄上6）、`sk_huahuiyexing`（玄下4）、`sk_huahuijibenjian`（黄上3） | `9/8；13000/9000/13000；yin；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | `1.00 / 1.00`（全场共享） | `18.44` | 独立实例；双人总耐久只计一次 |
@@ -1177,11 +1181,41 @@ B = 11.4×8 = 91.2 两
 | 部族演武首领 | 哈萨克部族 | `sk_hasakeyunqi`（玄中5，阳） | `sk_hasakexinfa`（玄下4）、`sk_hasakehuxi`（黄中2） | `sk_hasakeqishe`（地下7）、`sk_hasakeshuai`（玄中5）、`sk_caoyuandao`（黄上3）、`sk_caoyuanquan`（黄中2） | `5/8；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `16.32` | 计分 / 认输结束非死斗 **（待实测）** |
 | 假鬼机关阵 | 纯机关 | 不适用 | 不适用 | 不适用；`sk_gaochangjiguan` 是机关行为而非外功 | 不创建经脉实例 | 不适用 | 不适用 | 不适用（目标流程约 `14.9`） | 纯机关合法豁免 |
 | 守藏机关傀儡（每个） | 高昌遗脉机关武学 | `sk_gaochanggong`（玄中5） | `sk_gaochangtuna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_gaochangshouhujian`（地上9）、`sk_gaochangjian`（玄上6）、`sk_gaochangjibenjian`（黄中2） | `5/8；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:false, turns:2}` | `1.00 / 1.00`（全场共享） | `16.93` | 多傀儡合计只用单场预算 **（待实测）** |
-| 吕梁 / 镖局精英（每名） | 吕梁 / 晋威镖局 | `sk_wuguanxinfa`（玄下4） | `sk_zhuangxingong`（黄中2）、`sk_tunaqianjue`（黄上3） | `sk_lvliangzhuifengdao`（玄中5）、`sk_lvliangquan`（黄上3）、`sk_huyuanquan`（黄中2） | `4/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.27` | — |
-| 部族勇士精英（每名） | 哈萨克部族 | `sk_hasakexinfa`（玄下4） | `sk_hasakehuxi`（黄中2）、`sk_tunaqianjue`（黄上3） | `sk_hasakeshuai`（玄中5）、`sk_caoyuandao`（黄上3）、`sk_caoyuanquan`（黄中2） | `4/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.27` | 演武不结算死亡 |
+| 吕梁 / 镖局精英（每名） | 吕梁 / 晋威镖局 | `sk_wuguanxinfa`（玄下4，阴） | `sk_zhuangxingong`（黄中2）、`sk_tunaqianjue`（黄上3） | `sk_lvliangzhuifengdao`（玄中5）、`sk_lvliangquan`（黄上3）、`sk_huyuanquan`（黄中2） | `4/8；10500/7500/10500；yin；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.27` | 保留阳外功相性代价；见下文 AR-18 复核 |
+| 部族勇士精英（每名） | 哈萨克部族 | `sk_hasakexinfa`（玄下4） | `sk_hasakehuxi`（黄中2）、`sk_tunaqianjue`（黄上3） | `sk_hasakeshuai`（玄中5）、`sk_caoyuandao`（黄上3）、`sk_caoyuanquan`（黄中2） | `4/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.27` | 演武不结算死亡；默认接受阴辅运相冲，见下文 |
 | 高昌武学精英（每名） | 高昌遗脉 | `sk_gaochanggong`（玄中5） | `sk_gaochangtuna`（黄上3）、`sk_huxixingqi`（黄下1） | `sk_gaochangjian`（玄上6）、`sk_gaochangjibenjian`（黄中2）、`sk_huiliuquan`（玄下4） | `5/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `7.42` | — |
 
 未列普通敌人才允许 `9000/6200/9000`、`routeOnly` 与五里程碑全 0；所有武学型精英必须绑定上表确定模板，缺失即构建失败。阶段或灯位切换不清 backlog / 迟滞 / 胀损。攻防分别接 Z5M / Z4M；护体顺序是护体真气 → 护体内劲 → `mpGuard` → 气血；速度先乘经脉、再乘擒拿，首轮冻结。绝招仅读 `MoveDef.ultimate`；点穴 / 擒拿在伤害后调用 `applyAcupointSeal` / `applyGrapple`，调息不推进第七转。
+
+#### AR-18 性质、相冲与调息复核
+
+内功性质、调息档案与路线门槛只读现行图鉴；正逆周天不改变性质。江湖吐纳、武馆心法、吐纳浅诀、呼吸行气由调和改阴，壮行功由阳改阴；华辉、高昌、草原六门内功性质保持。下表为 `design/05` §5.2–§5.4 对本章既有配装的应用 **（原创扩展）**，默认不换主辅运与外功。
+
+| 配装 | 主辅相性 / 外功影响 | 本章处理 |
+|---|---|---|
+| 霍元龙、陈达海、吕梁 / 镖局精英 | 三门内功均阴，无主辅相冲，两辅运各 0.50 | 保留配装；同阴招可读三运同源，但不能给阳 / 调和 / 中性招加同源奖励 |
+| 霍元龙；吕梁 / 镖局精英 | 已明示阳性的解镖刀法、吕梁追风刀、护院拳中，各自所装者 Z5 相性由 +6%→−12% | 默认接受异性代价；路线 `requiredNature` 兼容问题见下文，不以相性惩罚替代门槛检查 |
+| 陈达海 | 清风剑 / 护围剑为调和，Z5 +12%→0；镖局剑法 / 江湖入门剑为中性，+2%→0 | 七参仍只取江湖吐纳，不按外功反改主运性质 |
+| 瓦耳拉齐、马家骏（含双人实例） | 三阴，无主辅相冲；两辅运各由 0.40→0.50，阴性指法 / 飞针 / 快剑的 Z5 由 +12%→+16%（12%+4%） | 主运七参保持 `9/8/yin`；同源增益进入 Z5，不再乘一次 Z5M |
+| 部族演武首领 | 仍为三阳，主辅同源；两辅运各 0.50 | 保持原配置 |
+| 部族勇士精英 | 阳主运、阳呼吸法、阴吐纳浅诀，无桥接；浅诀辅运比例 0.40→0.25 | 默认接受相冲：开战一次 `p=0.08×(1−wil/150)`；命中获 1 级 `bf_neixiwenluan`，品阶 `max(4,3)=4`；相冲组合闭关心魔概率×2；仍不满足三运同源 |
+| 守藏机关傀儡、高昌武学精英 | 调和主运 + 调和吐纳 + 阴呼吸行气，无主辅相冲；辅运比例分别 0.50、0.40（呼吸行气原 0.50） | 保持原配置；调和主运不意味着 5 品高昌劲自动成为桥接 |
+
+阳外功路线常列 `requiredNature:[yang,harmony]`，陈达海的调和剑路线列三性质；霍元龙 / 吕梁精英的阴主运不在前者之内。现行 `design/21` §2.4 同时保留异性路线 `affinityBp=8800`，两者的运行门禁解释交上游澄清，不能凭本章接受 Z5 代价就放宽 `requiredNature`。部族勇士精英的阴辅运调息若作为行动来源，也须按图鉴 `auxYunjin` 与路线门槛检查，不因已装配而自动可用。康熙册五门黄阶外功（吕梁拳、华辉基础剑、草原拳、草原弯刀、高昌基础剑）未显式列性质，本章不按名称猜测，逐招性质交图鉴补齐。
+
+调息读 `design/21` §10.2；以下为受影响五门内功在本界 `effLayer=8` 的投影核算，不把图鉴 10 重展示值直接用于低武。辅运栏未指定层数者仅以 8 重作上限对照，实际按自身有效层数和可用运劲来源读取。
+
+| 内功（有效品阶） | `reliefBp / repairUnits` 改前 → 改后（8 重） | 护体档 / 路线 |
+|---|---|---|
+| 江湖吐纳（5） | `1722/403 → 1640/384` | 通行册 II 不变，防守路线改读阴性档 |
+| 武馆心法（4） | `1617/378 → 1540/360` | 通行册 II 不变，防守路线改读阴性档 |
+| 吐纳浅诀（3） | `1512/352 → 1440/336` | 通行册 I 不变 |
+| 壮行功（2） | `1340/312 → 1340/312` | 通行册 I 不变；阴阳调息倍率相同 |
+| 呼吸行气（1） | `1302/302 → 1240/288` | 通行册 I 不变 |
+
+例如江湖吐纳 8 重：`500+100×5+80×8=1640`、`120+24×5+18×8=384`；旧调和值为 `floor(1640×1.05)=1722`、`floor(384×1.05)=403`，现阴性倍率 1。五门的 `BreathProfile.nature=yin`、防守路线 `requiredNature:[yin,harmony]`；I / II 只是图鉴档位，不另加减伤倍率。
+
+以表中七参和五里程碑重跑 `boss_pacing.py`，霍元龙 / 陈达海 `16.315997→16.315997`，吕梁 / 镖局精英 `7.268310→7.268310`，故表中仍显示 `16.32`、`7.27`，HP / DEF 保持 `1.00/1.00`。该工具假定无损完成代表路线，并将路线性质设为主运性质；未模拟辅运贡献、实际 Z5、逐招门槛、调息 / 护体与相冲随机事件。轮数不变仅代表静态估算，不能证明实际战斗不变；上述相性变化须进入固定 RNG 回放 **（待实测）**。
 
 #### 本界首领配装图鉴缺口
 
@@ -1192,7 +1226,7 @@ B = 11.4×8 = 91.2 两
 | 部族演武首领 | 至少 5 品哈萨克主运 | **已补：**`sk_hasakeyunqi`（玄中5）；按哈萨克 L3 正常传授 |
 | 假鬼机关阵 | 无；纯机关没有武学行动者 | **合法豁免：**不创建主运、武学或经脉实例，目标流程仍约 `14.9` 轮 |
 
-当前脚本基线 `3.4 / 7.3 / 14.9`；逐单位结果为 Boss `16.32–18.44`、精英 `7.27–7.42`，全部保持 `1.00×1.00` 即落窗。以 NXB10 已落盘的合法 `sk_*` 配装为本次终审前快照，本轮不再替换首领武学；瓦耳拉齐、马家骏、部族演武首领的节奏仍分别为 `18.44→18.44`、`18.44→18.44`、`16.32→16.32`。因此无需调血量或防御倍率。速度变化只改首轮 / CT / 移动，不再乘一次伤害；固定 RNG 回放仍 **（待实测）**。
+当前脚本基线 `3.4 / 7.3 / 14.9`；逐单位静态结果为 Boss `16.32–18.44`、精英 `7.27–7.42`，全部保持 `1.00×1.00` 即落窗。以 NXB10 已落盘的 `sk_*` 配装为快照，本轮只同步 AR-18 性质及其影响；瓦耳拉齐、马家骏、部族演武首领的静态节奏仍分别为 `18.44→18.44`、`18.44→18.44`、`16.32→16.32`。本轮据静态结果保留血量与防御倍率；逐招门槛、相冲及调息影响见上文，仍须固定 RNG 回放 **（待实测）**。速度变化只改首轮 / CT / 移动，不再乘一次伤害。
 
 #### 多人遭遇整场耐久
 
@@ -1363,7 +1397,7 @@ B = 11.4×8 = 91.2 两
 | BM-V19 | 经脉节奏：标准档为 3.4 / 7.3 / 14.9；结算顺序匹配 `design/21`；具名和双人战槽为 18.44、演武首领 16.32，固定 RNG 回放 Boss 为 12–25 | 仍用旧 3.1 / 6.6 / 13.5，合法主运落盘后超窗，或经脉乘区 / 速度被重复计算 |
 | BM-V20 | 华辉遗谱只发 `it_miji_huahuixinfa`、`it_miji_walalizhi`、`it_miji_majiajunfeizhen` 三条单武学秘籍，且整组事务幂等 | 使用 `skills[]` 复合物品、部分发放、重复补发 / 折现，或从瓦耳拉齐 / 马家骏尸体掉落 |
 | BM-V21 | 运行时不引用 `design/06` §8.14.3 所列四个旧 Buff ID | 旧 Buff ID 残留；若未来需要相同行为，须改为迁移表指定的新状态加等级 |
-| BM-V22 | 每个武学型 Boss / 精英均有可解析主运 `sk_*`，七参从该主运导出；瓦耳拉齐 / 马家骏七参 `effGrade/effLayer` 不低于 `design/18` §1.3.1 的 `9/8`；纯机关仅限假鬼机关阵 | 主运外键不可解析、用人物画像直接伪造七参、瓦耳拉齐 / 马家骏低于该下限，或让武学型机关套用纯机关豁免 |
+| BM-V22 | 每个武学型 Boss / 精英均有可解析主运 `sk_*`，七参从该主运导出；霍元龙 / 陈达海 / 吕梁精英的 `innerNature=yin` 与图鉴、调息档案一致；逐招核 `requiredNature`，主辅相冲见 §12.8；瓦耳拉齐 / 马家骏不低于 `design/18` §1.3.1 的 `9/8`；纯机关仅限假鬼机关阵 | 主运外键不可解析、七参或调息仍镜像旧性质、相冲未结算、未核路线门槛即发布、瓦耳拉齐 / 马家骏低于下限，或让武学型机关套用纯机关豁免 |
 | BM-V23 | 四场多人战各只声明一次 `totalHp`：霍元龙追忆 `51,462`、瓦耳拉齐救援 `64,534`、双人战 `64,534`、守藏试炼 `61,796` | 按行动者复制完整 Boss 耐久、分配不守恒，或同一伤害与目标进度重复计数 |
 | BM-V24 | 外放后复核覆盖瓦耳拉齐、马家骏、霍元龙、陈达海；当前配装外放伤害招均为 0 | 漏复核顶尖人物、把实体飞针 / 接触指法误判外放，或静态轮数被当作正式回放 |
 
@@ -1392,7 +1426,7 @@ B = 11.4×8 = 91.2 两
 | BM-T19 | 部族演武首领以 `sk_hasakeyunqi` 5 品 8 重、阳性和 §12.8 七参运行 `boss_pacing.py` | `16.3160≈16.32` 轮；血量 / 防御倍率保持 `1.00/1.00` |
 | BM-T20 | 满足华辉遗谱条件后领取；再模拟第二条写入失败与重复触发 | 正常一次取得 3 条；失败取得 0 条且不写领取记录；重复触发不补发、不折现 |
 | BM-T21 | 汇总四场多人战稳定分配 | 依 §12.8 分别复算为 `51,462 / 64,534 / 64,534 / 61,796`；每场只计一次总耐久，友方 / 撤离 / 剧情死亡只迁移槽义 |
-| BM-T22 | 四名具名 Boss 以现行行动表重跑外放审计和 `boss_pacing.py` | 外放伤害招均 0；轮数依次 `18.4403 / 18.4403 / 16.3160 / 16.3160`，均落 12–25 |
+| BM-T22 | 四名具名 Boss 重跑外放审计；霍元龙 / 陈达海以 `yin`、吕梁精英以 `4/8/yin` 重跑 `boss_pacing.py` | 外放伤害招均 0；四 Boss 静态轮数依次 `18.4403 / 18.4403 / 16.3160 / 16.3160`，精英 `7.2683`；江湖 / 武馆 8 重调息为 `1640/384`、`1540/360`；不把静态落窗视为相冲与逐招门槛验收 |
 
 ### 建议执行命令
 
@@ -1428,6 +1462,7 @@ rg -n 'rg_10_|rg_xiyu\b|mer_du\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/des
 - `design/catalog/npcs-ch10-baima.md` 与 `design/18` 是人物、D 级、年龄和跨书规则的来源。
 - `skills-kangxi` / `skills-general` 是武学 ID 来源；上游若迁移经脉旧 ID，本章继续只读正式 `mer_dumai`。
 - `skills-bulu-10-baima` 是本轮四门补录武学、十八招、逐招路线、调息档案与习得途径的唯一来源；本章只投放和装配。
+- AR-18 性质及相性分别只读现行图鉴与 `design/05` §5.2–§5.4；§9.7 九阳 / 混元按图鉴调和现值应用 `design/20` §7.3，后者 §9.4.3 / §9.6.6 的旧阳性镜像交归属任务同步。
 - `design/11`、`design/19`、`map/cities.yaml` 与 `map/jianghu-ch10.svg` 共同提供本时代地理。
 - `design/03` / `04` 提供 Boss 数值与节奏；`design/16` 提供资源、营生和门派经济。
 - `design/09` §8.8.11 提供多人遭遇级 `totalHp`、稳定分配与固定 RNG 回放门禁；本章 §12.8 的四场总耐久仍为待回放校准建议值。
@@ -1470,3 +1505,6 @@ rg -n 'rg_10_|rg_xiyu\b|mer_du\b|\b[T]ODO\b|此处省[略]|待补[充]' docs/des
 | BM-O14 | 华辉心法 / 草原运气法核心经脉是否冻结 | 默认沿补录册建议 `任脉+阴维` / `督脉+阳维`；最终仍由图鉴归属任务统一确认 |
 | BM-O15 | 静态节奏能否作为生产回放 | 不能；本轮保持 `1.00/1.00`，双人战、守藏试炼及具名行动表仍须固定 RNG 回放 **（待实测）** |
 | BM-O16 | story/10 x07“霍元龙与拒捕追图团（Boss / 精英群战）”是否升格为正式遭遇 | 默认本轮不新增，仍为 6 个正式 Boss 遭遇，按精英群战处理；霍元龙、陈达海复用既有 `full` 行，三强人仍为 `tmpl_elite`。是否升格由作者 / 书界 10 归属任务决定；若升格，须按该进度段 §12.2 等级带取模板，依 `design/09` §8.8.11 声明唯一 `totalHp`，陈达海、三强人的敌我变化只迁移槽 |
+| AR-18 配装 | 是否保留部族勇士精英的阴辅运，以及霍元龙 / 吕梁精英的阳外功 | 默认保持配装；相冲比例、开战风险、闭关代价与 Z5 异性惩罚见 §12.8；作者另定替换前不虚构无冲突配装，实战影响待回放 |
+| AR-18 路线依赖 | 异性路线相性与 `requiredNature` 如何共同判定；康熙册五门黄阶外功性质待显式登记 | 默认保留图鉴字段，不在章节扩大门槛或猜测缺字段；交 `design/05`、`design/21` 与图鉴归属任务澄清，生产逐招校验不得用静态 TTK 替代 |
+| AR-18a / AR-18b | 冲 / 带投票与后溪外放端点是否调整 | 默认冲 / 带不投阴阳票，后溪不新增为外放端点；沿作者新增需求默认值，正逆周天不定阴阳 |
