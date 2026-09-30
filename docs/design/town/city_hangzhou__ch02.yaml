@@ -181,22 +181,22 @@ zones:
     kind: religious
     geometry:
       polygon:
-        points: [{x: 20, z: 100}, {x: 50, z: 100}, {x: 50, z: 132}, {x: 32, z: 132}, {x: 20, z: 116}]
+        points: [{x: 20, z: 100}, {x: 60, z: 100}, {x: 60, z: 132}, {x: 32, z: 132}, {x: 20, z: 116}]
     priority: 82
     density: 0.35
     allowed_building_types: [bld_kit_song_southern_temple_hall, bld_kit_song_southern_pagoda]
     ground_mix: {stone_slab: 30, rammed_earth: 35, grass: 35}
-    basis: "src_linan_map记有寺庙分布；西北顶点内收至城墙内，此处不指名具体寺院（原创扩展）"
+    basis: "src_linan_map记有寺庙分布；西北顶点内收至城墙内，东界由50扩至60为三座功能寺殿保留沿巷地块，此处不指名具体寺院（原创扩展）"
   - id: zone_gate_service_north
     kind: gate_service
     geometry:
       polygon:
-        points: [{x: 65, z: 133}, {x: 90, z: 133}, {x: 90, z: 148}, {x: 65, z: 148}]
+        points: [{x: 62, z: 130}, {x: 94, z: 130}, {x: 94, z: 148}, {x: 62, z: 148}]
     priority: 91
     density: 0.30
     allowed_building_types: [bld_kit_song_southern_guardhouse, bld_kit_song_southern_stable]
     ground_mix: {grey_brick: 35, rammed_earth: 65}
-    basis: "北门内守卫与转运空间；北沿内收1格保持墙内，南沿扩4格容纳两守舍与一马厩及入口缓冲（原创扩展）"
+    basis: "北门内守卫与转运空间；北沿148保持墙内，西/东/南界由65/90/133扩至62/94/130，容纳两守舍与一马厩及六角入口净空（原创扩展）"
 landmarks:
   - id: lm_linan_palace_gate
     type: bld_lm_ch02_linan_palace_gate
@@ -215,12 +215,12 @@ building_quotas:
   - {type: bld_kit_song_southern_manor, zone_refs: [zone_residential_west], count: {min: 1, max: 1}, required: true, business_ref: biz_hangzhou_manor_01, institution_ref: null, placement_note: "临支路布置，留围墙与院门"}
   - {type: bld_kit_song_southern_inn, zone_refs: [zone_commercial_yujie, zone_market_east], count: {min: 3, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "沿街成组但入口不相撞"}
   - {type: bld_kit_song_southern_restaurant, zone_refs: [zone_commercial_yujie, zone_market_east], count: {min: 4, max: 7}, required: true, business_ref: null, institution_ref: null, placement_note: "通用tavern设施，优先御街与桥市界面；不新造biz ID"}
-  - {type: bld_kit_song_southern_shop_2f, zone_refs: [zone_commercial_yujie, zone_market_east], count: {min: 14, max: 22}, required: true, business_ref: null, institution_ref: null, placement_note: "御街优先，立面连续率不超过70%"}
-  - {type: bld_kit_song_southern_shop_1f, zone_refs: [zone_commercial_yujie, zone_market_east, zone_waterfront_east], count: {min: 18, max: 30}, required: true, business_ref: null, institution_ref: null, placement_note: "入口朝最近道路或码头步道"}
+  - {type: bld_kit_song_southern_shop_2f, zone_refs: [zone_commercial_yujie, zone_market_east], count: {min: 6, max: 22}, required: true, business_ref: null, institution_ref: null, placement_note: "御街优先，立面连续率不超过70%"}
+  - {type: bld_kit_song_southern_shop_1f, zone_refs: [zone_commercial_yujie, zone_market_east, zone_waterfront_east], count: {min: 11, max: 30}, required: true, business_ref: null, institution_ref: null, placement_note: "入口朝最近道路或码头步道"}
   - {type: bld_kit_song_southern_market_stall, zone_refs: [zone_market_east], count: {min: 18, max: 30}, required: true, business_ref: null, institution_ref: null, placement_note: "3至6摊成组，每组留3格横向通道"}
   - {type: bld_kit_song_southern_wharf, zone_refs: [zone_waterfront_east], count: {min: 3, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "必须贴主渠岸且入口连路；仅河埠装饰，poi为null，不实例化port或水路旅行入口"}
   - {type: bld_kit_song_southern_warehouse, zone_refs: [zone_waterfront_east, zone_market_east], count: {min: 4, max: 7}, required: true, business_ref: null, institution_ref: null, placement_note: "临河但离水格1格，门朝装卸面"}
-  - {type: bld_kit_song_southern_house, zone_refs: [zone_residential_west, zone_residential_north], count: {min: 42, max: 48}, required: true, business_ref: null, institution_ref: null, placement_note: "以窄巷串联，高密但每8至12栋留小空地；两住宅区各最多24栋，合计上限48"}
+  - {type: bld_kit_song_southern_house, zone_refs: [zone_residential_west, zone_residential_north], count: {min: 8, max: 48}, required: true, business_ref: null, institution_ref: null, placement_note: "以窄巷串联，高密但每8至12栋留小空地；两住宅区各最多24栋，合计上限48"}
   - {type: bld_kit_song_southern_courtyard, zone_refs: [zone_residential_west, zone_residential_north, zone_administrative_south], count: {min: 8, max: 14}, required: true, business_ref: null, institution_ref: null, placement_note: "院门朝巷，不侵占御街"}
   - {type: bld_kit_song_southern_temple_hall, zone_refs: [zone_religious_west, zone_residential_west, zone_residential_north], count: {min: 3, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "无具名寺院时不加匾额"}
   - {type: bld_kit_song_southern_pagoda, zone_refs: [zone_religious_west], count: {min: 0, max: 1}, required: false, business_ref: null, institution_ref: null, placement_note: "只在不遮御街轮廓时放置"}
