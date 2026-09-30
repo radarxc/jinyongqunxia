@@ -1,11 +1,11 @@
 # 门派武学图鉴 · 康熙前后四书（`skills-kangxi`）
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 门派武学图鉴之一。本文只定义《鹿鼎记》《连城诀》《白马啸西风》《鸳鸯刀》组的武学条目、学习关系与套装成员候选。
-> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-01/02/03/07/08/14/16、`docs/00-canon.md` §3–§7/§9/§12/§13/§16/§20、`docs/decisions/rulings-v1.md` C12/C14–C17/C22/C23 与 §3–§5、`design/17`、`design/21` v2.0。
+> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-01/02/03/07/08/14/16/18、`docs/00-canon.md` §3–§9/§12/§13/§16/§18/§20、`docs/decisions/rulings-v1.md` C12/C14–C17/C22/C23 与 §3–§5、`design/17`、`design/21` v2.7.2。
 > **引用而不重定义**：字段、层数、招式与内功预算见 `design/05`；战斗经脉运行、路线、护体内劲、速度修正与调息见 `design/21`；经脉 / 穴位与永久成长见 `design/15`；伤害乘区见 `design/04`；Buff 本体见 `design/06`；轻功值与门禁见 `design/03`、`design/08`；合击运行见 `design/09` §6.7.4；物品见 `design/10`；门派时代、职级称谓见 `design/17`；套装规则与奖励留给 `design/07`。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（原创扩展命名）**为原著有其人其事而无固定武学名；**（待考）**须以三联/广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
 >
-> **版本**：初稿 C1d；审校 C1d.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记（2026-09-28）；绝招路线叙事化（2026-09-29）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）。
+> **版本**：初稿 C1d；审校 C1d.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记（2026-09-28）；绝招路线叙事化（2026-09-29）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
 
 ---
 
@@ -46,7 +46,7 @@
 | 6 玄上 | `sk_shenlongzhang` | `mv_shenlongzhang_yazhen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_shenlongzhang_yazhen}` | `mfr_shenlongzhang_yazhen` |`MeridianRouteDef{moveRef:mv_shenlongzhang_yazhen; ultimate:true; purpose:attack}`；`ap_shoushaoyang_yifeng/100/100→ap_shoutaiyang_tinggong/100/120→ap_shouyangming_pianli/100/140→ap_yangqiao_dicang/100/160→ap_shoujueyin_neiguan/100/180→ap_shoujueyin_laogong/100/200` |
 | 6 玄上 | `sk_manchuqishe` | `mv_manchuqishe_chishe` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_manchuqishe_chishe}` | `mfr_manchuqishe_chishe` |`MeridianRouteDef{moveRef:mv_manchuqishe_chishe; ultimate:true; purpose:attack}`；`ap_shouyangming_yangxi/100/100→ap_yangqiao_juliao_wei/100/120→ap_yangwei_jinmen/100/140→ap_zushaoyang_riyue/100/160→ap_zutaiyang_chengshan/100/180→ap_zutaiyang_xinshu/100/200` |
 | 6 玄上 | `sk_xuedaoqinfa` | `mv_xuedaoqinfa_suobi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_xuedaoqinfa_suobi}` | `mfr_xuedaoqinfa_suobi` |`MeridianRouteDef{moveRef:mv_xuedaoqinfa_suobi; ultimate:true; purpose:attack}`；`ap_renmai_danzhong/100/100→ap_renmai_shuifen/100/120→ap_shoujueyin_neiguan/100/140→ap_shoushaoyin_lingdao/100/160→ap_shouyangming_shousanli/100/180→ap_shouyangming_hegu/100/200` |
-| 6 玄上 | `sk_meinianshengxinfa` | `mv_meinianshengxinfa_huixi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_meinianshengxinfa_huixi}` | `mfr_meinianshengxinfa_huixi` |`MeridianRouteDef{moveRef:mv_meinianshengxinfa_huixi; ultimate:true; purpose:defense}`；`ap_chongmai_futonggu/100/100→ap_chongmai_youmen/100/120→ap_renmai_zhongwan/100/140→ap_dumai_shendao/100/160→ap_dumai_shenzhu/100/180→ap_shoushaoyin_shenmen/100/200` |
+| 6 玄上 | `sk_meinianshengxinfa` | `mv_meinianshengxinfa_huixi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_meinianshengxinfa_huixi}` | `mfr_meinianshengxinfa_huixi` |`MeridianRouteDef{moveRef:mv_meinianshengxinfa_huixi; ultimate:true; purpose:defense}`；`ap_chongmai_futonggu/100/100→ap_chongmai_youmen/100/120→ap_renmai_zhongwan/100/140→ap_yinwei_lianquan/100/160→ap_dumai_shenzhu/100/180→ap_shoushaoyin_shenmen/100/200` |
 | 6 玄上 | `sk_gaochangjian` | `mv_gaochangjian_zhuanjiao` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_gaochangjian_zhuanjiao}` | `mfr_gaochangjian_zhuanjiao` |`MeridianRouteDef{moveRef:mv_gaochangjian_zhuanjiao; ultimate:true; purpose:attack}`；`ap_chongmai_shangqu/100/100→ap_daimai_weidao/100/120→ap_yangwei_tianliao/100/140→ap_shoushaoyang_waiguan/100/160→ap_shoutaiyang_wangu/100/180→ap_shouyangming_hegu/100/200` |
 | 6 玄上 | `sk_huahuijian` | `mv_huahuijian_yexi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_huahuijian_yexi}` | `mfr_huahuijian_yexi` |`MeridianRouteDef{moveRef:mv_huahuijian_yexi; ultimate:true; purpose:attack}`；`ap_yinwei_lianquan/100/100→ap_yinqiao_jingming/100/120→ap_zujueyin_xingjian/100/140→ap_shoushaoyin_qingling/100/160→ap_shoushaoyang_waiguan/100/180→ap_shoutaiyang_yanggu/100/200` |
 | 6 玄上 | `sk_linyulongdao` | `mv_linyulongdao_zhengxian` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_linyulongdao_zhengxian}` | `mfr_linyulongdao_zhengxian` |`MeridianRouteDef{moveRef:mv_linyulongdao_zhengxian; ultimate:true; purpose:attack}`；`ap_zuyangming_renying/100/100→ap_zushaoyang_waiqiu/100/120→ap_dumai_shuigou/100/140→ap_shoushaoyang_zhongzhu/100/160→ap_shouyangming_yangxi/100/180→ap_shoutaiyang_yanggu/100/200` |
@@ -808,10 +808,11 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 
 ### 7.3 `sk_xuedaoxinfa` 血刀心法（5 玄中 · 内功）
 
-**字段**｜`origin:expanded`；`sect:sect_xuedaomen`；`nature:yin`；`wOut/wIn:0/1`；`meridians:[mer_chongmai]` **【建议值】**；`sourceChapters:[ch09_liancheng]`；`reqs: attrs {con:30,wil:25}, aptitude {apInner:30}, sect rank:2, prereq [{skill:sk_xuedaojichudao,layer:4}]`（硬：sect/prereq）；`inner.contribution:{mpMaxPct:15,hpMaxPct:13,attrs:{agi:4,con:3},mpRegen:1.3}`，`IP=15+13+2×7+5×1.3=48.5`；`stats:{crit:5,resCold:5}` 合计 10；`setTags:[]`。
+**字段**｜`origin:expanded`；`sect:sect_xuedaomen`；`nature:harmony`；`wOut/wIn:0/1`；`meridians:[mer_chongmai]` **【建议值】**；`sourceChapters:[ch09_liancheng]`；`reqs: attrs {con:30,wil:25}, aptitude {apInner:30}, sect rank:2, prereq [{skill:sk_xuedaojichudao,layer:4}]`（硬：sect/prereq）；`inner.contribution:{mpMaxPct:15,hpMaxPct:13,attrs:{agi:4,con:3},mpRegen:1.3}`，`IP=15+13+2×7+5×1.3=48.5`；`stats:{crit:5,resCold:5}` 合计 10；`setTags:[]`。
 
 - **代表招式**：血息 `mv_xuedaoxinfa_xuexi` **（原创扩展）**，单体近身，倍率 **0.90**，耗内 6%、cd1、收招 1000，自身 `bf_shixue` G=1·2；核算 `1×(1+0.12)−0.20=0.92≈0.90`。
-- **来源 / 被动**：血刀门入门僧传授；低于 35% 气血时 `resCold +6`。名称已由 `design/17` 预留，具体法门原创。
+- **来源 / 被动**：血刀门入门僧传授；低于 35% 气血时 `resCold +6`。名称已由 `design/17` 预留，具体法门原创。主修冲脉本身不投阴阳票，故按 AR-18 判调和；“寒血”表现不反推阴性。
+- **AR-18 路线**：血息、雪夜闭息、逆血催刀均采用 §16A.3 的显式调和路线，不再由 `K-H5/K-HD4` 隐式展开；劳宫／至阳动作末端、招式段数与原用途保持不变。
 
 ### 7.4 `sk_wanjiajian` 万家剑法（4 玄下 · 兵器/剑）
 
@@ -829,10 +830,10 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 
 ### 7.6 `sk_meinianshengxinfa` 梅门心法（6 玄上 · 内功）
 
-**字段**｜`origin:expanded`；`sect:null`；`lineage:梅念笙一门`；`nature:harmony`；`wOut/wIn:0/1`；`meridians:[mer_renmai]` **【建议值】**；`sourceChapters:[ch09_liancheng]`；`reqs: attrs {con:35,wil:35}, aptitude {apInner:35}, prereq [{skill:sk_xiangxituna,layer:5}]`（硬：aptitude/prereq）；`inner.contribution:{mpMaxPct:18,hpMaxPct:14.5,attrs:{con:5,wil:4},mpRegen:1.3}`，`IP=18+14.5+2×9+5×1.3=57`；`stats:{resInjury:6,resMind:4}` 合计 10；`setTags:[set_shenzhao_liancheng]`。
+**字段**｜`origin:expanded`；`sect:null`；`lineage:梅念笙一门`；`nature:yin`；`wOut/wIn:0/1`；`meridians:[mer_renmai]` **【建议值】**；`sourceChapters:[ch09_liancheng]`；`reqs: attrs {con:35,wil:35}, aptitude {apInner:35}, prereq [{skill:sk_xiangxituna,layer:5}]`（硬：aptitude/prereq）；`inner.contribution:{mpMaxPct:18,hpMaxPct:14.5,attrs:{con:5,wil:4},mpRegen:1.3}`，`IP=18+14.5+2×9+5×1.3=57`；`stats:{resInjury:6,resMind:4}` 合计 10；`setTags:[set_shenzhao_liancheng]`。
 
 - **代表招式**：守正回息 `mv_meinianshengxinfa_huixi`（绝招，**原创扩展**），自身支援，耗内 8%、气势 100、收招 1200，`bf_huinei` G=2·2；`power=0`，每回合回内 3%，以玄阶绝招资源与无伤害支付。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
-- **来源 / 被动**：梅念笙系师承；首次受到内伤时抵消 1 层，每战 1 次。原著人物传承为据，独立心法名与机制为**（原创扩展）**。
+- **来源 / 被动**：梅念笙系师承；首次受到内伤时抵消 1 层，每战 1 次。原著人物传承为据，独立心法名与机制为**（原创扩展）**。主修任脉投一张阴票，故按 AR-18 判阴；“守正”只描述用途，不作性质依据。
 
 ### 7.7 `sk_lianchengjianli` 连城剑理（5 玄中 · 杂学/剑理）
 
@@ -984,10 +985,10 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 
 ### 9.5 `sk_linrenhexinfa` 林任合心诀（5 玄中 · 内功）
 
-**字段**｜`origin:expanded`；`sect:null`；`lineage:林任夫妇`；`nature:harmony`；`wOut/wIn:0/1`；`meridians:[mer_renmai,mer_daimai]` **【建议值】**；`sourceChapters:[ch11_yuanyang]`；`reqs: attrs {con:25,cha:30}, aptitude {apInner:25}, prereq [{anyOf:[{skill:sk_linyulongdao,layer:4},{skill:sk_renfeiyandao,layer:4}]}]`（硬：prereq）；`inner.contribution:{mpMaxPct:16,hpMaxPct:12.5,attrs:{con:3,agi:2,cha:2},mpRegen:1.2}`，`IP=16+12.5+2×7+5×1.2=48.5`；`stats:{resMind:5,parry:5}` 合计 10；`setTags:[]`。
+**字段**｜`origin:expanded`；`sect:null`；`lineage:林任夫妇`；`nature:yin`；`wOut/wIn:0/1`；`meridians:[mer_renmai,mer_daimai]` **【建议值】**；`sourceChapters:[ch11_yuanyang]`；`reqs: attrs {con:25,cha:30}, aptitude {apInner:25}, prereq [{anyOf:[{skill:sk_linyulongdao,layer:4},{skill:sk_renfeiyandao,layer:4}]}]`（硬：prereq）；`inner.contribution:{mpMaxPct:16,hpMaxPct:12.5,attrs:{con:3,agi:2,cha:2},mpRegen:1.2}`，`IP=16+12.5+2×7+5×1.2=48.5`；`stats:{resMind:5,parry:5}` 合计 10；`setTags:[]`。
 
 - **代表招式**：同息 `mv_linrenhexinfa_tongxi` **（原创扩展）**，自身及 2 格内一友方支援，耗内 6%、cd3、收招 1000，双方 `bf_huinei` G=1·2；`power=0`，双目标回复由 cd3、距离和无伤害支付。
-- **来源 / 被动**：夫妻支线和解后传授；相邻羁绊 ≥3 友方存在时抗心神 +5。整门为原创，不把拌嘴写成内功史实。
+- **来源 / 被动**：夫妻支线和解后传授；相邻羁绊 ≥3 友方存在时抗心神 +5。整门为原创，不把拌嘴写成内功史实。任脉投阴、带脉不投票，故按 AR-18 判阴；“合心”与双人支援不等于阴阳平票。
 
 ### 9.6 `sk_taiyueshibeishou` 太岳石碑手（6 玄上 · 兵器/奇门）
 
@@ -1045,10 +1046,10 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | `sk_mufujichujian` | 沐府基础剑（2 黄中） | 沐王府 | 兵器/剑 | 鹿鼎 | 守人优先；`[]` | 无；入府 | **（原创扩展）** |
 | `sk_muwangbu` | 滇南步（3 黄上） | 沐王府 | 轻功 | 鹿鼎 | `QS(3)=45`；巷道转身；`[]` | 基础剑 2 重 | **（原创扩展）**，ID/品阶沿 `design/17` |
 | `sk_wangwujibenjian` | 王屋基础剑（2 黄中） | 王屋派 | 兵器/剑 | 鹿鼎 | 击退前置；`[]` | 无；入门 | **（原创扩展）** |
-| `sk_wangwuxinfa` | 王屋心法（3 黄上） | 王屋派 | 内功 | 鹿鼎 | `nature:yang`；`IP=10+6+2×4+5×1.2=30`；抗压；`[]` | 基础剑 3 重 | **（原创扩展）**，ID/品阶沿 `design/17` |
+| `sk_wangwuxinfa` | 王屋心法（3 黄上） | 王屋派 | 内功 | 鹿鼎 | `nature:yang`；`meridians:[mer_dumai]` **【建议值】**；`IP=10+6+2×4+5×1.2=30`；抗压；`[]` | 基础剑 3 重 | 王屋护山功以督脉、阳跷承压守山，本入门心法取其督脉底子，**（原创扩展）**；ID/品阶沿 `design/17` |
 | `sk_daneichangquan` | 大内长拳（2 黄中） | 清宫 | 拳脚/拳 | 鹿鼎 | 架势与近身；`[]` | 无；侍卫学员 | 清宫训练的本作归纳，**（原创扩展）** |
 | `sk_yulinjian` | 羽林基础剑（3 黄上） | 清宫 | 兵器/剑 | 鹿鼎 | 宫门招架；`[]` | 大内长拳 2 重 | 宫廷侍卫武备归纳，**（原创扩展）** |
-| `sk_pingxituna` | 平西军吐纳（2 黄中） | 平西王府军士 | 内功 | 鹿鼎 | `nature:yang`；`IP=6+6+2×3+5×1.2=24`；列阵耐力；`[]` | 无；军职来源 | **（原创扩展）** |
+| `sk_pingxituna` | 平西军吐纳（2 黄中） | 平西王府军士 | 内功 | 鹿鼎 | `nature:yin`；`meridians:[mer_renmai]` **【建议值】**；`IP=6+6+2×3+5×1.2=24`；列阵耐力；`[]` | 无；军职来源 | 承接平西行气诀任脉、阴维的敛息底子，入门阶段先修任脉；按 AR-18 推出阴，**（原创扩展）** |
 | `sk_luochahuoqi` | 罗刹火器术（3 黄上） | 罗刹/雅克萨支线 | 暗器/火器 | 鹿鼎 | 使用 `eq_luochaduanchong`；装填、不可招架与弹药全由装备定义 | 获得短铳；`apHidden 20` | 作者决定 P19；武学条目为**（原创扩展）** |
 
 **整体预算核对**：黄阶伤害招以 AF 1.00、耗内 5%、cd0、收招 1000 得 `power≈1.00`；带击退/失衡者扣 0.05–0.10，轻功只用 `QS(2)=38`、`QS(3)=45`。两门黄阶内功分别命中黄中 24、黄上 30；本表不越黄阶 layerStats 合计 6。
@@ -1063,7 +1064,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | `sk_xuedaojichudao` | 血刀基础刀（3 黄上） | 血刀门 | 兵器/刀 | 连城 | 低位斜斩；`[]` | 入门拳 3 重 | 血刀门背景据原著，基础套路**（原创扩展）** |
 | `sk_wanjiaquan` | 万家拳（3 黄上） | 万家门 | 拳脚/拳 | 连城 | 推位与佯攻；`[]` | 无；家仆可学 | **（原创扩展）**，ID/品阶沿 `design/17` |
 | `sk_wanjiajibenjian` | 万家基础剑（2 黄中） | 万家门 | 兵器/剑 | 连城 | 虚实起手；`[]` | 无；入门 | **（原创扩展）** |
-| `sk_xiangxituna` | 湘西吐纳（3 黄上） | 梅念笙一门 | 内功 | 连城 | `nature:harmony`；`IP=10+6+2×4+5×1.2=30`；`setTags:[set_shenzhao_liancheng]` | 师承/狱中事件 | 地域名仅作游戏归纳，**（原创扩展）** |
+| `sk_xiangxituna` | 湘西吐纳（3 黄上） | 梅念笙一门 | 内功 | 连城 | `nature:yin`；`meridians:[mer_renmai]` **【建议值】**；`IP=10+6+2×4+5×1.2=30`；`setTags:[set_shenzhao_liancheng]` | 师承/狱中事件 | 章节侧已登记任脉为正式主修经脉，按 AR-18 推出阴；地域名仅作游戏归纳，**（原创扩展）** |
 | `sk_nansiqijibenjian` | 南四奇基础剑（2 黄中） | 南四奇 | 兵器/剑 | 连城 | 相邻协防；`[]` | 师承/观摩 | 并称有原著依据，套路名**（原创扩展）** |
 | `sk_yuzhongduanquan` | 狱中短拳（1 黄下） | 丁典—狄云线 | 拳脚/拳 | 连城 | 狭格反击；`set_shenzhao_liancheng` | 荆州牢房事件 | **（原创扩展）** |
 | `sk_yuzhongduandao` | 狱中短刀（2 黄中） | 荆州牢房缴获 | 兵器/刀 | 连城 | 贴身拆械；`set_shenzhao_liancheng` | 短拳 3 重 | **（原创扩展）** |
@@ -1078,11 +1079,11 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
 | `sk_gaochangjibenjian` | 高昌基础剑（2 黄中） | 高昌遗脉 | 兵器/剑 | 白马 | 狭道守门；`[]` | 无；寻路人 | **（原创扩展）** |
-| `sk_gaochangtuna` | 高昌吐纳（3 黄上） | 高昌遗脉 | 内功 | 白马 | `nature:harmony`；`IP=10+6+2×4+5×1.2=30`；`[]` | 基础剑 3 重 | **（原创扩展）** |
+| `sk_gaochangtuna` | 高昌吐纳（3 黄上） | 高昌遗脉 | 内功 | 白马 | `nature:harmony`；`meridians:[mer_daimai]` **【建议值】**；`IP=10+6+2×4+5×1.2=30`；`[]` | 基础剑 3 重 | 承接高昌劲带脉的闭息、穿沙与守藏底子；带脉不投票，故按 AR-18 推出调和，**（原创扩展）** |
 | `sk_migongbu` | 迷宫步（3 黄上） | 高昌遗脉 | 轻功 | 白马 | `QS(3)=45`；转角视线；`[]` | 基础剑 2 重 | **（原创扩展）**，ID/品阶沿 `design/17` |
 | `sk_caoyuanquan` | 草原拳（2 黄中） | 哈萨克部族 | 拳脚/拳 | 白马 | 骑下防身；`[]` | 无；客人/牧人 | 不称民族固定拳谱，**（原创扩展）** |
 | `sk_caoyuandao` | 草原弯刀（3 黄上） | 哈萨克部族 | 兵器/刀 | 白马 | 移动后斩击；`[]` | 草原拳 3 重 | **（原创扩展）**，ID/品阶沿 `design/17` |
-| `sk_hasakehuxi` | 草原呼吸法（2 黄中） | 哈萨克部族 | 内功 | 白马 | `nature:yang`；`IP=8+5+2×3+5×1=24`；`[]` | 无；部族来源 | **（原创扩展）** |
+| `sk_hasakehuxi` | 草原呼吸法（2 黄中） | 哈萨克部族 | 内功 | 白马 | `nature:yang`；`meridians:[mer_dumai]` **【建议值】**；`IP=8+5+2×3+5×1=24`；`[]` | 无；部族来源 | 承接草原心法与哈萨克运气法的督脉底子，按 AR-18 推出阳，**（原创扩展）** |
 | `sk_lvliangquan` | 吕梁拳（3 黄上） | 吕梁三杰 | 拳脚/拳 | 白马 | 追逐中截路；`[]` | 人物事件 | 人物组合据原著，拳名**（原创扩展命名）** |
 | `sk_huahuijibenjian` | 华辉基础剑（3 黄上） | 华辉 | 兵器/剑 | 白马 | 夜间先手；`[]` | 华辉线 | 人物与实际武学**（待考）**；名称原创 |
 
@@ -1099,10 +1100,10 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | `sk_hangzhen` | 镖车行阵（3 黄上） | 威信镖局 | 杂学/阵法 | 鸳鸯 | 护送站位；`[]` | 镖拳 3 重；`formation 20` | **（原创扩展）**，ID/品阶沿 `design/17` |
 | `sk_linrenjichudao` | 林任基础刀（3 黄上） | 林任夫妇 | 兵器/刀 | 鸳鸯 | 一刚一柔的共同底式；`[]` | 师承 | **（原创扩展）** |
 | `sk_taiyuequan` | 太岳入门拳（2 黄中） | 太岳四侠 | 拳脚/拳 | 鸳鸯 | 虚张声势；`[]` | 人物事件 | 组合据原著，拳名**（原创扩展）** |
-| `sk_taiyuehuxi` | 太岳呼吸法（2 黄中） | 太岳四侠 | 内功 | 鸳鸯 | `nature:yang`；`IP=8+5+2×3+5×1=24`；`[]` | 太岳拳 3 重 | **（原创扩展）** |
+| `sk_taiyuehuxi` | 太岳呼吸法（2 黄中） | 太岳四侠 | 内功 | 鸳鸯 | `nature:yang`；`meridians:[mer_dumai]` **【建议值】**；`IP=8+5+2×3+5×1=24`；`[]` | 太岳拳 3 重 | 以太岳拳、石碑手的起重刚健体系取督脉主修，按 AR-18 推出阳，**（原创扩展）** |
 | `sk_yuanyangjibenjian` | 双侠基础剑（3 黄上） | 袁冠南、萧中慧 | 兵器/剑 | 鸳鸯 | 制敌留手；`set_yuanyangdao_renzhe` | 双侠线 | 人物关系**（待考）**，套路名原创 |
 | `sk_yulinjichudao` | 羽林基础刀（2 黄中） | 大内押刀侍卫 | 兵器/刀 | 鸳鸯 | 列队夹击；`[]` | 无；侍卫学员 | **（原创扩展）** |
-| `sk_renzhetuna` | 仁者吐纳（3 黄上） | 鸳鸯双侠线 | 内功 | 鸳鸯 | `nature:harmony`；`IP=10+6+2×4+5×1.2=30`；`set_yuanyangdao_renzhe` | 双侠基础剑 3 重 | “仁者无敌”主题据原著，内功为**（原创扩展）** |
+| `sk_renzhetuna` | 仁者吐纳（3 黄上） | 鸳鸯双侠线 | 内功 | 鸳鸯 | `nature:harmony`；`meridians:[mer_renmai,mer_dumai]` **【建议值】**；`IP=10+6+2×4+5×1.2=30`；`set_yuanyangdao_renzhe` | 双侠基础剑 3 重 | “仁者无敌”主题据原著；以护持与双侠和合主题取任督并修，阴阳各一票，内功为**（原创扩展）** |
 
 **整体预算核对**：黄阶攻击卡按 0.90–1.00，援护/阵法以 `power=0` 和位置要求支付；两门黄阶内功精确命中 24/30。大内双刀链是“基础刀 → 玄阶合围”，不产生额外地阶。
 
@@ -1313,7 +1314,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 
 路线叙事第三轮已逐对复核本册名下的 25 对告警；这些配对跨越不同门派或不同技法底子，不能只凭性质相同主张共享，故全部改开而不作豁免；另有 1 条路线因 delivery 规则改写。改写后的路线均低于 `8000 bp`，本小节没有需保留的高相似理由条目；具体替换与改后数值见 `tools/agents/reports/NR3-kangxi.md` §7.1。
 
-动作叙事按路线顺序落地：凝血爪由足少阴、阴跷蓄滞，最后三段以太渊转入曲池—手三里—合谷完成拿握；神龙两式分别以督脉坐镇和督脉护体收束；美人三招由涌泉起跃、阴跷回身，末段落手三里—合谷完成拳腕反击。王屋、高昌、威信及林玉龙刀剑路分别用带脉换重心、冲带守门、督脉催进和手三阳收刃；化骨绵掌以阴脉潜行后落内关—劳宫；神照续脉改为任、冲、督相承；梅门心法·守正回息不是为配对改开，而是为满足护体／蓄气含任督规则而改：起于冲脉伏通谷—幽门，经任脉中脘、督脉神道—身柱，收于手少阴神门，卡片明示的 `meridians:[mer_renmai]` 亦得到满足；血刀经饮刃与血刀刀法藏锋突进分别收于通里—少商吐劲、阳池—阳谷导刃；太岳石碑手以督脉起重，经肩肘落腕骨。以上动作—经脉映射均为**（原创扩展）**，不宣称原著或现实经络疗效。
+动作叙事按路线顺序落地：凝血爪由足少阴、阴跷蓄滞，最后三段以太渊转入曲池—手三里—合谷完成拿握；神龙两式分别以督脉坐镇和督脉护体收束；美人三招由涌泉起跃、阴跷回身，末段落手三里—合谷完成拳腕反击。王屋、高昌、威信及林玉龙刀剑路分别用带脉换重心、冲带守门、督脉催进和手三阳收刃；化骨绵掌以阴脉潜行后落内关—劳宫；神照续脉改为任、冲、督相承；梅门心法·守正回息随 AR-18 的阴性迁移改为起于冲脉伏通谷—幽门，经任脉中脘、阴维廉泉转至督脉身柱，收于手少阴神门：体段阴 3／阳 1，且仍满足护体／蓄气含任督至少一脉与卡片 `meridians:[mer_renmai]`；血刀经饮刃与血刀刀法藏锋突进分别收于通里—少商吐劲、阳池—阳谷导刃；太岳石碑手以督脉起重，经肩肘落腕骨。以上动作—经脉映射均为**（原创扩展）**，不宣称原著或现实经络疗效。
 
 下表镜像本轮改写路线的数值列；具体有序穴位只以文首索引为准。风险总和均由列内逐项相加，例如 10 段为 `100+120+…+280=1900`，8 段为 `100+120+…+240=1360`，6 段为 `100+120+…+200=900`；收招合计为卡片 `recovery 1200 + 路线 CT`。
 
@@ -1345,14 +1346,14 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 
 ### 16A.3 玄 / 黄阶模板引用与轻功速度路线
 
-玄上绝招不再走隐式模板。下表逐招登记 9 条稳定路线；每条均显式展开为 `mfr_* / true / purpose / 见文首索引`，对应 6 段、单段 100 CT，风险按文首索引逐段求和。其余玄中 / 玄下普通招与黄阶仍按后表模板展开。
+玄上绝招不再走隐式模板。下表逐招登记 9 条稳定路线；每条均显式展开为 `mfr_* / true / purpose / 见文首索引`，对应 6 段、单段 100 CT，风险按文首索引逐段求和。除血刀心法三式按本节下方显式覆写外，其余玄中 / 玄下普通招与黄阶仍按后表模板展开。
 
 | 武学 / 性质 | 玄上绝招显式路线 |
 |---|---|
 | `sk_shenlongzhang` / 阳 | `mv_shenlongzhang_yazhen→mfr_shenlongzhang_yazhen/true/attack/显式（见本册绝招显式路线索引）`（6 段，100 CT/段，总风险 900） |
 | `sk_manchuqishe` / 阳 | `mv_manchuqishe_chishe→mfr_manchuqishe_chishe/true/attack/显式（见本册绝招显式路线索引）`（6 段，100 CT/段，总风险 900） |
 | `sk_xuedaoqinfa` / 阴 | `mv_xuedaoqinfa_suobi→mfr_xuedaoqinfa_suobi/true/attack/显式（见本册绝招显式路线索引）`（6 段，100 CT/段，总风险 900） |
-| `sk_meinianshengxinfa` / 和 | `mv_meinianshengxinfa_huixi→mfr_meinianshengxinfa_huixi/true/defense/显式（见本册绝招显式路线索引）`（6 段，100 CT/段，总风险 900） |
+| `sk_meinianshengxinfa` / 阴 | `mv_meinianshengxinfa_huixi→mfr_meinianshengxinfa_huixi/true/defense/显式（见本册绝招显式路线索引）`（6 段，100 CT/段，总风险 900） |
 | `sk_gaochangjian` / 和 | `mv_gaochangjian_zhuanjiao→mfr_gaochangjian_zhuanjiao/true/attack/显式（见本册绝招显式路线索引）`（6 段，100 CT/段，总风险 900） |
 | `sk_huahuijian` / 阴 | `mv_huahuijian_yexi→mfr_huahuijian_yexi/true/attack/显式（见本册绝招显式路线索引）`（6 段，100 CT/段，总风险 900） |
 | `sk_linyulongdao` / 阳 | `mv_linyulongdao_zhengxian→mfr_linyulongdao_zhengxian/true/attack/显式（见本册绝招显式路线索引）`（6 段，100 CT/段，总风险 900） |
@@ -1370,6 +1371,18 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | 玄阶位移 / 轻功招式 | `K-M5`，`purpose:movement` | 适用于突进、绕背、后撤、换位、闪避预置与全部轻功动作 |
 | 黄阶伤害 / 防守 | 前三穴 `K-Y5/K-A5/K-H5` 或前三穴防守骨架 | 2–3 段；由条目性质选择，`purpose` 由动作语义确定 |
 | 黄阶轻功 | `K-M3`，`purpose:movement` | 无显式 `mv_*` 的一行卡由内容编译器为其既有移动动作生成局部 MoveDef 后挂接，不新增全局招名 ID |
+
+AR-18 性质迁移后，模板展开的 `requiredNature` 同步为：血刀心法 `[harmony]`；梅门心法、林任合心诀、湘西吐纳、平西军吐纳 `[yin,harmony]`。其中梅门绝招的显式路线已在上表改为阴性；血刀心法三式改走下表显式路线；其余招式仍按本节唯一映射由所属武学性质生成，不保留旧阴／阳／调和条件。
+
+#### 血刀心法普通招显式覆写（AR-18）
+
+三条路线 ID 均沿用 §16A.1 从既有 `moveRef` 稳定派生的命名，不新增招式或武学 ID。血息仍以劳宫收束；雪夜闭息、逆血催刀仍以至阳完成闭息／催劲动作。体段分别为阴 2／阳 2、阴 1／阳 1、阴 1／阳 1，冲脉与带脉不投票，故均判调和。逐段 CT 与风险沿迁移后的 `K-H5` / `K-HD4` 数值，只改为能够落实主修冲脉且阴阳平票的有序穴位；路线均为**（原创扩展）**。
+
+| 武学 | moveRef | 路线 id | ultimate / purpose / requiredNature | 显式 steps（`acupointRef/segmentCt/riskBp`） | 段数 | 路线 CT | 收招合计 | 总风险 |
+|---|---|---|---|---|---:|---:|---:|---:|
+| `sk_xuedaoxinfa` | `mv_xuedaoxinfa_xuexi` | `mfr_xuedaoxinfa_xuexi` | false / attack / `[harmony]` | `ap_chongmai_shangqu/70/100 → ap_renmai_yinjiao/70/100 → ap_dumai_jizhong/70/200 → ap_shouyangming_quchi/70/250 → ap_shoujueyin_laogong/70/150` | 5 | 350 | 1350 | 800 |
+| `sk_xuedaoxinfa` | `mv_xuedaoxinfa_bixi` | `mfr_xuedaoxinfa_bixi` | false / defense / `[harmony]` | `ap_chongmai_futonggu/70/80 → ap_daimai_weidao/70/100 → ap_renmai_zhongwan/70/120 → ap_dumai_zhiyang/70/180` | 4 | 280 | 1280 | 480 |
+| `sk_xuedaoxinfa` | `mv_xuedaoxinfa_cuidao` | `mfr_xuedaoxinfa_cuidao` | false / defense / `[harmony]` | `ap_chongmai_youmen/70/80 → ap_daimai_wushu/70/100 → ap_renmai_qihai/70/120 → ap_dumai_zhiyang/70/180` | 4 | 280 | 1280 | 480 |
 
 | 轻功武学 | 速度路线绑定 | 核算 / 边界 |
 |---|---|---|
@@ -1392,26 +1405,28 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | `sk_shenzhao` | `txp_shenzhao` | `10/10/harmony/3/1000/0/15000` | `floor((500+100×10+80×10)×10500/10000)=2415`；`floor((120+24×10+18×10)×10500/10000)=567` | `guard:harmony-high`；自然 `K-HN2`；主动 `mv_shenzhao_huming→K-H10`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 | `sk_shenlongxinfa` | `txp_shenlongxinfa` | `9/10/yang/3/1000/0/15000` | `2200 / 516` | `guard:yang-high`；自然 `K-AN2`；主动 `mv_shenlongxinfa_wanshou→K-A8`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 | `sk_xuedaojing` | `txp_xuedaojing` | `9/10/yin/3/1000/0/15000` | `2200 / 516` | `guard:yin-high`；自然 `K-YN2`；无主动护体招；`reflectBp:0`；`outOfBattleScaleBp:15000` |
-| `sk_meinianshengxinfa` | `txp_meinianshengxinfa` | `6/10/harmony/2/1000/0/15000` | `1995 / 466` | `guard:harmony-mid`；自然 `K-HN2`；主动 `mv_meinianshengxinfa_humai→K-HD4`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
-| `sk_xuedaoxinfa` | `txp_xuedaoxinfa` | `5/10/yin/2/1000/0/15000` | `1800 / 420` | `guard:yin-mid`；自然 `K-YN2`；无主动护体招；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_meinianshengxinfa` | `txp_meinianshengxinfa` | `6/10/yin/2/1000/0/15000` | `1900 / 444` | `guard:yin-mid`；自然 `K-YN2`；主动 `mv_meinianshengxinfa_humai→K-YD4`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_xuedaoxinfa` | `txp_xuedaoxinfa` | `5/10/harmony/2/1000/0/15000` | `floor((500+100×5+80×10)×10500/10000)=1890`；`floor((120+24×5+18×10)×10500/10000)=441` | `guard:harmony-mid`；自然 `K-HN2`；无主动护体招；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 | `sk_gaochanggong` | `txp_gaochanggong` | `5/10/harmony/2/1000/0/15000` | `1890 / 441` | `guard:harmony-mid`；自然 `K-HN2`；主动 `mv_gaochanggong_shoucang→K-HD4`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
-| `sk_linrenhexinfa` | `txp_linrenhexinfa` | `5/10/harmony/2/1000/0/15000` | `1890 / 441` | `guard:harmony-mid`；自然 `K-HN2`；无主动护体招；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_linrenhexinfa` | `txp_linrenhexinfa` | `5/10/yin/2/1000/0/15000` | `1800 / 420` | `guard:yin-mid`；自然 `K-YN2`；无主动护体招；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 | `sk_wanjiaxinfa` | `txp_wanjiaxinfa` | `4/10/yang/2/1000/0/15000` | `1700 / 396` | `guard:yang-mid`；自然 `K-AN2`；`mv_wanjiaxinfa_shouqi→K-AD4` 仅防守，不另造护盾；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 | `sk_hasakexinfa` | `txp_hasakexinfa` | `4/10/yang/2/1000/0/15000` | `1700 / 396` | `guard:yang-mid`；自然 `K-AN2`；无主动护体招；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 | `sk_wangwuxinfa` | `txp_wangwuxinfa` | `3/10/yang/1/1000/0/15000` | `1600 / 372` | `guard:yang-low`；自然 `K-AN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
-| `sk_xiangxituna` | `txp_xiangxituna` | `3/10/harmony/1/1000/0/15000` | `1680 / 390` | `guard:harmony-low`；自然 `K-HN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_xiangxituna` | `txp_xiangxituna` | `3/10/yin/1/1000/0/15000` | `1600 / 372` | `guard:yin-low`；自然 `K-YN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 | `sk_gaochangtuna` | `txp_gaochangtuna` | `3/10/harmony/1/1000/0/15000` | `1680 / 390` | `guard:harmony-low`；自然 `K-HN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 | `sk_renzhetuna` | `txp_renzhetuna` | `3/10/harmony/1/1000/0/15000` | `1680 / 390` | `guard:harmony-low`；自然 `K-HN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
-| `sk_pingxituna` | `txp_pingxituna` | `2/10/yang/1/1000/0/15000` | `1500 / 348` | `guard:yang-low`；自然 `K-AN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_pingxituna` | `txp_pingxituna` | `2/10/yin/1/1000/0/15000` | `1500 / 348` | `guard:yin-low`；自然 `K-YN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 | `sk_hasakehuxi` | `txp_hasakehuxi` | `2/10/yang/1/1000/0/15000` | `1500 / 348` | `guard:yang-low`；自然 `K-AN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 | `sk_taiyuehuxi` | `txp_taiyuehuxi` | `2/10/yang/1/1000/0/15000` | `1500 / 348` | `guard:yang-low`；自然 `K-AN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+
+本轮迁移值复核：梅门心法为 `500+100×6+80×10=1900`、`120+24×6+18×10=444`；林任合心诀为 `1800 / 420`；湘西吐纳为 `1600 / 372`；平西军吐纳为 `1500 / 348`。血刀心法改调和后在基础值 `1800 / 420` 上各乘 `10500/10000` 并向下取整，得到 `1890 / 441`。
 
 “高 / 中 / 低”只是内容检索档：高=地天、mid=玄、low=黄；实际 `capacity` 仍由 21 §4.8 根据当次 `MeridianProfile` 计算，不能把档名当固定减伤。拳脚 / 兵器 / 暗器 / 内劲外放的适用率仍为 10000 / 2500 / 0 / 4000 bp，且 1 内力抵 2 伤害；本册没有既有反震语义，所以全部 `reflectBp:0`。护盾先结、护体内劲次之、既有 `mpGuard` 再后；点穴 / 擒拿效果仍在伤害后处理。
 
 ### 16A.5 数据化与验收
 
 - 路线构建：`moveRef` 必须命中本册既有 `mv_*`；`ultimate` 相等；步骤 1–18、穴位不重复、数组等长；`segmentCt∈[40,120]`、`riskBp∈[0,1200]`。
-- 路线覆盖：天 / 地 75/75 逐招；玄 / 黄每个既有招式经模板展开，不允许正式发布仍落到 2 段迁移短路。防守与 movement 路线分别产出 Z4M 与速度投影，不借用 Z5M。
+- 路线覆盖：天 / 地 75/75 逐招；玄 / 黄每个既有招式经模板或本节显式覆写展开，不允许正式发布仍落到 2 段迁移短路。防守与 movement 路线分别产出 Z4M 与速度投影，不借用 Z5M。
 - 独立实例：同模板两个敌人的 `nodes/stateVersion` 不得共享；`preview` 不改状态 / RNG；成功命令才按步骤消费 Core 唯一 `battle` RNG。
 - 数值锚点引用 21 §14–§17：同档攻防必须 10000 bp；伤害标准例为 849、TTK 5；速度标准投影 `98/106/6/0`。本图鉴不另建一套黄金值。
 - 调息：每档 `ct=1000`、`mpCostBp=0`；9 级点穴禁止自行调息；战斗调息不推进 15 的永久冲穴 / 周天 / 九转。
@@ -1425,7 +1440,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | 武学 `sk_` | 90 个定义 | 天 2、地 14、玄 37、黄 37；完整清单即 §2–§13 的标题与黄阶表首列 |
 | 招式 `mv_` | 186 个 | 天/地完整卡 75 个；玄阶 111 个（每门 3 招）；全部按所属武学前缀命名 |
 | 被动 `ps_` | 124 个 | 天/地完整卡 50 个；玄阶 74 个（每门 2 个）；全部按所属武学前缀命名 |
-| 招式路线 `mfr_` | 75 个高阶逐项登记 + 9 个玄上绝招逐项登记 + 其余玄阶模板展开 | 高阶见 §16A.2；玄上绝招见 §16A.3，均复用既有同名 `mfr_*` 逻辑 ID 并从模板改为显式路线；其余玄阶从既有 `mv_*` 稳定派生；黄阶仅引用模板 |
+| 招式路线 `mfr_` | 75 个高阶逐项登记 + 9 个玄上绝招逐项登记 + 血刀心法 3 个普通招显式覆写 + 其余玄阶模板展开 | 高阶见 §16A.2；玄上绝招与血刀心法覆写见 §16A.3，均复用既有同名 `mfr_*` 逻辑 ID；其余玄阶从既有 `mv_*` 稳定派生；黄阶仅引用模板 |
 | 调息档案 `txp_` | 16 个 | 与 §16A.4 的本册内功一一对应；前缀已由 Canon v1.3 §12 登记 |
 | 正式套装 `set_` | 本册成员所属 3 套（§14）；反向镜像另引用跨册武学所属 `set_jianghu_baijia`、`set_qidan_xiaofeng` 2 套 | 均为跨文档引用，本文不定义套装本体 |
 | 新 Buff | 0 个 | 全文只引用 `design/06` 已有 ID |
@@ -1436,12 +1451,12 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 
 | ID | 本文使用者 | 状态 |
 |---|---|---|
-| `mer_renmai` | 神照经、梅门心法、林任合心诀 | 正式 ID；具体效应见 `design/15` |
-| `mer_dumai` | 神照经、神龙心法、万家心法、草原心法 | 正式 ID；具体效应见 `design/15` |
+| `mer_renmai` | 神照经、梅门心法、林任合心诀、平西军吐纳、湘西吐纳、仁者吐纳 | 正式 ID；具体效应见 `design/15` |
+| `mer_dumai` | 神照经、神龙心法、万家心法、草原心法、王屋心法、草原呼吸法、太岳呼吸法、仁者吐纳 | 正式 ID；具体效应见 `design/15` |
 | `mer_yangwei` | 神龙心法 | 正式 ID；同上 |
 | `mer_yinwei` | 血刀经 | 正式 ID；同上 |
 | `mer_chongmai` | 血刀经、血刀心法 | 正式 ID；同上 |
-| `mer_daimai` | 高昌劲、林任合心诀 | 正式 ID；同上 |
+| `mer_daimai` | 高昌劲、林任合心诀、高昌吐纳 | 正式 ID；同上 |
 
 ### 17.3 术语
 
@@ -1506,6 +1521,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | KX-V22 | 外放静态契约 | §15.3 两条 `projected` 均有 `projection:true`、0 档 `range/aoe`、三项且 `[0]` 深等于 `aoe` 的 `projectionSpreadSteps`、所有伤害段 `DamageKind:'projected'` 与唯一 attack 路线 | 把弓箭的 `delivery:projectile` 推断成外放，或在静态数据写当前档／扩大后射程 |
 | KX-V23 | 外放路线与覆盖 | 两条外放路线均以劳宫为掌端并命中 13 穴白名单；§15.3 审计表按 `moveId` 严格排序，结论计数为 2，天／地／玄／黄为 0／2／0／0 | 外放路线无合法端点，或漏审实体箭／针／火器反例 |
 | KX-V24 | 绝招末端与多样性 | 文首 33 条绝招路线全部审计：33 个穴位序列互异；语义可分类 29 条，29 条适用拳／擒拿、掌、指、腿、兵器、护体／蓄气、内功攻击、位移或外放规则，缺失与末端位置违规均为 0；本册内跨武学穴位集合重合 ≥80% 为 0，本任务名下 25 对跨册告警为 0；全仓尚余 5 对由其他 NR3 单元负责 | 拳／擒拿绝招末 3 段没有曲池、手三里或合谷，持械绝招未在末 3 段落腕部导引穴，或本任务名下跨武学路线仍形成 ≥80% 高重合 |
+| KX-V25 | AR-18 内功与路线性质 | 16/16 内功均有非缺省 `meridians`，声明性质等于逐脉投票结果；绝招及五门迁移内功的普通招、护体路线逐项展开后，体段性质均与武学一致，出口段不参与计票 | 由旧 `nature` 反推经脉、把冲／带计票，或把正逆周天与劳宫出口当作性质依据 |
 
 ### 18.2 最小测试向量
 
@@ -1532,6 +1548,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | T-KX-19 外放基础档 | 标准档分别加载神龙吐息、隔衣传劲 | 射程分别为 1–4、1–3，范围均 `aoe_single`；只在运行时按 `design/21` 取得 +0/+2/+4 射程 |
 | T-KX-20 实体投射反例 | 扫描哈萨克／满洲骑射、美人三招飞燕回翔与罗刹火器 | 均保持 `not_projected`，不因远程、投射或范围模板误挂外放字段 |
 | T-KX-21 绝招路线终审 | 对本册运行 `check_skill_catalogs.py --delivery --details` 与路线唯一性检查；另以全仓多样性扫描核对分配项 | `routes=33`、`unique_sequences=33`、`classified=29`、`checked_rules=29`；`violations=0`、`tail_violations=0`、本册内 `similar_pairs_ge80=0`、本任务名下 25 对剩余 0、全仓完全同路由 0 |
+| T-KX-22 AR-18 性质终审 | 扫描本册内功 `meridians/nature` 与全部 delivery 路线体段；再人工展开五门迁移内功的普通招、主动／自然护体 | `inner_nature=16/16`、`inner_missing_meridians=0`、`inner_nature_conflicts=0`、`nature_conflicts=0`；人工展开 13 招／护体对象全部一致 |
 
 ---
 
@@ -1548,6 +1565,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | D-05 | `design/05` 与其余 catalog | 汇总四书全部本土复现并按 §16.6 补足低武可习得池比例 | 在全局清单落地前，以 §16.6 最小池作为缺口下界，不宣称最终比例已达标 |
 | D-06 | `design/05` / `design/10` | **已解决**：`design/05` §6.2 已定义顶层 `hiddenKind` / `HiddenKind` 判定，并要求与 `design/10` §2.6 介质枚举一致 | 本文 `sk_hasakeqishe`、`sk_manchuqishe` 使用 `hiddenKind:bow`，不复用仅属 `exotic` 的 `weaponReq.kinds` |
 | D-07 | `design/05` / Canon §12 | **已解决**：Canon v1.3 §12 已登记 `mfr_*` / `txp_*`；图鉴按 `design/21` 接入 `meridianRouteRef`、`breathProfileRef` | 本文使用正式前缀，不借用地图 `route_*` 或 Buff `bf_*` |
+| D-08 | `design/15` / 四书章节 | 确认黄阶内功主修经脉：王屋／草原／太岳呼吸法取督脉，平西军／湘西吐纳取任脉，高昌吐纳取带脉，仁者吐纳取任督 | 在上游另行定案前采用本册各卡的 `meridians` **【建议值】**，并严格按 AR-18 计票，不由旧性质反推 |
 
 ### 19.2 本文依赖的上游事实
 
@@ -1556,6 +1574,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 - `sect_*`、时代开放和五级称谓依赖 `design/17`；高昌遗脉是玩法组织标签，不反推原著或历史存在同名门派。
 - 轻功品阶与本土来源依赖 `design/08`；夫妻刀组合技依赖 `design/09` §6.7.4 D；罗刹短铳与鸳鸯刀装备效果依赖 `design/10`。
 - 经脉动态运行、独立乘区、路线、护体、速度、调息与每单位实例依赖 `design/21`；穴位拓扑与永久成长继续依赖 `design/15`。
+- 内功与路线性质依赖 AR-18、Canon §8 及 `design/05` §5.3：正逆周天只决定用途，冲脉／带脉按 AR-18a 默认不投票；掌法出口可走劳宫或动作对应手穴，不反推阴阳。
 
 ### 19.3 对基准的修改提案
 
@@ -1592,5 +1611,7 @@ IP = mpMaxPct + hpMaxPct + 2 × Σattrs + 5 × mpRegen
 | O-06 | 八步赶蟾是否纳入正式武学库存？ | 默认不纳入、生产禁用；保留 `sk_babuganchan` 作为 C12 已定名的待收录接口 | 若采用，须在 90 门本组配额或全局 1,138 门内指定替换项；不得直接增量补卡 |
 | O-07 | 护体“高 / 中 / 低”是否要成为正式数据字段？ | 默认不新增字段；由 `grade/nature` 派生，仅作检索文案 | 若 05 另立枚举，三册需统一迁移，不能把它当固定减伤 |
 | O-08 | 地中武学应取 1 还是 2 记绝招？ | **已解决：按统一裁定表逐门取 1 或 2**；英雄三招、美人三招、夫妻刀法各取 1，其余本册地中取 2 | 见 `decisions/ultimate-counts-tianzhong-dizhong.md` §3 |
+| O-09 | AR-18a 是否维持冲脉、带脉不投阴阳票？ | 默认维持；因此血刀心法与高昌吐纳只有冲／带主修时均判调和，林任合心诀的带脉不抵消任脉阴票 | 作者若改为投票，三门性质、调息档、护体档及关联路线须重算 |
+| O-10 | AR-18b 是否把后溪加入外放 13 端点白名单？ | 默认不加入；本册两条外放路线仍以劳宫收束，现有后溪只服务持械路线 | 作者若加入，仅扩大合法出口集合，不自动改变本册现有路线或性质 |
 
 已有待决追溯：图鉴规模已由 `design/05` 的 90 门受控配额结案（见 §0.1、KX-P01、O-01）；可选合击与经脉前缀提案已结案（KX-P02～03）；弓箭分类已按 C16 与 `design/05` §6.2 解决（见 §0.2、D-06）；技艺与 OR 前置已按 C17 解决（见 §0.2、完整卡）；套装双向登记已按 C22 与 `design/07` 收敛（见 §14、D-01、O-02）；Buff 缺口已按 C23 目录核对，本文新增 0 个。
