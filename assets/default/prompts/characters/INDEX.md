@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_portrait_index.py` 生成，不要手改；改提示词就改各人物文件，改规程就改 `GUIDE.md`，然后重新生成。
 > 每个人物一份提示词文件（`<分组>/<id>.md`）：文首 frontmatter 写明立绘素材 ID、输出文件与登记清单的位置，正文是人物要点、完整提示词、排除项与质检要点。
 
-已合入 **60** 份：女 15、男 45；品质档 A 29、B 11、S 20。
+已合入 **81** 份：女 18、男 63；品质档 A 37、B 17、S 27。
 
 ## 出图 agent 怎么用
 
@@ -18,6 +18,7 @@
 - [出图 agent 怎么用](#出图-agent-怎么用)
 - [生成与存放规程](#生成与存放规程)
 - [ch01 · 《天龙八部》](#ch01--天龙八部)（40 份）
+- [ch10 · 《白马啸西风》](#ch10--白马啸西风)（21 份）
 - [ch11 · 《鸳鸯刀》](#ch11--鸳鸯刀)（20 份）
 
 ## 撰写进度
@@ -35,7 +36,7 @@
 | ch07 · 《碧血剑》 | `ch07-bixue/` | 撰写 / 审核中，草稿已写 40 份（未合入，草稿在 `.agents/wt/ART-P-ch07/assets/default/prompts/characters/ch07-bixue/`） |
 | ch08 · 《鹿鼎记》 | `ch08-luding/` | 撰写 / 审核中，草稿已写 34 份（未合入，草稿在 `.agents/wt/ART-P-ch08/assets/default/prompts/characters/ch08-luding/`） |
 | ch09 · 《连城诀》 | `ch09-liancheng/` | 撰写 / 审核中，草稿已写 27 份（未合入，草稿在 `.agents/wt/ART-P-ch09/assets/default/prompts/characters/ch09-liancheng/`） |
-| ch10 · 《白马啸西风》 | `ch10-baima/` | 撰写 / 审核中，草稿已写 21 份（未合入，草稿在 `.agents/wt/ART-P-ch10/assets/default/prompts/characters/ch10-baima/`） |
+| ch10 · 《白马啸西风》 | `ch10-baima/` | 已合入 21 份 |
 | ch11 · 《鸳鸯刀》 | `ch11-yuanyang/` | 已合入 20 份 |
 | ch12 · 《书剑恩仇录》 | `ch12-shujian/` | 撰写 / 审核中，草稿已写 36 份（未合入，草稿在 `.agents/wt/ART-P-ch12/assets/default/prompts/characters/ch12-shujian/`） |
 | ch13 · 《飞狐外传》 | `ch13-feihu/` | 撰写 / 审核中，草稿已写 33 份（未合入，草稿在 `.agents/wt/ART-P-ch13/assets/default/prompts/characters/ch13-feihu/`） |
@@ -268,6 +269,32 @@ git diff --check
 | 38 | 云中鹤 | `npc_yunzhonghe` | 男 | 壮年 | A | [npc_yunzhonghe.md](ch01-tianlong/npc_yunzhonghe.md) | `por_npc_yunzhonghe__ch01_prime_baseform_base` | `assets/default/character/male/ch01/por_npc_yunzhonghe__ch01_prime_baseform_base.png` | ready |
 | 39 | 钟灵 | `npc_zhongling` | 女 | 少年 / 青年 | A | [npc_zhongling.md](ch01-tianlong/npc_zhongling.md) | `por_npc_zhongling__ch01_youth_diaoalive_base` | `assets/default/character/female/ch01/por_npc_zhongling__ch01_youth_diaoalive_base.png` | ready |
 | 40 | 左子穆 | `npc_zuozimu` | 男 | 壮年 | B | [npc_zuozimu.md](ch01-tianlong/npc_zuozimu.md) | `por_npc_zuozimu__ch01_prime_wuliang_base` | `assets/default/character/male/ch01/por_npc_zuozimu__ch01_prime_wuliang_base.png` | ready |
+
+### ch10 · 《白马啸西风》
+
+| # | 人物 | 主体 ID | 性别 | 年龄段 | 档 | 提示词 | 立绘素材 ID | 输出文件 | 状态 |
+|---:|---|---|---|---|---|---|---|---|---|
+| 1 | 阿曼 | `npc_aman` | 女 | 少年 / 青年 | S | [npc_aman.md](ch10-baima/npc_aman.md) | `por_npc_aman__ch10_base` | `assets/default/character/female/ch10/por_npc_aman__ch10_base.png` | ready |
+| 2 | 车尔库 | `npc_cheerku` | 男 | 老年 | A | [npc_cheerku.md](ch10-baima/npc_cheerku.md) | `por_npc_cheerku__ch10_base` | `assets/default/character/male/ch10/por_npc_cheerku__ch10_base.png` | ready |
+| 3 | 陈达海 | `npc_chendahai` | 男 | 壮年 | S | [npc_chendahai.md](ch10-baima/npc_chendahai.md) | `por_npc_chendahai__ch10_prime_snownight_base` | `assets/default/character/male/ch10/por_npc_chendahai__ch10_prime_snownight_base.png` | ready |
+| 4 | 丁同 | `npc_dingtong` | 男 | 壮年 | B | [npc_dingtong.md](ch10-baima/npc_dingtong.md) | `por_npc_dingtong__ch10_prime_prologue_base` | `assets/default/character/male/ch10/por_npc_dingtong__ch10_prime_prologue_base.png` | ready |
+| 5 | 段霜 | `npc_duanshuang10` | 男 | 少年 / 青年 | B | [npc_duanshuang10.md](ch10-baima/npc_duanshuang10.md) | `por_npc_duanshuang10__ch10_base` | `assets/default/character/male/ch10/por_npc_duanshuang10__ch10_base.png` | ready |
+| 6 | 哈卜拉姆 | `npc_habulamu` | 男 | 老年 | A | [npc_habulamu.md](ch10-baima/npc_habulamu.md) | `por_npc_habulamu__ch10_base` | `assets/default/character/male/ch10/por_npc_habulamu__ch10_base.png` | ready |
+| 7 | 韩禾 | `npc_hanhe10` | 男 | 少年 / 青年 | B | [npc_hanhe10.md](ch10-baima/npc_hanhe10.md) | `por_npc_hanhe10__ch10_base` | `assets/default/character/male/ch10/por_npc_hanhe10__ch10_base.png` | ready |
+| 8 | 霍元龙 | `npc_huoyuanlong` | 男 | 壮年 | S | [npc_huoyuanlong.md](ch10-baima/npc_huoyuanlong.md) | `por_npc_huoyuanlong__ch10_prime_prologue_base` | `assets/default/character/male/ch10/por_npc_huoyuanlong__ch10_prime_prologue_base.png` | ready |
+| 9 | 白马李三 | `npc_lisan` | 男 | 壮年 | A | [npc_lisan.md](ch10-baima/npc_lisan.md) | `por_npc_lisan__ch10_prime_prologue_base` | `assets/default/character/male/ch10/por_npc_lisan__ch10_prime_prologue_base.png` | ready |
+| 10 | 李文秀 | `npc_liwenxiu` | 女 | 少年 / 青年 | S | [npc_liwenxiu.md](ch10-baima/npc_liwenxiu.md) | `por_npc_liwenxiu__ch10_youth_astuo_base` | `assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png` | ready |
+| 11 | 马家骏 | `npc_majiajun` | 男 | 老年 | S | [npc_majiajun.md](ch10-baima/npc_majiajun.md) | `por_npc_majiajun__ch10_elder_disguised_base` | `assets/default/character/male/ch10/por_npc_majiajun__ch10_elder_disguised_base.png` | ready |
+| 12 | 姓全的强人 | `npc_quanqiangdao` | 男 | 壮年 | B | [npc_quanqiangdao.md](ch10-baima/npc_quanqiangdao.md) | `por_npc_quanqiangdao__ch10_base` | `assets/default/character/male/ch10/por_npc_quanqiangdao__ch10_base.png` | ready |
+| 13 | 桑斯儿 | `npc_sangsi` | 男 | 少年 / 青年 | A | [npc_sangsi.md](ch10-baima/npc_sangsi.md) | `por_npc_sangsi__ch10_base` | `assets/default/character/male/ch10/por_npc_sangsi__ch10_base.png` | ready |
+| 14 | 上官虹 | `npc_shangguanhong` | 女 | 少年 / 青年 | A | [npc_shangguanhong.md](ch10-baima/npc_shangguanhong.md) | `por_npc_shangguanhong__ch10_youth_prologue_base` | `assets/default/character/female/ch10/por_npc_shangguanhong__ch10_youth_prologue_base.png` | ready |
+| 15 | 沈青禾 | `npc_shenqinghe10` | 男 | 壮年 | A | [npc_shenqinghe10.md](ch10-baima/npc_shenqinghe10.md) | `por_npc_shenqinghe10__ch10_base` | `assets/default/character/male/ch10/por_npc_shenqinghe10__ch10_base.png` | ready |
+| 16 | 史仲俊 | `npc_shizhongjun` | 男 | 壮年 | A | [npc_shizhongjun.md](ch10-baima/npc_shizhongjun.md) | `por_npc_shizhongjun__ch10_prime_prologue_base` | `assets/default/character/male/ch10/por_npc_shizhongjun__ch10_prime_prologue_base.png` | ready |
+| 17 | 姓宋的强人 | `npc_songqiangdao` | 男 | 壮年 | B | [npc_songqiangdao.md](ch10-baima/npc_songqiangdao.md) | `por_npc_songqiangdao__ch10_base` | `assets/default/character/male/ch10/por_npc_songqiangdao__ch10_base.png` | ready |
+| 18 | 苏鲁克 | `npc_suluke` | 男 | 老年 | A | [npc_suluke.md](ch10-baima/npc_suluke.md) | `por_npc_suluke__ch10_base` | `assets/default/character/male/ch10/por_npc_suluke__ch10_base.png` | ready |
+| 19 | 苏普 | `npc_supu` | 男 | 少年 / 青年 | S | [npc_supu.md](ch10-baima/npc_supu.md) | `por_npc_supu__ch10_youth_base` | `assets/default/character/male/ch10/por_npc_supu__ch10_youth_base.png` | ready |
+| 20 | 瓦耳拉齐 | `npc_walazi` | 男 | 老年 | S | [npc_walazi.md](ch10-baima/npc_walazi.md) | `por_npc_walazi__ch10_elder_unmasked_base` | `assets/default/character/male/ch10/por_npc_walazi__ch10_elder_unmasked_base.png` | ready |
+| 21 | 姓云的强人 | `npc_yunqiangdao` | 男 | 壮年 | B | [npc_yunqiangdao.md](ch10-baima/npc_yunqiangdao.md) | `por_npc_yunqiangdao__ch10_base` | `assets/default/character/male/ch10/por_npc_yunqiangdao__ch10_base.png` | ready |
 
 ### ch11 · 《鸳鸯刀》
 
