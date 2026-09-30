@@ -6,7 +6,7 @@
 ## 0. 一句话现状
 
 仓库 `/Users/bytedance/Projects/jinyongqunxia`，分支 `claude/vigilant-wright-2unuk1`（远超 origin，**未 push，push 前必须问作者**）。两条线并行：
-1. **文档线**：作者的阴阳理论 AR-18 已落地（NYY），12 册武学图鉴的性质落地（NR4-*）进行中：康熙、古龙、五岳、乾隆、通行、道家、侠客碧血、倚天、补录已合入，其余 3 册在"GPT 审核 → 返修"循环里；之后是 LINT-outlets → 按书界同步 NR4S-NN → 最终汇总 NAu-final。
+1. **文档线**：作者的阴阳理论 AR-18 已落地（NYY），12 册武学图鉴的性质落地（NR4-*）进行中：康熙、古龙、五岳、乾隆、通行、道家、侠客碧血、倚天、补录、五绝已合入，其余 2 册（少林、逍遥）在"GPT 审核 → 返修"循环里；之后是 LINT-outlets → 按书界同步 NR4S-NN → 最终汇总 NAu-final。
 2. **素材线**：默认风格包 `assets/default/` 的基线图由作者在审批页逐张审批；城镇改为程序化生成（TOWN-*），招式演示改为图层动画（ART-R3-vfx）；几张返修图 GPT 审核已过、停在工作区等作者看。
 
 ## 1. 工作方式（硬规则）
@@ -63,7 +63,7 @@
 ## 4. 各线状态与下一步
 
 ### 4.1 文档线：AR-18 落地
-- **NR4-\***（12 册，验收 `tools/agents/check_nr4_unit.py <图鉴>` 三项计数清零）：已合入 kangxi 62268d4、gulong 4919d3a、wuyue d11695e、qianlong a99b5dc、general 4c23117、daojia ebdd0be、xiakebixue fe19164、yitian 778cbda、bulu e70cde6。未合入 3 册（shaolin、wujue、xiaoyao）见快照；多数停在"第 3 轮 FAIL 只剩小问题"，协调者已逐个批准再修一轮（只改剩余项）。
+- **NR4-\***（12 册，验收 `tools/agents/check_nr4_unit.py <图鉴>` 三项计数清零）：已合入 kangxi 62268d4、gulong 4919d3a、wuyue d11695e、qianlong a99b5dc、general 4c23117、daojia ebdd0be、xiakebixue fe19164、yitian 778cbda、bulu e70cde6、wujue f36a8a7。未合入 2 册（shaolin、xiaoyao），状态见 §8；多数停在"第 3 轮 FAIL 只剩小问题"，协调者已逐个批准再修一轮（只改剩余项）。
 - 之后：**LINT-outlets**（已登记，deps=全部 NR4）修检查脚本两处（route_outlet_points 剥离位移 / 内功出口；check_route_unique_for 扩到普通路线），修后重测 12 册；若出现新命中另派任务。
 - 之后：**NR4S-NN 按书界同步**（模板 `prompts/NR4S-book.md`，尚未登记任务）：汇总各 `reports/NR4-*.md` 的"交其他任务"按书分发，写集 `chapters/NN` + `npcs-chNN`。已知条目在 `FOLLOWUPS.md`"NR4 阶段"。
 - 最后：**NAu-final**（deps 62 个，提示词 `prompts/NAu-final.md`）收拢全部报告的提案与交办、统一公式、更新计数、同步作者的素材 / 城镇 / 气剑决定到 tech/07、tech/06、author-decisions、TODO。
@@ -71,7 +71,7 @@
 
 ### 4.2 素材线
 - **城镇管线**（695e1de）：TOWN-design（跑中，traex）→ TOWN-tiles、TOWN-buildings（Codex 出图）与 TOWN-render（Codex 写 `tools/town/`，先出占位预览）并行 → TOWN-assemble。step.py 不检查 deps，**协调者要等 TOWN-design 合入后再启动后三个，等三个都合入再启动 assemble**。设计要点：沿用 tech/02 的 1 m 格、45°/30°、2:1 菱形（默认 64×32 px）；城市规格手写（历史平面图）+ 生成器填充；大理 96×96、临安 160×160（默认）。
-- **招式演示**：ART-R3-vfx（跑中）把两张图拆透明图层做动画，PNG 不改；验收看合成图与原图的平均绝对差、代码里不画造型。
+- **招式演示**：ART-R3-vfx（已停，见 §8）把两张图拆透明图层做动画，PNG 不改；验收看合成图与原图的平均绝对差、代码里不画造型。
 - **外放招式新管线**（作者 09-29 晚定）：VFX-design（设计文档 + 数据格式：效果帧序列、发出方图、方向 / 锚点、过渡参数）→ VFX-tool（`tools/vfx/`：白底抠图切帧、按方向合成、多帧过渡出动效）与 VFX-plates（降龙、六脉的效果帧序列与发出方图样例）→ 之后按此批量做全部外放招式。ART-R3-vfx 完成后再启动 VFX-plates（同写集）。
 - **小龙女**：ART-R1-female（跑中）加白手套、佩剑、金铃索。
 - 作废：ART-B-town、ART-B-bldmap（工作区保留作参考，不合入）。
@@ -107,3 +107,22 @@
 - 审批页：`tools/review/{build.py, page.tpl.html}`。
 - 素材：`assets/README.md`、`assets/default/STYLE.md`（作者原文 + 规则 + 审批记录）、`assets/default/baseline/<类别>/manifest.yaml`、`assets/default/prompts/<类别>.md`。
 - 规则文档：`docs/00-canon.md`、`docs/design/21-meridian-flow-and-moves.md`、`docs/design/05-martial-arts-system.md`、`docs/design/15-meridians-and-acupoints.md`、`docs/tech/02-rendering.md`、`docs/tech/07-asset-generation.md`。
+
+## 8. 停机快照（2026-09-29 23:20，作者要求停下所有工作并交接）
+
+所有监督子代理已随本会话结束；执行器进程已全部终止（少林的第 5 轮 GPT 审核当时仍在跑，若 `.agents/reviews/NR4-shaolin.r5.md` 已生成，直接看其首行）。主检出干净，HEAD = 本文件所在提交。**接手第一步**：`python3 tools/agents/status_snapshot.py`，然后按下表逐项处理。每个任务重新起一个监督子代理（§6 模板），告诉它"从下表的下一步接着走"。
+
+| 任务 | 停机时状态 | 工作区 | 下一步 |
+|---|---|---|---|
+| **NR4-shaolin** | 第 5 次续作已结束（只把 1386 行"脊中"改"肾俞"），`finish --no-commit` 通过，10 项检查全过；r4 只剩这一处笔误；r5 审核停机时在跑 | 未提交，基点 fbd9b2a | 若 r5.md 为 PASS（或未生成）：`step.py finish NR4-shaolin` → `merge`，合入后主检出跑 `check_nr4_unit.py docs/design/catalog/skills-shaolin.md` 确认 0/0/0。若要再审：`gpt_review.py NR4-shaolin --checks .agents/coord/NR4-shaolin/checks_r5.md` |
+| **NR4-xiaoyao** | 第 4 次续作已自行结束（退出码 0，修 r3 三项：小无相功路线补任督躯干段、水榭飞刀恢复末三段腕骨→外关→阳池、报告一致性），未校验、未审核 | 未提交，+108/−58 | `git -C .agents/wt/NR4-xiaoyao diff --stat` 核对 → `check_nr4_unit.py docs/design/catalog/skills-xiaoyao.md` → `finish --no-commit` → `gpt_review.py NR4-xiaoyao --checks .agents/coord/NR4-xiaoyao/review_checks.md`（r4）→ PASS 后 finish + merge |
+| **TOWN-design** | 第 1 次校验通过、r1 FAIL（7 条：+z 方向与 tech/02 相反、场景尺寸按米制方格而非六角轴槽、大理寺塔区 / 衙门区放不下、临安分区越出城墙、schema 裸 map 与日期未引号、PCG32 与采样规则未冻结、宋套件缺酒楼、大理缺可定位平面图依据且小塔年代未标原创、报告不如实）；第 2 次续作（`.agents/coord/TOWN-design/note_r2.md`）中途被杀，三份 YAML 与 22 号文档有半成品改动 | 未提交，5 个未跟踪文件（22 号文档 790 行、schema 286、city_dali 265、city_hangzhou 289、报告 91） | 先 `yaml.safe_load` 三份 YAML、`grep -c '^\`\`\`'` 查围栏；以 note_r2.md 为底写明"上次已改到第 N 条"续作 `start TOWN-design --no-probe --note …`（traex Sol ultra）→ `finish --no-commit` → `gpt_review.py TOWN-design --checks .agents/coord/TOWN-design/review_checks.md`（r2）→ PASS 后 finish + merge。合入后启动 TOWN-tiles、TOWN-buildings、TOWN-render（Codex），三者合入后 TOWN-assemble |
+| **ART-R3-vfx** | 第 1 次产出完整（8 层 RGBA、layers.json、两个内嵌 WebP 的演示、MAE 降龙 0.72 / 六脉 0.0004）；`finish --no-commit` 曾因行数守卫误报未过（**已在 tasks.json 加 `shrink_exempt`**）；r1 FAIL 仅 1 项：降龙 palm_glow 划入了掌外龙身，0.55 s 帧露拼片；第 2 次续作（`.agents/coord/ART-R3-vfx/resume_note_2.md`，收窄 palm_glow）中途被杀 | 未提交，基点 695e1de，含半成品 | `git -C .agents/wt/ART-R3-vfx status --short` 核对第 2 次触碰的文件（palm_glow / dragon_body 层、composite、两个 index.html、manifest、报告）；用 resume_note_2.md 续作（Codex gpt-6-astra ultra）→ `finish --no-commit` → `gpt_review.py ART-R3-vfx --checks .agents/coord/ART-R3-vfx/review_checks.md`（r2）→ PASS 后**先给作者看**，不 finish / merge。待定：`layers/generation/` 与 composite / peak（约 20 MB 中间件）是否入库；`prompts/vfx.md` §7 图层规则要限定为"当前两张图的演示"，后续外放招式按 VFX-* 新管线 |
+| **VFX-design** | 第 1 次刚启动 2 分钟被杀，工作区无产出 | 空 | 直接 `step.py start VFX-design --no-probe`（traex Sol ultra），要点文件已备：`.agents/coord/VFX-design/review_checks.md`。合入后启动 VFX-tool（Codex）；VFX-plates 等 ART-R3-vfx 也处理完再启动 |
+| **ART-R1-female** | r2 PASS，等作者审小龙女新图（已在审批页） | 未提交 | 作者通过 → `finish ART-R1-female` + `merge`；要改 → 原工作区 `start … --note` |
+| **ART-R2-male**（含 R1 的令狐冲） | r3 PASS（ultra 重审），等作者审萧峰、令狐冲 | 未提交 | 作者通过 → `finish ART-R2-male` + `merge`（**ART-R1-male 不合**，它的令狐冲随 R2 带入） |
+| **ART-R2-vfx** | r4 PASS，等作者审六脉神剑线性剑气图 | 未提交 | 作者通过 → `finish ART-R2-vfx` + `merge`，**先于** ART-R3-vfx |
+| ART-B-town / ART-B-bldmap | 作废（改程序化生成），工作区保留作参考 | 未提交 | 不合入；TOWN-design 读过它们后可 `git worktree remove`（或留着） |
+| 审批页 | 版本 4：小龙女第 3 轮、萧峰 R2、令狐冲 R1、六脉 R2、倚天剑 R1、降龙 R1 待审 | — | 作者审完：`ArtifactData list reviews` 导出 → `apply_reviews.py <dir> --write` → 记 STYLE.md 审批记录 → 按结论合入或开返修任务 |
+
+已合入待启动：**LINT-outlets**（deps 全部 NR4，少林、逍遥合入后即可启动，traex Sol ultra）→ 之后登记并启动 **NR4S-NN**（模板 `prompts/NR4S-book.md`，条目取 `FOLLOWUPS.md`"NR4 阶段"）→ **NAu-final**。
