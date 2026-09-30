@@ -1,10 +1,10 @@
 # 门派武学图鉴 · 古龙门派武学（`skills-gulong`）
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 门派武学图鉴之一。本文定义 `design/17` §11 选定的十五个古龙组织之可学武学；门派历史、驻地、时代开放与正式职级称谓仍唯一归 `design/17`。
-> **上游**：`decisions/author-decisions.md`（G1 / P33）、`00-canon.md`（§3–§7、§9、§12–§13、§16、§18、§20）、`decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-12、AR-14、AR-16–AR-17、`decisions/rulings-v1.md` C14、C16–C17、C22–C23、`design/17` §1.11–§1.14、§3.4、§11、`design/21` v2.6。
+> **上游**：`decisions/author-decisions.md`（G1 / P33）、`00-canon.md`（§3–§7、§9、§12–§13、§16、§18、§20）、`decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-12、AR-14、AR-16–AR-18、`decisions/rulings-v1.md` C14、C16–C17、C22–C23、`design/17` §1.11–§1.14、§3.4、§11、`design/21` v2.7.2。
 > **引用而不重定义**：字段、层数、招式预算、内功贡献与学习规则见 `design/05`；战斗经脉运行、路线、护体内劲、速度修正与调息见 `design/21`；经脉、穴位、冲穴、周天与九转见 `design/15`；Buff 本体见 `design/06`；六角范围与阵法流程见 `design/09`；机关、毒物、兵器与弹药见 `design/10`；套装规则与最终数值见 `design/07`。
 > **标注约定**：**（原创扩展）** = 原著没有的武学、招名或投放；**（原创扩展命名）** = 原著有其人、兵器或行为而无可确认武学名；**（待考）** = 须以正式出版的古龙作品逐字核对。本文不编造引文与回目号。
-> **版本**：C1g 初稿；审校 C1g.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记（2026-09-28）；绝招路线叙事化（2026-09-29）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）。
+> **版本**：C1g 初稿；审校 C1g.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记（2026-09-28）；绝招路线叙事化（2026-09-29）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
 
 ---
 
@@ -122,7 +122,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总数 + 5 × mpRegen
 
 黄阶贡献沿上表同品阶分配；三门的 `attrs` 分别为：大旗吐纳 `{con:1,wis:1,wil:1}`、青龙吐纳 `{con:2,wis:1,wil:1}`、青龙护心功 `{con:2,wil:1}`。所有额外内功属性放在 `inner.contribution.stats`，不新增 `inner.stats` 字段。
 
-AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门内功，全部已标。本文引用 `design/15` 已冻结的 `mer_renmai`、`mer_dumai`、`mer_yinqiao`、`mer_yangqiao`、`mer_shoutaiyin` 五个正式 ID，不在图鉴重定义其效果。
+AR-02 要求每门内功明确 `nature: yin / yang / harmony`；AR-18 进一步要求按 `inner.meridians` 的主修经脉逐脉计票，正逆周天与招式出口均不改变内功性质。本文共 9 门内功，全部显式填写主修经脉并通过计票。本文引用 `design/15` 已冻结的 `mer_renmai`、`mer_dumai`、`mer_yinqiao`、`mer_yangqiao`、`mer_shoutaiyin` 五个正式 ID，不在图鉴重定义其效果。
 
 ### 0.4 本组五级职级建议（AR-07）
 
@@ -245,7 +245,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | `nature · wOut/wIn · moveSlots` | `yin · 0.10/0.90 · 4` |
 | `reqs` | `attrs {con:50,wil:55,wis:45}`；`aptitude {apInner:50}`；`sect {id:sect_yihuagong,rank:4}`；`prereq [{skill:sk_yihuajieyu,layer:6}]`；`hard:[sect,prereq]` |
 | `inner.contribution` | `mpMaxPct 34, hpMaxPct 20, attrs {con:4,wis:4,wil:6}, mpRegen 2.5`；`IP=34+20+2×14+5×2.5=94.5` |
-| `inner.contribution.stats / meridians` | `{resCold:10,resInjury:5}`（15）；`[mer_renmai, mer_yinqiao]`（正式 ID 见 `design/15`） |
+| `inner.contribution.stats / meridians` | `{resCold:10,resInjury:5}`（15）；`inner.meridians:[mer_renmai,mer_yinqiao]`（任脉承接回流、阴跷收摄寒玉，依本卡内敛 / 回流 / 护体叙事确定，非由既有性质反推；正式 ID 见 `design/15`；**原创扩展配表**） |
 | 层数要点 | 1 凝玉｜3 寒玉护体｜被动内敛｜**7 绝招明玉回流、被动无瑕**｜**9 绝招明玉照夜**｜10 明玉圆满 |
 | `setTags / conflicts` | `[set_yihua_shuangbi]` / 无 |
 | `special / observable` | `{fusible:true}` / `true` |
@@ -353,7 +353,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | `sk_daqiqiang` | 大旗枪法 | 6 玄上 | 兵器/枪 | 阳 | XA |
 | `sk_tiexueqigong` | 铁血旗功 | 6 玄上 | 杂学/阵法 | 中性 | XA |
 | `sk_daqimenquan` | 大旗门入门拳 | 3 黄上 | 拳脚/拳掌 | 阳 | XA |
-| `sk_daqixinfa` | 大旗吐纳 | 2 黄中 | 内功 | 调和 | XA |
+| `sk_daqixinfa` | 大旗吐纳 | 2 黄中 | 内功 | 阴 | XA |
 
 ### 4.2 地阶完整条目卡
 
@@ -368,7 +368,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | `nature · wOut/wIn · moveSlots` | `yang · 0.15/0.85 · 4` |
 | `reqs` | `attrs {con:55,wil:55}`；`aptitude {apInner:50}`；`sect {id:sect_daqimen,rank:4}`；`prereq [{skill:sk_tiexueqigong,layer:6}]`；`hard:[sect,prereq]` |
 | `inner.contribution` | `mpMaxPct 32, hpMaxPct 22, attrs {con:7,str:4,wil:3}, mpRegen 2.5`；`IP=32+22+2×14+5×2.5=94.5` |
-| `inner.contribution.stats / meridians` | `{resInjury:10,resCC:5}`（15）；`[mer_dumai,mer_yangqiao]`（正式 ID 见 `design/15`） |
+| `inner.contribution.stats / meridians` | `{resInjury:10,resCC:5}`（15）；`inner.meridians:[mer_dumai,mer_yangqiao]`（督脉承接重振，阳跷承接破后再起，依本卡凝炼 / 爆发叙事确定，非由既有性质反推；正式 ID 见 `design/15`；**原创扩展配表**） |
 | 层数要点 | 1 藏锋｜3 烈火护衣、厚炼｜**7 绝招破茧重振、被动返本**｜**9 绝招烈火重衣**｜10 衣成 |
 | `setTags / conflicts` | `[]` / 无 |
 | `special / observable` | `{fusible:true}` / `true`；没有 `special.cost`，不是 §9.1 代价型；伤后奖励不主动扣血 |
@@ -408,7 +408,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或原创标注 |
 |---|---|---|---|---|---|---|---|
 | `sk_daqimenquan` | 大旗门入门拳 | 大旗门 | `unarmed/fist`，3 黄上，阳，0.90/0.10 | XA | 单体 1.00、六角横扫 0.95；`setTags:[]` | `sect rank 1` | **（古龙·《大旗英雄传》）** 门人基础训练 **（原创扩展）** |
-| `sk_daqixinfa` | 大旗吐纳 | 大旗门 | `inner/inner`，2 黄中，`nature:harmony`，0.10/0.90 | XA | `IP=8+5+2×3+5×1=24`；`meridians:[mer_renmai]`（正式 ID）；`setTags:[]` | `sect rank 1` | **（古龙·《大旗英雄传》）** 基础心法 **（原创扩展）** |
+| `sk_daqixinfa` | 大旗吐纳 | 大旗门 | `inner/inner`，2 黄中，`nature:yin`，0.10/0.90 | XA | `IP=8+5+2×3+5×1=24`；`inner.meridians:[mer_renmai]`（任脉承接基础吐纳与蓄气，依本卡用途确定，非由旧 `nature` 反推；正式 ID；**原创扩展配表**）；`setTags:[]` | `sect rank 1` | **（古龙·《大旗英雄传》）** 基础心法 **（原创扩展）** |
 
 ### 4.5 进阶链、套装与职级
 
@@ -444,7 +444,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | `nature · wOut/wIn · moveSlots` | `yin · 0.05/0.95 · 4` |
 | `reqs` | `attrs {con:50,wil:55}`；`aptitude {apInner:50}`；`sect {id:sect_shenshuigong,rank:4}`；`prereq [{skill:sk_tianyishenshui,layer:6}]`；`hard:[sect,prereq]` |
 | `inner.contribution` | `mpMaxPct 36, hpMaxPct 18, attrs {con:5,wis:4,wil:5}, mpRegen 2.5`；`IP=36+18+2×14+5×2.5=94.5` |
-| `inner.contribution.stats / meridians` | `{resPoison:8,resCold:7}`（15）；`[mer_renmai,mer_shoutaiyin]`（正式 ID 见 `design/15`） |
+| `inner.contribution.stats / meridians` | `{resPoison:8,resCold:7}`（15）；`inner.meridians:[mer_renmai,mer_shoutaiyin]`（任脉蓄纳回澜、手太阴承接水幕与吐纳，依本卡水势 / 回流 / 护体叙事确定，非由既有性质反推；正式 ID 见 `design/15`；**原创扩展配表**） |
 | 层数要点 | 1 纳流｜3 水幕、水势｜**7 绝招回澜、被动回流**｜**9 绝招神水重潮**｜10 神水圆满 |
 | `setTags / conflicts` | `[]` / 无 |
 | `special / observable` | `{fusible:true}` / `true` |
@@ -506,7 +506,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 **`sk_wuzhengxinfa` 无争心法**（6 玄上 · `inner/inner` · 调和 · 0.10/0.90 · `expanded`）
 
 - 出处：**（古龙·《楚留香新传·蝙蝠传奇》）** 据无争山庄声望与家传背景归纳；名称、层数和机制 **（原创扩展）**。`sourceChapters:[ch06_xiake]`。
-- `nature:harmony`；`reqs {attrs:{con:35,wil:35},aptitude:{apInner:30},sect:{id:sect_wuzhengshanzhuang,rank:3},prereq:[{skill:sk_wuzhengjian,layer:5}],hard:[sect,prereq]}`；`inner.contribution {mpMaxPct:20,hpMaxPct:12,attrs:{con:3,wis:2,wil:3},mpRegen:1.8}`，`IP=20+12+2×8+5×1.8=57`；`meridians:[mer_renmai,mer_dumai]`（正式 ID）；`setTags:[]`。
+- `nature:harmony`；`reqs {attrs:{con:35,wil:35},aptitude:{apInner:30},sect:{id:sect_wuzhengshanzhuang,rank:3},prereq:[{skill:sk_wuzhengjian,layer:5}],hard:[sect,prereq]}`；`inner.contribution {mpMaxPct:20,hpMaxPct:12,attrs:{con:3,wis:2,wil:3},mpRegen:1.8}`，`IP=20+12+2×8+5×1.8=57`；`inner.meridians:[mer_renmai,mer_dumai]`（止争 / 澄心取任脉敛气，护庄取督脉护体，阴阳各 1 票；依本卡招式用途确定，非由既有性质反推；正式 ID；**原创扩展配表**）；`setTags:[]`。
 - 招式：止争 `mv_wuzhengxinfa_zhizheng`（自身 `bf_wenzhong·承·100%·3`）；澄心 `mv_wuzhengxinfa_chengxin`（清 1 个 `mind`）；护庄 `mv_wuzhengxinfa_huzhuang`（绝招，自身 `bf_hutizhenqi·承·100%·2`；耗内 8%、气势 100、收招 1200）。获取：山庄家传 `maxLayer:10`。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 
 **`sk_tingfengbianwei` 听风辨位**（6 玄上 · `misc/mind` · 中性 · 0.35/0.65 · `expanded`）
@@ -553,7 +553,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | `sk_qinglongduanda` | 青龙短打 | 3 黄上 | 拳脚/拳掌 | 阳 | BX–XS |
 | `sk_qinglongtui` | 青龙扫堂腿 | 3 黄上 | 拳脚/腿 | 阳 | BX–XS |
 | `sk_qinglongqinshou` | 青龙擒手 | 3 黄上 | 拳脚/擒拿 | 阴 | BX–XS |
-| `sk_qinglongtuna` | 青龙吐纳 | 3 黄上 | 内功 | 调和 | BX–XS |
+| `sk_qinglongtuna` | 青龙吐纳 | 3 黄上 | 内功 | 阴 | BX–XS |
 | `sk_qinglonghuxin` | 青龙护心功 | 2 黄中 | 内功 | 阳 | BX–XS |
 
 ### 7.2 地阶完整条目卡
@@ -601,7 +601,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 **`sk_qinglongneifa` 青龙护心诀**（6 玄上 · `inner/inner` · 调和 · 0.15/0.85 · `expanded`）
 
 - 出处：**（古龙·《七种武器》等）** 据青龙会跨代分坛网络归纳；心法名与机制 **（原创扩展）**；`sourceChapters` 同本节地阶卡。
-- `nature:harmony`；`reqs {attrs:{con:30,wil:35},aptitude:{apInner:30},sect:{id:sect_qinglonghui,rank:3},prereq:[{anyOf:[{skill:sk_qinglongduanda,layer:5},{skill:sk_qinglongduanjian,layer:4}]}],hard:[sect,prereq]}`；`inner.contribution {mpMaxPct:20,hpMaxPct:12,attrs:{con:3,wis:2,wil:3},mpRegen:1.8}`，`IP=57`；`meridians:[mer_renmai,mer_dumai]`（正式 ID）；`setTags:[]`。
+- `nature:harmony`；`reqs {attrs:{con:30,wil:35},aptitude:{apInner:30},sect:{id:sect_qinglonghui,rank:3},prereq:[{anyOf:[{skill:sk_qinglongduanda,layer:5},{skill:sk_qinglongduanjian,layer:4}]}],hard:[sect,prereq]}`；`inner.contribution {mpMaxPct:20,hpMaxPct:12,attrs:{con:3,wis:2,wil:3},mpRegen:1.8}`，`IP=57`；`inner.meridians:[mer_renmai,mer_dumai]`（潜息 / 回气取任脉敛气，护心取督脉护体，阴阳各 1 票；依本卡招式用途确定，非由既有性质反推；正式 ID；**原创扩展配表**）；`setTags:[]`。
 - 招式：护心 `mv_qinglongneifa_huxin`（绝招，自身 `bf_hutizhenqi` 2 回合；耗内 8%、气势 100、收招 1200）、潜息（自身 `bf_yinshen` 2 回合）、回气（自身 `bf_huinei` 2 回合），均无伤害；招式 ID 与招名均 **（原创扩展）**。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 
 **`sk_qinglongduanjian` 青龙分坛短剑**（5 玄中 · `weapon/exotic` · 调和 · 0.75/0.25 · `expanded`）
@@ -624,8 +624,8 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 | `sk_qinglongduanda` | 青龙短打 | 青龙会 | `unarmed/fist`，3 黄上，阳，0.85/0.15 | BX–XS | 单体 1.00、六角横扫 0.95；`setTags:[]` | `sect rank 1` | **（古龙·《七种武器》等）** 据分坛武备归纳；基础拳 **（原创扩展）** |
 | `sk_qinglongtui` | 青龙扫堂腿 | 青龙会 | `unarmed/leg`，3 黄上，阳，0.90/0.10 | BX–XS | 单体 1.00、击退式 0.95；`setTags:[]` | `sect rank 1` | **（古龙·《七种武器》等）** 据分坛武备归纳；基础腿 **（原创扩展）** |
 | `sk_qinglongqinshou` | 青龙擒手 | 青龙会 | `unarmed/grapple`，3 黄上，阴，0.75/0.25 | BX–XS | 单体 1.00、`bf_shiheng` 30%；`setTags:[]` | `sect rank 1` | **（古龙·《七种武器》等）** 据分坛武备归纳；基础擒拿 **（原创扩展）** |
-| `sk_qinglongtuna` | 青龙吐纳 | 青龙会 | `inner/inner`，3 黄上，`nature:harmony`，0.10/0.90 | BX–XS | `IP=10+6+2×4+5×1.2=30`；`meridians:[mer_renmai]`（正式 ID）；`setTags:[]` | `sect rank 1` | **（古龙·《七种武器》等）** 据分坛网络归纳；基础吐纳 **（原创扩展）** |
-| `sk_qinglonghuxin` | 青龙护心功 | 青龙会 | `inner/inner`，2 黄中，`nature:yang`，0.15/0.85 | BX–XS | `IP=8+5+2×3+5×1=24`；`meridians:[mer_dumai]`（正式 ID）；`setTags:[]` | `sect rank 1` | **（古龙·《七种武器》等）** 据分坛网络归纳；基础护心法 **（原创扩展）** |
+| `sk_qinglongtuna` | 青龙吐纳 | 青龙会 | `inner/inner`，3 黄上，`nature:yin`，0.10/0.90 | BX–XS | `IP=10+6+2×4+5×1.2=30`；`inner.meridians:[mer_renmai]`（任脉承接分坛基础吐纳与敛气，依本卡用途确定，非由旧 `nature` 反推；正式 ID；**原创扩展配表**）；`setTags:[]` | `sect rank 1` | **（古龙·《七种武器》等）** 据分坛网络归纳；基础吐纳 **（原创扩展）** |
+| `sk_qinglonghuxin` | 青龙护心功 | 青龙会 | `inner/inner`，2 黄中，`nature:yang`，0.15/0.85 | BX–XS | `IP=8+5+2×3+5×1=24`；`inner.meridians:[mer_dumai]`（督脉承接护心发劲，依本卡用途确定，非由既有性质反推；正式 ID；**原创扩展配表**）；`setTags:[]` | `sect rank 1` | **（古龙·《七种武器》等）** 据分坛网络归纳；基础护心法 **（原创扩展）** |
 
 ### 7.5 进阶链、套装与职级
 
@@ -784,7 +784,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 **`sk_tangmenbidu` 唐门避毒诀**（6 玄上 · `inner/inner` · 阴 · 0.10/0.90 · `expanded`）
 
 - 出处：**（古龙·《白玉老虎》）** 据唐门毒药环境归纳，武学名与机制 **（原创扩展）**；不写配方。`sourceChapters:[ch06_xiake]`。
-- `nature:yin`；`reqs {attrs:{con:30,wis:35},aptitude:{apInner:30},skills:{antidote:35},sect:{id:sect_tangmen,rank:2},prereq:[{skill:sk_tangmenquanshu,layer:4}],hard:[sect,prereq]}`；`inner.contribution {mpMaxPct:20,hpMaxPct:12,attrs:{con:3,wis:3,wil:2},mpRegen:1.8}`，`IP=57`；`meridians:[mer_shoutaiyin,mer_renmai]`（正式 ID）；`setTags:[]`。
+- `nature:yin`；`reqs {attrs:{con:30,wis:35},aptitude:{apInner:30},skills:{antidote:35},sect:{id:sect_tangmen,rank:2},prereq:[{skill:sk_tangmenquanshu,layer:4}],hard:[sect,prereq]}`；`inner.contribution {mpMaxPct:20,hpMaxPct:12,attrs:{con:3,wis:3,wil:2},mpRegen:1.8}`，`IP=57`；`inner.meridians:[mer_shoutaiyin,mer_renmai]`（手太阴承接避毒 / 清秽，任脉承接守脉蓄气，阴 2 票；依本卡抗毒与护脉用途确定，非由既有性质反推；正式 ID；**原创扩展配表**）；`setTags:[]`。
 - 招式：避毒（自身 `bf_bidu` 3 回合）、清秽（驱散 1 层 `poison`）、守脉 `mv_tangmenbidu_shoumai`（绝招，自身 `bf_shouyi` 2 回合；耗内 8%、气势 100、收招 1200），均无伤害；招式 ID 与招名均 **（原创扩展）**。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 
 ### 10.4 黄阶一行条目
@@ -1253,7 +1253,7 @@ AR-02 要求每门内功明确 `nature: yin / yang / harmony`；本文共 9 门�
 ### 18.3 玄阶招式抽样与内功预算
 
 - 明列核算式的玄阶武学为：`sk_yihuajieyu`、`sk_erengushengcun`、`sk_wuehezhen`、`sk_daqiqiang`、`sk_tianyishenshui`、`sk_tingfengbianwei`、`sk_sishierduanzhen`、`sk_qinglongduanjian`、`sk_qinglongduanren`、`sk_qiankunmishou`、`sk_kuaihuozhen`、`sk_yanluosuo`、`sk_yanluosan`、`sk_tangmenjieqi`、`sk_kongquezhen`、`sk_jingwumingkuaijian`、`sk_xiejiajianlu`、`sk_baiyunjianwei`、`sk_renyizhuangjian`、`sk_sanzhuangheji`，共 `20/29=68.97%≥30%`。
-- 9 门内功全部写 `nature`：阴 3（明玉功、神水内功、唐门避毒诀）、阳 2（嫁衣神功、青龙护心功）、调和 4（大旗吐纳、无争心法、青龙护心诀、青龙吐纳）。逐 ID 见 §20.2。
+- 9 门内功全部写 `nature` 与 `inner.meridians`：阴 5（明玉功、神水内功、唐门避毒诀、大旗吐纳、青龙吐纳）、阳 2（嫁衣神功、青龙护心功）、调和 2（无争心法、青龙护心诀）。逐 ID 及逐脉票数见 §20.2。
 - IP：地上 3 门各 94.5；玄上 3 门各 57；黄上 1 门为 30、黄中 2 门各 24，均等于 `design/05` §5.5 预算。
 
 ### 18.4 外放统计与候选审计
@@ -1478,6 +1478,8 @@ AR-17 终审复核：本册没有以深厚内力控制伤敌音波的 `sonic` �
 | 黄阶伤害 / 防守 | 同性质常用 / 防守骨架前三穴，2–3 段；中性允许三性质 |
 | 黄阶轻功 | `G-M3`，`purpose:movement`；无显式 `mv_*` 的一行卡只为既有动作生成局部 MoveDef，不新建全局招名 |
 
+AR-18 落地后，大旗吐纳与青龙吐纳的黄阶局部招式路线按阴性展开：`requiredNature:[yin,harmony]`，攻击 / 防守分别取 `G-Y5/G-YD4` 的前 2–3 段；两卡没有已登记的显式 `mfr_*`，因此不改本节绝招索引。模板展开的段数与 CT 不变；自然护体及局部防守的穴位、逐段风险与总风险随性质模板同步变化，见 §19A.4 与模板表。
+
 | 轻功武学 | 速度路线 |
 |---|---|
 | `sk_yihuagongqinggong` | `huaying→mfr_yihuagongqinggong_huaying/false/movement/G-M5`；绝招 `yibu` 见上表 |
@@ -1502,8 +1504,8 @@ AR-17 终审复核：本册没有以深厚内力控制伤敌音波的 `sonic` �
 | `sk_wuzhengxinfa` | `txp_wuzhengxinfa` | `6/10/harmony/2/1000/0/15000` | `1995 / 466` | 玄调和档；自然 `G-HN2`；`mv_wuzhengxinfa_huzhuang→mfr_wuzhengxinfa_huzhuang`（显式，见文首索引）；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 | `sk_qinglongneifa` | `txp_qinglongneifa` | `6/10/harmony/2/1000/0/15000` | `1995 / 466` | 玄调和档；自然 `G-HN2`；`mv_qinglongneifa_huxin→mfr_qinglongneifa_huxin`（显式，见文首索引）；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 | `sk_tangmenbidu` | `txp_tangmenbidu` | `6/10/yin/2/1000/0/15000` | `1900 / 444` | 玄阴档；自然 `G-YN2`；`mv_tangmenbidu_shoumai→mfr_tangmenbidu_shoumai`（显式，见文首索引）；`reflectBp:0`；`outOfBattleScaleBp:15000` |
-| `sk_qinglongtuna` | `txp_qinglongtuna` | `3/10/harmony/1/1000/0/15000` | `1680 / 390` | 黄调和档；自然 `G-HN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
-| `sk_daqixinfa` | `txp_daqixinfa` | `2/10/harmony/1/1000/0/15000` | `1575 / 365` | 黄调和档；自然 `G-HN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_qinglongtuna` | `txp_qinglongtuna` | `3/10/yin/1/1000/0/15000` | `1600 / 372`（`500+100×3+80×10=1600`；`120+24×3+18×10=372`） | 黄阴档；自然 `G-YN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
+| `sk_daqixinfa` | `txp_daqixinfa` | `2/10/yin/1/1000/0/15000` | `1500 / 348`（`500+100×2+80×10=1500`；`120+24×2+18×10=348`） | 黄阴档；自然 `G-YN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 | `sk_qinglonghuxin` | `txp_qinglonghuxin` | `2/10/yang/1/1000/0/15000` | `1500 / 348` | 黄阳档；自然 `G-AN2`；`reflectBp:0`；`outOfBattleScaleBp:15000` |
 
 护体对拳脚 / 兵器 / 暗器 / 内劲外放适用率为 `10000/2500/0/4000 bp`，1 MP 抵 2 伤害；护体真气先结、护体内劲次之、既有 `mpGuard` 再后。三门暗器相关武学不会因护体内劲丢失投射物伤害。本册无既有反震语义，故全部 `reflectBp:0`。
@@ -1531,17 +1533,17 @@ AR-17 终审复核：本册没有以深厚内力控制伤敌音波的 `sonic` �
 
 ### 20.2 内功性质、调息与路线 ID
 
-| ID | `nature` | `meridians`（正式引用） | IP |
+| ID | `nature` | `inner.meridians`（正式引用；AR-18 票数） | IP |
 |---|---|---|---:|
-| `sk_mingyugong` | `yin` | `[mer_renmai,mer_yinqiao]` | 94.5 |
-| `sk_jiayishengong` | `yang` | `[mer_dumai,mer_yangqiao]` | 94.5 |
-| `sk_daqixinfa` | `harmony` | `[mer_renmai]` | 24 |
-| `sk_shenshuineigong` | `yin` | `[mer_renmai,mer_shoutaiyin]` | 94.5 |
-| `sk_wuzhengxinfa` | `harmony` | `[mer_renmai,mer_dumai]` | 57 |
-| `sk_qinglongneifa` | `harmony` | `[mer_renmai,mer_dumai]` | 57 |
-| `sk_qinglongtuna` | `harmony` | `[mer_renmai]` | 30 |
-| `sk_qinglonghuxin` | `yang` | `[mer_dumai]` | 24 |
-| `sk_tangmenbidu` | `yin` | `[mer_shoutaiyin,mer_renmai]` | 57 |
+| `sk_mingyugong` | `yin` | `[mer_renmai,mer_yinqiao]`（阴 2 / 阳 0） | 94.5 |
+| `sk_jiayishengong` | `yang` | `[mer_dumai,mer_yangqiao]`（阴 0 / 阳 2） | 94.5 |
+| `sk_daqixinfa` | `yin` | `[mer_renmai]`（阴 1 / 阳 0） | 24 |
+| `sk_shenshuineigong` | `yin` | `[mer_renmai,mer_shoutaiyin]`（阴 2 / 阳 0） | 94.5 |
+| `sk_wuzhengxinfa` | `harmony` | `[mer_renmai,mer_dumai]`（阴 1 / 阳 1） | 57 |
+| `sk_qinglongneifa` | `harmony` | `[mer_renmai,mer_dumai]`（阴 1 / 阳 1） | 57 |
+| `sk_qinglongtuna` | `yin` | `[mer_renmai]`（阴 1 / 阳 0） | 30 |
+| `sk_qinglonghuxin` | `yang` | `[mer_dumai]`（阴 0 / 阳 1） | 24 |
+| `sk_tangmenbidu` | `yin` | `[mer_shoutaiyin,mer_renmai]`（阴 2 / 阳 0） | 57 |
 
 本轮为既有原创动作补 14 个正式招式 ID：`mv_sishierduanzhen_xiaduan`、`mv_qinglongneifa_huxin`、`mv_kuaihuozhen_jiadao`、`mv_yanluosan_xuanmian`、`mv_tangmenjieqi_fankou`、`mv_tangmenbidu_shoumai`、`mv_kongquezhen_bimen`、`mv_jingwumingkuaijian_juehui`、`mv_xiejiajianlu_bianlu`、`mv_wanmeixinjing_jinghou`、`mv_baiyunjianwei_huijian`、`mv_feixiandao_guidao`、`mv_renyizhuangjian_hewei`、`mv_sanzhuangheji_tongji`；均为 **（原创扩展）** 或 **（原创扩展命名）**，不冒充原著招名。
 
@@ -1587,7 +1589,7 @@ AR-17 终审复核：本册没有以深厚内力控制伤敌音波的 `sonic` �
 | `GL-V002` | 品阶 ≥10 的条目数为 0；地阶数 ≤12 | 通过：0 / 10 |
 | `GL-V003` | 地阶每招均有核算式且偏差 ≤0.05；玄阶有核算武学占比 ≥30%；范围依 `design/09` §5.3 的六角 `Nmax→AF`，不采用 05 §4.3 旧方格值 | 通过：10 门完整卡；20/29；六角范围已复算 |
 | `GL-V003A` | 地阶核心武学招式总数 ≥4、首个绝招 ≤7 重；内功允许 1–4 个运功招式 | 通过：7 门外功 / 暗器地阶各 5 式，3 门地阶内功各 4 式；地上 2 绝招、地中 1 绝招、地下 1 绝招 |
-| `GL-V004` | 每门内功 `nature∈{yin,yang,harmony}` 且 IP 在目标 ±5% | 通过：9/9 |
+| `GL-V004` | 每门内功显式填写合法 `inner.meridians`，按 `design/05` §5.3 逐脉计票所得性质等于 `nature∈{yin,yang,harmony}`，且 IP 在目标 ±5% | 通过：9/9；缺字段 0、性质不符 0 |
 | `GL-V004A` | `layerStats` 满重合计不超过大阶上限（黄 6、玄 10、地 15） | 通过；地阶 7 门外功 / 暗器均 ≤15，玄阶有该字段者均 ≤10 |
 | `GL-V005` | 每派至少一门黄阶入门拳或剑、黄→玄→地链、一个闭合套装候选 | 通过：15/15 |
 | `GL-V006` | XA–XS 本组覆盖的中 / 低武书界，内功 / 拳脚 / 兵器各 ≥3，且至少 3 门兵器共享同一 `weaponReq` | 文档契约通过，证据见 §19.2–§19.3；章节落实 G-04 后仍须验证同周目可达性 |
@@ -1622,6 +1624,7 @@ AR-17 终审复核：本册没有以深厚内力控制伤敌音波的 `sonic` �
 | `GL-T13` 实体投射反例 | 扫描唐门暗手、孔雀翎、龙凤双环与阎罗索审计条目 | 实体暗器、机括和普通兵刃均保持 `not_projected`，不因投射、回旋或范围模板误挂外放字段 |
 | `GL-T14` 出招末端与路线互异 | 对 44 条显式绝招路线运行 `--delivery --details`、严格多样性及全仓路线唯一检查 | 末端规则命中 0、册内 ≥80% 相似对 0、与全仓其他武学完全相同路线 0；本册名下 24 对均已改开且本册改线未新造 ≥80% 配对；其余涉及本册路线的跨册配对由对应图鉴处理；所有 `ap_*` 均已在 `design/15` 登记 |
 | `GL-T15` NR3 配对回归 | 运行 `python3 tools/agents/check_nr3_unit.py gulong` | 名下 24 对全部改开、理由豁免 0、未处理 0、本任务新造 ≥80% 配对 0 |
+| `AR-18` 性质回归 | 运行 `python3 tools/agents/check_nr4_unit.py docs/design/catalog/skills-gulong.md` | 路线性质冲突 0、内功性质冲突 0、缺 `inner.meridians` 0；大旗吐纳 / 青龙吐纳均由任脉 1 阴票推出 `yin` |
 
 ---
 
@@ -1685,5 +1688,7 @@ AR-17 终审复核：本册没有以深厚内力控制伤敌音波的 `sonic` �
 | G-11 | 裁定分工表未列 gulong 时，扩容基数采用多少 | 默认以 17 的 45 个候选作为基数，正数四舍五入取 68；C3 正式登记配额并重算全局池 |
 | G-13 | 护体“地 / 玄 / 黄档”是否成为正式字段 | 默认不新增字段；只由 `grade/nature` 派生作检索文案，容量仍由 21 实时计算 |
 | G-14 | 地中武学应取 1 还是 2 记绝招 | **已解决：本册 `sk_tangmenanshou` 按统一裁定表取 1**；`mv_tangmenanshou_zhuixing` 已恢复普通成本与路线 |
+| AR-18a | 冲脉、带脉是否参与内功与路线的阴阳投票 | 默认不投票；本册九门内功的结论不依赖改变二脉归属 |
+| AR-18b | 后溪是否加入外放 13 端点白名单 | 默认不加入；本册两条外放掌端均以劳宫收束，不受影响 |
 
 已有待决追溯：经脉正式 ID 已解决（见 G-03、`design/15`）；旧路线 cap 已由作者决定的独立乘区取代（见 `design/21` §3.5、§18.5）；调息默认不另耗内、9 级点穴不可自调息、护体默认不反震，均按 21 §10、§18.5 落地。
