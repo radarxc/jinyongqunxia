@@ -14266,7 +14266,7 @@
         "cat_name": "底图贴片",
         "out_dir": "assets/default/baseline/tile",
         "prompt_file": "assets/default/prompts/tile.md",
-        "min": "12",
+        "min": "40",
         "max": "60",
         "spec": "按 design/22 §5 贴片清单逐项出图：每种一张（或清单要求的变体数），2:1 菱形，像素规格按 §2（默认一格 64×32 px；桥、城门等大贴片按整数格数）。地面类贴片四边可无缝拼接（同类相邻不露缝）；河岸 / 道路边缘按 autotile 规则出齐所需的边角变体；全部透明底（真 RGBA）。manifest 每条另加 `tile: {kind, footprint: [w, h], variant, autotile_mask}`（字段按 schema.yaml）。先出主体类型：地面 3–4 种（夯土、青砖、石板、土路 / 草地）、道路 2 种、水面、河岸 8 向、桥 1–2、城墙段、城门、树丛 2 种；数量以清单为准。大理用得到的夯土 / 土路和本地植物、临安用得到的青砖御街都要有。",
         "extra": "贴片是被反复平铺的底图，画面上不要有醒目的单个物件或方向性强的纹样；同类贴片之间色调一致。"
@@ -14285,9 +14285,11 @@
             "tools/agents/check_assets.py",
             "assets/default/baseline/tile",
             "--min",
-            "12",
+            "40",
             "--max",
-            "60"
+            "60",
+            "--min-side",
+            "32"
           ]
         ]
       }
