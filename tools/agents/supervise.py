@@ -43,6 +43,7 @@ sys.path.insert(0, str(HERE))
 import step as S  # noqa: E402  复用 step.py / run.py 的状态查询
 
 CODEX = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex"
+TRAEX = S.R.shutil.which("traex") or S.R.shutil.which("traecli") or CODEX  # 作者 2026-09-30：改用 traex
 PY = sys.executable
 TERMINAL = ("READY", "MERGED", "HOLD-REVIEWS", "HOLD-RUNS", "HOLD-VALIDATE", "ERROR")
 STATUS_LINE = re.compile(r"^(FINISHED|RUNNING|STALLED|EXITED-NO-CODE)\b.*$", re.M)
@@ -365,11 +366,11 @@ def main() -> int:
     ap.add_argument("--checks", help="审核补充要点文件（传给 gpt_review.py --checks）")
     ap.add_argument("--rework-extra", help="每次返修说明末尾追加的协调者补充（文件或文本）")
     ap.add_argument("--from", dest="start_from", choices=["start", "validate", "review"], default="start")
-    ap.add_argument("--bin", default=os.environ.get("CODEX_BIN", CODEX))
-    ap.add_argument("--model", default="gpt-6-astra")
-    ap.add_argument("--effort", default="ultra", help="执行推理强度（ultra / xhigh）")
-    ap.add_argument("--review-model", default="gpt-6-astra")
-    ap.add_argument("--review-effort", default="xhigh", help="审核推理强度（ultra / xhigh）")
+    ap.add_argument("--bin", default=os.environ.get("TRAEX_BIN") or os.environ.get("CODEX_BIN") or TRAEX)
+    ap.add_argument("--model", default="GPT-6-Astra")
+    ap.add_argument("--effort", default="max", help="执行推理强度（traex：max / ultra / xhigh …）")
+    ap.add_argument("--review-model", default="GPT-6-Astra")
+    ap.add_argument("--review-effort", default="xhigh", help="审核推理强度（xhigh / max）")
     ap.add_argument("--review-timeout-min", type=float, default=60)
     ap.add_argument("--max-images", type=int, default=8)
     ap.add_argument("--max-reviews", type=int, default=3, help="本次驱动最多审核轮数（FAIL 后自动返修再审）")
