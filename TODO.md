@@ -1,6 +1,6 @@
 # TODO · 《金庸群侠传·天书录》规划进度
 
-> 更新：2026-09-27；规划文档、逐篇审校与 F2 全局一致性终审均已完成，本次新增 AR-14 的 21 经脉运行设计与参考模拟；实现期遗留仍见 §5、`docs/README.md` 与相关报告。
+> 更新：2026-09-29 23:30（协调者交接版）。规划文档集已完成；09-26 至 09-29 追加了作者新需求 AR-15～AR-18 的落地、图鉴四轮修正与素材线。**接手从 §8 开始读**，操作手册见 `tools/agents/HANDOFF.md`。
 > 用途：记录现状、已定结论与后续计划，恢复工作时从这里接手。
 > 唯一事实来源是 [`docs/00-canon.md`](docs/00-canon.md)（设计基准）。各文档里的"待决事项"是本文的明细来源。
 
@@ -321,7 +321,26 @@
 - [x] F3 原著考据集中核查：已审校并保留仍需纸本逐字核对的 **（待考）** 清单，不以猜测清零
 - [x] F4 用户需求逐条覆盖检查（§7）
 - [x] F5 写 `docs/README.md` 总索引、阅读顺序与执行摘要
-- [ ] F6 提交并推送（由调度器在 F45 校验通过后执行；不在文档任务内操作 Git）
+- [ ] F6 提交并推送（分支远超 origin，**每次 push 前须作者明确同意**）
+
+### Phase G · 作者新需求落地与图鉴修正（2026-09-26 起，任务 ID 见 `tools/agents/tasks.json`）
+- [x] AR-01～AR-14：M1 (15 经脉)、B7 (16 资源)、CX* (四册图鉴扩充)、S1 (17 门派)、C1g (古龙图鉴)、N1 (18 NPC)、P01–P14 (十四部剧情)、W1 (19 大地图)、H1 (20 传承)、K1 (09 六角格战斗)、M2 (21 经脉运行) 及各自审校
+- [x] AR-15～AR-17 审计与收尾：NAu-lint / NAu-tech / NAu-rulesA / NAu-rulesB / NAu-21 / NAu-canon / NAu-nxt、NXT（天阶扩容）、NXfix-<11 册>（门派图鉴收尾）、NXfixC（补录图鉴）、NXfixD-01～14（书界章节与人物）、NXfixE-a/b/c（多人战整场耐久、完整对手入首领表）
+- [x] 路线唯一性：NR1、NR2（清完全相同）、NR3-<12 单元>（跨武学 ≥80% 相似清零，0 对）
+- [x] AR-18 阴阳理论：NYY（Canon v1.8、21 v2.7.2、05 v1.7.1、15 v1.1、检查脚本新口径）
+- [ ] NR4-<12 单元> 图鉴阴阳落地：已合入 10/12（kangxi、gulong、wuyue、qianlong、general、daojia、xiakebixue、yitian、bulu、wujue）；**shaolin 审核已过待 finish+merge、xiaoyao 第 4 次续作待校验与审核**
+- [ ] LINT-outlets 检查脚本维护（deps 全部 NR4）
+- [ ] NR4S-NN 按书界同步内功性质改动（模板已备，条目在 `tools/agents/FOLLOWUPS.md`）
+- [ ] NAu-final 最终汇总（deps 62 项）
+
+### Phase H · 素材线（默认风格包 `assets/default`，2026-09-29 起）
+- [x] 基线：ART-B-{map, building, female, vfx, item, meridian} 合入；ART-B-town / ART-B-bldmap 作废（改程序化生成）
+- [x] 作者审批第 1、2 轮已写回 manifest（7+2 张 approved）
+- [ ] 返修等作者审：ART-R1-female（小龙女）、ART-R2-male（萧峰 + 令狐冲）、ART-R2-vfx（六脉神剑图）；已合入待审：倚天剑、降龙十八掌
+- [ ] ART-R3-vfx 图层动画演示（r1 FAIL 返修中途停机）
+- [ ] 城镇程序化生成：TOWN-design（r1 FAIL 返修中途停机）→ TOWN-tiles / TOWN-buildings / TOWN-render → TOWN-assemble
+- [ ] 外放招式两段式管线：VFX-design（未开工）→ VFX-tool → VFX-plates
+- [ ] 基线全部通过后：按类别批量生成（输入基线参考 + 描述），人物可加知名作品画像（来源与授权待作者确认）
 
 ---
 
@@ -365,3 +384,80 @@
 | AR-12 | 战斗系统：六角格战棋、移动力与出手顺序按轻功、点 / 环 / 面 / 扇形范围、正负 Buff（毒寒热昏眩麻亢奋金刚敏捷专注目光如炬）、运劲、道具 | 09、08 / 05 / 06 / 14 / tech/02 / 05 | ✅ 09 §2–§7、§10/§13；08 §7；06 §8；pointy-top 六邻、轻功移动 / 首轮与指定动作闭合 |
 | AR-13 | 跨年代传承：传承源消隐后出现后人 / 宝藏 → 残本（上中下，地或黄）→ 集齐 + 信物 + 条件合成全本（越女剑法全本为天级） | 20、05 / 10 / 13 / 18、chapters | ✅/⚠️ 20 §2–§10：39 源与三卷 / 信物 / 合成完整；先按 V12-10 默认执行，再统一 `recipeKey` 并考据 39 个精确点位 |
 | AR-14 | 经脉河流模型、招式路线 / 绝招、擒拿与点穴 1–9、调息，以及敌我逐单位经脉模拟 | 21、04–06 / 09 / 13–15 / tech/05 / 图鉴 | ✅/⚠️ 21 §1–§18 已审校：逐单位实例、Core 单一 `battle` 流、整数公式、59 条招式样本、模拟 / golden 与 TTK 回归完成；待 v1.3 前缀 / 归属、下游接线、原著考据与真机实测 |
+
+---
+
+## 8. 交接（2026-09-29 23:30）· 整体规划、已做、坑、待做
+
+> 本节写给接手的协调者 agent。配套文件：`tools/agents/HANDOFF.md`（操作手册与停机快照，含每个未合入任务的下一条命令）、`tools/agents/FOLLOWUPS.md`（等作者确认的事项与交办条目）、`python3 tools/agents/status_snapshot.py`（未合入任务状态表）。
+
+### 8.1 整体规划（项目现在处在哪一步）
+
+项目分四段：**① 规划文档集**（Phase A–F，已完成）→ **② 作者新需求落地与全库一致性**（Phase G，进行中，只剩 NR4 收尾 → LINT → NR4S → NAu-final）→ **③ 素材基线与生产管线**（Phase H，进行中：作者逐张审批基线，城镇与外放招式改为程序化管线）→ **④ 实现期**（tech/09 路线图：P0 `bench-iso` 真机闸门 → 天龙纵切片 → 逐书界扩展；尚未开始）。
+
+当前主线是把 ② 收口，同时把 ③ 的两条管线做出可审批的样例；④ 要等作者启动。
+
+### 8.2 工作方式（必须遵守，作者定的）
+
+- **协调者只调度**（作者原话："调用 traex-cli 来做，不要自己做"）：改 `tools/agents/{tasks.json, prompts/*.md, SUPERVISOR.md, HANDOFF.md, FOLLOWUPS.md}` 与调度脚本；把作者原话逐字照录进 `assets/default/STYLE.md` / `docs/decisions/author-requirements.md`。不写文档、不出图、不写业务代码、不做质量判断。
+- **执行器**：文档 / 代码 → traex（`~/.local/bin/traex`，GPT-5.6-Sol）；图片 / 代码 → 本地 Codex CLI（`/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex`，gpt-6-astra，内置 `image_gen`）。**推理强度一律 ultra**，续作不降档。
+- **审核也交给 GPT**：`tools/agents/gpt_review.py <ID> --checks <要点文件>`（gpt-6-astra ultra，只读），结论在 `.agents/reviews/<ID>.rN.md` 首行；FAIL 就把返修说明作 `--note` 续作再审；第 3 轮后只剩小问题则停下汇报给协调者定。
+- **素材任务先给作者看图再合入**：ID 以 ART / TOWN 素材 / VFX-plates 开头的任务，审核 PASS 后停在工作区，图放上审批页，作者同意后协调者 `step.py finish` + `merge`。
+- **一个任务一个监督子代理**（`general-purpose`，后台），按 `SUPERVISOR.md` 走 `start → wait → finish --no-commit → gpt_review → finish → merge`；提示词模板在 HANDOFF.md §6。并发：文档池 8、素材池 8。
+- **禁止**：`git push`（每次都要问作者；分支远超 origin）；主检出 `reset/checkout/stash`；读 `.agents/logs/*.log`；子代理被权限拒绝后由协调者代做（权限洗白）；用演员肖像、在世画师、具体影视 / 游戏作品的设计作参考（作者提"港版 / 育碧 / 著名游戏"只取气质方向，提示词不写作品名，原话可照录进 manifest notes）。
+
+### 8.3 已做（2026-09-26 → 09-29，按线）
+
+**文档线**
+- AR-01～AR-14（09-26）：15 经脉、16 资源、17 门派、18 NPC、19 大地图、20 传承、21 经脉运行、四册图鉴扩充、古龙图鉴、十四部剧情、09 六角格战斗，全部含审校合入。
+- AR-15～AR-17（09-27/28）：Boss 配装与逐单位节奏（NXfixD 十四书界、NXfixE 多人战整场耐久与首领表）、外放范围与威力（NAu-*、NXT 天阶扩容至 59 门）、音功与大手印。检查脚本 `tools/lint/check_skill_catalogs.py` 有 `--strict`（错误级）、`--diversity(-strict)`、`--delivery`（只报告的末端规则）三层；`check_ids.py --strict`；四个平衡模拟 `--check`。
+- 路线唯一性 NR1→NR3：全仓 654→891 条显式路线，跨武学 ≥80% 相似 0 对、完全相同 0。
+- AR-18（09-29）：内功阴阳按主修经脉计票，正逆周天只定用途，阳掌可经劳宫 / 合谷 / 后溪 / 外关出招。NYY 合入后 `check_nr4_unit.py` 三项计数（路线性质冲突 / 内功性质冲突 / 缺主修经脉）全库为 93 / 56 / 107，NR4 十二册逐册清零，已合入 10 册。
+- 协调者裁定（作者可复核，见 FOLLOWUPS）：模板绑定的普通路线不受 21 §4.3.4"不完全相同"约束（图鉴 §17.5）。
+
+**素材线**
+- 作者定了默认风格（地图水墨、城镇 / 建筑写实古风按年代、人物武侠、招式水墨意境但气剑类例外、物品武侠、经脉图写实）、二进制入库 `assets/<style>/`、先基线后审批再批量。基线 6 类 12 张合入，审批页（claude.ai artifact `NhZGycmwB5QdyiwntJGkyG`）逐张审批，结论由 `apply_reviews.py` 写回 manifest（第 1、2 轮已写回：地图 2、立绘式建筑 2、女性人物 2、九阴真经、经脉图 2 通过）。
+- 作者后续决定：城市图 45 度、主角可行走；建筑分立绘式与地图拼接（45 度）两类；六脉神剑类是内力凝缩的气剑、线性持续；小龙女加白手套 / 佩剑 / 铃铛；纯生图做不了城镇 → 程序化管线（TOWN-*）；演示动画不能用代码画造型 → 图层动画（ART-R3-vfx）→ 再定为两段式（效果帧序列 + 发出方图 + 程序合成，VFX-*）。原话都在 STYLE.md 文首。
+
+**调度基础设施**
+- `step.py`（分池并发、slot 排队、tail 修复）、`run.py`（防截断检查跳过二进制）、`gpt_review.py`、`apply_reviews.py`、`check_assets.py`、`check_nr3_unit.py`、`check_nr4_unit.py`、`status_snapshot.py`、`tools/review/build.py`（审批页生成）。
+
+### 8.4 坑（踩过的，接手别再踩）
+
+1. **不要用 `/private/tmp` 放协调文件**：09-29 19:33 死机重启清空了它，审批页工具与待办清单靠回放会话记录才恢复。现在一律放 `.agents/coord/<ID>/`（gitignored、不随重启丢）或入库（`tools/review/`、`FOLLOWUPS.md`）。
+2. **网络抖动会批量杀死监督子代理**（SSL / ENOTFOUND / stalled），执行器进程通常还在跑。用 SendMessage 给同一 agentId 发"已恢复，请从 status 与最新审核结论接续"即可；本会话结束后子代理全没了，须按 HANDOFF §8 逐任务重新起监督员。
+3. **已 merge 的任务不能 `start --force`**：要补做就开新 ID（R1/R2/R3…）。返修任务以上一轮未合入的工作区为起点时，提示词要写明复制路径（例：ART-R2-male 复制 ART-R1-male 工作区；ART-R1-male 本身永远不合）。
+4. **主检出有未提交改动会阻塞别人的 merge**：协调者改完调度文件立刻 commit。
+5. **防截断检查**按行数比较：二进制已跳过；文本文件合理缩短（如演示 HTML 改为脚本生成）要在 validate 里加 `shrink_exempt`。
+6. **GPT 审核会盯报告里的哈希 / 字节数 / 行数 / 票数笔误**，很多轮次 FAIL 只剩这类；照规则再修一轮（几分钟），不要自己代改。审核偶尔跨轮口径不一致（如 r4 突然提模板绑定路线"完全相同"），按仓库既有规则裁定并记录。
+7. **`--checks` 传路径时文件必须存在**（否则原来会把路径当文本，现已改为报错）。
+8. **image_gen 画不出度级精确的 45° 投影**（差 2–5°），按度数审会无限返修——素材审核用"目视一致"，精确投影靠 TOWN 管线。
+9. **image_gen 单张约 100 s，ultra 更慢**；拆图层 / 多帧任务单次运行 40–60 分钟，日志有增长就不算停滞。
+10. **单元名带连字符的册（xiake-bixue）**在 tasks.json 的校验参数要写全名。
+11. **写集外阻断**：五绝册的性质冲突来自 21 §12.1 的降龙路线，任务写不了 21 就永远过不了校验——遇到类似情况扩写集（确认没人同时写那份文档）。
+12. **`design/21` 三条降龙路线**由检查脚本投影进五绝册计数；改 21 会影响五绝册数字。
+13. **Codex 推理强度只认 none/minimal/low/medium/high/xhigh/max/ultra**；作者说的"extra"就是 ultra。
+14. **审批页**：演示必须自包含（sandbox srcdoc 内嵌），相对链接新开标签打不开；`[hidden]` 要 `display:none!important` 压过 flex；不引外部字体；更新页面用同一 URL 重新发布，换 URL 会丢作者已点的结论（要用 ArtifactData 批量搬）。
+15. **作者要求"修完一批再一起看"**，不要每张图单独打扰；但作者说"给我链接"时立即发布现有的。
+
+### 8.5 待做（按顺序）
+
+1. **NR4 收尾**：shaolin `finish` + `merge`（r5 PASS）；xiaoyao 核对第 4 次续作产物 → 校验 → 审核 → 合入。合入后各跑 `check_nr4_unit.py` 确认 0/0/0。
+2. **LINT-outlets**（deps 全部 NR4）：出口剥离与识别、普通路线唯一性、黄阶一行卡解析等；修后重测 12 册，若出现新命中另派任务。
+3. **NR4S-NN**：登记 14 个按书界同步任务（模板 `prompts/NR4S-book.md`，条目取 FOLLOWUPS "NR4 阶段"），并行跑。
+4. **NAu-final**：收拢全部报告的提案与交办、统一公式（默认乘法）、更新武学总数、同步作者素材 / 城镇 / 气剑决定到 tech/07、tech/06、author-decisions、TODO；作者待答项见 FOLLOWUPS。
+5. **素材**：作者审批页结论 → `apply_reviews.py --write` → 记 STYLE.md 审批记录 → 通过的 finish+merge（ART-R1-female、ART-R2-male、ART-R2-vfx）→ 要改的开 R 任务。ART-R3-vfx 续作到 PASS 后给作者看。
+6. **城镇管线**：TOWN-design 续作到 PASS 合入 → 并行 TOWN-tiles / TOWN-buildings / TOWN-render → TOWN-assemble → 作者审。
+7. **外放招式管线**：VFX-design → VFX-tool → VFX-plates（降龙、六脉样例）→ 作者审 → 全部外放招式批量。
+8. **批量生成阶段**（基线通过后）：按类别以基线为参考 + 描述批量出图；人物可加知名作品画像，先请作者确认来源与授权。
+9. **实现期（④）**：按 tech/09，P0 真机闸门（RD-01～RD-07 需作者登记设备等）→ 天龙纵切片。
+
+### 8.6 等作者拍板（汇总，明细在 FOLLOWUPS.md）
+
+- AR-18a 冲脉 / 带脉是否投票（默认不投）；AR-18b 后溪是否入外放 13 端点白名单（默认不入）。
+- 绝招条件加成公式（默认乘法，05 §4.2）。
+- 模板绑定普通路线是否也要各不相同（默认不要求）。
+- 人物参考可否用知名作品画像（来源与授权）。
+- 各 NR4 / NXfixE 报告交来的具名问题（游骥游驹 / 展飞主运品级、洪安通血量口径、欧阳锋套装相冲、霍青桐内功、九阳改调和的连带等）。
+- 城镇：1093 年大理是否保留三塔整体意象；素材格式、镜头、格子像素、城墙压缩、皇城门楼、四向旋转产量（TOWN-design O1–O6）。
+- 素材线的历史遗留：tech/07 D12 等实现期项；RD-01～RD-07。
