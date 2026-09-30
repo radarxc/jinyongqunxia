@@ -14563,6 +14563,138 @@
       }
     },
     {
+      "id": "VFX-design",
+      "phase": "VFX",
+      "wave": 9,
+      "kind": "draft",
+      "title": "外放招式特效管线 · 设计文档与数据格式",
+      "prompt": "VFX-design.md",
+      "deps": [],
+      "writes": [
+        "docs/design/23-projection-vfx-pipeline.md",
+        "docs/design/vfx/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/23-projection-vfx-pipeline.md",
+          "docs/design/vfx/schema.yaml"
+        ],
+        "fences": [
+          "docs/design/23-projection-vfx-pipeline.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-c",
+            "import yaml; yaml.safe_load(open('docs/design/vfx/schema.yaml'))"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-tool",
+      "phase": "VFX",
+      "wave": 9,
+      "kind": "draft",
+      "title": "外放招式特效管线 · Python 工具（tools/vfx）",
+      "prompt": "VFX-tool.md",
+      "deps": [
+        "VFX-design"
+      ],
+      "writes": [
+        "tools/vfx/**",
+        "assets/default/baseline/vfx/preview/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/vfx/cut_frames.py",
+          "tools/vfx/compose.py",
+          "tools/vfx/animate.py",
+          "tools/vfx/check_vfx.py",
+          "tools/vfx/test_vfx.py",
+          "tools/vfx/README.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/vfx",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "--self-test"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-plates",
+      "phase": "ART",
+      "wave": 9,
+      "kind": "draft",
+      "title": "外放招式特效管线 · 降龙、六脉的效果帧序列与发出方图样例",
+      "prompt": "VFX-plates.md",
+      "deps": [
+        "VFX-design",
+        "VFX-tool",
+        "ART-R3-vfx"
+      ],
+      "writes": [
+        "assets/default/baseline/vfx/**",
+        "assets/default/prompts/vfx.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "assets/default/baseline/vfx/manifest.yaml"
+        ],
+        "fences": [
+          "assets/default/prompts/vfx.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/vfx",
+            "--min",
+            "2",
+            "--max",
+            "4"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/baseline/vfx/mv_xianglong18_kanglong",
+            "assets/default/baseline/vfx/sk_liumai"
+          ]
+        ]
+      }
+    },
+    {
       "id": "NAu-final",
       "phase": "G",
       "wave": 6,
