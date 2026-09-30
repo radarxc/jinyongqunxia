@@ -89,9 +89,12 @@ def build(mdir: Path, out: Path, cols: int = 6, cell: int = 220) -> list:
 
 
 if __name__ == "__main__":
-    args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    opts = {sys.argv[i][2:]: int(sys.argv[i + 1]) for i in range(1, len(sys.argv) - 1) if sys.argv[i].startswith("--")}
-    if len(args) != 2:
-        sys.exit(__doc__)
-    rows = build(Path(args[0]), Path(args[1]), **opts)
-    print(f"{len(rows)} 张 → {args[1]}")
+    import argparse
+    ap = argparse.ArgumentParser(description="把素材目录拼成带编号的总览图")
+    ap.add_argument("mdir")
+    ap.add_argument("out")
+    ap.add_argument("--cols", type=int, default=6)
+    ap.add_argument("--cell", type=int, default=220)
+    a = ap.parse_args()
+    rows = build(Path(a.mdir), Path(a.out), cols=a.cols, cell=a.cell)
+    print(f"{len(rows)} 张 → {a.out}")
