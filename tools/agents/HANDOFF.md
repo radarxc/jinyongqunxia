@@ -155,3 +155,13 @@
 - 准出用 `python3 tools/agents/accept.py <ID>…`（READY + PASS → finish + merge；素材任务要加 `--author-approved`）。
 - 每类审核要点文件：`.agents/coord/{NR4S,NR5,NAuF,TOWN,VFX}/review_checks*.md`。
 
+### 9.5 停点快照（2026-09-30 02:45，本会话用量到上限；驱动进程与执行器仍在后台跑）
+
+接手先跑：`python3 tools/agents/status_snapshot.py`，再对每个任务 `python3 tools/agents/gate.py <ID>`；READY 的用 `python3 tools/agents/accept.py <ID>` 合入。
+
+- **人物立绘提示词**（作者 09-30 要求；目录 `assets/default/prompts/characters/`，索引 `INDEX.md`，规程 `GUIDE.md` 已修两处并合入）：467 份草稿全部写出。已合入：ch11、ch10、protagonist；**ch01 是 02:30 的先行快照（提交 0705b92）**，定稿要等 ART-P-ch01 过审后替换——`step.py merge` 的普通 cherry-pick 会和快照 add/add 冲突，用 `git cherry-pick -X theirs <工作区提交>` 合入，再跑 `build_portrait_index.py`。其余 ch02–09、12–14 在审核 / 收尾，READY 即可 `accept.py`（会自动重生成索引）。
+- **素材线**：审批页 https://claude.ai/artifact/Ae6bxBXmkpA6xpjWmY6U7H （6 张待作者审 + 降龙 / 六脉图层动画）；作者结论读 ArtifactData `reviews`。TOWN-design 已合入（83ef35f）；TOWN-render、TOWN-tiles（审核中）、TOWN-buildings、VFX-plates（第二段）在跑，都是素材 / 代码任务：TOWN-render READY 可直接合入，其余 READY 后**不合入**，先用 `tools/review/build.py` 上审批页（贴片、建筑用总览图）。三者齐了再起 TOWN-assemble（贴片 / 建筑未合入时，在续作说明里让它从两个工作区复制素材目录）。VFX-tool 已合入（浏览器验收记录在 `.agents/coord/VFX-tool/`）。
+- **文档线**：NR4S 除 09 外全部合入；NR5 已合入 shaolin / xiaoyao / yitian，其余 12 个单元与 NAuF-book-02 / 08、NR4S-09 返修**被我暂停**（素材优先，未重启）；NAuF-sysA、NAuF-book-01 / 03 / 06 / 07 / 10 / 11 / 14 已合入；NAuF-book-04 / 05 / 12 / 13、NAuF-lint 在返修循环；**NAuF-rules 三轮审核仍 FAIL（HOLD-REVIEWS），要读 `.agents/reviews/NAuF-rules.r3.md` 裁定或再跑一轮**（`supervise.py NAuF-rules --from start --note <审核返修说明>`）。NAuF-cat-<12 单元> 等 NAuF-rules 与对应 NR5；NAuF-assets（依赖已满足）、NAuF-canon、NAu-final 收口尚未启动。
+- **并发**：docs 3 / assets 10 / prompts 16（tasks.json defaults.max_parallel）；素材做完后把 docs 调回 8–10 并重启暂停的任务。
+- **注意**：同一分支上还有另一个 Claude 会话在提交（ea72fe2 改了 accept.py 与 build_portrait_index.py），动这两个脚本前先 `git log` 看最新版本。
+
