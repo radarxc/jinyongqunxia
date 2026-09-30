@@ -1,12 +1,12 @@
 # 门派武学图鉴 · 五岳剑派与日月神教（`skills-wuyue`）
 
-> **版本**：v1.2（审校 C1c.R；全局审计，2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记（2026-09-28）；绝招路线叙事化（2026-09-29）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）。
+> **版本**：v1.2（审校 C1c.R；全局审计，2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记（2026-09-28）；绝招路线叙事化（2026-09-29）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 门派武学图鉴。本文件唯一收录笑傲书界的五岳剑派（华山气宗/剑宗、嵩山、泰山、南衡山、北恒山）、日月神教及梅庄四友、福威镖局与林家、青城派、五仙教，以及桃谷六仙、田伯光、不戒和尚等散人传承。
-> **上游**：`00-canon.md` §3–§5、§7、§9、§12–§13、§16、§20；`decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-14–AR-17（含 2026-09-27／28 作者决定）；`decisions/author-decisions.md` P33；`decisions/rulings-v1.md` C14–C17、C22–C23 与 §3–§5；`design/17-sects-compendium.md` §1、§3、§6、§8–§9；`design/21` v2.5。
+> **上游**：`00-canon.md` §3–§5、§7、§9、§12–§13、§16、§20 与 v1.8；`decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-14–AR-18（含 2026-09-27／28 作者决定与 2026-09-29 新口径）；`decisions/author-decisions.md` P33；`decisions/rulings-v1.md` C14–C17、C22–C23 与 §3–§5；`design/17-sects-compendium.md` §1、§3、§6、§8–§9；`design/21` v2.7.2。
 > **引用而不重定义**：字段、层数、招式预算、内功贡献、代价型武学与“破 X”见 `design/05`；战斗经脉运行、招式路线、绝招、擒拿／点穴、调息、护体内劲与经脉乘区见 `design/21`；经脉、穴位、冲穴、周天与九转见 `design/15`；Buff 本体见 `design/06`；属性与技艺见 `design/03`；书界压制、残承与印证见 `design/02`；合击结算见 `design/09`；装备见 `design/10`；套装最终规则交 `design/07`。跨组只引用 `sk_yijinjing`、`sk_taijiquan`、`sk_taijijian`、`sk_dagou` 等 ID，不重复定义。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（原创扩展命名）** = 原著有其人其事、但本作新拟武学或招式名；**（待考）** = 须以三联/广州修订版逐字核对；**【建议值】** = 依赖下游定稿。
-> **审校记录**：审校 C1c.R（2026-09-26）；复核天级锚点、招式 / 内功预算、Buff 外键、门派职级与装配可行性。经脉系统落地（2026-09-27）：按 AR-14 / `design/21` v2.0 补路线、轻功速度、调息与护体接口。经脉落地终审（2026-09-29）：按 Canon v1.6 / `design/21` v2.5 收口音功外放、出招末端、路线用途与正式实例口径。
+> **审校记录**：审校 C1c.R（2026-09-26）；复核天级锚点、招式 / 内功预算、Buff 外键、门派职级与装配可行性。经脉系统落地（2026-09-27）：按 AR-14 / `design/21` v2.0 补路线、轻功速度、调息与护体接口。经脉落地终审（2026-09-29）：按 Canon v1.6 / `design/21` v2.5 收口音功外放、出招末端、路线用途与正式实例口径。阴阳性质落地 AR-18（2026-09-29）：内功性质按主修经脉票数重算，路线性质仅取体段并同步调息、护体与路线门槛。
 
 ---
 
@@ -24,32 +24,32 @@
 | 12 天上 | `sk_dugu9` | `mv_dugu9_poanqi` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_dugu9_poanqi}` | `mfr_dugu9_poanqi` | `MeridianRouteDef{moveRef:mv_dugu9_poanqi; ultimate:true; purpose:attack}`；`ap_zushaoyang_fengshi/80/100→ap_yangqiao_fuyang/80/120→ap_yangqiao_shenmai/80/140→ap_zushaoyang_yanglingquan/80/160→ap_yangwei_tianliao/80/180→ap_dumai_shendao/80/200→ap_shoushaoyang_tianjing/80/220→ap_shoushaoyang_waiguan/80/240→ap_shoutaiyang_wangu/80/260→ap_shouyangming_hegu/80/280` |
 | 12 天上 | `sk_dugu9` | `mv_dugu9_poqi` `MoveDef{unlock:10; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; range:{min:1,max:1}; aoe:{tpl:aoe_line,n:1}; projection:true; projectionSpreadSteps:[{tpl:aoe_line,n:1},{tpl:aoe_line,n:2},{tpl:aoe_line,n:3}]; DamageKind:'projected'; meridianRouteRef:mfr_dugu9_poqi}` | `mfr_dugu9_poqi` | `MeridianRouteDef{moveRef:mv_dugu9_poqi; ultimate:true; purpose:attack}`；`ap_renmai_qihai/80/100→ap_renmai_guanyuan/80/120→ap_daimai_zulinqi/80/140→ap_daimai_weidao/80/160→ap_dumai_zhiyang/80/180→ap_shoujueyin_tianchi/80/200→ap_shoujueyin_neiguan/80/220→ap_shoushaoyang_waiguan/80/240→ap_shoutaiyang_wangu/80/260→ap_shoushaoyang_yangchi/80/280` |
 | 12 天上 | `sk_dugu9` | `mv_dugu9_wuzhao` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_dugu9_wuzhao}` | `mfr_dugu9_wuzhao` | `MeridianRouteDef{moveRef:mv_dugu9_wuzhao; ultimate:true; purpose:attack}`；`ap_shoushaoyin_shenmen/80/100→ap_shoutaiyang_tinggong/80/120→ap_yangwei_benshen/80/140→ap_chongmai_zhongzhu/80/160→ap_daimai_jingmen/80/180→ap_shouyangming_pianli/80/200→ap_shoutaiyang_yanglao/80/220→ap_shoushaoyang_zhigou/80/240→ap_shouyangming_hegu/80/260→ap_shoutaiyang_yanggu/80/280` |
-| 9 地上 | `sk_zixiashengong` | `mv_zixiashengong_guangri` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; range:{min:1,max:3}; aoe:{tpl:aoe_single}; projection:true; projectionSpreadSteps:[{tpl:aoe_single},{tpl:aoe_single},{tpl:aoe_single}]; DamageKind:'projected'; meridianRouteRef:mfr_zixiashengong_guangri}` | `mfr_zixiashengong_guangri` | `MeridianRouteDef{moveRef:mv_zixiashengong_guangri; ultimate:true; purpose:attack}`；`ap_renmai_qihai/75/100 → ap_renmai_guanyuan/75/110 → ap_dumai_zhiyang/75/120 → ap_dumai_baihui/75/130 → ap_shouyangming_quchi/75/110 → ap_shouyangming_shousanli/75/120 → ap_shoujueyin_neiguan/75/140 → ap_shoujueyin_laogong/75/150` |
-| 9 地上 | `sk_zixiashengong` | `mv_zixiashengong_changkong` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_zixiashengong_changkong}` | `mfr_zixiashengong_changkong` | `MeridianRouteDef{moveRef:mv_zixiashengong_changkong; ultimate:true; purpose:attack}`；`ap_renmai_shenque/90/100→ap_dumai_mingmen/90/120→ap_dumai_shendao/90/140→ap_yangwei_jianjing/90/160→ap_shoushaoyin_shenmen/90/180→ap_shoushaoyang_waiguan/90/200→ap_shoutaiyang_wangu/90/220→ap_shouyangming_hegu/90/240` |
+| 9 地上 | `sk_zixiashengong` | `mv_zixiashengong_guangri` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; range:{min:1,max:3}; aoe:{tpl:aoe_single}; projection:true; projectionSpreadSteps:[{tpl:aoe_single},{tpl:aoe_single},{tpl:aoe_single}]; DamageKind:'projected'; meridianRouteRef:mfr_zixiashengong_guangri}` | `mfr_zixiashengong_guangri` | `MeridianRouteDef{moveRef:mv_zixiashengong_guangri; ultimate:true; purpose:attack; requiredNature:[yin,yang,harmony]}`；`ap_renmai_qihai/75/100 → ap_renmai_guanyuan/75/110 → ap_dumai_zhiyang/75/120 → ap_dumai_baihui/75/130 → ap_shouyangming_quchi/75/110 → ap_shouyangming_shousanli/75/120 → ap_shoujueyin_neiguan/75/140 → ap_shoujueyin_laogong/75/150` |
+| 9 地上 | `sk_zixiashengong` | `mv_zixiashengong_changkong` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_zixiashengong_changkong}` | `mfr_zixiashengong_changkong` | `MeridianRouteDef{moveRef:mv_zixiashengong_changkong; ultimate:true; purpose:attack; requiredNature:[yin,yang,harmony]}`；`ap_renmai_shenque/90/100→ap_dumai_mingmen/90/120→ap_dumai_shendao/90/140→ap_yangwei_jianjing/90/160→ap_shoushaoyin_shenmen/90/180→ap_shoushaoyang_waiguan/90/200→ap_shoutaiyang_wangu/90/220→ap_shouyangming_hegu/90/240` |
 | 8 地中 | `sk_taiyuesanqingfeng` | `mv_taiyuesanqingfeng_sanfengheyi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_taiyuesanqingfeng_sanfengheyi}` | `mfr_taiyuesanqingfeng_sanfengheyi` | `MeridianRouteDef{moveRef:mv_taiyuesanqingfeng_sanfengheyi; ultimate:true; purpose:attack}`；`ap_renmai_qihai/90/100→ap_chongmai_shangqu/90/120→ap_daimai_wushu/90/140→ap_yangqiao_jianyu/90/160→ap_shoushaoyang_tianjing/90/180→ap_shoutaiyang_houxi/90/200→ap_shoutaiyang_wangu/90/220→ap_shoushaoyang_yangchi/90/240` |
 | 8 地中 | `sk_taiyuesanqingfeng` | `mv_taiyuesanqingfeng_sanfeng` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_taiyuesanqingfeng_sanfeng}` | `mfr_taiyuesanqingfeng_sanfeng` | `MeridianRouteDef{moveRef:mv_taiyuesanqingfeng_sanfeng; ultimate:true; purpose:attack}`；`ap_dumai_changqiang/90/100→ap_dumai_mingmen/90/120→ap_dumai_shendao/90/140→ap_yangwei_jianjing/90/160→ap_shouyangming_quchi/90/180→ap_shoushaoyang_waiguan/90/200→ap_shoutaiyang_yanggu/90/220→ap_shouyangming_hegu/90/240` |
 | 9 地上 | `sk_hanbingzhenqi` | `mv_hanbingzhenqi_fengmai` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_hanbingzhenqi_fengmai}` | `mfr_hanbingzhenqi_fengmai` | `MeridianRouteDef{moveRef:mv_hanbingzhenqi_fengmai; ultimate:true; purpose:attack}`；`ap_yinqiao_zhaohai/75/100 → ap_yinwei_zhubin/75/110 → ap_zushaoyin_taixi/75/120 → ap_zujueyin_ququan/75/130 → ap_renmai_qihai/75/110 → ap_renmai_guanyuan/75/120 → ap_shoujueyin_tianchi/75/140 → ap_shoujueyin_quze/75/150` |
 | 9 地上 | `sk_hanbingzhenqi` | `mv_hanbingzhenqi_fengyue` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_hanbingzhenqi_fengyue}` | `mfr_hanbingzhenqi_fengyue` | `MeridianRouteDef{moveRef:mv_hanbingzhenqi_fengyue; ultimate:true; purpose:attack}`；`ap_renmai_qihai/90/100→ap_renmai_danzhong/90/120→ap_yinqiao_zhaohai/90/140→ap_yinwei_zhubin/90/160→ap_zujueyin_ququan/90/180→ap_shoutaiyin_chize/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_laogong/90/240` |
 | 8 地中 | `sk_daizongruhe` | `mv_daizongruhe_yinyang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_daizongruhe_yinyang}` | `mfr_daizongruhe_yinyang` | `MeridianRouteDef{moveRef:mv_daizongruhe_yinyang; ultimate:true; purpose:attack}`；`ap_chongmai_qichong/90/100→ap_chongmai_shiguan/90/120→ap_daimai_zhangmen/90/140→ap_dumai_shendao/90/160→ap_yangwei_jianjing/90/180→ap_shoushaoyang_waiguan/90/200→ap_shoutaiyang_yanggu/90/220→ap_shouyangming_hegu/90/240` |
-| 8 地中 | `sk_baibianqianhuan` | `mv_baibianqianhuan_shisanshi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_baibianqianhuan_shisanshi}` | `mfr_baibianqianhuan_shisanshi` | `MeridianRouteDef{moveRef:mv_baibianqianhuan_shisanshi; ultimate:true; purpose:attack}`；`ap_chongmai_qichong/90/100→ap_daimai_zulinqi/90/120→ap_daimai_weidao/90/140→ap_yangqiao_shenmai/90/160→ap_zushaoyang_fengshi/90/180→ap_shoushaoyang_waiguan/90/200→ap_shoutaiyang_yanggu/90/220→ap_shouyangming_hegu/90/240` |
-| 8 地中 | `sk_baibianqianhuan` | `mv_baibianqianhuan_baibian` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_baibianqianhuan_baibian}` | `mfr_baibianqianhuan_baibian` | `MeridianRouteDef{moveRef:mv_baibianqianhuan_baibian; ultimate:true; purpose:attack}`；`ap_zushaoyang_fengshi/90/100→ap_yangqiao_juliao_wei/90/120→ap_yangqiao_shenmai/90/140→ap_daimai_weidao/90/160→ap_zushaoyang_guangming/90/180→ap_shoushaoyang_tianjing/90/200→ap_shoushaoyang_waiguan/90/220→ap_shoutaiyang_wangu/90/240` |
+| 8 地中 | `sk_baibianqianhuan` | `mv_baibianqianhuan_shisanshi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_baibianqianhuan_shisanshi}` | `mfr_baibianqianhuan_shisanshi` | `MeridianRouteDef{moveRef:mv_baibianqianhuan_shisanshi; ultimate:true; purpose:attack; requiredNature:[yin,harmony]}`；`ap_yinqiao_zhaohai/90/100→ap_yinwei_zhubin/90/120→ap_zushaoyin_taixi/90/140→ap_zujueyin_ligou/90/160→ap_shoutaiyin_chize/90/180→ap_shoushaoyang_waiguan/90/200→ap_shoutaiyang_yanggu/90/220→ap_shouyangming_hegu/90/240` |
+| 8 地中 | `sk_baibianqianhuan` | `mv_baibianqianhuan_baibian` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_baibianqianhuan_baibian}` | `mfr_baibianqianhuan_baibian` | `MeridianRouteDef{moveRef:mv_baibianqianhuan_baibian; ultimate:true; purpose:attack; requiredNature:[yin,harmony]}`；`ap_yinqiao_jiaoxin/90/100→ap_yinwei_daheng/90/120→ap_zutaiyin_diji/90/140→ap_shoushaoyin_lingdao/90/160→ap_shoujueyin_jianshi/90/180→ap_shoushaoyang_tianjing/90/200→ap_shoushaoyang_waiguan/90/220→ap_shoutaiyang_wangu/90/240` |
 | 8 地中 | `sk_hengshanyunwubu` | `mv_hengshanyunwubu_wusuo` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_hengshanyunwubu_wusuo}` | `mfr_hengshanyunwubu_wusuo` | `MeridianRouteDef{moveRef:mv_hengshanyunwubu_wusuo; ultimate:true; purpose:defense}`；`ap_zushaoyin_yongquan/90/100→ap_yinqiao_zhaohai/90/120→ap_yangqiao_fuyang/90/140→ap_yangqiao_pucan/90/160→ap_daimai_zulinqi/90/180→ap_daimai_weidao/90/200→ap_zushaoyang_yanglingquan/90/220→ap_zushaoyang_zuqiaoyin/90/240` |
 | 7 地下 | `sk_wanhuajianfa` | `mv_wanhuajianfa_husheng` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_wanhuajianfa_husheng}` | `mfr_wanhuajianfa_husheng` | `MeridianRouteDef{moveRef:mv_wanhuajianfa_husheng; ultimate:true; purpose:attack}`；`ap_renmai_qihai/90/100→ap_yinqiao_zhaohai/90/120→ap_yinwei_zhubin/90/140→ap_daimai_zhangmen/90/160→ap_shoushaoyin_shenmen/90/180→ap_shoushaoyang_waiguan/90/200→ap_shoutaiyang_wangu/90/220→ap_shouyangming_hegu/90/240` |
-| 11 天中 | `sk_xixing` | `mv_xixing_sangong` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_xixing_sangong}` | `mfr_xixing_sangong` | `MeridianRouteDef{moveRef:mv_xixing_sangong; ultimate:true; purpose:attack}`；`ap_chongmai_qichong/75/120 → ap_chongmai_huangshu/75/130 → ap_daimai_wushu/75/140 → ap_daimai_daimai/75/150 → ap_renmai_qihai/75/120 → ap_renmai_guanyuan/75/120 → ap_renmai_zhongwan/75/140 → ap_shoujueyin_tianchi/75/150 → ap_shoujueyin_quze/75/160 → ap_shoujueyin_neiguan/75/170` |
-| 11 天中 | `sk_xixing` | `mv_xixing_wanliu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_xixing_wanliu}` | `mfr_xixing_wanliu` | `MeridianRouteDef{moveRef:mv_xixing_wanliu; ultimate:true; purpose:attack}`；`ap_shoujueyin_neiguan/80/100→ap_chongmai_youmen/80/120→ap_shoushaoyin_yinxi/80/140→ap_shoutaiyin_yuji/80/160→ap_yinqiao_sanyinjiao/80/180→ap_renmai_danzhong/80/200→ap_zujueyin_xingjian/80/220→ap_zushaoyin_rangu/80/240→ap_zutaiyin_dadu/80/260→ap_zutaiyin_yinlingquan/80/280` |
-| 11 天中 | `sk_kuihua` | `mv_kuihua_cimu` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_kuihua_cimu}` | `mfr_kuihua_cimu` | `MeridianRouteDef{moveRef:mv_kuihua_cimu; ultimate:true; purpose:attack}`；`ap_renmai_qihai/70/110 → ap_renmai_guanyuan/70/120 → ap_dumai_shenzhu/70/130 → ap_yangqiao_jianyu/70/140 → ap_shoutaiyin_kongzui/70/130 → ap_shoushaoyang_waiguan/70/140 → ap_shoutaiyang_wangu/70/150 → ap_shoujueyin_daling/70/160 → ap_shoujueyin_neiguan/70/160 → ap_shoujueyin_zhongchong/70/170` |
-| 11 天中 | `sk_kuihua` | `mv_kuihua_wanzhen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_kuihua_wanzhen}` | `mfr_kuihua_wanzhen` | `MeridianRouteDef{moveRef:mv_kuihua_wanzhen; ultimate:true; purpose:attack}`；`ap_renmai_shenque/80/100→ap_chongmai_siman/80/120→ap_yinqiao_zhaohai/80/140→ap_yinwei_qimen/80/160→ap_shoujueyin_tianchi/80/180→ap_shoujueyin_quze/80/200→ap_shoutaiyin_chize/80/220→ap_shouyangming_hegu/80/240→ap_shoujueyin_neiguan/80/260→ap_shoutaiyin_shaoshang/80/280` |
-| 7 地下 | `sk_heimuyajianfa` | `mv_heimuyajianfa_lingkong` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_heimuyajianfa_lingkong}` | `mfr_heimuyajianfa_lingkong` | `MeridianRouteDef{moveRef:mv_heimuyajianfa_lingkong; ultimate:true; purpose:attack}`；`ap_zushaoyin_yongquan/90/100→ap_yangqiao_fuyang/90/120→ap_yangqiao_shenmai/90/140→ap_zushaoyang_fengshi/90/160→ap_dumai_shenzhu/90/180→ap_shoushaoyang_waiguan/90/200→ap_shoutaiyang_yanggu/90/220→ap_shouyangming_hegu/90/240` |
-| 8 地中 | `sk_qixianwuxingjian` | `mv_qixianwuxingjian_qiming` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; range:{min:0,max:0}; aoe:{tpl:aoe_field,side:enemy}; tags:[sonic]; projection:true; projectionSpreadSteps:[{tpl:aoe_field,side:enemy},{tpl:aoe_field,side:enemy},{tpl:aoe_field,side:enemy}]; DamageKind:'projected'; meridianRouteRef:mfr_qixianwuxingjian_qiming}` | `mfr_qixianwuxingjian_qiming` | `MeridianRouteDef{moveRef:mv_qixianwuxingjian_qiming; ultimate:true; purpose:attack}`；`ap_shouyangming_sanjian/90/100→ap_yangqiao_jianyu/90/120→ap_yangwei_benshen/90/140→ap_yangwei_yangjiao/90/160→ap_zushaoyang_yangbai/90/180→ap_renmai_danzhong/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_zhongchong/90/240` |
+| 11 天中 | `sk_xixing` | `mv_xixing_sangong` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_xixing_sangong}` | `mfr_xixing_sangong` | `MeridianRouteDef{moveRef:mv_xixing_sangong; ultimate:true; purpose:attack; requiredNature:[yin,yang,harmony]}`；`ap_chongmai_qichong/75/120 → ap_chongmai_huangshu/75/130 → ap_daimai_wushu/75/140 → ap_daimai_daimai/75/150 → ap_renmai_qihai/75/120 → ap_renmai_guanyuan/75/120 → ap_renmai_zhongwan/75/140 → ap_shoujueyin_tianchi/75/150 → ap_shoujueyin_quze/75/160 → ap_shoujueyin_neiguan/75/170` |
+| 11 天中 | `sk_xixing` | `mv_xixing_wanliu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_xixing_wanliu}` | `mfr_xixing_wanliu` | `MeridianRouteDef{moveRef:mv_xixing_wanliu; ultimate:true; purpose:attack; requiredNature:[yin,yang,harmony]}`；`ap_shoujueyin_neiguan/80/100→ap_chongmai_youmen/80/120→ap_shoushaoyin_yinxi/80/140→ap_shoutaiyin_yuji/80/160→ap_yinqiao_sanyinjiao/80/180→ap_renmai_danzhong/80/200→ap_zujueyin_xingjian/80/220→ap_zushaoyin_rangu/80/240→ap_zutaiyin_dadu/80/260→ap_zutaiyin_yinlingquan/80/280` |
+| 11 天中 | `sk_kuihua` | `mv_kuihua_cimu` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_kuihua_cimu}` | `mfr_kuihua_cimu` | `MeridianRouteDef{moveRef:mv_kuihua_cimu; ultimate:true; purpose:attack; requiredNature:[yang,harmony]}`；`ap_dumai_mingmen/70/110→ap_dumai_zhiyang/70/120→ap_dumai_shenzhu/70/130→ap_yangqiao_jianyu/70/140→ap_yangwei_tianliao/70/130→ap_shoushaoyang_waiguan/70/140→ap_shoutaiyang_wangu/70/150→ap_shoujueyin_daling/70/160→ap_shoujueyin_neiguan/70/160→ap_shoujueyin_zhongchong/70/170` |
+| 11 天中 | `sk_kuihua` | `mv_kuihua_wanzhen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_kuihua_wanzhen}` | `mfr_kuihua_wanzhen` | `MeridianRouteDef{moveRef:mv_kuihua_wanzhen; ultimate:true; purpose:attack; requiredNature:[yang,harmony]}`；`ap_dumai_mingmen/80/100→ap_dumai_jizhong/80/120→ap_yangqiao_shenmai/80/140→ap_yangwei_jianjing/80/160→ap_zushaoyang_guangming/80/180→ap_shoushaoyang_tianjing/80/200→ap_shouyangming_quchi/80/220→ap_shouyangming_hegu/80/240→ap_shoujueyin_neiguan/80/260→ap_shoutaiyin_shaoshang/80/280` |
+| 7 地下 | `sk_heimuyajianfa` | `mv_heimuyajianfa_lingkong` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_heimuyajianfa_lingkong}` | `mfr_heimuyajianfa_lingkong` | `MeridianRouteDef{moveRef:mv_heimuyajianfa_lingkong; ultimate:true; purpose:attack; requiredNature:[yin,harmony]}`；`ap_yinqiao_zhaohai/90/100→ap_yinwei_zhubin/90/120→ap_zushaoyin_taixi/90/140→ap_zujueyin_taichong/90/160→ap_shoutaiyin_kongzui/90/180→ap_shoushaoyang_waiguan/90/200→ap_shoutaiyang_yanggu/90/220→ap_shouyangming_hegu/90/240` |
+| 8 地中 | `sk_qixianwuxingjian` | `mv_qixianwuxingjian_qiming` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; range:{min:0,max:0}; aoe:{tpl:aoe_field,side:enemy}; tags:[sonic]; projection:true; projectionSpreadSteps:[{tpl:aoe_field,side:enemy},{tpl:aoe_field,side:enemy},{tpl:aoe_field,side:enemy}]; DamageKind:'projected'; meridianRouteRef:mfr_qixianwuxingjian_qiming}` | `mfr_qixianwuxingjian_qiming` | `MeridianRouteDef{moveRef:mv_qixianwuxingjian_qiming; ultimate:true; purpose:attack; requiredNature:[yin,harmony]}`；`ap_yinqiao_zhaohai/90/100→ap_yinwei_zhubin/90/120→ap_zujueyin_ququan/90/140→ap_zutaiyin_xuehai/90/160→ap_renmai_danzhong/90/180→ap_shoutaiyin_chize/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_zhongchong/90/240` |
 | 8 地中 | `sk_qixianwuxingjian` | `mv_qixianwuxingjian_wuxing` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; range:{min:1,max:5}; aoe:{tpl:aoe_single}; tags:[sonic]; projection:true; projectionSpreadSteps:[{tpl:aoe_single},{tpl:aoe_single},{tpl:aoe_single}]; DamageKind:'projected'; meridianRouteRef:mfr_qixianwuxingjian_wuxing}` | `mfr_qixianwuxingjian_wuxing` | `MeridianRouteDef{moveRef:mv_qixianwuxingjian_wuxing; ultimate:true; purpose:attack}`；`ap_chongmai_yindu/90/100→ap_daimai_zhangmen/90/120→ap_shoutaiyin_yunmen/90/140→ap_shoutaiyin_chize/90/160→ap_shoujueyin_jianshi/90/180→ap_shoujueyin_daling/90/200→ap_shoushaoyang_waiguan/90/220→ap_shoushaoyang_yangchi/90/240` |
 | 10 天下 | `sk_bixie` | `mv_bixie_feiyanchuanliu` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_bixie_feiyanchuanliu}` | `mfr_bixie_feiyanchuanliu` | `MeridianRouteDef{moveRef:mv_bixie_feiyanchuanliu; ultimate:true; purpose:attack}`；`ap_yinqiao_zhaohai/70/110 → ap_yinqiao_jiaoxin/70/120 → ap_zushaoyin_taixi/70/130 → ap_yinwei_zhubin/70/140 → ap_shoutaiyin_kongzui/70/130 → ap_shoujueyin_jianshi/70/140 → ap_yangqiao_shenmai/70/150 → ap_zushaoyang_fengshi/70/160 → ap_shoutaiyang_wangu/70/160 → ap_shoushaoyang_yangchi/70/170` |
 | 10 天下 | `sk_bixie` | `mv_bixie_qunxie` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; meridianRouteRef:mfr_bixie_qunxie}` | `mfr_bixie_qunxie` | `MeridianRouteDef{moveRef:mv_bixie_qunxie; ultimate:true; purpose:attack}`；`ap_zutaiyin_dabao/80/100→ap_renmai_chengjiang/80/120→ap_renmai_yinjiao/80/140→ap_shoujueyin_tianquan/80/160→ap_shoushaoyin_shenmen/80/180→ap_shoutaiyin_yuji/80/200→ap_yinwei_daheng/80/220→ap_shoujueyin_neiguan/80/240→ap_shoushaoyang_waiguan/80/260→ap_shoutaiyang_wangu/80/280` |
 | 7 地下 | `sk_fantianzhang` | `mv_fantianzhang_fudi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_fantianzhang_fudi}` | `mfr_fantianzhang_fudi` | `MeridianRouteDef{moveRef:mv_fantianzhang_fudi; ultimate:true; purpose:attack}`；`ap_dumai_mingmen/90/100→ap_dumai_zhiyang/90/120→ap_yangwei_jianjing/90/140→ap_shouyangming_quchi/90/160→ap_shouyangming_shousanli/90/180→ap_shoujueyin_quze/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_laogong/90/240` |
 | 7 地下 | `sk_qingchengcuixinzhang` | `mv_qingchengcuixinzhang_duanmai` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_qingchengcuixinzhang_duanmai}` | `mfr_qingchengcuixinzhang_duanmai` | `MeridianRouteDef{moveRef:mv_qingchengcuixinzhang_duanmai; ultimate:true; purpose:attack}`；`ap_zujueyin_dadun/90/100→ap_zujueyin_xingjian/90/120→ap_zujueyin_taichong/90/140→ap_zujueyin_zhongfeng/90/160→ap_zujueyin_ligou/90/180→ap_shoujueyin_quze/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_laogong/90/240` |
-| 7 地下 | `sk_wuxianbaidugong` | `mv_wuxianbaidugong_wangu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; range:{min:1,max:2}; aoe:{tpl:aoe_disk,r:2}; projection:true; projectionSpreadSteps:[{tpl:aoe_disk,r:2},{tpl:aoe_disk,r:3},{tpl:aoe_disk,r:4}]; DamageKind:'projected'; meridianRouteRef:mfr_wuxianbaidugong_wangu}` | `mfr_wuxianbaidugong_wangu` | `MeridianRouteDef{moveRef:mv_wuxianbaidugong_wangu; ultimate:true; purpose:attack}`；`ap_zujueyin_xingjian/90/100→ap_zujueyin_taichong/90/120→ap_zushaoyin_rangu/90/140→ap_zutaiyin_yinlingquan/90/160→ap_renmai_qihai/90/180→ap_shoujueyin_quze/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_laogong/90/240` |
+| 7 地下 | `sk_wuxianbaidugong` | `mv_wuxianbaidugong_wangu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; range:{min:1,max:2}; aoe:{tpl:aoe_disk,r:2}; projection:true; projectionSpreadSteps:[{tpl:aoe_disk,r:2},{tpl:aoe_disk,r:3},{tpl:aoe_disk,r:4}]; DamageKind:'projected'; meridianRouteRef:mfr_wuxianbaidugong_wangu}` | `mfr_wuxianbaidugong_wangu` | `MeridianRouteDef{moveRef:mv_wuxianbaidugong_wangu; ultimate:true; purpose:attack; requiredNature:[yin,yang,harmony]}`；`ap_zujueyin_xingjian/90/100→ap_zujueyin_taichong/90/120→ap_zushaoyin_rangu/90/140→ap_zutaiyin_yinlingquan/90/160→ap_renmai_qihai/90/180→ap_shoujueyin_quze/90/200→ap_shoujueyin_neiguan/90/220→ap_shoujueyin_laogong/90/240` |
 | 6 玄上 | `sk_huashanjianfa` | `mv_huashanjianfa_jinyan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_huashanjianfa_jinyan}` | `mfr_huashanjianfa_jinyan` | `MeridianRouteDef{moveRef:mv_huashanjianfa_jinyan; ultimate:true; purpose:attack}`；`ap_zushaoyang_tongziliao/100/100→ap_zushaoyin_fuliu/100/120→ap_zushaoyin_yongquan/100/140→ap_zutaiyang_weizhong/100/160→ap_zutaiyin_shangqiu/100/180→ap_shoushaoyang_yangchi/100/200` |
 | 6 玄上 | `sk_yangwujian` | `mv_yangwujian_haoran` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_yangwujian_haoran}` | `mfr_yangwujian_haoran` | `MeridianRouteDef{moveRef:mv_yangwujian_haoran; ultimate:true; purpose:attack}`；`ap_dumai_mingmen/100/100→ap_dumai_jizhong/100/120→ap_dumai_shenzhu/100/140→ap_yangwei_tianliao/100/160→ap_shoushaoyang_waiguan/100/180→ap_shoutaiyang_yanggu/100/200` |
-| 6 玄上 | `sk_huashanxinfa` | `mv_huashanxinfa_qiyujian` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_huashanxinfa_qiyujian}` | `mfr_huashanxinfa_qiyujian` | `MeridianRouteDef{moveRef:mv_huashanxinfa_qiyujian; ultimate:true; purpose:defense}`；`ap_renmai_qihai/100/100→ap_renmai_danzhong/100/120→ap_dumai_shendao/100/140→ap_shoushaoyin_shenmen/100/160→ap_shoushaoyang_waiguan/100/180→ap_shoutaiyang_wangu/100/200` |
+| 6 玄上 | `sk_huashanxinfa` | `mv_huashanxinfa_qiyujian` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_huashanxinfa_qiyujian}` | `mfr_huashanxinfa_qiyujian` | `MeridianRouteDef{moveRef:mv_huashanxinfa_qiyujian; ultimate:true; purpose:defense; requiredNature:[yin,harmony]}`；`ap_renmai_qihai/100/100→ap_renmai_danzhong/100/120→ap_dumai_shendao/100/140→ap_shoushaoyin_shenmen/100/160→ap_shoushaoyang_waiguan/100/180→ap_shoutaiyang_wangu/100/200` |
 | 6 玄上 | `sk_kuangfengkuaijian` | `mv_kuangfengkuaijian_yijian` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_kuangfengkuaijian_yijian}` | `mfr_kuangfengkuaijian_yijian` | `MeridianRouteDef{moveRef:mv_kuangfengkuaijian_yijian; ultimate:true; purpose:attack}`；`ap_yangwei_yangjiao/100/100→ap_yinwei_daheng/100/120→ap_zushaoyin_yongquan/100/140→ap_zujueyin_yinlian/100/160→ap_zushaoyang_waiqiu/100/180→ap_shoutaiyang_yanggu/100/200` |
 | 6 玄上 | `sk_songshanjianfa` | `mv_songshanjianfa_kaimen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_songshanjianfa_kaimen}` | `mfr_songshanjianfa_kaimen` | `MeridianRouteDef{moveRef:mv_songshanjianfa_kaimen; ultimate:true; purpose:attack}`；`ap_dumai_yaoyangguan/100/100→ap_yangwei_tianliao/100/120→ap_shouyangming_sanjian/100/140→ap_shoutaiyang_houxi/100/160→ap_shoushaoyang_zhigou/100/180→ap_shoushaoyang_yangchi/100/200` |
 | 6 玄上 | `sk_songyangxinfa` | `mv_songyangxinfa_junyue` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_songyangxinfa_junyue}` | `mfr_songyangxinfa_junyue` | `MeridianRouteDef{moveRef:mv_songyangxinfa_junyue; ultimate:true; purpose:defense}`；`ap_dumai_shenzhu/100/100→ap_shouyangming_erjian/100/120→ap_shouyangming_yangxi/100/140→ap_yangqiao_juliao_wei/100/160→ap_yangwei_jinmen/100/180→ap_yinqiao_lieque/100/200` |
@@ -58,7 +58,7 @@
 | 6 玄上 | `sk_huifengluoyan` | `mv_huifengluoyan_luoyan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_huifengluoyan_luoyan}` | `mfr_huifengluoyan_luoyan` | `MeridianRouteDef{moveRef:mv_huifengluoyan_luoyan; ultimate:true; purpose:attack}`；`ap_yinwei_qimen/100/100→ap_zujueyin_taichong/100/120→ap_zushaoyang_guangming/100/140→ap_zushaoyang_zuqiaoyin/100/160→ap_zushaoyin_taixi/100/180→ap_shoushaoyang_waiguan/100/200` |
 | 6 玄上 | `sk_hengshanbeijianfa` | `mv_hengshanbeijianfa_shoumenhu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_hengshanbeijianfa_shoumenhu}` | `mfr_hengshanbeijianfa_shoumenhu` | `MeridianRouteDef{moveRef:mv_hengshanbeijianfa_shoumenhu; ultimate:true; purpose:attack}`；`ap_renmai_qihai/100/100→ap_yinqiao_zhaohai/100/120→ap_yinqiao_jiaoxin/100/140→ap_shoujueyin_neiguan/100/160→ap_shoutaiyang_wangu/100/180→ap_shouyangming_hegu/100/200` |
 | 6 玄上 | `sk_riyuejianfa` | `mv_riyuejianfa_yueluo` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_riyuejianfa_yueluo}` | `mfr_riyuejianfa_yueluo` | `MeridianRouteDef{moveRef:mv_riyuejianfa_yueluo; ultimate:true; purpose:attack}`；`ap_daimai_zhangmen/100/100→ap_daimai_weidao/100/120→ap_yinwei_qimen/100/140→ap_shoutaiyin_chize/100/160→ap_shoujueyin_neiguan/100/180→ap_shoushaoyang_waiguan/100/200` |
-| 6 玄上 | `sk_riyuexinfa` | `mv_riyuexinfa_riyue` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_riyuexinfa_riyue}` | `mfr_riyuexinfa_riyue` | `MeridianRouteDef{moveRef:mv_riyuexinfa_riyue; ultimate:true; purpose:defense}`；`ap_chongmai_futonggu/100/100→ap_renmai_shimen/100/120→ap_yangwei_jianjing/100/140→ap_yinqiao_jingming/100/160→ap_yinwei_fushe/100/180→ap_zujueyin_ligou/100/200` |
+| 6 玄上 | `sk_riyuexinfa` | `mv_riyuexinfa_riyue` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_riyuexinfa_riyue}` | `mfr_riyuexinfa_riyue` | `MeridianRouteDef{moveRef:mv_riyuexinfa_riyue; ultimate:true; purpose:defense; requiredNature:[yin,yang,harmony]}`；`ap_chongmai_futonggu/100/100→ap_renmai_shimen/100/120→ap_yangwei_jianjing/100/140→ap_yinqiao_jingming/100/160→ap_yinwei_fushe/100/180→ap_zujueyin_ligou/100/200` |
 | 6 玄上 | `sk_songfengjianfa` | `mv_songfengjianfa_fengguoqingcheng` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_songfengjianfa_fengguoqingcheng}` | `mfr_songfengjianfa_fengguoqingcheng` | `MeridianRouteDef{moveRef:mv_songfengjianfa_fengguoqingcheng; ultimate:true; purpose:attack}`；`ap_yangqiao_jugu/100/100→ap_yangwei_fengfu/100/120→ap_yinqiao_jiaoxin/100/140→ap_yinwei_fuai/100/160→ap_zujueyin_dadun/100/180→ap_shouyangming_hegu/100/200` |
 | 6 玄上 | `sk_wuxianduzhang` | `mv_wuxianduzhang_huifengduwu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_wuxianduzhang_huifengduwu}` | `mfr_wuxianduzhang_huifengduwu` | `MeridianRouteDef{moveRef:mv_wuxianduzhang_huifengduwu; ultimate:true; purpose:attack}`；`ap_zujueyin_xingjian/100/100→ap_zujueyin_taichong/100/120→ap_yinwei_qimen/100/140→ap_shoutaiyin_chize/100/160→ap_shoujueyin_neiguan/100/180→ap_shoujueyin_laogong/100/200` |
 | 6 玄上 | `sk_wanliduxing` | `mv_wanliduxing_yuandun` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_wanliduxing_yuandun}` | `mfr_wanliduxing_yuandun` | `MeridianRouteDef{moveRef:mv_wanliduxing_yuandun; ultimate:true; purpose:movement}`；`ap_zutaiyin_dabao/100/100→ap_zutaiyin_yinbai/100/120→ap_zuyangming_renying/100/140→ap_chongmai_henggu/100/160→ap_chongmai_yindu/100/180→ap_daimai_zhangmen/100/200` |
@@ -114,29 +114,29 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | 内功 | 品阶 / nature | `inner.contribution` | IP 复算 |
 |---|---|---|---:|
-| `sk_zixiashengong` | 9 / `yang` | `mpMaxPct:34; hpMaxPct:20; attrs:{con:6,wil:5,wis:3}; mpRegen:2.5` | `34+20+2×14+5×2.5=94.5` |
-| `sk_huashanxinfa` | 6 / `harmony` | `20; 12; {con:3,wil:3,wis:2}; 1.8` | `20+12+2×8+5×1.8=57` |
-| `sk_huashantuna` | 3 / `harmony` | `10; 6; {con:2,wil:1,wis:1}; 1.2` | `10+6+2×4+5×1.2=30` |
+| `sk_zixiashengong` | 9 / `harmony` | `mpMaxPct:34; hpMaxPct:20; attrs:{con:6,wil:5,wis:3}; mpRegen:2.5` | `34+20+2×14+5×2.5=94.5` |
+| `sk_huashanxinfa` | 6 / `yin` | `20; 12; {con:3,wil:3,wis:2}; 1.8` | `20+12+2×8+5×1.8=57` |
+| `sk_huashantuna` | 3 / `yin` | `10; 6; {con:2,wil:1,wis:1}; 1.2` | `10+6+2×4+5×1.2=30` |
 | `sk_hanbingzhenqi` | 9 / `yin` | `34; 20; {con:6,wil:6,wis:2}; 2.5` | `34+20+2×14+5×2.5=94.5` |
 | `sk_songyangxinfa` | 6 / `yang` | `20; 12; {con:4,str:2,wil:2}; 1.8` | `20+12+2×8+5×1.8=57` |
 | `sk_songyangtuna` | 3 / `yang` | `10; 6; {con:2,str:1,wil:1}; 1.2` | `10+6+2×4+5×1.2=30` |
-| `sk_taishanxinfa` | 5 / `harmony` | `17; 10; {con:3,wil:2,wis:2}; 1.5` | `17+10+2×7+5×1.5=48.5` |
-| `sk_taishantuna` | 3 / `harmony` | `10; 6; {con:2,wil:1,wis:1}; 1.2` | `10+6+2×4+5×1.2=30` |
+| `sk_taishanxinfa` | 5 / `yang` | `17; 10; {con:3,wil:2,wis:2}; 1.5` | `17+10+2×7+5×1.5=48.5` |
+| `sk_taishantuna` | 3 / `yang` | `10; 6; {con:2,wil:1,wis:1}; 1.2` | `10+6+2×4+5×1.2=30` |
 | `sk_hengshanxinfa` | 5 / `yin` | `17; 10; {agi:2,wis:3,wil:2}; 1.5` | `17+10+2×7+5×1.5=48.5` |
 | `sk_hengshantuna` | 3 / `yin` | `10; 6; {agi:1,wis:2,wil:1}; 1.2` | `10+6+2×4+5×1.2=30` |
-| `sk_hengshanbeixinfa` | 5 / `harmony` | `17; 10; {con:2,wis:2,wil:3}; 1.5` | `17+10+2×7+5×1.5=48.5` |
-| `sk_hengshanbeituna` | 3 / `harmony` | `10; 6; {con:2,wis:1,wil:1}; 1.2` | `10+6+2×4+5×1.2=30` |
-| `sk_xixing` | 11 / `yin` | `48; 29; {con:8,wil:8,wis:5}; 3.3` | `48+29+2×21+5×3.3=135.5` |
-| `sk_kuihua` | 11 / `yin` | `48; 29; {agi:10,wis:6,wil:5}; 3.3` | `48+29+2×21+5×3.3=135.5` |
-| `sk_riyuexinfa` | 6 / `yin` | `20; 12; {con:2,wil:4,wis:2}; 1.8` | `20+12+2×8+5×1.8=57` |
-| `sk_heimutuna` | 3 / `yin` | `10; 6; {con:1,wil:2,wis:1}; 1.2` | `10+6+2×4+5×1.2=30` |
+| `sk_hengshanbeixinfa` | 5 / `yin` | `17; 10; {con:2,wis:2,wil:3}; 1.5` | `17+10+2×7+5×1.5=48.5` |
+| `sk_hengshanbeituna` | 3 / `yin` | `10; 6; {con:2,wis:1,wil:1}; 1.2` | `10+6+2×4+5×1.2=30` |
+| `sk_xixing` | 11 / `harmony` | `48; 29; {con:8,wil:8,wis:5}; 3.3` | `48+29+2×21+5×3.3=135.5` |
+| `sk_kuihua` | 11 / `yang` | `48; 29; {agi:10,wis:6,wil:5}; 3.3` | `48+29+2×21+5×3.3=135.5` |
+| `sk_riyuexinfa` | 6 / `harmony` | `20; 12; {con:2,wil:4,wis:2}; 1.8` | `20+12+2×8+5×1.8=57` |
+| `sk_heimutuna` | 3 / `harmony` | `10; 6; {con:1,wil:2,wis:1}; 1.2` | `10+6+2×4+5×1.2=30` |
 | `sk_biaojuxinfa` | 3 / `yang` | `10; 6; {con:2,str:1,wil:1}; 1.2` | `10+6+2×4+5×1.2=30` |
 | `sk_qingchengxinfa` | 5 / `yin` | `17; 10; {agi:2,wil:3,wis:2}; 1.5` | `17+10+2×7+5×1.5=48.5` |
 | `sk_qingchengtuna` | 3 / `yin` | `10; 6; {agi:1,wil:2,wis:1}; 1.2` | `10+6+2×4+5×1.2=30` |
-| `sk_wuxianbaidugong` | 7 / `yin` | `26; 16; {con:4,wis:3,wil:3}; 2.0` | `26+16+2×10+5×2.0=72` |
+| `sk_wuxianbaidugong` | 7 / `harmony` | `26; 16; {con:4,wis:3,wil:3}; 2.0` | `26+16+2×10+5×2.0=72` |
 | `sk_wuxiantuna` | 3 / `yin` | `10; 6; {con:1,wis:2,wil:1}; 1.2` | `10+6+2×4+5×1.2=30` |
 
-本文按 AR-03 引用 `design/15-meridians-and-acupoints.md` 的正式专精经脉 ID；它们只表达“冲穴倾向”，不在本图鉴定义穴位与加成：`mer_renmai`（任脉）、`mer_dumai`（督脉）、`mer_chongmai`（冲脉）、`mer_daimai`（带脉）、`mer_shoutaiyin`（手太阴）、`mer_shoushaoyin`（手少阴）、`mer_zuyangming`（足阳明）、`mer_zushaoyang`（足少阳）、`mer_zutaiyin`（足太阴）、`mer_zujueyin`（足厥阴）。
+本文按 AR-03 引用 `design/15-meridians-and-acupoints.md` 的正式经脉 ID；`inner.meridians` 表示内功主修经脉，并按 `design/05` §5.3 判定内功性质，本图鉴不重定义穴位与加成：`mer_renmai`（任脉）、`mer_dumai`（督脉）、`mer_chongmai`（冲脉）、`mer_daimai`（带脉）、`mer_shoutaiyin`（手太阴）、`mer_shoushaoyin`（手少阴）、`mer_zuyangming`（足阳明）、`mer_zushaoyang`（足少阳）、`mer_zutaiyin`（足太阴）、`mer_zujueyin`（足厥阴）。
 
 ### 0.4 门派职级与可学武学（五级建议）
 
@@ -273,7 +273,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | 出处 | 《笑傲江湖》·岳不群所修华山内功；秘籍、运功表现与传授规矩逐回**（待考）** |
 | origin / sect / lineage | `canonExpanded` / `sect_huashan` / 华山气宗 |
 | sourceChapters | `[ch05_xiaoao]`；碧血只给 8 品残承（基准 §13“残承再遇”，**（原创扩展）**） |
-| nature / meridians | `yang` / `[mer_renmai, mer_dumai]`（本作冲穴专精） |
+| nature / meridians | `harmony` / `[mer_renmai, mer_dumai]`（本作主修经脉；阴 1 / 阳 1，平票取调和） |
 | wOut/wIn · moveSlots | `0/1` · 4 |
 | reqs | `sect:{id:sect_huashan,rank:4}; prereq:[{skill:sk_huashanxinfa,layer:6}]; attrs:{con:50,wil:50}; aptitude:{apInner:50}; hard:[sect,prereq]` |
 | inner.contribution | `mpMaxPct:34, hpMaxPct:20, attrs:{con:6,wil:5,wis:3}, mpRegen:2.5`；`34+20+2×14+5×2.5=94.5` |
@@ -335,7 +335,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | `sk_yangwujian` 养吾剑 | 6玄上·兵器/剑·yang·0.65/0.35 | `sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashanjianfa,layer:5}]; hard:[sect,prereq]` | 养气0；浩然一剑 `mv_yangwujian_haoran`（L7绝招，`ultimate:true`，单体3.00，8%/气势100/1200；`3×1=3.00`）；守中0.90 | `set_huashan_qijian` | 《笑傲江湖》华山剑法名目；招效**（原创扩展）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 | `sk_xiyijian` 希夷剑 | 5玄中·兵器/剑·harmony·0.80/0.20 | `sect:{id:sect_huashan,rank:2}; prereq:[{skill:sk_huashanrumenjian,layer:4}]; hard:[sect,prereq]` | 视之不见 1.05（命中后 `bf_polu` 30%）；听之不闻 0.90（不可反击） | — | 《笑傲江湖》华山剑招名目；细节**（待考）** |
 | `sk_yunvjian19` 玉女剑十九式 | 5玄中·兵器/剑·yin·0.80/0.20 | `sect:{id:sect_huashan,rank:2}; prereq:[{skill:sk_huashanjianfa,layer:4}]; hard:[sect,prereq]` | 玉女投梭 1.05；弄玉吹箫 0.90（`bf_luanxin` 30%） | — | 《笑傲江湖》华山剑法；十九式与分式逐字**（待考）**，勿与古墓玉女剑混同 |
-| `sk_huashanxinfa` 华山心法 | 6玄上·内功·`harmony`·0/1 | `sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashantuna,layer:5}]; hard:[sect,prereq]` | 抱元0；气御剑 `mv_huashanxinfa_qiyujian`（L7支援绝招，`ultimate:true`，0，8%/气势100/1200，下一剑获`bf_ruiyi`；不走伤害预算） | `set_huashan_qijian` | **（原创扩展）**；`meridians:[mer_renmai]`；IP `20+12+2×8+5×1.8=57`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_huashanxinfa` 华山心法 | 6玄上·内功·`yin`·0/1 | `sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashantuna,layer:5}]; hard:[sect,prereq]` | 抱元0；气御剑 `mv_huashanxinfa_qiyujian`（L7支援绝招，`ultimate:true`，0，8%/气势100/1200，下一剑获`bf_ruiyi`；不走伤害预算） | `set_huashan_qijian` | **（原创扩展）**；`meridians:[mer_renmai]`（阴 1 / 阳 0）；IP `20+12+2×8+5×1.8=57`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 | `sk_kuangfengkuaijian` 狂风快剑 | 6玄上·兵器/剑·neutral·0.90/0.10 | `sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashanrumenjian,layer:5}]; hard:[sect,prereq]` | 狂风骤雨0.95；一剑快似一剑 `mv_kuangfengkuaijian_yijian`（L7绝招，`ultimate:true`，单体3.00，8%/气势100/1200，得`bf_lianzhao`；`3×1=3.00`） | `set_huashan_qijian` | 《笑傲江湖》·剑宗封不平所使，招名与段数**（待考）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 
 抽样核算（6/6 门，≥30%）：华山剑法·白云出岫 `1.00`；养吾剑·浩然一剑 `1+0.12=1.12→1.10`；希夷剑 `1+0.12−0.03=1.09→1.10`（表取1.05，−0.04）；玉女剑 `1+0.12−0.03=1.09→1.10`；华山心法两招为支援 `power 0`；狂风骤雨 `AF 0.85×(1+0.24)−0.10=0.95`。
@@ -346,7 +346,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 |---|---|---|---|---|---|---|---|---|
 | `sk_huashanrumenjian` | 华山入门剑 | 华山 | 兵器/剑·3黄上 | 笑傲 | 标准刺 1.00、横削 0.85；剑资质教学 | 无 | **（原创扩展）** | `set_huashan_qijian` |
 | `sk_huashanjichuquan` | 华山基础拳 | 华山 | 拳脚/拳·2黄中 | 笑傲 | 单体 1.00；招架后得 `bf_wenzhong` 1 | 无 | **（原创扩展）** | — |
-| `sk_huashantuna` | 华山吐纳 | 华山 | 内功·3黄上·`harmony` | 笑傲 | 回内；`meridians:[mer_renmai]`；IP `10+6+2×4+5×1.2=30` | 无 | **（原创扩展）** | `set_huashan_qijian` |
+| `sk_huashantuna` | 华山吐纳 | 华山 | 内功·3黄上·`yin` | 笑傲 | 回内；`meridians:[mer_renmai]`（阴 1 / 阳 0）；IP `10+6+2×4+5×1.2=30` | 无 | **（原创扩展）** | `set_huashan_qijian` |
 | `sk_huashanxingbu` | 华山行步 | 华山 | 轻功·2黄中 | 笑傲 | 移动后闪避小增；`Q_skill=38`（03 §4.5） | 无 | **（原创扩展）** | — |
 
 黄阶整体预算：标准单体、5%耗内、0冷却、1000收招为 `1.00`；4%耗内为 `1−0.05=0.95`；六向 120° r1 横扫 N=3，带1冷却为 `0.85×1.12=0.952→0.95`。本节四门只使用这三种模板或 `power 0` 支援，全部在 ±0.05。
@@ -469,7 +469,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 |---|---|---|---|---|---|
 | `sk_taishanjianfa` 泰山剑法 | 6玄上·兵器/剑·harmony | `sect:{id:sect_taishan,rank:2}; prereq:[{skill:sk_taishanrumenjian,layer:4}]; hard:[sect,prereq]` | 石关回马1.00；东岳横云 `mv_taishanjianfa_dongyue`（L7绝招，`ultimate:true`，六向横扫2.55，8%/气势100/1200；N=3、AF=.85，`3×.85=2.55`） | `[]` | 《笑傲江湖》泰山门人剑术；分式**（原创扩展命名）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 | `sk_taishan18pan` 泰山十八盘 | 5玄中·轻功·neutral | `sect:{id:sect_taishan,rank:3}; prereq:[{skill:sk_shibanshanbu,layer:5}]; hard:[sect,prereq]` | 盘道0（连走3格得疾行）；回折0（换位） | `[]` | 泰山地名借作身法，武学**（原创扩展）**；`Q_skill=65` |
-| `sk_taishanxinfa` 泰山心法 | 5玄中·内功·`harmony` | `sect:{id:sect_taishan,rank:3}; prereq:[{skill:sk_taishantuna,layer:5}]; hard:[sect,prereq]` | 镇岳0（固本）；观日0（回内） | `[]` | **（原创扩展）**；`meridians:[mer_zuyangming]`；IP `17+10+14+7.5=48.5` |
+| `sk_taishanxinfa` 泰山心法 | 5玄中·内功·`yang` | `sect:{id:sect_taishan,rank:3}; prereq:[{skill:sk_taishantuna,layer:5}]; hard:[sect,prereq]` | 镇岳0（固本）；观日0（回内） | `[]` | **（原创扩展）**；`meridians:[mer_zuyangming]`（阴 0 / 阳 1）；IP `17+10+14+7.5=48.5` |
 | `sk_taishanquan` 泰山拳 | 4玄下·拳脚/拳·yang | `sect:{id:sect_taishan,rank:2}; prereq:[{skill:sk_taishanrumenquan,layer:4}]; hard:[sect,prereq]` | 盘石1.00；落石1.05（击退1） | — | **（原创扩展）** |
 
 抽样核算（4/4）：石关回马1.00；东岳横云按 N=3、AF=.85，`.85×1.24=1.054→1.05`；两门支援0；盘石1.00；落石 `1+.12−.05=1.07→1.05`。
@@ -480,7 +480,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 |---|---|---|---|---|---|---|---|---|
 | `sk_taishanrumenjian` | 泰山入门剑 | 泰山 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；横削0.85 | 无 | **（原创扩展）** | `[]` |
 | `sk_taishanrumenquan` | 泰山入门拳 | 泰山 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；守势 | 无 | **（原创扩展）** | — |
-| `sk_taishantuna` | 泰山吐纳 | 泰山 | 内功·3黄上·`harmony` | 笑傲 | 回内；`meridians:[mer_zuyangming]`；IP30 | 无 | **（原创扩展）** | `[]` |
+| `sk_taishantuna` | 泰山吐纳 | 泰山 | 内功·3黄上·`yang` | 笑傲 | 回内；`meridians:[mer_zuyangming]`（阴 0 / 阳 1）；IP30 | 无 | **（原创扩展）** | `[]` |
 | `sk_shibanshanbu` | 石坂山步 | 泰山 | 轻功·2黄中 | 笑傲 | 山路移动体力−10%；`Q_skill=38` | 无 | **（原创扩展）** | — |
 
 黄阶整体采用标准单体1.00、六向横扫带1冷却0.95与支援0模板，预算误差均≤0.02。
@@ -657,7 +657,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 |---|---|---|---|---|---|
 | `sk_hengshanbeijianfa` 恒山剑法 | 6玄上·兵器/剑·yin | `sect:{id:sect_hengshan_bei,rank:3}; prereq:[{skill:sk_hengshanbeirumenjian,layer:4}]; hard:[sect,prereq]` | 绵针1.00；守门户 `mv_hengshanbeijianfa_shoumenhu`（L7绝招，`ultimate:true`，单体2.90，8%/气势100/1200，自身守势；`3−.10=2.90`） | `[]` | 《笑傲江湖》恒山群尼剑术；分式**（原创扩展命名）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 | `sk_tianchangzhangfa` 天长掌法 | 5玄中·拳脚/拳·harmony | `sect:{id:sect_hengshan_bei,rank:3}; prereq:[{skill:sk_hengshanbeirumenquan,layer:5}]; hard:[sect,prereq]` | 天长1.10；地久1.10（虚弱30%） | `[]` | 《笑傲江湖》恒山掌法名目**（待考）** |
-| `sk_hengshanbeixinfa` 恒山心法 | 5玄中·内功·`harmony` | `sect:{id:sect_hengshan_bei,rank:2}; prereq:[{skill:sk_hengshanbeituna,layer:5}]; hard:[sect,prereq]` | 慈航0（回春）；守心0（定心） | `[]` | **（原创扩展）**；`meridians:[mer_shoutaiyin]`；IP48.5 |
+| `sk_hengshanbeixinfa` 恒山心法 | 5玄中·内功·`yin` | `sect:{id:sect_hengshan_bei,rank:2}; prereq:[{skill:sk_hengshanbeituna,layer:5}]; hard:[sect,prereq]` | 慈航0（回春）；守心0（定心） | `[]` | **（原创扩展）**；`meridians:[mer_shoutaiyin]`（阴 1 / 阳 0）；IP48.5 |
 | `sk_hengshanbeishenfa` 恒山身法 | 4玄下·轻功·neutral | `sect:{id:sect_hengshan_bei,rank:2}; prereq:[{skill:sk_hengshanbeibu,layer:5}]; hard:[sect,prereq]` | 回廊0（换位）；护阵0（友方援护） | — | **（原创扩展）**；`Q_skill=56` |
 
 抽样核算（4/4）：绵针1.00；守门户为攻击 `1−0.10=0.90`；天长 `1+0.12=1.12→1.10`；地久 `1+0.12−.03=1.09→1.10`；内功与轻功支援为0。
@@ -668,7 +668,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 |---|---|---|---|---|---|---|---|---|
 | `sk_hengshanbeirumenjian` | 恒山入门剑 | 北恒山 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；守式0.90 | 无 | **（原创扩展）** | `[]` |
 | `sk_hengshanbeirumenquan` | 恒山入门拳 | 北恒山 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；非致命收招 | 无 | **（原创扩展）** | — |
-| `sk_hengshanbeituna` | 恒山吐纳 | 北恒山 | 内功·3黄上·`harmony` | 笑傲 | 回内；`meridians:[mer_shoutaiyin]`；IP30 | 无 | **（原创扩展）** | `[]` |
+| `sk_hengshanbeituna` | 恒山吐纳 | 北恒山 | 内功·3黄上·`yin` | 笑傲 | 回内；`meridians:[mer_shoutaiyin]`（阴 1 / 阳 0）；IP30 | 无 | **（原创扩展）** | `[]` |
 | `sk_hengshanbeibu` | 恒山步 | 北恒山 | 轻功·2黄中 | 笑傲 | 相邻友方多时闪避+3；`Q_skill=38` | 无 | **（原创扩展）** | — |
 
 黄阶整体预算沿 §2.6；守式按自身增益成本0.10由标准1.00降至0.90，其他攻击均为1.00，支援为0。
@@ -695,7 +695,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | 出处 | 《笑傲江湖》·任我行、令狐冲；吸取异种真气而受反噬，方证提出以易筋经化解。具体来历与新版表述**（待考）** |
 | origin / sect / lineage | `canon` / `sect_riyue` / 任我行 → 令狐冲 |
 | sourceChapters | `[ch05_xiaoao]` |
-| nature / meridians | `yin` / `[mer_chongmai, mer_daimai]`（本作冲穴专精） |
+| nature / meridians | `harmony` / `[mer_chongmai, mer_daimai]`（本作主修经脉；两脉依 AR-18a 默认均不投票） |
 | wOut/wIn · moveSlots | `0/1` · 5 |
 | reqs | `sect:{id:sect_riyue,rank:4}; attrs:{con:55,wil:60}; aptitude:{apInner:55}; prereq:[{skill:sk_riyuexinfa,layer:6}]; morality:{max:50}; hard:[sect,prereq]`；梅庄铁板来源以 `reqsOverride:{sect:null}` 删除门派身份，不删除前置 |
 | inner.contribution | `mpMaxPct:48, hpMaxPct:29, attrs:{con:8,wil:8,wis:5}, mpRegen:3.3`；`48+29+2×21+5×3.3=135.5` |
@@ -728,7 +728,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | 出处 | 《笑傲江湖》·前朝太监所著，东方不败修习；华山所得残篇与林远图辟邪传承关系见原著。秘籍首句与年代**（待考）** |
 | origin / sect / lineage | `canon` / `sect_riyue` / 前朝宫中传本 → 日月神教 → 东方不败 |
 | sourceChapters | `[ch05_xiaoao]` |
-| nature / meridians | `yin` / `[mer_chongmai, mer_dumai]`（本作冲穴专精） |
+| nature / meridians | `yang` / `[mer_chongmai, mer_dumai]`（本作主修经脉；冲脉不投票、督脉投阳，阴 0 / 阳 1） |
 | wOut/wIn · moveSlots | `0/1` · 5 |
 | reqs | `vow:vow_duanchen; attrs:{agi:65,wil:55}; aptitude:{apInner:55}; hard:[vow]` |
 | inner.contribution | `mpMaxPct:48, hpMaxPct:29, attrs:{agi:10,wis:6,wil:5}, mpRegen:3.3`；`48+29+42+16.5=135.5` |
@@ -819,7 +819,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
 | `sk_riyuejianfa` 日月剑法 | 6玄上·兵器/剑·yin | `sect:{id:sect_riyue,rank:2}; prereq:[{skill:sk_heimuyarumenjian,layer:4}]; hard:[sect,prereq]` | 日升1.10；月落 `mv_riyuejianfa_yueluo`（L7绝招，`ultimate:true`，单体2.95，8%/气势100/1200，破绽40%；`3−.10×.40=2.96≈2.95`） | `set_riyue_heimu` | **（原创扩展）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_riyuexinfa` 日月心法 | 6玄上·内功·`yin` | `sect:{id:sect_riyue,rank:2}; prereq:[{skill:sk_heimutuna,layer:5}]; hard:[sect,prereq]` | 黑木运气0；日月同辉 `mv_riyuexinfa_riyue`（L7支援绝招，`ultimate:true`，0，8%/气势100/1200，内劲提升；不走伤害预算） | `[set_riyue_heimu]` | **（原创扩展）**；`meridians:[mer_chongmai]`；IP57；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_riyuexinfa` 日月心法 | 6玄上·内功·`harmony` | `sect:{id:sect_riyue,rank:2}; prereq:[{skill:sk_heimutuna,layer:5}]; hard:[sect,prereq]` | 黑木运气0；日月同辉 `mv_riyuexinfa_riyue`（L7支援绝招，`ultimate:true`，0，8%/气势100/1200，内劲提升；不走伤害预算） | `[set_riyue_heimu]` | **（原创扩展）**；`meridians:[mer_chongmai]`（依 AR-18a 默认不投票）；IP57；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 | `sk_shigudaxuebi` 石鼓打穴笔法 | 5玄中·兵器/奇门（笔）·harmony | `skills:{art:45}; prereq:[{skill:sk_heimutuna,layer:4}]; hard:[prereq]` | 落笔1.00；石鼓文0.95（点穴30%） | `[]` | 《笑傲江湖》·秃笔翁以书法入武；正式名与字帖细节**（待考）** |
 | `sk_pomopimajian` 泼墨披麻剑法 | 5玄中·兵器/剑·neutral | `skills:{art:45}; prereq:[{skill:sk_heimutuna,layer:4}]; hard:[prereq]` | 泼墨1.05（六向横扫）；披麻1.00（连招） | `[]` | 《笑傲江湖》·丹青生剑法；招式细目**（待考）** |
 | `sk_xuantianzhi` 玄天指 | 5玄中·拳脚/指·yin | `skills:{chess:45}; prereq:[{skill:sk_heimutuna,layer:4}]; hard:[prereq]` | 落子1.00；封眼0.95（封穴30%） | `[]` | 《笑傲江湖》·黑白子武学；正式名与交手细节**（待考）** |
@@ -832,7 +832,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 |---|---|---|---|---|---|---|---|---|
 | `sk_heimuyarumenjian` | 黑木崖入门剑 | 日月 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；追击式0.90 | 无 | **（原创扩展）** | `set_riyue_heimu` |
 | `sk_riyuejichuquan` | 日月基础拳 | 日月 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；低血时命中+3 | 无 | **（原创扩展）** | — |
-| `sk_heimutuna` | 黑木吐纳 | 日月 / 梅庄 | 内功·3黄上·`yin` | 笑傲 | 回内；`meridians:[mer_chongmai]`；IP30 | 无 | **（原创扩展）** | `[set_riyue_heimu]` |
+| `sk_heimutuna` | 黑木吐纳 | 日月 / 梅庄 | 内功·3黄上·`harmony` | 笑傲 | 回内；`meridians:[mer_chongmai]`（依 AR-18a 默认不投票）；IP30 | 无 | **（原创扩展）** | `[set_riyue_heimu]` |
 | `sk_shenjiaobu` | 神教步 | 日月 | 轻功·2黄中 | 笑傲 | 撤退成功率+5%；`Q_skill=38` | 无 | **（原创扩展）** | — |
 
 黄阶整体采用标准单体1.00、带自身小增益0.90和支援0模板，预算误差≤0.03。
@@ -1016,7 +1016,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | 出处 | 原著有五仙教善用毒物；“五仙百毒功”及以下运功招式为**（原创扩展命名）** |
 | origin / sect / lineage | `expanded` / `sect_wuxian` / 蓝凤凰与五仙教毒师 |
 | sourceChapters | `[ch05_xiaoao]` |
-| nature / meridians | `yin` / `[mer_zujueyin, mer_zushaoyang]` |
+| nature / meridians | `harmony` / `[mer_zujueyin, mer_zushaoyang]`（阴 1 / 阳 1，平票取调和） |
 | wOut/wIn · moveSlots | `0/1` · 4 |
 | reqs | `sect:{id:sect_wuxian,rank:4}; prereq:[{skill:sk_wuxiandujing,layer:6},{skill:sk_wuxianduzhang,layer:6}]; skills:{poi:55,antidote:40}; attrs:{con:45,wis:45}; hard:[sect,prereq,skills.poi]` |
 | inner.contribution | `mpMaxPct:26, hpMaxPct:16, attrs:{con:4,wis:3,wil:3}, mpRegen:2.0`；`26+16+20+10=72` |
@@ -1025,7 +1025,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | setTags / conflicts | `[]` / 无 |
 | special / observable | `{fusible:false}` / `false` |
 | learnSources | 五仙 L4；蓝凤凰高羁绊；毒典解谜 |
-| 图鉴文本 | （原创扩展）以识毒、试毒和解毒为根基的阴性内功；不赋予无条件毒免。 |
+| 图鉴文本 | **（原创扩展）**以识毒、试毒和解毒为根基，以足厥阴与足少阳相济的调和内功；不赋予无条件毒免。 |
 
 | 招式（ID） | 重 | 范围·射程·投送 | 倍率 | 耗内/cd/收招 | 附带 | 架 | 核算 |
 |---|---:|---|---:|---|---|---|---|
@@ -1267,13 +1267,17 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 - 模板只是本文排版别名。正式路线必须展开为 `id/moveRef/ultimate/purpose/requiredNature/steps[{acupointRef,segmentCt,riskBp}]`，构建产物不得保存模板码。路线与调息均属**（原创扩展）**。
 - Y=`[yang,harmony]`、I=`[yin,harmony]`、H=`[yin,yang,harmony]`；neutral 招式用 H，但不改原武学性质。标准对标准严格 10000 bp；硬界与 Z4M→Z5→Z5M 逐次向下取整只引用 `design/21` §3.5、§4.4、§4.9。
 
-终审配路按 `design/21` §4.3.1 的“动作末端 → 明示内功／门派底子 → 性质 → 战术职责”顺序执行：持械绝招在末三段收至腕部导引穴，掌招收至劳宫，内功攻击保留任／督核心，外放另命中手部端点白名单。为保留招式辨识度，寒冰封脉由阴跷、阴维收束任脉后封手厥阴，吸星散功由冲、带聚势后回任脉散功，葵花刺目则由任督提气、经肩腕直落中冲；吸星·万流、葵花·万针、峻岳护体、日月同辉另分别从各自武学的明示经脉中取冲、冲、督、冲脉穴作为躯干段，峻岳护体与日月同辉同时命中任／督门槛；以上路线均保持原段数、总 CT、总风险和职责。支援、纯身法及音功不强行改写为掌／指／兵器动作；音功仍独立接受外放端点检查。绝招显式步骤只在文首索引定义一次；7 条外放普通招式的显式路线只在 §15.4“外放普通招式显式路线”表定义；§15.3–§15.5 的其余行只作绑定与核算镜像。
+终审配路按 `design/21` §4.3.1 的“动作末端 → 明示内功／门派底子 → 性质 → 战术职责”顺序执行：持械绝招在末三段收至腕部导引穴，掌招收至劳宫，内功攻击保留任／督核心，外放另命中手部端点白名单。为保留招式辨识度，寒冰封脉由阴跷、阴维收束任脉后封手厥阴，吸星散功由冲、带聚势后回任脉散功；AR-18 重算后，葵花两路以督脉、阳跷／阳维和手足三阳作为阳性体段，再由末端手穴完成飞针动作。吸星·万流、峻岳护体、日月同辉另分别从各自武学的明示经脉中取冲、督、冲脉穴作为躯干段，峻岳护体与日月同辉同时命中任／督门槛；以上路线均保持原段数、总 CT、总风险和职责。支援、纯身法及音功不强行改写为掌／指／兵器动作；音功仍独立接受外放端点检查。绝招显式步骤只在文首索引定义一次；8 条 AR-18 普通路线与 7 条外放普通路线的显式步骤只在 §15.4 对应表定义；§15.3–§15.5 的其余行只作绑定与核算镜像。
 
 路线叙事第三轮把本册受检的 13 对跨武学高相似路线全部改开，不保留高相似说明或静默豁免。改线只替换穴位，不改变招式的出招方式、段数、逐段 CT、逐段风险、路线用途与收招；7 条路线的新核心段与动作末端均属**（原创扩展）**。独孤“无招”以跨脉换线表现不守成式，青城摧心掌沿足厥阴蓄阴劲后落劳宫，七弦无形剑由冲带转入持琴手腕，辟邪穿柳先走阴跷藏势再借阳跷穿线；嵩山“开门”由督脉提劲后走手三阳，日月“月落”由带脉横转后收至外关，养吾“浩然”则以督脉养气并由外关、阳谷发剑。
 
+阴阳性质落地 AR-18 保持现有动作末端，改写四条原有冲突路线，并因葵花宝典由阴改阳同步改写其两条绝招路线：百变千幻两路与黑木崖剑法改用阴跷、阴维、足三阴／手三阴体段后再接持械手穴；七弦齐鸣以阴脉体段驱动琴音并由中冲收束；葵花两路则改走督脉、阳跷／阳维与手三阳体段。六路均只换穴位，段数、逐段 CT、风险列表、路线用途与收招合计不变；全部路线与穴位选择均为**（原创扩展）**。
+
+同次性质联动把 8 条普通路线由模板改为 §15.4 的显式序列：紫霞两路以任／督及阴阳跷维配平；吸星三路以冲、带承接并令阴阳体段配平；葵花飞针与鬼魅行改用阳性体段但保留少商发针、曲泽收身；五仙护体以任督和手阴阳配平。八路均保留原动作关键末端、段数、逐段 CT／风险、用途与收招合计；显式序列与全仓其他普通路线无完全相同或新增 ≥80% 配对。
+
 #### 路线叙事第三轮核算镜像
 
-显式步骤仍只见文首索引；本表冻结本轮改线后的叙事、段数与数值核算，避免绑定表只写“见文首索引”时遗漏收招或风险。风险总和均由右列逐项相加，收招合计均为 `recovery 1200 + 路线 CT`。
+绝招步骤见文首索引，普通路线见 §15.4；本表冻结本轮改线后的叙事、段数与数值核算，避免绑定表只写索引时遗漏收招或风险。风险总和均由右列逐项相加，收招合计为各招自身 `recovery + 路线 CT`。
 
 | 路线 ID | 核心段与动作末端 | 模板代号 | 段数 | 路线 CT | 收招合计 | 总风险 | 风险列表 |
 |---|---|---|---:|---:|---:|---:|---|
@@ -1284,6 +1288,20 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | `mfr_songshanjianfa_kaimen` | 腰阳关提劲，经阳维、手三阳开门；末两段支沟→阳池收剑 | 见文首索引 | 6 | `6×100=600` | `1200+600=1800` | 900 | `[100,120,140,160,180,200]` |
 | `mfr_riyuejianfa_yueluo` | 带脉横转，阴维／阴经敛势；末两段内关→外关收剑 | 见文首索引 | 6 | `6×100=600` | `1200+600=1800` | 900 | `[100,120,140,160,180,200]` |
 | `mfr_yangwujian_haoran` | 督脉养气上提，经天髎贯臂；末两段外关→阳谷发剑 | 见文首索引 | 6 | `6×100=600` | `1200+600=1800` | 900 | `[100,120,140,160,180,200]` |
+| `mfr_baibianqianhuan_shisanshi` | 阴跷、阴维与足三阴藏势；末三段外关→阳谷→合谷收剑 | 见文首索引 | 8 | `8×90=720` | `1200+720=1920` | 1360 | `[100,120,140,160,180,200,220,240]` |
+| `mfr_baibianqianhuan_baibian` | 阴跷、阴维与手足三阴换势；末三段天井→外关→腕骨收剑 | 见文首索引 | 8 | `8×90=720` | `1200+720=1920` | 1360 | `[100,120,140,160,180,200,220,240]` |
+| `mfr_heimuyajianfa_lingkong` | 阴跷、阴维与足三阴贴崖蓄势；末三段外关→阳谷→合谷收剑 | 见文首索引 | 8 | `8×90=720` | `1200+720=1920` | 1360 | `[100,120,140,160,180,200,220,240]` |
+| `mfr_qixianwuxingjian_qiming` | 阴跷、阴维与手足三阴蓄音；任脉膻中承声，末两段内关→中冲导琴劲 | 见文首索引 | 8 | `8×90=720` | `1200+720=1920` | 1360 | `[100,120,140,160,180,200,220,240]` |
+| `mfr_kuihua_cimu` | 督脉提速，经阳跷、阳维与手三阳穿腕；末三段大陵→内关→中冲点刺 | 见文首索引 | 10 | `10×70=700` | `1200+700=1900` | 1410 | `[110,120,130,140,130,140,150,160,160,170]` |
+| `mfr_kuihua_wanzhen` | 督脉起势，经阳跷、阳维、足少阳与手三阳布针；末三段合谷→内关→少商发针 | 见文首索引 | 10 | `10×80=800` | `1200+800=2000` | 1900 | `[100,120,140,160,180,200,220,240,260,280]` |
+| `mfr_zixiashengong_chaoyang` | 任脉、阴跷与督脉相济；末两段神道→百会收束 | AR-18 显式 | 4 | `4×75=300` | `900+300=1200` | 340 | `[70,80,90,100]` |
+| `mfr_zixiashengong_huti` | 任脉、阴跷／厥阴与督脉、阳维配平；百会护体 | AR-18 显式 | 6 | `6×90=540` | `900+540=1440` | 610 | `[80,90,100,120,100,120]` |
+| `mfr_xixing_xixing` | 冲、带承接，督脉／外关与手太阴配平；尺泽→少商吸劲 | AR-18 显式 | 6 | `6×75=450` | `1000+450=1450` | 640 | `[100,100,100,120,100,120]` |
+| `mfr_xixing_fanxi` | 任脉、阴跷承受来劲，督脉／外关反转；曲泽收束 | AR-18 显式 | 6 | `6×90=540` | `900+540=1440` | 610 | `[80,90,100,120,100,120]` |
+| `mfr_xixing_huajie` | 任脉起势，冲、带承接，督脉与合谷转化；曲泽收束 | AR-18 显式 | 6 | `6×90=540` | `1000+540=1540` | 610 | `[80,90,100,120,100,120]` |
+| `mfr_kuihua_feizhen` | 督脉、阳跷／阳维提速，经外关、腕骨导引；少商发针 | AR-18 显式 | 6 | `6×75=450` | `1000+450=1450` | 640 | `[100,100,100,120,100,120]` |
+| `mfr_kuihua_guimei` | 涌泉起步，经足太阳、阳跷与督脉腾挪；曲泽收身 | AR-18 显式 | 6 | `6×65=390` | `800+390=1190` | 570 | `[70,80,90,100,110,120]` |
+| `mfr_wuxianbaidugong_huti` | 任督与手阴阳各一相济；合谷→少商护体 | AR-18 显式 | 4 | `4×75=300` | `900+300=1200` | 340 | `[70,80,90,100]` |
 
 ### 15.2 展开路线模板
 
@@ -1340,9 +1358,9 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | 〃 | `mv_dugu9_poanqi` | `mfr_dugu9_poanqi` | 是／见下表；`ultimate:true` |
 | 〃 | `mv_dugu9_poqi` | `mfr_dugu9_poqi` | 是／见下表；`ultimate:true` |
 | 〃 | `mv_dugu9_wuzhao` | `mfr_dugu9_wuzhao` | 是／见文首索引；`ultimate:true` |
-| `sk_zixiashengong` | `mv_zixiashengong_chaoyang` | `mfr_zixiashengong_chaoyang` | 否／D4Y |
+| `sk_zixiashengong` | `mv_zixiashengong_chaoyang` | `mfr_zixiashengong_chaoyang` | 否／见 §15.4 AR-18 普通招式显式路线 |
 | 〃 | `mv_zixiashengong_guangri` | `mfr_zixiashengong_guangri` | 是／见下表；`ultimate:true` |
-| 〃 | `mv_zixiashengong_huti` | `mfr_zixiashengong_huti` | 否／D6Y |
+| 〃 | `mv_zixiashengong_huti` | `mfr_zixiashengong_huti` | 否／见 §15.4 AR-18 普通招式显式路线 |
 | 〃 | `mv_zixiashengong_changkong` | `mfr_zixiashengong_changkong` | 是／见文首索引；`ultimate:true` |
 | `sk_taiyuesanqingfeng` | `mv_taiyuesanqingfeng_yifeng` | `mfr_taiyuesanqingfeng_yifeng` | 否／A4H |
 | 〃 | `mv_taiyuesanqingfeng_erfeng` | `mfr_taiyuesanqingfeng_erfeng` | 否／A4H |
@@ -1376,13 +1394,13 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 
 | 武学 | moveRef | 路线 id | 绝／模板 |
 |---|---|---|---|
-| `sk_xixing` | `mv_xixing_xixing` | `mfr_xixing_xixing` | 否／A6I |
-| 〃 | `mv_xixing_fanxi` | `mfr_xixing_fanxi` | 否／D6I |
+| `sk_xixing` | `mv_xixing_xixing` | `mfr_xixing_xixing` | 否／见下表 |
+| 〃 | `mv_xixing_fanxi` | `mfr_xixing_fanxi` | 否／见下表 |
 | 〃 | `mv_xixing_sangong` | `mfr_xixing_sangong` | 是／见下表；`ultimate:true` |
 | 〃 | `mv_xixing_wanliu` | `mfr_xixing_wanliu` | 是／见文首索引；`ultimate:true` |
-| 〃 | `mv_xixing_huajie` | `mfr_xixing_huajie` | 否／D6I |
-| `sk_kuihua` | `mv_kuihua_feizhen` | `mfr_kuihua_feizhen` | 否／A6I |
-| 〃 | `mv_kuihua_guimei` | `mfr_kuihua_guimei` | 否／M6I |
+| 〃 | `mv_xixing_huajie` | `mfr_xixing_huajie` | 否／见下表 |
+| `sk_kuihua` | `mv_kuihua_feizhen` | `mfr_kuihua_feizhen` | 否／见下表 |
+| 〃 | `mv_kuihua_guimei` | `mfr_kuihua_guimei` | 否／见下表 |
 | 〃 | `mv_kuihua_cimu` | `mfr_kuihua_cimu` | 是／见下表；`ultimate:true` |
 | 〃 | `mv_kuihua_wanzhen` | `mfr_kuihua_wanzhen` | 是／见文首索引；`ultimate:true` |
 | `sk_heimuyajianfa` | `mv_heimuyajianfa_yatu` | `mfr_heimuyajianfa_yatu` | 否／A4I |
@@ -1406,9 +1424,24 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | 〃 | `mv_qingchengcuixinzhang_yinzhang` | `mfr_qingchengcuixinzhang_yinzhang` | 否／见下表 |
 | 〃 | `mv_qingchengcuixinzhang_duanmai` | `mfr_qingchengcuixinzhang_duanmai` | 是／见文首索引；`ultimate:true` |
 | `sk_wuxianbaidugong` | `mv_wuxianbaidugong_cuizhang` | `mfr_wuxianbaidugong_cuizhang` | 否／见下表 |
-| 〃 | `mv_wuxianbaidugong_huti` | `mfr_wuxianbaidugong_huti` | 否／D4I |
+| 〃 | `mv_wuxianbaidugong_huti` | `mfr_wuxianbaidugong_huti` | 否／见下表 |
 | 〃 | `mv_wuxianbaidugong_duyin` | `mfr_wuxianbaidugong_duyin` | 否／见下表 |
 | 〃 | `mv_wuxianbaidugong_wangu` | `mfr_wuxianbaidugong_wangu` | 是／见文首索引；`ultimate:true` |
+
+#### AR-18 普通招式显式路线
+
+下列路线覆盖 §15.2 通用模板：保留改前模板的出招方式、动作关键末端、段数、逐段 CT、逐段风险与路线用途，只调整体段使路线性质匹配所属武学；均为**（原创扩展）**。
+
+| 武学 | moveRef | 路线 ID | ultimate / purpose / requiredNature | 显式 steps（`acupointRef/segmentCt/riskBp`） | 段数 | 路线 CT |
+|---|---|---|---|---|---:|---:|
+| `sk_zixiashengong` | `mv_zixiashengong_chaoyang` | `mfr_zixiashengong_chaoyang` | `false` / `defense` / `[yin,yang,harmony]` | `ap_renmai_qihai/75/70 → ap_yinqiao_zhaohai/75/80 → ap_dumai_shendao/75/90 → ap_dumai_baihui/75/100` | 4 | 300 |
+| `sk_zixiashengong` | `mv_zixiashengong_huti` | `mfr_zixiashengong_huti` | `false` / `defense` / `[yin,yang,harmony]` | `ap_renmai_qihai/90/80 → ap_yinqiao_jiaoxin/90/90 → ap_shoujueyin_neiguan/90/100 → ap_dumai_mingmen/90/120 → ap_yangwei_tianliao/90/100 → ap_dumai_baihui/90/120` | 6 | 540 |
+| `sk_xixing` | `mv_xixing_xixing` | `mfr_xixing_xixing` | `false` / `attack` / `[yin,yang,harmony]` | `ap_chongmai_qichong/75/100 → ap_daimai_weidao/75/100 → ap_dumai_mingmen/75/100 → ap_shoushaoyang_waiguan/75/120 → ap_shoutaiyin_chize/75/100 → ap_shoutaiyin_shaoshang/75/120` | 6 | 450 |
+| `sk_xixing` | `mv_xixing_fanxi` | `mfr_xixing_fanxi` | `false` / `defense` / `[yin,yang,harmony]` | `ap_renmai_qihai/90/80 → ap_yinqiao_zhaohai/90/90 → ap_dumai_mingmen/90/100 → ap_dumai_zhiyang/90/120 → ap_shoushaoyang_waiguan/90/100 → ap_shoujueyin_quze/90/120` | 6 | 540 |
+| `sk_xixing` | `mv_xixing_huajie` | `mfr_xixing_huajie` | `false` / `defense` / `[yin,yang,harmony]` | `ap_renmai_zhongwan/90/80 → ap_chongmai_qichong/90/90 → ap_daimai_weidao/90/100 → ap_dumai_shendao/90/120 → ap_shouyangming_hegu/90/100 → ap_shoujueyin_quze/90/120` | 6 | 540 |
+| `sk_kuihua` | `mv_kuihua_feizhen` | `mfr_kuihua_feizhen` | `false` / `attack` / `[yang,harmony]` | `ap_dumai_mingmen/75/100 → ap_yangqiao_shenmai/75/100 → ap_yangwei_tianliao/75/100 → ap_shoushaoyang_waiguan/75/120 → ap_shoutaiyang_wangu/75/100 → ap_shoutaiyin_shaoshang/75/120` | 6 | 450 |
+| `sk_kuihua` | `mv_kuihua_guimei` | `mfr_kuihua_guimei` | `false` / `movement` / `[yang,harmony]` | `ap_zushaoyin_yongquan/65/70 → ap_zutaiyang_weizhong/65/80 → ap_yangqiao_fuyang/65/90 → ap_yangqiao_shenmai/65/100 → ap_dumai_mingmen/65/110 → ap_shoujueyin_quze/65/120` | 6 | 390 |
+| `sk_wuxianbaidugong` | `mv_wuxianbaidugong_huti` | `mfr_wuxianbaidugong_huti` | `false` / `defense` / `[yin,yang,harmony]` | `ap_renmai_qihai/75/70 → ap_dumai_mingmen/75/80 → ap_shouyangming_hegu/75/90 → ap_shoutaiyin_shaoshang/75/100` | 4 | 300 |
 
 #### 外放普通招式显式路线
 
@@ -1421,8 +1454,8 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | `sk_qixianwuxingjian` | `mv_qixianwuxingjian_fanyin` | `mfr_qixianwuxingjian_fanyin` | `[yin,harmony]` | `ap_shoutaiyin_yunmen/70/90 → ap_shoutaiyin_chize/70/90 → ap_shoutaiyin_taiyuan/70/90 → ap_shoutaiyin_shaoshang/70/90` | 4 | 280 |
 | `sk_qixianwuxingjian` | `mv_qixianwuxingjian_luanxian` | `mfr_qixianwuxingjian_luanxian` | `[yin,harmony]` | `ap_shoutaiyin_yunmen/70/90 → ap_shoutaiyin_chize/70/90 → ap_shoujueyin_neiguan/70/90 → ap_shoujueyin_laogong/70/90` | 4 | 280 |
 | `sk_qingchengcuixinzhang` | `mv_qingchengcuixinzhang_yinzhang` | `mfr_qingchengcuixinzhang_yinzhang` | `[yin,harmony]` | `ap_zujueyin_xingjian/70/90 → ap_zujueyin_taichong/70/90 → ap_shoujueyin_neiguan/70/90 → ap_shoujueyin_laogong/70/90` | 4 | 280 |
-| `sk_wuxianbaidugong` | `mv_wuxianbaidugong_cuizhang` | `mfr_wuxianbaidugong_cuizhang` | `[yin,harmony]` | `ap_zujueyin_ligou/70/90 → ap_zujueyin_zhongfeng/70/90 → ap_shoujueyin_neiguan/70/90 → ap_shoujueyin_laogong/70/90` | 4 | 280 |
-| `sk_wuxianbaidugong` | `mv_wuxianbaidugong_duyin` | `mfr_wuxianbaidugong_duyin` | `[yin,harmony]` | `ap_zujueyin_ququan/70/90 → ap_zujueyin_xingjian/70/90 → ap_shoujueyin_quze/70/90 → ap_shoujueyin_zhongchong/70/90` | 4 | 280 |
+| `sk_wuxianbaidugong` | `mv_wuxianbaidugong_cuizhang` | `mfr_wuxianbaidugong_cuizhang` | `[yin,yang,harmony]` | `ap_zujueyin_ligou/70/90 → ap_zujueyin_zhongfeng/70/90 → ap_shoujueyin_neiguan/70/90 → ap_shoujueyin_laogong/70/90` | 4 | 280 |
+| `sk_wuxianbaidugong` | `mv_wuxianbaidugong_duyin` | `mfr_wuxianbaidugong_duyin` | `[yin,yang,harmony]` | `ap_zujueyin_ququan/70/90 → ap_zujueyin_xingjian/70/90 → ap_shoujueyin_quze/70/90 → ap_shoujueyin_zhongchong/70/90` | 4 | 280 |
 
 #### 同门第二／第三绝招显式路线
 
@@ -1500,29 +1533,29 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 
 | 内功 | breathProfileRef | g／性质／scope | innerGuard | 满层基础调息 `relief/repair` |
 |---|---|---|---|---|
-| `sk_zixiashengong` | `txp_zixiashengong` | 9／yang／3 | `{enabled:true,reflectBp:0}` | `2200/516`；`outOfBattleScaleBp:15000` |
-| `sk_huashanxinfa` | `txp_huashanxinfa` | 6／harmony／2 | `{enabled:true,reflectBp:0}` | `floor(1900×1.05)=1995/floor(444×1.05)=466`；`outOfBattleScaleBp:15000` |
-| `sk_huashantuna` | `txp_huashantuna` | 3／harmony／1 | `{enabled:true,reflectBp:0}` | `floor(1600×1.05)=1680/floor(372×1.05)=390`；`outOfBattleScaleBp:15000` |
+| `sk_zixiashengong` | `txp_zixiashengong` | 9／harmony／3 | `{enabled:true,reflectBp:0}` | `floor(2200×1.05)=2310/floor(516×1.05)=541`；`outOfBattleScaleBp:15000` |
+| `sk_huashanxinfa` | `txp_huashanxinfa` | 6／yin／2 | `{enabled:true,reflectBp:0}` | `1900/444`；`outOfBattleScaleBp:15000` |
+| `sk_huashantuna` | `txp_huashantuna` | 3／yin／1 | `{enabled:true,reflectBp:0}` | `1600/372`；`outOfBattleScaleBp:15000` |
 | `sk_hanbingzhenqi` | `txp_hanbingzhenqi` | 9／yin／3 | `{enabled:true,reflectBp:0}` | `2200/516`；`outOfBattleScaleBp:15000` |
 | `sk_songyangxinfa` | `txp_songyangxinfa` | 6／yang／2 | `{enabled:true,reflectBp:0}` | `1900/444`；`outOfBattleScaleBp:15000` |
 | `sk_songyangtuna` | `txp_songyangtuna` | 3／yang／1 | `{enabled:true,reflectBp:0}` | `1600/372`；`outOfBattleScaleBp:15000` |
-| `sk_taishanxinfa` | `txp_taishanxinfa` | 5／harmony／2 | `{enabled:true,reflectBp:0}` | `floor(1800×1.05)=1890/floor(420×1.05)=441`；`outOfBattleScaleBp:15000` |
-| `sk_taishantuna` | `txp_taishantuna` | 3／harmony／1 | `{enabled:true,reflectBp:0}` | `1680/390`；`outOfBattleScaleBp:15000` |
+| `sk_taishanxinfa` | `txp_taishanxinfa` | 5／yang／2 | `{enabled:true,reflectBp:0}` | `1800/420`；`outOfBattleScaleBp:15000` |
+| `sk_taishantuna` | `txp_taishantuna` | 3／yang／1 | `{enabled:true,reflectBp:0}` | `1600/372`；`outOfBattleScaleBp:15000` |
 | `sk_hengshanxinfa` | `txp_hengshanxinfa` | 5／yin／2 | `{enabled:true,reflectBp:0}` | `1800/420`；`outOfBattleScaleBp:15000` |
 | `sk_hengshantuna` | `txp_hengshantuna` | 3／yin／1 | `{enabled:true,reflectBp:0}` | `1600/372`；`outOfBattleScaleBp:15000` |
-| `sk_hengshanbeixinfa` | `txp_hengshanbeixinfa` | 5／harmony／2 | `{enabled:true,reflectBp:0}` | `1890/441`；`outOfBattleScaleBp:15000` |
-| `sk_hengshanbeituna` | `txp_hengshanbeituna` | 3／harmony／1 | `{enabled:true,reflectBp:0}` | `1680/390`；`outOfBattleScaleBp:15000` |
+| `sk_hengshanbeixinfa` | `txp_hengshanbeixinfa` | 5／yin／2 | `{enabled:true,reflectBp:0}` | `1800/420`；`outOfBattleScaleBp:15000` |
+| `sk_hengshanbeituna` | `txp_hengshanbeituna` | 3／yin／1 | `{enabled:true,reflectBp:0}` | `1600/372`；`outOfBattleScaleBp:15000` |
 
 | 内功 | breathProfileRef | g／性质／scope | innerGuard | 满层基础调息 `relief/repair` |
 |---|---|---|---|---|
-| `sk_xixing` | `txp_xixing` | 11／yin／3 | `{enabled:true,reflectBp:0}` | `2400/564`；`outOfBattleScaleBp:15000` |
-| `sk_kuihua` | `txp_kuihua` | 11／yin／3 | `{enabled:true,reflectBp:0}` | `2400/564`；`outOfBattleScaleBp:15000` |
-| `sk_riyuexinfa` | `txp_riyuexinfa` | 6／yin／2 | `{enabled:true,reflectBp:0}` | `1900/444`；`outOfBattleScaleBp:15000` |
-| `sk_heimutuna` | `txp_heimutuna` | 3／yin／1 | `{enabled:true,reflectBp:0}` | `1600/372`；`outOfBattleScaleBp:15000` |
+| `sk_xixing` | `txp_xixing` | 11／harmony／3 | `{enabled:true,reflectBp:0}` | `clamp(floor(2400×1.05),500,2500)=2500/floor(564×1.05)=592`；`outOfBattleScaleBp:15000` |
+| `sk_kuihua` | `txp_kuihua` | 11／yang／3 | `{enabled:true,reflectBp:0}` | `2400/564`；`outOfBattleScaleBp:15000` |
+| `sk_riyuexinfa` | `txp_riyuexinfa` | 6／harmony／2 | `{enabled:true,reflectBp:0}` | `floor(1900×1.05)=1995/floor(444×1.05)=466`；`outOfBattleScaleBp:15000` |
+| `sk_heimutuna` | `txp_heimutuna` | 3／harmony／1 | `{enabled:true,reflectBp:0}` | `floor(1600×1.05)=1680/floor(372×1.05)=390`；`outOfBattleScaleBp:15000` |
 | `sk_biaojuxinfa` | `txp_biaojuxinfa` | 3／yang／1 | `{enabled:true,reflectBp:0}` | `1600/372`；`outOfBattleScaleBp:15000` |
 | `sk_qingchengxinfa` | `txp_qingchengxinfa` | 5／yin／2 | `{enabled:true,reflectBp:0}` | `1800/420`；`outOfBattleScaleBp:15000` |
 | `sk_qingchengtuna` | `txp_qingchengtuna` | 3／yin／1 | `{enabled:true,reflectBp:0}` | `1600/372`；`outOfBattleScaleBp:15000` |
-| `sk_wuxianbaidugong` | `txp_wuxianbaidugong` | 7／yin／3 | `{enabled:true,reflectBp:0}` | `2000/468`；`outOfBattleScaleBp:15000` |
+| `sk_wuxianbaidugong` | `txp_wuxianbaidugong` | 7／harmony／3 | `{enabled:true,reflectBp:0}` | `floor(2000×1.05)=2100/floor(468×1.05)=491`；`outOfBattleScaleBp:15000` |
 | `sk_wuxiantuna` | `txp_wuxiantuna` | 3／yin／1 | `{enabled:true,reflectBp:0}` | `1600/372`；`outOfBattleScaleBp:15000` |
 
 满层验算统一为 `relief=clamp(floor((500+100g+80×10)×natureBp/10000),500,2500)`、`repair=floor((120+24g+18×10)×natureBp/10000)`。`enabled:true` 只表示主运具备护体档，仍须合法自然护体短路或 defense 路线；封路／胀损不能绕过。本文 21 门内功均无既有“固定伤害反震”语义，故 `reflectBp:0`；寒冰近身施寒与吸星反吸继续走原效果钩子，不冒充反震。抵消顺序、拳脚／兵器／暗器／外放适用率、`1 MP:2 伤害` 与击穿迟滞只引用 `design/21` §4.8。
@@ -1640,6 +1673,7 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | WU-V20 | 外放路线与覆盖 | 13 条 `projected` 路线各至少含 `design/21` §4.4.1.4 白名单穴，且掌／指／持械／音劲末端符合 §4.2.1；审计表按 `moveId` 严格排序、结论计数为 13，天／地／玄／黄为 1／10／2／0 |
 | WU-V21 | AR-17 音功分支 | 六记伤敌音功均同时含 `tags:[sonic]` 与 `projection:true`；0 档固定 `projectionBoostActive=false`、基础 `aoe/range`、零外放增耗并走普通 Z5M，1／2 档才启用外放曲线与扩张；清音、合奏支援和实体笔招不得误标 |
 | WU-V22 | 动作末端与跨武学多样性 | 对41条绝招路线按 `design/21` §4.3.1 校验；掌含劳宫、指含指端、腿含足三阳、持械含腕部导引、内功攻击含任／督，动作端点位于末三段；全仓跨武学完全同序列为0；本册内不同武学穴位集合重合≥80%的路线对为0；跨册≥80%重合按 `design/21` §4.3.4 第3条只报警告、人工复核 |
+| WU-V23 | AR-18 阴阳性质 | 21 门内功均有 `inner.meridians`，声明 `nature` 与逐脉计票结果一致；路线剔除动作出口段后按体段逐穴计票，41 条绝招路线不得与所属武学性质冲突；冲脉、带脉暂按 AR-18a 不投票 |
 
 ### 17.2 金标准测试用例
 
@@ -1662,11 +1696,12 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | WU-T15 | 地阶比例 | 扫描12门地阶的 `vow/cost/requiredCombo/enemyOnly` | 代价/誓约0，必需合击0，敌用0；均满足上限 |
 | WU-T16 | 路线覆盖 | 删除 `mv_dugu9_pojian` 的绑定、任一玄上绝招路线，或把 `mfr_dugu9_wuzhao` 的绝招镜像改假 | WU-V16 失败并定位缺项／真值漂移 |
 | WU-T17 | 收招上界 | `recovery=1200` 的天阶绝招配 A10*，地阶绝招配 A8* | 分别为 `1200+800=2000`、`1200+640=1840`，均合法 |
-| WU-T18 | 速度与调息 | 标准对标准运行衡山云雾步；紫霞神功 9 品满层调息 | 前者 `meridianSpeedBp=10000` 且 `Q_skill` 不变；后者基础 `2200/516/scope3` |
+| WU-T18 | 速度与调息 | 标准对标准运行衡山云雾步；紫霞神功 9 品满层调息 | 前者 `meridianSpeedBp=10000` 且 `Q_skill` 不变；后者基础 `2310/541/scope3` |
 | WU-T19 | 外放形状与作者夹具 | 解析 §13.5 的 13 条 `projected`；分别以标准、高、顶尖档加载破气式与万蛊朝宗 | 所有条目通过 WU-V19；破气式为射程 1/3/5、线 n1/n2/n3，万蛊朝宗为射程 2/4/6、圆盘 r2/r3/r4 |
 | WU-T20 | 外放反例与端点 | 扫描葵花飞针／万针、独孤其余近身式、周身寒潮、位移与护体；再逐条展开 13 条外放路线 | 前者均不因远程或招名误标；后者均为 attack 且至少命中一个合法端点，外放字段与审计结论一致 |
 | WU-T21 | 音功 0→1 档切换 | 分别以 `projectionStep=0/1` 加载泛音、乱弦、七弦齐鸣、无形剑气、沧海和声、天地同声 | 0 档保持正文基础范围、额外耗内 0、普通 Z5M；1 档才取第二项 `projectionSpreadSteps`、额外耗内 2% MPREF 与外放 Z5M；全场招形状不变但威力分支切换 |
 | WU-T22 | 末端回归 | 将任一持械绝招的腕部导引穴移出末三段，或从摧心掌·断脉删除劳宫 | WU-V22 失败并定位 `tail` 或 `missing`；不得靠改写招式类别规避 |
+| WU-T23 | 阴阳性质回归 | 将葵花宝典 `nature` 改回 `yin`，或将百变千幻任一路体段替换为阳脉穴 | WU-V23 失败并分别定位 `INNER_NATURE` 或 `DELIVERY rule=nature-conflict`；动作出口段不参加路线性质投票 |
 
 ---
 
@@ -1693,8 +1728,8 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | `design/09`、`design/10` | 曲谱合奏流程；绣花针、七弦琴装备联动 |
 | `design/17` §1、§3、§6、§8–§9 | 九个 `sect_*`、笑傲时代 `O` 状态与 T01/T02/T03/T05B/T06 职级模板 |
 | `rulings-v1` C14–C17、C22–C23、§3–§5 | 图鉴边界、门派 ID、结构化前置、双持字段边界、套装闭合与 Buff 名录 |
-| `author-requirements` AR-01–03、AR-07–08、AR-14–AR-17 | 4/12/36/36、内功性质、经脉引用、五级职级、门派总表、独立经脉乘区与逐单位实例，以及音功外放 0 档分支 |
-| `design/21` §3–§12、§16.2、§18.6 | 攻／防／速度路线、护体内劲、调息、逐单位 `MeridianFlowModule` 的 schema 与算法依据；具体 `mfr_*`／`txp_*` 实例依 Canon V13-C01 归本文 |
+| `author-requirements` AR-01–03、AR-07–08、AR-14–AR-18 | 4/12/36/36、主修经脉阴阳、经脉引用、五级职级、门派总表、独立经脉乘区与逐单位实例，以及音功外放 0 档分支 |
+| `design/21` §2.4、§3–§12、§16.2、§18.6 | 攻／防／速度路线、动作出口排除后的路线性质计票、护体内劲、调息、逐单位 `MeridianFlowModule` 的 schema 与算法依据；具体 `mfr_*`／`txp_*` 实例依 Canon V13-C01 归本文 |
 
 ### 18.3 对基准的修改提案
 
@@ -1730,6 +1765,8 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | WU-O07 | 已解决：`mfr_*`／`txp_*` 何时可进入生产数据？ | Canon v1.3 已接纳 M2-P01，V13-C01 已明确图鉴实例归属；按本文稳定 ID 装载，不按显示名临时生成 | 与地图 `route_*`、Buff `bf_*` 保持隔离 |
 | WU-O08 | 绝招数量调整是否新增招名？ | **已解决：**只升格既有招式；统一裁定后天9、地17、玄上15，新招式0，玄中以下不设绝招 | 见 `decisions/ultimate-counts-tianzhong-dizhong.md` §3；保持原著边界与既有目录稳定 |
 | WU-O09 | 无形剑气原卡“不穿墙”与 `tags:[sonic]` 的视线规则冲突，是否保留例外？ | 默认按 `design/05` §4.4／`design/09` §5.5 执行：`sonic` 无视遮挡，正文不再保留“不穿墙” | 若作者要保留“不穿墙”，须由 05／09 增设 `sonic` 视线例外字段；本文不自造字段 |
+| WU-O10 | AR-18a：冲脉、带脉是否参与内功与路线性质投票？ | 默认不投票；只修冲／带或无有效票时取 `harmony` | 作者若改为投票，吸星、日月心法、黑木吐纳等性质及其调息／路线门槛须重算 |
+| WU-O11 | AR-18b：后溪是否加入外放 13 端点白名单？ | 默认不加入；本册外放路线继续命中既有白名单端点 | 作者若加入，仅放宽出口合法性，不自动改写现有路线 |
 
 ### 18.6 需下游同步
 
