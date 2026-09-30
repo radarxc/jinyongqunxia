@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.8；作者新增需求与决定见 `decisions/author-requirements.md`（含 AR-18）、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；主线唯一事实源为 `design/story/14-xueshan.md`。
 > 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05` 与 `design/catalog/skills-qianlong.md`、`skills-general.md`、`skills-bulu-13-feihu.md`、`skills-bulu-14-xueshan.md`；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备与神兵 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、结局与余韵 → `design/13`；穴位、冲穴、通脉、周天与九转 → `design/15`；战斗经脉、招式路线、护体内劲、绝招补充、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承 → `design/20`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.1（D14，2026-09-26）；审校 D14.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；多人整场耐久与完整对手补漏（2026-09-29）；阴阳性质同步 AR-18（2026-09-30）。
+> 版本：v1.1（D14，2026-09-26）；审校 D14.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；多人整场耐久与完整对手补漏（2026-09-29）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
 
 ---
 
@@ -999,7 +999,7 @@ rashomonDossier:
   derivedFlags: [fl_14_truth_poison_order]
 ```
 
-`sys_14_rashomon`、`factKey`、`fragmentKey`、`knowledge` 与版本字段均为本章接口约定**（原创扩展）**；物证实体若需进入背包，必须由 `design/10` 登记 `it_*`，不能把示例局部键冒充物品 ID。
+`sys_14_rashomon`、`factKey`、`fragmentKey`、`knowledge` 与版本字段均为本章接口局部约定**（原创扩展）**；`systemId` 的示例值只在章节父对象内使用，不注册全局 `sys_*`（见基准 §12）。物证实体若需进入背包，必须由 `design/10` 登记 `it_*`，不能把示例局部键冒充物品 ID。
 
 #### 10.1.4 UI 与通用系统接口
 
@@ -1082,7 +1082,7 @@ cliffDecision:
 | 成长 `design/13` | 结局解析器写 `echo_14_xueshan` 并授对应天书；雪山余韵仍显示 Lv58、保留压制 |
 | 后续 | 玩家主动结束余韵后才进入 `ch15_guimeng`，显示真实 Lv70、解除压制，接“天书守卷人”决战；不新建第十五天书 |
 
-`sys_14_cliff_decision` 是章节接口 ID**（原创扩展）**，不替代 story 已给出的规范任务 YAML。两个特色系统都必须保证重放幂等：证词副本、天书、回响、经验、神兵与人物死亡不得因读档重入重复结算。
+`sys_14_cliff_decision` 是章节父对象内的接口局部键**（原创扩展）**，不注册全局 ID，也不替代 story 已给出的规范任务 YAML。两个特色系统都必须保证重放幂等：证词副本、天书、回响、经验、神兵与人物死亡不得因读档重入重复结算。
 
 ---
 
@@ -1241,7 +1241,7 @@ P_actual = G(9) × L(9)
 | B06 | 遭遇级只声明一次 `totalHp=round(150048×0.75)=112536`；赛总管与 X07 苗人凤互斥承接首领槽，两波援军各用 1 名精英模板 | 两波援军和号令 / 围网目标均消费同一总耐久；X07 苗人凤先占 00 槽，阵营翻转才把当前余额迁给赛总管；助捕线仍须给阻止处决窗口 |
 | B07 | 苗人凤走 Lv62 `full`，`totalHp=round(184548×0.75)=138411` **【建议值】** | 三阶段锁血；完成救援、双破绽与悬刀选择，不以击杀结算；须过 `design/09` 回放门禁 **（待实测）** |
 
-B01–B04 同样依 `design/09` §8.8.11 分配：按比例新推导的槽先计算精确份额并向下取整，剩余点数按小数余数从大到小各补 1；小数余数并列时依 `unitIndex → phaseIndex → objectiveKey` 裁决，且 `unitIndex=null` 的目标排在数值单位之后。该最大余数规则只用于本轮按比例推导的新分配；已经写定的固定分配（尤其 B05–B07）按原表整数保留，不为统一算法重排。直接指定的整数槽不再二次比例换算；同一伤害不得同时计入 HP 与目标进度。
+B01–B04 的遭遇预算与分支守恒遵循 `design/09` §8.8.11；本章现有比例分配的核算记录为：精确份额先向下取整，再按小数余数从大到小各补 1；并列时依 `unitIndex → phaseIndex → objectiveKey` 排序，`unitIndex=null` 的目标排在数值单位之后。B05 现值同样采用最大余数法，B06 现值则把余数给最后的分支目标；以下保留已写定的整数，不在本章另定全局取整规则。唯一规则由 `design/09` §8.8.11 收口，两种方案的逐槽对照见 `tools/agents/reports/NAuF-book-14.md` §3。直接指定的整数槽不再二次比例换算；同一伤害不得同时计入 HP 与目标进度。
 
 | 遭遇 / 分支 | 稳定分配（运行时初始 HP / 必经等价进度） | 阶段回复 / 新血条 | 合计校验 |
 |---|---|---:|---:|
@@ -1254,7 +1254,7 @@ B01 的三组原子目标随分支等额替换：停手线为三方各自解除�
 
 B03 的 `unitIndex=10` 每场只实例化一名具名 `full` 对手：先过滤“本幕实际在场、当前敌对、确实持卷或参与夺卷”的人物，再按 `npc_pingasi → npc_jingzhidashi → npc_tianqingwen → npc_ruanshizhong → npc_caoyunqi → npc_yinji → npc_xiongyuanxian → npc_zhengsanniang` 取首名；未命中者不得占槽。C03 强抢使用 `seizeTestimony`，Z01 使用 `protectOriginal`，X01 使用 `controlRecords` 或 `escortBaoshu`。宝树转为护送方时，其 49,820 当前余额迁至 `escortBaoshu`；精英未生成、退场或转友时，其 16,607 当前余额迁至本分支目标。每槽至多迁移一次且不回复，故三幕任一可达形态仍只消费 83,033；静智大师、平阿四与天龙门 / 镖局人物均由 §12.6 对应行解析，不存在无来源的“散人精英槽”。B04 同样以单一 HP 余额跨两阶段，锁血转目标时只迁移剩余值；无回复、复起或新血条。B01–B04 均须提交低 / 中 / 高配与四难度中配 `BattleReplayV1`，当前 **（待实测）**；静态 `boss_pacing.py` 不替代生产回放。
 
-B05 的稳定分配只写在遭遇级，不向行动者复制。算法为：首领取 4000 bp，其余三名精英与三个目标各取 1000 bp；先向下取整，再按下表稳定顺序把 5 点余数补给小数余数同为 0.8 的前五项。非单位目标以 `unitIndex=null` 表示，并固定排在数值 `unitIndex` 之后：
+B05 的稳定分配只写在遭遇级，不向行动者复制。现值核算为：首领取 4000 bp，其余三名精英与三个目标各取 1000 bp，精确份额为 `41,979.2 + 6×10,494.8`；向下取整后合计 `41,979+6×10,494=104,943`，余 `104,948−104,943=5`。按最大余数法，将这 5 点依下表稳定顺序补给小数余数同为 0.8 的前五项。非单位目标以 `unitIndex=null` 表示，并固定排在数值 `unitIndex` 之后：
 
 | 稳定顺序（`unitIndex → phaseIndex → objectiveKey`） | 类型 / 编成 | 运行时初始 HP / 等价进度 | 阶段回复 / 新血条 | 审计说明 |
 |---|---|---:|---:|---|
@@ -1269,7 +1269,7 @@ B05 的稳定分配只写在遭遇级，不向行动者复制。算法为：首�
 
 Z04 / X04“护图入洞 / 奇货可居”是 B05 的 phase 0，不是免预算的独立单阶段战。刘元鹤以 §12.6 的具名 `full` 精英画像占 `unitIndex=30`；玩家在 Z04 当众揭其夺钗、或 X04 背约使其敌对时，伏击援军提前占 `unitIndex=20`。若刘元鹤同行监看，30 槽先保持冻结；若未触发提前增援，20 槽也保持冻结。进入 Z05 / X05 后，30 槽由刘元鹤继续承接或把当前余额一对一迁给实际清宫 / 军伍行动者，20 槽把当前余额一对一迁给实际山寨 / 散人行动者；已受伤、已完成追逐进度或已迁移的点数不得回复、复制或再次迁移。Z06 / X06 的洞内撤离、护证与控甬道是同一遭遇的 phase 2，继续消费当时七槽余额，不作换幕结算或刷新。救人留证、持契控人、趁乱劫宝三条可达分支共用这张分配；三目标是中性的整场耐久槽，各分支都须以本分支对应的救援 / 控火 / 退路动作消费，不能因阵营翻转再生成血池。整段须以 Z04 / X04 起始快照进入 `BattleReplayV1` 回放门禁 **（待实测）**。
 
-B06 保留原写定的固定整数分配 `56,268 / 16,880 / 16,880 / 22,508`，不再按 5000 / 1500 / 1500 / 2000 bp 的比例取整重排。两波各编成 1 名 Lv58 精英、0 名普通单位；其运行时初始 HP 均为 16,880（静态模板 HP 均为 30,010），不共享波内血条：
+B06 保留原写定的固定整数分配 `56,268 / 16,880 / 16,880 / 22,508`。现值对应 5000 / 1500 / 1500 / 2000 bp：精确份额为 `56,268 / 16,880.4 / 16,880.4 / 22,507.2`，向下取整合计 `112,535`，余 `112,536−112,535=1` 给最后的分支目标，故该目标为 `22,507+1=22,508`；本轮不重排。两波各编成 1 名 Lv58 精英、0 名普通单位；其运行时初始 HP 均为 16,880（静态模板 HP 均为 30,010），不共享波内血条：
 
 | 稳定顺序（`unitIndex → phaseIndex → objectiveKey`） | 类型 / 编成 | 运行时初始 HP / 等价进度 | 阶段回复 / 新血条 |
 |---|---|---:|---:|
@@ -1321,10 +1321,14 @@ B07 为单单位三阶段，同一 `hpMax=138411` 从头消费：第一阶段在
 | B05 宝洞首领（天龙门槽） | 天龙门南 / 北宗 | `sk_tianlongmenxinfa`（地下7，调和） | `sk_guanwaixinfa`（玄下4）、`sk_dantianyangqi`（黄中2） | `sk_tianlonghezongjian`（地下7）、`sk_tianlongzhengdao`（地下7）、`sk_tianlongjian`（玄上6）、`sk_tianlongbeidao`（玄中5） | `7/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:5}` | `0.75 / 1.00` | `27.52→28.57→21.43` | 运行时初始 HP 41,979；全场共享 `104,948` 总耐久 / 目标进度 |
 | B05 镖局精英（每名） | 平通镖局 | `sk_hunyuanfangzhuang`（地下7，调和） | `sk_jianghutuna`（玄中5）、`sk_zhuangxingong`（黄中2） | `sk_sihaibiaodao`（地中8）、`sk_huweiyingqiang`（地下7）、`sk_jiebiaodaofa`（玄上6）、`sk_huyuanquan`（黄中2） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.39` | 1 名，运行时初始 HP 10,495；既有来源覆盖雪山 |
 | B05 山寨 / 散人精英（每名） | 饮马川 / 江湖散承 | `sk_hunyuanfangzhuang`（地下7，调和） | `sk_jianghutuna`（玄中5）、`sk_wuguanxinfa`（玄下4） | `sk_huweiyingqiang`（地下7）、`sk_tongbeijin`（玄上6）、`sk_luoyedao`（玄中5）、`sk_hutiaodaofa`（玄下4） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.47→9.39` | 1 名，运行时初始 HP 10,495；既有来源覆盖雪山 |
-| B05 清宫 / 军伍精英（每名） | 刘元鹤护卫 / 清军 | `sk_baizhanxinfa`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_junzhongdao`（玄上6）、`sk_zhenqijian`（玄上6）、`sk_bianshe`（玄中5） | `8/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.56` | 1 名，运行时初始 HP 10,495；阵营翻转不清动态态 |
-| B06 赛总管 | 清宫 / 军伍 | `sk_baizhanxinfa`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_junzhongdao`（玄上6）、`sk_duanzhenqiang`（玄上6）、`sk_zhenqijian`（玄上6） | `8/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `0.75 / 1.00` | `27.41→28.89→21.67` | 静态倍率用于整场估算；运行时初始 HP 56,268 |
-| B06 援军（每名精英） | 清宫 / 军伍 | `sk_baizhanxinfa`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_junzhongdao`（玄上6）、`sk_duanzhenqiang`（玄上6）、`sk_zhenqijian`（玄上6） | `8/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.56` | 每波 1 名且各自实例；固定分配下第一 / 二波运行时初始 HP 均为 16,880 |
-| B07 苗人凤 | 苗家 | `sk_miaojiaxuangong`（地上9，调和） | `sk_miaojiaxinfa`（玄中5）、`sk_miaojialianqi`（黄上3） | `sk_miaojiajian`（地上9）、`sk_miaojiazhang`（地下7）、`sk_miaojiaquan`（玄上6）、`sk_miaojiajiangong`（黄上3） | `9/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | `0.75 / 1.00` | `27.81→29.20→21.90` | 地位下限 9 / 9 由正式主运达到；B07 为 138,411；X07 助捕只复用配装并占 B06 00 槽 56,268 |
+| B05 清宫 / 军伍精英（每名） | 刘元鹤护卫 / 清军 | `sk_baizhanxinfa`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_junzhongdao`（玄上6）、`sk_zhenqijian`（玄上6，只作首领配装）、`sk_bianshe`（玄中5，只作首领配装） | `8/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.56` | 1 名，运行时初始 HP 10,495；阵营翻转不清动态态 |
+| B06 赛总管 | 清宫 / 军伍 | `sk_baizhanxinfa`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_junzhongdao`（玄上6）、`sk_duanzhenqiang`（玄上6，只作首领配装）、`sk_zhenqijian`（玄上6，只作首领配装） | `8/9；13000/9000/13000；yang；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:4}` | `0.75 / 1.00` | `27.41→28.89→21.67` | 静态倍率用于整场估算；运行时初始 HP 56,268 |
+| B06 援军（每名精英） | 清宫 / 军伍 | `sk_baizhanxinfa`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_junzhongdao`（玄上6）、`sk_duanzhenqiang`（玄上6，只作首领配装）、`sk_zhenqijian`（玄上6，只作首领配装） | `8/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `8.72→9.56` | 每波 1 名且各自实例；固定分配下第一 / 二波运行时初始 HP 均为 16,880 |
+| B07 苗人凤 | 苗家 | `sk_miaojiaxuangong`（地上9，调和） | `sk_miaojiaxinfa`（玄中5）、`sk_miaojialianqi`（黄上3） | `sk_miaojiajian`（地上9）、`sk_miaojiazhang`（地下7）、`sk_miaojiaquan`（玄上6）、`sk_miaojiajiangong`（黄上3） | `9/9；13000/9000/13000；harmony；fullTemplate` | `{meridianComplete:true, smallCycle:true, greatCycle:true, twelveCycle:true, turns:8}` | `0.75 / 1.00` | `27.81→29.20→21.90` | 地位下限 9 / 9 由正式主运达到；轻功见下段；B07 为 138,411；X07 助捕只复用配装并占 B06 00 槽 56,268 |
+
+B07 苗人凤（含 X07 助捕复用画像）的轻功补用 `sk_dengpingdushui`（玄上 6、调和，有效 9 重）**（原创扩展配置）**，见 `skills-general.md` §7.4；其 `sourceChapters:ALL14` 已覆盖雪山，不受外来 −2 品压制。掌握前置 `sk_caoshangfei≥5`，但草上飞不另占当前轻功槽；9 重按基准 §3 中武层数上限执行。常规移动与踏水 / 长距路线、主动渡水绝招均只读该图鉴 §11.6.5 及显式路线索引，H 族门槛兼容调和主运，不由章节另造路线或反推原著师承。7 重解锁的渡水绝招在此可用，`600+1200=1800 CT≤2000`；运行时仍须检查图鉴条件、落点与资源，不能凭位移绕过阶段门。轻功不改主运七参，也不增设耐久；静态 `boss_pacing.py` 不含该轻功速度与行动效果，正式首轮 / CT / 移动、封路降速及阶段门回放仍 **（待实测）**。
+
+军伍配表中的“只作首领配装”也适用于遭遇精英，表示保留敌方配置而不开放玩家本界来源。`sk_duanzhenqiang`、`sk_zhenqijian`、`sk_bianshe` 在 `skills-general.md` §4.1 / §4.3 尚无明确雪山来源登记，逐项按此限制；来源范围交图鉴确认，不以敌方持有反推 `sourceChapters`，本次不改品阶、七参及耐久。
 
 以下人物不是新增固定 Boss，而是会在 B01 / B05、追图、夺卷、可选切磋或围捕分支中成为玩家对手的具名 `full` 行动者。地位下限均取 `G−1=6`，只作构建校验；现行 7 / 8 品主运均已达标。表中默认行只适用于“非首领精英”身份；若田青文、阮士中、曹云奇、殷吉或周云阳占用 B01 / B05 天龙门首领槽，必须改用紧随本表后的分身份映射，不能叠加或混用精英七参。每人只替换其所属槽并继承 `unitIndex`、运行时初始 HP 或余额迁移，不在 §12.4 之外增加第二份耐久。通行补位均为**（原创扩展配置）**，不反推原著师承。
 
@@ -1337,7 +1341,7 @@ B07 为单单位三阶段，同一 `hpMax=138411` 从头消费：第一阶段在
 | 曹云奇 `npc_caoyunqi` | C01–C02、夺卷 / 伏击、B05；天龙门北宗 | `sk_tianlongmenxinfa`（地下7，调和） | `sk_guanwaixinfa`（玄下4）、`sk_dantianyangqi`（黄中2） | `sk_tianlonghezongjian`（地下7）、`sk_tianlongzhengdao`（地下7）、`sk_tianlongjian`（玄上6）、`sk_tianlongbeidao`（玄中5） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `9.39` | 外放 0；C02 以 `full` 施压行动者出招，但 `isDamageTarget=false`、无 HP 槽，只由格挡 / 缴械 / 分隔消费 `stopSiege*`；坠崖只离场 |
 | 殷吉 `npc_yinji` | C01、夺卷 / 伏击、B05；天龙门南宗 | `sk_tianlongmenxinfa`（地下7，调和） | `sk_guanwaixinfa`（玄下4）、`sk_dantianyangqi`（黄中2） | `sk_tianlonghezongjian`（地下7）、`sk_tianlongzhengdao`（地下7）、`sk_tianlongjian`（玄上6）、`sk_tianlongbeidao`（玄中5） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `9.39` | 外放 0；仅为非首领精英画像，首领身份见下表 |
 | 周云阳 `npc_zhouyunyang` | C01 / B05；田归农一系 **（身份待考）** | `sk_tianlongmenxinfa`（地下7，调和；**原创扩展配置**） | `sk_guanwaixinfa`（玄下4）、`sk_dantianyangqi`（黄中2） | `sk_tianlonghezongjian`（地下7）、`sk_tianlongzhengdao`（地下7）、`sk_tianlongjian`（玄上6）、`sk_tianlongbeidao`（玄中5） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `9.39` | 外放 0；身份未核前不据此反写师承；本行为非首领精英画像 |
-| 刘元鹤 `npc_liuyuanhe` | Z / X04–07 追图、夺宝与阵营翻转；清宫 | `sk_baizhanxinfa`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_junzhongdao`（玄上6）、`sk_zhenqijian`（玄上6）、`sk_bianshe`（玄中5） | `8/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `9.56` | 外放 0；Z04 / X04 占 B05 30 槽 10,495，追图不要求击倒，入洞只迁余额 |
+| 刘元鹤 `npc_liuyuanhe` | Z / X04–07 追图、夺宝与阵营翻转；清宫 | `sk_baizhanxinfa`（地中8，阳） | `sk_jundituna`（玄中5）、`sk_junzhangtuna`（黄中2） | `sk_pojunqiangfa`（地上9）、`sk_junzhongdao`（玄上6）、`sk_zhenqijian`（玄上6，只作首领配装）、`sk_bianshe`（玄中5，只作首领配装） | `8/8；10500/7500/10500；yang；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `9.56` | 外放 0；Z04 / X04 占 B05 30 槽 10,495，追图不要求击倒，入洞只迁余额 |
 | 熊元献 `npc_xiongyuanxian` | C01、Z / X04–05；平通镖局 | `sk_hunyuanfangzhuang`（地下7，调和） | `sk_jianghutuna`（玄中5）、`sk_zhuangxingong`（黄中2） | `sk_sihaibiaodao`（地中8）、`sk_huweiyingqiang`（地下7）、`sk_jiebiaodaofa`（玄上6）、`sk_huyuanquan`（黄中2） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `9.39` | 外放 0；占镖局精英槽 |
 | 郑三娘 `npc_zhengsanniang` | C01、Z / X04–05；平通镖局关系 | `sk_hunyuanfangzhuang`（地下7，调和；**原创扩展配置**） | `sk_jianghutuna`（玄中5）、`sk_zhuangxingong`（黄中2） | `sk_sihaibiaodao`（地中8）、`sk_huweiyingqiang`（地下7）、`sk_jiebiaodaofa`（玄上6）、`sk_luoyedao`（玄中5） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `9.39` | 外放 0；第四门只用 `ALL14` 通行刀法，双刀具体武学待纸本核名，占镖局精英槽 |
 | 静智大师 `npc_jingzhidashi` | C01、C03 / Z01 记录争夺；佛门散承 **（寺属待考）** | `sk_hunyuanfangzhuang`（地下7，调和；**原创扩展配置·待补本门武学**） | `sk_jianghutuna`（玄中5）、`sk_dantianyangqi`（黄中2） | `sk_tongbeijin`（玄上6）、`sk_qingfengjian`（玄上6）、`sk_taizuchangquan`（黄上3）、`sk_jianghurumenjian`（黄上3） | `7/8；10500/7500/10500；harmony；schoolCore` | `{meridianComplete:true, smallCycle:true, greatCycle:false, twelveCycle:false, turns:0}` | `1.00 / 1.00` | `9.39` | 外放 0；不冒认少林师承；实际敌对持卷时占 B03 10 槽 16,607 |
@@ -1415,7 +1419,7 @@ AR-18 同步后已用 `python3 tools/balance/boss_pacing.py` 实跑本节 9 组�
 
 未列普通敌人取 `9000/6200/9000`、`routeOnly` 与五里程碑全 0；所有武学型精英须绑定上表确定模板，缺失即构建失败。每个行动者各有独立实例；阶段切换、共享脱离目标或阵营翻转不重建，财货、火源、绳路与证词不实例化。攻防路线分别接 04 Z5M / Z4M；护体真气 → 护体内劲 → `mpGuard` → 气血。速度先乘 `meridianSpeedBp` 再乘 `grappleMoveBp`，首轮冻结 `openingQinggong` 与修正后 `spd`。绝招仅读 `MoveDef.ultimate`；点穴 / 擒拿在伤害后调用 `applyAcupointSeal` / `applyGrapple`；战斗调息不推进第九转。
 
-04 的模板基线仍为 `4.1 / 9.3 / 24.5`，但最终验收以本节逐单位结果为准；Boss 均回到 `21.43–23.68`，精英为 `9.39–9.73`。速度强档 12239 bp / 封路 6500 bp 只影响首轮、CT、移动与纯经脉闪避修正，不另乘伤害；七场具名配置仍须固定 RNG 实战回放 **（待实测）**。
+04 的模板基线仍为 `4.1 / 9.3 / 24.5`；本轮逐单位静态输出展示为 Boss `21.43–23.68`、精英 `9.39–9.73`，后续以当前工具输出判窗，不把这些小数当作构建金标准。速度强档 12239 bp / 封路 6500 bp 只影响首轮、CT、移动与纯经脉闪避修正，不另乘伤害；七场具名配置的最终验收仍须固定 RNG 实战回放 **（待实测）**。
 
 ---
 
@@ -1563,10 +1567,10 @@ AR-18 同步后已用 `python3 tools/balance/boss_pacing.py` 实跑本节 9 组�
 
 #### 遭遇与章节系统（9）
 
-| 类别 | 正式 ID / 接口 ID | 数量与状态 |
+| 类别 | 正式 ID / 接口局部键 | 数量与状态 |
 |---|---|---|
 | Boss 遭遇 | `enc_14_xueluduoxiang`、`enc_14_shuangtongweidou`、`enc_14_baoshuduzheng`、`enc_14_xueyajiuhu`、`enc_14_baocangqunhao`、`enc_14_qingtingfuwang`、`enc_14_miaorenfeng_xueya` | 7 个正式章节遭遇 |
-| 章节系统 | `sys_14_rashomon`、`sys_14_cliff_decision` | 2 个接口 ID；`sys_*` 前缀待基准登记 |
+| 章节系统 | `sys_14_rashomon`、`sys_14_cliff_decision` | **已解决：**2 个章节接口局部键，不注册全局 `sys_*`；见基准 §12、本文 §10 |
 
 ### 上游复用、建议键与禁止项
 
@@ -1618,7 +1622,7 @@ AR-18 同步后已用 `python3 tools/balance/boss_pacing.py` 实跑本节 9 组�
 | XS-V25 | 书眠与归梦 | 只存在 `vid_sleep_13_14`；余韵显示 58 且保留压制；`FN_ENTER` 后显示 70；不存在天书 15 | error |
 | XS-V26 | Markdown 完整 | 表格列数一致，围栏成对，无截断句、空标题或占位词；章节链接目标存在 | error |
 | XS-V27 | Boss / 精英经脉 | 七场实际武学槽与 14 名具名完整对手逐人具有 §12.6 七项参数，层数 ≤9 且 `turns≤8`；双童 / 群豪 / 援军独立实例，纯环境无实例；路线由 `MoveDef` 编译 | error |
-| XS-V28 | 经脉节奏 | 逐单位静态值为 Boss `21.43–23.68`、既有精英 `9.39–9.73`；14 名补漏人物的普通精英画像为 `9.39`（13 名）/ `9.56`（刘元鹤），其中天龙门五人占 B01 / B05 首领槽时必须分别切换为 `23.68 / 21.43`；Z4M / Z5M、护体、速度与控制顺序匹配 `design/21`；固定 RNG 回放仍须过窗 | error |
+| XS-V28 | 经脉节奏 | 按 §12.6 当前七参、里程碑及耐久倍率调用 `boss_pacing.py`，以当次 `estimatedRounds` 检查 Boss `12–25` / 精英 `6–10`；天龙门五人须按 B01 / B05 首领或普通精英身份取唯一输入。文中轮数只为工具输出展示，不作浮点精确相等断言；Z4M / Z5M、护体、速度与控制顺序匹配 `design/21`；固定 RNG 回放仍须过窗 | error |
 | XS-V29 | 旧状态与生产配装 | 运行时不引用旧风雪 / 缠绕状态；首领表每个生产行动者都绑定合法武学外键，解析失败即构建拒绝 | error |
 
 ### 数值金标准
@@ -1636,7 +1640,7 @@ AR-18 同步后已用 `python3 tools/balance/boss_pacing.py` 实跑本节 9 组�
 | XS-T09 | 苗人凤越级 | `Ld=min(70,70,58+4)=62`，且是唯一 `capExempt` |
 | XS-T10 | Lv62 Boss | HP / MP / 双攻 / 双防 = `184548 / 13947 / 4568 / 4184 / 3065 / 2846` |
 | XS-T11 | 苗剑威力 | `P_actual=G(9)×L(9)=2.40×1.40=3.36` |
-| XS-T12 | 苗人凤建议气血 | `round(184548×0.75)=138411`；`29.20×0.75=21.90`，仍须具名 `full` 夹具验证 **（待实测）** |
+| XS-T12 | 苗人凤建议气血 | 整数 HP 精确为 `round(184548×0.75)=138411`；节奏使用 §12.6 输入的当次工具输出检查 `12–25`，约 `21.90` 仅为展示，不以已舍入的 `29.20` 反算；仍须具名 `full` 夹具验证 **（待实测）** |
 | XS-T13 | 五级月钱 / 配给 | 月钱 `1.26/2.52/4.20/6.72/9.24` 两；配给 `0.84/1.68/2.94/4.20/6.30` 两 |
 | XS-T28A | 雪路争盒整场耐久 | `roundHalfUp(87214×0.85)=74132`；`29653+2×11120+3×7413=74132`，三分支等额替换目标 |
 | XS-T28B | 宝树 / 夺卷者两阶段耐久 | `roundHalfUp(110710×0.75)=83033`；`49820+16607+16606=83033`，宝树、唯一实际夺卷者与分支目标只迁余额，无回复 / 新血条 |
@@ -1674,7 +1678,7 @@ AR-18 同步后已用 `python3 tools/balance/boss_pacing.py` 实跑本节 9 组�
 | XS-T30A | 宝树旧稿组内第二条写入失败或以击杀掉落 | 两条秘籍均回滚且不写已领取标记；尸体掉落路径构建拒绝 |
 | XS-T31 | B02 依次尝试攻击双童、曹云奇和其余围攻者，再用格挡 / 缴械 / 分隔完成三次制止并护送双童离场 | 所有攻击均被目标过滤器拒绝且不推进进度；曹云奇仍用 §12.6 `full` 行动表施压；五个互斥目标各结算 2,000，共享进度恰为 10,000 |
 | XS-T34 | 遍历 story C01–C03、Z / X02–08 的具名实战行动者 | 14 名补漏对象逐人命中 §12.6 人物行、人物目录武学栏与合法 `sk_*` 外键；天龙门五人还须按遭遇身份唯一命中 B01 首领 / B05 首领 / 普通精英画像，苗若兰、回忆人物和纯见证者不误生成战斗实例 |
-| XS-T35 | 对 14 名补漏对象逐行运行 `boss_pacing.py` | 普通精英画像为 13 名 `9.3897223569≈9.39`、刘元鹤 `9.5604674044≈9.56`；天龙门五人的 B01 / B05 首领画像另为 `23.6798753955≈23.68 / 21.4301913324≈21.43`；超窗时只调槽位耐久 / 防御 / 阶段，不压经脉 |
+| XS-T35 | 对 14 名补漏对象按 §12.6 身份逐行运行 `boss_pacing.py` | 当次 `estimatedRounds` 落入普通精英 `6–10` 或 B01 / B05 首领 `12–25`；约 `9.39 / 9.56 / 23.68 / 21.43` 只留作本轮显示快照，不硬编码其小数尾数；超窗时只调槽位耐久 / 防御 / 阶段，不压经脉 |
 | XS-T36 | 依次令田青文、阮士中、曹云奇、殷吉、周云阳占 B01 / B05 天龙门首领槽，再以普通精英身份加载 | 每次只命中一个身份画像：B01 为 `7/9, fullTemplate, turns=2, 0.85/1.00`，B05 为 `7/9, fullTemplate, turns=5, 0.75/1.00`，普通精英为 `7/8, schoolCore, turns=0, 1.00/1.00`；不得混用 |
 
 ### 人工验收
@@ -1697,7 +1701,7 @@ AR-18 同步后已用 `python3 tools/balance/boss_pacing.py` 实跑本节 9 组�
 
 | 编号 | 下游 / 归属 | 本文采用的建议值 | 回填条件 |
 |---|---|---|---|
-| XS-D01 | `design/12` / 开局任务数据 | 三个履历键暂为 `opening_14_jieyin`、`opening_14_kuguan`、`opening_14_chuanyi` | 开局背景字段与 ID 前缀进入正式 schema 后回填 |
+| XS-D01 | `design/12` / 开局任务数据 | **命名已解决：**三个履历键 `opening_14_jieyin`、`opening_14_kuguan`、`opening_14_chuanyi` 只作章节局部键，见基准 §12、本文 §2.2 | 不再申请全局前缀；开局背景字段进入正式 schema 后回填生产映射 |
 | XS-D02 | story / `design/12` | 缺 `echo_13_hushixueshu` 时，以“前界持久史笺 + 本界两名独立证人 + 原物复核”满足 `crossBookEvidence` | 跨书事实聚合器有正式 guard 后回填 |
 | XS-D03 | `design/09` / 合击图鉴 | 主角 + 胡斐、主角 + 苗人凤、胡斐 + 苗人凤、平阿四 + 主角四个方向；暂不创建 `cmb_*` | `ComboDef` 审核具体动作、倍率与书影可用性后回填 |
 | XS-D04 | `design/15` / `10` | 高风险冲穴固定救济 `it_dingshendan` 1 枚，每周目本界最多领取一次 | 救济节点、库存和走火回退动作进入正式数据后回填 |
@@ -1715,7 +1719,7 @@ AR-18 同步后已用 `python3 tools/balance/boss_pacing.py` 实跑本节 9 组�
 | `design/story/14-xueshan.md` P14.R | **已解决：**§2、§4、§5 只引用其开局、21 幕、八选择、四锚点与三种悬刀结果 |
 | `design/01` / `02` / `13` | **已解决：**锚点、9 年跨度、书眠 / 压制、天书变体、余韵和归梦终局均只引用上游 |
 | `design/03` / `04` / `09` | **部分解决：**D7 模板、伤害、Boss / 合击规则可用；宝树、胡斐、赛总管、苗人凤的 §12.6 正式 `full` 配装与静态节奏已闭合，仍须生产先天 / 装备夹具和 `BattleReplayV1` 固定种子回放 **（待实测）** |
-| `design/08`、`11`、`19` 与 `design/map/*` | **部分解决：**采用 6 区、12 城、正式地形 / qg 门禁及 `jianghu-ch14.svg`；`cities.yaml` 的旧 19 区映射仍待迁移 |
+| `design/08`、`11`、`19` 与 `design/map/*` | **已解决：**采用 6 区、12 城、正式地形 / qg 门禁及 `jianghu-ch14.svg`；旧 19 区映射已迁至 30 区终态，见本文 §3.5 与当前 `cities.yaml`。两项时代显示名考据仍保留 XS-K01，不再列为区域迁移缺口 |
 | `design/12` / `16` / `17` | **已解决：**任务、五级晋升、资源营生与时代门派矩阵已有规则；本文只登记雪山实例 |
 | `design/18` 与 `catalog/npcs-ch14-xueshan.md` | **已解决：**人物形态、D 级、appearance 与跨书重逢有正式数据；精确生卒未知者仍保持年龄段 |
 | `catalog/skills-qianlong.md`、`skills-general.md`、`skills-bulu-13-feihu.md`、`skills-bulu-14-xueshan.md` | **已解决：**本土基础装配池、宝树两门个人散承、军伍来源及 B01 / B02 / B04 / B05 / B07 正式跨书槽均有图鉴 ID 与雪山来源 |
@@ -1732,10 +1736,10 @@ AR-18 同步后已用 `python3 tools/balance/boss_pacing.py` 实跑本节 9 组�
 
 | 编号 | 提案 | 理由 / 建议落点 |
 |---|---|---|
-| XS-P01 | 基准 §12 的区域格式改为全局稳定 `rg_<拼音>`，章节专属场景用 `sc_<NN>_<拼音>` | AR-04 已覆盖旧模板，现行统一地图不能继续私建 `rg_14_*` |
-| XS-P02 | 基准 §12 登记 `city_*`、`sc_*`、`rp_*`、`biz_*`、`job_*`、`dc_*`、`opening_*`、`sys_*` 前缀及归属 | 作者新增地图、营生、选择与特色系统已有稳定数据需求，当前前缀审计不完整 |
-| XS-P03 | 基准 §17 模板同步 AR-04、AR-07–AR-11、AR-13：时代图层、story 索引、五级门派、人物名录、传承目录均成为必填接口 | 防止后续章节私建区域、复写剧情、虚造人物或传承 |
-| XS-P04 | 基准 §18 增列 `design/15`–`20` 及 story / 人物图鉴的唯一归属 | 现行 §18 早于专项文档，无法完整表达新权威层级 |
+| XS-P01 | 已解决：基准 §12 已登记全局 `rg_<拼音>` 与章节 `sc_<NN>_<拼音>` | 本章复用全局区域，不再申请私有 `rg_14_*` |
+| XS-P02 | 已解决：基准 §12 已登记 `city_*`、`sc_*`、`rp_*`、`biz_*`、`job_*`、`dc_*`；`opening_*`、`sys_*` 不列为全局内容前缀 | 本章旧示例保留为父对象内局部键，见 §2.2、§10；不是待登记的全局 ID |
+| XS-P03 | 已解决：基准 §17 已要求时代图层、story 索引、五级门派、人物与传承接口 | 本章按现行 13 节模板维护，不重复提案 |
+| XS-P04 | 已解决：基准 §18 已登记 `design/15`–`21`、story 与人物 / 武学图鉴的唯一归属 | 本章只定义书界实例，上游规则保持引用 |
 | XS-P05 | 已解决：基准 v1.2 §12 已明确 `q_NN_main_c/z/x_nn` 为正式生产主键；本文已删除双键映射 | 与 AR-10、V12-09 一致，构建器只需解析一套 ID |
 
 ### 原著考据待办
@@ -1762,8 +1766,12 @@ AR-18 同步后已用 `python3 tools/balance/boss_pacing.py` 实跑本节 9 组�
 | XS-O05 | 七场 Boss 的正式耐久 | **已解决：**默认依次用 74,132 / 10,000 / 83,033 / 90,905 / 104,948 / 112,536 / 138,411 起跑（见 §12.4、§12.6）；固定 RNG 未通过时只调机制 / 耐久，不降低经脉 |
 | XS-O07 | 胡斐、苗人凤 9 品主运来源 | **已解决：**分别由 `sk_hujiaxuangong`（阳）与 `sk_miaojiaxuangong`（调和）正式承接七参，见 §12.6 与 `skills-bulu-13-feihu.md` §1 |
 | XS-O06 | 余韵是否自动进入归梦 | 默认不自动；玩家主动确认后才进入 `FN_ENTER`，保证最后一界可清支线、冲穴和传承 |
-| XS-O08 | 宝树两门个人散承是否永久可学，以及旧稿层数上限 | 默认允许正常获取：当面对质 / 交换后传授至 10 重，处置后旧稿至 8 重；不要求成为 Boss，也不授药王门身份 |
+| XS-O08 | 宝树两门个人散承是否永久可学，以及旧稿层数上限（NXfixD14-O03） | **需作者确认，默认不变：**当面对质 / 交换后传授来源至 10 重，处置后旧稿来源至 8 重；当界有效层数仍受中武 9 重封顶及图鉴前置约束；不要求成为 Boss，也不授药王门身份 |
 | XS-O09 | 宝树旧稿是否建立正式物品 ID | **已解决：**`design/10` §10.1.1 已建立 `it_miji_cangfengxingqi`、`it_miji_cuomaifanzhang`；本章按 §9.4 原子发放 |
 | XS-O10 | 平阿四、杜希孟、静智大师、范帮主等原著未明确本门主运 / 完整外功者如何生产配装 | 默认依 `design/21` §11.9.1 第四档使用来源覆盖雪山的 7 品通行主运与通行外功，标 **（原创扩展配置·待补本门武学）**；若考据或图鉴补录本门武学，保持七参和耐久不降档替换 |
 | XS-O11 | 郑三娘“双刀”对应哪门正式武学 | 默认不借用仅属书剑 / 南少林来源的 `sk_bazhandao`，先以 `ALL14` 的 `sk_luoyedao` 占第四外功槽；按三联 / 广州修订版核名后再替换 **（待考）** |
 | AR-18 配装 | 胡斐和左右书僮是否保留新增阴阳相冲 | **需作者确认，默认保持配装**：B04 江湖吐纳、B02 吐纳浅诀作为阴性辅运，与阳性胡家玄功相冲；接受 §12.6 所列贡献折减、开战内息紊乱与闭关心魔代价，不自动换辅运或增设桥接 |
+| XS-O12 | B05 / B06 编成、整数分配与 B07 阶段门是否定案 | **需作者确认，默认不变：**B05 为 1 首领 + 三类精英各 1（各 10,495）；B06 两波各 1 名精英（各 16,880）；B07 单池 138,411，在 70% / 35% / 1 HP 锁血。现分配与算式见 §12.4，统一余数规则交 `design/09` §8.8.11 |
+| XS-O13 | 左右书僮是否继续使用 9 品胡家玄功及 B02 纯目标胜利 | **需作者确认，默认不变：**两人各为 9 品 / 8 重精英主运、至多小周天；三次制止围攻与两人分别离场构成五目标，双童与全部围攻者均拒绝玩家伤害；不取消断路锚点，见 §12.4、§12.6 |
+| XS-O14 | 苗人凤尚无原著确名的轻功如何配置 | 默认按 §12.6 采用现有通行 `sk_dengpingdushui` 6 品 / 9 重 **（原创扩展配置）**，满足草上飞前置；不宣称原著所学，正式行动表及速度回放仍 **（待实测）** |
+| XS-O15 | 宝树是否开放余韵独立审判 / 赎罪及重邀 | 沿 story §9.8.5 P14-O04，默认仅主线短时受控同行；本章 20 条支线未含独立审判 / 赎罪任务，该来源落实前不开放余韵重邀，不增加无预算任务 ID |

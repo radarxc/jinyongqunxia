@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.2；作者新增需求 AR-04、AR-09、AR-10 见 `decisions/author-requirements.md`；作者决定见 `decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：核心锚点与改命总览 → `design/01-vision-and-core-loop.md` §7.15；年代、书眠与跨书回响 → `design/02-timeline-and-world-tiers.md`；品德与声望 → `design/03-attributes.md` §8；武学 → `design/05-martial-arts-system.md` 及图鉴；战斗与 Boss → `design/09-combat-system.md`；物件 → `design/10-items-and-equipment.md`；区域与时代地名 → `design/11-open-world.md`；任务结构、DSL、旗标与效果动作 → `design/12-quests-npc-factions.md` §1–§4、§8、§11–§13；天书、结局与雪山抉择 → `design/13-progression-and-endings.md` §4.3、§7；门派 → `design/17-sects-compendium.md`；NPC、招募等级与跨书同伴 → `design/18-npc-and-companions.md` 及 `design/catalog/npcs-ch14-xueshan.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 三联 / 广州修订版原文尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需在游戏构建中验证；**【建议值】** = 依赖归属文档后续落盘或作者决定、先给可执行值并在文末登记。
-> 版本：v1.1（P14.R 审校，2026-09-26；修正原著事件归属并接入正式 `quest.v1` DSL）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
+> 版本：v1.1（P14.R 审校，2026-09-26；修正原著事件归属并接入正式 `quest.v1` DSL）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；经脉落地终审（2026-09-30）。
 
 ---
 
@@ -355,7 +355,7 @@ flowchart TD
 | 原著对应事件（回目） | 第二至第三回：群豪乘吊篮登峰、杜希孟赴宁古塔；胡斐左右双童投刺，曹云奇夺剑引发围斗；苗若兰以苗人凤之女身份劝止，双童离峰后炸毁长索与绞盘 |
 | 地点 | `yubifeng_lift` → `yubifeng_manor` |
 | 参与 NPC | 上幕群豪、`npc_miaoruolan`；于姓管家与胡斐左右双童为无静态 ID 职能槽；`npc_duximeng` 仅以留书出现 |
-| 关键战斗 | 双童对天龙门等人的精英剧情战；玩家目标是制止多人围攻并阻止伤势升级，不把有武艺的双童写成无力自保者，也不改写其最终脱身。引用 `design/09` §2.7、§4.8.10 援护 |
+| 关键战斗 | 双童对天龙门等人的精英剧情战；三次制止围攻并护送双童各自安全离场可胜，双童与全部围攻者均不可成为玩家伤害目标，格挡、缴械、分隔或劝止等行动消费目标进度 **（原创扩展机制）**。B02 编成、完整配装、目标分配及失败阈值只引用 `chapters/14` §12.4、§12.6；通用剧情战与援护见 `design/09` §2.7、§4.8.10 |
 
 **目标与流程**：
 
@@ -566,7 +566,7 @@ flowchart TD
 | 原著对应事件（回目） | 第九回：苗若兰被点穴藏起；赛总管、杜希孟、范帮主等设局擒苗人凤；胡斐暗救，苗人凤因现场误会胡斐 |
 | 地点 | 玉笔山庄客房、厅堂、屋脊与吊篮台 |
 | 参与 NPC | `npc_hufei`、`npc_miaorenfeng`、`npc_miaoruolan`、`npc_saizongguan`、`npc_duximeng`、`npc_fanbangzhu`、`npc_liuyuanhe`；可有 `npc_pingasi` |
-| 关键战斗 | Boss 级剧情战但不以击倒苗人凤为目标：清廷围网含精英援军，苗人凤为中立具名强者；引用 `design/09` §2.7、§9.2，Boss 阶段 / 预警仅由未来书界配表引用 §8.8 |
+| 关键战斗 | Boss 级剧情战但不以击倒苗人凤为目标：清廷围网含精英援军，苗人凤为中立具名强者；引用 `design/09` §2.7、§9.2。**已解决：**B06 阶段、援军编成与整场耐久由 `chapters/14` §8.8、§12.4、§12.6 承接，不逐波重置预算 |
 
 **目标与流程**：
 
@@ -1268,7 +1268,7 @@ canLiangquan = crossBookEvidence
 | 职能槽 | 用途 | 同伴规则 | 是否新建 ID |
 |---|---|---|---:|
 | 玉笔山庄于姓管家 | 提供留书、设施权限、吊篮与库房信息 | 设施 NPC 模板 D2；安排替班后可短时随行，正式实例按 `chapters/14` §8.1 的人物数据边界生成 | 否 |
-| 胡斐左右双童 | 投刺传讯、与群豪交手、离峰后炸断长索与绞盘 | 剧情职能实例；C02 作为精英友方 / 中立单位，不开放招募，也不把二人误写成无力自保者 | 否 |
+| 胡斐左右双童 | 投刺传讯、与群豪交手、离峰后炸断长索与绞盘 | C02 以 B02 双精英保护方分别实例化，共享非击杀目标进度；本幕不开放招募，配装、相冲默认及离场条件见 `chapters/14` §12.4、§12.6 与 `catalog/npcs-ch14-xueshan.md` | 否 |
 
 这两类不计入 `design/18` 的 20–40 名具名人物下限，也不临时造 `npc_*`。
 
@@ -1310,11 +1310,12 @@ canLiangquan = crossBookEvidence
 | 胡家 | `sk_hujiadao`、`sk_hujiaquan`、`sk_hujiadaoxinfa`、`sk_hujiaxuangong` | 主线只开放见闻 / 印证窗口；完整学习仍过图鉴前置，不因听证词自动获得；左右书僮与胡斐的配装不构成掉落 |
 | 苗家 | `sk_miaojiajian`、`sk_miaojiaquan`、`sk_miaojiaxinfa`、`sk_miaojiaxuangong`、`sk_miaojiazhang` | 冰镜只揭示叙事破绽，不直接赠送苗家武学 |
 | 天龙门 | `sk_tianlongjian`、`sk_tianlongbeidao`、`sk_guanwaixinfa`、`sk_tianlongmenxinfa`、`sk_tianlonghezongjian`、`sk_tianlongzhengdao` | 南北宗清理 / 和解后按职级、师授或谱本习得；未校勘处不另造招名 |
-| 宝树个人散承 | `sk_cangfengxingqi`、`sk_cuomaifanzhang` | 须完成当面对质 / 交易或取得旧稿，并满足医毒、属性与前置；不是药王门身份奖励 |
-| 清廷军伍 | `sk_baizhanxinfa`、`sk_pojunqiangfa` | 赛总管与军伍精英按岗位装配；玩家仅走军伍传授 / 缴获等原卡途径。唯一归属卡 `skills-general.md` 回写 `ch14_xueshan` 来源前，玩家习得失败闭合并提示“来源扩展待登记” |
+| 宝树个人散承 | `sk_cangfengxingqi`、`sk_cuomaifanzhang` | 须完成当面对质 / 交易或取得旧稿，并满足医毒、属性与前置；不是药王门身份奖励。当面传授至 10 重、旧稿至 8 重的默认与作者确认项见 `chapters/14` 文末“开放问题”XS-O08，来源卡见 `skills-bulu-14-xueshan.md` §2 |
+| 清廷军伍 | `sk_baizhanxinfa`、`sk_pojunqiangfa` | **已解决：**`skills-general.md` §4.1–§4.2 已登记 `ch14_xueshan` 来源；赛总管与军伍精英按岗位装配，主角与其他人物按原卡军伍传授 / 缴获等途径及前置学习，不由敌方配装直接赠送 |
 | 旁支 | `sk_baguadao` | 只在对应人物 / 授艺支线满足图鉴前置时引用，不作为胡苗主线奖励 |
 | 神兵 | `eq_lengyuedao` | 胡家传承 / 器合接口；绝不作为藏宝钥匙 |
 | 钥匙物 | `it_chuangwangjundao` | 与苗若兰珠钗暗图共同定位宝藏 |
+| 宝树旧稿 | `it_miji_cangfengxingqi`、`it_miji_cuomaifanzhang` | **已解决：**两条单武学秘籍已由 `design/10` §10.1.1 登记；取得时点、成组原子发放和禁止尸体掉落见 `chapters/14` §9.4，不再作为未登记载体 |
 | 跨书证据 | `echo_13_hushixueshu` | 两全首选硬条件；是回响旗标，不当普通背包物复制 |
 
 胡、苗与天龙门进阶卡沿用 `design/catalog/skills-bulu-13-feihu.md`，宝树散承及雪山来源扩展见 `design/catalog/skills-bulu-14-xueshan.md`；本剧情只登记窗口，不重定义卡面。
@@ -1664,7 +1665,7 @@ source:
 | `XS-V13` | 非空 `cityId` 可在地图注册表解析；玉笔峰地点一律 `cityId:null + placeKey` | error |
 | `XS-V14` | `morality` 单次变化绝对值在 1–15；本文只出现 3、5、6、9、12，且各自落入 `design/12` §8.2 对应行为档 | error |
 | `XS-V15` | 所有外部 `npc_*`、`sect_*`、`sk_*`、`eq_*`、`it_*`、`tsp_*`、`echo_*` 均可解析；本地 ID 在 §9.6 登记 | error |
-| `XS-V16` | 所有战斗只标普通 / 精英 / Boss 和机制引用，不在剧情文档另设伤害、气血或 AI 数值 | error |
+| `XS-V16` | 所有战斗只标普通 / 精英 / Boss 和机制引用，不在剧情文档另设伤害、气血或 AI 数值；C02 的 B02 双童与全部围攻者均不可成为玩家伤害目标，胜利须满足章节 §12.4 的三次制止及两人离场 | error |
 | `XS-V17` | 第十四天书后真实等级 70；雪山余韵显示 58；只有 `ch15_guimeng` 入口解除压制 | error |
 | `XS-V18` | 天书现世不发 `it_shiyin`，终局容器不生成第十五本天书 | error |
 | `XS-V19` | Mermaid 和 YAML 代码围栏成对，Markdown 表格无断行，禁止未完成的任务占位缩写或省略语；规范的“待考 / 待核实 / 待实测”不视为占位 | error |
