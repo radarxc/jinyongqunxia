@@ -17,9 +17,11 @@ from PIL import Image
 try:
     from .compose import PeakRenderer
     from .validation import THREE_URL, VFXError, check_html, resolve_path
+    from .templates import DELIVERIES, EMITTERS, MODES, NATURES, TEMPLATE_ROOT, PALETTE, make_template, template_peak
 except ImportError:
     from compose import PeakRenderer
     from validation import THREE_URL, VFXError, check_html, resolve_path
+    from templates import DELIVERIES, EMITTERS, MODES, NATURES, TEMPLATE_ROOT, PALETTE, make_template, template_peak
 
 
 def _json(value: object) -> str:
@@ -98,7 +100,8 @@ const loadImage = uri => new Promise((resolve, reject) => {
 });
 try {
   const THREE = await import('three');
-  const images = await Promise.all([payload.emitterImage, ...payload.effectFrames].map(loadImage));
+  const images = await Promise.all([payload.emitterImage, ...payload.effectFrames]
+    .map(uri => uri ? loadImage(uri) : Promise.resolve(null)));
   const player = createVfxPlayer(THREE, {canvas:document.getElementById('vfx'),
     composition:payload.composition, emitterImage:images[0], effectFrames:images.slice(1)});
   const peak = payload.composition.output.peak_phase * player.duration;
@@ -198,14 +201,79 @@ def _write_chunks(path: Path, content: str) -> None:
             stream.writelines(lines[offset:offset + 120])
 
 
+def build_template_demo(mode: str, emitter: str = 'palm', nature: str = 'neutral',
+                        delivery: str = 'palm', output: str | Path | None = None,
+                        emitter_path: Path | None = None, template_root: Path = TEMPLATE_ROOT,
+                        palette_path: Path = PALETTE, **params) -> dict:
+    comp, emitter_file, frame_files = make_template(mode, emitter, nature, delivery,
+        emitter_path=emitter_path, template_root=template_root, palette_path=palette_path, **params)
+    output = Path(output).resolve() if output else template_root / mode / f'demo_{emitter}_{nature}_{delivery}.html'
+    if output.suffix.lower() != '.html':
+        raise VFXError('演示输出必须为 HTML')
+    json_path = output.with_suffix('.json')
+    peak = template_peak(comp, emitter_file, frame_files)
+    runtime = _runtime()
+    attempts = []
+    title = f'{mode} · {emitter} · {nature} · {delivery}'
+    for step in range(8):
+        ratio = 0.8 ** step
+        payload = {'composition': comp,
+                   'emitterImage': _image_uri(emitter_file, ratio) if emitter_file else None,
+                   'effectFrames': [_image_uri(path, ratio) for path in frame_files]}
+        replacements = {'__TITLE__': html.escape(title), '__BACKGROUND__': comp['background'],
+                        '__PEAK__': _encode_image(peak, ratio),
+                        '__IMPORTMAP__': _json({'imports': {'three': THREE_URL}}),
+                        '__PAYLOAD__': _json(payload)}
+        page = PAGE_START
+        for key, value in replacements.items():
+            page = page.replace(key, value)
+        encoded = (page + runtime + PAGE_END).encode('utf-8')
+        attempts.append({'image_scale': ratio, 'bytes': len(encoded)})
+        if len(encoded) <= comp['output']['html_max_bytes']:
+            import tempfile
+            with tempfile.TemporaryDirectory() as directory:
+                candidate = Path(directory) / 'demo.html'
+                _write_chunks(candidate, encoded.decode('utf-8'))
+                checked = check_html(candidate, comp['output']['html_max_bytes'])
+            output.parent.mkdir(parents=True, exist_ok=True)
+            _write_chunks(output, encoded.decode('utf-8'))
+            _write_chunks(json_path, json.dumps(comp, ensure_ascii=False, indent=2) + '\n')
+            return {'html': str(output), 'composition': str(json_path), 'bytes': len(encoded),
+                    'template': comp['template'], 'source_frames': len(frame_files),
+                    'emitter_source': str(emitter_file) if emitter_file else None,
+                    'image_scale': ratio, 'encoding': 'lossless-webp', 'attempts': attempts,
+                    'inline_scripts_checked': checked['inline_scripts_checked']}
+    raise VFXError(f'模板 HTML 缩小预览后仍超过 3 MB：{attempts}')
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('composition', type=Path, help='Composition YAML')
+    parser.add_argument('composition', type=Path, nargs='?', help='Composition YAML；模板模式无需此参数')
     parser.add_argument('--root', type=Path, help='素材套件根目录')
     parser.add_argument('--output', type=Path, help='默认 Composition 同级 demo.html')
+    parser.add_argument('--template', choices=MODES)
+    parser.add_argument('--emitter', choices=EMITTERS, default='palm')
+    parser.add_argument('--nature', choices=NATURES, default='neutral')
+    parser.add_argument('--delivery', choices=DELIVERIES, default='palm')
+    parser.add_argument('--emitter-path', type=Path, help='显式使用现有发出方 YAML 或 RGBA PNG')
+    parser.add_argument('--template-root', type=Path, default=TEMPLATE_ROOT)
+    parser.add_argument('--palette', type=Path, default=PALETTE)
+    parser.add_argument('--duration', type=float, help='总秒数；plain_strike 不超过 0.4')
+    parser.add_argument('--copies', type=int, default=4, help='afterimage 副本数，3–5')
+    parser.add_argument('--spacing', type=float, default=28, help='afterimage 沿向间距，px')
+    parser.add_argument('--stretch', type=float, default=0.04, help='afterimage 每级沿向拉伸增量')
     args = parser.parse_args(argv)
     try:
-        print(json.dumps(build_demo(args.composition, args.output, args.root), ensure_ascii=False))
+        if bool(args.template) == bool(args.composition):
+            raise VFXError('必须且只能指定 Composition 路径或 --template')
+        if args.template:
+            result = build_template_demo(args.template, args.emitter, args.nature, args.delivery,
+                output=args.output, emitter_path=args.emitter_path,
+                template_root=args.template_root, palette_path=args.palette,
+                duration=args.duration, copies=args.copies, spacing=args.spacing, stretch=args.stretch)
+        else:
+            result = build_demo(args.composition, args.output, args.root)
+        print(json.dumps(result, ensure_ascii=False))
     except (VFXError, OSError, ValueError) as error:
         print(f'演示打包失败：{error}', file=sys.stderr)
         return 1

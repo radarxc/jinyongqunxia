@@ -213,8 +213,10 @@ def simple_config(args: argparse.Namespace) -> dict:
             raise VFXError("--grid requires exactly one source and --size W H")
         cols, rows = args.grid
         count = args.count if args.count is not None else cols * rows
-        if min(cols, rows) < 1 or not 4 <= count <= min(8, cols * rows):
-            raise VFXError("--grid/--count: require 4..8 occupied cells")
+        low, high = (2, 3) if args.style == "plain_strike" else (
+            (4, 4) if args.style == "qi_projection" else (4, 8))
+        if min(cols, rows) < 1 or not low <= count <= min(high, cols * rows):
+            raise VFXError(f"--grid/--count: {args.style} requires {low}..{high} occupied cells")
         width, height = args.size
         for index in range(count):
             rects.append({"file_index": 0, "rect_px": [
@@ -261,7 +263,7 @@ def main() -> int:
     parser.add_argument("--phases", nargs="+", type=float)
     parser.add_argument("--reference-length", type=float)
     parser.add_argument("--root-width", type=float)
-    parser.add_argument("--style", choices=["ink", "gold_ink", "qi_sword"], default="gold_ink")
+    parser.add_argument("--style", choices=["ink", "gold_ink", "qi_sword", "qi_projection", "plain_strike"], default="gold_ink")
     parser.add_argument("--blend", choices=["normal", "multiply", "screen", "lighter"], default="normal")
     parser.add_argument("--method", choices=["white_luma", "white_key"])
     parser.add_argument("--white-cutoff", type=int, default=250)

@@ -127,10 +127,47 @@ HTML 门禁验证精确 importmap、禁止额外外链、解码内嵌图、逐�
 人工应检查真实浏览器加载、掌面/指尖衔接、四阶段方向感、混合/色彩、速度、循环间隔、
 减少动态以及 dispose；当前沙箱未在浏览器实跑。真机性能与跨工具色彩对拍仍（待实测）。
 
+## 统一模板与绑定
+
+模板选择、色板、绑定字段与单门manifest约定见 design/23 §7.3；两段式入口保持兼容。
+无须手写 Composition，直接生成同名 HTML / JSON：
+
+```sh
+python3 tools/vfx/build_demo.py --template qi_projection --emitter palm --nature yin --delivery palm --emitter-path assets/default/baseline/vfx/mv_xianglong18_kanglong/emitter/emitter-plate.yaml
+python3 tools/vfx/build_demo.py --template afterimage --emitter finger --nature neutral --delivery finger --copies 4 --spacing 28 --duration 0.48 --emitter-path assets/default/baseline/vfx/sk_liumai/emitter/emitter-plate.yaml
+python3 tools/vfx/build_demo.py --template plain_strike --emitter palm --nature neutral --delivery palm --emitter-path assets/default/baseline/vfx/mv_xianglong18_kanglong/emitter/emitter-plate.yaml
+python3 tools/vfx/bind_moves.py --audit
+python3 tools/vfx/bind_moves.py --check --audit
+python3 tools/vfx/check_skill_suite.py assets/default/vfx/sk_liumai --catalog docs/design/catalog/skills-wujue.md
+```
+
+最后一行用于后续套件完成后，本任务只登记天/地套件路径。`--check` 不写文件，
+`--audit` 另维护完整兜底/缺招式/缺性质清单，生成结果按ID排序、无时间戳。
+单门套件引用共享emitter时，compose/build_demo/check_vfx制作命令传
+`--root assets/default/vfx`，再由check_skill_suite限制effect在本门、emitter在共享目录。
+默认输出为 `assets/default/vfx/templates/<mode>/demo_<emitter>_<nature>_<delivery>.html`。
+`--output` 可改名；`--palette` 可指定色板；色值在打包时冻结，修改后须重建。
+`--emitter-path` 首选有实测锚点的 EmitterPlate YAML，PNG便利入口只供演示。
+无显式路径时查 `assets/default/vfx/emitters/<type>/emitter-plate.yaml`；缺文件明确失败。
+当前样例复用已有基线掌/指，不代表共享发出方已交付。内功可 `--emitter none`，
+但 afterimage 必须由调用方提供真实角色/发出方图，不能为 null。
+
+`qi_projection` 按动作选4形态，shader消费色板；`plain_strike` 为2–3帧、normal、
+亮度1、至多0.4秒；`afterimage` 为3–5份图像副本，无效果原料。
+`cut_frames.py --style` 已支持两种新原料；旧4–8帧约束仍适用于两段式风格。
+manifest主图尺寸/哈希门禁执行：
+
+```sh
+python3 tools/agents/check_assets.py assets/default/vfx/templates --min 6 --max 12 --min-side 256
+```
+
+模板JSON的 `effect.frames[].file / emitter.file` 是原YAML元数据，不是相对demo的加载地址；
+HTML使用内嵌图像，复现原件/切帧/参数与依赖见模板manifest、source_requests和 §7.3命令。
+
 ## 参考资料
 
 - [design/23](../../docs/design/23-projection-vfx-pipeline.md)：公式、坐标、节奏和制作边界。
-- [制作 schema](../../docs/design/vfx/schema.yaml)：三种制作对象字段的唯一来源。
+- [制作 schema](../../docs/design/vfx/schema.yaml)：四种制作对象字段的唯一来源。
 - [作者风格决定](../../assets/default/STYLE.md)：效果和发出方的出图约束。
 - [Three.js ShaderMaterial](https://threejs.org/docs/pages/ShaderMaterial.html)、[色彩管理](https://threejs.org/manual/pages/color-management.html)：着色器与线性合成；不替代 r186 浏览器实跑。
 
@@ -149,3 +186,4 @@ HTML 门禁验证精确 importmap、禁止额外外链、解码内嵌图、逐�
 - 旧实现补充已解决：关键帧重新渲染对拍退出当前流程（不再烘帧）；保留含双线性边缘的越界检测、不设整图降级、诊断文件不进入制作 schema。本文已同步 design/23 指定章节。
 - VFX-O01～08 继续沿用 design/23 的默认值，追加 O09 原料/手部审批；帧数与连续性、金光背景、六脉左右手/颜色、人物挂点与最终手部画法仍待相应验收，不提出新玩法参数。
 - 固定 CDN 可达性**（待核实）**；Three.js ESM 可能请求同包 core 分块，HTML 单条显式外链不代表运行时仅一条网络请求，交协调者检查依赖链。
+- 统一模板按 design/23 §7.3 / §12.5 执行；调和/中性色、共享发出方、无招式ID卡片与剑形兜底见该文及 binding-audit.yaml，不因绑定生成成功而视为上游补录完成。

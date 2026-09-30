@@ -31,6 +31,8 @@ uniform sampler2D frameA, frameB;
 uniform vec2 sizePx, anchorA, anchorB, sourceDirection;
 uniform float frameMix, envelope, brightness, referenceLength;
 uniform float maskEnabled, maskSoftness, reveal, erase;
+uniform vec3 tint;
+uniform float tintEnabled;
 out vec4 outColor;
 ${samplingShader}
 void main() {
@@ -49,6 +51,10 @@ void main() {
   }
   // Clamp the gained straight color before re-premultiplication (§4.3).
   p.rgb = min(p.rgb * brightness, vec3(p.a));
+  if (tintEnabled > 0.5) {
+    // Neutral source carries coverage in alpha; gray must not darken the palette.
+    p.rgb = tint * p.a;
+  }
   outColor = p * (envelope * mask);
 }`;
 
@@ -56,9 +62,10 @@ const emitterFragment = `
 varying vec2 localPx;
 uniform sampler2D plate;
 uniform vec2 sizePx;
+uniform float opacity;
 out vec4 outColor;
 ${samplingShader}
-void main() { outColor = samplePremultiplied(plate, localPx, sizePx); }`;
+void main() { outColor = samplePremultiplied(plate, localPx, sizePx) * opacity; }`;
 
 // Only this final pass encodes to sRGB; all layer blending happens in linear RGB.
 const displayFragment = `
@@ -119,9 +126,19 @@ function boundsFor(effect) {
  * onFrame(state) is assignable; duration and seek are seconds, excluding loop gap.
  */
 export function createVfxPlayer(THREE, {canvas, composition, emitterImage, effectFrames}) {
-  const c = composition, effect = c.effect, emitter = c.emitter;
-  if (!canvas || !effect || !emitter || effectFrames.length !== effect.frames.length)
+  const c = composition, mode = c.template?.mode;
+  const effect = c.effect ?? {size_px: [1, 1], direction: [1, 0], blend: 'normal',
+    reference_length_px: 1, root_width_px: 1,
+    frames: [{phase: 0, anchor_px: [0, 0]}, {phase: 1, anchor_px: [0, 0]}]};
+  const emitter = c.emitter ?? {size_px: [1, 1], emit_point_px: [0, 0],
+    direction: [1, 0], emission_width_px: 1};
+  if (!canvas || (!mode && (!c.effect || !c.emitter)) ||
+      (c.effect && effectFrames.length !== effect.frames.length) ||
+      (['qi_projection', 'plain_strike'].includes(mode) && !c.effect) ||
+      (c.emitter && !emitterImage) || (mode === 'afterimage' && !emitterImage))
     throw new Error('Canvas, expanded metadata and all decoded images are required');
+  if (mode && (!['qi_projection', 'afterimage', 'plain_strike'].includes(mode)
+      || !/^#[0-9a-f]{6}$/i.test(c.template.color))) throw new Error('Invalid template mode/color');
   const duration = durationOf(c), [width, height] = c.canvas_px;
   const preview = c.output.preview_size_px ?? c.canvas_px;
   const renderer = new THREE.WebGLRenderer({canvas, alpha: false, antialias: false});
@@ -140,21 +157,26 @@ export function createVfxPlayer(THREE, {canvas, composition, emitterImage, effec
   const camera = new THREE.OrthographicCamera(0, width, 0, height, 0.1, 10);
   camera.position.z = 1;
   const textures = effectFrames.map(image => textureFor(THREE, image));
-  const plate = textureFor(THREE, emitterImage);
+  const plate = emitterImage ? textureFor(THREE, emitterImage) : null;
   const value = v => ({value: v}), vector = xy => new THREE.Vector2(...xy);
+  const decode = x => x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
+  const color = c.template?.color ?? '#FFFFFF';
   const uniforms = {frameA: value(textures[0]), frameB: value(textures[0]),
     sizePx: value(vector(effect.size_px)), anchorA: value(vector(effect.frames[0].anchor_px)),
     anchorB: value(vector(effect.frames[0].anchor_px)), sourceDirection: value(vector(effect.direction)),
     frameMix: value(0), envelope: value(1), brightness: value(1),
     referenceLength: value(effect.reference_length_px), maskEnabled: value(0),
-    maskSoftness: value(0.08), reveal: value(1), erase: value(0)};
+    maskSoftness: value(0.08), reveal: value(1), erase: value(0),
+    tintEnabled: value(Number(mode === 'qi_projection')),
+    tint: value(new THREE.Vector3(...[1, 3, 5].map(i => decode(parseInt(color.slice(i, i + 2), 16) / 255))))};
   const material = (fragmentShader, uniforms, mode) => new THREE.ShaderMaterial({
     glslVersion: THREE.GLSL3, vertexShader, fragmentShader, uniforms,
     side: THREE.DoubleSide, depthWrite: false, depthTest: false, toneMapped: false,
     ...blendFor(THREE, mode)});
-  const effectMaterial = material(effectFragment, uniforms, effect.blend);
+  const effectMaterial = material(effectFragment, uniforms,
+    mode === 'plain_strike' ? 'normal' : effect.blend);
   const emitterMaterial = material(emitterFragment,
-    {plate: value(plate), sizePx: value(vector(emitter.size_px))}, 'normal');
+    {plate: value(plate), sizePx: value(vector(emitter.size_px)), opacity: value(1)}, 'normal');
   const effectGeometry = quad(THREE, boundsFor(effect));
   const [ew, eh] = emitter.size_px, [ax, ay] = emitter.emit_point_px;
   const angle = c.angle_deg * Math.PI / 180, cos = Math.cos(angle), sin = Math.sin(angle);
@@ -166,9 +188,19 @@ export function createVfxPlayer(THREE, {canvas, composition, emitterImage, effec
     c.emit_at_px[1] + c.emitter_scale * (es * (x - ax) + ec * (y - ay))]), corners);
   const effectMesh = new THREE.Mesh(effectGeometry, effectMaterial);
   const emitterMesh = new THREE.Mesh(emitterGeometry, emitterMaterial);
+  effectMesh.visible = Boolean(c.effect); emitterMesh.visible = Boolean(emitterImage);
   emitterMesh.renderOrder = 0; effectMesh.renderOrder = 1;
   effectMesh.matrixAutoUpdate = false; effectMesh.frustumCulled = false;
   scene.add(emitterMesh, effectMesh);
+  const ghosts = mode === 'afterimage' ? Array.from({length: c.template.params.copies ?? 4}, (_, index) => {
+    const ghostMaterial = material(emitterFragment,
+      {plate: value(plate), sizePx: value(vector(emitter.size_px)), opacity: value(0)}, 'normal');
+    const ghost = new THREE.Mesh(emitterGeometry, ghostMaterial);
+    ghost.matrixAutoUpdate = false; ghost.frustumCulled = false;
+    ghost.renderOrder = -1 - index;
+    scene.add(ghost);
+    return ghost;
+  }) : [];
   const displayGeometry = quad(THREE, [[0, 0], [width, 0], [0, height], [width, height]],
     [[0, 1], [1, 1], [0, 0], [1, 0]]);
   const displayMaterial = new THREE.ShaderMaterial({glslVersion: THREE.GLSL3,
@@ -177,7 +209,6 @@ export function createVfxPlayer(THREE, {canvas, composition, emitterImage, effec
     blending: THREE.NoBlending, toneMapped: false});
   displayScene.add(new THREE.Mesh(displayGeometry, displayMaterial));
   // Explicit decoding also works if a host has disabled global ColorManagement.
-  const decode = x => x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
   const background = new THREE.Color(...[1, 3, 5].map(i => decode(parseInt(c.background.slice(i, i + 2), 16) / 255)));
   const length = c.length_px ?? c.range_hex * c.pixels_per_hex;
   const sx = length / effect.reference_length_px * c.scale[0];
@@ -194,12 +225,22 @@ export function createVfxPlayer(THREE, {canvas, composition, emitterImage, effec
     uniforms.frameMix.value = state.mix; uniforms.envelope.value = state.alpha;
     uniforms.brightness.value = state.brightness;
     uniforms.maskEnabled.value = Number(state.mask.enabled);
-    uniforms.maskSoftness.value = state.mask.softness;
-    uniforms.reveal.value = state.mask.reveal; uniforms.erase.value = state.mask.erase;
+    uniforms.maskSoftness.value = state.mask.softness ?? 0.08;
+    uniforms.reveal.value = state.mask.reveal ?? 1; uniforms.erase.value = state.mask.erase ?? 0;
     effectMesh.matrix.set(cos * sx * k, -sin * sy * k, 0, c.emit_at_px[0] + cos * state.driftPx,
       sin * sx * k, cos * sy * k, 0, c.emit_at_px[1] + sin * state.driftPx,
       0, 0, 1, 0, 0, 0, 0, 1);
     effectMesh.matrixWorldNeedsUpdate = true;
+    ghosts.forEach((ghost, index) => {
+      const pose = state.ghosts[index], stretch = pose.stretch - 1;
+      const a = 1 + stretch * cos * cos, b = stretch * cos * sin;
+      const d = 1 + stretch * sin * sin, [x, y] = c.emit_at_px;
+      ghost.material.uniforms.opacity.value = pose.alpha;
+      ghost.matrix.set(a, b, 0, x - a * x - b * y + cos * pose.offsetPx,
+        b, d, 0, y - b * x - d * y + sin * pose.offsetPx,
+        0, 0, 1, 0, 0, 0, 0, 1);
+      ghost.matrixWorldNeedsUpdate = true;
+    });
     renderer.setRenderTarget(target); renderer.setClearColor(background, 1);
     renderer.clear(); renderer.render(scene, camera);
     renderer.setRenderTarget(null); renderer.render(displayScene, camera);
@@ -258,7 +299,8 @@ export function createVfxPlayer(THREE, {canvas, composition, emitterImage, effec
       if (disposed) return;
       disposed = true; playing = false; cancel(); api.onFrame = null;
       [effectGeometry, emitterGeometry, displayGeometry, effectMaterial, emitterMaterial,
-        displayMaterial, target, plate, ...textures].forEach(resource => resource.dispose());
+        displayMaterial, target, plate, ...textures, ...ghosts.map(g => g.material)]
+        .filter(Boolean).forEach(resource => resource.dispose());
       renderer.dispose();
     }
   };

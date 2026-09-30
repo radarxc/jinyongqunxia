@@ -1,10 +1,10 @@
 # 23 · 外放招式特效管线（Projection VFX Pipeline）
 
-> 归属（基准 §18）：本文承接 `tech/07` 素材生产、`tech/02` 特效呈现的外放素材制作子契约；`EffectSet / EmitterPlate / Composition` 在本文定义，增列归属的提案见 §12.3，尚未修改基准。
+> 归属（基准 §18）：本文承接 `tech/07` 素材生产、`tech/02` 特效呈现的外放素材制作子契约；`EffectSet / EmitterPlate / Composition / TemplateComposition` 在本文定义，增列归属的提案见 §12.3，尚未修改基准。
 > 上游：`00-canon.md` v1.8；`decisions/author-decisions.md`、`decisions/author-requirements.md` AR-16～18；作者 2026-09-29 两段式制作决定、2026-09-30 Three.js 合成决定与 `assets/default/STYLE.md` 原文、审批意见；`decisions/rulings-v1.md`。
 > 引用而不重定义：外放判定、修为档位与端点 → `design/21` §4.4.1、§12.3；招式与 `anim` → `design/05` §4.1；六角格、范围和出招节奏 → `design/09` §5、§10.2；资产 ID、美术圣经与生产登记 → `tech/07` §1.4、§2、§5.9；相机、精灵和特效层 → `tech/02` §0.3、§2.5–2.6、§6；素材入库 → `assets/README.md`。
 > 标注约定：**（原创扩展）** = 本作视觉设计而非原著事实；**（待考）** = 原著事实待逐字核对；**（待核实）** = 技术事实未联网确认；**（待实测）** = 需实际素材、浏览器或真机验证；**【建议值】** = 可先执行、在文末登记的参数。
-> 版本：v1.1，2026-09-30。本文约定制作与播放分工；工具和两招候选的实测状态见 `tools/agents/reports/VFX-three.md`，不代表游戏运行时已接入。
+> 版本：v1.2，2026-09-30。本文约定制作与播放分工；两段式与统一模板的实测状态分别见 `tools/agents/reports/VFX-three.md`、`VFX-templates.md`，不代表游戏运行时已接入。
 
 ## 目录
 
@@ -16,6 +16,7 @@
 - §5 过渡、节奏与动效输出
 - §6 数据格式与最小实例
 - §7 类别默认参数与玩法字段映射
+  - §7.3 统一模板（玄 / 黄级）与绑定表
 - §8 提示词模板与素材质检
 - §9 下游交接、同步清单与参考资料
 - §10 本文新增术语与 ID
@@ -69,7 +70,7 @@ assets/default/baseline/vfx/<主体ID>/
 
 资产前缀、变体与 `AssetKey` 仅沿用 `tech/07` §1.4。已全仓检索并复用 `vfx_sk_liumai_beam`、`mv_xianglong18_kanglong`、`sk_liumai`；首批候选沿用 VFX-plates 任务已指定的 `vfx_mv_xianglong18_kanglong__ch02_base01`、`vfx_sk_liumai__ch01_base01`，不另造玩法 ID。
 
-manifest 每个合成套件一条，主 `file` 指 `peak.png`、`code` 指 `demo.html`、`pipeline: two-part`、`status: candidate`；原料、帧序列和 YAML 用该条目的文件清单列出，不逐帧新增顶层条目。来源、真实 prompt/negative、参考图、工具配置、生成时间、大小和 SHA-256 依 `assets/README.md`；派生参数及原料哈希同样追溯。审批仍由作者进行，技术检查通过不等于 `approved`。
+两段式 manifest 每个合成套件一条，主 `file` 指 `peak.png`、`code` 指 `demo.html`、`pipeline: two-part`、`status: candidate`；原料、帧序列和 YAML 用该条目的文件清单列出，不逐帧新增顶层条目。统一模板例外：按7张原料sheet登记主file，透明帧、EffectSet与样例demo列入 `file_integrity / demo_files`，无需为无原料的残影造图片条目。来源、真实 prompt/negative、参考图、工具配置、生成时间、大小和 SHA-256 依 `assets/README.md`；派生参数及原料哈希同样追溯。审批仍由作者进行，技术检查通过不等于 `approved`。
 
 ### 1.3 与技术管线衔接
 
@@ -243,15 +244,16 @@ p_out = E + δ(t) v + R(θ) diag(sx k(t), sy k(t)) R(−φ) (p − a)
 
 ### 6.1 机器格式
 
-唯一字段表为 [`vfx/schema.yaml`](vfx/schema.yaml)，采用 [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/json-schema-core) 的 YAML 表示（规范于 2026-09-30 核对）；`$defs` 定义三种对象，根 `oneOf` 只接收其中一种。每个字段的类型、约束与示例均在 schema 中直接给出或由 `$ref` 指向的定义提供；叶字段与数组注明描述及 `x-unit`，复合对象不设物理单位。`Source / Keying / Rhythm / Transition / Output` 均附对象级 `examples`，与下列完整实例对应；`default` 是建议注解，不自动填入文件。`required` 必须显式写出，未知字段报错，修改不兼容字段必须提升 version。
+唯一字段表为 [`vfx/schema.yaml`](vfx/schema.yaml)，采用 [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/json-schema-core) 的 YAML 表示（规范于 2026-09-30 核对）；`$defs` 定义四种根对象，根 `oneOf` 只接收其中一种。每个字段的类型、约束与示例均在 schema 中直接给出或由 `$ref` 指向的定义提供；叶字段与数组注明描述及 `x-unit`，复合对象不设物理单位。`Source / Keying / Rhythm / Transition / Output` 均附对象级 `examples`，与下列完整实例对应；`default` 是建议注解，不自动填入文件。`required` 必须显式写出，未知字段报错，修改不兼容字段必须提升 version。
 
 | 对象 | 必备数据 | 单位与边界 |
 |---|---|---|
-| EffectSet | 素材 ID、尺寸、颜色/alpha、风格、方向、参考长/根宽、混合、来源裁格/抠图参数、帧路径/锚点/phase | px、单位向量、0–1 相位；4–8 帧 |
+| EffectSet | 素材 ID、尺寸、颜色/alpha、风格、方向、参考长/根宽、混合、来源裁格/抠图参数、帧路径/锚点/phase | px、单位向量、0–1 相位；两段式4–8帧、qi_projection恰4帧、plain_strike为2–3帧 |
 | EmitterPlate | RGBA 文件、尺寸、颜色/alpha、类别、发出点、方向、发出截面宽 | px、单位向量；不另设玩法 ID |
 | Composition | 套件素材 ID、主体引用、两个 YAML、画幅/底色、E/角度、示意距离/标尺/可选投影长度、两轴缩放、节奏、过渡及可选推进遮罩、输出 | hex、px、px/hex、度、秒、倍率、fps、bytes |
+| TemplateComposition | `template`（模式、性质、动作、形态、色板快照与参数）、展开 effect/emitter、几何与播放字段 | 直接由模板 CLI 导出；afterimage 无效果帧；见 §7.3 |
 
-YAML 只允许 JSON 兼容值；拒绝重复键、非有限数、可执行标签与循环引用。路径相对**持有该字段的 YAML 文件**，先解析再检查仍位于同一个 `<主体ID>/` 套件内；拒绝网络 URL、绝对路径及经 `..` 或符号链接逃出根目录的路径。元数据里的路径必须指向实际文件，示例除外。
+YAML 只允许 JSON 兼容值；拒绝重复键、非有限数、可执行标签与循环引用。路径相对**持有该字段的 YAML 文件**，两段式默认先解析再检查仍位于同一个 `<主体ID>/` 套件内；单门套件的共享emitter例外见 §7.3。拒绝网络 URL、绝对路径及经 `..` 或符号链接逃出允许根目录的路径。元数据里的路径必须指向实际文件，示例除外。
 
 `mode: baseline` 是独立风格样例，不声称某次战斗合法；`resolved_preview` 必须提供 `move_ref`、`length_px` 和已解算诊断字段，由上游适配器验证其来源。`projection_step / projection_boost_active` 分别映射 `projectionStep / projectionBoostActive`；`effective_range_max_hex` 取 `design/09` 的最终 `range.max_eff`，不能直接拿 `design/21` 的中间 `effectiveRange` 替代独立修正后的结果。三项均只读，不是第二份玩法定义；后续工具不能据 `subject_ref` 自动填档位。
 
@@ -372,7 +374,7 @@ output:
 | 音功 | voice / instrument | ink / normal，强化亮脉可试 screen | wave | 仅普通声纹的0档分支不加外放气浪；见 §7.2 |
 | 暗器 | throw_hand | ink / normal | pulse | 实体投掷不等于外放；只消费逐招已确认的外放段 |
 
-六脉首批展示可只做一种指端线性束模板，不因此声称完成六式、六道并发或左右手全部绑定；后续六道束必须逐条量取发出点，禁止从旧程序手形坐标反推。暗器实体、普通近身挥砍等不属于本管线的外放资产选取条件。
+六脉首批展示可只做一种指端线性束模板，不因此声称完成六式、六道并发或左右手全部绑定；后续六道束必须逐条量取发出点，禁止从旧程序手形坐标反推。暗器实体、普通近身挥砍等不属于本节两段式外放资产选取条件；统一普通招模板见 §7.3。
 
 ### 7.2 玩法到表现的单向映射
 
@@ -386,7 +388,53 @@ output:
 | 音功 `projectionBoostActive=false` | 显示普通声纹与既有命中，禁止强化气浪/亮脉 | 声音能传播就必定获得外放强化 |
 | 大手印落点、反击触发、实际多段事件 | 每个已批准事件安排表现，次数从事件读取 | 多放一帧/循环一次就多一次伤害 |
 
-外放清单交工具按 `check_skill_catalogs.py --delivery --details` 动态读取，不在本文复制易过期的全量名录。本次只读检查覆盖 25 册，654 条动作路线、94 条非绝招外放路线，端点违规 0；另有逍遥图鉴性质冲突 13、缺主修经脉 23 的既有诊断，不能写成全库零警告。
+外放清单交工具按 `check_skill_catalogs.py --json --delivery --details` 动态读取，不在本文复制易过期的全量名录。已解决：前轮654条动作路线 / 94条普通外放及逍遥13项性质冲突 / 23项缺经脉仅为历史快照，后续图鉴已变化；本轮以实际命令和 `VFX-templates.md` 报告为准，不把旧数量继续当成当前门禁，也不声称全库零警告。
+
+### 7.3 统一模板（玄 / 黄级）与绑定表
+
+作者 2026-09-30 要求：天 / 地级逐招制作；玄级有外放用统一真气效果、颜色取内力阴阳，无外放用残影；黄级用普通招。品阶、绝招身份、`projection / delivery / nature` 仍归 `design/05`、`21` 与图鉴。以下表现方案均为**（原创扩展）**；具体分流按本任务逐招绑定要求执行，天 / 地普通招也登记专属套件，不因 `ultimate:false` 降为黄级模板。
+
+| 模板 | 形态 / 原料 | 参数与边界 |
+|---|---|---|
+| `qi_projection` | 掌→fan 扇形；指 / 剑→beam 细直束；拳 / 其余兵器→impact 短粗冲击；音功→rings 同心波纹。各1张白底4帧原图 | 默认0.6 s；中性原料经去白得到alpha，shader在线性RGB中用色板色×alpha，再screen混合 |
+| `afterimage` | 无效果原料；沿出招方向复制真实发出方，normal混合 | `copies=4`（3–5）、`spacing_px=28`、`duration_s=0.48`、`stretch=0.04`；原发出方不计入副本数 |
+| `plain_strike` | 拳脚冲击闪impact / 兵器挥砍arc / 掌风wave，各1张白底3帧原图，格式允许2–3帧 | `duration_s=0.32≤0.4`，normal，亮度恒1、无发光；颜色保留原料，不按nature染色 |
+
+上述数值均为**【建议值，待实测】**，只控制表现。普通招默认总长 `0.32=0.0576+0.0384+0+0.224 s`，满足作者 `≤0.4 s`，也低于 §5.2 扣除受击后的0.6 s预算；残影 `0.48<0.6 s`。玄级外放沿用0.6 s预算，默认阶段 `0.10+0.14+0.16+0.20=0.60 s`；不增加伤害段或CT。残影包络在相位0.18达峰后平滑淡出，份数越后的alpha越低，沿向最大伸长 `1+4×0.04=1.16`，默认末级峰值位移 `4×28=112 px`，消散可继续漂至 `112×1.25=140 px`（此时完全透明）；这是画面偏移，不是移动格数。独立demo的玄级 / 普通招视觉长度为560 / 240px，横向画幅270 / 200px，均不从中推出玩法射程。
+
+唯一制作色板为 [`vfx/palette.yaml`](vfx/palette.yaml)：`yin=#5FB5B0`（青）、`yang=#D9483B`（赤）、`harmony=#E8D6A3`（淡金）、`neutral=#F4F4F4`（素白）。后两色具体数值待作者确认；不复用品阶UI色，也不将单条出口经脉的颜色覆盖整门已给出的nature。图鉴未填nature时默认为neutral并保留缺项说明；运行时已有施展者内力性质时由适配器传入，不由模板推断。修改色板后须重建HTML/JSON，打包快照不会实时读取本地YAML。
+
+`build_demo.py --template <mode> --emitter <type> --nature <n> --delivery <d>` 直接构造 `TemplateComposition`，保持旧 Composition 入口。`--copies / --spacing / --duration / --stretch` 调残影参数，`--emitter-path` 可明确传现有 EmitterPlate YAML / PNG；正式资产优先YAML的人工锚点。无发出方选 `none`；残影必须有真实源图，内功绑定的 `emitter:null` 由运行时传施展者精灵，离线演示缺图明确报错。PNG便利入口的估算锚点不等于生产批准。
+
+```sh
+python3 tools/vfx/build_demo.py --template qi_projection --emitter palm --nature yin --delivery palm --emitter-path assets/default/baseline/vfx/mv_xianglong18_kanglong/emitter/emitter-plate.yaml
+python3 tools/vfx/build_demo.py --template afterimage --emitter finger --nature neutral --delivery finger --emitter-path assets/default/baseline/vfx/sk_liumai/emitter/emitter-plate.yaml
+python3 tools/vfx/build_demo.py --template plain_strike --emitter palm --nature neutral --delivery palm --emitter-path assets/default/baseline/vfx/mv_xianglong18_kanglong/emitter/emitter-plate.yaml
+python3 tools/vfx/bind_moves.py
+python3 tools/vfx/bind_moves.py --check
+python3 tools/vfx/check_skill_suite.py assets/default/vfx/sk_liumai --catalog docs/design/catalog/skills-wujue.md
+```
+
+最后一行是后续单门套件完成后的门禁示例，不代表本任务交付六脉套件。当前共享 `assets/default/vfx/emitters/` 尚未在本工作副本提供，六份模板样例显式复用已有基线掌 / 指图；不伪造共享发出方完成状态。
+
+绑定表固定路径 `assets/default/vfx/bindings.yaml`，脚本按move排序、无运行时间戳，`--check` 比较完整期望字节且不写入。绝招取 `check_skill_catalogs.py --json --delivery --details` 的 `routes`；普通招取图鉴卡片表与明确的局部后缀约定，展开已有ID，不为未定义招式的黄级一行卡造ID。
+
+| 字段 | 含义 / 来源 |
+|---|---|
+| `move / skill` | 已有招式与所属武学；全库去重，一招一条 |
+| `tier / grade` | 卡片品阶，tier=`tian/di/xuan/huang/ungraded`；未定级grade为null，按plain_strike兜底 |
+| `ultimate / projection` | 已声明身份和外放布尔值；绝招以机器行为准，普通招只消费表内字段、图鉴明示默认与外放锚点 |
+| `delivery / nature` | 已知动作 / 性质；音功表现统一为sonic，不回写MoveDef；缺性质为neutral |
+| `mode` | 天 / 地=`bespoke`；其余=`template` |
+| `suite / template` | 前者为 `assets/default/vfx/<skill_id>/moves/<mv>/`；后者按玄级projection分qi_projection/afterimage，黄及未定级为plain_strike；二者互斥 |
+| `emitter` | palm→palm、finger→finger、fist-grapple→fist；weapon按武学名/卡内兵器分sword/sabre/staff/spear/whip/fan；inner→null；movement→afterimage；leg/throw保留；音功→instrument；无法判断→sword并报告 |
+| `params` | 模板表现参数，字段单位见schema；bespoke为空，逐门任务填Composition |
+
+单门检查器与绑定脚本共用图鉴招式枚举。天 / 地套件含 `effect/family/`、`effect/<mv>/`、`moves/<mv>/{composition.yaml,composition.json,peak.png,demo.html}`、`manifest.yaml`。effect必须在套件内，emitter YAML及其图片必须在共享 `assets/default/vfx/emitters/` 内；Composition相对路径允许向上进入该明确共享根，仍拒绝逃到其他目录。每招HTML≤3,000,000 bytes且唯一直接外链为 §5.3 的three r186；实际CDN加载及GPU编译仍须浏览器验收。
+
+制作共享发出方的单门套件时，`compose.py / build_demo.py / check_vfx.py` 统一传 `--root assets/default/vfx`，使相对emitter路径处于允许根内；之后必须再执行 `check_skill_suite.py`，收紧effect仅在本门、emitter仅在共享目录的边界。旧基线自带emitter的两段式仍可传原套件根。
+
+manifest顶层为列表或 `{assets:[...]}`；图片条目 `size` 为宽×高、`sha256` 重算，`file_integrity` 每项含 `file / bytes / sha256`（兼容整数字节 `size`），覆盖各招四交付文件。检查逐项报告问题，成功0、失败1。登记路径不意味着该套件已经存在，生成绑定表不检查尚待后续任务产出的bespoke资产。
 
 ## 8. 提示词模板与素材质检
 
@@ -461,6 +509,8 @@ VFX-plates 的两套原料由 VFX-three 原样接续：降龙十八掌·亢龙�
 | phase | 效果样本在总表现时长中的归一时刻；不表示行动进度或路线质量 |
 | `ink / gold_ink / qi_sword` | 制作风格枚举，属于**（原创扩展）**，不替代武功分类、品阶或内力性质 |
 | `pulse / linear / wave` | 本文节奏表局部标签，不注册为全局 ID，不写入玩法存档 |
+| TemplateComposition / `qi_projection / afterimage / plain_strike` | 统一模板的展开播放数据 / 模式，见 §7.3；不与Buff残影、Gameplay的projection定义混用 |
+| `bindings.yaml / palette.yaml` | 图鉴到制作模式的生成清单 / 唯一模板色板；不定义新招式或内力性质 |
 
 本文没有新增玩法 ID。所有 `sk_* / mv_* / aoe_*` 均引用上游；`vfx_*` 候选和素材子件命名仍归 `tech/07`。本 schema 的 version=1 只标识离线格式；`source / frames / transition / output` 是父对象局部字段。
 
@@ -499,6 +549,11 @@ VFX-plates 的两套原料由 VFX-three 原样接续：降龙十八掌·亢龙�
 
 ```sh
 python3 -c "import yaml; yaml.safe_load(open('docs/design/vfx/schema.yaml'))"
+python3 -m unittest discover -s tools/vfx -p 'test_*.py'
+node --test tools/vfx/web/
+node --check tools/vfx/web/vfx_player.js
+python3 tools/vfx/bind_moves.py --check
+python3 tools/agents/check_assets.py assets/default/vfx/templates --min 6 --max 12 --min-side 256
 python3 tools/lint/check_ids.py --strict
 ```
 
@@ -519,6 +574,8 @@ python3 tools/lint/check_ids.py --strict
 | 变换与底色 | 墨/金scale_from0.95、drift0（余韵至多0.05）；气剑1/0；纸底，金光可另试深墨底 | STYLE 作者审批；不得程序补形 |
 | 推进遮罩 | 旧配置缺省关闭，新候选启用；softness通用0.08、六脉0.045 | §6.1；视觉软带需浏览器/真机确认，不影响命中 |
 | HTML | 展示768×512，单文件≤3,000,000 bytes；分离原料data URI；唯一Three.js外链见§5.3；可选动图不出 | 已解决：执行分工改为Three.js（§5.3）；母版保留，浏览器仍待实测 |
+| 统一模板 | §7.3 的0.6 / 0.48 / 0.32s、4份残影、28px间距、0.04拉伸；样例1024×512 | 不改上游玩法；浏览器、真机与作者视觉确认后再调整 |
+| 统一模板颜色 | 阴青#5FB5B0、阳赤#D9483B；调和#E8D6A3、中性#F4F4F4 | 后两色具体值待作者确认；唯一配置为palette.yaml |
 
 ### 12.2 本文依赖的上游事实
 
@@ -528,7 +585,7 @@ python3 tools/lint/check_ids.py --strict
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| VFX-P01 | §18 增列本文为外放素材两段式制作子契约的归属，并注明玩法/运行时仍归05、09、21、tech/02、tech/07 | 防止未来在多个文档重复定义三种制作对象 |
+| VFX-P01 | §18 增列本文为外放素材两段式制作子契约的归属，并注明玩法/运行时仍归05、09、21、tech/02、tech/07；本轮追加统一模板制作接口 | 防止未来在多个文档重复定义制作对象（原三种，本轮新增TemplateComposition） |
 
 不提议新增 ID 前缀、伤害乘区、外放档位、玩法公式或时间单位。提案未合入，本文只按任务授权定义制作接口。
 
@@ -551,5 +608,8 @@ python3 tools/lint/check_ids.py --strict
 | VFX-O07 | 手机显示与WebP/APNG编码质量 | 已解决：Python动图编码退出当前交付，保留none（§5.3）；PNG+Three.js HTML必需，CDN、浏览器/手机显示仍待核实或实测 |
 | VFX-O08 | 旧图层演示是否可作为原料 | 已核查当前无图层包；保留旧整图/HTML对照，未来图层包须重新验证，不继承旧程序锚点 |
 | VFX-O09 | 六脉原料与两招手部是否需要重出 | 当前复用现有原料，仅调Composition亮度/混合/推进；原料造型、六脉颜色与手部画法交作者审批，不自动重出 |
+| VFX-O10 | 调和 / 中性两色取值 | 默认#E8D6A3 / #F4F4F4；作者确认后修改palette并重建演示 |
+| VFX-O11 | 普通招未声明ID或缺动作、性质 | 仅展开已有ID，未知动作按任务要求sword兜底，缺nature用neutral；完整清单见binding-audit.yaml，交图鉴归属任务补齐 |
+| VFX-O12 | 共享发出方、内功残影及模板动态可读性 | demo显式复用基线掌/指；inner仍无专用发出方，运行时传角色精灵；六份样例待协调者浏览器验收 |
 
 已解决：两段式制作、气剑不用水墨、降龙金色与全掌面透出均已有作者决定（见 STYLE 与本文 §0），不再重复列为等待批准的问题。其余建议可先执行，作者未另确认的不能写为已批准。
