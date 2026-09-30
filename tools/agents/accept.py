@@ -31,8 +31,9 @@ def main() -> int:
     rc_all = 0
     for tid in a.ids:
         t = g[tid]
-        is_asset = (tid.upper().startswith("ART") or t.phase == "ART"
-                    or (any(w.startswith("assets/") for w in t.writes) and tid not in CODE_TASKS))
+        is_asset = ((tid.upper().startswith("ART") or t.phase == "ART"
+                     or (any(w.startswith("assets/") for w in t.writes) and tid not in CODE_TASKS))
+                    and not tid.upper().startswith("ART-P-"))  # ART-P-*：只写提示词文本，不含图片
         if is_asset and not a.author_approved:
             print(f"✘ {tid}：素材任务，要作者看过图才合入（确认后加 --author-approved）")
             rc_all = 1
