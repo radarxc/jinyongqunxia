@@ -36,3 +36,4 @@
 - 城镇改程序化生成：TOWN-design → TOWN-tiles / TOWN-buildings / TOWN-render → TOWN-assemble（695e1de）。ART-B-town、ART-B-bldmap 作废，工作区保留作参考。
 - 招式演示改为"生成图拆图层 + 图层动画"（ART-R3-vfx），作者原话「这个特效看起来太蠢了，跟渲染的图完全不一样」。ART-R2-vfx 工作区（六脉线性剑气图，GPT PASS，未合入）是 R3 的起点。
 - 审批页待作者审：萧峰（R2）、令狐冲（R1）、六脉神剑图（R2）、倚天剑（R1）、降龙十八掌图（R1）；小龙女加白手套 / 佩剑 / 铃铛（ART-R1-female）出图中。
+- NR4-shaolin（返修中）：少林九阳功主修经脉依据标"待考《倚天》楔子觉远诵经情节"；11 门补录经脉为原创扩展；交 LINT-outlets 的四处脚本盲区已并入其提示词。
