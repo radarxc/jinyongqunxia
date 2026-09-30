@@ -5,7 +5,7 @@
 > **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14–AR-16、`docs/00-canon.md` §3–§5/§9/§12–§13/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/06`、`design/15`、`design/17`、`design/21`。
 > **引用而不重定义**：品阶、字段、招式 / 内功预算和习得规则见 `design/05`；Buff 本体见 `design/06`；哈萨克职级见 `design/17`；穴位见 `design/15`；经脉路线、外放、调息和护体内劲见 `design/21`；既有华辉与哈萨克武学只引用 `skills-kangxi.md`。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（原创扩展命名）**为原著有人物、师承或动作依据但名称未见明载；**（待考）**须按三联 / 广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
-> **版本**：首领所缺武学补录（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）。
+> **版本**：首领所缺武学补录（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
 
 ---
 

@@ -5,7 +5,7 @@
 > **引用而不重定义**：武学字段、IP、招式预算与外放字段见 `design/05`；Buff 见 `design/06`；经脉 / 穴位见 `design/15`；路线、调息、护体内劲及 Boss 地位下限见 `design/21`；门派与职级见 `design/17`；既有大理 / 丐帮武学见 `skills-wujue.md`，既有逍遥 / 灵鹫武学见 `skills-xiaoyao.md`。
 > **覆盖声明**：本文不覆写现有十一册图鉴；同门既有条目继续由原册唯一拥有。三门补录均可由玩家与其他合格人物按门派、师承或图谱正常习得，不是 `enemyOnly` 或首领私有武学。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**为须按三联 / 广州修订版核对的小说事实；**【建议值】**为待归属文档确认的数值。
-> **版本**：NXB01 首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）。
+> **版本**：NXB01 首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
 
 ---
 
@@ -24,7 +24,7 @@
 | 12 天上 | `sk_xianglongxinggong` | `mv_xianglongxinggong_guanmai` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_xianglongxinggong_guanmai}` | `mfr_xianglongxinggong_guanmai` | `MeridianRouteDef{moveRef:mv_xianglongxinggong_guanmai; ultimate:true; purpose:attack; requiredNature:[yang,harmony]}`；`ap_chongmai_henggu/80/100→ap_chongmai_dahe/80/120→ap_chongmai_huangshu/80/140→ap_chongmai_zhongzhu/80/160→ap_dumai_yaoshu/80/360→ap_dumai_yaoyangguan/80/180→ap_dumai_shenzhu/80/160→ap_shoujueyin_quze/80/360→ap_shoujueyin_neiguan/80/140→ap_shoujueyin_laogong/80/100` |
 | 12 天上 | `sk_xianglongxinggong` | `mv_xianglongxinggong_tianxing` `MoveDef{unlock:10; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_xianglongxinggong_tianxing}` | `mfr_xianglongxinggong_tianxing` | `MeridianRouteDef{moveRef:mv_xianglongxinggong_tianxing; ultimate:true; purpose:defense; requiredNature:[yang,harmony]}`；`ap_renmai_huiyin/80/100→ap_renmai_shimen/80/120→ap_renmai_shenque/80/140→ap_renmai_zhongwan/80/160→ap_renmai_danzhong/80/180→ap_yangqiao_fuyang/80/360→ap_yangqiao_shenmai/80/180→ap_yangwei_fengfu/80/220→ap_yangwei_yamen/80/160→ap_dumai_baihui/80/120` |
 | 11 天中 | `sk_tianshanliuyangxinfa` | `mv_tianshanliuyangxinfa_hemai` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_tianshanliuyangxinfa_hemai}` | `mfr_tianshanliuyangxinfa_hemai` | `MeridianRouteDef{moveRef:mv_tianshanliuyangxinfa_hemai; ultimate:true; purpose:defense; requiredNature:[yang,harmony]}`；`ap_chongmai_qichong/80/100→ap_chongmai_qixue/80/120→ap_chongmai_dahe/80/140→ap_chongmai_huangshu/80/160→ap_daimai_zulinqi/80/360→ap_daimai_weidao/80/180→ap_daimai_daimai/80/160→ap_dumai_zhiyang/80/180→ap_dumai_shendao/80/140→ap_dumai_baihui/80/100` |
-| 11 天中 | `sk_tianshanliuyangxinfa` | `mv_tianshanliuyangxinfa_guiyuan` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_tianshanliuyangxinfa_guiyuan}` | `mfr_tianshanliuyangxinfa_guiyuan` | `MeridianRouteDef{moveRef:mv_tianshanliuyangxinfa_guiyuan; ultimate:true; purpose:defense; requiredNature:[yang,harmony]}`；`ap_chongmai_yindu/80/100→ap_chongmai_futonggu/80/120→ap_chongmai_shiguan/80/140→ap_chongmai_shangqu/80/160→ap_chongmai_youmen/80/180→ap_renmai_danzhong/80/360→ap_daimai_jingmen/80/180→ap_daimai_wushu/80/160→ap_renmai_qihai/80/140→ap_renmai_guanyuan/80/100` |
+| 11 天中 | `sk_tianshanliuyangxinfa` | `mv_tianshanliuyangxinfa_guiyuan` `MoveDef{unlock:9; ultimate:true; rageCost:100; mpCost:10%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_tianshanliuyangxinfa_guiyuan}` | `mfr_tianshanliuyangxinfa_guiyuan` | `MeridianRouteDef{moveRef:mv_tianshanliuyangxinfa_guiyuan; ultimate:true; purpose:defense; requiredNature:[yang,harmony]}`；`ap_chongmai_yindu/80/100→ap_chongmai_futonggu/80/120→ap_chongmai_shiguan/80/140→ap_chongmai_shangqu/80/160→ap_chongmai_youmen/80/180→ap_dumai_jizhong/80/360→ap_daimai_jingmen/80/180→ap_daimai_wushu/80/160→ap_dumai_shenzhu/80/140→ap_dumai_baihui/80/100` |
 <!-- skill-catalog-audit:end -->
 
 ### 0.1 内容边界与品阶口径
@@ -151,7 +151,7 @@
 | 寒中见阳 **（原创扩展）** | `ps_tianshanliuyangxinfa_hanyang` | 8 | 自身受 `cold` 类效果时 `resCold +5→+12`；不免疫寒冷 | scaled |
 | 六阳大成 **（原创扩展）** | `ps_tianshanliuyangxinfa_dacheng` | 10 | 每战首次完成 10 段防守路线后，清除该路线最高一个节点的 500 `stagnationBp` | none |
 
-- **路线叙事与互异**：“六合脉”以冲脉起、带脉横转、督脉护顶；“六阳归元”由冲脉腹段起势，经任脉膻中转入带脉，最后回到任脉丹田。共享穴位为 0/10，不是轮换或逆序；前者偏稳身，后者偏回元。
+- **路线叙事与互异**：“六合脉”以冲脉起、带脉横转、督脉护顶；“六阳归元”由冲脉腹段起势，经督脉脊中提气转入带脉，最后回督脉神柱、百会归元。共享穴位为 1/10，不是轮换或逆序；前者偏稳身，后者偏回元。后一路体段由阴 3 / 阳 0 调整为阴 0 / 阳 3，段数、CT 与风险列表不变。
 
 | 路线叙事第三轮同步镜像 | 模板代号 | 段数 | 路线 CT | 收招合计 | 风险列表 / 总风险 |
 |---|---|---:|---:|---:|---|
