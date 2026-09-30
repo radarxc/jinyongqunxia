@@ -15893,7 +15893,13 @@
       "vars": {},
       "validate": {
         "exists": [
-          "assets/default/baseline/vfx/manifest.yaml"
+          "assets/default/baseline/vfx/manifest.yaml",
+          "assets/default/baseline/vfx/mv_xianglong18_kanglong/effect/source_sheet.png",
+          "assets/default/baseline/vfx/mv_xianglong18_kanglong/demo.html",
+          "assets/default/baseline/vfx/mv_xianglong18_kanglong/peak.png",
+          "assets/default/baseline/vfx/sk_liumai/effect/source_sheet.png",
+          "assets/default/baseline/vfx/sk_liumai/demo.html",
+          "assets/default/baseline/vfx/sk_liumai/peak.png"
         ],
         "fences": [
           "assets/default/prompts/vfx.md"
@@ -15911,8 +15917,24 @@
           [
             "{python}",
             "tools/vfx/check_vfx.py",
+            "assets/default/baseline/vfx/mv_xianglong18_kanglong/effect/effect-set.yaml",
+            "assets/default/baseline/vfx/mv_xianglong18_kanglong/emitter/emitter-plate.yaml",
+            "assets/default/baseline/vfx/mv_xianglong18_kanglong/composition.yaml",
+            "--root",
             "assets/default/baseline/vfx/mv_xianglong18_kanglong",
-            "assets/default/baseline/vfx/sk_liumai"
+            "--html",
+            "assets/default/baseline/vfx/mv_xianglong18_kanglong/demo.html"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/baseline/vfx/sk_liumai/effect/effect-set.yaml",
+            "assets/default/baseline/vfx/sk_liumai/emitter/emitter-plate.yaml",
+            "assets/default/baseline/vfx/sk_liumai/composition.yaml",
+            "--root",
+            "assets/default/baseline/vfx/sk_liumai",
+            "--html",
+            "assets/default/baseline/vfx/sk_liumai/demo.html"
           ]
         ]
       }
