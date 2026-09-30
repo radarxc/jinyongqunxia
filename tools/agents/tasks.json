@@ -22039,6 +22039,4300 @@
           ]
         ]
       }
+    },
+    {
+      "id": "KIT-song_north",
+      "title": "建筑套件 · 宋 · 北方中原套件",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/song_north/**",
+        "assets/default/tile/song_north/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "song_north",
+        "kit_name": "宋 · 北方中原套件",
+        "era_desc": "北宋中原大城：东京开封、西京洛阳；开放街巷、瓦子、汴河；北方院落、砖瓦城门",
+        "ref_cities": "开封、洛阳、大名"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/song_north/manifest.yaml",
+          "assets/default/tile/song_north/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/song_north",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/song_north",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-liao_jin_north",
+      "title": "建筑套件 · 辽 · 金北方套件",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/liao_jin_north/**",
+        "assets/default/tile/liao_jin_north/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "liao_jin_north",
+        "kit_name": "辽 · 金北方套件",
+        "era_desc": "辽南京 / 金中都、辽上京、大同：契丹女真与汉式并存，土城砖门、佛塔",
+        "ref_cities": "燕京、大同、上京"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/liao_jin_north/manifest.yaml",
+          "assets/default/tile/liao_jin_north/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/liao_jin_north",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/liao_jin_north",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-yuan_north",
+      "title": "建筑套件 · 元 · 北方套件",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/yuan_north/**",
+        "assets/default/tile/yuan_north/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "yuan_north",
+        "kit_name": "元 · 北方套件",
+        "era_desc": "元大都 / 路城：正交干道、规整坊块、宫城皇城层级、驿路马市",
+        "ref_cities": "大都、大同、开封"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/yuan_north/manifest.yaml",
+          "assets/default/tile/yuan_north/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/yuan_north",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/yuan_north",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-yuan_south",
+      "title": "建筑套件 · 元 · 江南套件",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/yuan_south/**",
+        "assets/default/tile/yuan_south/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "yuan_south",
+        "kit_name": "元 · 江南套件",
+        "era_desc": "元末江南：沿用宋河网街巷，替换官署（路府）、宗教与防务",
+        "ref_cities": "杭州路、集庆路、平江路"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/yuan_south/manifest.yaml",
+          "assets/default/tile/yuan_south/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/yuan_south",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/yuan_south",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-ming_north",
+      "title": "建筑套件 · 明 · 北方套件",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/ming_north/**",
+        "assets/default/tile/ming_north/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "ming_north",
+        "kit_name": "明 · 北方套件",
+        "era_desc": "明代北方府城：规整城垣、瓮城、官署轴线、会馆当铺、硬山灰瓦院落",
+        "ref_cities": "北京、大同、西安"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/ming_north/manifest.yaml",
+          "assets/default/tile/ming_north/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/ming_north",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/ming_north",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-ming_south",
+      "title": "建筑套件 · 明 · 江南套件",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/ming_south/**",
+        "assets/default/tile/ming_south/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "ming_south",
+        "kit_name": "明 · 江南套件",
+        "era_desc": "明代江南：河桥密、粉墙黛瓦、商帮会馆、镖局当铺",
+        "ref_cities": "南京、苏州、杭州"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/ming_south/manifest.yaml",
+          "assets/default/tile/ming_south/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/ming_south",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/ming_south",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-qing_north",
+      "title": "建筑套件 · 清 · 北方套件",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/qing_north/**",
+        "assets/default/tile/qing_north/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "qing_north",
+        "kit_name": "清 · 北方套件",
+        "era_desc": "清初至清中北方：旗民分城、胡同院落、衙署驻防、灰砖城门",
+        "ref_cities": "北京、盛京、济南"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/qing_north/manifest.yaml",
+          "assets/default/tile/qing_north/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/qing_north",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/qing_north",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-qing_south",
+      "title": "建筑套件 · 清 · 江南套件",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/qing_south/**",
+        "assets/default/tile/qing_south/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "qing_south",
+        "kit_name": "清 · 江南套件",
+        "era_desc": "清初至清中江南：继承明街巷河网，屋面墙体门窗彩画换清式",
+        "ref_cities": "杭州、扬州、苏州、福州"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/qing_south/manifest.yaml",
+          "assets/default/tile/qing_south/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/qing_south",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/qing_south",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-xiyu",
+      "title": "建筑套件 · 西域套件",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/xiyu/**",
+        "assets/default/tile/xiyu/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "xiyu",
+        "kit_name": "西域套件",
+        "era_desc": "西域回部城镇：土坯平顶、清真寺穹顶与邦克楼、巴扎、葡萄架，各年代通用",
+        "ref_cities": "喀什、和田、叶尔羌"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/xiyu/manifest.yaml",
+          "assets/default/tile/xiyu/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/xiyu",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/xiyu",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-tubo",
+      "title": "建筑套件 · 吐蕃 · 藏地套件",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/tubo/**",
+        "assets/default/tile/tubo/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "tubo",
+        "kit_name": "吐蕃 · 藏地套件",
+        "era_desc": "藏地城镇：石砌碉房、平顶、寺院金顶、经幡、玛尼堆，各年代通用",
+        "ref_cities": "拉萨、日喀则、昌都"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/tubo/manifest.yaml",
+          "assets/default/tile/tubo/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/tubo",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/tubo",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-mongol",
+      "title": "建筑套件 · 蒙古 · 草原套件",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/mongol/**",
+        "assets/default/tile/mongol/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "mongol",
+        "kit_name": "蒙古 · 草原套件",
+        "era_desc": "草原营地与和林：毡帐群、木栅、汉式殿宇残留",
+        "ref_cities": "和林、上都"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/mongol/manifest.yaml",
+          "assets/default/tile/mongol/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/mongol",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/mongol",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_dugu9",
+      "title": "招式特效 · 天级 独孤九剑（sk_dugu9，10 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_dugu9/**"
+      ],
+      "vars": {
+        "skill_id": "sk_dugu9",
+        "skill_name": "独孤九剑",
+        "tier": "天",
+        "grade": "12",
+        "nature": "neutral",
+        "delivery": "weapon",
+        "catalog": "docs/design/catalog/skills-wuyue.md",
+        "moves": "`mv_dugu9_poanqi`*、`mv_dugu9_pobian`、`mv_dugu9_podao`、`mv_dugu9_pojian`、`mv_dugu9_poqi`*P、`mv_dugu9_poqiang`、`mv_dugu9_posuo`、`mv_dugu9_pozhang`、`mv_dugu9_wuzhao`*、`mv_dugu9_zongjue`",
+        "emitter": "sword"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_dugu9/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_dugu9",
+            "--catalog",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_dugu9",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_jiuyang",
+      "title": "招式特效 · 天级 九阳神功（sk_jiuyang，3 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_jiuyang/**"
+      ],
+      "vars": {
+        "skill_id": "sk_jiuyang",
+        "skill_name": "九阳神功",
+        "tier": "天",
+        "grade": "12",
+        "nature": "harmony",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-yitian.md",
+        "moves": "`mv_jiuyang_huti`*、`mv_jiuyang_liaoshang`*、`mv_jiuyang_puzhao`*",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_jiuyang/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_jiuyang",
+            "--catalog",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_jiuyang",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_jiuyin",
+      "title": "招式特效 · 天级 九阴真经（sk_jiuyin，6 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_jiuyin/**"
+      ],
+      "vars": {
+        "skill_id": "sk_jiuyin",
+        "skill_name": "九阴真经",
+        "tier": "天",
+        "grade": "12",
+        "nature": "harmony",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-wujue.md",
+        "moves": "`mv_jiuyin_buzu`*、`mv_jiuyin_jiexue`、`mv_jiuyin_shougong`、`mv_jiuyin_sunyouyu`*、`mv_jiuyin_tianzhidao`*、`mv_jiuyin_xushi`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_jiuyin/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_jiuyin",
+            "--catalog",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_jiuyin",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_liumai",
+      "title": "招式特效 · 天级 六脉神剑（sk_liumai，7 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_liumai/**"
+      ],
+      "vars": {
+        "skill_id": "sk_liumai",
+        "skill_name": "六脉神剑",
+        "tier": "天",
+        "grade": "12",
+        "nature": "harmony",
+        "delivery": "finger",
+        "catalog": "docs/design/catalog/skills-wujue.md",
+        "moves": "`mv_liumai_guanchong`、`mv_liumai_liumaiqifa`*P、`mv_liumai_shangyang`、`mv_liumai_shaochong`、`mv_liumai_shaoshang`*P、`mv_liumai_shaoze`*P、`mv_liumai_zhongchong`",
+        "emitter": "finger"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_liumai/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_liumai",
+            "--catalog",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_liumai",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_taixuan",
+      "title": "招式特效 · 天级 太玄经（sk_taixuan，5 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_taixuan/**"
+      ],
+      "vars": {
+        "skill_id": "sk_taixuan",
+        "skill_name": "太玄经",
+        "tier": "天",
+        "grade": "12",
+        "nature": "harmony",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-xiake-bixue.md",
+        "moves": "`mv_taixuan_guiyi`*P、`mv_taixuan_sada`*、`mv_taixuan_shibu`*、`mv_taixuan_tuyi`、`mv_taixuan_wuyue`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_taixuan/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_taixuan",
+            "--catalog",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_taixuan",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_xianglongxinggong",
+      "title": "招式特效 · 天级 降龙行功（sk_xianglongxinggong，5 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_xianglongxinggong/**"
+      ],
+      "vars": {
+        "skill_id": "sk_xianglongxinggong",
+        "skill_name": "降龙行功",
+        "tier": "天",
+        "grade": "12",
+        "nature": "yang",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-bulu-01-tianlong.md",
+        "moves": "`mv_xianglongxinggong_guanmai`*、`mv_xianglongxinggong_honglu`*、`mv_xianglongxinggong_huti`、`mv_xianglongxinggong_tianxing`*、`mv_xianglongxinggong_xushi`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_xianglongxinggong/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_xianglongxinggong",
+            "--catalog",
+            "docs/design/catalog/skills-bulu-01-tianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_xianglongxinggong",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_anran",
+      "title": "招式特效 · 天级 黯然销魂掌（sk_anran，18 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_anran/**"
+      ],
+      "vars": {
+        "skill_id": "sk_anran",
+        "skill_name": "黯然销魂掌",
+        "tier": "天",
+        "grade": "11",
+        "nature": "yin",
+        "delivery": "palm",
+        "catalog": "docs/design/catalog/skills-daojia.md",
+        "moves": "`mv_anran_daimu`*、`mv_anran_daoxing`、`mv_anran_feiqin`、`mv_anran_guxing`、`mv_anran_libucongxin`、`mv_anran_liushen`、`mv_anran_mianwu`、`mv_anran_paihuai`、`mv_anran_qiongtu`、`mv_anran_qiren`、`mv_anran_tuoni`、`mv_anran_wuzhong`、`mv_anran_xiangru`*、`mv_anran_xiaohun`*、`mv_anran_xingshi`、`mv_anran_xinjing`、`mv_anran_yinhen`、`mv_anran_yongren`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_anran/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_anran",
+            "--catalog",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_anran",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_dagou",
+      "title": "招式特效 · 天级 打狗棒法（sk_dagou，12 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_dagou/**"
+      ],
+      "vars": {
+        "skill_id": "sk_dagou",
+        "skill_name": "打狗棒法",
+        "tier": "天",
+        "grade": "11",
+        "nature": "neutral",
+        "delivery": "weapon",
+        "catalog": "docs/design/catalog/skills-wujue.md",
+        "moves": "`mv_dagou_`、`mv_dagou_aokouduozhang`*、`mv_dagou_ban`、`mv_dagou_bangdashuangquan`、`mv_dagou_bogouchaotian`、`mv_dagou_chan`、`mv_dagou_egoulanlu`、`mv_dagou_fanjiegoutun`、`mv_dagou_tianxiawugou`*、`mv_dagou_xiedagoubei`、`mv_dagou_yajiangoubei`*、`mv_dagou_yin`",
+        "emitter": "sword"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_dagou/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_dagou",
+            "--catalog",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_dagou",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_duanshiyangjue",
+      "title": "招式特效 · 天级 段氏一阳诀（sk_duanshiyangjue，5 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_duanshiyangjue/**"
+      ],
+      "vars": {
+        "skill_id": "sk_duanshiyangjue",
+        "skill_name": "段氏一阳诀",
+        "tier": "天",
+        "grade": "11",
+        "nature": "harmony",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-bulu-01-tianlong.md",
+        "moves": "`mv_duanshiyangjue_guanyuan`、`mv_duanshiyangjue_humai`、`mv_duanshiyangjue_yangqi`、`mv_duanshiyangjue_yiyang`*、`mv_duanshiyangjue_zhouliu`*",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_duanshiyangjue/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_duanshiyangjue",
+            "--catalog",
+            "docs/design/catalog/skills-bulu-01-tianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_duanshiyangjue",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_kuihua",
+      "title": "招式特效 · 天级 葵花宝典（sk_kuihua，4 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_kuihua/**"
+      ],
+      "vars": {
+        "skill_id": "sk_kuihua",
+        "skill_name": "葵花宝典",
+        "tier": "天",
+        "grade": "11",
+        "nature": "yang",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-wuyue.md",
+        "moves": "`mv_kuihua_cimu`*、`mv_kuihua_feizhen`、`mv_kuihua_guimei`、`mv_kuihua_wanzhen`*",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_kuihua/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_kuihua",
+            "--catalog",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_kuihua",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_qiankun",
+      "title": "招式特效 · 天级 乾坤大挪移（sk_qiankun，4 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_qiankun/**"
+      ],
+      "vars": {
+        "skill_id": "sk_qiankun",
+        "skill_name": "乾坤大挪移",
+        "tier": "天",
+        "grade": "11",
+        "nature": "harmony",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-yitian.md",
+        "moves": "`mv_qiankun_diandao`*、`mv_qiankun_guiyi`*、`mv_qiankun_huti`、`mv_qiankun_xiejin`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_qiankun/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_qiankun",
+            "--catalog",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_qiankun",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_suxin",
+      "title": "招式特效 · 天级 玉女素心剑法（sk_suxin，9 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_suxin/**"
+      ],
+      "vars": {
+        "skill_id": "sk_suxin",
+        "skill_name": "玉女素心剑法",
+        "tier": "天",
+        "grade": "11",
+        "nature": "harmony",
+        "delivery": "weapon",
+        "catalog": "docs/design/catalog/skills-daojia.md",
+        "moves": "`mv_suxin_chibian`、`mv_suxin_fuqin`、`mv_suxin_hebi`*、`mv_suxin_huaqian`*、`mv_suxin_juan`*、`mv_suxin_langji`、`mv_suxin_qingyin`、`mv_suxin_saoxue`、`mv_suxin_songxia`",
+        "emitter": "sword"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_suxin/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_suxin",
+            "--catalog",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_suxin",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_taijijian",
+      "title": "招式特效 · 天级 太极剑（sk_taijijian，8 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_taijijian/**"
+      ],
+      "vars": {
+        "skill_id": "sk_taijijian",
+        "skill_name": "太极剑",
+        "tier": "天",
+        "grade": "11",
+        "nature": "harmony",
+        "delivery": "weapon",
+        "catalog": "docs/design/catalog/skills-daojia.md",
+        "moves": "`mv_taijijian_dakuixing`、`mv_taijijian_jianquan`*、`mv_taijijian_lansao`、`mv_taijijian_liangyi`*、`mv_taijijian_sanhuan`、`mv_taijijian_xiaokuixing`、`mv_taijijian_yanzi`、`mv_taijijian_zhanjian`*",
+        "emitter": "sword"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_taijijian/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_taijijian",
+            "--catalog",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_taijijian",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_taijiquan",
+      "title": "招式特效 · 天级 太极拳（sk_taijiquan，10 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_taijiquan/**"
+      ],
+      "vars": {
+        "skill_id": "sk_taijiquan",
+        "skill_name": "太极拳",
+        "tier": "天",
+        "grade": "11",
+        "nature": "harmony",
+        "delivery": "fist-grapple",
+        "catalog": "docs/design/catalog/skills-daojia.md",
+        "moves": "`mv_taijiquan_baihe`、`mv_taijiquan_banlan`、`mv_taijiquan_baohu`*、`mv_taijiquan_danbian`、`mv_taijiquan_lanque`、`mv_taijiquan_louxi`、`mv_taijiquan_rufeng`、`mv_taijiquan_shizi`*、`mv_taijiquan_shouhui`、`mv_taijiquan_yunshou`*",
+        "emitter": "fist"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_taijiquan/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_taijiquan",
+            "--catalog",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_taijiquan",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_taohuaguiyuanjue",
+      "title": "招式特效 · 天级 桃花归元诀（sk_taohuaguiyuanjue，5 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_taohuaguiyuanjue/**"
+      ],
+      "vars": {
+        "skill_id": "sk_taohuaguiyuanjue",
+        "skill_name": "桃花归元诀",
+        "tier": "天",
+        "grade": "11",
+        "nature": "yin",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-bulu-02-shediao.md",
+        "moves": "`mv_taohuaguiyuanjue_bihui`*、`mv_taohuaguiyuanjue_guanchao`*、`mv_taohuaguiyuanjue_huti`、`mv_taohuaguiyuanjue_lixi`、`mv_taohuaguiyuanjue_tingchao`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_taohuaguiyuanjue/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_taohuaguiyuanjue",
+            "--catalog",
+            "docs/design/catalog/skills-bulu-02-shediao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_taohuaguiyuanjue",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_tianshanliuyangxinfa",
+      "title": "招式特效 · 天级 天山六阳心法（sk_tianshanliuyangxinfa，5 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_tianshanliuyangxinfa/**"
+      ],
+      "vars": {
+        "skill_id": "sk_tianshanliuyangxinfa",
+        "skill_name": "天山六阳心法",
+        "tier": "天",
+        "grade": "11",
+        "nature": "yang",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-bulu-01-tianlong.md",
+        "moves": "`mv_tianshanliuyangxinfa_guiyuan`*、`mv_tianshanliuyangxinfa_hemai`*、`mv_tianshanliuyangxinfa_huanxi`、`mv_tianshanliuyangxinfa_huti`、`mv_tianshanliuyangxinfa_tuna`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_tianshanliuyangxinfa/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_tianshanliuyangxinfa",
+            "--catalog",
+            "docs/design/catalog/skills-bulu-01-tianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_tianshanliuyangxinfa",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_xiantiangong",
+      "title": "招式特效 · 天级 先天功（sk_xiantiangong，3 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_xiantiangong/**"
+      ],
+      "vars": {
+        "skill_id": "sk_xiantiangong",
+        "skill_name": "先天功",
+        "tier": "天",
+        "grade": "11",
+        "nature": "yang",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-daojia.md",
+        "moves": "`mv_xiantiangong_gangqi`*、`mv_xiantiangong_wuqi`*、`mv_xiantiangong_yiqi`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_xiantiangong/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_xiantiangong",
+            "--catalog",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_xiantiangong",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_xixing",
+      "title": "招式特效 · 天级 吸星大法（sk_xixing，5 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_xixing/**"
+      ],
+      "vars": {
+        "skill_id": "sk_xixing",
+        "skill_name": "吸星大法",
+        "tier": "天",
+        "grade": "11",
+        "nature": "harmony",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-wuyue.md",
+        "moves": "`mv_xixing_fanxi`、`mv_xixing_huajie`、`mv_xixing_sangong`*、`mv_xixing_wanliu`*、`mv_xixing_xixing`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_xixing/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_xixing",
+            "--catalog",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_xixing",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_xuantie",
+      "title": "招式特效 · 天级 玄铁剑法（sk_xuantie，8 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_xuantie/**"
+      ],
+      "vars": {
+        "skill_id": "sk_xuantie",
+        "skill_name": "玄铁剑法",
+        "tier": "天",
+        "grade": "11",
+        "nature": "neutral",
+        "delivery": "weapon",
+        "catalog": "docs/design/catalog/skills-daojia.md",
+        "moves": "`mv_xuantie_caomu`*P、`mv_xuantie_daqiao`*、`mv_xuantie_diaoyi`、`mv_xuantie_haichao`、`mv_xuantie_qianjun`、`mv_xuantie_shanhong`、`mv_xuantie_wufeng`、`mv_xuantie_zangfeng`",
+        "emitter": "sword"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_xuantie/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_xuantie",
+            "--catalog",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_xuantie",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_yiyangzhi",
+      "title": "招式特效 · 天级 一阳指（sk_yiyangzhi，6 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_yiyangzhi/**"
+      ],
+      "vars": {
+        "skill_id": "sk_yiyangzhi",
+        "skill_name": "一阳指",
+        "tier": "天",
+        "grade": "11",
+        "nature": "yang",
+        "delivery": "finger",
+        "catalog": "docs/design/catalog/skills-wujue.md",
+        "moves": "`mv_yiyangzhi_chunyang`、`mv_yiyangzhi_dianxue`、`mv_yiyangzhi_jiemai`、`mv_yiyangzhi_liaoshang`*、`mv_yiyangzhi_qianyang`*P、`mv_yiyangzhi_sanjiao`",
+        "emitter": "finger"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_yiyangzhi/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_yiyangzhi",
+            "--catalog",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_yiyangzhi",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_baihuacuo",
+      "title": "招式特效 · 天级 百花错拳（sk_baihuacuo，6 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_baihuacuo/**"
+      ],
+      "vars": {
+        "skill_id": "sk_baihuacuo",
+        "skill_name": "百花错拳",
+        "tier": "天",
+        "grade": "10",
+        "nature": "harmony",
+        "delivery": "fist-grapple",
+        "catalog": "docs/design/catalog/skills-qianlong.md",
+        "moves": "`mv_baihuacuo_baijia`、`mv_baihuacuo_cangzhen`、`mv_baihuacuo_cuoluo`*、`mv_baihuacuo_fanchang`*、`mv_baihuacuo_luanhua`、`mv_baihuacuo_yihua`",
+        "emitter": "fist"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_baihuacuo/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_baihuacuo",
+            "--catalog",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_baihuacuo",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_bihai",
+      "title": "招式特效 · 天级 碧海潮生曲（sk_bihai，8 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_bihai/**"
+      ],
+      "vars": {
+        "skill_id": "sk_bihai",
+        "skill_name": "碧海潮生曲",
+        "tier": "天",
+        "grade": "10",
+        "nature": "harmony",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-wujue.md",
+        "moves": "`mv_bihai_`、`mv_bihai_chaoqi`、`mv_bihai_chaosheng`*P、`mv_bihai_chaoyong`、`mv_bihai_dingshen`*、`mv_bihai_jingtao`、`mv_bihai_xinsui`、`mv_bihai_yuyin`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_bihai/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_bihai",
+            "--catalog",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_bihai",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_bixie",
+      "title": "招式特效 · 天级 辟邪剑法（sk_bixie，4 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_bixie/**"
+      ],
+      "vars": {
+        "skill_id": "sk_bixie",
+        "skill_name": "辟邪剑法",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yin",
+        "delivery": "weapon",
+        "catalog": "docs/design/catalog/skills-wuyue.md",
+        "moves": "`mv_bixie_feiyanchuanliu`*、`mv_bixie_huakaijianfo`、`mv_bixie_liuxingganyue`、`mv_bixie_qunxie`*",
+        "emitter": "sword"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_bixie/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_bixie",
+            "--catalog",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_bixie",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_bosishenghuoxuangong",
+      "title": "招式特效 · 天级 波斯圣火玄功（sk_bosishenghuoxuangong，5 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_bosishenghuoxuangong/**"
+      ],
+      "vars": {
+        "skill_id": "sk_bosishenghuoxuangong",
+        "skill_name": "波斯圣火玄功",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yang",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-bulu-04-yitian.md",
+        "moves": "`mv_bosishenghuoxuangong_huanming`*、`mv_bosishenghuoxuangong_huti`、`mv_bosishenghuoxuangong_shouling`*、`mv_bosishenghuoxuangong_tuna`、`mv_bosishenghuoxuangong_zhuanhuan`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_bosishenghuoxuangong/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_bosishenghuoxuangong",
+            "--catalog",
+            "docs/design/catalog/skills-bulu-04-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_bosishenghuoxuangong",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_hama",
+      "title": "招式特效 · 天级 蛤蟆功（sk_hama，6 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_hama/**"
+      ],
+      "vars": {
+        "skill_id": "sk_hama",
+        "skill_name": "蛤蟆功",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yang",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-wujue.md",
+        "moves": "`mv_hama_fajin`*、`mv_hama_guhu`、`mv_hama_jinghou`、`mv_hama_quanjin`*、`mv_hama_tiaoyue`、`mv_hama_xujin`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_hama/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_hama",
+            "--catalog",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_hama",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_huashanziqijue",
+      "title": "招式特效 · 天级 华山紫气诀（sk_huashanziqijue，5 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_huashanziqijue/**"
+      ],
+      "vars": {
+        "skill_id": "sk_huashanziqijue",
+        "skill_name": "华山紫气诀",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yang",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-bulu-05-xiaoao.md",
+        "moves": "`mv_huashanziqijue_guiyuan`*、`mv_huashanziqijue_huti`、`mv_huashanziqijue_tuna`、`mv_huashanziqijue_yingfeng`*、`mv_huashanziqijue_yunqi`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_huashanziqijue/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_huashanziqijue",
+            "--catalog",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_huashanziqijue",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_hujiadao",
+      "title": "招式特效 · 天级 胡家刀法（sk_hujiadao，7 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_hujiadao/**"
+      ],
+      "vars": {
+        "skill_id": "sk_hujiadao",
+        "skill_name": "胡家刀法",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yang",
+        "delivery": "weapon",
+        "catalog": "docs/design/catalog/skills-qianlong.md",
+        "moves": "`mv_hujiadao_cangfeng`、`mv_hujiadao_fengxue`*、`mv_hujiadao_guanshan`、`mv_hujiadao_humiaohuzhao`*、`mv_hujiadao_pianfeng`、`mv_hujiadao_wangyue`、`mv_hujiadao_yingmen`",
+        "emitter": "sword"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_hujiadao/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_hujiadao",
+            "--catalog",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_hujiadao",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_jinshejian",
+      "title": "招式特效 · 天级 金蛇剑法（sk_jinshejian，6 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_jinshejian/**"
+      ],
+      "vars": {
+        "skill_id": "sk_jinshejian",
+        "skill_name": "金蛇剑法",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yin",
+        "delivery": "weapon",
+        "catalog": "docs/design/catalog/skills-xiake-bixue.md",
+        "moves": "`mv_jinshejian_kuangwu`*、`mv_jinshejian_nilinhui`*、`mv_jinshejian_panshen`、`mv_jinshejian_shexing`、`mv_jinshejian_tuxin`、`mv_jinshejian_zhuijian`",
+        "emitter": "sword"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_jinshejian/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_jinshejian",
+            "--catalog",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_jinshejian",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_jiuyinshenzhao",
+      "title": "招式特效 · 天级 九阴神爪（sk_jiuyinshenzhao，7 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_jiuyinshenzhao/**"
+      ],
+      "vars": {
+        "skill_id": "sk_jiuyinshenzhao",
+        "skill_name": "九阴神爪",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yin",
+        "delivery": "fist-grapple",
+        "catalog": "docs/design/catalog/skills-wujue.md",
+        "moves": "`mv_jiuyinshenzhao_cuijian`、`mv_jiuyinshenzhao_futu`、`mv_jiuyinshenzhao_qinna`、`mv_jiuyinshenzhao_shounao`*、`mv_jiuyinshenzhao_suo`、`mv_jiuyinshenzhao_wujian`*、`mv_jiuyinshenzhao_wuzhi`",
+        "emitter": "fist"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_jiuyinshenzhao/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_jiuyinshenzhao",
+            "--catalog",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_jiuyinshenzhao",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_kongming",
+      "title": "招式特效 · 天级 空明拳（sk_kongming，9 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_kongming/**"
+      ],
+      "vars": {
+        "skill_id": "sk_kongming",
+        "skill_name": "空明拳",
+        "tier": "天",
+        "grade": "10",
+        "nature": "harmony",
+        "delivery": "fist-grapple",
+        "catalog": "docs/design/catalog/skills-wujue.md",
+        "moves": "`mv_kongming_chongqiong`、`mv_kongming_dongsong`*、`mv_kongming_fengtong`、`mv_kongming_gongchong`、`mv_kongming_kongmeng`、`mv_kongming_qishier`*、`mv_kongming_rongmeng`、`mv_kongming_tongyong`、`mv_kongming_zhongnong`",
+        "emitter": "fist"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_kongming/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_kongming",
+            "--catalog",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_kongming",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_luohanfumo",
+      "title": "招式特效 · 天级 罗汉伏魔神功（sk_luohanfumo，4 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_luohanfumo/**"
+      ],
+      "vars": {
+        "skill_id": "sk_luohanfumo",
+        "skill_name": "罗汉伏魔神功",
+        "tier": "天",
+        "grade": "10",
+        "nature": "harmony",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-xiake-bixue.md",
+        "moves": "`mv_luohanfumo_huti`*、`mv_luohanfumo_zhenqi`、`mv_luohanfumo_zhouliu`、`mv_luohanfumo_zhuxiang`*",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_luohanfumo/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_luohanfumo",
+            "--catalog",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_luohanfumo",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_ningxue",
+      "title": "招式特效 · 天级 凝血神爪（sk_ningxue，6 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_ningxue/**"
+      ],
+      "vars": {
+        "skill_id": "sk_ningxue",
+        "skill_name": "凝血神爪",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yin",
+        "delivery": "fist-grapple",
+        "catalog": "docs/design/catalog/skills-kangxi.md",
+        "moves": "`mv_ningxue_fengmen`*、`mv_ningxue_jiemai`、`mv_ningxue_jueming`*、`mv_ningxue_tanmai`、`mv_ningxue_yizhua`、`mv_ningxue_zhuihun`",
+        "emitter": "fist"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_ningxue/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_ningxue",
+            "--catalog",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_ningxue",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_paoding",
+      "title": "招式特效 · 天级 庖丁解牛掌（sk_paoding，6 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_paoding/**"
+      ],
+      "vars": {
+        "skill_id": "sk_paoding",
+        "skill_name": "庖丁解牛掌",
+        "tier": "天",
+        "grade": "10",
+        "nature": "harmony",
+        "delivery": "palm",
+        "catalog": "docs/design/catalog/skills-qianlong.md",
+        "moves": "`mv_paoding_daokuan`*、`mv_paoding_guran`、`mv_paoding_muwuquanniu`*、`mv_paoding_xunli`、`mv_paoding_youren`、`mv_paoding_zhongqing`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_paoding/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_paoding",
+            "--catalog",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_paoding",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_shenghuoling",
+      "title": "招式特效 · 天级 圣火令武功（sk_shenghuoling，6 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_shenghuoling/**"
+      ],
+      "vars": {
+        "skill_id": "sk_shenghuoling",
+        "skill_name": "圣火令武功",
+        "tier": "天",
+        "grade": "10",
+        "nature": "harmony",
+        "delivery": "fist-grapple",
+        "catalog": "docs/design/catalog/skills-yitian.md",
+        "moves": "`mv_shenghuoling_fanguanjie`、`mv_shenghuoling_fudi`、`mv_shenghuoling_guaishi`、`mv_shenghuoling_shuangling`、`mv_shenghuoling_wuding`*、`mv_shenghuoling_yinfengdao`*P",
+        "emitter": "fist"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_shenghuoling/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_shenghuoling",
+            "--catalog",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_shenghuoling",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_shenxing",
+      "title": "招式特效 · 天级 神行百变（sk_shenxing，6 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_shenxing/**"
+      ],
+      "vars": {
+        "skill_id": "sk_shenxing",
+        "skill_name": "神行百变",
+        "tier": "天",
+        "grade": "10",
+        "nature": "harmony",
+        "delivery": "movement",
+        "catalog": "docs/design/catalog/skills-xiake-bixue.md",
+        "moves": "`mv_shenxing_baibian`、`mv_shenxing_dunying`*、`mv_shenxing_jiexi`、`mv_shenxing_qubi`、`mv_shenxing_taxi`*、`mv_shenxing_yixing`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_shenxing/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_shenxing",
+            "--catalog",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_shenxing",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_shenzhao",
+      "title": "招式特效 · 天级 神照经（sk_shenzhao，3 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_shenzhao/**"
+      ],
+      "vars": {
+        "skill_id": "sk_shenzhao",
+        "skill_name": "神照经",
+        "tier": "天",
+        "grade": "10",
+        "nature": "harmony",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-kangxi.md",
+        "moves": "`mv_shenzhao_huming`*、`mv_shenzhao_tuna`、`mv_shenzhao_xumai`*",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_shenzhao/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_shenzhao",
+            "--catalog",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_shenzhao",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_tanzhi",
+      "title": "招式特效 · 天级 弹指神通（sk_tanzhi，9 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_tanzhi/**"
+      ],
+      "vars": {
+        "skill_id": "sk_tanzhi",
+        "skill_name": "弹指神通",
+        "tier": "天",
+        "grade": "10",
+        "nature": "harmony",
+        "delivery": "finger",
+        "catalog": "docs/design/catalog/skills-wujue.md",
+        "moves": "`mv_tanzhi_`、`mv_tanzhi_chuanshi`、`mv_tanzhi_dianxue`、`mv_tanzhi_jiemai`、`mv_tanzhi_lianzhu`*P、`mv_tanzhi_miaoshi`、`mv_tanzhi_tanjia`、`mv_tanzhi_tanzhi`、`mv_tanzhi_tianhua`*P",
+        "emitter": "finger"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_tanzhi/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_tanzhi",
+            "--catalog",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_tanzhi",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_tiangang",
+      "title": "招式特效 · 天级 天罡北斗阵（sk_tiangang，5 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_tiangang/**"
+      ],
+      "vars": {
+        "skill_id": "sk_tiangang",
+        "skill_name": "天罡北斗阵",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yang",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-daojia.md",
+        "moves": "`mv_tiangang_buzhen`、`mv_tiangang_doubing`、`mv_tiangang_guiyi`*、`mv_tiangang_hewei`*、`mv_tiangang_tianshu`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_tiangang/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_tiangang",
+            "--catalog",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_tiangang",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_tiezhang",
+      "title": "招式特效 · 天级 铁掌功（sk_tiezhang，8 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_tiezhang/**"
+      ],
+      "vars": {
+        "skill_id": "sk_tiezhang",
+        "skill_name": "铁掌功",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yang",
+        "delivery": "palm",
+        "catalog": "docs/design/catalog/skills-wujue.md",
+        "moves": "`mv_tiezhang_duanjin`、`mv_tiezhang_hushen`*、`mv_tiezhang_kaishan`、`mv_tiezhang_lianhuan`、`mv_tiezhang_paiyun`、`mv_tiezhang_qingtian`*、`mv_tiezhang_tougu`、`mv_tiezhang_zhenyue`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_tiezhang/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_tiezhang",
+            "--catalog",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_tiezhang",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_tiezhangyunqigong",
+      "title": "招式特效 · 天级 铁掌运气功（sk_tiezhangyunqigong，5 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_tiezhangyunqigong/**"
+      ],
+      "vars": {
+        "skill_id": "sk_tiezhangyunqigong",
+        "skill_name": "铁掌运气功",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yang",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-bulu-02-shediao.md",
+        "moves": "`mv_tiezhangyunqigong_lianbi`*、`mv_tiezhangyunqigong_ningxi`、`mv_tiezhangyunqigong_shoufeng`*、`mv_tiezhangyunqigong_tuna`、`mv_tiezhangyunqigong_yunzhang`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_tiezhangyunqigong/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_tiezhangyunqigong",
+            "--catalog",
+            "docs/design/catalog/skills-bulu-02-shediao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_tiezhangyunqigong",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_xuanming",
+      "title": "招式特效 · 天级 玄冥神掌（sk_xuanming，6 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_xuanming/**"
+      ],
+      "vars": {
+        "skill_id": "sk_xuanming",
+        "skill_name": "玄冥神掌",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yin",
+        "delivery": "palm",
+        "catalog": "docs/design/catalog/skills-yitian.md",
+        "moves": "`mv_xuanming_fumian`、`mv_xuanming_gusui`、`mv_xuanming_qichu`*、`mv_xuanming_rusi`*、`mv_xuanming_shuangxuan`、`mv_xuanming_yizhang`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_xuanming/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_xuanming",
+            "--catalog",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_xuanming",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_xuanminghanyuangong",
+      "title": "招式特效 · 天级 玄冥寒元功（sk_xuanminghanyuangong，5 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_xuanminghanyuangong/**"
+      ],
+      "vars": {
+        "skill_id": "sk_xuanminghanyuangong",
+        "skill_name": "玄冥寒元功",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yin",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-bulu-04-yitian.md",
+        "moves": "`mv_xuanminghanyuangong_hanbi`*、`mv_xuanminghanyuangong_huhan`、`mv_xuanminghanyuangong_ningyuan`、`mv_xuanminghanyuangong_shuangyuan`*、`mv_xuanminghanyuangong_tuna`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_xuanminghanyuangong/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_xuanminghanyuangong",
+            "--catalog",
+            "docs/design/catalog/skills-bulu-04-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_xuanminghanyuangong",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_yihun",
+      "title": "招式特效 · 天级 移魂大法（sk_yihun，6 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_yihun/**"
+      ],
+      "vars": {
+        "skill_id": "sk_yihun",
+        "skill_name": "移魂大法",
+        "tier": "天",
+        "grade": "10",
+        "nature": "neutral",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-wujue.md",
+        "moves": "`mv_yihun_cuimian`、`mv_yihun_dingxin`*、`mv_yihun_fanzhao`、`mv_yihun_huoxin`、`mv_yihun_shehun`、`mv_yihun_yihun`*",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_yihun/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_yihun",
+            "--catalog",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_yihun",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_yunvxinjing",
+      "title": "招式特效 · 天级 玉女心经（sk_yunvxinjing，3 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_yunvxinjing/**"
+      ],
+      "vars": {
+        "skill_id": "sk_yunvxinjing",
+        "skill_name": "玉女心经",
+        "tier": "天",
+        "grade": "10",
+        "nature": "yin",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-daojia.md",
+        "moves": "`mv_yunvxinjing_bingxin`*、`mv_yunvxinjing_hufa`*、`mv_yunvxinjing_sanre`",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_yunvxinjing/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_yunvxinjing",
+            "--catalog",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_yunvxinjing",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-sk_zuoyouhubo",
+      "title": "招式特效 · 天级 左右互搏（sk_zuoyouhubo，2 招）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-skill.md",
+      "deps": [
+        "VFX-emitters",
+        "VFX-templates"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/sk_zuoyouhubo/**"
+      ],
+      "vars": {
+        "skill_id": "sk_zuoyouhubo",
+        "skill_name": "左右互搏",
+        "tier": "天",
+        "grade": "10",
+        "nature": "neutral",
+        "delivery": "inner",
+        "catalog": "docs/design/catalog/skills-wujue.md",
+        "moves": "`mv_zuoyouhubo_fenxin`*、`mv_zuoyouhubo_quanli`*",
+        "emitter": "palm"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/vfx/sk_zuoyouhubo/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/vfx/check_skill_suite.py",
+            "assets/default/vfx/sk_zuoyouhubo",
+            "--catalog",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/sk_zuoyouhubo",
+            "--min",
+            "1",
+            "--max",
+            "60",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-hangzhou__southern_song_jin_mongol",
+      "title": "城镇 · 临安府（行在）（杭州 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_hangzhou__*.yaml",
+        "docs/design/town/history/city_hangzhou__southern_song_jin_mongol*",
+        "assets/default/town/city_hangzhou__*/**"
+      ],
+      "vars": {
+        "city_id": "city_hangzhou",
+        "display_name": "临安府（行在）",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_hangzhou__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_hangzhou__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_hangzhou__ch02/town.png",
+          "assets/default/town/city_hangzhou__ch02/preview.png",
+          "assets/default/town/city_hangzhou__ch02/layout.yaml",
+          "assets/default/town/city_hangzhou__ch02/manifest.yaml",
+          "assets/default/town/city_hangzhou__ch03/town.png",
+          "assets/default/town/city_hangzhou__ch03/preview.png",
+          "assets/default/town/city_hangzhou__ch03/layout.yaml",
+          "assets/default/town/city_hangzhou__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_hangzhou__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_hangzhou_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_hangzhou__ch02.yaml",
+            "assets/default/town/city_hangzhou__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_hangzhou__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_hangzhou__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_hangzhou_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_hangzhou__ch03.yaml",
+            "assets/default/town/city_hangzhou__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_hangzhou__ch03",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-kaifeng__southern_song_jin_mongol",
+      "title": "城镇 · 南京开封府 / 汴京（开封 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_kaifeng__*.yaml",
+        "docs/design/town/history/city_kaifeng__southern_song_jin_mongol*",
+        "assets/default/town/city_kaifeng__*/**"
+      ],
+      "vars": {
+        "city_id": "city_kaifeng",
+        "display_name": "南京开封府 / 汴京",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_kaifeng__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_kaifeng__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_kaifeng__ch02/town.png",
+          "assets/default/town/city_kaifeng__ch02/preview.png",
+          "assets/default/town/city_kaifeng__ch02/layout.yaml",
+          "assets/default/town/city_kaifeng__ch02/manifest.yaml",
+          "assets/default/town/city_kaifeng__ch03/town.png",
+          "assets/default/town/city_kaifeng__ch03/preview.png",
+          "assets/default/town/city_kaifeng__ch03/layout.yaml",
+          "assets/default/town/city_kaifeng__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_kaifeng__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_kaifeng_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_kaifeng__ch02.yaml",
+            "assets/default/town/city_kaifeng__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_kaifeng__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_kaifeng__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_kaifeng_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_kaifeng__ch03.yaml",
+            "assets/default/town/city_kaifeng__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_kaifeng__ch03",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-luoyang__southern_song_jin_mongol",
+      "title": "城镇 · 河南府（洛阳 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_luoyang__*.yaml",
+        "docs/design/town/history/city_luoyang__southern_song_jin_mongol*",
+        "assets/default/town/city_luoyang__*/**"
+      ],
+      "vars": {
+        "city_id": "city_luoyang",
+        "display_name": "河南府",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_luoyang__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_luoyang__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_luoyang__ch02/town.png",
+          "assets/default/town/city_luoyang__ch02/preview.png",
+          "assets/default/town/city_luoyang__ch02/layout.yaml",
+          "assets/default/town/city_luoyang__ch02/manifest.yaml",
+          "assets/default/town/city_luoyang__ch03/town.png",
+          "assets/default/town/city_luoyang__ch03/preview.png",
+          "assets/default/town/city_luoyang__ch03/layout.yaml",
+          "assets/default/town/city_luoyang__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_luoyang__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_luoyang_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_luoyang__ch02.yaml",
+            "assets/default/town/city_luoyang__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_luoyang__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_luoyang__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_luoyang_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_luoyang__ch03.yaml",
+            "assets/default/town/city_luoyang__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_luoyang__ch03",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-nanjing__southern_song_jin_mongol",
+      "title": "城镇 · 建康府（南京 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_nanjing__*.yaml",
+        "docs/design/town/history/city_nanjing__southern_song_jin_mongol*",
+        "assets/default/town/city_nanjing__*/**"
+      ],
+      "vars": {
+        "city_id": "city_nanjing",
+        "display_name": "建康府",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_nanjing__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_nanjing__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_nanjing__ch02/town.png",
+          "assets/default/town/city_nanjing__ch02/preview.png",
+          "assets/default/town/city_nanjing__ch02/layout.yaml",
+          "assets/default/town/city_nanjing__ch02/manifest.yaml",
+          "assets/default/town/city_nanjing__ch03/town.png",
+          "assets/default/town/city_nanjing__ch03/preview.png",
+          "assets/default/town/city_nanjing__ch03/layout.yaml",
+          "assets/default/town/city_nanjing__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_nanjing__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_nanjing_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_nanjing__ch02.yaml",
+            "assets/default/town/city_nanjing__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_nanjing__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_nanjing__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_nanjing_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_nanjing__ch03.yaml",
+            "assets/default/town/city_nanjing__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_nanjing__ch03",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-yinchuan__southern_song_jin_mongol",
+      "title": "城镇 · 兴庆府故地 / 中兴府（待考）（银川 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_yinchuan__*.yaml",
+        "docs/design/town/history/city_yinchuan__southern_song_jin_mongol*",
+        "assets/default/town/city_yinchuan__*/**"
+      ],
+      "vars": {
+        "city_id": "city_yinchuan",
+        "display_name": "兴庆府故地 / 中兴府（待考）",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_yinchuan__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_yinchuan__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_yinchuan__ch02/town.png",
+          "assets/default/town/city_yinchuan__ch02/preview.png",
+          "assets/default/town/city_yinchuan__ch02/layout.yaml",
+          "assets/default/town/city_yinchuan__ch02/manifest.yaml",
+          "assets/default/town/city_yinchuan__ch03/town.png",
+          "assets/default/town/city_yinchuan__ch03/preview.png",
+          "assets/default/town/city_yinchuan__ch03/layout.yaml",
+          "assets/default/town/city_yinchuan__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_yinchuan__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_yinchuan_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_yinchuan__ch02.yaml",
+            "assets/default/town/city_yinchuan__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_yinchuan__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_yinchuan__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_yinchuan_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_yinchuan__ch03.yaml",
+            "assets/default/town/city_yinchuan__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_yinchuan__ch03",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-anqing__southern_song_jin_mongol",
+      "title": "城镇 · 安庆府（安庆 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_anqing__*.yaml",
+        "docs/design/town/history/city_anqing__southern_song_jin_mongol*",
+        "assets/default/town/city_anqing__*/**"
+      ],
+      "vars": {
+        "city_id": "city_anqing",
+        "display_name": "安庆府",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_anqing__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_anqing__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_anqing__ch02/town.png",
+          "assets/default/town/city_anqing__ch02/preview.png",
+          "assets/default/town/city_anqing__ch02/layout.yaml",
+          "assets/default/town/city_anqing__ch02/manifest.yaml",
+          "assets/default/town/city_anqing__ch03/town.png",
+          "assets/default/town/city_anqing__ch03/preview.png",
+          "assets/default/town/city_anqing__ch03/layout.yaml",
+          "assets/default/town/city_anqing__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_anqing__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_anqing_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_anqing__ch02.yaml",
+            "assets/default/town/city_anqing__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_anqing__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_anqing__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_anqing_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_anqing__ch03.yaml",
+            "assets/default/town/city_anqing__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_anqing__ch03",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-anyang__southern_song_jin_mongol",
+      "title": "城镇 · 彰德府（安阳 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_anyang__*.yaml",
+        "docs/design/town/history/city_anyang__southern_song_jin_mongol*",
+        "assets/default/town/city_anyang__*/**"
+      ],
+      "vars": {
+        "city_id": "city_anyang",
+        "display_name": "彰德府",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_anyang__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_anyang__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_anyang__ch02/town.png",
+          "assets/default/town/city_anyang__ch02/preview.png",
+          "assets/default/town/city_anyang__ch02/layout.yaml",
+          "assets/default/town/city_anyang__ch02/manifest.yaml",
+          "assets/default/town/city_anyang__ch03/town.png",
+          "assets/default/town/city_anyang__ch03/preview.png",
+          "assets/default/town/city_anyang__ch03/layout.yaml",
+          "assets/default/town/city_anyang__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_anyang__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_anyang_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_anyang__ch02.yaml",
+            "assets/default/town/city_anyang__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_anyang__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_anyang__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_anyang_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_anyang__ch03.yaml",
+            "assets/default/town/city_anyang__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_anyang__ch03",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-baoji__southern_song_jin_mongol",
+      "title": "城镇 · 凤翔府（宝鸡 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_baoji__*.yaml",
+        "docs/design/town/history/city_baoji__southern_song_jin_mongol*",
+        "assets/default/town/city_baoji__*/**"
+      ],
+      "vars": {
+        "city_id": "city_baoji",
+        "display_name": "凤翔府",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_baoji__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_baoji__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_baoji__ch02/town.png",
+          "assets/default/town/city_baoji__ch02/preview.png",
+          "assets/default/town/city_baoji__ch02/layout.yaml",
+          "assets/default/town/city_baoji__ch02/manifest.yaml",
+          "assets/default/town/city_baoji__ch03/town.png",
+          "assets/default/town/city_baoji__ch03/preview.png",
+          "assets/default/town/city_baoji__ch03/layout.yaml",
+          "assets/default/town/city_baoji__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_baoji__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_baoji_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_baoji__ch02.yaml",
+            "assets/default/town/city_baoji__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_baoji__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_baoji__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_baoji_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_baoji__ch03.yaml",
+            "assets/default/town/city_baoji__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_baoji__ch03",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-dali__northern_song",
+      "title": "城镇 · 大理国都（羊苴咩城）（大理 · 北宋 · 辽 · 西夏 · 大理（约 1093） · ch01）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_dali__*.yaml",
+        "docs/design/town/history/city_dali__northern_song*",
+        "assets/default/town/city_dali__*/**"
+      ],
+      "vars": {
+        "city_id": "city_dali",
+        "display_name": "大理国都（羊苴咩城）",
+        "band": "northern_song",
+        "band_desc": "北宋 · 辽 · 西夏 · 大理（约 1093）",
+        "year": "1093",
+        "chapters": "ch01",
+        "ch_primary": "ch01",
+        "ch_others": "（无）",
+        "kit_id": "song_dali",
+        "story_refs": "`docs/design/chapters/01-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_dali__northern_song.md",
+          "docs/design/town/history/city_dali__northern_song_plan.png",
+          "assets/default/town/city_dali__ch01/town.png",
+          "assets/default/town/city_dali__ch01/preview.png",
+          "assets/default/town/city_dali__ch01/layout.yaml",
+          "assets/default/town/city_dali__ch01/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_dali__ch01.yaml",
+            "-o",
+            "/tmp/tianshu_city_dali_ch01.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_dali__ch01.yaml",
+            "assets/default/town/city_dali__ch01/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_dali__ch01",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-kunming__northern_song",
+      "title": "城镇 · 鄯阐府（大理国）（昆明 · 北宋 · 辽 · 西夏 · 大理（约 1093） · ch01）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_kunming__*.yaml",
+        "docs/design/town/history/city_kunming__northern_song*",
+        "assets/default/town/city_kunming__*/**"
+      ],
+      "vars": {
+        "city_id": "city_kunming",
+        "display_name": "鄯阐府（大理国）",
+        "band": "northern_song",
+        "band_desc": "北宋 · 辽 · 西夏 · 大理（约 1093）",
+        "year": "1093",
+        "chapters": "ch01",
+        "ch_primary": "ch01",
+        "ch_others": "（无）",
+        "kit_id": "song_dali",
+        "story_refs": "`docs/design/chapters/01-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_kunming__northern_song.md",
+          "docs/design/town/history/city_kunming__northern_song_plan.png",
+          "assets/default/town/city_kunming__ch01/town.png",
+          "assets/default/town/city_kunming__ch01/preview.png",
+          "assets/default/town/city_kunming__ch01/layout.yaml",
+          "assets/default/town/city_kunming__ch01/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_kunming__ch01.yaml",
+            "-o",
+            "/tmp/tianshu_city_kunming_ch01.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_kunming__ch01.yaml",
+            "assets/default/town/city_kunming__ch01/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_kunming__ch01",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-baoshan__northern_song",
+      "title": "城镇 · 永昌府（大理国）（保山 · 北宋 · 辽 · 西夏 · 大理（约 1093） · ch01）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_baoshan__*.yaml",
+        "docs/design/town/history/city_baoshan__northern_song*",
+        "assets/default/town/city_baoshan__*/**"
+      ],
+      "vars": {
+        "city_id": "city_baoshan",
+        "display_name": "永昌府（大理国）",
+        "band": "northern_song",
+        "band_desc": "北宋 · 辽 · 西夏 · 大理（约 1093）",
+        "year": "1093",
+        "chapters": "ch01",
+        "ch_primary": "ch01",
+        "ch_others": "（无）",
+        "kit_id": "song_dali",
+        "story_refs": "`docs/design/chapters/01-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_baoshan__northern_song.md",
+          "docs/design/town/history/city_baoshan__northern_song_plan.png",
+          "assets/default/town/city_baoshan__ch01/town.png",
+          "assets/default/town/city_baoshan__ch01/preview.png",
+          "assets/default/town/city_baoshan__ch01/layout.yaml",
+          "assets/default/town/city_baoshan__ch01/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_baoshan__ch01.yaml",
+            "-o",
+            "/tmp/tianshu_city_baoshan_ch01.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_baoshan__ch01.yaml",
+            "assets/default/town/city_baoshan__ch01/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_baoshan__ch01",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
     }
   ]
 }
