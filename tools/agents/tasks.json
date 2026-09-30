@@ -21705,6 +21705,12 @@
             "tools/lint/check_ids.py",
             "--strict"
           ]
+        ],
+        "shrink_exempt": [
+          "docs/design/town/**",
+          "docs/design/22-town-layout-and-generation.md",
+          "assets/default/baseline/town/preview/**",
+          "tools/town/**"
         ]
       }
     },
@@ -21804,6 +21810,13 @@
             "tools/lint/check_ids.py",
             "--strict"
           ]
+        ],
+        "shrink_exempt": [
+          "tools/vfx/**",
+          "docs/design/23-projection-vfx-pipeline.md",
+          "docs/design/vfx/**",
+          "assets/default/baseline/vfx/**",
+          "assets/default/prompts/vfx.md"
         ]
       }
     }
