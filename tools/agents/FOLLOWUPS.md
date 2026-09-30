@@ -64,3 +64,4 @@
 - **人物立绘提示词**：ART-P-ch01 定稿合入时用 `git cherry-pick -X theirs` 覆盖先行快照；但出图代理已在主检出直接改了 `ch01-tianlong/npc_wangyuyan.md`、`protagonist/npc_zhujue__f_ch00.md`（加了作者本轮指定的水墨风格参考图 `.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png`），合入定稿前要先看这些改动是否要保留。
 - **批量生产两项默认（2026-09-30 15:05，已告知作者，未答复即照默认）**：① 小城 / 遗址 272 个不做史料复原，用同年代套件的程序化模板生成；② 玄级外放气颜色：阴青 / 阳赤 / 调和淡金 / 中性素白（`docs/design/vfx/palette.yaml`）。
 - **VFX-templates 审核指出的沙箱限制**：Python 全量单测在只读审核沙箱里因不能建临时目录而退出 1，审核据此判 ❌——属环境限制，协调者准出时在主检出复跑单测即可；后续审核要点已注明不据此判 FAIL（待写入 review_checks_vfx_templates.md，若再出现）。
+- **`assets/default/prompts/vfx.md` 章节编号混乱**（2026-09-30 15:42）：VFX-emitters 与 VFX-templates 两任务都在文末追加小节，协调者手工合并冲突时按"两边都保留"处理，出现"## 8"重复、"### 7.1"错挂等编号问题；内容完整，下次有人改这个文件时顺手重排编号即可。
