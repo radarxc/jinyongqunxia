@@ -29,7 +29,7 @@
     "shrink_guard": 0.85,
     "comment_model": "作者 2026-09-30：执行 / 出图 / 多模态校验一律调用本机 GPT CLI（Codex，gpt-6-astra），不再调用 traex；effort 只用 ultra（执行默认）与 xhigh（审核默认）。Codex 接受 none/minimal/low/medium/high/xhigh/max/ultra；exec 下 `--search` 不可用。",
     "max_parallel": {
-      "docs": 5,
+      "docs": 3,
       "assets": 10
     }
   },
