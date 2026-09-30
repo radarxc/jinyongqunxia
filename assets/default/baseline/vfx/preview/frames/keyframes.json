@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "composition": "../composition.yaml",
+  "sampling": "layered_keyframes_without_envelope",
+  "frames": [
+    {
+      "file": "key_000.png",
+      "phase": 0.0
+    },
+    {
+      "file": "key_001.png",
+      "phase": 0.3333333333333333
+    },
+    {
+      "file": "key_002.png",
+      "phase": 0.6666666666666666
+    },
+    {
+      "file": "key_003.png",
+      "phase": 1.0
+    }
+  ],
+  "geometry": {
+    "visible_bounds_px": [
+      92.0,
+      169.0,
+      486.61428571428576,
+      223.0
+    ],
+    "safe_margin_px": 92.0,
+    "blank_fraction_lower_bound": 0.9167610491071428
+  }
+}
