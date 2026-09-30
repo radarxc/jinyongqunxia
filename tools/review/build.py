@@ -1,7 +1,7 @@
 """生成素材基线审批页（claude.ai artifact）。
 
 用法：python3 tools/review/build.py  → 输出到 .agents/coord/review/{index.html,baseline-review.html,img/,vfx/,files.json}
-然后用 Artifact 工具重新发布 baseline-review.html（地址登记在 tools/agents/HANDOFF.md §9.3；旧页 NhZGycmwB5Qd… 已读不到），
+然后用 Artifact 工具重新发布 baseline-review.html（现地址 https://claude.ai/artifact/Ae6bxBXmkpA6xpjWmY6U7H ，登记在 tools/agents/HANDOFF.md §9.3；旧页 NhZGycmwB5Qd… 已读不到），
 files 传 files.json 里的图片路径（root=.agents/coord/review）。作者的审批结论用 ArtifactData list 读集合 `reviews`，
 再用 tools/agents/apply_reviews.py 写回 manifest。WT_OVERRIDE 指向未合入的任务工作区，让作者先看图再合入。
 """

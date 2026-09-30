@@ -143,7 +143,8 @@
 
 ### 9.3 审批页
 - 旧审批页 `https://claude.ai/artifact/NhZGycmwB5QdyiwntJGkyG` 是别的会话 / 账号发布的，本会话读不到（artifact not found），其数据库里作者点过的结论也读不到。
-- 处理：下一批素材就绪后用 `tools/review/build.py` 重新生成，在本账号**新发布**一页（新地址登记在这里），请作者在新页上重新点结论（或直接在对话里说）。
+- **新审批页（2026-09-30 01:25 发布，本账号）**：https://claude.ai/artifact/Ae6bxBXmkpA6xpjWmY6U7H 。生成：`python3 tools/review/build.py` → 发布 `.agents/coord/review/baseline-review.html`（`root` = `.agents/coord/review`，`files` = files.json 里 `img/` 开头的路径，`capabilities: {db: {}}`；在发布过它的会话里同一路径重发即更新，其他会话要带 `url`）。读作者结论：ArtifactData `list` 集合 `reviews`。
+- 第 1 版内容：待审 6 张（萧峰 R2、令狐冲 R1、小龙女第 3 轮、降龙图 R1、六脉图 R2、倚天剑 R1）+ 已通过 8 张；招式演示暂不内嵌（`build.py` 的 `DEMO_HOLD`，ART-R3-vfx 通过后去掉并把 `WT_OVERRIDE["vfx"]` 指向它的工作区）；城镇、地图拼接建筑为占位卡。
 
 ### 9.4 进度（随做随更新）
 - NR4 十二册全部合入：少林 364c030、逍遥 e1771ac；全部 25 册图鉴 `check_nr4_unit.py` 为 0/0/0。
