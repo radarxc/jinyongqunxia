@@ -4,7 +4,8 @@
 > 上游：`docs/00-canon.md` v1.8；作者需求 `decisions/author-requirements.md` AR-01、AR-04、AR-08、AR-09、AR-13、AR-18；作者决定 `decisions/author-decisions.md`，尤其 P35；跨文档裁定 `decisions/rulings-v1.md`。
 > 引用而不重定义：年代、书眠、残篇 / 残承 / 藏史与 `rs_*` → `design/02-timeline-and-world-tiers.md`；属性与 `lore` / `luk` / `wis` / `morality` → `design/03-attributes.md`；武学、层数、`sourceGrade` / `sourceCap` 与学习途径 → `design/05-martial-arts-system.md`；地图、时代图层与奇遇触点 → `design/11-open-world.md`、`design/19-world-map.md`；任务 DSL → `design/12-quests-npc-factions.md`，确定性、RNG 与事务 → `tech/05-gameplay-engine.md`；天书之力、多周目与成就 → `design/13-progression-and-endings.md`；家丁与资源点 → `design/16-resources-and-estates.md`；门派时代矩阵 → `design/17-sects-compendium.md`；NPC 生卒、后人与生成规则 → `design/18-npc-and-companions.md`；物品与秘籍 → `design/10-items-and-equipment.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.0（作者需求 AR-13 首稿，2026-09-26）；审校 H1.R（2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；阴阳性质同步 AR-18（2026-09-30）。
+> 版本：v1.0（作者需求 AR-13 首稿，2026-09-26）；审校 H1.R（2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
+> 变更记录：经脉落地终审（2026-09-30）：正式登记缓存五状态与 `recipeKey` 单键迁移；核实性质、天阶与物品历史交办，保留原有校合默认和未完成的运行时验收。
 
 ---
 
@@ -249,6 +250,18 @@ sealed ──消隐事实成立──> eligible ──书界配额与概率命�
 | `dormant` | 后续界可 | 否 | 当前载体链已结束但仍缺卷 / 信物 |
 | `completed` | 否 | 否 | 已校合；后世只显示图鉴回声 |
 | `archived` | 否 | 否 | 本周目无法继续投放，保留结局记录 |
+
+**缓存运行态与源状态分离（原创扩展）。** `LegacyCacheRuntimePhase` 由本文正式拥有，值域固定为 `hidden | revealed | working | ready | opened`；`legacyCache` 条件中的字段名仍为 `state`，不得拿源的 `LegacyStatus` 代替，也不得另造 `phase` 同义存档字段。技术侧只消费本文值域。
+
+| 缓存 `state` | 含义与进入条件 | 后续转移 |
+|---|---|---|
+| `hidden` | 本界合法调度已创建，尚未发现；`progress=0` | `legacy/revealCache` 显露后到 `revealed`；无工作量的缓存可直接到 `ready` |
+| `revealed` | 已知地点，尚未推进；`progress=0<requiredProgress` | 合法工作量提交后到 `working` 或 `ready` |
+| `working` | 已推进且 `0<progress<requiredProgress` | 同一工作收据只推进一次；达到阈值后到 `ready` |
+| `ready` | `progress=requiredProgress`，等待玩家到场验收 / 开匣 | 玩家完成已配置的安全、伦理与机会结算事务后到 `opened`；家丁不能代为转移 |
+| `opened` | 本界该缓存的玩家开匣事务已提交 | 同一实例终态；重复提交返回原收据，不再抽取或发物 |
+
+工作量与进度为非负整数；`progress'=min(requiredProgress, progress+work)`。未显露缓存不接受工作，`ready/opened` 不重复施工；机会 RNG 只在已有 §4.5 / §10.2 规定的结算点消费一次，进入 `ready` 本身不额外抽取。开匣只结束此缓存实例，不等于源已 `completed`；校合成功才结束源。书眠按 §11.1 清当界缓存实例及进度，保留源 / 机会 / 校合收据，不把旧 `opened` 实例重置后在同界再发奖励。
 
 ### 2.7 激活前的硬过滤顺序
 
@@ -1124,7 +1137,7 @@ innerMinLayer = ceil(10/2) + 1 = 6
 
 #### 9.4.2 16 · 武当太极剑 `lgs_taiji_jian`
 
-- **时序**：来源 `ch04_yitian`；`ch05–ch14` 可投，规则同太极拳；当前界存在完整武当传授时保持 `sealed`。
+- **时序**：来源 `ch04_yitian`；`ch05–ch14` 可投，规则同太极拳；只有当前界存在目标武学的**正常完整来源**才按 §2.7 排除。武当仍为 O 态、仅有 `lineageGrade=10` 残承或未登记完整授艺节点，都不能单独证明完整来源存在；本源是秘籍失落源，仍须章节失落事实成立。
 - **载体 / 投放**：门下再传、剑圈刻痕或木剑夹谱；`cache_taijijian_wudang`，优先 `rg_jingxiang`，与拳源同界至多一个主载体。
 - **三卷 / 信物**：`frag_taijijian_yuan`《圆转卷》、`frag_taijijian_nian`《黏随卷》、`frag_taijijian_wang`《忘招卷》；`it_xinwu_taijijian_mujian` 初传木剑铭。
 - **条件 / 产物**：C11（剑法 6、调和），保留有效武当 / 品德条件或守传认可；产物 `sk_taijijian` 11 天中；与 `sk_taijiquan` 同属 `lg_taiji`，但两套三卷不能互拼。
@@ -1435,9 +1448,11 @@ type LegacyActionExtension =
 | `legacy/sourceActivated` | `sourceId, chapterId, carrierKind` | 任务、地图、遥测 |
 | `legacy/fragmentAcquired` | `sourceId, fragmentId, slot, duplicate` | 武学、图鉴、UI |
 | `legacy/keystoneAcquired` | `sourceId, itemId` | 任务、传承匣 |
-| `legacy/synthesisStarted` | `sourceId, recipeId, studyDays` | 日历、UI |
+| `legacy/synthesisStarted` | `sourceId, recipeKey, studyDays` | 日历、UI |
 | `legacy/synthesisCompleted` | `sourceId, skillId, resolvedGrade, receiptId` | 武学、成就、图鉴 |
 | `legacy/synthesisFailed` | `sourceId, deficit, cooldownUntil` | Buff、UI、遥测 |
+
+**配方键迁移已定稿。** 新内容、命令、事件和新写存档只使用 `recipeKey`，取值严格为 `${sourceId}#synthesis`。旧 `recipeId` 仅在版本化加载 / 录像迁移入口读取并映射到 registry 中同一配方；只含旧键时迁为新键并删除旧键，两键并存且相同则去旧键，不同或无法解析则拒绝迁移，禁止猜配方。旧录像须先按原协议验签 / 校验原始 hash，再迁移为当前内存输入；迁移不得改历史文件、重放 RNG 或补发奖励。12 / tech 的 opcode、事件消费者与迁移夹具须同批接入后发布，不把本文改名视为运行时迁移已经完成。
 
 地图在 `sourceKnown=false` 时不显示精确问号；只显示区域级传闻。UI 不在标题里揭示未见武学名称，线索卡可用“失传剑谱”等泛称；`lore≥60` 或已得一卷后显示源名。
 
@@ -1554,6 +1569,8 @@ type LegacySourceId = `lgs_${string}`; type LegacyFragmentId = `frag_${string}`;
 type LegacyCacheId = `cache_${string}`; type LegacyRecipeKey = `${LegacySourceId}#synthesis`;
 type FragmentSlot = 'upper'|'middle'|'lower'; type InnerNature = 'yin'|'yang'|'harmony';
 type LegacyStatus = 'sealed'|'eligible'|'active'|'dormant'|'completed'|'archived';
+type LegacyCacheRuntimePhase = 'hidden'|'revealed'|'working'|'ready'|'opened';
+interface LegacyCacheRuntimeState { cacheId: LegacyCacheId; sourceId: LegacySourceId; state: LegacyCacheRuntimePhase; progress: number; nextWorkIndex: number }
 interface LegacyFragmentDef { id: LegacyFragmentId; sourceId: LegacySourceId; slot: FragmentSlot; displayName: string; grade: Grade; skillId: SkillId }
 interface LegacyCacheDef { id: LegacyCacheId; sourceId: LegacySourceId; siteRef?: RuinSiteId; regionId: RegionId; cityId?: CityId; placeKey: string; requiredProgress: number; estateAssist: boolean }
 interface LegacyKeystoneDef { sourceId: LegacySourceId; itemId: ItemId; unique: true; deterministicNode: string }
@@ -1589,6 +1606,7 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 | 宝藏缓存 `LegacyCacheDef` | 新增 `cache_*`，39 条见 §9 | 一次性内容状态；不占 `rs_*` 古迹或 `rp_*` 资源点 |
 | 关键信物 | 新增 `it_xinwu_*`，39 条见 §9 | 唯一任务物；具体 `ItemDef` 归 10 |
 | 配方键 | `<lgs_*#synthesis>`，派生键 | 不申请新全局前缀 |
+| 缓存运行态 | `LegacyCacheRuntimePhase` / `LegacyCacheRuntimeState` | 本文 §2.6 / §12.2 正式定义五值与转移；不与 `LegacyStatus` 混用 |
 | 传承匣 / 校合 / 主载体 / 机会收据 | 新术语 | 见 §1、§4、§7、§11 |
 | 越女完整形态 | 复用 `sk_yuenvjian@legacy_complete` | 10 天下；教学形态仍为 9 |
 | 既有同源 / 古迹 / 武学 | 复用 `lg_*` / `rs_*` / `sk_*` | 本文不重定义 |
@@ -1611,6 +1629,7 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 | LEG-V08 | 产物解析到既有 `SkillDef`；grade 相同；唯一例外是待确认的越女 form；其余天级均在 §13 闭集 | 构建失败 |
 | LEG-V09 | 地图引用存在、当界开放且使用时代显示名；`design/11` §2.3 的旧粗区迁移别名不得进入新增内容 | 构建失败 |
 | LEG-V10 | 源、机会与效果按稳定 ID 排序；UI / 预览不消费 RNG；收据键唯一 | 构建失败 |
+| LEG-V11 | 缓存 `state` 仅五值；进度与 §2.6 相符；新数据只能使用 `recipeKey` 且可反解到同一 source / recipe | 构建 / 读档失败；待 tech 同步实现 |
 
 ### 14.2 金标准与集成用例
 
@@ -1631,6 +1650,8 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 | LEG-T13 | 书眠时有两卷一信物、挖掘 80/160 | 卷与信物保留，挖掘进度和家丁清零，源转 dormant |
 | LEG-T14 | 太玄配方 `lore=12` | 可校合；通用 `lore≥48` 已被显式特殊条件替换 |
 | LEG-T15 | 枚举 14 界全部上限 | 主载体总计≤55、后人≤31、残本≤110、信物≤55 |
+| LEG-T16 | `requiredProgress=160`；显露后推进 53 三次、第四次推进 53，并重放第四次收据 | `progress=53/106/159/160`，状态为 working / working / working / ready；重放不多推进、不消费机会 RNG；仅玩家开匣可到 opened。设计金标准，待实现 |
+| LEG-T17 | 旧 recipeId、同值双键、冲突双键、未知配方；另在书眠前后重放 opened 收据 | 前两项规范为唯一 recipeKey，后两项迁移拒绝；书眠清实例但保留收据，不补发已得奖励。设计金标准，待迁移 / 重放夹具实现 |
 
 人工验收另做三条：低品德 / 敌对门派仍有可理解线索；拒绝盗墓有等价替代；手机横屏能在一屏看到“三卷—信物—门槛—失败代价”。概率分布、存档重放与 39 源全量自动调度须在实现后跑 10,000 种子，标**（待实测）**。
 
@@ -1645,13 +1666,14 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 | H1-D03 | `design/13` | **已解决：**13 §8.2 已登记 `ach_legacy_first/ach_legacy_synthesis/ach_yuenv_legacy` 为 1/2/3 点 |
 | H1-D04 | chapters/01–14 | 每周目激活 18–24 源；拒绝盗墓提供等价任务路径 |
 | H1-D05 | `design/14` | **已解决设计接口：**14 §4.17 已给传承匣独立页、名称门禁及三卷 / 信物 / 条件同屏 |
+| H1-D06 | `design/12`、`tech/04/05` | **归属侧已解决、消费者待同步：**缓存五值见 §2.6 / §12.2；事件与动作统一 `recipeKey`，旧 `recipeId` 只读迁移见 §10.5；需同批实现 LEG-V11、LEG-T16 / T17 后发布 |
 
 ### 15.2 本文依赖的上游事实
 
 | 上游 | 依赖 | 状态 |
 |---|---|---|
 | `design/02` | 年代、书眠、残篇 / 残承 / 藏史、`lg_*` / `rs_*` | 仍待同步传承匣的相邻书眠窄白名单；Canon v1.2 §3 与 `design/13` 已登记执行口径 |
-| `design/05` + 图鉴 | `SkillDef`、品阶、硬门槛、层数与学习来源 | 已按现稿引用；新增来源待各图鉴登记 |
+| `design/05` + 图鉴 | `SkillDef`、品阶、硬门槛、层数与学习来源 | **已解决系统接口**：05 §7.10 已接 `legacy_fragment/legacy_synthesis` 与同 ID 形态；NR4S 已同步校合性质。逐源来源、人物与任务仍按图鉴和章节逐条校验 |
 | `design/11/19` | 地图、时代名、开放区域与坐标 | ID 已引用；具体 `placeKey` 待章节配点 |
 | `design/12` | 正式任务 DSL、门派与任务生命周期 | **已解决设计接口：**12 §2.2–§2.3 已加入 legacy 条件、六动作和事务边界；运行时 strict schema 仍待 tech/05 |
 | `design/17/18` | D/H 矩阵、人物生卒与后人生成 | 硬依赖；未知卒年不猜死 |
@@ -1679,5 +1701,9 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 6. **家丁能否独立开匣？** 默认不能，只推进工作量，玩家必须验收。
 7. **已解决：成就扩表。** `design/13` §8.2 已登记三个正式成就及 1 / 2 / 3 点，不复用 `ach_yuenv_full`。
 8. **逐书界合成上限是否启用？** Canon v1.2 已按 AR-13b 把 §7.6 / H1-P04 的 12 / 10 / 9 写为执行默认，但仍待作者最终确认；以版本化规则实现，并以 10,000 种子和战斗样本**（待实测）**。
+9. **既有章节校合建议是否沿用？** 默认保留凌波 `formation≥40`、玉女护法同伴羁绊≥60、夫妻刀同伴羁绊≥50 可替代门派条件，见 §9.2.6、§9.3.6、§9.8.1；这些【建议值】不放宽目标武学其他硬前置，待作者确认。
+10. **胡刀 / 苗剑在雪山如何选主载体？** 默认沿章节 14 §9.6 的“较早完成并获家传认可者锁定”，另一线保留授艺 / 关系奖励，不再发第二份高价值缓存；这是章节排期，不把 §4.1 系统上限 3 改成 1。待作者确认；末端续接例外仍见 §9.8.4–§9.8.5。
 
-仍需同步而未在本任务修改：`design/02` 加传承匣书眠钩子与“仅原生一次”的例外来源；`design/05` / 各图鉴加 `legacy_synthesis` 与越女 form（并调整 `skills-general` 的 GEN-V02 例外）；`design/10` 登记 117 残本和 39 信物物品；`design/11/19` 为 39 个缓存配置经考据的局部点；`chapters/01–14` 继续完善事实、机会、替代路线和配额；`tech/05` 实现确定性事务与 strict schema。Canon v1.2 的 H1-P01 / H1-P04 执行默认仍待作者确认；12 / 13 / 14 / 16 / 18 的设计接口已落实，不再列作缺失。
+历史交办已解决：`design/05` 已接两类来源与越女同 ID 形态，`skills-general` 已在正文卡登记该形态；`design/10` §10.3.1 / §11.2.1 已登记 117 卷残本和 39 件信物，本文不重复物品定义。`LegacyHeirSpawnRequest` 也已与 18 对齐，旧 `LegacyHeirRequest` 仅作迁移别名（见 §10.3）。
+
+仍需同步而未在本任务修改：`design/02` 完成传承匣书眠钩子与“仅原生一次”的例外来源；`skills-general` 的 GEN-V02 区分基础 `SkillDef.grade=9` 与 `legacy_complete` 解析品阶 10，避免“grade≥10 集合为空”误拒既有形态；`design/11/19` 为 39 个缓存配置经考据的局部点；`chapters/01–14` 继续完善事实、机会、替代路线和配额；`design/12` / `tech/04/05` 同批接入本文五值缓存状态、`recipeKey` 迁移及确定性事务 / strict schema 的运行时验收。Canon v1.2 的 H1-P01 / H1-P04 执行默认仍待作者确认；12 / 13 / 14 / 16 / 18 的设计接口已落实，不再列作缺失。

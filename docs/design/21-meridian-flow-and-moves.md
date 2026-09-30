@@ -5,6 +5,7 @@
 > 引用而不重定义：属性、内力、轻功值与 `spd` → `design/03`；Z0–Z10、护体、取整与 TTK → `design/04`；武学、招式、层数、熟练、内功性质与 `ultimate` → `design/05`；Buff、反震、破气与 Boss 递减 → `design/06`；轻功门禁与地形成本 → `design/08`；CT、移动力、首轮、反应、防御 / 待机与 AI → `design/09`；成长与外来压制 → `design/13`；手机 UI → `design/14`；20 脉 / 180 穴、开通、冲穴、周天与九转 → `design/15`；Core、RNG、存档与 golden → `tech/05`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
 > 版本：v2.7.2（AR-18 游戏归属计票与 delivery 覆盖返修，2026-09-29）；v2.7.1（AR-18 掌法动作可靠识别返修，2026-09-29）；v2.7（AR-18 阴阳基础理论修正，2026-09-29）；v2.6（经脉落地终审，2026-09-29）；v2.5（AR-17 音功与大手印掌风外放口径；NXT，2026-09-28）；v2.4（AR-14 绝招路线叙事规则与跨武学多样性；NR0，2026-09-28）；v2.3（AR-16 外放招式的范围与威力加持；M5，2026-09-27）；v2.2（AR-15 首领配装口径与逐单位节奏估算；NB3，2026-09-27）；v2.1（AR-14 绝招数量追加：天 2–3、地 1–2、玄上 1；M4，2026-09-27）；v2.0（落实作者对 AR-14 的独立乘区、防守路线、护体内劲与经脉速度决定；M3，2026-09-27；审校 M3.R，2026-09-27）；阴阳性质同步 AR-18（2026-09-30）。
+> 变更记录：经脉落地终审（2026-09-30）：核对穿云啸三式与各册音功现值，回填 04 / 05 / tech/04 的音功同步状态，登记 `requiredNature` 主运许可的待确认默认及迁移门禁；所有路线穴位、段数、CT 与风险保持不变。
 > 变更记录（2026-09-29，AR-18 二次返修）：体段改按 `design/15` §3 游戏归属经脉及 §2.1 游戏性质计票；补交会 / 借穴反例，并恢复普通外放路线的性质报告范围。
 > 变更记录（2026-09-29，AR-18 返修）：掌法动作端点改为可靠词义的并集，不再使用互斥优先级；补“劈掌”、非动作“切 / 劈空”排除、正文卡归属与体段同穴反例。
 > 变更记录（2026-09-29，AR-18）：路线性质改按体段投票，末端动作出口不计；任 / 督分别计阴 / 阳，周天方向只决定用途；掌法允许劳宫阴门与按动作识别的合谷 / 后溪 / 外关。
@@ -259,6 +260,8 @@ flowBp = clamp(floor(flowBaseBp × affinityBp / 10000), 3000, 10000)
 出口的阴阳不反推路线之体。阳性体段最后经内关 / 劳宫发掌，仍是阳性路线；这就是“以阳驭阴 / 气过阴门”。阴经末端以收敛、导引来控制阳刚真气，可称“阴阳交泰”，并作为既有走火风险的叙事依据；本节不因此新增倍率、减伤或走火概率。反过来，阴性路线也不会因手指或兵器必须经过阳经手穴而改判阳性。`design/05` 的招式 Z5 相性仍是独立结算，不能与本表 `affinityBp` 合并为一次倍率。
 
 正 / 逆周天也不参与上述投票。正行偏养生、敛气入骨，逆行偏武击、逼气出体；两者描述用途，不是阴阳标签。阴寒与纯阳内力在实战中都可以采用逆行 / 强催段，差异只由该段既有 CT、`riskBp` 与堵塞风险表达。
+
+**路线准入与相性分开。** `requiredNature` 的执行默认是当前主运 `mpNature` 的许可名单，先按 §4.6 在 F0 检查，再对获准路线计算本节 `affinityBp`。例如明确允许阳主运的阴体段路线仍取 8800；名单不含阳时不能用“愿付异性惩罚”绕过准入。此名单语义为本次收口默认，待作者确认；不据此改动既有路线数组。
 
 ### 2.5 起始气量与逐段注水
 
@@ -565,7 +568,7 @@ Z4M / Z5M 均在自己的边界各向下取整一次，已由 Canon v1.3 V13-02 
 
 音功采用可执行的双条件口径：招式须同时是“**深厚内力驱动**”与“**能主动控制伤敌音波的方向、强弱或覆盖**”，才静态标 `projection:true` 并进入外放候选；自然乐声、普通喊声、传讯、无伤害支援、只借声音承载控制而无伤害段者均 `projection:false`。此处“候选”不代表基础音波已经外放：音功只有实选 `projectionStep≥1` 才激活外放加持；0 档始终按普通音波处理，详见 §4.4.1.2–§4.4.1.3。
 
-`projection:true` 的伤害段静态上仍使用既有 `DamageKind='projected'`，构建器必须保证两者一致；这是 v2.5 对当前 05 schema 的兼容，不把音功 0 档动态改成另一伤害类型。反向不成立：旧内容只有 `projected` 伤害通道、尚未完成逐招标记时，不得自动获得扩张或专用 Z5M。逐招判定示例如下；本轮不修改图鉴，实际字段由 NXfix 统一收口：
+`projection:true` 的伤害段静态上仍使用既有 `DamageKind='projected'`，构建器必须保证两者一致；这是 v2.5 对当前 05 schema 的兼容，不把音功 0 档动态改成另一伤害类型。反向不成立：旧内容只有 `projected` 伤害通道、尚未完成逐招标记时，不得自动获得扩张或专用 Z5M。逐招判定示例如下；实际字段已按合入后的图鉴逐招核对，收口状态见 §18.6：
 
 | 武学 / 表现 | 外放判定 | 边界 |
 |---|---|---|
@@ -582,7 +585,7 @@ Z4M / Z5M 均在自己的边界各向下取整一次，已由 Canon v1.3 V13-02 
 | 碧海潮生曲 | 潮起、潮涌、惊涛、碧海潮生、余音等伤敌音波可标 | 心随音动为纯控制、定神为纯支援，均不标 |
 | 七弦无形剑 | 泛音、乱弦、七弦齐鸣、无形剑气等内力音劲可标 | 仍逐招看伤害段，不因整门属音功而批量推导 |
 | 笑傲江湖曲 | 沧海和声、天地同声等内力伤敌音劲可标 | 清音、琴箫合奏为支援，不标 |
-| 穿云啸 | 已登记的伤敌招“穿云”可标 | 紧凑卡中的未登记招名不得猜造 `mv_*` |
+| 穿云啸 | 穿云、断喝、回声三式已逐招标外放 | 正式 ID 为 `mv_chuanyunxiao_chuanyun`、`mv_chuanyunxiao_duanhe`、`mv_chuanyunxiao_huisheng`；均为 `voice:true` 人声发劲，路线收于天突 / 廉泉，见通行册 §8.8、§10.3 AR-16 表；0 档仍按普通音波 |
 | 金笛法 | 金声乱耳以内力催发离体音劲，可标 | 笛点中庭、笛影三叠为实体近战；清音护伴为支援，均不标 |
 | 大手印跃击 | 跃击落点所发掌风算外放，应标 | 跃迁位移本身不是伤害外放；只给掌风伤害段外放语义 |
 
@@ -666,6 +669,13 @@ ap_shoushaoyang_guanchong, ap_shoushaoyang_yangchi, ap_shoushaoyang_waiguan
 ### 4.6 路线合法性与迁移
 
 构建器检查：ID 使用 Canon §12 正式登记的 `mfr_*`；节点 1–18 个且不重复；每个 `ap_*` 已由 15 登记；`segmentCt` / `riskBp` 数组等长；CT 40–120；风险 0–1200；招式性质与路线性质冲突必须显式 `allowOpposedNature:true`。绝招还须通过 §4.3.4 的同门互异、跨武学完全同序列与 80% 重合检查；外放再叠加 §4.4.1.4 的端点白名单。
+
+`requiredNature` 采用以下唯一准入顺序（**（原创扩展）**；执行默认，待作者确认）：
+
+1. 构建期展开图鉴声明的模板 / 覆写，得到非空、去重的 `yin/yang/harmony` 数组；显式数组优先。旧内容未显式写该字段时，仅可读取该卡明确引用模板中已经登记的名单，不得按招名、路线体段性质或主运现值猜填。模板也无名单时列为不可审计并阻断生产构建，迁移清单交图鉴逐卡补齐。
+2. F0 读取当前合法主运产生的 `mpNature`，只在 `requiredNature.includes(mpNature)` 时继续。未通过时不提交路线，不付 MP / 气势 / CT，不消费 RNG；同一单位的攻击、防守、轻功和反应候选均适用。中性外功模板原有 `[yin,yang,harmony]` 仍原样展开。
+3. 获准后才按 §2.4 体段计票、阴阳相性与节点状态计算路线。`harmony` 不是名单通配符：它只许可调和主运；图鉴若允许三性，必须有三项。05 的 Z5 异性修正、辅运桥接与调息能力均不自动扩充此名单。
+4. `allowOpposedNature:true` 仅豁免“招式性质与体段性质相反”的静态审计，不豁免主运许可、不减异性 `affinityBp`，也不更改路线。AR-18 改性后发现旧配装不匹配时，应由图鉴 / 章节确认许可与配装后再改；本次未改任何名单，不声称所有 Boss 的现行技能候选已经通过此新增门禁。
 
 旧存档 / 旧内容没有 `meridianRouteRef` 时：运行时按武学性质与已开穴确定一条 2 段迁移短路，并在下一次内容迁移写回稳定路线引用。迁移不得使用地图的 `route_*` 前缀，也不得根据本地化显示名生成 ID。
 
@@ -855,6 +865,8 @@ evadeRatingDelta=clamp(floor((meridianSpeedBp-10000)/100),-35,+35)
 三绝招的 `ultimate:true`、`projection:true`、解锁层及 0 档基础 `aoe` 唯一真值见 05 §13.1；路线定义见本文 §12.1：`mv_xianglong18_zhenjing → mfr_xianglong18_zhenjing` 为 9 段 × 85 CT，`1200+765=1965`；`mv_xianglong18_lianhuan → mfr_eighteen_palms_chain` 为 10 段 × 80 CT，`1200+800=2000`；`mv_xianglong18_shenlong → mfr_xianglong18_shenlong` 为 8 段 × 95 CT，`1200+760=1960`。三路均以 `内关→劳宫` 收束并满足外放端点：震惊走督脉核心，连环走手少阳 / 手太阳核心，神龙走足太阳 / 足少阳 / 带脉 / 阳跷核心；按 §2.4 排除末两穴出口后，阳 / 阴票依次为 `7/0`、`8/0`、`5/0`（神龙另有带脉 1 票弃权），均与降龙阳性相合。任意两路仅共享末两穴，分别为 `2/9`、`2/8`、`2/8`，均低于较短路线 50%，且全仓无完全相同有序路线。连环是正面伤害主路线，使用天阶建议下限 10 段；震惊、神龙以较短的 9 / 8 段换取周身控制与转身反制的较低 CT，属于 §4.3 明示的职责型短路线。三条路线共享气势 100 和武学级绝招冷却，并受“下一次绝招不得重复同一 `moveId`”约束。05 已将降龙 19 个动作中的 18 个标为外放，唯 `潜龙勿用` 不标；三绝招的 `projectionSpreadSteps[0]` 均逐项等于各自基础 `aoe`。十八掌连环的“十八掌”只是六段命中演出意象，不等于 18 个经脉节点，也不能据此写成小说原招名。
 
 ### 6.3 独孤九剑（9 条）
+
+**历史样本边界（经脉落地终审）**：本小节字母路线表及其后无招的收招算例保留 v2.0 快照，不作为现行 `MoveDef`／路线数据。破箭、破气、无招现均为独立绝招，现行字段只见 `design/05` §13.2 与五岳册；旧表的“否”以及无招旧收招不再用于构建。本轮依路线保护要求不改旧样本的穴序、段数、CT 或风险，也不把旧算例移植到正式图鉴。
 
 武学 `sk_dugu9`，12 天上，中性；见《笑傲江湖》风清扬在华山思过崖传令狐冲。九式名与所破兵器清单仍按 05 §9.4 的**（待考）**要求逐字复核。路线选择强调观察—转腕—出剑，以调和或阴性内功更稳；`无招胜有招` 是现有图鉴绝招名，但不是九式计数的一部分。
 
@@ -1599,7 +1611,8 @@ interface MeridianRouteDef {
   moveRef: string;             // 已登记 mv_*
   ultimate: boolean;           // 构建期与 MoveDef 断言相等
   purpose: 'attack'|'defense'|'movement';
-  requiredNature: readonly ('yin'|'yang'|'harmony')[];
+  requiredNature: readonly ('yin'|'yang'|'harmony')[]; // 非空；主运性质许可，见 §4.6
+  allowOpposedNature?: boolean; // 仅静态招式 / 体段冲突豁免，不豁免 requiredNature
   steps: readonly RouteStep[]; // 1..18，穴位不得重复
 }
 interface MeridianNodeRuntime {
@@ -2095,6 +2108,7 @@ afterZ5M = floor(936×9200/10000) = 861
 | MF-V17 | 音功无伤害段（纯支援 / 纯控制）、普通喊声 / 传讯不得标 `projection:true`；大手印跃击的掌风伤害段必须标 `projection:true` | 构建失败 |
 | MF-V18 | 路线性质只统计体段；每穴按 15 §3 游戏归属与 §2.1 游戏性质计票，不按标准归经；出口段须位于末 1–3 段且命中 §4.3.1 动作规则。劳宫对阴 / 阳掌均合法，不得因出口与体段异性报冲突 | lint 报告；不改变既有 `--strict` |
 | MF-V19 | 掌法末端为劳宫，或由明确动作识别为合谷 / 后溪 / 外关；未分类掌招仍须劳宫。外放路线另须命中 §4.4.1.4 白名单 | lint 报告；不改变既有 `--strict` |
+| MF-V20 | 展开后的 `requiredNature` 非空、无重复且只含三种性质；无显式值且无明确模板默认时禁止猜填；`allowOpposedNature` 不改变 F0 主运许可 | 设计约束；待 tech/04 / Core 接入生产门禁，现 lint 不冒充已实现 |
 
 ### 17.2 参考实现自动用例
 
@@ -2149,6 +2163,8 @@ afterZ5M = floor(936×9200/10000) = 861
 | MF-I14 | 拳脚 / 兵器 / 暗器 / 外放各 1000 | 护体适用量依次 1000 / 250 / 0 / 400，且总量守恒 |
 | MF-I15 | 首轮后点穴、胀损、调息、擒拿 | 首轮顺序不回溯；下一 CT / 移动按“经脉后擒拿”重算 |
 | MF-I16 | `damage_sim.py` 分别以普通 / 外放标记结算 10 段强一档；另给旧 `projected` 通道但无新标记 | 普通 Z5M=12053；外放 Z5M=13581，均只在 D5 后取整一次；标准输入两者均 10000；旧通道仍走普通曲线 |
+| MF-I17 | 阳主运调用阴体段路线，名单分别 `[yin,harmony]` / `[yin,yang,harmony]`；两者均设 `allowOpposedNature:true` | 前者 F0 拒绝且资源 / RNG / CT 不变；后者获准后 `affinityBp=8800`，不因静态豁免改为同相。设计金标准，待 Core / 图鉴迁移后实现 |
+| MF-I18 | 旧路线缺 `requiredNature`：分别有明确模板名单 / 模板也缺名单；另以阳主运调用 `[harmony]` | 首项逐字展开模板，次项生产构建阻断，末项 F0 拒绝；禁止以调和条目当通配符。设计金标准，待 tech/04 / Core 实现 |
 
 属性测试还应随机生成合法路线与节点态，断言：原始质量在 `[0,10000]`、归一完成质量在 `[0,18000]`；同 raw / 同 STD 恒为 10000；优势方完成质量增加不会减少优势兑现；弱方故意降低完成质量不能减轻劣势；卡住位置前移不能提高质量；任一方相对强度增大时其攻击不降、防守承伤不升、速度不降；护体资源守恒；擒拿只在移动 / CT 与独立 `evadeBp` 各生效一次；调息 / tick 不增加伤势；对另一实例操作不改变本实例 hash。
 
@@ -2196,8 +2212,8 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 | M6-D01 | `design/05` / 武学图鉴 | **已解决（字段与主体逐招）**：`projection`、三档范围与基础射程已接入；AR-17 音功 / 大手印余项见 NXT-D02 |
 | M6-D02 | `design/09` / `design/14` | **已解决**：六角格、目标合法性、敌我 AI 与基础 / 当前范围、成本和降档提示已同步 |
 | M6-D03 | `tech/04` / `tech/05` | **已解决**：构建校验、F0 冻结、F2 原子支付、回放档位与唯一外放 Z5M 已接入 |
-| NXT-D01 | `design/05` / `design/04` / `tech/04` / `tech/05` | **部分已解决**：`tech/05`、`design/09` 已接音功 0 档；`design/04` 交 NAu-rulesB，`design/05` 与 `tech/04` MF-V16 / MF-V17 交 NAu-nxt；完成前不得把跨文档契约记为全量落地 |
-| NXT-D02 | NXfix / 武学图鉴 | **交其他任务**：逐招复核并改标 §18.6 音功伤害招与 `mv_dashouyin_dashouyin`；不得按整门批量改，纯支援 / 控制 / 实体笛招保持非外放 |
+| NXT-D01 | `design/05` / `design/04` / `tech/04` / `tech/05` | **已解决（设计与技术契约）**：NAu-rulesB 已接 04 §4.5.1；NAu-nxt 已接 05 §4.1 / §4.2.2、tech/04 §3.5–§3.8、§5.4 的 MF-V16 / MF-V17，以及 tech/05 F0～F7；0 档普通 Z5M、基础范围、零外放增耗，1 / 2 档启用外放 |
+| NXT-D02 | NXfix / 武学图鉴 | **已解决（逐招静态数据）**：§18.6 所列 28 记音功伤害招及 `mv_dashouyin_dashouyin` 均已标外放并配置三档范围；纯支援 / 控制 / 实体笛招保持非外放。逐招字段仍以各图鉴为唯一真值，生产回放不因静态闭合而免验 |
 | NR0-D01 | 武学图鉴全册 | **已解决**：NR1 / NR2 已按 §4.3.1 重配；530 条门派册路线完全相同序列为 0，剩余高重合只保留审阅警告 |
 | NR0-D02 | `tech/04` / CI | **已解决（工具）**：`--strict` 与 `--diversity` / `--diversity-strict` 已分离；是否把严格多样性加入常态 CI 仍由发布流程决定 |
 
@@ -2209,7 +2225,7 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 |---|---|---|
 | Canon §3 / §6 / §8–§11 | 书界压制、属性、CT、Z0–Z10、护体、轻功与 Buff | v1.8 已接 Z4M / Z5M、护体内劲、经脉速度、AR-17 音功 / 掌风及 AR-18 体段 / 出口段判据 |
 | `design/03` | `mpMax`、轻功值、基础 `spd`、臂力 / 身法 / 定力、`apInner/apGrapple` | 已引用；不新增属性 |
-| `design/04` | Z0–Z10、护体 settle、效果检定、TTK 锚点 | 已接 Z4M / Z5M 与护体内劲落位；音功 0 档分支尚待 NAu-rulesB 同步 |
+| `design/04` | Z0–Z10、护体 settle、效果检定、TTK 锚点 | **已解决**：Z4M / Z5M、护体内劲与音功 0 档分支均已接入 §4.5.1；静态 `projected` 与护体 40% 适用率保持 |
 | `design/05` | 品阶、层数、招式、内功性质、绝招 | 已接十二品绝招数、7 / 9 / 10 重、`meridianRouteRef`、调息引用与外放字段；AR-18 后内功性质按主修经脉逐脉计票，平票或无票取调和，显式空数组可审计为调和而缺字段不可审计；路线算法仍由本文定义 |
 | `design/06` | Buff 注册、控制互斥、Boss 递减 | 已登记 `bf_shouqin`、`bf_xueweishoufeng`、迟滞 / 胀损派生视图及旧 ID 迁移 |
 | `design/08` | 轻功门禁 20 / 50 / 90 / 140 / 200、地形成本 | 已引用；经脉速度不改资格 / 成本 |
@@ -2273,6 +2289,7 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 16. **音功 0 档是否改成非 `projected` 护体类别？** 默认不改：为兼容 05 的静态 `DamageKind` 契约，0 档只切回普通 Z5M、基础范围与零外放增耗，护体内劲仍按 `projected` 的 40% 适用率；若作者希望连防护类别一起切换，须联动 04 / 05 / Core 新增运行时类别。
 17. **冲脉 / 带脉是否投阴阳票？** 默认不投：二者沿用 `design/15` 的 `harmony`，阴跷 / 阴维计阴、阳跷 / 阳维计阳；若作者指定冲 / 带的主侧，再联动 05、15、lint 与图鉴。**（待作者确认）**
 18. **外放掌刃是否把后溪加入 13 端点白名单？** 默认不加入：动作末端可用后溪，但外放还须另经腕骨 / 外关等现有白名单穴；避免未经确认扩大全部外放合法端点。**（待作者确认）**
+19. **`requiredNature` 是否作为主运性质硬许可？** 默认是：先在 F0 按名单过滤，获准后再算阴阳相性；`harmony` 不作通配符，`allowOpposedNature` 不豁免。缺字段只接受明确模板展开，否则生产阻断（见 §4.6、MF-V20、MF-I17 / I18）。**（待作者确认）**；各册现有数组及路线结构本次均未改，09 / tech 与图鉴仍须完成候选和迁移核验。
 
 ### 18.6 下游同步清单
 
@@ -2289,47 +2306,50 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 | `design/14` | 战斗 HUD / 经脉页 / 无障碍 | **已同步**：攻防、护体、速度、封路、点穴 / 擒拿、调息和外放档均使用只读投影 |
 | `design/15` | 战斗投影接口 | **已同步**：输出开穴 / 周天 / 九转只读快照，不抬硬界，不让战斗调息推进永久冲穴 |
 | `design/15`（NYY） | 手穴归经 | **已同步复核**：合谷 / 后溪 / 外关 / 劳宫均复用既有 ID，归经及阴阳正确；没有新增穴位 |
-| 武学图鉴全册 | 攻、防、轻功招式 | **已同步（经脉主体）**：路线、用途、调息实例与代表样例已接入；AR-17 逐招余项另见下方 NXfix 行 |
+| 武学图鉴全册 | 攻、防、轻功招式 | **已同步（经脉主体）**：路线、用途、调息实例与代表样例已接入；AR-17 逐招收口现值见下方 NXfix 行 |
 | 武学图鉴全册（NR1 / NR2） | 最终绝招路线 | **已同步**：530 条门派册路线无完全相同序列；同门互异 / 轮换与外放端点由 lint 检查 |
 | `tech/05` | Core、RNG、存档、golden、性能 | **已同步（技术契约）**：rulesProtocol 2、逐单位状态、唯一 RNG、事务、快照 / 回放与 Python 对拍均已写入 |
 | `tools/lint`、`tools/balance`（NYY） | 路线性质与掌法末端 | **已同步参考工具**：按 15 游戏归属做体段投票、出口排除、保守动作识别及“阳体经劳宫仍为阳”断言；绝招与普通外放的性质冲突均由 delivery 只报告 |
+| `design/09`、`tech/04/05`、武学图鉴与章节配装 | `requiredNature` 主运准入 | **交其他任务**：按 §4.6 默认、MF-V20 与 MF-I17 / I18 接 F0 过滤及缺字段迁移；先核对 NR4S-01 生死符、NR4S-05 黑木 / 日月剑、辟邪、嵩山剑 / 桩功、短打手及相关辅运路线，不把既有零性质冲突当作运行时准入通过 |
 | Canon §8 / §9 | 战斗与伤害链 | **已解决（V13-02 / V13-03）**：独立乘区、取整顺序、护体内劲资源守恒已登记 |
 | Canon §11 | 轻功与速度 | **已解决（V13-04）**：经脉速度、`openingQinggong` 与门禁 / 地形 / CT 边界已登记 |
 | Canon §12 | ID 前缀 | **已解决（V13-05）**：四前缀及禁止借用边界已登记 |
 | Canon §18 | 唯一归属 | **已解决（V13-06 / V13-C01）**：M3-P04 已取代旧 Z3 口径，并拆清共享定义与具体实例 |
 | Canon §19 | 确定性底线 | **已解决（V13-07）**：攻防路线提交、逐单位实例、唯一 RNG、快照与 golden 已登记 |
-| `design/05`、武学图鉴全册（M5b / M5c） | `MoveDef` 与逐招条目 | **已同步（AR-16 主体）**：字段、基础射程 / 三档范围及降龙 18 / 19 等逐招事实已落地；AR-17 音功 / 大手印余项见下 |
+| `design/05`、武学图鉴全册（M5b / M5c） | `MoveDef` 与逐招条目 | **已同步**：字段、基础射程 / 三档范围及降龙 18 / 19 等逐招事实已落地；AR-17 音功 / 大手印现值见下 |
 | `design/09`（M5b） | §5 六角范围、选目标与 AI | **已同步**：消费冻结的 0 / 1 / 2 档、枚举合法格，敌我 AI 按实际收益与额外耗内选档 |
 | `design/14`（M5b） | 出招预览 | **已同步**：显示基础 / 当前射程范围、外放档、额外耗内和降档原因 |
-| `tech/04`（M5b / NXT） | schema 与构建校验 | **部分已同步**：MF-V13～V15 与 MF-V14 人声端点例外已接；MF-V16 / MF-V17 尚待 NAu-nxt |
+| `tech/04`（M5b / NXT） | schema 与构建校验 | **已解决**：§3.5–§3.8、§5.4 已接 MF-V13～V17、`voice` 字段及人声端点例外；外放反击架势的 defense 例外仍限主动无伤害、仅 `stanceCounter` 伤害 |
 | `tech/05`（M5b） | Core / 回放 | **已同步**：无副作用预估、F2 原子扣费、`projectionStep` 入命令 / hash 与唯一外放 Z5M 已写入契约 |
-| `design/04`、`design/05`、`tech/05`（NXT） | 音功 0 档 | **部分已同步**：`tech/05` 已接；`design/04` 交 NAu-rulesB，`design/05` 交 NAu-nxt；0 档须为普通 Z5M、基础范围、0 外放增耗，1 档起外放 |
-| NXfix：`skills-shaolin.md` / `sk_shizihou` | 狮子吼逐招外放 | 候选 `mv_shizihou_zhenhou`、`mv_shizihou_shehun`、`mv_shizihou_pozhen`、`mv_shizihou_juyin`、`mv_shizihou_shizihou`；纯支援 `mv_shizihou_hexing` 保持非外放 |
-| NXfix：`skills-shaolin.md` / `sk_jingangnuhou` | 金刚怒吼逐招复核 | 候选 `mv_jingangnuhou_zhenshe`；普通伤害招“怒吼”在紧凑卡中仅登记后缀 `_nuhou`，NXfix 须先按图鉴展开规则取得正式 ID 后再改标，不得猜造 |
-| NXfix：`skills-wujue.md` / `sk_bihai` | 碧海潮生曲逐招外放 | 候选 `mv_bihai_chaoqi`、`mv_bihai_chaoyong`、`mv_bihai_jingtao`、`mv_bihai_chaosheng`、`mv_bihai_yuyin`；纯控制 `mv_bihai_xinsui`、纯支援 `mv_bihai_dingshen` 保持非外放 |
+| `design/04`、`design/05`、`tech/05`（NXT） | 音功 0 档 | **已解决**：04 §4.5.1、05 §4.1 / §4.2.2 与 tech/05 F0～F7 已接 `projection && (!sonic || projectionStep>=1)`；0 档普通 Z5M、基础范围、0 外放增耗，1 / 2 档外放；三档均保留静态 `projected` 和护体 40% |
+| NXfix：`skills-shaolin.md` / `sk_shizihou` | 狮子吼逐招外放 | **已解决**：`mv_shizihou_zhenhou`、`mv_shizihou_shehun`、`mv_shizihou_pozhen`、`mv_shizihou_juyin`、`mv_shizihou_shizihou` 均已标 `projection:true`、`voice:true`；纯支援 `mv_shizihou_hexing` 保持非外放，见该册 §1.5.3 / AR-16 表 |
+| NXfix：`skills-shaolin.md` / `sk_jingangnuhou` | 金刚怒吼逐招复核 | **已解决**：紧凑卡已正式展开 `mv_jingangnuhou_nuhou`；它与 `mv_jingangnuhou_zhenshe` 均为 `projection:true`、`voice:true`，见该册 §1.7.3 / AR-16 表 |
+| NXfix：`skills-wujue.md` / `sk_bihai` | 碧海潮生曲逐招外放 | **已解决**：`mv_bihai_chaoqi`、`mv_bihai_chaoyong`、`mv_bihai_jingtao`、`mv_bihai_chaosheng`、`mv_bihai_yuyin` 均已标 `projection:true`、`voice:false`；纯控制 `mv_bihai_xinsui`、纯支援 `mv_bihai_dingshen` 保持非外放，见该册 §3.3 / AR-16 表 |
 | NXfix：`skills-wujue.md` / `sk_biluofengyan` | 保持非外放 | `mv_biluofengyan_fengyan`、`mv_biluofengyan_yanbosan` 为纯控制，`mv_biluofengyan_biluoyin` 为支援，三者均无伤害段 |
 | NXfix：`skills-wujue.md` / `sk_gaibangchuansheng` | 保持非外放 | `mv_gaibangchuansheng_changxiao`、`mv_gaibangchuansheng_yinghe` 为支援，`mv_gaibangchuansheng_hezhi` 为 `power:0` 纯控制 |
 | NXfix：`skills-wujue.md` / `sk_junzhanghao` | 保持非外放 | 黄阶一行卡只有友方聚气效果，无伤害段且未登记 `mv_*` |
 | NXfix：`skills-wujue.md` / `sk_lianhualuo` | 保持非外放 | `mv_lianhualuo_shulaibao`、`mv_lianhualuo_yinghe` 为支援，`mv_lianhualuo_taoshang` 为 `power:0` 纯控制 |
 | NXfix：`skills-wujue.md` / `sk_qimenyinlu`、`sk_yanjiehao` | 保持非外放 | 两张黄阶一行卡只有宁神 / 聚气 / 动摇效果，无伤害段且未登记 `mv_*` |
 | NXfix：`skills-wujue.md` / `sk_yuxiaoduanji` | 保持非外放 | 以玉箫实体短击并点穴，属于实体兵器，不是音功真气外放；一行卡未登记 `mv_*` |
-| NXfix：`skills-wuyue.md` / `sk_qixianwuxingjian`、`sk_xiaoaojianghuqu` | 两门音功复核 | 已标外放的 `mv_qixianwuxingjian_fanyin`、`mv_qixianwuxingjian_luanxian`、`mv_qixianwuxingjian_qiming`、`mv_qixianwuxingjian_wuxing`、`mv_xiaoaojianghuqu_he`、`mv_xiaoaojianghuqu_tongsheng` 按新 0 档分支验收；`mv_xiaoaojianghuqu_qingyin`、`mv_xiaoaojianghuqu_hezuo` 保持非外放 |
+| NXfix：`skills-wuyue.md` / `sk_qixianwuxingjian`、`sk_xiaoaojianghuqu` | 两门音功复核 | **已解决**：`mv_qixianwuxingjian_fanyin`、`mv_qixianwuxingjian_luanxian`、`mv_qixianwuxingjian_qiming`、`mv_qixianwuxingjian_wuxing`、`mv_xiaoaojianghuqu_he`、`mv_xiaoaojianghuqu_tongsheng` 均已标外放并接 0 档分支；持乐器，`voice` 默认 false；`mv_xiaoaojianghuqu_qingyin`、`mv_xiaoaojianghuqu_hezuo` 保持非外放，见该册 §5.3 / §7.5 / AR-16 表 |
 | NXfix：`skills-wuyue.md` / `sk_shigudaxuebi` | 保持非外放 | 石鼓打穴笔法是实体笔招且不是音功；紧凑卡无离体伤害段，也未登记 `mv_*` |
-| NXfix：`skills-general.md` / `sk_chuanyunxiao` | 穿云啸逐招外放 | 候选 `mv_chuanyunxiao_chuanyun`；紧凑卡提到但未登记正式 ID 的“断喝 / 回声”须先按图鉴展开规则生成后再逐招判定，不得猜造 |
-| NXfix：`skills-general.md` / `sk_qixianyin` | 七弦音逐招外放 | 候选 `mv_qixianyin_luanxian`；“定弦 / 和鸣”为自身或友方支援，保持非外放 |
+| NXfix：`skills-general.md` / `sk_chuanyunxiao` | 穿云啸逐招外放 | **已解决**：`mv_chuanyunxiao_chuanyun`、`mv_chuanyunxiao_duanhe`、`mv_chuanyunxiao_huisheng` 均已正式登记并标 `projection:true`、`voice:true`；人声路线分别收于廉泉 / 廉泉 / 天突，见该册 §8.8 / §10.3 / §11.6.5 |
+| NXfix：`skills-general.md` / `sk_qixianyin` | 七弦音逐招外放 | **已解决**：`mv_qixianyin_luanxian` 已标外放，持琴发劲、`voice` 默认 false；“定弦 / 和鸣”为自身或友方支援，保持非外放，见该册 §8.8 / §10.3 |
 | NXfix：`skills-general.md` / `sk_qingxinqupu` | 保持非外放 | `mv_qingxinqupu_dingxian`、`mv_qingxinqupu_hesheng`、`mv_qingxinqupu_qingxin`、`mv_qingxinqupu_jiefen`、`mv_qingxinqupu_wanlai` 均为支援或纯控制，无伤害段 |
 | NXfix：`skills-general.md` / `sk_diquxinfa`、`sk_ningxinjue` | 保持非外放 | 前者“缓调 / 清音 / 长吹”均施加增益，后者“凝神 / 守念 / 醒梦”均为增益或驱散；紧凑卡未登记 `mv_*` |
 | NXfix：`skills-general.md` / `sk_chuanyinfa`、`sk_diqurumen`、`sk_qingxinshou`、`sk_shouxinjue` | 保持非外放 | 四张黄阶一行卡仅有友方宁神 / 定心 / 清除心神等支援效果，无伤害段且未登记 `mv_*` |
-| NXfix：`skills-qianlong.md` / `sk_jindifa` | 金笛法复核 | 已标外放的 `mv_jindifa_luaner` 按新 0 档分支验收；实体笛招 `mv_jindifa_zhongting`、`mv_jindifa_sandie` 与支援 `mv_jindifa_huban` 保持非外放 |
-| NXfix：`skills-xiaoyao.md` / `sk_chuanyinsouhun` | 传音搜魂大法逐招外放 | 候选 `mv_chuanyinsouhun_duohun`、`mv_chuanyinsouhun_shixin`；纯控制 `mv_chuanyinsouhun_souhun` 保持非外放 |
-| NXfix：`skills-xiaoyao.md` / `sk_damingzhou` | 大明咒逐招外放 | 候选 `mv_damingzhou_hezhou`；支援 `mv_damingzhou_songzhou` 保持非外放 |
-| NXfix：`skills-xiaoyao.md` / `sk_hanguqiyin` | 函谷七音逐招外放 | 候选 `mv_hanguqiyin_luoyin`、`mv_hanguqiyin_qiyin`；支援 `mv_hanguqiyin_qingyin`、`mv_hanguqiyin_heyin` 保持非外放 |
+| NXfix：`skills-qianlong.md` / `sk_jindifa` | 金笛法复核 | **已解决**：`mv_jindifa_luaner` 已标外放、`voice:false` 并接 0 档分支；实体笛招 `mv_jindifa_zhongting`、`mv_jindifa_sandie` 与支援 `mv_jindifa_huban` 保持非外放，见该册 §5.1 / AR-16 表 |
+| NXfix：`skills-xiaoyao.md` / `sk_chuanyinsouhun` | 传音搜魂大法逐招外放 | **已解决**：`mv_chuanyinsouhun_duohun`、`mv_chuanyinsouhun_shixin` 均已标外放、`voice:true`；纯控制 `mv_chuanyinsouhun_souhun` 保持非外放，见该册 §2.4 / AR-16 表 |
+| NXfix：`skills-xiaoyao.md` / `sk_damingzhou` | 大明咒逐招外放 | **已解决**：`mv_damingzhou_hezhou` 已标外放、`voice:true`；支援 `mv_damingzhou_songzhou` 保持非外放，见该册 §6.4 / AR-16 表 |
+| NXfix：`skills-xiaoyao.md` / `sk_hanguqiyin` | 函谷七音逐招外放 | **已解决**：`mv_hanguqiyin_luoyin`、`mv_hanguqiyin_qiyin` 均已标外放；持乐器，`voice` 默认 false；支援 `mv_hanguqiyin_qingyin`、`mv_hanguqiyin_heyin` 保持非外放，见该册 §2.4 / AR-16 表 |
 | NXfix：`skills-xiaoyao.md` / `sk_fuyushu` | 保持非外放 | `mv_fuyushu_huodi`、`mv_fuyushu_huanting` 为纯控制，`mv_fuyushu_chuanyin` 为支援，均无伤害段 |
 | NXfix：`skills-xiaoyao.md` / `sk_songxianqu` | 保持非外放 | `mv_songxianqu_songxian` 为支援，`mv_songxianqu_luogu` 为纯控制，均无伤害段 |
-| NXfix：`skills-xiaoyao.md` / `sk_dashouyin` | 大手印掌风 | 将 `mv_dashouyin_dashouyin` 的掌风伤害段改为外放并补三档范围 / 合法端点；跃迁位移不另造伤害段 |
+| NXfix：`skills-xiaoyao.md` / `sk_dashouyin` | 大手印掌风 | **已解决**：`mv_dashouyin_dashouyin` 已标外放，三档落点范围与内关→劳宫端点已登记；跃迁不造伤害段，落点掌风及同一伤害段的溅射使用 `projected`，见该册 §6.3 / AR-16 表 |
 | NXfix：`skills-bulu-01`～`skills-bulu-14` | 补录册全量复核 | 14 册补录经关键词、招式表与伤害段核对，无音功伤害招，也没有大手印跃击；本轮无候选改标 |
 | `tech/04` / CI（NR1 / NR2 后） | 图鉴构建门禁 | **已同步工具语义**：`--diversity` 只报告，`--diversity-strict` 对完全同序列失败，且不改变既有 `--strict`；常态 CI 启用时点仍归发布流程 |
 | Canon §8 / §9 / §18（M5b） | 范围、伤害链与归属 | **已解决（V15-02～V15-04）**：M6-P01～P03 已登记；其中范围 / 耗内数值与曲线继续标注待作者确认、按默认执行 |
+
+以上音功清单按 2026-09-30 合入后的正文卡、AR-16 表及路线引用逐项交叉核对：已标伤敌音功共 `7+5+6+4+1+5=28` 记（少林 / 五绝 / 五岳 / 通行 / 乾隆 / 逍遥），另列大手印掌风 1 记。28 记均遵守音功 0 档普通、1 / 2 档外放规则；这里是收口证据，不维护第二份 `MoveDef` 或路线实例。
 
 ### 18.7 参考资料与实现证据
 
