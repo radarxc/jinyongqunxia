@@ -4,12 +4,12 @@
 > **上游**：`docs/decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-14–AR-18（含 2026-09-27 至 2026-09-29 作者决定）；`docs/00-canon.md` v1.8 §4、§6–§8、§12–§13、§16、§18、§20；`docs/decisions/rulings-v1.md` §2–§5；`design/21` v2.7.2。
 > **引用而不重定义**：字段、层数、招式与内功预算见 `design/05`；战斗经脉运行、招式路线、绝招、擒拿／点穴、调息、护体内劲与经脉乘区见 `design/21`；经脉、穴位、冲穴、周天与九转见 `design/15`；Buff 见 `design/06`；属性见 `design/03`；书界、压制与残承见 `design/02`；阵法战斗流程见 `design/09`；套装规则与最终数值交 `design/07`。少林、武当主体、丐帮、九阴与吐蕃密宗武学只引用其既有 ID。
 > **标注约定**：**（原创扩展）**为原著没有的武学或设定；**（原创扩展命名）**为原著有其人、兵器或战法而无正式武学名；**（待考）**为须以三联／广州修订版逐字核对的原著事实。文中【建议值】均在 §13 登记。
-> **版本**：C1 初稿（2026-09-26）；审校 C1a.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记、绝招路线叙事化（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
+> **版本**：C1 初稿（2026-09-26）；审校 C1a.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记、绝招路线叙事化（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）；路线唯一性第五轮（2026-09-30）。
 
 ---
 
 ## 0. 阅读指引与记法
-### 绝招显式路线索引（镜像正文卡，非覆写层；2026-09-29）
+### 绝招显式路线索引（镜像正文卡，非覆写层；2026-09-30）
 
 本索引镜像正文卡，非覆写层；与正文不一致即为错误，并以正文为准。每记绝招使用独立稳定路线与显式穴位序列。
 
@@ -57,7 +57,7 @@
 | 6 玄上 | `sk_qishangchujue` | `mv_qishangchujue_tuntu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_qishangchujue_tuntu}` | `mfr_qishangchujue_tuntu` | `MeridianRouteDef{moveRef:mv_qishangchujue_tuntu; ultimate:true; purpose:attack}`；`ap_renmai_qugu/100/100→ap_shoujueyin_daling/100/120→ap_shoujueyin_ximen/100/140→ap_shoushaoyang_yemen/100/160→ap_shoushaoyin_shaochong/100/180→ap_shoutaiyang_qiangu/100/200` |
 | 6 玄上 | `sk_liangyidaojia` | `mv_liangyidaojia_huyi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_liangyidaojia_huyi}` | `mfr_liangyidaojia_huyi` | `MeridianRouteDef{moveRef:mv_liangyidaojia_huyi; ultimate:true; purpose:attack}`；`ap_yangwei_jinmen/75/100→ap_chongmai_qichong/75/110→ap_shoutaiyin_taiyuan/75/120→ap_zushaoyin_taixi/75/130→ap_zutaiyin_yinlingquan/75/140→ap_shoushaoyang_waiguan/75/150→ap_shoushaoyang_yangchi/75/160` |
 | 6 玄上 | `sk_yingsheshengsibo` | `mv_yingsheshengsibo_shengsi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_yingsheshengsibo_shengsi}` | `mfr_yingsheshengsibo_shengsi` | `MeridianRouteDef{moveRef:mv_yingsheshengsibo_shengsi; ultimate:true; purpose:attack}`；`ap_chongmai_dahe/100/100→ap_chongmai_shiguan/100/120→ap_daimai_weidao/100/140→ap_shouyangming_quchi/100/160→ap_dumai_yinjiao/100/180→ap_renmai_qihai/100/200` |
-| 6 玄上 | `sk_xuanmingxinfa` | `mv_xuanmingxinfa_ningshuang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_xuanmingxinfa_ningshuang}` | `mfr_xuanmingxinfa_ningshuang` | `MeridianRouteDef{moveRef:mv_xuanmingxinfa_ningshuang; ultimate:true; purpose:defense}`；`ap_daimai_daimai/100/100→ap_dumai_changqiang/100/120→ap_dumai_yaoshu/100/140→ap_renmai_guanyuan/100/160→ap_renmai_yinjiao/100/180→ap_shoujueyin_quze/100/200` |
+| 6 玄上 | `sk_xuanmingxinfa` | `mv_xuanmingxinfa_ningshuang` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_xuanmingxinfa_ningshuang}` | `mfr_xuanmingxinfa_ningshuang` | `MeridianRouteDef{moveRef:mv_xuanmingxinfa_ningshuang; ultimate:true; purpose:defense}`；`ap_daimai_daimai/100/100→ap_dumai_changqiang/100/120→ap_yinwei_fushe/100/140→ap_renmai_guanyuan/100/160→ap_renmai_yinjiao/100/180→ap_shoujueyin_quze/100/200` |
 | 6 玄上 | `sk_jifengbajian` | `mv_jifengbajian_zhouyu` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_jifengbajian_zhouyu}` | `mfr_jifengbajian_zhouyu` | `MeridianRouteDef{moveRef:mv_jifengbajian_zhouyu; ultimate:true; purpose:attack}`；`ap_zutaiyang_shenshu/100/100→ap_zutaiyin_diji/100/120→ap_zuyangming_chengqi/100/140→ap_zuyangming_tianshu/100/160→ap_chongmai_qichong/100/180→ap_shouyangming_hegu/100/200` |
 | 6 玄上 | `sk_sandieshenquan` | `mv_sandieshenquan_san` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; meridianRouteRef:mfr_sandieshenquan_san}` | `mfr_sandieshenquan_san` | `MeridianRouteDef{moveRef:mv_sandieshenquan_san; ultimate:true; purpose:attack}`；`ap_daimai_weidao/85/100→ap_dumai_mingmen/85/110→ap_zutaiyang_weizhong/85/120→ap_shouyangming_quchi/85/130→ap_shouyangming_shousanli/85/140→ap_shouyangming_hegu/85/150` |
 <!-- skill-catalog-audit:end -->
@@ -901,6 +901,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 
 - 原著有玄冥神掌与阴寒内力表现，未见独立心法名。`reqs {attrs:{con:40,wil:40}, aptitude:{apInner:42}, hard:[]}`；内功 `IP=20+12+2×8+5×1.8=57`（`attrs {con:3,wil:3,agi:2}`；`stats {effHit:5,resCold:5}`）；`meridians:[mer_yinwei,mer_yinqiao]`【建议值】；`setTags:[]`。
 - 招式：玄寒 `_xuanhan`（L3自身，6%/3，下一掌效果命中+15）；凝霜 `_ningshuang`（L7周身支援绝招，`ultimate:true`，8%/气势100/1200，敌人`bf_hanqi`1层；无伤害倍率）。被动：寒脉 `_hanmai`（cold抵抗+4→10）；双老 `_shuanglao`（另一装配者2格内mpRegen+0.5pp）。唯一绝招依 05 §3.5 在 7 重解锁；为玄冥神掌前置。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
+- 凝霜配路**（原创扩展）**：带脉束气、长强催动后，以主修阴维脉的府舍承接寒劲；关元、阴交仍为末三段中的护体出口，末段曲泽收束回气，仍属体段。按 `design/21` §2.4 计票：府舍、曲泽阴 2，长强阳 1，带脉不投票，路线为阴。NR5 **只换穴**：第 3 段腰俞换府舍，保留该段风险 140 bp（高于前段 120 bp，承接换脉）；6 段各 100 CT，风险仍为 `[100,120,140,160,180,200]`，`Σrisk=900`、`flowCt=6×100=600`、`1200+600=1800≤2000`。完整步骤与镜像见 §10.4。
 
 #### `sk_jifengbajian` 疾风八剑（6 玄上 · 兵器／剑 · 调和）**（原创扩展命名）**——**核算抽样**
 
@@ -1495,7 +1496,9 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 
 #### 跨武学高相似路线说明（`design/21` §4.3.4）
 
-本轮按 Canon V17-06 重检 25 对名下路线，全部通过替换本册穴位降至 `overlapBp<8000`，故没有需要以共同传承保留的高相似对。改路没有改变招式的 `purpose`、段数、逐段 CT、风险数组或收招合计；动作末端仍服从 `design/21` §4.3.1。全仓复算后，本册内部没有 `overlapBp≥8000` 配对，本任务也没有新造跨册高相似对；仍由其他 NR3 单元负责的既有跨册配对不在本次改线范围。
+路线叙事第三轮（NR3）按 Canon V17-06 重检 25 对名下路线，全部通过替换本册穴位降至 `overlapBp<8000`，故没有需要以共同传承保留的高相似对。改路没有改变招式的 `purpose`、段数、逐段 CT、风险数组或收招合计；动作末端仍服从 `design/21` §4.3.1。该轮全仓复算后，本册内部没有 `overlapBp≥8000` 配对，本任务也没有新造跨册高相似对；当时仍由其他 NR3 单元负责的既有跨册配对不在该次改线范围。
+
+NR5（2026-09-30）将显式普通路线纳入全仓比较后，本册名下待处理配对为**无（0 对）**，无须新增相似理由。额外修复凝霜的体段性质（见 §4.8、§10.4）：只换腰俞为府舍；与全仓其余显式路线的最高重合为 `5000 bp<8000`，没有完全相同或新增高相似配对。玄冥心法仅此一记绝招；与同门玄寒所绑定 `D4I` 的共享穴位为 `0/4`，未轮换或逆序复用。本册作为“另一侧”仍命中 3 对既有普通／绝招高相似，分别归 NR5-bulu-b、NR5-bulu-c、NR5-kangxi 修改普通路线，详见本轮报告 §6；不计作本册已消除。仅绑定共享模板的普通路线仍按 2026-09-29 协调者裁定不进入跨武学比较。
 
 #### AR-18 性质改线镜像（2026-09-29）
 
@@ -1534,26 +1537,40 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | `sk_emeixinfa`／`mv_emeixinfa_qingxin` | 同体派生；不提前登记 ID | defense／`[yin,harmony]` | `ap_renmai_huiyin/75/70 → ap_renmai_shimen/75/80 → ap_renmai_qihai/75/90 → ap_renmai_danzhong/75/100` | `4／300／[70,80,90,100]／340／1300` |
 | `sk_kunlunxinfa`／`mv_kunlunxinfa_yunxi` | 同体派生；不提前登记 ID | defense／`[yang,harmony]` | `ap_yangqiao_fuyang/75/70 → ap_yangqiao_shenmai/75/80 → ap_dumai_mingmen/75/90 → ap_dumai_zhiyang/75/100` | `4／300／[70,80,90,100]／340／1300` |
 | `sk_kunlunxinfa`／`mv_kunlunxinfa_tiaoxi` | 同体派生；不提前登记 ID | defense／`[yang,harmony]` | `ap_yangqiao_jianyu/75/70 → ap_yangqiao_juliao/75/80 → ap_dumai_shenzhu/75/90 → ap_dumai_baihui/75/100` | `4／300／[70,80,90,100]／340／1300` |
-| `sk_kongtongyangshenggong`／`mv_kongtongyangshenggong_yangzang` | 同体派生；不提前登记 ID | defense／`[yin,harmony]` | `ap_chongmai_qichong/75/70 → ap_chongmai_futonggu/75/80 → ap_renmai_qihai/75/90 → ap_renmai_guanyuan/75/100` | `4／300／[70,80,90,100]／340／1300` |
-| `sk_kongtongyangshenggong`／`mv_kongtongyangshenggong_tiaowuxing` | 同体派生；不提前登记 ID | defense／`[yin,harmony]` | `ap_chongmai_siman/75/70 → ap_chongmai_shangqu/75/80 → ap_renmai_zhongwan/75/90 → ap_renmai_danzhong/75/100` | `4／300／[70,80,90,100]／340／1300` |
+| `sk_kongtongyangshenggong`／`mv_kongtongyangshenggong_yangzang` | 同体派生；不提前登记 ID | defense／`[yin,harmony]` | `ap_renmai_shuifen/75/70 → ap_chongmai_futonggu/75/80 → ap_renmai_qihai/75/90 → ap_renmai_guanyuan/75/100` | `4／300／[70,80,90,100]／340／1300` |
+| `sk_kongtongyangshenggong`／`mv_kongtongyangshenggong_tiaowuxing` | 同体派生；不提前登记 ID | defense／`[yin,harmony]` | `ap_renmai_shenque/75/70 → ap_chongmai_shangqu/75/80 → ap_renmai_zhongwan/75/90 → ap_renmai_danzhong/75/100` | `4／300／[70,80,90,100]／340／1300` |
 | `sk_tieniuyaogong`／`mv_tieniuyaogong_chenyao` | 同体派生；不提前登记 ID | defense／`[yin,yang,harmony]` | `ap_daimai_wushu/75/70 → ap_daimai_zhangmen/75/80 → ap_renmai_qihai/75/90 → ap_dumai_mingmen/75/100` | `4／300／[70,80,90,100]／340／1300` |
 | `sk_tieniuyaogong`／`mv_tieniuyaogong_kangzhuang` | 同体派生；不提前登记 ID | defense／`[yin,yang,harmony]` | `ap_daimai_jingmen/75/70 → ap_daimai_daimai/75/80 → ap_renmai_guanyuan/75/90 → ap_dumai_zhiyang/75/100` | `4／300／[70,80,90,100]／340／1300` |
 
-其中暖脉体段阴 4／阳 0，护心阴 5／阳 1；圣火燃心阳 3／阴 0；峨眉清心阴 4／阳 0；昆仑两线均阳 4／阴 0；崆峒两线均阴 2／阳 0；铁牛两线均阴 1／阳 1，取调和。前两条同步替代 §10.3 的旧 `D4I`／`D6I` 绑定；其余八条派生配置覆盖本节的通用模板，避免改性质后丢失主修核心。
+NR5 返修按内功／护体动作识别末三段中的任督出口后，逐节点复算如下；不把全路线票数写作体段票数，也不固定删除尾三段。前两条仍替代 §10.3 的旧 `D4I`／`D6I` 绑定；其余八条派生配置覆盖本节通用模板。
 
-#### 黄阶内功专属三段展开
+| 普通招配置 | 本次不投票的尾段出口 | 体段阴／阳票与性质 |
+|---|---|---|
+| 峨眉九阳·暖脉 | 无；水分位于第 1 段，仍投票 | 4／0 → 阴 |
+| 峨眉九阳·护心 | 气海、身柱、膻中；第 3 段石门仍投票 | 3／0 → 阴 |
+| 圣火心法·燃心 | 至阳；章门按带脉不投票 | 0／2 → 阳 |
+| 峨眉心法·清心 | 石门、气海、膻中；第 1 段会阴仍投票 | 1／0 → 阴 |
+| 昆仑心法·运息／调息 | 运息：命门、至阳；调息：身柱、百会 | 各 0／2 → 阳 |
+| 崆峒养生功·养脏／调五行 | 养脏：气海、关元；调五行：中脘、膻中 | 各 1／0 → 阴；冲脉不投票 |
+| 铁牛腰功·沉腰／扛撞 | 沉腰：气海、命门；扛撞：关元、至阳 | 各 0／0 → 调和；带脉不投票 |
 
-五门一行卡尚无招式 ID，故此处只规定未来数据化生成的调息／护体路线步骤，不提前新造 `mv_*`／`mfr_*`。每条均以“主修脉核心＋任脉护体点＋督脉护体点”替代旧 `D3*` 穴位序列，仍沿用三段各 70 CT、风险 `[70,80,90]`，即 `3／210／240`；生成动作的原收招不变。
+崆峒两线配路修正**（原创扩展）**：养脏首穴气冲换水分，调五行首穴四满换神阙；首穴位于尾三段之外，以任脉蓄养为体，经腹通谷／商曲的冲脉承接，再分别收气海→关元／中脘→膻中。剥离出口后的票数均由 0／0 改为阴 1／阳 0，与武学声明一致；两线共享 `0/4`，非轮换或逆序。此次**只换穴**，各仍为 4 段、`4×75=300 CT`、风险 `[70,80,90,100]` 合计 `340`，收招合计 `1000+300=1300≤2000`；第 2 段换脉风险仍从 70 升至 80 bp。其余八条普通招只更正计票说明，不改步骤或预算。
+
+#### 黄阶内功专属展开（三段／四段）
+
+五门一行卡尚无招式 ID，故此处只规定未来数据化生成的调息／护体路线步骤，不提前新造 `mv_*`／`mfr_*`；按内功动作识别尾三段的任督出口。圣火、昆仑、崆峒、华山仍以“主修脉核心＋任脉护体点＋督脉护体点”展开三段，各 70 CT、风险 `[70,80,90]`，即 `3／210／240`。峨眉为保留任脉体段改为四段，总 CT／风险仍为 `210／240`；五条生成动作的原收招均不变。
 
 | 内功 | requiredNature | 专属 steps（依次；`ap_*/CT/riskBp`） | 体段计票 |
 |---|---|---|---|
-| `sk_shenghuotunajue` | `[yin,yang,harmony]` | `ap_daimai_zhangmen/70/70 → ap_renmai_shimen/70/80 → ap_dumai_mingmen/70/90` | 阴1／阳1 → 调和 |
-| `sk_emeitunajue` | `[yin,harmony]` | `ap_renmai_huiyin/70/70 → ap_renmai_guanyuan/70/80 → ap_dumai_shenzhu/70/90` | 阴2／阳1 → 阴 |
-| `sk_kunluntunajue` | `[yang,harmony]` | `ap_yangqiao_jianyu/70/70 → ap_dumai_zhiyang/70/80 → ap_renmai_qihai/70/90` | 阴1／阳2 → 阳 |
-| `sk_kongtongtunajue` | `[yin,yang,harmony]` | `ap_chongmai_siman/70/70 → ap_renmai_shimen/70/80 → ap_dumai_mingmen/70/90` | 阴1／阳1 → 调和 |
-| `sk_huashantunajue04` | `[yin,yang,harmony]` | `ap_daimai_wushu/70/70 → ap_renmai_danzhong/70/80 → ap_dumai_baihui/70/90` | 阴1／阳1 → 调和 |
+| `sk_shenghuotunajue` | `[yin,yang,harmony]` | `ap_daimai_zhangmen/70/70 → ap_renmai_shimen/70/80 → ap_dumai_mingmen/70/90` | 阴0／阳0 → 调和；石门、命门为出口 |
+| `sk_emeitunajue` | `[yin,harmony]` | `ap_renmai_huiyin/50/50 → ap_renmai_yinjiao/50/60 → ap_renmai_guanyuan/50/60 → ap_dumai_shenzhu/60/70` | 阴1／阳0 → 阴；会阴为体段，阴交、关元、身柱为出口 |
+| `sk_kunluntunajue` | `[yang,harmony]` | `ap_yangqiao_jianyu/70/70 → ap_dumai_zhiyang/70/80 → ap_renmai_qihai/70/90` | 阴0／阳1 → 阳；至阳、气海为出口 |
+| `sk_kongtongtunajue` | `[yin,yang,harmony]` | `ap_chongmai_siman/70/70 → ap_renmai_shimen/70/80 → ap_dumai_mingmen/70/90` | 阴0／阳0 → 调和；石门、命门为出口 |
+| `sk_huashantunajue04` | `[yin,yang,harmony]` | `ap_daimai_wushu/70/70 → ap_renmai_danzhong/70/80 → ap_dumai_baihui/70/90` | 阴0／阳0 → 调和；膻中、百会为出口 |
 
-冲脉、带脉依 AR-18a 默认不投票；因此三条相关路线由任督平票取调和。五条展开都含卡片声明的主修脉核心及任督护体点；穴位顺序彼此不同，也不复用 `D3Y`／`D3I`／`D3H`。
+冲脉、带脉依 AR-18a 默认不投票；三条相关路线在剥离任督出口后均无阴阳票，取调和。昆仑仅肩髃体段投阳票。峨眉原三段全部为任督出口，实际为 0／0 调和，不能用旧全路线阴 2／阳 1 代替体段计票。
+
+峨眉展开修正**（原创扩展）**：会阴蓄养后插入已登记的阴交，再循原关元→身柱护体收束；首穴会阴移出尾三段窗口，主修任脉成为体段核心，阴 1／阳 0。此次为**加一穴并重分逐段预算**，不是“只换穴”：CT `[50,50,50,60]` 合计 `210`，风险 `[50,60,60,70]` 合计 `240`；任脉转督脉的末段风险由 60 升至 70 bp。四段仍在黄阶普通路线建议的 2–4 段内，不缩短；生成动作的原收招与收招合计均不变，继续满足 `recovery+210≤2000`。五条展开均含主修体段核心及合法任督出口，顺序彼此不同，也不复用 `D3Y`／`D3I`／`D3H`；本次三条改配配置与全仓其他武学的最高重合依次为养脏 `7500`、调五行 `7500`、峨眉吐纳 `5000 bp`，均低于 `8000`。
 
 玄上 16 门各确认一记既有招式为绝招，并显式绑定如下。步骤只取文首索引；各行按真实 CT 与风险数组重算，且 `1200+路线 CT≤2000`。
 
@@ -1572,7 +1589,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | `sk_qishangchujue` | `mv_qishangchujue_tuntu` | `mfr_qishangchujue_tuntu` | attack | `ultimate:true`；见文首索引 | 6 | 600 | `[100,120,140,160,180,200]`／900（低） | 1800 |
 | `sk_liangyidaojia` | `mv_liangyidaojia_huyi` | `mfr_liangyidaojia_huyi` | attack | `ultimate:true`；见文首索引 | 7 | 525 | `[100,110,120,130,140,150,160]`／910（低） | 1725 |
 | `sk_yingsheshengsibo` | `mv_yingsheshengsibo_shengsi` | `mfr_yingsheshengsibo_shengsi` | attack | `ultimate:true`；见文首索引 | 6 | 600 | `[100,120,140,160,180,200]`／900（低） | 1800 |
-| `sk_xuanmingxinfa` | `mv_xuanmingxinfa_ningshuang` | `mfr_xuanmingxinfa_ningshuang` | defense | `ultimate:true`；见文首索引 | 6 | 600 | `[100,120,140,160,180,200]`／900（低） | 1800 |
+| `sk_xuanmingxinfa` | `mv_xuanmingxinfa_ningshuang` | `mfr_xuanmingxinfa_ningshuang` | defense | `ultimate:true`；见文首索引；NR5 只换穴：腰俞→府舍，体段阴2／阳1；关元→阴交出口、曲泽回气不变 | 6 | 600 | `[100,120,140,160,180,200]`／900（低） | 1800 |
 | `sk_jifengbajian` | `mv_jifengbajian_zhouyu` | `mfr_jifengbajian_zhouyu` | attack | `ultimate:true`；见文首索引 | 6 | 600 | `[100,120,140,160,180,200]`／900（低） | 1800 |
 | `sk_sandieshenquan` | `mv_sandieshenquan_san` | `mfr_sandieshenquan_san` | attack | `ultimate:true`；见文首索引 | 6 | 510 | `[100,110,120,130,140,150]`／750（低） | 1710 |
 
@@ -1863,7 +1880,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | O-10 | **已解决：**天中、地中如何在允许区间内取值 | 按 `docs/decisions/ultimate-counts-tianzhong-dizhong.md` 逐门裁定；本册天中乾坤大挪移取 2，地中五行旗阵、峨眉九阳功、武当九阳功各取 1，反两仪刀法取 2 |
 | O-11 | 六个范围／远程掌劲候选是否确为离体真气 | 默认保持“待考”、不赋 `projection:true`；待三联／广州修订版逐字证据或作者确认表现后，再逐招补基础范围与三档 spread |
 | O-12 | 绝招条件加成最终采用加法还是乘法 | 默认按 `design/05` §4.2 字面采用乘法；烈阳贯掌 `2.15→2.45`、正奇互生 `2.65→2.90`、阴阳吞吐 `2.40→2.70`（含七伤等效自损 `adj +0.12`）、七劲齐发 `2.80→3.05`、刚柔逆转 `3.00→3.30`、灭绝双锋 `2.75→3.45`、正势一剑 `3.15→3.45`、第三拳 `3.10→3.40`；待作者统一确认 |
-| O-13 | **已解决：**路线性质是否按逐节点阴阳计票 | Canon v1.8 V18-03 与 `design/21` §2.4 已明确只统计体段、逐节点计票，平票或体段为空取调和；本轮 4 条旧命中已清零 |
+| O-13 | **已解决：**路线性质是否按逐节点阴阳计票 | Canon v1.8 V18-03 与 `design/21` §2.4 已明确只统计体段、逐节点计票，平票或体段为空取调和；NR4 的 4 条旧命中已清零；NR5 补修出口识别完善后新增的凝霜命中，见 §4.8、§10.4 |
 | O-14 | AR-18a：冲脉、带脉是否参与阴阳票 | 默认不投票，保持 `harmony`；只主修冲／带或体段只含二者时判调和 |
 | O-15 | AR-18b：后溪是否加入外放 13 端点白名单 | 默认不加入；后溪可满足手刀／掌刃动作出口，但外放还须命中既有白名单端点 |
 
