@@ -1,0 +1,17 @@
+{
+"type": "restaurant",
+"w": 12,
+"h": 9,
+"subject": "酒楼茶肆",
+"prompt": "Use case: historical-scene. Generate exactly ONE complete isolated building sprite for tianshu default building-map. Reference image is only a style and fine material texture reference; create the new northern subject described. Northern Song Kaifeng/Luoyang urban architecture, grey clay tiled roofs with restrained eave curves, matte weathered timber, wooden lattice shutters, muted warm grey earthen plaster and rough grey brick lower walls, low saturation. True orthographic dimetric yaw45 pitch30: ground edges at precisely +0.5 and -0.5 slopes, 2:1 ground projection; parallel edges never converge. A very thin flush rectangular ground contact footprint with left, front and right corners clearly visible. No thick plinth. South entrance faces screen lower-left. Main light screen upper-left, short soft lower-right contact shadow. Match reference's realistic fine details and density. Real RGBA transparent background, whole eaves and base uncut, generous transparent margin on ALL sides. No people, animals, text, readable signs, labels, lantern rows, Qing paintwork, horsehead walls, modern objects, scene background, sky, checkerboard, watermark, perspective convergence. Asset bld_kit_song_north_restaurant. Northern Song Kaifeng urban wine/tea restaurant, broad two-storey timber hall, open first-floor front with wooden tables and benches visible in shade, second-floor open balcony with restrained plain railing and rolled bamboo screens, terracotta jars inside doorway. A broad grey clay-tile hip-and-gable roof, weathered dark timber and grey brick and warm plaster, urban sophisticated but not palace. No written sign or banners or lanterns. Footprint12 by9 cells,12:9 ground axes, whole thin rectangle foundation visible. Truly clear transparent surroundings.",
+"source": "/Users/bytedance/.codex/generated_images/01a0f428-3a13-73a2-b64f-f05bceba7950/exec-952ca142-faea-4518-b9ee-57be5adc7fd5.png",
+"candidate_count": 1,
+"corners": [[134, 714], [834, 1063], [1365, 805]],
+"references": [{"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png", "sha256": "0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7", "role": "style/material only;实际referenced_image_paths输入，已view_image"}],
+"alternates": [],
+"id": "bld_kit_song_north_restaurant",
+"source_sha256": "2a19cec84e3c10c0abfcac45b26dc04f6462afc718ee1a611dcf2a8cd0edf0c3",
+"source_size": [1448, 1086],
+"source_viewed": true,
+"selected_reason": "开放楼上茶桌和楼下桌凳可辨；生成屋顶接近悬山组合，未严格实现提示中的歇山，保留为候选。"
+}

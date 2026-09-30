@@ -1,0 +1,97 @@
+id: bld_kit_song_north_manor
+file: bld_kit_song_north_manor.png
+category: building-map
+style: default
+subject: 北宋中原 山庄/大院（原创扩展；建筑细部待考）
+prompt: 'Use case: historical-scene. Generate exactly ONE isolated production city-map building sprite for tianshu, Northern Song central plains
+  Kaifeng/Luoyang around 1093. Reference images supply only realistic ancient materials and detail density; never copy reference camera mistakes
+  or southern lush vegetation. Historical realistic grey clay tile, warm grey plaster over earth and rough bricks, matte weathered timber; restrained
+  subtle ochre and red where structural. NOT toy, plastic, miniature diorama or ink wash. Orthographic yaw45 elevation30, ground axes EXACT slopes
+  +0.5/-0.5 (2:1 dimetric), parallel opposite edges, upright columns, NO perspective. South entrance faces screen LOWER LEFT. Entire isolated
+  footprint on one extremely thin flat ground-contact parallelogram with left, bottom/front and right corners clearly visible for grid calibration.
+  Only a shallow masonry contact strip, NO thick plinth. Upper-left screen illumination, short contact shadow towards lower-right. TRUE transparent
+  RGBA background, at least10% clear margins all sides. All roof ends and ground corners visible. No text, writing, signs, symbols, watermark,
+  people, surrounding city, sky, trees outside footprint, modern objects, Qing ornament, imperial yellow roofs, thick bases or checkerboard. Subject:
+  one prosperous Northern Song northern courtyard residence, dignified grey-tile main timber hall and two modest side wings, warm-grey brick enclosure,
+  plain wooden front gate lower-left, open rectangular court with a single small scholar stone and one restrained deciduous tree INSIDE footprint.
+  Broad restrained roofs, sparse ornament, no southern garden pond or bamboo. Footprint16m east-west by13m north-south; front down-right edge
+  / up-right edge ratio16/13. Original unnamed manor, not a palace. All background alpha zero, no ambient haze or ground glow. Geometry priority:
+  ground corner targets in1536x1024: LEFT(80,520), FRONT(848,904), RIGHT(1472,592), BACK(704,208). Use exact relative positions up to uniform
+  scale/translation. Visible ground slopes exactly0.5 and-0.5, not steep0.57; do not draw labels. Change courtyard layout from the reference:
+  main domestic hall at rear, two low symmetrical wings, small tree at rear corner rather than central, bare court with modest stone paving.'
+negative: 文字、水印、现代元素、人物、场景背景、厚底座、塑料感、清式重彩、黄琉璃宫顶、透视汇聚
+references:
+- {id: bld_kit_song_southern_manor, file: assets/default/baseline/building-map/bld_kit_song_southern_manor.png, sha256: 393cee0a325af7b793f3dec4c28a1f0e50679eef19fa2c3d70f479b2a837c994,
+  role: 宋套件仅材质与写实细节参考；非本图几何或历史准确性背书}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:19:31.849966+00:00'
+created_time_basis: 源PNG文件mtime；非服务端披露调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f428-8576-7390-a428-7025aed217c6/exec-0a0a7ecd-a639-42a0-994d-60423bdd73ee.png
+source_sha256: 4dac0b8e023e0d003369db0cb199d2a0a368782f1b0d9bafea23b690900ce178
+size: 1008x704
+sha256: 81421f74ef33e8eeee1f6ddabf90cfc095b2ad4d63dd210a5c96bf7d36f37def
+status: candidate
+building:
+  type: bld_kit_song_north_manor
+  footprint: [16, 13]
+  anchor: [502.2111, 398.7405]
+  era: song_north
+footprint_m: [16, 13]
+anchor_px: [502.2111, 398.7405]
+allowRotation: false
+views: [S]
+entrance: {edge: S}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [928, 464]
+  camera_target: yaw45 pitch30 orthographic 2:1
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+candidate_count: 2
+selected_candidate: 2
+source_record: sources/bld_kit_song_north_manor.provenance.json
+processing:
+  source_archive: sources/bld_kit_song_north_manor.candidate2.png
+  source_size: [1536, 1024]
+  crop_box: [45, 25, 1499, 996]
+  uniform_scale_requested: 0.6444444444444445
+  resized_size: [937, 626]
+  rounded_effective_scale: [0.6444291609353507, 0.6446961894953656]
+  paste_offset: [35, 39, 972, 665]
+  final_canvas: [1008, 704]
+  steps: [crop alpha>0 bounding box, one uniform LANCZOS resize with integer size rounding, 'pad RGBA; original alpha preserved; no thresholding,
+      repaint, warp or flip']
+geometry_qa:
+  source_corners_px:
+    left: [50, 560]
+    front: [810, 977]
+    right: [1490, 606]
+  anchor_method: (left+right)/2; rear inferred as left+right-front
+  source_axis_slopes: [0.5486842105263158, -0.5455882352941176]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.1176470588235294
+  expected_width_depth_ratio: 1.2307692307692308
+  ratio_relative_error: 0.09191176470588236
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 4
+  precision_note: 人工量可见薄底面三角点；后角遮挡推算，非测绘；残差不以几何变形修正
+  anchor_rounding_correction:
+    previous_anchor_px: [502.2222, 398.6]
+    corrected_anchor_px: [502.2111, 398.7405]
+    reason: 按整数resize后的sx/sy转换，避免requested scale的亚像素偏移；未改图像或底面测点
+pixel_qa:
+  mode: RGBA
+  size: [1008, 704]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 415548
+  alpha_partial_pixels: 293250
+  alpha_opaque_pixels: 834
+  alpha_near_opaque_pixels: 283033
+  alpha_nonzero_bbox: [35, 39, 972, 665]
+  transparent_margins_px: [35, 39, 36, 39]
+  border_alpha_max: 0
+notes: 已逐张view_image原图与最终PNG自查。第二候选三面院舍、北方疏植院落完整；两轴偏陡。单视图；运行时拼接待实测；形制组合为原创扩展，细部待考。

@@ -1,0 +1,16 @@
+{
+  "round": 2,
+  "candidate": 2,
+  "prompt": "Use case: precise-object-edit. Correct one geometrical defect in this Northern Song hall. Its front facade/base direction already has the right slope +0.5 and frontage/depth horizontal-span ratio near18:14. KEEP THOSE. The RIGHT SIDE base edge is too flat (-0.36); make that side recede upwards more steeply until its slope is -0.5. Raise the rightmost foundation corner by 80 pixels, while keeping bottom/front foundation corner and leftmost foundation corner at their current positions. Raise the matching right-back roof/structure coherently, preserving vertical columns and parallel roof edges. This is redrawing the entire three-dimensional right-side depth to the correct ORTHOGRAPHIC yaw45 pitch30 2:1 camera, not bending the building. Visible ground vectors must be +720,+360 along front and +560,-280 along right side; deep plan18x14. Exact ground-contact polygon LEFT(128,665),FRONT(848,1025),RIGHT(1408,745),BACK(688,385) on1536x1152, up to shared uniform scale/translation. Both faces should have equally sloping horizontal structural lines. Keep the fine realistic Song grey clay tile hipped roof, modest red timber columns, subdued bracket sets, lattice doors, shallow stone foundation and central steps, upper-left illumination. No added ornament, people or surrounding scenery. One entire hall module with genuine transparent RGBA, clean margin on every side. No guide lines, writing, markers, haze or background. Do not change the front width or compress side horizontal depth; only correct the too-flat side projection.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44c-b43c-7ff1-980b-8ad0bc87cfb7/exec-56a2d2af-9dcf-4392-93bd-7fc583969df4.png",
+  "references": [
+    "assets/default/building-map/song_north/sources/bld_kit_song_north_palace_hall.round2-candidate1.png"
+  ],
+  "source_sha256": "3c353861852a971a7ce097979a005caacb2b98e8091cdcba09a0918a3914d7a0",
+  "reference_sha256": {
+    "assets/default/building-map/song_north/sources/bld_kit_song_north_palace_hall.round2-candidate1.png": "0423f41e1bb45f3da14bc92104519749f9ba7356c3297df72c100453451449aa"
+  },
+  "tool": "built-in image_gen",
+  "selected": false,
+  "assessment": "见buildings-round2-review.json；未修复全部几何问题，不替换原成品。"
+}

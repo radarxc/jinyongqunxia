@@ -1,0 +1,99 @@
+id: bld_kit_song_north_casino
+file: bld_kit_song_north_casino.png
+category: building-map
+style: default
+subject: 北宋中原·赌场（原创扩展）（原创扩展模块，非具名建筑测绘复原）
+prompt: 'Use case: historical-scene. Generate exactly ONE complete isolated building sprite for tianshu default building-map. Reference image
+  is only a style and fine material texture reference; create the new northern subject described. Northern Song Kaifeng/Luoyang urban architecture,
+  grey clay tiled roofs with restrained eave curves, matte weathered timber, wooden lattice shutters, muted warm grey earthen plaster and rough
+  grey brick lower walls, low saturation. True orthographic dimetric yaw45 pitch30: ground edges at precisely +0.5 and -0.5 slopes, 2:1 ground
+  projection; parallel edges never converge. A very thin flush rectangular ground contact footprint with left, front and right corners clearly
+  visible. No thick plinth. South entrance faces screen lower-left. Main light screen upper-left, short soft lower-right contact shadow. Match
+  reference''s realistic fine details and density. Real RGBA transparent background, whole eaves and base uncut, generous transparent margin on
+  ALL sides. No people, animals, text, readable signs, labels, lantern rows, Qing paintwork, horsehead walls, modern objects, scene background,
+  sky, checkerboard, watermark, perspective convergence. Asset bld_kit_song_north_casino. Gameplay-original gambling house in Northern Song northern
+  urban material language, no assertion of historical named institution. A compact two-storey recreational hall, discreet deep recessed wide front
+  entrance with unlettered timber lintel, heavy wood screens around the upper floor, two simple game tables faintly visible inside ground-floor
+  doorway, plain grey tiled gable roof, robust rough brick base and muted beige plaster. Not palace, no casino signage, cards, roulette, neon,
+  or modern symbols. Footprint10 by8 cells, axis10:8, shallow exact2:1 ground. Pure transparent backdrop.'
+negative: 人物、可读文字、招牌字、水印、现代物、晚清彩画、马头墙、密集灯笼、厚地台、透视消失点、天空与不透明背景。
+references: [/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png]
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:21:48.012717+00:00'
+created_time_basis: 源PNG文件mtime；非工具披露的服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f428-3a13-73a2-b64f-f05bceba7950/exec-04bf78a5-2e30-4856-bb76-3ab3d466a643.png
+source_sha256: 9e24b70e784aa6e04fed3d23f1289899557b8b2369029e4fd925d9baad59dec2
+size: 687x578
+sha256: 8d66acb5fb39f85396786278a2017ea53ef11fff0421310225c9b30dad3326b0
+status: candidate
+building:
+  type: bld_kit_song_north_casino
+  footprint: [10, 8]
+  anchor: [369.3215, 394.8959]
+  era: song_north
+footprint_m: [10, 8]
+anchor_px: [369.3215, 394.8959]
+allowRotation: false
+entrance: {edge: S, screen: lower_left}
+candidate_count: 1
+source_record: sources/bld_kit_song_north_casino.json
+provenance:
+  source_archive: sources/bld_kit_song_north_casino.png
+  source_sha256: 9e24b70e784aa6e04fed3d23f1289899557b8b2369029e4fd925d9baad59dec2
+  references:
+  - {path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png,
+    sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7, role: style/material only;实际referenced_image_paths输入，已view_image}
+  actual_tool: image_gen__imagegen
+  transparent_background: true
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_target_px: [576, 288]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+processing:
+  crop_box: [0, 17, 1328, 1122]
+  uniform_scale_requested: 0.4873096446700508
+  resized_size: [647, 538]
+  rounded_effective_scale: [0.4871987951807229, 0.48687782805429863]
+  paste_offset: [20, 20]
+  steps: [crop alpha>0 bbox, 'uniform LANCZOS resize, integer dimensions rounded', 'pad transparent RGBA; preserve alpha; no warp, repaint, flip
+      or alpha thresholding']
+geometry_qa:
+  source_corners_px:
+    left: [126, 742]
+    front: [770, 1105]
+    right: [1308, 832]
+  inferred_back_px: [664, 469]
+  source_anchor_px: [717.0, 787.0]
+  anchor_method: 可见同一底面左/前/右角；后角=L+R-F，中心=(L+R)/2；非alpha包围框底中点。
+  source_axis_slopes: [0.5636645962732919, -0.5074349442379182]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.2253565756724527
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.019714739462037834
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  max_vertex_residual_px: 17.98576800573908
+  residual_method: 以L为原点，比较等比缩放后的F/R与(32w,16w)/(32(w+h),16(w-h))；未做拉伸纠偏。
+  measurement_uncertainty_source_px: 4
+  release_ready: false
+  anchor_rounding_correction:
+    previous_anchor_px: [369.401, 395.2284]
+    corrected_anchor_px: [369.3215, 394.8959]
+    reason: 按整数resize后的sx/sy转换，避免requested scale的亚像素偏移；未改图像或底面测点
+pixel_qa:
+  mode: RGBA
+  size: [687, 578]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 210260
+  alpha_partial_pixels: 185801
+  alpha_opaque_pixels: 1025
+  alpha_nonzero_bbox: [25, 20, 667, 555]
+  transparent_margins_px: [25, 20, 20, 23]
+  source_view_image: true
+  final_view_image: true
+  saturated_red_pixels_alpha_gt16: 26
+notes: （原创扩展）木屏和室内桌凳表达游戏赌场功能；仅凭外观无法区分普通会馆，需交互标签。 人工量取底角±4px；保留几何残差与candidate状态，不能当release资产。 已view_image复核最终PNG：主体完整，透明留边与清晰底角保留。 自动像素抽查检出少量高饱和红色且alpha>16像素，边缘存在零星色点；未擅自抠除，保留待作者审看。

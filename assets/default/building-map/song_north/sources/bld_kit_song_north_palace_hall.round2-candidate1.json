@@ -1,0 +1,16 @@
+{
+  "round": 2,
+  "candidate": 1,
+  "prompt": "Use case: sketch-to-render. Convert this exact ground parallelogram into a realistic Northern Song palace main hall map sprite. The input drawing is a geometry blueprint, not a visual style. KEEP THE EXACT BASE POLYGON SHAPE, all four vertices stay fixed. Build straight upwards from its edges. One sober northern-Chinese timber hall with deep grey ceramic hipped roof, muted dark-red wood pillars, lattice doors and visible simple bracket sets, a shallow stone foundation with tiny entrance stairs contained inside the base outline. PLAN PROPORTIONS 18m wide by14m deep; the right-side depth is almost as substantial as the front. Orthographic dimetric 2:1: frontage slopes down-right 0.5, depth slopes up-right -0.5; roof ridges/column lines align to that camera without perspective. In a1536x1152 output the base must have LEFT(128,590),FRONT(848,950),RIGHT(1408,670),BACK(688,310). All roof and beam edges parallel to the matching ground directions. No broad shallow facade, do not reduce depth, no lens perspective. Keep source base size and position, building should rise above it. Fine realistic matte aged wood, many small separate grey tiles, restrained weathered stone, muted warm-grey earth tones. Elegant historical game sprite with detail density comparable to high-resolution realistic Song town kit. Top-left lighting, short lower-right contact shadow. Replace the blueprint lines and flat fill with entirely painted realistic building textures, no guide strokes. NO text, figures, city background, trees, modern objects, yellow roof, Qing gilding, thick diorama pedestal, excessive decoration, borders or watermark. Entire roof and footprint visible; output actual RGBA transparency everywhere outside the sprite, including removing the white background.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44c-b43c-7ff1-980b-8ad0bc87cfb7/exec-77f6b1e2-794b-4b98-a2e3-e86be447390f.png",
+  "references": [
+    "assets/default/building-map/song_north/sources/bld_kit_song_north_palace_hall.round2-geometry-guide.png"
+  ],
+  "source_sha256": "0423f41e1bb45f3da14bc92104519749f9ba7356c3297df72c100453451449aa",
+  "reference_sha256": {
+    "assets/default/building-map/song_north/sources/bld_kit_song_north_palace_hall.round2-geometry-guide.png": "8b0179f85809647d2d7f8eb32c976ab759958fca7532390cfd0b2b7f4d20b6c1"
+  },
+  "tool": "built-in image_gen",
+  "selected": false,
+  "assessment": "见buildings-round2-review.json；未修复全部几何问题，不替换原成品。"
+}

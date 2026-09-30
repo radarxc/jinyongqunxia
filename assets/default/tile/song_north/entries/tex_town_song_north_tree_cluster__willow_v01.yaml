@@ -1,0 +1,48 @@
+id: tex_town_song_north_tree_cluster__willow_v01
+file: tex_town_song_north_tree_cluster__willow_v01.png
+category: tile
+style: default
+subject: 北宋中原·柳树单树；植物意象（原创扩展），具体栽植史待考
+prompt: 'Use case: historical-scene. Asset: exactly ONE isolated single willow tree sprite for a realistic Northern
+  Song northern-central China town map, song_north, around Kaifeng and Luoyang. Image 1 is the Southern Song willow
+  STYLE reference; Image 2 is the Dali broadleaf STYLE reference: match their quiet realistic ancient-Chinese game-asset
+  rendering, muted olive foliage, fine natural texture, and detail density. Generate a NEW SINGLE tree, not the
+  reference cluster. One moderate-sized willow, naturally spreading grey-brown trunk, slender branching with hanging
+  narrow olive-green leaves and clearly visible open air between sprays. Complete crown and root contact visible,
+  natural proportions. True orthographic yaw 45 degrees, elevation 30 degrees, dimetric 2:1 ground projection. Soft
+  upper-left light, only a very short faint semi-transparent contact shadow toward lower-right. Genuine transparent
+  RGBA all around and between branches; no white background, no painted checkerboard. Root contact is the bottom
+  anchor, no raised ground, no soil disk, no pedestal, no scenery. Final sprite will be reduced to about 192 pixels
+  of canopy width, so fine restrained believable detail, not excessive glossy leaf noise. No other trees, no sapling,
+  no grass, no flowers, no people, no buildings, no text, no labels, no watermark. Historical vegetation concept
+  only, not an exact botanical or planting-history reconstruction.'
+negative: 无背景、土台、其他树、人物、文字、水印、假棋盘；不以RGB抠图替代生成alpha
+references:
+- path: assets/default/baseline/tile/tex_town_song_southern_tree_cluster__willow_v01.png
+  sha256: 6a5c425cadf4f8641331c57aa9fb39138fa9989e890152b0ea10a234e5c8913b
+  role: 实际传入工具的宋套件植物风格参考
+- path: assets/default/baseline/tile/tex_town_song_dali_tree_cluster__broadleaf_v01.png
+  sha256: 3963e0b07a4cbb91b5472d8c2470dc4da5b6c7dab9dbdf3580ff5b8fa39d3f56
+  role: 实际传入工具的宋套件植物风格参考
+tool: codex exec · image_gen (built-in)
+model: image_gen (backend undisclosed)
+effort: inherited agent configuration
+created: '2026-09-30T21:20:10.129733+00:00'
+source_path: /Users/bytedance/.codex/generated_images/01a0f427-73f7-74b3-b239-59e3b41812b6/exec-4e91bf7f-0fea-4992-aad3-3336b904e576.png
+size: 284x206
+sha256: ff6c34f72933f539b807e18a72437681f2d5b6a8a06d9a74f16f3c906602fd29
+status: candidate
+tile:
+  kind: tree_cluster
+  footprint:
+  - 3
+  - 3
+  variant: willow_v01
+  autotile_mask: null
+source_copy: sources/tex_town_song_north_tree_cluster__willow_v01__source.png
+source_sha256: 064fda732c4265527ab477983544a9cb8f70f5d9e06e251da2da0d85e96f501d
+anchor_px:
+- 143.965
+- 176.8
+notes: 原创植物意象；候选2选第1张。PIL仅裁alpha包围盒[61, 9, 1536, 1024]、等比缩放0.170970614至[252, 174]、四边pad16；保留源alpha（无阈值抠图），冠部约192px，source根点[810,
+  947]目视量取。源图与成品均view_image，另按真实alpha作诊断合成；隐藏RGB光晕不计入可见背景。物种细节与历史栽植地点待考，短影及合成落点待实测。

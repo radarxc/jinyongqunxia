@@ -1,0 +1,99 @@
+id: bld_kit_song_north_shop_2f
+file: bld_kit_song_north_shop_2f.png
+category: building-map
+style: default
+subject: 北宋中原·双层商铺（原创扩展模块，非具名建筑测绘复原）
+prompt: 'Use case: historical-scene. Generate exactly ONE complete isolated building sprite for tianshu default building-map. Reference image
+  is only a style and fine material texture reference; create the new northern subject described. Northern Song Kaifeng/Luoyang urban architecture,
+  grey clay tiled roofs with restrained eave curves, matte weathered timber, wooden lattice shutters, muted warm grey earthen plaster and rough
+  grey brick lower walls, low saturation. True orthographic dimetric yaw45 pitch30: ground edges at precisely +0.5 and -0.5 slopes, 2:1 ground
+  projection; parallel edges never converge. A very thin flush rectangular ground contact footprint with left, front and right corners clearly
+  visible. No thick plinth. South entrance faces screen lower-left. Main light screen upper-left, short soft lower-right contact shadow. Match
+  reference''s realistic fine details and density. Real RGBA transparent background, whole eaves and base uncut, generous transparent margin on
+  ALL sides. No people, animals, text, readable signs, labels, lantern rows, Qing paintwork, horsehead walls, modern objects, scene background,
+  sky, checkerboard, watermark, perspective convergence. Asset bld_kit_song_north_shop_2f. A compact TWO-STOREY Northern Song timber shop, ground
+  floor open-front counter and plain goods crates, upper storey storage/workroom with closed lattice windows and small wooden balcony, exposed
+  dark timber framing, muted warm earth plaster, single broad grey clay gable roof. This is a commercial two-floor shop, not residential, not
+  a pagoda. Footprint8 by6 cells, axis8:6; ground vectors (800,400) and (600,-300). Complete uncut asset and pure transparent backdrop without
+  glow.'
+negative: 人物、可读文字、招牌字、水印、现代物、晚清彩画、马头墙、密集灯笼、厚地台、透视消失点、天空与不透明背景。
+references: [/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png]
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:17:15.170817+00:00'
+created_time_basis: 源PNG文件mtime；非工具披露的服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f428-3a13-73a2-b64f-f05bceba7950/exec-bfdf143b-e514-423b-ab95-e9a893f7cd19.png
+source_sha256: fb08d14d8f0d1cbe603ce4b46dc883b97930208b9f02d2bbd1c2e189a7b273cd
+size: 647x512
+sha256: 00cacdae5a54cb15662314adefc07ffb56b65e883f075cb2ca63de91691b2160
+status: candidate
+building:
+  type: bld_kit_song_north_shop_2f
+  footprint: [8, 6]
+  anchor: [339.234, 340.0055]
+  era: song_north
+footprint_m: [8, 6]
+anchor_px: [339.234, 340.0055]
+allowRotation: false
+entrance: {edge: S, screen: lower_left}
+candidate_count: 2
+source_record: sources/bld_kit_song_north_shop_2f.json
+provenance:
+  source_archive: sources/bld_kit_song_north_shop_2f.png
+  source_sha256: fb08d14d8f0d1cbe603ce4b46dc883b97930208b9f02d2bbd1c2e189a7b273cd
+  references:
+  - {path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png,
+    sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7, role: style/material only;实际referenced_image_paths输入，已view_image}
+  actual_tool: image_gen__imagegen
+  transparent_background: true
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_target_px: [448, 224]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+processing:
+  crop_box: [0, 9, 1466, 1006]
+  uniform_scale_requested: 0.41404805914972276
+  resized_size: [607, 413]
+  rounded_effective_scale: [0.4140518417462483, 0.41424272818455365]
+  paste_offset: [20, 49]
+  steps: [crop alpha>0 bbox, 'uniform LANCZOS resize, integer dimensions rounded', 'pad transparent RGBA; preserve alpha; no warp, repaint, flip
+      or alpha thresholding']
+geometry_qa:
+  source_corners_px:
+    left: [230, 666]
+    front: [841, 994]
+    right: [1312, 757]
+  inferred_back_px: [701, 429]
+  source_anchor_px: [771.0, 711.5]
+  anchor_method: 可见同一底面左/前/右角；后角=L+R-F，中心=(L+R)/2；非alpha包围框底中点。
+  source_axis_slopes: [0.5368248772504092, -0.5031847133757962]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.3152231283210472
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.013582653759214636
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  max_vertex_residual_px: 8.370260523821024
+  residual_method: 以L为原点，比较等比缩放后的F/R与(32w,16w)/(32(w+h),16(w-h))；未做拉伸纠偏。
+  measurement_uncertainty_source_px: 4
+  release_ready: false
+  anchor_rounding_correction:
+    previous_anchor_px: [339.2311, 339.8688]
+    corrected_anchor_px: [339.234, 340.0055]
+    reason: 按整数resize后的sx/sy转换，避免requested scale的亚像素偏移；未改图像或底面测点
+pixel_qa:
+  mode: RGBA
+  size: [647, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 220037
+  alpha_partial_pixels: 110185
+  alpha_opaque_pixels: 1042
+  alpha_nonzero_bbox: [49, 58, 625, 462]
+  transparent_margins_px: [49, 58, 22, 50]
+  source_view_image: true
+  final_view_image: true
+  saturated_red_pixels_alpha_gt16: 0
+notes: 选择第一候选，底面角度较第二候选接近2:1；所谓背景光晕主要是A=0的隐藏RGB，不是实际可见背景。 人工量取底角±4px；保留几何残差与candidate状态，不能当release资产。 已view_image复核最终PNG：主体完整，透明留边与清晰底角保留。

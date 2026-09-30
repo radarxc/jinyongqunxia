@@ -1,0 +1,99 @@
+id: bld_kit_song_north_market_stall
+file: bld_kit_song_north_market_stall.png
+category: building-map
+style: default
+subject: 北宋中原·市场棚（原创扩展模块，非具名建筑测绘复原）
+prompt: 'Use case: historical-scene. Generate exactly ONE complete isolated building sprite for tianshu default building-map. Reference image
+  is only a style and fine material texture reference; create the new northern subject described. Northern Song Kaifeng/Luoyang urban architecture,
+  grey clay tiled roofs with restrained eave curves, matte weathered timber, wooden lattice shutters, muted warm grey earthen plaster and rough
+  grey brick lower walls, low saturation. True orthographic dimetric yaw45 pitch30: ground edges at precisely +0.5 and -0.5 slopes, 2:1 ground
+  projection; parallel edges never converge. A very thin flush rectangular ground contact footprint with left, front and right corners clearly
+  visible. No thick plinth. South entrance faces screen lower-left. Main light screen upper-left, short soft lower-right contact shadow. Match
+  reference''s realistic fine details and density. Real RGBA transparent background, whole eaves and base uncut, generous transparent margin on
+  ALL sides. No people, animals, text, readable signs, labels, lantern rows, Qing paintwork, horsehead walls, modern objects, scene background,
+  sky, checkerboard, watermark, perspective convergence. Asset bld_kit_song_north_market_stall. Single tiny Northern Song street market stall:
+  four unpainted timber posts, a beige woven cloth canopy tied to horizontal poles, low wooden counter with a few pottery jars and cloth bundles,
+  no masonry building, no tiled house, no surrounding street. Rectangle ground3 by2 planning cells, exactly3:2 axis ratio. Thin small flush dirt
+  contact footprint; cast short contact shadow. Highly realistic weathered fabric and wood, modest lived-in northern urban market. Pure transparent
+  isolated surroundings.'
+negative: 人物、可读文字、招牌字、水印、现代物、晚清彩画、马头墙、密集灯笼、厚地台、透视消失点、天空与不透明背景。
+references: [/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png]
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:21:00.488745+00:00'
+created_time_basis: 源PNG文件mtime；非工具披露的服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f428-3a13-73a2-b64f-f05bceba7950/exec-75d570a3-b435-4bfc-9901-b539bc7cd3a9.png
+source_sha256: d745e9e9d8fde162bd79c60661b0272327f844ffb0bee98b26ddc99eecdbd648
+size: 512x512
+sha256: 33c6e5819cc61ed5634ebca9df84007e4b662f1f588ad439ab67ffd10905454d
+status: candidate
+building:
+  type: bld_kit_song_north_market_stall
+  footprint: [3, 2]
+  anchor: [258.8151, 279.6629]
+  era: song_north
+footprint_m: [3, 2]
+anchor_px: [258.8151, 279.6629]
+allowRotation: false
+entrance: {edge: S, screen: lower_left}
+candidate_count: 1
+source_record: sources/bld_kit_song_north_market_stall.json
+provenance:
+  source_archive: sources/bld_kit_song_north_market_stall.png
+  source_sha256: d745e9e9d8fde162bd79c60661b0272327f844ffb0bee98b26ddc99eecdbd648
+  references:
+  - {path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png,
+    sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7, role: style/material only;实际referenced_image_paths输入，已view_image}
+  actual_tool: image_gen__imagegen
+  transparent_background: true
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_target_px: [160, 80]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+processing:
+  crop_box: [65, 21, 1466, 1000]
+  uniform_scale_requested: 0.16580310880829016
+  resized_size: [232, 162]
+  rounded_effective_scale: [0.1655960028551035, 0.16547497446373852]
+  paste_offset: [140, 175]
+  steps: [crop alpha>0 bbox, 'uniform LANCZOS resize, integer dimensions rounded', 'pad transparent RGBA; preserve alpha; no warp, repaint, flip
+      or alpha thresholding']
+geometry_qa:
+  source_corners_px:
+    left: [300, 590]
+    front: [897, 916]
+    right: [1265, 717]
+  inferred_back_px: [668, 391]
+  source_anchor_px: [782.5, 653.5]
+  anchor_method: 可见同一底面左/前/右角；后角=L+R-F，中心=(L+R)/2；非alpha包围框底中点。
+  source_axis_slopes: [0.5460636515912898, -0.5407608695652174]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.6258956416766719
+  expected_width_depth_ratio: 1.5
+  ratio_relative_error: 0.08393042778444793
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  max_vertex_residual_px: 6.747697656414391
+  residual_method: 以L为原点，比较等比缩放后的F/R与(32w,16w)/(32(w+h),16(w-h))；未做拉伸纠偏。
+  measurement_uncertainty_source_px: 4
+  release_ready: false
+  anchor_rounding_correction:
+    previous_anchor_px: [258.9637, 279.8705]
+    corrected_anchor_px: [258.8151, 279.6629]
+    reason: 按整数resize后的sx/sy转换，避免requested scale的亚像素偏移；未改图像或底面测点
+pixel_qa:
+  mode: RGBA
+  size: [512, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 248570
+  alpha_partial_pixels: 13050
+  alpha_opaque_pixels: 524
+  alpha_nonzero_bbox: [176, 183, 349, 327]
+  transparent_margins_px: [176, 183, 163, 185]
+  source_view_image: true
+  final_view_image: true
+  saturated_red_pixels_alpha_gt16: 0
+notes: 布顶市场棚用途可辨；源图柱数超过提示四柱，属支撑构造变体。 人工量取底角±4px；保留几何残差与candidate状态，不能当release资产。 已view_image复核最终PNG：主体完整，透明留边与清晰底角保留。
