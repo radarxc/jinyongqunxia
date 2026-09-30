@@ -317,6 +317,47 @@ def add_layout_cards(items, files, img_dir):
     return True
 
 
+TOWN_WT = REPO / ".agents/wt/TOWN-assemble/assets/default/baseline/town"
+TOWN_NOTES = {
+    "town_dali__ch01": ("大理国都（羊苴咩城）· 天龙 · 约 1093。按 history/dali.md 复原的布局，代码用 60 张贴片铺底图、贴 19 张大理建筑（土墙、三塔、寺、王府、民居院落、市集摊棚、本地树丛与山茶）。你上一轮的意见（多参考历史、本地植物、不铺满青砖、佛教元素多）已体现：夯土 / 土路为主，寺塔在城北。",
+                        ["整体风格、45 度视角、可行走的感觉对吗？", "大理特征（土墙、三塔、佛寺、本地植物、不如临安发达）看得出来吗？", "塔与城的比例、墙色可以吗？"]),
+    "town_hangzhou__ch02": ("南宋临安府 · 射雕 · 约 1223。按 history/linan.md 复原：13 门、御街、三条纵向河与桥、皇城殿在南、景灵宫在北、西湖东岸；代码铺青砖 / 石板底图，贴 19 张临安建筑（两层商铺、酒楼、坊巷院落、殿堂、市棚）。你上一轮说“临安可以再繁华一些”：商市集中在御街与桥市。",
+                            ["整体风格、45 度视角对吗？繁华程度够了吗？", "13 座城门、河网与桥、皇城位置这些史料关系在图上看得出来吗？", "还要更密的商铺 / 人流感吗？（人物极少是设定）"]),
+}
+
+
+def add_town_cards(items, files, img_dir):
+    """程序化总装出的两张城镇图（TOWN-assemble，未合入）：主图用 0.25 预览，另附原尺寸局部裁切。"""
+    mf = TOWN_WT / "manifest.yaml"
+    if not mf.exists():
+        return False
+    for a in load_manifest(mf):
+        full = TOWN_WT / a["file"]
+        prev = TOWN_WT / a["file"].replace(".png", ".preview.png")
+        src = prev if prev.exists() else full
+        out = img_dir / f"{a['id']}.jpg"
+        to_jpg(src, out, maxpx=2400)
+        files[f"img/{out.name}"] = str(out)
+        extras = []
+        if full.exists():
+            im = Image.open(full)
+            W, H = im.size
+            for k, (fx, fy) in enumerate([(0.5, 0.5), (0.32, 0.62)]):
+                cw, ch = 1400, 900
+                box = (int(W * fx - cw / 2), int(H * fy - ch / 2), int(W * fx + cw / 2), int(H * fy + ch / 2))
+                crop = im.crop(box).convert("RGB")
+                o = img_dir / f"{a['id']}__crop{k + 1}.jpg"
+                crop.save(o, "JPEG", quality=86, optimize=True, progressive=True)
+                files[f"img/{o.name}"] = str(o)
+                extras.append({"src": f"img/{o.name}", "caption": f"原尺寸局部 {k + 1}（{cw}×{ch} 裁切，看贴片与建筑细节）"})
+        note, ask = TOWN_NOTES.get(a["id"], ("", []))
+        items.append({"id": a["id"], "cat": "town", "catLabel": "城镇", "state": "ready", "sha": a["sha256"][:16],
+                      "subject": a.get("subject", ""), "prompt": a.get("prompt", ""), "negative": "",
+                      "size": a.get("size", ""), "preview": f"img/{out.name}", "wide": True, "extras": extras,
+                      "review": note, "ask": ask, "badge": gpt_badge("TOWN-assemble")})
+    return True
+
+
 def load_manifest(p):
     d = yaml.safe_load(p.read_text(encoding="utf-8"))
     return d["assets"] if isinstance(d, dict) else d
@@ -345,8 +386,11 @@ def main():
     have_bld = add_building_sheets(items, files, img_dir)
     add_tile_sheet(items, files, img_dir)
     add_layout_cards(items, files, img_dir)
+    have_town = add_town_cards(items, files, img_dir)
     for cat, label, rel in CATS:
         if cat == "building-map" and have_bld and not (BASE / rel / "manifest.yaml").exists():
+            continue
+        if cat == "town" and have_town:
             continue
         mdir = WT_OVERRIDE.get(cat) if WT_OVERRIDE.get(cat, Path("/nonexistent")).is_dir() else BASE / rel
         mf = mdir / "manifest.yaml"
