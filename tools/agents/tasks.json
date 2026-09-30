@@ -14200,6 +14200,303 @@
       }
     },
     {
+      "id": "TOWN-design",
+      "phase": "TOWN",
+      "wave": 9,
+      "kind": "draft",
+      "title": "城镇程序化生成 · 设计文档、数据格式与两座城的城市规格",
+      "prompt": "TOWN-design.md",
+      "deps": [],
+      "writes": [
+        "docs/design/22-town-layout-and-generation.md",
+        "docs/design/town/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/22-town-layout-and-generation.md",
+          "docs/design/town/schema.yaml",
+          "docs/design/town/city_dali__ch01.yaml",
+          "docs/design/town/city_hangzhou__ch02.yaml"
+        ],
+        "fences": [
+          "docs/design/22-town-layout-and-generation.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-c",
+            "import yaml,sys; [yaml.safe_load(open(p)) for p in sys.argv[1:]]",
+            "docs/design/town/schema.yaml",
+            "docs/design/town/city_dali__ch01.yaml",
+            "docs/design/town/city_hangzhou__ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "TOWN-tiles",
+      "phase": "TOWN",
+      "wave": 9,
+      "kind": "draft",
+      "title": "城镇程序化生成 · 底图贴片素材",
+      "prompt": "TOWN-assets.md",
+      "deps": [
+        "TOWN-design"
+      ],
+      "writes": [
+        "assets/default/baseline/tile/**",
+        "assets/default/prompts/tile.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_name": "底图贴片",
+        "out_dir": "assets/default/baseline/tile",
+        "prompt_file": "assets/default/prompts/tile.md",
+        "min": "12",
+        "max": "60",
+        "spec": "按 design/22 §5 贴片清单逐项出图：每种一张（或清单要求的变体数），2:1 菱形，像素规格按 §2（默认一格 64×32 px；桥、城门等大贴片按整数格数）。地面类贴片四边可无缝拼接（同类相邻不露缝）；河岸 / 道路边缘按 autotile 规则出齐所需的边角变体；全部透明底（真 RGBA）。manifest 每条另加 `tile: {kind, footprint: [w, h], variant, autotile_mask}`（字段按 schema.yaml）。先出主体类型：地面 3–4 种（夯土、青砖、石板、土路 / 草地）、道路 2 种、水面、河岸 8 向、桥 1–2、城墙段、城门、树丛 2 种；数量以清单为准。大理用得到的夯土 / 土路和本地植物、临安用得到的青砖御街都要有。",
+        "extra": "贴片是被反复平铺的底图，画面上不要有醒目的单个物件或方向性强的纹样；同类贴片之间色调一致。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/tile/manifest.yaml",
+          "assets/default/prompts/tile.md"
+        ],
+        "fences": [
+          "assets/default/prompts/tile.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/tile",
+            "--min",
+            "12",
+            "--max",
+            "60"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "TOWN-buildings",
+      "phase": "TOWN",
+      "wave": 9,
+      "kind": "draft",
+      "title": "城镇程序化生成 · 地图拼接建筑单体（45 度，宋套件）",
+      "prompt": "TOWN-assets.md",
+      "deps": [
+        "TOWN-design"
+      ],
+      "writes": [
+        "assets/default/baseline/building-map/**",
+        "assets/default/prompts/building-map.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "cat_name": "地图拼接建筑（45 度单体）",
+        "out_dir": "assets/default/baseline/building-map",
+        "prompt_file": "assets/default/prompts/building-map.md",
+        "min": "8",
+        "max": "40",
+        "spec": "按 design/22 §4 功能建筑清单，先做宋套件（大理、临安要用的）每类各 1 张：城门、城墙转角、衙门、镖局、王府（大理为段氏宫室）、寺庙与佛塔（大理）、商铺 2–3 种（茶坊、酒楼、药铺）、民居 2 种（大 / 小）、市场棚、码头或桥头；数量以清单为准。每张：斜 45°、俯仰 30°、2:1，透明底真 RGBA，占地 `w×h` 格与清单一致（渲染器按占地宽度等比缩放，出图时把占地底边画清楚），锚点为底面中心，光源左上、阴影向右下。manifest 每条另加 `building: {type, footprint: [w, h], anchor: [x, y], era}`（字段按 schema.yaml）。大理的建筑体现佛教元素与本地植物，临安的体现繁华商铺。作者原话：「建筑分两种， 一种是类似立绘，另一种是要拼到城市地图上，第二种要45度」——本类是第二种。",
+        "extra": ".agents/wt/ART-B-bldmap 工作区里已有两张 RGBA 候选（大理茶肆、临安茶坊，另有 prompts/building-map.md 草稿），先评估是否符合本次规格，符合就复制进来登记（保留原 sha），不符合就重出。"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/baseline/building-map/manifest.yaml",
+          "assets/default/prompts/building-map.md"
+        ],
+        "fences": [
+          "assets/default/prompts/building-map.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/building-map",
+            "--min",
+            "8",
+            "--max",
+            "40"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "TOWN-render",
+      "phase": "TOWN",
+      "wave": 9,
+      "kind": "draft",
+      "title": "城镇程序化生成 · 布局生成器、渲染器与校验脚本",
+      "prompt": "TOWN-render.md",
+      "deps": [
+        "TOWN-design"
+      ],
+      "writes": [
+        "tools/town/**",
+        "assets/default/baseline/town/preview/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/town/gen_layout.py",
+          "tools/town/render_town.py",
+          "tools/town/check_town.py",
+          "tools/town/test_town.py",
+          "tools/town/README.md",
+          "assets/default/baseline/town/preview/town_dali__ch01_layout.png",
+          "assets/default/baseline/town/preview/town_hangzhou__ch02_layout.png"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/town",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_dali__ch01.yaml",
+            "-o",
+            "/tmp/tianshu_town_dali.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_dali__ch01.yaml",
+            "/tmp/tianshu_town_dali.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_hangzhou__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_town_hz.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_hangzhou__ch02.yaml",
+            "/tmp/tianshu_town_hz.yaml"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "TOWN-assemble",
+      "phase": "TOWN",
+      "wave": 9,
+      "kind": "draft",
+      "title": "城镇程序化生成 · 用真素材组装大理、临安两张城镇基线图",
+      "prompt": "TOWN-assemble.md",
+      "deps": [
+        "TOWN-tiles",
+        "TOWN-buildings",
+        "TOWN-render"
+      ],
+      "writes": [
+        "assets/default/baseline/town/**",
+        "assets/default/prompts/town.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "assets/default/baseline/town/manifest.yaml",
+          "assets/default/baseline/town/town_dali__ch01.png",
+          "assets/default/baseline/town/town_hangzhou__ch02.png"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/town",
+            "--min",
+            "2",
+            "--max",
+            "2"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_dali__ch01.yaml",
+            "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_hangzhou__ch02.yaml",
+            "assets/default/baseline/town/town_hangzhou__ch02.layout.yaml",
+            "--strict-assets"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ART-R3-vfx",
+      "phase": "ART",
+      "wave": 9,
+      "kind": "draft",
+      "title": "招式特效演示重做 · 用生成图的图层做动画",
+      "prompt": "ART-vfx-layers.md",
+      "deps": [
+        "ART-R2-vfx"
+      ],
+      "writes": [
+        "assets/default/baseline/vfx/**",
+        "assets/default/prompts/vfx.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "assets/default/baseline/vfx/manifest.yaml",
+          "assets/default/baseline/vfx/ref_mv_xianglong18_kanglong__ch02_base01/layers/layers.json",
+          "assets/default/baseline/vfx/ref_sk_liumai__ch01_base01/layers/layers.json"
+        ],
+        "fences": [
+          "assets/default/prompts/vfx.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/baseline/vfx",
+            "--min",
+            "1",
+            "--max",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
       "id": "NAu-final",
       "phase": "G",
       "wave": 6,
@@ -14383,7 +14680,7 @@
       "phase": "ART",
       "wave": 7,
       "kind": "draft",
-      "title": "素材基线 · 城镇（默认风格包）",
+      "title": "【已作废·改程序化生成】素材基线 · 城镇（默认风格包）",
       "prompt": "ART-baseline.md",
       "deps": [],
       "writes": [
@@ -14471,7 +14768,7 @@
       "phase": "ART",
       "wave": 7,
       "kind": "draft",
-      "title": "素材基线 · 建筑·地图拼接（45 度，默认风格包）",
+      "title": "【已作废·改程序化生成】素材基线 · 建筑·地图拼接（45 度，默认风格包）",
       "prompt": "ART-baseline.md",
       "deps": [
         "ART-B-town",
