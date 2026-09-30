@@ -1,3 +1,16 @@
 .agents/
 __pycache__/
 *.pyc
+
+# 素材工作区与运行时产物（tech/06 §2：二进制母版不入库；art/golden 例外，见 tools/lint/check_golden.py）
+art/work/
+art/runtime/
+art/master/
+art/source/
+# JS / Python 构建产物
+node_modules/
+dist/
+.cache/
+coverage/
+*.tsbuildinfo
+.venv/

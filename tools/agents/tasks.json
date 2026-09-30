@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "comment": "任务图：由 tools/agents/run.py 读取。deps 引用基础任务 ID；若被依赖任务有审校（review: true），自动解析为其审校任务 <ID>.R。",
+  "comment": "任务图：由 tools/agents/run.py 读取。deps 引用基础任务 ID；若被依赖任务有审校（review: true），自动解析为其审校任务 <ID>.R。 任务可带 profile（doc|code|assets）决定附加规则与审校模板；model / effort 逐任务覆盖 defaults。",
   "defaults": {
     "bin": [
       "traex",
       "traecli"
     ],
-    "model": "GPT-5.6-Sol",
-    "effort": "max",
+    "model": "GPT-6-Astra",
+    "effort": "ultra",
     "jobs": 3,
     "timeout_min": 180,
     "retries": 1,
@@ -28,7 +28,8 @@
     "web_args": [],
     "prompt_via": "stdin",
     "shrink_guard": 0.85,
-    "comment_model": "模型名以 `traex models` 输出为准（GPT-6-Astra / GPT-5.6-Sol 等）；effort 取 none/minimal/low/medium/high/xhigh/max/ultra；exec 下模型自带 web_search 工具（`--search` 仅交互式 CLI 接受，勿加）。"
+    "comment_model": "2026-09-30 作者指定：执行模型 GPT-6-Astra；起草 / 代码 / 工具任务 effort=ultra，审校任务 review_effort=xhigh（可在任务上用 model / effort 字段逐任务覆盖）。模型名以 `traex models` 输出为准；effort 取 none/minimal/low/medium/high/xhigh/max/ultra；exec 下模型自带 web_search 与 image_generation 工具（`--search` 仅交互式 CLI 接受，勿加）。GPT-6-Astra 无响应时 step.py 自动改用 GPT-5.6-Sol。",
+    "review_effort": "xhigh"
   },
   "tasks": [
     {
@@ -4871,6 +4872,1589 @@
             "{python}",
             "tools/balance/damage_sim.py",
             "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "L2",
+      "phase": "G",
+      "wave": 6,
+      "kind": "tool",
+      "priority": 60,
+      "title": "剧情迁移 manifest / quest.v1 标准库校验器（design/12 §2.6、§13.1）",
+      "prompt": "L2-quest-lint.md",
+      "deps": [],
+      "writes": [
+        "tools/lint/check_quest_manifest.py",
+        "tools/lint/test_check_quest_manifest.py",
+        "tools/lint/README.md"
+      ],
+      "review": false,
+      "web": false,
+      "profile": "doc",
+      "vars": {},
+      "review_focus": "",
+      "validate": {
+        "exists": [
+          "tools/lint/check_quest_manifest.py",
+          "tools/lint/test_check_quest_manifest.py"
+        ],
+        "contains": [
+          [
+            "tools/lint/README.md",
+            "check_quest_manifest"
+          ]
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "tools.lint.test_check_quest_manifest"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "--fixtures",
+            "docs/design/12-quests-npc-factions.md"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "tools.lint.test_check_ids"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "L3",
+      "phase": "G",
+      "wave": 6,
+      "kind": "tool",
+      "priority": 40,
+      "title": "十四书界武学来源比例校验器（05 §14.4 口径）",
+      "prompt": "L3-source-ratio-lint.md",
+      "deps": [],
+      "writes": [
+        "tools/lint/check_source_ratio.py",
+        "tools/lint/test_check_source_ratio.py",
+        "tools/lint/README.md"
+      ],
+      "review": false,
+      "web": false,
+      "profile": "doc",
+      "vars": {},
+      "review_focus": "",
+      "validate": {
+        "exists": [
+          "tools/lint/check_source_ratio.py",
+          "tools/lint/test_check_source_ratio.py"
+        ],
+        "contains": [
+          [
+            "tools/lint/README.md",
+            "check_source_ratio"
+          ]
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "tools.lint.test_check_source_ratio"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_source_ratio.py"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "tools.lint.test_check_ids"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A4",
+      "phase": "G",
+      "wave": 6,
+      "kind": "draft",
+      "priority": 80,
+      "title": "基准 v1.3：合入 v1.2 之后的提案（M2-P01～03、C2 SET-P、F2/F45 澄清项、中央迁移表）",
+      "prompt": "A4-canon-v1.3.md",
+      "deps": [],
+      "writes": [
+        "docs/00-canon.md",
+        "docs/decisions/canon-proposals-v1.3.md",
+        "docs/decisions/rulings-v1.md"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {},
+      "review_focus": "① canon-proposals-v1.2 的每条“待 v1.3”在 v1.3 表中有去向；② 正文与 v1.3 变更记录逐条一致；③ `git diff HEAD~1 -- docs/00-canon.md` 逐处核对没有改坏 v1.2 定义；④ 迁移表补录后 check_ids --strict 仍为 0 新失败；⑤ G3 待确认项没有被替作者填写。",
+      "validate": {
+        "exists": [
+          "docs/decisions/canon-proposals-v1.3.md"
+        ],
+        "fences": [
+          "docs/00-canon.md"
+        ],
+        "contains": [
+          [
+            "docs/00-canon.md",
+            "v1.3"
+          ],
+          [
+            "docs/00-canon.md",
+            "变更记录 v1.3"
+          ],
+          [
+            "docs/00-canon.md",
+            "mfr_"
+          ],
+          [
+            "docs/decisions/canon-proposals-v1.3.md",
+            "G3"
+          ]
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "K2",
+      "phase": "G",
+      "wave": 6,
+      "kind": "draft",
+      "priority": 70,
+      "title": "统一传承合成字段 recipeKey，定稿 LegacyCacheRuntimePhase（F2 高严重度遗留）",
+      "prompt": "K2-recipekey.md",
+      "deps": [
+        "A4"
+      ],
+      "writes": [
+        "docs/design/12-quests-npc-factions.md",
+        "docs/design/20-legacy-inheritance.md",
+        "docs/tech/04-data-pipeline.md",
+        "docs/tech/05-gameplay-engine.md",
+        "docs/design/chapters/02-shediao.md"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {},
+      "review_focus": "`grep -rn recipeId docs` 只剩迁移语境；20 的枚举与迁移表能被 tech/04/05 直接消费；QST-V25 与 LEG-T 用例文本同步；没有把 20 之外的文档变成第二真相源。",
+      "validate": {
+        "fences": [
+          "docs/design/20-legacy-inheritance.md",
+          "docs/tech/05-gameplay-engine.md"
+        ],
+        "contains": [
+          [
+            "docs/design/20-legacy-inheritance.md",
+            "recipeKey"
+          ],
+          [
+            "docs/design/20-legacy-inheritance.md",
+            "LegacyCacheRuntimePhase"
+          ],
+          [
+            "docs/tech/04-data-pipeline.md",
+            "recipeKey"
+          ],
+          [
+            "docs/tech/05-gameplay-engine.md",
+            "recipeKey"
+          ],
+          [
+            "docs/design/12-quests-npc-factions.md",
+            "recipeKey"
+          ]
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "M3",
+      "phase": "G",
+      "wave": 6,
+      "kind": "draft",
+      "priority": 65,
+      "title": "design/21 经脉运行接线到 04/05/06/09/13/14/15/tech-05（M2.R §6 条件）",
+      "prompt": "M3-meridian-wiring.md",
+      "deps": [
+        "A4"
+      ],
+      "writes": [
+        "docs/design/04-damage-formula.md",
+        "docs/design/05-martial-arts-system.md",
+        "docs/design/06-buff-system.md",
+        "docs/design/09-combat-system.md",
+        "docs/design/13-progression-and-endings.md",
+        "docs/design/14-ui-ux-mobile.md",
+        "docs/design/15-meridians-and-acupoints.md",
+        "docs/tech/05-gameplay-engine.md",
+        "tools/balance/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {},
+      "review_focus": "每个 owner 文档只引用 21、不重定义；`cc.bind` 与主标签 `bind` 不混用；rec_eff 钳 500–2000 与 21 一致；若 04 §9 表重生则与 damage_sim --report 输出一致；三个 --check 与 strict 通过。",
+      "validate": {
+        "fences": [
+          "docs/design/09-combat-system.md",
+          "docs/tech/05-gameplay-engine.md"
+        ],
+        "contains": [
+          [
+            "docs/design/05-martial-arts-system.md",
+            "meridianRouteRef"
+          ],
+          [
+            "docs/design/06-buff-system.md",
+            "cc.bind"
+          ],
+          [
+            "docs/design/09-combat-system.md",
+            "flowCt"
+          ],
+          [
+            "docs/design/04-damage-formula.md",
+            "routeZ3Bp"
+          ],
+          [
+            "docs/design/15-meridians-and-acupoints.md",
+            "design/21"
+          ]
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "N2",
+      "phase": "G",
+      "wave": 6,
+      "kind": "draft",
+      "priority": 55,
+      "title": "天龙切片人物 full 画像 + 岳老三 Boss 专场模拟 + F2 点名的天龙具名人物",
+      "prompt": "N2-tianlong-profiles.md",
+      "deps": [],
+      "writes": [
+        "docs/design/catalog/npcs-ch01-tianlong.md",
+        "docs/design/chapters/01-tianlong.md",
+        "tools/balance/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {},
+      "review_focus": "复算至少 4 个 full 面板（含岳老三）与 03 §10 / 18 §7 的区间；damage_sim 新断言真实存在且通过；生卒年与出场标注（待考）处不编造；切片人物清单与 tech/09 §3.2 一致。",
+      "validate": {
+        "fences": [
+          "docs/design/catalog/npcs-ch01-tianlong.md"
+        ],
+        "contains": [
+          [
+            "docs/design/catalog/npcs-ch01-tianlong.md",
+            "npc_yuelaosan"
+          ],
+          [
+            "docs/design/catalog/npcs-ch01-tianlong.md",
+            "pipeline: full"
+          ],
+          [
+            "tools/balance/damage_sim.py",
+            "yuelaosan"
+          ]
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Q01",
+      "phase": "G",
+      "wave": 6,
+      "kind": "draft",
+      "priority": 60,
+      "title": "剧情迁移 · 01 天龙八部 → quest-manifest + quest.v1 实例（范例）",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "L2",
+        "K2"
+      ],
+      "writes": [
+        "content/chapters/ch01_tianlong/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "01",
+        "slug": "tianlong",
+        "book": "天龙八部",
+        "chid": "ch01_tianlong",
+        "pilot_note": "你写的是第一章，也是其余十三章的格式范例：目录、文件命名、manifest 字段顺序、YAML 风格要一致且可直接复制。"
+      },
+      "review_focus": "逐任务对照 story/01 §11 的 24 个正式 ID 与 9 个 dc_01_*；立场公式与换线语义在 manifest 中无损；条件 AST 白名单；`--strict` 亲自运行通过；不改 docs。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch01_tianlong/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch01_tianlong",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "T0",
+      "phase": "G",
+      "wave": 7,
+      "kind": "draft",
+      "priority": 90,
+      "title": "仓库地基：pnpm monorepo、TS strict、CI、pnpm check、packages/spec 静态契约",
+      "prompt": "T0-scaffold.md",
+      "deps": [],
+      "writes": [
+        "package.json",
+        "pnpm-workspace.yaml",
+        "pnpm-lock.yaml",
+        "tsconfig.json",
+        "tsconfig.base.json",
+        "eslint.config.ts",
+        "vitest.config.ts",
+        "playwright.config.ts",
+        "lefthook.yml",
+        ".npmrc",
+        ".node-version",
+        ".gitignore",
+        ".size-limit.json",
+        "CLAUDE.md",
+        ".github/**",
+        "packages/**",
+        "apps/**",
+        "services/**",
+        "tools/content-build/**",
+        "content/**",
+        "docs/adr/0000-scaffold.md"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "code",
+      "vars": {},
+      "review_focus": "pnpm check / build / size 亲自跑；确定性 lint 规则真的会报错；catalog 版本与 tech/01 §4.2 对照并记录偏离；spec JSON 与 tech/02 §1.3/§2.6 逐字段核对；.gitignore 覆盖产物目录。",
+      "validate": {
+        "exists": [
+          "package.json",
+          "pnpm-workspace.yaml",
+          "pnpm-lock.yaml",
+          ".github/workflows/ci.yml",
+          "packages/spec/iso-camera.json",
+          "packages/spec/sprite-spec.json",
+          "CLAUDE.md",
+          "docs/adr/0000-scaffold.md"
+        ],
+        "cmd": [
+          [
+            "pnpm",
+            "install",
+            "--frozen-lockfile"
+          ],
+          [
+            "pnpm",
+            "check"
+          ],
+          [
+            "pnpm",
+            "build"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "T1",
+      "phase": "G",
+      "wave": 7,
+      "kind": "draft",
+      "priority": 85,
+      "title": "core 探针：五流 RNG、命令/事件事务、10 Hz tick、六角坐标与 A*、录像、Python golden 对拍",
+      "prompt": "T1-core-probe.md",
+      "deps": [
+        "T0"
+      ],
+      "writes": [
+        "packages/shared/**",
+        "packages/core/**",
+        "tools/balance/rng_ref.py",
+        "tools/balance/rng_golden.json",
+        "tools/balance/hex_golden.json",
+        "tools/balance/README.md"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "code",
+      "vars": {},
+      "review_focus": "属性测试覆盖六角不变量与事务回滚；Python/TS golden 逐位相等；禁用 API 在 core 中无残留（grep）；覆盖率数字真实；录像重放哈希相等的测试不是自证。",
+      "validate": {
+        "exists": [
+          "tools/balance/rng_ref.py",
+          "tools/balance/rng_golden.json"
+        ],
+        "cmd": [
+          [
+            "pnpm",
+            "--filter",
+            "@tianshu/shared",
+            "test"
+          ],
+          [
+            "pnpm",
+            "--filter",
+            "@tianshu/core",
+            "test"
+          ],
+          [
+            "pnpm",
+            "lint"
+          ],
+          [
+            "pnpm",
+            "typecheck"
+          ],
+          [
+            "{python}",
+            "tools/balance/rng_ref.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "T2",
+      "phase": "G",
+      "wave": 7,
+      "kind": "draft",
+      "priority": 80,
+      "title": "数据探针：Zod schema registry、Tiled→RegionMap、规范 JSON/contentHash、content:validate L0–L6、双构建一致",
+      "prompt": "T2-data-probe.md",
+      "deps": [
+        "T0",
+        "L2"
+      ],
+      "writes": [
+        "packages/data/**",
+        "packages/spec/generated/**",
+        "tools/content-build/**",
+        "content/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "code",
+      "vars": {},
+      "review_focus": "双构建逐字节一致有测试；L6 可达性报告真实计算；schema 字段与归属文档字段对照表；dsl-registry 单一声明与漂移检查；与 Python lint 对拍测试存在。",
+      "validate": {
+        "exists": [
+          "packages/data/src/schemas/index.ts",
+          "tools/content-build/src/cli.ts"
+        ],
+        "cmd": [
+          [
+            "pnpm",
+            "content:validate"
+          ],
+          [
+            "pnpm",
+            "content:build"
+          ],
+          [
+            "pnpm",
+            "--filter",
+            "@tianshu/data",
+            "test"
+          ],
+          [
+            "pnpm",
+            "check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "T3",
+      "phase": "G",
+      "wave": 7,
+      "kind": "draft",
+      "priority": 85,
+      "title": "渲染探针：apps/bench 的 proto-projection / terrain / bench-iso / occlusion / resilience（WebGL 单路径）+ HUD JSON 导出",
+      "prompt": "T3-bench-iso.md",
+      "deps": [
+        "T0",
+        "T1"
+      ],
+      "writes": [
+        "packages/render/**",
+        "apps/bench/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "code",
+      "vars": {},
+      "review_focus": "≥20,000 例投影属性测试与 oracle；两段式精灵与 X 光剪影实现符合 tech/02 §2–§3；uber pass 为单 pass；账本回零测试；HUD JSON 字段齐全（tech/09 §2.3）；size-limit 数字；e2e:smoke 亲自跑通。",
+      "validate": {
+        "exists": [
+          "apps/bench/bench-results/desktop-smoke.json"
+        ],
+        "cmd": [
+          [
+            "pnpm",
+            "--filter",
+            "@tianshu/render",
+            "test"
+          ],
+          [
+            "pnpm",
+            "--filter",
+            "@tianshu/bench",
+            "build"
+          ],
+          [
+            "pnpm",
+            "--filter",
+            "@tianshu/bench",
+            "e2e:smoke"
+          ],
+          [
+            "pnpm",
+            "check"
+          ],
+          [
+            "pnpm",
+            "size"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "T4a",
+      "phase": "G",
+      "wave": 7,
+      "kind": "draft",
+      "priority": 70,
+      "title": "素材管线 MVP：tools/aigc（tsgen）、资产登记库、Blender 8 向渲染脚本、打包与 manifest",
+      "prompt": "T4a-tsgen.md",
+      "deps": [
+        "T0",
+        "T2"
+      ],
+      "writes": [
+        "tools/aigc/**",
+        "content/assets/**",
+        "packages/data/src/schemas/asset-entry.ts",
+        "packages/spec/generated/asset.schema.json",
+        "packages/spec/anim-events.schema.json"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "code",
+      "vars": {},
+      "review_focus": "状态机与 stale 传播有测试；approve 拒绝 AI 调用者；黑名单拦截；AssetKey↔id 双射；Blender 脚本通过 AST 检查且 --dry-run 生成合法 job；manifest 与 tech/06 §3 字段一致。",
+      "validate": {
+        "exists": [
+          "tools/aigc/pyproject.toml",
+          "tools/aigc/tsgen/cli.py",
+          "tools/aigc/blender/render_sprites.py",
+          "content/assets/registry/asset.schema.json"
+        ],
+        "cmd": [
+          [
+            "uv",
+            "run",
+            "--directory",
+            "tools/aigc",
+            "pytest",
+            "-q"
+          ],
+          [
+            "uv",
+            "run",
+            "--directory",
+            "tools/aigc",
+            "tsgen",
+            "doctor"
+          ],
+          [
+            "uv",
+            "run",
+            "--directory",
+            "tools/aigc",
+            "tsgen",
+            "registry",
+            "check"
+          ],
+          [
+            "pnpm",
+            "content:validate"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "T4b",
+      "phase": "G",
+      "wave": 7,
+      "kind": "draft",
+      "priority": 60,
+      "title": "P0 风格锁定金样：回归集 30 条、男女主角北宋装 / 段誉 / 无量弟子设定卡、1 CG、图标模板（image_generation）",
+      "prompt": "T4b-golden.md",
+      "deps": [
+        "T4a"
+      ],
+      "writes": [
+        "art/golden/**",
+        "art/work/**",
+        "content/assets/registry/**",
+        "tools/aigc/prompts/**",
+        "tools/aigc/requests/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "assets",
+      "vars": {},
+      "review_focus": "逐张看图评分；识别锚一致性 ≥4 才可留在 golden；右衽与朝代硬规则一票否决；登记条目、请求、文件哈希三者对应；不得出现 approved。",
+      "validate": {
+        "exists": [
+          "art/golden/index.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_golden.py",
+            "art/golden"
+          ],
+          [
+            "uv",
+            "run",
+            "--directory",
+            "tools/aigc",
+            "tsgen",
+            "registry",
+            "check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "T5",
+      "phase": "G",
+      "wave": 7,
+      "kind": "draft",
+      "priority": 65,
+      "title": "存储/后端探针：同一 Worker 私有托管与会话闸门、TSAV v1 + CAS 夹具、KTX2/WebP 加载、PWA 离线重开",
+      "prompt": "T5-hosting.md",
+      "deps": [
+        "T0",
+        "T2"
+      ],
+      "writes": [
+        "services/api/**",
+        "packages/platform/**",
+        "apps/game/**",
+        "docs/evidence/p0/README.md"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "code",
+      "vars": {},
+      "review_focus": "无会话 401 与 CAS 409 有测试；损坏/超限/迁移失败保留原件；离线重开 e2e 真实使用 setOffline；wrangler 配置满足 tech/01 §7.6 硬约束；无密钥入库。",
+      "validate": {
+        "exists": [
+          "services/api/wrangler.jsonc",
+          "docs/evidence/p0/README.md"
+        ],
+        "cmd": [
+          [
+            "pnpm",
+            "--filter",
+            "@tianshu/api",
+            "test"
+          ],
+          [
+            "pnpm",
+            "--filter",
+            "@tianshu/platform",
+            "test"
+          ],
+          [
+            "pnpm",
+            "--filter",
+            "@tianshu/game",
+            "build"
+          ],
+          [
+            "pnpm",
+            "--filter",
+            "@tianshu/game",
+            "e2e:offline"
+          ],
+          [
+            "pnpm",
+            "check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "S2",
+      "phase": "G",
+      "wave": 7,
+      "kind": "draft",
+      "priority": 45,
+      "title": "重配十四书界武学来源（sourceChapters / 路线 / 前置闭包），命中 05 §14.4 验收区间",
+      "prompt": "S2-source-ratio.md",
+      "deps": [
+        "L3",
+        "A4"
+      ],
+      "writes": [
+        "docs/design/05-martial-arts-system.md",
+        "docs/design/catalog/skills-*.md"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {},
+      "review_focus": "亲自运行 check_source_ratio 并核对 05 §14.4 表为脚本输出；总量 1,138 与天级 51 未变；改动理由逐条存在；无法命中的书界有作者确认标注而非改目标；不改 chapters。",
+      "validate": {
+        "fences": [
+          "docs/design/05-martial-arts-system.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_source_ratio.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "H2",
+      "phase": "G",
+      "wave": 7,
+      "kind": "draft",
+      "priority": 20,
+      "title": "39 个传承缓存的精确 placeKey 考据与地图登记",
+      "prompt": "H2-placekey.md",
+      "deps": [
+        "K2"
+      ],
+      "writes": [
+        "docs/design/20-legacy-inheritance.md",
+        "docs/design/map/**"
+      ],
+      "review": true,
+      "web": true,
+      "profile": "doc",
+      "vars": {},
+      "review_focus": "每个 confirmed 点位有书目/回目或权威地理来源；无证据的保持 regional；render_map --check 与 --render 确定性；不改城市/门派数量。",
+      "validate": {
+        "fences": [
+          "docs/design/20-legacy-inheritance.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/map/render_map.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/map/render_map.py",
+            "--render"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "G3",
+      "phase": "G",
+      "wave": 7,
+      "kind": "gate",
+      "title": "作者闸门：RD-01 三机型号登记；确认 O-A3-01 / O-A3-02 / F2-O03 默认；`traex models` 确认 GPT-6-Astra 与 ultra/xhigh；Cloudflare 账号就绪",
+      "deps": [
+        "A4"
+      ],
+      "writes": [],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {},
+      "note": "审阅 docs/decisions/canon-proposals-v1.3.md “G3 待作者确认项”，在 author-decisions.md 追加 P58–P61（设备三行、三项确认、CLI 模型、Cloudflare），然后 `python tools/agents/run.py approve G3 -m \"…\"`。"
+    },
+    {
+      "id": "G4",
+      "phase": "G",
+      "wave": 8,
+      "kind": "gate",
+      "title": "作者闸门：三机跑 bench-iso / proto-* 并把 HUD JSON 与设备记录放入 docs/evidence/p0/；部署 preview 并记录访问与离线重开结果",
+      "deps": [
+        "T3",
+        "T5",
+        "T4b",
+        "G3"
+      ],
+      "writes": [],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {},
+      "note": "按 tools/agents/reports/T3.md §6 与 docs/evidence/p0/README.md 操作；证据文件命名 <deviceId>-<date>-<regular|stress>.json；完成后 `python tools/agents/run.py approve G4`。"
+    },
+    {
+      "id": "P0A",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 50,
+      "title": "P0 出口：ADR-0001 渲染器闸门、ADR-0002 相机与精灵深度、docs/evidence/p0/STATUS.md",
+      "prompt": "P0A-adr.md",
+      "deps": [
+        "G4",
+        "T1",
+        "T2"
+      ],
+      "writes": [
+        "docs/adr/0001-renderer-gate.md",
+        "docs/adr/0002-camera-and-sprite-depth.md",
+        "docs/evidence/p0/STATUS.md"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {},
+      "review_focus": "每个数字可在 docs/evidence/p0 找到出处；§2.5 每行有判定；证据不足处为 proposed 而非 accepted；RD-02/RD-03 结论与决策树一致。",
+      "validate": {
+        "exists": [
+          "docs/adr/0001-renderer-gate.md",
+          "docs/adr/0002-camera-and-sprite-depth.md",
+          "docs/evidence/p0/STATUS.md"
+        ],
+        "contains": [
+          [
+            "docs/adr/0001-renderer-gate.md",
+            "RD-02"
+          ],
+          [
+            "docs/adr/0001-renderer-gate.md",
+            "RD-03"
+          ],
+          [
+            "docs/evidence/p0/STATUS.md",
+            "P1"
+          ]
+        ],
+        "headings": {
+          "docs/adr/0001-renderer-gate.md": [
+            "^##\\s*(状态|Status)",
+            "^##\\s*(背景|Context)",
+            "^##\\s*(决策|Decision)",
+            "^##\\s*(后果|Consequences)",
+            "^##\\s*(证据|Evidence)"
+          ]
+        }
+      }
+    },
+    {
+      "id": "M4",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 5,
+      "title": "图鉴逐招填写 meridianRouteRef / 调息档案引用（M3 报告 §6 规则）",
+      "prompt": "M3-meridian-wiring.md",
+      "deps": [
+        "M3",
+        "S2"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-*.md"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {},
+      "review_focus": "抽查 ≥ 30 招：路线段数 × CT 与基础收招之和 ≤ 2000；mfr_ 引用存在于 design/21；不改倍率与品阶。",
+      "validate": {
+        "cmd": [
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      },
+      "note": "执行时把提示词理解为“只做图鉴接线”：本任务的写入范围只有图鉴；M3 已完成系统文档接线。"
+    },
+    {
+      "id": "Q02",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 10,
+      "title": "剧情迁移 · 02 射雕英雄传 → quest-manifest + quest.v1 实例",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "Q01"
+      ],
+      "writes": [
+        "content/chapters/ch02_shediao/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "02",
+        "slug": "shediao",
+        "book": "射雕英雄传",
+        "chid": "ch02_shediao",
+        "pilot_note": "沿用 `content/chapters/ch01_tianlong/`（Q01 范例）的目录、命名与 YAML 风格。"
+      },
+      "review_focus": "逐任务对照 story/02 §11 的正式 ID 与全部 dc_02_*；立场公式与换线语义无损；`--strict` 亲自运行通过；沿用 Q01 范例格式。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch02_shediao/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch02_shediao",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Q03",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 10,
+      "title": "剧情迁移 · 03 神雕侠侣 → quest-manifest + quest.v1 实例",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "Q01"
+      ],
+      "writes": [
+        "content/chapters/ch03_shendiao/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "03",
+        "slug": "shendiao",
+        "book": "神雕侠侣",
+        "chid": "ch03_shendiao",
+        "pilot_note": "沿用 `content/chapters/ch01_tianlong/`（Q01 范例）的目录、命名与 YAML 风格。"
+      },
+      "review_focus": "逐任务对照 story/03 §11 的正式 ID 与全部 dc_03_*；立场公式与换线语义无损；`--strict` 亲自运行通过；沿用 Q01 范例格式。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch03_shendiao/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch03_shendiao",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Q04",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 10,
+      "title": "剧情迁移 · 04 倚天屠龙记 → quest-manifest + quest.v1 实例",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "Q01"
+      ],
+      "writes": [
+        "content/chapters/ch04_yitian/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "04",
+        "slug": "yitian",
+        "book": "倚天屠龙记",
+        "chid": "ch04_yitian",
+        "pilot_note": "沿用 `content/chapters/ch01_tianlong/`（Q01 范例）的目录、命名与 YAML 风格。"
+      },
+      "review_focus": "逐任务对照 story/04 §11 的正式 ID 与全部 dc_04_*；立场公式与换线语义无损；`--strict` 亲自运行通过；沿用 Q01 范例格式。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch04_yitian/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch04_yitian",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Q05",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 10,
+      "title": "剧情迁移 · 05 笑傲江湖 → quest-manifest + quest.v1 实例",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "Q01"
+      ],
+      "writes": [
+        "content/chapters/ch05_xiaoao/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "05",
+        "slug": "xiaoao",
+        "book": "笑傲江湖",
+        "chid": "ch05_xiaoao",
+        "pilot_note": "沿用 `content/chapters/ch01_tianlong/`（Q01 范例）的目录、命名与 YAML 风格。"
+      },
+      "review_focus": "逐任务对照 story/05 §11 的正式 ID 与全部 dc_05_*；立场公式与换线语义无损；`--strict` 亲自运行通过；沿用 Q01 范例格式。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch05_xiaoao/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch05_xiaoao",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Q06",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 10,
+      "title": "剧情迁移 · 06 侠客行 → quest-manifest + quest.v1 实例",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "Q01"
+      ],
+      "writes": [
+        "content/chapters/ch06_xiake/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "06",
+        "slug": "xiake",
+        "book": "侠客行",
+        "chid": "ch06_xiake",
+        "pilot_note": "沿用 `content/chapters/ch01_tianlong/`（Q01 范例）的目录、命名与 YAML 风格。"
+      },
+      "review_focus": "逐任务对照 story/06 §11 的正式 ID 与全部 dc_06_*；立场公式与换线语义无损；`--strict` 亲自运行通过；沿用 Q01 范例格式。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch06_xiake/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch06_xiake",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Q07",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 10,
+      "title": "剧情迁移 · 07 碧血剑 → quest-manifest + quest.v1 实例",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "Q01"
+      ],
+      "writes": [
+        "content/chapters/ch07_bixue/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "07",
+        "slug": "bixue",
+        "book": "碧血剑",
+        "chid": "ch07_bixue",
+        "pilot_note": "沿用 `content/chapters/ch01_tianlong/`（Q01 范例）的目录、命名与 YAML 风格。"
+      },
+      "review_focus": "逐任务对照 story/07 §11 的正式 ID 与全部 dc_07_*；立场公式与换线语义无损；`--strict` 亲自运行通过；沿用 Q01 范例格式。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch07_bixue/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch07_bixue",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Q08",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 10,
+      "title": "剧情迁移 · 08 鹿鼎记 → quest-manifest + quest.v1 实例",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "Q01"
+      ],
+      "writes": [
+        "content/chapters/ch08_luding/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "08",
+        "slug": "luding",
+        "book": "鹿鼎记",
+        "chid": "ch08_luding",
+        "pilot_note": "沿用 `content/chapters/ch01_tianlong/`（Q01 范例）的目录、命名与 YAML 风格。"
+      },
+      "review_focus": "逐任务对照 story/08 §11 的正式 ID 与全部 dc_08_*；立场公式与换线语义无损；`--strict` 亲自运行通过；沿用 Q01 范例格式。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch08_luding/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch08_luding",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Q09",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 10,
+      "title": "剧情迁移 · 09 连城诀 → quest-manifest + quest.v1 实例",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "Q01"
+      ],
+      "writes": [
+        "content/chapters/ch09_liancheng/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "09",
+        "slug": "liancheng",
+        "book": "连城诀",
+        "chid": "ch09_liancheng",
+        "pilot_note": "沿用 `content/chapters/ch01_tianlong/`（Q01 范例）的目录、命名与 YAML 风格。"
+      },
+      "review_focus": "逐任务对照 story/09 §11 的正式 ID 与全部 dc_09_*；立场公式与换线语义无损；`--strict` 亲自运行通过；沿用 Q01 范例格式。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch09_liancheng/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch09_liancheng",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Q10",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 10,
+      "title": "剧情迁移 · 10 白马啸西风 → quest-manifest + quest.v1 实例",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "Q01"
+      ],
+      "writes": [
+        "content/chapters/ch10_baima/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "10",
+        "slug": "baima",
+        "book": "白马啸西风",
+        "chid": "ch10_baima",
+        "pilot_note": "沿用 `content/chapters/ch01_tianlong/`（Q01 范例）的目录、命名与 YAML 风格。"
+      },
+      "review_focus": "逐任务对照 story/10 §11 的正式 ID 与全部 dc_10_*；立场公式与换线语义无损；`--strict` 亲自运行通过；沿用 Q01 范例格式。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch10_baima/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch10_baima",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Q11",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 10,
+      "title": "剧情迁移 · 11 鸳鸯刀 → quest-manifest + quest.v1 实例",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "Q01"
+      ],
+      "writes": [
+        "content/chapters/ch11_yuanyang/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "11",
+        "slug": "yuanyang",
+        "book": "鸳鸯刀",
+        "chid": "ch11_yuanyang",
+        "pilot_note": "沿用 `content/chapters/ch01_tianlong/`（Q01 范例）的目录、命名与 YAML 风格。"
+      },
+      "review_focus": "逐任务对照 story/11 §11 的正式 ID 与全部 dc_11_*；立场公式与换线语义无损；`--strict` 亲自运行通过；沿用 Q01 范例格式。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch11_yuanyang/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch11_yuanyang",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Q12",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 10,
+      "title": "剧情迁移 · 12 书剑恩仇录 → quest-manifest + quest.v1 实例",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "Q01"
+      ],
+      "writes": [
+        "content/chapters/ch12_shujian/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "12",
+        "slug": "shujian",
+        "book": "书剑恩仇录",
+        "chid": "ch12_shujian",
+        "pilot_note": "沿用 `content/chapters/ch01_tianlong/`（Q01 范例）的目录、命名与 YAML 风格。"
+      },
+      "review_focus": "逐任务对照 story/12 §11 的正式 ID 与全部 dc_12_*；立场公式与换线语义无损；`--strict` 亲自运行通过；沿用 Q01 范例格式。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch12_shujian/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch12_shujian",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Q13",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 10,
+      "title": "剧情迁移 · 13 飞狐外传 → quest-manifest + quest.v1 实例",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "Q01"
+      ],
+      "writes": [
+        "content/chapters/ch13_feihu/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "13",
+        "slug": "feihu",
+        "book": "飞狐外传",
+        "chid": "ch13_feihu",
+        "pilot_note": "沿用 `content/chapters/ch01_tianlong/`（Q01 范例）的目录、命名与 YAML 风格。"
+      },
+      "review_focus": "逐任务对照 story/13 §11 的正式 ID 与全部 dc_13_*；立场公式与换线语义无损；`--strict` 亲自运行通过；沿用 Q01 范例格式。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch13_feihu/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch13_feihu",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "Q14",
+      "phase": "G",
+      "wave": 8,
+      "kind": "draft",
+      "priority": 10,
+      "title": "剧情迁移 · 14 雪山飞狐 → quest-manifest + quest.v1 实例",
+      "prompt": "Q-manifest.md",
+      "deps": [
+        "Q01"
+      ],
+      "writes": [
+        "content/chapters/ch14_xueshan/**"
+      ],
+      "review": true,
+      "web": false,
+      "profile": "doc",
+      "vars": {
+        "nn": "14",
+        "slug": "xueshan",
+        "book": "雪山飞狐",
+        "chid": "ch14_xueshan",
+        "pilot_note": "沿用 `content/chapters/ch01_tianlong/`（Q01 范例）的目录、命名与 YAML 风格。"
+      },
+      "review_focus": "逐任务对照 story/14 §11 的正式 ID 与全部 dc_14_*；立场公式与换线语义无损；`--strict` 亲自运行通过；沿用 Q01 范例格式。",
+      "validate": {
+        "exists": [
+          "content/chapters/ch14_xueshan/quest-manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_quest_manifest.py",
+            "content/chapters/ch14_xueshan",
+            "--strict"
           ],
           [
             "{python}",

@@ -152,6 +152,9 @@ class Task:
         self.note = d.get("note", "")
         self.priority = int(d.get("priority", 0))
         self.agent_args = list(d.get("agent_args", []))   # 追加给 CLI 的参数（如放开网络）
+        self.model = d.get("model")                 # 逐任务覆盖模型名（默认用 defaults.model）
+        self.effort = d.get("effort")               # 逐任务覆盖推理强度（审校默认 defaults.review_effort）
+        self.profile = d.get("profile", "doc")      # doc | code | assets：决定附加的通用规则与审校模板
         self.target: Task | None = None             # 审校任务的被审对象
         self.score = 0                              # 调度优先级：后继任务数 + priority
 
@@ -182,7 +185,8 @@ class Graph:
             if t.review and not t.is_gate:
                 r = Task({"id": t.id + ".R", "title": "审校 · " + t.title, "kind": "review",
                           "wave": t.wave, "phase": t.phase, "writes": t.writes, "web": t.web,
-                          "validate": t.validate, "priority": t.priority, "agent_args": t.agent_args})
+                          "validate": t.validate, "priority": t.priority, "agent_args": t.agent_args,
+                          "profile": t.profile, "model": t.model})
                 r.target, r.raw_deps = t, [t.id]
                 self.tasks[r.id] = r
         for t in self.tasks.values():
@@ -271,7 +275,8 @@ def task_body(t: Task) -> str:
                  target_files="、".join(f"`{w}`" for w in tg.writes),
                  review_focus=f"8. **本次审校重点**：{tg.review_focus}" if tg.review_focus else "",
                  target_prompt=quote_md(task_body(tg)))
-        return fill(read_prompt("_review.md"), v, f"{t.id} / _review.md")
+        tpl = {"code": "_review-code.md", "assets": "_review-assets.md"}.get(tg.profile, "_review.md")
+        return fill(read_prompt(tpl), v, f"{t.id} / {tpl}")
     if not t.prompt:
         raise Fatal(f"任务 {t.id} 没有指定 prompt")
     return fill(read_prompt(t.prompt), v, f"{t.id} / {t.prompt}")
@@ -280,7 +285,11 @@ def task_body(t: Task) -> str:
 def render_prompt(t: Task, attempt: int = 1, failure: str | None = None) -> str:
     common = {"task_id": t.id, "task_title": t.title, "report_path": t.report_path,
               "writes": "\n".join(t.all_writes), "web_note": WEB_NOTE if t.web else "", "date": today()}
-    text = fill(read_prompt("_common.md"), common, f"{t.id} / _common.md") + task_body(t)
+    text = fill(read_prompt("_common.md"), common, f"{t.id} / _common.md")
+    addendum = {"code": "_code.md", "assets": "_assets.md"}.get(t.profile)
+    if addendum:
+        text += fill(read_prompt(addendum), common, f"{t.id} / {addendum}")
+    text += task_body(t)
     if failure:
         text += fill(read_prompt("_retry.md"), {"attempt": attempt, "failure": failure}, "_retry.md")
     return text
@@ -296,6 +305,7 @@ class Config:
         self.dry_run = bool(g("dry_run", False))
         self.model = g("model") or env("TRAEX_MODEL") or defaults.get("model", "")
         self.effort = g("effort") or env("TRAEX_EFFORT") or defaults.get("effort", "")
+        self.review_effort = env("TRAEX_REVIEW_EFFORT") or defaults.get("review_effort", "")
         self.jobs = int(g("jobs") or defaults.get("jobs", 3))
         self.timeout_min = float(g("timeout_min") or defaults.get("timeout_min", 180))
         retries = g("retries")
@@ -324,6 +334,17 @@ class Config:
                 return found
         return None
 
+    def resolve_model_effort(self, t: Task | None):
+        """逐任务覆盖：tasks.json 的 model / effort 优先；审校任务默认用 review_effort（如 xhigh）。"""
+        model = (t.model if t is not None and t.model else None) or self.model
+        if t is not None and t.effort:
+            effort = t.effort
+        elif t is not None and t.kind == "review" and self.review_effort:
+            effort = self.review_effort
+        else:
+            effort = self.effort
+        return model, effort
+
     def build_cmd(self, t: Task | None, prompt: str):
         if self.mock:
             argv = [sys.executable, str(MOCK_AGENT)]
@@ -331,10 +352,11 @@ class Config:
             if not self.bin:
                 raise Fatal("找不到 traex / traecli。请确认 TraeX CLI 已安装并在 PATH 中，或用 --bin 指定路径。")
             argv = [self.bin, *self.exec_args]
-            if self.model:
-                argv += [a.format(model=self.model) for a in self.model_args]
-            if self.effort:
-                argv += [a.format(effort=self.effort) for a in self.effort_args]
+            model, effort = self.resolve_model_effort(t)
+            if model:
+                argv += [a.format(model=model) for a in self.model_args]
+            if effort:
+                argv += [a.format(effort=effort) for a in self.effort_args]
             if t is not None and t.web:
                 argv += self.web_args
             if t is not None:

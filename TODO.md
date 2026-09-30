@@ -1,6 +1,6 @@
 # TODO · 《金庸群侠传·天书录》规划进度
 
-> 更新：2026-09-27；规划文档、逐篇审校与 F2 全局一致性终审均已完成，本次新增 AR-14 的 21 经脉运行设计与参考模拟；实现期遗留仍见 §5、`docs/README.md` 与相关报告。
+> 更新：2026-09-30；规划文档集已完成（2026-09-27）。本次进入 **Phase G：实现启动（tech/09 P0）与文档收口**——已拆成 33 个代理任务（`tools/agents/tasks.json` 第 6–8 波），执行手册见 `tools/agents/RUNBOOK-P0.md`，准出规范见 `docs/decisions/acceptance-p0.md`。分工：云端 Claude 规划 / 拆解 / 准出；本机 GPT CLI（GPT-6-Astra，ultra / xhigh）执行、图像生成与多模态校验；作者闸门 G3 / G4 与审定。
 > 用途：记录现状、已定结论与后续计划，恢复工作时从这里接手。
 > 唯一事实来源是 [`docs/00-canon.md`](docs/00-canon.md)（设计基准）。各文档里的"待决事项"是本文的明细来源。
 
@@ -14,6 +14,7 @@
 1. Canon 已更新至 v1.2，作者决定、作者新增需求、冲突裁定与提案处置均有独立记录。
 2. 策划 01–21、11 册武学图鉴、17 册 NPC 名录、14 篇剧情、14 篇书界、地图数据与技术 01–09 均已成稿并完成逐篇审校。
 3. F2 已完成全局一致性终审：C01–C23 均有裁定与落点；ID、数值和地图规划门禁通过。F45 完成需求覆盖检查与总索引。
+4. 2026-09-30：Phase G 拆解完成（未执行）。文档收口 8 项（A4 基准 v1.3、K2 recipeKey、M3 经脉接线、N2 天龙切片人物、Q01 天龙任务数据、S2 来源重配、H2 placeKey、M4 图鉴接线）+ 2 个 lint 工具（L2、L3）+ P0 工程探针 6 项（T0 地基、T1 core、T2 数据、T3 bench-iso、T4a/T4b 素材管线与金样、T5 托管与存档）+ 2 个作者闸门（G3、G4）+ P0 出口 ADR（P0A）+ 批量迁移 Q02–Q14。
 
 当前交付是**规划文档集**，不是已实现游戏：逐章生产 manifest、部分具名人物 / Boss 完整资产、来源比例重配、原著逐字考据、许可与真机 / 账号 / 包体证据仍需在实现期完成。
 
@@ -255,6 +256,12 @@
 - [x] 已解决：AR-01 覆盖旧 520 / 700 门选择，正式库存为 `51/169/459/459=1,138`（P33；05 §14）。
 - [x] 已解决：本轮采用依赖图并行、逐篇审校；本机 TraeX CLI 调用 GPT 模型撰写，监督代理驱动 `tools/agents/step.py`（P57；`tools/agents/README.md`）。
 
+**G3 闸门（Phase G，A4.R 之后；见 `tools/agents/RUNBOOK-P0.md` §4）**
+- [ ] P58 三台实机型号 / SoC / RAM / OS / 浏览器入口（= RD-01）
+- [ ] P59 确认或改选 `O-A3-01 / O-A3-02 / F2-O03`
+- [ ] P60 `traex models` 中 GPT-6-Astra、`ultra` / `xhigh`、`image_generation` 可用性与上限
+- [ ] P61 Cloudflare 账号、自定义域名、Workers Free 是否可接受
+
 **当前仍需作者明确拍板（已有默认值，不阻断规划）**
 - [ ] `O-A3-01 / F2-O01`：越女剑合成全本默认使用 `sk_yuenvjian@legacy_complete=10`，不成为第 52 门普通天级（基准 §13、§20；20 §7.6）。
 - [ ] `O-A3-02 / F2-O02`：传承合成默认采用逐界 `legacyWorldCap = 12 / 10 / 9`，只截当界有效品阶（基准 §3；20 §7.6）。
@@ -322,6 +329,41 @@
 - [x] F4 用户需求逐条覆盖检查（§7）
 - [x] F5 写 `docs/README.md` 总索引、阅读顺序与执行摘要
 - [ ] F6 提交并推送（由调度器在 F45 校验通过后执行；不在文档任务内操作 Git）
+
+---
+
+### Phase G · 实现启动（tech/09 P0）与文档收口（2026-09-30 拆解，未执行）
+
+> 任务 ID 见 `tools/agents/tasks.json` 第 6–8 波；`python3 tools/agents/run.py list` 看进度。执行：`tools/agents/RUNBOOK-P0.md`；准出：`docs/decisions/acceptance-p0.md`；准出结论：`tools/agents/reports/_acceptance-log.md`。
+
+**第 6 波 · 文档收口与 lint**
+- [ ] L2 `check_quest_manifest.py`：剧情迁移 manifest / `quest.v1` 标准库校验器（12 §2.6、§13.1）
+- [ ] L3 `check_source_ratio.py`：十四界来源比例验收口径（05 §14.4）
+- [ ] A4 (+R) 基准 v1.3：M2-P01～03、C2 SET-P、F2/F45 澄清项、中央迁移表补录；G3 待确认项单列
+- [ ] K2 (+R) `recipeKey` 统一与 `LegacyCacheRuntimePhase` 定稿（12 / 20 / tech-04 / tech-05 / chapters-02）
+- [ ] M3 (+R) `design/21` 接线到 04 / 05 / 06 / 09 / 13 / 14 / 15 / tech-05（M2.R §6 条件）
+- [ ] N2 (+R) 天龙切片人物 `full` 画像、岳老三 Boss 专场模拟、F2 点名的天龙具名人物
+- [ ] Q01 (+R) 天龙剧情 → `content/chapters/ch01_tianlong/` manifest + `quest.v1`（范例）
+
+**第 7 波 · P0 工程探针（代码，GPT-6-Astra ultra；审校 xhigh）与来源重配**
+- [ ] T0 (+R) 仓库地基：pnpm monorepo、TS strict、CI、`pnpm check`、`packages/spec` 契约
+- [ ] T1 (+R) core 探针：五流 RNG、命令 / 事件事务、10 Hz、六角坐标与 A*、录像、Python golden 对拍
+- [ ] T2 (+R) 数据探针：Zod registry、Tiled→RegionMap、规范 JSON / `contentHash`、L0–L6、双构建一致
+- [ ] T3 (+R) 渲染探针：`apps/bench`（proto-projection / terrain / **bench-iso** / occlusion / resilience）+ HUD JSON
+- [ ] T4a (+R) 素材管线 MVP：`tools/aigc`（tsgen）、登记库、Blender 8 向渲染、打包与 manifest
+- [ ] T4b (+R 多模态校验) P0 风格锁定金样：回归集 30 条、主角男女北宋装 / 段誉 / 无量弟子设定卡、1 CG、图标模板
+- [ ] T5 (+R) 存储 / 后端探针：同一 Worker 私有托管、TSAV v1 + CAS、KTX2 / WebP 加载、PWA 离线重开
+- [ ] S2 (+R) 来源重配命中 05 §14.4（总量 1,138 与天级 51 不变）
+- [ ] H2 (+R) 39 个传承缓存 `placeKey` 考据与地图登记
+- [ ] G3 作者闸门：P58–P61
+
+**第 8 波 · 真机证据与 P0 出口**
+- [ ] G4 作者闸门：三机 `bench-iso` / proto-* 证据入 `docs/evidence/p0/`，preview 部署与离线重开记录
+- [ ] P0A (+R) ADR-0001 渲染器闸门、ADR-0002 相机与精灵深度、`docs/evidence/p0/STATUS.md`
+- [ ] Q02–Q14 (+R) 其余十三章剧情迁移（不阻断 P0；各章在其阶段前完成）
+- [ ] M4 (+R) 图鉴逐招 `meridianRouteRef`（不阻断 P0）
+
+**Phase G 完成定义**：见 `docs/decisions/acceptance-p0.md` §4。之后进入 tech/09 P1（M1 序章能力 MVP → M2 天龙无量切片）。
 
 ---
 

@@ -39,8 +39,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import run as R  # noqa: E402  复用 run.py
 
-DEFAULT_MODEL = "GPT-5.6-Sol"   # GPT-6-Astra 2026-09-26 全天反复静默挂死，改为备用
-DEFAULT_EFFORT = "max"
+DEFAULT_MODEL = "GPT-6-Astra"   # 2026-09-30 作者指定：执行用 GPT-6-Astra；GPT-5.6-Sol 只作探测失败时的备用
+DEFAULT_EFFORT = "ultra"        # 起草 / 代码 / 工具任务；审校任务默认 defaults.review_effort（xhigh）
+PROBE_EFFORT = "low"            # 探测只看模型是否应答，用低强度以免探测本身超时
 
 
 def now_s() -> str:
@@ -158,7 +159,7 @@ def build_argv(binary: str, model: str, effort: str, wt: Path, last: Path, searc
 
 
 WRAPPER = '"$@" < "$TS_PROMPT" >> "$TS_LOG" 2>&1; rc=$?; echo "$rc" > "$TS_EXIT"; exit $rc'
-FALLBACK_MODELS = ["GPT-6-Astra"]
+FALLBACK_MODELS = ["GPT-5.6-Sol"]
 
 
 def probe_model(binary: str, model: str, effort: str, timeout_s: int = 90) -> bool:
@@ -239,13 +240,23 @@ def cmd_start(a) -> int:
     for f in (exitf, lastf):
         if f.exists():
             f.unlink()
-    model = a.model or os.environ.get("TRAEX_MODEL") or g.defaults.get("model") or DEFAULT_MODEL
-    effort = a.effort if a.effort is not None else (os.environ.get("TRAEX_EFFORT") or g.defaults.get("effort") or DEFAULT_EFFORT)
+    # 优先级：命令行 > 环境变量 > tasks.json 逐任务字段 > defaults（审校用 review_effort）> 脚本默认
+    model = a.model or os.environ.get("TRAEX_MODEL") or t.model or g.defaults.get("model") or DEFAULT_MODEL
+    if a.effort is not None:
+        effort = a.effort
+    elif os.environ.get("TRAEX_EFFORT"):
+        effort = os.environ["TRAEX_EFFORT"]
+    elif t.effort:
+        effort = t.effort
+    elif t.kind == "review" and g.defaults.get("review_effort"):
+        effort = g.defaults["review_effort"]
+    else:
+        effort = g.defaults.get("effort") or DEFAULT_EFFORT
     binary = find_bin(a.bin, g.defaults)
     if not a.no_probe:
         for cand in [model] + [m for m in FALLBACK_MODELS if m != model]:
             print(f"… 探测模型 {cand}（≤ {a.probe_sec:g} 秒）", flush=True)
-            if probe_model(binary, cand, effort, int(a.probe_sec)):
+            if probe_model(binary, cand, PROBE_EFFORT, int(a.probe_sec)):
                 if cand != model:
                     print(f"⚠ {model} 无响应，改用 {cand}")
                 model = cand

@@ -14,11 +14,11 @@
 
 ## 流程（每个任务）
 
-1. `python3 tools/agents/step.py start <ID>`：建工作区、渲染提示词、探测模型（GPT-6-Astra 无响应时自动改用 GPT-5.6-Sol）、后台启动。
+1. `python3 tools/agents/step.py start <ID>`：建工作区、渲染提示词、探测模型、后台启动。**2026-09-30 起默认模型 GPT-6-Astra：起草 / 代码 / 工具 `ultra`，审校 `xhigh`**（读 `tasks.json` 的 `defaults` 与逐任务字段）；探测无响应时自动改用 GPT-5.6-Sol。
 2. `python3 tools/agents/step.py wait <ID> --max-min 25`（后台运行）。看输出首行：
    - `FINISHED` → 第 3 步。
    - `RUNNING` → 再次后台 wait。
-   - `STALLED`（日志 20 分钟无增长）或 `EXITED-NO-CODE` → `python3 tools/agents/step.py kill <ID>`，然后在同一工作区续作。**最可靠的续作方式**（已验证多次，3–19 分钟收尾）：`start <ID> --model GPT-5.6-Sol --effort high --no-probe --note "<只写操作：工作区里已有哪些产物；先写/补完报告；每次补丁 ≤ 50 行、分几次写；不要重新通读全文、不要重打大 diff；联网任务写明"不要再联网检索"；只做必要收尾>"`（`--note` 可以直接写文字，也可以给文件路径）。第二次续作用 `--effort medium`，并把任务收窄到"只写报告"（P11.R 连停四次后用这个办法 1.5 分钟完成）。不要改用 GPT-6-Astra（2026-09-26 全天挂死）。审校任务停滞后，续作说明里要提醒"先用 `git diff --stat` 核对上次运行留下的改动是否有误删 / 误改，有就恢复"。
+   - `STALLED`（日志 20 分钟无增长）或 `EXITED-NO-CODE` → `python3 tools/agents/step.py kill <ID>`，然后在同一工作区续作。**最可靠的续作方式**（已验证多次，3–19 分钟收尾）：`start <ID> --model GPT-5.6-Sol --effort high --no-probe --note "<只写操作：工作区里已有哪些产物；先写/补完报告；每次补丁 ≤ 50 行、分几次写；不要重新通读全文、不要重打大 diff；联网任务写明"不要再联网检索"；只做必要收尾>"`（`--note` 可以直接写文字，也可以给文件路径）。第二次续作用 `--effort medium`，并把任务收窄到"只写报告"（P11.R 连停四次后用这个办法 1.5 分钟完成）。（2026-09-26 GPT-6-Astra 曾全天挂死；2026-09-30 起作者指定以 Astra 为主，仅在探测或续作反复失败时改用 Sol。）审校任务停滞后，续作说明里要提醒"先用 `git diff --stat` 核对上次运行留下的改动是否有误删 / 误改，有就恢复"。
    - 单次运行超过 150 分钟但日志仍在增长：继续等到 180 分钟，之后 kill 并续作。
 3. `python3 tools/agents/step.py finish <ID>`：通过 → 工作区提交并打印 SHA；不通过 → 读 `.agents/logs/<ID>/last_failure.md`（不要读日志原文），再 `start <ID>` 续作（最多 3 次；进程级错误如鉴权 / 限流先重试一次再换模型）。
 4. `python3 tools/agents/step.py merge <ID>`：cherry-pick 到主分支并清理工作区。若提示主检出不干净：`git status --short` 看一眼，不要动它，等 2 分钟重试 merge；仍不行就在汇报里说明（工作区会保留）。

@@ -222,3 +222,10 @@ python tools/agents/step.py status B1 / kill B1  # 查看状态 / 终止运行
 ## 12. 为什么不在云端会话里直接跑
 
 这个仓库目前所在的 Claude 云端会话里没有安装 TraeX，网络策略也拦截了 Trae 的域名（`trae.ai`、`api.trae.ai` 等）和 `api.openai.com`，而且 TraeX 需要你的账号登录。所以要在你本机运行。
+
+## 13. Phase G（2026-09-30）：实现启动与文档收口
+
+- 新增第 6–8 波共 33 个任务（文档收口 A4 / K2 / M3 / N2 / Q01 / S2 / H2 / M4，lint 工具 L2 / L3，P0 代码探针 T0–T5，素材金样 T4b，作者闸门 G3 / G4，P0 出口 P0A，批量迁移 Q02–Q14）。执行手册：`RUNBOOK-P0.md`；准出规范：`docs/decisions/acceptance-p0.md`。
+- **模型默认**改为作者指定的 `GPT-6-Astra`：起草 / 代码 / 工具 `effort=ultra`，审校 `review_effort=xhigh`（`tasks.json` `defaults`；逐任务可用 `model` / `effort` 覆盖；`step.py` 同步，探测失败才回退 GPT-5.6-Sol）。
+- **任务 profile**：`doc`（默认）、`code`（附加 `prompts/_code.md`，审校用 `_review-code.md`）、`assets`（附加 `_assets.md`，审校用 `_review-assets.md` 多模态看图评分）。审校任务自动继承目标任务的 profile。
+- 代码任务的校验命令会在工作区运行 `pnpm` / `uv` / Playwright，需要本机具备 §1 所列前置条件；云端会话没有这些工具，也不装 TraeX，所以执行仍在本机。
