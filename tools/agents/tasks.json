@@ -31,7 +31,7 @@
     "max_parallel": {
       "docs": 3,
       "assets": 10,
-      "prompts": 9
+      "prompts": 16
     }
   },
   "tasks": [
