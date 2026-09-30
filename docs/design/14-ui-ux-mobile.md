@@ -8,7 +8,9 @@
 > **v1.4 变更记录**：战斗招式预览新增外放“标准 / 高 / 顶尖”三档，显示基础到当前射程、范围模板、额外耗内与经脉来源；点穴、迟滞或胀损令可用上限下降时，旧目标立即失效并提示降档。
 > **v1.3 变更记录**：战斗招式面板改为“所选普通招式＋全部已解锁绝招”，显示角色唯一共享气势、同门共享冷却及逐项禁用原因（含“不能连用同一绝招”）；五类 AR-14 经脉 Buff 按 06 的实例 / 派生视图边界进入 HUD 与详情。
 
-文档日期：2026-09-28。审校：B5.R（2026-09-26）。适用平台：手机浏览器横屏优先，兼容 PC 浏览器；UI 使用 Vue 3 DOM 覆盖层，场景使用单个 WebGL 画布。
+> **变更记录：经脉落地终审（2026-09-30）**：接入音功 0 档的普通曲线 / 表现、AR-18 体段与出口说明；登记经脉图候选的审图边界，关闭已由上游解决的旧依赖。
+
+文档日期：2026-09-30。审校：B5.R（2026-09-26）。适用平台：手机浏览器横屏优先，兼容 PC 浏览器；UI 使用 Vue 3 DOM 覆盖层，场景使用单个 WebGL 画布。
 本文为规划交付，线框不表示已实现的客户端；所有人物能力、按钮状态与数值示例均为界面说明，实际由合法视图模型提供。
 
 ## 0. 阅读指引与裁定承接
@@ -839,6 +841,7 @@ W1 源文件约 1.02 MB、10,468 个元素；运行时使用其派生静态底�
 - 展开后按路线顺序显示 `1–18` 个节点；实线＝顺畅，虚线＝迟滞，结印＝点穴，断线＝胀损封路，空心＝尚未到达。色弱 / 黑白模式仍能区分。
 - 首个硬封直接读 `blockedAt/blockedNode/disabledReason`；正式文案分别为“穴位未通 / 经脉胀损 / 九级点穴封路”，并提供战外经脉页、换路线、调息或求援中当前合法的入口。
 - “到达 / 卡住 / 胀损”均标“预计”；`routeQualityBp` 是路线质量，不伪装成命中率或最终伤害。逐段页可显示 `jamChancesBp/arrivalBp`，默认页不展示公式墙。
+- AR-18 的说明分列“内功性质 / 路线体段 / 动作出口”：阴阳读取 05 / 21 的审定结果，标准归经与游戏归属读取 15。劳宫仍标阴经出口，阳掌经此发力不显示“阴阳冲突”警告；正 / 逆周天显示用途，不改性质图标。“阴阳交泰”只作叙事说明，不显示额外倍率。
 
 #### 4.18.2 防守路线选择与来袭反应
 
@@ -872,6 +875,8 @@ W1 源文件约 1.02 MB、10,468 个元素；运行时使用其派生静态底�
 #### 4.18.4 外放来源与降档说明
 
 外放页只在当前招式 `projection:true` 时出现，顶部先列“基础 / 当前 / 当前上限”：射程用整数格，范围用模板可读名和小型六角轮廓，档位用标准 / 高 / 顶尖。其下并列气量、容量、经脉速度、周天 / 九转及攻路状态；这些是 21 返回的来源摘要，不显示一条可误读为“外放修为”的新进度条。外放 Z5M 可在完整伤害预估中标为“外放攻路 ×值”，但不能再把范围档显示成另一项伤害倍率。
+
+带 `sonic` 标签的外放候选按 21 的 `ProjectionResult.projectionBoostActive` 呈现：0 档显示“普通音波”、基础射程 / 范围、外放额外耗内 0，倍率标签使用普通攻路；1 / 2 档才显示“内力外放”及相应范围 / 耗内。非音功外放 0 档仍属外放。UI 不改静态 `DamageKind='projected'` 或护体 40% 适用率，不因高档按钮存在便把普通音波播成气浪。
 
 高档与顶尖档即使不可选也保持可聚焦，逐项显示 `disabledReasons`；内力不足与经脉门槛不足分开。点穴、迟滞、胀损或路线硬封更新时：
 
@@ -1243,13 +1248,15 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 
 目录与领域状态字段直接消费归属文档；`*PanelView` 是 UI selector 的只读投影，不是第二份存档 schema。未知值用 `null` 配合可读原因；禁止以 `0`、空数组或默认可领取代替缺少上游结果。
 
+经脉图素材接入须使用经过审定的 PNG 与同尺寸、同原点的透明标签层；标签按 15 的唯一 `ap_* / mer_*` 关联，不烘焙进底图。ART-B-meridian 的候选图尚未完成专业穴位审图，不直接成为运行时图谱；审定前继续使用已登记穴名的匿名节点示意，保持标准归经 / 游戏路线双展示与读屏列表。
+
 | 系统 / 投影 | 复用字段或新增投影字段 | 来源与 F2 收口项 |
 |---|---|---|
 | 经脉目录 | `MeridianDef.family/acupoints/unlock`；`AcupointDef.gameMeridian/sequence/barrierH/baseRewards` | `design/15` §11.4；名称、标准归经与游戏路线均由上游给出 |
 | 周天目录 | `CirculationDef.kind/requires/turn/barrierH/minBooks/rewards` | `design/15` §7、§11.4；状态不是新游戏 ID |
 | `MeridianPanelView` | `targetId/progressH/barrierH/rateH/mpCost/successBp/mode/attemptOrdinal/rateSources/failureBands/canStart/blockedReason` | 由 15 的进度与 session 快照投影；UI 只格式化单位与文字 |
 | `MoveAvailabilityView` | `rage/rageMax`；逐门 `skillId/ultimateCooldown/lastUltimateMoveId`；逐招 `moveId/ultimate/unlocked/available/disabledReasons/routeSummary`；外放项 `projection/maxProjectionStep/projectionSteps[]`，每档含 `projectionStep/available/disabledReasons/extraMpCost/totalMpCost/effectiveRange/spread` | 直接映射 09 `query.moveAvailability(unit)`；普通招只取 `moveSlots`，绝招取全部已解锁且 `ultimate:true` 项。共享冷却、重复限制与外放上限不由 UI 猜测；三档顺序固定 0 / 1 / 2 |
-| `BattleMeridianView` | 路线：`unitId/stateVersion/routeId/purpose/routeLength/attempted/completed/routeQualityBp/flowCt/blockedAt/blockedNode/disabledReason/qualitiesBp/jamChancesBp/arrivalBp`；乘区：`attackerStrengthBp/defenderStrengthBp/meridianAttackBp/meridianDefenseBp`；外放：`projectionStep/maxProjectionStep/baseRangeMax/effectiveRange/baseSpread/spread/extraMpCost/sourceSummary`；护体：`eligibleIncoming/capacity/cancelled/damageBeforeMpGuard/mpSpent/broken/delayCt/stagnationBp/reflectDamage`；速度：`meridianSpeedBp/combinedSpeedBp/openingQinggong/spd/move/evadeRatingDelta`；状态：`sealLevel/grappleLevel` 及逐项 `meridianStatuses`；调息：`touched/stagnationRemovedBp/backlogRemoved/ruptureRepaired/sealsReduced/ct/mpCostBp` | 直接字段由 21 §11–§12 的 `FlowPreview`、`ProjectionResult`、`MeridianMultipliers`、`InnerGuardResult`、`MeridianSpeedResult`、`BreathResult` 与 06 状态快照筛选；`sourceSummary` 只格式化同次 Profile 的气量 / 容量 / 速度与周天 / 九转，不重算门槛；`meridianStatuses` 只投影五个合法状态；仅为只读 selector，不进入存档 |
+| `BattleMeridianView` | 路线：`unitId/stateVersion/routeId/purpose/routeLength/attempted/completed/routeQualityBp/flowCt/blockedAt/blockedNode/disabledReason/qualitiesBp/jamChancesBp/arrivalBp`；乘区：`attackerStrengthBp/defenderStrengthBp/meridianAttackBp/meridianDefenseBp`；外放：`projectionStep/maxProjectionStep/projectionBoostActive/baseRangeMax/effectiveRange/baseSpread/spread/extraMpCost/sourceSummary`；护体：`eligibleIncoming/capacity/cancelled/damageBeforeMpGuard/mpSpent/broken/delayCt/stagnationBp/reflectDamage`；速度：`meridianSpeedBp/combinedSpeedBp/openingQinggong/spd/move/evadeRatingDelta`；状态：`sealLevel/grappleLevel` 及逐项 `meridianStatuses`；调息：`touched/stagnationRemovedBp/backlogRemoved/ruptureRepaired/sealsReduced/ct/mpCostBp` | 直接字段由 21 §11–§12 的 `FlowPreview`、`ProjectionResult`、`MeridianMultipliers`、`InnerGuardResult`、`MeridianSpeedResult`、`BreathResult` 与 06 状态快照筛选；`sourceSummary` 只格式化同次 Profile 的气量 / 容量 / 速度与周天 / 九转，不重算门槛；`meridianStatuses` 只投影五个合法状态；仅为只读 selector，不进入存档 |
 | 资源目录 | `ResourceDef.resourceTier/resourceRank/unit`；`ResourcePointDef.outputs/baseYield/servantSlots` 与 `ResourcePointState.developmentLevel/storage/matureCycles` | `design/16` §14.1–§14.2；最终产量由同一结算函数预演 |
 | 家丁目录 | `ServantDef.abilities/specialties/skillBand` 与 `ServantContractState.assignment/accruedWageWen` | `design/16` §14.3；能力上限与成长由 16 决定 |
 | 场所与职位 | `BusinessDef.kind/jobs/openSchedule`、`JobContractState.requiredBlocks/completedBlocks`；职位为 `job_xingjiao/job_jiaotou/job_keqing` | `design/16` §8、§14.3；赌场职位按实际上游配置，不补虚构职务 |
@@ -1382,6 +1389,8 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 | U14-T36 | Lv35、`MPREF=4697` 的利涉大川依次切标准 / 高 / 顶尖，基础射程 4、模板线 n4 / n5 / n6 | 显示射程 4 / 6 / 8、对应三种轮廓；顶尖额外耗内 `round(4697×0.04)=188`，高档为 `round(4697×0.02)=94`；每次切档均清除旧目标后重选 |
 | U14-T37 | 顶尖档已选远目标，确认前点穴或胀损使上限由 2 降至 0；另测路线硬封 | 播报“外放范围已由顶尖降至标准”，旧格 / 目标 / 伤害清空且确认禁用；硬封显示整招不可用；两者均不扣 MP、不消费 RNG |
 | U14-T38 | 玩家与已看破敌人加载同一外放招，高档新增多目标；再令敌方经脉状态降档 | 两边使用同样三档、格集合与成本；敌方预测仅显示获准信息，降档不泄露隐藏 Profile，也不保留旧范围 |
+| U14-T39 | 外放候选音功依次选择 0 / 1 / 2 档 | 0 档显示普通音波 / 普通 Z5M、基础范围、零额外耗内；1 / 2 档显示外放来源，仍仅一个 Z5M；非音功 0 档保持外放 |
+| U14-T40 | 阳性体段经劳宫出口，或阴性体段用阳经手穴；另显示逆行用途 | 保留体段性质，不追加冲突警告或阴阳倍率；归经标签仍来自 15，不按美术配色改性 |
 
 ### 10.3 验收证据与实现阶段门禁
 
@@ -1461,9 +1470,9 @@ WebGL 上下文丢失显示纯 DOM 恢复页，保留已有存档、重试与低
 | 编号 | 问题 | 本文默认值 / 处理 | 接收方 |
 |---|---|---|---|
 | U14-O01 | 12/15/16 尚未定稿时的冲穴速率、工资、任务门槛如何落地？ | **已解决：**分别消费 `design/12` §2 / §11、`design/15` §4–§5 / §11、`design/16` §8 / §10 / §14 的正式字段；缺投影仍禁用提交（见 §4.12–§4.14、§8.2–§8.3） | tech/04、05 |
-| U14-O02 | 07未定稿，套装比较如何说明？ | 计件沿05，效果取有效投影；无有效效果则不声称激活收益 | F2 / design/07 |
-| U14-O03 | 09行动开始恢复与13战斗前自动档恢复冲突 | 存档归13，默认最近可恢复自动档；待统一后更新恢复文案和测试 | F2 / 09、13、tech/01 |
-| U14-O04 | 双指轻点既写取消又写倍速 | 默认不绑定，显式取消/倍速始终可用；统一后再开放可配置手势 | tech/01 / design/09 |
+| U14-O02 | 07未定稿，套装比较如何说明？ | **已解决：**按 07 正式注册表与 §4.5 的有效投影展示，计件沿 05；无有效效果不声称激活收益 | F2 / design/07 |
+| U14-O03 | 09行动开始恢复与13战斗前自动档恢复冲突 | **已解决：**09 §10.8 与 13 §9.2 已统一最近具资格的战斗前自动档，进程内行动快照不承诺跨进程恢复；见本文 §7.3 / U14-T24 | F2 / 09、13、tech/01 |
+| U14-O04 | 双指轻点既写取消又写倍速 | **已解决：**09 §10.2 与本文 §3 的默认均不绑定，显式取消 / 倍速始终可用；可配置手势须单独验收 | tech/01 / design/09 |
 | U14-O05 | 书眠1.5秒长按如何支持辅助输入？ | 常规保留长按，辅助采用独立两步确认；需同步02的等价操作说明 | F2 / design/02 |
 | U14-O06 | W1为4096×3072，tech/06仍有4096方形和分书大图口径 | 保持4:3与统一底图，多时代按需派生；不拉伸、不内联万节点SVG | tech/06 / design/19 |
 | U14-O07 | **已解决：**11 的 30 区与地图数据此前尚未同构 | `design/map/*.yaml` 已迁为 v2 三十区；UI 用稳定城市 / 区域 / 时代 / 路线键，不按名称猜（见 `design/19` §4、§15.3） | design/11、19 |

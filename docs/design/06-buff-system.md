@@ -3,9 +3,10 @@
 > **归属**（基准 §18）：Buff 规则与完整目录——数据结构、品阶强度与品阶对抗、叠加与冲突、持续与结算时机、触发器与效果原语（DSL 语义）、驱散与免疫、蛊毒专章、UI 表现规则、平衡约束。
 > **版本**：v1.4（经脉落地终审，2026-09-29）；v1.3（跨文档同步、全局审计，2026-09-26；经脉系统落地，2026-09-27）。
 > **上游**：`decisions/author-requirements.md`（AR-03 冲穴接口、AR-12 战斗状态清单、AR-14 经脉运行、AR-16 外放加持）、`decisions/author-decisions.md`（G1、P27、P31、P39）、`00-canon.md`（§4 品阶、§6 属性 ID、§7 兵器类别、§8 战斗模型与"回合"定义、§9 乘区、§10 Buff 基础规则、§12 ID 规范、§13 天级武学、§14 神兵）、`decisions/rulings-v1.md`（C07–C09、C11–C12、C23）。
-> **引用而不重定义**：属性形态与修饰种类（`flat`/`flatLv`/`pct`/`mult`/`pp`）→ `design/03-attributes.md`；伤害、治疗、命中/招架/暴击、效果命中公式 → `design/04-damage-formula.md`；武功被动、招式 `buffs` 字段、层数系数、辅运比例、走火入魔触发条件、"破 X"的获取 → `design/05-martial-arts-system.md`；Buff 只登记战斗经脉状态的生命周期与投影，河流模型、招式路线、经脉乘区、护体内劲算法、擒拿 / 点穴严重度及调息唯一见 `design/21-meridian-flow-and-moves.md`；穴位拓扑、冲穴、周天与九转唯一见 `design/15-meridian-acupoint-system.md`；套装 → `design/07-set-system.md`；地形与轻功 → `design/08-terrain-and-qinggong.md`；集气/反击/合击/AI/Boss 阶段 → `design/09-combat-system.md`；物品与丹药 → `design/10-items-and-equipment.md`；时辰/昼夜/节令 → `design/11-open-world.md`；NPC 与任务 → `design/12-quests-npc-factions.md`；天书之力、难度模式 → `design/13-progression-and-endings.md`；DSL 解释器实现 → `tech/05`（玩法引擎）。
+> **引用而不重定义**：属性形态与修饰种类（`flat`/`flatLv`/`pct`/`mult`/`pp`）→ `design/03-attributes.md`；伤害、治疗、命中/招架/暴击、效果命中公式 → `design/04-damage-formula.md`；武功被动、招式 `buffs` 字段、层数系数、辅运比例、走火入魔触发条件、"破 X"的获取 → `design/05-martial-arts-system.md`；Buff 只登记战斗经脉状态的生命周期与投影，河流模型、招式路线、经脉乘区、护体内劲算法、擒拿 / 点穴严重度及调息唯一见 `design/21-meridian-flow-and-moves.md`；穴位拓扑、冲穴、周天与九转唯一见 `design/15-meridians-and-acupoints.md`；套装 → `design/07-set-system.md`；地形与轻功 → `design/08-terrain-and-qinggong.md`；集气/反击/合击/AI/Boss 阶段 → `design/09-combat-system.md`；物品与丹药 → `design/10-items-and-equipment.md`；时辰/昼夜/节令 → `design/11-open-world.md`；NPC 与任务 → `design/12-quests-npc-factions.md`；天书之力、难度模式 → `design/13-progression-and-endings.md`；DSL 解释器实现 → `tech/05`（玩法引擎）。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术版本、价格、API 或限额尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖他文档、本文先给出可用数值并在 §15 登记。
 > **变更记录 v1.4（经脉落地终审，2026-09-29）**：将 `bf_zhenqiwaifang` 收口为 AR-16 的兼容射程来源；外放招与所选档增量取较大值、不相加，非外放旧内容继续按原规则迁移。
+> **变更记录：经脉落地终审（2026-09-30）**：明确旧控制迁移失败不换载到新战斗态，保留原档供诊断；复核五类经脉投影、时钟和调息事务，AR-18 不派生额外阴阳 Buff。
 
 ---
 
@@ -1644,7 +1645,7 @@ AR-12 的第五个新状态昏迷 `bf_hunmi` 已在 §8.7 定义。其余点名�
 | `bf_fengjingmai` | `bf_xueweishoufeng` 7 级、剩余 `min(1,旧剩余)` | 目标经脉最常用路线节点；不得扩为整脉全封 |
 | `bf_chanrao` | `bf_shouqin` 4 级、剩余 `min(2,旧剩余)` | 保留来源与维持距离；旧 ID 仍可读，不再写出 |
 
-迁移在恢复战斗状态、建立模块前执行，按旧实例 `iid` 升序；生成新实例后再走本节同穴 / 上限 / 硬控合并。无法解析路线或穴位时使用当前主运路线第一个已开通穴位；仍无合法穴位则保留旧实例并记录迁移告警，不凭显示名伪造 `ap_*`。
+迁移在恢复战斗状态、建立模块前执行，按旧实例 `iid` 升序；生成新实例后再走本节同穴 / 上限 / 硬控合并。无法解析路线或穴位时使用当前主运路线第一个已开通穴位；仍无合法穴位则保留**原始存档只读副本**并记录迁移错误，阻断候选战斗态原子换载，不让旧实例进入新协议运行态，也不凭显示名伪造 `ap_*`。旧协议录像只能交对应旧 runner，不能靠保留旧 Buff 绕过新内容禁用检查。
 
 #### 8.14.4 Buff 时钟与逐单位模块桥接
 
@@ -1652,6 +1653,7 @@ AR-12 的第五个新状态昏迷 `bf_hunmi` 已在 §8.7 定义。其余点名�
 - 新建 / 升级 `bf_shouqin` 或 `bf_xueweishoufeng` 成功提交后，分别调用 `applyGrapple` / `applyAcupointSeal`。E2 只更新待投影 remaining；Core 在 21 §3.6 / §11.6 的每次全局 `battle tick` 对每个活动实例只调用一次 `tick`，并携带该单位的最新投影；即使 E2 与该 tick 同周期，也合并为这一次调用。模块不得自行再减一次持续。
 - 模块的 `stagnationBp` / `ruptureDamage` 是唯一数值真值；派生 Buff 只展示。反之，受擒 / 点穴的剩余时间由本文唯一维护；模块快照中的 remaining 只是镜像。
 - 调息事务顺序引用 21 §10：09 回内 / 防护 → 经脉调息 → 写事件 → 扣收招；9 级点穴在动作校验即拒绝自行调息。事务被打断则 Buff、模块、资源与 RNG 一并回滚。
+- AR-18 的主运 / 路线性质分别由 05 §5.3 / 21 §2.4 提供。正逆周天、劳宫阴门和“阴阳交泰”都是既有规则的用途 / 叙事说明，不新增 Buff、额外走火概率或第二份阴阳相性修饰。
 
 ---
 
@@ -2230,6 +2232,7 @@ AR-14 日志在上述公共字段外允许 `level`、`acupointRef`、`remainingO
 | T28 | Boss 九级点穴退化 | Boss `ccCount≥2`，某穴成功施加 9 级 | 9 级硬控无效并触发控制递减；同穴落为 `dxl_lv06`、剩 1，不跳行动 |
 | T29 | 自身行动时钟投影 | 受擒剩 1、穴 A 剩 2；持有者正常行动结束，随后进入全局 `battle tick` | E2 后 Buff 为 0 / 1 且只更新待投影值；该单位本次唯一 `tick` 收到 `grappleRemaining:0`、`sealRemainingByAcupoint:{A:1}`；未传穴保持，模块不再自行递减，E2 不产生额外 `tick` |
 | T30 | 旧封穴迁移 | 旧档有 `bf_fengxue` 天阶剩 2、`bf_fengnei` 剩 2 | 前者变主要路线关键穴 9 级剩 1，后者变关键穴 8 级剩 1；同穴时依同穴升级规则合并，写档只含新 ID |
+| T30A | 旧封穴缺可解析节点 | 迁移器无法解析目标路线且无合法已开穴兜底 | 保留原档，不提交候选战斗态；新协议运行态与写档不得残留四个旧 ID，恢复入口显示迁移失败 |
 | T31 | 护体链守恒 | `postShield=1600` 拳脚，护体容量足但 `currentMp=300` | `cancelled=600`、`mpSpent=ceil(600/2)=300`、`damageBeforeMpGuard=1000`；`1600=600+1000`，再由 `mpGuard` 处理 1000 |
 | T32 | 护体反震与破气 | 多个破气来源 3000/6000/9000 bp，护体同源反震 2500 bp，`cancelled=1000` | `breakGuardBp=min(8000,max(...))=8000`；`reflectBp=2000`，反震 `floor(1000×2000/10000)=200` 且带 `reflected` |
 | T33 | 模块实例隔离 | 我方、普通敌、Boss 各挂迟滞 / 点穴；只对普通敌调息 | 只改变普通敌模块及其派生视图；另两份 snapshot 逐字段不变 |

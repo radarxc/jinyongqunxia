@@ -4,7 +4,7 @@
 > **上游**：`docs/decisions/author-requirements.md` AR-04～AR-07、AR-13，`docs/decisions/author-decisions.md` 的 G1 确认、`docs/00-canon.md` v1.2、`design/02-timeline-and-world-tiers.md`、`design/03-attributes.md`、`design/10-items-and-equipment.md`、`design/11-open-world.md`、`design/12-quests-npc-factions.md`、`design/13-progression-and-endings.md`、`design/17-sects-compendium.md`、`design/18-npc-and-companions.md`、`design/20-legacy-inheritance.md`。
 > **引用而不重定义**：区域、城市、时代图层及每书界数量预算 → `design/11`；城市坐标与历史名称 → `design/19` / `design/map/*.yaml`；物品、材料消费、锻造 / 炼丹 / 烹饪及价格 → `design/10`；门派职级、贡献、晋升、任务与经济总结构 → `design/12`；属性、技艺、声望与品德 → `design/03`；天书之力、成就与轮回 → `design/13`；NPC 身份与同伴 → `design/18`；跨年代传承源、缓存、残本、信物、挖掘进度与机会收据 → `design/20`，本文只承接家丁合同、排班和工作量；界面表现 → `design/14`；数据与运行时实现 → `tech/04`、`tech/05`。
 > **标注约定**：**（原创扩展）** = 原著没有的系统或内容；**（待考）** = 原著 / 历史事实须按三联 / 广州修订版或可靠史料核对；**（待核实）** = 版本、价格、API、限额等技术事实尚未联网确认；**（待实测）** = 需真机或完整存档验证；**【建议值】** = 依赖其他文档或实测的可运行默认值，并在 §17.1 集中登记。
-> 版本：v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-30）：复核经营 / 经脉领域边界与历史任务接口状态。
 
 ---
 
@@ -1629,7 +1629,7 @@ type EstateAction =
 | `design/12` | 门派晋升、贡献、任务结构、关系与完整经济 | 已解决：任务层只消费本文 `EstateCondition/EstateAction`，月钱传 `stipendTier/resourceTier=1..5`；见 `design/12` §2、§6、§9 |
 | `design/14` | 家业 / 职位 / 掌门手机界面 | 已解决：正式数值、全局客卿唯一键、公私账、十二时辰与传承挖掘预览见 `design/14` §4.13～§4.14、§5.2 |
 | `design/20` | 传承缓存、家丁代挖与书眠窄白名单 | 已解决：本文只承接排班 / 工作量 / 取消钩子，源状态、残本、信物和收据仍归 20；见 §7.8、§14 |
-| `tech/05` | 任务解释器 | 已有 §10～§11 provisional 契约；须迁移职位键、状态树、条件 / 动作与结算幂等规则 |
+| `tech/05` | 任务解释器 | **已解决（文档接口）：**§10～§11 已消费正式任务结构与本文条件 / 动作、状态和幂等结算约定；真实运行时与旧档迁移仍须实施期验收，不把规划接口写成已实现 |
 
 ### 17.3 对基准的修改提案
 

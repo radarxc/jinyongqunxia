@@ -6,6 +6,7 @@
 > **引用而不重定义**：轻功值 `qinggong`、`jump`、`mov`、`staMax`、疲惫 → `design/03-attributes.md` §4.4、§4.5、§5.3；Z7 公式本体、命中/伤害计算 → `design/04-damage-formula.md`；武功数据结构、招式 `terrainFx`/`displacement`/`hTol`、修为门槛 `gateCap` → `design/05-martial-arts-system.md`；Buff 定义与钩子 → `design/06-buff-system.md`；移动格数、范围模板、集气、AI、撤退、Boss 阶段 → `design/09-combat-system.md`；战斗轻功路线、经脉速度投影、点穴 / 擒拿与逐单位经脉实例 → `design/21-meridian-flow-and-moves.md`；鞋与道具 → `design/10-items-and-equipment.md`；统一大地图、时代图层、天气、旅行与坐骑 → `design/11-open-world.md`、`design/19-world-map.md`；门派五级抽象层与称谓 → `design/12-quests-npc-factions.md`、`design/17-sects-compendium.md`；冲穴、周天、九转与经脉永久加成 → `design/15-meridians-and-acupoints.md`；资源点、家丁与营生 → `design/16-resources-and-estates.md`；队友带人及 NPC 时空可用性 → `design/18-npc-and-companions.md`；任务条件 → `design/story/*` 与 `design/chapters/*`；地图编辑与可达性校验 → `tech/01` §7.4–7.5。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 需以三联/广州修订版逐字核对的原著细节，保留时须写明书名与人物/情节；**（待核实）** = 版本、API 等技术事实尚未联网确认；**（待实测）** = 需真机或真账号验证；**【建议值】** = 依赖他文档、本文先给出可用数值并在 §13 登记。
 > **2026-09-27 变更摘要**：按 `design/21` v2.0 接入战斗轻功的 `purpose: movement` 路线与速度投影边界；探索、境界阈值、门禁、跃起资格、通行模式、体力和逐格成本均保持原口径。
+> **变更记录：经脉落地终审（2026-09-30）**：复核 movement 路线提交、硬封与部分完成边界；补明 AR-18 的性质来源，不改变探索门禁与地形资格。
 
 ---
 
@@ -772,6 +773,8 @@ cost' = cost × max(0.5, 1 − (qgAction(a) − 该动作资格阈值) / 200)
 #### 4.5.1 战斗轻功招式的经脉路线引用（AR-14）
 
 `movement` 块继续只表达地形 / 探索特技；路线字段位于 05 的具体 `MoveDef.meridianRouteRef`，引用 21 定义的稳定 `mfr_*`。凡招式的主要效果属于位移、跃起、追击、脱离、闪避身法或战斗踏水，所引路线必须满足 `purpose: movement`。本文不登记路线节点、段 CT、完成质量或速度曲线，也不得用武学 / 招式显示名推导路线 ID。
+
+AR-18 的路线性质统一消费 21 §2.4 按身体节点 `gameMeridian` 推导的结果，主运内功性质取 05；正 / 逆行只表示运用方向，不得据“逆周天”另标阴性。性质匹配已由 21 的路线执行与投影结算，地形不得再加阴阳倍率，也不得改变轻功境界阈值 `20/50/90/140/200` 或据出口穴绕过门禁。
 
 ```ts
 // 只示消费关系；MeridianRouteId / MeridianSpeedResult 的生产定义见 21 §12.3。

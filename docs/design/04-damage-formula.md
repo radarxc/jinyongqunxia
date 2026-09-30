@@ -9,6 +9,7 @@
 > **变更记录**：v1.3 按 AR-14 与 `design/21` v2.0 接入 Z4M / Z5M、经脉闪避评级与护体内劲；新增五档 TTK、标准档零漂移及击穿守恒回归。
 > **变更记录**：v1.4 按 AR-16 令外放招式在既有 Z5M 位置改用 21 的外放专用曲线；不新增乘区，标准档和既有 42 行节奏零漂移。
 > **变更记录**：经脉落地终审按 Canon V13-02～04、V15-03、V16-03 接入音功 0 档运行时分支、掌风伤害段边界与多人战整场耐久口径（2026-09-29）。
+> **变更记录：经脉落地终审（2026-09-30）**：补 AR-18 的内功 / 路线性质消费边界，明确音功标签到快照字段的投影；复核独立乘区、护体顺序与 42 行节奏表，不更改伤害公式。
 
 ---
 
@@ -255,6 +256,8 @@ D5 = floor(D4M×A_ap×F_aff)
 
 内力性质完全采纳 AR-02 与 `design/05` §5.3：阳主运对阳/阴招 `+12%/−12%`，阴主运相反；调和主运对阳/阴 `+6%`、调和 `+12%`、中性 `+2%`；无主运为 0。三运同源的同性质招式另 +4%。
 
+AR-18 下，主运性质只读取当前主运对应 `SkillDef` 的顶层 `nature`；该值由 05 §5.3 按 `SkillDef.inner.meridians` 中的主修经脉审定，不新增第二份性质字段。路线流畅相性只引用 21 §2.4 按体段求得的性质。Z5 仍读取招式自身相性，不从劳宫等末端出口重新推断，也不按正 / 逆周天改性。两类相性各在自己的既有位置结算，“以阳驭阴 / 阴阳交泰”不追加惩罚、奖励或新乘区。
+
 “破 X”匹配、品阶对抗和 `poBonus(g,n)` 取 `design/05` §9.4；只取生效来源中的最高 `breakAdd`，不叠加，加入本区加算池。其破招架效果则在 Z0 乘 `targetParryMult`，不在 Z5 重复。典型 Z5 总倍率 0.70–1.45，硬边界由上式为 0.56–1.80。
 
 ### 4.5.1 Z5M · 攻击经脉独立乘区
@@ -264,8 +267,9 @@ D5 = floor(D4M×A_ap×F_aff)
 AR-16 外放招式仍只走这一格。通常 `MoveDef.projection=true` 时，用 `design/21` §4.4.1 的 `projectedAttackMultBp(attackerProfile,defenderProfile,routeLength)` **替代**普通 `attackMeridianMultBp`；Canon V16-03 规定音功是唯一运行时例外：静态标为外放候选的音功在 `projectionStep=0` 时仍走普通音波曲线，只有 1 档起才启用外放曲线。二者不能相乘、相加或先后各取整；旧内容只有 `DamageKind='projected'` 而没有新标记时仍走普通曲线。统一伪代码为：
 
 ```text
+sonic = move.tags includes 'sonic'  // 只读标签投影；不是新增 MoveDef.sonic 字段
 projectionBoostActive =
-  move.projection && (!move.sonic || projectionStep >= 1)
+  move.projection && (!sonic || projectionStep >= 1)
 
 meridianAttackBp = projectionBoostActive
   ? projectedAttackMultBp(attackerProfile, defenderProfile, routeLength)
@@ -761,6 +765,7 @@ calcEffectChance(ctx, effect): number;
 | V20 | `projectionBoostActive` 为真时 Z5M 只可选 21 外放曲线；否则只选普通曲线，结果钳 6500–22000 且不得双乘 | 错误 |
 | V21 | `sonic && projection && projectionStep=0` 使用普通 Z5M、基础范围、额外耗内 0；1 / 2 档才启用外放曲线与扩张成本，静态 `projected` 及护体内劲 40% 不变 | 错误 |
 | V22 | 大手印跃击只给落点掌风伤害段外放语义；多人 Boss 的轮数按整场共享耐久 / 目标进度计算 | 错误 |
+| V23 | AR-18 内功性质来自 05，路线性质来自 21；不得从周天方向 / 出口穴改写招式 Z5，也不得增加“阴阳交泰”乘区；`sonic` 快照只由 `MoveDef.tags` 投影 | 错误 |
 
 ### 12.2 核心测试
 

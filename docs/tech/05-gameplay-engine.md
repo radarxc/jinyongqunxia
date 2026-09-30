@@ -3,7 +3,7 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/05-gameplay-engine.md` |
-| 版本 | v1.6（经脉落地终审：NXT 音功判定点与大手印单伤害段同步，2026-09-29）；v1.5（经脉落地终审：音功 0 档特判与外放执行契约，2026-09-29）；v1.4（AR-16 外放预估、原子支付与回放同步；绝招候选时序对齐，2026-09-28）；v1.3（经脉 v2.1 与绝招轮换同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
+| 版本 | v1.7（经脉落地终审（2026-09-30）：AR-18 派生与正式回放缺口）；v1.6（经脉落地终审：NXT 音功判定点与大手印单伤害段同步，2026-09-29）；v1.5（经脉落地终审：音功 0 档特判与外放执行契约，2026-09-29）；v1.4（AR-16 外放预估、原子支付与回放同步；绝招候选时序对齐，2026-09-28）；v1.3（经脉 v2.1 与绝招轮换同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
 | 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03（冲穴）、AR-04（统一大地图与时代图层）、AR-05（资源与家丁）、AR-06（营生职位）、AR-07（门派职级与月钱）、AR-09（NPC 与跨书界同伴）、AR-12（六角战棋）、AR-13（跨年代传承）、AR-14（经脉运行、路线、绝招与擒拿点穴）、AR-16（外放范围与威力加持）、AR-17（音功 1 档起外放与大手印掌风外放） |
 | 上游基准 | `docs/00-canon.md` v1.6 §3–§5（成长、数值、节奏）、§8–§10（战斗、外放、伤害乘区、Buff）、§12（ID）、§18（唯一归属）、§19（技术基线） |
 | 强依赖 | `tech/01` §3、§6、§8.3（架构、运行时、确定性 D1–D9）；`tech/03` §2、§6、§8（性能与 Worker）；`tech/04` §3、§5–§8（schema、经脉 / 外放配表、书界包、Ink 桥）；`tech/08` §3、§10（TSAV、迁移与录像）；`design/04`（Z0–Z10）；`design/05`（武学与外放静态字段）；`design/06` §2、§4–§6（Buff DSL）；`design/08`（地形）；`design/09` §2–§8、§13（战斗、范围与候选）；`design/11`（开放世界、时代层与世界时钟）；`design/12`（任务、门派流程）；`design/13`（成长与规则开关）；`design/15`（永久经脉与穴位）；`design/16`（资源与营生）；`design/17`（门派名录）；`design/18`（NPC/同伴）；`design/19`（全国地图）；`design/20`（跨年代传承）；`design/21` §4.4.1、§11–§12（战斗经脉、招式路线、控制、外放与音功分档） |
@@ -12,7 +12,7 @@
 | 本文职责 | `packages/core` 的纯 TypeScript、无 DOM、确定性内部设计：状态、命令事务、探索 tick、六角格、战斗、伤害执行器、Buff/任务 DSL 运行时、AI、存档状态、录像与测试 |
 | 引用而不重定义 | 数值公式、武学内容、Buff 语义、地形规则、战斗平衡、任务剧情、NPC 事实、存档容器分别归上述设计/技术文档；本文只固定实现契约、执行顺序与确定性护栏 |
 | 标注约定 | **（待核实）**版本/API/限额未联网确认；**（待实测）**需真机或真账号验证；**【建议值】**等待上游定稿替换；**（原创扩展）**仅在涉及玩法内容提案时使用 |
-| 本次变更 | 经脉落地终审（2026-09-29）：正式消费 Canon v1.6 / `design/21` v2.6（commit `f62de7d`），冻结 `projectionBoostActive` 的 F0 判定与结算顺序，接入 `ProjectionInput.voice`，并将大手印跃迁与唯一落点掌风伤害段分离 |
+| 本次变更 | 经脉落地终审（2026-09-30）：复核 `commandPrefix` 与 `tech/01/08` 同域，接入 AR-18 共享出口 / 体段派生、秘籍奖励事务测试及具名 Boss `BattleReplayV1` 未落盘登记。保留 2026-09-29 的 F0 音功判定、`voice` 与大手印单伤害段同步记录 |
 
 > **结论先行（TL;DR）**
 >
@@ -1841,6 +1841,8 @@ inkjs 2.4.0 的公开 `BindExternalFunction(..., lookaheadSafe = false)` 默认�
 | Q-04 | 重载同一 Ink state | 选择结构与随机分支一致 |
 | Q-05 | 条件引用缺失 NPC/任务 | 构建失败；运行时存档遗留走 fixup |
 | Q-06 | 同一查询分别置于正文与选择文案预读 | 显式 `lookaheadSafe=true` 且结果一致；无事件/RNG/状态变化 |
+| Q-07 | 华辉遗谱三条奖励任一失败或安全条件失效 | 按 `design/12` §6.7.3 重验问证、无毒、隔离、辨认；三条物品、共享领取事实及 `appliedEffectIds` 全回滚。已领重放不补发、不折现；部分持有但缺领取收据进入异常恢复，不自动补齐 |
+| Q-08 | 旧 `legacy/completeSynthesis.recipeId` 命令迁移后重放 | 仅经显式版本 remap 转为 `recipeKey`，保留原稳定 effect ID 与领取收据；不得因改字段再次合成或发奖。生产命令拒绝继续使用旧参数 |
 
 ## 11. 经脉、资源、营生与门派运行时
 
@@ -1857,6 +1859,8 @@ inkjs 2.4.0 的公开 `BindExternalFunction(..., lookaheadSafe = false)` 默认�
 ### 11.2 战斗经脉模拟模块
 
 本小节只实现 `design/21` 的战斗动态契约；`design/15` §11.5 的 `ProfileState.meridians` 仍是永久开穴、周天与九转事实源。战斗开始把这些事实投影为临时节点态，战斗结束丢弃水量、堆积、迟滞、胀损、点穴镜像与擒拿镜像；战斗调息绝不反写永久冲穴进度。
+
+AR-18 的性质派生只消费 `design/05` §5.3、`design/21` §2.4 / §4.3.1 与 `tech/04` 编译结果：主运性质来自该内功显式 `inner.meridians`，路线性质来自扣除合法动作出口后的体段。Core 与构建器共用同一出口分类与游戏归属映射；若调试态重算，必须逐字段与编译结果相等，不能另按标准归经、整路线或最后三段机械裁切。正 / 逆周天不改写 `nature`，劳宫 / 内关出口不把阳性体段变阴，也不新增“阴阳交泰”倍率。调息 `BreathProfile.nature`、主运 `innerNature`、流畅相性和 UI 投影随同一锁定内容更新；`requiredNature` / `allowOpposedNature` 仍按 21 的准入语义消费，不能替代主运性质或反向修改路线。
 
 `battle/meridian-flow` 以 `unitIndex` 为稳定所有权键。`BattleState.meridianByUnit` 是唯一可序列化事实，运行时 cache 只保存到该数组槽位及只读模板基底的索引，可随时重建：
 
@@ -2037,7 +2041,9 @@ interface CompanionLedgerState {
 
 ### 12.2 离队快照、书眠与重逢
 
-离开 `recruited` 及书眠提交前写不可变快照，保存真实等级、先天、武学真实层数、装备引用、永久修正、人格、好感和羁绊；有效品阶/层数是时代投影，不烘入快照。`latestSnapshotId` 指向最新项，历史项只追加。
+离开 `recruited` 及书眠提交前写不可变快照，保存真实等级、先天、武学真实层数、装备引用、永久修正、人格、好感和羁绊，以及直接复用 15 §11.5 完整类型的 `meridianProgress`；有效品阶/层数是时代投影，不烘入快照。`latestSnapshotId` 指向最新项，历史项只追加。
+
+永久经脉进度按 `design/18` 的重逢步骤与 `design/15` 迁移规则恢复，不能从 `permanentMods` 或当前主运反推，也不能把开穴奖励再次累加；21 的水量、迟滞、胀损、点穴 / 擒拿镜像只属于本战。旧档有权威进度就迁入，确知从未开启才补零；无可靠恢复证据则保留原档、拒绝候选换载，不以空进度覆盖。编组前再读当前 `NpcAppearance.combatEligible`，儿童 / reference 强制 false；非战斗同伴仍可参与探索与经营。
 
 书眠事务：保存健在已招募者→清活动引用→保留本周目关系/履历/改命→切时代→求 presence/age band→建重逢线索。重逢合并仅对真实等级、先天逐项 max，技能并集且真实层 max，permanentMods 按ID并集；装备 resolveOwnership 防复制。好感/羁绊按18关系规则迁移，不把所有数字都取max；随后套新书界压制。ledger 跨书，不自动跨周目，新周目继承由13决定。
 
@@ -2054,6 +2060,8 @@ interface CompanionLedgerState {
 | N-05 | 同一永久修正两边都有 | 按稳定 ID 仅保留一次 |
 | N-06 | 书眠规则验证失败 / 书眠后素材加载失败 | 前者全回滚；后者待挂载重试、不重复书眠 |
 | N-07 | died=null但无后世appearance / 生成者跨年 | 不自动长生；年龄按持久基点演进 |
+| N-08 | 已开穴同伴书眠、重逢，或旧档仅有派生加成 | 有权威进度则保留开穴 / 进度 / ordinal / 转数且不重复加奖励；无可靠进度拒绝迁移并保留原档；临时点穴不进入离队快照 |
+| N-09 | 非战斗、儿童或 reference appearance 尝试部署 | `combatEligible=false` 时拒绝战斗位，不能用可招募事实替代参战资格；合法非战斗用途仍保留 |
 
 ## 13. Utility AI 与 Worker
 
@@ -2171,6 +2179,10 @@ battle 本地事件序与 acceptedOrdinal 也进入域；外层 GameState 的 ev
 
 Node/V8 与 Playwright WebKit/JSC 都跑同一录像。Playwright WebKit 不是实际 iOS 真机替代；发布候选仍需 `tech/03` 真机矩阵 **（待实测）**。
 
+`commandPrefix` 纳入摘要是 Canon V17-08 已登记的协议契约变化。规则号同为 2 也不能把旧 hash 工件交给当前 runner 重算：仍按完整 `appBuild/coreVersion/rulesProtocol/rngProtocol/contentHash` 定位旧工件，保留旧 runner 或标不可验证。新增回归须隔离变量：固定版本、内容及测试 session，只改一个合法 `skill.projectionStep` 或 `dual.a/b.projectionStep`，证明规范命令字节与 hash 变化；另证明固定已接受命令顺序时，仅改 hash 域外的运输元数据、墙钟或诊断字段不改变规范输入。开局 `commandPrefix=[]`，拒绝的命令不进入前缀。
+
+**实现状态（2026-09-30）**：仓库尚无生产 `packages/core` 与正式具名 Boss 固定种子 `BattleReplayV1` 夹具。§14 / §15 规定的是接口和验收；现有 Python golden / `boss_pacing.py` 只证明参考计算，不能证明完整行动表、敌方输出、援军 / 阶段和目标机制已通过。默认保持章节耐久与（待实测），生产落盘后按 `design/09` §8.8.11 对每份实际遭遇预算运行低 / 中 / 高配及四难度中配矩阵，校验唯一整场耐久、稳定分配、结束原因和 hash。
+
 ## 15. 测试与 CI
 
 | 层 | 范围 | 必须闸门 |
@@ -2187,6 +2199,8 @@ Node/V8 与 Playwright WebKit/JSC 都跑同一录像。Playwright WebKit 不是�
 | 经脉慢模型 | TypeScript 对 `tools/balance/meridian_flow_golden.json` 全字段，Node + WebKit 各跑 | 每次提交；不得只比最终伤害 |
 | 绝招轮换 | 同门多绝招的共享冷却、禁止连续同招、同门普通招解除、`cdMinus` 隔离；录像中途恢复后逐字段相同 | 每次提交；Node + WebKit |
 | 外放加持 | 三档射程 / 模板 / 成本、点穴降档、统一过滤、F0 唯一 `projectionBoostActive` 判定、唯一 Z5M、音功 0 档特判、大手印非伤害跃迁 + 单掌风伤害段、敌方 AI、多次预估零副作用、命令档位与 replay hash | 每次提交；Node + WebKit；对拍 `projection_sim.py --check` |
+| AR-18 派生 | 内功缺 `meridians` 与显式 `[]` 区分、主运 / 调息同源；阳性体段经劳宫不变阴、体段空 / 平票调和、游戏归属与标准归经不同的节点、掌法动作并集、正逆周天不改性质 | 生产实现合并前；与 `tech/04` 和 Python 同一正反向量，不新增伤害倍率 |
+| 正式具名 Boss | 每份实际遭遇预算的固定种子 `BattleReplayV1`：低 / 中 / 高配与四难度中配、整场耐久守恒、敌方外放、阶段 / 援军 / 非击杀目标、同录入命令终态 hash | 该书界发布前阻断；当前夹具尚未落盘 **（待实测）** |
 
 确定性 fixture 至少覆盖：普通战、环境战、多段范围、反应深度、合击/阵法、Boss 阶段、跨日周期、任务与 Ink、书眠及同伴重逢，以及传承的调度 / 配额 / 挖掘 / 校合 / 书眠。随机测试失败时记录业务 seed 和最小化命令序列，不能只保存测试框架内部 seed。
 
@@ -2311,6 +2325,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 - **已解决（NA1 绝招时序）**：§7.3–§7.4 已把同门共享冷却设置点前移至 F2，并以 `freshTurnToken` 保证设置当次 E2 不减；玩家、AI、一键重复与 F0 共用四段有序过滤器，拒绝零资源 / 零 RNG。
 - **已解决（AR-17 / NXT-D01）**：Canon v1.6 与 `design/21` v2.6 已正式登记；§6.5、§7.4、§8.3、§11.2 与 §15 已接音功唯一特殊分支、`voice` 投影及 F0 判定点：0 档为基础音波、零外放增耗与普通 Z5M，1 档起才激活外放；静态 `projected` 及护体内劲 40% 语义保持。
 - **已解决（AR-17 / MF-V17）**：§7.5、§8 与 §15 已把 `mv_dashouyin_dashouyin` 实现为非伤害跃迁 + 唯一落点掌风伤害段；不创建位移伤害、第二路线或第二 Z5M。
+- **已解决（AR-18 文档接口）**：§11.2 与 §15 已接主运 / 调息同源、出口分类与体段性质；正逆周天和掌法阴门不另生性质 / 乘区。这里及以上“已解决 / 已接”均指规划契约；生产 Core 和具名回放的实现状态见 §14.4。
 
 ### 本文采用的建议值（含已解决追溯）
 
@@ -2329,7 +2344,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 |---|---|---|
 | `design/04/06/09` | 伤害、Buff、战斗时序唯一规则 | 必须升规则/录像版本并重跑 golden |
 | `design/11` | 已定稿；正式使用时代层合成、10 tick/游戏分钟、1200 tick/时辰、14400 tick/日 | 若上游协议变化，升规则/存档版本并重跑世界 golden |
-| `design/12` | 已定稿；使用 `quest.v1`、`quest-instance.v1`、任务条件 / 动作与 `sect-membership-state.v1` | 上游升 `contentVersion` 时补纯迁移并重跑 QST-V01～V22 |
+| `design/12` | 已定稿；使用 `quest.v1`、`quest-instance.v1`、任务条件 / 动作与 `sect-membership-state.v1` | 上游升 `contentVersion` 时补纯迁移并重跑 QST-V01～V30 |
 | `design/15` | 已定稿；使用 `MeridianProgress`、session 快照、keyed RNG 与 S0–S8 | 上游升 schema / 公式时按迁移版本重算派生奖励并重跑 V15-01～V15-15 |
 | `design/16` | 已定稿；使用资源、点、家丁、合同、家业、公账与 Estate DSL | 上游升 schema / 数值时迁移当界运行态并重跑 RES/BIZ/SLEEP 门禁 |
 | `design/20` | 已定稿；使用 `legacy.v1`、`LegacySourceState`、配额 / 机会 / 校合收据、书眠矩阵与 LEG-V/T | 上游升 schema / RNG 消费或生命周期时升规则与存档版本，并重跑 10,000 seeds 和跨引擎录像 |
@@ -2355,13 +2370,13 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `docs/tech/04-data-pipeline.md` | 正式 schema / DSL 编译 | **已解决**：已接入 12/15/16 正式字段，并从单一 registry 生成 59 hooks、50 `OpId` 与表达式 opcode |
 | `docs/tech/04-data-pipeline.md` / `docs/design/20-legacy-inheritance.md` | `legacy.v1` / 传承运行时 | **已解决**：tech/04 已接五表与 LEG-V01–V10；本文已接状态、六项 opcode、两类配额收据、家丁 / NPC 适配和跨引擎测试（见 §11.7） |
 | `docs/tech/08-backend-and-online.md` | §10 录像 | **已解决**：`BattleReplayV1` 只哈希 / 上传战斗域，并对齐 `appBuild/coreVersion` 与中间 hash |
-| `docs/tech/08-backend-and-online.md` / `docs/design/13-progression-and-endings.md` | Meta 合并 / §9.4 | **tech/08 已解决**：已对齐确定性 `MetaProfileIntent.intentId`、规则投影版本与守卷快照确认边界，平台墙钟不回流 core；`design/13` 仍需归属文档核对 |
+| `docs/tech/08-backend-and-online.md` / `docs/design/13-progression-and-endings.md` | Meta 合并 / §9.4 | **已解决（文档接口）**：tech/08 与 design/13 §9.4 已对齐确定性 `MetaProfileIntent.intentId`、规则投影 revision、ack 与守卷快照确认边界，平台墙钟不回流 core；真实合并 / 重试仍待实现验收 |
 | `docs/design/09-combat-system.md` | §5.3 范围结算 | **已解决**：模板格按稳定六角坐标序枚举，命中单位再按稳定 `unitIndex` 排序；范围映射不改变 RNG 消费（见 09 §5.2.1、§5.3） |
 | `docs/design/11-open-world.md` | §6.1 日历（已解决） | 已由上游定稿为 1200 tick/时辰、14400 tick/日；本文审校已同步，无需反向修改 |
-| `docs/design/12-*` | 任务/门派历史依赖文字 | 正式契约已被本文接入；该文仍称 `design/15/16` 未落盘，应改为已解决追溯 |
+| `docs/design/12-*` | 任务/门派历史依赖文字 | **已解决（文档接口）**：该文 §11.4 / §14.2 已按正式任务与 15 / 16 契约回写；十四章生产 manifest 与任务导入仍待实施 |
 | `docs/design/15-*` | 经脉 | **已解决**：本文已接进度单位、冲穴公式、事件与 keyed RNG，保持当前周目跨书永久、新周目重置运行态 |
-| `docs/design/16-*` | 资源营生历史依赖文字 | 正式契约已被本文接入；该文仍称 `tech/04/05` provisional、`design/12` 未落盘，应改为已解决追溯 |
-| `docs/design/18-npc-and-companions.md` | §7.3 | `CompanionSnapshot` 示例接口重复声明一次 `level/innates`，应去重；事件命名与本文兼容 |
+| `docs/design/16-*` | 资源营生历史依赖文字 | **已解决（文档接口）**：该文 §17.2 已回写正式任务接口；运行时、旧档迁移与事务夹具仍待实施 |
+| `docs/design/18-npc-and-companions.md` | §7.3 | **已解决**：`level/innates` 已无重复声明；本轮补齐 `meridianProgress` 并由本文 §12.2 / §12.3 消费，事件命名沿正式契约 |
 | `docs/tech/08-backend-and-online.md` | TSAV / replay 版本表 | **已解决**：§3.5.1 / §10.2 已登记 `rulesProtocol=2` 与 `meridian-flow-state.v1` 的检查点兼容边界；旧 v1 战中档不得静默升级 |
 | `docs/tech/01-architecture.md` | Core 状态与确定性摘要 | **已解决**：已把 `BattleState.meridianByUnit`、唯一 battle RNG 注入、preview 零副作用与协议 2 hash 域纳入 §3.2.1、§3.6、§8.3 |
 | `TODO.md` / 协调任务 | Phase F 同步 | 登记 E2-S02–S05、E2-P01–P03；E2-S01 与 E2-S04 已解决，其余按实现实测 / 基准修订跟踪 |
@@ -2377,4 +2392,4 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | O-05 | 是否保存完整逐区 DamageTrace | 开发/手动录像开启，release 默认只存汇总 | 日志体积实测 |
 | O-06 | Playwright WebKit 外是否加真机 Safari golden | 默认发布候选人工复放关键录像；自动化不阻塞 MVP | 真机自动化条件具备时 |
 | O-07 | 经脉子预算三档手机能否达到 | 默认采用 §16 数值；超限先做连续索引、稀疏节点、dirty set、scratch 与 Worker 预览，不删除敌方模拟或降低规则精度 | 首个 24 单位经脉群战基准 |
-
+| O-08 | 具名 Boss 静态估算何时转为实战验收 | 当前没有正式 `BattleReplayV1`；保持章节耐久和（待实测），完整行动表及 §14.4 固定种子矩阵通过后才关闭 | 各书界发布前 |
