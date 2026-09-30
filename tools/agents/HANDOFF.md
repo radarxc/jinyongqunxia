@@ -44,6 +44,7 @@
 | 09-29 | 城镇不能纯生图：参考年代平面图生成坐标 → 分区填功能建筑 → 贴片渲染底图 → 贴建筑 | tasks.json TOWN-design vars / prompts/TOWN-design.md | TOWN-design 进行中 |
 | 09-29 | 特效演示"太蠢了，跟渲染的图完全不一样" → 用生成图的图层做动画 | prompts/ART-vfx-layers.md | ART-R3-vfx 进行中 |
 | 09-29 | 小龙女加白手套、佩剑、铃铛（书中经典形象） | tasks.json ART-R1-female vars | ART-R1-female 进行中 |
+| 09-29 | 外放招式分两部分做：白底效果多帧图（Python 抠 PNG）+ 发出方图（掌 / 剑加手），程序按方向叠加成整图，多帧过渡成动效 | STYLE.md 文首与招式行；prompts/VFX-*.md | VFX-design / VFX-tool / VFX-plates 已登记，ART-R3-vfx 结束后启动 |
 | 09-29 | 审核也用 GPT CLI；推理强度最高；素材先看图再合入；修完一批一起看 | SUPERVISOR.md §3 | 已生效 |
 | 09-26 | "调用 traex-cli 来做，不要自己做"；慢任务按单元拆并行 | 本文件 §1.1 | 已生效 |
 
@@ -71,6 +72,7 @@
 ### 4.2 素材线
 - **城镇管线**（695e1de）：TOWN-design（跑中，traex）→ TOWN-tiles、TOWN-buildings（Codex 出图）与 TOWN-render（Codex 写 `tools/town/`，先出占位预览）并行 → TOWN-assemble。step.py 不检查 deps，**协调者要等 TOWN-design 合入后再启动后三个，等三个都合入再启动 assemble**。设计要点：沿用 tech/02 的 1 m 格、45°/30°、2:1 菱形（默认 64×32 px）；城市规格手写（历史平面图）+ 生成器填充；大理 96×96、临安 160×160（默认）。
 - **招式演示**：ART-R3-vfx（跑中）把两张图拆透明图层做动画，PNG 不改；验收看合成图与原图的平均绝对差、代码里不画造型。
+- **外放招式新管线**（作者 09-29 晚定）：VFX-design（设计文档 + 数据格式：效果帧序列、发出方图、方向 / 锚点、过渡参数）→ VFX-tool（`tools/vfx/`：白底抠图切帧、按方向合成、多帧过渡出动效）与 VFX-plates（降龙、六脉的效果帧序列与发出方图样例）→ 之后按此批量做全部外放招式。ART-R3-vfx 完成后再启动 VFX-plates（同写集）。
 - **小龙女**：ART-R1-female（跑中）加白手套、佩剑、金铃索。
 - 作废：ART-B-town、ART-B-bldmap（工作区保留作参考，不合入）。
 - 素材任务通用提示词：`ART-baseline.md`（基线）、`ART-rework.md`（返修，vars.round）、`TOWN-assets.md`、`ART-vfx-layers.md`。
