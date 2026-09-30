@@ -14425,11 +14425,13 @@
       "deps": [
         "TOWN-tiles",
         "TOWN-buildings",
-        "TOWN-render"
+        "TOWN-render",
+        "TOWN-layout"
       ],
       "writes": [
         "assets/default/baseline/town/**",
-        "assets/default/prompts/town.md"
+        "assets/default/prompts/town.md",
+        "tools/town/**"
       ],
       "review": false,
       "web": false,
@@ -14441,6 +14443,16 @@
           "assets/default/baseline/town/town_hangzhou__ch02.png"
         ],
         "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/town",
+            "-p",
+            "test_*.py"
+          ],
           [
             "{python}",
             "tools/agents/check_assets.py",
