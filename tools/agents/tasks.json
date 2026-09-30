@@ -25311,309 +25311,6 @@
       }
     },
     {
-      "id": "CITY-hangzhou__southern_song_jin_mongol",
-      "title": "城镇 · 临安府（行在）（杭州 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
-      "phase": "PROD",
-      "wave": 10,
-      "kind": "draft",
-      "prompt": "CITY.md",
-      "deps": [
-        "TOWN-assemble"
-      ],
-      "review": false,
-      "web": true,
-      "writes": [
-        "docs/design/town/city_city_hangzhou__*.yaml",
-        "docs/design/town/history/city_hangzhou__southern_song_jin_mongol*",
-        "assets/default/town/city_hangzhou__*/**"
-      ],
-      "vars": {
-        "city_id": "city_hangzhou",
-        "display_name": "临安府（行在）",
-        "band": "southern_song_jin_mongol",
-        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
-        "year": "1217",
-        "chapters": "ch02/ch03",
-        "ch_primary": "ch02",
-        "ch_others": "ch03",
-        "kit_id": "song_southern",
-        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
-      },
-      "validate": {
-        "exists": [
-          "docs/design/town/history/city_hangzhou__southern_song_jin_mongol.md",
-          "docs/design/town/history/city_hangzhou__southern_song_jin_mongol_plan.png",
-          "assets/default/town/city_hangzhou__ch02/town.png",
-          "assets/default/town/city_hangzhou__ch02/preview.png",
-          "assets/default/town/city_hangzhou__ch02/layout.yaml",
-          "assets/default/town/city_hangzhou__ch02/manifest.yaml",
-          "assets/default/town/city_hangzhou__ch03/town.png",
-          "assets/default/town/city_hangzhou__ch03/preview.png",
-          "assets/default/town/city_hangzhou__ch03/layout.yaml",
-          "assets/default/town/city_hangzhou__ch03/manifest.yaml"
-        ],
-        "cmd": [
-          [
-            "{python}",
-            "tools/town/gen_layout.py",
-            "docs/design/town/city_city_hangzhou__ch02.yaml",
-            "-o",
-            "/tmp/tianshu_city_hangzhou_ch02.yaml"
-          ],
-          [
-            "{python}",
-            "tools/town/check_town.py",
-            "docs/design/town/city_city_hangzhou__ch02.yaml",
-            "assets/default/town/city_hangzhou__ch02/layout.yaml",
-            "--strict-assets"
-          ],
-          [
-            "{python}",
-            "tools/agents/check_assets.py",
-            "assets/default/town/city_hangzhou__ch02",
-            "--min",
-            "1",
-            "--max",
-            "1",
-            "--min-side",
-            "512"
-          ],
-          [
-            "{python}",
-            "tools/town/gen_layout.py",
-            "docs/design/town/city_city_hangzhou__ch03.yaml",
-            "-o",
-            "/tmp/tianshu_city_hangzhou_ch03.yaml"
-          ],
-          [
-            "{python}",
-            "tools/town/check_town.py",
-            "docs/design/town/city_city_hangzhou__ch03.yaml",
-            "assets/default/town/city_hangzhou__ch03/layout.yaml",
-            "--strict-assets"
-          ],
-          [
-            "{python}",
-            "tools/agents/check_assets.py",
-            "assets/default/town/city_hangzhou__ch03",
-            "--min",
-            "1",
-            "--max",
-            "1",
-            "--min-side",
-            "512"
-          ],
-          [
-            "{python}",
-            "tools/lint/check_ids.py",
-            "--strict"
-          ]
-        ]
-      }
-    },
-    {
-      "id": "CITY-kaifeng__southern_song_jin_mongol",
-      "title": "城镇 · 南京开封府 / 汴京（开封 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
-      "phase": "PROD",
-      "wave": 10,
-      "kind": "draft",
-      "prompt": "CITY.md",
-      "deps": [
-        "TOWN-assemble"
-      ],
-      "review": false,
-      "web": true,
-      "writes": [
-        "docs/design/town/city_city_kaifeng__*.yaml",
-        "docs/design/town/history/city_kaifeng__southern_song_jin_mongol*",
-        "assets/default/town/city_kaifeng__*/**"
-      ],
-      "vars": {
-        "city_id": "city_kaifeng",
-        "display_name": "南京开封府 / 汴京",
-        "band": "southern_song_jin_mongol",
-        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
-        "year": "1217",
-        "chapters": "ch02/ch03",
-        "ch_primary": "ch02",
-        "ch_others": "ch03",
-        "kit_id": "song_southern",
-        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
-      },
-      "validate": {
-        "exists": [
-          "docs/design/town/history/city_kaifeng__southern_song_jin_mongol.md",
-          "docs/design/town/history/city_kaifeng__southern_song_jin_mongol_plan.png",
-          "assets/default/town/city_kaifeng__ch02/town.png",
-          "assets/default/town/city_kaifeng__ch02/preview.png",
-          "assets/default/town/city_kaifeng__ch02/layout.yaml",
-          "assets/default/town/city_kaifeng__ch02/manifest.yaml",
-          "assets/default/town/city_kaifeng__ch03/town.png",
-          "assets/default/town/city_kaifeng__ch03/preview.png",
-          "assets/default/town/city_kaifeng__ch03/layout.yaml",
-          "assets/default/town/city_kaifeng__ch03/manifest.yaml"
-        ],
-        "cmd": [
-          [
-            "{python}",
-            "tools/town/gen_layout.py",
-            "docs/design/town/city_city_kaifeng__ch02.yaml",
-            "-o",
-            "/tmp/tianshu_city_kaifeng_ch02.yaml"
-          ],
-          [
-            "{python}",
-            "tools/town/check_town.py",
-            "docs/design/town/city_city_kaifeng__ch02.yaml",
-            "assets/default/town/city_kaifeng__ch02/layout.yaml",
-            "--strict-assets"
-          ],
-          [
-            "{python}",
-            "tools/agents/check_assets.py",
-            "assets/default/town/city_kaifeng__ch02",
-            "--min",
-            "1",
-            "--max",
-            "1",
-            "--min-side",
-            "512"
-          ],
-          [
-            "{python}",
-            "tools/town/gen_layout.py",
-            "docs/design/town/city_city_kaifeng__ch03.yaml",
-            "-o",
-            "/tmp/tianshu_city_kaifeng_ch03.yaml"
-          ],
-          [
-            "{python}",
-            "tools/town/check_town.py",
-            "docs/design/town/city_city_kaifeng__ch03.yaml",
-            "assets/default/town/city_kaifeng__ch03/layout.yaml",
-            "--strict-assets"
-          ],
-          [
-            "{python}",
-            "tools/agents/check_assets.py",
-            "assets/default/town/city_kaifeng__ch03",
-            "--min",
-            "1",
-            "--max",
-            "1",
-            "--min-side",
-            "512"
-          ],
-          [
-            "{python}",
-            "tools/lint/check_ids.py",
-            "--strict"
-          ]
-        ]
-      }
-    },
-    {
-      "id": "CITY-luoyang__southern_song_jin_mongol",
-      "title": "城镇 · 河南府（洛阳 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
-      "phase": "PROD",
-      "wave": 10,
-      "kind": "draft",
-      "prompt": "CITY.md",
-      "deps": [
-        "TOWN-assemble"
-      ],
-      "review": false,
-      "web": true,
-      "writes": [
-        "docs/design/town/city_city_luoyang__*.yaml",
-        "docs/design/town/history/city_luoyang__southern_song_jin_mongol*",
-        "assets/default/town/city_luoyang__*/**"
-      ],
-      "vars": {
-        "city_id": "city_luoyang",
-        "display_name": "河南府",
-        "band": "southern_song_jin_mongol",
-        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
-        "year": "1217",
-        "chapters": "ch02/ch03",
-        "ch_primary": "ch02",
-        "ch_others": "ch03",
-        "kit_id": "song_southern",
-        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
-      },
-      "validate": {
-        "exists": [
-          "docs/design/town/history/city_luoyang__southern_song_jin_mongol.md",
-          "docs/design/town/history/city_luoyang__southern_song_jin_mongol_plan.png",
-          "assets/default/town/city_luoyang__ch02/town.png",
-          "assets/default/town/city_luoyang__ch02/preview.png",
-          "assets/default/town/city_luoyang__ch02/layout.yaml",
-          "assets/default/town/city_luoyang__ch02/manifest.yaml",
-          "assets/default/town/city_luoyang__ch03/town.png",
-          "assets/default/town/city_luoyang__ch03/preview.png",
-          "assets/default/town/city_luoyang__ch03/layout.yaml",
-          "assets/default/town/city_luoyang__ch03/manifest.yaml"
-        ],
-        "cmd": [
-          [
-            "{python}",
-            "tools/town/gen_layout.py",
-            "docs/design/town/city_city_luoyang__ch02.yaml",
-            "-o",
-            "/tmp/tianshu_city_luoyang_ch02.yaml"
-          ],
-          [
-            "{python}",
-            "tools/town/check_town.py",
-            "docs/design/town/city_city_luoyang__ch02.yaml",
-            "assets/default/town/city_luoyang__ch02/layout.yaml",
-            "--strict-assets"
-          ],
-          [
-            "{python}",
-            "tools/agents/check_assets.py",
-            "assets/default/town/city_luoyang__ch02",
-            "--min",
-            "1",
-            "--max",
-            "1",
-            "--min-side",
-            "512"
-          ],
-          [
-            "{python}",
-            "tools/town/gen_layout.py",
-            "docs/design/town/city_city_luoyang__ch03.yaml",
-            "-o",
-            "/tmp/tianshu_city_luoyang_ch03.yaml"
-          ],
-          [
-            "{python}",
-            "tools/town/check_town.py",
-            "docs/design/town/city_city_luoyang__ch03.yaml",
-            "assets/default/town/city_luoyang__ch03/layout.yaml",
-            "--strict-assets"
-          ],
-          [
-            "{python}",
-            "tools/agents/check_assets.py",
-            "assets/default/town/city_luoyang__ch03",
-            "--min",
-            "1",
-            "--max",
-            "1",
-            "--min-side",
-            "512"
-          ],
-          [
-            "{python}",
-            "tools/lint/check_ids.py",
-            "--strict"
-          ]
-        ]
-      }
-    },
-    {
       "id": "CITY-nanjing__southern_song_jin_mongol",
       "title": "城镇 · 建康府（南京 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
       "phase": "PROD",
@@ -25699,107 +25396,6 @@
             "{python}",
             "tools/agents/check_assets.py",
             "assets/default/town/city_nanjing__ch03",
-            "--min",
-            "1",
-            "--max",
-            "1",
-            "--min-side",
-            "512"
-          ],
-          [
-            "{python}",
-            "tools/lint/check_ids.py",
-            "--strict"
-          ]
-        ]
-      }
-    },
-    {
-      "id": "CITY-yinchuan__southern_song_jin_mongol",
-      "title": "城镇 · 兴庆府故地 / 中兴府（待考）（银川 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
-      "phase": "PROD",
-      "wave": 10,
-      "kind": "draft",
-      "prompt": "CITY.md",
-      "deps": [
-        "TOWN-assemble"
-      ],
-      "review": false,
-      "web": true,
-      "writes": [
-        "docs/design/town/city_city_yinchuan__*.yaml",
-        "docs/design/town/history/city_yinchuan__southern_song_jin_mongol*",
-        "assets/default/town/city_yinchuan__*/**"
-      ],
-      "vars": {
-        "city_id": "city_yinchuan",
-        "display_name": "兴庆府故地 / 中兴府（待考）",
-        "band": "southern_song_jin_mongol",
-        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
-        "year": "1217",
-        "chapters": "ch02/ch03",
-        "ch_primary": "ch02",
-        "ch_others": "ch03",
-        "kit_id": "song_southern",
-        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
-      },
-      "validate": {
-        "exists": [
-          "docs/design/town/history/city_yinchuan__southern_song_jin_mongol.md",
-          "docs/design/town/history/city_yinchuan__southern_song_jin_mongol_plan.png",
-          "assets/default/town/city_yinchuan__ch02/town.png",
-          "assets/default/town/city_yinchuan__ch02/preview.png",
-          "assets/default/town/city_yinchuan__ch02/layout.yaml",
-          "assets/default/town/city_yinchuan__ch02/manifest.yaml",
-          "assets/default/town/city_yinchuan__ch03/town.png",
-          "assets/default/town/city_yinchuan__ch03/preview.png",
-          "assets/default/town/city_yinchuan__ch03/layout.yaml",
-          "assets/default/town/city_yinchuan__ch03/manifest.yaml"
-        ],
-        "cmd": [
-          [
-            "{python}",
-            "tools/town/gen_layout.py",
-            "docs/design/town/city_city_yinchuan__ch02.yaml",
-            "-o",
-            "/tmp/tianshu_city_yinchuan_ch02.yaml"
-          ],
-          [
-            "{python}",
-            "tools/town/check_town.py",
-            "docs/design/town/city_city_yinchuan__ch02.yaml",
-            "assets/default/town/city_yinchuan__ch02/layout.yaml",
-            "--strict-assets"
-          ],
-          [
-            "{python}",
-            "tools/agents/check_assets.py",
-            "assets/default/town/city_yinchuan__ch02",
-            "--min",
-            "1",
-            "--max",
-            "1",
-            "--min-side",
-            "512"
-          ],
-          [
-            "{python}",
-            "tools/town/gen_layout.py",
-            "docs/design/town/city_city_yinchuan__ch03.yaml",
-            "-o",
-            "/tmp/tianshu_city_yinchuan_ch03.yaml"
-          ],
-          [
-            "{python}",
-            "tools/town/check_town.py",
-            "docs/design/town/city_city_yinchuan__ch03.yaml",
-            "assets/default/town/city_yinchuan__ch03/layout.yaml",
-            "--strict-assets"
-          ],
-          [
-            "{python}",
-            "tools/agents/check_assets.py",
-            "assets/default/town/city_yinchuan__ch03",
             "--min",
             "1",
             "--max",
@@ -26119,78 +25715,6 @@
       }
     },
     {
-      "id": "CITY-dali__northern_song",
-      "title": "城镇 · 大理国都（羊苴咩城）（大理 · 北宋 · 辽 · 西夏 · 大理（约 1093） · ch01）",
-      "phase": "PROD",
-      "wave": 10,
-      "kind": "draft",
-      "prompt": "CITY.md",
-      "deps": [
-        "TOWN-assemble"
-      ],
-      "review": false,
-      "web": true,
-      "writes": [
-        "docs/design/town/city_city_dali__*.yaml",
-        "docs/design/town/history/city_dali__northern_song*",
-        "assets/default/town/city_dali__*/**"
-      ],
-      "vars": {
-        "city_id": "city_dali",
-        "display_name": "大理国都（羊苴咩城）",
-        "band": "northern_song",
-        "band_desc": "北宋 · 辽 · 西夏 · 大理（约 1093）",
-        "year": "1093",
-        "chapters": "ch01",
-        "ch_primary": "ch01",
-        "ch_others": "（无）",
-        "kit_id": "song_dali",
-        "story_refs": "`docs/design/chapters/01-*.md`"
-      },
-      "validate": {
-        "exists": [
-          "docs/design/town/history/city_dali__northern_song.md",
-          "docs/design/town/history/city_dali__northern_song_plan.png",
-          "assets/default/town/city_dali__ch01/town.png",
-          "assets/default/town/city_dali__ch01/preview.png",
-          "assets/default/town/city_dali__ch01/layout.yaml",
-          "assets/default/town/city_dali__ch01/manifest.yaml"
-        ],
-        "cmd": [
-          [
-            "{python}",
-            "tools/town/gen_layout.py",
-            "docs/design/town/city_city_dali__ch01.yaml",
-            "-o",
-            "/tmp/tianshu_city_dali_ch01.yaml"
-          ],
-          [
-            "{python}",
-            "tools/town/check_town.py",
-            "docs/design/town/city_city_dali__ch01.yaml",
-            "assets/default/town/city_dali__ch01/layout.yaml",
-            "--strict-assets"
-          ],
-          [
-            "{python}",
-            "tools/agents/check_assets.py",
-            "assets/default/town/city_dali__ch01",
-            "--min",
-            "1",
-            "--max",
-            "1",
-            "--min-side",
-            "512"
-          ],
-          [
-            "{python}",
-            "tools/lint/check_ids.py",
-            "--strict"
-          ]
-        ]
-      }
-    },
-    {
       "id": "CITY-kunming__northern_song",
       "title": "城镇 · 鄯阐府（大理国）（昆明 · 北宋 · 辽 · 西夏 · 大理（约 1093） · ch01）",
       "phase": "PROD",
@@ -26319,6 +25843,612 @@
             "{python}",
             "tools/agents/check_assets.py",
             "assets/default/town/city_baoshan__ch01",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-changsha__southern_song_jin_mongol",
+      "title": "城镇 · 潭州（长沙 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_changsha__*.yaml",
+        "docs/design/town/history/city_changsha__southern_song_jin_mongol*",
+        "assets/default/town/city_changsha__*/**"
+      ],
+      "vars": {
+        "city_id": "city_changsha",
+        "display_name": "潭州",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_changsha__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_changsha__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_changsha__ch02/town.png",
+          "assets/default/town/city_changsha__ch02/preview.png",
+          "assets/default/town/city_changsha__ch02/layout.yaml",
+          "assets/default/town/city_changsha__ch02/manifest.yaml",
+          "assets/default/town/city_changsha__ch03/town.png",
+          "assets/default/town/city_changsha__ch03/preview.png",
+          "assets/default/town/city_changsha__ch03/layout.yaml",
+          "assets/default/town/city_changsha__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_changsha__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_changsha_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_changsha__ch02.yaml",
+            "assets/default/town/city_changsha__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_changsha__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_changsha__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_changsha_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_changsha__ch03.yaml",
+            "assets/default/town/city_changsha__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_changsha__ch03",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-chaozhou__southern_song_jin_mongol",
+      "title": "城镇 · 潮州（潮州 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_chaozhou__*.yaml",
+        "docs/design/town/history/city_chaozhou__southern_song_jin_mongol*",
+        "assets/default/town/city_chaozhou__*/**"
+      ],
+      "vars": {
+        "city_id": "city_chaozhou",
+        "display_name": "潮州",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_chaozhou__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_chaozhou__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_chaozhou__ch02/town.png",
+          "assets/default/town/city_chaozhou__ch02/preview.png",
+          "assets/default/town/city_chaozhou__ch02/layout.yaml",
+          "assets/default/town/city_chaozhou__ch02/manifest.yaml",
+          "assets/default/town/city_chaozhou__ch03/town.png",
+          "assets/default/town/city_chaozhou__ch03/preview.png",
+          "assets/default/town/city_chaozhou__ch03/layout.yaml",
+          "assets/default/town/city_chaozhou__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_chaozhou__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_chaozhou_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_chaozhou__ch02.yaml",
+            "assets/default/town/city_chaozhou__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_chaozhou__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_chaozhou__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_chaozhou_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_chaozhou__ch03.yaml",
+            "assets/default/town/city_chaozhou__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_chaozhou__ch03",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-chengdu__southern_song_jin_mongol",
+      "title": "城镇 · 成都府（成都 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_chengdu__*.yaml",
+        "docs/design/town/history/city_chengdu__southern_song_jin_mongol*",
+        "assets/default/town/city_chengdu__*/**"
+      ],
+      "vars": {
+        "city_id": "city_chengdu",
+        "display_name": "成都府",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_chengdu__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_chengdu__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_chengdu__ch02/town.png",
+          "assets/default/town/city_chengdu__ch02/preview.png",
+          "assets/default/town/city_chengdu__ch02/layout.yaml",
+          "assets/default/town/city_chengdu__ch02/manifest.yaml",
+          "assets/default/town/city_chengdu__ch03/town.png",
+          "assets/default/town/city_chengdu__ch03/preview.png",
+          "assets/default/town/city_chengdu__ch03/layout.yaml",
+          "assets/default/town/city_chengdu__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_chengdu__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_chengdu_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_chengdu__ch02.yaml",
+            "assets/default/town/city_chengdu__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_chengdu__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_chengdu__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_chengdu_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_chengdu__ch03.yaml",
+            "assets/default/town/city_chengdu__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_chengdu__ch03",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-chongqing__southern_song_jin_mongol",
+      "title": "城镇 · 重庆府（重庆 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_chongqing__*.yaml",
+        "docs/design/town/history/city_chongqing__southern_song_jin_mongol*",
+        "assets/default/town/city_chongqing__*/**"
+      ],
+      "vars": {
+        "city_id": "city_chongqing",
+        "display_name": "重庆府",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_chongqing__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_chongqing__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_chongqing__ch02/town.png",
+          "assets/default/town/city_chongqing__ch02/preview.png",
+          "assets/default/town/city_chongqing__ch02/layout.yaml",
+          "assets/default/town/city_chongqing__ch02/manifest.yaml",
+          "assets/default/town/city_chongqing__ch03/town.png",
+          "assets/default/town/city_chongqing__ch03/preview.png",
+          "assets/default/town/city_chongqing__ch03/layout.yaml",
+          "assets/default/town/city_chongqing__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_chongqing__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_chongqing_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_chongqing__ch02.yaml",
+            "assets/default/town/city_chongqing__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_chongqing__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_chongqing__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_chongqing_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_chongqing__ch03.yaml",
+            "assets/default/town/city_chongqing__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_chongqing__ch03",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-dujiangyan__southern_song_jin_mongol",
+      "title": "城镇 · 永康军 / 灌口镇（待考）（都江堰（灌县） · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_dujiangyan__*.yaml",
+        "docs/design/town/history/city_dujiangyan__southern_song_jin_mongol*",
+        "assets/default/town/city_dujiangyan__*/**"
+      ],
+      "vars": {
+        "city_id": "city_dujiangyan",
+        "display_name": "永康军 / 灌口镇（待考）",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_dujiangyan__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_dujiangyan__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_dujiangyan__ch02/town.png",
+          "assets/default/town/city_dujiangyan__ch02/preview.png",
+          "assets/default/town/city_dujiangyan__ch02/layout.yaml",
+          "assets/default/town/city_dujiangyan__ch02/manifest.yaml",
+          "assets/default/town/city_dujiangyan__ch03/town.png",
+          "assets/default/town/city_dujiangyan__ch03/preview.png",
+          "assets/default/town/city_dujiangyan__ch03/layout.yaml",
+          "assets/default/town/city_dujiangyan__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_dujiangyan__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_dujiangyan_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_dujiangyan__ch02.yaml",
+            "assets/default/town/city_dujiangyan__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_dujiangyan__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_dujiangyan__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_dujiangyan_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_dujiangyan__ch03.yaml",
+            "assets/default/town/city_dujiangyan__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_dujiangyan__ch03",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "CITY-fengjie__southern_song_jin_mongol",
+      "title": "城镇 · 夔州（奉节 · 南宋 · 金 · 蒙古（约 1217–1259） · ch02/ch03）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "CITY.md",
+      "deps": [
+        "TOWN-assemble"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "docs/design/town/city_city_fengjie__*.yaml",
+        "docs/design/town/history/city_fengjie__southern_song_jin_mongol*",
+        "assets/default/town/city_fengjie__*/**"
+      ],
+      "vars": {
+        "city_id": "city_fengjie",
+        "display_name": "夔州",
+        "band": "southern_song_jin_mongol",
+        "band_desc": "南宋 · 金 · 蒙古（约 1217–1259）",
+        "year": "1217",
+        "chapters": "ch02/ch03",
+        "ch_primary": "ch02",
+        "ch_others": "ch03",
+        "kit_id": "song_southern",
+        "story_refs": "`docs/design/chapters/02-*.md`、`docs/design/chapters/03-*.md`"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/town/history/city_fengjie__southern_song_jin_mongol.md",
+          "docs/design/town/history/city_fengjie__southern_song_jin_mongol_plan.png",
+          "assets/default/town/city_fengjie__ch02/town.png",
+          "assets/default/town/city_fengjie__ch02/preview.png",
+          "assets/default/town/city_fengjie__ch02/layout.yaml",
+          "assets/default/town/city_fengjie__ch02/manifest.yaml",
+          "assets/default/town/city_fengjie__ch03/town.png",
+          "assets/default/town/city_fengjie__ch03/preview.png",
+          "assets/default/town/city_fengjie__ch03/layout.yaml",
+          "assets/default/town/city_fengjie__ch03/manifest.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_fengjie__ch02.yaml",
+            "-o",
+            "/tmp/tianshu_city_fengjie_ch02.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_fengjie__ch02.yaml",
+            "assets/default/town/city_fengjie__ch02/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_fengjie__ch02",
+            "--min",
+            "1",
+            "--max",
+            "1",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/town/gen_layout.py",
+            "docs/design/town/city_city_fengjie__ch03.yaml",
+            "-o",
+            "/tmp/tianshu_city_fengjie_ch03.yaml"
+          ],
+          [
+            "{python}",
+            "tools/town/check_town.py",
+            "docs/design/town/city_city_fengjie__ch03.yaml",
+            "assets/default/town/city_fengjie__ch03/layout.yaml",
+            "--strict-assets"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/town/city_fengjie__ch03",
             "--min",
             "1",
             "--max",
