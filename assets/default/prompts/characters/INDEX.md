@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_portrait_index.py` 生成，不要手改；改提示词就改各人物文件，改规程就改 `GUIDE.md`，然后重新生成。
 > 每个人物一份提示词文件（`<分组>/<id>.md`）：文首 frontmatter 写明立绘素材 ID、输出文件与登记清单的位置，正文是人物要点、完整提示词、排除项与质检要点。
 
-已合入 **81** 份：女 18、男 63；品质档 A 37、B 17、S 27。
+已合入 **112** 份：女 33、男 78、其他 1；品质档 A 37、B 17、S 58。
 
 ## 出图 agent 怎么用
 
@@ -20,6 +20,7 @@
 - [ch01 · 《天龙八部》](#ch01--天龙八部)（40 份）
 - [ch10 · 《白马啸西风》](#ch10--白马啸西风)（21 份）
 - [ch11 · 《鸳鸯刀》](#ch11--鸳鸯刀)（20 份）
+- [主角与书灵](#主角与书灵)（31 份）
 
 ## 撰写进度
 
@@ -41,7 +42,7 @@
 | ch12 · 《书剑恩仇录》 | `ch12-shujian/` | 撰写 / 审核中，草稿已写 36 份（未合入，草稿在 `.agents/wt/ART-P-ch12/assets/default/prompts/characters/ch12-shujian/`） |
 | ch13 · 《飞狐外传》 | `ch13-feihu/` | 撰写 / 审核中，草稿已写 33 份（未合入，草稿在 `.agents/wt/ART-P-ch13/assets/default/prompts/characters/ch13-feihu/`） |
 | ch14 · 《雪山飞狐》 | `ch14-xueshan/` | 撰写 / 审核中，草稿已写 23 份（未合入，草稿在 `.agents/wt/ART-P-ch14/assets/default/prompts/characters/ch14-xueshan/`） |
-| 主角与书灵 | `protagonist/` | 撰写 / 审核中，草稿已写 31 份（未合入，草稿在 `.agents/wt/ART-P-pc/assets/default/prompts/characters/protagonist/`） |
+| 主角与书灵 | `protagonist/` | 已合入 31 份 |
 | characters | `characters/` | 未开工 |
 
 ## 生成与存放规程
@@ -320,3 +321,39 @@ git diff --check
 | 18 | 袁冠南 | `npc_yuanguannan` | 男 | 少年 / 青年 | S | [npc_yuanguannan.md](ch11-yuanyang/npc_yuanguannan.md) | `por_npc_yuanguannan__ch11_youth_scholar_base` | `assets/default/character/male/ch11/por_npc_yuanguannan__ch11_youth_scholar_base.png` | ready |
 | 19 | 周威信 | `npc_zhouweixin` | 男 | 壮年 | A | [npc_zhouweixin.md](ch11-yuanyang/npc_zhouweixin.md) | `por_npc_zhouweixin__ch11_base` | `assets/default/character/male/ch11/por_npc_zhouweixin__ch11_base.png` | ready |
 | 20 | 卓天雄 | `npc_zhuotianxiong` | 男 | 老年 | S | [npc_zhuotianxiong.md](ch11-yuanyang/npc_zhuotianxiong.md) | `por_npc_zhuotianxiong__ch11_elder_feignedblind_base` | `assets/default/character/male/ch11/por_npc_zhuotianxiong__ch11_elder_feignedblind_base.png` | ready |
+
+### 主角与书灵
+
+| # | 人物 | 主体 ID | 性别 | 年龄段 | 档 | 提示词 | 立绘素材 ID | 输出文件 | 状态 |
+|---:|---|---|---|---|---|---|---|---|---|
+| 1 | 书灵·抽象墨影 | `npc_shuling` | 其他 | 壮年 | S | [npc_shuling.md](protagonist/npc_shuling.md) | `por_npc_shuling__ch00_base` | `assets/default/character/other/ch00/por_npc_shuling__ch00_base.png` | ready |
+| 2 | 主角（女）· 春秋末·越国 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch00.md](protagonist/npc_zhujue__f_ch00.md) | `por_npc_zhujue__ch00_f_base` | `assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png` | ready |
+| 3 | 主角（女）· 北宋 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch01.md](protagonist/npc_zhujue__f_ch01.md) | `por_npc_zhujue__ch01_f_base` | `assets/default/character/female/ch01/por_npc_zhujue__ch01_f_base.png` | ready |
+| 4 | 主角（女）· 南宋 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch02.md](protagonist/npc_zhujue__f_ch02.md) | `por_npc_zhujue__ch02_f_base` | `assets/default/character/female/ch02/por_npc_zhujue__ch02_f_base.png` | ready |
+| 5 | 主角（女）· 南宋 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch03.md](protagonist/npc_zhujue__f_ch03.md) | `por_npc_zhujue__ch03_f_base` | `assets/default/character/female/ch03/por_npc_zhujue__ch03_f_base.png` | ready |
+| 6 | 主角（女）· 元末 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch04.md](protagonist/npc_zhujue__f_ch04.md) | `por_npc_zhujue__ch04_f_base` | `assets/default/character/female/ch04/por_npc_zhujue__ch04_f_base.png` | ready |
+| 7 | 主角（女）· 明中叶 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch05.md](protagonist/npc_zhujue__f_ch05.md) | `por_npc_zhujue__ch05_f_base` | `assets/default/character/female/ch05/por_npc_zhujue__ch05_f_base.png` | ready |
+| 8 | 主角（女）· 明代 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch06.md](protagonist/npc_zhujue__f_ch06.md) | `por_npc_zhujue__ch06_f_base` | `assets/default/character/female/ch06/por_npc_zhujue__ch06_f_base.png` | ready |
+| 9 | 主角（女）· 明末 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch07.md](protagonist/npc_zhujue__f_ch07.md) | `por_npc_zhujue__ch07_f_base` | `assets/default/character/female/ch07/por_npc_zhujue__ch07_f_base.png` | ready |
+| 10 | 主角（女）· 清初·康熙 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch08.md](protagonist/npc_zhujue__f_ch08.md) | `por_npc_zhujue__ch08_f_base` | `assets/default/character/female/ch08/por_npc_zhujue__ch08_f_base.png` | ready |
+| 11 | 主角（女）· 本作清初·康熙 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch09.md](protagonist/npc_zhujue__f_ch09.md) | `por_npc_zhujue__ch09_f_base` | `assets/default/character/female/ch09/por_npc_zhujue__ch09_f_base.png` | ready |
+| 12 | 主角（女）· 本作清初·回疆 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch10.md](protagonist/npc_zhujue__f_ch10.md) | `por_npc_zhujue__ch10_f_base` | `assets/default/character/female/ch10/por_npc_zhujue__ch10_f_base.png` | ready |
+| 13 | 主角（女）· 清乾隆初 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch11.md](protagonist/npc_zhujue__f_ch11.md) | `por_npc_zhujue__ch11_f_base` | `assets/default/character/female/ch11/por_npc_zhujue__ch11_f_base.png` | ready |
+| 14 | 主角（女）· 清乾隆 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch12.md](protagonist/npc_zhujue__f_ch12.md) | `por_npc_zhujue__ch12_f_base` | `assets/default/character/female/ch12/por_npc_zhujue__ch12_f_base.png` | ready |
+| 15 | 主角（女）· 清乾隆 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch13.md](protagonist/npc_zhujue__f_ch13.md) | `por_npc_zhujue__ch13_f_base` | `assets/default/character/female/ch13/por_npc_zhujue__ch13_f_base.png` | ready |
+| 16 | 主角（女）· 清乾隆·雪地 | `npc_zhujue` | 女 | 壮年 | S | [npc_zhujue__f_ch14.md](protagonist/npc_zhujue__f_ch14.md) | `por_npc_zhujue__ch14_f_base` | `assets/default/character/female/ch14/por_npc_zhujue__ch14_f_base.png` | ready |
+| 17 | 主角（男）· 春秋末·越国 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch00.md](protagonist/npc_zhujue__m_ch00.md) | `por_npc_zhujue__ch00_m_base` | `assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png` | ready |
+| 18 | 主角（男）· 北宋 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch01.md](protagonist/npc_zhujue__m_ch01.md) | `por_npc_zhujue__ch01_m_base` | `assets/default/character/male/ch01/por_npc_zhujue__ch01_m_base.png` | ready |
+| 19 | 主角（男）· 南宋 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch02.md](protagonist/npc_zhujue__m_ch02.md) | `por_npc_zhujue__ch02_m_base` | `assets/default/character/male/ch02/por_npc_zhujue__ch02_m_base.png` | ready |
+| 20 | 主角（男）· 南宋 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch03.md](protagonist/npc_zhujue__m_ch03.md) | `por_npc_zhujue__ch03_m_base` | `assets/default/character/male/ch03/por_npc_zhujue__ch03_m_base.png` | ready |
+| 21 | 主角（男）· 元末 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch04.md](protagonist/npc_zhujue__m_ch04.md) | `por_npc_zhujue__ch04_m_base` | `assets/default/character/male/ch04/por_npc_zhujue__ch04_m_base.png` | ready |
+| 22 | 主角（男）· 明中叶 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch05.md](protagonist/npc_zhujue__m_ch05.md) | `por_npc_zhujue__ch05_m_base` | `assets/default/character/male/ch05/por_npc_zhujue__ch05_m_base.png` | ready |
+| 23 | 主角（男）· 明代 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch06.md](protagonist/npc_zhujue__m_ch06.md) | `por_npc_zhujue__ch06_m_base` | `assets/default/character/male/ch06/por_npc_zhujue__ch06_m_base.png` | ready |
+| 24 | 主角（男）· 明末 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch07.md](protagonist/npc_zhujue__m_ch07.md) | `por_npc_zhujue__ch07_m_base` | `assets/default/character/male/ch07/por_npc_zhujue__ch07_m_base.png` | ready |
+| 25 | 主角（男）· 清初·康熙 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch08.md](protagonist/npc_zhujue__m_ch08.md) | `por_npc_zhujue__ch08_m_base` | `assets/default/character/male/ch08/por_npc_zhujue__ch08_m_base.png` | ready |
+| 26 | 主角（男）· 本作清初·康熙 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch09.md](protagonist/npc_zhujue__m_ch09.md) | `por_npc_zhujue__ch09_m_base` | `assets/default/character/male/ch09/por_npc_zhujue__ch09_m_base.png` | ready |
+| 27 | 主角（男）· 本作清初·回疆 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch10.md](protagonist/npc_zhujue__m_ch10.md) | `por_npc_zhujue__ch10_m_base` | `assets/default/character/male/ch10/por_npc_zhujue__ch10_m_base.png` | ready |
+| 28 | 主角（男）· 清乾隆初 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch11.md](protagonist/npc_zhujue__m_ch11.md) | `por_npc_zhujue__ch11_m_base` | `assets/default/character/male/ch11/por_npc_zhujue__ch11_m_base.png` | ready |
+| 29 | 主角（男）· 清乾隆 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch12.md](protagonist/npc_zhujue__m_ch12.md) | `por_npc_zhujue__ch12_m_base` | `assets/default/character/male/ch12/por_npc_zhujue__ch12_m_base.png` | ready |
+| 30 | 主角（男）· 清乾隆 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch13.md](protagonist/npc_zhujue__m_ch13.md) | `por_npc_zhujue__ch13_m_base` | `assets/default/character/male/ch13/por_npc_zhujue__ch13_m_base.png` | ready |
+| 31 | 主角（男）· 清乾隆·雪地 | `npc_zhujue` | 男 | 壮年 | S | [npc_zhujue__m_ch14.md](protagonist/npc_zhujue__m_ch14.md) | `por_npc_zhujue__ch14_m_base` | `assets/default/character/male/ch14/por_npc_zhujue__ch14_m_base.png` | ready |
