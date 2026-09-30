@@ -4,7 +4,7 @@
 > 上游：`docs/00-canon.md` v1.2；`docs/decisions/author-requirements.md` AR-04、AR-09、AR-10；`docs/decisions/author-decisions.md` G1；`design/01` §7.7；`design/02`；`design/13` §4；`design/17`；`design/18`。
 > 引用而不重定义：年代、书眠、携带与外来压制 → `design/02`；品德与声望 → `design/03`；武学与习得 → `design/05`、`design/catalog/skills-xiake-bixue.md` 及 `skills-bulu-06-xiake.md`；Boss、战斗失败与非致死结算 → `design/09`；城市、区域与路线 → `design/11` 及 `design/map/*.yaml`；任务 DSL → `design/12`（已落盘；本文兼容契约仍须迁移校验）；天书之力与结局规则 → `design/13`；门派 → `design/17`；NPC、生卒、招募与跨书界 → `design/18`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要实际构建或游玩验证；**【建议值】** = 依赖其他文档，先给可用值并在文末登记。
-> 版本：v1.1（P06 初稿；审校 P06.R，2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）。
+> 版本：v1.1（P06 初稿；审校 P06.R，2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；经脉落地终审（2026-09-30）。
 
 ---
 
@@ -133,6 +133,7 @@ flowchart TD
 6. 所有战斗默认依 `design/09` 结算为倒地、降服或剧情撤退；只有明确写有 `confirmNpcDeath` 的节点才能造成剧情死亡。
 7. 任何“邪线收益”都不能以性暴力、强迫婚恋或杀害无辜作为正向奖励。
 8. 侠客岛石壁只授予 `sk_taixuan` 的剧情资格；实际学习、层数和武学栏位仍由 `design/05` 与图鉴校验。
+9. 各幕“关键战斗”的具名对手配装、经脉七参与遭遇级 `totalHp` 只引用 `chapters/06-xiake.md` §12.7、§12.7.1；群战、连战、增援与非战解法按该节逐幕预算分配和迁移，不按人物数量复制整条首领耐久。
 
 ---
 
@@ -179,18 +180,18 @@ flowchart TD
 | E03 | 第 2 回〈少年闯大祸〉 | 各方试图诱使少年向谢烟客提出请求 | `npc_shipotian`、`npc_xieyanke` | 中原驿路 / 市镇**（具体地望待考）** | 少年“不求人”，谢烟客无法卸诺 | 选择节点 | `dc_06_02` 前置；玩家可教其求生但不可代他说出私欲 |
 | E04 | 第 3 回〈摩天崖〉 | 少年护住被长乐帮三人围攻的大悲老人；老人临终赠十八泥人 | `npc_dabeilaoren`、`npc_shipotian`、`npc_mihengye`、`npc_xieyanke` | 侯监集去摩天崖途中山林**（具体地望待考）** | 大悲老人身亡，十八泥人随少年上摩天崖 | 双线共有 | `q_06_main_c_02`；救援仅作原创支线窗口，不取代既定主改命 |
 | E05 | 第 3–4 回〈摩天崖〉〈长乐帮帮主〉 | 谢烟客利用十八泥人所示经脉，数年间故意先尽授阴脉、再授阳脉 | `npc_xieyanke`、`npc_shipotian` | 摩天崖（小说虚构地望） | 少年阴阳内息相冲，下崖后危在旦夕 | 双线共有 | `q_06_main_c_02`、`dc_06_02`；节点只决定玩家如何揭穿 / 留证，不能即时抹去数年过程 |
-| E06 | 第 4 回〈长乐帮帮主〉 | 长乐帮九人上摩天崖寻失踪帮主，把少年误认作石中玉；贝海石运劲护住其心脉并带回总舵 | `npc_shipotian`、`npc_beihaishi`、`npc_mihengye`、`npc_zhanfei` | 摩天崖—镇江府长乐帮总舵；现有地图仍错误挂在 `city_hangzhou` | 少年暂时保命，并被拥为失而复得的帮主 | 锚点 A02 | `q_06_main_c_03`、`dc_06_03`；导航使用 `city_zhenjiang`，地图补正另列 §9.9.6 |
+| E06 | 第 4 回〈长乐帮帮主〉 | 长乐帮九人上摩天崖寻失踪帮主，把少年误认作石中玉；贝海石运劲护住其心脉并带回总舵 | `npc_shipotian`、`npc_beihaishi`、`npc_mihengye`、`npc_zhanfei` | 摩天崖—镇江府长乐帮总舵 `city_zhenjiang` | 少年暂时保命，并被拥为失而复得的帮主 | 锚点 A02 | `q_06_main_c_03`、`dc_06_03`；已解决地图驻地旧映射，见 `design/17` §8.3 与 §9.9.6 追溯 |
 | E07 | 第 4–5 回〈长乐帮帮主〉〈叮叮当当〉 | 丁珰数夜盗喂玄冰碧火酒压住阴阳相争；展飞击中膻中促使内息融合；少年剥去泥壳见木罗汉后练成罗汉伏魔神功 | `npc_shipotian`、`npc_beihaishi`、`npc_dingdang`、`npc_zhanfei`、`npc_dabeilaoren`（遗物） | 镇江府长乐帮总舵 | 少年经护脉、药酒与误击化险，继而从木罗汉取得完整传承 | 双线共有 | `q_06_main_c_03`；至此才授予 `sk_luohanfumo` 学习资格，层数仍由 `design/05` 决定 |
 | E08 | 第 4–5 回 | 贝海石等以救治、帮主礼制和口供塑造“帮主已归”；侍剑在总舵照料少年 | `npc_beihaishi`、`npc_shipotian`、`npc_shijian` | 镇江府长乐帮总舵 | 身份错认被组织化；侍剑此段仍在总舵 | 选择节点 | 正线留证；邪线经营影主；她的第 16 回命运另见 E32 / `dc_06_04` |
 | E09 | 第 5 回〈叮叮当当〉 | 丁珰将石破天误认作石中玉，与旧情和旧诺纠缠 | `npc_dingdang`、`npc_shipotian` | 镇江府—长江舟路**（细节待考）** | 私人误认加深帮主假象 | 双线共有 | `q_06_main_z_01` / `q_06_main_x_01` |
-| E10 | 第 5 回 | 丁氏长辈的规矩与追逐把众人带入新的冲突 | `npc_dingbusan`、`npc_dingdang`、`npc_shipotian` | 长江沿岸**（具体州府待考）** | 少年被迫继续扮演他人 | 支线 | 交 `chapters/06-xiake.md` 的丁氏舟行支线；主线保留结果旗标 |
+| E10 | 第 5 回 | 丁氏长辈的规矩与追逐把众人带入新的冲突 | `npc_dingbusan`、`npc_dingdang`、`npc_shipotian` | 长江沿岸**（具体州府待考）** | 少年被迫继续扮演他人 | 支线 | `q_06_bond_02`《丁氏舟行》，见 `chapters/06-xiake.md` §6.4；主线保留结果旗标 |
 | E11 | 第 6 回〈伤疤〉 | 众人以腿上剑疤等身体证据辨认真假 | `npc_shipotian`、`npc_dingdang`、`npc_shiqing`、`npc_minrou` | 江南驿路 / 客舍**（待考）** | 证据互相矛盾，身份疑云未解 | 选择节点 | `dc_06_04`，证据公开或封存 |
 | E12 | 第 6 回 | 石清、闵柔寻子并在亲情与证据间摇摆 | `npc_shiqing`、`npc_minrou`、`npc_shipotian` | 江南—中原路线**（待考）** | 黑白双剑把少年纳入寻子线 | 双线共有 | 正线取独立证词；邪线借亲情背书 |
 | E13 | 第 7 回〈雪山剑法〉 | 雪山派追究石中玉在凌霄城所犯之事 | `npc_baiwanjian`、`npc_fengwanli`、`npc_shipotian` | 江南驿路；凌霄城旧案由证词呈现 | 错误对象面临追捕与惩罚 | 双线共有 | 两线分别处理追捕，但不得替石中玉免责 |
-| E14 | 第 7 回 | 石破天从交手和演示中记下雪山剑法意理 | `npc_shipotian`、`npc_baiwanjian` | 驿路 / 舟上**（待考）** | 其过目领会能力显露 | 支线 | 仅开放 `sk_xueshanjianfa` 合法习得前置，不在主线白送秘籍 |
+| E14 | 第 7 回 | 石破天从交手和演示中记下雪山剑法意理 | `npc_shipotian`、`npc_baiwanjian` | 驿路 / 舟上**（待考）** | 其过目领会能力显露 | 支线 | `q_06_faction_02`《雪剑借观》，见 `chapters/06-xiake.md` §6.3；仅开放 `sk_xueshanjianfa` 合法习得前置，不在主线白送秘籍 |
 | E15 | 第 8 回〈白痴〉 | 阿绣旧事揭示石中玉曾对她造成严重伤害，真假人格形成反证 | `npc_axiu`、`npc_shizhongyu`、`npc_baiwanjian` | 凌霄城 / 雪山旧事 | 阿绣坠崖后生还相关经过展开**（细节待考）** | 双线共有 | 证词写入 `flag_06_axiu_testimony`；邪线也不能抹除 |
 | E16 | 第 8 回 | 石破天的诚实、迟钝与“不知名”反衬石中玉的欺骗 | `npc_shipotian`、`npc_axiu` | 紫烟岛相关水域**（具体先后待考）** | 阿绣逐步辨出二人不同 | 双线共有 | 正线直接互信；邪线需用事实换取有限合作 |
-| E17 | 第 9 回〈大粽子〉 | 丁不三等将人物裹缚、掳走，真假关系再度错位 | `npc_dingbusan`、`npc_dingdang`、`npc_shipotian` | 长江舟路 / 岛屿**（待考）** | 众人短暂受制后继续流转 | 支线 | 丁氏脱身支线；完成后汇回 `flag_06_merge_changle` |
+| E17 | 第 9 回〈大粽子〉 | 丁不三等将人物裹缚、掳走，真假关系再度错位 | `npc_dingbusan`、`npc_dingdang`、`npc_shipotian` | 长江舟路 / 岛屿**（待考）** | 众人短暂受制后继续流转 | 支线 | `q_06_bond_02`《丁氏舟行》，见 `chapters/06-xiake.md` §6.4；完成后汇回 `flag_06_merge_changle` |
 | E18 | 第 9 回 | 石破天仍拒绝以暴力或谎言占有他人身份 | `npc_shipotian`、`npc_dingdang` | 同上 | 丁珰的误认开始动摇 | 选择节点 | `dc_06_04` 的人格证词 |
 | E19 | 第 10 回〈金乌刀法〉 | 史小翠另立金乌派，以刀法克制雪山剑法 | `npc_shixiaocui`、`npc_shipotian` | 紫烟岛（小说场景，确址待考） | 石破天成为金乌派开山弟子 | 双线共有 | `q_06_main_z_04` / `q_06_main_x_04` |
 | E20 | 第 10 回 | 石破天学习金乌刀法并与阿绣建立信任 | `npc_shipotian`、`npc_shixiaocui`、`npc_axiu` | 紫烟岛 | 获得克制雪山剑法的路径 | 选择节点 | 可获 `sk_jinwudaofa` 资格；是否承诺不用来报私仇影响立场 |
@@ -207,7 +208,7 @@ flowchart TD
 | E31 | 第 16 回〈凌霄城〉 | 众人赴凌霄城，真假石中玉与阿绣证词正面碰撞 | `npc_shipotian`、`npc_shizhongyu`、`npc_axiu`、`npc_baiwanjian` | 凌霄城（小说虚构地望；地图映射后藏日喀则地区所指治所，待考） | 双生错认达到高潮 | 锚点 A03 | `q_06_main_z_07` / `q_06_main_x_07` |
 | E32 | 第 16 回 | 丁珰诱石破天替换石中玉，并在离开镇江总舵前杀死前来劝阻的侍剑；其后雪山派内乱、拘押和报复威胁门派存续 | `npc_dingdang`、`npc_shijian`、`npc_shipotian`、`npc_baizizai`、`npc_baiwanjian`、`npc_fengwanli` | 镇江府—横石镇—凌霄城 | 原著轴侍剑死亡；石破天顶替上山，师门权威失控 | 选择节点 | `dc_06_04` 可提前布置保护形成 `fate_rescued`；两线随后分别止乱或夺取谈判权 |
 | E33 | 第 17 回〈自大成狂〉 | 白自在夸耀武功，因见识石破天等人而受挫醒悟 | `npc_baizizai`、`npc_shipotian` | 凌霄城 | 掌门的狂态与权威被打破 | 双线共有 | `q_06_main_z_08` / `q_06_main_x_08`，Boss 只作制服战 |
-| E34 | 第 17 回 | 史小翠与丁不四旧怨、雪山与金乌之争集中爆发 | `npc_shixiaocui`、`npc_dingbusi`、`npc_baizizai` | 凌霄城 | 家内旧怨与门派争端交织 | 支线 | 交书界“金乌—雪山和解 / 决裂”支线，主线读取结果 |
+| E34 | 第 17 回 | 史小翠与丁不四旧怨、雪山与金乌之争集中爆发 | `npc_shixiaocui`、`npc_dingbusi`、`npc_baizizai` | 凌霄城 | 家内旧怨与门派争端交织 | 支线 | `q_06_faction_03`《梅雪止争》，见 `chapters/06-xiake.md` §6.3；主线读取和解 / 决裂结果 |
 | E35 | 第 18 回〈有所求〉 | 石中玉冒充玄铁令受令者，请谢烟客杀尽雪山派；真相揭露后，石破天以自己的唯一请求让谢烟客管教石中玉直至改过 | `npc_shizhongyu`、`npc_shipotian`、`npc_xieyanke`、`npc_shiqing`、`npc_minrou` | 镇江府长乐帮总舵—凌霄城 | 冒名号令被识破；玄铁令旧诺最终由真正受令者提出并兑现 | 选择节点 | 正邪 `z/x_09` 都必须把 `flag_06_xuantie_pledge` 从 `pending` 原子改为 `resolved`；玩家只能影响取证与监管条款 |
 | E36 | 第 18 回 | 白自在以雪山派掌门身份赴岛；石破天此前已自愿替长乐帮接下铜牌，众人各以本人名义赴约 | `npc_shipotian`、`npc_baizizai`、`npc_zhangsan06`、`npc_lisi06` | 凌霄城—沿海接引处 | 被误认的替身主动承担长乐帮赴岛之约，各掌门自行承担本派之约 | 双线共有 | 正邪均可抵达 `flag_06_merge_ningbo`；不得写成妙谛、愚茶在大陆核签 |
 | E37 | 第 19 回〈腊八粥〉 | 众掌门由海边登舟赴岛，以为赴宴即赴死 | 群像、`npc_longdaozhu`、`npc_mudaozhu` | 原著未明示港口；地图以宁波府 `city_ningbo`—侠客岛专船 `route_xiakedao` 承载**（原创扩展）** | 群雄抵岛；岛方说明来去自愿并备有归船 | 锚点 A04 | `q_06_main_c_04`；不可返回阶段仅为原创副本流程锁 |
@@ -231,7 +232,7 @@ flowchart TD
 | 有去向合计 | 44 / 44 | **100%**；`(39 + 4 + 1) / 44 = 100%` |
 | 21 回覆盖 | 21 / 21 | 每一回至少 1 个事件落点，**100%** |
 
-这里的“覆盖”不等于“逐段复刻”。四条支线仍须由 `chapters/06-xiake.md` 实作；在其落盘前，本文的主线连接不依赖支线成功，只有额外证词、武学资格和关系变化依赖支线结果。
+这里的“覆盖”不等于“逐段复刻”。**已解决：**四项支线事件已由 `chapters/06-xiake.md` §6.1、§6.3–§6.4 映射到三条既有任务（E10 / E17 共用《丁氏舟行》）；主线连接始终不依赖支线成功，只有额外证词、武学资格和关系变化依赖支线结果。生产任务仍按 `design/12` §2.6 迁移。
 
 ### 1.4 不采用与降格处理说明
 
@@ -308,7 +309,7 @@ flowchart TD
 |---|---|
 | 标题 | 镇江救治与假帮主 |
 | 原著对应事件 | 第 4–5 回〈长乐帮帮主〉〈叮叮当当〉：E06–E08；锚点 A02 开端 |
-| 地点 | 镇江府 `city_zhenjiang` 长乐帮总舵；现有 `sect_changlebang` 驻地映射错误另列 §9.9.6，同步前不得据其把剧情导航回杭州 |
+| 地点 | 镇江府 `city_zhenjiang` 长乐帮总舵；`sect_changlebang` 的现行驻地见 `design/17` §8.3 与 `design/map/sects.yaml` |
 | 参与 NPC | `npc_shipotian`、`npc_beihaishi`、`npc_mihengye`、`npc_dingdang`、`npc_zhanfei`、`npc_shijian` |
 | 目标与流程 | 1. 长乐帮九人上摩天崖寻找失踪帮主；2. 贝海石发现少年阴阳二气冲突，护住心脉并带回镇江总舵；3. 查明昏迷期间丁珰曾数夜盗喂玄冰碧火酒，以药力压住阴阳相争；4. 展飞夜探并击中膻中，使经药力增强的阴阳内息误打误撞融合；5. 保护被制住的侍剑并处理展飞断臂；6. 让少年剥去十八泥人的泥壳，发现木罗汉与内功图解，至此开放 `sk_luohanfumo` 学习资格；7. 查验旧帮主画像、衣物和口供矛盾；8. 在 `dc_06_03` 决定公开查证或借名掌权。 |
 | 关键战斗 | “迎帮主”：展飞与堂口帮众，精英；选择止战、缴械或击败均可。 |
@@ -1173,7 +1174,7 @@ rosterReady = validDelegate(primary)
 | 地点 | 侠客岛 `city_xiakedao` 宴厅、旧客居所与石室群，`rg_nanhai_islands` |
 | 参与 NPC | `npc_shipotian`、`npc_longdaozhu`、`npc_mudaozhu`、`npc_zhangsan06`、`npc_lisi06`、`npc_miaodi`、`npc_yucha`、`npc_baizizai`；随行见证者 |
 | 目标与流程 | 1. 面对腊八粥与群雄恐惧；2. 由石破天自行先饮；3. 查访仍健在旧客；4. 分别取得龙、木二岛主信任；5. 观察各派依文字争论石壁；6. 收集动作、呼吸、经脉、字义四类记录；7. 看见石破天不识字却直接会意。 |
-| 关键战斗 | “误会岛主”：群雄与岛众的 Boss 级冲突；目标是阻止双方越过致死线并完成三项事实验证，不击杀岛主或赴约掌门。 |
+| 关键战斗 | “误会岛主”：群雄与岛众的 Boss 级冲突；目标是阻止双方越过致死线并完成三项事实验证，不击杀岛主或赴约掌门。与 `c_06` 共用 `chapters/06-xiake.md` §12.7.1 的龙木终局预算，群雄 / 岛众只作保护与撤离压力，不逐人追加首领耐久。 |
 | 幕内小选择 | 先尝粥、让石破天自行尝、或拒饮并查厨。选择只影响信任和演出；腊八粥材料与具体功效仍标（待考），不在本文配数值。 |
 | 幕末状态变化 | `flag_06_island_truth=true`；分别写 `trust_long`、`trust_mu`，不可合成单一“岛主信任”；记录集合 `records_06_shibi` 至少由主线保底三类。 |
 | 失败与时限 | 冲突失败由石破天 / 二使制止，玩家少一个公开见证槽；进入石室后不得返回宁波府，直到 `q_06_main_c_06`，这是副本流程限制**（原创扩展）**，不是岛主强留。 |
@@ -1226,7 +1227,7 @@ fateReady = trust_long
 | 地点 | 侠客岛石室；归航海面；熊耳山枯草岭（行政归属待考） |
 | 参与 NPC | `npc_shipotian`、`npc_longdaozhu`、`npc_mudaozhu`、`npc_zhangsan06`、`npc_lisi06`、`npc_baizizai`、`npc_shixiaocui`、`npc_axiu`、`npc_baiwanjian`、`npc_shiqing`、`npc_minrou`、`npc_meifanggu` |
 | 目标与流程 | 1. 保护石破天完成会意；2. 在 `dc_06_09` 选择见证或互证；3. 石壁崩毁时疏散旧客；4. 见证二岛主逝去；5. 随群雄归航；6. 识破闰二月误会并救史小翠、阿绣；7. 到枯草岭触发 `dc_06_10`；8. 结算天书与四类结局。 |
-| 关键战斗 | “守住无字一刻”：Boss 级守卷战，对手是抢夺残壁者与崩落场景压力；`dc_06_09` D 会增加一波岛上护法。战斗机制引用 `design/09`，不写伤害数值。 |
+| 关键战斗 | “守住无字一刻”：Boss 级守卷战，承接 `c_05` 的龙木终局预算；抢夺残壁者与崩落只作保护 / 撤离压力。`dc_06_09` D 引入的岛上护法可绕过，不占用、不消费、不迁移整场耐久槽，也不追加必须击破目标。分配与分支迁移见 `chapters/06-xiake.md` §12.7.1，战斗机制见 `design/09`。 |
 | 幕内小选择 | 归航时先解释历法或先下海救人：正确顺序永远先救人；先争论会增加救援检定，但不允许阿绣因 UI 误导永久死亡。 |
 | 幕末状态变化 | `flag_06_islanders_returned=true`；龙、木为 `dead`；写 `anchor_06_variant`、`stance`、局部结局组合键、`it_tianshu_06` 与一个 `tsp_06_*`；梅芳姑依 `dc_06_10` 结算。 |
 | 失败与时限 | 守卷战败回到石壁开始崩毁前检查点；不可使用“书灵代笔”跳过改命关键检定，依 `design/13` 难度规则。海上救援失败触发石破天完成保底救援，玩家损失关系和评价，不制造违背主线的死亡。 |
@@ -1432,7 +1433,7 @@ variant = canon | fate
 
 | ID | 名称 | 本剧情用途 | 状态与引用 | 缺口 |
 |---|---|---|---|---|
-| `sect_changlebang` | 长乐帮 | 替身政治、双账、铜牌责任与正邪线主要据点 | `design/17` §8.3；原著第 15 回明确镇江总舵，应挂 `city_zhenjiang` | 当前 `design/map/sects.yaml` / `design/11` 仍误挂 `city_hangzhou`，待同步 |
+| `sect_changlebang` | 长乐帮 | 替身政治、双账、铜牌责任与正邪线主要据点 | `design/17` §8.3；原著第 15 回明确镇江总舵，正式挂 `city_zhenjiang` | 已解决：`design/map/sects.yaml` 与 `design/17` §8.3 已统一镇江驻地；城内精确位置仍待考 |
 | `sect_xueshan` | 雪山派 | 凌霄城旧案、错认与内乱 | `design/17` §6.7；地图驻 `city_shigatse` | 凌霄城现实对应地望待考 |
 | `sect_jinwupai` | 金乌派 | 史小翠另立门派、金乌克雪山的互证 | `design/17` §6.7 | 紫烟岛确址待考；不得合并进雪山派 |
 | `sect_xiakedao` | 侠客岛 | 铜牌、二使、腊八粥、石壁与终局 | `design/17` §9.11；`city_xiakedao` | 岛屿确址不可考，沿用近似小说锚点 |
@@ -1552,7 +1553,7 @@ next:
     surrender_leverage: q_06_main_z_09
 ```
 
-示例中的 `encounterKey` 只是任务侧语义键，不是正式 `enc_*` / `bsc_*` ID。白自在非致死 Boss 的遭遇与脚本若要实现，须由 `design/09` 或战斗数据按其归属新建、登记后，再把本字段迁为正式引用；本文不越权定义战斗对象。
+示例中的 `encounterKey` 只是任务侧语义键，不是正式 `enc_*` / `bsc_*` ID。**已解决：**白自在非致死脚本 `bsc_baizizai_lingxiao` 已在 `design/09` §14.2.1 登记；迁移 manifest 应把该语义键映射到既有脚本，不另建同义 Boss ID。其整场耐久与三阶段目标见 `chapters/06-xiake.md` §12.7.1；生产遭遇实例、失败转场与保护条件仍须按 `design/12` §2.6 完成构建与回放验证。
 
 ### 9.4 数据结构：选择节点 YAML 示例
 
@@ -1660,7 +1661,7 @@ saveBeforeCommit: true
 | 邪线 | `q_06_main_x_01`–`q_06_main_x_10` | 借名行局十幕 |
 | 选择节点 | `dc_06_01`–`dc_06_10` | 十个抉择；第八节点锁立场，第九节点锁天书轴 |
 
-`q_06_main_c/z/x_NN` 与 `dc_06_NN` 是 Canon v1.2 §12 已登记、由本文定义的稳定剧情 ID；生产任务仍须按 `design/12` §2.6 把选择节点映射为父任务阶段。四个结局仅用 §7 的中文局部组合名及 `(stance, anchor_06_variant)` 求值；正式 `end_*` 由 `design/13` 统一登记。白自在战斗只保留任务侧 `encounterKey`，正式遭遇 / Boss ID 归 `design/09` 或战斗数据。
+`q_06_main_c/z/x_NN` 与 `dc_06_NN` 是 Canon v1.2 §12 已登记、由本文定义的稳定剧情 ID；生产任务仍须按 `design/12` §2.6 把选择节点映射为父任务阶段。四个结局仅用 §7 的中文局部组合名及 `(stance, anchor_06_variant)` 求值；正式 `end_*` 由 `design/13` 统一登记。白自在的任务侧 `encounterKey` 映射既有 `bsc_baizizai_lingxiao`，见 `design/09` §14.2.1；本文不新建战斗 ID。
 
 #### 9.7.2 状态与策划术语
 
@@ -1785,7 +1786,7 @@ saveBeforeCommit: true
 | `docs/design/01-vision-and-core-loop.md` §7.7 | 玄铁令、长乐帮、凌霄城、赏善罚恶 / 腊八粥、太玄石壁五锚点 | §6 逐条同序实现；A05 改命只改传承，不改毁壁、岛主死亡与群雄归返 |
 | `docs/design/02-timeline-and-world-tiers.md` §4 | 本界前后各自书眠跨度与苏醒过场规则 | §7.8 只写引子，不重定义书眠算法 |
 | `docs/design/03-attributes.md`、`09-combat-system.md`、`05-martial-arts-system.md` | 品德、声望、战斗档位、武学发放边界 | 本文只给剧情变化与强度档位，不写战斗倍率或武学新定义 |
-| `docs/design/13-progression-and-endings.md` | `it_tianshu_06`、`tsp_06_canon`、`tsp_06_fate`、`lore +5` 与幂等结算 | §7.7 原样引用效果；旧的侠客改命叙述另列同步修正 |
+| `docs/design/13-progression-and-endings.md` | `it_tianshu_06`、`tsp_06_canon`、`tsp_06_fate`、`lore +5` 与幂等结算 | §7.7 原样引用效果；已解决：该文 §4.4、§6.5、§7.12 已统一为毁壁前保存互证记录，毁壁、岛主死亡与群雄归返不变 |
 | `docs/design/17-sects-compendium.md` | 本时代开放门派、职级和关系归属 | §8.3 只列参演门派，不重定义门派系统 |
 | `docs/design/18-npc-and-companions.md` 与 `catalog/npcs-ch06-xiake.md` | 26 名本书 NPC 的 ID、D 级、生卒与跨界口径 | §8.1 全量引用；建议等级待 NPC 数据定稿 |
 | 地图 `cities.yaml` / `regions.yaml` / `sects.yaml` / `routes.yaml` | 城市、区域、门派驻地和路线 ID | 新内容采用 `rg_zhedong`、`rg_nanhai_islands`；旧粗区只作底表别名，不作为新叙事 ID |
@@ -1799,7 +1800,7 @@ saveBeforeCommit: true
 |---|---|---|---|
 | P06-B01 | **已解决：**Canon v1.2 §12 已接纳书界主线分支键 `q_NN_main_{c,z,x}_nn` 与选择键 `dc_NN_nn`，运行时迁移见 `design/12` §2.6 | AR-10 所需的共享幕、双线同序号与独立选择节点已有统一规范 | 本文保留 `q_06_main_c/z/x_NN`、`dc_06_NN` 为正式稳定策划 ID |
 
-除此之外不申请改变 `docs/00-canon.md` 或 `design/01` 的五锚点事实；`design/13` 的侠客改命旧口径属于下游同步错误。
+除此之外不申请改变 `docs/00-canon.md` 或 `design/01` 的五锚点事实；**已解决：**原登记的 `design/13` 侠客改命叙述差异已在该文 §4.4、§6.5、§7.12 同步，不再作为未解决的规则冲突。
 
 #### 9.9.4 原著考据待办
 
@@ -1821,9 +1822,9 @@ saveBeforeCommit: true
 | O06-01 | 正邪改命是否共用同一个“记录至少三类”阈值？ | 是；两线都为四类取三，差别只在公开三派 / 秘密两保管者 | 若拆分，需重跑 P06-T003 / T004 / T010 |
 | O06-02 | 改命是否另耗修为余韵？ | 否；A05 只付奖励机会成本，梅芳姑若曾入队才按通用救援规则扣 2 点或记债 | 避免同一选择重复收费；若改，需同步 `design/13` |
 | O06-03 | 侍剑其他版本是否改写第 16 回死亡？ | 当前原著轴默认死亡，`dc_06_04` 有效提前保护才写 `fate_rescued`；不再使用“失踪”中间态 | 若纸本证实版本差异，只调整版本注记，不回溯破坏既有救援分支 |
-| O06-04 | 长乐帮总舵的地图驻地何时纠正？ | 原著第 15 回“镇江总舵”已核，剧情统一使用 `city_zhenjiang`；同步修正地图和门派文档，禁止继续以杭州作临时剧情导航 | 只改地图驻地与引用，不改任务图 |
+| O06-04 | 长乐帮总舵的地图驻地何时纠正？ | **已解决：**`design/map/sects.yaml` 与 `design/17` §8.3 已统一为 `city_zhenjiang`；剧情与章节均引用镇江府 | 保留原交办追溯；城内精确位置仍待考，不影响任务图 |
 | O06-05 | 凌霄城是否建立专用虚构地点 ID？ | 暂不新增；使用 `city_shigatse` 导航锚点 + 凌霄城叙事名 | 若地图文档新增专用 ID，应批量替换 §1、§3、§4、§6 |
-| O06-06 | 白自在凌霄城非致死 Boss 的正式遭遇 / 脚本如何实现？ | 本文只交付叙事键 `baizizai_lingxiao_nonlethal`；阶段表达压迫、错认、停战，失败转三证对照，不杀关键 NPC | 正式 `enc_*` / `bsc_*` 由 `design/09` 或战斗数据新建并登记，本文不越权命名或配数值 |
+| O06-06 | 白自在凌霄城非致死 Boss 的正式遭遇 / 脚本如何实现？ | **部分解决：**`bsc_baizizai_lingxiao` 已在 `design/09` §14.2.1 登记；叙事键 `baizizai_lingxiao_nonlethal` 映射该脚本，仍保持失败转三证对照、不杀关键 NPC | 默认使用既有脚本及 `chapters/06` §12.7.1 预算；生产遭遇实例、manifest、失败转场与保护条件的回放验证仍待完成，不另造同义 ID |
 | O06-07 | 跨书同伴名单如何在 47 年书眠后开放？ | 仅侍剑、梅芳姑走“改命后可”候选，仍由生卒、余韵和 `design/18` 全局规则二次筛选 | 不允许剧情文档绕过年龄 / 生卒自动携带 |
 | O06-08 | 赏善罚恶跨书界品德是否向玩家展示逐条账目？ | 默认只显示摘要和可申辩的关键条目，隐藏系统精确权重 | 完整算法与 UI 归 `chapters/06-xiake.md`，不在剧情文档重定义 |
 
@@ -1831,16 +1832,13 @@ saveBeforeCommit: true
 
 #### 9.9.6 需同步到其他文档
 
-本节只登记，不在本任务越权修改：
+本节保留历史交办并标明当前状态；写集外的实现与验证由归属任务承接：
 
-1. `docs/design/13-progression-and-endings.md` §4.4、§6.5、§7.12：把“改命让留岛掌门归返”等旧口径改为“毁壁、岛主死亡、群雄归返不变；仅保存多元、可互证且不构成完整秘籍的传承”。
-2. `docs/design/12-quests-npc-factions.md`：已形成统一任务 / 选择迁移契约；后续任务数据须按其 §2.6 吸收本文 §9.3–§9.5 的原子状态、超时回补和幂等结算语义。
-3. `docs/chapters/06-xiake.md`：主线章节只索引本文；实现石壁“不识字”解谜、赏善罚恶跨书界品德清算、支线与地图细节，不复制正邪主线定义。
-4. `docs/design/18-npc-and-companions.md` 与侠客行 NPC 目录：把侍剑改为“三联原著第 16 回死亡、提前保护可 `fate_rescued`”，核正妙谛 / 愚茶为三十余年前已赴岛的旧客，核正大悲老人发生于第 3 回；定稿 §8.2 的 46–55 招募等级。
-5. `docs/design/09-combat-system.md` 或战斗数据：为叙事键 `baizizai_lingxiao_nonlethal` 新建并登记正式遭遇 / Boss 脚本，定义失败转场和关键 NPC 保护规则。
-6. `docs/design/11-open-world.md`、`docs/design/map/sects.yaml`、`docs/design/17-sects-compendium.md`：把 `sect_changlebang` 驻地从 `city_hangzhou` 改为原著明确的镇江府 `city_zhenjiang`。
-
-
-
+1. **已解决：**`docs/design/13-progression-and-endings.md` §4.4、§6.5、§7.12 已采用“毁壁、岛主死亡、群雄归返不变；仅保存多元、可互证且不构成完整秘籍的传承”。该文 §4.4 的剧情锚点链接仍须从 `story/06` §6.2 校正为 §6.8。
+2. **规则已解决，生产验证保留：**`docs/design/12-quests-npc-factions.md` 已形成统一任务 / 选择迁移契约；后续任务数据须按其 §2.6 吸收本文 §9.3–§9.5 的原子状态、超时回补和幂等结算语义。
+3. **已解决：**`docs/design/chapters/06-xiake.md` §4 只索引主线，§6 承接四项事件的支线去向，§10 落盘石壁“不识字”解谜与赏善罚恶跨书界品德清算，§3 维护地图细节；原交办中的旧目录路径已改正。
+4. **人物口径已解决，生产定稿保留：**`docs/design/catalog/npcs-ch06-xiake.md` 已明确侍剑第 16 回 `dead/fate_rescued`、妙谛 / 愚茶为早年赴岛旧客、大悲老人在第 3 回交付泥人；见该名录人物行。`design/18` / NPC 生产数据仍须定稿 §8.2 的 46–55 建议招募等级、后界生卒与 appearance；指定版本逐字考据继续保留。
+5. **脚本登记已解决，生产验证保留：**`docs/design/09-combat-system.md` §14.2.1 已登记 `bsc_baizizai_lingxiao`；任务语义键映射既有脚本，生产实例、失败转场、关键 NPC 保护及完整固定 RNG 回放仍须落地。逐幕整场预算读取 `chapters/06-xiake.md` §12.7.1。
+6. **已解决：**`docs/design/map/sects.yaml` 的 `sect_changlebang.city_id` 与 `docs/design/17-sects-compendium.md` §8.3 均为镇江府 `city_zhenjiang`；`design/11` §3 的城市锚点也已有镇江，未见旧杭州驻地断言。
 
 
