@@ -1,0 +1,92 @@
+asset_id: prp_song_dali_bamboo
+era: song_dali
+placement_domain: land
+footprint_cells: {w: 1, h: 1}
+visual_bounds_m: {w: 2, d: 2, h: 3}
+collision: none
+projection_contract:
+  yaw_deg: 45
+  pitch_deg: 30
+  tile_px: [64, 32]
+  light: screen_upper_left
+  ground_shadow: separate_runtime_layer
+variants:
+- key: v01
+  file: prp_song_dali_bamboo__v01.png
+  size_px: [136, 190]
+  anchor_px: [68, 154]
+  status: candidate
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 190]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 19216
+    alpha_partial_pixels: 5996
+    alpha_opaque_pixels: 628
+    alpha_near_opaque_pixels: 2153
+    alpha_bbox: [8, 4, 128, 154]
+    transparent_margins_px: [8, 4, 8, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_bamboo__v01.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-8a647172-8deb-4cc7-abbe-941aefaf05af.png
+    source_sha256: 8825da34d2e7e4546174ec53df33e5a275bd37a25072b75e72415df42e074510
+    source_size: [1024, 1536]
+    crop_box: [112, 47, 970, 1115]
+    source_alpha_bbox: [0, 31, 1002, 1514]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 255
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.1404494382022472
+    rounded_effective_scale: [0.13986013986013987, 0.1404494382022472]
+    resized_size: [120, 150]
+    paste_offset: [8, 4]
+    source_measured_root_px: [539, 1109]
+    source_conservative_ground_y: 1115
+    transformed_measured_root_px: [67.7203, 153.1573]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [-0.2797, -0.8427]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  root_within_one_px: true
+- key: v02
+  file: prp_song_dali_bamboo__v02.png
+  size_px: [136, 190]
+  anchor_px: [68, 154]
+  status: candidate
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 190]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 16986
+    alpha_partial_pixels: 8071
+    alpha_opaque_pixels: 783
+    alpha_near_opaque_pixels: 4177
+    alpha_bbox: [12, 4, 129, 154]
+    transparent_margins_px: [12, 4, 7, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_bamboo__v02.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-4254dea1-1056-439c-99ed-99fdcdf87b63.png
+    source_sha256: 73b33ac37c3e939b066f6bd0f7dae20348c538f6560d29e1d461b153267f84d0
+    source_size: [1024, 1536]
+    crop_box: [82, 28, 979, 1175]
+    source_alpha_bbox: [33, 19, 1012, 1516]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 460
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.13077593722755013
+    rounded_effective_scale: [0.13043478260869565, 0.13077593722755013]
+    resized_size: [117, 150]
+    paste_offset: [12, 4]
+    source_measured_root_px: [512, 1169]
+    source_conservative_ground_y: 1175
+    transformed_measured_root_px: [68.087, 153.2153]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [0.087, -0.7847]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  root_within_one_px: true
+status: candidate
+release_ready: false
+runtime_note: PNG母版，prop/model公告板由TOWN-render构造；本轮未交GLB；植物Y与s为上游建议包络。

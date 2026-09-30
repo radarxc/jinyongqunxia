@@ -1,0 +1,245 @@
+{
+  "id": "bld_kit_song_dali_wangfu",
+  "type": "bld_kit_song_dali_wangfu",
+  "w": 18,
+  "h": 14,
+  "subject": "1093年大理国大理王府段氏宫室（建筑细部待考）",
+  "prompt": "Use case: style-transfer.\nAsset: a single transparent city-map building sprite for a realistic historical game.\nEdit target IMAGE 1: Dali kingdom Duan clan royal residence courtyard in 1093. Change its MATERIAL RENDERING AND PALETTE, retaining its entire architectural layout, rectangular 18 by 14 ground plan, front gate on the lower-left long wall, the present balanced 2:1 dimetric ground directions, 45 degree yaw / 30 degree pitch orthographic camera, vertical columns, relative building heights and complete silhouette.\nIMAGE 2 (Dali yamen) and IMAGE 3 (Dali manor) are the REQUIRED material and game-map style references. IMAGE 4 is an approved Song architectural baseline, ONLY for physically believable aged timber, gray clay tiles, rough stone and modest earth plaster; do NOT copy its landscape, perspective, temple subject or red color scheme.\nRe-render image 1 convincingly in the same restrained realistic historical environment style as images 2 and 3. Roofs must be matte, low-saturation neutral gray unglazed clay tile with natural irregular wear, NOT blue glossy rows. Columns, beams and doors must be dark natural weathered brown timber, subtle visible grain, NOT bright orange or golden wood. Walls must be rough warm-gray earthen lime plaster with muted stone foundations, lightly weathered and maintained. Courtyard paving must be uneven natural gray stones, subtle soil in joints, no regular gleaming ivory tile floor. No bright contours or illustrated outlines, no shining white rim on every tile, no plastic, no toy, no miniature model, no tabletop, no glossy 3D render, no oversharpened HDR.\nReduce ornamental flowers to sparse subdued camellia shrubs with deep muted green leaves and a few small dusty red blooms. No neon yellow leaves, no bright flowerbed edging, no dense candy-colored garden. Preserve dignified broad rear reception hall, side wings and courtyard enclosure; architecture is original historical concept, not a reconstruction claim.\nLight must remain soft natural upper-left daylight with short contact shadows to lower right. Natural low contrast, enough readable ambient shadow under eaves. Realistic matte microtexture, no blur or tilt-shift.\nGround base remains a THIN contact polygon, not thick pedestal. 18m long edge descends screen-right with slope +0.5, 14m short edge ascends screen-right with slope -0.5; no perspective convergence, no in-plane rotation. Keep the three visible ground contact corners clear. Keep entire roof, shrubs and ground edges intact with generous genuine transparent padding on ALL sides.\nOutput one isolated opaque building on true transparent RGBA background, landscape 1536x1024. No scenery, sky, gradient halo, fake checkerboard, cast-background shadow, floor outside footprint, people, text, signs, lettering, watermark, grid, modern objects, Qing imperial ornaments or golden roofs.",
+  "negative": "文字、水印、现代物、人物、背景、厚底台、亮橙柱、蓝亮瓦、描边、塑料/卡通/微缩模型、鲜亮花木、透视汇聚、裁切",
+  "references": [
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_pre_review3.png",
+      "input_file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/bld_kit_song_dali_wangfu.png",
+      "sha256": "408e10d7a115772a6eafbe0d3998f4d55a711aaa98e937185e41f2377f186c68",
+      "role": "编辑目标；只保留院落与占地方向，旧材质已淘汰",
+      "status": "rejected"
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "input_file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef",
+      "role": "同批通过审核的大理衙门；灰瓦、粗糙土石与木材参考",
+      "status": "candidate"
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_manor.png",
+      "input_file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/bld_kit_song_dali_manor.png",
+      "sha256": "5b8d9b6ccd2c961ee9579ba01b3e2dc7199af55e9261eb6b6eb16ed76c11a741",
+      "role": "同批通过审核的大理庄园；自然木色、旧瓦与克制花木参考",
+      "status": "candidate"
+    },
+    {
+      "file": "assets/default/baseline/building/ref_sect_shaolin__ch01_base01.png",
+      "input_file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building/ref_sect_shaolin__ch01_base01.png",
+      "sha256": "b109e6d771320b80f97750d1fc612f1a26f1da1e8bd5d5d0baca7c27cffa256f",
+      "role": "approved宋构基线；仅物理材质，不继承摄影透视或寺院题材",
+      "status": "approved"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f219-d94c-78f3-ad95-eed4ff5f1800/exec-7901b0d9-22f3-4d89-9806-84ad42d493c8.png",
+  "source_sha256": "03e1af736dd0242c0b44bce0541a0b1516d09b54b765c1d81edaac8b267c9a39",
+  "created": "2026-09-30T11:40:49.890272+00:00",
+  "visual_review": "第3次运行主代理及独立复核：旧版亮橙柱、蓝灰亮瓦、硬描边和鲜亮花木已淘汰；新图哑光棕木、低饱和灰陶瓦、粗糙土石墙及克制暗绿山茶与大理衙门/庄园材质一致，宋构approved基线仅作材质参考。主体完整，左上光/右下接触影，无字无人无现代物；右轴strict残差保留，形制待考，仍candidate。",
+  "candidate_count": 9,
+  "discarded_candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-6193349b-a236-425b-bdc5-a34ea436744e.png",
+      "prompt": "undefinedA Dali Duan clan royal residence module, modest but dignified palace courtyard. One broad rear timber reception hall on shallow stone steps, paired small side wings, low plain enclosure and south entrance pavilion. Dark gray restrained hipped roofs, faded vermilion posts, light earth-colored walls, subtle small lotus relief at doorway without lettering. Sparse camellia within court. No golden Forbidden City roofs, no fantasy or monumental modern reconstruction. Footprint 18m east-west by14m north-south.",
+      "reason": "公共提示读取失败，生成继承少林参考的山景与低视角；已逐张view_image原图确认淘汰",
+      "source_sha256": "243c4794469735ccdbcc48a87aba8113d2e54e77acdc93d19b58752dcdc8d3fb"
+    },
+    {
+      "phase": "review2",
+      "attempt": 1,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wangfu_review2_attempt01.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-a5fb1c68-c688-49c1-8e28-00ba3fcd8bf8.png",
+      "source_sha256": "4518e10f44ff832afaf09c974c2cec6db667ba4d13e5066106907ea69816af10",
+      "reason": "两轴仍不对称约+0.435/-0.579，淘汰",
+      "prompt": "Use case: precise-object-edit. Repair the attached Dali palace compound sprite for a city-map. Preserve warm cream walls, gray tiles, dark timber, modest grand timber hall, enclosed court, camellia shrubs, upper-left lighting and transparent background. The original is drawn with skewed unequal projection axes. REDRAW the ENTIRE architecture in true ORTHOGRAPHIC 2:1 dimetric with the same +0.5 and -0.5 ground slopes; keep verticals exactly vertical. Its rectangular footprint is 18 by 14 units. At canvas1536x1024 the thin ground contact polygon corners must be LEFT(160,540), FRONT(844,882), RIGHT(1376,616), BACK(692,274). LEFT->FRONT vector(684,342), FRONT->RIGHT vector(532,-266). Thus left-to-front edge is 1.286 times front-to-right, while both have 26.565-degree screen slope. Make these three front ground corners plainly visible with straight stone edging. All walls and roof eaves parallel their correct axes, no perspective convergence and no rotation error. Entrance in left-to-front wall. Restrained Dali kingdom palace of 1093, Song-era visual language, not a vast imperial palace; keep courtyard and vegetation within rectangle. OPAQUE structure with TRUE TRANSPARENT RGBA backdrop, no horizon, no aura, no extra terrain. Whole sprite within margins, not cropped. No text, characters, signs, grid, people, watermark, modern objects. Exactly one repaired sprite."
+    },
+    {
+      "phase": "review2",
+      "attempt": 2,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wangfu_review2_attempt02.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-f54c078d-f499-4c5d-99d9-1cb2011a0459.png",
+      "source_sha256": "9319d8ea20b87443c5d4e1f6851cec2608901ce89cb715f285f2e48e47d1a481",
+      "reason": "两轴仍不对称约+0.484/-0.606，淘汰",
+      "prompt": "Use case: sketch-to-render. IMAGE1 IS THE EXACT GROUND FOOTPRINT GEOMETRY TO FOLLOW. IMAGE2 is ONLY material/architecture reference; its camera angle is WRONG. On precisely the four-corner gray parallelogram of image1, build the 1093 Dali royal residence compound inspired by image2: modest rear single story timber hall, side wings, low cream walls, gray tiled roof, front gate, stone courtyard, few camellia shrubs. Every wall FOOT must follow the red/blue perimeter of image1 exactly; keep same corners and angles. Red lines are +0.5 and -0.5 ground axes, NOT angled like image2. A true 18x14 rectangular plan in 2:1 dimetric orthographic, front gate along lower-left long edge. All eaves, roof ridges, and court pavements must follow geometry1 too. Keep base thin and flush. Don't let reference2 camera contaminate this angle! Materials realistic subdued gray/weathered wood/cream, upper-left illumination. Final output is isolated opaque building on TRUE TRANSPARENT RGBA. Remove the guideline lines, colored dots, gray planar placeholder and white backdrop; replace plane with natural stone/earth courtyard rectangle and clean stone edge. No text, watermarks, people, modern elements, extra terrain, crop or thick base. Entire sprite well inside canvas."
+    },
+    {
+      "phase": "review2",
+      "attempt": 3,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wangfu_review2_attempt03.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-da5fee1d-92da-4bf9-92a7-df4cb9074ca8.png",
+      "source_sha256": "76c433796becba6b48c2d1a461ad5282a8c329015d98a1e09d7cc4206bcd09b7",
+      "reason": "两轴仍不对称约+0.470/-0.570，淘汰",
+      "prompt": "Use case: sketch-to-render. Treat supplied diamond as a CAD ground plan and render exactly on it a modest Dali kingdom royal residence in 1093. Keep the four ground footprint corners EXACTLY fixed. THE TWO FRONT EDGES ARE EQUALLY STEEP, slope +0.5 and -0.5. Ground corners LEFT(160,540), FRONT(844,882), RIGHT(1376,616), BACK(692,274); 18x14 rectangular plan. No perspective. Vertical columns vertical. Low perimeter walls follow these four precise edges; gate in LEFT-FRONT wall, single-story timber main hall along rear edge, small side pavilions, open stone courtyard with camellias. Grey tiled roofs, pale cream clay-plaster walls, dark aged wooden columns, modest Buddhist architectural details. Detailed realistic painted game map sprite, tasteful low-saturation historic Chinese architecture, no ornate imperial grandeur. Illumination upper left. True TRANSPARENT background, opaque structure. Replace diagram colors with real stone courtyard ground and buildings; no white background, red/blue lines or dots should remain. The floor must have exactly the input outline, thin stone border without thick platform. The entire compound and roofs remain within canvas margins, no extra terrain, people, writing, plaques, text, modern elements, watermark."
+    },
+    {
+      "phase": "review2",
+      "attempt": 4,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wangfu_review2_attempt04.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-23e825e8-9af4-46b9-923d-b43b120a2293.png",
+      "source_sha256": "c2dd3c7120bd1ffe7579b22919134748907115c2c9b7806b3ae6dfe849c2a59c",
+      "reason": "双轴协调但整体过陡约+0.580/-0.600，择后续更贴网格者",
+      "prompt": "Precise camera correction of the supplied Dali palace city-map sprite. Keep building design and materials and 18 by14 plan. Current ground edges have slopes approximately +0.47 and -0.57; they must become +0.50 and -0.50. ORBIT THE CAMERA SLIGHTLY CLOCKWISE around the building to balance those edges; screen-left/front wall must become visibly STEEPER and screen-right/front wall must become SHALLOWER. Do not rotate the finished image: all vertical columns must stay exactly vertical. Reproject/redraw walls, roofs and paving coherently so both ground directions make the same 26.565 degree absolute screen angle. The front-left edge should have horizontal projection 1.286 times the front-right edge. Clean rectangular stone contact footprint, no thick base. Upper-left light. Whole sprite with transparent margin. TRUE RGBA transparent background, no extra scenery, no persons or text or watermarks. Return the same palace viewed from the precisely corrected 45degree yaw, 30degree elevation orthographic map camera."
+    },
+    {
+      "phase": "review2",
+      "attempt": 5,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wangfu_review2_attempt05.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-146f3b74-3020-42a0-b849-4b49a78401c5.png",
+      "source_sha256": "f53e60430aa2f43239800329942c81c90f1071d6b8aaa59f59fe2be1c26d7b8c",
+      "reason": "右轴仍较陡约+0.521/-0.579，淘汰",
+      "prompt": "Edit target: the attached modest Dali palace. Keep architecture, vegetation and lighting. Change ONLY the camera geometry: LOWER the camera elevation to make the ground much FLATTER by about 15%. Current front ground slopes are roughly 0.58/0.60 and they must be exactly0.50/0.50. In screen space ground pixels: left corner (140,550), front corner (860,910), right corner (1420,630), back corner (700,270). Left-to-front must drop360 for720 across; front-to-right must rise280 for560 across. Straight two front perimeter wall-foot edges coincide exactly with those lines; all horizontal building edges and paving use matching directions. Keep verticals vertical. Plan18x14, left-to-front facade wider than front-to-right side by1.286. This is a 2:1 DIMETRIC grid, not30-degree isometric, no perspective. Thin stone contact border, generous padding. Full building on genuine transparent RGBA, opaque building. No text/people/grid/modern/watermark. IMPORTANT: flatter camera is the sole correction; visibly reduce apparent ground depth while retaining facade architecture and no pixel warping."
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        29,
+        559
+      ],
+      [
+        871,
+        998
+      ]
+    ],
+    [
+      [
+        871,
+        998
+      ],
+      [
+        1515,
+        648
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      29,
+      559
+    ],
+    "front": [
+      871,
+      998
+    ],
+    "right": [
+      1515,
+      648
+    ]
+  },
+  "projection_review": "第3次运行读可见外石沿接地点±3px；保留原18×14及长短边方向，右轴略陡仍触发strict告警；不以理想点代替实测，不warp。",
+  "status": "candidate",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      254
+    ],
+    "transparent_pixels": 801610,
+    "partial_pixels": 771254,
+    "opaque_pixels": 0,
+    "bbox": [
+      24,
+      30,
+      1521,
+      1006
+    ]
+  },
+  "candidate_history": [
+    {
+      "phase": "pre_review2",
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wangfu_pre_review2.png",
+      "source_record": "sources/rejected/bld_kit_song_dali_wangfu_pre_review2.json",
+      "source_sha256": "2581e87b26bb68b2c62436d70930d2d1f2be320f41ec81f1e94ec210bf752117",
+      "reason": "合入前审核点名底面宽深比例或两轴不协调，见返修意见；原图和记录逐字节保留。"
+    },
+    {
+      "phase": "review2",
+      "attempt": 1,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wangfu_review2_attempt01.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-a5fb1c68-c688-49c1-8e28-00ba3fcd8bf8.png",
+      "source_sha256": "4518e10f44ff832afaf09c974c2cec6db667ba4d13e5066106907ea69816af10",
+      "reason": "两轴仍不对称约+0.435/-0.579，淘汰"
+    },
+    {
+      "phase": "review2",
+      "attempt": 2,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wangfu_review2_attempt02.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-f54c078d-f499-4c5d-99d9-1cb2011a0459.png",
+      "source_sha256": "9319d8ea20b87443c5d4e1f6851cec2608901ce89cb715f285f2e48e47d1a481",
+      "reason": "两轴仍不对称约+0.484/-0.606，淘汰"
+    },
+    {
+      "phase": "review2",
+      "attempt": 3,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wangfu_review2_attempt03.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-da5fee1d-92da-4bf9-92a7-df4cb9074ca8.png",
+      "source_sha256": "76c433796becba6b48c2d1a461ad5282a8c329015d98a1e09d7cc4206bcd09b7",
+      "reason": "两轴仍不对称约+0.470/-0.570，淘汰"
+    },
+    {
+      "phase": "review2",
+      "attempt": 4,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wangfu_review2_attempt04.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-23e825e8-9af4-46b9-923d-b43b120a2293.png",
+      "source_sha256": "c2dd3c7120bd1ffe7579b22919134748907115c2c9b7806b3ae6dfe849c2a59c",
+      "reason": "双轴协调但整体过陡约+0.580/-0.600，择后续更贴网格者"
+    },
+    {
+      "phase": "review2",
+      "attempt": 5,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wangfu_review2_attempt05.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-146f3b74-3020-42a0-b849-4b49a78401c5.png",
+      "source_sha256": "f53e60430aa2f43239800329942c81c90f1071d6b8aaa59f59fe2be1c26d7b8c",
+      "reason": "右轴仍较陡约+0.521/-0.579，淘汰"
+    },
+    {
+      "phase": "review2",
+      "attempt": 6,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wangfu_pre_review3.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-82f3a5ab-73a4-464c-bed6-0ac70bf732d7.png",
+      "source_sha256": "408e10d7a115772a6eafbe0d3998f4d55a711aaa98e937185e41f2377f186c68",
+      "reason": "第2轮审核：蓝灰亮瓦、橙黄木柱、描边及鲜亮花木造成模型感；本轮材质返修淘汰。"
+    },
+    {
+      "phase": "review3",
+      "attempt": 1,
+      "status": "selected",
+      "source_archive": "sources/bld_kit_song_dali_wangfu.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f219-d94c-78f3-ad95-eed4ff5f1800/exec-7901b0d9-22f3-4d89-9806-84ad42d493c8.png",
+      "source_sha256": "03e1af736dd0242c0b44bce0541a0b1516d09b54b765c1d81edaac8b267c9a39",
+      "reason": "材质专项复核入选；旧版风格淘汰原因及原始记录见pre_review3归档。"
+    }
+  ],
+  "review3": {
+    "calls": 1,
+    "selected_new": 1,
+    "rejected_new": 0,
+    "replaced_previous": 1,
+    "previous_source_record": "sources/rejected/bld_kit_song_dali_wangfu_pre_review3.json",
+    "previous_final": "review3/before-bld_kit_song_dali_wangfu.png",
+    "source_center_px": [
+      772.0,
+      603.5
+    ]
+  }
+}

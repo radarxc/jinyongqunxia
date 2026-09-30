@@ -1,0 +1,81 @@
+id: bld_kit_song_southern_courtyard
+status: candidate
+building:
+  type: bld_kit_song_southern_courtyard
+  footprint: [10, 8]
+  anchor: &id001 [414.9635, 379.0383]
+  era: song_southern
+anchor_px: *id001
+footprint_m: [10, 8]
+logical_footprint_polygon_px:
+- [126.96350000000001, 363.0383]
+- [446.9635, 523.0382999999999]
+- [702.9635000000001, 395.0383]
+- [382.9635, 235.0383]
+collision_polygon_m:
+- [0, 0]
+- [10, 0]
+- [10, 8]
+- [0, 8]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [123, 118]
+- [707, 118]
+- [707, 545]
+- [123, 545]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 6.66
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 4}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_southern_courtyard.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [576, 288]
+  ground_width_px: 576
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [80, 675]
+    front: [727, 1047]
+    right: [1328, 702]
+  source_axis_slopes: [0.5749613601236476, -0.5740432612312812]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.076539101497504
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.1387687188019967
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [800, 640]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 367709
+  alpha_partial_pixels: 143481
+  alpha_opaque_pixels: 810
+  alpha_near_opaque_pixels: 140517
+  alpha_nonzero_bbox: [120, 116, 709, 548]
+  transparent_margins_px: [120, 116, 91, 92]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_southern_courtyard.png
+  source_sha256: c85c4360e1fa1856e703663effb8be33cc89b41c6cec25a397abd883d1405ba0
+  source_size: [1402, 1122]
+  crop_box: [0, 51, 1341, 1070]
+  uniform_scale_requested: 0.46153846153846156
+  resized_size: [619, 470]
+  rounded_effective_scale: [0.4615958240119314, 0.46123650637880276]
+  paste_offset: [90, 85]
+  final_file: bld_kit_song_southern_courtyard.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

@@ -1,0 +1,40 @@
+[
+  {
+    "id": "bld_kit_song_southern_stable",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f1df-e5c8-76a2-80ad-599db032c5ae/exec-a4ef1b3a-e0be-4a14-908f-3c2b3a1ab00f.png",
+    "prompt": "Use case: sketch-to-render. Input is geometry-only reference for the ground. Construct one Southern Song Lin'an horse stable,1223, onto the exact grid parallelogram. Keep the ground outline's two axes and proportions immovable; left to front edge9 cells and front to right7 cells. Ground slopes must be +0.500 and -0.500,2:1 DIMETRIC orthographic yaw45 elevation30, no perspective. Replace the entire grid with realistic thin stone and earth stable ground, stable fully contained on that 9x7 rectangle. Open timber stalls face lower-left long edge. Compact BROAD fairly deep stable, not an elongated narrow shed: simple handmade gray tiled gable roof, rough wooden beams and posts, shallow plaster rear wall, low wooden stall dividers, a stone trough, straw and wicker baskets. No animals or people. Full structure and eaves,10% empty transparent margin. Render historical realistic weathered natural materials, muted warm stone earth timber, upper-left screen light with short lower-right contact shadows. All blue grid lines, orange lines and white backdrop must disappear. True TRANSPARENT RGBA cutout, opaque structural interiors, no halo. No lettering, numbers, plaques, flags, signs, diagrams, coordinates, modern objects, watermarks, landscapes, mountains, sky. Only complete standalone isometric stable with clear rectangular ground footprint aligned exactly to input outline.",
+    "reason": "马厩仍偏狭长、右轴偏浅，未采用。",
+    "ref": "guide",
+    "selected": false,
+    "sequence": 4,
+    "saved_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_stable_review2_4.png",
+    "source_sha256": "167802714c7318f6a7d745b23d773b4596d4ddba7c1f3bfd1b57162975602a83",
+    "references": [
+      {
+        "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/review2/southern_stable_geometry_guide.png",
+        "sha256": "813420415ee6a687cc80a794253f06b3812c60f540a4cbf82879b805138810a1",
+        "role": "占地线框几何参考；不作资产像素合成"
+      }
+    ],
+    "selection": "unselected"
+  },
+  {
+    "id": "bld_kit_song_southern_stable",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f1df-e5c8-76a2-80ad-599db032c5ae/exec-4045fe6a-22a3-4e11-a7b1-17034b15c3fe.png",
+    "prompt": "Use case: sketch-to-render. Reference shows exact footprint to occupy. Create a COMPACT, DEEP, nearly-square Chinese Southern Song stable with ONLY THREE front stall bays, each stall extending far backwards, plus a small open stone forecourt. Width9 metres and depth7 metres, ratio1.286. No very long roof, no fourth bay. Left-facing facade only slightly longer than right-facing side. CAMERA orthographic dimetric with BOTH ground edges exactly26.565degrees, slope+.500/-.500, no perspective. Trace reference footprint angles and proportions, do not alter. Realistic historic game sprite, Lin'an1223: handmade gray tiled simple gable roof, weathered timber posts/rails, plaster right side wall, some straw in stalls, one stone trough. Left-up screen light, short contact shadow lower-right. Flat rectangular ground base with all three visible ground CONTACT corners unobstructed, regular clean perimeter and very thin foundation. Centered entire uncropped standalone structure with transparent margins, TRUE transparent RGBA outside structure. Remove every guideline/grid and white background from reference. No people, horses, text, numbers, letters, banners, signs, modern elements, elaborate palace ornaments, thick diorama base, sky, landscape, big cast shadows. The roof and foundation must BOTH obey the broad deep9x7 proportion and TWO IDENTICAL axis angles.",
+    "reason": "入选：宽深恢复、双轴协调，原图已view_image与灰底alpha合成复核。",
+    "ref": "guide",
+    "selected": true,
+    "sequence": 5,
+    "saved_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/bld_kit_song_southern_stable.png",
+    "source_sha256": "e2e588576cc298c0046e2fe4b5b424c61ee1fedfe9bb35308510c8d301a3810b",
+    "references": [
+      {
+        "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/review2/southern_stable_geometry_guide.png",
+        "sha256": "813420415ee6a687cc80a794253f06b3812c60f540a4cbf82879b805138810a1",
+        "role": "占地线框几何参考；不作资产像素合成"
+      }
+    ],
+    "selection": "selected"
+  }
+]

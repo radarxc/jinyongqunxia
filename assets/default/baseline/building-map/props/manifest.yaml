@@ -1,0 +1,1006 @@
+- id: prp_song_dali_camellia__v01
+  asset_id: prp_song_dali_camellia
+  variant_key: v01
+  file: prp_song_dali_camellia__v01.png
+  category: prop
+  style: default
+  subject: 山茶花丛 · 疏花（原创植物意象，历史栽植待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated botanical PROP SPRITE for a realistic ancient Dali kingdom1093 isometric game. Botanical
+    silhouette is an original regional impression, not a claim of exact historical species. True transparent RGBA image; empty background and
+    leaf gaps must be alpha0. Camera orthographic yaw45 degrees and elevation30 degrees, natural three-dimensional plant volume, upright stem.
+    Realistic leaves and bark with muted natural color and fine material texture, softly lit from SCREEN UPPER LEFT. No cast shadow, no contact
+    shadow, no ambient halo, no ground patch, no soil ball, no dirt, no stone base, no planter, no pot, no landscape, no architecture, no text,
+    no letters, no watermarks, no people, no modern objects. Complete crown and all leaf tips must stay fully inside canvas with generous15% clear
+    transparent margin. Plant is rooted at ONE small central origin on a horizontal contact line near lower-middle of canvas; bottom trunk/stems
+    stop cleanly at the ground contact line, no exposed roots, soil or root ball, nothing and NO shadow extends below that line. This is one isolated
+    plant object, not a scene or a cluster of separate plants. The lower quarter of the image is entirely transparent. A single modest camellia
+    shrub, height1.5m, visual canopy diameter2m, dense glossy dark green oval leaves but only FOUR small muted red blossoms scattered sparsely
+    through crown. Branching from one low woody central stem. Wide but natural silhouette. No ornamental pot, no flower bed.'
+  negative: 背景、地台、土团、盆器、景观、文字、水印、现代物、人物、地面投影、枝叶裁切、根线下实物
+  references: []
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:24:05.483165+00:00'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-02e3fdc8-3e84-49d1-b43c-7184ef262833.png
+  source_sha256: b1f37ae774d438bfceb4a387e955fb38caba7875a75f987b16cb9bccb204bb58
+  source_record: sources/prp_song_dali_camellia__v01.json
+  size: 136x131
+  sha256: b89d105e0ab01618bc5d2471d45912ffbced8ad50309028ef06145fceb238536
+  status: candidate
+  anchor_px: [68, 95]
+  metadata: meta/prp_song_dali_camellia.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 131]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 11077
+    alpha_partial_pixels: 6063
+    alpha_opaque_pixels: 676
+    alpha_near_opaque_pixels: 4962
+    alpha_bbox: [9, 13, 132, 95]
+    transparent_margins_px: [9, 13, 4, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_camellia__v01.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-02e3fdc8-3e84-49d1-b43c-7184ef262833.png
+    source_sha256: b1f37ae774d438bfceb4a387e955fb38caba7875a75f987b16cb9bccb204bb58
+    source_size: [1536, 1024]
+    crop_box: [174, 16, 1377, 818]
+    source_alpha_bbox: [0, 18, 1530, 1024]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 617
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.10256410256410256
+    rounded_effective_scale: [0.10224438902743142, 0.10224438902743142]
+    resized_size: [123, 82]
+    paste_offset: [9, 13]
+    source_measured_root_px: [753, 812]
+    source_conservative_ground_y: 818
+    transformed_measured_root_px: [68.1995, 94.3865]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [0.1995, -0.6135]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 1
+  notes: 已view_image(detail=original)，完整单株，无地台、土球、盆器或烘焙地面影；山茶疏花/密花可辨，叶隙有透明。真实根以下存在极低alpha远端噪点，需保留原图并只按主代理规则做纯矩形透明边修整。近似斜视，不宣称植物角度可精确测至度。 只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。
+- id: prp_song_dali_camellia__v02
+  asset_id: prp_song_dali_camellia
+  variant_key: v02
+  file: prp_song_dali_camellia__v02.png
+  category: prop
+  style: default
+  subject: 山茶花丛 · 密花（原创植物意象，历史栽植待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated botanical PROP SPRITE for a realistic ancient Dali kingdom1093 isometric game. Botanical
+    silhouette is an original regional impression, not a claim of exact historical species. True transparent RGBA image; empty background and
+    leaf gaps must be alpha0. Camera orthographic yaw45 degrees and elevation30 degrees, natural three-dimensional plant volume, upright stem.
+    Realistic leaves and bark with muted natural color and fine material texture, softly lit from SCREEN UPPER LEFT. No cast shadow, no contact
+    shadow, no ambient halo, no ground patch, no soil ball, no dirt, no stone base, no planter, no pot, no landscape, no architecture, no text,
+    no letters, no watermarks, no people, no modern objects. Complete crown and all leaf tips must stay fully inside canvas with generous15% clear
+    transparent margin. Plant is rooted at ONE small central origin on a horizontal contact line near lower-middle of canvas; bottom trunk/stems
+    stop cleanly at the ground contact line, no exposed roots, soil or root ball, nothing and NO shadow extends below that line. This is one isolated
+    plant object, not a scene or a cluster of separate plants. The lower quarter of the image is entirely transparent. A single camellia shrub,
+    height1.5m, visual canopy diameter2m, glossy dark green oval foliage with many small muted crimson blossoms distributed densely but naturally.
+    Branching from one low woody central stem. Rounded crown, leaves visible between flowers, no ornamental pot, no flower bed.'
+  negative: 背景、地台、土团、盆器、景观、文字、水印、现代物、人物、地面投影、枝叶裁切、根线下实物
+  references: []
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:24:50.488314+00:00'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-d53378c6-e3f7-4724-93e4-f7de5473ae80.png
+  source_sha256: a9b3dbb1e2807398100b037d3ca6a7326d3e8921ccd1864615c0fbfd3e7cb4f9
+  source_record: sources/prp_song_dali_camellia__v02.json
+  size: 136x131
+  sha256: 0ed9884f456af785b40361033f7794f8ef41f8d2f969948637cdd273228b4121
+  status: candidate
+  anchor_px: [68, 95]
+  metadata: meta/prp_song_dali_camellia.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 131]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 10761
+    alpha_partial_pixels: 6564
+    alpha_opaque_pixels: 491
+    alpha_near_opaque_pixels: 5407
+    alpha_bbox: [8, 4, 128, 95]
+    transparent_margins_px: [8, 4, 8, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_camellia__v02.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-d53378c6-e3f7-4724-93e4-f7de5473ae80.png
+    source_sha256: a9b3dbb1e2807398100b037d3ca6a7326d3e8921ccd1864615c0fbfd3e7cb4f9
+    source_size: [1312, 1199]
+    crop_box: [23, 26, 1283, 974]
+    source_alpha_bbox: [26, 17, 1298, 1199]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 712
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.09599156118143459
+    rounded_effective_scale: [0.09523809523809523, 0.09599156118143459]
+    resized_size: [120, 91]
+    paste_offset: [8, 4]
+    source_measured_root_px: [653, 967]
+    source_conservative_ground_y: 974
+    transformed_measured_root_px: [68.0, 94.3281]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [0.0, -0.6719]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 1
+  notes: 已view_image(detail=original)，完整单株，无地台、土球、盆器或烘焙地面影；山茶疏花/密花可辨，叶隙有透明。真实根以下存在极低alpha远端噪点，需保留原图并只按主代理规则做纯矩形透明边修整。近似斜视，不宣称植物角度可精确测至度。 只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。
+- id: prp_song_dali_bamboo__v01
+  asset_id: prp_song_dali_bamboo
+  variant_key: v01
+  file: prp_song_dali_bamboo__v01.png
+  category: prop
+  style: default
+  subject: 大理竹丛 · 疏枝（原创植物意象，历史栽植待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated botanical PROP SPRITE for a realistic ancient Dali kingdom1093 isometric game. Botanical
+    silhouette is an original regional impression, not a claim of exact historical species. True transparent RGBA image; empty background and
+    leaf gaps must be alpha0. Camera orthographic yaw45 degrees and elevation30 degrees, natural three-dimensional plant volume, upright stem.
+    Realistic leaves and bark with muted natural color and fine material texture, softly lit from SCREEN UPPER LEFT. No cast shadow, no contact
+    shadow, no ambient halo, no ground patch, no soil ball, no dirt, no stone base, no planter, no pot, no landscape, no architecture, no text,
+    no letters, no watermarks, no people, no modern objects. Complete crown and all leaf tips must stay fully inside canvas with generous15% clear
+    transparent margin. Plant is rooted at ONE small central origin on a horizontal contact line near lower-middle of canvas; bottom trunk/stems
+    stop cleanly at the ground contact line, no exposed roots, soil or root ball, nothing and NO shadow extends below that line. This is one isolated
+    plant object, not a scene or a cluster of separate plants. The lower quarter of the image is entirely transparent. One SMALL BAMBOO PLANT
+    object, height3m and foliage width2m, one primary slender jointed culm with just a few connected shoots at the same tiny base, sparse airy
+    pointed leaves, transparent gaps between branches. Gently asymmetric narrow silhouette, no separate clumps or forest.'
+  negative: 背景、地台、土团、盆器、景观、文字、水印、现代物、人物、地面投影、枝叶裁切、根线下实物
+  references: []
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:25:32.903548+00:00'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-8a647172-8deb-4cc7-abbe-941aefaf05af.png
+  source_sha256: 8825da34d2e7e4546174ec53df33e5a275bd37a25072b75e72415df42e074510
+  source_record: sources/prp_song_dali_bamboo__v01.json
+  size: 136x190
+  sha256: a51dd54d778a4503a4ae97fde74447ce8ab180edfddac5a7ad5628b6d4adb774
+  status: candidate
+  anchor_px: [68, 154]
+  metadata: meta/prp_song_dali_bamboo.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 190]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 19216
+    alpha_partial_pixels: 5996
+    alpha_opaque_pixels: 628
+    alpha_near_opaque_pixels: 2153
+    alpha_bbox: [8, 4, 128, 154]
+    transparent_margins_px: [8, 4, 8, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_bamboo__v01.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-8a647172-8deb-4cc7-abbe-941aefaf05af.png
+    source_sha256: 8825da34d2e7e4546174ec53df33e5a275bd37a25072b75e72415df42e074510
+    source_size: [1024, 1536]
+    crop_box: [112, 47, 970, 1115]
+    source_alpha_bbox: [0, 31, 1002, 1514]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 255
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.1404494382022472
+    rounded_effective_scale: [0.13986013986013987, 0.1404494382022472]
+    resized_size: [120, 150]
+    paste_offset: [8, 4]
+    source_measured_root_px: [539, 1109]
+    source_conservative_ground_y: 1115
+    transformed_measured_root_px: [67.7203, 153.1573]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [-0.2797, -0.8427]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 1
+  notes: 已逐张view_image原图：完整单株/同源竹枝，无地台、盆器、土团或投影；竹疏密、树窄圆冠可辨，叶隙有透明，光从左上。真实根以下仅边缘抗锯齿及低alpha噪点，交root纯矩形透明边裁整；不宣称精确测角通过。 只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。
+- id: prp_song_dali_bamboo__v02
+  asset_id: prp_song_dali_bamboo
+  variant_key: v02
+  file: prp_song_dali_bamboo__v02.png
+  category: prop
+  style: default
+  subject: 大理竹丛 · 密枝（原创植物意象，历史栽植待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated botanical PROP SPRITE for a realistic ancient Dali kingdom1093 isometric game. Botanical
+    silhouette is an original regional impression, not a claim of exact historical species. True transparent RGBA image; empty background and
+    leaf gaps must be alpha0. Camera orthographic yaw45 degrees and elevation30 degrees, natural three-dimensional plant volume, upright stem.
+    Realistic leaves and bark with muted natural color and fine material texture, softly lit from SCREEN UPPER LEFT. No cast shadow, no contact
+    shadow, no ambient halo, no ground patch, no soil ball, no dirt, no stone base, no planter, no pot, no landscape, no architecture, no text,
+    no letters, no watermarks, no people, no modern objects. Complete crown and all leaf tips must stay fully inside canvas with generous15% clear
+    transparent margin. Plant is rooted at ONE small central origin on a horizontal contact line near lower-middle of canvas; bottom trunk/stems
+    stop cleanly at the ground contact line, no exposed roots, soil or root ball, nothing and NO shadow extends below that line. This is one isolated
+    plant object, not a scene or a cluster of separate plants. The lower quarter of the image is entirely transparent. One SMALL BAMBOO PLANT
+    object, height3m and foliage width2m, primary jointed culm and closely connected side culms from one tiny basal origin, denser foliage and
+    more slender branches, still transparent gaps between every leaf spray. Natural upright silhouette, no separate clumps or forest.'
+  negative: 背景、地台、土团、盆器、景观、文字、水印、现代物、人物、地面投影、枝叶裁切、根线下实物
+  references: []
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:26:24.117062+00:00'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-4254dea1-1056-439c-99ed-99fdcdf87b63.png
+  source_sha256: 73b33ac37c3e939b066f6bd0f7dae20348c538f6560d29e1d461b153267f84d0
+  source_record: sources/prp_song_dali_bamboo__v02.json
+  size: 136x190
+  sha256: 58559d99a7c8bca00d4eb296643debbe0d04d5cf239e2e1f3c764426be47b4c9
+  status: candidate
+  anchor_px: [68, 154]
+  metadata: meta/prp_song_dali_bamboo.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 190]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 16986
+    alpha_partial_pixels: 8071
+    alpha_opaque_pixels: 783
+    alpha_near_opaque_pixels: 4177
+    alpha_bbox: [12, 4, 129, 154]
+    transparent_margins_px: [12, 4, 7, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_bamboo__v02.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-4254dea1-1056-439c-99ed-99fdcdf87b63.png
+    source_sha256: 73b33ac37c3e939b066f6bd0f7dae20348c538f6560d29e1d461b153267f84d0
+    source_size: [1024, 1536]
+    crop_box: [82, 28, 979, 1175]
+    source_alpha_bbox: [33, 19, 1012, 1516]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 460
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.13077593722755013
+    rounded_effective_scale: [0.13043478260869565, 0.13077593722755013]
+    resized_size: [117, 150]
+    paste_offset: [12, 4]
+    source_measured_root_px: [512, 1169]
+    source_conservative_ground_y: 1175
+    transformed_measured_root_px: [68.087, 153.2153]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [0.087, -0.7847]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 1
+  notes: 已逐张view_image原图：完整单株/同源竹枝，无地台、盆器、土团或投影；竹疏密、树窄圆冠可辨，叶隙有透明，光从左上。真实根以下仅边缘抗锯齿及低alpha噪点，交root纯矩形透明边裁整；不宣称精确测角通过。 只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。
+- id: prp_song_dali_broadleaf__v01
+  asset_id: prp_song_dali_broadleaf
+  variant_key: v01
+  file: prp_song_dali_broadleaf__v01.png
+  category: prop
+  style: default
+  subject: 大理阔叶树 · 窄冠（原创植物意象，历史栽植待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated botanical PROP SPRITE for a realistic ancient Dali kingdom1093 isometric game. Botanical
+    silhouette is an original regional impression, not a claim of exact historical species. True transparent RGBA image; empty background and
+    leaf gaps must be alpha0. Camera orthographic yaw45 degrees and elevation30 degrees, natural three-dimensional plant volume, upright stem.
+    Realistic leaves and bark with muted natural color and fine material texture, softly lit from SCREEN UPPER LEFT. No cast shadow, no contact
+    shadow, no ambient halo, no ground patch, no soil ball, no dirt, no stone base, no planter, no pot, no landscape, no architecture, no text,
+    no letters, no watermarks, no people, no modern objects. Complete crown and all leaf tips must stay fully inside canvas with generous15% clear
+    transparent margin. Plant is rooted at ONE small central origin on a horizontal contact line near lower-middle of canvas; bottom trunk/stems
+    stop cleanly at the ground contact line, no exposed roots, soil or root ball, nothing and NO shadow extends below that line. This is one isolated
+    plant object, not a scene or a cluster of separate plants. The lower quarter of the image is entirely transparent. One young southwest-China
+    broadleaf evergreen TREE, height4m, narrow upright oval canopy about2m wide, single readable gently tapered brown trunk, small leathery dark
+    green broad leaves in natural branch groups, some transparent holes within crown. Narrow crown variant, not palm, pine, willow or bamboo.
+    No exposed roots, trunk ends cleanly at ground origin.'
+  negative: 背景、地台、土团、盆器、景观、文字、水印、现代物、人物、地面投影、枝叶裁切、根线下实物
+  references: []
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:29:20.787234+00:00'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-6a96ad7b-ccf8-4f57-8f13-3ea16caa9f7d.png
+  source_sha256: 8636198f105c803010373a7355cd9e54428361139c467867d55b4fe9f2ff6e31
+  source_record: sources/prp_song_dali_broadleaf__v01.json
+  size: 136x229
+  sha256: 26706219541e526997e754a91c5a849eb8e5cd763e99b2e117573e61503333bd
+  status: candidate
+  anchor_px: [68, 193]
+  metadata: meta/prp_song_dali_broadleaf.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 229]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 20303
+    alpha_partial_pixels: 10083
+    alpha_opaque_pixels: 758
+    alpha_near_opaque_pixels: 8104
+    alpha_bbox: [18, 4, 120, 193]
+    transparent_margins_px: [18, 4, 16, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_broadleaf__v01.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-6a96ad7b-ccf8-4f57-8f13-3ea16caa9f7d.png
+    source_sha256: 8636198f105c803010373a7355cd9e54428361139c467867d55b4fe9f2ff6e31
+    source_size: [1024, 1536]
+    crop_box: [185, 31, 864, 1289]
+    source_alpha_bbox: [63, 21, 1008, 1512]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 414
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.15023847376788554
+    rounded_effective_scale: [0.15022091310751104, 0.15023847376788554]
+    resized_size: [102, 189]
+    paste_offset: [18, 4]
+    source_measured_root_px: [519, 1283]
+    source_conservative_ground_y: 1289
+    transformed_measured_root_px: [68.1738, 192.0986]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [0.1738, -0.9014]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 1
+  notes: 已逐张view_image原图：完整单株/同源竹枝，无地台、盆器、土团或投影；竹疏密、树窄圆冠可辨，叶隙有透明，光从左上。真实根以下仅边缘抗锯齿及低alpha噪点，交root纯矩形透明边裁整；不宣称精确测角通过。 只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。
+- id: prp_song_dali_broadleaf__v02
+  asset_id: prp_song_dali_broadleaf
+  variant_key: v02
+  file: prp_song_dali_broadleaf__v02.png
+  category: prop
+  style: default
+  subject: 大理阔叶树 · 圆冠（原创植物意象，历史栽植待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated botanical PROP SPRITE for a realistic ancient Dali kingdom1093 isometric game. Botanical
+    silhouette is an original regional impression, not a claim of exact historical species. True transparent RGBA image; empty background and
+    leaf gaps must be alpha0. Camera orthographic yaw45 degrees and elevation30 degrees, natural three-dimensional plant volume, upright stem.
+    Realistic leaves and bark with muted natural color and fine material texture, softly lit from SCREEN UPPER LEFT. No cast shadow, no contact
+    shadow, no ambient halo, no ground patch, no soil ball, no dirt, no stone base, no planter, no pot, no landscape, no architecture, no text,
+    no letters, no watermarks, no people, no modern objects. Complete crown and all leaf tips must stay fully inside canvas with generous15% clear
+    transparent margin. Plant is rooted at ONE small central origin on a horizontal contact line near lower-middle of canvas; bottom trunk/stems
+    stop cleanly at the ground contact line, no exposed roots, soil or root ball, nothing and NO shadow extends below that line. This is one isolated
+    plant object, not a scene or a cluster of separate plants. The lower quarter of the image is entirely transparent. One young southwest-China
+    broadleaf evergreen TREE, height4m, broader softly rounded canopy about2m wide, single readable brown trunk and branching structure, small
+    leathery medium-dark green leaves in rounded natural branch groups, transparent holes within crown. Rounded crown variant, not palm, pine,
+    willow or bamboo. No exposed roots, trunk ends cleanly at ground origin.'
+  negative: 背景、地台、土团、盆器、景观、文字、水印、现代物、人物、地面投影、枝叶裁切、根线下实物
+  references: []
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:26:58.227769+00:00'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-6f23a47c-767e-4fdf-9729-a2267ab84f5b.png
+  source_sha256: 954e1e907ee34ea244293b15e3bb1fb4e133e57623d920047b4a2a05582aba3b
+  source_record: sources/prp_song_dali_broadleaf__v02.json
+  size: 136x229
+  sha256: fe52eb9d47dd48cfbc18139c8568df6a7c755b5a507bab52e7bfd191064f5b3b
+  status: candidate
+  anchor_px: [68, 193]
+  metadata: meta/prp_song_dali_broadleaf.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 229]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 23238
+    alpha_partial_pixels: 7456
+    alpha_opaque_pixels: 450
+    alpha_near_opaque_pixels: 6235
+    alpha_bbox: [4, 76, 127, 193]
+    transparent_margins_px: [4, 76, 9, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_broadleaf__v02.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-6f23a47c-767e-4fdf-9729-a2267ab84f5b.png
+    source_sha256: 954e1e907ee34ea244293b15e3bb1fb4e133e57623d920047b4a2a05582aba3b
+    source_size: [1285, 1224]
+    crop_box: [109, 22, 1163, 1021]
+    source_alpha_bbox: [33, 18, 1267, 1224]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 391
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.11743119266055047
+    rounded_effective_scale: [0.11669829222011385, 0.11711711711711711]
+    resized_size: [123, 117]
+    paste_offset: [4, 76]
+    source_measured_root_px: [654, 1015]
+    source_conservative_ground_y: 1021
+    transformed_measured_root_px: [67.6006, 192.2973]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [-0.3994, -0.7027]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 1
+  notes: 已逐张view_image原图：完整单株/同源竹枝，无地台、盆器、土团或投影；竹疏密、树窄圆冠可辨，叶隙有透明，光从左上。真实根以下仅边缘抗锯齿及低alpha噪点，交root纯矩形透明边裁整；不宣称精确测角通过。 只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。
+- id: prp_song_dali_grass__v01
+  asset_id: prp_song_dali_grass
+  variant_key: v01
+  file: prp_song_dali_grass__v01.png
+  category: prop
+  style: default
+  subject: 大理草丛 · 低簇（原创植物意象，历史栽植待考）
+  prompt: 'Use case: precise-object-edit. Edit the supplied isolated grass prop sprite. Correct ONLY the basal silhouette: EVERY grass blade and
+    leaf tip must stay ABOVE the TRUE ROOT CONTACT LINE. Currently a few drooping blades extend below the cut basal stem origin; lift and curve
+    them upward instead. Make the compact basal stem origin the single LOWEST point of the actual plant silhouette, like a fan opening UPWARD
+    from its base. At least30 source pixels vertical clearance between all lateral leaf tips and the root contact line. Do not move the declared
+    root down as a workaround. No leaf, shadow, halo, soil or object may extend below the actual basal stem contact. Keep the original natural
+    realistic grass materials, upper-left lighting and the single small0.5m high1m wide Dali1093 plant-prop scale. Keep this the LOW COMPACT DENSE
+    grass tuft variant; shorter blades, compact rounded fan, natural restrained green with a few straw tips. Do not add separate grass clumps,
+    dirt, sod mat, pot, mound, scenery, text, border or watermark. Retain full crown and complete leaf tips with generous transparent margin.
+    TRUE transparent RGBA, transparent leaf gaps, absolutely no cast/contact shadow or backdrop. The lower quarter of the output is completely
+    alpha0.'
+  negative: 背景、地台、土团、盆器、景观、文字、水印、现代物、人物、地面投影、枝叶裁切、根线下实物
+  references:
+  - {file: assets/default/baseline/building-map/props/sources/prp_song_dali_grass__v01_rejected01.png, sha256: 3d049c67cfc1459df7d981e65e60ca420234f93f7fc585d5215517bff6f8fd20,
+    role: 编辑目标：抬高根线下叶尖，保留低簇差异}
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:49:02.747461+00:00'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-2e876a37-e39d-4af7-85fe-a00b61ea3aa7.png
+  source_sha256: 0c69ae6e8f3a13075d1d80aa7f3741f4a3959ce51798aa7af448b4454a6c89ba
+  source_record: sources/prp_song_dali_grass__v01.json
+  size: 72x60
+  sha256: f2daee854eaa67e0d11d3591858cff70240c04fa334842801c1560ea62416816
+  status: candidate
+  anchor_px: [36, 40]
+  metadata: meta/prp_song_dali_grass.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [72, 60]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 2897
+    alpha_partial_pixels: 1382
+    alpha_opaque_pixels: 41
+    alpha_near_opaque_pixels: 506
+    alpha_bbox: [5, 4, 67, 40]
+    transparent_margins_px: [5, 4, 5, 20]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_grass__v01.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-2e876a37-e39d-4af7-85fe-a00b61ea3aa7.png
+    source_sha256: 0c69ae6e8f3a13075d1d80aa7f3741f4a3959ce51798aa7af448b4454a6c89ba
+    source_size: [1536, 1024]
+    crop_box: [125, 31, 1412, 774]
+    source_alpha_bbox: [40, 31, 1448, 1024]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 49
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.04845222072678331
+    rounded_effective_scale: [0.048174048174048176, 0.04845222072678331]
+    resized_size: [62, 36]
+    paste_offset: [5, 4]
+    source_measured_root_px: [772, 768]
+    source_conservative_ground_y: 774
+    transformed_measured_root_px: [36.1686, 39.7093]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [0.1686, -0.2907]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 2
+  notes: 已view_image(detail=original)并PIL：真实根为最下实物，叶尖均在其上，无地台/土团/影；完整叶缘、单物件。v01密实低簇，v02疏散上扬叶；少量抗锯齿与远端alpha<=2噪点交root纯矩形裁边，完整源仍保全。 只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。
+- id: prp_song_dali_grass__v02
+  asset_id: prp_song_dali_grass
+  variant_key: v02
+  file: prp_song_dali_grass__v02.png
+  category: prop
+  style: default
+  subject: 大理草丛 · 散叶（原创植物意象，历史栽植待考）
+  prompt: NEW image. One isolated sparse SMALL GRASS TUFT game sprite on true transparent RGBA. The entire plant consists of only12 to18 slender
+    green grass blades opening UPWARD in a loose fan from a single tiny basal point. Every blade has a gently rising or diagonal-up shape; the
+    leftmost and rightmost leaf tips point UP, never droop downward. No seed heads or tall flower spikes. Open transparent gaps separate individual
+    leaves. All blades converge at the same single root contact point, which MUST be the LOWEST pixel of the whole plant. Every lateral leaf tip
+    ends far ABOVE the base, at least one third of tuft height above base. Sparse spread-leaf variant; asymmetrical airy fan, NOT dense bush.
+    Plant is about0.5m tall1m wide, with natural muted green and a few dull straw tips. Realistic botanical textures suitable for Dali kingdom1093
+    historical game, an original regional impression. Camera gently above at30degrees, orthographic45-degree view, light SCREEN UPPER LEFT. Single
+    prop, not multiple clusters. CENTER the complete tuft inside1536x1024 canvas with at least20% empty transparent margin on all sides; root
+    near(768,750). No crop of leaf tips. Absolutely NO ground, soil, roots below base, mound, planter, pot, background, ambient halo, contact
+    shadow, cast shadow, people, lettering, watermark, gradient. Leaves and stem ONLY; transparency between blades and below root line.
+  negative: 背景、地台、土团、盆器、景观、文字、水印、现代物、人物、地面投影、枝叶裁切、根线下实物
+  references: []
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:53:24.990577+00:00'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-fe859ba2-49a2-4430-a98a-c7f660c912c7.png
+  source_sha256: ab8000cbeb2930744236260c5a9be205582fa1283172e0724fc3d3ebcfcb6822
+  source_record: sources/prp_song_dali_grass__v02.json
+  size: 72x60
+  sha256: 366099a114f9cb277a4079fe757c1049bedbdc5815707a1760ddd7b383973d2d
+  status: candidate
+  anchor_px: [36, 40]
+  metadata: meta/prp_song_dali_grass.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [72, 60]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 3554
+    alpha_partial_pixels: 763
+    alpha_opaque_pixels: 3
+    alpha_near_opaque_pixels: 62
+    alpha_bbox: [12, 4, 63, 40]
+    transparent_margins_px: [12, 4, 9, 20]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_grass__v02.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-fe859ba2-49a2-4430-a98a-c7f660c912c7.png
+    source_sha256: ab8000cbeb2930744236260c5a9be205582fa1283172e0724fc3d3ebcfcb6822
+    source_size: [1536, 1024]
+    crop_box: [155, 40, 1465, 963]
+    source_alpha_bbox: [65, 35, 1510, 983]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 90
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.0390032502708559
+    rounded_effective_scale: [0.038931297709923665, 0.0390032502708559]
+    resized_size: [51, 36]
+    paste_offset: [12, 4]
+    source_measured_root_px: [760, 957]
+    source_conservative_ground_y: 963
+    transformed_measured_root_px: [35.5534, 39.766]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [-0.4466, -0.234]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 3
+  notes: 已view_image(detail=original)并PIL：真实根为最下实物，叶尖均在其上，无地台/土团/影；完整叶缘、单物件。v01密实低簇，v02疏散上扬叶；少量抗锯齿与远端alpha<=2噪点交root纯矩形裁边，完整源仍保全。 只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。
+- id: prp_song_willow__v01
+  asset_id: prp_song_willow
+  variant_key: v01
+  file: prp_song_willow__v01.png
+  category: prop
+  style: default
+  subject: 垂柳 · 疏枝（原创植物意象，历史栽植待考）
+  prompt: 'Use case: historical-scene. Asset type: tianshu/default isolated southern Song town vegetation PNG sprite, circa 1223 Lin''an, regional
+    plant silhouette is an original game-art interpretation, exact species and historical planting remain unverified. Historical realistic game
+    art matching grey-tile timber Song city scenery: natural detailed leaves and bark, restrained green palette, credible botanical structure,
+    not watercolor, not cartoon, not plastic. Camera target orthographic yaw45 degrees pitch30 degrees, no perspective convergence, front-facing
+    complete plant viewed from above at 30 degrees. Soft neutral daylight from screen upper left, on-object shading only. TRUE RGBA transparent
+    background with real empty leaf gaps. Exactly ONE independent rooted vegetation prop, not a scene and not a cluster of separate mature plants.
+    Entire crown and root tips visible with generous transparent margins. The lowest root/trunk contact line must be unambiguous and everything
+    below that line completely transparent: NO ground plane, soil, stones, grass bed, pot, basin, plinth, mist or ANY cast/contact shadow. No
+    background haze. Do not draw a diamond base, grid, ruler, labels or text. The raw image will later be uniformly scaled into a tiny fixed production
+    canvas using the root as anchor; do not paint that canvas or a border.
+
+    Subject: A single slender Chinese weeping willow tree with a sparse airy canopy, fewer fine cascading branches, visible branching structure,
+    long narrow leaves. Thin gracefully curved trunk with a short clean root flare; healthy natural muted green. Sparse-branch variant v01. Visual
+    envelope ground span 2m, height4m; final canvas136x229, root anchor68,193.
+
+    Avoid: ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow,
+    contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI,
+    people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic,
+    cropped crown or roots'
+  negative: ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow,
+    contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI,
+    people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic,
+    cropped crown or roots
+  references: []
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:22:20.595Z'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-491eb5a7-ae08-42bd-8840-d75f86925df2.png
+  source_sha256: 036c95eeb4913a9fb441de099a0d726e2287825877f8a809cac78b26f90af6f4
+  source_record: sources/prp_song_willow__v01.json
+  size: 136x229
+  sha256: 1e8ef876879f9df3b1cb771f6f26050f724175ca0bb0c14123e0800f74de3562
+  status: candidate
+  anchor_px: [68, 193]
+  metadata: meta/prp_song_willow.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 229]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 20476
+    alpha_partial_pixels: 10460
+    alpha_opaque_pixels: 208
+    alpha_near_opaque_pixels: 3712
+    alpha_bbox: [13, 4, 125, 193]
+    transparent_margins_px: [13, 4, 11, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_willow__v01.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-491eb5a7-ae08-42bd-8840-d75f86925df2.png
+    source_sha256: 036c95eeb4913a9fb441de099a0d726e2287825877f8a809cac78b26f90af6f4
+    source_size: [967, 1627]
+    crop_box: [28, 11, 944, 1550]
+    source_alpha_bbox: [0, 11, 961, 1627]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 1259
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.12280701754385964
+    rounded_effective_scale: [0.1222707423580786, 0.12280701754385964]
+    resized_size: [112, 189]
+    paste_offset: [13, 4]
+    source_measured_root_px: [478.5, 1546]
+    source_conservative_ground_y: 1550
+    transformed_measured_root_px: [68.083, 192.5088]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [0.083, -0.4912]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 1
+  notes: 已view_image original逐张检查：单个植被物件形态，无人物/文字/盆/地台/土块/背景或烘焙地面影；疏密或冠形变体可辨。写实南宋江南植物意象（原创扩展），物种和历史栽植（待考）。左上受光；yaw45/pitch30为提示目标，未由树冠反推精确机位。根contact为可见前根末端抗锯齿轮廓的下缘，不把远端低alpha噪点计作根。
+    只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。
+- id: prp_song_willow__v02
+  asset_id: prp_song_willow
+  variant_key: v02
+  file: prp_song_willow__v02.png
+  category: prop
+  style: default
+  subject: 垂柳 · 密枝（原创植物意象，历史栽植待考）
+  prompt: 'Edit this generated willow sprite only. Keep the same one single dense weeping willow tree, natural muted green leaves, realistic bark,
+    branching character, upper-left neutral light and historical game-art rendering. Critical geometric repair: ALL hanging foliage must end comfortably
+    ABOVE the lowest visible root-contact line. Shorten and lift the lowest cascading leafy branchlets, particularly the long lower-right trailing
+    branch, so the lowest leaf tip is at least 12 percent of the total tree height ABOVE the lowest root tip. The root flare remains the only
+    bottommost object. Do not hide or move the root into a pot. Complete crown and every root tip must remain visible with at least 8 percent
+    transparent padding at all four sides. TRUE transparent RGBA background and leaf gaps. Absolutely no soil, mound, ground, grass, pedestal,
+    cast/contact shadow, background haze, letters or grid. Orthographic yaw45/pitch30 is the target. This is a dense v02 variant of prp_song_willow,
+    for later136x229 canvas and bottom-root anchor(68,193). Preserve image alpha; no baked checkerboard.'
+  negative: ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow,
+    contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI,
+    people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic,
+    cropped crown or roots
+  references:
+  - {id: prp_song_willow__v02__attempt01, path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/props/sources/prp_song_willow__v02__attempt01.png,
+    input_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-731b7a2c-4474-40f1-b8fb-eea259ab1ce7.png, sha256: 47a60195bc09460fa64a00433d2ec2e6d63f69f4453571555274cecde2268159,
+    status: rejected, role: edit target; shorten low hanging foliage while preserving tree rendering}
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:32:39.077Z'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-028bf38b-d97e-47be-a4b7-b4e7abf2f5eb.png
+  source_sha256: 3a1cc82636f997cca62f12d3231047ea2159af094b68dd3c7ad9b4ebcb0e20af
+  source_record: sources/prp_song_willow__v02.json
+  size: 136x229
+  sha256: 9793c8881aca3304be5ab184349673831e68bac4f46a8e691131f3c68e7c2fdf
+  status: candidate
+  anchor_px: [68, 193]
+  metadata: meta/prp_song_willow.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 229]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 16752
+    alpha_partial_pixels: 13587
+    alpha_opaque_pixels: 805
+    alpha_near_opaque_pixels: 12277
+    alpha_bbox: [4, 6, 118, 193]
+    transparent_margins_px: [4, 6, 18, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_willow__v02.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-028bf38b-d97e-47be-a4b7-b4e7abf2f5eb.png
+    source_sha256: 3a1cc82636f997cca62f12d3231047ea2159af094b68dd3c7ad9b4ebcb0e20af
+    source_size: [966, 1628]
+    crop_box: [15, 12, 960, 1566]
+    source_alpha_bbox: [0, 15, 966, 1628]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 459
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.12086874409820586
+    rounded_effective_scale: [0.12063492063492064, 0.12033462033462033]
+    resized_size: [114, 187]
+    paste_offset: [4, 6]
+    source_measured_root_px: [544.5, 1562]
+    source_conservative_ground_y: 1566
+    transformed_measured_root_px: [67.8762, 192.5187]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [-0.1238, -0.4813]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 2
+  notes: 已view_image original逐张检查：单个植被物件形态，无人物/文字/盆/地台/土块/背景或烘焙地面影；疏密或冠形变体可辨。写实南宋江南植物意象（原创扩展），物种和历史栽植（待考）。左上受光；yaw45/pitch30为提示目标，未由树冠反推精确机位。根contact为可见前根末端抗锯齿轮廓的下缘，不把远端低alpha噪点计作根。
+    原版实叶垂过根线，已使用image_gen缩短低垂叶，修正版最低实叶明显高于根；原图作为attempt01保留。 只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。
+- id: prp_song_bamboo__v01
+  asset_id: prp_song_bamboo
+  variant_key: v01
+  file: prp_song_bamboo__v01.png
+  category: prop
+  style: default
+  subject: 江南竹丛 · 疏枝（原创植物意象，历史栽植待考）
+  prompt: 'Use case: historical-scene. Asset type: tianshu/default isolated southern Song town vegetation PNG sprite, circa 1223 Lin''an, regional
+    plant silhouette is an original game-art interpretation, exact species and historical planting remain unverified. Historical realistic game
+    art matching grey-tile timber Song city scenery: natural detailed leaves and bark, restrained green palette, credible botanical structure,
+    not watercolor, not cartoon, not plastic. Camera target orthographic yaw45 degrees pitch30 degrees, no perspective convergence, front-facing
+    complete plant viewed from above at 30 degrees. Soft neutral daylight from screen upper left, on-object shading only. TRUE RGBA transparent
+    background with real empty leaf gaps. Exactly ONE independent rooted vegetation prop, not a scene and not a cluster of separate mature plants.
+    Entire crown and root tips visible with generous transparent margins. The lowest root/trunk contact line must be unambiguous and everything
+    below that line completely transparent: NO ground plane, soil, stones, grass bed, pot, basin, plinth, mist or ANY cast/contact shadow. No
+    background haze. Do not draw a diamond base, grid, ruler, labels or text. The raw image will later be uniformly scaled into a tiny fixed production
+    canvas using the root as anchor; do not paint that canvas or a border.
+
+    Subject: One small sparse rooted bamboo plant form: three or four slim naturally segmented upright culms joined at one compact root base,
+    with sparse fine lanceolate leaf sprays and large transparent gaps. This is one vegetation sprite silhouette, not several independently spaced
+    plants or a grove. Sparse-branch variant v01; muted jade-green leaves, olive green culms. Visual envelope ground span2m,height3m; final canvas136x190,root
+    anchor68,154.
+
+    Avoid: ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow,
+    contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI,
+    people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic,
+    cropped crown or roots'
+  negative: ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow,
+    contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI,
+    people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic,
+    cropped crown or roots
+  references: []
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:22:20.604Z'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-d330ee36-911d-4a57-9fa6-6efd16d65413.png
+  source_sha256: f020177a48f1f41ef2719571ae52c9f7ffb21bb36039ad659ba102377737e9ce
+  source_record: sources/prp_song_bamboo__v01.json
+  size: 136x190
+  sha256: 1198a84e831e3d9953d325f70c7b276e0d5aca685d2bb62a7f402e034f0e1d13
+  status: candidate
+  anchor_px: [68, 154]
+  metadata: meta/prp_song_bamboo.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 190]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 20244
+    alpha_partial_pixels: 5280
+    alpha_opaque_pixels: 316
+    alpha_near_opaque_pixels: 1485
+    alpha_bbox: [15, 4, 120, 154]
+    transparent_margins_px: [15, 4, 16, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_bamboo__v01.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-d330ee36-911d-4a57-9fa6-6efd16d65413.png
+    source_sha256: f020177a48f1f41ef2719571ae52c9f7ffb21bb36039ad659ba102377737e9ce
+    source_size: [1061, 1483]
+    crop_box: [18, 15, 1040, 1474]
+    source_alpha_bbox: [15, 16, 1045, 1483]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 43
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.10281014393420151
+    rounded_effective_scale: [0.10273972602739725, 0.10281014393420151]
+    resized_size: [105, 150]
+    paste_offset: [15, 4]
+    source_measured_root_px: [532.5, 1470]
+    source_conservative_ground_y: 1474
+    transformed_measured_root_px: [67.8596, 153.5888]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [-0.1404, -0.4112]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 1
+  notes: 已view_image original逐张检查：单个植被物件形态，无人物/文字/盆/地台/土块/背景或烘焙地面影；疏密或冠形变体可辨。写实南宋江南植物意象（原创扩展），物种和历史栽植（待考）。左上受光；yaw45/pitch30为提示目标，未由树冠反推精确机位。根contact为可见前根末端抗锯齿轮廓的下缘，不把远端低alpha噪点计作根。
+    只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。
+- id: prp_song_bamboo__v02
+  asset_id: prp_song_bamboo
+  variant_key: v02
+  file: prp_song_bamboo__v02.png
+  category: prop
+  style: default
+  subject: 江南竹丛 · 密枝（原创植物意象，历史栽植待考）
+  prompt: 'Use case: historical-scene. Asset type: tianshu/default isolated southern Song town vegetation PNG sprite, circa 1223 Lin''an, regional
+    plant silhouette is an original game-art interpretation, exact species and historical planting remain unverified. Historical realistic game
+    art matching grey-tile timber Song city scenery: natural detailed leaves and bark, restrained green palette, credible botanical structure,
+    not watercolor, not cartoon, not plastic. Camera target orthographic yaw45 degrees pitch30 degrees, no perspective convergence, front-facing
+    complete plant viewed from above at 30 degrees. Soft neutral daylight from screen upper left, on-object shading only. TRUE RGBA transparent
+    background with real empty leaf gaps. Exactly ONE independent rooted vegetation prop, not a scene and not a cluster of separate mature plants.
+    Entire crown and root tips visible with generous transparent margins. The lowest root/trunk contact line must be unambiguous and everything
+    below that line completely transparent: NO ground plane, soil, stones, grass bed, pot, basin, plinth, mist or ANY cast/contact shadow. No
+    background haze. Do not draw a diamond base, grid, ruler, labels or text. The raw image will later be uniformly scaled into a tiny fixed production
+    canvas using the root as anchor; do not paint that canvas or a border.
+
+    Subject: One compact dense rooted bamboo plant form: a naturally connected tuft of slim upright segmented culms, with fuller arching lanceolate
+    leaf sprays, the culms visibly part of one shared root base. One single vegetation prop silhouette, not a grove and not several separate plants.
+    Dense-branch variant v02; muted jade-green leaves, olive culms. Visual envelope ground span2m,height3m; final canvas136x190,root anchor68,154.
+
+    Avoid: ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow,
+    contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI,
+    people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic,
+    cropped crown or roots'
+  negative: ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow,
+    contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI,
+    people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic,
+    cropped crown or roots
+  references: []
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:22:20.604Z'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-70e26d01-462d-4b24-bbb4-961efd651ab8.png
+  source_sha256: 9d331090ae053a1bb12686a0858f4eda720d6fbfbb6135503a5f26a40eb8e412
+  source_record: sources/prp_song_bamboo__v02.json
+  size: 136x190
+  sha256: 786a2b56a9d2d55d86d4fe98f90f575cdfbf439a7036f87b76938b553246288c
+  status: candidate
+  anchor_px: [68, 154]
+  metadata: meta/prp_song_bamboo.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 190]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 16227
+    alpha_partial_pixels: 8790
+    alpha_opaque_pixels: 823
+    alpha_near_opaque_pixels: 5581
+    alpha_bbox: [17, 4, 126, 154]
+    transparent_margins_px: [17, 4, 10, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_bamboo__v02.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-70e26d01-462d-4b24-bbb4-961efd651ab8.png
+    source_sha256: 9d331090ae053a1bb12686a0858f4eda720d6fbfbb6135503a5f26a40eb8e412
+    source_size: [1062, 1482]
+    crop_box: [20, 32, 1043, 1432]
+    source_alpha_bbox: [17, 7, 1046, 1482]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 159
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.10714285714285714
+    rounded_effective_scale: [0.10654936461388075, 0.10714285714285714]
+    resized_size: [109, 150]
+    paste_offset: [17, 4]
+    source_measured_root_px: [495.5, 1428]
+    source_conservative_ground_y: 1432
+    transformed_measured_root_px: [67.6642, 153.5714]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [-0.3358, -0.4286]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 1
+  notes: 已view_image original逐张检查：单个植被物件形态，无人物/文字/盆/地台/土块/背景或烘焙地面影；疏密或冠形变体可辨。写实南宋江南植物意象（原创扩展），物种和历史栽植（待考）。左上受光；yaw45/pitch30为提示目标，未由树冠反推精确机位。根contact为可见前根末端抗锯齿轮廓的下缘，不把远端低alpha噪点计作根。
+    只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。
+- id: prp_song_broadleaf__v01
+  asset_id: prp_song_broadleaf
+  variant_key: v01
+  file: prp_song_broadleaf__v01.png
+  category: prop
+  style: default
+  subject: 江南阔叶树 · 窄冠（原创植物意象，历史栽植待考）
+  prompt: 'Use case: historical-scene. Asset type: tianshu/default isolated southern Song town vegetation PNG sprite, circa 1223 Lin''an, regional
+    plant silhouette is an original game-art interpretation, exact species and historical planting remain unverified. Historical realistic game
+    art matching grey-tile timber Song city scenery: natural detailed leaves and bark, restrained green palette, credible botanical structure,
+    not watercolor, not cartoon, not plastic. Camera target orthographic yaw45 degrees pitch30 degrees, no perspective convergence, front-facing
+    complete plant viewed from above at 30 degrees. Soft neutral daylight from screen upper left, on-object shading only. TRUE RGBA transparent
+    background with real empty leaf gaps. Exactly ONE independent rooted vegetation prop, not a scene and not a cluster of separate mature plants.
+    Entire crown and root tips visible with generous transparent margins. The lowest root/trunk contact line must be unambiguous and everything
+    below that line completely transparent: NO ground plane, soil, stones, grass bed, pot, basin, plinth, mist or ANY cast/contact shadow. No
+    background haze. Do not draw a diamond base, grid, ruler, labels or text. The raw image will later be uniformly scaled into a tiny fixed production
+    canvas using the root as anchor; do not paint that canvas or a border.
+
+    Subject: A single Jiangnan broadleaf evergreen tree, generic historical local plant impression without claiming a specific species: slender
+    grey-brown trunk and narrow upright oval crown, restrained leathery medium-small green leaves, visible branching gaps, short clean root flare.
+    Narrow-crown variant v01, distinctly taller than wide. Visual envelope ground span2m,height4m; final canvas136x229,root anchor68,193.
+
+    Avoid: ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow,
+    contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI,
+    people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic,
+    cropped crown or roots'
+  negative: ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow,
+    contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI,
+    people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic,
+    cropped crown or roots
+  references: []
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:22:20.604Z'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-f455dbed-ad69-458f-b944-44b10dfa00cc.png
+  source_sha256: 0d00e7e713db6fa9030fe66e81ec199bee07dd8fd2a5378b0b98cea58b9e6bf0
+  source_record: sources/prp_song_broadleaf__v01.json
+  size: 136x229
+  sha256: bd48b0dedb05f165c1f6021cea127f2786765d0a1eabb95ca0f2f3c41cdaae0a
+  status: candidate
+  anchor_px: [68, 193]
+  metadata: meta/prp_song_broadleaf.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 229]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 22304
+    alpha_partial_pixels: 8479
+    alpha_opaque_pixels: 361
+    alpha_near_opaque_pixels: 6316
+    alpha_bbox: [31, 4, 108, 193]
+    transparent_margins_px: [31, 4, 28, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_broadleaf__v01.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-f455dbed-ad69-458f-b944-44b10dfa00cc.png
+    source_sha256: 0d00e7e713db6fa9030fe66e81ec199bee07dd8fd2a5378b0b98cea58b9e6bf0
+    source_size: [966, 1628]
+    crop_box: [159, 0, 815, 1600]
+    source_alpha_bbox: [0, 0, 944, 1628]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 309
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.118125
+    rounded_effective_scale: [0.1173780487804878, 0.118125]
+    resized_size: [77, 189]
+    paste_offset: [31, 4]
+    source_measured_root_px: [473.5, 1596]
+    source_conservative_ground_y: 1600
+    transformed_measured_root_px: [67.9154, 192.5275]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [-0.0846, -0.4725]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 1
+  notes: 已view_image original逐张检查：单个植被物件形态，无人物/文字/盆/地台/土块/背景或烘焙地面影；疏密或冠形变体可辨。写实南宋江南植物意象（原创扩展），物种和历史栽植（待考）。左上受光；yaw45/pitch30为提示目标，未由树冠反推精确机位。根contact为可见前根末端抗锯齿轮廓的下缘，不把远端低alpha噪点计作根。
+    源顶端有alpha3级像素触边，alpha>=8的真实叶缘自y7开始；完整冠形目视未见明显裁断，但极淡顶缘仍登记而不抹除。 只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。
+- id: prp_song_broadleaf__v02
+  asset_id: prp_song_broadleaf
+  variant_key: v02
+  file: prp_song_broadleaf__v02.png
+  category: prop
+  style: default
+  subject: 江南阔叶树 · 圆冠（原创植物意象，历史栽植待考）
+  prompt: 'Use case: historical-scene. Asset type: tianshu/default isolated southern Song town vegetation PNG sprite, circa 1223 Lin''an, regional
+    plant silhouette is an original game-art interpretation, exact species and historical planting remain unverified. Historical realistic game
+    art matching grey-tile timber Song city scenery: natural detailed leaves and bark, restrained green palette, credible botanical structure,
+    not watercolor, not cartoon, not plastic. Camera target orthographic yaw45 degrees pitch30 degrees, no perspective convergence, front-facing
+    complete plant viewed from above at 30 degrees. Soft neutral daylight from screen upper left, on-object shading only. TRUE RGBA transparent
+    background with real empty leaf gaps. Exactly ONE independent rooted vegetation prop, not a scene and not a cluster of separate mature plants.
+    Entire crown and root tips visible with generous transparent margins. The lowest root/trunk contact line must be unambiguous and everything
+    below that line completely transparent: NO ground plane, soil, stones, grass bed, pot, basin, plinth, mist or ANY cast/contact shadow. No
+    background haze. Do not draw a diamond base, grid, ruler, labels or text. The raw image will later be uniformly scaled into a tiny fixed production
+    canvas using the root as anchor; do not paint that canvas or a border.
+
+    Subject: A single Jiangnan broadleaf evergreen tree, generic historical local plant impression without claiming a specific species: sturdy
+    grey-brown single trunk and rounded compact crown, restrained leathery medium-small green leaves with transparent gaps, short clean root flare.
+    Rounded-crown variant v02, clearly broader and rounder than narrow v01, but keep one coherent complete silhouette. Visual envelope ground
+    span2m,height4m; final canvas136x229,root anchor68,193.
+
+    Avoid: ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow,
+    contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI,
+    people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic,
+    cropped crown or roots'
+  negative: ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow,
+    contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI,
+    people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic,
+    cropped crown or roots
+  references: []
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T09:22:20.604Z'
+  created_time_basis: 生成后接收/归档记录或源文件mtime；非服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-b232c7ff-b875-4620-b0fc-847d4ced9703.png
+  source_sha256: 0504f06b2372d8e2a5f8fb8a672742721075ee46d20735179f59e3092dd6aa62
+  source_record: sources/prp_song_broadleaf__v02.json
+  size: 136x229
+  sha256: 2c63bc886356d23fc331a356e70dd16964782758a787da99bd8b3670320d6c15
+  status: candidate
+  anchor_px: [68, 193]
+  metadata: meta/prp_song_broadleaf.yaml
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 229]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 21617
+    alpha_partial_pixels: 9064
+    alpha_opaque_pixels: 463
+    alpha_near_opaque_pixels: 7552
+    alpha_bbox: [4, 43, 112, 193]
+    transparent_margins_px: [4, 43, 24, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_broadleaf__v02.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-b232c7ff-b875-4620-b0fc-847d4ced9703.png
+    source_sha256: 0504f06b2372d8e2a5f8fb8a672742721075ee46d20735179f59e3092dd6aa62
+    source_size: [967, 1627]
+    crop_box: [11, 195, 957, 1505]
+    source_alpha_bbox: [0, 8, 957, 1627]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 672
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.1147982062780269
+    rounded_effective_scale: [0.11416490486257928, 0.11450381679389313]
+    resized_size: [108, 150]
+    paste_offset: [4, 43]
+    source_measured_root_px: [568.5, 1501]
+    source_conservative_ground_y: 1505
+    transformed_measured_root_px: [67.6469, 192.542]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [-0.3531, -0.458]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  candidate_count: 1
+  notes: 已view_image original逐张检查：单个植被物件形态，无人物/文字/盆/地台/土块/背景或烘焙地面影；疏密或冠形变体可辨。写实南宋江南植物意象（原创扩展），物种和历史栽植（待考）。左上受光；yaw45/pitch30为提示目标，未由树冠反推精确机位。根contact为可见前根末端抗锯齿轮廓的下缘，不把远端低alpha噪点计作根。
+    只在矩形裁边中去除远端alpha<=2杂点，未逐像素修改透明度；原图保全。根锚偏差另列，不将视觉拟合宣称为物种实测尺寸。

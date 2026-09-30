@@ -1,0 +1,33 @@
+{
+  "id": "bld_lm_ch01_chongshengsi_pagoda_small",
+  "w": 4,
+  "h": 4,
+  "subject": "崇圣寺小塔意象，ch01大理1093（原创扩展：将1108–1172年小塔提前出现）",
+  "prompt": "Use case: historical-scene. Asset type: tianshu default building-map, a single reusable transparent PNG building, realistic historical Chinese architectural materials, no ink painting or miniature toy. Orthographic dimetric 2:1 projection, yaw45 pitch30, two horizontal ground axes have screen slopes +0.5 and -0.5, vertical pillars exactly vertical, NO perspective convergence. Front faces screen lower left. Grey clay tiles, weathered timber, understated plaster and stone, believable Song-period structural joinery, low-saturation warm natural colors. Thin flat rectangular footprint foundation, clearly visible straight front and right base edges, no chunky diorama pedestal. Entire building including eaves and thin footprint inside canvas, at least 10% transparent padding on all sides. Sunlight from SCREEN UPPER LEFT, short subtle contact shadow toward SCREEN LOWER RIGHT. TRUE transparent RGBA canvas, no background sky, floor, scenery or checkerboard. No text, signs, pseudo-writing, letters, watermark, logo, humans, modern objects, Qing yellow palace roofs, Japanese torii, dramatic extreme eaves. Generate exactly ONE asset in a square 1024x1024 composition. ONE solitary small Dali Chongsheng Buddhist pagoda, OCTAGONAL pale warm plastered brick tower with EXACTLY TEN closely stacked solid brick cornice levels, subtly tapering, tall first storey, shallow dense-eave ledges without tiled roofs or upturned timber pavilions. Small spherical bronze finial. Square 4m x4m footprint stone apron with its visible edges aligned to +/-0.5 slopes. This is an original game adaptation, the later medieval small pagoda brought into1093. No other tower, temple or plants.",
+  "type": "bld_lm_ch01_chongshengsi_pagoda_small",
+  "negative": "no text, watermarks, modern elements, perspective convergence, thick pedestal, opaque background",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f166-4e1e-79f1-9e71-f3cbf0a66607/exec-a536aa62-ba3c-4cf3-93c0-5233e71189cb.png",
+  "visual_review": "已view_image原图及底面裁片；八角浅密檐砖塔，暖灰石砖，主体完整无字无人。可见底边约+.527/-.482；右侧仅紧贴基座短影。小塔1108–1172提前到1093为原创扩展；图中层数未达到文物10级的逐层复原，不冒称实物复原。",
+  "candidate_count": 1,
+  "source_sha256": "aabf447f5151c21f281d1bbe7a3d5e362e07c875290501d9243787fb39c3ce86",
+  "created": "2026-09-30T08:26:26.622706+00:00",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      408,
+      1065
+    ],
+    "front": [
+      632,
+      1183
+    ],
+    "right": [
+      858,
+      1074
+    ]
+  }
+}

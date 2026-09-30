@@ -1,0 +1,88 @@
+{
+  "id": "bld_kit_song_dali_temple_hall",
+  "type": "bld_kit_song_dali_temple_hall",
+  "w": 12,
+  "h": 10,
+  "subject": "1093年大理国佛寺殿堂（建筑细部待考）",
+  "prompt": "Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation 30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT. Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10% empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop, ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people, no modern objects, no logos, no border, no watermark, no tourism-era decoration. A dignified Dali Buddhist temple hall, one broad single-story timber sanctuary with restrained gray hipped roof, earth-red wood pillars, shallow stone terrace and south stair, tiny plain uninscribed incense vessel at entrance. Subtle lotus carvings, small contained camellia shrub. No giant Buddha outdoors or pagoda, no modern tourist temple. Footprint 12m east-west by10m north-south.",
+  "negative": "文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_house",
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png",
+      "sha256": "f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d",
+      "role": "本批候选相机与材质参考（非作者approved）"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-f5ab5400-b215-453f-9f99-cacf0a4773eb.png",
+  "source_sha256": "099b1b5a62c1e0ab9a556b3f9822a0c641f5cf1d573d532700289bdde2d9f935",
+  "created": "2026-09-30T08:35:02.228516+00:00",
+  "visual_review": "已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。",
+  "candidate_count": 2,
+  "discarded_candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-fa0caf77-6809-4cfc-a8f4-939fd014f6d2.png",
+      "prompt": "undefinedA dignified Dali Buddhist temple hall, one broad single-story timber sanctuary with restrained gray hipped roof, earth-red wood pillars, shallow stone terrace and south stair, tiny plain uninscribed incense vessel at entrance. Subtle lotus carvings, small contained camellia shrub. No giant Buddha outdoors or pagoda, no modern tourist temple. Footprint 12m east-west by10m north-south.",
+      "reason": "公共提示读取失败，生成继承少林参考的山景与低视角；已逐张view_image原图确认淘汰",
+      "source_sha256": "40e5577d3bf40b56cfbbc066e02e5978e260e0ad28f89e8f16713f35019776f4"
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        276,
+        571
+      ],
+      [
+        1011,
+        873
+      ]
+    ],
+    [
+      [
+        1011,
+        873
+      ],
+      [
+        1547,
+        589
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      276,
+      571
+    ],
+    "front": [
+      1011,
+      873
+    ],
+    "right": [
+      1547,
+      589
+    ]
+  },
+  "projection_review": "手动可见底面点±3px估计；两轴斜率0.4109/-0.5299；两轴dx比735/536=1.3713，目录w/h=1.2000。仅裁切/等比缩放不会改变这些残差。",
+  "status": "candidate",
+  "source_size": [
+    1774,
+    887
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 921436,
+    "partial_pixels": 651611,
+    "opaque_pixels": 491,
+    "bbox": [
+      146,
+      17,
+      1687,
+      887
+    ]
+  }
+}

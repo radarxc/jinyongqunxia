@@ -1,0 +1,26 @@
+{
+  "short": "wangfu",
+  "round": 2,
+  "prompt": "Use case: sketch-to-render. IMAGE1 IS THE EXACT GROUND FOOTPRINT GEOMETRY TO FOLLOW. IMAGE2 is ONLY material/architecture reference; its camera angle is WRONG. On precisely the four-corner gray parallelogram of image1, build the 1093 Dali royal residence compound inspired by image2: modest rear single story timber hall, side wings, low cream walls, gray tiled roof, front gate, stone courtyard, few camellia shrubs. Every wall FOOT must follow the red/blue perimeter of image1 exactly; keep same corners and angles. Red lines are +0.5 and -0.5 ground axes, NOT angled like image2. A true 18x14 rectangular plan in 2:1 dimetric orthographic, front gate along lower-left long edge. All eaves, roof ridges, and court pavements must follow geometry1 too. Keep base thin and flush. Don't let reference2 camera contaminate this angle! Materials realistic subdued gray/weathered wood/cream, upper-left illumination. Final output is isolated opaque building on TRUE TRANSPARENT RGBA. Remove the guideline lines, colored dots, gray planar placeholder and white backdrop; replace plane with natural stone/earth courtyard rectangle and clean stone edge. No text, watermarks, people, modern elements, extra terrain, crop or thick base. Entire sprite well inside canvas.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-f54c078d-f499-4c5d-99d9-1cb2011a0459.png",
+  "reason": "两轴仍不对称约+0.484/-0.606，淘汰",
+  "ref": "guide_old",
+  "archive": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt02.png",
+  "source_sha256": "9319d8ea20b87443c5d4e1f6851cec2608901ce89cb715f285f2e48e47d1a481",
+  "references": [
+    {
+      "id": "dali_wangfu_projection_guide",
+      "file": "assets/default/baseline/building-map/review2/dali_wangfu_projection_guide.png",
+      "sha256": "ab34b4da19d69f9a3450c4daa44c480af2a5d0d6af8d2e95b43a88c6a8ef940a",
+      "role": "返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）"
+    },
+    {
+      "id": "bld_kit_song_dali_wangfu_pre_review2",
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_pre_review2.png",
+      "sha256": "2581e87b26bb68b2c62436d70930d2d1f2be320f41ec81f1e94ec210bf752117",
+      "role": "返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）"
+    }
+  ],
+  "status": "rejected",
+  "created": "2026-09-30T10:49:21.048018+00:00"
+}

@@ -1,0 +1,44 @@
+{
+  "checked_at": "2026-09-30T03:00:09.065012-07:00",
+  "upstream_source": "/Users/bytedance/Projects/jinyongqunxia",
+  "source_commit": "83ef35f",
+  "source_note": "TOWN-design工作区已不存在，改读主项目已合入同名文件；只读。",
+  "files": [
+    {
+      "file": "22-town-layout-and-generation.md",
+      "line_count": 1048,
+      "sha256": "b6e0d4b5a76c3562a2cf540701e373090dcde5211512f35168f1ae400ac6b1ac"
+    },
+    {
+      "file": "town/schema.yaml",
+      "line_count": 339,
+      "sha256": "9daa1fce81452cfae1cb12370484ed24e6b4734c6ac15d5f27abe3aa6b168aef"
+    },
+    {
+      "file": "town/city_dali__ch01.yaml",
+      "line_count": 272,
+      "sha256": "fc1ef79b637a36d738ac6e2a105037f07db12204d1d7475c0c30fc2869a9b2a0"
+    },
+    {
+      "file": "town/city_hangzhou__ch02.yaml",
+      "line_count": 291,
+      "sha256": "6523ceb6e4bf9e55b047f59a3a4a3e8d54a80581bf1b491f61747eed4d2f34e6"
+    }
+  ],
+  "building_and_original_tile_catalog_unchanged": true,
+  "sections_3_4_unchanged": false,
+  "building_types": 38,
+  "added_plant_types": 7,
+  "added_plant_variants": 14,
+  "added_assets": [
+    "prp_song_dali_camellia",
+    "prp_song_dali_bamboo",
+    "prp_song_dali_broadleaf",
+    "prp_song_dali_grass",
+    "prp_song_willow",
+    "prp_song_bamboo",
+    "prp_song_broadleaf"
+  ],
+  "added_assets_delivered": true,
+  "change_summary": "§4.4新增7类植物14变体；原38建筑与§4.2/§4.3贴片ID、占地、职责不变；本次植物另入props清单。"
+}

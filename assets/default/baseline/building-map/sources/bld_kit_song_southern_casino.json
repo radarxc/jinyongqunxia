@@ -1,0 +1,74 @@
+{
+  "id": "bld_kit_song_southern_casino",
+  "type": "bld_kit_song_southern_casino",
+  "w": 10,
+  "h": 8,
+  "subject": "赌场",
+  "prompt": "Use case: historical-scene. Image edit of the construction reference: turn the beige plane into a realistic thin stone floor and place a Southern Song Chinese gaming-house on it. LOCK the floor polygon's four corners and angles exactly as provided; each geometric grid square is one metre. Footprint 10 metres along the long lower-left frontage and 8 metres along the shorter lower-right side. Draw a modest TWO-storey timber hall with grey clay tile roof, creamy plaster sidewall, open lower-left doorway and lattice balcony; a plain wooden gaming table and stools are visible inside the veranda. This is ancient China year 1223, unpretentious but prosperous, realistic game environment detail, warm natural timber and muted neutral stone palette. Exact 2:1 orthographic projection, matching the guide axes ±0.500, pillars vertical, no perspective. KEEP the plane corners (150,850), (694,1122), (1130,904), (586,632) in the square frame. Do not move or rotate the floor. Naturally textured floor without drawn grid, no outline. Replace white with true transparent alpha. Left-upper lighting, right-lower contact shadow. Full roof and floor uncut, at least 8% transparent margin. No text, symbol, signs, humans, background, shadow halo, modern gambling, neon, checkerboard, decorative diagram. Geometry and correct width-depth relation take precedence over decorative details.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/review2/bld_kit_song_southern_casino_geometry_guide.png",
+      "sha256": "70c53acef7b559242b7de8691fc794fde20b75427635d3b61cd4c1a0cd9e5afb",
+      "role": "geometry-only construction guide; no asset pixels drawn by code"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-09692bdb-a911-4fda-a6b8-29d53e595358.png",
+  "source_sha256": "39931b243c4302c5af765d0ceb5bdd303412ff774381e8743f4358a9232b6724",
+  "created": "2026-09-30T10:49:55.714583+00:00",
+  "visual_review": "返修第2轮：已逐张view_image；底面宽深恢复，宋式灰瓦木构及商用/客栈陈设完整，无文字人物现代物，左上主光；底面接触角按可见地坪外缘读点并用alpha>=192轮廓复核。64×32网格叠图另存review2；细小轴向残差按geometry_qa如实登记，目视判断不等于严格几何通过。",
+  "candidate_count": 2,
+  "source_dimensions": [
+    1254,
+    1254
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      99,
+      799
+    ],
+    "front": [
+      701,
+      1124
+    ],
+    "right": [
+      1169,
+      870
+    ]
+  },
+  "candidate_history": [
+    {
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_casino_pre_review2.png",
+      "source_sha256": "e176220948b9e08052bca6e4e2f785f7ce3fbea74d9c9201edb0354202e9c810",
+      "source_record": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_casino_pre_review2.json",
+      "selection": "rejected_by_review1",
+      "reason": "合入前审核点名：可见底面宽深比与登记占地明显不符；本轮重出。"
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        99,
+        799
+      ],
+      [
+        701,
+        1124
+      ]
+    ],
+    [
+      [
+        701,
+        1124
+      ],
+      [
+        1169,
+        870
+      ]
+    ]
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "bld_kit_song_southern_house",
+  "type": "bld_kit_song_southern_house",
+  "w": 6,
+  "h": 5,
+  "subject": "江南民居",
+  "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Footprint exactly 6 by 5 one-metre cells, ratio 6:5. Subject: One compact single-storey Southern Song Jiangnan family dwelling, limewashed plaster walls, dark timber posts, grey clay tile gable roof with restrained curved eaves, small wooden lattice windows, modest recessed doorway on southwest-facing visible side, a plain ceramic water jar.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-9c3c0f68-e6a1-455e-a818-cd16f9ae155b.png",
+  "source_sha256": "d4f7ab824878c753b5bda035f6d1d2b5ce35578f5aee1d47b6cdad990aca26f1",
+  "created": "2026-09-30",
+  "visual_review": "原图已 view_image：单体完整、真实古风灰瓦木构白墙；正交45°方向接近2:1，底面薄且清楚，S门朝画面左下；左上主光、右下短影，无遮字人物或现代物；原图四边留白不足10%，交主代理补透明画布；精确双轴与锚点待统一量测。",
+  "candidate_count": 2,
+  "source_dimensions": [
+    1374,
+    1145
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        87,
+        699
+      ],
+      [
+        742,
+        1080
+      ]
+    ],
+    [
+      [
+        742,
+        1080
+      ],
+      [
+        1303,
+        769
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      87,
+      699
+    ],
+    "front": [
+      742,
+      1080
+    ],
+    "right": [
+      1303,
+      769
+    ]
+  },
+  "candidate_history": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-9f5322c6-118c-4ac7-a918-04e293fcd0a2.png",
+      "prompt": "Use case: precise-object-edit. Correct ONLY the camera projection and rectangular footprint geometry of this standalone Southern Song building sprite; keep materials, architectural design, historical style, doorway orientation, upper-left light and colors. Exact 2:1 orthographic dimetric: yaw45, elevation30; both ground edges must make 26.565 degrees with horizontal (slope +0.500 and -0.500), not the steeper 30-degree floor lines of generic isometric art. Ground is one flat uninterrupted rectangular 6 by 5 unit footprint, with no offsets or stepped outline. The left-to-front ground edge is 6 units, and front-to-right edge is 5 units, so down-right horizontal length divided by up-right horizontal length must equal 1.2000. In particular make down-right edge visibly longer than up-right edge. Clear thin footprint boundary, no raised plinth. Full building uncut with 12% transparent empty margins. Output true transparent RGBA with clean alpha, no background or glow, no writing, no people.",
+      "selection": "unselected",
+      "reason": "定向修正后独立QA量点：双轴或占地比例未优于首版；保留首版，仍将残差交下游。",
+      "source_sha256": "3d33c03baf0931c13c0824a1a34a95a3093d75b58d975ddfe49bc86cb0c31a16",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_house_try2.png",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/sources/bld_kit_song_southern_house.png",
+          "sha256": "d4f7ab824878c753b5bda035f6d1d2b5ce35578f5aee1d47b6cdad990aca26f1",
+          "role": "edit target：本条首版候选PNG，未获作者审批"
+        }
+      ]
+    }
+  ]
+}

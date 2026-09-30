@@ -1,0 +1,92 @@
+{
+  "id": "bld_kit_song_southern_guardhouse",
+  "type": "bld_kit_song_southern_guardhouse",
+  "w": 7,
+  "h": 5,
+  "subject": "城门守舍",
+  "prompt": "Use case: precise-object-edit. Geometry correction of this guardhouse game sprite. Keep the long porch, Song timber/plaster, grey roof, sunlight upper-left, materials unchanged. The right short ground edge is wrongly too shallow. REBUILD entire right side plane to a STEEPER upward-right angle, exact slope -0.5 rather than -0.41. Specifically ground left(234,540), front(858,852), right(1292,635): move current right ground corner UP about45px, keep left and front fixed. Reproject whole short side, roof and all rightward parallel horizontal beams to match this new axis. Long lower-left edge slope+0.5. Floor footprint must be7 wide x5 deep, horizontal front-edge/side-edge=1.4. Render exact orthographic yaw45 pitch30 2:1 diamond tile camera, parallel both axes, no perspective. Ground stone base thin, no thick pedestal. Full complete building with empty10% transparent margins all around; true transparent RGBA, no background, no halo, no writing/people/watermark, no guide lines. It is crucial to change the roof and building 3D geometry, not just add padding.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_guardhouse_review2_try1.png",
+      "role": "本轮未获审批候选，投影/材质参考",
+      "sha256": "a7b98240322310e6a865192b1402878b1a9e9a4ffc85d0ef114cabe24d9fd1de"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-6e366786-792a-484c-ad13-87e85f3aea45.png",
+  "source_sha256": "2ad029d77ba7cab756fa24df602150ab02a01a6706ee33132f72bbc5ca73cce5",
+  "created": "2026-09-30T10:51:22.700491+00:00",
+  "visual_review": "第2次运行返修：内置image_gen真实重出主体；逐张view_image及64×32占地叠图，宽深关系和两轴目视协调，左上光、暖灰瓦木石、宋意象，无文字人物现代物；无裁切。严格几何数值见geometry_qa；不将轻微告警当成已通过。",
+  "candidate_count": 3,
+  "ground_edges_source_px": [
+    [
+      [
+        83,
+        579
+      ],
+      [
+        883,
+        997
+      ]
+    ],
+    [
+      [
+        883,
+        997
+      ],
+      [
+        1442,
+        709
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      83,
+      579
+    ],
+    "front": [
+      883,
+      997
+    ],
+    "right": [
+      1442,
+      709
+    ]
+  },
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "candidate_history": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-85580f24-dd4e-4dbe-9d3b-c1bc0f37c223.png",
+      "source_sha256": "51d68ed860a0da93989bb6d38e1b087796b296b0cf91768d87079be519ea827c",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_guardhouse_pre_review2.png",
+      "selection": "rejected_review1",
+      "reason": "合入审核判退：可见底面比例或双轴方向不合登记占地。",
+      "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Precise ground projection: footprint 7 x 5 m, two visible rectangular ground edges slope +0.500 and -0.500, each edge makes 26.565 degrees with horizontal, NOT standard 30-degree isometric edges. Down-right ground edge has length 7 units, up-right edge 5 units, horizontal ratio 1.4000. Subject: One modest Southern Song Lin'an gate-guard lodge, small single-storey timber and plaster service building with simple grey-tile gable roof, an open southwest-facing porch, plain wooden benches and closed storage chest, subdued administrative function, no fortress tower, no banners or text.",
+      "references": []
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-d46f68a0-d50a-4a9f-afce-1e8e561b224e.png",
+      "source_sha256": "a7b98240322310e6a865192b1402878b1a9e9a4ffc85d0ef114cabe24d9fd1de",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_guardhouse_review2_try1.png",
+      "prompt": "Use case: historical-scene. Render ONE realistic Southern Song Lin'an small guardhouse building sprite ON the exact reference ground quadrilateral. Camera exact orthographic yaw45 pitch30,2:1 projection. Ground footprint 7 units wide by5 deep, visible front wall LEFT-FRONT must be40% longer than side wall FRONT-RIGHT. On1536x1024 canvas actual thin ground corners LEFT150,540; FRONT745,837.5; RIGHT1170,625; BACK575,327.5. Preserve these precise axes(+.5,-.5) and ratio1.4, no perspective taper, don't make base square. A simple one-storey modest watch office hut with wide three-bay wooden porch on the long LEFT-FRONT facade, roof ridge parallel to long LEFT-FRONT edge, short gable side on FRONT-RIGHT, quiet ochre plaster and weathered dark wood, hand-made grey ceramic tile, slightly worn stone paving beneath porch. No guards or people. No surrounding wall, no compound, no towers, no text or signboard. Preserve thin rectangular stone footprint with its entire two front borders sharp and exposed. No thick slab. Upper-left daylight, small down-right contact shadow. Muted grounded realistic art same historical town asset set. Replace ALL white surroundings with genuinely transparent alpha, remove guide text/lines completely, reserve broad transparent margins, full roof not cropped, no modern or Qing items.",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/review2/bld_kit_song_southern_guardhouse_guide.png",
+          "role": "geometry guide：自制占地轮廓QA图，非生成资产",
+          "sha256": "0d4d4e6c95705f4493174d0a6b4111045f745db3e14b1ba3bf4afa118adff2c4"
+        }
+      ],
+      "reason": "宽深恢复但右轴偏浅约-.41，未选。",
+      "selection": "rejected_review2"
+    }
+  ],
+  "review2_overlay": "review2/bld_kit_song_southern_guardhouse_overlay.png"
+}

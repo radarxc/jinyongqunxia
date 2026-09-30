@@ -1,0 +1,37 @@
+{
+  "id": "bld_kit_song_southern_biaoju",
+  "type": "bld_kit_song_southern_biaoju",
+  "w": 14,
+  "h": 11,
+  "subject": "镖局 / 护运行",
+  "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Precise ground projection: footprint 14 x 11 m, two visible rectangular ground edges slope +0.500 and -0.500, each edge makes 26.565 degrees with horizontal, NOT standard 30-degree isometric edges. Down-right ground edge has length 14 units, up-right edge 11 units, horizontal ratio 1.2727. Subject: One Southern Song Lin'an cargo escort business compound, not a military fort: substantial grey-tiled dark timber main hall, small side warehouse rooms, open secure yard containing a covered wooden handcart and strapped wooden freight chests, cream plaster enclosing walls and wide wood gateway facing southwest. No weapons or written sign; fictional escort institution expressed as historical cargo yard.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-15255513-4a2c-459e-96d8-9ab727e1b4b1.png",
+  "source_sha256": "040e3673dbb667eb083e6586fd34ae3ec16e32247077381a5ab7865f9929a5be",
+  "created": "2026-09-30",
+  "visual_review": "root已original view及底面裁片复核：货车货箱与护运院可辨，入口左下，不写字无现代物。三角点仅底面外缘代理，轴+.558/-.543，宽深比.883 vs14/11；明显残差，不能作为精确落格已通过。背景光晕为透明像素RGB，RGBA实测另记。",
+  "candidate_count": 1,
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      25,
+      624
+    ],
+    "front": [
+      728,
+      1016
+    ],
+    "right": [
+      1524,
+      584
+    ]
+  }
+}

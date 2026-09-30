@@ -1,0 +1,1980 @@
+{
+  "note": "PNG行数不适用；本清单不包含自身与报告，避免自引用。源图与未选历史也在目录内，不等于入选数量。",
+  "files": [
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_biaoju.png",
+      "bytes": 504040,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_casino.png",
+      "bytes": 342091,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_courtyard.png",
+      "bytes": 416406,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_guardhouse.png",
+      "bytes": 167646,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_house.png",
+      "bytes": 186478,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_inn.png",
+      "bytes": 399814,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_manor.png",
+      "bytes": 731630,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_market_stall.png",
+      "bytes": 37270,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_restaurant.png",
+      "bytes": 460033,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_shop.png",
+      "bytes": 179417,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_shrine.png",
+      "bytes": 83883,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_stable.png",
+      "bytes": 279012,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_temple_hall.png",
+      "bytes": 591957,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_wangfu.png",
+      "bytes": 1063195,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_warehouse.png",
+      "bytes": 334851,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_wharf.png",
+      "bytes": 112373,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "bytes": 631851,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_biaoju.png",
+      "bytes": 554894,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_casino.png",
+      "bytes": 518752,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_courtyard.png",
+      "bytes": 429019,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_guardhouse.png",
+      "bytes": 178751,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+      "bytes": 175471,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_inn.png",
+      "bytes": 487039,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_manor.png",
+      "bytes": 797570,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_market_stall.png",
+      "bytes": 41817,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_pagoda.png",
+      "bytes": 644752,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_palace_hall.png",
+      "bytes": 1171692,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_restaurant.png",
+      "bytes": 722929,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_shop_1f.png",
+      "bytes": 173131,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png",
+      "bytes": 348307,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_stable.png",
+      "bytes": 348910,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_temple_hall.png",
+      "bytes": 689817,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_warehouse.png",
+      "bytes": 371734,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_wharf.png",
+      "bytes": 126743,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_yamen.png",
+      "bytes": 744548,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_lm_ch01_chongshengsi_pagoda.png",
+      "bytes": 1078388,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_lm_ch01_chongshengsi_pagoda_small.png",
+      "bytes": 266719,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/bld_lm_ch02_linan_palace_gate.png",
+      "bytes": 683936,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/build_index.py",
+      "bytes": 4674,
+      "lines": 75
+    },
+    {
+      "file": "assets/default/baseline/building-map/catalog.json",
+      "bytes": 4876,
+      "lines": 40
+    },
+    {
+      "file": "assets/default/baseline/building-map/check-results.json",
+      "bytes": 3736,
+      "lines": 36
+    },
+    {
+      "file": "assets/default/baseline/building-map/design-recheck.json",
+      "bytes": 1494,
+      "lines": 44
+    },
+    {
+      "file": "assets/default/baseline/building-map/design-snapshot.json",
+      "bytes": 712,
+      "lines": 25
+    },
+    {
+      "file": "assets/default/baseline/building-map/manifest.yaml",
+      "bytes": 193650,
+      "lines": 3184
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_biaoju.entry.json",
+      "bytes": 5161,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_biaoju.yaml",
+      "bytes": 2892,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_casino.entry.json",
+      "bytes": 5146,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_casino.yaml",
+      "bytes": 2902,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_courtyard.entry.json",
+      "bytes": 4576,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_courtyard.yaml",
+      "bytes": 2890,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_guardhouse.entry.json",
+      "bytes": 5163,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_guardhouse.yaml",
+      "bytes": 2883,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_house.entry.json",
+      "bytes": 5054,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_house.yaml",
+      "bytes": 2865,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_inn.entry.json",
+      "bytes": 5024,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_inn.yaml",
+      "bytes": 2882,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_manor.entry.json",
+      "bytes": 5186,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_manor.yaml",
+      "bytes": 2891,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_market_stall.entry.json",
+      "bytes": 4510,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_market_stall.yaml",
+      "bytes": 2913,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_restaurant.entry.json",
+      "bytes": 5124,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_restaurant.yaml",
+      "bytes": 2912,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_shop.entry.json",
+      "bytes": 5066,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_shop.yaml",
+      "bytes": 2857,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_shrine.entry.json",
+      "bytes": 5159,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_shrine.yaml",
+      "bytes": 2921,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_stable.entry.json",
+      "bytes": 4933,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_stable.yaml",
+      "bytes": 2877,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_temple_hall.entry.json",
+      "bytes": 5240,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_temple_hall.yaml",
+      "bytes": 2912,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_wangfu.entry.json",
+      "bytes": 8027,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_wangfu.yaml",
+      "bytes": 2898,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_warehouse.entry.json",
+      "bytes": 5140,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_warehouse.yaml",
+      "bytes": 2903,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_wharf.entry.json",
+      "bytes": 4861,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_wharf.yaml",
+      "bytes": 2853,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_yamen.entry.json",
+      "bytes": 5139,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_dali_yamen.yaml",
+      "bytes": 2913,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_biaoju.entry.json",
+      "bytes": 4927,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_biaoju.yaml",
+      "bytes": 2951,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_casino.entry.json",
+      "bytes": 5013,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_casino.yaml",
+      "bytes": 2896,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_courtyard.entry.json",
+      "bytes": 4512,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_courtyard.yaml",
+      "bytes": 2944,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_guardhouse.entry.json",
+      "bytes": 4657,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_guardhouse.yaml",
+      "bytes": 2896,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_house.entry.json",
+      "bytes": 4937,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_house.yaml",
+      "bytes": 2895,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_inn.entry.json",
+      "bytes": 4706,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_inn.yaml",
+      "bytes": 2923,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_manor.entry.json",
+      "bytes": 4761,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_manor.yaml",
+      "bytes": 2921,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_market_stall.entry.json",
+      "bytes": 5209,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_market_stall.yaml",
+      "bytes": 2937,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_pagoda.entry.json",
+      "bytes": 5326,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_pagoda.yaml",
+      "bytes": 2905,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_palace_hall.entry.json",
+      "bytes": 5440,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_palace_hall.yaml",
+      "bytes": 2958,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_restaurant.entry.json",
+      "bytes": 4528,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_restaurant.yaml",
+      "bytes": 2953,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_shop_1f.entry.json",
+      "bytes": 4963,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_shop_1f.yaml",
+      "bytes": 2899,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_shop_2f.entry.json",
+      "bytes": 5157,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_shop_2f.yaml",
+      "bytes": 2895,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_stable.entry.json",
+      "bytes": 4989,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_stable.yaml",
+      "bytes": 2930,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_temple_hall.entry.json",
+      "bytes": 5400,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_temple_hall.yaml",
+      "bytes": 2959,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_warehouse.entry.json",
+      "bytes": 5271,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_warehouse.yaml",
+      "bytes": 2927,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_wharf.entry.json",
+      "bytes": 4903,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_wharf.yaml",
+      "bytes": 2883,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_yamen.entry.json",
+      "bytes": 4703,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_kit_song_southern_yamen.yaml",
+      "bytes": 2906,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_lm_ch01_chongshengsi_pagoda.entry.json",
+      "bytes": 5221,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_lm_ch01_chongshengsi_pagoda.yaml",
+      "bytes": 2915,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_lm_ch01_chongshengsi_pagoda_small.entry.json",
+      "bytes": 5056,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_lm_ch01_chongshengsi_pagoda_small.yaml",
+      "bytes": 2918,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_lm_ch02_linan_palace_gate.entry.json",
+      "bytes": 5966,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/meta/bld_lm_ch02_linan_palace_gate.yaml",
+      "bytes": 2904,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/normalize.py",
+      "bytes": 8464,
+      "lines": 132
+    },
+    {
+      "file": "assets/default/baseline/building-map/preview.html",
+      "bytes": 49224,
+      "lines": 328
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/build_index.py",
+      "bytes": 2881,
+      "lines": 43
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/catalog.json",
+      "bytes": 1148,
+      "lines": 9
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/check-results.json",
+      "bytes": 882,
+      "lines": 20
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/manifest.yaml",
+      "bytes": 72214,
+      "lines": 1006
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/meta/prp_song_bamboo.yaml",
+      "bytes": 3801,
+      "lines": 92
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/meta/prp_song_broadleaf.yaml",
+      "bytes": 3782,
+      "lines": 92
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/meta/prp_song_dali_bamboo.yaml",
+      "bytes": 3808,
+      "lines": 92
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/meta/prp_song_dali_broadleaf.yaml",
+      "bytes": 3835,
+      "lines": 92
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/meta/prp_song_dali_camellia.yaml",
+      "bytes": 3805,
+      "lines": 92
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/meta/prp_song_dali_grass.yaml",
+      "bytes": 3773,
+      "lines": 92
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/meta/prp_song_willow.yaml",
+      "bytes": 3792,
+      "lines": 92
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/normalize.py",
+      "bytes": 7377,
+      "lines": 133
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/preview.html",
+      "bytes": 19731,
+      "lines": 117
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_bamboo__v01.png",
+      "bytes": 22883,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_bamboo__v02.png",
+      "bytes": 35101,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_broadleaf__v01.png",
+      "bytes": 31776,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_broadleaf__v02.png",
+      "bytes": 32939,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_dali_bamboo__v01.png",
+      "bytes": 26828,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_dali_bamboo__v02.png",
+      "bytes": 34640,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_dali_broadleaf__v01.png",
+      "bytes": 38839,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_dali_broadleaf__v02.png",
+      "bytes": 27474,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_dali_camellia__v01.png",
+      "bytes": 24377,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_dali_camellia__v02.png",
+      "bytes": 25496,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_dali_grass__v01.png",
+      "bytes": 6066,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_dali_grass__v02.png",
+      "bytes": 3673,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_willow__v01.png",
+      "bytes": 36219,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/prp_song_willow__v02.png",
+      "bytes": 43068,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_bamboo__v01.json",
+      "bytes": 5647,
+      "lines": 80
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_bamboo__v01.png",
+      "bytes": 1282206,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_bamboo__v02.json",
+      "bytes": 5609,
+      "lines": 80
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_bamboo__v02.png",
+      "bytes": 2139785,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_broadleaf__v01.json",
+      "bytes": 5731,
+      "lines": 80
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_broadleaf__v01.png",
+      "bytes": 1694302,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_broadleaf__v02.json",
+      "bytes": 5702,
+      "lines": 80
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_broadleaf__v02.png",
+      "bytes": 2016698,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_bamboo__v01.json",
+      "bytes": 3400,
+      "lines": 68
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_bamboo__v01.png",
+      "bytes": 1520930,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_bamboo__v02.json",
+      "bytes": 3413,
+      "lines": 68
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_bamboo__v02.png",
+      "bytes": 1947845,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_broadleaf__v01.json",
+      "bytes": 3493,
+      "lines": 68
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_broadleaf__v01.png",
+      "bytes": 1995582,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_broadleaf__v02.json",
+      "bytes": 3513,
+      "lines": 68
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_broadleaf__v02.png",
+      "bytes": 1566138,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_camellia__v01.json",
+      "bytes": 3418,
+      "lines": 68
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_camellia__v01.png",
+      "bytes": 2263682,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_camellia__v02.json",
+      "bytes": 3426,
+      "lines": 68
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_camellia__v02.png",
+      "bytes": 1890368,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_grass__v01.json",
+      "bytes": 5860,
+      "lines": 26
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_grass__v01.png",
+      "bytes": 2012852,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_grass__v01_rejected01.png",
+      "bytes": 1657796,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_grass__v02.json",
+      "bytes": 8017,
+      "lines": 26
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_grass__v02.png",
+      "bytes": 1540379,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_grass__v02_rejected01.png",
+      "bytes": 1795051,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_dali_grass__v02_rejected02.png",
+      "bytes": 2365443,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_willow__v01.json",
+      "bytes": 5460,
+      "lines": 80
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_willow__v01.png",
+      "bytes": 1766957,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_willow__v02.json",
+      "bytes": 5432,
+      "lines": 95
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_willow__v02.png",
+      "bytes": 2521292,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_willow__v02__attempt01.json",
+      "bytes": 3662,
+      "lines": 16
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/sources/prp_song_willow__v02__attempt01.png",
+      "bytes": 2878850,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/props/verify.py",
+      "bytes": 5124,
+      "lines": 94
+    },
+    {
+      "file": "assets/default/baseline/building-map/rejected-pagoda-01.json",
+      "bytes": 2791,
+      "lines": 17
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/before-sha256.json",
+      "bytes": 40613,
+      "lines": 275
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_dali_stable_grid.png",
+      "bytes": 277143,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_dali_wangfu_grid.png",
+      "bytes": 1025409,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_dali_wharf_grid.png",
+      "bytes": 109844,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_dali_yamen_grid.png",
+      "bytes": 627977,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_biaoju_guide.png",
+      "bytes": 11875,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_biaoju_overlay.png",
+      "bytes": 486093,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_casino_geometry_guide.png",
+      "bytes": 21285,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_casino_grid_overlay.png",
+      "bytes": 531100,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_guardhouse_guide.png",
+      "bytes": 11789,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_guardhouse_overlay.png",
+      "bytes": 154228,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_inn_geometry_guide.png",
+      "bytes": 21885,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_inn_grid_overlay.png",
+      "bytes": 499587,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_manor_guide.png",
+      "bytes": 12356,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_manor_overlay.png",
+      "bytes": 691184,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_restaurant_geometry_guide.png",
+      "bytes": 21885,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_restaurant_grid_overlay.png",
+      "bytes": 730970,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_shop_2f_geometry_guide.png",
+      "bytes": 18864,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_shop_2f_grid_overlay.png",
+      "bytes": 350342,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_stable_calls.json",
+      "bytes": 4789,
+      "lines": 40
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_stable_overlay.png",
+      "bytes": 307034,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_wharf_calls.json",
+      "bytes": 13429,
+      "lines": 110
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_wharf_overlay.png",
+      "bytes": 111093,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_yamen_guide.png",
+      "bytes": 12213,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/bld_kit_song_southern_yamen_overlay.png",
+      "bytes": 648441,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/check-results-before.json",
+      "bytes": 3380,
+      "lines": 20
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/check_revision.py",
+      "bytes": 2395,
+      "lines": 35
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/dali_summary.json",
+      "bytes": 7079,
+      "lines": 278
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/dali_wangfu_projection_guide.png",
+      "bytes": 12972,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/dali_wharf_projection_guide.png",
+      "bytes": 12491,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/finalize_root.py",
+      "bytes": 3422,
+      "lines": 41
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/independent-review.md",
+      "bytes": 1191,
+      "lines": 9
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/make_guides.py",
+      "bytes": 798,
+      "lines": 15
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/normalize_root.py",
+      "bytes": 778,
+      "lines": 16
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/overlay_root.py",
+      "bytes": 1393,
+      "lines": 21
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/revision-check.json",
+      "bytes": 14105,
+      "lines": 379
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/root-generation.json",
+      "bytes": 12876,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/southern_stable_geometry_guide.png",
+      "bytes": 16467,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/southern_stable_selected_composite.jpg",
+      "bytes": 182206,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/southern_wharf_geometry_guide.png",
+      "bytes": 16536,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review2/update_shared.py",
+      "bytes": 2781,
+      "lines": 40
+    },
+    {
+      "file": "assets/default/baseline/building-map/review3/before-bld_kit_song_dali_wangfu.entry.json",
+      "bytes": 4866,
+      "lines": 1
+    },
+    {
+      "file": "assets/default/baseline/building-map/review3/before-bld_kit_song_dali_wangfu.png",
+      "bytes": 1032387,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/review3/before-bld_kit_song_dali_wangfu.yaml",
+      "bytes": 2898,
+      "lines": 81
+    },
+    {
+      "file": "assets/default/baseline/building-map/review3/before-check-results.json",
+      "bytes": 3672,
+      "lines": 35
+    },
+    {
+      "file": "assets/default/baseline/building-map/review3/before-sha256.json",
+      "bytes": 59804,
+      "lines": 393
+    },
+    {
+      "file": "assets/default/baseline/building-map/review3/check_revision.py",
+      "bytes": 3574,
+      "lines": 52
+    },
+    {
+      "file": "assets/default/baseline/building-map/review3/finalize.py",
+      "bytes": 5082,
+      "lines": 53
+    },
+    {
+      "file": "assets/default/baseline/building-map/review3/generation-call.json",
+      "bytes": 3670,
+      "lines": 11
+    },
+    {
+      "file": "assets/default/baseline/building-map/review3/revision-check.json",
+      "bytes": 6626,
+      "lines": 161
+    },
+    {
+      "file": "assets/default/baseline/building-map/review3/unchanged-sections.json",
+      "bytes": 5380,
+      "lines": 80
+    },
+    {
+      "file": "assets/default/baseline/building-map/review3/update_shared.py",
+      "bytes": 2600,
+      "lines": 39
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_biaoju.json",
+      "bytes": 4539,
+      "lines": 88
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_biaoju.png",
+      "bytes": 1957100,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_casino.json",
+      "bytes": 4510,
+      "lines": 88
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_casino.png",
+      "bytes": 1770683,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_courtyard.json",
+      "bytes": 5008,
+      "lines": 87
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_courtyard.png",
+      "bytes": 2268027,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_guardhouse.json",
+      "bytes": 4548,
+      "lines": 88
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_guardhouse.png",
+      "bytes": 1504476,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_house.json",
+      "bytes": 3606,
+      "lines": 80
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png",
+      "bytes": 2287351,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_inn.json",
+      "bytes": 4319,
+      "lines": 88
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_inn.png",
+      "bytes": 1725553,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_manor.json",
+      "bytes": 4596,
+      "lines": 88
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_manor.png",
+      "bytes": 1918965,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_market_stall.json",
+      "bytes": 5637,
+      "lines": 87
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_market_stall.png",
+      "bytes": 1909394,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_restaurant.json",
+      "bytes": 4418,
+      "lines": 88
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_restaurant.png",
+      "bytes": 1722595,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_shop.json",
+      "bytes": 5633,
+      "lines": 88
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_shop.png",
+      "bytes": 1808063,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_shrine.json",
+      "bytes": 4511,
+      "lines": 88
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_shrine.png",
+      "bytes": 1361180,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_stable.json",
+      "bytes": 5227,
+      "lines": 107
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_stable.png",
+      "bytes": 2614796,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_temple_hall.json",
+      "bytes": 4640,
+      "lines": 88
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_temple_hall.png",
+      "bytes": 1780993,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_wangfu.json",
+      "bytes": 20480,
+      "lines": 245
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_wangfu.png",
+      "bytes": 2694751,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_warehouse.json",
+      "bytes": 4465,
+      "lines": 88
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_warehouse.png",
+      "bytes": 1618377,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_wharf.json",
+      "bytes": 11373,
+      "lines": 151
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_wharf.png",
+      "bytes": 2224345,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_yamen.json",
+      "bytes": 7534,
+      "lines": 126
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_yamen.png",
+      "bytes": 2351886,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_biaoju.json",
+      "bytes": 5697,
+      "lines": 77
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_biaoju.png",
+      "bytes": 2298322,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_casino.json",
+      "bytes": 3717,
+      "lines": 74
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_casino.png",
+      "bytes": 1680151,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_courtyard.json",
+      "bytes": 4815,
+      "lines": 75
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_courtyard.png",
+      "bytes": 1865967,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_guardhouse.json",
+      "bytes": 7483,
+      "lines": 92
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_guardhouse.png",
+      "bytes": 2588919,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_house.json",
+      "bytes": 4955,
+      "lines": 76
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_house.png",
+      "bytes": 1877871,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_inn.json",
+      "bytes": 9773,
+      "lines": 115
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_inn.png",
+      "bytes": 2020673,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_manor.json",
+      "bytes": 9547,
+      "lines": 107
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_manor.png",
+      "bytes": 2431800,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_market_stall.json",
+      "bytes": 4894,
+      "lines": 76
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_market_stall.png",
+      "bytes": 2082738,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_pagoda.json",
+      "bytes": 3441,
+      "lines": 59
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_pagoda.png",
+      "bytes": 2158722,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_palace_hall.json",
+      "bytes": 3506,
+      "lines": 59
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_palace_hall.png",
+      "bytes": 2526872,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_restaurant.json",
+      "bytes": 11346,
+      "lines": 137
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_restaurant.png",
+      "bytes": 2198747,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_shop_1f.json",
+      "bytes": 3082,
+      "lines": 59
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_shop_1f.png",
+      "bytes": 1960890,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_shop_2f.json",
+      "bytes": 5697,
+      "lines": 83
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_shop_2f.png",
+      "bytes": 2181348,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_stable.json",
+      "bytes": 8483,
+      "lines": 102
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_stable.png",
+      "bytes": 2301339,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_temple_hall.json",
+      "bytes": 3495,
+      "lines": 59
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_temple_hall.png",
+      "bytes": 2700749,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_warehouse.json",
+      "bytes": 3379,
+      "lines": 59
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_warehouse.png",
+      "bytes": 2626393,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_wharf.json",
+      "bytes": 17449,
+      "lines": 172
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_wharf.png",
+      "bytes": 2037411,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_yamen.json",
+      "bytes": 13642,
+      "lines": 137
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_southern_yamen.png",
+      "bytes": 2481961,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_lm_ch01_chongshengsi_pagoda.json",
+      "bytes": 5952,
+      "lines": 52
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_lm_ch01_chongshengsi_pagoda.png",
+      "bytes": 857060,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_lm_ch01_chongshengsi_pagoda_small.json",
+      "bytes": 2882,
+      "lines": 33
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_lm_ch01_chongshengsi_pagoda_small.png",
+      "bytes": 766141,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_lm_ch02_linan_palace_gate.json",
+      "bytes": 7312,
+      "lines": 41
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/bld_lm_ch02_linan_palace_gate.png",
+      "bytes": 1554949,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_stable_pre_review2.json",
+      "bytes": 4393,
+      "lines": 88
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_stable_pre_review2.png",
+      "bytes": 1889995,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_pre_review2.json",
+      "bytes": 4883,
+      "lines": 88
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_pre_review2.png",
+      "bytes": 2061179,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_pre_review3.json",
+      "bytes": 16319,
+      "lines": 202
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_pre_review3.png",
+      "bytes": 2535128,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt01.json",
+      "bytes": 2362,
+      "lines": 20
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt01.png",
+      "bytes": 2776938,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt02.json",
+      "bytes": 2632,
+      "lines": 26
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt02.png",
+      "bytes": 2523442,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt03.json",
+      "bytes": 2216,
+      "lines": 20
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt03.png",
+      "bytes": 2429458,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt04.json",
+      "bytes": 2045,
+      "lines": 20
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt04.png",
+      "bytes": 2758097,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt05.json",
+      "bytes": 2086,
+      "lines": 20
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt05.png",
+      "bytes": 2704820,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wharf_pre_review2.json",
+      "bytes": 7404,
+      "lines": 93
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wharf_pre_review2.png",
+      "bytes": 2131751,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wharf_review2_attempt01.json",
+      "bytes": 2229,
+      "lines": 20
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wharf_review2_attempt01.png",
+      "bytes": 1876516,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_yamen_pre_review2.json",
+      "bytes": 4541,
+      "lines": 88
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_yamen_pre_review2.png",
+      "bytes": 1760879,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_yamen_review2_attempt02.json",
+      "bytes": 1997,
+      "lines": 20
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_yamen_review2_attempt02.png",
+      "bytes": 2555814,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_biaoju_pre_review2.json",
+      "bytes": 3200,
+      "lines": 37
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_biaoju_pre_review2.png",
+      "bytes": 2740180,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_casino_pre_review2.json",
+      "bytes": 3039,
+      "lines": 37
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_casino_pre_review2.png",
+      "bytes": 2146015,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_courtyard_try1.png",
+      "bytes": 1921243,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_courtyard_try2.png",
+      "bytes": 1865967,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_guardhouse_pre_review2.json",
+      "bytes": 3362,
+      "lines": 59
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_guardhouse_pre_review2.png",
+      "bytes": 2463693,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_guardhouse_review2_try1.json",
+      "bytes": 2137,
+      "lines": 17
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_guardhouse_review2_try1.png",
+      "bytes": 1848320,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_house_try2.png",
+      "bytes": 2423843,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_pre_review2.json",
+      "bytes": 4849,
+      "lines": 76
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_pre_review2.png",
+      "bytes": 2759992,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_review2_try1.json",
+      "bytes": 2298,
+      "lines": 10
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_review2_try1.png",
+      "bytes": 1954277,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_review2_try2.json",
+      "bytes": 2403,
+      "lines": 16
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_review2_try2.png",
+      "bytes": 1457890,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_try2.png",
+      "bytes": 2828960,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_manor_pre_review2.json",
+      "bytes": 3432,
+      "lines": 59
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_manor_pre_review2.png",
+      "bytes": 2619195,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_manor_review2_try1.json",
+      "bytes": 2114,
+      "lines": 17
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_manor_review2_try1.png",
+      "bytes": 2245586,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_manor_review2_try2.json",
+      "bytes": 1912,
+      "lines": 17
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_manor_review2_try2.png",
+      "bytes": 2660087,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_market_stall_try2.png",
+      "bytes": 2270542,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_pre_review2.json",
+      "bytes": 4932,
+      "lines": 76
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_pre_review2.png",
+      "bytes": 2711312,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try1.json",
+      "bytes": 2384,
+      "lines": 16
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try1.png",
+      "bytes": 2579418,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try2.json",
+      "bytes": 1927,
+      "lines": 16
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try2.png",
+      "bytes": 2688457,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try3.json",
+      "bytes": 2051,
+      "lines": 16
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try3.png",
+      "bytes": 2361102,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_try2.png",
+      "bytes": 2800279,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_shop_2f_pre_review2.json",
+      "bytes": 5006,
+      "lines": 76
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_shop_2f_pre_review2.png",
+      "bytes": 2095878,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_shop_2f_try2.png",
+      "bytes": 2168484,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_stable_pre_review2.json",
+      "bytes": 3351,
+      "lines": 59
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_stable_pre_review2.png",
+      "bytes": 2518870,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_stable_review2_4.png",
+      "bytes": 2648804,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_pre_review2.json",
+      "bytes": 3539,
+      "lines": 59
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_pre_review2.png",
+      "bytes": 1193629,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_review2_1.png",
+      "bytes": 2273273,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_review2_2.png",
+      "bytes": 1469114,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_review2_3.png",
+      "bytes": 2219505,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_review2_6.png",
+      "bytes": 2363313,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_review2_8.png",
+      "bytes": 1486747,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_pre_review2.json",
+      "bytes": 4918,
+      "lines": 76
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_pre_review2.png",
+      "bytes": 2784948,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try1.json",
+      "bytes": 2445,
+      "lines": 17
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try1.png",
+      "bytes": 2761246,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try2.json",
+      "bytes": 2282,
+      "lines": 17
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try2.png",
+      "bytes": 2125028,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try3.json",
+      "bytes": 1891,
+      "lines": 17
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try3.png",
+      "bytes": 2016617,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_try2.png",
+      "bytes": 2804173,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_lm_ch01_chongshengsi_pagoda_try1.png",
+      "bytes": 735328,
+      "lines": null
+    },
+    {
+      "file": "assets/default/baseline/building-map/verify.py",
+      "bytes": 4682,
+      "lines": 90
+    },
+    {
+      "file": "assets/default/prompts/building-map.md",
+      "bytes": 31096,
+      "lines": 311
+    }
+  ]
+}

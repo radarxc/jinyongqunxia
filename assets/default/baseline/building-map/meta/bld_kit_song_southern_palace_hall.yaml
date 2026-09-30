@@ -1,0 +1,81 @@
+id: bld_kit_song_southern_palace_hall
+status: candidate
+building:
+  type: bld_kit_song_southern_palace_hall
+  footprint: [18, 14]
+  anchor: &id001 [654.8482, 598.8328]
+  era: song_southern
+anchor_px: *id001
+footprint_m: [18, 14]
+logical_footprint_polygon_px:
+- [142.84820000000002, 566.8328]
+- [718.8482, 854.8328]
+- [1166.8482, 630.8328]
+- [590.8482, 342.8328]
+collision_polygon_m:
+- [0, 0]
+- [18, 0]
+- [18, 14]
+- [0, 14]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [143, 148]
+- [1168, 148]
+- [1168, 830]
+- [143, 830]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 11.5
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 8}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 180]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_southern_palace_hall.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [1024, 512]
+  ground_width_px: 1024
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [114, 621]
+    front: [886, 950]
+    right: [1447, 690]
+  source_axis_slopes: [0.4261658031088083, -0.46345811051693403]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.376114081996435
+  expected_width_depth_ratio: 1.2857142857142858
+  ratio_relative_error: 0.07031095266389387
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [1312, 1024]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 929599
+  alpha_partial_pixels: 413252
+  alpha_opaque_pixels: 637
+  alpha_near_opaque_pixels: 402374
+  alpha_nonzero_bbox: [140, 142, 1172, 882]
+  transparent_margins_px: [140, 142, 140, 142]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_southern_palace_hall.png
+  source_sha256: f6ef8441f80279dca07df31f9b3e0f0a56764540f806b7d85e309e7a22b13640
+  source_size: [1536, 1024]
+  crop_box: [110, 61, 1454, 1024]
+  uniform_scale_requested: 0.768192048012003
+  resized_size: [1032, 740]
+  rounded_effective_scale: [0.7678571428571429, 0.7684319833852544]
+  paste_offset: [140, 142]
+  final_file: bld_kit_song_southern_palace_hall.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

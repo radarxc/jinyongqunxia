@@ -1,0 +1,16 @@
+{
+  "key": "inn2",
+  "prompt": "Use case: historical-scene. The attached image is a GEOMETRY construction reference, not artwork: keep EXACTLY the same four corners and exact ground boundary angles. Build a realistic historical Chinese SOUTHERN SONG inn ON this rectangular platform. Camera is orthographic, horizontal edge slopes +0.5 and -0.5. Entire platform shape stays fixed: left corner (150,850), front corner (710,1130), right corner(1130,920), rear corner (570,640) in the 1280 square image. Its long lower-left facade edge is 12 units, short lower-right side edge is 9 units. Generate a beautiful realistic single two-storey Lin'an commercial inn compound with guest balconies, dark warm weathered timber, ivory plaster, restrained grey tile roofs, compact inside yard. Wide southwest entrance facade, travel baskets and rolled bedrolls. Keep all architecture aligned to those two axes and vertical pillars truly vertical. Cover the reference thin slab with natural stone paving; don't display drawn grid lines. Thin foundation, no thick pedestal. Realistic historic game art with physically detailed tiles and subtle warm earthy colors. Upper-left sun, short lower-right contact shadow. All building, roof and platform contained within image with at least 100px empty transparent margins. Replace ALL white background with true transparent alpha. No grid, guide lines, outlines, text, symbols, people, modern objects, cartoon, horizon, backdrop, glow, giant shadow. Most important: preserve reference platform shape exactly while rendering the complete inn above it.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-0d7902e2-8485-4726-be57-52f63990ff3a.png",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/review2/bld_kit_song_southern_inn_geometry_guide.png",
+      "sha256": "00fe557db1a270b6d948f0b96dae9814073018384f21ef9b6847ddc1b1403abb",
+      "role": "geometry-only construction guide; no asset pixels drawn by code"
+    }
+  ],
+  "source_sha256": "e106a6f6cfccb8cac215c55aa72fa583adb58504416b4fd21f241402ab9a7f20",
+  "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_review2_try2.png",
+  "selection": "unselected",
+  "reason": "几何引导版两轴已协调，但初读比例约1.18，相对12/9仍偏短约11.7%，由下一版延长前立面替换。"
+}

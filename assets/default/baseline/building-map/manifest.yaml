@@ -1,0 +1,3184 @@
+- id: bld_kit_song_dali_house
+  subject: 1093年大理国小型民居（建筑细部待考）
+  prompt: 'Use case: historical-scene. Create ONE production isometric city-map building sprite for tianshu, Song-era Dali kingdom in 1093. Realistic ancient Chinese
+    timber/stone construction and softly weathered material detail, restrained clay-white walls, dark timber, gray tiled roofs, modest local southwest vegetation
+    only where specified. Reference image is MATERIAL AND REALISM ONLY, DO NOT copy its camera, mountain landscape or full scene. Orthographic camera exactly yaw45
+    elevation30, 2:1 dimetric ground-plane projection, ground axes have screen slopes +0.5 and -0.5, verticals upright, no perspective convergence. South entrance/front
+    must face screen LOWER LEFT. One complete isolated asset centered, true transparent RGBA background; generous >=10% empty transparent margins on all sides. Entire
+    asset and contact shadow fully inside canvas. A very thin flat rectangular footprint, four corners readable, NO thick diorama plinth. No outside road, panorama,
+    sky or landscape. Light from SCREEN UPPER LEFT; small soft contact shadow goes SCREEN LOWER RIGHT only. No writing of any kind, signs, letters, numbers, people,
+    border, watermark, logo, checkerboard pattern, modern items, late Ming/Qing tourism styling, oversized decorative upturned roofs. Keep scale realistic. A modest
+    single-story domestic house, simple gray tiled gabled roof, lightly plastered earth walls and visible dark timber frame, wooden south door and lattice windows,
+    stone doorstep; no courtyard complex. Footprint 6m east-west by5m north-south. One tiny camellia shrub contained at side.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: ref_sect_shaolin__ch01_base01, file: assets/default/baseline/building/ref_sect_shaolin__ch01_base01.png, sha256: b109e6d771320b80f97750d1fc612f1a26f1da1e8bd5d5d0baca7c27cffa256f,
+    role: 仅材质与写实气质}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-3268c81e-d16c-48da-b2e3-d04280e8daff.png
+  created: '2026-09-30T08:31:26.010389+00:00'
+  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_house.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 608x512
+  sha256: d4253e828714ee9352da82aed7aa33cf61cc5428d1939f8089600344f7ecb953
+  status: candidate
+  building:
+    type: bld_kit_song_dali_house
+    footprint: [6, 5]
+    anchor: [317.8376, 314.4298]
+    era: song_dali
+  footprint_m: [6, 5]
+  entrance: {edge: S, offset_cells: 2}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [352, 176]
+    ground_width_px: 352
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_house.yaml
+  source_sha256: f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d
+  processing:
+    source_archive: sources/bld_kit_song_dali_house.png
+    source_sha256: f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d
+    source_size: [1536, 1024]
+    crop_box: [0, 21, 1472, 982]
+    uniform_scale_requested: 0.3188405797101449
+    resized_size: [469, 306]
+    rounded_effective_scale: [0.3186141304347826, 0.3184183142559833]
+    paste_offset: [69, 103]
+    final_file: bld_kit_song_dali_house.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [229, 661]
+      front: [837, 964]
+      right: [1333, 709]
+    source_axis_slopes: [0.49835526315789475, -0.5141129032258065]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.2258064516129032
+    expected_width_depth_ratio: 1.2
+    ratio_relative_error: 0.021505376344086002
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [608, 512]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 248123
+    alpha_partial_pixels: 62433
+    alpha_opaque_pixels: 740
+    alpha_near_opaque_pixels: 58787
+    alpha_nonzero_bbox: [90, 107, 504, 407]
+    transparent_margins_px: [90, 107, 104, 105]
+    border_alpha_max: 0
+  candidate_count: 1
+  source_record: sources/bld_kit_song_dali_house.json
+  notes: 已view_image(detail=original)逐张自查：小型民居主体完整，无文字或现代物，灰瓦木构与基线一致；门朝左下，左上光。底面目测点支持2:1近似投影，局部瓦檐不用于锚点；低alpha外缘需规格化时扩透明画布。历史细部待考。
+- id: bld_kit_song_dali_courtyard
+  subject: 1093年大理国低密院落（建筑细部待考）
+  prompt: Generate a SINGLE orthographic map building sprite on a TRUE TRANSPARENT RGBA background. Reference is camera/material guide only. Camera yaw45 elevation30;
+    exact 2:1 dimetric ground axes screen slopes+0.5,-0.5. Rectangular footprint 10m east-west by8m north-south, ground east-west edge appears1.25 times north-south
+    edge. South entrance LOWER LEFT. One low-density residential courtyard in Dali kingdom1093, low gray tiled main timber house at rear and one side wing, low plain
+    courtyard walls, timber south gate, mostly compacted earth court with a few stepping stones and one small camellia. Modest pale plaster, weathered timber, gray
+    tile, simple restrained roofs. Flat thin footprint, complete clear three bottom corners, no thick plinth. Entire sprite centered with10% empty transparency all
+    sides, no clipped eaves. Lighting screen upper left, short contact shadow lower right. No background environment or gradient or halo. No text, no sign, no logo,
+    no people, no modern details, no caricature, no tourism white-Bai facade or palace ornament.
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: bld_kit_song_dali_house, file: assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png, sha256: f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d,
+    role: 本批候选相机与材质参考（非作者approved）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-4a7e2ed2-903d-457f-859e-c0a6ee4614ff.png
+  created: '2026-09-30T08:34:36.063122+00:00'
+  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_courtyard.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 896x672
+  sha256: f6d83162d9a7e33e7c7a0be0e6b900b376ea29eb35979c6f08e4a6051bea3175
+  status: candidate
+  building:
+    type: bld_kit_song_dali_courtyard
+    footprint: [10, 8]
+    anchor: [482.2346, 393.4873]
+    era: song_dali
+  footprint_m: [10, 8]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [576, 288]
+    ground_width_px: 576
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_courtyard.yaml
+  source_sha256: 7ac30d49e254220d06b2d7392578158c03219e29a6ebe0d80b743786c13bb182
+  processing:
+    source_archive: sources/bld_kit_song_dali_courtyard.png
+    source_sha256: 7ac30d49e254220d06b2d7392578158c03219e29a6ebe0d80b743786c13bb182
+    source_size: [1536, 1024]
+    crop_box: [0, 17, 1458, 1000]
+    uniform_scale_requested: 0.485256950294861
+    resized_size: [708, 477]
+    rounded_effective_scale: [0.48559670781893005, 0.4852492370295015]
+    paste_offset: [94, 97]
+    final_file: bld_kit_song_dali_courtyard.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [206, 627]
+      front: [832, 947]
+      right: [1393, 629]
+    source_axis_slopes: [0.5111821086261981, -0.5668449197860963]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.1158645276292336
+    expected_width_depth_ratio: 1.25
+    ratio_relative_error: 0.10730837789661307
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [896, 672]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 463095
+    alpha_partial_pixels: 138144
+    alpha_opaque_pixels: 873
+    alpha_near_opaque_pixels: 135203
+    alpha_nonzero_bbox: [94, 98, 775, 553]
+    transparent_margins_px: [94, 98, 121, 119]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_dali_courtyard.json
+  notes: 已view_image(detail=original)逐张自查：院落低密，土院与山茶符合大理要求，门朝左下，灰瓦木构与基线一致，无文字或人物。重出后底面两轴更接近2:1，但占地比例残差须交合成复核，未标精确通过。
+- id: bld_kit_song_dali_shop
+  subject: 1093年大理国沿街药铺（建筑细部待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map
+    sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation
+    30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT.
+    Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10%
+    empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop,
+    ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained
+    Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people,
+    no modern objects, no logos, no border, no watermark, no tourism-era decoration. A modest single-story apothecary shop with gray tiled gabled roof, timber shopfront
+    open on south side, visible unlabeled earthenware medicine jars and small plain wooden drawers beneath eaves, simple awning; no writing or signs. Footprint 6m
+    east-west by5m north-south, no extra street.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: bld_kit_song_dali_house, file: assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png, sha256: f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d,
+    role: 本批候选相机与材质参考（非作者approved）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-7d5f4b25-af7b-469a-936d-e74012d765c8.png
+  created: '2026-09-30T08:39:25.302622+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_shop.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 576x512
+  sha256: 89ef22795c9e19566646052a92f161f62c4d785db93f0ae1dcbc94131ab94c79
+  status: candidate
+  building:
+    type: bld_kit_song_dali_shop
+    footprint: [6, 5]
+    anchor: [286.0792, 307.0102]
+    era: song_dali
+  footprint_m: [6, 5]
+  entrance: {edge: S, offset_cells: 2}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [352, 176]
+    ground_width_px: 352
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_shop.yaml
+  source_sha256: 9cb3fbe4b8d509d5e13754b545ffcf2ff6ff93118c1409c7f6a09a06489e9b5b
+  processing:
+    source_archive: sources/bld_kit_song_dali_shop.png
+    source_sha256: 9cb3fbe4b8d509d5e13754b545ffcf2ff6ff93118c1409c7f6a09a06489e9b5b
+    source_size: [1774, 887]
+    crop_box: [156, 1, 1645, 887]
+    uniform_scale_requested: 0.2953020134228188
+    resized_size: [440, 262]
+    rounded_effective_scale: [0.2955003357958361, 0.29571106094808125]
+    paste_offset: [68, 125]
+    final_file: bld_kit_song_dali_shop.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [298, 583]
+      front: [978, 879]
+      right: [1490, 650]
+    source_axis_slopes: [0.43529411764705883, -0.447265625]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.328125
+    expected_width_depth_ratio: 1.2
+    ratio_relative_error: 0.10677083333333348
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [576, 512]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 237018
+    alpha_partial_pixels: 57168
+    alpha_opaque_pixels: 726
+    alpha_near_opaque_pixels: 55805
+    alpha_nonzero_bbox: [107, 125, 468, 387]
+    transparent_margins_px: [107, 125, 108, 125]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_dali_shop.json
+  notes: 已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。
+- id: bld_kit_song_dali_inn
+  subject: 1093年大理国客栈（建筑细部待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map
+    sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation
+    30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT.
+    Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10%
+    empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop,
+    ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained
+    Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people,
+    no modern objects, no logos, no border, no watermark, no tourism-era decoration. A modest two-story travelers'' inn, timber balcony facing south, restrained gray
+    tiled gabled roofs, small sheltered ground-floor entrance and side service yard with clay jars, simple stone footing. Footprint 10m east-west by8m north-south.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: bld_kit_song_dali_house, file: assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png, sha256: f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d,
+    role: 本批候选相机与材质参考（非作者approved）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-fa183f27-1533-4d66-bc9d-a60d4640dbc0.png
+  created: '2026-09-30T08:29:19.644040+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_inn.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 896x608
+  sha256: 017521d157f0a6b29976ab7e0da83a829359f0de970a376c5226ef4ee4dea307
+  status: candidate
+  building:
+    type: bld_kit_song_dali_inn
+    footprint: [10, 8]
+    anchor: [441.3077, 372.2046]
+    era: song_dali
+  footprint_m: [10, 8]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [576, 288]
+    ground_width_px: 576
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_inn.yaml
+  source_sha256: aa810b2b3d4536cea432972f2497fd7a2a38092f7f3d98b5c3119e810de01aeb
+  processing:
+    source_archive: sources/bld_kit_song_dali_inn.png
+    source_sha256: aa810b2b3d4536cea432972f2497fd7a2a38092f7f3d98b5c3119e810de01aeb
+    source_size: [1774, 887]
+    crop_box: [156, 0, 1677, 887]
+    uniform_scale_requested: 0.46153846153846156
+    resized_size: [702, 409]
+    rounded_effective_scale: [0.46153846153846156, 0.46110484780157834]
+    paste_offset: [97, 99]
+    final_file: bld_kit_song_dali_inn.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [278, 563]
+      front: [932, 883]
+      right: [1526, 622]
+    source_axis_slopes: [0.4892966360856269, -0.4393939393939394]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.101010101010101
+    expected_width_depth_ratio: 1.25
+    ratio_relative_error: 0.11919191919191918
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [896, 608]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 408974
+    alpha_partial_pixels: 134870
+    alpha_opaque_pixels: 924
+    alpha_near_opaque_pixels: 131556
+    alpha_nonzero_bbox: [151, 99, 731, 508]
+    transparent_margins_px: [151, 99, 165, 100]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_dali_inn.json
+  notes: 已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。
+- id: bld_kit_song_dali_restaurant
+  subject: 1093年大理国酒楼茶肆（建筑细部待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map
+    sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation
+    30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT.
+    Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10%
+    empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop,
+    ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained
+    Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people,
+    no modern objects, no logos, no border, no watermark, no tourism-era decoration. A two-story local wine tavern and tea house, open south timber veranda with simple
+    wooden tables, clay wine jars stored under deep eaves, gray tiled roof and light plaster infill; lively commercial detail but no people, no hanging signs. Footprint
+    10m east-west by8m north-south.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: bld_kit_song_dali_house, file: assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png, sha256: f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d,
+    role: 本批候选相机与材质参考（非作者approved）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-1432a1e7-1f01-4e3a-a84f-a2cf830beda8.png
+  created: '2026-09-30T08:29:59.760982+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_restaurant.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 1056x672
+  sha256: ec37918eb17c60abd9f33f7a1de8ccd8031f5f33cbd5c9b911f1c4994f1ab15a
+  status: candidate
+  building:
+    type: bld_kit_song_dali_restaurant
+    footprint: [10, 8]
+    anchor: [544.2747, 417.2835]
+    era: song_dali
+  footprint_m: [10, 8]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [576, 288]
+    ground_width_px: 576
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_restaurant.yaml
+  source_sha256: 0a5cf32ab1ce33e078197d78c38f031fce50ee30e3af289683e01fd5257d66c6
+  processing:
+    source_archive: sources/bld_kit_song_dali_restaurant.png
+    source_sha256: 0a5cf32ab1ce33e078197d78c38f031fce50ee30e3af289683e01fd5257d66c6
+    source_size: [1774, 887]
+    crop_box: [27, 0, 1687, 887]
+    uniform_scale_requested: 0.4931506849315068
+    resized_size: [819, 437]
+    rounded_effective_scale: [0.49337349397590363, 0.4926719278466742]
+    paste_offset: [118, 117]
+    final_file: bld_kit_song_dali_restaurant.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [307, 580]
+      front: [946, 878]
+      right: [1475, 639]
+    source_axis_slopes: [0.46635367762128327, -0.45179584120982985]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.2079395085066162
+    expected_width_depth_ratio: 1.25
+    ratio_relative_error: 0.03364839319470703
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [1056, 672]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 557291
+    alpha_partial_pixels: 151472
+    alpha_opaque_pixels: 869
+    alpha_near_opaque_pixels: 147622
+    alpha_nonzero_bbox: [254, 117, 849, 554]
+    transparent_margins_px: [254, 117, 207, 118]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_dali_restaurant.json
+  notes: 已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。
+- id: bld_kit_song_dali_market_stall
+  subject: 1093年大理国市集摊棚（建筑细部待考）
+  prompt: 'Use case: historical-scene. NEW image, ONE freestanding SMALL MARKET CANOPY STALL only, no building. Isolated game map sprite on genuine transparent RGBA
+    background. Dali kingdom in1093. Exactly FOUR bare wooden poles supporting one rectangular plain TAN FABRIC CANOPY, a waist-high plank counter with a few unlabeled
+    pottery jars and small tea baskets. Canvas canopy, NO roof tiles, NO walls, NO house or hall behind it. Empty open space visible through the stall. A flat thin
+    beaten earth rectangle 3m east-west by2m north-south, corners readable. Orthographic isometric map view, camera yaw45 elevation30, 2:1 ground projection: left/front
+    ground edge slopes +0.5, front/right edge -0.5, east-west edge1.5 times north-south edge. Front faces lower left. Natural realistic Song-era fabric, timber and
+    earth materials, low-key restrained color. Light screen upper left and tiny contact shadow lower right. Center on1536x1024 transparent canvas with >=15% empty
+    margin. No mountains, trees, landscape, scene background, floor outside footprint, gradient glow, people, writing, signs, borders, watermarks, modern objects.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references: []
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-2193d9cd-9a6e-402e-b190-43a6f97017b9.png
+  created: '2026-09-30T08:34:04.302768+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_market_stall.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 512x512
+  sha256: d82604ff4091c310b63e1718fc2e1c803a044439e579b529d14fbca4f3782a5d
+  status: candidate
+  building:
+    type: bld_kit_song_dali_market_stall
+    footprint: [3, 2]
+    anchor: [254.6465, 284.282]
+    era: song_dali
+  footprint_m: [3, 2]
+  entrance: {edge: S, offset_cells: 1}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [160, 80]
+    ground_width_px: 160
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_market_stall.yaml
+  source_sha256: 92482736b6f6837926393caa0322d05c334eefa6d61f58202282057aeb182eea
+  processing:
+    source_archive: sources/bld_kit_song_dali_market_stall.png
+    source_sha256: 92482736b6f6837926393caa0322d05c334eefa6d61f58202282057aeb182eea
+    source_size: [1536, 1024]
+    crop_box: [65, 17, 1522, 1024]
+    uniform_scale_requested: 0.15904572564612326
+    resized_size: [232, 160]
+    rounded_effective_scale: [0.15923129718599863, 0.15888778550148958]
+    paste_offset: [140, 176]
+    final_file: bld_kit_song_dali_market_stall.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [282, 644]
+      front: [854, 938]
+      right: [1288, 753]
+    source_axis_slopes: [0.513986013986014, -0.42626728110599077]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.3179723502304148
+    expected_width_depth_ratio: 1.5
+    ratio_relative_error: 0.12135176651305679
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [512, 512]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 250427
+    alpha_partial_pixels: 11042
+    alpha_opaque_pixels: 675
+    alpha_near_opaque_pixels: 10156
+    alpha_nonzero_bbox: [140, 186, 337, 325]
+    transparent_margins_px: [140, 186, 175, 187]
+    border_alpha_max: 0
+  candidate_count: 3
+  source_record: sources/bld_kit_song_dali_market_stall.json
+  notes: 已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。
+- id: bld_kit_song_dali_yamen
+  subject: 1093年大理国官署衙门（建筑细部待考）
+  prompt: 'Use case: precise-object-edit. Edit target: the attached Dali government compound map sprite. Preserve realistic gray tiles, timber, cream earth walls,
+    empty court, gate, restrained vegetation, lighting upper left, RGBA transparent background. Redraw the entire compound with corrected rectangular plan, not a
+    square plan. Camera is ORTHOGRAPHIC 2:1 dimetric, verticals vertical, BOTH horizontal ground axes slopes +0.5 and -0.5. The entrance-facing edge from screen LEFT
+    ground corner to FRONT ground corner has length 14 units; edge FRONT to screen RIGHT ground corner is 11 units, ratio 14/11=1.273. This must be clear in the ground
+    perimeter and all walls and roofs. On a 1536x1024 transparent canvas, use exactly these thin ground contact corners: LEFT (168,535), FRONT (840,871), RIGHT (1368,607),
+    BACK (696,271). Thus from LEFT to FRONT is vector (+672,+336), from FRONT to RIGHT is (+528,-264). Front corner is visibly RIGHT of ground horizontal center,
+    not centered. Build the gate front wall along LEFT-to-FRONT; right wall along FRONT-to-RIGHT. Leave these ground corners unobstructed, keep all buildings inside
+    footprint and roofs complete with generous padding. The floor is a thin rhomboid earth-and-stone contact patch, not a thick base. Entire building architecture
+    must match the new projection and rectangle; do not merely change transparent canvas. No grid lines, no guidelines, no text, no watermarks, no people, no modern
+    items. Generate one repaired building.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: bld_kit_song_dali_yamen_pre_review2, file: assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_yamen_pre_review2.png, sha256: 34ccf4cea9c97099ebe597beb96333f3e83f29bc6deb4a21c1a2f156159bf698,
+    role: 返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-9ceff76d-be33-453a-8b93-af1b2dd90179.png
+  created: '2026-09-30T10:50:01.562579+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_yamen.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 1056x768
+  sha256: 3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef
+  status: candidate
+  building:
+    type: bld_kit_song_dali_yamen
+    footprint: [14, 11]
+    anchor: [536.8185, 424.2941]
+    era: song_dali
+  footprint_m: [14, 11]
+  entrance: {edge: S, offset_cells: 6}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [800, 400]
+    ground_width_px: 800
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_yamen.yaml
+  source_sha256: 802ce940f9f5a67cbf5d5b28123937d6290936228c1e2d05855c3a8b2664cb3c
+  processing:
+    source_archive: sources/bld_kit_song_dali_yamen.png
+    source_sha256: 802ce940f9f5a67cbf5d5b28123937d6290936228c1e2d05855c3a8b2664cb3c
+    source_size: [1536, 1024]
+    crop_box: [65, 32, 1470, 984]
+    uniform_scale_requested: 0.5878030859662013
+    resized_size: [826, 560]
+    rounded_effective_scale: [0.5879003558718862, 0.5882352941176471]
+    paste_offset: [115, 104]
+    final_file: bld_kit_song_dali_yamen.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [102, 540]
+      front: [861, 932]
+      right: [1463, 613]
+    source_axis_slopes: [0.5164690382081687, -0.5299003322259136]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.260797342192691
+    expected_width_depth_ratio: 1.2727272727272727
+    ratio_relative_error: 0.009373516848599883
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [1056, 768]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 595169
+    alpha_partial_pixels: 214888
+    alpha_opaque_pixels: 951
+    alpha_near_opaque_pixels: 210051
+    alpha_nonzero_bbox: [115, 104, 941, 644]
+    transparent_margins_px: [115, 104, 115, 124]
+    border_alpha_max: 0
+  candidate_count: 4
+  source_record: sources/bld_kit_song_dali_yamen.json
+  notes: 已逐张view_image检查原图与成品QA叠图；无文字、水印、现代物件和人物，完整RGBA透明留边；光源左上。衙门由近方底面重绘为14×11，两边投影协调。仅裁切、等比LANCZOS缩放、透明扩边；历史细部与风格仍待作者审批。
+- id: bld_kit_song_dali_biaoju
+  subject: 1093年大理国护运行货栈（建筑细部待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map
+    sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation
+    30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT.
+    Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10%
+    empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop,
+    ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained
+    Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people,
+    no modern objects, no logos, no border, no watermark, no tourism-era decoration. A caravan protection and freight compound, not a late-period named escort bureau:
+    sturdy plain timber hall, two low storage side sheds, compact dirt loading yard with covered bales and empty wooden handcart, simple south gate. Gray tiled roofs,
+    stone foundations, no weapons display, flags or names. Footprint 12m east-west by10m north-south.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: bld_kit_song_dali_house, file: assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png, sha256: f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d,
+    role: 本批候选相机与材质参考（非作者approved）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-995f0f8d-269f-476b-a39f-bf0d9d678f0f.png
+  created: '2026-09-30T08:32:11.237938+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_biaoju.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 1088x672
+  sha256: 928e60e61ff9c0d14f9691b22486b599f181e3b4f52b86182f9b0be3daa76161
+  status: candidate
+  building:
+    type: bld_kit_song_dali_biaoju
+    footprint: [12, 10]
+    anchor: [557.8429, 380.6894]
+    era: song_dali
+  footprint_m: [12, 10]
+  entrance: {edge: S, offset_cells: 5}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [704, 352]
+    ground_width_px: 704
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_biaoju.yaml
+  source_sha256: 4a1536a357169fb38b8f0140ceb61125193dc8c2924da15a1797bedab65d09fc
+  processing:
+    source_archive: sources/bld_kit_song_dali_biaoju.png
+    source_sha256: 4a1536a357169fb38b8f0140ceb61125193dc8c2924da15a1797bedab65d09fc
+    source_size: [1774, 887]
+    crop_box: [0, 0, 1750, 887]
+    uniform_scale_requested: 0.4858523119392685
+    resized_size: [850, 431]
+    rounded_effective_scale: [0.4857142857142857, 0.4859075535512965]
+    paste_offset: [119, 120]
+    final_file: bld_kit_song_dali_biaoju.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [179, 560]
+      front: [929, 879]
+      right: [1628, 513]
+    source_axis_slopes: [0.42533333333333334, -0.5236051502145923]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.0729613733905579
+    expected_width_depth_ratio: 1.2
+    ratio_relative_error: 0.10586552217453504
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [1088, 672]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 561541
+    alpha_partial_pixels: 168663
+    alpha_opaque_pixels: 932
+    alpha_near_opaque_pixels: 165247
+    alpha_nonzero_bbox: [119, 120, 920, 551]
+    transparent_margins_px: [119, 120, 168, 121]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_dali_biaoju.json
+  notes: 已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。
+- id: bld_kit_song_dali_casino
+  subject: 1093年大理国赌场（建筑细部待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map
+    sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation
+    30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT.
+    Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10%
+    empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop,
+    ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained
+    Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people,
+    no modern objects, no logos, no border, no watermark, no tourism-era decoration. An anonymous modest gaming house behind a partially open south timber storefront,
+    low single-story front wing and slightly taller main hall, plain gray roofs, dark wooden lattice, shallow canopy, small stone entrance. Visible unoccupied wooden
+    tables inside but no readable cards or symbols. Footprint 9m east-west by7m north-south.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: bld_kit_song_dali_house, file: assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png, sha256: f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d,
+    role: 本批候选相机与材质参考（非作者approved）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-95756324-38e7-49bd-a07b-6a62cdc8df3a.png
+  created: '2026-09-30T08:32:54.409274+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_casino.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 768x544
+  sha256: 4b8c4ddeab6641d98312eb383f97ec609673a1fc6c0b3e84082de07c9d91ace3
+  status: candidate
+  building:
+    type: bld_kit_song_dali_casino
+    footprint: [9, 7]
+    anchor: [358.7788, 340.4331]
+    era: song_dali
+  footprint_m: [9, 7]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [512, 256]
+    ground_width_px: 512
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_casino.yaml
+  source_sha256: 35d685ffcf0be78d6e973db9ee1082fd2d867ee1330fa66490808e5d565e1b5c
+  processing:
+    source_archive: sources/bld_kit_song_dali_casino.png
+    source_sha256: 35d685ffcf0be78d6e973db9ee1082fd2d867ee1330fa66490808e5d565e1b5c
+    source_size: [1774, 887]
+    crop_box: [265, 5, 1673, 887]
+    uniform_scale_requested: 0.4227910817506193
+    resized_size: [595, 373]
+    rounded_effective_scale: [0.4225852272727273, 0.42290249433106575]
+    paste_offset: [86, 85]
+    final_file: bld_kit_song_dali_casino.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [305, 591]
+      front: [981, 877]
+      right: [1516, 627]
+    source_axis_slopes: [0.4230769230769231, -0.4672897196261682]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.263551401869159
+    expected_width_depth_ratio: 1.2857142857142858
+    ratio_relative_error: 0.01723779854620977
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [768, 544]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 302455
+    alpha_partial_pixels: 114412
+    alpha_opaque_pixels: 925
+    alpha_near_opaque_pixels: 111887
+    alpha_nonzero_bbox: [101, 85, 617, 458]
+    transparent_margins_px: [101, 85, 151, 86]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_dali_casino.json
+  notes: 已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。
+- id: bld_kit_song_dali_manor
+  subject: 1093年大理国王府外围庄园（建筑细部待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map
+    sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation
+    30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT.
+    Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10%
+    empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop,
+    ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained
+    Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people,
+    no modern objects, no logos, no border, no watermark, no tourism-era decoration. A restrained estate on outskirts of Dali royal residence: low main timber hall,
+    two side wings framing compact mostly earthen courtyard, plain perimeter walls and a south gate. One small camellia and one small southwest evergreen contained
+    within garden. Gray roof tiles, cream plaster, dark wood; no imperial gold or dragons. Footprint 15m east-west by12m north-south.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: bld_kit_song_dali_house, file: assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png, sha256: f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d,
+    role: 本批候选相机与材质参考（非作者approved）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-90a0fe9a-a99d-4ab1-8188-df85c12af899.png
+  created: '2026-09-30T08:33:32.081833+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_manor.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 1184x768
+  sha256: 5b8d9b6ccd2c961ee9579ba01b3e2dc7199af55e9261eb6b6eb16ed76c11a741
+  status: candidate
+  building:
+    type: bld_kit_song_dali_manor
+    footprint: [15, 12]
+    anchor: [554.8314, 426.2779]
+    era: song_dali
+  footprint_m: [15, 12]
+  entrance: {edge: S, offset_cells: 7}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [864, 432]
+    ground_width_px: 864
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_manor.yaml
+  source_sha256: d03d1453a47a3d6bafc1d30d4c5913fa56995993484ff28fc3d9b03b6e8b98ff
+  processing:
+    source_archive: sources/bld_kit_song_dali_manor.png
+    source_sha256: d03d1453a47a3d6bafc1d30d4c5913fa56995993484ff28fc3d9b03b6e8b98ff
+    source_size: [1774, 887]
+    crop_box: [174, 0, 1758, 887]
+    uniform_scale_requested: 0.5946317962835512
+    resized_size: [942, 527]
+    rounded_effective_scale: [0.5946969696969697, 0.5941375422773394]
+    paste_offset: [121, 120]
+    final_file: bld_kit_song_dali_manor.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [177, 513]
+      front: [962, 879]
+      right: [1630, 518]
+    source_axis_slopes: [0.4662420382165605, -0.5404191616766467]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.1751497005988023
+    expected_width_depth_ratio: 1.25
+    ratio_relative_error: 0.05988023952095811
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [1184, 768]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 655142
+    alpha_partial_pixels: 253271
+    alpha_opaque_pixels: 899
+    alpha_near_opaque_pixels: 247409
+    alpha_nonzero_bbox: [121, 120, 1063, 647]
+    transparent_margins_px: [121, 120, 121, 121]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_dali_manor.json
+  notes: 已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。
+- id: bld_kit_song_dali_wangfu
+  subject: 1093年大理国大理王府段氏宫室（建筑细部待考）
+  prompt: 'Use case: style-transfer.
+
+    Asset: a single transparent city-map building sprite for a realistic historical game.
+
+    Edit target IMAGE 1: Dali kingdom Duan clan royal residence courtyard in 1093. Change its MATERIAL RENDERING AND PALETTE, retaining its entire architectural layout,
+    rectangular 18 by 14 ground plan, front gate on the lower-left long wall, the present balanced 2:1 dimetric ground directions, 45 degree yaw / 30 degree pitch
+    orthographic camera, vertical columns, relative building heights and complete silhouette.
+
+    IMAGE 2 (Dali yamen) and IMAGE 3 (Dali manor) are the REQUIRED material and game-map style references. IMAGE 4 is an approved Song architectural baseline, ONLY
+    for physically believable aged timber, gray clay tiles, rough stone and modest earth plaster; do NOT copy its landscape, perspective, temple subject or red color
+    scheme.
+
+    Re-render image 1 convincingly in the same restrained realistic historical environment style as images 2 and 3. Roofs must be matte, low-saturation neutral gray
+    unglazed clay tile with natural irregular wear, NOT blue glossy rows. Columns, beams and doors must be dark natural weathered brown timber, subtle visible grain,
+    NOT bright orange or golden wood. Walls must be rough warm-gray earthen lime plaster with muted stone foundations, lightly weathered and maintained. Courtyard
+    paving must be uneven natural gray stones, subtle soil in joints, no regular gleaming ivory tile floor. No bright contours or illustrated outlines, no shining
+    white rim on every tile, no plastic, no toy, no miniature model, no tabletop, no glossy 3D render, no oversharpened HDR.
+
+    Reduce ornamental flowers to sparse subdued camellia shrubs with deep muted green leaves and a few small dusty red blooms. No neon yellow leaves, no bright flowerbed
+    edging, no dense candy-colored garden. Preserve dignified broad rear reception hall, side wings and courtyard enclosure; architecture is original historical concept,
+    not a reconstruction claim.
+
+    Light must remain soft natural upper-left daylight with short contact shadows to lower right. Natural low contrast, enough readable ambient shadow under eaves.
+    Realistic matte microtexture, no blur or tilt-shift.
+
+    Ground base remains a THIN contact polygon, not thick pedestal. 18m long edge descends screen-right with slope +0.5, 14m short edge ascends screen-right with
+    slope -0.5; no perspective convergence, no in-plane rotation. Keep the three visible ground contact corners clear. Keep entire roof, shrubs and ground edges intact
+    with generous genuine transparent padding on ALL sides.
+
+    Output one isolated opaque building on true transparent RGBA background, landscape 1536x1024. No scenery, sky, gradient halo, fake checkerboard, cast-background
+    shadow, floor outside footprint, people, text, signs, lettering, watermark, grid, modern objects, Qing imperial ornaments or golden roofs.'
+  negative: 文字、水印、现代物、人物、背景、厚底台、亮橙柱、蓝亮瓦、描边、塑料/卡通/微缩模型、鲜亮花木、透视汇聚、裁切
+  references:
+  - {file: assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_pre_review3.png, input_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/bld_kit_song_dali_wangfu.png,
+    sha256: 408e10d7a115772a6eafbe0d3998f4d55a711aaa98e937185e41f2377f186c68, role: 编辑目标；只保留院落与占地方向，旧材质已淘汰, status: rejected}
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_yamen.png, input_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/bld_kit_song_dali_yamen.png,
+    sha256: 3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef, role: 同批通过审核的大理衙门；灰瓦、粗糙土石与木材参考, status: candidate}
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_manor.png, input_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/bld_kit_song_dali_manor.png,
+    sha256: 5b8d9b6ccd2c961ee9579ba01b3e2dc7199af55e9261eb6b6eb16ed76c11a741, role: 同批通过审核的大理庄园；自然木色、旧瓦与克制花木参考, status: candidate}
+  - {file: assets/default/baseline/building/ref_sect_shaolin__ch01_base01.png, input_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building/ref_sect_shaolin__ch01_base01.png,
+    sha256: b109e6d771320b80f97750d1fc612f1a26f1da1e8bd5d5d0baca7c27cffa256f, role: approved宋构基线；仅物理材质，不继承摄影透视或寺院题材, status: approved}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f219-d94c-78f3-ad95-eed4ff5f1800/exec-7901b0d9-22f3-4d89-9806-84ad42d493c8.png
+  created: '2026-09-30T11:40:49.890272+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_wangfu.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 1312x960
+  sha256: 02c01927f4a3ef9cb709adc104be9c12e3934662023f3594fbf8ee84cfd39754
+  status: candidate
+  building:
+    type: bld_kit_song_dali_wangfu
+    footprint: [18, 14]
+    anchor: [655.6553, 538.4565]
+    era: song_dali
+  footprint_m: [18, 14]
+  entrance: {edge: S, offset_cells: 8}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [1024, 512]
+    ground_width_px: 1024
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_wangfu.yaml
+  source_sha256: 03e1af736dd0242c0b44bce0541a0b1516d09b54b765c1d81edaac8b267c9a39
+  processing:
+    source_archive: sources/bld_kit_song_dali_wangfu.png
+    source_sha256: 03e1af736dd0242c0b44bce0541a0b1516d09b54b765c1d81edaac8b267c9a39
+    source_size: [1536, 1024]
+    crop_box: [24, 30, 1521, 1006]
+    uniform_scale_requested: 0.6890982503364738
+    resized_size: [1032, 673]
+    rounded_effective_scale: [0.6893787575150301, 0.6895491803278688]
+    paste_offset: [140, 143]
+    final_file: bld_kit_song_dali_wangfu.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [29, 559]
+      front: [871, 998]
+      right: [1515, 648]
+    source_axis_slopes: [0.5213776722090261, -0.5434782608695652]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.3074534161490683
+    expected_width_depth_ratio: 1.2857142857142858
+    ratio_relative_error: 0.016908212560386326
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [1312, 960]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 893146
+    alpha_partial_pixels: 365438
+    alpha_opaque_pixels: 936
+    alpha_near_opaque_pixels: 357484
+    alpha_nonzero_bbox: [140, 143, 1172, 816]
+    transparent_margins_px: [140, 143, 140, 144]
+    border_alpha_max: 0
+  candidate_count: 9
+  source_record: sources/bld_kit_song_dali_wangfu.json
+  notes: 第3次运行主代理及独立复核：旧版亮橙柱、蓝灰亮瓦、硬描边和鲜亮花木已淘汰；新图哑光棕木、低饱和灰陶瓦、粗糙土石墙及克制暗绿山茶与大理衙门/庄园材质一致，宋构approved基线仅作材质参考。主体完整，左上光/右下接触影，无字无人无现代物；右轴strict残差保留，形制待考，仍candidate。
+- id: bld_kit_song_dali_temple_hall
+  subject: 1093年大理国佛寺殿堂（建筑细部待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map
+    sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation
+    30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT.
+    Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10%
+    empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop,
+    ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained
+    Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people,
+    no modern objects, no logos, no border, no watermark, no tourism-era decoration. A dignified Dali Buddhist temple hall, one broad single-story timber sanctuary
+    with restrained gray hipped roof, earth-red wood pillars, shallow stone terrace and south stair, tiny plain uninscribed incense vessel at entrance. Subtle lotus
+    carvings, small contained camellia shrub. No giant Buddha outdoors or pagoda, no modern tourist temple. Footprint 12m east-west by10m north-south.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: bld_kit_song_dali_house, file: assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png, sha256: f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d,
+    role: 本批候选相机与材质参考（非作者approved）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-f5ab5400-b215-453f-9f99-cacf0a4773eb.png
+  created: '2026-09-30T08:35:02.228516+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_temple_hall.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 1088x704
+  sha256: ae798a3d9fb9ba38b085be5f4af2758e8d07b82173deec2e6719836db4283755
+  status: candidate
+  building:
+    type: bld_kit_song_dali_temple_hall
+    footprint: [12, 10]
+    anchor: [541.2291, 422.9149]
+    era: song_dali
+  footprint_m: [12, 10]
+  entrance: {edge: S, offset_cells: 5}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [704, 352]
+    ground_width_px: 704
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_temple_hall.yaml
+  source_sha256: 099b1b5a62c1e0ab9a556b3f9822a0c641f5cf1d573d532700289bdde2d9f935
+  processing:
+    source_archive: sources/bld_kit_song_dali_temple_hall.png
+    source_sha256: 099b1b5a62c1e0ab9a556b3f9822a0c641f5cf1d573d532700289bdde2d9f935
+    source_size: [1774, 887]
+    crop_box: [146, 17, 1687, 887]
+    uniform_scale_requested: 0.5538945712037766
+    resized_size: [854, 482]
+    rounded_effective_scale: [0.5541855937702791, 0.5540229885057472]
+    paste_offset: [117, 111]
+    final_file: bld_kit_song_dali_temple_hall.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [276, 571]
+      front: [1011, 873]
+      right: [1547, 589]
+    source_axis_slopes: [0.4108843537414966, -0.5298507462686567]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.3712686567164178
+    expected_width_depth_ratio: 1.2
+    ratio_relative_error: 0.14272388059701502
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [1088, 704]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 565544
+    alpha_partial_pixels: 199449
+    alpha_opaque_pixels: 959
+    alpha_near_opaque_pixels: 194525
+    alpha_nonzero_bbox: [117, 111, 971, 593]
+    transparent_margins_px: [117, 111, 117, 111]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_dali_temple_hall.json
+  notes: 已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。
+- id: bld_kit_song_dali_shrine
+  subject: 1093年大理国小佛龛经幢院（建筑细部待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map
+    sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation
+    30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT.
+    Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10%
+    empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop,
+    ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained
+    Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people,
+    no modern objects, no logos, no border, no watermark, no tourism-era decoration. A tiny roadside Buddhist shrine inside a very low stone-edged rectangular yard:
+    simple small timber shelter with gray tiled roof over an anonymous small stone seated Buddha, one plain low offering bowl and one small camellia shrub. No text
+    on stone or prayer banners. Footprint 4m east-west by3m north-south, front open south.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: bld_kit_song_dali_house, file: assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png, sha256: f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d,
+    role: 本批候选相机与材质参考（非作者approved）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-e0d5898e-68d3-43e2-b721-b9cabf187e9c.png
+  created: '2026-09-30T08:35:47.313206+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_shrine.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 512x512
+  sha256: 0e2b31512ae831e4a1f6d5da1047a400911d3aab41168d655229c5845e08b29f
+  status: candidate
+  building:
+    type: bld_kit_song_dali_shrine
+    footprint: [4, 3]
+    anchor: [259.3407, 295.2372]
+    era: song_dali
+  footprint_m: [4, 3]
+  entrance: {edge: S, offset_cells: 1}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [224, 112]
+    ground_width_px: 224
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_shrine.yaml
+  source_sha256: b759d42f056f4c7bfa3be769f876743d6a0c0624bdc7c8b01489de25e413aaaf
+  processing:
+    source_archive: sources/bld_kit_song_dali_shrine.png
+    source_sha256: b759d42f056f4c7bfa3be769f876743d6a0c0624bdc7c8b01489de25e413aaaf
+    source_size: [1774, 887]
+    crop_box: [57, 28, 1689, 871]
+    uniform_scale_requested: 0.2302158273381295
+    resized_size: [376, 194]
+    rounded_effective_scale: [0.23039215686274508, 0.23013048635824437]
+    paste_offset: [68, 159]
+    final_file: bld_kit_song_dali_shrine.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [401, 602]
+      front: [915, 850]
+      right: [1374, 638]
+    source_axis_slopes: [0.48249027237354086, -0.46187363834422657]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.1198257080610021
+    expected_width_depth_ratio: 1.3333333333333333
+    ratio_relative_error: 0.16013071895424835
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [512, 512]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 235741
+    alpha_partial_pixels: 25859
+    alpha_opaque_pixels: 544
+    alpha_near_opaque_pixels: 23496
+    alpha_nonzero_bbox: [115, 159, 392, 351]
+    transparent_margins_px: [115, 159, 120, 161]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_dali_shrine.json
+  notes: 已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。
+- id: bld_kit_song_dali_guardhouse
+  subject: 1093年大理国城门守舍（建筑细部待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map
+    sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation
+    30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT.
+    Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10%
+    empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop,
+    ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained
+    Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people,
+    no modern objects, no logos, no border, no watermark, no tourism-era decoration. A small practical single-story gate guardhouse, sturdy timber and rammed-earth
+    wall structure on low stone footings, gray tiled gabled roof, single south doorway and small wooden lattice window, two plain storage racks under eave. No surrounding
+    city wall or gate tower, no weapons or flags, no people. Footprint 6m east-west by5m north-south.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: bld_kit_song_dali_house, file: assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png, sha256: f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d,
+    role: 本批候选相机与材质参考（非作者approved）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-534603bf-0c39-4b6c-a8b9-fde2d87f1a68.png
+  created: '2026-09-30T08:36:33.502262+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_guardhouse.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 544x512
+  sha256: 062090f88a09bf088adafa8314f4646533b7d220ca6b475fc7a0bd61816bd91b
+  status: candidate
+  building:
+    type: bld_kit_song_dali_guardhouse
+    footprint: [6, 5]
+    anchor: [251.9279, 300.9868]
+    era: song_dali
+  footprint_m: [6, 5]
+  entrance: {edge: S, offset_cells: 2}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [352, 176]
+    ground_width_px: 352
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_guardhouse.yaml
+  source_sha256: a6cd525062053e873ad43fb5929773455b69397b3ddd6f21c7a0307679cd307c
+  processing:
+    source_archive: sources/bld_kit_song_dali_guardhouse.png
+    source_sha256: a6cd525062053e873ad43fb5929773455b69397b3ddd6f21c7a0307679cd307c
+    source_size: [1774, 887]
+    crop_box: [289, 33, 1627, 865]
+    uniform_scale_requested: 0.3134461264470169
+    resized_size: [419, 261]
+    rounded_effective_scale: [0.3131539611360239, 0.3137019230769231]
+    paste_offset: [62, 125]
+    final_file: bld_kit_song_dali_guardhouse.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [334, 575]
+      front: [945, 859]
+      right: [1457, 613]
+    source_axis_slopes: [0.46481178396072015, -0.48046875]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.193359375
+    expected_width_depth_ratio: 1.2
+    ratio_relative_error: 0.00553385416666663
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [544, 512]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 223948
+    alpha_partial_pixels: 53874
+    alpha_opaque_pixels: 706
+    alpha_near_opaque_pixels: 52421
+    alpha_nonzero_bbox: [74, 125, 440, 386]
+    transparent_margins_px: [74, 125, 104, 126]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_dali_guardhouse.json
+  notes: 已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。
+- id: bld_kit_song_dali_stable
+  subject: 1093年大理国马厩（建筑细部待考）
+  prompt: 'Use case: precise-object-edit. Edit target: Dali gray-tile timber stable for an isometric city map. Preserve original open stalls, troughs, straw, timber
+    columns, pale side wall, gray tile roof, realistic materials and upper-left lighting. Change the stable''s plan from very narrow and elongated to a WIDER-DEPTH
+    8x6 rectangle (front facade width / side depth = 1.333). Camera ORTHOGRAPHIC exactly 45-degree yaw, 30-degree elevation, 2:1 ground projection. Both ground axes
+    slope equally, +0.5 and -0.5 (not generic 30 degree isometric). Shorten the long facade and enlarge right side depth. On 1536x1024 canvas thin ground patch contact
+    corners LEFT(152,540), FRONT(856,892), RIGHT(1384,628), BACK(680,276). Front stalls face screen lower-left. Ground front corner should be slightly right of center.
+    Floor geometry exactly matches vectors(+704,+352) and(+528,-264). Roof ridge and eaves and all architectural horizontal edges follow these same two axes. Keep
+    THREE wide stalls, no horses or people. Clean thin rectangular earth/stone footprint, not pedestal. True transparent RGBA background and opaque stable, generous
+    transparent margins, all tips visible, no external terrain, text, logos, modern elements, watermark or guide/grid lines. ONE sprite.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: bld_kit_song_dali_stable_pre_review2, file: assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_stable_pre_review2.png, sha256: a2a8ef47484ee7dee826d363cf516774642387c6d9236f73ca77040280c84c9c,
+    role: 返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-8bf0873a-77af-49f0-92d0-1a1d20a4b8a3.png
+  created: '2026-09-30T10:50:01.630695+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_stable.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 672x512
+  sha256: da40c1c72f1e27b96c2a8da4d6ab0ac6f81474a6d0e049045d4ac9996eabac28
+  status: candidate
+  building:
+    type: bld_kit_song_dali_stable
+    footprint: [8, 6]
+    anchor: [365.666, 308.31]
+    era: song_dali
+  footprint_m: [8, 6]
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [448, 224]
+    ground_width_px: 448
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_stable.yaml
+  source_sha256: ef41775055e6e23a6aa746f3cb92b27799315dff1d1914347ea7c9cf310fada3
+  processing:
+    source_archive: sources/bld_kit_song_dali_stable.png
+    source_sha256: ef41775055e6e23a6aa746f3cb92b27799315dff1d1914347ea7c9cf310fada3
+    source_size: [1536, 1024]
+    crop_box: [0, 19, 1458, 1006]
+    uniform_scale_requested: 0.35527359238699446
+    resized_size: [518, 351]
+    rounded_effective_scale: [0.355281207133059, 0.3556231003039514]
+    paste_offset: [77, 80]
+    final_file: bld_kit_song_dali_stable.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [182, 618]
+      front: [892, 1002]
+      right: [1443, 704]
+    source_axis_slopes: [0.5408450704225352, -0.5408348457350273]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.2885662431941924
+    expected_width_depth_ratio: 1.3333333333333333
+    ratio_relative_error: 0.033575317604355615
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [672, 512]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 250704
+    alpha_partial_pixels: 92396
+    alpha_opaque_pixels: 964
+    alpha_near_opaque_pixels: 90500
+    alpha_nonzero_bbox: [139, 80, 594, 431]
+    transparent_margins_px: [139, 80, 78, 81]
+    border_alpha_max: 0
+  candidate_count: 3
+  source_record: sources/bld_kit_song_dali_stable.json
+  notes: 已逐张view_image检查原图与成品QA叠图；无文字、水印、现代物件和人物，完整RGBA透明留边；光源左上。马厩前宽/侧深恢复8×6比例，两轴协调但同向略陡，严格检查仍告警。仅裁切、等比LANCZOS缩放、透明扩边；历史细部与风格仍待作者审批。
+- id: bld_kit_song_dali_warehouse
+  subject: 1093年大理国仓屋（建筑细部待考）
+  prompt: 'Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map
+    sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation
+    30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT.
+    Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10%
+    empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop,
+    ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained
+    Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people,
+    no modern objects, no logos, no border, no watermark, no tourism-era decoration. A plain sturdy freight warehouse, single-story high-volume timber and plaster
+    building with gray tiled gabled roof, broad south wooden loading doors partly open, small groups of sacks and ceramic storage jars just under eaves, low stone
+    sill. Footprint 9m east-west by7m north-south, no extra yard outside.'
+  negative: 文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚
+  references:
+  - {id: bld_kit_song_dali_house, file: assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png, sha256: f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d,
+    role: 本批候选相机与材质参考（非作者approved）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-0c0ca334-6a35-49b4-a102-55d0a90925fd.png
+  created: '2026-09-30T08:38:02.412905+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_warehouse.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 672x512
+  sha256: ebd26707923a4b40ec80c95aca5ec8216260eefb4e3fff87efed525654f2c351
+  status: candidate
+  building:
+    type: bld_kit_song_dali_warehouse
+    footprint: [9, 7]
+    anchor: [333.3159, 324.9806]
+    era: song_dali
+  footprint_m: [9, 7]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [512, 256]
+    ground_width_px: 512
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_warehouse.yaml
+  source_sha256: 87060cd54f290051360658e7dab3f6abf5f9480f68ad7409c84244ad13dfcce3
+  processing:
+    source_archive: sources/bld_kit_song_dali_warehouse.png
+    source_sha256: 87060cd54f290051360658e7dab3f6abf5f9480f68ad7409c84244ad13dfcce3
+    source_size: [1774, 887]
+    crop_box: [296, 26, 1507, 875]
+    uniform_scale_requested: 0.43648763853367434
+    resized_size: [529, 371]
+    rounded_effective_scale: [0.43682906688687034, 0.4369846878680801]
+    paste_offset: [71, 70]
+    final_file: bld_kit_song_dali_warehouse.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [310, 582]
+      front: [949, 872]
+      right: [1483, 637]
+    source_axis_slopes: [0.4538341158059468, -0.4400749063670412]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.196629213483146
+    expected_width_depth_ratio: 1.2857142857142858
+    ratio_relative_error: 0.06928838951310878
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [672, 512]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 226064
+    alpha_partial_pixels: 117106
+    alpha_opaque_pixels: 894
+    alpha_near_opaque_pixels: 114733
+    alpha_nonzero_bbox: [71, 70, 600, 441]
+    transparent_margins_px: [71, 70, 72, 71]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_dali_warehouse.json
+  notes: 已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。
+- id: bld_kit_song_dali_wharf
+  subject: 1093年大理国小河埠（原创建筑概化，细部待考）
+  prompt: Sketch-to-render. Convert the supplied precise quadrilateral INTO a thin old stone river wharf game sprite; keep its four outline corners and all edge slopes
+    EXACTLY the same as diagram. Shape is an8m by4m rectangle on2:1 dimetric city grid, LEFT(168,430), FRONT(968,830), RIGHT(1368,630), BACK(568,230). Width/depth2.0,
+    BOTH axes slopes+0.5/-0.5. This geometry is mandatory. Replace flat gray fill with realistic weathered gray stone paving slabs of a1093 Dali riverside landing,
+    and remove blue border. Surface stays in that exact plane. Add only two low timber mooring posts with coiled coarse rope near the long lower-left edge, one small
+    inset three-step landing within the same rectangle. Slab edge only20px thick, nearly flush to ground. Rear long edge from BACK to RIGHT must be perfectly straight
+    and unobstructed for riverbank attachment. Upper-left lighting, gentle weathering and moss in a few joints. Opaque natural stone surface, genuine transparent
+    RGBA background outside shape; no white background, colored lines, water, shore, grass, extra terrain, people, text, modern objects, logos or watermark. All margins
+    spacious. Preserve exact geometry of supplied silhouette.
+  negative: 文字、现代元素、人物、房屋、瓦顶、水面、船只、景观背景、厚悬空底座、裁切
+  references:
+  - {id: dali_wharf_projection_guide, file: assets/default/baseline/building-map/review2/dali_wharf_projection_guide.png, sha256: 68d705f4acd167d2f3bfd0d6646eb4b7e8c551483826d84f16769c1342720ceb,
+    role: 返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-bb3ec924-107d-4356-a8bc-baae4955ba1f.png
+  created: '2026-09-30T10:50:01.659051+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_dali_wharf.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 512x512
+  sha256: 03ab2096647498c835afdb58e896d604966b5c2492bb0504625677f962a912d4
+  status: candidate
+  building:
+    type: bld_kit_song_dali_wharf
+    footprint: [8, 4]
+    anchor: [261.8902, 263.2144]
+    era: song_dali
+  footprint_m: [8, 4]
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [384, 192]
+    ground_width_px: 384
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_dali_wharf.yaml
+  source_sha256: 97855d41aec5b6f3659301eb5c80f2708076aa123896f54bfa26e775b634e628
+  processing:
+    source_archive: sources/bld_kit_song_dali_wharf.png
+    source_sha256: 97855d41aec5b6f3659301eb5c80f2708076aa123896f54bfa26e775b634e628
+    source_size: [1536, 1024]
+    crop_box: [0, 21, 1494, 1024]
+    uniform_scale_requested: 0.26740947075208915
+    resized_size: [400, 268]
+    rounded_effective_scale: [0.2677376171352075, 0.26719840478564305]
+    paste_offset: [56, 122]
+    final_file: bld_kit_song_dali_wharf.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [51, 411]
+      front: [1029, 928]
+      right: [1487, 688]
+    source_axis_slopes: [0.5286298568507157, -0.5240174672489083]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 2.1353711790393013
+    expected_width_depth_ratio: 2.0
+    ratio_relative_error: 0.06768558951965065
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [512, 512]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 225134
+    alpha_partial_pixels: 36377
+    alpha_opaque_pixels: 633
+    alpha_near_opaque_pixels: 35475
+    alpha_nonzero_bbox: [67, 155, 456, 367]
+    transparent_margins_px: [67, 155, 56, 145]
+    border_alpha_max: 0
+  candidate_count: 6
+  source_record: sources/bld_kit_song_dali_wharf.json
+  notes: 已逐张view_image检查原图与成品QA叠图；无文字、水印、现代物件和人物，完整RGBA透明留边；光源左上。河埠恢复8×4宽深关系，双轴协调；接岸背侧长边直且无遮挡，台阶内嵌，不越矩形边界。仅裁切、等比LANCZOS缩放、透明扩边；历史细部与风格仍待作者审批。
+- id: bld_lm_ch01_chongshengsi_pagoda
+  subject: 千寻塔意象，ch01大理1093（原创构图，细部待考）
+  prompt: 'Use case: historical-scene. Asset type: tianshu default building-map, a single reusable transparent PNG building, realistic historical Chinese architectural
+    materials, no ink painting or miniature toy. Orthographic dimetric 2:1 projection, yaw45 pitch30, two horizontal ground axes have screen slopes +0.5 and -0.5,
+    vertical pillars exactly vertical, NO perspective convergence. Front faces screen lower left. Grey clay tiles, weathered timber, understated plaster and stone,
+    believable Song-period structural joinery, low-saturation warm natural colors. Thin flat rectangular footprint foundation, clearly visible straight front and
+    right base edges, no chunky diorama pedestal. Entire building including eaves and thin footprint inside canvas, at least 10% transparent padding on all sides.
+    Sunlight from SCREEN UPPER LEFT, short subtle contact shadow toward SCREEN LOWER RIGHT. TRUE transparent RGBA canvas, no background sky, floor, scenery or checkerboard.
+    No text, signs, pseudo-writing, letters, watermark, logo, humans, modern objects, Qing yellow palace roofs, Japanese torii, dramatic extreme eaves. Generate exactly
+    ONE asset in a square 1024x1024 composition. ONE solitary Qianxun Pagoda in Dali in 1093: an extremely slender gently tapering SQUARE white brick tower with EXACTLY
+    SIXTEEN very closely spaced horizontal courses of projecting BRICK ledges (dense-eave type). These ledges are flat shallow brick cornices, NOT individual tiled
+    pavilion roofs, NO upturned eaves, NO timber galleries. Tall first storey, subsequent fifteen short levels, small dark arched niche in alternating levels. Modest
+    tiny metal finial. Square 7m x7m thin stone ground footprint. Front base edge and right base edge slope exactly +0.5 / -0.5, elevation clearly viewed from30 degrees
+    downward. Entire tower in frame.'
+  negative: no text, watermarks, modern elements, perspective convergence, thick pedestal, opaque background
+  references: []
+  source_path: /Users/bytedance/.codex/generated_images/01a0f166-4e1e-79f1-9e71-f3cbf0a66607/exec-2e56fa27-d53e-41bf-9749-eec092e03a3f.png
+  created: '2026-09-30T08:25:53.232214+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_lm_ch01_chongshengsi_pagoda.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 1632x1760
+  sha256: f2e0b6d9d38ee9f0c3316068352ae579e24f473d16cbed7d485e4c373f1361b5
+  status: candidate
+  building:
+    type: bld_lm_ch01_chongshengsi_pagoda
+    footprint: [7, 7]
+    anchor: [794.3342, 1452.7811]
+    era: song_dali
+  footprint_m: [7, 7]
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [448, 224]
+    ground_width_px: 448
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_lm_ch01_chongshengsi_pagoda.yaml
+  source_sha256: 13d9bd11803f630b285025f65068a88e398b19f2b253bdd5c878187333eda802
+  processing:
+    source_archive: sources/bld_lm_ch01_chongshengsi_pagoda.png
+    source_sha256: 13d9bd11803f630b285025f65068a88e398b19f2b253bdd5c878187333eda802
+    source_size: [1254, 1254]
+    crop_box: [91, 1, 1210, 1232]
+    uniform_scale_requested: 1.1399491094147582
+    resized_size: [1276, 1403]
+    rounded_effective_scale: [1.1403038427167114, 1.139723801787165]
+    paste_offset: [178, 178]
+    final_file: bld_lm_ch01_chongshengsi_pagoda.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [435, 1120]
+      front: [630, 1219]
+      right: [828, 1119]
+    source_axis_slopes: [0.5076923076923077, -0.5050505050505051]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 0.9848484848484849
+    expected_width_depth_ratio: 1.0
+    ratio_relative_error: 0.015151515151515138
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [1632, 1760]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 2450163
+    alpha_partial_pixels: 421169
+    alpha_opaque_pixels: 988
+    alpha_near_opaque_pixels: 374616
+    alpha_nonzero_bbox: [178, 178, 1454, 1581]
+    transparent_margins_px: [178, 178, 178, 179]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_lm_ch01_chongshengsi_pagoda.json
+  notes: 已view_image原图及底面裁片；方形浅密檐砖塔，灰白砖石材质与宋构基线相容，无字无人。可见底边约+.508/-.505；主受光左侧，右侧接触影保留。首稿误生成瓦顶楼阁塔已淘汰。现图为千寻塔意象，未达到文物16级的逐层复原（待考/原创构图）；高宽比与实际塔高不作考古认证。
+- id: bld_lm_ch01_chongshengsi_pagoda_small
+  subject: 崇圣寺小塔意象，ch01大理1093（原创扩展：将1108–1172年小塔提前出现）
+  prompt: 'Use case: historical-scene. Asset type: tianshu default building-map, a single reusable transparent PNG building, realistic historical Chinese architectural
+    materials, no ink painting or miniature toy. Orthographic dimetric 2:1 projection, yaw45 pitch30, two horizontal ground axes have screen slopes +0.5 and -0.5,
+    vertical pillars exactly vertical, NO perspective convergence. Front faces screen lower left. Grey clay tiles, weathered timber, understated plaster and stone,
+    believable Song-period structural joinery, low-saturation warm natural colors. Thin flat rectangular footprint foundation, clearly visible straight front and
+    right base edges, no chunky diorama pedestal. Entire building including eaves and thin footprint inside canvas, at least 10% transparent padding on all sides.
+    Sunlight from SCREEN UPPER LEFT, short subtle contact shadow toward SCREEN LOWER RIGHT. TRUE transparent RGBA canvas, no background sky, floor, scenery or checkerboard.
+    No text, signs, pseudo-writing, letters, watermark, logo, humans, modern objects, Qing yellow palace roofs, Japanese torii, dramatic extreme eaves. Generate exactly
+    ONE asset in a square 1024x1024 composition. ONE solitary small Dali Chongsheng Buddhist pagoda, OCTAGONAL pale warm plastered brick tower with EXACTLY TEN closely
+    stacked solid brick cornice levels, subtly tapering, tall first storey, shallow dense-eave ledges without tiled roofs or upturned timber pavilions. Small spherical
+    bronze finial. Square 4m x4m footprint stone apron with its visible edges aligned to +/-0.5 slopes. This is an original game adaptation, the later medieval small
+    pagoda brought into1093. No other tower, temple or plants.'
+  negative: no text, watermarks, modern elements, perspective convergence, thick pedestal, opaque background
+  references: []
+  source_path: /Users/bytedance/.codex/generated_images/01a0f166-4e1e-79f1-9e71-f3cbf0a66607/exec-a536aa62-ba3c-4cf3-93c0-5233e71189cb.png
+  created: '2026-09-30T08:26:26.622706+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_lm_ch01_chongshengsi_pagoda_small.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 832x832
+  sha256: 38447f87ffbac339d6985f69ff388678d7df3701b74f7e36d8d254221240ff38
+  status: candidate
+  building:
+    type: bld_lm_ch01_chongshengsi_pagoda_small
+    footprint: [4, 4]
+    anchor: [419.6984, 677.4397]
+    era: song_dali
+  footprint_m: [4, 4]
+  entrance: {edge: S, offset_cells: 1}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [256, 128]
+    ground_width_px: 256
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_lm_ch01_chongshengsi_pagoda_small.yaml
+  source_sha256: aabf447f5151c21f281d1bbe7a3d5e362e07c875290501d9243787fb39c3ce86
+  processing:
+    source_archive: sources/bld_lm_ch01_chongshengsi_pagoda_small.png
+    source_sha256: aabf447f5151c21f281d1bbe7a3d5e362e07c875290501d9243787fb39c3ce86
+    source_size: [1254, 1254]
+    crop_box: [43, 30, 1210, 1190]
+    uniform_scale_requested: 0.5688888888888889
+    resized_size: [664, 660]
+    rounded_effective_scale: [0.5689802913453299, 0.5689655172413793]
+    paste_offset: [84, 86]
+    final_file: bld_lm_ch01_chongshengsi_pagoda_small.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [408, 1065]
+      front: [632, 1183]
+      right: [858, 1074]
+    source_axis_slopes: [0.5267857142857143, -0.4823008849557522]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 0.9911504424778761
+    expected_width_depth_ratio: 1.0
+    ratio_relative_error: 0.008849557522123908
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [832, 832]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 598588
+    alpha_partial_pixels: 93077
+    alpha_opaque_pixels: 559
+    alpha_near_opaque_pixels: 83486
+    alpha_nonzero_bbox: [84, 86, 748, 746]
+    transparent_margins_px: [84, 86, 84, 86]
+    border_alpha_max: 0
+  candidate_count: 1
+  source_record: sources/bld_lm_ch01_chongshengsi_pagoda_small.json
+  notes: 已view_image原图及底面裁片；八角浅密檐砖塔，暖灰石砖，主体完整无字无人。可见底边约+.527/-.482；右侧仅紧贴基座短影。小塔1108–1172提前到1093为原创扩展；图中层数未达到文物10级的逐层复原，不冒称实物复原。
+- id: bld_kit_song_southern_house
+  subject: 江南民居
+  prompt: 'Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song
+    Lin''an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment,
+    not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5;
+    no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular
+    ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower
+    right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10
+    percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern
+    objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Footprint exactly 6
+    by 5 one-metre cells, ratio 6:5. Subject: One compact single-storey Southern Song Jiangnan family dwelling, limewashed plaster walls, dark timber posts, grey
+    clay tile gable roof with restrained curved eaves, small wooden lattice windows, modest recessed doorway on southwest-facing visible side, a plain ceramic water
+    jar.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references: []
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-9c3c0f68-e6a1-455e-a818-cd16f9ae155b.png
+  created: '2026-09-30T08:24:25.080054+00:00'
+  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_house.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 512x512
+  sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7
+  status: candidate
+  building:
+    type: bld_kit_song_southern_house
+    footprint: [6, 5]
+    anchor: [267.1424, 299.9013]
+    era: song_southern
+  footprint_m: [6, 5]
+  entrance: {edge: S, offset_cells: 2}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [352, 176]
+    ground_width_px: 352
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_house.yaml
+  source_sha256: d4f7ab824878c753b5bda035f6d1d2b5ce35578f5aee1d47b6cdad990aca26f1
+  processing:
+    source_archive: sources/bld_kit_song_southern_house.png
+    source_sha256: d4f7ab824878c753b5bda035f6d1d2b5ce35578f5aee1d47b6cdad990aca26f1
+    source_size: [1374, 1145]
+    crop_box: [0, 20, 1313, 1145]
+    uniform_scale_requested: 0.2894736842105263
+    resized_size: [380, 326]
+    rounded_effective_scale: [0.2894135567402894, 0.2897777777777778]
+    paste_offset: [66, 93]
+    final_file: bld_kit_song_southern_house.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [87, 699]
+      front: [742, 1080]
+      right: [1303, 769]
+    source_axis_slopes: [0.5816793893129771, -0.5543672014260249]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.1675579322638145
+    expected_width_depth_ratio: 1.2
+    ratio_relative_error: 0.027035056446821137
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [512, 512]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 201666
+    alpha_partial_pixels: 59798
+    alpha_opaque_pixels: 680
+    alpha_near_opaque_pixels: 58396
+    alpha_nonzero_bbox: [88, 103, 446, 403]
+    transparent_margins_px: [88, 103, 66, 109]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_southern_house.json
+  notes: 原图已 view_image：单体完整、真实古风灰瓦木构白墙；正交45°方向接近2:1，底面薄且清楚，S门朝画面左下；左上主光、右下短影，无遮字人物或现代物；原图四边留白不足10%，交主代理补透明画布；精确双轴与锚点待统一量测。
+- id: bld_kit_song_southern_courtyard
+  subject: 坊巷院落
+  prompt: 'Use case: precise-object-edit. Correct ONLY the camera projection and rectangular footprint geometry of this standalone Southern Song building sprite;
+    keep materials, architectural design, historical style, doorway orientation, upper-left light and colors. Exact 2:1 orthographic dimetric: yaw45, elevation30;
+    both ground edges must make 26.565 degrees with horizontal (slope +0.500 and -0.500), not the steeper 30-degree floor lines of generic isometric art. Ground is
+    one flat uninterrupted rectangular 10 by 8 unit footprint, with no offsets or stepped outline. The left-to-front ground edge is 10 units, and front-to-right edge
+    is 8 units, so down-right horizontal length divided by up-right horizontal length must equal 1.2500. In particular make down-right edge visibly longer than up-right
+    edge. Clear thin footprint boundary, no raised plinth. Full building uncut with 12% transparent empty margins. Output true transparent RGBA with clean alpha,
+    no background or glow, no writing, no people.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references:
+  - {path: assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_courtyard_try1.png, sha256: 7d1083a4c9541b49ed4b9f58b2c7fc1076b20bd35db9b69f4e4d94a6e5f20747,
+    role: edit target：定向调整相机和占地几何，保留建筑材质}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-89fecd5b-2934-4b3a-81dc-1055beecf98d.png
+  created: '2026-09-30T08:44:56.978247+00:00'
+  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_courtyard.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 800x640
+  sha256: 7a6a426489256ee7ddf328420595b9960647932269d27ad4c30b7de935c9ca73
+  status: candidate
+  building:
+    type: bld_kit_song_southern_courtyard
+    footprint: [10, 8]
+    anchor: [414.9635, 379.0383]
+    era: song_southern
+  footprint_m: [10, 8]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [576, 288]
+    ground_width_px: 576
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_courtyard.yaml
+  source_sha256: c85c4360e1fa1856e703663effb8be33cc89b41c6cec25a397abd883d1405ba0
+  processing:
+    source_archive: sources/bld_kit_song_southern_courtyard.png
+    source_sha256: c85c4360e1fa1856e703663effb8be33cc89b41c6cec25a397abd883d1405ba0
+    source_size: [1402, 1122]
+    crop_box: [0, 51, 1341, 1070]
+    uniform_scale_requested: 0.46153846153846156
+    resized_size: [619, 470]
+    rounded_effective_scale: [0.4615958240119314, 0.46123650637880276]
+    paste_offset: [90, 85]
+    final_file: bld_kit_song_southern_courtyard.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [80, 675]
+      front: [727, 1047]
+      right: [1328, 702]
+    source_axis_slopes: [0.5749613601236476, -0.5740432612312812]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.076539101497504
+    expected_width_depth_ratio: 1.25
+    ratio_relative_error: 0.1387687188019967
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [800, 640]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 367709
+    alpha_partial_pixels: 143481
+    alpha_opaque_pixels: 810
+    alpha_near_opaque_pixels: 140517
+    alpha_nonzero_bbox: [120, 116, 709, 548]
+    transparent_margins_px: [120, 116, 91, 92]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_southern_courtyard.json
+  notes: 新图经audit独立view与量点，底面双轴+.575/-.574比首版更对称，仍有严格2:1残差；选新版。材质、左上光、S门左下、无字无人物、透明轮廓完整。
+- id: bld_kit_song_southern_shop_1f
+  subject: 单层商铺·药铺
+  prompt: 'Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song
+    Lin''an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment,
+    not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5;
+    no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular
+    ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower
+    right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10
+    percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern
+    objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Footprint exactly 6
+    by 5 one-metre cells, ratio 6:5. Subject: One single-storey Southern Song Lin''an apothecary shop, limewashed plaster and dark timber, grey tiled simple gable
+    roof, open wooden counter facing southwest, wicker herb baskets, ceramic medicine jars and bundles of dried herbs, no lettering or labels.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references: []
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-64355e27-4af7-48c8-a044-41c2688a0b66.png
+  created: '2026-09-30T08:26:39.915835+00:00'
+  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_shop_1f.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 512x512
+  sha256: 20f82db6ea307c09ef6f7825ed18ba9de6552b9769e13ac8921d839d7f652768
+  status: candidate
+  building:
+    type: bld_kit_song_southern_shop_1f
+    footprint: [6, 5]
+    anchor: [255.36, 313.5697]
+    era: song_southern
+  footprint_m: [6, 5]
+  entrance: {edge: S, offset_cells: 2}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [352, 176]
+    ground_width_px: 352
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_shop_1f.yaml
+  source_sha256: 8957c6daf5af7ffbbd40aaff4189ed58cc3633ac799c895b8b7402f08265c223
+  processing:
+    source_archive: sources/bld_kit_song_southern_shop_1f.png
+    source_sha256: 8957c6daf5af7ffbbd40aaff4189ed58cc3633ac799c895b8b7402f08265c223
+    source_size: [1382, 1138]
+    crop_box: [63, 17, 1324, 1114]
+    uniform_scale_requested: 0.27980922098569155
+    resized_size: [353, 307]
+    rounded_effective_scale: [0.27993655828707376, 0.27985414767547856]
+    paste_offset: [79, 102]
+    final_file: bld_kit_song_southern_shop_1f.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [64, 756]
+      front: [716, 1088]
+      right: [1322, 790]
+    source_axis_slopes: [0.50920245398773, -0.49174917491749176]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.0759075907590758
+    expected_width_depth_ratio: 1.2
+    ratio_relative_error: 0.1034103410341034
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [512, 512]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 201216
+    alpha_partial_pixels: 60123
+    alpha_opaque_pixels: 805
+    alpha_near_opaque_pixels: 58636
+    alpha_nonzero_bbox: [79, 111, 432, 405]
+    transparent_margins_px: [79, 111, 80, 107]
+    border_alpha_max: 0
+  candidate_count: 1
+  source_record: sources/bld_kit_song_southern_shop_1f.json
+  notes: 原图已 view_image original：单体完整，宋式灰瓦木构白墙，入口朝左下，左上主光与短接触影，边缘清楚、无字无人无现代物。原图透明留白偏紧，交 root 加边。严格底面双轴与占地比例存在生成残差；交 root 记录实际投影与候选审批，不能称精确通过。
+- id: bld_kit_song_southern_shop_2f
+  subject: 两层商铺·茶坊
+  prompt: 'Use case: historical-scene. Create ONE realistic Southern Song Chinese Lin''an two-storey tea shop building sprite for an orthographic game town map, isolated
+    true transparent RGBA. Most important is the EXACT geometry of a thin rectangular foundation slab in a 2:1 game projection: in a 1536 x 1536 square image, foundation
+    polygon corners are LEFT (224,1050), FRONT (864,1370), RIGHT (1344,1130), BACK (704,810). The long visible front edge runs from LEFT to FRONT: 640px right, 320px
+    down. The short side edge runs FRONT to RIGHT: 480px right, 240px up. Thus front-facing frontage is 8 units and depth is 6 units, NOT a square, NOT a symmetric
+    diamond. All horizontal architecture shares these two exact parallel axes, slope +0.5 and -0.5. Orthographic yaw 45 elevation 30, NO vanishing point. Build the
+    tea shop ON this exact rectangular footprint, preserve all four foundation edges where visible. Flat thin stone paved base, not a thick pedestal. Narrower 6-unit
+    side wall faces lower-right; wide 8-unit shop facade faces lower-left. Two storeys of warm weathered timber, ivory plaster, restrained grey handmade clay roof
+    tiles; delicate balcony, bamboo blinds, tea jars, wooden tables in open shopfront. Realistic hand-crafted historic game environment, detailed physical textures
+    with warm muted earth colors; no stylized cartoon outlines. Camera level axes and vertical pillars, complete roof with generous transparent space around entire
+    object. Upper-left sunlight and short lower-right contact shadow. No text, no signs or glyphs, no diagrams, no grid, no coordinates or lines, no people, no modern
+    objects, no checkerboard texture, no horizon or backdrop, no glow. The polygon is a construction constraint, not a diagram to display.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references: []
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-88ffd313-90e5-420d-9230-ab2d158bc78c.png
+  created: '2026-09-30T10:49:55.545433+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_shop_2f.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 576x576
+  sha256: bdb0d7ba47a804dc14b20c39931e2b95a6c8926cf0d3ecd10a7a808eb62d2548
+  status: candidate
+  building:
+    type: bld_kit_song_southern_shop_2f
+    footprint: [8, 6]
+    anchor: [287.5, 385.4019]
+    era: song_southern
+  footprint_m: [8, 6]
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [448, 224]
+    ground_width_px: 448
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_shop_2f.yaml
+  source_sha256: af001c689fb35d401c8e71d5f63420c5b4aac94fbdf9c9ff95151053314e8380
+  processing:
+    source_archive: sources/bld_kit_song_southern_shop_2f.png
+    source_sha256: af001c689fb35d401c8e71d5f63420c5b4aac94fbdf9c9ff95151053314e8380
+    source_size: [1254, 1254]
+    crop_box: [47, 53, 1224, 1230]
+    uniform_scale_requested: 0.38323353293413176
+    resized_size: [451, 451]
+    rounded_effective_scale: [0.38317757009345793, 0.38317757009345793]
+    paste_offset: [62, 62]
+    final_file: bld_kit_song_southern_shop_2f.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [51, 855]
+      front: [745, 1175]
+      right: [1220, 939]
+    source_axis_slopes: [0.4610951008645533, -0.4968421052631579]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.4610526315789474
+    expected_width_depth_ratio: 1.3333333333333333
+    ratio_relative_error: 0.09578947368421065
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [576, 576]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 213968
+    alpha_partial_pixels: 116823
+    alpha_opaque_pixels: 985
+    alpha_near_opaque_pixels: 113987
+    alpha_nonzero_bbox: [62, 81, 513, 495]
+    transparent_margins_px: [62, 81, 63, 81]
+    border_alpha_max: 0
+  candidate_count: 3
+  source_record: sources/bld_kit_song_southern_shop_2f.json
+  notes: 返修第2轮：已逐张view_image；底面宽深恢复，宋式灰瓦木构及商用/客栈陈设完整，无文字人物现代物，左上主光；底面接触角按可见地坪外缘读点并用alpha>=192轮廓复核。64×32网格叠图另存review2；细小轴向残差按geometry_qa如实登记，目视判断不等于严格几何通过。
+- id: bld_kit_song_southern_inn
+  subject: 客栈
+  prompt: 'Use case: precise-object-edit. Keep this exact inn''s visual style, architecture, warm timber, grey tiles, ivory plaster, guest balconies, courtyard, left-upper
+    lighting, transparent background and all details. Correct ONLY the rectangular floor width/depth and camera projection. This is a 12 wide x 9 deep rectangle.
+    Current front edge is too short relative to side; LENGTHEN the lower-left-facing frontage by 13 percent, leaving side depth fixed. The long floor edge from LEFT
+    ground corner to FRONT ground corner must have horizontal run 4:3 relative to FRONT to RIGHT. Both ground edge angles must be exactly 26.565 degrees to horizontal,
+    slopes +0.500 and -0.500, slightly flatter than the current image. Rebuild the actual walls, roof and courtyard to follow this geometry, not just transparent
+    canvas padding. Consistent orthographic camera with straight parallel edges. Thin floor boundary all four sides, clean complete uncut sprite, generous empty margin.
+    No text, people, modern objects, grid or labels. True transparent RGBA, no halo.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references:
+  - {path: assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_review2_try2.png, sha256: e106a6f6cfccb8cac215c55aa72fa583adb58504416b4fd21f241402ab9a7f20,
+    role: 'image_gen candidate: geometry/style reference or edit target; not author approved'}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-b5f8ddaf-313c-4a49-bf65-c916de844581.png
+  created: '2026-09-30T10:49:55.609330+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_inn.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 896x672
+  sha256: 48a5f455d052e99af36ce4cd21169cd356b0761ffcbffd863deaf6a091133bbc
+  status: candidate
+  building:
+    type: bld_kit_song_southern_inn
+    footprint: [12, 9]
+    anchor: [456.8919, 408.3788]
+    era: song_southern
+  footprint_m: [12, 9]
+  entrance: {edge: S, offset_cells: 5}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [672, 336]
+    ground_width_px: 672
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_inn.yaml
+  source_sha256: 8ba6f7ce43a46933cea8aaa0cdd45fadf40b5389650e12f9ea4420194f7f642b
+  processing:
+    source_archive: sources/bld_kit_song_southern_inn.png
+    source_sha256: 8ba6f7ce43a46933cea8aaa0cdd45fadf40b5389650e12f9ea4420194f7f642b
+    source_size: [1497, 1051]
+    crop_box: [0, 9, 1480, 1032]
+    uniform_scale_requested: 0.4699300699300699
+    resized_size: [695, 481]
+    rounded_effective_scale: [0.46959459459459457, 0.4701857282502444]
+    paste_offset: [100, 95]
+    final_file: bld_kit_song_southern_inn.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [45, 627]
+      front: [853, 1024]
+      right: [1475, 724]
+    source_axis_slopes: [0.49133663366336633, -0.48231511254019294]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.2990353697749195
+    expected_width_depth_ratio: 1.3333333333333333
+    ratio_relative_error: 0.025723472668810365
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [896, 672]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 437096
+    alpha_partial_pixels: 164001
+    alpha_opaque_pixels: 1015
+    alpha_near_opaque_pixels: 161075
+    alpha_nonzero_bbox: [118, 146, 795, 575]
+    transparent_margins_px: [118, 146, 101, 97]
+    border_alpha_max: 0
+  candidate_count: 5
+  source_record: sources/bld_kit_song_southern_inn.json
+  notes: 返修第2轮：已逐张view_image；底面宽深恢复，宋式灰瓦木构及商用/客栈陈设完整，无文字人物现代物，左上主光；底面接触角按可见地坪外缘读点并用alpha>=192轮廓复核。64×32网格叠图另存review2；细小轴向残差按geometry_qa如实登记，目视判断不等于严格几何通过。
+- id: bld_kit_song_southern_restaurant
+  subject: 酒楼 / 茶肆
+  prompt: 'Use case: precise-object-edit. Keep this restaurant exactly: footprint width/depth relation, all architectural proportions, roof, balconies, dining tables,
+    red cloth, texture, upper-left light, transparent background. Correct only the orthographic camera elevation: currently the two ground edges have slopes about
+    +0.57 and -0.57; lower the camera elevation very slightly so BOTH ground edges become exactly +0.50 and -0.50 (a 2:1 diamond floor). Keep both axes symmetric,
+    vertical pillars vertical, do not rotate yaw, do not change width relative to depth. Reproject the building and ground together. Complete floor rectangle and
+    uncut eaves with transparent margins on every side. True transparent RGBA, no background, text, guides or people. This slight flattening of the two ground axes
+    is the only change.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references:
+  - {path: assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try3.png, sha256: 9972180c610e8d8a5a5765d729cb9459766258a0d0afab09363c17f2a343f849,
+    role: 'image_gen candidate: geometry/style reference or edit target; not author approved'}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-035e1d48-3e59-4809-bc1f-daab26288e34.png
+  created: '2026-09-30T10:49:55.670827+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_restaurant.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 864x800
+  sha256: 8c5c9f4f6d426a0f90af43609a14f50d13314665a062d4b25d9364ceb5d0d706
+  status: candidate
+  building:
+    type: bld_kit_song_southern_restaurant
+    footprint: [12, 9]
+    anchor: [430.9532, 539.848]
+    era: song_southern
+  footprint_m: [12, 9]
+  entrance: {edge: S, offset_cells: 5}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [672, 336]
+    ground_width_px: 672
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_restaurant.yaml
+  source_sha256: cd2dc41963f836bbbaa2770943a15ace1e6efc87d4beee4d764c6473f54a03c8
+  processing:
+    source_archive: sources/bld_kit_song_southern_restaurant.png
+    source_sha256: cd2dc41963f836bbbaa2770943a15ace1e6efc87d4beee4d764c6473f54a03c8
+    source_size: [1254, 1254]
+    crop_box: [16, 79, 1254, 1230]
+    uniform_scale_requested: 0.5472312703583062
+    resized_size: [677, 630]
+    rounded_effective_scale: [0.5468497576736672, 0.5473501303214596]
+    paste_offset: [93, 85]
+    final_file: bld_kit_song_southern_restaurant.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [20, 885]
+      front: [703, 1225]
+      right: [1248, 935]
+    source_axis_slopes: [0.4978038067349927, -0.5321100917431193]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.2532110091743118
+    expected_width_depth_ratio: 1.3333333333333333
+    ratio_relative_error: 0.06009174311926613
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [864, 800]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 435436
+    alpha_partial_pixels: 254654
+    alpha_opaque_pixels: 1110
+    alpha_near_opaque_pixels: 249886
+    alpha_nonzero_bbox: [93, 85, 770, 715]
+    transparent_margins_px: [93, 85, 94, 85]
+    border_alpha_max: 0
+  candidate_count: 6
+  source_record: sources/bld_kit_song_southern_restaurant.json
+  notes: 返修第2轮：已逐张view_image；底面宽深恢复，宋式灰瓦木构及商用/客栈陈设完整，无文字人物现代物，左上主光；底面接触角按可见地坪外缘读点并用alpha>=192轮廓复核。64×32网格叠图另存review2；细小轴向残差按geometry_qa如实登记，目视判断不等于严格几何通过。
+- id: bld_kit_song_southern_market_stall
+  subject: 市场摊棚
+  prompt: 'Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song
+    Lin''an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment,
+    not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5;
+    no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular
+    ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower
+    right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10
+    percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern
+    objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Footprint exactly 3
+    by 2 one-metre cells. Ground edge running down-right (left corner to front corner) is 3 units and edge running up-right (front corner to right corner) is 2 units.
+    Therefore their horizontal lengths ratio MUST be 1.5000, both slopes exactly 0.5. Subject: One small Southern Song Lin''an market stall, four rough wooden posts
+    holding a plain tan linen pitched canopy, single counter along the southwest-facing side, baskets of vegetables, folded cloth and a few ceramic jars, thin rectangular
+    paving footprint, no roofed building behind it.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references: []
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-f32d13e0-ab46-4088-9c20-baef7b653a57.png
+  created: '2026-09-30T08:30:41.454593+00:00'
+  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_market_stall.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 512x512
+  sha256: 08668d277ee87a8738c40f904350d3715ebd5a5afd3fe7c6e9e759990ac53b2e
+  status: candidate
+  building:
+    type: bld_kit_song_southern_market_stall
+    footprint: [3, 2]
+    anchor: [244.9411, 281.1724]
+    era: song_southern
+  footprint_m: [3, 2]
+  entrance: {edge: S, offset_cells: 1}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [160, 80]
+    ground_width_px: 160
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_market_stall.yaml
+  source_sha256: 7ea061183a22b7e05f6d15699253561d72d2c6bbb719b10150db5c1ce39408e7
+  processing:
+    source_archive: sources/bld_kit_song_southern_market_stall.png
+    source_sha256: 7ea061183a22b7e05f6d15699253561d72d2c6bbb719b10150db5c1ce39408e7
+    source_size: [1536, 1024]
+    crop_box: [113, 35, 1522, 998]
+    uniform_scale_requested: 0.15037593984962405
+    resized_size: [212, 145]
+    rounded_effective_scale: [0.15046132008516677, 0.1505711318795431]
+    paste_offset: [150, 183]
+    final_file: bld_kit_song_southern_market_stall.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [212, 627]
+      front: [861, 946]
+      right: [1276, 747]
+    source_axis_slopes: [0.4915254237288136, -0.4795180722891566]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.563855421686747
+    expected_width_depth_ratio: 1.5
+    ratio_relative_error: 0.04257028112449812
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [512, 512]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 249466
+    alpha_partial_pixels: 12116
+    alpha_opaque_pixels: 562
+    alpha_near_opaque_pixels: 10871
+    alpha_nonzero_bbox: [162, 187, 341, 323]
+    transparent_margins_px: [162, 187, 171, 189]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_southern_market_stall.json
+  notes: 首版已 view_image original：完整历史木构单体，主入口左下，无文字人物现代物，左上光源。预览背景RGB光晕经PIL实测为alpha=0，非实心背景。保留首版沉稳色彩。底面边线及占地比例存在残差，精确量点由 root 复核，不声称严格通过。
+- id: bld_kit_song_southern_yamen
+  subject: 官署衙门
+  prompt: 'Use case: precise-object-edit. Convert this historical escort depot into a Southern Song magistrate government YAMEN. Keep the exact reference ground geometry,
+    perimeter layout, camera angle, roof direction, front gate position, base outline, full building proportions absolutely unchanged. This reference already has
+    the correct2:1 orthographic geometry with both base edges at equal +/-26.565 degree angles. Replace wooden cargo cart and ALL crates with a single modest drum
+    stand, convert the bare earth to stone-paved administrative court, make the existing rear hall slightly more formal with reddish brown columns but retain its
+    massing, remove cargo bags from side room. Keep same muted natural grey tile, warm plaster and brown timber, upper-left light. Ground footprint intended16x12
+    (1.333), close to this14x11 reference (1.273); preserve contour rather than changing camera. No ornate imperial palace, no text/signboards, no people, no modern
+    objects. True transparent RGBA background and minimum10% clear margin, preserve complete eaves. No halo or thick pedestal. Do not change the base slopes or ground
+    corner arrangement.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references:
+  - {path: assets/default/baseline/building-map/sources/bld_kit_song_southern_biaoju.png, role: 本轮未获审批候选，投影/材质参考, sha256: 921ccbedcebf1d91f794f192c5460e3fbe99870f4140212e132ee083b452e0ca}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-89765852-9ee6-4644-bef8-651f716e4b7f.png
+  created: '2026-09-30T10:51:22.604887+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_yamen.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 1152x800
+  sha256: 4a255313b6c1c776a046158f4cadb26c008500f41c304277889aea66c0b00fb0
+  status: candidate
+  building:
+    type: bld_kit_song_southern_yamen
+    footprint: [16, 12]
+    anchor: [576.4266, 410.933]
+    era: song_southern
+  footprint_m: [16, 12]
+  entrance: {edge: S, offset_cells: 7}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [896, 448]
+    ground_width_px: 896
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_yamen.yaml
+  source_sha256: 7708d3c3cec6f07b4b2bd622375e62dd6131f3cff11a71ccda97abbc3491d3a1
+  processing:
+    source_archive: sources/bld_kit_song_southern_yamen.png
+    source_sha256: 7708d3c3cec6f07b4b2bd622375e62dd6131f3cff11a71ccda97abbc3491d3a1
+    source_size: [1536, 1024]
+    crop_box: [33, 81, 1498, 992]
+    uniform_scale_requested: 0.6179310344827587
+    resized_size: [905, 563]
+    rounded_effective_scale: [0.6177474402730375, 0.6180021953896817]
+    paste_offset: [123, 118]
+    final_file: bld_kit_song_southern_yamen.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [42, 520]
+      front: [847, 933]
+      right: [1492, 590]
+    source_axis_slopes: [0.5130434782608696, -0.5317829457364341]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.248062015503876
+    expected_width_depth_ratio: 1.3333333333333333
+    ratio_relative_error: 0.06395348837209303
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [1152, 800]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 670327
+    alpha_partial_pixels: 250387
+    alpha_opaque_pixels: 886
+    alpha_near_opaque_pixels: 243919
+    alpha_nonzero_bbox: [123, 118, 1028, 681]
+    transparent_margins_px: [123, 118, 124, 119]
+    border_alpha_max: 0
+  candidate_count: 6
+  source_record: sources/bld_kit_song_southern_yamen.json
+  notes: 第2次运行返修：内置image_gen真实重出主体；逐张view_image及64×32占地叠图，宽深关系和两轴目视协调，左上光、暖灰瓦木石、宋意象，无文字人物现代物；无裁切。严格几何数值见geometry_qa；不将轻微告警当成已通过。
+- id: bld_kit_song_southern_biaoju
+  subject: 镖局 / 护运行
+  prompt: 'Use case: historical-scene. Build ONE realistic Southern Song Lin''an private caravan escort depot compound (镖局原创扩展) on the EXACT quadrilateral ground
+    plane in reference. Retain the exact contour: canvas1536x1024, LEFT(150,540), FRONT(738,834), RIGHT(1200,603), BACK(612,309). Ground footprint14 by11, front LEFT-FRONT
+    edge horizontal588, adjacent FRONT-RIGHT edge462, ratio1.2727. Their slopes exactly+.5/-.5. This is exact orthographic2:1 isometric no perspective; all ground/wall/roof
+    axes parallel to these two guide edges. Realistic muted brown timber, handmade grey tiled roofs, cream plaster perimeter wall with stone footing. One low rear
+    office hall, smaller side store, a broad enclosed tamped earth court with one wood cart and tied cargo crates. Plain wide gateway centered on LEFT-FRONT wall.
+    Clear unobstructed outer two base edges and sharp front corner, ground is thin, no thick model pedestal. Complete eaves within canvas. Upper-left warm daylight,
+    short down-right shadow. Remove white background and black outline and corner labels entirely; actual transparent alpha background. No people, no logos, no writing,
+    no modern objects, no Qing/Ming palace style. Ground four corners must follow reference even if architecture layout must adapt. Keep reference positions, don''t
+    auto-fit or rotate ground.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references:
+  - {path: assets/default/baseline/building-map/review2/bld_kit_song_southern_biaoju_guide.png, role: geometry guide：自制占地轮廓QA图，非生成资产, sha256: 63e1501ea0fba3a17ef058d68c0e1e1eb1ddd7b20c31014f2038e411f816e2bb}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-22382dec-b195-4b84-b225-4d519bb24c6f.png
+  created: '2026-09-30T10:51:22.643845+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_biaoju.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 1056x736
+  sha256: d0d40ee51f57b354316add817e10429bb8aca6b107102892f04851c0bc458042
+  status: candidate
+  building:
+    type: bld_kit_song_southern_biaoju
+    footprint: [14, 11]
+    anchor: [538.4573, 384.9184]
+    era: song_southern
+  footprint_m: [14, 11]
+  entrance: {edge: S, offset_cells: 6}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [800, 400]
+    ground_width_px: 800
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_biaoju.yaml
+  source_sha256: 921ccbedcebf1d91f794f192c5460e3fbe99870f4140212e132ee083b452e0ca
+  processing:
+    source_archive: sources/bld_kit_song_southern_biaoju.png
+    source_sha256: 921ccbedcebf1d91f794f192c5460e3fbe99870f4140212e132ee083b452e0ca
+    source_size: [1536, 1024]
+    crop_box: [0, 67, 1486, 980]
+    uniform_scale_requested: 0.5621925509486999
+    resized_size: [835, 513]
+    rounded_effective_scale: [0.5619111709286676, 0.5618838992332968]
+    paste_offset: [110, 111]
+    final_file: bld_kit_song_southern_biaoju.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [51, 521]
+      front: [844, 913]
+      right: [1474, 588]
+    source_axis_slopes: [0.4943253467843632, -0.5158730158730159]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.2587301587301587
+    expected_width_depth_ratio: 1.2727272727272727
+    ratio_relative_error: 0.010997732426303863
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [1056, 736]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 584391
+    alpha_partial_pixels: 191927
+    alpha_opaque_pixels: 898
+    alpha_near_opaque_pixels: 187801
+    alpha_nonzero_bbox: [110, 146, 942, 624]
+    transparent_margins_px: [110, 146, 114, 112]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_southern_biaoju.json
+  notes: 第2次运行返修：内置image_gen真实重出主体；逐张view_image及64×32占地叠图，宽深关系和两轴目视协调，左上光、暖灰瓦木石、宋意象，无文字人物现代物；无裁切。严格几何数值见geometry_qa；不将轻微告警当成已通过。
+- id: bld_kit_song_southern_casino
+  subject: 赌场
+  prompt: 'Use case: historical-scene. Image edit of the construction reference: turn the beige plane into a realistic thin stone floor and place a Southern Song
+    Chinese gaming-house on it. LOCK the floor polygon''s four corners and angles exactly as provided; each geometric grid square is one metre. Footprint 10 metres
+    along the long lower-left frontage and 8 metres along the shorter lower-right side. Draw a modest TWO-storey timber hall with grey clay tile roof, creamy plaster
+    sidewall, open lower-left doorway and lattice balcony; a plain wooden gaming table and stools are visible inside the veranda. This is ancient China year 1223,
+    unpretentious but prosperous, realistic game environment detail, warm natural timber and muted neutral stone palette. Exact 2:1 orthographic projection, matching
+    the guide axes ±0.500, pillars vertical, no perspective. KEEP the plane corners (150,850), (694,1122), (1130,904), (586,632) in the square frame. Do not move
+    or rotate the floor. Naturally textured floor without drawn grid, no outline. Replace white with true transparent alpha. Left-upper lighting, right-lower contact
+    shadow. Full roof and floor uncut, at least 8% transparent margin. No text, symbol, signs, humans, background, shadow halo, modern gambling, neon, checkerboard,
+    decorative diagram. Geometry and correct width-depth relation take precedence over decorative details.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references:
+  - {path: assets/default/baseline/building-map/review2/bld_kit_song_southern_casino_geometry_guide.png, sha256: 70c53acef7b559242b7de8691fc794fde20b75427635d3b61cd4c1a0cd9e5afb,
+    role: geometry-only construction guide; no asset pixels drawn by code}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-09692bdb-a911-4fda-a6b8-29d53e595358.png
+  created: '2026-09-30T10:49:55.714583+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_casino.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 832x832
+  sha256: 19bdfb75a6a17026592fef45f5b2c0fd39fb39c37b4dba7c6919c510fa6084d4
+  status: candidate
+  building:
+    type: bld_kit_song_southern_casino
+    footprint: [10, 8]
+    anchor: [432.1424, 525.8328]
+    era: song_southern
+  footprint_m: [10, 8]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [576, 288]
+    ground_width_px: 576
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_casino.yaml
+  source_sha256: 39931b243c4302c5af765d0ceb5bdd303412ff774381e8743f4358a9232b6724
+  processing:
+    source_archive: sources/bld_kit_song_southern_casino.png
+    source_sha256: 39931b243c4302c5af765d0ceb5bdd303412ff774381e8743f4358a9232b6724
+    source_size: [1254, 1254]
+    crop_box: [0, 21, 1208, 1238]
+    uniform_scale_requested: 0.5383177570093458
+    resized_size: [650, 655]
+    rounded_effective_scale: [0.5380794701986755, 0.5382087099424815]
+    paste_offset: [91, 88]
+    final_file: bld_kit_song_southern_casino.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [99, 799]
+      front: [701, 1124]
+      right: [1169, 870]
+    source_axis_slopes: [0.5398671096345515, -0.5427350427350427]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.2863247863247864
+    expected_width_depth_ratio: 1.25
+    ratio_relative_error: 0.02905982905982918
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [832, 832]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 512524
+    alpha_partial_pixels: 178954
+    alpha_opaque_pixels: 746
+    alpha_near_opaque_pixels: 174726
+    alpha_nonzero_bbox: [91, 88, 741, 743]
+    transparent_margins_px: [91, 88, 91, 89]
+    border_alpha_max: 0
+  candidate_count: 2
+  source_record: sources/bld_kit_song_southern_casino.json
+  notes: 返修第2轮：已逐张view_image；底面宽深恢复，宋式灰瓦木构及商用/客栈陈设完整，无文字人物现代物，左上主光；底面接触角按可见地坪外缘读点并用alpha>=192轮廓复核。64×32网格叠图另存review2；细小轴向残差按geometry_qa如实登记，目视判断不等于严格几何通过。
+- id: bld_kit_song_southern_manor
+  subject: 山庄 / 大院
+  prompt: 'Use case: precise-object-edit. Material and object replacement only, ABSOLUTELY KEEP EXACT reference contour, composition and isometric camera. Preserve
+    all four ground corners, all wall-base lines, roof lines, and gate location. Turn this compound into a Southern Song domestic wealthy manor: remove cargo cart,
+    cargo boxes, crates and bags; make courtyard warm stone paths with one leafy broadleaf tree in middle and a few bamboo clumps by the rear; rear and side structures
+    become residential rooms with timber lattices. Do not add new wings, do not widen/deepen/rotate existing compound. All massing and the entire rectangular base
+    must remain identical to reference. Same natural muted grey clay tile, weathered brown wood, cream plaster and stone. Upper-left light, short down-right shadow.
+    The correct reference ground axes have slopes+.5/- .5, preserve them. Footprint16x13 logical cells, existing shape is already within tolerance so don''t change
+    shape. Output true RGBA transparent background with10% margin and full eaves. No text, numbers, symbols, watermark, people, modern items, fancy imperial roof
+    decorations. Same physical shape, solely furnishings/landscaping/use change.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references:
+  - {path: assets/default/baseline/building-map/sources/bld_kit_song_southern_biaoju.png, role: 本轮未获审批候选，投影/材质参考, sha256: 921ccbedcebf1d91f794f192c5460e3fbe99870f4140212e132ee083b452e0ca}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-1c8e60a8-68aa-445b-98c0-b84470a8f77e.png
+  created: '2026-09-30T10:51:22.671435+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_manor.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 1216x832
+  sha256: 393cee0a325af7b793f3dec4c28a1f0e50679eef19fa2c3d70f479b2a837c994
+  status: candidate
+  building:
+    type: bld_kit_song_southern_manor
+    footprint: [16, 13]
+    anchor: [619.3504, 440.6674]
+    era: song_southern
+  footprint_m: [16, 13]
+  entrance: {edge: S, offset_cells: 7}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [928, 464]
+    ground_width_px: 928
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_manor.yaml
+  source_sha256: ada2ec5d2bcc838fddc6edaf2b043bb310bf4c23de24ce4398012f767daf2ac0
+  processing:
+    source_archive: sources/bld_kit_song_southern_manor.png
+    source_sha256: ada2ec5d2bcc838fddc6edaf2b043bb310bf4c23de24ce4398012f767daf2ac0
+    source_size: [1536, 1024]
+    crop_box: [0, 69, 1494, 968]
+    uniform_scale_requested: 0.6404416839199448
+    resized_size: [957, 576]
+    rounded_effective_scale: [0.6405622489959839, 0.6407119021134594]
+    paste_offset: [129, 128]
+    final_file: bld_kit_song_southern_manor.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [41, 524]
+      front: [849, 921]
+      right: [1490, 590]
+    source_axis_slopes: [0.49133663366336633, -0.516380655226209]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.2605304212168487
+    expected_width_depth_ratio: 1.2307692307692308
+    ratio_relative_error: 0.024180967238689455
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [1216, 832]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 741904
+    alpha_partial_pixels: 268923
+    alpha_opaque_pixels: 885
+    alpha_near_opaque_pixels: 259994
+    alpha_nonzero_bbox: [129, 128, 1086, 704]
+    transparent_margins_px: [129, 128, 130, 128]
+    border_alpha_max: 0
+  candidate_count: 4
+  source_record: sources/bld_kit_song_southern_manor.json
+  notes: 第2次运行返修：内置image_gen真实重出主体；逐张view_image及64×32占地叠图，宽深关系和两轴目视协调，左上光、暖灰瓦木石、宋意象，无文字人物现代物；无裁切。严格几何数值见geometry_qa；不将轻微告警当成已通过。
+- id: bld_kit_song_southern_palace_hall
+  subject: 皇城殿堂模块
+  prompt: 'Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song
+    Lin''an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment,
+    not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5;
+    no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular
+    ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower
+    right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10
+    percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern
+    objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Precise ground projection:
+    footprint 18 x 14 m, two visible rectangular ground edges slope +0.500 and -0.500, each edge makes 26.565 degrees with horizontal, NOT standard 30-degree isometric
+    edges. Down-right ground edge has length 18 units, up-right edge 14 units, horizontal ratio 1.2857. Subject: One monumental Southern Song Lin''an imperial palace
+    hall module, dignified single-storey broad vermilion timber hall with restrained large dougong brackets, muted grey clay-tiled hip-and-gable roof with very modest
+    roof ornament, stone foundation and shallow front steps facing southwest, subtle ochre-and-green painted beam accents; no Qing yellow roof, no excessive layered
+    tower, no surrounding city.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references: []
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-7ee3560f-712e-4af5-ac56-9b3745fe5f23.png
+  created: '2026-09-30T08:55:36.702721+00:00'
+  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_palace_hall.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 1312x1024
+  sha256: 3b8380abd96c1762512fa25efb105fb73a02e5dfa745a1dd183cd23eb15dd51c
+  status: candidate
+  building:
+    type: bld_kit_song_southern_palace_hall
+    footprint: [18, 14]
+    anchor: [654.8482, 598.8328]
+    era: song_southern
+  footprint_m: [18, 14]
+  entrance: {edge: S, offset_cells: 8}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [1024, 512]
+    ground_width_px: 1024
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_palace_hall.yaml
+  source_sha256: f6ef8441f80279dca07df31f9b3e0f0a56764540f806b7d85e309e7a22b13640
+  processing:
+    source_archive: sources/bld_kit_song_southern_palace_hall.png
+    source_sha256: f6ef8441f80279dca07df31f9b3e0f0a56764540f806b7d85e309e7a22b13640
+    source_size: [1536, 1024]
+    crop_box: [110, 61, 1454, 1024]
+    uniform_scale_requested: 0.768192048012003
+    resized_size: [1032, 740]
+    rounded_effective_scale: [0.7678571428571429, 0.7684319833852544]
+    paste_offset: [140, 142]
+    final_file: bld_kit_song_southern_palace_hall.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [114, 621]
+      front: [886, 950]
+      right: [1447, 690]
+    source_axis_slopes: [0.4261658031088083, -0.46345811051693403]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.376114081996435
+    expected_width_depth_ratio: 1.2857142857142858
+    ratio_relative_error: 0.07031095266389387
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [1312, 1024]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 929599
+    alpha_partial_pixels: 413252
+    alpha_opaque_pixels: 637
+    alpha_near_opaque_pixels: 402374
+    alpha_nonzero_bbox: [140, 142, 1172, 882]
+    transparent_margins_px: [140, 142, 140, 142]
+    border_alpha_max: 0
+  candidate_count: 1
+  source_record: sources/bld_kit_song_southern_palace_hall.json
+  notes: 已逐张 view_image original：主体及屋檐塔刹完整、左上照明、S门左下，宋代灰瓦木构 / 砖塔意象；无字无人无现代物，材质写实。RGB背景光晕处alpha=0；真透明。原图留白偏紧由root补边；宋代细部及殿堂屋脊造型待考。底面双轴、外包比例存在生成残差，不能称严格精确通过。
+- id: bld_kit_song_southern_temple_hall
+  subject: 寺观殿堂
+  prompt: 'Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song
+    Lin''an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment,
+    not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5;
+    no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular
+    ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower
+    right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10
+    percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern
+    objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Precise ground projection:
+    footprint 13 x 10 m, two visible rectangular ground edges slope +0.500 and -0.500, each edge makes 26.565 degrees with horizontal, NOT standard 30-degree isometric
+    edges. Down-right ground edge has length 13 units, up-right edge 10 units, horizontal ratio 1.3000. Subject: One Southern Song Jiangnan Buddhist temple hall module,
+    sober red-brown timber columns and restrained Song-style dougong, broad grey-tiled hip-and-gable roof, faintly weathered plaster side walls, shallow stone foundation
+    with entrance steps facing southwest, small simple bronze incense burner by front stair and a subtly visible Buddha shrine inside shadowed doorway; no surrounding
+    monastery.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references: []
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-0b4dd96d-16c7-4bfd-bbb5-ad799a0568a7.png
+  created: '2026-09-30T08:56:55.892851+00:00'
+  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_temple_hall.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 1056x800
+  sha256: 5afdcbe5c8b65b37309c46d47b26af113e83b9bcc558f0038f471591c0d6b22d
+  status: candidate
+  building:
+    type: bld_kit_song_southern_temple_hall
+    footprint: [13, 10]
+    anchor: [541.1641, 511.8599]
+    era: song_southern
+  footprint_m: [13, 10]
+  entrance: {edge: S, offset_cells: 6}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [736, 368]
+    ground_width_px: 736
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_temple_hall.yaml
+  source_sha256: 3c589050087de07cfe3b846665ce79e285eeea7a4ad810e09681e207b8fcc6a1
+  processing:
+    source_archive: sources/bld_kit_song_southern_temple_hall.png
+    source_sha256: 3c589050087de07cfe3b846665ce79e285eeea7a4ad810e09681e207b8fcc6a1
+    source_size: [1536, 1024]
+    crop_box: [0, 0, 1490, 1024]
+    uniform_scale_requested: 0.5579984836997726
+    resized_size: [831, 571]
+    rounded_effective_scale: [0.5577181208053691, 0.5576171875]
+    paste_offset: [112, 114]
+    final_file: bld_kit_song_southern_temple_hall.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [110, 668]
+      front: [803, 1010]
+      right: [1429, 759]
+    source_axis_slopes: [0.4935064935064935, -0.4009584664536741]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.1070287539936101
+    expected_width_depth_ratio: 1.3
+    ratio_relative_error: 0.14843942000491528
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [1056, 800]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 601565
+    alpha_partial_pixels: 241983
+    alpha_opaque_pixels: 1252
+    alpha_near_opaque_pixels: 237120
+    alpha_nonzero_bbox: [112, 114, 943, 685]
+    transparent_margins_px: [112, 114, 113, 115]
+    border_alpha_max: 0
+  candidate_count: 1
+  source_record: sources/bld_kit_song_southern_temple_hall.json
+  notes: 已逐张 view_image original：主体及屋檐塔刹完整、左上照明、S门左下，宋代灰瓦木构 / 砖塔意象；无字无人无现代物，材质写实。RGB背景光晕处alpha=0；真透明。原图留白偏紧由root补边；宋代细部及殿堂屋脊造型待考。底面双轴、外包比例存在生成残差，不能称严格精确通过。
+- id: bld_kit_song_southern_pagoda
+  subject: 通用佛塔
+  prompt: 'Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song
+    Lin''an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment,
+    not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5;
+    no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular
+    ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower
+    right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10
+    percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern
+    objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Precise ground projection:
+    footprint 7 x 7 m, two visible rectangular ground edges slope +0.500 and -0.500, each edge makes 26.565 degrees with horizontal, NOT standard 30-degree isometric
+    edges. Down-right ground edge has length 7 units, up-right edge 7 units, horizontal ratio 1.0000. Subject: One Southern Song Jiangnan seven-level square Buddhist
+    pagoda, pale grey brick core with restrained timber balconies and grey-tiled projecting eaves at each level, a slim metal finial, vertical elegant silhouette,
+    a low square stone base with modest southwest-facing doorway and shallow steps; visible square ground footprint; full tower and finial uncut.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references: []
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-099bdd9f-5c1d-4c63-bdd2-18b6d4235eac.png
+  created: '2026-09-30T08:56:24.001734+00:00'
+  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_pagoda.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 832x1216
+  sha256: 25f3abe13173ce40dd3d3bb6e08b31c6dd4a695e3bda22465a099865765c25bf
+  status: candidate
+  building:
+    type: bld_kit_song_southern_pagoda
+    footprint: [7, 7]
+    anchor: [421.1749, 978.2049]
+    era: song_southern
+  footprint_m: [7, 7]
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [448, 224]
+    ground_width_px: 448
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_pagoda.yaml
+  source_sha256: 63b482f635acffba3eca1a90b01d18a992151915726c3d8a3d0ea83a24072cb6
+  processing:
+    source_archive: sources/bld_kit_song_southern_pagoda.png
+    source_sha256: 63b482f635acffba3eca1a90b01d18a992151915726c3d8a3d0ea83a24072cb6
+    source_size: [1024, 1536]
+    crop_box: [65, 18, 940, 1514]
+    uniform_scale_requested: 0.6464646464646465
+    resized_size: [566, 967]
+    rounded_effective_scale: [0.6468571428571429, 0.6463903743315508]
+    paste_offset: [133, 124]
+    final_file: bld_kit_song_southern_pagoda.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [164, 1339]
+      front: [512, 1497]
+      right: [857, 1340]
+    source_axis_slopes: [0.4540229885057471, -0.45507246376811594]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.008695652173913
+    expected_width_depth_ratio: 1.0
+    ratio_relative_error: 0.008695652173912993
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [832, 1216]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 789777
+    alpha_partial_pixels: 220688
+    alpha_opaque_pixels: 1247
+    alpha_near_opaque_pixels: 207545
+    alpha_nonzero_bbox: [133, 124, 699, 1085]
+    transparent_margins_px: [133, 124, 133, 131]
+    border_alpha_max: 0
+  candidate_count: 1
+  source_record: sources/bld_kit_song_southern_pagoda.json
+  notes: 已逐张 view_image original：主体及屋檐塔刹完整、左上照明、S门左下，宋代灰瓦木构 / 砖塔意象；无字无人无现代物，材质写实。RGB背景光晕处alpha=0；真透明。原图留白偏紧由root补边；宋代细部及殿堂屋脊造型待考。底面双轴、外包比例存在生成残差，不能称严格精确通过。
+- id: bld_kit_song_southern_guardhouse
+  subject: 城门守舍
+  prompt: 'Use case: precise-object-edit. Geometry correction of this guardhouse game sprite. Keep the long porch, Song timber/plaster, grey roof, sunlight upper-left,
+    materials unchanged. The right short ground edge is wrongly too shallow. REBUILD entire right side plane to a STEEPER upward-right angle, exact slope -0.5 rather
+    than -0.41. Specifically ground left(234,540), front(858,852), right(1292,635): move current right ground corner UP about45px, keep left and front fixed. Reproject
+    whole short side, roof and all rightward parallel horizontal beams to match this new axis. Long lower-left edge slope+0.5. Floor footprint must be7 wide x5 deep,
+    horizontal front-edge/side-edge=1.4. Render exact orthographic yaw45 pitch30 2:1 diamond tile camera, parallel both axes, no perspective. Ground stone base thin,
+    no thick pedestal. Full complete building with empty10% transparent margins all around; true transparent RGBA, no background, no halo, no writing/people/watermark,
+    no guide lines. It is crucial to change the roof and building 3D geometry, not just add padding.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references:
+  - {path: assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_guardhouse_review2_try1.png, role: 本轮未获审批候选，投影/材质参考, sha256: a7b98240322310e6a865192b1402878b1a9e9a4ffc85d0ef114cabe24d9fd1de}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-6e366786-792a-484c-ad13-87e85f3aea45.png
+  created: '2026-09-30T10:51:22.700491+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_guardhouse.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 512x512
+  sha256: a6e49400035e5030a82b3be42bf9a450e577b109a0e85c61c9b6c29d05b60efe
+  status: candidate
+  building:
+    type: bld_kit_song_southern_guardhouse
+    footprint: [7, 5]
+    anchor: [245.9631, 291.3573]
+    era: song_southern
+  footprint_m: [7, 5]
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [384, 192]
+    ground_width_px: 384
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_guardhouse.yaml
+  source_sha256: 2ad029d77ba7cab756fa24df602150ab02a01a6706ee33132f72bbc5ca73cce5
+  processing:
+    source_archive: sources/bld_kit_song_southern_guardhouse.png
+    source_sha256: 2ad029d77ba7cab756fa24df602150ab02a01a6706ee33132f72bbc5ca73cce5
+    source_size: [1536, 1024]
+    crop_box: [80, 30, 1516, 1004]
+    uniform_scale_requested: 0.282560706401766
+    resized_size: [406, 275]
+    rounded_effective_scale: [0.2827298050139276, 0.28234086242299794]
+    paste_offset: [53, 118]
+    final_file: bld_kit_song_southern_guardhouse.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [83, 579]
+      front: [883, 997]
+      right: [1442, 709]
+    source_axis_slopes: [0.5225, -0.5152057245080501]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.4311270125223614
+    expected_width_depth_ratio: 1.4
+    ratio_relative_error: 0.02223358037311529
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [512, 512]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 204654
+    alpha_partial_pixels: 56660
+    alpha_opaque_pixels: 830
+    alpha_near_opaque_pixels: 55404
+    alpha_nonzero_bbox: [53, 118, 441, 393]
+    transparent_margins_px: [53, 118, 71, 119]
+    border_alpha_max: 0
+  candidate_count: 3
+  source_record: sources/bld_kit_song_southern_guardhouse.json
+  notes: 第2次运行返修：内置image_gen真实重出主体；逐张view_image及64×32占地叠图，宽深关系和两轴目视协调，左上光、暖灰瓦木石、宋意象，无文字人物现代物；无裁切。严格几何数值见geometry_qa；不将轻微告警当成已通过。
+- id: bld_kit_song_southern_stable
+  subject: 马厩
+  prompt: 'Use case: sketch-to-render. Reference shows exact footprint to occupy. Create a COMPACT, DEEP, nearly-square Chinese Southern Song stable with ONLY THREE
+    front stall bays, each stall extending far backwards, plus a small open stone forecourt. Width9 metres and depth7 metres, ratio1.286. No very long roof, no fourth
+    bay. Left-facing facade only slightly longer than right-facing side. CAMERA orthographic dimetric with BOTH ground edges exactly26.565degrees, slope+.500/-.500,
+    no perspective. Trace reference footprint angles and proportions, do not alter. Realistic historic game sprite, Lin''an1223: handmade gray tiled simple gable
+    roof, weathered timber posts/rails, plaster right side wall, some straw in stalls, one stone trough. Left-up screen light, short contact shadow lower-right. Flat
+    rectangular ground base with all three visible ground CONTACT corners unobstructed, regular clean perimeter and very thin foundation. Centered entire uncropped
+    standalone structure with transparent margins, TRUE transparent RGBA outside structure. Remove every guideline/grid and white background from reference. No people,
+    horses, text, numbers, letters, banners, signs, modern elements, elaborate palace ornaments, thick diorama base, sky, landscape, big cast shadows. The roof and
+    foundation must BOTH obey the broad deep9x7 proportion and TWO IDENTICAL axis angles.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references:
+  - {file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/review2/southern_stable_geometry_guide.png, sha256: 813420415ee6a687cc80a794253f06b3812c60f540a4cbf82879b805138810a1,
+    role: 占地线框几何参考；不作资产像素合成}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1df-e5c8-76a2-80ad-599db032c5ae/exec-4045fe6a-22a3-4e11-a7b1-17034b15c3fe.png
+  created: '2026-09-30T10:46:11.339973+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_stable.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 832x608
+  sha256: 01477083e13145ced739c94127e4f9c01a7a8dc0790806523cff00c75bff2e29
+  status: candidate
+  building:
+    type: bld_kit_song_southern_stable
+    footprint: [9, 7]
+    anchor: [451.6315, 385.2995]
+    era: song_southern
+  footprint_m: [9, 7]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [512, 256]
+    ground_width_px: 512
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_stable.yaml
+  source_sha256: e2e588576cc298c0046e2fe4b5b424c61ee1fedfe9bb35308510c8d301a3810b
+  processing:
+    source_archive: sources/bld_kit_song_southern_stable.png
+    source_sha256: e2e588576cc298c0046e2fe4b5b424c61ee1fedfe9bb35308510c8d301a3810b
+    source_size: [1536, 1024]
+    crop_box: [0, 21, 1437, 1006]
+    uniform_scale_requested: 0.44638186573670446
+    resized_size: [641, 440]
+    rounded_effective_scale: [0.44606819763395966, 0.4467005076142132]
+    paste_offset: [95, 84]
+    final_file: bld_kit_song_southern_stable.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [226, 653]
+      front: [879, 976]
+      right: [1373, 738]
+    source_axis_slopes: [0.4946401225114854, -0.4817813765182186]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.3218623481781377
+    expected_width_depth_ratio: 1.2857142857142858
+    ratio_relative_error: 0.02811515969410716
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [832, 608]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 383082
+    alpha_partial_pixels: 121888
+    alpha_opaque_pixels: 886
+    alpha_near_opaque_pixels: 119914
+    alpha_nonzero_bbox: [156, 108, 715, 515]
+    transparent_margins_px: [156, 108, 117, 93]
+    border_alpha_max: 0
+  candidate_count: 3
+  source_record: sources/bld_kit_song_southern_stable.json
+  notes: 入选：宽深恢复、双轴协调，原图已view_image与灰底alpha合成复核。 宋式灰瓦木构/灰石材质、左上光、无字无人无现代物，真实alpha，主体完整。底面读点来自实际接触边，未warp/拉伸；64×32叠合图另存review2。
+- id: bld_kit_song_southern_warehouse
+  subject: 河仓 / 货栈
+  prompt: 'Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song
+    Lin''an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment,
+    not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5;
+    no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular
+    ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower
+    right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10
+    percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern
+    objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Precise ground projection:
+    footprint 10 x 8 m, two visible rectangular ground edges slope +0.500 and -0.500, each edge makes 26.565 degrees with horizontal, NOT standard 30-degree isometric
+    edges. Down-right ground edge has length 10 units, up-right edge 8 units, horizontal ratio 1.2500. Subject: One Southern Song Lin''an riverside goods warehouse,
+    broad single-storey dark timber and plaster hall with grey tiled gable roof, wide double loading doors facing southwest, shallow loading platform with stacked
+    wooden crates, tied cloth bundles and ceramic jars, no actual river, boats or other buildings.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references: []
+  source_path: /Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-a01efb3e-bdd3-4f5f-aa8b-cc4e4181ccbe.png
+  created: '2026-09-30T09:09:02.393704+00:00'
+  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_warehouse.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 768x576
+  sha256: 2f500eaee2c24c4e48a8604e495d13803b3cdb50550d3d66eea96e3a8de3875b
+  status: candidate
+  building:
+    type: bld_kit_song_southern_warehouse
+    footprint: [10, 8]
+    anchor: [397.1994, 345.8792]
+    era: song_southern
+  footprint_m: [10, 8]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [576, 288]
+    ground_width_px: 576
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_warehouse.yaml
+  source_sha256: 5806cad8b9260279acdd71e076a5ec4fc0368f7b1a84333d624f936e2f305254
+  processing:
+    source_archive: sources/bld_kit_song_southern_warehouse.png
+    source_sha256: 5806cad8b9260279acdd71e076a5ec4fc0368f7b1a84333d624f936e2f305254
+    source_size: [1536, 1024]
+    crop_box: [0, 0, 1467, 993]
+    uniform_scale_requested: 0.4152847873107426
+    resized_size: [609, 412]
+    rounded_effective_scale: [0.41513292433537835, 0.4149043303121853]
+    paste_offset: [79, 82]
+    final_file: bld_kit_song_southern_warehouse.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [73, 570]
+      front: [870, 980]
+      right: [1460, 702]
+    source_axis_slopes: [0.5144291091593476, -0.4711864406779661]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.3508474576271186
+    expected_width_depth_ratio: 1.25
+    ratio_relative_error: 0.08067796610169475
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [768, 576]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 312418
+    alpha_partial_pixels: 128918
+    alpha_opaque_pixels: 1032
+    alpha_near_opaque_pixels: 126560
+    alpha_nonzero_bbox: [79, 82, 688, 493]
+    transparent_margins_px: [79, 82, 80, 83]
+    border_alpha_max: 0
+  candidate_count: 1
+  source_record: sources/bld_kit_song_southern_warehouse.json
+  notes: 已逐张 view_image original：灰瓦木构 / 河埠石阶材质写实，单体无字无人无现代物，入口或河阶向左下，左上光与短接触影，未裁边；真透明经PIL确认。底面双轴或外包比例有残差，河埠阶梯使底面不规则且明显比逻辑10x4更窄长；只作为candidate，精确拼接未通过。
+- id: bld_kit_song_southern_wharf
+  subject: 河埠外观
+  prompt: 'Use case: sketch-to-render. Transform the attached 2:1 ground-grid drawing into a FLAT stone landing pad beside a river in Southern Song China (no river
+    drawn). The ORANGE OUTLINE IS THE EXACT OUTSIDE BOUNDARY of the stone floor. Stone floor has ZERO noticeable thickness, no vertical sides, no steps, no wall,
+    no raised platform, no diorama slab. Simply flat weathered gray paving over this parallelogram, ten cells along down-right, four along up-right, slopes exactly0.5
+    and-0.5. Each corner remains where it is in reference. On this floor stand two small dark wooden mooring posts and a coil of hemp rope, enough to read as a historical
+    quay. Nothing else. Ground pad''s right-back edge is straight and clean for adjoining separately rendered shore. Orthographic 45-degree view, low2:1 dimetric.
+    Realistic muted gray stone and dark aged wood, lit screen upper-left. Render crisp alpha cutout sprite with opaque objects and TRUE transparent outside pad; remove
+    white background, orange outline and grid. Preserve generous margins, no writing, diagrams, numbers, people, water, boats, modern things, scenery, mountains,
+    shadows outside footprint, no border. The almost flat, zero-thickness ground pad is essential: do not add brick sides or stairs. Ground shape must match reference
+    exactly.'
+  negative: 文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。
+  references:
+  - {file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/review2/southern_wharf_geometry_guide.png, sha256: e0a586ec1cc81c539d171dc78a64f4c36b07f065b3030716341402c6afd2c508,
+    role: 占地线框几何参考；不作资产像素合成}
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1df-e5c8-76a2-80ad-599db032c5ae/exec-0dfb0590-bdf4-4788-a44d-f21ca40faa50.png
+  created: '2026-09-30T10:46:11.441508+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_kit_song_southern_wharf.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 576x512
+  sha256: ee6196f46d86785a78c5859e50b60ad9866e246bdb48a9dabcc238f176c79ab1
+  status: candidate
+  building:
+    type: bld_kit_song_southern_wharf
+    footprint: [10, 4]
+    anchor: [287.6558, 272.3012]
+    era: song_southern
+  footprint_m: [10, 4]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [448, 224]
+    ground_width_px: 448
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_song_southern_wharf.yaml
+  source_sha256: fcfc1c9e58aeee610f51859f1f2b35cc2fdbb89288cfa5b31a2d6d5dbf697881
+  processing:
+    source_archive: sources/bld_kit_song_southern_wharf.png
+    source_sha256: fcfc1c9e58aeee610f51859f1f2b35cc2fdbb89288cfa5b31a2d6d5dbf697881
+    source_size: [1536, 1024]
+    crop_box: [25, 21, 1472, 982]
+    uniform_scale_requested: 0.31154381084840055
+    resized_size: [451, 299]
+    rounded_effective_scale: [0.3116793365583967, 0.31113423517169614]
+    paste_offset: [62, 106]
+    final_file: bld_kit_song_southern_wharf.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [30, 396]
+      front: [1055, 939]
+      right: [1468, 715]
+    source_axis_slopes: [0.5297560975609756, -0.5423728813559322]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 2.4818401937046004
+    expected_width_depth_ratio: 2.5
+    ratio_relative_error: 0.007263922518159882
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [576, 512]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 249496
+    alpha_partial_pixels: 44671
+    alpha_opaque_pixels: 745
+    alpha_near_opaque_pixels: 43599
+    alpha_nonzero_bbox: [62, 110, 513, 396]
+    transparent_margins_px: [62, 110, 63, 116]
+    border_alpha_max: 0
+  candidate_count: 7
+  source_record: sources/bld_kit_song_southern_wharf.json
+  notes: 入选：10x4宽深恢复、接岸直边清楚；双轴同向稍陡，保留严格告警。 宋式灰瓦木构/灰石材质、左上光、无字无人无现代物，真实alpha，主体完整。底面读点来自实际接触边，未warp/拉伸；64×32叠合图另存review2。
+- id: bld_lm_ch02_linan_palace_gate
+  subject: 临安皇城北向门楼意象，ch02南宋1223（无字原创意象，门名形制待考）
+  prompt: 'Use case: historical-scene. Asset type: tianshu default building-map, a single reusable transparent PNG building, realistic historical Chinese architectural
+    materials, no ink painting or miniature toy. Orthographic dimetric 2:1 projection, yaw45 pitch30, two horizontal ground axes have screen slopes +0.5 and -0.5,
+    vertical pillars exactly vertical, NO perspective convergence. Front faces screen lower left. Grey clay tiles, weathered timber, understated plaster and stone,
+    believable Song-period structural joinery, low-saturation warm natural colors. Thin flat rectangular footprint foundation, clearly visible straight front and
+    right base edges, no chunky diorama pedestal. Entire building including eaves and thin footprint inside canvas, at least 10% transparent padding on all sides.
+    Sunlight from SCREEN UPPER LEFT, short subtle contact shadow toward SCREEN LOWER RIGHT. TRUE transparent RGBA canvas, no background sky, floor, scenery or checkerboard.
+    No text, signs, pseudo-writing, letters, watermark, logo, humans, modern objects, Qing yellow palace roofs, Japanese torii, dramatic extreme eaves. Generate exactly
+    ONE asset in a square 1024x1024 composition. ONE complete restrained Southern Song Linan palace gateway building 14m east-west by8m north-south footprint. Broad
+    single-storied timber gate hall above a modest grey stone gate base, one central open passage continuing north to south, muted cinnabar structural columns, sparse
+    large bracket clusters, shallow grey tiled hipped roof with restrained ridge ends, NO yellow tiles or Qing ornament. The formal entrance is on its NORTH SIDE
+    (screen upper-right, far side); visible south rear opening faces lower-left. Entire flat rectangular thin plinth visible in a 14:8 ground ratio, straight front
+    and right edges, no neighboring palace, no external city wall, no banner, no written plaque. Cinematic realistic material fidelity but mathematically orthographic
+    framing.
+
+    CORRECTION: the rectangular ground footprint must truly be14m x8m, not a long narrow14x5 strip. Show a DEEP rectangular gatehouse foundation. On a square image,
+    base corners roughly at LEFT(15%,68%), FRONT(59.55%,90.275%), RIGHT(85%,77.55%), BACK(40.45%,55.275%); the two ground axes are exactly+0.5 and-0.5, ratio of visible
+    frontage run to visible depth run is14/8=1.75. Treat this as engineering geometry; roof and walls follow these same axes, no perspective convergence. Ignore any
+    source image ground distortion. More transparent padding around eaves. Cast only a tiny contact shadow immediately DOWN-RIGHT, no wide shadow on upper-right.'
+  negative: 无文字、现代元素、人物、透视、厚台基、背景色或棋盘格
+  references: []
+  source_path: /Users/bytedance/.codex/generated_images/01a0f166-4e1e-79f1-9e71-f3cbf0a66607/exec-ab5f44c7-9180-441e-9d52-c0b3efcf9cf1.png
+  created: '2026-09-30T08:28:23.209671+00:00'
+  created_time_basis: 生成后记录的接收/归档时间；非工具披露的服务端调用时间
+  file: bld_lm_ch02_linan_palace_gate.png
+  category: building-map
+  style: default
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  tool: built-in image_gen
+  size: 960x928
+  sha256: 4cae26fb654f8588c41ad4fc65eafddc0f8f21c9cbb0613f14b0e1e4004f85cd
+  status: candidate
+  building:
+    type: bld_lm_ch02_linan_palace_gate
+    footprint: [14, 8]
+    anchor: [487.2902, 642.2093]
+    era: song_southern
+  footprint_m: [14, 8]
+  entrance: {edge: N, offset_cells: 6}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [704, 352]
+    ground_width_px: 704
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_lm_ch02_linan_palace_gate.yaml
+  source_sha256: 5d3eaac9eaa67a9b8f92f4167f30e6ee599cd8e855d82bd95806ca8d1e988d75
+  processing:
+    source_archive: sources/bld_lm_ch02_linan_palace_gate.png
+    source_sha256: 5d3eaac9eaa67a9b8f92f4167f30e6ee599cd8e855d82bd95806ca8d1e988d75
+    source_size: [1254, 1254]
+    crop_box: [47, 52, 1210, 1182]
+    uniform_scale_requested: 0.6488479262672812
+    resized_size: [755, 733]
+    rounded_effective_scale: [0.649183147033534, 0.6486725663716815]
+    paste_offset: [102, 97]
+    final_file: bld_lm_ch02_linan_palace_gate.png
+    steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint,
+        warp, flip or alpha thresholding']
+  geometry_qa:
+    source_corners_px:
+      left: [98, 840]
+      front: [747, 1131]
+      right: [1183, 945]
+    source_axis_slopes: [0.44838212634822805, -0.42660550458715596]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.488532110091743
+    expected_width_depth_ratio: 1.75
+    ratio_relative_error: 0.14941022280471827
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+  pixel_qa:
+    mode: RGBA
+    size: [960, 928]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 643039
+    alpha_partial_pixels: 247152
+    alpha_opaque_pixels: 689
+    alpha_near_opaque_pixels: 239041
+    alpha_nonzero_bbox: [102, 97, 857, 830]
+    transparent_margins_px: [102, 97, 103, 98]
+    border_alpha_max: 0
+  candidate_count: 3
+  source_record: sources/bld_lm_ch02_linan_palace_gate.json
+  notes: 三稿均view_image，选择第2稿：完整宋式灰瓦门楼、南北贯通，无字无人；主光左上、短影右下。第1稿台基过长窄，第3稿仍浅斜且更窄。第2稿底面仍+.448/-.427、宽深比1.489 vs1.75，几何未通过；地台相对目标偏厚。仅candidate，严禁作为已通过精确拼接/历史复原素材。

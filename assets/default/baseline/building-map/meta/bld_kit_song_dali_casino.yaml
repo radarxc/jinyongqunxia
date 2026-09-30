@@ -1,0 +1,81 @@
+id: bld_kit_song_dali_casino
+status: candidate
+building:
+  type: bld_kit_song_dali_casino
+  footprint: [9, 7]
+  anchor: &id001 [358.7788, 340.4331]
+  era: song_dali
+anchor_px: *id001
+footprint_m: [9, 7]
+logical_footprint_polygon_px:
+- [102.77879999999999, 324.4331]
+- [390.7788, 468.4331]
+- [614.7788, 356.4331]
+- [326.7788, 212.43310000000002]
+collision_polygon_m:
+- [0, 0]
+- [9, 0]
+- [9, 7]
+- [0, 7]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [104, 87]
+- [614, 87]
+- [614, 454]
+- [104, 454]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 6.47
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 4}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_dali_casino.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [512, 256]
+  ground_width_px: 512
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [305, 591]
+    front: [981, 877]
+    right: [1516, 627]
+  source_axis_slopes: [0.4230769230769231, -0.4672897196261682]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.263551401869159
+  expected_width_depth_ratio: 1.2857142857142858
+  ratio_relative_error: 0.01723779854620977
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [768, 544]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 302455
+  alpha_partial_pixels: 114412
+  alpha_opaque_pixels: 925
+  alpha_near_opaque_pixels: 111887
+  alpha_nonzero_bbox: [101, 85, 617, 458]
+  transparent_margins_px: [101, 85, 151, 86]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_dali_casino.png
+  source_sha256: 35d685ffcf0be78d6e973db9ee1082fd2d867ee1330fa66490808e5d565e1b5c
+  source_size: [1774, 887]
+  crop_box: [265, 5, 1673, 887]
+  uniform_scale_requested: 0.4227910817506193
+  resized_size: [595, 373]
+  rounded_effective_scale: [0.4225852272727273, 0.42290249433106575]
+  paste_offset: [86, 85]
+  final_file: bld_kit_song_dali_casino.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

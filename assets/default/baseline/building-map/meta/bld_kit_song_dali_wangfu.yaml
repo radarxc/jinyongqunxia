@@ -1,0 +1,81 @@
+id: bld_kit_song_dali_wangfu
+status: candidate
+building:
+  type: bld_kit_song_dali_wangfu
+  footprint: [18, 14]
+  anchor: &id001 [655.6553, 538.4565]
+  era: song_dali
+anchor_px: *id001
+footprint_m: [18, 14]
+logical_footprint_polygon_px:
+- [143.6553, 506.4565]
+- [719.6553, 794.4565]
+- [1167.6553, 570.4565]
+- [591.6553, 282.4565]
+collision_polygon_m:
+- [0, 0]
+- [18, 0]
+- [18, 14]
+- [0, 14]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [142, 189]
+- [1170, 189]
+- [1170, 812]
+- [142, 812]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 8.92
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 8}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 180]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_dali_wangfu.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [1024, 512]
+  ground_width_px: 1024
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [29, 559]
+    front: [871, 998]
+    right: [1515, 648]
+  source_axis_slopes: [0.5213776722090261, -0.5434782608695652]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.3074534161490683
+  expected_width_depth_ratio: 1.2857142857142858
+  ratio_relative_error: 0.016908212560386326
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [1312, 960]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 893146
+  alpha_partial_pixels: 365438
+  alpha_opaque_pixels: 936
+  alpha_near_opaque_pixels: 357484
+  alpha_nonzero_bbox: [140, 143, 1172, 816]
+  transparent_margins_px: [140, 143, 140, 144]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_dali_wangfu.png
+  source_sha256: 03e1af736dd0242c0b44bce0541a0b1516d09b54b765c1d81edaac8b267c9a39
+  source_size: [1536, 1024]
+  crop_box: [24, 30, 1521, 1006]
+  uniform_scale_requested: 0.6890982503364738
+  resized_size: [1032, 673]
+  rounded_effective_scale: [0.6893787575150301, 0.6895491803278688]
+  paste_offset: [140, 143]
+  final_file: bld_kit_song_dali_wangfu.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

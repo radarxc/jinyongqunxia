@@ -1,0 +1,87 @@
+{
+  "id": "bld_kit_song_dali_courtyard",
+  "type": "bld_kit_song_dali_courtyard",
+  "w": 10,
+  "h": 8,
+  "subject": "1093年大理国低密院落（建筑细部待考）",
+  "prompt": "Generate a SINGLE orthographic map building sprite on a TRUE TRANSPARENT RGBA background. Reference is camera/material guide only. Camera yaw45 elevation30; exact 2:1 dimetric ground axes screen slopes+0.5,-0.5. Rectangular footprint 10m east-west by8m north-south, ground east-west edge appears1.25 times north-south edge. South entrance LOWER LEFT. One low-density residential courtyard in Dali kingdom1093, low gray tiled main timber house at rear and one side wing, low plain courtyard walls, timber south gate, mostly compacted earth court with a few stepping stones and one small camellia. Modest pale plaster, weathered timber, gray tile, simple restrained roofs. Flat thin footprint, complete clear three bottom corners, no thick plinth. Entire sprite centered with10% empty transparency all sides, no clipped eaves. Lighting screen upper left, short contact shadow lower right. No background environment or gradient or halo. No text, no sign, no logo, no people, no modern details, no caricature, no tourism white-Bai facade or palace ornament.",
+  "negative": "文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_house",
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png",
+      "sha256": "f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d",
+      "role": "本批候选相机与材质参考（非作者approved）"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-4a7e2ed2-903d-457f-859e-c0a6ee4614ff.png",
+  "source_sha256": "7ac30d49e254220d06b2d7392578158c03219e29a6ebe0d80b743786c13bb182",
+  "created": "2026-09-30",
+  "visual_review": "已view_image(detail=original)逐张自查：院落低密，土院与山茶符合大理要求，门朝左下，灰瓦木构与基线一致，无文字或人物。重出后底面两轴更接近2:1，但占地比例残差须交合成复核，未标精确通过。",
+  "candidate_count": 2,
+  "discarded_candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-6838b6ad-e670-4a31-ba45-3983f632404e.png",
+      "prompt": "Use case: historical-scene. Create ONE production isometric city-map building sprite for tianshu, Song-era Dali kingdom in 1093. Realistic ancient Chinese timber/stone construction and softly weathered material detail, restrained clay-white walls, dark timber, gray tiled roofs, modest local southwest vegetation only where specified. Reference image is MATERIAL AND REALISM ONLY, DO NOT copy its camera, mountain landscape or full scene. Orthographic camera exactly yaw45 elevation30, 2:1 dimetric ground-plane projection, ground axes have screen slopes +0.5 and -0.5, verticals upright, no perspective convergence. South entrance/front must face screen LOWER LEFT. One complete isolated asset centered, true transparent RGBA background; generous >=10% empty transparent margins on all sides. Entire asset and contact shadow fully inside canvas. A very thin flat rectangular footprint, four corners readable, NO thick diorama plinth. No outside road, panorama, sky or landscape. Light from SCREEN UPPER LEFT; small soft contact shadow goes SCREEN LOWER RIGHT only. No writing of any kind, signs, letters, numbers, people, border, watermark, logo, checkerboard pattern, modern items, late Ming/Qing tourism styling, oversized decorative upturned roofs. Keep scale realistic. A compact low-density domestic courtyard, one single-story main timber house at back, one shallow side wing, low plain boundary wall and south entrance gate, mostly beaten earth courtyard with small stone path, one small local camellia tree. Footprint 10m east-west by8m north-south; all structures contained in this rectangle.",
+      "reason": "底面两轴明显不对称，初稿约+.46/-.64"
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        206,
+        627
+      ],
+      [
+        832,
+        947
+      ]
+    ],
+    [
+      [
+        832,
+        947
+      ],
+      [
+        1393,
+        629
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      206,
+      627
+    ],
+    "front": [
+      832,
+      947
+    ],
+    "right": [
+      1393,
+      629
+    ]
+  },
+  "projection_review": "手工底面边角±2px；斜率+.5112/-.5668，dx比626/561=1.1159，目录10/8=1.25。保留残差，不能宣称严格2:1或精确占地。",
+  "status": "candidate",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      254
+    ],
+    "transparent_pixels": 982571,
+    "partial_pixels": 590293,
+    "opaque_pixels": 0,
+    "bbox": [
+      0,
+      17,
+      1458,
+      1000
+    ]
+  }
+}

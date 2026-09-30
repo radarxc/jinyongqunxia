@@ -1,0 +1,278 @@
+[
+  {
+    "id": "bld_kit_song_dali_yamen",
+    "size": [
+      1056,
+      768
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "margins": [
+      115,
+      104,
+      115,
+      124
+    ],
+    "anchor": [
+      536.8185,
+      424.2941
+    ],
+    "source_corners": {
+      "left": [
+        102,
+        540
+      ],
+      "front": [
+        861,
+        932
+      ],
+      "right": [
+        1463,
+        613
+      ]
+    },
+    "geometry": {
+      "source_corners_px": {
+        "left": [
+          102,
+          540
+        ],
+        "front": [
+          861,
+          932
+        ],
+        "right": [
+          1463,
+          613
+        ]
+      },
+      "source_axis_slopes": [
+        0.5164690382081687,
+        -0.5299003322259136
+      ],
+      "axis_tolerance": 0.03,
+      "axis_pass": true,
+      "source_width_depth_ratio": 1.260797342192691,
+      "expected_width_depth_ratio": 1.2727272727272727,
+      "ratio_relative_error": 0.009373516848599883,
+      "ratio_tolerance_suggestion": 0.1,
+      "ratio_pass": true,
+      "measurement_uncertainty_source_px": 3,
+      "precision_note": "人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。"
+    },
+    "candidate_count": 4,
+    "new_candidates": 2,
+    "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef",
+    "source_sha256": "802ce940f9f5a67cbf5d5b28123937d6290936228c1e2d05855c3a8b2664cb3c",
+    "visual": "已逐张view_image检查原图与成品QA叠图；无文字、水印、现代物件和人物，完整RGBA透明留边；光源左上。衙门由近方底面重绘为14×11，两边投影协调。仅裁切、等比LANCZOS缩放、透明扩边；历史细部与风格仍待作者审批。"
+  },
+  {
+    "id": "bld_kit_song_dali_wangfu",
+    "size": [
+      1312,
+      864
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "margins": [
+      142,
+      130,
+      143,
+      130
+    ],
+    "anchor": [
+      655.8451,
+      466.5143
+    ],
+    "source_corners": {
+      "left": [
+        35,
+        568
+      ],
+      "front": [
+        852,
+        980
+      ],
+      "right": [
+        1518,
+        625
+      ]
+    },
+    "geometry": {
+      "source_corners_px": {
+        "left": [
+          35,
+          568
+        ],
+        "front": [
+          852,
+          980
+        ],
+        "right": [
+          1518,
+          625
+        ]
+      },
+      "source_axis_slopes": [
+        0.5042839657282742,
+        -0.5330330330330331
+      ],
+      "axis_tolerance": 0.03,
+      "axis_pass": false,
+      "source_width_depth_ratio": 1.2267267267267268,
+      "expected_width_depth_ratio": 1.2857142857142858,
+      "ratio_relative_error": 0.04587921254587923,
+      "ratio_tolerance_suggestion": 0.1,
+      "ratio_pass": true,
+      "measurement_uncertainty_source_px": 3,
+      "precision_note": "人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。"
+    },
+    "candidate_count": 8,
+    "new_candidates": 6,
+    "sha256": "aeaec20800c6df003deb93e581b2037c5616925f5f59f8d0b6fddb2745d32ee7",
+    "source_sha256": "408e10d7a115772a6eafbe0d3998f4d55a711aaa98e937185e41f2377f186c68",
+    "visual": "已逐张view_image检查原图与成品QA叠图；无文字、水印、现代物件和人物，完整RGBA透明留边；光源左上。王府明显歪轴已修复，保留灰瓦、浅墙与山茶；右轴略陡严格检查仍有告警。仅裁切、等比LANCZOS缩放、透明扩边；历史细部与风格仍待作者审批。"
+  },
+  {
+    "id": "bld_kit_song_dali_stable",
+    "size": [
+      672,
+      512
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "margins": [
+      139,
+      80,
+      78,
+      81
+    ],
+    "anchor": [
+      365.666,
+      308.31
+    ],
+    "source_corners": {
+      "left": [
+        182,
+        618
+      ],
+      "front": [
+        892,
+        1002
+      ],
+      "right": [
+        1443,
+        704
+      ]
+    },
+    "geometry": {
+      "source_corners_px": {
+        "left": [
+          182,
+          618
+        ],
+        "front": [
+          892,
+          1002
+        ],
+        "right": [
+          1443,
+          704
+        ]
+      },
+      "source_axis_slopes": [
+        0.5408450704225352,
+        -0.5408348457350273
+      ],
+      "axis_tolerance": 0.03,
+      "axis_pass": false,
+      "source_width_depth_ratio": 1.2885662431941924,
+      "expected_width_depth_ratio": 1.3333333333333333,
+      "ratio_relative_error": 0.033575317604355615,
+      "ratio_tolerance_suggestion": 0.1,
+      "ratio_pass": true,
+      "measurement_uncertainty_source_px": 3,
+      "precision_note": "人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。"
+    },
+    "candidate_count": 3,
+    "new_candidates": 1,
+    "sha256": "da40c1c72f1e27b96c2a8da4d6ab0ac6f81474a6d0e049045d4ac9996eabac28",
+    "source_sha256": "ef41775055e6e23a6aa746f3cb92b27799315dff1d1914347ea7c9cf310fada3",
+    "visual": "已逐张view_image检查原图与成品QA叠图；无文字、水印、现代物件和人物，完整RGBA透明留边；光源左上。马厩前宽/侧深恢复8×6比例，两轴协调但同向略陡，严格检查仍告警。仅裁切、等比LANCZOS缩放、透明扩边；历史细部与风格仍待作者审批。"
+  },
+  {
+    "id": "bld_kit_song_dali_wharf",
+    "size": [
+      512,
+      512
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "margins": [
+      67,
+      155,
+      56,
+      145
+    ],
+    "anchor": [
+      261.8902,
+      263.2144
+    ],
+    "source_corners": {
+      "left": [
+        51,
+        411
+      ],
+      "front": [
+        1029,
+        928
+      ],
+      "right": [
+        1487,
+        688
+      ]
+    },
+    "geometry": {
+      "source_corners_px": {
+        "left": [
+          51,
+          411
+        ],
+        "front": [
+          1029,
+          928
+        ],
+        "right": [
+          1487,
+          688
+        ]
+      },
+      "source_axis_slopes": [
+        0.5286298568507157,
+        -0.5240174672489083
+      ],
+      "axis_tolerance": 0.03,
+      "axis_pass": true,
+      "source_width_depth_ratio": 2.1353711790393013,
+      "expected_width_depth_ratio": 2.0,
+      "ratio_relative_error": 0.06768558951965065,
+      "ratio_tolerance_suggestion": 0.1,
+      "ratio_pass": true,
+      "measurement_uncertainty_source_px": 3,
+      "precision_note": "人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。"
+    },
+    "candidate_count": 6,
+    "new_candidates": 2,
+    "sha256": "03ab2096647498c835afdb58e896d604966b5c2492bb0504625677f962a912d4",
+    "source_sha256": "97855d41aec5b6f3659301eb5c80f2708076aa123896f54bfa26e775b634e628",
+    "visual": "已逐张view_image检查原图与成品QA叠图；无文字、水印、现代物件和人物，完整RGBA透明留边；光源左上。河埠恢复8×4宽深关系，双轴协调；接岸背侧长边直且无遮挡，台阶内嵌，不越矩形边界。仅裁切、等比LANCZOS缩放、透明扩边；历史细部与风格仍待作者审批。"
+  }
+]

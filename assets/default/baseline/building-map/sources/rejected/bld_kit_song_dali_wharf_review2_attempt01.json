@@ -1,0 +1,20 @@
+{
+  "short": "wharf",
+  "round": 1,
+  "prompt": "Use case: precise-object-edit. Edit supplied Dali stone river wharf into a clean 2:1 dimetric city-map sprite with accurate 8 by 4 metre rectangle. Preserve worn gray stone slabs, two low wooden mooring bollards with ropes, understated old Dali 1093 materials, stone step inset along waterside. Correct its shallow ground projection: BOTH axes must be +0.5 and -0.5, orthographic 45 yaw and 30 elevation, NOT perspective. Ground polygon top corners on a 1536x1024 canvas: LEFT(168,430), FRONT(968,830), RIGHT(1368,630), BACK(568,230). Thus long waterside LEFT->FRONT=(800,400), short FRONT->RIGHT=(400,-200), ratio exactly 2.0. Thin slab vertical thickness 22 pixels, not a tall plinth. Keep the rear edge BACK->RIGHT straight and unobstructed for fitting into a riverbank; no rocks, vines, plants or props hanging over that edge. Clearly expose all four rectangle corners and both docking front edges. All stone slab joints follow those same +0.5/-0.5 ground axes. Upper-left light and short contact shadows only. TRUE transparent RGBA, fully opaque wharf, no water, no surrounding terrain, no aura, no background. Generous padding, entire object visible. No persons, boats, text, modern objects, grid or watermark. One asset.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-c0f05fea-ff9d-485c-be7f-6e6c05604e7a.png",
+  "reason": "宽深比例已近2.0但两轴约+0.523/-0.427仍不协调，淘汰",
+  "ref": "old",
+  "archive": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wharf_review2_attempt01.png",
+  "source_sha256": "21285886a3451d644eb5752644d76bc0b1665bf48d6b487d70b93af1c8d6f6c4",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_wharf_pre_review2",
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wharf_pre_review2.png",
+      "sha256": "1fa5d799253334194fd2a433fbf041ea47a48adff2bd126dd39038f9d09c2e2c",
+      "role": "返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）"
+    }
+  ],
+  "status": "rejected",
+  "created": "2026-09-30T10:49:21.057300+00:00"
+}

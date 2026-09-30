@@ -1,0 +1,88 @@
+{
+  "id": "bld_kit_song_dali_guardhouse",
+  "type": "bld_kit_song_dali_guardhouse",
+  "w": 6,
+  "h": 5,
+  "subject": "1093年大理国城门守舍（建筑细部待考）",
+  "prompt": "Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation 30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT. Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10% empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop, ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people, no modern objects, no logos, no border, no watermark, no tourism-era decoration. A small practical single-story gate guardhouse, sturdy timber and rammed-earth wall structure on low stone footings, gray tiled gabled roof, single south doorway and small wooden lattice window, two plain storage racks under eave. No surrounding city wall or gate tower, no weapons or flags, no people. Footprint 6m east-west by5m north-south.",
+  "negative": "文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_house",
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png",
+      "sha256": "f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d",
+      "role": "本批候选相机与材质参考（非作者approved）"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-534603bf-0c39-4b6c-a8b9-fde2d87f1a68.png",
+  "source_sha256": "a6cd525062053e873ad43fb5929773455b69397b3ddd6f21c7a0307679cd307c",
+  "created": "2026-09-30T08:36:33.502262+00:00",
+  "visual_review": "已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。",
+  "candidate_count": 2,
+  "discarded_candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-d6f2b897-a13c-4627-92ea-390426d50db8.png",
+      "prompt": "undefinedA small practical single-story gate guardhouse, sturdy timber and rammed-earth wall structure on low stone footings, gray tiled gabled roof, single south doorway and small wooden lattice window, two plain storage racks under eave. No surrounding city wall or gate tower, no weapons or flags, no people. Footprint 6m east-west by5m north-south.",
+      "reason": "公共提示读取失败，生成继承少林参考的山景与低视角；已逐张view_image原图确认淘汰",
+      "source_sha256": "2245c3920c3397ac583be04bf76a545219a44363ae4910e15b980a85beffd8ff"
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        334,
+        575
+      ],
+      [
+        945,
+        859
+      ]
+    ],
+    [
+      [
+        945,
+        859
+      ],
+      [
+        1457,
+        613
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      334,
+      575
+    ],
+    "front": [
+      945,
+      859
+    ],
+    "right": [
+      1457,
+      613
+    ]
+  },
+  "projection_review": "手动可见底面点±3px估计；两轴斜率0.4648/-0.4805；两轴dx比611/512=1.1934，目录w/h=1.2000。仅裁切/等比缩放不会改变这些残差。",
+  "status": "candidate",
+  "source_size": [
+    1774,
+    887
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 1022065,
+    "partial_pixels": 550932,
+    "opaque_pixels": 541,
+    "bbox": [
+      289,
+      33,
+      1627,
+      865
+    ]
+  }
+}

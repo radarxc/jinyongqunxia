@@ -1,0 +1,81 @@
+id: bld_lm_ch01_chongshengsi_pagoda
+status: candidate
+building:
+  type: bld_lm_ch01_chongshengsi_pagoda
+  footprint: [7, 7]
+  anchor: &id001 [794.3342, 1452.7811]
+  era: song_dali
+anchor_px: *id001
+footprint_m: [7, 7]
+logical_footprint_polygon_px:
+- [570.3342, 1452.7811]
+- [794.3342, 1564.7811]
+- [1018.3342, 1452.7811]
+- [794.3342, 1340.7811]
+collision_polygon_m:
+- [0, 0]
+- [7, 0]
+- [7, 7]
+- [0, 7]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [572, 203]
+- [1019, 203]
+- [1019, 1569]
+- [572, 1569]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 31.89
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 3}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_lm_ch01_chongshengsi_pagoda.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [448, 224]
+  ground_width_px: 448
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [435, 1120]
+    front: [630, 1219]
+    right: [828, 1119]
+  source_axis_slopes: [0.5076923076923077, -0.5050505050505051]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 0.9848484848484849
+  expected_width_depth_ratio: 1.0
+  ratio_relative_error: 0.015151515151515138
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [1632, 1760]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 2450163
+  alpha_partial_pixels: 421169
+  alpha_opaque_pixels: 988
+  alpha_near_opaque_pixels: 374616
+  alpha_nonzero_bbox: [178, 178, 1454, 1581]
+  transparent_margins_px: [178, 178, 178, 179]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_lm_ch01_chongshengsi_pagoda.png
+  source_sha256: 13d9bd11803f630b285025f65068a88e398b19f2b253bdd5c878187333eda802
+  source_size: [1254, 1254]
+  crop_box: [91, 1, 1210, 1232]
+  uniform_scale_requested: 1.1399491094147582
+  resized_size: [1276, 1403]
+  rounded_effective_scale: [1.1403038427167114, 1.139723801787165]
+  paste_offset: [178, 178]
+  final_file: bld_lm_ch01_chongshengsi_pagoda.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

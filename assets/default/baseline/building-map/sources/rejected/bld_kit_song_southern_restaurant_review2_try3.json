@@ -1,0 +1,16 @@
+{
+  "key": "restaurant3",
+  "prompt": "Use case: precise-object-edit. Turn this building into a prosperous Southern Song restaurant. PRESERVE THE EXISTING FOOTPRINT OUTLINE, PROPORTIONS, CAMERA ANGLES AND COMPLETE SILHOUETTE. Preserve floor corners and all perimeter directions. Replace closed ground-floor lattice wall panels with an open dining veranda along the lower-left-facing long facade, add several small plain wooden dining tables and ceramic wine jars; open upper balcony with bamboo blinds. Keep grey clay tile roof, ivory plaster side wall and warm timber, but make the restaurant distinctive with modest UNLETTERED dark red cloth pennants hanging under the eaves. Same realistic historic game artwork, muted wood and stone, upper-left light, short lower-right shadow. Maintain 2:1 orthographic camera, no perspective, whole silhouette uncut. Floor corresponds to a 12 x 9 rectangular map footprint: long front edge 4:3 to short side edge, very close to this reference's existing ratio; do not elongate into a narrow building and do not turn it square. True transparent background RGBA with no halo, no backdrop. No text or signage or numbers, people, modern objects, casino symbols, diagram or grid.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-171f7cad-0698-42ae-aa3f-6502514d22c7.png",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/sources/bld_kit_song_southern_casino.png",
+      "sha256": "39931b243c4302c5af765d0ceb5bdd303412ff774381e8743f4358a9232b6724",
+      "role": "image_gen candidate: geometry/style reference or edit target; not author approved"
+    }
+  ],
+  "source_sha256": "9972180c610e8d8a5a5765d729cb9459766258a0d0afab09363c17f2a343f849",
+  "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try3.png",
+  "selection": "unselected",
+  "reason": "已恢复长前短深；初读双轴约±.57整体偏陡，后续单独降低俯角版本更接近2:1，故改选第4次。"
+}

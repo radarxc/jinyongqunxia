@@ -1,0 +1,83 @@
+{
+  "id": "bld_kit_song_southern_shop_2f",
+  "type": "bld_kit_song_southern_shop_2f",
+  "w": 8,
+  "h": 6,
+  "subject": "两层商铺·茶坊",
+  "prompt": "Use case: historical-scene. Create ONE realistic Southern Song Chinese Lin'an two-storey tea shop building sprite for an orthographic game town map, isolated true transparent RGBA. Most important is the EXACT geometry of a thin rectangular foundation slab in a 2:1 game projection: in a 1536 x 1536 square image, foundation polygon corners are LEFT (224,1050), FRONT (864,1370), RIGHT (1344,1130), BACK (704,810). The long visible front edge runs from LEFT to FRONT: 640px right, 320px down. The short side edge runs FRONT to RIGHT: 480px right, 240px up. Thus front-facing frontage is 8 units and depth is 6 units, NOT a square, NOT a symmetric diamond. All horizontal architecture shares these two exact parallel axes, slope +0.5 and -0.5. Orthographic yaw 45 elevation 30, NO vanishing point. Build the tea shop ON this exact rectangular footprint, preserve all four foundation edges where visible. Flat thin stone paved base, not a thick pedestal. Narrower 6-unit side wall faces lower-right; wide 8-unit shop facade faces lower-left. Two storeys of warm weathered timber, ivory plaster, restrained grey handmade clay roof tiles; delicate balcony, bamboo blinds, tea jars, wooden tables in open shopfront. Realistic hand-crafted historic game environment, detailed physical textures with warm muted earth colors; no stylized cartoon outlines. Camera level axes and vertical pillars, complete roof with generous transparent space around entire object. Upper-left sunlight and short lower-right contact shadow. No text, no signs or glyphs, no diagrams, no grid, no coordinates or lines, no people, no modern objects, no checkerboard texture, no horizon or backdrop, no glow. The polygon is a construction constraint, not a diagram to display.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-88ffd313-90e5-420d-9230-ab2d158bc78c.png",
+  "source_sha256": "af001c689fb35d401c8e71d5f63420c5b4aac94fbdf9c9ff95151053314e8380",
+  "created": "2026-09-30T10:49:55.545433+00:00",
+  "visual_review": "返修第2轮：已逐张view_image；底面宽深恢复，宋式灰瓦木构及商用/客栈陈设完整，无文字人物现代物，左上主光；底面接触角按可见地坪外缘读点并用alpha>=192轮廓复核。64×32网格叠图另存review2；细小轴向残差按geometry_qa如实登记，目视判断不等于严格几何通过。",
+  "candidate_count": 3,
+  "ground_edges_source_px": [
+    [
+      [
+        51,
+        855
+      ],
+      [
+        745,
+        1175
+      ]
+    ],
+    [
+      [
+        745,
+        1175
+      ],
+      [
+        1220,
+        939
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      51,
+      855
+    ],
+    "front": [
+      745,
+      1175
+    ],
+    "right": [
+      1220,
+      939
+    ]
+  },
+  "source_dimensions": [
+    1254,
+    1254
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "candidate_history": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-f3f17275-ff1b-457b-88f8-d3cf662fd6cc.png",
+      "prompt": "Use case: precise-object-edit. Correct ONLY the camera projection and rectangular footprint geometry of this standalone Southern Song building sprite; keep materials, architectural design, historical style, doorway orientation, upper-left light and colors. Exact 2:1 orthographic dimetric: yaw45, elevation30; both ground edges must make 26.565 degrees with horizontal (slope +0.500 and -0.500), not the steeper 30-degree floor lines of generic isometric art. Ground is one flat uninterrupted rectangular 8 by 6 unit footprint, with no offsets or stepped outline. The left-to-front ground edge is 8 units, and front-to-right edge is 6 units, so down-right horizontal length divided by up-right horizontal length must equal 1.3333. In particular make down-right edge visibly longer than up-right edge. Clear thin footprint boundary, no raised plinth. Full building uncut with 12% transparent empty margins. Output true transparent RGBA with clean alpha, no background or glow, no writing, no people.",
+      "selection": "unselected",
+      "reason": "定向修正后独立QA量点：双轴或占地比例未优于首版；保留首版，仍将残差交下游。",
+      "source_sha256": "a17c8b9eb01104578a3f79974c70b00899c2d1c1ef5a9f28e48ba4e554b73308",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_shop_2f_try2.png",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_shop_2f_pre_review2.png",
+          "sha256": "6cf6151107347152848cd9deb8ffadd3e2b0175fd793d676cc15d41a1ea64724",
+          "role": "edit target：本条首版候选PNG，未获作者审批"
+        }
+      ]
+    },
+    {
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_shop_2f_pre_review2.png",
+      "source_sha256": "6cf6151107347152848cd9deb8ffadd3e2b0175fd793d676cc15d41a1ea64724",
+      "source_record": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_shop_2f_pre_review2.json",
+      "selection": "rejected_by_review1",
+      "reason": "合入前审核点名：可见底面宽深比与登记占地明显不符；本轮重出。"
+    }
+  ]
+}
