@@ -15917,11 +15917,2641 @@
       }
     },
     {
+      "id": "NAuF-sysA",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 系统文档甲（design/01、02、04、06、08、09、12–18 与 tech/01、03、04、05、08、09）",
+      "prompt": "NAuF-sysA.md",
+      "deps": [],
+      "writes": [
+        "docs/design/01-vision-and-core-loop.md",
+        "docs/design/02-timeline-and-world-tiers.md",
+        "docs/design/04-damage-formula.md",
+        "docs/design/06-buff-system.md",
+        "docs/design/08-terrain-and-qinggong.md",
+        "docs/design/09-combat-system.md",
+        "docs/design/12-quests-npc-factions.md",
+        "docs/design/13-progression-and-endings.md",
+        "docs/design/14-ui-ux-mobile.md",
+        "docs/design/15-meridians-and-acupoints.md",
+        "docs/design/16-resources-and-estates.md",
+        "docs/design/17-sects-compendium.md",
+        "docs/design/18-npc-and-companions.md",
+        "docs/tech/01-architecture.md",
+        "docs/tech/03-mobile-performance.md",
+        "docs/tech/04-data-pipeline.md",
+        "docs/tech/05-gameplay-engine.md",
+        "docs/tech/08-backend-and-online.md",
+        "docs/tech/09-roadmap.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/01-vision-and-core-loop.md",
+          "docs/design/02-timeline-and-world-tiers.md",
+          "docs/design/04-damage-formula.md",
+          "docs/design/06-buff-system.md",
+          "docs/design/08-terrain-and-qinggong.md",
+          "docs/design/09-combat-system.md",
+          "docs/design/12-quests-npc-factions.md",
+          "docs/design/13-progression-and-endings.md",
+          "docs/design/14-ui-ux-mobile.md",
+          "docs/design/15-meridians-and-acupoints.md",
+          "docs/design/16-resources-and-estates.md",
+          "docs/design/17-sects-compendium.md",
+          "docs/design/18-npc-and-companions.md",
+          "docs/tech/01-architecture.md",
+          "docs/tech/03-mobile-performance.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/05-gameplay-engine.md",
+          "docs/tech/08-backend-and-online.md",
+          "docs/tech/09-roadmap.md"
+        ],
+        "fences": [
+          "docs/design/01-vision-and-core-loop.md",
+          "docs/design/02-timeline-and-world-tiers.md",
+          "docs/design/04-damage-formula.md",
+          "docs/design/06-buff-system.md",
+          "docs/design/08-terrain-and-qinggong.md",
+          "docs/design/09-combat-system.md",
+          "docs/design/12-quests-npc-factions.md",
+          "docs/design/13-progression-and-endings.md",
+          "docs/design/14-ui-ux-mobile.md",
+          "docs/design/15-meridians-and-acupoints.md",
+          "docs/design/16-resources-and-estates.md",
+          "docs/design/17-sects-compendium.md",
+          "docs/design/18-npc-and-companions.md",
+          "docs/tech/01-architecture.md",
+          "docs/tech/03-mobile-performance.md",
+          "docs/tech/04-data-pipeline.md",
+          "docs/tech/05-gameplay-engine.md",
+          "docs/tech/08-backend-and-online.md",
+          "docs/tech/09-roadmap.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-rules",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 规则文档乙（design/03、05、07、10、20、21；05 §4.8 绝招条件加成唯一算法）",
+      "prompt": "NAuF-rules.md",
+      "deps": [
+        "NR4S-rules"
+      ],
+      "writes": [
+        "docs/design/03-attributes.md",
+        "docs/design/05-martial-arts-system.md",
+        "docs/design/07-set-system.md",
+        "docs/design/10-items-and-equipment.md",
+        "docs/design/20-legacy-inheritance.md",
+        "docs/design/21-meridian-flow-and-moves.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/design/03-attributes.md",
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/07-set-system.md",
+          "docs/design/10-items-and-equipment.md",
+          "docs/design/20-legacy-inheritance.md",
+          "docs/design/21-meridian-flow-and-moves.md"
+        ],
+        "fences": [
+          "docs/design/03-attributes.md",
+          "docs/design/05-martial-arts-system.md",
+          "docs/design/07-set-system.md",
+          "docs/design/10-items-and-equipment.md",
+          "docs/design/20-legacy-inheritance.md",
+          "docs/design/21-meridian-flow-and-moves.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md",
+            "docs/design/catalog/skills-daojia.md",
+            "docs/design/catalog/skills-general.md",
+            "docs/design/catalog/skills-gulong.md",
+            "docs/design/catalog/skills-kangxi.md",
+            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-shaolin.md",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-wuyue.md",
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-cat-shaolin",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 武学图鉴 少林（绝招条件加成统一、抽查与残留清理）",
+      "prompt": "NAuF-cat.md",
+      "deps": [
+        "NAuF-rules",
+        "LINT-outlets",
+        "NR4-shaolin"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-shaolin.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "shaolin",
+        "unit_name": "少林",
+        "doc_set": "- `docs/design/catalog/skills-shaolin.md`",
+        "extra": "少林册的三条作者确认项保持现状并在报告里复述默认值：金刚怒吼·怒吼也判为外放（NXT 候选只列了震慑）；人声音功路线能否只取喉部端点（现同时带手部端点）；慑魂 `aoe_ring r2→r3→r4` 的外移环与狮吼震 / 怒吼高档 `aoe_disk` 含施放者格时友伤为 all 是否伤及自身。少林九阳功主修经脉依据的\"待考\"保持。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-shaolin.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-shaolin.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-shaolin.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-shaolin.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-shaolin.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-shaolin.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "shaolin"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-cat-daojia",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 武学图鉴 道家（绝招条件加成统一、抽查与残留清理）",
+      "prompt": "NAuF-cat.md",
+      "deps": [
+        "NAuF-rules",
+        "LINT-outlets",
+        "NR4-daojia"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-daojia.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "daojia",
+        "unit_name": "道家",
+        "doc_set": "- `docs/design/catalog/skills-daojia.md`",
+        "extra": "黏剑卸兵\"目标持兵器\"按常见条件取 3.30（罕见则 3.75，DJ-O06）、七星合围新增使用条件\"已成阵\"，这两记按 05 §4.8 唯一算法复核；保留的 3 组高重合路线及其理由（§8.7）复核是否仍成立；6 个外放候选与金铃索·铃音维持非外放（DJ-O01 / O02）保持并复述。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-daojia.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-daojia.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-daojia.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "daojia"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-cat-general",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 武学图鉴 通行（绝招条件加成统一、抽查与残留清理）",
+      "prompt": "NAuF-cat.md",
+      "deps": [
+        "NAuF-rules",
+        "LINT-outlets",
+        "NR4-general"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-general.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "general",
+        "unit_name": "通行",
+        "doc_set": "- `docs/design/catalog/skills-general.md`",
+        "extra": "陷阵 `mfr_pojunqiangfa_xianzhen`（突进后单体伤害 2.85）现为 `purpose:movement`，按 05 §4.2.1 伤害招应为 attack（默认改 attack，以 NAuF-rules 在 05 写明的判据为准，连带 CT / 风险 / 路线类型规则一并核对）；穿云啸断喝 / 回声按 AR-17 判为外放（默认维持）；百草辨毒·相克、缩骨功·脱缚是否属疗伤 / 护体类（默认保持）列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-general.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-general.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-general.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-general.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-general.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-general.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "general"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-cat-wujue",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 武学图鉴 五绝（绝招条件加成统一、抽查与残留清理）",
+      "prompt": "NAuF-cat.md",
+      "deps": [
+        "NAuF-rules",
+        "LINT-outlets",
+        "NR4-wujue"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-wujue.md",
+        "docs/design/21-meridian-flow-and-moves.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "wujue",
+        "unit_name": "五绝",
+        "doc_set": "- `docs/design/catalog/skills-wujue.md`\n- `docs/design/21-meridian-flow-and-moves.md`",
+        "extra": "莲花落 3 招、丐帮传声 3 招的 `tags:[sonic]; voice:true` 默认保留；铁掌功在神雕按 9 品残承向玩家开放（WJ-P04，默认残承）的说明与基准 §13 新增行保持一致（基准由 NAuF-canon 改）。注意 21 §12.1 三条降龙路线由检查脚本投影进本册计数，本任务不改 21。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wujue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wujue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-wujue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "wujue"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-cat-xiaoyao",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 武学图鉴 逍遥（绝招条件加成统一、抽查与残留清理）",
+      "prompt": "NAuF-cat.md",
+      "deps": [
+        "NAuF-rules",
+        "LINT-outlets",
+        "NR4-xiaoyao"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-xiaoyao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "xiaoyao",
+        "unit_name": "逍遥",
+        "doc_set": "- `docs/design/catalog/skills-xiaoyao.md`",
+        "extra": "无痕、明鉴、听香、两宗合璧、同心 5 记现用\"乘法后扣回条件收益\"维持原值，按 05 §4.8 唯一算法处理；大手印外放 1 / 2 档的 +2 / +4 格是否也拉长跃击落点（O-17，默认按 21：1–3 → 1–5 / 1–7）、凌波微步\"将飞未翔\"升为轻功绝招、反制型防守绝招（斗转星移·星移、星河）适用\"蓄气 / 护体至少取任督之一\"——保持默认并复述。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiaoyao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-xiaoyao.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "xiaoyao"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-cat-yitian",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 武学图鉴 倚天（绝招条件加成统一、抽查与残留清理）",
+      "prompt": "NAuF-cat.md",
+      "deps": [
+        "NAuF-rules",
+        "LINT-outlets",
+        "NR4-yitian"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-yitian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "yitian",
+        "unit_name": "倚天",
+        "doc_set": "- `docs/design/catalog/skills-yitian.md`",
+        "extra": "O-13 改为\"已解决\"（NYY 已落地）；七伤初诀·吞吐（`mfr_qishangchujue_tuntu`）归拳还是掌——默认保持并列入\"需作者确认\"；九阳神功 1–6 重无可用招式、王保保\"战役型例外\"8 品保持并复述。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-yitian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-yitian.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "yitian"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-cat-xiakebixue",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 武学图鉴 侠客碧血（绝招条件加成统一、抽查与残留清理）",
+      "prompt": "NAuF-cat.md",
+      "deps": [
+        "NAuF-rules",
+        "LINT-outlets",
+        "NR4-xiakebixue"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-xiake-bixue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "xiake-bixue",
+        "unit_name": "侠客碧血",
+        "doc_set": "- `docs/design/catalog/skills-xiake-bixue.md`",
+        "extra": "飒沓流星式卡片写\"近身扇面剑式\"但路线掌心收尾（曲池→内关→劳宫），末段是否换持械腕穴——默认保持并列入\"需作者确认\"；双使合印 yang→yin 偏移复核。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-xiake-bixue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-xiake-bixue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-xiake-bixue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "xiake-bixue"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-cat-wuyue",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 武学图鉴 五岳（绝招条件加成统一、抽查与残留清理）",
+      "prompt": "NAuF-cat.md",
+      "deps": [
+        "NAuF-rules",
+        "LINT-outlets",
+        "NR4-wuyue"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-wuyue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "wuyue",
+        "unit_name": "五岳",
+        "doc_set": "- `docs/design/catalog/skills-wuyue.md`",
+        "extra": "无形剑气标为音功后按 05 §4.4 / 09 §5.5 无视障碍，能否保留原卡\"不穿墙\"（WU-O09，默认按音功规则可穿墙；若保留须在 05 / 09 加音功例外字段，交其他任务）；独孤九剑剑气招选破气式、五仙百毒功外放判定保持默认并复述；本册此前用加法写条件加成的绝招按唯一算法重算。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-wuyue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-wuyue.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "wuyue"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-cat-kangxi",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 武学图鉴 康熙（绝招条件加成统一、抽查与残留清理）",
+      "prompt": "NAuF-cat.md",
+      "deps": [
+        "NAuF-rules",
+        "LINT-outlets",
+        "NR4-kangxi"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-kangxi.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "kangxi",
+        "unit_name": "康熙",
+        "doc_set": "- `docs/design/catalog/skills-kangxi.md`",
+        "extra": "物品占位 ID `it_ningxue_miji`、`it_shenzhao_yuwen`、`it_canye_xuedaojing`（D-03）按 `tools/agents/reports/NAuF-rules.md` 登记的\"旧 → 新\"表改为 design/10 的正式 ID；夜隙一闪（3.15→3.45）等乘法卡按唯一算法复核；饮刃末端意象由吸变吐、凝血封门 ↔ 飞燕回翔 6250 bp 可再拉开——保持并列入\"需作者确认\"；`sk_babuganchan` 默认不进入正式可学目录、保持生产禁用。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-kangxi.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-kangxi.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-kangxi.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "kangxi"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-cat-qianlong",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 武学图鉴 乾隆（绝招条件加成统一、抽查与残留清理）",
+      "prompt": "NAuF-cat.md",
+      "deps": [
+        "NAuF-rules",
+        "LINT-outlets",
+        "NR4-qianlong"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-qianlong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "qianlong",
+        "unit_name": "乾隆",
+        "doc_set": "- `docs/design/catalog/skills-qianlong.md`",
+        "extra": "本册此前\"只把条件当触发门槛、不抬倍率\"，按 05 §4.8 对门槛型写法的规定处理（允许则按 05 要求在卡上标注，不允许则重算）；六门黄阶内功主修经脉为建议值（QL-D08）保持并复述。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-qianlong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-qianlong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-qianlong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "qianlong"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-cat-gulong",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 武学图鉴 古龙（绝招条件加成统一、抽查与残留清理）",
+      "prompt": "NAuF-cat.md",
+      "deps": [
+        "NAuF-rules",
+        "LINT-outlets",
+        "NR4-gulong"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-gulong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "gulong",
+        "unit_name": "古龙",
+        "doc_set": "- `docs/design/catalog/skills-gulong.md`",
+        "extra": "本册此前用加法（`3.00+0.30=3.30`）写条件加成，按唯一算法重算；14 个原创扩展 `mv_*`、明玉功 / 嫁衣神功 / 神水内功主修经脉原创配表（K-01～K-03）保持并列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-gulong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-gulong.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "gulong"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-cat-bulu",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 武学图鉴 14 本补录图鉴（绝招条件加成统一、抽查与残留清理）",
+      "prompt": "NAuF-cat.md",
+      "deps": [
+        "NAuF-rules",
+        "LINT-outlets",
+        "NR4-bulu"
+      ],
+      "writes": [
+        "docs/design/catalog/skills-bulu-01-tianlong.md",
+        "docs/design/catalog/skills-bulu-02-shediao.md",
+        "docs/design/catalog/skills-bulu-03-shendiao.md",
+        "docs/design/catalog/skills-bulu-04-yitian.md",
+        "docs/design/catalog/skills-bulu-05-xiaoao.md",
+        "docs/design/catalog/skills-bulu-06-xiake.md",
+        "docs/design/catalog/skills-bulu-07-bixue.md",
+        "docs/design/catalog/skills-bulu-08-luding.md",
+        "docs/design/catalog/skills-bulu-09-liancheng.md",
+        "docs/design/catalog/skills-bulu-10-baima.md",
+        "docs/design/catalog/skills-bulu-11-yuanyang.md",
+        "docs/design/catalog/skills-bulu-12-shujian.md",
+        "docs/design/catalog/skills-bulu-13-feihu.md",
+        "docs/design/catalog/skills-bulu-14-xueshan.md",
+        "docs/decisions/ultimate-counts-tianzhong-dizhong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "unit": "bulu",
+        "unit_name": "14 本补录图鉴",
+        "doc_set": "- `docs/design/catalog/skills-bulu-01-tianlong.md`\n- `docs/design/catalog/skills-bulu-02-shediao.md`\n- `docs/design/catalog/skills-bulu-03-shendiao.md`\n- `docs/design/catalog/skills-bulu-04-yitian.md`\n- `docs/design/catalog/skills-bulu-05-xiaoao.md`\n- `docs/design/catalog/skills-bulu-06-xiake.md`\n- `docs/design/catalog/skills-bulu-07-bixue.md`\n- `docs/design/catalog/skills-bulu-08-luding.md`\n- `docs/design/catalog/skills-bulu-09-liancheng.md`\n- `docs/design/catalog/skills-bulu-10-baima.md`\n- `docs/design/catalog/skills-bulu-11-yuanyang.md`\n- `docs/design/catalog/skills-bulu-12-shujian.md`\n- `docs/design/catalog/skills-bulu-13-feihu.md`\n- `docs/design/catalog/skills-bulu-14-xueshan.md`\n- `docs/decisions/ultimate-counts-tianzhong-dizhong.md`",
+        "extra": "`skills-bulu-13-feihu.md` 文末\"雪山书界何时替换主书界 13 的全部槽位……由 NXfix 统一接入\"与 `skills-bulu-14-xueshan.md` §1.2 末句\"……待主书界 13 补录\"已过时（NXfixD-14 已接入正式 `sk_*`），改为已解决；`skills-bulu-12-shujian.md` §3 导语与表行、T-SJ-BL-09、SJ-BL-D02、SJ-BL-O04 的\"来源扩展待登记\"清零；`skills-bulu-01-tianlong.md` 清理\"51→54\"的旧天阶统计（Canon 已为 59）；补录武学的标注口径统一（海大富标\"原创扩展配置\"、ch07 孙仲君心法标\"原创扩展命名\"，统一成一种并写明取舍）；各册\"来源扩展登记表\"中已由 `NXfix-<册>` 落实、但 NXfixC 没来得及标\"已落实\"的条目补标；`docs/decisions/ultimate-counts-tianzhong-dizhong.md`（裁定表，在本任务写集内）与补录图鉴的绝招数量保持一致。雪山派（侠客行）补 ≥7 品本门外功、聚贤庄 / 长乐帮 / 五毒补本门内功等缺口本轮不做，列入遗留。天池百花归元收腕、袁紫衣会武归心诀等作者确认项保持并复述。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/catalog/skills-bulu-01-tianlong.md",
+          "docs/design/catalog/skills-bulu-02-shediao.md",
+          "docs/design/catalog/skills-bulu-03-shendiao.md",
+          "docs/design/catalog/skills-bulu-04-yitian.md",
+          "docs/design/catalog/skills-bulu-05-xiaoao.md",
+          "docs/design/catalog/skills-bulu-06-xiake.md",
+          "docs/design/catalog/skills-bulu-07-bixue.md",
+          "docs/design/catalog/skills-bulu-08-luding.md",
+          "docs/design/catalog/skills-bulu-09-liancheng.md",
+          "docs/design/catalog/skills-bulu-10-baima.md",
+          "docs/design/catalog/skills-bulu-11-yuanyang.md",
+          "docs/design/catalog/skills-bulu-12-shujian.md",
+          "docs/design/catalog/skills-bulu-13-feihu.md",
+          "docs/design/catalog/skills-bulu-14-xueshan.md",
+          "docs/decisions/ultimate-counts-tianzhong-dizhong.md"
+        ],
+        "fences": [
+          "docs/design/catalog/skills-bulu-01-tianlong.md",
+          "docs/design/catalog/skills-bulu-02-shediao.md",
+          "docs/design/catalog/skills-bulu-03-shendiao.md",
+          "docs/design/catalog/skills-bulu-04-yitian.md",
+          "docs/design/catalog/skills-bulu-05-xiaoao.md",
+          "docs/design/catalog/skills-bulu-06-xiake.md",
+          "docs/design/catalog/skills-bulu-07-bixue.md",
+          "docs/design/catalog/skills-bulu-08-luding.md",
+          "docs/design/catalog/skills-bulu-09-liancheng.md",
+          "docs/design/catalog/skills-bulu-10-baima.md",
+          "docs/design/catalog/skills-bulu-11-yuanyang.md",
+          "docs/design/catalog/skills-bulu-12-shujian.md",
+          "docs/design/catalog/skills-bulu-13-feihu.md",
+          "docs/design/catalog/skills-bulu-14-xueshan.md",
+          "docs/decisions/ultimate-counts-tianzhong-dizhong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_route_unique_for.py",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr3_unit.py",
+            "bulu"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-01",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 01《天龙八部》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-01"
+      ],
+      "writes": [
+        "docs/design/chapters/01-tianlong.md",
+        "docs/design/catalog/npcs-ch01-tianlong.md",
+        "docs/design/story/01-tianlong.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "01",
+        "book_name": "天龙八部",
+        "chapter": "docs/design/chapters/01-tianlong.md",
+        "npcs": "docs/design/catalog/npcs-ch01-tianlong.md",
+        "story": "docs/design/story/01-tianlong.md",
+        "items": "\n   - NXfixE-a：游骥 / 游驹主运只有 5 品同源内功（要求 ≥6），默认 `TS-CONTENT-BOSS-021` 阻断——保持现状并列入\"需作者确认\"（是否在天龙补录图鉴补一门可共享 ≥6 品的聚贤庄 / 中原内功）。\n   - TL-V32 一类把浮点输出写成 error 级金标准的校验，按通用清理第一条处理。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/catalog/npcs-ch01-tianlong.md",
+          "docs/design/story/01-tianlong.md"
+        ],
+        "fences": [
+          "docs/design/chapters/01-tianlong.md",
+          "docs/design/catalog/npcs-ch01-tianlong.md",
+          "docs/design/story/01-tianlong.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/01-tianlong.md",
+            "docs/design/catalog/npcs-ch01-tianlong.md",
+            "docs/design/story/01-tianlong.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-02",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 02《射雕英雄传》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-02"
+      ],
+      "writes": [
+        "docs/design/chapters/02-shediao.md",
+        "docs/design/catalog/npcs-ch02-shediao.md",
+        "docs/design/story/02-shediao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "02",
+        "book_name": "射雕英雄传",
+        "chapter": "docs/design/chapters/02-shediao.md",
+        "npcs": "docs/design/catalog/npcs-ch02-shediao.md",
+        "story": "docs/design/story/02-shediao.md",
+        "items": "\n   - 华山论剑\"高手请教\"的 `full` 对手洪七公、周伯通不在 §12.6 首领表（无七参、无节奏复核）：补入首领表，七参与节奏用 `python3 tools/balance/boss_pacing.py` 估算并写明算式（洪七公降龙整门外放，五绝地位下限按 21 §11.9.1），`npcs-ch02` 同步。\n   - NXfixE-a：王府 / 君山 / 西征精英组沿用 0.83×Boss 模板预算（折精英模板约 34–39 轮），默认保持并列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/catalog/npcs-ch02-shediao.md",
+          "docs/design/story/02-shediao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/02-shediao.md",
+          "docs/design/catalog/npcs-ch02-shediao.md",
+          "docs/design/story/02-shediao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/02-shediao.md",
+            "docs/design/catalog/npcs-ch02-shediao.md",
+            "docs/design/story/02-shediao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-03",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 03《神雕侠侣》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-03"
+      ],
+      "writes": [
+        "docs/design/chapters/03-shendiao.md",
+        "docs/design/catalog/npcs-ch03-shendiao.md",
+        "docs/design/story/03-shendiao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "03",
+        "book_name": "神雕侠侣",
+        "chapter": "docs/design/chapters/03-shendiao.md",
+        "npcs": "docs/design/catalog/npcs-ch03-shendiao.md",
+        "story": "docs/design/story/03-shendiao.md",
+        "items": "\n   - NXfixE-a：多人战整场耐久按\"同级模板 × 七参倍率\"（裘千尺 0.65→0.837 等四个旧比例已改），默认保持并列入\"需作者确认\"。\n   - 霍都两门阴性扇法与裘千尺招牌枣核钉在阳主运下都扣 12%（D03-O09 / O10，默认不豁免、不换主运）；原著裘千尺手脚筋已断而本作让她完整携带 10 品铁掌；黄药师桃花阵改作环境机关——三项保持并列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/catalog/npcs-ch03-shendiao.md",
+          "docs/design/story/03-shendiao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/03-shendiao.md",
+          "docs/design/catalog/npcs-ch03-shendiao.md",
+          "docs/design/story/03-shendiao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/03-shendiao.md",
+            "docs/design/catalog/npcs-ch03-shendiao.md",
+            "docs/design/story/03-shendiao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-04",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 04《倚天屠龙记》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-04"
+      ],
+      "writes": [
+        "docs/design/chapters/04-yitian.md",
+        "docs/design/catalog/npcs-ch04-yitian.md",
+        "docs/design/story/04-yitian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "04",
+        "book_name": "倚天屠龙记",
+        "chapter": "docs/design/chapters/04-yitian.md",
+        "npcs": "docs/design/catalog/npcs-ch04-yitian.md",
+        "story": "docs/design/story/04-yitian.md",
+        "items": "\n   - 成昆（终盘，G=9）是否补列进 21 §11.9.1 地位下限表：21 不在写集，列入\"交其他任务 / 需作者确认\"。\n   - 成昆与鹿杖客、鹤笔翁个人独门武学的玩家满层来源（D04-O12）、\"明教护教功\"名称、波斯三使称谓与分工待考——保持并列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/catalog/npcs-ch04-yitian.md",
+          "docs/design/story/04-yitian.md"
+        ],
+        "fences": [
+          "docs/design/chapters/04-yitian.md",
+          "docs/design/catalog/npcs-ch04-yitian.md",
+          "docs/design/story/04-yitian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/04-yitian.md",
+            "docs/design/catalog/npcs-ch04-yitian.md",
+            "docs/design/story/04-yitian.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-05",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 05《笑傲江湖》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-05"
+      ],
+      "writes": [
+        "docs/design/chapters/05-xiaoao.md",
+        "docs/design/catalog/npcs-ch05-xiaoao.md",
+        "docs/design/story/05-xiaoao.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "05",
+        "book_name": "笑傲江湖",
+        "chapter": "docs/design/chapters/05-xiaoao.md",
+        "npcs": "docs/design/catalog/npcs-ch05-xiaoao.md",
+        "story": "docs/design/story/05-xiaoao.md",
+        "items": "\n   - 为五岳册 learnSources 落任务 / NPC / 秘籍 ID、保证九条入门链可达（NXfixD-05）本轮不做：确认章节待决事项里已登记，没有就补登记。\n   - 任我行掌法 / 葵花飞针的玩家获取途径现为【建议值】（BL05-O01 / O02）；design/12 的登记由 NAuF-sysA 做，本章节的引用句与之保持一致（任我行指点或梅庄后手录；黑木崖秘库针谱或特殊授艺；均不可击败掉落）。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/catalog/npcs-ch05-xiaoao.md",
+          "docs/design/story/05-xiaoao.md"
+        ],
+        "fences": [
+          "docs/design/chapters/05-xiaoao.md",
+          "docs/design/catalog/npcs-ch05-xiaoao.md",
+          "docs/design/story/05-xiaoao.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/05-xiaoao.md",
+            "docs/design/catalog/npcs-ch05-xiaoao.md",
+            "docs/design/story/05-xiaoao.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-06",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 06《侠客行》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-06"
+      ],
+      "writes": [
+        "docs/design/chapters/06-xiake.md",
+        "docs/design/catalog/npcs-ch06-xiake.md",
+        "docs/design/story/06-xiake.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "06",
+        "book_name": "侠客行",
+        "chapter": "docs/design/chapters/06-xiake.md",
+        "npcs": "docs/design/catalog/npcs-ch06-xiake.md",
+        "story": "docs/design/story/06-xiake.md",
+        "items": "\n   - 白自在临时使用的 `sk_jianghubaizhanjian`（待雪山派补一门 ≥7 品本门外功替换）本轮不做：确认已登记在待决事项。\n   - NXfixE-b：展飞主运仅 5 品，`TS-CONTENT-BOSS-021` 阻断（待侠客补录图鉴补长乐帮 ≥6 品可共享内功）——保持并列入\"需作者确认\"。白自在主运凌霄镇岳功（阳）配雪山剑法（阴）吃 05 §5.3 −12% 同列。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/catalog/npcs-ch06-xiake.md",
+          "docs/design/story/06-xiake.md"
+        ],
+        "fences": [
+          "docs/design/chapters/06-xiake.md",
+          "docs/design/catalog/npcs-ch06-xiake.md",
+          "docs/design/story/06-xiake.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/06-xiake.md",
+            "docs/design/catalog/npcs-ch06-xiake.md",
+            "docs/design/story/06-xiake.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-07",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 07《碧血剑》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-07"
+      ],
+      "writes": [
+        "docs/design/chapters/07-bixue.md",
+        "docs/design/catalog/npcs-ch07-bixue.md",
+        "docs/design/story/07-bixue.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "07",
+        "book_name": "碧血剑",
+        "chapter": "docs/design/chapters/07-bixue.md",
+        "npcs": "docs/design/catalog/npcs-ch07-bixue.md",
+        "story": "docs/design/story/07-bixue.md",
+        "items": "\n   - `chapters/07-bixue.md` 约第 1453 行\"鹿鼎的归辛树 / 归二娘仍须由书界 08 收尾任务同步\"已过时（NXfixD-08 已同步），改为已解决。\n   - `story/07-bixue.md` §8 补入 `sk_huashandiejinquan07` 的获取途径（华山 L4 或穆人清 / 归辛树认可授艺，禁止从击败中掉落）；design/12 §6.7.1、design/17 §2.1.3 由 NAuF-sysA 同步，措辞保持一致。\n   - NXfixE-b：何铁手临时用通行主运 `sk_hunyuanfangzhuang`（待碧血补录补五毒 ≥7 品本门内功）——保持并登记；孙仲君（L3）仍用通用剑法满足外功门槛（默认不变）。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/07-bixue.md",
+          "docs/design/catalog/npcs-ch07-bixue.md",
+          "docs/design/story/07-bixue.md"
+        ],
+        "fences": [
+          "docs/design/chapters/07-bixue.md",
+          "docs/design/catalog/npcs-ch07-bixue.md",
+          "docs/design/story/07-bixue.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/07-bixue.md",
+            "docs/design/catalog/npcs-ch07-bixue.md",
+            "docs/design/story/07-bixue.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-08",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 08《鹿鼎记》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-08"
+      ],
+      "writes": [
+        "docs/design/chapters/08-luding.md",
+        "docs/design/catalog/npcs-ch08-luding.md",
+        "docs/design/story/08-luding.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "08",
+        "book_name": "鹿鼎记",
+        "chapter": "docs/design/chapters/08-luding.md",
+        "npcs": "docs/design/catalog/npcs-ch08-luding.md",
+        "story": "docs/design/story/08-luding.md",
+        "items": "\n   - O08-03（假太后及王屋、雅克萨未具名首领是否建静态 ID 或岗位槽）由 NAuF-sysA 在 design/18 决定；本任务保持章节现状，在报告里列出届时需要改用 ID 的全部位置，交收口任务。\n   - NXfixE-b：洪安通本章取 `71,300×0.85=60,605`，与 design/09、03 的 hpMax 71,300 语义不同——在章节里写清两个数字各自的含义（遭遇整场预算 vs 运行时 `hpMax`），不改数值；徐天川用郑氏同势力主运 + 通行外功、风际中无正式 ID（design/18 待登记）保持并登记。\n   - 海大富化骨经是否对玩家开放完整十重（O08-10）、冯锡范\"一剑无血\"用名（O08-11）保持默认并列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/08-luding.md",
+          "docs/design/catalog/npcs-ch08-luding.md",
+          "docs/design/story/08-luding.md"
+        ],
+        "fences": [
+          "docs/design/chapters/08-luding.md",
+          "docs/design/catalog/npcs-ch08-luding.md",
+          "docs/design/story/08-luding.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/08-luding.md",
+            "docs/design/catalog/npcs-ch08-luding.md",
+            "docs/design/story/08-luding.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-09",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 09《连城诀》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-09"
+      ],
+      "writes": [
+        "docs/design/chapters/09-liancheng.md",
+        "docs/design/catalog/npcs-ch09-liancheng.md",
+        "docs/design/story/09-liancheng.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "09",
+        "book_name": "连城诀",
+        "chapter": "docs/design/chapters/09-liancheng.md",
+        "npcs": "docs/design/catalog/npcs-ch09-liancheng.md",
+        "story": "docs/design/story/09-liancheng.md",
+        "items": "\n   - `story/09-liancheng.md` 按 NAu-rulesB 报告第 6 节登记万家 / 官府补录来源，并改用汪啸风等三名人物的正式 `npc_*`。\n   - 衙门武册终幕后才发（约 Lv46 得 5 品武学）是否提前到某次会审节点（默认按 design/10\"会审后\"）、官府关系 ≥40 的传授门槛、`sk_wanjiazhengqi` 取督脉与 `sk_jingzhouyangqigong` 取任督的经脉建议值——保持并列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/catalog/npcs-ch09-liancheng.md",
+          "docs/design/story/09-liancheng.md"
+        ],
+        "fences": [
+          "docs/design/chapters/09-liancheng.md",
+          "docs/design/catalog/npcs-ch09-liancheng.md",
+          "docs/design/story/09-liancheng.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/09-liancheng.md",
+            "docs/design/catalog/npcs-ch09-liancheng.md",
+            "docs/design/story/09-liancheng.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-10",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 10《白马啸西风》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-10"
+      ],
+      "writes": [
+        "docs/design/chapters/10-baima.md",
+        "docs/design/catalog/npcs-ch10-baima.md",
+        "docs/design/story/10-baima.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "10",
+        "book_name": "白马啸西风",
+        "chapter": "docs/design/chapters/10-baima.md",
+        "npcs": "docs/design/catalog/npcs-ch10-baima.md",
+        "story": "docs/design/story/10-baima.md",
+        "items": "\n   - `story/10-baima.md` §8.6 把 `q_10_bond_05` 的奖励写成三条 `it_miji_*` 原子发放（资格检查、失败回滚、不重复发，来源行写无毒与隔离条件）；design/12 由 NAuF-sysA 同步，两边字段与 ID 保持一致（ID 先 `grep -rn` 确认已存在于 design/10 或图鉴）。\n   - NXfixE-b：霍元龙追图团是否升格正式遭遇（默认否，保持 6 个）；瓦耳拉齐鬼声并入白袍守门者分配 `51,627+12,907`（保持）；马家骏地位下限与师父同为 9/8、`sk_walalizhi` 显示名、华辉遗谱取得方式、双人战 64,534 与守藏试炼 61,796 是否冻结——保持并列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/10-baima.md",
+          "docs/design/catalog/npcs-ch10-baima.md",
+          "docs/design/story/10-baima.md"
+        ],
+        "fences": [
+          "docs/design/chapters/10-baima.md",
+          "docs/design/catalog/npcs-ch10-baima.md",
+          "docs/design/story/10-baima.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/10-baima.md",
+            "docs/design/catalog/npcs-ch10-baima.md",
+            "docs/design/story/10-baima.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-11",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 11《鸳鸯刀》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-11"
+      ],
+      "writes": [
+        "docs/design/chapters/11-yuanyang.md",
+        "docs/design/catalog/npcs-ch11-yuanyang.md",
+        "docs/design/story/11-yuanyang.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "11",
+        "book_name": "鸳鸯刀",
+        "chapter": "docs/design/chapters/11-yuanyang.md",
+        "npcs": "docs/design/catalog/npcs-ch11-yuanyang.md",
+        "story": "docs/design/story/11-yuanyang.md",
+        "items": "\n   - `story/11-yuanyang.md` 约第 1106 行\"石碑装备兼容桥仍待 design/10 同步\"已闭合，改为已解决。\n   - §9.3 林任刀法\"R2 后演武\"与剧情授艺表\"R4、本人同意\"的门槛核对并统一（以剧情授艺表与 design/12 羁绊规则为准，写明取哪一个及理由）。\n   - 人物档案里袁冠南、萧中慧的 `sk_fuqidaofa` 已在康熙册，占位补 ID；\"震天三十掌\"是否原著名称、卓天雄满层传授条件保持并列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/catalog/npcs-ch11-yuanyang.md",
+          "docs/design/story/11-yuanyang.md"
+        ],
+        "fences": [
+          "docs/design/chapters/11-yuanyang.md",
+          "docs/design/catalog/npcs-ch11-yuanyang.md",
+          "docs/design/story/11-yuanyang.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/11-yuanyang.md",
+            "docs/design/catalog/npcs-ch11-yuanyang.md",
+            "docs/design/story/11-yuanyang.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-12",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 12《书剑恩仇录》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-12"
+      ],
+      "writes": [
+        "docs/design/chapters/12-shujian.md",
+        "docs/design/catalog/npcs-ch12-shujian.md",
+        "docs/design/story/12-shujian.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "12",
+        "book_name": "书剑恩仇录",
+        "chapter": "docs/design/chapters/12-shujian.md",
+        "npcs": "docs/design/catalog/npcs-ch12-shujian.md",
+        "story": "docs/design/story/12-shujian.md",
+        "items": "\n   - `npcs-ch12` 陈家洛的跨书栏登记其在飞狐出场；`story/12-shujian.md` 约第 1308 行过期的\"来源扩展待登记\"清零，并改用 NXfixE-c 新增的正式 NPC ID。\n   - 兆惠、假旗队领的 `sk_pojunqiangfa`、`sk_shouchengzhen`、`sk_zhenqijian`、`sk_duanzhenqiang` 逐项注\"只作首领配装\"。\n   - NXfixE-c 作者确认项（霍青桐回部高阶本门内功默认 7 品 `sk_hunyuanfangzhuang`；阎世章 / 钱正伦 / 张云飞师承与二郎拳、燕青拳、钟氏三雄本门武学默认合法通行配装；铁胆庄是否建正式 `sect_*`；陈家洛内功专名；袁士霄遗谱开放范围）保持默认并列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/catalog/npcs-ch12-shujian.md",
+          "docs/design/story/12-shujian.md"
+        ],
+        "fences": [
+          "docs/design/chapters/12-shujian.md",
+          "docs/design/catalog/npcs-ch12-shujian.md",
+          "docs/design/story/12-shujian.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/12-shujian.md",
+            "docs/design/catalog/npcs-ch12-shujian.md",
+            "docs/design/story/12-shujian.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-13",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 13《飞狐外传》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-13"
+      ],
+      "writes": [
+        "docs/design/chapters/13-feihu.md",
+        "docs/design/catalog/npcs-ch13-feihu.md",
+        "docs/design/story/13-feihu.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "13",
+        "book_name": "飞狐外传",
+        "chapter": "docs/design/chapters/13-feihu.md",
+        "npcs": "docs/design/catalog/npcs-ch13-feihu.md",
+        "story": "docs/design/story/13-feihu.md",
+        "items": "\n   - `npcs-ch13` 加陈家洛行（在飞狐出场的联动登记；design/18 的计数由 NAuF-sysA 改）；`story/13-feihu.md` 按现有 28 人档案对齐（补常赫志、常伯志，删过时的\"倪氏不在档案\"），登记陈家洛出场，并改用 NXfixE-c 新增的正式 NPC ID。\n   - 慕容景岳 + 薛鹊双首领战、田归农墓前围攻是否已在遭遇级声明 `totalHp` 与分配表（NXfixD-13 交来），缺则补并写明算式。\n   - 胡斐 9/9 下限是否也用于飞狐中段的胡刀实战印证试招画像、NXB13-O01–O04（命名与师承、机制建议值）、郑三娘双刀原著武学名（默认 `sk_luoyedao`）、紫竹庵邪线波次先后、飞狐新增三场倍率（0.75 / 0.80 / 0.85）保持默认并列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/catalog/npcs-ch13-feihu.md",
+          "docs/design/story/13-feihu.md"
+        ],
+        "fences": [
+          "docs/design/chapters/13-feihu.md",
+          "docs/design/catalog/npcs-ch13-feihu.md",
+          "docs/design/story/13-feihu.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/13-feihu.md",
+            "docs/design/catalog/npcs-ch13-feihu.md",
+            "docs/design/story/13-feihu.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-book-14",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 书界 14《雪山飞狐》（章节、人物档案与剧情的残留清理与抽查）",
+      "prompt": "NAuF-book.md",
+      "deps": [
+        "NR4S-14"
+      ],
+      "writes": [
+        "docs/design/chapters/14-xueshan.md",
+        "docs/design/catalog/npcs-ch14-xueshan.md",
+        "docs/design/story/14-xueshan.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {
+        "book_no": "14",
+        "book_name": "雪山飞狐",
+        "chapter": "docs/design/chapters/14-xueshan.md",
+        "npcs": "docs/design/catalog/npcs-ch14-xueshan.md",
+        "story": "docs/design/story/14-xueshan.md",
+        "items": "\n   - B05 / B06 的整场耐久余数分配写清现状（B05 用最大余数补、B06 把余数给最后的分支目标）；唯一规则由 NAuF-sysA 在 design/09 §8.8.11 定。本任务不改数值，只在报告里给出两场若统一按\"最大余数法\"或\"余数给最后一个目标\"各会变成多少，供收口任务落地。\n   - B05（1 首领 + 三类精英各 1，精英运行时 10,495）、B06（每波援军 1 名精英，运行时 16,880）、B07（阶段门 70% / 35%）的编成与血量；左右书僮用 9 品胡家玄功作精英主运、B02 胜利条件；宝树当面传授到 10 重、旧稿到 8 重（O03）——保持默认并列入\"需作者确认\"。"
+      },
+      "validate": {
+        "exists": [
+          "docs/design/chapters/14-xueshan.md",
+          "docs/design/catalog/npcs-ch14-xueshan.md",
+          "docs/design/story/14-xueshan.md"
+        ],
+        "fences": [
+          "docs/design/chapters/14-xueshan.md",
+          "docs/design/catalog/npcs-ch14-xueshan.md",
+          "docs/design/story/14-xueshan.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_undefined_in.py",
+            "docs/design/chapters/14-xueshan.md",
+            "docs/design/catalog/npcs-ch14-xueshan.md",
+            "docs/design/story/14-xueshan.md"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-lint",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 检查脚本与平衡脚本（tools/lint、tools/balance）",
+      "prompt": "NAuF-lint.md",
+      "deps": [
+        "LINT-outlets"
+      ],
+      "writes": [
+        "tools/lint/**",
+        "tools/balance/**"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/lint/check_skill_catalogs.py",
+          "tools/lint/README.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_skill_catalogs.py",
+            "--strict",
+            "--diversity-strict"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/boss_pacing.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/projection_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-assets",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 素材管线的作者决定同步（author-requirements、author-decisions、design/11、19、map、tech/02、06、07）",
+      "prompt": "NAuF-assets.md",
+      "deps": [
+        "TOWN-design",
+        "VFX-design"
+      ],
+      "writes": [
+        "docs/decisions/author-requirements.md",
+        "docs/decisions/author-decisions.md",
+        "docs/design/11-open-world.md",
+        "docs/design/19-world-map.md",
+        "docs/design/map/**",
+        "docs/tech/02-rendering.md",
+        "docs/tech/06-asset-storage.md",
+        "docs/tech/07-asset-generation.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/decisions/author-requirements.md",
+          "docs/decisions/author-decisions.md",
+          "docs/design/11-open-world.md",
+          "docs/design/19-world-map.md",
+          "docs/tech/02-rendering.md",
+          "docs/tech/06-asset-storage.md",
+          "docs/tech/07-asset-generation.md"
+        ],
+        "fences": [
+          "docs/decisions/author-requirements.md",
+          "docs/decisions/author-decisions.md",
+          "docs/design/11-open-world.md",
+          "docs/design/19-world-map.md",
+          "docs/tech/02-rendering.md",
+          "docs/tech/06-asset-storage.md",
+          "docs/tech/07-asset-generation.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/map/render_map.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "NAuF-canon",
+      "phase": "NAuF",
+      "wave": 10,
+      "kind": "revise",
+      "title": "终审拆分 · 基准与提案记录（Canon、提案处置表、裁定记录）",
+      "prompt": "NAuF-canon.md",
+      "deps": [
+        "NR4S-01",
+        "NR4S-02",
+        "NR4S-03",
+        "NR4S-04",
+        "NR4S-05",
+        "NR4S-06",
+        "NR4S-07",
+        "NR4S-08",
+        "NR4S-09",
+        "NR4S-10",
+        "NR4S-11",
+        "NR4S-12",
+        "NR4S-13",
+        "NR4S-14",
+        "NR4S-rules",
+        "LINT-outlets",
+        "TOWN-design",
+        "VFX-design"
+      ],
+      "writes": [
+        "docs/00-canon.md",
+        "docs/decisions/canon-proposals-v1.2.md",
+        "docs/decisions/rulings-v1.md"
+      ],
+      "review": false,
+      "web": false,
+      "vars": {},
+      "validate": {
+        "exists": [
+          "docs/00-canon.md",
+          "docs/decisions/canon-proposals-v1.2.md",
+          "docs/decisions/rulings-v1.md"
+        ],
+        "fences": [
+          "docs/00-canon.md",
+          "docs/decisions/canon-proposals-v1.2.md",
+          "docs/decisions/rulings-v1.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ],
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/lint",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "{python}",
+            "tools/balance/damage_sim.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/balance/meridian_flow_sim.py",
+            "--check"
+          ]
+        ]
+      }
+    },
+    {
       "id": "NAu-final",
       "phase": "G",
       "wave": 6,
       "kind": "revise",
-      "title": "终审·最终核对（AR-14 / 15 / 16 收尾）",
+      "title": "终审·收口（全部 NAuF 子任务合入后的最后一道关卡：交办收口、版本刷新、武学总数、需求状态、全量检查）",
       "prompt": "NAu-final.md",
       "deps": [
         "NAu-lint",
@@ -16000,7 +18630,38 @@
         "NR4S-12",
         "NR4S-13",
         "NR4S-14",
-        "NR4S-rules"
+        "NR4S-rules",
+        "NAuF-sysA",
+        "NAuF-rules",
+        "NAuF-cat-shaolin",
+        "NAuF-cat-daojia",
+        "NAuF-cat-general",
+        "NAuF-cat-wujue",
+        "NAuF-cat-xiaoyao",
+        "NAuF-cat-yitian",
+        "NAuF-cat-xiakebixue",
+        "NAuF-cat-wuyue",
+        "NAuF-cat-kangxi",
+        "NAuF-cat-qianlong",
+        "NAuF-cat-gulong",
+        "NAuF-cat-bulu",
+        "NAuF-book-01",
+        "NAuF-book-02",
+        "NAuF-book-03",
+        "NAuF-book-04",
+        "NAuF-book-05",
+        "NAuF-book-06",
+        "NAuF-book-07",
+        "NAuF-book-08",
+        "NAuF-book-09",
+        "NAuF-book-10",
+        "NAuF-book-11",
+        "NAuF-book-12",
+        "NAuF-book-13",
+        "NAuF-book-14",
+        "NAuF-lint",
+        "NAuF-assets",
+        "NAuF-canon"
       ],
       "writes": [
         "docs/**",
@@ -16063,6 +18724,35 @@
             "tools/lint/check_skill_catalogs.py",
             "--strict",
             "--diversity-strict"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_nr4_unit.py",
+            "docs/design/catalog/skills-bulu-01-tianlong.md",
+            "docs/design/catalog/skills-bulu-02-shediao.md",
+            "docs/design/catalog/skills-bulu-03-shendiao.md",
+            "docs/design/catalog/skills-bulu-04-yitian.md",
+            "docs/design/catalog/skills-bulu-05-xiaoao.md",
+            "docs/design/catalog/skills-bulu-06-xiake.md",
+            "docs/design/catalog/skills-bulu-07-bixue.md",
+            "docs/design/catalog/skills-bulu-08-luding.md",
+            "docs/design/catalog/skills-bulu-09-liancheng.md",
+            "docs/design/catalog/skills-bulu-10-baima.md",
+            "docs/design/catalog/skills-bulu-11-yuanyang.md",
+            "docs/design/catalog/skills-bulu-12-shujian.md",
+            "docs/design/catalog/skills-bulu-13-feihu.md",
+            "docs/design/catalog/skills-bulu-14-xueshan.md",
+            "docs/design/catalog/skills-daojia.md",
+            "docs/design/catalog/skills-general.md",
+            "docs/design/catalog/skills-gulong.md",
+            "docs/design/catalog/skills-kangxi.md",
+            "docs/design/catalog/skills-qianlong.md",
+            "docs/design/catalog/skills-shaolin.md",
+            "docs/design/catalog/skills-wujue.md",
+            "docs/design/catalog/skills-wuyue.md",
+            "docs/design/catalog/skills-xiake-bixue.md",
+            "docs/design/catalog/skills-xiaoyao.md",
+            "docs/design/catalog/skills-yitian.md"
           ]
         ]
       }
