@@ -30,7 +30,7 @@
     "comment_model": "作者 2026-09-30：执行 / 出图 / 多模态校验一律调用本机 GPT CLI（Codex，gpt-6-astra），不再调用 traex；effort 只用 ultra（执行默认）与 xhigh（审核默认）。Codex 接受 none/minimal/low/medium/high/xhigh/max/ultra；exec 下 `--search` 不可用。",
     "max_parallel": {
       "docs": 3,
-      "assets": 10,
+      "assets": 12,
       "prompts": 16
     }
   },
@@ -21827,6 +21827,216 @@
           "docs/design/vfx/**",
           "assets/default/baseline/vfx/**",
           "assets/default/prompts/vfx.md"
+        ]
+      }
+    },
+    {
+      "id": "VFX-emitters",
+      "title": "外放招式 · 共用发出方图池（12 种）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-emitters.md",
+      "deps": [
+        "VFX-three"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "assets/default/vfx/emitters/**",
+        "assets/default/prompts/vfx.md"
+      ],
+      "vars": {},
+      "validate": {
+        "exists": [
+          "assets/default/vfx/emitters/manifest.yaml",
+          "assets/default/vfx/emitters/palm/emitter-plate.yaml",
+          "assets/default/vfx/emitters/finger/emitter-plate.yaml",
+          "assets/default/vfx/emitters/fist/emitter-plate.yaml",
+          "assets/default/vfx/emitters/sword/emitter-plate.yaml",
+          "assets/default/vfx/emitters/sabre/emitter-plate.yaml",
+          "assets/default/vfx/emitters/staff/emitter-plate.yaml",
+          "assets/default/vfx/emitters/spear/emitter-plate.yaml",
+          "assets/default/vfx/emitters/whip/emitter-plate.yaml",
+          "assets/default/vfx/emitters/fan/emitter-plate.yaml",
+          "assets/default/vfx/emitters/throw/emitter-plate.yaml",
+          "assets/default/vfx/emitters/instrument/emitter-plate.yaml",
+          "assets/default/vfx/emitters/leg/emitter-plate.yaml"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/emitters",
+            "--min",
+            "12",
+            "--max",
+            "12",
+            "--min-side",
+            "512"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/vfx/emitters/palm/emitter-plate.yaml",
+            "--root",
+            "assets/default/vfx/emitters/palm"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/vfx/emitters/finger/emitter-plate.yaml",
+            "--root",
+            "assets/default/vfx/emitters/finger"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/vfx/emitters/fist/emitter-plate.yaml",
+            "--root",
+            "assets/default/vfx/emitters/fist"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/vfx/emitters/sword/emitter-plate.yaml",
+            "--root",
+            "assets/default/vfx/emitters/sword"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/vfx/emitters/sabre/emitter-plate.yaml",
+            "--root",
+            "assets/default/vfx/emitters/sabre"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/vfx/emitters/staff/emitter-plate.yaml",
+            "--root",
+            "assets/default/vfx/emitters/staff"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/vfx/emitters/spear/emitter-plate.yaml",
+            "--root",
+            "assets/default/vfx/emitters/spear"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/vfx/emitters/whip/emitter-plate.yaml",
+            "--root",
+            "assets/default/vfx/emitters/whip"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/vfx/emitters/fan/emitter-plate.yaml",
+            "--root",
+            "assets/default/vfx/emitters/fan"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/vfx/emitters/throw/emitter-plate.yaml",
+            "--root",
+            "assets/default/vfx/emitters/throw"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/vfx/emitters/instrument/emitter-plate.yaml",
+            "--root",
+            "assets/default/vfx/emitters/instrument"
+          ],
+          [
+            "{python}",
+            "tools/vfx/check_vfx.py",
+            "assets/default/vfx/emitters/leg/emitter-plate.yaml",
+            "--root",
+            "assets/default/vfx/emitters/leg"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "VFX-templates",
+      "title": "外放招式 · 玄级 / 黄级统一特效模板、绑定表生成与单门套件检查脚本",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "VFX-templates.md",
+      "deps": [
+        "VFX-three"
+      ],
+      "review": false,
+      "web": false,
+      "writes": [
+        "tools/vfx/**",
+        "assets/default/vfx/templates/**",
+        "assets/default/vfx/bindings.yaml",
+        "docs/design/vfx/**",
+        "docs/design/23-projection-vfx-pipeline.md",
+        "assets/default/prompts/vfx.md"
+      ],
+      "vars": {},
+      "validate": {
+        "exists": [
+          "tools/vfx/bind_moves.py",
+          "tools/vfx/check_skill_suite.py",
+          "assets/default/vfx/bindings.yaml",
+          "docs/design/vfx/palette.yaml"
+        ],
+        "shrink_exempt": [
+          "tools/vfx/**",
+          "docs/design/vfx/**",
+          "docs/design/23-projection-vfx-pipeline.md"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/vfx",
+            "-p",
+            "test_*.py"
+          ],
+          [
+            "node",
+            "--test",
+            "tools/vfx/web/"
+          ],
+          [
+            "node",
+            "--check",
+            "tools/vfx/web/vfx_player.js"
+          ],
+          [
+            "{python}",
+            "tools/vfx/bind_moves.py",
+            "--check"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/vfx/templates",
+            "--min",
+            "6",
+            "--max",
+            "12",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
         ]
       }
     }
