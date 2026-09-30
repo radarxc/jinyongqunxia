@@ -838,7 +838,7 @@ evadeRatingDelta=clamp(floor((meridianSpeedBp-10000)/100),-35,+35)
 | 潜龙勿用 `mv_xianglong18_qianlong` | 否；不外放 | A / 4 | 70 | 4555 bp | 低；架势路线 | 阳 / 调和 |
 | 利涉大川 `mv_xianglong18_lishe` | 否；外放 | A→D 前3 / 7 | 85 | 5722 bp | 中 | 调和 |
 | 突如其来 `mv_xianglong18_turu` | 否；外放 | 命门→劳宫 / 2 | 60 | 3777 bp | 低；最快 | 阳 |
-| 震惊百里 `mv_xianglong18_zhenjing` | 是；外放 | 任 / 督核心→内关→劳宫 / 9 | 85 | 6500 bp | 中；周身爆发 | 阳 |
+| 震惊百里 `mv_xianglong18_zhenjing` | 是；外放 | 督脉核心→内关→劳宫 / 9 | 85 | 6500 bp | 中；周身爆发 | 阳 |
 | 或跃在渊 `mv_xianglong18_huoyue` | 否；外放 | F / 4 | 70 | 4555 bp | 低；反击架势 | 调和 |
 | 双龙取水 `mv_xianglong18_shuanglong` | 否；外放 | A→C / 8 | 85 | 6111 bp | 中；双掌同步 | 阳 / 调和 |
 | 鱼跃于渊 `mv_xianglong18_yuyue` | 否；外放 | F→D 前2 / 6 | 80 | 5333 bp | 中 | 调和 |
@@ -848,11 +848,11 @@ evadeRatingDelta=clamp(floor((meridianSpeedBp-10000)/100),-35,+35)
 | 龙战于野 `mv_xianglong18_longzhan` | 否；外放 | F→A→B 前2 / 10 | 90 | 6888 bp | 高 | 阳 |
 | 履霜冰至 `mv_xianglong18_lvshuang` | 否；外放 | A→C / 8 | 80 | 6111 bp | 中；连续用会淤积 | 阴 / 调和 |
 | 羝羊触藩 `mv_xianglong18_diyang` | 否；外放 | F→E / 8 | 90 | 6111 bp | 中；擒锁支路 | 阳 |
-| 神龙摆尾 `mv_xianglong18_shenlong` | 是；外放 | 足少阴→带脉 / 阳跷→内关→劳宫 / 8 | 95 | 6111 bp | 高；逆行转身 | 阳 / 调和 |
+| 神龙摆尾 `mv_xianglong18_shenlong` | 是；外放 | 足太阳 / 足少阳→带脉 / 阳跷→内关→劳宫 / 8 | 95 | 6111 bp | 高；逆行转身 | 阳 / 调和 |
 
 15 个非绝招外放动作的现行路线以 `skills-wujue.md` 的 `mfr_xianglong18_*` 为准：通常展开 P6LG，`利涉大川` 使用显式 7 段，`或跃在渊` 使用 D6LG，均经 `内关→劳宫` 收束；本表字母路线只是 v2.0 留存的段数 / CT 取值样本，不覆盖图鉴路线事实。
 
-三绝招的 `ultimate:true`、`projection:true`、解锁层及 0 档基础 `aoe` 唯一真值见 05 §13.1；路线定义见本文 §12.1：`mv_xianglong18_zhenjing → mfr_xianglong18_zhenjing` 为 9 段 × 85 CT，`1200+765=1965`；`mv_xianglong18_lianhuan → mfr_eighteen_palms_chain` 为 10 段 × 80 CT，`1200+800=2000`；`mv_xianglong18_shenlong → mfr_xianglong18_shenlong` 为 8 段 × 95 CT，`1200+760=1960`。三路均以 `内关→劳宫` 收束并满足外放端点：震惊走任 / 督核心，连环走冲脉 / 手太阴核心，神龙走足少阴 / 带脉 / 阳跷核心；任意两路仅共享末两穴，分别为 `2/9`、`2/8`、`2/8`，均低于较短路线 50%，且全仓无完全相同有序路线。连环是正面伤害主路线，使用天阶建议下限 10 段；震惊、神龙以较短的 9 / 8 段换取周身控制与转身反制的较低 CT，属于 §4.3 明示的职责型短路线。三条路线共享气势 100 和武学级绝招冷却，并受“下一次绝招不得重复同一 `moveId`”约束。05 已将降龙 19 个动作中的 18 个标为外放，唯 `潜龙勿用` 不标；三绝招的 `projectionSpreadSteps[0]` 均逐项等于各自基础 `aoe`。十八掌连环的“十八掌”只是六段命中演出意象，不等于 18 个经脉节点，也不能据此写成小说原招名。
+三绝招的 `ultimate:true`、`projection:true`、解锁层及 0 档基础 `aoe` 唯一真值见 05 §13.1；路线定义见本文 §12.1：`mv_xianglong18_zhenjing → mfr_xianglong18_zhenjing` 为 9 段 × 85 CT，`1200+765=1965`；`mv_xianglong18_lianhuan → mfr_eighteen_palms_chain` 为 10 段 × 80 CT，`1200+800=2000`；`mv_xianglong18_shenlong → mfr_xianglong18_shenlong` 为 8 段 × 95 CT，`1200+760=1960`。三路均以 `内关→劳宫` 收束并满足外放端点：震惊走督脉核心，连环走手少阳 / 手太阳核心，神龙走足太阳 / 足少阳 / 带脉 / 阳跷核心；按 §2.4 排除末两穴出口后，阳 / 阴票依次为 `7/0`、`8/0`、`5/0`（神龙另有带脉 1 票弃权），均与降龙阳性相合。任意两路仅共享末两穴，分别为 `2/9`、`2/8`、`2/8`，均低于较短路线 50%，且全仓无完全相同有序路线。连环是正面伤害主路线，使用天阶建议下限 10 段；震惊、神龙以较短的 9 / 8 段换取周身控制与转身反制的较低 CT，属于 §4.3 明示的职责型短路线。三条路线共享气势 100 和武学级绝招冷却，并受“下一次绝招不得重复同一 `moveId`”约束。05 已将降龙 19 个动作中的 18 个标为外放，唯 `潜龙勿用` 不标；三绝招的 `projectionSpreadSteps[0]` 均逐项等于各自基础 `aoe`。十八掌连环的“十八掌”只是六段命中演出意象，不等于 18 个经脉节点，也不能据此写成小说原招名。
 
 ### 6.3 独孤九剑（9 条）
 
@@ -1470,10 +1470,10 @@ routes:
     purpose: attack
     requiredNature: [yang]
     steps:
-      - { acupointRef: ap_renmai_qihai, segmentCt: 85, riskBp: 150 }
-      - { acupointRef: ap_renmai_guanyuan, segmentCt: 85, riskBp: 150 }
-      - { acupointRef: ap_renmai_zhongwan, segmentCt: 85, riskBp: 200 }
-      - { acupointRef: ap_renmai_danzhong, segmentCt: 85, riskBp: 250 }
+      - { acupointRef: ap_dumai_changqiang, segmentCt: 85, riskBp: 150 }
+      - { acupointRef: ap_dumai_yaoshu, segmentCt: 85, riskBp: 150 }
+      - { acupointRef: ap_dumai_yaoyangguan, segmentCt: 85, riskBp: 200 }
+      - { acupointRef: ap_dumai_jizhong, segmentCt: 85, riskBp: 250 }
       - { acupointRef: ap_dumai_mingmen, segmentCt: 85, riskBp: 350 }
       - { acupointRef: ap_dumai_zhiyang, segmentCt: 85, riskBp: 250 }
       - { acupointRef: ap_dumai_shendao, segmentCt: 85, riskBp: 300 }
@@ -1485,14 +1485,14 @@ routes:
     purpose: attack
     requiredNature: [yang, harmony]
     steps:
-      - { acupointRef: ap_chongmai_qichong, segmentCt: 80, riskBp: 150 }
-      - { acupointRef: ap_chongmai_henggu, segmentCt: 80, riskBp: 150 }
-      - { acupointRef: ap_chongmai_dahe, segmentCt: 80, riskBp: 150 }
-      - { acupointRef: ap_chongmai_qixue, segmentCt: 80, riskBp: 150 }
-      - { acupointRef: ap_shoutaiyin_zhongfu, segmentCt: 80, riskBp: 150 }
-      - { acupointRef: ap_shoutaiyin_yunmen, segmentCt: 80, riskBp: 150 }
-      - { acupointRef: ap_shoutaiyin_chize, segmentCt: 80, riskBp: 150 }
-      - { acupointRef: ap_shoutaiyin_taiyuan, segmentCt: 80, riskBp: 150 }
+      - { acupointRef: ap_shoushaoyang_guanchong, segmentCt: 80, riskBp: 150 }
+      - { acupointRef: ap_shoushaoyang_yemen, segmentCt: 80, riskBp: 150 }
+      - { acupointRef: ap_shoushaoyang_zhongzhu, segmentCt: 80, riskBp: 150 }
+      - { acupointRef: ap_shoushaoyang_yangchi, segmentCt: 80, riskBp: 150 }
+      - { acupointRef: ap_shoutaiyang_shaoze, segmentCt: 80, riskBp: 150 }
+      - { acupointRef: ap_shoutaiyang_qiangu, segmentCt: 80, riskBp: 150 }
+      - { acupointRef: ap_shoutaiyang_wangu, segmentCt: 80, riskBp: 150 }
+      - { acupointRef: ap_shoutaiyang_tianzong, segmentCt: 80, riskBp: 150 }
       - { acupointRef: ap_shoujueyin_neiguan, segmentCt: 80, riskBp: 150 }
       - { acupointRef: ap_shoujueyin_laogong, segmentCt: 80, riskBp: 150 }
   - id: mfr_xianglong18_shenlong
@@ -1501,12 +1501,12 @@ routes:
     purpose: attack
     requiredNature: [yang, harmony]
     steps:
-      - { acupointRef: ap_zushaoyin_yongquan, segmentCt: 95, riskBp: 600 }
-      - { acupointRef: ap_zushaoyin_taixi, segmentCt: 95, riskBp: 500 }
-      - { acupointRef: ap_zushaoyin_fuliu, segmentCt: 95, riskBp: 450 }
+      - { acupointRef: ap_zutaiyang_kunlun, segmentCt: 95, riskBp: 600 }
+      - { acupointRef: ap_zushaoyang_waiqiu, segmentCt: 95, riskBp: 500 }
+      - { acupointRef: ap_yangqiao_shenmai, segmentCt: 95, riskBp: 450 }
       - { acupointRef: ap_daimai_zulinqi, segmentCt: 95, riskBp: 400 }
-      - { acupointRef: ap_daimai_weidao, segmentCt: 95, riskBp: 550 }
-      - { acupointRef: ap_yangqiao_jianyu, segmentCt: 95, riskBp: 450 }
+      - { acupointRef: ap_yangqiao_pucan, segmentCt: 95, riskBp: 550 }
+      - { acupointRef: ap_yangqiao_fuyang, segmentCt: 95, riskBp: 450 }
       - { acupointRef: ap_shoujueyin_neiguan, segmentCt: 95, riskBp: 350 }
       - { acupointRef: ap_shoujueyin_laogong, segmentCt: 95, riskBp: 650 }
 
