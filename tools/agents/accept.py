@@ -18,7 +18,7 @@ import supervise as V  # noqa: E402
 import run as R  # noqa: E402
 
 ROOT = V.ROOT
-CODE_TASKS = {"TOWN-render", "VFX-tool"}  # 写 assets/ 下占位预览的代码任务，不算素材任务
+CODE_TASKS = {"TOWN-render", "VFX-tool", "TOWN-layout"}  # 写 assets/ 下占位预览的代码 / 数据任务，不算素材任务
 
 
 def main() -> int:

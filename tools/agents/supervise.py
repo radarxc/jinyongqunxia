@@ -184,6 +184,8 @@ def wait_run(tid: str, a) -> str:
 def start_run(tid: str, a, note: str | None) -> bool:
     argv = ["start", tid, "--bin", a.bin, "--model", a.model, "--effort", a.effort, "--no-probe",
             "--slot-wait-min", "720"]
+    if a.base:
+        argv += ["--base", a.base]
     if note:
         n = int((S.LockedState(ROOT / ".agents" / "state.json").get(tid) or {}).get("attempts", 0)) + 1
         nf = cdir(tid) / f"note_run{n}.md"
@@ -359,6 +361,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="单任务全流程驱动：start → wait → 校验 → GPT 审核 → 返修循环 → 待准出")
     ap.add_argument("id")
     ap.add_argument("--note", help="首次启动附带的续作说明（文件或文本）")
+    ap.add_argument("--base", help="透传给 step.py start --base：叠在另一个任务已 finish 的工作区提交上开工")
     ap.add_argument("--checks", help="审核补充要点文件（传给 gpt_review.py --checks）")
     ap.add_argument("--rework-extra", help="每次返修说明末尾追加的协调者补充（文件或文本）")
     ap.add_argument("--from", dest="start_from", choices=["start", "validate", "review"], default="start")
