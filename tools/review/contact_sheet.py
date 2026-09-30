@@ -53,8 +53,9 @@ def common_prefix(ids: list) -> str:
     return pre[: cut + 1] if cut >= 0 else ""
 
 
-def build(mdir: Path, out: Path, cols: int = 6, cell: int = 220, only=None) -> list:
-    """only：可选的判定函数 f(asset) -> bool，只拼其中一部分（如只拼大理的建筑）；编号在本张图内从 1 起。"""
+def build(mdir: Path, out: Path, cols: int = 6, cell: int = 220, only=None, upscale_small: int = 0) -> list:
+    """only：可选的判定函数 f(asset) -> bool，只拼其中一部分（如只拼大理的建筑）；编号在本张图内从 1 起。
+    upscale_small：长边 ≤ 128 的小图（64×32 贴片）先按最近邻放大这么多倍再拼，肉眼才看得清。"""
     assets = [a for a in load_manifest(mdir / "manifest.yaml") if only is None or only(a)]
     ids = [a["id"] for a in assets]
     pre = common_prefix(ids)
@@ -72,6 +73,9 @@ def build(mdir: Path, out: Path, cols: int = 6, cell: int = 220, only=None) -> l
         sha = hashlib.sha256(raw).hexdigest()
         im = Image.open(src).convert("RGBA")
         size = f"{im.width}x{im.height}"
+        if upscale_small and max(im.size) <= 128:
+            im = im.resize((im.width * upscale_small, im.height * upscale_small), Image.NEAREST)
+            size += f"（放大 {upscale_small}×）"
         im.thumbnail((cell, cell), Image.LANCZOS)
         x0 = pad + (i % cols) * (cell + pad)
         y0 = pad + (i // cols) * (cell + label_h + pad)
@@ -96,6 +100,7 @@ if __name__ == "__main__":
     ap.add_argument("out")
     ap.add_argument("--cols", type=int, default=6)
     ap.add_argument("--cell", type=int, default=220)
+    ap.add_argument("--upscale-small", type=int, default=0)
     a = ap.parse_args()
-    rows = build(Path(a.mdir), Path(a.out), cols=a.cols, cell=a.cell)
+    rows = build(Path(a.mdir), Path(a.out), cols=a.cols, cell=a.cell, upscale_small=a.upscale_small)
     print(f"{len(rows)} 张 → {a.out}")
