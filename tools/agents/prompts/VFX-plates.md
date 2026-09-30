@@ -9,6 +9,8 @@
 - **降龙十八掌·亢龙有悔**（掌法，`mv_xianglong18_kanglong`）：效果 = 金色龙形（作者：金色、龙从整个掌面透出、气势磅礴；风格水墨意境、虚实透明）；发出方 = 掌（掌面朝向发出方向）。
 - **六脉神剑**（气剑类，`sk_liumai`）：效果 = 线性、持续的剑气（作者：不是气刃，是内力凝缩的气剑，线性、持续，不用水墨）；发出方 = 指（指尖发出）。
 
+作者 2026-09-30 再次明确范围：「明确其实就是几个图，然后用代码合成。」——每招的原料只有**两张生成图**（一张白底效果帧图、一张透明底发出方图），其余（切帧、抠图、合成、过渡、演示）全部由 `tools/vfx/` 的代码完成。不要为了过程留痕再往素材目录里加诊断文件。
+
 已有的两张整图基线（`assets/default/baseline/vfx/ref_*.png`）和图层动画演示保留作对照，不删；本任务的产物放各自子目录。
 
 ## 要做的事
@@ -22,7 +24,8 @@
 
 检查：以下命令必须全部通过。
 - `python3 tools/agents/check_assets.py assets/default/baseline/vfx --min 2 --max 4`
-- `python3 tools/vfx/check_vfx.py assets/default/baseline/vfx/mv_xianglong18_kanglong assets/default/baseline/vfx/sk_liumai`
+- 两套各跑一次（`check_vfx.py` 只收 YAML，不收目录；`<套件>` 依次为 `assets/default/baseline/vfx/mv_xianglong18_kanglong`、`assets/default/baseline/vfx/sk_liumai`）：
+  `python3 tools/vfx/check_vfx.py <套件>/effect/effect-set.yaml <套件>/emitter/emitter-plate.yaml <套件>/composition.yaml --root <套件> --html <套件>/demo.html`
 
 ## 报告
 
