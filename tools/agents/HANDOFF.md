@@ -6,7 +6,7 @@
 ## 0. 一句话现状
 
 仓库 `/Users/bytedance/Projects/jinyongqunxia`，分支 `claude/vigilant-wright-2unuk1`（远超 origin，**未 push，push 前必须问作者**）。两条线并行：
-1. **文档线**：作者的阴阳理论 AR-18 已落地（NYY），12 册武学图鉴的性质落地（NR4-*）进行中：康熙、古龙、五岳、乾隆已合入，其余 8 册在"GPT 审核 → 返修"循环里；之后是 LINT-outlets → 按书界同步 NR4S-NN → 最终汇总 NAu-final。
+1. **文档线**：作者的阴阳理论 AR-18 已落地（NYY），12 册武学图鉴的性质落地（NR4-*）进行中：康熙、古龙、五岳、乾隆、通行已合入，其余 7 册在"GPT 审核 → 返修"循环里；之后是 LINT-outlets → 按书界同步 NR4S-NN → 最终汇总 NAu-final。
 2. **素材线**：默认风格包 `assets/default/` 的基线图由作者在审批页逐张审批；城镇改为程序化生成（TOWN-*），招式演示改为图层动画（ART-R3-vfx）；几张返修图 GPT 审核已过、停在工作区等作者看。
 
 ## 1. 工作方式（硬规则）
@@ -62,7 +62,7 @@
 ## 4. 各线状态与下一步
 
 ### 4.1 文档线：AR-18 落地
-- **NR4-\***（12 册，验收 `tools/agents/check_nr4_unit.py <图鉴>` 三项计数清零）：已合入 kangxi 62268d4、gulong 4919d3a、wuyue d11695e、qianlong a99b5dc。未合入 8 册见快照；多数停在"第 3 轮 FAIL 只剩小问题"，协调者已逐个批准再修一轮（只改剩余项）。
+- **NR4-\***（12 册，验收 `tools/agents/check_nr4_unit.py <图鉴>` 三项计数清零）：已合入 kangxi 62268d4、gulong 4919d3a、wuyue d11695e、qianlong a99b5dc、general 4c23117。未合入 7 册见快照；多数停在"第 3 轮 FAIL 只剩小问题"，协调者已逐个批准再修一轮（只改剩余项）。
 - 之后：**LINT-outlets**（已登记，deps=全部 NR4）修检查脚本两处（route_outlet_points 剥离位移 / 内功出口；check_route_unique_for 扩到普通路线），修后重测 12 册；若出现新命中另派任务。
 - 之后：**NR4S-NN 按书界同步**（模板 `prompts/NR4S-book.md`，尚未登记任务）：汇总各 `reports/NR4-*.md` 的"交其他任务"按书分发，写集 `chapters/NN` + `npcs-chNN`。已知条目在 `FOLLOWUPS.md`"NR4 阶段"。
 - 最后：**NAu-final**（deps 62 个，提示词 `prompts/NAu-final.md`）收拢全部报告的提案与交办、统一公式、更新计数、同步作者的素材 / 城镇 / 气剑决定到 tech/07、tech/06、author-decisions、TODO。
