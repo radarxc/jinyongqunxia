@@ -99,7 +99,7 @@ def register_kits(d, only=None):
             continue
         d["tasks"].append({
             "id": tid, "title": f"建筑套件 · {name}", "phase": "PROD", "wave": 10, "kind": "draft", "prompt": "KIT.md",
-            "deps": ["TOWN-assemble"], "review": False, "web": True,
+            "deps": ["TOWN-buildings"], "review": False, "web": True,
             "writes": [f"assets/default/building-map/{kit}/**", f"assets/default/tile/{kit}/**",
                        "assets/default/prompts/building-map.md", "assets/default/prompts/tile.md"],
             "vars": {"kit_id": kit, "kit_name": name, "era_desc": desc, "ref_cities": refs},
