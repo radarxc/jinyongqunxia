@@ -203,7 +203,7 @@ building_quotas:
   - {type: bld_kit_song_dali_restaurant, zone_refs: [zone_commercial_south, zone_market_east], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "通用tavern设施，临街留客流缓冲；不新造biz ID"}
   - {type: bld_kit_song_dali_shop, zone_refs: [zone_commercial_south, zone_market_east], count: {min: 5, max: 9}, required: true, business_ref: null, institution_ref: null, placement_note: "店面朝横街或主街"}
   - {type: bld_kit_song_dali_market_stall, zone_refs: [zone_market_east], count: {min: 6, max: 12}, required: true, business_ref: null, institution_ref: null, placement_note: "2至4摊成组并留3格消防/通行缝"}
-  - {type: bld_kit_song_dali_house, zone_refs: [zone_residential_west, zone_residential_east], count: {min: 18, max: 28}, required: true, business_ref: null, institution_ref: null, placement_note: "密度低于临安，院间穿插植物"}
+  - {type: bld_kit_song_dali_house, zone_refs: [zone_residential_west, zone_residential_east], count: {min: 10, max: 28}, required: true, business_ref: null, institution_ref: null, placement_note: "密度低于临安，院间穿插植物"}
   - {type: bld_kit_song_dali_courtyard, zone_refs: [zone_residential_west, zone_residential_east, zone_palace_central], count: {min: 5, max: 9}, required: true, business_ref: null, institution_ref: null, placement_note: "优先离主街2格以上"}
   - {type: bld_kit_song_dali_guardhouse, zone_refs: [zone_gate_service_south], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "不侵入城门6格净宽"}
   - {type: bld_kit_song_dali_stable, zone_refs: [zone_gate_service_south], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "靠城门、背离住宅"}
