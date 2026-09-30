@@ -151,15 +151,15 @@ def to_jpg(src, out, checker=False, maxpx=1400):
     im.save(out, "JPEG", quality=84, optimize=True, progressive=True)
 
 
-VFX2_WT = REPO / ".agents/wt/VFX-plates/assets/default/baseline/vfx"
+VFX2_WT = REPO / ".agents/wt/VFX-three/assets/default/baseline/vfx"  # three.js 版（VFX-three）；VFX-plates 的 Python 合成版已作废
 VFX2_NOTES = {
     "vfx_mv_xianglong18_kanglong__ch02_base01": (
-        "两段式样例。原料只有两张生成图：① 白底金龙 6 帧（一张图）；② 透明底的掌。其余都是代码做的：切出 6 帧并抠掉白底 → 按掌面方向把金龙叠到掌上 → 帧间过渡出动效。上面大图是峰值帧，下面小图是两张原料和代码抠出的 6 帧。",
-        ["金色、龙从整个掌面透出、气势——到位了吗？", "这只掌接近照片质感，和手绘人物放在一起可以吗，还是要改成手绘画法？",
-         "点“播放”看动效：凝聚 → 发出 → 持续 → 消散的节奏对吗？"]),
+        "两段式样例，Three.js 版（游戏客户端同一套库，r186）。原料只有两张生成图：① 白底金龙 6 帧（一张图）；② 透明底的掌。Python 只切帧抠白底；叠到掌上、帧间过渡、凝聚 / 消散全在 Three.js 播放器里。已按你“龙放大 2 倍，素材不变”改：只改合成参数，龙长宽各 2 倍、画幅加大、掌不变。已知瑕疵：龙根部左缘有一道竖直切口（原料图切格处），下一轮用根部羽化处理。",
+        ["放大 2 倍后的比例、气势可以吗？", "这只掌接近照片质感，和手绘人物放在一起可以吗，还是要改成手绘画法？",
+         "点“播放”看动效（0.6 秒一轮循环，可调速）：凝聚 → 发出 → 持续 → 消散的节奏对吗？"]),
     "vfx_sk_liumai__ch01_base01": (
-        "两段式样例。原料只有两张生成图：① 白底气剑 6 帧（一张图）；② 透明底的指。单束、线性、持续，银灰主体加淡赤缘，全程不用水墨；代码切帧、叠到指尖、做过渡。上面大图是峰值帧，下面小图是原料。",
-        ["线性、持续的气剑感觉对吗？现在偏细、偏灰，有点像一根细棍——要不要更亮、更有内力凝缩的感觉？", "颜色（银灰 + 淡赤缘）可以吗？原著没写颜色。",
+        "两段式样例，Three.js 版。原料只有两张生成图：① 白底气剑 6 帧（一张图）；② 透明底的指。单束、线性、持续，银灰主体加淡赤缘，全程不用水墨；Python 切帧，Three.js 叠到指尖、做过渡。",
+        ["线性、持续的气剑感觉对吗？现在偏细、偏灰，像一根细棍——要重出原料图（更亮、更有内力凝缩感）吗？", "颜色（银灰 + 淡赤缘）可以吗？原著没写颜色。",
          "这只手同样接近照片质感，可以吗？", "点“播放”看动效。"]),
 }
 
@@ -175,7 +175,21 @@ def add_vfx_two_part(items, files, img_dir):
         suite = (VFX2_WT / a["file"]).parent
         srcs = [("生成图 1 · 白底效果帧（6 帧一张图）", suite / "effect/source_sheet.png")]
         srcs += [("生成图 2 · 发出方（透明底）", f) for f in sorted((suite / "emitter").glob("source_*.png"))]
-        srcs += [("代码抠出的 6 帧（黑底预览）", suite / "effect/preview_black.png")]
+        blk = suite / "effect/preview_black.png"
+        if not blk.exists():  # three.js 版不再产出黑底联系表：把抠出的帧自己拼一张
+            frames = sorted((suite / "effect").glob("frame_*.png"))
+            if frames:
+                ims = [Image.open(f).convert("RGBA") for f in frames]
+                w, hgt = ims[0].size
+                cols = 3
+                rows = (len(ims) + cols - 1) // cols
+                strip = Image.new("RGBA", (cols * w, rows * hgt), (20, 20, 20, 255))
+                for i, im in enumerate(ims):
+                    strip.alpha_composite(im, ((i % cols) * w, (i // cols) * hgt))
+                blk = OUT / "vfx3" / f"{a['id']}__frames_black.png"
+                blk.parent.mkdir(exist_ok=True)
+                strip.save(blk)
+        srcs += [("Python 抠出的 6 帧（黑底）", blk)]
         h = hashlib.sha256((VFX2_WT / a["file"]).read_bytes())
         extras = []
         for i, (cap, f) in enumerate(srcs):
