@@ -53,8 +53,9 @@ def common_prefix(ids: list) -> str:
     return pre[: cut + 1] if cut >= 0 else ""
 
 
-def build(mdir: Path, out: Path, cols: int = 6, cell: int = 220) -> list:
-    assets = load_manifest(mdir / "manifest.yaml")
+def build(mdir: Path, out: Path, cols: int = 6, cell: int = 220, only=None) -> list:
+    """only：可选的判定函数 f(asset) -> bool，只拼其中一部分（如只拼大理的建筑）；编号在本张图内从 1 起。"""
+    assets = [a for a in load_manifest(mdir / "manifest.yaml") if only is None or only(a)]
     ids = [a["id"] for a in assets]
     pre = common_prefix(ids)
     label_h, pad = 44, 10
