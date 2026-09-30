@@ -22048,7 +22048,7 @@
       "kind": "draft",
       "prompt": "KIT.md",
       "deps": [
-        "TOWN-assemble"
+        "TOWN-buildings"
       ],
       "review": false,
       "web": true,
@@ -22108,7 +22108,7 @@
       "kind": "draft",
       "prompt": "KIT.md",
       "deps": [
-        "TOWN-assemble"
+        "TOWN-buildings"
       ],
       "review": false,
       "web": true,
@@ -22168,7 +22168,7 @@
       "kind": "draft",
       "prompt": "KIT.md",
       "deps": [
-        "TOWN-assemble"
+        "TOWN-buildings"
       ],
       "review": false,
       "web": true,
@@ -22228,7 +22228,7 @@
       "kind": "draft",
       "prompt": "KIT.md",
       "deps": [
-        "TOWN-assemble"
+        "TOWN-buildings"
       ],
       "review": false,
       "web": true,
@@ -22288,7 +22288,7 @@
       "kind": "draft",
       "prompt": "KIT.md",
       "deps": [
-        "TOWN-assemble"
+        "TOWN-buildings"
       ],
       "review": false,
       "web": true,
@@ -22348,7 +22348,7 @@
       "kind": "draft",
       "prompt": "KIT.md",
       "deps": [
-        "TOWN-assemble"
+        "TOWN-buildings"
       ],
       "review": false,
       "web": true,
@@ -22408,7 +22408,7 @@
       "kind": "draft",
       "prompt": "KIT.md",
       "deps": [
-        "TOWN-assemble"
+        "TOWN-buildings"
       ],
       "review": false,
       "web": true,
@@ -22468,7 +22468,7 @@
       "kind": "draft",
       "prompt": "KIT.md",
       "deps": [
-        "TOWN-assemble"
+        "TOWN-buildings"
       ],
       "review": false,
       "web": true,
@@ -22528,7 +22528,7 @@
       "kind": "draft",
       "prompt": "KIT.md",
       "deps": [
-        "TOWN-assemble"
+        "TOWN-buildings"
       ],
       "review": false,
       "web": true,
@@ -22588,7 +22588,7 @@
       "kind": "draft",
       "prompt": "KIT.md",
       "deps": [
-        "TOWN-assemble"
+        "TOWN-buildings"
       ],
       "review": false,
       "web": true,
@@ -22648,7 +22648,7 @@
       "kind": "draft",
       "prompt": "KIT.md",
       "deps": [
-        "TOWN-assemble"
+        "TOWN-buildings"
       ],
       "review": false,
       "web": true,
