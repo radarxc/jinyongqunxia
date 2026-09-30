@@ -1,0 +1,17 @@
+{
+  "name": "guardhouse",
+  "attempt": 1,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-d46f68a0-d50a-4a9f-afce-1e8e561b224e.png",
+  "prompt": "Use case: historical-scene. Render ONE realistic Southern Song Lin'an small guardhouse building sprite ON the exact reference ground quadrilateral. Camera exact orthographic yaw45 pitch30,2:1 projection. Ground footprint 7 units wide by5 deep, visible front wall LEFT-FRONT must be40% longer than side wall FRONT-RIGHT. On1536x1024 canvas actual thin ground corners LEFT150,540; FRONT745,837.5; RIGHT1170,625; BACK575,327.5. Preserve these precise axes(+.5,-.5) and ratio1.4, no perspective taper, don't make base square. A simple one-storey modest watch office hut with wide three-bay wooden porch on the long LEFT-FRONT facade, roof ridge parallel to long LEFT-FRONT edge, short gable side on FRONT-RIGHT, quiet ochre plaster and weathered dark wood, hand-made grey ceramic tile, slightly worn stone paving beneath porch. No guards or people. No surrounding wall, no compound, no towers, no text or signboard. Preserve thin rectangular stone footprint with its entire two front borders sharp and exposed. No thick slab. Upper-left daylight, small down-right contact shadow. Muted grounded realistic art same historical town asset set. Replace ALL white surroundings with genuinely transparent alpha, remove guide text/lines completely, reserve broad transparent margins, full roof not cropped, no modern or Qing items.",
+  "reason": "宽深恢复但右轴偏浅约-.41，未选。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/review2/bld_kit_song_southern_guardhouse_guide.png",
+      "role": "geometry guide：自制占地轮廓QA图，非生成资产",
+      "sha256": "0d4d4e6c95705f4493174d0a6b4111045f745db3e14b1ba3bf4afa118adff2c4"
+    }
+  ],
+  "id": "bld_kit_song_southern_guardhouse",
+  "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_guardhouse_review2_try1.png",
+  "source_sha256": "a7b98240322310e6a865192b1402878b1a9e9a4ffc85d0ef114cabe24d9fd1de"
+}

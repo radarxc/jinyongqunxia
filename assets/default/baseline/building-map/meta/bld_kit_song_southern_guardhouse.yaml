@@ -1,0 +1,81 @@
+id: bld_kit_song_southern_guardhouse
+status: candidate
+building:
+  type: bld_kit_song_southern_guardhouse
+  footprint: [7, 5]
+  anchor: &id001 [245.9631, 291.3573]
+  era: song_southern
+anchor_px: *id001
+footprint_m: [7, 5]
+logical_footprint_polygon_px:
+- [53.9631, 275.3573]
+- [277.9631, 387.3573]
+- [437.9631, 307.3573]
+- [213.9631, 195.3573]
+collision_polygon_m:
+- [0, 0]
+- [7, 0]
+- [7, 5]
+- [0, 5]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [54, 119]
+- [438, 119]
+- [438, 392]
+- [54, 392]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 4.4
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 3}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_southern_guardhouse.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [384, 192]
+  ground_width_px: 384
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [83, 579]
+    front: [883, 997]
+    right: [1442, 709]
+  source_axis_slopes: [0.5225, -0.5152057245080501]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.4311270125223614
+  expected_width_depth_ratio: 1.4
+  ratio_relative_error: 0.02223358037311529
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [512, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 204654
+  alpha_partial_pixels: 56660
+  alpha_opaque_pixels: 830
+  alpha_near_opaque_pixels: 55404
+  alpha_nonzero_bbox: [53, 118, 441, 393]
+  transparent_margins_px: [53, 118, 71, 119]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_southern_guardhouse.png
+  source_sha256: 2ad029d77ba7cab756fa24df602150ab02a01a6706ee33132f72bbc5ca73cce5
+  source_size: [1536, 1024]
+  crop_box: [80, 30, 1516, 1004]
+  uniform_scale_requested: 0.282560706401766
+  resized_size: [406, 275]
+  rounded_effective_scale: [0.2827298050139276, 0.28234086242299794]
+  paste_offset: [53, 118]
+  final_file: bld_kit_song_southern_guardhouse.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

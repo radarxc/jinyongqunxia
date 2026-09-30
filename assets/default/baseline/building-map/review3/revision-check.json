@@ -1,0 +1,161 @@
+{
+  "revision": "review3",
+  "asset": "bld_kit_song_dali_wangfu",
+  "new_calls": 1,
+  "selected_new": 1,
+  "rejected_new": 0,
+  "superseded_old": 1,
+  "building_candidates": 106,
+  "building_selected": 38,
+  "building_unselected": 68,
+  "all_candidates_including_plants": 124,
+  "all_selected": 52,
+  "all_unselected": 72,
+  "unchanged_other_selected_pngs": 51,
+  "unchanged_manifest_stanzas": 37,
+  "unchanged_preview_articles": 37,
+  "unchanged_props_directory": true,
+  "unchanged_prompt_template": true,
+  "unchanged_review2_directory": true,
+  "changed_existing_files": [
+    "assets/default/baseline/building-map/preview.html",
+    "assets/default/baseline/building-map/file-inventory.json",
+    "assets/default/baseline/building-map/manifest.yaml",
+    "assets/default/baseline/building-map/check-results.json",
+    "assets/default/baseline/building-map/bld_kit_song_dali_wangfu.png",
+    "assets/default/baseline/building-map/meta/bld_kit_song_dali_wangfu.yaml",
+    "assets/default/baseline/building-map/meta/bld_kit_song_dali_wangfu.entry.json",
+    "assets/default/baseline/building-map/sources/bld_kit_song_dali_wangfu.json",
+    "assets/default/baseline/building-map/sources/bld_kit_song_dali_wangfu.png",
+    "tools/agents/reports/TOWN-buildings.md"
+  ],
+  "rebuilt_building_pixel_matches": 38,
+  "unique_references_checked": 17,
+  "references": {
+    "assets/default/baseline/building/ref_sect_shaolin__ch01_base01.png": "b109e6d771320b80f97750d1fc612f1a26f1da1e8bd5d5d0baca7c27cffa256f",
+    "assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png": "f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d",
+    "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_yamen_pre_review2.png": "34ccf4cea9c97099ebe597beb96333f3e83f29bc6deb4a21c1a2f156159bf698",
+    "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_pre_review3.png": "408e10d7a115772a6eafbe0d3998f4d55a711aaa98e937185e41f2377f186c68",
+    "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef",
+    "assets/default/baseline/building-map/bld_kit_song_dali_manor.png": "5b8d9b6ccd2c961ee9579ba01b3e2dc7199af55e9261eb6b6eb16ed76c11a741",
+    "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_stable_pre_review2.png": "a2a8ef47484ee7dee826d363cf516774642387c6d9236f73ca77040280c84c9c",
+    "assets/default/baseline/building-map/review2/dali_wharf_projection_guide.png": "68d705f4acd167d2f3bfd0d6646eb4b7e8c551483826d84f16769c1342720ceb",
+    "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_courtyard_try1.png": "7d1083a4c9541b49ed4b9f58b2c7fc1076b20bd35db9b69f4e4d94a6e5f20747",
+    "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_review2_try2.png": "e106a6f6cfccb8cac215c55aa72fa583adb58504416b4fd21f241402ab9a7f20",
+    "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try3.png": "9972180c610e8d8a5a5765d729cb9459766258a0d0afab09363c17f2a343f849",
+    "assets/default/baseline/building-map/sources/bld_kit_song_southern_biaoju.png": "921ccbedcebf1d91f794f192c5460e3fbe99870f4140212e132ee083b452e0ca",
+    "assets/default/baseline/building-map/review2/bld_kit_song_southern_biaoju_guide.png": "63e1501ea0fba3a17ef058d68c0e1e1eb1ddd7b20c31014f2038e411f816e2bb",
+    "assets/default/baseline/building-map/review2/bld_kit_song_southern_casino_geometry_guide.png": "70c53acef7b559242b7de8691fc794fde20b75427635d3b61cd4c1a0cd9e5afb",
+    "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_guardhouse_review2_try1.png": "a7b98240322310e6a865192b1402878b1a9e9a4ffc85d0ef114cabe24d9fd1de",
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/review2/southern_stable_geometry_guide.png": "813420415ee6a687cc80a794253f06b3812c60f540a4cbf82879b805138810a1",
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/review2/southern_wharf_geometry_guide.png": "e0a586ec1cc81c539d171dc78a64f4c36b07f065b3030716341402c6afd2c508"
+  },
+  "source_sha256": "03e1af736dd0242c0b44bce0541a0b1516d09b54b765c1d81edaac8b267c9a39",
+  "final_sha256": "02c01927f4a3ef9cb709adc104be9c12e3934662023f3594fbf8ee84cfd39754",
+  "source_center_px": [
+    772.0,
+    603.5
+  ],
+  "building": {
+    "type": "bld_kit_song_dali_wangfu",
+    "footprint": [
+      18,
+      14
+    ],
+    "anchor": [
+      655.6553,
+      538.4565
+    ],
+    "era": "song_dali"
+  },
+  "processing": {
+    "source_archive": "sources/bld_kit_song_dali_wangfu.png",
+    "source_sha256": "03e1af736dd0242c0b44bce0541a0b1516d09b54b765c1d81edaac8b267c9a39",
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box": [
+      24,
+      30,
+      1521,
+      1006
+    ],
+    "uniform_scale_requested": 0.6890982503364738,
+    "resized_size": [
+      1032,
+      673
+    ],
+    "rounded_effective_scale": [
+      0.6893787575150301,
+      0.6895491803278688
+    ],
+    "paste_offset": [
+      140,
+      143
+    ],
+    "final_file": "bld_kit_song_dali_wangfu.png",
+    "steps": [
+      "crop to alpha>0 bounding box",
+      "uniform LANCZOS resize; dimensions rounded to nearest px",
+      "paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding"
+    ]
+  },
+  "geometry_qa": {
+    "source_corners_px": {
+      "left": [
+        29,
+        559
+      ],
+      "front": [
+        871,
+        998
+      ],
+      "right": [
+        1515,
+        648
+      ]
+    },
+    "source_axis_slopes": [
+      0.5213776722090261,
+      -0.5434782608695652
+    ],
+    "axis_tolerance": 0.03,
+    "axis_pass": false,
+    "source_width_depth_ratio": 1.3074534161490683,
+    "expected_width_depth_ratio": 1.2857142857142858,
+    "ratio_relative_error": 0.016908212560386326,
+    "ratio_tolerance_suggestion": 0.1,
+    "ratio_pass": true,
+    "measurement_uncertainty_source_px": 3,
+    "precision_note": "人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。"
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      1312,
+      960
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 893146,
+    "alpha_partial_pixels": 365438,
+    "alpha_opaque_pixels": 936,
+    "alpha_near_opaque_pixels": 357484,
+    "alpha_nonzero_bbox": [
+      140,
+      143,
+      1172,
+      816
+    ],
+    "transparent_margins_px": [
+      140,
+      143,
+      140,
+      144
+    ],
+    "border_alpha_max": 0
+  }
+}

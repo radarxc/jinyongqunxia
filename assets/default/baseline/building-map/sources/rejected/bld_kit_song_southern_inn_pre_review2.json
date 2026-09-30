@@ -1,0 +1,76 @@
+{
+  "id": "bld_kit_song_southern_inn",
+  "type": "bld_kit_song_southern_inn",
+  "w": 12,
+  "h": 9,
+  "subject": "客栈",
+  "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Footprint exactly 12 by 9 one-metre cells. Ground edge running down-right (left corner to front corner) is 12 units and edge running up-right (front corner to right corner) is 9 units. Therefore their horizontal lengths ratio MUST be 1.3333, both slopes exactly 0.5. Subject: One Southern Song Lin'an commercial inn compound, spacious two-storey timber and plaster main building with grey tiled roof, guest balconies and a sheltered entrance facing southwest, compact central yard, travel baskets and rolled bedrolls near the doorway, no large signboards.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-bc066764-e70f-40ff-989f-b46446cfd515.png",
+  "source_sha256": "740471fca8e998963abb80b1d05c9650ae4d54c17401993713112282a08f8f13",
+  "created": "2026-09-30",
+  "visual_review": "首版已 view_image original：完整历史木构单体，主入口左下，无文字人物现代物，左上光源。预览背景RGB光晕经PIL实测为alpha=0，非实心背景。保留首版沉稳色彩。底面边线及占地比例存在残差，精确量点由 root 复核，不声称严格通过。",
+  "candidate_count": 2,
+  "candidate_history": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-5477abc3-62d4-4ad3-83d3-d6f4cb12c1e3.png",
+      "prompt": "Use case: background-extraction. This is a game sprite. Remove the ENTIRE background halo, colored mist, blurry glow, surrounding blurred silhouette and all backdrop pixels. Return ONLY the sharply bounded building or market stall including its thin paved footprint, on genuine fully transparent RGBA background. Outside its solid silhouette alpha MUST be zero, no glowing border or large shadows. Preserve the pictured structure, viewpoint, colors, texture, light, proportions and all architectural details exactly. Keep the entire structure uncut, add 10 percent empty transparent margins on all four sides. Do not add anything, do not add shadows, no white or black or checkerboard background.",
+      "selection": "unselected",
+      "reason": "误判透明像素RGB预览光晕而追加去背景；第二版更饱和，未改善投影，选首版。",
+      "source_sha256": "6ab153450504d501e6055076c343dd680434c0e427f45e23f350ef18e3eca54f",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_try2.png",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/sources/bld_kit_song_southern_inn.png",
+          "sha256": "740471fca8e998963abb80b1d05c9650ae4d54c17401993713112282a08f8f13",
+          "role": "edit target：本条首版候选PNG，未获作者审批"
+        }
+      ]
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        36,
+        594
+      ],
+      [
+        730,
+        970
+      ]
+    ],
+    [
+      [
+        730,
+        970
+      ],
+      [
+        1496,
+        583
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      36,
+      594
+    ],
+    "front": [
+      730,
+      970
+    ],
+    "right": [
+      1496,
+      583
+    ]
+  },
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "alpha_extrema": [
+    0,
+    254
+  ]
+}

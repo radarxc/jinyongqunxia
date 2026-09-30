@@ -1,0 +1,137 @@
+{
+  "id": "bld_kit_song_southern_yamen",
+  "type": "bld_kit_song_southern_yamen",
+  "w": 16,
+  "h": 12,
+  "subject": "官署衙门",
+  "prompt": "Use case: precise-object-edit. Convert this historical escort depot into a Southern Song magistrate government YAMEN. Keep the exact reference ground geometry, perimeter layout, camera angle, roof direction, front gate position, base outline, full building proportions absolutely unchanged. This reference already has the correct2:1 orthographic geometry with both base edges at equal +/-26.565 degree angles. Replace wooden cargo cart and ALL crates with a single modest drum stand, convert the bare earth to stone-paved administrative court, make the existing rear hall slightly more formal with reddish brown columns but retain its massing, remove cargo bags from side room. Keep same muted natural grey tile, warm plaster and brown timber, upper-left light. Ground footprint intended16x12 (1.333), close to this14x11 reference (1.273); preserve contour rather than changing camera. No ornate imperial palace, no text/signboards, no people, no modern objects. True transparent RGBA background and minimum10% clear margin, preserve complete eaves. No halo or thick pedestal. Do not change the base slopes or ground corner arrangement.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/sources/bld_kit_song_southern_biaoju.png",
+      "role": "本轮未获审批候选，投影/材质参考",
+      "sha256": "921ccbedcebf1d91f794f192c5460e3fbe99870f4140212e132ee083b452e0ca"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-89765852-9ee6-4644-bef8-651f716e4b7f.png",
+  "source_sha256": "7708d3c3cec6f07b4b2bd622375e62dd6131f3cff11a71ccda97abbc3491d3a1",
+  "created": "2026-09-30T10:51:22.604887+00:00",
+  "visual_review": "第2次运行返修：内置image_gen真实重出主体；逐张view_image及64×32占地叠图，宽深关系和两轴目视协调，左上光、暖灰瓦木石、宋意象，无文字人物现代物；无裁切。严格几何数值见geometry_qa；不将轻微告警当成已通过。",
+  "candidate_count": 6,
+  "candidate_history": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-34522a23-2478-49a2-af66-83bd2228d8e6.png",
+      "prompt": "Use case: background-extraction. This is a game sprite. Remove the ENTIRE background halo, colored mist, blurry glow, surrounding blurred silhouette and all backdrop pixels. Return ONLY the sharply bounded building or market stall including its thin paved footprint, on genuine fully transparent RGBA background. Outside its solid silhouette alpha MUST be zero, no glowing border or large shadows. Preserve the pictured structure, viewpoint, colors, texture, light, proportions and all architectural details exactly. Keep the entire structure uncut, add 10 percent empty transparent margins on all four sides. Do not add anything, do not add shadows, no white or black or checkerboard background.",
+      "selection": "unselected",
+      "reason": "误判透明像素RGB预览光晕而追加去背景；第二版更饱和，未改善投影，选首版。",
+      "source_sha256": "65259217f07ee5da39ba754a62c6e34f7c221a85cc2690404c9498f863586579",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_try2.png",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_pre_review2.png",
+          "sha256": "395ee773487b55dfcd3de06492c0433acb9a5d75b7d80ba8b70f870b02b9b779",
+          "role": "edit target：本条首版候选PNG，未获作者审批"
+        }
+      ]
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-dae703d0-64b5-405a-96cd-e64316150b2a.png",
+      "source_sha256": "395ee773487b55dfcd3de06492c0433acb9a5d75b7d80ba8b70f870b02b9b779",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_pre_review2.png",
+      "selection": "rejected_review1",
+      "reason": "合入审核判退：可见底面比例或双轴方向不合登记占地。",
+      "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Footprint exactly 16 by 12 one-metre cells. Ground edge running down-right (left corner to front corner) is 16 units and edge running up-right (front corner to right corner) is 12 units. Therefore their horizontal lengths ratio MUST be 1.3333, both slopes exactly 0.5. Subject: One Southern Song local government magistrate-office compound, single-storey formal red-brown timber hall at back, modest side offices and a plain enclosed administrative forecourt, solemn grey clay tiled roofs and restrained dougong, broad entrance facing southwest, empty stone court and simple drum stand, no writing or emblems.",
+      "references": []
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-fc9ca441-aabf-423e-89f4-72afccf18a96.png",
+      "source_sha256": "865b3ac5c7a74485c2c24f5802e36d19e717c71c04f5bd87f8c7fa04dadd61e9",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try1.png",
+      "prompt": "Use case: historical-scene. Produce ONE finished realistic Southern Song Lin'an magistrate yamen compound game sprite, genuine transparent RGBA background. Reference image only supplies warm grey tiles, weathered brown wood, plaster and stone texture, architectural character; REDESIGN its geometry. CRITICAL technical drawing projection: exact 2:1 orthographic isometric, camera yaw45 pitch30, parallel edges slope +0.5 / -0.5, never perspective. Ground rectangle 16 units wide by12 deep. On a 1536x1024 canvas, the FOUR ground corners MUST be LEFT(180,550), FRONT(852,886), RIGHT(1356,634), BACK(684,298). Front courtyard wall from LEFT to FRONT is distinctly longer (horizontal672) than adjacent right wall FRONT to RIGHT (horizontal504); both axes equal steepness, ratio1.333. Use those exact visible thin stone footprint corners, all walls/buildings follow those axes. A modest single storey red-brown timber government hall in rear, grey tile roofs, one side office, an open paved courtyard, plain front gate within LEFT-FRONT wall, small drum stand, no writing. Low plaster perimeter walls hug footprint and must leave their two front base edges sharply visible. No protruding foreground steps outside rectangle, no thick pedestal, no massive vertical earth slab, keep ground almost paper-thin. Full roofs complete, minimum10% transparent margin. Upper-left sunlight, short right-down contact shadows. Muted grounded realism consistent with reference, no cartoon, no modern item, no Ming/Qing ornate palace, no people, no text/logo/watermark, no numbers/lines/grid in final art. Geometry more important than copying reference layout.",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_pre_review2.png",
+          "role": "本轮未获审批候选，投影/材质参考",
+          "sha256": "395ee773487b55dfcd3de06492c0433acb9a5d75b7d80ba8b70f870b02b9b779"
+        }
+      ],
+      "reason": "旧图材质参考后两轴仍不对称，未选。",
+      "selection": "rejected_review2"
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-c80831c1-319b-4bd6-acf1-e0b4a0ac48f5.png",
+      "source_sha256": "d5ce190895f5a59095021b0d2f51cb921e421cf29e9db543700f3aeacbaa5f9b",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try2.png",
+      "prompt": "Use case: historical-scene. Image1 is an EXACT geometric ground-plane template, not a style guide. Build a single realistic Southern Song Lin'an local government yamen ON THIS EXACT PARALLELOGRAM; keep its four corners and two visible lower edges unchanged in screen position and angle. Size1536x1024. Ground corners LEFT(150,540), FRONT(822,876), RIGHT(1326,624), BACK(654,288). Do NOT square, rotate, tilt, or deepen the rectangle. All architecture horizontal axes precisely parallel to these outline edges, orthographic no perspective. The long front wall LEFT-FRONT is 16 units and the right wall FRONT-RIGHT is12, slopes+.5 and-.5, width/depth1.3333. Transform the tan area to pale weathered stone paving, very thin base. Add low plaster walls and a plain open tiled gateway halfway on left-front edge, main single storey timber magistrate hall at rear, one small side office, small drum stand inside open court. All walls hug this exact contour, eaves complete. Photo-realistic natural wood, handmade grey tile, warm off-white plaster, muted brown stone. No persons, no text, no modern items, no Ming/Qing fashion, no fantasy, no labels, no diagram lines. REMOVE the guide's white background, outlines and all corner words; output genuine transparent RGBA. Building and its entire silhouette must be within canvas with minimum80px empty space. Upper-left daylight and small down-right contact shadow. Ground base stays exactly on given template. Do not copy or reference earlier images.",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/review2/bld_kit_song_southern_yamen_guide.png",
+          "role": "geometry guide：自制占地轮廓QA图，非生成资产",
+          "sha256": "ea0ddb08c407be49ceab00ab722be51d3872d995cb45f7712f09d780f702d7fc"
+        }
+      ],
+      "reason": "占地比例仍偏宽约10%，未选。",
+      "selection": "rejected_review2"
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-40800537-ace7-412e-a93b-3e644ddac19e.png",
+      "source_sha256": "9ed4b9fc800c086919c38272c5e170a739444b3b99aaf2485cf533da0948515b",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try3.png",
+      "prompt": "Use case: precise-object-edit. Correct ONLY the perspective geometry of this Southern Song yamen compound, keep its architecture, wood/plaster/tile, drum, courtyard, plants, gate and upper-left light. The two ground axes MUST have exact equal steepness +0.5 and -0.5. Rebuild compound on exact thin base with LEFT(139,526), FRONT(868,890), RIGHT(1415,616). This moves the front ground corner left by30px and down8px, moves the right corner up16px. Ground width/depth16/12=1.333, not1.47. Every perimeter wall, beam and ground paving parallel to those adjusted axes, no perspective convergence. In particular steepen long front wall very slightly and shorten it in screen width while increasing short right side width. Actual structure must reproject, not just padding. Both front base borders visible, sharp plain stone foundation, no thick slab, no extra platform. Preserve full roof and minimum10% transparent margin, true transparent RGBA. No text/numbers/grid/watermark/people/modern objects. Precise2:1 isometric orthographic. Make this visibly geometrically consistent for grid placement.",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try2.png",
+          "role": "本轮未获审批候选，投影/材质参考",
+          "sha256": "d5ce190895f5a59095021b0d2f51cb921e421cf29e9db543700f3aeacbaa5f9b"
+        }
+      ],
+      "reason": "编辑后左轴仍明显偏浅，未选。",
+      "selection": "rejected_review2"
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        42,
+        520
+      ],
+      [
+        847,
+        933
+      ]
+    ],
+    [
+      [
+        847,
+        933
+      ],
+      [
+        1492,
+        590
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      42,
+      520
+    ],
+    "front": [
+      847,
+      933
+    ],
+    "right": [
+      1492,
+      590
+    ]
+  },
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "review2_overlay": "review2/bld_kit_song_southern_yamen_overlay.png"
+}

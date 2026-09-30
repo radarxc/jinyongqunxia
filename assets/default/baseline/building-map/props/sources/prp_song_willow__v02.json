@@ -1,0 +1,95 @@
+{
+  "id": "prp_song_willow__v02",
+  "subject": "A single mature Chinese weeping willow tree with a fuller dense canopy of cascading narrow-leaf branchlets, still visible transparent openings between leaf groups. Compact single trunk with short clean root flare; healthy muted green. Dense-branch variant v02; distinguish it clearly from a sparse willow. Visual envelope ground span2m, height4m; final canvas136x229, root anchor68,193.",
+  "prompt": "Edit this generated willow sprite only. Keep the same one single dense weeping willow tree, natural muted green leaves, realistic bark, branching character, upper-left neutral light and historical game-art rendering. Critical geometric repair: ALL hanging foliage must end comfortably ABOVE the lowest visible root-contact line. Shorten and lift the lowest cascading leafy branchlets, particularly the long lower-right trailing branch, so the lowest leaf tip is at least 12 percent of the total tree height ABOVE the lowest root tip. The root flare remains the only bottommost object. Do not hide or move the root into a pot. Complete crown and every root tip must remain visible with at least 8 percent transparent padding at all four sides. TRUE transparent RGBA background and leaf gaps. Absolutely no soil, mound, ground, grass, pedestal, cast/contact shadow, background haze, letters or grid. Orthographic yaw45/pitch30 is the target. This is a dense v02 variant of prp_song_willow, for later136x229 canvas and bottom-root anchor(68,193). Preserve image alpha; no baked checkerboard.",
+  "negative": "ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow, contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI, people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic, cropped crown or roots",
+  "references": [
+    {
+      "id": "prp_song_willow__v02__attempt01",
+      "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/props/sources/prp_song_willow__v02__attempt01.png",
+      "input_path": "/Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-731b7a2c-4474-40f1-b8fb-eea259ab1ce7.png",
+      "sha256": "47a60195bc09460fa64a00433d2ec2e6d63f69f4453571555274cecde2268159",
+      "status": "rejected",
+      "role": "edit target; shorten low hanging foliage while preserving tree rendering"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-028bf38b-d97e-47be-a4b7-b4e7abf2f5eb.png",
+  "created": "2026-09-30T09:32:39.077Z",
+  "status": "candidate",
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "candidate_count": 2,
+  "rejections": [
+    {
+      "file": "prp_song_willow__v02__attempt01.png",
+      "sha256": "47a60195bc09460fa64a00433d2ec2e6d63f69f4453571555274cecde2268159",
+      "reason": "原图右下垂叶实际低于可见根部接触线约40px；不是透明噪点，须图像工具修正。"
+    }
+  ],
+  "asset_id": "prp_song_willow",
+  "variant_key": "v02",
+  "era": "song_southern",
+  "source_size": [
+    966,
+    1628
+  ],
+  "size": "966x1628",
+  "sha256": "3a1cc82636f997cca62f12d3231047ea2159af094b68dd3c7ad9b4ebcb0e20af",
+  "source_sha256": "3a1cc82636f997cca62f12d3231047ea2159af094b68dd3c7ad9b4ebcb0e20af",
+  "root_source_px": [
+    544.5,
+    1562
+  ],
+  "root_measurement_note": "人工view确认最下可见前根；追踪与实体连续的抗锯齿末端至alpha>=3的最后一行，y取该行下边界。x为该前根末端横向中心；不是画布中心，也不是远端alpha1–2噪点的bbox底边。约±3源像素不确定性。",
+  "root_source_uncertainty_px": 3,
+  "alpha_bbox": [
+    0,
+    15,
+    966,
+    1628
+  ],
+  "alpha_bbox_gt2": [
+    19,
+    16,
+    956,
+    1562
+  ],
+  "alpha_bbox_192": [
+    28,
+    21,
+    951,
+    1558
+  ],
+  "alpha_mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "alpha_zero_pixels": 607879,
+  "alpha_partial_pixels": 964494,
+  "alpha_opaque_pixels": 275,
+  "below_root_nonzero_pixels": 24,
+  "below_root_alpha_max": 1,
+  "below_root_note": "只剩alpha<=2远端或抗锯齿散点，无实叶/地面影；原图未裁切、未删除、未修改任何alpha。纯几何透明底修边由root处理并登记。",
+  "target_size_px": [
+    136,
+    229
+  ],
+  "target_anchor_px": [
+    68,
+    193
+  ],
+  "footprint_cells": {
+    "w": 1,
+    "h": 1
+  },
+  "visual_bounds_m": {
+    "w": 2,
+    "d": 2,
+    "h": 4
+  },
+  "placement_domain": "land",
+  "collision": "none",
+  "visual_review": "已view_image original逐张检查：单个植被物件形态，无人物/文字/盆/地台/土块/背景或烘焙地面影；疏密或冠形变体可辨。写实南宋江南植物意象（原创扩展），物种和历史栽植（待考）。左上受光；yaw45/pitch30为提示目标，未由树冠反推精确机位。根contact为可见前根末端抗锯齿轮廓的下缘，不把远端低alpha噪点计作根。 原版实叶垂过根线，已使用image_gen缩短低垂叶，修正版最低实叶明显高于根；原图作为attempt01保留。",
+  "postprocessing": "none: raw source archived byte-for-byte; final geometric fitting delegated to root"
+}

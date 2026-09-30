@@ -1,0 +1,81 @@
+id: bld_kit_song_southern_restaurant
+status: candidate
+building:
+  type: bld_kit_song_southern_restaurant
+  footprint: [12, 9]
+  anchor: &id001 [430.9532, 539.848]
+  era: song_southern
+anchor_px: *id001
+footprint_m: [12, 9]
+logical_footprint_polygon_px:
+- [94.95319999999998, 515.848]
+- [478.9532, 707.848]
+- [766.9531999999999, 563.848]
+- [382.9532, 371.84799999999996]
+collision_polygon_m:
+- [0, 0]
+- [12, 0]
+- [12, 9]
+- [0, 9]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [95, 87]
+- [767, 87]
+- [767, 713]
+- [95, 713]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 11.55
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 5}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_southern_restaurant.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [672, 336]
+  ground_width_px: 672
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [20, 885]
+    front: [703, 1225]
+    right: [1248, 935]
+  source_axis_slopes: [0.4978038067349927, -0.5321100917431193]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.2532110091743118
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.06009174311926613
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [864, 800]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 435436
+  alpha_partial_pixels: 254654
+  alpha_opaque_pixels: 1110
+  alpha_near_opaque_pixels: 249886
+  alpha_nonzero_bbox: [93, 85, 770, 715]
+  transparent_margins_px: [93, 85, 94, 85]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_southern_restaurant.png
+  source_sha256: cd2dc41963f836bbbaa2770943a15ace1e6efc87d4beee4d764c6473f54a03c8
+  source_size: [1254, 1254]
+  crop_box: [16, 79, 1254, 1230]
+  uniform_scale_requested: 0.5472312703583062
+  resized_size: [677, 630]
+  rounded_effective_scale: [0.5468497576736672, 0.5473501303214596]
+  paste_offset: [93, 85]
+  final_file: bld_kit_song_southern_restaurant.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

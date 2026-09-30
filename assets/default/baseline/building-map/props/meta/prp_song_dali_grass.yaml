@@ -1,0 +1,92 @@
+asset_id: prp_song_dali_grass
+era: song_dali
+placement_domain: land
+footprint_cells: {w: 1, h: 1}
+visual_bounds_m: {w: 1, d: 1, h: 0.5}
+collision: none
+projection_contract:
+  yaw_deg: 45
+  pitch_deg: 30
+  tile_px: [64, 32]
+  light: screen_upper_left
+  ground_shadow: separate_runtime_layer
+variants:
+- key: v01
+  file: prp_song_dali_grass__v01.png
+  size_px: [72, 60]
+  anchor_px: [36, 40]
+  status: candidate
+  pixel_qa:
+    mode: RGBA
+    size_px: [72, 60]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 2897
+    alpha_partial_pixels: 1382
+    alpha_opaque_pixels: 41
+    alpha_near_opaque_pixels: 506
+    alpha_bbox: [5, 4, 67, 40]
+    transparent_margins_px: [5, 4, 5, 20]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_grass__v01.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-2e876a37-e39d-4af7-85fe-a00b61ea3aa7.png
+    source_sha256: 0c69ae6e8f3a13075d1d80aa7f3741f4a3959ce51798aa7af448b4454a6c89ba
+    source_size: [1536, 1024]
+    crop_box: [125, 31, 1412, 774]
+    source_alpha_bbox: [40, 31, 1448, 1024]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 49
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.04845222072678331
+    rounded_effective_scale: [0.048174048174048176, 0.04845222072678331]
+    resized_size: [62, 36]
+    paste_offset: [5, 4]
+    source_measured_root_px: [772, 768]
+    source_conservative_ground_y: 774
+    transformed_measured_root_px: [36.1686, 39.7093]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [0.1686, -0.2907]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  root_within_one_px: true
+- key: v02
+  file: prp_song_dali_grass__v02.png
+  size_px: [72, 60]
+  anchor_px: [36, 40]
+  status: candidate
+  pixel_qa:
+    mode: RGBA
+    size_px: [72, 60]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 3554
+    alpha_partial_pixels: 763
+    alpha_opaque_pixels: 3
+    alpha_near_opaque_pixels: 62
+    alpha_bbox: [12, 4, 63, 40]
+    transparent_margins_px: [12, 4, 9, 20]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_grass__v02.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-fe859ba2-49a2-4430-a98a-c7f660c912c7.png
+    source_sha256: ab8000cbeb2930744236260c5a9be205582fa1283172e0724fc3d3ebcfcb6822
+    source_size: [1536, 1024]
+    crop_box: [155, 40, 1465, 963]
+    source_alpha_bbox: [65, 35, 1510, 983]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 90
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.0390032502708559
+    rounded_effective_scale: [0.038931297709923665, 0.0390032502708559]
+    resized_size: [51, 36]
+    paste_offset: [12, 4]
+    source_measured_root_px: [760, 957]
+    source_conservative_ground_y: 963
+    transformed_measured_root_px: [35.5534, 39.766]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [-0.4466, -0.234]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  root_within_one_px: true
+status: candidate
+release_ready: false
+runtime_note: PNG母版，prop/model公告板由TOWN-render构造；本轮未交GLB；植物Y与s为上游建议包络。

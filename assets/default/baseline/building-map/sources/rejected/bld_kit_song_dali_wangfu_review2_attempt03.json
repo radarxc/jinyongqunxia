@@ -1,0 +1,20 @@
+{
+  "short": "wangfu",
+  "round": 3,
+  "prompt": "Use case: sketch-to-render. Treat supplied diamond as a CAD ground plan and render exactly on it a modest Dali kingdom royal residence in 1093. Keep the four ground footprint corners EXACTLY fixed. THE TWO FRONT EDGES ARE EQUALLY STEEP, slope +0.5 and -0.5. Ground corners LEFT(160,540), FRONT(844,882), RIGHT(1376,616), BACK(692,274); 18x14 rectangular plan. No perspective. Vertical columns vertical. Low perimeter walls follow these four precise edges; gate in LEFT-FRONT wall, single-story timber main hall along rear edge, small side pavilions, open stone courtyard with camellias. Grey tiled roofs, pale cream clay-plaster walls, dark aged wooden columns, modest Buddhist architectural details. Detailed realistic painted game map sprite, tasteful low-saturation historic Chinese architecture, no ornate imperial grandeur. Illumination upper left. True TRANSPARENT background, opaque structure. Replace diagram colors with real stone courtyard ground and buildings; no white background, red/blue lines or dots should remain. The floor must have exactly the input outline, thin stone border without thick platform. The entire compound and roofs remain within canvas margins, no extra terrain, people, writing, plaques, text, modern elements, watermark.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-da5fee1d-92da-4bf9-92a7-df4cb9074ca8.png",
+  "reason": "两轴仍不对称约+0.470/-0.570，淘汰",
+  "ref": "guide",
+  "archive": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt03.png",
+  "source_sha256": "76c433796becba6b48c2d1a461ad5282a8c329015d98a1e09d7cc4206bcd09b7",
+  "references": [
+    {
+      "id": "dali_wangfu_projection_guide",
+      "file": "assets/default/baseline/building-map/review2/dali_wangfu_projection_guide.png",
+      "sha256": "ab34b4da19d69f9a3450c4daa44c480af2a5d0d6af8d2e95b43a88c6a8ef940a",
+      "role": "返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）"
+    }
+  ],
+  "status": "rejected",
+  "created": "2026-09-30T10:49:21.048530+00:00"
+}

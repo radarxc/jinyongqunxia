@@ -1,0 +1,81 @@
+id: bld_kit_song_dali_market_stall
+status: candidate
+building:
+  type: bld_kit_song_dali_market_stall
+  footprint: [3, 2]
+  anchor: &id001 [254.6465, 284.282]
+  era: song_dali
+anchor_px: *id001
+footprint_m: [3, 2]
+logical_footprint_polygon_px:
+- [174.6465, 276.282]
+- [270.6465, 324.282]
+- [334.6465, 292.282]
+- [238.6465, 244.28199999999998]
+collision_polygon_m:
+- [0, 0]
+- [3, 0]
+- [3, 2]
+- [0, 2]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [175, 189]
+- [334, 189]
+- [334, 322]
+- [175, 322]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 2.43
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 1}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_dali_market_stall.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [160, 80]
+  ground_width_px: 160
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [282, 644]
+    front: [854, 938]
+    right: [1288, 753]
+  source_axis_slopes: [0.513986013986014, -0.42626728110599077]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.3179723502304148
+  expected_width_depth_ratio: 1.5
+  ratio_relative_error: 0.12135176651305679
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [512, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 250427
+  alpha_partial_pixels: 11042
+  alpha_opaque_pixels: 675
+  alpha_near_opaque_pixels: 10156
+  alpha_nonzero_bbox: [140, 186, 337, 325]
+  transparent_margins_px: [140, 186, 175, 187]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_dali_market_stall.png
+  source_sha256: 92482736b6f6837926393caa0322d05c334eefa6d61f58202282057aeb182eea
+  source_size: [1536, 1024]
+  crop_box: [65, 17, 1522, 1024]
+  uniform_scale_requested: 0.15904572564612326
+  resized_size: [232, 160]
+  rounded_effective_scale: [0.15923129718599863, 0.15888778550148958]
+  paste_offset: [140, 176]
+  final_file: bld_kit_song_dali_market_stall.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

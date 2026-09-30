@@ -1,0 +1,81 @@
+id: bld_kit_song_southern_stable
+status: candidate
+building:
+  type: bld_kit_song_southern_stable
+  footprint: [9, 7]
+  anchor: &id001 [451.6315, 385.2995]
+  era: song_southern
+anchor_px: *id001
+footprint_m: [9, 7]
+logical_footprint_polygon_px:
+- [195.63150000000002, 369.2995]
+- [483.6315, 513.2995000000001]
+- [707.6315, 401.2995]
+- [419.6315, 257.2995]
+collision_polygon_m:
+- [0, 0]
+- [9, 0]
+- [9, 7]
+- [0, 7]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [196, 111]
+- [713, 111]
+- [713, 512]
+- [196, 512]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 7.0
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 4}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_southern_stable.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [512, 256]
+  ground_width_px: 512
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [226, 653]
+    front: [879, 976]
+    right: [1373, 738]
+  source_axis_slopes: [0.4946401225114854, -0.4817813765182186]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.3218623481781377
+  expected_width_depth_ratio: 1.2857142857142858
+  ratio_relative_error: 0.02811515969410716
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [832, 608]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 383082
+  alpha_partial_pixels: 121888
+  alpha_opaque_pixels: 886
+  alpha_near_opaque_pixels: 119914
+  alpha_nonzero_bbox: [156, 108, 715, 515]
+  transparent_margins_px: [156, 108, 117, 93]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_southern_stable.png
+  source_sha256: e2e588576cc298c0046e2fe4b5b424c61ee1fedfe9bb35308510c8d301a3810b
+  source_size: [1536, 1024]
+  crop_box: [0, 21, 1437, 1006]
+  uniform_scale_requested: 0.44638186573670446
+  resized_size: [641, 440]
+  rounded_effective_scale: [0.44606819763395966, 0.4467005076142132]
+  paste_offset: [95, 84]
+  final_file: bld_kit_song_southern_stable.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

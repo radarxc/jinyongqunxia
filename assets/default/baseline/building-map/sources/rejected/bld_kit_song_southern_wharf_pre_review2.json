@@ -1,0 +1,59 @@
+{
+  "id": "bld_kit_song_southern_wharf",
+  "type": "bld_kit_song_southern_wharf",
+  "w": 10,
+  "h": 4,
+  "subject": "河埠外观",
+  "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Precise ground projection: footprint 10 x 4 m, two visible rectangular ground edges slope +0.500 and -0.500, each edge makes 26.565 degrees with horizontal, NOT standard 30-degree isometric edges. Down-right ground edge has length 10 units, up-right edge 4 units, horizontal ratio 2.5000. Subject: One Southern Song Lin'an long narrow stone river landing module, exact elongated 10 by 4 rectangular footprint, a short length of grey stone quay with shallow stair flight descending along the southwest-facing long edge, two modest wooden mooring posts and a neat coil of natural rope near an edge; NO water surface, NO boats, NO building, no huge pier, no deep earth slab. Thin flat ground footprint, surface details only, suitable to fit a separately rendered riverbank.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-44a9d454-a89e-4cbc-a791-8464c7d0520b.png",
+  "source_sha256": "165db42a3d9040275ad1548d2a1898c04baca5279efb60790588253bf1519027",
+  "created": "2026-09-30",
+  "visual_review": "已逐张 view_image original：灰瓦木构 / 河埠石阶材质写实，单体无字无人无现代物，入口或河阶向左下，左上光与短接触影，未裁边；真透明经PIL确认。底面双轴或外包比例有残差，河埠阶梯使底面不规则且明显比逻辑10x4更窄长；只作为candidate，精确拼接未通过。",
+  "candidate_count": 1,
+  "ground_edges_source_px": [
+    [
+      [
+        251,
+        322
+      ],
+      [
+        1315,
+        822
+      ]
+    ],
+    [
+      [
+        1315,
+        822
+      ],
+      [
+        1579,
+        706
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      251,
+      322
+    ],
+    "front": [
+      1315,
+      822
+    ],
+    "right": [
+      1579,
+      706
+    ]
+  },
+  "source_dimensions": [
+    1774,
+    887
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ]
+}

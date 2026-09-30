@@ -1,0 +1,20 @@
+{
+  "short": "wangfu",
+  "round": 4,
+  "prompt": "Precise camera correction of the supplied Dali palace city-map sprite. Keep building design and materials and 18 by14 plan. Current ground edges have slopes approximately +0.47 and -0.57; they must become +0.50 and -0.50. ORBIT THE CAMERA SLIGHTLY CLOCKWISE around the building to balance those edges; screen-left/front wall must become visibly STEEPER and screen-right/front wall must become SHALLOWER. Do not rotate the finished image: all vertical columns must stay exactly vertical. Reproject/redraw walls, roofs and paving coherently so both ground directions make the same 26.565 degree absolute screen angle. The front-left edge should have horizontal projection 1.286 times the front-right edge. Clean rectangular stone contact footprint, no thick base. Upper-left light. Whole sprite with transparent margin. TRUE RGBA transparent background, no extra scenery, no persons or text or watermarks. Return the same palace viewed from the precisely corrected 45degree yaw, 30degree elevation orthographic map camera.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-23e825e8-9af4-46b9-923d-b43b120a2293.png",
+  "reason": "双轴协调但整体过陡约+0.580/-0.600，择后续更贴网格者",
+  "ref": "wangfu3",
+  "archive": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt04.png",
+  "source_sha256": "c2dd3c7120bd1ffe7579b22919134748907115c2c9b7806b3ae6dfe849c2a59c",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_wangfu_review2_attempt03",
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt03.png",
+      "sha256": "76c433796becba6b48c2d1a461ad5282a8c329015d98a1e09d7cc4206bcd09b7",
+      "role": "返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）"
+    }
+  ],
+  "status": "rejected",
+  "created": "2026-09-30T10:49:21.050397+00:00"
+}

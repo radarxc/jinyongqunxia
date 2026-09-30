@@ -1,0 +1,81 @@
+id: bld_kit_song_dali_guardhouse
+status: candidate
+building:
+  type: bld_kit_song_dali_guardhouse
+  footprint: [6, 5]
+  anchor: &id001 [251.9279, 300.9868]
+  era: song_dali
+anchor_px: *id001
+footprint_m: [6, 5]
+logical_footprint_polygon_px:
+- [75.9279, 292.9868]
+- [267.9279, 388.9868]
+- [427.9279, 308.9868]
+- [235.9279, 212.98680000000002]
+collision_polygon_m:
+- [0, 0]
+- [6, 0]
+- [6, 5]
+- [0, 5]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [77, 126]
+- [426, 126]
+- [426, 384]
+- [77, 384]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 4.46
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 2}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_dali_guardhouse.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [352, 176]
+  ground_width_px: 352
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [334, 575]
+    front: [945, 859]
+    right: [1457, 613]
+  source_axis_slopes: [0.46481178396072015, -0.48046875]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.193359375
+  expected_width_depth_ratio: 1.2
+  ratio_relative_error: 0.00553385416666663
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [544, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 223948
+  alpha_partial_pixels: 53874
+  alpha_opaque_pixels: 706
+  alpha_near_opaque_pixels: 52421
+  alpha_nonzero_bbox: [74, 125, 440, 386]
+  transparent_margins_px: [74, 125, 104, 126]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_dali_guardhouse.png
+  source_sha256: a6cd525062053e873ad43fb5929773455b69397b3ddd6f21c7a0307679cd307c
+  source_size: [1774, 887]
+  crop_box: [289, 33, 1627, 865]
+  uniform_scale_requested: 0.3134461264470169
+  resized_size: [419, 261]
+  rounded_effective_scale: [0.3131539611360239, 0.3137019230769231]
+  paste_offset: [62, 125]
+  final_file: bld_kit_song_dali_guardhouse.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

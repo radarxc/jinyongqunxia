@@ -1,0 +1,172 @@
+{
+  "id": "bld_kit_song_southern_wharf",
+  "type": "bld_kit_song_southern_wharf",
+  "w": 10,
+  "h": 4,
+  "subject": "河埠外观",
+  "prompt": "Use case: sketch-to-render. Transform the attached 2:1 ground-grid drawing into a FLAT stone landing pad beside a river in Southern Song China (no river drawn). The ORANGE OUTLINE IS THE EXACT OUTSIDE BOUNDARY of the stone floor. Stone floor has ZERO noticeable thickness, no vertical sides, no steps, no wall, no raised platform, no diorama slab. Simply flat weathered gray paving over this parallelogram, ten cells along down-right, four along up-right, slopes exactly0.5 and-0.5. Each corner remains where it is in reference. On this floor stand two small dark wooden mooring posts and a coil of hemp rope, enough to read as a historical quay. Nothing else. Ground pad's right-back edge is straight and clean for adjoining separately rendered shore. Orthographic 45-degree view, low2:1 dimetric. Realistic muted gray stone and dark aged wood, lit screen upper-left. Render crisp alpha cutout sprite with opaque objects and TRUE transparent outside pad; remove white background, orange outline and grid. Preserve generous margins, no writing, diagrams, numbers, people, water, boats, modern things, scenery, mountains, shadows outside footprint, no border. The almost flat, zero-thickness ground pad is essential: do not add brick sides or stairs. Ground shape must match reference exactly.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [
+    {
+      "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/review2/southern_wharf_geometry_guide.png",
+      "sha256": "e0a586ec1cc81c539d171dc78a64f4c36b07f065b3030716341402c6afd2c508",
+      "role": "占地线框几何参考；不作资产像素合成"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1df-e5c8-76a2-80ad-599db032c5ae/exec-0dfb0590-bdf4-4788-a44d-f21ca40faa50.png",
+  "source_sha256": "fcfc1c9e58aeee610f51859f1f2b35cc2fdbb89288cfa5b31a2d6d5dbf697881",
+  "created": "2026-09-30T10:46:11.441508+00:00",
+  "visual_review": "入选：10x4宽深恢复、接岸直边清楚；双轴同向稍陡，保留严格告警。 宋式灰瓦木构/灰石材质、左上光、无字无人无现代物，真实alpha，主体完整。底面读点来自实际接触边，未warp/拉伸；64×32叠合图另存review2。",
+  "candidate_count": 7,
+  "ground_edges_source_px": [
+    [
+      [
+        30,
+        396
+      ],
+      [
+        1055,
+        939
+      ]
+    ],
+    [
+      [
+        1055,
+        939
+      ],
+      [
+        1468,
+        715
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      30,
+      396
+    ],
+    "front": [
+      1055,
+      939
+    ],
+    "right": [
+      1468,
+      715
+    ]
+  },
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "candidate_history": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-44a9d454-a89e-4cbc-a791-8464c7d0520b.png",
+      "source_sha256": "165db42a3d9040275ad1548d2a1898c04baca5279efb60790588253bf1519027",
+      "saved_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_pre_review2.png",
+      "selection": "unselected",
+      "reason": "第1轮审核：底面宽深比例不合格；原记录保存在同名.json。",
+      "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Precise ground projection: footprint 10 x 4 m, two visible rectangular ground edges slope +0.500 and -0.500, each edge makes 26.565 degrees with horizontal, NOT standard 30-degree isometric edges. Down-right ground edge has length 10 units, up-right edge 4 units, horizontal ratio 2.5000. Subject: One Southern Song Lin'an long narrow stone river landing module, exact elongated 10 by 4 rectangular footprint, a short length of grey stone quay with shallow stair flight descending along the southwest-facing long edge, two modest wooden mooring posts and a neat coil of natural rope near an edge; NO water surface, NO boats, NO building, no huge pier, no deep earth slab. Thin flat ground footprint, surface details only, suitable to fit a separately rendered riverbank.",
+      "references": []
+    },
+    {
+      "id": "bld_kit_song_southern_wharf",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1df-e5c8-76a2-80ad-599db032c5ae/exec-9c882f16-64e8-48ae-91a9-55e9f9b1d0d1.png",
+      "prompt": "Use case: precise-object-edit. Rebuild this Southern Song river landing map sprite with corrected ground shape; use attached old sprite ONLY for stone texture and period fittings. Its old base is far too narrow. New footprint is a true rectangle 10 metres by 4 metres, orthographic yaw 45 elevation30, exact 2:1 dimetric. On a 1536 by1024 transparent canvas, base ground contact corners MUST be LEFT=(128,384), FRONT=(928,784), RIGHT=(1248,624), BACK=(448,224). Thus the long down-right ground edge is vector(800,400), short up-right edge(320,-160), parallel opposite edges. Draw the actual stone quay to FIT that quadrilateral, not the old skinny footprint, not a diamond with equal edges. Clear continuous straight rectangular contact boundary; no irregular protruding stairs outside it. A low weathered gray stone riverbank landing for Lin'an in 1223, shallow steps entirely WITHIN the lower-left-facing long boundary, top promenade along the opposite back-right long edge as a crisp straight joining bank edge. Two modest wooden mooring posts and coil of hemp rope within footprint. No water, no boat, no earth diorama slab. Upper-left screen light and soft short lower-right contact shadows. Realistic handmade worn stone, muted gray warm earth palette matching reference. Every corner clearly visible and structure uncropped with transparent margins. TRUE transparent RGBA, no white background, no checkerboard painted in image, no writing, signs, numbers, coordinate labels, guidelines, modern objects, people, plants or surrounding scenery. Coordinates are layout instructions only and must not be drawn. Prioritize exact two axes and 10:4 footprint proportion.",
+      "reason": "旧图参考延续狭长底面，未采用。",
+      "ref": "old",
+      "selected": false,
+      "sequence": 1,
+      "saved_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_review2_1.png",
+      "source_sha256": "bb3fe3ce32408beca5d76e557ce298147a92fc7b24fa1e45d746f96ad57f9b1b",
+      "references": [
+        {
+          "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_pre_review2.png",
+          "sha256": "165db42a3d9040275ad1548d2a1898c04baca5279efb60790588253bf1519027",
+          "role": "本轮前候选；仅image_gen编辑参考"
+        }
+      ],
+      "selection": "unselected"
+    },
+    {
+      "id": "bld_kit_song_southern_wharf",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1df-e5c8-76a2-80ad-599db032c5ae/exec-1d59c700-3e79-4ea7-9ce7-139488649df6.png",
+      "prompt": "Use case: historical-scene. Produce one isolated 2:1 DIMETRIC GAME MAP SPRITE on real transparent RGBA. A compact broad rectangular flat stone quay / river landing in Southern Song Lin'an, 1223. Ground footprint width:depth exactly 10:4; orthographic camera yaw45 elevation30. Not perspective. The base must be a PARALLELOGRAM with screen ground corner coordinates on 1536x1024 canvas: left L(208,450), front F(1008,850), right R(1328,690), back B(528,290). L->F is 800 pixels right and400 down; F->R is320 right and160 up; both slopes magnitude0.5. All four sides continuous straight edges, no notches. Base geometry is essential; exact proportions, short side substantial. Draw weathered gray stone pavers WITHIN this quadrilateral, not a thin elongated strip. Very shallow flat stone foundation no tall plinth. Shallow river steps within southwest/front-left long edge, the back-right long edge is a crisp straight level seam to join a separately rendered bank. Two little dark wood mooring posts and a hemp rope coil. No building, no water, no boats, no scenery. Entire footprint must fit within the four requested corners, preserve large transparent margins on all sides. Realistic restrained historical materials muted gray and warm earth, lit from SCREEN UPPER LEFT, faint short contact shadow to lower right. Hard clean silhouette alpha and opaque stone center, do not paint a background or halo. No writing, labels, coordinates, grid lines, diagrams, numbers, modern objects, people, logos, borders, checkerboard or watermark. Image only, isolated cutout object.",
+      "reason": "短轴明显偏浅，宽深比例仍不足，未采用。",
+      "ref": null,
+      "selected": false,
+      "sequence": 2,
+      "saved_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_review2_2.png",
+      "source_sha256": "8f8553d5cc787440e6b450fadcb0482263bd8bb9eb6410d0c065b5efa318fce8",
+      "references": [],
+      "selection": "unselected"
+    },
+    {
+      "id": "bld_kit_song_southern_wharf",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1df-e5c8-76a2-80ad-599db032c5ae/exec-556d760c-cccf-469d-a26d-9563a63019bf.png",
+      "prompt": "Use case: sketch-to-render. Use attached geometric grid purely as a fixed ground footprint construction guide. Render one historical Southern Song river quay game-map sprite. REPLACE the outlined shape with a low stone river landing of EXACTLY the same four corners, silhouette proportions and two ground axes. Keep that footprint geometry immovable. The grid is 10 cells along down-right axis and 4 along up-right; slopes+0.5/-0.5. Render within this shape. All geometric construction lines, orange outline, grid and white backdrop must completely disappear in final; outside object must be TRUE TRANSPARENT RGBA. Quay is a flat paved promenade of worn gray stone, short shallow steps carved WITHIN the front-left long edge, low subtle thickness, straight clean bank-joining edge on rear-right long side. Two small rough timber mooring posts with natural rope coil. No buildings, water, boats, plants, people, text, modern objects. Realistic aged stone and wood, muted warm gray colors, upper-left screen illumination, tiny lower-right contact shadows. 45-degree yaw,30-degree elevation exact2:1 dimetric orthographic. ALL base corners should remain exactly where the orange corners are in reference, grounded on same plane. Do not lengthen or shorten rectangle. Full object with safe transparent space around it. Opaque stone interiors, clean transparent edges, no glow or background. No labels, diagrams, numerical measurements or grid lines in output.",
+      "reason": "长边偏长且双轴较陡，未采用。",
+      "ref": "guide",
+      "selected": false,
+      "sequence": 3,
+      "saved_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_review2_3.png",
+      "source_sha256": "e38259c17e68269d6099c4d1b2a474e2a92fcff14661269139c8c932f64d2fb3",
+      "references": [
+        {
+          "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/review2/southern_wharf_geometry_guide.png",
+          "sha256": "e0a586ec1cc81c539d171dc78a64f4c36b07f065b3030716341402c6afd2c508",
+          "role": "占地线框几何参考；不作资产像素合成"
+        }
+      ],
+      "selection": "unselected"
+    },
+    {
+      "id": "bld_kit_song_southern_wharf",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1df-e5c8-76a2-80ad-599db032c5ae/exec-777ac011-e8c7-49c0-8e5e-d7328d8c9b1c.png",
+      "prompt": "Use case: precise-object-edit. Correct only the river quay base geometry. Current image too long and steep. SHORTEN the long edge by15 percent and make the two ground directions both 26.565degrees from horizontal (slopes +0.5 and -0.5); front-left long edge must become flatter. Ground contact rectangle should be10x4; its two screen horizontal edge lengths have ratio2.5. Rebuild stones and stairs to fit this corrected rectangle, preserve realistic Southern Song gray stone quay design, posts, rope, upper-left light, no people/no writing. Full object on true transparent RGBA, clean edges, all corners visible, ample padding. Bottom CONTACT perimeter must be a planar parallelogram with parallel opposite sides. Short edge should be more substantial. No border/guideline/background/scenery/water. The back-right long edge is a perfectly straight joining-bank edge. Keep shallow stairs inside footprint.",
+      "reason": "比例改善但两轴变得过陡，未采用。",
+      "ref": "exec-556d760c-cccf-469d-a26d-9563a63019bf.png",
+      "selected": false,
+      "sequence": 6,
+      "saved_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_review2_6.png",
+      "source_sha256": "75696f2a1690fbaf75e518f014ff4523614ddf79160b5ec824949bf476e0eeaa",
+      "references": [
+        {
+          "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_review2_3.png",
+          "sha256": "e38259c17e68269d6099c4d1b2a474e2a92fcff14661269139c8c932f64d2fb3",
+          "role": "本轮前候选；仅image_gen编辑参考"
+        }
+      ],
+      "selection": "unselected"
+    },
+    {
+      "id": "bld_kit_song_southern_wharf",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1df-e5c8-76a2-80ad-599db032c5ae/exec-ac758c08-49c0-476d-873f-bb86e576f85f.png",
+      "prompt": "Use case: precise-object-edit. Keep this flat10-by4 stone river landing, two mooring posts, rope and textures. Make only one small camera change: LOWER the viewing elevation so every flat paving edge has slope exactly+0.500 or-0.500; current slopes are about0.536. Ground plane should be slightly FLATTER on screen, about7 percent less vertical rise relative to run. Keep length/depth ratio2.5, vertical posts vertical, no thickness added, NO stairs added, no content added. Exact2:1 dimetric orthographic. Straight opposite contact edges parallel. True TRANSPARENT RGBA cutout, upper-left light, no painted backdrop/glow/grid/text/numbers/people/water. Keep the whole silhouette, generous transparent padding.",
+      "reason": "定向压低视角后长轴过浅、比例反而变差，未采用。",
+      "ref": "exec-0dfb0590-bdf4-4788-a44d-f21ca40faa50.png",
+      "selected": false,
+      "sequence": 8,
+      "saved_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_review2_8.png",
+      "source_sha256": "46ba00a73ed1c1e3c3c4f4c8fa9a6d3eb9019eeba7dc2fb299469d1c68e9c484",
+      "references": [
+        {
+          "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/bld_kit_song_southern_wharf.png",
+          "sha256": "fcfc1c9e58aeee610f51859f1f2b35cc2fdbb89288cfa5b31a2d6d5dbf697881",
+          "role": "本轮前候选；仅image_gen编辑参考"
+        }
+      ],
+      "selection": "unselected"
+    }
+  ],
+  "review2": {
+    "calls": 6,
+    "rejected_new": 5,
+    "previous_source_record": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_wharf_pre_review2.json",
+    "overlay": "review2/bld_kit_song_southern_wharf_overlay.png",
+    "visual_result": "修复点名的明显比例问题；细小残差见geometry_qa"
+  }
+}

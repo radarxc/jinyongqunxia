@@ -1,0 +1,81 @@
+id: bld_kit_song_dali_stable
+status: candidate
+building:
+  type: bld_kit_song_dali_stable
+  footprint: [8, 6]
+  anchor: &id001 [365.666, 308.31]
+  era: song_dali
+anchor_px: *id001
+footprint_m: [8, 6]
+logical_footprint_polygon_px:
+- [141.666, 292.31]
+- [397.666, 420.31]
+- [589.6659999999999, 324.31]
+- [333.666, 196.31]
+collision_polygon_m:
+- [0, 0]
+- [8, 0]
+- [8, 6]
+- [0, 6]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [142, 82]
+- [592, 82]
+- [592, 429]
+- [142, 429]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 5.77
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 3}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_dali_stable.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [448, 224]
+  ground_width_px: 448
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [182, 618]
+    front: [892, 1002]
+    right: [1443, 704]
+  source_axis_slopes: [0.5408450704225352, -0.5408348457350273]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.2885662431941924
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.033575317604355615
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [672, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 250704
+  alpha_partial_pixels: 92396
+  alpha_opaque_pixels: 964
+  alpha_near_opaque_pixels: 90500
+  alpha_nonzero_bbox: [139, 80, 594, 431]
+  transparent_margins_px: [139, 80, 78, 81]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_dali_stable.png
+  source_sha256: ef41775055e6e23a6aa746f3cb92b27799315dff1d1914347ea7c9cf310fada3
+  source_size: [1536, 1024]
+  crop_box: [0, 19, 1458, 1006]
+  uniform_scale_requested: 0.35527359238699446
+  resized_size: [518, 351]
+  rounded_effective_scale: [0.355281207133059, 0.3556231003039514]
+  paste_offset: [77, 80]
+  final_file: bld_kit_song_dali_stable.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

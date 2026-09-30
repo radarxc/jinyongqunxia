@@ -1,0 +1,81 @@
+id: bld_kit_song_dali_restaurant
+status: candidate
+building:
+  type: bld_kit_song_dali_restaurant
+  footprint: [10, 8]
+  anchor: &id001 [544.2747, 417.2835]
+  era: song_dali
+anchor_px: *id001
+footprint_m: [10, 8]
+logical_footprint_polygon_px:
+- [256.27470000000005, 401.2835]
+- [576.2747, 561.2835]
+- [832.2747, 433.2835]
+- [512.2747, 273.2835]
+collision_polygon_m:
+- [0, 0]
+- [10, 0]
+- [10, 8]
+- [0, 8]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [257, 122]
+- [831, 122]
+- [831, 550]
+- [257, 550]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 7.53
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 4}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_dali_restaurant.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [576, 288]
+  ground_width_px: 576
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [307, 580]
+    front: [946, 878]
+    right: [1475, 639]
+  source_axis_slopes: [0.46635367762128327, -0.45179584120982985]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.2079395085066162
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.03364839319470703
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [1056, 672]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 557291
+  alpha_partial_pixels: 151472
+  alpha_opaque_pixels: 869
+  alpha_near_opaque_pixels: 147622
+  alpha_nonzero_bbox: [254, 117, 849, 554]
+  transparent_margins_px: [254, 117, 207, 118]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_dali_restaurant.png
+  source_sha256: 0a5cf32ab1ce33e078197d78c38f031fce50ee30e3af289683e01fd5257d66c6
+  source_size: [1774, 887]
+  crop_box: [27, 0, 1687, 887]
+  uniform_scale_requested: 0.4931506849315068
+  resized_size: [819, 437]
+  rounded_effective_scale: [0.49337349397590363, 0.4926719278466742]
+  paste_offset: [118, 117]
+  final_file: bld_kit_song_dali_restaurant.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

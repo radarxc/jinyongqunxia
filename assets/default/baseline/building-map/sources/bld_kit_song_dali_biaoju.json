@@ -1,0 +1,88 @@
+{
+  "id": "bld_kit_song_dali_biaoju",
+  "type": "bld_kit_song_dali_biaoju",
+  "w": 12,
+  "h": 10,
+  "subject": "1093年大理国护运行货栈（建筑细部待考）",
+  "prompt": "Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation 30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT. Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10% empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop, ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people, no modern objects, no logos, no border, no watermark, no tourism-era decoration. A caravan protection and freight compound, not a late-period named escort bureau: sturdy plain timber hall, two low storage side sheds, compact dirt loading yard with covered bales and empty wooden handcart, simple south gate. Gray tiled roofs, stone foundations, no weapons display, flags or names. Footprint 12m east-west by10m north-south.",
+  "negative": "文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_house",
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png",
+      "sha256": "f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d",
+      "role": "本批候选相机与材质参考（非作者approved）"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-995f0f8d-269f-476b-a39f-bf0d9d678f0f.png",
+  "source_sha256": "4a1536a357169fb38b8f0140ceb61125193dc8c2924da15a1797bedab65d09fc",
+  "created": "2026-09-30T08:32:11.237938+00:00",
+  "visual_review": "已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。",
+  "candidate_count": 2,
+  "discarded_candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-bf54f907-f348-4aa0-ada9-48004ebbce9d.png",
+      "prompt": "undefinedA caravan protection and freight compound, not a late-period named escort bureau: sturdy plain timber hall, two low storage side sheds, compact dirt loading yard with covered bales and empty wooden handcart, simple south gate. Gray tiled roofs, stone foundations, no weapons display, flags or names. Footprint 12m east-west by10m north-south.",
+      "reason": "公共提示读取失败，生成继承少林参考的山景与低视角；已逐张view_image原图确认淘汰",
+      "source_sha256": "612bd61b9bf00841fd92633e5696ca2721d953019f1702d3195e1e478af27370"
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        179,
+        560
+      ],
+      [
+        929,
+        879
+      ]
+    ],
+    [
+      [
+        929,
+        879
+      ],
+      [
+        1628,
+        513
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      179,
+      560
+    ],
+    "front": [
+      929,
+      879
+    ],
+    "right": [
+      1628,
+      513
+    ]
+  },
+  "projection_review": "手动可见底面点±3px估计；两轴斜率0.4253/-0.5236；两轴dx比750/699=1.0730，目录w/h=1.2000。仅裁切/等比缩放不会改变这些残差。",
+  "status": "candidate",
+  "source_size": [
+    1774,
+    887
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 855714,
+    "partial_pixels": 717356,
+    "opaque_pixels": 468,
+    "bbox": [
+      0,
+      0,
+      1750,
+      887
+    ]
+  }
+}
