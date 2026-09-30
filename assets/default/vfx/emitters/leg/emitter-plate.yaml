@@ -1,0 +1,12 @@
+# type=leg；现行 schema v1 未列 leg，暂以 palm 兼容身体发劲类；不是把脚解释为掌。需上游扩展枚举后迁移。
+# 实测（原创扩展）：鞋尖alpha>=128最右列x=1163、y=686..693；像素中心口径锚点[1163.5,(686+694)/2]=[1163.5,690]。近鞋尖x=1140，y=644..717，宽=717−644+1=74；向右为踢出方向。
+kind: EmitterPlate
+version: 1
+file: source_leg.png
+size_px: [1254, 1254]
+color_space: srgb
+alpha_mode: straight
+category: palm
+emit_point_px: [1163.5, 690]
+direction: [1, 0]
+emission_width_px: 74

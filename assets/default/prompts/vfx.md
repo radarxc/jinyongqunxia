@@ -154,7 +154,7 @@ HTML 内嵌播放器、展开的 Composition JSON、发出方与六张效果图�
 
 每套件目录位于 `../baseline/vfx/<内容 ID>/`，仅包含 `effect/source_sheet.png`、六张 `frame_*.png`、`effect-set.yaml`；`emitter/source_*.png`、`emitter-plate.yaml`；根目录的 `composition.yaml`、导出的 `composition.json`、`demo.html`、`peak.png`。来源追溯并入 manifest，历史调参 / 纸底 QA 仍见 VFX-plates 工作区与报告，本次不复制旧烘帧或动画产物。白底原图与透明发出方原件逐字节保留。
 
-新登记 `vfx_mv_xianglong18_kanglong__ch02_base01` 与 `vfx_sk_liumai__ch01_base01`，`file` 指峰值图、`code` 指 `demo.html`，另写 `pipeline: two-part` 与文件清单。遵循 `assets/README.md` 的完整字段，分别追溯效果与发出方的真实 prompt / negative / references / source_path，记录实测时间、尺寸、SHA-256，状态保持 `candidate`。两条旧 `ref_*` 条目与文件不变；本类未获审批前不启动正式批量。
+新登记 `vfx_mv_xianglong18_kanglong__ch02_base01` 与 `vfx_sk_liumai__ch01_base01`，`file` 指峰值图、`code` 指 `demo.html`，另写 `pipeline: two-part` 与文件清单。遵循 `assets/README.md` 的完整字段，分别追溯效果与发出方的真实 prompt / negative / references / source_path，记录实测时间、尺寸、SHA-256，状态保持 `candidate`。两条旧 `ref_*` 条目与文件不变；正式批量门禁继续保留，作者本任务已单独授权 §8 的 12 类共用发出方候选池。
 
 `model: gpt-6-astra`、`effort: ultra` 沿 `assets/README.md` 指定执行配置，图像工具没有返回独立后端型号时不把它写成后端实测结论。生成使用内置 `image_gen`；本地目标编辑用 `referenced_image_paths`，不与 `num_last_images_to_include` 同时设置。效果原图 `transparent_background: false`，发出方 `true`。
 
@@ -175,29 +175,96 @@ HTML 内嵌播放器、展开的 Composition JSON、发出方与六张效果图�
 
 旧 `ref_*/index.html` 历史参数仅用于解释对照：逻辑画布 1400×788、DPR 上限 2、循环 5.6 秒，强度 / 浓淡 40–140%、速度 0.5–1.5×；六脉曾为指端凝聚后离指 150 px 成短刃，每路错开 0.06 秒；降龙曾为 0–1.9 秒生发、3.8 秒退隐、浓淡 82%。旧演示做过 JS 语法、隔离 Canvas / 控件与外部资源扫描，真实浏览器当时未完成。这些历史参数不再是新效果帧管线的生成、动画或验收默认值。
 
-## 8. 本文新增术语与 ID
+## 8. 发出方图池
 
-不新增玩法术语或玩法 ID。EffectSet、EmitterPlate、Composition 与方向遮罩见 `design/23` §6，展开的 `composition.json` 和播放器接口见 `tools/vfx/README.md`。旧 `keyframes.json` / `animation.json` 为已废弃动画路线的历史输出。两个 `vfx_*` 为既有内容的候选素材 ID，旧 `ref_*` 为历史整图对照。
+按发出方式共用，同类招式引用一张发出方图；具体选图读取已配置的发出动作，不依据武学名推断外放。池位于 `assets/default/vfx/emitters/`；每类交付 `source_<type>.png` 和 `emitter-plate.yaml`，总清单为该目录的 `manifest.yaml`，12 条均为 `candidate`。图池是**（原创扩展）**的制作资产，不注册新招式、兵器或经脉端点。
 
-## 9. 待决事项 / 依赖
+### 8.1 类型与取图
 
-### 9.1 替下游给出的建议值
+| type / ID 后缀 | EmitterPlate.category | 主体 | 发出点与有效截面 |
+|---|---|---|---|
+| `palm` | `palm` | 原样例掌面、灰褐布袖，逐字节复制 | 掌面中心；整个有效掌面，排除手指与腕袖 |
+| `finger` | `finger` | 原样例伸指、浅灰白布袖，逐字节复制 | 指尖；指尖内侧完整截面 |
+| `fist` | `palm`（兼容值） | 握拳前伸的手臂 | 拳面中心；拳面上下界 |
+| `sword` | `sword_hand` | 持普通直剑的手 | 剑尖；尖端内侧可见剑身截面 |
+| `sabre` | `blade_hand` | 持普通单刀的手 | 刀尖；尖端内侧刀身截面 |
+| `staff` | `weapon_hand` | 持素木棍的手臂 | 棍端中心；棍端直径 |
+| `spear` | `weapon_hand` | 持普通木杆枪的手臂 | 枪尖；枪头尖端内侧截面 |
+| `whip` | `weapon_hand` | 持软鞭 / 软索的手 | 鞭梢；末段软索粗细 |
+| `fan` | `weapon_hand` | 持展开素折扇的手 | 朝右扇沿中点；有效扇沿完整上下跨度 |
+| `throw` | `throw_hand` | 投掷离手瞬间的手，不含暗器 | 指尖前方离手点；相邻离手指端的有效截面 |
+| `instrument` | `instrument` | 持素竹箫 / 笛的手 | 朝右管口中心；管口直径 |
+| `leg` | `palm`（兼容值） | 踢出的小腿与素布鞋 | 脚尖；鞋尖内侧截面 |
+
+全部 ID 为 `vfx_emitter_<type>`。`fist`、`leg` 在现行 schema 中没有准确类别；本次仅为通过既有文件接口暂存 `palm`，YAML 注释、manifest 和报告明确真实类型。这不宣称腿属于掌；消费方按素材 ID / 路径选图，不能按兼容 category 回退到掌图。现有合成器只消费源图、点、方向与宽度；由后续文档任务在 `design/23` §3 和 schema 增列拳 / 腿后迁移这两个字段。本任务不修改上游定义。
+
+### 8.2 提示词模板
+
+新图沿用样例的写实皮肤、朴素灰 / 米白布袖、左上柔光，无面部。兵器采用宋明语境的普通直剑、单刀、素木长兵、软索、折扇与竹管的简素造型，不画名剑名刀；准确断代、流派握法不作已考证结论。图像原生直 alpha 保存，不套白底色键、不用代码补画手脚或兵器。
+
+```text
+Use case: stylized-concept
+Asset type: one reusable native-transparent RGBA emitter plate for an original Chinese wuxia game.
+Reference role: existing palm/finger samples establish realistic skin, simple cloth and quiet lighting only; do not copy their pose onto a weapon.
+Subject: {one adult hand and attached forearm holding the ordinary object / one kicking lower leg and plain cloth shoe; exact type from §8.1}.
+Pose: {type-specific gesture}; {tip / palm / fist / rim / tube mouth / toe} faces horizontally RIGHT, direction [1,0]. Draw only this emitter, no released object for throw.
+Materials: realistic warm skin, short natural nails; plain grey or off-white woven cloth; {unadorned steel / wood / bamboo / soft cord / plain fan leaf}. Restrained Song–Ming Chinese costume and ordinary object forms, no named weapon or character.
+Composition: square 1:1 canvas, request 1254×1254 or proportional square output. Entire hand, wrist, short sleeve and necessary object fit inside all four borders, with visible transparent clearance. Keep the right-facing source readable. Lighting from upper left, soft self-shading only.
+Anatomy: exactly five fingers per hand, anatomically plausible grip and joints, thumb opposed to the gripping fingers, natural occlusion; leg has one ankle and foot, no extra limbs.
+Background: genuinely transparent RGBA, clean native alpha, no painted background or checkerboard. Preserve opaque pale cloth and metal highlights.
+Avoid: face, torso, extra hands or fingers, fused digits, broken joints, detached wrist, cropped object tips, modern clothes, ornate court costume, armour, fantasy blades, named legendary weapons, text, watermark, anchor marks, arrows, frame, floor shadow, ink wash, paper, white/grey background, particles, energy, glow, dragon or beam.
+```
+
+每类最多生成 2 个候选、选 1；模板占位必须展开，实际发送全文写入 manifest。掌 / 指本次生成数为 0，各复用既有文件 1 张；其 `prompt` 继承原始选中请求，`source_path` 记录本次复制来源，原生成地址另列。新图生成后复制工具原件，记录实际尺寸、时间、哈希；不把请求尺寸当输出尺寸，不把执行模型名当图像后端实测型号。
+
+### 8.3 发出点量法
+
+1. 对交付 PNG 用 `view_image` 检查手指 / 握持 / 朝向 / 透明边缘。读取实际宽高及 alpha；查看器若把 PNG 标成 `application/octet-stream`，只修展示 data URL 的 MIME 为 `image/png`，不重编码文件。
+2. 左上原点，x 右 y 下；在真实图片上选择 §8.1 指定的源点。兵器取尖端或端面，不能取持握手；投掷取接触指尖前方的离手点并记录透明间距。掌面和拳面按可辨的有效面选中心，不拿整手包围盒代替。
+3. 方向按画面发力意图标定、核验并归一；本池 11 类为向右 `[1,0]`，乐器按实际管轴 `[937,26]` 归一为 `[0.9996152427470851,0.027737456042074934]`（向右略下约 1.59°）。弯刀不机械套刀刃末端切线。像素索引 `(i,j)` 的中心坐标为 `(i+0.5,j+0.5)`。尖端本身可能只有一像素宽；向内取一条与方向垂直的有效截面，记录扫描列和上下端点。数像素时 `w=y_max−y_min+1`，记录半开区间时 `w=y_end−y_start`；不得混用。
+4. alpha 阈值仅帮助区分实体边缘与极低透明噪点；手掌 / 扇沿等仍需目视确定有效面。每条 manifest 的 `measurement` 保留截面坐标、算法或手工选面依据；最终消费各 YAML 的 `emit_point_px`、`direction`、`emission_width_px`。指样例复测：x=1165、alpha≥128 的 y=447..489，宽 `489−447+1=43`；掌沿用有效面 y=[544,864)，宽 `864−544=320`。
+5. 图片换尺寸必须同步点和宽：等比倍率 `s` 时，坐标与宽均乘 `s`；本次保留原始正方形输出。合成缩放和根宽匹配只引用 `design/23` §4，不将像素值换算为射程、伤害或 CT。
+
+主体净距按记录的 alpha 阈值统计，不能直接当作合成器按 alpha>0 检查的安全边距。折扇取全扇沿宽源，后续须按它重新配置效果根宽和画幅，不能照搬指尖细束的参数。
+
+本池只交付源图与 EmitterPlate。后续效果库按动作引用池中素材；`Composition` 的 root 边界当前要求同套件路径安全，跨池装配应由下游打包环节显式复制或规划共享套件根，见报告 §6，不能绕过路径检查。
+
+## 9. 本文新增术语与 ID
+
+不新增玩法术语或玩法 ID。EffectSet、EmitterPlate、Composition 与方向遮罩见 `design/23` §6，展开的 `composition.json` 和播放器接口见 `tools/vfx/README.md`。旧 `keyframes.json` / `animation.json` 为已废弃动画路线的历史输出。两个招式 `vfx_*` 为既有内容的候选素材 ID，旧 `ref_*` 为历史整图对照；§8 新增 12 个 `vfx_emitter_<type>` 资产 ID，逐条登记于池 manifest。
+
+## 10. 数据校验规则与测试用例
+
+在仓库根目录执行：
+
+```sh
+python3 tools/agents/check_assets.py assets/default/vfx/emitters --min 12 --max 12 --min-side 512
+for type in palm finger fist sword sabre staff spear whip fan throw instrument leg; do
+  python3 tools/vfx/check_vfx.py "assets/default/vfx/emitters/$type/emitter-plate.yaml" --root "assets/default/vfx/emitters/$type"
+done
+```
+
+另核对 12 个 type / ID 唯一、文件一一对应、所有图为正方形 RGBA 且同时存在透明背景和非透明主体、哈希与元数据相同；掌 / 指必须与样例逐字节相同。脚本通过不能替代五指 / 握持 / 左上光源的目视检查，也不代表作者已批准或真机合成已验收。
+
+## 11. 待决事项 / 依赖
+
+### 11.1 替下游给出的建议值
 
 旧 3:2、左侧起势、掌劲约 40% / 剑气约 50% 留白条目保留追溯；现按 `design/23` 的同帧一致尺寸、掌面宽源、线性连源与全帧安全边距制作，不宣称固定达到旧留白比例。抠图 250 / 0.20 / 25 是试验起点，最终参数取各 EffectSet 和本任务报告，换原图须重新验证。新增六脉五边界亮度与两套遮罩软带仅为 §6.3 的候选美术值，默认先交浏览器和作者验收。
 
-### 9.2 本文依赖的上游事实
+### 11.2 本文依赖的上游事实
 
 作者两段式与气剑例外已在 `STYLE.md` 明示；格式与公式消费 `design/23` 和 schema，工具执行见 README。旧存储 / 工具口径问题延续 `ART-B-vfx` 报告 §5–§6，旧气剑例外同步请求见 `ART-R1-vfx` 报告 §6；本任务不修改这些上游文件。
 
-### 9.3 对基准的修改提案
+### 11.3 对基准的修改提案
 
 无新增玩法提案；保留旧 `ART-B-vfx` 报告的二进制入库等提案追溯，是否同步由协调者按作者决定处理。本模板只落实当前授权的素材生产方式。
 
-### 9.4 原著考据待办
+### 11.4 原著考据待办
 
 亢龙出掌姿势 / 洪七公授掌顺序，六脉左右手、各剑对应发指、剑意与可见色仍须三联 / 广州修订版逐字核对。默认不编造引文、回目，不把近无色意象解释为原著固定六色；网络对读线索与旧核查限制保留见 `ART-R1-vfx` 报告 §3。
 
-### 9.5 开放问题（附默认值）
+### 11.5 开放问题（附默认值）
 
 - 作者审批：旧两张与新两套件均以 manifest 实际状态为准；新套件默认 `candidate`。金色力度、虚实透明、宽根接掌、气线可见程度、淡赤色缘及手势审美待作者审批，不以自检代替批准。
 - 手部精度：已解决：旧降龙缺小指 / 掌面不清、旧六脉长指甲 / 水墨方向的上一轮返修见 `ART-R1-vfx` §7。旧六脉下手遮挡、旧降龙角尖边距、侧前角度偏差仍留作历史限制，不作为解剖 / 严格 45° 母版；本次独立手图仍为姿态示意，默认不宣称原著手势书证。
@@ -205,3 +272,5 @@ HTML 内嵌播放器、展开的 Composition JSON、发出方与六张效果图�
 - 色键质量：原图背景有 253–255 波动，默认保留源图并登记偏差，按实测阈值产 RGBA；严格纯白生产要求继续保留。图像模型没有提供真实前景 / alpha 真值，不宣称已无损恢复生成前透明度。
 - 源点、方向与宽度：默认服从逐图量取；掌心定位不改变整掌发力要求，单束指图不绑定某一具体剑式。任何新视角、重出图或缩放须同步元数据后重合成。
 - 演示验收：真实浏览器未验证，待协调者验收；默认保留当前 Three.js 单文件 HTML，检查固定 CDN 及其模块依赖能加载、首屏峰值、控制与减少动态、方向遮罩、色彩和连源关系；移动设备与真实浏览器结果另记，不虚报通过。
+- 发出方图池作者确认：默认写实手部画法沿用样例，12 类保持 `candidate`；拳 / 腿 category 扩展、兵器局部透视和跨池装配由后续任务同步，默认先按 ID / 路径选图。普通造型为原创候选，未完成器物精确断代或小说手势逐字考据。
+- 复用样例边缘：掌 / 指已有极低 alpha 的孤立噪点及彩边，默认优先执行逐字节复用，不在本任务修像素；如作者要求修边，须另建版本并重测锚点。新图的逐张限制与候选淘汰原因见池 manifest。

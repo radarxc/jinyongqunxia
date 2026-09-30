@@ -1,0 +1,10 @@
+kind: EmitterPlate
+version: 1
+file: source_whip.png
+size_px: [1254, 1254]
+color_space: srgb
+alpha_mode: straight
+category: weapon_hand
+emit_point_px: [1220.5, 603]
+direction: [1, 0]
+emission_width_px: 5
