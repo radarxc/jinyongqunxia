@@ -4,7 +4,8 @@
 > 上游：`00-canon.md` v1.8；作者新增需求及 AR-14～AR-19 决定见 `decisions/author-requirements.md`（AR-19 高于基准旧等级 / 单招注水口径）；冲突裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：属性、内力、轻功值与 `spd` → `design/03`；Z0–Z10、护体、取整与 TTK → `design/04`；武学、招式、层数、熟练、内功性质与 `ultimate` → `design/05`；Buff、反震、破气与 Boss 递减 → `design/06`；轻功门禁与地形成本 → `design/08`；CT、移动力、首轮、反应、防御 / 待机与 AI → `design/09`；成长与外来压制 → `design/13`；手机 UI → `design/14`；20 脉 / 180 穴、开通、冲穴、周天与九转 → `design/15`；Core、RNG、存档与 golden → `tech/05`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v2.8.1（AR-19 换路并行气包队列与全局气量硬顶收口，2026-10-01）；v2.8（AR-19 宽度 / 长度 / 速度 / 在途气、丹田产气、聚气与完整周天，2026-10-01）；v2.7.2（AR-18 游戏归属计票与 delivery 覆盖返修，2026-09-29）；v2.7.1（AR-18 掌法动作可靠识别返修，2026-09-29）；v2.7（AR-18 阴阳基础理论修正，2026-09-29）；v2.6（经脉落地终审，2026-09-29）；v2.5（AR-17 音功与大手印掌风外放口径；NXT，2026-09-28）；v2.4（AR-14 绝招路线叙事规则与跨武学多样性；NR0，2026-09-28）；v2.3（AR-16 外放招式的范围与威力加持；M5，2026-09-27）；v2.2（AR-15 首领配装口径与逐单位节奏估算；NB3，2026-09-27）；v2.1（AR-14 绝招数量追加：天 2–3、地 1–2、玄上 1；M4，2026-09-27）；v2.0（落实作者对 AR-14 的独立乘区、防守路线、护体内劲与经脉速度决定；M3，2026-09-27；审校 M3.R，2026-09-27）；阴阳性质同步 AR-18（2026-09-30）。
+> 版本：v2.9（AR-19 攻击位置外放抵消、透劲入体、消化、斗转反引与打穴，2026-10-01）；v2.8.1（AR-19 换路并行气包队列与全局气量硬顶收口，2026-10-01）；v2.8（AR-19 宽度 / 长度 / 速度 / 在途气、丹田产气、聚气与完整周天，2026-10-01）；v2.7.2（AR-18 游戏归属计票与 delivery 覆盖返修，2026-09-29）；v2.7.1（AR-18 掌法动作可靠识别返修，2026-09-29）；v2.7（AR-18 阴阳基础理论修正，2026-09-29）；v2.6（经脉落地终审，2026-09-29）；v2.5（AR-17 音功与大手印掌风外放口径；NXT，2026-09-28）；v2.4（AR-14 绝招路线叙事规则与跨武学多样性；NR0，2026-09-28）；v2.3（AR-16 外放招式的范围与威力加持；M5，2026-09-27）；v2.2（AR-15 首领配装口径与逐单位节奏估算；NB3，2026-09-27）；v2.1（AR-14 绝招数量追加：天 2–3、地 1–2、玄上 1；M4，2026-09-27）；v2.0（落实作者对 AR-14 的独立乘区、防守路线、护体内劲与经脉速度决定；M3，2026-09-27；审校 M3.R，2026-09-27）；阴阳性质同步 AR-18（2026-09-30）。
+> 变更记录（2026-10-01，AR-19 战斗补全）：以命中区在途气的 50% 承载率作为外放阈值，AR-19 外放抵消取代 AR-14f 的类别适用率与“1 内力抵 2 伤害”；新增异种气包逆行、逐 tick 消化、丹田损伤、斗转反引及打穴占穴。
 > 变更记录（2026-10-01，AR-19 收口）：换路运行态改为“一条当前注入路线 + 多条逐路线气包队列”；旧、新路线可同时推进，但共享单位气量硬顶与节点承载，快照按稳定顺序保存。
 > 变更记录（2026-10-01，AR-19）：河流模型改以永久 `fluxCap` 表达宽度、`lengthUnit` 表达长度，内功提供每 tick 产气与运气速度；战斗保存丹田气 / 在途气并随 CT tick 同步推进。新增完整周天、急性聚气、通量锻炼、暴击事件与旧 `Q0/ΔQ/capacity` 迁移。
 > 变更记录：经脉落地终审（2026-09-30）：核对穿云啸三式与各册音功现值，回填 04 / 05 / tech/04 的音功同步状态，登记 `requiredNature` 主运许可的待确认默认及迁移门禁；所有路线穴位、段数、CT 与风险保持不变。
@@ -64,7 +65,7 @@
 6. 长路线不是白送伤害：每尝试一段增加 CT；熟练不足、节点迟滞或点穴会卡住，未通过之气形成堆积，超过动态阈值则胀损并封路。
 7. 擒拿是外功严重度 1–9，点穴是内功对具体穴位的严重度 1–9；`design/06` 以 `bf_shouqin` / `bf_xueweishoufeng` 正式承载，并由存档加载器把旧缠绕 / 封穴状态迁移为新状态。
 8. 调息合并进 `design/09` 已有 `yunjin mode:tiaoxi`：既保留其回内 / 防护，又增加理顺迟滞、卸除堆积、修复胀损与尝试解穴。
-9. 防守招式也运行路线；拳脚来袭还可由护体内劲在既有护体真气之后、`mpGuard` 之前抵消。轻功 / 身法路线另输出 6500–13500 bp 的速度修正，标准对标准中性。
+9. 防守招式也运行路线；命中区达到外放阈值后，可在既有护体真气之后、`mpGuard` 之前抵消来袭内劲 100% / 外劲 50%。轻功 / 身法路线另输出 6500–13500 bp 的速度修正，标准对标准中性。
 10. Python 参考实现与黄金数据是后续 Core 的慢模型。当前标准对标准仍为 849 伤害、5 次命中；强一档 / 强两档 / 弱一档 / 高手对杂兵分别为 1.2053 / 1.4456 / 0.9157 / 1.8265 倍，且全部受硬界约束。
 11. 外放字段仍逐招写在 `MoveDef` 上；降龙十八掌、六脉神剑、火焰刀、拈花指是整门外放锚点，凡伤害招均标，只有无伤害动作例外；其他武学仍按离体指力、掌力、剑气、刀罡等逐招判断。伤敌音功须同时满足“深厚内力驱动、可控制”才标外放，且 0 档仍按普通音波、1 档以上才取得外放加持；敌我完全同规。
 12. 每个绝招的穴位序列必须能读出其出招方式与职责；同门可共享内功核心段，但跨武学完全同序列构建失败，重合达到 80% 则须说明共同底子及差异。
@@ -623,7 +624,7 @@ F0 校验招式、路线、目标与资源；冻结双方经脉 / 外放档快�
   → 04 的 Z5
   → Z5M：D5M=floor(D5×meridianAttackBp/10000)
   → 04 的 Z6–Z10
-  → settle：护体真气 → 护体内劲 → mpGuard → 气血
+  → settle：护体真气 → AR-19 外放抵消 → mpGuard → 气血
   → 06 附加效果与结算后事件
   → 09 以 MoveDef.recovery + flowCt 扣 CT
 ```
@@ -710,7 +711,7 @@ ap_shoushaoyang_guanchong, ap_shoushaoyang_yangchi, ap_shoushaoyang_waiguan
 
 音功另有动作端点：人声发劲路线可取 `ap_yinwei_tiantu`（天突）或 `ap_yinwei_lianquan`（廉泉）；琴、箫、笛等持乐器音功仍须取上列手 / 腕导引端点。指 / 掌招应优先落在对应指端 / 掌心，持械气劲可用腕、关冲、外关等导引端点；端点只证明外放导引可行，不替代图鉴的动作合理性。任一所需端点受 9 级点穴或胀损硬封都按完整路线预检处理；1–8 级点穴、迟滞和中途卡住通过降低 `flowBp/completionBp` 同时削威力，下一次预览也可能降范围档。
 
-结算顺序保持 §4.4：守方先以自己的路线计算 Z4M，攻方再在唯一 Z5M 中选择普通或外放曲线；护体真气之后，护体内劲只对 `projected` 的 40% 适用量抵消，再交给 `mpGuard`。音功 0 档虽然不用外放曲线和范围扩张，但为兼容 05 当前静态 schema，其伤害段仍是 `DamageKind='projected'`，故护体内劲仍按 40% 适用；若要把这项防护语义也动态切换，须由 04 / 05 / Core 另案同步，不能在本文暗改。范围与攻方 Z5M 的剧增不会绕过守方 Z4M、破气、护体容量或内力守恒。敌人、召唤物和玩家完全共用以上门槛、成本、路线封锁与上限；模板敌若缺投影事实只能取其显式 Profile / 里程碑，禁止按阵营免费给 2 档。
+结算顺序保持 §4.4：守方先以自己的路线计算 Z4M，攻方再在唯一 Z5M 中选择普通或外放曲线；护体真气之后统一进入 §4.8 的 AR-19 外放抵消，再交给 `mpGuard`。音功 0 档虽然不用外放曲线和范围扩张，静态 `DamageKind='projected'` 仍不变；但防护适用量不再按旧伤害类别百分表，而按本段 `wIn/wOut` 的内劲 100% / 外劲 50% 上限。范围与攻方 Z5M 的剧增不会绕过守方 Z4M、破气、命中区阈值或气量守恒。敌人、召唤物和玩家完全共用以上门槛、成本、路线封锁与上限；模板敌若缺投影事实只能取其显式 Profile / 里程碑，禁止按阵营免费给 2 档。
 
 ##### 4.4.1.5 作者示例与参考实现
 
@@ -755,6 +756,67 @@ UI 只按 `messageKey` 本地化，不重判暴击；键按 `hash(causeId,moveId
 4. 经脉圆转无滞，雄浑内劲直贯敌身
 5. 丹田气走周天，此击劲力浑然一体
 6. 真气循脉归圆，出手之际内劲勃发
+
+#### 4.4.3 透劲入体、消化与逆流（AR-19）
+
+透劲是玄级及以上内功在**已经成立的外放伤害招**上的可选层，不是旧 `bf_toujin` 的 Z2 穿透。触发同时要求：`projectionBoostActive=true`、`MoveDef.penetratingQi=true`、攻方主运有效品阶 `g_eff≥4`，且 `attackerMpAfterCosts>defenderMpAtHit`。比较量唯一取本招 F2 支付全部招式 / 外放成本后的攻方当前 `mp`，与该伤害段命中前守方当前 `mp`；不再乘品阶、产气或 `mpMax`，相等不触发。
+
+命中后在 P7 建立 `ForeignQiRuntime`。`injectedQi` 与 `injectedSpeedBp` 必须逐字复用本招攻击路线提交的 `releasedQi` / `qiSpeedBp`，不能按伤害反推，也不从攻方再扣第二次资源。注入点由 `design/09` 的 `hitZone` 映射为本次招式合法 `targetAcupoint`；未显式给穴时按 `body→ap_renmai_danzhong`、`hand→ap_shouyangming_hegu`、`leg→ap_zuyangming_zusanli` 回退**【建议值】**。这些是游戏命中锚点**（原创扩展）**，不声称现实疗效。
+
+##### 4.4.3.1 逆向推进与阻塞
+
+从注入点沿目标当前可达拓扑按“到丹田累计 `ΣlengthUnit` 最短 → 下一穴 `ap_*` ASCII 小”选择唯一路径，终点为丹田虚拟端；路径保存为 `reversePath[]`，战中不因换招改线。气包每 tick 在己方气推进之后、当前路线注入之前推进：
+
+```text
+travelTicks(step)=ceil(lengthUnit(step)×10000/injectedSpeedBp)
+advanceSegments = 本 tick 内能完整跨过的连续 step 数；不足一段则为 0
+blockedQi(node) = Σ foreign.remainingQi whose currentNode==node
+foreign.remainingQi>0 时 currentNode 及所有共享该穴的路线不可注入或提交
+```
+
+这就是“未消化前经脉阻塞”：真值在异种气包，不另建可写 Buff。已在别段运行的己方气包继续按原队列推进，但抵达被占穴时停下并进入 backlog；正在运行的招式若被新注入只影响后续命令，不回溯当前命中。
+
+##### 4.4.3.2 消化预算
+
+`digestRatioBp` 属于**来源内功**，含义为“消化 1 点该异种气所需守方内力”：普通 10000 bp = 1:1；范围 10000–100000 bp，100000 = 10:1。每 tick 守方按 `(arrivedAtTick,foreignQiSeq)` 全序处理：
+
+```text
+digestMpBudget = min(currentMp, max(1,productionPerTick))
+digestQi = min(remainingQi, floor(digestMpBudget×10000/digestRatioBp))
+digestMpSpent = ceil(digestQi×digestRatioBp/10000)
+remainingQi -= digestQi; currentMp -= digestMpSpent
+```
+
+预算为 0 或不足以消化 1 点时不扣内力；未花完预算可转给下一包，tick 结束清零，不积存。此处 `productionPerTick` 只定本 tick 可调动上限，仍从真实 `mp` 支付。示例配置均为**（原创扩展）**且不修改图鉴：九阳 `10000`、化功 `10000`、北冥 `10000`；幻阴指作为来源 `digestRatioBp=100000`。普通未配置亦为 `10000`。这些值须由后续图鉴任务逐门确认。
+
+##### 4.4.3.3 抵达丹田与受损
+
+气包抵达丹田前最后一次消化后若仍有 `remainingQi>0`，当 tick 立即清除此包并生成丹田损伤：
+
+```text
+impactBp = clamp(ceil(remainingQi×10000/max(1,defender.mpMax)),1,10000)
+level = impactBp<=500 ? 1 : impactBp<=1500 ? 2 : impactBp<=3000 ? 3 : 4
+hpDamage = max(1,floor(defender.hpMax×[200,500,900,1500][level-1]/10000))
+productionPenaltyBp = [1500,3000,5000,7500][level-1]
+durationOwnActions = [2,3,4,6][level-1]
+```
+
+伤害是带 `internalTrauma` 来源旗标的确定性伤害，不再跑 Z0–Z10、不暴击、不吸血、不反震，最低留 1 气血；随后由 06 创建 / 升级丹田受损生命周期。产气按 `floor(productionPerTick×(10000-productionPenaltyBp)/10000)`，4 级同时禁止主动聚气。多包同 tick 先合计 `remainingQi` 再定一级，至多结算一次；治疗接口为 `yunjin:tiaoxi`、`dispel(circulate|medicine|rest)`，但 Buff 消失不恢复已经扣除的气血。
+
+##### 4.4.3.4 斗转星移反向利用
+
+`sk_douzhuan` 的静态 `InnerDef.reverseQi=true` 只表明可选反引；具体候选必须有当前合法 defense 路线。反引不受“异种气阻塞”禁用，但仍受未开穴、9 级封穴和胀损硬封。每 tick 在普通消化之前执行：
+
+```text
+guideCapacity = min(productionPerTick, minFluxCap(reverseRoute))
+guidedQi = min(remainingQi, guideCapacity, currentMp)
+guideMpSpent = guidedQi                       // 1 点守方内力引 1 点异种气
+counterQi = floor(guidedQi×5000/10000)       // 1:2，引 2 得 1
+```
+
+`guidedQi` 从异种包移除，`counterQi` 进入 `redirectedQi`，只可在本次自身行动结束前用于一次 `counter` / `projected` 反击；不能回蓝、跨回合储存或与 `bf_douzhuan` 的整招镜返重复结算。若 `remainingQi>guideCapacity`，或该包气量大于反向路线 `routeCarryCap`，超量仍沿原逆流继续；抵达丹田照 §4.4.3.3 受伤。故“斗转不受干扰”只免除包所占节点的路线禁用，不免除宽度、消化和丹田伤害。
+
+状态机文字图：`候选 → [门槛通过] 注入穴位/阻塞 → 每 tick {斗转反引? → 消化 → 逆向推进} → 全消化/反引则清除；抵丹田仍有余量 → 丹田受损 → 清除`。失败候选不创建实例；包被清除后节点立即解除其阻塞，但 backlog / 迟滞仍需正常调息。
 
 ### 4.5 反击、合击、多段与改招
 
@@ -803,31 +865,50 @@ UI 只按 `messageKey` 本地化，不重判暴击；键按 `hash(causeId,moveId
 
 绝招级防守只引用已有内容：`mv_jiuyang_huti` 可配置 6 段护体路线（`900+6×90=1440 CT`），在既有 `bf_hutizhenqi` 外开启护体内劲；`mv_jingangbuhuai_jinshen` 可配置 6 段金身路线（`1200+6×90=1740 CT`），但既有无敌 / 免控仍由 06 结算；太极卸力由已有 `ps_taijiquan_siliang` 在成功招架时触发 6 段卸力路线。三个例子只示范挂接，不改图鉴字段或效果。
 
-### 4.8 护体内劲：抵消拳脚
+### 4.8 外放抵消：AR-19 统一护体内劲
 
-护体内劲是 Canon v1.3 V13-03 已采纳的 settle 子阶段，不是 06 的 `bf_hutizhenqi` 护盾，也不是既有 `mpGuard` / “以气御伤”。顺序固定为：Z10 后待结算伤害 → 04 的无敌 / 转移 / 单击上限 → 护体真气 → **护体内劲** → `mpGuard` → 气血。只有有效的自然护体短路或护体防守路线才能启用：
+本节是 settle 中唯一的“护体内劲 / 外放抵消”算法；它不是 `bf_hutizhenqi` 护盾，也不是 `mpGuard`。AR-19 **取代** AR-14f 的拳脚 / 兵器 / 暗器 / 外放 `100%/25%/0%/40%` 适用率及“1 内力抵 2 伤害”：不得先跑旧护体内劲再跑本节，也不再直接花当前 `mp`。`bf_hutineijin` 仅表示已有护体路线可参与；命中区与区内节点集合由 `design/09` §5.11 冻结。
+
+外放门槛使用该命中区自身已有气量，不新增资源：
 
 ```text
-eligible = floor(postShield × kindPct / 10000)
-rawCapacity = floor(defenderStrengthBp × defenderFlowRatioBp / 100000)
-capacity = floor(rawCapacity × (10000-breakGuardBp) / 10000)
-cancelled = min(eligible, capacity, 2×currentMp)
-mpSpent = ceil(cancelled/2)
-damageBeforeMpGuard = postShield-cancelled
+zoneCarryCapacity = Σ carryCapacity(node), node ∈ hitZoneNodes
+zoneQi             = Σ ownInFlightQi(node)          // 不含异种气
+zoneProjectionThreshold = ceil(zoneCarryCapacity × 5000 / 10000)
+projectionReady = zoneCarryCapacity>0 && zoneQi>=zoneProjectionThreshold
+zoneFillBp = projectionReady
+  ? clamp(floor(zoneQi×10000/zoneProjectionThreshold),10000,20000) : 0
 ```
 
-| 来袭类别 | `kindPct` | 理由 / 边界 |
-|---|---:|---|
-| 拳、掌、指、腿、擒拿中的拳脚伤害 | 10000 | 劲力直接接触，经脉强者可近乎全抵 |
-| 持械近战 | 2500 | 只能化去持械者传入的一部分劲，兵刃本体仍伤人 |
-| 暗器 / 机关投射物 | 0 | 物体伤害不被护体内劲抹除；仍可由护盾、闪避、招架处理 |
-| 掌风、剑气等内劲外放 | 4000 | 可抵对冲的内劲部分；内容须标 `projected`，不得凭显示名猜 |
+50% 承载率为外放阈值**【建议值】**：恰过线即可外放，整区满载时强度至多按 20000 bp 计。未开、9 级受封或胀损节点不进入可用 `zoneQi`，但仍进入容量分母，因此受创区域更难达标。`body` 无有效节点时可回退当前护体路线的全部健康节点；`hand/leg` 不回退到躯干。
 
-`defenderFlowRatioBp` 是 §3.4 已相对同路线 STD 归一且钳于 4000–18000 的 `MeridianProfile.flowBp`，不是节点原始 0–10000 `flowBp`。06 §8.14 正式登记的 `bf_hutineijin` 只把已提交且合法的护体路线投影为 `innerGuard.enabled`，可选 `reflectBp` 也只能由该 Buff 显式给出；抵消量、耗内、击穿与迟滞仍由本节计算。`breakGuardBp` 为破体 / 破气来源在本阶段的最高值，先钳 0–8000 bp，不叠加；来源与生命周期归 05 / 06。守恒式为 `postShield = cancelled + damageBeforeMpGuard`，并有 `2×mpSpent-cancelled∈{0,1}`（奇数抵消量因向上取整可剩 1 点不可再用的内力折余）；`damageBeforeMpGuard` 只是进入既有 `mpGuard` 前的剩余伤害，不得命名为 `hpDamage` 或当作实际气血损失。未适用的伤害始终留在后一项，不能因只计算 `eligible` 而丢失。强者对弱者拳脚在容量足且有内力时可令后续伤害为 0，这正是作者要求的“强则无敌”；兵器、暗器和外放只按上表部分适用，保留克制面。
+04 以同一次已决 Z0–Z10 结果重放一条“仅令 `meridianAttackBp=10000`、其余取整与结果不变”的影子 trace，得到 `neutralQiD10`；不重掷骰。于是 `attackQiBonus=max(0,D10-neutralQiD10)` 是到 settle 口径的真气加成。守方外放内劲换成同口径的伤害等价量：
 
-当 `cancelled<eligible` 时即“击穿”；其中 `overflow=max(0,eligible-cancelled)`，同时覆盖容量不足与内力不足。获得 `delayCt=150+min(250,floor(250overflow/max(1,cancelled)))`，并向护体路线首个瓶颈写入 `stagnationBp=800+min(2200,floor(2200overflow/max(1,cancelled)))`；若完全未能抵消则两式直接取上限。若该迟滞连同现有 backlog 越 §3.3 阈值则正常胀损。击穿迟滞为 150–400 CT，迟滞为 800–3000 bp。
+```text
+rawOutwardQi = floor(defenderStrengthBp × defenderFlowRatioBp / 100000)
+outwardQi = floor(rawOutwardQi × zoneFillBp / 10000)
+outwardQi = floor(outwardQi × (10000-clamp(breakGuardBp,0,8000)) / 10000)
+netQi = attackQiBonus-outwardQi
+qiBonusCancelled = min(attackQiBonus,outwardQi)       // 对攻击内劲 100%
+baseCancelled = floor(max(0,-netQi)×5000/10000)       // 负差仅 50% 抵基础伤害
+innerPart = floor(postShield×wInBp/10000)
+outerPart = postShield-innerPart
+eligible = innerPart + floor(outerPart×5000/10000)    // 外劲最多抵 50%
+cancelled = min(postShield,eligible,qiBonusCancelled+baseCancelled)
+damageBeforeMpGuard = postShield-cancelled
+zoneQiSpent = cancelled==0 ? 0 : min(zoneQi,ceil(cancelled×zoneQi/max(1,outwardQi)))
+```
 
-反震不自动赠送：只有原招 / Buff 已有反震语义时，按 `floor(cancelled×reflectBp/10000)` 产生，`reflectBp≤2000`；仍带 04 的 `reflected` 防递归标记。破体 / 破气降低 capacity，点穴直接削流畅或封路线，兵器 / 暗器绕过大部抵消，连续压制消耗内力并累积击穿迟滞；这些共同防止 Boss 因护体内劲对所有伤害绝对免疫。
+`defenderStrengthBp` / `defenderFlowRatioBp` 均取本次合法护体路线 Profile；无路线时取命中区健康节点生成的自然护体短路。区内己方气按 `(route.startedAtTick,routeId,packetSeq,stepIndex)` 全序扣 `zoneQiSpent`，同一气不能再用于出招或第二段防护。`outwardQi=0` 时不得扣气。外放先消去真气加成；守方更强的负差只按 50% 压基础，最终又受“内劲全额、外劲半额”的 `eligible` 上限，故不会抹除全部纯外劲。
+
+`postShield=cancelled+damageBeforeMpGuard` 必须守恒；随后才轮到 `mpGuard`。抵消成功发 `battle/outwardQiCancelled`，UI 按 `hash(causeId,targetId,segmentIndex) mod 4` 轮换，不耗 RNG：
+
+1. 真气鼓荡震开攻击
+2. 护体内劲迸发，来势顿消
+3. 经脉真气外荡，将劲力逼退
+4. 内息奔涌而出，卸开来招
+
+旧 `innerGuard.mpSpent/delayCt/stagnationBp` 在新结算恒为 0；反震仍只由明确效果基于 `cancelled` 计算并带 `reflected` 防递归。迁移器读旧字段但不写回；回放按其原协议继续跑 AR-14f，新协议只跑本节。
 
 ### 4.9 经脉速度：轻功按经脉运行
 
@@ -1160,7 +1241,7 @@ escapeBp = clamp(
 | Boss 首领 `bf_shouling` | 现行 `immune [bind]` 只覆盖长期受制，不覆盖 `cc.bind` 擒拿 | 1–8 级数值减益持续固定 1 次自身行动；9 级按 06 `ccCount` 硬控递减；终局守卷人免疫硬控 |
 | 09 `unit.state=held` | 萧峰等脚本的贴身人盾 / 冻结生命周期 | 不是通用擒拿 Buff；可投影 9 级 HUD，但位移、误伤与解除仍只归 `design/09` §8.10 |
 
-擒拿招若同时带拳脚直伤，直伤先按 §4.8 进入护体内劲，擒拿等级仍在伤害后的 04 / 06 效果检定中处理；抵消量不得直接换算为抗擒拿。若具体招式声明“必须击穿护体才可拿住”，则以 `innerGuard.broken` 作为该招既有 `extraFactor` 的条件；未声明时，即使气血伤害为 0，接触成立仍可施加控制。这一分层避免护体内劲既减伤又免费获得第二份控制免疫。
+擒拿招若同时带拳脚直伤，直伤先按 §4.8 进入外放抵消，擒拿等级仍在伤害后的 04 / 06 效果检定中处理；抵消量不得直接换算为抗擒拿。若具体招式声明“必须击穿护体才可拿住”，则以 `damageBeforeMpGuard>0` 作为该招既有 `extraFactor` 条件；未声明时，即使气血伤害为 0，接触成立仍可施加控制。这一分层避免外放抵消既减伤又免费获得第二份控制免疫。
 
 ### 8.6 正式 Buff 投影（已由 `design/06` 登记）
 
@@ -1175,7 +1256,7 @@ escapeBp = clamp(
 
 ### 9.1 节点级效果
 
-点穴严重度使用 Canon §12 已登记的 `dxl_*` 档案，并必须绑定一个已存在 `ap_*`。它是内功效果：先由招式命中，再以 04 的 `seal`、`effHit` 对 `resSeal`、`effRes` 与抗性品阶判定。成功后节点 `sealLevel=max(old,new)`。
+点穴严重度使用 Canon §12 已登记的 `dxl_*` 档案，并必须绑定一个已存在 `ap_*`。AR-19 的“打穴”与 AR-14c 的点穴 **合并为同一机制**：`MoveDef.acupointStrike` 是施加方式，`bf_xueweishoufeng` 的 1–9 级仍是严重度与生命周期，节点上的占穴气量才是运行真值；不建立第二套“打穴 Buff”。旧招只有 `seal` 效果而没有新字段时仍可产生 1–9 级封穴，但不凭显示名自动获得占穴气量。
 
 | 级 | 武侠表现 | 流畅惩罚 | 招式耗内附加 | 路线 / 运劲限制 |
 |---:|---|---:|---:|---|
@@ -1193,10 +1274,23 @@ escapeBp = clamp(
 
 ### 9.2 命中穴位与传播
 
-- 招式必须显式给 `targetAcupoint` 或按姿态 / 方向从候选穴列表确定；不能随机命中未登记字符串。
-- 同一次招式命中多个穴时，每个穴各走效果命中，但按穴位 ID 排序消费 RNG。
-- 1–4 级只影响该节点；5–6 级让同经脉相邻节点各获得 `floor(level/2)×300 bp` 临时迟滞；7–9 级仍不自动封整条经脉，避免一次命中废掉全部招式。
-- 路线经过受点节点时按 §3.1 降流畅；没有经过则不受影响。由此产生真实的“封路—换招—换路线”选择。
+- 招式必须显式给 `targetAcupoint` 或按 `design/09` 冻结的 `hitZone` 从合法候选穴确定；不能随机命中未登记字符串。候选按“招式显式优先 → 区内当前姿态可触达 → `ap_*` ASCII 小”取首项。
+- Z0 命中后再作一次高精度打穴检定；它要求比普通命中多跨一道门槛：
+
+```text
+ratingBp = clamp(10000+100×(source.effHit-target.effRes),3000,20000)
+sealBp = round(source.seal×100)  // 03 的百分点转 bp
+acupointHitBp = clamp(
+  floor(max(0,hitBp-2000)×ratingBp×(10000-resSealEffBp)/10000²)+sealBp,
+  500,9500)
+```
+
+  `resSealEffBp` 先按 04 的品阶穿透公式求得；标准 `hitBp=8500`、`seal=7pp`、评级差与抗性均为 0 时，`6500+700=7200 bp`，连同普通命中后的总成功率为 `8500×7200/10000=6120 bp`，体现“要求准确度较高”。`mustHit` 不令打穴必中；明确 `mustSeal` 才可跳过第二骰。
+- 命中后 `occupyingQi=releasedQi`，立刻停在目标穴，不按路径前进；`releasedQi=0` 时只施加原 1–9 级效果，不建立伪 1 点气。占穴期间该穴以及**所有引用该穴的经脉 / 招式路线**均不可注入或提交，所以一个交会穴可以同时影响多条经脉。
+- 占穴气使用来源内功的 `digestRatioBp`，但消化效率只有透劲入体的 50%：`acupointDigestQi=floor(digestMpBudget×5000/digestRatioBp)`，等价于消化同量气需 `ceil(qi×digestRatioBp×2/10000)` 内力。例：普通 1:1 来源占穴 20 点，至少投入 `20×10000×2/10000=40` 内力；10:1 来源则需 400。
+- 每 tick 占穴气先于普通透劲包消化，并按 `(apId,sourceUnitId)` 全序；气清零即解除硬占据，但 `sealLevel` 可按其剩余自身行动继续生效。由此“占穴”与“1–9 级严重度”并存于同一实例，不互相复制。
+- 1–4 级的持续性惩罚只影响该节点；5–6 级让同经脉相邻节点各获得 `floor(level/2)×300 bp` 临时迟滞；7–9 级仍不自动封整条经脉。占穴期间的多脉硬封来自共享节点本身，而非把状态复制到邻穴。
+- 同一次招式若显式允许多个穴，各穴独立检定，按穴位 ID 排序消费 RNG；共享同一 `releasedQi` 时按成功穴数等分，余数按穴位 ID 小者依次 +1，气量守恒。
 
 ### 9.3 持续与升级
 
@@ -1205,6 +1299,7 @@ escapeBp = clamp(
 - 不同穴各自保存；全身同时有效点穴节点上限 3。第四个成功时，替换“等级最低→剩余最短→穴位 ID 最小”的节点。
 - `bf_xueweishoufeng` 只有 9 级派生硬控；与眩晕、冰冻等同组只保留一个，结束后触发坚毅。旧 `bf_fengxue` 必须先由存档加载器迁移，不能在新战斗并存。
 - Boss：1–6 级作为数值减益正常；7–8 级的禁绝招 / 内功降为对应类别 `flowBp -3000`；9 级走硬控递减，失败时退化为 6 级 1 回合。终局守卷人免疫 9 级硬控但不免疫 1–6 级数值阻流。
+- 同穴已有占穴气时，新成功量相加但钳于该穴 `carryCapacity`；溢出形成等量 backlog，并按 §3.3 检查胀损。严重度仍按上一条取高 / 升级，不因气量相加额外升级。
 
 ### 9.4 解穴的四条路
 
@@ -1235,7 +1330,7 @@ releaseBp = clamp(3500 + 250×healerGrade + 100×healerLayer
 | 麻 `bf_mabi` | 力量 / 速度减益及概率跳行动 | 与点穴可并存；点穴不再额外产生麻 |
 | 眩晕 / 昏迷 | 其他硬控子类 | 9 级点穴与其互斥，不叠加持续 |
 
-点穴招的拳脚 / 指法直伤同样先过护体内劲，点穴效果再走 04 / 06；只有招式显式要求“破体见穴”时才以 `innerGuard.broken` 为施加条件。成功点穴发生在本次 settle 之后，不回溯削弱本次护体；它从下一次路线 / 速度投影起降低流畅，8 级可禁护体运劲，9 级可硬封经过该穴的自然护体或轻功路线。由此形成“先设法点中，后续破护体”的反制链，而不是一次结算循环依赖。
+点穴招的拳脚 / 指法直伤同样先过 §4.8 外放抵消，点穴效果再走 04 / 06；只有招式显式要求“破体见穴”时才以 `damageBeforeMpGuard>0` 为施加条件。成功点穴发生在本次 settle 之后，不回溯削弱本次外放；它从下一次路线 / 速度投影起降低流畅，8 级可禁护体运劲，9 级可硬封经过该穴的自然护体或轻功路线。由此形成“先设法点中，后续破护体”的反制链，而不是一次结算循环依赖。
 
 兼容选择贯彻“旧档不变强”：旧一回合 `bf_fengxue` 迁移后仍至多跳过一次；新 1–8 级点穴主要改变路线，不免费追加跳行动。旧三 ID 只允许存档加载器读入，迁移后的战斗态与后续写档一律只含 `bf_xueweishoufeng`。
 
@@ -1319,7 +1414,7 @@ rupture'    = max(0, ruptureDamage-repairUnits)
 
 ### 11.1 模块名、职责与实例粒度
 
-生产模块建议名 `MeridianFlowModule`，位于 gameplay core 的 battle 域。职责包括：由成长事实初始化节点；预估 / 提交攻防与轻功路线；合成相对强度乘区；预估 / 结算护体内劲；接受点穴 / 擒拿；执行调息与 tick；生成 / 恢复确定性快照。它不负责动画、UI、武学解锁、04 基础伤害或永久冲穴。
+生产模块建议名 `MeridianFlowModule`，位于 gameplay core 的 battle 域。职责包括：由成长事实初始化节点；预估 / 提交攻防与轻功路线；合成相对强度乘区；预估 / 结算外放抵消；维护异种气、占穴与丹田冲击；接受点穴 / 擒拿；执行调息与 tick；生成 / 恢复确定性快照。它不负责动画、UI、武学解锁、04 基础伤害或永久冲穴。
 
 每个**可独立行动单位**一个实例：
 
@@ -1344,12 +1439,18 @@ MeridianFlowRuntime
 ├─ qi: dantianQi, productionPerTick, qiSpeedBp, unitQiHardCap
 │  ├─ activeInjectionRouteId, nextPacketSeq
 │  └─ routeFlows[]: routeId, startedAtTick, windowTicks, packets[]
+├─ foreignQi[]: foreignQiSeq, sourceUnitId, sourceInnerId, digestRatioBp,
+│  injectedQi, remainingQi, injectedSpeedBp, reversePath[], stepIndex,
+│  remainingTravelTick, arrivedAtTick, injectionAcupoint, hitZone
+├─ acupointOccupancies[]: acupointRef, sourceUnitId, sourceInnerId,
+│  occupyingQi, digestRatioBp, level, remainingOwnActions
+├─ redirectedQi, redirectedQiExpiresAtOwnAction
 ├─ nodes: Map<AcupointId, NodeRuntime>
 │  └─ opened, fluxCap, lengthUnit, inFlightQi, flowBp, stagnationBp,
 │     backlog, ruptureDamage, sealLevel
 ├─ activeDefense: routeId, qualityBp, expiresAtOwnAction, causeId?
 ├─ movementProjection: routeId, qualityBp, speedBp, sealed, ruptured
-├─ innerGuard: enabled, routeId, breakGuardBp, reflectBp
+├─ innerGuard: enabled, routeId, breakGuardBp, reflectBp, projectionReady
 ├─ grappleLevel, grappleSource, grappleRemaining
 └─ tickNo, stateVersion
 ```
@@ -1360,7 +1461,7 @@ MeridianFlowRuntime
 
 1. 收集当前装配 / 敌人行动表会用到的攻击、防守、轻功 `meridianRouteRef`，展开并去重 `ap_*`；
 2. 对玩家 / 同伴读取 15 的永久开通状态；敌人按模板的 `openPolicy` 生成；
-3. 以当前主运内功 1–9 熟练层计算产气、运气速度、流畅与熟练；
+3. 以当前主运内功 1–9 熟练层计算产气、运气速度、流畅、熟练与 `digestRatioBp`；
 4. 从 15 读取逐脉 / 逐穴 `fluxCap`、强度与长度，再加入性质、周天 / 九转、装备与 Buff；
 5. 模块不接收 seed 或自存 RNG；Core 继续持有 `BattleSession.battleRng`，只在成功命令事务中把 `tx.rng('battle')` 传给最终提交；
 6. 节点按穴位 ID 排序，动态状态置零，完成可序列化快照。
@@ -1382,8 +1483,8 @@ F3 read qi already advanced by battle ticks; for each route step in listed order
 F4 aggregate completed qualities → routeQualityBp → attackerStrengthBp
 F5 if a defense window is used, commit / read its route → defenderStrengthBp
 F6 derive Z4M; choose normal/projected base Z5M, then apply circulation exactly once; resolve Z0–Z10
-F7 settle shield → innerGuard → mpGuard → hp; write break delay / stagnation
-F8 apply 06 effects, point / grapple results and reactions
+F7 settle shield → AR-19 outwardQi cancellation → mpGuard → hp
+F8 apply 06 effects, penetrating-qi packet, acupoint strike / grapple and reactions
 F9 persist qi / node states; recovery += all committed flowCt; emit trace / full-circulation event
 F10 commit RNG and state together, or roll everything back
 ```
@@ -1399,13 +1500,15 @@ F10 commit RNG and state together, or roll everything back
 | `commit` | 是 / 是 | 路线、Core 的 `battle` RNG | 唯一 `FlowResult`；随命令事务提交 |
 | `estimateMeridianMultipliers` | 否 / 否 | 双方 Profile、攻防路线长度 | Z4M / Z5M 与逐项整数 trace |
 | `projectProjection` | 否 / 否 | 招式、双方 Profile、15 里程碑、所选档、`MPREF`、封路态 | 当前 / 最大档、射程 / 范围、额外耗内、唯一 Z5M；不枚举格 |
-| `estimateInnerGuard` | 否 / 否 | settle 输入、双方 Profile、资源与类型 | 抵消 / 耗内 / 击穿预估，不写状态 |
-| `settleInnerGuard` | 是 / 否 | 同上、命令事务 | 守恒结果；击穿写迟滞 / 胀损；不抽 RNG |
+| `estimateOutwardQi` | 否 / 否 | settle trace、命中区、双方 Profile、攻招内外劲 | 抵消量、区内耗气与提示键；不写状态 |
+| `settleOutwardQi` | 是 / 否 | 同上、命令事务 | 守恒结果并按稳定顺序扣区内气；不抽 RNG |
+| `injectForeignQi` | 是 / 否 | 来源内功、放气量 / 速度、命中穴与区 | 建异种气包或返回门槛失败；不另扣攻方资源 |
+| `applyAcupointStrike` | 是 / 由 04 已消费 | 穴位、放气量、严重度、来源 | 占穴并投影既有 1–9 级；不另抽 RNG |
 | `projectSpeed` | 否 / 否 | 自身 / 同场参考 Profile、路线状态、擒拿 | `meridianSpeedBp/spd/move` |
 | `applyAcupointSeal` | 是 / 由 04 已消费 | 穴位、等级、来源 | 同穴取高 / 升级，返回变更 |
 | `applyGrapple` | 是 / 由 04 已消费 | 等级、来源、持续 | 取高 / 升级，返回行动限制 |
 | `regulateBreath` | 是 / 有合格点穴时是 | 调息档案、战内 / 外、Core 的 `battle` RNG（按需） | 修复明细；只有实际尝试自行解穴才抽 RNG |
-| `tick` | 是 / 否 | battleTick、Buff 投影 | 产气并推进在途队列、卸 1 backlog、同步持续 |
+| `tick` | 是 / 否 | battleTick、Buff 投影 | 产气、己方气推进、占穴 / 异种气消化与逆流、当前路线注入 |
 | `snapshot` | 否 / 否 | 无 | 规范排序的完整 JSON 值 |
 | `restore` | 是 / 否 | 已校验快照 | 原样恢复单位状态；不同单位拒绝；RNG 由 `BattleSession` 恢复 |
 
@@ -1418,14 +1521,14 @@ F10 commit RNG and state together, or roll everything back
 | `createBattle` | 为稳定排序后的每个单位 `initialize` | `BattleState.meridianByUnit` |
 | 09 F0 / F1 校验与整招快照 | `preview` / `projectProjection` 供合法性与 UI；命令提交后依序 commit 攻 / 防路线 | 当前外放档、目标格、成本、`routeQualityBp` 与双方 Profile |
 | 04 Z4 后 / Z5 后 | 分别读 `meridianDefenseBp` / 普通或外放二选一的 `meridianAttackBp` | Z4M / Z5M 各向下取整一次 |
-| 04 settle | `settleInnerGuard` | 护体真气后、`mpGuard` 前抵消并守恒 |
-| 06 效果结算 | 成功后调用 point / grapple | 更新目标自己的实例 |
+| 04 settle | `settleOutwardQi` | 护体真气后、`mpGuard` 前按命中区抵消并守恒 |
+| 06 效果结算 | 成功后调用透劲 / 打穴 / 擒拿 | 更新目标自己的实例；阻塞 / 丹田伤只作 Buff 投影 |
 | 09 首轮 / CT / 移动 | `projectSpeed`，加 `flowCt`，同步 Buff | 冻结首轮；后续 `spd/move` 动态重算 |
 | battle tick | 对所有活动实例按 `unitIndex` 调 `tick` | 可回放状态 |
 | 存档 / replay checkpoint | `snapshot` | `GameState` / hash 域 |
 | 回滚 | 丢弃 journal 中的实例写入 | 命令前状态与 `BattleSession.battleRng` 一致 |
 
-攻防路线必须在 Z4M / Z5M 前完成，护体内劲在 settle 指定位置完成；外放范围档在目标合法性检查前冻结并随命令记录，提交后即使途中卡住也不重选目标格，但本次 Profile 完成质量会降低外放 Z5M。点穴 / 擒拿仍施加在该次伤害后的 06 阶段，不能反向削弱当前招。反击使用反击者自己的实例；速度变化从下一次 CT 推进生效。
+攻防路线必须在 Z4M / Z5M 前完成，外放抵消在 settle 指定位置完成；外放范围档在目标合法性检查前冻结并随命令记录，提交后即使途中卡住也不重选目标格，但本次 Profile 完成质量会降低外放 Z5M。透劲 / 打穴 / 擒拿仍施加在该次伤害后的 P7 阶段，不能反向削弱当前招。反击使用反击者自己的实例；速度变化从下一次 CT 推进生效。
 
 ### 11.7 确定性细则
 
@@ -1639,7 +1742,7 @@ skillPatch:
       meridianRouteRef: mfr_xianglong18_shenlong
 ```
 
-防守 / 轻功路线使用同一 schema，仅把 `purpose` 改为 `defense` / `movement`。一个 `MoveDef` 仍只引用一条主路线；太极被动这类触发器由自身 `routeOnTriggerRef` 引用防守路线。护体路线可附 `innerGuard:{enabled:true, reflectBp:0}`；`reflectBp` 只有原内容已有反震语义才可非零。
+防守 / 轻功路线使用同一 schema，仅把 `purpose` 改为 `defense` / `movement`。一个 `MoveDef` 仍只引用一条主路线；太极被动这类触发器由自身 `routeOnTriggerRef` 引用防守路线。护体路线可附 `innerGuard:{enabled:true, reflectBp:0}` 作为兼容启用标记；AR-19 新协议只读取 `enabled/reflectBp`，不读取旧类别百分表或耗蓝倍率。
 
 `meridian-route.v2` 的每段必须显式填写 `lengthUnit`；上例全为迁移基线 1。旧 `meridian-route.v1` 只允许迁移器读取并逐段补 1，规范化后必须写出 v2，新内容不得省略。`ultimate` 在路线中只作一致性断言；唯一真值仍是 05 的 `MoveDef.ultimate`。构建器须验证二者相等，然后把路线引用编译进招式，不允许运行时出现两份可分叉标记。
 
@@ -1796,15 +1899,29 @@ interface MeridianQiRuntime {
   nextPacketSeq: number;
   routeFlows: readonly RouteFlowRuntime[]; // (startedAtTick,routeId) 升序
 }
+type HitZone = 'body'|'hand'|'leg';
+interface ForeignQiRuntime {
+  foreignQiSeq: number; sourceUnitId: UnitId; sourceInnerId: string;
+  digestRatioBp: Bp; injectedQi: number; remainingQi: number; injectedSpeedBp: Bp;
+  injectionAcupoint: AcupointId; hitZone: HitZone; reversePath: readonly AcupointId[];
+  stepIndex: number; remainingTravelTick: number; arrivedAtTick: number;
+}
+interface AcupointOccupancyRuntime {
+  acupointRef: AcupointId; sourceUnitId: UnitId; sourceInnerId: string;
+  occupyingQi: number; digestRatioBp: Bp; level: 1|2|3|4|5|6|7|8|9;
+  remainingOwnActions: number;
+}
 interface FullCirculationCritResolved {
   event: 'battle/fullCirculationCritResolved';
   unitId: UnitId; targetIds: readonly UnitId[]; moveId: string; routeId: MeridianRouteId;
   releasedQi: number; routeCarryCap: number; circulationBp: 10000;
   critRollBp: Bp; critChanceBp: Bp; messageKey: string; causeId: string; battleTick: number;
 }
-interface InnerGuardResult {
-  eligibleIncoming: number; capacity: number; cancelled: number; damageBeforeMpGuard: number;
-  mpSpent: number; broken: boolean; delayCt: number; stagnationBp: Bp; reflectDamage: number;
+interface OutwardQiResult {
+  projectionReady: boolean; zoneQi: number; zoneProjectionThreshold: number;
+  attackQiBonus: number; outwardQi: number; eligibleIncoming: number;
+  qiBonusCancelled: number; baseCancelled: number; cancelled: number;
+  zoneQiSpent: number; damageBeforeMpGuard: number; messageKey: string|null;
 }
 interface MeridianSpeedResult {
   meridianSpeedBp: Bp; combinedSpeedBp: Bp;
@@ -1828,7 +1945,14 @@ interface MeridianInitializeInput {
 interface PreviewOptions { previewRollBp?: Bp; opponent?: MeridianProfile; }
 interface FlowPreview extends FlowResult { stateVersion: number; }
 interface MeridianPairInput { attacker: MeridianProfile; defender: MeridianProfile; attackRouteLength: number; defenseRouteLength?: number; }
-interface InnerGuardInput { postShield: number; kind: DamageKind; defender: MeridianProfile; attacker: MeridianProfile; currentMp: number; breakGuardBp: Bp; reflectBp: Bp; }
+interface OutwardQiInput {
+  postShield: number; d10: number; neutralQiD10: number; wInBp: Bp; hitZone: HitZone;
+  defender: MeridianProfile; breakGuardBp: Bp; causeId: string; segmentIndex: number;
+}
+interface ForeignQiInput {
+  sourceUnitId: UnitId; sourceInnerId: string; sourceGrade: number; digestRatioBp: Bp;
+  injectedQi: number; injectedSpeedBp: Bp; injectionAcupoint: AcupointId; hitZone: HitZone;
+}
 interface MeridianSpeedInput { self: MeridianProfile; fieldReference: MeridianProfile; grappleMoveBp: Bp; sealed: boolean; ruptured: boolean; }
 interface AcupointSealInput { acupointRef: AcupointId; level: 1|2|3|4|5|6|7|8|9; source: UnitId; remainingOwnActions: number; }
 interface SealChange { acupointRef: AcupointId; previous: number; current: number; }
@@ -1847,8 +1971,10 @@ interface MeridianFlowModule {
   commit(route: MeridianRouteDef, battleRng: Rng): FlowResult;
   estimateMultipliers(input: MeridianPairInput): MeridianMultipliers;
   projectProjection(input: ProjectionInput): ProjectionResult;
-  estimateInnerGuard(input: InnerGuardInput): InnerGuardResult;
-  settleInnerGuard(input: InnerGuardInput): InnerGuardResult;
+  estimateOutwardQi(input: OutwardQiInput): OutwardQiResult;
+  settleOutwardQi(input: OutwardQiInput): OutwardQiResult;
+  injectForeignQi(input: ForeignQiInput): ForeignQiRuntime|null;
+  applyAcupointStrike(input: AcupointSealInput & { occupyingQi:number; digestRatioBp:Bp }): SealChange;
   projectSpeed(input: MeridianSpeedInput): MeridianSpeedResult;
   applyAcupointSeal(input: AcupointSealInput): SealChange;
   applyGrapple(input: GrappleInput): GrappleChange;
@@ -1864,6 +1990,9 @@ interface MeridianFlowSnapshotV2 {
   stateVersion: number; grappleLevel: number;
   grappleSource: UnitId|null; grappleRemaining: number;
   qi: MeridianQiRuntime;
+  foreignQi: readonly ForeignQiRuntime[]; // (arrivedAtTick,foreignQiSeq) 升序
+  acupointOccupancies: readonly AcupointOccupancyRuntime[]; // ap_*、sourceUnitId 升序
+  redirectedQi: number; redirectedQiExpiresAtOwnAction: number|null;
   nodes: readonly MeridianNodeRuntime[]; // ap_* ASCII 升序
 }
 ```
@@ -1933,7 +2062,7 @@ routeUtility    = expectedDamage
 | 点穴 | 人体简图高亮具体穴位与等级 | 受影响路线清单 | 只显示总封穴百分比 |
 | 擒拿 | 关节锁图标、1–9、兵器 / 行动限制 | 挣脱成功率构成 | 与麻 / 眩晕共用一个无名图标 |
 | 调息入口 | 可修复目标数、预计恢复、1000 CT | 自动优先级与逐穴结果 | 隐藏可被打断提示 |
-| 防守 / 护体 | 本次承伤倍率、预计抵消、内力成本 | 防守路线与击穿后果 | 把护盾、护体内劲、mpGuard 混成一个数 |
+| 防守 / 护体 | 本次承伤倍率、命中区阈值、预计抵消与耗气 | 防守路线与区内气不足后果 | 把护盾、外放抵消、mpGuard 混成一个数 |
 | 轻功 / 身法 | `spd` / 移动力修正、封路警告 | 相对强度与路线质量 | 暗改门禁或地形成本 |
 | 外放 | 当前射程 / 范围档与额外耗内；降档原因 | 基础与上限、唯一 Z5M 预估 | 把范围档显示成第二个伤害乘区 |
 
@@ -1953,7 +2082,7 @@ routeUtility    = expectedDamage
 
 ### 13.5 可观测事件
 
-Core 至少发出 `route.previewed`（仅诊断、不入玩法 hash）、`route.committed`、`route.jammed`、`node.ruptured`、`meridian.attack.multiplied`、`meridian.defense.multiplied`、`innerGuard.settled`、`meridian.speed.changed`、`point.applied`、`grapple.applied`、`breath.completed`。玩法事件只带整数输入 / 输出、来源 ID 与 command sequence；日志脱敏后用于统计路线选择率、攻防倍率分布、护体击穿率、速度分布、卡住率、调息占比和首次流失点，不反向改变当局概率。
+Core 至少发出 `route.previewed`（仅诊断、不入玩法 hash）、`route.committed`、`route.jammed`、`node.ruptured`、`meridian.attack.multiplied`、`meridian.defense.multiplied`、`battle/outwardQiCancelled`、`battle/foreignQiInjected`、`battle/foreignQiDigested`、`battle/dantianDamaged`、`battle/acupointOccupied`、`battle/reverseQiReleased`、`meridian.speed.changed`、`point.applied`、`grapple.applied`、`breath.completed`。玩法事件只带整数输入 / 输出、来源 ID 与 command sequence；日志脱敏后用于统计抵消率、异种气去向、丹田冲击、攻防倍率、速度、卡住与调息，不反向改变当局概率。
 
 ---
 
@@ -2080,9 +2209,9 @@ p = clamp(5000 + 40×((70+65)-(75+70)) + 150×8 - 650×6, 500, 9500)
 | 弱一档 | 8250 / 10000 | 9157 | 849 → 777 | 3970 / 10000 | 5 → 6 | 越级硬打明显吃亏 |
 | 高手对杂兵 | 14975 / 5575 | 18265 | 849 → 1550 | 2200 / 10000 | 3 → 2 | 长路碾压但不越 22000 硬顶 |
 
-这只是隔离 Z5M 的回归，不包含主动防守、护体内劲、卡住与调息行动。标准对标准严格 ×1.0000，因此现有 `damage_sim.py --check` 应零漂移；04 接入后还须用同表逐区复算并继续通过旧检查。
+这只是隔离 Z5M 的回归，不包含主动防守、外放抵消、卡住与调息行动。标准对标准严格 ×1.0000，因此现有 `damage_sim.py --check` 应零漂移；04 接入后还须用同表逐区复算并继续通过旧检查。
 
-### 14.10 防守路线、护体内劲与击穿
+### 14.10 防守路线与 AR-19 外放抵消
 
 标准攻击者对强一档守方：攻方相对弱，10 段攻击得 `attack=9200 bp`；守方 6 段卸力路线得 `defense=9361 bp`。故输入 1000：
 
@@ -2091,7 +2220,19 @@ afterZ4M = floor(1000×9361/10000) = 936
 afterZ5M = floor(936×9200/10000) = 861
 ```
 
-强守方护体内劲面对 1000 拳脚，`capacity=1506`、内力 2000，可抵 1000、耗内 `ceil(1000/2)=500`、气血伤害 0；已有反震 1000 bp 时反震 100。标准守方面对高手 1600 拳脚且只余内力 300，只能抵 600、耗内 300，余 1000 进入 `mpGuard` / 气血；判击穿并触及 400 CT 与 3000 bp 经脉迟滞硬顶。两例同时验证“强者近乎免疫”与“内力先耗尽也会正确击穿”。
+设伤害段经护盾后 `postShield=1000`，其中 `wInBp=6000`，原 trace 的 `D10=1000`，把同一 trace 的 `meridianAttackBp` 置 10000 后得 `neutralQiD10=800`，故攻击真气加成为 200。守方命中区承载 100、己方在途气 50，恰达阈值；护体 Profile 为 `defenderStrengthBp=12000, defenderFlowRatioBp=10000`，无破气：
+
+```text
+outwardQi=floor(12000×10000/100000)=1200
+netQi=200-1200=-1000
+qiBonusCancelled=200; baseCancelled=floor(1000×5000/10000)=500
+eligible=floor(1000×6000/10000)+floor(400×5000/10000)=800
+cancelled=min(1000,800,200+500)=700
+damageBeforeMpGuard=300
+zoneQiSpent=min(50,ceil(700×50/1200))=30
+```
+
+同样输入若为纯外劲 `wInBp=0` 且无攻击真气加成，则 `eligible=500`，即使守方外放更强也只抵 500、仍有 500 进入 `mpGuard` / 气血。两例验证“攻击内劲 100%、外劲 50%”的上限、负差折半、气量守恒以及新协议不直接花 `mp`。
 
 ### 14.11 经脉速度与封路
 
@@ -2152,8 +2293,8 @@ afterZ5M = floor(936×9200/10000) = 861
 | 永远只用最长路线 | 路线越长越能兑现差距 | 18 段才满兑现；每段加 CT / RNG / 堆积；同强度始终中性 | 只有已有强度优势时长路才放大，不能凭长度生倍率 |
 | 故意卡住刷伤害 | 若失败段被重新归一化会套利 | 分母固定配置总段数；卡住段不计质量；保留 CT 与伤势 | 第 4/8 段卡住仅 2112 bp 质量，不能高于完整路线 |
 | 堆内力刷独立倍率 | 若 `mpMax` 又暗推气量 / 宽度会重复成长 | AR-19 后产气取主运、宽度取永久脉 / 穴；强度四项及总分仍钳制 | 单独翻倍 `mpMax` 不改变产气、宽度或周天完成度 |
-| 只练防守路线龟缩 | 防守 Z4M、护体内劲可能拖长战斗 | 防御行动 / 反应耗 CT；抵消耗内；击穿留迟滞；防守承伤底 5000 | 无伤但无推进的连续防守触发 AI 目标施压与僵局规则 |
-| Boss 护体免疫拳脚 | 强 Boss 令拳脚流派无解 | 兵器 75%、暗器 100%、外放 60% 绕过；破体 / 破气、点穴、持续压制可击穿 | 任一 Boss 至少有两种非拳脚或破气可达反制来源 |
+| 只练防守路线龟缩 | 防守 Z4M、外放抵消可能拖长战斗 | 防御行动 / 反应耗 CT；抵消消耗命中区在途气；纯外劲至少保留 50%；防守承伤底 5000 | 无伤但无推进的连续防守触发 AI 目标施压与僵局规则 |
+| Boss 外放抵消压制流派 | 强 Boss 令低内劲流派无解 | 纯外劲至少保留 50%；破气可降 `outwardQi`；点穴 / 异种气可封护体路线 | 任一 Boss 至少有两种可得的破气、点穴、纯外劲或耗空区内气手段 |
 | 堆轻功刷行动次数 | Z5M 伤害与速度可能同时放大 | 速度顶 13500、`spd≤300`、`recovery≥500`、移动 +2；攻击路线另付 CT | 极端 ≤600 次 / 1000 tick；同档 106 / 6 不变 |
 | 高速风筝 Boss | +2 移动力可永远脱离 | 不降地形 / 体力成本，不扩射程；09 ZOC / 截击与 Boss 追击照常 | 典型 Boss 地图须存在追击、封路或远程回应 |
 | 反复调息拖时 | 可等待 Buff / AI 失误 | 调息 1000 CT、可被打断；不自然回满；AI 连续三次降权；战斗目标可施压 | 正常样本调息占比约 12.58%，长期 >25% 告警 |
@@ -2215,7 +2356,10 @@ afterZ5M = floor(936×9200/10000) = 861
 | 路线质量 | §3.4 | `routeQualityBp` | 一次攻 / 防 / 轻功路线 |
 | 经脉强度 | §3.4 | `MeridianProfile/meridianStrengthBp` | 一次相对结算快照 |
 | 攻击 / 防守独立乘区 | §3.5、§4.4 | `meridianAttackBp/meridianDefenseBp` | 一次伤害段，在 Z5M / Z4M 消费 |
-| 护体内劲 | §4.8 | `InnerGuardResult` | 一次 settle；抵消耗内，击穿留状态 |
+| 外放抵消 | §4.8 | `OutwardQiResult` | 一次 settle；消耗命中区己方在途气，不直接耗 `mp` |
+| 异种气实例 | §4.4.3 | `ForeignQiRuntime` | 注入至消化 / 反引 / 抵达丹田；阻塞真值 |
+| 占穴气实例 | §9 | `AcupointOccupancyRuntime` | 占穴至气量消化完；与 1–9 级同一逻辑实例 |
+| 丹田受损 | §4.4.3.3 | `DantianInjuryProjection` | 伤害即时；产气惩罚由 06 Buff 生命周期承载 |
 | 经脉速度修正 | §4.9 | `meridianSpeedBp/openingQinggong/evadeRatingDelta` | 首轮冻结 / CT 阶段脏重算 |
 | 外放加持 | §4.4.1 | `projection/maxProjectionStep/projectionStep` | 招式静态标记 + 每次预览 / 命令快照 |
 | 音功外放激活 | §4.4.1 | `sonic/projectionBoostActive` | 招式标签投影 + 单次命令派生；不存第二套修为 |
@@ -2278,6 +2422,10 @@ afterZ5M = floor(936×9200/10000) = 861
 | MF-V22 | 产气、推进、注入按 §2.5 固定顺序；累计长度取整；`releasedQi≤availableRouteQi≤routeCarryCap` | 战斗回放失败 |
 | MF-V23 | 周天完成度只在唯一 Z5M 结算一次；完整为 13500 bp、不完整查整数曲线；最终仍在 6500–22000 | 集成失败 |
 | MF-V24 | `routeFlows` 与气包按规定全序保存；逐路线、逐节点与单位三级气量守恒，换路不清旧流、不瞬移、不突破 `unitQiHardCap` | 快照 / 战斗回放失败 |
+| MF-V25 | `digestRatioBp∈[10000,100000]`；`penetratingQi` 只可用于玄级及以上、外放可激活的伤害招；`reverseQi` 只可挂内功 | 构建失败 |
+| MF-V26 | `ForeignQiRuntime` 的量、速度逐字等于来源外放提交值；`reversePath` 可达丹田且按最短长度 / ID 唯一确定 | 命令拒绝 / 回放失败 |
+| MF-V27 | `AcupointOccupancyRuntime` 绑定已登记穴位，气量不越该穴承载；同次多穴分气守恒；占穴消化成本恰为普通透劲两倍 | 构建 / 回放失败 |
+| MF-V28 | 外放抵消只在 `projectionReady` 成立时运行；`postShield=cancelled+damageBeforeMpGuard`，区内扣气不越现存己方在途气 | 回放失败 |
 
 ### 17.2 参考实现自动用例
 
@@ -2297,7 +2445,7 @@ afterZ5M = floor(936×9200/10000) = 861
 | MF-T12 | 固定种子 / fixture | JSON 与评审后的 golden 完全一致 |
 | MF-T13 | 普通→精英→Boss 依次 `commit`，随后一次合格自解穴 | 四实例逐次推进同一全局 `battle` 流；解穴仅在实际尝试时再推进一次 |
 | MF-T14 | 同 raw / 同 STD 归一；四分量分别从下界扫至上界；路线长 1 / 6 / 10 / 18 | 标准四分量与强度均为 10000，Z4M / Z5M / 速度都为 10000；任一方单项增强时其攻击不降、防守承伤不升、速度不降，且不越硬界 |
-| MF-T15 | 防守路线 + 护体维持 / 容量击穿 / 内力击穿 + 四类伤害 | 防守承伤下降；适用量为 1000/250/0/400；抵消耗内守恒；两类击穿均产生正 delay / stagnation |
+| MF-T15 | §14.10 的混合伤害、纯外劲各 1000；命中区恰过 50% 阈值 | 前者抵 700、耗区内气 30；后者至多抵 500；不直接扣 `mp`，守恒成立 |
 | MF-T16 | 速度同等 / 强者 / 封路 / 强者受 5 级擒拿 | 前三者首轮轻功 / `spd/move` / 闪避评级差为 98/106/6/0、119/129/7/+22、63/68/4/−35；受擒强者为 71/77/5/+22，另由 04 / 06 只应用一次 75% 闪避；极端行动数 ≤600 |
 | MF-T17 | `sk_xianglong18` 三绝招解析；任一招结算后在当前行动末、下一次自身行动中及该行动结束后检查状态 | 三者各解析唯一不同路线；设置当行动末冷却仍为 1，下一次自身行动禁用同门绝招，行动结束才清零；之后仍不能连续选择同一 `moveId`；三条满路线总 CT 为 1965 / 2000 / 1960 |
 | MF-T18 | 三个作者示例 × 标准 / 高 / 顶尖；标准守方 | 射程、范围与 Z5M 精确等于 §4.4.1.5；标准均为 +0 / +0 档 / 10000 |
@@ -2334,13 +2482,17 @@ afterZ5M = floor(936×9200/10000) = 861
 | MF-I11 | 断网 / Worker 超时 / 低内存 | Core 规则不降级；可安全恢复 / 待机 |
 | MF-I12 | 控制链打 Boss 1000 场固定种子 | 均存在回应窗口；无永久 9 级锁死 |
 | MF-I13 | 标准对标准完整 04 管线 | 所有 Z4M / Z5M 为 10000；`damage_sim.py --check` 零漂移 |
-| MF-I14 | 拳脚 / 兵器 / 暗器 / 外放各 1000 | 护体适用量依次 1000 / 250 / 0 / 400，且总量守恒 |
+| MF-I14 | 同一 trace 扫 `wInBp=0..10000`、阈值前后、攻守外放内劲差为正 / 零 / 负 | 内劲最多抵 100%、外劲最多抵 50%；未达阈值抵消 0；负差只按 50% 抵基础；总量与区内气守恒 |
 | MF-I15 | 首轮后点穴、胀损、调息、擒拿 | 首轮顺序不回溯；下一 CT / 移动按“经脉后擒拿”重算 |
 | MF-I16 | `damage_sim.py` 分别以普通 / 外放标记结算 10 段强一档；另给旧 `projected` 通道但无新标记 | 普通 Z5M=12053；外放 Z5M=13581，均只在 D5 后取整一次；标准输入两者均 10000；旧通道仍走普通曲线 |
 | MF-I17 | 阳主运调用阴体段路线，名单分别 `[yin,harmony]` / `[yin,yang,harmony]`；两者均设 `allowOpposedNature:true` | 前者 F0 拒绝且资源 / RNG / CT 不变；后者获准后 `affinityBp=8800`，不因静态豁免改为同相。设计金标准，待 Core / 图鉴迁移后实现 |
 | MF-I18 | 旧路线缺 `requiredNature`：分别有明确模板名单 / 模板也缺名单；另以阳主运调用 `[harmony]` | 首项逐字展开模板，次项生产构建阻断，末项 F0 拒绝；禁止以调和条目当通配符。设计金标准，待 tech/04 / Core 实现 |
 | MF-I19 | 同一 CT 命令逐 tick 与一次确定性快进 | 丹田气、每段在途队列、到达量、backlog 与最终 hash 完全相等 |
 | MF-I20 | 满槽选择急性聚气后再出招 | 前次不移动、不扣招式 MP / 气势；1000 CT 内继续产气推进；后次放气有界且只结算一次周天曲线 |
+| MF-I21 | 玄级外放招，攻方成本后 `mp` 分别小于 / 等于 / 大于守方命中前 `mp` | 仅严格大于时建立异种气；量 / 速度等于来源外放；不二次扣资源 |
+| MF-I22 | 普通 / 10:1 异种包逐 tick 消化并抵达丹田；同 tick 多包到达 | 内力成本分别为气量的 1 / 10 倍；包未清前阻塞；到丹田合并定级且只结算一次伤害 |
+| MF-I23 | `sk_douzhuan` 反引量低于 / 超过 `guideCapacity` 与路线承载 | 可引部分按 1:2 形成当行动反击气；超量继续逆流并可能造成同档丹田伤害 |
+| MF-I24 | 打穴普通 1:1 来源占穴 20、交会穴连接三条路线 | 消化恰耗 40 内力；三条路线同时禁用；气清零解除占据但严重度按剩余行动存续 |
 
 属性测试还应随机生成合法路线与节点态，断言：原始质量在 `[0,10000]`、归一完成质量在 `[0,18000]`；同 raw / 同 STD 恒为 10000；优势方完成质量增加不会减少优势兑现；弱方故意降低完成质量不能减轻劣势；卡住位置前移不能提高质量；任一方相对强度增大时其攻击不降、防守承伤不升、速度不降；护体资源守恒；擒拿只在移动 / CT 与独立 `evadeBp` 各生效一次；调息 / tick 不增加伤势；对另一实例操作不改变本实例 hash。
 
@@ -2381,7 +2533,7 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 | QI-D01 | ENG-02 / `tech/04` | **本次已给设计契约**：静态内功、永久脉穴与战斗运行字段见 §2、§12；正式 schema / 迁移实现交 ENG-02 |
 | QI-D02 | ENG-03 / `tech/05` | **本次已给设计契约**：逐 tick 推进、急性聚气、唯一 Z5M 与两项事件见 §3.7、§4.4.2、`design/09` §3；Core 实现与回放交 ENG-03 |
 | M3-D01 | `design/04` / `damage_sim.py` | **已解决**：Z4M / Z5M、各自取整、中性点、硬界与旧 Z3 删除均已接入并有回归 |
-| M3-D02 | `design/04` / `design/06` | **已解决**：护体内劲已固定在护体真气后、`mpGuard` 前，四类适用率与 1 内力抵 2 伤害已同步 |
+| M3-D02 | `design/04` / `design/06` | **已由 AR-19 修订**：仍固定在护体真气后、`mpGuard` 前，但旧四类适用率与“1 内力抵 2 伤害”退出；改用 §4.8 命中区气量阈值、内劲 100% / 外劲 50% 上限 |
 | M3-D03 | `design/05` / 武学图鉴 | **已解决**：`purpose: attack/defense/movement` 与稳定 `mfr_*` 引用已接入；具体实例归各图鉴 |
 | M3-D04 | `design/03/08/09` | **已解决**：6500–13500 bp 经脉速度、基础属性 / 门禁边界、首轮 / CT / 移动及先经脉后擒拿均已同步 |
 | M3-D05 | `design/09` | **已解决**：防御行动、≤3 段 / 240 CT 待机预置与即时防守额度已接入 |
@@ -2403,7 +2555,7 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 |---|---|---|
 | Canon §3 / §6 / §8–§11 | 书界压制、属性、CT、Z0–Z10、护体、轻功与 Buff | v1.8 已接 Z4M / Z5M、护体内劲、经脉速度、AR-17 音功 / 掌风及 AR-18 体段 / 出口段判据 |
 | `design/03` | `mpMax`、轻功值、基础 `spd`、臂力 / 身法 / 定力、`apInner/apGrapple` | 已引用；不新增属性 |
-| `design/04` | Z0–Z10、护体 settle、效果检定、TTK 锚点 | **已解决**：Z4M / Z5M、护体内劲与音功 0 档分支均已接入 §4.5.1；静态 `projected` 与护体 40% 适用率保持 |
+| `design/04` | Z0–Z10、护体 settle、效果检定、TTK 锚点 | **本任务同步**：Z4M / Z5M 与音功 0 档分支保持；旧护体类别表由 AR-19 §4.8 外放抵消替代 |
 | `design/05` | 品阶、层数、招式、内功性质、绝招 | 已接十二品绝招数、7 / 9 / 10 重、`meridianRouteRef`、调息引用与外放字段；AR-18 后内功性质按主修经脉逐脉计票，平票或无票取调和，显式空数组可审计为调和而缺字段不可审计；路线算法仍由本文定义 |
 | `design/06` | Buff 注册、控制互斥、Boss 递减 | 已登记 `bf_shouqin`、`bf_xueweishoufeng`、迟滞 / 胀损派生视图及旧 ID 迁移 |
 | `design/08` | 轻功门禁 20 / 50 / 90 / 140 / 200、地形成本 | 已引用；经脉速度不改资格 / 成本 |
@@ -2420,7 +2572,7 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 | M2-P02 | **由 M3-P04 修订取代**：原提案只登记招式路线 / Z3；保留此行追溯，不能按旧 Z3 归属采纳 | 作者 2026-09-27 决定扩大到防守、护体内劲和速度 |
 | M2-P03 | Canon §19 / tech 确定性契约加入“一独立行动单位一状态实例、preview 无副作用、Core 唯一 battle RNG、固定顺序、快照 / golden” | 防止 UI、AI、存读档和录像在核心伤害前分叉，并保持现行五流协议 |
 | M3-P01 | Canon §9 在 Z4 后、Z5 后分别插入 `Z4M / meridianDefense`、`Z5M / meridianAttack`；每区向下取整，标准 10000，强度差由当前优势方完成质量兑现，硬界 5000–13000 / 6500–22000 | 落实作者“独立乘”；保持既有 Z3 / Z4 / Z5 语义和标准 TTK，并阻止弱方故意卡路少吃亏 |
-| M3-P02 | Canon §8 / §9 settle 在护体真气后、`mpGuard` 前增加护体内劲；规定类别适用率、1 内力抵 2 伤害、击穿迟滞与守恒 trace | 合并而不重定义既有护体 / 以气御伤，提供拳脚克制与破局 |
+| M3-P02 | **由 AR19-P01 修订取代**：旧类别适用率、1 内力抵 2 伤害和击穿迟滞仅供旧协议回放，不得用于新战斗 | AR-19 明确改为命中区外放阈值、内劲全抵 / 外劲半抵及负差折半 |
 | M3-P03 | Canon §8 / §11 增经脉速度修正接口：已含归一完成质量的 Profile 相对同场参考直接查 6500–13500 bp 单调曲线，标准中性且不再以原始路线质量二次混合；先经脉后擒拿；09 首轮用修正后的 `openingQinggong`，03 / 08 / 09 的基础属性、门禁地形、时间轴归属不变 | 落实“轻功也是按经脉运行”，避免重复计算轻功值和完成质量导致反向台阶 |
 | M3-P04 | Canon §18 登记 21 唯一拥有战斗经脉动态、攻 / 防 / 轻功路线修正、护体内劲、绝招补充、擒拿 / 点穴严重度与调息；15 仍拥有永久拓扑 / 成长 | 取代 M2-P02 的 Z3 旧口径，覆盖作者决定完整范围 |
 | M4-P01 | Canon §4 / §8 增绝招数量硬规则：天阶 2–3、地阶 1–2、玄上 1、玄中 / 玄下与黄阶 0；绝招仍以 `MoveDef.ultimate` 为唯一真值 | 当前基准仅定义气势 100 与 `ultimate` 表达，未登记作者 2026-09-27 追加的分品数量 |
@@ -2428,7 +2580,9 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 | M5-P01 | Canon §3 / §5 登记 Boss 主运最低 `G`、具名精英 `G−1`、顶尖人物地位下限；多人 Boss 节奏按整场总耐久 / 目标验收 | 落实 AR-14 / AR-15，避免用低阶主运压强度或逐人复制 Boss 耐久 |
 | M5-P02 | Canon §18 将首领配装 / 七参校验归 21 §11.9，逐单位事实与例外归各书界首领表 | 消除“首领表值”与“只取主运”两套口径 |
 | M6-P01 | Canon §8 登记外放为 `MoveDef` 逐招事实：离体指力 / 掌力 / 剑气 / 刀罡可标；范围最多基础射程 +4、基础范围 +2 档，扩张另耗 0 / 2% / 4% MPREF | 落实 AR-16；除 V17-07 四门整门锚点外，不按武学总名或“远程”批量推断 |
-| M6-P02 | Canon §9 明确外放威力替代该招普通 Z5M 曲线、仍只取整一次且总界 6500–22000；标准对标准 10000，守方 Z4M 与外放 40% 护体内劲照常生效 | 体现经脉强者外放剧增，又避免同源经脉收益重复计入 |
+| M6-P02 | **由 AR19-P01 局部修订**：外放威力仍替代普通 Z5M、只取整一次且总界 6500–22000；“外放伤害按 40% 护体适用”删除 | AR-19 防护不再按伤害类别套固定比例 |
+| AR19-P01 | Canon §8–§9 以命中区 50% 承载作为外放阈值；守方外放先全抵攻击真气加成，负差按 50% 抵基础，且最终受内劲 100% / 外劲 50% 上限 | 取代 AR-14f 旧四类适用率并落实作者新公式 |
+| AR19-P02 | Canon §8 / §18 登记透劲入体、来源 `digestRatioBp`、逆流丹田伤害、斗转 1:2 反引及打穴占穴；动态真值归 21，生命周期投影归 06 | 防止异种气、Buff 与伤害层各存一份可分叉状态 |
 | M6-P03 | Canon §18 将外放判定 / 基础字段归 05 与图鉴、修为档及曲线归 21、六角枚举 / 选目标归 09、伤害落位归 04 | 保持范围几何与伤害公式唯一归属 |
 | NR0-P01 | Canon §8 / §18 登记绝招路线的跨武学底线：不同武学不得使用完全相同的有序穴位序列；≥80% 穴位集合重合须人工说明；叙事规则归 21，具体路线归各图鉴 | 落实 AR-14“一招一段经脉运行”的可辨识性，避免不相干武学共享堵塞、点穴与胀损表现 |
 | NXT-P01 | Canon §8 / §9 登记 AR-17：深厚内力驱动且能主动控制的伤敌音功可逐招标外放，但 0 档按普通音波、1 档起启用外放；大手印跃击的掌风算外放 | 区分“声音能传远”与“内力外放”，并把作者对掌风的明确判断转成可执行分支 |
@@ -2466,12 +2620,15 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 13. **外放范围硬顶与耗内是否采用 AR-16 默认？** Canon v1.5 V15-02 已登记为执行默认：0 / 1 / 2 档对应射程 +0 / +2 / +4、范围 +0 / +1 / +2 档、额外耗内 0 / 2% / 4% MPREF；⚠️ 数值仍待作者确认。
 14. **外放威力是否并入 Z5M？** Canon v1.5 V15-03 已登记为执行默认：§4.4.1 外放曲线替代普通攻击曲线、总界 6500–22000，不新建乘区、不与普通 Z5M 相乘；⚠️ 曲线仍待作者确认。
 15. **跨武学高重合是否允许长期豁免？** 默认不设机器豁免表：完全相同必须改；≥80% 只在图鉴留下可审阅的共同传承与动作差异理由，后续审校仍可要求改路。
-16. **音功 0 档是否改成非 `projected` 护体类别？** 默认不改：为兼容 05 的静态 `DamageKind` 契约，0 档只切回普通 Z5M、基础范围与零外放增耗，护体内劲仍按 `projected` 的 40% 适用率；若作者希望连防护类别一起切换，须联动 04 / 05 / Core 新增运行时类别。
+16. **音功 0 档是否改成非 `projected` 护体类别？已由 AR-19 消解。** 静态 `DamageKind` 继续为 `projected`，0 档仍切回普通 Z5M、基础范围与零外放增耗；新防护直接读取伤害段 `wInBp/wOutBp`，不再按 `projected` 套 40%，无须新增运行时类别。
 17. **冲脉 / 带脉是否投阴阳票？** 默认不投：二者沿用 `design/15` 的 `harmony`，阴跷 / 阴维计阴、阳跷 / 阳维计阳；若作者指定冲 / 带的主侧，再联动 05、15、lint 与图鉴。**（待作者确认）**
 18. **外放掌刃是否把后溪加入 13 端点白名单？** 默认不加入：动作末端可用后溪，但外放还须另经腕骨 / 外关等现有白名单穴；避免未经确认扩大全部外放合法端点。**（待作者确认）**
 19. **`requiredNature` 是否作为主运性质硬许可？** 默认是：先在 F0 按名单过滤，获准后再算阴阳相性；`harmony` 不作通配符，`allowOpposedNature` 不豁免。缺字段只接受明确模板展开，否则生产阻断（见 §4.6、MF-V20、MF-I17 / I18）。**（待作者确认）**；各册现有数组及路线结构本次均未改，09 / tech 与图鉴仍须完成候选和迁移核验。
 20. **完整周天是否采用 13500 bp 跃迁？** 默认是；不完整沿 5000→10000 bp 锚点插值，完整在唯一 Z5M 跃迁到 13500，最终仍钳 6500–22000。**【建议值】**
 21. **临时换路如何处理旧路线在途气？** 默认不跨路线瞬移：旧队列按原路线继续至出口或因卡点规则溢散，新路线从丹田重新注入；全部路线与丹田合计受 `unitQiHardCap`，各路线 / 节点另受自身承载。**【建议值】**
+22. **命中区外放阈值是否固定 50% 承载？** 默认是；节点受封仍进容量分母但不计己方可用气，body 仅在无有效节点时回退护体路线。**【建议值】**
+23. **丹田损伤四档参数是否采用 §4.4.3.3？** 默认按 5% / 15% / 30% `mpMax` 分界，伤害 2% / 5% / 9% / 15% `hpMax`，产气下降 15% / 30% / 50% / 75%，持续 2 / 3 / 4 / 6 次自身行动。**【建议值】**
+24. **透劲消化示例如何落图鉴？** 默认普通来源、九阳、化功、北冥均 1:1，幻阴指 10:1；全部仅为本文原创扩展示例，图鉴任务确认前不修改逐门静态数据。**【建议值】**
 
 ### 18.6 下游同步清单
 
@@ -2481,9 +2638,9 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 | `design/04`、`damage_sim.py` | Z0–Z10、settle、算例与 TTK | **已同步**：Z4M / Z5M、`damageBeforeMpGuard`、纯经脉闪避与五档回归已落位 |
 | `design/05` | `MoveDef` / 内功 / 招式预算 | **已同步**：`meridianRouteRef`、三用途、`ultimate` 唯一真值与调息档案引用已接入 |
 | `design/05`、武学图鉴全册（NYY → NR4） | 内功性质与 `inner.meridians` | **已解决**：NR4 已完成各册主修经脉与性质同步；05 §5.3.1 保留 NYY 历史基线并登记 NR4 落地结果。本文 §10.4 按图鉴现值引用，逐卡定义仍归图鉴 |
-| `design/06` | Buff、护体、反震、破气、控制递减 | **已同步**：正式 Buff、参数载荷、击穿投影、旧 ID 迁移和防链控已登记 |
+| `design/06` | Buff、护体、反震、破气、控制递减 | **本任务同步**：旧 Buff 保持；新增异种气 / 占穴只读投影、丹田受损生命周期及负面效果总表 |
 | `design/08` | 门禁、地形成本、轻功武学 | **已同步**：movement 路线桥接已接入，门禁与逐格成本不受速度倍率改写 |
-| `design/09` | 移动力、首轮、CT、反应、防御 / 待机、AI | **已同步**：速度、首轮、F0 / F2 / E2、反应 / 防守、`flowCt` 与反击范围均已接入 |
+| `design/09` | 移动力、首轮、CT、反应、防御 / 待机、AI | **本任务同步**：既有接口保持；新增命中区映射、自动战斗与 `BattleSetup` |
 | `design/13` | 压制 / 成长边界 | **已同步**：只交最终 `effGrade/effLayer`，基底变化不清动态伤势，也不重复乘经脉优势 |
 | `design/14` | 战斗 HUD / 经脉页 / 无障碍 | **已同步**：攻防、护体、速度、封路、点穴 / 擒拿、调息和外放档均使用只读投影 |
 | `design/15` | 战斗投影接口 | **已同步**：输出开穴 / 周天 / 九转只读快照，不抬硬界，不让战斗调息推进永久冲穴 |
@@ -2503,7 +2660,7 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 | `design/14`（M5b） | 出招预览 | **已同步**：显示基础 / 当前射程范围、外放档、额外耗内和降档原因 |
 | `tech/04`（M5b / NXT） | schema 与构建校验 | **已解决**：§3.5–§3.8、§5.4 已接 MF-V13～V17、`voice` 字段及人声端点例外；外放反击架势的 defense 例外仍限主动无伤害、仅 `stanceCounter` 伤害 |
 | `tech/05`（M5b） | Core / 回放 | **已同步**：无副作用预估、F2 原子扣费、`projectionStep` 入命令 / hash 与唯一外放 Z5M 已写入契约 |
-| `design/04`、`design/05`、`tech/05`（NXT） | 音功 0 档 | **已解决**：04 §4.5.1、05 §4.1 / §4.2.2 与 tech/05 F0～F7 已接 `projection && (!sonic \|\| projectionStep>=1)`；0 档普通 Z5M、基础范围、0 外放增耗，1 / 2 档外放；三档均保留静态 `projected` 和护体 40% |
+| `design/04`、`design/05`、`tech/05`（NXT） | 音功 0 档 | **由 AR-19 修订防护部分**：0 档普通 Z5M、基础范围、0 外放增耗，1 / 2 档外放；三档保留静态 `projected`，但防护统一按 `wInBp/wOutBp`，不再使用 40% 类别适用率 |
 | NXfix：`skills-shaolin.md` / `sk_shizihou` | 狮子吼逐招外放 | **已解决**：`mv_shizihou_zhenhou`、`mv_shizihou_shehun`、`mv_shizihou_pozhen`、`mv_shizihou_juyin`、`mv_shizihou_shizihou` 均已标 `projection:true`、`voice:true`；纯支援 `mv_shizihou_hexing` 保持非外放，见该册 §1.5.3 / AR-16 表 |
 | NXfix：`skills-shaolin.md` / `sk_jingangnuhou` | 金刚怒吼逐招复核 | **已解决**：紧凑卡已正式展开 `mv_jingangnuhou_nuhou`；它与 `mv_jingangnuhou_zhenshe` 均为 `projection:true`、`voice:true`，见该册 §1.7.3 / AR-16 表 |
 | NXfix：`skills-wujue.md` / `sk_bihai` | 碧海潮生曲逐招外放 | **已解决**：`mv_bihai_chaoqi`、`mv_bihai_chaoyong`、`mv_bihai_jingtao`、`mv_bihai_chaosheng`、`mv_bihai_yuyin` 均已标 `projection:true`、`voice:false`；纯控制 `mv_bihai_xinsui`、纯支援 `mv_bihai_dingshen` 保持非外放，见该册 §3.3 / AR-16 表 |

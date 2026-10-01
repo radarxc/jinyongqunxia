@@ -1,18 +1,19 @@
 # 09 · 战斗系统（Combat System）
 
 > **归属**（基准 §18）：战斗流程、六角格战场与范围模板、集气时间轴、行动经济、招式施放流程、反应机制（招架/反击/连击/援护/合击）、阵法、倒地与伤势、AI、Boss 机制、大规模战斗、战斗奖励流程、战斗难度与失败保护。
-> **版本**：v1.6.1（AR-19 换路聚气与满载判定收口，2026-10-01）；v1.6（AR-19 tick 产气、急性聚气与完整周天，2026-10-01）；v1.5（经脉落地终审，2026-09-29）；v1.4（AR-16 外放范围、选目标与 AI 接线，2026-09-28）；v1.3（绝招共享节奏与经脉 Buff 迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）。
-> **上游**：`decisions/author-requirements.md`（AR-02 阴阳、AR-03 冲穴、AR-12 六角格战棋、AR-14 经脉运行、AR-16 外放加持、AR-19 单位时间运气与聚气）、`decisions/author-decisions.md`（G1、P42–P47）、`00-canon.md` v1.8（§1 就地开战、§3 境界、§5 节奏目标、§6 属性、§8 战斗模型、§9 乘区、§10 Buff 基础、§11 轻功阈值、§20 装配栏）、`design/06-buff-system.md`、`design/21-meridian-flow-and-moves.md` v2.8.1。AR-19 高于基准中旧等级 / 单招注水口径；本文只承接战斗执行。
-> **引用而不重定义**：属性、无状态 `Cb/Ce` 兼容档、基础轻功值、体力、气势、护体真气与社交检定 → `design/03-attributes.md`；伤害/命中/招架/暴击/效果命中/治疗公式、Z0–Z10 与逐乘区取整 → `design/04-damage-formula.md`；招式字段、收招 `recovery`、蓄招、绝招、位移、易运、分心二用、合击武学、实战武学经验 → `design/05-martial-arts-system.md`（六角范围模板及枚举唯一归本文 §5）；Buff 钩子、原语、叠加、结算段 S/A/E、攻击管线 P1–P8、控制递减与 Boss 豁免 → `design/06-buff-system.md`；套装 → `design/07`；六角地形、通行成本、高差、坠落/落水、轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗经脉运行、攻/防/轻功路线、经脉独立乘区、护体内劲、擒拿/点穴 1–9 级与调息 → `design/21-meridian-flow-and-moves.md`；永久穴脉、冲穴、周天与九转 → `design/15-meridians-and-acupoints.md`；物品、暗器、弹药、丹药、毒药、机关与投掷物 → `design/10-items-and-equipment.md`；巡逻、昼夜天气、区域修为档 → `design/11`；羁绊、门派、声望/品德 → `design/12`；旧角色经验迁移、难度模式与结局 → `design/13-progression-and-endings.md`；手机 UI 布局 → `design/14`；武运、敌人品阶骰、掉落池、难度 D 映射 → `design/02-timeline-and-world-tiers.md`；渲染与精灵朝向 → `tech/02-rendering.md`；命令/事件、RNG 分流、Worker 与存档 → `tech/01`、`tech/05`。
+> **版本**：v1.7（AR-19 攻击位置、无站位自动战斗与战斗设置，2026-10-01）；v1.6.1（AR-19 换路聚气与满载判定收口，2026-10-01）；v1.6（AR-19 tick 产气、急性聚气与完整周天，2026-10-01）；v1.5（经脉落地终审，2026-09-29）；v1.4（AR-16 外放范围、选目标与 AI 接线，2026-09-28）；v1.3（绝招共享节奏与经脉 Buff 迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）。
+> **上游**：`decisions/author-requirements.md`（AR-02 阴阳、AR-03 冲穴、AR-12 六角格战棋、AR-14 经脉运行、AR-16 外放加持、AR-19 战斗补全）、`decisions/author-decisions.md`（G1、P42–P47）、`00-canon.md` v1.8（§1 就地开战、§3 境界、§5 节奏目标、§6 属性、§8 战斗模型、§9 乘区、§10 Buff 基础、§11 轻功阈值、§20 装配栏）、`design/06-buff-system.md`、`design/21-meridian-flow-and-moves.md` v2.9。AR-19 高于基准中旧等级 / 单招注水口径；本文只承接战斗执行。
+> **引用而不重定义**：属性、无状态 `Cb/Ce` 兼容档、基础轻功值、体力、气势、护体真气与社交检定 → `design/03-attributes.md`；伤害/命中/招架/暴击/效果命中/治疗公式、Z0–Z10 与逐乘区取整 → `design/04-damage-formula.md`；招式字段、收招 `recovery`、蓄招、绝招、位移、易运、分心二用、合击武学、实战武学经验 → `design/05-martial-arts-system.md`（六角范围模板及枚举唯一归本文 §5）；Buff 钩子、原语、叠加、结算段 S/A/E、攻击管线 P1–P8、控制递减与 Boss 豁免 → `design/06-buff-system.md`；套装 → `design/07`；六角地形、通行成本、高差、坠落/落水、轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗经脉运行、攻/防/轻功路线、经脉独立乘区、AR-19 外放抵消、异种气 / 打穴、擒拿 1–9 级与调息 → `design/21-meridian-flow-and-moves.md`；永久穴脉、冲穴、周天与九转 → `design/15-meridians-and-acupoints.md`；物品、暗器、弹药、丹药、毒药、机关与投掷物 → `design/10-items-and-equipment.md`；巡逻、昼夜天气、区域修为档 → `design/11`；羁绊、门派、声望/品德 → `design/12`；旧角色经验迁移、难度模式与结局 → `design/13-progression-and-endings.md`；手机 UI 布局 → `design/14`；武运、敌人品阶骰、掉落池、难度 D 映射 → `design/02-timeline-and-world-tiers.md`；渲染与精灵朝向 → `tech/02-rendering.md`；命令/事件、RNG 分流、Worker 与存档 → `tech/01`、`tech/05`。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术版本、API 或限额尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖他文档、本文先给出可用数值并在 §16 登记。
 > **v1.2 变更摘要**：依 AR-12 将战场从方格改为 pointy-top 六角格，确立轴/立方坐标、六向朝向、轻功移动力与首轮排序；把点、环、面、扇形范围模板及预算迁入本文；补齐运劲、战斗道具与作者点名 Buff 接口；同时按 C06/C12/C13/C20、`design/04` 定稿和 G1 作者决定审校原有反应、阵法、奖励、难度与数据契约。
-> **2026-09-27 变更摘要**：按 `design/21` v2.0 接入逐单位经脉实例、速度投影、攻防路线提交、护体内劲 settle、路线 CT、调息、解穴/挣脱与 AI 预览；不在本文复制经脉公式。
+> **2026-09-27 变更摘要**：按当时 `design/21` v2.0 接入逐单位经脉实例、速度投影、攻防路线提交、旧护体 settle、路线 CT、调息、解穴/挣脱与 AI 预览；旧 settle 已由 2026-10-01 AR-19 迁移替换。
 > **v1.3 变更摘要**：落实同门绝招共享一次自身行动冷却、禁止连续同一绝招、完整候选过滤与多绝招 AI 评分；运行态只消费 06 参数化的受擒、穴位受封及经脉派生状态。
 > **v1.4 变更摘要**：接入 AR-16 的逐招外放档：按命令锁定 0 / 1 / 2 档，确定性生成扩大后的射程与六角范围，复用既有遮挡 / 地形裁剪；补齐选目标重验、额外耗内、敌我同规与 AI 多目标评分。
 > **v1.5 变更摘要（经脉落地终审，2026-09-29）**：冻结外放反击架势只扩大反击命中范围、音功 0 档与 1–2 档的表现 / AI 口径；把多人首领整场耐久与具名 Boss 固定种子回放并入生产验收，并补 `freshTurnToken` 时序字段与地位下限兜底仅供估算的口径。
 > **变更记录：经脉落地终审（2026-09-30）**：统一固定整数 / 比例分配与余数规则；接入 `commandPrefix` 摘要域，澄清洪安通静态画像与遭遇 HP；复核东方不败 122,626、绝招冷却字段及 AR-18 性质消费边界。
 > **变更记录（2026-10-01，AR-19）**：明确 `battleTick` 同时推进行动槽与丹田产气 / 在途气；满槽新增“行动 / 急性聚气”二选一，聚气跳过本回合但保留并继续积气；接入完整周天暴击事实事件。
 > **变更记录（2026-10-01，AR-19 收口）**：聚气 `routeRef` 只切换后续注入路线，旧路线气包继续推进；满载但周天未完仍可聚气，只有气量与完成度均无增长空间才拒绝。
+> **变更记录（2026-10-01，AR-19 战斗补全）**：新增 `body/hand/leg` 命中区及位置抗性投影；settle 接入外放抵消与透劲 / 打穴后效；新增不考虑站位、逐行动结算的“一拳一眼”自动模拟，以及由遭遇 / 剧情 / 打坐被袭上下文生成的 `BattleSetup`。
 
 ---
 
@@ -21,13 +22,13 @@
 | 章节 | 内容 | 主要读者 |
 |---|---|---|
 | §1 | 设计目标、硬约束、时间术语（tick / 行动 / 回合 / 轮）、战斗状态机、单位生命周期 | 全体 |
-| §2 | 遭遇与开战：明雷、偷袭/被偷袭、剧情战、切磋、擂台、群战、速战；**就地开战**的战场截取、初始站位、布阵阶段、胜负条件 | 策划、程序 |
-| §3 | 集气时间轴（CT）：轻功主导的基础 `spd`、经脉速度投影、首轮固定排序、推进算法、收招/路线 CT、负集气、击穿延后、计数口径 | 程序、数值 |
+| §2 | 遭遇与开战：明雷、偷袭/被偷袭、剧情战、切磋、擂台、群战、速战；**就地开战**的战场截取、初始站位、布阵阶段、胜负条件与 `BattleSetup` 生成 | 策划、程序 |
+| §3 | 集气时间轴（CT）：轻功主导的基础 `spd`、经脉速度投影、首轮固定排序、推进算法、收招/路线 CT、负集气、计数口径 | 程序、数值 |
 | §4 | 行动经济：经脉修正后的移动力、六邻寻路、高差门禁、控制区 ZOC、六向朝向、可撤销移动、**行动类型总表**、运劲/调息与道具 | 程序、策划 |
-| §5 | 六角范围与招式施放：点/环/面/扇形模板、范围预算、命中格枚举、攻防路线及护体结算时序、射程、视线、消耗与绝招 | 程序、数值 |
+| §5 | 六角范围与招式施放：点/环/面/扇形模板、范围预算、命中格枚举、攻击位置、攻防路线及外放抵消时序、射程、视线、消耗与绝招 | 程序、数值 |
 | §6 | 反应机制：防守路线窗口、招架、反击、连击、援护、追击、**羁绊合击**（4 例）、**阵法**（5 例） | 策划、数值、程序 |
 | §7 | Buff 接入、状态与伤势：作者点名 Buff 映射、倒地、救护、战后伤势、主角重伤＝战败、战后处置、失控 AI 接管 | 策划、程序 |
-| §8 | AI：效用评分框架、AI 档位、7 种性格模板、目标选择、地形利用、士气；**Boss 脚本框架**与 3 个完整 Boss（洪安通、萧峰、东方不败） | 程序、策划 |
+| §8 | AI：效用评分、AI 档位、7 种性格、无站位自动模拟；**Boss 脚本框架**与 3 个完整 Boss（洪安通、萧峰、东方不败） | 程序、策划 |
 | §9 | 大规模战斗：规模分级与性能预算、波次、战阵单位、NPC 自动战斗与号令、战线抽象、3 个场景（光明顶、襄阳、少室山） | 策划、程序 |
 | §10 | 手机体验：自动/半自动、倍速、跳过、一键重复、伤害预测浮窗、点敌即打、时长预算、速战、切后台恢复 | UI、程序 |
 | §11 | 战斗奖励：经验、武学经验计数、掉落、声望与品德、特殊奖励 | 数值、策划 |
@@ -72,7 +73,7 @@
 | 射程用六角距离；范围模板归本文，基础族为点、环、面、扇形；默认 6 向，12 向仅作可选吸附 | AR-12；作者决定 G1 | §5.2–5.3 |
 | 战斗规则朝向为六向；角色战斗精灵资产完整提供 `battle8`，固定镜头只驻留 6 个映射视图 | C20；AR-12；tech/02 §4 | §4.5、§10、§13 |
 | 每个可独立行动单位各有一个经脉模块；动态节点不得跨单位共享；全部路线提交使用 Core 唯一 `battle` RNG | AR-14；21 §11 | §1.4、§5.1、§13 |
-| 经脉攻防在 Z4 / Z5 后进入独立 Z4M / Z5M；护体内劲位于护体真气后、`mpGuard` 前；点穴/擒拿只影响后续投影 | AR-14 作者决定；21 §4、§11.6 | §5.1、§6 |
+| 经脉攻防在 Z4 / Z5 后进入独立 Z4M / Z5M；AR-19 外放抵消位于护体真气后、`mpGuard` 前；透劲 / 打穴 / 擒拿只影响后续投影 | AR-19；21 §4.8–§4.10、§11.6 | §5.1、§5.11、§6 |
 | 经脉速度只修正战斗首轮、CT、移动及闪避接口，不改变 08 的 20 / 50 / 90 / 140 / 200 门禁和逐格成本 | 21 §4.9、§18.6 | §3–§4 |
 | AI 档位 `ai_basic`/`ai_adept`/`ai_expert`/`ai_master` 按难度 D 选择；Boss 阶段数 | 02 §3.3 | §8.3、§8.8 |
 | 命令 `battle/act`、查询不消耗 RNG、RNG 流 `battle`/`loot`/`ai`… | tech/01 §3.4、§3.6、§8.3 | §13 |
@@ -126,7 +127,7 @@
 - `BattleState.meridianByUnit` 以 `unitId` 对应恰好一个 `MeridianFlowModule`。同模板敌人可共享只读基底，但 `MeridianNodeRuntime`、防守预置、速度投影、擒拿与点穴镜像绝不共享。
 - 开场读取 15 的永久经脉快照和 05 / 13 已结算的 `effGrade/practiceLayer1To9`；战斗模块不推进永久冲穴。成功命令中的路线状态与 Core 唯一 `battle` RNG 同事务提交，失败或回滚时二者一起复原。
 - 每次 `battleTick` 对仍在场且拥有实例的单位按 `unitIndex` 调 21 `tick`；进入 `offgrid` 前不推进，倒地或离场后停止。存档 / 录像检查点保存每单位 `MeridianFlowSnapshotV2` 及 BattleSession 唯一 RNG 状态，战后只按 21 的规则处理临时态。
-- 本文只调度 21 的 `preview/commit/projectSpeed/settleInnerGuard/applyAcupointSeal/applyGrapple/regulateBreath/tick/snapshot/restore`；`FlowResult`、`MeridianProfile`、`MeridianSpeedResult`、`BreathResult` 的字段与取整均以 21 §12.3 为准。
+- 本文只调度 21 的 `preview/commit/projectSpeed/settleOutwardQi/injectForeignQi/applyAcupointStrike/applyGrapple/regulateBreath/tick/snapshot/restore`；`FlowResult`、`MeridianProfile`、`MeridianSpeedResult`、`OutwardQiResult`、`ForeignQiRuntime`、`BreathResult` 的字段与取整均以 21 §12.3 为准。
 
 ### 1.5 单位生命周期状态（`unit.state`）
 
@@ -466,6 +467,37 @@ S = 2.0*standRatio + 1.0*reachScore
 | Boss 时限 | 狂暴计时见 06 §8.9（20 个 Boss 回合）；另设硬上限 60 轮 → `draw`，按败北处理但**无任何惩罚**，直接提供重试 |
 | 对峙（无解局） | 连续 5 轮双方均无单位能到达对方攻击位（如敌人立于我方无法跃上的屋顶且无远程）→ 敌方 AI 强制改为接近；仍不可达 → 提供"必成撤退"或以 `draw` 结束 |
 
+### 2.12 按进入情况生成 `BattleSetup`（AR-19）
+
+`EncounterDef` 是内容模板，`BattleSetup` 是进入战斗前唯一一次解析出的不可变运行配置。解析器读取“模板 + 触发上下文 + 当下世界快照”，先确定相关人物、阵营和条件，再创建 `BattleState`；战中 NPC 加入 / 离开只能通过已冻结的 `waves[]` / 阶段事件，不得重新查询附近人物而改变录像。
+
+| 字段 | 类型 / 必填 | 规则 |
+|---|---|---|
+| `schema` | `battle-setup.v1` / 是 | 交 `tech/04` 登记；新字段不可塞进自由 JSON |
+| `encounterId/setupId` | `enc_*` / string / 是 | `setupId` 由遭遇、触发源和递增序号生成，不参与内容 ID 注册 |
+| `entry` | 对象 / 是 | `{kind,sourceId,triggerId,worldTick,meditationInterrupted}`；`kind=encounter/story/spar/deathmatch/guard/meditationAmbush` |
+| `seed/sourceSnapshotHash` | u32 / SHA-256 / 是 | seed 由世界 RNG 在创建时给出；hash 锁定参与解析的世界事实 |
+| `participants[]` | 数组 / 是 | `{unitRef,unitIndex,side,control,spawn,state,required,group?}`；先按 `sideRank`，再 `required` 优先、`unitRef` ASCII 排序后赋连续 `unitIndex` |
+| `relations` | 矩阵 / 是 | 每对阵营为 `friendly/hostile/neutral`；不可只由颜色推断 |
+| `start` | 对象 / 是 | `deployment/initiativeSide/battleAnchor/profile/initialByUnit[]/initialEffects[]`；冻结初始朝向 / CT / 气势与世界位置截取参数 |
+| `end` | 对象 / 是 | `winCond[]/loseCond[]/drawCond[]/onDefeat`；按 §2.11 在每个检查点以“败→胜→平”顺序求值 |
+| `rules` | 对象 / 是 | `mode`、`noAuto/noRetreat/noItems`、`mercyAllowed`、`lethalIntent`、轮限、友伤及剧情覆写；未写即用遭遇类型默认 |
+| `waves/boss/fronts` | 引用 / 否 | 只保存已经过条件解析的稳定列表；未知引用构建失败 |
+| `returnContext` | 对象 / 是 | `{sceneRef,anchorRef,recovery,storyBranchRef?}`；写回场景、锚点及恢复策略，不允许战斗模块自行选择剧情分支 |
+
+进入来源的缺省解析如下；内容显式配置可收紧，但不得移除主角倒地败北，除非 `mass` 已明确允许继续：
+
+| 进入情况 | 相关人物 / 阵营 | 缺省结束条件 | 特殊规则 |
+|---|---|---|---|
+| 明雷 / 伏击 | 当前队伍、触发敌群；近旁中立仅在模板列出时加入 | 敌对全失去战力 / 主角倒地 | 可撤退；伏击按 §2.3 给先机 |
+| 剧情节点 | 节点显式绑定的必需人物 + 满足条件的可选人物 | 节点给定的目标 / 失败分支 | 可配护送、守点、限轮、阶段、禁自动；不得扫描全场补“知名角色” |
+| 切磋 | 发起者、受邀者及明确队友 | 任一方到认输线 | `mode=spar`、不留伤势、不用致命道具、`lethalIntent=false` |
+| 死斗 | 显式挑战双方及见证 / 援军 | 一方全倒地或剧情目标达成 | 不自动认输、不可撤退；仍遵守本作“倒地非永久死亡”，战后是否了断需显式剧情 / 玩家选择 |
+| 守卫 / 护送 | 守卫者、VIP、进攻者、配置波次 | 守满轮数 / VIP 到达；VIP 倒地或目标物毁坏则败 | `mode=guard`，目标优先级进入 AI `V_obj` |
+| 城镇打坐被袭 | 当时参与打坐的队伍 + 实际发动攻击的 NPC / 同组援军 | 敌对全失去战力 / 主角倒地 | `entry.kind=meditationAmbush`、`EncounterKind=ambushed`、敌方先机；所有正打坐单位开场获得 `bf_chaqi` 3 次自身行动，见 06；不把未在场 NPC 临时拉入 |
+
+打坐被袭的岔气是确定性进入效果，不再做效果命中骰：创建 `bf_chaqi` 时立即把 `qiGatherState` 清为 `none`，保留已经在途的气包继续推进，随后 3 次自身行动产气为 50%。若攻击在打坐完成事件之后才到达，则 `meditationInterrupted=false`，不施加岔气。世界层负责截断练功进度与时间；本文只冻结战斗初态。
+
 ---
 
 ## 3. 集气时间轴（CT）
@@ -657,7 +689,7 @@ E6：ct := clamp(ct − rec_eff + pendingShift, −1000, 999)      // pendingShi
 | 类型 | 机制 | 生效时机 | 钳制 | 例 |
 |---|---|---|---|---|
 | 立即延后 / 提前 | `ctShift`（06 原语）：`ct ± v` | 施加即时；**目标为当前行动者时**计入 `pendingShift`，在 E6 收招后一并结算（避免被收招覆盖） | 未就绪目标：`clamp(ct + v, −1000, 999)`；已就绪目标：负向位移可将其延后，正向位移保留当前 `ct`（不再增加溢出）。下限 −1000（06 §6.4 原为 0，会吞掉收招债务，§16 D-06-1） | 迟缓 `bf_chihuan` `−100×G`；震慑 `bf_zhenshe` `−100×G`；减速施加时 −50；疾速天阶 +100 |
-| 护体击穿延后 | 21 `InnerGuardResult.delayCt` 转为负向 `ctShift` | settle 后立即；目标正行动时写 `pendingShift -= delayCt` | `delayCt∈[150,400]`；沿用本表下限 | 只调度 CT；21 已向瓶颈写 800–3000 bp 迟滞，本文不再追加一次 |
+| 经脉受创延后（旧协议） | 仅旧 `rulesProtocol≤2` 的 `InnerGuardResult.delayCt` 转为负向 `ctShift` | 旧录像 settle 后；新协议恒为 0 | `delayCt∈[150,400]`；沿用本表下限 | AR-19 新战斗不再以抵消击穿生成延后 / 迟滞；旧录像按原协议回放 |
 | 速率变化 | `spd` 的 `pct` 修饰 → `ctGain` 变化 | 下一次推进起生效，已推进部分不追溯 | 03：`spd ∈ [30, 300]`；06 `fam_spd` +40% / −50% | 减速、履霜、疾速、狂暴 +20% |
 | 冻结 | `ctFrozen = true`，推进增量 0 | 施加 / 解除即时 | — | 被擒 `held`（§8.10）；Boss 阶段转换演出期间全场冻结（不影响相对顺序） |
 | 跳过行动 | 硬控：到点照常进入 S 段，A 段为空 | 06 S6 | 收招 1000 | 眩晕、冰冻、点穴、昏睡 |
@@ -665,7 +697,7 @@ E6：ct := clamp(ct − rec_eff + pendingShift, −1000, 999)      // pendingShi
 
 - 本作**不用"停止集气"实现冰冻或定身**：06 已把冰冻定义为跳过行动、定身定义为禁移动；03 §11.5 #3 中"由 09 冻结 CT 实现"一句改指本节 `ctFrozen` 的系统情形（§16 对齐）。
 - 同一单位同一时刻受到多个 `ctShift`：按施加序号 `iid` 依次累加，最后钳制一次。
-- 路线提交、点穴、胀损、调息、擒拿等级与护体击穿均可改变经脉速度或恢复债务；先完成当前伤害 / 效果事务，再把相关速度缓存置脏，下一次 CT 推进读新值。点穴 / 擒拿不得反向修改正在结算的本次护体或行动序。
+- 路线提交、异种气阻塞、点穴、胀损、调息与擒拿等级均可改变经脉速度或恢复债务；先完成当前伤害 / 效果事务，再把相关速度缓存置脏，下一次 CT 推进读新值。点穴 / 擒拿不得反向修改正在结算的本次外放抵消或行动序。
 
 ### 3.6 计数口径
 
@@ -942,7 +974,7 @@ reachable(P) = pathCost(P) <= move
 | 分支 | `mode` | MP 消耗 | 效果 | 收招 |
 |---|---|---:|---|---:|
 | 调息 | `tiaoxi` | 0 | 先按本文立即回内并施加 `bf_tiaoxi`，再以来源内功的 21 `BreathProfile` 调用 `regulateBreath(mode:'battle')`；无内功用黄下 1 重兜底 | 1000 |
-| 护体 | `huti` | 玩家选 `m=10%/20%/30% mpMax` | 既有护盾照旧；若招式挂 `purpose:defense` 路线则提交并开启 21 护体内劲，至下次正常行动 | 900 + `flowCt` |
+| 护体 | `huti` | 玩家选 `m=10%/20%/30% mpMax` | 既有护盾照旧；若招式挂 `purpose:defense` 路线则提交并开启防守 Profile，至下次正常行动；命中区达到阈值时可供 21 AR-19 外放抵消 | 900 + `flowCt` |
 | 蓄力 | `xuli` | `8% MPREF(Ce)` | 施加 `bf_xuli`，下一次来源内功允许的攻击招式 Z3 `+round(8%*G*innerScale(n),1%)`，至下次自身行动结束；上限 +25% | 1100 |
 | 逼毒 | `bidu` | `8% MPREF(Ce)` | 对自身执行 06 `circulate`，优先 `poison`，驱散 1 个效果或叠层 3 层；强度为来源内功 `effGrade`，不足时按 06 削品 | 1000 |
 | 疗伤 | `liaoshang` | `12% MPREF(Ce)` | 对自身或六角距离 1 友方执行 `circulate`，优先 `injury/bleed`；并回复 `hpMax*min(0.18,0.04*G*innerScale(n))`，受治疗公式；需来源内功开放该分支 | 1100 |
@@ -1063,14 +1095,14 @@ AR-18 的内功性质只读取当前主运对应 `SkillDef` 的顶层 `nature`�
 ⑦ 施招者位移前段：突进 / 跳斩 / 绕背（05 §4.5）；轻功招式先满足 08 门禁并提交 `purpose:movement` 路线
 ⑧ 受击目标按“距施招者六角距离升序、同距 `unitIndex` 升序”，同一整招共享攻方 `FlowResult`，每个目标各取守方 Profile
 ⑨ 每目标：04 Z0–Z4 → Z4M → Z5 → Z5M → Z6–Z10；Z4M / Z5M 分别只向下取整一次，多段逐段判定
-⑩ settle：04 无敌/转移/单击上限 → 护体真气 → 21 护体内劲 → `mpGuard` → 气血；击穿延后按 §3.5
-⑪ 该目标最后一段 settle 后再走 06 效果：成功点穴 / 擒拿调用其自身实例；只影响后续路线 / 速度，不回溯本次护体
+⑩ settle：04 无敌/转移/单击上限 → 护体真气 → 21 AR-19 外放抵消 → `mpGuard` → 气血
+⑪ 该目标最后一段 settle 后再走 06 效果：成功透劲 / 打穴 / 擒拿调用其自身实例；只影响后续路线 / 速度，不回溯本次外放抵消
 ⑫ 连击判定（§6.4）→ 位移后段（击退 / 牵引 / 换位 / 后撤 → 撞击 / 坠落 → 地形）
 ⑬ P8 反应入队并逐个结算（§6.1）——在位移之后，所以被击退出攻击范围的目标无法近身反击
 ⑭ E6 以基础 `recovery + flowCt + reactionRecoveryDebt` 收招；胜负检查（§2.11）；命令失败则经脉写入与 RNG 整体回滚
 ```
 
-Z4M / Z5M、护体内劲的数学定义和硬界唯一见 21 §3.5、§4.8；本文只固定调用点。标准对标准两乘区均为 10000，不改变旧伤害；输出 `damageBeforeMpGuard` 只是进入既有 `mpGuard` 前的剩余值，不得命名为最终 `hpDamage`。攻击路线途中卡住不自动令招式未命中；预检的未开穴、胀损或 9 级点穴硬封才拒绝命令且不收费。
+Z4M / Z5M、外放抵消的数学定义和硬界唯一见 21 §3.5、§4.8；本文只固定调用点。标准对标准两乘区均为 10000，不改变旧伤害；输出 `damageBeforeMpGuard` 只是进入既有 `mpGuard` 前的剩余值，不得命名为最终 `hpDamage`。攻击路线途中卡住不自动令招式未命中；预检的未开穴、胀损或 9 级点穴硬封才拒绝命令且不收费。
 
 **招式候选过滤**：玩家按钮、AI 候选生成、一键重复和 Core F0 必须调用同一过滤器。依次排除：（1）招式自身 `cds[moveId] > 0`；（2）绝招所属武学 `ultimateCooldown > 0`；（3）绝招 `moveId === lastUltimateMoveId`，且此后尚未成功结算同门另一绝招或同门普通招；（4）21 无副作用预检已确认本路线被未开穴、胀损或 9 级穴位受封硬封。完成招式过滤后，再对每个外放档校验 `projectionStep≤maxProjectionStep` 与资源；档不可用只排除该档，不把非法命令静默降档。被排除项可保留在 UI 供解释，但不进入可提交候选；失败不得扣内力 / 气血 / 气势、消费 RNG、写路线或启动任何冷却。
 
@@ -1336,6 +1368,39 @@ AF(N) = clamp(floor(rawAF(N)*20 + 0.5)/20,0.35,1.00)
 - **连击**在全部段结算后判定（§6.4）。
 - **位移**在全部段与连击之后结算；反应在位移之后入队（§5.1 ⑨）。
 - 同一行动内同一目标因多段而多次进入 P7：06 的 `limitPerTurn` 类触发（如反震）按"每段"触发还是"每招"触发由 Buff 定义，缺省**每段**触发，但单一攻击对反震等 `reflect` 的总量仍受 06 族上限 40% 约束。
+
+### 5.11 攻击位置与位置抗性（AR-19）
+
+`hitZone` 是 `MoveDef` 的逐招必填事实，整招冻结后供所有伤害段使用，不由动画命中骨骼反推。三值语义均为玩法抽象**（原创扩展）**：
+
+| `hitZone` | 默认绑定 | 经脉节点集合 `hitZoneNodes` | 无显式穴位时的注入锚点 |
+|---|---|---|---|
+| `body` | 除下列类别外的招式 | 目标全部已开通穴位；“全身”不是只指躯干 | `ap_renmai_danzhong` |
+| `hand` | `category: grapple` 的擒拿招 | 已开通且属于手三阴 / 手三阳的穴位 | `ap_shouyangming_hegu` |
+| `leg` | `category: leg` 或效果标签 `wrestle` 的腿法 / 摔跤招 | 已开通且属于足三阴 / 足三阳的穴位 | `ap_zuyangming_zusanli` |
+
+迁移器只可按“擒拿 → hand、腿法 / 摔跤 → leg、其余 → body”补一次；新内容缺字段构建失败。招式若有明确动作可覆写默认，例如手部踢打仍可写 `hand`；覆写须留 `hitZoneReason`，不能在运行时随机换区。范围 / 多目标招对每个目标使用同一 `hitZone`，但各自读取该区气量。
+
+每段在 P3 读取守方当前整数属性与命中区己方气，生成 `zoneResistanceBp`；它作为一项 `dmgDown` 加入 04 Z4，仍受 Z4 总减伤 7500 bp 上限，不另开乘区：
+
+```text
+zoneCarryCapacity = Σ carryCapacity(node), node ∈ hitZoneNodes
+zoneQi = Σ ownInFlightQi(node), node ∈ hitZoneNodes       // 不含异种气
+zoneFlowBp = zoneCarryCapacity==0 ? 0
+           : clamp(floor(zoneQi×10000/zoneCarryCapacity),0,10000)
+zoneResistanceBp = clamp(Astr×str + Atough×tough
+                       + floor(Aqi×zoneFlowBp/10000),0,1800)
+```
+
+| 区 | `Astr` | `Atough` | `Aqi`（满区气） | 侧重 |
+|---|---:|---:|---:|---|
+| `body` | 2 | 6 | 800 | 韧性与周身护持 |
+| `hand` | 6 | 3 | 600 | 臂力稳定擒拿接触点 |
+| `leg` | 5 | 4 | 700 | 臂力 / 韧性共同稳住下盘 |
+
+例：`str=50,tough=38,zoneFlowBp=5000` 时，body / hand / leg 分别为 `100+228+400=728`、`300+114+300=714`、`250+152+350=752` bp。合法极值 `str=tough=120,zoneFlowBp=10000` 分别为 1760 / 1680 / 1780 bp，均不越 1800；故它不会单独触及 Z4 的 75% 总上限。
+
+位置抗性与 21 §4.8 外放抵消读取同一段前快照，但职责不同：前者在 Z4 表达肉身 / 区内气的抗打，后者在 settle 消耗区内气抵消内外劲。多段中前一段外放耗气后，后一段重新读取并可能降低两者；同一段不得因 settle 扣气回溯重算其 Z4。透劲 / 打穴在该目标最后一段后发生，注入穴优先取招式显式 `targetAcupoints[]`，否则用上表锚点。
 
 ---
 
@@ -2243,6 +2308,45 @@ UI：顶部宝训条标出 30 / 60 / 90 三条线；每次颂圣飘字"洪教主
 
 **节奏校验**：不碰杨莲亭硬打约 16–20 轮（P3b 连动压力大）；中盘逼出"分心"两三次再集火约 13–16 轮；早早击倒杨莲亭约 12 轮，但 P3a 的爆发（`Z3 +50%` 且更快）需要援护、防御与控制预案（狂暴期间免疫控制，只能靠减伤与站位）。三条路线难度相近、手感不同。
 
+### 8.12 无站位自动战斗："一拳一眼"模拟（AR-19）
+
+本节的“自动战斗”是**抽象模拟模式**，用于速战、场外 NPC 对决和玩家明确选择的无棋盘代打；它不同于 §10.1 在六角战场上代替玩家操作的“全自动”。“一拳一眼”固定解释为：按 CT 次序逐个角色、逐个主行动结算，每次只展示一个出手者及其一个主要结果镜头；不是双方同时扣血，也不是只按战力比一次掷骰。模拟不创建格坐标、朝向、移动、ZOC、LOS、高差、掩体、碰撞、击退或坠落，但仍调用与手动战斗相同的 F0–F2、04 Z0–Z10、21 外放 / 异种气 / 打穴和 06 Buff 结算。
+
+**抽象战场。** `AutoBattleState` 保存完整单位资源、CT、经脉和 Buff，不保存前后排、距离或任何位置替代量。招式只按阵营关系、目标存活、锁定 / 嘲讽 / 援护和自身条件筛合法目标；近战与远程在这里没有距离差别。范围招不枚举格，而按 `autoTargetCap` 取目标：单体 1，环 / 扇 / 线等由 MoveDef 明写 2–4；未写则 2【建议值】。按目标效用降序、`unitIndex` 升序截取，友伤为 0；依赖推拉、换位、落差或地形才能成立的附加效果在 F0 禁用。
+
+| 项 | 自动模拟规则 | 与手动共享的真值 |
+|---|---|---|
+| 时间 | 使用 §3 的 CT、首轮顺序、收招和 `battleTick`；同刻仍按固定键 | 速度、产气、在途气推进、Buff 行动计数 |
+| 出招 | 每次就绪只提交一个 `BattleAction`；候选为招式、运劲、防御、物品、急性聚气、援护或待机 | 资源、冷却、路线预检、外放档、命中 / 招架 / 暴击 |
+| 目标 | 先满足 `BattleSetup.end` 的保护 / 击倒目标，再按 §8.5；平分取低 `unitIndex` | 阵营关系、嘲讽 / 援护、合法目标、效果抗性 |
+| 运气 | 预计完整周天增益 ≥1500 bp 且未来两次敌方行动后存活率 ≥5000 bp 时可急性聚气；阻塞时优先调息 / 解穴 | 21 的 preview、消化、反引、丹田损伤 |
+| 终止 | 每个行动 settle 后按 §2.11 的败→胜→平检查；另有 `maxActions` 与 5 轮无有效变化保护 | 倒地、投降、撤退、脚本阶段与奖励 |
+
+**策略。** 玩家方使用 `AutoPolicy`：`aggressive` 偏伤害 / 击杀，`steady` 保留 30% 内力并优先防守，`support` 优先解除负面 / 治疗，`custom` 读取禁绝招、禁物品、内力保留和目标偏好。敌方仍用其 AI 档位与性格。选择动作时复用 §8.2，但强制 `V_pos=0`，删除所有移动候选；外放、透劲、打穴、消化与反引的预期收益进入 `V_dmg/V_ctrl/V_flow`，最终事实只由 Core 正式 settle 得出。没有合法攻击不等于自动聚气：依次评估解穴 / 调息、防御、急性聚气、物品、待机。自动模式永不自行执行“了断”、剧情抉择、口舌分支或消费唯一剧情物品；需要选择时暂停并返回 `choiceRequired`。
+
+```text
+simulateAbstract(setup, policy, seed):
+  s = createAutoBattleState(setup, seed)
+  emit battle/autoSimulationStarted(setupId, setupHash, seed, sourceSnapshotHash)
+  while s.phase == running:
+    advanceToNextReadyByCt(s)                 // 同步推进 battleTick / 经脉 / 定时效果
+    actor = firstReadyByOpeningThenStableKey(s)
+    candidates = legalActionsWithoutGeometry(s, actor)
+    action = chooseByUtility(candidates, actor.aiTier, policy, rng.ai)
+    if action.requiresPlayerChoice: return choiceRequired(s, action)
+    resolveOneActionThroughSharedCore(s, action, rng.battle)
+    emit battle/autoExchangeResolved(actor, action, primaryResult, actionNo)
+    settleReactionsAndEndPhase(s)
+    if checkEndInOrder(lose, win, draw): break
+    if noEffectiveChangeForFiveRounds(s) or actionNo >= maxActions: endAsDraw(s)
+  emit battle/autoSimulationEnded(result, stateHash, actionCount)
+  return s
+```
+
+“有效变化”指任一单位气血 / 内力 / 护体、Buff / 经脉实例、可用招式、胜负计数或在场状态改变；仅 CT 循环不算。`maxActions` 缺省 `min(2000, max(60, participants×40))`【建议值】。每一拳一眼都写规范命令和事实事件，奖励按真实动作统计；不得沿用旧速战“不结算 Buff”的捷径。
+
+**确定性。** `BattleSetup.seed` 派生独立 `battle/ai` RNG 流；候选枚举、目标、范围截取、实例和事件均用本文稳定键，整数 / bp 逐段取整。相同 `sourceSnapshotHash + setup + policy + rulesProtocol` 必须得到相同命令序列、终态 hash 与摘要；Worker 超时不得改选次优动作，只能在动作边界暂停后由同输入续算。胜率预览可用 `hash(seed,'forecast',sampleIndex)` 多样本，正式结算必须选定并完整重放**一个**样本，不能拼接中位数资源。
+
 ---
 
 ## 9. 大规模战斗
@@ -2469,8 +2573,8 @@ score(t) = E[dmg](t) × ( 1 + 0.3·[背击] + 0.1·[侧击] + tileScore(t) − 0
 | 项 | 规则 |
 |---|---|
 | 条件 | `field`/`ambush` 且满足其一：全部敌人 `Ce_enemy ≤ Ce_party − 8`；或预测胜率 ≥ 99% 且我方预计气血损失 ≤ 20% |
-| 预测 | Worker 中以派生种子 `hash(battleSeed, 'quick')` 跑 8 次双方 `ai_basic` 的模拟 |
-| 结果 | 取中位数那一次作为正式结果（写入录像，确定性）：扣除相应气血、内力；不结算 Buff |
+| 预测 | Worker 以 `hash(battleSeed,'forecast',sampleIndex)` 跑 8 次 §8.12 无站位模拟；只汇总胜率 / 损失，不写正式状态 |
+| 结果 | 玩家确认后以 `hash(battleSeed,'quick')` 完整跑**一个** §8.12 正式样本；逐 CT“一拳一眼”结算全部伤害、Buff、外放与经脉状态，可快放 / 跳过表现，但不得拼接预测中位数或省略负面效果 |
 | 奖励 | AR-19 后不发角色经验；武学经验 ×0.5（按模拟中的使用分配）；掉落正常；无顿悟判定；无首杀奖励。旧 `battleExp×0.8` 只供 v2 回放迁移 |
 | 规则开关 | 速决 `rule_sujue`（13 §5.3，仅江湖难度）：预测胜率门槛降为 ≥ 95%，且精英遭遇也可速战；Boss、剧情战除外 |
 | 入口 | 威压回避弹窗（§2.2），或布阵阶段"速战"按钮（条件满足时出现） |
@@ -2667,7 +2771,39 @@ export type HexAim =
   | { dirCount: 12; dir: HexAim12Index };                 // 偶数 2d 对齐 HexDir d，奇数为顺 DIR 的半向
 export type Facing = HexDir;                              // 规则六向；渲染层映射至 battle8
 export type AiTier = 'ai_basic' | 'ai_adept' | 'ai_expert' | 'ai_master';
+export type HitZone = 'body' | 'hand' | 'leg';
 export type YunjinMode = 'tiaoxi' | 'huti' | 'xuli' | 'bidu' | 'liaoshang' | 'cuiqinggong' | 'huajie';
+export type EntryKind = 'encounter' | 'story' | 'spar' | 'deathmatch' | 'guard' | 'meditationAmbush';
+export type AutoPolicy = {
+  style: 'aggressive' | 'steady' | 'support' | 'custom';
+  reserveMpBp: number; allowUltimate: boolean; allowItems: boolean; preferredTarget?: string;
+};
+export type BattleInitialEffect = {
+  unitRef: string; buffRef: `bf_${string}`; stacks: number; remainingOwnActions: number; cause: string;
+};
+
+export interface BattleSetup {
+  schema: 'battle-setup.v1'; encounterId: `enc_${string}`; setupId: string; seed: number;
+  sourceSnapshotHash: string;
+  entry: { kind: EntryKind; sourceId: string; triggerId: string; worldTick: number; meditationInterrupted: boolean };
+  participants: Array<{ unitRef: string; unitIndex: number; side: SideId; control: 'player'|'ai';
+    spawn: string; state: UnitState; required: boolean; group?: string }>;
+  relations: Record<SideId, Partial<Record<SideId, 'friendly'|'hostile'|'neutral'>>>;
+  start: { deployment: string; initiativeSide: SideId; battleAnchor: string; profile: 'normal'|'narrow';
+    initialByUnit: Array<{ unitRef:string; facing:Facing; ct:number; rage:number }>;
+    initialEffects: BattleInitialEffect[] };
+  end: { winCond: Cond[]; loseCond: Cond[]; drawCond: Cond[]; onDefeat: 'retry'|`branch:${string}`|'continue' };
+  rules: { mode: 'normal'|'spar'|'deathmatch'|'guard'; noAuto: boolean; noRetreat: boolean;
+    noItems: boolean; mercyAllowed: boolean; lethalIntent: boolean; roundLimit: number; friendlyFire: boolean };
+  waves?: WaveRuntime[]; boss?: { scriptId: `bsc_${string}` }; fronts?: FrontState[];
+  returnContext: { sceneRef:string; anchorRef:string; recovery:'preserve'|'sparRestore'|'checkpoint'; storyBranchRef?:string };
+}
+
+export interface AutoBattleState {
+  setupId: string; seed: number; actionNo: number; maxActions: number; phase: 'running'|'choiceRequired'|'ended';
+  units: Array<Omit<BattleUnit, 'pos'|'facing'>>;
+  meridianByUnit: Record<UnitId, MeridianFlowSnapshotV2>; policyBySide: Partial<Record<SideId, AutoPolicy>>;
+}
 
 export interface BattleTile {
   pos: HexCoord; h: number; terrain: TerrainId; overlay?: TerrainOverlay[];
@@ -2714,7 +2850,7 @@ export type HexShape = HexPrimitiveShape | HexBehaviorShape
 // 旧 splash:sq3 迁为 {tpl:'aoe_disk',r:1}。新内容不得继续写 none / sq3 字符串。
 
 export interface BattleState {
-  id: string; encounterId: `enc_${string}`; kind: EncounterKind;
+  id: string; encounterId: `enc_${string}`; setupId: string; setupHash: string; kind: EncounterKind;
   seed: number; tick: number; round: number;             // tick 全局刻；round 计数者见 §1.3（主角离场后切换）
   grid: BattleGridRef;                                   // pointy-top 六角窗口 + overlay（§2.9.5）
   openingOrder: UnitId[];                                // 首轮尚未行动者，按 §3.3 固定
@@ -2991,6 +3127,7 @@ behaviors:
 | 事件 | 主要字段 | 表现层 |
 |---|---|---|
 | `battle/started` | 遭遇、网格窗口、单位 | 镜头拉近、叠加格线（tech/01 §6.4 就地开战） |
+| `battle/setupResolved` | `setupId,encounterId,entryKind,seed,sourceSnapshotHash,participantRefs,endRulesHash` | 进入战斗前的审计事实；不显示 |
 | `battle/deployed` | 站位 | — |
 | `battle/turnStarted` | 单位、`tick`、`round` | 时间轴高亮 |
 | `battle/moved` | 单位、路径、是否被打断 | 移动演出 |
@@ -3001,7 +3138,7 @@ behaviors:
 | `battle/ctShifted` | 单位、增量 | 时间轴动画 |
 | `battle/acuteQiGathered` | `unitId,routeId,dantianQi,routeInFlightQi,totalInFlightQi,routeCarryCap,unitQiHardCap,circulationBp,recEff,battleTick,causeId`；全整数，`recEff=1000` | 所选路线与全局气量分开，避免换路后歧义；不含未来 RNG |
 | `battle/fullCirculationCritResolved` | 原样转发 21 §4.4.2 的单位、目标、招式、路线、放气、承载、完成度、既有暴击掷值、文案键、因果与 tick | UI 只按 `messageKey` 展示，不重判 / 重掷 |
-| 21 其他经脉事件 | 原样转发 `route.committed/route.jammed/node.ruptured/meridian.attack.multiplied/meridian.defense.multiplied/innerGuard.settled/meridian.speed.changed/point.applied/grapple.applied/breath.completed` 的整数 trace、来源与 `causeId` | 路线、瓶颈、护体、速度、点穴 / 擒拿 / 调息反馈；事件名归 21 |
+| 21 其他经脉事件 | 原样转发 `route.committed/route.jammed/node.ruptured/meridian.attack.multiplied/meridian.defense.multiplied/battle/outwardQiCancelled/battle/foreignQiInjected/battle/foreignQiDigested/battle/dantianDamaged/battle/acupointOccupied/battle/reverseQiReleased/meridian.speed.changed/point.applied/grapple.applied/breath.completed` 的整数 trace、来源与 `causeId` | 路线、瓶颈、抵消、异种气、丹田、点穴 / 擒拿 / 调息反馈；事件名归 21 |
 | `buff/*` | 06 §10.6 | 图标、飘字 |
 | `battle/unitDowned` | 单位、击倒者 | 倒地 |
 | `battle/unitRescued` / `unitYielded` / `unitSurrendered` / `unitCaptured` / `unitFled` / `unitPlunged` | 单位（投降另含来源：口舌 / 鸳鸯刀 / 慈悲制服 / 脚本 / 士气；坠崖另含造成位移者） | 对应演出 |
@@ -3013,6 +3150,9 @@ behaviors:
 | `battle/gaugeChanged` | 资源槽、值 | 资源条 |
 | `battle/bark` | 单位、台词键 | 气泡 |
 | `battle/wave` / `battle/frontChanged` | 波次 / 战线 | 援军箭头 / 小地图 |
+| `battle/autoSimulationStarted` | `setupId,setupHash,seed,sourceSnapshotHash,policyHash,maxActions` | 切入无站位模拟界面 |
+| `battle/autoExchangeResolved` | `setupId,actionNo,actorId,action,primaryTargetId,primaryResult,stateHash` | 每次只播“一拳一眼”主镜头；附带结果仍进日志 |
+| `battle/autoSimulationEnded` | `setupId,result,actionCount,stateHash` | 结算摘要 |
 | `battle/ended` / `battle/rewards` | 结果 / 奖励明细 | 结算面板 |
 
 > tech/01 §3.4 示例中的 `unit/died` 建议改名为 `battle/unitDowned`：本作没有永久死亡（§16）。
@@ -3054,6 +3194,8 @@ behaviors:
 | 认输线 | `yieldPct` | 切磋 / 擂台判负线（缺省 30%） | §2.5 |
 | 赛制 | `duel` `challenge` `bracket` `team` `endure` | 擂台赛制；落台即负 | §2.6 |
 | 胜负条件 / 战败策略 | `winCond` `loseCond` / `onDefeat`：`retry` `branch:<id>` `continue` | — | §2.7 |
+| 战斗设置 | `BattleSetup` / `battle-setup.v1` | 由进入上下文一次解析并冻结的参战者、阵营、初态、终局条件、特殊规则与返回上下文 | §2.12、§13.1 |
+| 进入类型 | `EntryKind` | `encounter/story/spar/deathmatch/guard/meditationAmbush`；与内容模板 `EncounterKind` 分层 | §2.12、§13.1 |
 | 退路格 / 备用锚点 | — / `battleAnchor` | 可撤离的边缘格 / 截取失败时的场景内开阔地 | §2.9 |
 | 地形覆盖层 | `overlay` | 战斗中的临时地形变化；战后写回按 08 §7.1 C6 | §2.9.5 |
 | 六角轴坐标 / 立方坐标 | `HexCoord(q,r)` / `(q,r,s)` | pointy-top 规则坐标；`s=-q-r`，只持久化整数 `(q,r)` | §2.9.1、§13.1 |
@@ -3082,6 +3224,7 @@ behaviors:
 | 战斗道具状态 | `itemState` | 普通道具本场总次数与同 ID 冷却；暗器另算 | §4.8.3、§13.1 |
 | 同门绝招临时态 | `ultimateBySkill[skillId].ultimateCooldown` / `lastUltimateMoveId` / `freshTurnToken` | 同门共享 1 次自身行动冷却、禁止连续同一绝招及设置当次 E2 跳过标记；不写持久武学状态 | §3.6、§5.9、§13.1 |
 | 外放档 | `projectionStep` / `maxProjectionStep` | `MoveDef.projection:true` 招式本次命令所选档 / 当前 Profile 可选上限；档位绑定射程、范围与额外耗内 | §5.1–§5.4、§13.2 |
+| 攻击位置 / 位置抗性 | `HitZone` / `zoneResistanceBp` | 招式固定 `body/hand/leg`；力量、韧性及该区己方在途气生成 Z4 减伤项 | §5.11 |
 | 撤退加成 | `Σflee` | 万里独行、`tsp_08_canon` 等撤退成功率加成之和 | §4.8.7 |
 | 效果触发的投降 | — | 鸳鸯刀"仁者无敌"、脚本、士气来源的 `surrendered` 统一流程 | §4.8.8 |
 | 视野 / 最后已知位置 | — | 一方可见区域 = 各单位视野并集（08 §5.7）；迷雾中的敌人显示最后已知位置 | §5.5 |
@@ -3099,6 +3242,7 @@ behaviors:
 | 伤势 | `bf_shangshi`（rulings-v1 §5.3 已收录）：轻伤 / 重伤 / 垂危 | 倒地的跨战斗后果 | §7.4 |
 | 战后处置 | 了断 / 放生 / 押送 / 审问 / 招降 | — | §7.8 |
 | 危险图 / 意图预评估 / 绝招储备 | `danger(t)` / — / `ultReserve` | AI 评分组件 | §8.2 |
+| 无站位自动战斗 / 一拳一眼 | `AutoBattleState` / `AutoPolicy` | 保留 CT、公式与逐动作结算，删除棋盘几何；每个主行动形成一个可回放交换镜头 | §8.12、§13.1 |
 | 士气 | `morale` | 非 Boss AI 单位的战意；溃 / 死战 | §8.7 |
 | 阶段门 / 追加阶段 | `gate` / — | Boss 阶段阈值截断；天劫·魔劫追加阶段（原 `hpMax` × 20%） | §8.8.2 |
 | 姿态 | `stances[]`、`switchEvery`、`switchOn`、`forceStance` | Boss 的姿态切换（免费动作，提前 1 个 Boss 回合预告） | §8.8.10 |
@@ -3237,12 +3381,12 @@ behaviors:
 | V27 | 每个可独立行动且需武学规则的单位恰有一个 21 经脉实例；`unitId/unitIndex` 与快照一致；禁止跨单位共享动态节点或保存单位 RNG | 错误 |
 | V28 | 首轮排序严格为 `openingQinggong→spd→agi→openingPriority→initiativeSideRank→unitIndex`；二者来自同一冻结经脉速度快照；战中投影不得读原始 `routeQualityBp` | 错误 |
 | V29 | 路线 `flowCt` 只按实际尝试段进入一次收招；硬封为 0；同一 `causeId` 的多段 / 防守不得重复提交或收费；`rec_eff` 仍钳 500–2000 | 错误 |
-| V30 | 攻防路线在 Z4M / Z5M 前提交；settle 严格为护体真气 → 护体内劲 → `mpGuard` → 气血；点穴 / 擒拿在 settle 后，仅影响后续投影 | 错误 |
+| V30 | 攻防路线在 Z4M / Z5M 前提交；settle 严格为护体真气 → AR-19 外放抵消 → `mpGuard` → 气血；透劲 / 打穴 / 擒拿在该目标末段 settle 后，仅影响后续投影。旧护体内劲只允许 `rulesProtocol≤2` 回放 | 错误 |
 | V31 | 轻功招式路线用途必须为 `movement`；经脉速度不得改 `qgTier/jump/maxRun`、门禁、通行模式、体力或逐格成本；普通步行不因路线硬封禁用 | 错误 |
 | V32 | `unseal` 每次只处理一个已登记 `ap_*`；`struggle` 接受通用擒拿 1–8；9 级点穴禁自行调息，9 级擒拿跳行动 | 错误 |
 | V33 | 每门已装配武学恰有一份 `ultimateBySkill`；绝招只以 `MoveDef.ultimate:true` 识别。F0 必须拒绝招式自身冷却、同门共享冷却、未被同门招式打断的连续同招及路线硬封；拒绝项不扣资源、不写路线、不启动冷却 | 错误 |
 | V34 | 任一绝招 F2 支付后同事务设置 `ultimateCooldown=1`、`lastUltimateMoveId=moveId`、`freshTurnToken=turnToken`；E2 只递减 S 段快照中已有且 `freshTurnToken !== 当前 turnToken` 的冷却，故施放当次不减、紧接下一次自身行动结束才清零；额外行动、环境 / 他人行动与免费动作不推进；`lastUltimateMoveId` 只由同门另一绝招更新或同门普通招清除 | 错误 |
-| V35 | `bf_shouqin` / `bf_xueweishoufeng` 的等级、来源、穴位和剩余行动载荷符合 06 §2.2.1；经气迟滞 / 胀损仅从模块派生，护体内劲必有合法 `routeId`；新运行态不得读写旧迁移 ID | 错误 |
+| V35 | `bf_shouqin` / `bf_xueweishoufeng` 的等级、来源、穴位和剩余行动载荷符合 06 §2.2.1；异种气、占穴、经气阻塞 / 胀损仅从 21 模块派生，防守 Profile 必有合法 `routeId`；新运行态不得读写旧迁移 ID | 错误 |
 | V36 | 非外放招不得携带 `projectionStep`；外放招缺省为 0，显式值只能是 0 / 1 / 2 且不得超过当前 `maxProjectionStep`；F0 必须以命令快照重验，越界返回 `PROJECTION_STEP_UNAVAILABLE` 而非静默降档 | 错误 |
 | V37 | 外放档必须成组取 `range.max+[0,2,4]`、`projectionSpreadSteps[step]` 与额外耗内 `[0,200,400]bp×MPREF`；范围枚举复用 §5.3 的稳定顺序及边界 / 高差 / 遮挡 / 地形裁剪，不得运行时插值模板或改写 `AF/power` | 错误 |
 | V38 | 玩家、敌人、召唤物和 AI 使用同一外放档查询 / F0；AI 枚举所有合法档并以实际目标收益、友伤与总耗内评分，不能固定取最高档或免除敌方成本 | 错误 |
@@ -3255,6 +3399,11 @@ behaviors:
 | V45 | `acuteQiGather` 只可由满槽单位通过 `battle/act` 提交；必须有已开 attack 路线、不得移动 / 付招式成本 / 抽 RNG；气量与完成度均无增长空间才拒绝，成功固定 `rec_eff=1000` | 错误 |
 | V46 | 每段时间推进须让 CT 与 21 tick 使用同一正整数 `dt`；事件驱动快进结果必须等于逐 tick 的丹田气、逐路线气包、节点聚合、backlog 与 hash | 错误 |
 | V47 | 完整周天暴击事件只复用 04 已消费的 `critRollBp/critChanceBp`，同一 `causeId` 每整招至多一次；UI 不得重判或抽 RNG | 错误 |
+| V48 | 每个 `MoveDef.hitZone` 必须为 `body/hand/leg`；迁移默认依次为其他 / 擒拿 / 腿法或摔跤，覆写须有 `hitZoneReason`；位置抗性按 §5.11 整数公式钳在 0–1800 bp | 错误 |
+| V49 | `BattleSetup.schema=battle-setup.v1`，参与者 / 阵营关系 / 初态 / 胜败平与返回上下文齐全，稳定排序后冻结并发 `battle/setupResolved`；战中不得扫描世界补人 | 错误 |
+| V50 | `meditationAmbush` 只有 `meditationInterrupted=true` 才给正打坐单位 `bf_chaqi` 3 次自身行动、产气 5000 bp 并将 `qiGatherState` 清为 `none`；敌方先机且不得拉入未配置 NPC | 错误 |
+| V51 | 无站位模拟不得创建 / 查询坐标、朝向、LOS、ZOC、高差或移动；逐个 CT 行动必须走共享 F0–F2、Z0–Z10、经脉及 Buff 管线，并以 `maxActions` / 五轮无有效变化封顶 | 错误 |
+| V52 | 同一 setup、快照、策略与协议在 V8 / JSC 的自动模拟命令序、事件序和终态 hash 一致；Worker 超时只能暂停续算，不得更换动作 | 错误 |
 
 ### 15.2 测试用例（玩法核心单元测试，期望值精确）
 
@@ -3314,7 +3463,7 @@ behaviors:
 | T49 | 同场参考中位数 | 可选敌强度 9000/11000/15000/17000；另有不可见 hidden 22000、downed 18000 | 参考为 `floor((11000+15000)/2)=13000`；排除后二者；空集为 10000 |
 | T50 | 路线 CT 与途中卡住 | 基础收招 900，路线 4×70；第 3 段卡住；另测 F0 硬封 | 前者 `flowCt=210,rec_eff=1110`；后者命令拒绝、资源 / RNG / CT 不变且 `flowCt=0` |
 | T51 | 防守路线复用 | 未移动待机提交 3×80 路线，随后同一 `causeId` 三段攻击，再受新攻击 | 待机 `rec_eff=940`；三段只复用一次、无新增 RNG/CT；新攻击若即时提交则只新增一份 `reactionRecoveryDebt` |
-| T52 | 护体 settle 与击穿 | 21 §14.10 的标准守方：护体真气后拳脚 1600、MP 300，21 返回抵消 600、`delayCt=400`、迟滞 3000 | `damageBeforeMpGuard=1000`、耗 MP 300；随后才走 `mpGuard`；目标 `pendingShift−=400`，本文不再写第二份迟滞 |
+| T52 | AR-19 外放 settle | `postShield=1600`，其中内劲 1000、外劲 600；守方满足阈值且 `outwardQi=1200` | 先消 1000 内劲，再按负差 200 的 50% 抵基础 100；但可抵上限为 `1000+floor(600×0.5)=1300`，故抵 1100、`damageBeforeMpGuard=500`；再走 `mpGuard`，不生延后 / 迟滞 |
 | T53 | 点穴 / 擒拿时点 | 当前攻击直伤结算后成功施加点穴或擒拿 | 当前攻击的护体和速度快照不变；下一次路线 / CT 推进置脏并生效 |
 | T54 | 调息事务 | `yunjin:tiaoxi` 有两个可修节点；另测 9 级点穴和中途打断 | 前者先回内 / 防护，再产出 21 `BreathResult`，最后收招 1000；9 级拒绝；打断则整事务回滚 |
 | T55 | 解穴与挣脱 | `unseal` 省略穴位且目标有两个封穴；通用擒拿 5 级失败一次；擒拿 9 级 | 按确定优先级只处理一个穴；失败计数 +1 且下次 +500 bp；9 级不能提交 `struggle` |
@@ -3336,6 +3485,10 @@ behaviors:
 | T71 | 急性聚气 | `ct=1000`、中档内功 / 标准脉，选当前路线聚气；另测移动、满载未周天、满载且已周天、硬控跳过 | 成功项 0 移动 / MP / 气势 / RNG、发一次事件、`ct=0`；移动拒绝，满载未周天仍推进，满载且已周天拒绝，硬控不冒充聚气 |
 | T72 | 快进等价 | 相同状态分别逐 tick 12 次与一次 `dt=12`，中途无边界；再在封顶 / A 路有气切 B / 定时事件处切段并存取档 | 两路 CT、丹田、逐路线气包、节点聚合、backlog、事件序和 hash 完全相等；A 路不因换路清空 |
 | T73 | 周天暴击表现 | 10000 / 9999 bp 运气各命中一次既有暴击；同 `causeId` 含三段伤害 | 仅完整项发一次事件且包含原掷值；UI 稳定选择六条文案之一，不改伤害 / RNG / hash |
+| T74 | 攻击位置抗性 | `str=50,tough=38,zoneFlowBp=5000`，依次结算 body / hand / leg；再用属性 120 与满区气 | 前三项为 728 / 714 / 752 bp；极值为 1760 / 1680 / 1780，均作为 Z4 来源且不越 1800 |
+| T75 | 战斗设置·打坐被袭 | 世界快照中 A/B 正打坐、C 在城镇但未参与；攻击者 D 触发，`meditationInterrupted=true` | setup 只含 A/B/D（及模板援军）；D 方先机；A/B 各获 `bf_chaqi` 3 次自身行动、产气 50%、聚气中断，C 不入战 |
+| T76 | 一拳一眼共享结算 | 同一双方与种子分别跑手动固定命令、无站位固定命令，所用招式不含几何效果 | CT、命中、Z0–Z10、外放 / 透劲 / 打穴、Buff、资源及最终 hash 一致；自动每主行动恰发一次 `autoExchangeResolved` |
+| T77 | 自动模拟确定性与停机 | 同一 setup / policy 在 V8、JSC 各跑；另构造双方只能防御且 5 轮资源 / 状态无变化 | 命令 / 事件 / 终态 hash 一致；僵持例第 5 轮以 `draw` 结束，不超过 `min(2000,max(60,n×40))` 个行动 |
 
 
 ## 16. 待决事项 / 依赖
@@ -3377,10 +3530,11 @@ behaviors:
 | D-CH | chapters/01、03、04、05、08 | 核对三个 Boss 的最终数据，以及聚贤庄、光明顶、襄阳、少室山的六角地图、波次、阵营和分支标记 | §8.9–§8.11、§9.6 |
 | D-CAT-1 | catalog/skills-daojia | **已解决（C13）**：天罡北斗阵、真武七截阵均 4 个真实单位起阵；6 名真实阵员且阵主有效 10 重时才补 1 个无实体虚位。条目数值归图鉴，运行规则归本文 | §6.8.0–§6.8.2 |
 | D-CAT-2 | catalog/skills-shaolin | **已解决（C12 / P47）**：使用 `sk_jingangfumoquan`；慈悲类武学默认制服、可单场关闭。金刚伏魔圈 / 罗汉阵条目数值归图鉴，运行规则归本文 | §4.8.9、§6.8.3 |
-| D-21-1 | design/21、tech/05 | **已解决（AR-14 / AR-19 设计侧）**：21 v2.8.1 主定义宽度 / 长度 / 产气 / 运气 / 周天及既有经脉战斗规则；本文只接逐单位实例、tick、急性聚气、事务、CT / 反应 / AI 与回放 | §1.4.1、§3–§8、§13、§15 |
+| D-21-1 | design/21、tech/05 | **已解决（AR-14 / AR-19 设计侧）**：21 v2.9 主定义宽度 / 长度 / 产气 / 运气 / 周天、外放抵消、异种气与打穴；本文只接逐单位实例、tick、急性聚气、事务、CT / 反应 / AI 与回放 | §1.4.1、§3–§8、§13、§15 |
 | D-21-2 | design/05、武学图鉴 | **已解决（Canon v1.3 澄清）**：21 定义 schema / 算法 / 共享模板与示例，各武学图鉴定义具体 `mfr_*` / `txp_*` 实例；09 只消费引用，缺失时不得以显示名猜路线。绝招只使用 `MoveDef.ultimate:true` | §5.1、§6.1、§13.2 |
 | D-21-3 | ENG-03 / tech/05 | 将旧 `rulesProtocol:2` 升至 AR-19 的 3：逐单位 tick 产气 / 推进、`MeridianFlowSnapshotV2`、急性聚气、两个事件、事务回滚、回放 hash 与逐 tick / 快进对拍 | §1.4.1、§3.2、§3.4.1、§13.1–§13.5 |
 | D-QI-1 | ENG-02 / tech/04 | 登记 `acuteQiGather` 命令联合、两项事件载荷、拒绝原因与 `rulesProtocol=3` 存档迁移字段；本任务仅给设计契约 | §13.2、§13.5 |
+| D-COMBAT-AR19 | ENG-04 / tech/04、tech/05 | 登记 `battle-setup.v1`、`HitZone`、`AutoBattleState/AutoPolicy`、AR-19 六类经脉事件及三类自动模拟事件；实现共享 settle、稳定排序、协议 3 迁移和跨引擎对拍 | §2.12、§5.11、§8.12、§13、§15 |
 | D-14-2 | design/14 | 战斗招式面板显示每门全部已解锁绝招、角色唯一气势、本门共享冷却与逐招禁用原因；连续同招必须显示“不能连用同一绝招” | §5.1、§5.7、§5.9、§13.1 |
 | D-T-4 | tech/01、tech/05 | 串行化 `ultimateBySkill`，并让玩家 / AI / 一键重复 / Core 共用候选过滤与 E2 冷却时钟；失败候选不扣资源、不推进 RNG | §3.6、§5.1、§8.2、§13.1 |
 | D-AR16-1 | design/14、tech/05 | **已解决（09 规则侧）**：外放档进入 `BattleAction.projectionStep`；Core / UI / AI 共用当前档的射程、形状、总耗内和结构化禁用原因，点穴 / 胀损降档后重验 | §5.1–§5.7、§8.2、§13.2、§13.6 |
@@ -3406,8 +3560,8 @@ behaviors:
 | C13 / rulings-v1 | **已解决**：天罡北斗阵、真武七截阵均 `minMembers=4`、`dissolveBelow=4`；虚位无单位、CT、攻击、追击或援护能力 |
 | C20 + AR-12 + tech/02 | **已解决**：旧“战斗四斜向”被六角格覆盖；采用逻辑六向、完整 `battle8`、固定镜头驻留 6 个映射视图 |
 | author-decisions P42–P47 | **已解决**：聚贤庄允许倒戈且保留黑衣人锚点；保留显式“了断”；保留洪安通奉承；速战武学经验 ×0.5；剧情友军默认 AI、剧情可指定可控且占 6 人名额；少林慈悲类武学默认制服且可单场关闭 |
-| 作者需求 AR-14、design/21 v2.8.1 | **已解决并兼容 AR-19**：21 唯一定义战斗经脉动态、路线与乘区、护体内劲、擒拿 / 点穴、调息、速度投影与外放档上限。本文负责实例调度、出手 / settle 次序、防守窗口、`flowCt`、首轮 / CT / 移动力、外放格集合与 AI 消费；永久穴脉仍归 15 |
-| 作者需求 AR-19、design/21 v2.8.1 | **本次已同步设计**：`battleTick` 同步 CT、产气与逐路线气包推进；满槽可行动或急性聚气；完整 / 不完整运气只在唯一 Z5M 结算，完整暴击由 Core 发事实事件。生产实现交 ENG-02 / ENG-03 |
+| 作者需求 AR-14、design/21 v2.9 | **已解决并由 AR-19 修订**：路线、乘区、擒拿 / 点穴、调息与速度仍归 21；旧 AR-14f 四类护体适用率、MP 换伤和击穿迟滞仅供 `rulesProtocol≤2`，新战斗统一为 AR-19 命中区外放抵消 |
+| 作者需求 AR-16、AR-19、design/21 v2.9 | **本次已合并**：AR-16 的 `projectionStep` 仍决定主动招式射程 / 范围 / 成本；AR-19 的命中区阈值与外放抵消独立结算，玄级以上且标记 `penetratingQi` 才可注入。`battleTick`、急性聚气、周天暴击、异种气 / 打穴状态机与自动模拟均已给设计契约，生产实现交 ENG-02 / ENG-03 / ENG-04 |
 
 ### 16.3 对基准的修改提案
 
@@ -3427,6 +3581,7 @@ behaviors:
 | P-09-10 | **已采纳（v1.4 V14-02）** | 同一角色全部绝招共享 `rage 0..100`；同门共享 1 次自身行动冷却，且不能连续使用同一绝招 | 保证多绝招是战术轮换而非连续爆发；本文 §3.6、§5.9 落实运行时序 |
 | P-09-11 | **已采纳（v1.5 V15-02～04）** | AR-16 逐招外放按 0 / 1 / 2 档绑定射程 `+0/+2/+4`、预审形状与额外耗内 `0/2%/4% MPREF`；外放 Z5M 替代普通 Z5M | 本文 §5.2.1、§5.4、§8.2 负责六角格、选目标和敌我 AI；公式仍唯一归 21 |
 | P-09-12 | **提案（AR-19）** | Canon §8 登记同一 `battleTick` 推进 CT 与经脉；满槽增加急性聚气，固定 1000 收招且算一次正常自身行动 | 基准尚无 AR-19 的聚气命令与计数语义 |
+| P-09-13 | **提案（AR-19）** | Canon §8 以 `battle-setup.v1` 登记按进入情况冻结参战者 / 阵营 / 终局条件，并登记无站位逐行动自动模拟；§9 将旧 AR-14f 抵消改为 21 §4.8 的 AR-19 外放抵消 | 避免世界状态在战中漂移，也避免基准继续暗示两套护体内劲公式 |
 
 ### 16.4 原著考据待办
 
@@ -3470,3 +3625,5 @@ behaviors:
 | O9 | 待机预置轻防路线额度是否经实战验证 | **【建议值】**先用 ≤3 段且完整 `flowCt≤240`；若反应密度过强，先降低一次预置可覆盖的来袭次数，不改 21 的 Z4M 曲线 |
 | O10 | 仅有一记绝招、且没有任何同门非绝招的武学，是否豁免“不能连用同一绝招” | 默认保持现行规则（05 §4.8）：只有同门另一绝招或同门非绝招解除限制，**待作者确认**。若豁免，仅在共享冷却清零后允许再次施放，共享气势与冷却不变 |
 | O11 | 急性聚气 AI 阈值是否采用 1500 bp 收益 / 两行动生存 50% | **【建议值】**先按 §3.4.1；实战若拖时，先提高收益阈值或降低连续聚气权重，不改其 1000 收招与计数语义 |
+| O12 | 无站位范围招未配置 `autoTargetCap` 时取几人、模拟最长多少行动 | **【建议值】**范围招取 2 人；`maxActions=min(2000,max(60,participants×40))`，另以 5 轮无有效变化提前平局 |
+| O13 | 打坐被袭的岔气强度与持续是否需要按攻击强弱分档 | **【建议值】**首版固定 `bf_chaqi` 3 次自身行动、产气 5000 bp；触发本身不掷骰，普通解除 / 调息接口见 06 |

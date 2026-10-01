@@ -4,7 +4,7 @@
 > 上游：`00-canon.md` v1.8（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：携带、外来压制、残篇/残承 → `design/02-timeline-and-world-tiers.md`；属性公式、`MPREF` 与技艺 ID → `design/03-attributes.md`；伤害公式与乘区 → `design/04-damage-formula.md`；Buff 定义与目录 → `design/06-buff-system.md`；套装定义 → `design/07-set-system.md`；地形/轻功阈值 → `design/08-terrain-and-qinggong.md`；六角范围模板、集气、运劲、合击、反击流程与 AI → `design/09-combat-system.md`；物品/丹药/兵器属性 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务、关系与门派玩法 → `design/12-quests-npc-factions.md`；旧角色经验 / 等级迁移、难度与结局 → `design/13-progression-and-endings.md`（AR-19 后不得作为生产成长真值）；穴道、经脉、冲穴与周天 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；门派名录、历史与时代开放 → `design/17-sects-compendium.md`；NPC 身份、同伴与生卒 → `design/18-npc-and-companions.md`；地图节点、坐标与时代地图资产 → `design/19-world-map.md`；后人、宝藏、跨年代残本、信物、配方与投放 → `design/20-legacy-inheritance.md`；战斗经脉运行、攻防/轻功路线、绝招补充、护体内劲、擒拿/点穴、调息与逐单位模拟 → `design/21-meridian-flow-and-moves.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.9（AR-19 内功产气 / 速度 / 通量锻炼与 1–9 资源熟练，2026-10-01）；v1.8 经脉落地终审（2026-09-30）；阴阳性质同步 AR-18（2026-09-30）；v1.7.1（AR-18 内功性质审计返修，2026-09-29）；v1.7（AR-18 内功阴阳按主修经脉，2026-09-29）；v1.6（经脉落地终审，2026-09-29）；v1.5（AR-16 外放加持与绝招数量作者决定同步，2026-09-28）；v1.4（绝招与经脉规则同步，2026-09-27）；v1.3（AR-14 绝招数量追加；M4，2026-09-27）；v1.2（跨文档同步；全局审计，2026-09-27）。
+> 版本：v2.0（AR-19 命中区、透劲、打穴、消化与斗转字段，2026-10-01）；v1.9（AR-19 内功产气 / 速度 / 通量锻炼与 1–9 资源熟练，2026-10-01）；v1.8 经脉落地终审（2026-09-30）；阴阳性质同步 AR-18（2026-09-30）；v1.7.1（AR-18 内功性质审计返修，2026-09-29）；v1.7（AR-18 内功阴阳按主修经脉，2026-09-29）；v1.6（经脉落地终审，2026-09-29）；v1.5（AR-16 外放加持与绝招数量作者决定同步，2026-09-28）；v1.4（绝招与经脉规则同步，2026-09-27）；v1.3（AR-14 绝招数量追加；M4，2026-09-27）；v1.2（跨文档同步；全局审计，2026-09-27）。
 > 变更记录：v1.2 接收 `design/15` 的 20 个正式经脉 ID、专精倍率与校验边界，补齐 `design/17`–`20` 的唯一归属引用，明确 `recalled` 仅为基础图鉴状态上的“再续朱印”，并将已落盘的跨文档待决项改为已解决。C14 图鉴实数重定与 CN-05 独孤六式预算结论保持不变。
 > 变更记录（2026-09-27，经脉系统落地）：接收 `design/21` v2.0 的武学侧接口：招式引用攻/防/轻功路线，内功引用调息档案并声明护体内劲能力，轻功提供常驻速度路线；路线段时间只计 `flowCt`，经脉攻防乘区独立于 `power` 预算；§14 数量与品阶总账不变。
 > 变更记录（2026-09-27，AR-14 追加）：绝招数量按十二品改为天阶 2–3、地阶 1–2、仅玄上 1；默认第一 / 第二 / 第三绝招在 7 / 9 / 10 重解锁，增加共享气势、武学级绝招冷却、连续重复限制与天上三绝招完整示例。
@@ -15,6 +15,7 @@
 > 变更记录 v1.7.1（AR-18 返修，2026-09-29）：按正式武学卡归属重做全量审计；254 张唯一内功卡中 147 张可由主修经脉推导、107 张缺 `inner.meridians`，可审部分 56 张声明性质不符。
 > 变更记录 v1.8 · 经脉落地终审（2026-09-30）：§4.8 冻结绝招条件的乘法预算、门槛型标注与取整 / 手调边界；§4.2.1 明确带伤害的位移招走 attack，§4.11 登记骑乘标签条件；复核龙爪手第二绝招已同步，收拢历史交办。图鉴逐卡改动交后续任务，§14 总账不在本轮改动。
 > 变更记录 v1.9（AR-19，2026-10-01）：内功新增基础产气、基础运气速度、1–9 层曲线与通量锻炼参数；第 10 重继续承载既有圆满能力，但人物资源与运气熟练贡献钳至第 9 层。
+> 变更记录 v2.0（AR-19，2026-10-01）：招式新增命中区、透劲与打穴静态字段，内功新增消化比例与斗转反引能力；AR-16 仍负责外放档，AR-19 只在其已激活结果上追加命中区、防护与入体后效。
 > 全局审计：接入 `legacy_fragment` / `legacy_synthesis` 与 `legacy_complete` 形态；11 册门派图鉴 `51/169/459/459=1,138` 保留为 2026-09-27 基线，现行普通天阶另按 59 门执行，含补录的地 / 玄 / 黄与总量待 NXfixC 收口后由 NAu-final 重算；六角范围与正式套装闭合结果不变。
 
 ---
@@ -417,6 +418,7 @@ assets: { icon: skill/tieshazhang, art: illus/skill/tieshazhang }
 export type Grade = 1|2|3|4|5|6|7|8|9|10|11|12;
 export type Nature = 'yang'|'yin'|'harmony'|'neutral';
 export type MeridianId = import('./meridian/types').MeridianId; // 唯一目录与运行时白名单见 design/15 §2、§11.4
+export type HitZone = 'body'|'hand'|'leg';
 export type MeridianRouteId = string; // Canon 已登记 mfr_*；schema / 算法 / 模板见 21，具体武学实例见图鉴
 export type BreathProfileId = string; // Canon 已登记 txp_*；schema / 算法 / 模板见 21，具体武学实例见图鉴
 export type AcupointTarget =
@@ -507,6 +509,10 @@ export interface MoveDef {
   range: { min: number; max: number }; aoe: HexShape; // 基础射程 / 范围；类型唯一归 design/09 §13.1
   projection?: boolean; // 逐招外放标记；只对明确离体真气伤害成立
   projectionSpreadSteps?: readonly [HexShape, HexShape, HexShape]; // 0/1/2 档；[0] 深等于 aoe
+  hitZone?: HitZone; hitZoneReason?: string;
+  targetAcupoints?: readonly AcupointTarget[];
+  penetratingQi?: boolean;
+  acupointStrike?: { level:1|2|3|4|5|6|7|8|9; occupyingQiBp?:number };
   voice?: boolean; // 默认 false；仅 tags 含 sonic 时有意义，人声发劲=true，持乐器=false
   delivery: 'melee'|'ranged'|'projectile'|'self';
   mpCost: number;               // 比例，× MPREF(Ce) 兼容计价；不等于真实 mpMax
@@ -522,6 +528,7 @@ export interface MoveDef {
   trigger?: TriggerSpec;         // 被动触发型招式（反击、摆尾）
   condition?: MoveCondition;     // 如"目标主武器为 blade"
   autoGroup?: string;            // 自动选式组（独孤九剑"破招"）
+  autoTargetCap?: 1|2|3|4;       // 仅无站位自动模拟；单体规范化为 1
   yunjinMode?: YunjinMode;       // 专属招式覆写对应通用运劲分支
   meridianRouteRef?: MeridianRouteId; // 一条主路线；attack/defense/movement 与招式用途一致
   routeOnTriggerRef?: MeridianRouteId; // 仅触发型防守/身法；purpose=defense|movement
@@ -540,6 +547,8 @@ export interface InnerDef {
   layerCurveBp: readonly [number,number,number,number,number,number,number,number,number];
   fluxTrainBase: number;       // int 1..8
   fluxTrainHardCap: Readonly<{ acupoint: 64; meridian: 96 }>;
+  digestRatioBp?: number;      // int 10000..100000；默认 10000
+  reverseQi?: boolean;         // 默认 false；反引算法唯一见 design/21
   yunjin?: YunjinMode[];
   auxYunjin?: YunjinMode[];
   bridge?: boolean; natureFollowAux?: boolean; auxOverride?: number;
@@ -764,6 +773,11 @@ effLayer = min(trueLayer, effectiveTierCap(context), gateCap(grade, Ce), special
 | `projection` | bool | false | 逐招外放标记：仅明确以真气催动离体劲力造成伤害的招式为 true；不得按整门武学或 `delivery` 批量推断。深厚内力驱动且能主动控制伤敌音波的音功可标 true，但 0 档仍是普通音波；大手印跃击只把落点掌风伤害段视为外放 |
 | `voice` | bool | false | 仅当 `tags` 含 `sonic` 时有意义；吼、啸、诵咒、传音等人声发劲为 true，琴、箫、笛等持乐器音功为 false。运行时逐字投影为 `ProjectionInput.voice` |
 | `projectionSpreadSteps` | `[HexShape, HexShape, HexShape]` | — | `projection:true` 必填且正好三项，依次为 0 / 1 / 2 档；第 0 项须与 `aoe` 深相等，后两项只可取经图鉴审核的六角模板。档位门槛、射程增量、额外耗内与音功 `projectionBoostActive` 分支唯一见 design/21 §4.4.1 |
+| `hitZone` | `body|hand|leg` | 分类推导 | 招式绑定攻击位置；擒拿默认 `hand`，摔跤 / 腿法默认 `leg`，其余 `body`。位置抗性与区内在途气映射唯一见 design/09 §5.11 |
+| `hitZoneReason` | string | — | 仅当覆写分类默认时必填；写可审计动作理由，不参与运行时解析 |
+| `targetAcupoints` | `AcupointTarget[]` | — | 透劲 / 打穴可命中的有序穴位候选；去重，固定穴须属于 `hitZone`。运行时依 21 §9.2 稳定选首个合法穴 |
+| `penetratingQi` | bool | false | AR-19 透劲入体候选；仅玄级及以上主运、`projection:true` 且运行时 `projectionBoostActive=true` 的伤害招可启用，触发比较与注入均归 21 §4.4.3 |
+| `acupointStrike` | object | — | 内劲打穴 `{level:1..9, occupyingQiBp?:1..10000}`；普通命中后仍须过 21 §9.2 高精度二次检定。占穴量默认取本次 `releasedQi`；比例字段只可向下缩减 |
 | `delivery` | enum | `melee` | `melee` 近身 / `ranged` 远程气劲（剑气、掌风、指力；越过单位，被墙体阻挡） / `projectile` 投射物（需视线，被第一个单位阻挡） / `self` |
 | `hTol` | int | melee 2 / ranged 4 | 高度容差：受影响格与原点高度差 > hTol 则不受影响；音功等可设 `99` |
 | `mpCost` | number | 按大阶 | × `MPREF(Ce)`；`MPREF(Ce)=STD(Ce).mpMax` 是 design/03 §3.5 的兼容计价函数，不等于真实 `mpMax`。结算 `max(1, round(mpCost × MPREF × 耗内修饰))`，显式 0 成本保持 0（C02） |
@@ -779,11 +793,12 @@ effLayer = min(trueLayer, effectiveTierCap(context), gateCap(grade, Ce), special
 | `friendlyFire` | enum | `none` | `none` 不伤友 / `allies` 仅作用友方 / `all` 敌我皆中 |
 | `displacement` | object | — | 位移（§4.5） |
 | `buffs` | BuffApply[] | — | `{id, chance, dur, stacks?, grade: inherit, to: target\|self\|area\|allies, value?}`；`bf_xueweishoufeng` 的 `value.level` 必须为 1–9，并与 `targetAcupoint` 一起生成 06 §2.2.1 的运行时载荷；最终施加率还要过效果命中/抵抗（design/04） |
-| `targetAcupoint` | `AcupointTarget` | — | 仅施加 `bf_xueweishoufeng` 时使用：固定合法 `ap_*`，或 `targetPrimaryRouteKey`（按目标当前主要路线确定关键穴）。运行时补实际 `source` 与 `remainingOwnActions=dur`；无合法穴位则该效果不可施加，不按显示名猜 ID |
+| `targetAcupoint` | `AcupointTarget` | — | AR-14c 单穴兼容字段；构建期规范化为一项 `targetAcupoints`。仅施加 `bf_xueweishoufeng` 时可单独使用；新打穴 / 透劲内容统一写复数候选 |
 | `heal` / `cleanse` | object | — | 治疗：`{base: targetHpMax\|casterMpMax, pct}`（公式归 design/04）；驱散：`{tags[], count, maxGrade: inherit}` |
 | `trigger` | object | — | 被动触发型招式：`{on, chance, perRound}`（§4.10） |
 | `condition` | `MoveCondition` | — | 使用条件，如 `{targetWeapon: [blade]}`、`{fromBehind: true}`、`{selfHpBelow: 0.3}`；正式键见 §4.11 |
 | `autoGroup` | string | — | 自动选式组：UI 只显示一个按钮，按目标自动解析为组内合法招式 |
+| `autoTargetCap` | int 1–4 | — | 无站位自动模拟的范围招目标上限；单体固定 1，其他模板缺省 2【建议值】。不改变 `aoe`、`AF` 或手动战场格集合 |
 | `yunjinMode` | enum | — | 此内功专属招式覆写的运劲分支；枚举引用 design/09 §4.8.4，不与通用运劲重复叠加 |
 | `meridianRouteRef` | `MeridianRouteId` | 需运气招式必填 | 主路线 `mfr_*`；普通伤害招必须引用 `purpose:attack`，防守 / 位移招分别引用 `defense` / `movement`。外放反击架势可沿唯一 `purpose:defense` 主路线结算触发伤害，但仍须命中合法外放端点，不为反击另造 attack 路线。步骤、`segmentCt`、`riskBp`、性质与模板唯一见 design/21 §4–§5、§12 |
 | `routeOnTriggerRef` | `MeridianRouteId` | — | 触发式防守 / 身法的路线；仅允许 `purpose:defense\|movement`，如太极卸力被动。主动招式仍只用 `meridianRouteRef` |
@@ -853,7 +868,7 @@ MoveDef.recovery + Σ route.steps[].segmentCt ≤ 2000
 
 外放是 `MoveDef` 的逐招事实，不是 `SkillDef`、武学品阶或 `delivery` 的推导值。只有明确以真气催动离体指力、掌力、剑气、刀罡等伤害的招式，才可同时填写 `projection:true` 与三项 `projectionSpreadSteps`；实体暗器、弓弩、普通兵刃挥击、纯位移和纯护体均不自动获得外放。
 
-音功按 Canon V16-03 / `design/21` v2.6 §4.4.1 使用唯一运行时分支。`tags:[sonic]` 是一般音功的表现 / 几何标签；只有同时满足“深厚内力驱动”与“能主动控制伤敌音波能量或方向”的伤害招，才可在 `sonic` 之外再标 `projection:true`。普通喊声、传讯、自然乐声及无伤害的纯支援 / 纯控制招不得标外放。静态伤害段仍为 `DamageKind='projected'`，但是否启用外放加持由所选档派生：
+音功按 Canon V16-03 / `design/21` v2.9 §4.4.1 使用唯一运行时分支。`tags:[sonic]` 是一般音功的表现 / 几何标签；只有同时满足“深厚内力驱动”与“能主动控制伤敌音波能量或方向”的伤害招，才可在 `sonic` 之外再标 `projection:true`。普通喊声、传讯、自然乐声及无伤害的纯支援 / 纯控制招不得标外放。静态伤害段仍为 `DamageKind='projected'`，但是否启用外放加持由所选档派生：
 
 ```text
 sonic && projection && projectionStep == 0
@@ -864,7 +879,7 @@ sonic && projection && projectionStep >= 1
   => 外放 Z5M + 对应射程/范围扩张 + 200/400 bp MPREF 增耗
 ```
 
-`projectionBoostActive` 是预览 / 命令的派生结果，不写入 `MoveDef` 或存档。音功 0 档只切换 Z5M 曲线、范围与增耗；静态 `projected` 不变，所以护体内劲仍按 40% 适用量结算。非音功外放不使用此兼容分支，其 0 档仍激活外放曲线。
+`projectionBoostActive` 是预览 / 命令的派生结果，不写入 `MoveDef` 或存档。音功 0 档保持普通 Z5M、基础范围与 0 增耗；静态 `projected` 不变，但 AR-19 外放抵消只按伤害段 `wIn/wOut` 设置内劲全额、外劲半额上限，不再使用旧 `projected=40%` 适用率。非音功外放不使用此兼容分支，其 0 档仍激活外放曲线。
 
 `voice` 是静态出招方式事实，默认 false，且只允许与 `tags:[sonic]` 联用；吼、啸、诵咒、传音等人声发劲为 true，琴、箫、笛等持乐器音功为 false。`ProjectionInput.voice = (MoveDef.voice === true)`，并只在 `sonic && projection:true` 时消费；人声招可按 `design/21` §4.4.1.4 另取天突 / 廉泉，持乐器仍须取 13 个手 / 腕端点。`voice:true` 而无 `sonic` 必须构建失败；`voice` 不参与 `projectionBoostActive` 判定。
 
@@ -885,6 +900,16 @@ sonic && projection && projectionStep >= 1
 | 大手印跃击 | 落点掌风伤害段 | 跃迁位移不是伤害段，不另造第二段 | 三档由所属图鉴逐招审核 |
 
 表内是 design/21 §4.4.1.5 冻结夹具，不替代图鉴正式条目。六角格枚举、形状档位、遮挡与选目标归 design/09；当前最高可用档及外放威力曲线归 design/21；逐招正式标记由 M5c 落盘。
+
+#### 4.2.3 命中区、透劲与打穴字段（AR-19）
+
+`hitZone` 是招式动作事实，不是玩家每击自由选择。构建期先按 `subType/tags` 得默认：擒拿或 `tags:[grapple]` 为 `hand`，摔跤 / 腿法或 `tags:[wrestle|leg]` 为 `leg`，其余为 `body`；显式覆写必须同时写 `hitZoneReason`。同一整招多段共享命中区，除非各伤害子段已是独立结构并逐段声明。位置抗性、命中区节点与默认穴唯一由 09 §5.11 定义。
+
+`penetratingQi:true` 不保证注入，只开放候选。运行时须同时满足：伤害命中、`projectionBoostActive=true`、攻方主运 `g_eff≥4`、支付本招全部成本后的当前 `mp` 严格大于守方命中前当前 `mp`。满足后以本次外放 `releasedQi/qiSpeedBp` 原量原速注入；不从攻方再扣资源。来源内功的 `digestRatioBp` 决定守方消化成本。
+
+`acupointStrike` 与 AR-14c 的 `bf_xueweishoufeng` 1–9 级**合并而非并列**：`level` 就是既有点穴严重度，字段额外声明本招可把内劲留在穴上。普通 Z0 命中后还要过 21 §9.2 的打穴准确度检定；成功后最多使用 `floor(releasedQi×occupyingQiBp/10000)`，默认 10000 bp。若放气为 0，仍可按旧 `buffs` 施加 1–9 级，但不创建占穴气。占穴气的消化效率为普通透劲 50%，所有经过该穴的路线受影响；算法与状态只见 21 §9。
+
+旧卡迁移：单数 `targetAcupoint` 规范化为 `[targetAcupoint]`；旧 `seal` / `bf_xueweishoufeng` 只保留 1–9 生命周期，不据招名猜 `acupointStrike`；旧 `bf_toujin` 是 Z2 数值 Buff，也不得自动升级为 `penetratingQi`。本任务不修改 §11 武学图鉴，具体招式的逐项物化交后续图鉴任务。
 
 ### 4.3 六角范围模板接口（唯一归属：design/09 §5.3）
 
@@ -1407,27 +1432,31 @@ restore = floor(真实 mpMax × mpRegen / 100)
 | `layerCurveBp[1..9]` | 每项 4000–14000；默认 `5000+625n` | 熟练层曲线，必须非递减 |
 | `fluxTrainBase` | 1–8，默认 `1+floor(grade/2)` 后钳制 | 完整修炼周期的通量锻炼基数 |
 | `fluxTrainHardCap` | 穴 64 / 脉 96 | 只能等于 15 的全局硬上限，不允许逐卡抬高 |
+| `digestRatioBp` | 10000–100000，默认 10000 | 来源内功异种气每 1 点需守方多少内力消化：10000=1:1，100000=10:1；算法见 21 §4.4.3 |
+| `reverseQi` | bool，默认 false | 可否以 1:2 反引异种气为一次反向输出；只开放能力，容量、伤害与临时气量规则见 21 §4.4.3.4 |
 
 主运全额使用表中五项（其中硬上限对象含穴 / 脉两个固定值）；辅运不再并行产第二份气，只有明确被动可按既有预算修饰主运最终值。战斗取 `practiceLayer=min(effLayer,9)`，永久资源取 `resourceLayer=min(trueLayer,9)`；第 10 重不会重复提高产气或资源。完整修炼周期把实际跑通经脉 / 穴位交给 15 原子写入 `fluxCap`，战斗运劲 / 急性聚气不算修炼周期。
 
 标准三档验算可配为低 `8/8000`、中 `16/10000`、高 `28/12500`（产气 / 速度，均已含当前层曲线）；它们与弱 / 标准 / 强脉宽度 6 / 16 / 32 的组合表唯一见 21 §14.12，本文不复制伤害值。
 
+`digestRatioBp` 描述这门内功作为**异种气来源**时的凝练程度，不是持有者的消化能力加成，不乘层数或品阶。首版示例均为**（原创扩展）**且只作 schema / 平衡夹具：`sk_jiuyang`、化功大法、北冥神功取 10000；幻阴指来源取 100000。具体卡不在本文图鉴段改写，后续图鉴任务须确认正式 ID 与逐门值。`reverseQi:true` 首版仅建议给正式 `sk_douzhuan`；它与 06 `bf_douzhuan` 的整招镜返是不同分支，同一 cause 不可兼得。
+
 ### 5.9 运劲接口（AR-12）
 
 运劲是内功驱动的战斗行动。行动时序、通用回内 / 防护、消耗与七个子类 `tiaoxi|huti|xuli|bidu|liaoshang|cuiqinggong|huajie` 归 design/09 §4.8.4；`tiaoxi` 对战斗经脉的理顺、卸积、修复和解穴参数归 design/21 §10。主运默认只可使用该内功 `inner.yunjin` 列出的分支；辅运还必须列入 `inner.auxYunjin`。内功专属招式若填 `move.yunjinMode`，代表覆写同子类通用运劲，不得同次叠加。运劲与战斗调息均不推进冲穴进度。
 
-### 5.10 调息档案与护体内劲接口（AR-14）
+### 5.10 调息档案与外放抵消接口（AR-14 / AR-19）
 
 每门内功必须引用一份 `inner.breathProfileRef: txp_*`。`txp_*` 定义、通用生成式、触及节点全序、解穴门槛及战内 / 战外倍率唯一见 design/21 §10、§12；本文只负责把内功映射到档案。未定制者也必须引用由 21 的内容构建步骤预先登记、且按有效品阶、有效层数和性质投影的稳定档案，不能在运行时用显示名临时拼 ID，也不能把性质不同的现有档案临时复用。调息继续使用 `{t:yunjin, mode:tiaoxi}`：基础 1000 CT、经脉处理不另耗内力；9 级点穴禁自行调息。
 
-`inner.innerGuard` 是护体内劲的武学侧参数，不保存抵消公式：
+`inner.innerGuard` 是护体路线的兼容武学侧参数，不保存抵消公式：
 
 | 字段 | 范围 / 默认 | 说明 |
 |---|---|---|
 | `enabled` | bool；无主运时 false | 主运内功能否在合法自然护体短路或护体防守路线下启用；仅有字段不能跳过路线封闭 / 胀损 |
 | `reflectBp` | 可选 int 0–2000；默认 0 | 只承载已有的固定反震值；层数曲线 / Buff 值由 06 在当前有效层数结算后投影到运行时，不能在这里写上限值冒充全层固定值。护体内劲本身不自动赠送反震，且沿用 04 的防递归标记 |
 
-完整顺序只引用 design/21 §4.8：既有护体真气之后 → 护体内劲 → `mpGuard` → 气血；适用伤害类别、比例、内力兑换、容量与击穿公式均不进入 `InnerDef`，以 21 为唯一真值。来袭侧破体 / 破气由招式或 06 Buff 投影为 `InnerGuardInput.breakGuardBp`，取合格来源最高值、钳在 0–8000 bp；它不是防守内功自身的常量字段。击穿产生的迟滞、胀损风险与 CT 由逐单位 `MeridianFlowModule` 写回，不存入 `SkillState`。同一角色的攻击、防守、轻功与调息必须命中同一个经脉实例；我方与每个敌方单位各自独立，不能共享节点状态。
+完整顺序只引用 design/21 §4.8：既有护体真气之后 → AR-19 外放抵消 → `mpGuard` → 气血；命中区阈值、区内气消耗、内劲全抵 / 外劲半抵和负真气差半抵基础伤害均不进入 `InnerDef`。来袭侧破体 / 破气仍投影为 `OutwardQiInput.breakGuardBp`，取合格来源最高值并钳 0–8000 bp。协议 3 不直接花当前 MP，不产生击穿迟滞 / CT；AR-14f 旧字段只供协议 2 回放。同一角色的攻击、防守、轻功与调息必须命中同一个经脉实例；我方与每个敌方单位各自独立，不能共享节点状态。
 
 ### 5.11 轻功武学的速度路线
 
@@ -3011,6 +3040,7 @@ description: >-
 | 蓄招 | `charge` | 下次行动释放的预警招式 | §4.1 |
 | 招式栏 | `moveSlots` | 每门武学战斗中可暴露的普通招式数 | §4.9 |
 | 自动选式组 | `autoGroup` | 一个按钮按目标自动解析的招式组 | §4.1 |
+| 自动模拟目标上限 | `autoTargetCap` | 无站位模拟中范围招最多命中的单位数；不参与手动六角几何与倍率预算 | §4.1；design/09 §8.12 |
 | 效果钩子 | `effects` | 结构化字段外的规则声明 | §4.11 |
 | 普攻 | `sk_basic` / `mv_basic_strike` | 隐藏的基本功与普通一击 | §4.10 |
 | 标准内力 | `MPREF(Ce)` | design/03 §3.5 STD 的兼容 `mpMax` 列，耗内计价基准；不等于真实 `mpMax` | §4.1 |
@@ -3024,13 +3054,17 @@ description: >-
 | 丹田基础产气 / 基础运气速度 | `baseQiPerTick` / `baseQiSpeedBp` | 主运内功的整数基础参数；逐 tick 最终值与旅行公式归 21 | §5.8.1 |
 | 熟练层曲线 | `layerCurveBp[1..9]` | 1–9 层共用的非递减 bp 数组，同时缩放产气与速度 | §5.8.1 |
 | 通量锻炼基数 / 硬上限 | `fluxTrainBase` / `fluxTrainHardCap` | 完整修炼周期的递减增量输入；穴 / 脉硬上限固定 64 / 96 | §5.8.1 |
+| 命中区 | `hitZone` / `hitZoneReason` | 招式固定命中 `body/hand/leg`；覆写分类默认时必须留理由，抗性公式归 09 | §4.1、§4.2.3 |
+| 穴位候选 / 打穴 | `targetAcupoints` / `acupointStrike` | 有序合法穴候选与 1–9 严重度 / 占穴比例；占穴算法归 21 | §4.1、§4.2.3 |
+| 透劲入体 | `penetratingQi` | 玄级以上外放伤害招的候选标记；内力比较、注入、逆流归 21 | §4.2.3 |
+| 消化比例 / 反引 | `digestRatioBp` / `reverseQi` | 来源异种气的消化成本 1:1–10:1；是否可用 1:2 斗转反引 | §5.8.1 |
 | 专精经脉 | `inner.meridians` / `MeridianId` | 内功向冲穴系统声明的经脉 ID 列表；只允许 design/15 §2 的 20 个正式 ID，单门专精只令自身内劲贡献 ×1.20 | §5.7–§5.8 |
 | 招式经脉路线 | `meridianRouteRef` / `routeOnTriggerRef` | 武学侧只保存对 `mfr_*` 主路线或触发路线的引用；用途、节点、段时间、风险和运行结果归 design/21 | §4.1–§4.2.1 |
 | 轻功速度路线 | `movementRouteRef` | 轻功武学的常驻 `purpose:movement` 路线；输出经脉速度而不改基础轻功 / 门禁 | §2.1、§5.11 |
 | 路线段时间 / 经脉收招 | `segmentCt` / `flowCt` | `segmentCt` 属于 21 路线步骤；05 校验招式 `recovery +` 满路线总 CT，运行时只消费派生 `flowCt` | §4.1–§4.2 |
 | 外放招式 / 外放范围档 | `projection` / `projectionSpreadSteps` | 逐招声明离体真气伤害及三项预审六角范围；`range` / `aoe` 保存基础值，当前可用档与数值算法归 design/21 | §4.1、§4.2.2 |
 | 调息档案 | `inner.breathProfileRef` / `txp_*` | 内功引用 21 的调息参数投影；理顺、修复与解穴公式不在 05 重定义 | §5.7、§5.10 |
-| 护体内劲参数 | `inner.innerGuard` / `InnerGuardInput.breakGuardBp` | 内功声明启用与既有反震语义；来袭破体 / 破气由招式 / Buff 投影，抵消公式和实例状态归 design/21 | §5.10 |
+| 外放抵消参数 | `inner.innerGuard` / `OutwardQiInput.breakGuardBp` | 内功声明护体路线启用与既有反震语义；来袭破气由招式 / Buff 投影，抵消公式和实例状态归 design/21 | §5.10 |
 | 运劲分支 | `inner.yunjin` / `inner.auxYunjin` / `move.yunjinMode` | 内功开放的通用运劲、辅运许可及专属招式覆写；枚举与行动归 design/09 | §5.7、§5.9 |
 | 易运 | — | 战斗中切换主运 | §5.6 |
 | 持械系数 | `Mod_armed` | 持兵器使用拳脚的折算 | §6.3 |
@@ -3129,7 +3163,7 @@ description: >-
 | V35 | `projection:true` 的每个伤害段必须为 `DamageKind='projected'`，反向不自动补标；档位只允许 0 / 1 / 2，对应射程增量 0 / 2 / 4 与额外耗内 0 / 200 / 400 bp MPREF | 失败 |
 | V36 | `projection:true` 的 `meridianRouteRef` 至少经过 design/21 §4.4.1.4 的一个合法外放端点；不得在静态招式保存当前档、扩大后射程、外放 Z5M 或按整门武学生成标记 | 失败 |
 | V37 | `sk_xianglong18` 除 `mv_xianglong18_qianlong` 外恰有 18 个 `projection:true` 招式且各有三项 `projectionSpreadSteps`；潜龙勿用不得带外放字段。三绝招的 `[0]` 必须与 `aoe` 深相等，并分别保持连环 60° 锥 `r3/r4/r5`、神龙 120° 锥 `r1/r2/r3`、震惊 `around/disk r2/disk r3` | 失败 |
-| V38 | `sonic && projection:true` 的招式 0 档须派生 `projectionBoostActive=false`、基础范围、0 外放增耗与普通 Z5M；1 / 2 档须派生 true 并使用审核范围、200 / 400 bp MPREF 与外放 Z5M。三档静态伤害类别均保持 `projected`，护体内劲适用率均为 40% | 失败 |
+| V38 | `sonic && projection:true` 的招式 0 档须派生 `projectionBoostActive=false`、基础范围、0 外放增耗与普通 Z5M；1 / 2 档须派生 true 并使用审核范围、200 / 400 bp MPREF 与外放 Z5M。三档静态伤害类别均保持 `projected`；AR-19 抵消按 `wIn/wOut`，不得再套旧 40% 适用率 | 失败 |
 | V39 | 音功无伤害段、普通喊声 / 传讯不得标 `projection:true`；`mv_dashouyin_dashouyin` 仅落点掌风构成一个 `projected` 外放伤害段，跃迁位移不得生成第二伤害段、第二次 Z5M 或第二条攻击路线 | 失败 |
 | V40 | 正式图鉴发现必须同时覆盖门派册与 `skills-bulu-NN-*.md`，并以全局 ID 去重；现行普通天阶唯一 ID 恰为 `59=9+18+32`，含补录低三阶及总量未由 NAu-final 重算前不得拿 11 册 `1,138` 基线冒充现行全目录 | 失败 |
 | V41 | `voice:true` 只可与 `tags:[sonic]` 联用；人声外放路线可取天突 / 廉泉，`voice:false` 的持乐器音功仍须命中 13 个手 / 腕端点；`ProjectionInput.voice` 必须逐字投影 `MoveDef.voice===true` | 失败 |
@@ -3137,6 +3171,11 @@ description: >-
 | V43 | `targetHasTag` 为字符串，骑乘条件只用 `mounted`；无战场骑乘事实不得为真；带主动伤害的突进 / 跃击路线必须 `attack`，不因位移字段判 `movement`，防守反击例外仍按 §4.10 | 失败 |
 | V44 | 每门内功必须填 `baseQiPerTick 4..32`、`baseQiSpeedBp 5000..16000`、恰 9 项且非递减的 `layerCurveBp 4000..14000`、`fluxTrainBase 1..8`、固定 `{acupoint:64,meridian:96}`；全部为安全整数 | 失败 |
 | V45 | 战斗只用 `practiceLayer=min(effLayer,9)`，03 资源只用 `resourceLayer=min(trueLayer,9)`；辅运不另产气，10 重与 9 重的 AR-19 基础投影相等 | 失败 |
+| V46 | 每个 `MoveDef` 规范化后必须有 `hitZone`；擒拿默认 hand、摔跤 / 腿法默认 leg、其余 body；偏离默认必须有非空 `hitZoneReason`。固定 `targetAcupoints` 必须属于该区且去重 | 失败 |
+| V47 | `penetratingQi:true` 只允许玄级及以上内功驱动、`projection:true` 且含伤害段的招式；不得与旧 `bf_toujin` 自动互转 | 失败 |
+| V48 | `acupointStrike.level∈[1,9]`、`occupyingQiBp∈[1,10000]`；必须有合法穴位候选和内劲输出，既有 `bf_xueweishoufeng.value.level` 若并存必须相等 | 失败 |
+| V49 | 内功 `digestRatioBp` 为 10000–100000 安全整数、缺省 10000；`reverseQi` 为 bool 且只允许内功，首版 `sk_douzhuan` 建议为 true；同 cause 不得同时走反引与整招镜返 | 失败 |
+| V50 | `autoTargetCap` 只允许整数 1–4；`aoe_single` 必须规范化为 1，其他范围缺省 2；字段不得改变手动 `HexShape`、`AF` 或伤害倍率 | 失败 |
 
 ### 16.2 金标准测试用例
 
@@ -3179,7 +3218,7 @@ description: >-
 | T34 | 独孤同门含一记剑气外放与一记近身破剑；尝试按 `SkillDef` 或 `delivery:ranged` 批量补标 | 只显式剑气招为外放；近身招不变，批量推断构建失败；剑气表现保留“原创扩展”标注 |
 | T35 | 降龙外放招路线命中 `ap_shoujueyin_laogong`；改成完全不含 21 端点白名单；敌方加载同一招 | 前者通过、后者失败；敌方与玩家得到同一静态字段和档位边界 |
 | T36 | 构建降龙十八掌并统计逐招外放字段；再分别读取三绝招的 0 / 1 / 2 档范围 | 19 个具名动作中恰有 18 个外放，唯一例外为纯蓄力“潜龙勿用”；连环为 60° 锥 `r3/r4/r5`，神龙为 120° 锥 `r1/r2/r3`，震惊为 `around/disk r2/disk r3`，且三者 0 档均与基础 `aoe` 深相等 |
-| T37 | 同一 `sonic && projection:true` 伤害招分别选 0 / 1 / 2 档 | 0 档 `projectionBoostActive=false`、普通 Z5M、基础范围、0 增耗；1 / 2 档为 true、使用外放 Z5M 与 200 / 400 bp MPREF 增耗；三档仍按 `projected` 接受护体内劲 40% 适用率 |
+| T37 | 同一 `sonic && projection:true` 伤害招分别选 0 / 1 / 2 档 | 0 档 `projectionBoostActive=false`、普通 Z5M、基础范围、0 增耗；1 / 2 档为 true、使用外放 Z5M 与 200 / 400 bp MPREF 增耗；三档均按 `wIn/wOut` 进入 AR-19 抵消上限，不读旧 40% |
 | T38 | 加载 `mv_dashouyin_dashouyin`，依次审计跃迁与落点掌风 | 跃迁只改位置且无伤害事件；落点只生成一个 `projected` 外放伤害段与一次 Z5M；不存在位移伤害段或第二条 attack 路线 |
 | T39 | 同时扫描门派册和十四册补录册，并按唯一 `sk_*` 汇总普通天阶 | 任一漏册或重复定义失败；天上 / 天中 / 天下为 9 / 18 / 32，合计 `9+18+32=59`；低三阶总量在最终重算前只报告“未收口”而不回退到 1,138 |
 | T41 | 绝回罕见条件、夜隙夜间条件、反常姿态门槛；均使用标准绝招代价 | 依 §4.8 三例分别为 `3.90 / 3.45 / 2.90`；不重复计默认 +2% 耗内、1200 CT 或共享冷却；旧加法 3.30 不能通过 |
@@ -3187,6 +3226,10 @@ description: >-
 | T43 | 普通入场下马目标；合法特殊场景骑乘目标；陷阵以 `power=2.85` 带主动伤害突进 | `targetHasTag:mounted` 前两者为 false / true；陷阵主路线必须 `attack`，不另提交 movement 路线；单标签数组形式失败 |
 | T44 | 默认 6 品内功：`baseQiPerTick=16,baseQiSpeedBp=10000`，曲线第 6 项 8750；有效 6 重 | 交 21 后 `productionPerTick=floor(16×8750/10000)=14`、`qiSpeedBp=8750` |
 | T45 | 同一门内功 `trueLayer=10,effLayer=10`；分别与 9 重比较资源、产气、速度 | 两者 `resourceLayer/practiceLayer=9/9`，三类 AR-19 基础贡献逐项相同；圆满招式 / 被动仍按第 10 重 |
+| T46 | 擒拿 / 腿法 / 普通掌法未填命中区；普通掌法显式改 hand 但无理由 | 前三者规范化为 hand / leg / body；无理由覆写失败 |
+| T47 | 玄级外放伤害招标 `penetratingQi`；同招改黄级、非外放或纯支援 | 第一项通过；后三项均构建失败，运行时仍由 21 比较双方当前 MP |
+| T48 | 6 级打穴、`occupyingQiBp=7500`、`releasedQi=40`；候选穴两个 | 占穴量 `floor(40×7500/10000)=30`；按显式候选顺序取首个合法穴，严重度仍为 `dxl_lv06` |
+| T49 | 普通来源 / 幻阴指来源各注入 20 气；斗转反引 20 气 | 消化分别需 20 / 200 MP；反引消耗 20 MP 后仅得 `floor(20×5000/10000)=10` 临时反击气 |
 
 ---
 
@@ -3212,7 +3255,7 @@ description: >-
 | D21 | design/10、catalog | `WeaponReq` 消费 `hands`/成对/副手规则，暗器改用 `hiddenKind`，特殊装备兼容用 `offHand/altItems`；丹药 `sxpGrant.pctNext` 黄/玄/地/天为 `0.10/0.20/0.35/0.50` | **已解决（接口）**：10 §2–§3、§8.2 已定枚举和档位，05 已补 schema/§6.2/V3；具体图鉴条目仍须逐项迁移并解析装备 ID |
 | D22 | design/21、武学图鉴 | `MoveDef` 用 `meridianRouteRef` / `routeOnTriggerRef` 引用 attack / defense / movement 路线；绝招继续以 `ultimate` 为唯一真值；轻功武学用 `movementRouteRef` | **已解决（见 Canon v1.3 澄清、design/21 §4、§12）**：本文 §2.1、§2.9、§4.1–§4.2.1、§4.8–§4.10、V27–V33 已定；21 拥有 schema、算法、共享模板与示例，各图鉴拥有具体武学实例 |
 | D23 | design/21、design/09、武学图鉴 | 内功 `breathProfileRef` 引用 `txp_*`；调息并入既有 `yunjin:tiaoxi`，基础 1000 CT 且经脉处理不另耗内；战斗调息不推进永久冲穴 | **已解决（见 Canon v1.3 澄清、design/21 §10、§12）**：本文 §5.7、§5.9–§5.10 已采用；共享档案 / 示例归 21，九阳、易筋等逐武学档案由所属图鉴定义，05 仅镜像引用 |
-| D24 | design/21、design/04、design/06 | 内功通过 `innerGuard` 声明护体内劲启用与既有反震；来袭侧以 `InnerGuardInput.breakGuardBp` 投影破体 / 破气；settle 顺序为护体真气 → 护体内劲 → `mpGuard` → 气血 | **已解决（05 接口，见 design/21 §4.8）**：字段和边界见 §5.10；抵消公式、类别适用率及击穿状态仍唯一归 21 §4.8，最终伤害链 / Buff 由 04 / 06 同步 |
+| D24 | design/21、design/04、design/06 | 内功通过 `innerGuard` 声明护体路线启用与既有反震；来袭侧以 `OutwardQiInput.breakGuardBp` 投影破气；settle 顺序为护体真气 → AR-19 外放抵消 → `mpGuard` → 气血 | **已解决并由 AR-19 修订（05 接口，见 design/21 §4.8）**：字段和边界见 §5.10；旧类别适用率、MP 换伤与击穿状态仅供协议 2，最终伤害链 / Buff 由 04 / 06 同步 |
 | D25 | catalog/skills-yitian | 九阳旧 `innerGuard.reflectBp:1200` 是“他横由他横”10 重上限值，违反本文 §5.10；应改为 0 / 省略，由 `ps_jiuyang_taheng` 按当前有效层数投影，避免双算 | **已解决**：`catalog/skills-yitian` §10.6 已填 0 并明确按有效层数投影；本次复核 §13.4 继续省略固定反震值 |
 | D26 | 全部武学图鉴、tech/04、lint | 绝招条件按 §4.8 唯一乘法式；任意持械常见 +0.15，指定兵器罕见 +0.30；门槛型必须明示 | **规则已解决，图鉴迁移 / 自动预算 lint 未完成**：重算表见 `tools/agents/reports/NAuF-rules.md` §7；绝回≤40%罕见档沿既有卡作 **【建议值】**，作者确认入口 O9 |
 | D27 | 通行图鉴、design/09、chapters/10 | 斩马用 `targetHasTag:mounted`；陷阵伤害路线改 `attack` | **规则已解决，实例待同步**：§4.2.1、§4.11；不扩普通战斗的骑乘玩法，具体特殊场景须由归属文档授权 |
@@ -3220,6 +3263,7 @@ description: >-
 | D29 | 五绝 / 少林等音功图鉴 | NR3 建议所有音功显式写 `voice` | **已解决（沿现行字段契约）**：§4.2.2 默认 false 不变；人声发劲必须显式 true，持乐器可显式 false，不引入第二判定字段；逐招标记与端点仍交图鉴核查 |
 | D30 | 五岳 / 少林 / 倚天 / 五绝 / 道家图鉴、design/06、tech/04 | 特殊钩子成本、混合招伤害子效果与存量几何预算 | **部分已解决**：§13.2 无招收招同步 1200，破箭 / 破气按门槛型保留；破气 / 无招特殊成本 0.02 / 0.07、九阳普照群盾驱散成本 0.45 仍为图鉴既有 **【建议值】**，须由效果价值归属校准。倒拽按单目标远程拉拽改 2.45，少林镜像待同步；九阳普照敌伤投送 / 招架字段未定，当前 1.80 不签出为预算已验证。七星 / 三清 / 推山 / 捉影 / 时乘的明确旧 AF 已复算为 0.90 / 1.05 / 1.00 / 1.00 / 1.00，镜像待同步；鱼跃 / 飞龙的高差与溅射成本未闭合，不按旧 leap AF 签出 |
 | D31 | design/03、15、21、tech/04、全部内功图鉴 | 输出 `practiceLayer/resourceLayer` 与 `InnerDef` 五类 AR-19 参数；默认曲线 `5000+625n`，穴 / 脉硬上限 64 / 96 | **已解决（规则 / schema）**：§3.0、§5.8.1、V44–V45；逐内功卡未填时按确定默认编译并报警，后续图鉴任务应物化字段 |
+| D32 | design/21、09、06、tech/04、全部武学图鉴 | `MoveDef.hitZone/targetAcupoints/acupointStrike/penetratingQi` 与 `InnerDef.digestRatioBp/reverseQi` | **已解决（规则 / schema）**：§4.1、§4.2.3、§5.8.1、V46–V49；本任务不改图鉴，逐招 / 逐内功物化与正式示例值仍待后续图鉴任务 |
 
 ### 17.2 本文依赖的上游事实
 
@@ -3260,6 +3304,7 @@ description: >-
 | P-16 | Canon 登记天阶扩容、补录正式定义源及音功 / 大手印边界 | **已采纳（v1.6 V16-01～04）**：§11.1、§14、V38～V40 已同步；算法仍唯一见 `design/21` §4.4.1 |
 | P-17 | Canon 登记 AR-18：内功阴阳按主修经脉判定，正逆周天不决定阴阳 | **已采纳（v1.8 V18-01～02）**：§5.3 已采用；体段 / 出口段与掌法动作穴唯一见 `design/21` §2.4、§4.3.1 |
 | P-18 | Canon 登记 AR-19 的 1–9 资源 / 战斗熟练层、内功产气 / 速度 / 通量锻炼字段，第 10 重只保留圆满能力 | **待基准同步**：避免旧十重体系让资源与运气多算一层；规则已在 §3.0、§5.8.1 落盘 |
+| P-19 | Canon §8 / §18 登记招式命中区、透劲 / 打穴候选字段，以及内功 `digestRatioBp/reverseQi` | **待基准同步**：字段所有权在 05，运行算法与动态真值在 21，避免图鉴靠招名推断或 Buff 重复保存 |
 
 AR-01 的 C3 历史同步已完成：§14 以 920 门快照为起点形成 11 册 1,138 门基线，并把四个 CX 扩充缺口与十四书界池审计分别列明。AR-17 已按作者决定把普通天阶扩为 59；含补录的地 / 玄 / 黄与全目录总量待 NXfixC 收口后由 NAu-final 重算。
 经脉路线 / 调息档案仍是依附既有武学的配置对象，不计作新武学；数量变化只来自已登记的补录武学定义。
@@ -3304,6 +3349,8 @@ AR-01 的 C3 历史同步已完成：§14 以 920 门快照为起点形成 11 �
 | O10 | 尚无统一价表的特殊钩子 / 组合收益如何配表 | 默认保留逐效果 **【建议值】** 并逐卡列出处；不为填平旧倍率新造“高可达 / 条件预扣”成本；未知生产键继续失败 | **开放**：承接 F1n-26、C1b.R、RCx B-2/B-3；合奏、装备协同与特殊代价 schema 尚未统一，具体遗留见 D30 与报告 §6 / §7 |
 | O11 | 无形剑气是否在 `sonic` 下另保留“不穿墙” | 默认沿 §4.4 的 `sonic` 无视阻挡，不新增视线例外字段 | **需作者确认**：承接五岳 WU-O09 / NXfix-wuyue；若作者保留不穿墙，由 09 / 技术 schema 先定义可执行例外再回填图鉴，不能仅改文案 |
 | O12 | 逐门内功是否全部手配 AR-19 五类参数 | 默认先按 §5.8.1 的品阶公式确定性编译并报警；核心 / 天阶内功由后续图鉴任务物化后才可消警 | **开放但不阻塞规则**：本任务不改武学图鉴；缺字段不得退回 `mpMax` 或随机推导 |
+| O13 | `digestRatioBp` 示例值与斗转反引标记是否直接写入图鉴 | 默认九阳 / 化功 / 北冥 10000、幻阴指 100000，`sk_douzhuan.reverseQi=true`，均为（原创扩展）且待逐卡确认 | **开放但不阻塞 schema**：本任务不改武学图鉴；构建器可用默认 10000，但反引不可按名称猜测 |
+| O14 | 存量招式的 `hitZone` 是否全部物化 | 默认构建期按 §4.2.3 确定推导并报警；擒拿 hand、摔跤 / 腿法 leg、其余 body，覆写必须留理由 | **开放但不阻塞迁移**：后续图鉴任务逐卡物化；生产运行结果必须保存规范化值 |
 
 其余与本文直接相关的作者决定也已落实：
 
