@@ -1,0 +1,606 @@
+schemaVersion: story.v1
+chapterId: ch01_tianlong
+lineId: main
+kind: main
+titleKey: story.ch01.main.title
+eraLayer: ch01
+startNodeId: n_wake
+sideHooks:
+  - lineId: side_babuzhong
+    atNodeId: n_xingzilin_merge
+    when: {npc: {id: npc_duanyu, state: alive}}
+source:
+  document: docs/design/story/01-tianlong.md
+  anchors: ["§0.3", "§3", "§4", "§5"]
+  note: 结构迁移样例；原著结论沿用来源，新增编排为原创扩展
+nodes:
+  - id: n_wake
+    type: dialogue
+    titleKey: story.ch01.main.wake
+    completeOn: dialogue/completed
+    payload:
+      inlineLines:
+        - {speakerId: narrator, textKey: story.ch01.main.wake.narration}
+    sourceRef: design/story/01 §0.3
+  - id: n_duanyu_spawn
+    type: spawn
+    titleKey: story.ch01.main.duanyu_spawn
+    completeOn: npc/spawned
+    payload: {npcId: npc_duanyu, sceneId: sc_01_wuliangyidao, anchor: roadside, eraLayer: ch01}
+    sourceRef: design/story/01 §2.1
+  - id: n_wuliang_dialogue
+    type: dialogue
+    titleKey: story.ch01.main.wuliang_dialogue
+    completeOn: dialogue/completed
+    payload: {ink: {storyId: story_ch01_main, knot: wuliang_first_meeting}}
+    sourceRef: design/story/01 §2.3
+  - id: n_c01
+    type: quest
+    titleKey: quest.q_01_main_c_01.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_c_01}
+    sourceRef: design/story/01 §2.3 C01
+  - id: n_choice_01
+    type: choice
+    titleKey: story.ch01.choice.dc_01_01
+    completeOn: story/choiceCommitted
+    payload:
+      decisionId: dc_01_01
+      options:
+        - {key: save_porter, textKey: story.ch01.dc01.save_porter}
+        - {key: follow_zhongling, textKey: story.ch01.dc01.follow_zhongling}
+        - {key: trace_duanyu, textKey: story.ch01.dc01.trace_duanyu}
+    sourceRef: design/story/01 §5.3
+  - id: n_c01_merge
+    type: merge
+    titleKey: story.ch01.main.c01_merge
+    completeOn: immediate
+    payload: {mergeKey: c01_rescue_order}
+    sourceRef: design/story/01 §5.3
+  - id: n_zhongling_spawn
+    type: spawn
+    titleKey: story.ch01.main.zhongling_spawn
+    completeOn: npc/spawned
+    payload: {npcId: npc_zhongling, sceneId: sc_01_jianhugong, anchor: outer_path, eraLayer: ch01}
+    sourceRef: design/story/01 §2.3
+  - id: n_c02
+    type: quest
+    titleKey: quest.q_01_main_c_02.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_c_02}
+    sourceRef: design/story/01 §2.3 C02
+  - id: n_choice_02
+    type: choice
+    titleKey: story.ch01.choice.dc_01_02
+    completeOn: story/choiceCommitted
+    payload:
+      decisionId: dc_01_02
+      options:
+        - {key: return_original, textKey: story.ch01.dc02.return_original}
+        - {key: sell_copy, textKey: story.ch01.dc02.sell_copy}
+        - {key: trade_empty_case, textKey: story.ch01.dc02.trade_empty_case}
+    sourceRef: design/story/01 §5.4
+  - id: n_c02_merge
+    type: merge
+    titleKey: story.ch01.main.c02_merge
+    completeOn: immediate
+    payload: {mergeKey: sutra_disposition}
+    sourceRef: design/story/01 §5.4
+  - id: n_zhongling_depart
+    type: despawn
+    titleKey: story.ch01.main.zhongling_depart
+    completeOn: npc/despawned
+    payload: {npcId: npc_zhongling, sceneId: sc_01_jianhugong, anchor: outer_path, eraLayer: ch01, reason: dali_rescue_complete}
+    sourceRef: design/story/01 §2.3
+  - id: n_c03
+    type: quest
+    titleKey: quest.q_01_main_c_03.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_c_03}
+    sourceRef: design/story/01 §2.3 C03
+  - id: n_xiaofeng_spawn
+    type: spawn
+    titleKey: story.ch01.main.xiaofeng_spawn
+    completeOn: npc/spawned
+    payload: {npcId: npc_xiaofeng, sceneId: sc_01_xingzilin, anchor: gathering_ground, eraLayer: ch01}
+    sourceRef: design/story/01 §2.3 C04
+  - id: n_xingzilin_dialogue
+    type: dialogue
+    titleKey: story.ch01.main.xingzilin_dialogue
+    completeOn: dialogue/completed
+    payload: {ink: {storyId: story_ch01_main, knot: xingzilin_revelation}}
+    sourceRef: design/story/01 §2.3 C04
+  - id: n_c04
+    type: quest
+    titleKey: quest.q_01_main_c_04.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_c_04}
+    sourceRef: design/story/01 §2.3 C04
+  - id: n_xingzilin_merge
+    type: merge
+    titleKey: story.ch01.main.xingzilin_merge
+    completeOn: immediate
+    payload: {mergeKey: xingzilin_anchor}
+    sourceRef: design/story/01 §0.3 A2
+  - id: n_choice_03
+    type: choice
+    titleKey: story.ch01.choice.dc_01_03
+    completeOn: story/choiceCommitted
+    payload:
+      decisionId: dc_01_03
+      options:
+        - {key: protect_evidence, textKey: story.ch01.dc03.protect_evidence}
+        - {key: trade_testimony, textKey: story.ch01.dc03.trade_testimony}
+        - {key: treat_first, textKey: story.ch01.dc03.treat_first}
+    sourceRef: design/story/01 §5.5
+  - id: n_c04_treat_wounded
+    type: quest
+    titleKey: story.ch01.main.c04_treat_wounded
+    completeOn: immediate
+    payload:
+      inlineEvent:
+        eventKey: xingzilin_treat_wounded
+        actions:
+          - {id: fx_morality, op: reward/morality, delta: 2, reasonCode: xingzilin_treat_wounded}
+    sourceRef: design/story/01 §5.5 选项 C
+  - id: n_choice_03_after_treat
+    type: choice
+    titleKey: story.ch01.choice.dc_01_03_after_treat
+    completeOn: story/choiceCommitted
+    payload:
+      decisionId: dc_01_03
+      options:
+        - {key: protect_evidence, textKey: story.ch01.dc03.protect_evidence}
+        - {key: trade_testimony, textKey: story.ch01.dc03.trade_testimony}
+    sourceRef: design/story/01 §5.5 延迟一次后再决定
+  - id: n_z01
+    type: quest
+    titleKey: quest.q_01_main_z_01.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_z_01}
+    sourceRef: design/story/01 §3.2 Z01
+  - id: n_z02
+    type: quest
+    titleKey: quest.q_01_main_z_02.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_z_02}
+    sourceRef: design/story/01 §3.2 Z02
+  - id: n_x01
+    type: quest
+    titleKey: quest.q_01_main_x_01.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_x_01}
+    sourceRef: design/story/01 §4.2 X01
+  - id: n_x02
+    type: quest
+    titleKey: quest.q_01_main_x_02.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_x_02}
+    sourceRef: design/story/01 §4.2 X02
+  - id: n_choice_04
+    type: choice
+    titleKey: story.ch01.choice.dc_01_04
+    completeOn: story/choiceCommitted
+    payload:
+      decisionId: dc_01_04
+      options:
+        - {key: aid_xiaofeng, textKey: story.ch01.dc04.aid_xiaofeng}
+        - {key: aid_heroes, textKey: story.ch01.dc04.aid_heroes}
+        - {key: treat_wounded, textKey: story.ch01.dc04.treat_wounded}
+    sourceRef: design/story/01 §5.6
+  - id: n_route_gate_04
+    type: condition
+    titleKey: story.ch01.main.route_gate_04
+    completeOn: immediate
+    payload:
+      expression:
+        any:
+          - {quest: {id: q_01_main_z_02, state: completed}}
+          - {quest: {id: q_01_main_x_02, state: completed}}
+    sourceRef: design/story/01 §5.6 保持当前路线
+  - id: n_z03
+    type: quest
+    titleKey: quest.q_01_main_z_03.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_z_03}
+    sourceRef: design/story/01 §3.2 Z03
+  - id: n_x03
+    type: quest
+    titleKey: quest.q_01_main_x_03.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_x_03}
+    sourceRef: design/story/01 §4.2 X03
+  - id: n_juxian_merge
+    type: merge
+    titleKey: story.ch01.main.juxian_merge
+    completeOn: immediate
+    payload: {mergeKey: juxian_anchor}
+    sourceRef: design/story/01 §0.3 A3
+  - id: n_azhu_spawn
+    type: spawn
+    titleKey: story.ch01.main.azhu_spawn
+    completeOn: npc/spawned
+    payload: {npcId: npc_azhu, sceneId: sc_01_juxianzhuang, anchor: healer_room, eraLayer: ch01}
+    sourceRef: design/story/01 §3.2 Z03
+  - id: n_z04
+    type: quest
+    titleKey: quest.q_01_main_z_04.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_z_04}
+    sourceRef: design/story/01 §3.2 Z04
+  - id: n_x04
+    type: quest
+    titleKey: quest.q_01_main_x_04.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_x_04}
+    sourceRef: design/story/01 §4.2 X04
+  - id: n_xiaojinghu_window_open
+    type: merge
+    titleKey: story.ch01.main.xiaojinghu_window_open
+    completeOn: immediate
+    payload: {mergeKey: xiaojinghu_window_open}
+    sourceRef: design/story/01 §5.7
+  - id: n_choice_05
+    type: choice
+    titleKey: story.ch01.choice.dc_01_05
+    completeOn: story/choiceCommitted
+    timeWindow:
+      mode: relative
+      anchor: {event: story/nodeCompleted, nodeId: n_xiaojinghu_window_open}
+      opensAfterMinutes: 0
+      closesAfterMinutes: 480
+      onMiss: {policy: alternate, targetNodeId: n_choice_05_late}
+    payload:
+      decisionId: dc_01_05
+      options:
+        - {key: tell_truth, textKey: story.ch01.dc05.tell_truth}
+        - {key: keep_canon, textKey: story.ch01.dc05.keep_canon}
+        - {key: use_secret, textKey: story.ch01.dc05.use_secret}
+    sourceRef: design/story/01 §5.7
+  - id: n_choice_05_late
+    type: dialogue
+    titleKey: story.ch01.main.choice_05_late
+    completeOn: dialogue/completed
+    payload: {ink: {storyId: story_ch01_main, knot: xiaojinghu_missed_window}}
+    sourceRef: design/story/01 §5.7 原著结果
+  - id: n_route_gate_05
+    type: condition
+    titleKey: story.ch01.main.route_gate_05
+    completeOn: immediate
+    payload:
+      expression:
+        any:
+          - {quest: {id: q_01_main_z_04, state: completed}}
+          - {quest: {id: q_01_main_x_04, state: completed}}
+    sourceRef: design/story/01 §5.7
+  - id: n_z05
+    type: quest
+    titleKey: quest.q_01_main_z_05.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_z_05}
+    sourceRef: design/story/01 §3.2 Z05
+  - id: n_x05
+    type: quest
+    titleKey: quest.q_01_main_x_05.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_x_05}
+    sourceRef: design/story/01 §4.2 X05
+  - id: n_z06
+    type: quest
+    titleKey: quest.q_01_main_z_06.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_z_06}
+    sourceRef: design/story/01 §3.2 Z06
+  - id: n_x06
+    type: quest
+    titleKey: quest.q_01_main_x_06.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_x_06}
+    sourceRef: design/story/01 §4.2 X06
+  - id: n_choice_06
+    type: choice
+    titleKey: story.ch01.choice.dc_01_06
+    completeOn: story/choiceCommitted
+    payload:
+      decisionId: dc_01_06
+      options:
+        - {key: protect_legacy, textKey: story.ch01.dc06.protect_legacy}
+        - {key: split_leverage, textKey: story.ch01.dc06.split_leverage}
+        - {key: yield_to_xuzhu, textKey: story.ch01.dc06.yield_to_xuzhu}
+    sourceRef: design/story/01 §5.8
+  - id: n_route_gate_06
+    type: condition
+    titleKey: story.ch01.main.route_gate_06
+    completeOn: immediate
+    payload:
+      expression:
+        any:
+          - {quest: {id: q_01_main_z_06, state: completed}}
+          - {quest: {id: q_01_main_x_06, state: completed}}
+    sourceRef: design/story/01 §5.8 保持当前路线
+  - id: n_z07
+    type: quest
+    titleKey: quest.q_01_main_z_07.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_z_07}
+    sourceRef: design/story/01 §3.2 Z07
+  - id: n_x07
+    type: quest
+    titleKey: quest.q_01_main_x_07.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_x_07}
+    sourceRef: design/story/01 §4.2 X07
+  - id: n_choice_07
+    type: choice
+    titleKey: story.ch01.choice.dc_01_07
+    completeOn: story/choiceCommitted
+    payload:
+      decisionId: dc_01_07
+      options:
+        - {key: release_all, textKey: story.ch01.dc07.release_all}
+        - {key: limited_control, textKey: story.ch01.dc07.limited_control}
+        - {key: yield_to_xuzhu, textKey: story.ch01.dc07.yield_to_xuzhu}
+    sourceRef: design/story/01 §5.9
+  - id: n_route_gate_07
+    type: condition
+    titleKey: story.ch01.main.route_gate_07
+    completeOn: immediate
+    payload:
+      expression:
+        any:
+          - {quest: {id: q_01_main_z_07, state: completed}}
+          - {quest: {id: q_01_main_x_07, state: completed}}
+    sourceRef: design/story/01 §5.9 保持当前路线
+  - id: n_z08
+    type: quest
+    titleKey: quest.q_01_main_z_08.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_z_08}
+    sourceRef: design/story/01 §3.2 Z08
+  - id: n_x08
+    type: quest
+    titleKey: quest.q_01_main_x_08.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_x_08}
+    sourceRef: design/story/01 §4.2 X08
+  - id: n_shaoshi_merge
+    type: merge
+    titleKey: story.ch01.main.shaoshi_merge
+    completeOn: immediate
+    payload: {mergeKey: shaoshi_anchor}
+    sourceRef: design/story/01 §0.3 A4
+  - id: n_xuanci_depart
+    type: despawn
+    titleKey: story.ch01.main.xuanci_depart
+    completeOn: npc/despawned
+    payload: {npcId: npc_xuanci, sceneId: sc_01_shaoshishan, anchor: temple_courtyard, eraLayer: ch01, reason: shaoshi_fate_resolved}
+    sourceRef: design/story/01 §3.2 Z08
+  - id: n_z09
+    type: quest
+    titleKey: quest.q_01_main_z_09.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_z_09}
+    sourceRef: design/story/01 §3.2 Z09
+  - id: n_x09
+    type: quest
+    titleKey: quest.q_01_main_x_09.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_x_09}
+    sourceRef: design/story/01 §4.2 X09
+  - id: n_choice_08
+    type: choice
+    titleKey: story.ch01.choice.dc_01_08
+    completeOn: story/choiceCommitted
+    payload:
+      decisionId: dc_01_08
+      options:
+        - {key: public_covenant, textKey: story.ch01.dc08.public_covenant}
+        - {key: sealed_escrow, textKey: story.ch01.dc08.sealed_escrow}
+        - {key: burn_secrets, textKey: story.ch01.dc08.burn_secrets}
+    sourceRef: design/story/01 §5.10
+  - id: n_route_gate_08
+    type: condition
+    titleKey: story.ch01.main.route_gate_08
+    completeOn: immediate
+    payload:
+      expression:
+        any:
+          - {quest: {id: q_01_main_z_09, state: completed}}
+          - {quest: {id: q_01_main_x_09, state: completed}}
+    sourceRef: design/story/01 §5.10 保持当前路线
+  - id: n_z10
+    type: quest
+    titleKey: quest.q_01_main_z_10.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_z_10}
+    sourceRef: design/story/01 §3.2 Z10
+  - id: n_x10
+    type: quest
+    titleKey: quest.q_01_main_x_10.title
+    completeOn: quest/succeeded
+    payload: {questId: q_01_main_x_10}
+    sourceRef: design/story/01 §4.2 X10
+  - id: n_yanmen_merge
+    type: merge
+    titleKey: story.ch01.main.yanmen_merge
+    completeOn: immediate
+    payload: {mergeKey: yanmen_anchor}
+    sourceRef: design/story/01 §0.3 A5
+  - id: n_choice_09
+    type: choice
+    titleKey: story.ch01.choice.dc_01_09
+    completeOn: story/choiceCommitted
+    payload:
+      decisionId: dc_01_09
+      options:
+        - {key: save_fate, textKey: story.ch01.dc09.save_fate}
+        - {key: honor_canon, textKey: story.ch01.dc09.honor_canon}
+        - {key: keep_gain, textKey: story.ch01.dc09.keep_gain}
+    sourceRef: design/story/01 §5.11
+  - id: n_end_fate
+    type: end
+    titleKey: story.ch01.main.end_fate
+    completeOn: immediate
+    payload: {endingTags: [fate, tianshu_fate]}
+    sourceRef: design/story/01 §5.11
+  - id: n_end_canon
+    type: end
+    titleKey: story.ch01.main.end_canon
+    completeOn: immediate
+    payload: {endingTags: [canon, tianshu_canon]}
+    sourceRef: design/story/01 §5.11
+edges:
+  - {id: e_001_wake_spawn, from: n_wake, to: n_duanyu_spawn, trigger: auto, priority: 0}
+  - {id: e_002_spawn_dialogue, from: n_duanyu_spawn, to: n_wuliang_dialogue, trigger: auto, priority: 0}
+  - {id: e_003_dialogue_c01, from: n_wuliang_dialogue, to: n_c01, trigger: auto, priority: 0}
+  - {id: e_004_c01_choice, from: n_c01, to: n_choice_01, trigger: auto, priority: 0}
+  - {id: e_005_dc01_save, from: n_choice_01, to: n_c01_merge, trigger: choice, choiceKey: save_porter, priority: 30}
+  - {id: e_006_dc01_zhongling, from: n_choice_01, to: n_c01_merge, trigger: choice, choiceKey: follow_zhongling, priority: 20}
+  - {id: e_007_dc01_duanyu, from: n_choice_01, to: n_c01_merge, trigger: choice, choiceKey: trace_duanyu, priority: 10}
+  - {id: e_008_c01_merge_spawn, from: n_c01_merge, to: n_zhongling_spawn, trigger: auto, priority: 0}
+  - {id: e_009_spawn_c02, from: n_zhongling_spawn, to: n_c02, trigger: auto, priority: 0}
+  - {id: e_010_c02_choice, from: n_c02, to: n_choice_02, trigger: auto, priority: 0}
+  - {id: e_011_dc02_return, from: n_choice_02, to: n_c02_merge, trigger: choice, choiceKey: return_original, priority: 30}
+  - {id: e_012_dc02_sell, from: n_choice_02, to: n_c02_merge, trigger: choice, choiceKey: sell_copy, priority: 20}
+  - {id: e_013_dc02_case, from: n_choice_02, to: n_c02_merge, trigger: choice, choiceKey: trade_empty_case, priority: 10}
+  - {id: e_014_c02_merge_depart, from: n_c02_merge, to: n_zhongling_depart, trigger: auto, priority: 0}
+  - {id: e_015_depart_c03, from: n_zhongling_depart, to: n_c03, trigger: auto, priority: 0}
+  - {id: e_016_c03_spawn, from: n_c03, to: n_xiaofeng_spawn, trigger: auto, priority: 0}
+  - {id: e_017_spawn_xingzilin, from: n_xiaofeng_spawn, to: n_xingzilin_dialogue, trigger: auto, priority: 0}
+  - {id: e_018_dialogue_c04, from: n_xingzilin_dialogue, to: n_c04, trigger: auto, priority: 0}
+  - {id: e_019_c04_merge, from: n_c04, to: n_xingzilin_merge, trigger: auto, priority: 0}
+  - {id: e_020_merge_dc03, from: n_xingzilin_merge, to: n_choice_03, trigger: auto, priority: 0}
+  - {id: e_021_dc03_z, from: n_choice_03, to: n_z01, trigger: choice, choiceKey: protect_evidence, priority: 20}
+  - {id: e_022_dc03_x, from: n_choice_03, to: n_x01, trigger: choice, choiceKey: trade_testimony, priority: 10}
+  - {id: e_022a_dc03_treat, from: n_choice_03, to: n_c04_treat_wounded, trigger: choice, choiceKey: treat_first, priority: 5}
+  - {id: e_022b_treat_choice, from: n_c04_treat_wounded, to: n_choice_03_after_treat, trigger: auto, priority: 0}
+  - {id: e_022c_after_treat_z, from: n_choice_03_after_treat, to: n_z01, trigger: choice, choiceKey: protect_evidence, priority: 20}
+  - {id: e_022d_after_treat_x, from: n_choice_03_after_treat, to: n_x01, trigger: choice, choiceKey: trade_testimony, priority: 10}
+  - {id: e_025_z01_z02, from: n_z01, to: n_z02, trigger: auto, priority: 0}
+  - {id: e_026_z02_dc04, from: n_z02, to: n_choice_04, trigger: auto, priority: 0}
+  - {id: e_027_x01_x02, from: n_x01, to: n_x02, trigger: auto, priority: 0}
+  - {id: e_028_x02_dc04, from: n_x02, to: n_choice_04, trigger: auto, priority: 0}
+  - {id: e_029_dc04_z03, from: n_choice_04, to: n_z03, trigger: choice, choiceKey: aid_xiaofeng, priority: 30}
+  - {id: e_030_dc04_x03, from: n_choice_04, to: n_x03, trigger: choice, choiceKey: aid_heroes, priority: 20}
+  - {id: e_031_dc04_treat, from: n_choice_04, to: n_route_gate_04, trigger: choice, choiceKey: treat_wounded, priority: 10}
+  - id: e_031a_gate_z03
+    from: n_route_gate_04
+    to: n_z03
+    trigger: condition
+    condition: {quest: {id: q_01_main_z_02, state: completed}}
+    priority: 20
+  - id: e_031b_gate_x03
+    from: n_route_gate_04
+    to: n_x03
+    trigger: condition
+    condition: {quest: {id: q_01_main_x_02, state: completed}}
+    priority: 10
+  - {id: e_032_z03_merge, from: n_z03, to: n_juxian_merge, trigger: auto, priority: 0}
+  - {id: e_033_x03_merge, from: n_x03, to: n_juxian_merge, trigger: auto, priority: 0}
+  - {id: e_034_merge_azhu, from: n_juxian_merge, to: n_azhu_spawn, trigger: auto, priority: 0}
+  - id: e_035_azhu_z04
+    from: n_azhu_spawn
+    to: n_z04
+    trigger: condition
+    condition: {quest: {id: q_01_main_z_03, state: completed}}
+    priority: 20
+  - id: e_036_azhu_x04
+    from: n_azhu_spawn
+    to: n_x04
+    trigger: condition
+    condition: {quest: {id: q_01_main_x_03, state: completed}}
+    priority: 10
+  - {id: e_037_z04_window, from: n_z04, to: n_xiaojinghu_window_open, trigger: auto, priority: 0}
+  - {id: e_038_x04_window, from: n_x04, to: n_xiaojinghu_window_open, trigger: auto, priority: 0}
+  - {id: e_038a_window_dc05, from: n_xiaojinghu_window_open, to: n_choice_05, trigger: auto, priority: 0}
+  - {id: e_039_dc05_truth, from: n_choice_05, to: n_z05, trigger: choice, choiceKey: tell_truth, priority: 30}
+  - {id: e_040_dc05_canon, from: n_choice_05, to: n_route_gate_05, trigger: choice, choiceKey: keep_canon, priority: 20}
+  - {id: e_041_dc05_secret, from: n_choice_05, to: n_x05, trigger: choice, choiceKey: use_secret, priority: 10}
+  - {id: e_042_dc05_timeout, from: n_choice_05, to: n_choice_05_late, trigger: timeout, priority: 1000}
+  - {id: e_043_late_gate, from: n_choice_05_late, to: n_route_gate_05, trigger: auto, priority: 0}
+  - id: e_044_gate_z05
+    from: n_route_gate_05
+    to: n_z05
+    trigger: condition
+    condition: {quest: {id: q_01_main_z_04, state: completed}}
+    priority: 20
+  - id: e_045_gate_x05
+    from: n_route_gate_05
+    to: n_x05
+    trigger: condition
+    condition: {quest: {id: q_01_main_x_04, state: completed}}
+    priority: 10
+  - {id: e_046_z05_z06, from: n_z05, to: n_z06, trigger: auto, priority: 0}
+  - {id: e_047_x05_x06, from: n_x05, to: n_x06, trigger: auto, priority: 0}
+  - {id: e_048_z06_dc06, from: n_z06, to: n_choice_06, trigger: auto, priority: 0}
+  - {id: e_049_x06_dc06, from: n_x06, to: n_choice_06, trigger: auto, priority: 0}
+  - {id: e_050_dc06_z07, from: n_choice_06, to: n_z07, trigger: choice, choiceKey: protect_legacy, priority: 30}
+  - {id: e_051_dc06_x07, from: n_choice_06, to: n_x07, trigger: choice, choiceKey: split_leverage, priority: 20}
+  - {id: e_052_dc06_yield, from: n_choice_06, to: n_route_gate_06, trigger: choice, choiceKey: yield_to_xuzhu, priority: 10}
+  - id: e_052a_gate_z07
+    from: n_route_gate_06
+    to: n_z07
+    trigger: condition
+    condition: {quest: {id: q_01_main_z_06, state: completed}}
+    priority: 20
+  - id: e_052b_gate_x07
+    from: n_route_gate_06
+    to: n_x07
+    trigger: condition
+    condition: {quest: {id: q_01_main_x_06, state: completed}}
+    priority: 10
+  - {id: e_053_z07_dc07, from: n_z07, to: n_choice_07, trigger: auto, priority: 0}
+  - {id: e_054_x07_dc07, from: n_x07, to: n_choice_07, trigger: auto, priority: 0}
+  - {id: e_055_dc07_z08, from: n_choice_07, to: n_z08, trigger: choice, choiceKey: release_all, priority: 30}
+  - {id: e_056_dc07_x08, from: n_choice_07, to: n_x08, trigger: choice, choiceKey: limited_control, priority: 20}
+  - {id: e_057_dc07_yield, from: n_choice_07, to: n_route_gate_07, trigger: choice, choiceKey: yield_to_xuzhu, priority: 10}
+  - id: e_057a_gate_z08
+    from: n_route_gate_07
+    to: n_z08
+    trigger: condition
+    condition: {quest: {id: q_01_main_z_07, state: completed}}
+    priority: 20
+  - id: e_057b_gate_x08
+    from: n_route_gate_07
+    to: n_x08
+    trigger: condition
+    condition: {quest: {id: q_01_main_x_07, state: completed}}
+    priority: 10
+  - {id: e_058_z08_merge, from: n_z08, to: n_shaoshi_merge, trigger: auto, priority: 0}
+  - {id: e_059_x08_merge, from: n_x08, to: n_shaoshi_merge, trigger: auto, priority: 0}
+  - {id: e_060_merge_depart, from: n_shaoshi_merge, to: n_xuanci_depart, trigger: auto, priority: 0}
+  - id: e_061_depart_z09
+    from: n_xuanci_depart
+    to: n_z09
+    trigger: condition
+    condition: {quest: {id: q_01_main_z_08, state: completed}}
+    priority: 20
+  - id: e_062_depart_x09
+    from: n_xuanci_depart
+    to: n_x09
+    trigger: condition
+    condition: {quest: {id: q_01_main_x_08, state: completed}}
+    priority: 10
+  - {id: e_063_z09_dc08, from: n_z09, to: n_choice_08, trigger: auto, priority: 0}
+  - {id: e_064_x09_dc08, from: n_x09, to: n_choice_08, trigger: auto, priority: 0}
+  - {id: e_065_dc08_z10, from: n_choice_08, to: n_z10, trigger: choice, choiceKey: public_covenant, priority: 30}
+  - {id: e_066_dc08_x10, from: n_choice_08, to: n_x10, trigger: choice, choiceKey: sealed_escrow, priority: 20}
+  - {id: e_067_dc08_burn, from: n_choice_08, to: n_route_gate_08, trigger: choice, choiceKey: burn_secrets, priority: 10}
+  - id: e_067a_gate_z10
+    from: n_route_gate_08
+    to: n_z10
+    trigger: condition
+    condition: {quest: {id: q_01_main_z_09, state: completed}}
+    priority: 20
+  - id: e_067b_gate_x10
+    from: n_route_gate_08
+    to: n_x10
+    trigger: condition
+    condition: {quest: {id: q_01_main_x_09, state: completed}}
+    priority: 10
+  - {id: e_068_z10_merge, from: n_z10, to: n_yanmen_merge, trigger: auto, priority: 0}
+  - {id: e_069_x10_merge, from: n_x10, to: n_yanmen_merge, trigger: auto, priority: 0}
+  - {id: e_070_merge_dc09, from: n_yanmen_merge, to: n_choice_09, trigger: auto, priority: 0}
+  - {id: e_071_dc09_fate, from: n_choice_09, to: n_end_fate, trigger: choice, choiceKey: save_fate, priority: 30}
+  - {id: e_072_dc09_canon, from: n_choice_09, to: n_end_canon, trigger: choice, choiceKey: honor_canon, priority: 20}
+  - {id: e_073_dc09_gain, from: n_choice_09, to: n_end_canon, trigger: choice, choiceKey: keep_gain, priority: 10}
