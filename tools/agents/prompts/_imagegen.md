@@ -17,3 +17,4 @@
 3. 复制进素材目录（文件名 = ID），再按任务说明做裁边 / 缩放 / 校验；manifest 每条登记 `tool: codex exec · image_gen`、`model: gpt-6-astra`、`source_path: <原件路径>`、`prompt`、`sha256`、`size`、`status: candidate`。
 4. 先出 1 张，与基线 / 参考图并排 `view_image` 校准画风，像了再批量；一次调用失败重试一次，连续失败 3 次就停下写报告。
 5. 不要直连 `https://chatgpt.com/backend-api/...` 之类端点，不要改 `~/.codex` 下的文件，不要在素材目录放任何脚本。
+6. 协调者注意：图片任务在 `tasks.json` 里必须登记 `"web": true`（启动时加 `sandbox_workspace_write.network_access=true`），否则沙箱无网络，Codex 会报 `Reconnecting… workspace routing discovery failed`（ART-rig-parts 2026-10-01 因此停摆两次）。
