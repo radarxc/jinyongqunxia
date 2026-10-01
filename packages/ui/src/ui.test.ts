@@ -10,7 +10,7 @@ describe('UI projection store', () => {
     expect(window.document).toBeDefined();
     const store = useUiStore();
     const { projection } = storeToRefs(store);
-    const next = { title: '天书录', coreVersion: '1.0.0', worldTick: 8, status: 'ready' };
+    const next = { ...store.projection, title: '天书录', coreVersion: '1.0.0', worldTick: 8, status: 'ready' };
     store.replaceProjection(next);
     expect(projection.value).toBe(next);
     expect(isReactive(projection.value)).toBe(false);

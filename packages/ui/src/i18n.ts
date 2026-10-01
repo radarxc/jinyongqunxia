@@ -1,0 +1,50 @@
+import type { EquipmentSlot } from '@tianshu/core';
+import type { ItemCategory, MenuPage } from './projections';
+
+const zhHans = {
+  title: '天书录', eyebrow: '金庸群侠传', tagline: '群书一梦，江湖再启',
+  hp: '生命', mp: '内力', action: '行动槽', actionIdle: '战外静息', money: '银钱', wen: '文',
+  quickbar: '快捷栏', mainMenu: '江湖行囊', close: '收起', back: '返回',
+  inventory: '物品栏', equipment: '随身装备', itemDetail: '物品详情',
+  selectItem: '点选一件物品，查看详情或装配。', all: '全部', other: '其他',
+  searchItems: '搜索物品', searchCharacters: '搜索人物', emptyItems: '这一类尚无物品。',
+  count: '数量', grade: '品阶', age: '年限', years: '年', ageUnknown: '未记年限',
+  source: '出处', effects: '效果', equip: '装备', unequip: '卸下', use: '使用',
+  emptySlot: '未装备', slotHint: '可点选装备，也可将物品拖到对应位置。',
+  characters: '江湖人物', encounters: '相识', befriended: '结交', unseen: '未遇见', self: '主角',
+  relationship: '关系', affinity: '关系值', selectCharacter: '选择人物，翻阅江湖见闻。',
+  unknownCharacter: '继续行走江湖，解开这页人物见闻。', detailsUnknown: '尚未获得此人的完整武学与属性见闻。',
+  stats: '人物面板', skills: '所习武功', noSkills: '尚未记录武功。', layer: '层',
+  meridians: '经脉图', meridianSummary: '通穴 / 通脉', meridianChoose: '选择经脉',
+  opened: '已通', locked: '未通', strength: '强度', flux: '通量', noMeridians: '尚无经脉记录。',
+  saves: '存档', save: '保存', load: '读取', remove: '删除', export: '导出', import: '导入',
+  saveEmpty: '空白存档', saveSelected: '所选存档', saveHint: '选定槽位后，可保存旅程或读取过往。',
+  quickSave: '快速存档', autoSave: '自动存档', saveBusy: '正在整理书页…',
+  saveReady: '本地存档已就绪', saveUnavailable: '本地存档暂不可用',
+  file: '选择存档文件', confirm: '确认', cancel: '取消', overwrite: '覆盖这个存档？',
+  deleteConfirm: '删除这个存档？', loadConfirm: '读取后会替换当前进度。', importConfirm: '导入文件并替换所选槽位？',
+  exportHint: '导出所选槽位，保留一份本地备份。', confirmTitle: '确认操作',
+  settings: '设置', reducedMotion: '减少动效', largeText: '大字模式',
+  settingsHint: '设置仅影响显示与操作，不改变江湖规则。',
+  quests: '江湖纪事', noQuests: '尚无进行中的任务。',
+  loading: '正在翻开书卷…', error: '此刻未能完成操作，请重试。', retry: '重试',
+  preview: '交互演示', previewNote: '演示行囊与相遇记录仅用于体验界面，不计入正式旅程。',
+  scene: '行走江湖', world: '江湖大地图', town: '城镇', battle: '战斗',
+  sceneNote: '山川与人物静候展开。可先翻阅人物、整理行囊或保存当前进度。',
+  sceneTabs: '场景预览', stateMet: '已遇见', stateBefriended: '已结交',
+} as const;
+export type TextKey = keyof typeof zhHans;
+export function t(key: TextKey): string { return zhHans[key]; }
+export const menuLabels: Readonly<Record<MenuPage, string>> = { journey: '江湖', characters: '人物', inventory: '物品', martial: '武功', quests: '任务', saves: '存档', settings: '设置' };
+export const categoryLabels: Readonly<Record<ItemCategory, string>> = {
+  medicine: '药物 / 补品 / 药材', food: '食材 / 食品', manuals: '武学秘籍', weapons: '兵器',
+  clothing: '衣物', armor: '制式盔甲', innerarmor: '内甲', accessories: '护肩 / 披风 / 头饰',
+  shoes: '鞋', belts: '腰带', 'hidden-weapons': '暗器', quest: '任务物品', other: '其他',
+};
+export const slotLabels: Readonly<Record<EquipmentSlot, string>> = {
+  mainHand: '主手', offHand: '副手', head: '头饰', body: '外衣', innerBody: '内甲',
+  hands: '护手', shoulder: '护肩', cape: '披风', waist: '腰带', feet: '鞋', accessory: '佩饰',
+};
+export function gradeLabel(grade: number | null): string {
+  return grade === null ? '无品阶' : ['黄下', '黄中', '黄上', '玄下', '玄中', '玄上', '地下', '地中', '地上', '天下', '天中', '天上'][grade - 1] ?? '未定';
+}
