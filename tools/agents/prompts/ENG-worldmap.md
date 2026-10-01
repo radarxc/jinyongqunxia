@@ -8,7 +8,7 @@
 
 ## 设计依据
 
-`docs/tech/01-architecture.md`（three r186 场景、2.5D）、`docs/tech/05-gameplay-engine.md` §5（旅行推进时间）、`docs/design/02-timeline-and-world-tiers.md`（书界地理与定年）、`docs/design/22-town-layout-and-generation.md`（城镇清单与坐标：`docs/design/town/*.yaml` 的 `city_id` / 经纬或平面坐标 / 年代带）、`tools/town/`（城镇规格读取方式）、大地图美术若有（`assets/default/` 下搜 `worldmap` / `map`；没有就用程序化地形 + 贴片 `assets/default/tile/<kit>/` 做占位，报告写明）。ENG-05 的事件锚点与时间 API、ENG-06 的通缉 / 城门标志。
+`docs/tech/01-architecture.md`（three r186 场景、2.5D）、`docs/tech/05-gameplay-engine.md` §5（旅行推进时间）、`docs/design/02-timeline-and-world-tiers.md`（书界地理与定年）、`docs/design/22-town-layout-and-generation.md`（城镇清单与坐标：`docs/design/town/*.yaml` 的 `city_id` / 经纬或平面坐标 / 年代带）、`tools/town/`（城镇规格读取方式）、大地图美术若有（`assets/default/` 下搜 `worldmap` / `map`；没有就用程序化地形 + 贴片 `assets/default/tile/<kit>/` 做占位，报告写明）。ENG-05 的事件锚点与时间 API、ENG-06 的通缉 / 城门标志；**主角与 NPC 一律用 `packages/render` 的 rig 模块（ENG-12：分层部件 + 代码步态，装备可见，AR-22）渲染，不用帧序列精灵**。
 
 ## 要做的事
 
