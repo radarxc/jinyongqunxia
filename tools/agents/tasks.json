@@ -28268,6 +28268,108 @@
    }
   },
   {
+   "id": "DES-items-weapons-expand",
+   "title": "设计补充 · 兵器与暗器名录扩张（AR-24：六类玄黄各上中下三品 + 天地名器与门派法器）",
+   "phase": "PROD",
+   "wave": 12,
+   "kind": "draft",
+   "prompt": "DES-items-weapons-expand.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "docs/design/catalog/items-weapons.md",
+    "docs/design/catalog/items-hidden-weapons.md",
+    "docs/design/10-items-and-equipment.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/catalog/items-weapons.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-weapons.md",
+      "--min",
+      "90"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-hidden-weapons.md",
+      "--min",
+      "24"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-items-apparel-expand",
+   "title": "设计补充 · 衣服 / 披风 / 头饰 / 腰带 / 鞋 年代制式矩阵扩张（AR-25：地玄黄 × 上中下 × 男女，每种 18）",
+   "phase": "PROD",
+   "wave": 12,
+   "kind": "draft",
+   "prompt": "DES-items-apparel-expand.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "docs/design/catalog/items-clothing.md",
+    "docs/design/catalog/items-accessories.md",
+    "docs/design/catalog/items-belts.md",
+    "docs/design/catalog/items-shoes.md",
+    "docs/design/10-items-and-equipment.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/catalog/items-clothing.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-clothing.md",
+      "--min",
+      "30"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-accessories.md",
+      "--min",
+      "48"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-belts.md",
+      "--min",
+      "26"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-shoes.md",
+      "--min",
+      "26"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
    "id": "ENG-02-models",
    "title": "游戏工程 · 数据层（人物 / 物品 / 剧情 DAG / 事件 / 时间 schema 与核心状态）",
    "phase": "PROD",
