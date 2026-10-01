@@ -26727,6 +26727,710 @@
           ]
         ]
       }
+    },
+    {
+      "id": "KIT-song_north-hist",
+      "title": "建筑套件 · 宋 · 北方中原套件 · 按历史图片参考重出（强历史细节）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT-hist.md",
+      "deps": [
+        "KIT-song_north"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/song_north/**",
+        "assets/default/tile/song_north/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "song_north",
+        "kit_name": "宋 · 北方中原套件",
+        "era_desc": "北宋中原大城：东京开封、西京洛阳；开放街巷、瓦子、汴河；北方院落、砖瓦城门",
+        "ref_cities": "开封、洛阳、大名"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/song_north/manifest.yaml",
+          "assets/default/tile/song_north/manifest.yaml"
+        ],
+        "shrink_exempt": [
+          "assets/default/building-map/song_north/**",
+          "assets/default/tile/song_north/**"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/song_north",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/song_north",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-liao_jin_north-hist",
+      "title": "建筑套件 · 辽 · 金北方套件 · 按历史图片参考重出（强历史细节）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT-hist.md",
+      "deps": [
+        "KIT-liao_jin_north"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/liao_jin_north/**",
+        "assets/default/tile/liao_jin_north/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "liao_jin_north",
+        "kit_name": "辽 · 金北方套件",
+        "era_desc": "辽南京 / 金中都、辽上京、大同，及金代中原：契丹女真与汉式并存，土城砖门、佛塔",
+        "ref_cities": "燕京、大同、上京、开封（金）"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/liao_jin_north/manifest.yaml",
+          "assets/default/tile/liao_jin_north/manifest.yaml"
+        ],
+        "shrink_exempt": [
+          "assets/default/building-map/liao_jin_north/**",
+          "assets/default/tile/liao_jin_north/**"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/liao_jin_north",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/liao_jin_north",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-yuan_north-hist",
+      "title": "建筑套件 · 元 · 北方套件 · 按历史图片参考重出（强历史细节）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT-hist.md",
+      "deps": [
+        "KIT-yuan_north"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/yuan_north/**",
+        "assets/default/tile/yuan_north/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "yuan_north",
+        "kit_name": "元 · 北方套件",
+        "era_desc": "元大都 / 路城：正交干道、规整坊块、宫城皇城层级、驿路马市",
+        "ref_cities": "大都、大同、开封"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/yuan_north/manifest.yaml",
+          "assets/default/tile/yuan_north/manifest.yaml"
+        ],
+        "shrink_exempt": [
+          "assets/default/building-map/yuan_north/**",
+          "assets/default/tile/yuan_north/**"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/yuan_north",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/yuan_north",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-yuan_south-hist",
+      "title": "建筑套件 · 元 · 江南套件 · 按历史图片参考重出（强历史细节）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT-hist.md",
+      "deps": [
+        "KIT-yuan_south"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/yuan_south/**",
+        "assets/default/tile/yuan_south/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "yuan_south",
+        "kit_name": "元 · 江南套件",
+        "era_desc": "元末江南：沿用宋河网街巷，替换官署（路府）、宗教与防务",
+        "ref_cities": "杭州路、集庆路、平江路"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/yuan_south/manifest.yaml",
+          "assets/default/tile/yuan_south/manifest.yaml"
+        ],
+        "shrink_exempt": [
+          "assets/default/building-map/yuan_south/**",
+          "assets/default/tile/yuan_south/**"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/yuan_south",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/yuan_south",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-ming_north-hist",
+      "title": "建筑套件 · 明 · 北方套件 · 按历史图片参考重出（强历史细节）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT-hist.md",
+      "deps": [
+        "KIT-ming_north"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/ming_north/**",
+        "assets/default/tile/ming_north/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "ming_north",
+        "kit_name": "明 · 北方套件",
+        "era_desc": "明代北方府城：规整城垣、瓮城、官署轴线、会馆当铺、硬山灰瓦院落",
+        "ref_cities": "北京、大同、西安"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/ming_north/manifest.yaml",
+          "assets/default/tile/ming_north/manifest.yaml"
+        ],
+        "shrink_exempt": [
+          "assets/default/building-map/ming_north/**",
+          "assets/default/tile/ming_north/**"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/ming_north",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/ming_north",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-ming_south-hist",
+      "title": "建筑套件 · 明 · 江南套件 · 按历史图片参考重出（强历史细节）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT-hist.md",
+      "deps": [
+        "KIT-ming_south"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/ming_south/**",
+        "assets/default/tile/ming_south/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "ming_south",
+        "kit_name": "明 · 江南套件",
+        "era_desc": "明代江南：河桥密、粉墙黛瓦、商帮会馆、镖局当铺",
+        "ref_cities": "南京、苏州、杭州"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/ming_south/manifest.yaml",
+          "assets/default/tile/ming_south/manifest.yaml"
+        ],
+        "shrink_exempt": [
+          "assets/default/building-map/ming_south/**",
+          "assets/default/tile/ming_south/**"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/ming_south",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/ming_south",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-qing_north-hist",
+      "title": "建筑套件 · 清 · 北方套件 · 按历史图片参考重出（强历史细节）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT-hist.md",
+      "deps": [
+        "KIT-qing_north"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/qing_north/**",
+        "assets/default/tile/qing_north/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "qing_north",
+        "kit_name": "清 · 北方套件",
+        "era_desc": "清初至清中北方：旗民分城、胡同院落、衙署驻防、灰砖城门",
+        "ref_cities": "北京、盛京、济南"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/qing_north/manifest.yaml",
+          "assets/default/tile/qing_north/manifest.yaml"
+        ],
+        "shrink_exempt": [
+          "assets/default/building-map/qing_north/**",
+          "assets/default/tile/qing_north/**"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/qing_north",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/qing_north",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-qing_south-hist",
+      "title": "建筑套件 · 清 · 江南套件 · 按历史图片参考重出（强历史细节）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT-hist.md",
+      "deps": [
+        "KIT-qing_south"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/qing_south/**",
+        "assets/default/tile/qing_south/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "qing_south",
+        "kit_name": "清 · 江南套件",
+        "era_desc": "清初至清中江南：继承明街巷河网，屋面墙体门窗彩画换清式",
+        "ref_cities": "杭州、扬州、苏州、福州"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/qing_south/manifest.yaml",
+          "assets/default/tile/qing_south/manifest.yaml"
+        ],
+        "shrink_exempt": [
+          "assets/default/building-map/qing_south/**",
+          "assets/default/tile/qing_south/**"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/qing_south",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/qing_south",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-xiyu-hist",
+      "title": "建筑套件 · 西域套件 · 按历史图片参考重出（强历史细节）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT-hist.md",
+      "deps": [
+        "KIT-xiyu"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/xiyu/**",
+        "assets/default/tile/xiyu/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "xiyu",
+        "kit_name": "西域套件",
+        "era_desc": "西域回部城镇：土坯平顶、清真寺穹顶与邦克楼、巴扎、葡萄架，各年代通用",
+        "ref_cities": "喀什、和田、叶尔羌"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/xiyu/manifest.yaml",
+          "assets/default/tile/xiyu/manifest.yaml"
+        ],
+        "shrink_exempt": [
+          "assets/default/building-map/xiyu/**",
+          "assets/default/tile/xiyu/**"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/xiyu",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/xiyu",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-tubo-hist",
+      "title": "建筑套件 · 吐蕃 · 藏地套件 · 按历史图片参考重出（强历史细节）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT-hist.md",
+      "deps": [
+        "KIT-tubo"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/tubo/**",
+        "assets/default/tile/tubo/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "tubo",
+        "kit_name": "吐蕃 · 藏地套件",
+        "era_desc": "藏地城镇：石砌碉房、平顶、寺院金顶、经幡、玛尼堆，各年代通用",
+        "ref_cities": "拉萨、日喀则、昌都"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/tubo/manifest.yaml",
+          "assets/default/tile/tubo/manifest.yaml"
+        ],
+        "shrink_exempt": [
+          "assets/default/building-map/tubo/**",
+          "assets/default/tile/tubo/**"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/tubo",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/tubo",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "KIT-mongol-hist",
+      "title": "建筑套件 · 蒙古 · 草原套件 · 按历史图片参考重出（强历史细节）",
+      "phase": "PROD",
+      "wave": 10,
+      "kind": "draft",
+      "prompt": "KIT-hist.md",
+      "deps": [
+        "KIT-mongol"
+      ],
+      "review": false,
+      "web": true,
+      "writes": [
+        "assets/default/building-map/mongol/**",
+        "assets/default/tile/mongol/**",
+        "assets/default/prompts/building-map.md",
+        "assets/default/prompts/tile.md"
+      ],
+      "vars": {
+        "kit_id": "mongol",
+        "kit_name": "蒙古 · 草原套件",
+        "era_desc": "草原营地与和林：毡帐群、木栅、汉式殿宇残留",
+        "ref_cities": "和林、上都"
+      },
+      "validate": {
+        "exists": [
+          "assets/default/building-map/mongol/manifest.yaml",
+          "assets/default/tile/mongol/manifest.yaml"
+        ],
+        "shrink_exempt": [
+          "assets/default/building-map/mongol/**",
+          "assets/default/tile/mongol/**"
+        ],
+        "cmd": [
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/building-map/mongol",
+            "--min",
+            "18",
+            "--max",
+            "22",
+            "--min-side",
+            "256"
+          ],
+          [
+            "{python}",
+            "tools/agents/check_assets.py",
+            "assets/default/tile/mongol",
+            "--min",
+            "5",
+            "--max",
+            "10",
+            "--min-side",
+            "32"
+          ],
+          [
+            "{python}",
+            "tools/lint/check_ids.py",
+            "--strict"
+          ]
+        ]
+      }
     }
   ]
 }
