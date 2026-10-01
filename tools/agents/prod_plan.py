@@ -163,10 +163,17 @@ NAME_EMITTER = [  # 按武学名猜发出方（优先级从高到低；兵器类
 
 
 def emitter_for(name: str, delivery: set) -> str:
-    for keys, em in NAME_EMITTER:
-        if any(k in (name or "") for k in keys):
+    """音功先按名字判乐器；掌 / 指 / 拳 / 腿按图鉴 delivery（六脉神剑是指法，名字里的"剑"不算）；兵器再按名字细分。"""
+    name = name or ""
+    if any(k in name for k in NAME_EMITTER[0][0]):
+        return "instrument"
+    for key in ("finger", "palm", "fist-grapple", "leg"):
+        if key in delivery:
+            return EMITTER[key]
+    for keys, em in NAME_EMITTER[1:]:
+        if any(k in name for k in keys):
             return em
-    return next((EMITTER[x] for x in ("palm", "finger", "fist-grapple", "leg", "weapon") if x in delivery), "palm")
+    return "sword" if "weapon" in delivery else "palm"
 
 
 def skill_units():
