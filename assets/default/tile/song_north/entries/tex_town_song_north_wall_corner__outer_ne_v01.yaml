@@ -3,62 +3,59 @@ file: tex_town_song_north_wall_corner__outer_ne_v01.png
 category: tile
 style: default
 subject: 北宋中原·wall_corner（原创扩展）；建筑细部待考
-prompt: 'Use case: style-transfer. Create one OUTER RIGHT-ANGLE wall corner for Northern Song Kaifeng map, matching the provided earth wall corner
-  shape and realistic Song kit. Coarse rammed yellow-brown earth, visible compacted layers, gray-brown narrow brick coping only at top, not full
-  brick-clad Ming city wall. L-shaped top plan fitting2m by2m bounding square, arms1m thick, height2.5m; two joining arms form one corner, open
-  interior angle faces lower viewer. Uniform construction and level wall tops, clean squared butt ends. Camera orthographic yaw45 pitch30, ground
-  slopes exactly+0.5/-0.5, no perspective. Thin readable base contact lines, no thick ground pedestal. Sun upper left, short shadow lower right.
-  One isolated object, muted detailed realistic surface, no vegetation or scattered rocks, no crenellation, no tower, no figures. Fully transparent
-  RGBA background, complete silhouette and empty margin on every side, no writing/watermark/checkerboard.'
+prompt: 'Image 1 is the current game asset and is binding only for ID, subject, overall footprint silhouette, entrance direction, exact camera,
+  transparent margins and canvas occupancy. Images 2 and 3 are historical references; take only documented form, proportion, structure, material
+  and aging, never their composition, scenery or text. Redraw one isolated production sprite for Northern Song northern-central plains, Kaifeng/Luoyang
+  context circa 1093; anonymous gameplay module, not a named-building reconstruction. Preserve orthographic yaw 45 degrees and elevation about
+  30 degrees, exact 2:1 dimetric ground axes, vertical columns, parallel edges, entrance toward screen lower-left, upper-left light, short lower-right
+  contact shadow, genuine RGBA transparency, and the current asset''s occupied size.
+
+
+  Historical detail contract: low restrained Song roof curvature and measured rafter rise, no dramatic Qing upturn; dark-grey fired-clay pan tiles
+  with round cover tiles, individually legible eave courses, simple ridge tiles, appropriate plain ridge ends or small chiwen only when specified,
+  never dense Qing beast processions. Show the stated bracket tier/projection, column grid, stone column plinths, low masonry/rammed-earth platform,
+  exposed rafter ends, beam joinery, straight square-lattice or plank doors/windows. Walls are warm-grey lime plaster over rammed earth/adobe
+  with rough grey-brick or local stone footing; matte weathered timber, low saturation, only restrained iron-red/ochre traces on protected high-rank
+  woodwork. No southern horse-head walls, glass, fantasy joinery or imperial yellow glaze.
+
+
+  No people, readable writing, signs, calligraphy, flags, modern objects, scene background, sky, vegetation beyond the footprint, thick display
+  plinth, opaque ground island, white halo, checkerboard, watermark, perspective convergence, crop, or copied reference text.
+
+
+  Specific subject: One exact outer northeast 2x2 L-corner of the SAME low thick rammed-earth city wall, with two equal orthogonal arms and tileable
+  vertical cut ends. Compacted yellow-brown clay with subtle 8-12 cm horizontal lifts, staggered board-built seams and faint 5-8 cm round rammer
+  marks, slight basal erosion, only narrow grey-brick and curved-grey-tile weather cap. No wood grain, separate pillars, battlements or display
+  base.'
 negative: 无人物、文字、背景、厚底台、假棋盘；不改alpha伪造透明
 references:
-- {file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/tile/tex_town_song_dali_wall_corner__outer_ne_v01.png,
-  sha256: e3b2a9a2e7ffe32619c939955a089baf46c08f745e058364a96f24f7af1961b5, role: 实际输入：宋基线风格参考或本件首候选编辑目标}
-tool: built-in image_gen
-model: image_gen (underlying model undisclosed)
-effort: not exposed by image tool
-created: '2026-09-30T21:20:40.859818+00:00'
-created_time_basis: 源PNG文件mtime
-source_path: /Users/bytedance/.codex/generated_images/01a0f426-f9e3-79d3-9163-e8824f174953/exec-064911ac-1ebc-4481-9a8d-b136fbf07245.png
-source_copy: sources/tex_town_song_north_wall_corner__outer_ne_v01__source.png
-source_sha256: 63b734597d0118c7c7f41abd5eefcb828feb4126868463c4f847be79abf8b8db
+- url: https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf#page=9
+  used_detail: 夯土版筑分层、错缝叠压和墙体剖面
+- url: https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf#page=10
+  used_detail: 门区包砖、夯窝与夯土墙交接
+tool: Codex image edit endpoint
+model: gpt-image-2
+created: '2026-09-30'
 size: 164x165
-sha256: d8c1cb8369aaef58a42166bbc8b5a1fcbfd78e8128c594d2bffa669de16c8ea9
+sha256: 54f184e08396e26192a66a93263abb9c04927e23ab6f82d7e7e55bacb057561c
 status: candidate
 tile:
   kind: wall_corner
-  footprint: [2, 2]
+  footprint:
+  - 2
+  - 2
   variant: outer_ne_v01
   autotile_mask: null
-anchor_px: [80.8832, 136.0912]
+anchor_px:
+- 80.8832
+- 136.0912
 era: song_north
 allowRotation: false
-candidate_count: 1
-processing:
-  crop_box: [74, 9, 1256, 1199]
-  uniform_scale: 0.11208406304728546
-  resized_size: [132, 133]
-  paste_offset: [16, 16]
-  source_anchor_px: [655.0, 1083.5]
-  steps: [crop alpha>0 bbox, uniform LANCZOS resize with integer rounding, 'transparent padding; preserve RGBA; no warp, alpha cleanup or repaint']
-geometry_qa:
-  source_points_lfr:
-  - [84, 1068]
-  - [665, 1438]
-  - [1226, 1099]
-  source_axis_slopes: [0.636833, -0.604278]
-  target_axis_slopes: [0.5, -0.5]
-  axis_tolerance: 0.03
-  axis_pass: false
-  source_axis_ratio: 1.035651
-  target_axis_ratio: 1.0
-  uncertainty_source_px: 5
-  ground_width_target_px: 128
-  measurement: 人工量取可见底面；墙角按缺角包络推算；不代表3D测绘或精确拼接通过
-pixel_qa:
-  mode: RGBA
-  alpha_extrema: [0, 255]
-  alpha_nonzero_bbox: [16, 16, 147, 147]
-  alpha_zero_pixels: 14964
-  transparent_padding_px: 16
-notes: L形墙角；底面L/R可见，缺失前角按墙顶平移的后角[645,729]推算，非实体；包络中心落在L形内空处。墙厚与直段未精确匹配。 源图及成品逐张view_image；源alpha原样保留，缩放可产生255，隐藏RGB不当作可见背景。
+candidate_count: 2
+notes: 同材质L角，两臂等长，夯层/夯窝/错缝版筑连续。 已逐张view_image源候选与规格化成品；参考图仅取形制/材质/构造，不复制构图。
+selected_candidate: 2
+historical_revision:
+  source_archive: sources/historical-revision/tex_town_song_north_wall_corner__outer_ne_v01-candidate2.png
+  generation_record: sources/historical-revision/tex_town_song_north_wall_corner__outer_ne_v01-candidate2.json
+  prompt_record: sources/historical-revision/tex_town_song_north_wall_corner__outer_ne_v01-candidate2.prompt.txt
+  specification: 斜45度、俯仰约30度、2:1、左上光、真RGBA；按旧alpha包围框等比规格化，未非等比变形。

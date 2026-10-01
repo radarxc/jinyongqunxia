@@ -3,97 +3,74 @@ file: bld_kit_song_north_house_small.png
 category: building-map
 style: default
 subject: 北宋中原·小民居（原创扩展模块，非具名建筑测绘复原）
-prompt: 'Use case: historical-scene. Generate exactly ONE complete isolated building sprite for tianshu default building-map. Reference image
-  is only a style and fine material texture reference; create the new northern subject described. Northern Song Kaifeng/Luoyang urban architecture,
-  grey clay tiled roofs with restrained eave curves, matte weathered timber, wooden lattice shutters, muted warm grey earthen plaster and rough
-  grey brick lower walls, low saturation. True orthographic dimetric yaw45 pitch30: ground edges at precisely +0.5 and -0.5 slopes, 2:1 ground
-  projection; parallel edges never converge. A very thin flush rectangular ground contact footprint with left, front and right corners clearly
-  visible. No thick plinth. South entrance faces screen lower-left. Main light screen upper-left, short soft lower-right contact shadow. Match
-  reference''s realistic fine details and density. Real RGBA transparent background, whole eaves and base uncut, generous transparent margin on
-  ALL sides. No people, animals, text, readable signs, labels, lantern rows, Qing paintwork, horsehead walls, modern objects, scene background,
-  sky, checkerboard, watermark, perspective convergence. Asset bld_kit_song_north_house_small, small one-storey grey tile northern home, footprint
-  6 by 5 cells, 6:5 axis lengths. Important correction: the foundation must be a TRUE 2:1 dimetric parallelogram. In the image a base east vector
-  is (600,300), a north vector is (500,-250); base total width1100 and height550, all edges parallel with slopes exactly 0.5. Do not inherit the
-  reference''s too-steep base angles. Thin foundation, modest unpainted timber doorway and rough brick dado. Front edge angles are shallower than
-  the reference. No ornate porch, no stone ornaments.'
+prompt: 'Image 1 is the current game asset and is binding only for ID, subject, overall footprint silhouette, entrance direction, exact camera,
+  transparent margins and canvas occupancy. Images 2 and 3 are historical references; take only documented form, proportion, structure, material
+  and aging, never their composition, scenery or text. Redraw one isolated production sprite for Northern Song northern-central plains, Kaifeng/Luoyang
+  context circa 1093; anonymous gameplay module, not a named-building reconstruction. Preserve orthographic yaw 45 degrees and elevation about
+  30 degrees, exact 2:1 dimetric ground axes, vertical columns, parallel edges, entrance toward screen lower-left, upper-left light, short lower-right
+  contact shadow, genuine RGBA transparency, and the current asset''s occupied size.
+
+
+  Historical detail contract: low restrained Song roof curvature and measured rafter rise, no dramatic Qing upturn; dark-grey fired-clay pan tiles
+  with round cover tiles, individually legible eave courses, simple ridge tiles, appropriate plain ridge ends or small chiwen only when specified,
+  never dense Qing beast processions. Show the stated bracket tier/projection, column grid, stone column plinths, low masonry/rammed-earth platform,
+  exposed rafter ends, beam joinery, straight square-lattice or plank doors/windows. Walls are warm-grey lime plaster over rammed earth/adobe
+  with rough grey-brick or local stone footing; matte weathered timber, low saturation, only restrained iron-red/ochre traces on protected high-rank
+  woodwork. No southern horse-head walls, glass, fantasy joinery or imperial yellow glaze.
+
+
+  No people, readable writing, signs, calligraphy, flags, modern objects, scene background, sky, vegetation beyond the footprint, thick display
+  plinth, opaque ground island, white halo, checkerboard, watermark, perspective convergence, crop, or copied reference text.
+
+
+  Specific subject: A modest 6x5 single-storey three-bay dwelling, no projecting entrance canopy: low hip-gable grey pan-and-cover tile roof with
+  restrained eave rise and plain ridge ends; tiny one-arm brackets, upright weathered timber on stone plinths, central paired plank door, straight
+  square-lattice side windows, lime-plastered rammed-earth infill and rough grey-brick footing. Preserve the original small scale and footprint.'
 negative: 人物、可读文字、招牌字、水印、现代物、晚清彩画、马头墙、密集灯笼、厚地台、透视消失点、天空与不透明背景。
-references: [/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png]
-tool: built-in image_gen
-model: image_gen (underlying model not disclosed)
-effort: not exposed by image tool
-created: '2026-09-30T21:13:32.142976+00:00'
-created_time_basis: 源PNG文件mtime；非工具披露的服务端调用时间
-source_path: /Users/bytedance/.codex/generated_images/01a0f428-3a13-73a2-b64f-f05bceba7950/exec-74c009e6-2e5d-4fb8-873a-06e0a34a122b.png
-source_sha256: 2089240be9ef3dfd07d18da87acf466a036ff5da96c32d448f9ebaed7b697d66
+references:
+- url: https://commons.wikimedia.org/wiki/File:QingMingRiverHerbalShop.jpg
+  used_detail: 商铺开间、柜台、卷帘与木构门面；不复制画中文字
+- url: https://commons.wikimedia.org/wiki/File:20250118_Longxing_Temple_-_Mani_Hall_03.jpg
+  used_detail: 摩尼殿柱础、斗栱出跳、檐下和门窗近景
+tool: Codex image edit endpoint
+model: gpt-image-2
+created: '2026-09-30'
 size: 512x512
-sha256: cfdd38e7ce678ad507eb51b4fba0c105984fa8e15e5be3e400b0920d94736a7b
+sha256: b9af8820d16cfa7a6637678543b5cfb63948efa15758d2dcfb5e0956e8d5cacb
 status: candidate
 building:
   type: bld_kit_song_north_house_small
-  footprint: [6, 5]
-  anchor: [274.0387, 298.1966]
+  footprint:
+  - 6
+  - 5
+  anchor:
+  - 274.0387
+  - 298.1966
   era: song_north
-footprint_m: [6, 5]
-anchor_px: [274.0387, 298.1966]
+footprint_m:
+- 6
+- 5
+anchor_px:
+- 274.0387
+- 298.1966
 allowRotation: false
-entrance: {edge: S, screen: lower_left}
+entrance:
+  edge: S
+  screen: lower_left
 candidate_count: 2
-source_record: sources/bld_kit_song_north_house_small.json
-provenance:
-  source_archive: sources/bld_kit_song_north_house_small.png
-  source_sha256: 2089240be9ef3dfd07d18da87acf466a036ff5da96c32d448f9ebaed7b697d66
-  references:
-  - {path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png,
-    sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7, role: style/material only;实际referenced_image_paths输入，已view_image}
-  actual_tool: image_gen__imagegen
-  transparent_background: true
 projection_contract:
-  tile_px: [64, 32]
-  ground_bbox_target_px: [352, 176]
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_target_px:
+  - 352
+  - 176
   light: screen_upper_left
   shadow: screen_lower_right_contact_only
-processing:
-  crop_box: [61, 59, 1378, 977]
-  uniform_scale_requested: 0.3013698630136986
-  resized_size: [397, 277]
-  rounded_effective_scale: [0.3014426727410782, 0.3017429193899782]
-  paste_offset: [57, 117]
-  steps: [crop alpha>0 bbox, 'uniform LANCZOS resize, integer dimensions rounded', 'pad transparent RGBA; preserve alpha; no warp, repaint, flip
-      or alpha thresholding']
-geometry_qa:
-  source_corners_px:
-    left: [197, 611]
-    front: [859, 968]
-    right: [1365, 708]
-  inferred_back_px: [703, 351]
-  source_anchor_px: [781.0, 659.5]
-  anchor_method: 可见同一底面左/前/右角；后角=L+R-F，中心=(L+R)/2；非alpha包围框底中点。
-  source_axis_slopes: [0.5392749244712991, -0.5138339920948617]
-  axis_tolerance: 0.03
-  axis_pass: false
-  source_width_depth_ratio: 1.322092951707557
-  expected_width_depth_ratio: 1.2
-  ratio_relative_error: 0.10174412642296415
-  ratio_tolerance_suggestion: 0.1
-  ratio_pass: false
-  max_vertex_residual_px: 13.807920196806645
-  residual_method: 以L为原点，比较等比缩放后的F/R与(32w,16w)/(32(w+h),16(w-h))；未做拉伸纠偏。
-  measurement_uncertainty_source_px: 4
-  release_ready: false
-  anchor_rounding_correction:
-    previous_anchor_px: [273.9863, 297.9726]
-    corrected_anchor_px: [274.0387, 298.1966]
-    reason: 按整数resize后的sx/sy转换，避免requested scale的亚像素偏移；未改图像或底面测点
-pixel_qa:
-  mode: RGBA
-  size: [512, 512]
-  alpha_extrema: [0, 255]
-  alpha_zero_pixels: 206868
-  alpha_partial_pixels: 54571
-  alpha_opaque_pixels: 705
-  alpha_nonzero_bbox: [95, 121, 454, 394]
-  transparent_margins_px: [95, 121, 58, 118]
-  source_view_image: true
-  final_view_image: true
-  saturated_red_pixels_alpha_gt16: 28
-notes: 第二候选底面角度比第一候选接近2:1；材质与基线接近，但暖浅墙面北方区分度有限。 人工量取底角±4px；保留几何残差与candidate状态，不能当release资产。 已view_image复核最终PNG：主体完整，透明留边与清晰底角保留。 自动像素抽查检出少量高饱和红色且alpha>16像素，边缘存在零星色点；未擅自抠除，保留待作者审看。
+notes: 三开间小民居、低缓灰瓦屋面、直棂窗、柱础和砖脚。 已逐张view_image源候选与规格化成品；参考图仅取形制/材质/构造，不复制构图。
+selected_candidate: 2
+historical_revision:
+  source_archive: sources/historical-revision/bld_kit_song_north_house_small-candidate2.png
+  generation_record: sources/historical-revision/bld_kit_song_north_house_small-candidate2.json
+  prompt_record: sources/historical-revision/bld_kit_song_north_house_small-candidate2.prompt.txt
+  specification: 斜45度、俯仰约30度、2:1、左上光、真RGBA；按旧alpha包围框等比规格化，未非等比变形。

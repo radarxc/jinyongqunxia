@@ -264,7 +264,7 @@ Keep Song reference realistic material density only, replace its regional archit
 
 ### 10.1 年代要点与清单
 
-北宋东京顺天门考古资料支持夯土墙身与门区包砖，故墙件采用夯土层理、局部灰砖压顶，门墩采用灰砖；不统一套明清全包砖高城墙。历史顺天门为一门三道，本批单孔门只是拼装简化，不能称顺天门复原。木桥取汴水贯木拱的结构意象，无水中桥墩；不是复建景区虹桥的复制品。
+北宋东京顺天门考古资料支持夯土墙身与门区包砖：墙体版筑错缝叠压，夯层约8–12厘米、圆夯窝直径约5–8厘米；门区包砖约长34–35、宽18–19、厚6厘米，以黄褐土黏合。故墙件显出夯层、夯窝和灰瓦压顶，门墩表现夯土芯与灰砖面，不套明清全包砖高城墙。历史顺天门主城门一门三道，本批两种单孔门只是游戏拼装简化，不能称顺天门复原；屋脊灰陶饰仅取发掘报告的套兽、垂兽和瓦当类别，不照搬完整排列。木桥取宋本《清明上河图》虹桥的贯木 / 交叉撑木母题，无水中桥墩，不复制复建景区。柳树同时参考宋画郊道与现代物种照片的粗干、长垂枝幕；国槐参考物种照片的小椭圆复叶、低分叉粗干和圆阔冠形，具体宋代栽植点仍**（待考）**。
 
 | ID 后缀（均加 `tex_town_song_north_`） | kind / footprint / variant | 制作差异 |
 |---|---|---|
@@ -290,7 +290,7 @@ Orthographic yaw45 pitch30, ground axes +0.5/-0.5, upper-left light, short lower
 True RGBA including open gate passage; no scenery, words, figures, checkerboard or cropped edges.
 ```
 
-每件先view参考、逐张调用内置image_gen、最多2候选；仅裁原alpha非零框、等比LANCZOS、透明扩边。不能用RGB颜色抠图、alpha阈值或非等比变形修正本批精灵。源PNG的alpha=0隐藏RGB可能在某些预览里显出光晕，应检查实际alpha及合成效果，不能据此假判背景不透明。
+每件先view参考、逐张调用图像编辑接口、最多2候选；仅以 `alpha>8` 排除服务产生的不可见尘点并确定裁框，框内原alpha保持，之后只做一次等比LANCZOS与透明扩边。不能用RGB颜色抠图或非等比变形修正本批精灵。源PNG的alpha=0隐藏RGB可能在某些预览里显出光晕，应检查实际alpha及合成效果，不能据此假判背景不透明。
 
 ### 10.3 几何、来源与待决
 
@@ -298,7 +298,7 @@ True RGBA including open gate passage; no scenery, words, figures, checkerboard 
 
 实际门楼仍有轴线、宽深比及门洞净宽残差，`gate.precise_mask_verified:false`；条目同时保留标称宽度、正面归一化孔宽比例和成品孔端点向量。比例估值不是64×32格实测净宽，不能把标称值当像素实测。墙角包络中心按可见端点推算；树锚为根，建筑贴片锚为底面包络中心。所有尺寸与锚点以manifest为准，不按透明画布宽再次缩放。
 
-参考资料（访问2026-09-30）：[顺天门考古简报](https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf)仅核到检索摘录，未阅全文图版；[故宫汴水贯木拱虹桥研究](https://www.dpm.org.cn/study_detail/100191.html)已读网页；[Pillow Image文档](https://pillow.readthedocs.io/en/stable/reference/Image.html)核对裁切、RGBA及resize接口。完整建筑史来源及使用边界见任务报告§7。
+参考资料（访问2026-09-30）：[顺天门考古简报](https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf)已下载并逐页查看主城门平剖、发掘正射、夯土剖面、包砖及脊兽 / 瓦当图版；[宋本《清明上河图》虹桥局部](https://commons.wikimedia.org/wiki/File:Qingming_shanghe_tu_bridge.jpg)用于木桥构造；[Pillow Image文档](https://pillow.readthedocs.io/en/stable/reference/Image.html)核对RGBA裁切及resize接口。植物物种照片及逐件实际取用URL写入manifest；完整边界见任务报告§7。
 
 开放问题默认值：沿用7件candidate作为风格候选；四向、精确门洞mask、墙角接缝、桥栏遮挡交总装另验**（待实测）**。两种植物的物种细部、季节和历史栽植位置**（待考）**；不默认批准，不修改上游schema枚举或城门碰撞规则。
 

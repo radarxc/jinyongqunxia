@@ -3,351 +3,467 @@
   category: tile
   style: default
   subject: 北宋中原·bridge_deck（原创扩展）；建筑细部待考
-  prompt: Edit this wooden bridge to be SHORTER and BROADER in plan. Preserve realistic muted weathered timber, gentle timber arch, low wooden
-    railings, interlocking braces, two complete bridgeheads, transparent background, light upper-left. Current plan is too long and narrow. Required
-    ground length:width EXACTLY2:1 (6m north-south length by3m east-west width). Shorten span substantially by roughly one third while keeping
-    bridge width. Orthographic yaw45 pitch30, ground width down-right slope+0.5, span up-right slope-0.5; two end sills at same world height;
-    NOT a ramp uphill. Highest point at midspan then descends to far bridgehead. All four sill corners readable. No under-bridge central pier.
-    Keep rails simple without modern metal. ONE complete Northern Song small wood arch bridge, no river, bank, stone abutment, land slab, people,
-    labels, text. Wide transparent margins on all four sides, whole bridge fully contained.
+  prompt: 'Image 1 is the current game asset and is binding only for ID, subject, overall footprint silhouette, entrance direction, exact camera,
+    transparent margins and canvas occupancy. Images 2 and 3 are historical references; take only documented form, proportion, structure, material
+    and aging, never their composition, scenery or text. Redraw one isolated production sprite for Northern Song northern-central plains, Kaifeng/Luoyang
+    context circa 1093; anonymous gameplay module, not a named-building reconstruction. Preserve orthographic yaw 45 degrees and elevation about
+    30 degrees, exact 2:1 dimetric ground axes, vertical columns, parallel edges, entrance toward screen lower-left, upper-left light, short lower-right
+    contact shadow, genuine RGBA transparency, and the current asset''s occupied size.
+
+
+    Historical detail contract: low restrained Song roof curvature and measured rafter rise, no dramatic Qing upturn; dark-grey fired-clay pan
+    tiles with round cover tiles, individually legible eave courses, simple ridge tiles, appropriate plain ridge ends or small chiwen only when
+    specified, never dense Qing beast processions. Show the stated bracket tier/projection, column grid, stone column plinths, low masonry/rammed-earth
+    platform, exposed rafter ends, beam joinery, straight square-lattice or plank doors/windows. Walls are warm-grey lime plaster over rammed
+    earth/adobe with rough grey-brick or local stone footing; matte weathered timber, low saturation, only restrained iron-red/ochre traces on
+    protected high-rank woodwork. No southern horse-head walls, glass, fantasy joinery or imperial yellow glaze.
+
+
+    No people, readable writing, signs, calligraphy, flags, modern objects, scene background, sky, vegetation beyond the footprint, thick display
+    plinth, opaque ground island, white halo, checkerboard, watermark, perspective convergence, crop, or copied reference text.
+
+
+    Specific subject: A 3x6 small modular timber arch footbridge visibly derived from the Qingming Rainbow Bridge''s interlocking beam principle,
+    not an exact reconstruction: make layered transverse log ribs and crossing diagonal struts clearly visible under the deck; narrow weathered
+    cross-plank deck, low mortised rails with simple X and horizontal members, two flush bridgeheads, gentle central crown. No modern uniform
+    bolted railing, metal fasteners, central pier, roof, banks or water.'
   negative: 无人物、文字、背景、厚底台、假棋盘；不改alpha伪造透明
   references:
-  - {file: assets/default/tile/song_north/sources/tex_town_song_north_bridge_deck__w3_l6_r000_v01__candidate1.png, sha256: 837cff898fcb8f6f1d7327eb2f316edbf7047610d6335bb73084d8973fd8879b,
-    role: 实际输入：宋基线风格参考或本件首候选编辑目标}
-  tool: built-in image_gen
-  model: image_gen (underlying model undisclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T21:23:45.626262+00:00'
-  created_time_basis: 源PNG文件mtime
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f9e3-79d3-9163-e8824f174953/exec-98bedd6c-77f1-43c8-be16-a765cec3d6a5.png
-  source_copy: sources/tex_town_song_north_bridge_deck__w3_l6_r000_v01__source.png
-  source_sha256: a1b31755a875fcf8da9a0c944e499e3929f758d2782c971696c50722228a3ac0
+  - url: https://commons.wikimedia.org/wiki/File:Qingming_shanghe_tu_bridge.jpg
+    used_detail: 虹桥木构、沿岸铺棚、商铺开间和临水构造
+  - url: https://commons.wikimedia.org/wiki/File:Song-Imperial-Garden1.jpg
+    used_detail: 北宋界画中的殿阁、桥亭、院落和水岸关系
+  tool: Codex image edit endpoint
+  model: gpt-image-2
+  created: '2026-09-30'
   size: 323x237
-  sha256: 26cd5926a5cb0480626e07928ed0cc6d3a4cd7bcd7611440cc08e4fa7f10e7a2
+  sha256: 62691407ffd68052a26e883377476192087ad77534b2e0241413418321b5b144
   status: candidate
   tile:
     kind: bridge_deck
-    footprint: [3, 6]
+    footprint:
+    - 3
+    - 6
     variant: w3_l6_r000_v01
     autotile_mask: null
-  anchor_px: [161.1786, 137.9932]
+  anchor_px:
+  - 161.1786
+  - 137.9932
   era: song_north
   allowRotation: false
   candidate_count: 2
-  processing:
-    crop_box: [144, 21, 1502, 978]
-    uniform_scale: 0.21412639405204462
-    resized_size: [291, 205]
-    paste_offset: [16, 16]
-    source_anchor_px: [821.5, 590.5]
-    steps: [crop alpha>0 bbox, uniform LANCZOS resize with integer rounding, 'transparent padding; preserve RGBA; no warp, alpha cleanup or repaint']
-  geometry_qa:
-    source_points_lfr:
-    - [149, 701]
-    - [537, 933]
-    - [1494, 480]
-    source_axis_slopes: [0.597938, -0.473354]
-    target_axis_slopes: [0.5, -0.5]
-    axis_tolerance: 0.03
-    axis_pass: false
-    source_axis_ratio: 0.405434
-    target_axis_ratio: 0.5
-    uncertainty_source_px: 5
-    ground_width_target_px: 288
-    measurement: 人工量取可见底面；墙角按缺角包络推算；不代表3D测绘或精确拼接通过
-  pixel_qa:
-    mode: RGBA
-    alpha_extrema: [0, 255]
-    alpha_nonzero_bbox: [16, 38, 307, 214]
-    alpha_zero_pixels: 51708
-    transparent_padding_px: 16
-  notes: 选第二候选，较首版短阔；整桥含栏杆，只供静态合成，未拆近侧遮挡层。借贯木拱母题，不是虹桥工程复原，桥头接路仍有残差。 源图及成品逐张view_image；源alpha原样保留，缩放可产生255，隐藏RGB不当作可见背景。
+  notes: 虹桥贯木母题、交叉撑木、木板桥面；短跨拼装简化。 已逐张view_image源候选与规格化成品；参考图仅取形制/材质/构造，不复制构图。
+  selected_candidate: 2
+  historical_revision:
+    source_archive: sources/historical-revision/tex_town_song_north_bridge_deck__w3_l6_r000_v01-candidate2.png
+    generation_record: sources/historical-revision/tex_town_song_north_bridge_deck__w3_l6_r000_v01-candidate2.json
+    prompt_record: sources/historical-revision/tex_town_song_north_bridge_deck__w3_l6_r000_v01-candidate2.prompt.txt
+    specification: 斜45度、俯仰约30度、2:1、左上光、真RGBA；按旧alpha包围框等比规格化，未非等比变形。
 - id: tex_town_song_north_city_gate__k4_r000_v01
   file: tex_town_song_north_city_gate__k4_r000_v01.png
   category: tile
   style: default
   subject: 北宋中原·city_gate（原创扩展）；建筑细部待考
-  prompt: "Use case: sketch-to-render. Texture and detail this exact gate blockout into a finished realistic historical Chinese Northern Song town-map sprite. PRESERVE the blockout's geometry: exact isometric view, ground-contact corner positions and all edge directions. Two DEEP 4-unit-long rectangular brick tunnel side walls, each only 2 units wide, enclose a 4-unit-wide tunnel. Total footprint 8 wide by 4 deep. The visible right-facing end wall has exactly TWICE the horizontal span of one pier's front face. Do not shorten the deep side walls. Keep the front axis down-right at slope 0.5 and side axis up-right at slope -0.5. Apply finely detailed muted grey-brown aged brickwork to lower faces, red-brown weathered timber posts and latticework to the upper band, and realistic Northern Song grey ceramic tiles with modest curved eaves to the roof. No flat diagram fills or outlines. Ancient game-art detail, restrained warm grey and brown palette; light upper left. Keep the geometry and composition like the input, with generous margins. Replace white background with genuine transparent RGBA including the entire open passage. No floor slab, ground island, surroundings, flags, people, text, watermark, modern objects or Qing bright decorations. Render only this one complete gate."
+  prompt: 'Image 1 is the current game asset and is binding only for ID, subject, overall footprint silhouette, entrance direction, exact camera,
+    transparent margins and canvas occupancy. Images 2 and 3 are historical references; take only documented form, proportion, structure, material
+    and aging, never their composition, scenery or text. Redraw one isolated production sprite for Northern Song northern-central plains, Kaifeng/Luoyang
+    context circa 1093; anonymous gameplay module, not a named-building reconstruction. Preserve orthographic yaw 45 degrees and elevation about
+    30 degrees, exact 2:1 dimetric ground axes, vertical columns, parallel edges, entrance toward screen lower-left, upper-left light, short lower-right
+    contact shadow, genuine RGBA transparency, and the current asset''s occupied size.
+
+
+    Historical detail contract: low restrained Song roof curvature and measured rafter rise, no dramatic Qing upturn; dark-grey fired-clay pan
+    tiles with round cover tiles, individually legible eave courses, simple ridge tiles, appropriate plain ridge ends or small chiwen only when
+    specified, never dense Qing beast processions. Show the stated bracket tier/projection, column grid, stone column plinths, low masonry/rammed-earth
+    platform, exposed rafter ends, beam joinery, straight square-lattice or plank doors/windows. Walls are warm-grey lime plaster over rammed
+    earth/adobe with rough grey-brick or local stone footing; matte weathered timber, low saturation, only restrained iron-red/ochre traces on
+    protected high-rank woodwork. No southern horse-head walls, glass, fantasy joinery or imperial yellow glaze.
+
+
+    No people, readable writing, signs, calligraphy, flags, modern objects, scene background, sky, vegetation beyond the footprint, thick display
+    plinth, opaque ground island, white halo, checkerboard, watermark, perspective convergence, crop, or copied reference text.
+
+
+    Specific subject: An 8x4 single-passage gameplay gate module, explicitly a simplification rather than Shuntian Gate''s one-gate-three-pass
+    reconstruction: massive rammed-earth piers with grey-brick facing and deep open passage, timber gatehouse above with three bays, two restrained
+    bracket tiers and two short projections, broad grey-tile hip-gable roof, paired small chiwen and sparse excavated-style grey-clay ridge ornaments;
+    preserve current clear opening.'
   negative: 无人物、文字、背景、厚底台、假棋盘；不改alpha伪造透明
-  references: [{"file":"/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/tile/song_north/sources/tex_town_song_north_city_gate__k4_r000_v01__round2-geometry-guide.png","sha256":"3c9bc772017a7cb89819498b2b7f07f1f27fa3a94a027c9db9fcd51a204ca120","role":"实际输入：几何示意或本件首候选编辑目标；不贴入成品"}]
-  tool: built-in image_gen
-  model: image_gen (underlying model undisclosed)
-  effort: not exposed by image tool
-  created: "2026-09-30T22:26:10.825906+00:00"
-  created_time_basis: 源PNG文件mtime
-  source_path: "/Users/bytedance/.codex/generated_images/01a0f468-df96-78e2-9166-5cbf1b3f329c/exec-7228eb71-1af5-4f07-8752-05ac7b449cd3.png"
-  source_copy: "sources/tex_town_song_north_city_gate__k4_r000_v01__round3-candidate1.png"
-  source_sha256: "6a305e810b8ac34d8ca0975c1b5e3ade0b95315ddfdef6c1f79210d5f4c45dfb"
-  size: "589x493"
-  sha256: "326516d143819ff3f2d0a129c83976ebce776a7742dc8c50a4f5cbca0d433482"
+  references:
+  - url: https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf#page=6
+    used_detail: 顺天门主城门平剖与一门三道考古格局
+  - url: https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf#page=21
+    used_detail: 套兽、垂兽等灰陶屋脊构件
+  tool: Codex image edit endpoint
+  model: gpt-image-2
+  created: '2026-09-30'
+  size: 589x493
+  sha256: 633df79fbe7bca944703725c8854db532a4a185958e83bf248c951f7df96bdd5
   status: candidate
   tile:
     kind: city_gate
-    footprint: [8, 4]
+    footprint:
+    - 8
+    - 4
     variant: k4_r000_v01
     autotile_mask: null
-  anchor_px: [288.8737,313.9634]
+  anchor_px:
+  - 288.8737
+  - 313.9634
   era: song_north
   allowRotation: false
-  candidate_count: 2
-  processing: {"crop_box":[57,20,1344,1086],"uniform_scale":0.43291995490417134,"resized_size":[557,461],"rounded_effective_scale":[0.43278943278943277,0.4324577861163227],"paste_offset":[16,16],"source_anchor_px":[687.5,709.0],"steps":["crop alpha>0 bbox","uniform LANCZOS resize with integer rounding","transparent padding; preserve RGBA; no warp, alpha cleanup or repaint"]}
-  geometry_qa: {"source_points_lfr":[[244,620],[843,917],[1131,798]],"source_axis_slopes":[0.4958263772954925,-0.4131944444444444],"target_axis_slopes":[0.5,-0.5],"axis_tolerance":0.03,"axis_pass":false,"source_axis_ratio":2.079861111111111,"target_axis_ratio":2.0,"ratio_relative_error":0.03993055555555558,"uncertainty_source_px":4,"ground_width_target_px":384,"measurement":"原图同层接地外缘；独立代理复核；比值残差如实保留，非碰撞验收。"}
-  pixel_qa: {"mode":"RGBA","alpha_extrema":[0,255],"alpha_nonzero_bbox":[68,52,504,469],"alpha_zero_pixels":204320,"transparent_padding_px":16,"border_alpha_max":0}
-  gate: {"width_cells":4,"footprint_cells":{"w":8,"h":4},"passage_cells":{"w":4,"h":4},"rotation_deg":0,"facade_normalized_clear_width_cells":3.993322203672788,"opening_source_front_endpoints":[[394,690],[693,845]],"precise_mask_verified":false,"other_directions_available":false,"normalization_note":"正面比例估值，非精确GateSpec碰撞验收","opening_vector_final_px":[129.404,67.031],"opening_vector_target_px":[128,64]}
-  notes: "第3次运行选本轮候选1，门墩与宽深比明显改善；侧轴或孔宽仍有残差，返修未完全通过。原图及成品逐张view_image，不warp；细部为原创扩展、待考。"
-  repair_round2:
-    result: unresolved_original_retained
-    candidate_count_this_round: 2
-    selected_candidate: null
-    review_record: sources/gates-round2-review.json
-    reason: 两个新候选均未同时纠正投影和占地比；达到本轮候选上限，保留旧成品，不宣称修复。
-  repair_round3: {"result":"partial_improvement_unresolved","candidate_count_this_round":2,"selected_candidate":1,"review_record":"sources/gates-round3-review.json"}
+  candidate_count: 1
+  gate:
+    width_cells: 4
+    footprint_cells:
+      w: 8
+      h: 4
+    passage_cells:
+      w: 4
+      h: 4
+    rotation_deg: 0
+    facade_normalized_clear_width_cells: 3.993322203672788
+    opening_source_front_endpoints:
+    - - 394
+      - 690
+    - - 693
+      - 845
+    precise_mask_verified: false
+    other_directions_available: false
+    normalization_note: 正面比例估值，非精确GateSpec碰撞验收
+    opening_vector_final_px:
+    - 129.404
+    - 67.031
+    opening_vector_target_px:
+    - 128
+    - 64
+  notes: 夯土芯包砖门墩、木门楼、灰瓦鸱尾和出土脊饰；单孔拼装简化。 已逐张view_image源候选与规格化成品；参考图仅取形制/材质/构造，不复制构图。
+  selected_candidate: 1
+  historical_revision:
+    source_archive: sources/historical-revision/tex_town_song_north_city_gate__k4_r000_v01-candidate1.png
+    generation_record: sources/historical-revision/tex_town_song_north_city_gate__k4_r000_v01-candidate1.json
+    prompt_record: sources/historical-revision/tex_town_song_north_city_gate__k4_r000_v01-candidate1.prompt.txt
+    specification: 斜45度、俯仰约30度、2:1、左上光、真RGBA；按旧alpha包围框等比规格化，未非等比变形。
 - id: tex_town_song_north_city_gate__k6_r000_v01
   file: tex_town_song_north_city_gate__k6_r000_v01.png
   category: tile
   style: default
   subject: 北宋中原·city_gate（原创扩展）；建筑细部待考
-  prompt: "Use case: precise-object-edit. Make a SMALL exact geometry correction to this Northern Song gate sprite. Preserve the artwork, all grey roof tiles, brick textures, timber detail, front facade, illumination and true transparent RGBA. The present gate is still slightly too shallow: KEEP the FRONT ground corners at the same positions and EXTEND both masonry tunnel walls and the roof BACKWARDS along the up-right ground axis by a further 9 percent. Do not widen the facade. The RIGHT SIDE wall should be longer, not taller. Ground side edge must slope up-right exactly 1 pixel up per 2 pixels right. Front ground edge stays down-right 1 per 2. The outer plan is 10 units wide by 4 units deep, the front-horizontal-span/depth-horizontal-span ratio exactly 2.5. Keep the front footprint corner and left footprint corner fixed, move the right-rear corner about 24 pixels RIGHT and 10 pixels UP relative to this input. Also SLIGHTLY widen the clear doorway from 58% to 60% of the overall facade: make each front pier face a little narrower, symmetrically, moving the inner left corner 8 pixels left and the inner right corner 8 pixels right. Keep the whole gate orthographic 2:1 dimetric, with vertical corners truly vertical. No ground slab. Background and passage alpha zero, all masonry opaque. Preserve original generous margins and a complete uncropped roof. No new objects, text, people, signs, scenery, watermark or diagrams."
+  prompt: 'Image 1 is the current game asset and is binding only for ID, subject, overall footprint silhouette, entrance direction, exact camera,
+    transparent margins and canvas occupancy. Images 2 and 3 are historical references; take only documented form, proportion, structure, material
+    and aging, never their composition, scenery or text. Redraw one isolated production sprite for Northern Song northern-central plains, Kaifeng/Luoyang
+    context circa 1093; anonymous gameplay module, not a named-building reconstruction. Preserve orthographic yaw 45 degrees and elevation about
+    30 degrees, exact 2:1 dimetric ground axes, vertical columns, parallel edges, entrance toward screen lower-left, upper-left light, short lower-right
+    contact shadow, genuine RGBA transparency, and the current asset''s occupied size.
+
+
+    Historical detail contract: low restrained Song roof curvature and measured rafter rise, no dramatic Qing upturn; dark-grey fired-clay pan
+    tiles with round cover tiles, individually legible eave courses, simple ridge tiles, appropriate plain ridge ends or small chiwen only when
+    specified, never dense Qing beast processions. Show the stated bracket tier/projection, column grid, stone column plinths, low masonry/rammed-earth
+    platform, exposed rafter ends, beam joinery, straight square-lattice or plank doors/windows. Walls are warm-grey lime plaster over rammed
+    earth/adobe with rough grey-brick or local stone footing; matte weathered timber, low saturation, only restrained iron-red/ochre traces on
+    protected high-rank woodwork. No southern horse-head walls, glass, fantasy joinery or imperial yellow glaze.
+
+
+    No people, readable writing, signs, calligraphy, flags, modern objects, scene background, sky, vegetation beyond the footprint, thick display
+    plinth, opaque ground island, white halo, checkerboard, watermark, perspective convergence, crop, or copied reference text.
+
+
+    Specific subject: A 10x4 broad single-passage gameplay gate module, explicitly a simplification rather than Shuntian Gate''s one-gate-three-pass
+    reconstruction: massive rammed-earth core and grey-brick facing, deep six-cell clear passage, five-bay timber gatehouse, two restrained bracket
+    tiers and two short projections, broad grey-tile hip-gable roof, paired small chiwen and sparse grey-clay ridge ornaments; preserve current
+    clear opening.'
   negative: 无人物、文字、背景、厚底台、假棋盘；不改alpha伪造透明
-  references: [{"file":"/Users/bytedance/.codex/generated_images/01a0f468-df96-78e2-9166-5cbf1b3f329c/exec-38e37b85-3b2e-4912-957a-90b12db16218.png","sha256":"0c6715c59b7be7b9f22b2a61fbd39489f38bb901424769854f61eb6b245b4212","role":"实际输入：几何示意或本件首候选编辑目标；不贴入成品"}]
-  tool: built-in image_gen
-  model: image_gen (underlying model undisclosed)
-  effort: not exposed by image tool
-  created: "2026-09-30T22:27:22.930118+00:00"
-  created_time_basis: 源PNG文件mtime
-  source_path: "/Users/bytedance/.codex/generated_images/01a0f468-df96-78e2-9166-5cbf1b3f329c/exec-47d43f36-a904-4d96-96ef-69b62a8a4360.png"
-  source_copy: "sources/tex_town_song_north_city_gate__k6_r000_v01__round3-candidate2.png"
-  source_sha256: "f8b59e25c3a22c08a18b0463d3f490fad23b0228bb97326fb6a8b2fe0d1c0a03"
-  size: "534x435"
-  sha256: "333a9392f63135806bebc3d3dcfecc6e21a137bfabd0f76984e9a6912c16ae6d"
+  references:
+  - url: https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf#page=7
+    used_detail: 顺天门发掘区正射影像与墩台尺度
+  - url: https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf#page=26
+    used_detail: 顺天门砖瓦当与屋脊构件图版
+  tool: Codex image edit endpoint
+  model: gpt-image-2
+  created: '2026-09-30'
+  size: 534x435
+  sha256: 9016be6ae1d9d71d9d195d0cd390b81e4d7805d7ad8e983b2c85554d44ff46ba
   status: candidate
   tile:
     kind: city_gate
-    footprint: [10, 4]
+    footprint:
+    - 10
+    - 4
     variant: k6_r000_v01
     autotile_mask: null
-  anchor_px: [268.4181,302.2354]
+  anchor_px:
+  - 268.4181
+  - 302.2354
   era: song_north
   allowRotation: false
-  candidate_count: 2
-  processing: {"crop_box":[96,41,1335,1035],"uniform_scale":0.4050632911392405,"resized_size":[502,403],"rounded_effective_scale":[0.40516545601291365,0.40543259557344064],"paste_offset":[16,16],"source_anchor_px":[719.0,747.0],"steps":["crop alpha>0 bbox","uniform LANCZOS resize with integer rounding","transparent padding; preserve RGBA; no warp, alpha cleanup or repaint"]}
-  geometry_qa: {"source_points_lfr":[[166,641],[946,1030],[1272,853]],"source_axis_slopes":[0.4987179487179487,-0.5429447852760736],"target_axis_slopes":[0.5,-0.5],"axis_tolerance":0.03,"axis_pass":false,"source_axis_ratio":2.392638036809816,"target_axis_ratio":2.5,"ratio_relative_error":0.042944785276073594,"uncertainty_source_px":4,"ground_width_target_px":448,"measurement":"原图同层接地外缘；独立代理复核；比值残差如实保留，非碰撞验收。"}
-  pixel_qa: {"mode":"RGBA","alpha_extrema":[0,255],"alpha_nonzero_bbox":[16,27,518,419],"alpha_zero_pixels":131142,"transparent_padding_px":16,"border_alpha_max":0}
-  gate: {"width_cells":6,"footprint_cells":{"w":10,"h":4},"passage_cells":{"w":6,"h":4},"rotation_deg":0,"facade_normalized_clear_width_cells":5.782051282051283,"opening_source_front_endpoints":[[324,722],[775,934]],"precise_mask_verified":false,"other_directions_available":false,"normalization_note":"正面比例估值，非精确GateSpec碰撞验收","opening_vector_final_px":[182.7296,85.9517],"opening_vector_target_px":[192,96]}
-  notes: "第3次运行选本轮候选2，门墩与宽深比明显改善；侧轴或孔宽仍有残差，返修未完全通过。原图及成品逐张view_image，不warp；细部为原创扩展、待考。"
-  repair_round2:
-    result: partial_improvement_unresolved
-    selected_candidate: 2
-    candidate_count_this_round: 2
-    review_record: sources/gates-round2-review.json
-    previous_final_sha256: 2e050e3577ae469a66e039e05009cb389ce0021f41ecf28b0a118ed7a4d8aead
-    previous_axis_slopes: [0.232943, -0.567686]
-    previous_axis_ratio: 4.480349
-  repair_round3: {"result":"partial_improvement_unresolved","candidate_count_this_round":2,"selected_candidate":2,"review_record":"sources/gates-round3-review.json"}
+  candidate_count: 1
+  gate:
+    width_cells: 6
+    footprint_cells:
+      w: 10
+      h: 4
+    passage_cells:
+      w: 6
+      h: 4
+    rotation_deg: 0
+    facade_normalized_clear_width_cells: 5.782051282051283
+    opening_source_front_endpoints:
+    - - 324
+      - 722
+    - - 775
+      - 934
+    precise_mask_verified: false
+    other_directions_available: false
+    normalization_note: 正面比例估值，非精确GateSpec碰撞验收
+    opening_vector_final_px:
+    - 182.7296
+    - 85.9517
+    opening_vector_target_px:
+    - 192
+    - 96
+  notes: 夯土芯包砖门墩、五开间木门楼和灰瓦脊饰；单孔拼装简化。 已逐张view_image源候选与规格化成品；参考图仅取形制/材质/构造，不复制构图。
+  selected_candidate: 1
+  historical_revision:
+    source_archive: sources/historical-revision/tex_town_song_north_city_gate__k6_r000_v01-candidate1.png
+    generation_record: sources/historical-revision/tex_town_song_north_city_gate__k6_r000_v01-candidate1.json
+    prompt_record: sources/historical-revision/tex_town_song_north_city_gate__k6_r000_v01-candidate1.prompt.txt
+    specification: 斜45度、俯仰约30度、2:1、左上光、真RGBA；按旧alpha包围框等比规格化，未非等比变形。
 - id: tex_town_song_north_tree_cluster__scholar_tree_v01
   file: tex_town_song_north_tree_cluster__scholar_tree_v01.png
   category: tile
   style: default
   subject: 北宋中原·国槐单树；植物意象（原创扩展），具体栽植史待考
-  prompt: 'Use case: historical-scene. Asset: ONE isolated SINGLE Chinese scholar tree (Styphnolobium japonicum / guohuai) for a realistic Northern
-    Song northern-central China town-map kit, song_north. Image 1 is the broadleaf tree style reference and Image 2 the willow style reference.
-    Match their low-saturation, fine-grained realistic ancient-Chinese environment rendering and modest detail density. Generate a fresh SINGLE
-    medium-sized tree, naturally asymmetrical broad rounded spreading crown, compound leaves of small oval muted olive-green leaflets, branching
-    grey-brown trunk, recognizably distinct from willow with NO dangling willow curtains. Crown wider than trunk and natural proportions; one
-    trunk only, complete crown and root contact visible. Orthographic yaw45 elevation30 for dimetric 2:1 town projection, no vanishing point.
-    Soft light from upper-left, subtle short contact shadow lower-right. This must be a CLEAN CUTOUT with genuine transparent RGBA background:
-    alpha=0 in all empty space including between branches, no diffuse haze and NO green halo around crown. Do not paint soft vegetation silhouettes
-    behind the tree. No sky, no surroundings, no soil disk, no terrain slab, no grass or flowers, no saplings, no people, no text, no watermark.
-    Generous empty transparent margin on all sides. Designed for reduction to about 192 px crown width. A regional vegetation concept, not a botanical
-    reconstruction or assertion of historic planting location.'
+  prompt: 'Image 1 is the current game asset and is binding only for ID, subject, overall footprint silhouette, entrance direction, exact camera,
+    transparent margins and canvas occupancy. Images 2 and 3 are historical references; take only documented form, proportion, structure, material
+    and aging, never their composition, scenery or text. Redraw one isolated production sprite for Northern Song northern-central plains, Kaifeng/Luoyang
+    context circa 1093; anonymous gameplay module, not a named-building reconstruction. Preserve orthographic yaw 45 degrees and elevation about
+    30 degrees, exact 2:1 dimetric ground axes, vertical columns, parallel edges, entrance toward screen lower-left, upper-left light, short lower-right
+    contact shadow, genuine RGBA transparency, and the current asset''s occupied size.
+
+
+    Historical detail contract: low restrained Song roof curvature and measured rafter rise, no dramatic Qing upturn; dark-grey fired-clay pan
+    tiles with round cover tiles, individually legible eave courses, simple ridge tiles, appropriate plain ridge ends or small chiwen only when
+    specified, never dense Qing beast processions. Show the stated bracket tier/projection, column grid, stone column plinths, low masonry/rammed-earth
+    platform, exposed rafter ends, beam joinery, straight square-lattice or plank doors/windows. Walls are warm-grey lime plaster over rammed
+    earth/adobe with rough grey-brick or local stone footing; matte weathered timber, low saturation, only restrained iron-red/ochre traces on
+    protected high-rank woodwork. No southern horse-head walls, glass, fantasy joinery or imperial yellow glaze.
+
+
+    No people, readable writing, signs, calligraphy, flags, modern objects, scene background, sky, vegetation beyond the footprint, thick display
+    plinth, opaque ground island, white halo, checkerboard, watermark, perspective convergence, crop, or copied reference text.
+
+
+    Specific subject: Exactly one mature Chinese scholar tree, Styphnolobium japonicum: stout furrowed grey-brown trunk branching low into an
+    irregular broad rounded crown, many small oval compound leaflets in muted olive green, open gaps between boughs, visible root contact; no
+    flowers, other trees, soil disk or botanical-reconstruction claim.'
   negative: 无背景、土台、其他树、人物、文字、水印、假棋盘；不以RGB抠图替代生成alpha
   references:
-  - {path: assets/default/baseline/tile/tex_town_song_dali_tree_cluster__broadleaf_v01.png, sha256: 3963e0b07a4cbb91b5472d8c2470dc4da5b6c7dab9dbdf3580ff5b8fa39d3f56,
-    role: 实际传入工具的宋套件植物风格参考}
-  - {path: assets/default/baseline/tile/tex_town_song_southern_tree_cluster__willow_v01.png, sha256: 6a5c425cadf4f8641331c57aa9fb39138fa9989e890152b0ea10a234e5c8913b,
-    role: 实际传入工具的宋套件植物风格参考}
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: inherited agent configuration
-  created: '2026-09-30T21:20:46.054355+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f427-73f7-74b3-b239-59e3b41812b6/exec-e11d50f9-9aed-4ee8-9d51-00b6eaccbf1b.png
+  - url: https://commons.wikimedia.org/wiki/File:SophoraJaponicaTrees.jpg
+    used_detail: 国槐直立粗干、复叶和圆阔冠形
+  - url: https://commons.wikimedia.org/wiki/File:Qingming_shanghe_tu_road.jpg
+    used_detail: 郊道运输、柳树形态与北方地表材质
+  tool: Codex image edit endpoint
+  model: gpt-image-2
+  created: '2026-09-30'
   size: 300x211
-  sha256: 78e045d378ec65ce95dd6287c3fde163ce606d44d8889b821ccb6fc80da201c2
+  sha256: 90d1ee7d55c623d0460298c6a252156a3890c56c140a49b4594f2c20bc1e54d0
   status: candidate
   tile:
     kind: tree_cluster
-    footprint: [3, 3]
+    footprint:
+    - 3
+    - 3
     variant: scholar_tree_v01
     autotile_mask: null
-  source_copy: sources/tex_town_song_north_tree_cluster__scholar_tree_v01__source.png
-  source_sha256: f24594b0a666d77a66d61a1bcbeb1659c022ab2820f4d7f9bec58aca8b547692
-  anchor_px: [166.861, 185.738]
-  notes: 原创植物意象；候选1选第1张。PIL仅裁alpha包围盒[0, 19, 1510, 1024]、等比缩放0.177613321至[268, 179]、四边pad16；保留源alpha（无阈值抠图），冠部约192px，source根点[850, 972]目视量取。源图与成品均view_image，另按真实alpha作诊断合成；隐藏RGB光晕不计入可见背景。物种细节与历史栽植地点待考，短影及合成落点待实测。
+  anchor_px:
+  - 166.861
+  - 185.738
+  notes: 国槐粗裂树皮、低分叉和小椭圆复叶；具体宋代栽植点待考。 已逐张view_image源候选与规格化成品；参考图仅取形制/材质/构造，不复制构图。
+  candidate_count: 1
+  selected_candidate: 1
+  historical_revision:
+    source_archive: sources/historical-revision/tex_town_song_north_tree_cluster__scholar_tree_v01-candidate1.png
+    generation_record: sources/historical-revision/tex_town_song_north_tree_cluster__scholar_tree_v01-candidate1.json
+    prompt_record: sources/historical-revision/tex_town_song_north_tree_cluster__scholar_tree_v01-candidate1.prompt.txt
+    specification: 斜45度、俯仰约30度、2:1、左上光、真RGBA；按旧alpha包围框等比规格化，未非等比变形。
 - id: tex_town_song_north_tree_cluster__willow_v01
   file: tex_town_song_north_tree_cluster__willow_v01.png
   category: tile
   style: default
   subject: 北宋中原·柳树单树；植物意象（原创扩展），具体栽植史待考
-  prompt: 'Use case: historical-scene. Asset: exactly ONE isolated single willow tree sprite for a realistic Northern Song northern-central China
-    town map, song_north, around Kaifeng and Luoyang. Image 1 is the Southern Song willow STYLE reference; Image 2 is the Dali broadleaf STYLE
-    reference: match their quiet realistic ancient-Chinese game-asset rendering, muted olive foliage, fine natural texture, and detail density.
-    Generate a NEW SINGLE tree, not the reference cluster. One moderate-sized willow, naturally spreading grey-brown trunk, slender branching
-    with hanging narrow olive-green leaves and clearly visible open air between sprays. Complete crown and root contact visible, natural proportions.
-    True orthographic yaw 45 degrees, elevation 30 degrees, dimetric 2:1 ground projection. Soft upper-left light, only a very short faint semi-transparent
-    contact shadow toward lower-right. Genuine transparent RGBA all around and between branches; no white background, no painted checkerboard.
-    Root contact is the bottom anchor, no raised ground, no soil disk, no pedestal, no scenery. Final sprite will be reduced to about 192 pixels
-    of canopy width, so fine restrained believable detail, not excessive glossy leaf noise. No other trees, no sapling, no grass, no flowers,
-    no people, no buildings, no text, no labels, no watermark. Historical vegetation concept only, not an exact botanical or planting-history
-    reconstruction.'
+  prompt: 'Image 1 is the current game asset and is binding only for ID, subject, overall footprint silhouette, entrance direction, exact camera,
+    transparent margins and canvas occupancy. Images 2 and 3 are historical references; take only documented form, proportion, structure, material
+    and aging, never their composition, scenery or text. Redraw one isolated production sprite for Northern Song northern-central plains, Kaifeng/Luoyang
+    context circa 1093; anonymous gameplay module, not a named-building reconstruction. Preserve orthographic yaw 45 degrees and elevation about
+    30 degrees, exact 2:1 dimetric ground axes, vertical columns, parallel edges, entrance toward screen lower-left, upper-left light, short lower-right
+    contact shadow, genuine RGBA transparency, and the current asset''s occupied size.
+
+
+    Historical detail contract: low restrained Song roof curvature and measured rafter rise, no dramatic Qing upturn; dark-grey fired-clay pan
+    tiles with round cover tiles, individually legible eave courses, simple ridge tiles, appropriate plain ridge ends or small chiwen only when
+    specified, never dense Qing beast processions. Show the stated bracket tier/projection, column grid, stone column plinths, low masonry/rammed-earth
+    platform, exposed rafter ends, beam joinery, straight square-lattice or plank doors/windows. Walls are warm-grey lime plaster over rammed
+    earth/adobe with rough grey-brick or local stone footing; matte weathered timber, low saturation, only restrained iron-red/ochre traces on
+    protected high-rank woodwork. No southern horse-head walls, glass, fantasy joinery or imperial yellow glaze.
+
+
+    No people, readable writing, signs, calligraphy, flags, modern objects, scene background, sky, vegetation beyond the footprint, thick display
+    plinth, opaque ground island, white halo, checkerboard, watermark, perspective convergence, crop, or copied reference text.
+
+
+    Specific subject: Exactly one mature weeping willow, Salix babylonica: leaning fissured grey-brown trunk, broad irregular scaffold branches
+    and long fine drooping sprays of narrow muted olive leaves with open air between curtains, visible root contact; no other tree, soil disk
+    or exact historic planting-location claim.'
   negative: 无背景、土台、其他树、人物、文字、水印、假棋盘；不以RGB抠图替代生成alpha
   references:
-  - {path: assets/default/baseline/tile/tex_town_song_southern_tree_cluster__willow_v01.png, sha256: 6a5c425cadf4f8641331c57aa9fb39138fa9989e890152b0ea10a234e5c8913b,
-    role: 实际传入工具的宋套件植物风格参考}
-  - {path: assets/default/baseline/tile/tex_town_song_dali_tree_cluster__broadleaf_v01.png, sha256: 3963e0b07a4cbb91b5472d8c2470dc4da5b6c7dab9dbdf3580ff5b8fa39d3f56,
-    role: 实际传入工具的宋套件植物风格参考}
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: inherited agent configuration
-  created: '2026-09-30T21:20:10.129733+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f427-73f7-74b3-b239-59e3b41812b6/exec-4e91bf7f-0fea-4992-aad3-3336b904e576.png
+  - url: https://commons.wikimedia.org/wiki/File:Salix_babylonica_large_mature_tree_1.jpg
+    used_detail: 垂柳分叉粗干和长垂枝幕
+  - url: https://commons.wikimedia.org/wiki/File:Qingming_shanghe_tu_road.jpg
+    used_detail: 郊道运输、柳树形态与北方地表材质
+  tool: Codex image edit endpoint
+  model: gpt-image-2
+  created: '2026-09-30'
   size: 284x206
-  sha256: ff6c34f72933f539b807e18a72437681f2d5b6a8a06d9a74f16f3c906602fd29
+  sha256: d303c5519a1c5b701b7d296c4f7294845dc37ddbab9fee2c4eaf9a33f7354a9a
   status: candidate
   tile:
     kind: tree_cluster
-    footprint: [3, 3]
+    footprint:
+    - 3
+    - 3
     variant: willow_v01
     autotile_mask: null
-  source_copy: sources/tex_town_song_north_tree_cluster__willow_v01__source.png
-  source_sha256: 064fda732c4265527ab477983544a9cb8f70f5d9e06e251da2da0d85e96f501d
-  anchor_px: [143.965, 176.8]
-  notes: 原创植物意象；候选2选第1张。PIL仅裁alpha包围盒[61, 9, 1536, 1024]、等比缩放0.170970614至[252, 174]、四边pad16；保留源alpha（无阈值抠图），冠部约192px，source根点[810, 947]目视量取。源图与成品均view_image，另按真实alpha作诊断合成；隐藏RGB光晕不计入可见背景。物种细节与历史栽植地点待考，短影及合成落点待实测。
+  anchor_px:
+  - 143.965
+  - 176.8
+  notes: 垂柳粗干、疏枝和细长下垂叶幕；具体宋代栽植点待考。 已逐张view_image源候选与规格化成品；参考图仅取形制/材质/构造，不复制构图。
+  candidate_count: 1
+  selected_candidate: 1
+  historical_revision:
+    source_archive: sources/historical-revision/tex_town_song_north_tree_cluster__willow_v01-candidate1.png
+    generation_record: sources/historical-revision/tex_town_song_north_tree_cluster__willow_v01-candidate1.json
+    prompt_record: sources/historical-revision/tex_town_song_north_tree_cluster__willow_v01-candidate1.prompt.txt
+    specification: 斜45度、俯仰约30度、2:1、左上光、真RGBA；按旧alpha包围框等比规格化，未非等比变形。
 - id: tex_town_song_north_wall__earth_r000_v01
   file: tex_town_song_north_wall__earth_r000_v01.png
   category: tile
   style: default
   subject: 北宋中原·wall（原创扩展）；建筑细部待考
-  prompt: 'Use case: style-transfer. Transform the reference rammed-earth wall tile into one realistic Northern Song north China defensive wall
-    STRAIGHT SEGMENT. Preserve coarse compacted yellow-brown earth layers and restrained gray-tan palette, matching the established realistic
-    Song building sprites, not sand-colored plastic. Orthographic yaw45 pitch30 exact2:1 dimetric, ground axes slopes +0.5 and -0.5, verticals
-    upright. Footprint1m east-west by1m north-south, height2.5m (game-scaled module). Solid slightly weathered square-section earthen wall block
-    with a level compressed earth cap and only minimal dark gray brick coping at top edge. No crenellation, tower, stairs, roots, plants, rocks
-    or brick cladding over the whole wall. Two parallel clean vertical butt ends ready for repeat placement, base corners readable, not a thick
-    diorama plinth. Upper-left light, short right-down contact shadow. ONE object completely inside image with broad transparent margin; real
-    RGBA transparent backdrop, no halo, no scenery, no text or watermark.'
+  prompt: 'Image 1 is the current game asset and is binding only for ID, subject, overall footprint silhouette, entrance direction, exact camera,
+    transparent margins and canvas occupancy. Images 2 and 3 are historical references; take only documented form, proportion, structure, material
+    and aging, never their composition, scenery or text. Redraw one isolated production sprite for Northern Song northern-central plains, Kaifeng/Luoyang
+    context circa 1093; anonymous gameplay module, not a named-building reconstruction. Preserve orthographic yaw 45 degrees and elevation about
+    30 degrees, exact 2:1 dimetric ground axes, vertical columns, parallel edges, entrance toward screen lower-left, upper-left light, short lower-right
+    contact shadow, genuine RGBA transparency, and the current asset''s occupied size.
+
+
+    Historical detail contract: low restrained Song roof curvature and measured rafter rise, no dramatic Qing upturn; dark-grey fired-clay pan
+    tiles with round cover tiles, individually legible eave courses, simple ridge tiles, appropriate plain ridge ends or small chiwen only when
+    specified, never dense Qing beast processions. Show the stated bracket tier/projection, column grid, stone column plinths, low masonry/rammed-earth
+    platform, exposed rafter ends, beam joinery, straight square-lattice or plank doors/windows. Walls are warm-grey lime plaster over rammed
+    earth/adobe with rough grey-brick or local stone footing; matte weathered timber, low saturation, only restrained iron-red/ochre traces on
+    protected high-rank woodwork. No southern horse-head walls, glass, fantasy joinery or imperial yellow glaze.
+
+
+    No people, readable writing, signs, calligraphy, flags, modern objects, scene background, sky, vegetation beyond the footprint, thick display
+    plinth, opaque ground island, white halo, checkerboard, watermark, perspective convergence, crop, or copied reference text.
+
+
+    Specific subject: One straight 1x1 modular RAMMED-EARTH CITY WALL slice, wider and lower than a freestanding pillar. Preserve the current
+    footprint and tileable vertical end faces. Compacted yellow-brown clay with subtle horizontal 8-12 cm lifts, staggered board-built seams and
+    faint round 5-8 cm rammer traces; slight basal erosion; only a very narrow grey-brick and curved-grey-tile weather cap. Do not make wood grain,
+    square tower, tall post, stone parapet or display pedestal.'
   negative: 无人物、文字、背景、厚底台、假棋盘；不改alpha伪造透明
   references:
-  - {file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/tile/tex_town_song_dali_wall__earth_r000_v01.png,
-    sha256: 755d578dea3dfa959f44642f37a7d0a1e6ecfb1e9a3c5bc4f9d6446b3aaabfcf, role: 实际输入：宋基线风格参考或本件首候选编辑目标}
-  tool: built-in image_gen
-  model: image_gen (underlying model undisclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T21:19:17.626140+00:00'
-  created_time_basis: 源PNG文件mtime
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f9e3-79d3-9163-e8824f174953/exec-afdaac90-cf87-4a13-875c-9c243fa935e1.png
-  source_copy: sources/tex_town_song_north_wall__earth_r000_v01__source.png
-  source_sha256: 2a68c59ea5bbb245285dbc98c8218c190217b18201106bf209c4f7b484401118
+  - url: https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf#page=9
+    used_detail: 夯土版筑分层、错缝叠压和墙体剖面
+  - url: https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf#page=10
+    used_detail: 门区包砖、夯窝与夯土墙交接
+  tool: Codex image edit endpoint
+  model: gpt-image-2
+  created: '2026-09-30'
   size: 127x208
-  sha256: c856cab9c50513d8672e4663f6898171f57cf821511ae23d84e73acb905e2062
+  sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
   status: candidate
   tile:
     kind: wall
-    footprint: [1, 1]
+    footprint:
+    - 1
+    - 1
     variant: earth_r000_v01
     autotile_mask: null
-  anchor_px: [64.8737, 158.4862]
+  anchor_px:
+  - 64.8737
+  - 158.4862
   era: song_north
   allowRotation: false
-  candidate_count: 1
-  processing:
-    crop_box: [0, 19, 899, 1689]
-    uniform_scale: 0.10543657331136738
-    resized_size: [95, 176]
-    paste_offset: [16, 16]
-    source_anchor_px: [462.5, 1371.0]
-    steps: [crop alpha>0 bbox, uniform LANCZOS resize with integer rounding, 'transparent padding; preserve RGBA; no warp, alpha cleanup or repaint']
-  geometry_qa:
-    source_points_lfr:
-    - [159, 1365]
-    - [460, 1561]
-    - [766, 1377]
-    source_axis_slopes: [0.651163, -0.601307]
-    target_axis_slopes: [0.5, -0.5]
-    axis_tolerance: 0.03
-    axis_pass: false
-    source_axis_ratio: 0.98366
-    target_axis_ratio: 1.0
-    uncertainty_source_px: 5
-    ground_width_target_px: 64
-    measurement: 人工量取可见底面；墙角按缺角包络推算；不代表3D测绘或精确拼接通过
-  pixel_qa:
-    mode: RGBA
-    alpha_extrema: [0, 255]
-    alpha_nonzero_bbox: [30, 19, 100, 181]
-    alpha_zero_pixels: 17206
-    transparent_padding_px: 16
-  notes: 夯土墙身与局部压顶砖；地面轴线偏陡，重复接缝待总装。 源图及成品逐张view_image；源alpha原样保留，缩放可产生255，隐藏RGB不当作可见背景。
+  candidate_count: 2
+  notes: 8–12厘米夯层、5–8厘米圆夯窝、错缝版筑和灰瓦压顶。 已逐张view_image源候选与规格化成品；参考图仅取形制/材质/构造，不复制构图。
+  selected_candidate: 2
+  historical_revision:
+    source_archive: sources/historical-revision/tex_town_song_north_wall__earth_r000_v01-candidate2.png
+    generation_record: sources/historical-revision/tex_town_song_north_wall__earth_r000_v01-candidate2.json
+    prompt_record: sources/historical-revision/tex_town_song_north_wall__earth_r000_v01-candidate2.prompt.txt
+    specification: 斜45度、俯仰约30度、2:1、左上光、真RGBA；按旧alpha包围框等比规格化，未非等比变形。
 - id: tex_town_song_north_wall_corner__outer_ne_v01
   file: tex_town_song_north_wall_corner__outer_ne_v01.png
   category: tile
   style: default
   subject: 北宋中原·wall_corner（原创扩展）；建筑细部待考
-  prompt: 'Use case: style-transfer. Create one OUTER RIGHT-ANGLE wall corner for Northern Song Kaifeng map, matching the provided earth wall
-    corner shape and realistic Song kit. Coarse rammed yellow-brown earth, visible compacted layers, gray-brown narrow brick coping only at top,
-    not full brick-clad Ming city wall. L-shaped top plan fitting2m by2m bounding square, arms1m thick, height2.5m; two joining arms form one
-    corner, open interior angle faces lower viewer. Uniform construction and level wall tops, clean squared butt ends. Camera orthographic yaw45
-    pitch30, ground slopes exactly+0.5/-0.5, no perspective. Thin readable base contact lines, no thick ground pedestal. Sun upper left, short
-    shadow lower right. One isolated object, muted detailed realistic surface, no vegetation or scattered rocks, no crenellation, no tower, no
-    figures. Fully transparent RGBA background, complete silhouette and empty margin on every side, no writing/watermark/checkerboard.'
+  prompt: 'Image 1 is the current game asset and is binding only for ID, subject, overall footprint silhouette, entrance direction, exact camera,
+    transparent margins and canvas occupancy. Images 2 and 3 are historical references; take only documented form, proportion, structure, material
+    and aging, never their composition, scenery or text. Redraw one isolated production sprite for Northern Song northern-central plains, Kaifeng/Luoyang
+    context circa 1093; anonymous gameplay module, not a named-building reconstruction. Preserve orthographic yaw 45 degrees and elevation about
+    30 degrees, exact 2:1 dimetric ground axes, vertical columns, parallel edges, entrance toward screen lower-left, upper-left light, short lower-right
+    contact shadow, genuine RGBA transparency, and the current asset''s occupied size.
+
+
+    Historical detail contract: low restrained Song roof curvature and measured rafter rise, no dramatic Qing upturn; dark-grey fired-clay pan
+    tiles with round cover tiles, individually legible eave courses, simple ridge tiles, appropriate plain ridge ends or small chiwen only when
+    specified, never dense Qing beast processions. Show the stated bracket tier/projection, column grid, stone column plinths, low masonry/rammed-earth
+    platform, exposed rafter ends, beam joinery, straight square-lattice or plank doors/windows. Walls are warm-grey lime plaster over rammed
+    earth/adobe with rough grey-brick or local stone footing; matte weathered timber, low saturation, only restrained iron-red/ochre traces on
+    protected high-rank woodwork. No southern horse-head walls, glass, fantasy joinery or imperial yellow glaze.
+
+
+    No people, readable writing, signs, calligraphy, flags, modern objects, scene background, sky, vegetation beyond the footprint, thick display
+    plinth, opaque ground island, white halo, checkerboard, watermark, perspective convergence, crop, or copied reference text.
+
+
+    Specific subject: One exact outer northeast 2x2 L-corner of the SAME low thick rammed-earth city wall, with two equal orthogonal arms and
+    tileable vertical cut ends. Compacted yellow-brown clay with subtle 8-12 cm horizontal lifts, staggered board-built seams and faint 5-8 cm
+    round rammer marks, slight basal erosion, only narrow grey-brick and curved-grey-tile weather cap. No wood grain, separate pillars, battlements
+    or display base.'
   negative: 无人物、文字、背景、厚底台、假棋盘；不改alpha伪造透明
   references:
-  - {file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/tile/tex_town_song_dali_wall_corner__outer_ne_v01.png,
-    sha256: e3b2a9a2e7ffe32619c939955a089baf46c08f745e058364a96f24f7af1961b5, role: 实际输入：宋基线风格参考或本件首候选编辑目标}
-  tool: built-in image_gen
-  model: image_gen (underlying model undisclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T21:20:40.859818+00:00'
-  created_time_basis: 源PNG文件mtime
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f9e3-79d3-9163-e8824f174953/exec-064911ac-1ebc-4481-9a8d-b136fbf07245.png
-  source_copy: sources/tex_town_song_north_wall_corner__outer_ne_v01__source.png
-  source_sha256: 63b734597d0118c7c7f41abd5eefcb828feb4126868463c4f847be79abf8b8db
+  - url: https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf#page=9
+    used_detail: 夯土版筑分层、错缝叠压和墙体剖面
+  - url: https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf#page=10
+    used_detail: 门区包砖、夯窝与夯土墙交接
+  tool: Codex image edit endpoint
+  model: gpt-image-2
+  created: '2026-09-30'
   size: 164x165
-  sha256: d8c1cb8369aaef58a42166bbc8b5a1fcbfd78e8128c594d2bffa669de16c8ea9
+  sha256: 54f184e08396e26192a66a93263abb9c04927e23ab6f82d7e7e55bacb057561c
   status: candidate
   tile:
     kind: wall_corner
-    footprint: [2, 2]
+    footprint:
+    - 2
+    - 2
     variant: outer_ne_v01
     autotile_mask: null
-  anchor_px: [80.8832, 136.0912]
+  anchor_px:
+  - 80.8832
+  - 136.0912
   era: song_north
   allowRotation: false
-  candidate_count: 1
-  processing:
-    crop_box: [74, 9, 1256, 1199]
-    uniform_scale: 0.11208406304728546
-    resized_size: [132, 133]
-    paste_offset: [16, 16]
-    source_anchor_px: [655.0, 1083.5]
-    steps: [crop alpha>0 bbox, uniform LANCZOS resize with integer rounding, 'transparent padding; preserve RGBA; no warp, alpha cleanup or repaint']
-  geometry_qa:
-    source_points_lfr:
-    - [84, 1068]
-    - [665, 1438]
-    - [1226, 1099]
-    source_axis_slopes: [0.636833, -0.604278]
-    target_axis_slopes: [0.5, -0.5]
-    axis_tolerance: 0.03
-    axis_pass: false
-    source_axis_ratio: 1.035651
-    target_axis_ratio: 1.0
-    uncertainty_source_px: 5
-    ground_width_target_px: 128
-    measurement: 人工量取可见底面；墙角按缺角包络推算；不代表3D测绘或精确拼接通过
-  pixel_qa:
-    mode: RGBA
-    alpha_extrema: [0, 255]
-    alpha_nonzero_bbox: [16, 16, 147, 147]
-    alpha_zero_pixels: 14964
-    transparent_padding_px: 16
-  notes: L形墙角；底面L/R可见，缺失前角按墙顶平移的后角[645,729]推算，非实体；包络中心落在L形内空处。墙厚与直段未精确匹配。 源图及成品逐张view_image；源alpha原样保留，缩放可产生255，隐藏RGB不当作可见背景。
+  candidate_count: 2
+  notes: 同材质L角，两臂等长，夯层/夯窝/错缝版筑连续。 已逐张view_image源候选与规格化成品；参考图仅取形制/材质/构造，不复制构图。
+  selected_candidate: 2
+  historical_revision:
+    source_archive: sources/historical-revision/tex_town_song_north_wall_corner__outer_ne_v01-candidate2.png
+    generation_record: sources/historical-revision/tex_town_song_north_wall_corner__outer_ne_v01-candidate2.json
+    prompt_record: sources/historical-revision/tex_town_song_north_wall_corner__outer_ne_v01-candidate2.prompt.txt
+    specification: 斜45度、俯仰约30度、2:1、左上光、真RGBA；按旧alpha包围框等比规格化，未非等比变形。
