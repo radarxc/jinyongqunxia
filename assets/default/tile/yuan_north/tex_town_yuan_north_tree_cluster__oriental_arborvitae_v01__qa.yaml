@@ -1,0 +1,53 @@
+id: tex_town_yuan_north_tree_cluster__oriental_arborvitae_v01
+status: candidate
+attempts: 1
+selected: first
+source_size:
+- 1491
+- 1055
+source_alpha_extrema:
+- 0
+- 255
+source_bbox:
+- 23
+- 15
+- 1471
+- 1031
+source_footprint_corners_px:
+- - 475.4013676289096
+  - 1022
+- - 802
+  - 1185.2993161855452
+- - 1128.5986323710904
+  - 1022
+- - 802
+  - 858.7006838144548
+corner_basis: 未绘种植方格；由建议树高及逻辑占地推导，非视觉测量
+source_anchor_px:
+- 802
+- 1022
+logical_footprint:
+- 2
+- 2
+logical_projected_width_px: 128
+measured_source_width_px: 653.1972647421808
+uniform_scale: 0.19595917942265426
+rounding_error_px_max: 0.5
+transparent_padding_px: 8
+source_ground_slopes: null
+target_slopes:
+- 0.5
+- -0.5
+strict_projection_pass: false
+final_size:
+- 300
+- 215
+anchor_px:
+- 160.652
+- 205.331
+final_alpha_extrema:
+- 0
+- 255
+source_opening_alpha_samples: []
+view_image_review: 源图与成品逐张检查：完整轮廓、左上明暗、无文字；几何与年代限制见notes
+notes: 2×2种植区为虚拟逻辑占地；按树高5m建议值统一缩放；植物无平直底边可测轴，形态和元代栽植待考。

@@ -1,0 +1,98 @@
+id: bld_kit_yuan_north_market_stall
+file: bld_kit_yuan_north_market_stall.png
+category: building-map
+style: default
+subject: 元代北方·市场棚；匿名建筑组合（原创扩展），具体细部（待考）。
+prompt: 'Use case: sketch-to-render. Image1 is the exact screen-geometry master. Image2 is material style ONLY. Paint photoreal textures onto the shapes of Image1 without moving any corners. This is ONE Yuan northern China open market canopy 5x4 game grid cells. CRITICAL ground-plane geometry must be shallower than the style reference: retain image1 base left(230,620),front(780,870),right(1220,670),back(670,420), canvas1536x1024. Do not increase ground-plane height, do not round ground corners. FOUR vertical weathered timber posts support one beige linen awning; straight edge-to-edge structure. Cloth may sag only inside the silhouette. Thin flush grey paving base, one short rough-wood counter with two clay jars, open spacious sides. Realistic detailed timber grain, linen weave, restrained ancient game art with natural upper-left light. Absolutely NO HALO, NO GLOW, NO HAZE, NO shadow/background gradient around silhouette. Outside object is perfectly transparent alpha0 and empty. No scene, no text, no linework, no people, no modern items. Keep the exact polygon projection and all parallel lines of image1, replacing flat colors with photo-real materials ONLY. Ground footprint must remain a parallelogram and building verticals must remain vertical. No thick pedestal.'
+negative: 现代元素、人物、文字、景观背景、厚底座、塑料质感、明清官式彩画、裁边、假透明、透视汇聚
+references:
+- {path: assets/default/building-map/yuan_north/sources/bld_kit_yuan_north_market_stall.repair3.guide2.png, sha256: 0fbe3009418e73f87637fbddf96ca2fa2fe4c839234a566df476637dc4535dc6, role: 本轮几何引导}
+- {path: assets/default/building-map/yuan_north/sources/bld_kit_yuan_north_market_stall.repair3.reference.png, sha256: 872dbecaad0cf4da441fdc828afdbcb59e6c3b86803a4a882bda9da019dabd32, role: 本轮编辑前材质参考}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:42:06.525857+00:00'
+created_time_basis: 本轮入库时间，非服务端回执时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f470-f0a6-7100-b07b-0577601e3585/exec-d38d835a-ef3a-4ab0-bc54-d77726c83452.png
+size: 512x512
+sha256: f064f856cbddbe383a34a6e769d05d442aadbeaa55ae5f036984a2f6f9668030
+status: candidate
+building:
+  type: bld_kit_yuan_market
+  footprint: [5, 4]
+  anchor: [256.8138, 296.3605]
+  era: yuan_north
+anchor_px: [256.8138, 296.3605]
+footprint_m: [5, 4]
+footprint_basis: design/22 §3.4 冻结骨架
+entrance: {edge: S, offset_cells: 1}
+png_rotations_available: [0]
+allowRotation: false
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [288, 144]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+source_archive: sources/bld_kit_yuan_north_market_stall.repair3.v02.png
+source_sha256: 5d8cf468e1990da64726d9e8f5fdb94e531d414cb7bd5335d6cafb9daf450e70
+source_record: sources/bld_kit_yuan_north_market_stall.repair3.v02.json
+processing:
+  source_size: [1536, 1024]
+  crop_box: [0, 26, 1504, 1008]
+  uniform_scale_requested: 0.2711864406779661
+  resized_size: [408, 266]
+  rounded_effective_scale: [0.2712765957446808, 0.2708757637474542]
+  paste_offset: [52, 123]
+  steps: [crop alpha>0 bounding box, one uniform LANCZOS resize with integer rounding, paste without alpha mask into transparent RGBA canvas]
+geometry_qa:
+  source_corners_px:
+    left: [224, 618]
+    front: [833, 932]
+    right: [1286, 714]
+  anchor_source_px: [755.0, 666.0]
+  source_axis_slopes: [0.5155993431855501, -0.48123620309050774]
+  edge_fit_slopes: [0.5133015455657368, -0.4803308994133008]
+  edge_fit_ranges_x:
+  - [323, 773]
+  - [903, 1239]
+  edge_fit_intercepts: [500.169733074322, 1331.5946306603696]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.3443708609271523
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.07549668874172188
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 4
+  final_corners_px:
+    left: [112.766, 283.3585]
+    front: [277.9734, 368.4134]
+    right: [400.8617, 309.3625]
+  precision_note: 实际源PNG可见薄地面L/F/R角人工读点±4px；alpha>200逐列最下点长段线性拟合复核；背角不可见，不用引导坐标代替测量。锚点(L+R)/2。
+  parallel_edge_checks:
+  - feature: 柜台前侧上沿两端可见木框（中段被布遮盖）
+    source_points_px:
+    - [403, 593]
+    - [724, 746]
+    slope: 0.4766355140186916
+    measurement_uncertainty_source_px: 4
+    pass: true
+  parallel_edges_visual_note: 四柱竖直；铺地接缝与底边平行。棚布受重力形成弧线，不把弧形布边当作刚性梁轴；柜台前侧木框抽测为+0.4766。
+pixel_qa:
+  mode: RGBA
+  size: [512, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 222060
+  alpha_partial_pixels: 39065
+  alpha_opaque_pixels: 1019
+  alpha_near_opaque_pixels: 36844
+  alpha_nonzero_bbox: [110, 125, 416, 380]
+  transparent_margins_px: [110, 125, 96, 132]
+  border_alpha_max: 0
+candidate_count: 2
+selected_candidate: 2
+notes: 本轮两候选选第二：双轴拟合+.51330/-.48033通过，5×4宽深误差见geometry_qa；仅裁边等比缩放透明扩边，未warp。
+historical_basis:
+- {url: 'https://www.sxrcylg.cn/index.php?a=index&aid=1035&c=View&m=home', accessed: '2026-09-30', used: 仅元代殿堂木构/土坯墙砖裙/筒板瓦与木门母题；不能证明匿名民居原貌。}
+visual_qa: {source_view_image: true, final_view_image: true, status: candidate, note: 逐张目视轮廓/材质/光向；不替代严格几何、历史复原及作者审批。}
+repair_round: 3

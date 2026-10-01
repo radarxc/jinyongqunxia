@@ -1,0 +1,59 @@
+id: tex_town_yuan_north_bridge_deck__w4_l8_r000_v01
+status: candidate
+attempts: 1
+selected: first
+source_size:
+- 1688
+- 932
+source_alpha_extrema:
+- 0
+- 255
+source_bbox:
+- 121
+- 46
+- 1634
+- 908
+source_footprint_corners_px:
+- - 183
+  - 706
+- - 548
+  - 899
+- - 1542
+  - 431
+- - 1177
+  - 238
+corner_basis: 人工观察底面；遮挡点按可见相邻边推导
+source_anchor_px:
+- 862.5
+- 568.5
+logical_footprint:
+- 4
+- 8
+logical_projected_width_px: 384
+measured_source_width_px: 1359
+uniform_scale: 0.282560706401766
+rounding_error_px_max: 0.5
+transparent_padding_px: 8
+source_ground_slopes:
+- 0.52877
+- -0.47082
+target_slopes:
+- 0.5
+- -0.5
+strict_projection_pass: false
+final_size:
+- 444
+- 260
+anchor_px:
+- 217.519
+- 155.638
+final_alpha_extrema:
+- 0
+- 255
+source_opening_alpha_samples:
+- at:
+  - 1100
+  - 650
+  alpha: 0
+view_image_review: 源图与成品逐张检查：完整轮廓、左上明暗、无文字；几何与年代限制见notes
+notes: 完整石拱桥预览单图，桥面与栏杆未拆层；近侧栏遮挡与四向视图待后续，几何比例未严格4×8。

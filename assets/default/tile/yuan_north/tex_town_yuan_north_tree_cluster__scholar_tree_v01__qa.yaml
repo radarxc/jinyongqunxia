@@ -1,0 +1,53 @@
+id: tex_town_yuan_north_tree_cluster__scholar_tree_v01
+status: candidate
+attempts: 1
+selected: first
+source_size:
+- 1536
+- 1024
+source_alpha_extrema:
+- 0
+- 254
+source_bbox:
+- 0
+- 9
+- 1526
+- 1024
+source_footprint_corners_px:
+- - 507.7919115561243
+  - 991
+- - 821
+  - 1147.6040442219378
+- - 1134.2080884438756
+  - 991
+- - 821
+  - 834.3959557780622
+corner_basis: 未绘种植方格；由建议树高及逻辑占地推导，非视觉测量
+source_anchor_px:
+- 821
+- 991
+logical_footprint:
+- 2
+- 2
+logical_projected_width_px: 128
+measured_source_width_px: 626.4161768877514
+uniform_scale: 0.20433699626971247
+rounding_error_px_max: 0.5
+transparent_padding_px: 8
+source_ground_slopes: null
+target_slopes:
+- 0.5
+- -0.5
+strict_projection_pass: false
+final_size:
+- 328
+- 223
+anchor_px:
+- 175.761
+- 208.659
+final_alpha_extrema:
+- 0
+- 255
+source_opening_alpha_samples: []
+view_image_review: 源图与成品逐张检查：完整轮廓、左上明暗、无文字；几何与年代限制见notes
+notes: 2×2种植区为虚拟逻辑占地；按树高5m建议值统一缩放；植物无平直底边可测轴，元代栽植待考。

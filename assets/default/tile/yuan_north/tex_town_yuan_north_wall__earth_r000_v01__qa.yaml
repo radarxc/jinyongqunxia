@@ -1,0 +1,57 @@
+id: tex_town_yuan_north_wall__earth_r000_v01
+status: candidate
+attempts: 2
+selected: second
+repair_round: 2
+source_size:
+- 1024
+- 1536
+source_alpha_extrema:
+- 0
+- 254
+source_bbox:
+- 248
+- 248
+- 776
+- 1464
+source_footprint_corners_px:
+- [256, 1324.604]
+- [512, 1452.604]
+- [768, 1324.604]
+- [512, 1196.604]
+corner_basis: 几何引导坐标；alpha>128底边线性回归复核，轮廓误差折算小于0.5px
+source_anchor_px:
+- 512
+- 1324.604
+logical_footprint:
+- 1
+- 1
+logical_projected_width_px: 64
+measured_source_width_px: 512
+uniform_scale: 0.125
+rounding_error_px_max: 0.5
+transparent_padding_px: 8
+source_ground_slopes:
+- 0.503757
+- -0.504051
+target_slopes:
+- 0.5
+- -0.5
+strict_projection_pass: true
+projection_tolerance_final_px: 0.5
+source_measured_vertical_height_px: 940
+measured_height_m: 2.9981
+target_height_m: 3
+target_vertical_height_final_px: 117.576
+final_size:
+- 82
+- 168
+anchor_px:
+- 41.0
+- 142.576
+final_alpha_extrema:
+- 0
+- 255
+source_opening_alpha_samples: []
+view_image_review: 源图、浅灰alpha合成、成品逐图查看；另按锚点与墙角两臂各3段拼接，无高度或底边错层
+notes: 第2轮仅重出本件；候选1约±0.58被弃，候选2选用；矩形裁边去除主体外alpha=1散点，1/8等比缩小并补8px透明边，无拉伸/透视变形/alpha重绘；已解决旧±0.66投影偏陡，保留纹理重复接缝作为candidate人工审美项
