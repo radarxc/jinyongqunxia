@@ -32,3 +32,9 @@
 - 规则分别放 `packages/core/src` 已预建子目录；不要再改根 `src/index.ts` 的导出布局。
 - 通用 Vue 组件放 `packages/ui`，页面装配放 `apps/game`，Three 场景放 `packages/render`。
 - 包内先跑对应 `pnpm --filter <包名> test`，交付前必须跑 `pnpm check`。
+
+## 素材接入
+
+- 图片素材全部在仓库根 `assets/default/<类别>/`（物品 `item/<类>/`、建筑 `building-map/<kit>/`、贴片 `tile/<kit>/`、角色部件 `rig/<set>/`、地图 `map/`、特效 `vfx/`、作者已审基线 `baseline/`），每目录一份 `manifest.yaml`，字段见 `assets/README.md`。
+- 哪些图还没出、每张图的提示词与输出路径：`assets/default/prompts/INDEX.md`（物品 / 地图 / 角色部件，含"出图位置约定"）；人物立绘见 `assets/default/prompts/characters/INDEX.md`。出图由另外的 agent 做，代码不要等图：缺图用同尺寸占位，正式图到位后无需改代码。
+- 进包：构建时按 manifest 把 `status` 不为 `rejected` 的条目复制到 `apps/game/public/assets/default/<类别>/…`（保持相对路径），运行时按 `docs/tech/06` 的素材键 / 清单读取；不把图片 import 进 JS bundle，不改 `assets/default/` 下任何文件。

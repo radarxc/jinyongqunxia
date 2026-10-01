@@ -1,0 +1,55 @@
+---
+asset_id: eq_yuansuweiqiejia
+kind: item
+name: 元宿卫怯薛甲
+category: armor
+category_name: 制式盔甲
+subcategory: 制式盔甲·元
+grade: 天
+source: '**（原创扩展）**'
+effect: '`grade=10; slot=body; armorWeight=heavy; catalogTian=true; divine=false; unique=true; price=null; lawProfile={uniform:true,allowedIdentityTags:[office_yuan_keshig],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}`'
+output: assets/default/item/armor/eq_yuansuweiqiejia.png
+manifest: assets/default/item/armor/manifest.yaml
+size: 1536x1536
+background: RGB(230,225,216) 不透明均匀浅暖灰底，无投影、无地面
+references:
+- path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+  use: 画风参考（作者已审）：清楚纤细的深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底；不复制剑本身
+- path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+  use: 画风参考（作者已审）：同上；不复制书册、题签与磨损
+prompt_source: manifest:.agents/wt/ART-item-armor/assets/default/item/armor/manifest.yaml（任务工作区候选）
+status: ready
+---
+
+# 元宿卫怯薛甲（`eq_yuansuweiqiejia`）· 制式盔甲 · 天阶
+
+## 物品要点
+
+| 项 | 内容 |
+|---|---|
+| 子类 | 制式盔甲·元 |
+| 品阶 | 天 —— 极稀有材质、完整独特轮廓、细密工艺与温润／冷润自然光泽；包装珍贵但克制（禁：自发光、神器光环、天字与星级） |
+| 出处 | **（原创扩展）** |
+| 效果字段（只作理解，不画） | `grade=10; slot=body; armorWeight=heavy; catalogTian=true; divine=false; unique=true; price=null; lawProfile={uniform:true,allowedIdentityTags:[office_yuan_keshig],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}` |
+| 外观要点（名录） | 元代精工铁札与鎏金窄边、深蓝织物衬里，宿卫威仪不奇幻 **（原创扩展）** |
+| 类别专项 | 单套官甲正面略侧置，札片／棉甲／布衬结构完整；严格区分宋元明清，不出现军号文字 |
+
+## 提示词
+
+```text
+Use case: stylized-concept
+用途：《天书录》default 风格包的二维武侠物品图鉴插画。 题材：元宿卫怯薛甲（eq_yuansuweiqiejia），制式盔甲·元，天阶、grade=10、非神兵；元代宿卫骑乘语境，原创扩展。 主体：单一完整空甲，极规整密排的深铁小札、紧凑骑乘身甲、短分甲裙、层叠肩防、深蓝衬里；只在边缘和扣件使用极窄、磨旧的鎏金工艺。精工、威仪、完整可用，但仍是制式盔甲；具体札片、编缀、边饰与配色为原创武侠造型，不宣称文物或原著外观复原。 风格：两张输入图仅作画风参考；沿用清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖与浅暖灰近象牙底，不复制其中的剑、书或具体构图。铁札、皮绳、衬里与窄鎏金边界清楚，非摄影、非3D。 构图：1:1方形，目标1536×1536；正面略三分之四视角，单套盔甲居中，四边留白至少12%，物件包围框不超过画布76%；无衣架、支架或陈列座。左上柔光，背景目标RGB约(230,225,216)，无人物、手、场景、地面、纹理、渐变或投影。 品阶表现：天阶只用稀有优质材料、极高工艺、复杂结构、极规整编缀与精细旧化表达；禁止满身金饰、光效、品阶框、文字或数字。 年代：藏地札甲护肩仅作蒙古帝国札甲比较材料；1350—1450年蒙古或中国铁鎏金盔只取窄鎏金工艺语言，成图不画盔，不作元制实物一比一复原。 排除项：人物、脸、头、手、人体、模特、隐形人体姿势、衣架、支架、盔帽、靴、兵器、盾、旗、徽章、官衔补子、文字、伪字、汉字、数字、印章、签名、logo、文字水印、UI、边框、拼贴、多视图、裁切；奇幻板甲、跨朝混搭、血污、满身黄金、现代徽章、现代材料、拉链、塑料；具体影视或游戏造型、演员、画师、作品名、受保护作品仿制；照片、商品摄影、3D渲染、日韩动漫、欧美奇幻、蒸汽朋克、赛博朋克；宝石、霓虹、bloom、魔法阵、粒子、自发光；场景、地面、桌面、背景纹理、渐变、接触投影或落地影。不要去除或伪造工具自身的溯源标识。
+```
+
+## 排除项
+
+人物、脸、头、手、人体、模特、隐形人体姿势、衣架、支架、盔帽、靴、兵器、盾、旗、徽章、官衔补子、文字、伪字、汉字、数字、印章、签名、logo、文字水印、UI、边框、拼贴、多视图、裁切；奇幻板甲、跨朝混搭、血污、满身黄金、现代徽章、现代材料、拉链、塑料；具体影视或游戏造型、演员、画师、作品名、受保护作品仿制；照片、商品摄影、3D渲染、日韩动漫、欧美奇幻、蒸汽朋克、赛博朋克；宝石、霓虹、bloom、魔法阵、粒子、自发光；场景、地面、桌面、背景纹理、渐变、接触投影或落地影。不要去除或伪造工具自身的溯源标识。
+
+## 质检要点
+
+- 单一完整物品居中，四边留白 ≥ 10%，无地面、无投影、无场景；背景为均匀浅暖灰近象牙底。
+- 无文字 / 伪字 / 印章 / 品阶框 / 光效 / 粒子 / 魔法特效；无人物与手。
+- 画风对两张基线：纤细深灰墨线、薄层透明罩染、低饱和、左上柔光；不是粗黑描边或平涂色块。
+- 类别专项：单套官甲正面略侧置，札片／棉甲／布衬结构完整；严格区分宋元明清，不出现军号文字；专项排除：奇幻板甲、跨朝混搭、血污、人物、现代徽章。
+- 品阶信号：极稀有材质、完整独特轮廓、细密工艺与温润／冷润自然光泽；包装珍贵但克制（禁：自发光、神器光环、天字与星级）。
+- 对题：画面必须能辨认为“制式盔甲·元”里的“元宿卫怯薛甲”，不得画成同类其他物品。
