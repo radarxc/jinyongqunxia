@@ -41,6 +41,8 @@ MAX_REVALIDATE = 2
 
 
 def checks_for(tid: str):
+    if tid.startswith("KIT-") and tid.endswith("-hist"):
+        return ".agents/coord/PROD/review_checks_kit_hist.md"
     for pre, f in CHECKS:
         if tid.startswith(pre):
             return f
