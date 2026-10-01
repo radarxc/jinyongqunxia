@@ -28126,7 +28126,12 @@
     "apps/**",
     "services/**",
     "content/**",
-    "CLAUDE.md"
+    "CLAUDE.md",
+    ".env",
+    ".prettierrc",
+    ".prettierrc.json",
+    "prettier.config.js",
+    "next-env.d.ts"
    ]
   },
   {
@@ -28428,6 +28433,7 @@
    ],
    "writes": [
     "apps/web/**",
+    "packages/ui/**",
     "packages/platform/**",
     "pnpm-lock.yaml",
     "package.json"
@@ -28678,6 +28684,31 @@
     ]
    },
    "full_checkout": true
+  },
+  {
+   "id": "DES-tech-nextjs",
+   "title": "技术文档同步 · 应用框架改为 Next.js + React（AR-21）",
+   "phase": "PROD",
+   "wave": 11,
+   "kind": "draft",
+   "prompt": "DES-tech-nextjs.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "writes": [
+    "docs/tech/*.md"
+   ],
+   "validate": {
+    "exists": [],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
   }
  ]
 }
