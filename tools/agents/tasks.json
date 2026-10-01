@@ -22900,7 +22900,7 @@
         "delivery": "finger",
         "catalog": "docs/design/catalog/skills-wujue.md",
         "moves": "`mv_liumai_guanchong`、`mv_liumai_liumaiqifa`*P、`mv_liumai_shangyang`、`mv_liumai_shaochong`、`mv_liumai_shaoshang`*P、`mv_liumai_shaoze`*P、`mv_liumai_zhongchong`",
-        "emitter": "finger"
+        "emitter": "sword"
       },
       "validate": {
         "exists": [
@@ -23132,7 +23132,7 @@
         "delivery": "weapon",
         "catalog": "docs/design/catalog/skills-wujue.md",
         "moves": "`mv_dagou_`、`mv_dagou_aokouduozhang`*、`mv_dagou_ban`、`mv_dagou_bangdashuangquan`、`mv_dagou_bogouchaotian`、`mv_dagou_chan`、`mv_dagou_egoulanlu`、`mv_dagou_fanjiegoutun`、`mv_dagou_tianxiawugou`*、`mv_dagou_xiedagoubei`、`mv_dagou_yajiangoubei`*、`mv_dagou_yin`",
-        "emitter": "sword"
+        "emitter": "staff"
       },
       "validate": {
         "exists": [
@@ -24234,7 +24234,7 @@
         "delivery": "weapon",
         "catalog": "docs/design/catalog/skills-qianlong.md",
         "moves": "`mv_hujiadao_cangfeng`、`mv_hujiadao_fengxue`*、`mv_hujiadao_guanshan`、`mv_hujiadao_humiaohuzhao`*、`mv_hujiadao_pianfeng`、`mv_hujiadao_wangyue`、`mv_hujiadao_yingmen`",
-        "emitter": "sword"
+        "emitter": "sabre"
       },
       "validate": {
         "exists": [
@@ -24814,7 +24814,7 @@
         "delivery": "finger",
         "catalog": "docs/design/catalog/skills-wujue.md",
         "moves": "`mv_tanzhi_`、`mv_tanzhi_chuanshi`、`mv_tanzhi_dianxue`、`mv_tanzhi_jiemai`、`mv_tanzhi_lianzhu`*P、`mv_tanzhi_miaoshi`、`mv_tanzhi_tanjia`、`mv_tanzhi_tanzhi`、`mv_tanzhi_tianhua`*P",
-        "emitter": "finger"
+        "emitter": "throw"
       },
       "validate": {
         "exists": [
