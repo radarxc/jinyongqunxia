@@ -1,0 +1,45 @@
+id: bld_kit_xiyu_house_large
+file: bld_kit_xiyu_house_large.png
+category: building-map
+style: default
+subject: "西域两层大民居与木雕阳台（原创扩展）；具体年代细部（待考）"
+prompt: "Use case: sketch-to-render. Transform ONLY the provided box wireframe into a highly detailed realistic historical western China oasis adobe two-level home. The wireframe is mandatory structural geometry, not a loose reference. Lock exact base corners left(250,620), front(830,910), right(1294,678), back(714,388), roof corners vertically290px above, canvas1536x1024. Rectangular footprint10x8; do not move or expand any walls away from this geometry. Both axes slope magnitude0.5, orthographic. The building occupies that box: low ochre adobe walls, two floors, flat earthen roof with low parapet, carved geometric wood lattice windows, a small second-floor wooden balcony on left-facing front wall, double wood door. Roof mostly flat, no raised roof lantern beyond the box. Fine realistic adobe/wood texture for a historical game, not a toy. Preserve exact box angles and proportions. Thin foundation at the wireframe ground edges, no thick raised plinth. Delete every wireframe line. No context, ground patch, figures, letters or graphics. Transparent RGBA background, warm upper-left illumination with tiny lower-right contact shadow. The composition must follow the input geometry."
+negative: 文字、伪字、人物、现代物、背景、厚地台、透视汇聚、卡通、旋转或镜像补朝向
+references: [{"file": "sources/round2/house_large_geometry.png", "sha256": "da01658aa601dee4fff4a9fce810188aed8a7a8bcf4ef9f57bb344c2c0f5ef3b", "role": "本轮精确几何参考；非成品或实测证据"}]
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: "2026-09-30T22:57:34.807587+00:00"
+created_time_basis: 原PNG文件mtime，非服务端调用时间
+source_path: "/Users/bytedance/.codex/generated_images/01a0f485-e749-79f3-bd62-29852f8c5efe/exec-1b7d5970-ae3a-4f62-9a01-ee4d0c099fa9.png"
+size: "800x544"
+sha256: "66552e4b89a6a4deae6452c35e4e56fe36f889505206ef5b3d29d7fcc44706d5"
+status: candidate
+notes: "本轮重出；view_image源图与灰底确认地域材质/透明轮廓，成品仅裁切等比扩边。大民居第二候选比例已改善，右轴仍超差；返修未完成，不可精确总装。"
+building: {"type": "bld_kit_xiyu_house_large", "footprint": [10, 8], "anchor": [422.5966, 373.8642], "era": "xiyu"}
+footprint_m: [10, 8]
+footprint_basis: 【建议值】新增大小宅分型；沿用design/22 §3.3院落10×8包络，非§3.4既有大宅
+entrance:
+  edge: S
+  offset_cells: 4
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 576
+  - 288
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+png_rotations_available:
+- 0
+allowRotation: false
+metadata: meta/bld_kit_xiyu_house_large.yaml
+candidate_count: 2
+processing: {"source_archive": "sources/round2/house_large_candidate2.png", "source_sha256": "02c56d83deb7f5e34823ef5a6474be1c6f936d958172136286f1ff664969752e", "source_size": [1536, 1024], "crop_box": [0, 17, 1516, 989], "uniform_scale_requested": 0.4969801553062985, "resized_size": [753, 483], "rounded_effective_scale": [0.4967018469656992, 0.49691358024691357], "paste_offset": [23, 30], "steps": ["alpha>0 bbox crop", "uniform LANCZOS resize with pixel rounding", "unmasked paste into transparent canvas; no repaint/warp/alpha threshold"]}
+geometry_qa: {"source_corners_px": {"left": [225, 654], "front": [879, 979], "right": [1384, 764]}, "source_anchor_px": [804.5, 709.0], "source_axis_slopes": [0.4969418960244648, -0.42574257425742573], "axis_tolerance": 0.03, "axis_pass": false, "expected_width_depth_ratio": 1.25, "source_width_depth_ratio": 1.295049504950495, "ratio_relative_error": 0.03603960396039607, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "precision_note": "底边alpha>200轮廓直线与可见墙角交点，约±4源像素；未用参考图坐标冒充实测"}
+pixel_qa: {"mode": "RGBA", "size": [800, 544], "alpha_extrema": [0, 255], "alpha_zero_pixels": 239763, "alpha_partial_pixels": 194279, "alpha_near_opaque_pixels": 190137, "alpha_nonzero_bbox": [23, 30, 713, 513], "transparent_margins_px": [23, 30, 87, 31], "border_alpha_max": 0}
+source_record: "sources/round2/house_large_call2.json"
+visual_qa: {"checked_with": "view_image original and neutral-gray composite; final PNG", "qa_only_composite": "sources/round2/house_large_qa.jpg", "no_pixel_repainting": true}
+repair_history: {"prior_source_record": "sources/bld_kit_xiyu_house_large.json", "prior_candidate_count": 2, "prior_sha256": "85c630033c611216fe5b2fd8c425c07179bfe1117efdea3317dc75ff8f1b5525", "round_candidate_count": 2, "selected_candidate": 2}
+repair_round: 2

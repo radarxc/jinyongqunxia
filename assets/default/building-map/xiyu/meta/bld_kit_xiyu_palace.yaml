@@ -1,0 +1,89 @@
+id: bld_kit_xiyu_palace
+file: bld_kit_xiyu_palace.png
+category: building-map
+style: default
+subject: 西域回部城镇·王府接待殿模块（原创扩展；各年代细部待考）
+prompt: 'Finish exact 3D blockout as a historical Xinjiang palace module. Ground corners EXACTLY left(168,560),front(823,887),right(1368,615); no zoom/recenter/camera change, no silhouette
+  change. Width24 depth20 ratio1.2. Ground axes both2:1 slopes+0.5,-0.5; every horizontal architecture edge follows these exact directions. Retexture and detail: tan adobe/yellow brick,
+  rear flat-roof main hall with pointed carved wooden entrance, small turquoise dome, restrained geometric turquoise border without writing; low flat-roof side wings, paved front court,
+  low front walls. Detailed realistic ancient strategy-game art, small masonry grain and natural weathering. Upper-left light, tiny lower-right contact shadow. Entire opaque architecture
+  inside frame, true transparent RGBA background. No halo,vignette,scene,text,people,modern elements or thick plinth. Maintain EXACT lower footprint from reference. Right ground edge
+  rises one pixel per two pixels right.'
+negative: 文字、伪字、人物、现代物、背景、厚地台、透视汇聚、卡通、旋转或镜像补朝向
+references:
+- {file: sources/bld_kit_xiyu_palace_candidate1.png, sha256: b40a48237b862ff30967194dd08fd3eaddabcd7a9156132370ececa7d266488b, role: 第二候选编辑目标}
+- {file: sources/bld_kit_xiyu_stable.png, sha256: 623dc97485979aa860167f3e9e88d89a73d1649779f667e6e468ecbb5e098855, role: 第二候选相机参照，不复制马厩主体}
+- {file: sources/bld_kit_xiyu_palace_round2_geometry.png, sha256: da46f78f09ce7962e2d3558e0ef14bbab3e135abd3a17a02194f14d963a25e5c, role: 第2轮精确占地灰盒生成参照；不作为成品}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T23:08:27.886573+00:00'
+created_time_basis: 原PNG文件mtime，非服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-09bad853-5df7-4f1c-a766-ac9155ac1b96.png
+size: 1792x1216
+sha256: 274cfcf8ef1f24578cd1013007eb191a5a2bf2c1650f7409607a9c883536052a
+status: candidate
+notes: 第2轮按登记占地重出；源图及成品逐张view_image、灰底alpha检查。材质与地域功能保持；仅裁切、等比缩放、透明扩边。当前测量见geometry_qa。当前底角测量通过，仍需总装实测。
+building:
+  type: bld_kit_xiyu_palace
+  footprint: &id001 [24, 20]
+  anchor: [925.0377, 684.7064]
+  era: xiyu
+footprint_m: *id001
+footprint_basis: design/22 §3.4 qing_early_palace 24×20
+entrance: {edge: S, offset_cells: 11}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [1408, 704]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+png_rotations_available: [0]
+allowRotation: false
+metadata: meta/bld_kit_xiyu_palace.yaml
+candidate_count: 2
+processing:
+  source_archive: sources/bld_kit_xiyu_palace_round2_candidate2.png
+  source_sha256: 452d9e1efe11fe7b40aaa023750f2274886f4e626fdf8f2c875505d55f624694
+  source_size: [1536, 1024]
+  crop_box: [0, 32, 1486, 1006]
+  uniform_scale_requested: 1.1617161716171618
+  resized_size: [1726, 1132]
+  rounded_effective_scale: [1.161507402422611, 1.162217659137577]
+  paste_offset: [33, 42]
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize with pixel rounding, unmasked paste into transparent canvas; no repaint/warp/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [162, 557]
+    front: [825, 888]
+    right: [1374, 613]
+  source_anchor_px: [768.0, 585.0]
+  source_axis_slopes: [0.49924585218702866, -0.5009107468123861]
+  axis_tolerance: 0.03
+  axis_pass: true
+  expected_width_depth_ratio: 1.2
+  source_width_depth_ratio: 1.2076502732240437
+  ratio_relative_error: 0.006375227686703067
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  precision_note: 灰底view_image人工底角定位并用源alpha>200边界核对，约±4px；后角遮挡，非3D实测
+  footprint_is_logical: true
+  release_note: 第2轮重出；当前底角测量通过；约±4px人工精度，仍须总装实测。
+pixel_qa:
+  mode: RGBA
+  size: [1792, 1216]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 1362620
+  alpha_partial_pixels: 815241
+  alpha_near_opaque_pixels: 794790
+  alpha_nonzero_bbox: [33, 42, 1759, 1174]
+  transparent_margins_px: [33, 42, 33, 42]
+  border_alpha_max: 0
+source_record: sources/bld_kit_xiyu_palace_round2_candidate2.json
+selected_candidate: 2
+selection_note: 本轮最多两候选择一；历史源图及调用记录保留，未做透视或非等比修正。
+visual_qa: {checked_with: view_image original and normalized final plus neutral-gray alpha composite, no_pixel_repainting: true}
+style_review_references:
+- {file: assets/default/baseline/building-map/bld_kit_song_dali_biaoju.png, sha256: 928e60e61ff9c0d14f9691b22486b599f181e3b4f52b86182f9b0be3daa76161, role: 已view_image阅图的写实材质／细节密度参照；首候选未作图像输入}
+repair_round: 2
+repair_history: {round1_source_archive: sources/bld_kit_xiyu_palace.png, round1_source_record: sources/bld_kit_xiyu_palace_v2.json, round1_candidate_count: 2, round1_selected_candidate: 2,
+  round1_geometry_axis_pass: false, round1_geometry_ratio_pass: false}

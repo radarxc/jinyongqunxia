@@ -1,0 +1,89 @@
+id: bld_kit_xiyu_biaoju
+file: bld_kit_xiyu_biaoju.png
+category: building-map
+style: default
+subject: 西域回部城镇·商队货栈（护运行同功能外观）（原创扩展；各年代细部待考）
+prompt: Retexture this exact orthographic graybox into a highly detailed realistic ancient Xinjiang caravan goods compound game-map sprite. Preserve the exact silhouette and four ground
+  corner positions. This is a texture-and-details pass, DO NOT change the camera, proportions, composition or bounding geometry. Both ground axes have slopes+0.5,-0.5 and width/depth14/11.
+  Make warm weathered yellow adobe/earthen walls, flat timber-earth roofs on the back two sides, a small timber cargo arcade, a heavy wooden gate on the left-facing front wall, stacked
+  sacks and a handcart in courtyard. Back roofs can be lowered but all roof edges must follow graybox axes. Keep bottom walls in exact graybox position; zero thick plinth. Realistic
+  painterly textures with tiny chips, visible wood grain and beige mud plaster matching mature historical strategy game art. Light upper-left; short tight contact shadow lower-right
+  only. TRUE TRANSPARENT background, no ground outside footprint, no backdrop, no halo, no vignette. No text, letters, numbers, human, modern object. Do not trace outline; fully rendered
+  textured isolated architecture.
+negative: 文字、伪字、人物、现代物、背景、厚地台、透视汇聚、卡通、旋转或镜像补朝向
+references:
+- {file: sources/bld_kit_xiyu_biaoju_candidate1.png, sha256: 27056b7c273c6d835e153739c18c40cce525584adcfe87dbfc7f463034b70255, role: 第二候选编辑目标}
+- {file: sources/bld_kit_xiyu_biaoju_round2_geometry2.png, sha256: b34120ab70c3c99c6506f4a6e044567c3b3f7d502714ad9b63859098002dd036, role: 第2轮精确占地灰盒生成参照；不作为成品}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T22:58:00.371546+00:00'
+created_time_basis: 原PNG文件mtime，非服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-52ebcd20-1353-4fe5-a66a-2ce22ec09bfb.png
+size: 992x704
+sha256: 505b577eb432aefeecd96e3e26cbd723935d80075657d418f804a26405e79451
+status: candidate
+notes: 第2轮按登记占地重出；源图及成品逐张view_image、灰底alpha检查。材质与地域功能保持；仅裁切、等比缩放、透明扩边。当前测量见geometry_qa。当前底角测量通过，仍需总装实测。
+building:
+  type: bld_kit_xiyu_biaoju
+  footprint: &id001 [14, 11]
+  anchor: [487.9804, 375.6013]
+  era: xiyu
+footprint_m: *id001
+footprint_basis: design/22 §3.4 yuan_biaoju 14×11
+entrance: {edge: S, offset_cells: 6}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [800, 400]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+png_rotations_available: [0]
+allowRotation: false
+metadata: meta/bld_kit_xiyu_biaoju.yaml
+candidate_count: 2
+processing:
+  source_archive: sources/bld_kit_xiyu_biaoju_round2_candidate2.png
+  source_sha256: 5b024153a2f46994f53165aa1910ee6a2e72243429b2b3679a0731e64cb6659f
+  source_size: [1536, 1024]
+  crop_box: [53, 32, 1510, 1024]
+  uniform_scale_requested: 0.6264682850430697
+  resized_size: [913, 621]
+  rounded_effective_scale: [0.6266300617707619, 0.626008064516129]
+  paste_offset: [39, 41]
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize with pixel rounding, unmasked paste into transparent canvas; no repaint/warp/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [131, 530]
+    front: [835, 897]
+    right: [1408, 603]
+  source_anchor_px: [769.5, 566.5]
+  source_axis_slopes: [0.5213068181818182, -0.5130890052356021]
+  axis_tolerance: 0.03
+  axis_pass: true
+  expected_width_depth_ratio: 1.2727272727272727
+  source_width_depth_ratio: 1.2286212914485166
+  ratio_relative_error: 0.034654699576165515
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  precision_note: 灰底view_image人工底角定位并用源alpha>200边界核对，约±4px；后角遮挡，非3D实测
+  footprint_is_logical: true
+  release_note: 第2轮重出；当前底角测量通过；约±4px人工精度，仍须总装实测。
+pixel_qa:
+  mode: RGBA
+  size: [992, 704]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 433077
+  alpha_partial_pixels: 264281
+  alpha_near_opaque_pixels: 249418
+  alpha_nonzero_bbox: [39, 41, 952, 662]
+  transparent_margins_px: [39, 41, 40, 42]
+  border_alpha_max: 0
+source_record: sources/bld_kit_xiyu_biaoju_round2_candidate2.json
+selected_candidate: 2
+selection_note: 本轮最多两候选择一；历史源图及调用记录保留，未做透视或非等比修正。
+visual_qa: {checked_with: view_image original and normalized final plus neutral-gray alpha composite, no_pixel_repainting: true}
+style_review_references:
+- {file: assets/default/baseline/building-map/bld_kit_song_dali_biaoju.png, sha256: 928e60e61ff9c0d14f9691b22486b599f181e3b4f52b86182f9b0be3daa76161, role: 已view_image阅图的写实材质／细节密度参照；首候选未作图像输入}
+repair_round: 2
+repair_history: {round1_source_archive: sources/bld_kit_xiyu_biaoju.png, round1_source_record: sources/bld_kit_xiyu_biaoju_v2.json, round1_candidate_count: 2, round1_selected_candidate: 2,
+  round1_geometry_axis_pass: false, round1_geometry_ratio_pass: false}

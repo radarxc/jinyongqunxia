@@ -1,0 +1,7 @@
+{
+  "asset": "bld_kit_xiyu_biaoju",
+  "prompt": "Edit this caravan goods compound into a STRICT orthographic 2:1 city-map sprite. Preserve its ochre adobe material, flat roofs, wooden cargo arcade, gate, sacks and cart, no new objects. Correct only camera/ground layout: yaw45 elevation30, BOTH visible long straight ground edges MUST have screen slopes +0.5 and -0.5. The SOUTH FRONT edge with main gate must be14 units long, side depth11 units, so front visible edge is1.2727 times the other. The intended footprint diamond left/front/right corners in an approximate1536x1024 composition should be(160,550),(832,886),(1360,622); hidden rear corner(688,286). Match that ground parallelogram, not the input camera. Flat thin ground, no plinth. Complete sprite centered,15% empty transparent padding, true transparent RGBA, upper-left light and short lower-right contact shadow. Maintain realistic game-art detail, no text, people, landscape or halo.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-e62a-7d81-b6da-ebc5d5a1cf9c/exec-9481cefd-f7ab-447c-a76d-d8d28c704895.png",
+  "candidate": 2,
+  "edit_target": "/Users/bytedance/.codex/generated_images/01a0f459-e62a-7d81-b6da-ebc5d5a1cf9c/exec-260f67a0-0800-4554-a3c4-a182f5a8f4bf.png"
+}

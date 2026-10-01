@@ -1,0 +1,19 @@
+{
+  "id": "bld_kit_xiyu_house_small",
+  "selected": "/Users/bytedance/.codex/generated_images/01a0f459-2242-7611-95dd-273d2ac27850/exec-56a6e033-01bf-45cf-985c-5ea3011784db.png",
+  "candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-2242-7611-95dd-273d2ac27850/exec-4ff86389-86e7-412f-abdb-b78d4dfdd874.png",
+      "prompt": "Use case: historical-scene. Create ONE production orthographic city-map sprite: a modest SMALL traditional oasis house from Kashgar / Khotan / Yarkand, Xinjiang. Regional historical design abstraction, not an exact monument. Mudbrick and warm muted sandy ochre plaster walls, FLAT earth roof on exposed timber joists, low parapet, small wooden lattice window and recessed wooden door facing screen LOWER LEFT. Single storey compact rectangle, footprint7m east-west by6m north-south. No dome on house. Realistic restrained historic materials, fine weathering and texture at the detail density of tianshu Song map buildings; no cartoon, watercolor, glossy miniature or thick plinth. Orthographic yaw45 elevation30, exact 2:1 dimetric ground plane; ground axes slopes +0.5/-0.5, parallel edges, vertical walls upright. A thin flat rectangular ground contact patch with three clear bottom corners, not a raised island. True transparent RGBA background and at least10% empty transparent margin on all sides. Whole sprite including roof and short contact shadow fully inside canvas. Warm soft light from SCREEN UPPER LEFT, short shadow to lower right. No text, pseudo-writing, signage, people, landscape, sky, background, printed checkerboard, watermarks, modern objects, Chinese tiled eaves, Ottoman needle minarets or fantasy ornament.",
+      "disposition": "rejected: ground projection shallow; long cast shadow"
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-2242-7611-95dd-273d2ac27850/exec-56a6e033-01bf-45cf-985c-5ea3011784db.png",
+      "prompt": "Use case: precise-object-edit. Edit this supplied small Kashgar adobe flat-roof house sprite. Preserve realistic weathered earth and timber materials, single-storey house identity, left-front door and lattice window, true transparent background. Correct only projection and shadow: strict orthographic 2:1 dimetric ground axes, +0.5 and -0.5 slopes, no vanishing point; rectangular ground footprint7 east-west by6 north-south so the front edge is7/6 the side-edge length. Ground three visible corners must be clearly readable. South entrance lower left. LIGHT upper left. Remove the long cast shadow entirely; only faint short contact occlusion at foundation. No halo or glow; transparent pixels should have neutral empty RGB, clean RGBA. Keep whole house centered with15% transparent margin. No lettering, people, landscape or modern details. No thick base, no plinth.",
+      "disposition": "selected: reduced shadow, retains geometry residual",
+      "references": [
+        "/Users/bytedance/.codex/generated_images/01a0f459-2242-7611-95dd-273d2ac27850/exec-4ff86389-86e7-412f-abdb-b78d4dfdd874.png"
+      ]
+    }
+  ]
+}

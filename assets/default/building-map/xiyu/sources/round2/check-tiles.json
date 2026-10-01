@@ -1,0 +1,1 @@
+{"command": ["python3", "tools/agents/check_assets.py", "assets/default/tile/xiyu", "--min", "5", "--max", "10", "--min-side", "32"], "exit_code": 0, "stdout": "assets/default/tile/xiyu：图片 7 张，条目 7 条，问题 0 个\n", "stderr": ""}

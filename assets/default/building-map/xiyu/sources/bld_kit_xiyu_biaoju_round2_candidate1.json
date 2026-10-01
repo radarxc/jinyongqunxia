@@ -1,0 +1,15 @@
+{
+  "id": "bld_kit_xiyu_biaoju",
+  "candidate": 1,
+  "args": {
+    "referenced_image_paths": [
+      "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-xiyu/assets/default/building-map/xiyu/sources/bld_kit_xiyu_biaoju_round2_geometry.png",
+      "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-xiyu/assets/default/building-map/xiyu/bld_kit_xiyu_biaoju.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: sketch-to-render. IMAGE 1 is the EXACT ground footprint of the requested map sprite and its camera: keep its four corner pixel positions and its 2:1 orthographic parallel axes intact. Build a detailed Xinjiang adobe caravan goods compound directly upon IMAGE 1: use the architecture, ochre walls, flat roofs, cargo timber arcade, gate, sacks and cart from IMAGE 2 as style/subject reference only. Do NOT use IMAGE 2's inaccurate camera. Ground left corner (168,536), front (840,872), right (1368,608), rear (696,272) on a1536x1024 canvas. The gate front facade follows the longer left-to-front edge, 14 units wide; the right facade follows the shorter front-to-right edge,11 units deep. All roof/parapet/beam edges parallel to these EXACT slope+0.5/-0.5 ground edges. Vertical edges upright, NO perspective convergence. Keep ground bottom corners sharply readable. Replace flat color by realistic dusty earth, no thick plinth. Realistic ancient Chinese map illustration detail matching IMAGE2. Upper-left sunlight and short contact shadow lower-right. Fully transparent RGBA outside compound; no scene, backdrop, halo, label, lettering, people, modern objects. Complete object within canvas."
+  },
+  "path": "/Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-e6a20aaa-7033-42e6-aca2-2cbaf7a9fe7a.png",
+  "tool": "built-in image_gen",
+  "repair_round": 2
+}

@@ -1,0 +1,6 @@
+{
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-2242-7611-95dd-273d2ac27850/exec-c152cb54-cede-469d-a420-a12c8b48193b.png",
+  "prompt": "Use case: precise-object-edit. Preserve this exact two-storey Kashgar adobe flat-roof textile/copperware shop, carved balcony, cloth awning, small display goods, muted earthy colors and realistic texture. Only correct camera/ground geometry to a precise 2:1 orthographic dimetric map view. Three foundation corners form two lines with screen slopes EXACTLY+0.5 and-0.5. Front edge length4, right side edge length3; footprint8x6. Vertical lines stay vertical, parallel edges have no vanishing point. Door still screen lower left. Raise the viewing angle slightly, see flat roof clearly. No thick platform, no added decorations. Keep full object with ample transparent margins; genuine RGBA background, NO glow, text, people or environment. Upper-left lighting, short lower-right contact shadow only. Do not change its function or materials.",
+  "reference": "/Users/bytedance/.codex/generated_images/01a0f459-2242-7611-95dd-273d2ac27850/exec-06c7f00b-803e-4751-874e-0566477d348f.png",
+  "decision": "selected; front/side projection improved"
+}

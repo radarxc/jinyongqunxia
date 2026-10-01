@@ -1,0 +1,14 @@
+{
+  "id": "bld_kit_xiyu_manor",
+  "candidate": 2,
+  "args": {
+    "referenced_image_paths": [
+      "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-xiyu/assets/default/building-map/xiyu/sources/bld_kit_xiyu_manor_round2_geometry.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Finish this exact 3D blockout as an ancient Xinjiang wealthy merchant manor. Keep bottom corners EXACTLY at left(168,560),front(830,891),right(1368,622). Do not zoom,recenter,change camera,elongate sides or modify ground silhouette. Both ground axes slopes±0.5,16 units front width by13 units side depth. Add realistic warm tan adobe and brick texture, flat-roof side rooms, one two-story rear main house with carved timber balcony and lattice doors; carved entrance gate on left-facing front wall, a small grape pergola and small tree inside. Detailed realistic historical strategy-game art with fine wood grain and plaster chips. Upper-left lighting, tiny lower-right contact shadow. Fully opaque architecture and genuine transparent RGBA background. No halo,scene,writing,people,modern items or raised base. Geometry precision is primary: keep bottom corners and parallel edges matching blockout. Right ground edge must rise ONLY one pixel per two pixels right."
+  },
+  "path": "/Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-7172931c-e440-4b82-8873-62e1b163746c.png",
+  "tool": "built-in image_gen",
+  "repair_round": 2
+}

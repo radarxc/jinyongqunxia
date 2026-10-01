@@ -1,0 +1,14 @@
+{
+  "id": "bld_kit_xiyu_casino",
+  "candidate": 2,
+  "args": {
+    "referenced_image_paths": [
+      "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-xiyu/assets/default/building-map/xiyu/sources/bld_kit_xiyu_casino_round2_geometry.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Finish this exact 3D blockout as an ancient Xinjiang adobe gaming-house courtyard. Keep the bottom three visible corners EXACTLY at (168,560),(835,893),(1368,627) on1536x1024. Do not zoom, recenter, change camera, elongate sides, or otherwise modify geometry. Front wall is25% longer than the right wall. Both ground axes are2:1 slope±0.5. Add realistic tan mud and brick material, flat-roof perimeter rooms, carved timber courtyard arcade, wooden front door in left-facing wall, two low wooden game tables and small rugs. Detailed realistic historical strategy-game art, tiny wood grain and plaster chips. Upper-left light, small lower-right contact shadow. Fully opaque building and true transparent RGBA background. Absolutely no halo, scenery, writing, people, modern items or raised ground platform. Geometry precision is primary: bottom corners and all parallel edges must match blockout."
+  },
+  "path": "/Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-18f5a6f6-d71b-4722-ae6b-6e4de8f8cf29.png",
+  "tool": "built-in image_gen",
+  "repair_round": 2
+}

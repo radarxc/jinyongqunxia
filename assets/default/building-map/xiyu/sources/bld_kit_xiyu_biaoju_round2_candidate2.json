@@ -1,0 +1,14 @@
+{
+  "id": "bld_kit_xiyu_biaoju",
+  "candidate": 2,
+  "args": {
+    "referenced_image_paths": [
+      "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-xiyu/assets/default/building-map/xiyu/sources/bld_kit_xiyu_biaoju_round2_geometry2.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Retexture this exact orthographic graybox into a highly detailed realistic ancient Xinjiang caravan goods compound game-map sprite. Preserve the exact silhouette and four ground corner positions. This is a texture-and-details pass, DO NOT change the camera, proportions, composition or bounding geometry. Both ground axes have slopes+0.5,-0.5 and width/depth14/11. Make warm weathered yellow adobe/earthen walls, flat timber-earth roofs on the back two sides, a small timber cargo arcade, a heavy wooden gate on the left-facing front wall, stacked sacks and a handcart in courtyard. Back roofs can be lowered but all roof edges must follow graybox axes. Keep bottom walls in exact graybox position; zero thick plinth. Realistic painterly textures with tiny chips, visible wood grain and beige mud plaster matching mature historical strategy game art. Light upper-left; short tight contact shadow lower-right only. TRUE TRANSPARENT background, no ground outside footprint, no backdrop, no halo, no vignette. No text, letters, numbers, human, modern object. Do not trace outline; fully rendered textured isolated architecture."
+  },
+  "path": "/Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-52ebcd20-1353-4fe5-a66a-2ce22ec09bfb.png",
+  "tool": "built-in image_gen",
+  "repair_round": 2
+}

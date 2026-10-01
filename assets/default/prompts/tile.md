@@ -198,3 +198,36 @@ True RGBA including open gate passage; no scenery, words, figures, checkerboard 
 参考资料（访问2026-09-30）：[顺天门考古简报](https://www.hnswwkgyjy.cn/ueditor/php/upload/file/20220524/1653363795965934.pdf)仅核到检索摘录，未阅全文图版；[故宫汴水贯木拱虹桥研究](https://www.dpm.org.cn/study_detail/100191.html)已读网页；[Pillow Image文档](https://pillow.readthedocs.io/en/stable/reference/Image.html)核对裁切、RGBA及resize接口。完整建筑史来源及使用边界见任务报告§7。
 
 开放问题默认值：沿用7件candidate作为风格候选；四向、精确门洞mask、墙角接缝、桥栏遮挡交总装另验**（待实测）**。两种植物的物种细部、季节和历史栽植位置**（待考）**；不默认批准，不修改上游schema枚举或城门碰撞规则。
+
+## 10. 西域套件（xiyu，KIT-xiyu）
+
+本节只补地域提示词差异，格网、锚点与墙门通行规则仍见 `design/22` §1、§4.3。成品在 `assets/default/tile/xiyu/`；逐张实际提示词、生成输入、源图哈希见其 `manifest.yaml`，初始提示词与改图记录见 `source/production-records.jsonl`。
+
+- 地域依据：喀什、和田、叶尔羌绿洲城镇的土木 / 泥砖材料意象；不把今日修缮后的城门当作各年代史证。土城门、墙件、木桥及葡萄架具体构型均为 **（原创扩展）**，具体城市与年代适配 **（待考）**。
+- 材料差异：暖浅赭土坯、泥抹面、少量露砖与草纤维；平顶、厚墙、素木，禁用宋式瓦顶门楼、清式彩画、现代景区招牌。保持宋贴片低饱和、写实细颗粒和左上光。
+- 城门两档均取 `r000`，净宽 `k=4/6`；占地按上游 `[(k+4),4]`，即 `8×4/10×4`，两墩各 2 格；门洞下方须为真实透明，不绘门扇、铺地或堵孔阴影。本轮仅交这两张视图，不能旋转 PNG 冒充另外三向。
+- 直墙 `1×1`、墙角 `2×2`、木桥 `3×5`、胡杨 `3×3`、葡萄架 `4×3` 为装配 **【建议值】**；桥是灌渠木梁桥意象，不启用港口。葡萄架含木柱与藤蔓，属于本地植物物件，不是新玩法建筑。
+- 胡杨以塔里木河岸林物种为依据；葡萄架以绿洲庭院葡萄木架为意象。现代植物 / 庭院资料只支持地域辨识，不证明某年代城内的栽植位置或架高。
+
+```text
+Use case: historical-scene. ONE isolated Western Regions oasis town map sprite.
+Kashgar / Hotan / Yarkand material vocabulary, original game reconstruction.
+Realistic restrained painted materials, muted buff adobe, subtle straw-fibre plaster,
+unpainted timber; match Song kit detail density, no Chinese tiled roof or painted pavilion.
+Orthographic yaw45 elevation30, exact2:1 GROUND projection, axes slopes+0.5/-0.5.
+Vertical posts vertical; upper-left light and extremely short lower-right shading.
+{GATE: footprint(k+4)x4, empty passage kx4, solid2m piers, simple flat parapet.}
+{WALL: flat flush top, thick earthen block; corner has no independent ground floor.}
+{BRIDGE: complete modest timber beam bridge, transparent water-space below.}
+{PLANT: Euphrates poplar OR timber grape arbor, muted foliage, no soil island.}
+True RGBA alpha0 outside object and in openings, complete silhouette and margins.
+No people, animals, text, modern fittings, floor platform, haze, glow or checkerboard.
+```
+
+后处理只裁边、等比缩放、补透明边；不强行拉伸为 2:1 画布，不重画门洞或墙身。尺度按原图可见底面左/右接触角点跨度匹配 `32×(w+h)`，锚点取两点中点；PNG 包围框只作裁切留白，不能把檐口、冠幅或包围框宽替代地面尺度。树单列冠幅建议值及根锚。模型输出的透明像素可带暖色 RGB；须以 alpha 和灰底合成检查，不能仅凭图片工具忽略 alpha 后的暖色外晕判断背景失败。灰底合成仅作临时 QA，不入 manifest 成品。
+
+**验收边界**：七张均为 `candidate`。8 px 透明留边、真 RGBA、源图留存和哈希已检查；64×32 为目标尺度，手工估计的底面锚点、门洞净宽对格、严格 `±0.5` 斜率、墙件连续接缝仍待实际总装核对，不能把基础文件校验通过等同于几何验收。详见包内 `QA.md`。
+
+已解决：第一轮六个硬体的轴向 / 比例告警通过第2轮逐张重出修复。当前木桥 `273×182`、葡萄架 `252×204`、直墙 `81×167` px；全部双轴进入 ±0.03 容差，最大比例误差 0.38%。两门、墙角及门孔量点见包内 `QA.md` 与 `source/round2/*-selected-qa.json`；历史 `geometry-qa.jsonl` 保留第一轮数据，胡杨不改。
+
+第2轮几何差异提示：只输入按登记占地构造的实心参考，要求“texture-only; trace ALL polygon boundaries; preserve exact camera and corners”；两门为直墩、平顶土墙与木楣（原创扩展），门孔保持透明。参考图只约束生成，成图仍独立量点。直墙 / 墙角沿用名义高3 m，源图实测缩放后墙高差0.335 px；完整接缝仍待总装。

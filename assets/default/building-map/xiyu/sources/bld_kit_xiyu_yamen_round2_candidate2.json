@@ -1,0 +1,14 @@
+{
+  "id": "bld_kit_xiyu_yamen",
+  "candidate": 2,
+  "args": {
+    "referenced_image_paths": [
+      "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-xiyu/assets/default/building-map/xiyu/sources/bld_kit_xiyu_yamen_round2_geometry.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Finish this exact 3D blockout as an ancient Xinjiang local administration courtyard. Bottom corners EXACTLY left(168,560),front(854,903),right(1368,646); preserve camera and silhouette. No zoom,recenter,elongate sides or change proportions. Front16 units, side12 units. Both ground axes slopes±0.5, no perspective. Realistic tan adobe/brick perimeter wall, central timber front gate in left-facing long wall; three low flat-roof buildings around court, rear main office with simple wood-pillared porch and lattice doors, symmetric low side offices, paved court with a few clay pots. Upper-left light and tiny lower-right contact shadow. Finely detailed historical strategy-game textures, fine wood grain and plaster chips, no cartoon/plastic. Entire opaque asset within frame, genuine transparent RGBA background. No halo,vignette,scenery,words,people,modern object or thick plinth. Exact graybox ground geometry highest priority. Right ground edge rises ONLY one pixel per two pixels right."
+  },
+  "path": "/Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-8f4f9ee5-19be-47b0-8349-7cfe0fe651fa.png",
+  "tool": "built-in image_gen",
+  "repair_round": 2
+}

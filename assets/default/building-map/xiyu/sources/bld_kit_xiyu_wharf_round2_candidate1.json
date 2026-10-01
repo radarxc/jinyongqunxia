@@ -1,0 +1,14 @@
+{
+  "id": "bld_kit_xiyu_wharf",
+  "candidate": 1,
+  "args": {
+    "referenced_image_paths": [
+      "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-xiyu/assets/default/building-map/xiyu/sources/bld_kit_xiyu_wharf_round2_geometry.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Texture this EXACT flat parallelogram into a realistic ancient Xinjiang oasis river landing platform game-map sprite. Preserve exact ground corner positions, orthographic camera, slope+0.5/-0.5 and width10 depth4 ratio2.5. The long10-unit front edge runs down-right, short4-unit edge runs up-right. Fine warm tan stone paving slabs and slightly worn yellow brick edges, ONE thin low course only, tiny inlet step within footprint, two terracotta water jars near back long edge. No railing, water, boats, pier or added building. Regional riverbank landing decoration, original synthesis, non-maritime. Highly detailed realistic historical strategy-game materials, soft weathering, stone pores, restrained colors. Upper-left light, short subtle lower-right contact shadow only. True transparent RGBA outside exactly this flat platform shape. Keep all four corners unobscured. Do NOT change dimensions or camera. No background, halo, gradient, vignette, landscape, ground outside footprint, text, labels, people, or modern object."
+  },
+  "path": "/Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-90c4903e-fb89-4cac-99c8-554856aa8ddd.png",
+  "tool": "built-in image_gen",
+  "repair_round": 2
+}
