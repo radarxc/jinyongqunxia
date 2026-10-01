@@ -1,0 +1,259 @@
+- id: tex_town_ming_south_city_gate__k4_r000_v01
+  selected_candidate: 2
+  candidates: 2
+  source_size:
+  - 1536
+  - 1024
+  source_alpha_range:
+  - 0
+  - 254
+  alpha_bbox:
+  - 101
+  - 31
+  - 1466
+  - 1004
+  crop_rule: alpha≥16仅定位裁框后外扩2px；框内RGBA原样交由等比缩放，未清零或改色。
+  source_anchor_px:
+  - 796
+  - 841
+  anchor_method: 底面中心或根点人工估测，非alpha框底边
+  measured_plan_width_px: 1190
+  target_plan_width_px: 384
+  scale: 0.3226890756302521
+  scale_basis: 64×32格：水平包络32×(w+h)；植物用冠幅包络，均为建议值。
+  normalized_size:
+  - 457
+  - 488
+  anchor_px:
+  - 233.0
+  - 364.2
+  alpha_range:
+  - 0
+  - 255
+  geometry_status: 第4轮已校正：双轴斜率±0.5、footprint比例及底面中心锚点通过像素坐标复算；仍待城镇总装实测。
+  rotation_deg: 0
+  width_cells: 4
+  footprint_cells:
+    w: 8
+    h: 4
+  passage_cells:
+    w: 4
+    h: 4
+  passage_rule: 两侧门墩各2格；净孔按最终PNG前沿端点实测通过。
+  geometry_verified: true
+  verification_record: ../../building-map/ming_south/revisions_r4/verification.json
+  measured_passage_cells: 4.0
+- id: tex_town_ming_south_city_gate__k6_r000_v01
+  selected_candidate: 2
+  candidates: 2
+  source_size:
+  - 1536
+  - 1024
+  source_alpha_range:
+  - 0
+  - 254
+  alpha_bbox:
+  - 62
+  - 32
+  - 1492
+  - 1014
+  crop_rule: alpha≥16仅定位裁框后外扩2px；框内RGBA原样交由等比缩放，未清零或改色。
+  source_anchor_px:
+  - 775
+  - 809
+  anchor_method: 底面中心或根点人工估测，非alpha框底边
+  measured_plan_width_px: 1245
+  target_plan_width_px: 448
+  scale: 0.3598393574297189
+  scale_basis: 64×32格：水平包络32×(w+h)；植物用冠幅包络，均为建议值。
+  normalized_size:
+  - 538
+  - 477
+  anchor_px:
+  - 263.0419
+  - 343.4636
+  alpha_range:
+  - 0
+  - 255
+  geometry_status: 第4轮已校正：双轴斜率±0.5、footprint比例及底面中心锚点通过像素坐标复算；仍待城镇总装实测。
+  rotation_deg: 0
+  width_cells: 6
+  footprint_cells:
+    w: 10
+    h: 4
+  passage_cells:
+    w: 6
+    h: 4
+  passage_rule: 两侧门墩各2格；净孔按最终PNG前沿端点实测通过。
+  geometry_verified: true
+  verification_record: ../../building-map/ming_south/revisions_r4/verification.json
+  measured_passage_cells: 6.0
+- id: tex_town_ming_south_wall__brick_r000_v01
+  selected_candidate: 1
+  candidates: 1
+  source_size:
+  - 1230
+  - 1278
+  source_alpha_range:
+  - 0
+  - 255
+  alpha_bbox:
+  - 388
+  - 60
+  - 839
+  - 1208
+  crop_rule: alpha≥16仅定位裁框后外扩2px；框内RGBA原样交由等比缩放，未清零或改色。
+  source_anchor_px:
+  - 614
+  - 1070
+  anchor_method: 底面中心或根点人工估测，非alpha框底边
+  measured_plan_width_px: 444
+  target_plan_width_px: 64
+  scale: 0.14414414414414414
+  scale_basis: 64×32格：水平包络32×(w+h)；植物用冠幅包络，均为建议值。
+  normalized_size:
+  - 73
+  - 173
+  anchor_px:
+  - 36.58
+  - 149.59
+  alpha_range:
+  - 0
+  - 255
+  geometry_status: 待实测：AI投影非严格计量几何；不得据此宣称运行时契约通过。
+- id: tex_town_ming_south_wall_corner__outer_ne_v01
+  selected_candidate: 2
+  candidates: 2
+  source_size:
+  - 1295
+  - 1214
+  source_alpha_range:
+  - 0
+  - 255
+  alpha_bbox:
+  - 104
+  - 21
+  - 1194
+  - 1170
+  crop_rule: alpha≥16仅定位裁框后外扩2px；框内RGBA原样交由等比缩放，未清零或改色。
+  source_anchor_px:
+  - 650
+  - 907
+  anchor_method: 底面中心或根点人工估测，非alpha框底边
+  measured_plan_width_px: 1090
+  target_plan_width_px: 128
+  scale: 0.11743119266055047
+  scale_basis: 64×32格：水平包络32×(w+h)；植物用冠幅包络，均为建议值。
+  normalized_size:
+  - 172
+  - 232
+  anchor_px:
+  - 85.8627
+  - 191.646
+  alpha_range:
+  - 0
+  - 255
+  geometry_status: 第4轮已校正：双轴斜率±0.5、footprint比例及底面中心锚点通过像素坐标复算；仍待城镇总装实测。
+  geometry_verified: true
+  verification_record: ../../building-map/ming_south/revisions_r4/verification.json
+  interface_height_px: 124
+  interface_reference: 直墙成品可见竖向接口124px；同源模块拼接。
+- id: tex_town_ming_south_bridge__stone_w5_l10_r000_v01
+  selected_candidate: 1
+  candidates: 1
+  source_size:
+  - 1774
+  - 887
+  source_alpha_range:
+  - 0
+  - 255
+  alpha_bbox:
+  - 181
+  - 116
+  - 1651
+  - 795
+  crop_rule: alpha≥16仅定位裁框后外扩2px；框内RGBA原样交由等比缩放，未清零或改色。
+  source_anchor_px:
+  - 914
+  - 530
+  anchor_method: 底面中心或根点人工估测，非alpha框底边
+  measured_plan_width_px: 1467
+  target_plan_width_px: 480
+  scale: 0.32719836400818
+  scale_basis: 64×32格：水平包络32×(w+h)；植物用冠幅包络，均为建议值。
+  normalized_size:
+  - 489
+  - 230
+  anchor_px:
+  - 243.84
+  - 139.46
+  alpha_range:
+  - 0
+  - 255
+  geometry_status: 待实测：AI投影非严格计量几何；不得据此宣称运行时契约通过。
+- id: tex_town_ming_south_tree_cluster__willow_v01
+  selected_candidate: 1
+  candidates: 1
+  source_size:
+  - 1536
+  - 1024
+  source_alpha_range:
+  - 0
+  - 254
+  alpha_bbox:
+  - 137
+  - 4
+  - 1424
+  - 987
+  crop_rule: alpha≥16仅定位裁框后外扩2px；框内RGBA原样交由等比缩放，未清零或改色。
+  source_anchor_px:
+  - 780
+  - 979
+  anchor_method: 底面中心或根点人工估测，非alpha框底边
+  measured_plan_width_px: 1290
+  target_plan_width_px: 192
+  scale: 0.14883720930232558
+  scale_basis: 64×32格：水平包络32×(w+h)；植物用冠幅包络，均为建议值。
+  normalized_size:
+  - 200
+  - 154
+  anchor_px:
+  - 99.7
+  - 149.12
+  alpha_range:
+  - 0
+  - 255
+  geometry_status: 待实测：AI投影非严格计量几何；不得据此宣称运行时契约通过。
+- id: tex_town_ming_south_tree_cluster__bamboo_v01
+  selected_candidate: 1
+  candidates: 1
+  source_size:
+  - 1263
+  - 1246
+  source_alpha_range:
+  - 0
+  - 255
+  alpha_bbox:
+  - 177
+  - 20
+  - 1123
+  - 1222
+  crop_rule: alpha≥16仅定位裁框后外扩2px；框内RGBA原样交由等比缩放，未清零或改色。
+  source_anchor_px:
+  - 620
+  - 1194
+  anchor_method: 底面中心或根点人工估测，非alpha框底边
+  measured_plan_width_px: 944
+  target_plan_width_px: 128
+  scale: 0.13559322033898305
+  scale_basis: 64×32格：水平包络32×(w+h)；植物用冠幅包络，均为建议值。
+  normalized_size:
+  - 136
+  - 171
+  anchor_px:
+  - 64.07
+  - 163.19
+  alpha_range:
+  - 0
+  - 255
+  geometry_status: 待实测：AI投影非严格计量几何；不得据此宣称运行时契约通过。

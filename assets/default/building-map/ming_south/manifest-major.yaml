@@ -1,0 +1,424 @@
+- id: bld_kit_ming_south_yamen
+  file: bld_kit_ming_south_yamen.png
+  category: building-map
+  style: default
+  subject: 衙门 / 官署（明代江南；原创扩展，细部待考）
+  prompt: 'Use case: historical-scene. Asset type: one standalone game city-map building sprite for the tianshu Ming Jiangnan kit. Match the two Southern Song building style references already visible in conversation: finely resolved real clay tiles, stone plinths and wood grain, restrained warm daylight, believable hand-built construction, clean miniature-scale readable silhouette and same detail density. This is a NEW original building, not a copy or edit of those references. Ming Jiangnan palette: chalk-white lime plaster, dark charcoal-grey plain fired clay roof tiles, weathered dark-brown timber, pale grey stone. Authentic restrained south-China timber proportions and gently upturned eaves, no Qing imperial ornament. Camera: STRICT orthographic 2:1 dimetric, yaw 45 degrees, elevation 30 degrees; all ground-plane straight lines slope exactly +0.5 or -0.5; verticals vertical, opposite sides parallel, no perspective convergence. For footprint W by H in metres, the ground diamond is defined by left=(0,16*H), back=(32*H,0), right=(32*(W+H),16*W), front=(32*W,16*(W+H)); show the outer footprint corners clearly, ground only within the footprint, no raised island. Main entrance faces lower-left screen edge. Light from upper-left, tiny soft contact shadow toward lower-right, no wide baked shadow. TRUE transparent RGBA background, all outside regions alpha zero; no painted checkerboard, white background, text, signs, pseudo-writing, people, modern object, sky, neighboring buildings, border, grid, watermark. Full roof eaves, foundations and tiny contact shadow fully visible with generous clear margins. One isolated building or unified compound only. Subject: Ming Jiangnan county administrative yamen compound, one main austere hall at the rear, subordinate side offices, formal low entry gate and enclosing white lime walls. Five-bay main hall in dark timber with grey tiled roof, one drum by doorway as a functional clue. Formal balanced paved courtyard, no imperial yellow or red roof. Ground footprint 16 by 13. CORRECTION TO COMPOSITION: zoom out to leave at least 10 percent wholly transparent padding on all sides. A very low birdseye elevation of EXACTLY 30 degrees, not isometric 35.264. Show footprint front edge to lower-left at angle 26.565 degrees, other at 153.435 degrees; ground width twice its projected depth. Keep front and rear corners correctly aligned to +0.5/-0.5 ground axes. The compound floor must be one simple regular parallelogram; longer visible front wall (16m) to left and slightly shorter right wall (13m), no exaggerated depth. The small entrance steps are INSIDE the footprint. All roofs stay safely inside canvas. Simpler low buildings and minimal ornament consistent with viewed Song baseline. Empty black you may see in references represents true alpha; output actual alpha. Generate only image.'
+  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  references: []
+  tool: image_gen built-in
+  model: 未披露：工具返回未提供图像模型标识
+  effort: 未披露：工具未提供图像生成推理强度
+  created: '2026-09-30T14:31:15-07:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-5e234ab1-dd6e-4a88-9bcb-0e260efa8e24.png
+  size: 971x579
+  sha256: 083dff6b911bce48955c4471d34d288f713e0efb58ff213ee8c8cc16c4f60324
+  status: candidate
+  notes: design/22 §3.4 冻结占地的江南同构变体；2选1：第二候选边缘完整、地面轴偏差较第一候选略小；仍明显不达±0.03轴斜率要求，暂留candidate待返修；真实RGBA，几何只裁切/等比重采样/透明pad。精确投影与拼接待实测。
+  building:
+    type: bld_kit_ming_south_yamen
+    footprint:
+    - 16
+    - 13
+    anchor:
+    - 485.168
+    - 325.391
+    era: ming_south
+  footprint_m:
+  - 16
+  - 13
+  entrance:
+    side: S
+    offset_m: 8.0
+    status: 【建议值】门位由图像识别；待拼接实测
+  projection_contract:
+    target: orthographic yaw45 pitch30; 64x32 px/m
+    provided_views:
+    - southwest_single_view
+    allowRotation: false
+    geometry_release_ready: false
+  metadata: meta/bld_kit_ming_south_yamen.yaml
+  candidate_count: 2
+  source_sha256: 553102cf4ab36d8892683dee76e0c8cb27523af27d7fdd58e65091fd2350f246
+  style_reference_chain:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_yamen.png
+    role: view_image仅查看；本次新图无显式图像输入
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_manor.png
+    role: view_image仅查看；本次新图无显式图像输入
+  historical_research: major-research.json
+- id: bld_kit_ming_south_biaoju
+  file: bld_kit_ming_south_biaoju.png
+  category: building-map
+  style: default
+  subject: 镖局 / 货栈（明代江南；原创扩展，细部待考）
+  prompt: 'Use case: precise-object-edit. EDIT this transparent Ming Jiangnan game building to correct ONLY projection and retain all architectural details, white plaster, charcoal grey tiles, chestnut timber, texture detail and upper-left light. Strict 2:1 ORTHOGRAPHIC DIMETRIC, camera yaw45 elevation30. The visible ground rectangle must have slopes exactly+0.500 and-0.500; lower the camera elevation slightly versus supplied source, reduce the visible courtyard/ground depth. Front corner remains lowest ground vertex; ground long diagonal must be twice the equivalent square''s height. No perspective. Preserve entrance on screen-lower-left face, all buildings and eaves intact, generous transparent margins. No thick plinth, no additional objects, no text, no background or halo. Preserve true alpha. Logical footprint 15 by12. Output final transparent PNG only.'
+  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  references:
+  - /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-0f061399-1132-40f2-a18f-0d4a90ae04db.png
+  tool: image_gen built-in
+  model: 未披露：工具返回未提供图像模型标识
+  effort: 未披露：工具未提供图像生成推理强度
+  created: '2026-09-30T14:31:15-07:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-ed255d06-5bcb-43a2-b12c-05af77cfad60.png
+  size: 905x543
+  sha256: 9a66e0eb170eb99bcf3e343a148cd4735280f73eda6e058758372ca17fa974ec
+  status: candidate
+  notes: design/22 §3.4 冻结占地的江南同构变体；2选1：第二候选地面深度略收敛；仍有右轴斜率残差，镖局题材为原创扩展；真实RGBA，几何只裁切/等比重采样/透明pad。精确投影与拼接待实测。
+  building:
+    type: bld_kit_ming_south_biaoju
+    footprint:
+    - 15
+    - 12
+    anchor:
+    - 452.192
+    - 297.666
+    era: ming_south
+  footprint_m:
+  - 15
+  - 12
+  entrance:
+    side: S
+    offset_m: 7.5
+    status: 【建议值】门位由图像识别；待拼接实测
+  projection_contract:
+    target: orthographic yaw45 pitch30; 64x32 px/m
+    provided_views:
+    - southwest_single_view
+    allowRotation: false
+    geometry_release_ready: false
+  metadata: meta/bld_kit_ming_south_biaoju.yaml
+  candidate_count: 2
+  source_sha256: 292f47a83237971cd12a1c8f6919f820a5a99e944e46c8396c885f84b205e5c9
+  style_reference_chain:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_biaoju.png
+    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
+  historical_research: major-research.json
+- id: bld_kit_ming_south_casino
+  file: bld_kit_ming_south_casino.png
+  category: building-map
+  style: default
+  subject: 赌场（明代江南；原创扩展，细部待考）
+  prompt: 'Use case: precise-object-edit. EDIT this transparent Ming Jiangnan game building to correct ONLY projection and retain all architectural details, white plaster, charcoal grey tiles, chestnut timber, texture detail and upper-left light. Strict 2:1 ORTHOGRAPHIC DIMETRIC, camera yaw45 elevation30. The visible ground rectangle must have slopes exactly+0.500 and-0.500; lower the camera elevation slightly versus supplied source, reduce the visible courtyard/ground depth. Front corner remains lowest ground vertex; ground long diagonal must be twice the equivalent square''s height. No perspective. Preserve entrance on screen-lower-left face, all buildings and eaves intact, generous transparent margins. No thick plinth, no additional objects, no text, no background or halo. Preserve true alpha. Logical footprint 10 by8. Output final transparent PNG only.'
+  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  references:
+  - /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-f5043abf-0665-4f6e-858a-329921cdee52.png
+  tool: image_gen built-in
+  model: 未披露：工具返回未提供图像模型标识
+  effort: 未披露：工具未提供图像生成推理强度
+  created: '2026-09-30T14:31:15-07:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-c20f52c2-3f31-4696-b302-ab6088dfeb24.png
+  size: 617x580
+  sha256: 1573c92c65c35735ac682ff5485157ab7d6e730c51ba9aff17519bc4dfe2e4eb
+  status: candidate
+  notes: 【建议值】本任务功能补齐；沿用近类宋套件比例，待design/22登记；2选1：第二候选右轴更近目标，左轴仍超建议容差；外观与桌具仅表示游戏赌场；真实RGBA，几何只裁切/等比重采样/透明pad。精确投影与拼接待实测。
+  building:
+    type: bld_kit_ming_south_casino
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 308.5
+    - 401.25
+    era: ming_south
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    side: S
+    offset_m: 5.0
+    status: 【建议值】门位由图像识别；待拼接实测
+  projection_contract:
+    target: orthographic yaw45 pitch30; 64x32 px/m
+    provided_views:
+    - southwest_single_view
+    allowRotation: false
+    geometry_release_ready: false
+  metadata: meta/bld_kit_ming_south_casino.yaml
+  candidate_count: 2
+  source_sha256: aef62c00c2783a856fa65613407e3a0e3406e4f160469bb8cd4d620f202ba553
+  style_reference_chain:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_casino.png
+    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
+  historical_research: major-research.json
+- id: bld_kit_ming_south_manor
+  file: bld_kit_ming_south_manor.png
+  category: building-map
+  style: default
+  subject: 山庄 / 商帮大院（明代江南；原创扩展，细部待考）
+  prompt: 'Use case: precise-object-edit. EDIT this transparent Ming Jiangnan game building to correct ONLY projection and retain all architectural details, white plaster, charcoal grey tiles, chestnut timber, texture detail and upper-left light. Strict 2:1 ORTHOGRAPHIC DIMETRIC, camera yaw45 elevation30. The visible ground rectangle must have slopes exactly+0.500 and-0.500; lower the camera elevation slightly versus supplied source, reduce the visible courtyard/ground depth. Front corner remains lowest ground vertex; ground long diagonal must be twice the equivalent square''s height. No perspective. Preserve entrance on screen-lower-left face, all buildings and eaves intact, generous transparent margins. No thick plinth, no additional objects, no text, no background or halo. Preserve true alpha. Logical footprint 16 by13. Output final transparent PNG only.'
+  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  references:
+  - /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-b6200f08-bc7c-47a4-8239-515e271b8541.png
+  tool: image_gen built-in
+  model: 未披露：工具返回未提供图像模型标识
+  effort: 未披露：工具未提供图像生成推理强度
+  created: '2026-09-30T14:31:15-07:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-b404db41-47b2-4447-8e08-6ad4a241dd4a.png
+  size: 971x597
+  sha256: 841d58636096c1a2de26fbd1d4bcff3cceedb0c5d9f941b91d5c4fa8d423c781
+  status: candidate
+  notes: 【建议值】本任务功能补齐；沿用近类宋套件比例，待design/22登记；2选1：第二候选两轴偏差收敛，右轴仍超建议容差；庭院与山石为原创组合；真实RGBA，几何只裁切/等比重采样/透明pad。精确投影与拼接待实测。
+  building:
+    type: bld_kit_ming_south_manor
+    footprint:
+    - 16
+    - 13
+    anchor:
+    - 484.521
+    - 329.526
+    era: ming_south
+  footprint_m:
+  - 16
+  - 13
+  entrance:
+    side: S
+    offset_m: 8.0
+    status: 【建议值】门位由图像识别；待拼接实测
+  projection_contract:
+    target: orthographic yaw45 pitch30; 64x32 px/m
+    provided_views:
+    - southwest_single_view
+    allowRotation: false
+    geometry_release_ready: false
+  metadata: meta/bld_kit_ming_south_manor.yaml
+  candidate_count: 2
+  source_sha256: 6825fc6f8178d24c519bd9e67df9e790d7a1a0258e679b2c564773529f2ee533
+  style_reference_chain:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_manor.png
+    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
+  historical_research: major-research.json
+- id: bld_kit_ming_south_wangfu
+  file: bld_kit_ming_south_wangfu.png
+  category: building-map
+  style: default
+  subject: 王府 / 宫殿主殿模块（明代江南；原创扩展，细部待考）
+  prompt: 'Use case: precise-object-edit. Edit ONLY projection and framing of this Ming Jiangnan building sprite, preserving architecture, materials, details and true RGBA. STRICT ORTHOGRAPHIC DIMETRIC yaw45 elevation30. Ground edges must slope EXACTLY+0.500 and-0.500 (26.565degree diagonal), same scale on two axes. No perspective convergence. Correct the asymmetry in existing ground axes. Logical rectangular footprint 22 by18. Bottom-centre ground anchor, thin stone base with all four footprint corners visible or inferable. Keep white lime walls, charcoal grey clay tiled roofs, brown timber, upper-left lighting and minimal lower-right contact shadow. No added objects, text, borders or background. Keep complete roofs and generous transparent margins. Final transparent image only.'
+  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  references:
+  - /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-af939ac8-6d00-4d92-b96f-0286d48f3072.png
+  tool: image_gen built-in
+  model: 未披露：工具返回未提供图像模型标识
+  effort: 未披露：工具未提供图像生成推理强度
+  created: '2026-09-30T14:31:15-07:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-ef92282b-4acb-4b65-aac1-3ed48999e0f1.png
+  size: 1322x990
+  sha256: 44d926e5bfd5b247b74dc6af5fe58d23da1ebb32a88f78f518fdfbb24094c84f
+  status: candidate
+  notes: design/22 §3.4 冻结占地的江南同构变体；2选1：第二候选主殿基座两轴更近目标；宫殿模块等级与具体年代细部待考；真实RGBA，几何只裁切/等比重采样/透明pad。精确投影与拼接待实测。
+  building:
+    type: bld_kit_ming_south_wangfu
+    footprint:
+    - 22
+    - 18
+    anchor:
+    - 659.018
+    - 648.062
+    era: ming_south
+  footprint_m:
+  - 22
+  - 18
+  entrance:
+    side: S
+    offset_m: 11.0
+    status: 【建议值】门位由图像识别；待拼接实测
+  projection_contract:
+    target: orthographic yaw45 pitch30; 64x32 px/m
+    provided_views:
+    - southwest_single_view
+    allowRotation: false
+    geometry_release_ready: false
+  metadata: meta/bld_kit_ming_south_wangfu.yaml
+  candidate_count: 2
+  source_sha256: ecfdf8172873150f818b1e53bc5d38242ca1ffcca77ee0802f6636913217c694
+  style_reference_chain:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_palace_hall.png
+    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
+  historical_research: major-research.json
+- id: bld_kit_ming_south_temple_hall
+  file: bld_kit_ming_south_temple_hall.png
+  category: building-map
+  style: default
+  subject: 寺观殿堂（明代江南；原创扩展，细部待考）
+  prompt: 'Use case: style-transfer. EDIT the supplied Southern Song map-building PNG into a Ming Jiangnan regional variant. Preserve its orthographic 45-degree camera, 30-degree elevation, 2:1 ground axes, footprint parallelogram silhouette, grounded scale, same fine realistic detail density, upper-left daylight, bottom-centre footprint anchor, all complete eaves and transparent margins. Preserve TRUE RGBA alpha outside silhouette; no ground halo. Change wall finish to chalk-white lime plaster, dark brown chestnut timber, simple straight-line Ming lattice windows, charcoal-grey clay tile roofs and restrained Jiangnan upward eave corners. Make an original derivative game asset, not a replica of a named historical building. No new text, signage, people, modern objects, backgrounds, sky, plinth, border, grid, checkerboard or watermarks. Keep all source clear margins. Subject: Ming Jiangnan Buddhist temple main hall, one dignified timber worship building with grey tiled hip-and-gable roof and restrained brown supporting brackets, plaster-white end walls, deep portico, open central door dimly showing only a generic altar silhouette, low pale stone base and front steps. No statues outside, garden, flags, writing or monks. Footprint 14 by 11. Keep the interior generic altar low contrast; simple straight lattice, remove outdoor incense burner to keep threshold clear. Target footprint14:11 and ground axes±0.5. Final transparent image only.'
+  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_temple_hall.png
+  tool: image_gen built-in
+  model: 未披露：工具返回未提供图像模型标识
+  effort: 未披露：工具未提供图像生成推理强度
+  created: '2026-09-30T14:31:15-07:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-e94bc4f9-c4ef-4e37-bd09-fad64e4aea99.png
+  size: 853x674
+  sha256: f781af48de0474247c6e7dc980c0196523e7e60b3b930d3d013f46cb2068c1b7
+  status: candidate
+  notes: design/22 §3.4 冻结占地的江南同构变体；2选1：选第一候选，第二候选台基距源图下边仅1px且更拥挤；第一候选右轴仍超建议容差；真实RGBA，几何只裁切/等比重采样/透明pad。精确投影与拼接待实测。
+  building:
+    type: bld_kit_ming_south_temple_hall
+    footprint:
+    - 14
+    - 11
+    anchor:
+    - 420.779
+    - 464.398
+    era: ming_south
+  footprint_m:
+  - 14
+  - 11
+  entrance:
+    side: S
+    offset_m: 7.0
+    status: 【建议值】门位由图像识别；待拼接实测
+  projection_contract:
+    target: orthographic yaw45 pitch30; 64x32 px/m
+    provided_views:
+    - southwest_single_view
+    allowRotation: false
+    geometry_release_ready: false
+  metadata: meta/bld_kit_ming_south_temple_hall.yaml
+  candidate_count: 2
+  source_sha256: 459006bf0f2aeeee64ca580dd42a5aa5bc21bdd08d3c5319b5a09fdb56ab36ce
+  style_reference_chain:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_temple_hall.png
+    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
+  historical_research: major-research.json
+- id: bld_kit_ming_south_pagoda
+  file: bld_kit_ming_south_pagoda.png
+  category: building-map
+  style: default
+  subject: 五层八角砖木佛塔（明代江南；原创扩展，细部待考）
+  prompt: 'Use case: style-transfer. EDIT the supplied Southern Song map-building PNG into a Ming Jiangnan regional variant. Preserve its orthographic 45-degree camera, 30-degree elevation, 2:1 ground axes, footprint parallelogram silhouette, grounded scale, same fine realistic detail density, upper-left daylight, bottom-centre footprint anchor, all complete eaves and transparent margins. Preserve TRUE RGBA alpha outside silhouette; no ground halo. Change wall finish to chalk-white lime plaster, dark brown chestnut timber, simple straight-line Ming lattice windows, charcoal-grey clay tile roofs and restrained Jiangnan upward eave corners. Make an original derivative game asset, not a replica of a named historical building. No new text, signage, people, modern objects, backgrounds, sky, plinth, border, grid, checkerboard or watermarks. Keep all source clear margins. Subject: Ming Jiangnan Buddhist landmark: slender five-storey octagonal brick-and-timber pagoda with dark grey gently upturned clay eaves, aged pale lime and grey-brick body, small recessed openings and modest dark timber galleries. Inspired by Jiangnan brick-and-wood pagoda typology, not an exact named monument. One thin square stone footprint 7 by 7 beneath octagonal body, NO thick pedestal. Full finial and base uncut. IMPORTANT GEOMETRY EDIT: change square tower in source to genuinely OCTAGONAL tower, eight sides, visible angled corner facets, eight roof eaves per storey. Reduce to exactly FIVE storeys. Preserve reference''s realistic stone/clay/timber material density and isolated vertical sprite composition. Pale plaster brick body, simple chestnut timber galleries, no ornate gold. Generic regional interpretation, not nine-storey glazed Baoensi reconstruction. Ground square7 by7 at axes±0.5, thin paving rather than thick plinth. Final transparent image only.'
+  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_pagoda.png
+  tool: image_gen built-in
+  model: 未披露：工具返回未提供图像模型标识
+  effort: 未披露：工具未提供图像生成推理强度
+  created: '2026-09-30T14:31:15-07:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-0c5b37a7-4c73-4955-a9bd-e493e75942fb.png
+  size: 490x1103
+  sha256: 2c997a6896bda8aa1f5e84cb87c9d3415102e8a2bc99dfad65a7403ea4c56747
+  status: candidate
+  notes: 【建议值】本任务功能补齐；沿用近类宋套件比例，待design/22登记；首候选入选；八角砖木、五层压缩为原创扩展，不复原报恩寺琉璃塔；真实RGBA，几何只裁切/等比重采样/透明pad。精确投影与拼接待实测。
+  building:
+    type: bld_kit_ming_south_pagoda
+    footprint:
+    - 7
+    - 7
+    anchor:
+    - 245.382
+    - 968.892
+    era: ming_south
+  footprint_m:
+  - 7
+  - 7
+  entrance:
+    side: S
+    offset_m: 3.5
+    status: 【建议值】门位由图像识别；待拼接实测
+  projection_contract:
+    target: orthographic yaw45 pitch30; 64x32 px/m
+    provided_views:
+    - southwest_single_view
+    allowRotation: false
+    geometry_release_ready: false
+  metadata: meta/bld_kit_ming_south_pagoda.yaml
+  candidate_count: 1
+  source_sha256: c155939e451a6d7604140c62d248a5755a1c535c79235ed8db9edf4a55f690f5
+  style_reference_chain:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_pagoda.png
+    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
+  historical_research: major-research.json
+- id: bld_kit_ming_south_guardhouse
+  file: bld_kit_ming_south_guardhouse.png
+  category: building-map
+  style: default
+  subject: 城门守舍（明代江南；原创扩展，细部待考）
+  prompt: 'Use case: style-transfer. EDIT the supplied Southern Song map-building PNG into a Ming Jiangnan regional variant. Preserve its orthographic 45-degree camera, 30-degree elevation, 2:1 ground axes, footprint parallelogram silhouette, grounded scale, same fine realistic detail density, upper-left daylight, bottom-centre footprint anchor, all complete eaves and transparent margins. Preserve TRUE RGBA alpha outside silhouette; no ground halo. Change wall finish to chalk-white lime plaster, dark brown chestnut timber, simple straight-line Ming lattice windows, charcoal-grey clay tile roofs and restrained Jiangnan upward eave corners. Make an original derivative game asset, not a replica of a named historical building. No new text, signage, people, modern objects, backgrounds, sky, plinth, border, grid, checkerboard or watermarks. Keep all source clear margins. Subject: Ming Jiangnan small city-gate watchmen''s guardhouse, one low utilitarian white-plastered masonry room with dark grey clay gable roof, strong brown timber doorway, narrow side window and tiny recessed porch; this is a separate ordinary building, NOT an outer-city gate arch, wall segment, turret or palace. Thin stone sill, clear ground footprint 7 by 5. Remove decorative front porch balustrades, keep one sturdy front door and a plain low bench under the eaves. Target footprint7:5 and ground axes±0.5. Final transparent image only.'
+  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_guardhouse.png
+  tool: image_gen built-in
+  model: 未披露：工具返回未提供图像模型标识
+  effort: 未披露：工具未提供图像生成推理强度
+  created: '2026-09-30T14:31:15-07:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-1cf1ac8a-ca73-4a13-9971-2aa47f638c55.png
+  size: 422x324
+  sha256: 2cf3ab030cff740539f941fada80ec8483d32ffb51dd9f4479923fac61d48200
+  status: candidate
+  notes: 【建议值】本任务功能补齐；沿用近类宋套件比例，待design/22登记；2选1：选第一候选，第二候选地面两轴更陡；第一候选左轴仍超建议容差；真实RGBA，几何只裁切/等比重采样/透明pad。精确投影与拼接待实测。
+  building:
+    type: bld_kit_ming_south_guardhouse
+    footprint:
+    - 7
+    - 5
+    anchor:
+    - 211.195
+    - 201.676
+    era: ming_south
+  footprint_m:
+  - 7
+  - 5
+  entrance:
+    side: S
+    offset_m: 3.5
+    status: 【建议值】门位由图像识别；待拼接实测
+  projection_contract:
+    target: orthographic yaw45 pitch30; 64x32 px/m
+    provided_views:
+    - southwest_single_view
+    allowRotation: false
+    geometry_release_ready: false
+  metadata: meta/bld_kit_ming_south_guardhouse.yaml
+  candidate_count: 2
+  source_sha256: 59be04c859d0ca0bee16c54ebeb8648dbb491f27ecd9ef6cbf728a2aa7bb0c04
+  style_reference_chain:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_guardhouse.png
+    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
+  historical_research: major-research.json
+- id: bld_kit_ming_south_stable
+  file: bld_kit_ming_south_stable.png
+  category: building-map
+  style: default
+  subject: 马厩（明代江南；原创扩展，细部待考）
+  prompt: 'Use case: style-transfer. EDIT the supplied Southern Song map-building PNG into a Ming Jiangnan regional variant. Preserve its orthographic 45-degree camera, 30-degree elevation, 2:1 ground axes, footprint parallelogram silhouette, grounded scale, same fine realistic detail density, upper-left daylight, bottom-centre footprint anchor, all complete eaves and transparent margins. Preserve TRUE RGBA alpha outside silhouette; no ground halo. Change wall finish to chalk-white lime plaster, dark brown chestnut timber, simple straight-line Ming lattice windows, charcoal-grey clay tile roofs and restrained Jiangnan upward eave corners. Make an original derivative game asset, not a replica of a named historical building. No new text, signage, people, modern objects, backgrounds, sky, plinth, border, grid, checkerboard or watermarks. Keep all source clear margins. Subject: Ming Jiangnan modest stable building, one low white-plastered back wall and dark timber open-front three-bay shelter with dark grey clay tile pitched roof, straw bundles, simple low timber stall partitions and empty feeding troughs; no horses or people. Restrained working courtyard only within thin ground footprint 9 by 7. White lime wall more prominent than source, stout timber and simple roof. Target footprint9:7 and ground axes±0.5. Final transparent image only.'
+  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_stable.png
+  tool: image_gen built-in
+  model: 未披露：工具返回未提供图像模型标识
+  effort: 未披露：工具未提供图像生成推理强度
+  created: '2026-09-30T14:31:16-07:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-05192c9f-7d46-47b7-808d-ec91c74d7700.png
+  size: 556x449
+  sha256: c6d12cca3d27507a2d29452655ae7a17279c8ed196d380bfe4f1edb6f2ca08c4
+  status: candidate
+  notes: 【建议值】本任务功能补齐；沿用近类宋套件比例，待design/22登记；首候选入选；空马厩不附带人物与马匹；真实RGBA，几何只裁切/等比重采样/透明pad。精确投影与拼接待实测。
+  building:
+    type: bld_kit_ming_south_stable
+    footprint:
+    - 9
+    - 7
+    anchor:
+    - 275.032
+    - 297.464
+    era: ming_south
+  footprint_m:
+  - 9
+  - 7
+  entrance:
+    side: S
+    offset_m: 4.5
+    status: 【建议值】门位由图像识别；待拼接实测
+  projection_contract:
+    target: orthographic yaw45 pitch30; 64x32 px/m
+    provided_views:
+    - southwest_single_view
+    allowRotation: false
+    geometry_release_ready: false
+  metadata: meta/bld_kit_ming_south_stable.yaml
+  candidate_count: 1
+  source_sha256: 0e4ec0f88da81e21191ccedd27bf82de8ffde37e5b5708c5e3bdc9c52814ed08
+  style_reference_chain:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_stable.png
+    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
+  historical_research: major-research.json

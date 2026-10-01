@@ -1,0 +1,109 @@
+id: bld_kit_ming_south_wangfu
+footprint_m:
+- 22
+- 18
+footprint_origin: design/22 §3.4 冻结占地的江南同构变体
+skeleton_type: bld_kit_ming_wangfu
+anchor_px:
+- 659.018
+- 648.062
+entrance:
+  side: S
+  offset_m: 11.0
+  status: 【建议值】门位由图像识别；待拼接实测
+projection_contract:
+  target: orthographic yaw45 pitch30; 64x32 px/m
+  provided_views:
+  - southwest_single_view
+  allowRotation: false
+  geometry_release_ready: false
+measurement:
+  method: 人工读取地面左/前/右角；后角被遮挡时由平行四边形推定，不使用alpha bbox猜锚点
+  uncertainty_source_px: 4
+  ground_lfr_source_px:
+  - - 71
+    - 696
+  - - 786
+    - 1046
+  - - 1363
+    - 758
+  ground_lfr_final_px:
+  - - 18.972
+    - 617.351
+  - - 727.382
+    - 964.093
+  - - 1299.065
+    - 678.774
+  ground_center_source_px:
+  - 717.0
+  - 727.0
+  source_slopes:
+  - 0.48951048951048953
+  - -0.49913344887348354
+  slope_abs_errors:
+  - 0.010489510489510467
+  - 0.0008665511265164572
+  slope_tolerance_suggestion: 0.03
+  slope_check: true
+  observed_w_h_ratio: 1.2391681109185442
+  target_w_h_ratio: 1.2222222222222223
+  width_scale_target_px: 1280
+  width_scale_actual_px: 1280.0921658986176
+  depth_scale_target_px: 640
+  depth_observed_px: 632.0620475698036
+processing:
+  source_file: sources/bld_kit_ming_south_wangfu_c2.png
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-ef92282b-4acb-4b65-aac1-3ed48999e0f1.png
+  source_sha256: ecfdf8172873150f818b1e53bc5d38242ca1ffcca77ee0802f6636913217c694
+  source_size_px:
+  - 1420
+  - 1108
+  crop_box:
+  - 68
+  - 89
+  - 1370
+  - 1056
+  crop_rule: alpha>=3 bbox expanded4 source px; retained pixels alpha unmodified
+  discarded_alpha_max: 1
+  requested_uniform_scale: 0.9907120743034056
+  rounded_effective_scale_xy:
+  - 0.9907834101382489
+  - 0.9906928645294726
+  resized_px:
+  - 1290
+  - 958
+  canvas_px:
+  - 1322
+  - 990
+  paste_offset_px:
+  - 16
+  - 16
+  final_sha256: 44d926e5bfd5b247b74dc6af5fe58d23da1ebb32a88f78f518fdfbb24094c84f
+verification:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  zero_alpha_pixels: 626823
+  partial_alpha_pixels: 681039
+  opaque_pixels: 918
+  nonzero_alpha_bbox:
+  - 16
+  - 19
+  - 1304
+  - 972
+  margins_px:
+  - 16
+  - 19
+  - 18
+  - 18
+  source_viewed: true
+  final_viewed: true
+  runtime_assembly_tested: false
+limitations:
+- 单视图candidate，不提供GLB、四向模型或经实测的碰撞/遮挡多边形
+- 底面宽度已标定；残余斜率、宽深比例和深度误差保留，不能声称严格2:1拼接已验收
+- 建筑为原创扩展；年代细部待考；门位/高度及遮挡待实测
+candidate_count: 2
+selected_candidate: 2
+selection_note: 2选1：第二候选主殿基座两轴更近目标；宫殿模块等级与具体年代细部待考

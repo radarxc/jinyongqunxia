@@ -1,0 +1,109 @@
+id: bld_kit_ming_south_biaoju
+footprint_m:
+- 15
+- 12
+footprint_origin: design/22 §3.4 冻结占地的江南同构变体
+skeleton_type: bld_kit_ming_biaoju
+anchor_px:
+- 452.192
+- 297.666
+entrance:
+  side: S
+  offset_m: 7.5
+  status: 【建议值】门位由图像识别；待拼接实测
+projection_contract:
+  target: orthographic yaw45 pitch30; 64x32 px/m
+  provided_views:
+  - southwest_single_view
+  allowRotation: false
+  geometry_release_ready: false
+measurement:
+  method: 人工读取地面左/前/右角；后角被遮挡时由平行四边形推定，不使用alpha bbox猜锚点
+  uncertainty_source_px: 4
+  ground_lfr_source_px:
+  - - 81
+    - 558
+  - - 897
+    - 944
+  - - 1485
+    - 603
+  ground_lfr_final_px:
+  - - 20.307
+    - 283.813
+  - - 522.328
+    - 521.459
+  - - 884.078
+    - 311.518
+  ground_center_source_px:
+  - 783.0
+  - 580.5
+  source_slopes:
+  - 0.4730392156862745
+  - -0.5799319727891157
+  slope_abs_errors:
+  - 0.026960784313725505
+  - 0.07993197278911568
+  slope_tolerance_suggestion: 0.03
+  slope_check: false
+  observed_w_h_ratio: 1.3877551020408163
+  target_w_h_ratio: 1.25
+  width_scale_target_px: 864
+  width_scale_actual_px: 863.7716701902748
+  depth_scale_target_px: 432
+  depth_observed_px: 447.5867469879518
+processing:
+  source_file: sources/bld_kit_ming_south_biaoju_c2.png
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-ed255d06-5bcb-43a2-b12c-05af77cfad60.png
+  source_sha256: 292f47a83237971cd12a1c8f6919f820a5a99e944e46c8396c885f84b205e5c9
+  source_size_px:
+  - 1536
+  - 1024
+  crop_box:
+  - 74
+  - 123
+  - 1493
+  - 953
+  crop_rule: alpha>=3 bbox expanded4 source px; retained pixels alpha unmodified
+  discarded_alpha_max: 1
+  requested_uniform_scale: 0.6153846153846154
+  rounded_effective_scale_xy:
+  - 0.6152219873150105
+  - 0.6156626506024097
+  resized_px:
+  - 873
+  - 511
+  canvas_px:
+  - 905
+  - 543
+  paste_offset_px:
+  - 16
+  - 16
+  final_sha256: 9a66e0eb170eb99bcf3e343a148cd4735280f73eda6e058758372ca17fa974ec
+verification:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  zero_alpha_pixels: 251109
+  partial_alpha_pixels: 239253
+  opaque_pixels: 1053
+  nonzero_alpha_bbox:
+  - 16
+  - 16
+  - 889
+  - 527
+  margins_px:
+  - 16
+  - 16
+  - 16
+  - 16
+  source_viewed: true
+  final_viewed: true
+  runtime_assembly_tested: false
+limitations:
+- 单视图candidate，不提供GLB、四向模型或经实测的碰撞/遮挡多边形
+- 底面宽度已标定；残余斜率、宽深比例和深度误差保留，不能声称严格2:1拼接已验收
+- 建筑为原创扩展；年代细部待考；门位/高度及遮挡待实测
+candidate_count: 2
+selected_candidate: 2
+selection_note: 2选1：第二候选地面深度略收敛；仍有右轴斜率残差，镖局题材为原创扩展

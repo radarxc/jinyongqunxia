@@ -1,0 +1,1569 @@
+{
+  "date": "2026-09-30",
+  "buildings": [
+    {
+      "id": "bld_kit_ming_south_house_small",
+      "file": "bld_kit_ming_south_house_small.png",
+      "footprint": [
+        7,
+        6
+      ],
+      "source_points": [
+        [
+          57.6168,
+          346.0431
+        ],
+        [
+          288.9533,
+          462.6678
+        ],
+        [
+          473.8456,
+          365.0388
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          224,
+          112.0
+        ],
+        [
+          416,
+          16.0
+        ]
+      ],
+      "final_points": [
+        [
+          49.78956714569469,
+          270.6678
+        ],
+        [
+          273.7895671456947,
+          382.6678
+        ],
+        [
+          465.7895671456947,
+          286.6678
+        ]
+      ],
+      "anchor": [
+        257.7896,
+        278.6678
+      ],
+      "piecewise_maps": [
+        [
+          0.9682864571738571,
+          -55.78956714569469,
+          -0.019991224903981943,
+          -344.89126959295226
+        ],
+        [
+          1.0384423796988842,
+          -76.0613524738456,
+          0.008810534565257825,
+          -353.2136330373953
+        ]
+      ],
+      "crop": [
+        30,
+        104,
+        531,
+        572
+      ],
+      "size": [
+        501,
+        468
+      ],
+      "sha256": "5d44680894eedc27e552f23115a07a662d17a8bded93904285365890cc5fcffe",
+      "vertical_vector": [
+        0,
+        1
+      ],
+      "method": "piecewise x-affine plus column translation from measured L/F/R to exact registered L/F/R",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true,
+      "measured_footprint_ratio": 1.166667,
+      "target_footprint_ratio": 1.166667
+    },
+    {
+      "id": "bld_kit_ming_south_house_large",
+      "file": "bld_kit_ming_south_house_large.png",
+      "footprint": [
+        10,
+        8
+      ],
+      "source_points": [
+        [
+          148.4348,
+          361.8162
+        ],
+        [
+          484.4348,
+          516.3456
+        ],
+        [
+          724.4348,
+          393.6618
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          320,
+          160.0
+        ],
+        [
+          576,
+          32.0
+        ]
+      ],
+      "final_points": [
+        [
+          31.36647619047619,
+          356.23294826452377
+        ],
+        [
+          351.3664761904762,
+          516.2329482645238
+        ],
+        [
+          607.3664761904762,
+          388.23294826452377
+        ]
+      ],
+      "anchor": [
+        319.3665,
+        372.2329
+      ],
+      "piecewise_maps": [
+        [
+          0.9523809523809523,
+          -141.3664761904762,
+          0.01628154761904759,
+          -364.23294826452377
+        ],
+        [
+          1.0666666666666667,
+          -196.73045333333334,
+          -0.02215083333333349,
+          -345.61496548433325
+        ]
+      ],
+      "crop": [
+        134,
+        32,
+        785,
+        572
+      ],
+      "size": [
+        651,
+        540
+      ],
+      "sha256": "fb127deb08603062c263430cdd08c074ef42775d145da1756e91dd824ba0f332",
+      "vertical_vector": [
+        0,
+        1
+      ],
+      "method": "piecewise x-affine plus column translation from measured L/F/R to exact registered L/F/R",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true,
+      "measured_footprint_ratio": 1.25,
+      "target_footprint_ratio": 1.25
+    },
+    {
+      "id": "bld_kit_ming_south_courtyard",
+      "file": "bld_kit_ming_south_courtyard.png",
+      "footprint": [
+        10,
+        8
+      ],
+      "source_points": [
+        [
+          33.5327,
+          374.0868
+        ],
+        [
+          337.341,
+          525.425
+        ],
+        [
+          609.3554,
+          380.1403
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          320,
+          160.0
+        ],
+        [
+          576,
+          32.0
+        ]
+      ],
+      "final_points": [
+        [
+          24.319851366799384,
+          250.0428421517779
+        ],
+        [
+          344.3198513667994,
+          410.0428421517779
+        ],
+        [
+          600.3198513667994,
+          282.0428421517779
+        ]
+      ],
+      "anchor": [
+        312.3199,
+        266.0428
+      ],
+      "piecewise_maps": [
+        [
+          1.0532957789500812,
+          -35.319851366799384,
+          0.02851074180659326,
+          -375.0428421517779
+        ],
+        [
+          0.9411266462363757,
+          2.519396031974793,
+          0.06354332711797585,
+          -386.86076951330506
+        ]
+      ],
+      "crop": [
+        35,
+        149,
+        661,
+        656
+      ],
+      "size": [
+        626,
+        507
+      ],
+      "sha256": "1b03040ce1cfe3265a4c3c1c7929a46691314e1903a2b2086ee1bbaefa8ec505",
+      "vertical_vector": [
+        0,
+        1
+      ],
+      "method": "piecewise x-affine plus column translation from measured L/F/R to exact registered L/F/R",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true,
+      "measured_footprint_ratio": 1.25,
+      "target_footprint_ratio": 1.25
+    },
+    {
+      "id": "bld_kit_ming_south_shop_1f",
+      "file": "bld_kit_ming_south_shop_1f.png",
+      "footprint": [
+        7,
+        5
+      ],
+      "source_points": [
+        [
+          48.3946,
+          314.077
+        ],
+        [
+          285.1991,
+          425.9473
+        ],
+        [
+          432.1161,
+          350.3593
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          224,
+          112.0
+        ],
+        [
+          384,
+          32.0
+        ]
+      ],
+      "final_points": [
+        [
+          29.77780574271182,
+          231.79728040254025
+        ],
+        [
+          253.77780574271185,
+          343.79728040254025
+        ],
+        [
+          413.77780574271185,
+          263.79728040254025
+        ]
+      ],
+      "anchor": [
+        221.7778,
+        247.7973
+      ],
+      "piecewise_maps": [
+        [
+          0.9459279701188111,
+          -45.77780574271181,
+          0.0005477091862697454,
+          -314.1035061669858
+        ],
+        [
+          1.0890502800901187,
+          -86.59615973644975,
+          -0.03003056147348526,
+          -305.3826108952673
+        ]
+      ],
+      "crop": [
+        40,
+        112,
+        493,
+        479
+      ],
+      "size": [
+        453,
+        367
+      ],
+      "sha256": "90bd184e25eb634964a480881187fe9ad96cef7178689795b71256f6d7fee1ba",
+      "vertical_vector": [
+        0,
+        1
+      ],
+      "method": "piecewise x-affine plus column translation from measured L/F/R to exact registered L/F/R",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true,
+      "measured_footprint_ratio": 1.4,
+      "target_footprint_ratio": 1.4
+    },
+    {
+      "id": "bld_kit_ming_south_restaurant",
+      "file": "bld_kit_ming_south_restaurant.png",
+      "footprint": [
+        12,
+        9
+      ],
+      "source_points": [
+        [
+          42.1897,
+          466.3628
+        ],
+        [
+          403.7201,
+          659.5875
+        ],
+        [
+          713.8351,
+          498.2963
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          384,
+          192.0
+        ],
+        [
+          672,
+          48.0
+        ]
+      ],
+      "final_points": [
+        [
+          43.81184652798217,
+          449.5875
+        ],
+        [
+          427.8118465279822,
+          641.5875
+        ],
+        [
+          715.8118465279822,
+          497.5875
+        ]
+      ],
+      "anchor": [
+        379.8118,
+        473.5875
+      ],
+      "piecewise_maps": [
+        [
+          1.062151343289527,
+          -44.81184652798216,
+          -0.003387543620121529,
+          -466.21988055093016
+        ],
+        [
+          0.928687744868839,
+          9.07009077277786,
+          0.055757380326653026,
+          -490.09787516121435
+        ]
+      ],
+      "crop": [
+        25,
+        42,
+        763,
+        709
+      ],
+      "size": [
+        738,
+        667
+      ],
+      "sha256": "e7e4da124a36928dd8bf0a7c3646fd92266c14ff96cfb1e795c0afacad9f5d62",
+      "vertical_vector": [
+        0,
+        1
+      ],
+      "method": "piecewise x-affine plus column translation from measured L/F/R to exact registered L/F/R",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true,
+      "measured_footprint_ratio": 1.333333,
+      "target_footprint_ratio": 1.333333
+    },
+    {
+      "id": "bld_kit_ming_south_yamen",
+      "file": "bld_kit_ming_south_yamen.png",
+      "footprint": [
+        16,
+        13
+      ],
+      "source_points": [
+        [
+          23.9585,
+          325.6515
+        ],
+        [
+          564.4147,
+          584.6591
+        ],
+        [
+          951.4885,
+          375.572
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          512,
+          256.0
+        ],
+        [
+          928,
+          48.0
+        ]
+      ],
+      "final_points": [
+        [
+          26.697032617999383,
+          331.65909999999997
+        ],
+        [
+          538.6970326179994,
+          587.6591000000001
+        ],
+        [
+          954.6970326179993,
+          379.65909999999997
+        ]
+      ],
+      "anchor": [
+        490.697,
+        355.6591
+      ],
+      "piecewise_maps": [
+        [
+          0.9473478146795243,
+          -22.697032617999383,
+          -0.005564928295761928,
+          -325.518172665426
+        ],
+        [
+          1.074730451918988,
+          -94.5936656007201,
+          0.002808508351637243,
+          -330.2442633987368
+        ]
+      ],
+      "crop": [
+        20,
+        21,
+        1001,
+        632
+      ],
+      "size": [
+        981,
+        611
+      ],
+      "sha256": "4c8cd35db75b73d6bc6a42b4403c9a9201451c513d2fb36753d868669f79e4b6",
+      "vertical_vector": [
+        0,
+        1
+      ],
+      "method": "piecewise x-affine plus column translation from measured L/F/R to exact registered L/F/R",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true,
+      "measured_footprint_ratio": 1.230769,
+      "target_footprint_ratio": 1.230769
+    },
+    {
+      "id": "bld_kit_ming_south_biaoju",
+      "file": "bld_kit_ming_south_biaoju.png",
+      "footprint": [
+        15,
+        12
+      ],
+      "source_points": [
+        [
+          22.6591,
+          322.7865
+        ],
+        [
+          511.4389,
+          573.0071
+        ],
+        [
+          887.0136,
+          387.3381
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          480,
+          240.0
+        ],
+        [
+          864,
+          48.0
+        ]
+      ],
+      "final_points": [
+        [
+          26.252081612210652,
+          334.8098620713003
+        ],
+        [
+          506.25208161221065,
+          574.8098620713004
+        ],
+        [
+          890.2520816122106,
+          382.8098620713003
+        ]
+      ],
+      "anchor": [
+        458.2521,
+        358.8099
+      ],
+      "piecewise_maps": [
+        [
+          0.9820373100525023,
+          -22.252081612210652,
+          -0.020910438606505523,
+          -322.3126882805713
+        ],
+        [
+          1.0224330872127436,
+          -42.912053447689686,
+          -0.01685683300818708,
+          -324.3858598688091
+        ]
+      ],
+      "crop": [
+        20,
+        29,
+        942,
+        627
+      ],
+      "size": [
+        922,
+        598
+      ],
+      "sha256": "9369f25c24166cfd1a4e70271721534a61e8cb468838df3ca299ae9f28760c5a",
+      "vertical_vector": [
+        0,
+        1
+      ],
+      "method": "piecewise x-affine plus column translation from measured L/F/R to exact registered L/F/R",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true,
+      "measured_footprint_ratio": 1.25,
+      "target_footprint_ratio": 1.25
+    },
+    {
+      "id": "bld_kit_ming_south_casino",
+      "file": "bld_kit_ming_south_casino.png",
+      "footprint": [
+        10,
+        8
+      ],
+      "source_points": [
+        [
+          20.553,
+          382.471
+        ],
+        [
+          331.263,
+          557.74
+        ],
+        [
+          596.447,
+          420.029
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          320,
+          160.0
+        ],
+        [
+          576,
+          32.0
+        ]
+      ],
+      "final_points": [
+        [
+          24.16751955199382,
+          393.74
+        ],
+        [
+          344.1675195519938,
+          553.74
+        ],
+        [
+          600.1675195519938,
+          425.74
+        ]
+      ],
+      "anchor": [
+        312.1675,
+        409.74
+      ],
+      "piecewise_maps": [
+        [
+          1.02989926297834,
+          -21.16751955199382,
+          -0.04914228702005087,
+          -381.4609785748769
+        ],
+        [
+          0.9653674429829853,
+          0.20948473512737564,
+          0.036619856401592904,
+          -409.87080349116087
+        ]
+      ],
+      "crop": [
+        21,
+        28,
+        645,
+        607
+      ],
+      "size": [
+        624,
+        579
+      ],
+      "sha256": "155c7500351e1557d08281e2b38f417ad965ebb8c50fb5a949abb24e8340568d",
+      "vertical_vector": [
+        0,
+        1
+      ],
+      "method": "piecewise x-affine plus column translation from measured L/F/R to exact registered L/F/R",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true,
+      "measured_footprint_ratio": 1.25,
+      "target_footprint_ratio": 1.25
+    },
+    {
+      "id": "bld_kit_ming_south_manor",
+      "file": "bld_kit_ming_south_manor.png",
+      "footprint": [
+        16,
+        13
+      ],
+      "source_points": [
+        [
+          20.568,
+          315.809
+        ],
+        [
+          541.292,
+          573.162
+        ],
+        [
+          948.475,
+          343.243
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          512,
+          256.0
+        ],
+        [
+          928,
+          48.0
+        ]
+      ],
+      "final_points": [
+        [
+          21.223412018650954,
+          319.16200000000003
+        ],
+        [
+          533.223412018651,
+          575.162
+        ],
+        [
+          949.223412018651,
+          367.16200000000003
+        ]
+      ],
+      "anchor": [
+        485.2234,
+        343.162
+      ],
+      "piecewise_maps": [
+        [
+          0.9832464030849355,
+          -20.223412018650954,
+          -0.0025983054362771997,
+          -315.7555580537867
+        ],
+        [
+          1.0216536544993284,
+          -41.01294995125056,
+          0.05383083281964139,
+          -346.30019915860936
+        ]
+      ],
+      "crop": [
+        23,
+        22,
+        997,
+        625
+      ],
+      "size": [
+        974,
+        603
+      ],
+      "sha256": "74311eed133b8efbc150192d8ca1c706995047a9097faa333e0efe63a16d071c",
+      "vertical_vector": [
+        0,
+        1
+      ],
+      "method": "piecewise x-affine plus column translation from measured L/F/R to exact registered L/F/R",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true,
+      "measured_footprint_ratio": 1.230769,
+      "target_footprint_ratio": 1.230769
+    },
+    {
+      "id": "bld_kit_ming_south_temple_hall",
+      "file": "bld_kit_ming_south_temple_hall.png",
+      "footprint": [
+        14,
+        11
+      ],
+      "source_points": [
+        [
+          20.0859,
+          386.8938
+        ],
+        [
+          464.2771,
+          593.9178
+        ],
+        [
+          820.3304,
+          416.6353
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          448,
+          224.0
+        ],
+        [
+          800,
+          48.0
+        ]
+      ],
+      "final_points": [
+        [
+          23.258130282635044,
+          377.6614384367813
+        ],
+        [
+          471.258130282635,
+          601.6614384367813
+        ],
+        [
+          823.2581302826351,
+          425.6614384367813
+        ]
+      ],
+      "anchor": [
+        423.2581,
+        401.6614
+      ],
+      "piecewise_maps": [
+        [
+          1.0085746858560007,
+          -20.258130282635044,
+          0.03821777648904332,
+          -387.6614384367813
+        ],
+        [
+          0.9886160302404161,
+          -10.991783533532725,
+          0.0036019888033619798,
+          -371.5901209158574
+        ]
+      ],
+      "crop": [
+        21,
+        34,
+        868,
+        659
+      ],
+      "size": [
+        847,
+        625
+      ],
+      "sha256": "042ebd6c07b10ed9a4fcaeb8e8dddaae3235a4eaf215eb498e18d409878c4c35",
+      "vertical_vector": [
+        0,
+        1
+      ],
+      "method": "piecewise x-affine plus column translation from measured L/F/R to exact registered L/F/R",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true,
+      "measured_footprint_ratio": 1.272727,
+      "target_footprint_ratio": 1.272727
+    },
+    {
+      "id": "bld_kit_ming_south_guardhouse",
+      "file": "bld_kit_ming_south_guardhouse.png",
+      "footprint": [
+        7,
+        5
+      ],
+      "source_points": [
+        [
+          19.126,
+          177.831
+        ],
+        [
+          249.297,
+          304.873
+        ],
+        [
+          403.265,
+          225.521
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          224,
+          112.0
+        ],
+        [
+          384,
+          32.0
+        ]
+      ],
+      "final_points": [
+        [
+          23.613222343388173,
+          188.5998493712979
+        ],
+        [
+          247.6132223433882,
+          300.59984937129786
+        ],
+        [
+          407.6132223433882,
+          220.5998493712979
+        ]
+      ],
+      "anchor": [
+        215.6132,
+        204.5998
+      ],
+      "piecewise_maps": [
+        [
+          0.9731894982426109,
+          -18.613222343388177,
+          -0.06535141264538105,
+          -176.58108888174442
+        ],
+        [
+          1.0391769718383042,
+          -35.06370154837373,
+          -0.004208666735945107,
+          -191.82379200872907
+        ]
+      ],
+      "crop": [
+        19,
+        29,
+        450,
+        353
+      ],
+      "size": [
+        431,
+        324
+      ],
+      "sha256": "e88ff732c1fa35af47af574aa9821313615d88dd2b09b0a27186f2e8bf71957b",
+      "vertical_vector": [
+        0,
+        1
+      ],
+      "method": "piecewise x-affine plus column translation from measured L/F/R to exact registered L/F/R",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true,
+      "measured_footprint_ratio": 1.4,
+      "target_footprint_ratio": 1.4
+    },
+    {
+      "id": "bld_kit_ming_south_warehouse",
+      "file": "bld_kit_ming_south_warehouse.png",
+      "footprint": [
+        10,
+        8
+      ],
+      "source_points": [
+        [
+          144.2122,
+          355.3714
+        ],
+        [
+          462.4643,
+          536.3695
+        ],
+        [
+          720.4916,
+          412.761
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          320,
+          160.0
+        ],
+        [
+          576,
+          32.0
+        ]
+      ],
+      "final_points": [
+        [
+          91.00424034908175,
+          338.6588191013122
+        ],
+        [
+          411.0042403490818,
+          498.65881910131225
+        ],
+        [
+          667.0042403490818,
+          370.6588191013122
+        ]
+      ],
+      "anchor": [
+        379.0042,
+        354.6588
+      ],
+      "piecewise_maps": [
+        [
+          1.0054921868543838,
+          -145.00424034908175,
+          -0.06597945465245955,
+          -345.8563576897686
+        ],
+        [
+          0.992143079433843,
+          -138.83075473021654,
+          -0.01701951692708488,
+          -368.4985810179776
+        ]
+      ],
+      "crop": [
+        78,
+        68,
+        770,
+        589
+      ],
+      "size": [
+        692,
+        521
+      ],
+      "sha256": "5eb15003361b5136d6dd59f3507d42739ae0353e0c604cfe9603806a4169ca2b",
+      "vertical_vector": [
+        0,
+        1
+      ],
+      "method": "piecewise x-affine plus column translation from measured L/F/R to exact registered L/F/R",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true,
+      "measured_footprint_ratio": 1.25,
+      "target_footprint_ratio": 1.25
+    },
+    {
+      "id": "bld_kit_ming_south_wharf",
+      "file": "bld_kit_ming_south_wharf.png",
+      "footprint": [
+        10,
+        4
+      ],
+      "source_points": [
+        [
+          107.4271,
+          198.2991
+        ],
+        [
+          429.2668,
+          365.8953
+        ],
+        [
+          555.1327,
+          300.332
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          320,
+          160.0
+        ],
+        [
+          448,
+          96.0
+        ]
+      ],
+      "final_points": [
+        [
+          83.81302524206927,
+          200.89530000000002
+        ],
+        [
+          403.8130252420693,
+          360.8953
+        ],
+        [
+          531.8130252420693,
+          296.8953
+        ]
+      ],
+      "anchor": [
+        307.813,
+        248.8953
+      ],
+      "piecewise_maps": [
+        [
+          0.9942838002893988,
+          -106.81302524206927,
+          -0.023602433136744816,
+          -195.76355905517562
+        ],
+        [
+          1.0169553469208101,
+          -116.545167515586,
+          0.012420361670635385,
+          -211.22694890919632
+        ]
+      ],
+      "crop": [
+        47,
+        29,
+        610,
+        446
+      ],
+      "size": [
+        563,
+        417
+      ],
+      "sha256": "6f53da96e265a412a2e6d60c16c7e9d9697d2c92c6008629e57237ba9425850e",
+      "vertical_vector": [
+        0,
+        1
+      ],
+      "method": "piecewise x-affine plus column translation from measured L/F/R to exact registered L/F/R",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true,
+      "measured_footprint_ratio": 2.5,
+      "target_footprint_ratio": 2.5
+    }
+  ],
+  "tiles": [
+    {
+      "id": "tex_town_ming_south_city_gate__k4_r000_v01",
+      "file": "tex_town_ming_south_city_gate__k4_r000_v01.png",
+      "source": "revisions_r3/city_gate_k4/candidate_2.png",
+      "source_sha256": "9dbf78019a5d526b8176d4c0b444b8fe6c8d0cad0fa4c2f502a15a73b8059f0a",
+      "footprint": [
+        8,
+        4
+      ],
+      "passage": [
+        4,
+        4
+      ],
+      "source_points": [
+        [
+          103,
+          908
+        ],
+        [
+          309,
+          1020
+        ],
+        [
+          607,
+          1123
+        ],
+        [
+          803,
+          1235
+        ],
+        [
+          1187,
+          1058
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          64,
+          32
+        ],
+        [
+          192,
+          96
+        ],
+        [
+          256,
+          128.0
+        ],
+        [
+          384,
+          64.0
+        ]
+      ],
+      "final_points": [
+        [
+          41.0,
+          332.20000000000005
+        ],
+        [
+          105.0,
+          364.20000000000005
+        ],
+        [
+          233.0,
+          428.20000000000005
+        ],
+        [
+          297.0,
+          460.20000000000005
+        ],
+        [
+          425.0,
+          396.20000000000005
+        ]
+      ],
+      "anchor": [
+        233.0,
+        364.2
+      ],
+      "passage_dx": 128.0,
+      "passage_cells": 4.0,
+      "vertical_scale": 0.36,
+      "crop": [
+        15,
+        27,
+        472,
+        515
+      ],
+      "size": [
+        457,
+        488
+      ],
+      "sha256": "9a91363cc27fee362d80ef9a9f5c2b6eecf6e8c15a20380ea00832df081b13bd",
+      "method": "piecewise x-affine plus column translation; verticals remain vertical",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true
+    },
+    {
+      "id": "tex_town_ming_south_city_gate__k6_r000_v01",
+      "file": "tex_town_ming_south_city_gate__k6_r000_v01.png",
+      "source": "revisions_r3/city_gate_k6/candidate_1.png",
+      "source_sha256": "4b0722881a2391f69c140425a4d393afca1a9ca8a6e87372cbbafa80b7f05865",
+      "footprint": [
+        10,
+        4
+      ],
+      "passage": [
+        6,
+        4
+      ],
+      "source_points": [
+        [
+          81,
+          763
+        ],
+        [
+          248,
+          865
+        ],
+        [
+          741,
+          1119
+        ],
+        [
+          914,
+          1225
+        ],
+        [
+          1175,
+          1087
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          0
+        ],
+        [
+          64,
+          32
+        ],
+        [
+          256,
+          128
+        ],
+        [
+          320,
+          160.0
+        ],
+        [
+          448,
+          96.0
+        ]
+      ],
+      "final_points": [
+        [
+          39.041916167664674,
+          295.46360153256705
+        ],
+        [
+          103.04191616766468,
+          327.46360153256705
+        ],
+        [
+          295.0419161676647,
+          423.46360153256705
+        ],
+        [
+          359.0419161676647,
+          455.46360153256705
+        ],
+        [
+          487.0419161676646,
+          391.46360153256705
+        ]
+      ],
+      "anchor": [
+        263.0419,
+        343.4636
+      ],
+      "passage_dx": 192.0,
+      "passage_cells": 6.0,
+      "vertical_scale": 0.4,
+      "crop": [
+        16,
+        70,
+        554,
+        547
+      ],
+      "size": [
+        538,
+        477
+      ],
+      "sha256": "5e5fdee8c4722cf5229af9c9f324e415c2cb4ad9f40ba9b62f74a9bcdf6724ec",
+      "method": "piecewise x-affine plus column translation; verticals remain vertical",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true
+    },
+    {
+      "id": "tex_town_ming_south_wall_corner__outer_ne_v01",
+      "file": "tex_town_ming_south_wall_corner__outer_ne_v01.png",
+      "source": "revisions_r3/wall_corner/candidate_2.png",
+      "source_sha256": "ab9457cd381d60020c73d34f6e83082706e8844e724a8182d4736dcad739f95c",
+      "footprint": [
+        2,
+        2
+      ],
+      "source_points": [
+        [
+          176,
+          331
+        ],
+        [
+          614,
+          61
+        ],
+        [
+          1053,
+          330
+        ]
+      ],
+      "target_points": [
+        [
+          0,
+          32
+        ],
+        [
+          64,
+          0
+        ],
+        [
+          128,
+          32
+        ]
+      ],
+      "final_points": [
+        [
+          149.71689497716892,
+          52.72705970272136
+        ],
+        [
+          85.71689497716895,
+          20.727059702721363
+        ],
+        [
+          21.71689497716895,
+          52.72705970272136
+        ]
+      ],
+      "anchor": [
+        85.8627,
+        191.646
+      ],
+      "interface_height_px": 124,
+      "vertical_scale": 0.17198335644937587,
+      "crop": [
+        28,
+        34,
+        200,
+        266
+      ],
+      "size": [
+        172,
+        232
+      ],
+      "sha256": "78393577d08317ef04c618b2b45ea02194f84c4e705abff26cada5609dde2323",
+      "method": "three-cell L source; outer top axes registered exactly and inner vertical interface scaled from 721px to 124px",
+      "measured_slopes": [
+        0.5,
+        -0.5
+      ],
+      "alpha_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "anchor_rule": "midpoint of opposite registered plan corners",
+      "geometry_verified": true
+    }
+  ]
+}

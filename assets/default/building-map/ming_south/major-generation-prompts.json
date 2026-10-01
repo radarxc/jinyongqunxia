@@ -1,0 +1,60 @@
+{
+  "role": "生成前题材草案；不是逐张实发调用记录。完整实发prompt、实际图片输入与候选选择见sources/*.json。",
+  "common": "Use case: historical-scene. Asset type: one standalone game city-map building sprite for the tianshu Ming Jiangnan kit. Match the two Southern Song building style references already visible in conversation: finely resolved real clay tiles, stone plinths and wood grain, restrained warm daylight, believable hand-built construction, clean miniature-scale readable silhouette and same detail density. This is a NEW original building, not a copy or edit of those references. Ming Jiangnan palette: chalk-white lime plaster, dark charcoal-grey plain fired clay roof tiles, weathered dark-brown timber, pale grey stone. Authentic restrained south-China timber proportions and gently upturned eaves, no Qing imperial ornament. Camera: STRICT orthographic 2:1 dimetric, yaw 45 degrees, elevation 30 degrees; all ground-plane straight lines slope exactly +0.5 or -0.5; verticals vertical, opposite sides parallel, no perspective convergence. For footprint W by H in metres, the ground diamond is defined by left=(0,16*H), back=(32*H,0), right=(32*(W+H),16*W), front=(32*W,16*(W+H)); show the outer footprint corners clearly, ground only within the footprint, no raised island. Main entrance faces lower-left screen edge. Light from upper-left, tiny soft contact shadow toward lower-right, no wide baked shadow. TRUE transparent RGBA background, all outside regions alpha zero; no painted checkerboard, white background, text, signs, pseudo-writing, people, modern object, sky, neighboring buildings, border, grid, watermark. Full roof eaves, foundations and tiny contact shadow fully visible with generous clear margins. One isolated building or unified compound only. ",
+  "types": [
+    [
+      "yamen",
+      16,
+      13,
+      "Ming Jiangnan county administrative yamen compound, one main austere hall at the rear, subordinate side offices, formal low entry gate and enclosing white lime walls. Five-bay main hall in dark timber with grey tiled roof, one drum by doorway as a functional clue. Formal balanced paved courtyard, no imperial yellow or red roof. Ground footprint 16 by 13."
+    ],
+    [
+      "biaoju",
+      15,
+      12,
+      "Ming Jiangnan escort freight guild compound (original wuxia expansion, not a named historical firm), strong white walls, a large dark timber two-leaf gateway, rear grey-tile cargo hall, side storage sheds, carefully stacked crates and covered bales wholly inside the yard. No weapons display, people, horses, flags or writing. Ground footprint 15 by 12."
+    ],
+    [
+      "casino",
+      10,
+      8,
+      "Ming Jiangnan discreet gaming house, original wuxia game architecture: compact two-storey dark-timber hall with white plaster sides, grey tiled roof, screened upstairs lattice windows, low small entrance porch and two visible wooden gaming tables just within an open ground-floor bay. No signs, lantern canopy or extravagant decoration. Ground footprint 10 by 8."
+    ],
+    [
+      "manor",
+      16,
+      13,
+      "Ming Jiangnan wealthy merchant garden manor compound, unified original game courtyard: white lime perimeter wall, dark grey roofs, brown lattice-panel timber rear hall and side wing, small planted inner court with one ornamental tree and modest scholar's rock; elaborate but restrained, no pagoda or water feature. Clear perimeter footprint 16 by 13."
+    ],
+    [
+      "wangfu",
+      22,
+      18,
+      "Ming Jiangnan princely residence hall compound module, original generalized design not a recreation of a named palace: formal large central hall and two low side halls inside a low white lime enclosure, muted ochre and burgundy timber rank accents, dark charcoal-grey tiled hip-and-gable roof with restrained ridge ornaments, pale stone main steps and balanced open forecourt. Do not use Forbidden-City yellow roof, Qing multicolour painted beams or enormous red wall. Footprint 22 by 18."
+    ],
+    [
+      "temple_hall",
+      14,
+      11,
+      "Ming Jiangnan Buddhist temple main hall, one dignified timber worship building with grey tiled hip-and-gable roof and restrained brown supporting brackets, plaster-white end walls, deep portico, open central door dimly showing only a generic altar silhouette, low pale stone base and front steps. No statues outside, garden, flags, writing or monks. Footprint 14 by 11."
+    ],
+    [
+      "pagoda",
+      7,
+      7,
+      "Ming Jiangnan Buddhist landmark: slender five-storey octagonal brick-and-timber pagoda with dark grey gently upturned clay eaves, aged pale lime and grey-brick body, small recessed openings and modest dark timber galleries. Inspired by Jiangnan brick-and-wood pagoda typology, not an exact named monument. One thin square stone footprint 7 by 7 beneath octagonal body, NO thick pedestal. Full finial and base uncut."
+    ],
+    [
+      "guardhouse",
+      7,
+      5,
+      "Ming Jiangnan small city-gate watchmen's guardhouse, one low utilitarian white-plastered masonry room with dark grey clay gable roof, strong brown timber doorway, narrow side window and tiny recessed porch; this is a separate ordinary building, NOT an outer-city gate arch, wall segment, turret or palace. Thin stone sill, clear ground footprint 7 by 5."
+    ],
+    [
+      "stable",
+      9,
+      7,
+      "Ming Jiangnan modest stable building, one low white-plastered back wall and dark timber open-front three-bay shelter with dark grey clay tile pitched roof, straw bundles, simple low timber stall partitions and empty feeding troughs; no horses or people. Restrained working courtyard only within thin ground footprint 9 by 7."
+    ]
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "source": "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-ef92282b-4acb-4b65-aac1-3ed48999e0f1.png",
+  "prompt": "Use case: precise-object-edit. Edit ONLY projection and framing of this Ming Jiangnan building sprite, preserving architecture, materials, details and true RGBA. STRICT ORTHOGRAPHIC DIMETRIC yaw45 elevation30. Ground edges must slope EXACTLY+0.500 and-0.500 (26.565degree diagonal), same scale on two axes. No perspective convergence. Correct the asymmetry in existing ground axes. Logical rectangular footprint 22 by18. Bottom-centre ground anchor, thin stone base with all four footprint corners visible or inferable. Keep white lime walls, charcoal grey clay tiled roofs, brown timber, upper-left lighting and minimal lower-right contact shadow. No added objects, text, borders or background. Keep complete roofs and generous transparent margins. Final transparent image only.",
+  "ref": "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-af939ac8-6d00-4d92-b96f-0286d48f3072.png",
+  "candidate_count": 2,
+  "source_sha256": "ecfdf8172873150f818b1e53bc5d38242ca1ffcca77ee0802f6636913217c694",
+  "source_size_px": [
+    1420,
+    1108
+  ],
+  "source_mode": "RGBA",
+  "source_alpha_extrema": [
+    0,
+    255
+  ],
+  "candidate_index": 2,
+  "selected": true,
+  "selection_note": "2选1：第二候选主殿基座两轴更近目标；宫殿模块等级与具体年代细部待考",
+  "tool": "image_gen built-in",
+  "transparent_background": true,
+  "explicit_image_inputs": [
+    "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-af939ac8-6d00-4d92-b96f-0286d48f3072.png"
+  ],
+  "image_model": "not_exposed_by_tool",
+  "image_effort": "not_exposed_by_tool",
+  "raw_view_image_inspected": true
+}

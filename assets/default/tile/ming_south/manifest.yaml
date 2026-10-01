@@ -1,0 +1,212 @@
+- id: tex_town_ming_south_city_gate__k4_r000_v01
+  file: tex_town_ming_south_city_gate__k4_r000_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·净宽4格完整城门（原创扩展）
+  prompt: 'Use case: precise-object-edit. Edit supplied Ming Jiangnan gate sprite geometry ONLY, preserve grey tiled roof, restrained chestnut timber and white plaster upper hall, grey brick/stone piers, fine realistic game materials, upper-left light and RGBA transparency. Opening needs moderately broadening by about40percent. Exact ground front width proportions are2m left pier /4m fully transparent passage /2m right pier, overall footprint8m wide by4m deep; opening50percent of the long FRONT width, do NOT count exposed side face. Thin each pier front by about25percent. Feet flush on one plane with no stairs, ground or connecting threshold. Passage fully transparent at floor and through tunnel, no doors, backwall or dark infill. Exact2:1 dimetric view yaw45 elevation30, long facade ground edge slopes+0.5 and depth-0.5. Full hall bridges the hole, no clipping. No scene, people, labels, watermark or modern elements.'
+  negative: 无文字、人物、水印、现代物件、背景地台、假棋盘；门孔与拱下真透明。
+  references:
+  - file: /Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-dc477bda-380d-4e27-b674-52186ebc0c59.png
+    sha256: a3333afd85993bc12e2a1a3af08a87cc443b144e5b9cc45522054364e1474d53
+    note: 第一候选，第二候选编辑输入；仅登记路径与哈希，不保留弃选源图。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T21:23:07.163113+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-34bcc069-3477-4213-ad12-f454008b5782.png
+  size: 457x488
+  sha256: 9a91363cc27fee362d80ef9a9f5c2b6eecf6e8c15a20380ea00832df081b13bd
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 8
+    - 4
+    variant: k4_r000_v01
+    autotile_mask: null
+  source_copy: revisions_r3/city_gate_k4/candidate_2.png
+  source_sha256: 9dbf78019a5d526b8176d4c0b444b8fe6c8d0cad0fa4c2f502a15a73b8059f0a
+  anchor_px:
+  - 233.0
+  - 364.2
+  notes: 第4轮几何返修：前轴+0.5、深轴-0.5；门墩/净孔/门墩为2:4:2格，净孔实测4.0格；逐列变换保持竖线竖直。仍为candidate，待总装实测。
+- id: tex_town_ming_south_city_gate__k6_r000_v01
+  file: tex_town_ming_south_city_gate__k6_r000_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·净宽6格完整城门（原创扩展）
+  prompt: 'Use case: precise-object-edit. Edit this supplied Ming Jiangnan gate sprite geometry ONLY, keep materials, complete grey tiled roof, restrained brown timber/plaster guard hall, upper-left light, intact silhouette, true transparent background. Make both piers visibly far narrower and opening much broader: along the long FRONT facade at ground, exactly2m left pier +6m entirely transparent gap +2m right pier; full width10m and depth4m. The opening must occupy60percent of the FRONT width, without counting the exposed right side-face. Source opening is too small: DOUBLE opening width and make each pier half the present front width. No floor, door, back wall, dark fill or threshold across open gap. Entirely clear alpha through the tunnel, no overlay shadow in the gap. Exact orthographic45degree yaw30degree elevation,2:1 dimetric axes slope+0.5/-0.5. CRITICAL long horizontal facade beams and ground edges must run diagonally downward screen-right at30pixel drop per60pixel run; source is too flat. Keep whole architecture and generous alpha margins, no landscape, ground platform, text, people or watermark.'
+  negative: 无文字、人物、水印、现代物件、背景地台、假棋盘；门孔与拱下真透明。
+  references:
+  - file: /Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-ec503178-cfce-4eed-939b-fa2d29d69bc8.png
+    sha256: c514c6e8d20ae79a68f542064ca489e77b295f3ea24efdab09c5d8d037cdbf70
+    note: 第一候选，第二候选编辑输入；仅登记路径与哈希，不保留弃选源图。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T21:23:07.247884+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-2a749779-8b4f-45a8-b68f-7f1539a90f85.png
+  size: 538x477
+  sha256: 5e5fdee8c4722cf5229af9c9f324e415c2cb4ad9f40ba9b62f74a9bcdf6724ec
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 10
+    - 4
+    variant: k6_r000_v01
+    autotile_mask: null
+  source_copy: revisions_r3/city_gate_k6/candidate_1.png
+  source_sha256: 4b0722881a2391f69c140425a4d393afca1a9ca8a6e87372cbbafa80b7f05865
+  anchor_px:
+  - 263.0419
+  - 343.4636
+  notes: 第4轮几何返修：前轴+0.5、深轴-0.5；门墩/净孔/门墩为2:6:2格，净孔实测6.0格；逐列变换保持竖线竖直。仍为candidate，待总装实测。
+- id: tex_town_ming_south_wall__brick_r000_v01
+  file: tex_town_ming_south_wall__brick_r000_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·青灰砖城墙直段（原创扩展）
+  prompt: 'Use case: historical-scene. Create exactly ONE isolated production game sprite for a Ming dynasty Jiangnan Chinese town, a historically informed composite not a named monument reconstruction. Match approved Song baseline: restrained realistic ancient Chinese game art, detailed small natural material textures, muted slate grey and warm timber colors, crisp silhouette, no painterly ink style, no cartoon. Orthographic yaw 45 degrees elevation 30 degrees, exact 2:1 dimetric ground axes slopes +0.5 and -0.5, verticals vertical, no perspective convergence. Upper-left illumination, short soft shadow toward lower-right confined near object. True RGBA transparent background, transparent margins on all four sides, whole object intact. No landscape, dirt pedestal, surrounding ground, people, labels, readable text, plaques, watermark, checkerboard pattern, modern fittings, neon colors, gilding or Qing imperial dragon decoration. Subject: ONE plain straight modular Ming Jiangnan grey brick city wall segment. Precisely square footprint1m by1m, height3m, simple flat top of grey brick, no cap roof, no crenellation, no parapet openings. This is one narrow repeatable wall voxel with top parallelogram and two visible vertical faces, realistic many thin blue-grey bricks, pale grey stone bottom course. Ground square must project as an exact2:1 diamond, left and right edges slope0.5. Front screen-left plane lit, screen-right plane shaded. Top unobstructed. Flat no-stairs feet. Do not add pedestal, ground, people, vines, ornaments, text or broad shadow. Whole simple cuboid visible.'
+  negative: 无文字、人物、水印、现代物件、背景地台、假棋盘；门孔与拱下真透明。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T21:23:07.325379+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-f938f643-5f38-4c1f-8219-9c5da650733e.png
+  size: 73x173
+  sha256: 2d41f05beda296d3c4de8e177accf0bb8f7f2802e0ec579d34a94e6cf4702b31
+  status: candidate
+  tile:
+    kind: wall
+    footprint:
+    - 1
+    - 1
+    variant: brick_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_ming_south_wall__brick_r000_v01__source.png
+  source_sha256: 2cd6162509c75e10d72f1479bd0f619ef29c4582bf776720b9b0170ecfcbab7e
+  anchor_px:
+  - 36.58
+  - 149.59
+  notes: 原创地域组合；按alpha≥16轮廓外扩2px取裁框、等比缩放、四周4px透明边，未阈值改写像素；底面/根锚人工估测。2:1轴向与格孔/墙接缝尚有视觉误差，须总装配准；仅一个方向候选。
+- id: tex_town_ming_south_wall_corner__outer_ne_v01
+  file: tex_town_ming_south_wall_corner__outer_ne_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·青灰砖城墙外角（原创扩展）
+  prompt: 'Use case: precise-object-edit. Edit supplied Ming grey-brick wall corner geometry, keep exactly the same brickwork material, visible90degree corner, stone bottom course and light from upper-left. Make the two walls much taller and the plan arms much shorter/thicker, because source shows long low thin walls. EXACT world shape is an L made from THREE1m-square wall voxels, each3m TALL, within2m by2m plan footprint; arms are ONLY2m long and1m THICK each; the missing fourth1m square at front is fully transparent. Thus each arm length2m is LESS than3m wall height. Project as true2:1 dimetric axes+0.5/-0.5, total plan width2m+2m projected128 units, projected vertical height3m=118units, so vertical walls almost equal entire screen footprint width. Whole object very tall robust chunky L, not slender courtyard wall. Simple flat brick top, flush stone feet, no ground, base, steps, roof, ornament or text; true RGBA transparent background, generous margins.'
+  negative: 无文字、人物、水印、现代物件、背景地台、假棋盘；门孔与拱下真透明。
+  references:
+  - file: /Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-c3f2534d-950b-4c7d-a37a-28608933de58.png
+    sha256: affc5c69cf9fda7abe1b9993d0608dcfb8e2377b16bc4ab508a99bd24cc729d7
+    note: 第一候选，第二候选编辑输入；仅登记路径与哈希，不保留弃选源图。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T21:23:07.374433+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-91656c0d-9e16-4379-80b7-58306d301f2c.png
+  size: 172x232
+  sha256: 78393577d08317ef04c618b2b45ea02194f84c4e705abff26cada5609dde2323
+  status: candidate
+  tile:
+    kind: wall_corner
+    footprint:
+    - 2
+    - 2
+    variant: outer_ne_v01
+    autotile_mask: null
+  source_copy: revisions_r3/wall_corner/candidate_2.png
+  source_sha256: ab9457cd381d60020c73d34f6e83082706e8844e724a8182d4736dcad739f95c
+  anchor_px:
+  - 85.8627
+  - 191.646
+  notes: 第4轮对三格L形候选作逐列几何规格化；双轴±0.5、接口高124px，与直墙高度一致。仍为candidate，待总装实测。
+- id: tex_town_ming_south_bridge__stone_w5_l10_r000_v01
+  file: tex_town_ming_south_bridge__stone_w5_l10_r000_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·单孔花岗石拱桥（原创扩展）
+  prompt: 'Use case: historical-scene. Create exactly ONE isolated production game sprite for a Ming dynasty Jiangnan Chinese town, a historically informed composite not a named monument reconstruction. Match approved Song baseline: restrained realistic ancient Chinese game art, detailed small natural material textures, muted slate grey and warm timber colors, crisp silhouette, no painterly ink style, no cartoon. Orthographic yaw 45 degrees elevation 30 degrees, exact 2:1 dimetric ground axes slopes +0.5 and -0.5, verticals vertical, no perspective convergence. Upper-left illumination, short soft shadow toward lower-right confined near object. True RGBA transparent background, transparent margins on all four sides, whole object intact. No landscape, dirt pedestal, surrounding ground, people, labels, readable text, plaques, watermark, checkerboard pattern, modern fittings, neon colors, gilding or Qing imperial dragon decoration. Subject: ONE complete Jiangnan Ming single-span low granite stone arched footbridge, historically inspired by Suzhou canal bridges. Restrained light warm-grey stone block voussoirs, broad gently humped stone-paved deck, plain low squared stone post-and-beam side rails, no animals or fancy relief, no roofs. Logical plan width5m across and length10m along bridge, modest1.5m central rise; no outside stairs or abutment banks. Long axis screen bottom-left to upper-right with slope-0.5; width axis slope+0.5. Elliptical shallow single arch completely open and truly transparent below the bridge; NO water, river, landscape, ground slab, cast square base or environmental scenery. Bridge deck connects both ends continuously with unobstructed walkway. Full isolated bridge with broad transparent margins. One object, no split views.'
+  negative: 无文字、人物、水印、现代物件、背景地台、假棋盘；门孔与拱下真透明。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T21:23:07.455088+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-3580ae38-1474-46d1-b442-fdb0ace5a18a.png
+  size: 489x230
+  sha256: 31dc7532fa52306685880b242ae93716ff749e2b8468899b7047c3c6070f2cef
+  status: candidate
+  tile:
+    kind: bridge
+    footprint:
+    - 5
+    - 10
+    variant: stone_w5_l10_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_ming_south_bridge__stone_w5_l10_r000_v01__source.png
+  source_sha256: 783b2719a8c75b56cb250d57a90cd54ca8901adebdb1381cee9217d8b8c1b785
+  anchor_px:
+  - 243.84
+  - 139.46
+  notes: 原创地域组合；按alpha≥16轮廓外扩2px取裁框、等比缩放、四周4px透明边，未阈值改写像素；底面/根锚人工估测。2:1轴向与格孔/墙接缝尚有视觉误差，须总装配准；仅一个方向候选。
+- id: tex_town_ming_south_tree_cluster__willow_v01
+  file: tex_town_ming_south_tree_cluster__willow_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·垂柳（地域意象，具体种属待考）
+  prompt: 'Use case: historical-scene. Create exactly ONE isolated production game sprite for a Ming dynasty Jiangnan Chinese town, a historically informed composite not a named monument reconstruction. Match approved Song baseline: restrained realistic ancient Chinese game art, detailed small natural material textures, muted slate grey and warm timber colors, crisp silhouette, no painterly ink style, no cartoon. Orthographic yaw 45 degrees elevation 30 degrees, exact 2:1 dimetric ground axes slopes +0.5 and -0.5, verticals vertical, no perspective convergence. Upper-left illumination, short soft shadow toward lower-right confined near object. True RGBA transparent background, transparent margins on all four sides, whole object intact. No landscape, dirt pedestal, surrounding ground, people, labels, readable text, plaques, watermark, checkerboard pattern, modern fittings, neon colors, gilding or Qing imperial dragon decoration. Subject: ONE mature Jiangnan weeping willow tree with forked grey-brown trunk and airy drooping narrow olive green leaves, realistic individually readable hanging branch sprays, restrained slightly warm green, no saturated neon or fantasy coloring. Ground canopy envelope3m by3m, tree about4m tall. Trunk and its branching woody structure visible among fine leaves; drooping fronds must not become an opaque solid mass. Roots end at a small clean single ground point, no grass tuft, dirt, rock, pot, planter or platform. Root ground point is base anchor. Only the whole willow from root to intact crown on transparency, matching small detailed Song tree game assets. Do not include any second tree or distant scenery.'
+  negative: 无文字、人物、水印、现代物件、背景地台、假棋盘；门孔与拱下真透明。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T21:23:07.536693+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-63a3fba5-ece8-4b48-939c-bf1c249bafc2.png
+  size: 200x154
+  sha256: 0295e7ec5253842362ce9bd20488ad482e1e3b9654a25b2c5a0d1e93371cb20e
+  status: candidate
+  tile:
+    kind: tree_cluster
+    footprint:
+    - 3
+    - 3
+    variant: willow_v01
+    autotile_mask: null
+  source_copy: source/tex_town_ming_south_tree_cluster__willow_v01__source.png
+  source_sha256: 5501ea0f4756feddb1c46b422956e5161805d285cd68a17a3d7b32f4f338fa4f
+  anchor_px:
+  - 99.7
+  - 149.12
+  notes: 原创地域组合；按alpha≥16轮廓外扩2px取裁框、等比缩放、四周4px透明边，未阈值改写像素；底面/根锚人工估测。占地为冠幅建议值；仅静态预览植物，不替代design/22§4.4公告板合同。
+- id: tex_town_ming_south_tree_cluster__bamboo_v01
+  file: tex_town_ming_south_tree_cluster__bamboo_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·丛竹（地域意象，具体种属待考）
+  prompt: 'Use case: historical-scene. Create exactly ONE isolated production game sprite for a Ming dynasty Jiangnan Chinese town, a historically informed composite not a named monument reconstruction. Match approved Song baseline: restrained realistic ancient Chinese game art, detailed small natural material textures, muted slate grey and warm timber colors, crisp silhouette, no painterly ink style, no cartoon. Orthographic yaw 45 degrees elevation 30 degrees, exact 2:1 dimetric ground axes slopes +0.5 and -0.5, verticals vertical, no perspective convergence. Upper-left illumination, short soft shadow toward lower-right confined near object. True RGBA transparent background, transparent margins on all four sides, whole object intact. No landscape, dirt pedestal, surrounding ground, people, labels, readable text, plaques, watermark, checkerboard pattern, modern fittings, neon colors, gilding or Qing imperial dragon decoration. Subject: ONE compact Jiangnan garden bamboo clump, around six to nine slender green bamboo culms with visible joints, delicate thin lanceolate green leaves in natural separated sprays, subtle yellow-green highlights, fine realistic natural texture. Logical ground envelope2m by2m, approximately3m tall, slightly asymmetrical silhouette, moderate visual density so internal alpha gaps show between culms. Lower bare stalks gathered at a small clean root cluster which supplies the base anchor. No soil, dirt chunk, grass carpet, rock, pot, planter, fence, platform or background. Whole object intact from roots to highest leaves on genuine RGBA transparency. Match muted realistic finely textured Song town sprites, not ink painting.'
+  negative: 无文字、人物、水印、现代物件、背景地台、假棋盘；门孔与拱下真透明。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T21:23:07.611070+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-95161769-3162-440a-90b1-45836275295e.png
+  size: 136x171
+  sha256: a1adac1a5dfae5d7d5f37758c23873b6afc53c1400a959b2b474d3569c1888a5
+  status: candidate
+  tile:
+    kind: tree_cluster
+    footprint:
+    - 2
+    - 2
+    variant: bamboo_v01
+    autotile_mask: null
+  source_copy: source/tex_town_ming_south_tree_cluster__bamboo_v01__source.png
+  source_sha256: 7c318c9e61e1d12c9fcc41622005b2d80fc7cfde2177c987cefc26564e87f80d
+  anchor_px:
+  - 64.07
+  - 163.19
+  notes: 原创地域组合；按alpha≥16轮廓外扩2px取裁框、等比缩放、四周4px透明边，未阈值改写像素；底面/根锚人工估测。占地为冠幅建议值；仅静态预览植物，不替代design/22§4.4公告板合同。

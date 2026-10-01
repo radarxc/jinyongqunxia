@@ -1,0 +1,24 @@
+{
+  "source": "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-5e234ab1-dd6e-4a88-9bcb-0e260efa8e24.png",
+  "prompt": "Use case: historical-scene. Asset type: one standalone game city-map building sprite for the tianshu Ming Jiangnan kit. Match the two Southern Song building style references already visible in conversation: finely resolved real clay tiles, stone plinths and wood grain, restrained warm daylight, believable hand-built construction, clean miniature-scale readable silhouette and same detail density. This is a NEW original building, not a copy or edit of those references. Ming Jiangnan palette: chalk-white lime plaster, dark charcoal-grey plain fired clay roof tiles, weathered dark-brown timber, pale grey stone. Authentic restrained south-China timber proportions and gently upturned eaves, no Qing imperial ornament. Camera: STRICT orthographic 2:1 dimetric, yaw 45 degrees, elevation 30 degrees; all ground-plane straight lines slope exactly +0.5 or -0.5; verticals vertical, opposite sides parallel, no perspective convergence. For footprint W by H in metres, the ground diamond is defined by left=(0,16*H), back=(32*H,0), right=(32*(W+H),16*W), front=(32*W,16*(W+H)); show the outer footprint corners clearly, ground only within the footprint, no raised island. Main entrance faces lower-left screen edge. Light from upper-left, tiny soft contact shadow toward lower-right, no wide baked shadow. TRUE transparent RGBA background, all outside regions alpha zero; no painted checkerboard, white background, text, signs, pseudo-writing, people, modern object, sky, neighboring buildings, border, grid, watermark. Full roof eaves, foundations and tiny contact shadow fully visible with generous clear margins. One isolated building or unified compound only. Subject: Ming Jiangnan county administrative yamen compound, one main austere hall at the rear, subordinate side offices, formal low entry gate and enclosing white lime walls. Five-bay main hall in dark timber with grey tiled roof, one drum by doorway as a functional clue. Formal balanced paved courtyard, no imperial yellow or red roof. Ground footprint 16 by 13. CORRECTION TO COMPOSITION: zoom out to leave at least 10 percent wholly transparent padding on all sides. A very low birdseye elevation of EXACTLY 30 degrees, not isometric 35.264. Show footprint front edge to lower-left at angle 26.565 degrees, other at 153.435 degrees; ground width twice its projected depth. Keep front and rear corners correctly aligned to +0.5/-0.5 ground axes. The compound floor must be one simple regular parallelogram; longer visible front wall (16m) to left and slightly shorter right wall (13m), no exaggerated depth. The small entrance steps are INSIDE the footprint. All roofs stay safely inside canvas. Simpler low buildings and minimal ornament consistent with viewed Song baseline. Empty black you may see in references represents true alpha; output actual alpha. Generate only image.",
+  "source_sha256": "553102cf4ab36d8892683dee76e0c8cb27523af27d7fdd58e65091fd2350f246",
+  "source_size_px": [
+    1536,
+    1024
+  ],
+  "source_mode": "RGBA",
+  "source_alpha_extrema": [
+    0,
+    254
+  ],
+  "candidate_count": 2,
+  "candidate_index": 2,
+  "selected": true,
+  "selection_note": "2选1：第二候选边缘完整、地面轴偏差较第一候选略小；仍明显不达±0.03轴斜率要求，暂留candidate待返修",
+  "tool": "image_gen built-in",
+  "transparent_background": true,
+  "explicit_image_inputs": [],
+  "image_model": "not_exposed_by_tool",
+  "image_effort": "not_exposed_by_tool",
+  "raw_view_image_inspected": true
+}
