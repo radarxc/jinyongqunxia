@@ -1,0 +1,18 @@
+{
+  "endpoint": "codex/images/edits",
+  "model": "gpt-image-2",
+  "turn_id": "c0ae18f5-ba77-4b2b-86df-8f3ff2cb6f75",
+  "request_id": "654c89a9-525a-4c9a-be2b-863e63e9ddfc",
+  "generation_id": "16428ae6-a671-4069-808c-46df72eb368c",
+  "created_unix": 1790840543,
+  "elapsed_seconds": 32.803,
+  "prompt": "Create ONE ORIGINAL isolated late-Yuan Jiangnan canal WHARF sprite. IMAGE1 is the exact transparency, orthographic dimetric yaw45 pitch30, upper-left light and clean-cutout example; use that output behavior, not its architecture. IMAGES2-3 document historical waterfront stonework and boat-landing relations. Make a long low 10m by4m dressed local grey-stone quay, courses and vertical joints clearly visible, dark waterline wear on one long face, two short integrated stepped landings, four heavy square timber mooring posts, and one very small open shelter at the rear made of plain posts and a grey-tiled gable roof. No water plane, boat, cargo, crane, tree, person, background or text. Both ground axes clear at 2:1 dimetric slopes; entire object centered and uncropped. True RGBA: stone/timber/roof fully opaque alpha255, exterior alpha0, partial alpha only antialias edges and tiny contact shadow. Absolutely no aura, glow, haze, vignette or translucent field.",
+  "references": [
+    "assets/default/baseline/building-map/bld_kit_song_southern_wharf.png",
+    "/private/tmp/yuan_refs_web/wang_zhenpeng_dragonboat.jpg",
+    "/private/tmp/yuan_refs_web/panmen_water1.jpg"
+  ],
+  "output_sha256": "f6463fc112a5b33679e8716b8b1202e51c711d5f02e3a2bbbd617515f22bc29a",
+  "selection_status": "rejected",
+  "selection_reason": "rejected: transparency did not improve and candidate 1 composition retained"
+}

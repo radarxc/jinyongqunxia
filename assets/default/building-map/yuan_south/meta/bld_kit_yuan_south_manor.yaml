@@ -9,11 +9,11 @@ building:
   - 590.9715
   - 434.2378
   era: yuan
+anchor_px: *id001
 footprint_m:
 - 16
 - 13
 footprint_basis: 【建议值】沿用design/22 §3.3 南宋同构manor 16×13
-anchor_px: *id001
 entrance:
   edge: S
   offset_cells: 8.0
@@ -21,59 +21,19 @@ png_rotations_available:
 - 0
 allowRotation: false
 release_ready: false
-metadata_repair_note: 重建既有不可解析的visual_qa流式映射；保留manifest权威字段。
-geometry_qa:
-  source_corners_px: &id002
-    left:
-    - 126.94844679444812
-    - 400.3826859596553
-    front:
-    - 658.6682088565763
-    - 666.2425669907194
-    right:
-    - 1054.6741573033707
-    - 468.23959276732205
-  source_back_corner_inferred_px:
-  - 681
-  - 233
-  source_axis_slopes: &id003
-  - 0.5000000000000001
-  - -0.5000000000000003
-  axis_tolerance: 0.03
-  axis_pass: true
-  source_width_depth_ratio: 1.342706502636204
-  expected_width_depth_ratio: 1.2307692307692308
-  ratio_relative_error: 0.09094903339191562
-  ratio_tolerance_suggestion: 0.1
-  ratio_pass: true
-  measurement_uncertainty_source_px: 8
-  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-  measurement_space: final_png_after_affine_reprojection
-  pre_reprojection_final_corners_px:
-    left:
-    - 126.94844679444812
-    - 408.5521472392638
-    front:
-    - 658.6682088565763
-    - 670.3680981595091
-    right:
-    - 1054.6741573033707
-    - 460.07975460122697
-  pre_reprojection_axis_slopes:
-  - 0.4923946213788718
-  - -0.5310231939269355
-  final_corners_px: *id002
-  final_axis_slopes: *id003
-  pre_reprojection_source_corners_px:
-    left:
-    - 112
-    - 535
-    front:
-    - 876
-    - 911
-    right:
-    - 1445
-    - 609
+historical_reference_urls:
+- https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00000900
+- http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+historical_details:
+- 礼制院落层级
+- 柱网、低台基、灰瓦
+generation_id: c7fd39da-6eec-4160-b752-9f978b9d8961
+source_record: sources/hist_manor_selected.json
+source_archive: sources/hist_manor_selected.png
+processing:
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
 pixel_qa:
   mode: RGBA
   size:
@@ -82,66 +42,21 @@ pixel_qa:
   alpha_extrema:
   - 0
   - 255
-  alpha_zero_pixels: 609870
-  alpha_partial_pixels: 310661
-  alpha_opaque_pixels: 1069
-  alpha_near_opaque_pixels: 289938
+  alpha_zero_pixels: 588044
+  alpha_partial_pixels: 333033
+  alpha_opaque_pixels: 523
   alpha_nonzero_bbox:
-  - 49
-  - 65
-  - 1101
-  - 722
+  - 69
+  - 89
+  - 1081
+  - 711
   transparent_margins_px:
-  - 49
-  - 65
-  - 51
-  - 78
-  border_alpha_max: 0
-processing:
-  source_archive: sources/bld_kit_yuan_south_manor_candidate1.png
-  source_sha256: b35b36e7fd5051c041e9f5eb271142f77cc00bb50c98d6d910940ff85e7bd025
-  source_size:
-  - 1515
-  - 1038
-  crop_box:
-  - 0
-  - 33
-  - 1513
-  - 1011
-  uniform_scale_requested: 0.6961740435108777
-  resized_size:
-  - 1053
-  - 681
-  rounded_effective_scale:
-  - 0.6959682749504296
-  - 0.696319018404908
-  paste_offset:
-  - 49
-  - 59
-  - 1102
-  - 740
-  steps:
-  - crop alpha>0 bbox; preserve all source alpha
-  - one uniform LANCZOS resize, dimensions rounded
-  - paste without alpha mask on transparent RGBA padding
-  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-  scale_formula: 32*(w+h)/(source_right_x-source_left_x)
-  reprojection:
-    kind: whole_sprite_affine_reprojection
-    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-    forward_matrix:
-    - 1.0
-    - 0.0
-    - 0.018872337363269875
-    - 0.9771180304313837
-    - -1.2167973949347584
-    inverse_matrix_for_pillow:
-    - 1.0
-    - 0.0
-    - 0.0
-    - -0.019314286274031815
-    - 1.0234178153058073
-    - 1.245292131593928
-    pivot_anchor_px: *id001
-    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
+  - 69
+  - 89
+  - 71
+  - 89
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 礼制院落层级；柱网、低台基、灰瓦；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

@@ -1,0 +1,37 @@
+{
+  "endpoint": "codex/images/edits",
+  "model": "gpt-image-2",
+  "turn_id": "bd823098-955a-46b0-ac90-ec4f6f3b2282",
+  "request_id": "e7a1f5dc-08d0-4b05-be3c-b0a3717cbb52",
+  "generation_id": "3d09577c-7792-41a6-8f15-676ed9f832a4",
+  "created_unix": 1790840238,
+  "elapsed_seconds": 30.377,
+  "prompt": "Create ONE ORIGINAL isolated late-Yuan Jiangnan map-compositing sprite. IMAGE 1 is only the exact geometry, camera and output-transparency example: preserve its orientation and modular function, clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight and restrained realistic Southern Song baseline detail; do not retain anachronistic decoration. IMAGES 2-3 are historical evidence for masonry, timber, vegetation or bridge construction only. Solid object fully opaque; exterior true alpha-zero transparent. No aura, vignette, glow, haze, fog, translucent backdrop, floor plane, scenery, people, text, signs, watermark, modern items, Qing ornament, fantasy details or cropped edges. One compact 1m by1m canal-edge reed clump: 18-25 slender jointed yellow-green stems, narrow matte leaves at varied angles, several subdued brown seed heads, open base suitable for water-edge compositing; no soil island, pot, water plane or flowers.",
+  "references": [
+    {
+      "kind": "style_geometry_reference",
+      "file": "tex_town_song_southern_reed__canal_v01.png",
+      "note": "宋基线透明精灵，只约束相机、透明裁切与写实密度"
+    },
+    {
+      "kind": "historical_image",
+      "url": "https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018",
+      "detail_used": "元画河岸芦荻、细茎与疏密层次",
+      "downloaded_and_viewed": true
+    },
+    {
+      "kind": "historical_image",
+      "url": "https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8",
+      "detail_used": "元画河岸芦荻、细茎与疏密层次",
+      "downloaded_and_viewed": true
+    }
+  ],
+  "output_sha256": "2804a0093d8eaf7871c55bdefbbfeb3f351e84b4fa8cd4ab5e17b462ef5dc045",
+  "selected_asset_file": "tex_town_yuan_south_reed__canal_v01.png",
+  "selected_asset_sha256": "840a9d8c7269a595a680e1d9c4e98725dd8f523c74368d46188efb8391f89181",
+  "normalization": [
+    "alpha 非零包围框裁切",
+    "一次等比 LANCZOS 缩放",
+    "透明 RGBA 留白；无阈值、重绘、warp 或仿射投影"
+  ]
+}

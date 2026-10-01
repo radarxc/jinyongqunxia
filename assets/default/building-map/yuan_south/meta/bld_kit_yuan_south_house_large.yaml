@@ -1,133 +1,39 @@
-asset_id: bld_kit_yuan_south_house_large
-anchor_px: &id001
-- 320.5022
-- 433.5185
-footprint_cells:
+id: bld_kit_yuan_south_house_large
+status: candidate
+building:
+  type: bld_kit_yuan_south_house_large
+  footprint:
+  - 10
+  - 8
+  anchor: &id001
+  - 320.5022
+  - 433.5185
+  era: yuan
+anchor_px: *id001
+footprint_m:
 - 10
 - 8
+footprint_basis: 【建议值】南宋courtyard包络用于大民居变体（原创扩展）
 entrance:
   edge: S
   offset_cells: 5
-actual_height_m: null
-height_note: 仅PNG，未实测高度
 png_rotations_available:
 - 0
 allowRotation: false
-collision_polygon_local_m:
-- - 0
-  - 0
-- - 10
-  - 0
-- - 10
-  - 8
-- - 0
-  - 8
-collision_note: 矩形占地仅候选代理；院内/入口通行待布局联调
-occlusion_polygon_px:
-- - 31
-  - 115
-- - 624
-  - 115
-- - 624
-  - 592
-- - 31
-  - 592
-occlusion_note: alpha包络代理，非运行时精细遮挡
+release_ready: false
+historical_reference_urls:
+- https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+- http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+historical_details:
+- 两层滨水木构
+- 柱网、深檐与灰筒板瓦
+generation_id: 68d3a326-18a6-4d0b-b277-315c3be4fe26
+source_record: sources/hist_house_large_selected.json
+source_archive: sources/hist_house_large_selected.png
 processing:
-  source_archive: sources/bld_kit_yuan_south_house_large.png
-  source_sha256: 1770b68afbf35c948c3be15f052bc3873b2f20b1c572656dbe16faa836b788c4
-  source_size:
-  - 1254
-  - 1254
-  crop_box:
-  - 66
-  - 53
-  - 1210
-  - 1214
-  uniform_scale_requested: 0.5184518451845185
-  resized_size:
-  - 593
-  - 602
-  rounded_effective_scale:
-  - 0.5183566433566433
-  - 0.5185185185185185
-  paste_offset:
-  - 31
-  - 27
-  - 624
-  - 629
-  steps:
-  - alpha>0矩形裁边，保留全部非零alpha
-  - 一次等比LANCZOS，尺寸取整
-  - 无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值
-  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-  reprojection:
-    kind: whole_sprite_affine_reprojection
-    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-    forward_matrix:
-    - 1.0
-    - 0.0
-    - -0.00024183162691493454
-    - 0.88433227274628
-    - 50.22160718589765
-    inverse_matrix_for_pillow:
-    - 1.0
-    - 0.0
-    - 0.0
-    - 0.0002734624013708447
-    - 1.1307966822182296
-    - -56.79042678148027
-    pivot_anchor_px: *id001
-    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
-geometry_qa:
-  source_corners_px: &id002
-    left:
-    - 32.55506993006993
-    - 415.2464447017534
-    front:
-    - 357.04632867132864
-    - 577.4920740723827
-    right:
-    - 608.4493006993007
-    - 451.7905880583968
-  source_axis_slopes: &id003
-  - 0.4999999999999999
-  - -0.49999999999999956
-  axis_pass: true
-  axis_tolerance: 0.03
-  source_width_depth_ratio: 1.2907216494845362
-  expected_width_depth_ratio: 1.25
-  ratio_relative_error: 0.03257731958762888
-  ratio_pass: true
-  measurement_uncertainty_source_px: 6
-  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-  measurement_space: final_png_after_affine_reprojection
-  pre_reprojection_final_corners_px:
-    left:
-    - 32.55506993006993
-    - 412.77777777777777
-    front:
-    - 357.04632867132864
-    - 596.3333333333333
-    right:
-    - 608.4493006993007
-    - 454.25925925925924
-  pre_reprojection_axis_slopes:
-  - 0.5656718035104857
-  - -0.5651248787077439
-  final_corners_px: *id002
-  final_axis_slopes: *id003
-  pre_reprojection_source_corners_px:
-    left:
-    - 69
-    - 797
-    front:
-    - 695
-    - 1151
-    right:
-    - 1180
-    - 877
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
 pixel_qa:
   mode: RGBA
   size:
@@ -136,18 +42,21 @@ pixel_qa:
   alpha_extrema:
   - 0
   - 255
-  alpha_zero_pixels: 259443
-  alpha_partial_pixels: 169851
-  alpha_opaque_pixels: 1042
-  alpha_near_opaque_pixels: 166866
+  alpha_zero_pixels: 290983
+  alpha_partial_pixels: 138526
+  alpha_opaque_pixels: 827
   alpha_nonzero_bbox:
-  - 31
-  - 115
-  - 624
-  - 592
+  - 52
+  - 88
+  - 586
+  - 575
   transparent_margins_px:
-  - 31
-  - 115
-  - 32
-  - 64
-  border_alpha_max: 0
+  - 52
+  - 88
+  - 70
+  - 81
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 两层滨水木构；柱网、深檐与灰筒板瓦；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

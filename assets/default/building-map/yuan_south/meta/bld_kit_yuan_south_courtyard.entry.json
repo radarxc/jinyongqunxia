@@ -4,23 +4,24 @@
   "category": "building-map",
   "style": "default",
   "subject": "元末江南·坊巷院落（原创扩展）",
-  "prompt": "Use case: precise-object-edit. Input is edit target. Keep this exact anonymous late Yuan Jiangnan courtyard architectural identity, every material, grey roof tile color, plaster, timber and realistic fine texture. Correct ONLY overall orthographic camera and rectangular ground footprint so the TWO visible ground edges slope exactly +0.50 and -0.50, a 2:1 dimetric grid; current image has steeper slopes about +/-0.58. The front ground corner should be clearly visible, NOT steep true-isometric30-degree screen lines. Both axes equivalent pitch, vertical pillars stay vertical. Parcel 10 by 8 meters, ratio east-west edge / north-south edge 1.25. Front entrance remains lower left. The wide front-facing ground edge left-to-front must be 25 percent longer in horizontal span than front-to-right edge. Not a square. All building and thin ground pad fully visible with generous transparent margin. Do not add facade ornaments, garden, new objects, scenery or text. Upper-left light, minimal lower-right short contact shadow; no large shadow, no haze or ground glow. TRUE transparent background RGBA, retain opacity of solid surfaces. One sprite only.",
-  "negative": "文字、水印、现代物、人物、清式彩画、旅游马头墙、厚底座、景观背景",
+  "prompt": "Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A compact 10m by8m Jiangnan courtyard dwelling: main hall and two lower side wings enclosing a small visible stone-and-packed-earth court, inward-facing covered galleries, grey tiled gable roofs, lime infill and dark timber; one clear south entrance, no garden scenery.",
+  "negative": "文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕",
   "references": [
     {
-      "file": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-fe50da9e-3067-4e7d-bcfc-bb241b866861.png",
-      "sha256": "85966bea4290e8a7c4e597f7807e2112e347e63100cf6161c5d8eabcaf66bef0",
-      "role": "生成参考或第二候选编辑目标，详见调用记录"
+      "url": "https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8",
+      "role": "院落/廊屋关系"
+    },
+    {
+      "url": "https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018",
+      "role": "江南疏院植被层次"
     }
   ],
-  "tool": "built-in image_gen",
-  "model": "image_gen (underlying model not disclosed)",
-  "effort": "not exposed",
-  "created": "2026-09-30T22:32:49.874451+00:00",
-  "created_time_basis": "source PNG mtime, not service-side call timestamp",
-  "source_path": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-c0dcca10-ade5-463d-b612-98b2c28df5b2.png",
+  "tool": "Codex Images edits endpoint",
+  "model": "gpt-image-2",
+  "created": "2026-10-01T07:30:27+00:00",
+  "generation_id": "22e1ba43-7ecf-42c8-afe6-982d016028d6",
   "size": "656x480",
-  "sha256": "765035fd6f3276f0863bf4a246e6b0ff2055da8deda691c82357340262664b32",
+  "sha256": "a1fd6e6bc0b0e6d8e16b14df31de89a04f6e343b24749c76a3b5a5d0299f8f91",
   "status": "candidate",
   "building": {
     "type": "bld_kit_yuan_south_courtyard",
@@ -43,196 +44,18 @@
     "edge": "S",
     "offset_cells": 5
   },
-  "projection_contract": {
-    "tile_px": [
-      64,
-      32
-    ],
-    "ground_bbox_px": [
-      576,
-      288
-    ],
-    "light": "screen_upper_left",
-    "shadow": "screen_lower_right_contact_only",
-    "strict_geometry_pass": true
-  },
-  "metadata": "meta/bld_kit_yuan_south_courtyard.yaml",
-  "source_record": "sources/courtyard.v2.call.json",
-  "candidate_count": 2,
-  "selected_candidate": 2,
-  "selection_reason": "选第二候选：矩形院墙和入口完整，双轴与宽深比比首候选接近目标但仍未精确通过。",
-  "source_sha256": "713229e30c2761b326bd704953ffb792acdde6d55da68831138ad5de348ddede",
-  "processing": {
-    "source_archive": "sources/bld_kit_yuan_south_courtyard.v2.png",
-    "source_sha256": "713229e30c2761b326bd704953ffb792acdde6d55da68831138ad5de348ddede",
-    "source_size": [
-      1402,
-      1122
-    ],
-    "crop_box": [
-      0,
-      100,
-      1388,
-      1096
-    ],
-    "uniform_scale_requested": 0.4301717699775952,
-    "resized_size": [
-      597,
-      428
-    ],
-    "rounded_effective_scale": [
-      0.43011527377521613,
-      0.42971887550200805
-    ],
-    "paste_offset": [
-      29,
-      26,
-      626,
-      454
-    ],
-    "steps": [
-      "alpha>0矩形裁边，保留全部非零alpha",
-      "一次等比LANCZOS，尺寸取整",
-      "无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值",
-      "全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘"
-    ],
-    "reprojection": {
-      "kind": "whole_sprite_affine_reprojection",
-      "purpose": "audit repair: map measured ground axes to exact +0.50/-0.50",
-      "forward_matrix": [
-        1.0,
-        0.0,
-        0.03047400879637191,
-        0.9015019438442988,
-        17.603172419709153
-      ],
-      "inverse_matrix_for_pillow": [
-        1.0,
-        0.0,
-        0.0,
-        -0.03380359743476623,
-        1.1092599487203247,
-        -19.52649413560161
-      ],
-      "pivot_anchor_px": [
-        330.7259,
-        281.0382
-      ],
-      "resample": "BICUBIC on premultiplied RGBa; convert back to RGBA",
-      "preserves": "canvas size, x coordinates, anchor, footprint registration, transparent background"
-    }
-  },
-  "geometry_qa": {
-    "source_corners_px": {
-      "left": [
-        42.763688760806915,
-        273.6186677253961
-      ],
-      "front": [
-        345.5648414985591,
-        425.01924409427215
-      ],
-      "right": [
-        618.6880403458213,
-        288.457644670641
-      ]
-    },
-    "source_axis_slopes": [
-      0.4999999999999999,
-      -0.5000000000000002
-    ],
-    "axis_pass": true,
-    "axis_tolerance": 0.03,
-    "source_width_depth_ratio": 1.1086614173228346,
-    "expected_width_depth_ratio": 1.25,
-    "ratio_relative_error": 0.11307086614173234,
-    "ratio_pass": false,
-    "measurement_uncertainty_source_px": 6,
-    "precision_note": "由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。",
-    "measurement_space": "final_png_after_affine_reprojection",
-    "pre_reprojection_final_corners_px": {
-      "left": [
-        42.763688760806915,
-        282.5421686746988
-      ],
-      "front": [
-        345.5648414985591,
-        440.24899598393574
-      ],
-      "right": [
-        618.6880403458213,
-        279.53413654618475
-      ]
-    },
-    "pre_reprojection_axis_slopes": [
-      0.5208263769253961,
-      -0.5884335717949285
-    ],
-    "final_corners_px": {
-      "left": [
-        42.763688760806915,
-        273.6186677253961
-      ],
-      "front": [
-        345.5648414985591,
-        425.01924409427215
-      ],
-      "right": [
-        618.6880403458213,
-        288.457644670641
-      ]
-    },
-    "final_axis_slopes": [
-      0.4999999999999999,
-      -0.5000000000000002
-    ],
-    "pre_reprojection_source_corners_px": {
-      "left": [
-        32,
-        697
-      ],
-      "front": [
-        736,
-        1064
-      ],
-      "right": [
-        1371,
-        690
-      ]
-    }
-  },
-  "pixel_qa": {
-    "mode": "RGBA",
-    "size": [
-      656,
-      480
-    ],
-    "alpha_extrema": [
-      0,
-      255
-    ],
-    "alpha_zero_pixels": 197495,
-    "alpha_partial_pixels": 116396,
-    "alpha_opaque_pixels": 989,
-    "alpha_near_opaque_pixels": 114317,
-    "alpha_nonzero_bbox": [
-      41,
-      58,
-      622,
-      428
-    ],
-    "transparent_margins_px": [
-      41,
-      58,
-      34,
-      52
-    ],
-    "border_alpha_max": 0
-  },
-  "png_rotations_available": [
-    0
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "source_record": "sources/hist_courtyard_selected.json",
+  "source_archive": "sources/hist_courtyard_selected.png",
+  "processing": [
+    "alpha 非零包围框裁切",
+    "一次等比 LANCZOS 缩放",
+    "无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影"
   ],
-  "allowRotation": false,
-  "release_ready": false,
-  "notes": "选第二候选：矩形院墙和入口完整，双轴与宽深比比首候选接近目标但仍未精确通过。；原图已view_image；候选形制（原创扩展），具体元末细部（待考）；仅原向单视图，严格拼接（待实测）。"
+  "notes": "院落/廊屋关系；江南疏院植被层次；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。",
+  "anchor_px": [
+    330.7259,
+    281.0382
+  ]
 }

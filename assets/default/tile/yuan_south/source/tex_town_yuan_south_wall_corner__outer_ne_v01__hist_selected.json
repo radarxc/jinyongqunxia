@@ -1,0 +1,37 @@
+{
+  "endpoint": "codex/images/edits",
+  "model": "gpt-image-2",
+  "turn_id": "f74c4bea-ffb9-4da3-94ff-9adb202d8034",
+  "request_id": "316513ad-5ca1-41d6-9899-09c3ac0e792e",
+  "generation_id": "e773970e-bd37-48d3-9de0-0f5d33074c99",
+  "created_unix": 1790840259,
+  "elapsed_seconds": 36.86,
+  "prompt": "Create ONE ORIGINAL isolated late-Yuan Jiangnan map-compositing sprite. IMAGE 1 is only the exact geometry, camera and output-transparency example: preserve its orientation and modular function, clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight and restrained realistic Southern Song baseline detail; do not retain anachronistic decoration. IMAGES 2-3 are historical evidence for masonry, timber, vegetation or bridge construction only. Solid object fully opaque; exterior true alpha-zero transparent. No aura, vignette, glow, haze, fog, translucent backdrop, floor plane, scenery, people, text, signs, watermark, modern items, Qing ornament, fantasy details or cropped edges. One repeatable outer L corner, 2m by2m footprint, both arms 1m thick and3m high: blue-grey small-brick facing in staggered bond over earth core, pale lime mortar and dark local stone damp-course, broad plain flat top and clean modular ends. No crenellations, coping roof or projecting plinth.",
+  "references": [
+    {
+      "kind": "style_geometry_reference",
+      "file": "tex_town_song_southern_wall_corner__outer_ne_v01.png",
+      "note": "宋基线透明精灵，只约束相机、透明裁切与写实密度"
+    },
+    {
+      "kind": "historical_image",
+      "url": "http://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml",
+      "detail_used": "盘门小青砖错缝、石质水脚与厚墙转角",
+      "downloaded_and_viewed": true
+    },
+    {
+      "kind": "historical_image",
+      "url": "https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8",
+      "detail_used": "盘门小青砖错缝、石质水脚与厚墙转角",
+      "downloaded_and_viewed": true
+    }
+  ],
+  "output_sha256": "356e22b2554d8da201e9a459dfc906568b3e198f45e4821bd4a7a6ec1bbeea09",
+  "selected_asset_file": "tex_town_yuan_south_wall_corner__outer_ne_v01.png",
+  "selected_asset_sha256": "22534c7d8fb20c32bb03b4f25de5feb1cce07c9779711fd676d1cc8dfdf981e4",
+  "normalization": [
+    "alpha 非零包围框裁切",
+    "一次等比 LANCZOS 缩放",
+    "透明 RGBA 留白；无阈值、重绘、warp 或仿射投影"
+  ]
+}

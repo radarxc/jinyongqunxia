@@ -1,133 +1,39 @@
-asset_id: bld_kit_yuan_south_house_small
-anchor_px: &id001
-- 234.9137
-- 305.0886
-footprint_cells:
+id: bld_kit_yuan_south_house_small
+status: candidate
+building:
+  type: bld_kit_yuan_south_house_small
+  footprint:
+  - 7
+  - 6
+  anchor: &id001
+  - 234.9137
+  - 305.0886
+  era: yuan
+anchor_px: *id001
+footprint_m:
 - 7
 - 6
+footprint_basis: design/22 §3.4 bld_kit_yuan_house
 entrance:
   edge: S
   offset_cells: 3
-actual_height_m: null
-height_note: 仅PNG，未实测高度
 png_rotations_available:
 - 0
 allowRotation: false
-collision_polygon_local_m:
-- - 0
-  - 0
-- - 7
-  - 0
-- - 7
-  - 6
-- - 0
-  - 6
-collision_note: 矩形占地仅候选代理；院内/入口通行待布局联调
-occlusion_polygon_px:
-- - 27
-  - 115
-- - 454
-  - 115
-- - 454
-  - 423
-- - 27
-  - 423
-occlusion_note: alpha包络代理，非运行时精细遮挡
+release_ready: false
+historical_reference_urls:
+- https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+- https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018
+historical_details:
+- 滨水小屋比例
+- 疏落岸居、朴素灰瓦木构
+generation_id: 1f0da54c-26cd-4e6f-a2a2-ff77727afc89
+source_record: sources/hist_house_small_selected.json
+source_archive: sources/hist_house_small_selected.png
 processing:
-  source_archive: sources/bld_kit_yuan_south_house_small.v2.png
-  source_sha256: 7be603c10085551cb837d4284137c15bfaa41aa7295dd6d8b3439081544a3e38
-  source_size:
-  - 1254
-  - 1254
-  crop_box:
-  - 70
-  - 53
-  - 1206
-  - 1182
-  uniform_scale_requested: 0.3771532184950136
-  resized_size:
-  - 428
-  - 426
-  rounded_effective_scale:
-  - 0.3767605633802817
-  - 0.3773250664304694
-  paste_offset:
-  - 26
-  - 27
-  - 454
-  - 453
-  steps:
-  - alpha>0矩形裁边，保留全部非零alpha
-  - 一次等比LANCZOS，尺寸取整
-  - 无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值
-  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-  reprojection:
-    kind: whole_sprite_affine_reprojection
-    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-    forward_matrix:
-    - 1.0
-    - 0.0
-    - 0.0035690227366835248
-    - 0.923108121621856
-    - 22.620423189299743
-    inverse_matrix_for_pillow:
-    - 1.0
-    - 0.0
-    - 0.0
-    - -0.0038663106228693186
-    - 1.0832967196118357
-    - -24.50463023719991
-    pivot_anchor_px: *id001
-    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
-geometry_qa:
-  source_corners_px: &id002
-    left:
-    - 27.130281690140844
-    - 291.80776621803903
-    front:
-    - 261.4753521126761
-    - 408.9803014293066
-    right:
-    - 442.69718309859155
-    - 318.3693859363489
-  source_axis_slopes: &id003
-  - 0.49999999999999983
-  - -0.49999999999999983
-  axis_pass: true
-  axis_tolerance: 0.03
-  source_width_depth_ratio: 1.293139293139293
-  expected_width_depth_ratio: 1.1666666666666667
-  ratio_relative_error: 0.10840510840510831
-  ratio_pass: false
-  measurement_uncertainty_source_px: 6
-  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-  measurement_space: final_png_after_affine_reprojection
-  pre_reprojection_final_corners_px:
-    left:
-    - 27.130281690140844
-    - 291.50487156775904
-    front:
-    - 261.4753521126761
-    - 417.53144375553586
-    right:
-    - 442.69718309859155
-    - 318.67227635075284
-  pre_reprojection_axis_slopes:
-  - 0.5377820491830485
-  - -0.5455146704287871
-  final_corners_px: *id002
-  final_axis_slopes: *id003
-  pre_reprojection_source_corners_px:
-    left:
-    - 73
-    - 754
-    front:
-    - 695
-    - 1088
-    right:
-    - 1176
-    - 826
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
 pixel_qa:
   mode: RGBA
   size:
@@ -136,18 +42,21 @@ pixel_qa:
   alpha_extrema:
   - 0
   - 255
-  alpha_zero_pixels: 155332
-  alpha_partial_pixels: 74308
-  alpha_opaque_pixels: 760
-  alpha_near_opaque_pixels: 72684
+  alpha_zero_pixels: 161584
+  alpha_partial_pixels: 68119
+  alpha_opaque_pixels: 697
   alpha_nonzero_bbox:
-  - 27
-  - 115
-  - 454
+  - 42
+  - 85
   - 423
+  - 448
   transparent_margins_px:
-  - 27
-  - 115
-  - 26
+  - 42
+  - 85
   - 57
-  border_alpha_max: 0
+  - 32
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 滨水小屋比例；疏落岸居、朴素灰瓦木构；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

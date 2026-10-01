@@ -826,13 +826,25 @@ TRUE transparent RGBA background, complete eaves and ground corners with empty m
 No lettering, people, modern objects, Qing imperial polychromy, tourist horse-head walls, Mongolian camp scenery, panorama or thick floating base.
 ```
 
-逐张独立调用内置 `image_gen`，真透明参数开启；最多两候选选一，几何不足的第二候选定向要求双轴与宽深比例。`view_image(detail=original)` 检查原图及成品。PIL 仅透明裁边、一次等比 LANCZOS、透明扩边；不拉伸、不阈值改alpha、不补画。建筑短边门禁为本任务指定256px；小件不为凑画布而放大地面。`ground_width_px=32(w+h)`，底面中心随同裁框、缩放与偏移变换。轴向残差、宽深比、隐藏后角推定和小幅光晕如实登记，不能以检查器通过代替精确拼接验收；目前只交原向单视图。
+本次历史重出逐张调用 Codex Images `gpt-image-2` 编辑端点并请求真透明；每项最多两候选，实际仅两城门使用第二候选。`view_image(detail=original)` 检查参考图、源图及成品。PIL 仅透明裁边、一次等比 LANCZOS、透明扩边；不拉伸、不阈值改alpha、不补画、不warp。建筑短边门禁为本任务指定256px；小件不为凑画布而放大地面。目标仍为`ground_width_px=32(w+h)`，但本轮未以全图仿射强制几何达标；轴向、宽深比、隐藏后角和拼接残差须总装实测，不能以检查器通过代替精确投影验收。目前只交原向单视图。
 
 ### 11.4 参考资料与边界
+
+#### 2026-09-30 历史图片参考重出：历史细节要点
+
+- 本轮19张均由图像模型重新生成，同 ID 覆盖；每张实际输入为“宋基线透明精灵（只约束相机、透明输出与写实密度）+ 两张已下载并目视检查的历史图片”。未把旧图、滤镜或程序绘画冒充新图。入选图只做 alpha 包围框裁切、一次等比缩放和透明留白，不阈值改 alpha、不重绘、不 warp。
+- 普通民居、商铺、客栈、酒楼、货栈和河埠取王振鹏《龙舟夺标图》的滨水楼屋、码头和船岸关系；配合倪瓒《渔庄秋霁》《汀树遥岑》的疏林、草亭、低饱和岸居层次。格扇、板门、木骨浅色抹灰、灰色板瓦/筒瓦和低石基必须可读；不画旅游街式密集马头墙。
+- 衙门、山庄、王府等礼制建筑取夏永《滕王阁图》的台基、平座、栏杆、柱网和重檐等级比例；只把重檐用于最高等级主殿。不得复制画面构图，也不得以界画证明某个匿名院落的精确尺度。
+- 寺殿以真如寺、金华天宁寺及延福寺现存构件交叉约束：三间柱网、低台基、单檐歇山、中等举折、灰色板瓦/筒瓦、克制鸱吻、深出檐、椽望和二至三层简素出跳；后世重彩与维修构件不作为元代原状证据。
+- 佛塔只取聚沙塔“八角七层楼阁式砖木塔、逐层腰檐和平座、向上收分”的总体母题；现状历代修缮及1996年大修，不照搬栏杆、色彩或修复细部。
+- 盘门、青浦诸桥等现存遗构一律按“始建/重建年代与后世维修并存”使用：只取砖券、石基、水脚、石柱墩、纵横石梁等可辨结构；不把明清楼橹、栏杆、碑刻或现代修缮当元代原状。所有资产仍为匿名功能建筑 **（原创扩展）**，精确制度与城市落点 **（待考）**。
 
 - [金华文旅《六、景区介绍》](https://v.jhwlv.com/app/index.php?a=site&c=site&do=detail&i=3&id=654&uniacid=3)：天宁寺大殿宋元木构延续与单檐歇山母题；非本套寺殿比例和全部彩画的复原依据。
 - [上海市普陀区政府《走进真如寺，探秘大殿的建筑密码》](https://www.shpt.gov.cn/tupianxinwen/20250416/958655.html)：元代大殿单檐歇山、平缓屋面及与明清较陡屋面的差异；仅约束寺殿屋面母题，不外推民居门窗和彩画。
 - [苏州市志办《苏州古城门之盘门》](https://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml)：瑞光塔七级八面砖木楼阁式，以及现存盘门元代重建、明清续修的年代边界；本套匿名塔不冒名瑞光塔。
+- [故宫名画记·王振鹏《龙舟夺标图》](https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8)、上海博物馆[夏永《滕王阁图》](https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00000900)、[倪瓒《渔庄秋霁》](https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018)与[《汀树遥岑》](https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00005285)：分别取滨水楼屋/码头、礼制建筑层级、疏林草亭与岸植节奏；不复制整图构图。
+- [常熟市政府·聚沙塔](https://www.changshu.gov.cn/zgcs/c100290/202311/54ee18e3bab9460fb467a58d78d8eef5.shtml)：取八角七层、收分、砖木腰檐和平座；现状历代修缮及1996年大修，只取总体母题。
+- [青浦区政府·青浦古桥](https://www.shqp.gov.cn/shqp/ggfw/bmts/20250116/1224818.html)：取顺德桥、迎祥桥的多跨石梁与细石柱墩；始建年代与明清重修边界并列。
 - [杭州文保导览《凤凰寺》](https://wbdl.hzwbzx.cn/house?id=13)：元代重建、明清重修与2009年门楼复建，限定现代图像可用范围。
 - [故宫博物院院刊《〈营造法式〉大木作控制性尺度规律研究》](https://www.dpm.org.cn/Uploads/File/2018/06/04/u5b15212a9a148.pdf)：以现存唐至元建筑实例验证大木作控制性尺度规律；本套只取跨时期比较边界，不据此自定结构测绘尺寸。
 - [Pillow Image 文档](https://pillow.readthedocs.io/en/stable/reference/Image.html)：核实裁切、重采样与无mask粘贴语义；[W3C PNG规范](https://www.w3.org/TR/png-3/#6AlphaRepresentation)：核实alpha通道语义。以上访问日期均2026-09-30；未引入模型版本、价格或浏览器限额断言。

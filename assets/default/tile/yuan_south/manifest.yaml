@@ -3,16 +3,19 @@
   category: tile
   style: default
   subject: 元末江南·净宽4格完整城门；年代意象（原创扩展/待考）
-  prompt: 'Use case: historical-scene. Asset type: one map-compositing game sprite, late Yuan Jiangnan China, circa 1350-1368. Realistic ancient architecture with restrained natural fine-grain textures matching Southern Song game assets: muted blue-grey masonry, weathered dark natural timber, grey clay tiles, low saturation. Strict orthographic dimetric camera yaw45 elevation30, ground axes slopes +0.5 and -0.5, verticals vertical, no vanishing point. Ground grid is 64x32 pixels per metre at final scale. Light from IMAGE UPPER LEFT, image-left faces visibly lighter and image-right faces darker, subtle short lower-right contact shadow only. Exactly one isolated object, intact full silhouette, generous transparent padding on every side, genuine RGBA transparent background. No ground slab, plinth, soil island, people, writing, banners, signboards, logo, watermark, fake checkerboard, modern elements, elaborate Qing ornament or imperial yellow roofs. This is an original period-inspired game module, not reconstruction of a named monument. ONE complete modest city gatehouse. Exterior ground footprint width8m depth4m, actual unobstructed RECTANGULAR open passage width4m depth4m, solid equal piers2m wide each. Front-ground width ratios exactly25% solid left pier /50% CLEAR opening /25% solid right pier; exclude side depth from these ratios. No doors, no floor under passage, fully transparent open passage all the way to ground. Straight horizontal timber hall bridging the opening with simple vertical lattice, low grey tiled hipped-and-gabled roof, modest broad bracket sets, no high pedestal. Wall piers3m tall, total gatehouse6m tall. Front facade runs upper-left to lower-right at slope+0.5; visible left depth facade runs opposite slope. Grey small brick facing on stone footings, weathered dark brown timber with restrained faded red-brown framing, very sparse decoration. No flanking walls. Ground-foot silhouette must be clean and flush.'
-  negative: 无文字、人物、现代物件、清式彩画、黄琉璃瓦、地台、假棋盘与背景场景。
-  references: []
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: inherited agent configuration
-  created: '2026-09-30T22:23:54.670733+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f468-a0f9-7c40-8194-809d5ed1d3f9/exec-4d4b0ed7-8997-4e24-8ec0-824ed8dd0fb3.png
+  prompt: Create ONE ORIGINAL isolated late-Yuan Jiangnan THICK MASONRY CITY GATE sprite. IMAGE1 gives only orthographic dimetric yaw45 pitch30, real transparent RGBA, upper-left light, detail density and 8m by4m overall module; do not repeat its thin bridge-like upper hall. IMAGES2-3 document Panmen masonry. Make a massive squat blue-grey brick wall-body across the full 8m width and4m depth on dark dressed-stone footing, about3m high, with ONE 4m-wide deep barrel-vaulted brick passage visibly piercing the center and equal2m solid piers. The masonry arch ring and thick tunnel reveals must be prominent; passage is open transparent through to ground, no doors or floor obstruction. On top place only a compact low three-bay grey-tiled timber guard hall, clearly narrower than the masonry body, with plain dark timber and restrained brackets. Omit Panmen's later reconstructed high tower and tourist details. No flanking walls. Exact 2:1 dimetric ground axes, entire object uncropped, clean transparent margin, solid surfaces opaque, alpha0 outside, no glow/haze/scenery/text/people/flags/Qing paint.
+  negative: 文字、人物、现代物、后世修复外观、清式彩画、黄瓦、背景、光晕
+  references:
+  - url: http://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml
+    role: 盘门青砖券洞、厚城体、石基
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 排除后世楼橹
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:41:41+00:00'
+  generation_id: cf07347e-fcf3-4c90-a12b-558a2221c8d6
   size: 618x433
-  sha256: 3de8bc4167d92dcae671b47f041d72706d58ca54d448ea0e084ce49b78b9e15f
+  sha256: c5c6f2cc31020bac3a2bfedf4f66bda605b161837a5308e40006a6e3ab16e1a4
   status: candidate
   tile:
     kind: city_gate
@@ -21,71 +24,41 @@
     - 4
     variant: k4_r000_v01
     autotile_mask: null
-  source_copy: source/tex_town_yuan_south_city_gate__k4_r000_v01__source.png
-  source_sha256: dd91596a4d47fc12d832f1d757f5c593bd660e507c2c609f9869f9125cf99ca4
+  candidate_count: 2
+  selected_candidate: 2
+  source_copy: source/tex_town_yuan_south_city_gate__k4_r000_v01__hist_selected.png
+  source_record: source/tex_town_yuan_south_city_gate__k4_r000_v01__hist_selected.json
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 盘门青砖券洞、厚城体、石基；排除后世楼橹；后世维修只作边界，不冒充元代原状；仅当前方向，门洞/接缝/碰撞（待实测）。
   anchor_px:
   - 325.074
   - 352.283
-  geometry:
-    grid_px:
-    - 64
-    - 32
-    rotation_deg: 0
-    anchor_basis: 底面中心目测采样；非逐像素网格拟合
-    source_anchor_px:
-    - 787.5
-    - 816.5
-    crop_xyxy:
-    - 65
-    - 32
-    - 1436
-    - 982
-    uniform_scale: 0.43885714285714283
-    padding_px: 8
-    height_m_target: 6
-    pier_height_m_target: 3
-    passage_cells:
-    - 4
-    - 4
-    pier_width_cells:
-    - 2
-    - 2
-    footprint_local_half_open:
-    - -3
-    - -1
-    - 5
-    - 3
-    passage_local_half_open:
-    - -1
-    - -1
-    - 3
-    - 3
-    views_delivered:
-    - 0
-    views_missing:
-    - 90
-    - 180
-    - 270
-    pixel_passage_verified: false
-  notes: 原创扩展；仅裁切、等比缩放、透明留白，保留源alpha；底面锚点为目测采样并随变换换算。净宽为逻辑契约，图像门洞及2:1投影尚未精密对齐；仅r000候选，不冒充四向成品。
+  rejected_candidates:
+  - candidate: 1
+    source: source/tex_town_yuan_south_city_gate__k4_r000_v01__hist_rejected_c1.png
+    record: source/tex_town_yuan_south_city_gate__k4_r000_v01__hist_rejected_c1.json
+    reason: 首候选为架空门楼，缺少盘门式厚砖券体
 - id: tex_town_yuan_south_city_gate__k6_r000_v01
   file: tex_town_yuan_south_city_gate__k6_r000_v01.png
   category: tile
   style: default
   subject: 元末江南·净宽6格完整城门；年代意象（原创扩展/待考）
-  prompt: 'Use case: style-transfer. Create ONE new Yuan-period Jiangnan CITY GATE sprite using the supplied Southern Song gate sprite as exact camera, geometry, material detail density and transparent cutout reference. KEEP exact reference oblique45-degree orthographic two-facade view, floor axes slopes+0.5/-0.5 and ground-foot line directions. This is not a front elevation. Keep roof fully visible. Change red timber to weathered very dark brown with a little faded red oxide, retain blue-grey brick and grey tile roof. Ground footprint10m by4m, tall gate piers3m and total6m. IMPORTANT front span ratio2m solid left pier /6m FULLY TRANSPARENT RECTANGULAR PASSAGE /2m solid right pier. Open passage occupies60% entire front width excluding depth side-face. No wall or doors or floor inside hole. Completely remove any external glow, haze or ground shadow. Only solid opaque building with antialiased trueRGBA edges and transparent alpha0 empty regions. No text, no people, no platforms. Original historical game module, not a named citygate restoration.'
-  negative: 无文字、人物、现代物件、清式彩画、黄琉璃瓦、地台、假棋盘与背景场景。
+  prompt: Create ONE ORIGINAL isolated late-Yuan Jiangnan THICK MASONRY CITY GATE sprite. IMAGE1 gives only orthographic dimetric yaw45 pitch30, real transparent RGBA, upper-left light, detail density and orientation; do not repeat its thin bridge-like upper hall. IMAGES2-3 document Panmen masonry. Make a massive squat blue-grey brick wall-body across the full 10m width and4m depth on dark dressed-stone footing, about3m high, with ONE 6m-wide deep barrel-vaulted brick passage visibly piercing the center and equal2m solid piers. The masonry arch ring and thick tunnel reveals must be prominent; passage is open transparent through to ground, no doors or floor obstruction. On top place only a compact low five-bay grey-tiled timber guard hall, clearly narrower than the masonry body, with plain dark timber and restrained brackets. Omit Panmen's later reconstructed high tower and tourist details. No flanking walls. Exact 2:1 dimetric ground axes, entire object uncropped, clean transparent margin, solid surfaces opaque, alpha0 outside, no glow/haze/scenery/text/people/flags/Qing paint.
+  negative: 文字、人物、现代物、后世修复外观、清式彩画、黄瓦、背景、光晕
   references:
-  - file: ../../baseline/tile/tex_town_song_southern_city_gate__k8_r000_v01.png
-    sha256: 71b7989460b8b1308da88e710b001309f36b7fd647d64a59529fcbe6534b6786
-    role: 宋基线几何及画风参考，实际作为image_gen输入
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: inherited agent configuration
-  created: '2026-09-30T22:32:39.693826+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f468-a0f9-7c40-8194-809d5ed1d3f9/exec-cbfc6627-cb93-4b68-83cc-85abb52db9cb.png
+  - url: http://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml
+    role: 盘门青砖券洞、厚城体、石基
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 排除后世楼橹
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:41:58+00:00'
+  generation_id: 8a33a01b-0897-45c2-a8cd-1ed91dc10711
   size: 568x382
-  sha256: 8bf185497f703e79452cda5a55e88a6451fe5bc84ae3b3871f088983462b9612
+  sha256: be46b97e6769338d9f2ec2de2f0e3b0f783d7f15a1773814116e941e99e327d9
   status: candidate
   tile:
     kind: city_gate
@@ -94,68 +67,41 @@
     - 4
     variant: k6_r000_v01
     autotile_mask: null
-  source_copy: source/tex_town_yuan_south_city_gate__k6_r000_v01__source.png
-  source_sha256: 00a64ba97500390224b3ee1775f75f708e6094349d926b605f891649eb175a20
+  candidate_count: 2
+  selected_candidate: 2
+  source_copy: source/tex_town_yuan_south_city_gate__k6_r000_v01__hist_selected.png
+  source_record: source/tex_town_yuan_south_city_gate__k6_r000_v01__hist_selected.json
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 盘门青砖券洞、厚城体、石基；排除后世楼橹；后世维修只作边界，不冒充元代原状；仅当前方向，门洞/接缝/碰撞（待实测）。
   anchor_px:
   - 288.182
   - 302.593
-  geometry:
-    grid_px:
-    - 64
-    - 32
-    rotation_deg: 0
-    anchor_basis: 底面中心目测采样；非逐像素网格拟合
-    source_anchor_px:
-    - 768
-    - 822.5
-    crop_xyxy:
-    - 0
-    - 15
-    - 1512
-    - 1017
-    uniform_scale: 0.36482084690553745
-    padding_px: 8
-    height_m_target: 6
-    pier_height_m_target: 3
-    passage_cells:
-    - 6
-    - 4
-    pier_width_cells:
-    - 2
-    - 2
-    footprint_local_half_open:
-    - -4
-    - -1
-    - 6
-    - 3
-    passage_local_half_open:
-    - -2
-    - -1
-    - 4
-    - 3
-    views_delivered:
-    - 0
-    views_missing:
-    - 90
-    - 180
-    - 270
-    pixel_passage_verified: false
-  notes: 原创扩展；仅裁切、等比缩放、透明留白，保留源alpha；底面锚点为目测采样并随变换换算。净宽为逻辑契约，图像门洞及2:1投影尚未精密对齐；仅r000候选，不冒充四向成品。
+  rejected_candidates:
+  - candidate: 1
+    source: source/tex_town_yuan_south_city_gate__k6_r000_v01__hist_rejected_c1.png
+    record: source/tex_town_yuan_south_city_gate__k6_r000_v01__hist_rejected_c1.json
+    reason: 首候选为架空门楼，缺少盘门式厚砖券体
 - id: tex_town_yuan_south_wall__brick_r000_v01
   file: tex_town_yuan_south_wall__brick_r000_v01.png
   category: tile
   style: default
   subject: 元末江南·青灰砖城墙直段；年代意象（原创扩展/待考）
-  prompt: 'Use case: historical-scene. Asset type: one map-compositing game sprite, late Yuan Jiangnan China, circa 1350-1368. Realistic ancient architecture with restrained natural fine-grain textures matching Southern Song game assets: muted blue-grey masonry, weathered dark natural timber, grey clay tiles, low saturation. Strict orthographic dimetric camera yaw45 elevation30, ground axes slopes +0.5 and -0.5, verticals vertical, no vanishing point. Ground grid is 64x32 pixels per metre at final scale. Light from IMAGE UPPER LEFT, image-left faces visibly lighter and image-right faces darker, No external shadow, no glow, no haze. Exactly one isolated object, intact full silhouette, generous transparent padding on every side, genuine RGBA transparent background. No ground slab, plinth, soil island, people, writing, banners, signboards, logo, watermark, fake checkerboard, modern elements, elaborate Qing ornament or imperial yellow roofs. This is an original period-inspired game module, not reconstruction of a named monument. ONE precisely rectangular one-grid modular wall column: width1m depth1m height3m, plain squared flat top, NO crenellations, no parapet, no coping cap, no projecting base. Muted blue-grey small brick facing with subtle buff mortar and very modest aged texture. Four straight vertical corners and clean repeatable cut ends. Top and foot diamond sides slopes exactly+/-0.5. Visible left plane lighter, right plane darker. Geometry should match a solid cuboid, about64px-wide by150px-high when rendered at final grid scale.'
-  negative: 无文字、人物、现代物件、清式彩画、黄琉璃瓦、地台、假棋盘与背景场景。
-  references: []
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: inherited agent configuration
-  created: '2026-09-30T22:27:06.198660+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f468-a0f9-7c40-8194-809d5ed1d3f9/exec-2e24f782-8e89-4e6e-b091-90ef80e2c965.png
-  size: 161x228
-  sha256: e50978bad9b990f0576d71169bc968fc9969bd907016804151dd91683ae962ac
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan map-compositing sprite. IMAGE 1 is only the exact geometry, camera and output-transparency example: preserve its orientation and modular function, clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight and restrained realistic Southern Song baseline detail; do not retain anachronistic decoration. IMAGES 2-3 are historical evidence for masonry, timber, vegetation or bridge construction only. Solid object fully opaque; exterior true alpha-zero transparent. No aura, vignette, glow, haze, fog, translucent backdrop, floor plane, scenery, people, text, signs, watermark, modern items, Qing ornament, fantasy details or cropped edges. One repeatable straight 1m by1m by3m city-wall column: blue-grey small-brick facing in staggered bond over compacted earth core, pale lime mortar, a few dark local stone blocks at the damp base, broad plain flat top, four clean vertical cut edges. No crenellations, coping roof or projecting plinth.'
+  negative: 文字、人物、现代物、后世修复外观、清式彩画、黄瓦、背景、光晕
+  references:
+  - url: http://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml
+    role: 盘门小青砖错缝、石质水脚与厚墙体
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 盘门小青砖错缝、石质水脚与厚墙体
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:37:02+00:00'
+  generation_id: 5218461b-62c4-49d8-ad63-a1608cc89b83
+  size: 256x320
+  sha256: 837134e33b2cefeb35848a98f2386141db76401e80f911e028ab097016459c06
   status: candidate
   tile:
     kind: wall
@@ -164,46 +110,36 @@
     - 1
     variant: brick_r000_v01
     autotile_mask: null
-  source_copy: source/tex_town_yuan_south_wall__brick_r000_v01__source.png
-  source_sha256: 59fb5a4e53941bd51c295f2010bdceb815c5bab2f6e5fecc221c7ecfa166bbf5
+  candidate_count: 1
+  selected_candidate: 1
+  source_copy: source/tex_town_yuan_south_wall__brick_r000_v01__hist_selected.png
+  source_record: source/tex_town_yuan_south_wall__brick_r000_v01__hist_selected.json
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 盘门小青砖错缝、石质水脚与厚墙体；后世维修只作边界，不冒充元代原状；仅当前方向，门洞/接缝/碰撞（待实测）。
   anchor_px:
   - 81.184
   - 185.363
-  geometry:
-    grid_px:
-    - 64
-    - 32
-    rotation_deg: 0
-    anchor_basis: 底面中心目测采样；非逐像素网格拟合
-    source_anchor_px:
-    - 510
-    - 1268
-    crop_xyxy:
-    - 0
-    - 32
-    - 1012
-    - 1512
-    uniform_scale: 0.14349775784753363
-    padding_px: 8
-  notes: 原创扩展；仅裁切、等比缩放、透明留白，保留源alpha；底面锚点为目测采样并随变换换算。墙件纹理/接缝待总装验证。
 - id: tex_town_yuan_south_wall_corner__outer_ne_v01
   file: tex_town_yuan_south_wall_corner__outer_ne_v01.png
   category: tile
   style: default
   subject: 元末江南·青灰砖城墙外转角；年代意象（原创扩展/待考）
-  prompt: 'Use case: style-transfer. Create one realistic Yuan Jiangnan blue-grey small-brick wall CORNER game sprite. Use supplied Southern Song wall as exact geometry/camera/height and clean transparency reference. Preserve tall squat L-plan,2m by2m footprint, each arm2m length1m thick3m tall, broad flat top. Rear apex at top image center, arms toward lower left/right and hollow inner opening faces bottom center. Exact orthographic2:1 slopes+/-0.5 on horizontal plan edges; vertical edges stay vertical. Muted blue-grey small bricks, subtle pale buff mortar, gently aged realistic texture. Left upper light, left facing plane lighter, right facing plane darker. NO crenellations, no coping cap, no ground, no plinth, no text, no shadow, NO glow/haze whatsoever. Opaque wall on realRGBA transparent empty background, generous padding. This is an original historical game module, not a reconstruction of a monument.'
-  negative: 无文字、人物、现代物件、清式彩画、黄琉璃瓦、地台、假棋盘与背景场景。
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan map-compositing sprite. IMAGE 1 is only the exact geometry, camera and output-transparency example: preserve its orientation and modular function, clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight and restrained realistic Southern Song baseline detail; do not retain anachronistic decoration. IMAGES 2-3 are historical evidence for masonry, timber, vegetation or bridge construction only. Solid object fully opaque; exterior true alpha-zero transparent. No aura, vignette, glow, haze, fog, translucent backdrop, floor plane, scenery, people, text, signs, watermark, modern items, Qing ornament, fantasy details or cropped edges. One repeatable outer L corner, 2m by2m footprint, both arms 1m thick and3m high: blue-grey small-brick facing in staggered bond over earth core, pale lime mortar and dark local stone damp-course, broad plain flat top and clean modular ends. No crenellations, coping roof or projecting plinth.'
+  negative: 文字、人物、现代物、后世修复外观、清式彩画、黄瓦、背景、光晕
   references:
-  - file: ../../baseline/tile/tex_town_song_southern_wall_corner__outer_ne_v01.png
-    sha256: 0db360a5da3ca17323634808ea231191099578b9d32df7aa130d2720c72577e7
-    role: 宋基线几何及画风参考，实际作为image_gen输入
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: inherited agent configuration
-  created: '2026-09-30T22:33:55.756343+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f468-a0f9-7c40-8194-809d5ed1d3f9/exec-1b61438b-78d6-4089-ad7b-c7e9277413c2.png
-  size: 151x209
-  sha256: e33e55001ad2d575e15a4e0b2a10b771fdfbd2427d66e70369a4aa59159809f4
+  - url: http://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml
+    role: 盘门小青砖错缝、石质水脚与厚墙转角
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 盘门小青砖错缝、石质水脚与厚墙转角
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:37:39+00:00'
+  generation_id: e773970e-bd37-48d3-9de0-0f5d33074c99
+  size: 320x320
+  sha256: 22534c7d8fb20c32bb03b4f25de5feb1cce07c9779711fd676d1cc8dfdf981e4
   status: candidate
   tile:
     kind: wall_corner
@@ -212,43 +148,36 @@
     - 2
     variant: outer_ne_v01
     autotile_mask: null
-  source_copy: source/tex_town_yuan_south_wall_corner__outer_ne_v01__source.png
-  source_sha256: 22f52d881937292b659bccfcd4ea44fc402f2b044607c9e1739bd8d743d92329
+  candidate_count: 1
+  selected_candidate: 1
+  source_copy: source/tex_town_yuan_south_wall_corner__outer_ne_v01__hist_selected.png
+  source_record: source/tex_town_yuan_south_wall_corner__outer_ne_v01__hist_selected.json
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 盘门小青砖错缝、石质水脚与厚墙转角；后世维修只作边界，不冒充元代原状；仅当前方向，门洞/接缝/碰撞（待实测）。
   anchor_px:
   - 77.695
   - 147.797
-  geometry:
-    grid_px:
-    - 64
-    - 32
-    rotation_deg: 0
-    anchor_basis: 底面中心目测采样；非逐像素网格拟合
-    source_anchor_px:
-    - 539
-    - 1070
-    crop_xyxy:
-    - 25
-    - 39
-    - 1017
-    - 1466
-    uniform_scale: 0.13559322033898305
-    padding_px: 8
-  notes: 原创扩展；仅裁切、等比缩放、透明留白，保留源alpha；底面锚点为目测采样并随变换换算。第二候选沿用宋墙角几何，逐像素接缝待总装。
 - id: tex_town_yuan_south_bridge_deck__w4_l8_r000_v01
   file: tex_town_yuan_south_bridge_deck__w4_l8_r000_v01.png
   category: tile
   style: default
   subject: 元末江南·石梁平桥桥面；年代意象（原创扩展/待考）
-  prompt: 'Use case: historical-scene. Asset type: one map-compositing game sprite, late Yuan Jiangnan China, circa 1350-1368. Realistic ancient architecture with restrained natural fine-grain textures matching Southern Song game assets: muted blue-grey masonry, weathered dark natural timber, grey clay tiles, low saturation. Strict orthographic dimetric camera yaw45 elevation30, ground axes slopes +0.5 and -0.5, verticals vertical, no vanishing point. Ground grid is 64x32 pixels per metre at final scale. Light from IMAGE UPPER LEFT, image-left faces visibly lighter and image-right faces darker, No external shadow, no glow, no haze. Exactly one isolated object, intact full silhouette, generous transparent padding on every side, genuine RGBA transparent background. No ground slab, plinth, soil island, people, writing, banners, signboards, logo, watermark, fake checkerboard, modern elements, elaborate Qing ornament or imperial yellow roofs. This is an original period-inspired game module, not reconstruction of a named monument. ONE low flat stone beam footbridge DECK ONLY, wide4m long8m in rectangular plan. Long axis runs lower-left to upper-right at slope-0.5. Large weathered grey rectangular stone slabs on stout shallow squared stone edge beams, subtle fine-grain stone textures. No rails, no handrails, no stairs, no piers, no abutments, no arch, no water, no ground. Deck thickness0.3m, flat walking surface with clean flush ends for connecting road tile. A restrained Song-Yuan Jiangnan stone-beam bridge concept, not a copy of any extant bridge.'
-  negative: 无文字、人物、现代物件、清式彩画、黄琉璃瓦、地台、假棋盘与背景场景。
-  references: []
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: inherited agent configuration
-  created: '2026-09-30T22:28:51.366819+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f468-a0f9-7c40-8194-809d5ed1d3f9/exec-a4a05564-d600-48f1-8dfe-12ff4ae596eb.png
-  size: 414x264
-  sha256: a4f48a347a78e79ca32d4f82aebf1ab111f67cb49b5c1fb52fa3d86ccdcc69a5
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan map-compositing sprite. IMAGE 1 is only the exact geometry, camera and output-transparency example: preserve its orientation and modular function, clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight and restrained realistic Southern Song baseline detail; do not retain anachronistic decoration. IMAGES 2-3 are historical evidence for masonry, timber, vegetation or bridge construction only. Solid object fully opaque; exterior true alpha-zero transparent. No aura, vignette, glow, haze, fog, translucent backdrop, floor plane, scenery, people, text, signs, watermark, modern items, Qing ornament, fantasy details or cropped edges. A 4m wide by8m long straight multi-span stone beam bridge: low level deck, three narrow spans, paired slender squared stone piers, parallel longitudinal stone beams carrying transverse slabs, very low plain stone edge rails, gently ramped approaches. Use only documented Yuan-origin bridge structural principles; omit all later repair plaques, modern concrete and scenery. No water or banks.'
+  negative: 文字、人物、现代物、后世修复外观、清式彩画、黄瓦、背景、光晕
+  references:
+  - url: https://www.shqp.gov.cn/shqp/ggfw/bmts/20250116/1224818.html
+    role: 顺德/迎祥桥平梁多跨、细石柱墩
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 古画船岸尺度
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:36:12+00:00'
+  generation_id: 9bb2aa1e-3bcb-47af-bf7a-3f3d38de8e7a
+  size: 512x320
+  sha256: 3201c8e7a29fafab6b449c1676da2733cab27f59069d1e107e2439b094710482
   status: candidate
   tile:
     kind: bridge_deck
@@ -257,43 +186,36 @@
     - 8
     variant: w4_l8_r000_v01
     autotile_mask: null
-  source_copy: source/tex_town_yuan_south_bridge_deck__w4_l8_r000_v01__source.png
-  source_sha256: 9d89affd3920d8a8ddc4e8b924a97552bbd2a5732ead45cd1678537775f25023
+  candidate_count: 1
+  selected_candidate: 1
+  source_copy: source/tex_town_yuan_south_bridge_deck__w4_l8_r000_v01__hist_selected.png
+  source_record: source/tex_town_yuan_south_bridge_deck__w4_l8_r000_v01__hist_selected.json
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 顺德/迎祥桥平梁多跨、细石柱墩；古画船岸尺度；后世维修只作边界，不冒充元代原状；仅当前方向，门洞/接缝/碰撞（待实测）。
   anchor_px:
   - 201.627
   - 141.695
-  geometry:
-    grid_px:
-    - 64
-    - 32
-    rotation_deg: 0
-    anchor_basis: 底面中心目测采样；非逐像素网格拟合
-    source_anchor_px:
-    - 767
-    - 525
-    crop_xyxy:
-    - 53
-    - 32
-    - 1522
-    - 948
-    uniform_scale: 0.2711864406779661
-    padding_px: 8
-  notes: 原创扩展；仅裁切、等比缩放、透明留白，保留源alpha；底面锚点为目测采样并随变换换算。桥面独立一层；桥栏/桥墩及近侧遮挡未交付，需下游低模补齐。
 - id: tex_town_yuan_south_tree_cluster__willow_v01
   file: tex_town_yuan_south_tree_cluster__willow_v01.png
   category: tile
   style: default
   subject: 元末江南·垂柳；年代意象（原创扩展/待考）
-  prompt: 'Use case: historical-scene. Asset type: one map-compositing game sprite, late Yuan Jiangnan China, circa 1350-1368. Realistic ancient architecture with restrained natural fine-grain textures matching Southern Song game assets: muted blue-grey masonry, weathered dark natural timber, grey clay tiles, low saturation. Strict orthographic dimetric camera yaw45 elevation30, ground axes slopes +0.5 and -0.5, verticals vertical, no vanishing point. Ground grid is 64x32 pixels per metre at final scale. Light from IMAGE UPPER LEFT, image-left faces visibly lighter and image-right faces darker, No external shadow, no glow, no haze. Exactly one isolated object, intact full silhouette, generous transparent padding on every side, genuine RGBA transparent background. No ground slab, plinth, soil island, people, writing, banners, signboards, logo, watermark, fake checkerboard, modern elements, elaborate Qing ornament or imperial yellow roofs. This is an original period-inspired game module, not reconstruction of a named monument. ONE mature yet modest Chinese weeping willow, single slightly curved weathered brown trunk with airy rounded canopy and long drooping slender branchlets, narrow lanceolate soft muted olive-green leaves. Canopy approximately4m wide and tree5m high, logical root footprint3m by3m. Show top and two sides of canopy consistent with dimetric view, airy openings between branches. Roots finish at one clean ground contact point. No soil, no rocks, no pot, no ground or floating landscape.'
-  negative: 无文字、人物、现代物件、清式彩画、黄琉璃瓦、地台、假棋盘与背景场景。
-  references: []
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: inherited agent configuration
-  created: '2026-09-30T22:30:00.167223+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f468-a0f9-7c40-8194-809d5ed1d3f9/exec-43bb12f9-da74-4082-8480-99e5bbf831fc.png
-  size: 301x272
-  sha256: 2536b4d2bcd3a4eb73c56f911153c0d9210eb8c26cf7e825496337326a291594
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan map-compositing sprite. IMAGE 1 is only the exact geometry, camera and output-transparency example: preserve its orientation and modular function, clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight and restrained realistic Southern Song baseline detail; do not retain anachronistic decoration. IMAGES 2-3 are historical evidence for masonry, timber, vegetation or bridge construction only. Solid object fully opaque; exterior true alpha-zero transparent. No aura, vignette, glow, haze, fog, translucent backdrop, floor plane, scenery, people, text, signs, watermark, modern items, Qing ornament, fantasy details or cropped edges. A sparse 3m by3m Jiangnan waterside willow cluster: one mature leaning trunk plus one slim secondary trunk, pollarded and irregular branching, long fine drooping leaves in muted dusty green, exposed weathered bark and airy crown gaps following Yuan literati-painting vegetation rhythm; no ground island, pot or water.'
+  negative: 文字、人物、现代物、后世修复外观、清式彩画、黄瓦、背景、光晕
+  references:
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018
+    role: 倪瓒画中疏林、斜干与江南岸植层次
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00005285
+    role: 倪瓒画中疏林、斜干与江南岸植层次
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:36:47+00:00'
+  generation_id: f509ce2c-83fe-48fb-ab42-9120b369cb14
+  size: 384x384
+  sha256: f3baf0ffa56f730beca4d223cb1698465bd283c990d5e7a1540efe0adbe99a35
   status: candidate
   tile:
     kind: tree_cluster
@@ -302,43 +224,36 @@
     - 3
     variant: willow_v01
     autotile_mask: null
-  source_copy: source/tex_town_yuan_south_tree_cluster__willow_v01__source.png
-  source_sha256: ad8f4c1aae8c86f440ac730a7abd26e17ac4f5bd62b6a1787cd61bd37d4e2093
+  candidate_count: 1
+  selected_candidate: 1
+  source_copy: source/tex_town_yuan_south_tree_cluster__willow_v01__hist_selected.png
+  source_record: source/tex_town_yuan_south_tree_cluster__willow_v01__hist_selected.json
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 倪瓒画中疏林、斜干与江南岸植层次；后世维修只作边界，不冒充元代原状；仅当前方向，门洞/接缝/碰撞（待实测）。
   anchor_px:
   - 180.101
   - 244.424
-  geometry:
-    grid_px:
-    - 64
-    - 32
-    rotation_deg: 0
-    anchor_basis: 底面中心目测采样；非逐像素网格拟合
-    source_anchor_px:
-    - 800
-    - 1100
-    crop_xyxy:
-    - 0
-    - 1
-    - 1323
-    - 1189
-    uniform_scale: 0.21512605042016808
-    padding_px: 8
-  notes: 原创扩展；仅裁切、等比缩放、透明留白，保留源alpha；底面锚点为目测采样并随变换换算。仅采用现代植物形态，元末具体栽植位置待考。
 - id: tex_town_yuan_south_reed__canal_v01
   file: tex_town_yuan_south_reed__canal_v01.png
   category: tile
   style: default
   subject: 元末江南·河岸芦苇；年代意象（原创扩展/待考）
-  prompt: 'Use case: historical-scene. Asset type: one map-compositing game sprite, late Yuan Jiangnan China, circa 1350-1368. Realistic ancient architecture with restrained natural fine-grain textures matching Southern Song game assets: muted blue-grey masonry, weathered dark natural timber, grey clay tiles, low saturation. Strict orthographic dimetric camera yaw45 elevation30, ground axes slopes +0.5 and -0.5, verticals vertical, no vanishing point. Ground grid is 64x32 pixels per metre at final scale. Light from IMAGE UPPER LEFT, image-left faces visibly lighter and image-right faces darker, No external shadow, no glow, no haze. Exactly one isolated object, intact full silhouette, generous transparent padding on every side, genuine RGBA transparent background. No ground slab, plinth, soil island, people, writing, banners, signboards, logo, watermark, fake checkerboard, modern elements, elaborate Qing ornament or imperial yellow roofs. This is an original period-inspired game module, not reconstruction of a named monument. ONE compact natural clump of riverbank reeds, slender upright green-brown stems and narrow linear-lanceolate muted olive blades, several loose pale tawny feathery panicles, approximately1m by1m ground footprint and1.6m tall. Sparse natural irregular silhouette, restrained fine detail like realistic town sprite. Small visible basal stem ends only. No soil, no water, no rocks, no pot, no surrounding landscape.'
-  negative: 无文字、人物、现代物件、清式彩画、黄琉璃瓦、地台、假棋盘与背景场景。
-  references: []
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: inherited agent configuration
-  created: '2026-09-30T22:30:54.551244+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f468-a0f9-7c40-8194-809d5ed1d3f9/exec-18d50927-e97b-4295-996a-dd3ae82762d0.png
-  size: 137x130
-  sha256: 54325b8ba250dffb9bd0fee443ae81bd208699aa408019c5fa24f5380d044670
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan map-compositing sprite. IMAGE 1 is only the exact geometry, camera and output-transparency example: preserve its orientation and modular function, clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight and restrained realistic Southern Song baseline detail; do not retain anachronistic decoration. IMAGES 2-3 are historical evidence for masonry, timber, vegetation or bridge construction only. Solid object fully opaque; exterior true alpha-zero transparent. No aura, vignette, glow, haze, fog, translucent backdrop, floor plane, scenery, people, text, signs, watermark, modern items, Qing ornament, fantasy details or cropped edges. One compact 1m by1m canal-edge reed clump: 18-25 slender jointed yellow-green stems, narrow matte leaves at varied angles, several subdued brown seed heads, open base suitable for water-edge compositing; no soil island, pot, water plane or flowers.'
+  negative: 文字、人物、现代物、后世修复外观、清式彩画、黄瓦、背景、光晕
+  references:
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018
+    role: 元画河岸芦荻、细茎与疏密层次
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 元画河岸芦荻、细茎与疏密层次
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:37:18+00:00'
+  generation_id: 3d09577c-7792-41a6-8f15-676ed9f832a4
+  size: 192x192
+  sha256: 840a9d8c7269a595a680e1d9c4e98725dd8f523c74368d46188efb8391f89181
   status: candidate
   tile:
     kind: reed
@@ -347,25 +262,15 @@
     - 1
     variant: canal_v01
     autotile_mask: null
-  source_copy: source/tex_town_yuan_south_reed__canal_v01__source.png
-  source_sha256: 1d0ab00d9413575ab39e4f926c77c366542741d210cf02b65f96577982bc92cd
+  candidate_count: 1
+  selected_candidate: 1
+  source_copy: source/tex_town_yuan_south_reed__canal_v01__hist_selected.png
+  source_record: source/tex_town_yuan_south_reed__canal_v01__hist_selected.json
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 元画河岸芦荻、细茎与疏密层次；后世维修只作边界，不冒充元代原状；仅当前方向，门洞/接缝/碰撞（待实测）。
   anchor_px:
   - 73.902
   - 111.156
-  geometry:
-    grid_px:
-    - 64
-    - 32
-    rotation_deg: 0
-    anchor_basis: 底面中心目测采样；非逐像素网格拟合
-    source_anchor_px:
-    - 699
-    - 1087
-    crop_xyxy:
-    - 25
-    - 32
-    - 1258
-    - 1199
-    uniform_scale: 0.09777777777777778
-    padding_px: 8
-  notes: 原创扩展；仅裁切、等比缩放、透明留白，保留源alpha；底面锚点为目测采样并随变换换算。仅采用现代植物形态，元末具体栽植位置待考。

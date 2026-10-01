@@ -1,0 +1,18 @@
+{
+  "endpoint": "codex/images/edits",
+  "model": "gpt-image-2",
+  "turn_id": "6aba325c-a472-4a64-b35c-26920133241b",
+  "request_id": "b7fbda9c-184e-4341-9caa-8150682e677f",
+  "generation_id": "afd34441-07e9-46de-8c2c-1ebe3ced6fa2",
+  "created_unix": 1790840191,
+  "elapsed_seconds": 32.189,
+  "prompt": "Create ONE ORIGINAL isolated late-Yuan Jiangnan map-compositing sprite. IMAGE 1 is only the exact geometry, camera and output-transparency example: preserve its orientation and modular function, clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight and restrained realistic Southern Song baseline detail; do not retain anachronistic decoration. IMAGES 2-3 are historical evidence for masonry, timber, vegetation or bridge construction only. Solid object fully opaque; exterior true alpha-zero transparent. No aura, vignette, glow, haze, fog, translucent backdrop, floor plane, scenery, people, text, signs, watermark, modern items, Qing ornament, fantasy details or cropped edges. A complete 10m by4m blue-grey brick city gate module with 6m clear rectangular open passage and two equal 2m solid piers, stone footing, thick brick body and low single-eave grey-tiled timber gatehouse; borrow only Panmen masonry bond, voussoir arch, stone base and mass, explicitly omit its later reconstructed upper tower. No flanking walls, doors or floor blocking the passage.",
+  "references": [
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_south-hist/assets/default/baseline/tile/tex_town_song_southern_city_gate__k8_r000_v01.png",
+    "/private/tmp/yuan_refs_web/panmen_land.jpg",
+    "/private/tmp/yuan_refs_web/panmen_wall.jpg"
+  ],
+  "output_sha256": "827ac5a9b97918fb34df00279f9fb5762d707b0e6fabc569c299c311bf8f1f81",
+  "selection_status": "rejected",
+  "selection_reason": "rejected: elevated gate hall lacked thick masonry vaulted body"
+}

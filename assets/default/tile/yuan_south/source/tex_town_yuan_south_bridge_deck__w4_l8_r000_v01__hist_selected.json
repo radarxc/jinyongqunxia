@@ -1,0 +1,37 @@
+{
+  "endpoint": "codex/images/edits",
+  "model": "gpt-image-2",
+  "turn_id": "eed05a20-c5e4-4ed8-be70-b4b84391a0ce",
+  "request_id": "baf45ecd-1499-4555-8190-62a77d8f7126",
+  "generation_id": "9bb2aa1e-3bcb-47af-bf7a-3f3d38de8e7a",
+  "created_unix": 1790840172,
+  "elapsed_seconds": 31.22,
+  "prompt": "Create ONE ORIGINAL isolated late-Yuan Jiangnan map-compositing sprite. IMAGE 1 is only the exact geometry, camera and output-transparency example: preserve its orientation and modular function, clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight and restrained realistic Southern Song baseline detail; do not retain anachronistic decoration. IMAGES 2-3 are historical evidence for masonry, timber, vegetation or bridge construction only. Solid object fully opaque; exterior true alpha-zero transparent. No aura, vignette, glow, haze, fog, translucent backdrop, floor plane, scenery, people, text, signs, watermark, modern items, Qing ornament, fantasy details or cropped edges. A 4m wide by8m long straight multi-span stone beam bridge: low level deck, three narrow spans, paired slender squared stone piers, parallel longitudinal stone beams carrying transverse slabs, very low plain stone edge rails, gently ramped approaches. Use only documented Yuan-origin bridge structural principles; omit all later repair plaques, modern concrete and scenery. No water or banks.",
+  "references": [
+    {
+      "kind": "style_geometry_reference",
+      "file": "tex_town_song_southern_bridge_deck__w5_l10_r090_v01.png",
+      "note": "宋基线透明精灵，只约束相机、透明裁切与写实密度"
+    },
+    {
+      "kind": "historical_image",
+      "url": "https://www.shqp.gov.cn/shqp/ggfw/bmts/20250116/1224818.html",
+      "detail_used": "顺德/迎祥桥平梁多跨、细石柱墩",
+      "downloaded_and_viewed": true
+    },
+    {
+      "kind": "historical_image",
+      "url": "https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8",
+      "detail_used": "古画船岸尺度",
+      "downloaded_and_viewed": true
+    }
+  ],
+  "output_sha256": "f023a0ae596db32acac724c7cf3575c996badfbf783ec6a3178a6581f0a4e66a",
+  "selected_asset_file": "tex_town_yuan_south_bridge_deck__w4_l8_r000_v01.png",
+  "selected_asset_sha256": "3201c8e7a29fafab6b449c1676da2733cab27f59069d1e107e2439b094710482",
+  "normalization": [
+    "alpha 非零包围框裁切",
+    "一次等比 LANCZOS 缩放",
+    "透明 RGBA 留白；无阈值、重绘、warp 或仿射投影"
+  ]
+}
