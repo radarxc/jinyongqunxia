@@ -1,6 +1,6 @@
 # 10 · 物品与装备（Items & Equipment）
 
-> **版本**：v1.5（AR-20 十一类物品名录与出图契约，2026-10-01）；v1.4（经脉落地终审，2026-09-29）；v1.3（经脉 Buff 载荷迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
+> **版本**：v1.6（AR-24 兵器与暗器名录扩张，2026-10-01）；v1.5（AR-20 十一类物品名录与出图契约，2026-10-01）；v1.4（经脉落地终审，2026-09-29）；v1.3（经脉 Buff 载荷迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
 > **归属**（基准 §18）：装备栏、物品、神兵、锻造、丹药——物品分类与数据结构、装备栏与兵器、品阶→装备数值、词条、神兵宝甲与名器、装备成长（强化/工艺/铭刻/淬毒/锻造）、书眠携带与外来压制对装备的影响、丹药与消耗品、菜肴、秘籍与残页、背包仓库、价格锚点。
 > **上游**：`00-canon.md`（§3 境界规则、§4 品阶、§6 属性 ID、§7 武功与兵器类别、§8 战斗模型、§9 乘区、§10 Buff、§12 ID、§13 天级武学、§14 天级神兵宝甲、§16 改编原则、§20 装配栏与装备栏）。
 > **引用而不重定义**：外来/本土判定 `nativeTo`、有效品阶 `effGrade`、器合、藏史、史印/史笺、天材骰、掉落品阶分布 → `design/02-timeline-and-world-tiers.md`；属性形态与修饰（`flat`/`flatLv`/`pct`/`pp`）、等级曲线 `ATK_LV`/`DEF_LV`/`HP_LV`、`STD(L)`、技艺门槛 `T(g)`/`gMax`、买卖系数 `buyMul`/`sellMul` → `design/03-attributes.md`；伤害公式与乘区 Z0–Z10 → `design/04-damage-formula.md`；武学字段 `weaponReq`/`kinds`/`Mod_armed`、秘籍阅读天数、残页页数、`sxpGrant` 接口 → `design/05-martial-arts-system.md`；全部 Buff 定义（`bf_*`）、品阶对抗 ρ、族上限、驱散类型 → `design/06-buff-system.md`；套装目录、成员、档位与效果 → `design/07-set-system.md`；地形与轻功门禁、飞爪探索入口 → `design/08-terrain-and-qinggong.md`；六角格物品行动、范围、缴械拾取流程、AI → `design/09-combat-system.md`；统一大地图、时代图层、旅行与客栈休息 → `design/11`、`design/19`；任务、关系与生活技能（含烹饪）→ `design/12`；天书之力与难度模式 → `design/13`；界面 → `design/14`；穴道、经脉、周天、冲穴 → `design/15`；资源、家丁、营生与收入 → `design/16`；门派身份 → `design/17`；NPC 认物与同伴物品 → `design/18`；跨年代传承源、残本、关键信物与校合条件 → `design/20`；图标生成 → `tech/07`。
@@ -9,6 +9,7 @@
 > **v1.4 变更摘要（经脉落地终审，2026-09-29）**：为常长风墓碑登记太岳石碑手的物品侧 `exotic/misc` 兼容介质；把衙门武册、华辉遗谱、宝树旧稿拆成符合单一 `skill` 字段的 7 条秘籍定义，并冻结共享叙事载体的一次性成组取得事务。
 > **经脉落地终审（2026-09-30）**：复核墓碑双侧兼容已闭合；登记康熙册三项谱本／残页与白马地上遗物，修正秘籍阅读式，收拢历史物品接口的已解决项与默认边界；终审返修逐条登记少林／五绝／逍遥 25 本秘籍与 5 种残页，回填 O16；第 3 次运行补齐大还丹正式配方，区分解锁 40 与制作 68 的炼丹门槛；第 6 次运行登记家常饭正式实体与失败产物映射，并澄清生血／毒物仍缺的消费契约；第 7 次运行按协调意见删除重复交办 O18，家常饭统一引用 §9.4／§9.3.1，凭据／总账未决保留于任务报告第 6 节。
 > **v1.5 变更摘要（AR-20，2026-10-01）**：补齐药物／补品／药材、食材／食品、秘籍、兵器、衣物、制式盔甲、内甲、护肩／披风／头饰、鞋、腰带、暗器十一类的天地玄黄投影名录；新增 `equip-slots.v2` 三槽迁移、官甲违法暴露、药材年限、冲穴药物和暗器命中／毒接口。名录只作本文定义的机器可读出图投影，不成为第二规则源。
+> **v1.6 变更摘要（AR-24，2026-10-01）**：为剑／枪／棍／刀／奇门及暗器补齐黄下至玄上六档通用制式；天地档补投影原著名器与主要门派可持用法器。新增 ID 只在 §14.2 登记，名录的史料、形制与出图口径不改写 §3–§5 数值规则。
 
 ---
 
@@ -1071,6 +1072,24 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 `eq_changchangfengshibei` 的规范化装备字段为 `EquipDef{kind:offhand;sub:shield;slot:offHand;cat:exotic;exoticKind:misc;tags:[heavy]}`。`cat/exoticKind` 只服务 §3.2 的具名兼容检查；主属性、词条池、手持限制和负重仍完全按副手牌结算。
 
 **名器统计**：地上 8、地中 15、地下 14、玄上 9、玄中 1，共 47 件；兵器 31（其中成对 5：段延庆钢杖、金刀黑剑、银钩铁划、鹤嘴双笔、玄素双剑）、名门暗器 9、护具 3（含鞋 1）、副手牌 2、佩饰 2。孔雀翎品阶、词条为待下游实装验证的建议值，不进入天级 12 件闭集；低武书界既有四件固定产出统计不含这项跨作品守庄节点。
+
+#### 5.4.1 AR-24 名器 / 法器效果补表
+
+AR-24 的通用制式只使用 §3.2 类别固有与 §4 普通词条，不另造专属效果。以下仅列本轮**新 ID**中的天地具名器物与门派法器；原 12 神兵及 47 名器仍以 §5.2、§5.4 为准。`catalogTian` 真武剑遵 §5.1 例外，不得取得神兵护主或两段 `ue_*`。
+
+| 名称 · ID | 品阶 / 类别 | 固定词条 | 专属 / 使用规则 | 依据与边界 |
+|---|---|---|---|---|
+| 真武剑 `eq_zhenwujian` | 天下 10 / 剑；`catalogTian` | 锋锐、破招、守一 | 无 `ue_*`；固定、唯一、`price:null`，不进随机／锻造／商店 | 《笑傲江湖》明确为张三丰佩剑、武当镇山之宝；品阶与效果 **（原创扩展）**，非第 13 件 `divine` |
+| 莫大胡琴藏剑 `eq_modahuqinjian` | 地中 8 / 剑 | 会心、精准、灵动 | 「琴中藏剑」：战斗首次由未持剑切换本剑不耗行动；每战 1 次 **（原创扩展）** | 《笑傲江湖》莫大“琴中藏剑，剑发琴音”；藏置结构 **（待考）** |
+| 碧水剑 `eq_bishuijian` | 地下 7 / 剑 | 锋锐、会心 | 「龙泉利器」：对 `absGrade≤6` 的普通兵器，断兵效果品阶 `gUse+1`，最高 7 **（原创扩展）** | 《笑傲江湖》岳灵珊佩剑；岳不群自龙泉得来与削铁表现 **（待考）** |
+| 绿波香露刀 `eq_lvboxiangludao` | 地下 7 / 刀 | 会心、精准 | 「绿灯万盏」：刀类连锁／多段招式的第二次起命中 `hit+4` **（原创扩展）** | 《天龙八部》乌老大所使绿色宝刀；材质、来历 **（待考）** |
+| 金银小剑 `eq_jinyinxiaojian` | 地中 8 / 成对奇门匕 | 会心、连环、灵动 | 成对实例占主副两格，按 §3.3 `pair` 与 0.36 主属性系数结算；不另加伤害特效 | 《白马啸西风》上官虹一金柄、一银柄双匕 |
+| 渔隐叉 `eq_yuyincha` | 地下 7 / 奇门 `misc` 双手 | 精准、破招 | 「水畔渔叉」：浅水地形不受兵器命中惩罚；其余引用 `sk_yuyincha` **（原创扩展）** | 一灯门下点苍渔隐持兵形制 **（待考）**；门派字段归 `sect_dali`，不虚构点苍 ID |
+| 枣核钉匣 `eq_zaohedingxia` | 地中 8 / 名门暗器 `awl` | 精准、会心 | 自带 9 枚／战；仅供普通暗器武学，口喷免手规则仍只属于 `sk_zaoheding` | 原著有裘千尺口喷枣核；永久匣体、铁钉材质与弹量 **（原创扩展）** |
+| 三笑逍遥散匣 `eq_sanxiaosanxia` | 地中 8 / 名门暗器 `powder` | 精准、先机 | 自带 3 次／战，命中引用 `bf_sanxiao`；不提供现实制法 | 原著有三笑逍遥散；专用机匣与投射装备化 **（原创扩展）** |
+| 门派法器（20 件） | 地下 7—地上 9 / 见名录 | 按品阶：地下 2、地中 2–3、地上 3 条；配表从相应类别池固定 | 只加 `unique` 与 `sect`，不新建 `ue_*` / Buff；具体清单见 §14.2 与 `catalog/items-weapons.md` | 均为 **（原创扩展）**，只提供门派视觉与固定产出，不宣称原著有同名镇物 |
+
+**数值核对**：新地级法器主手仍严格用 §4.1 `0.30×kA×G(gUse)×ATK_LV`。例如 Ld35 地下剑为 `0.30×1.00×2.00×606=363.6→364`，地中剑为 `0.30×1.00×2.20×606=399.96→400`，地上剑为 `0.30×1.00×2.40×606=436.32→436`（速查表因底层曲线完整精度显示 437，运行时以曲线源值后统一取整）；本轮没有另乘“法器系数”。暗器 g1–g6 的 `ammoMul` 依 §3.5 `0.88+0.035g` 得 0.915 / 0.950 / 0.985 / 1.020 / 1.055 / 1.090。
 
 ### 5.5 信物型器物（非装备）
 
@@ -2295,6 +2314,8 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | AR-25 鞋扩张（18） | `eq_qingxuanduanchaoxue_nan` `eq_mingzhijinxiuhuagongxie_nv` `eq_yuanchijinpiqixue_nan` `eq_qingjinxiuhuapendixie_nv` `eq_liaowupiqixue_nan` `eq_songjinxiuyuntoulv_nv` `eq_mingzaopixue_nan` `eq_dalijingxiulv_nv` `eq_zangdihougechangxue_nan` `eq_yuanhongzhanxue_nv` `eq_qingqingduanxingxue_nan` `eq_huijiangxiubianpixue_nv` `eq_jinwupixue_nan` `eq_xixiayuanlvgongxie_nv` `eq_mengguyangmaozhanxue_nan` `eq_songqingbuyuantoulv_nv` `eq_songmabuxie_nan` `eq_mingmianbuhualv_nv`。完整覆盖 18 格；轻功值均按 `2.5 × grade`，均为**（原创扩展）** |
 | AR-20 兵器补录（4） | `eq_biyudao` 碧玉刀、`eq_libiegou` 离别钩、`eq_liehuoqi` 烈火旗（地上 9）、`eq_bawangqiang` 霸王枪（天下 10、`catalogTian`）；前二与霸王枪取古龙作品名物，烈火旗取《倚天屠龙记》明教五行旗且用途**（待考）**，玩法与形制均**（原创扩展）** |
 | AR-20 暗器补录（4） | `eq_hanshasheying` 含沙射影（玄上 6，《碧血剑》五毒教归属**（待考）**）、`eq_heixueshenzhen` 黑血神针（地上 9，《笑傲江湖》曲洋；淬毒与器物细节**（待考）**）、`eq_xiaolifeidao` 小李飞刀、`eq_baoyulihuading` 暴雨梨花钉（天下 10、`catalogTian`；古龙《楚留香传奇》，具体篇目与构造**（待考）**）；玩法与形制均**（原创扩展）** |
+| AR-24 兵器扩张（54） | 通用制式新 ID（28）：`eq_songzhijian` `eq_mingyaojian` `eq_qingzhijian` `eq_minggangjian` `eq_songshoudao` `eq_mazhadao` `eq_mingyanlingyaodao` `eq_niuweidao` `eq_songbuqiang` `eq_huanziqiang` `eq_yuanmengqiqiang` `eq_mingchangqiang` `eq_lihuaqiang` `eq_songshaobang` `eq_qimeiyinggun` `eq_yuanmengmabang` `eq_tiehuanchanzhang` `eq_sutieduanbi` `eq_duanbingmuchui` `eq_panguanbi` `eq_songduanfu` `eq_sangujiecha` `eq_hushoushuanggou` `eq_zhugutieshan` `eq_qingtonghengdi` `eq_liuxingchui` `eq_tieguzhanqi` `eq_bintiejiangmochu`；矩阵另复用已登记基底 9 件，不计本行 N。天地名器（6）：`eq_zhenwujian` `eq_modahuqinjian` `eq_bishuijian` `eq_lvboxiangludao` `eq_jinyinxiaojian` `eq_yuyincha`；门派法器（20）：`eq_shaolinhusixizhang` `eq_emeijiejian` `eq_hengshanbeijiejian` `eq_daizongfajian` `eq_songyangkuojian` `eq_quanzhenfajian` `eq_gaibangzhubang` `eq_xiaoyaoyubingfuchen` `eq_duanshihushenjian` `eq_tianlongsijiedao` `eq_murongcangfengjian` `eq_tiezhangkaishanfu` `eq_kongtongshuangou` `eq_kunlunliangyijian` `eq_qingchengsongfengjian` `eq_tiandihuiduandao` `eq_honghuahuichangjian` `eq_lingxiaochangjian` `eq_shenquantiehutao` `eq_changlegangdao`。全部形制 / 数值与非原著器名为**（原创扩展）**；待考边界见对应名录 |
+| AR-24 暗器扩张（8） | 通用装备本体：`eq_feishinang` `eq_feibiaonang` `eq_tonghuangxiujian` `eq_lianzhudangong` `eq_feidaoxia` `eq_lianfaxiunu`；具名装备：`eq_zaohedingxia` `eq_sanxiaosanxia`。只收副手本体 / 囊匣，不重造九种 `it_*` 弹药；全部装备化、弹量、数值与形制为**（原创扩展）** |
 | 白马固定遗物 | `it_gaochangyibao`：地上 9 非战斗奇物，定义见 §11.3；不复用 `it_gaochangguwu` |
 | 具名天材 | `it_bingcansi` |
 | 跨年代传承残本（117） | `frag_*` 全量逐项见 §10.3.1；均为 `manual/partial`、`unique/legacyCarry`，物品本体由本文定义，来源与校合语义引用 20 |
@@ -2477,6 +2498,8 @@ P-F／P-G 待基准吸收；在此之前运行数据按作者要求优先级执�
 | **仅影响文本** | 碧血、鹿鼎、连城、鸳鸯、书剑、飞狐/雪山 | 金蛇剑形制；匕首/宝衣细节；乌蚕衣材质与取得；鸳鸯刀长短归属；凝碧剑来历流转；冷月宝刀流转及“刀中秘密”是否有据 | 不影响数值；“刀中秘密”考据完成前不驱动任务 |
 | **仅影响文本** | 白马 | 高昌古物的典籍器物细目 | 不先编造单件古物名称 |
 | **仅影响文本** | 古龙《楚留香传奇·画眉鸟》、梁羽生《云海玉弓缘》 | 天一神水的案件与药物细节；碧灵丹的天山派归属、雪莲材料与疗伤／解毒边界 | 保留作品与物名，全部具体药效、投放和容器形制按 **（原创扩展）**；不得写现实配方或摄入方式 |
+| **AR-24 兵器形制** | 天龙、射雕／神雕、笑傲、书剑 | 绿波香露刀材质来历；渔隐叉具体叉形；莫大胡琴藏剑结构；碧水剑取得与削铁表现；真武剑外形；芙蓉金针数量与装具 | 名称与可靠场景可入表；尺寸、材质、结构、数值均按 **（原创扩展）**，不写伪引文或回目 |
+| **AR-24 通用制式** | 宋—清兵器史 | 朴刀名称／形制定型下限、麻札刀器形、白蜡杆／梨花枪／流星锤／护手钩／牛尾刀确切定型年代 | 只作出图通用基底并标 **（待考）**；不据晚出形制向宋元书界投放 |
 
 ### 16.5 开放问题（附默认值）
 
@@ -2503,3 +2526,6 @@ P-F／P-G 待基准吸收；在此之前运行数据按作者要求优先级执�
 | O20 | AR-20 `catalogTian` 是否最终并入基准的“神兵”称谓 | 默认不并入：只作固定、唯一、不可量产的天级目录样本，不得取得 `divine` 通则；待基准按 P-G 收口 |
 | O21 | 护肩／披风各半个小件预算是否需在全套数值压测后调整 | 默认各取 `defOut 0.025×G×DEF_LV + hpMax 0.005×G×HP_LV`，二者合计恰为旧一小件；压测前不增加额外免费槽位收益 |
 | O22 | 官甲被披风覆盖时的识别阈值与通缉强度 | 默认普通披风不遮蔽；只有显式 `concealment.coveredBy` 才把本次暴露改为 `covered`。通缉强度、消除方式与特殊进城路线仍由 11／12 决定 |
+| O23 | AR-24 哪些门派象征物算可装备法器 | 默认仅收可实际持用的兵器／法器；印信、令旗、掌门指环继续归 `design/11` 任务物品。无原著具名器物的门派以一件地级 **（原创扩展）** 公用法器补视觉位，不宣称为原著镇物 |
+| O24 | AR-24 天级兵器数量是否扩大 | 默认只新增原著明确为武当镇山之宝的真武剑，按 `catalogTian=true; divine=false`；基准 12 件 `divine` 闭集不变，其余新增名器／门派法器最高地上 9 |
+| O25 | AR-24 制式兵器是否按年代多件并存 | 默认是：同一六档矩阵允许宋／元／明／清形制并存，品阶代表制作质量而非年代先后；晚清牛尾刀不得投放到早期书界 |
