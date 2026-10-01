@@ -137,7 +137,8 @@ def main() -> int:
                 else:
                     holds.append(tid)
                 continue
-            if state_ in ("HOLD-VALIDATE", "ERROR", "READY"):
+            # HOLD-RUNS（执行次数到上限）也留给协调者：此前会被当成"驱动消失"无 note 重启，把协调者的续作说明顶掉
+            if state_ in ("HOLD-VALIDATE", "HOLD-RUNS", "ERROR", "READY"):
                 holds.append(tid)
                 continue
             # 未启动或驱动已消失：看依赖
