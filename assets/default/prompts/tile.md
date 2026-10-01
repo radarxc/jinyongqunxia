@@ -198,6 +198,41 @@ No text, modern ornaments, complete landscape, opaque backdrop, copied Qing reco
 城门底面目标包围宽高分别为 `32(8+4)×16(8+4)=384×192px`、`32(10+4)×16(10+4)=448×224px`；屋顶向上外扩，PNG画幅不等于占地。其他贴片占地见各条 manifest **【建议值】**。`autotile_mask:null` 表示手动选件，不能解释为完整自动拼接47形集。单视图仅用于本方向预览，墙角接缝、孔净宽、桥头接路和植物不挡门均 **（待实测）**。
 
 参考资料（2026-09-30访问）：[苏州市志办《苏州古城门之盘门》](https://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml)用于辨别现存盘门元代重建、明清续修与现代门楼的边界；[上海市青浦区博物馆《顺德桥》](http://museum.shqp.gov.cn/museum/ql/20190304/479101.html)用于确认元至正三年江南三跨石梁桥的形制记录，但本批平桥只取石梁材质母题，不复原其三跨、栏板和后世重建状态。植物来源见本任务报告§7。网页文字研究不等于图片输入，实际图像参考以各条 `references` 为准。
+## 9. 吐蕃 · 藏地贴片差异 `tubo`（KIT-tubo，2026-09-30）
+
+本节新增 `assets/default/tile/tubo/` 的 7 张地域候选，不修改宋基线。`tubo` 为地域资源键，各年代按城选用，不声称藏地城市均有相同闭合城墙或同一门制。石 / 土木形制和具体组合为 **（原创扩展）**；拉萨、日喀则、昌都的具体城垣、门位与年代适用性 **（待考）**。
+
+| `tex_town_tubo_` 后缀 | kind | footprint | 变体用途 |
+|---|---|---|---|
+| `city_gate__k4_r000_v01` | city_gate | 8×4 | 净宽4、南向；两侧各2格门墩 |
+| `city_gate__k6_r000_v01` | city_gate | 10×4 | 净宽6、南向；两侧各2格门墩 |
+| `wall__stone_r000_v01` | wall | 1×1 | 石砌平顶直段 |
+| `wall_corner__outer_ne_v01` | wall_corner | 2×2 | 外转角，单朝向 |
+| `bridge_deck__w4_l8_r000_v01` | bridge_deck | 4×8 | 简化石墩木梁桥意象 |
+| `tree_cluster__willow_v01` | tree_cluster | 3×3 | 高原柳树意象，不确定到种 |
+| `shrub__seabuckthorn_v01` | shrub | 2×2 | 西藏沙棘意象 |
+
+实际 ID 以 manifest 为准。门占地按 `design/22` §4.3 的 `w=k+4,h=4`：4+4=8、6+4=10；规划通行孔仍为 k×4，不将门楼整体标成可走。其余占地为 **【建议值】**，不等于古建 / 植物实测体量。`autotile_mask: null` 表示独立单体，未交47-mask全集或四向图，默认只按原向放置。
+
+- 墙门：灰褐石砌收分墙、白灰墙面、深色木梁门楣、少量赭红水平带和平屋顶。城门必须包含门墩、真正透明的通行孔和跨孔楼体；不加中原歇山瓦顶、清式彩画、玻璃或现代路标。
+- 桥：无盖木梁配石墩的原创概化，不命名成历史名桥。约1900年玉妥桥馆藏照所见为石桥台 / 桥墩并带桥屋，与本件不同，故该照片只作反例 QA；只交整桥外观，水面交底图，独立近侧栏与运行时遮挡 **（待实测）**。
+- 植物：柳属与西藏沙棘的现代原生分布有依据，但具体古代城内栽植 **（待考）**；不拿分布区代替历史种植记录。
+
+```text
+Use case: historical-scene. ONE Tibetan regional modular town tile, type {kind}, footprint {w}×{h}.
+Weathered stone/earth and dark matte wood, flat parapets, restrained white/ochre-red surfaces.
+For gate: complete two piers plus lintel/upper room, one genuinely transparent open passage, clear wall interfaces.
+For bridge: plain timber beam/cantilever construction and stone supports; no water or landscape.
+For plant: locally plausible willow / Tibetan sea buckthorn, modest natural silhouette, visible root anchor.
+Orthographic yaw45 pitch30, ground slopes +0.5/-0.5; upper-left light, short lower-right contact shade.
+True RGBA transparency outside the object and through openings; solid material, no ambient halo.
+No text, pseudo-script, people, modern objects, checkerboard, floor plinth, Chinese tiled gate roof or panorama.
+Keep Song reference realistic material density only, replace its regional architectural vocabulary.
+```
+
+实际调用全文 / 来源 / SHA / 时间见 `manifest.yaml` 与 `source/generation-records.jsonl`。选中原图保存在 `source/`；除两座城门以预乘 alpha 仿射重投影校正地轴外，其余只做矩形裁切、等比缩放和透明扩边，均未重绘或镜像。为排除远端 alpha=1 噪点，用 alpha>1 确定裁框；框内 alpha 不改，原图完整保留。成品留边8px，短边≥32；底面 / 根锚使用 `anchor_px`。真实透明与文件检查通过，不代表门净宽像素、墙缝或桥头已经精确对格；这些限制继续保留，不因登记尺寸而消失。
+
+参考资料（访问 2026-10-01）：[LOC · Bar Chorten](https://www.loc.gov/item/2021670618/) 与 [LOC · Yu-tog zamba](https://www.loc.gov/item/2021670619/) 的馆藏图已下载并 `view_image`，只作成品事后反例 QA，未输入生成工具；[Pitt Rivers Museum · Lhasa willows, 1936](https://web.prm.ox.ac.uk/tibet/photo_1998.131.270.html) 与 [BRIT907382 · Hippophae tibetana](https://portal.torcherbaria.org/portal/collections/individual/index.php?occid=31555408) 分别核柳树与沙棘形态，后者是2018年现代标本。通用中国廊桥论文 [China’s corridor bridges](https://link.springer.com/article/10.1186/s43238-020-00010-w) 可访问，但不是藏地桥梁专论，不作为本件构法证据；UNESCO / Kew 本轮返回403，相关分布文字保持 **（待核实）**。
 
 ## 10. 待决事项与默认值
 
@@ -580,3 +615,5 @@ No Qing palace tower, modern tourist camp, enormous flag, snow mountain, water p
 2026-10-01另下载并逐张查看元上都遗址、现代蒙古木桥及蒙古西部旱地灌木照片，只用于成品后的墙线环境、木作和分枝习性审校；不证明营门、桥式或古代物种。逐件URL与用途见 manifest，均明标“未作为image_gen输入”。
 
 默认7件均为 `candidate`；完整门楼的四向、孔掩膜与像素孔的精确重合、墙桥连续接缝及真机遮挡 **（待实测）**。新资产 `tex_town_mongol_*` 和套件标签 `mongol` 按本任务授权创建，具体ID见manifest；元骨架以外的地域枚举需上游后续登记。上述缺口沿用§9“按样例城效果后补”的默认，不以文件校验通过代替几何验收。
+| 吐蕃7张单向件、门孔及墙缝 | 默认保留candidate，按原向装配；净宽按规划掩膜，像素接缝待城镇联调 |
+| 吐蕃地域共用与历史差异 | 默认无名原创组合；具体年代、城门制度、植物古代栽植另考，不作为三城复原图 |

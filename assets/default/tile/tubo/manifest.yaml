@@ -1,0 +1,192 @@
+- id: tex_town_tubo_city_gate__k4_r000_v01
+  file: tex_town_tubo_city_gate__k4_r000_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·净宽4格藏式石砌平顶城门（原创扩展；非实测复原）
+  prompt: 'Use case: historical-scene. Asset type: ONE isolated reusable game town tile sprite. Tibetan regional town kit, adaptable premodern period concept, original design rather than a reconstruction of a particular monument. Match the existing Song town kit visual density: restrained realistic ancient building illustration, detailed matte natural stone and wood, muted warm grey, ochre, charcoal and muted red, fine texture, no cartoon, no toy plastic. Orthographic camera yaw45 degrees, elevation30 degrees; ground axes slope +0.5 and -0.5, verticals vertical, exact 2:1 ground-plane projection, no perspective convergence. Soft illumination upper-left, very short translucent contact shadow toward lower-right. True transparent RGBA background, full silhouette and generous transparent margins, no ground slab, no surrounding terrain, no sky, no vignette. No text, readable inscriptions, labels, people, watermark, UI or painted checkerboard. ONE asset only, not sprite sheet. Complete small Tibetan masonry town gate; local front faces lower-left, long facade runs upper-left to lower-right. Rectangular total footprint width8m depth4m; each solid pier width2m, central clear opening width4m depth4m. A single horizontal heavy timber lintel supports a low whitewashed stone rectangular gatehouse across opening, two massive whitewashed battered stone piers, flat roof with low parapet, muted dark red upper band and tiny black-framed window. Simple restrained flat rectangular geometry, no Chinese tiled pitched roof or curved eaves, no battlements. Opening must be fully see-through down to ground: background alpha0 through entire passage, no door leaf, no back wall, no floor patch. Ground contact of the two piers clearly readable, no stone platform. CRITICAL: the previous input is the edit target. Keep this same gate design and materials. Remove ALL surrounding atmospheric glow, haze, vignette and shadows. Fill solid masonry and wooden gate pixels with full alpha255 opacity, and make ALL empty background and the entire empty passage transparent alpha0. No semi-transparent building. Nearest tiny edge antialias only. Reframe to give clear empty padding, avoid cropped upper corner. Ground-plane edges must slope exactly +0.5/-0.5.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references:
+  - {file: /Users/bytedance/.codex/generated_images/01a0f459-de72-7532-8933-e846fde53484/exec-0b7f0b3a-4c78-49f9-b32f-c1de723395f3.png, sha256: 33f6676ee29d6873905ddb2ea437650652c7eaf1a20380f5c47ced635588d77a, note: 未选第1候选，作为第2候选的编辑/材质参考；已按原字节归档。, archive: source/rejected/tex_town_tubo_city_gate__k4_r000_v01__candidate01.png}
+  historical_references:
+  - {title: 'Lhasa, Bar Chorten gateway, c.1900', url: 'https://www.loc.gov/item/2021670618/', accessed: '2026-10-01', used: '事后反例QA：支持覆钵塔身式藏地门，未支持当前平顶楼式门；未作为image_gen输入，当前件仍为无名原创概化'}
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:09:26.833136+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-de72-7532-8933-e846fde53484/exec-14903b34-0704-4065-b977-c62fa1a8a354.png
+  size: 400x449
+  sha256: 762b1c5d0b95bffd5058a742b5f36cf1e0b888f2085ec9946c6c489b5e249d6f
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint: [8, 4]
+    variant: k4_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_tubo_city_gate__k4_r000_v01__raw.png
+  source_sha256: ee8d54b0353ee1a65641ded95353942a57ef83ffe3bbbc294b1c8a8b79423b10
+  anchor_px: [200.0, 357.0]
+  notes: 返修以高分辨率image_gen原稿做预乘alpha仿射重投影、alpha>4裁切、等比缩放与16px透明留边；主地面边实测约+0.50/-0.53（像素拟合误差约±0.03），竖线保持竖直，门孔真透明；只交r000。
+- id: tex_town_tubo_city_gate__k6_r000_v01
+  file: tex_town_tubo_city_gate__k6_r000_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·净宽6格藏式石砌平顶城门（原创扩展；非实测复原）
+  prompt: 'Use case: historical-scene. Asset type: ONE isolated reusable game town tile sprite. Tibetan regional town kit, adaptable premodern period concept, original design rather than a reconstruction of a particular monument. Match the existing Song town kit visual density: restrained realistic ancient building illustration, detailed matte natural stone and wood, muted warm grey, ochre, charcoal and muted red, fine texture, no cartoon, no toy plastic. Orthographic camera yaw45 degrees, elevation30 degrees; ground axes slope +0.5 and -0.5, verticals vertical, exact 2:1 ground-plane projection, no perspective convergence. Soft illumination upper-left, very short translucent contact shadow toward lower-right. True transparent RGBA background, full silhouette and generous transparent margins, no ground slab, no surrounding terrain, no sky, no vignette. No text, readable inscriptions, labels, people, watermark, UI or painted checkerboard. ONE asset only, not sprite sheet. Complete wider Tibetan masonry town gate; local front faces lower-left, long facade runs upper-left to lower-right. Total rectangular footprint width10m depth4m; each pier width2m, central clear opening width6m depth4m. Single heavy timber lintel spans broad central open passage, low rectangular flat-roof whitewashed gatehouse above it with three restrained black-framed windows and a dark muted red frieze, two battered masonry piers. Flat roof with low parapet, no Chinese tiled roof, no curved eaves or crenellations. Entire opening at ground is genuinely transparent alpha0, no door leaf, backdrop, opaque floor or back wall. Clear pier ground contacts, no platform.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references: []
+  historical_references:
+  - {title: 'Lhasa, Bar Chorten gateway, c.1900', url: 'https://www.loc.gov/item/2021670618/', accessed: '2026-10-01', used: '事后反例QA：支持覆钵塔身式藏地门，未支持当前平顶楼式门；未作为image_gen输入，当前件仍为无名原创概化'}
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:10:35.570156+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-de72-7532-8933-e846fde53484/exec-7d917305-1c37-44b9-bda6-6a89b11b322b.png
+  size: 464x467
+  sha256: 3589da8587f21dd83f2c1eda5bef253f9bfd103b8b62036881914f24316b1de4
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint: [10, 4]
+    variant: k6_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_tubo_city_gate__k6_r000_v01__raw.png
+  source_sha256: 20d48efa30d13d0b027009ddb71a3f1208899fb05262eb26e80a0aa7e3812106
+  anchor_px: [232.0, 374.0]
+  notes: 返修以高分辨率image_gen原稿做预乘alpha仿射重投影、alpha>4裁切、等比缩放与16px透明留边；主地面边实测约+0.50/-0.51（像素拟合误差约±0.03），竖线保持竖直，门孔真透明；只交r000。
+- id: tex_town_tubo_wall__stone_r000_v01
+  file: tex_town_tubo_wall__stone_r000_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·藏式白石直墙一格段（原创扩展；非实测复原）
+  prompt: 'Use case: historical-scene. Input is STYLE REFERENCE ONLY for fine-grained whitewashed stone, dark stone cap and muted red band. Generate ONE tall slim rectangular prism module, height3 metres, width1 metre, depth1 metre: exactly SQUARE footprint, seen as a 2:1 rhombus. It is a one-grid masonry WALL SEGMENT, similar proportions to a tall solid pillar, absolutely NOT a long strip wall. Both visible vertical sides equal width. Plain flat top dark stone cap and a thin red ochre band below the cap. All four sides flat flush, no projecting plinth or capital. Tibetan regional traditional whitewashed rubble masonry. Realistic ancient game sprite matching fine detail of reference, muted low saturation. Orthographic yaw45 elevation30 ground slopes+0.5/-0.5, no perspective. Upper-left light, short shadow lower-right. Genuine RGBA transparency, full silhouette with generous margins; empty background alpha0 and masonry near opaque. No terrain, ground patch, scenery, gate, battlements, roof, people, writing, labels or watermark. ONE isolated tall square module only.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references:
+  - {file: /Users/bytedance/.codex/generated_images/01a0f459-de72-7532-8933-e846fde53484/exec-faa62377-bb61-4a28-886e-84c6e9fafe1b.png, sha256: 7d3be5723a5c26fc9c2ff37ad7079909721c6d8e0b87eddc55bdf4f9a93928ad, note: 未选第1候选，作为第2候选的编辑/材质参考；已按原字节归档。, archive: source/rejected/tex_town_tubo_wall__stone_r000_v01__candidate01.png}
+  historical_references:
+  - {title: "Lhasa, Amban's Yamen from Southeast, c.1900", url: 'https://www.loc.gov/item/2021670596/', accessed: '2026-10-01', used: '事后形制QA：围墙式边界及石土墙体；未作为image_gen输入，不支持当前一格件的精确高度'}
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:12:22.425368+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-de72-7532-8933-e846fde53484/exec-4d324fc3-1d15-4fd2-b052-f8c22de73bfb.png
+  size: 88x224
+  sha256: ce2824669a743bd336a04350de9d613530aa96ebe14bdaea601d28fa7bb2a178
+  status: candidate
+  tile:
+    kind: wall
+    footprint: [1, 1]
+    variant: stone_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_tubo_wall__stone_r000_v01__raw.png
+  source_sha256: 81400f69d700dbf92ddb72d0324168662cf9e035d7254e669c4f5977c92119b0
+  anchor_px: [44.0, 193.878]
+  notes: PIL以alpha>1外框裁切、等比缩放与8px透明留边，框内保留源alpha；anchor_px为目视底面中心建议值。只交单向候选；墙高/接缝与精确投影待装配校准。
+- id: tex_town_tubo_wall_corner__outer_ne_v01
+  file: tex_town_tubo_wall_corner__outer_ne_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·藏式白石外转角（原创扩展；非实测复原）
+  prompt: 'Use case: precise-object-edit. This image is EDIT TARGET. Keep whitewashed stone, grey stone cap, thin red band, L-shaped right-angle layout and transparent background. Change proportions: make walls dramatically TALLER and make each arm SHORTER. Each arm is2 metres long,1 metre thick,3 metres tall: tall compact L corner, the visible wall height must be 1.5 TIMES each arm length. This is the three-square-cell L made of three adjoining tall square stone wall modules, not a wide low fence. Vertical corners vertical. Ground-plane directions exactly slopes +0.5/-0.5, orthographic45yaw/30pitch. Realistic muted ancient Tibetan stone wall; left-upper light and short right-lower contact shadow, no terrain. All background and inside L should be true transparent alpha0, solid masonry near opaque. One complete silhouette with empty margins. No inscriptions, other objects, roof, people, battlement or base platform.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references:
+  - {file: /Users/bytedance/.codex/generated_images/01a0f459-de72-7532-8933-e846fde53484/exec-21b9173a-7fad-4d4d-ba35-c056d7ecb273.png, sha256: 139682c2b038f6523f02144397a1a1aff25e5c7908c62b7dfe03e078166da9d9, note: 未选第1候选，作为第2候选的编辑/材质参考；已按原字节归档。, archive: source/rejected/tex_town_tubo_wall_corner__outer_ne_v01__candidate01.png}
+  historical_references:
+  - {title: "Lhasa, Amban's Yamen from Southeast, c.1900", url: 'https://www.loc.gov/item/2021670596/', accessed: '2026-10-01', used: '事后形制QA：围墙转折与石土墙体；未作为image_gen输入，不支持当前模块精确尺寸'}
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:14:39.023450+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-de72-7532-8933-e846fde53484/exec-ce035eb0-e7c0-42e6-8a0d-419bf9bb9ed1.png
+  size: 176x208
+  sha256: 16ac414df54201759bcafe2da683aad0a00ff722ea399c8cf050a8ddf0946453
+  status: candidate
+  tile:
+    kind: wall_corner
+    footprint: [2, 2]
+    variant: outer_ne_v01
+    autotile_mask: null
+  source_copy: source/tex_town_tubo_wall_corner__outer_ne_v01__raw.png
+  source_sha256: bcaee93f25c488df44c164bfe0c4176fdfb98255ddc0ef0fae3665d517c990ee
+  anchor_px: [88.3, 151.221]
+  notes: PIL以alpha>1外框裁切、等比缩放与8px透明留边，框内保留源alpha；anchor_px为目视底面中心建议值。只交单向候选；墙高/接缝与精确投影待装配校准。
+- id: tex_town_tubo_bridge_deck__w4_l8_r000_v01
+  file: tex_town_tubo_bridge_deck__w4_l8_r000_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·藏地简化木梁桥桥面（原创扩展；非实测复原）
+  prompt: 'Use case: historical-scene. Asset type: ONE isolated reusable game town tile sprite. Tibetan regional town kit, adaptable premodern period concept, original design rather than a reconstruction of a particular monument. Match the existing Song town kit visual density: restrained realistic ancient building illustration, detailed matte natural stone and wood, muted warm grey, ochre, charcoal and muted red, fine texture, no cartoon, no toy plastic. Orthographic camera yaw45 degrees, elevation30 degrees; ground axes slope +0.5 and -0.5, verticals vertical, exact 2:1 ground-plane projection, no perspective convergence. Soft illumination upper-left, very short translucent contact shadow toward lower-right. True transparent RGBA background, full silhouette and generous transparent margins, no ground slab, no surrounding terrain, no sky, no vignette. No text, readable inscriptions, labels, people, watermark, UI or painted checkerboard. ONE asset only, not sprite sheet. ONE uncovered Tibetan-inspired short wooden beam bridge deck, width4m span8m, lower-left to upper-right long axis, symmetrical stone abutments only at two ends. Weathered dark timber plank deck supported by three simple overlapping cantilever timber layers from each end, muted rough grey stone abutments, no arch or modern hardware. It is an original small river crossing concept, not a replica. No tall railings or roof; deck edges with low timber curbs only. Complete usable flat walking deck, genuine transparent empty space under bridge and around it; NO water, ground, riverbanks, scenery, detached debris or base slab.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references: []
+  historical_references:
+  - {title: 'Lhasa, Yu-tog zamba, c.1900', url: 'https://www.loc.gov/item/2021670619/', accessed: '2026-10-01', used: '事后反例QA：历史桥为石砌桥台/桥墩并有桥屋，与当前无盖木梁桥不同；未作为image_gen输入，当前件为同功能原创概化'}
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:15:40.127205+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-de72-7532-8933-e846fde53484/exec-e2e9728b-57ed-4697-b703-5d705e866223.png
+  size: 400x265
+  sha256: 4d97fbdc8b10486aefdfe766e7e8073938741c394be16b02103cd752e2ca7bb9
+  status: candidate
+  tile:
+    kind: bridge_deck
+    footprint: [4, 8]
+    variant: w4_l8_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_tubo_bridge_deck__w4_l8_r000_v01__raw.png
+  source_sha256: 9381f42143ab30afe7cfdeaa1d638ea288b2e204e6791bcf550900277c365101
+  anchor_px: [205.129, 168.254]
+  notes: PIL以alpha>1外框裁切、等比缩放与8px透明留边，框内保留源alpha；anchor_px为目视底面中心建议值。桥下真透明；含低边木及桥台，不等同另交桥栏；轴线/桥面配准待装配。
+- id: tex_town_tubo_tree_cluster__willow_v01
+  file: tex_town_tubo_tree_cluster__willow_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·藏地河谷柳树树丛（原创扩展；非实测复原）
+  prompt: 'Use case: historical-scene. Asset type: ONE isolated reusable game town tile sprite. Tibetan regional town kit, adaptable premodern period concept, original design rather than a reconstruction of a particular monument. Match the existing Song town kit visual density: restrained realistic ancient building illustration, detailed matte natural stone and wood, muted warm grey, ochre, charcoal and muted red, fine texture, no cartoon, no toy plastic. Orthographic camera yaw45 degrees, elevation30 degrees; ground axes slope +0.5 and -0.5, verticals vertical, exact 2:1 ground-plane projection, no perspective convergence. Soft illumination upper-left, very short translucent contact shadow toward lower-right. True transparent RGBA background, full silhouette and generous transparent margins, no ground slab, no surrounding terrain, no sky, no vignette. No text, readable inscriptions, labels, people, watermark, UI or painted checkerboard. ONE asset only, not sprite sheet. ONE small clustered group of two upright valley willows, native Salix genus reference with species and historical planting deliberately unspecified. Modest broad crowns of narrow lance-shaped subdued grey-green leaves, two rough twisting brown trunks, slightly drooping fine outer branchlets, natural asymmetric silhouettes, rooted within3m by3m logical area, height around5m. Match fine realistic foliage density of baseline Song willow; upper-left soft highlights, short rightward contact shade only. Whole crowns and roots visible. No bare soil patch, turf clump, stones, flowers, planters, birds, buildings, water or landscape.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references: []
+  historical_references:
+  - {title: 'Willow trees in marsh behind Potala Palace, 1936', url: 'https://web.prm.ox.ac.uk/tibet/photo_1998.131.270.html', accessed: '2026-10-01', used: '事后形制QA：拉萨河谷柳树树冠、枝干和生境；未作为image_gen输入，不证明古代城内栽植或具体种'}
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:16:26.944162+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-de72-7532-8933-e846fde53484/exec-bb348603-6772-4930-9064-14767167e9e2.png
+  size: 272x261
+  sha256: f4756d04da684bd9f177bbb78c3e4d6d031f6d027ffca86c4b3225c2987812b7
+  status: candidate
+  tile:
+    kind: tree_cluster
+    footprint: [3, 3]
+    variant: willow_v01
+    autotile_mask: null
+  source_copy: source/tex_town_tubo_tree_cluster__willow_v01__raw.png
+  source_sha256: b9ed28d0bf86a222301617c02d41ad6277daa784f25c3c18ec3367e8b3fc5425
+  anchor_px: [149.574, 243.195]
+  notes: PIL以alpha>1外框裁切、等比缩放与8px透明留边，框内保留源alpha；anchor_px为目视底面中心建议值。根部锚点；物种形态与各年代城镇栽植待考。
+- id: tex_town_tubo_shrub__seabuckthorn_v01
+  file: tex_town_tubo_shrub__seabuckthorn_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·西藏沙棘低灌丛（原创扩展；非实测复原）
+  prompt: 'Use case: historical-scene. Asset type: ONE isolated reusable game town tile sprite. Tibetan regional town kit, adaptable premodern period concept, original design rather than a reconstruction of a particular monument. Match the existing Song town kit visual density: restrained realistic ancient building illustration, detailed matte natural stone and wood, muted warm grey, ochre, charcoal and muted red, fine texture, no cartoon, no toy plastic. Orthographic camera yaw45 degrees, elevation30 degrees; ground axes slope +0.5 and -0.5, verticals vertical, exact 2:1 ground-plane projection, no perspective convergence. Soft illumination upper-left, very short translucent contact shadow toward lower-right. True transparent RGBA background, full silhouette and generous transparent margins, no ground slab, no surrounding terrain, no sky, no vignette. No text, readable inscriptions, labels, people, watermark, UI or painted checkerboard. ONE asset only, not sprite sheet. ONE low Tibetan sea-buckthorn shrub cluster, Hippophae tibetana inspired, compact low spreading thorny woody branches with small narrow silvery grey-green leaves and sparse tiny dull orange berries, around0.6m high within2m by2m logical footprint. Natural scrub cushion, not an ornamental hedge and not tall tree, earthy fine realistic texture, subdued palette. Entire root contacts and silhouette visible, no grass lawn, soil island, pot, ground slab, flowers, text, birds, buildings or landscape.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references: []
+  historical_references:
+  - {title: 'BRIT907382 Hippophae tibetana specimen, Qinghai, 2018', url: 'https://portal.torcherbaria.org/portal/collections/individual/index.php?occid=31555408', accessed: '2026-10-01', used: '事后现代植物形态QA：狭叶、枝刺与低矮枝形；非历史图，未作为image_gen输入，不证明古代城内栽植'}
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:17:36.449431+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-de72-7532-8933-e846fde53484/exec-50cb337a-ba09-4f08-b2d3-65ba13ab423c.png
+  size: 144x80
+  sha256: 04934439069c7966c1f31c05eb7a91ff6fb94efe4bdf7835811142594e9fb509
+  status: candidate
+  tile:
+    kind: shrub
+    footprint: [2, 2]
+    variant: seabuckthorn_v01
+    autotile_mask: null
+  source_copy: source/tex_town_tubo_shrub__seabuckthorn_v01__raw.png
+  source_sha256: 6254491b36d2c09814502eeceb61d81c123dd5ca6cf74fff400f1bcee3988e5a
+  anchor_px: [66.278, 66.202]
+  notes: PIL以alpha>1外框裁切、等比缩放与8px透明留边，框内保留源alpha；anchor_px为目视底面中心建议值。根部锚点；物种形态与各年代城镇栽植待考。

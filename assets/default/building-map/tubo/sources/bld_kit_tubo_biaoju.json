@@ -1,0 +1,288 @@
+{
+  "id": "bld_kit_tubo_biaoju",
+  "w": 14,
+  "h": 11,
+  "subject": "藏地驮队货栈（替换镖局，原创扩展）",
+  "prompt": "Use case: precise-object-edit. Fix geometry of attached Tibetan caravan freight courtyard game sprite, preserving its flat white stone roofs, sacks/crates under side sheds, Tibetan black windows and red-brown wood, left-upper light and natural realistic detail. Show all of it fully inside a 1536x1024 TRUE RGBA transparent canvas; shrink overall composition enough for 64px clear margins. Main correction: front-right ground edge is too shallow. Both perpendicular ground axes must have slopes exactly +0.5 and -0.5 in a 2:1 orthographic projection. Footprint long frontage-to-depth 14:11. Ground foot corners exactly LEFT(168,520), FRONT(840,856), RIGHT(1368,592), BACK(696,256). Perimeter, walls, roofs all align with this rectangle. No perspective convergence. Clean alpha=0 outside footprint and silhouette, no background, no fog, no ambient glow, no broad shadow. Thin stone contact footprint, no thick base. No letters, signs, grid, people, animals, watermark, Chinese gabled tile roofs.",
+  "negative": "人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。",
+  "references": [
+    {
+      "id": "bld_kit_tubo_biaoju_attempt01",
+      "file": "sources/rejected/bld_kit_tubo_biaoju_attempt01.png",
+      "role": "编辑目标；同次首次生成候选",
+      "sha256": "91a53517514f77303cf7c91d552d29bf475192cbe9d9eef015afc10939d86494",
+      "status": "candidate"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-53613934-e69d-448f-8c94-ce41dc3a5f54.png",
+  "created": "2026-09-30T22:12:37.597Z",
+  "candidate_count": 2,
+  "tool": "functions.exec · image_gen",
+  "model": "image_gen（工具未公开底层模型版本）",
+  "effort": "未公开",
+  "status": "candidate",
+  "source_corners_px": {
+    "left": [
+      112,
+      570
+    ],
+    "front": [
+      878,
+      970
+    ],
+    "right": [
+      1475,
+      668
+    ]
+  },
+  "visual_review": "原图已 view_image；按墙身接地线人工量点，避开外挑散石饰边。平顶石砌货栈、袋捆和箱体辨功能，无文字/人物/现代元素。与宋基线材质密度协调，真实RGBA须保留alpha。",
+  "rejected": [
+    {
+      "id": "bld_kit_tubo_biaoju",
+      "prompt": "Use case: historical-scene. Asset type: one realistic historical Tibetan plateau city-map building sprite, original regional functional adaptation for a Chinese wuxia game. Input image 1 is a STYLE REFERENCE ONLY: match its restrained natural material detail, visual density and age, NOT its Chinese tiled roof style or building shape. Build NEW Tibetan stone architecture. Clear rugged stone courses, lightly weathered white or ochre plaster, thick gently battered walls, flat earthen parapet roof, small dark timber windows with black trapezoidal surrounds and modest red-brown timber cornices. Natural warm-neutral light from SCREEN UPPER LEFT and only a small soft contact shadow to lower right. TRUE TRANSPARENT RGBA background. Not a complete city scene. Camera strict orthographic 2:1 dimetric, yaw 45 degrees, pitch 30 degrees, all verticals vertical, all parallel edges stay parallel, both ground axes slope EXACTLY +0.5 and -0.5. Clear thin rectangular stone contact perimeter with no thick plinth, unobscured left/front/right ground corners. Generous transparent margins all around. No people, text, pseudo-writing, painted script, readable signs, modern objects, landscape, sky, distant buildings, grid, labels, watermark, checkerboard, white background, tourism replicas, floating island, toy diorama, perspective convergence, long shadows. No named real temple or Potala Palace copy and no claim of exact reconstruction of any century. Single complete 1536x1024 image.  Absolute no external ambient halo or glow. Outside silhouette fully transparent alpha=0. A secular caravan freight lodge compound. A whitewashed two-storey rear lodging/storehouse, low stone side sheds with flat roofs, broad timber loading entrance at front, sheltered stacked sacks, bundled cloth and wooden cargo crates along an inner side wall. Clear empty courtyard. No people, animals or carts. No gilding, no Chinese gables, no lettering. Exact footprint 14 by 11 metres; front edge length / right edge length = 1.2727272727272727. On canvas thin contact ground corners LEFT (168,520), FRONT (840,856), RIGHT (1368,592), BACK (696,256). Those are ground feet, NOT wall tops. Entrance faces front-left edge; keep the front ground corner right of centre. No visible construction guides.",
+      "created": "2026-09-30T22:11:08.258Z",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-78bbee85-40ab-4175-8045-4aecf98575d0.png",
+      "reason": "第一次地面右轴较浅、左侧透明余量不足；第二张墙身接地线更清楚。",
+      "source_archive": "sources/rejected/bld_kit_tubo_biaoju_attempt01.png",
+      "source_sha256": "91a53517514f77303cf7c91d552d29bf475192cbe9d9eef015afc10939d86494",
+      "references": [
+        {
+          "id": "bld_kit_song_dali_yamen",
+          "file": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+          "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef",
+          "role": "宋候选仅作材质和细节密度参考；非藏地形制",
+          "status": "candidate"
+        }
+      ]
+    }
+  ],
+  "source_archive": "sources/bld_kit_tubo_biaoju.png",
+  "source_sha256": "510b95584227acce3db7ab42907c0a25695fc6b93d6630a510b96e2fc571550e",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "size": [
+      1536,
+      1024
+    ],
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "alpha_zero_pixels": 785354,
+    "alpha_partial_pixels": 787510,
+    "alpha_near_opaque_pixels": 773120,
+    "alpha_opaque_pixels": 0,
+    "alpha_nonzero_bbox": [
+      59,
+      46,
+      1523,
+      1006
+    ],
+    "transparent_margins_px": [
+      59,
+      46,
+      13,
+      18
+    ],
+    "border_alpha_max": 0
+  },
+  "processing": {
+    "source_archive": "sources/bld_kit_tubo_biaoju.png",
+    "source_sha256": "510b95584227acce3db7ab42907c0a25695fc6b93d6630a510b96e2fc571550e",
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box": [
+      59,
+      46,
+      1523,
+      1006
+    ],
+    "uniform_scale_requested": 0.586940572267058,
+    "resized_size": [
+      859,
+      563
+    ],
+    "rounded_effective_scale": [
+      0.5867486338797814,
+      0.5864583333333333
+    ],
+    "paste_offset": [
+      32,
+      32,
+      891,
+      595
+    ],
+    "target_canvas": [
+      923,
+      627
+    ],
+    "final_file": "bld_kit_tubo_biaoju.png",
+    "steps": [
+      "crop alpha>0 bounding box",
+      "uniform LANCZOS resize, nearest-integer dimensions",
+      "paste without mask onto transparent RGBA; no repaint, warp, alpha threshold, flip or rotation"
+    ]
+  },
+  "geometry_qa": {
+    "source_corners_px": {
+      "left": [
+        112,
+        570
+      ],
+      "front": [
+        878,
+        970
+      ],
+      "right": [
+        1475,
+        668
+      ]
+    },
+    "source_axis_slopes": [
+      0.5221932114882507,
+      -0.5058626465661642
+    ],
+    "axis_tolerance": 0.03,
+    "axis_pass": true,
+    "source_width_depth_ratio": 1.2830820770519262,
+    "expected_width_depth_ratio": 1.2727272727272727,
+    "ratio_relative_error": 0.008135917683656402,
+    "ratio_tolerance_suggestion": 0.1,
+    "ratio_pass": true,
+    "measurement_uncertainty_source_px": 3,
+    "precision_note": "人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。"
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      923,
+      627
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 307767,
+    "alpha_partial_pixels": 269651,
+    "alpha_near_opaque_pixels": 265829,
+    "alpha_opaque_pixels": 1303,
+    "alpha_nonzero_bbox": [
+      32,
+      32,
+      891,
+      595
+    ],
+    "transparent_margins_px": [
+      32,
+      32,
+      32,
+      32
+    ],
+    "border_alpha_max": 0
+  },
+  "manifest_entry": {
+    "id": "bld_kit_tubo_biaoju",
+    "subject": "藏地驮队货栈（替换镖局，原创扩展）",
+    "prompt": "Use case: precise-object-edit. Fix geometry of attached Tibetan caravan freight courtyard game sprite, preserving its flat white stone roofs, sacks/crates under side sheds, Tibetan black windows and red-brown wood, left-upper light and natural realistic detail. Show all of it fully inside a 1536x1024 TRUE RGBA transparent canvas; shrink overall composition enough for 64px clear margins. Main correction: front-right ground edge is too shallow. Both perpendicular ground axes must have slopes exactly +0.5 and -0.5 in a 2:1 orthographic projection. Footprint long frontage-to-depth 14:11. Ground foot corners exactly LEFT(168,520), FRONT(840,856), RIGHT(1368,592), BACK(696,256). Perimeter, walls, roofs all align with this rectangle. No perspective convergence. Clean alpha=0 outside footprint and silhouette, no background, no fog, no ambient glow, no broad shadow. Thin stone contact footprint, no thick base. No letters, signs, grid, people, animals, watermark, Chinese gabled tile roofs.",
+    "negative": "人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。",
+    "references": [
+      {
+        "id": "bld_kit_tubo_biaoju_attempt01",
+        "file": "sources/rejected/bld_kit_tubo_biaoju_attempt01.png",
+        "role": "编辑目标；同次首次生成候选",
+        "sha256": "91a53517514f77303cf7c91d552d29bf475192cbe9d9eef015afc10939d86494",
+        "status": "candidate"
+      }
+    ],
+    "tool": "functions.exec · image_gen",
+    "model": "image_gen（工具未公开底层模型版本）",
+    "effort": "未公开",
+    "created": "2026-09-30T22:12:37.597Z",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-53613934-e69d-448f-8c94-ce41dc3a5f54.png",
+    "status": "candidate",
+    "file": "bld_kit_tubo_biaoju.png",
+    "category": "building-map",
+    "style": "default",
+    "size": "923x627",
+    "sha256": "57312e04482808b54602078f69197dc07061cb845b7f144fefb459d6eb88e7e1",
+    "notes": "原图已 view_image；按墙身接地线人工量点，避开外挑散石饰边。平顶石砌货栈、袋捆和箱体辨功能，无文字/人物/现代元素。与宋基线材质密度协调，真实RGBA须保留alpha。 单45°视图；未通过城市拼接和作者审批。",
+    "building": {
+      "type": "bld_kit_tubo_biaoju",
+      "footprint": [
+        14,
+        11
+      ],
+      "anchor": [
+        462.9669,
+        368.0406
+      ],
+      "era": "tubo"
+    },
+    "footprint_m": [
+      14,
+      11
+    ],
+    "entrance": {
+      "edge": "S",
+      "offset_cells": 7.0
+    },
+    "projection_contract": {
+      "tile_px": [
+        64,
+        32
+      ],
+      "ground_bbox_px": [
+        800,
+        400
+      ],
+      "ground_width_px": 800,
+      "light": "screen_upper_left",
+      "shadow": "screen_lower_right_contact_only"
+    },
+    "meta": "meta/bld_kit_tubo_biaoju.yaml",
+    "anchor_px": [
+      462.9669,
+      368.0406
+    ],
+    "source_copy": "sources/bld_kit_tubo_biaoju.png",
+    "source_sha256": "510b95584227acce3db7ab42907c0a25695fc6b93d6630a510b96e2fc571550e",
+    "candidate_count": 2,
+    "geometry_qa": {
+      "source_corners_px": {
+        "left": [
+          112,
+          570
+        ],
+        "front": [
+          878,
+          970
+        ],
+        "right": [
+          1475,
+          668
+        ]
+      },
+      "source_axis_slopes": [
+        0.5221932114882507,
+        -0.5058626465661642
+      ],
+      "axis_tolerance": 0.03,
+      "axis_pass": true,
+      "source_width_depth_ratio": 1.2830820770519262,
+      "expected_width_depth_ratio": 1.2727272727272727,
+      "ratio_relative_error": 0.008135917683656402,
+      "ratio_tolerance_suggestion": 0.1,
+      "ratio_pass": true,
+      "measurement_uncertainty_source_px": 3,
+      "precision_note": "人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。"
+    },
+    "metadata": "meta/bld_kit_tubo_biaoju.yaml"
+  },
+  "final_visual_review": "已逐张view_image成品透明PNG及临时灰底alpha合成；主体完整、无实际外围棕色光晕；源alpha保持，未阈值抠图。"
+}

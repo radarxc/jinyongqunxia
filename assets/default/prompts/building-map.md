@@ -233,7 +233,7 @@ python3 tools/agents/check_assets.py assets/default/baseline/building-map --min 
 - [扬州中国大运河博物馆：《咸淳临安志》里的城市蓝图](https://www.grandcanalmuseum.cn/yunboxinwen/1091.html)：本轮于 2026-09-30 实际读取正文；支持御街商业密集的母题。图版是 1830 年仿宋重刊，上西下东、左南右北；它不证明本批每座单体的精确形制和 1223 年街线。
 - [杭州市文化广电旅游局：皇城遗风](https://wgly.hangzhou.gov.cn/cn/hzzx/syqx/sywh/hcyf/index.html)：上游列举来源；本轮打开失败，未用它新增确定的建筑细节。
 - 旧 ART-B 模板引用《梦粱录》茶肆与昆明植物研究所山茶科普，作为生活 / 地域母题线索保留；本轮没有逐字复核这些材料，宋茶器、植物种和古代栽植仍 **（待考）**。官方三塔页面的当代园林植物描述也不能证明 1093 庭院栽植。
-- 本轮上述网页仅用于文字核验；没有将历史画作、旅游照片或网页截图送入图像模型。真实图片参考以每次调用记录为准，不把“查阅来源”写成“模型已参考图片”。
+- 宋套件本轮上述网页仅用于文字核验；没有将历史画作、旅游照片或网页截图送入对应图像模型。吐蕃套件在成品生成后另做历史影像 QA，见 §11.1；两类都以每次调用记录为准，不把“事后查阅来源”写成“模型已参考图片”。
 
 ## 10. 收尾新增：植物公告板母版
 
@@ -671,6 +671,62 @@ Preserve 45-degree orthographic camera, 30-degree elevation, 2:1 ground axes and
 2026-10-01另下载并逐张查看 Khüree 1913照片、和林博物馆模型、DAI大殿遗址/复原及妙应寺白塔照片；分别只校对帐群密度、灰顶院落、台基柱网和覆钵轮廓。逐成品URL与用途见 manifest，均属生成后审校，不倒签为生成输入。
 
 默认保留匿名原创形制、上表建议占地、单视图和 `candidate`；作者需确认整体草原风格与宗教地标选择。原著《射雕英雄传》《神雕侠侣》的具体营地描述未逐字核对，历史形制与整城拼接 **（待考 / 待实测）**。
+## 11. 吐蕃 · 藏地套件 `tubo`（KIT-tubo，2026-09-30）
+
+本节是地域素材追加，不覆盖前文宋套件。`tubo` 是本任务授权的地域资源键，不等于某一历史政权持续存在的年代断言；供拉萨、日喀则、昌都等场景选择的无名建筑意象，均 **（原创扩展）**。各城具体年代适用性、康区内部差异、金顶与窗饰的断代仍 **（待考）**；不把现存布达拉宫、罗布林卡或现代旅游街倒推到所有书界。
+
+### 11.1 材料、等级与参考边界
+
+- 民居 / 商住：石砌收分墙、露石基脚、白灰墙面、平屋顶和低女儿墙，黑色门窗边、暗木梁头，赭红装饰节制；不继承宋屋灰瓦坡顶。
+- 官署 / 大院 / 宫室：沿用石木材料，增加围院和层级，保持朴素体量；不以巨型金顶、清式宫廷彩画或中原衙门牌匾代替藏地形制。
+- 寺殿 / 佛塔：佛殿可用局部金顶、赭红带与木檐，白塔取覆钵 / 钟形塔身、阶台和环刹母题；不声明为具名寺院或文物测绘复原。经幡、玛尼堆只作少量附属物，禁生成经文和伪字。
+- 宋基线 PNG 只用作写实材质、细节密度与画面可读性参考；实际生成输入路径 / SHA 逐条记 manifest。历史影像在成品生成后于 2026-10-01 下载并 `view_image`，只作形制 QA；manifest 以 `historical_references` 单列，不能倒写为 image_gen 输入。
+- 历史图以 [Library of Congress · Central Tibet photographs, c.1900](https://www.loc.gov/pictures/collection/wdl/) 与 Wikimedia Commons 馆藏页为主，核平顶厚墙、院落、街市、官署和寺院层级；远景不推导平面，具名古建不当作当前原创件复原目标。城门和桥的馆藏图反而显示形制差异，见 `tile/tubo/manifest.yaml`。
+- 文字 / 器物来源：UNESCO [Historic Ensemble of the Potala Palace, Lhasa](https://whc.unesco.org/en/list/707) 页面本轮返回403；THF [Tibetan Vernacular Architecture](https://www.tibetheritagefund.org/page/?r=120) TLS证书过期；LACMA [Reliquary Stupa (Chöten)](https://collections.lacma.org/object/61926) 可访问。前两项保持（待核实），LACMA 小型供养塔仅供事后轮廓核对，不推导建筑尺寸。
+
+### 11.2 类型与占地对应
+
+统一前缀 `bld_kit_tubo_`，下面列后缀；每类独立 PNG，`building.era: tubo`，`status: candidate`。占地仍为 `[东西,南北]` 米格，不是画布宽高。§3.4 没有吐蕃完整目录，借用其同功能骨架；缺项暂取 §3.2–§3.3 同功能值，均为地域转换 **【建议值】**，不是上游已定义的藏地尺寸。
+
+| 后缀 | 本地外观 / 原功能 | 占地 | 占地依据：design/22 |
+|---|---|---|---|
+| `house_small` | 小碉房 / 小民居 | 6×5 | §3.2 house |
+| `house_large` | 两层大碉房 / 大民居 | 7×6 | §3.4 yuan_house |
+| `courtyard` | 石墙院落 | 10×8 | §3.2 courtyard |
+| `shop_1f` | 单层铺屋 | 7×5 | §3.4 ming_shop |
+| `shop_2f` | 两层商铺 | 8×6 | §3.3 shop_2f |
+| `inn` | 商旅客舍 | 10×8 | §3.2 inn |
+| `restaurant` | 茶肆 / 酒楼 | 10×8 | §3.2 restaurant |
+| `market_stall` | 毛织布棚 / 市场棚 | 5×4 | §3.4 yuan_market |
+| `yamen` | 地方官署 / 衙门 | 16×12 | §3.4 yuan_yamen |
+| `biaoju` | 驮队货栈 / 护运行 | 14×11 | §3.4 yuan_biaoju |
+| `casino` | 民间博戏屋 / 赌场 | 9×7 | §3.2 casino |
+| `manor` | 藏式大院 / 山庄 | 15×12 | §3.2 manor |
+| `palace_hall` | 地方宫室模块 / 王府 | 20×16 | §3.4 yuan_wangfu |
+| `temple_hall` | 藏式佛殿 / 寺观殿堂 | 14×11 | §3.4 ming_temple_hall |
+| `stupa` | 藏式佛塔 / 宗教地标 | 7×7 | §3.3 pagoda |
+| `guardhouse` | 守门碉舍 / 城门守舍 | 6×5 | §3.2 guardhouse |
+| `stable` | 石木马厩 | 8×6 | §3.2 stable |
+| `warehouse` | 石砌仓屋 | 9×7 | §3.2 warehouse |
+| `wharf` | 小河岸装卸台 / 河埠 | 8×4 | §3.2 wharf |
+
+赌场、护运行与山庄只提供同功能外观，不新增或自动绑定 `biz_*`；河埠不启用 `port_*` 或航线。完整外城门归 `tile/tubo`，守舍不是城门楼。
+
+### 11.3 提示词差异与落盘
+
+```text
+Use case: historical-scene. Exactly ONE Tibetan regional town sprite, unnamed original game extension.
+Flat earthen roof with parapets, battered whitewashed stone walls, dark timber, black window borders.
+Restrained ochre-red trim; gold only on the requested religious hall or stupa finial.
+Preserve realistic matte stone/wood detail density of the supplied Song reference, replace its roof typology.
+Footprint {w} metres east-west by {h} metres north-south; visible bottom contact corners; no display plinth.
+Orthographic yaw45 elevation30, 2:1 ground projection, parallel edges slope +0.5 and -0.5.
+Upper-left light, only short lower-right contact shadow. True RGBA, no outside ambient halo.
+Complete single building, generous transparent padding; no text, pseudo-script, people or modern objects.
+No named Potala replica, no modern Lhasa tourism frontage, no Chinese pitched tile roof on ordinary dwellings.
+```
+
+每张实际发送的全文另存 `building-map/tubo/sources/`，不以本模板替代调用记录。最多两候选择一；原图保留真 alpha。裁透明外缘、等比重采样、透明扩边，不做拉伸、warp、镜像或代码补画。建筑短边门禁本任务为 256 px；地面目标宽仍 `32(w+h)`，高 `16(w+h)`，不能按 canvas 宽二次缩放。底面中心锚点从可见接地边推算，误差单列；轴超差不写成精确通过。每件只交一个朝向，默认 `allowRotation=false`，未生成 GLB 或四向图。
 
 ## 本文新增术语与 ID
 
@@ -853,6 +909,8 @@ Subject: {one building type and function-specific details}. No text, people, sky
 清北本轮另登记§11.2的19个 `bld_kit_qing_north_*` 地域资产ID，不新增玩法规则。新建前已全仓搜索，只有任务计划中的套件键，没有同名成品；6×5小民居等同构占地依§11.2标为建议值，不扩大清初骨架定义。
 
 KIT-mongol另增§11表列19个 `bld_kit_mongol_*` 资产ID和资产套件标签 `mongol`；不新增玩法ID。
+
+§11 另新增19个 `bld_kit_tubo_*` 地域资产ID（非玩法ID），完整清单和占地来源见该节；不将它们计入前文宋套件38类。
 
 ## 待决事项 / 依赖
 
