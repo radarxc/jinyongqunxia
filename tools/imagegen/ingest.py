@@ -40,6 +40,35 @@ def load_manifest(p: Path):
     return [e for e in data if isinstance(e, dict)]
 
 
+def crop_frame(im: Image.Image) -> tuple[Image.Image, list]:
+    """去掉 Gemini 偶尔自带的"画框"（外圈白边 / 深色边 / 内衬方块）：从四边向内扫，直到行列均色接近内部背景色，再按背景色补成正方形。"""
+    import numpy as np
+    a = np.asarray(im.convert("RGB"), dtype=np.float32)
+    h, w = a.shape[:2]
+    i0, i1 = int(min(h, w) * 0.16), int(min(h, w) * 0.20)
+    ring = np.concatenate([a[i0:i1, i0:w - i0].reshape(-1, 3), a[h - i1:h - i0, i0:w - i0].reshape(-1, 3),
+                           a[i0:h - i0, i0:i1].reshape(-1, 3), a[i0:h - i0, w - i1:w - i0].reshape(-1, 3)])
+    bg = np.median(ring, axis=0)
+    lim = int(min(h, w) * 0.15)
+    def scan(lines):
+        for k, line in enumerate(lines):
+            if np.abs(line.mean(axis=0) - bg).max() < 7 and np.abs(line - bg).max(axis=1).mean() < 14:
+                return k
+        return 0
+    top = scan([a[y] for y in range(lim)])
+    bottom = scan([a[h - 1 - y] for y in range(lim)])
+    left = scan([a[:, x] for x in range(lim)])
+    right = scan([a[:, w - 1 - x] for x in range(lim)])
+    box = [left, top, w - right, h - bottom]
+    if max(top, bottom, left, right) <= 2:
+        return im, []
+    inner = im.crop(box)
+    side = max(inner.size)
+    canvas = Image.new("RGB", (side, side), tuple(int(v) for v in bg))
+    canvas.paste(inner, ((side - inner.size[0]) // 2, (side - inner.size[1]) // 2))
+    return canvas, box
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("asset_id")
@@ -83,6 +112,7 @@ def main() -> int:
     tw, th = (int(x) for x in size.split("x"))
     im = Image.open(src).convert("RGB")
     src_size = im.size
+    im, frame = crop_frame(im)
     if im.size != (tw, th):
         im = im.resize((tw, th), Image.LANCZOS) if abs(im.size[0] / im.size[1] - tw / th) < 0.02 else im
     keyed = None
@@ -93,7 +123,8 @@ def main() -> int:
     im.save(out, "PNG", optimize=True)
     ARCHIVE.mkdir(parents=True, exist_ok=True)
     arch = ARCHIVE / f"{a.asset_id}{src.suffix.lower()}"
-    shutil.move(str(src), arch)
+    if src.resolve() != arch.resolve():
+        shutil.move(str(src), arch)
     prompt = json.loads(Path(a.prompt_json).read_text(encoding="utf-8")) if a.prompt_json else build_short(a.asset_id)  # 批量默认用精简版
     neg = re.search(r"排除项?[：:](.*)$", prompt)
     entry = {
@@ -109,7 +140,7 @@ def main() -> int:
         "size": f"{im.size[0]}x{im.size[1]}",
         "sha256": hashlib.sha256(out.read_bytes()).hexdigest(),
         "status": "candidate",
-        "notes": ("写实画风（作者 2026-10-01：要跟角色图对应上）；" + (a.note or "")) + (f"；抠底 {keyed}" if keyed else ""),
+        "notes": ("写实画风（作者 2026-10-01：要跟角色图对应上）；" + (a.note or "")) + (f"；裁掉画框 {frame}" if frame else "") + (f"；抠底 {keyed}" if keyed else ""),
     }
     entries = [e for e in load_manifest(man) if e.get("id") != a.asset_id] + [entry]
     man.write_text(yaml.safe_dump(entries, allow_unicode=True, sort_keys=False, width=1000), encoding="utf-8")
