@@ -1,0 +1,39 @@
+asset_id: tex_town_mongol_city_gate__k4_r000_v01
+era: mongol
+status: candidate
+metadata_purpose: 候选静态精灵装配参考，非严格运行时验收结果
+footprint_cells: {w: 8, h: 4}
+anchor_px: [326.2504, 415.4646]
+anchor_semantics: 底面左右可见外角L/R中点经crop/scale/pad换算。
+height_m_suggested: 5
+rotation_deg: 0
+available_rotations_deg: [0]
+projection_contract:
+  target: orthographic yaw45 elevation30; 2:1 ground axes +/-0.5
+  strict_verified: false
+  source_anchor_px_estimate: [658.5, 839.5]
+  source_crop_box: [39, 42, 1277, 1158]
+  source_width_measure: 人工外底角L至F的水平跨度
+  scale_xy: [0.5008077544, 0.5008960573]
+  transparent_padding_px: 16
+processing: alpha>=2测裁框、右底抗锯齿毛边修边、等比LANCZOS、透明padding；无warp/绘制。
+notes: 尺寸为游戏建议值；造型（原创扩展）；单视图不得冒充四向齐备。
+gate_contract:
+  width_cells: 4
+  footprint_cells: {w: 8, h: 4}
+  passage_cells: {w: 4, h: 4}
+  pier_width_cells_each: 2
+  anchor_grid: GateSpec.at通行孔中心格；偶数+x多1格
+  footprint_mask_local: {x_inclusive: [-3, 4], z_inclusive: [-1, 2]}
+  passage_mask_local: {x_inclusive: [-1, 2], z_inclusive: [-1, 2]}
+  collision_rule: G-P；跨孔梁楼只遮挡；墙先裁去G再贴门；不得根据PNG alpha推断碰撞
+  pixel_passage_registration_verified: false
+  visual_axis_slope_verified: true
+  limitation: 外底几何通过审核容差；视觉孔约3.556格，仍以4格逻辑掩膜为准并保持candidate。
+geometry_qa: {source_corners_LFR_px: [[42, 773], [870, 1155], [1275, 906]], source_axis_slopes: [0.461353, -0.614815], axis_required_range: [0.40, 0.62], axis_pass: true, width_depth_ratio: 2.044444, expected_ratio: 2.0, ratio_relative_error: 0.022222, ratio_tolerance: 0.30, ratio_pass: true, measurement_uncertainty_source_px: 8, source_inner_front_px: [[280, 900], [648, 1042]], opening_front_fraction: 0.444444, target_opening_front_fraction: 0.5, opening_equivalent_cells_at_nominal_scale: 3.555556, target_opening_cells: 4, sample_source_px: [600, 850], sample_alpha: 0, passage_pass: true, note: "右底石基圆角下方0–7px抗锯齿毛边沿实体边缘修除；双轴与比例通过审核阈值。视觉孔宽偏差约0.444格，逻辑净孔仍由4×4 passage mask保证。"}
+repair_processing: {source_archive: "source/tex_town_mongol_city_gate__k4_r000_v01__r03c2.png", source_sha256: "d6dbcb62c7821d8e81f697bdf2aa42733a2599400f5d6739f50f020842c517ac", source_size: [1315, 1196], crop_box: [39, 42, 1277, 1158], uniform_scale_requested: 0.5008077544, resized_size: [620, 559], actual_scale_xy: [0.5008077544, 0.5008960573], paste_offset: [16, 16], anchor_source_px: [658.5, 839.5], alpha_edits: "right footing lower antialias fringe only; 0–7 source px", note: "修边沿实体底边，仅清除越过目标直边的半透明毛边；不改变主体几何。"}
+pixel_qa: {mode: RGBA, size: [652, 591], alpha_extrema: [0, 255], alpha_bbox: [16, 16, 636, 575], border_alpha_max: 0}
+repair_round: 3
+candidate_count: 2
+selected_candidate: r03c2
+release_ready: false

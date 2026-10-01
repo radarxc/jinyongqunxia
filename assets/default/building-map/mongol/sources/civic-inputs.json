@@ -1,0 +1,140 @@
+[
+  {
+    "key": "market",
+    "id": "bld_kit_mongol_market",
+    "footprint": [
+      5,
+      4
+    ],
+    "subject": "草原市场毛毡铺棚",
+    "candidates": [
+      {
+        "number": 1,
+        "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-9b8c2467-4df0-45fa-bc25-e255099d0986.png",
+        "prompt": "Use case: historical-scene. Create ONE transparent city-map building sprite for tianshu default Mongolian steppe kit, inspired by 13th-14th century Karakorum and Xanadu. Realistic ancient architectural illustration, fine tactile weathered materials, restrained natural beige felt, earth brown, gray and muted timber colors, detailed like the established Song kit, neither low-poly nor cute. Orthographic yaw45 degrees, elevation30 degrees, exact 2:1 dimetric ground plane; east ground edges slope +0.5 down-right and north edges slope -0.5 up-right. Parallel lines remain parallel, vertical posts upright, no perspective convergence. South entrance faces screen lower-left. Natural warm-neutral light from screen upper-left, only short soft contact shadow screen lower-right. Keep entire asset and shadow within generous transparent margins on every side. Real RGBA transparent background, no checkerboard or matte. Ground footprint is a thin rectangular contact area, not a thick diorama pedestal; show front, left and right ground corners clearly for measurement. No people, animals, writing, signboards, symbols, watermark, border, flags, modern objects, landscape, sky, background scenery, saturated tourism decoration, modern steel chimney, Qing yellow tiles or dragon ridge. Asset ID bld_kit_mongol_market. Footprint exactly 5m east-west x 4m north-south. In projection the left-to-front ground edge's horizontal run must be 1.25 times the front-to-right edge's horizontal run. The bottom footprint is a parallelogram, not a square unless these dimensions require it. Subject: One compact Mongolian steppe market stall, rectangular wool-felt canopy on four plain timber posts, ropes, low rough wooden counter, a few rolled felt bolts and wooden bowls and burlap sacks. One shelter only, no extra tent. Ground contact is a very thin rectangular packed earth patch with a sharp readable outline, corners unobstructed."
+      },
+      {
+        "number": 2,
+        "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-d6e55a89-8e3b-41aa-83a1-c3a31259c0c9.png",
+        "prompt": "Use case: historical-scene. Create ONE transparent city-map building sprite for tianshu default Mongolian steppe kit, inspired by 13th-14th century Karakorum and Xanadu. Realistic ancient architectural illustration, fine tactile weathered materials, restrained natural beige felt, earth brown, gray and muted timber colors, detailed like the established Song kit, neither low-poly nor cute. Orthographic yaw45 degrees, elevation30 degrees, exact 2:1 dimetric ground plane; east ground edges slope +0.5 down-right and north edges slope -0.5 up-right. Parallel lines remain parallel, vertical posts upright, no perspective convergence. South entrance faces screen lower-left. Natural warm-neutral light from screen upper-left, only short soft contact shadow screen lower-right. Keep entire asset and shadow within generous transparent margins on every side. Real RGBA transparent background, no checkerboard or matte. Ground footprint is a thin rectangular contact area, not a thick diorama pedestal; show front, left and right ground corners clearly for measurement. No people, animals, writing, signboards, symbols, watermark, border, flags, modern objects, landscape, sky, background scenery, saturated tourism decoration, modern steel chimney, Qing yellow tiles or dragon ridge. Asset ID bld_kit_mongol_market. Footprint exactly 5m east-west x 4m north-south. In projection the left-to-front ground edge's horizontal run must be 1.25 times the front-to-right edge's horizontal run. The bottom footprint is a parallelogram, not a square unless these dimensions require it. Subject: One compact Mongolian steppe market stall, rectangular wool-felt canopy on four plain timber posts, ropes, low rough wooden counter, a few rolled felt bolts and wooden bowls and burlap sacks. One shelter only, no extra tent. Ground contact is a very thin rectangular packed earth patch with a sharp readable outline, corners unobstructed. CORRECTION: Strict axonometric geometry is essential. In a 1536x1024 canvas put the flat rectangular ground corners at approximately LEFT(230,620), FRONT(830,920), RIGHT(1310,680), BACK(710,380); all four are in the same ground plane. Thus both visible ground edges have slopes exactly +0.5/-0.5 and 5:4 runs. Fit canopy wholly above this footprint. The entire background outside the small ground footprint and canopy must have alpha ZERO, pure transparent, absolutely NO soft brown aura, no glow, no vignette, no atmospheric blur, no floating dust, no surround shadow, no colored transparent haze. Subject cleanly cut out."
+      }
+    ],
+    "chosen": 1,
+    "ref": null
+  },
+  {
+    "key": "yamen",
+    "id": "bld_kit_mongol_yamen",
+    "footprint": [
+      16,
+      12
+    ],
+    "subject": "木构议事厅与毡帐官署",
+    "candidates": [
+      {
+        "number": 1,
+        "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-cf73819c-95bf-45a2-b561-f5d4e9441117.png",
+        "prompt": "Use case: historical-scene. Create ONE transparent city-map building sprite for tianshu default Mongolian steppe kit, inspired by 13th-14th century Karakorum and Xanadu. Realistic ancient architectural illustration, fine tactile weathered materials, restrained natural beige felt, earth brown, gray and muted timber colors, detailed like the established Song kit, neither low-poly nor cute. Orthographic yaw45 degrees, elevation30 degrees, exact 2:1 dimetric ground plane; east ground edges slope +0.5 down-right and north edges slope -0.5 up-right. Parallel lines remain parallel, vertical posts upright, no perspective convergence. South entrance faces screen lower-left. Natural warm-neutral light from screen upper-left, only short soft contact shadow screen lower-right. Keep entire asset and shadow within generous transparent margins on every side. Real RGBA transparent background, no checkerboard or matte. Ground footprint is a thin rectangular contact area, not a thick diorama pedestal; show front, left and right ground corners clearly for measurement. No people, animals, writing, signboards, symbols, watermark, border, flags, modern objects, landscape, sky, background scenery, saturated tourism decoration, modern steel chimney, Qing yellow tiles or dragon ridge. Asset ID bld_kit_mongol_yamen. Footprint exactly 16m east-west x 12m north-south. In projection the left-to-front ground edge's horizontal run must be 1.3333333333333333 times the front-to-right edge's horizontal run. The bottom footprint is a parallelogram, not a square unless these dimensions require it. Subject: A modest Mongol-Yuan administrative assembly compound: one broad low Chinese timber meeting hall with simple gray tiled gable roof at rear, one small off-white ger beside it, open earth forecourt bounded by low timber palisade, simple south gate. Brown timber columns, very restrained dark red framing. This is an original gameplay interpretation of mixed settled and nomadic architecture, not a reconstructed named palace. Make a clean archaeological architectural GAME SPRITE, not a studio photograph. Absolutely no surrounding haze, gradient, glow, halo, backdrop, vignette or mist; everything outside architecture and its bounded courtyard is fully clear alpha-zero. Flat ground contact visible front,left,right corners; down-right axis 26.565 degrees and up-right axis minus26.565 degrees. Draw both ground axes equally foreshortened. The longer east-west side is only 1.3333 times the shorter side."
+      },
+      {
+        "number": 2,
+        "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-592122f5-c254-4d85-8d91-7bba35d72e18.png",
+        "prompt": "Generate one isolated Mongol-Yuan assembly court architectural game sprite, on true transparent RGBA. Two buildings: plain gray-tiled Chinese timber meeting hall and one smaller cream-felt Mongolian ger, inside low simple timber palisade. Earthen court, south gate towards screen lower-left, no people, signs or flags. Realistic hand-painted ancient construction with finely weathered beige brown gray materials, like a Song city-map sprite. Exact orthographic 2:1 dimetric projection, yaw45 pitch30, equally foreshortened ground axes at +26.565 and -26.565 degrees. IMPORTANT: the rectangular court measures16 east-west by12 north-south; screen lower-left boundary to front corner horizontal run is 1.333 times front to right boundary run. Draw visible ground corners approximately LEFT(180,580), FRONT(900,940), RIGHT(1440,670), BACK(720,310), flat thin ground and no thick plinth. Upper-left neutral warm light, tiny lower-right contact shadow. Entire roof and gate inside frame with generous empty transparency; all outside courtyard and architecture alpha-zero. No halo, mist, landscape, vignette, modern decoration, yellow tiles, dragon ridges, text, logos, characters. This is original gameplay architectural interpretation, no named monument reconstruction."
+      }
+    ],
+    "chosen": 2,
+    "ref": null
+  },
+  {
+    "key": "biaoju",
+    "id": "bld_kit_mongol_biaoju",
+    "footprint": [
+      14,
+      11
+    ],
+    "subject": "商队护运货栈木栅院",
+    "candidates": [
+      {
+        "number": 1,
+        "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-93958656-a4b3-47ca-b9d8-ca148e0da2a3.png",
+        "prompt": "Use case: historical-scene. Create ONE transparent city-map building sprite for tianshu default Mongolian steppe kit, inspired by 13th-14th century Karakorum and Xanadu. Realistic ancient architectural illustration, fine tactile weathered materials, restrained natural beige felt, earth brown, gray and muted timber colors, detailed like the established Song kit, neither low-poly nor cute. Orthographic yaw45 degrees, elevation30 degrees, exact 2:1 dimetric ground plane; east ground edges slope +0.5 down-right and north edges slope -0.5 up-right. Parallel lines remain parallel, vertical posts upright, no perspective convergence. South entrance faces screen lower-left. Natural warm-neutral light from screen upper-left, only short soft contact shadow screen lower-right. Keep entire asset and shadow within generous transparent margins on every side. Real RGBA transparent background, no checkerboard or matte. Ground footprint is a thin rectangular contact area, not a thick diorama pedestal; show front, left and right ground corners clearly for measurement. No people, animals, writing, signboards, symbols, watermark, border, flags, modern objects, landscape, sky, background scenery, saturated tourism decoration, modern steel chimney, Qing yellow tiles or dragon ridge. Asset ID bld_kit_mongol_biaoju. Footprint exactly 14m east-west x 11m north-south. In projection the left-to-front ground edge's horizontal run must be 1.2727272727272727 times the front-to-right edge's horizontal run. The bottom footprint is a parallelogram, not a square unless these dimensions require it. Subject: A Mongolian caravan freight and escort compound, fenced rectangular earth yard, one single-story timber warehouse with plain gray tile gable roof along rear, one small felt ger, wooden crates and bundled goods, a short empty hitching rail. Low timber stockade and open gate on south. Original fictional escort business, no historical Chinese biaoju sign, no flags. Clean cutout, no visible haze or backdrop. Front left ground edge and front right ground edge both inclined 26.565 degrees from horizontal. Their horizontal run ratio14:11. Make courtyard low, uncluttered, and ground corners unmistakable."
+      },
+      {
+        "number": 2,
+        "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-458f41c6-45aa-4ea4-ae04-ec4be815d172.png",
+        "prompt": "Edit the reference Song caravan courtyard sprite into a Mongol-Yuan steppe caravan freight and escort yard, footprint14m east-west by11m north-south. Keep exactly the original camera and ground border projection, orthographic yaw45 elevation30, 2:1 axes +/-0.5, upper-left light and short lower-right shadow, clean alpha edge, restrained miniature realistic ancient illustration detail. Replace plaster enclosing walls with low simple timber palisade and plain open wooden south gate. Keep one broad plain timber warehouse at rear with simple gray tile gable roof; replace left wing with a round cream felt Mongolian ger, remove right gatehouse, trees and wagon. Add a few crates, tied freight bundles, and one short empty hitching rail inside yard. Earth surface, simple historical wood and felt materials, no decorative greenery. Clean true RGBA isolated sprite with generous transparent margins. No people, animals, signs, text, flags, modern details, background, haze or glow. This is original game escort-business adaptation, not a historical biaoju reconstruction."
+      }
+    ],
+    "chosen": 2,
+    "ref": "assets/default/baseline/building-map/bld_kit_song_southern_biaoju.png"
+  },
+  {
+    "key": "casino",
+    "id": "bld_kit_mongol_casino",
+    "footprint": [
+      9,
+      7
+    ],
+    "subject": "娱乐大帐（原创扩展）",
+    "candidates": [
+      {
+        "number": 1,
+        "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-24b7d923-b182-4bdb-8ae4-bdb99fa310df.png",
+        "prompt": "Use case: historical-scene. Create ONE transparent city-map building sprite for tianshu default Mongolian steppe kit, inspired by 13th-14th century Karakorum and Xanadu. Realistic ancient architectural illustration, fine tactile weathered materials, restrained natural beige felt, earth brown, gray and muted timber colors, detailed like the established Song kit, neither low-poly nor cute. Orthographic yaw45 degrees, elevation30 degrees, exact 2:1 dimetric ground plane; east ground edges slope +0.5 down-right and north edges slope -0.5 up-right. Parallel lines remain parallel, vertical posts upright, no perspective convergence. South entrance faces screen lower-left. Natural warm-neutral light from screen upper-left, only short soft contact shadow screen lower-right. Keep entire asset and shadow within generous transparent margins on every side. Real RGBA transparent background, no checkerboard or matte. Ground footprint is a thin rectangular contact area, not a thick diorama pedestal; show front, left and right ground corners clearly for measurement. No people, animals, writing, signboards, symbols, watermark, border, flags, modern objects, landscape, sky, background scenery, saturated tourism decoration, modern steel chimney, Qing yellow tiles or dragon ridge. Asset ID bld_kit_mongol_casino. Footprint exactly 9m east-west x 7m north-south. In projection the left-to-front ground edge's horizontal run must be 1.2857142857142858 times the front-to-right edge's horizontal run. The bottom footprint is a parallelogram, not a square unless these dimensions require it. Subject: One large plain cream felt ger used as a fictional game and leisure hall, broad circular lattice-walled tent, low conical felt roof, animal-hair tie ropes, wooden entrance door and modest low awning, two small wooden stools and a board inside entrance only. Original gameplay fiction, not claimed as a historical Mongolian casino. No playing cards, dice icon, casino lettering or ornamental fantasy. Ground patch is rectangular9:7, planar with both axes exactly26.565 degrees from horizontal. No cloud, glow, gradient or studio backdrop. Isolated clean sprite, calm warm-neutral palette."
+      },
+      {
+        "number": 2,
+        "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-c2f8551c-4e56-4f33-8073-c2d828f0e3c1.png",
+        "prompt": "Edit this Song casino architectural sprite into ONE Mongolian felt leisure hall, original gameplay fiction. Replace the entire tiled building with a broad round cream-white wool-felt ger on the same thin9x7 rectangular ground patch. Keep the original orthographic 45-degree camera, but ensure exact 2:1 ground-plane slopes+0.5/-0.5 at30-degree elevation, no perspective. Ger low conical roof, wooden circular crown, rope tensioning, restrained brown trim, plain south entrance facing lower-left with tiny felt awning. Inside visible doorway only a small plain board on table and two stools. No playing cards, dice symbol, casino lettering or sign. Match reference's realistic ancient map-sprite level of material detail and upper-left light, only short contact shadow to lower-right. Clean isolated true transparent RGBA, generous empty margins, no glow, gradient, fog, landscape, characters, modern chimney, flag or tourist ornament. Rectangular earth ground, no thick pedestal; clear left-front-right corner geometry with width:depth9:7."
+      }
+    ],
+    "chosen": 2,
+    "ref": "assets/default/baseline/building-map/bld_kit_song_southern_casino.png"
+  },
+  {
+    "key": "manor",
+    "id": "bld_kit_mongol_manor",
+    "footprint": [
+      16,
+      13
+    ],
+    "subject": "贵族毡帐围院（原创扩展）",
+    "candidates": [
+      {
+        "number": 1,
+        "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-83a0c633-2025-402b-b9c4-192f17833983.png",
+        "prompt": "Use case: historical-scene. Create ONE transparent city-map building sprite for tianshu default Mongolian steppe kit, inspired by 13th-14th century Karakorum and Xanadu. Realistic ancient architectural illustration, fine tactile weathered materials, restrained natural beige felt, earth brown, gray and muted timber colors, detailed like the established Song kit, neither low-poly nor cute. Orthographic yaw45 degrees, elevation30 degrees, exact 2:1 dimetric ground plane; east ground edges slope +0.5 down-right and north edges slope -0.5 up-right. Parallel lines remain parallel, vertical posts upright, no perspective convergence. South entrance faces screen lower-left. Natural warm-neutral light from screen upper-left, only short soft contact shadow screen lower-right. Keep entire asset and shadow within generous transparent margins on every side. Real RGBA transparent background, no checkerboard or matte. Ground footprint is a thin rectangular contact area, not a thick diorama pedestal; show front, left and right ground corners clearly for measurement. No people, animals, writing, signboards, symbols, watermark, border, flags, modern objects, landscape, sky, background scenery, saturated tourism decoration, modern steel chimney, Qing yellow tiles or dragon ridge. Asset ID bld_kit_mongol_manor. Footprint exactly 16m east-west x 13m north-south. In projection the left-to-front ground edge's horizontal run must be 1.2307692307692308 times the front-to-right edge's horizontal run. The bottom footprint is a parallelogram, not a square unless these dimensions require it. Subject: A Mongolian noble family's enclosed ger household: one large off-white felt ger behind and two smaller off-white felt gers flanking an open packed-earth courtyard, weathered low wooden palisade, broad simple south gateway, tiny wooden storage lean-to. Only three gers and one small lean-to. Restrained brown textile bands, timber doors and rope tensioning; no gold, no ornate tourism motifs. Cleanly isolated architectural game asset. No background haze or gradient. Footprint exactly16:13, two visible front ground edges must make equal26.565-degree angles with horizontal. Entire compound including shadow should fit inside image, no clipping."
+      },
+      {
+        "number": 2,
+        "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-5e88319e-8b10-43d9-9c45-7fadf3f01ed9.png",
+        "prompt": "Edit this architectural sprite into a Mongolian noble ger household. Keep precisely the SAME camera, courtyard footprint16x13, footprint front/left/right corner positions and ground edge slopes, fine ancient realism and upper-left light. Replace the three tiled buildings with three cream-white wool-felt Mongolian gers: large rear ger and two smaller gers. Replace plaster walls and gatehouse with low plain wooden palisade and simple wooden gate. Replace lush trees with only a few tiny dry steppe tufts, and paving with earth. Add one tiny timber storage lean-to. Gers have round wooden lattice frames, shallow conical felt roofs, restrained brown bands, tie ropes and plain wooden doors. Entire asset isolated on true transparent RGBA with generous clear margins, no halo or scenery. Do not rotate camera or deform footprint. No people, text, modern ornament, flags, gold or fairy-tale decoration. Original fictional game manor informed by traditional Mongolian ger materials, not a specific historical reconstruction."
+      }
+    ],
+    "chosen": 2,
+    "ref": "assets/default/baseline/building-map/bld_kit_song_southern_manor.png"
+  },
+  {
+    "key": "wangfu",
+    "id": "bld_kit_mongol_wangfu",
+    "footprint": [
+      20,
+      16
+    ],
+    "subject": "上都风格汉式王府殿宇模块",
+    "candidates": [
+      {
+        "number": 1,
+        "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-4ede284e-a806-4cc5-a5bd-d5cb43c438c8.png",
+        "prompt": "Create a Mongol-Yuan regional variant of this Song architectural sprite. Preserve exactly its orthographic 45-degree yaw, 30-degree elevation and 2:1 dimetric ground axes, warm-neutral upper-left light, restrained realistic ancient materials, clear isolated alpha-transparent sprite composition. Replace the compound with ONE Yuan Xanadu-inspired Chinese timber palace hall on a very low rectangular stone terrace, footprint20 east-west by16 north-south. Broad single-story main hall, dark gray and low-saturation green glazed hipped-gable roof, red-brown columns, very restrained beam painting, low stone column bases, broad shallow south steps toward lower-left, two short side verandas. No surrounding walls or separate gatehouse, this is a hall module not full palace. Preserve clean alpha cutout and complete silhouette. Make left-to-front base run1.25 times front-to-right run. No Qing yellow tiles, dragons, extravagant upturns, palace fantasy, modern objects, text, people, background, glow or labels. Use true RGBA transparency. This is original game architecture inspired by mixed Han and nomadic Yuan capital, not exact archaeological reconstruction."
+      },
+      {
+        "number": 2,
+        "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-6fff0e80-0507-4ab6-b5c8-6dd88f009edb.png",
+        "prompt": "Edit this palace hall sprite only to fix its terrace footprint and ground projection. Keep Yuan Xanadu-style dark gray/low-saturation green tiled hipped-gable hall, red-brown columns, restrained beam ornament, weathered stone bases, same materials and light. Expand terrace DEPTH substantially toward the upper-right to make it a20:16 rectangle, with a shallow forecourt and short rear courtyard strip, not a narrow platform. Its two visible ground boundary edges must have screen slopes+0.5 and-0.5: symmetrical26.565-degree angles from horizontal, orthographic45 yaw30 elevation. The left-to-front ground edge horizontal run must be1.25 times front-to-right run. Keep south entrance lower-left. Ensure readable three ground corners and complete eaves. True transparent RGBA, generous margin, no glow, scenery, text, people, trees, wall compound, giant shadows or extra buildings. Keep original miniature ancient realism. No Qing golden roofs or dragon ornament. Original architectural game module."
+      }
+    ],
+    "chosen": 2,
+    "ref": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png"
+  }
+]

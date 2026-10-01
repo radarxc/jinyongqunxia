@@ -1,0 +1,46 @@
+id: bld_kit_mongol_courtyard
+status: candidate
+building: {"type": "bld_kit_mongol_courtyard", "footprint": [10, 8], "anchor": [314.787, 277.1555], "era": "mongol"}
+anchor_px: [314.787, 277.1555]
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】复用design/22 §3.2 bld_kit_song_dali_courtyard；地域替换（原创扩展）
+measured_ground_polygon_px: [[26.7707, 267.1765], [329.9457, 426.042], [602.8033, 287.1345], [299.6282, 128.2689]]
+collision_polygon_m:
+- - 0
+  - 0
+- - 10
+  - 0
+- - 10
+  - 8
+- - 0
+  - 8
+collision_note: 全占地仅规划阻挡代理；毡帐/院落内可行走区域另需细化，不含阴影。
+entrance:
+  edge: S
+  offset_cells: 4
+entrance_note: 规划边中点代理，非门洞实测（待实测）
+height_m: null
+height_note: 未测量；不能由roof顶点与center直接反推整体高度。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+png_rotations_available:
+- 0
+allowRotation: false
+views:
+- rotation_deg: 0
+  yaw_deg_requested: 45
+  pitch_deg_requested: 30
+  file: bld_kit_mongol_courtyard.png
+glb: null
+projection_contract: {"tile_px": [64, 32], "ground_bbox_target_px": [576, 288], "ground_width_px": 576.0326, "ground_height_measured_px": 297.7731, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "projection_verified": false}
+geometry_qa: {"source_corners_px": {"left": [54, 542], "front": [814, 940], "right": [1498, 592], "rear_inferred": [738, 194]}, "source_anchor_px": [776.0, 567.0], "source_axis_slopes": [0.5236842105263158, -0.5087719298245614], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.1111111111111112, "expected_width_depth_ratio": 1.25, "ratio_relative_error": 0.11111111111111105, "ratio_tolerance_suggestion": 0.1, "ratio_pass": false, "measurement_uncertainty_source_px": 5, "precision_note": "返修源图可见土面角人工量取约±5px；后角由L+R-F推算，锚点为L/R中点；未warp。", "edge_note": ""}
+pixel_qa: {"mode": "RGBA", "size": [620, 512], "alpha_extrema": [0, 255], "alpha_zero_pixels": 220014, "alpha_partial_pixels": 96440, "alpha_opaque_pixels": 986, "alpha_nonzero_bbox": [24, 101, 604, 429], "transparent_margins_px": [24, 101, 16, 83], "border_alpha_max": 0}
+processing: {"source_archive": "sources/bld_kit_mongol_courtyard__r2_c02.png", "source_sha256": "01a905b302ab37fb6c7ab0611c71e4ec21dc8fb0ce2b69ccb55f53ca082b32f2", "source_size": [1536, 1024], "crop_box": [27, 38, 1501, 990], "uniform_scale_requested": 0.3988919667590028, "resized_size": [588, 380], "rounded_effective_scale": [0.3989145183175034, 0.39915966386554624], "paste_offset": [16, 66], "final_file": "bld_kit_mongol_courtyard.png", "steps": ["crop alpha>0 bbox", "uniform LANCZOS resize, dimensions rounded to nearest pixel", "paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold"]}
+selected_candidate: "run2-c2"
+visual_review: "第2轮返修采用本轮候选2；轴率0.52368/-0.50877；宽深比1.11111，目标1.25000；轴率/比例检查分别True/False。仍为candidate，非3D/四向及总装验收。"
+release_ready: false

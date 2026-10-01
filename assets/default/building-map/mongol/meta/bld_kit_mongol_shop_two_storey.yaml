@@ -1,0 +1,46 @@
+id: bld_kit_mongol_shop_two_storey
+status: candidate
+building: {"type": "bld_kit_mongol_shop_two_storey", "footprint": [8, 6], "anchor": [255.6566, 301.589], "era": "mongol"}
+anchor_px: [255.6566, 301.589]
+footprint_m:
+- 8
+- 6
+footprint_basis: 【建议值】复用design/22 §3.3 bld_kit_song_southern_shop_2f；两层形制（原创扩展）（待考）
+measured_ground_polygon_px: [[31.8792, 290.3093], [286.5063, 408.12], [479.434, 312.8688], [224.8069, 195.058]]
+collision_polygon_m:
+- - 0
+  - 0
+- - 8
+  - 0
+- - 8
+  - 6
+- - 0
+  - 6
+collision_note: 全占地仅规划阻挡代理；毡帐/院落内可行走区域另需细化，不含阴影。
+entrance:
+  edge: S
+  offset_cells: 3
+entrance_note: 规划边中点代理，非门洞实测（待实测）
+height_m: null
+height_note: 未测量；不能由roof顶点与center直接反推整体高度。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+png_rotations_available:
+- 0
+allowRotation: false
+views:
+- rotation_deg: 0
+  yaw_deg_requested: 45
+  pitch_deg_requested: 30
+  file: bld_kit_mongol_shop_two_storey.png
+glb: null
+projection_contract: {"tile_px": [64, 32], "ground_bbox_target_px": [448, 224], "ground_width_px": 447.5548, "ground_height_measured_px": 213.062, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "projection_verified": false}
+geometry_qa: {"source_corners_px": {"left": [55, 618], "front": [868, 994], "right": [1484, 690], "rear_inferred": [671, 314]}, "source_anchor_px": [769.5, 654.0], "source_axis_slopes": [0.46248462484624847, -0.4935064935064935], "axis_tolerance": 0.03, "axis_pass": false, "source_width_depth_ratio": 1.3198051948051948, "expected_width_depth_ratio": 1.3333333333333333, "ratio_relative_error": 0.01014610389610393, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "precision_note": "返修源图可见土面角人工量取约±5px；后角由L+R-F推算，锚点为L/R中点；未warp。", "edge_note": ""}
+pixel_qa: {"mode": "RGBA", "size": [512, 512], "alpha_extrema": [0, 255], "alpha_zero_pixels": 191728, "alpha_partial_pixels": 69481, "alpha_opaque_pixels": 935, "alpha_nonzero_bbox": [30, 102, 481, 410], "transparent_margins_px": [30, 102, 31, 102], "border_alpha_max": 0}
+processing: {"source_archive": "sources/bld_kit_mongol_shop_two_storey__r2_c02.png", "source_sha256": "9c0b57373a62be8d4ca780b9566b44314b661eeb554eacb58cb4064f0772077b", "source_size": [1536, 1024], "crop_box": [49, 17, 1489, 1000], "uniform_scale_requested": 0.31350594821553535, "resized_size": [451, 308], "rounded_effective_scale": [0.31319444444444444, 0.3133265513733469], "paste_offset": [30, 102], "final_file": "bld_kit_mongol_shop_two_storey.png", "steps": ["crop alpha>0 bbox", "uniform LANCZOS resize, dimensions rounded to nearest pixel", "paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold"]}
+selected_candidate: "run2-c2"
+visual_review: "第2轮返修采用本轮候选2；轴率0.46248/-0.49351；宽深比1.31981，目标1.33333；轴率/比例检查分别False/True。仍为candidate，非3D/四向及总装验收。"
+release_ready: false

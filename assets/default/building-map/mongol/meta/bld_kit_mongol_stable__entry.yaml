@@ -1,0 +1,45 @@
+id: bld_kit_mongol_stable
+file: bld_kit_mongol_stable.png
+category: building-map
+style: default
+subject: 13–14世纪蒙古草原/和林/上都语境：拴马棚（原创扩展；非具名文物复原）
+prompt: 'Use case: precise-object-edit. Edit this Song stable into a 13th-century Mongol steppe horse shelter sprite. PRESERVE EXACT camera, ground footprint aspect ratio8:6, isometric orientation, ground corners, building width/depth, three open stalls, troughs, scale and transparent padding. Replace the entire grey ceramic tiled roof with a plain taut muted beige wool-felt roof held by rope lashings over rough timber rafters, remove all decorative ridge finials and ceramic tiles. Replace white plaster side walls with rough dark timber slats. Keep realistic fine wood grain and weathering at same detail density. No horses or people. Left-upper light, short right-lower contact shadows. Genuine transparent RGBA outside actual silhouette. Do not change framing or lengthen the building. No text or checkerboard.'
+negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+references:
+- {file: assets/default/baseline/building-map/bld_kit_song_dali_stable.png, sha256: da40c1c72f1e27b96c2a8da4d6ab0ac6f81474a6d0e049045d4ac9996eabac28, role: 实际image_gen编辑输入}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T22:15:08.242676+00:00'
+created_time_basis: 源PNG文件mtime，不是服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-1d3c0b69-5125-4377-8e64-7df44437ed4b.png
+size: 592x496
+sha256: 355b51d4c6ac08ca9562bc80535dd9db08a4c27b36f8b296f5dcd2f31efc17d8
+status: candidate
+building:
+  type: bld_kit_mongol_stable
+  footprint: [8, 6]
+  anchor: [308.6176, 294.2716]
+  era: mongol
+footprint_m: [8, 6]
+footprint_basis: design/22 §3.2 stable 8×6【建议值】
+entrance: {edge: S, offset_cells: 4}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [448, 224]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_mongol_stable.yaml
+processing:
+  source_archive: sources/stableRetry__raw.png
+  source_sha256: 6f7cd9bb686d3a4944b3af07fd55d31576d13aa2dd83fdfa81a7a8f2de1980da
+  source_size: [1437, 1095]
+  crop_box: [65, 20, 1425, 1095]
+  uniform_scale_requested: 0.388551604509974
+  resized_size: [528, 418]
+  actual_scale_xy: [0.38823529411764707, 0.38883720930232557]
+  paste_offset: [32, 39, 560, 457]
+  anchor_source_px: [777.5, 676.5]
+  alpha_edits: none
+  note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+notes: 仅原向单视图；锚点为底面中心代理；精确接缝/碰撞/遮挡待实测；底面严格几何见meta。

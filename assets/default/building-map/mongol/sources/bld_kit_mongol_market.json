@@ -1,0 +1,35 @@
+{
+  "key": "market",
+  "id": "bld_kit_mongol_market",
+  "footprint": [
+    5,
+    4
+  ],
+  "subject": "草原市场毛毡铺棚",
+  "candidates": [
+    {
+      "number": 1,
+      "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-9b8c2467-4df0-45fa-bc25-e255099d0986.png",
+      "prompt": "Use case: historical-scene. Create ONE transparent city-map building sprite for tianshu default Mongolian steppe kit, inspired by 13th-14th century Karakorum and Xanadu. Realistic ancient architectural illustration, fine tactile weathered materials, restrained natural beige felt, earth brown, gray and muted timber colors, detailed like the established Song kit, neither low-poly nor cute. Orthographic yaw45 degrees, elevation30 degrees, exact 2:1 dimetric ground plane; east ground edges slope +0.5 down-right and north edges slope -0.5 up-right. Parallel lines remain parallel, vertical posts upright, no perspective convergence. South entrance faces screen lower-left. Natural warm-neutral light from screen upper-left, only short soft contact shadow screen lower-right. Keep entire asset and shadow within generous transparent margins on every side. Real RGBA transparent background, no checkerboard or matte. Ground footprint is a thin rectangular contact area, not a thick diorama pedestal; show front, left and right ground corners clearly for measurement. No people, animals, writing, signboards, symbols, watermark, border, flags, modern objects, landscape, sky, background scenery, saturated tourism decoration, modern steel chimney, Qing yellow tiles or dragon ridge. Asset ID bld_kit_mongol_market. Footprint exactly 5m east-west x 4m north-south. In projection the left-to-front ground edge's horizontal run must be 1.25 times the front-to-right edge's horizontal run. The bottom footprint is a parallelogram, not a square unless these dimensions require it. Subject: One compact Mongolian steppe market stall, rectangular wool-felt canopy on four plain timber posts, ropes, low rough wooden counter, a few rolled felt bolts and wooden bowls and burlap sacks. One shelter only, no extra tent. Ground contact is a very thin rectangular packed earth patch with a sharp readable outline, corners unobstructed.",
+      "archive": "sources/bld_kit_mongol_market__c01.png",
+      "sha256": "2da10a5f4fceea15e7fb75f95daddef9b6e894c0781233da596584fa3e55a728",
+      "selected": true,
+      "reference_inputs": []
+    },
+    {
+      "number": 2,
+      "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-d6e55a89-8e3b-41aa-83a1-c3a31259c0c9.png",
+      "prompt": "Use case: historical-scene. Create ONE transparent city-map building sprite for tianshu default Mongolian steppe kit, inspired by 13th-14th century Karakorum and Xanadu. Realistic ancient architectural illustration, fine tactile weathered materials, restrained natural beige felt, earth brown, gray and muted timber colors, detailed like the established Song kit, neither low-poly nor cute. Orthographic yaw45 degrees, elevation30 degrees, exact 2:1 dimetric ground plane; east ground edges slope +0.5 down-right and north edges slope -0.5 up-right. Parallel lines remain parallel, vertical posts upright, no perspective convergence. South entrance faces screen lower-left. Natural warm-neutral light from screen upper-left, only short soft contact shadow screen lower-right. Keep entire asset and shadow within generous transparent margins on every side. Real RGBA transparent background, no checkerboard or matte. Ground footprint is a thin rectangular contact area, not a thick diorama pedestal; show front, left and right ground corners clearly for measurement. No people, animals, writing, signboards, symbols, watermark, border, flags, modern objects, landscape, sky, background scenery, saturated tourism decoration, modern steel chimney, Qing yellow tiles or dragon ridge. Asset ID bld_kit_mongol_market. Footprint exactly 5m east-west x 4m north-south. In projection the left-to-front ground edge's horizontal run must be 1.25 times the front-to-right edge's horizontal run. The bottom footprint is a parallelogram, not a square unless these dimensions require it. Subject: One compact Mongolian steppe market stall, rectangular wool-felt canopy on four plain timber posts, ropes, low rough wooden counter, a few rolled felt bolts and wooden bowls and burlap sacks. One shelter only, no extra tent. Ground contact is a very thin rectangular packed earth patch with a sharp readable outline, corners unobstructed. CORRECTION: Strict axonometric geometry is essential. In a 1536x1024 canvas put the flat rectangular ground corners at approximately LEFT(230,620), FRONT(830,920), RIGHT(1310,680), BACK(710,380); all four are in the same ground plane. Thus both visible ground edges have slopes exactly +0.5/-0.5 and 5:4 runs. Fit canopy wholly above this footprint. The entire background outside the small ground footprint and canopy must have alpha ZERO, pure transparent, absolutely NO soft brown aura, no glow, no vignette, no atmospheric blur, no floating dust, no surround shadow, no colored transparent haze. Subject cleanly cut out.",
+      "archive": "sources/bld_kit_mongol_market__c02.png",
+      "sha256": "1d5fb8de14c6070911e89d438d81470147e163f7522c9705389ce2e549e20246",
+      "selected": false,
+      "reference_inputs": []
+    }
+  ],
+  "chosen": 1,
+  "ref": null,
+  "references": [],
+  "source_viewed": true,
+  "final_viewed": true,
+  "view_note": "两张源候选与规格化成品均已逐张view_image；2026-09-30；成品无实物裁切、无棕色背景，几何偏差保留。"
+}

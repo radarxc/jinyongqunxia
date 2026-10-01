@@ -1,0 +1,61 @@
+id: bld_kit_mongol_guardhouse
+building:
+  type: bld_kit_mongol_guardhouse
+  footprint: [6, 5]
+  anchor: &id001 [220.3077, 191.9063]
+  era: mongol
+anchor_px: *id001
+geometry_qa:
+  source_corners_LFR_px:
+  - [43, 690]
+  - [773, 1001]
+  - [1514, 668]
+  source_axis_slopes: [0.426027397260274, -0.4493927125506073]
+  axis_tolerance: 0.03
+  axis_pass: false
+  width_depth_ratio: 0.9851551956815114
+  expected_ratio: 1.2
+  ratio_relative_error: 0.1790373369320738
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 5
+  note: 本轮逐图读取真实L/F/R底角；没有warp或理想坐标替代测量。
+processing:
+  source_archive: sources/bld_kit_mongol_guardhouse__repair2_c02.png
+  source_sha256: c55fa9a7afb0bca3c55a0ac0471ac7b90cc396fc745f0f3bfc23a9079b077462
+  source_size: [1536, 1024]
+  crop_box: [0, 16, 1521, 1009]
+  uniform_scale_requested: 0.23929299796057105
+  resized_size: [364, 238]
+  actual_scale_xy: [0.23931623931623933, 0.23967774420946628]
+  paste_offset: [34, 33, 398, 271]
+  anchor_source_px: [778.5, 679.0]
+  alpha_edits: none
+  note: 仅全透明外框裁切、等比LANCZOS缩放与透明padding；整数取整亚像素差。
+views:
+- {rotation_deg: 0, file: bld_kit_mongol_guardhouse.png}
+allowRotation: false
+glb: null
+release_ready: false
+pixel_qa:
+  mode: RGBA
+  size: [432, 304]
+  alpha_extrema: [0, 255]
+  alpha_bbox: [41, 33, 398, 271]
+  transparent_pixels: 85490
+collision_polygon_m:
+- [0, 0]
+- [6, 0]
+- [6, 5]
+- [0, 5]
+collision_note: 候选逻辑矩形，非实墙测绘；河埠仅装饰，不创建port或旅行服务。
+historical_note: 仅地域母题有文字参考；具体屋面/门窗/彩画/塔式为原创设计，待考。
+repair_round_2: {tool: built-in image_gen, candidate_count: 2, attempt_records: sources/bld_kit_mongol_guardhouse__repair2_calls.json, selected_candidate: 2, geometry_pass: false, result: c02改善宽深误差，仍未修复}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [352, 176]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  ground_bbox_semantics: ground_bbox_px是64×32理想占格目标，不是实测底面框
+  ground_bbox_target_px: [352, 176]
+  ground_bbox_measured_px: [352.0342, 154.3525]

@@ -1,0 +1,9 @@
+{
+  "key": "stableRetry",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-1d3c0b69-5125-4377-8e64-7df44437ed4b.png",
+  "prompt": "Use case: precise-object-edit. Edit this Song stable into a 13th-century Mongol steppe horse shelter sprite. PRESERVE EXACT camera, ground footprint aspect ratio8:6, isometric orientation, ground corners, building width/depth, three open stalls, troughs, scale and transparent padding. Replace the entire grey ceramic tiled roof with a plain taut muted beige wool-felt roof held by rope lashings over rough timber rafters, remove all decorative ridge finials and ceramic tiles. Replace white plaster side walls with rough dark timber slats. Keep realistic fine wood grain and weathering at same detail density. No horses or people. Left-upper light, short right-lower contact shadows. Genuine transparent RGBA outside actual silhouette. Do not change framing or lengthen the building. No text or checkerboard.",
+  "references": [
+    "assets/default/baseline/building-map/bld_kit_song_dali_stable.png"
+  ],
+  "selection": "selected"
+}

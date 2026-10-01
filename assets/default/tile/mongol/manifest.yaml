@@ -1,0 +1,196 @@
+- id: tex_town_mongol_city_gate__k4_r000_v01
+  file: tex_town_mongol_city_gate__k4_r000_v01.png
+  category: tile
+  style: default
+  subject: 蒙古草原营地·净宽4格木土营门；13—14世纪地域意象（原创扩展），非遗址实测复原
+  prompt: |-
+    Edit the ONE supplied reference image into a production-ready medieval Mongolian camp gate sprite. PRESERVE the reference's exact outer footprint silhouette, four foot positions, bottom-edge directions, deep rectangular pier geometry, clear-passage proportions, orthographic camera, framing, and scale. This is a material-and-detail repaint, not a redesign.
+
+    The preserved ground contract is 8 cells wide by 4 cells deep: transparent passage 4 by 4; left pier 2 by 4; right pier 2 by 4. The visible long-axis and depth-axis bottom edges must retain the reference slopes, each with absolute screen slope 0.40–0.62. Full projected long-axis horizontal run divided by depth-axis run must remain within 1.8–2.2. The opening must occupy about 50% of the full front span. Keep every foot and both measurable bottom axes visible. No perspective convergence.
+
+    REPAINT ONLY: replace grey roof tiles and ornate Chinese trim with a simple weathered brown timber plank gable roof, plain squared timber watch bridge and rails, ochre rammed-earth pier faces, dark timber frames, and rough stone footings. Restrained realistic medieval game-sprite detail, muted earth palette, soft upper-left light. No glazed tile, upturned eaves, statues, finials, inscriptions, flags, or decorative Chinese motifs.
+
+    True RGBA. Outside silhouette and entire passage are alpha 0. Solid materials are opaque. No floor, terrain, cast shadow outside the object, glow, haze, backdrop, grid, text, labels, watermark, people, animals, plants, modern hardware, or extra wings. Keep one complete isolated gate with wide transparent margins.
+  negative: 无文字、人物、现代物件、地台、假棋盘透明、完整背景；门孔不画地面。
+  references: [{"file": "source/tex_town_mongol_city_gate__k4_r000_v01__r03_geometry_reference.png", "sha256": "c621739812ce2100e2455408defce7ed9a33a4a131a7f8052b2590560511ecd5", "note": "辽金同规格门，仅作底面与相机几何参考"}, {"title": "Yuan Shangdu", "url": "https://commons.wikimedia.org/wiki/File:Yuan_Shangdu.jpg", "purpose": "对照元上都遗址土墙、基址与草原环境；不证明本件木土营门形制或净宽", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: image API (Codex backend)
+  model: gpt-image-2
+  effort: not exposed by image tool
+  created: "2026-10-01T05:18:06Z"
+  source_path: "/private/tmp/mongol_gate_k4_c2.png"
+  source_copy: "source/tex_town_mongol_city_gate__k4_r000_v01__r03c2.png"
+  source_sha256: "d6dbcb62c7821d8e81f697bdf2aa42733a2599400f5d6739f50f020842c517ac"
+  size: "652x591"
+  sha256: "212d528a7b8f1a6a50ed8a01f5dd6395636638f5431b0b537000aabdabb6e382"
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint: [8, 4]
+    variant: k4_r000_v01
+    autotile_mask: null
+  anchor_px: [326.2504, 415.4646]
+  notes: 第3轮两候选选第2；轴率+0.4614/-0.6148、宽深比2.0444，审核阈值内；视觉净孔约3.556格。仅裁切/等比缩放/边缘修边/pad，保持candidate。
+  created_time_basis: 图像API回执created的UTC换算
+- id: tex_town_mongol_city_gate__k6_r000_v01
+  file: tex_town_mongol_city_gate__k6_r000_v01.png
+  category: tile
+  style: default
+  subject: 蒙古草原营地·净宽6格木土营门；13—14世纪地域意象（原创扩展），非遗址实测复原
+  prompt: |-
+    Edit the ONE supplied reference image into a production-ready medieval Mongolian camp gate sprite. PRESERVE the reference's exact outer footprint silhouette, four foot positions, bottom-edge directions, deep rectangular pier geometry, clear-passage proportions, orthographic camera, framing, and scale. This is a material-and-detail repaint, not a redesign.
+
+    The preserved ground contract is 10 cells wide by 4 cells deep: transparent passage 6 by 4; left pier 2 by 4; right pier 2 by 4. The visible long-axis and depth-axis bottom edges must retain the reference slopes, each with absolute screen slope 0.40–0.62. Full projected long-axis horizontal run divided by depth-axis run must remain within 2.25–2.75. The opening must occupy about 60% of the full front span. Keep every foot and both measurable bottom axes visible. No perspective convergence.
+
+    REPAINT ONLY: replace grey roof tiles and ornate Chinese trim with a simple weathered brown timber plank gable roof, plain squared timber watch bridge and rails, ochre rammed-earth pier faces, dark timber frames, and rough stone footings. Restrained realistic medieval game-sprite detail, muted earth palette, soft upper-left light. No glazed tile, upturned eaves, statues, finials, inscriptions, flags, or decorative Chinese motifs.
+
+    True RGBA. Outside silhouette and entire passage are alpha 0. Solid materials are opaque. No floor, terrain, cast shadow outside the object, glow, haze, backdrop, grid, text, labels, watermark, people, animals, plants, modern hardware, or extra wings. Keep one complete isolated gate with wide transparent margins.
+  negative: 无文字、人物、现代物件、地台、假棋盘透明、完整背景；门孔不画地面。
+  references: [{"file": "source/tex_town_mongol_city_gate__k6_r000_v01__r03_geometry_reference.png", "sha256": "5ab656dfeed7969b0e51b209bd35dc19e2723aa21e4e80392615b76770dfe8dc", "note": "辽金同规格门，仅作底面与相机几何参考"}, {"title": "Yuan Shangdu", "url": "https://commons.wikimedia.org/wiki/File:Yuan_Shangdu.jpg", "purpose": "对照元上都遗址土墙、基址与草原环境；不证明本件木土营门形制或净宽", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: image API (Codex backend)
+  model: gpt-image-2
+  effort: not exposed by image tool
+  created: "2026-10-01T05:18:17Z"
+  source_path: "/private/tmp/mongol_gate_k6_c2.png"
+  source_copy: "source/tex_town_mongol_city_gate__k6_r000_v01__r03c2.png"
+  source_sha256: "f557a870ce86ba1531ff6b2c511a6acf698ef7882627e4128803eac2e38ef20b"
+  size: "652x653"
+  sha256: "b10d871c839cf0f3c6986f0610b68496382e61e595dbeb5a092df05d039ea450"
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint: [10, 4]
+    variant: k6_r000_v01
+    autotile_mask: null
+  anchor_px: [327.6373, 483.2520]
+  notes: 第3轮两候选选第2；轴率+0.5095/-0.4673、宽深比2.4642、视觉净孔约5.942格；均在审核阈值内。仅裁切/等比缩放/pad，保持candidate。
+  created_time_basis: 图像API回执created的UTC换算
+- id: tex_town_mongol_wall__timber_r000_v01
+  file: tex_town_mongol_wall__timber_r000_v01.png
+  category: tile
+  style: default
+  subject: 蒙古草原营地·木栅直段；13—14世纪地域意象（原创扩展），非遗址实测复原
+  prompt: 'Use case: historical-scene. A single isolated repeating PALISADE WALL segment for a medieval Mongolian steppe camp game. ORIGINAL game reconstruction, generic weathered local timber. One logical1m by1m footprint,2m tall, four tightly packed vertical rough wooden posts with slightly uneven pointed tops and two horizontal reinforcing beams, compact square base envelope, posts not randomly spreading outward. No soil, no floor slab, no stone foundations, no vegetation, no unrelated objects. Orthographic dimetric camera yaw45 pitch30,2:1 ground projection axes slopes+0.5/-0.5, front alignment running upper-left to lower-right, posts vertical. Realistic historical sprite with fine restrained wood texture, grey-brown earth palette, same realistic detailed medieval town environment art style. Upper-left lighting, extremely small neutral contact shadow toward lower-right. TRUE RGBA transparent background. CRITICAL absolutely no atmosphere, NO GLOW, no brown aura, no haze, no vignette or backdrop; no light effects outside the actual wood. No text, no labels, no people, no logos, no modern hardware, no checkerboard. Complete object with generous transparent margins, production cutout.'
+  negative: 无文字、人物、现代物件、地台、假棋盘透明、完整背景；门孔不画地面。
+  references: [{"title": "Yuan Shangdu", "url": "https://commons.wikimedia.org/wiki/File:Yuan_Shangdu.jpg", "purpose": "对照遗址土墙与草原边界；木栅直段仍为营地功能的原创扩展", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T22:11:03.114581+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-d944-7472-b50b-47c918d55aeb/exec-7d82b3f4-f755-4bcb-908a-f34f5275e53b.png
+  source_copy: source/tex_town_mongol_wall__timber_r000_v01__source.png
+  source_sha256: 32ce37a0b35f8b3039bbb2fa6b1dad2b8e0b8b0c92c06a724ffefcbf52e36861
+  size: 155x108
+  sha256: 5f21d9c410a339a66cda172c4584019fb7703af4da39bc10831c3b94ae84b265
+  status: candidate
+  tile:
+    kind: wall
+    footprint: [1, 1]
+    variant: timber_r000_v01
+    autotile_mask: null
+  anchor_px: [75.842, 88.237]
+  notes: 原图字节保留；只裁alpha非零包围框、等比LANCZOS缩放并补4px透明边，不做alpha阈值清理或RGB重绘；锚点由源图底面人工估计后等比换算，严格投影/接缝/碰撞未验收。
+  created_time_basis: 源PNG文件mtime，不是服务端调用时间
+- id: tex_town_mongol_wall_corner__outer_ne_v01
+  file: tex_town_mongol_wall_corner__outer_ne_v01.png
+  category: tile
+  style: default
+  subject: 蒙古草原营地·木栅外转角；13—14世纪地域意象（原创扩展），非遗址实测复原
+  prompt: 'Use case: historical-scene. ONE compact L-shaped outward corner section of a medieval Mongolian steppe camp PALISADE, original game concept. Exactly two perpendicular arms of weathered pointed timber posts meeting at one corner, both arms1m long and wall height2m, total logical footprint1m by1m. Four closely packed logs in each short arm, vertical logs, two reinforcing horizontal crossbeams each side. The corner opens away toward the top of the image, both outward faces visible to left and right. No soil block, no platform, no foundations, no vegetation. Orthographic camera yaw45 elevation30, ground grid2:1 and sloping axes+0.5/-0.5. Realistic subdued grey-brown wood grain, naturally worn, same natural fine detail as historical Song town sprite artwork, no cartoon. Upper-left soft daylight, short lower-right contact shadow. True TRANSPARENT RGBA background, holes between wood transparent, full object with generous clear margins. No glow haze backdrop or vignette. No people, writing, banner, landscape, modern metal or checkerboard.'
+  negative: 无文字、人物、现代物件、地台、假棋盘透明、完整背景；门孔不画地面。
+  references: [{"title": "Yuan Shangdu", "url": "https://commons.wikimedia.org/wiki/File:Yuan_Shangdu.jpg", "purpose": "对照遗址墙线与草原环境；木栅转角构造不据此宣称考古复原", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T22:12:42.401390+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-d944-7472-b50b-47c918d55aeb/exec-5f21fa11-ddbb-46a6-9fab-3c8aac3f6730.png
+  source_copy: source/tex_town_mongol_wall_corner__outer_ne_v01__source.png
+  source_sha256: 3d722e2cd59f0b55d60a5529280811ee29f9c4c5aaa31e5eed2f774ad45fe209
+  size: 95x69
+  sha256: af53c6cce9df1c17b4644115ac7f91c143d93d946610df56541aa63a78d25b3f
+  status: candidate
+  tile:
+    kind: wall_corner
+    footprint: [1, 1]
+    variant: outer_ne_v01
+    autotile_mask: null
+  anchor_px: [47.844, 45.839]
+  notes: 原图字节保留；只裁alpha非零包围框、等比LANCZOS缩放并补4px透明边，不做alpha阈值清理或RGB重绘；锚点由源图底面人工估计后等比换算，严格投影/接缝/碰撞未验收。
+  created_time_basis: 源PNG文件mtime，不是服务端调用时间
+- id: tex_town_mongol_bridge__w3_l5_r000_v01
+  file: tex_town_mongol_bridge__w3_l5_r000_v01.png
+  category: tile
+  style: default
+  subject: 蒙古草原河谷聚落·简朴木桥；13—14世纪地域意象（原创扩展），非遗址实测复原
+  prompt: 'Use case: historical-scene. Exactly ONE simple low flat TIMBER FOOTBRIDGE sprite for a13th-14th-century Mongolian steppe river settlement. Original game concept, not a reconstruction of a named ancient bridge. Whole logical footprint3m east-west wide by5m north-south long. Long axis runs lower-left to upper-right at ground slope-0.5. Plain weathered narrow wood planks deck, two low side rails on simple upright posts, squared unpainted timber structural beams, shallow height. No arch, no carved animals, no stone abutments, no stairs, no water, riverbank or ground. Transparent empty space below and between rails. Orthographic yaw45 elevation30, exact2:1 dimetric ground axes +/-0.5, all verticals vertical. Realistic historical game environment material detail and muted grey-brown wood, matching restrained realistic Song town sprites. Soft upper-left light, subtle short lower-right contact shadow. Full silhouette generous margins. True RGBA transparency, NO backdrop, no halo, no haze, no vignette, no pedestal, no people, no labels, no text, no watermarks, no modern hardware, no checkerboard.'
+  negative: 无文字、人物、现代物件、地台、假棋盘透明、完整背景；门孔不画地面。
+  references: [{"title": "Mongolie pont bois 02", "url": "https://commons.wikimedia.org/wiki/File:20080726-0045_Mongolie_pont_bois_02.jpg", "purpose": "仅对照现代蒙古木桥的板面、梁架与栏杆木作；不证明中世纪桥式", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T22:13:41.984622+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-d944-7472-b50b-47c918d55aeb/exec-3af7de96-0d89-4ca4-accc-de59612dbfb9.png
+  source_copy: source/tex_town_mongol_bridge__w3_l5_r000_v01__source.png
+  source_sha256: 80f249607eb04e2ab96908a1cf67d1443c361ce1eea36370475a2aa4c4570a59
+  size: 266x181
+  sha256: ef23fe10442ba72c09edfde41c369f0e825e28b614ead5653c531aedbec0df54
+  status: candidate
+  tile:
+    kind: bridge
+    footprint: [3, 5]
+    variant: w3_l5_r000_v01
+    autotile_mask: null
+  anchor_px: [134.237, 98.877]
+  notes: 原图字节保留；只裁alpha非零包围框、等比LANCZOS缩放并补4px透明边，不做alpha阈值清理或RGB重绘；锚点由源图底面人工估计后等比换算，严格投影/接缝/碰撞未验收。
+  created_time_basis: 源PNG文件mtime，不是服务端调用时间
+- id: tex_town_mongol_grass_tuft__steppe_v01
+  file: tex_town_mongol_grass_tuft__steppe_v01.png
+  category: tile
+  style: default
+  subject: 蒙古草原·低矮禾草丛；13—14世纪地域意象（原创扩展），非遗址实测复原
+  prompt: 'Use case: historical-scene. One isolated low tuft cluster of Mongolian steppe bunch-grass for a realistic medieval isometric game settlement. Compact natural patch about1m wide, leaf height0.45m with a few slender feathery seed heads to0.65m, muted sage-grey olive and pale straw ochre, very fine wiry blades, sparse and wind-shaped. Botanical mood only, not claiming exact species reconstruction. Orthographic yaw45 elevation30,2:1 ground axes. Roots terminate on same ground plane, no soil clump, no square tile, no ground base, no rocks, no other plants. Upper-left soft light, tiny subdued lower-right contact shadow only at roots. The same restrained realistic natural materials and fine detail as medieval Song-era game-town sprites, no stylization or ink painting. Genuine transparent RGBA background, complete silhouette with generous transparent margins. No glow haze vignette landscape text people modern items or checkerboard. A single readable grass tuft group, production cutout.'
+  negative: 无文字、人物、现代物件、地台、假棋盘透明、完整背景；门孔不画地面。
+  references: [{"title": "Yuan Shangdu", "url": "https://commons.wikimedia.org/wiki/File:Yuan_Shangdu.jpg", "purpose": "对照遗址现今草原的枯绿色、丛高与疏密；不作古代物种鉴定", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T22:14:32.846068+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-d944-7472-b50b-47c918d55aeb/exec-2a2fecb8-4ade-4567-acbd-0fd2ea88d6f4.png
+  source_copy: source/tex_town_mongol_grass_tuft__steppe_v01__source.png
+  source_sha256: bda423d612eb66f081556dfcf13ef8f96ce19931518018e6ae4627885d0aaa97
+  size: 84x57
+  sha256: 9b848a3db46ce95ea4e13acc2df5eaa588df4f5c932fc679b4e53722f0034b81
+  status: candidate
+  tile:
+    kind: grass_tuft
+    footprint: [1, 1]
+    variant: steppe_v01
+    autotile_mask: null
+  anchor_px: [47.987, 45.54]
+  notes: 原图字节保留；只裁alpha非零包围框、等比LANCZOS缩放并补4px透明边，不做alpha阈值清理或RGB重绘；锚点由源图底面人工估计后等比换算，严格投影/接缝/碰撞未验收。
+  created_time_basis: 源PNG文件mtime，不是服务端调用时间
+- id: tex_town_mongol_shrub__steppe_v01
+  file: tex_town_mongol_shrub__steppe_v01.png
+  category: tile
+  style: default
+  subject: 蒙古草原·旱生小叶灌木；13—14世纪地域意象（原创扩展），非遗址实测复原
+  prompt: 'Use case: historical-scene. Exactly ONE small dry-steppe SHRUB sprite for a13th-14th-century Mongolian game settlement. Generic low drought-tolerant Mongolian steppe scrub original botanical concept, not exact species reconstruction. One squat asymmetrical rounded bush,1m wide and0.6m high, sparse tiny grey-green oval leaflets, many slender woody pale brown branches, muted sage olive green, no bright flowers, no fruit. Visible fine branching and small leaves, quiet natural subdued colors matching realistic historical Song-town isometric environment sprites. Camera orthographic yaw45 elevation30 and2:1 ground axes. Roots end cleanly at one ground plane, no clod, pot, plinth, platform, rocks, grass or other objects. Soft upper-left light, very short lower-right neutral root contact shadow. Genuine TRANSPARENT RGBA background with complete silhouette and wide margins. No text, no people, no landscape, no haze glow backdrop vignette or checkerboard. Fine restrained realistic natural materials, not cartoon, not watercolor.'
+  negative: 无文字、人物、现代物件、地台、假棋盘透明、完整背景；门孔不画地面。
+  references: [{"title": "Asparagus gobicus", "url": "https://commons.wikimedia.org/wiki/File:Asparagus_gobicus.JPG", "purpose": "仅对照蒙古西部旱地灌木的低矮分枝习性；资产保持通用灌木，不作物种认定", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T22:15:48.676708+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-d944-7472-b50b-47c918d55aeb/exec-e0a67637-e836-4533-804c-7f91a80c2a72.png
+  source_copy: source/tex_town_mongol_shrub__steppe_v01__source.png
+  source_sha256: faa29eaaf82b3c55502ab5392e1eb7073f430f106a1aea3631b3a04926f0925b
+  size: 80x57
+  sha256: 83f7fbf2da58bb9ed8b7b5e6813ae852859bb07963bdc14007fdde76f2adc00d
+  status: candidate
+  tile:
+    kind: shrub
+    footprint: [1, 1]
+    variant: steppe_v01
+    autotile_mask: null
+  anchor_px: [36.535, 43.569]
+  notes: 原图字节保留；只裁alpha非零包围框、等比LANCZOS缩放并补4px透明边，不做alpha阈值清理或RGB重绘；锚点由源图底面人工估计后等比换算，严格投影/接缝/碰撞未验收。
+  created_time_basis: 源PNG文件mtime，不是服务端调用时间

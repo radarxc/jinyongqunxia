@@ -535,3 +535,48 @@ No text, plaques, people, sheet, grid, opaque background or painted checkerboard
 - [杭州政协《杭州古代的花木文化》（刘大培）](https://www.hzzx.gov.cn/hzzx/content/2010-10/26/content_5140376.htm)，访问 2026-09-30（本次直开 HTTP 200）：支持杭州桂花及垂柳文化母题；不作为具体品种、年代树位、修剪尺寸的证明。
 
 本批未新增 API、版本、价格或浏览器支持主张；工具实际模型与 effort 未公开，manifest 如实记为 undisclosed / not_exposed。
+
+## 10. 蒙古 · 草原套件 `mongol`（KIT-mongol，2026-09-30）
+
+本节新增 `tile/mongol/` 的7件候选，沿用宋基线的写实古风、材质细节密度、45°偏航 / 30°俯仰 / 2:1地面轴、左上光及右下短接触影。草原营地与和林 / 上都是文化语境，**不把木栅营门当作已考证的上都皇城门复原**。
+
+### 10.1 清单与地域差异
+
+| 项 | 形制 / 材料 | 制作契约 |
+|---|---|---|
+| 城门2座 | 土芯 / 砖石意象门墩、木梁与木构门楼，完整单体，克制上部屋盖 | 逻辑净宽4 / 6格；外占地8×4 / 10×4；各仅原向，像素孔宽另验 |
+| 直墙1件 | 粗木竖桩与横向联结的营地木栅 | 单独端部，按登记锚点接邻件；不冒称石砌帝都城墙 |
+| 墙角1件 | 同材质木栅转角 | 明确有序转向，不能靠镜像冒充其他方向 |
+| 桥1件 | 简朴木梁木板小桥 | 匿名水沟 / 小河接口（原创扩展），不证明具名历史桥址 |
+| 本地植物2种 | 草原丛生草意象、低矮灌木意象 | 不盖道路或门洞；具体古代物种与栽植（待考） |
+
+净宽公式引用 `design/22` §4.3：`k=4/6`，`footprint=[k+4,4]`、`passage=[k,4]`，两侧门墩各2格；这是游戏逻辑掩膜，不是历史测绘。母版逻辑地面范围分别 `32×(8+4)=384`、`32×(10+4)=448` px宽，高192 / 224px。门洞的上部梁架可遮挡，孔内地面仍须透明可走；门底面中心 / 孔中心与入口分开登记。
+
+直墙、转角、桥和植物的占地见本套件manifest，属于素材 **【建议值】**；本任务不改变上游城市和道路规则。只交真实生成的单视图与变体，不宣称完成§4.3全部四向或47-mask族。`autotile_mask` 无自动铺排含义时明确为 `null`。
+
+### 10.2 提示词差异
+
+```text
+One isolated Mongol grassland camp tile, 13th–14th-century cultural context.
+Original regional game adaptation: rough timber palisade and matte rammed earth;
+or plain timber bridge / subdued steppe grass / low shrub, exactly as requested.
+Match realistic Song-kit material detail and muted colors; no cartoon or glossy miniature look.
+Orthographic yaw45 elevation30, 2:1 ground projection, parallel ground axes at +0.5/-0.5.
+Screen-upper-left light, short screen-lower-right contact shadow; clean ground interface.
+For gate: entire structure including two piers and overhead lintel, open passage floor alpha0.
+True RGBA transparent background, full silhouette and clear margin, no scenery, text or grid.
+No Qing palace tower, modern tourist camp, enormous flag, snow mountain, water patch or animals.
+```
+
+逐图保留完整调用、原始PNG、选取理由与裁切 / 等比缩放参数；不得用矩形色块填门洞，也不得用代码绘制缺失墙件。预览显示的棕色像素可能位于alpha0区域，应检查RGBA和合成效果后判断；不要仅按RGB视觉误做抠底。成品短边下限32px，不把植物或墙段放大到建筑画布下限。
+
+### 10.3 参考资料、校验与默认值
+
+- [UNESCO · Site of Xanadu](https://whc.unesco.org/en/list/1389/)（访问2026-09-30）：取草原宫城 / 帝城 / 外城与游牧营地并存、水系和草原环境；不支持本件木栅门、桥的精确形制。
+- [元上都遗址](https://www.sjycysdyz.org.cn/)（访问2026-09-30）：取明德门青砖墙体、木门柱基与瓮城遗存作为墙门材质边界；本包仍是匿名营门意象，不复刻明德门尺度、券顶或瓮城。
+- [UNESCO · Mongol Ger传统工艺](https://ich.unesco.org/en/RL/traditional-craftsmanship-of-the-mongol-ger-and-its-associated-customs-00872)（访问2026-09-30）：取木架、毡布和绳带材质语汇；不据现代工艺名录断言全部13世纪细节。
+- [Pillow · Image module](https://pillow.readthedocs.io/en/stable/reference/Image.html)（访问2026-09-30）：核对RGBA、`crop`、`resize`与LANCZOS后处理接口；本次本机实际版本记录见任务报告，不将网页版本冒称本机版本。
+
+2026-10-01另下载并逐张查看元上都遗址、现代蒙古木桥及蒙古西部旱地灌木照片，只用于成品后的墙线环境、木作和分枝习性审校；不证明营门、桥式或古代物种。逐件URL与用途见 manifest，均明标“未作为image_gen输入”。
+
+默认7件均为 `candidate`；完整门楼的四向、孔掩膜与像素孔的精确重合、墙桥连续接缝及真机遮挡 **（待实测）**。新资产 `tex_town_mongol_*` 和套件标签 `mongol` 按本任务授权创建，具体ID见manifest；元骨架以外的地域枚举需上游后续登记。上述缺口沿用§9“按样例城效果后补”的默认，不以文件校验通过代替几何验收。

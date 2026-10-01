@@ -1,0 +1,50 @@
+{
+  "key": "wangfu",
+  "id": "bld_kit_mongol_wangfu",
+  "footprint": [
+    20,
+    16
+  ],
+  "subject": "上都风格汉式王府殿宇模块",
+  "candidates": [
+    {
+      "number": 1,
+      "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-4ede284e-a806-4cc5-a5bd-d5cb43c438c8.png",
+      "prompt": "Create a Mongol-Yuan regional variant of this Song architectural sprite. Preserve exactly its orthographic 45-degree yaw, 30-degree elevation and 2:1 dimetric ground axes, warm-neutral upper-left light, restrained realistic ancient materials, clear isolated alpha-transparent sprite composition. Replace the compound with ONE Yuan Xanadu-inspired Chinese timber palace hall on a very low rectangular stone terrace, footprint20 east-west by16 north-south. Broad single-story main hall, dark gray and low-saturation green glazed hipped-gable roof, red-brown columns, very restrained beam painting, low stone column bases, broad shallow south steps toward lower-left, two short side verandas. No surrounding walls or separate gatehouse, this is a hall module not full palace. Preserve clean alpha cutout and complete silhouette. Make left-to-front base run1.25 times front-to-right run. No Qing yellow tiles, dragons, extravagant upturns, palace fantasy, modern objects, text, people, background, glow or labels. Use true RGBA transparency. This is original game architecture inspired by mixed Han and nomadic Yuan capital, not exact archaeological reconstruction.",
+      "archive": "sources/bld_kit_mongol_wangfu__c01.png",
+      "sha256": "4ddaf1e81214b851253abc4a71e47133721e45f0e292d129e231fd95ad5eef2e",
+      "selected": false,
+      "reference_inputs": [
+        "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png"
+      ]
+    },
+    {
+      "number": 2,
+      "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-6fff0e80-0507-4ab6-b5c8-6dd88f009edb.png",
+      "prompt": "Edit this palace hall sprite only to fix its terrace footprint and ground projection. Keep Yuan Xanadu-style dark gray/low-saturation green tiled hipped-gable hall, red-brown columns, restrained beam ornament, weathered stone bases, same materials and light. Expand terrace DEPTH substantially toward the upper-right to make it a20:16 rectangle, with a shallow forecourt and short rear courtyard strip, not a narrow platform. Its two visible ground boundary edges must have screen slopes+0.5 and-0.5: symmetrical26.565-degree angles from horizontal, orthographic45 yaw30 elevation. The left-to-front ground edge horizontal run must be1.25 times front-to-right run. Keep south entrance lower-left. Ensure readable three ground corners and complete eaves. True transparent RGBA, generous margin, no glow, scenery, text, people, trees, wall compound, giant shadows or extra buildings. Keep original miniature ancient realism. No Qing golden roofs or dragon ornament. Original architectural game module.",
+      "archive": "sources/bld_kit_mongol_wangfu__c02.png",
+      "sha256": "e0af2ce83f2cb3a2167da8d88102a2790b6db161781f447540fa84265f643f5c",
+      "selected": true,
+      "reference_inputs": [
+        "sources/bld_kit_mongol_wangfu__c01.png"
+      ]
+    }
+  ],
+  "chosen": 2,
+  "ref": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+  "references": [
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef",
+      "role": "宋基线地域变体编辑参考；已view_image；不继承宋年代"
+    },
+    {
+      "file": "sources/bld_kit_mongol_wangfu__c01.png",
+      "sha256": "4ddaf1e81214b851253abc4a71e47133721e45f0e292d129e231fd95ad5eef2e",
+      "role": "第二候选编辑目标；仅改台基地面几何"
+    }
+  ],
+  "source_viewed": true,
+  "final_viewed": true,
+  "view_note": "两张源候选与规格化成品均已逐张view_image；2026-09-30；成品无实物裁切、无棕色背景，几何偏差保留。"
+}
