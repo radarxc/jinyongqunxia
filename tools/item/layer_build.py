@@ -270,7 +270,19 @@ def build_weapon_layer(cutout: Image.Image, entry: dict[str, Any]) -> tuple[Imag
     strip = Image.new("RGBA", (cell_width * 3, cell_height))
     for index in range(3):
         strip.alpha_composite(cell, (index * cell_width, 0))
-    grip = [cell_width // 2, 8 + round(scaled_bottom - 1 - grip_ratio * (scaled_bottom - scaled_top - 1))]
+    grip_y = 8 + round(scaled_bottom - 1 - grip_ratio * (scaled_bottom - scaled_top - 1))
+    scaled_alpha = np.asarray(scaled.getchannel("A"))
+    local_y = max(0, min(scaled_alpha.shape[0] - 1, grip_y - 8))
+    opaque_x = np.flatnonzero(scaled_alpha[local_y] >= 8)
+    if len(opaque_x):
+        runs = np.split(opaque_x, np.flatnonzero(np.diff(opaque_x) > 1) + 1)
+        target_x = (scaled.width - 1) / 2.0
+        run = min(runs, key=lambda values: (abs(float(values.mean()) - target_x),
+                                            -len(values), int(values[0])))
+        grip_x = (cell_width - scaled.width) // 2 + round(float(run.mean()))
+    else:
+        grip_x = cell_width // 2
+    grip = [grip_x, grip_y]
     return strip, {"subtype": subtype, "axisRatio": round(ratio, 6),
                    "rotationDeg": round(angle, 6), "lengthM": length_m,
                    "gripRatio": grip_ratio, "fitScale": round(scale, 8), "grip": grip}

@@ -1,0 +1,6123 @@
+version: 1
+category: clothing
+items:
+- item: eq_buyi
+  sourceSha256: 766875b36e6ad185022ee0f7eea241936928ebd64bd8e14e33370303808cdb32
+  toolVersion: 1
+  palette:
+  - '#8C7C6D'
+  - '#A39382'
+  - '#726458'
+  build: {}
+  layers:
+  - slot: torso
+    view: front34
+    file: eq_buyi__torso.png
+    sourceRect:
+    - 0
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: back34
+    file: eq_buyi__torso.png
+    sourceRect:
+    - 132
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: side
+    file: eq_buyi__torso.png
+    sourceRect:
+    - 264
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: front34
+    file: eq_buyi__pelvis_skirt.png
+    sourceRect:
+    - 0
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: back34
+    file: eq_buyi__pelvis_skirt.png
+    sourceRect:
+    - 146
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: side
+    file: eq_buyi__pelvis_skirt.png
+    sourceRect:
+    - 292
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: front34
+    file: eq_buyi__upper_arm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: back34
+    file: eq_buyi__upper_arm_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: side
+    file: eq_buyi__upper_arm_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: front34
+    file: eq_buyi__upper_arm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: back34
+    file: eq_buyi__upper_arm_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: side
+    file: eq_buyi__upper_arm_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: forearm_L
+    view: front34
+    file: eq_buyi__forearm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: back34
+    file: eq_buyi__forearm_L.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: side
+    file: eq_buyi__forearm_L.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: front34
+    file: eq_buyi__forearm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: back34
+    file: eq_buyi__forearm_R.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: side
+    file: eq_buyi__forearm_R.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: front34
+    file: eq_buyi__thigh_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: back34
+    file: eq_buyi__thigh_L.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: side
+    file: eq_buyi__thigh_L.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: front34
+    file: eq_buyi__thigh_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: back34
+    file: eq_buyi__thigh_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 9.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: side
+    file: eq_buyi__thigh_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: front34
+    file: eq_buyi__shin_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: back34
+    file: eq_buyi__shin_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: side
+    file: eq_buyi__shin_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: front34
+    file: eq_buyi__shin_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: back34
+    file: eq_buyi__shin_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: side
+    file: eq_buyi__shin_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  files:
+  - file: eq_buyi__forearm_L.png
+    sha256: e7cb0e16c465fa294ffbd05aeaf72a506f599e7bab191bfd8ce1e6e17b4c7c26
+  - file: eq_buyi__forearm_R.png
+    sha256: 6b859ad21a40541a9dac95a1c88a62e221de1fb0a4f9d456f8f7c14df5d8c7e5
+  - file: eq_buyi__pelvis_skirt.png
+    sha256: 568fe67a489356812f769ea19fc2946fb46955ac5d7a96c82273545405a11fc1
+  - file: eq_buyi__shin_L.png
+    sha256: 35e5627253d3177d50da52883863ca5d121101e7337b57a97622ac0862e0c66e
+  - file: eq_buyi__shin_R.png
+    sha256: 35e5627253d3177d50da52883863ca5d121101e7337b57a97622ac0862e0c66e
+  - file: eq_buyi__thigh_L.png
+    sha256: 756c2ffe6c33ced83bc1f787719bfa7fc146d7de0e0f4714319a651352b4e0c0
+  - file: eq_buyi__thigh_R.png
+    sha256: 91b8a2c7f147491f337b30d2a9333f9c66a41d917d824c85c12abac0d9e781ed
+  - file: eq_buyi__torso.png
+    sha256: e52e7fedb4a38a44efbf1ca28eba259009395416584c00d28447f9a523b9bbab
+  - file: eq_buyi__upper_arm_L.png
+    sha256: bc9acc204dcfb4d5eb8417e0cc84c6d38810a641e452299544becc49d0c8e2bf
+  - file: eq_buyi__upper_arm_R.png
+    sha256: bc9acc204dcfb4d5eb8417e0cc84c6d38810a641e452299544becc49d0c8e2bf
+- item: eq_daopao
+  sourceSha256: 197d15896e2915381eca1cd7ef82f78f9f06919f856ff2ef6c624a3d5f0ceeba
+  toolVersion: 1
+  palette:
+  - '#636D78'
+  - '#4C545E'
+  - '#6D6C6A'
+  build: {}
+  layers:
+  - slot: torso
+    view: front34
+    file: eq_daopao__torso.png
+    sourceRect:
+    - 0
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: back34
+    file: eq_daopao__torso.png
+    sourceRect:
+    - 132
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: side
+    file: eq_daopao__torso.png
+    sourceRect:
+    - 264
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: front34
+    file: eq_daopao__pelvis_skirt.png
+    sourceRect:
+    - 0
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: back34
+    file: eq_daopao__pelvis_skirt.png
+    sourceRect:
+    - 146
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: side
+    file: eq_daopao__pelvis_skirt.png
+    sourceRect:
+    - 292
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: front34
+    file: eq_daopao__upper_arm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: back34
+    file: eq_daopao__upper_arm_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: side
+    file: eq_daopao__upper_arm_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: front34
+    file: eq_daopao__upper_arm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: back34
+    file: eq_daopao__upper_arm_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: side
+    file: eq_daopao__upper_arm_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: forearm_L
+    view: front34
+    file: eq_daopao__forearm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: back34
+    file: eq_daopao__forearm_L.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: side
+    file: eq_daopao__forearm_L.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: front34
+    file: eq_daopao__forearm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: back34
+    file: eq_daopao__forearm_R.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: side
+    file: eq_daopao__forearm_R.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: front34
+    file: eq_daopao__thigh_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: back34
+    file: eq_daopao__thigh_L.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: side
+    file: eq_daopao__thigh_L.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: front34
+    file: eq_daopao__thigh_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: back34
+    file: eq_daopao__thigh_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 9.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: side
+    file: eq_daopao__thigh_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: front34
+    file: eq_daopao__shin_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: back34
+    file: eq_daopao__shin_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: side
+    file: eq_daopao__shin_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: front34
+    file: eq_daopao__shin_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: back34
+    file: eq_daopao__shin_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: side
+    file: eq_daopao__shin_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  files:
+  - file: eq_daopao__forearm_L.png
+    sha256: e8af186303cf07949505ecc8d0035007287e9060441f3ef73e9b9dbc9d0d8229
+  - file: eq_daopao__forearm_R.png
+    sha256: ac49982eac90a24f6e8efe0b0c9cec0b97bb8b4d6433421ec9f6aba697e59d92
+  - file: eq_daopao__pelvis_skirt.png
+    sha256: 9ef2ed7f8ef08922892bec57a41f01a090394cd0d2d86ddb87faa360d9901941
+  - file: eq_daopao__shin_L.png
+    sha256: 1e58c97aa68040d80e759416a874fab6edcd6eeea57b0fc5636442f6e8489034
+  - file: eq_daopao__shin_R.png
+    sha256: 1e58c97aa68040d80e759416a874fab6edcd6eeea57b0fc5636442f6e8489034
+  - file: eq_daopao__thigh_L.png
+    sha256: 8214944c1f583873d942309a58031d56e2884b84353401f781e1d31701a18408
+  - file: eq_daopao__thigh_R.png
+    sha256: f77b6eca37028554df504fddfa19a3322ecbac32f3a949ea33b145067a45e8b4
+  - file: eq_daopao__torso.png
+    sha256: 72703210a258be0e766a2360a1a7133aa63eff264c8777f3492e6779e46beb99
+  - file: eq_daopao__upper_arm_L.png
+    sha256: 3c9ad929ad95ed6de2a23fd5f77dafcbc5007bd0e3f449f85e9acfaa6ced0c8f
+  - file: eq_daopao__upper_arm_R.png
+    sha256: 3c9ad929ad95ed6de2a23fd5f77dafcbc5007bd0e3f449f85e9acfaa6ced0c8f
+- item: eq_huangmagua
+  sourceSha256: f3045ea806396ac9e2f4f12e83854ca5ddec6b7f4e449e2ce9d6cfeaabbd541f
+  toolVersion: 1
+  palette:
+  - '#EEC558'
+  - '#E2B84A'
+  - '#C19A3C'
+  build: {}
+  layers:
+  - slot: torso
+    view: front34
+    file: eq_huangmagua__torso.png
+    sourceRect:
+    - 0
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: back34
+    file: eq_huangmagua__torso.png
+    sourceRect:
+    - 132
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: side
+    file: eq_huangmagua__torso.png
+    sourceRect:
+    - 264
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: front34
+    file: eq_huangmagua__pelvis_skirt.png
+    sourceRect:
+    - 0
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: back34
+    file: eq_huangmagua__pelvis_skirt.png
+    sourceRect:
+    - 146
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: side
+    file: eq_huangmagua__pelvis_skirt.png
+    sourceRect:
+    - 292
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: front34
+    file: eq_huangmagua__upper_arm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: back34
+    file: eq_huangmagua__upper_arm_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: side
+    file: eq_huangmagua__upper_arm_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: front34
+    file: eq_huangmagua__upper_arm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: back34
+    file: eq_huangmagua__upper_arm_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: side
+    file: eq_huangmagua__upper_arm_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: forearm_L
+    view: front34
+    file: eq_huangmagua__forearm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: back34
+    file: eq_huangmagua__forearm_L.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: side
+    file: eq_huangmagua__forearm_L.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: front34
+    file: eq_huangmagua__forearm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: back34
+    file: eq_huangmagua__forearm_R.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: side
+    file: eq_huangmagua__forearm_R.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: front34
+    file: eq_huangmagua__thigh_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: back34
+    file: eq_huangmagua__thigh_L.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: side
+    file: eq_huangmagua__thigh_L.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: front34
+    file: eq_huangmagua__thigh_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: back34
+    file: eq_huangmagua__thigh_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 9.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: side
+    file: eq_huangmagua__thigh_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: front34
+    file: eq_huangmagua__shin_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: back34
+    file: eq_huangmagua__shin_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: side
+    file: eq_huangmagua__shin_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: front34
+    file: eq_huangmagua__shin_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: back34
+    file: eq_huangmagua__shin_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: side
+    file: eq_huangmagua__shin_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  files:
+  - file: eq_huangmagua__forearm_L.png
+    sha256: 76d93db301dd13a2f572c38d13949d5448e21d74b97fa9f2073810edad4a5280
+  - file: eq_huangmagua__forearm_R.png
+    sha256: defd8e3348d336ae9c302dabc899b5e6bd0ce542a17fe9cd0697982bedfc6362
+  - file: eq_huangmagua__pelvis_skirt.png
+    sha256: 15193d92cebfd02ea8a87a13b10cea7c01cb4037fc3e2172bc743ba8f3ab6da5
+  - file: eq_huangmagua__shin_L.png
+    sha256: 21c02a0f00035f6fd0b19d7a03812f974411a84bfbaa820220319def5841f995
+  - file: eq_huangmagua__shin_R.png
+    sha256: 21c02a0f00035f6fd0b19d7a03812f974411a84bfbaa820220319def5841f995
+  - file: eq_huangmagua__thigh_L.png
+    sha256: 310833a2cb3adf09319a1aaf95ac4ab5d7b00d948931e6e020dbb6cd7fc27758
+  - file: eq_huangmagua__thigh_R.png
+    sha256: e35735b41aec99bb78b245ab2363eeb867bae2f981791a857a5df1292e743b7b
+  - file: eq_huangmagua__torso.png
+    sha256: 76a3302fcc00f06003bbf940285fac395ca9cb6840c7070108d0b22dbdc07270
+  - file: eq_huangmagua__upper_arm_L.png
+    sha256: 7be8a6d51a6ba4ceba4959ed9ac37b82894adae9890294c3085edecdcaa6d48e
+  - file: eq_huangmagua__upper_arm_R.png
+    sha256: 7be8a6d51a6ba4ceba4959ed9ac37b82894adae9890294c3085edecdcaa6d48e
+- item: eq_jinzhuang
+  sourceSha256: c2b7f6a0a0f10cc3e7cc6e8010532a791618363959ee092f0dcdf733a58d7348
+  toolVersion: 1
+  palette:
+  - '#4C525A'
+  - '#3A4047'
+  - '#5F656B'
+  build: {}
+  layers:
+  - slot: torso
+    view: front34
+    file: eq_jinzhuang__torso.png
+    sourceRect:
+    - 0
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: back34
+    file: eq_jinzhuang__torso.png
+    sourceRect:
+    - 132
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: side
+    file: eq_jinzhuang__torso.png
+    sourceRect:
+    - 264
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: front34
+    file: eq_jinzhuang__pelvis_skirt.png
+    sourceRect:
+    - 0
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: back34
+    file: eq_jinzhuang__pelvis_skirt.png
+    sourceRect:
+    - 146
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: side
+    file: eq_jinzhuang__pelvis_skirt.png
+    sourceRect:
+    - 292
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: front34
+    file: eq_jinzhuang__upper_arm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: back34
+    file: eq_jinzhuang__upper_arm_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: side
+    file: eq_jinzhuang__upper_arm_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: front34
+    file: eq_jinzhuang__upper_arm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: back34
+    file: eq_jinzhuang__upper_arm_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: side
+    file: eq_jinzhuang__upper_arm_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: forearm_L
+    view: front34
+    file: eq_jinzhuang__forearm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: back34
+    file: eq_jinzhuang__forearm_L.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: side
+    file: eq_jinzhuang__forearm_L.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: front34
+    file: eq_jinzhuang__forearm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: back34
+    file: eq_jinzhuang__forearm_R.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: side
+    file: eq_jinzhuang__forearm_R.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: front34
+    file: eq_jinzhuang__thigh_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: back34
+    file: eq_jinzhuang__thigh_L.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: side
+    file: eq_jinzhuang__thigh_L.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: front34
+    file: eq_jinzhuang__thigh_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: back34
+    file: eq_jinzhuang__thigh_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 9.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: side
+    file: eq_jinzhuang__thigh_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: front34
+    file: eq_jinzhuang__shin_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: back34
+    file: eq_jinzhuang__shin_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: side
+    file: eq_jinzhuang__shin_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: front34
+    file: eq_jinzhuang__shin_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: back34
+    file: eq_jinzhuang__shin_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: side
+    file: eq_jinzhuang__shin_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  files:
+  - file: eq_jinzhuang__forearm_L.png
+    sha256: 1c82a7530ead28d8defc5e0a0fbf01bf40d1e6d40ee48a6741cf6c64f5f90162
+  - file: eq_jinzhuang__forearm_R.png
+    sha256: 323c1b6683e79a5e249159ef2efd78554d531eb818d11c283b906a32d0ca802f
+  - file: eq_jinzhuang__pelvis_skirt.png
+    sha256: 1e275dcbfc0c68ede7070295383ef1458084f39d3e7a2691ad25f79daefbedc6
+  - file: eq_jinzhuang__shin_L.png
+    sha256: f0637aa562c41162869de1cae9eb2d4db665013995d3bb59308b8c59888f7791
+  - file: eq_jinzhuang__shin_R.png
+    sha256: f0637aa562c41162869de1cae9eb2d4db665013995d3bb59308b8c59888f7791
+  - file: eq_jinzhuang__thigh_L.png
+    sha256: 547463031b87752ded0102a4be3a7139294a74b1475608deb16113e3069d3435
+  - file: eq_jinzhuang__thigh_R.png
+    sha256: c68ab5166aba5cf908a05b96e59a4e24a4f2b62c59b7721658289b6b4ae7fc99
+  - file: eq_jinzhuang__torso.png
+    sha256: 9e91b28771b1dc2c95e886689a33d61d18562fca4a50c1b04ef499927d668ea5
+  - file: eq_jinzhuang__upper_arm_L.png
+    sha256: 0408ecb2d0d891e8e5b6c6885ca5e17a35a8e883416eb288602e0fabae95615c
+  - file: eq_jinzhuang__upper_arm_R.png
+    sha256: 0408ecb2d0d891e8e5b6c6885ca5e17a35a8e883416eb288602e0fabae95615c
+- item: eq_sengyi
+  sourceSha256: 9028d6d72317e22bb41073ed7934934fbd624d554b14db35a76eff28017fa76d
+  toolVersion: 1
+  palette:
+  - '#BDAD8E'
+  - '#AF9F82'
+  - '#9A8C71'
+  build: {}
+  layers:
+  - slot: torso
+    view: front34
+    file: eq_sengyi__torso.png
+    sourceRect:
+    - 0
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: back34
+    file: eq_sengyi__torso.png
+    sourceRect:
+    - 132
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: side
+    file: eq_sengyi__torso.png
+    sourceRect:
+    - 264
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: front34
+    file: eq_sengyi__pelvis_skirt.png
+    sourceRect:
+    - 0
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: back34
+    file: eq_sengyi__pelvis_skirt.png
+    sourceRect:
+    - 146
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: side
+    file: eq_sengyi__pelvis_skirt.png
+    sourceRect:
+    - 292
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: front34
+    file: eq_sengyi__upper_arm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: back34
+    file: eq_sengyi__upper_arm_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: side
+    file: eq_sengyi__upper_arm_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: front34
+    file: eq_sengyi__upper_arm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: back34
+    file: eq_sengyi__upper_arm_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: side
+    file: eq_sengyi__upper_arm_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: forearm_L
+    view: front34
+    file: eq_sengyi__forearm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: back34
+    file: eq_sengyi__forearm_L.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: side
+    file: eq_sengyi__forearm_L.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: front34
+    file: eq_sengyi__forearm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: back34
+    file: eq_sengyi__forearm_R.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: side
+    file: eq_sengyi__forearm_R.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: front34
+    file: eq_sengyi__thigh_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: back34
+    file: eq_sengyi__thigh_L.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: side
+    file: eq_sengyi__thigh_L.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: front34
+    file: eq_sengyi__thigh_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: back34
+    file: eq_sengyi__thigh_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 9.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: side
+    file: eq_sengyi__thigh_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: front34
+    file: eq_sengyi__shin_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: back34
+    file: eq_sengyi__shin_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: side
+    file: eq_sengyi__shin_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: front34
+    file: eq_sengyi__shin_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: back34
+    file: eq_sengyi__shin_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: side
+    file: eq_sengyi__shin_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  files:
+  - file: eq_sengyi__forearm_L.png
+    sha256: a117e813549638986676db5f9b9cc38b7bee1bb1c6660d2c0a00b60ee680af4b
+  - file: eq_sengyi__forearm_R.png
+    sha256: 568c7440c95ff6cfd0115a8b7698b86923e6bc3682e204066b40beab49f7e35a
+  - file: eq_sengyi__pelvis_skirt.png
+    sha256: 7bc8067858c6cb8c411a99fef4f325cca13276bb34604126c391c9fabc132047
+  - file: eq_sengyi__shin_L.png
+    sha256: cc37420966202c2b8e01fb57bd9c56451ac9bb1e6dd0946481ad7543c8c8bed2
+  - file: eq_sengyi__shin_R.png
+    sha256: cc37420966202c2b8e01fb57bd9c56451ac9bb1e6dd0946481ad7543c8c8bed2
+  - file: eq_sengyi__thigh_L.png
+    sha256: 3765e073e800fdf87ce37769c30f842554868b021d3a1694856375624d11e5cb
+  - file: eq_sengyi__thigh_R.png
+    sha256: 7147530cc4434dc6383111344dc53e8d3241ba0e27e479ad7efd289938764282
+  - file: eq_sengyi__torso.png
+    sha256: 0f5f97302e060227c55af2c66bd94d5731c8baac1adb557646793842edcff14a
+  - file: eq_sengyi__upper_arm_L.png
+    sha256: 2a6b113310e5b681b69ba4d63541721dc31a8cec42b9f580098fe8b746903ce4
+  - file: eq_sengyi__upper_arm_R.png
+    sha256: 2a6b113310e5b681b69ba4d63541721dc31a8cec42b9f580098fe8b746903ce4
+- item: eq_taohuajinpao
+  sourceSha256: 18a80a848aa36f1406db5317982d586a60cbb1b9311cfd397751c283e8a8f82c
+  toolVersion: 1
+  palette:
+  - '#E2D6CC'
+  - '#C5B0A3'
+  - '#8F8074'
+  build: {}
+  layers:
+  - slot: torso
+    view: front34
+    file: eq_taohuajinpao__torso.png
+    sourceRect:
+    - 0
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: back34
+    file: eq_taohuajinpao__torso.png
+    sourceRect:
+    - 132
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: side
+    file: eq_taohuajinpao__torso.png
+    sourceRect:
+    - 264
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: front34
+    file: eq_taohuajinpao__pelvis_skirt.png
+    sourceRect:
+    - 0
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: back34
+    file: eq_taohuajinpao__pelvis_skirt.png
+    sourceRect:
+    - 146
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: side
+    file: eq_taohuajinpao__pelvis_skirt.png
+    sourceRect:
+    - 292
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: front34
+    file: eq_taohuajinpao__upper_arm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: back34
+    file: eq_taohuajinpao__upper_arm_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: side
+    file: eq_taohuajinpao__upper_arm_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: front34
+    file: eq_taohuajinpao__upper_arm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: back34
+    file: eq_taohuajinpao__upper_arm_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: side
+    file: eq_taohuajinpao__upper_arm_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: forearm_L
+    view: front34
+    file: eq_taohuajinpao__forearm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: back34
+    file: eq_taohuajinpao__forearm_L.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: side
+    file: eq_taohuajinpao__forearm_L.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: front34
+    file: eq_taohuajinpao__forearm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: back34
+    file: eq_taohuajinpao__forearm_R.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: side
+    file: eq_taohuajinpao__forearm_R.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: front34
+    file: eq_taohuajinpao__thigh_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: back34
+    file: eq_taohuajinpao__thigh_L.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: side
+    file: eq_taohuajinpao__thigh_L.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: front34
+    file: eq_taohuajinpao__thigh_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: back34
+    file: eq_taohuajinpao__thigh_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 9.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: side
+    file: eq_taohuajinpao__thigh_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: front34
+    file: eq_taohuajinpao__shin_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: back34
+    file: eq_taohuajinpao__shin_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: side
+    file: eq_taohuajinpao__shin_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: front34
+    file: eq_taohuajinpao__shin_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: back34
+    file: eq_taohuajinpao__shin_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: side
+    file: eq_taohuajinpao__shin_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  files:
+  - file: eq_taohuajinpao__forearm_L.png
+    sha256: bf280a3b756664790e5e3eea40a61145055dd2f7ab575926011876d9b6a65b36
+  - file: eq_taohuajinpao__forearm_R.png
+    sha256: 8bacbd4a816c30fca2d33c41127842863fb3c4a23d7252802c1eefe1636f3b4e
+  - file: eq_taohuajinpao__pelvis_skirt.png
+    sha256: a87de709cae70b61c74b362104b9632ed0c0e7755278a68e75ed18d87b7c943d
+  - file: eq_taohuajinpao__shin_L.png
+    sha256: bc8520c8e9ffe029ddc5ca4e9e84c95aa1aaa26f2f8d315c4a1a8296f10ebf1a
+  - file: eq_taohuajinpao__shin_R.png
+    sha256: bc8520c8e9ffe029ddc5ca4e9e84c95aa1aaa26f2f8d315c4a1a8296f10ebf1a
+  - file: eq_taohuajinpao__thigh_L.png
+    sha256: 2308a6d59672bb62d45f88631a2786eb0c868c3bf73cc335849d874a9e6549e6
+  - file: eq_taohuajinpao__thigh_R.png
+    sha256: 1ec90ca84180164ef140a714d673a5a024a0a5c9a08dedf401439a446fa04a54
+  - file: eq_taohuajinpao__torso.png
+    sha256: f071cc9f1e0e604224f512322eca9c67786cbfbc899a5c127fa2587af2431cd2
+  - file: eq_taohuajinpao__upper_arm_L.png
+    sha256: 3658526082b2001a3518f41458bb8f93296fae9b403cc2aa23cc6ad8a018ed51
+  - file: eq_taohuajinpao__upper_arm_R.png
+    sha256: 3658526082b2001a3518f41458bb8f93296fae9b403cc2aa23cc6ad8a018ed51
+- item: eq_tianchanbaoyi
+  sourceSha256: cf87604f7f732e1d57f62ceed01643edc25489518fb87ec2735ccd9e9658690e
+  toolVersion: 1
+  palette:
+  - '#E8E2D8'
+  - '#D9CFC3'
+  - '#BFB3A5'
+  build: {}
+  layers:
+  - slot: torso
+    view: front34
+    file: eq_tianchanbaoyi__torso.png
+    sourceRect:
+    - 0
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: back34
+    file: eq_tianchanbaoyi__torso.png
+    sourceRect:
+    - 132
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: side
+    file: eq_tianchanbaoyi__torso.png
+    sourceRect:
+    - 264
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: front34
+    file: eq_tianchanbaoyi__pelvis_skirt.png
+    sourceRect:
+    - 0
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: back34
+    file: eq_tianchanbaoyi__pelvis_skirt.png
+    sourceRect:
+    - 146
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: side
+    file: eq_tianchanbaoyi__pelvis_skirt.png
+    sourceRect:
+    - 292
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: front34
+    file: eq_tianchanbaoyi__upper_arm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: back34
+    file: eq_tianchanbaoyi__upper_arm_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: side
+    file: eq_tianchanbaoyi__upper_arm_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: front34
+    file: eq_tianchanbaoyi__upper_arm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: back34
+    file: eq_tianchanbaoyi__upper_arm_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: side
+    file: eq_tianchanbaoyi__upper_arm_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: forearm_L
+    view: front34
+    file: eq_tianchanbaoyi__forearm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: back34
+    file: eq_tianchanbaoyi__forearm_L.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: side
+    file: eq_tianchanbaoyi__forearm_L.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: front34
+    file: eq_tianchanbaoyi__forearm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: back34
+    file: eq_tianchanbaoyi__forearm_R.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: side
+    file: eq_tianchanbaoyi__forearm_R.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: front34
+    file: eq_tianchanbaoyi__thigh_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: back34
+    file: eq_tianchanbaoyi__thigh_L.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: side
+    file: eq_tianchanbaoyi__thigh_L.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: front34
+    file: eq_tianchanbaoyi__thigh_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: back34
+    file: eq_tianchanbaoyi__thigh_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 9.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: side
+    file: eq_tianchanbaoyi__thigh_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: front34
+    file: eq_tianchanbaoyi__shin_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: back34
+    file: eq_tianchanbaoyi__shin_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: side
+    file: eq_tianchanbaoyi__shin_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: front34
+    file: eq_tianchanbaoyi__shin_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: back34
+    file: eq_tianchanbaoyi__shin_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: side
+    file: eq_tianchanbaoyi__shin_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  files:
+  - file: eq_tianchanbaoyi__forearm_L.png
+    sha256: 6b54a3c91fa3cc89b3899b959495e976f75726221d74bb0f599e506a7328462e
+  - file: eq_tianchanbaoyi__forearm_R.png
+    sha256: 06474a30bedff3598313a7542ece9852a8d750206bc0a24b257d23f995b4147c
+  - file: eq_tianchanbaoyi__pelvis_skirt.png
+    sha256: fc3225f4d78c53eb13b238f5b8b5bbfa46428bf80c1d109ddc143085bc4aead4
+  - file: eq_tianchanbaoyi__shin_L.png
+    sha256: 4a9ce1acc8d3dab6c97ec7831c8e0bfa309dd7c65d50191c81006ca63f46a8fd
+  - file: eq_tianchanbaoyi__shin_R.png
+    sha256: 4a9ce1acc8d3dab6c97ec7831c8e0bfa309dd7c65d50191c81006ca63f46a8fd
+  - file: eq_tianchanbaoyi__thigh_L.png
+    sha256: 48551753722479d90afd97054d8944a6792639e975ad0ee6e0d6899db897384b
+  - file: eq_tianchanbaoyi__thigh_R.png
+    sha256: 0fd6a20be0c6a54a38cbb2c19ff5ae1bee12f5e41182e7bd1a9ee35632559c37
+  - file: eq_tianchanbaoyi__torso.png
+    sha256: eef9c6994ffbf27d9b1859747710c4caab9fccdf61f1929415db13740b55c404
+  - file: eq_tianchanbaoyi__upper_arm_L.png
+    sha256: 308db07d8d4a95fd70b68ccb871f89d43bca227f1ba36ab12199dfc87d237267
+  - file: eq_tianchanbaoyi__upper_arm_R.png
+    sha256: 308db07d8d4a95fd70b68ccb871f89d43bca227f1ba36ab12199dfc87d237267
+- item: eq_wucanyi
+  sourceSha256: 51dbaff81c91430b188655e2cdf19b58fb213f55e22f2dbe637ca915fbed7227
+  toolVersion: 1
+  palette:
+  - '#39322E'
+  - '#2B2622'
+  - '#484039'
+  build: {}
+  layers:
+  - slot: torso
+    view: front34
+    file: eq_wucanyi__torso.png
+    sourceRect:
+    - 0
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: back34
+    file: eq_wucanyi__torso.png
+    sourceRect:
+    - 132
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: side
+    file: eq_wucanyi__torso.png
+    sourceRect:
+    - 264
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: front34
+    file: eq_wucanyi__pelvis_skirt.png
+    sourceRect:
+    - 0
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: back34
+    file: eq_wucanyi__pelvis_skirt.png
+    sourceRect:
+    - 146
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: side
+    file: eq_wucanyi__pelvis_skirt.png
+    sourceRect:
+    - 292
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: front34
+    file: eq_wucanyi__upper_arm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: back34
+    file: eq_wucanyi__upper_arm_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: side
+    file: eq_wucanyi__upper_arm_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: front34
+    file: eq_wucanyi__upper_arm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: back34
+    file: eq_wucanyi__upper_arm_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: side
+    file: eq_wucanyi__upper_arm_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: forearm_L
+    view: front34
+    file: eq_wucanyi__forearm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: back34
+    file: eq_wucanyi__forearm_L.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: side
+    file: eq_wucanyi__forearm_L.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: front34
+    file: eq_wucanyi__forearm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: back34
+    file: eq_wucanyi__forearm_R.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: side
+    file: eq_wucanyi__forearm_R.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: front34
+    file: eq_wucanyi__thigh_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: back34
+    file: eq_wucanyi__thigh_L.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: side
+    file: eq_wucanyi__thigh_L.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: front34
+    file: eq_wucanyi__thigh_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: back34
+    file: eq_wucanyi__thigh_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 9.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: side
+    file: eq_wucanyi__thigh_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: front34
+    file: eq_wucanyi__shin_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: back34
+    file: eq_wucanyi__shin_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: side
+    file: eq_wucanyi__shin_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: front34
+    file: eq_wucanyi__shin_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: back34
+    file: eq_wucanyi__shin_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: side
+    file: eq_wucanyi__shin_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  files:
+  - file: eq_wucanyi__forearm_L.png
+    sha256: 684c87842e6e7f146bdce26722761a959d117c556d3a6ca177fbe64c40c5c236
+  - file: eq_wucanyi__forearm_R.png
+    sha256: e7f927dbc267a0d8f87372fc492a3c1b599be2dea7c0f08cb760730c0f4b136c
+  - file: eq_wucanyi__pelvis_skirt.png
+    sha256: d8ae05177e4ee39ad1965105392fd3d6bd517c3268e23ab3ecd941af059631a8
+  - file: eq_wucanyi__shin_L.png
+    sha256: 5a0549251071691c8b49bdee807c7b7aecc80e9f77f702ddba4370c2c254e7c5
+  - file: eq_wucanyi__shin_R.png
+    sha256: 5a0549251071691c8b49bdee807c7b7aecc80e9f77f702ddba4370c2c254e7c5
+  - file: eq_wucanyi__thigh_L.png
+    sha256: 90361dc527041e9cdf2650a343023491c2e31d58f365183bc090298a4ef588a0
+  - file: eq_wucanyi__thigh_R.png
+    sha256: ba1d65fb0f8257f52629e1d068fbeb8ad398662c1040dd40634c730d5fb43553
+  - file: eq_wucanyi__torso.png
+    sha256: 17815e83d7d1112532779e1d98fb4bdf88ba3ae9f4618dc7d14eed1679898135
+  - file: eq_wucanyi__upper_arm_L.png
+    sha256: 95d6eac1a9d1fafab6b4ab82e7269244b5779a8e13b1ab70839a7b2fd386a8ca
+  - file: eq_wucanyi__upper_arm_R.png
+    sha256: 95d6eac1a9d1fafab6b4ab82e7269244b5779a8e13b1ab70839a7b2fd386a8ca
+- item: eq_xiyuhufu
+  sourceSha256: e0d216cfeec9b07b1abf1ee248f501851da66e121c9d1deebc15cccfeded656f
+  toolVersion: 1
+  palette:
+  - '#4B545D'
+  - '#3F454E'
+  - '#756457'
+  build: {}
+  layers:
+  - slot: torso
+    view: front34
+    file: eq_xiyuhufu__torso.png
+    sourceRect:
+    - 0
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: back34
+    file: eq_xiyuhufu__torso.png
+    sourceRect:
+    - 132
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: side
+    file: eq_xiyuhufu__torso.png
+    sourceRect:
+    - 264
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: front34
+    file: eq_xiyuhufu__pelvis_skirt.png
+    sourceRect:
+    - 0
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: back34
+    file: eq_xiyuhufu__pelvis_skirt.png
+    sourceRect:
+    - 146
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: side
+    file: eq_xiyuhufu__pelvis_skirt.png
+    sourceRect:
+    - 292
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: front34
+    file: eq_xiyuhufu__upper_arm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: back34
+    file: eq_xiyuhufu__upper_arm_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: side
+    file: eq_xiyuhufu__upper_arm_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: front34
+    file: eq_xiyuhufu__upper_arm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: back34
+    file: eq_xiyuhufu__upper_arm_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: side
+    file: eq_xiyuhufu__upper_arm_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: forearm_L
+    view: front34
+    file: eq_xiyuhufu__forearm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: back34
+    file: eq_xiyuhufu__forearm_L.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: side
+    file: eq_xiyuhufu__forearm_L.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: front34
+    file: eq_xiyuhufu__forearm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: back34
+    file: eq_xiyuhufu__forearm_R.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: side
+    file: eq_xiyuhufu__forearm_R.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: front34
+    file: eq_xiyuhufu__thigh_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: back34
+    file: eq_xiyuhufu__thigh_L.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: side
+    file: eq_xiyuhufu__thigh_L.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: front34
+    file: eq_xiyuhufu__thigh_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: back34
+    file: eq_xiyuhufu__thigh_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 9.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: side
+    file: eq_xiyuhufu__thigh_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: front34
+    file: eq_xiyuhufu__shin_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: back34
+    file: eq_xiyuhufu__shin_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: side
+    file: eq_xiyuhufu__shin_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: front34
+    file: eq_xiyuhufu__shin_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: back34
+    file: eq_xiyuhufu__shin_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: side
+    file: eq_xiyuhufu__shin_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  files:
+  - file: eq_xiyuhufu__forearm_L.png
+    sha256: 931d7f0274a142da2b98a5c88ce0ea03ef9c3c9b0a66f6ca715d9fe5da6e1b49
+  - file: eq_xiyuhufu__forearm_R.png
+    sha256: c7e099c91bc9d749e07fecab88e4e2da09d6cbfb93b64c6456b57212d4427323
+  - file: eq_xiyuhufu__pelvis_skirt.png
+    sha256: 8724190faab6f01617c8ca32634da1ffa7091f4e5ac560d2f93ab749790f67a2
+  - file: eq_xiyuhufu__shin_L.png
+    sha256: 4bf852d01afc505742cc2567cdeb3070fef13449fcf2d4b7734527410d1b1cfd
+  - file: eq_xiyuhufu__shin_R.png
+    sha256: 4bf852d01afc505742cc2567cdeb3070fef13449fcf2d4b7734527410d1b1cfd
+  - file: eq_xiyuhufu__thigh_L.png
+    sha256: a6f10e78db1e0894e4357587de4089829fe74ed4f1cb9bf758c921cc1a967ef0
+  - file: eq_xiyuhufu__thigh_R.png
+    sha256: 39754e293261a93347a82665c1eeac3ea579d8218ed8ce7421c024bc3bc2f0e1
+  - file: eq_xiyuhufu__torso.png
+    sha256: 06ed2730e1274b33b55fc7f60abf7aec0e1740c191bd46d8a1eb1300271cc75c
+  - file: eq_xiyuhufu__upper_arm_L.png
+    sha256: 3d57fdf576cd3f22f6e1d7133bde408a4de11c69477470ab83a8b2fb8394aa49
+  - file: eq_xiyuhufu__upper_arm_R.png
+    sha256: 3d57fdf576cd3f22f6e1d7133bde408a4de11c69477470ab83a8b2fb8394aa49
+- item: eq_yexingyi
+  sourceSha256: af2536013d4018ff38dd3a5a8e083ca62bd2aeab779f6a826820da45eb5c11ef
+  toolVersion: 1
+  palette:
+  - '#36383B'
+  - '#404346'
+  - '#2B2D2F'
+  build: {}
+  layers:
+  - slot: torso
+    view: front34
+    file: eq_yexingyi__torso.png
+    sourceRect:
+    - 0
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: back34
+    file: eq_yexingyi__torso.png
+    sourceRect:
+    - 132
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: side
+    file: eq_yexingyi__torso.png
+    sourceRect:
+    - 264
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: front34
+    file: eq_yexingyi__pelvis_skirt.png
+    sourceRect:
+    - 0
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: back34
+    file: eq_yexingyi__pelvis_skirt.png
+    sourceRect:
+    - 146
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: side
+    file: eq_yexingyi__pelvis_skirt.png
+    sourceRect:
+    - 292
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: front34
+    file: eq_yexingyi__upper_arm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: back34
+    file: eq_yexingyi__upper_arm_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: side
+    file: eq_yexingyi__upper_arm_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: front34
+    file: eq_yexingyi__upper_arm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: back34
+    file: eq_yexingyi__upper_arm_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: side
+    file: eq_yexingyi__upper_arm_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: forearm_L
+    view: front34
+    file: eq_yexingyi__forearm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: back34
+    file: eq_yexingyi__forearm_L.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: side
+    file: eq_yexingyi__forearm_L.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: front34
+    file: eq_yexingyi__forearm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: back34
+    file: eq_yexingyi__forearm_R.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: side
+    file: eq_yexingyi__forearm_R.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: front34
+    file: eq_yexingyi__thigh_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: back34
+    file: eq_yexingyi__thigh_L.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: side
+    file: eq_yexingyi__thigh_L.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: front34
+    file: eq_yexingyi__thigh_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: back34
+    file: eq_yexingyi__thigh_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 9.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: side
+    file: eq_yexingyi__thigh_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: front34
+    file: eq_yexingyi__shin_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: back34
+    file: eq_yexingyi__shin_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: side
+    file: eq_yexingyi__shin_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: front34
+    file: eq_yexingyi__shin_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: back34
+    file: eq_yexingyi__shin_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: side
+    file: eq_yexingyi__shin_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  files:
+  - file: eq_yexingyi__forearm_L.png
+    sha256: 4e69337057633091a1d4dbc381cd74402f5cbb6afd0854b52b350acc213bbf89
+  - file: eq_yexingyi__forearm_R.png
+    sha256: cd0c65dfcbf9513dd59c1d49f9403b884ae99fb647793594de054a7bb16091e5
+  - file: eq_yexingyi__pelvis_skirt.png
+    sha256: 80df6f9b737f182eb60981eb601382ba8189f13ca4596d6a87a431fa3eb399d7
+  - file: eq_yexingyi__shin_L.png
+    sha256: fab8549ed81ff3009a0619170487e7d825fb2f2509a61fd1fc0e2b5bb25c8fa2
+  - file: eq_yexingyi__shin_R.png
+    sha256: fab8549ed81ff3009a0619170487e7d825fb2f2509a61fd1fc0e2b5bb25c8fa2
+  - file: eq_yexingyi__thigh_L.png
+    sha256: 8b2b27f55b4649b9eca87aab3cd10abfc7371416b4715764b5eedfc4271a8cfa
+  - file: eq_yexingyi__thigh_R.png
+    sha256: 5940b9f4427dc6d52055fb8704d88bb86f71a4915627e995f581297ea418471d
+  - file: eq_yexingyi__torso.png
+    sha256: 2c74bc63486707306b5720f8e674f4f3088e678270b0943eac18c47cd29c6f7d
+  - file: eq_yexingyi__upper_arm_L.png
+    sha256: b3ec01a7a7b86c8831e5b535a679d0f0edd40f0be50e81c4eeb8580465fe2bf1
+  - file: eq_yexingyi__upper_arm_R.png
+    sha256: b3ec01a7a7b86c8831e5b535a679d0f0edd40f0be50e81c4eeb8580465fe2bf1
+- item: eq_yunjinhechang
+  sourceSha256: a50179965a2a657c2aa572786efa24205bf68971b84730728dbe732ed21ef27e
+  toolVersion: 1
+  palette:
+  - '#A7A4A1'
+  - '#C4C0B9'
+  - '#8B8784'
+  build: {}
+  layers:
+  - slot: torso
+    view: front34
+    file: eq_yunjinhechang__torso.png
+    sourceRect:
+    - 0
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: back34
+    file: eq_yunjinhechang__torso.png
+    sourceRect:
+    - 132
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: side
+    file: eq_yunjinhechang__torso.png
+    sourceRect:
+    - 264
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: front34
+    file: eq_yunjinhechang__pelvis_skirt.png
+    sourceRect:
+    - 0
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: back34
+    file: eq_yunjinhechang__pelvis_skirt.png
+    sourceRect:
+    - 146
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: side
+    file: eq_yunjinhechang__pelvis_skirt.png
+    sourceRect:
+    - 292
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: front34
+    file: eq_yunjinhechang__upper_arm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: back34
+    file: eq_yunjinhechang__upper_arm_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: side
+    file: eq_yunjinhechang__upper_arm_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: front34
+    file: eq_yunjinhechang__upper_arm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: back34
+    file: eq_yunjinhechang__upper_arm_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: side
+    file: eq_yunjinhechang__upper_arm_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: forearm_L
+    view: front34
+    file: eq_yunjinhechang__forearm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: back34
+    file: eq_yunjinhechang__forearm_L.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: side
+    file: eq_yunjinhechang__forearm_L.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: front34
+    file: eq_yunjinhechang__forearm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: back34
+    file: eq_yunjinhechang__forearm_R.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: side
+    file: eq_yunjinhechang__forearm_R.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: front34
+    file: eq_yunjinhechang__thigh_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: back34
+    file: eq_yunjinhechang__thigh_L.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: side
+    file: eq_yunjinhechang__thigh_L.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: front34
+    file: eq_yunjinhechang__thigh_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: back34
+    file: eq_yunjinhechang__thigh_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 9.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: side
+    file: eq_yunjinhechang__thigh_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: front34
+    file: eq_yunjinhechang__shin_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: back34
+    file: eq_yunjinhechang__shin_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: side
+    file: eq_yunjinhechang__shin_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: front34
+    file: eq_yunjinhechang__shin_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: back34
+    file: eq_yunjinhechang__shin_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: side
+    file: eq_yunjinhechang__shin_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  files:
+  - file: eq_yunjinhechang__forearm_L.png
+    sha256: 062946e9b74ee0cbeac158892725f0c444f0fb42e403707002c2a8088fab4f22
+  - file: eq_yunjinhechang__forearm_R.png
+    sha256: 5229a82d6781852acaf6e160fa558de74a9b691bcfe0deebf6c6e404161436c2
+  - file: eq_yunjinhechang__pelvis_skirt.png
+    sha256: f48cc576e2e295fc9597f264f2bbaca4c9de2849281415843515f48da0c364ff
+  - file: eq_yunjinhechang__shin_L.png
+    sha256: 550183514db673eaecdfe618fed4d6f48f4ea3f0536901db9d26f2dd1eb59f20
+  - file: eq_yunjinhechang__shin_R.png
+    sha256: 550183514db673eaecdfe618fed4d6f48f4ea3f0536901db9d26f2dd1eb59f20
+  - file: eq_yunjinhechang__thigh_L.png
+    sha256: baf15d5cf238297c284c7c61a2a1ca2e498bec67fbc5c4b478aaab911931690c
+  - file: eq_yunjinhechang__thigh_R.png
+    sha256: 9f099248e151e8c89433d8cbd1a252b3bda750ecde9d0bbe9ffbb219dc69884c
+  - file: eq_yunjinhechang__torso.png
+    sha256: b552427cdb96b80226bc4ae35246e5a2e60aebbba2cf8450f049a5a0d43cedf8
+  - file: eq_yunjinhechang__upper_arm_L.png
+    sha256: 83737d24950aec436172046a6242951d8823790e6756236d1deb73163dfd4911
+  - file: eq_yunjinhechang__upper_arm_R.png
+    sha256: 83737d24950aec436172046a6242951d8823790e6756236d1deb73163dfd4911
+- item: eq_zixiaqingyi
+  sourceSha256: 051c01aef8df654a8e3fa93d22f116530734dc2866a5203b8fb5d92aad18d061
+  toolVersion: 1
+  palette:
+  - '#A799A4'
+  - '#C2B0B5'
+  - '#897984'
+  build: {}
+  layers:
+  - slot: torso
+    view: front34
+    file: eq_zixiaqingyi__torso.png
+    sourceRect:
+    - 0
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: back34
+    file: eq_zixiaqingyi__torso.png
+    sourceRect:
+    - 132
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: torso
+    view: side
+    file: eq_zixiaqingyi__torso.png
+    sourceRect:
+    - 264
+    - 0
+    - 132
+    - 154
+    pivot:
+    - 66
+    - 142
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: front34
+    file: eq_zixiaqingyi__pelvis_skirt.png
+    sourceRect:
+    - 0
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 7.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: back34
+    file: eq_zixiaqingyi__pelvis_skirt.png
+    sourceRect:
+    - 146
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: pelvis_skirt
+    view: side
+    file: eq_zixiaqingyi__pelvis_skirt.png
+    sourceRect:
+    - 292
+    - 0
+    - 146
+    - 92
+    pivot:
+    - 73
+    - 8
+    scale: 1.0
+    zOrder: 6.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: front34
+    file: eq_zixiaqingyi__upper_arm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: back34
+    file: eq_zixiaqingyi__upper_arm_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_L
+    view: side
+    file: eq_zixiaqingyi__upper_arm_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: front34
+    file: eq_zixiaqingyi__upper_arm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: back34
+    file: eq_zixiaqingyi__upper_arm_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: upper_arm_R
+    view: side
+    file: eq_zixiaqingyi__upper_arm_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 92
+    pivot:
+    - 29
+    - 8
+    scale: 1.0
+    zOrder: 13.1
+    tint:
+      slot: clothPrimary
+      strength: 1.0
+  - slot: forearm_L
+    view: front34
+    file: eq_zixiaqingyi__forearm_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: back34
+    file: eq_zixiaqingyi__forearm_L.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 0.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_L
+    view: side
+    file: eq_zixiaqingyi__forearm_L.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 1.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: front34
+    file: eq_zixiaqingyi__forearm_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: back34
+    file: eq_zixiaqingyi__forearm_R.png
+    sourceRect:
+    - 52
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: forearm_R
+    view: side
+    file: eq_zixiaqingyi__forearm_R.png
+    sourceRect:
+    - 104
+    - 0
+    - 52
+    - 82
+    pivot:
+    - 26
+    - 8
+    scale: 1.0
+    zOrder: 14.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: front34
+    file: eq_zixiaqingyi__thigh_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: back34
+    file: eq_zixiaqingyi__thigh_L.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_L
+    view: side
+    file: eq_zixiaqingyi__thigh_L.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 3.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: front34
+    file: eq_zixiaqingyi__thigh_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: back34
+    file: eq_zixiaqingyi__thigh_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 9.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: thigh_R
+    view: side
+    file: eq_zixiaqingyi__thigh_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 128
+    pivot:
+    - 32
+    - 8
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: front34
+    file: eq_zixiaqingyi__shin_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: back34
+    file: eq_zixiaqingyi__shin_L.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_L
+    view: side
+    file: eq_zixiaqingyi__shin_L.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 4.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: front34
+    file: eq_zixiaqingyi__shin_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: back34
+    file: eq_zixiaqingyi__shin_R.png
+    sourceRect:
+    - 58
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 10.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  - slot: shin_R
+    view: side
+    file: eq_zixiaqingyi__shin_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 58
+    - 116
+    pivot:
+    - 29
+    - 7
+    scale: 1.0
+    zOrder: 11.1
+    tint:
+      slot: clothSecondary
+      strength: 1.0
+  files:
+  - file: eq_zixiaqingyi__forearm_L.png
+    sha256: 5fec1b43824b97485305dbb015f285972046ade043470efd298a207d8d1c2494
+  - file: eq_zixiaqingyi__forearm_R.png
+    sha256: 0fc08e77e913029de87e7f879c4be4ed57b9a05d81bc65c57b891460f990f1af
+  - file: eq_zixiaqingyi__pelvis_skirt.png
+    sha256: 58a9a296148d933dad448dd59e97dbad63a8a9b4cb84d3b43398902e9238a0d9
+  - file: eq_zixiaqingyi__shin_L.png
+    sha256: 22cda75760866d371451088d3ce6bf2ff46ffd6fe51fda60a0aed45afa446f81
+  - file: eq_zixiaqingyi__shin_R.png
+    sha256: 22cda75760866d371451088d3ce6bf2ff46ffd6fe51fda60a0aed45afa446f81
+  - file: eq_zixiaqingyi__thigh_L.png
+    sha256: f4306c4489d50e833e0586cfef2cff2c4cbd1bac917d7f749de419a4914e7c31
+  - file: eq_zixiaqingyi__thigh_R.png
+    sha256: 6c10a7cea63f59d3cbc549e1e3fcb53c41630aa44e3f9377ccea9f9bef9cfb26
+  - file: eq_zixiaqingyi__torso.png
+    sha256: 8cd323f263b5d6a80fa263a4c95f4d4110de73951ab6136149f4d1be1b4a91fc
+  - file: eq_zixiaqingyi__upper_arm_L.png
+    sha256: 44153942783ead6fe5a7a43343a46ced3152f703dede1a4aa360f4e78cf5ee3c
+  - file: eq_zixiaqingyi__upper_arm_R.png
+    sha256: 44153942783ead6fe5a7a43343a46ced3152f703dede1a4aa360f4e78cf5ee3c

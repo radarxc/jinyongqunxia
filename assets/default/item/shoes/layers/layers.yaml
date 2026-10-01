@@ -1,0 +1,883 @@
+version: 1
+category: shoes
+items:
+- item: eq_bukuaixue
+  sourceSha256: c750cb42f14f36cf8bb5a27eac61ea9b07830830ea854b2c5f67bdb0e2fafba0
+  toolVersion: 1
+  palette:
+  - '#3C3D3D'
+  - '#525251'
+  - '#897F73'
+  build: {}
+  layers:
+  - slot: foot_L
+    view: front34
+    file: eq_bukuaixue__foot_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: back34
+    file: eq_bukuaixue__foot_L.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: side
+    file: eq_bukuaixue__foot_L.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: front34
+    file: eq_bukuaixue__foot_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: back34
+    file: eq_bukuaixue__foot_R.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 11
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: side
+    file: eq_bukuaixue__foot_R.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  files:
+  - file: eq_bukuaixue__foot_L.png
+    sha256: 6a58f5fd9bb0db3d82febc592b1d0759edca683c1c9a027f4d8d023009e9e261
+  - file: eq_bukuaixue__foot_R.png
+    sha256: 4e7600e2582897a42e4a12f4bb622d88b32f11152bc3226a4eb7d390548a596f
+- item: eq_caoxie
+  sourceSha256: c82e356ee8aca4731a321ed0b0c9f8baf05c8642b15daf1417c1611184427532
+  toolVersion: 1
+  palette:
+  - '#A58964'
+  - '#D4BE9C'
+  - '#6E5A42'
+  build: {}
+  layers:
+  - slot: foot_L
+    view: front34
+    file: eq_caoxie__foot_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: back34
+    file: eq_caoxie__foot_L.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: side
+    file: eq_caoxie__foot_L.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: front34
+    file: eq_caoxie__foot_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: back34
+    file: eq_caoxie__foot_R.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 11
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: side
+    file: eq_caoxie__foot_R.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  files:
+  - file: eq_caoxie__foot_L.png
+    sha256: 1b02d4a51827ecb32191301d83b3707d4e1b5dfb35aa615ddf81cdcdf70b1d84
+  - file: eq_caoxie__foot_R.png
+    sha256: 082b8e49aaef4c638c54072dd1c1b42025f4db0acfdfdecb2bd7814514f951a7
+- item: eq_feiyuxue
+  sourceSha256: cb8a0270da8d9abe100648921a1f433b7b04e7ebeb3ce4bba28ba07dd3772a95
+  toolVersion: 1
+  palette:
+  - '#5D4B3E'
+  - '#48392F'
+  - '#766253'
+  build: {}
+  layers:
+  - slot: foot_L
+    view: front34
+    file: eq_feiyuxue__foot_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: back34
+    file: eq_feiyuxue__foot_L.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: side
+    file: eq_feiyuxue__foot_L.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: front34
+    file: eq_feiyuxue__foot_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: back34
+    file: eq_feiyuxue__foot_R.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 11
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: side
+    file: eq_feiyuxue__foot_R.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  files:
+  - file: eq_feiyuxue__foot_L.png
+    sha256: e73244124693b62038a2148c87dd0ec1c1730a0ffe4a8658b2ee3a13f4d9211f
+  - file: eq_feiyuxue__foot_R.png
+    sha256: f7e8cec6989ee52cade86ad341c7ca6be78149355c6fc40e4031c01c7e26a0a6
+- item: eq_qingyunlv
+  sourceSha256: 95f9004bee1f1df5a6d2ad5e11007f3248053536f5b56b0b2fd448f51bc796c7
+  toolVersion: 1
+  palette:
+  - '#575D64'
+  - '#737A7E'
+  - '#C2B4A2'
+  build: {}
+  layers:
+  - slot: foot_L
+    view: front34
+    file: eq_qingyunlv__foot_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: back34
+    file: eq_qingyunlv__foot_L.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: side
+    file: eq_qingyunlv__foot_L.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: front34
+    file: eq_qingyunlv__foot_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: back34
+    file: eq_qingyunlv__foot_R.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 11
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: side
+    file: eq_qingyunlv__foot_R.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  files:
+  - file: eq_qingyunlv__foot_L.png
+    sha256: 20a4755a0f7f883624f0b97322e12a36ad846f0033d623a8e892cc6b3b991549
+  - file: eq_qingyunlv__foot_R.png
+    sha256: 484bf318b4035b53fc8a760365f9ed0b856cea69c275cc30fdf35e3d75ae7a55
+- item: eq_tayunlv
+  sourceSha256: 6e2ac06fa81f3932c0028a5e24b93820a2ce129598e3de8df6e59795e4d1a4b0
+  toolVersion: 1
+  palette:
+  - '#C8BFAF'
+  - '#A29A8C'
+  - '#767572'
+  build: {}
+  layers:
+  - slot: foot_L
+    view: front34
+    file: eq_tayunlv__foot_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: back34
+    file: eq_tayunlv__foot_L.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: side
+    file: eq_tayunlv__foot_L.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: front34
+    file: eq_tayunlv__foot_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: back34
+    file: eq_tayunlv__foot_R.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 11
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: side
+    file: eq_tayunlv__foot_R.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  files:
+  - file: eq_tayunlv__foot_L.png
+    sha256: 5a8b912cd86c9706cf0f8b0ce1b826751c0ba09ffbc593774931cc36da4faf80
+  - file: eq_tayunlv__foot_R.png
+    sha256: b9f9a0e27964c7afe9793482b85deae248bc189c1d110da5eada2c059e10b989
+- item: eq_tianmalv
+  sourceSha256: 12d7bcb8fa35b9027cd81a873fc8c9910a9dfcb68197f67b066d78674d659d35
+  toolVersion: 1
+  palette:
+  - '#E7DDCE'
+  - '#CCBCA9'
+  - '#A18F78'
+  build: {}
+  layers:
+  - slot: foot_L
+    view: front34
+    file: eq_tianmalv__foot_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: back34
+    file: eq_tianmalv__foot_L.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: side
+    file: eq_tianmalv__foot_L.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: front34
+    file: eq_tianmalv__foot_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: back34
+    file: eq_tianmalv__foot_R.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 11
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: side
+    file: eq_tianmalv__foot_R.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  files:
+  - file: eq_tianmalv__foot_L.png
+    sha256: c997c74702e3d19819916aa831a8f6eb268ff3556e99b438af70f5cbbb0711f2
+  - file: eq_tianmalv__foot_R.png
+    sha256: 1d414dc6a905f69d32934322559d10db2d5a78f887cfdbe8d9092dfb3a3a0a4e
+- item: eq_wuyinglv
+  sourceSha256: a976628766824ca182fef554a3c7e3de211b7b6f82937a8d9d4d2a579569c15e
+  toolVersion: 1
+  palette:
+  - '#3D4348'
+  - '#B4A693'
+  - '#616566'
+  build: {}
+  layers:
+  - slot: foot_L
+    view: front34
+    file: eq_wuyinglv__foot_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: back34
+    file: eq_wuyinglv__foot_L.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: side
+    file: eq_wuyinglv__foot_L.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: front34
+    file: eq_wuyinglv__foot_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: back34
+    file: eq_wuyinglv__foot_R.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 11
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: side
+    file: eq_wuyinglv__foot_R.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  files:
+  - file: eq_wuyinglv__foot_L.png
+    sha256: 243b278a4448e0f121c69bb3a831e06205f8d74a5e9501a7ec292cba0c4523e2
+  - file: eq_wuyinglv__foot_R.png
+    sha256: 47bcfeb40f5f6b9144875dd9b602bc021127efd030d51e3235aa215afafc01fa
+- item: eq_xuexingxue
+  sourceSha256: 752df16b702fd2521bd573655ab82860f0abb2d68918e8ad82013355d5cb3933
+  toolVersion: 1
+  palette:
+  - '#A59D92'
+  - '#878077'
+  - '#66605A'
+  build: {}
+  layers:
+  - slot: foot_L
+    view: front34
+    file: eq_xuexingxue__foot_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: back34
+    file: eq_xuexingxue__foot_L.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_L
+    view: side
+    file: eq_xuexingxue__foot_L.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 5
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: front34
+    file: eq_xuexingxue__foot_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: back34
+    file: eq_xuexingxue__foot_R.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 11
+    tint:
+      slot: footwear
+      strength: 1.0
+  - slot: foot_R
+    view: side
+    file: eq_xuexingxue__foot_R.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 68
+    pivot:
+    - 48
+    - 8
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: footwear
+      strength: 1.0
+  files:
+  - file: eq_xuexingxue__foot_L.png
+    sha256: 3da3a7e8118fd1321c7f9f29c4e82eb79a8f06d39f8965f86725e070a359b698
+  - file: eq_xuexingxue__foot_R.png
+    sha256: 30a2d74039dfbcdcd8cd1c83eff640955346ad55255cd1e5a29dc219919ab2fe

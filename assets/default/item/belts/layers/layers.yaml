@@ -1,0 +1,483 @@
+version: 1
+category: belts
+items:
+- item: eq_baonadai
+  sourceSha256: 1abe94ebd6969669614e4ad5b8bd872a0f924a785f028cdc2d043f298faf77d3
+  toolVersion: 1
+  palette:
+  - '#535453'
+  - '#787163'
+  - '#B3A896'
+  build: {}
+  layers:
+  - slot: belt
+    view: front34
+    file: eq_baonadai__belt.png
+    sourceRect:
+    - 0
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: back34
+    file: eq_baonadai__belt.png
+    sourceRect:
+    - 138
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: side
+    file: eq_baonadai__belt.png
+    sourceRect:
+    - 276
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_baonadai__belt.png
+    sha256: 47a71e902af7a04b4c6c7d736be2624d0faa7275488ee79685d2a944748410f8
+- item: eq_mayaodai
+  sourceSha256: 1a9f7f7b210f8301be3b8445b4674a021b584c68a83149a1b5e2eb5e33f0c30e
+  toolVersion: 1
+  palette:
+  - '#E4DFD6'
+  - '#AC9F8B'
+  - '#786B5C'
+  build: {}
+  layers:
+  - slot: belt
+    view: front34
+    file: eq_mayaodai__belt.png
+    sourceRect:
+    - 0
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: back34
+    file: eq_mayaodai__belt.png
+    sourceRect:
+    - 138
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: side
+    file: eq_mayaodai__belt.png
+    sourceRect:
+    - 276
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_mayaodai__belt.png
+    sha256: 55f9e079b8ac79ed491edd4ad5e660d53a65cd7c05abdff1802c90f39fa35e2a
+- item: eq_pihudai
+  sourceSha256: 5b10e6bc86fd8d4c797764013f3d76f8dc3331367b693b86ef9d4dbbfd58c477
+  toolVersion: 1
+  palette:
+  - '#5A463A'
+  - '#8E755D'
+  - '#E3DDD2'
+  build: {}
+  layers:
+  - slot: belt
+    view: front34
+    file: eq_pihudai__belt.png
+    sourceRect:
+    - 0
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: back34
+    file: eq_pihudai__belt.png
+    sourceRect:
+    - 138
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: side
+    file: eq_pihudai__belt.png
+    sourceRect:
+    - 276
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_pihudai__belt.png
+    sha256: 0d79b3559c63afe2d64f26d7fe672eecb343866e2b2ffbf4cc7dc69607705829
+- item: eq_qiankundaidai
+  sourceSha256: c8ffd8126fa526a372b2dc8693c89ed36432bb7de48daa54fd07f55a0e10c27e
+  toolVersion: 1
+  palette:
+  - '#3A4544'
+  - '#DDD8CB'
+  - '#796D55'
+  build: {}
+  layers:
+  - slot: belt
+    view: front34
+    file: eq_qiankundaidai__belt.png
+    sourceRect:
+    - 0
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: back34
+    file: eq_qiankundaidai__belt.png
+    sourceRect:
+    - 138
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: side
+    file: eq_qiankundaidai__belt.png
+    sourceRect:
+    - 276
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_qiankundaidai__belt.png
+    sha256: 05d3e9a6ef53a77bfd509c6c68f4de822f6bb290b0a3208d963b0f63b5663513
+- item: eq_qingyudai
+  sourceSha256: af80fc5e90409c3901f515b2b40c04d5e051b2bfce34472906eae3de4903a564
+  toolVersion: 1
+  palette:
+  - '#E5E0D7'
+  - '#555C64'
+  - '#A5A799'
+  build: {}
+  layers:
+  - slot: belt
+    view: front34
+    file: eq_qingyudai__belt.png
+    sourceRect:
+    - 0
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: back34
+    file: eq_qingyudai__belt.png
+    sourceRect:
+    - 138
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: side
+    file: eq_qingyudai__belt.png
+    sourceRect:
+    - 276
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_qingyudai__belt.png
+    sha256: 0b02c69f41ad972b4b6f9b6430ac51dc378e96d3fbbd8211cb2a5010033ee2d4
+- item: eq_tianchanyaodai
+  sourceSha256: 2dc96d9078ff98d1b968b34cbb814109efd942970367c0d8ae8573f5a2c86340
+  toolVersion: 1
+  palette:
+  - '#B1AFAA'
+  - '#DCD8D0'
+  - '#8E8C89'
+  build: {}
+  layers:
+  - slot: belt
+    view: front34
+    file: eq_tianchanyaodai__belt.png
+    sourceRect:
+    - 0
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: back34
+    file: eq_tianchanyaodai__belt.png
+    sourceRect:
+    - 138
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: side
+    file: eq_tianchanyaodai__belt.png
+    sourceRect:
+    - 276
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_tianchanyaodai__belt.png
+    sha256: cd3893fa1afbe12618156fb0166706b82355398249d640db9eac0da93465eca6
+- item: eq_xuantiedai
+  sourceSha256: cadb5abdb49e09cdf1c04ea0fdf7c87e587ea6e24ed49f78a0163a0dfaea6866
+  toolVersion: 1
+  palette:
+  - '#494949'
+  - '#5B3D36'
+  - '#C9C4BB'
+  build: {}
+  layers:
+  - slot: belt
+    view: front34
+    file: eq_xuantiedai__belt.png
+    sourceRect:
+    - 0
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: back34
+    file: eq_xuantiedai__belt.png
+    sourceRect:
+    - 138
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: side
+    file: eq_xuantiedai__belt.png
+    sourceRect:
+    - 276
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_xuantiedai__belt.png
+    sha256: 9f6e31a8c61a27a9478fb8718c2bed02c4a5302fb599f5b90bc899cc19d652a0
+- item: eq_yunlongyudai
+  sourceSha256: 51d58b819beb6f75a9409f48590107740647c38662fbcf19e518f6dd78c31db4
+  toolVersion: 1
+  palette:
+  - '#E3DDD2'
+  - '#CEC5B4'
+  - '#9E9486'
+  build: {}
+  layers:
+  - slot: belt
+    view: front34
+    file: eq_yunlongyudai__belt.png
+    sourceRect:
+    - 0
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: back34
+    file: eq_yunlongyudai__belt.png
+    sourceRect:
+    - 138
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: belt
+    view: side
+    file: eq_yunlongyudai__belt.png
+    sourceRect:
+    - 276
+    - 0
+    - 138
+    - 40
+    pivot:
+    - 69
+    - 10
+    scale: 1.0
+    zOrder: 7.15
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_yunlongyudai__belt.png
+    sha256: d4054bec80f2d6966cdca867673cfef5ddfeda9440178faac13ab8d2484cc45b

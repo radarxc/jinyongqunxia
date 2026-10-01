@@ -72,6 +72,35 @@
     历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
 
     提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+  icons:
+  - file: icons/eq_buyi_256.png
+    size:
+    - 256
+    - 256
+    sha256: 7383651dcc4576b6eedbdd47af693fa3a29e87d6d088bf482dca540200e1bac1
+  - file: icons/eq_buyi_128.png
+    size:
+    - 128
+    - 128
+    sha256: f78c76b0c1c3b17153de57ac88141eaa1a30663758ad75fede8d2e203009158e
+  - file: icons/eq_buyi_64.png
+    size:
+    - 64
+    - 64
+    sha256: 34c96b508ecbd989f77126846ac992f5dd3fba501d27f3376161a23fad167b7c
+  - file: icons/eq_buyi_32.png
+    size:
+    - 32
+    - 32
+    sha256: 938877464c95ae661ef39cdd6381b22c1b4216092ed783fa491eeba75cebfe3b
+  iconSourceSha256: 766875b36e6ad185022ee0f7eea241936928ebd64bd8e14e33370303808cdb32
+  iconBuild:
+    version: 1
+    background:
+    - 228
+    - 222
+    - 214
+    seedRatio: 1.0
 - id: eq_jinzhuang
   file: eq_jinzhuang.png
   category: item
@@ -143,6 +172,35 @@
     历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
 
     提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+  icons:
+  - file: icons/eq_jinzhuang_256.png
+    size:
+    - 256
+    - 256
+    sha256: 91be59c5707a7f4578e1abca3846dc2688dfbb442f399c44f8e3a82251696328
+  - file: icons/eq_jinzhuang_128.png
+    size:
+    - 128
+    - 128
+    sha256: 404d63943e2c10983e7ab888fa110abe2941a682d364ee0fe86e0af7c5b9ece9
+  - file: icons/eq_jinzhuang_64.png
+    size:
+    - 64
+    - 64
+    sha256: 12a8a7f161c42e3139ad972e859fe15549cdca8640351adcd58773f734083c8e
+  - file: icons/eq_jinzhuang_32.png
+    size:
+    - 32
+    - 32
+    sha256: 6a74390796dcafc0e2d295d70ec960ad6bd2b1992f8e299de505beb5ac093e07
+  iconSourceSha256: c2b7f6a0a0f10cc3e7cc6e8010532a791618363959ee092f0dcdf733a58d7348
+  iconBuild:
+    version: 1
+    background:
+    - 227
+    - 222
+    - 213
+    seedRatio: 1.0
 - id: eq_sengyi
   file: eq_sengyi.png
   category: item
@@ -217,6 +275,35 @@
     历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
 
     提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+  icons:
+  - file: icons/eq_sengyi_256.png
+    size:
+    - 256
+    - 256
+    sha256: 4661ed187199b9665f0e9c2f81284cfe83951704087d1e70d3d6199dc524cbc8
+  - file: icons/eq_sengyi_128.png
+    size:
+    - 128
+    - 128
+    sha256: 2cbe11865b8de38b432bd30ba690cb7d8c977e292bc2e01f6f45a5fbaaa3dff4
+  - file: icons/eq_sengyi_64.png
+    size:
+    - 64
+    - 64
+    sha256: 0c02c0cb66e740ac8ad5e7bcd6ed353fadadfa30a619ebd0652eade70341ae48
+  - file: icons/eq_sengyi_32.png
+    size:
+    - 32
+    - 32
+    sha256: 62d398d0d53fd617b7dcfde09d61545e9e21ec1c0c7a8e4b972f224a6d77a188
+  iconSourceSha256: 9028d6d72317e22bb41073ed7934934fbd624d554b14db35a76eff28017fa76d
+  iconBuild:
+    version: 1
+    background:
+    - 230
+    - 224
+    - 214
+    seedRatio: 1.0
 - id: eq_daopao
   file: eq_daopao.png
   category: item
@@ -291,6 +378,35 @@
     历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
 
     提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+  icons:
+  - file: icons/eq_daopao_256.png
+    size:
+    - 256
+    - 256
+    sha256: 44f3fe2d3d9ee70c9d4c757893b858e3a523aa63d69f72d7ba658cba307a5554
+  - file: icons/eq_daopao_128.png
+    size:
+    - 128
+    - 128
+    sha256: 60a5d6a65ec92bfe6caf62fc04154ba68c2988100dd0efcc7b18bce35e4e068d
+  - file: icons/eq_daopao_64.png
+    size:
+    - 64
+    - 64
+    sha256: 5a11e93d5f2df8c78f2573bfd532ed208d72cdab707dce8832bc0c38cdf7e7b8
+  - file: icons/eq_daopao_32.png
+    size:
+    - 32
+    - 32
+    sha256: 90aa2c52875acc32ce47d586e56401dac1674319eb4a8f815411fa78aca4693b
+  iconSourceSha256: 197d15896e2915381eca1cd7ef82f78f9f06919f856ff2ef6c624a3d5f0ceeba
+  iconBuild:
+    version: 1
+    background:
+    - 227
+    - 222
+    - 212
+    seedRatio: 1.0
 - id: eq_yexingyi
   file: eq_yexingyi.png
   category: item
@@ -363,6 +479,35 @@
     历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
 
     提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+  icons:
+  - file: icons/eq_yexingyi_256.png
+    size:
+    - 256
+    - 256
+    sha256: 809ccc7059a17533527296d79137f7e29e15255796a8135c94d950fb5dfbbd12
+  - file: icons/eq_yexingyi_128.png
+    size:
+    - 128
+    - 128
+    sha256: 42ad092a92df5aa42f133832cda6d1171264adb09fddb5f28cdbfe1dca63e0b2
+  - file: icons/eq_yexingyi_64.png
+    size:
+    - 64
+    - 64
+    sha256: e782bb08085626015612d1cc90c7128b9c9607fa8bb2361a798c841660a81adb
+  - file: icons/eq_yexingyi_32.png
+    size:
+    - 32
+    - 32
+    sha256: 2df615989c64e8be7f0d5a293de8e88428d0d27f61f8421d1fe2cb2af0c7120c
+  iconSourceSha256: af2536013d4018ff38dd3a5a8e083ca62bd2aeab779f6a826820da45eb5c11ef
+  iconBuild:
+    version: 1
+    background:
+    - 229
+    - 223
+    - 215
+    seedRatio: 1.0
 - id: eq_huangmagua
   file: eq_huangmagua.png
   category: item
@@ -437,6 +582,35 @@
     历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
 
     提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+  icons:
+  - file: icons/eq_huangmagua_256.png
+    size:
+    - 256
+    - 256
+    sha256: 1fb48fe2d88e4db90ddf114fc6accd1084b30056457b609eb63523289d32ff42
+  - file: icons/eq_huangmagua_128.png
+    size:
+    - 128
+    - 128
+    sha256: 5fccd1a010a9d2a6e2c9602b765b21d7f9d78b15d1c56fef866fbb2ff7b66d07
+  - file: icons/eq_huangmagua_64.png
+    size:
+    - 64
+    - 64
+    sha256: b195a9dc38612702487c11f384f72fbb8ca7c014d57198810bf8786460ec71a3
+  - file: icons/eq_huangmagua_32.png
+    size:
+    - 32
+    - 32
+    sha256: b78a701a026583e91bf6bb87f2c76b839930567d9314e806f9ca30c502d6dea9
+  iconSourceSha256: f3045ea806396ac9e2f4f12e83854ca5ddec6b7f4e449e2ce9d6cfeaabbd541f
+  iconBuild:
+    version: 1
+    background:
+    - 230
+    - 224
+    - 214
+    seedRatio: 1.0
 - id: eq_taohuajinpao
   file: eq_taohuajinpao.png
   category: item
@@ -511,6 +685,35 @@
     历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
 
     提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+  icons:
+  - file: icons/eq_taohuajinpao_256.png
+    size:
+    - 256
+    - 256
+    sha256: 4fd676d9b2b7128b00b269a8ab8398a192a6ac5bb4f50bdca50581f4c64de4f8
+  - file: icons/eq_taohuajinpao_128.png
+    size:
+    - 128
+    - 128
+    sha256: eea55c7370ee5d373574c6b03a8024e978357583474fefa4844f4cd246700ce6
+  - file: icons/eq_taohuajinpao_64.png
+    size:
+    - 64
+    - 64
+    sha256: 490f654e1e5cdb0e219d9ac90a1fe7d92c9953d64ce6246ed30fe1b2cee0aeeb
+  - file: icons/eq_taohuajinpao_32.png
+    size:
+    - 32
+    - 32
+    sha256: 9eaa777d783f69155fcec285e86e212f4cd3d272ea3371f0c2f9d8df595fa2f8
+  iconSourceSha256: 18a80a848aa36f1406db5317982d586a60cbb1b9311cfd397751c283e8a8f82c
+  iconBuild:
+    version: 1
+    background:
+    - 228
+    - 221
+    - 212
+    seedRatio: 1.0
 - id: eq_xiyuhufu
   file: eq_xiyuhufu.png
   category: item
@@ -585,6 +788,35 @@
     历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
 
     提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+  icons:
+  - file: icons/eq_xiyuhufu_256.png
+    size:
+    - 256
+    - 256
+    sha256: f711c7f6e44dfd24dbc9900620f021266b134e10bdcd6d0f84cdcd23a5cf3299
+  - file: icons/eq_xiyuhufu_128.png
+    size:
+    - 128
+    - 128
+    sha256: f300efa524a359b48315b544628f0673a7b00746f32e1ac82d1037c550b0c650
+  - file: icons/eq_xiyuhufu_64.png
+    size:
+    - 64
+    - 64
+    sha256: 8b0e1df2a789c0aa13be1f42f1d0d2c93823e461400f7cc23257a81ff963b12c
+  - file: icons/eq_xiyuhufu_32.png
+    size:
+    - 32
+    - 32
+    sha256: 398c0ba896dd762202d71b0a88a31c2c72cf90db4450605a36425397baff1245
+  iconSourceSha256: e0d216cfeec9b07b1abf1ee248f501851da66e121c9d1deebc15cccfeded656f
+  iconBuild:
+    version: 1
+    background:
+    - 228
+    - 222
+    - 213
+    seedRatio: 1.0
 - id: eq_yunjinhechang
   file: eq_yunjinhechang.png
   category: item
@@ -659,6 +891,35 @@
     历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
 
     提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+  icons:
+  - file: icons/eq_yunjinhechang_256.png
+    size:
+    - 256
+    - 256
+    sha256: 3100e9d9238954f86bd8c2f769b2a72e61944b09b704fd4b6623a9f273c790d2
+  - file: icons/eq_yunjinhechang_128.png
+    size:
+    - 128
+    - 128
+    sha256: bdd0488456440811a7fff3c6f83a3519414e21e7db9c2c68a5cec7511b0630e6
+  - file: icons/eq_yunjinhechang_64.png
+    size:
+    - 64
+    - 64
+    sha256: 44189f0ef4c7f345da4d3c1893c7f1a8b9f660c77c17f2d48b9bc5f10dbfff64
+  - file: icons/eq_yunjinhechang_32.png
+    size:
+    - 32
+    - 32
+    sha256: cd5b53b8152037d7a6dd49f4576520f83e1a956a728b36f4496e78bfd18edf50
+  iconSourceSha256: a50179965a2a657c2aa572786efa24205bf68971b84730728dbe732ed21ef27e
+  iconBuild:
+    version: 1
+    background:
+    - 228
+    - 221
+    - 211
+    seedRatio: 1.0
 - id: eq_tianchanbaoyi
   file: eq_tianchanbaoyi.png
   category: item
@@ -731,6 +992,35 @@
     历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
 
     提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+  icons:
+  - file: icons/eq_tianchanbaoyi_256.png
+    size:
+    - 256
+    - 256
+    sha256: 7103fe31fcc2c3d647c90cc474d9cd6b9883ef9360eec2635878c8542fc92869
+  - file: icons/eq_tianchanbaoyi_128.png
+    size:
+    - 128
+    - 128
+    sha256: 83c7f89667055ee5ffd49276486dbcb0f3677579b8c17acd6f1abc4492211ecc
+  - file: icons/eq_tianchanbaoyi_64.png
+    size:
+    - 64
+    - 64
+    sha256: 091f525bfe933030ab60f18f5e4c1e329c1eeb52f66fbf3dc30bce542736b1be
+  - file: icons/eq_tianchanbaoyi_32.png
+    size:
+    - 32
+    - 32
+    sha256: 8bdd201fe93a55e6bc09e16a12978450db1133c6a2326e4bdddc3c797e53608c
+  iconSourceSha256: cf87604f7f732e1d57f62ceed01643edc25489518fb87ec2735ccd9e9658690e
+  iconBuild:
+    version: 1
+    background:
+    - 229
+    - 223
+    - 213
+    seedRatio: 1.0
 - id: eq_zixiaqingyi
   file: eq_zixiaqingyi.png
   category: item
@@ -803,6 +1093,35 @@
     历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
 
     提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+  icons:
+  - file: icons/eq_zixiaqingyi_256.png
+    size:
+    - 256
+    - 256
+    sha256: c98c4d980853efd4a72b1b80908bc89f1f9f669dc42f3cd036bf6b87e56746eb
+  - file: icons/eq_zixiaqingyi_128.png
+    size:
+    - 128
+    - 128
+    sha256: 5df145b97c0acfd5e84d051721699fde41b380ed3c26475070435a9f490ab11c
+  - file: icons/eq_zixiaqingyi_64.png
+    size:
+    - 64
+    - 64
+    sha256: bd94fc39d3d27fb669c9dd1e86f44da54be1b926783c8aa22c78fbb43de302f0
+  - file: icons/eq_zixiaqingyi_32.png
+    size:
+    - 32
+    - 32
+    sha256: e04c66c200ef32d55dd8370e4c7faf1f4dd1f3c68945b58a92a44ead04cb3e85
+  iconSourceSha256: 051c01aef8df654a8e3fa93d22f116530734dc2866a5203b8fb5d92aad18d061
+  iconBuild:
+    version: 1
+    background:
+    - 228
+    - 222
+    - 212
+    seedRatio: 1.0
 - id: eq_wucanyi
   file: eq_wucanyi.png
   category: item
@@ -872,3 +1191,32 @@
     历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
 
     提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+  icons:
+  - file: icons/eq_wucanyi_256.png
+    size:
+    - 256
+    - 256
+    sha256: 8b819ff44af769c7e01999608a7e7d6ba3d8d1f3e8fc2afdcb0c8b549ba1dc41
+  - file: icons/eq_wucanyi_128.png
+    size:
+    - 128
+    - 128
+    sha256: 1fb83b2ef51e1d5a4f2b645be9f19a4088a94f708644a7b0fb68aed63cd164ae
+  - file: icons/eq_wucanyi_64.png
+    size:
+    - 64
+    - 64
+    sha256: 861ae1a7c251c7477b8f0bc89febdf2f37ca28fdc52a351967e5ac1fcc414d35
+  - file: icons/eq_wucanyi_32.png
+    size:
+    - 32
+    - 32
+    sha256: bc85fca087fbddfd647069a5ec1989262ca4cee81be98bcd9cb872a380a53026
+  iconSourceSha256: 51dbaff81c91430b188655e2cdf19b58fb213f55e22f2dbe637ca915fbed7227
+  iconBuild:
+    version: 1
+    background:
+    - 229
+    - 223
+    - 213
+    seedRatio: 1.0

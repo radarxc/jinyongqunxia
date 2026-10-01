@@ -9,8 +9,10 @@ from pathlib import Path
 import yaml
 from PIL import Image, ImageDraw
 
-from tools.item.common import BuildError, alpha_bbox, sha256_file
-from tools.item.layer_build import infer_slots
+from tools.item.common import (
+    BuildError, alpha_bbox, normalize_rgba, remove_background, sha256_file,
+)
+from tools.item.layer_build import build_weapon_layer, infer_slots
 from tools.item.make_layers import process_directory
 from tools.rig.templates import TEMPLATES
 
@@ -91,6 +93,21 @@ class LayerPipelineTests(unittest.TestCase):
         self.assertEqual(1, process_directory(directory))
         self.assertEqual(first, sha256_file(directory / "layers/eq_yitianjian__weapon_R.png"))
         self.assertEqual(1, process_directory(directory, check=True))
+
+    def test_weapon_grip_tracks_visible_row_on_offset_weapon(self) -> None:
+        image = Image.new("RGB", (320, 320), BACKGROUND)
+        draw = ImageDraw.Draw(image)
+        draw.polygon([(70, 30), (85, 30), (185, 245), (175, 250)], fill=(90, 110, 124))
+        draw.rectangle((170, 235, 285, 250), fill=(110, 76, 44))
+        draw.rectangle((268, 242, 285, 300), fill=(39, 64, 67))
+        path = self.root / "offset.png"
+        image.save(path)
+        cutout, _ = remove_background(normalize_rgba(path))
+        strip, metadata = build_weapon_layer(
+            cutout, {"id": "eq_testpian", "subtype": "sword"}
+        )
+        grip_x, grip_y = metadata["grip"]
+        self.assertGreater(strip.getpixel((grip_x, grip_y))[3], 0)
 
     def test_clothing_uses_slot_templates_palette_and_three_cells(self) -> None:
         directory = self.make_category(
