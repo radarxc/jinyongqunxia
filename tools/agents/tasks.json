@@ -28188,6 +28188,51 @@
    ]
   },
   {
+   "id": "ENG-12b-perf-gate",
+   "title": "游戏工程 · render rig CPU 门禁测试抗负载化（ENG-12 遗留，批量校验在高负载机器上随机失败）",
+   "phase": "PROD",
+   "wave": 12,
+   "kind": "draft",
+   "prompt": "ENG-perf-gate.md",
+   "deps": [
+    "ENG-12-rig-walk"
+   ],
+   "review": false,
+   "web": true,
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "vars": {},
+   "writes": [
+    "packages/render/**",
+    "vitest.config.ts",
+    "package.json",
+    "pnpm-lock.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/rig/performance.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
    "id": "ENG-02-models",
    "title": "游戏工程 · 数据层（人物 / 物品 / 剧情 DAG / 事件 / 时间 schema 与核心状态）",
    "phase": "PROD",
