@@ -48,8 +48,9 @@ def main() -> int:
             problems.append(f"第 {n} 行 `{iid}`：子类 `{sub}` 不在允许集合")
         elif not sub:
             problems.append(f"第 {n} 行 `{iid}`：子类为空")
-        if grade.strip("*") not in GRADES:
-            problems.append(f"第 {n} 行 `{iid}`：品阶 `{grade}` 须为 天/地/玄/黄")
+        g = grade.strip("*").strip()
+        if not (g and g[0] in GRADES and g[1:] in ("", "上", "中", "下")):
+            problems.append(f"第 {n} 行 `{iid}`：品阶 `{grade}` 须为 天/地/玄/黄，可带 上/中/下（如 玄上）")
         if not source:
             problems.append(f"第 {n} 行 `{iid}`：出处为空（原创写 **（原创扩展）**）")
         if "grade=" not in effect:
