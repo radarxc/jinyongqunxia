@@ -23,6 +23,8 @@
 
 约束：core 零浮点、零 `Date.now` / `Math.random`（lint 已禁）；不写战斗 / 运气推进逻辑（ENG-03 / 04）；不写 UI；每次写入 ≤ 150 行。
 
+性能是作者硬要求（AR-21「性能要最好」）：content 加载后冻结并建索引表（O(1) 查 ID），schema 校验只在加载时做一次；状态对象扁平、整数字段，规范序列化不产生临时大对象。
+
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`
 - `pnpm check`

@@ -20,6 +20,8 @@
 
 约束：不写伤害公式与攻防（ENG-04）；不写 UI；每次写入 ≤ 150 行；不改 `packages/core/src/index.ts`（已预先导出各子模块）与别的任务负责的子目录；尽量不加新依赖（并行任务改同一份 `pnpm-lock.yaml` 会冲突），必须加的写进报告。
 
+性能是作者硬要求（AR-21「性能要最好」）：每 tick 推进是热路径——用预分配的类型化数组 / 对象池，零每帧分配；给 `vitest bench`：1000 个 tick × 12 条经脉 ≤ 5 ms（Node），写进测试断言上限。
+
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`
 - `pnpm check`
