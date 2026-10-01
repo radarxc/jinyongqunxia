@@ -1,6 +1,6 @@
 # 本任务：游戏工程 · 城镇小地图（three.js 高低起伏贴图、建筑直接进入半透明、NPC / 位置事件锚点、打坐被袭岔气）
 
-本任务写代码。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。沙箱已放开网络与 pnpm store 写入。先读根 `CLAUDE.md`、`packages/render/CLAUDE.md`、`apps/web/CLAUDE.md`、`packages/core/CLAUDE.md`。
+本任务写代码。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。沙箱已放开网络与 pnpm store 写入。先读根 `CLAUDE.md`、`packages/render/CLAUDE.md`、`apps/game/CLAUDE.md`、`packages/core/CLAUDE.md`。
 
 ## 作者要求
 
@@ -18,14 +18,16 @@
 4. 事件锚点：从 ENG-05 注册表取 NPC 锚点 / 位置锚点，渲染可交互提示（图标 / 高亮），触发 → 发 core 命令；NPC 按书界时代图层与剧情状态出现 / 消失。
 5. 打坐：标记可打坐位置（庙宇、客栈房、僻静处）；打坐 → ENG-03 推进时间 / 周天；敌意 NPC 可能来袭（概率与书界 / 时段 / 通缉有关） → `interruptMeditation()` 岔气 → 构造 `BattleSetup`（ENG-04）进入战斗（ENG-10 UI，本任务只发命令并切场景占位）。
 6. 测试：运行时数据生成 `--check`（两基线城通过）、可走性 / 寻路、建筑进入状态机、锚点触发命令、打坐被袭流程（用假随机种子）；渲染 smoke 测试；`pnpm check` 全绿；web build 成功。
-7. 更新 `packages/render/CLAUDE.md`、`apps/web/CLAUDE.md`。
+7. 更新 `packages/render/CLAUDE.md`、`apps/game/CLAUDE.md`。
 
 约束：不改 `tools/town/` 的出图逻辑（只读其参数）；每次写入 ≤ 150 行；尽量不加新依赖（并行任务改同一份 `pnpm-lock.yaml` 会冲突），必须加的写进报告。
+
+性能是作者硬要求（AR-21「性能要最好」）：地面与建筑全部实例化 + 图集 + 合批，视锥裁剪与按需加载，每帧零分配；大城桌面 ≥ 60 fps、中端手机 ≥ 30 fps（tech/03），报告给 draw call、三角数、帧时间；`pnpm size` 必须过。
 
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`
 - `pnpm check`
-- `pnpm --filter ./apps/web build`
+- `pnpm --filter ./apps/game build`
 - `python3 tools/content/town_runtime.py --check content/town`
 - `python3 tools/lint/check_ids.py --strict`
 

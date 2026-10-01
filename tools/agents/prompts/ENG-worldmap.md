@@ -1,6 +1,6 @@
 # 本任务：游戏工程 · 大地图（城镇间行走、野外遗迹进入、城镇进入）
 
-本任务写代码。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。沙箱已放开网络与 pnpm store 写入。先读根 `CLAUDE.md`、`apps/web/CLAUDE.md`、`packages/render/CLAUDE.md`、`packages/core/CLAUDE.md`。
+本任务写代码。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。沙箱已放开网络与 pnpm store 写入。先读根 `CLAUDE.md`、`apps/game/CLAUDE.md`、`packages/render/CLAUDE.md`、`packages/core/CLAUDE.md`。
 
 ## 作者要求
 
@@ -17,14 +17,16 @@
 3. 数据：`content/world/<chNN>/map.yaml`（节点、道路、里程、年代带；从 `docs/design/town/*.yaml` 与 design/02 生成：写 `tools/content/worldmap_from_towns.py`）。
 4. UI：在 ENG-07 的壳里挂大地图页；节点悬浮信息（城名、年代、等级）；行走中可取消。
 5. 测试：寻路（整数、确定）、里程 → 时间换算、进入判定（通缉拦截）、地图数据校验；渲染层用无头 smoke 测试（场景可构建、对象数符合）；`pnpm check` 全绿；web build 成功。
-6. 更新 `packages/render/CLAUDE.md`、`apps/web/CLAUDE.md`。
+6. 更新 `packages/render/CLAUDE.md`、`apps/game/CLAUDE.md`。
 
 约束：不写城镇内部与战斗；每次写入 ≤ 150 行；尽量不加新依赖（并行任务改同一份 `pnpm-lock.yaml` 会冲突），必须加的写进报告；three 用法与 `tools/vfx/web/` 一致的 importmap / 版本。
+
+性能是作者硬要求（AR-21「性能要最好」）：节点 / 道路实例化、纹理图集、静态几何合批；寻路整数 A* 预分配；桌面 ≥ 60 fps、中端手机 ≥ 30 fps（tech/03），报告给 draw call 与帧时间；`pnpm size` 必须过。
 
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`
 - `pnpm check`
-- `pnpm --filter ./apps/web build`
+- `pnpm --filter ./apps/game build`
 - `python3 tools/lint/check_ids.py --strict`
 
 ## 报告
