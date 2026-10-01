@@ -1,0 +1,416 @@
+assets:
+- id: vfx_sk_baihuacuo__family_base01
+  file: effect/family/source_01.png
+  category: vfx
+  style: default
+  subject: 书剑书界 / 百花错拳家族淡金水墨四帧原料（原创扩展）
+  prompt: 'Create ONE white-background 2-by-2 sprite sheet, four equal square cells, no grid lines, no text, no numbers. Baihua
+    Cuo Quan, a close-combat Chinese wuxia fist technique, original visual interpretation. Delicate pale antique-gold and
+    muted ochre Chinese ink-wash energy, dry-brush grain, soft translucent edges, generous negative space, never solid metallic
+    objects or literal flowers. A compact family motif of three interleaved and deliberately offset curved brush ribbons,
+    suggesting deceptive fist paths and petal-like negative spaces. Every cell points right from the SAME broad, visible root
+    at local (0.24W,0.50H); root cross-section about 0.12H. Keep all ink within x=0.17W..0.85W and y=0.18H..0.82H, with wide
+    pure-white margins. Four successive keyframes in reading order: gathering, fully formed, full compact flourish, gently
+    loosening after-trace. Do not greatly change the silhouette or root. The root is connected to the visible curves in every
+    frame, no disconnected projectile. Background exactly white, no paper, shadow, checkerboard, figures, fists, hands, weapons,
+    labels or white highlights. Gold pigment is distinguishable from white and never neon. Pure effect artwork only; four
+    equal cells in one square image, ideally 2048 by 2048.'
+  negative: 文字、编号、边框、分格线、水印、纸纹、人物、手、兵器、实物花朵、霓虹、远程弹丸。
+  references: []
+  tool: built-in image_gen
+  model: gpt-image-2
+  effort: not exposed
+  created: '2026-09-30'
+  source_path: /private/tmp/vfx-baihuacuo-family.png
+  size: 1254x1254
+  sha256: 46f9796bee84c544a9de7f58b505f7c3971556cdf73f484ccdc4d594090a0c36
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 袁士霄传陈家洛有据；具体回目、招名及淡金造型待考/原创扩展。白底原件由 cut_frames.py 导出 straight-alpha RGBA。
+  files:
+  - effect/family/effect-set.yaml
+  - effect/family/frame_000.png
+  - effect/family/frame_001.png
+  - effect/family/frame_002.png
+  - effect/family/frame_003.png
+  - effect/family/preview_black.png
+  - effect/family/preview_gray.png
+  - effect/family/preview_white.png
+  - effect/family/quality.json
+  file_integrity:
+  - file: effect/family/effect-set.yaml
+    bytes: 965
+    sha256: d9ddfd4c598eb021ddca50dd9d9b80a35dcbfe0ed190948189bfd935296cc160
+  - file: effect/family/frame_000.png
+    bytes: 142871
+    sha256: 73fcb8a11b23306883af6dbbb11aa6241061c66a2110ed18cc016ec63cc99e51
+  - file: effect/family/frame_001.png
+    bytes: 252938
+    sha256: 71ebb49e797d174237ed7fad7e26c006e7a85d225138cadc60a8db24df29aa92
+  - file: effect/family/frame_002.png
+    bytes: 347414
+    sha256: 10e4ac405bf64a646430b4e26cad2a9e58eb6c662c2b3b2d7f803fc715164ab7
+  - file: effect/family/frame_003.png
+    bytes: 200031
+    sha256: 52df08cceb2651715741477c7a38a7cf8dd485b19161e5b717f43b125151c8d4
+  - file: effect/family/preview_black.png
+    bytes: 777359
+    sha256: dab7c1d6f75b106a65d03ae99241cd57153c6d5e8209e3be8aaf9b6a37f94763
+  - file: effect/family/preview_gray.png
+    bytes: 708821
+    sha256: 737ccb4b9d42913946b9fd263039b318f4ded7dbaf980ad9a242fbcdc3581a3f
+  - file: effect/family/preview_white.png
+    bytes: 698419
+    sha256: 4f4e490eda168f8bd084900bf3bc73e9842d1c6199a0e85f58850360e242fb5f
+  - file: effect/family/quality.json
+    bytes: 1022
+    sha256: 69b4cb83237489e485669c426966a67249f2882dd967ad3450ed15648fe73ba9
+- id: vfx_mv_baihuacuo_cuoluo__effect_base01
+  file: effect/mv_baihuacuo_cuoluo/source_01.png
+  category: vfx
+  style: default
+  subject: 书剑书界 / 百花错落绝招淡金漩势四帧原料（原创扩展）
+  prompt: 'Create ONE white-background 2-by-2 sprite sheet, four equal square cells, no grid lines, no text, no numbers. Baihua
+    Cuoluo, an ultimate close-combat Chinese wuxia fist technique, original visual interpretation. Antique pale-gold and muted
+    ochre ink wash. The unique motif is an asymmetric compact flower-like vortex of six interleaved, offset curved energy
+    strokes, different depths of pale ink, open petal-like negative spaces, connected by broad brushwork to a left root; it
+    suggests a nearby surrounding flurry, never a literal flower or remote projectile. Each cell has the SAME visible broad
+    root at local (0.24W,0.50H), root cross-section about 0.15H; dominant motion travels right and curves upward and downward
+    around the adjacent space. All marks inside x=0.17W..0.85W and y=0.16H..0.84H, wide white margins. Four successive frames
+    in reading order: gathering interleaved strokes, opening, full offset whorl, light fading ribbons. Maintain comparable
+    geometry and a connected root through all four. Dry-brush grain and luminous gold wash with transparent-looking edges,
+    no solid filled disk, no dense starburst, no hard shadow. Pure white background, no paper, checkerboard, figures, fists,
+    hands, weapons, dragons, beams, borders, text, labels or white highlights. Four equal cells in one square image, ideally
+    2048 by 2048.'
+  negative: 文字、编号、边框、分格线、水印、纸纹、人物、手、兵器、实物花朵、霓虹、远程弹丸。
+  references: []
+  tool: built-in image_gen
+  model: gpt-image-2
+  effort: not exposed
+  created: '2026-09-30'
+  source_path: /private/tmp/vfx-mv_baihuacuo_cuoluo.png
+  size: 1254x1254
+  sha256: eeb3e48c18d9f32851cab2f5917c1476009a5c4e15c8286ac65489c65b0e2d9c
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 袁士霄传陈家洛有据；具体回目、招名及淡金造型待考/原创扩展。白底原件由 cut_frames.py 导出 straight-alpha RGBA。
+  files:
+  - effect/mv_baihuacuo_cuoluo/effect-set.yaml
+  - effect/mv_baihuacuo_cuoluo/frame_000.png
+  - effect/mv_baihuacuo_cuoluo/frame_001.png
+  - effect/mv_baihuacuo_cuoluo/frame_002.png
+  - effect/mv_baihuacuo_cuoluo/frame_003.png
+  - effect/mv_baihuacuo_cuoluo/preview_black.png
+  - effect/mv_baihuacuo_cuoluo/preview_gray.png
+  - effect/mv_baihuacuo_cuoluo/preview_white.png
+  - effect/mv_baihuacuo_cuoluo/quality.json
+  file_integrity:
+  - file: effect/mv_baihuacuo_cuoluo/effect-set.yaml
+    bytes: 972
+    sha256: d673a3aa85d84ea2c6dc37758787e39415e148fa8acbb21d687e05c879f42b23
+  - file: effect/mv_baihuacuo_cuoluo/frame_000.png
+    bytes: 273686
+    sha256: 587839ee6c79329995d6c2cc1f8058c0d4f52a9b812f63f4e6d8cc6e1362bc36
+  - file: effect/mv_baihuacuo_cuoluo/frame_001.png
+    bytes: 321505
+    sha256: ed77c7348b26dbb134bbd33ea0963914cbb25b326e8e9eefa6987a528efb9a76
+  - file: effect/mv_baihuacuo_cuoluo/frame_002.png
+    bytes: 388518
+    sha256: 504a7b666eecc281db3ffd76d38d3c9501e094126fb3e85ba016efe2a5e20e7e
+  - file: effect/mv_baihuacuo_cuoluo/frame_003.png
+    bytes: 311555
+    sha256: ada305bdaa12ec48c974d2f8e619693de9b2728e258a23043ac5d33e4358eee3
+  - file: effect/mv_baihuacuo_cuoluo/preview_black.png
+    bytes: 1071282
+    sha256: d0f6571735223ad764e7c84ccf28d5c155d991ab516378f836df578ba19f7759
+  - file: effect/mv_baihuacuo_cuoluo/preview_gray.png
+    bytes: 994477
+    sha256: 8b5a3bf840515d92d99fbc9d865ef34c768d7b9ccac06381fde6f29b78e76dc1
+  - file: effect/mv_baihuacuo_cuoluo/preview_white.png
+    bytes: 984689
+    sha256: ef335ac7bc5c94eb283e97c2bd438bd1e9ef27190fb9bdfcd3bd9417caacfed0
+  - file: effect/mv_baihuacuo_cuoluo/quality.json
+    bytes: 1021
+    sha256: 4af04b88f632e47271b4671214a35dbe0399eeb76bd9bca9a60b2ba3b23d6c79
+- id: vfx_mv_baihuacuo_fanchang__effect_base01
+  file: effect/mv_baihuacuo_fanchang/source_01.png
+  category: vfx
+  style: default
+  subject: 书剑书界 / 反常合道绝招回折拳势四帧原料（原创扩展）
+  prompt: 'Create ONE white-background 2-by-2 sprite sheet, four equal square cells, no grid lines, no text, no numbers. Fanchang
+    Hedao, an ultimate close-combat Chinese wuxia fist technique, original visual interpretation. Delicate antique pale-gold
+    and muted ochre ink wash. Unique motif: two deliberately contrary, folded S-shaped brush ribbons cross, briefly curl back,
+    then converge into ONE compact blunt forward stroke toward the right, with restrained petal-like gaps connecting to the
+    Baihua Cuo Quan family. It suggests reversing habitual motion and returning to one coherent fist path; never a sword beam,
+    arrow, projectile or literal yin-yang symbol. Every cell uses the SAME visible broad root at local (0.24W,0.50H), root
+    cross-section about 0.12H. Keep all strokes inside x=0.17W..0.85W and y=0.18H..0.82H. Four successive frames in reading
+    order: gathering opposing strokes, crossing and turning, a coherent folded flourish, soft declining after-trace. Maintain
+    comparable silhouette and connected root, large white margins. Dry-brush texture, layered translucent-looking wash, bright
+    pigment distinguishable from white. Exactly white background, no paper, shadow, checkerboard, persons, hands, weapons,
+    dragons, literal flowers, text, symbols, borders or white highlights. Four equal cells in one square image, ideally 2048
+    by 2048. CRITICAL REVISION: include absolutely NO detached petal shapes, leaf shapes, seeds, dots, or botanical marks; all
+    visible pigment must belong to the two continuous folded brush ribbons and their connected root.'
+  negative: 文字、编号、边框、分格线、水印、纸纹、人物、手、兵器、实物花朵、霓虹、远程弹丸。
+  references: []
+  tool: built-in image_gen
+  model: gpt-image-2
+  effort: not exposed
+  created: '2026-09-30'
+  source_path: /private/tmp/vfx-mv_baihuacuo_fanchang-candidate02.png
+  size: 1254x1254
+  sha256: 88f7b9b608acc59b15b01194b5d2716f1332cfcb16116a0c8128952a69cb259d
+  status: candidate
+  candidate_count: 2
+  selected_candidate: 2
+  notes: 袁士霄传陈家洛有据；具体回目、招名及淡金造型待考/原创扩展。白底原件由 cut_frames.py 导出 straight-alpha RGBA。
+  files:
+  - effect/mv_baihuacuo_fanchang/effect-set.yaml
+  - effect/mv_baihuacuo_fanchang/frame_000.png
+  - effect/mv_baihuacuo_fanchang/frame_001.png
+  - effect/mv_baihuacuo_fanchang/frame_002.png
+  - effect/mv_baihuacuo_fanchang/frame_003.png
+  - effect/mv_baihuacuo_fanchang/preview_black.png
+  - effect/mv_baihuacuo_fanchang/preview_gray.png
+  - effect/mv_baihuacuo_fanchang/preview_white.png
+  - effect/mv_baihuacuo_fanchang/quality.json
+  file_integrity:
+  - file: effect/mv_baihuacuo_fanchang/effect-set.yaml
+    bytes: 975
+    sha256: efb1baefd6b785b25d97886d9416f521d797c2ccf4dcbd01966dd04759753311
+  - file: effect/mv_baihuacuo_fanchang/frame_000.png
+    bytes: 215899
+    sha256: c098667e5523497b8187c30382d14fce5aff4c0bc0bee8377a40b1d55adc7acf
+  - file: effect/mv_baihuacuo_fanchang/frame_001.png
+    bytes: 217792
+    sha256: cea3062314a4a748ee4f481d707cd8300a22da45efcae13134fc4da2d17b59a4
+  - file: effect/mv_baihuacuo_fanchang/frame_002.png
+    bytes: 223928
+    sha256: 8d067c0f5481c3851ad5aad79e591060fb16d8a90110d28036374d5d1590af4f
+  - file: effect/mv_baihuacuo_fanchang/frame_003.png
+    bytes: 179147
+    sha256: d3988d838cb05382672ba718dd95a3b36214c542118011b125ec2d6343868d73
+  - file: effect/mv_baihuacuo_fanchang/preview_black.png
+    bytes: 716983
+    sha256: 4194b4d5628dbce6ffedf0ce133d461364aa13df2bc81a3596ca9f98fc7f6b92
+  - file: effect/mv_baihuacuo_fanchang/preview_gray.png
+    bytes: 691540
+    sha256: 1fcdb548059673162806185eab5b76441b7b6c2272aa2ef777879e90cdb1bb55
+  - file: effect/mv_baihuacuo_fanchang/preview_white.png
+    bytes: 686693
+    sha256: 247589d3d92fa6ea2b6c2b6dd118b7a1eaaa766fe4e014da1eb6be5c8b999aa7
+  - file: effect/mv_baihuacuo_fanchang/quality.json
+    bytes: 1019
+    sha256: 385914aa261c397a4dfadbb212f136a44c72dd6db7a757ba25363560359690aa
+- id: vfx_mv_baihuacuo_baijia__base01
+  file: moves/mv_baihuacuo_baijia/peak.png
+  category: vfx
+  style: default
+  subject: 书剑书界 / 百花错拳 / 百家纷呈近身拳势峰值（原创扩展）
+  prompt: 以 family 四帧效果套与共享 fist emitter 按 Composition 合成 百家纷呈；不改变图鉴范围或命中段。
+  negative: 不新增投射物、射程、伤害段、角色身份或独立发出方原料。
+  references:
+  - effect/family/effect-set.yaml
+  - ../emitters/fist/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py
+  model: deterministic composition
+  effort: n/a
+  created: '2026-09-30'
+  source_path: moves/mv_baihuacuo_baijia/composition.yaml
+  size: 1536x1024
+  sha256: 45072ffac800f4bd896eea85b191e53a9f379d13a7efeca993cf43dd1c512928
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_baihuacuo_baijia/demo.html
+  notes: 非外放近身表现；L=1×256=256px。普通招0.60s，绝招0.90s；玩法见图鉴。
+  files:
+  - moves/mv_baihuacuo_baijia/composition.yaml
+  - moves/mv_baihuacuo_baijia/composition.json
+  - moves/mv_baihuacuo_baijia/demo.html
+  file_integrity:
+  - file: moves/mv_baihuacuo_baijia/composition.yaml
+    bytes: 992
+    sha256: 01e8c256741b077dc75cdef9698ffdb5d6b25c795bde4d9419f65ee6231bb4b1
+  - file: moves/mv_baihuacuo_baijia/composition.json
+    bytes: 3359
+    sha256: 72276208db916a6b58dea4e72cc4f6b62a5f05121bdf80740410c751a635fcf9
+  - file: moves/mv_baihuacuo_baijia/demo.html
+    bytes: 1846086
+    sha256: f1802dcbd3821c9e0a058c1f50c841ab57010ea5939a1b4fcd5fba97c4c821f3
+- id: vfx_mv_baihuacuo_cangzhen__base01
+  file: moves/mv_baihuacuo_cangzhen/peak.png
+  category: vfx
+  style: default
+  subject: 书剑书界 / 百花错拳 / 错中藏真近身拳势峰值（原创扩展）
+  prompt: 以 family 四帧效果套与共享 fist emitter 按 Composition 合成 错中藏真；不改变图鉴范围或命中段。
+  negative: 不新增投射物、射程、伤害段、角色身份或独立发出方原料。
+  references:
+  - effect/family/effect-set.yaml
+  - ../emitters/fist/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py
+  model: deterministic composition
+  effort: n/a
+  created: '2026-09-30'
+  source_path: moves/mv_baihuacuo_cangzhen/composition.yaml
+  size: 1536x1024
+  sha256: 93d9a3b839f91d94841b3cba7492a2c8d64f6e006b237ee1b2001af7eedce69b
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_baihuacuo_cangzhen/demo.html
+  notes: 非外放近身表现；L=1×256=256px。普通招0.60s，绝招0.90s；玩法见图鉴。
+  files:
+  - moves/mv_baihuacuo_cangzhen/composition.yaml
+  - moves/mv_baihuacuo_cangzhen/composition.json
+  - moves/mv_baihuacuo_cangzhen/demo.html
+  file_integrity:
+  - file: moves/mv_baihuacuo_cangzhen/composition.yaml
+    bytes: 984
+    sha256: cf60a58091c5568a4c0a3dfb7eb32d04829cd13c22a9edb2587e0b0d000e7b43
+  - file: moves/mv_baihuacuo_cangzhen/composition.json
+    bytes: 3361
+    sha256: 917382544b1f61ee81e083312c76c517c2827bfc1302a991c53413fefaea9916
+  - file: moves/mv_baihuacuo_cangzhen/demo.html
+    bytes: 1803628
+    sha256: 57f9035a758fed6da8e668b0add583cd04774c36a950d7ccbd28f615a010ab0a
+- id: vfx_mv_baihuacuo_cuoluo__base01
+  file: moves/mv_baihuacuo_cuoluo/peak.png
+  category: vfx
+  style: default
+  subject: 书剑书界 / 百花错拳 / 百花错落近身拳势峰值（原创扩展）
+  prompt: 以 mv_baihuacuo_cuoluo 四帧效果套与共享 fist emitter 按 Composition 合成 百花错落；不改变图鉴范围或命中段。
+  negative: 不新增投射物、射程、伤害段、角色身份或独立发出方原料。
+  references:
+  - effect/mv_baihuacuo_cuoluo/effect-set.yaml
+  - ../emitters/fist/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py
+  model: deterministic composition
+  effort: n/a
+  created: '2026-09-30'
+  source_path: moves/mv_baihuacuo_cuoluo/composition.yaml
+  size: 1536x1024
+  sha256: 673f9087097637a5bd79ad5b7762c7ae2b2f0a8dd1da7bdcba8a85ebdf018b5b
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_baihuacuo_cuoluo/demo.html
+  notes: 非外放近身表现；L=1×256=256px。普通招0.60s，绝招0.90s；玩法见图鉴。
+  files:
+  - moves/mv_baihuacuo_cuoluo/composition.yaml
+  - moves/mv_baihuacuo_cuoluo/composition.json
+  - moves/mv_baihuacuo_cuoluo/demo.html
+  file_integrity:
+  - file: moves/mv_baihuacuo_cuoluo/composition.yaml
+    bytes: 1018
+    sha256: d53c969ac29da5dbae32f729bdd69ee8289968c1b74841e565fa457c09b56ccd
+  - file: moves/mv_baihuacuo_cuoluo/composition.json
+    bytes: 3374
+    sha256: 6f7f14eab65fe5dec291f520b6e9f5227acb60c9912813287955a03847c914cd
+  - file: moves/mv_baihuacuo_cuoluo/demo.html
+    bytes: 2196557
+    sha256: bebd9265d48d39a5dcd710b14976f08e6391d2c4c8a739f63e8b3ab5fe3ba21c
+- id: vfx_mv_baihuacuo_fanchang__base01
+  file: moves/mv_baihuacuo_fanchang/peak.png
+  category: vfx
+  style: default
+  subject: 书剑书界 / 百花错拳 / 反常合道近身拳势峰值（原创扩展）
+  prompt: 以 mv_baihuacuo_fanchang 四帧效果套与共享 fist emitter 按 Composition 合成 反常合道；不改变图鉴范围或命中段。
+  negative: 不新增投射物、射程、伤害段、角色身份或独立发出方原料。
+  references:
+  - effect/mv_baihuacuo_fanchang/effect-set.yaml
+  - ../emitters/fist/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py
+  model: deterministic composition
+  effort: n/a
+  created: '2026-09-30'
+  source_path: moves/mv_baihuacuo_fanchang/composition.yaml
+  size: 1536x1024
+  sha256: a76677c99fbb1576eca5cd9489d2a1f298812996ae8679fad17b2f5f1ef33aef
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_baihuacuo_fanchang/demo.html
+  notes: 非外放近身表现；L=1×256=256px。普通招0.60s，绝招0.90s；玩法见图鉴。
+  files:
+  - moves/mv_baihuacuo_fanchang/composition.yaml
+  - moves/mv_baihuacuo_fanchang/composition.json
+  - moves/mv_baihuacuo_fanchang/demo.html
+  file_integrity:
+  - file: moves/mv_baihuacuo_fanchang/composition.yaml
+    bytes: 1004
+    sha256: 7549384f4113ee0a4887bbae8ef6d1af159de28a99f3d51a45666ba61220153c
+  - file: moves/mv_baihuacuo_fanchang/composition.json
+    bytes: 3387
+    sha256: 7b743c1a1be189e52a3d92aca2137a1efe5cd9e0eaf44af4793d3a4fa13bf7c5
+  - file: moves/mv_baihuacuo_fanchang/demo.html
+    bytes: 1544750
+    sha256: 6abc59eef0907daee9deef1204abf8cb1912398557970543113dccb02ed2aca5
+- id: vfx_mv_baihuacuo_luanhua__base01
+  file: moves/mv_baihuacuo_luanhua/peak.png
+  category: vfx
+  style: default
+  subject: 书剑书界 / 百花错拳 / 乱花错眼近身拳势峰值（原创扩展）
+  prompt: 以 family 四帧效果套与共享 fist emitter 按 Composition 合成 乱花错眼；不改变图鉴范围或命中段。
+  negative: 不新增投射物、射程、伤害段、角色身份或独立发出方原料。
+  references:
+  - effect/family/effect-set.yaml
+  - ../emitters/fist/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py
+  model: deterministic composition
+  effort: n/a
+  created: '2026-09-30'
+  source_path: moves/mv_baihuacuo_luanhua/composition.yaml
+  size: 1536x1024
+  sha256: 4b3311abcd503201b756e0cc7e7b546d39c266fbd833dfba49229d04b2fb82dc
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_baihuacuo_luanhua/demo.html
+  notes: 非外放近身表现；L=1×256=256px。普通招0.60s，绝招0.90s；玩法见图鉴。
+  files:
+  - moves/mv_baihuacuo_luanhua/composition.yaml
+  - moves/mv_baihuacuo_luanhua/composition.json
+  - moves/mv_baihuacuo_luanhua/demo.html
+  file_integrity:
+  - file: moves/mv_baihuacuo_luanhua/composition.yaml
+    bytes: 986
+    sha256: 9beb4f7b82250bdab1df568151cef9677830ba106a9065e4695a53f781cf96d1
+  - file: moves/mv_baihuacuo_luanhua/composition.json
+    bytes: 3359
+    sha256: 302f1c3abc4b7469a047a50f9627b52f0eea003412be9694f0e717fed070b3d9
+  - file: moves/mv_baihuacuo_luanhua/demo.html
+    bytes: 1825034
+    sha256: aaa0130cf8cdf688fa722899f62028a065f00c429870502fd5584382a69b88f1
+- id: vfx_mv_baihuacuo_yihua__base01
+  file: moves/mv_baihuacuo_yihua/peak.png
+  category: vfx
+  style: default
+  subject: 书剑书界 / 百花错拳 / 移花接木近身拳势峰值（原创扩展）
+  prompt: 以 family 四帧效果套与共享 fist emitter 按 Composition 合成 移花接木；不改变图鉴范围或命中段。
+  negative: 不新增投射物、射程、伤害段、角色身份或独立发出方原料。
+  references:
+  - effect/family/effect-set.yaml
+  - ../emitters/fist/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py
+  model: deterministic composition
+  effort: n/a
+  created: '2026-09-30'
+  source_path: moves/mv_baihuacuo_yihua/composition.yaml
+  size: 1536x1024
+  sha256: c2c117010eaa7e992e30208ac6f23041e25adea2bb1b9b8eb6432c72e8c8139a
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_baihuacuo_yihua/demo.html
+  notes: 非外放近身表现；L=1×256=256px。普通招0.60s，绝招0.90s；玩法见图鉴。
+  files:
+  - moves/mv_baihuacuo_yihua/composition.yaml
+  - moves/mv_baihuacuo_yihua/composition.json
+  - moves/mv_baihuacuo_yihua/demo.html
+  file_integrity:
+  - file: moves/mv_baihuacuo_yihua/composition.yaml
+    bytes: 1008
+    sha256: 6ccba8321a535d8212407a2bf656e5cc216c9ed3721666e47860ec3d750fd8a2
+  - file: moves/mv_baihuacuo_yihua/composition.json
+    bytes: 3354
+    sha256: 942232dd6958f0338fe45b029c5d16bda18aaa8da1fdc049a3a3b4c9b0b041fd
+  - file: moves/mv_baihuacuo_yihua/demo.html
+    bytes: 1824501
+    sha256: 83f23cb7808af2d5f3f6215d53a5d79dd8d2f49e7d6cb5cdf2dd541f98d2b25c
+
