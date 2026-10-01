@@ -1,0 +1,26 @@
+{
+  "skill": "sk_bosishenghuoxuangong",
+  "created": "2026-09-30",
+  "generation_note": "本会话未提供 image_gen 工具；三套候选由 make_sources.py 以 Pillow 程序化绘制，未伪称模型生成。",
+  "common_brief": "纯白 #FFFFFF 背景；2x2 四帧，单格 768x512；左到右；阳性主色赤朱、辅色金；水墨虚实透明；无人物、手、兵器、文字、边框或硬阴影；全部造型与颜色为原创扩展。",
+  "requests": [
+    {
+      "asset_id": "vfx_sk_bosishenghuoxuangong__family_base01",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "brief": "五道赤金回环气带由掌面聚起，近根三层弧环呼吸开合，表现吐纳、转换与护体共通语汇。"
+    },
+    {
+      "asset_id": "vfx_mv_bosishenghuoxuangong_huanming__effect_base01",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "brief": "绝招独有：赤金双环交错套转，五道焰带在环中回卷后归束；不画实体火焰或文字令牌。"
+    },
+    {
+      "asset_id": "vfx_mv_bosishenghuoxuangong_shouling__effect_base01",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "brief": "绝招独有：四层断续令纹闭合护持，三道气息归于中心；不画实体圣火令或攻击冲击。"
+    }
+  ]
+}
