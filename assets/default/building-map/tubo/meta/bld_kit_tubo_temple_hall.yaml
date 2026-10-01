@@ -1,0 +1,74 @@
+id: bld_kit_tubo_temple_hall
+status: candidate
+building:
+  type: bld_kit_tubo_temple_hall
+  footprint: [14, 11]
+  anchor: &id001 [499.2493, 355.3634]
+  era: tubo
+anchor_px: *id001
+footprint_m: [14, 11]
+entrance: {edge: S, offset_cells: 7.0}
+entrance_note: S边中点为规划默认，非实际门洞像素；运行时待实测。
+collision_polygon_m:
+- [0, 0]
+- [14, 0]
+- [14, 11]
+- [0, 11]
+collision_note: 规划整占地代理，不含阴影；院内行走细化待实测。
+actual_height_m: null
+height_note: 未做三维量测；不可把PNG轮廓当作精确高度。
+occluder_proxy_px: [32, 33, 909, 566]
+occluder_note: alpha非零包围框仅作离线保守代理。
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_tubo_temple_hall.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [800, 400]
+  ground_width_px: 800
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [116, 596]
+    front: [861, 975]
+    right: [1493, 651]
+  source_axis_slopes: [0.508724832214765, -0.5126582278481012]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.1787974683544304
+  expected_width_depth_ratio: 1.2727272727272727
+  ratio_relative_error: 0.0738019891500904
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。
+pixel_qa:
+  mode: RGBA
+  size: [941, 598]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 319279
+  alpha_partial_pixels: 242385
+  alpha_near_opaque_pixels: 237662
+  alpha_opaque_pixels: 1054
+  alpha_nonzero_bbox: [32, 33, 909, 566]
+  transparent_margins_px: [32, 33, 32, 32]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_tubo_temple_hall.png
+  source_sha256: 357d1d09b6d07ab1b8b614402f90392dfa69339e21238ddacddbbce18d306ad2
+  source_size: [1536, 1024]
+  crop_box: [0, 67, 1510, 986]
+  uniform_scale_requested: 0.5809731299927379
+  resized_size: [877, 534]
+  rounded_effective_scale: [0.580794701986755, 0.5810663764961915]
+  paste_offset: [32, 32, 909, 566]
+  target_canvas: [941, 598]
+  final_file: bld_kit_tubo_temple_hall.png
+  steps: [crop alpha>0 bounding box, 'uniform LANCZOS resize, nearest-integer dimensions', 'paste without mask onto transparent RGBA; no repaint, warp, alpha threshold,
+      flip or rotation']
+release_ready: false
+visual_review: 原图已 view_image；无文字、人物、现代物件；真实RGBA alpha保持。二候选底面角点可读，轴斜率约+0.509/-0.513，金顶和白赭石墙、柱廊入口清楚。金顶具体样式为原创组合，非所有年代复原。
+historical_note: 原创地域功能组合；非任何具名实物或全年代复原。

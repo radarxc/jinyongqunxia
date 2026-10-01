@@ -1,0 +1,74 @@
+id: bld_kit_tubo_casino
+status: candidate
+building:
+  type: bld_kit_tubo_casino
+  footprint: [9, 7]
+  anchor: &id001 [346.8415, 268.3106]
+  era: tubo
+anchor_px: *id001
+footprint_m: [9, 7]
+entrance: {edge: S, offset_cells: 4.5}
+entrance_note: S边中点为规划默认，非实际门洞像素；运行时待实测。
+collision_polygon_m:
+- [0, 0]
+- [9, 0]
+- [9, 7]
+- [0, 7]
+collision_note: 规划整占地代理，不含阴影；院内行走细化待实测。
+actual_height_m: null
+height_note: 未做三维量测；不可把PNG轮廓当作精确高度。
+occluder_proxy_px: [32, 32, 605, 402]
+occluder_note: alpha非零包围框仅作离线保守代理。
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_tubo_casino.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [512, 256]
+  ground_width_px: 512
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [153, 614]
+    front: [898, 977]
+    right: [1480, 678]
+  source_axis_slopes: [0.487248322147651, -0.5137457044673539]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.2800687285223367
+  expected_width_depth_ratio: 1.2857142857142858
+  ratio_relative_error: 0.004390988927071571
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。
+pixel_qa:
+  mode: RGBA
+  size: [637, 437]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 167369
+  alpha_partial_pixels: 110037
+  alpha_near_opaque_pixels: 108155
+  alpha_opaque_pixels: 963
+  alpha_nonzero_bbox: [32, 32, 605, 402]
+  transparent_margins_px: [32, 32, 32, 35]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_tubo_casino.png
+  source_sha256: 977a83448876037fe36da3d26874988e1e03846a2f6612e4a29e07c49de5bf23
+  source_size: [1536, 1024]
+  crop_box: [0, 34, 1486, 1000]
+  uniform_scale_requested: 0.3858327053504145
+  resized_size: [573, 373]
+  rounded_effective_scale: [0.3855989232839839, 0.386128364389234]
+  paste_offset: [32, 32, 605, 405]
+  target_canvas: [637, 437]
+  final_file: bld_kit_tubo_casino.png
+  steps: [crop alpha>0 bounding box, 'uniform LANCZOS resize, nearest-integer dimensions', 'paste without mask onto transparent RGBA; no repaint, warp, alpha threshold,
+      flip or rotation']
+release_ready: false
+visual_review: 原图已 view_image；可见左右前底面角点，石砌白墙平顶、黑框窗、木门和入口完整；无伪字/人物/现代元素；地域功能替换属原创扩展。
+historical_note: 原创地域功能组合；非任何具名实物或全年代复原。

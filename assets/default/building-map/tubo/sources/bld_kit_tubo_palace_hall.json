@@ -1,0 +1,288 @@
+{
+  "id": "bld_kit_tubo_palace_hall",
+  "w": 20,
+  "h": 16,
+  "subject": "地方宫室模块（原创扩展，不具名布达拉宫）",
+  "prompt": "Use case: precise-object-edit. Redraw the attached Tibetan secular palace sprite to CORRECT the ground proportions. The current long frontage is FAR too long and the depth is far too short; it must become a NEARLY SQUARE plan, frontage only 1.25 times depth (20 by16). Compress front facade width and extend the rightward-visible side wall significantly. True 2:1 ORTHOGRAPHIC dimetric camera yaw45/pitch30. Ground slopes must be +0.5 and -0.5, not shallow. Thin ground contact perimeter on1536x1024 canvas corners LEFT(208,530), FRONT(830,841), RIGHT(1328,592), BACK(706,281). Therefore front corner is only62px right of image centre. Match all wall and roof lines to those parallel axes. NO perspective convergence. Preserve Tibetan thick white stone walls with ochre red top band, flat roofs, black timber windows, moderate three-storey height, lower side wing, simple entrance steps; no golden roof. Architecture can change dimensions freely to fit corrected shape. Upper-left light. No high base. Alpha0 transparent background, no fog/halo/glow. No text/people/watermark/guidelines. At least64px clear margin.",
+  "negative": "人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。",
+  "references": [
+    {
+      "id": "bld_kit_tubo_palace_hall_attempt01",
+      "file": "sources/rejected/bld_kit_tubo_palace_hall_attempt01.png",
+      "role": "编辑目标；同次首次生成候选",
+      "sha256": "160b33b0e0f0a0c91ba573e77cf5f4e6430fd6ef6fe9705553f4e022cb583b64",
+      "status": "candidate"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-7060a57d-e232-4990-a589-59faacf17711.png",
+  "created": "2026-09-30T22:20:03.514Z",
+  "candidate_count": 2,
+  "tool": "functions.exec · image_gen",
+  "model": "image_gen（工具未公开底层模型版本）",
+  "effort": "未公开",
+  "status": "candidate",
+  "source_corners_px": {
+    "left": [
+      83,
+      628
+    ],
+    "front": [
+      930,
+      991
+    ],
+    "right": [
+      1507,
+      683
+    ]
+  },
+  "visual_review": "原图已 view_image；无文字、人物、现代物件；真实RGBA alpha保持。二候选较首张近方，但长宽比残差约17.4%，两轴约+0.429/-0.534，超过±0.03；按最多两候选限制保留较好图，非严格拼接就绪。",
+  "rejected": [
+    {
+      "id": "bld_kit_tubo_palace_hall",
+      "prompt": "Use case: historical-scene. Asset type: one realistic historical Tibetan plateau city-map building sprite, original regional functional adaptation for a Chinese wuxia game. Input image 1 is a STYLE REFERENCE ONLY: match its restrained natural material detail, visual density and age, NOT its Chinese tiled roof style or building shape. Build NEW Tibetan stone architecture. Clear rugged stone courses, lightly weathered white or ochre plaster, thick gently battered walls, flat earthen parapet roof, small dark timber windows with black trapezoidal surrounds and modest red-brown timber cornices. Natural warm-neutral light from SCREEN UPPER LEFT and only a small soft contact shadow to lower right. TRUE TRANSPARENT RGBA background. Not a complete city scene. Camera strict orthographic 2:1 dimetric, yaw 45 degrees, pitch 30 degrees, all verticals vertical, all parallel edges stay parallel, both ground axes slope EXACTLY +0.5 and -0.5. Clear thin rectangular stone contact perimeter with no thick plinth, unobscured left/front/right ground corners. Generous transparent margins all around. No people, text, pseudo-writing, painted script, readable signs, modern objects, landscape, sky, distant buildings, grid, labels, watermark, checkerboard, white background, tourism replicas, floating island, toy diorama, perspective convergence, long shadows. No named real temple or Potala Palace copy and no claim of exact reconstruction of any century. Single complete 1536x1024 image.  Absolute no external ambient halo or glow. Outside silhouette fully transparent alpha=0. An imposing but generic secular Tibetan local palace hall module, NOT Potala Palace. One coherent three-storey battered stone block with a lower attached side wing, whitewashed stone lower walls, restrained ochre-red upper band, small black-framed timber windows, broad flat earthen parapet roofs, rich but subdued timber door surround and broad short stone entry steps. Rectangular plan, no mountain, no fortress city, no gold roof or Chinese palace gables. All sides and foundations visible. The exact rectangular FOOTPRINT is 20 by 16 metres; long front edge / depth ratio =1.25. Clear stone ground perimeter corners LEFT(208,560), FRONT(830.2222222222222,871.1111111111111), RIGHT(1328,622.2222222222222), BACK(705.7777777777778,311.1111111111111). These are ground contact corners. Make palace roof high but fully contained in frame. Stairs face lower-left and stay inside contact rectangle. Both ground slopes +0.5/-0.5. No monumental high platform.",
+      "created": "2026-09-30T22:18:34.255Z",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-280edbcc-5782-4857-b636-82faef345f42.png",
+      "reason": "第一张底面明显过长、双轴偏浅；二图有改善但仍未满足几何建议容差。",
+      "source_archive": "sources/rejected/bld_kit_tubo_palace_hall_attempt01.png",
+      "source_sha256": "160b33b0e0f0a0c91ba573e77cf5f4e6430fd6ef6fe9705553f4e022cb583b64",
+      "references": [
+        {
+          "id": "bld_kit_song_dali_yamen",
+          "file": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+          "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef",
+          "role": "宋候选仅作材质和细节密度参考；非藏地形制",
+          "status": "candidate"
+        }
+      ]
+    }
+  ],
+  "source_archive": "sources/bld_kit_tubo_palace_hall.png",
+  "source_sha256": "52a3cd3bb77416ab814de81f68d88ac62d3be3bf4f75dc11dc5ee1a2c53811a8",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "size": [
+      1536,
+      1024
+    ],
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "alpha_zero_pixels": 821411,
+    "alpha_partial_pixels": 751453,
+    "alpha_near_opaque_pixels": 735696,
+    "alpha_opaque_pixels": 0,
+    "alpha_nonzero_bbox": [
+      79,
+      47,
+      1514,
+      1000
+    ],
+    "transparent_margins_px": [
+      79,
+      47,
+      22,
+      24
+    ],
+    "border_alpha_max": 0
+  },
+  "processing": {
+    "source_archive": "sources/bld_kit_tubo_palace_hall.png",
+    "source_sha256": "52a3cd3bb77416ab814de81f68d88ac62d3be3bf4f75dc11dc5ee1a2c53811a8",
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box": [
+      79,
+      47,
+      1514,
+      1000
+    ],
+    "uniform_scale_requested": 0.8089887640449438,
+    "resized_size": [
+      1161,
+      771
+    ],
+    "rounded_effective_scale": [
+      0.8090592334494774,
+      0.8090241343126967
+    ],
+    "paste_offset": [
+      32,
+      32,
+      1193,
+      803
+    ],
+    "target_canvas": [
+      1225,
+      835
+    ],
+    "final_file": "bld_kit_tubo_palace_hall.png",
+    "steps": [
+      "crop alpha>0 bounding box",
+      "uniform LANCZOS resize, nearest-integer dimensions",
+      "paste without mask onto transparent RGBA; no repaint, warp, alpha threshold, flip or rotation"
+    ]
+  },
+  "geometry_qa": {
+    "source_corners_px": {
+      "left": [
+        83,
+        628
+      ],
+      "front": [
+        930,
+        991
+      ],
+      "right": [
+        1507,
+        683
+      ]
+    },
+    "source_axis_slopes": [
+      0.42857142857142855,
+      -0.5337954939341422
+    ],
+    "axis_tolerance": 0.03,
+    "axis_pass": false,
+    "source_width_depth_ratio": 1.4679376083188909,
+    "expected_width_depth_ratio": 1.25,
+    "ratio_relative_error": 0.17435008665511265,
+    "ratio_tolerance_suggestion": 0.1,
+    "ratio_pass": false,
+    "measurement_uncertainty_source_px": 3,
+    "precision_note": "人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。"
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      1225,
+      835
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 531690,
+    "alpha_partial_pixels": 490324,
+    "alpha_near_opaque_pixels": 481344,
+    "alpha_opaque_pixels": 861,
+    "alpha_nonzero_bbox": [
+      32,
+      32,
+      1193,
+      803
+    ],
+    "transparent_margins_px": [
+      32,
+      32,
+      32,
+      32
+    ],
+    "border_alpha_max": 0
+  },
+  "manifest_entry": {
+    "id": "bld_kit_tubo_palace_hall",
+    "subject": "地方宫室模块（原创扩展，不具名布达拉宫）",
+    "prompt": "Use case: precise-object-edit. Redraw the attached Tibetan secular palace sprite to CORRECT the ground proportions. The current long frontage is FAR too long and the depth is far too short; it must become a NEARLY SQUARE plan, frontage only 1.25 times depth (20 by16). Compress front facade width and extend the rightward-visible side wall significantly. True 2:1 ORTHOGRAPHIC dimetric camera yaw45/pitch30. Ground slopes must be +0.5 and -0.5, not shallow. Thin ground contact perimeter on1536x1024 canvas corners LEFT(208,530), FRONT(830,841), RIGHT(1328,592), BACK(706,281). Therefore front corner is only62px right of image centre. Match all wall and roof lines to those parallel axes. NO perspective convergence. Preserve Tibetan thick white stone walls with ochre red top band, flat roofs, black timber windows, moderate three-storey height, lower side wing, simple entrance steps; no golden roof. Architecture can change dimensions freely to fit corrected shape. Upper-left light. No high base. Alpha0 transparent background, no fog/halo/glow. No text/people/watermark/guidelines. At least64px clear margin.",
+    "negative": "人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。",
+    "references": [
+      {
+        "id": "bld_kit_tubo_palace_hall_attempt01",
+        "file": "sources/rejected/bld_kit_tubo_palace_hall_attempt01.png",
+        "role": "编辑目标；同次首次生成候选",
+        "sha256": "160b33b0e0f0a0c91ba573e77cf5f4e6430fd6ef6fe9705553f4e022cb583b64",
+        "status": "candidate"
+      }
+    ],
+    "tool": "functions.exec · image_gen",
+    "model": "image_gen（工具未公开底层模型版本）",
+    "effort": "未公开",
+    "created": "2026-09-30T22:20:03.514Z",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-7060a57d-e232-4990-a589-59faacf17711.png",
+    "status": "candidate",
+    "file": "bld_kit_tubo_palace_hall.png",
+    "category": "building-map",
+    "style": "default",
+    "size": "1225x835",
+    "sha256": "9941493085846741dbf9a82594c9190018e56f18f24f0f3411e531bca2fb178b",
+    "notes": "原图已 view_image；无文字、人物、现代物件；真实RGBA alpha保持。二候选较首张近方，但长宽比残差约17.4%，两轴约+0.429/-0.534，超过±0.03；按最多两候选限制保留较好图，非严格拼接就绪。 单45°视图；未通过城市拼接和作者审批。",
+    "building": {
+      "type": "bld_kit_tubo_palace_hall",
+      "footprint": [
+        20,
+        16
+      ],
+      "anchor": [
+        611.2864,
+        524.2912
+      ],
+      "era": "tubo"
+    },
+    "footprint_m": [
+      20,
+      16
+    ],
+    "entrance": {
+      "edge": "S",
+      "offset_cells": 10.0
+    },
+    "projection_contract": {
+      "tile_px": [
+        64,
+        32
+      ],
+      "ground_bbox_px": [
+        1152,
+        576
+      ],
+      "ground_width_px": 1152,
+      "light": "screen_upper_left",
+      "shadow": "screen_lower_right_contact_only"
+    },
+    "meta": "meta/bld_kit_tubo_palace_hall.yaml",
+    "anchor_px": [
+      611.2864,
+      524.2912
+    ],
+    "source_copy": "sources/bld_kit_tubo_palace_hall.png",
+    "source_sha256": "52a3cd3bb77416ab814de81f68d88ac62d3be3bf4f75dc11dc5ee1a2c53811a8",
+    "candidate_count": 2,
+    "geometry_qa": {
+      "source_corners_px": {
+        "left": [
+          83,
+          628
+        ],
+        "front": [
+          930,
+          991
+        ],
+        "right": [
+          1507,
+          683
+        ]
+      },
+      "source_axis_slopes": [
+        0.42857142857142855,
+        -0.5337954939341422
+      ],
+      "axis_tolerance": 0.03,
+      "axis_pass": false,
+      "source_width_depth_ratio": 1.4679376083188909,
+      "expected_width_depth_ratio": 1.25,
+      "ratio_relative_error": 0.17435008665511265,
+      "ratio_tolerance_suggestion": 0.1,
+      "ratio_pass": false,
+      "measurement_uncertainty_source_px": 3,
+      "precision_note": "人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。"
+    },
+    "metadata": "meta/bld_kit_tubo_palace_hall.yaml"
+  },
+  "final_visual_review": "已逐张view_image成品透明PNG及临时灰底alpha合成；主体完整、无实际外围棕色光晕；源alpha保持，未阈值抠图。"
+}

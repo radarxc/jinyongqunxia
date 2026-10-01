@@ -1,0 +1,9 @@
+{
+  "date": "2026-09-30",
+  "checks": [
+    {"command": "python3 tools/agents/check_assets.py assets/default/building-map/tubo --min 18 --max 22 --min-side 256", "exit_code": 0, "images": 19, "entries": 19, "problems": 0},
+    {"command": "python3 tools/agents/check_assets.py assets/default/tile/tubo --min 5 --max 10 --min-side 32", "exit_code": 0, "images": 7, "entries": 7, "problems": 0},
+    {"command": "python3 tools/lint/check_ids.py --strict", "exit_code": 0, "strict_failure_count": 0, "existing_undefined_baseline": ["sk_babuganchan"], "new_undefined": 0}
+  ],
+  "limits": "指定检查不验证投影、精确净宽、拼缝或历史形制，也不代表作者批准。逐图人工几何结果见 manifest.geometry_qa 或 metadata 指向文件；7张贴片未完成精确对格验证。"
+}

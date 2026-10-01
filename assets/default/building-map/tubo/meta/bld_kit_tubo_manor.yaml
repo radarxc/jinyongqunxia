@@ -1,0 +1,74 @@
+id: bld_kit_tubo_manor
+status: candidate
+building:
+  type: bld_kit_tubo_manor
+  footprint: [15, 12]
+  anchor: &id001 [533.747, 395.4126]
+  era: tubo
+anchor_px: *id001
+footprint_m: [15, 12]
+entrance: {edge: S, offset_cells: 7.5}
+entrance_note: S边中点为规划默认，非实际门洞像素；运行时待实测。
+collision_polygon_m:
+- [0, 0]
+- [15, 0]
+- [15, 12]
+- [0, 12]
+collision_note: 规划整占地代理，不含阴影；院内行走细化待实测。
+actual_height_m: null
+height_note: 未做三维量测；不可把PNG轮廓当作精确高度。
+occluder_proxy_px: [32, 32, 995, 669]
+occluder_note: alpha非零包围框仅作离线保守代理。
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_tubo_manor.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [864, 432]
+  ground_width_px: 864
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [110, 567]
+    front: [857, 931]
+    right: [1476, 616]
+  source_axis_slopes: [0.48728246318607765, -0.5088852988691438]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.2067851373182552
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.034571890145395856
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。
+pixel_qa:
+  mode: RGBA
+  size: [1027, 701]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 456050
+  alpha_partial_pixels: 262949
+  alpha_near_opaque_pixels: 257196
+  alpha_opaque_pixels: 928
+  alpha_nonzero_bbox: [32, 32, 995, 669]
+  transparent_margins_px: [32, 32, 32, 32]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_tubo_manor.png
+  source_sha256: 1cea1173b06bcefbab5b23f40f1f4183ece8cef447786857aabc7784768796d1
+  source_size: [1536, 1024]
+  crop_box: [0, 17, 1522, 1024]
+  uniform_scale_requested: 0.6325036603221084
+  resized_size: [963, 637]
+  rounded_effective_scale: [0.6327201051248358, 0.6325719960278053]
+  paste_offset: [32, 32, 995, 669]
+  target_canvas: [1027, 701]
+  final_file: bld_kit_tubo_manor.png
+  steps: [crop alpha>0 bounding box, 'uniform LANCZOS resize, nearest-integer dimensions', 'paste without mask onto transparent RGBA; no repaint, warp, alpha threshold,
+      flip or rotation']
+release_ready: false
+visual_review: 原图已 view_image；可见左右前底面角点，石砌白墙平顶、黑框窗、木门和入口完整；无伪字/人物/现代元素；地域功能替换属原创扩展。
+historical_note: 原创地域功能组合；非任何具名实物或全年代复原。

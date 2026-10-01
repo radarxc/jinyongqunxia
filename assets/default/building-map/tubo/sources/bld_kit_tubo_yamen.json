@@ -1,0 +1,288 @@
+{
+  "id": "bld_kit_tubo_yamen",
+  "w": 16,
+  "h": 12,
+  "subject": "藏地官署（原创地域同功能替换）",
+  "prompt": "Use case: precise-object-edit. Edit this Tibetan local government courtyard sprite. Preserve its realistic Tibetan white and ochre stone architecture, flat roofs, black window surrounds, dark red wood, quiet courtyard, upper-left light and details. Remove COMPLETELY the broad dusty beige ambient glow outside the building. The previous outside halo is unacceptable. All empty pixels around the thin ground contact polygon must have alpha=0, no beige halo, no fog or backdrop and no big cast shadow. Give crisp natural antialiased silhouette like a clean game cutout. Building remains opaque. Make front-left ground edge longer so its ratio to front-right edge is 16:12 = 1.333. Both axes +0.5/-0.5 exactly. On a 1536x1024 canvas foot contact corners are LEFT (168,520), FRONT (853.7,862.9), RIGHT (1368,605.7), BACK (682.3,262.9). Match all walls to these corners and keep opposite edges parallel. Main entrance on front-left edge. Keep all silhouette edges and roof inside canvas with at least 40px true transparent margin. Thin stone contact patch only, no thick base, no text, no grid, no people, no symbols, no watermark. Single finished transparent RGBA sprite.",
+  "negative": "人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。",
+  "references": [
+    {
+      "id": "bld_kit_tubo_yamen_attempt01",
+      "file": "sources/rejected/bld_kit_tubo_yamen_attempt01.png",
+      "role": "编辑目标；同次首次生成候选",
+      "sha256": "b3bc428c4f5c9f9e1c4e09febd80549f00d8c501b03b96e721793a1d7c45f965",
+      "status": "candidate"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-f1921cc0-2bf7-4be8-a52f-1c6d63eba0eb.png",
+  "created": "2026-09-30T22:09:15.371Z",
+  "candidate_count": 2,
+  "tool": "functions.exec · image_gen",
+  "model": "image_gen（工具未公开底层模型版本）",
+  "effort": "未公开",
+  "status": "candidate",
+  "source_corners_px": {
+    "left": [
+      70,
+      566
+    ],
+    "front": [
+      861,
+      958
+    ],
+    "right": [
+      1510,
+      636
+    ]
+  },
+  "visual_review": "原图与灰底合成均已 view_image；工具直接展示的外围棕色光晕在正确 alpha 合成后不存在。石砌白赭墙平顶院落、左上光、门口完整，无文字/人物/现代元素。地面宽深比残差约8.6%，仍需城市拼接复核。",
+  "rejected": [
+    {
+      "id": "bld_kit_tubo_yamen",
+      "prompt": "Use case: historical-scene. Asset type: one realistic historical Tibetan plateau city-map building sprite, original regional functional adaptation for a Chinese wuxia game. Input image 1 is a STYLE REFERENCE ONLY: match its restrained natural material detail, visual density and age, NOT its Chinese tiled roof style or building shape. Build NEW Tibetan stone architecture. Clear rugged stone courses, lightly weathered white or ochre plaster, thick gently battered walls, flat earthen parapet roof, small dark timber windows with black trapezoidal surrounds and modest red-brown timber cornices. Natural warm-neutral light from SCREEN UPPER LEFT and only a small soft contact shadow to lower right. TRUE TRANSPARENT RGBA background. Not a complete city scene. Camera strict orthographic 2:1 dimetric, yaw 45 degrees, pitch 30 degrees, all verticals vertical, all parallel edges stay parallel, both ground axes slope EXACTLY +0.5 and -0.5. Clear thin rectangular stone contact perimeter with no thick plinth, unobscured left/front/right ground corners. Generous transparent margins all around. No people, text, pseudo-writing, painted script, readable signs, modern objects, landscape, sky, distant buildings, grid, labels, watermark, checkerboard, white background, tourism replicas, floating island, toy diorama, perspective convergence, long shadows. No named real temple or Potala Palace copy and no claim of exact reconstruction of any century. Single complete 1536x1024 image. A modest secular local government compound. Thick white stone two-storey rear administrative hall, ochre lower side service wings around a small empty court, simple front gate inside a low stone enclosure. Straight flat roofs, black framed windows and restrained dark red timber over the gate. No gilding or religious finials; no imperial Chinese gabled roof. Readable official courtyard hierarchy, but no writing or emblems. Exact footprint 16 by 12 metres; front edge length / right edge length = 1.3333333333333333. On canvas thin contact ground corners LEFT (168,520), FRONT (853.7142857142857,862.8571428571429), RIGHT (1368,605.7142857142857), BACK (682.2857142857142,262.8571428571429). Those are ground feet, NOT wall tops. Entrance faces front-left edge; keep the front ground corner right of centre. No visible construction guides.",
+      "created": "2026-09-30T22:07:45.499Z",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-124fb97a-da1f-4ff0-b382-5f3520624f9d.png",
+      "reason": "首次图 alpha 非零触左边；二候选留白及底面角点更清楚。",
+      "source_archive": "sources/rejected/bld_kit_tubo_yamen_attempt01.png",
+      "source_sha256": "b3bc428c4f5c9f9e1c4e09febd80549f00d8c501b03b96e721793a1d7c45f965",
+      "references": [
+        {
+          "id": "bld_kit_song_dali_yamen",
+          "file": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+          "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef",
+          "role": "宋候选仅作材质和细节密度参考；非藏地形制",
+          "status": "candidate"
+        }
+      ]
+    }
+  ],
+  "source_archive": "sources/bld_kit_tubo_yamen.png",
+  "source_sha256": "eb2c65f8a515d451109e6d2a13b062906e8cb4673c5b307fa335c92bdc71130f",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "size": [
+      1536,
+      1024
+    ],
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "alpha_zero_pixels": 861829,
+    "alpha_partial_pixels": 711035,
+    "alpha_near_opaque_pixels": 697567,
+    "alpha_opaque_pixels": 0,
+    "alpha_nonzero_bbox": [
+      65,
+      73,
+      1515,
+      963
+    ],
+    "transparent_margins_px": [
+      65,
+      73,
+      21,
+      61
+    ],
+    "border_alpha_max": 0
+  },
+  "processing": {
+    "source_archive": "sources/bld_kit_tubo_yamen.png",
+    "source_sha256": "eb2c65f8a515d451109e6d2a13b062906e8cb4673c5b307fa335c92bdc71130f",
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box": [
+      65,
+      73,
+      1515,
+      963
+    ],
+    "uniform_scale_requested": 0.6222222222222222,
+    "resized_size": [
+      902,
+      554
+    ],
+    "rounded_effective_scale": [
+      0.6220689655172413,
+      0.6224719101123596
+    ],
+    "paste_offset": [
+      32,
+      32,
+      934,
+      586
+    ],
+    "target_canvas": [
+      966,
+      618
+    ],
+    "final_file": "bld_kit_tubo_yamen.png",
+    "steps": [
+      "crop alpha>0 bounding box",
+      "uniform LANCZOS resize, nearest-integer dimensions",
+      "paste without mask onto transparent RGBA; no repaint, warp, alpha threshold, flip or rotation"
+    ]
+  },
+  "geometry_qa": {
+    "source_corners_px": {
+      "left": [
+        70,
+        566
+      ],
+      "front": [
+        861,
+        958
+      ],
+      "right": [
+        1510,
+        636
+      ]
+    },
+    "source_axis_slopes": [
+      0.49557522123893805,
+      -0.49614791987673346
+    ],
+    "axis_tolerance": 0.03,
+    "axis_pass": true,
+    "source_width_depth_ratio": 1.2187981510015409,
+    "expected_width_depth_ratio": 1.3333333333333333,
+    "ratio_relative_error": 0.08590138674884429,
+    "ratio_tolerance_suggestion": 0.1,
+    "ratio_pass": true,
+    "measurement_uncertainty_source_px": 3,
+    "precision_note": "人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。"
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      966,
+      618
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 321732,
+    "alpha_partial_pixels": 274057,
+    "alpha_near_opaque_pixels": 269879,
+    "alpha_opaque_pixels": 1199,
+    "alpha_nonzero_bbox": [
+      32,
+      32,
+      933,
+      586
+    ],
+    "transparent_margins_px": [
+      32,
+      32,
+      33,
+      32
+    ],
+    "border_alpha_max": 0
+  },
+  "manifest_entry": {
+    "id": "bld_kit_tubo_yamen",
+    "subject": "藏地官署（原创地域同功能替换）",
+    "prompt": "Use case: precise-object-edit. Edit this Tibetan local government courtyard sprite. Preserve its realistic Tibetan white and ochre stone architecture, flat roofs, black window surrounds, dark red wood, quiet courtyard, upper-left light and details. Remove COMPLETELY the broad dusty beige ambient glow outside the building. The previous outside halo is unacceptable. All empty pixels around the thin ground contact polygon must have alpha=0, no beige halo, no fog or backdrop and no big cast shadow. Give crisp natural antialiased silhouette like a clean game cutout. Building remains opaque. Make front-left ground edge longer so its ratio to front-right edge is 16:12 = 1.333. Both axes +0.5/-0.5 exactly. On a 1536x1024 canvas foot contact corners are LEFT (168,520), FRONT (853.7,862.9), RIGHT (1368,605.7), BACK (682.3,262.9). Match all walls to these corners and keep opposite edges parallel. Main entrance on front-left edge. Keep all silhouette edges and roof inside canvas with at least 40px true transparent margin. Thin stone contact patch only, no thick base, no text, no grid, no people, no symbols, no watermark. Single finished transparent RGBA sprite.",
+    "negative": "人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。",
+    "references": [
+      {
+        "id": "bld_kit_tubo_yamen_attempt01",
+        "file": "sources/rejected/bld_kit_tubo_yamen_attempt01.png",
+        "role": "编辑目标；同次首次生成候选",
+        "sha256": "b3bc428c4f5c9f9e1c4e09febd80549f00d8c501b03b96e721793a1d7c45f965",
+        "status": "candidate"
+      }
+    ],
+    "tool": "functions.exec · image_gen",
+    "model": "image_gen（工具未公开底层模型版本）",
+    "effort": "未公开",
+    "created": "2026-09-30T22:09:15.371Z",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-f1921cc0-2bf7-4be8-a52f-1c6d63eba0eb.png",
+    "status": "candidate",
+    "file": "bld_kit_tubo_yamen.png",
+    "category": "building-map",
+    "style": "default",
+    "size": "966x618",
+    "sha256": "28995a74c1a8a6caace579391958055a8aeb05107dfe61dc7477d840e2b44953",
+    "notes": "原图与灰底合成均已 view_image；工具直接展示的外围棕色光晕在正确 alpha 合成后不存在。石砌白赭墙平顶院落、左上光、门口完整，无文字/人物/现代元素。地面宽深比残差约8.6%，仍需城市拼接复核。 单45°视图；未通过城市拼接和作者审批。",
+    "building": {
+      "type": "bld_kit_tubo_yamen",
+      "footprint": [
+        16,
+        12
+      ],
+      "anchor": [
+        483.0,
+        360.6652
+      ],
+      "era": "tubo"
+    },
+    "footprint_m": [
+      16,
+      12
+    ],
+    "entrance": {
+      "edge": "S",
+      "offset_cells": 8.0
+    },
+    "projection_contract": {
+      "tile_px": [
+        64,
+        32
+      ],
+      "ground_bbox_px": [
+        896,
+        448
+      ],
+      "ground_width_px": 896,
+      "light": "screen_upper_left",
+      "shadow": "screen_lower_right_contact_only"
+    },
+    "meta": "meta/bld_kit_tubo_yamen.yaml",
+    "anchor_px": [
+      483.0,
+      360.6652
+    ],
+    "source_copy": "sources/bld_kit_tubo_yamen.png",
+    "source_sha256": "eb2c65f8a515d451109e6d2a13b062906e8cb4673c5b307fa335c92bdc71130f",
+    "candidate_count": 2,
+    "geometry_qa": {
+      "source_corners_px": {
+        "left": [
+          70,
+          566
+        ],
+        "front": [
+          861,
+          958
+        ],
+        "right": [
+          1510,
+          636
+        ]
+      },
+      "source_axis_slopes": [
+        0.49557522123893805,
+        -0.49614791987673346
+      ],
+      "axis_tolerance": 0.03,
+      "axis_pass": true,
+      "source_width_depth_ratio": 1.2187981510015409,
+      "expected_width_depth_ratio": 1.3333333333333333,
+      "ratio_relative_error": 0.08590138674884429,
+      "ratio_tolerance_suggestion": 0.1,
+      "ratio_pass": true,
+      "measurement_uncertainty_source_px": 3,
+      "precision_note": "人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。"
+    },
+    "metadata": "meta/bld_kit_tubo_yamen.yaml"
+  },
+  "final_visual_review": "已逐张view_image成品透明PNG及临时灰底alpha合成；主体完整、无实际外围棕色光晕；源alpha保持，未阈值抠图。"
+}
