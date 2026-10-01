@@ -176,6 +176,15 @@ No people, text, scenery, painted checkerboard, modern fittings or Qing ornament
 
 本套输出目录为 `assets/default/tile/yuan_south/`，采用 `tex_town_yuan_south_*`，每项一图、全部 `candidate`。保留宋套件朴素砖石、灰瓦、低饱和自然色和细节密度；江南旧河网不随元代标签重铺成北方城。城门、城墙与桥为匿名形制意象 **（原创扩展）**，精确元末制式 **（待考）**。
 
+### 9.1 历史图片参考重出细节（2026-09-30）
+
+- 七件均以真实图像模型同 ID 重出；每件输入宋基线透明贴片（只约束斜45°、俯仰30°、2:1斜二测、透明裁切和写实密度）及两张已下载、目视检查的历史图片。规格化仅裁切、一次等比缩放和透明留白；不阈值改 alpha、不补画门洞、不 warp。
+- 两座城门以盘门照片的青灰小砖错缝、厚城体、券洞、深门道、深色石基与水脚为母题；第二候选把首候选的“架空门楼”改为厚砖券体。现存上部楼橹含后世修复，不照搬；贴片只保留低矮克制的灰瓦守楼。`k4/k6` 是逻辑净宽，像素孔对格仍 **（待实测）**。
+- 直墙与外转角取盘门墙体的青灰砖、浅灰灰缝、石质水脚和厚实体；逻辑分别 `1×1`、`2×2`，平顶、无垛口、无披檐。墙高、端面与连续接缝须在总装复核，不能由单图门禁代替。
+- 石梁桥以青浦区官方页面的顺德桥、迎祥桥照片为主：多跨平梁、细石柱墩、纵梁承横向桥面板、平缓长桥面；元代始建而明清屡修，仅取结构原理，不复制现状栏杆、碑刻和现代修补。王振鹏古画只补船岸尺度。
+- 柳树取倪瓒画中疏林斜干、通透冠层和江南岸植层次；芦苇取倪瓒、王振鹏画中河岸细茎与疏密节奏。植物具体品种、元末城市栽植位置 **（待考）**；不带土岛、水面或现代园艺修剪。
+- 真实 alpha 自查以灰底/棋盘合成和通道统计同时完成；模型常把最高实体 alpha 输出为254，这仍是有效非预乘 RGBA，不以阈值强改255。外部 alpha0、透明留边及无大范围光晕是入选条件。
+
 | 项 | 差异与契约 |
 |---|---|
 | 城门两座 | 净宽 `k=4/6`，外占地 `(k+4)×4=8×4/10×4`，通行孔 `k×4=4×4/6×4`，两侧各2格门墩；引用 `design/22` §4.3，不将外宽当净宽 |
@@ -193,7 +202,7 @@ True transparent RGBA outside the object; upper-left daylight, short lower-right
 No text, modern ornaments, complete landscape, opaque backdrop, copied Qing reconstruction, fake checkerboard or excessive shadow halo.
 ```
 
-每项独立内置 `image_gen` 调用并启用真透明，最多2候选择1；源图、实际完整提示词、源SHA、选取理由、裁框 / 等比缩放 / 偏移和成品SHA登记。逐张 `view_image(detail=original)` 检查；本套只做几何规格化，**不沿用§8地面alpha阈值或水面仿射投影**，不镜像或扭曲墙门以冒充四向。门楼与地面通行孔的碰撞分工只引用 `design/22` §4.3；贴片 alpha 不能代替逻辑通行掩膜。
+本次历史重出逐项调用 Codex Images `gpt-image-2` 编辑端点并请求真透明，最多2候选择1；实际两城门各2候选，其余贴片各1（建筑河埠另为2选1）。源图、实际完整提示词、服务请求/生成ID、裁框 / 等比缩放 / 偏移和成品SHA均登记。逐张 `view_image(detail=original)` 检查；本套只做裁切、等比缩放与透明留白，**不沿用§8地面alpha阈值或水面仿射投影**，不镜像或扭曲墙门以冒充四向。门楼与地面通行孔的碰撞分工只引用 `design/22` §4.3；贴片 alpha 不能代替逻辑通行掩膜。
 
 城门底面目标包围宽高分别为 `32(8+4)×16(8+4)=384×192px`、`32(10+4)×16(10+4)=448×224px`；屋顶向上外扩，PNG画幅不等于占地。其他贴片占地见各条 manifest **【建议值】**。`autotile_mask:null` 表示手动选件，不能解释为完整自动拼接47形集。单视图仅用于本方向预览，墙角接缝、孔净宽、桥头接路和植物不挡门均 **（待实测）**。
 
@@ -233,6 +242,7 @@ Keep Song reference realistic material density only, replace its regional archit
 实际调用全文 / 来源 / SHA / 时间见 `manifest.yaml` 与 `source/generation-records.jsonl`。选中原图保存在 `source/`；除两座城门以预乘 alpha 仿射重投影校正地轴外，其余只做矩形裁切、等比缩放和透明扩边，均未重绘或镜像。为排除远端 alpha=1 噪点，用 alpha>1 确定裁框；框内 alpha 不改，原图完整保留。成品留边8px，短边≥32；底面 / 根锚使用 `anchor_px`。真实透明与文件检查通过，不代表门净宽像素、墙缝或桥头已经精确对格；这些限制继续保留，不因登记尺寸而消失。
 
 参考资料（访问 2026-10-01）：[LOC · Bar Chorten](https://www.loc.gov/item/2021670618/) 与 [LOC · Yu-tog zamba](https://www.loc.gov/item/2021670619/) 的馆藏图已下载并 `view_image`，只作成品事后反例 QA，未输入生成工具；[Pitt Rivers Museum · Lhasa willows, 1936](https://web.prm.ox.ac.uk/tibet/photo_1998.131.270.html) 与 [BRIT907382 · Hippophae tibetana](https://portal.torcherbaria.org/portal/collections/individual/index.php?occid=31555408) 分别核柳树与沙棘形态，后者是2018年现代标本。通用中国廊桥论文 [China’s corridor bridges](https://link.springer.com/article/10.1186/s43238-020-00010-w) 可访问，但不是藏地桥梁专论，不作为本件构法证据；UNESCO / Kew 本轮返回403，相关分布文字保持 **（待核实）**。
+参考资料（2026-09-30访问）：[苏州市志办《苏州古城门之盘门》](https://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml)用于辨别现存盘门元代重建、明清续修与现代门楼的边界；[青浦区政府·青浦古桥](https://www.shqp.gov.cn/shqp/ggfw/bmts/20250116/1224818.html)提供本轮实际输入的顺德、迎祥桥照片，支持多跨石梁、细石柱墩与后世重修边界；故宫名画记[王振鹏《龙舟夺标图》](https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8)补船岸尺度；上海博物馆倪瓒[《渔庄秋霁》](https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018)、[《汀树遥岑》](https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00005285)约束疏林、柳与岸植节奏。所有图片均下载并审看，实际逐件输入与取用细节见 manifest `references`。
 
 ## 10. 待决事项与默认值
 

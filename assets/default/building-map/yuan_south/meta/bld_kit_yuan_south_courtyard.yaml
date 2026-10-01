@@ -1,133 +1,39 @@
-asset_id: bld_kit_yuan_south_courtyard
-anchor_px: &id001
-- 330.7259
-- 281.0382
-footprint_cells:
+id: bld_kit_yuan_south_courtyard
+status: candidate
+building:
+  type: bld_kit_yuan_south_courtyard
+  footprint:
+  - 10
+  - 8
+  anchor: &id001
+  - 330.7259
+  - 281.0382
+  era: yuan
+anchor_px: *id001
+footprint_m:
 - 10
 - 8
+footprint_basis: 【建议值】design/22 §3.3同功能项
 entrance:
   edge: S
   offset_cells: 5
-actual_height_m: null
-height_note: 仅PNG，未实测高度
 png_rotations_available:
 - 0
 allowRotation: false
-collision_polygon_local_m:
-- - 0
-  - 0
-- - 10
-  - 0
-- - 10
-  - 8
-- - 0
-  - 8
-collision_note: 矩形占地仅候选代理；院内/入口通行待布局联调
-occlusion_polygon_px:
-- - 41
-  - 58
-- - 622
-  - 58
-- - 622
-  - 428
-- - 41
-  - 428
-occlusion_note: alpha包络代理，非运行时精细遮挡
+release_ready: false
+historical_reference_urls:
+- https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+- https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018
+historical_details:
+- 院落/廊屋关系
+- 江南疏院植被层次
+generation_id: 22e1ba43-7ecf-42c8-afe6-982d016028d6
+source_record: sources/hist_courtyard_selected.json
+source_archive: sources/hist_courtyard_selected.png
 processing:
-  source_archive: sources/bld_kit_yuan_south_courtyard.v2.png
-  source_sha256: 713229e30c2761b326bd704953ffb792acdde6d55da68831138ad5de348ddede
-  source_size:
-  - 1402
-  - 1122
-  crop_box:
-  - 0
-  - 100
-  - 1388
-  - 1096
-  uniform_scale_requested: 0.4301717699775952
-  resized_size:
-  - 597
-  - 428
-  rounded_effective_scale:
-  - 0.43011527377521613
-  - 0.42971887550200805
-  paste_offset:
-  - 29
-  - 26
-  - 626
-  - 454
-  steps:
-  - alpha>0矩形裁边，保留全部非零alpha
-  - 一次等比LANCZOS，尺寸取整
-  - 无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值
-  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-  reprojection:
-    kind: whole_sprite_affine_reprojection
-    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-    forward_matrix:
-    - 1.0
-    - 0.0
-    - 0.03047400879637191
-    - 0.9015019438442988
-    - 17.603172419709153
-    inverse_matrix_for_pillow:
-    - 1.0
-    - 0.0
-    - 0.0
-    - -0.03380359743476623
-    - 1.1092599487203247
-    - -19.52649413560161
-    pivot_anchor_px: *id001
-    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
-geometry_qa:
-  source_corners_px: &id002
-    left:
-    - 42.763688760806915
-    - 273.6186677253961
-    front:
-    - 345.5648414985591
-    - 425.01924409427215
-    right:
-    - 618.6880403458213
-    - 288.457644670641
-  source_axis_slopes: &id003
-  - 0.4999999999999999
-  - -0.5000000000000002
-  axis_pass: true
-  axis_tolerance: 0.03
-  source_width_depth_ratio: 1.1086614173228346
-  expected_width_depth_ratio: 1.25
-  ratio_relative_error: 0.11307086614173234
-  ratio_pass: false
-  measurement_uncertainty_source_px: 6
-  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-  measurement_space: final_png_after_affine_reprojection
-  pre_reprojection_final_corners_px:
-    left:
-    - 42.763688760806915
-    - 282.5421686746988
-    front:
-    - 345.5648414985591
-    - 440.24899598393574
-    right:
-    - 618.6880403458213
-    - 279.53413654618475
-  pre_reprojection_axis_slopes:
-  - 0.5208263769253961
-  - -0.5884335717949285
-  final_corners_px: *id002
-  final_axis_slopes: *id003
-  pre_reprojection_source_corners_px:
-    left:
-    - 32
-    - 697
-    front:
-    - 736
-    - 1064
-    right:
-    - 1371
-    - 690
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
 pixel_qa:
   mode: RGBA
   size:
@@ -136,18 +42,21 @@ pixel_qa:
   alpha_extrema:
   - 0
   - 255
-  alpha_zero_pixels: 197495
-  alpha_partial_pixels: 116396
-  alpha_opaque_pixels: 989
-  alpha_near_opaque_pixels: 114317
+  alpha_zero_pixels: 225672
+  alpha_partial_pixels: 88593
+  alpha_opaque_pixels: 615
   alpha_nonzero_bbox:
-  - 41
-  - 58
-  - 622
-  - 428
+  - 65
+  - 73
+  - 590
+  - 444
   transparent_margins_px:
-  - 41
-  - 58
-  - 34
-  - 52
-  border_alpha_max: 0
+  - 65
+  - 73
+  - 66
+  - 36
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 院落/廊屋关系；江南疏院植被层次；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

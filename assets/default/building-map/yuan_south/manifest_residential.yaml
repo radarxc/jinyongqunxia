@@ -3,28 +3,20 @@
   category: building-map
   style: default
   subject: 元末江南·小民居（原创扩展）
-  prompt: 'Use case: precise-object-edit. Input is edit target. Keep this exact anonymous late Yuan Jiangnan house_small architectural identity,
-    every material, grey roof tile color, plaster, timber and realistic fine texture. Correct ONLY overall orthographic camera and rectangular
-    ground footprint so the TWO visible ground edges slope exactly +0.50 and -0.50, a 2:1 dimetric grid; current image has steeper slopes about
-    +/-0.58. The front ground corner should be clearly visible, NOT steep true-isometric30-degree screen lines. Both axes equivalent pitch, vertical
-    pillars stay vertical. Parcel 7 by 6 meters, ratio east-west edge / north-south edge 1.1667. Front entrance remains lower left. The wide front-facing
-    ground edge left-to-front must be 16.7 percent longer in horizontal span than front-to-right edge. Not a square. All building and thin ground
-    pad fully visible with generous transparent margin. Do not add facade ornaments, garden, new objects, scenery or text. Upper-left light, minimal
-    lower-right short contact shadow; no large shadow, no haze or ground glow. TRUE transparent background RGBA, retain opacity of solid surfaces.
-    One sprite only.'
-  negative: 文字、水印、现代物、人物、清式彩画、旅游马头墙、厚底座、景观背景
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A modest single-storey 7m by6m commoner house: one three-bay range, low stone footings, dark weathered timber frame, pale lime-and-earth infill, plain grey flat-and-round tile overhanging gable roof, exposed rafters, simple straight lattice doors and
+    windows, no courtyard and no shop.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
   references:
-  - file: /Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-e3e66ac5-8291-47a8-8172-c3fbab3e3c39.png
-    sha256: 44a4aca1931b919a3d483b1d00769788c6bc71358d851d4bd78542823af040a4
-    role: 生成参考或第二候选编辑目标，详见调用记录
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed
-  created: '2026-09-30T22:31:14.184564+00:00'
-  created_time_basis: source PNG mtime, not service-side call timestamp
-  source_path: /Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-6af3a63f-64ec-41d1-a82c-7c79d3e9e110.png
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 滨水小屋比例
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018
+    role: 疏落岸居、朴素灰瓦木构
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:29:09+00:00'
+  generation_id: 1f0da54c-26cd-4e6f-a2a2-ff77727afc89
   size: 480x480
-  sha256: 6e10895dad56f20e194e32b89a908f0f965fbaef6ffc57c9ad9b8dd3d6d9a392
+  sha256: b1a0dd4fa07e72c795735302e2a7aa5972f3964e095b0aefbfe364d6b9fa13d0
   status: candidate
   building:
     type: bld_kit_yuan_south_house_small
@@ -42,182 +34,42 @@
   entrance:
     edge: S
     offset_cells: 3
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 416
-    - 208
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    strict_geometry_pass: true
-  metadata: meta/bld_kit_yuan_south_house_small.yaml
-  source_record: sources/house_small.v2.call.json
-  candidate_count: 2
-  selected_candidate: 2
-  selection_reason: 选第二候选：底面斜率较首候选趋近0.5，仍有轴向/宽深残差；素瓦小屋完整。
-  source_sha256: 7be603c10085551cb837d4284137c15bfaa41aa7295dd6d8b3439081544a3e38
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_house_small_selected.json
+  source_archive: sources/hist_house_small_selected.png
   processing:
-    source_archive: sources/bld_kit_yuan_south_house_small.v2.png
-    source_sha256: 7be603c10085551cb837d4284137c15bfaa41aa7295dd6d8b3439081544a3e38
-    source_size:
-    - 1254
-    - 1254
-    crop_box:
-    - 70
-    - 53
-    - 1206
-    - 1182
-    uniform_scale_requested: 0.3771532184950136
-    resized_size:
-    - 428
-    - 426
-    rounded_effective_scale:
-    - 0.3767605633802817
-    - 0.3773250664304694
-    paste_offset:
-    - 26
-    - 27
-    - 454
-    - 453
-    steps:
-    - alpha>0矩形裁边，保留全部非零alpha
-    - 一次等比LANCZOS，尺寸取整
-    - 无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值
-    - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-    reprojection:
-      kind: whole_sprite_affine_reprojection
-      purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-      forward_matrix:
-      - 1.0
-      - 0.0
-      - 0.0035690227366835248
-      - 0.923108121621856
-      - 22.620423189299743
-      inverse_matrix_for_pillow:
-      - 1.0
-      - 0.0
-      - 0.0
-      - -0.0038663106228693186
-      - 1.0832967196118357
-      - -24.50463023719991
-      pivot_anchor_px: *id001
-      resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-      preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
-  geometry_qa:
-    source_corners_px: &id002
-      left:
-      - 27.130281690140844
-      - 291.80776621803903
-      front:
-      - 261.4753521126761
-      - 408.9803014293066
-      right:
-      - 442.69718309859155
-      - 318.3693859363489
-    source_axis_slopes: &id003
-    - 0.49999999999999983
-    - -0.49999999999999983
-    axis_pass: true
-    axis_tolerance: 0.03
-    source_width_depth_ratio: 1.293139293139293
-    expected_width_depth_ratio: 1.1666666666666667
-    ratio_relative_error: 0.10840510840510831
-    ratio_pass: false
-    measurement_uncertainty_source_px: 6
-    precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-    measurement_space: final_png_after_affine_reprojection
-    pre_reprojection_final_corners_px:
-      left:
-      - 27.130281690140844
-      - 291.50487156775904
-      front:
-      - 261.4753521126761
-      - 417.53144375553586
-      right:
-      - 442.69718309859155
-      - 318.67227635075284
-    pre_reprojection_axis_slopes:
-    - 0.5377820491830485
-    - -0.5455146704287871
-    final_corners_px: *id002
-    final_axis_slopes: *id003
-    pre_reprojection_source_corners_px:
-      left:
-      - 73
-      - 754
-      front:
-      - 695
-      - 1088
-      right:
-      - 1176
-      - 826
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 480
-    - 480
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 155332
-    alpha_partial_pixels: 74308
-    alpha_opaque_pixels: 760
-    alpha_near_opaque_pixels: 72684
-    alpha_nonzero_bbox:
-    - 27
-    - 115
-    - 454
-    - 423
-    transparent_margins_px:
-    - 27
-    - 115
-    - 26
-    - 57
-    border_alpha_max: 0
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  release_ready: false
-  notes: 选第二候选：底面斜率较首候选趋近0.5，仍有轴向/宽深残差；素瓦小屋完整。；原图已view_image；候选形制（原创扩展），具体元末细部（待考）；仅原向单视图，严格拼接（待实测）。
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 滨水小屋比例；疏落岸居、朴素灰瓦木构；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id001
 - id: bld_kit_yuan_south_house_large
   file: bld_kit_yuan_south_house_large.png
   category: building-map
   style: default
   subject: 元末江南·大民居（原创扩展）
-  prompt: 'Use case: historical-scene. Generate ONE new isolated late Yuan dynasty Jiangnan Chinese town building game sprite, circa 1350 Hangzhou/Jiqing/Pingjiang.
-    Input image is a MATERIAL, PALETTE and CAMERA style reference only, not a historical reconstruction target. Match its realistic muted grey
-    ceramic roof tiles, weathered warm dark timber, pale lightly weathered lime plaster, fine restrained detail density. Orthographic camera yaw
-    45 degrees elevation 30 degrees, dimetric ground edges slope +0.5 and -0.5 (2:1 grid), zero perspective convergence. Front south entrance
-    faces lower left. Complete building and footprint on a TRUE transparent RGBA background, not white or checkerboard. Thin ground interface,
-    no thick floating block. Make the left, front and right ground footprint corners clear and the entire building fit with 12% transparent margin.
-    Lighting upper left, minimal short contact shadow lower right. Roofs plain with restrained eave curves and no extravagant upturned ornament.
-    No people, words, lettering, signs, flags, logos, background scenery, mountains, modern materials, bright golden roofs, elaborate Qing polychromy,
-    tourist Huizhou horse-head firewalls, cartoon outlines. Subject: LARGE residence, a wider two-storey merchant family home, timber upper floor
-    with simple lattice windows, plain overhanging gable grey tiled roof, lower lime plaster infill, modest front porch. Compact rectangular building,
-    not a courtyard compound. Parcel 10 meters east-west by 8 meters north-south, ground edge widths ratio 1.25. No balconies filled with plants,
-    no shops.'
-  negative: 文字、水印、现代物、人物、清式彩画、旅游马头墙、厚底座、景观背景
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A 10m by8m prosperous two-storey merchant residence, compact rectangular range: stout timber post-and-beam grid, plaster lower infill, timber upper lattice windows, grey tile overhanging gable roof, restrained bracket supports, low stone base; domestic,
+    not a shop or courtyard.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
   references:
-  - file: assets/default/baseline/building-map/bld_kit_song_southern_house.png
-    sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7
-    role: 生成参考或第二候选编辑目标，详见调用记录
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed
-  created: '2026-09-30T22:25:10.869208+00:00'
-  created_time_basis: source PNG mtime, not service-side call timestamp
-  source_path: /Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-ad8684c5-1c5d-4928-885a-0477ff8ed88a.png
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 两层滨水木构
+  - url: http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+    role: 柱网、深檐与灰筒板瓦
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:29:51+00:00'
+  generation_id: 68d3a326-18a6-4d0b-b277-315c3be4fe26
   size: 656x656
-  sha256: 609125896f7c618b9573f97ab12abcf3da3c0c813805d7deb3ca997db085701c
+  sha256: 86df4a010376fdcf7c380740d434663b1f2f7dc712b12f55f6e910bc30e7fcdd
   status: candidate
   building:
     type: bld_kit_yuan_south_house_large
     footprint:
     - 10
     - 8
-    anchor: &id004
+    anchor: &id002
     - 320.5022
     - 433.5185
     era: yuan
@@ -228,179 +80,42 @@
   entrance:
     edge: S
     offset_cells: 5
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 576
-    - 288
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    strict_geometry_pass: true
-  metadata: meta/bld_kit_yuan_south_house_large.yaml
-  source_record: sources/house_large.call.json
-  candidate_count: 2
+  candidate_count: 1
   selected_candidate: 1
-  selection_reason: 选第一候选：两层宅屋清楚，宽深比例较第二候选可靠；第二候选过扁，不以扁图伪作投影通过。
-  source_sha256: 1770b68afbf35c948c3be15f052bc3873b2f20b1c572656dbe16faa836b788c4
+  source_record: sources/hist_house_large_selected.json
+  source_archive: sources/hist_house_large_selected.png
   processing:
-    source_archive: sources/bld_kit_yuan_south_house_large.png
-    source_sha256: 1770b68afbf35c948c3be15f052bc3873b2f20b1c572656dbe16faa836b788c4
-    source_size:
-    - 1254
-    - 1254
-    crop_box:
-    - 66
-    - 53
-    - 1210
-    - 1214
-    uniform_scale_requested: 0.5184518451845185
-    resized_size:
-    - 593
-    - 602
-    rounded_effective_scale:
-    - 0.5183566433566433
-    - 0.5185185185185185
-    paste_offset:
-    - 31
-    - 27
-    - 624
-    - 629
-    steps:
-    - alpha>0矩形裁边，保留全部非零alpha
-    - 一次等比LANCZOS，尺寸取整
-    - 无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值
-    - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-    reprojection:
-      kind: whole_sprite_affine_reprojection
-      purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-      forward_matrix:
-      - 1.0
-      - 0.0
-      - -0.00024183162691493454
-      - 0.88433227274628
-      - 50.22160718589765
-      inverse_matrix_for_pillow:
-      - 1.0
-      - 0.0
-      - 0.0
-      - 0.0002734624013708447
-      - 1.1307966822182296
-      - -56.79042678148027
-      pivot_anchor_px: *id004
-      resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-      preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
-  geometry_qa:
-    source_corners_px: &id005
-      left:
-      - 32.55506993006993
-      - 415.2464447017534
-      front:
-      - 357.04632867132864
-      - 577.4920740723827
-      right:
-      - 608.4493006993007
-      - 451.7905880583968
-    source_axis_slopes: &id006
-    - 0.4999999999999999
-    - -0.49999999999999956
-    axis_pass: true
-    axis_tolerance: 0.03
-    source_width_depth_ratio: 1.2907216494845362
-    expected_width_depth_ratio: 1.25
-    ratio_relative_error: 0.03257731958762888
-    ratio_pass: true
-    measurement_uncertainty_source_px: 6
-    precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-    measurement_space: final_png_after_affine_reprojection
-    pre_reprojection_final_corners_px:
-      left:
-      - 32.55506993006993
-      - 412.77777777777777
-      front:
-      - 357.04632867132864
-      - 596.3333333333333
-      right:
-      - 608.4493006993007
-      - 454.25925925925924
-    pre_reprojection_axis_slopes:
-    - 0.5656718035104857
-    - -0.5651248787077439
-    final_corners_px: *id005
-    final_axis_slopes: *id006
-    pre_reprojection_source_corners_px:
-      left:
-      - 69
-      - 797
-      front:
-      - 695
-      - 1151
-      right:
-      - 1180
-      - 877
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 656
-    - 656
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 259443
-    alpha_partial_pixels: 169851
-    alpha_opaque_pixels: 1042
-    alpha_near_opaque_pixels: 166866
-    alpha_nonzero_bbox:
-    - 31
-    - 115
-    - 624
-    - 592
-    transparent_margins_px:
-    - 31
-    - 115
-    - 32
-    - 64
-    border_alpha_max: 0
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  release_ready: false
-  notes: 选第一候选：两层宅屋清楚，宽深比例较第二候选可靠；第二候选过扁，不以扁图伪作投影通过。；原图已view_image；候选形制（原创扩展），具体元末细部（待考）；仅原向单视图，严格拼接（待实测）。
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 两层滨水木构；柱网、深檐与灰筒板瓦；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id002
 - id: bld_kit_yuan_south_courtyard
   file: bld_kit_yuan_south_courtyard.png
   category: building-map
   style: default
   subject: 元末江南·坊巷院落（原创扩展）
-  prompt: 'Use case: precise-object-edit. Input is edit target. Keep this exact anonymous late Yuan Jiangnan courtyard architectural identity,
-    every material, grey roof tile color, plaster, timber and realistic fine texture. Correct ONLY overall orthographic camera and rectangular
-    ground footprint so the TWO visible ground edges slope exactly +0.50 and -0.50, a 2:1 dimetric grid; current image has steeper slopes about
-    +/-0.58. The front ground corner should be clearly visible, NOT steep true-isometric30-degree screen lines. Both axes equivalent pitch, vertical
-    pillars stay vertical. Parcel 10 by 8 meters, ratio east-west edge / north-south edge 1.25. Front entrance remains lower left. The wide front-facing
-    ground edge left-to-front must be 25 percent longer in horizontal span than front-to-right edge. Not a square. All building and thin ground
-    pad fully visible with generous transparent margin. Do not add facade ornaments, garden, new objects, scenery or text. Upper-left light, minimal
-    lower-right short contact shadow; no large shadow, no haze or ground glow. TRUE transparent background RGBA, retain opacity of solid surfaces.
-    One sprite only.'
-  negative: 文字、水印、现代物、人物、清式彩画、旅游马头墙、厚底座、景观背景
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A compact 10m by8m Jiangnan courtyard dwelling: main hall and two lower side wings enclosing a small visible stone-and-packed-earth court, inward-facing covered galleries, grey tiled gable roofs, lime infill and dark timber; one clear south entrance,
+    no garden scenery.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
   references:
-  - file: /Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-fe50da9e-3067-4e7d-bcfc-bb241b866861.png
-    sha256: 85966bea4290e8a7c4e597f7807e2112e347e63100cf6161c5d8eabcaf66bef0
-    role: 生成参考或第二候选编辑目标，详见调用记录
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed
-  created: '2026-09-30T22:32:49.874451+00:00'
-  created_time_basis: source PNG mtime, not service-side call timestamp
-  source_path: /Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-c0dcca10-ade5-463d-b612-98b2c28df5b2.png
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 院落/廊屋关系
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018
+    role: 江南疏院植被层次
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:30:27+00:00'
+  generation_id: 22e1ba43-7ecf-42c8-afe6-982d016028d6
   size: 656x480
-  sha256: 765035fd6f3276f0863bf4a246e6b0ff2055da8deda691c82357340262664b32
+  sha256: a1fd6e6bc0b0e6d8e16b14df31de89a04f6e343b24749c76a3b5a5d0299f8f91
   status: candidate
   building:
     type: bld_kit_yuan_south_courtyard
     footprint:
     - 10
     - 8
-    anchor: &id007
+    anchor: &id003
     - 330.7259
     - 281.0382
     era: yuan
@@ -411,181 +126,41 @@
   entrance:
     edge: S
     offset_cells: 5
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 576
-    - 288
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    strict_geometry_pass: true
-  metadata: meta/bld_kit_yuan_south_courtyard.yaml
-  source_record: sources/courtyard.v2.call.json
-  candidate_count: 2
-  selected_candidate: 2
-  selection_reason: 选第二候选：矩形院墙和入口完整，双轴与宽深比比首候选接近目标但仍未精确通过。
-  source_sha256: 713229e30c2761b326bd704953ffb792acdde6d55da68831138ad5de348ddede
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_courtyard_selected.json
+  source_archive: sources/hist_courtyard_selected.png
   processing:
-    source_archive: sources/bld_kit_yuan_south_courtyard.v2.png
-    source_sha256: 713229e30c2761b326bd704953ffb792acdde6d55da68831138ad5de348ddede
-    source_size:
-    - 1402
-    - 1122
-    crop_box:
-    - 0
-    - 100
-    - 1388
-    - 1096
-    uniform_scale_requested: 0.4301717699775952
-    resized_size:
-    - 597
-    - 428
-    rounded_effective_scale:
-    - 0.43011527377521613
-    - 0.42971887550200805
-    paste_offset:
-    - 29
-    - 26
-    - 626
-    - 454
-    steps:
-    - alpha>0矩形裁边，保留全部非零alpha
-    - 一次等比LANCZOS，尺寸取整
-    - 无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值
-    - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-    reprojection:
-      kind: whole_sprite_affine_reprojection
-      purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-      forward_matrix:
-      - 1.0
-      - 0.0
-      - 0.03047400879637191
-      - 0.9015019438442988
-      - 17.603172419709153
-      inverse_matrix_for_pillow:
-      - 1.0
-      - 0.0
-      - 0.0
-      - -0.03380359743476623
-      - 1.1092599487203247
-      - -19.52649413560161
-      pivot_anchor_px: *id007
-      resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-      preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
-  geometry_qa:
-    source_corners_px: &id008
-      left:
-      - 42.763688760806915
-      - 273.6186677253961
-      front:
-      - 345.5648414985591
-      - 425.01924409427215
-      right:
-      - 618.6880403458213
-      - 288.457644670641
-    source_axis_slopes: &id009
-    - 0.4999999999999999
-    - -0.5000000000000002
-    axis_pass: true
-    axis_tolerance: 0.03
-    source_width_depth_ratio: 1.1086614173228346
-    expected_width_depth_ratio: 1.25
-    ratio_relative_error: 0.11307086614173234
-    ratio_pass: false
-    measurement_uncertainty_source_px: 6
-    precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-    measurement_space: final_png_after_affine_reprojection
-    pre_reprojection_final_corners_px:
-      left:
-      - 42.763688760806915
-      - 282.5421686746988
-      front:
-      - 345.5648414985591
-      - 440.24899598393574
-      right:
-      - 618.6880403458213
-      - 279.53413654618475
-    pre_reprojection_axis_slopes:
-    - 0.5208263769253961
-    - -0.5884335717949285
-    final_corners_px: *id008
-    final_axis_slopes: *id009
-    pre_reprojection_source_corners_px:
-      left:
-      - 32
-      - 697
-      front:
-      - 736
-      - 1064
-      right:
-      - 1371
-      - 690
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 656
-    - 480
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 197495
-    alpha_partial_pixels: 116396
-    alpha_opaque_pixels: 989
-    alpha_near_opaque_pixels: 114317
-    alpha_nonzero_bbox:
-    - 41
-    - 58
-    - 622
-    - 428
-    transparent_margins_px:
-    - 41
-    - 58
-    - 34
-    - 52
-    border_alpha_max: 0
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  release_ready: false
-  notes: 选第二候选：矩形院墙和入口完整，双轴与宽深比比首候选接近目标但仍未精确通过。；原图已view_image；候选形制（原创扩展），具体元末细部（待考）；仅原向单视图，严格拼接（待实测）。
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 院落/廊屋关系；江南疏院植被层次；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id003
 - id: bld_kit_yuan_south_shop_1f
   file: bld_kit_yuan_south_shop_1f.png
   category: building-map
   style: default
   subject: 元末江南·单层商铺（原创扩展）
-  prompt: 'Use case: historical-scene. Generate ONE new isolated late Yuan dynasty Jiangnan Chinese town building game sprite, circa 1350 Hangzhou/Jiqing/Pingjiang.
-    Input image is a MATERIAL, PALETTE and CAMERA style reference only, not a historical reconstruction target. Match its realistic muted grey
-    ceramic roof tiles, weathered warm dark timber, pale lightly weathered lime plaster, fine restrained detail density. Orthographic camera yaw
-    45 degrees elevation 30 degrees, dimetric ground edges slope +0.5 and -0.5 (2:1 grid), zero perspective convergence. Front south entrance
-    faces lower left. Complete building and footprint on a TRUE transparent RGBA background, not white or checkerboard. Thin ground interface,
-    no thick floating block. Make the left, front and right ground footprint corners clear and the entire building fit with 12% transparent margin.
-    Lighting upper left, minimal short contact shadow lower right. Roofs plain with restrained eave curves and no extravagant upturned ornament.
-    No people, words, lettering, signs, flags, logos, background scenery, mountains, modern materials, bright golden roofs, elaborate Qing polychromy,
-    tourist Huizhou horse-head firewalls, cartoon outlines. Subject: single-storey small dry-goods SHOP with wide open wooden front, a simple
-    counter and two fabric bolts inside, removable wood shutters and bamboo sun blind, plain single grey gable roof. One anonymous shop not a
-    whole street. Rectangular parcel 6 meters east-west by 5 north-south, ratio1.2.'
-  negative: 文字、水印、现代物、人物、清式彩画、旅游马头墙、厚底座、景观背景
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A small 6m by5m single-storey street shop: shallow open timber shopfront with removable board shutters and waist-height counter, simple lattice rear doors, plain grey tiled gable roof, lime sidewalls, no hanging text sign, goods or people.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
   references:
-  - file: assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png
-    sha256: bdb0d7ba47a804dc14b20c39931e2b95a6c8926cf0d3ecd10a7a808eb62d2548
-    role: 生成参考或第二候选编辑目标，详见调用记录
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed
-  created: '2026-09-30T22:27:11.721494+00:00'
-  created_time_basis: source PNG mtime, not service-side call timestamp
-  source_path: /Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-70efc43d-0832-45f5-a806-e3ba89d41229.png
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 临街开间与板门
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018
+    role: 草亭尺度及低饱和材料
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:31:04+00:00'
+  generation_id: b5172ed5-2a32-4ee9-900d-2dba99df5ac6
   size: 448x432
-  sha256: 55a681deb9f2169a077520e26135d456b4b3da281a674eabfb929f1782823714
+  sha256: 80d7ef6434e593e9989fb3fe2f9ce6551bbb712701c652a663fc506a178e97ea
   status: candidate
   building:
     type: bld_kit_yuan_south_shop_1f
     footprint:
     - 6
     - 5
-    anchor: &id010
+    anchor: &id004
     - 233.9831
     - 292.6702
     era: yuan
@@ -596,183 +171,42 @@
   entrance:
     edge: S
     offset_cells: 3
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 352
-    - 176
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    strict_geometry_pass: true
-  metadata: meta/bld_kit_yuan_south_shop_1f.yaml
-  source_record: sources/shop_1f.call.json
-  candidate_count: 2
+  candidate_count: 1
   selected_candidate: 1
-  selection_reason: 选第一候选：开敞布店与卷帘可读；第二候选未改善比例，首候选无明显背景晕色。
-  source_sha256: 407da7d190e8fac31b738d8041fb724e50737c1d29dbf6f8133d00e22674ada3
+  source_record: sources/hist_shop_1f_selected.json
+  source_archive: sources/hist_shop_1f_selected.png
   processing:
-    source_archive: sources/bld_kit_yuan_south_shop_1f.png
-    source_sha256: 407da7d190e8fac31b738d8041fb724e50737c1d29dbf6f8133d00e22674ada3
-    source_size:
-    - 1254
-    - 1254
-    crop_box:
-    - 0
-    - 53
-    - 1182
-    - 1184
-    uniform_scale_requested: 0.3381364073006724
-    resized_size:
-    - 400
-    - 382
-    rounded_effective_scale:
-    - 0.338409475465313
-    - 0.33775419982316535
-    paste_offset:
-    - 24
-    - 25
-    - 424
-    - 407
-    steps:
-    - alpha>0矩形裁边，保留全部非零alpha
-    - 一次等比LANCZOS，尺寸取整
-    - 无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值
-    - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-    reprojection:
-      kind: whole_sprite_affine_reprojection
-      purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-      forward_matrix:
-      - 1.0
-      - 0.0
-      - 0.03487117226494002
-      - 1.0451435502571658
-      - -21.371436869659476
-      inverse_matrix_for_pillow:
-      - 1.0
-      - 0.0
-      - 0.0
-      - -0.03336495953724222
-      - 0.956806363828148
-      - 20.448326801041702
-      pivot_anchor_px: *id010
-      resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-      preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
-  geometry_qa:
-    source_corners_px: &id011
-      left:
-      - 57.840947546531304
-      - 277.52637877051734
-      front:
-      - 264.27072758037224
-      - 380.7412687874378
-      right:
-      - 410.12521150592215
-      - 307.81402682466273
-    source_axis_slopes: &id012
-    - 0.4999999999999999
-    - -0.5000000000000006
-    axis_pass: true
-    axis_tolerance: 0.03
-    source_width_depth_ratio: 1.4153132250580047
-    expected_width_depth_ratio: 1.2
-    ratio_relative_error: 0.17942768754833738
-    ratio_pass: false
-    measurement_uncertainty_source_px: 6
-    precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-    measurement_space: final_png_after_affine_reprojection
-    pre_reprojection_final_corners_px:
-      left:
-      - 57.840947546531304
-      - 284.05747126436785
-      front:
-      - 264.27072758037224
-      - 375.9266136162688
-      right:
-      - 410.12521150592215
-      - 301.2829354553493
-    pre_reprojection_axis_slopes:
-    - 0.44503822237683177
-    - -0.5117681414513161
-    final_corners_px: *id011
-    final_axis_slopes: *id012
-    pre_reprojection_source_corners_px:
-      left:
-      - 100
-      - 820
-      front:
-      - 710
-      - 1092
-      right:
-      - 1141
-      - 871
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 448
-    - 432
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 118511
-    alpha_partial_pixels: 74183
-    alpha_opaque_pixels: 842
-    alpha_near_opaque_pixels: 72453
-    alpha_nonzero_bbox:
-    - 56
-    - 61
-    - 424
-    - 394
-    transparent_margins_px:
-    - 56
-    - 61
-    - 24
-    - 38
-    border_alpha_max: 0
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  release_ready: false
-  notes: 选第一候选：开敞布店与卷帘可读；第二候选未改善比例，首候选无明显背景晕色。；原图已view_image；候选形制（原创扩展），具体元末细部（待考）；仅原向单视图，严格拼接（待实测）。
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 临街开间与板门；草亭尺度及低饱和材料；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id004
 - id: bld_kit_yuan_south_shop_2f
   file: bld_kit_yuan_south_shop_2f.png
   category: building-map
   style: default
   subject: 元末江南·两层商铺（原创扩展）
-  prompt: 'Use case: historical-scene. Generate ONE new isolated late Yuan dynasty Jiangnan Chinese town building game sprite, circa 1350 Hangzhou/Jiqing/Pingjiang.
-    Input image is a MATERIAL, PALETTE and CAMERA style reference only, not a historical reconstruction target. Match its realistic muted grey
-    ceramic roof tiles, weathered warm dark timber, pale lightly weathered lime plaster, fine restrained detail density. Orthographic camera yaw
-    45 degrees elevation 30 degrees, dimetric ground edges slope +0.5 and -0.5 (2:1 grid), zero perspective convergence. Front south entrance
-    faces lower left. Complete building and footprint on a TRUE transparent RGBA background, not white or checkerboard. Thin ground interface,
-    no thick floating block. Make the left, front and right ground footprint corners clear and the entire building fit with 12% transparent margin.
-    Lighting upper left, minimal short contact shadow lower right. Roofs plain with restrained eave curves and no extravagant upturned ornament.
-    No people, words, lettering, signs, flags, logos, background scenery, mountains, modern materials, bright golden roofs, elaborate Qing polychromy,
-    tourist Huizhou horse-head firewalls, cartoon outlines. Subject: narrow TWO STOREY SHOP and tea seller, 8m east-west x6m north-south (ground
-    frontage ratio1.333). Open ground shop front with plain pottery jars and tea canisters, upstairs a modest timber verandah with bamboo blind,
-    simple lattice railing, grey gable tile main roof. No decorative greenery. Ground front edges shall rise ONE pixel for TWO pixels of horizontal
-    run, not 30-degree screen slopes. Example footprint corner positions on square canvas left(120,780), front(710,1075),right(1150,855). Roof
-    need not match these exact coordinates.'
-  negative: 文字、水印、现代物、人物、清式彩画、旅游马头墙、厚底座、景观背景
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. An 8m by6m two-storey street shop: open lower timber storefront and shutter counter, upper living loft with closely spaced straight lattice windows, deep grey-tiled gable eaves on simple bracket arms, dark timber and lime infill; no balcony plants or
+    written sign.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
   references:
-  - file: assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png
-    sha256: bdb0d7ba47a804dc14b20c39931e2b95a6c8926cf0d3ecd10a7a808eb62d2548
-    role: 生成参考或第二候选编辑目标，详见调用记录
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed
-  created: '2026-09-30T22:27:51.869430+00:00'
-  created_time_basis: source PNG mtime, not service-side call timestamp
-  source_path: /Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-5931d3c4-050a-4f90-9206-a19c5a48c7c5.png
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 两层铺屋开间
+  - url: http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+    role: 深檐、格扇与灰瓦
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:29:32+00:00'
+  generation_id: 07483c40-5355-4bd4-86b1-bc68bf6bf01c
   size: 544x496
-  sha256: bd93b39ae1b670568b6f51d743dd5b6656912ae3bab2f1f8b1218d2c2bf812f4
+  sha256: f2a639caf0693a620e62c3bf91381659e755df9ea89edc32546ee9f85619d8b0
   status: candidate
   building:
     type: bld_kit_yuan_south_shop_2f
     footprint:
     - 8
     - 6
-    anchor: &id013
+    anchor: &id005
     - 278.4106
     - 340.9128
     era: yuan
@@ -783,183 +217,42 @@
   entrance:
     edge: S
     offset_cells: 4
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 448
-    - 224
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    strict_geometry_pass: true
-  metadata: meta/bld_kit_yuan_south_shop_2f.yaml
-  source_record: sources/shop_2f.call.json
-  candidate_count: 2
+  candidate_count: 1
   selected_candidate: 1
-  selection_reason: 选第一候选：双层茶货店完整；第二候选地面过扁；当前店面宽深比偏大，需总装验证。
-  source_sha256: 22ab5fbce575d03920cc9e00646ab8e098feb40f0f436e76560cf5619f118ff0
+  source_record: sources/hist_shop_2f_selected.json
+  source_archive: sources/hist_shop_2f_selected.png
   processing:
-    source_archive: sources/bld_kit_yuan_south_shop_2f.png
-    source_sha256: 22ab5fbce575d03920cc9e00646ab8e098feb40f0f436e76560cf5619f118ff0
-    source_size:
-    - 1254
-    - 1254
-    crop_box:
-    - 0
-    - 103
-    - 1208
-    - 1198
-    uniform_scale_requested: 0.4007155635062612
-    resized_size:
-    - 484
-    - 439
-    rounded_effective_scale:
-    - 0.40066225165562913
-    - 0.4009132420091324
-    paste_offset:
-    - 30
-    - 28
-    - 514
-    - 467
-    steps:
-    - alpha>0矩形裁边，保留全部非零alpha
-    - 一次等比LANCZOS，尺寸取整
-    - 无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值
-    - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-    reprojection:
-      kind: whole_sprite_affine_reprojection
-      purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-      forward_matrix:
-      - 1.0
-      - 0.0
-      - 0.009074304931435406
-      - 1.0676349059386459
-      - -25.583987841824296
-      inverse_matrix_for_pillow:
-      - 1.0
-      - 0.0
-      - 0.0
-      - -0.008499445719655857
-      - 0.9366497802175338
-      - 23.963236589132784
-      pivot_anchor_px: *id013
-      resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-      preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
-  geometry_qa:
-    source_corners_px: &id014
-      left:
-      - 54.44039735099338
-      - 314.2687446286991
-      front:
-      - 331.69867549668874
-      - 452.8978837015468
-      right:
-      - 502.38079470198676
-      - 367.5568240988978
-    source_axis_slopes: &id015
-    - 0.5
-    - -0.5
-    axis_pass: true
-    axis_tolerance: 0.03
-    source_width_depth_ratio: 1.624413145539906
-    expected_width_depth_ratio: 1.3333333333333333
-    ratio_relative_error: 0.2183098591549295
-    ratio_pass: false
-    measurement_uncertainty_source_px: 6
-    precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-    measurement_space: final_png_after_affine_reprojection
-    pre_reprojection_final_corners_px:
-      left:
-      - 54.44039735099338
-      - 317.8602739726027
-      front:
-      - 331.69867549668874
-      - 445.35068493150686
-      right:
-      - 502.38079470198676
-      - 363.96529680365296
-    pre_reprojection_axis_slopes:
-    - 0.45982544438911105
-    - -0.4768243358284227
-    final_corners_px: *id014
-    final_axis_slopes: *id015
-    pre_reprojection_source_corners_px:
-      left:
-      - 61
-      - 826
-      front:
-      - 753
-      - 1144
-      right:
-      - 1179
-      - 941
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 544
-    - 496
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 135644
-    alpha_partial_pixels: 132862
-    alpha_opaque_pixels: 1318
-    alpha_near_opaque_pixels: 130056
-    alpha_nonzero_bbox:
-    - 30
-    - 7
-    - 513
-    - 470
-    transparent_margins_px:
-    - 30
-    - 7
-    - 31
-    - 26
-    border_alpha_max: 0
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  release_ready: false
-  notes: 选第一候选：双层茶货店完整；第二候选地面过扁；当前店面宽深比偏大，需总装验证。；原图已view_image；候选形制（原创扩展），具体元末细部（待考）；仅原向单视图，严格拼接（待实测）。
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 两层铺屋开间；深檐、格扇与灰瓦；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id005
 - id: bld_kit_yuan_south_inn
   file: bld_kit_yuan_south_inn.png
   category: building-map
   style: default
   subject: 元末江南·客栈（原创扩展）
-  prompt: 'Use case: historical-scene. Generate ONE new isolated late Yuan dynasty Jiangnan Chinese town building game sprite, circa 1350 Hangzhou/Jiqing/Pingjiang.
-    Input image is a MATERIAL, PALETTE and CAMERA style reference only, not a historical reconstruction target. Match its realistic muted grey
-    ceramic roof tiles, weathered warm dark timber, pale lightly weathered lime plaster, fine restrained detail density. Orthographic camera yaw
-    45 degrees elevation 30 degrees, dimetric ground edges slope +0.5 and -0.5 (2:1 grid), zero perspective convergence. Front south entrance
-    faces lower left. Complete building and footprint on a TRUE transparent RGBA background, not white or checkerboard. Thin ground interface,
-    no thick floating block. Make the left, front and right ground footprint corners clear and the entire building fit with 12% transparent margin.
-    Lighting upper left, minimal short contact shadow lower right. Roofs plain with restrained eave curves and no extravagant upturned ornament.
-    No people, words, lettering, signs, flags, logos, background scenery, mountains, modern materials, bright golden roofs, elaborate Qing polychromy,
-    tourist Huizhou horse-head firewalls, cartoon outlines. Subject: modest TWO STOREY INN on a rectangular parcel12m east-west x9m north-south.
-    L-shaped timber lodging with an open side service court still within rectangular parcel, main facade facing lower left has simple large entrance
-    with plain undyed curtain, upstairs repeated closed wooden guest room shutters. No tavern dining terrace. Grey tiled gable roofs, pale plaster,
-    timber stairs visible inside service court. No characters or writing. Clear three parcel corners, +/-0.5 ground slopes; east-west edge screen
-    span 1.333 times other edge.'
-  negative: 文字、水印、现代物、人物、清式彩画、旅游马头墙、厚底座、景观背景
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A 12m by9m two-storey travellers inn around a tiny service court: broad open entrance bay, ground-level public room shutters, upper guest-room lattice windows, timber gallery only where structurally plausible, multiple plain grey gable roofs, stone footings;
+    no sign text, lantern spectacle or people.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
   references:
-  - file: assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png
-    sha256: bdb0d7ba47a804dc14b20c39931e2b95a6c8926cf0d3ecd10a7a808eb62d2548
-    role: 生成参考或第二候选编辑目标，详见调用记录
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed
-  created: '2026-09-30T22:29:14.018718+00:00'
-  created_time_basis: source PNG mtime, not service-side call timestamp
-  source_path: /Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-20f4eb93-1699-4bd0-83f6-07acd481a59d.png
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 滨水楼屋与小院
+  - url: http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+    role: 柱网、格扇、深檐
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:30:08+00:00'
+  generation_id: b3c61547-c0d5-4751-9937-688b13290b16
   size: 752x720
-  sha256: 993bcea66d445b382646b7047f7262922e7005b0f1182d8f36223e840e7f572b
+  sha256: 204e9cd38034f8ff2ca4f6d54e7171fd0dc171d669d2b86e2a8413f83ec99be5
   status: candidate
   building:
     type: bld_kit_yuan_south_inn
     footprint:
     - 12
     - 9
-    anchor: &id016
+    anchor: &id006
     - 368.8065
     - 461.5521
     era: yuan
@@ -970,183 +263,42 @@
   entrance:
     edge: S
     offset_cells: 6
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 672
-    - 336
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    strict_geometry_pass: true
-  metadata: meta/bld_kit_yuan_south_inn.yaml
-  source_record: sources/inn.call.json
-  candidate_count: 2
+  candidate_count: 1
   selected_candidate: 1
-  selection_reason: 选第一候选：客房闭窗与侧院楼梯区别于酒楼；第二候选偏俯视浅轴，当前宽深比偏差保留。
-  source_sha256: ff028a124e5b39d633d5f95092156d5a5f1d5128f4d982f205618edd7bb51ad3
+  source_record: sources/hist_inn_selected.json
+  source_archive: sources/hist_inn_selected.png
   processing:
-    source_archive: sources/bld_kit_yuan_south_inn.png
-    source_sha256: ff028a124e5b39d633d5f95092156d5a5f1d5128f4d982f205618edd7bb51ad3
-    source_size:
-    - 1254
-    - 1254
-    crop_box:
-    - 41
-    - 51
-    - 1240
-    - 1212
-    uniform_scale_requested: 0.5753424657534246
-    resized_size:
-    - 690
-    - 668
-    rounded_effective_scale:
-    - 0.5754795663052544
-    - 0.5753660637381568
-    paste_offset:
-    - 31
-    - 26
-    - 721
-    - 694
-    steps:
-    - alpha>0矩形裁边，保留全部非零alpha
-    - 一次等比LANCZOS，尺寸取整
-    - 无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值
-    - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-    reprojection:
-      kind: whole_sprite_affine_reprojection
-      purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-      forward_matrix:
-      - 1.0
-      - 0.0
-      - -0.037494134209291374
-      - 0.9974750063759015
-      - 14.993496517948302
-      inverse_matrix_for_pillow:
-      - 1.0
-      - 0.0
-      - 0.0
-      - 0.03758904631156402
-      - 1.0025313853559825
-      - -15.03145083546881
-      pivot_anchor_px: *id016
-      resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-      preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
-  geometry_qa:
-    source_corners_px: &id017
-      left:
-      - 32.726438698915764
-      - 452.3444369597573
-      front:
-      - 387.2218515429525
-      - 629.5921433817757
-      right:
-      - 704.8865721434529
-      - 470.7597830815254
-    source_axis_slopes: &id018
-    - 0.5000000000000002
-    - -0.5000000000000002
-    axis_pass: true
-    axis_tolerance: 0.03
-    source_width_depth_ratio: 1.1159420289855073
-    expected_width_depth_ratio: 1.3333333333333333
-    ratio_relative_error: 0.1630434782608695
-    ratio_pass: false
-    measurement_uncertainty_source_px: 6
-    precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-    measurement_space: final_png_after_affine_reprojection
-    pre_reprojection_final_corners_px:
-      left:
-      - 32.726438698915764
-      - 439.68819982773476
-      front:
-      - 387.2218515429525
-      - 630.7097329888028
-      right:
-      - 704.8865721434529
-      - 483.41602067183464
-    pre_reprojection_axis_slopes:
-    - 0.5388547389895553
-    - -0.46367664636642725
-    final_corners_px: *id017
-    final_axis_slopes: *id018
-    pre_reprojection_source_corners_px:
-      left:
-      - 44
-      - 770
-      front:
-      - 660
-      - 1102
-      right:
-      - 1212
-      - 846
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 752
-    - 720
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 312786
-    alpha_partial_pixels: 227493
-    alpha_opaque_pixels: 1161
-    alpha_near_opaque_pixels: 222561
-    alpha_nonzero_bbox:
-    - 32
-    - 27
-    - 721
-    - 687
-    transparent_margins_px:
-    - 32
-    - 27
-    - 31
-    - 33
-    border_alpha_max: 0
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  release_ready: false
-  notes: 选第一候选：客房闭窗与侧院楼梯区别于酒楼；第二候选偏俯视浅轴，当前宽深比偏差保留。；原图已view_image；候选形制（原创扩展），具体元末细部（待考）；仅原向单视图，严格拼接（待实测）。
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 滨水楼屋与小院；柱网、格扇、深檐；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id006
 - id: bld_kit_yuan_south_restaurant
   file: bld_kit_yuan_south_restaurant.png
   category: building-map
   style: default
   subject: 元末江南·酒楼茶肆（原创扩展）
-  prompt: 'Use case: historical-scene. Generate ONE new isolated late Yuan dynasty Jiangnan Chinese town building game sprite, circa 1350 Hangzhou/Jiqing/Pingjiang.
-    Input image is a MATERIAL, PALETTE and CAMERA style reference only, not a historical reconstruction target. Match its realistic muted grey
-    ceramic roof tiles, weathered warm dark timber, pale lightly weathered lime plaster, fine restrained detail density. Orthographic camera yaw
-    45 degrees elevation 30 degrees, dimetric ground edges slope +0.5 and -0.5 (2:1 grid), zero perspective convergence. Front south entrance
-    faces lower left. Complete building and footprint on a TRUE transparent RGBA background, not white or checkerboard. Thin ground interface,
-    no thick floating block. Make the left, front and right ground footprint corners clear and the entire building fit with 12% transparent margin.
-    Lighting upper left, minimal short contact shadow lower right. Roofs plain with restrained eave curves and no extravagant upturned ornament.
-    No people, words, lettering, signs, flags, logos, background scenery, mountains, modern materials, bright golden roofs, elaborate Qing polychromy,
-    tourist Huizhou horse-head firewalls, cartoon outlines. Subject: TWO STOREY WINE HOUSE / TEAHOUSE, parcel12m east-west x9m north-south. Broad
-    open south dining facade to lower left, long timber balcony with simple rail and reed blinds, stoneware wine jars stored under eaves, two
-    plain wood dining tables with ceramic bowls just inside front. A single main building with grey tiled overhanging gable roof and small lean-to
-    kitchen wing behind, no courtyard or garden. Clear three parcel corners, +/-0.5 ground slopes; east-west edge screen span 1.333 times other
-    edge.'
-  negative: 文字、水印、现代物、人物、清式彩画、旅游马头墙、厚底座、景观背景
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A 12m by9m substantial two-storey food house: wide open lower bays with timber shutters, upper dining level with lattice screens and modest covered gallery, main grey-tiled hip-and-gable roof, deep eaves, restrained plain brackets, stone base; no banners,
+    text, patrons or food props.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
   references:
-  - file: assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png
-    sha256: bdb0d7ba47a804dc14b20c39931e2b95a6c8926cf0d3ecd10a7a808eb62d2548
-    role: 生成参考或第二候选编辑目标，详见调用记录
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed
-  created: '2026-09-30T22:30:21.251672+00:00'
-  created_time_basis: source PNG mtime, not service-side call timestamp
-  source_path: /Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-b8a29269-8f97-48b5-82fe-b2e8890938ad.png
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 滨水台榭
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00000900
+    role: 重檐/平座/栏杆的等级比例
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:30:41+00:00'
+  generation_id: aa3b5656-8bfc-41d0-9314-bedf18aa53bc
   size: 768x688
-  sha256: 95b2243c29d10229a82bb4da5dab1a47da6cc920fe1eddd6eb811c032ea5ab7a
+  sha256: 4416848d826b0c508ca172b21618dbbcaf14b4c04507d9ba2e00acffa6bfa6c2
   status: candidate
   building:
     type: bld_kit_yuan_south_restaurant
     footprint:
     - 12
     - 9
-    anchor: &id019
+    anchor: &id007
     - 387.8841
     - 446.489
     era: yuan
@@ -1157,142 +309,13 @@
   entrance:
     edge: S
     offset_cells: 6
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 672
-    - 336
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    strict_geometry_pass: true
-  metadata: meta/bld_kit_yuan_south_restaurant.yaml
-  source_record: sources/restaurant.call.json
-  candidate_count: 2
+  candidate_count: 1
   selected_candidate: 1
-  selection_reason: 选第一候选：酒瓮与桌席辨用途；第二候选轴向过浅，首候选保持宋基线屋面质感。
-  source_sha256: 0c85e63ce8db3d19f6c88acbcc2568ba6091fac8b78a8b66570615b0f1d55b9a
+  source_record: sources/hist_restaurant_selected.json
+  source_archive: sources/hist_restaurant_selected.png
   processing:
-    source_archive: sources/bld_kit_yuan_south_restaurant.png
-    source_sha256: 0c85e63ce8db3d19f6c88acbcc2568ba6091fac8b78a8b66570615b0f1d55b9a
-    source_size:
-    - 1254
-    - 1254
-    crop_box:
-    - 0
-    - 116
-    - 1230
-    - 1208
-    uniform_scale_requested: 0.5848563968668408
-    resized_size:
-    - 719
-    - 639
-    rounded_effective_scale:
-    - 0.5845528455284553
-    - 0.5851648351648352
-    paste_offset:
-    - 24
-    - 24
-    - 743
-    - 663
-    steps:
-    - alpha>0矩形裁边，保留全部非零alpha
-    - 一次等比LANCZOS，尺寸取整
-    - 无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值
-    - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-    reprojection:
-      kind: whole_sprite_affine_reprojection
-      purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-      forward_matrix:
-      - 1.0
-      - 0.0
-      - 0.041294154423257234
-      - 0.956672697765286
-      - 3.3278179237490804
-      inverse_matrix_for_pillow:
-      - 1.0
-      - 0.0
-      - 0.0
-      - -0.043164349228024604
-      - 1.045289577444745
-      - -3.4785333913287246
-      pivot_anchor_px: *id019
-      resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-      preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
-  geometry_qa:
-    source_corners_px: &id020
-      left:
-      - 52.05853658536586
-      - 419.7457197435916
-      front:
-      - 441.3707317073171
-      - 614.401817304567
-      right:
-      - 723.709756097561
-      - 473.2323051094452
-    source_axis_slopes: &id021
-    - 0.49999999999999933
-    - -0.4999999999999994
-    axis_pass: true
-    axis_tolerance: 0.03
-    source_width_depth_ratio: 1.3788819875776397
-    expected_width_depth_ratio: 1.3333333333333333
-    ratio_relative_error: 0.034161490683229934
-    ratio_pass: true
-    measurement_uncertainty_source_px: 6
-    precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-    measurement_space: final_png_after_affine_reprojection
-    pre_reprojection_final_corners_px:
-      left:
-      - 52.05853658536586
-      - 433.0302197802198
-      front:
-      - 441.3707317073171
-      - 619.6978021978023
-      right:
-      - 723.709756097561
-      - 459.9478021978022
-    pre_reprojection_axis_slopes:
-    - 0.4794804394943479
-    - -0.5658091379503971
-    final_corners_px: *id020
-    final_axis_slopes: *id021
-    pre_reprojection_source_corners_px:
-      left:
-      - 48
-      - 815
-      front:
-      - 714
-      - 1134
-      right:
-      - 1197
-      - 861
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 768
-    - 688
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 269643
-    alpha_partial_pixels: 257457
-    alpha_opaque_pixels: 1284
-    alpha_near_opaque_pixels: 251295
-    alpha_nonzero_bbox:
-    - 24
-    - 35
-    - 743
-    - 636
-    transparent_margins_px:
-    - 24
-    - 35
-    - 25
-    - 52
-    border_alpha_max: 0
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  release_ready: false
-  notes: 选第一候选：酒瓮与桌席辨用途；第二候选轴向过浅，首候选保持宋基线屋面质感。；原图已view_image；候选形制（原创扩展），具体元末细部（待考）；仅原向单视图，严格拼接（待实测）。
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 滨水台榭；重檐/平座/栏杆的等级比例；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id007

@@ -10,105 +10,30 @@ building:
   - 344.6531
   era: yuan
 anchor_px: *id001
-logical_footprint_polygon_px:
-- - 83.91550000000001
-  - 328.6531
-- - 403.9155
-  - 488.6531
-- - 659.9155000000001
-  - 360.6531
-- - 339.9155
-  - 200.6531
-collision_polygon_m:
-- - 0
-  - 0
-- - 10
-  - 0
-- - 10
-  - 8
-- - 0
-  - 8
-collision_note: 完整占地逻辑代理；非实测墙体，不含阴影。河埠不启用port。
-actual_height_m: null
-height_note: 单图不能可靠反推实际高度，待后续3D建模实测。
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】沿用design/22 §3.3南宋warehouse10×8，同构功能扩展
 entrance:
   edge: S
   offset_cells: 5
-entrance_note: 逻辑入口中点代理，未实测门洞。
-planning_rotations_allowed:
-- 0
-- 90
-- 180
-- 270
 png_rotations_available:
 - 0
 allowRotation: false
-views:
-- rotation_deg: 0
-  yaw_deg: 45
-  pitch_deg: 30
-  file: bld_kit_yuan_south_warehouse.png
-glb: null
-projection_contract:
-  tile_px:
-  - 64
-  - 32
-  ground_bbox_px:
-  - 576
-  - 288
-  ground_width_px: 576
-  light: screen_upper_left
-  shadow: screen_lower_right_contact_only
-  note: 目标契约；实测残差见geometry_qa，不冒充精确反推相机。
-geometry_qa:
-  source_corners_px: &id002
-    left:
-    - 83.9151817533856
-    - 319.3143763062659
-    front:
-    - 421.86600142551674
-    - 488.28978614233154
-    right:
-    - 659.9009265858874
-    - 369.2723235621461
-  source_axis_slopes: &id003
-  - 0.5000000000000002
-  - -0.5000000000000004
-  axis_tolerance: 0.03
-  axis_pass: true
-  source_width_depth_ratio: 1.4197530864197532
-  expected_width_depth_ratio: 1.25
-  ratio_relative_error: 0.13580246913580263
-  ratio_tolerance_suggestion: 0.1
-  ratio_pass: false
-  measurement_uncertainty_source_px: 5
-  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-  measurement_space: final_png_after_affine_reprojection
-  pre_reprojection_final_corners_px:
-    left:
-    - 83.9151817533856
-    - 324.0
-    front:
-    - 421.86600142551674
-    - 469.93548387096774
-    right:
-    - 659.9009265858874
-    - 364.6774193548387
-  pre_reprojection_axis_slopes:
-  - 0.4318246187789974
-  - -0.4421958855206385
-  final_corners_px: *id002
-  final_axis_slopes: *id003
-  pre_reprojection_source_corners_px:
-    left:
-    - 95
-    - 652
-    front:
-    - 900
-    - 1000
-    right:
-    - 1467
-    - 749
+release_ready: false
+historical_reference_urls:
+- https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+- http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+historical_details:
+- 滨水仓屋体量
+- 重柱、深檐、低石基
+generation_id: bd36f738-214b-467a-a2cd-1680487dd577
+source_record: sources/hist_warehouse_selected.json
+source_archive: sources/hist_warehouse_selected.png
+processing:
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
 pixel_qa:
   mode: RGBA
   size:
@@ -117,66 +42,21 @@ pixel_qa:
   alpha_extrema:
   - 0
   - 255
-  alpha_zero_pixels: 243947
-  alpha_partial_pixels: 155109
-  alpha_opaque_pixels: 1328
-  alpha_near_opaque_pixels: 152477
+  alpha_zero_pixels: 261216
+  alpha_partial_pixels: 138130
+  alpha_opaque_pixels: 1038
   alpha_nonzero_bbox:
-  - 82
-  - 29
-  - 662
-  - 493
+  - 93
+  - 70
+  - 683
+  - 502
   transparent_margins_px:
-  - 82
-  - 29
-  - 74
-  - 51
-  border_alpha_max: 0
-processing:
-  source_archive: sources/bld_kit_yuan_south_warehouse.png
-  source_sha256: 23d839211c34b20ac9bbe1161fc9906af73473133058fdf52a42e6ffa9052b1f
-  source_size:
-  - 1536
-  - 1024
-  crop_box:
-  - 69
-  - 32
-  - 1472
-  - 1024
-  uniform_scale_requested: 0.4198250728862974
-  resized_size:
-  - 589
-  - 416
-  rounded_effective_scale:
-  - 0.41981468282252316
-  - 0.41935483870967744
-  paste_offset:
-  - 73
-  - 64
-  - 662
-  - 480
-  steps:
-  - crop alpha>0 bounding rectangle
-  - uniform LANCZOS resize with integer rounding
-  - paste without mask into transparent RGBA; no alpha threshold, warp, repaint or mirror
-  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-  reprojection:
-    kind: whole_sprite_affine_reprojection
-    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-    forward_matrix:
-    - 1.0
-    - 0.0
-    - 0.005933079767935001
-    - 1.1441379179099616
-    - -51.88418456364519
-    inverse_matrix_for_pillow:
-    - 1.0
-    - 0.0
-    - 0.0
-    - -0.005185633370820516
-    - 0.8740205042996358
-    - 45.34784115749255
-    pivot_anchor_px: *id001
-    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
-release_ready: false
+  - 93
+  - 70
+  - 53
+  - 42
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 滨水仓屋体量；重柱、深檐、低石基；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

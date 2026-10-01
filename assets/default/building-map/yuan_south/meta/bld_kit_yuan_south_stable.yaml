@@ -10,105 +10,30 @@ building:
   - 329.2725
   era: yuan
 anchor_px: *id001
-logical_footprint_polygon_px:
-- - 109.34089999999998
-  - 313.2725
-- - 397.3409
-  - 457.2725
-- - 621.3408999999999
-  - 345.2725
-- - 333.3409
-  - 201.27249999999998
-collision_polygon_m:
-- - 0
-  - 0
-- - 9
-  - 0
-- - 9
-  - 7
-- - 0
-  - 7
-collision_note: 完整占地逻辑代理；非实测墙体，不含阴影。河埠不启用port。
-actual_height_m: null
-height_note: 单图不能可靠反推实际高度，待后续3D建模实测。
+footprint_m:
+- 9
+- 7
+footprint_basis: 【建议值】沿用design/22 §3.3南宋stable9×7，同构功能扩展
 entrance:
   edge: S
   offset_cells: 4
-entrance_note: 逻辑入口中点代理，未实测门洞。
-planning_rotations_allowed:
-- 0
-- 90
-- 180
-- 270
 png_rotations_available:
 - 0
 allowRotation: false
-views:
-- rotation_deg: 0
-  yaw_deg: 45
-  pitch_deg: 30
-  file: bld_kit_yuan_south_stable.png
-glb: null
-projection_contract:
-  tile_px:
-  - 64
-  - 32
-  ground_bbox_px:
-  - 512
-  - 256
-  ground_width_px: 512
-  light: screen_upper_left
-  shadow: screen_lower_right_contact_only
-  note: 目标契约；实测残差见geometry_qa，不冒充精确反推相机。
-geometry_qa:
-  source_corners_px: &id002
-    left:
-    - 109.34272300469485
-    - 297.65807262194875
-    front:
-    - 428.09389671361504
-    - 457.0336594764089
-    right:
-    - 621.3708920187794
-    - 360.39516182382675
-  source_axis_slopes: &id003
-  - 0.5000000000000002
-  - -0.49999999999999983
-  axis_tolerance: 0.03
-  axis_pass: true
-  source_width_depth_ratio: 1.6491935483870968
-  expected_width_depth_ratio: 1.2857142857142858
-  ratio_relative_error: 0.2827060931899641
-  ratio_tolerance_suggestion: 0.1
-  ratio_pass: false
-  measurement_uncertainty_source_px: 5
-  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-  measurement_space: final_png_after_affine_reprojection
-  pre_reprojection_final_corners_px:
-    left:
-    - 109.34272300469485
-    - 304.8937437934459
-    front:
-    - 428.09389671361504
-    - 453.9860973187686
-    right:
-    - 621.3708920187794
-    - 353.1638530287984
-  pre_reprojection_axis_slopes:
-  - 0.4677389946224076
-  - -0.5216463766460271
-  final_corners_px: *id002
-  final_axis_slopes: *id003
-  pre_reprojection_source_corners_px:
-    left:
-    - 114
-    - 605
-    front:
-    - 932
-    - 988
-    right:
-    - 1428
-    - 729
+release_ready: false
+historical_reference_urls:
+- https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+- https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00005285
+historical_details:
+- 长向敞棚母题
+- 朴素岸居与植被材料
+generation_id: 6ada5cd5-fa8b-405e-9e50-f18239afe06d
+source_record: sources/hist_stable_selected.json
+source_archive: sources/hist_stable_selected.png
+processing:
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
 pixel_qa:
   mode: RGBA
   size:
@@ -117,66 +42,21 @@ pixel_qa:
   alpha_extrema:
   - 0
   - 255
-  alpha_zero_pixels: 285957
-  alpha_partial_pixels: 113397
-  alpha_opaque_pixels: 1030
-  alpha_near_opaque_pixels: 111209
+  alpha_zero_pixels: 246314
+  alpha_partial_pixels: 153262
+  alpha_opaque_pixels: 808
   alpha_nonzero_bbox:
-  - 106
-  - 69
-  - 630
-  - 459
+  - 47
+  - 48
+  - 688
+  - 511
   transparent_margins_px:
-  - 106
-  - 69
-  - 106
-  - 85
-  border_alpha_max: 0
-processing:
-  source_archive: sources/bld_kit_yuan_south_stable.png
-  source_sha256: 192340df6631552037f2dd5956a28a79756853bea89773b250e75f66661306d2
-  source_size:
-  - 1536
-  - 1024
-  crop_box:
-  - 31
-  - 17
-  - 1522
-  - 1024
-  uniform_scale_requested: 0.3896499238964992
-  resized_size:
-  - 581
-  - 392
-  rounded_effective_scale:
-  - 0.38967136150234744
-  - 0.38927507447864945
-  paste_offset:
-  - 77
-  - 76
-  - 658
-  - 468
-  steps:
-  - crop alpha>0 bounding rectangle
-  - uniform LANCZOS resize with integer rounding
-  - paste without mask into transparent RGBA; no alpha threshold, warp, repaint or mirror
-  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-  reprojection:
-    kind: whole_sprite_affine_reprojection
-    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-    forward_matrix:
-    - 1.0
-    - 0.0
-    - 0.027242863897668
-    - 1.010728507859336
-    - -13.485535019064741
-    inverse_matrix_for_pillow:
-    - 1.0
-    - 0.0
-    - 0.0
-    - -0.026953691011809687
-    - 0.9893853712684345
-    - 13.342391071590844
-    pivot_anchor_px: *id001
-    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
-release_ready: false
+  - 47
+  - 48
+  - 48
+  - 33
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 长向敞棚母题；朴素岸居与植被材料；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

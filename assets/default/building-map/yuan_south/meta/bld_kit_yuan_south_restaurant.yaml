@@ -1,133 +1,39 @@
-asset_id: bld_kit_yuan_south_restaurant
-anchor_px: &id001
-- 387.8841
-- 446.489
-footprint_cells:
+id: bld_kit_yuan_south_restaurant
+status: candidate
+building:
+  type: bld_kit_yuan_south_restaurant
+  footprint:
+  - 12
+  - 9
+  anchor: &id001
+  - 387.8841
+  - 446.489
+  era: yuan
+anchor_px: *id001
+footprint_m:
 - 12
 - 9
+footprint_basis: 【建议值】design/22 §3.3同功能项
 entrance:
   edge: S
   offset_cells: 6
-actual_height_m: null
-height_note: 仅PNG，未实测高度
 png_rotations_available:
 - 0
 allowRotation: false
-collision_polygon_local_m:
-- - 0
-  - 0
-- - 12
-  - 0
-- - 12
-  - 9
-- - 0
-  - 9
-collision_note: 矩形占地仅候选代理；院内/入口通行待布局联调
-occlusion_polygon_px:
-- - 24
-  - 35
-- - 743
-  - 35
-- - 743
-  - 636
-- - 24
-  - 636
-occlusion_note: alpha包络代理，非运行时精细遮挡
+release_ready: false
+historical_reference_urls:
+- https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+- https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00000900
+historical_details:
+- 滨水台榭
+- 重檐/平座/栏杆的等级比例
+generation_id: aa3b5656-8bfc-41d0-9314-bedf18aa53bc
+source_record: sources/hist_restaurant_selected.json
+source_archive: sources/hist_restaurant_selected.png
 processing:
-  source_archive: sources/bld_kit_yuan_south_restaurant.png
-  source_sha256: 0c85e63ce8db3d19f6c88acbcc2568ba6091fac8b78a8b66570615b0f1d55b9a
-  source_size:
-  - 1254
-  - 1254
-  crop_box:
-  - 0
-  - 116
-  - 1230
-  - 1208
-  uniform_scale_requested: 0.5848563968668408
-  resized_size:
-  - 719
-  - 639
-  rounded_effective_scale:
-  - 0.5845528455284553
-  - 0.5851648351648352
-  paste_offset:
-  - 24
-  - 24
-  - 743
-  - 663
-  steps:
-  - alpha>0矩形裁边，保留全部非零alpha
-  - 一次等比LANCZOS，尺寸取整
-  - 无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值
-  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
-  reprojection:
-    kind: whole_sprite_affine_reprojection
-    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
-    forward_matrix:
-    - 1.0
-    - 0.0
-    - 0.041294154423257234
-    - 0.956672697765286
-    - 3.3278179237490804
-    inverse_matrix_for_pillow:
-    - 1.0
-    - 0.0
-    - 0.0
-    - -0.043164349228024604
-    - 1.045289577444745
-    - -3.4785333913287246
-    pivot_anchor_px: *id001
-    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
-    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
-geometry_qa:
-  source_corners_px: &id002
-    left:
-    - 52.05853658536586
-    - 419.7457197435916
-    front:
-    - 441.3707317073171
-    - 614.401817304567
-    right:
-    - 723.709756097561
-    - 473.2323051094452
-  source_axis_slopes: &id003
-  - 0.49999999999999933
-  - -0.4999999999999994
-  axis_pass: true
-  axis_tolerance: 0.03
-  source_width_depth_ratio: 1.3788819875776397
-  expected_width_depth_ratio: 1.3333333333333333
-  ratio_relative_error: 0.034161490683229934
-  ratio_pass: true
-  measurement_uncertainty_source_px: 6
-  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
-  measurement_space: final_png_after_affine_reprojection
-  pre_reprojection_final_corners_px:
-    left:
-    - 52.05853658536586
-    - 433.0302197802198
-    front:
-    - 441.3707317073171
-    - 619.6978021978023
-    right:
-    - 723.709756097561
-    - 459.9478021978022
-  pre_reprojection_axis_slopes:
-  - 0.4794804394943479
-  - -0.5658091379503971
-  final_corners_px: *id002
-  final_axis_slopes: *id003
-  pre_reprojection_source_corners_px:
-    left:
-    - 48
-    - 815
-    front:
-    - 714
-    - 1134
-    right:
-    - 1197
-    - 861
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
 pixel_qa:
   mode: RGBA
   size:
@@ -136,18 +42,21 @@ pixel_qa:
   alpha_extrema:
   - 0
   - 255
-  alpha_zero_pixels: 269643
-  alpha_partial_pixels: 257457
-  alpha_opaque_pixels: 1284
-  alpha_near_opaque_pixels: 251295
+  alpha_zero_pixels: 309578
+  alpha_partial_pixels: 218035
+  alpha_opaque_pixels: 771
   alpha_nonzero_bbox:
-  - 24
-  - 35
-  - 743
-  - 636
-  transparent_margins_px:
-  - 24
-  - 35
-  - 25
   - 52
-  border_alpha_max: 0
+  - 41
+  - 715
+  - 646
+  transparent_margins_px:
+  - 52
+  - 41
+  - 53
+  - 42
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 滨水台榭；重檐/平座/栏杆的等级比例；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
