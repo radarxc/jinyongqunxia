@@ -1,0 +1,22 @@
+{
+  "key": "bridge",
+  "id": "tex_town_qing_south_bridge__stone_w3_l6_r000_v01",
+  "kind": "bridge",
+  "variant": "stone_w3_l6_r000_v01",
+  "footprint": [
+    3,
+    6
+  ],
+  "subject": "清初至清中江南匿名单孔石桥（原创扩展）",
+  "ref": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_south/assets/default/baseline/tile/tex_town_song_southern_bridge_rail__w5_l10_r090_v01.png",
+  "source_anchor": [
+    782,
+    613
+  ],
+  "source_ground_width": 1369,
+  "height_m": 2,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f427-c8aa-7940-bc3b-27f1118f5917/exec-ea412802-3692-4071-a4cd-cd8a66342981.png",
+  "prompt": "Use case: historical-scene. ONE complete modest single-arch stone bridge for an early-to-mid Qing Jiangnan canal town 1660–1780, original unnamed bridge concept. Reference image is ONLY for realistic grey stone material, quiet palette, detail density and upper-left lighting; create entire bridge, not just rails. Gently humped grey stone deck, one shallow arch with fully transparent opening beneath it, low plain posts and horizontal stone rails on both sides, practical short approaches. Footprint 3 cells wide by 6 cells long. Orthographic yaw45 elevation30, exact 2:1 projection, horizontal axes screen slopes +0.5/-0.5, vertical posts upright, no perspective convergence. Main length runs upper-left to lower-right. Base centered, bridge feet and railing fully visible, transparent empty backdrop and empty transparent space under arch. No water, riverbank, street, platform or surrounding scenery. Realistic ancient game asset, fine weathered grey masonry, no decorative lions, imperial paint, curved dragon rails or monumental high arch. Soft light from upper-left; only tiny lower-right contact shadow at footings, no glow or haze. True transparent RGBA, generous transparent margins. ONE object, no sheet, people, text, plaques, grid, checkerboard or modern objects.",
+  "created": "2026-09-30",
+  "attempts": 1
+}

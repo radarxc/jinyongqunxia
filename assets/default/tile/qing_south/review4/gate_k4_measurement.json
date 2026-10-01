@@ -1,0 +1,61 @@
+{
+  "source_size": [
+    1254,
+    1254
+  ],
+  "source_corners_px": {
+    "left": [
+      117,
+      831
+    ],
+    "front": [
+      667,
+      1118
+    ],
+    "right": [
+      939,
+      971
+    ]
+  },
+  "source_passage_endpoints_px": [
+    [
+      253,
+      902
+    ],
+    [
+      528,
+      1045
+    ]
+  ],
+  "passage_cells_x_calibrated": 4.0,
+  "passage_cells_vector_projection": 3.997017166880159,
+  "pier_cells_x_calibrated": [
+    1.9781818181818183,
+    2.021818181818182
+  ],
+  "depth_cells_x_calibrated": 3.9563636363636365,
+  "endpoint_uncertainty_px": 5,
+  "strict_gate_contract_pass": true,
+  "crop_box": [
+    77,
+    162,
+    971,
+    1124
+  ],
+  "uniform_scale": 0.46545454545454545,
+  "padding_px": 16,
+  "source_anchor_px": [
+    528.0,
+    901.0
+  ],
+  "anchor_px": [
+    225.92,
+    359.9709
+  ],
+  "source_sha256": "7df0c07314f7f3946f7a8879f5082beef0cb7899d59ff07cb1b195cfcc8c797f",
+  "final_size": [
+    448,
+    480
+  ],
+  "final_sha256": "2004f2d586db953a6150c8eb964bf466c2b4ec82f1e4662a6b235da246c061b9"
+}

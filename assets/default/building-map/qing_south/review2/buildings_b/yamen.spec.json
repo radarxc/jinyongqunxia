@@ -1,0 +1,26 @@
+{
+  "selected": 1,
+  "files": [
+    "exec-9ac1dede-467e-4657-8f6a-2e8d3941ad7d.png",
+    "exec-4193241f-3785-41dd-9143-2db7fe4cd3cc.png"
+  ],
+  "corners": [
+    [
+      59,
+      550
+    ],
+    [
+      830,
+      965
+    ],
+    [
+      1478,
+      615
+    ]
+  ],
+  "prompts": [
+    "Use case: sketch-to-render. FIRST IMAGE is mandatory geometric footprint (17x13 metres) to build upon; SECOND IMAGE is a Qing Jiangnan yamen material/style and building-layout reference only. The first image geometry OVERRIDES the second. Render a realistic gray-tile white-plaster dark timber Qing yamen courthouse courtyard on EXACTLY the first image's parallelogram pad. Retain its shape, dimensions and pixel positions and camera, especially all three visible outer pad corners L=(128,577), F=(853,940), R=(1408,663). Width/depth 17:13, edges slope +0.5/-0.5. Do not enlarge, rotate, compress, skew or change this footprint. Add building massing atop it, matching style reference: main hall rear, single-storey wings either side, walled front with middle gate, open stone courtyard, very sparse shrubs. Main entrance screen lower-left side. Transform geometric grid into realistic small gray stone flagstones, remove guide lines. Keep thin clear exposed stone rim around compound inside these exact boundaries. All eave/wall directions MUST remain parallel with the first image pad edges, verticals upright. No perspective taper, 2:1 orthographic dimetric. Realistic ancient materials and same detailed texture density as reference. No modern objects, text, humans, symbols, watermarks, vegetation outside footprint. Full building including roof uncropped, transparent background outside, real RGBA alpha, upper-left light tiny lower-right contact shadow. Do not render thick diorama pedestal.",
+    "Edit the attached EXACT 2:1 ORTHOGRAPHIC GEOMETRIC FOOTPRINT. Keep the flat parallelogram shape and pixel positions UNCHANGED. Add realistic early Qing Jiangnan courthouse buildings on top, no altering outline. This is a technical game sprite: visible left ground corner(128,577), front ground corner(853,940), right ground corner(1408,663) MUST STAY at those coordinates. Render gray small clay roof tiles with fine individual tile ridges, aged off-white lime plaster brick enclosing walls, gray stone footings, dark weathered timber columns and fine lattice doors. Front gated wall along lower-left long edge, single-storey wings left and right, larger single-storey ceremonial main hall at rear, open paved central courtyard. Restrained teal and muted red beam paint only below main eaves. Original generic Chinese Qing regional building, no historic named site. All roof/wall foundation lines use the same axes as supplied flat footprint +0.5 and -0.5, NO perspective. This projection is flatter than 30-degree isometric. Keep full roof away from canvas border. Extremely thin stone flagstone pad follows exact template boundary with narrow visible rim, replace grid with realistic stone texture and no drawn guide lines. Transparent outside, real RGBA alpha. Upper-left warm neutral light, tiny lower-right contact shadow. No signs, text, people, figures, watermarks, modern objects, landscape, thick base or cartoon. Maintain realistic Song-style architectural sprite detail density."
+  ],
+  "generated_dir": "/Users/bytedance/.codex/generated_images/01a0f450-5169-7ad2-87a6-dab5c8b3cb31"
+}

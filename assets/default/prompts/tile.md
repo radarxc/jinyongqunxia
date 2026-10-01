@@ -474,3 +474,64 @@ TRUE RGBA, no background or painted checkerboard, no broad haze, no text or peop
 记录在 `assets/default/tile/qing_north/manifest.yaml`；完整候选提示词、历史输入路径/哈希见 `generation.jsonl`，实测锚点、原始测点、透明探针、投影残差见 `qa.jsonl`。本批直墙底边斜率约0.490/0.496；门、墙角与桥仍存在投影误差，未宣称通过严格接缝或通行孔逐像素对格验收。默认只作为candidate预览素材，后续朝向与装配修正另排。
 
 2026-09-30下载查看的正阳门、万宁桥、油松与国槐照片仅作成品后验形制复核，不曾作为本批 `image_gen` 输入；逐件URL与用途登记在套件manifest的 `historical_references`，生成输入仍以 `references` 为准。
+
+## 10. 清 · 江南套件 `qing_south`（2026-09-30）
+
+本批在 `assets/default/tile/qing_south/` 单独登记 7 张候选，不替换宋基线。年代为清初至清中江南，供杭州、扬州、苏州、福州语境选用；它是同一地域材质套件，不主张四城城垣、植物与门楼完全相同。全部为 **（原创扩展）** 的年代意象；单座史迹、精确构件比例、植物品种及栽植点仍 **（待考）**。
+
+### 10.1 年代要点与差异
+
+- 沿用宋套件低饱和写实木石颗粒、可读轮廓和细节密度；清式变化集中在灰瓦门楼、小尺度檐口、暗红褐木构和克制梁枋装饰，不把门楼改成黄琉璃宫殿。
+- 门墙使用青灰砖、灰石基脚、砖石拱券与简单雉堞；不照搬现代重建盘门楼，也不将现存宋元墙基称作清代新建形制。
+- 桥采用匿名朴素单孔石桥意象，低栏、灰石、完整透空拱下；不复制晚清重建吴门桥，不在桥图内烘焙河水、岸线或城市场景。
+- 柳树和桂花灌木支持江南河岸 / 庭园的区分。杭州地方文化资料可支持两者的地域母题，具体树龄、桂花修剪、花期及混植方式均为美术选择。
+- 透明精灵的 2:1 指底面投影，画布必须向上容纳门楼 / 树冠；禁止把整张 PNG 拉成 2:1 宽高比。
+
+| 变体 | 逻辑占地 | 提示词差异 / 限制 |
+|---|---|---|
+| `city_gate__k4_r000_v01` | 8×4 | 净宽 4、左右门墩各 2 格、石拱透空、清式灰瓦楼体 |
+| `city_gate__k6_r000_v01` | 10×4 | 净宽 6、左右门墩各 2 格、明确加宽中央拱孔 |
+| `wall__brick_r000_v01` | 4×1 | 青砖石基直墙、平直端面、简单雉堞；占地 **【建议值】** |
+| `wall_corner__outer_ne_v01` | 2×2 | 两翼直角外转角，顶面简洁；占地 **【建议值】** |
+| `bridge__stone_w3_l6_r000_v01` | 3×6 | 匿名单孔石桥，完整桥面与低栏；占地 **【建议值】** |
+| `tree_cluster__willow_v01` | 2×2 | 单株柳树、疏垂枝、清楚根部，不带土台；占地 **【建议值】** |
+| `shrub__osmanthus_v01` | 2×2 | 桂花灌木、椭圆叶、少量细小淡黄花，不带花盆；占地 **【建议值】** |
+
+表内短名均加 `tex_town_qing_south_` 前缀；完整 ID、源图路径与逐张实际提示词以本批 manifest 为准。
+
+### 10.2 复用提示词
+
+```text
+Use case: historical-scene. ONE isolated early-to-mid Qing Jiangnan {ASSET_TYPE},
+1660–1780, period-inspired original game art, not a named monument reconstruction.
+Use the approved Song kit image only as material/detail-density/lighting reference.
+Grey-blue brick and stone, charcoal grey tiles, restrained dark reddish-brown timber;
+no imperial yellow glaze, huge brackets or late-Qing / Republican / modern fittings.
+Footprint {FOOTPRINT}; orthographic yaw45 elevation30, exact 2:1 ground projection.
+Screen ground axes slope +0.5 and -0.5; verticals upright, no perspective convergence.
+Bottom-plane center anchor; entire eaves / canopy / footings visible with transparent margin.
+Soft upper-left light, short lower-right contact shadow; true transparent RGBA.
+For gates: footprint (k+4)x4, transparent through-passage kx4, each pier width2.
+For bridges: keep arch opening transparent; no water, riverbank or surrounding pavement.
+For plants: exposed stem contact; no pot, soil tile or pedestal.
+No text, plaques, people, sheet, grid, opaque background or painted checkerboard.
+```
+
+相机返修优先句：`The present ridge is too nearly horizontal; steepen it to screen slope +0.5. Keep depth edges at -0.5. Correct only camera/projection; preserve material and transparent opening.` 两座门均生成 2 个候选并选择第 2 个；墙段尝试 2 个后保留第 1 个；其余各 1 个。所有实际输入基线和返修输入均保留 provenance，返修初稿仅作输入记录，不是额外发布变体。
+
+### 10.3 本批登记、验收边界与默认值
+
+- 源图与成品逐张用 `view_image` 查看；PIL 只按 alpha 外接框裁切、等比缩放、加 8 px 透明边。保留原始 alpha，不绘制 RGB、不透视 / 非等比校正、不重画门洞。
+- 门 / 墙 / 桥的平面目标宽为 `(w+h)×32 px`；用目视源图基脚跨度确定等比比例。柳冠 / 桂冠目标宽为 224 / 112 px，根部占地仍分别登记，不把树冠当碰撞格。
+- `anchor_px` 由目视源图底面中心经同一裁切与缩放换算；`geometry` 登记 64×32 目标格、目标底面多边形、建议高度、门孔格范围及缺失朝向。目标值不伪称像素实测结果。
+- 两门净宽遵循 `design/22` §4.3：外宽 `4+4=8` / `6+4=10`、进深 4；孔内地面不可回填。当前只交付 `r000`，其余三向默认留给下游按需生成，禁止旋转单图冒充。
+- 7 张均为 `candidate`；透明 / 尺寸 / 哈希检查通过不代表碰撞、净宽、接缝、精确投影斜率及真机装配已通过。默认先供清套件预览，运行时接入前按 `design/22` 与 `tech/02` 复核。
+- 直墙、转角、桥、植物的占地与高度为 **【建议值】**；精确门洞对格、墙高一致性、桥栏遮挡、门墙拼缝、植物季相为 **（待实测）**。保留本节默认值，不自动升级为 approved。
+
+### 10.4 参考资料
+
+- [苏州市地方志《漫话苏州古城墙的变迁》](https://dfzb.suzhou.gov.cn/dfzb/fzxh/201010/dac10c8400b347af8cad9ae1f9985489.shtml)，访问 2026-09-30：取青砖石基城墙、砖拱与城垣累积修缮背景；排除现代重建楼体作为清初复原证据。
+- [苏州市地方志《苏州古城门之盘门》](https://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml)，访问 2026-09-30：取水陆城门与石砌拱圈地域背景，不复制现存形体或声称本批门楼即盘门。
+- [杭州政协《杭州古代的花木文化》（刘大培）](https://www.hzzx.gov.cn/hzzx/content/2010-10/26/content_5140376.htm)，访问 2026-09-30（本次直开 HTTP 200）：支持杭州桂花及垂柳文化母题；不作为具体品种、年代树位、修剪尺寸的证明。
+
+本批未新增 API、版本、价格或浏览器支持主张；工具实际模型与 effort 未公开，manifest 如实记为 undisclosed / not_exposed。

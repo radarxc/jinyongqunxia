@@ -1,0 +1,22 @@
+{
+  "key": "osmanthus",
+  "id": "tex_town_qing_south_shrub__osmanthus_v01",
+  "kind": "shrub",
+  "variant": "osmanthus_v01",
+  "footprint": [
+    2,
+    2
+  ],
+  "subject": "清初至清中江南桂花灌木意象（原创扩展）；具体品种与修剪（待考）",
+  "ref": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_south/assets/default/baseline/tile/tex_town_song_southern_tree_cluster__willow_v01.png",
+  "source_anchor": [
+    776,
+    949
+  ],
+  "target_width": 112,
+  "height_m": 1.5,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f427-c8aa-7940-bc3b-27f1118f5917/exec-f5dac305-85ac-4046-b894-6ba5309956b9.png",
+  "prompt": "Use case: historical-scene. ONE isolated mature sweet osmanthus shrub for a realistic early-to-mid Qing Jiangnan town courtyard, 1660–1780. Input reference is a vegetation game-art style guide only; change species entirely to Osmanthus fragrans. A compact naturally irregular rounded bush with visible short branched grey-brown stems, dense small leathery oval dark olive-green leaves with fine texture and VERY sparse tiny cream-yellow flower clusters. Do not resemble a drooping willow; do not copy reference silhouette. Footprint 2 by 2 cells, height target 1.5 meters. Slight elevated orthographic yaw45 elevation30 view for a 2:1 isometric map. Ground anchor centered at the stem bases, exposed root contact, no pot, soil island, grass bed, stone plinth or backdrop. Restrained botanical realism and detail density matching reference, muted warm-green palette, upper-left soft light and tiny lower-right contact shadow. Fully visible silhouette, genuinely transparent RGBA background and generous margins, no white haze or glow. ONE object only, no sheet, text, people, buildings, modern garden accessories, logo, watermark or checkerboard. Regional botanical motif inspired by historical Hangzhou osmanthus culture; exact pruning and placement are original game art.",
+  "created": "2026-09-30",
+  "attempts": 1
+}

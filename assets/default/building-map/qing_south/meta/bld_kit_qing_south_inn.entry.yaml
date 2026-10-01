@@ -1,0 +1,59 @@
+id: bld_kit_qing_south_inn
+file: bld_kit_qing_south_inn.png
+category: building-map
+style: default
+subject: 清初至清中江南·客栈（匿名原创组合，细部待考）
+prompt: 'Use case: sketch-to-render. EDIT THE INPUT: preserve this exact thin flat 12x9 rectangular ground plane''s shape, orientation and all four corner pixel positions.
+  Ground LEFT(168,587.14),FRONT(853.71,930),RIGHT(1368,672.86),BACK(682.29,330). All ground edges exact slopes+0.5 and-0.5 orthographic. Decorate this pad with ONE
+  modest Qing Jiangnan courtyard INN: U-shaped two-storey plaster and timber accommodation wings around small open court, low white perimeter front wall and modest
+  main entrance facing lower-left. Buildings set inside boundary, gray clay tiled simple pitched gable roofs with slight curved eaves, natural dark timber beams,
+  off-white weathered plaster and gray brick bases, upper guestroom lattice windows and restrained timber courtyard balcony, one internal stairway, a few benches
+  and plain ceramic storage jars inside court. Highly realistic ancient Chinese city-map sprite materials, natural wood grain and roof-tile detail, matching fine
+  Song-style game kit density. Roof and walls parallel to guide axes, verticals upright, no perspective. Floor guide grid becomes natural stone paving, keep three
+  front corners visible. Exact proportions width12 depth9 for full ground pad. Flat thin pad, no tall diorama plinth. Light upper left. True transparent RGBA beyond
+  object: NO blur,glow,backdrop,landscape,sky. Tiny contact shadow only. No people,animals,writing,letters,numbers,watermark,signboard. Entire sprite visible with
+  margins. Preserve supplied ground geometry EXACTLY; no tracing black outlines in finished image.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、强透视、金黄屋顶泛化
+references:
+- {file: assets/default/building-map/qing_south/review2/inn_gridguide.png, sha256: 32034bca0b11a01d8ff5e6a772bf3bae4b4afd88954a52d9d34325cd718910af, role: 本轮生成输入：正交几何引导图；不参与成品合成}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:10:50.333477+00:00'
+created_time_basis: copy2保留源PNG mtime，非服务端生成时间回执
+source_path: /Users/bytedance/.codex/generated_images/01a0f450-2399-77a1-9948-02b42503786e/exec-22f66cde-0859-47be-af1e-ddbb895d23ef.png
+source_sha256: 1da8e162e5e8243438f3268bbba96471b753af733cedbc6a841d76af5cb83ca2
+size: 960x736
+sha256: 0c808281af873d2319791d70066ce52b4b51ee0d91456837d0bb47b531bd36cd
+status: candidate
+building:
+  type: bld_kit_qing_south_inn
+  footprint: [12, 9]
+  anchor: [479.2533, 405.2702]
+  era: qing_south
+footprint_m: [12, 9]
+entrance: {edge: S, offset_cells: 5}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [672, 336]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_qing_south_inn.yaml
+source_record: review2/inn.selected.request.json
+candidate_count: 1
+geometry_qa:
+  source_corners_px:
+    left: [89, 555]
+    front: [835, 945]
+    right: [1450, 621]
+  source_axis_slopes: [0.5227882037533512, -0.526829268292683]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.2130081300813007
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.09024390243902447
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 原尺寸及6倍局部view_image人工读取可见石基角；±3源px；隐藏后角未实测。guide理论点不参与实测。
+notes: 第2轮返修：第一候选三角局部放大核对，双轴及宽深比通过；比值误差9.02%。新源图及RGBA浅底预览已view_image；灰瓦粉墙深木、左上光和短右下影完整，无文字人物水印。单视图candidate，非release。

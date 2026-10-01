@@ -1,0 +1,58 @@
+id: bld_kit_qing_south_shop_1f
+file: bld_kit_qing_south_shop_1f.png
+category: building-map
+style: default
+subject: 清初至清中江南·单层商铺（匿名原创组合，细部待考）
+prompt: 'Use case: sketch-to-render. EDIT THE INPUT: preserve this exact thin flat 7x5 rectangular ground plane''s shape, orientation and all four corner pixel positions.
+  Ground LEFT(168,580),FRONT(868,930),RIGHT(1368,680),BACK(668,330). All ground edges exact slopes+0.5 and-0.5 orthographic. Decorate this pad with ONE modest Qing
+  Jiangnan single-storey shop: rectangular timber and plaster building set well inside boundary, gray clay tiled simple pitched gable roof with slight curved eaves,
+  natural dark timber beams, off-white weathered plaster and gray brick base, two open wooden retail counters, restrained bamboo shade, a few baskets and pottery
+  inside shop, facing lower-left. Highly realistic ancient Chinese city-map sprite materials, natural wood grain and roof-tile detail, matching fine Song-style game
+  kit density. Roof and walls parallel to guide axes, verticals upright, no perspective. Floor guide grid becomes natural stone paving, keep three front corners visible.
+  Exact proportions width7 depth5 for full ground pad. Flat thin pad, no tall diorama plinth. Light upper left. True transparent RGBA beyond object: NO blur,glow,backdrop,landscape,sky.
+  Tiny contact shadow only. No people,animals,writing,letters,numbers,watermark,signboard. Entire sprite visible with margins. Preserve supplied ground geometry EXACTLY;
+  no tracing black outlines in finished image.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、强透视、金黄屋顶泛化
+references:
+- {file: assets/default/building-map/qing_south/review2/shop_1f_gridguide.png, sha256: 334338eae56b8b31d7d1d2dd18d95b63e5a64b100ec32820517b33fcf9ceff20, role: 本轮生成输入：正交几何引导图；不参与成品合成}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:08:15.901750+00:00'
+created_time_basis: copy2保留源PNG mtime，非服务端生成时间回执
+source_path: /Users/bytedance/.codex/generated_images/01a0f450-2399-77a1-9948-02b42503786e/exec-5e06fade-eadc-4836-be2f-dd9d90648130.png
+source_sha256: 2d9ef605998f6a9556c6c116dcc47aae9dafe19c269c5aee8b7a84bb382f2128
+size: 576x576
+sha256: 12b11864b27f6d037a43d3d93b7ca0102f20837febf33053c1887a7bdc425437
+status: candidate
+building:
+  type: bld_kit_qing_south_shop_1f
+  footprint: [7, 5]
+  anchor: [304.7367, 311.535]
+  era: qing_south
+footprint_m: [7, 5]
+entrance: {edge: S, offset_cells: 3}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [384, 192]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_qing_south_shop_1f.yaml
+source_record: review2/shop_1f.selected.request.json
+candidate_count: 2
+geometry_qa:
+  source_corners_px:
+    left: [160, 580]
+    front: [872, 943]
+    right: [1375, 682]
+  source_axis_slopes: [0.5098314606741573, -0.5188866799204771]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.415506958250497
+  expected_width_depth_ratio: 1.4
+  ratio_relative_error: 0.011076398750355043
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 原尺寸及6倍局部view_image人工读取可见石基角；±3源px；隐藏后角未实测。guide理论点不参与实测。
+notes: 第2轮返修：第二候选基座三角双轴及宽深比通过。新源图及RGBA浅底预览已view_image；灰瓦粉墙深木、左上光和短右下影完整，无文字人物水印。单视图candidate，非release。

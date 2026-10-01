@@ -1,0 +1,26 @@
+{
+  "id": "tex_town_qing_south_bridge__stone_w3_l6_r000_v01",
+  "mode": "RGBA",
+  "size": [
+    325,
+    217
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "transparent_ratio": 0.6666,
+  "anchor_px": [
+    173,
+    133
+  ],
+  "source_bbox": [
+    0,
+    21,
+    1471,
+    975
+  ],
+  "attempts": 1,
+  "selected_attempt": 1,
+  "reference_sha256": "29a31c125c0c815fb3a8519467b62983e6c1f8bd1d8b0688b92d508978180840"
+}

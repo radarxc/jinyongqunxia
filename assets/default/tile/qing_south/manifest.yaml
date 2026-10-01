@@ -1,0 +1,359 @@
+- id: tex_town_qing_south_bridge__stone_w3_l6_r000_v01
+  file: tex_town_qing_south_bridge__stone_w3_l6_r000_v01.png
+  category: tile
+  style: default
+  subject: 清初至清中江南匿名单孔石桥（原创扩展）
+  prompt: 'Use case: historical-scene. ONE complete modest single-arch stone bridge for an early-to-mid Qing Jiangnan canal town 1660–1780, original unnamed bridge concept. Reference image is ONLY for realistic grey stone material, quiet palette, detail density and upper-left lighting; create entire bridge, not just rails. Gently humped grey stone deck, one shallow arch with fully transparent opening beneath it, low plain posts and horizontal stone rails on both sides, practical short approaches. Footprint 3 cells wide by 6 cells long. Orthographic yaw45 elevation30, exact 2:1 projection, horizontal axes screen slopes +0.5/-0.5, vertical posts upright, no perspective convergence. Main length runs upper-left to lower-right. Base centered, bridge feet and railing fully visible, transparent empty backdrop and empty transparent space under arch. No water, riverbank, street, platform or surrounding scenery. Realistic ancient game asset, fine weathered grey masonry, no decorative lions, imperial paint, curved dragon rails or monumental high arch. Soft light from upper-left; only tiny lower-right contact shadow at footings, no glow or haze. True transparent RGBA, generous transparent margins. ONE object, no sheet, people, text, plaques, grid, checkerboard or modern objects.'
+  negative: No text, labels, modern objects, people, opaque background, painted checkerboard or sprite sheet.
+  references:
+  - assets/default/baseline/tile/tex_town_song_southern_bridge_rail__w5_l10_r090_v01.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:17:57.266329+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f427-c8aa-7940-bc3b-27f1118f5917/exec-ea412802-3692-4071-a4cd-cd8a66342981.png
+  size: 325x217
+  sha256: 4ef4f9780e227f8f23ce93bc08bcb0b6c685b7cbdc8f581f41dba90ec9c379d0
+  status: candidate
+  tile:
+    kind: bridge
+    footprint:
+    - 3
+    - 6
+    variant: stone_w3_l6_r000_v01
+    autotile_mask: null
+  anchor_px:
+  - 173
+  - 133
+  source_copy: source/tex_town_qing_south_bridge__stone_w3_l6_r000_v01__source.png
+  source_sha256: 99d6a84b776bceeedba29b46e6d2a6c52435061b6c8ce67db8bd2adcdeab0b02
+  geometry:
+    era: qing_south
+    rotation_deg: 0
+    grid_px:
+    - 64
+    - 32
+    projection_target: orthographic_yaw45_elevation30_2to1
+    anchor_basis: 目视估计源图底面中心，经裁切等比缩放同步变换；装配待实测
+    footprint_polygon_target_px:
+    - - 221
+      - 61
+    - - 317
+      - 109
+    - - 125
+      - 205
+    - - 29
+      - 157
+    height_m_suggested: 2
+    validation: candidate_only; projection slopes, height and assembly seams not certified
+    source_anchor_px:
+    - 782
+    - 613
+    crop_box:
+    - 0
+    - 21
+    - 1471
+    - 975
+    uniform_scale: 0.21037253
+    padding_px: 8
+  notes: 原创年代意象；源图RGBA，仅按alpha外接框裁切、等比缩放并加8px透明边，不重绘或非等比变形；64×32为目标网格，像素底面/投影/高度须装配复核。
+- id: tex_town_qing_south_city_gate__k4_r000_v01
+  file: tex_town_qing_south_city_gate__k4_r000_v01.png
+  category: tile
+  style: default
+  subject: 清初至清中江南城门，净宽4格（原创扩展）
+  prompt: "Use case: sketch-to-render. Precisely texture the attached geometric blockout. DO NOT change geometry, proportions, viewpoint, opening, or placement. This is a precision geometry image-to-image render: every straight ground edge and face edge must exactly overlay the blockout. The blockout is already the final isometric projection: screen horizontal-plane axes are +0.5 and -0.5, not standard 30-degree isometry, no perspective. Fill flat material areas with highly realistic fine handlaid grey-blue brick, pale grey stone arch blocks, weathered red-brown carved timber windows, and dense rows of curved charcoal grey Chinese roof tiles. Early-mid Qing Jiangnan anonymous city gate. Do not add fancy roof wings, overhanging foundations or change silhouette. Keep roof planes and footings exactly attached to the existing coordinates. The building is 8 units front x4 units deep. Front piers are each2 and arch clear width4 units: arch ground feet x210,y735 and x430,y845 on a1024 canvas. Front-left x100,y680; front-right x540,y900; rear-right x760,y790. Whole right side wall remains deep. Apply tiny Qing decorative eaves only within current silhouette. Object may be embellished with texture and shallow relief only. The grey visible surface inside tunnel is its left masonry sidewall; retain shape but texture dark brick. Beneath arch and outside sprite keep genuine RGBA transparent, absolutely no paving/floor/background. Upper-left soft daylight, light weathering, realistic 2.5D game art details matching refined ancient Chinese map sprites. No outline, flat vector look, diagram, labels, text, characters, watermark, glows, fog, ground plane, checkerboard or scenery. Preservation of source silhouette and exact geometry is highest priority. Do not reduce depth, do not widen piers, do not reduce opening."
+  negative: No text, labels, modern objects, people, opaque background, painted checkerboard or sprite sheet.
+  references: [{"file":"assets/default/tile/qing_south/review3/gate_k4_guide.png","sha256":"98c292a7ad3ff58b7e991dec8b0a5d9ac3e04a572ab084bfe7ac0edf9168dee7","role":"第3轮生成几何guide"},{"file":"assets/default/tile/qing_south/review3/gate_k4_candidate2.png","sha256":"987e72562c5a56975b8a29675a0c9d4a2f769109c02a55905581584a57e197c8","role":"第3轮选定RGBA源图；第4轮只修门洞alpha"}]
+  tool: "built-in image_gen + Pillow 12.1.1 alpha-channel geometry correction"
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: "2026-09-30T22:44:33.170689+00:00"
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f474-2f2e-72b1-b434-61f8b19c12a6/exec-7d3fdeb9-f838-4fd0-aba2-bce615d76dbc.png"
+  size: "448x480"
+  sha256: "2004f2d586db953a6150c8eb964bf466c2b4ec82f1e4662a6b235da246c061b9"
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 8
+    - 4
+    variant: k4_r000_v01
+    autotile_mask: null
+  anchor_px: [225.92,359.9709]
+  source_copy: "review4/gate_k4_corrected.png"
+  source_sha256: "7df0c07314f7f3946f7a8879f5082beef0cb7899d59ff07cb1b195cfcc8c797f"
+  geometry: {"era":"qing_south","rotation_deg":0,"grid_px":[64,32],"projection_target":"orthographic_yaw45_elevation30_2to1","anchor_basis":"外底面左右角中点；第4轮外轮廓、裁框与缩放均未改变，取点±5源px","footprint_polygon_target_px":[[33.91999999999999,327.9709],[289.91999999999996,455.9709],[417.91999999999996,391.9709],[161.92,263.9709]],"height_m_suggested":6,"validation":"4x4 clear passage and 2-cell piers pass within endpoint uncertainty; runtime collision untested","source_anchor_px":[528.0,901.0],"crop_box":[77,162,971,1124],"uniform_scale":0.46545454545454545,"padding_px":16,"gate":{"width_cells":4,"footprint_cells":{"w":8,"h":4},"passage_cells":{"w":4,"h":4},"pier_width_cells":2,"local_footprint_x_inclusive":[-3,4],"local_passage_x_inclusive":[-1,2],"local_y_inclusive":[-1,2],"mask_status":"RGBA clear opening measured; runtime collision alignment untested","available_rotations_deg":[0],"missing_rotations_deg":[90,180,270]}}
+  geometry_qa: {"source_corners_px":{"left":[117,831],"front":[667,1118],"right":[939,971]},"source_passage_endpoints_px":[[253,902],[528,1045]],"source_axis_slopes":[0.5218181818181818,-0.5404411764705882],"source_edge_fit_slopes":[0.53549,-0.53825],"axis_tolerance":0.03,"axis_pass":false,"source_width_depth_ratio":2.0220588235294117,"expected_width_depth_ratio":2.0,"ratio_relative_error":0.011029411764705843,"ratio_pass":true,"measured_depth_cells_front_calibrated":3.9563636363636365,"measured_passage_cells_front_calibrated":4.0,"measured_passage_cells_vector_projection":3.9970171669,"measured_pier_cells_front_calibrated":[1.9781818182,2.0218181818],"measurement_uncertainty_source_px":5,"gate_dimensions_within_endpoint_uncertainty":true,"strict_gate_contract_pass":true,"note":"alpha>=128孔脚实测；外正面550px、透明孔275px，净宽正好4格；进深3.956格、两门墩约1.978/2.022格，均在±5源px取点误差内。外轮廓与RGB逐像素不变。"}
+  notes: "第4轮只改第3轮选定源图的门洞局部alpha，沿正面轴向外修边7–8源px；随后alpha>=2外接框外扩2px裁切、等比缩放、16px透明留边。净宽4.000格、进深3.956格；仍为candidate，运行时碰撞对格待实测。"
+  candidate_count: 2
+  selected_candidate: 2
+  created_time_basis: "第3轮源PNG文件mtime，非服务端生成时间回执；第4轮确定性Pillow alpha修边"
+- id: tex_town_qing_south_city_gate__k6_r000_v01
+  file: tex_town_qing_south_city_gate__k6_r000_v01.png
+  category: tile
+  style: default
+  subject: 清初至清中江南城门，净宽6格（原创扩展）
+  prompt: "Use case: precise-object-edit. A tiny production geometry correction to this already finished realistic Qing Jiangnan gate. PRESERVE EVERYTHING: viewpoint, roof, all materials, overall outer silhouette, outer front left foundation(120,831), outer front right foundation(804,1174), rear right foundation(1075,1038) on1254x1254 source, and ground axes +0.5/-0.5. ONLY widen the inner clear arch passage by about2.5percent horizontally along its front face, retaining arched outline and same height. Left inner arch ground contact currently(257,898): move to(252,896). Right inner arch ground contact currently(658,1101): move to(663,1104). Remove a tiny width of stone from each inner jamb to create410-412pixel clear span versus684pixel outside frontage. Its map dimensions must be outside width10, depth4, clear passage6, both piers2. Maintain all front-face edges slope+0.5 and side-face slope-0.5. Do not change outer size, roof, depth or tilt. Keep original detailed fine grey-blue stone and bricks, charcoal Chinese roof tiles, restrained reddish carved timber, upper-left lighting. No new text, people, adornments or slabs. Preserve genuinely transparent RGBA outside and in tunnel opening. No floor in opening, no shadow cloud, no reframe or crop, no checkerboard, no diagram. Tiny inner-jamb width change only."
+  negative: No text, labels, modern objects, people, opaque background, painted checkerboard or sprite sheet.
+  references: [{"file":"assets/default/tile/qing_south/review3/gate_k6_candidate1.png","sha256":"8a726512581313baf3a30f4dcba8c1b44b2d63283feb299d9f8eb4c040c64821","role":"本轮几何guide或前一候选；仅生成输入"}]
+  tool: "built-in image_gen"
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: "2026-09-30T22:44:33.309300+00:00"
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f474-2f2e-72b1-b434-61f8b19c12a6/exec-a18e1d37-93f5-4232-a7c5-f1f8ae4acf84.png"
+  size: "516x511"
+  sha256: "8cf01237e32efae3f0773204635c6b31a407f83d1f0e6fd2bdfb84ebafbf641f"
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 10
+    - 4
+    variant: k6_r000_v01
+    autotile_mask: null
+  anchor_px: [256.0,378.1053]
+  source_copy: "review3/gate_k6_candidate2.png"
+  source_sha256: "bace84cd4910c8f1e6c4ea57923d2ac16854346367917ede052f8450a6ecc926"
+  geometry: {"era":"qing_south","rotation_deg":0,"grid_px":[64,32],"projection_target":"orthographic_yaw45_elevation30_2to1","anchor_basis":"实测源底面左右角中点，经裁切和同一等比比例换算；取点±5源px","footprint_polygon_target_px":[[32.0,330.1053],[352.0,490.1053],[480.0,426.1053],[160.0,266.1053]],"height_m_suggested":6,"validation":"near-target gate dimensions within source endpoint uncertainty; runtime collision untested","source_anchor_px":[599.0,936.0],"crop_box":[86,162,1121,1185],"uniform_scale":0.4678362573099415,"padding_px":16,"gate":{"width_cells":6,"footprint_cells":{"w":10,"h":4},"passage_cells":{"w":6,"h":4},"pier_width_cells":2,"local_footprint_x_inclusive":[-4,5],"local_passage_x_inclusive":[-2,3],"local_y_inclusive":[-1,2],"mask_status":"logical_target_only; RGBA opening visible, pixel-to-collision alignment untested","available_rotations_deg":[0],"missing_rotations_deg":[90,180,270]}}
+  geometry_qa: {"source_corners_px":{"left":[121,831],"front":[805,1179],"right":[1077,1041]},"source_passage_endpoints_px":[[252,901],[660,1105]],"source_axis_slopes":[0.5087719298245614,-0.5073529411764706],"source_edge_fit_slopes":[0.52321,-0.50624],"axis_tolerance":0.03,"axis_pass":true,"source_width_depth_ratio":2.514705882352941,"expected_width_depth_ratio":2.5,"ratio_relative_error":0.00588235294117645,"ratio_pass":true,"measured_depth_cells_front_calibrated":3.9766081871345027,"measured_passage_cells_front_calibrated":5.964912280701754,"measurement_uncertainty_source_px":5,"gate_dimensions_within_endpoint_uncertainty":true,"strict_gate_contract_pass":true,"note":"实测alpha>=128的基脚轮廓与目视同正面孔脚；k6净宽/进深与6/4格目标在±5源px取点误差内，仍不代表运行时像素碰撞对格通过。"}
+  notes: "第3轮每门2候选选第2；仅alpha>=2外接框外扩2px裁切、等比缩放、16px透明留边；保留框内全部原始alpha。净宽/进深与目标差分别-0.035/-0.023格，位于取点误差内。"
+  candidate_count: 2
+  selected_candidate: 2
+  created_time_basis: "第3轮源PNG文件mtime，非服务端生成时间回执"
+- id: tex_town_qing_south_shrub__osmanthus_v01
+  file: tex_town_qing_south_shrub__osmanthus_v01.png
+  category: tile
+  style: default
+  subject: 清初至清中江南桂花灌木意象（原创扩展）；具体品种与修剪（待考）
+  prompt: 'Use case: historical-scene. ONE isolated mature sweet osmanthus shrub for a realistic early-to-mid Qing Jiangnan town courtyard, 1660–1780. Input reference is a vegetation game-art style guide only; change species entirely to Osmanthus fragrans. A compact naturally irregular rounded bush with visible short branched grey-brown stems, dense small leathery oval dark olive-green leaves with fine texture and VERY sparse tiny cream-yellow flower clusters. Do not resemble a drooping willow; do not copy reference silhouette. Footprint 2 by 2 cells, height target 1.5 meters. Slight elevated orthographic yaw45 elevation30 view for a 2:1 isometric map. Ground anchor centered at the stem bases, exposed root contact, no pot, soil island, grass bed, stone plinth or backdrop. Restrained botanical realism and detail density matching reference, muted warm-green palette, upper-left soft light and tiny lower-right contact shadow. Fully visible silhouette, genuinely transparent RGBA background and generous margins, no white haze or glow. ONE object only, no sheet, text, people, buildings, modern garden accessories, logo, watermark or checkerboard. Regional botanical motif inspired by historical Hangzhou osmanthus culture; exact pruning and placement are original game art.'
+  negative: No text, labels, modern objects, people, opaque background, painted checkerboard or sprite sheet.
+  references:
+  - assets/default/baseline/tile/tex_town_song_southern_tree_cluster__willow_v01.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:20:35.063074+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f427-c8aa-7940-bc3b-27f1118f5917/exec-f5dac305-85ac-4046-b894-6ba5309956b9.png
+  size: 128x95
+  sha256: 6ee13f03a97b85442ce47fc44016511fd239e9a0e70cd2fa1b08d0bef42810e8
+  status: candidate
+  tile:
+    kind: shrub
+    footprint:
+    - 2
+    - 2
+    variant: osmanthus_v01
+    autotile_mask: null
+  anchor_px:
+  - 65
+  - 80
+  source_copy: source/tex_town_qing_south_shrub__osmanthus_v01__source.png
+  source_sha256: ee62da1a97cd2bb41e39ce2f8774797a7720228885c01dc9aa9bb21789736323
+  geometry:
+    era: qing_south
+    rotation_deg: 0
+    grid_px:
+    - 64
+    - 32
+    projection_target: orthographic_yaw45_elevation30_2to1
+    anchor_basis: 目视估计源图底面中心，经裁切等比缩放同步变换；装配待实测
+    footprint_polygon_target_px:
+    - - 65
+      - 48
+    - - 129
+      - 80
+    - - 65
+      - 112
+    - - 1
+      - 80
+    height_m_suggested: 1.5
+    validation: candidate_only; projection slopes, height and assembly seams not certified
+    source_anchor_px:
+    - 776
+    - 949
+    crop_box:
+    - 33
+    - 17
+    - 1485
+    - 1038
+    uniform_scale: 0.07713499
+    padding_px: 8
+  notes: 原创年代意象；源图RGBA，仅按alpha外接框裁切、等比缩放并加8px透明边，不重绘或非等比变形；64×32为目标网格，像素底面/投影/高度须装配复核。
+- id: tex_town_qing_south_tree_cluster__willow_v01
+  file: tex_town_qing_south_tree_cluster__willow_v01.png
+  category: tile
+  style: default
+  subject: 清初至清中江南柳树意象（原创扩展）；具体栽植（待考）
+  prompt: 'Use case: historical-scene. Create ONE isolated graceful Jiangnan weeping willow tree for a realistic early-to-mid Qing Chinese town map, 1660–1780. Input reference is the approved Song kit style and olive-green foliage detail guide; create ONE tree with a single visible slender grey-brown trunk and an airy asymmetrical drooping willow crown, not a group. Long fine hanging leafy sprays, restrained muted green without vivid yellow, leaves visibly willow-shaped. Compact root footprint 2 by 2 ground cells, tree-height target 5 meters. Orthographic yaw45 elevation30 matching 2:1 isometric ground grid, no perspective convergence, view slightly down on crown. Bottom anchor at trunk ground contact center, clear visible roots at the base, no soil tile, grass island, container or pedestal. Realistic ancient game sprite with fine natural material density matching reference, soft upper-left light and very short lower-right contact shadow only. Entire crown and roots visible, generous genuinely transparent RGBA margins, alpha0 backdrop. ONE asset not a sheet; no people, buildings, water, text, logo, watermark, checkerboard, bright glow or haze. Botanical regional motif, not a claim about a documented individual tree.'
+  negative: No text, labels, modern objects, people, opaque background, painted checkerboard or sprite sheet.
+  references:
+  - assets/default/baseline/tile/tex_town_song_southern_tree_cluster__willow_v01.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:19:18.866758+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f427-c8aa-7940-bc3b-27f1118f5917/exec-c6cbd0bd-9a13-49cd-8b01-d374687d9e72.png
+  size: 240x167
+  sha256: cd602e1d623765d5f0f3580771ac296b3fbad47c73281667704990fa17c70eae
+  status: candidate
+  tile:
+    kind: tree_cluster
+    footprint:
+    - 2
+    - 2
+    variant: willow_v01
+    autotile_mask: null
+  anchor_px:
+  - 125
+  - 146
+  source_copy: source/tex_town_qing_south_tree_cluster__willow_v01__source.png
+  source_sha256: 6c54ffd365393c2ef256d9923333c8bc7a829b3db5fc791eb814d2671ae10b31
+  geometry:
+    era: qing_south
+    rotation_deg: 0
+    grid_px:
+    - 64
+    - 32
+    projection_target: orthographic_yaw45_elevation30_2to1
+    anchor_basis: 目视估计源图底面中心，经裁切等比缩放同步变换；装配待实测
+    footprint_polygon_target_px:
+    - - 125
+      - 114
+    - - 189
+      - 146
+    - - 125
+      - 178
+    - - 61
+      - 146
+    height_m_suggested: 5
+    validation: candidate_only; projection slopes, height and assembly seams not certified
+    source_anchor_px:
+    - 790
+    - 950
+    crop_box:
+    - 0
+    - 17
+    - 1515
+    - 1038
+    uniform_scale: 0.14785479
+    padding_px: 8
+  notes: 原创年代意象；源图RGBA，仅按alpha外接框裁切、等比缩放并加8px透明边，不重绘或非等比变形；64×32为目标网格，像素底面/投影/高度须装配复核。
+- id: tex_town_qing_south_wall__brick_r000_v01
+  file: tex_town_qing_south_wall__brick_r000_v01.png
+  category: tile
+  style: default
+  subject: 清初至清中江南青砖石基城墙直段（原创扩展）
+  prompt: 'Use case: historical-scene. Create ONE isolated straight city wall module for early-to-mid Qing Jiangnan 1660–1780. Reference image is ONLY a material, realistic fine detail, color and soft-light guide. Grey-blue brick facing over unobtrusive stone foundation, plain wall-walk top with low simple crenellations, no towers, no roof. Long rectangular ground footprint 4 cells length by 1 cell thickness, wall height 3 meters. Orthographic yaw45 elevation30, EXACT 2:1 ground projection, screen planar axes slopes +0.5/-0.5, upright vertical brick edges, no perspective convergence. Long wall extends from screen upper-left to lower-right with base endpoints matching a -/+0.5 isometric grid, short thickness goes lower-left to upper-right. Keep entire wall complete, straight modular end faces, clear baseline, bottom-center ground anchor. Restrained real-world brick grain at same density as reference, moderate weathering, no ruin or large cracks. Soft upper-left light, short soft lower-right shadow. True transparent RGBA outside silhouette and under short shadow, modest transparent margins. ONE sprite, no sheet, no pedestal, soil, plants, people, doors, text, watermark, logos, checkerboard background or modern objects. Original period-inspired module; not a named historical reconstruction.'
+  negative: No text, labels, modern objects, people, opaque background, painted checkerboard or sprite sheet.
+  references:
+  - assets/default/baseline/tile/tex_town_song_southern_wall__brick_r000_v01.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:14:41.240361+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f427-c8aa-7940-bc3b-27f1118f5917/exec-57b3b587-02bd-4b39-8daa-ce69dca65387.png
+  size: 231x163
+  sha256: 9b0eaedad5093d574e29073073a7fb5d77358b9eb35da1f433a2942cd02e0dcd
+  status: candidate
+  tile:
+    kind: wall
+    footprint:
+    - 4
+    - 1
+    variant: brick_r000_v01
+    autotile_mask: null
+  anchor_px:
+  - 105
+  - 105
+  source_copy: source/tex_town_qing_south_wall__brick_r000_v01__source.png
+  source_sha256: 0722420723681fea7e8a52c9177ac879fe54aff8705f2e95fff60ecab4cdc510
+  geometry:
+    era: qing_south
+    rotation_deg: 0
+    grid_px:
+    - 64
+    - 32
+    projection_target: orthographic_yaw45_elevation30_2to1
+    anchor_basis: 目视估计源图底面中心，经裁切等比缩放同步变换；装配待实测
+    footprint_polygon_target_px:
+    - - 57
+      - 65
+    - - 185
+      - 129
+    - - 153
+      - 145
+    - - 25
+      - 81
+    height_m_suggested: 3
+    validation: candidate_only; projection slopes, height and assembly seams not certified
+    source_anchor_px:
+    - 715
+    - 681
+    crop_box:
+    - 57
+    - 21
+    - 1522
+    - 1024
+    uniform_scale: 0.14692378
+    padding_px: 8
+  notes: 原创年代意象；源图RGBA，仅按alpha外接框裁切、等比缩放并加8px透明边，不重绘或非等比变形；64×32为目标网格，像素底面/投影/高度须装配复核。
+- id: tex_town_qing_south_wall_corner__outer_ne_v01
+  file: tex_town_qing_south_wall_corner__outer_ne_v01.png
+  category: tile
+  style: default
+  subject: 清初至清中江南青砖石基城墙外角（原创扩展）
+  prompt: 'Use case: historical-scene. ONE isolated outer corner module of a grey-blue brick Jiangnan city wall during early-to-mid Qing 1660–1780. Input reference is a material/detail-density reference only. L-shaped footprint confined to 2 by 2 cells, each leg thickness one cell, two short walls meet at right angle. Low plain crenellations, grey brick over dressed grey stone footings. Wall height target 3 meters. Orthographic yaw45 elevation30, exact 2:1 ground projection: all horizontal edge slopes precisely +0.5 or -0.5, verticals upright, no perspective. Clearly visible two exterior wall faces forming a symmetrical corner facing viewer. No roof or tower. Restrained realistic game asset matching approved Song kit fine grain, low-saturation blue-grey masonry. Upper-left illumination; minimal contact shadow only at bottom. True transparent RGBA with invisible backdrop, no white/grey glow, no haze, no broad shadow, no pedestal or floor. Complete silhouette and generous transparent margins. ONE sprite only; no sheet, text, labels, people, vegetation, modern objects, colored grid or checkerboard. Original period-inspired construction, not a named monument replica.'
+  negative: No text, labels, modern objects, people, opaque background, painted checkerboard or sprite sheet.
+  references:
+  - assets/default/baseline/tile/tex_town_song_southern_wall__brick_r000_v01.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:16:44.670447+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f427-c8aa-7940-bc3b-27f1118f5917/exec-a2030174-01c6-4614-8c20-39b5755d1d16.png
+  size: 169x166
+  sha256: 4e66da9dded2d98c62b3931ec9a8d9e5d3cabb1514ff52b3b0b9c06c1fcd8338
+  status: candidate
+  tile:
+    kind: wall_corner
+    footprint:
+    - 2
+    - 2
+    variant: outer_ne_v01
+    autotile_mask: null
+  anchor_px:
+  - 86
+  - 105
+  source_copy: source/tex_town_qing_south_wall_corner__outer_ne_v01__source.png
+  source_sha256: 5b674bfc68826e959bee321b355e6a00f48e66d21d2966d154ad115da87eadb5
+  geometry:
+    era: qing_south
+    rotation_deg: 0
+    grid_px:
+    - 64
+    - 32
+    projection_target: orthographic_yaw45_elevation30_2to1
+    anchor_basis: 目视估计源图底面中心，经裁切等比缩放同步变换；装配待实测
+    footprint_polygon_target_px:
+    - - 86
+      - 73
+    - - 150
+      - 105
+    - - 86
+      - 137
+    - - 22
+      - 105
+    height_m_suggested: 3
+    validation: candidate_only; projection slopes, height and assembly seams not certified
+    source_anchor_px:
+    - 634
+    - 808
+    crop_box:
+    - 0
+    - 19
+    - 1250
+    - 1242
+    uniform_scale: 0.12237094
+    padding_px: 8
+  notes: 原创年代意象；源图RGBA，仅按alpha外接框裁切、等比缩放并加8px透明边，不重绘或非等比变形；64×32为目标网格，像素底面/投影/高度须装配复核。

@@ -1,0 +1,65 @@
+id: bld_kit_qing_south_house_small
+file: bld_kit_qing_south_house_small.png
+category: building-map
+style: default
+subject: 清初至清中江南·小民居（匿名原创组合，细部待考）
+prompt: 'Use case: historical-scene. Generate ONE isolated realistic ancient-Chinese city-map building sprite, early-to-middle Qing Jiangnan region, circa 1700-1780,
+  an original anonymous game building NOT a reconstruction of a named monument. Match the supplied Song baseline''s realistic matte materials, muted palette, fine
+  restrained texture density and scale, but change architecture to Qing Jiangnan. Orthographic map camera yaw45 elevation30, exact 2:1 dimetric ground-plane: east
+  axis (+2,+1), north axis (+2,-1), verticals upright. Front entrance faces lower left. Thin rectangular footprint with clearly visible left, front, right ground
+  corners; no thick diorama plinth. Complete whole building and short soft shadow fully within frame, generous transparent margins. True transparent RGBA background,
+  object interior opaque, no painted checkerboard. Upper-left lighting, short lower-right contact shadow. White limewashed brick walls, grey small clay roof tiles,
+  dark weathered timber, restrained Qing lattice windows, plain gables with small tile coping. No red lantern spectacle, imperial yellow roofs, exaggerated Huizhou
+  horse-head gables everywhere, modern tourism decoration, European features, modern objects, people, text, plaques with writing, watermark, sky, landscape, vignette
+  or detached scenery. Single standalone asset only. Subject: small single-storey Jiangnan home, footprint 6m east-west by5m north-south, low grey tiled gable roof,
+  higher white plaster fire-separating gable ends with tile coping, plain dark timber door and two simple lattice windows, modest stone doorstep, no courtyard compound,
+  no plants, no loose props beyond footprint. Clearly readable 6:5 ground edge-length ratio. CRITICAL GEOMETRY CORRECTION: much shallower map ground plane than normal
+  isometric (NOT 30 degree ground lines). Ground FRONT corner must be exactly HALF the total ground width down from the BACK corner. Both visible ground edges rise
+  only 1 pixel for each 2 pixels horizontal. Width/depth horizontal spans ratio 6:5; do not make the front facade twice as long as the side. Use a wide-low dimetric
+  silhouette like the reference baseline. Front and side elevations are not symmetric in brightness, light comes UPPER LEFT.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、强透视、金黄屋顶泛化
+references:
+- {file: assets/default/baseline/building-map/bld_kit_song_southern_house.png, sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7, role: 宋建筑材质、细节密度与相机意图参考}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:14:25.654704+00:00'
+created_time_basis: copy2保留源PNG mtime，非服务端生成时间回执
+source_path: /Users/bytedance/.codex/generated_images/01a0f426-f961-7d03-b26f-506d2b925f40/exec-160a49b0-b80b-431c-8160-fc9001cd7dbd.png
+source_sha256: 67c2a4320a765e385e63dd760f0e1db091301857f709046b84ee3d31db5efd0f
+size: 576x544
+sha256: 2fb6acc1416fe64d08b863af41cb9cb107e04d1d09735f37ffc007516f98f209
+status: candidate
+building:
+  type: bld_kit_qing_south_house_small
+  footprint: [6, 5]
+  anchor: [302.7809, 346.4153]
+  era: qing_south
+footprint_m: [6, 5]
+entrance: {edge: S, offset_cells: 2}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [352, 176]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_qing_south_house_small.yaml
+source_record: sources/bld_kit_qing_south_house_small.request.json
+candidate_count: 2
+geometry_qa:
+  source_corners_px:
+    left: [164, 800]
+    front: [780, 1120]
+    right: [1167, 901]
+  source_axis_slopes: [0.5194805194805194, -0.5658914728682171]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.5917312661498708
+  expected_width_depth_ratio: 1.2
+  ratio_relative_error: 0.3264427217915591
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 5
+  precision_note: 原尺寸view_image人工读可见地面三角，±5源px；隐藏后角未实测，相机为目标而非反解。
+notes: 原图已view_image(original)：小民居灰瓦、粉墙、深木、格窗完整，左上光及右下短影，无文字人物；选第2候选较浅视角，第1候选原图保留。前立面偏宽，源可见地面宽深比未达到目标6:5，斜率亦有残差；按目标总宽等比缩放，不扭曲。高起山墙偏装饰性，具体清初细部待考。PNG低alpha边缘噪点保留，非实体裁断；单视图candidate。
+  第2轮返修：两次新候选均未优于旧图，未采用；维持旧像素、SHA、锚点和失败测点，审核问题未解决。
+review2_record: review2/house_small.review.json

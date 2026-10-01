@@ -1,0 +1,36 @@
+id: bld_kit_qing_south_yamen
+status: candidate
+building: {"type":"bld_kit_qing_south_yamen","footprint":[17,13],"anchor":[571.2727,434.0909],"era":"qing_south"}
+anchor_px: [571.2727,434.0909]
+anchor_basis: 原图底面左右角中点经同一裁切和缩放映射；不是PNG底边中心。
+footprint_m: [17, 13]
+footprint_source: design/22 §3.4 bld_kit_qing_early_yamen
+logical_footprint_polygon_px: [[91.27269999999999,402.0909],[635.2727,674.0908999999999],[1051.2727,466.0909],[507.2727,194.09089999999998]]
+collision_polygon_m:
+- [0, 0]
+- [17, 0]
+- [17, 13]
+- [0, 13]
+collision_note: 全占地代理，非实测墙体；院内通行需后续细化。
+occluder_proxy_px: [91,119,1053,692]
+occluder_note: alpha>=192包围框，仅测量代理，不修改原alpha。
+height_m: null
+height_note: 单视图不能可靠测量实际高度，待建模实测。
+entrance: {edge: S, offset_cells: 8.5}
+entrance_note: 目录南边中点代理；门洞实际位置待总装校准。
+planning_rotations_allowed: [0, 180]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_south_yamen.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [960, 480]
+  ground_width_px: 960
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa: {"source_corners_px":{"left":[114,570],"front":[834,940],"right":[1434,603],"back_inferred":[714,233]},"source_axis_slopes":[0.5138888888888888,-0.5616666666666666],"axis_tolerance":0.03,"axis_pass":false,"source_width_depth_ratio":1.2,"expected_width_depth_ratio":1.3076923076923077,"ratio_relative_error":0.08235294117647063,"ratio_tolerance_suggestion":0.1,"ratio_pass":true,"measurement_uncertainty_source_px":3,"precision_note":"第3轮逐张view_image源图读薄地坪接地底缘三角±3px；后角=L+R-F推算；额外以alpha>=240底轮廓线性拟合作独立交叉核验。"}
+pixel_qa: {"mode":"RGBA","size":[1120,768],"alpha_extrema":[0,255],"alpha_zero_pixels":555596,"alpha_partial_pixels":303958,"alpha_opaque_pixels":606,"alpha_near_opaque_pixels":297086,"alpha_nonzero_bbox":[44,33,1075,735],"transparent_margins_px":[44,33,45,33],"border_alpha_max":0}
+processing: {"source_size":[1536,1024],"source_crop":[49,35,1466,1000],"scale_uniform":0.7272727272727273,"resized_size":[1031,702],"canvas_size":[1120,768],"paste_offset":[44,33],"anchor_source":[774.0,586.5],"anchor_final":[571.2727,434.0909],"final_corners_px":{"left":[91.2727,422.0909],"front":[614.9091,691.1818],"right":[1051.2727,446.0909],"back_inferred":[527.6364,177.0]},"operations":["crop alpha-nonzero bounding box","one uniform LANCZOS resize","transparent padding; no warp, rotation, recoloring or alpha remap"],"source_archive":"review3/halls/yamen.candidate1.png","source_sha256":"f0ca1756ce1387ed077ea1bd0ab727633c1f7de0af4a4c3a128d6ed45461c061"}
+release_ready: false

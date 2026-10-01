@@ -726,6 +726,69 @@ No lettering, people, modern objects, Qing imperial polychromy, tourist horse-he
 元末江南新增§11列明的19个 `bld_kit_yuan_south_*` 资产 type；只服务素材目录，不新增玩法 ID。元骨架未列项的占地为§11.2建议值，待具体城市规格确认。
 
 不新增玩法 ID；复用 §3 的38个建筑资产ID与最新§4.4的7个植物资产ID。植物文件使用`<asset_id>__v01/v02.png`，双下划线后是变体键，不是新玩法ID。`building.anchor`为最终PNG底面中心像素，`sources/`为归档生成来源，`meta/`为逐type制作元数据。它们是本批资产约定，不扩大`town/schema.yaml`的现有定义范围。
+## 11. 清初至清中 · 江南套件 `qing_south`
+
+本节仅用于 `assets/default/building-map/qing_south/`，不改宋套件的输入图、年代或登记。覆盖杭州、扬州、苏州一带的通用街巷建筑；福州仅提供地域形制线索，不把四城说成同一种实测建筑。所有匿名组合均为 **（原创扩展）**，精确构件断代 **（待考）**。
+
+### 11.1 年代与材质差异
+
+- 继承 `design/22` §2.6 的旧街巷与河网，只替换建筑形制。民居以白灰墙面、灰砖勒脚、灰色小瓦、深棕木门及隔扇为主；不将宫廷黄琉璃、朱金彩画普遍用于民间。
+- 清式门窗纹样和门厅砖雕保持克制；苏式花鸟、山水彩画仅适量用于有身份的厅堂。故宫资料区分江南传统苏画与乾隆以后宫廷官式苏画，不能混用为全城统一立面。
+- 宅院采用院墙、门厅、天井、穿廊组合；山庄与王府分别表达宅园和封闭礼序。福州马鞍墙与苏州山墙有地域差异，本批以苏杭通用白墙灰瓦为主，不批量夸张马头墙。
+- 宗教地标用匿名砖木楼阁式佛塔，不照搬现六和塔层数、晚清外檐或现代修复色彩。清末民初宅园不直接作为清初复原；不命名为具体文物、机构或小说场所。
+- 与宋基线保持相同写实材质、低饱和度、细节密度、左上主光和右下短影。新增细节不改变原向单视图、真 RGBA、底面中心锚点和纯几何后处理要求。
+
+### 11.2 本批类型与占地
+
+完整 ID 为 `bld_kit_qing_south_<后缀>`，每类一张；单位为 1 m 规划格。清初已有骨架优先，其他尺寸按同功能表同构使用 **【建议值】**，不把外观占地当成历史测绘。
+
+| 后缀 / 类型 | 占地 | 引用依据 |
+|---|---:|---|
+| `house_small` / 小民居 | 6×5 | `design/22` §3.3 house |
+| `house_large` / 大民居 | 7×6 | §3.4 qing_early_house |
+| `courtyard` / 院落 | 10×8 | §3.3 courtyard |
+| `shop_1f` / 单层商铺 | 7×5 | §3.4 qing_early_shop |
+| `shop_2f` / 两层商铺 | 8×6 | §3.3 shop_2f |
+| `inn` / 客栈 | 12×9 | §3.3 inn |
+| `restaurant` / 酒楼茶肆 | 12×9 | §3.3 restaurant |
+| `market_stall` / 市场棚 | 3×2 | §3.3 market_stall |
+| `yamen` / 衙署 | 17×13 | §3.4 qing_early_yamen |
+| `biaoju` / 镖局货栈 | 15×12 | §3.4 qing_early_biaoju |
+| `casino` / 赌场 | 10×8 | §3.3 casino |
+| `manor` / 山庄大院 | 16×13 | §3.3 manor |
+| `wangfu` / 王府模块 | 22×18 | §3.4 qing_early_wangfu；本批不另交宫殿 |
+| `temple_hall` / 寺观殿堂 | 14×11 | §3.4 ming_temple_hall |
+| `pagoda` / 佛塔 | 7×7 | §3.3 pagoda |
+| `guardhouse` / 城门守舍 | 7×5 | §3.3 guardhouse；非外城门 |
+| `stable` / 马厩 | 9×7 | §3.3 stable |
+| `warehouse` / 仓屋 | 10×8 | §3.3 warehouse |
+| `wharf` / 河埠 | 10×4 | §3.3 wharf；纯装饰、不新增旅行入口 |
+
+### 11.3 生成提示词差异与入库
+
+在 §5 单体模板中替换年代与主体段；每张实际完整提示词和真实参考图在 manifest 与 sources 记录，不能仅保存本模板。工具使用内置 `image_gen`，底层模型、seed、effort 未披露则如实记未披露。
+
+```text
+Use case: historical-scene. ONE anonymous early-to-middle Qing Jiangnan city-map building, circa 1700–1780; original game composition, not a named monument reconstruction. Match the supplied Song baseline's realistic matte materials, muted palette and restrained detail density. Change only era and regional construction: white limewashed brick walls, grey small clay tiles, dark weathered timber, restrained Qing lattice doors/windows, modest brick door surrounds; limited pale Su-style painted detail on appropriate halls only.
+Orthographic map view, yaw45 elevation30, 2:1 ground-plane axes (+2,+1) and (+2,-1), upright verticals; rectangular footprint {w} by {h}, visibly readable left/front/right ground corners. Front faces lower left. Genuine transparent RGBA, opaque subject, generous clear margins, complete roof/base, no thick plinth. Upper-left light, short lower-right contact shadow.
+Subject: {one building type and function-specific details}. No text, people, sky, scenery, modern items, tourism lantern rows, universal imperial yellow roofs or exaggerated decorative gables. One standalone asset, not a sheet.
+```
+
+地面目标宽高仍为 `32(w+h)×16(w+h)`，例：7×6 民居为416×208 px，22×18 王府为1280×640 px；画布可因高度与透明边外扩。本任务短边下限为256 px，不为凑下限放大真实占地。源底面读点后等比缩放，并同步变换锚点；不得非等比拉伸或改画透视。最多两候选选一，剩余投影残差如实保留；`candidate` 和文件检查通过不表示精确拼接或作者批准。仅原向单 PNG，其他视图、碰撞/遮挡与实城装配 **（待实测）**。
+
+### 11.4 参考资料与边界
+
+访问日期均为2026-09-30；网页文字用于形制核对，实际模型图像参考为仓内宋基线，不把网页照片冒记为已输入。
+
+- [故宫博物院《苏式彩画》](https://www.dpm.org.cn/lemmas/241406.html)：苏画题材与宫廷官式苏画区别；本次直开 HTTP 200。
+- [苏州园林局《网师园》](https://ylj.suzhou.gov.cn/szsylj/sjyc/201905/8aaf3adcfdaf485dada9a071aac3867f.shtml)：乾隆时期宅园、门厅穿廊和砖雕母题；本次直开 HTTP 200。
+- [福州鼓楼区《我们的三坊七巷（34）》](https://www.gl.gov.cn/xjwz/rw/mdgl/gjms/202502/t20250210_4973489.htm)：灰瓦白墙、马鞍墙地域区别；已打开正文。
+- [杭州文旅《Pagoda of Six Harmonies》](https://wgly.hangzhou.gov.cn/art/2013/7/7/art_1229495371_58931730.html)：砖木楼阁塔类型；搜索返回正文，仅取类型，不复原具体层数与修缮后外观。
+- [江苏方志《漕运时代的淮盐与运河》](https://jssdfz.jiangsu.gov.cn/n95/20240329/i32931.html)：扬州河下盐商住宅与水运生活背景；搜索返回正文，直接访问不可达，不据此断言每个构件年代。
+
+## 本文新增术语与 ID
+
+不新增玩法 ID；宋基线复用 §3 的38个建筑资产ID与最新§4.4的7个植物资产ID；清江南新增19个建筑素材ID见§11.2。植物文件使用`<asset_id>__v01/v02.png`，双下划线后是变体键，不是新玩法ID。`building.anchor`为最终PNG底面中心像素，`sources/`为归档生成来源，`meta/`为逐type制作元数据。它们是素材制作约定，不扩大`town/schema.yaml`的现有定义范围。
 
 清北本轮另登记§11.2的19个 `bld_kit_qing_north_*` 地域资产ID，不新增玩法规则。新建前已全仓搜索，只有任务计划中的套件键，没有同名成品；6×5小民居等同构占地依§11.2标为建议值，不扩大清初骨架定义。
 
@@ -743,6 +806,9 @@ No lettering, people, modern objects, Qing imperial polychromy, tourist horse-he
 清北增量的占地默认值见§11.2，短边≥256、透明留边≥16px、宽深比10%告警阈值仅为本任务制作参数。精确几何未通过的素材仍为候选；目录检查通过不批准发布。
 
 透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。宋基线制作曾采用 canvas 短边≥512，本清北增量按任务指定使用短边≥256；地面像素尺度仍按64×32每格计算，canvas尺寸随建筑高度、屋檐与留白变化，不固定为方形。
+清江南新增19个 `bld_kit_qing_south_*` 素材ID见§11.2，不新增玩法ID。其非清初骨架占地按宋南/明表同构引用，默认作为候选制作尺寸；不会反写上游布局骨架。年代外观、构件断代、实际尺寸和单PNG精确拼接仍交审图/装配复核。
+
+透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。宋基线的最终 canvas 短边 ≥512；清江南按本任务 `--min-side 256` 验收（见§11.3）。地面像素尺度仍按 64×32 每格计算；canvas 尺寸随建筑高度 / 屋檐与留白变化，不固定所有建筑方形。
 
 新增植物的最终4px留边来自最新上游；矩形裁边时alpha≤2噪点阈值、外扩4**源**px，以及实际根偏差≤1**成品**px的额外告警均为本轮 **【建议值】**。2/255≈0.78%不透明度；只用于确定裁切矩形，不覆盖存留像素的alpha。全部原图与裁去区域统计保留，可复核或更换制作阈值。
 

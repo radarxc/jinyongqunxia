@@ -1,0 +1,78 @@
+id: bld_kit_qing_south_wangfu
+status: candidate
+building:
+  type: bld_kit_qing_south_wangfu
+  footprint: [22, 18]
+  anchor: [871.3858, 658.1031]
+  era: qing_south
+anchor_px: [871.3858, 658.1031]
+anchor_basis: 原图底面左右角中点经同一裁切和缩放映射；不是PNG底边中心。
+footprint_m: [22, 18]
+footprint_source: design/22 §3.4 bld_kit_qing_early_wangfu
+logical_footprint_polygon_px:
+- [231.38580000000002, 626.1031]
+- [935.3858, 978.1031]
+- [1511.3858, 690.1031]
+- [807.3858, 338.10310000000004]
+collision_polygon_m:
+- [0, 0]
+- [22, 0]
+- [22, 18]
+- [0, 18]
+collision_note: 全占地代理，非实测墙体；院内通行需后续细化。
+occluder_proxy_px: [231, 158, 1512, 987]
+occluder_note: alpha>=192包围框，仅测量代理，不修改原alpha。
+height_m: null
+height_note: 单视图不能可靠测量实际高度，待建模实测。
+entrance: {edge: S, offset_cells: 11.0}
+entrance_note: 目录南边中点代理；门洞实际位置待总装校准。
+planning_rotations_allowed: [0, 180]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_south_wangfu.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [1280, 640]
+  ground_width_px: 1280
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [121, 557]
+    front: [849, 925]
+    right: [1449, 619]
+  source_axis_slopes: [0.5054945054945055, -0.51]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.2133333333333334
+  expected_width_depth_ratio: 1.2222222222222223
+  ratio_relative_error: 0.0072727272727273196
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 5
+  precision_note: view_image原尺寸逐图人工读取可见薄石坪上表面外角；非提示词目标点；隐藏后角由平行四边形推算，±5源px。
+pixel_qa:
+  mode: RGBA
+  size: [1632, 1216]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 1390602
+  alpha_partial_pixels: 593384
+  alpha_opaque_pixels: 526
+  alpha_near_opaque_pixels: 581134
+  alpha_nonzero_bbox: [115, 154, 1516, 1061]
+  transparent_margins_px: [115, 154, 116, 155]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_south_wangfu.png
+  source_sha256: 95aca3bbe4ddfbfa1a0c203ff2a349d84b1d3ab69917395ed1917449a9bdf4bd
+  source_size: [1536, 1024]
+  crop_box: [0, 65, 1454, 1006]
+  uniform_scale_requested: 0.963855421686747
+  resized_size: [1401, 907]
+  rounded_effective_scale: [0.9635488308115543, 0.9638682252922423]
+  paste_offset: [115, 154, 1516, 1061]
+  final_file: bld_kit_qing_south_wangfu.png
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize; integer rounding only, paste without mask onto RGBA canvas; no repaint/warp/threshold]
+release_ready: false
