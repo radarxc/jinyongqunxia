@@ -22,6 +22,24 @@
 - 容器：`addInventoryItem()`、`createEmptyEquipment()`、`createWorldItems()`、`createShopState()`、`createStoryState()`。
 - 时间：`createGameClock()`、`advanceGameClock()`；显式入口为 `advanceInnRest()`、`advanceMeditation()`、`advanceTravel()`、`advanceBattle()`。
 
+## 经脉运气与养成入口
+
+- 战斗入口：`battle/meridian-flow` 导出 `createMeridianFlowRuntime()`、`createGatherState()` 与
+  `dispatchMeridianFlowCommand()`；业务层通过 `qi.tick/selectRoute/acuteGather/resolveMove` 命令推进，
+  不直接复制产气、旅行 tick、节点通量或周天倍率公式。
+- 战斗事件：`qi.flowAdvanced`、`qi.gatherAdvanced`、`qi.routeSelected`、`qi.acuteGathered`、
+  `qi.moveResolved`、`qi.fullCycleCrit`。后者是 Core 内部事实名；ENG-04 在战斗聚合边界包装成
+  `battle/fullCirculationCritResolved`，不得重掷暴击或改写 `releasedQi/circulationBp`。
+- ENG-04：以唯一 `battle` SFC32 流调用 `qi.resolveMove`；消费 `meridianAttackBp`、`flowCt`、
+  `releasedQi` 和 trace 接续命中 / 伤害 / Buff，不在本模块计算攻防伤害。失败命令不产生事件。
+- 养成入口：`progression` 导出 `advanceInnerPractice()`、`advanceMartialArtProgress()`、
+  `applyMeridianBoost()`、`interruptMeditation()` 与 `dispatchProgressionCommand()`；药材效果直接复用
+  `ItemDef.use.meridianTemper`，不维护第二份数据结构。
+- ENG-09：保存 `cycleTicks/carriedTicks` 并用 `progression/practiceInner` 结算完整周天；受击时发
+  `progression/interruptMeditation`。返回的 `bf_chaqi` 仅是效果描述，具体 Buff 实例由 ENG-04 接入。
+- 回放：运气状态用 `meridian-flow-state.v2` 快照；恢复先完整校验后原子提交。所有规则量为整数，
+  每 tick 热路径复用预分配 typed arrays；性能门禁为 `pnpm --filter @tianshu/core test:performance`。
+
 ## 验证命令
 
 - 包内：`pnpm --filter @tianshu/core lint`、`pnpm --filter @tianshu/core test`、`pnpm --filter @tianshu/core typecheck`。
