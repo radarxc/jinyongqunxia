@@ -1,0 +1,862 @@
+- id: eq_buyi
+  file: eq_buyi.png
+  category: item
+  style: default
+  subject: 粗布短褐；衣物·便服；黄阶；原创扩展；宋元通用平民语境；宋元通用；采用交领右衽、窄袖短衣的朴素演绎
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. This is the second and final candidate. Critical correction: SCALE DOWN the entire garment substantially so every edge has at least 16% empty canvas and bounding box width and height are each at most 68%. Keep the whole garment centered; fold both sleeves diagonally downward and inward if needed. Flat RGB(230,225,216), no floor, no shadow.
+
+
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are the ONLY image inputs and are STYLE REFERENCES ONLY; do not edit or copy their sword or book objects. Render the garment as an UNWORN COMPLETE SINGLE ITEM laid flat, centered, and isolated. Keep at least 14% empty canvas on every edge; its bounding box must not exceed 72% of canvas width or height. Use a uniform flat RGB(230,225,216) background with no floor and no shadow.
+
+
+    Use case: stylized-concept
+
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。
+
+    题材：粗布短褐（eq_buyi），衣物·便服，黄阶，grade=3；出处语境：原创扩展；宋元通用平民语境。ID、名称与效果只作元数据，画面完全无字，不显示数值、图标、Buff 或魔法特效。
+
+    年代与形制：宋元通用；采用交领右衽、窄袖短衣的朴素演绎。历史图只用于生成前的形制核对，并未作为图片输入；不得复制历史图片构图或具体藏品纹样。
+
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线，二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底和清晰材质层次；不要复制剑、书、题签、装具、颜色布局或磨损。
+
+    主体：灰褐色交领右衽短褐，完整单件平展，衣襟自然交叠；粗麻纹清楚，窄袖，腋下与侧缝结构朴实，两条布结系带与衣身相连，不另放配件。轻微折痕与少量磨旧，无补丁、无破洞。
+
+    衣物专项：只画未穿着、无人形支撑的完整衣物，平展或极浅自然叠置；领口、襟线、两袖、下摆全部清楚且不断裂，衣服内部只露少量自然内襟，不形成空心人体。子类必须一眼可辨。整体视为单件装备，任何不可分的系带、腰封、护腕都贴合衣身，不另排成第二件道具。
+
+    品阶表现：常见粗麻、简单裁缝、实用系带和轻微使用痕，朴素耐穿。品阶只用材质、工艺、包边、织纹和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；麻、棉、布、锦、绢、毡、皮的边界按条目清楚表达。二维精绘武侠器物，不是照片，不是3D。
+
+    构图：1:1方形，目标1536×1536；单一完整衣物居中，近正面轻微三分之四俯视，左右大体平衡。物件包围框宽和高都不超过画布72%，四边留白都至少14%；领口、袖端、下摆和系带不得截断。不要把衣物铺成充满画布的人体T字形；袖子可自然斜向下收拢以保留空白。
+
+    背景：均匀浅暖灰近象牙色，目标RGB约(230,225,216)；无人物、手、模特、衣架、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于衣物自身，不产生投影，不自发光。
+
+    文字：衣料、领襟、扣结、腰封和所有织纹完全无字、无伪字、无印章、无数字；名称只留在元数据。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+
+    不要去除或伪造工具自身溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/860963
+    role: 南宋绘画 Mending clothes by daylight；生成前查看，仅取交领袍服宽松比例与衣褶，未作为image_gen输入；访问2026-10-01
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T13:27:02.485269+00:00'
+  source_path: /private/tmp/art-item-clothing/codex-home/generated_images/01a0f7a4-cd6c-7aa1-946d-0716f7ebc295/exec-f6c3c263-6035-4008-9461-3c97d8c84874.png
+  size: 1254x1254
+  sha256: 766875b36e6ad185022ee0f7eea241936928ebd64bd8e14e33370303808cdb32
+  status: candidate
+  notes: '年代与形制依据：宋元通用；采用交领右衽、窄袖短衣的朴素演绎；名录依据：docs/design/catalog/items-clothing.md。
+
+    具体裁片、配色、纹样与材质表现为（原创扩展）；不声称原著或文物复原。
+
+    候选数：2；第2稿缩小后通过；粗麻交领短褐、双布结完整。
+
+    逐图view_image自检：单一完整物品或名录明确的一套衣裤；无人物、手、可读文字、场景、地面、明显投影、光效或品阶框；主体与子类及外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约25.12/22.25/24.96/24.40%，包围框约49.92%×53.35%；以外圈中位色各通道最大差>45取前景，须结合目检。
+
+    背景外圈中位色约RGB(229, 222, 214)，接近目标(230,225,216)，有轻微生成式明暗起伏，非逐像素纯色；RGB PNG，原图直接复制，未缩放、抠图、改底或重编码。
+
+    历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
+
+    提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+- id: eq_jinzhuang
+  file: eq_jinzhuang.png
+  category: item
+  style: default
+  subject: 江湖劲装；衣物·劲装；黄阶；原创扩展；江湖通用语境；宋元通用；采用低调窄袖短装的武侠演绎
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are the ONLY image inputs and are STYLE REFERENCES ONLY; do not edit or copy their sword or book objects. Render the garment as an UNWORN COMPLETE SINGLE ITEM laid flat, centered, and isolated. Keep at least 14% empty canvas on every edge; its bounding box must not exceed 72% of canvas width or height. Use a uniform flat RGB(230,225,216) background with no floor and no shadow.
+
+
+    Use case: stylized-concept
+
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。
+
+    题材：江湖劲装（eq_jinzhuang），衣物·劲装，黄阶，grade=3；出处语境：原创扩展；江湖通用语境。ID、名称与效果只作元数据，画面完全无字，不显示数值、图标、Buff 或魔法特效。
+
+    年代与形制：宋元通用；采用低调窄袖短装的武侠演绎。历史图只用于生成前的形制核对，并未作为图片输入；不得复制历史图片构图或具体藏品纹样。
+
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线，二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底和清晰材质层次；不要复制剑、书、题签、装具、颜色布局或磨损。
+
+    主体：深蓝低饱和窄袖对襟劲装，完整上衣单件平展；布带收束腰身，窄袖口带同布加固护腕结构，护腕与衣袖连为一体，不另放腰带或裤靴。剪裁利落，棉麻哑光，少量折痕。
+
+    衣物专项：只画未穿着、无人形支撑的完整衣物，平展或极浅自然叠置；领口、襟线、两袖、下摆全部清楚且不断裂，衣服内部只露少量自然内襟，不形成空心人体。子类必须一眼可辨。整体视为单件装备，任何不可分的系带、腰封、护腕都贴合衣身，不另排成第二件道具。
+
+    品阶表现：普通染布、结实缝线与克制加固，轻微使用痕，不用贵重饰物。品阶只用材质、工艺、包边、织纹和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；麻、棉、布、锦、绢、毡、皮的边界按条目清楚表达。二维精绘武侠器物，不是照片，不是3D。
+
+    构图：1:1方形，目标1536×1536；单一完整衣物居中，近正面轻微三分之四俯视，左右大体平衡。物件包围框宽和高都不超过画布72%，四边留白都至少14%；领口、袖端、下摆和系带不得截断。不要把衣物铺成充满画布的人体T字形；袖子可自然斜向下收拢以保留空白。
+
+    背景：均匀浅暖灰近象牙色，目标RGB约(230,225,216)；无人物、手、模特、衣架、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于衣物自身，不产生投影，不自发光。
+
+    文字：衣料、领襟、扣结、腰封和所有织纹完全无字、无伪字、无印章、无数字；名称只留在元数据。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+
+    不要去除或伪造工具自身溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/860963
+    role: 南宋绘画 Mending clothes by daylight；生成前查看，仅取交领袍服宽松比例与衣褶，未作为image_gen输入；访问2026-10-01
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T13:09:42.701229+00:00'
+  source_path: /private/tmp/art-item-clothing/codex-home/generated_images/01a0f794-5ad6-7990-903c-81fdfd2195e2/exec-c11631e2-1d76-46c0-adc5-d361f02136f4.png
+  size: 1254x1254
+  sha256: c2b7f6a0a0f10cc3e7cc6e8010532a791618363959ee092f0dcdf733a58d7348
+  status: candidate
+  notes: '年代与形制依据：宋元通用；采用低调窄袖短装的武侠演绎；名录依据：docs/design/catalog/items-clothing.md。
+
+    具体裁片、配色、纹样与材质表现为（原创扩展）；不声称原著或文物复原。
+
+    候选数：1；第1稿通过；深蓝窄袖劲装与一体腰带、护腕清楚。
+
+    逐图view_image自检：单一完整物品或名录明确的一套衣裤；无人物、手、可读文字、场景、地面、明显投影、光效或品阶框；主体与子类及外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约13.24/13.40/14.19/13.08%，包围框约72.57%×73.52%；以外圈中位色各通道最大差>45取前景，须结合目检。
+
+    背景外圈中位色约RGB(227, 222, 213)，接近目标(230,225,216)，有轻微生成式明暗起伏，非逐像素纯色；RGB PNG，原图直接复制，未缩放、抠图、改底或重编码。
+
+    历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
+
+    提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+- id: eq_sengyi
+  file: eq_sengyi.png
+  category: item
+  style: default
+  subject: 素色僧衣；衣物·袍服；黄阶；佛门通用；装备与具体表现均为原创扩展；宋元通用佛门语境；只取朴素交领袍服结构
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. This is the second and final candidate. Critical correction: SCALE DOWN the entire garment substantially so every edge has at least 16% empty canvas and bounding box width and height are each at most 68%. Keep it centered. The monk robe must remain plain gray-yellow, one garment, no cassock or accessories. Flat RGB(230,225,216), no floor, no shadow.
+
+
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are the ONLY image inputs and are STYLE REFERENCES ONLY; do not edit or copy their sword or book objects. Render the garment as an UNWORN COMPLETE SINGLE ITEM laid flat, centered, and isolated. Keep at least 14% empty canvas on every edge; its bounding box must not exceed 72% of canvas width or height. Use a uniform flat RGB(230,225,216) background with no floor and no shadow.
+
+
+    Use case: stylized-concept
+
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。
+
+    题材：素色僧衣（eq_sengyi），衣物·袍服，黄阶，grade=3；出处语境：佛门通用；装备与具体表现均为原创扩展。ID、名称与效果只作元数据，画面完全无字，不显示数值、图标、Buff 或魔法特效。
+
+    年代与形制：宋元通用佛门语境；只取朴素交领袍服结构。历史图只用于生成前的形制核对，并未作为图片输入；不得复制历史图片构图或具体藏品纹样。
+
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线，二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底和清晰材质层次；不要复制剑、书、题签、装具、颜色布局或磨损。
+
+    主体：灰黄交领右衽僧衣，完整单件整齐平展，宽松直身、适中宽袖，棉麻哑光，布带系结与衣身相连。颜色素净，不另画袈裟、念珠、鞋帽或钵。
+
+    衣物专项：只画未穿着、无人形支撑的完整衣物，平展或极浅自然叠置；领口、襟线、两袖、下摆全部清楚且不断裂，衣服内部只露少量自然内襟，不形成空心人体。子类必须一眼可辨。整体视为单件装备，任何不可分的系带、腰封、护腕都贴合衣身，不另排成第二件道具。
+
+    品阶表现：素棉麻、简单直裁与细密实用针脚，洗旧但整洁。品阶只用材质、工艺、包边、织纹和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；麻、棉、布、锦、绢、毡、皮的边界按条目清楚表达。二维精绘武侠器物，不是照片，不是3D。
+
+    构图：1:1方形，目标1536×1536；单一完整衣物居中，近正面轻微三分之四俯视，左右大体平衡。物件包围框宽和高都不超过画布72%，四边留白都至少14%；领口、袖端、下摆和系带不得截断。不要把衣物铺成充满画布的人体T字形；袖子可自然斜向下收拢以保留空白。
+
+    背景：均匀浅暖灰近象牙色，目标RGB约(230,225,216)；无人物、手、模特、衣架、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于衣物自身，不产生投影，不自发光。
+
+    文字：衣料、领襟、扣结、腰封和所有织纹完全无字、无伪字、无印章、无数字；名称只留在元数据。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+
+    不要去除或伪造工具自身溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/40448
+    role: 南宋晚期 Buddha Amitabha Descending from His Pure Land；生成前查看，仅取僧衣层叠与宽松衣褶，未作为image_gen输入；访问2026-10-01
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T13:27:05.211129+00:00'
+  source_path: /private/tmp/art-item-clothing/codex-home/generated_images/01a0f7a4-d414-7f10-9648-a21bbd91dc0c/exec-2e649b6e-f80d-47f5-815b-d7235376af30.png
+  size: 1254x1254
+  sha256: 9028d6d72317e22bb41073ed7934934fbd624d554b14db35a76eff28017fa76d
+  status: candidate
+  notes: '年代与形制依据：宋元通用佛门语境；只取朴素交领袍服结构；名录依据：docs/design/catalog/items-clothing.md。
+
+    具体裁片、配色、纹样与材质表现为（原创扩展）；不声称原著或文物复原。
+
+    候选数：2；第2稿缩小后通过；灰黄素色长袍，无袈裟文字。
+
+    逐图view_image自检：单一完整物品或名录明确的一套衣裤；无人物、手、可读文字、场景、地面、明显投影、光效或品阶框；主体与子类及外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约20.73/14.99/20.73/15.39%，包围框约58.53%×69.62%；以外圈中位色各通道最大差>45取前景，须结合目检。
+
+    背景外圈中位色约RGB(230, 224, 214)，接近目标(230,225,216)，有轻微生成式明暗起伏，非逐像素纯色；RGB PNG，原图直接复制，未缩放、抠图、改底或重编码。
+
+    历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
+
+    提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+- id: eq_daopao
+  file: eq_daopao.png
+  category: item
+  style: default
+  subject: 青布道袍；衣物·袍服；玄阶；道门通用；装备与具体表现均为原创扩展；宋元朴雅道门语境；采用交领右衽、宽袖长袍的克制演绎
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. This is the second and final candidate. Critical correction: SCALE DOWN the entire garment substantially so every edge has at least 16% empty canvas and bounding box width and height are each at most 68%. Keep it centered; fold both wide sleeves diagonally inward. No symbols. Flat RGB(230,225,216), no floor, no shadow.
+
+
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are the ONLY image inputs and are STYLE REFERENCES ONLY; do not edit or copy their sword or book objects. Render the garment as an UNWORN COMPLETE SINGLE ITEM laid flat, centered, and isolated. Keep at least 14% empty canvas on every edge; its bounding box must not exceed 72% of canvas width or height. Use a uniform flat RGB(230,225,216) background with no floor and no shadow.
+
+
+    Use case: stylized-concept
+
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。
+
+    题材：青布道袍（eq_daopao），衣物·袍服，玄阶，grade=6；出处语境：道门通用；装备与具体表现均为原创扩展。ID、名称与效果只作元数据，画面完全无字，不显示数值、图标、Buff 或魔法特效。
+
+    年代与形制：宋元朴雅道门语境；采用交领右衽、宽袖长袍的克制演绎。历史图只用于生成前的形制核对，并未作为图片输入；不得复制历史图片构图或具体藏品纹样。
+
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线，二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底和清晰材质层次；不要复制剑、书、题签、装具、颜色布局或磨损。
+
+    主体：青灰色交领右衽宽袖道袍，完整单件近正面平展；衣缘有极窄黑色滚边，布质盘扣与系带连接在襟边，长下摆自然展开。不得出现太极、八卦、符箓、云鹤图案或道冠。
+
+    衣物专项：只画未穿着、无人形支撑的完整衣物，平展或极浅自然叠置；领口、襟线、两袖、下摆全部清楚且不断裂，衣服内部只露少量自然内襟，不形成空心人体。子类必须一眼可辨。整体视为单件装备，任何不可分的系带、腰封、护腕都贴合衣身，不另排成第二件道具。
+
+    品阶表现：较细密青布、匀整滚边、规整扣结与克制旧化，工艺优于常服但不奢华。品阶只用材质、工艺、包边、织纹和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；麻、棉、布、锦、绢、毡、皮的边界按条目清楚表达。二维精绘武侠器物，不是照片，不是3D。
+
+    构图：1:1方形，目标1536×1536；单一完整衣物居中，近正面轻微三分之四俯视，左右大体平衡。物件包围框宽和高都不超过画布72%，四边留白都至少14%；领口、袖端、下摆和系带不得截断。不要把衣物铺成充满画布的人体T字形；袖子可自然斜向下收拢以保留空白。
+
+    背景：均匀浅暖灰近象牙色，目标RGB约(230,225,216)；无人物、手、模特、衣架、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于衣物自身，不产生投影，不自发光。
+
+    文字：衣料、领襟、扣结、腰封和所有织纹完全无字、无伪字、无印章、无数字；名称只留在元数据。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+
+    不要去除或伪造工具自身溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/860963
+    role: 南宋绘画 Mending clothes by daylight；生成前查看，仅取交领袍服宽松比例与衣褶，未作为image_gen输入；访问2026-10-01
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T13:27:02.962203+00:00'
+  source_path: /private/tmp/art-item-clothing/codex-home/generated_images/01a0f7a4-d980-7700-8780-acf34236ff30/exec-338087fa-2f5e-45c1-a6b2-6c433906ccd5.png
+  size: 1254x1254
+  sha256: 197d15896e2915381eca1cd7ef82f78f9f06919f856ff2ef6c624a3d5f0ceeba
+  status: candidate
+  notes: '年代与形制依据：宋元朴雅道门语境；采用交领右衽、宽袖长袍的克制演绎；名录依据：docs/design/catalog/items-clothing.md。
+
+    具体裁片、配色、纹样与材质表现为（原创扩展）；不声称原著或文物复原。
+
+    候选数：2；第2张有效候选通过；青灰宽袖、黑边布扣，无太极符号。另有1次工具路径失败，未生成图，不计候选。
+
+    逐图view_image自检：单一完整物品或名录明确的一套衣裤；无人物、手、可读文字、场景、地面、明显投影、光效或品阶框；主体与子类及外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约25.28/16.03/24.88/15.15%，包围框约49.84%×68.82%；以外圈中位色各通道最大差>45取前景，须结合目检。
+
+    背景外圈中位色约RGB(227, 222, 212)，接近目标(230,225,216)，有轻微生成式明暗起伏，非逐像素纯色；RGB PNG，原图直接复制，未缩放、抠图、改底或重编码。
+
+    历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
+
+    提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+- id: eq_yexingyi
+  file: eq_yexingyi.png
+  category: item
+  style: default
+  subject: 夜行衣；衣物·潜行服；玄阶；江湖通用；规则与具体表现均为原创扩展；宋元至明通用武侠语境；不用现代战术服结构
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. This is the second and final candidate. Critical correction: SCALE DOWN the entire night-clothing set substantially so every edge has at least 16% empty canvas and bounding box width and height are each at most 68%. Keep it centered. The upper garment and folded trousers must overlap as one compact equipment set; no mask, hood, boots, weapons or detached belt. Flat RGB(230,225,216), no floor, no shadow.
+
+
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are the ONLY image inputs and are STYLE REFERENCES ONLY; do not edit or copy their sword or book objects. Render the garment as an UNWORN COMPLETE SINGLE ITEM laid flat, centered, and isolated. Keep at least 14% empty canvas on every edge; its bounding box must not exceed 72% of canvas width or height. Use a uniform flat RGB(230,225,216) background with no floor and no shadow.
+
+
+    Use case: stylized-concept
+
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。
+
+    题材：夜行衣（eq_yexingyi），衣物·潜行服，玄阶，grade=6；出处语境：江湖通用；规则与具体表现均为原创扩展。ID、名称与效果只作元数据，画面完全无字，不显示数值、图标、Buff 或魔法特效。
+
+    年代与形制：宋元至明通用武侠语境；不用现代战术服结构。历史图只用于生成前的形制核对，并未作为图片输入；不得复制历史图片构图或具体藏品纹样。
+
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线，二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底和清晰材质层次；不要复制剑、书、题签、装具、颜色布局或磨损。
+
+    主体：墨黑偏蓝的窄袖夜行上衣与长裤折叠成一个紧凑衣物套装，衣裤彼此搭接、视觉上作为单套装备；哑光细密布，交领暗扣，袖口和裤脚收束。不要蒙面巾、头套、腰带、靴、刀具或分散配件。
+
+    衣物专项：只画未穿着、无人形支撑的完整衣物，平展或极浅自然叠置；领口、襟线、两袖、下摆全部清楚且不断裂，衣服内部只露少量自然内襟，不形成空心人体。子类必须一眼可辨。整体视为单件装备，任何不可分的系带、腰封、护腕都贴合衣身，不另排成第二件道具。
+
+    品阶表现：细密无反光染布、隐蔽缝线与耐磨收口，少量使用折痕。品阶只用材质、工艺、包边、织纹和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；麻、棉、布、锦、绢、毡、皮的边界按条目清楚表达。二维精绘武侠器物，不是照片，不是3D。
+
+    构图：1:1方形，目标1536×1536；单一完整衣物居中，近正面轻微三分之四俯视，左右大体平衡。物件包围框宽和高都不超过画布72%，四边留白都至少14%；领口、袖端、下摆和系带不得截断。不要把衣物铺成充满画布的人体T字形；袖子可自然斜向下收拢以保留空白。
+
+    背景：均匀浅暖灰近象牙色，目标RGB约(230,225,216)；无人物、手、模特、衣架、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于衣物自身，不产生投影，不自发光。
+
+    文字：衣料、领襟、扣结、腰封和所有织纹完全无字、无伪字、无印章、无数字；名称只留在元数据。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+
+    不要去除或伪造工具自身溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T13:51:21.466241+00:00'
+  source_path: /private/tmp/art-item-clothing/codex-home/generated_images/01a0f7bb-00bb-7073-a12e-5c9cb4e473eb/exec-d2325548-eb82-4627-8329-89b994739856.png
+  size: 1254x1254
+  sha256: af2536013d4018ff38dd3a5a8e083ca62bd2aeab779f6a826820da45eb5c11ef
+  status: candidate
+  notes: '年代与形制依据：宋元至明通用武侠语境；不用现代战术服结构；名录依据：docs/design/catalog/items-clothing.md。
+
+    具体裁片、配色、纹样与材质表现为（原创扩展）；不声称原著或文物复原。
+
+    候选数：2；第2稿缩小后通过；衣裤相叠为一套，无蒙面巾、靴或兵器。
+
+    逐图view_image自检：单一完整物品或名录明确的一套衣裤；无人物、手、可读文字、场景、地面、明显投影、光效或品阶框；主体与子类及外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约24.64/18.50/24.96/19.78%，包围框约50.40%×61.72%；以外圈中位色各通道最大差>45取前景，须结合目检。
+
+    背景外圈中位色约RGB(229, 223, 215)，接近目标(230,225,216)，有轻微生成式明暗起伏，非逐像素纯色；RGB PNG，原图直接复制，未缩放、抠图、改底或重编码。
+
+    历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
+
+    提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+- id: eq_huangmagua
+  file: eq_huangmagua.png
+  category: item
+  style: default
+  subject: 黄马褂；衣物·礼服；玄阶；《鹿鼎记》御赐黄马褂；本图具体裁片与配色为原创扩展；ch08_luding，清康熙1669–1690；参考清代马褂圆领、对襟、平袖端、短及坐的比例
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. This is the second and final candidate. Critical correction: SCALE DOWN the entire short yellow jacket substantially so every edge has at least 16% empty canvas and bounding box width and height are each at most 68%. Keep it centered; fold both sleeves diagonally downward and inward. Preserve round collar, center opening, five cloth toggle knots and narrow dark-blue piping. Flat RGB(230,225,216), no floor, no shadow.
+
+
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are the ONLY image inputs and are STYLE REFERENCES ONLY; do not edit or copy their sword or book objects. Render the garment as an UNWORN COMPLETE SINGLE ITEM laid flat, centered, and isolated. Keep at least 14% empty canvas on every edge; its bounding box must not exceed 72% of canvas width or height. Use a uniform flat RGB(230,225,216) background with no floor and no shadow.
+
+
+    Use case: stylized-concept
+
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。
+
+    题材：黄马褂（eq_huangmagua），衣物·礼服，玄阶，grade=6；出处语境：《鹿鼎记》御赐黄马褂；本图具体裁片与配色为原创扩展。ID、名称与效果只作元数据，画面完全无字，不显示数值、图标、Buff 或魔法特效。
+
+    年代与形制：ch08_luding，清康熙1669–1690；参考清代马褂圆领、对襟、平袖端、短及坐的比例。历史图只用于生成前的形制核对，并未作为图片输入；不得复制历史图片构图或具体藏品纹样。
+
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线，二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底和清晰材质层次；不要复制剑、书、题签、装具、颜色布局或磨损。
+
+    主体：清代明黄色短马褂完整单件正面平展，圆领、对襟、平直宽袖端、短身略外展；襟中五枚小型布面盘扣，领、襟、袖端有极窄深蓝滚边。素净缎面，不画龙纹、双喜字、补子、品级纹样或皮毛。
+
+    衣物专项：只画未穿着、无人形支撑的完整衣物，平展或极浅自然叠置；领口、襟线、两袖、下摆全部清楚且不断裂，衣服内部只露少量自然内襟，不形成空心人体。子类必须一眼可辨。整体视为单件装备，任何不可分的系带、腰封、护腕都贴合衣身，不另排成第二件道具。
+
+    品阶表现：细密缎面、规整盘扣和清楚滚边，礼制感来自裁剪与洁净做工，不靠夸张纹章。品阶只用材质、工艺、包边、织纹和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；麻、棉、布、锦、绢、毡、皮的边界按条目清楚表达。二维精绘武侠器物，不是照片，不是3D。
+
+    构图：1:1方形，目标1536×1536；单一完整衣物居中，近正面轻微三分之四俯视，左右大体平衡。物件包围框宽和高都不超过画布72%，四边留白都至少14%；领口、袖端、下摆和系带不得截断。不要把衣物铺成充满画布的人体T字形；袖子可自然斜向下收拢以保留空白。
+
+    背景：均匀浅暖灰近象牙色，目标RGB约(230,225,216)；无人物、手、模特、衣架、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于衣物自身，不产生投影，不自发光。
+
+    文字：衣料、领襟、扣结、腰封和所有织纹完全无字、无伪字、无印章、无数字；名称只留在元数据。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+
+    不要去除或伪造工具自身溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.dpm.org.cn/collection/embroider/230393.html
+    role: 故宫博物院清代马褂藏品；生成前查看，仅取圆领、对襟、平袖端与短身比例，不复制双喜皮毛纹样；未作为image_gen输入；访问2026-10-01
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T13:27:03.887459+00:00'
+  source_path: /private/tmp/art-item-clothing/codex-home/generated_images/01a0f7a4-dffb-7c11-8adf-1d410e69a34e/exec-a49c09b6-1c5d-4faf-83bb-8d50a1e15816.png
+  size: 1254x1254
+  sha256: f3045ea806396ac9e2f4f12e83854ca5ddec6b7f4e449e2ce9d6cfeaabbd541f
+  status: candidate
+  notes: '年代与形制依据：ch08_luding，清康熙1669–1690；参考清代马褂圆领、对襟、平袖端、短及坐的比例；名录依据：docs/design/catalog/items-clothing.md。
+
+    具体裁片、配色、纹样与材质表现为（原创扩展）；不声称原著或文物复原。
+
+    候选数：2；第2稿缩小后通过；圆领对襟、五枚布扣、深蓝滚边，无补子文字。
+
+    逐图view_image自检：单一完整物品或名录明确的一套衣裤；无人物、手、可读文字、场景、地面、明显投影、光效或品阶框；主体与子类及外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约16.03/21.45/16.43/22.89%，包围框约67.54%×55.66%；以外圈中位色各通道最大差>45取前景，须结合目检。
+
+    背景外圈中位色约RGB(230, 224, 214)，接近目标(230,225,216)，有轻微生成式明暗起伏，非逐像素纯色；RGB PNG，原图直接复制，未缩放、抠图、改底或重编码。
+
+    历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
+
+    提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+- id: eq_taohuajinpao
+  file: eq_taohuajinpao.png
+  category: item
+  style: default
+  subject: 桃花锦袍；衣物·礼服；地阶；原创扩展；南宋雅致语境；ch02_shediao，南宋约1217–1227；采用交领右衽、宽袖长袍的原创武侠形制
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. This is the second and final candidate. Critical correction: SCALE DOWN the entire robe substantially so every edge has at least 16% empty canvas and bounding box width and height are each at most 68%. Keep it centered; fold wide sleeves diagonally inward. Peach-branch motif must remain subtle, low contrast and woven, not a painted floral scene. Flat RGB(230,225,216), no floor, no shadow.
+
+
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are the ONLY image inputs and are STYLE REFERENCES ONLY; do not edit or copy their sword or book objects. Render the garment as an UNWORN COMPLETE SINGLE ITEM laid flat, centered, and isolated. Keep at least 14% empty canvas on every edge; its bounding box must not exceed 72% of canvas width or height. Use a uniform flat RGB(230,225,216) background with no floor and no shadow.
+
+
+    Use case: stylized-concept
+
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。
+
+    题材：桃花锦袍（eq_taohuajinpao），衣物·礼服，地阶，grade=9；出处语境：原创扩展；南宋雅致语境。ID、名称与效果只作元数据，画面完全无字，不显示数值、图标、Buff 或魔法特效。
+
+    年代与形制：ch02_shediao，南宋约1217–1227；采用交领右衽、宽袖长袍的原创武侠形制。历史图只用于生成前的形制核对，并未作为图片输入；不得复制历史图片构图或具体藏品纹样。
+
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线，二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底和清晰材质层次；不要复制剑、书、题签、装具、颜色布局或磨损。
+
+    主体：月白色锦袍完整单件平展，交领右衽、宽袖、修长衣身；淡粉色桃枝只以低对比提花暗纹融入织物，纹样稀疏克制，不画写实花枝场景。丝绸只有薄柔光，衣缘精整。
+
+    衣物专项：只画未穿着、无人形支撑的完整衣物，平展或极浅自然叠置；领口、襟线、两袖、下摆全部清楚且不断裂，衣服内部只露少量自然内襟，不形成空心人体。子类必须一眼可辨。整体视为单件装备，任何不可分的系带、腰封、护腕都贴合衣身，不另排成第二件道具。
+
+    品阶表现：优质细锦、精密暗纹与细致包边，保存良好，名贵但无金属宝石。品阶只用材质、工艺、包边、织纹和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；麻、棉、布、锦、绢、毡、皮的边界按条目清楚表达。二维精绘武侠器物，不是照片，不是3D。
+
+    构图：1:1方形，目标1536×1536；单一完整衣物居中，近正面轻微三分之四俯视，左右大体平衡。物件包围框宽和高都不超过画布72%，四边留白都至少14%；领口、袖端、下摆和系带不得截断。不要把衣物铺成充满画布的人体T字形；袖子可自然斜向下收拢以保留空白。
+
+    背景：均匀浅暖灰近象牙色，目标RGB约(230,225,216)；无人物、手、模特、衣架、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于衣物自身，不产生投影，不自发光。
+
+    文字：衣料、领襟、扣结、腰封和所有织纹完全无字、无伪字、无印章、无数字；名称只留在元数据。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+
+    不要去除或伪造工具自身溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/860963
+    role: 南宋绘画 Mending clothes by daylight；生成前查看，仅取交领袍服宽松比例与衣褶，未作为image_gen输入；访问2026-10-01
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T13:27:10.717813+00:00'
+  source_path: /private/tmp/art-item-clothing/codex-home/generated_images/01a0f7a4-e55c-70a1-8d65-61f43478c90a/exec-1f0f7872-d74d-410a-87c6-368dc7cf831e.png
+  size: 1254x1254
+  sha256: 18a80a848aa36f1406db5317982d586a60cbb1b9311cfd397751c283e8a8f82c
+  status: candidate
+  notes: '年代与形制依据：ch02_shediao，南宋约1217–1227；采用交领右衽、宽袖长袍的原创武侠形制；名录依据：docs/design/catalog/items-clothing.md。
+
+    具体裁片、配色、纹样与材质表现为（原创扩展）；不声称原著或文物复原。
+
+    候选数：2；第2稿缩小后通过；月白锦袍与低对比淡粉桃枝织纹。
+
+    逐图view_image自检：单一完整物品或名录明确的一套衣裤；无人物、手、可读文字、场景、地面、明显投影、光效或品阶框；主体与子类及外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约29.03/14.75/28.95/14.75%，包围框约42.03%×70.49%；以外圈中位色各通道最大差>45取前景，须结合目检。
+
+    背景外圈中位色约RGB(228, 221, 212)，接近目标(230,225,216)，有轻微生成式明暗起伏，非逐像素纯色；RGB PNG，原图直接复制，未缩放、抠图、改底或重编码。
+
+    历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
+
+    提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+- id: eq_xiyuhufu
+  file: eq_xiyuhufu.png
+  category: item
+  style: default
+  subject: 西域胡服；衣物·骑装；地阶；原创扩展；西域元代语境；元代西域；参考窄袖长袍与束腰骑装比例，避免臆造具体族群礼服
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. This is the second and final candidate. Critical correction: SCALE DOWN the entire riding robe substantially so every edge has at least 16% empty canvas and bounding box width and height are each at most 68%. Keep centered, sleeves folded inward. Flat RGB(230,225,216), no floor, no shadow.
+
+
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are the ONLY image inputs and are STYLE REFERENCES ONLY; do not edit or copy their sword or book objects. Render the garment as an UNWORN COMPLETE SINGLE ITEM laid flat, centered, and isolated. Keep at least 14% empty canvas on every edge; its bounding box must not exceed 72% of canvas width or height. Use a uniform flat RGB(230,225,216) background with no floor and no shadow.
+
+
+    Use case: stylized-concept
+
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。
+
+    题材：西域胡服（eq_xiyuhufu），衣物·骑装，地阶，grade=9；出处语境：原创扩展；西域元代语境。ID、名称与效果只作元数据，画面完全无字，不显示数值、图标、Buff 或魔法特效。
+
+    年代与形制：元代西域；参考窄袖长袍与束腰骑装比例，避免臆造具体族群礼服。历史图只用于生成前的形制核对，并未作为图片输入；不得复制历史图片构图或具体藏品纹样。
+
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线，二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底和清晰材质层次；不要复制剑、书、题签、装具、颜色布局或磨损。
+
+    主体：靛青窄袖长衫完整单件平展，圆领偏右掩襟，长身两侧开衩便于骑乘；一条窄皮腰封贴合并扣在衣身上，领缘和袖口有灰褐软毡窄边。腰封只用简单穿带结，不画现代金属皮带扣。
+
+    衣物专项：只画未穿着、无人形支撑的完整衣物，平展或极浅自然叠置；领口、襟线、两袖、下摆全部清楚且不断裂，衣服内部只露少量自然内襟，不形成空心人体。子类必须一眼可辨。整体视为单件装备，任何不可分的系带、腰封、护腕都贴合衣身，不另排成第二件道具。
+
+    品阶表现：细密耐风布、柔软毡边、手工鞣皮窄腰封与匀整接缝，兼顾骑乘和保暖。品阶只用材质、工艺、包边、织纹和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；麻、棉、布、锦、绢、毡、皮的边界按条目清楚表达。二维精绘武侠器物，不是照片，不是3D。
+
+    构图：1:1方形，目标1536×1536；单一完整衣物居中，近正面轻微三分之四俯视，左右大体平衡。物件包围框宽和高都不超过画布72%，四边留白都至少14%；领口、袖端、下摆和系带不得截断。不要把衣物铺成充满画布的人体T字形；袖子可自然斜向下收拢以保留空白。
+
+    背景：均匀浅暖灰近象牙色，目标RGB约(230,225,216)；无人物、手、模特、衣架、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于衣物自身，不产生投影，不自发光。
+
+    文字：衣料、领襟、扣结、腰封和所有织纹完全无字、无伪字、无印章、无数字；名称只留在元数据。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+
+    不要去除或伪造工具自身溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/64101
+    role: 元代14世纪织金锦残片；生成前查看，仅取织物密度与低饱和纹理，未作为image_gen输入；访问2026-10-01
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T13:27:20.415857+00:00'
+  source_path: /private/tmp/art-item-clothing/codex-home/generated_images/01a0f7a4-eada-7131-bc3e-cc4a2bae0c2c/exec-e90bd486-444c-491e-84d0-e7b8e564c3ae.png
+  size: 1254x1254
+  sha256: e0d216cfeec9b07b1abf1ee248f501851da66e121c9d1deebc15cccfeded656f
+  status: candidate
+  notes: '年代与形制依据：元代西域；参考窄袖长袍与束腰骑装比例，避免臆造具体族群礼服；名录依据：docs/design/catalog/items-clothing.md。
+
+    具体裁片、配色、纹样与材质表现为（原创扩展）；不声称原著或文物复原。
+
+    候选数：2；第2稿缩小后择优；靛青窄袖长衫、窄皮腰封与毡边清楚。
+
+    逐图view_image自检：单一完整物品或名录明确的一套衣裤；无人物、手、可读文字、场景、地面、明显投影、光效或品阶框；主体与子类及外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约26.63/13.96/26.56/14.04%，包围框约46.81%×72.01%；以外圈中位色各通道最大差>45取前景，须结合目检。
+
+    背景外圈中位色约RGB(228, 222, 213)，接近目标(230,225,216)，有轻微生成式明暗起伏，非逐像素纯色；RGB PNG，原图直接复制，未缩放、抠图、改底或重编码。
+
+    历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
+
+    提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+- id: eq_yunjinhechang
+  file: eq_yunjinhechang.png
+  category: item
+  style: default
+  subject: 云锦鹤氅；衣物·氅服；地阶；原创扩展；宋元雅士语境；宋元朴雅语境；采用宽大对襟长氅的原创武侠形制
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. This is the second and final candidate. Critical correction: SCALE DOWN the complete silver-gray cloak so all four edges have at least 16% empty canvas and bounding box width and height are each at most 68%. Fold both sleeves diagonally inward. Crane-feather motif must be sparse, abstract, very low contrast, and NOT whole birds, phoenixes, wings, waves, clouds, or a pictorial scene. Flat RGB(230,225,216), no floor, no shadow.
+
+
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are the ONLY image inputs and are STYLE REFERENCES ONLY; do not edit or copy their sword or book objects. Render the garment as an UNWORN COMPLETE SINGLE ITEM laid flat, centered, and isolated. Keep at least 14% empty canvas on every edge; its bounding box must not exceed 72% of canvas width or height. Use a uniform flat RGB(230,225,216) background with no floor and no shadow.
+
+
+    Use case: stylized-concept
+
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。
+
+    题材：云锦鹤氅（eq_yunjinhechang），衣物·氅服，地阶，grade=9；出处语境：原创扩展；宋元雅士语境。ID、名称与效果只作元数据，画面完全无字，不显示数值、图标、Buff 或魔法特效。
+
+    年代与形制：宋元朴雅语境；采用宽大对襟长氅的原创武侠形制。历史图只用于生成前的形制核对，并未作为图片输入；不得复制历史图片构图或具体藏品纹样。
+
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线，二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底和清晰材质层次；不要复制剑、书、题签、装具、颜色布局或磨损。
+
+    主体：银灰色云锦长氅完整单件平展，对襟、宽袖、长身，衣襟自然敞开；鹤羽仅化为稀疏抽象的同色提花暗纹，远看近似水波与羽纹，不画整只鹤、云景、圆补或官服补子。
+
+    衣物专项：只画未穿着、无人形支撑的完整衣物，平展或极浅自然叠置；领口、襟线、两袖、下摆全部清楚且不断裂，衣服内部只露少量自然内襟，不形成空心人体。子类必须一眼可辨。整体视为单件装备，任何不可分的系带、腰封、护腕都贴合衣身，不另排成第二件道具。
+
+    品阶表现：高品质云锦、细密同色提花和精整包边，洁净珍贵，光泽克制。品阶只用材质、工艺、包边、织纹和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；麻、棉、布、锦、绢、毡、皮的边界按条目清楚表达。二维精绘武侠器物，不是照片，不是3D。
+
+    构图：1:1方形，目标1536×1536；单一完整衣物居中，近正面轻微三分之四俯视，左右大体平衡。物件包围框宽和高都不超过画布72%，四边留白都至少14%；领口、袖端、下摆和系带不得截断。不要把衣物铺成充满画布的人体T字形；袖子可自然斜向下收拢以保留空白。
+
+    背景：均匀浅暖灰近象牙色，目标RGB约(230,225,216)；无人物、手、模特、衣架、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于衣物自身，不产生投影，不自发光。
+
+    文字：衣料、领襟、扣结、腰封和所有织纹完全无字、无伪字、无印章、无数字；名称只留在元数据。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+
+    不要去除或伪造工具自身溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/64101
+    role: 元代14世纪织金锦残片；生成前查看，仅取织物密度与低饱和纹理，未作为image_gen输入；访问2026-10-01
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T13:38:55.560123+00:00'
+  source_path: /private/tmp/art-item-clothing/codex-home/generated_images/01a0f7ae-fcdc-7902-bead-372a28692cbd/exec-d307ecd3-16b6-4481-bc5c-0d38296f2121.png
+  size: 1254x1254
+  sha256: a50179965a2a657c2aa572786efa24205bf68971b84730728dbe732ed21ef27e
+  status: candidate
+  notes: '年代与形制依据：宋元朴雅语境；采用宽大对襟长氅的原创武侠形制；名录依据：docs/design/catalog/items-clothing.md。
+
+    具体裁片、配色、纹样与材质表现为（原创扩展）；不声称原著或文物复原。
+
+    候选数：2；第2稿移除首稿整翼般大纹样后择优；银灰长氅、低对比抽象羽纹。
+
+    逐图view_image自检：单一完整物品或名录明确的一套衣裤；无人物、手、可读文字、场景、地面、明显投影、光效或品阶框；主体与子类及外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约14.51/10.85/14.51/10.53%，包围框约70.97%×78.63%；以外圈中位色各通道最大差>45取前景，须结合目检。
+
+    背景外圈中位色约RGB(228, 221, 211)，接近目标(230,225,216)，有轻微生成式明暗起伏，非逐像素纯色；RGB PNG，原图直接复制，未缩放、抠图、改底或重编码。
+
+    历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
+
+    提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+- id: eq_tianchanbaoyi
+  file: eq_tianchanbaoyi.png
+  category: item
+  style: default
+  subject: 天蚕宝衣；衣物·宝衣；天阶；原创扩展；跨书界原创武侠器物；不冒充历史文物复原
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. This is the second and final candidate. Critical correction: SCALE DOWN the complete pearl-white garment so all four edges have at least 16% empty canvas and bounding box width and height are each at most 68%. Fold both sleeves diagonally inward. Extremely fine gold warp and weft should be subtly visible throughout the fabric, not merely gold piping; no glow. Flat RGB(230,225,216), no floor, no shadow.
+
+
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are the ONLY image inputs and are STYLE REFERENCES ONLY; do not edit or copy their sword or book objects. Render the garment as an UNWORN COMPLETE SINGLE ITEM laid flat, centered, and isolated. Keep at least 14% empty canvas on every edge; its bounding box must not exceed 72% of canvas width or height. Use a uniform flat RGB(230,225,216) background with no floor and no shadow.
+
+
+    Use case: stylized-concept
+
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。
+
+    题材：天蚕宝衣（eq_tianchanbaoyi），衣物·宝衣，天阶，grade=10；出处语境：原创扩展。ID、名称与效果只作元数据，画面完全无字，不显示数值、图标、Buff 或魔法特效。
+
+    年代与形制：跨书界原创武侠器物；不冒充历史文物复原。历史图只用于生成前的形制核对，并未作为图片输入；不得复制历史图片构图或具体藏品纹样。
+
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线，二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底和清晰材质层次；不要复制剑、书、题签、装具、颜色布局或磨损。
+
+    主体：珠白色丝织长衣完整单件平展，交领右衽、窄而流畅的长袖，柔软可折叠；布面可见极细金丝经纬，只在转折处形成稀疏暖金线点，不组成文字或图案。结构像衣物而非铠甲，无金属甲片。
+
+    衣物专项：只画未穿着、无人形支撑的完整衣物，平展或极浅自然叠置；领口、襟线、两袖、下摆全部清楚且不断裂，衣服内部只露少量自然内襟，不形成空心人体。子类必须一眼可辨。整体视为单件装备，任何不可分的系带、腰封、护腕都贴合衣身，不另排成第二件道具。
+
+    品阶表现：罕见超细丝织、近乎无误的裁缝、极细金丝经纬与完好保存；珍贵感只靠材质和工艺，绝不发光。品阶只用材质、工艺、包边、织纹和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；麻、棉、布、锦、绢、毡、皮的边界按条目清楚表达。二维精绘武侠器物，不是照片，不是3D。
+
+    构图：1:1方形，目标1536×1536；单一完整衣物居中，近正面轻微三分之四俯视，左右大体平衡。物件包围框宽和高都不超过画布72%，四边留白都至少14%；领口、袖端、下摆和系带不得截断。不要把衣物铺成充满画布的人体T字形；袖子可自然斜向下收拢以保留空白。
+
+    背景：均匀浅暖灰近象牙色，目标RGB约(230,225,216)；无人物、手、模特、衣架、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于衣物自身，不产生投影，不自发光。
+
+    文字：衣料、领襟、扣结、腰封和所有织纹完全无字、无伪字、无印章、无数字；名称只留在元数据。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+
+    不要去除或伪造工具自身溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T13:38:16.555666+00:00'
+  source_path: /private/tmp/art-item-clothing/codex-home/generated_images/01a0f7af-0892-7422-8ad2-aed9ba08fde3/exec-162a5ce9-e2b3-4bff-803d-e35030b2a315.png
+  size: 1254x1254
+  sha256: cf87604f7f732e1d57f62ceed01643edc25489518fb87ec2735ccd9e9658690e
+  status: candidate
+  notes: '年代与形制依据：跨书界原创武侠器物；不冒充历史文物复原；名录依据：docs/design/catalog/items-clothing.md。
+
+    具体裁片、配色、纹样与材质表现为（原创扩展）；不声称原著或文物复原。
+
+    候选数：2；第2稿缩小并强化极细金丝经纬后择优；无甲片、无光效。
+
+    逐图view_image自检：单一完整物品或名录明确的一套衣裤；无人物、手、可读文字、场景、地面、明显投影、光效或品阶框；主体与子类及外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约24.24/12.04/24.24/12.20%，包围框约51.52%×75.76%；以外圈中位色各通道最大差>45取前景，须结合目检。
+
+    背景外圈中位色约RGB(229, 223, 213)，接近目标(230,225,216)，有轻微生成式明暗起伏，非逐像素纯色；RGB PNG，原图直接复制，未缩放、抠图、改底或重编码。
+
+    历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
+
+    提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+- id: eq_zixiaqingyi
+  file: eq_zixiaqingyi.png
+  category: item
+  style: default
+  subject: 紫霞轻衣；衣物·宝衣；天阶；原创扩展；明代武侠语境；不冒充历史文物复原
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. This is the second and final candidate. Critical correction: SCALE DOWN the complete muted purple-gray garment so all four edges have at least 16% empty canvas and bounding box width and height are each at most 68%. Fold both sleeves diagonally inward. Remove all flower, leaf, branch, peony and botanical motifs. The cloud-glow effect must be only a subtle fiber-level gradient from gray-violet to pale lotus pink, with no pictorial clouds and no glow. Flat RGB(230,225,216), no floor, no shadow.
+
+
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are the ONLY image inputs and are STYLE REFERENCES ONLY; do not edit or copy their sword or book objects. Render the garment as an UNWORN COMPLETE SINGLE ITEM laid flat, centered, and isolated. Keep at least 14% empty canvas on every edge; its bounding box must not exceed 72% of canvas width or height. Use a uniform flat RGB(230,225,216) background with no floor and no shadow.
+
+
+    Use case: stylized-concept
+
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。
+
+    题材：紫霞轻衣（eq_zixiaqingyi），衣物·宝衣，天阶，grade=10；出处语境：原创扩展。ID、名称与效果只作元数据，画面完全无字，不显示数值、图标、Buff 或魔法特效。
+
+    年代与形制：明代武侠语境；不冒充历史文物复原。历史图只用于生成前的形制核对，并未作为图片输入；不得复制历史图片构图或具体藏品纹样。
+
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线，二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底和清晰材质层次；不要复制剑、书、题签、装具、颜色布局或磨损。
+
+    主体：低饱和紫灰色轻薄长衣完整单件平展，交领右衽、宽袖、修长衣身；云霞般由灰紫到淡藕粉的渐染只存在于织物经纬和局部提花中，边界柔和，不形成天空、云朵或发光雾气。
+
+    衣物专项：只画未穿着、无人形支撑的完整衣物，平展或极浅自然叠置；领口、襟线、两袖、下摆全部清楚且不断裂，衣服内部只露少量自然内襟，不形成空心人体。子类必须一眼可辨。整体视为单件装备，任何不可分的系带、腰封、护腕都贴合衣身，不另排成第二件道具。
+
+    品阶表现：罕见轻薄织物、精密渐染与无瑕缝制，几乎无旧化；不靠光效表达天阶。品阶只用材质、工艺、包边、织纹和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；麻、棉、布、锦、绢、毡、皮的边界按条目清楚表达。二维精绘武侠器物，不是照片，不是3D。
+
+    构图：1:1方形，目标1536×1536；单一完整衣物居中，近正面轻微三分之四俯视，左右大体平衡。物件包围框宽和高都不超过画布72%，四边留白都至少14%；领口、袖端、下摆和系带不得截断。不要把衣物铺成充满画布的人体T字形；袖子可自然斜向下收拢以保留空白。
+
+    背景：均匀浅暖灰近象牙色，目标RGB约(230,225,216)；无人物、手、模特、衣架、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于衣物自身，不产生投影，不自发光。
+
+    文字：衣料、领襟、扣结、腰封和所有织纹完全无字、无伪字、无印章、无数字；名称只留在元数据。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+
+    不要去除或伪造工具自身溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T13:38:13.413420+00:00'
+  source_path: /private/tmp/art-item-clothing/codex-home/generated_images/01a0f7af-024b-7463-906f-2d41cc201c42/exec-eaf55f19-abea-40ed-8842-1e5513f11fe1.png
+  size: 1254x1254
+  sha256: 051c01aef8df654a8e3fa93d22f116530734dc2866a5203b8fb5d92aad18d061
+  status: candidate
+  notes: '年代与形制依据：明代武侠语境；不冒充历史文物复原；名录依据：docs/design/catalog/items-clothing.md。
+
+    具体裁片、配色、纹样与材质表现为（原创扩展）；不声称原著或文物复原。
+
+    候选数：2；第2稿移除首稿花卉后择优；紫灰至淡藕粉仅作低对比织物渐染，无光效。
+
+    逐图view_image自检：单一完整物品或名录明确的一套衣裤；无人物、手、可读文字、场景、地面、明显投影、光效或品阶框；主体与子类及外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约20.73/8.93/20.65/8.77%，包围框约58.61%×82.30%；以外圈中位色各通道最大差>45取前景，须结合目检。
+
+    背景外圈中位色约RGB(228, 222, 212)，接近目标(230,225,216)，有轻微生成式明暗起伏，非逐像素纯色；RGB PNG，原图直接复制，未缩放、抠图、改底或重编码。
+
+    历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
+
+    提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
+- id: eq_wucanyi
+  file: eq_wucanyi.png
+  category: item
+  style: default
+  subject: 乌蚕衣；衣物·宝衣；天阶；《连城诀》狄云所得护身宝衣；材质与取得措辞待考，画面形制为原创扩展；ch09_liancheng，清康熙约1705–1712；护身内衣形制待考
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are the ONLY image inputs and are STYLE REFERENCES ONLY; do not edit or copy their sword or book objects. Render the garment as an UNWORN COMPLETE SINGLE ITEM laid flat, centered, and isolated. Keep at least 14% empty canvas on every edge; its bounding box must not exceed 72% of canvas width or height. Use a uniform flat RGB(230,225,216) background with no floor and no shadow.
+
+
+    Use case: stylized-concept
+
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。
+
+    题材：乌蚕衣（eq_wucanyi），衣物·宝衣，天阶，grade=10；出处语境：《连城诀》狄云所得护身宝衣；材质与取得措辞待考，画面形制为原创扩展。ID、名称与效果只作元数据，画面完全无字，不显示数值、图标、Buff 或魔法特效。
+
+    年代与形制：ch09_liancheng，清康熙约1705–1712；护身内衣形制待考。历史图只用于生成前的形制核对，并未作为图片输入；不得复制历史图片构图或具体藏品纹样。
+
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线，二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底和清晰材质层次；不要复制剑、书、题签、装具、颜色布局或磨损。
+
+    主体：乌黑偏褐的柔韧短衣完整单件平展，圆领偏交叠短襟、窄袖、及腰短身；蚕丝般极细密哑光纹理，布面柔软并有自然折叠，可看出韧性但不是硬甲。无金属甲片、无鳞片、无锁子甲、无皮革。
+
+    衣物专项：只画未穿着、无人形支撑的完整衣物，平展或极浅自然叠置；领口、襟线、两袖、下摆全部清楚且不断裂，衣服内部只露少量自然内襟，不形成空心人体。子类必须一眼可辨。整体视为单件装备，任何不可分的系带、腰封、护腕都贴合衣身，不另排成第二件道具。
+
+    品阶表现：异常细密坚韧的暗色丝织、精确匀整接缝与完好保存；神异只由材质表现，无光效。品阶只用材质、工艺、包边、织纹和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；麻、棉、布、锦、绢、毡、皮的边界按条目清楚表达。二维精绘武侠器物，不是照片，不是3D。
+
+    构图：1:1方形，目标1536×1536；单一完整衣物居中，近正面轻微三分之四俯视，左右大体平衡。物件包围框宽和高都不超过画布72%，四边留白都至少14%；领口、袖端、下摆和系带不得截断。不要把衣物铺成充满画布的人体T字形；袖子可自然斜向下收拢以保留空白。
+
+    背景：均匀浅暖灰近象牙色，目标RGB约(230,225,216)；无人物、手、模特、衣架、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于衣物自身，不产生投影，不自发光。
+
+    文字：衣料、领襟、扣结、腰封和所有织纹完全无字、无伪字、无印章、无数字；名称只留在元数据。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+
+    不要去除或伪造工具自身溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、印章、签名、logo、文字水印；人物、人体、模特、手、人体模型、衣架；第二套衣物、散落配件、鞋帽、兵器、首饰、道具堆叠；现代服装、现代裁剪、拉链、塑料、尼龙、机能战术服、现代金属皮带扣；时代错误、左衽、日式和服、韩服、欧式服装、欧美奇幻、日韩动漫、赛博朋克、蒸汽朋克；具体影视或游戏造型、演员或画师姓名、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、塑料感、厚油画、粗黑线、过度细碎纹理；场景、桌面、地面、接触投影、落地影、环境遮蔽光晕、背景底纹、纸纹、渐变；UI、品阶框、数字数值、星级、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、宝石；拼贴、多视图、透视畸变、主体裁断、满幅贴边。衣物专项排除：穿着人物、假人、衣架、复杂配饰、时代错置、现代裁片、夸张戏服、舞台服、官服补子、可读纹样字、强镜面丝绸、高对比刺绣、独立腰带或护腕散件。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的画风基线之一；只取细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T13:20:39.805796+00:00'
+  source_path: /private/tmp/art-item-clothing/codex-home/generated_images/01a0f79f-0517-7582-8a0f-dbb63a752dd9/exec-8538d027-9ff2-4c2d-8fd6-0f4ac3744ade.png
+  size: 1254x1254
+  sha256: 51dbaff81c91430b188655e2cdf19b58fb213f55e22f2dbe637ca915fbed7227
+  status: candidate
+  notes: '年代与形制依据：ch09_liancheng，清康熙约1705–1712；护身内衣形制待考；名录依据：docs/design/catalog/items-clothing.md。
+
+    具体裁片、配色、纹样与材质表现为（待考：材质与取得措辞、具体形制）；不声称原著或文物复原。
+
+    候选数：1；第1稿通过；乌黑偏褐柔韧短衣、细密哑光丝织，无金属甲片。
+
+    逐图view_image自检：单一完整物品或名录明确的一套衣裤；无人物、手、可读文字、场景、地面、明显投影、光效或品阶框；主体与子类及外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约14.11/15.23/13.32/16.59%，包围框约72.57%×68.18%；以外圈中位色各通道最大差>45取前景，须结合目检。
+
+    背景外圈中位色约RGB(229, 223, 213)，接近目标(230,225,216)，有轻微生成式明暗起伏，非逐像素纯色；RGB PNG，原图直接复制，未缩放、抠图、改底或重编码。
+
+    历史参考只作生成前形制核对，未作为image_gen图片输入；两张仓库基线是唯一图片输入。
+
+    提示目标1536×1536，工具实出1254×1254；created取源PNG文件mtime（UTC）。model/effort按Codex调用配置登记；image_gen未回传底层图片模型、seed或独立effort。'
