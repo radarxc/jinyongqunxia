@@ -99,6 +99,13 @@ def main() -> int:
 
     while True:
         done = merged()
+        # 已合入任务的执行器 / 审核日志不再需要（每个几十到几百 MB；2026-09-30 曾把磁盘写满），顺手清掉
+        for tid in queue:
+            if tid in done:
+                for f in (ROOT / ".agents" / "logs" / tid).glob("*.log"):
+                    f.unlink(missing_ok=True)
+                for f in (ROOT / ".agents" / "reviews").glob(f"{tid}.r*.log"):
+                    f.unlink(missing_ok=True)
         active = 0
         holds, todo = [], []
         for tid in queue:
