@@ -5,14 +5,16 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./schemas": "./src/schemas/index.ts"
+    "./schemas": "./src/schemas/index.ts",
+    "./tooling": "./src/tooling.ts"
   },
   "scripts": {
     "test": "vitest run src",
     "typecheck": "tsc -b"
   },
   "dependencies": {
-    "@tianshu/shared": "workspace:*"
+    "@tianshu/shared": "workspace:*",
+    "yaml": "2.8.1"
   },
   "devDependencies": {
     "zod": "catalog:"

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: eq_qinggangjian
+name: 青钢剑
+kind: weapon
+sub: sword
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: [equipmentBase]
+assets: {icon: items/eq_qinggangjian.webp, model: equipment/qinggangjian.glb}
+text: {desc: 江湖常见的青钢剑基底。}
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: [sword]
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

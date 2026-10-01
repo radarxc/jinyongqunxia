@@ -72,4 +72,24 @@ describe('data boundaries', () => {
       ),
     ).rejects.toThrow('CHAPTER_PACK_ID_MISMATCH');
   });
+
+  it('rejects a pack with a non-canonical manifest', async () => {
+    await expect(
+      loadChapterPack(
+        {
+          readJson: async () => ({
+            manifest: {
+              schemaVersion: 1,
+              chapterId: 'ch01_tianlong',
+              contentHash: 'not-a-sha256',
+              files: ['rules.json'],
+              unexpected: true,
+            },
+            payload: {},
+          }),
+        },
+        'ch01_tianlong',
+      ),
+    ).rejects.toThrow('INVALID_CHAPTER_PACK');
+  });
 });

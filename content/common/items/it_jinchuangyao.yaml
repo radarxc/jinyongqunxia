@@ -1,0 +1,19 @@
+schemaVersion: item.v1
+id: it_jinchuangyao
+name: 金创药
+kind: pill
+sub: heal
+grade: 1
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: [common]
+use:
+  context: both
+  action: apply
+  target: ally
+  effects: [{op: healPct, params: {valueBp: 1500}}]
+assets: {icon: items/it_jinchuangyao.webp}
+text: {desc: 外敷的通用创伤药。}
+extension: {type: generic, value: {}}

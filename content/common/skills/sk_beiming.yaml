@@ -1,0 +1,38 @@
+schemaVersion: martial-art.v1
+id: sk_beiming
+name: 北冥神功
+aliases: []
+category: inner
+subType: neigong
+grade: 12
+origin: canon
+sect: sect_xiaoyao
+lineage: 逍遥派帛卷与传功支系
+sourceChapters: [ch01_tianlong]
+canonRef: 天龙·玉洞帛卷与无崖子传功，逐字出处待考
+nature: yin
+wOutBp: 0
+wInBp: 10000
+requirements: {attrs: {wis: 55, con: 50}, aptitude: {apInner: 55}}
+maxLayer: 10
+inner:
+  contribution: {hpMaxPct: 26, mpMaxPct: 72, mpRegenMilli: 4400}
+  meridians: [mer_shoutaiyin, mer_renmai, mer_zushaoyin]
+  breathProfileRef: txp_beiming
+  innerGuard: {enabled: true, reflectBp: 0}
+  baseQiPerTick: 28
+  baseQiSpeedBp: 14500
+  layerCurveBp: [5625, 6250, 6875, 7500, 8125, 8750, 9375, 10000, 10625]
+  fluxTrainBase: 7
+  fluxTrainHardCap: {acupoint: 64, meridian: 96}
+layers:
+  - {n: 1, unlock: [ps_beiming_zhenqi]}
+  - {n: 7, unlock: [mv_beiming_tianchi]}
+  - {n: 9, unlock: [mv_beiming_kuntun]}
+  - {n: 10, unlock: [mv_beiming_chuangong]}
+moveIds: [mv_beiming_tianchi, mv_beiming_kuntun, mv_beiming_chuangong]
+learnSources:
+  - {type: qiyu, chapter: ch01_tianlong, ref: q_01_qiyu_71, maxLayer: 6}
+  - {type: master, chapter: ch01_tianlong, ref: npc_xuzhu, maxLayer: 10}
+tags: [inner, absorb]
+description: 以帛卷与传功支系承载的天阶阴性内功。

@@ -1,0 +1,16 @@
+schemaVersion: item.v1
+id: it_jingmi
+name: 精米
+kind: material
+sub: ingredient
+grade: 1
+stack: 99
+chapters: any
+origin: expanded
+price: auto
+flags: [ingredient]
+assets: {icon: items/it_jingmi.webp}
+text: {desc: 烹饪常用的精制米粮。}
+extension:
+  type: material
+  value: {family: ingredient, resourceRef: res_liangshi, materialGrade: 1, rare: false, ingredientKind: grain}
