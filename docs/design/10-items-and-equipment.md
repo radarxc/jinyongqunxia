@@ -1,6 +1,6 @@
 # 10 · 物品与装备（Items & Equipment）
 
-> **版本**：v1.4（经脉落地终审，2026-09-29）；v1.3（经脉 Buff 载荷迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
+> **版本**：v1.5（AR-20 十一类物品名录与出图契约，2026-10-01）；v1.4（经脉落地终审，2026-09-29）；v1.3（经脉 Buff 载荷迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
 > **归属**（基准 §18）：装备栏、物品、神兵、锻造、丹药——物品分类与数据结构、装备栏与兵器、品阶→装备数值、词条、神兵宝甲与名器、装备成长（强化/工艺/铭刻/淬毒/锻造）、书眠携带与外来压制对装备的影响、丹药与消耗品、菜肴、秘籍与残页、背包仓库、价格锚点。
 > **上游**：`00-canon.md`（§3 境界规则、§4 品阶、§6 属性 ID、§7 武功与兵器类别、§8 战斗模型、§9 乘区、§10 Buff、§12 ID、§13 天级武学、§14 天级神兵宝甲、§16 改编原则、§20 装配栏与装备栏）。
 > **引用而不重定义**：外来/本土判定 `nativeTo`、有效品阶 `effGrade`、器合、藏史、史印/史笺、天材骰、掉落品阶分布 → `design/02-timeline-and-world-tiers.md`；属性形态与修饰（`flat`/`flatLv`/`pct`/`pp`）、等级曲线 `ATK_LV`/`DEF_LV`/`HP_LV`、`STD(L)`、技艺门槛 `T(g)`/`gMax`、买卖系数 `buyMul`/`sellMul` → `design/03-attributes.md`；伤害公式与乘区 Z0–Z10 → `design/04-damage-formula.md`；武学字段 `weaponReq`/`kinds`/`Mod_armed`、秘籍阅读天数、残页页数、`sxpGrant` 接口 → `design/05-martial-arts-system.md`；全部 Buff 定义（`bf_*`）、品阶对抗 ρ、族上限、驱散类型 → `design/06-buff-system.md`；套装目录、成员、档位与效果 → `design/07-set-system.md`；地形与轻功门禁、飞爪探索入口 → `design/08-terrain-and-qinggong.md`；六角格物品行动、范围、缴械拾取流程、AI → `design/09-combat-system.md`；统一大地图、时代图层、旅行与客栈休息 → `design/11`、`design/19`；任务、关系与生活技能（含烹饪）→ `design/12`；天书之力与难度模式 → `design/13`；界面 → `design/14`；穴道、经脉、周天、冲穴 → `design/15`；资源、家丁、营生与收入 → `design/16`；门派身份 → `design/17`；NPC 认物与同伴物品 → `design/18`；跨年代传承源、残本、关键信物与校合条件 → `design/20`；图标生成 → `tech/07`。
@@ -8,6 +8,7 @@
 > **v1.3 变更摘要**：按 `design/06` §8.14.3 将装备特效中的旧缠绕 / 封穴运行引用迁为带等级、来源、剩余自身行动与穴位选择的新经脉状态；原触发概率与预算折价不变。
 > **v1.4 变更摘要（经脉落地终审，2026-09-29）**：为常长风墓碑登记太岳石碑手的物品侧 `exotic/misc` 兼容介质；把衙门武册、华辉遗谱、宝树旧稿拆成符合单一 `skill` 字段的 7 条秘籍定义，并冻结共享叙事载体的一次性成组取得事务。
 > **经脉落地终审（2026-09-30）**：复核墓碑双侧兼容已闭合；登记康熙册三项谱本／残页与白马地上遗物，修正秘籍阅读式，收拢历史物品接口的已解决项与默认边界；终审返修逐条登记少林／五绝／逍遥 25 本秘籍与 5 种残页，回填 O16；第 3 次运行补齐大还丹正式配方，区分解锁 40 与制作 68 的炼丹门槛；第 6 次运行登记家常饭正式实体与失败产物映射，并澄清生血／毒物仍缺的消费契约；第 7 次运行按协调意见删除重复交办 O18，家常饭统一引用 §9.4／§9.3.1，凭据／总账未决保留于任务报告第 6 节。
+> **v1.5 变更摘要（AR-20，2026-10-01）**：补齐药物／补品／药材、食材／食品、秘籍、兵器、衣物、制式盔甲、内甲、护肩／披风／头饰、鞋、腰带、暗器十一类的天地玄黄投影名录；新增 `equip-slots.v2` 三槽迁移、官甲违法暴露、药材年限、冲穴药物和暗器命中／毒接口。名录只作本文定义的机器可读出图投影，不成为第二规则源。
 
 ---
 
@@ -17,14 +18,14 @@
 |---|---|---|
 | §1 | 设计目标、硬约束、核心术语 | 全体 |
 | §2 | **物品分类总表**、ID 规则、通用与分类字段、运行时实例、TS 类型 | 程序、配表 |
-| §3 | **装备栏八格**：主属性、固有属性、词条池；兵器类别与武学装配；单手/双手/成对/副手；衣甲轻重；暗器；缴械与缴获 | 程序、数值、战斗 |
+| §3 | **装备栏十一格（`equip-slots.v2`）**：兼容原八格，新增内甲、护肩、披风；兵器装配、衣甲、官甲、暗器、缴械与缴获 | 程序、数值、战斗 |
 | §4 | **品阶→装备数值**：主属性公式与速查表、等级封顶与推荐使用区间、词条数量、**词条库（78 条）**、部位权重、随机生成算法、合计上限 | 数值、配表 |
 | §5 | **神兵与宝甲**：12 件天级逐件设计、完整 YAML、**47 件地/玄阶名器**、信物、套装成员同步、各书界产出 | 策划、配表 |
 | §6 | **装备成长**：强化（精炼）、工艺（开锋/加衬/琢磨）、铭刻、淬毒、锻造/重铸/修复/拆解、器魄、材料体系 | 数值、程序 |
 | §7 | **书眠携带与天道压制**：6 件细则、压制对主属性/词条/专属特效的规则、逐件计算、携带策略 | 策划、数值 |
-| §8 | **丹药与消耗品**（常规 55 种，另有终局书页丹 1 种）：使用规则、数值模板、毒/迷/解药、永久增益预算、暗器弹药、炼丹 | 配表、数值 |
-| §9 | **菜肴与烹饪**：膳食规则、黄蓉菜谱、酒与酒杯 | 策划、配表 |
-| §10 | **秘籍与残页**：阅读、悟性、残页拼合、原著奇书 | 策划、程序 |
+| §8 | **药物、补品与药材**：使用规则、数值模板、年限分级、毒/迷/解药、永久增益、暗器弹药、炼丹 | 配表、数值 |
+| §9 | **食材、食品与烹饪**：原料接口、膳食规则、黄蓉菜谱、酒与酒杯 | 策划、配表 |
+| §10 | **秘籍与残页**：完整秘籍名录投影、阅读、悟性、残页拼合、原著奇书 | 策划、程序 |
 | §11 | 任务物品、钥匙/信物、奇物、坐骑、收藏品（书画琴棋） | 策划 |
 | §12 | **背包与仓库**：容量、堆叠、书眠去留、藏史接口、物品图鉴 | 程序、UI |
 | §13 | **经济锚点**：价格公式与价格表、买卖修正、商店供货上限、收入锚点 | 数值、design/12 |
@@ -54,18 +55,18 @@
 | 约束 | 出处 | 本文落实 |
 |---|---|---|
 | 品阶 1–12，名称与档位固定 | 基准 §4 | 物品一律 `grade: 1..12`；物品的品阶→数值映射由本文定义（§4、§8.2） |
-| 装备栏 8 格：`mainHand` `offHand` `head` `body` `hands` `waist` `feet` `accessory` | 基准 §20 | §3 |
+| 装备栏原 8 格：`mainHand` `offHand` `head` `body` `hands` `waist` `feet` `accessory` | 基准 §20；AR-20 后发要求新增缺失槽位 | §3 保留八字段并以 `equip-slots.v2` 加 `innerBody` `shoulder` `cape`；迁移与基准提案见 §3.1.1、§16.3 |
 | 书眠共同额度为“携带装备数 + 本书界新藏史装备数 ≤ 6”；天书永久且不占额度 | 基准 §3、§20（V11-R04） | §7.1、§12.3 |
 | 外来压制只作用于外来武功与装备，下限黄下 | 基准 §3 | §7.2 |
 | 金钱、普通物品、门派身份与活动同伴编组书眠清理；同伴史及传承匣窄例外见上游 | 基准 §3-6；design/18、20 | §12.3；不把活动编组清理写成同伴永久不能重逢 |
 | 兵器类别 `sword` `blade` `staff` `spear` `whip` `exotic` `hidden` `unarmed`，装备与"破 X"共用 | 基准 §7 | §3.2 |
 | 兵器武学只能使用与主武器类别匹配者；空手时兵器栏不可用 | 基准 §20；05 §6.2–6.3 | §3.2 |
-| 天级神兵宝甲 12 件定稿；其余神兵由本文定级、以地阶为主 | 基准 §14 | §5.2、§5.4：**天级装备为封闭名录**（仅此 12 件），其余名器 ≤ 地上 9 |
+| 天级神兵宝甲 12 件定稿；AR-20 又要求各类均有天级样本 | 基准 §14；AR-20 后发 | §5.1：原 12 件仍是唯一 `divine` 神兵；AR-20 的额外天级样本为固定具名 `catalogTian`，不享神兵通则、不进入随机/锻造/商店 |
 | 天级装备只来自具名神兵的固定节点，随机池不产出天级装备；天材骰只出天级材料/丹药 | 02 §2.9 R2、§2.12 | §4.8、§6.8 |
 | 精炼/镶嵌/附魔不改变 `nativeTo`（杜绝"精炼洗白"）；锻造物归锻造书界 | 02 §2.2 | §6.1（本文的"强化/工艺/铭刻"即 02 所说的"精炼/镶嵌/附魔"） |
 | 先天只接受 `flat`；装备词条为 `equipAffix` 修饰器 | 03 §2.1、§11 | §4.6 |
 | 数值类效果须标明作用层或乘区 | 基准 §9；06 §4.7 | §4.6 全部词条按 06 记法标注 |
-| 自造与其他名录外装备上限地上（9）；强化不改变绝对品阶；天级只能修复不能打造 | 基准 §14（V11-R06）；03 §8.2 | §6.1–§6.6 |
+| 自造与普通名录外装备上限地上（9）；强化不改变绝对品阶；AR-20 额外天级样本只可固定取得与修复 | 基准 §14（V11-R06）；AR-20 后发；03 §8.2 | §5.1、§6.1–§6.6 |
 
 ### 1.3 核心术语（本文使用）
 
@@ -88,6 +89,9 @@
 | 淬毒 | `poisonCoat` | 以毒术给兵器/暗器附毒，3 场战斗（§6.5） |
 | 膳食 | `meal` | 菜肴带来的"下 N 场战斗开场即得"的 Buff 包（§9.1） |
 | 学识 | `knowledge` | 已学会的丹方、菜谱、锻造图谱、铭文；跨书界保留（§12.3） |
+| 出图名录投影 | `items-*.md` | 本文 `ItemDef` 的七列机器可读投影；只承载 ID、名称、子类、品阶、出处、效果摘要和外观，不覆写本文规则 |
+| 目录天级样本 | `catalogTian` | AR-20 新增而不在基准 12 神兵中的天级具名装备；固定、唯一、不可随机/锻造/商店，不得标 `divine` 或自动获得神兵护主 |
+| 官甲违法暴露 | `lawProfile` | 制式盔甲的物品侧声明；身份与通缉状态机归 `design/11`、`design/12`，本文只发出穿戴暴露事实（§3.4.1） |
 
 ---
 
@@ -100,15 +104,18 @@
 | 大类 | `kind` | 子类 `sub` | ID 形式 | 品阶 | 堆叠 | 跨书界 | 外来压制 | 可买卖 | 主要来源 | 使用场合 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 兵器 | `weapon` | 基准 §7 兵器类别：`sword` `blade` `staff` `spear` `whip` `exotic` `unarmed`（拳套/指虎） | `eq_<拼音>` | 1–12 | 1 | 携带/藏史 | ✅ | ✅（天级否） | 掉落、锻造、任务、商店 | 主手；单手者可作副手副兵器 |
-| 护具 | `armor` | `head` `body` `hands` `waist` `feet` | `eq_<拼音>` | 1–12（天级仅 3 件衣） | 1 | 同上 | ✅ | ✅ | 同上 | 对应部位 |
+| 衣物 / 护具 | `armor` | `head` `body` `innerBody` `hands` `shoulder` `cape` `waist` `feet`；`clothing` `officialArmor` `innerArmor` `headwear` `shoulder` `cape` `shoes` `belt` | `eq_<拼音>` | 1–12；新增天级目录样本按 `catalogTian` | 1 | 同上 | ✅ | ✅（官甲依法） | 固定节点、掉落、锻造、商店 | 对应部位；官甲见 §3.4.1 |
 | 副手器 | `offhand` | `shield` 牌、`pouch` 暗器囊 | `eq_<拼音>` | 1–9 | 1 | 同上 | ✅ | ✅ | 同上 | 副手 |
-| 名门暗器 | `hidden` | `needle` `dart` `ball` `awl` `bolt` `powder` `gun` `bow` | `eq_<拼音>` | 5–9 | 1 | 同上 | ✅ | ❌ | 名器固定节点 | 副手（兼作暗器囊，自带弹药，§3.5） |
+| 名门暗器 | `hidden` | `needle` `dart` `ball` `awl` `bolt` `powder` `gun` `bow` | `eq_<拼音>` | 1–12；新增天级目录样本按 `catalogTian` | 1 | 同上 | ✅ | ❌ | 名器固定节点 | 副手（兼作暗器囊，自带弹药，§3.5） |
 | 佩饰 | `accessory` | `pendant` 玉佩、`sachet` 香囊、`ring` 指环、`beads` 念珠、`gourd` 葫芦、`charm` 护符 | `eq_<拼音>` | 1–9 | 1 | 同上 | ✅ | ✅ | 同上 | 佩饰 |
 | 暗器弹药 | `ammo` | 同名门暗器子类 | `it_<拼音>` | 1–9 | 99 | ❌ | — | ✅ | 商店、掉落、打造 | 装入暗器囊（§3.5） |
-| 丹药 | `pill` | `heal` 疗伤、`mp` 回内、`cure` 解毒解伤、`boost` 增益、`perm` 永久、`train` 修炼、`revive` 保命 | `it_<拼音>` | 1–12 | 99（天级 9） | ❌（永久效果记在角色身上） | — | ✅（天级否） | 药铺、掉落、炼丹、奇遇 | 战斗/战斗外（§8.1） |
+| 药物 | `pill` | `heal` 补血、`mp` 补气、`cure` 解毒疗伤、`boost` 临时属性、`revive` 复活 | `it_<拼音>` | 1–12 | 99（天级 9） | ❌ | — | ✅（天级否） | 药铺、掉落、炼丹、奇遇 | 战斗/战斗外（§8.1） |
+| 补品 | `tonic` | `perm` 永久属性、`innerPower` 内力、`train` 修炼、`meridian` 经脉辅助 | `it_<拼音>` | 1–12 | 20（天级 9） | ❌（永久效果留在角色） | — | ✅（天级否） | 固定节点、炼丹、奇遇 | 战斗外静服（§8.1–8.5） |
+| 药材 | `material` | `herb`；可带 `herbFamily` 与 `ageYears` | `it_<拼音>` | 1–12；年限映射见 §8.2.1 | 999 | ❌ | — | ✅（天材否） | 采集、药铺、奇遇 | 炼丹或生服（条目显式声明） |
 | 毒药迷药 | `poison` | `poison` 毒、`drug` 迷药、`gas` 毒烟、`powder` 药粉 | `it_<拼音>` | 1–12 | 99 | ❌ | — | 黑市 | 配毒、掉落、奇遇 | 投掷、下药、淬毒（§8.4、§6.5） |
 | 解药 | `antidote` | `generic` 通用、`specific` 专属 | `it_<拼音>` | 1–12 | 99 | ❌ | — | ✅（专属否） | 配药、任务 | 06 `antidote` / `special` 驱散 |
-| 干粮 | `food` | `ration` | `it_<拼音>` | 1–3 | 20 | ❌ | — | ✅ | 商店 | 探索回体力 |
+| 食材 | `material` | `ingredient`：`grain` `meat` `fish` `vegetable` `fruit` `spice` `rare` | `it_<拼音>` | 1–12 | 999 | ❌ | — | ✅（天材否） | 采集、狩猎、商店 | §9.4 配方输入 |
+| 食品 / 干粮 | `food` | `ration` `snack` `preserved` | `it_<拼音>` | 1–12 | 20 | ❌ | — | ✅（天级否） | 商店、烹饪、任务 | 探索回体或即时效果 |
 | 菜肴 | `dish` | `dish` 菜、`soup` 汤、`snack` 点心 | `it_<拼音>` | 1–10 | 20 | ❌ | — | ✅ | 烹饪、酒楼、任务 | 膳食（§9） |
 | 酒 | `wine` | `wine` | `it_<拼音>` | 1–9 | 20 | ❌ | — | ✅ | 酒肆、任务 | 醉意（§9.3） |
 | 材料 | `material` | `metal` 金、`fabric` 丝、`leather` 革、`wood` 木竹、`jade` 玉石、`herb` 药材、`toxin` 毒材、`beast` 兽材、`ingredient` 食材、`ink` 墨料 | `it_<拼音>` | 装备侧换算品阶 1–12；资源自身为天地玄黄 × 九品（一品最高），归 `design/16` | 999 | ❌ | — | ✅（天材否） | `design/16` 资源点、掉落、商店、拆解 | 锻造、强化、炼丹、烹饪、铭刻（§6.8） |
@@ -158,6 +165,7 @@
 | `price` | `auto` \| int（文）\| `null` | ✅ | `auto` 按 §13.1 公式；`null` 不可买卖（天级、任务、信物） | `auto` |
 | `flags` | string[] | | `noCarry` `anchorLocked`（02）、`questBound`、`unique`（全局唯一实物）、`hiddenName`（未鉴定显示"无名 X"） | `[unique]` |
 | `resourceRef` | `res_*` | | 对应 16 的生产资源；`material` 必填，具名可采集药物/毒物可选。只表示来源与估值，不替代本物品 ID | `res_yaocai_di5` |
+| `catalogTian` | bool | AR-20 天级装备样本必填 | 非基准 12 神兵的天级固定样本；序列化时须同时 `flags:[unique]`、`price:null`，并禁止 `divine:true`；名录效果列以 `unique=true` 作投影简写 | `true` |
 | `use` | `UseSpec` | 消耗品必填 | §2.4 | |
 | `assets` | `{icon, model?, sfx?}` | ✅ | 逻辑素材键：`equip/<拼音>` → `ico_eq_<拼音>`；`item/<拼音>` → `ico_it_<拼音>`（tech/07 §5.6） | `{icon: item/dahuandan}` |
 | `text` | `{desc, lore?, short?}` | ✅ | 说明模板可引用 `{v}`；`lore` 为图鉴文案 | |
@@ -188,8 +196,11 @@
 | `setTags` | `set_*`[] | | 所属套装（本体归 07） | |
 | `signature` | npcId | | 具名 NPC 专属兵器：战后不可缴获（§3.6） | `npc_duanyanqing` |
 | `refineMax` | int | | 覆写强化上限（默认按大阶，§6.2） | |
+| `lawProfile` | `{uniform,allowedIdentityTags[],violation,wantedIntent,normalGate}` | 制式盔甲必填 | 仅声明装备可见时的身份合法性与事件意图；通缉值、追捕和城门状态归 11/12 | `{uniform:true,...}` |
+| `concealment` | `{coveredBy?:EquipSlot[],exposure}` | 官甲可选 | `exposure:visible` 才发违法暴露；是否被披风遮住由穿戴外观状态计算 | |
+| `specialDefense` | `{thorns?,weaponZ4?,poisonResPp?,bleedImmuneGrade?}` | 内甲可选 | 软猬刺、刀枪减伤、抗毒等摘要；具体 Buff 必须引用 06 | |
 
-**消耗品 `UseSpec`（`pill` `poison` `antidote` `food` `dish` `wine` `ammo`）**
+**消耗品 `UseSpec`（`pill` `tonic` `poison` `antidote` `food` `dish` `wine` `ammo`）**
 
 | 字段 | 类型 | 说明 | 例 |
 |---|---|---|---|
@@ -197,7 +208,7 @@
 | `action` | `consume` 服用、`throw` 投掷、`apply` 外敷、`eat` 进食、`drink` 饮、`load` 装填、`dose` 下药（战斗外对 NPC/饮食） | 战斗中均占用"行动"（基准 §8 物品行动）；`load` 除外（§3.5） | `consume` |
 | `target` | `self` / `ally` / `enemy` / `area` | | `self` |
 | `range` / `rangeTemplate` | int / 09 物品范围键 | 投掷与外敷用；只引用六角格语义，坐标枚举归 09；外敷默认 `range: 1` | `3` / 半径 1 邻接环 |
-| `effects` | `Op[]` | 06 DSL 原语：`heal`、`restoreMp`、`applyBuff`、`dispel`、`immune`，以及本文物品原语 `healPct`、`mpPct`、`staPct`、`sxpGrant`、`sxpBuff`（05 §8.5）、`permStat`、`breakCap`、`meal`、`learn`、`unlock` | |
+| `effects` | `Op[]` | 06 DSL 原语：`heal`、`restoreMp`、`applyBuff`、`dispel`、`immune`，以及本文物品原语 `healPct`、`mpPct`、`staPct`、`sxpGrant`、`sxpBuff`（05 §8.5）、`permStat`、`permMaxPct`、`revive`、`breakCap`、`meal`、`learn`、`unlock` | |
 | `battleLimit` | `{perBattle, cooldown}` | 覆写默认限次（§8.1） | `{perBattle: 1}` |
 | `fieldTime` | int（时辰） | 战斗外使用耗时（静服、外敷、研读） | `2` |
 | `persistGrade` | bool | 施加的 Buff 品阶取物品品阶（默认 true，06 §3.1） | |
@@ -207,7 +218,7 @@
 
 | 类 | 字段 | 说明 |
 |---|---|---|
-| 材料 `material` | `family`、`resourceRef`（`design/16` 的资源 ID）、`materialGrade`（装备侧 1–12 换算值）、`rare`（天材） | `material` 的 `resourceRef` 必填；具名药物/毒物可在通用字段带同名映射。资源阶品、资源点与库存归 `design/16`；§6.8 只定消耗接口 |
+| 材料 `material` | `family`、`resourceRef`（`design/16` 的资源 ID）、`materialGrade`（装备侧 1–12 换算值）、`rare`（天材）、`herbFamily?`、`ageYears?`、`ingredientKind?` | `material` 的 `resourceRef` 必填；具名药材按 §8.2.1 记录年限，食材按 §9.0 投入配方。资源阶品、资源点与库存仍归 `design/16` |
 | 秘籍 `manual` | `skill`（`sk_*`）、`maxLayer`（全本 10、残本按条目）、`variant`（full/partial/copy/original）、`readMul`（阅读天数系数）、`attuneFor`（作为 02 印证载体） | §10.1 |
 | 残页 `page` | `skill`、`pagesTotal`（= 05 §7.5 的 k） | 实例存页号集合 |
 | 配方卷 `recipe` | `teaches: rc_*`、`craft`（forge/alchemy/poison/cook/inscribe）、`req`（技艺门槛） | §6、§8.7、§9.4 |
@@ -243,11 +254,12 @@
 ### 2.6 TypeScript 类型（`packages/data`，Zod 同构）
 
 ```ts
-export type EquipSlot = 'mainHand'|'offHand'|'head'|'body'|'hands'|'waist'|'feet'|'accessory';
+export type EquipSlotV1 = 'mainHand'|'offHand'|'head'|'body'|'hands'|'waist'|'feet'|'accessory';
+export type EquipSlot = EquipSlotV1|'innerBody'|'shoulder'|'cape'; // equip-slots.v2，§3.1.1
 export type WeaponCat = 'sword'|'blade'|'staff'|'spear'|'whip'|'exotic'|'hidden'|'unarmed';   // 基准 §7
 export type ExoticKind = 'brush'|'fan'|'wheel'|'hook'|'pestle'|'qin'|'flute'|'dagger'|'hammer'|'axe'|'token'|'misc'; // 05 §6.2
 export type HiddenKind = 'needle'|'dart'|'ball'|'awl'|'bolt'|'powder'|'gun'|'bow';
-export type ItemKind = 'weapon'|'armor'|'offhand'|'hidden'|'accessory'|'ammo'|'pill'|'poison'|'antidote'
+export type ItemKind = 'weapon'|'armor'|'offhand'|'hidden'|'accessory'|'ammo'|'pill'|'tonic'|'poison'|'antidote'
   |'food'|'dish'|'wine'|'material'|'tool'|'manual'|'page'|'recipe'|'quest'|'token'|'curio'|'mount'|'collectible'|'system';
 export type Grade = 1|2|3|4|5|6|7|8|9|10|11|12;
 export interface MeridianAid {
@@ -269,7 +281,10 @@ export interface EquipDef extends ItemDefBase {
   slot: EquipSlot; cat?: WeaponCat; exoticKind?: ExoticKind; hiddenKind?: HiddenKind;
   hands?: 1|2|'pair'; tags?: string[]; armorWeight?: 'light'|'medium'|'heavy';
   mainK?: number; fixedAffixes?: AffixRef[]; affixRoll?: { min: number; max: number };
-  uniques?: UniqueDef[]; divine?: boolean; uniqueEquipped?: boolean;
+  uniques?: UniqueDef[]; divine?: boolean; catalogTian?: boolean; uniqueEquipped?: boolean;
+  lawProfile?: { uniform: true; allowedIdentityTags: string[]; violation: 'uniformImpersonation';
+    wantedIntent: 'activate'; normalGate: 'blocked' };
+  concealment?: { coveredBy?: EquipSlot[]; exposure: 'visible'|'covered' };
   reqs?: Partial<Record<'str'|'agi'|'wis', number>>; matFamily: 'metal'|'fabric'|'leather'|'wood'|'jade';
   ammo?: { kind: HiddenKind; perBattle: number; mul: number; onHit?: unknown[] };
   setTags?: `set_${string}`[]; signature?: `npc_${string}`; refineMax?: number;
@@ -293,7 +308,7 @@ export function gUse(inst: EquipInstance, ch: ChapterDef, Ld: number): Grade;
 
 ## 3. 装备栏与兵器
 
-### 3.1 八格总览
+### 3.1 十一格总览（`equip-slots.v2`）
 
 主属性均为 `flatLv`（按当前显示等级 `Ld` 的基准曲线缩放，03 §4.1、§11.2②），品阶一律取**使用品阶 `gUse`**（§4.3）。词条池的组名见 §4.6，逐条权重见 §4.7。
 
@@ -302,13 +317,26 @@ export function gUse(inst: EquipInstance, ch: ChapterDef, Ld: number): Grade;
 | 主手 `mainHand` | 兵器 7 类（含拳套） | `atkOut = 0.30 × kA × G × ATK_LV` | 按兵器类别/奇门细类（§3.2） | 标准（§4.5） | 攻伐 A、克制 B、触发 C | **决定兵器武学可用性**（基准 §20） |
 | 副手 `offHand` | ① 副兵器 ② 牌 ③ 暗器囊 ④ 名门暗器 | ① `atkOut = 0.10 × kA × G × ATK_LV` ② `defOut = 0.10 × G × DEF_LV` ③④ 无 | ① 类别固有 ×0.5 ② `parry +(10 + 3×G)` ③④ `apHidden +2×G`、弹药位（§3.5） | 标准 | ① 攻伐 A ② 守御 D ③④ 暗器专属 | 主手为双手兵器时只能放 ③④（§3.3） |
 | 头 `head` | 冠、巾、盔、斗笠 | `defOut = 0.05 × G × DEF_LV`；`hpMax = 0.01 × G × HP_LV` | — | 标准 | 守御 D、抗性 E、心法 G | |
-| 衣 `body` | 轻/中/重衣甲 | `defOut = kD × G × DEF_LV`；`defIn = kI × G × DEF_LV` | 按轻重（§3.4） | 标准 | 守御 D、抗性 E | 天级仅 3 件（软猬甲、护身宝衣、乌蚕衣，§5.2） |
+| 衣 `body` | 轻/中/重衣甲 | `defOut = kD × G × DEF_LV`；`defIn = kI × G × DEF_LV` | 按轻重（§3.4） | 标准 | 守御 D、抗性 E | 原神兵宝甲中护身宝衣、乌蚕衣在此；AR-20 天级样本须 `catalogTian` |
+| 内甲 `innerBody` | 软猬甲、金丝背心、金丝甲等贴身宝甲 | `defOut = 0.10 × G × DEF_LV`；`defIn = 0.08 × G × DEF_LV` | 条目可带刀枪减伤、猬刺、抗毒；只取明列效果 | 标准 | 守御 D、抗性 E | 与外衣叠穿；同一来源的同名 Buff 只结算一次 |
 | 护手 `hands` | 护腕、手套、指套、铁护手 | 同头 | `glove` 标签：可徒手取毒针（§5.4） | 标准 | 攻伐 A（少）、守御 D、拿穴 | |
+| 护肩 `shoulder` | 单／双护肩、披膊 | `defOut = 0.025 × G × DEF_LV`；`hpMax = 0.005 × G × HP_LV` | — | 标准 | 守御 D、抗性 E | 系数为小件的一半：`0.05÷2`、`0.01÷2`【建议值】 |
+| 披风 `cape` | 披风、斗篷、氅 | 同护肩 | 可带御寒、隐蔽或威仪，均须条目显式声明 | 标准 | 机动 F、抗性 E、技艺 I | 不自动遮蔽官甲；`concealment` 明列后才改变暴露 |
 | 腰带 `waist` | 腰带、束带、玉带 | 同头 | — | 标准 | 守御 D、气海、耐力 | |
 | 鞋 `feet` | 靴、履、草鞋、快靴 | 同头；另 `qinggong +2.5 × gUse`（固定点，03 §4.5） | — | 标准 | 机动 F、灵动 | 鞋的轻功值**不受强化加成**（保护 03 §4.5 的门禁校准） |
 | 佩饰 `accessory` | 玉佩、香囊、念珠（随机基底）；指环、葫芦、护符（仅名器） | 无 | 玉佩：任一评级 `+2 × gUse`；香囊：任一抗性 `+1 × gUse` pp；念珠：`effRes +2 × gUse`、`resMind +0.5 × gUse` pp（生成时定项） | **标准 +1** | 心法 G、先天 H、技艺 I、抗性 E | 技艺词条只出现在佩饰 |
 
-> 主属性系数沿用 03 §4.1 的 D-02 接口，本文定稿兵器类别系数 `kA`（均值≈1.0）、衣甲轻重系数 `kD/kI`、副手与佩饰规则。这里只确认**公式接口**，不确认 03 旧版 `STD(L)` 的具体配装：其“天中鞋”和其他名录外天级小件违反基准 §14，须按合法装备集合另行重算（见 §16.2 D-01）。
+> 主属性系数沿用 03 §4.1 的 D-02 接口，本文定稿兵器类别系数 `kA`（均值≈1.0）、衣甲轻重系数 `kD/kI`、副手与佩饰规则。护肩／披风合计恰等于一个旧小件：`2×0.025=0.05`、`2×0.005=0.01`，既增加外观组合，又不凭空抬高单件预算；全套多出的总预算由装备件数与携带 6 件约束自然支付。
+
+#### 3.1.1 `equip-slots.v1 → v2` 存档迁移
+
+| 项 | 规则 |
+|---|---|
+| 旧字段保留 | 原八字段原值逐字保留，不改 `uid`、装备实例或携带计数 |
+| 新字段 | `innerBody:null`、`shoulder:null`、`cape:null`；存档写入 `equipSlotsVersion:2` |
+| 旧宝衣归位 | 基准三件宝衣中软猬甲迁 `body → innerBody`；护身宝衣、乌蚕衣仍为 `body`。金丝背心迁 `body → innerBody`；若导入时目标已有装备，旧 `body` 保持不动并把待迁装备送 §12.1 待拾队列 |
+| 原子性 | 三个新槽初始化与宝衣移位同事务；失败整笔回滚，禁止复制或吞掉实例 |
+| UI / 配表 | 未支持 v2 的客户端只读原八槽且不得保存；服务端拒绝以 v1 覆写 v2。装备详情按“外衣／内甲／护肩／披风”显示 |
 
 ### 3.2 兵器类别与武学装配（基准 §7）
 
@@ -391,6 +419,16 @@ export function gUse(inst: EquipInstance, ch: ChapterDef, Ld: number): Grade;
 - 三档合计防御系数：轻 0.28 / 中 0.30 / 重 0.35；重甲的额外防御以机动与轻功为代价。
 - 负重 `Q_load` 只由"重甲 10"与"重兵 15"两项构成，同时满足时合计 25（03 §4.5 的建议值，本文确认）。
 
+#### 3.4.1 衣物、制式盔甲与内甲
+
+| 类 | 判定 | 数值与特殊效果 |
+|---|---|---|
+| 衣物 `clothing` | 外衣、袍、劲装、旗衣等入 `body`；头饰入 `head` | 轻／中／重按 §3.4；礼服可取魅力／口才词条，夜行衣可取隐蔽标签，但均不自动授身份 |
+| 制式盔甲 `officialArmor` | 官军／衙役／禁军／侍卫等可识别制服或甲胄，入 `body`；必填 `lawProfile` | 防御仍按轻重；合法性不因装备品阶改变。外观可见且穿戴者无任一 `allowedIdentityTags` 时发 `uniformImpersonation` |
+| 内甲 `innerArmor` | 贴身穿在 `innerBody`，可与外衣叠穿 | 主属性按 §3.1；软猬甲可反伤，金丝类可刀剑减伤，乌蚕类可抗性，须在条目效果中逐件声明，不从名称猜效果 |
+
+官甲装备侧事件载荷固定为 `{equipId,wearerId,lawProfile,exposure:'visible',locationId,time}`。`design/12` 判断身份是否合法并向 `design/11` 请求激活通缉；正常城门入口随后消费其状态为 `blocked`。脱下或遮蔽官甲只停止新的暴露事件，**不清除既有通缉**；潜行、翻墙、密道等非正常进城路线仍由 `design/11` 判定。本文不定义通缉数值、衰减、追捕或洗罪。
+
 ### 3.5 暗器：暗器囊、名门暗器与弹药
 
 暗器武学（基准 §7 `hidden`，不可携带）只能在副手满足下列之一时施放：
@@ -403,8 +441,10 @@ export function gUse(inst: EquipInstance, ch: ChapterDef, Ld: number): Grade;
 | 规则 | 值 |
 |---|---|
 | 弹药倍率 | 暗器招式威力另乘 `ammoMul(g) = 0.88 + 0.035 × g`（g1 0.915 … g6 1.09 … g9 1.195 … g12 1.30），作为 05 §2.7 的 `Mod_special` 项【建议值，04/05 确认】 |
+| 命中接口 | 装备可给 `hiddenHit = base + 3×G(gUse)`；最终仍注入 03 的 `hit/effHit`，不另建命中公式。机括类条目可显式给 `range`、`reloadOwnActions`、`perBattle` |
 | 消耗 | 每次命中判定消耗 1 枚；多目标招式按实际判定数消耗；未命中不返还 |
-| 附带效果 | 弹药自带的 `onHit`（如透骨钉→流血）与淬毒（§6.5）同时生效；同一枚最多 2 个附带效果 |
+| 附带效果 | 弹药自带 `onHit[]` 与淬毒 `poisonCoat`（§6.5）同时生效；毒效果必须引用 06 的 `bf_*` 并带 `gUse`，同一枚最多 2 个附带效果；免疫、削品、抵抗均归 06 |
+| 天级目录样本 | AR-20 允许天级暗器固定样本；须 `catalogTian:true`、`unique`、`price:null`、每场限量，不能量产弹药，不自动获 `bf_mian_pobing` |
 | 战斗中换囊 | 占用行动（与 05 §6.4"从行囊取兵器"同价） |
 | 被"破箭"克制 | 06 `bf_poanqi` 按 `move.category == hidden` 匹配，与弹药无关 |
 
@@ -436,6 +476,8 @@ R      = (1 + 0.04 × refineEff) × brokenMul                     // 强化 §6.
 成对    atkOut += 0.36 × kA × tagK × G(gUse) × ATK_LV(Ld) × R
 衣      defOut += kD × G × DEF_LV(Ld) × R ;   defIn += kI × G × DEF_LV(Ld) × R     // kD/kI §3.4
 头手腰鞋 defOut += 0.05 × G × DEF_LV(Ld) × R ; hpMax += 0.01 × G × HP_LV(Ld) × R
+内甲    defOut += 0.10 × G × DEF_LV(Ld) × R ; defIn += 0.08 × G × DEF_LV(Ld) × R
+肩披    defOut += 0.025 × G × DEF_LV(Ld) × R ; hpMax += 0.005 × G × HP_LV(Ld) × R // 各自
 牌      defOut += 0.10 × G × DEF_LV(Ld) × R ;  parry += 10 + 3 × G                // parry 不乘 R
 鞋      qinggong += 2.5 × gUse                                                       // 不乘 R
 固有    按 §3.1–3.4 的"×G"值，G = G(gUse)，不乘 R
@@ -751,9 +793,11 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 
 ### 5.1 神兵通用规则
 
+> **AR-20 后发例外**：基准 §14 的 12 件仍是唯一 `divine:true` 神兵宝甲，且继续完整享用下表通则。十一类名录为满足“天地玄黄等级对应物品”，可收录额外天级具名装备，但必须标 `catalogTian:true`、`divine:false`、`flags:[unique]`、`price:null`；七列投影中的 `unique=true` 序列化时等价写入 `flags:[unique]`。这些样本仅由固定剧情／奇遇节点产出，不进随机池、锻造、商店或天材骰，只可修复。它们没有“神兵护主”、两段专属、器合或藏史优待，除非未来基准逐件吸收。非天级名录条目仍须 ≤ 地上 9。
+
 | 规则 | 内容 |
 |---|---|
-| 封闭名录 | **天级装备 = 基准 §14 的 12 件**，全部 `divine: true`、`uniqueEquipped: true`、`price: null`（不可买卖）、`flags: [unique]`（每书界至多 1 件原生实物；异时之器可与外来实例并存，02 §6.5）。随机池与锻造不产出天级装备（02 R2、03 §8.2）；奇遇只有在 chapters/ 把它指定为某件神兵的固定节点时才可产出。 |
+| 神兵封闭名录 | **`divine` 天级装备 = 基准 §14 的 12 件**；AR-20 `catalogTian` 不计神兵。12 件全部 `divine: true`、`uniqueEquipped: true`、`price: null`、`flags:[unique]`。随机池与锻造不产出任何天级装备 |
 | 固定词条 | 天下 3 条、天中/天上 4 条，`q = 1.00`，不可重铸；可另加工艺与铭文（§6.3–6.4）。 |
 | 专属特效 | 每件 2 条：**① 核心特效**（`core: true`，压制到地阶仍保留）与 **② 天阶特效**（仅 `gUse ≥ 10` 生效）；分档规则见 §7.3。特效中的非战斗部分（身份、对话、世界事件）不受压制。 |
 | 神兵护主（通用） | 天级**兵器**另常驻 06 `bf_mian_pobing`（免疫缴械与断兵），品阶 = `gUse`；06 定义其品阶区间为 10–12，故 `gUse < 10` 时不生成（压制后的神兵可被缴械）。 |
@@ -812,7 +856,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 | 获取 | 天龙/射雕/神雕/倚天丐帮线（chapters/01–04）；外来实例可器合 |
 | 原著出处 | 丐帮帮主信物与打狗棒法传承相联，天龙、射雕、神雕、倚天均有对应丐帮情节。**（待考）**核对《天龙八部》《射雕英雄传》《神雕侠侣》《倚天屠龙记》三联/广州修订版中历代持有人交接次序及竹棒外形原文 |
 
-**⑤ 软猬甲 `eq_ruanweijia`**（衣 · 中甲 · 天下 10 · `metal`）
+**⑤ 软猬甲 `eq_ruanweijia`**（内甲 · `innerBody` · 天下 10 · `metal`）
 
 | 项 | 内容 |
 |---|---|
@@ -1011,7 +1055,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 | 33 | 玄素双剑 `eq_xuansushuangjian` | 侠客 | 剑 · **成对** | 地中 | 锋锐、灵动、伺机 | 「黑白双剑」：与羁绊 ≥ 3 的队友同场时 `Z3 +6%` | 玄素庄线（剑名原创扩展） | 侠客行·玄素庄石清、闵柔夫妇，江湖人称"黑白双剑" |
 | 34 | 金蛇锥 `eq_jinshezhui` | 碧血 | 名门暗器 `awl`（每战 8） | 地中 | 透甲、会心 | 「金蛇锥」：本暗器 `Z2 +10%`；与金蛇剑同装（主剑副锥）时金蛇剑①概率 +5% | 华山金蛇洞 | 碧血·金蛇剑、二十四枚金蛇锥与藏宝图合称金蛇三宝，袁承志在华山洞中承接夏雪宜遗物 |
 | 35 | 何铁手毒钩 `eq_hetieshougou` | 碧血 | 奇门 `hook` · 单 | 地下 | 精准、放血 | 「常淬剧毒」：自带淬毒（`bf_judu`，25%），不占淬毒槽、不计场数 | 五毒教线（`signature`） | 碧血·五毒教主何铁手左手装有铁钩，以毒钩为兵器 |
-| 36 | 金丝背心 `eq_jinsibeixin` | 碧血 | 衣 · 中甲 | 地中 | 坚甲、韧性、体魄 | 「刀剑难伤」：常驻 `bf_daoqiang`，以参数覆写为外劲部分 `Z4 +3%×G`（品阶 = `gUse`） | 木桑道人棋局/羁绊 | 碧血·木桑道人取得以乌金丝、头发与金丝猴毛混织的护身背心，后经穆人清交袁承志穿用 |
+| 36 | 金丝背心 `eq_jinsibeixin` | 碧血 | 内甲 · `innerBody` | 地中 | 坚甲、韧性、体魄 | 「刀剑难伤」：常驻 `bf_daoqiang`，以参数覆写为外劲部分 `Z4 +3%×G`（品阶 = `gUse`） | 木桑道人棋局/羁绊 | 碧血·木桑道人取得以乌金丝、头发与金丝猴毛混织的护身背心，后经穆人清交袁承志穿用 |
 | 37 | 黄马褂 `eq_huangmagua` | 鹿鼎 | 衣 · 轻甲 | 玄上 | 定心、魅力 | 「御赐黄马褂」：对"官兵"类敌人 `Z4 +8%`（原创扩展）；非战斗：可通行宫禁与官衙区域，官府 NPC 口才检定 +15（12） | 鹿鼎主线赏赐 | 鹿鼎·康熙赏韦小宝穿黄马褂 |
 | 38 | 罗刹短铳 `eq_luochaduanchong` | 鹿鼎 | 名门暗器 `gun`（每战 2） | 地中 | 透甲、准心 | 「火器」：`ammoMul` 固定 2.0、射程 5、不可招架、无视 `bf_tingfeng`；开火后须 1 回合装填；开火时 5 格内普通敌人 20% `bf_zhenshe` | 罗刹/雅克萨线 | 鹿鼎·书中有罗刹火器与雅克萨之战（此物为原创扩展） |
 | 39 | 血刀 `eq_xuedao` | 连城 | 刀 · 单 · `soft` | 地上 | 饮血、放血、锋锐 | 「血刀」：常驻吸血 +3%（与饮血同族 `fam_drain`）；命中 25% 施加 `bf_nanyu`（06 已注血刀来源） | 血刀老祖终盘（`signature`） | 连城·血刀老祖所用血刀，刀身柔软而锋利 |
@@ -1220,7 +1264,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 
 | 物品 ID | `family` | `materialGrade` | `resourceRef` | 边界 |
 |---|---|---:|---|---|
-| `it_qiannianrenshen` | `herb` | 8 | `res_yaocai_di5` | 具名人参保留，不等同任意地五品药材 |
+| `it_qiannianrenshen` | `herb` | 10 | `res_yaocai_di5` | AR-20 年限令物品升天阶；旧资源映射仅保留其来源／估值，不得把普通地五品资源直接封装为千年人参 |
 | `it_tianshanxuelian` | `herb` | 9 | `res_yaocai_di1` | 固定节点物品，不因映射进入普通量产 |
 | `it_duanchangcao` | `toxin` | 7 | `res_ducai_di9` | 专属配方仍须匹配物品 ID |
 | `it_qixinhaitang` | `toxin` | 8 | `res_ducai_di5` | 不可由任意地五品毒材替代 |
@@ -1236,7 +1280,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 | 革 `leather` | 牛皮、羊皮 | 鲨鱼皮、犀皮 | 蛟皮（原创扩展）、熊皮 | — | 皮甲、护手、鞋 |
 | 木竹 `wood` | 白蜡杆、枣木、毛竹 | 铁木、紫竹、檀木 | 沉香木、千年古藤 | — | 棍杖、弓、剑鞘 |
 | 玉石 `jade` | 青玉、岫玉 | 碧玉、和田玉 | 羊脂玉、寒玉（原创扩展，取意古墓寒玉床） | 万年温玉（10，原创扩展） | 佩饰、琢磨、强化 |
-| 药材 `herb` | 甘草、当归、田七 | 灵芝、何首乌、熊胆 | 千年人参、天山雪莲、雪参 | 千年灵芝（10） | 丹药（§8.7） |
+| 药材 `herb` | 甘草、当归、田七 | 灵芝、何首乌、熊胆 | 百年人参、天山雪莲、百年雪参 | 千年人参、千年灵芝、千年雪参／雪莲（10） | 丹药（§8.7） |
 | 毒材 `toxin` | 蛇涎、砒霜、蒙汗草 | 蝎尾、蜈蚣、断肠草 | 七心海棠、金波旬花、赤练蛇毒 | —（天阶之毒只在固定节点） | 淬毒、配毒 |
 | 兽材 `beast` | 兽骨、兽筋 | 虎骨、鹿茸、蛇胆 | 蟒胆、雪貂皮 | — | 丹药、护具 |
 | 食材 `ingredient` | 米面、鸡、猪羊 | 斑鸠、火腿、獐肉 | 熊掌、驼峰、燕窝 | — | 烹饪（§9） |
@@ -1330,7 +1374,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 
 ---
 
-## 8. 丹药与消耗品
+## 8. 药物、补品、药材与消耗品
 
 ### 8.1 使用规则
 
@@ -1370,6 +1414,24 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 - 节奏校准：基准 §5 同级普通敌人 8–12 击杀主角（每击约 8%–12% 气血），黄阶疗伤约抵半击、地上约抵一击、天级约抵一击半——吃药是"用一次行动换一击"，不会比攻击更划算。
 - 05 §8.5 限制：同一武学在同一书界经丹药获得的层数 ≤ 2（防嗑药速成），本文所有 `sxpGrant` 受此约束。
 
+#### 8.2.1 AR-20 四阶取样、补品预算与药材年限
+
+为名录与出图取同阶代表值：黄／玄／地／天分别用 `grade=3/6/9/10`，对应基准 `G=1.20/1.70/2.40/2.80`。因此：
+
+- 补血 `healPct=5%×G` → `6%/8.5%/12%/14%`；补气 `mpPct=6%×G` → `7.2%/10.2%/14.4%/16.8%`。小数按 03 §0.3 到结算末尾向下取整。
+- 临时属性只引用 06 `bf_*`，品阶即物品 `grade`；永久属性必须走 §8.5 `permBudget`：黄／玄／地／天单份最多先天 `+0/+1/+1/+2` 或 `hpMax/mpMax +0/+0.5%/+1%/+2%`【建议值】，两种预算不可同份叠满。
+- 复活只允许天级固定物品，挂 06 `bf_fuhuo`，每战 1 次；疗伤、解毒、经脉辅助不能以“复活”文案绕过该限制。
+- `meridianAid` 只改善后续冲穴 session，不直接开穴、加 `H` 或永久强化经脉；字段与总钳制仍只见 `design/15` §5.6。
+
+| `ageYears` 档 | 展示 | 大阶 | 代表品阶 | 资源 / 玩法约束 |
+|---|---|---|---:|---|
+| `0..9` / `null` | 普通 | 黄 | 3 | 常规采集与药铺；无永久属性 |
+| `10..99` | 十年 | 玄 | 6 | 精英采集点；可作玄阶炼丹主材 |
+| `100..999` | 百年 | 地 | 9 | 固定稀有点；每书界同族至多 3 份【建议值】 |
+| `>=1000` | 千年 | 天 | 10 | 天材／固定奇遇；每书界同族至多 1 份【建议值】，不可商店刷新 |
+
+年限只决定**最低大阶**，不会把普通草药自动变成补血／永久增益成品；效果仍由药材条目的 `use` 或丹方决定。名字写“千年”却 `ageYears<1000`、或同一 `herbFamily` 年限越高而品阶越低，均为构建错误。
+
 ### 8.3 丹药目录
 
 **A. 疗伤 · 回内 · 保命（18）**
@@ -1385,9 +1447,10 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 | `it_yufengjiang` | 玉蜂浆 | 玄上 6 | `bf_huinei` 3；战斗外 `bf_yangsheng` | 神雕·古墓 | 神雕·古墓以玉蜂蜜浆解蜂毒；回内、养生效果为**（原创扩展）**（06 已注） |
 | `it_baiyunxiongdanwan` | 白云熊胆丸 | 地下 7 | 内服：`healPct` + 驱散 `injury`（g7） | 笑傲·恒山派 | 笑傲·恒山派疗伤圣药 |
 | `it_tianxiangduanxujiao` | 天香断续胶 | 地下 7 | 外敷：`healPct × 0.6` + `bf_huoluo` 3 + 驱散 `bleed`、`injury.bone`（g7） | 笑傲·恒山派 | 笑傲·恒山派外伤灵药（06 已注） |
+| `it_bilingdan` | 碧灵丹 | 地上 9 | `healPct` + 驱散 `poison`、`injury`（g9，专属类除外） | XK 跨界致敬固定委托 **（原创扩展）** | 梁羽生《云海玉弓缘》有碧灵丹与天山派／雪莲语境；具体药效边界 **（待考）**，数值与投放为 **（原创扩展）** |
 | `it_yudongheishidan` | 玉洞黑石丹 | 地中 8 | 驱散 `poison`（g8）；随后 2 时辰显示“腹痛”叙事状态（无战斗数值） | 倚天·崆峒派 | 倚天·崆峒派解毒药；张无忌令何太冲夫妇服药以延缓毒性，服后会腹痛。品阶与精确驱散范围为**（原创扩展）** |
 | `it_tianwangbaomingdan` | 天王保命丹 | 地中 8 | `bf_suoxue` 2 回合 + `healPct × 0.5` | 鹿鼎·神龙教固定节点 | 鹿鼎·洪安通将三颗天王保命丹交陆高轩救治青龙使；锁血与回复数值为**（原创扩展）** |
-| `it_qiannianrenshen` | 千年人参 | 地中 8 | 战斗：`healPct` + `mpPct × 0.5`；战斗外静服（2 时辰）：永久 `hpMax pct +0.5%`、`mpMax pct +0.5%`（§8.5 预算） | 辽东/塞北奇遇 | 通用珍药（原创定级） |
+| `it_qiannianrenshen` | 千年人参 | 天下 10 | 战斗：`healPct` + `mpPct × 0.5`；战斗外静服（2 时辰）：永久 `hpMax pct +2%`、`mpMax pct +2%`（§8.2.1、§8.5 预算） | 辽东／塞北固定奇遇；每书界同族至多 1 份 | 通用珍药；千年→天阶及玩法数值均**（原创扩展）** |
 | `it_dahuandan` | 大还丹 | 地上 9 | **二选一**：急服（战斗）＝`healPct` + `bf_xuming` 3 + `bf_mian_shang` 2；静服（战斗外 1 日）＝主运内功 `sxpGrant pctNext 0.35` | 少林方丈/藏经阁任务 | **（原创扩展）**；沿用武侠游戏常见“少林大还丹”设定，未作为金庸原著专名（05 K11；06 已注） |
 | `it_jiuhuayulu` | 九花玉露丸 | 地上 9 | `healPct` + `bf_xuming` 3 + 驱散 `injury`（g9）；战斗外：清除全部内伤层数 | 射雕·桃花岛（丹方 `rc_jiuhuayulu`，需桃花岛花露） | 射雕·黄药师所制，以珍异药材及九种花瓣上的清晨露水调配；具体治疗数值为**（原创扩展）** |
 | `it_heiyuduanxugao` | 黑玉断续膏 | 地上 9 | 外敷：立愈 `bf_gushang`、驱散 `bf_huagu`（06 已注）；战斗外：治愈剧情"断骨/残肢"伤势标记（chapters） | 倚天·金刚门（赵敏线） | 倚天·西域金刚门秘药，续接断骨，治愈俞岱岩、殷梨亭 |
@@ -1450,10 +1513,11 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 | `it_qixinhaitang` | 七心海棠 | 地中 8 | 下药、淬毒 | `bf_qixin` | 飞狐·药王谷 | 飞狐·程灵素所种七心海棠，无色无味 |
 | `it_beisuqingfeng` | 悲酥清风 | 地中 8 | 投掷（六角半径 1 区域、射程 3，09） | `bf_beisu` | 天龙·西夏一品堂 | 天龙·一品堂所用毒气（06 已注） |
 | `it_baotaiyijinwan` | 豹胎易筋丸 | 地中 8 | 剧情强制服用 | `bf_shouzhi` | 鹿鼎·神龙教 | 鹿鼎·洪安通以之控制教众 |
+| `it_tianyishenshui` | 天一神水 | 地上 9 | 下药（战斗外）；不得配制 | `bf_judu` | XK·神水宫唯一封存节点 | 古龙《楚留香传奇·画眉鸟》相关案件；宫门人物与药物细节 **（待考）**，玩法与安全化表现 **（原创扩展）**；不写现实配方或摄入方式 |
 | `it_jinboxunhua` | 金波旬花 | 地上 9 | 下药、淬毒 | `bf_judu` | 连城 | 连城·凌退思以奇毒金波旬花害丁典，并将毒涂于凌霜华棺木；投掷/淬毒用法为**（原创扩展）** |
 | `it_sanshinaoshendan` | 三尸脑神丹 | 地上 9 | 剧情强制服用 | `bf_gu_sanshi` | 笑傲·日月神教 | 笑傲·日月神教以之控制部众（06 示例 D） |
 
-**合计**：A 18 + B 12 + C 7 + D 7 + 毒迷 11 = **55 种**（含任务要求的全部原著名药）。
+**合计**：A 19 + B 12 + C 7 + D 7 + 毒迷 12 = **57 种**；新增跨作者样本为梁羽生碧灵丹与古龙天一神水，均保留考据边界。
 
 ### 8.5 永久增益物品的预算
 
@@ -1521,7 +1585,17 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 
 ---
 
-## 9. 菜肴与烹饪
+## 9. 食材、食品、菜肴与烹饪
+
+### 9.0 食材与食品接口（AR-20）
+
+| 类 | 子类 | 字段 / 使用 | 与烹饪衔接 |
+|---|---|---|---|
+| 食材 `material/ingredient` | `grain` 谷物、`meat` 肉、`fish` 水产、`vegetable` 菜蔬、`fruit` 果、`spice` 调料、`rare` 珍材 | `ingredientKind`、`materialGrade`、`resourceRef`；默认不可直接使用 | §9.4 的 `inputs[]` 消耗物；实际资源点、狩猎和库存归 `design/16` |
+| 食品 `food` | `ration` 干粮、`snack` 点心、`preserved` 腌藏 | 可直接 `eat`，通常只给 `staPct` 或短时养生 | 可作为菜肴配方的已加工输入；不得同时作为同批成品与输入 |
+| 菜肴 `dish` | `dish` 菜、`soup` 汤、`snack` 点心 | 以 `meal` 提供整场 ×0.5 Buff，或条目声明即时／永久效果 | 由菜谱、食材品阶和 `recipeMastery` 结算（§9.4） |
+
+四阶样本同 §8.2.1 取 `grade=3/6/9/10`。食材品阶限制可制作上限但不直接把食品效果放大：成品 `gCook` 仍以 `design/12` §10.4 返回值为准。天级食材／食品只来自天材或固定剧情，不能由普通厨房靠熟练度“升炼”出来。
 
 ### 9.1 膳食规则
 
@@ -1605,6 +1679,8 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 ## 10. 秘籍与残页
 
 ### 10.1 秘籍物品
+
+AR-20 名录 `catalog/items-manuals.md` 只投影本文已登记的 `it_miji_*`，不创建同武学的美术别名。每行必须写 `manual.skill` 所属武学品阶；全本／残本／抄本仍按下表读取，残页继续只归 §10.3。若名录缺一档，优先复用 §10.1.1–§10.1.3 的现有实体；只有技能图鉴已经声明 `manual it_miji_*` 且本文确有实体缺口时，才在 §14.2 注册补录，不能从武学名称批量臆造秘籍。
 
 | 变体 `variant` | ID | `maxLayer` | 可交易 | 说明 |
 |---|---|---|---|---|
@@ -2139,7 +2215,7 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 
 | 术语 | ID / 字段 | 类别 | 定义 | 节 |
 |---|---|---|---|---|
-| 物品大类 | `ItemKind`（23 值） | 枚举 | `weapon` `armor` `offhand` `hidden` `accessory` `ammo` `pill` `poison` `antidote` `food` `dish` `wine` `material` `tool` `manual` `page` `recipe` `quest` `token` `curio` `mount` `collectible` `system` | §2.1 |
+| 物品大类 | `ItemKind`（24 值） | 枚举 | `weapon` `armor` `offhand` `hidden` `accessory` `ammo` `pill` `tonic` `poison` `antidote` `food` `dish` `wine` `material` `tool` `manual` `page` `recipe` `quest` `token` `curio` `mount` `collectible` `system` | §2.1 |
 | 物品定义 / 装备定义 | `ItemDef` / `EquipDef` / `UseSpec` | 数据结构 | 通用字段、装备专属字段、消耗品用法 | §2.3–2.4 |
 | 装备实例 | `EquipInstance` | 数据结构 | 含 `absGrade` `nativeTo` `affixes` `temper` `inscription` `refine` `refineFire` `poisonCoat` `broken` `owner` `qipo` `sleeps` `history` | §2.5 |
 | 使用品阶 | `gUse` | 计算量 | `min(effGrade, gCap(Ld))`，一切装备数值的计算品阶 | §4.3 |
@@ -2179,6 +2255,14 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | 物品图鉴 / 神兵谱 / 藏品录 | — | 图鉴 | 跨书界的收集记录与里程碑 | §12.5 |
 | 估值 | `V` | 公式 | 装备价值（词条、强化、名器、神兵系数） | §13.1 |
 | 书界物价 / 收入系数 | `chapterPriceMul` / `chapterIncomeMul` | 系数（建议，12 定） | 书界经济差异 | §13.3、§13.5 |
+| 装备槽版本 | `equip-slots.v2` / `equipSlotsVersion` | schema / 存档字段 | 原八槽加 `innerBody` `shoulder` `cape`；迁移原子化 | §3.1.1 |
+| 目录天级 | `catalogTian` | 装备字段 | AR-20 额外天级样本；固定唯一但非 `divine` | §2.3、§5.1 |
+| 官甲合法性 | `lawProfile` / `uniformImpersonation` | 装备字段 / 事件 | 只发身份违法暴露；通缉与城门处理归 11/12 | §3.4.1 |
+| 药材年限 | `herbFamily` / `ageYears` | 材料字段 | 普通／十年／百年／千年映射黄／玄／地／天 | §8.2.1 |
+| 食材细类 | `ingredientKind` | 材料字段 | 谷物、肉、水产、菜蔬、果、调料、珍材 | §9.0 |
+| 物品出图名录 | `catalog/items-*.md` | 投影 | 十一份七列表，每 ID 一行；规则权威仍为本文 | §1.3、§15.1 |
+
+十一份固定投影路径为：`catalog/items-medicine.md`、`items-food.md`、`items-manuals.md`、`items-weapons.md`、`items-clothing.md`、`items-armor.md`、`items-innerarmor.md`、`items-accessories.md`、`items-shoes.md`、`items-belts.md`、`items-hidden-weapons.md`（均相对 `docs/design/`）。`tech/04` §2.5 的运行时 ID 注册表由内容定义扫描生成，**不是可手改文件**；因此本轮在下表登记全部新 ID，构建时再生成 `SymbolEntry`。
 
 ### 14.2 ID 清单
 
@@ -2195,6 +2279,18 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | 菜肴与酒（16） | `it_jiaohuaji` `it_yudishuijiatingluomei` `it_haoqiutang` `it_ershisiqiaomingyueye` `it_mantou` `it_jiachangfan` `it_jiangniurou` `it_lingjiaogeng` `it_kaoquanyang` `it_yushan` `it_nverhong` `it_manaijiu` `it_fenjiu` `it_putaojiu` `it_zhuangyuanhong`（`it_labazhou` 见上） |
 | 秘籍与奇书 | `it_miji_jiuyin_shang` `it_miji_jiuyin_xia`；共享载体 `it_miji_jingzhouguanfuqinfa` `it_miji_jingzhouyangqigong` `it_miji_huahuixinfa` `it_miji_walalizhi` `it_miji_majiajunfeizhen` `it_miji_cangfengxingqi` `it_miji_cuomaifanzhang`；康熙册正式登记 `it_miji_ningxue_can`、`it_miji_shenzhao_can`、`it_canye_xuedaojing`（§10.1.2） |
 | 历史图鉴秘籍／残页（30） | 少林 6 本／1 种、五绝 16 本／2 种、逍遥 3 本／2 种；30 个复用 ID 逐条定义见 §10.1.3、§10.3.2，无新增 ID 或同名别名 |
+| AR-20 秘籍缺口补录（12） | 黄：`it_miji_luohanquan` `it_miji_taizuchangquan`；玄：`it_miji_quanzhenxinfa` `it_miji_liangyixinfa`；地：`it_miji_longzhaoshou` `it_miji_tongguijian` `it_miji_chilianshenzhang_can` `it_miji_bingpoyinzhen` `it_miji_chunyangwuji` `it_miji_huzhaojuehushou` `it_miji_wujixuangongquan` `it_miji_shenmen13`。均复用图鉴已声明的 `manual` ID，物品载体为**（原创扩展）**；字段与来源仍按对应技能图鉴 |
+| AR-20 药物／补品／药材新增（19） | 药物：`it_wuchangdan` `it_fulingshouwuwan` `it_xueshenyuchanwan` `it_yulongsuheisan` `it_bilingdan` `it_tianyishenshui`；补品：`it_yangjingwan` `it_bailucao` `it_zixiaoyangqidan` `it_tiansuixuminglu`；药材：`it_renshen` `it_shinianrenshen` `it_bainianrenshen` `it_xueshen` `it_shinianxueshen` `it_bainianxueshen` `it_qiannianxueshen` `it_qiannianlingzhi` `it_qiannianxuelian`。后两项分别取梁羽生、古龙作品；新增玩法与未见于原著的形制均**（原创扩展）** |
+| AR-20 食材／食品新增（20） | 食材：`it_jingmi` `it_huotuijian` `it_xianyu` `it_cumian` `it_xuelianzi` `it_yuxueguo` `it_xianggu` `it_longganfengsui` `it_binghuxueou` `it_xueshanlufu` `it_tianshanlingmi` `it_baihualinglu`；食品：`it_ganliang` `it_guisugao` `it_niurougan` `it_furonggao` `it_baihuagao` `it_yuluwan` `it_xueyulengchan` `it_tianxiangyulu`。除明确书名来源者外均**（原创扩展）** |
+| AR-20 天级食品补录 | `it_tianxiangyuyan` 天香御宴：`food/feast`、天下 10、固定御膳奇遇、`flags:[uniqueBatch]`；整套菜式、效果与外观均**（原创扩展）** |
+| AR-20 衣物补录（5，另复用乌蚕衣） | `eq_taohuajinpao` `eq_xiyuhufu` `eq_yunjinhechang`（地上 9）；`eq_tianchanbaoyi` `eq_zixiaqingyi`（天下 10、`catalogTian`）；另复用神兵宝甲 `eq_wucanyi`。新增五件均为**（原创扩展）** |
+| AR-20 制式盔甲（8） | `eq_songxunyijia` `eq_qingzaolijia`（黄上 3）；`eq_yuanqibingjia` `eq_mingweisuojia`（玄上 6）；`eq_songjinjunburenjia` `eq_mingjinyiweijia`（地上 9）；`eq_yuansuweiqiejia` `eq_qingyulinjia`（天下 10、`catalogTian`）。均为**（原创扩展）**并必填 `lawProfile` |
+| AR-20 内甲（6 新 + 2 复用） | 新：`eq_zhusutiejia` `eq_pirutiejia` `eq_ruansijia` `eq_jinsijia` `eq_xuansuoruanjia` `eq_tianchansiruanjia`；复用 `eq_jinsibeixin` `eq_ruanweijia`。新条目均为**（原创扩展）** |
+| AR-20 护肩／披风／头饰（12） | `eq_pijian` `eq_bumianpifeng` `eq_qingjin` `eq_linpijian` `eq_wuyepifeng` `eq_baiyuguan` `eq_xuantiepijian` `eq_heyudachang` `eq_zijinfaguan` `eq_longlinpijian` `eq_tianfengpifeng` `eq_qixingbaoguan`。均为**（原创扩展）** |
+| AR-20 鞋（7 新 + 1 复用） | 新：`eq_caoxie` `eq_bukuaixue` `eq_qingyunlv` `eq_feiyuxue` `eq_xuexingxue` `eq_wuyinglv` `eq_tianmalv`；复用 `eq_tayunlv`。新条目均为**（原创扩展）** |
+| AR-20 腰带（8） | `eq_mayaodai` `eq_pihudai` `eq_qingyudai` `eq_baonadai` `eq_xuantiedai` `eq_yunlongyudai` `eq_qiankundaidai` `eq_tianchanyaodai`。均为**（原创扩展）** |
+| AR-20 兵器补录（4） | `eq_biyudao` 碧玉刀、`eq_libiegou` 离别钩、`eq_liehuoqi` 烈火旗（地上 9）、`eq_bawangqiang` 霸王枪（天下 10、`catalogTian`）；前二与霸王枪取古龙作品名物，烈火旗取《倚天屠龙记》明教五行旗且用途**（待考）**，玩法与形制均**（原创扩展）** |
+| AR-20 暗器补录（4） | `eq_hanshasheying` 含沙射影（玄上 6，《碧血剑》五毒教归属**（待考）**）、`eq_heixueshenzhen` 黑血神针（地上 9，《笑傲江湖》曲洋；淬毒与器物细节**（待考）**）、`eq_xiaolifeidao` 小李飞刀、`eq_baoyulihuading` 暴雨梨花钉（天下 10、`catalogTian`；古龙《楚留香传奇》，具体篇目与构造**（待考）**）；玩法与形制均**（原创扩展）** |
 | 白马固定遗物 | `it_gaochangyibao`：地上 9 非战斗奇物，定义见 §11.3；不复用 `it_gaochangguwu` |
 | 具名天材 | `it_bingcansi` |
 | 跨年代传承残本（117） | `frag_*` 全量逐项见 §10.3.1；均为 `manual/partial`、`unique/legacyCarry`，物品本体由本文定义，来源与校合语义引用 20 |
@@ -2214,7 +2310,7 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | # | 规则 | 级别 |
 |---|---|---|
 | V1 | `eq_*` ↔ 装备类 `kind`；`it_*` ↔ 非装备；`af_`/`ue_`/`ins_`/`rc_` 全局唯一 | 错误 |
-| V2 | 品阶 10–12 的装备只能是基准 §14 的 12 件，且 `divine: true`（封闭名录） | 错误 |
+| V2 | 品阶 10–12 的装备只能是：①基准 §14 的 12 件且 `divine:true`；或 ②AR-20 名录注册的 `catalogTian:true` 固定样本。两类互斥；后者必为 `divine:false`、`unique`、`price:null`，且不进随机、锻造、商店、天材骰 | 错误 |
 | V3 | 随机基底 `gradeRange` 与锻造图谱品阶上限 ≤ 9 | 错误 |
 | V4 | 神兵固定词条：天下 3、天中/天上 4；名器：地上 3、地中 2–3、地下 2、玄阶 1–2 | 错误 |
 | V5 | 每个 `af_*` 标注作用位置（06 §4.7 记法）；按 g12、q = 1 计算的数值 ≤ 所在族上限 × 20% | 错误 / 警告 |
@@ -2229,7 +2325,7 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | V14 | `cat: exotic` 必填 `exoticKind`；名门暗器与弹药必填 `hiddenKind` | 错误 |
 | V15 | `signature` 引用的 NPC 存在于 chapters/ | 警告 |
 | V16 | `bf_weici`、`bf_daoqiang` 的**原生目录** `gradeRange` 必须为 `[4,12]`；运行时由压制/削品产生的 1–3 品实例允许创建，但其封存与倍率必须按 §7.3 计算 | 错误 |
-| V17 | 鞋类若不在基准 §14 天级封闭名录中则 `absGrade ≤ 9`；`qinggong = 2.5 × gUse`，不得乘 `R` | 错误 |
+| V17 | 普通鞋类 `absGrade ≤ 9`；AR-20 天级鞋必须在名录注册且满足 V2 的 `catalogTian` 约束。所有鞋 `qinggong = 2.5 × gUse`，不得乘 `R` | 错误 |
 | V18 | 书眠结算满足 `carryEquipCount + newArchiveEquipCount ≤ 6`，成对兵器计 1、天书不计入该额度 | 错误 |
 | V19 | `material` 必填 `resourceRef` 与 `materialGrade`；资源等级只接受天地玄黄 × 一至九品，且一品最高 | 错误 |
 | V20 | `meridianAid` 五字段形状合法、三项 bp 为非负整数、`hours ≥ 1`，`meridians` 只引用 15 的正式 ID；药物不得直接修改穴道进度或成功结果 | 错误 |
@@ -2247,6 +2343,9 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | V31 | §10.1.3 的 25 本须逐条校验 `skill/grade/chapters/variant/maxLayer`；§10.3.2 的 5 种按地 6／玄 4 页校验；来源前置、倚天排除与师授／秘籍上限不得相互覆盖。大手印旧 6 页字段不能作为新物品版本并存 | 错误 |
 | V32 | `rc_dahuandan.output=it_dahuandan`、`craftGrade=9`；首次解锁须同时满足伤科 ≥7 重与炼丹 ≥40，制作须已学方且炼丹 ≥68、合法丹炉及 §8.7.1 四份材料。两套门槛不得互换；学识跨界保留，产量不能改变单炉材料用量 | 错误 |
 | V33 | `householdMeal` 仅映射 §9.3.1 的 `it_jiachangfan`，固定 `dish/dish/grade:1/stack:20`；仅实际烹饪失败每批发 1 份，不能由前置拒绝发放或沿用成功成品品阶。使用仅回复向下取整且封顶的 10% 体力，不生成／替换膳食，不可战斗使用或跨书眠携带 | 错误 |
+| V34 | 十一份 `catalog/items-*.md` 每行恰为七列；ID 全局唯一且仅 `it_`／`eq_`；品阶只取天地玄黄，且效果字段 `grade=N` 必须同阶（1–3 黄／4–6 玄／7–9 地／10–12 天）；出处、效果、外观非空；每个 ID 必须在 §14.2 注册 | 错误 |
+| V35 | `ageYears` 普通／十年／百年／千年分别满足 `<10`／`10..99`／`100..999`／`>=1000` 且大阶不降；同一 `herbFamily` 年限增大时品阶不得降低 | 错误 |
+| V36 | 制式盔甲必填完整 `lawProfile`；穿戴暴露事件只含 §3.4.1 六字段。`equip-slots.v1→v2` 迁移后三个新槽存在，软猬甲／金丝背心恰在 `innerBody` 且实例总数不变 | 错误 |
 
 ### 15.2 金标准测试用例（玩法核心单元测试）
 
@@ -2295,6 +2394,10 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | T41 | 家常饭回体封顶 | 战斗外 `staMax=147`，分别 `sta=100/142/147`，每次食用 1 份 | 分别回复 `14/5/0`，体力为 `114/147/147`；各耗 1 份与 0.5 时辰，气血／内力不因本物品改变 |
 | T42 | 家常饭膳食边界 | 已有膳食时吃家常饭；另测战斗中使用 | 战斗外仅回体，既有膳食不被替换，无新 Buff 或开场收益；战斗中拒绝且不扣物品 |
 | T43 | 家常饭库存与生命周期 | 同 ID 已堆 20 份且背包满、待拾队列为空，再烹饪失败；另测背包持有家常饭后书眠 | 新 1 份进入 §12.1 待拾队列，不丢失或改品阶；书眠清除实物，配方学识仍按 §12.3 保留 |
+| T44 | AR-20 目录天级 | 加载 `eq_wuyinglv` 与基准神兵 `eq_yitianjian` | 前者仅 `catalogTian=true` 且无神兵护主／专属；后者仅 `divine=true` 且仍按 §5.1 生效；二者均不进入随机、商店或锻造 |
+| T45 | 官甲身份暴露 | 无合法身份穿可见 `eq_mingjinyiweijia` 走正常城门，随后脱甲 | 穿戴时发六字段事件，12 判违法、11 激活通缉并阻止正常进城；脱甲不清除既有通缉 |
+| T46 | 槽位迁移原子性 | v1 存档的 `body=eq_ruanweijia`，模拟写新槽后事务失败，再成功重试 | 失败时存档逐字段不变；成功时 `body=null`、`innerBody` 为原同一 `uid`，肩／披风为空，总实例数不变 |
+| T47 | 年限分级 | 普通／10／100／1000 年人参，再尝试 100 年黄阶人参 | 前四项依次黄／玄／地／天；最后一项构建失败，不因名称或年限自动获得成药效果 |
 
 ---
 
@@ -2324,12 +2427,15 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | D-18 | catalog/skills-shaolin／skills-wujue／skills-xiaoyao、对应 chapters | **实体登记已解决**：RCs／RCw／RCx 的 25 本秘籍、5 种残页已落表；少林／五绝／逍遥术语表应改“已由 10 定义”。五绝显式回填四本 `full/10` 默认及桃花药理书界；逍遥大手印残页由 6 改 4；章节只绑定固定取得／借阅事务，不重定义上限 | §10.1.3、§10.3.2、V31、T34、O16 |
 | D-19 | catalog/skills-shaolin、tech/04／05 | **大还丹配方挂接已解决**：伤科 7 重且炼丹 ≥40 解锁 `rc_dahuandan`，成药为 `it_dahuandan`；制作门槛 68。沿既有解锁【建议值】，药引默认额外 `herb` ≥7 品 1 份，不新造具名物品；图鉴改引 §8.7.1，技术承接独立解锁／制作校验与跨界学识 | §8.7.1、V32、T35–T39 |
 | D-20 | chapters/02、design/12、tech/04／05、assets | **家常饭实体与映射已解决**：`householdMeal → it_jiachangfan`；黄下仅回体，恢复量按 §8.2。缺省【建议值】：通用烹饪失败每批 1 份、单次供 1 人且耗 1 份、`stack:20`、`price:auto`、无特殊 flags、无膳食状态；0.5 时辰沿 §9.1。章节／生活技能仅接正式 ID；技术实现 V33／T40–T43，素材接 `item/jiachangfan`，不得把本实体定义继续交回章节 | §9.4、§9.3.1、V33、T40–T43 |
+| D-21 | design/11、design/12 | AR-20 官甲只发 `{equipId,wearerId,lawProfile,exposure,locationId,time}`；12 校验 `allowedIdentityTags`，11 承接通缉激活与正常城门 `blocked`，且脱甲不自动洗罪 | §3.4.1、V36、T45 |
+| D-22 | tech/04／05、design/14 | `equip-slots.v2` 新增 `innerBody/shoulder/cape`，三字段初始化与软猬甲／金丝背心移槽必须原子；客户端 v1 只读不得覆写 | §3.1.1、V36、T46 |
+| D-23 | ART-item-*、tech/07 | 十一份 `catalog/items-*.md` 是批量出图输入；逐行消费 ID 与外观要点，沿 `assets/default/prompts/item.md` 的统一风格，不从名录反写玩法 | §1.3、§14.2、V34 |
 
 ### 16.2 本文依赖的上游事实
 
 | 上游 | 本文依赖 | 状态 |
 |---|---|---|
-| `00-canon.md` v1.4 | 1–12 品阶、12 件天级装备封闭名录、名录外装备 ≤9、共同额度 `carryEquipCount + newArchiveEquipCount ≤ 6`、天书不占额度、强化不改绝对品阶 | 已对齐 §1、§5、§7、§12、V2/V3/V17/V18 |
+| `00-canon.md` v1.4 + AR-20 | 1–12 品阶、12 件 `divine` 神兵封闭名录；AR-20 后发要求各类有天级样本；共同额度 `carryEquipCount + newArchiveEquipCount ≤ 6`、天书不占额度、强化不改绝对品阶 | 以 `divine`／`catalogTian` 互斥兼容，见 §1、§5、§7、§12、V2/V3/V17/V18 |
 | design/02 | 外来压制、器合、藏史、天材骰、掉落池；本文不重定义 | 接口见 §4.4、§6.7–6.8、§7、§12.4 |
 | design/03 | 等级曲线、属性 ID、技艺门槛、治疗修饰；装备系数由本文定稿后需回填其 D-02 和 C10 算例 | **已同步**：03 本轮已移除非法“天中鞋”并按地上 9 上限重算合法 STD；本文保留 T16–T17 对照 |
 | design/04 | Z0–Z10 与兵器攻击、装备主属性落点 | **已接收**，见 04 §11.3；本文 §4.1 只提供装备来源值 |
@@ -2342,12 +2448,14 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | 编号 | 状态 | v1.1 落点 | 本文处理 |
 |---|---|---|---|
 | P-A | **已采纳（v1.1）** | V11-04、V11-05：统一 `af_*`、`ue_*`、`ins_*`、`rc_*`、`it_fang_*`、`it_miji_*`、`it_canye_*`、`it_tianshu_*`、`ev_*` | 全文与 §14.2 均按正式前缀使用 |
-| P-B | **已采纳（v1.1）** | V11-31：天级装备封闭为基准 §14 的 12 件，名录外绝对品阶 ≤9 | §5.2/§5.4 与 V2/V3 对齐；踏云履定为地上 9 |
+| P-B | **已采纳（v1.1；受 AR-20 后发补充）** | V11-31：天级 `divine` 装备封闭为基准 §14 的 12 件，普通名录外装备 ≤9 | 原 12 件不变；AR-20 额外天级样本按 P-G 的 `catalogTian` 例外隔离，踏云履仍为地上 9 |
 | P-C | **已采纳（v1.1）** | V11-32：成对兵器计 1 件；双手主手与副手槽合法性 | §3.3、§7.1 C2 对齐 |
 | P-D | **已采纳（v1.1）** | V11-16：学识、图鉴、永久增益跨书界保留 | §2.2、§8.5、§12.3 对齐 |
 | P-E | **已解决（跨文档同步）** | V11-42：烹饪归生活技能、不新增 `cook`；基准 §6 明确 `alchemy` 只用于炼丹 | §9.4 改为引用 `design/12` §10.4 的 `recipeMastery[rc_*]`，不再以 `alchemy` 代行 |
+| P-F | **本轮提案** | 基准 §20 的八格装备栏增补 `innerBody`、`shoulder`、`cape`，版本升为 `equip-slots.v2` | AR-20 明列内甲、护肩、披风；保留原八字段并用原子迁移降低兼容风险，见 §3.1.1 |
+| P-G | **本轮提案** | 将基准 §14“天级装备封闭”收窄为“`divine` 神兵宝甲封闭”；允许 AR-20 登记的固定 `catalogTian` 样本 | 后发 AR-20 要求每类天地玄黄；互斥字段与禁止随机／锻造／商店可保住原神兵稀缺性，见 §5.1、V2 |
 
-本轮没有新增基准修改提案；上列五项均为初稿既有提案，现已由 v1.1 吸收。
+P-F／P-G 待基准吸收；在此之前运行数据按作者要求优先级执行 AR-20，旧存档按 §3.1.1 兼容。
 
 ### 16.4 原著考据待办
 
@@ -2364,6 +2472,7 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | **仅影响文本** | 天龙 | 打狗棒跨四部书的历代交接与竹棒外形；无崖子画卷中人物的版本称谓 | 图鉴只写信物性质；任务对白不先实名 |
 | **仅影响文本** | 碧血、鹿鼎、连城、鸳鸯、书剑、飞狐/雪山 | 金蛇剑形制；匕首/宝衣细节；乌蚕衣材质与取得；鸳鸯刀长短归属；凝碧剑来历流转；冷月宝刀流转及“刀中秘密”是否有据 | 不影响数值；“刀中秘密”考据完成前不驱动任务 |
 | **仅影响文本** | 白马 | 高昌古物的典籍器物细目 | 不先编造单件古物名称 |
+| **仅影响文本** | 古龙《楚留香传奇·画眉鸟》、梁羽生《云海玉弓缘》 | 天一神水的案件与药物细节；碧灵丹的天山派归属、雪莲材料与疗伤／解毒边界 | 保留作品与物名，全部具体药效、投放和容器形制按 **（原创扩展）**；不得写现实配方或摄入方式 |
 
 ### 16.5 开放问题（附默认值）
 
@@ -2387,3 +2496,6 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | O16 | **实体缺口已解决**：RCs／RCw／RCx／NXfix-shaolin 的 25 本秘籍与 5 种残页已逐项定义；仍待缺省来源／残页售价确认 | 正式表见 §10.1.3／§10.3.2。锁喉擒拿手、摄心术、餐风饮露功、桃花药理四本默认 `full/maxLayer:10`【建议值】（05 §7.1）；桃花药理默认仅射雕／神雕药圃【建议值】，未绑定固定节点不生成实例。大手印按玄阶正式 4 页，旧图鉴 6 页须迁移；五种残页在逐页估价落定前默认 `price:null`【建议值】，未习得重复页暂不可售，已习得重复页仍转修习经验。其余来源沿卡面，不再整批转交物品实体登记 |
 | O17 | 袈裟类奇门、“塞耳”、火药筒、生血、毒物、箭及伞／环的旧候选接口 | 默认不从通配键生成实体；既有袖箭不能冒充弓箭、普通僧衣不能冒充袈裟兵器。“塞耳”先由 05／06 明确音功档位、心神防护与大成绕过接口，再由本文收具体物品；伞／环仍只可用 `exotic/misc`，不新增武学子类。生血已有狩猎来源及闭关用途（逍遥册 §3.3）；毒物已有化功闭关用途及持有神木王鼎的免料条件（逍遥册 §4.3），两者缺料均为闭关收益 ×0.5。尚缺每次消费单位、最低品阶与通用兽材／毒材替代规则；核定前不自动以材料族替代点名物，不据用途已定就虚构实体 |
 | O19 | D10／chapters/10 §9.5 的四件具名固定装备预算尚无具体名单 | 默认不凭四个预算槽另造装备；白马先投已登记奇物与坐骑，§11.3 高昌遗宝是非装备剧情物，不能冒充四件装备之一。白马无专属冲穴药物，普通治疗药不产生 `meridianAid`；最终名单与节点由书界任务提供后逐项登记 |
+| O20 | AR-20 `catalogTian` 是否最终并入基准的“神兵”称谓 | 默认不并入：只作固定、唯一、不可量产的天级目录样本，不得取得 `divine` 通则；待基准按 P-G 收口 |
+| O21 | 护肩／披风各半个小件预算是否需在全套数值压测后调整 | 默认各取 `defOut 0.025×G×DEF_LV + hpMax 0.005×G×HP_LV`，二者合计恰为旧一小件；压测前不增加额外免费槽位收益 |
+| O22 | 官甲被披风覆盖时的识别阈值与通缉强度 | 默认普通披风不遮蔽；只有显式 `concealment.coveredBy` 才把本次暴露改为 `covered`。通缉强度、消除方式与特殊进城路线仍由 11／12 决定 |
