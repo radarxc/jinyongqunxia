@@ -1,0 +1,17 @@
+{
+  "unit": "KiB gzip",
+  "chunks": {
+    "entry": 170,
+    "render": 180,
+    "render-webgpu": 300,
+    "basis": 255,
+    "devtools": 130
+  },
+  "routes": {
+    "webglEntryAndRender": 350,
+    "webgpuEntryAndRender": 470
+  },
+  "content": {
+    "chapterRulesAndLocale": 1536
+  }
+}
