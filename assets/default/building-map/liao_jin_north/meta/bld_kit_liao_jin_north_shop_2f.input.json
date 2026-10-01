@@ -1,0 +1,27 @@
+{
+  "suffix": "shop_2f",
+  "title": "两层商铺",
+  "fp": [
+    8,
+    6
+  ],
+  "path": "exec-1666b009-629f-4fca-8a13-087e6c57862a",
+  "prompt": "Create a NEW northern Liao-Jin version of the reference Song game map building, retaining its camera, complete very thin diamond footprint, true clean transparency, entrance direction and detailed realistic ancient architectural rendering. This is a CITY MAP SPRITE, not a perspective architectural showcase. Orthographic yaw45 elevation30, 2:1 dimetric projection, ground axes +0.5 and -0.5, upright verticals, parallel lines, no perspective. Entrance screen LOWER LEFT. Both ground axes clearly readable; complete flat rectangular ground perimeter with LEFT, FRONT and RIGHT corners. Entire sprite occupies central 70 percent of canvas. Main light screen UPPER LEFT, short soft contact shadow lower right. Background alpha=0, NO glow, halo or gradient. No thick plinth, text, people, sky, landscape, neighboring structures, symbols, Ming/Qing palace ornaments or modern features. One self-contained building. Historic regional inspiration, original game interpretation rather than monument reconstruction. Subject: one two-story Liao-Jin northern shop in Yanjing/Datong region. Footprint8m east-west by6m north-south. Gray tile gabled roof with restrained ridge, broad eaves, no stacked palace roofs; sturdy dark timber frame and warm buff earth-plaster infill with low stone footing. Open shop counters on left-front ground floor with plain pottery and folded cloth, one clear entrance. Upstairs simple timber balcony, lattice windows, rolled plain cloth shutters, no plants or decorative lanterns. Practical northern commercial architecture, original unnamed shop. Ground front edge projected length4/3 times side edge. Ground edges at26.565 degrees (slope0.5), not classical isometric30-degree screen axes. Thin flat footprint.",
+  "ref": "bld_kit_song_southern_shop_2f",
+  "corners": {
+    "left": [
+      59,
+      860
+    ],
+    "front": [
+      734,
+      1198
+    ],
+    "right": [
+      1208,
+      977
+    ]
+  },
+  "count": 1,
+  "note": "两层木构商铺、无字卷帘和陶器货柜；无宫廷彩画。地面边清楚，局部屋檐有生成式细节，不代表文物复原。"
+}

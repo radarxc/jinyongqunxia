@@ -1,0 +1,46 @@
+{
+  "id": "bld_kit_liao_jin_north_yamen",
+  "footprint": [
+    16,
+    12
+  ],
+  "corners": [
+    [
+      128,
+      528
+    ],
+    [
+      845,
+      918
+    ],
+    [
+      1427,
+      596
+    ]
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-7613-7e70-aac6-08db51d5747d/exec-d824b1d5-27af-4925-80cc-7a6e0eb3571f.png",
+  "subject": "辽金北方官署院落（原创扩展；非具名官署复原，细部待考）",
+  "prompt": "Edit this baseline Song administrative courtyard into a NEW Liao-Jin northern kit yamen map sprite, preserving the input image's exact camera, roof positions, footprint parallelogram, building proportions, natural rendering detail density and transparent RGBA background. Asset id bld_kit_liao_jin_north_yamen. Regional change only: northern Yanjing/Datong in 10th–12th centuries, earth-toned rammed-earth plaster perimeter walls, sober dark weathered timber and muted red-brown columns, unglazed gray tiled roofs with restrained eaves, courtyard mostly compacted earth with only a few stone paths. Remove the green trees and lush southern garden plants; retain small administrative drum. Keep the door facing screen lower left; the base is flat thin and complete with clearly visible left/front/right corners, not a raised plinth. Footprint remains 16m east-west by12m north-south; EXACT 2:1 dimetric ground axes +0.5 and -0.5, yaw45 elevation30, no perspective convergence. Lighting upper left, short soft contact shadow lower right. All tips and edges enclosed by transparent margins. Original unnamed game composition, not named monument reconstruction. No people, labels, text, plaques, symbols, flags, Ming-Qing gold/yellow palace decoration, backdrop, halo, vignette, checkerboard or modern detail. Keep full true transparency outside building and thin contact footprint.",
+  "negative": "人物、文字、徽记、现代物、明清旅游风、厚地台、裁切、景观背景、伪透明棋盘格、非等比拉伸",
+  "references": [
+    {
+      "id": "bld_kit_song_southern_yamen",
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_yamen.png",
+      "role": "image_gen输入；既有宋候选时代适配参考，不表示新图获作者批准"
+    }
+  ],
+  "candidate_count": 2,
+  "candidate_records": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-7613-7e70-aac6-08db51d5747d/exec-bdfa1a4a-17ae-4dcd-a9dd-d0bd954697bc.png",
+      "prompt": "Use case: historical-scene. Generate exactly ONE new production map building sprite for tianshu/default, northern Chinese Liao-Jin period (10th–12th centuries) Yanjing/Datong regional kit. Original unnamed game building, not a reconstruction of a named monument. Match the viewed Song map-building baseline for restrained realistic ancient construction, natural weathered textures, neutral color and fine game-asset detail density. Orthographic camera yaw 45 degrees, elevation 30 degrees. Ground plane must use STRICT 2:1 dimetric projection: east axis down-right slope +0.5, north axis up-right slope -0.5; verticals upright, parallel edges parallel, no perspective convergence. Entrance faces screen LOWER LEFT. Entire building on one paper-thin rectangular ground-contact parallelogram, all three left/front/right floor corners clear and readable. NO raised diorama block. Natural light from SCREEN UPPER LEFT and only a short soft contact shadow toward lower right. True transparent RGBA background, all roof tips, edges and shadow fully inside generous transparent margins. Gray unglazed roof tiles, restrained weathered dark wood, warm pale earthen/plastered walls over modest rough-stone footings; use simple early medieval timber roofs with broad eaves and compact bracket sets where specified. No people, no writing, characters, symbols, plaques, signage, flags, lettering, logo, watermark, grid, checkerboard, roads, landscape, sky, furniture outside footprint, modern items, Ming-Qing tourist buildings, yellow glazed imperial roofs, gaudy gold ornament, exaggerated roof tips, thick plinth. Reference images guide camera, material realism and detail density only. Subject: bld_kit_liao_jin_north_yamen, a low northern administrative courtyard, footprint 16 metres east-west by 12 metres north-south; edge-length ratio 4:3. A broad single-story timber main hall at rear, simple gray tiled gabled roof, sparse compact dougong, sober muted red-brown columns, two lower side offices, plain earth-plaster perimeter walls, small roofed south gate in front wall, open compacted-earth court with a few stone paths, one plain drum on wooden stand inside the court. No garden, trees, statues, glazed tiles or palace towers. Main and gate doors visible facing lower-left. The physical ground corners must project as relative left(0,0), front(16,8), right(28,2). Make base edges distinctly 26.565 degrees from horizontal, not shallower. One complete functional complex only, no external street.",
+      "selected": false
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-7613-7e70-aac6-08db51d5747d/exec-d824b1d5-27af-4925-80cc-7a6e0eb3571f.png",
+      "prompt": "Edit this baseline Song administrative courtyard into a NEW Liao-Jin northern kit yamen map sprite, preserving the input image's exact camera, roof positions, footprint parallelogram, building proportions, natural rendering detail density and transparent RGBA background. Asset id bld_kit_liao_jin_north_yamen. Regional change only: northern Yanjing/Datong in 10th–12th centuries, earth-toned rammed-earth plaster perimeter walls, sober dark weathered timber and muted red-brown columns, unglazed gray tiled roofs with restrained eaves, courtyard mostly compacted earth with only a few stone paths. Remove the green trees and lush southern garden plants; retain small administrative drum. Keep the door facing screen lower left; the base is flat thin and complete with clearly visible left/front/right corners, not a raised plinth. Footprint remains 16m east-west by12m north-south; EXACT 2:1 dimetric ground axes +0.5 and -0.5, yaw45 elevation30, no perspective convergence. Lighting upper left, short soft contact shadow lower right. All tips and edges enclosed by transparent margins. Original unnamed game composition, not named monument reconstruction. No people, labels, text, plaques, symbols, flags, Ming-Qing gold/yellow palace decoration, backdrop, halo, vignette, checkerboard or modern detail. Keep full true transparency outside building and thin contact footprint.",
+      "selected": true
+    }
+  ],
+  "notes": "两候选均view_image；第二版直接以宋官署基线作时代适配，保留构图与纹理密度，土院、灰瓦、木构、无文字且完整。底面两轴略陡于±0.5，已达2候选限额，保留candidate且axis_pass=false。"
+}

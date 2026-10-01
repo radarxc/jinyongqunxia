@@ -1,0 +1,31 @@
+{
+  "id": "tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01",
+  "subject": "辽金北方（11–13世纪）·带栏木桥（原创扩展；匿名年代意象，非文物复原）",
+  "key": "bridge",
+  "footprint": [
+    3,
+    5
+  ],
+  "points": [
+    [
+      285,
+      599
+    ],
+    [
+      650,
+      811
+    ],
+    [
+      1580,
+      322
+    ]
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82c-7100-a176-3ab9a2e08c7e/exec-5c4d3f84-02da-4cbd-a593-d8ee326548bd.png",
+  "prompt": "Use case: historical-scene. ONE isolated plain wooden footbridge tile for an anonymous Liao/Jin northern town watercourse,11th-12th century original game design. Reference is Song kit material detail and plank simplicity. Straight low timber beam bridge footprint3m east-west by5m north-south, visible plan shape rectangle in EXACT2:1 dimetric. Orthographic yaw45 elevation30, flat deck ground edges are26.565degrees from horizontal, slopes+0.5/-0.5; opposite edges parallel, vertical supports upright. Long span goes screen lower-left to upper-right. Three plain short square-post rail segments per side and small wood beam supports, deck broad and walkable. Weathered matte brown wood, muted low-saturation texture, no ornamental arches or covered pavilion, no stone lions, no metal hardware. Left upper light, only tiny lower-right contact shade. Match realistic Song kit density. Keep bridge as one complete independent object, no water or banks or land island, open areas between rails truly transparent. TRUE RGBA transparent background, generous15percent transparent margins, no text signage labels watermark people boat modern objects background or painted checkerboard. Not a historical named bridge.",
+  "references": [
+    "assets/default/baseline/tile/tex_town_song_dali_bridge_deck__w3_l5_r000_v01.png"
+  ],
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "measurement_note": "量可见桥面四角同高平面，anchor是桥面中心投影；桥墩落地/水面高度待装配，含栏一体图仅静态预览。"
+}

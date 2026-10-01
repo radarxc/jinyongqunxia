@@ -1,0 +1,102 @@
+{
+  "id": "tex_town_liao_jin_north_tree_cluster__elm_v01",
+  "file": "tex_town_liao_jin_north_tree_cluster__elm_v01.png",
+  "category": "tile",
+  "style": "default",
+  "subject": "辽金北方（11–13世纪）·榆树意象（原创扩展；匿名年代意象，非文物复原）",
+  "prompt": "Use case: historical-scene. ONE isolated botanical game map sprite for an anonymous Liao/Jin northern China town. Original landscape dressing; do not imply documented medieval street planting. Reference shows Song kit fine realistic leaf/bark density only; replace species. Orthographic view yaw45 elevation30, consistent2:1 dimetric town view, upright trunk. Natural matte materials and restrained olive green saturation, soft light from SCREEN UPPER LEFT, tiny short contact shade at roots toward lower-right. Entire complete crown, branches and root collar visible and centered with15percent transparent margins. TRUE RGBA transparent outside and through branch gaps. No soil island or pedestal, no planter, no people, text, numbers, labels, watermarks, painted checkerboard, decorative border, sky, horizon or landscape. Single tree not a sheet. A mature northern Chinese elm (Ulmus pumila), broad irregular oval crown of small oval subtly serrated leaves, grey-brown fissured trunk and branching boughs, roughly6m high, modest spread5m. No blossoms, fruit or exaggerated twisted bonsai form.",
+  "negative": "无字、无人、无现代物、无背景、无厚地台、无假棋盘透明、无透视汇聚",
+  "references": [
+    {
+      "file": "assets/default/baseline/tile/tex_town_song_dali_tree_cluster__broadleaf_v01.png",
+      "sha256": "3963e0b07a4cbb91b5472d8c2470dc4da5b6c7dab9dbdf3580ff5b8fa39d3f56",
+      "role": "实际输入：写实材质、细节密度与构图参考；不继承史实断代"
+    }
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (backend undisclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T21:23:24.733689+00:00",
+  "created_time_basis": "源PNG文件mtime；非服务端回执时间",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82c-7100-a176-3ab9a2e08c7e/exec-181e8462-3719-4e6a-a65f-79b5b0d12101.png",
+  "size": "529x372",
+  "sha256": "4149b48390afc3e020e3d992ae39723144ef63c59bf469b36dce76bcaf7a0121",
+  "status": "candidate",
+  "tile": {
+    "kind": "tree_cluster",
+    "footprint": [
+      1,
+      1
+    ],
+    "variant": "elm_v01",
+    "autotile_mask": null
+  },
+  "source_copy": "source/tex_town_liao_jin_north_tree_cluster__elm_v01.png",
+  "source_sha256": "fe32488a2b62705c8d47da9bf35c77edab18629ab5cbe9daabef84b48e8f6c88",
+  "anchor_px": [
+    288.7651,
+    342.3202
+  ],
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "png_rotations_available": [
+    0
+  ],
+  "allowRotation": false,
+  "geometry_qa": {
+    "measurement_uncertainty_source_px": 5,
+    "axis_pass": null,
+    "source_root_px": [
+      853,
+      982
+    ],
+    "visual_height_target_px": 320,
+    "note": "植物树干根锚；占地1×1是种植点包络，非树冠尺寸；无可量底面两轴。",
+    "measurement_note": "人工量读底面角；非文物实测或3D相机反解，目标与实测分列。"
+  },
+  "processing": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box": [
+      33,
+      1,
+      1526,
+      1024
+    ],
+    "uniform_scale": 0.33264033264033266,
+    "resized_size": [
+      497,
+      340
+    ],
+    "paste_offset": [
+      16,
+      16,
+      513,
+      356
+    ],
+    "steps": [
+      "alpha bbox crop",
+      "uniform LANCZOS resize with integer rounding",
+      "transparent padding; no mask, repaint, warp, rotation or alpha threshold"
+    ]
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 127389,
+    "alpha_near_opaque_pixels": 30969,
+    "alpha_nonzero_bbox": [
+      28,
+      16,
+      491,
+      350
+    ],
+    "border_alpha_max": 0
+  },
+  "notes": "原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。 植物仅北方物种意象，辽金庭院栽植位置待考；根锚，不含碰撞定义。"
+}

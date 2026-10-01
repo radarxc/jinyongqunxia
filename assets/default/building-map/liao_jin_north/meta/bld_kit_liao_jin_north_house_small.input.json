@@ -1,0 +1,32 @@
+{
+  "suffix": "house_small",
+  "title": "小型民居",
+  "fp": [
+    6,
+    5
+  ],
+  "path": "exec-cb58bcb9-e273-49a5-a1e2-ded622fca497",
+  "prompt": "Create a NEW northern Liao-Jin version of the reference Song game map house, retaining EXACTLY its camera, complete thin diamond footprint, scale, true clean transparency, entrance direction and material-detail style. This is a CITY MAP SPRITE, not a perspective architectural showcase. Orthographic isometric 2:1 projection; both footprint edges slope 0.5; front lower-left face and side lower-right face comparably visible. Footprint 6 by 5 grid meters. One small sober gray tile gabled roof house, pale buff earthen plaster, dark timber, narrow stone foundation, plank front door and lattice windows, tiny water jar. Era 11th–12th century Yanjing/Datong region, original game construction. Light from screen upper left, small contact shadow lower right. Entire sprite occupies central 70 percent of canvas. Preserve complete flat rectangular ground perimeter with clearly visible LEFT, FRONT and RIGHT corners, no thick plinth. Background must be fully TRANSPARENT alpha=0 with NO glow, NO halo, NO gradient or atmospheric shadows around roof. No text, people, landscape, decorative symbols, Ming-Qing palace ornaments or modern features. Render only one building.",
+  "ref": "bld_kit_song_southern_house",
+  "corners": {
+    "left": [
+      164,
+      750
+    ],
+    "front": [
+      691,
+      1058
+    ],
+    "right": [
+      1128,
+      813
+    ]
+  },
+  "count": 2,
+  "note": "选第2候选。灰瓦、土灰墙、木构细节与宋套件一致；2:1轴斜率仍有偏差，候选保留复核。首候选未选，主要因底面不完整且前侧比例明显偏离。",
+  "rejected": {
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-333a-7700-b17d-ba49c7363b52/exec-c1289100-2536-49aa-ad8b-9a656ec8ede3.png",
+    "prompt": "Use case: historical-scene. Asset type: ONE isolated city-map building sprite for tianshu. Create a new Liao/Jin northern China building, inspired by modest 11th–12th century domestic construction around Yanjing/Datong/Shangjing. It is an original game interpretation, not a documented monument. Match the viewed Song map-building references in realistic ancient architectural rendering, finely resolved gray ceramic roof tiles, weathered timber and lightly mottled plaster, restrained earthen colors and detail density. Orthographic yaw45 elevation30, exact 2:1 dimetric ground projection with ground axes slope +0.5 and -0.5, verticals upright, parallel edges no perspective. South entrance faces screen LOWER LEFT. Very thin flat rectangular ground footprint, three bottom corners left/front/right clearly visible; NO thick diorama plinth. Main light SCREEN UPPER LEFT, short soft contact shadow SCREEN LOWER RIGHT. Entire structure and eaves complete and centered with generous transparent margin. True RGBA transparent background. No surrounding city, landscape, sky, people, text, signs, writing, symbols, watermarks, grid, colored background or checkerboard. No Ming/Qing palace decoration, no exaggerated upturned eaves, no vermilion-and-gold ornament. Subject: one small single-story northern dwelling, footprint 6m east-west by 5m north-south; front-edge projected length 1.2 times side-edge. Low sturdy gabled gray tiled roof, modest straight ridge, warm buff rammed-earth plaster walls on narrow rough stone foundation, exposed dark timber lintels, one plank door and simple rectangular wood lattice windows, stone doorstep. A small clay water jar beside wall, no plants. Broad shallow eaves, everyday Khitan/Jurchen and Han mixed-region domestic visual mood expressed through practical construction, not decorative ethnic symbols.",
+    "reason": "底面缺完整薄地面边，前侧比例和2:1相机偏差更大；非仅因浏览透明区RGB光晕而拒绝。"
+  }
+}
