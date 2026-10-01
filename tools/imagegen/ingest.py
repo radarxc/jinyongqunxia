@@ -2,7 +2,8 @@
 """把 Gemini 网页下载的生成图入库：缩放到提示词 frontmatter 的规格、转 PNG、（透明底素材）抠底、登记 manifest、原件归档。
 
     python3 tools/imagegen/ingest.py <asset_id> <下载的文件> [--prompt-json p.json] [--key]
-    python3 tools/imagegen/ingest.py <asset_id> --latest                # 取 ~/Downloads 里最新的 Gemini_Generated_Image_*
+    python3 tools/imagegen/ingest.py <asset_id>                         # 取 ~/Downloads/gemini__<asset_id>.jpeg（驱动按 ID 命名保存）
+    python3 tools/imagegen/ingest.py <asset_id> --latest                # 取 ~/Downloads 里唯一的 Gemini_Generated_Image_*
 
 原件移到 .agents/coord/gemini_originals/<asset_id>.<ext>（不入库，manifest 的 source_path 指向它）；
 manifest 条目按 id 覆盖（重出时替换旧条目），status 一律 candidate。
@@ -21,7 +22,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tools.imagegen.gemini_prompt import build, find_prompt  # noqa: E402
+from tools.imagegen.gemini_prompt import build, build_short, find_prompt  # noqa: E402
 
 ARCHIVE = ROOT / ".agents/coord/gemini_originals"
 
@@ -49,10 +50,26 @@ def main() -> int:
     ap.add_argument("--note", default="")
     a = ap.parse_args()
     fm, pf = frontmatter(a.asset_id)
+    named = Path.home() / "Downloads" / f"gemini__{a.asset_id}.jpeg"
+    if a.src is None and not a.latest:
+        for _ in range(40):  # 驱动按物品 ID 命名保存：~/Downloads/gemini__<id>.jpeg
+            if named.exists():
+                break
+            time.sleep(0.5)
+        if not named.exists():
+            raise SystemExit(f"没有 {named}（等了 20 秒）")
+        a.src = str(named)
     if a.latest:
-        cands = sorted(Path.home().joinpath("Downloads").glob("Gemini_Generated_Image_*"), key=lambda p: p.stat().st_mtime)
+        cands = []
+        for _ in range(40):  # 下载可能还没写完：最多等 20 秒
+            cands = sorted((p for p in Path.home().joinpath("Downloads").glob("Gemini_Generated_Image_*") if not p.name.endswith(".crdownload")), key=lambda p: p.stat().st_mtime)
+            if cands:
+                break
+            time.sleep(0.5)
         if not cands:
-            raise SystemExit("~/Downloads 里没有 Gemini_Generated_Image_*")
+            raise SystemExit("~/Downloads 里没有 Gemini_Generated_Image_*（等了 20 秒）")
+        if len(cands) > 1:
+            raise SystemExit(f"~/Downloads 里有 {len(cands)} 个 Gemini 图，无法确定哪张属于 {a.asset_id}，停下核对：" + "、".join(p.name for p in cands))
         src = cands[-1]
         if time.time() - src.stat().st_mtime > 600:
             raise SystemExit(f"最新的下载 {src.name} 已超过 10 分钟，疑似不是刚下的图，停下核对")
@@ -75,7 +92,7 @@ def main() -> int:
     ARCHIVE.mkdir(parents=True, exist_ok=True)
     arch = ARCHIVE / f"{a.asset_id}{src.suffix.lower()}"
     shutil.move(str(src), arch)
-    prompt = json.loads(Path(a.prompt_json).read_text(encoding="utf-8")) if a.prompt_json else build(a.asset_id)
+    prompt = json.loads(Path(a.prompt_json).read_text(encoding="utf-8")) if a.prompt_json else build_short(a.asset_id)  # 批量默认用精简版
     neg = re.search(r"排除项?[：:](.*)$", prompt)
     entry = {
         "id": a.asset_id, "file": out.name, "category": fm.get("kind", "item"), "style": "default",
