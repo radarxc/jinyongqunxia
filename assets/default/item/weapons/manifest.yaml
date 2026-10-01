@@ -1,0 +1,1138 @@
+- id: eq_qinggangjian
+  file: eq_qinggangjian.png
+  category: item
+  style: default
+  subject: 青钢剑（eq_qinggangjian；兵器·剑；黄阶）；original generic jianghu weapon; no exact dynasty claimed；one complete practical Chinese straight double-edged sword, plain straight blade about 70 cm, dark charcoal wood grip, small restrained yellow-brass guard and simple pommel, no scabbard
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path. Use case: stylized-concept. Generate one entirely new composition for eq_qinggangjian, 青钢剑, 兵器·剑, 黄阶, an original generic wuxia weapon; the two attached approved item baselines control style only, never copy their objects, silhouettes, fittings, composition, or wear. Subject: one complete practical Chinese straight double-edged sword, plain straight blade about 70 cm, dark charcoal wood grip, small restrained yellow-brass guard, simple pommel, no scabbard, ordinary steel with slight honest use wear; all unspecified form is original wuxia design, not a claimed historical reconstruction. Grade language: common wood, brass, hemp and ordinary steel, practical construction, light use traces only; no colored aura, grade frame, label, lettering or number. Style: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm palette, clearly distinct steel, wood and brass materials, non-photographic and non-3D. Composition: 1:1 square, requested 1536x1536, exactly one single weapon centered diagonally in a gentle three-quarter view, entire tip, guard, grip and pommel visible, at least 18 percent clear margin on every side, object bounding box no more than 64 percent of canvas width and height and never more than 76 percent, no person, hand, rack, scene, ground or shadow. Lighting: soft upper-left light, narrow subdued steel edge highlight, no glow or bloom. Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, gradient, floor or contact shadow. Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, magic circle, blood, display pedestal, extra object, duplicate sword, scabbard, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  negative: Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, magic circle, blood, display pedestal, extra object, duplicate sword, scabbard, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/31116
+    role: 18至19世纪中国剑；仅人工核对器身与柄装比例，不主张等同设定年代，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T13:43:26.487549+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7b3-99e6-71c3-938b-6e9c3c2c67d2/exec-312eef3c-d41d-42f7-a5b4-c1adb1b6383f.png
+  size: 1254x1254
+  sha256: e118d6ddb21d65471513012fd8f07306cef6b54915ff9d5edd884947b2c7cfe6
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；original generic jianghu weapon; no exact dynasty claimed。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：青钢剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 18.10/15.87/18.58/17.94%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_dandao
+  file: eq_dandao.png
+  category: item
+  style: default
+  subject: 单刀（eq_dandao；兵器·刀；黄阶）；generic Song-to-Yuan jianghu context；one complete plain Song-Yuan narrow-spined single-edged saber with a mild curve, wood handle wrapped in hemp, no gemstone, blade roughly one forearm plus half an arm long, no scabbard
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 单刀 (eq_dandao), 兵器·刀, 黄 tier. Provenance context: generic Song-to-Yuan jianghu context.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete plain Song-Yuan narrow-spined single-edged saber with a mild curve, wood handle wrapped in hemp, no gemstone, blade roughly one forearm plus half an arm long, no scabbard. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: common wood, brass, hemp, leather and ordinary steel as applicable; practical construction, restrained finish and light honest use wear. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No Qing oxtail saber, Japanese katana, broad cleaver or elaborate court fittings.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  negative: 'Item-specific exclusions: No Qing oxtail saber, Japanese katana, broad cleaver or elaborate court fittings.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/31110
+    role: 约18世纪中国腰刀；仅人工核对刀鞘组合、浅弧比例与材料分界，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T13:49:18.326175+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7b9-0366-7733-ac84-8728fe34de3f/exec-6ad3b183-57fa-4328-afdc-32ffcad32531.png
+  size: 1254x1254
+  sha256: 87587d74fa2862516465c4bef4d528ddc6545c2f4535667ff50ef596aa8f8c14
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；generic Song-to-Yuan jianghu context。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：单刀主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 14.51/16.19/13.56/13.64%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_qimeigun
+  file: eq_qimeigun.png
+  category: item
+  style: default
+  subject: 齐眉棍（eq_qimeigun；兵器·棍；黄阶）；generic premodern jianghu context；one complete dark waxwood eyebrow-height staff, straight and hand-thick, naturally tapered, both ends smoothly polished by use
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 齐眉棍 (eq_qimeigun), 兵器·棍, 黄 tier. Provenance context: generic premodern jianghu context.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete dark waxwood eyebrow-height staff, straight and hand-thick, naturally tapered, both ends smoothly polished by use. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: common wood, brass, hemp, leather and ordinary steel as applicable; practical construction, restrained finish and light honest use wear. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No spearhead, metal mace head, carved writing, multiple sticks or standing display.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No spearhead, metal mace head, carved writing, multiple sticks or standing display.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T13:54:44.232157+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7bd-fcc4-77b0-be89-ddcc09fb476a/exec-08b56031-cb09-4520-bd11-77d82b16fc18.png
+  size: 1254x1254
+  sha256: 6dcb647a8fa0ebd4705f03bac052e02b85bf42455c041505a6780c8e6272e7c8
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；generic premodern jianghu context。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：齐眉棍主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 18.26/21.85/18.34/21.85%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_huaqiang
+  file: eq_huaqiang.png
+  category: item
+  style: default
+  subject: 花枪（eq_huaqiang；兵器·枪；黄阶）；generic premodern jianghu context；one complete long spear about one and a half adult heights, pale waxwood shaft, modest leaf-shaped steel head and compact faded-red horsehair tassel below the socket
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 花枪 (eq_huaqiang), 兵器·枪, 黄 tier. Provenance context: generic premodern jianghu context.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete long spear about one and a half adult heights, pale waxwood shaft, modest leaf-shaped steel head and compact faded-red horsehair tassel below the socket. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: common wood, brass, hemp, leather and ordinary steel as applicable; practical construction, restrained finish and light honest use wear. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No person-scale diagram, banner, oversized tassel, halberd, fantasy spikes or duplicate spear.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No person-scale diagram, banner, oversized tassel, halberd, fantasy spikes or duplicate spear.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/24974
+    role: 17至18世纪中国矛头；仅人工核对叶形刃与銎部轮廓，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  - url: https://www.metmuseum.org/art/collection/search/24465
+    role: 18世纪中国枪；仅人工核对杆、銎与头部连接关系，不复制其特殊叉形枪头，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T13:54:46.052863+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7bd-fcc3-7bb2-91c9-7ee19f7af494/exec-ab1aed53-23e6-4d82-aaea-6bf22a95c19c.png
+  size: 1254x1254
+  sha256: 2c856347b3cd7535f766ebf9cc68fc3eb1d2fbe523df51957fe14f7822953d89
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；generic premodern jianghu context。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：花枪主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 19.94/17.94/20.49/19.14%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_duanbi
+  file: eq_duanbi.png
+  category: item
+  style: default
+  subject: 短匕（eq_duanbi；兵器·奇门匕；黄阶）；original generic jianghu weapon; no exact dynasty claimed；one complete plain double-edged short dagger beside its simple fitted dark-brown sheath as one coherent inventory set, modest copper throat and guard, deep wood grip, total sheathed length about one chi
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 短匕 (eq_duanbi), 兵器·奇门匕, 黄 tier. Provenance context: original generic jianghu weapon; no exact dynasty claimed.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete plain double-edged short dagger beside its simple fitted dark-brown sheath as one coherent inventory set, modest copper throat and guard, deep wood grip, total sheathed length about one chi. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: common wood, brass, hemp, leather and ordinary steel as applicable; practical construction, restrained finish and light honest use wear. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No ornate jade grip, modern tactical knife, kitchen knife, curved jambiya, extra loose accessories or gem.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  negative: 'Item-specific exclusions: No ornate jade grip, modern tactical knife, kitchen knife, curved jambiya, extra loose accessories or gem.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/43238
+    role: 18世纪中国匕首；仅人工核对小型刃器及鞘装比例，不主张等同设定年代，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T13:49:19.625671+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7b9-039c-7dc3-8430-cbfb0056c9df/exec-0d4bd316-eeac-45c5-b024-5340694da122.png
+  size: 1254x1254
+  sha256: c8c82a40abafa3092dc6953dfdc291f8d7c04b4c620fecf256188d7fcd8f719c
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；original generic jianghu weapon; no exact dynasty claimed。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：短匕主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 17.62/13.08/16.19/15.07%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_ruanbian
+  file: eq_ruanbian.png
+  category: item
+  style: default
+  subject: 软鞭（eq_ruanbian；兵器·鞭索；黄阶）；generic premodern jianghu context；one complete roughly two-meter deep-brown braided cowhide soft whip, short plain copper handle, laid in one loose readable S-shaped coil with tip and handle both visible
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 软鞭 (eq_ruanbian), 兵器·鞭索, 黄 tier. Provenance context: generic premodern jianghu context.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete roughly two-meter deep-brown braided cowhide soft whip, short plain copper handle, laid in one loose readable S-shaped coil with tip and handle both visible. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: common wood, brass, hemp, leather and ordinary steel as applicable; practical construction, restrained finish and light honest use wear. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No metal chain whip, nine-section whip, knot pile, snake, multiple loops hiding the tip or hand holding it.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No metal chain whip, nine-section whip, knot pile, snake, multiple loops hiding the tip or hand holding it.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T13:54:39.762675+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7bd-fca7-79d3-b6d7-5d936ca1da9b/exec-b4d2c7d1-08fc-4064-a07f-a583f93ea26c.png
+  size: 1254x1254
+  sha256: 15346cebf6216ed5f1680be9ceccae2656c07732ce713ffbf637c3b953f58d02
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；generic premodern jianghu context。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：软鞭主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 13.64/24.80/12.92/26.32%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_longquanjian
+  file: eq_longquanjian.png
+  category: item
+  style: default
+  subject: 龙泉剑（eq_longquanjian；兵器·剑；玄阶）；Longquan sword tradition; this particular item is an original extension；one complete slender Chinese straight double-edged sword, blue-gray steel, small restrained ruyi-shaped guard, deep teal cord-wrapped grip, refined balanced fittings, no scabbard
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 龙泉剑 (eq_longquanjian), 兵器·剑, 玄 tier. Provenance context: Longquan sword tradition; this particular item is an original extension.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete slender Chinese straight double-edged sword, blue-gray steel, small restrained ruyi-shaped guard, deep teal cord-wrapped grip, refined balanced fittings, no scabbard. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: carefully selected even material, precise joints and restrained natural metal or lacquer sheen; workmanship is clearly finer than common gear but remains practical. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No dragon sculpture, famous-sword cloud guard copied from the reference, huge gem, European crossguard or magical blue glow.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  negative: 'Item-specific exclusions: No dragon sculpture, famous-sword cloud guard copied from the reference, huge gem, European crossguard or magical blue glow.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/31116
+    role: 18至19世纪中国剑；仅人工核对器身与柄装比例，不主张等同龙泉传统年代，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T13:59:26.641167+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7c2-2c3b-7143-aa25-724c6951c517/exec-62886120-36dd-41ab-81b6-80262416261b.png
+  size: 1254x1254
+  sha256: faa19930515dd212aa2b68de7a0102e480098a361ea4b756d9c7b21dc6a0da3f
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Longquan sword tradition; this particular item is an original extension。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：龙泉剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 14.19/13.72/15.15/13.80%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_yanlingdao
+  file: eq_yanlingdao.png
+  category: item
+  style: default
+  subject: 雁翎刀（eq_yanlingdao；兵器·刀；玄阶）；Ming-Qing yanling saber form; this particular item is an original extension；one complete shallow-curved yanling-style saber paired closely with its black-leather-covered scabbard as one coherent inventory item, blade about 70 cm, copper collar, restrained disc guard and dark grip
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 雁翎刀 (eq_yanlingdao), 兵器·刀, 玄 tier. Provenance context: Ming-Qing yanling saber form; this particular item is an original extension.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete shallow-curved yanling-style saber paired closely with its black-leather-covered scabbard as one coherent inventory item, blade about 70 cm, copper collar, restrained disc guard and dark grip. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: carefully selected even material, precise joints and restrained natural metal or lacquer sheen; workmanship is clearly finer than common gear but remains practical. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No Japanese katana fittings or hamon, no exaggerated oxtail flare, no dragon carving, no extra belt or hand.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No Japanese katana fittings or hamon, no exaggerated oxtail flare, no dragon carving, no extra belt or hand.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/31110
+    role: 约18世纪中国腰刀；仅人工核对刀鞘组合、浅弧比例与材料分界，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T15:29:00.736045+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f814-284f-70e1-bbca-9e4d2fdca3a4/exec-9417943c-b1e2-4906-925e-182ea0a8aba6.png
+  size: 1254x1254
+  sha256: df60ee16ee21787521ad4de18344b094a101a2b95ef58c73abeba41c1fa31843
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Ming-Qing yanling saber form; this particular item is an original extension。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：雁翎刀主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 26.00/21.61/26.00/23.05%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_chanzhang
+  file: eq_chanzhang.png
+  category: item
+  style: default
+  subject: 禅杖（eq_chanzhang；兵器·棍杖；玄阶）；premodern Buddhist ritual staff adapted as a weapon; combat grading is original；one complete person-height wooden khakkhara staff, dark straight shaft, compact metal finial with a small restrained set of loose iron rings, balanced and usable rather than theatrical
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 禅杖 (eq_chanzhang), 兵器·棍杖, 玄 tier. Provenance context: premodern Buddhist ritual staff adapted as a weapon; combat grading is original.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete person-height wooden khakkhara staff, dark straight shaft, compact metal finial with a small restrained set of loose iron rings, balanced and usable rather than theatrical. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: carefully selected even material, precise joints and restrained natural metal or lacquer sheen; workmanship is clearly finer than common gear but remains practical. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No monk, shrine, halo, many giant rings, crescent polearm, skull, oversized head or religious writing.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No monk, shrine, halo, many giant rings, crescent polearm, skull, oversized head or religious writing.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T14:06:30.120738+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7c8-c39e-71b3-8208-e8c5fdcc1880/exec-8e866404-ea8f-47a1-a240-30cc360e5e11.png
+  size: 1254x1254
+  sha256: 579d7cb73a2304c9989cb87280f1ff88f76618302f4ed5e9d9c42044a00bfc0e
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；premodern Buddhist ritual staff adapted as a weapon; combat grading is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：禅杖主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 33.41/13.48/32.14/12.92%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_sanjiegun
+  file: eq_sanjiegun.png
+  category: item
+  style: default
+  subject: 三节棍（eq_sanjiegun；兵器·鞭索；玄阶）；traditional Chinese weapon; exact dating not claimed；one complete three-section staff laid folded in a shallow zigzag, three equal forearm-length jujube-wood rods connected by two short dark iron chains, all ends and links clearly visible
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 三节棍 (eq_sanjiegun), 兵器·鞭索, 玄 tier. Provenance context: traditional Chinese weapon; exact dating not claimed.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete three-section staff laid folded in a shallow zigzag, three equal forearm-length jujube-wood rods connected by two short dark iron chains, all ends and links clearly visible. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: carefully selected even material, precise joints and restrained natural metal or lacquer sheen; workmanship is clearly finer than common gear but remains practical. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No nunchaku, two sections, nine-section chain, detached link, hand, motion trail or tangled pile.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  negative: 'Item-specific exclusions: No nunchaku, two sections, nine-section chain, detached link, hand, motion trail or tangled pile.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T13:59:22.947836+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7c2-2c88-7501-9865-4e0a59422f97/exec-800afa32-eed0-4393-952e-e90c998e4ddb.png
+  size: 1254x1254
+  sha256: 3c51d4ddf700fa5a32e6ec61dc6186df54442f198adb47847aad4f5a7e9e4a9d
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；traditional Chinese weapon; exact dating not claimed。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：三节棍主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 19.30/18.42/19.14/17.78%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_jindi
+  file: eq_jindi.png
+  category: item
+  style: default
+  subject: 金笛（eq_jindi；兵器·奇门笛；玄阶）；Book and Sword, Yu Yutong; Qing Qianlong-era story context 1753-1759, exact object form is original；one complete transverse flute about two chi long, muted aged-gold metal, seven clearly spaced finger holes, delicate non-textual scrolling vine incisions and capped ends
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 金笛 (eq_jindi), 兵器·奇门笛, 玄 tier. Provenance context: Book and Sword, Yu Yutong; Qing Qianlong-era story context 1753-1759, exact object form is original.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete transverse flute about two chi long, muted aged-gold metal, seven clearly spaced finger holes, delicate non-textual scrolling vine incisions and capped ends. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: carefully selected even material, precise joints and restrained natural metal or lacquer sheen; workmanship is clearly finer than common gear but remains practical. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No readable inscription, vertical xiao, modern keys, gemstone, glaring polished gold, instrument case or floating music notes.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No readable inscription, vertical xiao, modern keys, gemstone, glaring polished gold, instrument case or floating music notes.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/503050
+    role: 18世纪末至19世纪初、馆方定为或属中国的横笛；仅人工核对孔位、管径与长度关系，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T15:28:54.322239+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f814-284f-7700-a3bd-c8d0629c3ebf/exec-ff469cb5-ade2-42d0-99fe-fdb40059e11a.png
+  size: 1254x1254
+  sha256: 1c967dea760f3ab2acac7350d4d097dc30abede76ca08c44db71fe7554b25c6b
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Book and Sword, Yu Yutong; Qing Qianlong-era story context 1753-1759, exact object form is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：金笛主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 16.67/31.98/16.51/32.22%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_tiedan
+  file: eq_tiedan.png
+  category: item
+  style: default
+  subject: 铁胆（eq_tiedan；兵器·奇门；玄阶）；Book and Sword, Zhou Zhongying; Qing Qianlong-era story context 1753-1759; object detail pending textual verification；one matched pair of solid palm-sized black iron balls as a single inventory item, resting side by side without ground shadow, subtly hand-polished highlights, perfectly plain surfaces with no carving
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 铁胆 (eq_tiedan), 兵器·奇门, 玄 tier. Provenance context: Book and Sword, Zhou Zhongying; Qing Qianlong-era story context 1753-1759; object detail pending textual verification.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one matched pair of solid palm-sized black iron balls as a single inventory item, resting side by side without ground shadow, subtly hand-polished highlights, perfectly plain surfaces with no carving. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: carefully selected even material, precise joints and restrained natural metal or lacquer sheen; workmanship is clearly finer than common gear but remains practical. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No more than two balls, chain, bells, writing, yin-yang symbol, pedestal, hand or magical orb glow.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  negative: 'Item-specific exclusions: No more than two balls, chain, bells, writing, yin-yang symbol, pedestal, hand or magical orb glow.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T13:59:14.932678+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7c2-2d27-7c11-ab3c-702ef89688b6/exec-67ae0465-8c0d-4446-8b84-48861725bf63.png
+  size: 1254x1254
+  sha256: 6fcdbac688bc528979e03c27e218dbb3b6ed161d8b74089875dc1a3ceadda650
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Book and Sword, Zhou Zhongying; Qing Qianlong-era story context 1753-1759; object detail pending textual verification。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：铁胆主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 19.86/30.38/19.46/30.62%，背景为浅暖灰近象牙色。原著器物细节或流转按名录保留（待考），本图不冒充逐字外观复原。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_junzijian
+  file: eq_junzijian.png
+  category: item
+  style: default
+  subject: 君子剑（eq_junzijian；兵器·剑；地阶）；Return of the Condor Heroes, Passionless Valley; Southern Song story context 1237-1259; exact form is original；one complete slender black Chinese straight sword with a small square restrained guard, narrow silver edge accents and a complete fitted black scabbard placed closely parallel as one coherent inventory item
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 君子剑 (eq_junzijian), 兵器·剑, 地 tier. Provenance context: Return of the Condor Heroes, Passionless Valley; Southern Song story context 1237-1259; exact form is original.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete slender black Chinese straight sword with a small square restrained guard, narrow silver edge accents and a complete fitted black scabbard placed closely parallel as one coherent inventory item. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: rare material or master craftsmanship, fine controlled texture and an old but carefully preserved finish; use only local jade, silver or muted old-gold accents where the subject calls for them. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No second sword, lady sword, paired crossing composition, European crossguard, giant gem or copied reference fittings.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No second sword, lady sword, paired crossing composition, European crossguard, giant gem or copied reference fittings.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/24959
+    role: 14至16世纪藏地或中国剑；仅人工核对剑柄与护手装具层次，不主张等同南宋物证，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T14:15:45.737733+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7d1-1d25-76c1-9abd-5aa59ef4d947/exec-50885981-76f5-46db-a0d3-8187591be082.png
+  size: 1254x1254
+  sha256: e6a6ee4fdb5fe123bf9e02c3fc46983e928fb08d0ca1eb68159d3320e952faaf
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Return of the Condor Heroes, Passionless Valley; Southern Song story context 1237-1259; exact form is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：君子剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 26.32/21.13/27.19/21.77%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_shunvjian
+  file: eq_shunvjian.png
+  category: item
+  style: default
+  subject: 淑女剑（eq_shunvjian；兵器·剑；地阶）；Return of the Condor Heroes, Passionless Valley; Southern Song story context 1237-1259; exact form is original；one complete fine silver-white Chinese straight sword, pale-cyan wrapped grip and small elegant guard, designed as the visual counterpart of Gentleman Sword yet shown independently and completely, no scabbard
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 淑女剑 (eq_shunvjian), 兵器·剑, 地 tier. Provenance context: Return of the Condor Heroes, Passionless Valley; Southern Song story context 1237-1259; exact form is original.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete fine silver-white Chinese straight sword, pale-cyan wrapped grip and small elegant guard, designed as the visual counterpart of Gentleman Sword yet shown independently and completely, no scabbard. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: rare material or master craftsmanship, fine controlled texture and an old but carefully preserved finish; use only local jade, silver or muted old-gold accents where the subject calls for them. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No second sword, gentleman sword, crossed pair, overly floral jewelry, European rapier cup guard or magical white glow.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No second sword, gentleman sword, crossed pair, overly floral jewelry, European rapier cup guard or magical white glow.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/31116
+    role: 18至19世纪中国剑；仅人工核对器身与柄装比例，不主张等同南宋物证，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T14:15:43.810733+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7d1-1d77-7391-80e7-f4ce7c43b1b9/exec-f3806f9d-38df-47ba-9815-0cf8c3c02497.png
+  size: 1254x1254
+  sha256: dbb4baee0e26b2fff2c064bbb89cceaa9ce4dae47fa3cb5360510c722756c88a
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Return of the Condor Heroes, Passionless Valley; Southern Song story context 1237-1259; exact form is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：淑女剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 22.65/21.77/23.52/23.37%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_xuedao
+  file: eq_xuedao.png
+  category: item
+  style: default
+  subject: 血刀（eq_xuedao；兵器·刀；地阶）；A Deadly Secret, Blood Saber school; Qing Kangxi-era project context about 1705-1712; exact form is original；one complete narrow dark-red single-edged curved saber, black leather grip and restrained Tibetan copper fittings, blade clean and intact with color in patina and lacquer rather than blood
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 血刀 (eq_xuedao), 兵器·刀, 地 tier. Provenance context: A Deadly Secret, Blood Saber school; Qing Kangxi-era project context about 1705-1712; exact form is original.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete narrow dark-red single-edged curved saber, black leather grip and restrained Tibetan copper fittings, blade clean and intact with color in patina and lacquer rather than blood. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: rare material or master craftsmanship, fine controlled texture and an old but carefully preserved finish; use only local jade, silver or muted old-gold accents where the subject calls for them. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No blood, gore, dripping liquid, serration, oversized cleaver, Japanese hamon, skull, ritual scene or red aura.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No blood, gore, dripping liquid, serration, oversized cleaver, Japanese hamon, skull, ritual scene or red aura.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/27782
+    role: 17至19世纪藏地剑；仅人工核对柄装、刃身轮廓与全长比例，不主张等同小说年代，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T14:15:25.030805+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7d1-1cba-77c2-b4c3-2503c714870d/exec-475b7bd7-d337-4592-8bc4-7921ad4da4d2.png
+  size: 1254x1254
+  sha256: 8bb1c811ec354e9aba0726a91fb7ebe59991ca307c9ee1f9a4612ac50b6e1bc3
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；A Deadly Secret, Blood Saber school; Qing Kangxi-era project context about 1705-1712; exact form is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：血刀主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 21.13/19.78/20.57/19.54%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_biyudao
+  file: eq_biyudao.png
+  category: item
+  style: default
+  subject: 碧玉刀（eq_biyudao；兵器·刀；地阶）；Gu Long Seven Weapons tribute; no dynasty claimed；one complete narrow straight-backed short saber with muted blue-green jade concentrated in grip fittings and fitted scabbard panels, while the blade remains ordinary refined steel; jade and metal boundaries unmistakable
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 碧玉刀 (eq_biyudao), 兵器·刀, 地 tier. Provenance context: Gu Long Seven Weapons tribute; no dynasty claimed.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete narrow straight-backed short saber with muted blue-green jade concentrated in grip fittings and fitted scabbard panels, while the blade remains ordinary refined steel; jade and metal boundaries unmistakable. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: rare material or master craftsmanship, fine controlled texture and an old but carefully preserved finish; use only local jade, silver or muted old-gold accents where the subject calls for them. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No blade made entirely of translucent emerald, no neon green glow, giant gemstone, writing, fantasy dagger or copied screen design.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No blade made entirely of translucent emerald, no neon green glow, giant gemstone, writing, fantasy dagger or copied screen design.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T14:15:42.867927+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7d1-1d22-76c0-9fa3-f48d3f265594/exec-9479f76a-8b45-4b8d-8ecf-88d0797c115c.png
+  size: 1254x1254
+  sha256: a5fab8b75e4edf85ee355fa46267b6733ffa66e25f5ba0f81a8e9b34617d95a0
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Gu Long Seven Weapons tribute; no dynasty claimed。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：碧玉刀主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 26.08/18.18/23.52/20.89%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_libiegou
+  file: eq_libiegou.png
+  category: item
+  style: default
+  subject: 离别钩（eq_libiegou；兵器·奇门钩；地阶）；Gu Long Seven Weapons tribute; no dynasty claimed；one complete roughly three-chi dark-steel hook weapon, strong clear outer curve with a continuous inner cutting edge, short leather-wrapped handle and restrained guard, readable functional silhouette
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 离别钩 (eq_libiegou), 兵器·奇门钩, 地 tier. Provenance context: Gu Long Seven Weapons tribute; no dynasty claimed.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete roughly three-chi dark-steel hook weapon, strong clear outer curve with a continuous inner cutting edge, short leather-wrapped handle and restrained guard, readable functional silhouette. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: rare material or master craftsmanship, fine controlled texture and an old but carefully preserved finish; use only local jade, silver or muted old-gold accents where the subject calls for them. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No pair of hooks, crescent moon, chain sickle, polearm, impossible closed ring, serration, blood or copied screen design.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  negative: 'Item-specific exclusions: No pair of hooks, crescent moon, chain sickle, polearm, impossible closed ring, serration, blood or copied screen design.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T14:11:39.296042+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7cd-a8ad-7a93-b4ea-3766c6276c6e/exec-4259143f-f89f-46ea-81af-4139d8ed1ba1.png
+  size: 1254x1254
+  sha256: 78dd54c42b6323cbc229b720513dac2ed9919919811129122d029dd06380ad3c
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Gu Long Seven Weapons tribute; no dynasty claimed。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：离别钩主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 19.46/13.80/14.67/14.67%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_liehuoqi
+  file: eq_liehuoqi.png
+  category: item
+  style: default
+  subject: 烈火旗（eq_liehuoqi；兵器·奇门旗；地阶）；Heaven Sword and Dragon Saber, Ming Cult Five-Element Banners; late-Yuan story context about 1336-1363; use as direct weapon pending textual verification；one complete narrow deep-red battle flag fixed to a long black-wood staff, small practical copper spearhead at the top, entire object slightly taller than an adult; flag cloth is plain and unlettered
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 烈火旗 (eq_liehuoqi), 兵器·奇门旗, 地 tier. Provenance context: Heaven Sword and Dragon Saber, Ming Cult Five-Element Banners; late-Yuan story context about 1336-1363; use as direct weapon pending textual verification.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete narrow deep-red battle flag fixed to a long black-wood staff, small practical copper spearhead at the top, entire object slightly taller than an adult; flag cloth is plain and unlettered. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: rare material or master craftsmanship, fine controlled texture and an old but carefully preserved finish; use only local jade, silver or muted old-gold accents where the subject calls for them. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No fire, flame pattern, burning edge, writing, emblem, army formation, person, wind scene, multiple flags or magical aura.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No fire, flame pattern, burning edge, writing, emblem, army formation, person, wind scene, multiple flags or magical aura.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T14:15:46.655170+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7d1-1d78-78b0-b805-854fb3b45d53/exec-664cef80-26c1-4a9e-9933-82e8a2867737.png
+  size: 1254x1254
+  sha256: 630b059297a7c73a7b98e7a4965c6d8df6f38d5d843db2998fbb8c55adc18a54
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Heaven Sword and Dragon Saber, Ming Cult Five-Element Banners; late-Yuan story context about 1336-1363; use as direct weapon pending textual verification。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：烈火旗主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 35.73/12.68/31.74/15.87%，背景为浅暖灰近象牙色。原著器物细节或流转按名录保留（待考），本图不冒充逐字外观复原。轻微偏差：旗尾旧损较明显；已达最多2张候选，保留构图与形制更合格的返修稿并待作者确认。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_yitianjian
+  file: eq_yitianjian.png
+  category: item
+  style: default
+  subject: 倚天剑（eq_yitianjian；兵器·剑；天阶）；Heaven Sword and Dragon Saber; late-Yuan story context about 1336-1363; fittings are original；one entirely new complete slender Chinese straight double-edged sword, cold blue-gray steel, an original delicate openwork cloud guard unlike the attached baseline, deep teal wrapped grip and a distinctive restrained ruyi pommel, no scabbard
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 倚天剑 (eq_yitianjian), 兵器·剑, 天 tier. Provenance context: Heaven Sword and Dragon Saber; late-Yuan story context about 1336-1363; fittings are original.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one entirely new complete slender Chinese straight double-edged sword, cold blue-gray steel, an original delicate openwork cloud guard unlike the attached baseline, deep teal wrapped grip and a distinctive restrained ruyi pommel, no scabbard. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: exceptionally rare material, a complete distinctive silhouette, dense controlled craftsmanship and cool or warm natural luster; prestigious but restrained, never magical or self-luminous. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: Do not reproduce the attached Yitian sword object, guard, pommel, proportions, diagonal or color placement; no broken blade, scripture cutaway or hidden-scroll depiction.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  negative: 'Item-specific exclusions: Do not reproduce the attached Yitian sword object, guard, pommel, proportions, diagonal or color placement; no broken blade, scripture cutaway or hidden-scroll depiction.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/24959
+    role: 14至16世纪藏地或中国剑；仅人工核对剑柄与护手装具层次，不复制纹样且不主张为原著造型，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T14:21:51.303224+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7d6-b577-7a42-8108-37aa530c674e/exec-13cb992c-241f-447f-a9e5-326271f049d7.png
+  size: 1254x1254
+  sha256: 7e2df349badedf270de07b644101b27522c56d62dfeb2bc130eb2bc466312997
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Heaven Sword and Dragon Saber; late-Yuan story context about 1336-1363; fittings are original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：倚天剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 12.68/13.32/14.27/15.55%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_tulongdao
+  file: eq_tulongdao.png
+  category: item
+  style: default
+  subject: 屠龙刀（eq_tulongdao；兵器·重刀；天阶）；Heaven Sword and Dragon Saber; late-Yuan story context about 1336-1363; exact form is original；one complete broad thick two-handed heavy saber of chest-high overall scale, deep iron-gray blade, short thick practical guard and long dark-brown grip, massive yet structurally plausible
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 屠龙刀 (eq_tulongdao), 兵器·重刀, 天 tier. Provenance context: Heaven Sword and Dragon Saber; late-Yuan story context about 1336-1363; exact form is original.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete broad thick two-handed heavy saber of chest-high overall scale, deep iron-gray blade, short thick practical guard and long dark-brown grip, massive yet structurally plausible. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: exceptionally rare material, a complete distinctive silhouette, dense controlled craftsmanship and cool or warm natural luster; prestigious but restrained, never magical or self-luminous. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No dragon sculpture, cleaver hole, Japanese odachi, serration, gold aura, flame, oversized fantasy slab or broken-blade cutaway.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No dragon sculpture, cleaver hole, Japanese odachi, serration, gold aura, flame, oversized fantasy slab or broken-blade cutaway.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T14:30:46.196512+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7de-e647-7d31-9f3d-e38df09d4fe3/exec-d853b8e3-248a-4cd4-8df5-540cff68cb73.png
+  size: 1254x1254
+  sha256: 699510f23e522352344e547690ff6c5d1809d5d821779005c455a88d0d2a9f1c
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Heaven Sword and Dragon Saber; late-Yuan story context about 1336-1363; exact form is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：屠龙刀主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 23.05/19.86/22.89/23.68%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_xuantiejian
+  file: eq_xuantiejian.png
+  category: item
+  style: default
+  subject: 玄铁重剑（eq_xuantiejian；兵器·重剑；天阶）；Return of the Condor Heroes, Dugu sword tomb; Southern Song story context 1237-1259; exact form is original；one complete nearly adult-height edgeless heavy sword, thick matte black-iron body with blunt continuous edges, minimal small guard and coarse two-handed grip, austere monolithic weight
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 玄铁重剑 (eq_xuantiejian), 兵器·重剑, 天 tier. Provenance context: Return of the Condor Heroes, Dugu sword tomb; Southern Song story context 1237-1259; exact form is original.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete nearly adult-height edgeless heavy sword, thick matte black-iron body with blunt continuous edges, minimal small guard and coarse two-handed grip, austere monolithic weight. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: exceptionally rare material, a complete distinctive silhouette, dense controlled craftsmanship and cool or warm natural luster; prestigious but restrained, never magical or self-luminous. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No sharpened silver edge, cross-shaped European greatsword, runes, gem, ornament, glow, chipped ruin or impossibly gigantic slab.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No sharpened silver edge, cross-shaped European greatsword, runes, gem, ornament, glow, chipped ruin or impossibly gigantic slab.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T14:31:08.317589+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7de-e60a-7720-8075-69657e6d38a2/exec-d3a0af7c-b419-40f3-9d85-b4d864321444.png
+  size: 1254x1254
+  sha256: 21560cb35d6d32a3a4f4217d666f2171760ba397b559ab6a4792fe751d90ae90
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Return of the Condor Heroes, Dugu sword tomb; Southern Song story context 1237-1259; exact form is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：玄铁重剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 14.67/17.78/15.15/15.23%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_jinshejian
+  file: eq_jinshejian.png
+  category: item
+  style: default
+  subject: 金蛇剑（eq_jinshejian；兵器·剑；天阶）；Sword Stained with Royal Blood, Golden Snake Gentleman; late-Ming story context 1630-1645; exact form pending textual verification and visual treatment is original；one complete distinctive gold-toned Chinese sword whose serpent idea is concentrated in a sinuous but functional guard, pommel and shallow decorative spine rhythm; the continuous steel cutting edges remain clearly readable and usable
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 金蛇剑 (eq_jinshejian), 兵器·剑, 天 tier. Provenance context: Sword Stained with Royal Blood, Golden Snake Gentleman; late-Ming story context 1630-1645; exact form pending textual verification and visual treatment is original.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete distinctive gold-toned Chinese sword whose serpent idea is concentrated in a sinuous but functional guard, pommel and shallow decorative spine rhythm; the continuous steel cutting edges remain clearly readable and usable. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: exceptionally rare material, a complete distinctive silhouette, dense controlled craftsmanship and cool or warm natural luster; prestigious but restrained, never magical or self-luminous. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No literal full snake animal, forked tongue blade, violently wavy flame blade, toy gold, emerald eyes, neon, poison mist or copied screen design.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form. SEMANTIC REPAIR: the first candidate violated the exclusion by depicting a literal snake. Do not draw any snake head, eyes, mouth, animal body, scales or recognizable whole serpent. Express the Golden Snake identity only as abstract shallow sinuous metal rhythms in the guard, pommel and spine decoration while keeping a practical continuous steel blade.'
+  negative: 'Item-specific exclusions: No literal full snake animal, forked tongue blade, violently wavy flame blade, toy gold, emerald eyes, neon, poison mist or copied screen design. No literal snake head, eyes, mouth, animal body, scales or recognizable whole serpent.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/31116
+    role: 18至19世纪中国剑；仅人工核对器身与柄装比例，不主张等同晚明物证，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T14:30:46.247581+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7de-e61d-73a0-a66b-e886337d4a1f/exec-7225f527-db98-4fce-950e-769edbe576d7.png
+  size: 1254x1254
+  sha256: d5e77eb25d79d813f482f039de24194355498a8bd0c246e02f49c5bb636685b7
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Sword Stained with Royal Blood, Golden Snake Gentleman; late-Ming story context 1630-1645; exact form pending textual verification and visual treatment is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：金蛇剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 23.52/22.41/23.13/24.80%，背景为浅暖灰近象牙色。原著器物细节或流转按名录保留（待考），本图不冒充逐字外观复原。首稿出现具象蛇头且尺寸偏大；唯一返修已改为无头、无眼、无完整蛇身的抽象蜿蜒金属纹。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_bawangqiang
+  file: eq_bawangqiang.png
+  category: item
+  style: default
+  subject: 霸王枪（eq_bawangqiang；兵器·枪；天阶）；Gu Long Seven Weapons tribute; no dynasty claimed; top-tier catalog exception is original；one complete very long heavy spear about two adult heights, thick dark hardwood shaft, weighty diamond-section steel spearhead and old restrained copper reinforcement collars, powerful but plausible balance
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 霸王枪 (eq_bawangqiang), 兵器·枪, 天 tier. Provenance context: Gu Long Seven Weapons tribute; no dynasty claimed; top-tier catalog exception is original.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete very long heavy spear about two adult heights, thick dark hardwood shaft, weighty diamond-section steel spearhead and old restrained copper reinforcement collars, powerful but plausible balance. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: exceptionally rare material, a complete distinctive silhouette, dense controlled craftsmanship and cool or warm natural luster; prestigious but restrained, never magical or self-luminous. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No person, scale chart, banner, huge tassel, halberd side blades, dragon sculpture, lightning, glow or copied screen design.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No person, scale chart, banner, huge tassel, halberd side blades, dragon sculpture, lightning, glow or copied screen design.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.metmuseum.org/art/collection/search/24974
+    role: 17至18世纪中国矛头；仅人工核对叶形刃与銎部轮廓，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  - url: https://www.metmuseum.org/art/collection/search/24465
+    role: 18世纪中国枪；仅人工核对杆、銎与头部连接关系，不复制其特殊叉形枪头，未作模型图片输入；2026-10-01经馆藏API与缩略图复核
+    input_to_model: false
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T14:30:52.394265+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7de-e5e8-78c3-abbc-fdb987b992fe/exec-d839ef4a-200e-4b04-b1ae-6e6417948545.png
+  size: 1254x1254
+  sha256: 2b4e4766e368dcd905e7974cef14f2663523f10e906f4bc0bc0abf7e7d05b0a0
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Gu Long Seven Weapons tribute; no dynasty claimed; top-tier catalog exception is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：霸王枪主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 16.11/14.27/17.46/14.59%，背景为浅暖灰近象牙色。轻微偏差：尾端生成尖锥式鐏，名录仅明确旧铜箍；已达最多2张候选，保留整体更合格的返修稿并待作者确认。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+- id: eq_dagoubang
+  file: eq_dagoubang.png
+  category: item
+  style: default
+  subject: 打狗棒（eq_dagoubang；兵器·棍；天阶）；Beggars' Sect token across Demi-Gods and Semi-Devils, Legend and Return of the Condor Heroes, and Heaven Sword; exact circulation and form pending textual verification；one complete deep-jade-green bamboo staff about eyebrow height, slim and straight, clearly natural bamboo nodes, subtly worn grip area, uncarved and unlettered, prestigious through rare material and perfect proportion
+  prompt: 'Do not spawn agents. Immediately call tools.image_gen__imagegen exactly once with transparent_background false and both supplied images as referenced_image_paths. Do not call shell, view_image, or any other tool. After that call returns, output only the generated PNG absolute path.
+
+    Use case: stylized-concept. Generate one inventory illustration for 打狗棒 (eq_dagoubang), 兵器·棍, 天 tier. Provenance context: Beggars'' Sect token across Demi-Gods and Semi-Devils, Legend and Return of the Condor Heroes, and Heaven Sword; exact circulation and form pending textual verification.
+
+    The two attached approved item baselines control style only: crisp fine dark-gray ink outlines, thin transparent color washes, restrained hand-painted brushwork, low-saturation cool-warm color, and a warm light-gray near-ivory background. Never copy either reference object, silhouette, fittings, composition, color layout, wear pattern, sword design, or book design. Generate an entirely new composition.
+
+    Subject: one complete deep-jade-green bamboo staff about eyebrow height, slim and straight, clearly natural bamboo nodes, subtly worn grip area, uncarved and unlettered, prestigious through rare material and perfect proportion. Any unspecified material, ornament, proportion or wear is an original wuxia extension, not a claimed novel illustration or historical reconstruction. Effect fields inform function only; never draw stats, text, icons or supernatural effects.
+
+    Grade language: exceptionally rare material, a complete distinctive silhouette, dense controlled craftsmanship and cool or warm natural luster; prestigious but restrained, never magical or self-luminous. Grade is expressed only through material, workmanship and preservation.
+
+    Style: non-photographic and non-3D, clear fine ink contours, thin translucent washes, restrained visible brushwork and clear material boundaries. Lighting is soft from upper left, with only narrow subdued highlights on the object itself and no glow.
+
+    Composition: 1:1 square, requested 1536x1536, exactly one coherent inventory item centered diagonally or in the clearest natural arrangement, gentle three-quarter view with minimal foreshortening. The entire point, head, shaft end, handle, pommel, tip, chain or cloth edge must be visible. Keep at least 18 percent clear margin on every side where geometry allows; object bounding box must not exceed 76 percent of canvas width or height. No person, hand, rack, scene, floor, ground or shadow.
+
+    Background: uniform warm light gray near ivory, RGB approximately 230,225,216, with no texture, vignette, gradient, ground plane or contact shadow. Completely unlettered.
+
+    Item-specific exclusions: No dog head carving, writing, gold bands, beggar bowl, person, second staff, magic green glow, giant club or copied screen design.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.
+
+    REPAIR PRIORITY: the first candidate was otherwise correct but too large. Generate a fresh composition, not an edit. Make the entire object markedly smaller and center it. Keep every extreme endpoint inside the central 16%-84% rectangle, target at least 18% empty background on all four sides, and keep the visible-object bounding box at or below 64% of both canvas width and height. Do not add, remove, coil, bend or shorten parts to achieve this; preserve the complete named form.'
+  negative: 'Item-specific exclusions: No dog head carving, writing, gold bands, beggar bowl, person, second staff, magic green glow, giant club or copied screen design.
+
+    Absolutely no text, pseudo-writing, numerals, seal, signature, logo, watermark text, UI, border, grade frame, collage, multi-view, cropping, broken tip, modern material, specific film or game weapon design, actor, artist, anime, European fantasy, steampunk, Japanese sword, long European crossguard, giant gem, hamon, Damascus swirl, serration, fire blade, neon, bloom, magic circle, aura, colored light column, blood, person, hand, weapon rack, display pedestal, scene, floor, ground, contact shadow, cast shadow, extra unrelated object, duplicate weapon, photographic realism or 3D-render appearance. Preserve any tool-native provenance marker; do not fabricate or erase it.'
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 唯一图片输入之一；仅参考细墨线、薄罩染、低饱和冷暖与浅暖灰底，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T14:30:47.667727+00:00'
+  source_path: /private/tmp/codex-art-home/generated_images/01a0f7de-e632-7d22-b84e-aa4edd8787e3/exec-1a1e60f6-e1ce-464d-a41d-3a6930967793.png
+  size: 1254x1254
+  sha256: 621ff0c724e0145269ed21e85deba7a2c72c985a9b2997d6fecc567efa713f56
+  status: candidate
+  notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Beggars' Sect token across Demi-Gods and Semi-Devils, Legend and Return of the Condor Heroes, and Heaven Sword; exact circulation and form pending textual verification。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：打狗棒主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 19.38/17.78/19.38/17.70%，背景为浅暖灰近象牙色。原著器物细节或流转按名录保留（待考），本图不冒充逐字外观复原。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
+
