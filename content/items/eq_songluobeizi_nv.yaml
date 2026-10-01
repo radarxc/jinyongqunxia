@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_songluobeizi_nv
+name: 宋罗褙子·女
+kind: armor
+sub: clothing
+grade: 5
+stack: 1
+chapters:
+- ch01_tianlong
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 褙子 · 宋（宋墓壁画、故宫《歌乐图》研究）· 出现书界 ch01/ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songluobeizi_nv
+text:
+  desc: 名录投影：衣物·袍服；grade=5; slot=body; armorWeight=light; wearer=female; eva=2。外观：女款浅杏直领对襟长褙子单件平展，窄袖、腋下开衩、素罗薄透配褐色缘边，无系扣无字，宋代士庶女装尺度
+  short: 宋罗褙子·女
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

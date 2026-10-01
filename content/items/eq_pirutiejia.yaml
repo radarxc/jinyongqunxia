@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_pirutiejia
+name: 皮绒贴甲
+kind: armor
+sub: innerArmor
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/pirutiejia
+text:
+  desc: 名录投影：内甲·皮甲；grade=3; slot=innerBody; resBleedPp=2。外观：深褐软皮短背心，内衬灰绒、细密缝线，无金属钉 （原创扩展）
+  short: 皮绒贴甲
+extension:
+  type: equipment
+  value:
+    slot: innerBody
+    tags: []
+    matFamily: leather
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

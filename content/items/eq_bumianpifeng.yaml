@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_bumianpifeng
+name: 布面披风
+kind: armor
+sub: cape
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/bumianpifeng
+text:
+  desc: 名录投影：披风·布；grade=3; slot=cape; defOutK=0.025; hpMaxK=0.005。外观：灰蓝短披风折叠平置，粗布哑光、木扣，及膝长度 （原创扩展）
+  short: 布面披风
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

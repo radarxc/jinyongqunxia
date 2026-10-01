@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuxueguo
+name: 玉雪果
+kind: material
+sub: ingredient
+grade: 6
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/yuxueguo
+text:
+  desc: 名录投影：食材·果；grade=6; ingredientKind=fruit; materialGrade=6。外观：青白梨形小果三枚，薄蜡皮、冰裂斑，不发光 （原创扩展）
+  short: 玉雪果
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan3
+    materialGrade: 6
+    rare: false
+    ingredientKind: fruit

@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_qingzhijian
+name: 清制直剑
+kind: weapon
+sub: sword
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·清（故宫清宫剑实例） （原创扩展定级）
+price: auto
+flags: []
+assets:
+  icon: item/qingzhijian
+text:
+  desc: 名录投影：兵器·剑；grade=4; cat=sword; hands=1。外观：修长钢剑全长约九十厘米，铁质盘镡、深木柄丝绦、鲨鱼皮纹鞘与素铜箍，克制旧化，完整斜置，无人物与手 （原创扩展简化）
+  short: 清制直剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

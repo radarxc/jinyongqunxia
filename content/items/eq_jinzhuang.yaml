@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_jinzhuang
+name: 江湖劲装
+kind: armor
+sub: clothing
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jinzhuang
+text:
+  desc: 名录投影：衣物·劲装；grade=3; slot=body; armorWeight=light; agi=1。外观：深蓝窄袖对襟劲装，无人物，布带与护腕并拢，利落低饱和 （原创扩展）
+  short: 江湖劲装
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

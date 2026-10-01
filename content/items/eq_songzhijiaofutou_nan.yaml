@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_songzhijiaofutou_nan
+name: 宋直脚幞头·男
+kind: armor
+sub: headwear
+grade: 9
+stack: 1
+chapters:
+- ch01_tianlong
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 幞头 · 宋（《宋史·舆服志》、故宫幞头资料）· 出现书界 ch01/ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songzhijiaofutou_nan
+text:
+  desc: 名录投影：头饰·幞头；grade=9; slot=head; wearer=male; cha=2。外观：男款黑漆纱直脚幞头独立陈列，不画人头，硬胎方正、两脚平直对称、漆纱细密，配一支素簪，宋代高官冠帽尺度
+  short: 宋直脚幞头·男
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

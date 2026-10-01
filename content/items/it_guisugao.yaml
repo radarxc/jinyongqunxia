@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_guisugao
+name: 桂酥糕
+kind: food
+sub: food
+grade: 3
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1200
+  - op: applyBuff
+    params:
+      value: bf_yangsheng:2h
+assets:
+  icon: item/guisugao
+text:
+  desc: 名录投影：食品·点心；grade=3; staPct=12%; buff=bf_yangsheng:2h。外观：四块浅金方糕，桂花碎点，白瓷小盘，掌心大小 （原创扩展）
+  short: 桂酥糕
+extension:
+  type: generic
+  value: {}

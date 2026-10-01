@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_mingjinmamianqun_nv
+name: 明锦马面裙·女
+kind: armor
+sub: clothing
+grade: 9
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+- ch07_bixue
+origin: canonExpanded
+canonRef: 袄裙、马面裙 · 明（《大明会典》、定陵出土服饰）· 出现书界 ch05/ch06/ch07 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingjinmamianqun_nv
+text:
+  desc: 名录投影：衣物·礼服；grade=9; slot=body; armorWeight=light; wearer=female; cha=2。外观：女款大红妆花短袄与深青马面裙成套平展，汉式交领右衽，裙前后光面、两侧密褶，织金折枝花无字，明代贵族尺度
+  short: 明锦马面裙·女
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

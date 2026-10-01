@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_qingtonghengdi
+name: 青铜横笛
+kind: weapon
+sub: exotic
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·明清乐器转兵器 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingtonghengdi
+text:
+  desc: 名录投影：兵器·奇门笛；grade=5; cat=exotic; exoticKind=flute; hands=1。外观：青铜横笛约六十五厘米，吹孔与指孔清楚、两端加厚，素面仅一圈云纹，铜绿克制，完整横置，无人物与手
+  short: 青铜横笛
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

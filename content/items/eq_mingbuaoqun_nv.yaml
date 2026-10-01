@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_mingbuaoqun_nv
+name: 明布袄裙·女
+kind: armor
+sub: clothing
+grade: 3
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+- ch07_bixue
+origin: canonExpanded
+canonRef: 袄裙 · 明（明代人物画与服饰研究）· 出现书界 ch05/ch06/ch07 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingbuaoqun_nv
+text:
+  desc: 名录投影：衣物·便服；grade=3; slot=body; armorWeight=light; wearer=female。外观：女款藕灰交领右衽短袄与靛蓝素马面裙成套平展，窄袖、布纽、裙门平整两侧疏褶，棉布无纹，明代平民尺度
+  short: 明布袄裙·女
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

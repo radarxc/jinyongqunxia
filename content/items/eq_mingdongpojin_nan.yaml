@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_mingdongpojin_nan
+name: 明纱制东坡巾·男
+kind: armor
+sub: headwear
+grade: 6
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+- ch07_bixue
+origin: canonExpanded
+canonRef: 东坡巾 · 明（明代士人图像、国博服饰研究）· 出现书界 ch05/ch06/ch07 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingdongpojin_nan
+text:
+  desc: 名录投影：头饰·巾；grade=6; slot=head; wearer=male; wis=1。外观：男款乌青纱东坡巾独立陈列，不画人头，方高巾体、前檐短、后垂软脚，纱纹清楚配素巾环，无字，明代士人尺度
+  short: 明纱制东坡巾·男
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

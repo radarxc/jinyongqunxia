@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_qixingbaoguan
+name: 七星宝冠
+kind: armor
+sub: headwear
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/qixingbaoguan
+text:
+  desc: 名录投影：头饰·宝冠；grade=10; slot=head; catalogTian=true; divine=false; unique=true; price=null; resMindPp=8; effRes=6。外观：深蓝玉冠嵌七枚细小银钉，仅抽象星位、无星图魔法光 （原创扩展）
+  short: 七星宝冠
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true

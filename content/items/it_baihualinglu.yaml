@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_baihualinglu
+name: 百花灵露
+kind: material
+sub: ingredient
+grade: 10
+stack: 999
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/baihualinglu
+text:
+  desc: 名录投影：食材·珍材；grade=10; ingredientKind=rare; materialGrade=10; uniqueBatch=true。外观：清透花露盛素银细颈壶，壶口凝一滴露珠，配低饱和百花小碟 （原创扩展）
+  short: 百花灵露
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_tian9
+    materialGrade: 10
+    rare: true
+    ingredientKind: rare

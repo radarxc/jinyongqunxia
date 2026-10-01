@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_songmabufujin_nan
+name: 宋麻布幅巾·男
+kind: armor
+sub: headwear
+grade: 1
+stack: 1
+chapters:
+- ch01_tianlong
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 幅巾 · 宋（《宋史·舆服志》）· 出现书界 ch01/ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songmabufujin_nan
+text:
+  desc: 名录投影：头饰·巾；grade=1; slot=head; wearer=male。外观：男款灰黑麻布幅巾独立打结陈列，不画人头，方巾包折成软顶、后部两短脚自然垂落，粗布轻旧无字，宋代庶民尺度
+  short: 宋麻布幅巾·男
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_mingyudiebuyao_nv
+name: 明玉蝶步摇·女
+kind: armor
+sub: headwear
+grade: 5
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+- ch07_bixue
+origin: canonExpanded
+canonRef: 簪钗、步摇 · 明（定陵与明墓首饰实物）· 出现书界 ch05/ch06/ch07 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingyudiebuyao_nv
+text:
+  desc: 名录投影：头饰·簪钗；grade=5; slot=head; wearer=female; cha=1。外观：女款银鎏金玉蝶步摇一对与长簪并置，不画人头，蝶翼镂空、细链垂三颗小珠，白玉温润无字，明代士绅尺度
+  short: 明玉蝶步摇·女
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_xiyuhufu
+name: 西域胡服
+kind: armor
+sub: clothing
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xiyuhufu
+text:
+  desc: 名录投影：衣物·骑装；grade=9; slot=body; armorWeight=light; coldResPp=4; rideSta=-10%。外观：靛青窄袖长衫、皮革窄腰封与软毡边，西域元代感 （原创扩展）
+  short: 西域胡服
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

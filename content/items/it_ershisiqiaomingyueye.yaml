@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_ershisiqiaomingyueye
+name: 二十四桥明月夜
+kind: dish
+sub: dish
+grade: 8
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·黄蓉为洪七公所制
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: meal
+    params:
+      value: bf_dingxin,bf_shouyi,bf_huinei:3battle
+assets:
+  icon: item/ershisiqiaomingyueye
+text:
+  desc: 名录投影：食品·名菜；grade=8; meal=bf_dingxin,bf_shouyi,bf_huinei:3battle。外观：二十四枚雪白豆腐球盛火腿槽中，青瓷长盘，精细而不夸张
+  short: 二十四桥明月夜
+extension:
+  type: generic
+  value: {}

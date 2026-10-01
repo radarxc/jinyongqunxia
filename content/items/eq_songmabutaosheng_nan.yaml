@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_songmabutaosheng_nan
+name: 宋麻布绦绳·男
+kind: armor
+sub: belt
+grade: 1
+stack: 1
+chapters:
+- ch01_tianlong
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 士庶布带 · 宋（《宋史·舆服志》士庶服）· 出现书界 ch01/ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songmabutaosheng_nan
+text:
+  desc: 名录投影：腰带·布绳；grade=1; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01。外观：男款灰褐麻布绦绳盘成一圈，双股粗编、木环与简单活结，纤维毛糙轻旧，无字无悬物，宋代庶民尺度
+  short: 宋麻布绦绳·男
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: it_jiaohuaji
+name: 叫化鸡
+kind: dish
+sub: dish
+grade: 5
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·黄蓉款待洪七公
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: meal
+    params:
+      value: bf_jiangu:4battle
+  - op: staPct
+    params:
+      valueBp: 10000
+assets:
+  icon: item/jiaohuaji
+text:
+  desc: 名录投影：食品·菜肴；grade=5; meal=bf_jiangu:4battle; sta=full。外观：整鸡裹开裂黄泥与荷叶，金褐表皮，盘宽约双掌
+  short: 叫化鸡
+extension:
+  type: generic
+  value: {}

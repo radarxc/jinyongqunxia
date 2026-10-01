@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_mingjinyiweijia
+name: 明制锦衣卫甲
+kind: armor
+sub: officialArmor
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingjinyiweijia
+text:
+  desc: 名录投影：制式盔甲·明；grade=9; slot=body; armorWeight=medium; lawProfile={uniform:true,allowedIdentityTags:[office_ming_imperial_guard],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。外观：明代深青曳撒式罩甲、窄金线与皮革护腰，不画飞鱼纹文字 （原创扩展）
+  short: 明制锦衣卫甲
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: medium
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

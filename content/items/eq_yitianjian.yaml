@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_yitianjian
+name: 倚天剑
+kind: weapon
+sub: sword
+grade: 12
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》
+price: null
+flags:
+- unique
+assets:
+  icon: item/yitianjian
+text:
+  desc: 名录投影：兵器·剑；grade=12; cat=sword; divine=true; unique=true。外观：修长直身双刃、冷青灰钢、镂空卷云护手、墨青缠柄 （原创扩展形制）
+  short: 倚天剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: true
+    catalogTian: false
+    uniqueEquipped: true

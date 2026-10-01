@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_baiyuguan
+name: 白玉冠
+kind: armor
+sub: headwear
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/baiyuguan
+text:
+  desc: 名录投影：头饰·冠；grade=6; slot=head; cha=1; resMindPp=3。外观：小型白玉束发冠、银簪横置，宋式简洁轮廓 （原创扩展）
+  short: 白玉冠
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

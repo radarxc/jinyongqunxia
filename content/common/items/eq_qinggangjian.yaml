@@ -8,16 +8,20 @@ stack: 1
 chapters: any
 origin: expanded
 price: auto
-flags: [equipmentBase]
-assets: {icon: items/eq_qinggangjian.webp, model: equipment/qinggangjian.glb}
-text: {desc: 江湖常见的青钢剑基底。}
+flags:
+- runtimeProjection
+assets:
+  icon: item/qinggangjian
+text:
+  desc: 名录投影：兵器·剑；grade=3; cat=sword; hands=1; mainK=1.00。外观：素面直身双刃，黑木柄、黄铜小护手，刃长约七十厘米 （原创扩展）
+  short: 青钢剑
 extension:
   type: equipment
   value:
     slot: mainHand
     cat: sword
     hands: 1
-    tags: [sword]
+    tags: []
     matFamily: metal
     divine: false
     catalogTian: false

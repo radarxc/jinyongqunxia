@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_jinsibeixin
+name: 金丝背心
+kind: armor
+sub: innerArmor
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《碧血剑》·木桑道人、袁承志
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jinsibeixin
+text:
+  desc: 名录投影：内甲·金丝背心；grade=8; slot=innerBody; weaponZ4=3%xG; fixed=af_jianjia,af_renxing,af_tipo。外观：乌金丝、发丝与金丝猴毛混织的暗金短背心，柔软贴身 （待考形制）
+  short: 金丝背心
+extension:
+  type: equipment
+  value:
+    slot: innerBody
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

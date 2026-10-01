@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_jinlingsuo
+name: 金铃索
+kind: weapon
+sub: whip
+grade: 7
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·小龙女白绸带 / 金铃软索
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/jinlingsuo
+text:
+  desc: 名录投影：兵器·鞭索；grade=7; cat=whip; hands=1; unique=true; sect=sect_gumu。外观：雪白长绸索约三米，末端数枚小金铃与细金属坠，松弧完整铺展、不打结，绸面轻旧，无挥舞场景与人物 （原创扩展形制）
+  short: 金铃索
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: whip
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

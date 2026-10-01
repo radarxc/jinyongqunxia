@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_jintongkuatuhu_nan
+name: 金铜銙吐鹘·男
+kind: armor
+sub: belt
+grade: 3
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 吐鹘束带 · 金（《金史·舆服志》）· 出现书界 ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jintongkuatuhu_nan
+text:
+  desc: 名录投影：腰带·金属；grade=3; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01。外观：男款黑色粗革吐鹘带盘成一圈，素铜方銙前小后大、方扣与双铊尾完整，无春水纹无悬刀，金代普通武人尺度
+  short: 金铜銙吐鹘·男
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

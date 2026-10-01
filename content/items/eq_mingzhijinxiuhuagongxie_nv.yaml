@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_mingzhijinxiuhuagongxie_nv
+name: 明织金绣花弓鞋·女
+kind: armor
+sub: shoes
+grade: 9
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+- ch07_bixue
+origin: canonExpanded
+canonRef: 弓样鞋 · 明（《明史·舆服志》、定陵出土女鞋）· 出现书界 ch05/ch06/ch07 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingzhijinxiuhuagongxie_nv
+text:
+  desc: 名录投影：鞋·弓鞋；grade=9; slot=feet; wearer=female; qinggong=22.5。外观：女款绛红织金弓鞋一双并置，窄小翘头、低跟、云花暗纹与丝缎包边，按明代实物比例表现，不画脚、不作情色化陈列
+  short: 明织金绣花弓鞋·女
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

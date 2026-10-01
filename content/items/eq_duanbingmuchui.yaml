@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_duanbingmuchui
+name: 短柄木锤
+kind: weapon
+sub: exotic
+grade: 1
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·宋元民间工具转兵器 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/duanbingmuchui
+text:
+  desc: 名录投影：兵器·奇门锤；grade=1; cat=exotic; exoticKind=hammer; hands=2。外观：梨木圆锤头配短粗双手柄，全长约八十厘米，铁箍加固、敲击面磨损，无夸张尖刺，完整斜置，无人物与手
+  short: 短柄木锤
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

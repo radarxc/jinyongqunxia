@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_haoqiutang
+name: 好逑汤
+kind: food
+sub: food
+grade: 7
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·黄蓉为洪七公所制
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: meal
+    params:
+      value: bf_ruiyi:3battle
+assets:
+  icon: item/haoqiutang
+text:
+  desc: 名录投影：食品·汤羹；grade=7; meal=bf_ruiyi:3battle; party=4。外观：清汤、嫩笋、荷叶与嵌肉樱桃，白瓷汤盅，雅致小宴
+  short: 好逑汤
+extension:
+  type: generic
+  value: {}

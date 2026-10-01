@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_tieguzhanqi
+name: 铁骨战旗
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·明代军中旗枪意象；直接作兵器 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tieguzhanqi
+text:
+  desc: 名录投影：兵器·奇门旗；grade=6; cat=exotic; exoticKind=misc; hands=2。外观：乌木长旗杆约二米、杆首小菱枪锋，窄幅赭红旗面无字、边缘磨损，铁箍与尾鐏清楚，完整斜置留足两端，无人物与手
+  short: 铁骨战旗
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_zixiaqingyi
+name: 紫霞轻衣
+kind: armor
+sub: clothing
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/zixiaqingyi
+text:
+  desc: 名录投影：衣物·宝衣；grade=10; slot=body; armorWeight=light; catalogTian=true; divine=false; unique=true; price=null; eva=8; mpMaxPct=5%。外观：低饱和紫灰长衣，云霞渐染只在织纹中，轻薄无魔法光 （原创扩展）
+  short: 紫霞轻衣
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true

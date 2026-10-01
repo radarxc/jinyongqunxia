@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_qingzaolijia
+name: 清制皂隶衣甲
+kind: armor
+sub: officialArmor
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingzaolijia
+text:
+  desc: 名录投影：制式盔甲·清；grade=3; slot=body; armorWeight=light; lawProfile={uniform:true,allowedIdentityTags:[office_qing_yamen],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。外观：清代深青号衣与黑红滚边，软帽另不入画，无胸背文字 （原创扩展）
+  short: 清制皂隶衣甲
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

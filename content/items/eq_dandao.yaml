@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_dandao
+name: 单刀
+kind: weapon
+sub: blade
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/dandao
+text:
+  desc: 名录投影：兵器·刀；grade=3; cat=blade; hands=1; mainK=1.05。外观：宋元朴素窄背微弧刀，木柄麻缠，无宝石，前臂加半臂长 （原创扩展）
+  short: 单刀
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_xueshen
+name: 普通雪参
+kind: material
+sub: herb
+grade: 3
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/xueshen
+text:
+  desc: 名录投影：药材·雪参；grade=3; herbFamily=xueShen; ageYears=0; materialGrade=3。外观：灰白小参附短须与霜土，粗布包，指掌大小 （原创扩展）
+  short: 普通雪参
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang3
+    materialGrade: 3
+    rare: false
+    herbFamily: xueShen
+    ageYears: 0

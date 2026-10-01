@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_qiankunyiqidai
+name: 乾坤一气袋
+kind: weapon
+sub: exotic
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》·布袋和尚说不得；作为战斗器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/qiankunyiqidai
+text:
+  desc: 名录投影：兵器·奇门袋；grade=7; cat=exotic; exoticKind=misc; hands=1; unique=true; sect=sect_mingjiao。外观：厚韧灰白布袋收束平铺，约可容一人但画面按折叠尺度，袋口粗绳、补丁与撑裂旧痕，不画人物入袋 （原创扩展表现）
+  short: 乾坤一气袋
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_huijianghongbudai_nan
+name: 回疆红布腰带·男
+kind: armor
+sub: belt
+grade: 2
+stack: 1
+chapters:
+- ch10_baima
+- ch12_shujian
+origin: canonExpanded
+canonRef: 红带 · 清（《皇清职贡图》）· 出现书界 ch10/ch12 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huijianghongbudai_nan
+text:
+  desc: 名录投影：腰带·布带；grade=2; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01。外观：男款暗红棉布长带盘成一圈，数层缠绕痕与素结清楚，两端短垂、边缘轻磨损，无字无扣，清代回疆民人尺度
+  short: 回疆红布腰带·男
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

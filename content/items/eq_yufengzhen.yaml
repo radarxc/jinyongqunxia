@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_yufengzhen
+name: 玉蜂针
+kind: hidden
+sub: needle
+grade: 7
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·古墓派，以六成黄金四成精钢制针并淬玉蜂尾刺毒液
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/yufengzhen
+text:
+  desc: 名录投影：暗器·名针；grade=7; hiddenKind=needle; ammoMul=1.125; hiddenHit=6.0; perBattle=12; onHit=bf_mabi; unique=true; sect=sect_gumu。外观：十二枚淡金细针平行列于白绸针匣，针长半掌、金属色温润，旁置闭合玉色针管，无活蜂、人物、手、发射或命中场景
+  short: 玉蜂针
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: needle
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_jinqianbiao
+name: 金钱镖
+kind: ammo
+sub: dart
+grade: 3
+stack: 99
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: field
+  action: load
+  target: self
+  effects: []
+assets:
+  icon: item/jinqianbiao
+text:
+  desc: 名录投影：暗器·飞镖；grade=3; hiddenKind=dart; ammoMul=0.985; hiddenHit=3.6。外观：三枚铜钱形薄镖，方孔但无文字，刃缘克制、掌心尺度 （原创扩展）
+  short: 金钱镖
+extension:
+  type: generic
+  value: {}

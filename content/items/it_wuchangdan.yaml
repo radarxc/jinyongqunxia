@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: it_wuchangdan
+name: 无常丹
+kind: pill
+sub: medicine
+grade: 6
+stack: 99
+chapters: any
+origin: canonExpanded
+canonRef: 金庸作品 （待考：核具体书名、使用人物与药效）
+price: auto
+flags: []
+use:
+  context: both
+  action: consume
+  target: self
+  effects:
+  - op: healPct
+    params:
+      valueBp: 850
+  - op: dispel
+    params:
+      tags:
+      - injury
+      grade: 6
+assets:
+  icon: item/wuchangdan
+text:
+  desc: 名录投影：药物·疗伤；grade=6; healPct=8.5%; dispel=injury:g6。外观：黑白相间双层漆盒，深褐丸药，银灰封蜡，半掌大小 （原创扩展）
+  short: 无常丹
+extension:
+  type: generic
+  value: {}

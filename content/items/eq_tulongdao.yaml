@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_tulongdao
+name: 屠龙刀
+kind: weapon
+sub: blade
+grade: 12
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》
+price: null
+flags: []
+assets:
+  icon: item/tulongdao
+text:
+  desc: 名录投影：兵器·重刀；grade=12; cat=blade; hands=2; tags=heavy; divine=true。外观：宽厚重刀，深铁灰刃、短厚护手、暗褐长柄，人物胸高尺度 （原创扩展形制）
+  short: 屠龙刀
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 2
+    tags:
+    - heavy
+    matFamily: metal
+    divine: true
+    catalogTian: false
+    uniqueEquipped: false

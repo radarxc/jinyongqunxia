@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_jinshejian
+name: 金蛇剑
+kind: weapon
+sub: sword
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《碧血剑》·金蛇郎君
+price: null
+flags:
+- unique
+assets:
+  icon: item/jinshejian
+text:
+  desc: 名录投影：兵器·剑；grade=10; cat=sword; divine=true; unique=true。外观：金色蛇形意象异剑，曲线集中于装具，刃口仍连续可辨 （待考形制；原创扩展表现）
+  short: 金蛇剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: true
+    catalogTian: false
+    uniqueEquipped: true

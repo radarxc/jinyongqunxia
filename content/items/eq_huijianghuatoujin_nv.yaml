@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_huijianghuatoujin_nv
+name: 回疆花布头巾·女
+kind: armor
+sub: headwear
+grade: 1
+stack: 1
+chapters:
+- ch10_baima
+- ch12_shujian
+origin: canonExpanded
+canonRef: 花布缠头 · 清（《皇清职贡图》）· 出现书界 ch10/ch12 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huijianghuatoujin_nv
+text:
+  desc: 名录投影：头饰·头巾；grade=1; slot=head; wearer=female。外观：女款靛红花布头巾独立折叠陈列，不画人头假发，长方棉布、边角流苏、几何小花无字，包覆后仍留双垂端，清代回疆平民尺度
+  short: 回疆花布头巾·女
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

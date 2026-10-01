@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_qingxiuhuahebaodai_nv
+name: 清绣花荷包带·女
+kind: armor
+sub: belt
+grade: 7
+stack: 1
+chapters:
+- ch08_luding
+- ch09_liancheng
+- ch10_baima
+- ch11_yuanyang
+- ch12_shujian
+- ch13_feihu
+- ch14_xueshan
+origin: canonExpanded
+canonRef: 吉服带、佩囊 · 清（故宫清中期吉服带与荷包研究）· 出现书界 ch08/ch09/ch10/ch11/ch12/ch13/ch14 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingxiuhuahebaodai_nv
+text:
+  desc: 名录投影：腰带·荷包带；grade=7; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01。外观：女款金黄色丝质吉服带作松弧陈列，四块白玉方版、玉环与一对扁圆花卉荷包，荷包仅作从属佩囊、无腰包体积，无字，清中期宫廷尺度
+  short: 清绣花荷包带·女
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

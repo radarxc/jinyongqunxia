@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_jindaoheijian
+name: 金刀黑剑
+kind: weapon
+sub: exotic
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·公孙止的锯齿金刀与黑剑
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/jindaoheijian
+text:
+  desc: 名录投影：兵器·刀剑成对；grade=8; cat=exotic; exoticKind=misc; hands=1; pair=true; unique=true; sect=sect_jueqinggu。外观：金装锯齿背单刀与乌黑直剑交错并置，各约七十厘米，刀齿克制、两器装具一明一暗且轮廓独立，无人物与手 （原创扩展细节）
+  short: 金刀黑剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_zhusutiejia
+name: 竹丝贴甲
+kind: armor
+sub: innerArmor
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/zhusutiejia
+text:
+  desc: 名录投影：内甲·编织；grade=3; slot=innerBody; defOutK=0.10; defInK=0.08。外观：细竹篾与麻线编成短背心，浅褐色、柔韧薄片，半身尺度 （原创扩展）
+  short: 竹丝贴甲
+extension:
+  type: equipment
+  value:
+    slot: innerBody
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

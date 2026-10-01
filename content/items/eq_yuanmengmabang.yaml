@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_yuanmengmabang
+name: 元蒙马棒
+kind: weapon
+sub: staff
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·元蒙骑兵短棒 （待考：核器名与形制）；定级 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/yuanmengmabang
+text:
+  desc: 名录投影：兵器·棍；grade=4; cat=staff; hands=1。外观：短粗榆木棒约九十厘米，前端包铁并铆钉加固，皮条腕环、毛皮握套，风沙旧化，完整横斜置，无人物与手
+  short: 元蒙马棒
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

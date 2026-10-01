@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_liuxingchui
+name: 流星锤
+kind: weapon
+sub: exotic
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·明清软兵，具体源流 （待考）；定级 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/liuxingchui
+text:
+  desc: 名录投影：兵器·奇门锤；grade=5; cat=exotic; exoticKind=hammer; hands=1。外观：单枚棱面铁锤以约两米细铁链连接短木柄，链条松弧完整展开、锤头拳大，无旋转动作，无人物与手
+  short: 流星锤
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

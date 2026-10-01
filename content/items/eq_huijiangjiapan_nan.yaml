@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_huijiangjiapan_nan
+name: 回疆棉布袷袢·男
+kind: armor
+sub: clothing
+grade: 2
+stack: 1
+chapters:
+- ch10_baima
+- ch12_shujian
+origin: canonExpanded
+canonRef: 回疆长衣 · 清（《皇清职贡图》）· 出现书界 ch10/ch12 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huijiangjiapan_nan
+text:
+  desc: 名录投影：衣物·胡服；grade=2; slot=body; armorWeight=light; wearer=male。外观：男款土褐长领齐袖棉布袷袢单件平展，对襟、膝下直摆、红布窄腰带收拢，轻磨损无字，清代回疆平民尺度
+  short: 回疆棉布袷袢·男
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

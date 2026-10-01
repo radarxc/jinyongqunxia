@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_longganfengsui
+name: 龙肝凤髓料
+kind: material
+sub: ingredient
+grade: 9
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/longganfengsui
+text:
+  desc: 名录投影：食材·珍材；grade=9; ingredientKind=rare; materialGrade=9。外观：两只封釉食盒分装深红肉脯与乳白髓脂，宫宴精致感 （原创扩展）
+  short: 龙肝凤髓料
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di3
+    materialGrade: 9
+    rare: false
+    ingredientKind: rare

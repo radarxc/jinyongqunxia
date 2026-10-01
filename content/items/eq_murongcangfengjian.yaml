@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_murongcangfengjian
+name: 慕容藏锋剑
+kind: weapon
+sub: sword
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 姑苏慕容 · design/17 §7.2；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/murongcangfengjian
+text:
+  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; unique=true; sect=sect_murong。外观：细长直剑约七十八厘米，燕尾形护手、白丝缠柄、乌木鞘配旧银箍，刃光内敛、江南藏家旧化，完整斜置，无人物与手
+  short: 慕容藏锋剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

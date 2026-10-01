@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_mayaodai
+name: 麻绳腰带
+kind: armor
+sub: belt
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mayaodai
+text:
+  desc: 名录投影：腰带·布绳；grade=3; slot=waist; defOutK=0.05; hpMaxK=0.01。外观：灰麻编绳腰带，木质小扣，盘成一圈，朴素行旅感 （原创扩展）
+  short: 麻绳腰带
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

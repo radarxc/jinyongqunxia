@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_baihuagao
+name: 百花糕
+kind: food
+sub: food
+grade: 9
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2400
+  - op: meal
+    params:
+      value: bf_huichun:2battle
+assets:
+  icon: item/baihuagao
+text:
+  desc: 名录投影：食品·点心；grade=9; staPct=24%; meal=bf_huichun:2battle。外观：淡紫圆糕点缀可食花瓣，银边食盒，精巧小份 （原创扩展）
+  short: 百花糕
+extension:
+  type: generic
+  value: {}

@@ -3,14 +3,22 @@ id: it_jingmi
 name: 精米
 kind: material
 sub: ingredient
-grade: 1
-stack: 99
+grade: 3
+stack: 999
 chapters: any
 origin: expanded
 price: auto
-flags: [ingredient]
-assets: {icon: items/it_jingmi.webp}
-text: {desc: 烹饪常用的精制米粮。}
+flags: []
+assets:
+  icon: item/jingmi
+text:
+  desc: 名录投影：食材·谷物；grade=3; ingredientKind=grain; materialGrade=3。外观：乳白米粒盛小竹斗，少量谷壳，朴素市集尺度 （原创扩展）
+  short: 精米
 extension:
   type: material
-  value: {family: ingredient, resourceRef: res_liangshi, materialGrade: 1, rare: false, ingredientKind: grain}
+  value:
+    family: ingredient
+    resourceRef: res_liangshi_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: grain

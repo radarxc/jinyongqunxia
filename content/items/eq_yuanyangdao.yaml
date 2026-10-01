@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_yuanyangdao
+name: 鸳鸯刀
+kind: weapon
+sub: blade
+grade: 10
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《鸳鸯刀》·鸳刀 / 鸯刀；两刀长短归属 （待考）
+price: null
+flags:
+- unique
+assets:
+  icon: item/yuanyangdao
+text:
+  desc: 名录投影：兵器·刀；grade=10; cat=blade; hands=1; pair=true; divine=true; unique=true。外观：一长一短两柄单刃宝刀并置，银灰刃、成对鸳鸯纹铜镡、深红与墨黑柄缠，各自完整带鞘，无人物与手 （原创扩展装具）
+  short: 鸳鸯刀
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: true
+    catalogTian: false
+    uniqueEquipped: true

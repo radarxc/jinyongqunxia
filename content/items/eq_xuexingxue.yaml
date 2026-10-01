@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_xuexingxue
+name: 雪行靴
+kind: armor
+sub: shoes
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xuexingxue
+text:
+  desc: 名录投影：鞋·裘靴；grade=9; slot=feet; qinggong=22.5; resColdPp=6。外观：灰白皮裘长靴，宽软底与毛毡内衬，塞北雪地感 （原创扩展）
+  short: 雪行靴
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: leather
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

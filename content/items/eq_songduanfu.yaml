@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_songduanfu
+name: 宋式短斧
+kind: weapon
+sub: exotic
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·宋（《武经总要》斧类兵械） （原创扩展复原）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songduanfu
+text:
+  desc: 名录投影：兵器·奇门斧；grade=2; cat=exotic; exoticKind=axe; hands=1。外观：半月铁斧刃配六十厘米硬木柄，斧眼木楔固定、杆尾铁帽，刃缘缺口与轻锈，完整斜置，无人物与手
+  short: 宋式短斧
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

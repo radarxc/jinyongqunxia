@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_miji_canhezhi
+name: 参合指藏本
+kind: manual
+sub: partial
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·慕容氏武学；藏本 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_canhezhi
+text:
+  desc: 名录投影：秘籍·残本；grade=8; skill=sk_canhezhi; variant=partial; maxLayer=7。外观：湖蓝绢纸书衣，水阁藏书防潮布套，页口齐整 （原创扩展）
+  short: 参合指藏本
+extension:
+  type: manual
+  value:
+    skill: sk_canhezhi
+    maxLayer: 7
+    variant: partial
+    readMul: 1

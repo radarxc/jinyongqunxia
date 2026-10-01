@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_qingyulinjia
+name: 清制御前侍卫甲
+kind: armor
+sub: officialArmor
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/qingyulinjia
+text:
+  desc: 名录投影：制式盔甲·清；grade=10; slot=body; armorWeight=heavy; catalogTian=true; divine=false; unique=true; price=null; lawProfile={uniform:true,allowedIdentityTags:[sect_qinggong,office_qing_imperial_guard],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。外观：清代御前棉甲，明黄仅作窄边，铜钉、蓝黑甲片，无人物与文字 （原创扩展）
+  short: 清制御前侍卫甲
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: heavy
+    matFamily: metal
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true

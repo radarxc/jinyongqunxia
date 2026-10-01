@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_mingqingjintaosheng_nv
+name: 明青金桃绳·女
+kind: armor
+sub: belt
+grade: 4
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+- ch07_bixue
+origin: canonExpanded
+canonRef: 丝绦束腰 · 明（明代服饰文献与人物画）· 出现书界 ch05/ch06/ch07 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingqingjintaosheng_nv
+text:
+  desc: 名录投影：腰带·丝绦；grade=4; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01。外观：女款天青丝绦作松弧陈列，双股编绳、鎏金桃形绦环、两端细密穗子，无字无腰包，明代士绅女装尺度
+  short: 明青金桃绳·女
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

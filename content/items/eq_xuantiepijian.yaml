@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_xuantiepijian
+name: 玄铁披肩
+kind: armor
+sub: shoulder
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xuantiepijian
+text:
+  desc: 名录投影：护肩·金属；grade=9; slot=shoulder; defOutK=0.025; tough=4。外观：乌铁双肩甲与短链相连，厚重圆弧、无夸张尖角 （原创扩展）
+  short: 玄铁披肩
+extension:
+  type: equipment
+  value:
+    slot: shoulder
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

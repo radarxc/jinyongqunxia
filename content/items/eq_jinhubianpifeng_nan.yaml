@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_jinhubianpifeng_nan
+name: 金狐边披风·男
+kind: armor
+sub: cape
+grade: 5
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 狐裘、盘领衣 · 金（《金史·舆服志》）· 出现书界 ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jinhubianpifeng_nan
+text:
+  desc: 名录投影：披风·裘披；grade=5; slot=cape; wearer=male; defOutK=0.025; hpMaxK=0.005; resColdPp=3。外观：男款墨绿粗绢披风单件完整铺展，盘领、左襟暗扣、灰狐窄边，直摆及膝无纹，金代女真武人尺度
+  short: 金狐边披风·男
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

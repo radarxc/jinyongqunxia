@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_lengyuedao
+name: 冷月宝刀
+kind: weapon
+sub: blade
+grade: 10
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《飞狐外传》《雪山飞狐》·胡一刀 / 胡斐一脉，流转 （待考）
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/lengyuedao
+text:
+  desc: 名录投影：兵器·刀；grade=10; cat=blade; hands=1; divine=true; unique=true; sect=sect_hujia。外观：冷银微弧刀刃如弦月，刃约八十厘米，素铁圆镡、深蓝丝缠柄、旧黑鞘，寒光只作金属反光，完整斜置，无人物与手 （原创扩展形制）
+  short: 冷月宝刀
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: true
+    catalogTian: false
+    uniqueEquipped: true

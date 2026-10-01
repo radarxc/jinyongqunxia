@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_zhugutieshan
+name: 竹骨铁扇
+kind: weapon
+sub: exotic
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·明清折扇形短兵；战斗器形 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/zhugutieshan
+text:
+  desc: 名录投影：兵器·奇门扇；grade=4; cat=exotic; exoticKind=fan; hands=1。外观：闭合折扇长约三十五厘米，外侧铁骨、内层深青素绢、黄铜扇钉，边角磨旧，机括闭合，无人物与手
+  short: 竹骨铁扇
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

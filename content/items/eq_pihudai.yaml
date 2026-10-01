@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_pihudai
+name: 皮护腰
+kind: armor
+sub: belt
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/pihudai
+text:
+  desc: 名录投影：腰带·皮革；grade=3; slot=waist; tough=2。外观：深褐宽皮带、黄铜方扣、细密缝线，无现代针扣造型 （原创扩展）
+  short: 皮护腰
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: leather
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

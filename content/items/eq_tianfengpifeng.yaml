@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_tianfengpifeng
+name: 天风披风
+kind: armor
+sub: cape
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/tianfengpifeng
+text:
+  desc: 名录投影：披风·宝披；grade=10; slot=cape; catalogTian=true; divine=false; unique=true; price=null; eva=6; mov=1。外观：月白轻绢长披风，风纹暗织，完整铺展、轻盈无发光 （原创扩展）
+  short: 天风披风
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true

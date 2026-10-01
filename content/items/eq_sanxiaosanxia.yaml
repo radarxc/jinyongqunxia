@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_sanxiaosanxia
+name: 三笑逍遥散匣
+kind: hidden
+sub: powder
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·星宿派三笑逍遥散；专用匣体 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/sanxiaosanxia
+text:
+  desc: 名录投影：暗器·毒粉匣；grade=8; hiddenKind=powder; ammoMul=1.160; hiddenHit=6.6; perBattle=3; onHit=bf_sanxiao; unique=true; sect=sect_xingxiu。外观：三格乌木粉匣完全闭合，格盖各嵌一枚素银圆点、边缘有密封蜡痕，不露粉末、不写字，无人物、手、投撒或中毒场景
+  short: 三笑逍遥散匣
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: powder
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

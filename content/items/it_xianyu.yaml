@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_xianyu
+name: 鲜鱼
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/xianyu
+text:
+  desc: 名录投影：食材·水产；grade=3; ingredientKind=fish; materialGrade=3。外观：银灰河鱼一尾置青竹叶，鳞光克制，尺许长 （原创扩展）
+  short: 鲜鱼
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: fish

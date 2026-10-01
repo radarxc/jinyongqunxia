@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: it_tianxiangyulu
+name: 天香玉露羹
+kind: food
+sub: food
+grade: 10
+stack: 9
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2800
+  - op: meal
+    params:
+      value: bf_huichun,bf_huinei:3battle
+assets:
+  icon: item/tianxiangyulu
+text:
+  desc: 名录投影：食品·汤羹；grade=10; staPct=28%; meal=bf_huichun,bf_huinei:3battle; uniqueBatch=true。外观：羊脂玉碗盛半透明淡金羹，莲子与花瓣可辨，碗径一掌 （原创扩展）
+  short: 天香玉露羹
+extension:
+  type: generic
+  value: {}

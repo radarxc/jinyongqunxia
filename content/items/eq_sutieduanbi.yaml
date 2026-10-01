@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_sutieduanbi
+name: 素铁短匕
+kind: weapon
+sub: exotic
+grade: 1
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·宋元短兵 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/sutieduanbi
+text:
+  desc: 名录投影：兵器·奇门匕；grade=1; cat=exotic; exoticKind=dagger; hands=1。外观：双刃铁匕全长约三十厘米，无护手、木片夹柄麻缠、素皮鞘，轻锈旧化，完整横斜置，无人物与手
+  short: 素铁短匕
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_buyi
+name: 粗布短褐
+kind: armor
+sub: clothing
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/buyi
+text:
+  desc: 名录投影：衣物·便服；grade=3; slot=body; armorWeight=light; eva=2xG。外观：灰褐交领短褐折叠平置，粗麻纹、布结系带，宋元通用平民感 （原创扩展）
+  short: 粗布短褐
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

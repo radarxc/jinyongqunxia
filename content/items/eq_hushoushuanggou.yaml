@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_hushoushuanggou
+name: 护手双钩
+kind: weapon
+sub: exotic
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·清代武术钩，确切定型年代 （待考）；定级 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/hushoushuanggou
+text:
+  desc: 名录投影：兵器·奇门钩；grade=4; cat=exotic; exoticKind=hook; hands=1; pair=true。外观：一对钢钩并置，月牙护手、直刃钩尖与短尖柄尾，单件约九十厘米，灰钢旧亮，轮廓互不遮挡，无人物与手
+  short: 护手双钩
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

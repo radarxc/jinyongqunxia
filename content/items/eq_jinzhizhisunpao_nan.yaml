@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_jinzhizhisunpao_nan
+name: 金织质孙袍·男
+kind: armor
+sub: clothing
+grade: 9
+stack: 1
+chapters:
+- ch04_yitian
+origin: canonExpanded
+canonRef: 质孙服 · 元（《元史·舆服志》）· 出现书界 ch04 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jinzhizhisunpao_nan
+text:
+  desc: 名录投影：衣物·礼服；grade=9; slot=body; armorWeight=light; wearer=male; cha=2。外观：男款大红织金右衽窄袖质孙袍单件平展，腰间密褶、膝下长摆、窄金锦缘，无字纹，元代贵族宴服尺度
+  short: 金织质孙袍·男
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

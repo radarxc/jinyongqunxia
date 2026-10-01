@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_wuyepifeng
+name: 乌夜披风
+kind: armor
+sub: cape
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/wuyepifeng
+text:
+  desc: 名录投影：披风·潜行；grade=6; slot=cape; nightExposure=-10%; eva=2。外观：墨黑偏蓝连帽披风单件平置，哑光薄布、无人物 （原创扩展）
+  short: 乌夜披风
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

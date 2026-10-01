@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_bawangqiang
+name: 霸王枪
+kind: weapon
+sub: spear
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 古龙《七种武器·霸王枪》
+price: null
+flags:
+- unique
+assets:
+  icon: item/bawangqiang
+text:
+  desc: 名录投影：兵器·枪；grade=10; cat=spear; hands=2; tags=heavy; catalogTian=true; divine=false; unique=true; price=null。外观：粗长黑木枪杆、沉厚菱形钢枪头、旧铜箍，约两人高 （原创扩展）
+  short: 霸王枪
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - heavy
+    matFamily: metal
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true

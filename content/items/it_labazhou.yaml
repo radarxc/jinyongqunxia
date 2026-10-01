@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: it_labazhou
+name: 腊八粥
+kind: food
+sub: food
+grade: 9
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《侠客行》·侠客岛
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: permMaxPct
+    params:
+      mpMaxBp: 200
+  - op: sxpGrant
+    params:
+      pctNextBp: 3500
+assets:
+  icon: item/labazhou
+text:
+  desc: 名录投影：食品·汤羹；grade=9; perm.mpMaxPct=2%; sxpGrant=0.35。外观：深褐药粥盛厚青石碗，谷粒草叶可辨，热气极淡
+  short: 腊八粥
+extension:
+  type: generic
+  value: {}

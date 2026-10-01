@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_tianmalv
+name: 天马履
+kind: armor
+sub: shoes
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/tianmalv
+text:
+  desc: 名录投影：鞋·宝履；grade=10; slot=feet; qinggong=25; catalogTian=true; divine=false; unique=true; price=null; jump=1。外观：珠白轻皮靴，浅金马鬃纹压花，无翅膀造型，修长轻巧 （原创扩展）
+  short: 天马履
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true

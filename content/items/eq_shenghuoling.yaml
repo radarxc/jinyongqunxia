@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_shenghuoling
+name: 圣火令
+kind: weapon
+sub: exotic
+grade: 10
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》·波斯三使 / 明教；令牌枚数与材质 （待考）
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/shenghuoling
+text:
+  desc: 名录投影：兵器·奇门令；grade=10; cat=exotic; exoticKind=token; hands=1; divine=true; unique=true; sect=sect_mingjiao。外观：一组硬质短令以单件主令居中并置，约前臂长，非金非玉般深灰表面、弧边异形且刻痕不可读，完整剪影，无人物与手 （原创扩展表现）
+  short: 圣火令
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: true
+    catalogTian: false
+    uniqueEquipped: true

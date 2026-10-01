@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_songyangkuojian
+name: 嵩阳阔剑
+kind: weapon
+sub: sword
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 嵩山 · design/17 §6.6；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/songyangkuojian
+text:
+  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; unique=true; sect=sect_songshan。外观：阔身直剑约八十厘米，厚脊双刃、方正铁镡、黄色丝缠柄与黑鞘，装具端严、刃面有寒霜般锻纹，完整斜置，无人物与手
+  short: 嵩阳阔剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

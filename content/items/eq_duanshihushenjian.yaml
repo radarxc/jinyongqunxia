@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_duanshihushenjian
+name: 段氏护身剑
+kind: weapon
+sub: sword
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 大理段氏 · design/17 §7.1；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/duanshihushenjian
+text:
+  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; unique=true; sect=sect_dali。外观：大理式直剑约七十厘米，银质花叶小镡、深红丝缠柄、黑漆鞘嵌素银箍，纹样克制不写字，完整斜置，无人物与手
+  short: 段氏护身剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

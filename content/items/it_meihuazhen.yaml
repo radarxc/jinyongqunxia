@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_meihuazhen
+name: 梅花针
+kind: ammo
+sub: needle
+grade: 6
+stack: 99
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: field
+  action: load
+  target: self
+  effects: []
+assets:
+  icon: item/meihuazhen
+text:
+  desc: 名录投影：暗器·针；grade=6; hiddenKind=needle; ammoMul=1.09; hiddenHit=5.1。外观：五枚细钢针排成梅花但不带文字，蓝布针套，针长半掌 （原创扩展）
+  short: 梅花针
+extension:
+  type: generic
+  value: {}

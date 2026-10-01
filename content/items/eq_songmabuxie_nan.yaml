@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_songmabuxie_nan
+name: 宋麻布鞋·男
+kind: armor
+sub: shoes
+grade: 1
+stack: 1
+chapters:
+- ch01_tianlong
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 麻鞋 · 宋（《宋史·舆服志》士庶服、宋代风俗图像）· 出现书界 ch01/ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songmabuxie_nan
+text:
+  desc: 名录投影：鞋·麻鞋；grade=1; slot=feet; wearer=male; qinggong=2.5。外观：男款灰褐麻布鞋一双并置，宽圆头、千层麻底、粗线纳缝与轻磨损，无纹无字，成年足长、宋代庶民尺度
+  short: 宋麻布鞋·男
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

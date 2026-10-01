@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_tianchanbaoyi
+name: 天蚕宝衣
+kind: armor
+sub: clothing
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/tianchanbaoyi
+text:
+  desc: 名录投影：衣物·宝衣；grade=10; slot=body; armorWeight=light; catalogTian=true; divine=false; unique=true; price=null; defOutPct=8%。外观：珠白丝织长衣，极细金丝经纬、柔软可折叠，珍贵但不发光 （原创扩展）
+  short: 天蚕宝衣
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_tiedan
+name: 铁胆
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《书剑恩仇录》·周仲英 （待考：核器物细节）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tiedan
+text:
+  desc: 名录投影：兵器·奇门；grade=6; cat=exotic; exoticKind=misc; hands=1。外观：一对乌黑实心铁球，掌心大小，表面磨亮无雕字 （原创扩展形制）
+  short: 铁胆
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

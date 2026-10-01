@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: it_furonggao
+name: 芙蓉糕
+kind: food
+sub: food
+grade: 6
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 《书剑恩仇录》江南饮食意象；物品 （原创扩展）
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1700
+  - op: applyBuff
+    params:
+      value: bf_ningshen:1battle
+assets:
+  icon: item/furonggao
+text:
+  desc: 名录投影：食品·点心；grade=6; staPct=17%; buff=bf_ningshen:1battle。外观：粉白双层花形糕，浅青瓷盘，细腻蒸糕质感 （原创扩展）
+  short: 芙蓉糕
+extension:
+  type: generic
+  value: {}

@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_tongxidilongwan
+name: 通犀地龙丸
+kind: tonic
+sub: tonic
+grade: 9
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·欧阳锋所制辟毒奇药
+price: auto
+flags:
+- runtimeProjection
+- unique
+use:
+  context: field
+  action: consume
+  target: self
+  effects: []
+assets:
+  icon: item/tongxidilongwan
+text:
+  desc: 名录投影：补品·抗毒；grade=9; carry.resPoisonPp=8; carry.resGuPp=4; unique=true。外观：琥珀色药丸一枚置犀角色小匣，西域卷草纹，凝润质感 （原创扩展）
+  short: 通犀地龙丸
+extension:
+  type: generic
+  value: {}

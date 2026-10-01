@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_huangmagua
+name: 黄马褂
+kind: armor
+sub: clothing
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《鹿鼎记》·御赐黄马褂
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huangmagua
+text:
+  desc: 名录投影：衣物·礼服；grade=6; slot=body; armorWeight=light; dialogue.gov=15。外观：清代明黄色短褂单件平展，盘扣、深蓝滚边，不画补子文字 （原创扩展形制）
+  short: 黄马褂
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

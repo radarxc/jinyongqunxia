@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_xiaolifeidao
+name: 小李飞刀
+kind: hidden
+sub: dart
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 古龙《多情剑客无情剑》
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/xiaolifeidao
+text:
+  desc: 名录投影：暗器·飞刀；grade=10; hiddenKind=dart; catalogTian=true; divine=false; unique=true; price=null; perBattle=1; hiddenHit=8.4。外观：一柄极简柳叶飞刀，银灰薄刃、无护手、黑木短柄，掌长 （原创扩展）
+  short: 小李飞刀
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true

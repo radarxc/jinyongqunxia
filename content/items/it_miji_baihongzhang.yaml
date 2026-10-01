@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_miji_baihongzhang
+name: 白虹掌力藏本
+kind: manual
+sub: partial
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·李秋水武学；藏本 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_baihongzhang
+text:
+  desc: 名录投影：秘籍·残本；grade=9; skill=sk_baihongzhang; variant=partial; maxLayer=7。外观：月白薄册带淡虹色纤维，不发光，曼陀山庄精致藏书感 （原创扩展）
+  short: 白虹掌力藏本
+extension:
+  type: manual
+  value:
+    skill: sk_baihongzhang
+    maxLayer: 7
+    variant: partial
+    readMul: 1

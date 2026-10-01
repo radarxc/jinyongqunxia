@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_ezuijian
+name: 鳄嘴剪
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《天龙八部》·南海鳄神岳老三
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/ezuijian
+text:
+  desc: 名录投影：兵器·奇门剪；grade=6; cat=exotic; exoticKind=misc; hands=1; unique=true。外观：鳄口般上下咬合的重铁剪约七十厘米，齿缘克制、双环握柄与铆轴清楚，暗铁旧化，闭合斜置，无人物与手 （原创扩展形制）
+  short: 鳄嘴剪
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

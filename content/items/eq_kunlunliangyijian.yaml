@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_kunlunliangyijian
+name: 昆仑两仪剑
+kind: weapon
+sub: sword
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 昆仑 · design/17 §6.3；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/kunlunliangyijian
+text:
+  desc: 名录投影：兵器·剑；grade=9; cat=sword; hands=1; pair=true; unique=true; sect=sect_kunlun。外观：一黑一白两柄同制直剑平行并置，刃约七十五厘米，圆镡分阴阳双色但无图文字样，各自完整带鞘，雪尘旧化，无人物与手
+  short: 昆仑两仪剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

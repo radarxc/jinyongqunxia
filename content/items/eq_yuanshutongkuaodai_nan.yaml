@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_yuanshutongkuaodai_nan
+name: 元鎏银铜銙带·男
+kind: armor
+sub: belt
+grade: 5
+stack: 1
+chapters:
+- ch04_yitian
+origin: canonExpanded
+canonRef: 束带 · 元（《元史·舆服志》）· 出现书界 ch04 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanshutongkuaodai_nan
+text:
+  desc: 名录投影：腰带·金属；grade=5; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01。外观：男款赤褐革束带盘成一圈，鎏银铜銙、小型金属钩与双铊尾式垂端结构清楚，无悬物无字，元代中阶武官尺度
+  short: 元鎏银铜銙带·男
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

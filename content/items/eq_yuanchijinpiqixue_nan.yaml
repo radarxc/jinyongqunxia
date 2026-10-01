@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_yuanchijinpiqixue_nan
+name: 元赤金皮骑靴·男
+kind: armor
+sub: shoes
+grade: 8
+stack: 1
+chapters:
+- ch04_yitian
+origin: canonExpanded
+canonRef: 蒙古皮靴 · 元（《元史·舆服志》、蒙元服饰图像）· 出现书界 ch04 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanchijinpiqixue_nan
+text:
+  desc: 名录投影：鞋·骑靴；grade=8; slot=feet; wearer=male; qinggong=20。外观：男款绛红软皮骑靴一双并置，圆翘鞋头、高靿、侧缝与鎏金窄包边，皮底耐磨无字，成年足长、元代贵族骑乘尺度
+  short: 元赤金皮骑靴·男
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

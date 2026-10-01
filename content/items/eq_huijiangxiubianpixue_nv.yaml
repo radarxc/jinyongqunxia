@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_huijiangxiubianpixue_nv
+name: 回疆绣边皮靴·女
+kind: armor
+sub: shoes
+grade: 4
+stack: 1
+chapters:
+- ch10_baima
+- ch12_shujian
+origin: canonExpanded
+canonRef: 回部女靴 · 清（《皇清职贡图》）· 出现书界 ch10/ch12 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huijiangxiubianpixue_nv
+text:
+  desc: 名录投影：鞋·皮靴；grade=4; slot=feet; wearer=female; qinggong=10。外观：女款枣红软皮靴一双并置，圆翘鞋头、中靿、蓝绿几何绣边与薄皮底，无字，成年足长、清代回疆城镇女装尺度
+  short: 回疆绣边皮靴·女
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: leather
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

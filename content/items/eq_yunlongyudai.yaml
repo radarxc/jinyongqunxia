@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_yunlongyudai
+name: 云龙玉带
+kind: armor
+sub: belt
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yunlongyudai
+text:
+  desc: 名录投影：腰带·玉带；grade=9; slot=waist; cha=2; talk=5。外观：月白锦带嵌和田玉板，云纹浅雕、不画完整龙形 （原创扩展）
+  short: 云龙玉带
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: jade
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

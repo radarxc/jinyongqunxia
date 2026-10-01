@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_tianlongsijiedao
+name: 天龙寺戒刀
+kind: weapon
+sub: blade
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 天龙寺 · design/17 §5.3；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/tianlongsijiedao
+text:
+  desc: 名录投影：兵器·刀；grade=9; cat=blade; hands=1; unique=true; sect=sect_tianlongsi。外观：短直背戒刀约六十厘米，圆头近尖、黄铜莲瓣镡、深木柄麻缠、旧皮鞘，寺院烟熏痕克制，完整斜置，无人物与手
+  short: 天龙寺戒刀
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

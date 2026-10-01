@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_yuanmengqiqiang
+name: 元蒙骑枪
+kind: weapon
+sub: spear
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·元蒙骑兵 （原创扩展复原）
+price: auto
+flags: []
+assets:
+  icon: item/yuanmengqiqiang
+text:
+  desc: 名录投影：兵器·枪；grade=4; cat=spear; hands=2; tags=long。外观：细长菱锋配韧木杆，通长约二点七米，枪锋下短缨、杆尾皮套与铁鐏，风沙旧化，完整斜置留足两端，无人物与手
+  short: 元蒙骑枪
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

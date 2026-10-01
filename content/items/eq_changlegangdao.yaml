@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_changlegangdao
+name: 长乐帮刀
+kind: weapon
+sub: blade
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 长乐帮 · design/17 §8.3；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/changlegangdao
+text:
+  desc: 名录投影：兵器·刀；grade=8; cat=blade; hands=1; unique=true; sect=sect_changlebang。外观：明代帮会宽背腰刀，刃约七十厘米，方形铁镡、褐皮柄与黑漆鞘，刀背厚重、使用缺口克制，无帮徽文字，完整斜置，无人物与手
+  short: 长乐帮刀
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

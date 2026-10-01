@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_dalijingxiulv_nv
+name: 大理锦绣履·女
+kind: armor
+sub: shoes
+grade: 6
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 大理国女履 · 大理（《张胜温画卷》服饰图像）· 出现书界 ch01 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/dalijingxiulv_nv
+text:
+  desc: 名录投影：鞋·绣履；grade=6; slot=feet; wearer=female; qinggong=15。外观：女款青绿锦面软履一双并置，圆翘鞋头、薄皮底、银线莲瓣与绛红窄边，无文字，成年足长、宋代大理贵族尺度
+  short: 大理锦绣履·女
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

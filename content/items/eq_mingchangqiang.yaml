@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_mingchangqiang
+name: 明军长枪
+kind: weapon
+sub: spear
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·明（《纪效新书·长兵短用说篇》） （原创扩展定级）
+price: auto
+flags: []
+assets:
+  icon: item/mingchangqiang
+text:
+  desc: 名录投影：兵器·枪；grade=5; cat=spear; hands=2; tags=long。外观：小而锐的钢枪头配根粗梢细长杆，通长约三米，短红缨、铁尾鐏，杆腰保留弹性，完整斜置留足两端，无人物与手 （原创扩展尺度）
+  short: 明军长枪
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

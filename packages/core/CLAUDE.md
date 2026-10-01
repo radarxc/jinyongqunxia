@@ -67,6 +67,29 @@
 - UI 只读取 `StoryRuntimeSnapshot.wait` 及事件，不自行判条件或推进节点；地图触发后
   由 host 校验锚点与当前剧情前沿，再调用对应剧情命令。
 
+## 物品、世界物与商店入口
+
+- ENG-07 背包 UI：`economy` 导出 `InventoryRuntime`、`addInventory()`、`removeInventory()`；
+  `count()` / `item()` 为 O(1)，`query({kind,minimumGrade,maximumGrade}, sort)` 支持分类、品阶与 ID
+  稳定排序。提交状态只取 `snapshot()`，不得序列化内部 `Map` / `Set`。
+- ENG-07 装备 UI：`equipItem()`、`unequipItem()` 以完整物品定义和 `EquipmentRule[]` 做原子换装；
+  `deriveEquipmentPanel()` 从基础面板重算十一槽修饰。成对兵器占主副手，双手兵器仅与
+  `offHandRole:hiddenCarrier` 共存。十一槽固定为 `mainHand/offHand/head/body/innerBody/hands/`
+  `shoulder/cape/waist/feet/accessory`。
+- ENG-07 使用物品：`useConsumable()` 返回新背包、目标、`ConsumableUseState`、`fieldTime` 与事件；
+  永久经脉强化唯一调用 `progression.applyMeridianBoost()`，临时冲穴药效写入 `meridianAids`。
+  UI / 战斗层负责持久化并在新战斗时清空 `battleUses`；章节结束时清空整份使用账本。
+- ENG-08 探索与城镇：`WorldItemsRuntime` 按场景分桶，`get()` / `queryScene()` 应用于场景 ID、
+  锚点、tick 窗口和旗标可见性，`pickup()` 原子返回背包与已取快照。`checkUniformExposure()`
+  产生官甲六字段事件并返回执法状态；普通城门只调用 `canEnterNormalCityGate()`。
+- ENG-09 战斗：物品行动调用 `useConsumable()`；未知效果保留在 `temporaryEffects` 供 Buff / 武学层
+  解释，`economy` 不重定义效果。传入自身正常行动 `battleTurnToken` 以执行单品冷却；
+  `BattleInventoryState` 另校验全场总次数，调用后持久化返回的单品账本。世界拾取继续复用
+  `pickupWorldItem()`，不要直接改 `pickedUp`。
+- 店铺：`ShopRuntime` 以 `GameClock.dayIndex` 补货；`offer()`、`buy()`、`sell()` 使用整型 bp，
+  全部倍率合并后按 `round10(x)=10*floor((x+5)/10)` 取整。条件货单必须显式注入
+  `ShopConditionEvaluator`；没有求值器时条件货不可供货。
+
 ## 验证命令
 
 - 包内：`pnpm --filter @tianshu/core lint`、`pnpm --filter @tianshu/core test`、`pnpm --filter @tianshu/core typecheck`。

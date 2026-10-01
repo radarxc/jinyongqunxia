@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_zhenwujian
+name: 真武剑
+kind: weapon
+sub: sword
+grade: 10
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《笑傲江湖》·张三丰佩剑、武当镇山之宝；外形 （待考）
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/zhenwujian
+text:
+  desc: 名录投影：兵器·剑；grade=10; cat=sword; hands=1; catalogTian=true; divine=false; unique=true; price=null; sect=sect_wudang。外观：古朴直剑约八十厘米，深灰钢刃、如意形铁镡、黑丝缠柄与鲨鱼皮纹鞘，旧而无锈、无可读铭文，完整斜置，无人物与手 （原创扩展形制）
+  short: 真武剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true

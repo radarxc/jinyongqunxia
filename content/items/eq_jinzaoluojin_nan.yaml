@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_jinzaoluojin_nan
+name: 金皂罗方顶巾·男
+kind: armor
+sub: headwear
+grade: 5
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 方顶巾 · 金（《金史·舆服志》）· 出现书界 ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jinzaoluojin_nan
+text:
+  desc: 名录投影：头饰·巾；grade=5; slot=head; wearer=male; effRes=3。外观：男款皂罗方顶巾独立陈列，不画人头，方顶十字缝、后折垂、两角各缀方罗与短带，黑纱匀净，金代贵显尺度
+  short: 金皂罗方顶巾·男
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

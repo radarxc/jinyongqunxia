@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_qingjin
+name: 青布头巾
+kind: armor
+sub: headwear
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingjin
+text:
+  desc: 名录投影：头饰·巾；grade=3; slot=head; effRes=2。外观：青灰长方头巾打成软结，无人物，棉麻纹理 （原创扩展）
+  short: 青布头巾
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

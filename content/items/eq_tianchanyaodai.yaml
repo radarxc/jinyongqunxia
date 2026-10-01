@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_tianchanyaodai
+name: 天蚕腰带
+kind: armor
+sub: belt
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/tianchanyaodai
+text:
+  desc: 名录投影：腰带·丝带；grade=10; slot=waist; catalogTian=true; divine=false; unique=true; price=null; tough=6; poisonResPp=6。外观：珠灰蚕丝宽带，银线细密经纬、白玉扣，柔韧无荧光 （原创扩展）
+  short: 天蚕腰带
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_miji_luohanquan
+name: 罗汉拳谱
+kind: manual
+sub: full
+grade: 1
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》等·少林武学；载体 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_luohanquan
+text:
+  desc: 名录投影：秘籍·全本；grade=1; skill=sk_luohanquan; variant=full; maxLayer=10。外观：素黄薄纸册，四眼细订线，空题签，边角轻磨，掌心略大 （原创扩展）
+  short: 罗汉拳谱
+extension:
+  type: manual
+  value:
+    skill: sk_luohanquan
+    maxLayer: 10
+    variant: full
+    readMul: 1

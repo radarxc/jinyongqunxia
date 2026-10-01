@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_dajingangzhang
+name: 大金刚掌秘籍
+kind: manual
+sub: full
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_dajingangzhang
+text:
+  desc: 名录投影：秘籍·全本；grade=7; skill=sk_dajingangzhang; variant=full; maxLayer=10。外观：深赭纸书衣，金泥仅作窄边且无字，四眼线装，庄重不华丽 （原创扩展）
+  short: 大金刚掌秘籍
+extension:
+  type: manual
+  value:
+    skill: sk_dajingangzhang
+    maxLayer: 10
+    variant: full
+    readMul: 1

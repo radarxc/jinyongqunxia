@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_linpijian
+name: 鳞片护肩
+kind: armor
+sub: shoulder
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/linpijian
+text:
+  desc: 名录投影：护肩·鳞甲；grade=6; slot=shoulder; defOutK=0.025; resBleedPp=3。外观：小铁鳞覆深蓝布底的一对护肩，片缘磨亮 （原创扩展）
+  short: 鳞片护肩
+extension:
+  type: equipment
+  value:
+    slot: shoulder
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

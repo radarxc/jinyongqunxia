@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_sengyi
+name: 素色僧衣
+kind: armor
+sub: clothing
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/sengyi
+text:
+  desc: 名录投影：衣物·袍服；grade=3; slot=body; armorWeight=light; resMindPp=2。外观：灰黄交领僧衣整齐叠置，棉麻哑光，不画袈裟文字与人物 （原创扩展）
+  short: 素色僧衣
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_sanjiegun
+name: 三节棍
+kind: weapon
+sub: whip
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/sanjiegun
+text:
+  desc: 名录投影：兵器·鞭索；grade=6; cat=whip; hands=1。外观：三段枣木以短铁链相连，收拢平置，单段约前臂长
+  short: 三节棍
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: whip
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

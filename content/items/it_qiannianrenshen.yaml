@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_qiannianrenshen
+name: 千年人参
+kind: material
+sub: herb
+grade: 10
+stack: 999
+chapters: any
+origin: expanded
+price: null
+flags:
+- unique
+assets:
+  icon: item/qiannianrenshen
+text:
+  desc: 名录投影：药材·人参；grade=10; herbFamily=renShen; ageYears=1000; materialGrade=10; unique=true。外观：巨大老参盘须如人形，古木匣与旧绢，干润自然无神光 （原创扩展）
+  short: 千年人参
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di5
+    materialGrade: 10
+    rare: true
+    herbFamily: renShen
+    ageYears: 1000

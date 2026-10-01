@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_eweibian
+name: 鳄尾鞭
+kind: weapon
+sub: whip
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《天龙八部》·南海鳄神岳老三
+price: auto
+flags:
+- unique
+assets:
+  icon: item/eweibian
+text:
+  desc: 名录投影：兵器·鞭索；grade=6; cat=whip; hands=1; unique=true。外观：深褐粗皮长鞭约二米半，节纹似鳄尾但不写实，短铁柄与尾梢铜坠，松弧完整展开，无人物与手 （原创扩展形制）
+  short: 鳄尾鞭
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: whip
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

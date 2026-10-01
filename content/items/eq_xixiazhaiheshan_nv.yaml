@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_xixiazhaiheshan_nv
+name: 西夏窄褙衫·女
+kind: armor
+sub: clothing
+grade: 4
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 窄袖褙子 · 西夏（榆林窟第29窟女供养人像）· 出现书界 ch01 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xixiazhaiheshan_nv
+text:
+  desc: 名录投影：衣物·胡服；grade=4; slot=body; armorWeight=light; wearer=female; effRes=2。外观：女款赭红交领右衽窄袖褙衫单件平展，短衫配低饱和百褶裙，黑色窄缘与布系带，无佛像纹，西夏城镇女装尺度
+  short: 西夏窄褙衫·女
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

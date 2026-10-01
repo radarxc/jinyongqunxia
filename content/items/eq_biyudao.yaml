@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_biyudao
+name: 碧玉刀
+kind: weapon
+sub: blade
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 古龙《七种武器·碧玉刀》
+price: auto
+flags:
+- unique
+assets:
+  icon: item/biyudao
+text:
+  desc: 名录投影：兵器·刀；grade=9; cat=blade; hands=1; unique=true。外观：碧玉色刀装配窄直背短刀，玉质集中在柄与鞘，非整刃翡翠 （原创扩展）
+  short: 碧玉刀
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_qiannianxuelian
+name: 千年雪莲
+kind: material
+sub: herb
+grade: 10
+stack: 999
+chapters: any
+origin: expanded
+price: null
+flags:
+- unique
+assets:
+  icon: item/qiannianxuelian
+text:
+  desc: 名录投影：药材·雪莲；grade=10; herbFamily=xueLian; ageYears=1000; materialGrade=10; unique=true。外观：多层银白花瓣与苍青老根，寒玉匣衬旧绢，花冠约一掌宽 （原创扩展）
+  short: 千年雪莲
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_tian9
+    materialGrade: 10
+    rare: true
+    herbFamily: xueLian
+    ageYears: 1000

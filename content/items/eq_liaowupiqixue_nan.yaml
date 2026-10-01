@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_liaowupiqixue_nan
+name: 辽乌皮骑靴·男
+kind: armor
+sub: shoes
+grade: 7
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 契丹国服靴 · 辽（《辽史·仪卫志》）· 出现书界 ch01 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/liaowupiqixue_nan
+text:
+  desc: 名录投影：鞋·骑靴；grade=7; slot=feet; wearer=male; qinggong=17.5。外观：男款乌黑细皮骑靴一双并置，微翘圆头、高靿、内侧系带与厚皮底，靴口黑绿窄缘无字，成年足长、辽代贵族骑乘尺度
+  short: 辽乌皮骑靴·男
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,37 @@
+schemaVersion: item.v1
+id: it_tianxiangduanxujiao
+name: 天香断续胶
+kind: pill
+sub: medicine
+grade: 7
+stack: 99
+chapters: any
+origin: canon
+canonRef: 《笑傲江湖》·恒山派疗伤药
+price: auto
+flags: []
+use:
+  context: both
+  action: consume
+  target: self
+  effects:
+  - op: healPct
+    params:
+      valueBp: 600
+  - op: dispel
+    params:
+      tags:
+      - bleed
+      - injury.bone
+      grade: 7
+  - op: applyBuff
+    params:
+      value: bf_huoluo
+assets:
+  icon: item/tianxiangduanxujiao
+text:
+  desc: 名录投影：药物·接骨外敷；grade=7; healPct=6%; dispel=bleed,injury.bone:g7; buff=bf_huoluo。外观：乳白半透明胶膏置青白瓷盒，浅金油纸，清雅恒山气质 （原创扩展）
+  short: 天香断续胶
+extension:
+  type: generic
+  value: {}

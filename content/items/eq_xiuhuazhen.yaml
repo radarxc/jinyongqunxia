@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_xiuhuazhen
+name: 绣花针
+kind: weapon
+sub: exotic
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《笑傲江湖》·东方不败以一枚绣花针对敌
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/xiuhuazhen
+text:
+  desc: 名录投影：兵器·奇门针；grade=9; cat=exotic; exoticKind=misc; hands=1; unique=true; sect=sect_riyue。外观：一枚细长银针置于暗红绸垫中央，针长约十厘米，尾孔穿短红线以辨尺度，针体完整，无手、人物或命中场景 （原创扩展陈设）
+  short: 绣花针
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
