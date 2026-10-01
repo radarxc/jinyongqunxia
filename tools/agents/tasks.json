@@ -29532,17 +29532,17 @@
     "ART-item-manuals",
     "ART-item-weapons",
     "ART-item-clothing",
-    "ART-item-armor",
     "ART-item-innerarmor",
     "ART-item-accessories",
     "ART-item-shoes",
-    "ART-item-belts",
-    "ART-item-hidden-weapons"
+    "ART-item-belts"
    ],
    "review": false,
    "web": false,
    "full_checkout": true,
-   "vars": {},
+   "vars": {
+    "note": "盔甲 / 暗器两类图改由作者的 agent 按 assets/default/prompts/INDEX.md 重出，入库后再跑一次本工具补它们的小图"
+   },
    "writes": [
     "assets/default/item/*/icons/**",
     "assets/default/item/*/layers/**",
