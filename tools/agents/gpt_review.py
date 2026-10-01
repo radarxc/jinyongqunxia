@@ -14,6 +14,7 @@
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -134,6 +135,14 @@ def main():
     if rc != 0 or first not in ("VERDICT: PASS", "VERDICT: FAIL"):
         print(f"REVIEW-ERROR：退出码 {rc}，结论行 {first!r}（{mins:.1f} 分钟）；可重跑本脚本")
         return 2
+    # 审核没真正执行检查就下 FAIL（"尚未执行 / 尚未核实 / 未能运行"）：按审核失败重跑，不当作返修意见
+    if first == "VERDICT: FAIL":
+        body = out.read_text(encoding="utf-8")
+        bad = [ln for ln in body.splitlines() if ("不通过" in ln or "❌" in ln) and re.search(r"尚未(执行|核实|运行|逐张|确认)|未能(执行|运行)|没有执行", ln)]
+        real = [ln for ln in body.splitlines() if ("不通过" in ln or "❌" in ln)]
+        if bad and len(bad) == len(real):
+            print(f"REVIEW-ERROR：结论为 FAIL 但 {len(bad)} 条不通过都写着“尚未执行 / 核实”，视为审核未完成（{mins:.1f} 分钟）；可重跑本脚本")
+            return 2
     print(f"{first}（{mins:.1f} 分钟）；审核意见：{out.relative_to(ROOT)}")
     return 0 if first == "VERDICT: PASS" else 1
 
