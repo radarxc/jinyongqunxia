@@ -1,0 +1,83 @@
+id: bld_kit_qing_north_guardhouse
+status: candidate
+building:
+  type: bld_kit_qing_north_guardhouse
+  footprint: [7, 5]
+  anchor: &id001 [310.0192, 289.7336]
+  era: qing_north
+anchor_px: *id001
+footprint_m: [7, 5]
+footprint_note: 7×5为同构功能件建议占地；原创建筑，不代表具名驻防机构。
+logical_footprint_polygon_px:
+- [118.0192, 273.7336]
+- [342.0192, 385.7336]
+- [502.0192, 305.7336]
+- [278.0192, 193.7336]
+collision_polygon_m:
+- [0, 0]
+- [7, 0]
+- [7, 5]
+- [0, 5]
+collision_note: 全footprint硬碰撞代理；非实测墙体，院内走区另行细化。
+occluder_proxy_px:
+- [118, 21]
+- [501, 21]
+- [501, 378]
+- [118, 378]
+occluder_note: alpha>=192包围框仅用于离线代理统计，未修改输出alpha。
+actual_height_m: null
+height_note: 单图不能推出可靠实高，待实测/建模。
+entrance: {edge: S, offset_cells: 3}
+entrance_note: S边中点代理，非门洞精确实测。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_north_guardhouse.png, view_note: 目标视角；实际误差见geometry_qa}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [384, 192]
+  ground_width_px: 384
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
+geometry_qa:
+  source_corners_px:
+    left: [307, 675]
+    front: [861, 926]
+    right: [1254, 746]
+  source_axis_slopes: [0.45306859205776173, -0.4580152671755725]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.4096692111959288
+  expected_width_depth_ratio: 1.4
+  ratio_relative_error: 0.006906579425663528
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面三角点，±3px不确定性；底面中心取(L+R)/2。后角为L+R−F推算，非3D测绘；未以变形纠偏。
+pixel_qa:
+  mode: RGBA
+  size: [526, 424]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 134626
+  alpha_partial_pixels: 87579
+  alpha_opaque_pixels: 819
+  alpha_near_opaque_pixels: 85925
+  alpha_nonzero_bbox: [115, 20, 506, 400]
+  transparent_margins_px: [115, 20, 20, 24]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_north_guardhouse.png
+  source_sha256: 0131fb3862a445f1e8d8bd5fd1eb463ffe64b5ae7791680180aa0dc17c8b0bba
+  source_size: [1536, 1024]
+  crop_box: [65, 46, 1264, 992]
+  uniform_scale_requested: 0.40549102428722283
+  resized_size: [486, 384]
+  rounded_effective_scale: [0.4053377814845705, 0.4059196617336152]
+  paste_offset: [20, 20]
+  final_file: bld_kit_qing_north_guardhouse.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+  anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
+release_ready: false

@@ -1,0 +1,23 @@
+{
+  "id": "bld_kit_qing_north_biaoju",
+  "prompt": "Use case: historical-scene. Create exactly ONE production map building sprite for tianshu default Qing north kit, early-to-mid Qing northern China. Warm-neutral historic realism with finely modeled small gray roof tiles, weathered gray brick, dark brown timber, restrained natural palette, realistic construction, softly hand-finished rendering; NOT cartoon or low-poly. Orthographic camera yaw45 elevation30; strict2:1 dimetric ground, east projects down-right slope+0.5 and north up-right slope-0.5, parallel edges never converge. Vertical posts upright. Front/south entrance faces SCREEN LOWER LEFT. Entire structure on a very thin flat rectangular contact footprint with clear left/front/right ground corners. No thick plinth. True transparent RGBA background with NO surrounding color/gray/white/black backdrop, NO atmospheric glow/halo/haze. All roof tips and base corners contained, generous15% fully transparent margin. Screen upper-left light; only tiny contact shadow to lower right, no wide drop shadow. No people, text, signs, logos, writing, modern objects, scenic background, outside trees, street scene, checkerboard or exaggerated upturned eaves. 2:1 describes projection not canvas aspect. Original game building interpretation, not a named monument. Asset bld_kit_qing_north_biaoju. Footprint15m east-west x12m north-south; preserve ground axis lengths15:12. A northern escort agency and freight courtyard: high plain gray brick enclosing walls, sturdy dark timber south gate and gate room, long one-story gray tiled rear lodging, one side warehouse shed, square earth-and-stone court, a modest timber handcart and tightly packed cloth cargo bales entirely within the court. No flags, weapons or characters. Domestic hard-gable gray tile roofs, no palace red or ornamental glazed roofing.",
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "transparent_background": true,
+  "receipt": {
+    "output_hint": "Generated images are saved to /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b as /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-f55877b4-7399-4e41-b245-9b06e41e489e.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_data_note": "原回执image_url为PNG data URL；为避免重复base64，图像字节已原样归档为同名PNG。output_hint原文完整保存。"
+  },
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-f55877b4-7399-4e41-b245-9b06e41e489e.png",
+  "references": [],
+  "candidate_number": 1,
+  "selected": false,
+  "candidate_count": 2,
+  "archive_file": "bld_kit_qing_north_biaoju__rejected.png",
+  "source_sha256": "84eb198463414dc257ee367b7deec417384b088f61bc009d7890d7d6d59eca7a",
+  "source_size": [
+    1536,
+    1024
+  ]
+}

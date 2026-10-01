@@ -130,6 +130,8 @@ No labels, characters, plaques, watermark, modern fittings, fisheye or vanishing
 
 1. PIL 实测源图模式与 alpha；假棋盘背景不算透明。几何处理仅裁切、缩放、投影和透明修边，不重绘材质或调色。
 2. 直接生成的菱形地面取精确 2:1 裁框并等比缩至 64×32；边件保留完整格坐标。水面方形取样以归一坐标 `u,v∈[0,1]` 投影为 `x=32+32(u−v), y=16(u+v)`；先 4×超采样仿射，再缩至 64×32，最后加精确菱形 alpha。滤波从源图周期延拓取色，避免透明黑边参与采样。
+1. PIL 实测源图模式与 alpha；假棋盘背景不算透明。默认几何处理仅裁切、等比缩放和透明修边，不重绘 RGB；审核批准的仿射例外须保留输入、矩阵、输出哈希与复验测点，且仍为candidate。
+2. 地面取精确 2:1 裁框并等比缩至 64×32；边件保留完整格坐标，不因非对称轮廓裁紧后重新居中。
 3. 地面透明修边可清零 `abs(x+0.5-32)/32 + abs(y+0.5-16)/16 > 1` 的外部像素；不填补内部缺口。
 4. 当前 28 张地面中，原 20 张非水地面的 alpha 阈值处理保持既有结果：`a>=250` 置 `255`，`a<=5` 置 `0`，其余不变。本轮 8 张水面按像素中心菱形掩码，内 `255`、外 `0`，各 1024 像素；保存后重算 `sha256`。边件与精灵不套用此阈值。
 5. 精灵保留实际画布与底面参考点；如等比缩放或裁边，同步换算 `anchor_px`，确保门、墙、桥、树冠未裁切。
@@ -445,3 +447,30 @@ Anonymous original game asset, not a measured reconstruction of a named site.
 本批选中7图，短边门禁32px；原图保留真实alpha，仅透明裁边、统一比例缩放、透明扩边，不重画、不强制补255alpha、不旋转或拉伸。逐件测点、锚点变换与像素检查在 `meta/`；PNG外的全透明RGB光晕不应误当实体背景，预览按alpha正常合成。
 
 全部保持 `candidate`。续作返修后，净宽4 / 6格城门的外占地边比误差约4.07% / 0.94%，但k4右轴约−0.613且视觉净孔约44.25%（目标50%），k6局部门墩仍有残差；桥边比误差约4.56%（对边均值6.58%），双前轴约+0.549/−0.560。文件检查通过不代表精确2:1、净宽对格、门孔完整掩膜或无缝墙接缝已通过。默认用于固定朝向候选审图，严格装配 **（待实测）**；每件每轮最多2候选，不用几何扭曲消除残差。桥的锚点是桥面中心投影，岸面高差及前栏遮挡须另处理；现批只交一体静态图。植物物种形态辨识、辽金栽植场景与作者风格认可仍开放，默认沿用候选意象。
+
+## 10. 清初至清中北方套件 `qing_north`
+
+- 适用北京、盛京、济南的地域意象：灰砖城墙、灰瓦门楼、克制红褐木构、朴素灰石低拱桥；不照搬名胜，不将北京皇城黄琉璃等级扩散到普通城门。具体组合为 **（原创扩展）**。
+- 延用宋套件的低饱和木石质感、细颗粒与左上光。清北门楼可提高灰砖比重、压低翘角与彩画密度；本批 k4 / k6 木构偏鲜红（k4更明显），作者未审前保留 candidate。
+- 地面目标仍为 64×32 px/m、正交 yaw45 / pitch30、轴斜率±0.5；2:1指地面投影，不把门楼或树的整张画布压成2:1。首轮规格化只裁切、等比缩放和透明padding；第10轮墙角另有一项带矩阵、输入归档及哈希的PIL仿射校正。
+- `city_gate` 的 k4 / k6 分别为8×4 / 10×4格；孔为4×4 / 6×4，两侧门墩各2格。公式及通行掩膜契约见 `design/22` §4.3，不能用不透明门洞背景遮住底图道路。
+- 本批只交南向门、一个直墙方向、一个外角、一个桥方向；不能旋转或翻转一张图冒充四向。植物以国槐、油松为地域候选，单株逻辑根占地1×1；不建立 `prp_*` 的隐式alias。
+
+```text
+Use case: historical-scene. ONE isolated early-to-mid Qing NORTH CHINA {OBJECT}.
+Use Song kit input only as STYLE reference for restrained realistic antique-game materials.
+Northern grey brick, grey ceramic tiles, dark red-brown timber, modest eaves;
+original regional architecture, not a copy of a named monument or an imperial yellow-roof gate.
+Orthographic yaw45 elevation30, exact2:1 GROUND projection, planar slopes+0.5/-0.5.
+Footprint {W}m by{D}m; crisp coplanar ground corners; center anchor at ground footprint center.
+Gate: total width{k+4}, clear passage{k}, pier2 on each side, depth4;
+all empty passage floor pixels alpha0, no paving or door obstructing the cutout.
+Upper-left light, short lower-right contact shadow. Complete silhouette and transparent margin.
+TRUE RGBA, no background or painted checkerboard, no broad haze, no text or people.
+```
+
+植物差异：国槐提示小型羽状复叶、疏透圆冠、灰褐裂纹树皮；油松提示束生针叶、横展枝层、不规则伞冠，禁止阔叶、盆景盆与圣诞树形。树高用 `ceil(16√6×4)=157 px` 根到冠顶建议值控制，等比缩放后实际冠宽保留，不强塞入2m冠幅。
+
+记录在 `assets/default/tile/qing_north/manifest.yaml`；完整候选提示词、历史输入路径/哈希见 `generation.jsonl`，实测锚点、原始测点、透明探针、投影残差见 `qa.jsonl`。本批直墙底边斜率约0.490/0.496；门、墙角与桥仍存在投影误差，未宣称通过严格接缝或通行孔逐像素对格验收。默认只作为candidate预览素材，后续朝向与装配修正另排。
+
+2026-09-30下载查看的正阳门、万宁桥、油松与国槐照片仅作成品后验形制复核，不曾作为本批 `image_gen` 输入；逐件URL与用途登记在套件manifest的 `historical_references`，生成输入仍以 `references` 为准。

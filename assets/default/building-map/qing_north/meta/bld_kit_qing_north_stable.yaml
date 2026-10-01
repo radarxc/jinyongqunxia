@@ -1,0 +1,82 @@
+id: bld_kit_qing_north_stable
+status: candidate
+building:
+  type: bld_kit_qing_north_stable
+  footprint: [9, 7]
+  anchor: &id001 [347.8725, 266.4692]
+  era: qing_north
+anchor_px: *id001
+footprint_m: [9, 7]
+footprint_note: 9×7为同构功能件建议占地；三槽马厩为原创扩展。
+logical_footprint_polygon_px:
+- [91.8725, 250.4692]
+- [379.8725, 394.4692]
+- [603.8725, 282.4692]
+- [315.8725, 138.4692]
+collision_polygon_m:
+- [0, 0]
+- [9, 0]
+- [9, 7]
+- [0, 7]
+collision_note: 全footprint硬碰撞代理；非实测墙体，院内走区另行细化。
+occluder_proxy_px:
+- [82, 19]
+- [606, 19]
+- [606, 402]
+- [82, 402]
+occluder_note: alpha>=192包围框仅用于离线代理统计，未修改输出alpha。
+actual_height_m: null
+height_note: 单图不能推出可靠实高，待实测/建模。
+entrance: {edge: S, offset_cells: 4}
+entrance_note: S边中点代理，非门洞精确实测。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_north_stable.png, view_note: 目标视角；实际误差见geometry_qa}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [512, 256]
+  ground_width_px: 512
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
+geometry_qa:
+  source_corners_px:
+    left: [178, 575]
+    front: [851, 926]
+    right: [1377, 669]
+  source_axis_slopes: [0.5215453194650818, -0.48859315589353614]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.279467680608365
+  expected_width_depth_ratio: 1.2857142857142858
+  ratio_relative_error: 0.004858470637938428
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读同一地台上表面三角点，±3px不确定性；另一代理独立复核。底面中心取(L+R)/2，后角由L+R−F推算；未以变形纠偏。
+pixel_qa:
+  mode: RGBA
+  size: [668, 454]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 181730
+  alpha_partial_pixels: 120718
+  alpha_opaque_pixels: 824
+  alpha_nonzero_bbox: [16, 16, 616, 408]
+  transparent_margins_px: [16, 16, 52, 46]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_north_stable__revision2.png
+  source_sha256: 3032d7e31429928d7a0290032d4aa2ee55d3d9b586cda2973084e1e1b903511c
+  source_size: [1536, 1024]
+  crop_box: [0, 35, 1490, 1024]
+  uniform_scale_requested: 0.427022518765638
+  resized_size: [636, 422]
+  rounded_effective_scale: [0.4268456375838926, 0.42669362992922144]
+  paste_offset: [16, 16]
+  final_file: bld_kit_qing_north_stable.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+  anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
+release_ready: false
