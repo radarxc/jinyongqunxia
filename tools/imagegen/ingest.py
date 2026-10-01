@@ -75,6 +75,8 @@ def main() -> int:
             raise SystemExit(f"最新的下载 {src.name} 已超过 10 分钟，疑似不是刚下的图，停下核对")
     else:
         src = Path(a.src)
+    if src.stat().st_size < 100_000:
+        raise SystemExit(f"{src.name} 只有 {src.stat().st_size} 字节，不是原图（多半截获到了中间响应），删掉后重新保存")
     out = ROOT / str(fm["output"])
     man = ROOT / str(fm["manifest"])
     size = str(fm.get("size") or fm.get("canvas") or "1536x1536").lower()
