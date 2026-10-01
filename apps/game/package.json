@@ -1,0 +1,28 @@
+{
+  "name": "@tianshu/game",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b --pretty false && vite build",
+    "test": "vitest run src",
+    "typecheck": "vue-tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@tianshu/core": "workspace:*",
+    "@tianshu/platform": "workspace:*",
+    "@tianshu/render": "workspace:*",
+    "@tianshu/ui": "workspace:*",
+    "pinia": "catalog:",
+    "vue": "catalog:"
+  },
+  "devDependencies": {
+    "@vite-pwa/assets-generator": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-pwa": "catalog:",
+    "workbox-build": "catalog:",
+    "workbox-window": "catalog:"
+  }
+}

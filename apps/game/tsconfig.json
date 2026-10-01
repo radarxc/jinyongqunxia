@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "src",
+    "outDir": "dist-types",
+    "types": ["vite/client", "vite-plugin-pwa/client"],
+    "tsBuildInfoFile": "./dist-types/tsconfig.tsbuildinfo"
+  },
+  "references": [
+    { "path": "../../packages/core" },
+    { "path": "../../packages/platform" },
+    { "path": "../../packages/render" },
+    { "path": "../../packages/ui" }
+  ],
+  "include": ["src/**/*.ts", "src/**/*.vue"]
+}
