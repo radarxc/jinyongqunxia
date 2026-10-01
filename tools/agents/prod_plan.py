@@ -155,6 +155,18 @@ DONE_BASELINE = {("city_hangzhou", "southern_song_jin_mongol"), ("city_dali", "n
 
 TIER = lambda g: "天" if g >= 10 else "地" if g >= 7 else "玄" if g >= 4 else "黄"
 EMITTER = {"palm": "palm", "finger": "finger", "fist-grapple": "fist", "leg": "leg", "movement": "palm", "inner": "palm", "None": "palm", "weapon": "sword"}
+NAME_EMITTER = [  # 按武学名猜发出方（优先级从高到低；兵器类细分、音功用乐器）
+    (("曲", "箫", "琴", "笛", "音", "啸", "歌"), "instrument"), (("剑",), "sword"), (("刀",), "sabre"),
+    (("棍", "杖", "棒", "竿"), "staff"), (("枪", "矛", "戟"), "spear"), (("鞭", "索", "绫", "带", "绳"), "whip"), (("扇",), "fan"),
+    (("镖", "针", "钉", "暗器", "弹"), "throw"), (("腿", "脚", "踢"), "leg"), (("指",), "finger"), (("掌",), "palm"), (("拳",), "fist"),
+]
+
+
+def emitter_for(name: str, delivery: set) -> str:
+    for keys, em in NAME_EMITTER:
+        if any(k in (name or "") for k in keys):
+            return em
+    return next((EMITTER[x] for x in ("palm", "finger", "fist-grapple", "leg", "weapon") if x in delivery), "palm")
 
 
 def skill_units():
@@ -196,7 +208,7 @@ def register_skills(d, tier=None, limit=None):
             continue
         moves = "、".join(f"`{mv}`{'*' if v['ultimate'] else ''}{'P' if v['projection'] else ''}" for mv, v in sorted(s["moves"].items()))
         deliv = sorted(s["delivery"] - {"None"}) or ["inner"]
-        emitter = next((EMITTER[x] for x in ("palm", "finger", "fist-grapple", "leg", "weapon") if x in s["delivery"]), "palm")
+        emitter = emitter_for(s.get("name", ""), s["delivery"])
         d["tasks"].append({
             "id": tid, "title": f"招式特效 · {t}级 {s.get('name', sid)}（{sid}，{len(s['moves'])} 招）", "phase": "PROD", "wave": 10,
             "kind": "draft", "prompt": "VFX-skill.md", "deps": ["VFX-emitters", "VFX-templates"], "review": False, "web": False,
