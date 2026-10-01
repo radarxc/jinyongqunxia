@@ -42,7 +42,7 @@ CHECKS = [  # (ID 前缀, 审核要点文件)
     ("DES-", ".agents/coord/PROD/review_checks_des.md"),
     ("ENG-", ".agents/coord/PROD/review_checks_eng.md"),
 ]
-MAX_REVALIDATE = 2
+MAX_REVALIDATE = 3  # 2026-10-01：改命任务常要三轮才把旧章节的矛盾改干净，多给一次复审
 
 
 def checks_for(tid: str):
