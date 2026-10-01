@@ -188,6 +188,24 @@
 - **已知瑕疵待下一轮**：降龙根部竖直切口（加根部羽化）；六脉偏细偏灰（等作者定是否重出原料）；城镇水面为平色贴片、西湖是矩形；大理塔与城比例偏大。
 - **驱动脚本新增**：`HOLD-VALIDATE`（同一校验失败两次即停）、`--base`、`shrink_exempt` 同时豁免删除。
 
+### 9.7 批量生产（2026-09-30 14:10 起，作者指示）
+
+作者原话：「然后调用gpt分别做所有城市（城市X年代）和所有天/地级武功招式，再做普通招式，玄级武功如果有外放则统一外放气效果（颜色取决于内力阴阳），没有外放则以残影。黄级武功就是普通招式。验收gpt做，但是不要太复杂，按照现在的基线设计出口验收即可。」「立绘是另一个agent在做，你不用管」「城镇水面是平色贴片、西湖是个矩形 这个优化一下，西湖按照实际坐标来格子化…边界格子里的贴图同时有岸边和水」（已录入 STYLE.md）。
+
+- **集成分支**：主检出被出图代理的未提交改动挡住合入，改在 `.agents/wt/_prod`（分支 `claude/production-20260930`，自 7b7dc7b 起）做集成：已挑入 NAuF-rules / lint / book-04 / 05 / 12 / 13、TOWN-render、TOWN-layout、VFX-three、TOWN-tiles、TOWN-buildings 与后续协调提交。**所有批量生产任务在这里跑**：`cd .agents/wt/_prod && python3 tools/agents/supervise.py <ID> --checks .agents/coord/PROD/<要点> --max-reviews 1 --max-runs 3 --auto-merge --worker`（ROOT 自动为 `_prod`，任务工作区在 `_prod/.agents/wt/`，状态 `_prod/.agents/state.json`）。过审即自动合入 `_prod`（作者：验收 GPT 做）。主分支干净后由作者或协调者把 `claude/production-20260930` 合回主分支。
+- **规模**（`python3 tools/agents/prod_plan.py list`）：城市×年代带 1000（都城 78、大城 650、小城 255、遗址 17）；天级 45 门 / 281 招，地级 211 门 / 888 招，玄级 165 门 / 430 招，黄级 82 门 / 310 招。
+- **登记 / 启动**：`tools/agents/prod_plan.py register --group kits|cities|skills [--band] [--kit] [--tier] [--limit]`；模板 `prompts/{KIT,CITY,VFX-skill,VFX-emitters,VFX-templates}.md`；审核要点 `.agents/coord/PROD/review_checks_{kit,city,vfx_skill,vfx_foundation}.md`（每类只审 5–6 条，最多 1 轮返修）。
+- **顺序**：① VFX-emitters（12 种发出方图）+ VFX-templates（玄 / 黄级模板、`bind_moves.py` 绑定表、`check_skill_suite.py`）→ ② VFX-<sk> 天级 45 门（已登记）→ 地级 211 门（`register --group skills --tier 地`）；玄 / 黄级由绑定表 + 模板覆盖，不逐门做。① 建筑套件 KIT-×11（宋北方、辽金、元北 / 南、明北 / 南、清北 / 南、西域、吐蕃、蒙古；首批 7 个在跑）→ ② CITY-<city>__<band>（都城 + 大城优先；已有宋套件的 12 个已登记，3 个在跑）→ 其余按套件就绪逐批 `register --group cities --band … --kit …`；小城 / 遗址（272 个）建议用同年代套件的程序化模板不做史料复原（待作者确认）。
+- **主检出仍在跑**：TOWN-assemble 第 6 次（西湖多边形 + 岸边贴片 + 水面变化），过审后 `finish` 并挑入 `_prod`（叠在 TOWN-layout 上，cherry-pick 应无冲突），再更新审批页。
+- **批量调度器**（15:04 起在 `_prod` 后台跑）：`cd .agents/wt/_prod && nohup python3 tools/agents/batch_run.py --queue-file .agents/coord/_batch_queue.txt --parallel 12 --interval 60 > .agents/coord/_batch/batch.log`。维持 12 路并发、过审自动合入、FAIL 返修后自动复审（每任务最多 2 次）、依赖未合入的等；状态 `.agents/coord/_batch/batch.json`，`--status` 看队列。加任务：往队列文件追加 ID 后重启脚本（幂等）。停住（HOLD-VALIDATE / ERROR / 复审仍 FAIL）的任务在日志"停住待协调者"里，用 `gate.py` 看。
+- **CITY 线待重启**：TOWN-assemble（主检出）过审后 `finish` → 挑入 `_prod` → `prod_plan.py register --group cities --band … --kit …` → 追加队列。首批 12 个城镇登记已撤销（文件名前缀 bug 已修）。
+- **执行器切换（15:50，作者：「gpt额度没有了，用traex cli调用 gpt6 max吧」）**：默认改为 `traex exec -m GPT-6-Astra -c model_reasoning_effort="max"`（traex 是 Codex 分支，参数相同），审核 `GPT-6-Astra xhigh`；探测不应答回退 `GPT-5.6-Sol`。改动在 `step.py` / `supervise.py` / `gpt_review.py` 默认值与 `tasks.json defaults`（主检出与 `_prod` 都已改）。集成分支上的驱动与 batch_run 已重启（正在跑的 Codex 执行器不杀，跑完后续阶段用 traex）。
+- **TOWN-assemble（湖体多边形版）r6 PASS**，工作区已提交 24ae723 并挑入 `_prod`；首批城镇（宋套件可用）已登记并入队。
+- **16:55 临时回退模型**：traex 的 GPT-6-Astra 在 12 路并发下从 16:41 起整体挂起（审核日志 `Trae chat SSE error: Transport error … Reconnecting 1/5`，探测 100 s 不应答；GPT-5.6-Sol / GPT-5.5 探测 13 s 应答）。按既定回退把默认改为 `GPT-5.6-Sol`（执行 max、审核 xhigh），杀掉挂起会话后重启驱动与 batch_run（并发降到 10）。**GPT-6-Astra 恢复后改回**（改 `step.py DEFAULT_MODEL`、`supervise.py --model/--review-model`、`gpt_review.py --model`、两处 `tasks.json defaults.model`，重启 batch_run）。
+- **18:28–19:57 机器休眠**：所有 traex 会话挂断，驱动按"停滞 25 分钟"规则连续重启（每次重启算一次 run，KIT-yuan_south 因此 HOLD-RUNS 后被 batch_run 重新启动）。20:00 起已申请会话期间保持唤醒（`request_keep_awake session_idle`）；重启后的会话正常推进。接手者注意：长批量期间别让电脑休眠（合盖仍会睡）。
+- **21:47 作者：「建筑套件和城市在生成时搜一下历史图片作为参考」**：`web: true` 的任务启动时加 `-c sandbox_workspace_write.network_access=true`（已探测：沙箱内 curl 能下载 Wikimedia 图片并 `view_image`）；KIT / CITY 模板加"历史图片参考"步骤（下载到工作区 `refs/`、看图后作 image_gen 参考、manifest `references` 登记 URL）。已在跑的 10 套套件图已出完，只在它们重出图时生效；城镇任务从首批起生效。
+- **23:30 磁盘写满**：`.agents/logs` 的执行器日志 7.6 GB + 每个任务工作区都是全量检出（含 assets，约 1 GB）→ `git worktree add` 失败、执行器写文件失败（KIT-qing_south 一次退出码 101）。处理：删主检出已结束任务的 `*.log`；移除已挑入 `_prod` 或作废的主检出工作区（ART-B-*、VFX-plates、TOWN-*、VFX-three）；batch_run 合入后自动删该任务日志；建工作区加重试。仍大的：`~/.trae/cli/sessions` 9.8 GB（traex 会话记录，可清旧的）、`~/.codex/generated_images` 2.6 GB（生图原件，manifest 的 source_path 指向它们，已有 source_copy 入库）。后续改进：任务工作区改稀疏检出（不检出无关的 assets 目录）。
+
 ## 9.8 游戏工程与设计补充线（AR-19 / AR-20，2026-10-01 起）
 
 - 作者原话逐字在 `docs/decisions/author-requirements.md` AR-19（游戏工程：存储 / 数据 / 交互 / 战斗 / 动效）、AR-20（物品设定补充与逆天改命）。
