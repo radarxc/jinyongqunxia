@@ -2,7 +2,7 @@
 """批量生产任务登记（作者 2026-09-30：分别做所有城市（城市×年代）、所有天 / 地级武功招式；玄级统一模板；验收 GPT 做，不要太复杂）。
 
     python3 tools/agents/prod_plan.py list  [--group kits|cities|skills] [--band B] [--tier 天|地]
-    python3 tools/agents/prod_plan.py register --group kits|cities|skills [--band B] [--tier 天|地] [--kit K] [--limit N]
+    python3 tools/agents/prod_plan.py register --group kits|cities|skills|items [--band B] [--tier 天|地] [--kit K] [--limit N]
 
 读 docs/design/map/cities.yaml（城市 × 年代带）与武学图鉴（品阶、招式），按模板登记到 tools/agents/tasks.json：
 - KIT-<kit_id>：建筑套件（prompts/KIT.md）
@@ -110,6 +110,50 @@ def register_kits(d, only=None):
         n += 1
     return n
 
+
+
+# ---- 物品图（AR-20：按十一类名录逐行出图；名录由 DES-items-plus 定稿，2026-10-01）
+ITEM_CATALOGS = [  # (key, 中文名, 是否联网搜历史形制参考)
+    ("medicine", "药物 / 补品 / 药材", False), ("food", "食材 / 食品", False), ("manuals", "武学秘籍", False),
+    ("weapons", "兵器", True), ("clothing", "衣物", True), ("armor", "制式盔甲", True), ("innerarmor", "内甲", False),
+    ("accessories", "护肩 / 披风 / 头饰", True), ("shoes", "鞋", True), ("belts", "腰带", True), ("hidden-weapons", "暗器", False),
+]
+
+
+def item_rows(key):
+    import re as _re
+    rows = []
+    for ln in (ROOT / "docs/design/catalog" / f"items-{key}.md").read_text(encoding="utf-8").splitlines():
+        m = _re.match(r"^\|\s*`((?:it|eq)_[a-z0-9_]+)`\s*\|", ln)
+        if m:
+            rows.append(m.group(1))
+    return rows
+
+
+def register_items(d, only=None):
+    have = {t["id"] for t in d["tasks"]}
+    n = 0
+    for key, name, web in ITEM_CATALOGS:
+        if only and key != only:
+            continue
+        tid = f"ART-item-{key}"
+        if tid in have:
+            continue
+        ids = item_rows(key)
+        if not ids:
+            continue
+        out = f"assets/default/item/{key}"
+        d["tasks"].append({
+            "id": tid, "title": f"物品图 · {name}（{len(ids)} 项，按名录批量出图）", "phase": "PROD", "wave": 11, "kind": "draft",
+            "prompt": "ART-item.md", "deps": [], "review": False, "web": web, "writes": [f"{out}/**"],
+            "vars": {"category": key, "category_name": name, "catalog": f"docs/design/catalog/items-{key}.md", "out_dir": out,
+                     "count": str(len(ids)), "ids": "、".join(f"`{i}`" for i in ids),
+                     "hist_refs": "本任务已开联网，有明确朝代形制的条目按「做法」第 2 步搜 1–2 张历史参考" if web else "本任务未开联网，跳过历史参考步骤，只按名录外观要点与年代文档出图"},
+            "validate": {"exists": [f"{out}/manifest.yaml"],
+                         "cmd": [["{python}", "tools/agents/check_assets.py", out, "--min", str(len(ids)), "--max", str(len(ids)), "--min-side", "1024"],
+                                 ["{python}", "tools/lint/check_ids.py", "--strict"]]}})
+        n += 1
+    return n
 
 def register_cities(d, band=None, kit=None, limit=None, importance=("capital", "major")):
     have = {t["id"] for t in d["tasks"]}
@@ -235,7 +279,7 @@ def register_skills(d, tier=None, limit=None):
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["list", "register"])
-    ap.add_argument("--group", choices=["kits", "cities", "skills"])
+    ap.add_argument("--group", choices=["kits", "cities", "skills", "items"])
     ap.add_argument("--band")
     ap.add_argument("--tier")
     ap.add_argument("--kit")
@@ -251,6 +295,9 @@ def main() -> int:
                 by[(b, kit_for(u["city"].get("region", ""), b), u["city"].get("importance"))] += 1
             for k, v in sorted(by.items()):
                 print("CITY", k, v)
+        if a.group in (None, "items"):
+            for key, name, web in ITEM_CATALOGS:
+                print(f"ART-item-{key:15s} {name} rows={len(item_rows(key))} web={web}")
         if a.group in (None, "skills"):
             sk = skill_units()
             by = defaultdict(lambda: [0, 0])
@@ -262,7 +309,7 @@ def main() -> int:
         return 0
     d = load_tasks()
     n = {"kits": lambda: register_kits(d, a.kit), "cities": lambda: register_cities(d, a.band, a.kit, a.limit),
-         "skills": lambda: register_skills(d, a.tier, a.limit)}[a.group]()
+         "skills": lambda: register_skills(d, a.tier, a.limit), "items": lambda: register_items(d, a.kit)}[a.group]()
     save_tasks(d)
     print(f"已登记 {n} 个任务到 {TASKS}")
     return 0
