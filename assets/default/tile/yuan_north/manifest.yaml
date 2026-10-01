@@ -1,0 +1,204 @@
+- id: tex_town_yuan_north_city_gate__k4_r000_v01
+  file: tex_town_yuan_north_city_gate__k4_r000_v01.png
+  category: tile
+  style: default
+  subject: 元·北方/大都约1350·净宽4格城门（原创扩展；具体复原待考）
+  prompt: 'Use case: precise-object-edit. Add finely detailed real aged rammed-earth, timber and gray clay roofing materials to this EXACT reference shape. This is only a SURFACE TEXTURE edit. Keep the exact existing silhouette, all face boundaries, all corners, all base pixels, all proportions and the 1536x1024 framing. Preserve the deliberately shallow 2:1 diamond view; do not adopt standard isometric. Both ground axes remain +0.500 and -0.500. Piers remain vertical-sided rectangular prisms WITHOUT any bulging bevel or protruding foundation. Footprint8x4m, two piers2x4m each, empty passage4x4m. Leftmost foot(300,665), left opening foot(428,729), right opening foot(684,857), frontmost foot(812,921), rightmost foot(1068,793). Do not move these vertices even one pixel. Open passage ground and outside must remain alpha=0; there is NO ground platform. Keep roof simple, shallow pitch and restrained Yuan character. Natural tiny grey individual tiles on the provided slopes, warm fine grain brown timber with small simple lattice shutters on the provided upper wall, fine horizontal rammed earth strata in pale ochre on the provided piers. Moderate realistic detail consistent with ancient Chinese game map building sprites; upper left light, darker right-facing planes. Genuine transparency with no haze, glow, halo, cast shadow, backdrop, floor or additional structure. No text, humans, labels, outlines or grid. Keep shape literally pixel aligned with reference. No compositional changes, no camera adjustment, no resizing.'
+  negative: 无文字、水印、人物、现代物件、假透明、地台；不作历史实测复原。
+  references: [{file: source/gate_k4_repair2_geometry.png, note: 本轮实际输入：沿用精确几何引导，仅表面纹理重出, sha256: 516b64dbd826192ac4fde2a6c7bf1ef72c3dd4e8523c3e416baf4cbc6fb0a89c}]
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T22:39:11.069866+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f46f-ac3d-7492-8311-f5489c237652/exec-d9c29de0-bb66-4c02-9723-786462ad46c1.png
+  size: 471x415
+  sha256: 446320ce83c9c537620a922d4887ce99f2b5598439addb5fe20bc93af171d588
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 8
+    - 4
+    variant: k4_r000_v01
+    autotile_mask: null
+  source_copy: source/gate_k4_repair3_c2.png
+  source_sha256: a6c49c1416ace4e9de5dd3ac1db86f7c4b652d4dd17ca01993e6e06c05342b79
+  anchor_px: [235.25, 304.25]
+  notes: 第3轮k4共2候选选2；纯矩形裁边、1/2等比缩小、8px透明扩边。全底面双轴0.501961/-0.505792，各门墩地边拟合最大轴误差0.025596；净孔4.015625格（人工脚点±2源px），已解决上一轮净宽不足及k4右轴偏平。
+- id: tex_town_yuan_north_city_gate__k6_r000_v01
+  file: tex_town_yuan_north_city_gate__k6_r000_v01.png
+  category: tile
+  style: default
+  subject: 元·北方/大都约1350·净宽6格城门（原创扩展；具体复原待考）
+  prompt: 'Use case: precise-object-edit. Add finely detailed real aged rammed-earth, timber and gray clay roofing materials to this EXACT reference shape. This is only a SURFACE TEXTURE edit. Keep the exact existing silhouette, all face boundaries, all corners, all base pixels, all proportions and the 1536x1024 framing. Preserve the deliberately shallow 2:1 diamond view; do not adopt standard isometric. Both ground axes remain +0.500 and -0.500. Piers remain vertical-sided rectangular prisms WITHOUT any bulging bevel or protruding foundation. Footprint10x4m, two piers2x4m each, empty passage6x4m. Leftmost foot(236,633), left opening foot(364,697), right opening foot(748,889), frontmost foot(876,953), rightmost foot(1132,825). Do not move these vertices even one pixel. Open passage ground and outside must remain alpha=0; there is NO ground platform. Keep roof simple, shallow pitch and restrained Yuan character. Natural tiny grey individual tiles on the provided slopes, warm fine grain brown timber with small simple lattice shutters on the provided upper wall, fine horizontal rammed earth strata in pale ochre on the provided piers. Moderate realistic detail consistent with ancient Chinese game map building sprites; upper left light, darker right-facing planes. Genuine transparency with no haze, glow, halo, cast shadow, backdrop, floor or additional structure. No text, humans, labels, outlines or grid. Keep shape literally pixel aligned with reference. No compositional changes, no camera adjustment, no resizing.'
+  negative: 无文字、水印、人物、现代物件、假透明、地台；不作历史实测复原。
+  references: [{file: source/gate_k6_repair2_geometry.png, note: 本轮实际输入：沿用精确几何引导，仅表面纹理重出, sha256: 796ce9cdfd458e663333acd2e493e47169a37c1d7083bdc90b7a994da0adce65}]
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T22:39:11.087241+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f46f-ac3d-7492-8311-f5489c237652/exec-634fab71-0ca0-41c4-98a5-90ba4f132401.png
+  size: 534x448
+  sha256: 1bdf2578824c8b71600fd91d8f43e055fb24dea8e56566764b951588a081f3ac
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 10
+    - 4
+    variant: k6_r000_v01
+    autotile_mask: null
+  source_copy: source/gate_k6_repair3_c1.png
+  source_sha256: 7195b45c9be8465df6bb3878d13dc903588bf873bdb01251ba38b4b7d2d0bab1
+  anchor_px: [266.5, 321.75]
+  notes: 第3轮k6共1候选选1；纯矩形裁边、1/2等比缩小、8px透明扩边。全底面双轴0.501563/-0.503876，各门墩地边拟合最大轴误差0.009989；净孔6.000000格（人工脚点±2源px），已解决上一轮净宽不足及k4右轴偏平。
+- id: tex_town_yuan_north_wall__earth_r000_v01
+  file: tex_town_yuan_north_wall__earth_r000_v01.png
+  category: tile
+  style: default
+  subject: 元·北方·夯土城墙直段（原创扩展）
+  prompt: 'Use case: precise-object-edit. Add natural fine-grained rammed-earth texture to THIS EXACT SHAPE. Strict texture-only editing: do NOT change the source pixels'' silhouettes or planar geometry. Output the SAME 1024x1536 framing with the shape in the SAME position, transparent beyond its silhouette. The source image is a dimensionally precise model for a game sprite. Its deliberately shallow diamond camera angle MUST stay exactly as drawn, including its diamond top: peak (512,256), left (256,384), near (512,512), right (768,384). Bottom left (256,1324.604), near (512,1452.604), right (768,1324.604). Keep these vertices. This is NOT standard isometric, do not change it to 0.577/0.66 slopes. Both slopes must remain 0.5/-0.5. Vertical wall height940.604 pixels unchanged. Make the wall a realistic medieval Yuan northern-China compacted sandy earth module, delicate horizontal rammed layers which recede along these exact planes, subtle weathering and small grains. Warm buff earth, left face illuminated, right darker, preserve face boundaries. NO brick, stone, roof, top coping, bevels, plinth, extra shapes, soil base, foliage, figures, letters. Absolutely NO halo, glow, blurred silhouette, or background shadow. Background entirely alpha=0, entire solid opaque alpha=255 with antialias only at contour. Preserve this clean sharp silhouette precisely; change only material appearance. One complete asset.'
+  negative: 无文字、水印、人物、现代物件、假透明、地台；不作历史实测复原。
+  references: [{file: source/tex_town_yuan_north_wall__earth_r000_v01__repair2_guide.png, sha256: 06def5b36f1e85cef0eb014c1e27b28bc73ca52421c2e4316a2a8068067c96f7, note: '本轮实际输入；准确2:1投影/3m墙高的无纹理几何引导，非最终资产'}]
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T21:57:57.564903+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f44f-794b-75c3-bb25-bb0001d0e036/exec-c1f23be8-64b5-47bb-a596-737e31bfd920.png
+  size: 82x168
+  sha256: c34d35a07c8cca97f04530a390a25ccfac6846d793d21dd67e29c6f3d4859a40
+  status: candidate
+  tile:
+    kind: wall
+    footprint:
+    - 1
+    - 1
+    variant: earth_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_yuan_north_wall__earth_r000_v01__repair2_source.png
+  source_sha256: 0c37e0aacbb678a2951b4d45d087e09bd2d394f764af86b304a30e84cdb05c4b
+  anchor_px: [41.0, 142.576]
+  notes: 第2轮仅重出本件；候选1约±0.58被弃，候选2选用；矩形裁边去除主体外alpha=1散点，1/8等比缩小并补8px透明边，无拉伸/透视变形/alpha重绘；已解决旧±0.66投影偏陡，保留纹理重复接缝作为candidate人工审美项
+- id: tex_town_yuan_north_wall_corner__outer_ne_v01
+  file: tex_town_yuan_north_wall_corner__outer_ne_v01.png
+  category: tile
+  style: default
+  subject: 元·北方·夯土城墙外转角（原创扩展）
+  prompt: 'Use case: precise-object-edit. Add natural fine-grained rammed-earth texture to THIS EXACT CONCAVE L SHAPE. Strict texture-only edit: do NOT change silhouette or planar geometry. Output the SAME 1024x1536 framing in SAME position and transparent outside. It is a precise Yuan northern-China city-wall OUTER CORNER asset, 2m by2m outer footprint, each arm1m thick, walls3m tall. It is NOT a shorter courtyard wall. Keep the tall shape provided. Its deliberately shallow diamond camera MUST remain as drawn (ground slopes +0.5 and -0.5). Top polygon vertices in order: (512,192),(896,384),(704,480),(512,384),(320,480),(128,384). Each corresponding bottom point exactly705.453px vertically below, no x displacement. The vertical inner corner height stays705.453 pixels. Preserve ALL given vertices and concave V arrangement. Make realistic medieval warm buff compacted sandy earth, delicate horizontal rammed strata following the existing plane direction, subtle worn grains, sharply cut ends for seamless assembly, NO bricks, stones, coping, roof, crenellations, base ground, grass, people, text or watermark. Left facing planes lit by upper-left light, right facing planes darker; preserve exact face shading arrangement. No halo, cast shadow, glow or backdrop; true RGBA alpha0 outside including empty inner corner. Entire solid opaque alpha255 with smooth contour antialias only. One complete asset. Change only surface texture. Do not use a different camera, do not soften or move any edges, do not rescale or reframe. Match realistic small medieval game sprite material density.'
+  negative: 无文字、水印、人物、现代物件、假透明、地台；不作历史实测复原。
+  references: [{file: source/tex_town_yuan_north_wall_corner__outer_ne_v01__repair2_guide.png, sha256: f1d87aca7b834ca5cd96ca9cb3a250857b515c54bb553ffcab0fe86b17e344f4, note: '本轮实际输入；准确2:1投影/3m墙高的无纹理几何引导，非最终资产'}]
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T21:59:42.908191+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f44f-794b-75c3-bb25-bb0001d0e036/exec-6b07acfe-7ee3-4f60-bca3-68571fa36057.png
+  size: 147x184
+  sha256: f7f506fbfc458d0022fefcbf9b83ed66367dbc4da931898db39f5e593e077b15
+  status: candidate
+  tile:
+    kind: wall_corner
+    footprint:
+    - 2
+    - 2
+    variant: outer_ne_v01
+    autotile_mask: null
+  source_copy: source/tex_town_yuan_north_wall_corner__outer_ne_v01__repair2_source.png
+  source_sha256: 32d85ede1da39b59ba597a478552e00e167b70d86b28eb789503e314f498e3c6
+  anchor_px: [73.333, 158.575]
+  notes: 第2轮仅重出本件，一候选即选用；2×2外包、每臂厚1m的L形；矩形裁边去除主体外alpha=1散点，1/6等比缩小并补8px透明边，无拉伸/透视变形/alpha重绘；已解决旧约1.8m矮墙，现与直段均约3m；纹理重复接缝保留candidate人工审美项
+- id: tex_town_yuan_north_bridge_deck__w4_l8_r000_v01
+  file: tex_town_yuan_north_bridge_deck__w4_l8_r000_v01.png
+  category: tile
+  style: default
+  subject: 元·北方·单孔石拱桥完整预览件（原创扩展；非万宁桥实测复原）
+  prompt: 'Use case: historical-scene. ONE isolated Yuan dynasty North China SMALL SINGLE-SPAN STONE ARCH BRIDGE sprite for town canal, period-informed interpretation of Yuan Dadu canal stone bridges,not exact Wanning Bridge reconstruction. Input wooden bridge image is ONLY reference for realistic quiet material/detail density and game sprite context, replace wood bridge entirely with grey sandstone arch bridge. Logical footprint4m width x8m length. Bridge length runs screen lower-left toward upper-right, depth axis slope-0.5; width runs down-right slope+0.5. Orthographic yaw45 elevation30,exact2:1 dimetric,no perspective convergence. One low segmental stone arch open underneath, shallow rise paving of small grey stone slabs, simple LOW solid stone parapets,no sculpture,no carved ornate lions. Clear single arch opening with true transparent negative space beneath,no water,no bank,no ramps outside8m footprint. Complete bridge with two grounded abutments on same bottom plane; clean ground contact corners for center anchor. Soft upper-left lighting,short lower-right contact shadow,neutral muted grey stone and fine weathering matching realistic Song kit. Single sprite with full margin and true transparent RGBA background,solid masonry opaque. Do not draw river,ground slab,pedestal,landscape,labels,characters,text,watermark,boats,people,modern objects,checkerboard or multiple bridges. Bridge deck and low parapets visible in one candidate preview image.'
+  negative: 无文字、水印、人物、现代物件、假透明、地台；不作历史实测复原。
+  references:
+  - file: assets/default/baseline/tile/tex_town_song_dali_bridge_deck__w3_l5_r000_v01.png
+    sha256: d08816357ef2fcd590ca4b43dcb1348440762e347fc6dbab2072b7e7e7311855
+    note: 实际输入；仅材质、细节密度风格参考
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T21:19:23.652120+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f427-c9bf-7070-8e80-6b9763c70314/exec-11d5796c-38c9-44dc-aa56-48ab287e6af8.png
+  size: 444x260
+  sha256: 5cc6cb95b608112393801970320a027f6dedeb73f909376416407f62b5acc75d
+  status: candidate
+  tile:
+    kind: bridge_deck
+    footprint:
+    - 4
+    - 8
+    variant: w4_l8_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_yuan_north_bridge_deck__w4_l8_r000_v01__source.png
+  source_sha256: 06a1e9cb5ab826ecce3dd7a9e37f898c749d8976953068af7ad839306d7848a6
+  anchor_px:
+  - 217.519
+  - 155.638
+  notes: 仅alpha包围盒裁切、等比LANCZOS缩小、8px透明边；完整石拱桥预览单图，桥面与栏杆未拆层；近侧栏遮挡与四向视图待后续，几何比例未严格4×8。
+- id: tex_town_yuan_north_tree_cluster__scholar_tree_v01
+  file: tex_town_yuan_north_tree_cluster__scholar_tree_v01.png
+  category: tile
+  style: default
+  subject: 元·北方·国槐地域植物意象（原创扩展；元代具体栽植待考）
+  prompt: 'Use case: historical-scene. ONE isolated mature CHINESE SCHOLAR TREE, Styphnolobium japonicum / Sophora japonica, game map vegetation sprite for Yuan dynasty North China town. Reference tree is ONLY realistic foliage material,contrast and detail-density style reference; replace tropical broadleaf silhouette with northern deciduous scholar-tree morphology: grey-brown furrowed branching trunk,asymmetric broad rounded airy crown,many small pinnate leaflets,muted dusty olive and moss greens. No flowering,no fruits,no second tree. Modest urban tree height5m with canopy width4m; logical planting footprint2m x2m,base anchor exactly at central trunk ground contact. Camera orthographic yaw45 elevation30,dimetric2:1 map view from above. Trunk vertical; branch arrangement natural,top canopy visible. Entire trunk and crown intact with ample transparent margins. Same fine restrained realistic natural material rendering as Song map kit, no painterly wash or cartoon, soft light upper-left and tiny short lower-right contact shadow. True transparent RGBA background,transparency between leaves, no soil patch,ground plane,pedestal,grass,landscape,people,text,watermark,checkerboard,pots,buildings or modern objects. This is a regional game species choice,not a reconstruction of a documented Yuan planting site. Single sprite only.'
+  negative: 无文字、水印、人物、现代物件、假透明、地台；不作历史实测复原。
+  references:
+  - file: assets/default/baseline/tile/tex_town_song_dali_tree_cluster__broadleaf_v01.png
+    sha256: 3963e0b07a4cbb91b5472d8c2470dc4da5b6c7dab9dbdf3580ff5b8fa39d3f56
+    note: 实际输入；仅材质、细节密度风格参考
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T21:20:28.610375+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f427-c9bf-7070-8e80-6b9763c70314/exec-b9119080-17f1-41c2-a96c-af7f95300915.png
+  size: 328x223
+  sha256: a514098ab3ed49f6bbdaabfcf5f798481f4931151505ef66e47d08831a06da06
+  status: candidate
+  tile:
+    kind: tree_cluster
+    footprint:
+    - 2
+    - 2
+    variant: scholar_tree_v01
+    autotile_mask: null
+  source_copy: source/tex_town_yuan_north_tree_cluster__scholar_tree_v01__source.png
+  source_sha256: 0101fae4b3d76a5a37a127371ce1db4cb45f0635440708d87314b664e1edcb22
+  anchor_px:
+  - 175.761
+  - 208.659
+  notes: 仅alpha包围盒裁切、等比LANCZOS缩小、8px透明边；2×2种植区为虚拟逻辑占地；按树高5m建议值统一缩放；植物无平直底边可测轴，元代栽植待考。
+- id: tex_town_yuan_north_tree_cluster__oriental_arborvitae_v01
+  file: tex_town_yuan_north_tree_cluster__oriental_arborvitae_v01.png
+  category: tile
+  style: default
+  subject: 元·北方·侧柏地域植物意象（原创扩展；元代具体栽植待考）
+  prompt: 'Use case: historical-scene. ONE standalone ORIENTAL ARBORVITAE tree, Platycladus orientalis, Yuan dynasty northern Chinese town game vegetation sprite. Supplied broadleaf tree image is ONLY style reference for natural fine-grained realistic foliage and map detail density; replace subject with northern Chinese evergreen arborvitae: upright narrow irregular conical crown, many dense vertical flattened sprays of small scale-like leaves,muted deep olive-green foliage,visible twisting cinnamon-grey short trunk at base. Do NOT make pine needles,large broad leaves,Christmas fir tiers or trimmed topiary. Tree height5m, crown diameter2m, logical planting footprint2m x2m with root contact at center; keep full roots,trunk and crown within generous transparent margins. Exact orthographic yaw45 elevation30,2:1 dimetric viewed above, vertical trunk and natural branches, no perspective. Quiet low-saturation realistic ancient-game rendering matching Song kit,light upper-left, subtle shaded right crown,tiny lower-right contact shadow. True RGBA transparency around and between leaves. No earth patch,pedestal,pot,ground plane,scene,text,labels,watermark,people,buildings,checkerboard,modern decoration or extra trees. Species is regional game art choice,not claim of a documented Yuan garden planting. ONE complete isolated sprite only.'
+  negative: 无文字、水印、人物、现代物件、假透明、地台；不作历史实测复原。
+  references:
+  - file: assets/default/baseline/tile/tex_town_song_dali_tree_cluster__broadleaf_v01.png
+    sha256: 3963e0b07a4cbb91b5472d8c2470dc4da5b6c7dab9dbdf3580ff5b8fa39d3f56
+    note: 实际输入；仅材质、细节密度风格参考
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T21:21:31.536506+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f427-c9bf-7070-8e80-6b9763c70314/exec-ae6d73bd-19bc-4992-a411-b17ecb36cc0b.png
+  size: 300x215
+  sha256: 599129f0db4efe3b47d5af6e7cb07e41cfdc405df3d0f27ee0dfe812a754fec0
+  status: candidate
+  tile:
+    kind: tree_cluster
+    footprint:
+    - 2
+    - 2
+    variant: oriental_arborvitae_v01
+    autotile_mask: null
+  source_copy: source/tex_town_yuan_north_tree_cluster__oriental_arborvitae_v01__source.png
+  source_sha256: 3f40c5c1ae0cddc3eed0ed7043e939a742133b2d4b347ef32ab283926024c73c
+  anchor_px:
+  - 160.652
+  - 205.331
+  notes: 仅alpha包围盒裁切、等比LANCZOS缩小、8px透明边；2×2种植区为虚拟逻辑占地；按树高5m建议值统一缩放；植物无平直底边可测轴，形态和元代栽植待考。

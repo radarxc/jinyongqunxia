@@ -274,3 +274,75 @@ Complete object on genuine transparent RGBA; no large soil platform or fake chec
 - [北京市文物局《明北京城城墙遗存》](https://wwj.beijing.gov.cn/bjww/362771/362779/dqpqgzdwwbhdw/523514/index.html)：取明城墙砖包外立面与三合土内芯，不套用现存城墙尺寸。
 - [北京市文物局《正阳门箭楼箭窗之谜》](https://wwj.beijing.gov.cn/bjww/362760/362770/623138/index.html)：取明正统四年修筑瓮城、箭楼与闸楼的体系；瓮城作为布局组件，不照抄现存箭窗与近代改建细部。
 - [北京市园林绿化局《适宜北京地区节水耐旱植物名录》](https://yllhj.beijing.gov.cn/zwgk/sjfb/mlxx/202204/t20220418_2679549.shtml)：核实国槐与侧柏适合北京地区；该现代名录不证明某一明代地点曾栽植。
+
+## 10. 元 · 北方套件补充（`yuan_north`）
+
+本节用于 `assets/default/tile/yuan_north/` 的7件贴片，与 `prompts/building-map.md` §11的19张建筑配套。默认元末大都/北方路城母题；匿名城门、墙、桥和植物组合为 **（原创扩展）**，不声称大都、大同、开封三城完全同形，也不建立具名文物复原资产。原宋模板与§9待决条目保留。
+
+### 10.1 本批清单与门洞契约
+
+| ID（统一前缀 `tex_town_yuan_north_`） | `tile.kind` | 占地 | 变体 / 用途 |
+|---|---|---|---|
+| `city_gate__k4_r000_v01` | `city_gate` | 8×4 | 净宽4格完整城门 |
+| `city_gate__k6_r000_v01` | `city_gate` | 10×4 | 净宽6格完整城门 |
+| `wall__earth_r000_v01` | `wall` | 1×1 | 夯土直墙段 |
+| `wall_corner__outer_ne_v01` | `wall_corner` | 2×2 | 外转角一向 |
+| `bridge_deck__w4_l8_r000_v01` | `bridge_deck` | 4×8 | 完整小石拱桥；栏杆未分层 |
+| `tree_cluster__scholar_tree_v01` | `tree_cluster` | 2×2 | 国槐意象 |
+| `tree_cluster__oriental_arborvitae_v01` | `tree_cluster` | 2×2 | 侧柏意象 |
+
+两门沿 `design/22` §4.3：净宽 `k`、两侧门墩各2格，故外占地 `(k+4)×4`，通行孔 `k×4`。源图应保留完整门墩、门洞、上部楼体与地面接口；孔内地面alpha为0，阴影不冒充实墙，门楼横梁可在孔上方遮挡。净宽是布局契约，生成PNG中的可见孔宽、进深和斜率仍须检查，不能凭文件名宣称精确对格。
+
+除两座城门外，其余贴片占地及两树2×2视觉包络均为 **【建议值】**，不是历史尺寸或植物碰撞范围。完整桥单图只供静态装配候选；`bridge_deck`不表示已具备桥面/近栏独立遮挡层。两种植物属于本批贴片，不冒充 `design/22` §4.4的 `prp_*` 独立公告板，不创建隐式alias；古代物种栽植位置和株形仍 **（待考）**。
+
+### 10.2 年代与提示词差异
+
+- 墙件以灰褐夯土、层理与轻微风化表达元大都外郭墙；不得整段套用明清青砖包砌或直接生成明清正阳门。城门周边必要砖石加固是匿名设计概化，具体材料分布 **（待考）**。
+- 门楼采用克制灰瓦木构、低饱和木色与土石门墩；不画浮夸重檐高塔、清式密集走兽、满墙和玺或金黄旅游景区屋顶。城门上部形制未获完整考古复原，继续标原创意象。
+- 桥采用单孔石拱桥母题，完整桥体、透明拱洞、两端可接岸；不烘焙河流、大片堤岸、船只或道路。此处不绘万宁桥专属镇水兽与铭文，不称具名文物复制。
+- 国槐用完整阔叶冠形，侧柏用克制常绿冠形；单件树/树簇保持基线写实细节密度，不带盆、厚土岛、现代园林灯或旁侧景观。植物古代分布不由当代景区照片证明。
+
+增量提示词骨架如下；城门、墙、桥和植物须分别逐张调用，保存真实实发版本：
+
+```text
+Create ONE isolated Yuan northern-China {OBJECT} map sprite.
+Match the supplied Song tile/building reference only for realistic matte material,
+muted palette and detail density; replace regional features with {YUAN_FEATURES}.
+Footprint {W} by {H} one-metre cells; target yaw45 elevation30 orthographic view,
+2:1 ground axes +0.5/-0.5, upright verticals, no perspective convergence.
+Upper-left light and a short soft lower-right contact shadow; true transparent RGBA.
+Keep complete roof/edge/foliage, readable ground contacts and transparent margins.
+For gates: clear passage {K}m wide through full 4m depth, two 2m-wide side piers;
+opening and ground within passage must remain alpha0, no opaque backdrop or floor fill.
+For walls: restrained rammed-earth material, no all-over Ming/Qing brick facing.
+For bridge: ONE low single-arch stone bridge, transparent arch, no water or shore scene.
+For vegetation: {SPECIES_MOTIF}, root contact visible, no pot or soil island.
+No lettering, watermark, people, checkerboard, decorative pedestal or surrounding city.
+Single r000 view only; no contact sheet and no rotated or mirrored view substitutes.
+```
+
+### 10.3 参考资料与限制
+
+以下来源于 **2026-09-30** 联网读取正文，均作文字考据；不把“阅读来源”登记成模型实际输入图片：
+
+| 来源 | 取用内容与限制 |
+|---|---|
+| [北京市文物局：元大都城墙遗址](https://wwj.beijing.gov.cn/bjww/wwjzzcslm/1737418/1738088/1742737/523487/index.html) | 夯土城墙、木构加固及元末防御增建；避免明清整段包砖。遗址介绍不能复原已失城楼上部，更不证明每座路城同材同形。 |
+| [杜仙洲《永乐宫的建筑》·山西省永乐宫壁画保护研究院转载](https://www.sxrcylg.cn/index.php?a=index&aid=1035&c=View&m=home) | 灰筒板瓦、单檐木构及土坯墙的时代参照；寺观宫门不是城市外城门，不能互相认作实物证据。 |
+| [北京市文物局：万宁桥](https://wwj.beijing.gov.cn/bjww/362760/362767/2020nwhhzrycr/10812184/10815278/index.html) | 单孔石拱桥与漕运节点母题；现桥历经修缮，本批4×8为项目建议占地，不采用文物测量尺寸或宣称复原。 |
+| [北京市政府：正阳门（中轴线）](https://www.beijing.gov.cn/renwen/rwzyd/gdwh/zym/202107/t20210706_2430351.html) | 仅作断代排除：现正阳门始建明代，其重檐外观不作元城门样本。 |
+
+### 10.4 逐图登记与本批验收
+
+逐项最多2候选选1；源图及成品均 `view_image` 自查。入选PNG真RGBA，`file/size/sha256`取成品实测；`source_path`记工具原始位置，随包源图与哈希可追溯。完整实发prompt、negative、实际references、调用时间和工具回执如实登记；不编造未披露的图像模型版本、seed或推理档位。
+
+manifest逐条含 `tile: {kind, footprint, variant, autotile_mask}`；本批独立精灵的 `autotile_mask:null` 不表示完整自动拼接族已交齐。城门、墙、桥以实际底面中心点登记 `anchor_px`，植物以根接触点为锚。源图测点经裁切/等比缩放/扩边同步变换；不能用透明包围框底边代替根或底面中心。PIL只做这些纯几何处理，不将地面阈值规则套在本批精灵上，不warp、重绘或拉伸修正投影。
+
+全部保留 `candidate`；宋基线清单当前也仍为candidate，本轮授权产图不等于作者批准上线。只交r000及转角一向，墙件接缝、门洞净宽、桥面碰撞/遮挡和两树实际装配均 **（待实测）**。若源图轴线偏扁或底面比例不准，记录真实测点和偏差，最多2候选后择优交付；不宣称严格2:1几何或无缝拼接已通过。不得旋转单PNG假称四向覆盖。
+
+```bash
+python3 tools/agents/check_assets.py assets/default/tile/yuan_north --min 5 --max 10 --min-side 32
+python3 tools/lint/check_ids.py --strict
+```
+
+文件门禁不检验透明孔、光向、年代与投影，上述项必须另列目视/像素实测结论。默认沿用本节占地、材料母题和单视图候选范围；作者尚需确认植物选择、形制、门墙尺度与残余几何偏差，具体结果见本套件manifest和任务报告。

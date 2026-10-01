@@ -419,6 +419,87 @@ sky, scenery, huge diorama base or fake checkerboard background.
 
 **需作者确认，默认沿用：** 19类分工及借用占地、王府配色、塔式概化、河埠台高、整体画风；全部candidate。技术接口仅如实记录本地工具回执；底层模型与seed未公开，不填猜测版本、价格、限额；运行时效果待实测。
 
+## 11. 元 · 北方套件补充（`yuan_north`）
+
+本节用于 `assets/default/building-map/yuan_north/` 的19张地图建筑候选，年代母题为元末大都及北方路城；大同、开封只作为地域适配方向，不据此宣称已复原三城。职责沿用 `design/22` §2.4、§3.4与§3.5，城门本体另见 `prompts/tile.md` §10。原宋模板、历史待决与检查规格保留；本套件建筑检查短边按任务要求为256px。
+
+### 11.1 清单、type复用与占地
+
+文件ID统一为 `bld_kit_yuan_north_<后缀>`；表中“同ID”表示 `building.type` 与该文件ID一致。五个既有元骨架复用原type，不另定义同义骨架。占地单位为未旋转东西×南北的1m规划格；这是游戏布局尺度，不是考古建筑尺寸。标“建议”的14类全部为 **【建议值】**：住宅、商铺、客栈等沿宋同功能量级，其余为本任务北方模块默认值，待具体CitySpec确认。
+
+| ID后缀 / 功能 | `building.type` | 占地 | 依据 |
+|---|---|---|---|
+| `house` / 大民居 | `bld_kit_yuan_house` | 7×6 | §3.4骨架 |
+| `house_small` / 小民居 | 同ID | 6×5 | 建议 |
+| `courtyard` / 院落 | 同ID | 10×8 | 建议 |
+| `shop_1f` / 单层铺 | 同ID | 6×5 | 建议 |
+| `shop_2f` / 两层铺 | 同ID | 8×6 | 建议 |
+| `inn` / 客栈 | 同ID | 12×9 | 建议 |
+| `restaurant` / 酒楼茶肆 | 同ID | 12×9 | 建议 |
+| `market_stall` / 市场棚 | `bld_kit_yuan_market` | 5×4 | §3.4骨架 |
+| `yamen` / 路府官署 | `bld_kit_yuan_yamen` | 16×12 | §3.4骨架 |
+| `biaoju` / 护运行货栈 | `bld_kit_yuan_biaoju` | 14×11 | §3.4骨架 |
+| `casino` / 赌场 | 同ID | 10×8 | 建议 |
+| `manor` / 山庄大院 | 同ID | 18×14 | 建议 |
+| `wangfu` / 王府模块 | `bld_kit_yuan_wangfu` | 20×16 | §3.4骨架 |
+| `temple_hall` / 寺观殿堂 | 同ID | 14×11 | 建议 |
+| `pagoda` / 覆钵白塔 | 同ID | 8×8 | 建议 |
+| `guardhouse` / 城门守舍 | 同ID | 6×5 | 建议 |
+| `stable` / 马厩 | 同ID | 8×6 | 建议 |
+| `warehouse` / 仓屋 | 同ID | 10×8 | 建议 |
+| `wharf` / 河埠 | 同ID | 10×6 | 建议 |
+
+19类只登记素材，不创建 `city/poi/biz/port` 等玩法ID。`biaoju`对应护运货栈院 **（原创扩展）**，避免直接书写尚待考证的元代“镖局”字号；`pagoda`对应北方藏式覆钵白塔母题；其余保留同功能项。王府与官署分别成院，不把王府模块称为整座皇宫；河埠只表达外观，不自动开通港口服务。
+
+### 11.2 年代差异与可复用提示词
+
+- 延续宋基线的写实古风、低饱和度、细瓦木纹和哑光土石；北方院墙、较规整院落、仓场与马厩表达地域。北方不等于全城蒙古包，帐幕不替换普通坊巷住宅。
+- 普通住宅与铺屋用克制灰瓦、土色墙体及木门窗；不要把所有民居画成重檐宫殿、满彩琉璃屋面或明清旅游商业街。具体民居细部仍 **（待考）**。
+- 寺观木构可借永乐宫元构的单檐庑殿/歇山、土坯墙与低砖裙、板门/槅扇；彩画只作克制母题，不把成熟清式和玺彩画当元代定式，也不声称元建筑一律素木无彩。
+- 塔采用覆钵白塔意象，与宋套件的密檐塔区分；不使用清初北海白塔、现代白塔寺院落或整套明清紫禁城外观。匿名建筑组合均为 **（原创扩展）**，不是具名古建复原。
+
+以下为增量模板；生成时替换参数并在逐图记录中保存完整实发提示词：
+
+```text
+Create ONE Yuan-period northern-China city-map building sprite: {FUNCTION},
+footprint {W}m east-west by {H}m north-south, anonymous regional concept.
+Match the supplied Song building-map reference in realistic weathered materials,
+restrained saturation and detail density; change the period/regional features only.
+Use {YUAN_NORTHERN_FEATURES}; muted grey ceramic tile, earthy walls and aged timber.
+Do not copy a modern tourist street, Qing imperial ornament or the reference building.
+Orthographic yaw45 elevation30, 2:1 ground axes +0.5/-0.5; upright verticals.
+South entrance faces lower-left; complete thin rectangular footprint, readable corners.
+Bottom-plane center is the placement anchor, not the frontmost corner or image bottom.
+Upper-left light, short soft lower-right contact shadow, true transparent RGBA.
+Keep the full roof, walls and shadow within generous transparent margins.
+No people, lettering, banners with writing, watermark, scenery or thick display plinth.
+ONE asset, ONE view r000, no sheet, no mirrored or rotated alternate-view substitutes.
+```
+
+### 11.3 来源、登记与验收边界
+
+以下网页于 **2026-09-30** 联网读取正文，仅用文字核验，网页照片不自动视为图像模型的参考输入：
+
+| 来源 | 取用内容与限制 |
+|---|---|
+| [杜仙洲《永乐宫的建筑》·山西省永乐宫壁画保护研究院转载](https://www.sxrcylg.cn/index.php?a=index&aid=1035&c=View&m=home) | 原《文物》1963年第8期；取元构屋顶、墙体、门扇和彩画母题。正文明确有明清重修部分，不将今貌或寺观做法推广为所有北方住宅。 |
+| [北京市政府：妙应寺白塔](https://www.beijing.gov.cn/renwen/rwzyd/qgzdwwbhdw/mysbt/202210/t20221027_2846092.html) | 支持元代藏式白塔母题；本套件8×8为游戏建议占地，不是文物尺寸或逐层复原。 |
+| [北京市文物局：白塔寺的故事](https://wwj.beijing.gov.cn/bjww/wwjzzcslm/1730488/1730490/1730493/1730495/1730953/index.html) | 区分元寺塔居中与明代重建院落；不将今日寺院轴线直接倒灌元代。 |
+| [故宫博物院：官式彩画展品说明·第一单元“守正”](https://ggzl.dpm.org.cn/app/api/app/exhibitionListPc/687) | 元永乐宫彩画与明清官式彩画分期参照；未据此核定像素配色、木构彩画的具体复原方案。 |
+
+宋基线由本任务指定为风格参照；开工读取的宋建筑38条与贴片60条清单实际仍为 `candidate`，不能把“指定基线”写成manifest已approved。本套件同样全部 `candidate`，未回复不视为审批通过。
+
+逐图调用 `image_gen`、`transparent_background:true`，每项最多生成2候选选1；本地参考先 `view_image`，源图与成品逐张自查。`sources/` 保存生成源图、实发提示及候选取舍，清单按 `assets/README.md` 登记实际 `source_path`、`references`、时间、SHA与 `building: {type, footprint, anchor, era}`；`era: yuan_north`。未披露的模型版本、seed或推理档位如实写未披露。
+
+PIL只作裁切、等比缩放与透明扩边。按§4量取真实可见底面L/R/F点，锚点代理取 `(L+R)/2`，地面目标宽 `32(w+h)`，缩放 `s=32(w+h)/(Rx-Lx)`；保留原始测点、裁框、缩放和锚点变换。隐藏底面及不平行的生成边存在估计误差，轴斜率与宽深比须另报；设置45°/30°提示词或通过文件门禁均不证明严格2:1几何已通过。不得以各向异性拉伸、warp或虚构读点消除偏差。
+
+本批仅r000单视图，`allowRotation:false`；规划允许四向不等于已交四视图。真RGBA、透明边、未裁檐角、门向、光源及原/成品SHA另行核查；底面轴线、遮挡、通行和实际拼接仍 **（待实测）**。默认保留已知几何偏差并交作者审阅，具体结论以本套件manifest及任务报告为准。
+
+```bash
+python3 tools/agents/check_assets.py assets/default/building-map/yuan_north --min 18 --max 22 --min-side 256
+python3 tools/lint/check_ids.py --strict
+```
+
 ## 本文新增术语与 ID
 
 不新增玩法 ID；宋批复用 §3 的38个建筑资产ID与最新§4.4的7个植物资产ID；§11另新增19个 `bld_kit_ming_north_*` 地域资产ID。植物文件使用`<asset_id>__v01/v02.png`，双下划线后是变体键，不是新玩法ID。`building.anchor`为最终PNG底面中心像素，`sources/`为归档生成来源，`meta/`为逐type制作元数据。它们是本批资产约定，不扩大`town/schema.yaml`的现有定义范围。

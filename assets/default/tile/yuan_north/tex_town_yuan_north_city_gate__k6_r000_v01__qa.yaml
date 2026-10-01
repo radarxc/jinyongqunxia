@@ -1,0 +1,53 @@
+id: tex_town_yuan_north_city_gate__k6_r000_v01
+source_near_opening_feet_px: [[364, 697], [748, 887]]
+measured_near_clear_width_m: 6.0
+measured_width_depth_ratio: 2.4806201550387597
+repair_round: 3
+status: candidate
+attempts: 1
+selected: first
+source_size:
+- 1536
+- 1024
+source_alpha_extrema:
+- 0
+- 254
+source_bbox: [0, 35, 1450, 986]
+source_footprint_corners_px: [[236, 632], [876, 953], [1134, 823], [494, 502]]
+corner_basis: 第3轮读取alpha轮廓和实墙地脚；L/F/R±2px，远角由平行边推导；门墩四段另作独立线拟合
+source_anchor_px: [685.0, 727.5]
+logical_footprint:
+- 10
+- 4
+logical_projected_width_px: 448
+measured_source_width_px: 898
+uniform_scale: 0.5
+rounding_error_px_max: 0.5
+transparent_padding_px: 8
+source_ground_slopes: [0.5015625, -0.5038759689922481]
+source_pier_edge_slopes: [0.509989, -0.502893, 0.509095, -0.504014]
+source_pier_fit_x_ranges: [[250, 340], [390, 540], [770, 850], [900, 1110]]
+source_crop_box: [168, 100, 1204, 964]
+final_footprint_corners_px: [[42.0, 274.0], [362.0, 434.5], [491.0, 369.5]]
+final_near_opening_feet_px: [[106.0, 306.5], [298.0, 401.5]]
+source_copy: source/gate_k6_repair3_c1.png
+source_sha256: 7195b45c9be8465df6bb3878d13dc903588bf873bdb01251ba38b4b7d2d0bab1
+final_sha256: 1bdf2578824c8b71600fd91d8f43e055fb24dea8e56566764b951588a081f3ac
+normalization_record: source/gate_k6_repair3_processing.json
+rebuild_script: source/repair3-normalize-gates.py
+width_measurement_note: 源脚点误差±2px；等比1/2后单点±1px。净孔由源脚点横向差×0.5/32独立计算；未改登记占地以迁就图片。
+source_parallel_sill_points_px: [[236,398],[876,716],[1135,590]]
+source_parallel_sill_slopes: [0.496875,-0.4864864864864865]
+source_parallel_sill_note: 独立目视读取木楼底框下沿三角点，±3源px；排除斜屋面和起翘檐角；两轴在0.03容差内
+target_slopes:
+- 0.5
+- -0.5
+strict_projection_pass: true
+final_size: [534, 448]
+anchor_px: [266.5, 321.75]
+final_alpha_extrema:
+- 0
+- 255
+source_opening_alpha_samples: [{alpha: 0, at: [650, 730]}, {alpha: 0, at: [625, 800]}]
+view_image_review: 源图与成品逐张检查：完整轮廓、左上明暗、无文字；几何与年代限制见notes
+notes: 第3轮k6共1候选选1；纯矩形裁边、1/2等比缩小、8px透明扩边。全底面双轴0.501563/-0.503876，各门墩地边拟合最大轴误差0.009989；净孔6.000000格（人工脚点±2源px），已解决上一轮净宽不足及k4右轴偏平。

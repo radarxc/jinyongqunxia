@@ -1,0 +1,92 @@
+[
+  {
+    "id": "bld_kit_yuan_north_house",
+    "title": "大民居",
+    "footprint": [
+      7,
+      6
+    ],
+    "type": "bld_kit_yuan_house"
+  },
+  {
+    "id": "bld_kit_yuan_north_house_small",
+    "title": "小民居",
+    "footprint": [
+      6,
+      5
+    ],
+    "type": "bld_kit_yuan_north_house_small"
+  },
+  {
+    "id": "bld_kit_yuan_north_courtyard",
+    "title": "院落",
+    "footprint": [
+      10,
+      8
+    ],
+    "type": "bld_kit_yuan_north_courtyard"
+  },
+  {
+    "id": "bld_kit_yuan_north_shop_1f",
+    "title": "单层商铺",
+    "footprint": [
+      6,
+      5
+    ],
+    "type": "bld_kit_yuan_north_shop_1f"
+  },
+  {
+    "id": "bld_kit_yuan_north_shop_2f",
+    "title": "两层商铺",
+    "footprint": [
+      8,
+      6
+    ],
+    "type": "bld_kit_yuan_north_shop_2f"
+  },
+  {
+    "id": "bld_kit_yuan_north_inn",
+    "title": "客栈",
+    "footprint": [
+      12,
+      9
+    ],
+    "type": "bld_kit_yuan_north_inn"
+  },
+  {
+    "id": "bld_kit_yuan_north_restaurant",
+    "title": "酒楼茶肆",
+    "footprint": [
+      12,
+      9
+    ],
+    "type": "bld_kit_yuan_north_restaurant"
+  },
+  {
+    "id": "bld_kit_yuan_north_market_stall",
+    "title": "市场棚",
+    "footprint": [
+      5,
+      4
+    ],
+    "type": "bld_kit_yuan_market"
+  },
+  {
+    "id": "bld_kit_yuan_north_stable",
+    "title": "马厩",
+    "footprint": [
+      8,
+      6
+    ],
+    "type": "bld_kit_yuan_north_stable"
+  },
+  {
+    "id": "bld_kit_yuan_north_warehouse",
+    "title": "仓屋",
+    "footprint": [
+      10,
+      8
+    ],
+    "type": "bld_kit_yuan_north_warehouse"
+  }
+]

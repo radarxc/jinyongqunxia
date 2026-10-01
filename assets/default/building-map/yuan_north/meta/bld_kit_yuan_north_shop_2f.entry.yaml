@@ -1,0 +1,79 @@
+id: bld_kit_yuan_north_shop_2f
+file: bld_kit_yuan_north_shop_2f.png
+category: building-map
+style: default
+subject: 元代北方·两层商铺；匿名建筑组合（原创扩展），具体细部（待考）。
+prompt: 'Use case: precise-object-edit. Re-render this single Yuan northern China building sprite to correct its CAMERA and rectangular ground proportions. Keep the same muted realistic matte materials, age, fine details, upper-left light, short lower-right shadow and anonymous Yuan subject. The current ground is too steep. Replace projection with exact orthographic DIMETRIC yaw45 pitch30, NOT standard 35.264 isometric. Both ground diagonals are shallower: exact screen slopes +0.5 and -0.5, screen angle 26.565 degrees. Footprint is 8m by 6m. From the leftmost ground corner to the bottom/front ground corner, horizontal run must be 1.3333 times the horizontal run from bottom/front to rightmost ground corner. Keep all parallel lines parallel; make this thin ground-contact rectangle very clear, not a thick raised base. Build the walls and roofs upright above that corrected plane. The source image angles must NOT be preserved. TRUE RGBA TRANSPARENT background, alpha0 outside object; 10 percent empty margin every side, whole roof and base visible. No text, grid, dimensions, labels, people or additional surroundings.'
+negative: 现代元素、人物、文字、景观背景、厚底座、塑料质感、明清官式彩画、裁边、假透明、透视汇聚
+references:
+- {file: assets/default/building-map/yuan_north/sources/bld_kit_yuan_north_shop_2f.png, sha256: 530fb601311bcb13e3fa0209a9068406ca3d303a81c7d8bb81001c4f63343bba, role: 已view_image；第二候选为相机纠正目标，首候选为宋材质参考}
+- {file: assets/default/baseline/building-map/bld_kit_song_southern_house.png, sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7, role: 首候选输入的宋套件材质和细节基线；间接参考}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:27:44.017457+00:00'
+created_time_basis: 源PNG文件mtime；非服务端回执时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f426-f982-78b2-9d92-dec5a0b0cec9/exec-393f9a44-cabc-45e3-b82e-424cb6fa4fbc.png
+size: 576x512
+sha256: fac220c5efce9f9ac1e957da1d4e0c92131f75a095632b419063a7e3230f3ac7
+status: candidate
+building:
+  type: bld_kit_yuan_north_shop_2f
+  footprint: [8, 6]
+  anchor: [287.1119, 322.0691]
+  era: yuan_north
+anchor_px: [287.1119, 322.0691]
+footprint_m: [8, 6]
+footprint_basis: 【建议值】同构借用 design/22 §3.2–3.3 对应宋建筑占地，不是历史尺寸
+entrance: {edge: S, offset_cells: 3}
+png_rotations_available: [0]
+allowRotation: false
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [448, 224]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+source_archive: sources/bld_kit_yuan_north_shop_2f.v02.png
+source_sha256: 3e3f22a4eff2b98e31598166a098cec4f251a7ffc529cefbd76a08f0c7f907c8
+source_record: sources/bld_kit_yuan_north_shop_2f.v02.json
+processing:
+  source_size: [1254, 1254]
+  crop_box: [59, 152, 1221, 1216]
+  uniform_scale_requested: 0.3882149046793761
+  resized_size: [451, 413]
+  rounded_effective_scale: [0.38812392426850256, 0.3881578947368421]
+  paste_offset: [62, 49]
+  steps: [crop alpha>0 bounding box, one uniform LANCZOS resize with integer rounding, paste without alpha mask into transparent RGBA canvas]
+geometry_qa:
+  source_corners_px:
+    left: [62, 805]
+    front: [730, 1153]
+    right: [1216, 906]
+  anchor_source_px: [639.0, 855.5]
+  source_axis_slopes: [0.5209580838323353, -0.5082304526748971]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.374485596707819
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.030864197530864335
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 4
+  measurement_note: 人工读取薄底面三角点，±4源px；后角按平行四边形推定，非历史实测。
+pixel_qa:
+  mode: RGBA
+  size: [576, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 188372
+  alpha_partial_pixels: 105708
+  alpha_opaque_pixels: 832
+  alpha_near_opaque_pixels: 102361
+  nonzero_bbox: [62, 49, 513, 449]
+  transparent_margins_px: [62, 49, 63, 63]
+  border_alpha_max: 0
+candidate_count: 2
+selected_candidate: 2
+notes: 选第二候选：两层商铺，双轴与宽深比均落入候选容差。；源图已逐张view_image。几何超差如实登记，底面中心为三点平行四边形代理；仅固定镜头候选，未做整城接缝/碰撞/真机验收。
+historical_basis:
+- {url: 'https://www.sxrcylg.cn/index.php?a=index&aid=1035&c=View&m=home', accessed: '2026-09-30', used: 仅元代殿堂木构/土坯墙砖裙/筒板瓦与木门母题；不能证明匿名民居原貌。}
+visual_qa: {source_view_image: true, final_view_image: true, status: candidate, note: 逐张目视轮廓/材质/光向；不替代严格几何、历史复原及作者审批。}

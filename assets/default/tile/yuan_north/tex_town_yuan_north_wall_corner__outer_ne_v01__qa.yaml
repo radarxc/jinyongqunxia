@@ -1,0 +1,58 @@
+id: tex_town_yuan_north_wall_corner__outer_ne_v01
+status: candidate
+attempts: 1
+selected: first
+repair_round: 2
+source_size:
+- 1024
+- 1536
+source_alpha_extrema:
+- 0
+- 254
+source_bbox:
+- 120
+- 186
+- 906
+- 1194
+source_footprint_corners_px:
+- [128, 1089.453]
+- [512, 1281.453]
+- [896, 1089.453]
+- [512, 897.453]
+corner_basis: 几何引导2×2外包菱形，前角落在L形缺口；alpha>128四段底边回归复核，轮廓误差折算小于0.5px
+source_anchor_px:
+- 512
+- 1089.453
+logical_footprint:
+- 2
+- 2
+logical_projected_width_px: 128
+measured_source_width_px: 768
+uniform_scale: 0.16666666666666666
+rounding_error_px_max: 0.5
+transparent_padding_px: 8
+source_ground_slopes:
+- 0.503706
+- -0.505462
+source_other_ground_slopes: [0.504089, -0.503394]
+target_slopes:
+- 0.5
+- -0.5
+strict_projection_pass: true
+projection_tolerance_final_px: 0.5
+source_measured_vertical_height_px: 705
+measured_height_m: 2.9981
+target_height_m: 3
+target_vertical_height_final_px: 117.576
+final_size:
+- 147
+- 184
+anchor_px:
+- 73.333
+- 158.575
+final_alpha_extrema:
+- 0
+- 255
+source_opening_alpha_samples: []
+view_image_review: 源图、浅灰alpha合成、成品逐图查看；另按锚点与直墙两臂各3段拼接，无高度或底边错层
+notes: 第2轮仅重出本件，一候选即选用；2×2外包、每臂厚1m的L形；矩形裁边去除主体外alpha=1散点，1/6等比缩小并补8px透明边，无拉伸/透视变形/alpha重绘；已解决旧约1.8m矮墙，现与直段均约3m；纹理重复接缝保留candidate人工审美项

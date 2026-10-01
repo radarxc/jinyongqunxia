@@ -1,0 +1,53 @@
+id: tex_town_yuan_north_city_gate__k4_r000_v01
+source_near_opening_feet_px: [[428, 731], [685, 855]]
+measured_near_clear_width_m: 4.015625
+measured_width_depth_ratio: 1.9691119691119692
+repair_round: 3
+status: candidate
+attempts: 2
+selected: second
+source_size:
+- 1536
+- 1024
+source_alpha_extrema:
+- 0
+- 254
+source_bbox: [41, 31, 1458, 994]
+source_footprint_corners_px: [[302, 666], [812, 922], [1071, 791], [561, 535]]
+corner_basis: 第3轮读取alpha轮廓和实墙地脚；L/F/R±2px，远角由平行边推导；门墩四段另作独立线拟合
+source_anchor_px: [686.5, 728.5]
+logical_footprint:
+- 8
+- 4
+logical_projected_width_px: 384
+measured_source_width_px: 769
+uniform_scale: 0.5
+rounding_error_px_max: 0.5
+transparent_padding_px: 8
+source_ground_slopes: [0.5019607843137255, -0.5057915057915058]
+source_pier_edge_slopes: [0.520978, -0.506823, 0.525596, -0.506522]
+source_pier_fit_x_ranges: [[310, 410], [450, 600], [700, 790], [840, 1050]]
+source_crop_box: [232, 136, 1142, 934]
+final_footprint_corners_px: [[43.0, 273.0], [298.0, 401.0], [427.5, 335.5]]
+final_near_opening_feet_px: [[106.0, 305.5], [234.5, 367.5]]
+source_copy: source/gate_k4_repair3_c2.png
+source_sha256: a6c49c1416ace4e9de5dd3ac1db86f7c4b652d4dd17ca01993e6e06c05342b79
+final_sha256: 446320ce83c9c537620a922d4887ce99f2b5598439addb5fe20bc93af171d588
+normalization_record: source/gate_k4_repair3_processing.json
+rebuild_script: source/repair3-normalize-gates.py
+width_measurement_note: 源脚点误差±2px；等比1/2后单点±1px。净孔由源脚点横向差×0.5/32独立计算；未改登记占地以迁就图片。
+source_parallel_sill_points_px: [[302,431],[812,687],[1072,563]]
+source_parallel_sill_slopes: [0.5019607843137255,-0.47692307692307695]
+source_parallel_sill_note: 独立目视读取木楼底框下沿三角点，±3源px；排除斜屋面和起翘檐角；两轴在0.03容差内
+target_slopes:
+- 0.5
+- -0.5
+strict_projection_pass: true
+final_size: [471, 415]
+anchor_px: [235.25, 304.25]
+final_alpha_extrema:
+- 0
+- 255
+source_opening_alpha_samples: [{alpha: 0, at: [650, 730]}, {alpha: 0, at: [625, 800]}]
+view_image_review: 源图与成品逐张检查：完整轮廓、左上明暗、无文字；几何与年代限制见notes
+notes: 第3轮k4共2候选选2；纯矩形裁边、1/2等比缩小、8px透明扩边。全底面双轴0.501961/-0.505792，各门墩地边拟合最大轴误差0.025596；净孔4.015625格（人工脚点±2源px），已解决上一轮净宽不足及k4右轴偏平。
