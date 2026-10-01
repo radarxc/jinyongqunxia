@@ -1,0 +1,882 @@
+- id: it_miji_luohanquan
+  file: it_miji_luohanquan.png
+  category: item
+  style: default
+  subject: 罗汉拳谱；秘籍·全本；黄阶；《天龙八部》等·少林武学；载体（原创扩展）；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call, then reply only with its generated PNG path. This is a new generation using the two attached images only as style references. Critical correction versus an earlier rejected draft: shrink the complete book so every edge has at least 16% empty canvas (book bounding box at most 68% of canvas width and height), center it precisely, and use an absolutely uniform flat RGB(230,225,216) background with no vignette, no gradient, no texture, no floor, and no shadow.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：罗汉拳谱（it_miji_luohanquan），秘籍·全本，黄阶；出处语境：《天龙八部》等·少林武学；载体（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=1; skill=sk_luohanquan; variant=full; maxLayer=10。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch01_tianlong 天龙书界；北宋哲宗，项目主体年代1093–1094。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：素黄薄纸册，四眼细订线，空题签，边角轻磨，掌心略大（原创扩展）。掌心略大的合拢薄册；空题签必须完全空白。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：常见素黄纸、普通麻线与实用装帧，轻微使用痕和素包装。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:08:13.052906+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f725-bfda-7b31-9568-efdf9d39b1ae/exec-e925a08d-7838-4b55-89bf-126bd5e95c16.png
+  size: 1254x1254
+  sha256: ad267539001e7b040f6559868b0acbc95de4de4f68bd8fdd28d6e774b08c15e5
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：2；首稿顶部留白不足；第 2 稿缩小并居中后通过。逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 19.94/16.75/19.62/17.30%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_taizuchangquan
+  file: it_miji_taizuchangquan.png
+  category: item
+  style: default
+  subject: 太祖长拳谱；秘籍·全本；黄阶；《天龙八部》·萧峰用太祖长拳；载体（原创扩展）；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：太祖长拳谱（it_miji_taizuchangquan），秘籍·全本，黄阶；出处语境：《天龙八部》·萧峰用太祖长拳；载体（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=3; skill=sk_taizuchangquan; variant=full; maxLayer=10。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch01_tianlong 天龙书界；北宋哲宗，项目主体年代1093–1094。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：靛蓝布纹纸书衣，细线装，封面空白，民间拳谱朴素感（原创扩展）。合拢单册；封面彻底无字，不加拳势图。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：普通布纹纸和细麻线，结构实用，轻微翻阅痕，朴素无贵重装饰。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:11:24.636557+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f728-b20c-7382-a8dd-9ea8f7acb962/exec-5e1bad48-5c89-4525-bb31-3f9ae3ecfe61.png
+  size: 1254x1254
+  sha256: 5d60ccdcee59c40176f019447b764764c3a56cd66cc59202b4bf6b09bf69d4c7
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：1；逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 20.97/20.49/19.54/21.29%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_quanzhenxinfa
+  file: it_miji_quanzhenxinfa.png
+  category: item
+  style: default
+  subject: 全真心法抄本；秘籍·抄本；玄阶；《射雕英雄传》《神雕侠侣》·全真内功；载体（原创扩展）；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：全真心法抄本（it_miji_quanzhenxinfa），秘籍·抄本，玄阶；出处语境：《射雕英雄传》《神雕侠侣》·全真内功；载体（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=5; skill=sk_quanzhenxinfa; variant=copy; maxLayer=8。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch02_shediao 射雕书界；南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：灰青软纸册，麻线细订，道观藏书轻旧化，无太极文字图案（原创扩展）。抄本仍是一册合拢软纸书；禁止太极图、八卦图和任何道教文字。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：纸张选材匀净，接缝与细订线整齐，完整而克制的藏书装帧。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:11:26.725241+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f728-b265-7ef1-984f-42a836d15162/exec-04a2c3e4-4e59-4f44-903f-c8c957d5e917.png
+  size: 1254x1254
+  sha256: 18fcfb723eba424487614986fa679c5b67093fd257dd1c76a161711ca5bc27df
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）；射雕书界精确年表待考。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：1；逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 20.73/18.18/20.57/19.14%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_suohouqinnashou
+  file: it_miji_suohouqinnashou.png
+  category: item
+  style: default
+  subject: 锁喉擒拿手遗谱；秘籍·全本；玄阶；《天龙八部》·马大元绝技；遗谱（原创扩展）；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：锁喉擒拿手遗谱（it_miji_suohouqinnashou），秘籍·全本，玄阶；出处语境：《天龙八部》·马大元绝技；遗谱（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=6; skill=sk_suohouqinnashou; variant=full; maxLayer=10。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch01_tianlong 天龙书界；北宋哲宗，项目主体年代1093–1094。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：褐红薄册，边缘有翻阅毛损，布包角，无字无血迹（原创扩展）。一册合拢遗谱；毛损只在边缘，绝不画血迹、手印或招式图。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：匀净薄纸、细密订线与完整布包角，旧化克制，保存较完整。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:11:30.051677+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f728-b29d-75d0-80c6-4f79bd38a394/exec-b3178a9f-0be4-4501-9db8-f99c162d72b3.png
+  size: 1254x1254
+  sha256: 0d4b5a73bb4b40aabc67558799be403947a55c8ec9a44478922540bf5d4f06be
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：1；逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 18.98/15.87/18.10/16.43%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_baituodujing
+  file: it_miji_baituodujing.png
+  category: item
+  style: default
+  subject: 白驼毒经残本；秘籍·残本；玄阶；西毒用毒背景；经名与载体（原创扩展）；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227；西域白驼山语境
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：白驼毒经残本（it_miji_baituodujing），秘籍·残本，玄阶；出处语境：西毒用毒背景；经名与载体（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=5; skill=sk_baituodujing; variant=partial; maxLayer=8。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch02_shediao 射雕书界；南宋宁宗至理宗，项目主体年代约1217–1227；西域白驼山语境。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：西域皮纸但非硬皮封壳，墨绿细绳，夹一片干草标本，无字（原创扩展）。柔软皮纸残册而非硬皮书；只露一片压平干草，它是夹页的一部分，不另摆道具。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：选材较匀净的柔韧皮纸、整齐墨绿细线，残本仍妥善收束，不用紫色魔光。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:15:04.705615+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f72b-e18a-7672-9e06-79f199922f06/exec-9fee22c0-51ce-4735-be1e-bc18ced36a8d.png
+  size: 1254x1254
+  sha256: bb58d479b09349b8fbad040291779aaf168f2730d65ce0fbbc969135b452e4ed
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227；西域白驼山语境；射雕书界精确年表待考。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：1；逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 17.62/14.27/16.83/17.15%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_yangjiaqiangfa
+  file: it_miji_yangjiaqiangfa.png
+  category: item
+  style: default
+  subject: 杨家枪法遗谱；秘籍·全本；玄阶；《射雕英雄传》·杨铁心家传枪法；遗谱（原创扩展）；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：杨家枪法遗谱（it_miji_yangjiaqiangfa），秘籍·全本，玄阶；出处语境：《射雕英雄传》·杨铁心家传枪法；遗谱（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=6; skill=sk_yangjiaqiangfa; variant=full; maxLayer=10。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch02_shediao 射雕书界；南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：赭色纸册裹旧蓝布套，细长开本，边角磨白（原创扩展）。细长合拢开本；旧蓝布套贴合包覆书册，不在旁边形成第二物品。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：匀净赭纸、细密装订和完整旧蓝布套，接缝讲究，克制光泽。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:14:54.737235+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f72b-e1c2-7c83-97fe-02af3b034bc1/exec-468549d3-dfc2-4764-aa1c-96bf09b8e112.png
+  size: 1254x1254
+  sha256: d11b4f806800622a1ffd838a57ef4c07cc4f2806bdf524fdcb2865415e7a3263
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）；射雕书界精确年表待考。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：1；逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 22.09/18.50/19.46/18.42%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_liangyixinfa
+  file: it_miji_liangyixinfa.png
+  category: item
+  style: default
+  subject: 两仪心法谱；秘籍·全本；玄阶；本作原创扩展；ch04_yitian 倚天书界代表投放语境，元末元顺帝，项目主体年代约1336–1363；具体投放为原创扩展
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：两仪心法谱（it_miji_liangyixinfa），秘籍·全本，玄阶；出处语境：本作原创扩展。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=5; skill=sk_liangyixinfa; variant=full; maxLayer=10。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch04_yitian 倚天书界代表投放语境；元末元顺帝，项目主体年代约1336–1363；具体投放为原创扩展。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：黑白双色但无太极符号的软纸书衣，细订线，克制道家感（原创扩展）。黑与米白只作不对称纸面分区；禁止阴阳鱼、圆形太极、八卦和文字。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：纸料匀净、双色拼接收口细致、订线规整，装帧完整而不华丽。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:14:55.383972+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f72b-e1ef-7623-af65-1b9d931aa6de/exec-405fb06f-bb65-4601-968a-920fa27733e6.png
+  size: 1254x1254
+  sha256: 05d0927000279487ba26696fa17dea152eb95c9e8405285538c7fabc8cd452f8
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch04_yitian 倚天书界代表投放语境，元末元顺帝，项目主体年代约1336–1363；具体投放为原创扩展。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：1；逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 18.98/15.55/18.74/15.15%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_tiebushan
+  file: it_miji_tiebushan.png
+  category: item
+  style: default
+  subject: 铁布衫秘籍；秘籍·全本；地阶；民间横练名目；本作原创扩展；ch01_tianlong 天龙书界代表投放语境，北宋哲宗，项目主体年代1093–1094；秘籍载体为原创扩展
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：铁布衫秘籍（it_miji_tiebushan），秘籍·全本，地阶；出处语境：民间横练名目；本作原创扩展。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=7; skill=sk_tiebushan; variant=full; maxLayer=10。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch01_tianlong 天龙书界代表投放语境；北宋哲宗，项目主体年代1093–1094；秘籍载体为原创扩展。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：土黄厚韧纸册，深褐布包边，朴实寺院练功册（原创扩展）。合拢厚韧纸册但不是硬皮魔法书；寺院感只靠材料与装订，不画佛字或佛像。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：厚韧纸与名家式细密包边工艺，纹理精细，旧而妥善保存；不用金光。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:14:57.050535+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f72b-e1e6-7ae3-8667-894d43a6d0e8/exec-0712892f-c3ac-4fab-a54b-0b0673805b14.png
+  size: 1254x1254
+  sha256: dec505ac59617a0c0e2bed36d02f2c3d42d4d2e725ee514c9d80f63eb94b58b8
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界代表投放语境，北宋哲宗，项目主体年代1093–1094；秘籍载体为原创扩展。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：1；逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 17.86/15.07/17.46/15.63%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_dajingangzhang
+  file: it_miji_dajingangzhang.png
+  category: item
+  style: default
+  subject: 大金刚掌秘籍；秘籍·全本；地阶；金庸作品少林武学（待考：核大金刚掌/大力金刚掌用名）；载体（原创扩展）；ch01_tianlong 天龙书界代表投放语境，北宋哲宗，项目主体年代1093–1094；武学用名待考
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：大金刚掌秘籍（it_miji_dajingangzhang），秘籍·全本，地阶；出处语境：金庸作品少林武学（待考：核大金刚掌/大力金刚掌用名）；载体（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=7; skill=sk_dajingangzhang; variant=full; maxLayer=10。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch01_tianlong 天龙书界代表投放语境；北宋哲宗，项目主体年代1093–1094；武学用名待考。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：深赭纸书衣，金泥仅作窄边且无字，四眼线装，庄重不华丽（原创扩展）。合拢单册；金泥只能是细窄无字边线，不能构成字、佛像或掌印。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：精制深赭纸、细四眼装订和极窄暗金泥边，名家工艺、旧而善存，不堆宝石。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:19:53.379810+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f730-61a9-7ea3-838c-2518c4d4626f/exec-08544620-2982-4b85-a667-c8deabd7a52c.png
+  size: 1254x1254
+  sha256: fad6e1bd4878c556d8e1e7097f1b96f5cf1c539979e91246c930d7cd1667c9b4
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界代表投放语境，北宋哲宗，项目主体年代1093–1094；武学用名待考。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）；大金刚掌/大力金刚掌用名待考。
+    候选数：1；逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 18.74/14.99/17.38/15.39%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_longzhaoshou
+  file: it_miji_longzhaoshou.png
+  category: item
+  style: default
+  subject: 龙爪手秘本；秘籍·全本；地阶；《倚天屠龙记》·少林龙爪手；载体（原创扩展）；ch04_yitian 倚天书界，元末元顺帝，项目主体年代约1336–1363
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：龙爪手秘本（it_miji_longzhaoshou），秘籍·全本，地阶；出处语境：《倚天屠龙记》·少林龙爪手；载体（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=8; skill=sk_longzhaoshou; variant=full; maxLayer=10。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch04_yitian 倚天书界；元末元顺帝，项目主体年代约1336–1363。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：暗金棕薄册，封面压出无字爪痕浅纹，细线装（原创扩展）。一册合拢薄本；浅压纹是抽象三道弧痕，不像文字、动物图或血爪。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：细腻暗金棕纸、精密浅压纹与细线工艺，专藏本旧而妥善保存。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:19:54.075177+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f730-6220-7373-9aee-444462fd2055/exec-72ae63f1-bc70-4829-b06e-eebb5eb47a65.png
+  size: 1254x1254
+  sha256: dc708b8093600546461819eb0a6fbab9ee55d0f72a27054e4543010914fdfed5
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch04_yitian 倚天书界，元末元顺帝，项目主体年代约1336–1363。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：1；逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 18.10/14.43/18.50/14.51%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_canhezhi
+  file: it_miji_canhezhi.png
+  category: item
+  style: default
+  subject: 参合指藏本；秘籍·残本；地阶；《天龙八部》·慕容氏武学；藏本（原创扩展）；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094；江南水阁藏书语境
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：参合指藏本（it_miji_canhezhi），秘籍·残本，地阶；出处语境：《天龙八部》·慕容氏武学；藏本（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=8; skill=sk_canhezhi; variant=partial; maxLayer=7。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch01_tianlong 天龙书界；北宋哲宗，项目主体年代1093–1094；江南水阁藏书语境。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：湖蓝绢纸书衣，水阁藏书防潮布套，页口齐整（原创扩展）。残本仍装订成一册；防潮布套贴合半包书身，不能另摆成第二件。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：稀有湖蓝绢纸、细密书衣工艺与专属防潮布套，旧而整洁，局部银灰收边。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:19:47.336057+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f730-621e-7170-be8a-080def5f4190/exec-ba8f6274-2656-42c6-961b-69f145eb0095.png
+  size: 1254x1254
+  sha256: 13caf5b74602dfe1fb549a4ed07b1125eadfa0b540ee4597007ea0e8a05aa2cf
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094；江南水阁藏书语境。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：1；逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 20.49/17.46/19.62/16.75%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_baihongzhang
+  file: it_miji_baihongzhang.png
+  category: item
+  style: default
+  subject: 白虹掌力藏本；秘籍·残本；地阶；《天龙八部》·李秋水武学；藏本（原创扩展）；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094；曼陀山庄藏书语境
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call, then reply only with its generated PNG path. This is the second and final candidate. Critical correction: the cover must be completely plain except for extremely subtle low-saturation pale rainbow-colored fibers embedded in the off-white paper. NO plum blossom, flower, branch, leaf, painting, illustration, symbol, decorative motif, metal ornament, clasp, or embossed pattern. Simple fine thread binding only. Keep the complete single book centered with at least 16% empty canvas on every edge. Flat RGB(230,225,216) background, no vignette, gradient, texture, floor, or shadow. The two attached images are style references only.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：白虹掌力藏本（it_miji_baihongzhang），秘籍·残本，地阶；出处语境：《天龙八部》·李秋水武学；藏本（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=9; skill=sk_baihongzhang; variant=partial; maxLayer=7。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch01_tianlong 天龙书界；北宋哲宗，项目主体年代1093–1094；曼陀山庄藏书语境。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：月白薄册带淡虹色纤维，不发光，曼陀山庄精致藏书感（原创扩展）。合拢薄册；淡虹只来自纸纤维的极轻低饱和色差，禁止虹光、光晕和真正彩虹图案。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：稀有月白纸、极细淡虹纤维和精致装订，保存完好，局部银灰细节但无光效。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:27:18.959058+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f737-2be1-7223-b6ba-97f722ab1505/exec-879d9cff-8da6-4bd3-b34e-1ac1c6457be4.png
+  size: 1254x1254
+  sha256: ece345a5bff6909be42a6e8d09a48e250fe669edc9998fa41c7c43bb7381883f
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094；曼陀山庄藏书语境。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：2；首稿擅加梅花枝；第 2 稿改为素面月白纸与低饱和淡虹纤维后通过。逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 17.22/14.99/17.15/14.75%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_xisuijing
+  file: it_miji_xisuijing.png
+  category: item
+  style: default
+  subject: 洗髓经藏本；秘籍·残本；地阶；民间传说名目；本作原创扩展；ch08_luding 鹿鼎书界代表藏经阁投放语境，清康熙，项目主体年代1669–1690；名目与载体不冒充原著复原
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call, then reply only with its generated PNG path. This is the second and final candidate. Critical correction: shrink the complete folded book and its attached gray cloth sleeve so every edge has at least 18% empty canvas. Preserve one integrated off-white accordion-fold scripture volume with visible fold edges and a close-fitting plain gray cloth protector; no text, sutra, Sanskrit, Buddha image, loose pages, metal ornament, or second object. Use a flat RGB(230,225,216) background with no floor or shadow. The two attached images are style references only.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：洗髓经藏本（it_miji_xisuijing），秘籍·残本，地阶；出处语境：民间传说名目；本作原创扩展。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=9; skill=sk_xisuijing; variant=partial; maxLayer=8。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch08_luding 鹿鼎书界代表藏经阁投放语境；清康熙，项目主体年代1669–1690；名目与载体不冒充原著复原。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：米白经折式外观但不画经文，灰布护套，古旧藏经感（原创扩展）。合拢的经折式一册，折页边缘可读；灰布护套贴合书身，绝不画经文、梵字或佛像。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：细韧米白纸、严整经折工艺与专属灰布护套，古旧但善存，克制暗银收边。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T12:10:18.635421+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f75e-922a-7b41-bd01-a7751b9e0f65/exec-0b743eb5-5cc3-4212-a52c-c7482ca405c3.png
+  size: 1254x1254
+  sha256: f5a5cd715fd4a96fa7c5e9fda147e1aa4c6e0775db0d8228bb302b08e4fb140f
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch08_luding 鹿鼎书界代表藏经阁投放语境，清康熙，项目主体年代1669–1690；名目与载体不冒充原著复原。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：2；首稿右侧留白约 10.85%；第 2 稿整体缩小后通过。逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 20.65/26.71/21.61/26.56%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_jiuyin_shang
+  file: it_miji_jiuyin_shang.png
+  category: item
+  style: default
+  subject: 九阴真经上卷；秘籍·原本；天阶；《射雕英雄传》·九阴真经上下卷；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：九阴真经上卷（it_miji_jiuyin_shang），秘籍·原本，天阶；出处语境：《射雕英雄传》·九阴真经上下卷。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=12; skill=sk_jiuyin; variant=original; maxLayer=10; volume=upper。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch02_shediao 射雕书界；南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：墨青柔软纸书衣、微翘角、右侧四眼细订线、空题签，轻旧化（原创扩展装帧）。生成新的独立上卷图，不复制参考书的具体轮廓或像素；空题签、合拢单册，不能出现下卷或第二册。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：极匀净柔韧纸料、完整独特装帧和极细工艺，温润自然纸光，珍贵而克制。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:34:47.966470+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f73d-fbe6-7d62-ba81-5264c57bc7d1/exec-2e73a3ba-42df-457c-af2c-e5568e069c9c.png
+  size: 1254x1254
+  sha256: 24ac8f21dee4018e423bf05f42dc185332de987afdf87851c2200eb86c38654f
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）；射雕书界精确年表待考。
+    名录依据：docs/design/catalog/items-manuals.md；九阴真经原著题材不标原创；仅本图装帧与具体外观为（原创扩展）。
+    候选数：1；逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 19.46/17.07/18.18/15.63%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_jiuyin_xia
+  file: it_miji_jiuyin_xia.png
+  category: item
+  style: default
+  subject: 九阴真经下卷；秘籍·原本；天阶；《射雕英雄传》·九阴真经上下卷；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：九阴真经下卷（it_miji_jiuyin_xia），秘籍·原本，天阶；出处语境：《射雕英雄传》·九阴真经上下卷。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=12; skill=sk_jiuyin; variant=original; maxLayer=10; volume=lower。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch02_shediao 射雕书界；南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：与上卷同套但以灰蓝书衣区分，薄纸页口、空题签（原创扩展装帧）。新的独立下卷单册；只在装帧体系上与参考上卷同套，灰蓝明显区分，不复制参考图构图或像素。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：极匀净灰蓝柔纸、完整同套装帧和极细订线，温润自然纸光，珍贵而克制。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:34:42.593066+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f73d-fc1b-7e62-abd5-49b3fd04b811/exec-aa307f98-db25-4d41-80b5-604ef60caf9c.png
+  size: 1254x1254
+  sha256: 57b97ddc070005ac526db88d58a1456f3de62b9ffbfae404ec076965ea017a5b
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）；射雕书界精确年表待考。
+    名录依据：docs/design/catalog/items-manuals.md；九阴真经原著题材不标原创；仅本图装帧与具体外观为（原创扩展）。
+    候选数：1；逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 20.10/15.31/19.70/15.79%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_xianglong18_can
+  file: it_miji_xianglong18_can.png
+  category: item
+  style: default
+  subject: 降龙十八掌残本；秘籍·残本；天阶；《倚天屠龙记》·丐帮降龙掌残传；实体（原创扩展）；ch04_yitian 倚天书界，元末元顺帝，项目主体年代约1336–1363
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete single book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow. This is the second and final candidate. Critical correction: the visible manuscript itself must be OLD YELLOW FIBROUS PAPER, not blue, gray, black, or cloth-covered. It is a partial damaged manuscript with only small missing page corners, still neatly bound and held between two slim warm bamboo clamping boards integrated along the long edges. No extra cover, no loose pages, no writing, no dragon motif.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：降龙十八掌残本（it_miji_xianglong18_can），秘籍·残本，天阶；出处语境：《倚天屠龙记》·丐帮降龙掌残传；实体（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=12; skill=sk_xianglong18; variant=partial; maxLayer=6。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch04_yitian 倚天书界；元末元顺帝，项目主体年代约1336–1363。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：旧黄纸残册，竹夹板护持，页角缺损但不散页，无文字（原创扩展）。单一完整的被竹夹板夹护残册；缺角有限、页线仍整齐，竹板是装帧一体，不另摆散页。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：罕见旧黄韧纸、独特残册轮廓和细密修护工艺，以温润竹夹板珍重保护；不发光。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:46:41.259619+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f748-e45b-7633-b9ec-95ebdf409382/exec-731b706f-05ef-47c2-ba79-b9ddf0d40d72.png
+  size: 1254x1254
+  sha256: 8c8538257ce741b1d47ab565ea2c0356f045a83140e260d0a568122e3f527898
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch04_yitian 倚天书界，元末元顺帝，项目主体年代约1336–1363。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：2；首稿误作蓝灰封皮；第 2 稿改为旧黄纸竹夹残册后通过。逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 24.08/17.15/24.24/19.06%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_dagou_can
+  file: it_miji_dagou_can.png
+  category: item
+  style: default
+  subject: 打狗棒法残谱；秘籍·残本；天阶；《倚天屠龙记》·丐帮棒法残传；实体（原创扩展）；ch04_yitian 倚天书界，元末元顺帝，项目主体年代约1336–1363
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete single book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow. This is the second and final candidate. Critical correction: use a plain dark ink-green soft-paper cover with only a few extremely subtle low-contrast BLIND-EMBOSSED SHORT SEGMENT JOINT MARKS. Do not depict a bamboo stalk, bamboo pole, bamboo branch, leaves, plant illustration, dog, weapon, or decorative scene. Fine hemp-thread repairs should be visible; no writing.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：打狗棒法残谱（it_miji_dagou_can），秘籍·残本，天阶；出处语境：《倚天屠龙记》·丐帮棒法残传；实体（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=11; skill=sk_dagou; variant=partial; maxLayer=6。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch04_yitian 倚天书界；元末元顺帝，项目主体年代约1336–1363。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：墨绿软纸残谱，细麻线补缀，竹节纹暗压，无字（原创扩展）。合拢残谱单册；竹节纹是低对比无字盲压纹，不画竹棒、狗、人物或招式。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：稀有墨绿柔纸、完整独特残谱轮廓与极细补缀，暗压工艺精密，珍贵而克制。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:46:41.999320+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f748-e41b-7793-9ae4-f15f7e1f9644/exec-6b3867ca-3230-49e3-b710-b9f2f511bb06.png
+  size: 1254x1254
+  sha256: 346876fd41b7ca42a45f19cbea49b38f8dd17ac35bddfbc261d384ca241d02ac
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch04_yitian 倚天书界，元末元顺帝，项目主体年代约1336–1363。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：2；首稿把竹节暗压扩成竹叶图；第 2 稿改为短节盲压与细麻线补缀后通过。逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 19.06/16.43/18.66/16.27%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
+- id: it_miji_douzhuan
+  file: it_miji_douzhuan.png
+  category: item
+  style: default
+  subject: 斗转星移藏本；秘籍·残本；天阶；《天龙八部》·慕容氏绝学；还施水阁载体（原创扩展）；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094；还施水阁藏本语境
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete single book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow. This is the second and final candidate. Critical correction: use a plain deep navy-blue silk cover with sparse tiny RANDOM SILVER-GRAY FIBER DOTS embedded in the weave, clearly dot-like but not glowing. No beige scratches, no long squiggles, no connected lines, no constellation, no star map, no night-sky scene, no decorative illustration, no writing.
+    Use case: stylized-concept
+    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
+    题材：斗转星移藏本（it_miji_douzhuan），秘籍·残本，天阶；出处语境：《天龙八部》·慕容氏绝学；还施水阁载体（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
+    效果字段：grade=10; skill=sk_douzhuan; variant=partial; maxLayer=6。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
+    年代：ch01_tianlong 天龙书界；北宋哲宗，项目主体年代1093–1094；还施水阁藏本语境。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
+    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
+    主体：深蓝绢面薄册，银灰星点仅作纤维斑，不画星图或文字（原创扩展）。合拢单册；稀疏银灰点必须只是随机纤维斑，禁止连线、星座、星图、夜空或发光粒子。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
+    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
+    品阶表现：极稀有深蓝绢面、独特薄册轮廓和细密工艺，银灰纤维自然冷润，珍贵但克制。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
+    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
+    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
+    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
+    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
+    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
+    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。
+  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: medium
+  created: '2026-10-01T11:46:38.420665+00:00'
+  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f748-e44b-75b0-8273-123d1467a8e6/exec-5d0a0018-8533-48e7-9a52-76d19eac5095.png
+  size: 1254x1254
+  sha256: 08a03eaec5eeb5759522f08455e67a7627897b3921fff747178e6771ea24085e
+  status: candidate
+  notes: |-
+    年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094；还施水阁藏本语境。
+    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
+    候选数：2；首稿银灰纤维辨识不足；第 2 稿改为随机银灰纤维点后通过。逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
+    阈值辅助测量左/上/右/下留白约 20.18/16.91/19.70/15.55%，均不低于 12%；主体包围框宽高均不超过 76%。
+    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
+    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
+    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
+    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。
