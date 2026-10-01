@@ -22900,7 +22900,7 @@
         "delivery": "finger",
         "catalog": "docs/design/catalog/skills-wujue.md",
         "moves": "`mv_liumai_guanchong`、`mv_liumai_liumaiqifa`*P、`mv_liumai_shangyang`、`mv_liumai_shaochong`、`mv_liumai_shaoshang`*P、`mv_liumai_shaoze`*P、`mv_liumai_zhongchong`",
-        "emitter": "sword"
+        "emitter": "finger"
       },
       "validate": {
         "exists": [
@@ -24814,7 +24814,7 @@
         "delivery": "finger",
         "catalog": "docs/design/catalog/skills-wujue.md",
         "moves": "`mv_tanzhi_`、`mv_tanzhi_chuanshi`、`mv_tanzhi_dianxue`、`mv_tanzhi_jiemai`、`mv_tanzhi_lianzhu`*P、`mv_tanzhi_miaoshi`、`mv_tanzhi_tanjia`、`mv_tanzhi_tanzhi`、`mv_tanzhi_tianhua`*P",
-        "emitter": "throw"
+        "emitter": "finger"
       },
       "validate": {
         "exists": [
