@@ -65,3 +65,4 @@
 - **批量生产两项默认（2026-09-30 15:05 提出，15:45 作者已确认）**：① 小城 / 遗址 272 个不做史料复原，用同年代套件的程序化模板生成；② 玄级外放气颜色：阴青 / 阳赤 / 调和淡金 / 中性素白（`docs/design/vfx/palette.yaml`）。
 - **VFX-templates 审核指出的沙箱限制**：Python 全量单测在只读审核沙箱里因不能建临时目录而退出 1，审核据此判 ❌——属环境限制，协调者准出时在主检出复跑单测即可；后续审核要点已注明不据此判 FAIL（待写入 review_checks_vfx_templates.md，若再出现）。
 - **`assets/default/prompts/vfx.md` 章节编号混乱**（2026-09-30 15:42）：VFX-emitters 与 VFX-templates 两任务都在文末追加小节，协调者手工合并冲突时按"两边都保留"处理，出现"## 8"重复、"### 7.1"错挂等编号问题；内容完整，下次有人改这个文件时顺手重排编号即可。
+- **sk_bihai（碧海潮生曲）发出方用错**（2026-09-30 22:30）：批量登记时按 delivery 把音功映射成了掌；已过审合入集成分支。待补一个小任务把 `assets/default/vfx/sk_bihai/moves/*/composition.yaml` 的 emitter 改为 `emitters/instrument`（箫）并重出 peak / demo。登记脚本已改为按武学名细分发出方（曲 / 箫 / 琴 → 乐器等），后续任务不再出这个问题。
