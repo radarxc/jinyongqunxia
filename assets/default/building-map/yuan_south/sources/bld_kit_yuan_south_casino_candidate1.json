@@ -1,0 +1,29 @@
+{
+  "key": "casino",
+  "id": "bld_kit_yuan_south_casino",
+  "prompt": "Use case: precise-object-edit. Convert this Song Jiangnan two-storey gaming house reference into ONE late Yuan Jiangnan gaming house bld_kit_yuan_south_casino, original game reconstruction,10x8 planning cells. Retain exact whole footprint outline, foundation base corners, building width/depth/height, front arcade, roof direction, all ground axes and camera45 yaw30 elevation. Geometry must remain orthographic2:1 with equal +.5/-.5 ground slopes; no perspective. Change only lower interior to one visible plain wood gaming table with a small closed dice cup, darken carved balcony to simpler dark brown square lattice, retain plain warm cream limewashed walls with weathered charcoal clay tiles. Understated medieval commercial house not a modern casino. Same realistic material/texture density and muted warm-neutral palette as reference; light screen upper-left short contact shadow lower-right. Fully transparent RGBA, preserve all eaves and base tips, generous clear alpha margin, no grey halo. No people, writing, words, signs, text, red lantern rows, modern dice graphics, playing-card signs, electric light, sky, scenery, Qing style rank insignia, late-Huizhou horse-head gables, plastic, cartoon or thick plinth.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f468-db51-74b0-a8a9-3964297969a6/exec-521e8b9d-cd47-4a0b-8af2-303cba89b79a.png",
+  "source_archive": "sources/bld_kit_yuan_south_casino_candidate1.png",
+  "source_sha256": "8b5f1ef49ad1830e62563eaa9748b0b4959b003491fe701c73eba637ea779295",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T22:37:08.724280+00:00",
+  "created_time_basis": "生成后归档记录时间，非服务端生成开始时间",
+  "negative": "No text, people, modern objects, opaque background, checkerboard, Qing rank decoration, late-Huizhou horse-head gables, cartoon, thick diorama plinth or cropped eaves.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_casino.png",
+      "sha256": "19bdfb75a6a17026592fef45f5b2c0fd39fb39c37b4dba7c6919c510fa6084d4",
+      "status": "candidate",
+      "role": "已view_image；材质、密度与受控编辑参考，不代表严格几何已通过"
+    }
+  ],
+  "selection_status": "rejected",
+  "selection_reason": "第2张右轴改善且轮廓完整；左轴仍较陡，保留候选告警。",
+  "view_image_reviewed": true
+}

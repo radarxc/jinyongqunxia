@@ -1,0 +1,238 @@
+{
+  "id": "bld_kit_yuan_south_shop_1f",
+  "file": "bld_kit_yuan_south_shop_1f.png",
+  "category": "building-map",
+  "style": "default",
+  "subject": "元末江南·单层商铺（原创扩展）",
+  "prompt": "Use case: historical-scene. Generate ONE new isolated late Yuan dynasty Jiangnan Chinese town building game sprite, circa 1350 Hangzhou/Jiqing/Pingjiang. Input image is a MATERIAL, PALETTE and CAMERA style reference only, not a historical reconstruction target. Match its realistic muted grey ceramic roof tiles, weathered warm dark timber, pale lightly weathered lime plaster, fine restrained detail density. Orthographic camera yaw 45 degrees elevation 30 degrees, dimetric ground edges slope +0.5 and -0.5 (2:1 grid), zero perspective convergence. Front south entrance faces lower left. Complete building and footprint on a TRUE transparent RGBA background, not white or checkerboard. Thin ground interface, no thick floating block. Make the left, front and right ground footprint corners clear and the entire building fit with 12% transparent margin. Lighting upper left, minimal short contact shadow lower right. Roofs plain with restrained eave curves and no extravagant upturned ornament. No people, words, lettering, signs, flags, logos, background scenery, mountains, modern materials, bright golden roofs, elaborate Qing polychromy, tourist Huizhou horse-head firewalls, cartoon outlines. Subject: single-storey small dry-goods SHOP with wide open wooden front, a simple counter and two fabric bolts inside, removable wood shutters and bamboo sun blind, plain single grey gable roof. One anonymous shop not a whole street. Rectangular parcel 6 meters east-west by 5 north-south, ratio1.2.",
+  "negative": "文字、水印、现代物、人物、清式彩画、旅游马头墙、厚底座、景观背景",
+  "references": [
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png",
+      "sha256": "bdb0d7ba47a804dc14b20c39931e2b95a6c8926cf0d3ecd10a7a808eb62d2548",
+      "role": "生成参考或第二候选编辑目标，详见调用记录"
+    }
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed",
+  "created": "2026-09-30T22:27:11.721494+00:00",
+  "created_time_basis": "source PNG mtime, not service-side call timestamp",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-70efc43d-0832-45f5-a806-e3ba89d41229.png",
+  "size": "448x432",
+  "sha256": "55a681deb9f2169a077520e26135d456b4b3da281a674eabfb929f1782823714",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_yuan_south_shop_1f",
+    "footprint": [
+      6,
+      5
+    ],
+    "anchor": [
+      233.9831,
+      292.6702
+    ],
+    "era": "yuan"
+  },
+  "footprint_m": [
+    6,
+    5
+  ],
+  "footprint_basis": "【建议值】design/22 §3.3同功能项",
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 3
+  },
+  "projection_contract": {
+    "tile_px": [
+      64,
+      32
+    ],
+    "ground_bbox_px": [
+      352,
+      176
+    ],
+    "light": "screen_upper_left",
+    "shadow": "screen_lower_right_contact_only",
+    "strict_geometry_pass": true
+  },
+  "metadata": "meta/bld_kit_yuan_south_shop_1f.yaml",
+  "source_record": "sources/shop_1f.call.json",
+  "candidate_count": 2,
+  "selected_candidate": 1,
+  "selection_reason": "选第一候选：开敞布店与卷帘可读；第二候选未改善比例，首候选无明显背景晕色。",
+  "source_sha256": "407da7d190e8fac31b738d8041fb724e50737c1d29dbf6f8133d00e22674ada3",
+  "processing": {
+    "source_archive": "sources/bld_kit_yuan_south_shop_1f.png",
+    "source_sha256": "407da7d190e8fac31b738d8041fb724e50737c1d29dbf6f8133d00e22674ada3",
+    "source_size": [
+      1254,
+      1254
+    ],
+    "crop_box": [
+      0,
+      53,
+      1182,
+      1184
+    ],
+    "uniform_scale_requested": 0.3381364073006724,
+    "resized_size": [
+      400,
+      382
+    ],
+    "rounded_effective_scale": [
+      0.338409475465313,
+      0.33775419982316535
+    ],
+    "paste_offset": [
+      24,
+      25,
+      424,
+      407
+    ],
+    "steps": [
+      "alpha>0矩形裁边，保留全部非零alpha",
+      "一次等比LANCZOS，尺寸取整",
+      "无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值",
+      "全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘"
+    ],
+    "reprojection": {
+      "kind": "whole_sprite_affine_reprojection",
+      "purpose": "audit repair: map measured ground axes to exact +0.50/-0.50",
+      "forward_matrix": [
+        1.0,
+        0.0,
+        0.03487117226494002,
+        1.0451435502571658,
+        -21.371436869659476
+      ],
+      "inverse_matrix_for_pillow": [
+        1.0,
+        0.0,
+        0.0,
+        -0.03336495953724222,
+        0.956806363828148,
+        20.448326801041702
+      ],
+      "pivot_anchor_px": [
+        233.9831,
+        292.6702
+      ],
+      "resample": "BICUBIC on premultiplied RGBa; convert back to RGBA",
+      "preserves": "canvas size, x coordinates, anchor, footprint registration, transparent background"
+    }
+  },
+  "geometry_qa": {
+    "source_corners_px": {
+      "left": [
+        57.840947546531304,
+        277.52637877051734
+      ],
+      "front": [
+        264.27072758037224,
+        380.7412687874378
+      ],
+      "right": [
+        410.12521150592215,
+        307.81402682466273
+      ]
+    },
+    "source_axis_slopes": [
+      0.4999999999999999,
+      -0.5000000000000006
+    ],
+    "axis_pass": true,
+    "axis_tolerance": 0.03,
+    "source_width_depth_ratio": 1.4153132250580047,
+    "expected_width_depth_ratio": 1.2,
+    "ratio_relative_error": 0.17942768754833738,
+    "ratio_pass": false,
+    "measurement_uncertainty_source_px": 6,
+    "precision_note": "由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。",
+    "measurement_space": "final_png_after_affine_reprojection",
+    "pre_reprojection_final_corners_px": {
+      "left": [
+        57.840947546531304,
+        284.05747126436785
+      ],
+      "front": [
+        264.27072758037224,
+        375.9266136162688
+      ],
+      "right": [
+        410.12521150592215,
+        301.2829354553493
+      ]
+    },
+    "pre_reprojection_axis_slopes": [
+      0.44503822237683177,
+      -0.5117681414513161
+    ],
+    "final_corners_px": {
+      "left": [
+        57.840947546531304,
+        277.52637877051734
+      ],
+      "front": [
+        264.27072758037224,
+        380.7412687874378
+      ],
+      "right": [
+        410.12521150592215,
+        307.81402682466273
+      ]
+    },
+    "final_axis_slopes": [
+      0.4999999999999999,
+      -0.5000000000000006
+    ],
+    "pre_reprojection_source_corners_px": {
+      "left": [
+        100,
+        820
+      ],
+      "front": [
+        710,
+        1092
+      ],
+      "right": [
+        1141,
+        871
+      ]
+    }
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      448,
+      432
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 118511,
+    "alpha_partial_pixels": 74183,
+    "alpha_opaque_pixels": 842,
+    "alpha_near_opaque_pixels": 72453,
+    "alpha_nonzero_bbox": [
+      56,
+      61,
+      424,
+      394
+    ],
+    "transparent_margins_px": [
+      56,
+      61,
+      24,
+      38
+    ],
+    "border_alpha_max": 0
+  },
+  "png_rotations_available": [
+    0
+  ],
+  "allowRotation": false,
+  "release_ready": false,
+  "notes": "选第一候选：开敞布店与卷帘可读；第二候选未改善比例，首候选无明显背景晕色。；原图已view_image；候选形制（原创扩展），具体元末细部（待考）；仅原向单视图，严格拼接（待实测）。"
+}

@@ -1,0 +1,153 @@
+asset_id: bld_kit_yuan_south_house_small
+anchor_px: &id001
+- 234.9137
+- 305.0886
+footprint_cells:
+- 7
+- 6
+entrance:
+  edge: S
+  offset_cells: 3
+actual_height_m: null
+height_note: 仅PNG，未实测高度
+png_rotations_available:
+- 0
+allowRotation: false
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 7
+  - 0
+- - 7
+  - 6
+- - 0
+  - 6
+collision_note: 矩形占地仅候选代理；院内/入口通行待布局联调
+occlusion_polygon_px:
+- - 27
+  - 115
+- - 454
+  - 115
+- - 454
+  - 423
+- - 27
+  - 423
+occlusion_note: alpha包络代理，非运行时精细遮挡
+processing:
+  source_archive: sources/bld_kit_yuan_south_house_small.v2.png
+  source_sha256: 7be603c10085551cb837d4284137c15bfaa41aa7295dd6d8b3439081544a3e38
+  source_size:
+  - 1254
+  - 1254
+  crop_box:
+  - 70
+  - 53
+  - 1206
+  - 1182
+  uniform_scale_requested: 0.3771532184950136
+  resized_size:
+  - 428
+  - 426
+  rounded_effective_scale:
+  - 0.3767605633802817
+  - 0.3773250664304694
+  paste_offset:
+  - 26
+  - 27
+  - 454
+  - 453
+  steps:
+  - alpha>0矩形裁边，保留全部非零alpha
+  - 一次等比LANCZOS，尺寸取整
+  - 无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值
+  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
+  reprojection:
+    kind: whole_sprite_affine_reprojection
+    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
+    forward_matrix:
+    - 1.0
+    - 0.0
+    - 0.0035690227366835248
+    - 0.923108121621856
+    - 22.620423189299743
+    inverse_matrix_for_pillow:
+    - 1.0
+    - 0.0
+    - 0.0
+    - -0.0038663106228693186
+    - 1.0832967196118357
+    - -24.50463023719991
+    pivot_anchor_px: *id001
+    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
+    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
+geometry_qa:
+  source_corners_px: &id002
+    left:
+    - 27.130281690140844
+    - 291.80776621803903
+    front:
+    - 261.4753521126761
+    - 408.9803014293066
+    right:
+    - 442.69718309859155
+    - 318.3693859363489
+  source_axis_slopes: &id003
+  - 0.49999999999999983
+  - -0.49999999999999983
+  axis_pass: true
+  axis_tolerance: 0.03
+  source_width_depth_ratio: 1.293139293139293
+  expected_width_depth_ratio: 1.1666666666666667
+  ratio_relative_error: 0.10840510840510831
+  ratio_pass: false
+  measurement_uncertainty_source_px: 6
+  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
+  measurement_space: final_png_after_affine_reprojection
+  pre_reprojection_final_corners_px:
+    left:
+    - 27.130281690140844
+    - 291.50487156775904
+    front:
+    - 261.4753521126761
+    - 417.53144375553586
+    right:
+    - 442.69718309859155
+    - 318.67227635075284
+  pre_reprojection_axis_slopes:
+  - 0.5377820491830485
+  - -0.5455146704287871
+  final_corners_px: *id002
+  final_axis_slopes: *id003
+  pre_reprojection_source_corners_px:
+    left:
+    - 73
+    - 754
+    front:
+    - 695
+    - 1088
+    right:
+    - 1176
+    - 826
+pixel_qa:
+  mode: RGBA
+  size:
+  - 480
+  - 480
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 155332
+  alpha_partial_pixels: 74308
+  alpha_opaque_pixels: 760
+  alpha_near_opaque_pixels: 72684
+  alpha_nonzero_bbox:
+  - 27
+  - 115
+  - 454
+  - 423
+  transparent_margins_px:
+  - 27
+  - 115
+  - 26
+  - 57
+  border_alpha_max: 0

@@ -1,0 +1,202 @@
+id: bld_kit_yuan_south_warehouse
+file: bld_kit_yuan_south_warehouse.png
+category: building-map
+style: default
+subject: 元末江南约1350年河仓／货栈（原创扩展，细部待考）
+prompt: 'Use case: historical-scene. Create a SINGLE cutout game map asset on actual transparent background, no background pixels at all. Subject:
+  ONE single-story cargo warehouse, gray tile gable roof, dark timber frame, pale plaster infill, two sliding timber doorways facing lower left,
+  very small bales under eaves. Late Yuan Jiangnan circa1350, realistically weathered stone, wood, gray clay tiles; quiet warm-neutral natural
+  palette and fine material detail like the southern Song building sprites. CAMERA PRIORITY: orthographic 2:1 DIMETRIC projection with vertical
+  lines upright, ground diamond edges exactly26.565degrees above/below horizontal (screen slopes +0.5 and -0.5); NO perspective convergence; yaw45
+  elevation30. Base is a THIN FLAT rectangle 10m east-west by8m north-south. Its near/left visible edge projects down-right and is 10/8 times
+  the far/right visible edge that projects up-right. Both ground edges must be equally steep26.565degrees. Precisely preserve this ground geometry.
+  Show clean unobstructed three visible corners touching ground. Entrance faces lower left. Full object must fit with15% completely empty transparent
+  border. Light upper left; TINY contact shadow lower right, tightly touching base. ABSOLUTELY NO glow, halo, mist, blurred vignette, gradient,
+  atmospheric fade, wall backdrop or ambient background shading; all empty space must have alpha zero. No people, text, labels, watermark, modern
+  item, black or white background, checkerboard, thick plinth or miniature scene.'
+negative: 文字、水印、人物、现代物、大背景、光晕、厚地台、夸张翘角、透视汇聚
+references: []
+visual_comparison_reference:
+  file: assets/default/baseline/building-map/bld_kit_song_southern_warehouse.png
+  role: 已view_image视觉比照；未作为工具图像输入
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:30:58.633911+00:00'
+created_time_basis: 源PNG文件mtime，非服务端时间回执
+source_path: /Users/bytedance/.codex/generated_images/01a0f469-0d23-7963-9f54-674c4289d810/exec-05fe89f2-a3b7-4fcd-a44e-28dab2a014d3.png
+size: 736x544
+sha256: df2cf328c3de2eb1436e9041ed388587ea4c57f34db7655b8a36f1d07af58180
+status: candidate
+building:
+  type: bld_kit_yuan_south_warehouse
+  footprint:
+  - 10
+  - 8
+  anchor: &id001
+  - 371.9155
+  - 344.6531
+  era: yuan
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】沿用design/22 §3.3南宋warehouse10×8，同构功能扩展
+entrance:
+  edge: S
+  offset_cells: 5
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 576
+  - 288
+  ground_width_px: 576
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  note: 最终双轴已校正；宽深比仍采用原底面读点并保留误差。
+  strict_geometry_pass: true
+metadata: meta/bld_kit_yuan_south_warehouse.yaml
+source_record: sources/bld_kit_yuan_south_warehouse.json
+source_sha256: 23d839211c34b20ac9bbe1161fc9906af73473133058fdf52a42e6ffa9052b1f
+processing:
+  source_archive: sources/bld_kit_yuan_south_warehouse.png
+  source_sha256: 23d839211c34b20ac9bbe1161fc9906af73473133058fdf52a42e6ffa9052b1f
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 69
+  - 32
+  - 1472
+  - 1024
+  uniform_scale_requested: 0.4198250728862974
+  resized_size:
+  - 589
+  - 416
+  rounded_effective_scale:
+  - 0.41981468282252316
+  - 0.41935483870967744
+  paste_offset:
+  - 73
+  - 64
+  - 662
+  - 480
+  steps:
+  - crop alpha>0 bounding rectangle
+  - uniform LANCZOS resize with integer rounding
+  - paste without mask into transparent RGBA; no alpha threshold, warp, repaint or mirror
+  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
+  reprojection:
+    kind: whole_sprite_affine_reprojection
+    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
+    forward_matrix:
+    - 1.0
+    - 0.0
+    - 0.005933079767935001
+    - 1.1441379179099616
+    - -51.88418456364519
+    inverse_matrix_for_pillow:
+    - 1.0
+    - 0.0
+    - 0.0
+    - -0.005185633370820516
+    - 0.8740205042996358
+    - 45.34784115749255
+    pivot_anchor_px: *id001
+    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
+    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
+geometry_qa:
+  source_corners_px: &id002
+    left:
+    - 83.9151817533856
+    - 319.3143763062659
+    front:
+    - 421.86600142551674
+    - 488.28978614233154
+    right:
+    - 659.9009265858874
+    - 369.2723235621461
+  source_axis_slopes: &id003
+  - 0.5000000000000002
+  - -0.5000000000000004
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.4197530864197532
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.13580246913580263
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 5
+  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
+  measurement_space: final_png_after_affine_reprojection
+  pre_reprojection_final_corners_px:
+    left:
+    - 83.9151817533856
+    - 324.0
+    front:
+    - 421.86600142551674
+    - 469.93548387096774
+    right:
+    - 659.9009265858874
+    - 364.6774193548387
+  pre_reprojection_axis_slopes:
+  - 0.4318246187789974
+  - -0.4421958855206385
+  final_corners_px: *id002
+  final_axis_slopes: *id003
+  pre_reprojection_source_corners_px:
+    left:
+    - 95
+    - 652
+    front:
+    - 900
+    - 1000
+    right:
+    - 1467
+    - 749
+pixel_qa:
+  mode: RGBA
+  size:
+  - 736
+  - 544
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 243947
+  alpha_partial_pixels: 155109
+  alpha_opaque_pixels: 1328
+  alpha_near_opaque_pixels: 152477
+  alpha_nonzero_bbox:
+  - 82
+  - 29
+  - 662
+  - 493
+  transparent_margins_px:
+  - 82
+  - 29
+  - 74
+  - 51
+  border_alpha_max: 0
+candidate_count: 2
+selected_candidate: 2
+notes: 第二候选灰瓦粉墙货门清楚，与宋基线河仓材质相近。原图预览外围残色经抽样alpha为0，成品无明显大光晕；未做alpha抠除。双轴已仿射校正；仍不是无缝拼接金样；货物外观为原创组合，非元代器物图录。
+transparency_diagnostics:
+  source_sample_px:
+  - - 100
+    - 500
+  - - 200
+    - 150
+  - - 700
+    - 30
+  - - 50
+    - 700
+  - - 900
+    - 1010
+  alpha_at_samples:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  note: 原图预览的外围RGB残色在这些采样位置完全透明；源alpha不经阈值修改。成品已view_image检查无明显大光晕。

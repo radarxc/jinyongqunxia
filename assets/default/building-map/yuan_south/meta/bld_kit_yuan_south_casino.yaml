@@ -1,0 +1,147 @@
+id: bld_kit_yuan_south_casino
+status: candidate
+building:
+  type: bld_kit_yuan_south_casino
+  footprint:
+  - 10
+  - 8
+  anchor: &id001
+  - 349.5714
+  - 419.2571
+  era: yuan
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】沿用design/22 §3.3 南宋同构casino 10×8
+anchor_px: *id001
+entrance:
+  edge: S
+  offset_cells: 5.0
+png_rotations_available:
+- 0
+allowRotation: false
+release_ready: false
+metadata_repair_note: 重建既有不可解析的visual_qa流式映射；保留manifest权威字段。
+geometry_qa:
+  source_corners_px: &id002
+    left:
+    - 61.57255936675462
+    - 404.5340454345507
+    front:
+    - 378.5118733509235
+    - 563.0037024266351
+    right:
+    - 637.825857519789
+    - 433.34671034220247
+  source_back_corner_inferred_px:
+  - 582
+  - 560
+  source_axis_slopes: &id003
+  - 0.4999999999999997
+  - -0.49999999999999944
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.2222222222222223
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.022222222222222143
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 8
+  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
+  measurement_space: final_png_after_affine_reprojection
+  pre_reprojection_final_corners_px:
+    left:
+    - 61.57255936675462
+    - 397.59861932938855
+    front:
+    - 378.5118733509235
+    - 573.3205128205128
+    right:
+    - 637.825857519789
+    - 440.2445759368836
+  pre_reprojection_axis_slopes:
+  - 0.5544338797297377
+  - -0.5131845754873368
+  final_corners_px: *id002
+  final_axis_slopes: *id003
+  pre_reprojection_source_corners_px:
+    left:
+    - 78
+    - 819
+    front:
+    - 694
+    - 1161
+    right:
+    - 1198
+    - 902
+pixel_qa:
+  mode: RGBA
+  size:
+  - 704
+  - 640
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 287260
+  alpha_partial_pixels: 162278
+  alpha_opaque_pixels: 1022
+  alpha_near_opaque_pixels: 155259
+  alpha_nonzero_bbox:
+  - 59
+  - 84
+  - 644
+  - 569
+  transparent_margins_px:
+  - 59
+  - 84
+  - 60
+  - 71
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_yuan_south_casino_candidate2.png
+  source_sha256: 835a538de6bfe72f71dd8e971c0a5e253abf5a0b8e379c7d79e050787bda9c62
+  source_size:
+  - 1254
+  - 1254
+  crop_box:
+  - 73
+  - 160
+  - 1210
+  - 1174
+  uniform_scale_requested: 0.5142857142857142
+  resized_size:
+  - 585
+  - 521
+  rounded_effective_scale:
+  - 0.5145118733509235
+  - 0.5138067061143984
+  paste_offset:
+  - 59
+  - 59
+  - 644
+  - 580
+  steps:
+  - crop alpha>0 bbox; preserve all source alpha
+  - one uniform LANCZOS resize, dimensions rounded
+  - paste without alpha mask on transparent RGBA padding
+  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
+  scale_formula: 32*(w+h)/(source_right_x-source_left_x)
+  reprojection:
+    kind: whole_sprite_affine_reprojection
+    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
+    forward_matrix:
+    - 1.0
+    - 0.0
+    - -0.019318373544795042
+    - 0.9366642128687014
+    - 33.307129324662526
+    inverse_matrix_for_pillow:
+    - 1.0
+    - 0.0
+    - 0.0
+    - 0.020624652121200484
+    - 1.0676184552170744
+    - -35.55930595731153
+    pivot_anchor_px: *id001
+    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
+    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background

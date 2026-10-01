@@ -1,0 +1,29 @@
+{
+  "key": "wangfu_v2",
+  "id": "bld_kit_yuan_south_wangfu",
+  "prompt": "Use case: precise-object-edit. Correct the ground projection of this Yuan Jiangnan noble hall module only, keeping its exact simple single-eave hip-and-gable roof, muted grey tiles, red-brown columns, sparse faded beam color, cream plaster, lattice doors, short central stair and realistic Song-derived texture density. Ground footprint20x16 planning cells. Change camera/base geometry to TRUE ORTHOGRAPHIC DIMETRIC2:1: both visible ground edges must be equally steep, +0.5 and -0.5, NOT the current flattened approximately0.4 slopes. On1536x1152 canvas use measured ground-plane corners LEFT(150,650), FRONT(850,1000), RIGHT(1410,720), BACK(710,370), all parallel building/roof axes follow these ground axes and columns vertical. Preserve full building silhouette, all base corners and roof tips, spacious clear transparent margins. No stretching, no perspective vanishing points, no ornate new decorations. Light screen upper-left with extremely short faint lower-right contact shadow. Actual transparent RGBA, no outer grey glow, no sky, backdrop, text, people, markers, grids, guide points, yellow roofs, Qing dragons, thick display plinth or modern objects.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f468-db51-74b0-a8a9-3964297969a6/exec-d19fef61-5a67-480d-bfda-9a641ace2bd0.png",
+  "source_archive": "sources/bld_kit_yuan_south_wangfu_candidate2.png",
+  "source_sha256": "ff24b835f170719836f4e3ed9d2a2f003c117933dacf7b94f032a8da2f46ced7",
+  "source_size": [
+    1448,
+    1086
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T22:38:44.769032+00:00",
+  "created_time_basis": "生成后归档记录时间，非服务端生成开始时间",
+  "negative": "No text, people, modern objects, opaque background, checkerboard, Qing rank decoration, late-Huizhou horse-head gables, cartoon, thick diorama plinth or cropped eaves.",
+  "references": [
+    {
+      "path": "/Users/bytedance/.codex/generated_images/01a0f468-db51-74b0-a8a9-3964297969a6/exec-7a09ce73-5cbe-4660-83c1-fc7867c46f15.png",
+      "sha256": "86942221cc360da9ba7aae423bb507464c451becefc21686bf146528fae3156a",
+      "status": "candidate",
+      "role": "已view_image；定向投影修正参考，不代表原图严格几何通过"
+    }
+  ],
+  "selection_status": "selected_candidate",
+  "selection_reason": "第2张两轴改善；宽深比例仍偏长，保留候选告警。",
+  "view_image_reviewed": true
+}

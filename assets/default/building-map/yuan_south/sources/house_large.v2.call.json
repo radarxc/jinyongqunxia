@@ -1,0 +1,15 @@
+{
+  "id": "house_large",
+  "prompt": "Use case: precise-object-edit. Input is edit target. Keep this exact anonymous late Yuan Jiangnan house_large architectural identity, every material, grey roof tile color, plaster, timber and realistic fine texture. Correct ONLY overall orthographic camera and rectangular ground footprint so the TWO visible ground edges slope exactly +0.50 and -0.50, a 2:1 dimetric grid; current image has steeper slopes about +/-0.58. The front ground corner should be clearly visible, NOT steep true-isometric30-degree screen lines. Both axes equivalent pitch, vertical pillars stay vertical. Parcel 10 by 8 meters, ratio east-west edge / north-south edge 1.25. Front entrance remains lower left. The wide front-facing ground edge left-to-front must be 25 percent longer in horizontal span than front-to-right edge. Not a square. All building and thin ground pad fully visible with generous transparent margin. Do not add facade ornaments, garden, new objects, scenery or text. Upper-left light, minimal lower-right short contact shadow; no large shadow, no haze or ground glow. TRUE transparent background RGBA, retain opacity of solid surfaces. One sprite only.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-ee3e2d10-8bf5-45b4-8397-7de2248c009a.png",
+  "reference": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-ad8684c5-1c5d-4928-885a-0477ff8ed88a.png",
+  "source_archive": "sources/bld_kit_yuan_south_house_large.v2.png",
+  "source_sha256": "46872be5b645c593f70b1fc49d441544be91a96857a8e729d0d054ad9977d9b6",
+  "source_size": [
+    1402,
+    1122
+  ],
+  "created": "2026-09-30T22:31:55.408329+00:00",
+  "created_time_basis": "source PNG mtime, not service-side call timestamp",
+  "reference_sha256": "1770b68afbf35c948c3be15f052bc3873b2f20b1c572656dbe16faa836b788c4"
+}

@@ -1,0 +1,147 @@
+id: bld_kit_yuan_south_biaoju
+status: candidate
+building:
+  type: bld_kit_yuan_south_biaoju
+  footprint:
+  - 14
+  - 11
+  anchor: &id001
+  - 497.3721
+  - 352.1977
+  era: yuan
+footprint_m:
+- 14
+- 11
+footprint_basis: design/22 §3.4 元代护运行骨架，14×11
+anchor_px: *id001
+entrance:
+  edge: S
+  offset_cells: 7.0
+png_rotations_available:
+- 0
+allowRotation: false
+release_ready: false
+metadata_repair_note: 重建既有不可解析的visual_qa流式映射；保留manifest权威字段。
+geometry_qa:
+  source_corners_px: &id002
+    left:
+    - 97.36085219707057
+    - 316.0265303489559
+    front:
+    - 569.3155792276964
+    - 552.0038938642688
+    right:
+    - 897.1264980026631
+    - 388.09843447678526
+  source_back_corner_inferred_px:
+  - 630
+  - 202
+  source_axis_slopes: &id003
+  - 0.5
+  - -0.5000000000000006
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.4397163120567376
+  expected_width_depth_ratio: 1.2727272727272727
+  ratio_relative_error: 0.13120567375886516
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 8
+  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
+  measurement_space: final_png_after_affine_reprojection
+  pre_reprojection_final_corners_px:
+    left:
+    - 97.36085219707057
+    - 334.33772819472614
+    front:
+    - 569.3155792276964
+    - 558.0750507099392
+    right:
+    - 897.1264980026631
+    - 369.7870182555781
+  pre_reprojection_axis_slopes:
+  - 0.4740652221514765
+  - -0.5743799906299513
+  final_corners_px: *id002
+  final_axis_slopes: *id003
+  pre_reprojection_source_corners_px:
+    left:
+    - 66
+    - 526
+    front:
+    - 878
+    - 911
+    right:
+    - 1442
+    - 587
+pixel_qa:
+  mode: RGBA
+  size:
+  - 992
+  - 672
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 450386
+  alpha_partial_pixels: 215084
+  alpha_opaque_pixels: 1154
+  alpha_near_opaque_pixels: 206078
+  alpha_nonzero_bbox:
+  - 59
+  - 65
+  - 932
+  - 584
+  transparent_margins_px:
+  - 59
+  - 65
+  - 60
+  - 88
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_yuan_south_biaoju_candidate2.png
+  source_sha256: 26d59be2fc1bb948d87702d502dd2d59f27fd0db1134090c7bc4f350699f1e61
+  source_size:
+  - 1502
+  - 1047
+  crop_box:
+  - 0
+  - 35
+  - 1502
+  - 1021
+  uniform_scale_requested: 0.5813953488372093
+  resized_size:
+  - 873
+  - 573
+  rounded_effective_scale:
+  - 0.581225033288948
+  - 0.5811359026369168
+  paste_offset:
+  - 59
+  - 49
+  - 932
+  - 622
+  steps:
+  - crop alpha>0 bbox; preserve all source alpha
+  - one uniform LANCZOS resize, dimensions rounded
+  - paste without alpha mask on transparent RGBA padding
+  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
+  scale_formula: 32*(w+h)/(source_right_x-source_left_x)
+  reprojection:
+    kind: whole_sprite_affine_reprojection
+    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
+    forward_matrix:
+    - 1.0
+    - 0.0
+    - 0.047839776106349374
+    - 0.9537932815269317
+    - -7.520269934782675
+    inverse_matrix_for_pillow:
+    - 1.0
+    - 0.0
+    - 0.0
+    - -0.05015738423923733
+    - 1.0484452127814277
+    - 7.884591011946995
+    pivot_anchor_px: *id001
+    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
+    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background

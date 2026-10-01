@@ -1,0 +1,238 @@
+{
+  "id": "bld_kit_yuan_south_house_small",
+  "file": "bld_kit_yuan_south_house_small.png",
+  "category": "building-map",
+  "style": "default",
+  "subject": "元末江南·小民居（原创扩展）",
+  "prompt": "Use case: precise-object-edit. Input is edit target. Keep this exact anonymous late Yuan Jiangnan house_small architectural identity, every material, grey roof tile color, plaster, timber and realistic fine texture. Correct ONLY overall orthographic camera and rectangular ground footprint so the TWO visible ground edges slope exactly +0.50 and -0.50, a 2:1 dimetric grid; current image has steeper slopes about +/-0.58. The front ground corner should be clearly visible, NOT steep true-isometric30-degree screen lines. Both axes equivalent pitch, vertical pillars stay vertical. Parcel 7 by 6 meters, ratio east-west edge / north-south edge 1.1667. Front entrance remains lower left. The wide front-facing ground edge left-to-front must be 16.7 percent longer in horizontal span than front-to-right edge. Not a square. All building and thin ground pad fully visible with generous transparent margin. Do not add facade ornaments, garden, new objects, scenery or text. Upper-left light, minimal lower-right short contact shadow; no large shadow, no haze or ground glow. TRUE transparent background RGBA, retain opacity of solid surfaces. One sprite only.",
+  "negative": "文字、水印、现代物、人物、清式彩画、旅游马头墙、厚底座、景观背景",
+  "references": [
+    {
+      "file": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-e3e66ac5-8291-47a8-8172-c3fbab3e3c39.png",
+      "sha256": "44a4aca1931b919a3d483b1d00769788c6bc71358d851d4bd78542823af040a4",
+      "role": "生成参考或第二候选编辑目标，详见调用记录"
+    }
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed",
+  "created": "2026-09-30T22:31:14.184564+00:00",
+  "created_time_basis": "source PNG mtime, not service-side call timestamp",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-6af3a63f-64ec-41d1-a82c-7c79d3e9e110.png",
+  "size": "480x480",
+  "sha256": "6e10895dad56f20e194e32b89a908f0f965fbaef6ffc57c9ad9b8dd3d6d9a392",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_yuan_south_house_small",
+    "footprint": [
+      7,
+      6
+    ],
+    "anchor": [
+      234.9137,
+      305.0886
+    ],
+    "era": "yuan"
+  },
+  "footprint_m": [
+    7,
+    6
+  ],
+  "footprint_basis": "design/22 §3.4 bld_kit_yuan_house",
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 3
+  },
+  "projection_contract": {
+    "tile_px": [
+      64,
+      32
+    ],
+    "ground_bbox_px": [
+      416,
+      208
+    ],
+    "light": "screen_upper_left",
+    "shadow": "screen_lower_right_contact_only",
+    "strict_geometry_pass": true
+  },
+  "metadata": "meta/bld_kit_yuan_south_house_small.yaml",
+  "source_record": "sources/house_small.v2.call.json",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "selection_reason": "选第二候选：底面斜率较首候选趋近0.5，仍有轴向/宽深残差；素瓦小屋完整。",
+  "source_sha256": "7be603c10085551cb837d4284137c15bfaa41aa7295dd6d8b3439081544a3e38",
+  "processing": {
+    "source_archive": "sources/bld_kit_yuan_south_house_small.v2.png",
+    "source_sha256": "7be603c10085551cb837d4284137c15bfaa41aa7295dd6d8b3439081544a3e38",
+    "source_size": [
+      1254,
+      1254
+    ],
+    "crop_box": [
+      70,
+      53,
+      1206,
+      1182
+    ],
+    "uniform_scale_requested": 0.3771532184950136,
+    "resized_size": [
+      428,
+      426
+    ],
+    "rounded_effective_scale": [
+      0.3767605633802817,
+      0.3773250664304694
+    ],
+    "paste_offset": [
+      26,
+      27,
+      454,
+      453
+    ],
+    "steps": [
+      "alpha>0矩形裁边，保留全部非零alpha",
+      "一次等比LANCZOS，尺寸取整",
+      "无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值",
+      "全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘"
+    ],
+    "reprojection": {
+      "kind": "whole_sprite_affine_reprojection",
+      "purpose": "audit repair: map measured ground axes to exact +0.50/-0.50",
+      "forward_matrix": [
+        1.0,
+        0.0,
+        0.0035690227366835248,
+        0.923108121621856,
+        22.620423189299743
+      ],
+      "inverse_matrix_for_pillow": [
+        1.0,
+        0.0,
+        0.0,
+        -0.0038663106228693186,
+        1.0832967196118357,
+        -24.50463023719991
+      ],
+      "pivot_anchor_px": [
+        234.9137,
+        305.0886
+      ],
+      "resample": "BICUBIC on premultiplied RGBa; convert back to RGBA",
+      "preserves": "canvas size, x coordinates, anchor, footprint registration, transparent background"
+    }
+  },
+  "geometry_qa": {
+    "source_corners_px": {
+      "left": [
+        27.130281690140844,
+        291.80776621803903
+      ],
+      "front": [
+        261.4753521126761,
+        408.9803014293066
+      ],
+      "right": [
+        442.69718309859155,
+        318.3693859363489
+      ]
+    },
+    "source_axis_slopes": [
+      0.49999999999999983,
+      -0.49999999999999983
+    ],
+    "axis_pass": true,
+    "axis_tolerance": 0.03,
+    "source_width_depth_ratio": 1.293139293139293,
+    "expected_width_depth_ratio": 1.1666666666666667,
+    "ratio_relative_error": 0.10840510840510831,
+    "ratio_pass": false,
+    "measurement_uncertainty_source_px": 6,
+    "precision_note": "由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。",
+    "measurement_space": "final_png_after_affine_reprojection",
+    "pre_reprojection_final_corners_px": {
+      "left": [
+        27.130281690140844,
+        291.50487156775904
+      ],
+      "front": [
+        261.4753521126761,
+        417.53144375553586
+      ],
+      "right": [
+        442.69718309859155,
+        318.67227635075284
+      ]
+    },
+    "pre_reprojection_axis_slopes": [
+      0.5377820491830485,
+      -0.5455146704287871
+    ],
+    "final_corners_px": {
+      "left": [
+        27.130281690140844,
+        291.80776621803903
+      ],
+      "front": [
+        261.4753521126761,
+        408.9803014293066
+      ],
+      "right": [
+        442.69718309859155,
+        318.3693859363489
+      ]
+    },
+    "final_axis_slopes": [
+      0.49999999999999983,
+      -0.49999999999999983
+    ],
+    "pre_reprojection_source_corners_px": {
+      "left": [
+        73,
+        754
+      ],
+      "front": [
+        695,
+        1088
+      ],
+      "right": [
+        1176,
+        826
+      ]
+    }
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      480,
+      480
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 155332,
+    "alpha_partial_pixels": 74308,
+    "alpha_opaque_pixels": 760,
+    "alpha_near_opaque_pixels": 72684,
+    "alpha_nonzero_bbox": [
+      27,
+      115,
+      454,
+      423
+    ],
+    "transparent_margins_px": [
+      27,
+      115,
+      26,
+      57
+    ],
+    "border_alpha_max": 0
+  },
+  "png_rotations_available": [
+    0
+  ],
+  "allowRotation": false,
+  "release_ready": false,
+  "notes": "选第二候选：底面斜率较首候选趋近0.5，仍有轴向/宽深残差；素瓦小屋完整。；原图已view_image；候选形制（原创扩展），具体元末细部（待考）；仅原向单视图，严格拼接（待实测）。"
+}

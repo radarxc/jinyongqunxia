@@ -1,0 +1,184 @@
+id: bld_kit_yuan_south_pagoda
+file: bld_kit_yuan_south_pagoda.png
+category: building-map
+style: default
+subject: 元末江南约1350年江南匿名佛塔（原创扩展，细部待考）
+prompt: 'Use case: historical-scene. Create a SINGLE cutout game map asset on actual transparent background, no background pixels at all. Subject:
+  ONE slender FIVE-storey octagonal Jiangnan brick-and-timber Buddhist pavilion tower, gray tiled diminishing eaves, restrained dark timber galleries,
+  pale weathered brick/plaster shaft, small spire, not a Tibetan stupa. Fictional anonymous tower, not a named historical reconstruction. Late
+  Yuan Jiangnan circa1350, realistically weathered stone, wood, gray clay tiles; quiet warm-neutral natural palette and fine material detail like
+  the southern Song building sprites. CAMERA PRIORITY: orthographic 2:1 DIMETRIC projection with vertical lines upright, ground diamond edges
+  exactly26.565degrees above/below horizontal (screen slopes +0.5 and -0.5); NO perspective convergence; yaw45 elevation30. Base is a THIN FLAT
+  rectangle 7m east-west by7m north-south. Its near/left visible edge projects down-right and is 7/7 times the far/right visible edge that projects
+  up-right. Both ground edges must be equally steep26.565degrees. Precisely preserve this ground geometry. Show clean unobstructed three visible
+  corners touching ground. Entrance faces lower left. Full object must fit with15% completely empty transparent border. Light upper left; TINY
+  contact shadow lower right, tightly touching base. ABSOLUTELY NO glow, halo, mist, blurred vignette, gradient, atmospheric fade, wall backdrop
+  or ambient background shading; all empty space must have alpha zero. No people, text, labels, watermark, modern item, black or white background,
+  checkerboard, thick plinth or miniature scene.'
+negative: 文字、水印、人物、现代物、大背景、光晕、厚地台、夸张翘角、透视汇聚
+references: []
+visual_comparison_reference:
+  file: assets/default/baseline/building-map/bld_kit_song_southern_warehouse.png
+  role: 已view_image视觉比照；未作为工具图像输入
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:31:40.819062+00:00'
+created_time_basis: 源PNG文件mtime，非服务端时间回执
+source_path: /Users/bytedance/.codex/generated_images/01a0f469-0d23-7963-9f54-674c4289d810/exec-6359a88e-9171-43f0-a6fc-b0af866b5dab.png
+size: 832x1024
+sha256: fb4baa8290358cc9a3ba6ca3000cab2a2b02bf1d49fe24f0473b2e1102ac6be8
+status: candidate
+building:
+  type: bld_kit_yuan_south_pagoda
+  footprint:
+  - 7
+  - 7
+  anchor: &id001
+  - 411.9628
+  - 804.914
+  era: yuan
+footprint_m:
+- 7
+- 7
+footprint_basis: 【建议值】沿用design/22 §3.3南宋pagoda7×7，同构功能扩展
+entrance:
+  edge: S
+  offset_cells: 3
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 448
+  - 224
+  ground_width_px: 448
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  note: 最终双轴已校正；宽深比仍采用原底面读点并保留误差。
+  strict_geometry_pass: true
+metadata: meta/bld_kit_yuan_south_pagoda.yaml
+source_record: sources/bld_kit_yuan_south_pagoda.json
+source_sha256: 9cbd7119d746698d3609c6df97f942c8951fce62cef702284a0560b19053355e
+processing:
+  source_archive: sources/bld_kit_yuan_south_pagoda.png
+  source_sha256: 9cbd7119d746698d3609c6df97f942c8951fce62cef702284a0560b19053355e
+  source_size:
+  - 1150
+  - 1368
+  crop_box:
+  - 50
+  - 0
+  - 1112
+  - 1348
+  uniform_scale_requested: 0.6418338108882522
+  resized_size:
+  - 682
+  - 865
+  rounded_effective_scale:
+  - 0.6421845574387948
+  - 0.6416913946587537
+  paste_offset:
+  - 75
+  - 79
+  - 757
+  - 944
+  steps:
+  - crop alpha>0 bounding rectangle
+  - uniform LANCZOS resize with integer rounding
+  - paste without mask into transparent RGBA; no alpha threshold, warp, repaint or mirror
+  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
+  reprojection:
+    kind: whole_sprite_affine_reprojection
+    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
+    forward_matrix:
+    - 1.0
+    - 0.0
+    - 0.005469332935382765
+    - 0.9094956375859586
+    - 70.59506665794311
+    inverse_matrix_for_pillow:
+    - 1.0
+    - 0.0
+    - 0.0
+    - -0.006013588971025542
+    - 1.0995104964486293
+    - -77.6200167878991
+    pivot_anchor_px: *id001
+    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
+    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
+geometry_qa:
+  source_corners_px: &id002
+    left:
+    - 188.02448210922788
+    - 804.1263638221318
+    front:
+    - 413.4312617702448
+    - 916.8297536526403
+    right:
+    - 636.2693032015067
+    - 805.4107329370096
+  source_axis_slopes: &id003
+  - 0.5000000000000002
+  - -0.4999999999999991
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.0115273775216138
+  expected_width_depth_ratio: 1.0
+  ratio_relative_error: 0.011527377521613813
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 5
+  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
+  measurement_space: final_png_after_affine_reprojection
+  pre_reprojection_final_corners_px:
+    left:
+    - 188.02448210922788
+    - 805.3946587537092
+    front:
+    - 413.4312617702448
+    - 927.9577151335311
+    right:
+    - 636.2693032015067
+    - 804.1112759643917
+  pre_reprojection_axis_slopes:
+  - 0.5437416592532891
+  - -0.5557688371953402
+  final_corners_px: *id002
+  final_axis_slopes: *id003
+  pre_reprojection_source_corners_px:
+    left:
+    - 226
+    - 1132
+    front:
+    - 577
+    - 1323
+    right:
+    - 924
+    - 1130
+pixel_qa:
+  mode: RGBA
+  size:
+  - 832
+  - 1024
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 662951
+  alpha_partial_pixels: 188032
+  alpha_opaque_pixels: 985
+  alpha_near_opaque_pixels: 176717
+  alpha_nonzero_bbox:
+  - 75
+  - 145
+  - 732
+  - 920
+  transparent_margins_px:
+  - 75
+  - 145
+  - 100
+  - 104
+  border_alpha_max: 0
+candidate_count: 2
+selected_candidate: 2
+notes: 第二候选轮廓清楚；灰瓦砖木楼阁母题见苏州市志办瑞光塔资料，匿名构形属原创扩展，并非瑞光塔复原。提示5级未严格兑现，不将层数当历史事实。尖端实际轮廓完整但源上缘有alpha≤3噪点，透明扩边保留。双轴已仿射校正，候选尺度/锚点仍为代理。

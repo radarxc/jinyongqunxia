@@ -1,0 +1,22 @@
+{
+  "key": "biaoju",
+  "id": "bld_kit_yuan_south_biaoju",
+  "prompt": "Use case: historical-scene. Generate exactly ONE transparent building sprite, asset bld_kit_yuan_south_biaoju, late Yuan Jiangnan circa 1350; anonymous escort-and-cargo depot courtyard,14x11 planning cells. Original game extension, not a documented historical named escort business. Practical low grey clay tiled wooden rear hall, two small side storerooms, cream plaster perimeter walls with stone footing, broad double-leaf unlettered front gate, central open loading yard with one plain handcart, two tied canvas cargo bundles and modest wooden crates. Realistic aged warm brown timber, subtle rough cream lime plaster, charcoal grey tiles, subdued straw/ochre accents; detailed historical realism at Song building sprite density, no ink-wash or cartoon. Exact orthographic dimetric yaw45 elevation30: ground axes slope +0.5 and -0.5, no perspective convergence. Ground plane corners in1536x1024 canvas LEFT(180,550), FRONT(796,858), RIGHT(1280,616), BACK(664,308), footprint axis ratio14:11. Clear thin stone boundary no thick display base, entrance on LEFT-FRONT edge, leave all corners and roof tips fully in frame with ample alpha margin. Warm-neutral light SCREEN UPPER LEFT with short soft contact shadow SCREEN LOWER RIGHT. Actual fully transparent RGBA background, no color or checkerboard. No people, readable signs, writing, flags, calligraphy, watermark, labels, grid, modern objects, guns, Qing decorations, imperial gold roof, towering Huizhou horse-head walls, greenery beyond base, sky or landscape. Single isolated whole asset only.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f468-db51-74b0-a8a9-3964297969a6/exec-5372d25c-8d5e-41f0-a395-952b21d49b8f.png",
+  "source_archive": "sources/bld_kit_yuan_south_biaoju_candidate1.png",
+  "source_sha256": "a77b7c131ea295aee644ddcac9a7e099f8f1184bb9d185f0c675a95833fdd88d",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T22:37:08.705834+00:00",
+  "created_time_basis": "生成后归档记录时间，非服务端生成开始时间",
+  "negative": "No text, people, modern objects, opaque background, checkerboard, Qing rank decoration, late-Huizhou horse-head gables, cartoon, thick diorama plinth or cropped eaves.",
+  "references": [],
+  "selection_status": "rejected",
+  "selection_reason": "第1张有大范围灰晕与投影偏差；第2张无明显灰晕，货栈题材明确，几何告警仍登记。",
+  "view_image_reviewed": true
+}
