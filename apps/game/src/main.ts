@@ -1,52 +1,55 @@
 import { createPinia } from 'pinia';
 import { createApp } from 'vue';
-import { GameUi, useUiStore } from '@tianshu/ui';
+import { useUiStore } from '@tianshu/ui/runtime';
+import App from './App.vue';
 import { createGameCoreHost } from './core-host';
-import { projectTitleState } from './projection';
+import { createGameController } from './game-controller';
 import { schedulePwaRegistration } from './pwa';
-import { mountPlaceholderScene } from './render-host';
-import { mountStorageDemo } from './storage-demo';
 import './style.css';
 
 const root = document.querySelector<HTMLDivElement>('#app');
 if (!root) throw new Error('APP_ROOT_MISSING');
-root.innerHTML = '<canvas id="scene" aria-label="天书录场景占位"></canvas><div id="ui"></div>';
-const canvas = document.querySelector<HTMLCanvasElement>('#scene');
-const uiRoot = document.querySelector<HTMLDivElement>('#ui');
-if (!canvas || !uiRoot) throw new Error('APP_SURFACE_MISSING');
 
-const pinia = createPinia();
-createApp(GameUi).use(pinia).mount(uiRoot);
-const ui = useUiStore(pinia);
-const host = createGameCoreHost();
-let disposeScene: (() => void) | undefined;
-let disposeStorage: (() => Promise<void>) | undefined;
-const isRigDemo = location.pathname === '/rig-demo' || location.pathname === '/rig-demo/';
-
-if (isRigDemo) {
-  uiRoot.hidden = true;
-  void import('./rig-demo').then(({ mountRigDemo }) => mountRigDemo(root, canvas)).then((dispose) => { disposeScene = dispose; }).catch((error: unknown) => { root.dataset['error'] = String(error); });
-} else {
-  void mountStorageDemo(root).then((dispose) => { disposeStorage = dispose; });
-
-  void Promise.all([host.tick(), mountPlaceholderScene(canvas)])
-    .then(async ([result, dispose]) => {
-      disposeScene = dispose;
-      const state = await host.snapshot();
-      ui.replaceProjection(projectTitleState(state, result, host.mode));
-      schedulePwaRegistration();
-    })
-    .catch((error: unknown) => {
-      ui.replaceProjection({ title: '天书录', coreVersion: '错误', worldTick: 0, status: String(error) });
+async function start(container: HTMLElement): Promise<void> {
+  if (location.pathname === '/rig-demo' || location.pathname === '/rig-demo/') {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'scene';
+    container.append(canvas);
+    const { mountRigDemo } = await import('./rig-demo');
+    const dispose = await mountRigDemo(container, canvas);
+    window.addEventListener('pagehide', dispose, { once: true });
+    return;
+  }
+  container.textContent = '正在翻开书卷…';
+  const host = await createGameCoreHost();
+  const pinia = createPinia();
+  const controller = createGameController(host, useUiStore(pinia));
+  const app = createApp(App, { controller }).use(pinia);
+  app.mount(container);
+  await controller.initialize();
+  schedulePwaRegistration();
+  const visibility = () => {
+    if (document.visibilityState === 'hidden') void controller.autosave('hidden', true);
+  };
+  document.addEventListener('visibilitychange', visibility);
+  const onPageHide = (event: PageTransitionEvent) => {
+    if (!event.persisted) void controller.autosave('pagehide', true);
+  };
+  window.addEventListener('pagehide', onPageHide);
+  // Also flush a throttled final change without requiring another click.
+  const autosaveTimer = window.setInterval(() => {
+    void controller.autosave('idle');
+  }, 30_000);
+  if (import.meta.hot)
+    import.meta.hot.dispose(() => {
+      document.removeEventListener('visibilitychange', visibility);
+      window.removeEventListener('pagehide', onPageHide);
+      clearInterval(autosaveTimer);
+      controller.dispose();
+      app.unmount();
     });
 }
-
-window.addEventListener(
-  'pagehide',
-  () => {
-    disposeScene?.();
-    void disposeStorage?.();
-    host.dispose();
-  },
-  { once: true },
-);
+void start(root).catch((error: unknown) => {
+  console.error('Game initialization failed', error);
+  root.textContent = '书卷暂未展开，请刷新后重试。';
+});

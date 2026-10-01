@@ -1,4 +1,5 @@
-import { createCore } from '@tianshu/core';
-import { exposeCore } from '@tianshu/platform';
+import { exposeProjectionCore } from '@tianshu/platform/host';
+import content from 'virtual:tianshu-content';
+import { createGameSession } from './runtime/session';
 
-exposeCore(createCore(1));
+exposeProjectionCore(createGameSession(content));

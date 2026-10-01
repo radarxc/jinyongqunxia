@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "exports": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./host": "./src/host/index.ts"
+  },
   "scripts": {
     "test": "vitest run src",
     "test:coverage": "vitest run src/storage --coverage --coverage.include=src/storage/**/*.ts --coverage.exclude=src/storage/**/*.test.ts --coverage.thresholds.statements=80 --coverage.thresholds.branches=80 --coverage.thresholds.functions=80 --coverage.thresholds.lines=80",

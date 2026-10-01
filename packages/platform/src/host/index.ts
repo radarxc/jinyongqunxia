@@ -2,6 +2,8 @@ import * as Comlink from 'comlink';
 import type { CoreHost, CoreRemote } from './types';
 
 export type { CoreHost, CoreRemote } from './types';
+export * from './projection-host';
+export type * from './projection-types';
 
 export function exposeCore(remote: CoreRemote): void {
   Comlink.expose(remote);

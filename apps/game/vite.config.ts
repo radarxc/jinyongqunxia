@@ -2,9 +2,14 @@ import { resolve } from 'node:path';
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import { gameContentPlugin } from './build/content-plugin';
+
+// Core exports pure rule functions; unused barrels must not eagerly run Ink's runtime.
+const treeshake = { moduleSideEffects: [{ test: /\/packages\/core\/src\/.*\.ts$/, sideEffects: false }] };
 
 export default defineConfig({
   plugins: [
+    gameContentPlugin(),
     vue(),
     VitePWA({
       registerType: 'prompt',
@@ -21,12 +26,13 @@ export default defineConfig({
       workbox: { navigateFallback: 'index.html' },
     }),
   ],
-  worker: { format: 'es' },
+  worker: { format: 'es', plugins: () => [gameContentPlugin({ copyAssets: false })], rollupOptions: { treeshake } },
   build: {
     target: 'es2022',
     sourcemap: true,
     manifest: true,
     rollupOptions: {
+      treeshake,
       output: {
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/entry-[hash].js',

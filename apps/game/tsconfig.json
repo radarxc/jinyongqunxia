@@ -4,10 +4,12 @@
     "composite": true,
     "rootDir": "src",
     "outDir": "dist-types",
-    "types": ["vite/client", "vite-plugin-pwa/client"],
+    "types": ["vite/client", "vite-plugin-pwa/client", "node"],
     "tsBuildInfoFile": "./dist-types/tsconfig.tsbuildinfo"
   },
   "references": [
+    { "path": "../../packages/data" },
+    { "path": "../../packages/shared" },
     { "path": "../../packages/core" },
     { "path": "../../packages/platform" },
     { "path": "../../packages/render" },

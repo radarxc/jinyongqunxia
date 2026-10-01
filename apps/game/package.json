@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b --pretty false && vite build",
+    "dev": "vite --configLoader runner",
+    "build": "vue-tsc -b --pretty false && vite build --configLoader runner",
     "test": "vitest run src",
     "typecheck": "vue-tsc -b --pretty false"
   },
@@ -13,11 +13,14 @@
     "@tianshu/core": "workspace:*",
     "@tianshu/platform": "workspace:*",
     "@tianshu/render": "workspace:*",
+    "@tianshu/shared": "workspace:*",
     "@tianshu/ui": "workspace:*",
     "pinia": "catalog:",
     "vue": "catalog:"
   },
   "devDependencies": {
+    "@tianshu/data": "workspace:*",
+    "fake-indexeddb": "6.2.5",
     "@vite-pwa/assets-generator": "catalog:",
     "@vitejs/plugin-vue": "catalog:",
     "vite": "catalog:",
