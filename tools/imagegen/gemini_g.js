@@ -71,6 +71,30 @@ window.__g = {
     if (r.ok) { localStorage.setItem('claudeGemCurrent', id); localStorage.setItem('claudeGemQueue', JSON.stringify(q.slice(1))); }
     return { ...r, id, left: q.length - (r.ok ? 1 : 0) };
   },
+  // 2026-10-01：JS 点发送约两成不生效；改为 prepareNext 填好提示词并聚焦输入框，由 computer 工具按真实回车发送，再 markSent 确认并出队
+  async prepareNext(template = 'Oil painting') {
+    this.patchFetch();
+    const q = JSON.parse(localStorage.getItem('claudeGemQueue') || '[]');
+    const prompts = JSON.parse(localStorage.getItem('claudeGemPrompts') || '{}');
+    if (!q.length) return { ok: false, done: true };
+    const id = q[0], P = prompts[id];
+    const card = await this.waitFor(() => document.querySelector(`media-gen-template-card[aria-label="${template}"]`), 20000);
+    if (!card) return { ok: false, id, why: 'no template' };
+    card.click();
+    if (!(await this.waitFor(() => /photo/i.test(this.ph()), 6000))) return { ok: false, id, why: 'template not applied' };
+    const ed = document.querySelector('rich-textarea .ql-editor'); ed.focus(); document.execCommand('selectAll', false, null); document.execCommand('insertText', false, P); await this.sleep(200);
+    if (ed.innerText.trim().length < P.length * 0.9) return { ok: false, id, why: 'prompt not set' };
+    ed.focus();
+    return { ok: true, id, left: q.length };
+  },
+  async markSent(id, ms = 20000) {
+    const sent = await this.waitFor(() => document.querySelector('user-query, model-response') || (document.querySelector('rich-textarea .ql-editor')?.innerText || '').trim().length < 10, ms);
+    if (!sent) return { ok: false, id, why: 'not sent' };
+    const q = JSON.parse(localStorage.getItem('claudeGemQueue') || '[]');
+    if (q[0] === id) { localStorage.setItem('claudeGemQueue', JSON.stringify(q.slice(1))); }
+    localStorage.setItem('claudeGemCurrent', id); window.__gT = Date.now();
+    return { ok: true, id, left: q.length - 1 };
+  },
   async finish(ms = 36000) {
     const id = localStorage.getItem('claudeGemCurrent');
     const w = await this.waitGen(ms);
