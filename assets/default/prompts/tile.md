@@ -207,7 +207,7 @@ No text, modern ornaments, complete landscape, opaque backdrop, copied Qing reco
 城门底面目标包围宽高分别为 `32(8+4)×16(8+4)=384×192px`、`32(10+4)×16(10+4)=448×224px`；屋顶向上外扩，PNG画幅不等于占地。其他贴片占地见各条 manifest **【建议值】**。`autotile_mask:null` 表示手动选件，不能解释为完整自动拼接47形集。单视图仅用于本方向预览，墙角接缝、孔净宽、桥头接路和植物不挡门均 **（待实测）**。
 
 参考资料（2026-09-30访问）：[苏州市志办《苏州古城门之盘门》](https://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml)用于辨别现存盘门元代重建、明清续修与现代门楼的边界；[上海市青浦区博物馆《顺德桥》](http://museum.shqp.gov.cn/museum/ql/20190304/479101.html)用于确认元至正三年江南三跨石梁桥的形制记录，但本批平桥只取石梁材质母题，不复原其三跨、栏板和后世重建状态。植物来源见本任务报告§7。网页文字研究不等于图片输入，实际图像参考以各条 `references` 为准。
-## 9. 吐蕃 · 藏地贴片差异 `tubo`（KIT-tubo，2026-09-30）
+## 9. 吐蕃 · 藏地贴片差异 `tubo`（KIT-tubo，2026-09-30；历史细节复核 2026-10-01）
 
 本节新增 `assets/default/tile/tubo/` 的 7 张地域候选，不修改宋基线。`tubo` 为地域资源键，各年代按城选用，不声称藏地城市均有相同闭合城墙或同一门制。石 / 土木形制和具体组合为 **（原创扩展）**；拉萨、日喀则、昌都的具体城垣、门位与年代适用性 **（待考）**。
 
@@ -223,14 +223,15 @@ No text, modern ornaments, complete landscape, opaque backdrop, copied Qing reco
 
 实际 ID 以 manifest 为准。门占地按 `design/22` §4.3 的 `w=k+4,h=4`：4+4=8、6+4=10；规划通行孔仍为 k×4，不将门楼整体标成可走。其余占地为 **【建议值】**，不等于古建 / 植物实测体量。`autotile_mask: null` 表示独立单体，未交47-mask全集或四向图，默认只按原向放置。
 
-- 墙门：灰褐石砌收分墙、白灰墙面、深色木梁门楣、少量赭红水平带和平屋顶。城门必须包含门墩、真正透明的通行孔和跨孔楼体；不加中原歇山瓦顶、清式彩画、玻璃或现代路标。
-- 桥：无盖木梁配石墩的原创概化，不命名成历史名桥。约1900年玉妥桥馆藏照所见为石桥台 / 桥墩并带桥屋，与本件不同，故该照片只作反例 QA；只交整桥外观，水面交底图，独立近侧栏与运行时遮挡 **（待实测）**。
+- 墙：灰褐毛石或土石芯、白灰不匀、下厚上薄的收分剖面；石板 / 木檐口封墙顶，赭红带只作等级差异。直墙与转角要共享砌层高度、压顶厚度和接缝，不画成等截面现代砖柱。
+- 门：本轮已按默认值改为 Bar Chorten 所见的覆钵塔身门语汇：两侧收分体量、真正透明的通行孔、覆钵 / 叠轮轮廓；门制与具体年代仍 **（待考）**。禁止中原歇山瓦顶、清式彩画、玻璃与现代路标。
+- 桥：约1900年玉妥桥为短石桥并带守门桥屋，1928年年楚河桥和1936年拉萨铁桥证明近现代还存在不同材料体系；三者都不支持本件“无盖木梁桥”作为统一藏地传统。本轮只取粗石桥台 / 墩、低跨尺度与材料反例；木梁桥继续明确为 **（原创扩展）**。
 - 植物：柳属与西藏沙棘的现代原生分布有依据，但具体古代城内栽植 **（待考）**；不拿分布区代替历史种植记录。
 
 ```text
 Use case: historical-scene. ONE Tibetan regional modular town tile, type {kind}, footprint {w}×{h}.
 Weathered stone/earth and dark matte wood, flat parapets, restrained white/ochre-red surfaces.
-For gate: complete two piers plus lintel/upper room, one genuinely transparent open passage, clear wall interfaces.
+For gate: Bar Chorten vocabulary, battered wall masses and one genuinely transparent open passage, clear wall interfaces.
 For bridge: plain timber beam/cantilever construction and stone supports; no water or landscape.
 For plant: locally plausible willow / Tibetan sea buckthorn, modest natural silhouette, visible root anchor.
 Orthographic yaw45 pitch30, ground slopes +0.5/-0.5; upper-left light, short lower-right contact shade.
@@ -239,10 +240,15 @@ No text, pseudo-script, people, modern objects, checkerboard, floor plinth, Chin
 Keep Song reference realistic material density only, replace its regional architectural vocabulary.
 ```
 
-实际调用全文 / 来源 / SHA / 时间见 `manifest.yaml` 与 `source/generation-records.jsonl`。选中原图保存在 `source/`；除两座城门以预乘 alpha 仿射重投影校正地轴外，其余只做矩形裁切、等比缩放和透明扩边，均未重绘或镜像。为排除远端 alpha=1 噪点，用 alpha>1 确定裁框；框内 alpha 不改，原图完整保留。成品留边8px，短边≥32；底面 / 根锚使用 `anchor_px`。真实透明与文件检查通过，不代表门净宽像素、墙缝或桥头已经精确对格；这些限制继续保留，不因登记尺寸而消失。
+实际调用全文、来源、SHA 与时间见 `manifest.yaml`；选中原图保存在 `source/historical-rebuild/`。仅以 alpha≥16 去除生成器环境雾，随后裁框、等比缩放和透明扩边，未重绘、仿射扭曲或镜像。直墙、墙角与沙棘各用第2候选；其余各1候选。成品留边≥8px、短边≥32；`anchor_px` 暂取规格化后非透明包围框底边中点，装配时须改为实测底面 / 根接触点。真实透明与文件检查通过，不代表门净宽像素、墙缝或桥头已精确对格。
 
 参考资料（访问 2026-10-01）：[LOC · Bar Chorten](https://www.loc.gov/item/2021670618/) 与 [LOC · Yu-tog zamba](https://www.loc.gov/item/2021670619/) 的馆藏图已下载并 `view_image`，只作成品事后反例 QA，未输入生成工具；[Pitt Rivers Museum · Lhasa willows, 1936](https://web.prm.ox.ac.uk/tibet/photo_1998.131.270.html) 与 [BRIT907382 · Hippophae tibetana](https://portal.torcherbaria.org/portal/collections/individual/index.php?occid=31555408) 分别核柳树与沙棘形态，后者是2018年现代标本。通用中国廊桥论文 [China’s corridor bridges](https://link.springer.com/article/10.1186/s43238-020-00010-w) 可访问，但不是藏地桥梁专论，不作为本件构法证据；UNESCO / Kew 本轮返回403，相关分布文字保持 **（待核实）**。
 参考资料（2026-09-30访问）：[苏州市志办《苏州古城门之盘门》](https://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml)用于辨别现存盘门元代重建、明清续修与现代门楼的边界；[青浦区政府·青浦古桥](https://www.shqp.gov.cn/shqp/ggfw/bmts/20250116/1224818.html)提供本轮实际输入的顺德、迎祥桥照片，支持多跨石梁、细石柱墩与后世重修边界；故宫名画记[王振鹏《龙舟夺标图》](https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8)补船岸尺度；上海博物馆倪瓒[《渔庄秋霁》](https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018)、[《汀树遥岑》](https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00005285)约束疏林、柳与岸植节奏。所有图片均下载并审看，实际逐件输入与取用细节见 manifest `references`。
+参考资料（访问 2026-10-01）：[LOC · Bar Chorten](https://www.loc.gov/item/2021670618/) 与 [LOC · Yu-tog zamba](https://www.loc.gov/item/2021670619/) 的馆藏原始扫描、[Pitt Rivers · Nyamchu Bridge, 1928](https://web.prm.ox.ac.uk/tibet/photo_BMH.F.79.1.html) 和 [Iron bridge near Lhasa, 1936](https://web.prm.ox.ac.uk/tibet/photo_2001.35.76.1.html) 均已下载、`view_image` 并作为对应门 / 桥的实际模型输入；后两张只界定桥梁材料差异，不证明本件原创无盖桥的精确构法。
+
+[Pitt Rivers · Lhasa willows, 1936](https://web.prm.ox.ac.uk/tibet/photo_1998.131.270.html) 已核多干、疏阔树冠与河谷生境并实际输入柳树生成；沙棘用约1900年泽当史照约束地域尺度，另用现代生态 / 植物图约束狭叶、刺枝与橙果。植物参考只支持形态与地域点景，不证明古代城内栽植。通用中国廊桥论文 [China’s corridor bridges](https://link.springer.com/article/10.1186/s43238-020-00010-w) 不是藏地桥梁专论，不作为构法证据。
+
+已解决：7 张贴片于 2026-10-01 用实际参考图重出并同 ID 覆盖；`references` 逐项登记 URL、下载 SHA、取用细节与 `model_input: true`，`size` / `sha256` 以成品实测。两门采用 Bar Chorten 覆钵门且孔洞真透明；桥、河埠保持史料约束下的原创同功能概化；植物仅作跨年代地域点景。
 
 ## 10. 待决事项与默认值
 

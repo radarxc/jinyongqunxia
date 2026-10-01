@@ -694,18 +694,21 @@ Preserve 45-degree orthographic camera, 30-degree elevation, 2:1 ground axes and
 2026-10-01另下载并逐张查看 Khüree 1913照片、和林博物馆模型、DAI大殿遗址/复原及妙应寺白塔照片；分别只校对帐群密度、灰顶院落、台基柱网和覆钵轮廓。逐成品URL与用途见 manifest，均属生成后审校，不倒签为生成输入。
 
 默认保留匿名原创形制、上表建议占地、单视图和 `candidate`；作者需确认整体草原风格与宗教地标选择。原著《射雕英雄传》《神雕侠侣》的具体营地描述未逐字核对，历史形制与整城拼接 **（待考 / 待实测）**。
-## 11. 吐蕃 · 藏地套件 `tubo`（KIT-tubo，2026-09-30）
+## 11. 吐蕃 · 藏地套件 `tubo`（KIT-tubo，2026-09-30；历史细节复核 2026-10-01）
 
 本节是地域素材追加，不覆盖前文宋套件。`tubo` 是本任务授权的地域资源键，不等于某一历史政权持续存在的年代断言；供拉萨、日喀则、昌都等场景选择的无名建筑意象，均 **（原创扩展）**。各城具体年代适用性、康区内部差异、金顶与窗饰的断代仍 **（待考）**；不把现存布达拉宫、罗布林卡或现代旅游街倒推到所有书界。
 
 ### 11.1 材料、等级与参考边界
 
-- 民居 / 商住：石砌收分墙、露石基脚、白灰墙面、平屋顶和低女儿墙，黑色门窗边、暗木梁头，赭红装饰节制；不继承宋屋灰瓦坡顶。
-- 官署 / 大院 / 宫室：沿用石木材料，增加围院和层级，保持朴素体量；不以巨型金顶、清式宫廷彩画或中原衙门牌匾代替藏地形制。
-- 寺殿 / 佛塔：佛殿可用局部金顶、赭红带与木檐，白塔取覆钵 / 钟形塔身、阶台和环刹母题；不声明为具名寺院或文物测绘复原。经幡、玛尼堆只作少量附属物，禁生成经文和伪字。
-- 宋基线 PNG 只用作写实材质、细节密度与画面可读性参考；实际生成输入路径 / SHA 逐条记 manifest。历史影像在成品生成后于 2026-10-01 下载并 `view_image`，只作形制 QA；manifest 以 `historical_references` 单列，不能倒写为 image_gen 输入。
-- 历史图以 [Library of Congress · Central Tibet photographs, c.1900](https://www.loc.gov/pictures/collection/wdl/) 与 Wikimedia Commons 馆藏页为主，核平顶厚墙、院落、街市、官署和寺院层级；远景不推导平面，具名古建不当作当前原创件复原目标。城门和桥的馆藏图反而显示形制差异，见 `tile/tubo/manifest.yaml`。
-- 文字 / 器物来源：UNESCO [Historic Ensemble of the Potala Palace, Lhasa](https://whc.unesco.org/en/list/707) 页面本轮返回403；THF [Tibetan Vernacular Architecture](https://www.tibetheritagefund.org/page/?r=120) TLS证书过期；LACMA [Reliquary Stupa (Chöten)](https://collections.lacma.org/object/61926) 可访问。前两项保持（待核实），LACMA 小型供养塔仅供事后轮廓核对，不推导建筑尺寸。
+- 民居 / 商住：下部毛石或花岗岩浅基，上部土石厚墙逐层收分，墙内面近直、外面内倾；白灰不必匀净，保留修补、露石基脚与深窗洞。窗上用石板小雨棚或短木挑檐，普通件不统一套红色通檐带。
+- 屋面 / 柱网：普通房屋用平屋顶与低女儿墙；暗木主梁、圆木椽上承卵石与夯实泥层，屋面表现为哑光阿嘎土 / 压实土，不画筒瓦、板瓦、鸱吻或脊兽。门廊按木柱—横梁—椽出挑表达，不虚构中原斗拱出跳层数。
+- 门窗 / 装饰：窗洞上窄下宽或随收分墙略呈梯形，木棂以密竖棂、方格和封闭木板窗为主；深色窗框、赭红边带、织物帘只用于功能识别。普通民居禁大面积金饰、清式彩画、玻璃幕窗和整齐旅游街立面。
+- 官署 / 大院 / 宫室：由围墙、门院、正房与侧翼形成轴线和等级；参考旧拉萨 Kussung Magar 测绘的多进院关系，但不复制其平面。宫室可以增加木廊与密棂窗，不以巨型金顶、清式牌楼或中原衙门匾额替代藏地形制。
+- 寺殿 / 佛塔：帝国时期寺院证据只支持高约6–7米的收分梯形主龛及绕行廊；金铜屋顶是后世增建，不得放进“吐蕃初建层”。需要跨年代寺殿时才可用局部金顶、赭红带与木檐，并在成品 notes 标明断代。白塔取方形分层基座、覆钵 / 钟形塔身、方形龛座、叠轮与伞盖；不声明为具名寺院或实测复原。
+- 宋基线 PNG 只用作写实材质、细节密度与画面可读性参考；实际生成输入路径 / SHA 逐条记 manifest。2026-10-01 新史料均已下载并 `view_image`，且每件实际输入 2–3 张后重出；正式 `references` 只登记真实模型输入，不把额外 QA 资料倒写成输入。
+- 历史图以 [Library of Congress · Central Tibet photographs, c.1900](https://www.loc.gov/pictures/collection/wdl/)、[The Tibet Album](https://web.prm.ox.ac.uk/tibet/) 与 Wikimedia Commons 馆藏页为主，核平顶厚墙、院落、街市、官署和寺院层级；远景不推导平面，具名古建不当作当前原创件复原目标。城门和桥的馆藏图反而显示形制差异，见 `tile/tubo/manifest.yaml`。
+- 吐蕃年代锚点采用 [Rubin Museum · Jokhang Temple](https://rubinmuseum.org/projecthimalayanart/essays/jokhang-temple-lhasa/) 的帝国时期梯形主龛 / 绕行廊图解；同页明确金铜屋顶多为13–14世纪以后增建。民居构法采用 [Old City of Lhasa conservation report · Traditional architecture](https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm) 的实测照片与图纸；这两类证据不得互相替代。
+- 器物来源：[LACMA · Reliquary Stupa (Chöten)](https://collections.lacma.org/object/61926) 及 [Met · Stupa, Western Tibet, 13th century](https://www.metmuseum.org/art/collection/search/39421) 仅校覆钵、叠轮与伞盖顺序，不推导建筑尺寸。THF [Tibetan Vernacular Architecture](https://www.tibetheritagefund.org/page/?r=120) 本轮 TLS 证书过期，正文只使用搜索摘要交叉核对，标 **（待核实）**。
 
 ### 11.2 类型与占地对应
 
@@ -735,22 +738,43 @@ Preserve 45-degree orthographic camera, 30-degree elevation, 2:1 ground axes and
 
 赌场、护运行与山庄只提供同功能外观，不新增或自动绑定 `biz_*`；河埠不启用 `port_*` 或航线。完整外城门归 `tile/tubo`，守舍不是城门楼。
 
-### 11.3 提示词差异与落盘
+### 11.3 强历史细节要点（2026-10-01）
+
+本轮真实重出已从下表为每件选取 2–3 张参考图作为模型输入，并在每件 `references` 记录 URL、下载图 SHA 与取用细节。照片年代晚于吐蕃王朝时，只取可追溯的地域构法；不得把照片年代、建筑功能或完整构图移植为帝国时期事实。
+
+| 类型组 | 必须读出的构造细节 | 禁止误用 |
+|---|---|---|
+| 小 / 大民居、铺屋、仓屋 | 石浅基、外墙收分、白灰不匀、深窗洞；石板窗披或短木挑檐；平压土屋面、低女儿墙、外露梁头 | 统一红带、等宽直墙、汉式瓦脊、现代整面玻璃 |
+| 院落、客舍、大院、货栈、官署 | 门院—天井—正房 / 侧翼层级；木柱廊、密竖棂窗、厚围墙；货栈袋捆只置棚下且无文字 | 复制具名宅院平面、四合院灰瓦门楼、把功能道具写成史实 |
+| 茶肆、博戏屋、市场棚 | 低层沿街开口、木板门扇、织物遮棚、可收拢摊架；织物只作可读性点色 | 招牌伪字、现代柜台、赌场符号、满幅彩旗 |
+| 守舍、宫室 | 收分石墙、小深窗、平顶防御体量；宫室以围院 / 门阶 / 木廊加等级 | 复制布达拉宫、欧洲雉堞、清式宫殿屋顶 |
+| 寺殿 | 吐蕃期版本：6–7米梯形主龛、厚收分墙、窄绕行廊、木柱梁和平土顶；跨年代版本方可加后世金铜顶 | 把13–14世纪金顶说成7世纪初建、普通殿满铺琉璃瓦 |
+| 佛塔 | 方形阶台、覆钵体、方形龛座、叠轮、伞盖 / 宝顶的清楚顺序；尺度以占地为准 | 照搬小型金属供养塔比例、生成可读经文 |
+| 马厩、河埠 | 马厩下层粗石、木柱棚、矮门和通风小洞；河埠只取粗石砌筑与装卸边界 | 伪称现有石板平台有直接史料、现代码头与铁栏杆 |
+
+普通件以石、土、木真实接缝为主；官署 / 宫室增加轴线和木作；寺塔才出现有限鎏金。普通藏地建筑没有可据的中原式斗拱层数、举折、鸱吻或脊兽，提示词写明 `not applicable`，不能为了填项而编造。
+
+### 11.4 提示词差异与落盘
 
 ```text
 Use case: historical-scene. Exactly ONE Tibetan regional town sprite, unnamed original game extension.
-Flat earthen roof with parapets, battered whitewashed stone walls, dark timber, black window borders.
-Restrained ochre-red trim; gold only on the requested religious hall or stupa finial.
+Flat rammed-earth / arga roof over dark timber beams and round rafters, low parapets; no ridge, chiwen or roof beasts.
+Battered rubble-stone / earth walls on shallow stone footings, patchy limewash, deeply recessed trapezoid windows.
+Slate drip ledges or short timber canopies, dense vertical or square timber lattice; no invented Chinese dougong.
+Restrained ochre-red trim only where the asset rank needs it; gold only on a later-period religious hall or stupa finial.
 Preserve realistic matte stone/wood detail density of the supplied Song reference, replace its roof typology.
 Footprint {w} metres east-west by {h} metres north-south; visible bottom contact corners; no display plinth.
 Orthographic yaw45 elevation30, 2:1 ground projection, parallel edges slope +0.5 and -0.5.
 Upper-left light, only short lower-right contact shadow. True RGBA, no outside ambient halo.
 Complete single building, generous transparent padding; no text, pseudo-script, people or modern objects.
-No named Potala replica, no modern Lhasa tourism frontage, no Chinese pitched tile roof on ordinary dwellings.
+No named Potala replica, no modern Lhasa tourism frontage, no Chinese pitched tile roof on ordinary dwellings, no tourist-restoration symmetry.
 ```
 
 每张实际发送的全文另存 `building-map/tubo/sources/`，不以本模板替代调用记录。最多两候选择一；原图保留真 alpha。裁透明外缘、等比重采样、透明扩边，不做拉伸、warp、镜像或代码补画。建筑短边门禁本任务为 256 px；地面目标宽仍 `32(w+h)`，高 `16(w+h)`，不能按 canvas 宽二次缩放。底面中心锚点从可见接地边推算，误差单列；轴超差不写成精确通过。每件只交一个朝向，默认 `allowRotation=false`，未生成 GLB 或四向图。
 历史图片（访问并下载查看于2026-09-30）：民居 / 院落用 [北京胡同院落](https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG) 与 [天津石家大院门道](https://commons.wikimedia.org/wiki/File:Shiyuan_tianjin_doorways.jpg)；铺面用 [Thomas Child北京街道](https://commons.wikimedia.org/wiki/File:Thomas_Child,_Peking_Streets.jpg) 与 [1895北京街景](https://commons.wikimedia.org/wiki/File:William_Henry_Jackson,_Street_scene,_Peking,_1895.jpg)；官署用 [平遥县衙主院](https://commons.wikimedia.org/wiki/File:Pingyao_Yamen_Main_Courtyard.jpg) 与 [县衙院落](https://commons.wikimedia.org/wiki/File:Pingyao_Yamen_courtyard.jpg)；王府用两张恭王府院落及沈阳故宫；寺塔用颐和园、雍和宫、慈寿寺塔和1920年代塔影。每件实际输入及所取细节见manifest `references`。这些图均实际作为 `image_gen` 输入；现代存世照片与晚清影像只证明可见形制，不证明所有细部均属清初。
+每张实际发送的全文写入对应 manifest `prompt`，原始生成图归档在 `building-map/tubo/sources/historical-rebuild/`；不以本模板替代调用记录。每件生成 1 个候选并选 1；原图保留真 alpha。裁透明外缘、等比重采样、透明扩边，不做拉伸、warp、镜像或代码补画。建筑短边门禁本任务为 256 px；底面中心锚点与城市拼接仍待实测。每件只交一个朝向，默认 `allowRotation=false`，未生成 GLB 或四向图。
+
+已解决：19 张建筑在 2026-10-01 使用实际史图输入重出并同 ID 覆盖；`references` 逐项记录 URL、下载 SHA、取用细节和 `model_input: true`，`size` / `sha256` 按成品实测。全部保持 `candidate`，不把文件校验通过等同于作者批准或整城拼接通过。
 
 ## 本文新增术语与 ID
 
