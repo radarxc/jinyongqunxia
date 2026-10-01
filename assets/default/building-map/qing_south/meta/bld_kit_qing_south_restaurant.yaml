@@ -1,38 +1,133 @@
 id: bld_kit_qing_south_restaurant
 status: candidate
-building: {"type":"bld_kit_qing_south_restaurant","footprint":[12,9],"anchor":[494.9016,322.4197],"era":"qing_south"}
-anchor_px: [494.9016,322.4197]
-footprint_m: [12, 9]
+building:
+  type: bld_kit_qing_south_restaurant
+  footprint:
+  - 12
+  - 9
+  anchor:
+  - 494.9016
+  - 322.4197
+  era: qing_south
+anchor_px:
+- 494.9016
+- 322.4197
+footprint_m:
+- 12
+- 9
 footprint_source: design/22 §3.3 bld_kit_song_southern_restaurant
-logical_footprint_polygon_px: [[158.90159999999997,298.4197],[542.9015999999999,490.4197],[830.9015999999999,346.4197],[446.9016,154.41969999999998]]
-occluder_proxy_px: [159,46,831,494]
+logical_footprint_polygon_px:
+- - 158.90159999999997
+  - 298.4197
+- - 542.9015999999999
+  - 490.4197
+- - 830.9015999999999
+  - 346.4197
+- - 446.9016
+  - 154.41969999999998
+occluder_proxy_px:
+- 159
+- 46
+- 831
+- 494
 occluder_note: alpha>=192包围框仅测量代理；不修改PNG alpha；不能替代屋顶淡出/逐像素深度。
 height_m: null
 height_note: 单视图不能可靠测量实际高度，待建模实测。
-planning_rotations_allowed: [0, 90, 180, 270]
-entrance: {edge: S, offset_cells: 5}
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+entrance:
+  edge: S
+  offset_cells: 5
 entrance_note: 南边中点规划代理，非图像门洞测量（待实测）。
 collision_polygon_m:
-- [0, 0]
-- [12, 0]
-- [12, 9]
-- [0, 9]
+- - 0
+  - 0
+- - 12
+  - 0
+- - 12
+  - 9
+- - 0
+  - 9
 collision_note: 全矩形规划代理；院内通行、河埠台阶及门洞需细化，阴影不参与碰撞。
 views:
-- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_south_restaurant.png}
-png_rotations_available: [0]
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_south_restaurant.png
+png_rotations_available:
+- 0
 allowRotation: false
 glb: null
 release_ready: false
 projection_contract:
-  tile_px: [64, 32]
-  ground_bbox_px: [672, 336]
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 672
+  - 336
   light: screen_upper_left
   shadow: screen_lower_right_contact_only
-geometry_qa: {"source_corners_px":{"left":[198,593],"front":[873,935],"right":[1356,688],"back_inferred":[681,346]},"source_axis_slopes":[0.5066666666666667,-0.5113871635610766],"axis_tolerance":0.03,"axis_pass":true,"source_width_depth_ratio":1.3975155279503106,"expected_width_depth_ratio":1.3333333333333333,"ratio_relative_error":0.04813664596273304,"ratio_tolerance_suggestion":0.1,"ratio_pass":true,"measurement_uncertainty_source_px":3,"precision_note":"第3轮逐张view_image源图读薄地坪接地底缘三角±3px；后角=L+R-F推算；额外以alpha>=240底轮廓线性拟合作独立交叉核验。"}
-pixel_qa: {"mode":"RGBA","size":[928,576],"alpha_extrema":[0,255],"alpha_zero_pixels":362185,"alpha_partial_pixels":171565,"alpha_opaque_pixels":778,"alpha_near_opaque_pixels":163102,"alpha_nonzero_bbox":[44,43,884,497],"transparent_margins_px":[44,43,44,79],"border_alpha_max":0}
-processing: {"source_size":[1536,1024],"source_crop":[0,159,1448,1004],"scale_uniform":0.5803108808290155,"resized_size":[840,490],"canvas_size":[928,576],"paste_offset":[44,43],"anchor_source":[777.0,640.5],"anchor_final":[494.9016,322.4197],"final_corners_px":{"left":[158.9016,294.8549],"front":[550.6114,493.3212],"right":[830.9016,349.9845],"back_inferred":[439.1917,151.5181]},"operations":["crop alpha-nonzero bounding box","one uniform LANCZOS resize","transparent padding; no warp, rotation, recoloring or alpha remap"],"source_archive":"review3/halls/restaurant.candidate1.png","source_sha256":"c20a275cc2f47f09eb53da36a89e7ac0a6149f852e1984ac4b8a471ed331910a"}
-visual_review: 返修第2轮逐张view_image；本轮2候选选第2；灰瓦白墙木石质感与宋基线接近，完整无字无人。占地比例改善，但双轴仍超±0.03，保持candidate并明确未通过几何验收。
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 928
+  - 576
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 339778
+  alpha_partial_pixels: 193575
+  alpha_opaque_pixels: 1175
+  alpha_nonzero_bbox:
+  - 166
+  - 43
+  - 837
+  - 497
+  transparent_margins_px:
+  - 166
+  - 43
+  - 91
+  - 79
+  border_alpha_max: 0
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 91
+  - 64
+  - 1439
+  - 976
+  isotropic_scale: 0.49780701754385964
+  resized_size:
+  - 671
+  - 454
+  paste_offset:
+  - 166
+  - 43
+  - 837
+  - 497
+  final_size:
+  - 928
+  - 576
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/restaurant.png
+  source_sha256: c8bfdc60ce7c4e7cfc68577ec0d3af2377b5e4f2109bc97025796d29b46469a8
+  forbidden_transforms_used: false
+visual_review: 本轮入选源图及规格化成品已逐张/接触表 view_image；历史细节、真透明、完整轮廓与左上光通过目视，精确投影待实测。
 final_review: 返修第2轮逐张view_image；本轮2候选选第2；灰瓦白墙木石质感与宋基线接近，完整无字无人。占地比例改善，但双轴仍超±0.03，保持candidate并明确未通过几何验收。
-source_request: review2/buildings_b/restaurant.source.json
+source_request: history/records/restaurant.yaml
 source_measure: sources/bld_kit_qing_south_restaurant.measure.json

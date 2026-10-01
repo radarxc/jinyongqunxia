@@ -3,48 +3,63 @@ file: bld_kit_qing_south_restaurant.png
 category: building-map
 style: default
 subject: 清初至清中江南·酒楼茶肆（匿名原创组合，细部待考）
-prompt: 'Use case sketch-to-render. Turn this exact blockout into a realistic Qing Jiangnan two-storey restaurant/teahouse city map sprite. Preserve the exact orthographic camera and ground-footprint parallelogram, entire building positioning and verticals. Material rendering must follow this camera, not reinterpret the camera. Exact ground edges slopes plus0.5 and minus0.5, long left-to-front edge:front-to-right edge=12:9. Keep the footprint 12 by9. Add dark gray tiled pitched hip-gabled roof, off-white limewashed brick side walls, dark carved wooden columns, lattice balcony along lower-left facade, two storeys of open dining veranda with little wooden tables and tea bowls. Fine realistic matte weathered roof tiles, stone, wood materials, muted palette same density as detailed ancient Chinese map sprites. Replace all block surfaces with architecture; solid realistic building not a model block. No writing, signage, people, modern things, logo or watermark. Steps stay inside the thin stone pad, clear visible three ground corners exactly unchanged. Full roof entirely inside image, true transparent alpha background outside, illumination upper left and small lower-right contact shadow only. No thick foundation plinth. Ground floor is the same exact plane as the supplied image, do not tip it, do not make it more diamond shaped.'
-negative: 文字、人物、现代物件、实底背景、厚底台、裁切、强透视、金黄屋顶泛化
+prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+  shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a 12 by 9 cell two-storey Jiangnan restaurant built around a compact court or rear service wing, preserving guide masses. Grey-tile low-lift hard-gable roofs, plain ridges, white fire-gable walls and blue-grey brick bases. Open three-bay lower dining frontage behind removable timber shutters, upper straight-lattice windows with flush timber rail, shallow continuous eaves carried on simple single-step brackets. Include one restrained blank cloth canopy with no lettering. No tower, stage, palace roof or lantern
+  clutter.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
 references:
-- {file: assets/default/building-map/qing_south/review2/buildings_b/restaurant.block.png, sha256: 1319e612b592153353320edcb6c080d3cdeb39221e331168a31fad31ee6dd22b, role: 本轮图生图几何块体/平面引导；非成品拼贴}
-tool: built-in image_gen
-model: image_gen (underlying model not disclosed)
-effort: not exposed by image tool
-created: '2026-09-30T22:05:46.754413+00:00'
-created_time_basis: 本轮源PNG mtime（copy2保留）；非服务端时间
-source_path: /Users/bytedance/.codex/generated_images/01a0f450-5169-7ad2-87a6-dab5c8b3cb31/exec-38261147-1c6b-40eb-af2f-04f72f8261e5.png
-source_sha256: bafe6b3ed4e54c2bcb4e9179ce3bd38bb3c5da5391e5c6ac21ae65427b24a2f1
-size: 1056x832
-sha256: 022434d46ea9711aa383fa028fbc176d2bccc8d1d87b813bb33a684bef05bbae
+- file: assets/default/building-map/qing_south/review3/halls/restaurant.guide.png
+  sha256: 2b6622ec79f7072c33f2b57353bdc21abbfdb3702ae5f043b3d98a1d1549f606
+  role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Changmen_street_in_Suzhou.jpg?width=1800
+  sha256: 2033acfaaaa9005d1ed0e3c7996a6b676f13dc3d0d59cd30cda3b34c7426d601
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Commerce_on_the_water.jpg?width=1800
+  sha256: b499b90f126ba2bd1033d7d5efad279b6ef7321eadf3163853f9d8d6ab7b356a
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:24:01.884737+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_path: history/selected-sources/restaurant.png
+source_sha256: c8bfdc60ce7c4e7cfc68577ec0d3af2377b5e4f2109bc97025796d29b46469a8
+size: 928x576
+sha256: 1b18a83cbf40524a0bc9a54ad3b5fb9838d978c0e8255ed618ae273bba8ce24e
 status: candidate
 building:
   type: bld_kit_qing_south_restaurant
-  footprint: [12, 9]
-  anchor: [538.1132, 481.1765]
+  footprint:
+  - 12
+  - 9
+  anchor:
+  - 494.9016
+  - 322.4197
   era: qing_south
-footprint_m: [12, 9]
-entrance: {edge: S, offset_cells: 5}
+footprint_m:
+- 12
+- 9
+entrance:
+  edge: S
+  offset_cells: 5
 projection_contract:
-  tile_px: [64, 32]
-  ground_bbox_px: [672, 336]
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 672
+  - 336
   light: screen_upper_left
   shadow: screen_lower_right_contact_only
 metadata: meta/bld_kit_qing_south_restaurant.yaml
-source_record: review2/buildings_b/restaurant.source.json
-candidate_count: 2
+source_record: history/records/restaurant.yaml
+candidate_count: 1
 geometry_qa:
-  source_corners_px:
-    left: [180, 579]
-    front: [866, 941]
-    right: [1376, 667]
-  source_axis_slopes: [0.5276967930029155, -0.5372549019607843]
-  axis_tolerance: 0.03
-  axis_pass: false
-  source_width_depth_ratio: 1.3450980392156864
-  expected_width_depth_ratio: 1.3333333333333333
-  ratio_relative_error: 0.008823529411764897
-  ratio_tolerance_suggestion: 0.1
-  ratio_pass: true
-  measurement_uncertainty_source_px: 5
-  precision_note: view_image原尺寸逐图人工读取可见薄石坪上表面外角；非提示词目标点；隐藏后角由平行四边形推算，±5源px。
-notes: 返修第2轮逐张view_image；本轮2候选选第2；灰瓦白墙木石质感与宋基线接近，完整无字无人。占地比例改善，但双轴仍超±0.03，保持candidate并明确未通过几何验收。
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+notes: 2026-10-01 历史图片输入重出：清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+selected_candidate: 1

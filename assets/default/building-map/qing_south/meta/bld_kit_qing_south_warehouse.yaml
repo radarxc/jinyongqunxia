@@ -2,41 +2,132 @@ id: bld_kit_qing_south_warehouse
 status: candidate
 building:
   type: bld_kit_qing_south_warehouse
-  footprint: [10, 8]
-  anchor: [458.5052,386.9572]
+  footprint:
+  - 10
+  - 8
+  anchor:
+  - 458.5052
+  - 386.9572
   era: qing_south
-anchor_px: [458.5052,386.9572]
-footprint_m: [10, 8]
+anchor_px:
+- 458.5052
+- 386.9572
+footprint_m:
+- 10
+- 8
 footprint_source: design/22 §3.3 bld_kit_song_southern_warehouse
-logical_footprint_polygon_px: [[170.5052,370.9572],[490.5052,530.9572000000001],[746.5052000000001,402.9572],[426.5052,242.9572]]
-occluder_proxy_px: [171,139,747,531]
+logical_footprint_polygon_px:
+- - 170.5052
+  - 370.9572
+- - 490.5052
+  - 530.9572000000001
+- - 746.5052000000001
+  - 402.9572
+- - 426.5052
+  - 242.9572
+occluder_proxy_px:
+- 171
+- 139
+- 747
+- 531
 occluder_note: alpha>=192包围框仅测量代理；不修改PNG alpha；不能替代屋顶淡出/逐像素深度。
 height_m: null
 height_note: 单视图不能可靠测量实际高度，待建模实测。
-planning_rotations_allowed: [0, 90, 180, 270]
-entrance: {edge: S, offset_cells: 4}
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+entrance:
+  edge: S
+  offset_cells: 4
 entrance_note: 南边中点规划代理，非图像门洞测量（待实测）。
 collision_polygon_m:
-- [0, 0]
-- [10, 0]
-- [10, 8]
-- [0, 8]
+- - 0
+  - 0
+- - 10
+  - 0
+- - 10
+  - 8
+- - 0
+  - 8
 collision_note: 全矩形规划代理；院内通行、河埠台阶及门洞需细化，阴影不参与碰撞。
 views:
-- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_south_warehouse.png}
-png_rotations_available: [0]
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_south_warehouse.png
+png_rotations_available:
+- 0
 allowRotation: false
 glb: null
 release_ready: false
 projection_contract:
-  tile_px: [64, 32]
-  ground_bbox_px: [576, 288]
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 576
+  - 288
   light: screen_upper_left
   shadow: screen_lower_right_contact_only
-geometry_qa: {"source_corners_px":{"left":[169,596],"front":[834,936],"right":[1396,664]},"source_axis_slopes":[0.5112781954887218,-0.48398576512455516],"axis_tolerance":0.03,"axis_pass":true,"source_width_depth_ratio":1.1832740213523132,"expected_width_depth_ratio":1.25,"ratio_relative_error":0.053380782918149405,"ratio_tolerance_suggestion":0.1,"ratio_pass":true,"measurement_uncertainty_source_px":3,"precision_note":"第2轮原图接地底缘三角人工读点±3px；不使用guide理论点；后角推算。"}
-pixel_qa: {"mode":"RGBA","size":[864,672],"alpha_extrema":[0,255],"alpha_zero_pixels":456476,"alpha_partial_pixels":123130,"alpha_opaque_pixels":1002,"alpha_near_opaque_pixels":119552,"alpha_nonzero_bbox":[91,107,751,534],"transparent_margins_px":[91,107,113,138],"border_alpha_max":0}
-processing: {"source_archive":"sources/bld_kit_qing_south_warehouse.png","source_sha256":"92f56c06cb61ddf1ca7d66752537b986976adec0577fc947c17bf8ad0cac2f69","source_size":[1536,1024],"crop_box":[0,19,1450,1024],"uniform_scale_requested":0.46943765281173594,"resized_size":[681,472],"rounded_effective_scale":[0.4696551724137931,0.4696517412935323],"paste_offset":[91,100,772,572],"final_file":"bld_kit_qing_south_warehouse.png","steps":["crop to alpha>0 bbox","uniform LANCZOS resize; integer rounding only","paste without mask into transparent canvas; no warp, redraw, alpha threshold or ground-edge trimming"]}
-visual_review: 第2轮已view_image逐张复查；按登记占地guide经image_gen独立重出，保留清式材质、灰瓦白墙与木石细节；双轴通过，宽深比通过10%建议阈值；candidate，单视图且无GLB。
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 864
+  - 672
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 454056
+  alpha_partial_pixels: 125562
+  alpha_opaque_pixels: 990
+  alpha_nonzero_bbox:
+  - 169
+  - 136
+  - 749
+  - 534
+  transparent_margins_px:
+  - 169
+  - 136
+  - 115
+  - 138
+  border_alpha_max: 0
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 78
+  - 66
+  - 1447
+  - 1005
+  isotropic_scale: 0.42366691015339664
+  resized_size:
+  - 580
+  - 398
+  paste_offset:
+  - 169
+  - 136
+  - 749
+  - 534
+  final_size:
+  - 864
+  - 672
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/warehouse.png
+  source_sha256: 7a59c8fb385e051a9f54e93e4fc3647912ce7a4e3e529043597a7e9093c5b580
+  forbidden_transforms_used: false
+visual_review: 本轮入选源图及规格化成品已逐张/接触表 view_image；历史细节、真透明、完整轮廓与左上光通过目视，精确投影待实测。
 final_review: 第2轮已view_image逐张复查；按登记占地guide经image_gen独立重出，保留清式材质、灰瓦白墙与木石细节；双轴通过，宽深比通过10%建议阈值；candidate，单视图且无GLB。
-source_request: review2/c/warehouse.request.json
+source_request: history/records/warehouse.yaml
 source_measure: review2/c/warehouse.record.json

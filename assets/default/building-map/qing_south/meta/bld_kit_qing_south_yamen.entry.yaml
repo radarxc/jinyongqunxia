@@ -1,1 +1,67 @@
-{"id": "bld_kit_qing_south_yamen", "file": "bld_kit_qing_south_yamen.png", "category": "building-map", "style": "default", "subject": "清初至清中江南官署衙门（原创扩展；地方细部待考）", "prompt": "Use case: sketch-to-render. FIRST IMAGE is mandatory geometric footprint (17x13 metres) to build upon; SECOND IMAGE is a Qing Jiangnan yamen material/style and building-layout reference only. The first image geometry OVERRIDES the second. Render a realistic gray-tile white-plaster dark timber Qing yamen courthouse courtyard on EXACTLY the first image's parallelogram pad. Retain its shape, dimensions and pixel positions and camera, especially all three visible outer pad corners L=(128,577), F=(853,940), R=(1408,663). Width/depth 17:13, edges slope +0.5/-0.5. Do not enlarge, rotate, compress, skew or change this footprint. Add building massing atop it, matching style reference: main hall rear, single-storey wings either side, walled front with middle gate, open stone courtyard, very sparse shrubs. Main entrance screen lower-left side. Transform geometric grid into realistic small gray stone flagstones, remove guide lines. Keep thin clear exposed stone rim around compound inside these exact boundaries. All eave/wall directions MUST remain parallel with the first image pad edges, verticals upright. No perspective taper, 2:1 orthographic dimetric. Realistic ancient materials and same detailed texture density as reference. No modern objects, text, humans, symbols, watermarks, vegetation outside footprint. Full building including roof uncropped, transparent background outside, real RGBA alpha, upper-left light tiny lower-right contact shadow. Do not render thick diorama pedestal.", "negative": "文字、水印、现代物、人物、假透明、厚底座、天空背景、透视汇聚、满铺金彩", "references": [{"file": "assets/default/building-map/qing_south/review2/buildings_b/yamen.guide.png", "sha256": "9f7fce006a06bc9ce62396b56a11650ee8370644a853161eae65ef4c3e3bc7a4", "role": "本轮图生图几何块体/平面引导；非成品拼贴"}, {"file": "assets/default/building-map/qing_south/review2/buildings_b/yamen.previous-source.png", "sha256": "b24fd794674c4252c2a1c41d9a06bb7829d446fff06d0360b84cc83e7b0a6ac9", "role": "本轮第1候选材质/院落构成参考"}], "tool": "built-in image_gen", "model": "image_gen (underlying model not disclosed)", "effort": "not exposed by image tool", "created": "2026-09-30T21:59:43.856410+00:00", "created_time_basis": "本轮源PNG mtime（copy2保留）；非服务端时间", "source_path": "/Users/bytedance/.codex/generated_images/01a0f450-5169-7ad2-87a6-dab5c8b3cb31/exec-9ac1dede-467e-4657-8f6a-2e8d3941ad7d.png", "size": "1248x928", "sha256": "be35bddd65c04028b3ae25f20b3a540ee7752f66cb7d0889566ca98c63fe1ff8", "status": "candidate", "building": {"type": "bld_kit_qing_south_yamen", "footprint": [17, 13], "anchor": [623.5, 503.8983], "era": "qing_south"}, "footprint_m": [17, 13], "footprint_source": "design/22 §3.4 bld_kit_qing_early_yamen", "entrance": {"edge": "S", "offset_cells": 8.5}, "projection_contract": {"tile_px": [64, 32], "ground_bbox_px": [960, 480], "ground_width_px": 960, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only"}, "metadata": "meta/bld_kit_qing_south_yamen.yaml", "source_record": "review2/buildings_b/yamen.source.json", "source_sha256": "eed443e5dbeb08de36e405743d77e3327bba09b6d15d4802158336b5f0711db6", "candidate_count": 2, "selected_candidate": 2, "geometry_qa": {"source_corners_px": {"left": [59, 550], "front": [830, 965], "right": [1478, 615]}, "source_axis_slopes": [0.5382619974059663, -0.5401234567901234], "axis_tolerance": 0.03, "axis_pass": false, "source_width_depth_ratio": 1.1898148148148149, "expected_width_depth_ratio": 1.3076923076923077, "ratio_relative_error": 0.0901416122004357, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "precision_note": "view_image原尺寸逐图人工读取可见薄石坪上表面外角；非提示词目标点；隐藏后角由平行四边形推算，±5源px。"}, "notes": "返修第2轮逐张view_image；本轮2候选选第1；灰瓦白墙木石质感与宋基线接近，完整无字无人。占地比例改善，但双轴仍超±0.03，保持candidate并明确未通过几何验收。"}
+id: bld_kit_qing_south_yamen
+file: bld_kit_qing_south_yamen.png
+category: building-map
+style: default
+subject: 清初至清中江南官署衙门（原创扩展；地方细部待考）
+prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+  shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a 17 by 13 cell Jiangnan county yamen compound. Preserve axial outer gate, courtyard and main hall hierarchy from guide. Grey-tile hard-gable and restrained hip-and-gable roofs, moderate roof lift, plain ridges with only small non-imperial end ornaments, no glazed yellow. Main hall has five-bay red-brown columns on a low dressed-stone platform, grey brick infill and straight lattice doors; simple two-step local bracket sets under eaves, not palace-scale. White service-wing walls, blue-grey brick foot courses,
+  a red-brown instrument gate, stone drum bases without statues. No plaque text, flags or people.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+references:
+- file: assets/default/building-map/qing_south/review3/halls/yamen.guide.png
+  sha256: d2bed63157a66c3fa853ad1258bd767ddd33fe3b45ba025967253321b5ae06ad
+  role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Entrance_and_yard_of_a_yamen.jpg?width=1600
+  sha256: 6ea99763a8b809f1d0ab9320299a598bac2fea3fb98024cd07a68bb2ae78d316
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Examination_hall.jpg?width=1600
+  sha256: 3066f5057f9314df9c4bf4e8d159919282eb5bfc3408ac0ce76a6eb933c69abc
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:24:02.076681+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_path: history/selected-sources/yamen.png
+size: 1120x768
+sha256: 92d62037f5895e4f31cbd8b42bddc48ac008296b24af3bbe892b6767af438ea2
+status: candidate
+building:
+  type: bld_kit_qing_south_yamen
+  footprint:
+  - 17
+  - 13
+  anchor:
+  - 571.2727
+  - 434.0909
+  era: qing_south
+footprint_m:
+- 17
+- 13
+footprint_source: design/22 §3.4 bld_kit_qing_early_yamen
+entrance:
+  edge: S
+  offset_cells: 8.5
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 960
+  - 480
+  ground_width_px: 960
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_qing_south_yamen.yaml
+source_record: history/records/yamen.yaml
+source_sha256: c30eb89d89538ff1a8bafb45c4d274f29d1db886ae16a17ed611e500cdf28119
+candidate_count: 1
+selected_candidate: 1
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+notes: 2026-10-01 历史图片输入重出：轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。

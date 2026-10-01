@@ -3,59 +3,62 @@ file: bld_kit_qing_south_market_stall.png
 category: building-map
 style: default
 subject: 清初至清中江南·市场棚（匿名原创组合，细部待考）
-prompt: 'Use case: historical-scene. Generate ONE isolated realistic ancient-Chinese city-map building sprite, early-to-middle Qing Jiangnan region, circa 1700-1780,
-  an original anonymous game building NOT a reconstruction of a named monument. Match the supplied Song baseline''s realistic matte materials, muted palette, fine
-  restrained texture density and scale, but change architecture to Qing Jiangnan. Orthographic map camera yaw45 elevation30, exact 2:1 dimetric ground-plane: east
-  axis (+2,+1), north axis (+2,-1), verticals upright. Front entrance faces lower left. Thin rectangular footprint with clearly visible left, front, right ground
-  corners; no thick diorama plinth. Complete whole building and short soft shadow fully within frame, generous transparent margins. True transparent RGBA background,
-  object interior opaque, no painted checkerboard. Upper-left lighting, short lower-right contact shadow. White limewashed brick walls, grey small clay roof tiles,
-  dark weathered timber, restrained Qing lattice windows, plain gables with small tile coping. No red lantern spectacle, imperial yellow roofs, exaggerated Huizhou
-  horse-head gables everywhere, modern tourism decoration, European features, modern objects, people, text, plaques with writing, watermark, sky, landscape, vignette
-  or detached scenery. Single standalone asset only.  IMPORTANT: ground edges have slope +0.5 and -0.5, NOT30-degree isometric lines. Exact width/depth footprint
-  edge ratio is specified, do not enlarge the front facade at expense of depth. Subject: ONE small open market stall, four thin weathered wooden posts supporting
-  a simple faded beige woven-fabric canopy, timber counter holding shallow woven baskets and small ceramic jars, no house, no street, no extra stalls. Ground 3:2
-  width:depth, thin rectangular stone/earth footprint. No bright colors. Footprint 3m east-west by 2m north-south.'
-negative: 文字、人物、现代物件、实底背景、厚底台、裁切、强透视、金黄屋顶泛化
+prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+  shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: one tiny 3 by 2 cell temporary Qing Suzhou street market stall. A simple four-post dark bamboo-or-timber frame, low counter made of plain boards, and a slightly sagging muted indigo-grey woven cloth awning tied by visible cords; pegged mortise joints, no masonry, roof tile, dougong, sign or merchandise. Keep exact compact footprint and transparent gaps between posts. Historically restrained street fixture, no person and no readable marks.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
 references:
-- {file: assets/default/baseline/building-map/bld_kit_song_southern_market_stall.png, sha256: 08668d277ee87a8738c40f904350d3715ebd5a5afd3fe7c6e9e759990ac53b2e, role: 宋建筑材质、细节密度与相机意图参考}
-tool: built-in image_gen
-model: image_gen (underlying model not disclosed)
-effort: not exposed by image tool
-created: '2026-09-30T21:23:22.800318+00:00'
-created_time_basis: copy2保留源PNG mtime，非服务端生成时间回执
-source_path: /Users/bytedance/.codex/generated_images/01a0f426-f961-7d03-b26f-506d2b925f40/exec-550cb2a7-5429-43c5-977b-9fdab408de18.png
-source_sha256: ac19ab13fd7325af1b7d1eda08e1606290a5405b3dd460e2160dfa8ea88fe885
+- file: assets/default/building-map/qing_south/history/guides/market_stall.png
+  sha256: 2bca5af3123233e7ea09c560635a4006c280cf188641ad78932f2a6a95c82efb
+  role: 本轮生成输入：覆盖前同ID候选，仅作登记几何、相机、尺度和风格引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Changmen_street_in_Suzhou.jpg?width=1800
+  sha256: 2033acfaaaa9005d1ed0e3c7996a6b676f13dc3d0d59cd30cda3b34c7426d601
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Commerce_on_the_water.jpg?width=1800
+  sha256: b499b90f126ba2bd1033d7d5efad279b6ef7321eadf3163853f9d8d6ab7b356a
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:24:01.925465+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_path: history/selected-sources/market_stall.png
+source_sha256: 8cb13a2d3a948bfd2a7737a730f3d242a028a942ff886806451973a305769001
 size: 512x512
-sha256: 2bca5af3123233e7ea09c560635a4006c280cf188641ad78932f2a6a95c82efb
+sha256: 5c9af9f642f277f33038d416b3b5eae4fc6bf8ef0a8af234f82e2904e522465a
 status: candidate
 building:
   type: bld_kit_qing_south_market_stall
-  footprint: [3, 2]
-  anchor: [254.583, 290.231]
+  footprint:
+  - 3
+  - 2
+  anchor:
+  - 254.583
+  - 290.231
   era: qing_south
-footprint_m: [3, 2]
-entrance: {edge: S, offset_cells: 1}
+footprint_m:
+- 3
+- 2
+entrance:
+  edge: S
+  offset_cells: 1
 projection_contract:
-  tile_px: [64, 32]
-  ground_bbox_px: [160, 80]
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 160
+  - 80
   light: screen_upper_left
   shadow: screen_lower_right_contact_only
 metadata: meta/bld_kit_qing_south_market_stall.yaml
-source_record: sources/bld_kit_qing_south_market_stall.request.json
+source_record: history/records/market_stall.yaml
 candidate_count: 1
 geometry_qa:
-  source_corners_px:
-    left: [212, 752]
-    front: [729, 1009]
-    right: [1058, 847]
-  source_axis_slopes: [0.49709864603481624, -0.49240121580547114]
-  axis_tolerance: 0.03
-  axis_pass: true
-  source_width_depth_ratio: 1.5714285714285714
-  expected_width_depth_ratio: 1.5
-  ratio_relative_error: 0.04761904761904767
-  ratio_tolerance_suggestion: 0.1
-  ratio_pass: true
-  measurement_uncertainty_source_px: 5
-  precision_note: 原尺寸view_image人工读可见地面三角，±5源px；隐藏后角未实测，相机为目标而非反解。
-notes: 原图已view_image(original)：木柱布棚、竹篮蔬果与少量布匹完整，朴素低饱和麻布木材，与宋基线细节密度一致，无人无字；左上光、右下短影。可见底面轴向和3:2宽深比在建议容差内。蔬果具体物种和当时市售状态未逐项断代，作为原创陈设待考；单视图candidate。
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+notes: 2026-10-01 历史图片输入重出：清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+selected_candidate: 1

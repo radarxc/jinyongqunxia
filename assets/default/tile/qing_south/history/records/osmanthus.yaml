@@ -1,0 +1,57 @@
+id: tex_town_qing_south_shrub__osmanthus_v01
+status: candidate
+selected_candidate: 1
+candidate_count: 1
+prompt: 'Use image_gen to generate exactly ONE final production tile asset. The first supplied image is a scale and style guide; preserve its registered compact footprint, bottom anchor and slightly elevated orthographic camera, but replace the subject according to the request. The next two images are historical or botanical visual evidence only; borrow species morphology and regional appearance without copying composition. Early-to-mid Qing Jiangnan scene vocabulary, realistic detailed historical 2.5D game-map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, no perspective. True transparent RGBA alpha-0 outside object, full silhouette uncropped, generous transparent margins, screen-upper-left soft light, tiny lower-right contact shadow. No scene, ground tile, pot, people, animals, buildings, text, logos, watermark, checkerboard, white matte or modern objects. SUBJECT: one mature sweet osmanthus shrub, Osmanthus fragrans, compact 2 by 2 cell root footprint
+  and roughly 1.5 meters tall. Naturally irregular rounded crown, several visible short grey-brown branching stems, dense small leathery opposite oval leaves in muted dark olive green, only sparse pinhead cream-yellow flower clusters tucked among leaves. Botanical realism, not a topiary ball. Exposed root contact only, no soil patch, planter or garden scenery.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+references:
+- file: assets/default/tile/qing_south/history/guides/osmanthus.png
+  sha256: 6ee13f03a97b85442ce47fc44016511fd239e9a0e70cd2fa1b08d0bef42810e8
+  role: 本轮生成输入：覆盖前同ID候选，仅作登记几何、相机、尺度和风格引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Osmanthus_fragrans_in_China.jpg?width=1200
+  sha256: 9cadcce98eabaa926694e10c5e75adc5142759ef272d3dc66cc6e87825410dce
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。垂柳取单干、疏透冠和长垂枝；桂花取多分枝、革质对生椭圆叶及少量淡黄小花，不作球形绿篱。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Osmanthus_Fragrans_chinese_Guihua.JPG?width=1200
+  sha256: 237a8b3f0a477756bbfc723a085dc05c960456dfdea2cb21bdb711ac33c8ccfb
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。垂柳取单干、疏透冠和长垂枝；桂花取多分枝、革质对生椭圆叶及少量淡黄小花，不作球形绿篱。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:27:59.868973+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_archive: history/selected-sources/osmanthus.png
+source_sha256: 125e45e5106d8dd6ee4f23df56b567cd3a60f5ad49094707dafa1cc501b7d410
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1456
+  - 1080
+  crop_box:
+  - 97
+  - 70
+  - 1393
+  - 1014
+  isotropic_scale: 0.07733050847457627
+  resized_size:
+  - 100
+  - 73
+  paste_offset:
+  - 15
+  - 10
+  - 115
+  - 83
+  final_size:
+  - 128
+  - 95
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/osmanthus.png
+  source_sha256: 125e45e5106d8dd6ee4f23df56b567cd3a60f5ad49094707dafa1cc501b7d410
+  forbidden_transforms_used: false
+notes: 垂柳取单干、疏透冠和长垂枝；桂花取多分枝、革质对生椭圆叶及少量淡黄小花，不作球形绿篱。
+record_path: history/records/osmanthus.yaml

@@ -1,1 +1,66 @@
-{"id": "bld_kit_qing_south_casino", "file": "bld_kit_qing_south_casino.png", "category": "building-map", "style": "default", "subject": "清初至清中江南匿名赌场外观（原创扩展）", "prompt": "Use case historical-scene. Redraw the reference casino sprite in engineered 2:1 DIMETRIC projection for a game, same Qing Jiangnan gray tiles/white plaster/dark timber realistic weathered material detail, two-storey rear block and enclosed courtyard. Crucial: WIDER FRONTAGE and SHORTER DEPTH. Plan rectangle 10 by 8, width axis projects down-right, depth axis up-right. Ground-pad front edge must be 25% LONGER than ground-pad right edge. Current image fails: front edge too steep, depth too long. Camera must be LOWER, both axes slope exactly plus/minus 0.5, 26.565 degrees to horizontal. Ground pad corners (1536x1024): left=100,560; near/front=860,940; right=1468,636; rear=708,256. L-to-F delta=(760,380). F-to-R delta=(608,-304). These are exact pixel target positions, use them to build the scene. Place the courtyard on the exact shape, keep ground edges perfectly straight and sharply visible. Verticals upright, parallel roof and ground edges. Thin surface no thick plinth. No perspective. Real RGBA TRANSPARENT outside. Full roof and all corners uncropped, no text, no people, no symbols, no labels or dimensions. Warm neutral illumination upper-left and small lower-right contact shadow only.", "negative": "文字、水印、现代物、人物、假透明、厚底座、天空背景、透视汇聚、满铺金彩", "references": [{"file": "assets/default/building-map/qing_south/review2/buildings_b/casino.previous-source.png", "sha256": "bad58be99544cf6e2f5fc2f36ddc032734c0fb71f79d434a78c636aafa005ecd", "role": "前轮同ID原图作为编辑目标；本轮第2候选接第1候选继续修改"}], "tool": "built-in image_gen", "model": "image_gen (underlying model not disclosed)", "effort": "not exposed by image tool", "created": "2026-09-30T21:57:52.871239+00:00", "created_time_basis": "本轮源PNG mtime（copy2保留）；非服务端时间", "source_path": "/Users/bytedance/.codex/generated_images/01a0f450-5169-7ad2-87a6-dab5c8b3cb31/exec-b7014598-ad64-440a-84f6-3c570f50ef5a.png", "size": "800x576", "sha256": "8e31d81c205a441fa0fe9afd7bdf029f01cb25aeccb42b8a98e52168ce0345fc", "status": "candidate", "building": {"type": "bld_kit_qing_south_casino", "footprint": [10, 8], "anchor": [399.8031, 319.0048], "era": "qing_south"}, "footprint_m": [10, 8], "footprint_source": "design/22 §3.3 bld_kit_song_southern_casino同构占地", "entrance": {"edge": "S", "offset_cells": 5.0}, "projection_contract": {"tile_px": [64, 32], "ground_bbox_px": [576, 288], "ground_width_px": 576, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only"}, "metadata": "meta/bld_kit_qing_south_casino.yaml", "source_record": "review2/buildings_b/casino.source.json", "source_sha256": "0343a6fc85bb1657a36c9bc1a0dcc919c0f45ae4621954d7eb5727f21fd718e4", "candidate_count": 2, "selected_candidate": 2, "geometry_qa": {"source_corners_px": {"left": [53, 561], "front": [839, 975], "right": [1517, 644]}, "source_axis_slopes": [0.5267175572519084, -0.4882005899705015], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.1592920353982301, "expected_width_depth_ratio": 1.25, "ratio_relative_error": 0.07256637168141589, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "precision_note": "view_image原尺寸逐图人工读取可见薄石坪上表面外角；非提示词目标点；隐藏后角由平行四边形推算，±5源px。"}, "notes": "返修第2轮逐张view_image；本轮2候选选第2；灰瓦白墙木石质感与宋基线接近，完整无字无人。双轴及占地宽深比实测均在登记容差内。"}
+id: bld_kit_qing_south_casino
+file: bld_kit_qing_south_casino.png
+category: building-map
+style: default
+subject: 清初至清中江南匿名赌场外观（原创扩展）
+prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+  shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a 10 by 8 cell discreet Qing Jiangnan gambling house, an original use inside an ordinary two-storey merchant dwelling. Low hard-gable grey-tile roof, plain ridge, white fire gables, blue-grey brick base, dark timber three-bay frontage with closely screened lattice windows and stout shut doors, shallow eave on single-step supports. Slightly more enclosed than the shop, no symbols, dice, money, lantern spectacle or readable sign. Respectable worn street architecture, not a fantasy den.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+references:
+- file: assets/default/building-map/qing_south/history/guides/casino.png
+  sha256: 8e31d81c205a441fa0fe9afd7bdf029f01cb25aeccb42b8a98e52168ce0345fc
+  role: 本轮生成输入：覆盖前同ID候选，仅作登记几何、相机、尺度和风格引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Changmen_street_in_Suzhou.jpg?width=1800
+  sha256: 2033acfaaaa9005d1ed0e3c7996a6b676f13dc3d0d59cd30cda3b34c7426d601
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Master_of_Nets_Garden_1.jpg?width=1600
+  sha256: cd5e0d1ad8b84c7525418996b1808dadbe8b78bce7cca58c151a0a5fe69774f9
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:24:02.308220+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_path: history/selected-sources/casino.png
+size: 800x576
+sha256: 60c757a5b505d777e1179370a4bf46925b06ce620af22e97549099c891c40c90
+status: candidate
+building:
+  type: bld_kit_qing_south_casino
+  footprint:
+  - 10
+  - 8
+  anchor:
+  - 399.8031
+  - 319.0048
+  era: qing_south
+footprint_m:
+- 10
+- 8
+footprint_source: design/22 §3.3 bld_kit_song_southern_casino同构占地
+entrance:
+  edge: S
+  offset_cells: 5.0
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 576
+  - 288
+  ground_width_px: 576
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_qing_south_casino.yaml
+source_record: history/records/casino.yaml
+source_sha256: 9db57e835252f768635290fbc95cac0b76e3b86a183099f7ba054c2f289f6589
+candidate_count: 1
+selected_candidate: 1
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+notes: 2026-10-01 历史图片输入重出：清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。

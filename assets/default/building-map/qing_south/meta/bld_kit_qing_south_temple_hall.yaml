@@ -1,36 +1,131 @@
 id: bld_kit_qing_south_temple_hall
 status: candidate
-building: {"type":"bld_kit_qing_south_temple_hall","footprint":[14,11],"anchor":[548.6248,445.3051],"era":"qing_south"}
-anchor_px: [548.6248,445.3051]
+building:
+  type: bld_kit_qing_south_temple_hall
+  footprint:
+  - 14
+  - 11
+  anchor:
+  - 548.6248
+  - 445.3051
+  era: qing_south
+anchor_px:
+- 548.6248
+- 445.3051
 anchor_basis: 原图底面左右角中点经同一裁切和缩放映射；不是PNG底边中心。
-footprint_m: [14, 11]
+footprint_m:
+- 14
+- 11
 footprint_source: design/22 §3.4 bld_kit_ming_temple_hall同构占地
-logical_footprint_polygon_px: [[148.62480000000005,421.3051],[596.6248,645.3051],[948.6248,469.3051],[500.62480000000005,245.30509999999998]]
+logical_footprint_polygon_px:
+- - 148.62480000000005
+  - 421.3051
+- - 596.6248
+  - 645.3051
+- - 948.6248
+  - 469.3051
+- - 500.62480000000005
+  - 245.30509999999998
 collision_polygon_m:
-- [0, 0]
-- [14, 0]
-- [14, 11]
-- [0, 11]
+- - 0
+  - 0
+- - 14
+  - 0
+- - 14
+  - 11
+- - 0
+  - 11
 collision_note: 全占地代理，非实测墙体；院内通行需后续细化。
-occluder_proxy_px: [149,114,949,649]
+occluder_proxy_px:
+- 149
+- 114
+- 949
+- 649
 occluder_note: alpha>=192包围框，仅测量代理，不修改原alpha。
 height_m: null
 height_note: 单视图不能可靠测量实际高度，待建模实测。
-entrance: {edge: S, offset_cells: 7.0}
+entrance:
+  edge: S
+  offset_cells: 7.0
 entrance_note: 目录南边中点代理；门洞实际位置待总装校准。
-planning_rotations_allowed: [0, 180]
+planning_rotations_allowed:
+- 0
+- 180
 views:
-- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_south_temple_hall.png}
-png_rotations_available: [0]
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_south_temple_hall.png
+png_rotations_available:
+- 0
 allowRotation: false
 glb: null
 projection_contract:
-  tile_px: [64, 32]
-  ground_bbox_px: [800, 400]
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 800
+  - 400
   ground_width_px: 800
   light: screen_upper_left
   shadow: screen_lower_right_contact_only
-geometry_qa: {"source_corners_px":{"left":[168,605],"front":[882,958],"right":[1394,689],"back_inferred":[680,336]},"source_axis_slopes":[0.4943977591036415,-0.525390625],"axis_tolerance":0.03,"axis_pass":true,"source_width_depth_ratio":1.39453125,"expected_width_depth_ratio":1.2727272727272727,"ratio_relative_error":0.095703125,"ratio_tolerance_suggestion":0.1,"ratio_pass":true,"measurement_uncertainty_source_px":3,"precision_note":"第3轮逐张view_image源图读薄地坪接地底缘三角±3px；后角=L+R-F推算；额外以alpha>=240底轮廓线性拟合作独立交叉核验。"}
-pixel_qa: {"mode":"RGBA","size":[1024,736],"alpha_extrema":[0,255],"alpha_zero_pixels":525152,"alpha_partial_pixels":227622,"alpha_opaque_pixels":890,"alpha_near_opaque_pixels":221375,"alpha_nonzero_bbox":[39,44,985,691],"transparent_margins_px":[39,44,39,45],"border_alpha_max":0}
-processing: {"source_size":[1536,1024],"source_crop":[0,32,1450,1024],"scale_uniform":0.6525285481239804,"resized_size":[946,647],"canvas_size":[1024,736],"paste_offset":[39,44],"anchor_source":[781.0,647.0],"anchor_final":[548.6248,445.3051],"final_corners_px":{"left":[148.6248,417.8989],"front":[614.5302,648.2414],"right":[948.6248,472.7113],"back_inferred":[482.7194,242.3687]},"operations":["crop alpha-nonzero bounding box","one uniform LANCZOS resize","transparent padding; no warp, rotation, recoloring or alpha remap"],"source_archive":"review3/halls/temple_hall.candidate1.png","source_sha256":"102db4c2f2b2ea31efcc44224bc70be36aad1edca1c72e64abcc9a6acd23d622"}
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 1024
+  - 736
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 506526
+  alpha_partial_pixels: 246037
+  alpha_opaque_pixels: 1101
+  alpha_nonzero_bbox:
+  - 146
+  - 116
+  - 952
+  - 652
+  transparent_margins_px:
+  - 146
+  - 116
+  - 72
+  - 84
+  border_alpha_max: 0
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 43
+  - 44
+  - 1502
+  - 1014
+  isotropic_scale: 0.5524331734064428
+  resized_size:
+  - 806
+  - 536
+  paste_offset:
+  - 146
+  - 116
+  - 952
+  - 652
+  final_size:
+  - 1024
+  - 736
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/temple_hall.png
+  source_sha256: 35be31412f81b0bff4e583075882354ea94a7f8fc282f84acb9131588d07c0c7
+  forbidden_transforms_used: false
 release_ready: false
+visual_review: 本轮入选源图及规格化成品已逐张/接触表 view_image；历史细节、真透明、完整轮廓与左上光通过目视，精确投影待实测。
+source_request: history/records/temple_hall.yaml

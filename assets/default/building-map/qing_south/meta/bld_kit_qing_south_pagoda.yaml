@@ -2,39 +2,129 @@ id: bld_kit_qing_south_pagoda
 status: candidate
 building:
   type: bld_kit_qing_south_pagoda
-  footprint: [7, 7]
-  anchor: [500.7287,555.6167]
+  footprint:
+  - 7
+  - 7
+  anchor:
+  - 500.7287
+  - 555.6167
   era: qing_south
-anchor_px: [500.7287,555.6167]
+anchor_px:
+- 500.7287
+- 555.6167
 anchor_basis: 原图底面左右角中点经同一裁切和缩放映射；不是PNG底边中心。
-footprint_m: [7, 7]
+footprint_m:
+- 7
+- 7
 footprint_source: design/22 §3.3 bld_kit_song_southern_pagoda同构占地
-logical_footprint_polygon_px: [[276.7287,555.6167],[500.7287,667.6167],[724.7287,555.6167],[500.7287,443.61670000000004]]
+logical_footprint_polygon_px:
+- - 276.7287
+  - 555.6167
+- - 500.7287
+  - 667.6167
+- - 724.7287
+  - 555.6167
+- - 500.7287
+  - 443.61670000000004
 collision_polygon_m:
-- [0, 0]
-- [7, 0]
-- [7, 7]
-- [0, 7]
+- - 0
+  - 0
+- - 7
+  - 0
+- - 7
+  - 7
+- - 0
+  - 7
 collision_note: 全占地代理，非实测墙体；院内通行需后续细化。
-occluder_proxy_px: [276,133,726,673]
+occluder_proxy_px:
+- 276
+- 133
+- 726
+- 673
 occluder_note: alpha>=192包围框，仅测量代理，不修改原alpha。
 height_m: null
 height_note: 单视图不能可靠测量实际高度，待建模实测。
-entrance: {edge: S, offset_cells: 3.5}
+entrance:
+  edge: S
+  offset_cells: 3.5
 entrance_note: 目录南边中点代理；门洞实际位置待总装校准。
-planning_rotations_allowed: [0]
+planning_rotations_allowed:
+- 0
 views:
-- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_south_pagoda.png}
-png_rotations_available: [0]
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_south_pagoda.png
+png_rotations_available:
+- 0
 allowRotation: false
 glb: null
 projection_contract:
-  tile_px: [64, 32]
-  ground_bbox_px: [448, 224]
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 448
+  - 224
   ground_width_px: 448
   light: screen_upper_left
   shadow: screen_lower_right_contact_only
-geometry_qa: {"source_corners_px":{"left":[378,760],"front":[768,963],"right":[1159,760]},"source_axis_slopes":[0.5205128205128206,-0.5191815856777494],"axis_tolerance":0.03,"axis_pass":true,"source_width_depth_ratio":0.9974424552429667,"expected_width_depth_ratio":1.0,"ratio_relative_error":0.002557544757033292,"ratio_tolerance_suggestion":0.1,"ratio_pass":true,"measurement_uncertainty_source_px":3,"precision_note":"第2轮原图接地底缘三角人工读点±3px；不使用guide理论点；后角推算。"}
-pixel_qa: {"mode":"RGBA","size":[928,800],"alpha_extrema":[0,255],"alpha_zero_pixels":634545,"alpha_partial_pixels":106815,"alpha_opaque_pixels":1040,"alpha_near_opaque_pixels":99062,"alpha_nonzero_bbox":[97,125,829,675],"transparent_margins_px":[97,125,99,125],"border_alpha_max":0}
-processing: {"source_archive":"sources/bld_kit_qing_south_pagoda.png","source_sha256":"df205bafbd7140de35843f9aa37a151704f76ee7c4826f21773358fd979151ec","source_size":[1536,1024],"crop_box":[65,8,1344,968],"uniform_scale_requested":0.5736235595390525,"resized_size":[734,551],"rounded_effective_scale":[0.5738858483189992,0.5739583333333333],"paste_offset":[97,124,831,675],"final_file":"bld_kit_qing_south_pagoda.png","steps":["crop to alpha>0 bbox","uniform LANCZOS resize; integer rounding only","paste without mask into transparent canvas; no warp, redraw, alpha threshold or ground-edge trimming"]}
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 928
+  - 800
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 661313
+  alpha_partial_pixels: 80198
+  alpha_opaque_pixels: 889
+  alpha_nonzero_bbox:
+  - 346
+  - 126
+  - 654
+  - 675
+  transparent_margins_px:
+  - 346
+  - 126
+  - 274
+  - 125
+  border_alpha_max: 0
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 535
+  - 5
+  - 1074
+  - 968
+  isotropic_scale: 0.5711318795430945
+  resized_size:
+  - 308
+  - 550
+  paste_offset:
+  - 346
+  - 125
+  - 654
+  - 675
+  final_size:
+  - 928
+  - 800
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/pagoda.png
+  source_sha256: b63d45bdcb5dc4f06bbdadd6680036819e21bd778f61908c007ff728b239e365
+  forbidden_transforms_used: false
 release_ready: false
+visual_review: 本轮入选源图及规格化成品已逐张/接触表 view_image；历史细节、真透明、完整轮廓与左上光通过目视，精确投影待实测。
+source_request: history/records/pagoda.yaml

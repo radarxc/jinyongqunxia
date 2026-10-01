@@ -1,40 +1,135 @@
 id: bld_kit_qing_south_house_small
 status: candidate
-building: {"type":"bld_kit_qing_south_house_small","footprint":[6,5],"anchor":[263.5089,298.8751],"era":"qing_south"}
-anchor_px: [263.5089,298.8751]
-footprint_m: [6, 5]
+building:
+  type: bld_kit_qing_south_house_small
+  footprint:
+  - 6
+  - 5
+  anchor:
+  - 263.5089
+  - 298.8751
+  era: qing_south
+anchor_px:
+- 263.5089
+- 298.8751
+footprint_m:
+- 6
+- 5
 footprint_source: design/22 §3.3 bld_kit_song_southern_house
-logical_footprint_polygon_px: [[87.50889999999998,290.8751],[279.5089,386.8751],[439.5089,306.8751],[247.50889999999998,210.87509999999997]]
-occluder_proxy_px: [87,115,439,392]
+logical_footprint_polygon_px:
+- - 87.50889999999998
+  - 290.8751
+- - 279.5089
+  - 386.8751
+- - 439.5089
+  - 306.8751
+- - 247.50889999999998
+  - 210.87509999999997
+occluder_proxy_px:
+- 87
+- 115
+- 439
+- 392
 occluder_note: alpha>=192包围框仅测量代理；不修改PNG alpha；不能替代屋顶淡出/逐像素深度。
 height_m: null
 height_note: 单视图不能可靠测量实际高度，待建模实测。
-planning_rotations_allowed: [0, 90, 180, 270]
-entrance: {edge: S, offset_cells: 2}
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+entrance:
+  edge: S
+  offset_cells: 2
 entrance_note: 南边中点规划代理，非图像门洞测量（待实测）。
 collision_polygon_m:
-- [0, 0]
-- [6, 0]
-- [6, 5]
-- [0, 5]
+- - 0
+  - 0
+- - 6
+  - 0
+- - 6
+  - 5
+- - 0
+  - 5
 collision_note: 全矩形规划代理；院内通行、河埠台阶及门洞需细化，阴影不参与碰撞。
 views:
-- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_south_house_small.png}
-png_rotations_available: [0]
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_south_house_small.png
+png_rotations_available:
+- 0
 allowRotation: false
 glb: null
 release_ready: false
 projection_contract:
-  tile_px: [64, 32]
-  ground_bbox_px: [352, 176]
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 352
+  - 176
   light: screen_upper_left
   shadow: screen_lower_right_contact_only
-geometry_qa: {"source_corners_px":{"left":[93,744],"front":[684,1042],"right":[1166,795]},"back_corner_inferred_px":[575,497],"source_axis_slopes":[0.5042301184433164,-0.5124481327800829],"axis_tolerance":0.03,"axis_pass":true,"source_width_depth_ratio":1.2261410788381744,"expected_width_depth_ratio":1.2,"ratio_relative_error":0.021784232365145373,"ratio_tolerance_suggestion":0.1,"ratio_pass":true,"measurement_uncertainty_source_px":3,"precision_note":"原尺寸view_image及8倍底边局部实测石板顶面外缘三角，±3源px；后角由L+R-F推算；guide理论点未代替实测。"}
-pixel_qa: {"mode":"RGBA","size":[512,512],"alpha_extrema":[0,255],"alpha_zero_pixels":201932,"alpha_partial_pixels":59532,"alpha_opaque_pixels":680,"alpha_near_opaque_pixels":58273,"alpha_nonzero_bbox":[57,59,442,445],"transparent_margins_px":[57,59,70,67],"border_alpha_max":0}
-processing: {"operations":["crop_alpha_bbox","uniform_resize_LANCZOS","transparent_padding"],"source_size":[1254,1254],"crop_box":[0,20,1214,1254],"isotropic_scale":0.32805219012115566,"resized_size":[398,405],"paste_offset":[57,53,455,458],"final_size":[512,512],"anchor_source_px":[629.5,769.5],"anchor_final_px":[263.5089,298.8751],"forbidden_transforms_used":false,"source_archive":"review3/houses/house_small.candidate1.png","source_sha256":"df370df13a43555afee3d4537da4163b737008322113aebd19e26b3360329606"}
-visual_review: 原图已view_image(original)：小民居灰瓦、粉墙、深木、格窗完整，左上光及右下短影，无文字人物；选第2候选较浅视角，第1候选原图保留。前立面偏宽，源可见地面宽深比未达到目标6:5，斜率亦有残差；按目标总宽等比缩放，不扭曲。高起山墙偏装饰性，具体清初细部待考。PNG低alpha边缘噪点保留，非实体裁断；单视图candidate。
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 512
+  - 512
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 202041
+  alpha_partial_pixels: 59482
+  alpha_opaque_pixels: 621
+  alpha_nonzero_bbox:
+  - 88
+  - 113
+  - 440
+  - 395
+  transparent_margins_px:
+  - 88
+  - 113
+  - 72
+  - 117
+  border_alpha_max: 0
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1254
+  - 1254
+  crop_box:
+  - 163
+  - 272
+  - 1145
+  - 1059
+  isotropic_scale: 0.3583227445997459
+  resized_size:
+  - 352
+  - 282
+  paste_offset:
+  - 88
+  - 113
+  - 440
+  - 395
+  final_size:
+  - 512
+  - 512
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/house_small.png
+  source_sha256: b6b6b4fc78ae47f2300f65e962deaa2676e5f744ce6d29e33256ab82e807d0dc
+  forbidden_transforms_used: false
+visual_review: 本轮入选源图及规格化成品已逐张/接触表 view_image；历史细节、真透明、完整轮廓与左上光通过目视，精确投影待实测。
 final_review: 成品576×544已view_image(original)复查：轮廓完整、透明边充足、格窗灰瓦可辨；接触影右下。
-source_request: sources/bld_kit_qing_south_house_small.request.json
+source_request: history/records/house_small.yaml
 source_measure: sources/bld_kit_qing_south_house_small.measure.json
 review2_record: review2/house_small.review.json
 review2_result: 两次重出均未通过几何，未采用；保留旧图、SHA、测点、锚点，返修未解决。

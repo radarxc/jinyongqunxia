@@ -599,7 +599,7 @@ For plants: exposed stem contact; no pot, soil tile or pedestal.
 No text, plaques, people, sheet, grid, opaque background or painted checkerboard.
 ```
 
-相机返修优先句：`The present ridge is too nearly horizontal; steepen it to screen slope +0.5. Keep depth edges at -0.5. Correct only camera/projection; preserve material and transparent opening.` 两座门均生成 2 个候选并选择第 2 个；墙段尝试 2 个后保留第 1 个；其余各 1 个。所有实际输入基线和返修输入均保留 provenance，返修初稿仅作输入记录，不是额外发布变体。
+相机返修优先句：`The present ridge is too nearly horizontal; steepen it to screen slope +0.5. Keep depth edges at -0.5. Correct only camera/projection; preserve material and transparent opening.` 这是首版制作记录；2026-10-01 历史图片输入重出以§10.4为准：两座门各2候选选第2，其余5类各1候选。两门第1候选作为第2候选的直接输入保留 provenance，不是额外发布变体。
 
 ### 10.3 本批登记、验收边界与默认值
 
@@ -611,6 +611,16 @@ No text, plaques, people, sheet, grid, opaque background or painted checkerboard
 - 直墙、转角、桥、植物的占地与高度为 **【建议值】**；精确门洞对格、墙高一致性、桥栏遮挡、门墙拼缝、植物季相为 **（待实测）**。保留本节默认值，不自动升级为 approved。
 
 ### 10.4 参考资料
+
+2026-10-01 按作者要求以历史图片直接作为生成输入重出7张。每张使用一张仓内几何 / 尺度 guide 与两张历史图片；图片只用于形制、比例、材质和构造，不复制构图。下载件留在工作区外，manifest 登记 URL、访问日、SHA-256 与取用细节，入选源图和完整 prompt 存于 `qing_south/history/`。历史细节要点如下：
+
+- 城门 / 直墙 / 转角：盘门现存照片只提供江南青灰砖错缝、花岗石基脚与券脚、放射砖石拱圈、补灰缝、低女墙和灰瓦门楼证据，不复制盘门整体；门洞目标仍是2:4:2与2:6:2。
+- 石桥：平江路石桥与1984年吴门桥照片取低矢单孔、放射花岗石券、粗石拱腹、磨损台阶、低石板栏和方望柱；图内不含水面与岸线。
+- 柳树：平江路柳树照片和1759年西湖图取单干、疏透不对称树冠、长垂枝与细披针叶；不带水、船或土台。
+- 桂花：两张木犀实物照片取多分枝灰褐茎、革质对生椭圆叶和少量淡黄小花；不做规则球形绿篱或花盆。
+- 瓦作统一为灰色板瓦 / 筒瓦意象，门楼低举折硬山、素脊，无黄琉璃和夸张脊兽；墙体为青砖外包、粗花岗石基脚，端面仅暗示夯土芯。
+
+两座城门各2候选并选第2，其他5类各1候选。规格化只以 `alpha>=2` 判定裁框，框内原始 RGBA 保留，经一次等比 LANCZOS 缩放回原 canvas；不重画门洞、不做非等比变形。门洞净宽、墙角接缝、桥栏遮挡和植物根部碰撞仍 **（待实测）**。
 
 - [苏州市地方志《漫话苏州古城墙的变迁》](https://dfzb.suzhou.gov.cn/dfzb/fzxh/201010/dac10c8400b347af8cad9ae1f9985489.shtml)，访问 2026-09-30：取青砖石基城墙、砖拱与城垣累积修缮背景；排除现代重建楼体作为清初复原证据。
 - [苏州市地方志《苏州古城门之盘门》](https://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml)，访问 2026-09-30：取水陆城门与石砌拱圈地域背景，不复制现存形体或声称本批门楼即盘门。
