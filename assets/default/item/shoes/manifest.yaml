@@ -1,0 +1,484 @@
+- id: eq_caoxie
+  file: eq_caoxie.png
+  category: item
+  style: default
+  subject: 麻编草鞋；鞋·草鞋；黄阶；跨书界原创器物，不绑定具体朝代
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, browser, or collaboration tools. Make exactly one built-in image_gen call for this single asset, using the two attached images as the ONLY image inputs and style references only. Historical museum references are described in text and MUST NOT become image inputs. Generate a new image, not an edit. transparent_background: false. Then reply only with the generated PNG absolute path.
+
+    Use case: stylized-concept
+
+    用途：《金庸群侠传·天书录》default 风格包的二维武侠物品图鉴插画，可派生物品栏图标。
+
+    题材：麻编草鞋（eq_caoxie），鞋·草鞋，黄阶；出处语境：（原创扩展），不绑定具体小说、书界或朝代。ID、名称、品阶与效果仅作元数据，画面完全无字。
+
+    参考图：输入图1倚天剑、输入图2九阴真经是唯一图片输入，仅作画风参考；只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光和浅暖灰近象牙底；绝不复制、拼贴或保留剑与书册。历史馆藏已由人工联网目检但未输入模型：Horniman 中国男式草编夏履的低履比例、编织与多层底；Burke 四川草鞋的开放绳带、厚编底和成人尺度。馆藏页面：https://www.horniman.ac.uk/object/4733/ ; https://www.burkemuseum.org/collections-and-research/heritage/artscultures/database/display.php?ID=42941。只取形制、比例和材质，不复制整图、摄影构图、背景或独有纹样。
+
+    主体：一双黄麻草鞋，成年脚掌尺度；开放式低帮，厚实而轻的紧密编织鞋底，前掌与后跟各有粗绳鞋带，绳结短小实用；左右同款，黄麻纤维、编结、鞋底边与轻微磨损一致。必须画完整一双同款鞋履并置，左右鞋鞋面、鞋底、缝线、纹样和磨损一致；保持真实成人脚掌尺度感。具体轮廓、纹样、比例和配色均为原创武侠器物，不声称原著或文物复原。
+
+    风格：严格匹配两张输入基线的清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触和低饱和冷暖；布、麻、皮、毛毡、绦带、缎与鞋底材质边界清楚，非摄影、非3D。
+
+    构图：1:1方形，目标1536×1536；把一双鞋作为单一成套物品居中，以轻微三分之四俯视并排，鞋头朝右前方，前后略错开但不遮住关键结构。整双包围框宽和高均不超过画布76%，四边各留至少12%完整空白；两只鞋从鞋头到鞋跟或靴口全部入画。无人物、手、脚、场景、地面、桌面或任何投影。
+
+    品阶表现：常见麻、布、普通皮与实用结构，轻微使用痕，朴素耐用。只用材质、工艺、包装和旧化表达；不画品阶框、彩色光柱、文字、数字、星级或魔法效果。
+
+    光线与背景：左上约45度柔光只作用于物体自身，不产生投影，不自发光；均匀浅暖灰近象牙底，目标RGB约(230,225,216)，无底纹、渐变、暗角、地面或环境光晕。
+
+    年代：本项为跨书界原创器物，采用中国古代鞋履的通用结构语境，不擅自指定朝代，不冒充出土物或原著定形。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。
+
+    返修优先：上一候选存在构图、形制或禁止项偏差。生成全新构图而非编辑旧图；把完整一双显著缩小并精确居中，所有最外缘保持在画布16%至84%的中央区域，目标四边至少16%空白、包围框宽高最多68%；仍须严格保持本条目的材质、颜色、鞋型与所有专项排除。'
+  negative: 文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.horniman.ac.uk/object/4733/
+    role: 中国男式草编夏履；仅取低履比例、编织与多层底，未作模型图片输入
+  - url: https://www.burkemuseum.org/collections-and-research/heritage/artscultures/database/display.php?ID=42941
+    role: 四川草鞋；仅取开放绳带、厚编底与成人尺度，未作模型图片输入
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T15:02:49.182682+00:00'
+  source_path: /private/tmp/art-shoes-codex-home/generated_images/01a0f7fb-f311-7331-b5c9-b10d524bfe31/exec-a8052687-0cf3-47cb-b25b-8e21d78a52a4.png
+  size: 1254x1254
+  sha256: c82e356ee8aca4731a321ed0b0c9f8baf05c8642b15daf1417c1611184427532
+  status: candidate
+  notes: '年代依据：名录未绑定书界；按 docs/design/02-timeline-and-world-tiers.md 的边界，不擅自指定朝代，仅采用人工目检馆藏的通用传统鞋履结构。
+
+    名录依据：docs/design/catalog/items-shoes.md；题材、轮廓、纹样、比例与配色均为（原创扩展），不声称原著或文物复原。
+
+    候选数：2；逐张 view_image 检查，采用第 2 候选。完整一双同款鞋履，无文字、人物、手脚、场景、地面、明显投影、现代运动鞋结构、品阶框或魔法光效；主体与名录外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约 17.86/27.03/17.86/27.11%，均不低于12%；包围框宽高均不超过76%。背景外圈中位色约 RGB(229, 225, 216)，有极轻微生成式明暗起伏，非逐像素纯色。
+
+    RGB PNG，无透明通道；原始 image_gen 输出直接复制，未缩放、抠图、改底或重编码。提示目标1536×1536，工具实出1254×1254。
+
+    历史参考仅经人工 view_image 取形制、比例与材质，未作为模型图片输入；两张基线是唯一图片输入。model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。'
+- id: eq_bukuaixue
+  file: eq_bukuaixue.png
+  category: item
+  style: default
+  subject: 捕快快靴；鞋·布靴；黄阶；跨书界原创器物，不绑定具体朝代
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, browser, or collaboration tools. Make exactly one built-in image_gen call for this single asset, using the two attached images as the ONLY image inputs and style references only. Historical museum references are described in text and MUST NOT become image inputs. Generate a new image, not an edit. transparent_background: false. Then reply only with the generated PNG absolute path.
+
+    Use case: stylized-concept
+
+    用途：《金庸群侠传·天书录》default 风格包的二维武侠物品图鉴插画，可派生物品栏图标。
+
+    题材：捕快快靴（eq_bukuaixue），鞋·布靴，黄阶；出处语境：（原创扩展），不绑定具体小说、书界或朝代。ID、名称、品阶与效果仅作元数据，画面完全无字。
+
+    参考图：输入图1倚天剑、输入图2九阴真经是唯一图片输入，仅作画风参考；只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光和浅暖灰近象牙底；绝不复制、拼贴或保留剑与书册。历史馆藏已由人工联网目检但未输入模型：Te Papa 中国男靴的圆头、布面直缝、滚边与低层叠底，只取结构比例并改为原创短靴。馆藏页面：https://collections.tepapa.govt.nz/object/964053。只取形制、比例和材质，不复制整图、摄影构图、背景或独有纹样。
+
+    主体：一双黑布短靴，踝上短筒，圆而略收的鞋头，柔软布面可见克制折痕，灰布滚边沿靴口、前缝与鞋底缘连续收束，薄而实用的软底；无官府文字、徽记或身份牌。必须画完整一双同款鞋履并置，左右鞋鞋面、鞋底、缝线、纹样和磨损一致；保持真实成人脚掌尺度感。具体轮廓、纹样、比例和配色均为原创武侠器物，不声称原著或文物复原。
+
+    风格：严格匹配两张输入基线的清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触和低饱和冷暖；布、麻、皮、毛毡、绦带、缎与鞋底材质边界清楚，非摄影、非3D。
+
+    构图：1:1方形，目标1536×1536；把一双鞋作为单一成套物品居中，以轻微三分之四俯视并排，鞋头朝右前方，前后略错开但不遮住关键结构。整双包围框宽和高均不超过画布76%，四边各留至少12%完整空白；两只鞋从鞋头到鞋跟或靴口全部入画。无人物、手、脚、场景、地面、桌面或任何投影。
+
+    品阶表现：常见麻、布、普通皮与实用结构，轻微使用痕，朴素耐用。只用材质、工艺、包装和旧化表达；不画品阶框、彩色光柱、文字、数字、星级或魔法效果。
+
+    光线与背景：左上约45度柔光只作用于物体自身，不产生投影，不自发光；均匀浅暖灰近象牙底，目标RGB约(230,225,216)，无底纹、渐变、暗角、地面或环境光晕。
+
+    年代：本项为跨书界原创器物，采用中国古代鞋履的通用结构语境，不擅自指定朝代，不冒充出土物或原著定形。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://collections.tepapa.govt.nz/object/964053
+    role: 中国男靴；仅取圆头、布面直缝、滚边与低层叠底，未作模型图片输入
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T15:02:28.704248+00:00'
+  source_path: /private/tmp/art-shoes-codex-home/generated_images/01a0f7fb-f201-7750-ab24-7bcb31adc751/exec-341bd988-7b36-4639-9434-36c1e93b7eb2.png
+  size: 1254x1254
+  sha256: c750cb42f14f36cf8bb5a27eac61ea9b07830830ea854b2c5f67bdb0e2fafba0
+  status: candidate
+  notes: '年代依据：名录未绑定书界；按 docs/design/02-timeline-and-world-tiers.md 的边界，不擅自指定朝代，仅采用人工目检馆藏的通用传统鞋履结构。
+
+    名录依据：docs/design/catalog/items-shoes.md；题材、轮廓、纹样、比例与配色均为（原创扩展），不声称原著或文物复原。
+
+    候选数：1；逐张 view_image 检查，采用第 1 候选。完整一双同款鞋履，无文字、人物、手脚、场景、地面、明显投影、现代运动鞋结构、品阶框或魔法光效；主体与名录外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约 17.78/21.29/15.15/21.05%，均不低于12%；包围框宽高均不超过76%。背景外圈中位色约 RGB(229, 224, 214)，有极轻微生成式明暗起伏，非逐像素纯色。
+
+    RGB PNG，无透明通道；原始 image_gen 输出直接复制，未缩放、抠图、改底或重编码。提示目标1536×1536，工具实出1254×1254。
+
+    历史参考仅经人工 view_image 取形制、比例与材质，未作为模型图片输入；两张基线是唯一图片输入。model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。'
+- id: eq_qingyunlv
+  file: eq_qingyunlv.png
+  category: item
+  style: default
+  subject: 青云履；鞋·布履；玄阶；跨书界原创器物，不绑定具体朝代
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, browser, or collaboration tools. Make exactly one built-in image_gen call for this single asset, using the two attached images as the ONLY image inputs and style references only. Historical museum references are described in text and MUST NOT become image inputs. Generate a new image, not an edit. transparent_background: false. Then reply only with the generated PNG absolute path.
+
+    Use case: stylized-concept
+
+    用途：《金庸群侠传·天书录》default 风格包的二维武侠物品图鉴插画，可派生物品栏图标。
+
+    题材：青云履（eq_qingyunlv），鞋·布履，玄阶；出处语境：（原创扩展），不绑定具体小说、书界或朝代。ID、名称、品阶与效果仅作元数据，画面完全无字。
+
+    参考图：输入图1倚天剑、输入图2九阴真经是唯一图片输入，仅作画风参考；只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光和浅暖灰近象牙底；绝不复制、拼贴或保留剑与书册。历史馆藏已由人工联网目检但未输入模型：Horniman 中国男式草编夏履的低履开口、圆头、滚边和层叠鞋底比例，不复制材料与色彩。馆藏页面：https://www.horniman.ac.uk/object/4733/。只取形制、比例和材质，不复制整图、摄影构图、背景或独有纹样。
+
+    主体：一双青灰色软底云头布履，成人尺度；鞋头只有含蓄圆润的云头轮廓，不夸张上翘；白布中底形成清楚窄层，青灰细绦沿鞋口和接缝整齐收边，布料选材匀净、左右接缝细密一致。必须画完整一双同款鞋履并置，左右鞋鞋面、鞋底、缝线、纹样和磨损一致；保持真实成人脚掌尺度感。具体轮廓、纹样、比例和配色均为原创武侠器物，不声称原著或文物复原。
+
+    风格：严格匹配两张输入基线的清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触和低饱和冷暖；布、麻、皮、毛毡、绦带、缎与鞋底材质边界清楚，非摄影、非3D。
+
+    构图：1:1方形，目标1536×1536；把一双鞋作为单一成套物品居中，以轻微三分之四俯视并排，鞋头朝右前方，前后略错开但不遮住关键结构。整双包围框宽和高均不超过画布76%，四边各留至少12%完整空白；两只鞋从鞋头到鞋跟或靴口全部入画。无人物、手、脚、场景、地面、桌面或任何投影。
+
+    品阶表现：选材匀净、接缝细密、材质有克制自然光泽，工艺精于常物而仍实用。只用材质、工艺、包装和旧化表达；不画品阶框、彩色光柱、文字、数字、星级或魔法效果。
+
+    光线与背景：左上约45度柔光只作用于物体自身，不产生投影，不自发光；均匀浅暖灰近象牙底，目标RGB约(230,225,216)，无底纹、渐变、暗角、地面或环境光晕。
+
+    年代：本项为跨书界原创器物，采用中国古代鞋履的通用结构语境，不擅自指定朝代，不冒充出土物或原著定形。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。
+
+    返修优先：上一候选存在构图、形制或禁止项偏差。生成全新构图而非编辑旧图；把完整一双显著缩小并精确居中，所有最外缘保持在画布16%至84%的中央区域，目标四边至少16%空白、包围框宽高最多68%；仍须严格保持本条目的材质、颜色、鞋型与所有专项排除。'
+  negative: 文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.horniman.ac.uk/object/4733/
+    role: 中国男式草编夏履；仅取低履开口、圆头、滚边与层叠底比例，未作模型图片输入
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T15:08:29.849107+00:00'
+  source_path: /private/tmp/art-shoes-codex-home/generated_images/01a0f801-650c-72f3-b448-e5bb8fa988bd/exec-6d2ebc73-3b36-4a03-a0c0-a214d0f18d4a.png
+  size: 1254x1254
+  sha256: 95f9004bee1f1df5a6d2ad5e11007f3248053536f5b56b0b2fd448f51bc796c7
+  status: candidate
+  notes: '年代依据：名录未绑定书界；按 docs/design/02-timeline-and-world-tiers.md 的边界，不擅自指定朝代，仅采用人工目检馆藏的通用传统鞋履结构。
+
+    名录依据：docs/design/catalog/items-shoes.md；题材、轮廓、纹样、比例与配色均为（原创扩展），不声称原著或文物复原。
+
+    候选数：2；逐张 view_image 检查，采用第 2 候选。完整一双同款鞋履，无文字、人物、手脚、场景、地面、明显投影、现代运动鞋结构、品阶框或魔法光效；主体与名录外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约 18.58/28.31/18.5/28.15%，均不低于12%；包围框宽高均不超过76%。背景外圈中位色约 RGB(227, 222, 213)，有极轻微生成式明暗起伏，非逐像素纯色。
+
+    RGB PNG，无透明通道；原始 image_gen 输出直接复制，未缩放、抠图、改底或重编码。提示目标1536×1536，工具实出1254×1254。
+
+    历史参考仅经人工 view_image 取形制、比例与材质，未作为模型图片输入；两张基线是唯一图片输入。model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。'
+- id: eq_feiyuxue
+  file: eq_feiyuxue.png
+  category: item
+  style: default
+  subject: 飞羽靴；鞋·轻靴；玄阶；跨书界原创器物，不绑定具体朝代
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, browser, or collaboration tools. Make exactly one built-in image_gen call for this single asset, using the two attached images as the ONLY image inputs and style references only. Historical museum references are described in text and MUST NOT become image inputs. Generate a new image, not an edit. transparent_background: false. Then reply only with the generated PNG absolute path.
+
+    Use case: stylized-concept
+
+    用途：《金庸群侠传·天书录》default 风格包的二维武侠物品图鉴插画，可派生物品栏图标。
+
+    题材：飞羽靴（eq_feiyuxue），鞋·轻靴，玄阶；出处语境：（原创扩展），不绑定具体小说、书界或朝代。ID、名称、品阶与效果仅作元数据，画面完全无字。
+
+    参考图：输入图1倚天剑、输入图2九阴真经是唯一图片输入，仅作画风参考；只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光和浅暖灰近象牙底；绝不复制、拼贴或保留剑与书册。历史馆藏已由人工联网目检但未输入模型：Te Papa 中国男靴的圆头、前缝、柔软靴筒与低层叠底比例，只取结构并改为原创薄皮短靴。馆藏页面：https://collections.tepapa.govt.nz/object/964053。只取形制、比例和材质，不复制整图、摄影构图、背景或独有纹样。
+
+    主体：一双深褐色薄皮短靴，踝上短筒，修长但符合成人脚掌；轻软窄底，细密皮革接缝；每只靴外侧只有一道浅而克制的抽象羽纹压花，不画真实羽毛、不加翅膀，薄皮有自然柔韧褶痕和低调光泽。必须画完整一双同款鞋履并置，左右鞋鞋面、鞋底、缝线、纹样和磨损一致；保持真实成人脚掌尺度感。具体轮廓、纹样、比例和配色均为原创武侠器物，不声称原著或文物复原。
+
+    风格：严格匹配两张输入基线的清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触和低饱和冷暖；布、麻、皮、毛毡、绦带、缎与鞋底材质边界清楚，非摄影、非3D。
+
+    构图：1:1方形，目标1536×1536；把一双鞋作为单一成套物品居中，以轻微三分之四俯视并排，鞋头朝右前方，前后略错开但不遮住关键结构。整双包围框宽和高均不超过画布76%，四边各留至少12%完整空白；两只鞋从鞋头到鞋跟或靴口全部入画。无人物、手、脚、场景、地面、桌面或任何投影。
+
+    品阶表现：选材匀净、接缝细密、材质有克制自然光泽，工艺精于常物而仍实用。只用材质、工艺、包装和旧化表达；不画品阶框、彩色光柱、文字、数字、星级或魔法效果。
+
+    光线与背景：左上约45度柔光只作用于物体自身，不产生投影，不自发光；均匀浅暖灰近象牙底，目标RGB约(230,225,216)，无底纹、渐变、暗角、地面或环境光晕。
+
+    年代：本项为跨书界原创器物，采用中国古代鞋履的通用结构语境，不擅自指定朝代，不冒充出土物或原著定形。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://collections.tepapa.govt.nz/object/964053
+    role: 中国男靴；仅取圆头、前缝、柔软靴筒与低层叠底比例，未作模型图片输入
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T15:02:47.141499+00:00'
+  source_path: /private/tmp/art-shoes-codex-home/generated_images/01a0f7fb-f317-7f61-8c53-8c0db487764a/exec-399e718a-d933-4b67-bb23-d9af3988bebf.png
+  size: 1254x1254
+  sha256: cb8a0270da8d9abe100648921a1f433b7b04e7ebeb3ce4bba28ba07dd3772a95
+  status: candidate
+  notes: '年代依据：名录未绑定书界；按 docs/design/02-timeline-and-world-tiers.md 的边界，不擅自指定朝代，仅采用人工目检馆藏的通用传统鞋履结构。
+
+    名录依据：docs/design/catalog/items-shoes.md；题材、轮廓、纹样、比例与配色均为（原创扩展），不声称原著或文物复原。
+
+    候选数：1；逐张 view_image 检查，采用第 1 候选。完整一双同款鞋履，无文字、人物、手脚、场景、地面、明显投影、现代运动鞋结构、品阶框或魔法光效；主体与名录外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约 13.64/17.15/12.44/18.98%，均不低于12%；包围框宽高均不超过76%。背景外圈中位色约 RGB(228, 223, 213)，有极轻微生成式明暗起伏，非逐像素纯色。
+
+    RGB PNG，无透明通道；原始 image_gen 输出直接复制，未缩放、抠图、改底或重编码。提示目标1536×1536，工具实出1254×1254。
+
+    历史参考仅经人工 view_image 取形制、比例与材质，未作为模型图片输入；两张基线是唯一图片输入。model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。'
+- id: eq_tayunlv
+  file: eq_tayunlv.png
+  category: item
+  style: default
+  subject: 踏云履；鞋·名履；地阶；跨书界原创器物，不绑定具体朝代
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, browser, or collaboration tools. Make exactly one built-in image_gen call for this single asset, using the two attached images as the ONLY image inputs and style references only. Historical museum references are described in text and MUST NOT become image inputs. Generate a new image, not an edit. transparent_background: false. Then reply only with the generated PNG absolute path.
+
+    Use case: stylized-concept
+
+    用途：《金庸群侠传·天书录》default 风格包的二维武侠物品图鉴插画，可派生物品栏图标。
+
+    题材：踏云履（eq_tayunlv），鞋·名履，地阶；出处语境：（原创扩展），不绑定具体小说、书界或朝代。ID、名称、品阶与效果仅作元数据，画面完全无字。
+
+    参考图：输入图1倚天剑、输入图2九阴真经是唯一图片输入，仅作画风参考；只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光和浅暖灰近象牙底；绝不复制、拼贴或保留剑与书册。历史馆藏已由人工联网目检但未输入模型：Horniman 中国男式低履的开口、圆头、滚边与复合薄底比例，不复制实物纹样。馆藏页面：https://www.horniman.ac.uk/object/4733/。只取形制、比例和材质，不复制整图、摄影构图、背景或独有纹样。
+
+    主体：一双月白色软履，完整成人尺度；薄而平稳的软底，鞋口与侧缘用灰蓝织边精细收束，织边上只有连续抽象云纹而无文字；名家手工、接缝极细、旧而妥善保存，不加匣盒，不发光。必须画完整一双同款鞋履并置，左右鞋鞋面、鞋底、缝线、纹样和磨损一致；保持真实成人脚掌尺度感。具体轮廓、纹样、比例和配色均为原创武侠器物，不声称原著或文物复原。
+
+    风格：严格匹配两张输入基线的清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触和低饱和冷暖；布、麻、皮、毛毡、绦带、缎与鞋底材质边界清楚，非摄影、非3D。
+
+    构图：1:1方形，目标1536×1536；把一双鞋作为单一成套物品居中，以轻微三分之四俯视并排，鞋头朝右前方，前后略错开但不遮住关键结构。整双包围框宽和高均不超过画布76%，四边各留至少12%完整空白；两只鞋从鞋头到鞋跟或靴口全部入画。无人物、手、脚、场景、地面、桌面或任何投影。
+
+    品阶表现：稀有材质或名家工艺、精细纹理、旧而妥善保存，只以局部银灰或织纹点到为止。只用材质、工艺、包装和旧化表达；不画品阶框、彩色光柱、文字、数字、星级或魔法效果。
+
+    光线与背景：左上约45度柔光只作用于物体自身，不产生投影，不自发光；均匀浅暖灰近象牙底，目标RGB约(230,225,216)，无底纹、渐变、暗角、地面或环境光晕。
+
+    年代：本项为跨书界原创器物，采用中国古代鞋履的通用结构语境，不擅自指定朝代，不冒充出土物或原著定形。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。
+
+    返修优先：上一候选存在构图、形制或禁止项偏差。生成全新构图而非编辑旧图；把完整一双显著缩小并精确居中，所有最外缘保持在画布16%至84%的中央区域，目标四边至少16%空白、包围框宽高最多68%；仍须严格保持本条目的材质、颜色、鞋型与所有专项排除。'
+  negative: 文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.horniman.ac.uk/object/4733/
+    role: 中国男式草编夏履；仅取低履开口、圆头、滚边与复合薄底比例，未作模型图片输入
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T15:14:44.185556+00:00'
+  source_path: /private/tmp/art-shoes-codex-home/generated_images/01a0f807-1a9b-7e81-aed3-8fed8937fb5a/exec-2059ce0f-4804-4426-9255-3a804da5d70d.png
+  size: 1254x1254
+  sha256: 6e2ac06fa81f3932c0028a5e24b93820a2ce129598e3de8df6e59795e4d1a4b0
+  status: candidate
+  notes: '年代依据：名录未绑定书界；按 docs/design/02-timeline-and-world-tiers.md 的边界，不擅自指定朝代，仅采用人工目检馆藏的通用传统鞋履结构。
+
+    名录依据：docs/design/catalog/items-shoes.md；题材、轮廓、纹样、比例与配色均为（原创扩展），不声称原著或文物复原。
+
+    候选数：2；逐张 view_image 检查，采用第 2 候选。完整一双同款鞋履，无文字、人物、手脚、场景、地面、明显投影、现代运动鞋结构、品阶框或魔法光效；主体与名录外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约 15.31/29.82/14.99/28.95%，均不低于12%；包围框宽高均不超过76%。背景外圈中位色约 RGB(229, 224, 214)，有极轻微生成式明暗起伏，非逐像素纯色。
+
+    RGB PNG，无透明通道；原始 image_gen 输出直接复制，未缩放、抠图、改底或重编码。提示目标1536×1536，工具实出1254×1254。
+
+    历史参考仅经人工 view_image 取形制、比例与材质，未作为模型图片输入；两张基线是唯一图片输入。model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。'
+- id: eq_xuexingxue
+  file: eq_xuexingxue.png
+  category: item
+  style: default
+  subject: 雪行靴；鞋·裘靴；地阶；跨书界原创器物，不绑定具体朝代
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, browser, or collaboration tools. Make exactly one built-in image_gen call for this single asset, using the two attached images as the ONLY image inputs and style references only. Historical museum references are described in text and MUST NOT become image inputs. Generate a new image, not an edit. transparent_background: false. Then reply only with the generated PNG absolute path.
+
+    Use case: stylized-concept
+
+    用途：《金庸群侠传·天书录》default 风格包的二维武侠物品图鉴插画，可派生物品栏图标。
+
+    题材：雪行靴（eq_xuexingxue），鞋·裘靴，地阶；出处语境：（原创扩展），不绑定具体小说、书界或朝代。ID、名称、品阶与效果仅作元数据，画面完全无字。
+
+    参考图：输入图1倚天剑、输入图2九阴真经是唯一图片输入，仅作画风参考；只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光和浅暖灰近象牙底；绝不复制、拼贴或保留剑与书册。历史馆藏已由人工联网目检但未输入模型：Te Papa 中国男靴的高筒、圆头、纵向接缝和低层叠底比例，只取结构并原创为皮裘雪靴。馆藏页面：https://collections.tepapa.govt.nz/object/964053。只取形制、比例和材质，不复制整图、摄影构图、背景或独有纹样。
+
+    主体：一双灰白皮裘长靴，塞北雪地用成人尺度；宽而柔软的防寒鞋底，圆阔鞋头，靴筒较高但不及膝；靴口与内侧可见厚实灰白毛毡内衬，外层皮裘细密、接缝牢固，少量干冷磨痕，不画雪地或积雪。必须画完整一双同款鞋履并置，左右鞋鞋面、鞋底、缝线、纹样和磨损一致；保持真实成人脚掌尺度感。具体轮廓、纹样、比例和配色均为原创武侠器物，不声称原著或文物复原。
+
+    风格：严格匹配两张输入基线的清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触和低饱和冷暖；布、麻、皮、毛毡、绦带、缎与鞋底材质边界清楚，非摄影、非3D。
+
+    构图：1:1方形，目标1536×1536；把一双鞋作为单一成套物品居中，以轻微三分之四俯视并排，鞋头朝右前方，前后略错开但不遮住关键结构。整双包围框宽和高均不超过画布76%，四边各留至少12%完整空白；两只鞋从鞋头到鞋跟或靴口全部入画。无人物、手、脚、场景、地面、桌面或任何投影。
+
+    品阶表现：稀有材质或名家工艺、精细纹理、旧而妥善保存，只以局部银灰或织纹点到为止。只用材质、工艺、包装和旧化表达；不画品阶框、彩色光柱、文字、数字、星级或魔法效果。
+
+    光线与背景：左上约45度柔光只作用于物体自身，不产生投影，不自发光；均匀浅暖灰近象牙底，目标RGB约(230,225,216)，无底纹、渐变、暗角、地面或环境光晕。
+
+    年代：本项为跨书界原创器物，采用中国古代鞋履的通用结构语境，不擅自指定朝代，不冒充出土物或原著定形。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。
+
+    返修优先：上一候选存在构图、形制或禁止项偏差。生成全新构图而非编辑旧图；把完整一双显著缩小并精确居中，所有最外缘保持在画布16%至84%的中央区域，目标四边至少16%空白、包围框宽高最多68%；仍须严格保持本条目的材质、颜色、鞋型与所有专项排除。'
+  negative: 文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://collections.tepapa.govt.nz/object/964053
+    role: 中国男靴；仅取高筒、圆头、纵向接缝与低层叠底比例，未作模型图片输入
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T15:14:47.395057+00:00'
+  source_path: /private/tmp/art-shoes-codex-home/generated_images/01a0f807-1a5b-7ea3-a7e1-dee269846afe/exec-db0a5a1c-6cfe-4ff2-846d-b9757c5bb8db.png
+  size: 1254x1254
+  sha256: 752df16b702fd2521bd573655ab82860f0abb2d68918e8ad82013355d5cb3933
+  status: candidate
+  notes: '年代依据：名录未绑定书界；按 docs/design/02-timeline-and-world-tiers.md 的边界，不擅自指定朝代，仅采用人工目检馆藏的通用传统鞋履结构。
+
+    名录依据：docs/design/catalog/items-shoes.md；题材、轮廓、纹样、比例与配色均为（原创扩展），不声称原著或文物复原。
+
+    候选数：2；逐张 view_image 检查，采用第 2 候选。完整一双同款鞋履，无文字、人物、手脚、场景、地面、明显投影、现代运动鞋结构、品阶框或魔法光效；主体与名录外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约 24.0/15.71/19.54/15.31%，均不低于12%；包围框宽高均不超过76%。背景外圈中位色约 RGB(229, 224, 214)，有极轻微生成式明暗起伏，非逐像素纯色。
+
+    RGB PNG，无透明通道；原始 image_gen 输出直接复制，未缩放、抠图、改底或重编码。提示目标1536×1536，工具实出1254×1254。
+
+    历史参考仅经人工 view_image 取形制、比例与材质，未作为模型图片输入；两张基线是唯一图片输入。model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。'
+- id: eq_wuyinglv
+  file: eq_wuyinglv.png
+  category: item
+  style: default
+  subject: 无影履；鞋·宝履；天阶；跨书界原创器物，不绑定具体朝代
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, browser, or collaboration tools. Make exactly one built-in image_gen call for this single asset, using the two attached images as the ONLY image inputs and style references only. Historical museum references are described in text and MUST NOT become image inputs. Generate a new image, not an edit. transparent_background: false. Then reply only with the generated PNG absolute path.
+
+    Use case: stylized-concept
+
+    用途：《金庸群侠传·天书录》default 风格包的二维武侠物品图鉴插画，可派生物品栏图标。
+
+    题材：无影履（eq_wuyinglv），鞋·宝履，天阶；出处语境：（原创扩展），不绑定具体小说、书界或朝代。ID、名称、品阶与效果仅作元数据，画面完全无字。
+
+    参考图：输入图1倚天剑、输入图2九阴真经是唯一图片输入，仅作画风参考；只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光和浅暖灰近象牙底；绝不复制、拼贴或保留剑与书册。历史馆藏已由人工联网目检但未输入模型：Horniman 中国男式低履的低伏开口、圆头、窄滚边与层叠底比例，不复制草编材料。馆藏页面：https://www.horniman.ac.uk/object/4733/。只取形制、比例和材质，不复制整图、摄影构图、背景或独有纹样。
+
+    主体：一双墨青缎面软履，完整成人尺度；极薄而仍可读的柔韧鞋底，银灰窄边沿鞋口、接缝与底缘精确收束；修长低伏轮廓、细密工艺、冷润自然缎光，低调无魔法痕迹，不另加包装。必须画完整一双同款鞋履并置，左右鞋鞋面、鞋底、缝线、纹样和磨损一致；保持真实成人脚掌尺度感。具体轮廓、纹样、比例和配色均为原创武侠器物，不声称原著或文物复原。
+
+    风格：严格匹配两张输入基线的清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触和低饱和冷暖；布、麻、皮、毛毡、绦带、缎与鞋底材质边界清楚，非摄影、非3D。
+
+    构图：1:1方形，目标1536×1536；把一双鞋作为单一成套物品居中，以轻微三分之四俯视并排，鞋头朝右前方，前后略错开但不遮住关键结构。整双包围框宽和高均不超过画布76%，四边各留至少12%完整空白；两只鞋从鞋头到鞋跟或靴口全部入画。无人物、手、脚、场景、地面、桌面或任何投影。
+
+    品阶表现：极稀有材质、完整独特轮廓、细密工艺与温润或冷润自然光泽，珍贵但克制。只用材质、工艺、包装和旧化表达；不画品阶框、彩色光柱、文字、数字、星级或魔法效果。
+
+    光线与背景：左上约45度柔光只作用于物体自身，不产生投影，不自发光；均匀浅暖灰近象牙底，目标RGB约(230,225,216)，无底纹、渐变、暗角、地面或环境光晕。
+
+    年代：本项为跨书界原创器物，采用中国古代鞋履的通用结构语境，不擅自指定朝代，不冒充出土物或原著定形。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。
+
+    返修优先：上一候选存在构图、形制或禁止项偏差。生成全新构图而非编辑旧图；把完整一双显著缩小并精确居中，所有最外缘保持在画布16%至84%的中央区域，目标四边至少16%空白、包围框宽高最多68%；仍须严格保持本条目的材质、颜色、鞋型与所有专项排除。'
+  negative: 文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://www.horniman.ac.uk/object/4733/
+    role: 中国男式草编夏履；仅取低伏开口、圆头、窄滚边与层叠底比例，未作模型图片输入
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T15:14:51.339467+00:00'
+  source_path: /private/tmp/art-shoes-codex-home/generated_images/01a0f807-1aa6-7a30-9515-9b5417137879/exec-acd87861-9eba-4c47-8245-0ed5f8439d02.png
+  size: 1254x1254
+  sha256: a976628766824ca182fef554a3c7e3de211b7b6f82937a8d9d4d2a579569c15e
+  status: candidate
+  notes: '年代依据：名录未绑定书界；按 docs/design/02-timeline-and-world-tiers.md 的边界，不擅自指定朝代，仅采用人工目检馆藏的通用传统鞋履结构。
+
+    名录依据：docs/design/catalog/items-shoes.md；题材、轮廓、纹样、比例与配色均为（原创扩展），不声称原著或文物复原。
+
+    候选数：2；逐张 view_image 检查，采用第 2 候选。完整一双同款鞋履，无文字、人物、手脚、场景、地面、明显投影、现代运动鞋结构、品阶框或魔法光效；主体与名录外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约 14.51/26.4/14.51/24.8%，均不低于12%；包围框宽高均不超过76%。背景外圈中位色约 RGB(228, 223, 214)，有极轻微生成式明暗起伏，非逐像素纯色。
+
+    RGB PNG，无透明通道；原始 image_gen 输出直接复制，未缩放、抠图、改底或重编码。提示目标1536×1536，工具实出1254×1254。
+
+    历史参考仅经人工 view_image 取形制、比例与材质，未作为模型图片输入；两张基线是唯一图片输入。model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。'
+- id: eq_tianmalv
+  file: eq_tianmalv.png
+  category: item
+  style: default
+  subject: 天马履；鞋·宝履；天阶；跨书界原创器物，不绑定具体朝代
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, browser, or collaboration tools. Make exactly one built-in image_gen call for this single asset, using the two attached images as the ONLY image inputs and style references only. Historical museum references are described in text and MUST NOT become image inputs. Generate a new image, not an edit. transparent_background: false. Then reply only with the generated PNG absolute path.
+
+    Use case: stylized-concept
+
+    用途：《金庸群侠传·天书录》default 风格包的二维武侠物品图鉴插画，可派生物品栏图标。
+
+    题材：天马履（eq_tianmalv），鞋·宝履，天阶；出处语境：（原创扩展），不绑定具体小说、书界或朝代。ID、名称、品阶与效果仅作元数据，画面完全无字。
+
+    参考图：输入图1倚天剑、输入图2九阴真经是唯一图片输入，仅作画风参考；只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光和浅暖灰近象牙底；绝不复制、拼贴或保留剑与书册。历史馆藏已由人工联网目检但未输入模型：Te Papa 中国男靴的圆头、前缝、柔软靴筒和低层叠底比例，只取结构并原创为珠白轻皮短靴。馆藏页面：https://collections.tepapa.govt.nz/object/964053。只取形制、比例和材质，不复制整图、摄影构图、背景或独有纹样。
+
+    主体：一双珠白色轻皮靴，踝上短筒，成人尺度，修长轻巧但足底比例真实；浅金色马鬃纹只作为外侧细浅压花，线条顺着皮面流动，无马头、无动物形鞋头、无翅膀；轻皮接缝细密，薄底完整，温润自然光泽。必须画完整一双同款鞋履并置，左右鞋鞋面、鞋底、缝线、纹样和磨损一致；保持真实成人脚掌尺度感。具体轮廓、纹样、比例和配色均为原创武侠器物，不声称原著或文物复原。
+
+    风格：严格匹配两张输入基线的清楚纤细深灰墨线、薄层透明罩染、克制可辨手绘笔触和低饱和冷暖；布、麻、皮、毛毡、绦带、缎与鞋底材质边界清楚，非摄影、非3D。
+
+    构图：1:1方形，目标1536×1536；把一双鞋作为单一成套物品居中，以轻微三分之四俯视并排，鞋头朝右前方，前后略错开但不遮住关键结构。整双包围框宽和高均不超过画布76%，四边各留至少12%完整空白；两只鞋从鞋头到鞋跟或靴口全部入画。无人物、手、脚、场景、地面、桌面或任何投影。
+
+    品阶表现：极稀有材质、完整独特轮廓、细密工艺与温润或冷润自然光泽，珍贵但克制。只用材质、工艺、包装和旧化表达；不画品阶框、彩色光柱、文字、数字、星级或魔法效果。
+
+    光线与背景：左上约45度柔光只作用于物体自身，不产生投影，不自发光；均匀浅暖灰近象牙底，目标RGB约(230,225,216)，无底纹、渐变、暗角、地面或环境光晕。
+
+    年代：本项为跨书界原创器物，采用中国古代鞋履的通用结构语境，不擅自指定朝代，不冒充出土物或原著定形。
+
+    排除项：文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。'
+  negative: 文字、汉字、伪字、书法、标题、数字、年份、印章、签名、logo、文字水印；人物、手、脚、腿、人体、假人、鞋楦；只画单只鞋、左右不同款、第三只鞋、额外鞋带堆、鞋盒或无关道具；现代运动鞋结构、运动鞋厚泡沫中底、橡胶气垫、鞋钉、拉链、塑料、尼龙、魔术贴、现代鞋标、高跟鞋、细高跟、欧洲宫廷鞋；具体影视或游戏造型复刻、演员名、画师名、作品名；照片级写实、商品摄影、3D渲染、塑料感、粗厚外轮廓、厚重油画；日韩动漫、欧美奇幻、赛博、蒸汽朋克；霓虹、bloom、魔法阵、粒子、自发光、彩色光柱、神器光环、翅膀；血腥、复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、满幅贴边、接触投影、落地影、地面、桌面、背景底纹或渐变。不要去除或伪造工具自身的溯源标识。
+  references:
+  - id: ref_eq_yitianjian__ch04_base01
+    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - id: ref_it_miji_jiuyin_shang__ch02_base01
+    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制器物
+    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - url: https://collections.tepapa.govt.nz/object/964053
+    role: 中国男靴；仅取圆头、前缝、柔软靴筒与低层叠底比例，未作模型图片输入
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-10-01T15:08:28.415080+00:00'
+  source_path: /private/tmp/art-shoes-codex-home/generated_images/01a0f801-6503-7d01-a839-40972898dd68/exec-71eb6e63-5024-4b2e-8034-0035f96e36bf.png
+  size: 1254x1254
+  sha256: 12d7bcb8fa35b9027cd81a873fc8c9910a9dfcb68197f67b066d78674d659d35
+  status: candidate
+  notes: '年代依据：名录未绑定书界；按 docs/design/02-timeline-and-world-tiers.md 的边界，不擅自指定朝代，仅采用人工目检馆藏的通用传统鞋履结构。
+
+    名录依据：docs/design/catalog/items-shoes.md；题材、轮廓、纹样、比例与配色均为（原创扩展），不声称原著或文物复原。
+
+    候选数：1；逐张 view_image 检查，采用第 1 候选。完整一双同款鞋履，无文字、人物、手脚、场景、地面、明显投影、现代运动鞋结构、品阶框或魔法光效；主体与名录外观要点一致。
+
+    阈值辅助测量左/上/右/下留白约 15.47/17.07/12.44/17.54%，均不低于12%；包围框宽高均不超过76%。背景外圈中位色约 RGB(230, 224, 214)，有极轻微生成式明暗起伏，非逐像素纯色。
+
+    RGB PNG，无透明通道；原始 image_gen 输出直接复制，未缩放、抠图、改底或重编码。提示目标1536×1536，工具实出1254×1254。
+
+    历史参考仅经人工 view_image 取形制、比例与材质，未作为模型图片输入；两张基线是唯一图片输入。model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。'
