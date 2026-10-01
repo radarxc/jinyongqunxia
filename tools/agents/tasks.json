@@ -29448,7 +29448,7 @@
     "TOOL-rig-pipeline"
    ],
    "review": false,
-   "web": false,
+   "web": true,
    "vars": {
     "set_id": "male",
     "set_name": "男性基础体",
@@ -29500,7 +29500,7 @@
     "TOOL-rig-pipeline"
    ],
    "review": false,
-   "web": false,
+   "web": true,
    "vars": {
     "set_id": "female",
     "set_name": "女性基础体",
