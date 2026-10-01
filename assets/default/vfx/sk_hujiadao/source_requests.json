@@ -1,0 +1,34 @@
+{
+  "skill": "sk_hujiadao",
+  "requested_tool": "image_gen",
+  "actual_tool": "Pillow deterministic source renderer",
+  "reason": "续作工作树无前次素材，当前会话未提供 image_gen；按同仓库已验收降级先例重建 candidate。",
+  "common": {
+    "layout": "1536x1024，2x2 四帧，每格 768x512，严格纯白背景，同根向右",
+    "style": "水墨意境，虚实透明；阳性以赤色为倾向",
+    "negative": "人物、手、额外兵器、实体虎、文字、水印、边框、棋盘格、纸纹、硬阴影、玩法判定"
+  },
+  "sets": [
+    {
+      "id": "vfx_sk_hujiadao__family_base01",
+      "prompt": "胡家刀法家族四帧：刚健而转折精微的赤色刀罡、回刃双弧与少量焦墨飞白；根部宽阔稳定。",
+      "basis": "图鉴的劲路刚健而转折精微；造型与颜色均原创扩展",
+      "candidate_count": 1,
+      "selected_candidate": 1
+    },
+    {
+      "id": "vfx_mv_hujiadao_fengxue__effect_base01",
+      "prompt": "辽东风雪四帧：多道赤色锥形刀势卷入灰蓝飞雪和焦墨碎屑，同根向右展开。",
+      "basis": "图鉴原创招名辽东风雪；可见风雪造型原创扩展",
+      "candidate_count": 1,
+      "selected_candidate": 1
+    },
+    {
+      "id": "vfx_mv_hujiadao_humiaohuzhao__effect_base01",
+      "prompt": "胡苗互照四帧：上下赤色刀弧夹出中央素白破绽，冷灰细剑势交错但不画实体剑。",
+      "basis": "图鉴原创招名与刀剑互知破绽；可见轮廓原创扩展",
+      "candidate_count": 1,
+      "selected_candidate": 1
+    }
+  ]
+}
