@@ -1,0 +1,7 @@
+schemaVersion: shop.v1
+key: dali_yaopu
+name: 大理药铺
+chapterId: ch01_tianlong
+supply:
+  - {itemId: it_jinchuangyao, maxGrade: 1, baseStock: 12, restockEveryDays: 1, restockAmount: 6, priceBp: 10000}
+  - {itemId: it_xiaohuandan, maxGrade: 5, baseStock: 3, restockEveryDays: 3, restockAmount: 1, priceBp: 11000}

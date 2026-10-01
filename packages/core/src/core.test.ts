@@ -1,3 +1,6 @@
+/// <reference types="node" />
+// eslint-disable-next-line no-restricted-imports -- Test-only SHA-256 oracle; core runtime stays platform-neutral.
+import { createHash } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 import protocolGolden from './rng/rng-protocol-v2.golden.json';
 import {
@@ -96,5 +99,20 @@ describe('createCore', () => {
     const snapshot = core.snapshot() as unknown as { meta: { rng: { battle: number[] } } };
     snapshot.meta.rng.battle[0] = 0;
     expect(core.snapshot().meta.rng.battle[0]).toBe(410886986);
+  });
+
+  it('keeps the canonical GameState SHA-256 fixed for the same command sequence', () => {
+    const run = () => {
+      const core = createCore(1);
+      core.tick();
+      core.tick();
+      const json = core.canonicalStateJson();
+      return { json, hash: createHash('sha256').update(json, 'utf8').digest('hex') };
+    };
+
+    const first = run();
+    const repeated = run();
+    expect(repeated).toEqual(first);
+    expect(first.hash).toBe('6c662aaaffac2f217c156daea07a9f7c8998c1ac483595cf81e6291e8845e366');
   });
 });

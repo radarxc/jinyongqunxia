@@ -1,0 +1,30 @@
+schemaVersion: martial-art.v1
+id: sk_taizuchangquan
+name: 太祖长拳
+aliases: []
+category: unarmed
+subType: fist
+grade: 3
+origin: canonExpanded
+sect: null
+lineage: 宋太祖所传，军中与民间通行
+sourceChapters: [ch01_tianlong, ch02_shediao, ch03_shendiao, ch04_yitian, ch05_xiaoao, ch06_xiake, ch07_bixue, ch08_luding, ch09_liancheng, ch10_baima, ch11_yuanyang, ch12_shujian, ch13_feihu, ch14_xueshan]
+canonRef: 天龙·聚贤庄萧峰；三招名均为原创扩展
+nature: neutral
+wOutBp: 8000
+wInBp: 2000
+requirements: {hard: []}
+maxLayer: 10
+layers:
+  - {n: 1, unlock: [mv_taizuchangquan_chongzhen]}
+  - {n: 3, unlock: [mv_taizuchangquan_qianli]}
+  - {n: 4, unlock: [ps_taizuchangquan_tangtang]}
+  - {n: 6, unlock: [mv_taizuchangquan_guanri]}
+  - {n: 10, unlock: [ps_taizuchangquan_fanpu]}
+moveIds: [mv_taizuchangquan_chongzhen, mv_taizuchangquan_qianli, mv_taizuchangquan_guanri]
+learnSources:
+  - {type: master, chapter: ch01_tianlong, ref: 军营或镖局教头岗位槽, maxLayer: 10}
+  - {type: manual, chapter: ch02_shediao, ref: it_miji_taizuchangquan, maxLayer: 10}
+  - {type: observe, maxLayer: 6}
+tags: [common, fist]
+description: 招式平凡，人强则强的通行拳法。

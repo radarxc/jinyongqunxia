@@ -1,31 +1,29 @@
-import type { RngState, RngStreamName } from '../rng';
+export * from './character';
+export * from './clock';
+export * from './equipment';
+export * from './initial';
+export * from './inventory';
+export * from './models';
+export * from './story';
+export * from './validate';
+export * from './world-items';
 
-export interface GameState {
-  readonly meta: {
-    readonly coreVersion: string;
-    readonly rngProtocol: number;
-    readonly stateVersion: number;
-    readonly worldTick: number;
-    readonly rng: Readonly<Record<RngStreamName, RngState>>;
-  };
-  readonly battle: null;
+import type { GameState } from './models';
+
+function cloneJsonValue<T>(value: T): T {
+  if (Array.isArray(value)) {
+    return value.map((entry) => cloneJsonValue(entry)) as unknown as T;
+  }
+  if (value !== null && typeof value === 'object') {
+    const clone: Record<string, unknown> = {};
+    for (const [key, entry] of Object.entries(value)) {
+      clone[key] = cloneJsonValue(entry);
+    }
+    return clone as T;
+  }
+  return value;
 }
 
 export function cloneGameState(state: GameState): GameState {
-  return {
-    meta: {
-      coreVersion: state.meta.coreVersion,
-      rngProtocol: state.meta.rngProtocol,
-      stateVersion: state.meta.stateVersion,
-      worldTick: state.meta.worldTick,
-      rng: {
-        battle: [...state.meta.rng.battle] as RngState,
-        loot: [...state.meta.rng.loot] as RngState,
-        world: [...state.meta.rng.world] as RngState,
-        ai: [...state.meta.rng.ai] as RngState,
-        qiyu: [...state.meta.rng.qiyu] as RngState,
-      },
-    },
-    battle: null,
-  };
+  return cloneJsonValue(state);
 }

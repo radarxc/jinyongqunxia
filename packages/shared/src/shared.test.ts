@@ -1,10 +1,29 @@
 import { describe, expect, it } from 'vitest';
-import { asSkillId, canonicalJson, clampInt, mulBpFloor } from './index';
+import {
+  asSkillId, canonicalJson, ceilDivInt, clampInt, floorDivInt, mulBpFloor,
+} from './index';
 
 describe('shared deterministic helpers', () => {
   it('uses integer basis points with floor semantics', () => {
     expect(mulBpFloor(999, 3_333)).toBe(332);
     expect(clampInt(12_000, 0, 10_000)).toBe(10_000);
+  });
+
+  it('divides safe integers with exact floor and ceiling semantics', () => {
+    expect(floorDivInt(61, 60)).toBe(1);
+    expect(ceilDivInt(61, 60)).toBe(2);
+    expect(floorDivInt(-61, 60)).toBe(-2);
+    expect(ceilDivInt(-61, 60)).toBe(-1);
+    expect(floorDivInt(61, -60)).toBe(-2);
+    expect(ceilDivInt(61, -60)).toBe(-1);
+    expect(floorDivInt(Number.MAX_SAFE_INTEGER, 1)).toBe(Number.MAX_SAFE_INTEGER);
+  });
+
+  it('rejects invalid integer division operands', () => {
+    expect(() => floorDivInt(1, 0)).toThrow('INT_DIV_ZERO');
+    expect(() => ceilDivInt(0.5, 1)).toThrow('INT_DIV_INTEGER_REQUIRED');
+    expect(() => floorDivInt(Number.MAX_SAFE_INTEGER + 1, 1))
+      .toThrow('INT_DIV_INTEGER_REQUIRED');
   });
 
   it('serializes keys by Unicode code point and normalizes negative zero', () => {

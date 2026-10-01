@@ -1,0 +1,19 @@
+schemaVersion: item.v1
+id: it_xiaohuandan
+name: 小还丹
+kind: pill
+sub: heal
+grade: 5
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: [common]
+use:
+  context: both
+  action: consume
+  target: self
+  effects: [{op: healPct, params: {valueBp: 2500}}, {op: applyBuff, params: {buffId: bf_huichun, turns: 3}}]
+assets: {icon: items/it_xiaohuandan.webp}
+text: {desc: 恢复气血并带来短暂回春。}
+extension: {type: generic, value: {}}

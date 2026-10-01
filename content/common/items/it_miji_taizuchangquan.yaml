@@ -1,0 +1,16 @@
+schemaVersion: item.v1
+id: it_miji_taizuchangquan
+name: 太祖长拳拳谱
+kind: manual
+sub: martialManual
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: [manual]
+assets: {icon: items/it_miji_taizuchangquan.webp}
+text: {desc: 记载太祖长拳通行拳路的拳谱。}
+extension:
+  type: manual
+  value: {skill: sk_taizuchangquan, maxLayer: 10, variant: full, readMul: 1}
