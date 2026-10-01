@@ -341,7 +341,9 @@ def cmd_start(a) -> int:
                 model = cand
                 break
         else:
-            raise R.Fatal("所有候选模型都无响应（探测超时），请稍后再试或用 --no-probe 强制启动")
+            # 高负载时探测常超时但执行器本身能跑：不再报错停住，改用第一个回退模型直接启动（作者：没有 Astra 就用 Sol）
+            model = next((m for m in FALLBACK_MODELS if m != model), model)
+            print(f"⚠ 所有候选模型探测都超时（机器负载高），不再探测，直接用 {model} 启动")
     pool, cap = pool_of(t.id), pool_cap(g, pool_of(t.id))
     lockf = root / ".agents" / "slots.lock"
     deadline = time.time() + a.slot_wait_min * 60
