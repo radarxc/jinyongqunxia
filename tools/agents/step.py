@@ -145,7 +145,7 @@ POOL_CAPS_DEFAULT = {"docs": 8, "assets": 8, "code": 3}
 ASSET_PREFIXES = ("ART", "TOWN", "VFX", "SKILL", "KIT", "CITY")  # 素材线（作者 2026-09-30：优先把 assets 任务跑完）单独一池，不和文档任务抢位
 
 
-CODE_PREFIXES = ("ENG",)  # 游戏工程（作者 2026-09-30 AR-19）：写代码、装依赖，单独一池
+CODE_PREFIXES = ("ENG", "TOOL")  # 游戏工程（作者 2026-09-30 AR-19）：写代码、装依赖，单独一池
 
 
 def pool_of(tid: str) -> str:

@@ -8,7 +8,7 @@
 
 ## 设计依据
 
-`docs/design/22-town-layout-and-generation.md`（CitySpec、布局、贴片 / 建筑套件、45° 出图）、`docs/design/town/<city_id>__<chNN>.yaml`（布局：格子坐标、建筑 ID、旋转、湖体多边形）、`tools/town/{gen_layout,render_town,plan_view}.py`（栅格与投影参数，运行时须与之一致）、贴片 `assets/default/tile/<kit>/manifest.yaml`、建筑 `assets/default/building-map/<kit>/manifest.yaml`、`tools/agents/prod_plan.py` 的 `kit_for(region, band)`；ENG-05 事件锚点与对话、ENG-06 店铺、ENG-03 打坐 / 岔气、ENG-04 战斗入口（`BattleSetup` 城镇打坐被袭）。
+`docs/design/22-town-layout-and-generation.md`（CitySpec、布局、贴片 / 建筑套件、45° 出图）、`docs/design/town/<city_id>__<chNN>.yaml`（布局：格子坐标、建筑 ID、旋转、湖体多边形）、`tools/town/{gen_layout,render_town,plan_view}.py`（栅格与投影参数，运行时须与之一致）、贴片 `assets/default/tile/<kit>/manifest.yaml`、建筑 `assets/default/building-map/<kit>/manifest.yaml`、`tools/agents/prod_plan.py` 的 `kit_for(region, band)`；ENG-05 事件锚点与对话、ENG-06 店铺、ENG-03 打坐 / 岔气、ENG-04 战斗入口（`BattleSetup` 城镇打坐被袭）；**主角与 NPC 一律用 `packages/render` 的 rig 模块（ENG-12：分层部件 + 代码步态，装备可见，AR-22）渲染**。
 
 ## 要做的事
 
