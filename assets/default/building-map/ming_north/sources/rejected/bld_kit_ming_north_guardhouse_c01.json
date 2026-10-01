@@ -1,0 +1,22 @@
+{
+  "id": "bld_kit_ming_north_guardhouse",
+  "subject": "城门守舍",
+  "footprint": [
+    6,
+    5
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-107c2d8e-be20-4a0e-bf01-0c98d3f29540.png",
+  "prompt": "Use case: historical-scene. Generate exactly ONE isolated game building sprite for tianshu default, Ming dynasty northern Chinese prefectural city architectural kit, original anonymous composite, not a reconstruction of a named monument. Realistic ancient Chinese architecture, same natural material realism and detail density as the attached Song stable reference; reference is style ONLY, change architecture to northern Ming gray brick and gray clay tile, modest timber, restrained hard-gable yingshan roof with straight compact eaves. Orthographic 2:1 dimetric projection, yaw 45 degrees, pitch 30 degrees, NO perspective convergence. East ground axis projects down-right at slope +0.5; north ground axis up-right at slope -0.5; vertical posts stay vertical. Thin almost-flat footprint pad with clearly visible left, front, right corners, not a pedestal. Footprint proportions refer to ground axes, NOT canvas proportions. Main light from SCREEN UPPER LEFT; short soft contact shadow toward lower right. Entire object and base uncut, generous transparent margins. TRUE TRANSPARENT RGBA background, no opaque background or painted checkerboard. No people, animals, writing, pseudo-glyphs, signs, numbers, modern objects, palace ornament on common buildings, Qing imperial decoration, fantasy, neighboring buildings, sky, water, scenery, thick diorama plinth, broad shadows, tilt shift, toy plastic, cropping. Asset bld_kit_ming_north_guardhouse. One small 6 by 5 metre city-gate guard lodging. This is a plain ground-level barrack/sentry-house, NOT a city gate, not a tower, not a fortified gateway. Compact single-storey gray brick structure under one simple northern yingshan gray-tile roof; wooden entrance door faces lower-left, one square wooden lattice side window. Small spear rack beside the entrance under the eave, no guards or flags. Thin gray brick flat ground pad; axes ratio precisely 6:5. Clear visible base corners, no protruding stairs beyond the pad, base slopes +0.5/-0.5. No battlements, arch passage or decorative finials.",
+  "created": "2026-09-30T21:14:14.626Z",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_stable",
+      "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_stable.png",
+      "sha256": "da40c1c72f1e27b96c2a8da4d6ab0ac6f81474a6d0e049045d4ac9996eabac28",
+      "role": "仅材质、细节密度和写实程度，屋顶年代与视角须服从本prompt",
+      "status": "candidate"
+    }
+  ],
+  "candidate": 1,
+  "rejected_reason": "首图透明边出现半透明光晕/异常边缘；底面几何与硬山轮廓进一步修正。"
+}

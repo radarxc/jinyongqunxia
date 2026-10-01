@@ -1,0 +1,88 @@
+id: bld_kit_ming_north_house_small
+footprint_m:
+- 7
+- 6
+footprint_basis: design/22 §3.4 bld_kit_ming_house 7×6；地域同构 ID
+anchor_px:
+- 239.1127
+- 244.7754
+entrance:
+  edge: S
+  offset_cells: 3.5
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 7
+  - 0
+- - 7
+  - 6
+- - 0
+  - 6
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 199
+  - 613.3549
+  F:
+  - 781.0055
+  - 915.543
+  R:
+  - 1272
+  - 656.2307
+source_anchor_px:
+- 735.5
+- 634.7927999999999
+target_ground_span_px: 416
+geometry:
+  crop_box:
+  - 193
+  - 71
+  - 1280
+  - 924
+  uniform_scale: 0.38769804287045667
+  scaled_size:
+  - 421
+  - 331
+  canvas_size:
+  - 480
+  - 384
+  paste_offset:
+  - 29
+  - 26
+  - 450
+  - 357
+  raster_scales:
+  - 0.3873045078196872
+  - 0.388042203985932
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 100076
+  alpha_partial_pixels: 83456
+  alpha_opaque_pixels: 788
+  alpha_bbox:
+  - 29
+  - 26
+  - 450
+  - 357
+  rectangular_trim_removed_nonzero: 183
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.51922
+  - -0.52814
+  source_ratio_relative_error: 0.01602
+  geometry_warning: false
+  visual_review: 原目标、几何导引及所选原图均逐张view_image；灰砖硬山、灰瓦木窗、左上光、完整轮廓与透明留边。基脚实测+0.51922/-0.52814；比例1.18536，目标1.16667。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+source_sha256: 98f7105d2ab64af69deaccd9e9bc835a6cf10c2aa8c88d0dba13358912c4ac5a
+sha256: 09ac44e257d1168cde8864927e34762a9d1923e4c17375014a651512db0b45bd

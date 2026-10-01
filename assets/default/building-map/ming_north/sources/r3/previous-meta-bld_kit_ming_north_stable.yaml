@@ -1,0 +1,88 @@
+id: bld_kit_ming_north_stable
+footprint_m:
+- 8
+- 6
+footprint_basis: 【建议值】沿宋大理stable同功能8×6；design/22 §3.4未细分此项。
+anchor_px:
+- 255.8035
+- 221.6597
+entrance:
+  edge: S
+  offset_cells: 4.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 8
+  - 0
+- - 8
+  - 6
+- - 0
+  - 6
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 60
+  - 680.8038778401021
+  F:
+  - 684.3562428911255
+  - 1047.181519883577
+  R:
+  - 1200
+  - 746.0266009074992
+source_anchor_px:
+- 630.0
+- 713.4152393738007
+target_ground_span_px: 448
+geometry:
+  crop_box:
+  - 53
+  - 221
+  - 1208
+  - 1055
+  uniform_scale: 0.3929824561403509
+  scaled_size:
+  - 454
+  - 328
+  canvas_size:
+  - 512
+  - 384
+  paste_offset:
+  - 29
+  - 28
+  - 483
+  - 356
+  raster_scales:
+  - 0.3930735930735931
+  - 0.3932853717026379
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 119154
+  alpha_partial_pixels: 76676
+  alpha_opaque_pixels: 778
+  alpha_bbox:
+  - 29
+  - 28
+  - 483
+  - 356
+  rectangular_trim_removed_nonzero: 84
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.58681
+  - -0.58404
+  source_ratio_relative_error: 0.09188
+  geometry_warning: true
+  visual_review: 本轮已view_image原图及灰底合成；完整轮廓、左上光、北方灰砖/木石细节保留；源底边拟合斜率[0.58681, -0.58404]，宽深比例相对误差9.188%；不以目标值冒充实测。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+source_sha256: 6d586e43547916542895f019983cd5d5c6197420ca9f387dbc6f14304936ce0b
+sha256: 3d40dfa2264889ededccc1bb86ae381f517ad74f3bb81f2248f167daa93e865c

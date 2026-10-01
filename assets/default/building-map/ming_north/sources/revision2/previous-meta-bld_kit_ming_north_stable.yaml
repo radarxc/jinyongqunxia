@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_stable
+footprint_m:
+- 8
+- 6
+footprint_basis: 【建议值】沿宋大理stable同功能8×6；design/22 §3.4未细分此项。
+anchor_px:
+- 254.9338
+- 268.3953
+entrance:
+  edge: S
+  offset_cells: 4.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 8
+  - 0
+- - 8
+  - 6
+- - 0
+  - 6
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 160
+  - 645
+  F:
+  - 853
+  - 1030
+  R:
+  - 1347
+  - 779
+source_anchor_px:
+- 753.5
+- 712.0
+target_ground_span_px: 448
+geometry:
+  crop_box:
+  - 155
+  - 46
+  - 1355
+  - 1058
+  uniform_scale: 0.37742207245155857
+  scaled_size:
+  - 453
+  - 382
+  canvas_size:
+  - 512
+  - 416
+  paste_offset:
+  - 29
+  - 17
+  - 482
+  - 399
+  raster_scales:
+  - 0.3775
+  - 0.3774703557312253
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 116379
+  alpha_partial_pixels: 95851
+  alpha_opaque_pixels: 762
+  alpha_bbox:
+  - 29
+  - 17
+  - 482
+  - 399
+  rectangular_trim_removed_nonzero: 73
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.55556
+  - -0.5081
+  source_ratio_relative_error: 0.05213
+  geometry_warning: true
+  visual_review: 已view_image候选1及2。选候选2：三隔间、食槽和草料明确；灰砖硬山端墙；无马无人无字，前底边偏陡，几何残差保留。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+  final_view_image_review: 已逐张view_image规范化成品；主体完整、灰砖木构细节可读、透明边距保留；几何warning与单视图能力限制沿用。
+source_sha256: 842fa6fc93635046cd6d9961220ed5810c7d5a96eeffb46737744fe5a396ee98
+sha256: f92f857b4fdd9d9e2726dbf73f935db50379df6cd9a372c95d63282d3ca227aa

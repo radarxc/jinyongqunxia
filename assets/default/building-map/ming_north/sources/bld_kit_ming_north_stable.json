@@ -1,0 +1,29 @@
+{
+  "id": "bld_kit_ming_north_stable",
+  "subject": "明代北方府城·马厩（原创扩展）",
+  "footprint": [
+    8,
+    6
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f46f-5106-7221-a511-d72010d85121/exec-01f4095c-817b-47bd-a202-c5b0894e11e7.png",
+  "prompt": "Use case: precise-object-edit. Make one narrowly targeted geometry correction to this Ming north-China stable sprite. Image1 is the edit target. Image2 is exact 2:1 ground geometry guidance. The right side currently slopes too steeply, -0.55; redraw it at slope EXACTLY -0.50 and the left front ground edge at +0.50, by lowering the rear right corner of the stone platform and coherently lowering the far side of the building. Preserve the building's texture quality, gray tiled hard-gable roof, gray brick wall, four wood stable bays, no animals, left-top light. Do not change style or add anything. Output1536x1024. Exact visible platform bottom corners: LEFT(80,570), FRONT(872,966), RIGHT(1466,669). Front edge has run792 and rise396, right edge run594 and rise-297. Thus ground width/depth ratio8:6 and both slopes exactly0.500 in magnitude. Building ground seams and roof horizontal courses must obey the same axes. This is a lower camera, with26.565degree ground-edge angles, not30degree steep view. Full building and platform uncropped; preserve alpha-transparent empty background, remove all background glow, no matte, real RGBA alpha0 outside object and fully opaque masonry. No text, watermark, labels, people, furniture or scenery. Keep exact corner geometry; render paving seams parallel to the edges; thin stone slab. This is the only revision: flatten the right-facing side to the correct2:1 projection.",
+  "created": "2026-09-30T22:36:20.408054+00:00",
+  "references": [{"file": "assets/default/building-map/ming_north/sources/r3/stable-candidate1.png", "role": "本轮第一候选编辑目标；修正右侧投影", "sha256": "573c6af9946ef431d79a88fdf4d6fe70c452c69b050e1aa30455628d8ffb66f1"}, {"file": "assets/default/building-map/ming_north/sources/r3/stable-geometry-guide.png", "role": "第3轮精确底面几何参照；仅供生成使用", "sha256": "15d427905f6000cb81e4bda48f63b425f909293eb55887e2d094c2e950aff603"}],
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "points": {"L": [64, 579.9447388390882], "F": [896.8960817143858, 1015.0569018640463], "R": [1499, 716.9166411522499]},
+  "footprint_basis": "【建议值】沿宋大理stable同功能8×6；design/22 §3.4未细分此项。",
+  "visual_review": "第3轮逐张view_image原图、灰底及成品；两轴斜率与宽深比例通过，保留北方灰砖、瓦木/砖塔风格；仅裁切和等比Lanczos缩放。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "measurement_uncertainty_source_px": 3,
+  "source_size": [1536, 1024],
+  "source_sha256": "f95395d88106f9b3636cb7ac58fc86bbeb9fcf6a0f161022bca967df43ddc981",
+  "tool": "built-in image_gen",
+  "model": "underlying model not disclosed",
+  "effort": "not exposed",
+  "final_view_image_review": "第3轮已逐张view_image成品：透明留白、完整轮廓与灰砖瓦木细节可读；两轴斜率和占地比例通过。",
+  "revision": 3,
+  "previous_source_sha256": "6d586e43547916542895f019983cd5d5c6197420ca9f387dbc6f14304936ce0b",
+  "selection_reason": "选用本轮几何实测通过的候选；保持真实测量值，不做非等比变换。",
+  "original_size": [1536, 1024]
+}

@@ -1,0 +1,999 @@
+- id: bld_kit_ming_north_biaoju
+  subject: 明代北方府城：护运货栈（原创扩展）；具体构件断代（待考）。
+  prompt: 'Use case: sketch-to-render. Image 1 is an EXACT construction template for a game sprite. Do not change the shape or position of this quadrilateral. It is the thin rectangular stone foundation of a northern Ming escort
+    freight courtyard. Build architecture upright on it, all walls matching this template''s +0.5/-0.5 axes. Keep exact left corner(200,610), front(800,910), right(1280,670), back(680,370) on1536x1024 canvas. Do not enlarge
+    or zoom. Projected width/depth=600/480=1.25. Strict parallel 2:1 dimetric camera. Raise low grey-brick boundary walls 120px above base, a simple secure timber double gateway centered on left-front side; rear hard-gable grey-tiled
+    one-storey office and short side freight sheds, few burlap bales/crates inside. Realistic ancient Chinese game painted details, crisp fine clay tiles, masonry, matte dark timber matching approved Song baseline. Northern
+    flush masonry gables, straight ridges, no curled eaves. Base perimeter must be ruler-straight and visible around walls; all construction within base. Lighting upper left with SHORT faint contact shadow only. Absolutely no
+    ambient glow or surrounding fog. True alpha0 transparent background directly outside asset and opaque alpha255 solid architecture. No scenery, people, text, plaques, flags, labels, dots, lines, modern items, halo, thick
+    plinth, checkerboard. A single isolated reusable PNG asset.'
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_yamen.png
+    role: 宋基线材质与细节密度参考；不继承年代
+    status: candidate
+    sha256: 3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef
+  - path: assets/default/building-map/ming_north/sources/bld_kit_ming_north_biaoju_r2_guide.png
+    sha256: aab871381aa4442233798a076ce4bbe38f8a613e39630b906785e0b8a8c87271
+    role: 精确几何导引，仅作image_gen输入；最终图未经仿射纠偏
+  created: '2026-09-30T22:10:19.206114+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f44e-8603-7d32-a4a9-8c7789f39090/exec-646e3964-9f09-4d9a-a515-47d1596f03c1.png
+  file: bld_kit_ming_north_biaoju.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 928x608
+  sha256: cbd95813a73a89a94e135582a905cd8e9bd91af95e97729c066196e684108b23
+  status: candidate
+  building:
+    type: bld_kit_ming_north_biaoju
+    footprint:
+    - 15
+    - 12
+    anchor:
+    - 462.858
+    - 360.4558
+    era: ming_north
+  footprint_m:
+  - 15
+  - 12
+  entrance:
+    edge: S
+    offset_cells: 7.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_biaoju.png
+  source_sha256: ddfd398bdb9f8f92bcf6f4b651549beebe8492e4fb9e3148585e8101c986b25b
+  meta: meta/bld_kit_ming_north_biaoju.yaml
+  notes: （原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: sources/bld_kit_ming_north_biaoju.json
+  revision: 2
+  candidate_count_basis: 仅本轮 revision=2；前轮次数见 revision_history
+  repair_record: sources/bld_kit_ming_north_biaoju_r2_candidates.json
+- id: bld_kit_ming_north_casino
+  subject: 明代北方府城·赌场（原创扩展）
+  prompt: 'Use case: sketch-to-render. Add realistic historical materials and architectural detail onto this EXACT locked geometric blockout. ONE Ming north China gambling hall with grey brick hard-gabled
+    roof walls, rounded grey clay roof tiles, brown timber columns, two open front bays with exactly two plain wooden gaming tables and small ivory counters. Make materials as intricate as a realistic
+    painted strategy-game sprite. Keep ALL geometry exactly as input: the outer thin foundation polygon, camera angles, front and side wall dimensions, 10wide by8deep ground rectangle, roof ridge and
+    eaves axes; all diagonals rise1 per run2. No change of proportions or camera. Front footprint edge1.25 times side footprint edge. This is a MATERIALIZATION pass over the existing correct model, not
+    a loose shape inspiration. Keep ground corners at L208,670 F830,981 R1328,732 B706,421 on1536x1152canvas. Natural upper-left illumination, subtle contact shadows only inside stone paving. True transparent
+    RGBA everywhere outside silhouette. Full uncut sprite no people text watermark glow background modern items. No big plinth.'
+  references:
+  - path: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_casino/geometry-guide.png
+    sha256: f941829310410b569aaa4fb9868b203b9efa3070cdae8047a8428159284a0644
+    role: 精确2:1体块几何参考；仅作image_gen输入；已view_image
+  created: '2026-09-30T22:33:29.229065+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f46e-f804-7962-b399-b98ec1ba7a28/exec-0d262c3c-8f63-4e0b-b142-09078313d4be.png
+  file: bld_kit_ming_north_casino.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 640x512
+  sha256: 47e9637fb224bd0a425b3627029e7fecb2260ba7b529478eb6b122a9995db13c
+  status: candidate
+  building:
+    type: bld_kit_ming_north_casino
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 319.4917
+    - 340.1193
+    era: ming_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 5.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_casino.png
+  source_sha256: e630674703339a26b7b6a93082fe67bb21eabb27da13c7290ee002a3a9d591e8
+  meta: meta/bld_kit_ming_north_casino.yaml
+  notes: （原创扩展）第3轮原图底轴[0.515121, -0.536634]；成品底轴[0.515493, -0.520369]。仅alpha裁铺地外围，柱脚墙基完整；底面外轮廓通过，内部砖缝/横梁未重投影。仅原向单视图；拼接（待实测）。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: sources/bld_kit_ming_north_casino.json
+  revision: 3
+  repair_record: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_casino/revision.json
+- id: bld_kit_ming_north_courtyard
+  subject: 明代北方府城：北方合院（原创扩展）；具体构件断代（待考）。
+  prompt: 'Replace this rectangular block with an accurately aligned grey-brick Chinese Ming northern courtyard compound. Keep its two vertical side faces as courtyard wall locations, hollow out its
+    center into an enclosed courtyard, add three small grey tiled hard-gable residential wings inside it and a front central wood gate. Fine realistic weathered brick/tile/wood game sprite texture, subdued
+    color, sunlight from upper-left, no people. Most important: DO NOT change the block''s silhouette at ground level, front vertex or axis angles. Ground silhouette must remain identical to reference.
+    Left ground vertex(180,590), front(820,910), right(1332,654). The front-right base line must be exactly512px across256px up, angle26.565 degrees. Front-left is640px across320px down, ALSO26.565 degrees.
+    No30degree isometric; precisely2:1dimetric. Width/depth=10/8. Place architecture inside this footprint, neat thin stone apron, corners and bottom outline exactly as block. Remove solid block cap,
+    and no thick pedestal. Keep full roofs in frame. 1536x1024 transparent RGBA canvas, totally transparent background, no halo or scenery, no guides or text. Exact geometry before ornament.'
+  references:
+  - path: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_courtyard/r3_block_guide.png
+    sha256: 9167994ffa9595dcb7e7607468be850944aef60be464a10c51d82137fbc7f5b2
+    role: image_gen精确几何参考；已view_image；非成品绘制
+  created: '2026-09-30T22:43:17.924925+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f46f-22f6-7223-b480-2d9dc63984cb/exec-0a105c29-93b8-4b9e-b5b2-13c8cb089450.png
+  file: bld_kit_ming_north_courtyard.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 640x512
+  sha256: a986e4bde85d0e4b101e49a9f7e647b6caf6ca3023b0447ff636f08330ddc97a
+  status: candidate
+  building:
+    type: bld_kit_ming_north_courtyard
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 320.0
+    - 294.9137
+    era: ming_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 5.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_courtyard.png
+  source_sha256: 76bdadccb176a3b018f8c80f87c49f86c5f86c321ebe325431ac558474bbc277
+  meta: meta/bld_kit_ming_north_courtyard.yaml
+  notes: （原创扩展）匿名明代北方意象；第3轮底面双轴与宽深实测达标；仅原向单视图；拼接（待实测）。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_courtyard/revision.json
+  revision: 3
+  candidate_count_basis: 仅本轮 revision=3；旧轮记录归档于 previous_sources 文件
+  repair_record: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_courtyard/revision.json
+- id: bld_kit_ming_north_guardhouse
+  subject: 明代北方府城·城门守舍（原创扩展）
+  prompt: 'Use case: sketch-to-render. Build ONE fine realistically textured Ming northern Chinese game map building on this exact flat footprint guide. Preserve the supplied parallelogram precisely as the thin ground-contact
+    plane, at the same corner positions and scale. Ground edges slope EXACTLY +0.500/-0.500, orthographic 2:1 dimetric, yaw45/pitch30. Do not choose a new camera or distort the footprint. Vertical lines stay vertical. No perspective
+    convergence. Fine gray brick, gray clay tiles, weathered matte wood, natural sunlight from upper-left with short rightward contact shadow. Realistic ancient architectural sprite in restrained Song-kit material detail density.
+    Entire roof and base corners visible and uncut, wide clear margins. TRUE transparent RGBA; opaque building and alpha0 empty padding; no glow, haze, terrain island, thick plinth, people, animals, writing, signage, grid, numbers,
+    watermark or modern elements. Single compact city-gate guard cottage, hard-gabled yingshan roof with FLUSH solid gray brick triangular gables and straight eaves, no flying corners, low single storey, central brown wood door
+    on lower-left-facing front, two small barred timber windows, no weapons. Thin stone paved base is 6m x5m; exact ground positions LEFT(218,760),BACK(718,510),RIGHT(1318,810),FRONT(818,1060) in1536x1536 canvas. Building entirely
+    fits within footprint and sits with front visible aligned parallel to base. Roof top around y220.'
+  references:
+  - file: assets/default/building-map/ming_north/sources/revision2/guardhouse-ground-guide.png
+    role: 精确底面几何输入；非成品替代
+    sha256: 80faaced88eaccc160d6285985b44b27f4bd07941bbb278a82f6158cc8104ec2
+  created: '2026-09-30T22:05:01.175972+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f44d-7517-7262-be86-045e8b9601cd/exec-5438149c-2c16-4ab2-9935-ba1aef2f5fc5.png
+  file: bld_kit_ming_north_guardhouse.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 416x320
+  sha256: 57f34954f798b5123de201a5517d5231db67e9b75681ba7e4d660d34f5202ce9
+  status: candidate
+  building:
+    type: bld_kit_ming_north_guardhouse
+    footprint:
+    - 6
+    - 5
+    anchor:
+    - 206.6293
+    - 203.8484
+    era: ming_north
+  footprint_m:
+  - 6
+  - 5
+  entrance:
+    edge: S
+    offset_cells: 3.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_guardhouse.png
+  source_sha256: f0509e00831daad5dbe129a34795d97cf75283de9df2da153d4381229858bd3f
+  meta: meta/bld_kit_ming_north_guardhouse.yaml
+  notes: （原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/bld_kit_ming_north_guardhouse.json
+  revision: 2
+- id: bld_kit_ming_north_house_large
+  subject: 明代北方大民居，10×8格，五开间灰砖硬山住宅（原创扩展；细部待考）
+  prompt: 'Use case: sketch-to-render. This block is the PRECISE body proportions of a10-by8-metre ordinary northern Ming Chinese house. Keep all footprint edges, corners and wall plane positions IDENTICAL to reference; simply
+    texture walls as fine aged grey brick, add a grey clay-tile hard-gable pitched roof above this volume, a plain wood double door with lattice windows on the light left-front facade. Five bays on frontage. Roof ridge parallel
+    to left-front edge; gable side flush grey masonry, roof no upward-curled ends. Do not change width/depth proportions or camera. This base''s bottom edges are exact +0.5 and-0.5 slopes and must remain EXACT. Left(200,610),front(800,910),right(1280,670),back(680,370)
+    in1536x1024 canvas. Five-bay front should not cause widening: narrow the bays to fit exact body. Side facade is deep, close to width of frontage. Thin stone apron all around, complete visible corners. Detailed realistic
+    historical painted game asset, muted colors, upper-left light, clean cutout. Only one single-storey residence, no yard/fence/people/text/labels. Genuine transparent RGBA exterior, opaque architecture, no halo/glow. No thick
+    foundation, no surrounding scenery, no perspective vanishing point. Maintain guide''s entire base silhouette.'
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_house.png
+    sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7
+    role: style only; viewed before generation
+  - path: assets/default/building-map/ming_north/sources/bld_kit_ming_north_house_large_r2_guide.png
+    sha256: 39c29e2ca219698f0c6b630deef866a1893daf06aeeb61354b7acf1e47103d7d
+    role: 精确几何导引，仅作image_gen输入；最终图未经仿射纠偏
+  created: '2026-09-30T22:10:19.334163+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f44e-8603-7d32-a4a9-8c7789f39090/exec-a745ad71-a057-4d59-81c7-ca3131f98d75.png
+  file: bld_kit_ming_north_house_large.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 640x512
+  sha256: 6e69ded1e17f3ac8a51a3ec0c23e0cb6df6db0f24a3368cf09d8578ddc9da587
+  status: candidate
+  building:
+    type: bld_kit_ming_north_house_large
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 319.7384
+    - 332.3927
+    era: ming_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 5.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_house_large.png
+  source_sha256: 4ad855a2135d639b974647cbad2968a979c38196aa45ef999cdb2d646efe6120
+  meta: meta/bld_kit_ming_north_house_large.yaml
+  notes: （原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。
+  candidate_count: 2
+  source_record: sources/bld_kit_ming_north_house_large.json
+  revision: 2
+  selected_candidate: 2
+  candidate_count_basis: 仅本轮 revision=2；前轮次数见 revision_history
+  repair_record: sources/bld_kit_ming_north_house_large_r2_candidates.json
+- id: bld_kit_ming_north_house_small
+  subject: 明代北方小民居，7×6格，青灰砖硬山灰瓦（原创扩展；细部待考）
+  prompt: 'Convert this exact solid block into a THREE-bay northern Ming ordinary small house. Preserve exact footprint shape of the reference; DO NOT widen its front. Light front wall must have width560 pixels horizontally;
+    dark side wall480pixels. Foundation corners on1536x1024: L200,610 F760,890 R1240,650 B680,370. Edges slopes+0.5/-0.5 exactly; nearly square7-by6m footprint. Add realistic finely detailed aged grey brick textures, central
+    plain brown wood door flanked by two lattice windows, dark grey clay hard-gable pitched roof above box. Roof ridge parallel to frontage, masonry end gables flush with verge. One storey, modest northern Chinese architecture,
+    small subdued finials. Thin grey flagstone apron and visible full L/F/R corners. Realistic hand-painted game building, fine brick and roof texture density; soft upper-left light, mild short right shadow. Exact geometry is
+    critical. All ground axes parallel to box. Fully transparent RGBA exterior alpha0, solid building alpha255. No scenery, ambient glow, thick plinth, people, text, signs, guide marks, or any modern object. Complete asset with
+    roomy margins.'
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_house.png
+    sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7
+    role: style only; reviewed with view_image before generation
+  - path: assets/default/building-map/ming_north/sources/bld_kit_ming_north_house_small_r2_guide.png
+    sha256: 9d45a5b01f1053dd5ea8e46cd07738493bbdfb72f9c4025e6f5470b12d8eb272
+    role: 精确几何导引，仅作image_gen输入；最终图未经仿射纠偏
+  created: '2026-09-30T22:10:19.380570+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f44e-8603-7d32-a4a9-8c7789f39090/exec-c2cda13e-3e23-4f49-b9fd-ad864b3f4279.png
+  file: bld_kit_ming_north_house_small.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 480x384
+  sha256: 09ac44e257d1168cde8864927e34762a9d1923e4c17375014a651512db0b45bd
+  status: candidate
+  building:
+    type: bld_kit_ming_north_house_small
+    footprint:
+    - 7
+    - 6
+    anchor:
+    - 239.1127
+    - 244.7754
+    era: ming_north
+  footprint_m:
+  - 7
+  - 6
+  entrance:
+    edge: S
+    offset_cells: 3.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_house_small.png
+  source_sha256: 98f7105d2ab64af69deaccd9e9bc835a6cf10c2aa8c88d0dba13358912c4ac5a
+  meta: meta/bld_kit_ming_north_house_small.yaml
+  notes: （原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。
+  candidate_count: 2
+  source_record: sources/bld_kit_ming_north_house_small.json
+  revision: 2
+  selected_candidate: 2
+  candidate_count_basis: 仅本轮 revision=2；前轮次数见 revision_history
+  repair_record: sources/bld_kit_ming_north_house_small_r2_candidates.json
+- id: bld_kit_ming_north_inn
+  subject: 明代北方客栈，12×9格，灰砖硬山二层客舍附小院（原创扩展；细部待考）
+  prompt: 'Use case: sketch-to-render. Make this exact flat shape into one Ming northern Chinese inn property in realistic ancient Chinese hand-painted map art. Preserve shape''s outer perimeter and
+    keep its corners EXACTLY where they are, especially front point(800,900) and right point(1250,675). DO NOT enlarge or shift footprint. It is a12by9m rectangle in true2:1orthographic dimetric perspective.
+    Front edge runs600right300down; right edge runs450right225up, slopes exactly plus/minus0.5. Set a believable two-storey grey-brick hard-gable grey-tile guest house with plain wood lattices and balcony
+    within this polygon, a short attached wing and tiny rear courtyard. Build vertically upward; all architecture axes parallel to template edges. Thin stone apron following the template exactly, sharply
+    visible left/front/right corners. Moderately weathered grey brick, subdued grey roof, brown wood, fine subtle texture, no stylized cartoon. Opaque architecture and paving on genuinely transparent
+    alpha0 exterior. No background tint, glow or atmosphere. Upper-left natural light with minimal lower-right contact shadow confined to floor shape. No signs, people, text, modern objects, thick plinth,
+    steps outside footprint or cut edges. Canvas1536x1024; left(200,600), front(800,900), right(1250,675), back(650,375). Highest priority EXACT polygon silhouette; buildings must conform to it.'
+  references:
+  - path: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_inn/r3_guide.png
+    sha256: 34aa9934ba9ad57a0cbf541dfaab82222e0682820b757c990ab65560aba748db
+    role: image_gen精确几何参考；已view_image；非成品绘制
+  created: '2026-09-30T22:43:17.953803+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f46f-22f6-7223-b480-2d9dc63984cb/exec-275fcfee-2315-4eeb-bc3a-0e5666672fba.png
+  file: bld_kit_ming_north_inn.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 736x512
+  sha256: 838abad981c2dbd7c2ef8b5d683d7d490ca0115cc35e155bed17a8ac8859831e
+  status: candidate
+  building:
+    type: bld_kit_ming_north_inn
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 367.6798
+    - 301.8085
+    era: ming_north
+  footprint_m:
+  - 12
+  - 9
+  entrance:
+    edge: S
+    offset_cells: 6.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_inn.png
+  source_sha256: e1a3ac58127b347688210c3f3b56bc0c028b6195c699c29cd5237f547d060302
+  meta: meta/bld_kit_ming_north_inn.yaml
+  notes: （原创扩展）匿名明代北方意象；第3轮底面双轴与宽深实测达标；仅原向单视图；拼接（待实测）。
+  candidate_count: 2
+  source_record: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_inn/revision.json
+  revision: 3
+  selected_candidate: 1
+  candidate_count_basis: 仅本轮 revision=3；旧轮记录归档于 previous_sources 文件
+  repair_record: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_inn/revision.json
+- id: bld_kit_ming_north_manor
+  subject: 明代北方府城：山庄大院（原创扩展）；具体构件断代（待考）。
+  prompt: 'Use case: sketch-to-render. Texture and detail this precisely modeled courtyard blockout into a Ming northern China merchant manor. Keep exact outer foundation silhouette, camera and building
+    shapes of input. The geometry is locked: 16 wide by13 deep rectangle, front visible edge1.23077 times side edge, all horizontal architecture axes slope +0.500 or -0.500, rise1 per run2. Preserve
+    foundation corners L188,610 F828,930 R1348,670 B708,350 on1536x1152canvas. Add intricate grey brick masonry, brown wooden lattice doors, grey semicylindrical roof tiles on HARD GABLED roofs, subtle
+    weathering, small courtyard shrubs. Central front door, hall behind, two side wings exactly as input arrangement. Thin stone paving only, not a thick elevated slab. Fine realistic antique Chinese
+    strategy-map painting, warm upper-left natural light. Retain camera and proportions even while adding tiles and detail. All stairs contained inside footprint. Output true transparent RGBA outside
+    building and paving, no backdrop glow, fog, vignette, writing, labels, people, watermark or modern items.'
+  references:
+  - path: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_manor/geometry-guide.png
+    sha256: 1b9579ed07a9045d07d22cbce087954136510c96396883895c6fc72c2e71116c
+    role: 精确2:1体块几何参考；仅作image_gen输入；已view_image
+  created: '2026-09-30T22:35:04.774257+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f46e-f804-7962-b399-b98ec1ba7a28/exec-44ebd5e2-88bd-4b9f-a49e-c62a0e72514c.png
+  file: bld_kit_ming_north_manor.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 992x768
+  sha256: afc5e1b4af80df2ea1c6a63ae164d01e07d12ea456f515443673a7fd47398bb5
+  status: candidate
+  building:
+    type: bld_kit_ming_north_manor
+    footprint:
+    - 16
+    - 13
+    anchor:
+    - 494.7195
+    - 483.7726
+    era: ming_north
+  footprint_m:
+  - 16
+  - 13
+  entrance:
+    edge: S
+    offset_cells: 8.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_manor.png
+  source_sha256: 39811c2ea188c006368d25e7191b544a7bb2d37a16b1c6e0823d8ebee503a2f2
+  meta: meta/bld_kit_ming_north_manor.yaml
+  notes: （原创扩展）第3轮原图底轴[0.532601, -0.586484]；成品底轴[0.532328, -0.586184]。manor安全裁边会伤墙基，保留未裁候选并标几何未通过。仅原向单视图；拼接（待实测）。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: sources/bld_kit_ming_north_manor.json
+  revision: 3
+  repair_record: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_manor/revision.json
+- id: bld_kit_ming_north_market_stall
+  subject: 明代北方府城·市场棚（原创扩展）
+  prompt: 'Use case: historical-scene. Generate exactly ONE isolated game building sprite for tianshu default, Ming dynasty northern Chinese prefectural
+    city architectural kit, original anonymous composite, not a reconstruction of a named monument. Realistic ancient Chinese architecture, same
+    natural material realism and detail density as the attached Song stable reference; reference is style ONLY, change architecture to northern
+    Ming gray brick and gray clay tile, modest timber, restrained hard-gable yingshan roof with straight compact eaves. Orthographic 2:1 dimetric
+    projection, yaw 45 degrees, pitch 30 degrees, NO perspective convergence. East ground axis projects down-right at slope +0.5; north ground
+    axis up-right at slope -0.5; vertical posts stay vertical. Thin almost-flat footprint pad with clearly visible left, front, right corners,
+    not a pedestal. Footprint proportions refer to ground axes, NOT canvas proportions. Main light from SCREEN UPPER LEFT; short soft contact
+    shadow toward lower right. Entire object and base uncut, generous transparent margins. TRUE TRANSPARENT RGBA background, no opaque background
+    or painted checkerboard. No people, animals, writing, pseudo-glyphs, signs, numbers, modern objects, palace ornament on common buildings,
+    Qing imperial decoration, fantasy, neighboring buildings, sky, water, scenery, thick diorama plinth, broad shadows, tilt shift, toy plastic,
+    cropping. Asset bld_kit_ming_north_market_stall. One tiny 3 by 2 metre market stall with four plain wooden posts, low beige linen canopy stretched
+    over simple timber frame, a wooden front counter holding two woven baskets of grain and folded cloth, rough gray brick flat paving base. No
+    building behind, no tile-roof house, no shop sign. Ground width-to-depth axes ratio 3:2. Front faces screen lower-left. Keep the ground edges
+    at precisely +0.5/-0.5 slopes.'
+  references:
+  - id: bld_kit_song_dali_stable
+    path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_stable.png
+    sha256: da40c1c72f1e27b96c2a8da4d6ab0ac6f81474a6d0e049045d4ac9996eabac28
+    role: 仅材质/细节密度参考；不继承宋屋型
+    status: candidate
+  created: '2026-09-30T21:12:06.313Z'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-22c7cf6e-29d1-47d9-9570-6ea71de013d0.png
+  file: bld_kit_ming_north_market_stall.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 256x256
+  sha256: a9c5cc6dcab321396a743c28cb8be32a600895c04c245d5056c5e91c40e20018
+  status: candidate
+  building:
+    type: bld_kit_ming_north_market_stall
+    footprint:
+    - 3
+    - 2
+    anchor:
+    - 127.1883
+    - 150.0518
+    era: ming_north
+  footprint_m:
+  - 3
+  - 2
+  entrance:
+    edge: S
+    offset_cells: 1.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_market_stall.png
+  source_sha256: a8f661b6c99ae08862b2963e2a24cf59674a0d08472a3d20eeb2afc8978f17c1
+  meta: meta/bld_kit_ming_north_market_stall.yaml
+  notes: （原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。
+  candidate_count: 2
+  selected_candidate: 1
+  source_record: sources/bld_kit_ming_north_market_stall.json
+- id: bld_kit_ming_north_pagoda
+  subject: 明代北方府城：北方密檐砖塔（原创扩展）；具体构件断代（待考）。
+  prompt: 'Use case: sketch-to-render. Produce one photorealistic ancient Chinese map-building cutout in true transparent RGBA. Image1 is exact mandatory ground geometry; image2 is architecture/material/style
+    reference only. Render the geometry from IMAGE1 exactly, do not rotate, reshape or deepen it. The front two outer ground edges MUST rise/run 1/2, absolute slope 0.500, parallel paving seams on same
+    axes. Orthographic dimetric 2:1, yaw45, vertical edges stay vertical. The geometry template is just the support; render natural stone paving and architecture, remove drawn outlines. Fully opaque
+    fine-grained gray masonry and clay tile texture matching image2; upper-left daylight, extremely short lower-right contact shadow. Full structure and support uncropped. No people, animals, labels,
+    letters, watermarks, scenery or border. Vertical1024x1536. Add same six-storey tall octagonal gray-tan masonry Buddhist brick pagoda from image2 with fine repeated corbel brick courses, plain shallow
+    brick-eaves ledges, recessed arched niches and stacked bronze finial. NO tiled pavilion roofs, NO curved roofs. Exact SQUARE7x7 metre support: left(176,1250),front(512,1418),right(848,1250),back(512,1082);
+    both visible front slopes exactly±0.5. Tower centered at(512,1250); apex near y60. Preserve shape and architectural detailing of image2 but adapt the base to exact guide and lower camera to obey
+    shallow ground slopes. This is a brick Buddhist tower, not a palace or wooden pavilion.'
+  references:
+  - file: assets/default/building-map/ming_north/sources/r3/pagoda-geometry-guide.png
+    role: 第3轮精确底面几何参照；仅供生成使用
+    sha256: b00aef4f634bc3c8a703c5c8159ae7da0888309d2a222ac1a9d23dbceb4969f7
+  - file: assets/default/building-map/ming_north/sources/r3/previous-ming_north-bld_kit_ming_north_pagoda.png
+    role: 第3轮前成品形制与材质参考；不继承错误投影
+    sha256: cb2ee5275aa07e749203e9487b9b47cfc308b072dcc76cb3bc144f1a66af940a
+  created: '2026-09-30T22:36:20.486766+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f46f-5106-7221-a511-d72010d85121/exec-d2f934d5-4a26-45de-9a71-c1a3e08842eb.png
+  file: bld_kit_ming_north_pagoda.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 512x864
+  sha256: 582361fb32c0317913be77eb5574df2ec685c8f5cb69813d2a56d4f4febb15f0
+  status: candidate
+  building:
+    type: bld_kit_ming_north_pagoda
+    footprint:
+    - 7
+    - 7
+    anchor:
+    - 255.7175
+    - 719.7658
+    era: ming_north
+  footprint_m:
+  - 7
+  - 7
+  entrance:
+    edge: S
+    offset_cells: 3.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_pagoda.png
+  source_sha256: 9d3901f8b2225bf940982ad9c818db9e66457ad9ab51547246577956ba1b0307
+  meta: meta/bld_kit_ming_north_pagoda.yaml
+  notes: （原创扩展）第3轮返修；底面两轴与宽深比例实测通过；仅裁切、等比缩放；拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/bld_kit_ming_north_pagoda.json
+  revision: 3
+- id: bld_kit_ming_north_restaurant
+  subject: 明代北方酒楼茶肆，12×9格，灰砖硬山三开间二层楼（原创扩展；细部待考）
+  prompt: 'Use case: historical-scene. Asset type: tianshu default building-map, ONE isolated reusable game building cutout, true RGBA transparent
+    background. Image 1 is a STYLE REFERENCE ONLY: match its realistic historical painted material quality, crisp detailed grey roof tiles, believable
+    aged masonry and wood, natural muted colors and detail density. Do not copy its building or old camera inaccuracies. This is a new Ming-era
+    northern Chinese prefectural-town building, original game design, NOT restoration of a named monument. Camera MUST be orthographic dimetric
+    2:1 ground projection, yaw 45 degrees elevation 30 degrees: ground edges exact +0.5 and -0.5 slopes, all verticals upright, no vanishing point.
+    Main frontage faces screen lower left. Ground footprint must be a thin flat rectangular apron with clearly visible straight left-to-front
+    and front-to-right edges, front base corner visible, no thick pedestal or surrounding street. Entire eaves, ground edge and short shadow fully
+    inside square frame with 10 percent transparent margins. Sunlight screen upper left, short soft contact shadow screen lower right. Northern
+    Ming hard-gable YINGSHAN roof: restrained straight ridge, grey clay concave and convex roof tiles, low subtle ridge terminals, solid masonry
+    gable ends flush with verge eaves, not overhanging timber gables, EXPOSED GREY BRICK ALL walls, NO white or cream plaster, subdued dark timber
+    lattice doors/windows; no Qing imperial decoration. No written characters, signboards, lettering, symbols, people, background scenery, sky,
+    horizon, mountains, labels, watermark, checkerboard, opaque floor, exaggerated curved eaves, cartoon or toy-like stylization. Generate exactly
+    ONE asset. Subject: ONE northern Ming two-storey restaurant / tea-house module, footprint12m by9m, compact rectangular prosperous but restrained
+    grey-brick public house. Ground level has wide open timber lattice doors revealing wooden tables, benches, unlabeled ceramic wine jars and
+    tea kettle just inside; upper level modest open timber balcony with a few empty tables. Northern hard-gable grey clay tile roof, solid grey-brick
+    gable side, no white plaster, no imperial decorative colors. One small plain unlettered hanging cloth at doorway only if no text-like markings;
+    better leave it blank or omit. No inn yard or hitching post. The thin ground apron must have left-to-front and front-to-right edges exact
+    slope+.5 and-.5 and horizontal span ratio12:9. Straight vertical supports, orthographic yaw45 pitch30; projected floor-edge angle26.565 degrees.
+    Reference must NOT dictate roof silhouette: proper NORTH CHINESE YINGSHAN hard-gabled roofs, flush grey-brick triangular gable walls rising
+    to ridge at both ends, NO overhanging eaves at gable ends, no upward-curled corner tips. Entire building plus short shadow fully inside generous
+    transparent border. No people, labels or scenery. Precise projection refinement: left-to-front ground edge runs right600px and DOWN300px,
+    exactly a1:2 slope. Front-to-right ground edge runs right450px and UP225px. A12:9 footprint should produce a symmetrical camera, not a steep
+    left edge. Keep ground plane shallow and broad, no thick foundation sides. Main building has THREE door bays on ground and THREE open balcony
+    dining bays above, not five, allowing a compact northern public house with visible deep right side. Roof hard-gable with NO ridge-tip curl
+    or overhanging gable eaves. Short shadow only.'
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_house.png
+    sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7
+    role: style only; viewed before generation
+  created: '2026-09-30T21:24:50Z'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-183f-7ff3-a5e9-5a982695f883/exec-bdba7695-182c-4e88-83dd-b1f5a58cae40.png
+  file: bld_kit_ming_north_restaurant.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 736x672
+  sha256: fb141db5e8f46df2ed02b823721817cdcc89b4a40268c13a93aa46aedd1ee655
+  status: candidate
+  building:
+    type: bld_kit_ming_north_restaurant
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 356.5469
+    - 472.9797
+    era: ming_north
+  footprint_m:
+  - 12
+  - 9
+  entrance:
+    edge: S
+    offset_cells: 6.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_restaurant.png
+  source_sha256: 37064736a8d3baa3ba67ed1d813d05fc32ddaf67ab6196af3991ed5fd80c2318
+  meta: meta/bld_kit_ming_north_restaurant.yaml
+  notes: （原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。
+  candidate_count: 2
+  source_record: sources/bld_kit_ming_north_restaurant.json
+- id: bld_kit_ming_north_shop_1f
+  subject: 明代北方单层商铺，7×5格，灰砖硬山瓦顶杂货铺（原创扩展；细部待考）
+  prompt: 'Use case: historical-scene. Asset type: tianshu default building-map, ONE isolated reusable game building cutout, true RGBA transparent
+    background. Image 1 is a STYLE REFERENCE ONLY: match its realistic historical painted material quality, crisp detailed grey roof tiles, believable
+    aged masonry and wood, natural muted colors and detail density. Do not copy its building or old camera inaccuracies. This is a new Ming-era
+    northern Chinese prefectural-town building, original game design, NOT restoration of a named monument. Camera MUST be orthographic dimetric
+    2:1 ground projection, yaw 45 degrees elevation 30 degrees: ground edges exact +0.5 and -0.5 slopes, all verticals upright, no vanishing point.
+    Main frontage faces screen lower left. Ground footprint must be a thin flat rectangular apron with clearly visible straight left-to-front
+    and front-to-right edges, front base corner visible, no thick pedestal or surrounding street. Entire eaves, ground edge and short shadow fully
+    inside square frame with 10 percent transparent margins. Sunlight screen upper left, short soft contact shadow screen lower right. Northern
+    Ming hard-gable YINGSHAN roof: restrained straight ridge, grey clay concave and convex roof tiles, low subtle ridge terminals, solid masonry
+    gable ends flush with verge eaves, not overhanging timber gables, EXPOSED GREY BRICK ALL walls, NO white or cream plaster, subdued dark timber
+    lattice doors/windows; no Qing imperial decoration. No written characters, signboards, lettering, symbols, people, background scenery, sky,
+    horizon, mountains, labels, watermark, checkerboard, opaque floor, exaggerated curved eaves, cartoon or toy-like stylization. Generate exactly
+    ONE asset. Subject: ONE single-storey northern Ming street shop, footprint7m by5m. A modest three-bay grey-brick general-goods shop with hard-gable
+    low grey tiled roof, one broad open timber shutter counter, shelves of unlabelled ceramic jars and folded cloth entirely within building,
+    solid grey-brick sidewall and tiny lattice window. A plain beige cloth shade immediately over storefront, no signboards, no words. Ground
+    footprint left-to-front width7 and front-to-right depth5; front door faces lower left. Correct dimetric base edge slopes exactly+.5 and-.5,
+    long-to-short visible horizontal spans7:5. Northern grey masonry and muted wood, no white walls, no southern raised gables. 10 percent transparent
+    margins.'
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_house.png
+    sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7
+    role: style only; viewed before generation
+  created: '2026-09-30T21:19:07Z'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-183f-7ff3-a5e9-5a982695f883/exec-e332d6b7-4979-4932-9f28-6df9fb1972d5.png
+  file: bld_kit_ming_north_shop_1f.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 448x384
+  sha256: c1fe042e47e1cca89aee99ff2b06a07eb8108ac277a906b76d7fd8b3f9f8f92c
+  status: candidate
+  building:
+    type: bld_kit_ming_north_shop_1f
+    footprint:
+    - 7
+    - 5
+    anchor:
+    - 223.1451
+    - 248.7607
+    era: ming_north
+  footprint_m:
+  - 7
+  - 5
+  entrance:
+    edge: S
+    offset_cells: 3.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_shop_1f.png
+  source_sha256: 49031cd1d168b41638181843d2e776eeeac1d43fec4276fc79f1899823b8ffb2
+  meta: meta/bld_kit_ming_north_shop_1f.yaml
+  notes: （原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。
+  candidate_count: 1
+  source_record: sources/bld_kit_ming_north_shop_1f.json
+- id: bld_kit_ming_north_shop_2f
+  subject: 明代北方两层商铺，7×5格，灰砖硬山布货铺（原创扩展；细部待考）
+  prompt: 'Use case: sketch-to-render. Add realistic materials and architecture details onto this EXACT locked geometric blockout. ONE Ming north China TWO STOREY cloth shop: grey brick hard-gable end
+    walls, sober grey rounded clay roof tiles, brown timber front face, ground floor three open shop bays with unmarked folded cloth bundles, upper floor wooden lattice windows and narrow wooden balcony.
+    Highly realistic painted antique strategy-game sprite, dense fine brick/tile/wood textures. Keep ALL geometry exactly as input: outer thin stone foundation polygon, camera, wall dimensions, 7wide
+    by5deep ground rectangle; diagonals rise1 for run2. Front footprint edge1.4 times side footprint edge. This is MATERIALIZATION of a precisely modeled shape. Do NOT lengthen the frontage or shrink
+    side wall. Keep foundation corners L208,690 F861,1017 R1328,783 B675,457 on1536x1152canvas. No thick base, stairs or props outside outline. Natural upper-left illumination. TRUE transparent RGBA
+    background and margins, no ambient glow or color haze. No people, text, signs, watermark or modern objects.'
+  references:
+  - path: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_shop_2f/geometry-guide.png
+    sha256: b6aa0efea577a0ec9b806cc2e094db68dfb395498a0717d8f4ee2bcc970e9141
+    role: 精确2:1体块几何参考；仅作image_gen输入；已view_image
+  created: '2026-09-30T22:34:21.529817+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f46e-f804-7962-b399-b98ec1ba7a28/exec-9eac345a-88af-430c-809b-6068c1521f03.png
+  file: bld_kit_ming_north_shop_2f.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 448x416
+  sha256: ca0a78d68b91ffe2e063dc79d4dbff65a14c79003b5015c2fa4041ec27a7d97f
+  status: candidate
+  building:
+    type: bld_kit_ming_north_shop_2f
+    footprint:
+    - 7
+    - 5
+    anchor:
+    - 223.868
+    - 286.7726
+    era: ming_north
+  footprint_m:
+  - 7
+  - 5
+  entrance:
+    edge: S
+    offset_cells: 3.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_shop_2f.png
+  source_sha256: 509a49ab40e247f615565ad7abee31147a0042b57f7fc936b79f9bb94f4f8319
+  meta: meta/bld_kit_ming_north_shop_2f.yaml
+  notes: （原创扩展）第3轮原图底轴[0.536501, -0.548596]；成品底轴[0.520639, -0.520639]。仅alpha裁铺地外围，柱脚墙基完整；底面外轮廓通过，内部砖缝/横梁未重投影。仅原向单视图；拼接（待实测）。
+  candidate_count: 2
+  source_record: sources/bld_kit_ming_north_shop_2f.json
+  selected_candidate: 2
+  revision: 3
+  repair_record: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_shop_2f/revision.json
+- id: bld_kit_ming_north_stable
+  subject: 明代北方府城·马厩（原创扩展）
+  prompt: 'Use case: precise-object-edit. Make one narrowly targeted geometry correction to this Ming north-China stable sprite. Image1 is the edit target. Image2 is exact 2:1 ground geometry guidance.
+    The right side currently slopes too steeply, -0.55; redraw it at slope EXACTLY -0.50 and the left front ground edge at +0.50, by lowering the rear right corner of the stone platform and coherently
+    lowering the far side of the building. Preserve the building''s texture quality, gray tiled hard-gable roof, gray brick wall, four wood stable bays, no animals, left-top light. Do not change style
+    or add anything. Output1536x1024. Exact visible platform bottom corners: LEFT(80,570), FRONT(872,966), RIGHT(1466,669). Front edge has run792 and rise396, right edge run594 and rise-297. Thus ground
+    width/depth ratio8:6 and both slopes exactly0.500 in magnitude. Building ground seams and roof horizontal courses must obey the same axes. This is a lower camera, with26.565degree ground-edge angles,
+    not30degree steep view. Full building and platform uncropped; preserve alpha-transparent empty background, remove all background glow, no matte, real RGBA alpha0 outside object and fully opaque masonry.
+    No text, watermark, labels, people, furniture or scenery. Keep exact corner geometry; render paving seams parallel to the edges; thin stone slab. This is the only revision: flatten the right-facing
+    side to the correct2:1 projection.'
+  references:
+  - file: assets/default/building-map/ming_north/sources/r3/stable-candidate1.png
+    role: 本轮第一候选编辑目标；修正右侧投影
+    sha256: 573c6af9946ef431d79a88fdf4d6fe70c452c69b050e1aa30455628d8ffb66f1
+  - file: assets/default/building-map/ming_north/sources/r3/stable-geometry-guide.png
+    role: 第3轮精确底面几何参照；仅供生成使用
+    sha256: 15d427905f6000cb81e4bda48f63b425f909293eb55887e2d094c2e950aff603
+  created: '2026-09-30T22:36:20.408054+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f46f-5106-7221-a511-d72010d85121/exec-01f4095c-817b-47bd-a202-c5b0894e11e7.png
+  file: bld_kit_ming_north_stable.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 512x352
+  sha256: ac82a3f87f2a8e270843476f6fe53e2d0d31f1749a8ad25d58b238b220341314
+  status: candidate
+  building:
+    type: bld_kit_ming_north_stable
+    footprint:
+    - 8
+    - 6
+    anchor:
+    - 255.3438
+    - 200.7894
+    era: ming_north
+  footprint_m:
+  - 8
+  - 6
+  entrance:
+    edge: S
+    offset_cells: 4.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_stable.png
+  source_sha256: f95395d88106f9b3636cb7ac58fc86bbeb9fcf6a0f161022bca967df43ddc981
+  meta: meta/bld_kit_ming_north_stable.yaml
+  notes: （原创扩展）第3轮返修；底面两轴与宽深比例实测通过；仅裁切、等比缩放；拼接（待实测）。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: sources/bld_kit_ming_north_stable.json
+  revision: 3
+- id: bld_kit_ming_north_temple_hall
+  subject: 明代北方府城：佛寺殿堂（原创扩展）；具体构件断代（待考）。
+  prompt: 'Use case: sketch-to-render. Produce one photorealistic ancient Chinese map-building cutout in true transparent RGBA. Image1 is exact mandatory ground geometry; image2 is architecture/material/style
+    reference only. Render the geometry from IMAGE1 exactly, do not rotate, reshape or deepen it. The front two outer ground edges MUST rise/run 1/2, absolute slope 0.500, parallel paving seams on same
+    axes. Orthographic dimetric 2:1, yaw45, vertical edges stay vertical. The geometry template is just the support; render natural stone paving and architecture, remove drawn outlines. Fully opaque
+    fine-grained gray masonry and clay tile texture matching image2; upper-left daylight, extremely short lower-right contact shadow. Full structure and support uncropped. No people, animals, labels,
+    letters, watermarks, scenery or border. Horizontal1536x1024. Add ONE Ming northern Buddhist temple hall from image2: dark gray hip-gable XIESHAN tiled roof, restrained red-brown timber columns and
+    fine lattice doors, low gray stone platform; no enclosure. Ground platform exactly14x11m from guide: left(90,559),front(846,937),right(1440,640),back(684,262); long front edge756 pixels run378 rise,
+    side594 run297 rise. The side is eleven-fourteenths of facade length, so hall is DEEP. Preserve image1 corners precisely; hall sits inside with roof top near y70. Entrance steps must be RECESSED
+    INTO platform and never project past outer ground edges. Front face and side have identical±0.5 ground slopes. Same realistic tile and timber density as image2.'
+  references:
+  - file: assets/default/building-map/ming_north/sources/r3/temple_hall-geometry-guide.png
+    role: 第3轮精确底面几何参照；仅供生成使用
+    sha256: d13d7d0a578b7f1a695c51ab8f2d62751c1abecda04060e787bd13d8044349f3
+  - file: assets/default/building-map/ming_north/sources/r3/previous-ming_north-bld_kit_ming_north_temple_hall.png
+    role: 第3轮前成品形制与材质参考；不继承错误投影
+    sha256: 3a0e5d4726cd74033568a90520f58b2059c07f6bda0744b87e2593d2a56b7db7
+  created: '2026-09-30T22:36:20.578794+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f46f-5106-7221-a511-d72010d85121/exec-55d63b81-54a5-405d-84d4-491cd25df321.png
+  file: bld_kit_ming_north_temple_hall.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 864x608
+  sha256: def011b47369e5afc54689ee9da5394090ae023f88b9855ae50550fb4f6f82be
+  status: candidate
+  building:
+    type: bld_kit_ming_north_temple_hall
+    footprint:
+    - 14
+    - 11
+    anchor:
+    - 431.2054
+    - 368.3704
+    era: ming_north
+  footprint_m:
+  - 14
+  - 11
+  entrance:
+    edge: S
+    offset_cells: 7.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_temple_hall.png
+  source_sha256: 1391b81b9424878f0b05bb4c3e75c4689020adf59789c3959d7c4ad873cc4c06
+  meta: meta/bld_kit_ming_north_temple_hall.yaml
+  notes: （原创扩展）第3轮返修；底面两轴与宽深比例实测通过；仅裁切、等比缩放；拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/bld_kit_ming_north_temple_hall.json
+  revision: 3
+- id: bld_kit_ming_north_wangfu
+  subject: 明代北方府城：王府殿院模块（原创扩展）；具体构件断代（待考）。
+  prompt: 'Use case: sketch-to-render. Materialize this EXACT architect blockout as a Ming northern Chinese princely courtyard module, keeping geometry locked. Input silhouette and all ground axis directions
+    must stay unchanged: ground22wide by18deep, front edge1.22222 times side edge, perfectly symmetric ground slopes +0.500 and -0.500, two pixels across per1pixel rise. On1536x1152canvas keep foundation
+    vertices L188,610 F826,929 R1348,668 B710,349. Add realistic red plaster enclosing walls, central wood gate, rear ceremonial hall with green glazed tiles, red columns and restrained Ming painted
+    beams; two grey tiled side wings. A modest princely residence, no imperial yellow. Intricate greybrick/woodgrain/tile details, realistic antique strategy-game painted style. Lower roof peaks as needed
+    but NEVER alter ground shape, horizontal eaves axes or view angle. Paper-thin grey stone paving edge with fully visible three corners, all entrance steps inside polygon. Natural left-upper illumination,
+    true transparent RGBA surroundings and margins. No background glow haze vignette, no people, text, logos, watermark, modern objects.'
+  references:
+  - path: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_wangfu/geometry-guide.png
+    sha256: b932bb5b27cc6654f2a729836e193bb53909f83408c357af69cd93e8756d2b4f
+    role: 精确2:1体块几何参考；仅作image_gen输入；已view_image
+  created: '2026-09-30T22:35:58.998598+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f46e-f804-7962-b399-b98ec1ba7a28/exec-0e77b69d-dd89-416a-b671-e975b3cba219.png
+  file: bld_kit_ming_north_wangfu.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 1344x992
+  sha256: e8181e5483a5507422d26fb8443bfafbb29d8f3a42b2ad64c1a626ca05b3b7b4
+  status: candidate
+  building:
+    type: bld_kit_ming_north_wangfu
+    footprint:
+    - 22
+    - 18
+    anchor:
+    - 670.9408
+    - 636.0356
+    era: ming_north
+  footprint_m:
+  - 22
+  - 18
+  entrance:
+    edge: S
+    offset_cells: 11.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_wangfu.png
+  source_sha256: 29587bdb3728a1e414571dbc319ece29f3326f286b9261eab65b546722525550
+  meta: meta/bld_kit_ming_north_wangfu.yaml
+  notes: （原创扩展）第3轮原图底轴[0.548623, -0.543853]；成品底轴[0.520046, -0.520046]。仅alpha裁铺地外围，柱脚墙基完整；底面外轮廓通过，内部砖缝/横梁未重投影。仅原向单视图；拼接（待实测）。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: sources/bld_kit_ming_north_wangfu.json
+  revision: 3
+  repair_record: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_wangfu/revision.json
+- id: bld_kit_ming_north_warehouse
+  subject: 明代北方府城·仓屋（原创扩展）
+  prompt: 'Use case: precise-object-edit. Correct this single Ming northern Chinese building sprite. Preserve its purpose, anonymous details and
+    realistic material density, but use proper NORTH CHINESE YINGSHAN hard-gabled roof: flush grey-brick triangular gable walls rise all the way
+    to ridge at both ends, NO overhanging eaves at gable ends, no upward-curled corner tips. The input is material reference, do NOT retain its
+    roof silhouette. Deliver true TRANSPARENT RGBA, with completely empty fully transparent padding at least 12% image width/height on ALL FOUR
+    SIDES. Remove ALL glow, haze, vignette, gradient and ground shadow beyond the thin rectangular footprint; all empty pixels alpha ZERO. Natural
+    light stays upper-left. Correct ground geometry to precise 2:1 dimetric: left-to-front edge EXACTLY +0.500 slope, front-to-right edge EXACTLY
+    -0.500; 26.565 degrees to horizontal, NOT standard 30-degree ground-edge isometric. Camera orthographic yaw45 pitch30, vertical columns vertical.
+    Thin gray brick flat ground pad, no thick plinth. No people, animals, modern objects, text, characters, labels, watermark, backdrop or new
+    props. This is a compact plain grain warehouse. Tall gray brick walls, one wooden wide double doorway partly open revealing sacks and small
+    crates. Keep no new objects outside. Footprint width/depth axis ratio NINE:SEVEN, left-to-front nine units and front-to-right seven units,
+    deep nearly-square. Clean outline with no floating artifacts above roof. Entire roof and all ground corners uncut.'
+  references:
+  - id: bld_kit_ming_north_warehouse_c01
+    path: /Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-d1625402-91d8-4206-b05d-a43c1a5f36d9.png
+    archived_path: assets/default/building-map/ming_north/sources/rejected/bld_kit_ming_north_warehouse_c01.png
+    sha256: 998cb83b2ee8fb8a2b7dfcda7601dddb56c3668b6f32c9f17703a82f513b8ef4
+    role: 编辑目标，校正硬山屋型、底面投影及透明边缘；原图已view_image
+    status: rejected
+  created: '2026-09-30T21:24:01.874Z'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-4111c382-024f-4080-a36f-7acdadd19a1f.png
+  file: bld_kit_ming_north_warehouse.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 576x512
+  sha256: f486abc6d0e0d6a308ee4ddb337562bd8613557eec33a151b4f121e3d2e28a89
+  status: candidate
+  building:
+    type: bld_kit_ming_north_warehouse
+    footprint:
+    - 9
+    - 7
+    anchor:
+    - 287.9465
+    - 341.1691
+    era: ming_north
+  footprint_m:
+  - 9
+  - 7
+  entrance:
+    edge: S
+    offset_cells: 4.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_warehouse.png
+  source_sha256: f6577e97ca85d1859258a052ab950921828062009b84529aab8c27ab9a97e2f1
+  meta: meta/bld_kit_ming_north_warehouse.yaml
+  notes: （原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: sources/bld_kit_ming_north_warehouse.json
+- id: bld_kit_ming_north_wharf
+  subject: 明代北方府城·河埠（原创扩展）
+  prompt: 'Use case: sketch-to-render. Turn this EXACT parallelogram into a thin paved Ming northern Chinese river landing stone platform. Keep the precise existing outer silhouette, composition and footprint at pixel positions
+    left168,472 rear568,272 right1368,672 front968,872 on this 1536x1024 canvas. The diagonals must stay exactly at +/-0.5 slope. DO NOT lengthen or narrow the shape. This is an 8 by 4 metre rectangle in 2:1 orthographic dimetric
+    projection. Add finely realistic weathered gray stone block paving entirely INSIDE the shape, very low single-course stone edging going UP from that outline by20pixels, a small low rectangular wooden loading deck on the
+    right HALF, two simple wooden mooring posts and two rope coils. No steps outside the outline. Preserve blank truly TRANSPARENT background, ZERO alpha throughout padding, no glow, halo or gradients anywhere outside the object,
+    OPAQUE material within object. Natural light upper-left and short contact shadow lower-right. Period realistic game map sprite detail, not icon, no outline drawing, no text, no numbers, no grid lines, no people, no river,
+    no boat, no scenery. Geometry of supplied silhouette must not change.'
+  references:
+  - file: assets/default/building-map/ming_north/sources/revision2/wharf-ground-guide.png
+    role: 精确底面几何输入；非成品替代
+    sha256: 906ef25be0e2b1f6d2b0232e693e818f93672effeed2b4256c07f4b68b3f5254
+  created: '2026-09-30T22:05:00.875896+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f44d-7517-7262-be86-045e8b9601cd/exec-d0f036d7-69b0-4201-b8d1-c476113a71c0.png
+  file: bld_kit_ming_north_wharf.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 448x256
+  sha256: 05be329eb32d98b5f77aee4635a22beff8a6e5e7240627436a7c2663af019f1b
+  status: candidate
+  building:
+    type: bld_kit_ming_north_wharf
+    footprint:
+    - 8
+    - 4
+    anchor:
+    - 223.3402
+    - 135.8072
+    era: ming_north
+  footprint_m:
+  - 8
+  - 4
+  entrance:
+    edge: S
+    offset_cells: 4.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_wharf.png
+  source_sha256: 4b1ba99a39736dbb048d8a9d1b4ad6f11e2ce4c7ac4458e1b07c21280ea90285
+  meta: meta/bld_kit_ming_north_wharf.yaml
+  notes: （原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: sources/bld_kit_ming_north_wharf.json
+  revision: 2
+- id: bld_kit_ming_north_yamen
+  subject: 明代北方府城：府县衙门（原创扩展）；具体构件断代（待考）。
+  prompt: 'Use case: sketch-to-render. Turn this EXACT parallelogram into a thin paved foundation supporting one Ming northern Chinese yamen government courtyard module. Keep the precise existing outer silhouette, composition
+    and footprint at pixel positions left168,570 rear705.9,301 right1368,632.1 front830.1,901 on this1536x1152canvas. The diagonals must stay exactly at+/-0.5 slope. DO NOT lengthen or narrow the shape. This is a16by13metre
+    rectangle in2:1orthographicdimetricprojection. Add finely realistic weatheredgraystone paving entirely INSIDE shape, build upwards within it. Entire three visible base corners remain visible. Central front wooden gate and
+    modest screen wall, greybrick enclosure, rear five-bay grey tiled official hall with darkred columns and subtle Ming beam painting, two small grey hard-gabled side wings, restrained anonymous northern government architecture.
+    Realistic hand-painted RPG map asset, detailed brickwork, tile seams, wooden doors, upper-left natural light. No people, text, signs, watermark, modern items. Background true transparent alpha0. Roof and all foundation corners
+    uncut with margin. Front wall MUST be parallel to template lower-left edge; right wall to template lower-right edge. Footprint geometry must be traced exactly from template.'
+  references:
+  - path: assets/default/building-map/ming_north/sources/repair-r2/bld_kit_ming_north_yamen/ming_b_yamen_solid.png
+    sha256: c8cf09e155272d9edd2164cdde1faf7197ecaee2e3384af9913d79e7666a0e36
+    role: 精确几何参考；已view_image；仅供image_gen重建
+  created: '2026-09-30T22:04:23.860249+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f44e-b649-7a50-bdbe-922ceb068cfc/exec-e077c7a6-6275-4872-8f57-ab7e3aa269b9.png
+  file: bld_kit_ming_north_yamen.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: image_gen
+  model: image_gen (underlying model undisclosed)
+  effort: not_exposed
+  size: 992x640
+  sha256: b1d24e097c96ddfd45621cea1ed6ed1d7664caca284b784d74653dc0f9a8e3ea
+  status: candidate
+  building:
+    type: bld_kit_ming_north_yamen
+    footprint:
+    - 16
+    - 13
+    anchor:
+    - 495.6154
+    - 363.428
+    era: ming_north
+  footprint_m:
+  - 16
+  - 13
+  entrance:
+    edge: S
+    offset_cells: 8.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/bld_kit_ming_north_yamen.png
+  source_sha256: bb69714bcd5ea77250b2fb45461e53557b677bc4eeb1ee75620c60522b719b20
+  meta: meta/bld_kit_ming_north_yamen.yaml
+  notes: （原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。
+  candidate_count: 2
+  selected_candidate: 1
+  source_record: sources/bld_kit_ming_north_yamen.json
+  revision: 2
+  repair_record: assets/default/building-map/ming_north/sources/repair-r2/bld_kit_ming_north_yamen/revision.json
+  revision3_attempt: assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_yamen/revision.json

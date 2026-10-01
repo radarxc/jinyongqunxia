@@ -1,0 +1,36 @@
+{
+  "id": "bld_kit_ming_north_pagoda",
+  "subject": "明代北方府城：北方密檐砖塔（原创扩展）；具体构件断代（待考）。",
+  "prompt": "Use case: sketch-to-render. Produce one photorealistic ancient Chinese map-building cutout in true transparent RGBA. Image1 is exact mandatory ground geometry; image2 is architecture/material/style reference only. Render the geometry from IMAGE1 exactly, do not rotate, reshape or deepen it. The front two outer ground edges MUST rise/run 1/2, absolute slope 0.500, parallel paving seams on same axes. Orthographic dimetric 2:1, yaw45, vertical edges stay vertical. The geometry template is just the support; render natural stone paving and architecture, remove drawn outlines. Fully opaque fine-grained gray masonry and clay tile texture matching image2; upper-left daylight, extremely short lower-right contact shadow. Full structure and support uncropped. No people, animals, labels, letters, watermarks, scenery or border. Vertical1024x1536. Add same six-storey tall octagonal gray-tan masonry Buddhist brick pagoda from image2 with fine repeated corbel brick courses, plain shallow brick-eaves ledges, recessed arched niches and stacked bronze finial. NO tiled pavilion roofs, NO curved roofs. Exact SQUARE7x7 metre support: left(176,1250),front(512,1418),right(848,1250),back(512,1082); both visible front slopes exactly±0.5. Tower centered at(512,1250); apex near y60. Preserve shape and architectural detailing of image2 but adapt the base to exact guide and lower camera to obey shallow ground slopes. This is a brick Buddhist tower, not a palace or wooden pavilion.",
+  "references": [{"file": "assets/default/building-map/ming_north/sources/r3/pagoda-geometry-guide.png", "role": "第3轮精确底面几何参照；仅供生成使用", "sha256": "b00aef4f634bc3c8a703c5c8159ae7da0888309d2a222ac1a9d23dbceb4969f7"}, {"file": "assets/default/building-map/ming_north/sources/r3/previous-ming_north-bld_kit_ming_north_pagoda.png", "role": "第3轮前成品形制与材质参考；不继承错误投影", "sha256": "cb2ee5275aa07e749203e9487b9b47cfc308b072dcc76cb3bc144f1a66af940a"}],
+  "created": "2026-09-30T22:36:20.486766+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f46f-5106-7221-a511-d72010d85121/exec-d2f934d5-4a26-45de-9a71-c1a3e08842eb.png",
+  "file": "bld_kit_ming_north_pagoda.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "No text, modern objects, people, scenery, opaque background, clipped roofs.",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "512x864",
+  "sha256": "582361fb32c0317913be77eb5574df2ec685c8f5cb69813d2a56d4f4febb15f0",
+  "status": "candidate",
+  "building": {"type": "bld_kit_ming_north_pagoda", "footprint": [7, 7], "anchor": [255.7175, 719.7658], "era": "ming_north"},
+  "footprint_m": [
+    7,
+    7
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 3.5
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_pagoda.png",
+  "source_sha256": "9d3901f8b2225bf940982ad9c818db9e66457ad9ab51547246577956ba1b0307",
+  "meta": "meta/bld_kit_ming_north_pagoda.yaml",
+  "notes": "（原创扩展）第3轮返修；底面两轴与宽深比例实测通过；仅裁切、等比缩放；拼接（待实测）。",
+  "revision": 3,
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "source_record": "sources/bld_kit_ming_north_pagoda.json"
+}

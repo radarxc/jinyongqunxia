@@ -1,0 +1,126 @@
+id: bld_kit_ming_north_wangfu
+footprint_m:
+- 22
+- 18
+footprint_basis: design/22 §3.4 明代对应骨架；本套件地域命名
+anchor_px:
+- 670.9408
+- 636.0356
+entrance:
+  edge: S
+  offset_cells: 11.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 22
+  - 0
+- - 22
+  - 18
+- - 0
+  - 18
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 165
+  - 587.18
+  F:
+  - 792.3654
+  - 913.41
+  R:
+  - 1310
+  - 644.24
+source_anchor_px:
+- 737.5
+- 615.71
+target_ground_span_px: 1280
+geometry:
+  crop_box:
+  - 159
+  - 64
+  - 1317
+  - 917
+  uniform_scale: 1.1179039301310043
+  scaled_size:
+  - 1295
+  - 954
+  canvas_size:
+  - 1344
+  - 992
+  paste_offset:
+  - 24
+  - 19
+  - 1319
+  - 973
+  raster_scales:
+  - 1.118307426597582
+  - 1.1184056271981242
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 657784
+  alpha_partial_pixels: 673989
+  alpha_opaque_pixels: 1475
+  alpha_bbox:
+  - 26
+  - 19
+  - 1317
+  - 971
+  rectangular_trim_removed_nonzero: 35
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.548623
+  - -0.543853
+  source_ratio_relative_error: 0.008376
+  geometry_warning: false
+  visual_review: 第3轮两候选选2；逐张view_image及放大底角检查。仅alpha裁去石铺外围，无变形补绘，柱脚/墙基完整；规范化成品底轴及占地比例通过。
+    修边只校正铺地外轮廓，内部砖缝/横梁未重投影；不等于完整3D投影验收。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+  final_axis_slopes:
+  - 0.520046
+  - -0.520046
+  raw_source_ratio_relative_error: 0.026154
+final_view_image_review: 第3轮两候选选2；逐张view_image及放大底角检查。仅alpha裁去石铺外围，无变形补绘，柱脚/墙基完整；规范化成品底轴及占地比例通过。
+  修边只校正铺地外轮廓，内部砖缝/横梁未重投影；不等于完整3D投影验收。
+source_sha256: 29587bdb3728a1e414571dbc319ece29f3326f286b9261eab65b546722525550
+sha256: e8181e5483a5507422d26fb8443bfafbb29d8f3a42b2ad64c1a626ca05b3b7b4
+raw_source_points_px:
+  L:
+  - 165
+  - 587.18
+  F:
+  - 787.23
+  - 928.55
+  R:
+  - 1310
+  - 644.24
+final_footprint_points_px:
+  L:
+  - 30.7098
+  - 604.1275
+  F:
+  - 732.2972
+  - 968.9849
+  R:
+  - 1311.1718
+  - 667.9437
+edge_trim:
+  nonzero_removed: 14802
+  alpha_mass_retained: 0.9805901240967175
+  max_trim_vertical_px: 17.82000000000005
+  cut_lines:
+  - - 0.52
+    - 501.37999999999994
+  - - -0.52
+    - 1325.44
+  coordinate_space: generated source pixels
+source_points_semantics: 修边后底面外缘；坐标仍按生成原图；raw_source_points_px保存裁前实测

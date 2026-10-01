@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_ming_north_wharf",
+  "subject": "明代北方府城·河埠（原创扩展）",
+  "footprint": [
+    8,
+    4
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44d-7517-7262-be86-045e8b9601cd/exec-d0f036d7-69b0-4201-b8d1-c476113a71c0.png",
+  "prompt": "Use case: sketch-to-render. Turn this EXACT parallelogram into a thin paved Ming northern Chinese river landing stone platform. Keep the precise existing outer silhouette, composition and footprint at pixel positions left168,472 rear568,272 right1368,672 front968,872 on this 1536x1024 canvas. The diagonals must stay exactly at +/-0.5 slope. DO NOT lengthen or narrow the shape. This is an 8 by 4 metre rectangle in 2:1 orthographic dimetric projection. Add finely realistic weathered gray stone block paving entirely INSIDE the shape, very low single-course stone edging going UP from that outline by20pixels, a small low rectangular wooden loading deck on the right HALF, two simple wooden mooring posts and two rope coils. No steps outside the outline. Preserve blank truly TRANSPARENT background, ZERO alpha throughout padding, no glow, halo or gradients anywhere outside the object, OPAQUE material within object. Natural light upper-left and short contact shadow lower-right. Period realistic game map sprite detail, not icon, no outline drawing, no text, no numbers, no grid lines, no people, no river, no boat, no scenery. Geometry of supplied silhouette must not change.",
+  "created": "2026-09-30T22:05:00.875896+00:00",
+  "references": [{"file": "assets/default/building-map/ming_north/sources/revision2/wharf-ground-guide.png", "role": "精确底面几何输入；非成品替代", "sha256": "906ef25be0e2b1f6d2b0232e693e818f93672effeed2b4256c07f4b68b3f5254"}],
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "points": {"L": [168, 475.6053982175033], "F": [955.3868471338841, 889.891645095529], "R": [1370, 686.2858770171301]},
+  "footprint_basis": "【建议值】沿宋大理wharf同功能8×4；design/22 §3.4未细分此项。",
+  "visual_review": "本轮已view_image原图及灰底合成；完整轮廓、左上光、北方灰砖/木石细节保留；源底边拟合斜率[0.52615, -0.49107]，宽深比例相对误差5.046%；不以目标值冒充实测。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "measurement_uncertainty_source_px": 2,
+  "source_size": [1536, 1024],
+  "source_sha256": "4b1ba99a39736dbb048d8a9d1b4ad6f11e2ce4c7ac4458e1b07c21280ea90285",
+  "tool": "built-in image_gen",
+  "model": "underlying model not disclosed",
+  "effort": "not exposed",
+  "final_view_image_review": "本轮成品已逐张view_image：完整轮廓、透明留白及灰砖木石纹理保留；几何残差以meta实测为准，未用非等比缩放。",
+  "revision": 2,
+  "previous_source_sha256": "dac812aa6bf415290ef6c7f17625bf7268b6092a3701dd67176a34261b9c1d56"
+}

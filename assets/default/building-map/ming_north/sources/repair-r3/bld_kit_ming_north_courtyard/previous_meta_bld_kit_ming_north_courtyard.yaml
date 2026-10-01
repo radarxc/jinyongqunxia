@@ -1,0 +1,88 @@
+id: bld_kit_ming_north_courtyard
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】design/22 §3.3 院落10×8。
+anchor_px:
+- 319.779
+- 252.8108
+entrance:
+  edge: S
+  offset_cells: 5.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 10
+  - 0
+- - 10
+  - 8
+- - 0
+  - 8
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 119
+  - 580.3254
+  F:
+  - 847.284
+  - 921.1527
+  R:
+  - 1423
+  - 624.7032
+source_anchor_px:
+- 771.0
+- 602.5143
+target_ground_span_px: 576
+geometry:
+  crop_box:
+  - 113
+  - 69
+  - 1430
+  - 931
+  uniform_scale: 0.44171779141104295
+  scaled_size:
+  - 582
+  - 381
+  canvas_size:
+  - 640
+  - 416
+  paste_offset:
+  - 29
+  - 17
+  - 611
+  - 398
+  raster_scales:
+  - 0.4419134396355353
+  - 0.4419953596287703
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 144250
+  alpha_partial_pixels: 121044
+  alpha_opaque_pixels: 946
+  alpha_bbox:
+  - 29
+  - 17
+  - 611
+  - 398
+  rectangular_trim_removed_nonzero: 56
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.46799
+  - -0.51492
+  source_ratio_relative_error: 0.012
+  geometry_warning: true
+  visual_review: 原目标、几何导引及所选原图均逐张view_image；灰砖硬山、灰瓦木窗、左上光、完整轮廓与透明留边。基脚实测+0.46799/-0.51492；比例1.26501，目标1.25000。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+source_sha256: 510c4b143bd77c8d99d50aa02dfe077ab32359b7c4dfc621b5083b000ceda0bc
+sha256: 583c6d6181d5c7865d704fee4274610997948d6008f35db4c2d1149f411c9f3e

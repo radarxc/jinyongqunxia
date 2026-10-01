@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_courtyard
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】design/22 §3.3 院落10×8。
+anchor_px:
+- 320.0
+- 294.9137
+entrance:
+  edge: S
+  offset_cells: 5.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 10
+  - 0
+- - 10
+  - 8
+- - 0
+  - 8
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 142
+  - 556.3381105322383
+  F:
+  - 830.0571185605237
+  - 914.9424384868591
+  R:
+  - 1389
+  - 620.2880044734096
+source_anchor_px:
+- 765.5
+- 588.313057502824
+target_ground_span_px: 576
+geometry:
+  crop_box:
+  - 133
+  - 88
+  - 1398
+  - 920
+  uniform_scale: 0.4619085805934242
+  scaled_size:
+  - 584
+  - 384
+  canvas_size:
+  - 640
+  - 512
+  paste_offset:
+  - 28
+  - 64
+  - 612
+  - 448
+  raster_scales:
+  - 0.4616600790513834
+  - 0.46153846153846156
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 199108
+  alpha_partial_pixels: 127654
+  alpha_opaque_pixels: 918
+  alpha_bbox:
+  - 28
+  - 64
+  - 612
+  - 448
+  rectangular_trim_removed_nonzero: 29
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.5211839515661909
+  - -0.5271637653826268
+  source_ratio_relative_error: 0.015202244939901632
+  geometry_warning: false
+  visual_review: 第3轮逐张view_image原目标、全部候选及成品；成品下缘拟合+0.52221/-0.52746，宽深比误差1.52%。
+  limitation: Visible ground-edge fit alpha>128; ground corners manually located; runtime
+    untested.
+final_view_image_review: 第3轮已逐张view_image规范化成品：主体与屋檐完整、留透明边；实测双轴和宽深比达阈值。未修改投影。
+source_sha256: 76bdadccb176a3b018f8c80f87c49f86c5f86c321ebe325431ac558474bbc277
+sha256: a986e4bde85d0e4b101e49a9f7e647b6caf6ca3023b0447ff636f08330ddc97a

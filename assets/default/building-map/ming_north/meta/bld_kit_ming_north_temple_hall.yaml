@@ -1,0 +1,88 @@
+id: bld_kit_ming_north_temple_hall
+footprint_m:
+- 14
+- 11
+footprint_basis: design/22 §3.4 明代对应骨架；本套件地域命名
+anchor_px:
+- 431.2054
+- 368.3704
+entrance:
+  edge: S
+  offset_cells: 7.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 14
+  - 0
+- - 14
+  - 11
+- - 0
+  - 11
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 93
+  - 559.9152248172089
+  F:
+  - 858.4741136036657
+  - 951.2884393116415
+  R:
+  - 1451
+  - 652.4253645501047
+source_anchor_px:
+- 772.0
+- 606.1702946836568
+target_ground_span_px: 800
+geometry:
+  crop_box:
+  - 86
+  - 34
+  - 1459
+  - 960
+  uniform_scale: 0.5891016200294551
+  scaled_size:
+  - 809
+  - 546
+  canvas_size:
+  - 864
+  - 608
+  paste_offset:
+  - 27
+  - 31
+  - 836
+  - 577
+  raster_scales:
+  - 0.5892206846321922
+  - 0.5896328293736501
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 298161
+  alpha_partial_pixels: 226190
+  alpha_opaque_pixels: 961
+  alpha_bbox:
+  - 28
+  - 31
+  - 835
+  - 576
+  rectangular_trim_removed_nonzero: 59
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.511282
+  - -0.504388
+  source_ratio_relative_error: 0.015051
+  geometry_warning: false
+  visual_review: 第3轮逐张view_image原图、灰底及成品；两轴斜率与宽深比例通过，保留北方灰砖、瓦木/砖塔风格；仅裁切和等比Lanczos缩放。
+  limitation: Visible base lower edges fitted at alpha>200; manual lateral corner x, hidden corner inferred; runtime untested.
+  final_visual_review: 第3轮已逐张view_image成品；两轴斜率与宽深比例通过，完整轮廓与透明留边可读。
+source_sha256: 1391b81b9424878f0b05bb4c3e75c4689020adf59789c3959d7c4ad873cc4c06
+sha256: def011b47369e5afc54689ee9da5394090ae023f88b9855ae50550fb4f6f82be

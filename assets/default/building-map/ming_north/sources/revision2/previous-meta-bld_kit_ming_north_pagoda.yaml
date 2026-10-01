@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_pagoda
+footprint_m:
+- 7
+- 7
+footprint_basis: 【建议值】design/22 §3.2 千寻塔占地7×7；不继承地标身份。
+anchor_px:
+- 259.3087
+- 1180.4329
+entrance:
+  edge: S
+  offset_cells: 3.5
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 7
+  - 0
+- - 7
+  - 7
+- - 0
+  - 7
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 394
+  - 1105
+  F:
+  - 604
+  - 1189
+  R:
+  - 815
+  - 1107
+source_anchor_px:
+- 604.5
+- 1106.0
+target_ground_span_px: 448
+geometry:
+  crop_box:
+  - 389
+  - 17
+  - 904
+  - 1209
+  uniform_scale: 1.0641330166270784
+  scaled_size:
+  - 548
+  - 1268
+  canvas_size:
+  - 608
+  - 1312
+  paste_offset:
+  - 30
+  - 22
+  - 578
+  - 1290
+  raster_scales:
+  - 1.0640776699029126
+  - 1.063758389261745
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 468220
+  alpha_partial_pixels: 329011
+  alpha_opaque_pixels: 465
+  alpha_bbox:
+  - 30
+  - 23
+  - 578
+  - 1290
+  rectangular_trim_removed_nonzero: 622
+  rectangular_trim_removed_max_alpha: 2
+  source_axis_slopes:
+  - 0.4
+  - -0.38863
+  source_ratio_relative_error: 0.00474
+  geometry_warning: true
+  visual_review: 原图已view_image：八角砖塔，无瓷瓦层楼顶；密檐间距仍偏大，塔式只作意象；底面偏扁，残差记录。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+  final_visual_review: 已逐张view_image成品：全轮廓与透明留边完整；底面、屋檐及缩放后细节可读；几何与形制限制仍见visual_review/meta。
+source_sha256: c451319662c56ac5953c0a06fbfe0546870b9fc429f4f027aa92f38e897528cf
+sha256: 34d654a464c32ac358d6a9b613e8bd7d2657b465dbf4bc290aa06936752cbefa

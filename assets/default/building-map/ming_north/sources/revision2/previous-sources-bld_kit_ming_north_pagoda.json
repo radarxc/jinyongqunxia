@@ -1,0 +1,45 @@
+{
+  "id": "bld_kit_ming_north_pagoda",
+  "subject": "明代北方府城：北方密檐砖塔（原创扩展）；具体构件断代（待考）。",
+  "footprint": [
+    7,
+    7
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82e-74c3-9466-90640f7d6631/exec-da362fb3-4cad-4375-b66d-5cfea4348d8b.png",
+  "prompt": "Use case: historical-scene. ONE isolated anonymous Ming northern Chinese OCTAGONAL DENSE-EAVES MASONRY PAGODA, complete tall tower, genuine transparent RGBA background. Style reference is the supplied Song-era masonry tower only for restrained fine weathered masonry and realistic visual finish; DO NOT copy its square plan. Subject MUST HAVE an octagonal solid brick shaft, one tall bottom story followed by NINE VERY CLOSELY SPACED thin corbelled BRICK ledges on its tapering upper shaft. No occupied full-height stories between these upper ledges. Thin ledges separated by only two or three brick courses, like a stepped tapering cone above the tall first story. NO ceramic tiled pavilion roofs, NO upward curved roof corners, NO timber brackets, NO repeated tall window floors. Grey-tan masonry, blind shallow niches only on lower shaft; narrow pointed metal finial, simple octagonal low masonry base on a thin SQUARE7m x7m foundation pad. Ming northern Buddhist motif, original compressed game design, not an exact named historic tower. Orthographic yaw45 elevation30, true2:1 dimetric ground diamond slopes+0.5/-0.5, straight verticals. Upper-left natural light, short soft shadow lower-right. Preserve full finial, base corners and10percent clear alpha0 margins; no ambient glow. No people, scenery, trees, text, labels, writing, glyphs, watermark, thick diorama base, solid backdrop or checkerboard. Camera fits vertical tower freely;2:1 describes ground not canvas.",
+  "references": [
+    {
+      "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_lm_ch01_chongshengsi_pagoda.png",
+      "role": "宋基线材质与细节密度参考；不继承年代",
+      "status": "candidate",
+      "sha256": "f2e0b6d9d38ee9f0c3316068352ae579e24f473d16cbed7d485e4c373f1361b5"
+    }
+  ],
+  "created": "2026-09-30T21:30:20.562Z",
+  "created_basis": "生成结果接收后的入库登记时间；服务端生成时刻未公开。",
+  "points": {
+    "L": [
+      394,
+      1105
+    ],
+    "F": [
+      604,
+      1189
+    ],
+    "R": [
+      815,
+      1107
+    ]
+  },
+  "footprint_basis": "【建议值】design/22 §3.2 千寻塔占地7×7；不继承地标身份。",
+  "visual_review": "原图已view_image：八角砖塔，无瓷瓦层楼顶；密檐间距仍偏大，塔式只作意象；底面偏扁，残差记录。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "selection_reason": "第二候选改善硬山端墙/寺殿进深/砖塔形态；几何残差仍保留。",
+  "original_size": [
+    1208,
+    1302
+  ],
+  "source_sha256": "c451319662c56ac5953c0a06fbfe0546870b9fc429f4f027aa92f38e897528cf",
+  "final_visual_review": "已逐张view_image成品：全轮廓与透明留边完整；底面、屋檐及缩放后细节可读；几何与形制限制仍见visual_review/meta。"
+}

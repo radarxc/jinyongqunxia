@@ -231,3 +231,46 @@ No people, animals, text, modern fittings, floor platform, haze, glow or checker
 已解决：第一轮六个硬体的轴向 / 比例告警通过第2轮逐张重出修复。当前木桥 `273×182`、葡萄架 `252×204`、直墙 `81×167` px；全部双轴进入 ±0.03 容差，最大比例误差 0.38%。两门、墙角及门孔量点见包内 `QA.md` 与 `source/round2/*-selected-qa.json`；历史 `geometry-qa.jsonl` 保留第一轮数据，胡杨不改。
 
 第2轮几何差异提示：只输入按登记占地构造的实心参考，要求“texture-only; trace ALL polygon boundaries; preserve exact camera and corners”；两门为直墩、平顶土墙与木楣（原创扩展），门孔保持透明。参考图只约束生成，成图仍独立量点。直墙 / 墙角沿用名义高3 m，源图实测缩放后墙高差0.335 px；完整接缝仍待总装。
+
+## 10. 明 · 北方套件 `ming_north`（2026-09-30）
+
+本节只记录本套件的美术差异，墙门契约仍见 `design/22` §4.3；7 张成品、完整实际提示词与来源在 `assets/default/tile/ming_north/manifest.yaml`。全部 `candidate`，只交已绘的单方向，不旋转 PNG 冒充四向。
+
+| 项 | 本套件取用与边界 |
+|---|---|
+| 年代 / 地域 | 明代北方府城意象；灰砖城垣、灰瓦门楼、克制朱木。不是北京、大同或西安任何一座具名城门的测绘复原 |
+| 城垣 | 北京明城墙采用两侧城砖、中填三合土的史实作为材质依据；贴片只呈现外露灰砖，内部结构不另绘 |
+| 城门 | 完整灰砖门墩、透空券洞、单檐灰瓦木楼；不用清式复杂角楼或金黄宫瓦。瓮城由布局拼墙，不画在门楼 footprint 外 |
+| 尺寸 | 净宽 `k=4/6`，外占地 `(k+4)×4=8×4/10×4`，通行孔 `k×4`，两侧各2格门墩；都是 `design/22` §4.3 的目标建议值，不是历史尺寸 |
+| 直墙 / 转角 | 沿宋基线同构逻辑占地 `1×1` / `2×2` **【建议值】**；3m 高为提示词目标。保留朴素平顶砖面，不把墙段画成带楼阁的整城 |
+| 桥 | 小河渠平石桥面 `3×5` 格，沿用宋小桥占地 **【建议值】**，灰石替换木板 **（原创扩展）**；本图不含水面与桥栏，适用无栏小平桥的静态拼图 |
+| 植物 | 国槐圆展冠、侧柏直立鳞叶冠，两者逻辑占地均 `3×3` 格 **【建议值】**；取北京乡土植物意象，具体明代栽植位置、树龄及树形 **（待考 / 原创扩展）** |
+
+在 §6 模板中使用以下差异段；实际每次输入以 manifest 的 `prompt` 为准：
+
+```text
+Ming dynasty northern Chinese prefectural town, restrained realistic game sprite.
+Grey city-brick facing, worn stone foot courses, weathered dark cinnabar timber,
+intact single-eave grey clay tile roof; no Qing corner-tower silhouette or yellow roof.
+Gate: footprint {K_PLUS_4}m by4m, piers2m each, clear through-passage{K}m by4m.
+True alpha0 through the gate; no doors, tunnel floor, opaque darkness or scenery.
+Barbican walls are separate layout parts; do not extend them beyond this footprint.
+Wall: plain flat-top thick grey brick cell/corner; no roof or projecting pedestal.
+Bridge: flat stone deck3m by5m, no water or rails baked into the deck sprite.
+Guohuai: rounded spreading crown and small compound leaves, one visible root anchor.
+Cebai: upright crown with tiny scale leaves in flat fans, not broadleaf foliage.
+Orthographic yaw45/elevation30, ground axes +/-0.5, upper-left light.
+Complete object on genuine transparent RGBA; no large soil platform or fake checkerboard.
+```
+
+宋参考图先 `view_image`，并作为实际输入登记哈希；转角及侧柏第二候选保留首候选编辑链信息。本次只用内置 `image_gen`，每图最多2候选。原图选中副本放 `source/`；`normalization-inputs.json` 记录提示词链和人工测量，`normalization.json` 记录裁框、等比缩放、像素锚与实测尺寸。
+
+几何处理只裁切、等比缩放和透明留边，不绘制新像素图形、不做仿射纠正。门墙桥按人工判读的源底面水平跨度 `L` 缩放，`scale=32×(w+h)/L`；植物按冠幅4m / 3m的 `256/192px` 目标缩放 **【建议值】**，逻辑占地不当作可见土地台。四周另加12px透明边。源 alpha `>4` 仅用于找裁框、再外扩4px，不阈值改写保留区域的 alpha；缩放由标准重采样完成。
+
+**限制与默认值：** 第2轮直墙、墙角底边已进入±0.03斜率容差，本轮逐字节保留。第3轮仅对双门及桥各重出2候选，均未通过，未用更差图替换原成品；6张失败候选与实测斜率存 `tile/ming_north/source/revision3/`，原成品测量仍见normalization.json。没有以裁切门体/桥体底角掩盖内部投影偏差。门洞净宽、门墩比例与墙件接缝尚未通过 `design/22` §9.3 的完整验收。人工像素锚不是测绘结果，不声称实现精确2:1或四向契约；默认供静态总装试贴，按试贴效果后补。两种植物逐字节保留，植物细部与年代栽植继续待考；侧柏选第二候选改善鳞叶可读性。保留 §9 全部既有待决条目。
+
+历史与植物来源（均访问于2026-09-30）：
+
+- [北京市文物局《明北京城城墙遗存》](https://wwj.beijing.gov.cn/bjww/362771/362779/dqpqgzdwwbhdw/523514/index.html)：取明城墙砖包外立面与三合土内芯，不套用现存城墙尺寸。
+- [北京市文物局《正阳门箭楼箭窗之谜》](https://wwj.beijing.gov.cn/bjww/362760/362770/623138/index.html)：取明正统四年修筑瓮城、箭楼与闸楼的体系；瓮城作为布局组件，不照抄现存箭窗与近代改建细部。
+- [北京市园林绿化局《适宜北京地区节水耐旱植物名录》](https://yllhj.beijing.gov.cn/zwgk/sjfb/mlxx/202204/t20220418_2679549.shtml)：核实国槐与侧柏适合北京地区；该现代名录不证明某一明代地点曾栽植。

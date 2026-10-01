@@ -1,0 +1,126 @@
+id: bld_kit_ming_north_casino
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】沿宋临安casino同功能10×8；design/22 §3.4未细分此项。
+anchor_px:
+- 319.4917
+- 340.1193
+entrance:
+  edge: S
+  offset_cells: 5.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 10
+  - 0
+- - 10
+  - 8
+- - 0
+  - 8
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 159
+  - 660.16
+  F:
+  - 794.2748
+  - 987.4071
+  R:
+  - 1292
+  - 728.59
+source_anchor_px:
+- 725.5
+- 694.375
+target_ground_span_px: 576
+geometry:
+  crop_box:
+  - 154
+  - 67
+  - 1299
+  - 991
+  uniform_scale: 0.5083848190644307
+  scaled_size:
+  - 582
+  - 470
+  canvas_size:
+  - 640
+  - 512
+  paste_offset:
+  - 29
+  - 21
+  - 611
+  - 491
+  raster_scales:
+  - 0.508296943231441
+  - 0.5086580086580087
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 171503
+  alpha_partial_pixels: 155185
+  alpha_opaque_pixels: 992
+  alpha_bbox:
+  - 29
+  - 21
+  - 611
+  - 491
+  rectangular_trim_removed_nonzero: 18
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.515121
+  - -0.536634
+  source_ratio_relative_error: 0.021085
+  geometry_warning: false
+  visual_review: 第3轮两候选选2；逐张view_image及放大底角检查。仅alpha裁去石铺外围，无变形补绘，柱脚/墙基完整；规范化成品底轴及占地比例通过。
+    修边只校正铺地外轮廓，内部砖缝/横梁未重投影；不等于完整3D投影验收。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+  final_axis_slopes:
+  - 0.515493
+  - -0.520369
+  raw_source_ratio_relative_error: 0.050362
+final_view_image_review: 第3轮两候选选2；逐张view_image及放大底角检查。仅alpha裁去石铺外围，无变形补绘，柱脚/墙基完整；规范化成品底轴及占地比例通过。
+  修边只校正铺地外轮廓，内部砖缝/横梁未重投影；不等于完整3D投影验收。
+source_sha256: e630674703339a26b7b6a93082fe67bb21eabb27da13c7290ee002a3a9d591e8
+sha256: 47e9637fb224bd0a425b3627029e7fecb2260ba7b529478eb6b122a9995db13c
+raw_source_points_px:
+  L:
+  - 159
+  - 660.16
+  F:
+  - 802.15
+  - 991.46
+  R:
+  - 1292
+  - 728.59
+final_footprint_points_px:
+  L:
+  - 31.5415
+  - 322.7156
+  F:
+  - 354.4497
+  - 489.1724
+  R:
+  - 607.4419
+  - 357.5231
+edge_trim:
+  nonzero_removed: 8342
+  alpha_mass_retained: 0.9938433784307613
+  max_trim_vertical_px: 9.529999999999973
+  cut_lines:
+  - - 0.5151269
+    - 578.2548228999999
+  - - -0.52
+    - 1400.43
+  coordinate_space: generated source pixels
+source_points_semantics: 修边后底面外缘；坐标仍按生成原图；raw_source_points_px保存裁前实测

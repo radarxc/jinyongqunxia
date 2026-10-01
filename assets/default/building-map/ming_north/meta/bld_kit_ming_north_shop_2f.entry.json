@@ -1,0 +1,54 @@
+{
+  "id": "bld_kit_ming_north_shop_2f",
+  "subject": "明代北方两层商铺，7×5格，灰砖硬山布货铺（原创扩展；细部待考）",
+  "prompt": "Use case: sketch-to-render. Add realistic materials and architecture details onto this EXACT locked geometric blockout. ONE Ming north China TWO STOREY cloth shop: grey brick hard-gable end walls, sober grey rounded clay roof tiles, brown timber front face, ground floor three open shop bays with unmarked folded cloth bundles, upper floor wooden lattice windows and narrow wooden balcony. Highly realistic painted antique strategy-game sprite, dense fine brick/tile/wood textures. Keep ALL geometry exactly as input: outer thin stone foundation polygon, camera, wall dimensions, 7wide by5deep ground rectangle; diagonals rise1 for run2. Front footprint edge1.4 times side footprint edge. This is MATERIALIZATION of a precisely modeled shape. Do NOT lengthen the frontage or shrink side wall. Keep foundation corners L208,690 F861,1017 R1328,783 B675,457 on1536x1152canvas. No thick base, stairs or props outside outline. Natural upper-left illumination. TRUE transparent RGBA background and margins, no ambient glow or color haze. No people, text, signs, watermark or modern objects.",
+  "references": [
+    {
+      "path": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_shop_2f/geometry-guide.png",
+      "sha256": "b6aa0efea577a0ec9b806cc2e094db68dfb395498a0717d8f4ee2bcc970e9141",
+      "role": "精确2:1体块几何参考；仅作image_gen输入；已view_image"
+    }
+  ],
+  "created": "2026-09-30T22:34:21.529817+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f46e-f804-7962-b399-b98ec1ba7a28/exec-9eac345a-88af-430c-809b-6068c1521f03.png",
+  "file": "bld_kit_ming_north_shop_2f.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "448x416",
+  "sha256": "ca0a78d68b91ffe2e063dc79d4dbff65a14c79003b5015c2fa4041ec27a7d97f",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_shop_2f",
+    "footprint": [
+      7,
+      5
+    ],
+    "anchor": [
+      223.868,
+      286.7726
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    7,
+    5
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 3.5
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_shop_2f.png",
+  "source_sha256": "509a49ab40e247f615565ad7abee31147a0042b57f7fc936b79f9bb94f4f8319",
+  "meta": "meta/bld_kit_ming_north_shop_2f.yaml",
+  "notes": "（原创扩展）第3轮原图底轴[0.536501, -0.548596]；成品底轴[0.520639, -0.520639]。仅alpha裁铺地外围，柱脚墙基完整；底面外轮廓通过，内部砖缝/横梁未重投影。仅原向单视图；拼接（待实测）。",
+  "candidate_count": 2,
+  "source_record": "sources/bld_kit_ming_north_shop_2f.json",
+  "selected_candidate": 2,
+  "revision": 3,
+  "repair_record": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_shop_2f/revision.json"
+}

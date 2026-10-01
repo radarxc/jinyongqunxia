@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_wharf
+footprint_m:
+- 8
+- 4
+footprint_basis: 【建议值】沿宋大理wharf同功能8×4；design/22 §3.4未细分此项。
+anchor_px:
+- 223.5361
+- 159.445
+entrance:
+  edge: S
+  offset_cells: 4.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 8
+  - 0
+- - 8
+  - 4
+- - 0
+  - 4
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 151
+  - 456
+  F:
+  - 1048
+  - 921
+  R:
+  - 1393
+  - 748
+source_anchor_px:
+- 772.0
+- 602.0
+target_ground_span_px: 384
+geometry:
+  crop_box:
+  - 143
+  - 170
+  - 1404
+  - 934
+  uniform_scale: 0.30917874396135264
+  scaled_size:
+  - 390
+  - 236
+  canvas_size:
+  - 448
+  - 288
+  paste_offset:
+  - 29
+  - 26
+  - 419
+  - 262
+  raster_scales:
+  - 0.30927835051546393
+  - 0.3089005235602094
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 87239
+  alpha_partial_pixels: 41064
+  alpha_opaque_pixels: 721
+  alpha_bbox:
+  - 29
+  - 26
+  - 419
+  - 262
+  rectangular_trim_removed_nonzero: 194
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.51839
+  - -0.50145
+  source_ratio_relative_error: 0.3
+  geometry_warning: true
+  visual_review: 已view_image候选1及2。选候选1：矩形石砌河埠、台阶、装卸木台与系缆桩，无水面船只人物文字；候选2虽减薄但前角切成梯形而淘汰。入选台基仍约3皮砌块，轴长比约2.6偏离2.0；保留几何warning与台高视觉待确认，不虚称合格。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+  final_view_image_review: 已逐张view_image规范化成品；主体完整、灰砖木构细节可读、透明边距保留；几何warning与单视图能力限制沿用。
+source_sha256: dac812aa6bf415290ef6c7f17625bf7268b6092a3701dd67176a34261b9c1d56
+sha256: 786570f691be8b115f694947961058b0efd451a8211a53f4a1752d6b6509e8af

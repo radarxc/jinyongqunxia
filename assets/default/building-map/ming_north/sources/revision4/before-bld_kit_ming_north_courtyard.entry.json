@@ -1,0 +1,61 @@
+{
+  "id": "bld_kit_ming_north_courtyard",
+  "subject": "明代北方府城：北方合院（原创扩展）；具体构件断代（待考）。",
+  "prompt": "Render ONE small northern Ming Chinese enclosed residential courtyard directly over this exact quadrilateral template. THREE grey-tile hard-gable single-storey wings, grey brick walls, central plain wood gate, restrained realistic ancient Chinese painted game art. Keep the template footprint pixel-perfect, do not zoom or enlarge: L200,610 F800,910 R1280,670 B680,370, canvas1536x1024. Base left-front edge runs600right300down; front-right runs480right240up. Both slopes ±0.5 EXACT. Build roofs and walls parallel to these edges, true orthographic dimetric2:1. This foundation is10x8m. Thin flagstone base, complete clearly visible outside perimeter corners. No step outside footprint. All roofs with flush masonry gable ends and restrained straight ridges. Soft upper-left illumination. True RGBA transparent background, opaque building. Full margins. NO perspective, text, people, guide lines, labels, modern elements, surrounding glow, scenery or thick plinth. Spatial accuracy takes precedence over extra detail. Keep the architecture low enough to avoid changing the template position.",
+  "references": [
+    {
+      "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "role": "宋基线材质与细节密度参考；不继承年代",
+      "status": "candidate",
+      "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef"
+    },
+    {
+      "path": "assets/default/building-map/ming_north/sources/bld_kit_ming_north_biaoju_r2_guide.png",
+      "sha256": "aab871381aa4442233798a076ce4bbe38f8a613e39630b906785e0b8a8c87271",
+      "role": "精确几何导引，仅作image_gen输入；最终图未经仿射纠偏"
+    }
+  ],
+  "created": "2026-09-30T22:10:19.277071+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44e-8603-7d32-a4a9-8c7789f39090/exec-9dc81fa6-843e-4d1a-a7f2-3c72c32c70b7.png",
+  "file": "bld_kit_ming_north_courtyard.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "No text, modern objects, people, scenery, opaque background, clipped roofs.",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "640x416",
+  "sha256": "583c6d6181d5c7865d704fee4274610997948d6008f35db4c2d1149f411c9f3e",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_courtyard",
+    "footprint": [
+      10,
+      8
+    ],
+    "anchor": [
+      319.779,
+      252.8108
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    10,
+    8
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 5.0
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_courtyard.png",
+  "source_sha256": "510c4b143bd77c8d99d50aa02dfe077ab32359b7c4dfc621b5083b000ceda0bc",
+  "meta": "meta/bld_kit_ming_north_courtyard.yaml",
+  "notes": "（原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。",
+  "source_record": "sources/bld_kit_ming_north_courtyard.json",
+  "revision": 2,
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "candidate_count_basis": "仅本轮 revision=2；前轮次数见 revision_history",
+  "repair_record": "sources/bld_kit_ming_north_courtyard_r2_candidates.json"
+}

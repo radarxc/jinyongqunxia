@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_restaurant
+footprint_m:
+- 12
+- 9
+footprint_basis: 【建议值】design/22 §3.3 宋南方酒楼茶肆12×9同功能占地；明骨架未列酒楼
+anchor_px:
+- 356.5469
+- 472.9797
+entrance:
+  edge: S
+  offset_cells: 6.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 12
+  - 0
+- - 12
+  - 9
+- - 0
+  - 9
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 93
+  - 869
+  F:
+  - 710
+  - 1183
+  R:
+  - 1197
+  - 935
+source_anchor_px:
+- 645.0
+- 902.0
+target_ground_span_px: 672
+geometry:
+  crop_box:
+  - 87
+  - 159
+  - 1239
+  - 1193
+  uniform_scale: 0.6086956521739131
+  scaled_size:
+  - 701
+  - 629
+  canvas_size:
+  - 736
+  - 672
+  paste_offset:
+  - 17
+  - 21
+  - 718
+  - 650
+  raster_scales:
+  - 0.6085069444444444
+  - 0.6083172147001934
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 227385
+  alpha_partial_pixels: 266138
+  alpha_opaque_pixels: 1069
+  alpha_bbox:
+  - 18
+  - 22
+  - 717
+  - 648
+  rectangular_trim_removed_nonzero: 41
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.50891
+  - -0.50924
+  source_ratio_relative_error: 0.04979
+  geometry_warning: false
+  visual_review: 两候选原图均经view_image；第二候选入选，灰砖硬山、上下三开间木格门和茶桌、二层栏杆，瓦木细节和宋风格密度一致，无人无字。左上受光、右下短接触影和轮廓完整。第二稿底面双轴+.509/-.509与宽深误差4.98%均通过手工点测建议容差；准确拼接与运行时仍待实测。
+    成品已单独view_image：缩放后材质清楚、屋檐/台基完整、透明留边保留；与原图保持同一比例。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+source_sha256: 37064736a8d3baa3ba67ed1d813d05fc32ddaf67ab6196af3991ed5fd80c2318
+sha256: fb141db5e8f46df2ed02b823721817cdcc89b4a40268c13a93aa46aedd1ee655

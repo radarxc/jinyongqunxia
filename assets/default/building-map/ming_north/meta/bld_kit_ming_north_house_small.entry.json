@@ -1,0 +1,60 @@
+{
+  "id": "bld_kit_ming_north_house_small",
+  "subject": "明代北方小民居，7×6格，青灰砖硬山灰瓦（原创扩展；细部待考）",
+  "prompt": "Convert this exact solid block into a THREE-bay northern Ming ordinary small house. Preserve exact footprint shape of the reference; DO NOT widen its front. Light front wall must have width560 pixels horizontally; dark side wall480pixels. Foundation corners on1536x1024: L200,610 F760,890 R1240,650 B680,370. Edges slopes+0.5/-0.5 exactly; nearly square7-by6m footprint. Add realistic finely detailed aged grey brick textures, central plain brown wood door flanked by two lattice windows, dark grey clay hard-gable pitched roof above box. Roof ridge parallel to frontage, masonry end gables flush with verge. One storey, modest northern Chinese architecture, small subdued finials. Thin grey flagstone apron and visible full L/F/R corners. Realistic hand-painted game building, fine brick and roof texture density; soft upper-left light, mild short right shadow. Exact geometry is critical. All ground axes parallel to box. Fully transparent RGBA exterior alpha0, solid building alpha255. No scenery, ambient glow, thick plinth, people, text, signs, guide marks, or any modern object. Complete asset with roomy margins.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+      "sha256": "0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7",
+      "role": "style only; reviewed with view_image before generation"
+    },
+    {
+      "path": "assets/default/building-map/ming_north/sources/bld_kit_ming_north_house_small_r2_guide.png",
+      "sha256": "9d45a5b01f1053dd5ea8e46cd07738493bbdfb72f9c4025e6f5470b12d8eb272",
+      "role": "精确几何导引，仅作image_gen输入；最终图未经仿射纠偏"
+    }
+  ],
+  "created": "2026-09-30T22:10:19.380570+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44e-8603-7d32-a4a9-8c7789f39090/exec-c2cda13e-3e23-4f49-b9fd-ad864b3f4279.png",
+  "file": "bld_kit_ming_north_house_small.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "No text, modern objects, people, scenery, opaque background, clipped roofs.",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "480x384",
+  "sha256": "09ac44e257d1168cde8864927e34762a9d1923e4c17375014a651512db0b45bd",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_house_small",
+    "footprint": [
+      7,
+      6
+    ],
+    "anchor": [
+      239.1127,
+      244.7754
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    7,
+    6
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 3.5
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_house_small.png",
+  "source_sha256": "98f7105d2ab64af69deaccd9e9bc835a6cf10c2aa8c88d0dba13358912c4ac5a",
+  "meta": "meta/bld_kit_ming_north_house_small.yaml",
+  "notes": "（原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。",
+  "source_record": "sources/bld_kit_ming_north_house_small.json",
+  "revision": 2,
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "candidate_count_basis": "仅本轮 revision=2；前轮次数见 revision_history",
+  "repair_record": "sources/bld_kit_ming_north_house_small_r2_candidates.json"
+}

@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_shop_1f
+footprint_m:
+- 7
+- 5
+footprint_basis: design/22 §3.4 bld_kit_ming_shop 7×5；同功能单层地域变体
+anchor_px:
+- 223.1451
+- 248.7607
+entrance:
+  edge: S
+  offset_cells: 3.5
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 7
+  - 0
+- - 7
+  - 5
+- - 0
+  - 5
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 114
+  - 779
+  F:
+  - 751
+  - 1110
+  R:
+  - 1196
+  - 879
+source_anchor_px:
+- 655.0
+- 829.0
+target_ground_span_px: 384
+geometry:
+  crop_box:
+  - 108
+  - 212
+  - 1204
+  - 1123
+  uniform_scale: 0.35489833641404805
+  scaled_size:
+  - 389
+  - 323
+  canvas_size:
+  - 448
+  - 384
+  paste_offset:
+  - 29
+  - 30
+  - 418
+  - 353
+  raster_scales:
+  - 0.35492700729927007
+  - 0.3545554335894621
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 101143
+  alpha_partial_pixels: 70095
+  alpha_opaque_pixels: 794
+  alpha_bbox:
+  - 29
+  - 30
+  - 418
+  - 353
+  rectangular_trim_removed_nonzero: 78
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.51962
+  - -0.5191
+  source_ratio_relative_error: 0.02247
+  geometry_warning: false
+  visual_review: 已view_image原图：灰砖、木铺面、灰瓦主硬山屋面，边檐仍有轻微翘势；短布檐、无字陶器布货；左上光，无遮挡底边，无人无字无现代物，四周透明余量完整。底面双轴+.520/-.519，宽深误差约2.25%，手工点测通过建议容差。
+    成品已单独view_image：缩放后材质清楚、屋檐/台基完整、透明留边保留；与原图保持同一比例。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+source_sha256: 49031cd1d168b41638181843d2e776eeeac1d43fec4276fc79f1899823b8ffb2
+sha256: c1fe042e47e1cca89aee99ff2b06a07eb8108ac277a906b76d7fd8b3f9f8f92c

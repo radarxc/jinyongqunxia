@@ -1,0 +1,44 @@
+{
+  "id": "bld_kit_ming_north_restaurant",
+  "subject": "明代北方酒楼茶肆，12×9格，灰砖硬山三开间二层楼（原创扩展；细部待考）",
+  "footprint": [
+    12,
+    9
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-183f-7ff3-a5e9-5a982695f883/exec-bdba7695-182c-4e88-83dd-b1f5a58cae40.png",
+  "prompt": "Use case: historical-scene. Asset type: tianshu default building-map, ONE isolated reusable game building cutout, true RGBA transparent background. Image 1 is a STYLE REFERENCE ONLY: match its realistic historical painted material quality, crisp detailed grey roof tiles, believable aged masonry and wood, natural muted colors and detail density. Do not copy its building or old camera inaccuracies. This is a new Ming-era northern Chinese prefectural-town building, original game design, NOT restoration of a named monument. Camera MUST be orthographic dimetric 2:1 ground projection, yaw 45 degrees elevation 30 degrees: ground edges exact +0.5 and -0.5 slopes, all verticals upright, no vanishing point. Main frontage faces screen lower left. Ground footprint must be a thin flat rectangular apron with clearly visible straight left-to-front and front-to-right edges, front base corner visible, no thick pedestal or surrounding street. Entire eaves, ground edge and short shadow fully inside square frame with 10 percent transparent margins. Sunlight screen upper left, short soft contact shadow screen lower right. Northern Ming hard-gable YINGSHAN roof: restrained straight ridge, grey clay concave and convex roof tiles, low subtle ridge terminals, solid masonry gable ends flush with verge eaves, not overhanging timber gables, EXPOSED GREY BRICK ALL walls, NO white or cream plaster, subdued dark timber lattice doors/windows; no Qing imperial decoration. No written characters, signboards, lettering, symbols, people, background scenery, sky, horizon, mountains, labels, watermark, checkerboard, opaque floor, exaggerated curved eaves, cartoon or toy-like stylization. Generate exactly ONE asset. Subject: ONE northern Ming two-storey restaurant / tea-house module, footprint12m by9m, compact rectangular prosperous but restrained grey-brick public house. Ground level has wide open timber lattice doors revealing wooden tables, benches, unlabeled ceramic wine jars and tea kettle just inside; upper level modest open timber balcony with a few empty tables. Northern hard-gable grey clay tile roof, solid grey-brick gable side, no white plaster, no imperial decorative colors. One small plain unlettered hanging cloth at doorway only if no text-like markings; better leave it blank or omit. No inn yard or hitching post. The thin ground apron must have left-to-front and front-to-right edges exact slope+.5 and-.5 and horizontal span ratio12:9. Straight vertical supports, orthographic yaw45 pitch30; projected floor-edge angle26.565 degrees. Reference must NOT dictate roof silhouette: proper NORTH CHINESE YINGSHAN hard-gabled roofs, flush grey-brick triangular gable walls rising to ridge at both ends, NO overhanging eaves at gable ends, no upward-curled corner tips. Entire building plus short shadow fully inside generous transparent border. No people, labels or scenery. Precise projection refinement: left-to-front ground edge runs right600px and DOWN300px, exactly a1:2 slope. Front-to-right ground edge runs right450px and UP225px. A12:9 footprint should produce a symmetrical camera, not a steep left edge. Keep ground plane shallow and broad, no thick foundation sides. Main building has THREE door bays on ground and THREE open balcony dining bays above, not five, allowing a compact northern public house with visible deep right side. Roof hard-gable with NO ridge-tip curl or overhanging gable eaves. Short shadow only.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+      "sha256": "0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7",
+      "role": "style only; viewed before generation"
+    }
+  ],
+  "created": "2026-09-30T21:24:50Z",
+  "created_time_basis": "接收后登记时间",
+  "points": {
+    "L": [
+      93,
+      869
+    ],
+    "F": [
+      710,
+      1183
+    ],
+    "R": [
+      1197,
+      935
+    ]
+  },
+  "footprint_basis": "【建议值】design/22 §3.3 宋南方酒楼茶肆12×9同功能占地；明骨架未列酒楼",
+  "visual_review": "两候选原图均经view_image；第二候选入选，灰砖硬山、上下三开间木格门和茶桌、二层栏杆，瓦木细节和宋风格密度一致，无人无字。左上受光、右下短接触影和轮廓完整。第二稿底面双轴+.509/-.509与宽深误差4.98%均通过手工点测建议容差；准确拼接与运行时仍待实测。 成品已单独view_image：缩放后材质清楚、屋檐/台基完整、透明留边保留；与原图保持同一比例。",
+  "candidate_count": 2,
+  "rejected_candidate": {
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-183f-7ff3-a5e9-5a982695f883/exec-32544a37-adbe-4edb-8771-20a4e5ea4a8a.png",
+    "prompt": "Use case: historical-scene. Asset type: tianshu default building-map, ONE isolated reusable game building cutout, true RGBA transparent background. Image 1 is a STYLE REFERENCE ONLY: match its realistic historical painted material quality, crisp detailed grey roof tiles, believable aged masonry and wood, natural muted colors and detail density. Do not copy its building or old camera inaccuracies. This is a new Ming-era northern Chinese prefectural-town building, original game design, NOT restoration of a named monument. Camera MUST be orthographic dimetric 2:1 ground projection, yaw 45 degrees elevation 30 degrees: ground edges exact +0.5 and -0.5 slopes, all verticals upright, no vanishing point. Main frontage faces screen lower left. Ground footprint must be a thin flat rectangular apron with clearly visible straight left-to-front and front-to-right edges, front base corner visible, no thick pedestal or surrounding street. Entire eaves, ground edge and short shadow fully inside square frame with 10 percent transparent margins. Sunlight screen upper left, short soft contact shadow screen lower right. Northern Ming hard-gable YINGSHAN roof: restrained straight ridge, grey clay concave and convex roof tiles, low subtle ridge terminals, solid masonry gable ends flush with verge eaves, not overhanging timber gables, EXPOSED GREY BRICK ALL walls, NO white or cream plaster, subdued dark timber lattice doors/windows; no Qing imperial decoration. No written characters, signboards, lettering, symbols, people, background scenery, sky, horizon, mountains, labels, watermark, checkerboard, opaque floor, exaggerated curved eaves, cartoon or toy-like stylization. Generate exactly ONE asset. Subject: ONE northern Ming two-storey restaurant / tea-house module, footprint12m by9m, compact rectangular prosperous but restrained grey-brick public house. Ground level has wide open timber lattice doors revealing wooden tables, benches, unlabeled ceramic wine jars and tea kettle just inside; upper level modest open timber balcony with a few empty tables. Northern hard-gable grey clay tile roof, solid grey-brick gable side, no white plaster, no imperial decorative colors. One small plain unlettered hanging cloth at doorway only if no text-like markings; better leave it blank or omit. No inn yard or hitching post. The thin ground apron must have left-to-front and front-to-right edges exact slope+.5 and-.5 and horizontal span ratio12:9. Straight vertical supports, orthographic yaw45 pitch30; projected floor-edge angle26.565 degrees. Reference must NOT dictate roof silhouette: proper NORTH CHINESE YINGSHAN hard-gabled roofs, flush grey-brick triangular gable walls rising to ridge at both ends, NO overhanging eaves at gable ends, no upward-curled corner tips. Entire building plus short shadow fully inside generous transparent border. No people, labels or scenery.",
+    "reason": "首稿左轴约+.557超建议容差；第二稿地面双轴改善"
+  },
+  "final_view_image_reviewed": true,
+  "measurement_uncertainty_source_px": 3,
+  "source_point_semantics": "人工读取薄地面铺装外缘L/F/R，不含投影影子；后角依平行四边形推定，中心为(L+R)/2。"
+}

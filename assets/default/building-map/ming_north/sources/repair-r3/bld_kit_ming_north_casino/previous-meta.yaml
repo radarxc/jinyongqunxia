@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_casino
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】沿宋临安casino同功能10×8；design/22 §3.4未细分此项。
+anchor_px:
+- 319.0134
+- 333.3252
+entrance:
+  edge: S
+  offset_cells: 5.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 10
+  - 0
+- - 10
+  - 8
+- - 0
+  - 8
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 147
+  - 639
+  F:
+  - 851
+  - 1033
+  R:
+  - 1331
+  - 774
+source_anchor_px:
+- 739.0
+- 706.5
+target_ground_span_px: 576
+geometry:
+  crop_box:
+  - 141
+  - 54
+  - 1339
+  - 1041
+  uniform_scale: 0.4864864864864865
+  scaled_size:
+  - 583
+  - 480
+  canvas_size:
+  - 640
+  - 512
+  paste_offset:
+  - 28
+  - 16
+  - 611
+  - 496
+  raster_scales:
+  - 0.48664440734557596
+  - 0.48632218844984804
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 173167
+  alpha_partial_pixels: 153512
+  alpha_opaque_pixels: 1001
+  alpha_bbox:
+  - 28
+  - 16
+  - 610
+  - 495
+  rectangular_trim_removed_nonzero: 155
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.55966
+  - -0.53958
+  source_ratio_relative_error: 0.17333
+  geometry_warning: true
+  visual_review: 本轮两候选已逐张view_image；选择候选1保留原木赌桌、筹码与灰砖硬山，避免候选2绿桌面的时代风格漂移；主体及底角完整、RGBA透明，几何仍有实测残差且未通过严格审核。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+final_view_image_review: 第2轮已逐张view_image规范化成品：轮廓及底面完整，透明留边，左上光向、纹理密度可读；几何仍有已登记残差，尚不通过严格审核。
+source_sha256: 0d416d69fcdda64b9781c9ad51a1260119515128aee51e6410e02d002193f77e
+sha256: c442d81761af34c4fe16ae86fd53eb0b36b4932152fff686b0476c8c85f86798

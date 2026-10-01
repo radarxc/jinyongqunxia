@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_manor
+footprint_m:
+- 16
+- 13
+footprint_basis: 【建议值】design/22 §3.3 山庄16×13。
+anchor_px:
+- 495.5
+- 387.5848
+entrance:
+  edge: S
+  offset_cells: 8.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 16
+  - 0
+- - 16
+  - 13
+- - 0
+  - 13
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 66
+  - 614
+  F:
+  - 804.5
+  - 1014
+  R:
+  - 1393
+  - 663
+source_anchor_px:
+- 729.5
+- 638.5
+target_ground_span_px: 928
+geometry:
+  crop_box:
+  - 58
+  - 107
+  - 1401
+  - 1021
+  uniform_scale: 0.6993217784476262
+  scaled_size:
+  - 939
+  - 639
+  canvas_size:
+  - 992
+  - 672
+  paste_offset:
+  - 26
+  - 16
+  - 965
+  - 655
+  raster_scales:
+  - 0.699180938198064
+  - 0.6991247264770241
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 339168
+  alpha_partial_pixels: 326647
+  alpha_opaque_pixels: 809
+  alpha_bbox:
+  - 28
+  - 18
+  - 963
+  - 655
+  rectangular_trim_removed_nonzero: 59
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.54164
+  - -0.59643
+  source_ratio_relative_error: 0.01959
+  geometry_warning: true
+  visual_review: 第2轮逐张view_image两候选，选本轮整体较优图；主体、底角完整，RGBA透明，光源左上。实测斜率与宽深比见repair-r2记录，仍未同时达到审核几何阈值，保留candidate；未做仿射或透视纠偏。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+final_view_image_review: 第2轮已逐张view_image规范化成品：轮廓及底面完整，透明留边，左上光向、纹理密度可读；几何仍有已登记残差，尚不通过严格审核。
+source_sha256: aac2d0fdc33016924d1ebcbfcec8d526839a8f3cddb3060684ad5fe44bfd1c0e
+sha256: 9b3dddce9747f588e7c0f7841bb5001b5f9828df237bd6af1b5c67872d4f1c53
