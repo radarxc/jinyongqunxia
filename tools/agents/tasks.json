@@ -28180,6 +28180,504 @@
     "pnpm-lock.yaml",
     "package.json"
    ]
+  },
+  {
+   "id": "ENG-02-models",
+   "title": "游戏工程 · 数据层（人物 / 物品 / 剧情 DAG / 事件 / 时间 schema 与核心状态）",
+   "phase": "PROD",
+   "wave": 12,
+   "kind": "draft",
+   "prompt": "ENG-models.md",
+   "deps": [
+    "ENG-00-scaffold",
+    "DES-qi",
+    "DES-story-dag"
+   ],
+   "review": false,
+   "web": true,
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "writes": [
+    "packages/data/**",
+    "packages/core/**",
+    "packages/shared/**",
+    "content/**",
+    "pnpm-lock.yaml",
+    "package.json"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "packages/data/src/index.ts",
+     "content/story/ch01/01-tianlong-main.yaml"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-03-qi-runtime",
+   "title": "游戏工程 · 经脉运气运行时（产气 / 运气推进 / 通量 / 行动槽 / 聚气 / 完整运气加成 / 周天锻炼 / 药材强化）",
+   "phase": "PROD",
+   "wave": 12,
+   "kind": "draft",
+   "prompt": "ENG-qi-runtime.md",
+   "deps": [
+    "ENG-02-models"
+   ],
+   "review": false,
+   "web": true,
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "writes": [
+    "packages/core/**",
+    "pnpm-lock.yaml"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-04-combat-core",
+   "title": "游戏工程 · 战斗核心（速度条六角、攻击位置、外放抵消、透劲入体、打穴、负面效果、自动战斗、战斗设置）",
+   "phase": "PROD",
+   "wave": 12,
+   "kind": "draft",
+   "prompt": "ENG-combat-core.md",
+   "deps": [
+    "ENG-03-qi-runtime",
+    "DES-combat"
+   ],
+   "review": false,
+   "web": true,
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "writes": [
+    "packages/core/**",
+    "pnpm-lock.yaml"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-05-story-time",
+   "title": "游戏工程 · 剧情 DAG 运行时、时间推进与事件锚点",
+   "phase": "PROD",
+   "wave": 12,
+   "kind": "draft",
+   "prompt": "ENG-story-time.md",
+   "deps": [
+    "ENG-02-models"
+   ],
+   "review": false,
+   "web": true,
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "writes": [
+    "packages/core/**",
+    "content/**",
+    "pnpm-lock.yaml",
+    "package.json"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-06-items-world",
+   "title": "游戏工程 · 物品运行时（物品栏 / 装备 / 全局物品与藏品 / 店铺供货 / 药材强化 / 制式盔甲通缉）",
+   "phase": "PROD",
+   "wave": 12,
+   "kind": "draft",
+   "prompt": "ENG-items-world.md",
+   "deps": [
+    "ENG-03-qi-runtime",
+    "DES-items-plus"
+   ],
+   "review": false,
+   "web": true,
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "writes": [
+    "packages/core/**",
+    "content/**",
+    "tools/content/**",
+    "pnpm-lock.yaml"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/content/items_from_catalog.py"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/content/items_from_catalog.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-07-ui-panels",
+   "title": "游戏工程 · 交互页面（控制面板 / 人物卡片收集 / 物品栏 / 存档）",
+   "phase": "PROD",
+   "wave": 12,
+   "kind": "draft",
+   "prompt": "ENG-ui-panels.md",
+   "deps": [
+    "ENG-01-storage",
+    "ENG-02-models",
+    "ENG-06-items-world"
+   ],
+   "review": false,
+   "web": true,
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "writes": [
+    "apps/web/**",
+    "packages/platform/**",
+    "pnpm-lock.yaml",
+    "package.json"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/web",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-08-worldmap",
+   "title": "游戏工程 · 大地图（城镇间行走 / 野外遗迹进入 / 城镇进入）",
+   "phase": "PROD",
+   "wave": 12,
+   "kind": "draft",
+   "prompt": "ENG-worldmap.md",
+   "deps": [
+    "ENG-07-ui-panels",
+    "ENG-05-story-time"
+   ],
+   "review": false,
+   "web": true,
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "writes": [
+    "packages/render/**",
+    "apps/web/**",
+    "content/**",
+    "tools/content/**",
+    "pnpm-lock.yaml"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/web",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "full_checkout": true
+  },
+  {
+   "id": "ENG-09-town-scene",
+   "title": "游戏工程 · 城镇小地图（three.js 高低起伏 / 建筑直接进入半透明 / NPC 与位置锚点 / 打坐被袭岔气）",
+   "phase": "PROD",
+   "wave": 12,
+   "kind": "draft",
+   "prompt": "ENG-town-scene.md",
+   "deps": [
+    "ENG-08-worldmap",
+    "ENG-04-combat-core",
+    "ENG-06-items-world"
+   ],
+   "review": false,
+   "web": true,
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "writes": [
+    "packages/render/**",
+    "apps/web/**",
+    "content/**",
+    "tools/content/**",
+    "pnpm-lock.yaml"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/content/town_runtime.py"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/web",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/content/town_runtime.py",
+      "--check",
+      "content/town"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "full_checkout": true
+  },
+  {
+   "id": "ENG-10-battle-ui",
+   "title": "游戏工程 · 战斗界面（六角战旗 / 速度条 / 行动与聚气 / 范围预览 / 自动战斗 / 提示文案）",
+   "phase": "PROD",
+   "wave": 12,
+   "kind": "draft",
+   "prompt": "ENG-battle-ui.md",
+   "deps": [
+    "ENG-04-combat-core",
+    "ENG-07-ui-panels"
+   ],
+   "review": false,
+   "web": true,
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "writes": [
+    "apps/web/**",
+    "packages/render/**",
+    "pnpm-lock.yaml"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/web",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-11-vfx",
+   "title": "游戏工程 · 动效层（招式特效接入战斗界面）",
+   "phase": "PROD",
+   "wave": 12,
+   "kind": "draft",
+   "prompt": "ENG-vfx.md",
+   "deps": [
+    "ENG-10-battle-ui"
+   ],
+   "review": false,
+   "web": true,
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "writes": [
+    "packages/render/**",
+    "apps/web/**",
+    "content/**",
+    "tools/vfx/**",
+    "pnpm-lock.yaml"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/vfx/export_bindings.py"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/web",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/vfx/export_bindings.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "full_checkout": true
   }
  ]
 }
