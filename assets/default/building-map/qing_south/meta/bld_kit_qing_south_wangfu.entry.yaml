@@ -1,1 +1,67 @@
-{"id": "bld_kit_qing_south_wangfu", "file": "bld_kit_qing_south_wangfu.png", "category": "building-map", "style": "default", "subject": "清初至清中江南王府殿院模块（原创扩展；具体等级细部待考）", "prompt": "Sketch-to-render this blockout as a Qing Jiangnan princely residence compound city-map sprite. Same exact orthographic camera, ground shape and building positioning as provided. Final ground axes slope +0.500/-0.500, footprint22x18 ratio22:18. Rear ceremonial residential hall with muted vermilion columns and restrained teal-gold beam paint beneath charcoal gray clay tile roof, side galleries, off-white walls, dignified carved gray stone central front gate facing lower-left. A few modest potted plants inside courtyard only. Render full realistic pitched gray roofs, detailed weathered roof tiles wood stone plaster with fine old Chinese map sprite texture, muted warm neutral palette, no cartoon or fantasy. Thin flat flagstone pad with three straight clear outer corners, steps stay inside footprint. Keep parallel eaves and foundation axes matching the supplied blockout. Avoid camera perspective, avoid common steeper isometric. Full roof and footprint not cropped. Transparent RGBA background outside; upper-left lighting and tiny lower-right contact shadow. No thick pedestal, yellow imperial roofs, text, people, signs, watermarks, modern objects.", "negative": "文字、水印、现代物、人物、假透明、厚底座、天空背景、透视汇聚、满铺金彩", "references": [{"file": "assets/default/building-map/qing_south/review2/buildings_b/wangfu.mid-block.png", "sha256": "12118e44a526a76f3113f8bd53a30bccc1bafb4b3fc28130989ee61b15e99645", "role": "本轮图生图几何块体/平面引导；非成品拼贴"}], "tool": "built-in image_gen", "model": "image_gen (underlying model not disclosed)", "effort": "not exposed by image tool", "created": "2026-09-30T22:12:32.676200+00:00", "created_time_basis": "本轮源PNG mtime（copy2保留）；非服务端时间", "source_path": "/Users/bytedance/.codex/generated_images/01a0f450-5169-7ad2-87a6-dab5c8b3cb31/exec-c8ec2303-528b-4691-a72b-98fa88f93118.png", "size": "1632x1216", "sha256": "68b8fb8af6c334bae84dc6918711b750ccd72c266dcb60b8b2475f65718aa1b1", "status": "candidate", "building": {"type": "bld_kit_qing_south_wangfu", "footprint": [22, 18], "anchor": [871.3858, 658.1031], "era": "qing_south"}, "footprint_m": [22, 18], "footprint_source": "design/22 §3.4 bld_kit_qing_early_wangfu", "entrance": {"edge": "S", "offset_cells": 11.0}, "projection_contract": {"tile_px": [64, 32], "ground_bbox_px": [1280, 640], "ground_width_px": 1280, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only"}, "metadata": "meta/bld_kit_qing_south_wangfu.yaml", "source_record": "review2/buildings_b/wangfu.source.json", "source_sha256": "95aca3bbe4ddfbfa1a0c203ff2a349d84b1d3ab69917395ed1917449a9bdf4bd", "candidate_count": 2, "selected_candidate": 2, "geometry_qa": {"source_corners_px": {"left": [121, 557], "front": [849, 925], "right": [1449, 619]}, "source_axis_slopes": [0.5054945054945055, -0.51], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.2133333333333334, "expected_width_depth_ratio": 1.2222222222222223, "ratio_relative_error": 0.0072727272727273196, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "precision_note": "view_image原尺寸逐图人工读取可见薄石坪上表面外角；非提示词目标点；隐藏后角由平行四边形推算，±5源px。"}, "notes": "返修第2轮逐张view_image；本轮2候选选第2；灰瓦白墙木石质感与宋基线接近，完整无字无人。双轴及占地宽深比实测均在登记容差内。"}
+id: bld_kit_qing_south_wangfu
+file: bld_kit_qing_south_wangfu.png
+category: building-map
+style: default
+subject: 清初至清中江南王府殿院模块（原创扩展；具体等级细部待考）
+prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+  shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a large 22 by 18 cell regional princely residence adapted to Jiangnan materials. Preserve deep axial sequence of gate, courts, principal five-bay hall and side ranges. Status shown by larger dressed-stone platform, red-brown main columns, restrained hip-and-gable principal roof with grey tiles, small ridge-end ornaments and a few sober non-imperial ridge figures; secondary roofs hard-gabled. Two-step bracket sets under main eaves, simpler supports elsewhere. White lime and blue-grey brick enclosure, dark lattice
+  screens, restrained Su-style beam painting in faded mineral green/red only. No Forbidden-City yellow roof, dragon motifs or vast plaza.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+references:
+- file: assets/default/building-map/qing_south/review2/buildings_b/wangfu.guide.png
+  sha256: c33f0311bbcbf64c73be352c5a5e9ba51a67f7f41850c2b5bbf532a37872a161
+  role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Entrance_and_yard_of_a_yamen.jpg?width=1600
+  sha256: 6ea99763a8b809f1d0ab9320299a598bac2fea3fb98024cd07a68bb2ae78d316
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+  sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:24:02.612585+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_path: history/selected-sources/wangfu.png
+size: 1632x1216
+sha256: 55608aa0b0d4c74dbbea09d5301f582a66e03052063705cf89c8129f8d098ca3
+status: candidate
+building:
+  type: bld_kit_qing_south_wangfu
+  footprint:
+  - 22
+  - 18
+  anchor:
+  - 871.3858
+  - 658.1031
+  era: qing_south
+footprint_m:
+- 22
+- 18
+footprint_source: design/22 §3.4 bld_kit_qing_early_wangfu
+entrance:
+  edge: S
+  offset_cells: 11.0
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 1280
+  - 640
+  ground_width_px: 1280
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_qing_south_wangfu.yaml
+source_record: history/records/wangfu.yaml
+source_sha256: 3577a5025e4ef971325b59ea1e3e51449d4c4b8e0e552e6e4c6bf96ce340c4bd
+candidate_count: 1
+selected_candidate: 1
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+notes: 2026-10-01 历史图片输入重出：轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。

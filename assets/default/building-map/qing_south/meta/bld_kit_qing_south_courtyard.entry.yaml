@@ -3,54 +3,64 @@ file: bld_kit_qing_south_courtyard.png
 category: building-map
 style: default
 subject: 清初至清中江南·院落（匿名原创组合，细部待考）
-prompt: Paint a realistic Qing Jiangnan courtyard residence ON this exact ground mesh. Keep the full diamond outline at its existing exact four corners and slopes.
-  This is a 10 by8 rectangular plot viewed in orthographic 2:1 dimetric projection, slopes +0.5 and -0.5. The mesh divisions are 1m each. Replace the mesh with thin
-  stone paving, and build perimeter white walls directly following outer boundary. Add three modest one-storey grey-tiled wooden residential halls around small open
-  stone-paved court; front small gate in lower-left-facing wall. White limewashed masonry, grey plain clay tiles, dark weathered wood lattice, restrained higher fire
-  walls, detailed realistic old matte textures, no thick platform. MATCH the mesh geometry in the input exactly; do not draw a new plot with different shape. All
-  ground corners and edges visible. Warm light from upper left, soft short shadow right. Transparent outside plot. No text or outline or grid marks remain. Full complete
-  building sprite, no people, no scenery, no logos. Building walls and roof opaque, genuine RGBA backdrop.
-negative: 文字、人物、现代物件、实底背景、厚底台、裁切、强透视、金黄屋顶泛化
+prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+  shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a compact 10 by 8 cell Jiangnan domestic courtyard compound. Preserve the guide courtyard void and exact perimeter masses. One three-bay main hall and lower side wings around a small stone-paved inner court, with a modest south gate. All roofs are low-lift hard-gable grey-tile roofs with plain ridges; simple one-step bracket and beam ends, white limewashed gable walls above blue-grey brick foot courses, dark timber column rhythm, straight geometric lattice screens, thin stone thresholds. Add a restrained clear-brick
+  gate surround inspired by Suzhou houses, no garden scenery.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
 references:
-- {file: assets/default/building-map/qing_south/review2/courtyard_gridguide.png, sha256: bf6ab9db1dc74e01075bd6985b8bf0294b7d7036c47ec2fbb1726cfc3d4622d9, role: 本轮生成输入：正交几何引导图；不参与成品合成}
-tool: built-in image_gen
-model: image_gen (underlying model not disclosed)
-effort: not exposed by image tool
-created: '2026-09-30T22:04:45.845713+00:00'
-created_time_basis: copy2保留源PNG mtime，非服务端生成时间回执
-source_path: /Users/bytedance/.codex/generated_images/01a0f450-2399-77a1-9948-02b42503786e/exec-54dd5052-a39e-49cf-832a-bbfd0e0604e8.png
-source_sha256: 88c77afc3194ec95ee9e32764f9533300bcd83222c0e9e68ade29259f678b60a
-size: 800x640
-sha256: 5cf65c0c8e880be839d7427c4a27926560b6995e127a6a8697a0340f8da6020f
+- file: assets/default/building-map/qing_south/review3/houses/courtyard.guide.png
+  sha256: fe6596014340b2269a7a8a55780a628f0b98613f1d1002cf544573ff9a3ce1d0
+  role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+  sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Master_of_Nets_Garden_1.jpg?width=1600
+  sha256: cd5e0d1ad8b84c7525418996b1808dadbe8b78bce7cca58c151a0a5fe69774f9
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:24:01.485582+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_path: history/selected-sources/courtyard.png
+source_sha256: 340b3e0404d4bc496711486ee45549039bada5483c0c5d4e6f563aace2e313dd
+size: 672x512
+sha256: 18b5e8f7d0618856a3969c4bf921d867a0223903cb7f4de6fb9338e7baf5b0d2
 status: candidate
 building:
   type: bld_kit_qing_south_courtyard
-  footprint: [10, 8]
-  anchor: [380.4797, 351.3438]
+  footprint:
+  - 10
+  - 8
+  anchor:
+  - 343.7164
+  - 296.1718
   era: qing_south
-footprint_m: [10, 8]
-entrance: {edge: S, offset_cells: 4}
+footprint_m:
+- 10
+- 8
+entrance:
+  edge: S
+  offset_cells: 4
 projection_contract:
-  tile_px: [64, 32]
-  ground_bbox_px: [576, 288]
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 576
+  - 288
   light: screen_upper_left
   shadow: screen_lower_right_contact_only
 metadata: meta/bld_kit_qing_south_courtyard.yaml
-source_record: review2/courtyard.selected.request.json
-candidate_count: 2
+source_record: history/records/courtyard.yaml
+candidate_count: 1
 geometry_qa:
-  source_corners_px:
-    left: [136, 563]
-    front: [807, 928]
-    right: [1405, 640]
-  source_axis_slopes: [0.5439642324888226, -0.4816053511705686]
-  axis_tolerance: 0.03
-  axis_pass: false
-  source_width_depth_ratio: 1.1220735785953178
-  expected_width_depth_ratio: 1.25
-  ratio_relative_error: 0.10234113712374582
-  ratio_tolerance_suggestion: 0.1
-  ratio_pass: false
-  measurement_uncertainty_source_px: 3
-  precision_note: 原尺寸及6倍局部view_image人工读取可见石基角；±3源px；隐藏后角未实测。guide理论点不参与实测。
-notes: 第2轮返修：第二候选右轴改善；左轴及宽深比仍超容差，未解决。新源图及RGBA浅底预览已view_image；灰瓦粉墙深木、左上光和短右下影完整，无文字人物水印。单视图candidate，非release。
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+notes: 2026-10-01 历史图片输入重出：低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+selected_candidate: 1
+review3_record: review3/houses/courtyard.measure.json

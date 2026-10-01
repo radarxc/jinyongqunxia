@@ -1,36 +1,133 @@
 id: bld_kit_qing_south_stable
 status: candidate
-building: {"type":"bld_kit_qing_south_stable","footprint":[9,7],"anchor":[333.9648,254.0291],"era":"qing_south"}
-anchor_px: [333.9648,254.0291]
+building:
+  type: bld_kit_qing_south_stable
+  footprint:
+  - 9
+  - 7
+  anchor:
+  - 333.9648
+  - 254.0291
+  era: qing_south
+anchor_px:
+- 333.9648
+- 254.0291
 anchor_basis: 原图底面左右角中点经同一裁切和缩放映射；不是PNG底边中心。
-footprint_m: [9, 7]
+footprint_m:
+- 9
+- 7
 footprint_source: design/22 §3.3 bld_kit_song_southern_stable同构占地
-logical_footprint_polygon_px: [[77.96480000000003,238.0291],[365.9648,382.02909999999997],[589.9648,270.02909999999997],[301.9648,126.0291]]
+logical_footprint_polygon_px:
+- - 77.96480000000003
+  - 238.0291
+- - 365.9648
+  - 382.02909999999997
+- - 589.9648
+  - 270.02909999999997
+- - 301.9648
+  - 126.0291
 collision_polygon_m:
-- [0, 0]
-- [9, 0]
-- [9, 7]
-- [0, 7]
+- - 0
+  - 0
+- - 9
+  - 0
+- - 9
+  - 7
+- - 0
+  - 7
 collision_note: 全占地代理，非实测墙体；院内通行需后续细化。
-occluder_proxy_px: [78,30,590,387]
+occluder_proxy_px:
+- 78
+- 30
+- 590
+- 387
 occluder_note: alpha>=192包围框，仅测量代理，不修改原alpha。
 height_m: null
 height_note: 单视图不能可靠测量实际高度，待建模实测。
-entrance: {edge: S, offset_cells: 4.5}
+entrance:
+  edge: S
+  offset_cells: 4.5
 entrance_note: 目录南边中点代理；门洞实际位置待总装校准。
-planning_rotations_allowed: [0, 90, 180, 270]
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
 views:
-- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_south_stable.png}
-png_rotations_available: [0]
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_south_stable.png
+png_rotations_available:
+- 0
 allowRotation: false
 glb: null
 projection_contract:
-  tile_px: [64, 32]
-  ground_bbox_px: [512, 256]
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 512
+  - 256
   ground_width_px: 512
   light: screen_upper_left
   shadow: screen_lower_right_contact_only
-geometry_qa: {"source_corners_px":{"left":[130,564],"front":[860,943],"right":[1436,650],"back_inferred":[706,271]},"source_axis_slopes":[0.5191780821917809,-0.5086805555555556],"axis_tolerance":0.03,"source_width_depth_ratio":1.2673611111111112,"expected_width_depth_ratio":1.2857142857142858,"measurement_uncertainty_source_px":3,"precision_note":"第3轮原图同平面石边下缘角，放大审图人工读点±3px；非guide理论点；后角由L+R-F推算。","axis_pass":true,"ratio_relative_error":0.014274691358024727,"ratio_tolerance_suggestion":0.1,"ratio_pass":true}
-pixel_qa: {"mode":"RGBA","size":[640,448],"alpha_extrema":[0,255],"alpha_zero_pixels":175809,"alpha_partial_pixels":109946,"alpha_opaque_pixels":965,"alpha_near_opaque_pixels":108209,"alpha_nonzero_bbox":[27,29,593,390],"transparent_margins_px":[27,29,47,58],"border_alpha_max":0}
-processing: {"source_archive":"review3/stable/candidate2.png","source_sha256":"20269ba1f43cbef7404ec192203bb72b67d3663aac0538df63d7043e05991775","source_size":[1536,1024],"crop_box":[0,33,1494,1024],"uniform_scale_requested":0.39203675344563554,"resized_size":[586,389],"rounded_effective_scale":[0.392235609103079,0.39253279515640765],"paste_offset":[27,29],"final_file":"bld_kit_qing_south_stable.png","steps":["crop alpha>0 bounding box","one uniform LANCZOS resize with integer rounding","transparent padding; no warp, redraw, alpha edit or contour trimming"]}
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 640
+  - 448
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 177871
+  alpha_partial_pixels: 108027
+  alpha_opaque_pixels: 822
+  alpha_nonzero_bbox:
+  - 78
+  - 29
+  - 590
+  - 389
+  transparent_margins_px:
+  - 78
+  - 29
+  - 50
+  - 59
+  border_alpha_max: 0
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 81
+  - 10
+  - 1468
+  - 985
+  isotropic_scale: 0.36923076923076925
+  resized_size:
+  - 512
+  - 360
+  paste_offset:
+  - 78
+  - 29
+  - 590
+  - 389
+  final_size:
+  - 640
+  - 448
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/stable.png
+  source_sha256: d5d71222c5de605b3a08d1bccf9cb478c754fd399b2782e1df0b2048a253e471
+  forbidden_transforms_used: false
 release_ready: false
+visual_review: 本轮入选源图及规格化成品已逐张/接触表 view_image；历史细节、真透明、完整轮廓与左上光通过目视，精确投影待实测。
+source_request: history/records/stable.yaml

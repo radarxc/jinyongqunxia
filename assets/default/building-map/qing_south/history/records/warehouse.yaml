@@ -1,0 +1,57 @@
+id: bld_kit_qing_south_warehouse
+status: candidate
+selected_candidate: 1
+candidate_count: 1
+prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan asset, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+  shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber. Show roof lift and curvature, ridge treatment, tile method, beam bearing, column grid, foundation, openings and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a 10 by 8 cell Jiangnan granary or warehouse. Long low hard-gable range on a raised rough stone moisture-resistant base, dense grey pan-and-cover tile roof with plain ridge, substantial white fire-gable end walls and blue-grey clear-brick lower walls. Repeated heavy vertical-board double doors with timber lintels, tiny high ventilation slots, simple purlin-and-beam eave bearing without decorative dougong. Materials draw from later Fuyi Granary only for masonry, doors and ventilation; do not claim literal reconstruction. No goods or people.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+references:
+- file: assets/default/building-map/qing_south/review2/c/warehouse.guide.png
+  sha256: bf6ab9db1dc74e01075bd6985b8bf0294b7d7036c47ec2fbb1726cfc3d4622d9
+  role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Fuyi_Granary%2C_2021-01-30_03.jpg?width=1600
+  sha256: decb52d0fd6c1d82ddda4db5961260289baad170f15466ad0989c3677d0569e5
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。后世富义仓仅取青砖墙、厚板门、高位通风孔、石质防潮台与灰瓦硬山做材料证据，不声称复原。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Fuyi_Granary%2C_2021-01-30_05.jpg?width=1600
+  sha256: c7cb47059790f1ecb42464bb26412733555a9c2c6726fba5d961f700c7a901d6
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。后世富义仓仅取青砖墙、厚板门、高位通风孔、石质防潮台与灰瓦硬山做材料证据，不声称复原。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:24:03.372719+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_archive: history/selected-sources/warehouse.png
+source_sha256: 7a59c8fb385e051a9f54e93e4fc3647912ce7a4e3e529043597a7e9093c5b580
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 78
+  - 66
+  - 1447
+  - 1005
+  isotropic_scale: 0.42366691015339664
+  resized_size:
+  - 580
+  - 398
+  paste_offset:
+  - 169
+  - 136
+  - 749
+  - 534
+  final_size:
+  - 864
+  - 672
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/warehouse.png
+  source_sha256: 7a59c8fb385e051a9f54e93e4fc3647912ce7a4e3e529043597a7e9093c5b580
+  forbidden_transforms_used: false
+notes: 后世富义仓仅取青砖墙、厚板门、高位通风孔、石质防潮台与灰瓦硬山做材料证据，不声称复原。
+record_path: history/records/warehouse.yaml

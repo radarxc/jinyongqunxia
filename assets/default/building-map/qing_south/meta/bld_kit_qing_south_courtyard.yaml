@@ -1,38 +1,133 @@
 id: bld_kit_qing_south_courtyard
 status: candidate
-building: {"type":"bld_kit_qing_south_courtyard","footprint":[10,8],"anchor":[343.7164,296.1718],"era":"qing_south"}
-anchor_px: [343.7164,296.1718]
-footprint_m: [10, 8]
+building:
+  type: bld_kit_qing_south_courtyard
+  footprint:
+  - 10
+  - 8
+  anchor:
+  - 343.7164
+  - 296.1718
+  era: qing_south
+anchor_px:
+- 343.7164
+- 296.1718
+footprint_m:
+- 10
+- 8
 footprint_source: design/22 §3.3 bld_kit_song_southern_courtyard
-logical_footprint_polygon_px: [[55.71640000000002,280.1718],[375.7164,440.1718],[631.7164,312.1718],[311.7164,152.17180000000002]]
-occluder_proxy_px: [55,109,632,452]
+logical_footprint_polygon_px:
+- - 55.71640000000002
+  - 280.1718
+- - 375.7164
+  - 440.1718
+- - 631.7164
+  - 312.1718
+- - 311.7164
+  - 152.17180000000002
+occluder_proxy_px:
+- 55
+- 109
+- 632
+- 452
 occluder_note: alpha>=192包围框仅测量代理；不修改PNG alpha；不能替代屋顶淡出/逐像素深度。
 height_m: null
 height_note: 单视图不能可靠测量实际高度，待建模实测。
-planning_rotations_allowed: [0, 90, 180, 270]
-entrance: {edge: S, offset_cells: 4}
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+entrance:
+  edge: S
+  offset_cells: 4
 entrance_note: 南边中点规划代理，非图像门洞测量（待实测）。
 collision_polygon_m:
-- [0, 0]
-- [10, 0]
-- [10, 8]
-- [0, 8]
+- - 0
+  - 0
+- - 10
+  - 0
+- - 10
+  - 8
+- - 0
+  - 8
 collision_note: 全矩形规划代理；院内通行、河埠台阶及门洞需细化，阴影不参与碰撞。
 views:
-- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_south_courtyard.png}
-png_rotations_available: [0]
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_south_courtyard.png
+png_rotations_available:
+- 0
 allowRotation: false
 glb: null
 release_ready: false
 projection_contract:
-  tile_px: [64, 32]
-  ground_bbox_px: [576, 288]
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 576
+  - 288
   light: screen_upper_left
   shadow: screen_lower_right_contact_only
-geometry_qa: {"source_corners_px":{"left":[106,561],"front":[841,944],"right":[1439,610]},"back_corner_inferred_px":[704,227],"source_axis_slopes":[0.5210884353741496,-0.5585284280936454],"axis_tolerance":0.03,"axis_pass":false,"source_width_depth_ratio":1.2290969899665551,"expected_width_depth_ratio":1.25,"ratio_relative_error":0.01672240802675584,"ratio_tolerance_suggestion":0.1,"ratio_pass":true,"measurement_uncertainty_source_px":3,"precision_note":"原尺寸view_image及8倍底边局部实测石板顶面外缘三角，±3源px；后角由L+R-F推算；guide理论点未代替实测。"}
-pixel_qa: {"mode":"RGBA","size":[672,512],"alpha_extrema":[0,255],"alpha_zero_pixels":239609,"alpha_partial_pixels":103504,"alpha_opaque_pixels":951,"alpha_near_opaque_pixels":101544,"alpha_nonzero_bbox":[52,106,634,455],"transparent_margins_px":[52,106,38,57],"border_alpha_max":0}
-processing: {"operations":["crop_alpha_bbox","uniform_resize_LANCZOS","transparent_padding"],"source_size":[1536,1024],"crop_box":[65,32,1444,954],"isotropic_scale":0.43210802700675166,"resized_size":[596,398],"paste_offset":[38,57,634,455],"final_size":[672,512],"anchor_source_px":[772.5,585.5],"anchor_final_px":[343.7164,296.1718],"forbidden_transforms_used":false,"source_archive":"review3/houses/courtyard.candidate1.png","source_sha256":"0eb4b281d95211c6d6c626b5e808c2cbb4885be29fc0e7d43536541d8c9fe8b9"}
-visual_review: 第2轮返修：第二候选右轴改善；左轴及宽深比仍超容差，未解决。新源图及RGBA浅底预览已view_image；灰瓦粉墙深木、左上光和短右下影完整，无文字人物水印。单视图candidate，非release。
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 672
+  - 512
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 241655
+  alpha_partial_pixels: 101527
+  alpha_opaque_pixels: 882
+  alpha_nonzero_bbox:
+  - 96
+  - 106
+  - 589
+  - 455
+  transparent_margins_px:
+  - 96
+  - 106
+  - 83
+  - 57
+  border_alpha_max: 0
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 141
+  - 75
+  - 1399
+  - 965
+  isotropic_scale: 0.3921348314606742
+  resized_size:
+  - 493
+  - 349
+  paste_offset:
+  - 96
+  - 106
+  - 589
+  - 455
+  final_size:
+  - 672
+  - 512
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/courtyard.png
+  source_sha256: 340b3e0404d4bc496711486ee45549039bada5483c0c5d4e6f563aace2e313dd
+  forbidden_transforms_used: false
+visual_review: 本轮入选源图及规格化成品已逐张/接触表 view_image；历史细节、真透明、完整轮廓与左上光通过目视，精确投影待实测。
 final_review: 成品800×640，仅裁切等比缩小并透明留边；最终像素和可见三角详见pixel_qa/geometry_qa。 已逐张view_image(original)复查：屋檐、基脚完整，透明留白充足，无新增文字人物。
-source_request: review2/courtyard.selected.request.json
+source_request: history/records/courtyard.yaml
 source_measure: review2/courtyard.measure.json
