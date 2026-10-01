@@ -1,6 +1,7 @@
 import { clampInt } from '@tianshu/shared';
 
 export const RNG_STREAMS = ['battle', 'loot', 'world', 'ai', 'qiyu'] as const;
+export const RNG_PROTOCOL = 2;
 export type RngStreamName = (typeof RNG_STREAMS)[number];
 export type RngState = readonly [number, number, number, number];
 type MutableRngState = [number, number, number, number];
@@ -45,6 +46,21 @@ function assertSafeInt(value: number): void {
   if (!Number.isSafeInteger(value)) throw new RangeError('RNG_INT');
 }
 
+function multiplyHighU32(left: number, right: number): number {
+  // Each half-word product is below 2^32; carry sums stay exact safe integers.
+  const leftLow = left & 0xffff;
+  const leftHigh = left >>> 16;
+  const rightLow = right & 0xffff;
+  const rightHigh = right >>> 16;
+  const lowProduct = Math.imul(leftLow, rightLow) >>> 0;
+  const highLowProduct = Math.imul(leftHigh, rightLow) >>> 0;
+  const lowHighProduct = Math.imul(leftLow, rightHigh) >>> 0;
+  const highProduct = Math.imul(leftHigh, rightHigh) >>> 0;
+  const middleCarry = (lowProduct >>> 16) + (highLowProduct & 0xffff) + (lowHighProduct & 0xffff);
+
+  return highProduct + (highLowProduct >>> 16) + (lowHighProduct >>> 16) + (middleCarry >>> 16);
+}
+
 export function intInclusive(rng: Rng, low: number, high: number): number {
   assertSafeInt(low);
   assertSafeInt(high);
@@ -53,7 +69,8 @@ export function intInclusive(rng: Rng, low: number, high: number): number {
   if (!Number.isSafeInteger(span) || span < 1 || span > 0x1_0000_0000) {
     throw new RangeError('RNG_SPAN');
   }
-  return low + Math.floor((rng.nextU32() / 0x1_0000_0000) * span);
+  const sample = rng.nextU32();
+  return low + (span === 0x1_0000_0000 ? sample : multiplyHighU32(sample, span));
 }
 
 export function chanceBp(rng: Rng, chance: number): boolean {
