@@ -64,6 +64,14 @@ def build(asset_id: str) -> str:
     if kind in ("rig_ref", "rig_part"):
         head += "背景必须是均匀平涂的浅暖灰 RGB(230,225,216)（无渐变、无纸纹、无投影、无光晕），主体外不能有任何杂物；出图后由程序抠成透明。"
         prompt = re.sub(r"真正的透明 RGBA 背景|透明 RGBA 背景|透明 RGBA|透明底", "浅暖灰 RGB(230,225,216) 均匀背景", prompt)
+    # 盔甲：作者意见是类别级的通用说明（列了宋元明清各种甲），交给模型时只保留针对本件的一句，避免几个朝代混在一张图里
+    if fm.get("category") == "armor":
+        prompt = re.sub(r"作者 2026-10-01：盔甲要突出年代特色.*?不用奇幻配色。", "", prompt, flags=re.S)
+        prompt += f" 要一眼看出这是「{fm.get('name')}」这一朝代、这一兵种的制式甲：甲片形制、编缀方式、披膊 / 护心 / 甲裙等部件和主色配色都符合该朝史料，颜色克制（作者要求突出年代特色，包括制式与颜色）。"
+    # 正文里出现两次排除项时只留第一次
+    parts = re.split(r"(?=排除项[：:])", prompt)
+    if len(parts) > 2:
+        prompt = parts[0] + parts[1]
     out = head + prompt.replace("\n", " ")
     if neg and "排除" not in prompt:  # 提示词正文里已有排除项的不再重复附加
         out += " 排除：" + neg.replace("\n", " ")
