@@ -3,20 +3,20 @@
   category: tile
   style: default
   subject: 西域绿洲城镇·完整土城门·净宽4格；跨年代地域意象（原创扩展），具体城池年代归属待考
-  prompt: "TEXTURE-ONLY EDIT of supplied exact geometry. Preserve the silhouette and ALL polygon boundaries and dimensions pixel-for-pixel. Do not redesign or change camera. Image is an ancient Western Regions oasis adobe CITY GATE, full frontage8 units, depth4, two vertical piers2 units wide each and central completely open portal4 units wide. All ground-plane axes have slope+0.5/-0.5 and front-edge/depth-edge horizontal lengths800:400, exactly2:1. The supplied sketch already has correct geometry: trace it precisely. Turn the plain faces into warm buff mud plaster with realistic tiny adobe grains, subtle exposed brick courses near foot, restrained wood lintel details; realistic fine historical painted game-map style. Keep rectangular portal opening with flat timber lintel, keep flat roof, keep vertical straight piers, no battlements or additional building. Do NOT add projecting pilasters. Keep exact outer contact corners L168,600; front968,1000; R1368,800; portal jamb feet368,700 and768,900 on a1536x1024 canvas. CRITICAL the right side face is400px wide and must not be narrowed. This is a material edit, not a reconstruction. Transparent areas MUST remain alpha0: no glow, halo, ground shadow, ground plane, landscape or floor; opacity255 for wall. Light upperleft, right face muted shade. No text, labels, arrows, people, modern details. ONE complete opaque gate on truly transparent RGBA background."
+  historical_rerender: {"status":"completed","new_candidate_count":2,"selected_candidate":2,"generation_input":true,"reviewed_at":"2026-10-01"}
+  historical_references: [{"url":"https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1915年喀什厚土城墙、水平层理与小洞口；不复制构图。"},{"url":"https://commons.wikimedia.org/wiki/File:Yarkand_Kashgar_Gate.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"叶尔羌旧城门的厚重土墙体量、垛口节奏与深门洞；具名门楼轮廓不照搬。"},{"url":"https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"厚砖门墙及尖拱套门；现代标牌、修缮铺装和上层敞廊排除。"}]
+  historical_detail_notes: "厚夯土/土坯墙、水平层理、局部残损和深门洞；登记要求的平直木过梁保留为跨年代原创扩展，不加中式楼亭、斗拱、瓦脊或现代修缮。"
+  prompt: "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg — 1915年喀什厚土城墙、水平层理与小洞口；不复制构图。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Yarkand_Kashgar_Gate.jpg — 叶尔羌旧城门的厚重土墙体量、垛口节奏与深门洞；具名门楼轮廓不照搬。\n- Historical input 4: https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg — 厚砖门墙及尖拱套门；现代标牌、修缮铺装和上层敞廊排除。\n\nAsset-specific production prompt:\nTEXTURE-ONLY EDIT of supplied exact geometry. Preserve the silhouette and ALL polygon boundaries and dimensions pixel-for-pixel. Do not redesign or change camera. Image is an ancient Western Regions oasis adobe CITY GATE, full frontage8 units, depth4, two vertical piers2 units wide each and central completely open portal4 units wide. All ground-plane axes have slope+0.5/-0.5 and front-edge/depth-edge horizontal lengths800:400, exactly2:1. The supplied sketch already has correct geometry: trace it precisely. Turn the plain faces into warm buff mud plaster with realistic tiny adobe grains, subtle exposed brick courses near foot, restrained wood lintel details; realistic fine historical painted game-map style. Keep rectangular portal opening with flat timber lintel, keep flat roof, keep vertical straight piers, no battlements or additional building. Do NOT add projecting pilasters. Keep exact outer contact corners L168,600; front968,1000; R1368,800; portal jamb feet368,700 and768,900 on a1536x1024 canvas. CRITICAL the right side face is400px wide and must not be narrowed. This is a material edit, not a reconstruction. Transparent areas MUST remain alpha0: no glow, halo, ground shadow, ground plane, landscape or floor; opacity255 for wall. Light upperleft, right face muted shade. No text, labels, arrows, people, modern details. ONE complete opaque gate on truly transparent RGBA background.\n\nRequired historical detail summary: 厚夯土/土坯墙、水平层理、局部残损和深门洞；登记要求的平直木过梁保留为跨年代原创扩展，不加中式楼亭、斗拱、瓦脊或现代修缮。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
   negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
-  references:
-  - file: source/round2/gate4-geometry-reference.png
-    sha256: bc84f4e537c54907c83550c53f662fa1720bc3cc14a155e8a5dc75875e6a9e9d
-    note: round2实际输入：程序绘制的精确几何示意，仅作生成参考，非成品。
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not exposed by image tool
-  created: "2026-09-30T22:58:08.549358+00:00"
-  source_path: /Users/bytedance/.codex/generated_images/01a0f486-da2c-72e2-a613-aecd5c659ce2/exec-01812c18-af40-4463-b001-ba4e84761fa1.png
-  size: 402x331
-  sha256: 3d79dbb1fbc47a0a935e5de4fee1984adcb2c35d2541794daee5cc5729253275
-  status: candidate
+  references: [{"file":"source/historical-rerender/tex_town_xiyu_city_gate__k4_r000_v01__geometry-lock.png","sha256":"3d79dbb1fbc47a0a935e5de4fee1984adcb2c35d2541794daee5cc5729253275","role":"本轮生成输入：旧正式图，仅锁定几何、投影、画布占用与风格密度"},{"url":"https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1915年喀什厚土城墙、水平层理与小洞口；不复制构图。"},{"url":"https://commons.wikimedia.org/wiki/File:Yarkand_Kashgar_Gate.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"叶尔羌旧城门的厚重土墙体量、垛口节奏与深门洞；具名门楼轮廓不照搬。"},{"url":"https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"厚砖门墙及尖拱套门；现代标牌、修缮铺装和上层敞廊排除。"}]
+  tool: "Responses API image_generation"
+  model: "gpt-6-astra image_generation"
+  effort: "not exposed by image tool"
+  created: "2026-10-01T10:29:55.713119+00:00"
+  source_path: "source/historical-rerender/tex_town_xiyu_city_gate__k4_r000_v01__candidate02.png"
+  size: "402x331"
+  sha256: "4c8336e03da9ca8ec21ca8b240b6775006212034896eb2cd949e4a8ee5fd8cc2"
+  status: "candidate"
   tile:
     kind: city_gate
     footprint:
@@ -24,35 +24,41 @@
     - 4
     variant: k4_r000_v01
     autotile_mask: null
-  source_copy: source/round2/gate4-candidate02.png
-  source_sha256: e33b130739603b1682ceab9884b5661837fd476b65ff7b15700c5ffb6e30f942
+  source_copy: "source/historical-rerender/tex_town_xiyu_city_gate__k4_r000_v01__candidate02.png"
+  source_sha256: "c0769135a83bd7f73c62805a21e3f803fae5cfdc658fc42a64761000427f42a7"
   anchor_px:
   - 200.679
   - 225.645
-  notes: round2重出；仅alpha包围框裁切、等比LANCZOS缩放与8px透明边。源图真实角点/轴斜率/占地比例见source/round2/gate4-selected-qa.json；双轴±0.5容差0.03与比例3%均通过。旧source与geometry-qa.jsonl保留为历史。
-  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+  notes: "2026-10-01按真实历史图片重出；2候选选2。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。厚夯土/土坯墙、水平层理、局部残损和深门洞；登记要求的平直木过梁保留为跨年代原创扩展，不加中式楼亭、斗拱、瓦脊或现代修缮。"
+  created_time_basis: "image_generation响应完成后本地记录时间"
   revision_round: 2
   candidate_count: 2
-  generation_record: source/round2/gate4-candidate02-record.json
+  generation_record: "source/historical-rerender/tex_town_xiyu_city_gate__k4_r000_v01__candidate02.json"
+  source_record: "source/historical-rerender/tex_town_xiyu_city_gate__k4_r000_v01__candidate02.json"
+  selected_candidate: 2
+  selection_note: "候选2用于纠正首候选；经原尺寸与灰底总览复核后选2。"
+  visual_qa: {"checked_with":"view_image original candidate, normalized final, and neutral-gray contact sheet","no_text_people_modern_watermark":true,"true_rgba":true}
+  processing: {"source_archive":"source/historical-rerender/tex_town_xiyu_city_gate__k4_r000_v01__candidate02.png","source_sha256":"c0769135a83bd7f73c62805a21e3f803fae5cfdc658fc42a64761000427f42a7","source_size":[1536,1024],"source_crop_box":[143,14,1379,997],"uniform_scale":0.3122977346278317,"paste_offset":[8,16],"steps":["alpha<=8 to 0; alpha>=247 to 255","alpha bbox crop","uniform LANCZOS resize","alpha composite into unchanged canvas; no warp or RGB repaint"]}
+  pixel_qa: {"mode":"RGBA","size":[402,331],"alpha_extrema":[0,255],"alpha_zero_pixels":63155,"alpha_partial_pixels":1296,"alpha_near_opaque_pixels":68611,"alpha_nonzero_bbox":[8,16,394,323],"transparent_margins_px":[8,16,8,8],"border_alpha_max":0}
 - id: tex_town_xiyu_city_gate__k6_r000_v01
   file: tex_town_xiyu_city_gate__k6_r000_v01.png
   category: tile
   style: default
   subject: 西域绿洲城镇·完整土城门·净宽6格；跨年代地域意象（原创扩展），具体城池年代归属待考
-  prompt: "Use case: precise-object-edit. STRICT TEXTURE-ONLY EDIT of supplied exact geometry. Preserve silhouette and ALL polygon boundary pixel positions. Do not redesign or change camera. This is an ancient Western Regions oasis adobe CITY GATE, full frontage10 units, depth4, two straight vertical piers2 units wide each and central fully open portal6 units wide. Ground-plane axes slopes+0.5/-0.5, front-edge/depth-edge horizontal lengths900:360 =2.5. Supplied sketch already has correct geometry: trace precisely. Apply warm buff mud plaster, realistic tiny adobe grains, subtle exposed brick courses near foot, restrained wood lintel across doorway. Fine realistic painted historical wuxia map sprite, muted neutral earth colors. Keep flat rectangular clear portal with timber lintel, flat roof and straight piers; no battlements, no extra pilaster or building. Exact bottom footprint corners in1536x1024: L138,500; F1038,950; R1398,770. The portal front foot corners318,590 and858,860: clear60%frontage, piers20%each. Right side face must remain360px wide. Transparent areas remain alpha0, no floor/platform, no glow, no shadow, no labels/people/text. Upperleft light, right face subdued shade. Fully opaque wall, true transparent RGBA. Keep full silhouette and margins, material edit only."
+  historical_rerender: {"status":"completed","new_candidate_count":2,"selected_candidate":2,"generation_input":true,"reviewed_at":"2026-10-01"}
+  historical_references: [{"url":"https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1915年喀什厚土城墙、水平层理与小洞口；不复制构图。"},{"url":"https://commons.wikimedia.org/wiki/File:Yarkand_Kashgar_Gate.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"叶尔羌旧城门的厚重土墙体量、垛口节奏与深门洞；具名门楼轮廓不照搬。"},{"url":"https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"厚砖门墙及尖拱套门；现代标牌、修缮铺装和上层敞廊排除。"}]
+  historical_detail_notes: "厚夯土/土坯墙、水平层理、局部残损和深门洞；登记要求的平直木过梁保留为跨年代原创扩展，不加中式楼亭、斗拱、瓦脊或现代修缮。"
+  prompt: "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg — 1915年喀什厚土城墙、水平层理与小洞口；不复制构图。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Yarkand_Kashgar_Gate.jpg — 叶尔羌旧城门的厚重土墙体量、垛口节奏与深门洞；具名门楼轮廓不照搬。\n- Historical input 4: https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg — 厚砖门墙及尖拱套门；现代标牌、修缮铺装和上层敞廊排除。\n\nAsset-specific production prompt:\nUse case: precise-object-edit. STRICT TEXTURE-ONLY EDIT of supplied exact geometry. Preserve silhouette and ALL polygon boundary pixel positions. Do not redesign or change camera. This is an ancient Western Regions oasis adobe CITY GATE, full frontage10 units, depth4, two straight vertical piers2 units wide each and central fully open portal6 units wide. Ground-plane axes slopes+0.5/-0.5, front-edge/depth-edge horizontal lengths900:360 =2.5. Supplied sketch already has correct geometry: trace precisely. Apply warm buff mud plaster, realistic tiny adobe grains, subtle exposed brick courses near foot, restrained wood lintel across doorway. Fine realistic painted historical wuxia map sprite, muted neutral earth colors. Keep flat rectangular clear portal with timber lintel, flat roof and straight piers; no battlements, no extra pilaster or building. Exact bottom footprint corners in1536x1024: L138,500; F1038,950; R1398,770. The portal front foot corners318,590 and858,860: clear60%frontage, piers20%each. Right side face must remain360px wide. Transparent areas remain alpha0, no floor/platform, no glow, no shadow, no labels/people/text. Upperleft light, right face subdued shade. Fully opaque wall, true transparent RGBA. Keep full silhouette and margins, material edit only.\n\nRequired historical detail summary: 厚夯土/土坯墙、水平层理、局部残损和深门洞；登记要求的平直木过梁保留为跨年代原创扩展，不加中式楼亭、斗拱、瓦脊或现代修缮。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
   negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
-  references:
-  - file: source/round2/gate6-geometry-reference.png
-    sha256: 4f4e32276d693521c0abe212fbd5a08af5e78e01b3b7bfd7dc8510b01e30fa96
-    note: round2实际输入：程序绘制的精确几何示意，仅作生成参考，非成品。
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not exposed by image tool
-  created: "2026-09-30T22:59:53.700628+00:00"
-  source_path: /Users/bytedance/.codex/generated_images/01a0f486-da2c-72e2-a613-aecd5c659ce2/exec-218c48d2-38a2-421b-9f96-2eb6644ab767.png
-  size: 465x346
-  sha256: 819d9333835450faf845f7d4cffd65d7d6cb9f5d32a8dea2dc9c58a49358af8b
-  status: candidate
+  references: [{"file":"source/historical-rerender/tex_town_xiyu_city_gate__k6_r000_v01__geometry-lock.png","sha256":"819d9333835450faf845f7d4cffd65d7d6cb9f5d32a8dea2dc9c58a49358af8b","role":"本轮生成输入：旧正式图，仅锁定几何、投影、画布占用与风格密度"},{"url":"https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1915年喀什厚土城墙、水平层理与小洞口；不复制构图。"},{"url":"https://commons.wikimedia.org/wiki/File:Yarkand_Kashgar_Gate.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"叶尔羌旧城门的厚重土墙体量、垛口节奏与深门洞；具名门楼轮廓不照搬。"},{"url":"https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"厚砖门墙及尖拱套门；现代标牌、修缮铺装和上层敞廊排除。"}]
+  tool: "Responses API image_generation"
+  model: "gpt-6-astra image_generation"
+  effort: "not exposed by image tool"
+  created: "2026-10-01T10:29:55.594173+00:00"
+  source_path: "source/historical-rerender/tex_town_xiyu_city_gate__k6_r000_v01__candidate02.png"
+  size: "465x346"
+  sha256: "6c13f1f5ae37416d25de90c4be15a01587f9fe3ce2b2e8f3388ff0621fe73dd1"
+  status: "candidate"
   tile:
     kind: city_gate
     footprint:
@@ -60,35 +66,41 @@
     - 4
     variant: k6_r000_v01
     autotile_mask: null
-  source_copy: source/round2/gate6-candidate01.png
-  source_sha256: 402f8a543370c360431cc0c7335bc98ec1f4fc499f5b4610cd29b9a9dba3560b
+  source_copy: "source/historical-rerender/tex_town_xiyu_city_gate__k6_r000_v01__candidate02.png"
+  source_sha256: "bd33c2703a58f37e283fea1a0b41fda16f707e705f2e54e6aba8bcbc3ae959b0"
   anchor_px:
   - 232.145
   - 222.962
-  notes: round2重出；仅alpha包围框裁切、等比LANCZOS缩放与8px透明边。源图真实角点/轴斜率/占地比例见source/round2/gate6-selected-qa.json；双轴±0.5容差0.03与比例3%均通过。旧source与geometry-qa.jsonl保留为历史。
-  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+  notes: "2026-10-01按真实历史图片重出；2候选选2。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。厚夯土/土坯墙、水平层理、局部残损和深门洞；登记要求的平直木过梁保留为跨年代原创扩展，不加中式楼亭、斗拱、瓦脊或现代修缮。"
+  created_time_basis: "image_generation响应完成后本地记录时间"
   revision_round: 2
-  candidate_count: 1
-  generation_record: source/round2/gate6-candidate01-record.json
+  candidate_count: 2
+  generation_record: "source/historical-rerender/tex_town_xiyu_city_gate__k6_r000_v01__candidate02.json"
+  source_record: "source/historical-rerender/tex_town_xiyu_city_gate__k6_r000_v01__candidate02.json"
+  selected_candidate: 2
+  selection_note: "候选2用于纠正首候选；经原尺寸与灰底总览复核后选2。"
+  visual_qa: {"checked_with":"view_image original candidate, normalized final, and neutral-gray contact sheet","no_text_people_modern_watermark":true,"true_rgba":true}
+  processing: {"source_archive":"source/historical-rerender/tex_town_xiyu_city_gate__k6_r000_v01__candidate02.png","source_sha256":"bd33c2703a58f37e283fea1a0b41fda16f707e705f2e54e6aba8bcbc3ae959b0","source_size":[1536,1024],"source_crop_box":[49,19,1417,1014],"uniform_scale":0.32821637426900585,"paste_offset":[8,11],"steps":["alpha<=8 to 0; alpha>=247 to 255","alpha bbox crop","uniform LANCZOS resize","alpha composite into unchanged canvas; no warp or RGB repaint"]}
+  pixel_qa: {"mode":"RGBA","size":[465,346],"alpha_extrema":[0,255],"alpha_zero_pixels":86777,"alpha_partial_pixels":1398,"alpha_near_opaque_pixels":72715,"alpha_nonzero_bbox":[8,11,457,338],"transparent_margins_px":[8,11,8,8],"border_alpha_max":0}
 - id: tex_town_xiyu_wall__earth_r000_v01
   file: tex_town_xiyu_wall__earth_r000_v01.png
   category: tile
   style: default
   subject: 西域绿洲城镇·土坯直墙；跨年代地域意象（原创扩展），具体城池年代归属待考
-  prompt: "Strict texture-only edit: apply realistic fine pale ochre adobe/mud plaster with tiny straw grain, subtle horizontal rammed layers to the exact supplied wall-block sketch. Trace ALL polygon boundaries pixel-for-pixel. Do not change camera, scale, frame, silhouette, dimensions or height. Simple cuboid; footprint1x1m, height3m; exact2:1 dimetric projection, square bottom diamond, both axes slopes+0.5/-0.5. Native32px per ground-axis horizontal meter, vertical3m =117.58px; supplied sketch has this ratio precisely. Bottom contact L(598,875), F(768,960), R(938,875), top vertices corresponding625px higher. Preserve every coordinate, no enlarge/reframe. Fine realistic painted historical Chinese wuxia-map sprite, muted buff adobe and fine straw detail, flat flush top no cap. Upperleft light and right-face shade. True transparent RGBA, alpha0 background unchanged, no floor, shadow, halo, glow, building details, text or people. Texture only."
+  historical_rerender: {"status":"completed","new_candidate_count":1,"selected_candidate":1,"generation_input":true,"reviewed_at":"2026-10-01"}
+  historical_references: [{"url":"https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1915年城墙的厚土体量、水平施工层和风蚀表面。"},{"url":"https://commons.wikimedia.org/wiki/File:Jiaohe_-_Yarkhoto_ruins.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"交河遗址生土墙体的整体削筑感、圆钝风蚀边和不规则缺口。"},{"url":"https://commons.wikimedia.org/wiki/File:Turpan_May_2007_392.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"夯土层理、小洞口与局部土坯肌理；脚手架、护栏和游客排除。"}]
+  historical_detail_notes: "暖黄褐夯土与草筋泥抹、横向层理、墙脚轻微冲蚀、顶部无现代压顶；不加瓦帽、规整水泥缝或景区设施。"
+  prompt: "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg — 1915年城墙的厚土体量、水平施工层和风蚀表面。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Jiaohe_-_Yarkhoto_ruins.jpg — 交河遗址生土墙体的整体削筑感、圆钝风蚀边和不规则缺口。\n- Historical input 4: https://commons.wikimedia.org/wiki/File:Turpan_May_2007_392.jpg — 夯土层理、小洞口与局部土坯肌理；脚手架、护栏和游客排除。\n\nAsset-specific production prompt:\nStrict texture-only edit: apply realistic fine pale ochre adobe/mud plaster with tiny straw grain, subtle horizontal rammed layers to the exact supplied wall-block sketch. Trace ALL polygon boundaries pixel-for-pixel. Do not change camera, scale, frame, silhouette, dimensions or height. Simple cuboid; footprint1x1m, height3m; exact2:1 dimetric projection, square bottom diamond, both axes slopes+0.5/-0.5. Native32px per ground-axis horizontal meter, vertical3m =117.58px; supplied sketch has this ratio precisely. Bottom contact L(598,875), F(768,960), R(938,875), top vertices corresponding625px higher. Preserve every coordinate, no enlarge/reframe. Fine realistic painted historical Chinese wuxia-map sprite, muted buff adobe and fine straw detail, flat flush top no cap. Upperleft light and right-face shade. True transparent RGBA, alpha0 background unchanged, no floor, shadow, halo, glow, building details, text or people. Texture only.\n\nRequired historical detail summary: 暖黄褐夯土与草筋泥抹、横向层理、墙脚轻微冲蚀、顶部无现代压顶；不加瓦帽、规整水泥缝或景区设施。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
   negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
-  references:
-  - file: source/round2/wall-geometry-reference02.png
-    sha256: d6f287fa97c26e77fce288154dd4c2ab0401d38656ba39860189b9d86d795877
-    note: round2实际输入：程序绘制的精确几何示意，仅作生成参考，非成品。
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not exposed by image tool
-  created: "2026-09-30T23:06:30.222796+00:00"
-  source_path: /Users/bytedance/.codex/generated_images/01a0f486-da2c-72e2-a613-aecd5c659ce2/exec-70549d72-3408-4432-a57b-f4d5543b4711.png
-  size: 81x167
-  sha256: 46671222f5f683423f82b01a953e059f095c996626ab5dff78cf05e471d90b17
-  status: candidate
+  references: [{"file":"source/historical-rerender/tex_town_xiyu_wall__earth_r000_v01__geometry-lock.png","sha256":"46671222f5f683423f82b01a953e059f095c996626ab5dff78cf05e471d90b17","role":"本轮生成输入：旧正式图，仅锁定几何、投影、画布占用与风格密度"},{"url":"https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1915年城墙的厚土体量、水平施工层和风蚀表面。"},{"url":"https://commons.wikimedia.org/wiki/File:Jiaohe_-_Yarkhoto_ruins.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"交河遗址生土墙体的整体削筑感、圆钝风蚀边和不规则缺口。"},{"url":"https://commons.wikimedia.org/wiki/File:Turpan_May_2007_392.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"夯土层理、小洞口与局部土坯肌理；脚手架、护栏和游客排除。"}]
+  tool: "Responses API image_generation"
+  model: "gpt-6-astra image_generation"
+  effort: "not exposed by image tool"
+  created: "2026-10-01T10:26:58.074429+00:00"
+  source_path: "source/historical-rerender/tex_town_xiyu_wall__earth_r000_v01__candidate01.png"
+  size: "81x167"
+  sha256: "b4fffb35f31e5e09a84fa24688cf4b8036d93ce4e78358c68ea526c09527b40f"
+  status: "candidate"
   tile:
     kind: wall
     footprint:
@@ -96,35 +108,41 @@
     - 1
     variant: earth_r000_v01
     autotile_mask: null
-  source_copy: source/round2/wall-candidate02.png
-  source_sha256: 6687ff3dbaf8dae5951194e9d4106833fe4cbfdeb4657e080821fd406aea73b5
+  source_copy: "source/historical-rerender/tex_town_xiyu_wall__earth_r000_v01__candidate01.png"
+  source_sha256: "ac809c7d198f386975d3fd2efdf286c7cfc02b149f0460660049d35bcde2d0a3"
   anchor_px:
   - 40.406
   - 142.411
-  notes: round2重出；仅alpha包围框裁切、等比LANCZOS缩放与8px透明边。源图真实角点/轴斜率/占地比例及3m墙高见source/round2/wall-selected-qa.json；双轴±0.5容差0.03与比例3%均通过。旧source与geometry-qa.jsonl保留为历史。
-  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+  notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。暖黄褐夯土与草筋泥抹、横向层理、墙脚轻微冲蚀、顶部无现代压顶；不加瓦帽、规整水泥缝或景区设施。"
+  created_time_basis: "image_generation响应完成后本地记录时间"
   revision_round: 2
-  candidate_count: 2
-  generation_record: source/round2/wall-candidate02-record.json
+  candidate_count: 1
+  generation_record: "source/historical-rerender/tex_town_xiyu_wall__earth_r000_v01__candidate01.json"
+  source_record: "source/historical-rerender/tex_town_xiyu_wall__earth_r000_v01__candidate01.json"
+  selected_candidate: 1
+  selection_note: "候选1历史细节、透明与构图通过，未追加第二候选。"
+  visual_qa: {"checked_with":"view_image original candidate, normalized final, and neutral-gray contact sheet","no_text_people_modern_watermark":true,"true_rgba":true}
+  processing: {"source_archive":"source/historical-rerender/tex_town_xiyu_wall__earth_r000_v01__candidate01.png","source_sha256":"ac809c7d198f386975d3fd2efdf286c7cfc02b149f0460660049d35bcde2d0a3","source_size":[873,1801],"source_crop_box":[83,29,790,1738],"uniform_scale":0.08835576360444705,"paste_offset":[10,8],"steps":["alpha<=8 to 0; alpha>=247 to 255","alpha bbox crop","uniform LANCZOS resize","alpha composite into unchanged canvas; no warp or RGB repaint"]}
+  pixel_qa: {"mode":"RGBA","size":[81,167],"alpha_extrema":[0,255],"alpha_zero_pixels":5079,"alpha_partial_pixels":385,"alpha_near_opaque_pixels":8063,"alpha_nonzero_bbox":[10,8,72,159],"transparent_margins_px":[10,8,9,8],"border_alpha_max":0}
 - id: tex_town_xiyu_wall_corner__outer_ne_v01
   file: tex_town_xiyu_wall_corner__outer_ne_v01.png
   category: tile
   style: default
   subject: 西域绿洲城镇·土坯外墙角；跨年代地域意象（原创扩展），具体城池年代归属待考
-  prompt: "Strict texture-only edit of exact supplied L-shaped wall-corner sketch. Trace ALL polygon boundaries pixel-for-pixel. Do not change silhouette/camera/scale/frame or any dimensions. Footprint2x2m, wall thickness1m, height3m. Exact2:1 dimetric projection, both axes slopes+0.5/-0.5. Native32px per horizontal ground-axis meter; vertical3m projects117.58px. Supplied sketch has exact correct height ratio: preserve it. Hollow V open toward bottom center, back join at top center. Bottom silhouette visible outer tips(468,750) and(1068,750), inner-front tips(618,825) and(918,825), inner meeting(768,750). Keep top polygons551px higher; do not resize. Apply pale ochre adobe with tiny straw grains, fine realistic mud plaster, subtle rammed-earth layers, same realistic restrained historical Chinese wuxia-map sprite detail. Flat flush top without cap. Upper-left lighting, right faces shaded. Transparent RGBA unchanged in hollow and outside, no floor, ground, glow, shadow, objects, text or people. Material/texture only."
+  historical_rerender: {"status":"completed","new_candidate_count":1,"selected_candidate":1,"generation_input":true,"reviewed_at":"2026-10-01"}
+  historical_references: [{"url":"https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1915年城墙的厚土体量、水平施工层和风蚀表面。"},{"url":"https://commons.wikimedia.org/wiki/File:Jiaohe_-_Yarkhoto_ruins.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"交河遗址转角处生土整体感、圆钝风蚀边和不规则缺口。"},{"url":"https://commons.wikimedia.org/wiki/File:Turpan_May_2007_391.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"遗址土坯砌块、抹面剥落与厚墙转折；现代栈道和加固痕迹排除。"}]
+  historical_detail_notes: "内外转角同用夯土/土坯层理与草筋泥抹，转角磨圆但不能改变精确 L 形边界；禁用砖石包角、瓦帽和现代加固。"
+  prompt: "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg — 1915年城墙的厚土体量、水平施工层和风蚀表面。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Jiaohe_-_Yarkhoto_ruins.jpg — 交河遗址转角处生土整体感、圆钝风蚀边和不规则缺口。\n- Historical input 4: https://commons.wikimedia.org/wiki/File:Turpan_May_2007_391.jpg — 遗址土坯砌块、抹面剥落与厚墙转折；现代栈道和加固痕迹排除。\n\nAsset-specific production prompt:\nStrict texture-only edit of exact supplied L-shaped wall-corner sketch. Trace ALL polygon boundaries pixel-for-pixel. Do not change silhouette/camera/scale/frame or any dimensions. Footprint2x2m, wall thickness1m, height3m. Exact2:1 dimetric projection, both axes slopes+0.5/-0.5. Native32px per horizontal ground-axis meter; vertical3m projects117.58px. Supplied sketch has exact correct height ratio: preserve it. Hollow V open toward bottom center, back join at top center. Bottom silhouette visible outer tips(468,750) and(1068,750), inner-front tips(618,825) and(918,825), inner meeting(768,750). Keep top polygons551px higher; do not resize. Apply pale ochre adobe with tiny straw grains, fine realistic mud plaster, subtle rammed-earth layers, same realistic restrained historical Chinese wuxia-map sprite detail. Flat flush top without cap. Upper-left lighting, right faces shaded. Transparent RGBA unchanged in hollow and outside, no floor, ground, glow, shadow, objects, text or people. Material/texture only.\n\nRequired historical detail summary: 内外转角同用夯土/土坯层理与草筋泥抹，转角磨圆但不能改变精确 L 形边界；禁用砖石包角、瓦帽和现代加固。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
   negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
-  references:
-  - file: source/round2/corner-geometry-reference02.png
-    sha256: 6af3e623f95d22d5775f882df843501c3d77db8c9265842af05baa7a65a5db05
-    note: round2实际输入：程序绘制的精确几何示意，仅作生成参考，非成品。
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not exposed by image tool
-  created: "2026-09-30T23:06:53.907358+00:00"
-  source_path: /Users/bytedance/.codex/generated_images/01a0f486-da2c-72e2-a613-aecd5c659ce2/exec-b0abc531-3e09-4918-b6e8-b5709fc0b40f.png
-  size: 145x183
-  sha256: 5921d64324aa5ab463a8b3d709ae81c4040a0af08445d329fb988de470af875c
-  status: candidate
+  references: [{"file":"source/historical-rerender/tex_town_xiyu_wall_corner__outer_ne_v01__geometry-lock.png","sha256":"5921d64324aa5ab463a8b3d709ae81c4040a0af08445d329fb988de470af875c","role":"本轮生成输入：旧正式图，仅锁定几何、投影、画布占用与风格密度"},{"url":"https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1915年城墙的厚土体量、水平施工层和风蚀表面。"},{"url":"https://commons.wikimedia.org/wiki/File:Jiaohe_-_Yarkhoto_ruins.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"交河遗址转角处生土整体感、圆钝风蚀边和不规则缺口。"},{"url":"https://commons.wikimedia.org/wiki/File:Turpan_May_2007_391.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"遗址土坯砌块、抹面剥落与厚墙转折；现代栈道和加固痕迹排除。"}]
+  tool: "Responses API image_generation"
+  model: "gpt-6-astra image_generation"
+  effort: "not exposed by image tool"
+  created: "2026-10-01T10:27:04.239007+00:00"
+  source_path: "source/historical-rerender/tex_town_xiyu_wall_corner__outer_ne_v01__candidate01.png"
+  size: "145x183"
+  sha256: "c15c83d9014c183859cc970d135a611bf19939450a678bc50ce45f12ab11aad0"
+  status: "candidate"
   tile:
     kind: wall_corner
     footprint:
@@ -132,35 +150,41 @@
     - 2
     variant: outer_ne_v01
     autotile_mask: null
-  source_copy: source/round2/corner-candidate02.png
-  source_sha256: d91dd67c70b95594d00f8bb153041543e436826539510304981999961984c241
+  source_copy: "source/historical-rerender/tex_town_xiyu_wall_corner__outer_ne_v01__candidate01.png"
+  source_sha256: "da92cc7e2006807c1bc169e5b06e90d998ad8719e732c792f2c78035e1843f41"
   anchor_px:
   - 72.286
   - 158.514
-  notes: round2重出；仅alpha包围框裁切、等比LANCZOS缩放与8px透明边。源图真实角点/轴斜率/占地比例及3m墙高见source/round2/corner-selected-qa.json；双轴±0.5容差0.03与比例3%均通过。旧source与geometry-qa.jsonl保留为历史。
-  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+  notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。内外转角同用夯土/土坯层理与草筋泥抹，转角磨圆但不能改变精确 L 形边界；禁用砖石包角、瓦帽和现代加固。"
+  created_time_basis: "image_generation响应完成后本地记录时间"
   revision_round: 2
-  candidate_count: 2
-  generation_record: source/round2/corner-candidate02-record.json
+  candidate_count: 1
+  generation_record: "source/historical-rerender/tex_town_xiyu_wall_corner__outer_ne_v01__candidate01.json"
+  source_record: "source/historical-rerender/tex_town_xiyu_wall_corner__outer_ne_v01__candidate01.json"
+  selected_candidate: 1
+  selection_note: "候选1历史细节、透明与构图通过，未追加第二候选。"
+  visual_qa: {"checked_with":"view_image original candidate, normalized final, and neutral-gray contact sheet","no_text_people_modern_watermark":true,"true_rgba":true}
+  processing: {"source_archive":"source/historical-rerender/tex_town_xiyu_wall_corner__outer_ne_v01__candidate01.png","source_sha256":"da92cc7e2006807c1bc169e5b06e90d998ad8719e732c792f2c78035e1843f41","source_size":[1117,1409],"source_crop_box":[54,17,1065,1385],"uniform_scale":0.12207602339181287,"paste_offset":[11,8],"steps":["alpha<=8 to 0; alpha>=247 to 255","alpha bbox crop","uniform LANCZOS resize","alpha composite into unchanged canvas; no warp or RGB repaint"]}
+  pixel_qa: {"mode":"RGBA","size":[145,183],"alpha_extrema":[0,255],"alpha_zero_pixels":8958,"alpha_partial_pixels":530,"alpha_near_opaque_pixels":17047,"alpha_nonzero_bbox":[11,8,134,175],"transparent_margins_px":[11,8,11,8],"border_alpha_max":0}
 - id: tex_town_xiyu_bridge_deck__w3_l5_r000_v01
   file: tex_town_xiyu_bridge_deck__w3_l5_r000_v01.png
   category: tile
   style: default
   subject: 西域绿洲城镇·绿洲灌渠木桥；跨年代地域意象（原创扩展），具体城池年代归属待考
-  prompt: "STRICT texture-only edit. Turn this exact bridge blockout into aged realistic timber WITHOUT moving any edges or vertices. Trace existing polygons pixel-for-pixel. In the supplied geometry bridge BOTTOM front edge runs from(148,698) to(613,930), slope232/465=0.499; side bottom runs from(613,930) to(1388,543), slope-387/775=-0.499. Preserve this exact geometry, frame and scale. DO NOT make slope0.54, no perspective, no reframe, no enlarge. Texture the unchanged deck with crosswise timber planks, the unchanged beams/rails with subtle wood grain. No additional projecting joinery, no new posts required; keep thin simple rails shown. Fine realistic hand-painted historical Chinese wuxia game-map look, ancient oasis irrigation bridge, muted natural brown wood, daylight upperleft. Keep all transparent areas alpha0; preserve correct real transparent RGBA, no floor/water/backdrop/glow/shadow, no text or people. Do not replace the sketch with a different bridge; retain this exact silhouette and all dimension ratios3:5. Material only."
+  historical_rerender: {"status":"completed","new_candidate_count":2,"selected_candidate":2,"generation_input":true,"reviewed_at":"2026-10-01"}
+  historical_references: [{"url":"https://www.weishoot.com/story/B6C1F090-225C-4811-BDB1-3F0899529B68.html","accessed":"2026-10-01","used_as":"image_generation_input","detail":"页面标注1906年斯坦因进入黑山村时的三根原木简桥；只取并排原木与无装饰跨越方式，排除水印。"},{"url":"http://www.igsnrr.cas.cn/cbkx/kpyd/kcsj/94nyx/202009/t20200910_5693325.html","accessed":"2026-10-01","used_as":"image_generation_input","detail":"尼雅遗址两根接长胡杨木、约40–50厘米粗、总长约26米且上面削平的取水跳板；原文明确严格说不是过河桥。"},{"url":"https://commons.wikimedia.org/wiki/File:The_Tuman_Su_at_Kashgar.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1915年图曼河土质渠岸与木桩环境尺度；不复制人物、马匹或河景。"}]
+  historical_detail_notes: "以未经精加工的胡杨/杂木纵梁、横铺粗板、木销或绳扎表达简桥；三条资料均不是登记3×5带栏成品的直接史证，薄栏杆属于可读性原创扩展。"
+  prompt: "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://www.weishoot.com/story/B6C1F090-225C-4811-BDB1-3F0899529B68.html — 页面标注1906年斯坦因进入黑山村时的三根原木简桥；只取并排原木与无装饰跨越方式，排除水印。\n- Historical input 3: http://www.igsnrr.cas.cn/cbkx/kpyd/kcsj/94nyx/202009/t20200910_5693325.html — 尼雅遗址两根接长胡杨木、约40–50厘米粗、总长约26米且上面削平的取水跳板；原文明确严格说不是过河桥。\n- Historical input 4: https://commons.wikimedia.org/wiki/File:The_Tuman_Su_at_Kashgar.jpg — 1915年图曼河土质渠岸与木桩环境尺度；不复制人物、马匹或河景。\n\nAsset-specific production prompt:\nSTRICT texture-only edit. Turn this exact bridge blockout into aged realistic timber WITHOUT moving any edges or vertices. Trace existing polygons pixel-for-pixel. In the supplied geometry bridge BOTTOM front edge runs from(148,698) to(613,930), slope232/465=0.499; side bottom runs from(613,930) to(1388,543), slope-387/775=-0.499. Preserve this exact geometry, frame and scale. DO NOT make slope0.54, no perspective, no reframe, no enlarge. Texture the unchanged deck with crosswise timber planks, the unchanged beams/rails with subtle wood grain. No additional projecting joinery, no new posts required; keep thin simple rails shown. Fine realistic hand-painted historical Chinese wuxia game-map look, ancient oasis irrigation bridge, muted natural brown wood, daylight upperleft. Keep all transparent areas alpha0; preserve correct real transparent RGBA, no floor/water/backdrop/glow/shadow, no text or people. Do not replace the sketch with a different bridge; retain this exact silhouette and all dimension ratios3:5. Material only.\n\nRequired historical detail summary: 以未经精加工的胡杨/杂木纵梁、横铺粗板、木销或绳扎表达简桥；三条资料均不是登记3×5带栏成品的直接史证，薄栏杆属于可读性原创扩展。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
   negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
-  references:
-  - file: source/round2/bridge-geometry-reference.png
-    sha256: 1531da6978e083028b53727e0675fd501671a3258fd327076695c67b8bbadd9a
-    note: round2实际输入：程序绘制的精确几何示意，仅作生成参考，非成品。
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not exposed by image tool
-  created: "2026-09-30T23:02:42.268029+00:00"
-  source_path: /Users/bytedance/.codex/generated_images/01a0f486-da2c-72e2-a613-aecd5c659ce2/exec-02c4033e-4226-4636-8934-b22275fd7929.png
-  size: 273x182
-  sha256: f23e6b0409a0a93aa7acaafcbcc52b7addb7b715646159e0374d49821b3f9692
-  status: candidate
+  references: [{"file":"source/historical-rerender/tex_town_xiyu_bridge_deck__w3_l5_r000_v01__geometry-lock.png","sha256":"f23e6b0409a0a93aa7acaafcbcc52b7addb7b715646159e0374d49821b3f9692","role":"本轮生成输入：旧正式图，仅锁定几何、投影、画布占用与风格密度"},{"url":"https://www.weishoot.com/story/B6C1F090-225C-4811-BDB1-3F0899529B68.html","accessed":"2026-10-01","used_as":"image_generation_input","detail":"页面标注1906年斯坦因进入黑山村时的三根原木简桥；只取并排原木与无装饰跨越方式，排除水印。"},{"url":"http://www.igsnrr.cas.cn/cbkx/kpyd/kcsj/94nyx/202009/t20200910_5693325.html","accessed":"2026-10-01","used_as":"image_generation_input","detail":"尼雅遗址两根接长胡杨木、约40–50厘米粗、总长约26米且上面削平的取水跳板；原文明确严格说不是过河桥。"},{"url":"https://commons.wikimedia.org/wiki/File:The_Tuman_Su_at_Kashgar.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1915年图曼河土质渠岸与木桩环境尺度；不复制人物、马匹或河景。"}]
+  tool: "Responses API image_generation"
+  model: "gpt-6-astra image_generation"
+  effort: "not exposed by image tool"
+  created: "2026-10-01T10:29:58.336378+00:00"
+  source_path: "source/historical-rerender/tex_town_xiyu_bridge_deck__w3_l5_r000_v01__candidate02.png"
+  size: "273x182"
+  sha256: "56b0858eeae33fbd8728c5a5d7a40e6200259ec47f6d986eeb607a93ecd11b68"
+  status: "candidate"
   tile:
     kind: bridge_deck
     footprint:
@@ -168,32 +192,41 @@
     - 5
     variant: w3_l5_r000_v01
     autotile_mask: null
-  source_copy: source/round2/bridge-candidate02.png
-  source_sha256: 45cc51ca06455397a7800cd32075f54a95953a636eb00b60135962823a627a88
+  source_copy: "source/historical-rerender/tex_town_xiyu_bridge_deck__w3_l5_r000_v01__candidate02.png"
+  source_sha256: "ab9a37ff30e3d9e80f489eac53e9d3509511f0f87ad4fc10a8133bee16321725"
   anchor_px:
   - 136.397
   - 107.724
-  notes: round2重出；仅alpha包围框裁切、等比LANCZOS缩放与8px透明边。源图真实角点/轴斜率/占地比例见source/round2/bridge-selected-qa.json；双轴±0.5容差0.03与比例3%均通过。旧source与geometry-qa.jsonl保留为历史。
-  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+  notes: "2026-10-01按真实历史图片重出；2候选选2。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。以未经精加工的胡杨/杂木纵梁、横铺粗板、木销或绳扎表达简桥；三条资料均不是登记3×5带栏成品的直接史证，薄栏杆属于可读性原创扩展。"
+  created_time_basis: "image_generation响应完成后本地记录时间"
   revision_round: 2
   candidate_count: 2
-  generation_record: source/round2/bridge-candidate02-record.json
+  generation_record: "source/historical-rerender/tex_town_xiyu_bridge_deck__w3_l5_r000_v01__candidate02.json"
+  source_record: "source/historical-rerender/tex_town_xiyu_bridge_deck__w3_l5_r000_v01__candidate02.json"
+  selected_candidate: 2
+  selection_note: "候选2用于纠正首候选；经原尺寸与灰底总览复核后选2。"
+  visual_qa: {"checked_with":"view_image original candidate, normalized final, and neutral-gray contact sheet","no_text_people_modern_watermark":true,"true_rgba":true}
+  processing: {"source_archive":"source/historical-rerender/tex_town_xiyu_bridge_deck__w3_l5_r000_v01__candidate02.png","source_sha256":"ab9a37ff30e3d9e80f489eac53e9d3509511f0f87ad4fc10a8133bee16321725","source_size":[1536,1024],"source_crop_box":[45,31,1493,977],"uniform_scale":0.17547568710359407,"paste_offset":[10,8],"steps":["alpha<=8 to 0; alpha>=247 to 255","alpha bbox crop","uniform LANCZOS resize","alpha composite into unchanged canvas; no warp or RGB repaint"]}
+  pixel_qa: {"mode":"RGBA","size":[273,182],"alpha_extrema":[0,255],"alpha_zero_pixels":28184,"alpha_partial_pixels":1148,"alpha_near_opaque_pixels":20354,"alpha_nonzero_bbox":[10,8,264,174],"transparent_margins_px":[10,8,9,8],"border_alpha_max":0}
 - id: tex_town_xiyu_tree_cluster__huyang_v01
   file: tex_town_xiyu_tree_cluster__huyang_v01.png
   category: tile
   style: default
   subject: 西域绿洲城镇·胡杨；跨年代地域意象（原创扩展），具体城池年代归属待考
-  prompt: 'Use case: historical-scene. ONE isolated production sprite for an ancient Chinese wuxia city-map kit, Western Regions oasis towns inspired by Kashgar, Hotan and Yarkand. Realistic restrained painted architectural illustration, fine natural earthy material grain, same fine realistic detail density and neutral muted palette as the Song town kit. Strict orthographic dimetric view: yaw45 degrees, elevation30 degrees, ground axes (+32,+16) and (+32,-16), exact 2:1 ground projection, verticals vertical, no perspective convergence. Light from upper-left, extremely short soft shadow lower-right. True transparent RGBA background and transparent holes, ample margins, complete object silhouette. ONE object only, no text, watermark, labels, modern objects, people, animals, landscape, checkerboard pattern, white backdrop, ink wash, cartoon, chibi, ground platform or broad floor patch. Subject: ONE compact mature Euphrates poplar tree (Populus euphratica, Huyang), natural riparian tree of Tarim Basin oasis edge. A single gently gnarled grey-brown trunk that forks into irregular branching broad open crown; mixed small rounded and oval leaves in muted olivegreen with modest ochre highlights, no full orange autumn canopy, no flowering. Natural growth, not conical Lombardy poplar, not palm. Footprint canopy3m x3m, roots cluster around one ground registration point; height5m. See foliage top planes from30degrees down, convincing bark and fine restrained leaf texture consistent with Song map plants. No soil patch, roots do not form a floating island, no grass, rock, shrub, buildings, animals or floor. True clear transparency between leaf groups, full trunk and crown intact. No external glow, halo, fog, atmospheric gradient or solid backdrop.'
+  historical_rerender: {"status":"completed","new_candidate_count":1,"selected_candidate":1,"generation_input":true,"reviewed_at":"2026-10-01"}
+  historical_references: [{"url":"https://commons.wikimedia.org/wiki/File:Tarim_Desert_Highway_-_Desert_poplars,_Xinjiang,_China.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"塔里木荒漠胡杨的灰褐粗裂树皮、扭曲分叉和稀疏不对称树冠。"},{"url":"https://commons.wikimedia.org/wiki/File:Xinjiang_Diversifolious_Poplar((HDR)2)_(7070314723).jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"成熟胡杨宽展枝架与疏松叶团；HDR色彩和光晕排除。"},{"url":"https://commons.wikimedia.org/wiki/File:Xinjiang_Old_and_young_(Populus_diversifolia_%E8%83%A1%E6%9D%A8)_(4973519309).jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"老幼胡杨的多干分叉、树干尺度和不规则冠形；背景不取。"}]
+  historical_detail_notes: "单株根点明确，灰褐粗裂扭干、宽而疏的不规则冠、橄榄绿小叶团；不做箭形白杨、棕榈、锥形树或夸张橙色HDR。"
+  prompt: "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:Tarim_Desert_Highway_-_Desert_poplars,_Xinjiang,_China.jpg — 塔里木荒漠胡杨的灰褐粗裂树皮、扭曲分叉和稀疏不对称树冠。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Xinjiang_Diversifolious_Poplar((HDR)2)_(7070314723).jpg — 成熟胡杨宽展枝架与疏松叶团；HDR色彩和光晕排除。\n- Historical input 4: https://commons.wikimedia.org/wiki/File:Xinjiang_Old_and_young_(Populus_diversifolia_%E8%83%A1%E6%9D%A8)_(4973519309).jpg — 老幼胡杨的多干分叉、树干尺度和不规则冠形；背景不取。\n\nAsset-specific production prompt:\nUse case: historical-scene. ONE isolated production sprite for an ancient Chinese wuxia city-map kit, Western Regions oasis towns inspired by Kashgar, Hotan and Yarkand. Realistic restrained painted architectural illustration, fine natural earthy material grain, same fine realistic detail density and neutral muted palette as the Song town kit. Strict orthographic dimetric view: yaw45 degrees, elevation30 degrees, ground axes (+32,+16) and (+32,-16), exact 2:1 ground projection, verticals vertical, no perspective convergence. Light from upper-left, extremely short soft shadow lower-right. True transparent RGBA background and transparent holes, ample margins, complete object silhouette. ONE object only, no text, watermark, labels, modern objects, people, animals, landscape, checkerboard pattern, white backdrop, ink wash, cartoon, chibi, ground platform or broad floor patch. Subject: ONE compact mature Euphrates poplar tree (Populus euphratica, Huyang), natural riparian tree of Tarim Basin oasis edge. A single gently gnarled grey-brown trunk that forks into irregular branching broad open crown; mixed small rounded and oval leaves in muted olivegreen with modest ochre highlights, no full orange autumn canopy, no flowering. Natural growth, not conical Lombardy poplar, not palm. Footprint canopy3m x3m, roots cluster around one ground registration point; height5m. See foliage top planes from30degrees down, convincing bark and fine restrained leaf texture consistent with Song map plants. No soil patch, roots do not form a floating island, no grass, rock, shrub, buildings, animals or floor. True clear transparency between leaf groups, full trunk and crown intact. No external glow, halo, fog, atmospheric gradient or solid backdrop.\n\nRequired historical detail summary: 单株根点明确，灰褐粗裂扭干、宽而疏的不规则冠、橄榄绿小叶团；不做箭形白杨、棕榈、锥形树或夸张橙色HDR。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
   negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
-  references: []
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T22:13:25.105094+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f459-ae86-75b0-b648-f4882401e6a7/exec-85620d80-5d6b-4b7e-af18-da24a549b088.png
-  size: 208x201
-  sha256: 161d87436f5dec6ed98dd6fb0ee96e3003e9ff6d0e35980e1dbc56b328bd4119
-  status: candidate
+  references: [{"file":"source/historical-rerender/tex_town_xiyu_tree_cluster__huyang_v01__geometry-lock.png","sha256":"161d87436f5dec6ed98dd6fb0ee96e3003e9ff6d0e35980e1dbc56b328bd4119","role":"本轮生成输入：旧正式图，仅锁定几何、投影、画布占用与风格密度"},{"url":"https://commons.wikimedia.org/wiki/File:Tarim_Desert_Highway_-_Desert_poplars,_Xinjiang,_China.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"塔里木荒漠胡杨的灰褐粗裂树皮、扭曲分叉和稀疏不对称树冠。"},{"url":"https://commons.wikimedia.org/wiki/File:Xinjiang_Diversifolious_Poplar((HDR)2)_(7070314723).jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"成熟胡杨宽展枝架与疏松叶团；HDR色彩和光晕排除。"},{"url":"https://commons.wikimedia.org/wiki/File:Xinjiang_Old_and_young_(Populus_diversifolia_%E8%83%A1%E6%9D%A8)_(4973519309).jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"老幼胡杨的多干分叉、树干尺度和不规则冠形；背景不取。"}]
+  tool: "Responses API image_generation"
+  model: "gpt-6-astra image_generation"
+  effort: "not exposed by image tool"
+  created: "2026-10-01T10:30:15.883563+00:00"
+  source_path: "source/historical-rerender/tex_town_xiyu_tree_cluster__huyang_v01__candidate01.png"
+  size: "208x201"
+  sha256: "1ddcd972867c2bb988b2615789659bfda4e2489ab346c89ab197c9618b4ba4b2"
+  status: "candidate"
   tile:
     kind: tree_cluster
     footprint:
@@ -201,32 +234,40 @@
     - 3
     variant: huyang_v01
     autotile_mask: null
-  source_copy: source/tex_town_xiyu_tree_cluster__huyang_v01__source.png
-  source_sha256: 0dce0be8b81fd8caa6f923a2a914eb5af42d1a5aea98c1db862a4911c995e3cc
+  source_copy: "source/historical-rerender/tex_town_xiyu_tree_cluster__huyang_v01__candidate01.png"
+  source_sha256: "d623aad2ec15124edc9f0e80317f3a356588c9dfb50ed60044e66709f6d295dd"
   anchor_px:
   - 105.094
   - 187.835
-  notes: 纯几何裁边、等比LANCZOS缩放（整数像素取整）与8px透明边，未重绘RGB/补alpha。胡杨单列：根部锚点+3×3冠幅192px建议值；树冠包围框不能充当地面占地标定；严格斜率、占地与接缝残差见geometry-qa.jsonl，保持candidate。
-  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+  notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。单株根点明确，灰褐粗裂扭干、宽而疏的不规则冠、橄榄绿小叶团；不做箭形白杨、棕榈、锥形树或夸张橙色HDR。"
+  created_time_basis: "image_generation响应完成后本地记录时间"
+  candidate_count: 1
+  source_record: "source/historical-rerender/tex_town_xiyu_tree_cluster__huyang_v01__candidate01.json"
+  selected_candidate: 1
+  selection_note: "候选1历史细节、透明与构图通过，未追加第二候选。"
+  visual_qa: {"checked_with":"view_image original candidate, normalized final, and neutral-gray contact sheet","no_text_people_modern_watermark":true,"true_rgba":true}
+  processing: {"source_archive":"source/historical-rerender/tex_town_xiyu_tree_cluster__huyang_v01__candidate01.png","source_sha256":"d623aad2ec15124edc9f0e80317f3a356588c9dfb50ed60044e66709f6d295dd","source_size":[1254,1254],"source_crop_box":[31,26,1223,1215],"uniform_scale":0.15559293523969722,"paste_offset":[12,8],"steps":["alpha<=8 to 0; alpha>=247 to 255","alpha bbox crop","uniform LANCZOS resize","alpha composite into unchanged canvas; no warp or RGB repaint"]}
+  pixel_qa: {"mode":"RGBA","size":[208,201],"alpha_extrema":[0,255],"alpha_zero_pixels":25216,"alpha_partial_pixels":6215,"alpha_near_opaque_pixels":10377,"alpha_nonzero_bbox":[12,8,197,193],"transparent_margins_px":[12,8,11,8],"border_alpha_max":0}
+  generation_record: "source/historical-rerender/tex_town_xiyu_tree_cluster__huyang_v01__candidate01.json"
 - id: tex_town_xiyu_grape_arbor__w4_l3_r000_v01
   file: tex_town_xiyu_grape_arbor__w4_l3_r000_v01.png
   category: tile
   style: default
   subject: 西域绿洲城镇·葡萄架；跨年代地域意象（原创扩展），具体城池年代归属待考
-  prompt: "Use case: precise-object-edit. Render this EXACT supplied four-post grape-arbor geometry into a realistic ancient Western Regions oasis garden game-map sprite. Preserve every timber beam and vertical post coordinate, ALL post foot positions, lengths, camera and exact proportions. Do not redesign the trellis. Strict2:1 dimetric orthographic45/30 camera, ground axes slopes+0.5/-0.5. Ground full outer footprint4:3, L190.5,647.5 F850.5,977.5 R1345.5,730 on1536x1024. Exact front/depth horizontal spans660:495. Fine rough brown unpainted timber texture and mortise-lashing joinery; add delicate twisting grape vines, modest muted olivegreen leaf clusters and a few small dull purple bunches along top beams. Leaves restrained, keep all four post feet and outer beam endpoints clearly visible, do NOT enlarge base or add rocks. Light upperleft, right sides subtly shaded. Realistic fine painted historical wuxia map style, same detail density as traditional Song town sprites, no cartoon/vector flatness. True transparent RGBA background and all empty post/leaf spaces, no backdrop, no floor, no ground, no broad shadow, no glow, no people or text. Full silhouette with margin. Geometry locked, material/detail edit only."
+  historical_rerender: {"status":"completed","new_candidate_count":1,"selected_candidate":1,"generation_input":true,"reviewed_at":"2026-10-01"}
+  historical_references: [{"url":"https://commons.wikimedia.org/wiki/File:1963-03_1963%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E7%9B%86%E5%9C%B0%E8%91%A1%E8%90%84.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1963年吐鲁番照片的低矮密藤、果穗尺度和采摘空间；不复制人物。"},{"url":"https://commons.wikimedia.org/wiki/File:1964-02_1964%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E8%91%A1%E8%90%84%E5%9B%AD.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1964年葡萄园与绿洲田网、防护林的尺度关系；不取远景构图。"},{"url":"https://commons.wikimedia.org/wiki/File:1964-02_1964%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E8%91%A1%E8%90%84%E5%9B%AD2.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1964年采摘照片的叶幕密度、枝蔓下垂和果穗比例；不复制人物。"}]
+  historical_detail_notes: "粗素木柱梁、木销/绳扎、扭曲老藤、克制叶团和少量暗紫果穗；历史照片支持藤蔓与尺度，不直接证明登记四柱棚架构造，构架仍属原创扩展。"
+  prompt: "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:1963-03_1963%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E7%9B%86%E5%9C%B0%E8%91%A1%E8%90%84.jpg — 1963年吐鲁番照片的低矮密藤、果穗尺度和采摘空间；不复制人物。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:1964-02_1964%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E8%91%A1%E8%90%84%E5%9B%AD.jpg — 1964年葡萄园与绿洲田网、防护林的尺度关系；不取远景构图。\n- Historical input 4: https://commons.wikimedia.org/wiki/File:1964-02_1964%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E8%91%A1%E8%90%84%E5%9B%AD2.jpg — 1964年采摘照片的叶幕密度、枝蔓下垂和果穗比例；不复制人物。\n\nAsset-specific production prompt:\nUse case: precise-object-edit. Render this EXACT supplied four-post grape-arbor geometry into a realistic ancient Western Regions oasis garden game-map sprite. Preserve every timber beam and vertical post coordinate, ALL post foot positions, lengths, camera and exact proportions. Do not redesign the trellis. Strict2:1 dimetric orthographic45/30 camera, ground axes slopes+0.5/-0.5. Ground full outer footprint4:3, L190.5,647.5 F850.5,977.5 R1345.5,730 on1536x1024. Exact front/depth horizontal spans660:495. Fine rough brown unpainted timber texture and mortise-lashing joinery; add delicate twisting grape vines, modest muted olivegreen leaf clusters and a few small dull purple bunches along top beams. Leaves restrained, keep all four post feet and outer beam endpoints clearly visible, do NOT enlarge base or add rocks. Light upperleft, right sides subtly shaded. Realistic fine painted historical wuxia map style, same detail density as traditional Song town sprites, no cartoon/vector flatness. True transparent RGBA background and all empty post/leaf spaces, no backdrop, no floor, no ground, no broad shadow, no glow, no people or text. Full silhouette with margin. Geometry locked, material/detail edit only.\n\nRequired historical detail summary: 粗素木柱梁、木销/绳扎、扭曲老藤、克制叶团和少量暗紫果穗；历史照片支持藤蔓与尺度，不直接证明登记四柱棚架构造，构架仍属原创扩展。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
   negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
-  references:
-  - file: source/round2/arbor-geometry-reference.png
-    sha256: 0ff14356f335b75298c8053ed055ff931d7d48d8cee20bf63439be46b2904579
-    note: round2实际输入：程序绘制的精确几何示意，仅作生成参考，非成品。
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not exposed by image tool
-  created: "2026-09-30T23:00:46.602516+00:00"
-  source_path: /Users/bytedance/.codex/generated_images/01a0f486-da2c-72e2-a613-aecd5c659ce2/exec-317471fc-bbba-4500-86ce-a962fb7779b7.png
-  size: 252x204
-  sha256: 386684897b50dd80dade48c0a8e6e6a1a294783b5c89a1a9df2d0ca9f2152255
-  status: candidate
+  references: [{"file":"source/historical-rerender/tex_town_xiyu_grape_arbor__w4_l3_r000_v01__geometry-lock.png","sha256":"386684897b50dd80dade48c0a8e6e6a1a294783b5c89a1a9df2d0ca9f2152255","role":"本轮生成输入：旧正式图，仅锁定几何、投影、画布占用与风格密度"},{"url":"https://commons.wikimedia.org/wiki/File:1963-03_1963%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E7%9B%86%E5%9C%B0%E8%91%A1%E8%90%84.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1963年吐鲁番照片的低矮密藤、果穗尺度和采摘空间；不复制人物。"},{"url":"https://commons.wikimedia.org/wiki/File:1964-02_1964%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E8%91%A1%E8%90%84%E5%9B%AD.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1964年葡萄园与绿洲田网、防护林的尺度关系；不取远景构图。"},{"url":"https://commons.wikimedia.org/wiki/File:1964-02_1964%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E8%91%A1%E8%90%84%E5%9B%AD2.jpg","accessed":"2026-10-01","used_as":"image_generation_input","detail":"1964年采摘照片的叶幕密度、枝蔓下垂和果穗比例；不复制人物。"}]
+  tool: "Responses API image_generation"
+  model: "gpt-6-astra image_generation"
+  effort: "not exposed by image tool"
+  created: "2026-10-01T10:30:01.863068+00:00"
+  source_path: "source/historical-rerender/tex_town_xiyu_grape_arbor__w4_l3_r000_v01__candidate01.png"
+  size: "252x204"
+  sha256: "a8259eb6aef8f2fe5258455a951affc859d7f43af90548a80ce420f06d36030f"
+  status: "candidate"
   tile:
     kind: grape_arbor
     footprint:
@@ -234,13 +275,19 @@
     - 3
     variant: w4_l3_r000_v01
     autotile_mask: null
-  source_copy: source/round2/arbor-candidate01.png
-  source_sha256: 865490f921b657f21af533888456881c23a262a02e715512be81457d31857dd4
+  source_copy: "source/historical-rerender/tex_town_xiyu_grape_arbor__w4_l3_r000_v01__candidate01.png"
+  source_sha256: "6fa839679d68f3053bd34b251f26f75ae705e45c07f97fa7a8b953193344998b"
   anchor_px:
   - 125.422
   - 139.523
-  notes: round2重出；仅alpha包围框裁切、等比LANCZOS缩放与8px透明边。源图真实角点/轴斜率/占地比例见source/round2/arbor-selected-qa.json；双轴±0.5容差0.03与比例3%均通过。旧source与geometry-qa.jsonl保留为历史。
-  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+  notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。粗素木柱梁、木销/绳扎、扭曲老藤、克制叶团和少量暗紫果穗；历史照片支持藤蔓与尺度，不直接证明登记四柱棚架构造，构架仍属原创扩展。"
+  created_time_basis: "image_generation响应完成后本地记录时间"
   revision_round: 2
   candidate_count: 1
-  generation_record: source/round2/arbor-candidate01-record.json
+  generation_record: "source/historical-rerender/tex_town_xiyu_grape_arbor__w4_l3_r000_v01__candidate01.json"
+  source_record: "source/historical-rerender/tex_town_xiyu_grape_arbor__w4_l3_r000_v01__candidate01.json"
+  selected_candidate: 1
+  selection_note: "候选1历史细节、透明与构图通过，未追加第二候选。"
+  visual_qa: {"checked_with":"view_image original candidate, normalized final, and neutral-gray contact sheet","no_text_people_modern_watermark":true,"true_rgba":true}
+  processing: {"source_archive":"source/historical-rerender/tex_town_xiyu_grape_arbor__w4_l3_r000_v01__candidate01.png","source_sha256":"6fa839679d68f3053bd34b251f26f75ae705e45c07f97fa7a8b953193344998b","source_size":[1536,1024],"source_crop_box":[128,16,1408,1020],"uniform_scale":0.184375,"paste_offset":[8,11],"steps":["alpha<=8 to 0; alpha>=247 to 255","alpha bbox crop","uniform LANCZOS resize","alpha composite into unchanged canvas; no warp or RGB repaint"]}
+  pixel_qa: {"mode":"RGBA","size":[252,204],"alpha_extrema":[0,255],"alpha_zero_pixels":35839,"alpha_partial_pixels":4099,"alpha_near_opaque_pixels":11470,"alpha_nonzero_bbox":[8,11,244,196],"transparent_margins_px":[8,11,8,8],"border_alpha_max":0}

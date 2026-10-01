@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_palace",
+  "generated_at": "2026-10-01T10:15:48.526637+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_palace__candidate01.png",
+  "sha256": "f68e55723b7f5115476798ff89d9e1585096b99840b93db291307ee8c61aef66",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_palace__geometry-lock.png",
+      "sha256": "274cfcf8ef1f24578cd1013007eb191a5a2bf2c1650f7409607a9c883536052a",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/yarkand_old_gate.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg",
+      "detail": "厚砖门墙、尖拱套门、上层木柱敞廊和局部小穹顶；现代标牌与自行车排除。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/mausoleum_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Afaq_Khoja_Mausoleum_(2017,_3_by_4_crop).jpg",
+      "detail": "尖拱壁龛、釉砖色带和角塔比例；墓园具名构图及大穹顶不复制。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg — 厚砖门墙、尖拱套门、上层木柱敞廊和局部小穹顶；现代标牌与自行车排除。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Afaq_Khoja_Mausoleum_(2017,_3_by_4_crop).jpg — 尖拱壁龛、釉砖色带和角塔比例；墓园具名构图及大穹顶不复制。\n\nAsset-specific production prompt:\nFinish exact 3D blockout as a historical Xinjiang palace module. Ground corners EXACTLY left(168,560),front(823,887),right(1368,615); no zoom/recenter/camera change, no silhouette change. Width24 depth20 ratio1.2. Ground axes both2:1 slopes+0.5,-0.5; every horizontal architecture edge follows these exact directions. Retexture and detail: tan adobe/yellow brick, rear flat-roof main hall with pointed carved wooden entrance, small turquoise dome, restrained geometric turquoise border without writing; low flat-roof side wings, paved front court, low front walls. Detailed realistic ancient strategy-game art, small masonry grain and natural weathering. Upper-left light, tiny lower-right contact shadow. Entire opaque architecture inside frame, true transparent RGBA background. No halo,vignette,scene,text,people,modern elements or thick plinth. Maintain EXACT lower footprint from reference. Right ground edge rises one pixel per two pixels right.\n\nRequired historical detail summary: 王府为匿名接待院，主体仍是土木平顶；砖拱、木廊和少量蓝绿釉饰只作等级点缀。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}

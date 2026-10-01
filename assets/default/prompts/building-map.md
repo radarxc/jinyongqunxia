@@ -341,7 +341,27 @@ Keep yaw45 / pitch30 / 2:1 orthographic ground axes and upper-left light of the 
 | §3.3 同功能映射 | `courtyard` 10×8；`shop_2f` 8×6；`inn` 12×9；`restaurant` 12×9；`casino` 10×8；`manor` 16×13；`pagoda` 7×7；`guardhouse` 7×5；`stable` 9×7；`warehouse` 10×8；`wharf` 10×4 |
 | 本套件新增分型 | `house_large` 10×8 **【建议值】**，沿院落包络给大宅分型（原创扩展）；不冒称 §3.4 已定义。 |
 
-### 11.2 提示词与制作记录
+### 11.2 历史图片输入与强历史细节（2026-10-01）
+
+重出时每件必须把旧正式图／几何引导图与 2–3 张已下载、已目视审阅的历史／形制图片共同输入 `image_gen`；前者锁定占地、构图与投影，历史图片只约束形制、比例、材料和构造，不复制人物、构图、水印或具名古迹轮廓。仅浏览网页或在生成后比对的图片不得写入生成 `references`。同一图片可服务同形制族，但每件都须逐条说明取用细节。
+
+| 形制族 | 必须画出的历史细节 | 必须排除 |
+|---|---|---|
+| 民居、院落、大宅 | 厚土坯／夯土墙，草筋泥抹面及局部剥落；圆木梁、密排椽枝与覆土平顶，短外露梁头、低女儿墙；小而深的门窗、素木门、克制几何木棂；遮阴廊仅用粗木柱梁 | 中式灰瓦坡顶、举折、正脊、鸱吻、脊兽和斗拱；整面玻璃窗、瓷砖、水泥栏杆、满立面现代阳台 |
+| 商队货栈、客栈、仓屋、马厩 | 厚墙围院、宽货门、深阴影木廊、粗圆木柱梁；仓屋少窗，马厩用土墙围栏、素木深檐、槽具与拴马桩；货物限定陶罐、麻袋、绳索、木器 | 现代车辆、钢棚、塑料包装、旗帜与伪文字；把护运行、客栈或马厩画成中式瓦房 |
+| 茶肆、商铺、棋戏馆、市场 | 单／二层平顶土铺，深门洞、木质挑棚；二层仅局部木廊或格窗；市场为低矮素木／芦苇遮棚，陈列陶器、铜器、织物、绳索和农具 | 宗教标志、现代乐器与灯具、广告包装、招牌伪字；重檐酒楼和装饰性牌楼 |
+| 邦克楼 `pagoda` | 砖砌收分塔身、小券洞或浅壁龛、几何砖砌纹样；少量釉砖只作点睛，基层仍为赭色砖土 | 汉式楼阁塔、斗拱、瓦檐、宝顶、鸱吻和脊兽；照搬具名塔的完整轮廓 |
+| 礼拜殿 `temple_hall` | 平顶木柱廊、砖砌尖拱／套拱、厚墙深洞口；木柱头可有克制雕刻，几何彩绘须少量、褪色并标年代待考 | 汉式寺殿屋脊、斗拱与神兽；金属扩音器、灯带、景区护栏及现代修缮色 |
+| 王府、官署、守舍 | 主体仍为厚土墙、覆土平顶和木柱廊；仅用尺度、克制砖券门、细木格与少量蓝绿釉砖表达等级；守舍依墙低矮附建 | 宫殿化中轴、清式衙署、琉璃瓦大屋顶、中式门楼；照搬具名宫门 |
+| 渠岸作业台 | 土质渠岸、浅阶、木桩或简木取水跳板，边缘见冲蚀和踩踏；器物只留陶罐与绳具 | 海港石码头、大船、牌楼、栏杆景观化和超出占地的水面 |
+
+参考判读分级：1915 年喀什／奥什—喀什道路照片可直接支持当时土木形制；交河等遗址照片只支持生土材料与风蚀构造；现存宗教建筑和现代市场只作形制／器物旁证，不能反推某一书界年代；1963–1964 年吐鲁番葡萄园照片只支持藤蔓密度、采摘尺度和绿洲田网，不证明棚架节点。现代标牌、护栏、脚手架、景观铺装与高饱和 HDR 色调一律排除。
+
+每个完整提示词还要逐项明写：屋顶为木梁密椽覆土平顶、无瓦作／屋脊／脊饰／斗拱；柱网为粗木小跨、土墙承重，低台基或无凸出台基；门窗为深洞口、素木门和几何木棂；墙体为夯土／土坯、草筋泥抹与局部砖基。宗教与等级建筑若例外使用砖拱、釉砖或彩绘，必须点明范围而不能扩散到普通民居。
+
+本轮已把旧正式图作为几何锁定输入，并把每类 2–3 张历史图片实际送入 `image_generation`：19 类共生成 21 个候选，逐张查看后同 ID 覆盖 19 张 PNG；`wharf`、`yamen` 各生成 2 个候选，其余各 1 个。候选、调用记录与重出前几何锁定图归档于 `building-map/xiyu/sources/historical-rerender/`，manifest 已登记实发提示、真实输入 URL、候选选择、规格化过程、新尺寸和 SHA。`wharf` 最终仍呈石铺渠岸，尼雅胡杨木跳板细节未落实，作为本轮限制保留。
+
+### 11.3 提示词与制作记录
 
 ```text
 ONE isolated realistic historical Kashgar / Hotan / Yarkand oasis map building.
@@ -360,7 +380,7 @@ No text, pseudo-writing, people, modern goods, tiled Chinese eaves or glossy toy
 
 第2轮返修以按登记占地绘制的实心几何参考为主要输入，提示“texture-only; trace ALL polygon boundaries; preserve camera and ground corners”；旧图只作材质参照，避免继承错误相机。生成后的真实底角重新量取，不把参考图坐标当作实测；alpha 轮廓直线拟合仅辅助检查，不改成品像素。每项本轮最多2候选，历史调用仍保留在原记录中；本轮记录见 `xiyu/sources/round2/`。仍超差者在 QA / 报告明确列为未完成，不能以候选状态代替修复。
 
-### 11.3 参考资料与年代边界（访问 2026-09-30）
+### 11.4 参考资料与年代边界（访问 2026-09-30；历史图片补访 2026-10-01）
 
 - [中国非遗网：维吾尔族民居建筑技艺（阿依旺赛来民居营造技艺）](https://www.ihchina.cn/art/detail/id/14735.html)：取敞开庭院、方形抬高采光体、侧窗木雕及几何纹；未证明各书界具体年代。
 - [喀什大学建筑学院：走进高台民居](https://jzy.ksu.edu.cn/info/1421/1871.htm)：取黄粘土与木、芦苇等营造材料，不据现代调研反推古代层数。
@@ -368,6 +388,13 @@ No text, pseudo-writing, people, modern goods, tiled Chinese eaves or glossy toy
 - [喀什公署：艾提尕尔清真寺简介](https://www.kashi.gov.cn/ksdqxzgs/c106707/202307/28cd99dc43a244619788bda878887922.shtml)：取礼拜殿 / 木柱长廊 / 召唤阁楼的功能区别；1442 始建的资料不作为宋元复原依据。
 - [新华社：新疆喀什老城改造纪实](https://www.xinhuanet.com/politics/2015-09/26/c_1116687056.htm)：只取沿街巴扎、铜铁木作等业态母题，不照抄现代改造外观。
 - [新疆政府：汗诺依古城考古成果](https://www.xinjiang.gov.cn/xinjiang/dzdt/202201/4a664aaf2f094721adfe8fbd67338eaf.shtml)：取 10 世纪泥土垒筑城墙、南北设门的材料母题；不据此推定本包城门尺寸。
+- [Wikimedia Commons：1915 年奥什—喀什道路商队驿站](https://commons.wikimedia.org/wiki/File:A_Caravanserai_on_the_Osh-Kashgar_road.jpg)：取厚泥抹墙、圆木柱梁、密椽覆土平顶与遮阴深廊。
+- [Wikimedia Commons：1915 年喀什城](https://commons.wikimedia.org/wiki/File:The_City_of_Kashgar.jpg)：取密集低层平顶聚落、厚土围合与绿洲城郊尺度。
+- [Wikimedia Commons：1915 年喀什学校](https://commons.wikimedia.org/wiki/File:A_Kashgar_School.jpg)：取深门洞、简素木柱和普通土墙院屋；人物不取。
+- [Wikimedia Commons：交河遗址照片](https://commons.wikimedia.org/wiki/File:Turpan_May_2007_392.jpg)：只取夯土层理、小洞口和风蚀边，排除现代脚手架、护栏和游客。
+- [Wikimedia Commons：叶尔羌旧城门](https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg)：只取厚砖门墙、尖拱套门和木柱敞廊，现代修缮不取。
+- [Wikimedia Commons：喀什清真寺木柱](https://commons.wikimedia.org/wiki/File:Decorated_pillars._Mosque._Kashgar.jpg)：只取木柱比例和雕刻层次；现存彩绘年代（待考）。
+- [Wikimedia Commons：1963 年吐鲁番葡萄](https://commons.wikimedia.org/wiki/File:1963-03_1963%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E7%9B%86%E5%9C%B0%E8%91%A1%E8%90%84.jpg)：只取藤蔓密度与采摘尺度，不证明棚架构造。
 ## 11. 明 · 北方套件 `ming_north`（2026-09-30）
 
 本节追加19张地图建筑的年代差异；宋套件章节和既有待决条目保留。入口、投影与布局仍引用 `design/22` §1–§3，不扩充玩法规则。成品位于 `assets/default/building-map/ming_north/`，完整实发提示词见逐条 manifest / sources JSON，全部为 `candidate`。

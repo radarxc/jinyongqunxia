@@ -1,0 +1,33 @@
+{
+  "id": "bld_kit_xiyu_temple_hall",
+  "generated_at": "2026-10-01T10:17:54.352459+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_temple_hall__candidate01.png",
+  "sha256": "5c640f070eec3adfde9f37195ca51a0aac8e4abc9e3ab89bc403319b0d7f3701",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_temple_hall__geometry-lock.png",
+      "sha256": "f7d1c650b7f556105ec61c6ec605b7da30a952b272a72e05b495ff093971b456",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/mosque_pillars_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Decorated_pillars._Mosque._Kashgar.jpg",
+      "detail": "多段收分木柱、雕刻柱头、横梁密椽；彩绘年代与修缮层位待考，应降饱和使用。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/yarkand_altyn.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Yarkand-complejo-mezquita-altyn-d01.jpg",
+      "detail": "细长尖拱门、蓝釉边饰和素墙比例；具名建筑布局不复制。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/idkah_ext.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:2015-09-10-135433_-_Kashgar,_Id_Kah_Moschee.JPG",
+      "detail": "木构藻井/格栅的几何分格；现代灯具与高饱和彩饰排除。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:Decorated_pillars._Mosque._Kashgar.jpg — 多段收分木柱、雕刻柱头、横梁密椽；彩绘年代与修缮层位待考，应降饱和使用。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Yarkand-complejo-mezquita-altyn-d01.jpg — 细长尖拱门、蓝釉边饰和素墙比例；具名建筑布局不复制。\n- Historical input 4: https://commons.wikimedia.org/wiki/File:2015-09-10-135433_-_Kashgar,_Id_Kah_Moschee.JPG — 木构藻井/格栅的几何分格；现代灯具与高饱和彩饰排除。\n\nAsset-specific production prompt:\nRetexture this EXACT orthographic block into a realistic historical Xinjiang mosque prayer hall game-map sprite. Preserve exact block ground geometry, bottom corners, camera and proportion. Front width14, side depth11; front edge27.27% longer than side edge. Both ground and roof axes slopes+0.5 and-0.5. Tiny weathered ochre adobe and yellow brick, main flat earthen roof with visible timbers, low rear parapets, small round earth-colored dome tucked near rear. Along the full left-facing long front facade: finely carved wood-column porch with restrained faded turquoise paint, wooden lattice doors, rugs inside porch without script. Columns and walls sit exactly on graybox footprint edges; thin brick footing but no thick platform. Tiny detailed photoreal-painterly historical strategy-game texture, no cartoon or plastic. Light from upper-left, short subtle shadow lower-right only. Entire opaque asset fully inside canvas with true transparent RGBA outside. No halo, backdrop, gradient, ground beyond footprint, environment, text, signage, calligraphy, person or modern object. Strictly preserve parallel projection of input block.\n\nRequired historical detail summary: 礼拜殿取平顶木柱廊和砖砌尖拱，彩绘少量且做旧；不加中式斗拱、鸱吻或脊兽。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}
