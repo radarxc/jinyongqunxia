@@ -275,7 +275,17 @@ def cmd_start(a) -> int:
                 start_ref = R.git(["rev-parse", "--verify", a.base + "^{commit}"], root).stdout.strip()
             print(f"  基点取自 --base {a.base}：{start_ref[:12]}")
         wt.parent.mkdir(parents=True, exist_ok=True)
-        R.git(["worktree", "add", "--detach", str(wt), start_ref], root)
+        # 批量调度时 merge（cherry-pick）与新建工作区可能撞上 index.lock：失败就等几秒重试
+        for delay in (0, 3, 6, 12):
+            time.sleep(delay)
+            p = R.git(["worktree", "add", "--detach", str(wt), start_ref], root, check=False)
+            if p.returncode == 0:
+                break
+            if wt.exists():
+                R.git(["worktree", "remove", "--force", str(wt)], root, check=False)
+            R.git(["worktree", "prune"], root, check=False)
+        else:
+            raise R.Fatal(f"git worktree add 连续失败：{(p.stderr or p.stdout).strip()[:300]}")
         base = R.git(["rev-parse", "HEAD"], wt).stdout.strip()
         st.update(t.id, base=base, attempts=0, last_failure=None)
         failure = note
