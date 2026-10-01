@@ -1,7 +1,7 @@
 import { canonicalJson, type JsonValue } from '@tianshu/shared';
 import type { Command } from '../command';
 import type { DomainEvent } from '../event';
-import { RNG_STREAMS, seedStream, type RngState, type RngStreamName } from '../rng';
+import { RNG_PROTOCOL, RNG_STREAMS, seedStream, type RngState, type RngStreamName } from '../rng';
 import { cloneGameState, type GameState } from '../state';
 
 export const CORE_VERSION = '0.0.0';
@@ -26,7 +26,13 @@ function initialRng(masterSeed: number): Readonly<Record<RngStreamName, RngState
 
 export function createCore(masterSeed = 1): Core {
   let state: GameState = {
-    meta: { coreVersion: CORE_VERSION, stateVersion: 0, worldTick: 0, rng: initialRng(masterSeed) },
+    meta: {
+      coreVersion: CORE_VERSION,
+      rngProtocol: RNG_PROTOCOL,
+      stateVersion: 0,
+      worldTick: 0,
+      rng: initialRng(masterSeed),
+    },
     battle: null,
   };
   const dispatch = (command: Command): DispatchResult => {

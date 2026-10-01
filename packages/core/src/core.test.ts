@@ -1,42 +1,54 @@
 import { describe, expect, it } from 'vitest';
-import { chanceBp, createCore, createRng, intInclusive, seedStream } from './index';
+import protocolGolden from './rng/rng-protocol-v2.golden.json';
+import {
+  chanceBp,
+  createCore,
+  createRng,
+  intInclusive,
+  RNG_PROTOCOL,
+  RNG_STREAMS,
+  seedStream,
+  type Rng,
+} from './index';
+
+function constantRng(value: number): Rng & { calls(): number } {
+  let callCount = 0;
+  return {
+    nextU32: () => {
+      callCount += 1;
+      return value;
+    },
+    snapshot: () => [0, 0, 0, 0],
+    calls: () => callCount,
+  };
+}
 
 describe('deterministic RNG protocol', () => {
-  it.each([
-    [
-      'battle',
-      [410886986, 3948248343, 382199180, 4192204983],
-      [4256373016, 2986861133, 4029091281, 3160275602],
-    ],
-    [
-      'loot',
-      [4115970839, 3352329225, 1349892310, 292111708],
-      [3465444476, 2906675482, 433035362, 4145665435],
-    ],
-    [
-      'world',
-      [3203807750, 1498997830, 4207607716, 3767632768],
-      [4175471052, 187222137, 190563775, 801057572],
-    ],
-    [
-      'ai',
-      [3247949964, 3666686332, 38919984, 3728629043],
-      [2053330747, 3456085448, 1453962039, 622417602],
-    ],
-    [
-      'qiyu',
-      [1852199331, 2694540512, 859364783, 1535345410],
-      [1787117957, 3377360768, 1273374054, 1195569528],
-    ],
-  ] as const)('matches the seed-1 %s vector', (stream, initial, expected) => {
-    expect(seedStream(1, stream)).toEqual(initial);
+  it('uses RNG protocol 2 for integer multiply-high range mapping', () => {
+    expect(RNG_PROTOCOL).toBe(protocolGolden.rngProtocol);
+  });
+
+  it.each(RNG_STREAMS)('matches the seed-1 %s vector', (stream) => {
+    const fixture = protocolGolden.streams[stream];
+    const initial = fixture.initialState as [number, number, number, number];
+    const expected = fixture.nextU32;
+    expect(seedStream(protocolGolden.masterSeed, stream)).toEqual(initial);
     const rng = createRng(initial);
     expect(expected.map(() => rng.nextU32())).toEqual(expected);
   });
 
-  it('consumes exactly one word for inclusive ranges and chance endpoints', () => {
+  it.each(protocolGolden.intInclusive)(
+    'maps sample $sample into [$low, $high] exactly with one word',
+    ({ sample, low, high, result }) => {
+      const rng = constantRng(sample);
+      expect(intInclusive(rng, low, high)).toBe(result);
+      expect(rng.calls()).toBe(1);
+    },
+  );
+
+  it('consumes exactly one word for chance endpoints', () => {
     const first = createRng([1, 2, 3, 4]);
-    expect(intInclusive(first, 7, 7)).toBe(7);
+    first.nextU32();
     const afterRange = first.snapshot();
     const zero = createRng([1, 2, 3, 4]);
     expect(chanceBp(zero, 0)).toBe(false);
@@ -44,6 +56,24 @@ describe('deterministic RNG protocol', () => {
     const certain = createRng([1, 2, 3, 4]);
     expect(chanceBp(certain, 10_000)).toBe(true);
     expect(certain.snapshot()).toEqual(afterRange);
+  });
+
+  it('keeps a 100,000-sample ten-bucket smoke distribution within 2 percent', () => {
+    const fixture = protocolGolden.distributionSmoke;
+    expect(fixture.stream).toBe('battle');
+    const rng = createRng(seedStream(fixture.masterSeed, 'battle'));
+    const counts = Array.from({ length: fixture.high - fixture.low + 1 }, () => 0);
+    for (let sample = 0; sample < fixture.samples; sample += 1) {
+      const bucket = intInclusive(rng, fixture.low, fixture.high);
+      const bucketIndex = bucket - fixture.low;
+      counts[bucketIndex] = (counts[bucketIndex] ?? 0) + 1;
+    }
+    expect(counts).toEqual(fixture.counts);
+    for (const count of counts) {
+      expect(Math.abs(count - fixture.expectedPerBucket)).toBeLessThan(
+        fixture.maxDeviationExclusive,
+      );
+    }
   });
 
   it('rejects unsafe or inverted integer ranges before consuming RNG', () => {
@@ -58,6 +88,7 @@ describe('deterministic RNG protocol', () => {
 describe('createCore', () => {
   it('advances one deterministic tick and returns detached snapshots', () => {
     const core = createCore(1);
+    expect(core.snapshot().meta.rngProtocol).toBe(RNG_PROTOCOL);
     const first = core.tick();
     const second = core.tick();
     expect(first).toMatchObject({ accepted: true, events: [{ seq: 1, worldTick: 1 }] });

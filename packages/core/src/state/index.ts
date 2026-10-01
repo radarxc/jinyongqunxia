@@ -3,6 +3,7 @@ import type { RngState, RngStreamName } from '../rng';
 export interface GameState {
   readonly meta: {
     readonly coreVersion: string;
+    readonly rngProtocol: number;
     readonly stateVersion: number;
     readonly worldTick: number;
     readonly rng: Readonly<Record<RngStreamName, RngState>>;
@@ -14,6 +15,7 @@ export function cloneGameState(state: GameState): GameState {
   return {
     meta: {
       coreVersion: state.meta.coreVersion,
+      rngProtocol: state.meta.rngProtocol,
       stateVersion: state.meta.stateVersion,
       worldTick: state.meta.worldTick,
       rng: {
