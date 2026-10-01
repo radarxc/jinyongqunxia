@@ -1,6 +1,7 @@
 # 10 · 物品与装备（Items & Equipment）
 
 > **版本**：v1.6（AR-24 兵器与暗器名录扩张，2026-10-01）；v1.5（AR-20 十一类物品名录与出图契约，2026-10-01）；v1.4（经脉落地终审，2026-09-29）；v1.3（经脉 Buff 载荷迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
+> **版本**：v1.6（AR-23 食材／食品扩张，2026-10-01）；v1.5（AR-20 十一类物品名录与出图契约，2026-10-01）；v1.4（经脉落地终审，2026-09-29）；v1.3（经脉 Buff 载荷迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
 > **归属**（基准 §18）：装备栏、物品、神兵、锻造、丹药——物品分类与数据结构、装备栏与兵器、品阶→装备数值、词条、神兵宝甲与名器、装备成长（强化/工艺/铭刻/淬毒/锻造）、书眠携带与外来压制对装备的影响、丹药与消耗品、菜肴、秘籍与残页、背包仓库、价格锚点。
 > **上游**：`00-canon.md`（§3 境界规则、§4 品阶、§6 属性 ID、§7 武功与兵器类别、§8 战斗模型、§9 乘区、§10 Buff、§12 ID、§13 天级武学、§14 天级神兵宝甲、§16 改编原则、§20 装配栏与装备栏）。
 > **引用而不重定义**：外来/本土判定 `nativeTo`、有效品阶 `effGrade`、器合、藏史、史印/史笺、天材骰、掉落品阶分布 → `design/02-timeline-and-world-tiers.md`；属性形态与修饰（`flat`/`flatLv`/`pct`/`pp`）、等级曲线 `ATK_LV`/`DEF_LV`/`HP_LV`、`STD(L)`、技艺门槛 `T(g)`/`gMax`、买卖系数 `buyMul`/`sellMul` → `design/03-attributes.md`；伤害公式与乘区 Z0–Z10 → `design/04-damage-formula.md`；武学字段 `weaponReq`/`kinds`/`Mod_armed`、秘籍阅读天数、残页页数、`sxpGrant` 接口 → `design/05-martial-arts-system.md`；全部 Buff 定义（`bf_*`）、品阶对抗 ρ、族上限、驱散类型 → `design/06-buff-system.md`；套装目录、成员、档位与效果 → `design/07-set-system.md`；地形与轻功门禁、飞爪探索入口 → `design/08-terrain-and-qinggong.md`；六角格物品行动、范围、缴械拾取流程、AI → `design/09-combat-system.md`；统一大地图、时代图层、旅行与客栈休息 → `design/11`、`design/19`；任务、关系与生活技能（含烹饪）→ `design/12`；天书之力与难度模式 → `design/13`；界面 → `design/14`；穴道、经脉、周天、冲穴 → `design/15`；资源、家丁、营生与收入 → `design/16`；门派身份 → `design/17`；NPC 认物与同伴物品 → `design/18`；跨年代传承源、残本、关键信物与校合条件 → `design/20`；图标生成 → `tech/07`。
@@ -1657,6 +1658,65 @@ AR-24 的通用制式只使用 §3.2 类别固有与 §4 普通词条，不另�
 | `it_putaojiu` | 葡萄酒 | 玄中 5 | 酒 | 同上；配夜光杯 ×1.5 | 06 | 同上 |
 | `it_zhuangyuanhong` | 状元红 | 玄中 5 | 酒 | 同上；配古瓷杯 ×1.5 | 06 | 同上 |
 
+**AR-23 新增原著场景菜肴**：下表只登记成品与膳食投影；七列机器名录、外观、史实边界与 **（待考）** 标记见 `catalog/items-food.md`。`meal` 仍按 §9.1 在战斗开场施加整场 ×0.5 Buff；数值、菜式复原与未见原著定本的形制均为 **（原创扩展）**。
+
+| ID | 书界 / 场景 | 品阶 | 类 | `meal` | 供餐 | 考据状态 |
+|---|---|---:|---|---|---:|---|
+| `it_tangshuangtaotiao` | 射雕·黄蓉所点糖霜桃条 | 玄中 5 | 腌藏 | `bf_juqi:1battle` | 1 | 原著明确果品；宋代食单化用 |
+| `it_huayuan_gaobing` | 越女·范蠡花园糕饼 | 玄下 4 | 点心 | `bf_jiangu:2battle` | 1 | 原著明确糕饼；品种 **（待考）** |
+| `it_aqing_qingcha` | 越女·阿青喝茶吃饼 | 玄中 5 | 汤 | `bf_ningshen:2battle` | 1 | 原著明确清茶；茶种 **（待考）** |
+| `it_muwu_gancaifan` | 天龙·木屋干菜白饭 | 玄下 4 | 菜 | `bf_qingxin:2battle` | 1 | 原著明确食物组合 |
+| `it_liaoying_yangrou` | 天龙·萧峰辽营羊肉 | 地下 7 | 菜 | `bf_shichen:2battle` | 1 | 羊肉细节 **（待考）** |
+| `it_dali_qingming_chadian` | 天龙·大理王府清茗点心 | 玄中 5 | 点心 | `bf_ningshen:1battle` | 1 | 原著明确奉茶、点心；茶种与品种 **（待考）**，不称现代普洱茶餐 |
+| `it_songhelou_xiaren` | 天龙·姑苏松鹤楼虾仁 | 玄中 5 | 菜 | `bf_yangsheng:1battle` | 1 | 江南酒楼场景；菜名 **（待考）** |
+| `it_shaolin_sumian` | 天龙·虚竹镇甸素面 | 玄下 4 | 菜 | `bf_qingxin:1battle` | 1 | 原著明确点两碗素面 |
+| `it_qingshui_yufeng_mijiang` | 神雕·清水调玉蜂蜜浆 | 玄中 5 | 汤 | `bf_huinei:2battle` | 1 | 原著明确饮食 |
+| `it_qingcai_doufu_xiaoyufan` | 神雕·程英青菜豆腐小鱼饭 | 地下 7 | 名菜 | `bf_ruiyi:2battle` | 4 | 原著明确食物组合；供餐原创 |
+| `it_hanshui_siwan_fancai` | 倚天·汉水鸡肉鱼蔬四碗 | 玄中 5 | 名菜 | `bf_huichun:2battle` | 4 | 原著明确食物组合 |
+| `it_binghuodao_kaoxiongrou` | 倚天·冰火岛熊洞烤熊肉 | 玄上 6 | 菜 | `bf_yuhan:2battle` | 1 | 原著明确食物 |
+| `it_guangmingding_suxian_yuanbing` | 倚天·光明顶素馅圆饼 | 黄上 3 | 干粮 | `bf_qingxin:1battle` | 1 | 原著明确食物 |
+| `it_fuzhou_yeji_huangtu` | 笑傲·福州酒铺野鸡黄兔 | 玄中 5 | 菜 | `bf_ningshen:2battle` | 1 | 原著明确下酒食物 |
+| `it_hengshan_suxianzong` | 笑傲·草菇莲子素馅粽 | 地下 7 | 名菜 | `bf_dingxin,bf_yangsheng:2battle` | 4 | 原著明确素馅；配料终校 **（待考）** |
+| `it_hengshan_qingcaidoufu` | 笑傲·恒山持斋青菜豆腐 | 玄中 5 | 菜 | `bf_shouyi:1battle` | 1 | 原著明确食物；场景承接持斋 |
+| `it_huiyanlou_huncai` | 笑傲·衡阳回雁楼荤菜 | 黄上 3 | 名菜 | `bf_qingxin:1battle` | 4 | 原著明确牛猪鸡鸭鱼虾 |
+| `it_xiakedao_siyang_dianxin` | 侠客·侠客岛四样点心 | 玄下 4 | 名菜 | `bf_jiangu:2battle` | 4 | 原著明确烧卖、春卷、蒸糕等 |
+| `it_houjianji_shaobing` | 侠客·侯监集烧饼 | 玄中 5 | 干粮 | `bf_yuhan:2battle` | 1 | 原著明确烧饼 |
+| `it_huashan_qingcai_doufufan` | 碧血·乱世青菜豆腐饭 | 黄上 3 | 菜 | `bf_yangsheng:1battle` | 1 | 原著明确食物组合 |
+| `it_wenjia_huotui_larouyan` | 碧血·温家火腿腊肉宴 | 地下 7 | 名菜 | `bf_bidu:2battle` | 4 | 原著明确火腿、腊肉、肥鸡、鲜鱼 |
+| `it_zhayangwei` | 鹿鼎·韦小宝在京师点菜 | 玄上 6 | 菜 | `bf_yuhan:2battle` | 1 | 原著菜名场景 |
+| `it_milian_huotui` | 鹿鼎·款待沐剑屏 | 地中 8 | 名菜 | `bf_huichun,bf_juqi:3battle` | 4 | 原著食材组合；效果原创 |
+| `it_yangzhou_tangbao_changyumian` | 鹿鼎·韦小宝说扬州汤包长鱼面 | 地下 7 | 名菜 | `bf_wenzhong,bf_juqi:2battle` | 4 | 原著明确食品名；是否为当席实食 **（待考）** |
+| `it_pomiao_shutang` | 连城·破庙毒鼠汤 | 黄下 1 | 汤 | `bf_xuruo:1battle` | 1 | 危险剧情食物；不作增益菜谱 |
+| `it_yuzhou_fanshu_caomifan` | 连城·渔舟番薯糙米饭 | 玄下 4 | 干粮 | `bf_yuhan:2battle` | 1 | 原著明确番薯、高粱混饭 |
+| `it_naiyou_recha` | 白马·计老人奶油热茶 | 玄下 4 | 汤 | `bf_yuhan:2battle` | 1 | 原著明确饮食 |
+| `it_yangrulao` | 白马·计老人乳酪待客 | 玄中 5 | 腌藏 | `bf_wenzhong:2battle` | 1 | 原著明确饮食 |
+| `it_xiaofu_shoujiuxi` | 鸳鸯·萧府寿酒席 | 玄中 5 | 名菜 | `bf_juqi:2battle` | 4 | 寿酒、喜酒明确；菜品 **（待考）** |
+| `it_huodui_kaozhangji` | 鸳鸯·洞前烤獐麂 | 黄上 3 | 菜 | `bf_wenzhong:1battle` | 1 | 原著明确食物 **（待考）** |
+| `it_huibu_zhuafan_kaorou` | 书剑·抓饭烤肉蜜瓜 | 地下 7 | 名菜 | `bf_shichen,bf_yuhan:2battle` | 4 | 原著明确食物组合 |
+| `it_xuedi_kaohuangyang` | 书剑·雪地烤黄羊 | 地中 8 | 名菜 | `bf_ruiyi,bf_juqi:3battle` | 4 | 原著明确食物 |
+| `it_honghuahui_zongduo_yanxi` | 书剑·红花会总舵群雄宴饮 | 玄上 6 | 名菜 | `bf_juqi:2battle` | 4 | 宴饮场景；具体菜点与配料 **（待考）** |
+| `it_chenglingsu_sancai_yitang` | 飞狐·程灵素三菜一汤 | 地中 8 | 名菜 | `bf_bidu,bf_huichun:3battle` | 4 | 原著明确四样菜 |
+| `it_miaojia_huofan_sancai` | 飞狐·苗家镬饭三菜 | 黄上 3 | 名菜 | `bf_yangsheng:1battle` | 4 | 原著明确饭菜组合 |
+| `it_humiao_mantou_jiyangtui` | 雪山·胡苗馒头鸡羊腿 | 玄中 5 | 名菜 | `bf_yuhan:2battle` | 4 | 原著明确食物组合 |
+| `it_dianchi_shurou_shaoji` | 雪山·滇池熟肉烧鸡 | 玄下 4 | 名菜 | `bf_wenzhong:2battle` | 4 | 原著明确熟肉、烧鸡、馒头 |
+
+**AR-23 史实名菜**：以下 12 道不绑定某部小说，按史料年代与地域进入酒楼、宴席或菜谱节点；史料说明与链接见 `catalog/items-food.md`“史实与出处依据”。
+
+| ID | 史料 | 品阶 | 类 | `meal` | 供餐 |
+|---|---|---:|---|---|---:|
+| `it_xieniangcheng` | 宋《山家清供》蟹酿橙 | 地下 7 | 名菜 | `bf_qingxin,bf_ningshen:2battle` | 4 |
+| `it_shanhaidou` | 宋《山家清供》笋蕨鱼虾蒸兜 | 地下 7 | 名菜 | `bf_dongxi,bf_yangsheng:2battle` | 4 |
+| `it_dongporou` | 清《调鼎集》载做法；宋代定型 **（待考）** | 地中 8 | 名菜 | `bf_jiangu,bf_wenzhong:2battle` | 4 |
+| `it_shanyaozhou` | 元《饮膳正要》 | 玄中 5 | 汤 | `bf_yangsheng:2battle` | 1 |
+| `it_heliandouzi` | 元《饮膳正要》 | 地中 8 | 名菜 | `bf_juqi,bf_huichun:2battle` | 4 |
+| `it_tuanyutang` | 元《饮膳正要》团鱼汤 | 地下 7 | 汤 | `bf_yuhan,bf_jiangu:2battle` | 1 |
+| `it_shanjia_sancui` | 宋《山家清供》山家三脆 | 玄上 6 | 菜 | `bf_qingxin:2battle` | 1 |
+| `it_lubeiji` | 宋元《吴氏中馈录》炉焙鸡 | 地下 7 | 菜 | `bf_jiangu:2battle` | 1 |
+| `it_wangtaishou_babaodoufu` | 清《随园食单》王太守八宝豆腐 | 地中 8 | 名菜 | `bf_huixin,bf_ningshen:2battle` | 4 |
+| `it_jiangshilang_doufu` | 清《随园食单》蒋侍郎豆腐；配料 **（待考）** | 地下 7 | 名菜 | `bf_qingxin,bf_dingxin:2battle` | 4 |
+| `it_shaoxiaozhu` | 清《随园食单》《调鼎集》 | 地上 9 | 名菜 | `bf_shichen,bf_jiangu:3battle` | 4 |
+| `it_yanwojisitang` | 清《扬州画舫录》满汉席菜单 | 天下 10 | 名菜 | `bf_huichun,bf_huinei:3battle` | 4 |
+
 - **以杯配酒**：背包中持有“祖千秋酒杯组”（收藏品 §11.5）时，饮对应之酒：汾酒配玉杯、葡萄酒配夜光杯、状元红配古瓷杯；醉意数值 ×1.5，且醉倒阈值从 3 层升为 4 层。杯酒配对取意《笑傲江湖》祖千秋论酒，数值与阈值为**（原创扩展）**。
 - 酒在战斗中饮用占物品行动；持洪七公酒葫芦（§5.4）可作附加动作。
 
@@ -2301,6 +2361,7 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | AR-20 秘籍缺口补录（12） | 黄：`it_miji_luohanquan` `it_miji_taizuchangquan`；玄：`it_miji_quanzhenxinfa` `it_miji_liangyixinfa`；地：`it_miji_longzhaoshou` `it_miji_tongguijian` `it_miji_chilianshenzhang_can` `it_miji_bingpoyinzhen` `it_miji_chunyangwuji` `it_miji_huzhaojuehushou` `it_miji_wujixuangongquan` `it_miji_shenmen13`。均复用图鉴已声明的 `manual` ID，物品载体为**（原创扩展）**；字段与来源仍按对应技能图鉴 |
 | AR-20 药物／补品／药材新增（19） | 药物：`it_wuchangdan` `it_fulingshouwuwan` `it_xueshenyuchanwan` `it_yulongsuheisan` `it_bilingdan` `it_tianyishenshui`；补品：`it_yangjingwan` `it_bailucao` `it_zixiaoyangqidan` `it_tiansuixuminglu`；药材：`it_renshen` `it_shinianrenshen` `it_bainianrenshen` `it_xueshen` `it_shinianxueshen` `it_bainianxueshen` `it_qiannianxueshen` `it_qiannianlingzhi` `it_qiannianxuelian`。后两项分别取梁羽生、古龙作品；新增玩法与未见于原著的形制均**（原创扩展）** |
 | AR-20 食材／食品新增（20） | 食材：`it_jingmi` `it_huotuijian` `it_xianyu` `it_cumian` `it_xuelianzi` `it_yuxueguo` `it_xianggu` `it_longganfengsui` `it_binghuxueou` `it_xueshanlufu` `it_tianshanlingmi` `it_baihualinglu`；食品：`it_ganliang` `it_guisugao` `it_niurougan` `it_furonggao` `it_baihuagao` `it_yuluwan` `it_xueyulengchan` `it_tianxiangyulu`。除明确书名来源者外均**（原创扩展）** |
+| AR-23 食材／食品扩张（146） | 食材：`it_zhurou` `it_niurou` `it_yangrou` `it_jirou` `it_yarou` `it_erou` `it_lvrou` `it_marou` `it_gourou` `it_turou` `it_gerou` `it_anchunrou` `it_zhudu` `it_yangweizhi` `it_xianlurou` `it_xiongzhang` `it_tuofeng` `it_xingchun` `it_baotai` `it_shiyu` `it_hetun` `it_huajiao` `it_haishen` `it_baoyu` `it_yanwo` `it_yuchi` `it_xueha` `it_xiongbai` `it_jiangxia` `it_heli` `it_hanshui_qingyu` `it_taihu_yinyu` `it_huxie` `it_haiyu` `it_haili` `it_huangyu` `it_jiangyaozhu` `it_lianou` `it_qingcai` `it_baicai` `it_jiucai` `it_qincai` `it_cong` `it_shengjiang` `it_luobo` `it_qiezi` `it_donggua` `it_chunsun` `it_juecai` `it_muer` `it_doufu` `it_lajiao` `it_fanshu` `it_yumi` `it_xiaomi` `it_gaoliang` `it_qiaomai` `it_dadou` `it_lvdou` `it_chidou` `it_hongzao` `it_li` `it_tao` `it_xing` `it_putao` `it_shiliu` `it_lizhi` `it_hutao` `it_yan` `it_jiangzhi` `it_micu` `it_huajiao_xiangliao` `it_shizhuyu` `it_hujiao` `it_zhetang` `it_jiuzao` `it_douchi`；食品：`it_hubing` `it_zhengbing` `it_zhimashaobing` `it_nangbing` `it_qingkezanba` `it_naigan` `it_songhelou_xiaren` `it_guokui` `it_huiyanlou_huncai` `it_shaolin_sumian` `it_dingshenggao` `it_guangmingding_suxian_yuanbing` `it_yuebing` `it_hengshan_qingcaidoufu` `it_meigui_subing` `it_suyoubing` `it_jinyinmantou` `it_xianrou` `it_larou` `it_banya` `it_zaoyu` `it_furu` `it_sunzha` `it_fenggan_yangrou` `it_mizi_jinju` `it_tangshuangtaotiao` `it_huayuan_gaobing` `it_aqing_qingcha` `it_muwu_gancaifan` `it_liaoying_yangrou` `it_dali_qingming_chadian` `it_qingshui_yufeng_mijiang` `it_qingcai_doufu_xiaoyufan` `it_hanshui_siwan_fancai` `it_binghuodao_kaoxiongrou` `it_fuzhou_yeji_huangtu` `it_hengshan_suxianzong` `it_xiakedao_siyang_dianxin` `it_houjianji_shaobing` `it_huashan_qingcai_doufufan` `it_wenjia_huotui_larouyan` `it_zhayangwei` `it_milian_huotui` `it_yangzhou_tangbao_changyumian` `it_pomiao_shutang` `it_yuzhou_fanshu_caomifan` `it_naiyou_recha` `it_yangrulao` `it_xiaofu_shoujiuxi` `it_huodui_kaozhangji` `it_huibu_zhuafan_kaorou` `it_xuedi_kaohuangyang` `it_honghuahui_zongduo_yanxi` `it_chenglingsu_sancai_yitang` `it_miaojia_huofan_sancai` `it_humiao_mantou_jiyangtui` `it_dianchi_shurou_shaoji` `it_xieniangcheng` `it_shanhaidou` `it_dongporou` `it_shanyaozhou` `it_heliandouzi` `it_tuanyutang` `it_shanjia_sancui` `it_lubeiji` `it_wangtaishou_babaodoufu` `it_jiangshilang_doufu` `it_shaoxiaozhu` `it_yanwojisitang`。规则与外观见 `catalog/items-food.md`；数值及无定本形制均**（原创扩展）** |
 | AR-20 天级食品补录 | `it_tianxiangyuyan` 天香御宴：`food/feast`、天下 10、固定御膳奇遇、`flags:[uniqueBatch]`；整套菜式、效果与外观均**（原创扩展）** |
 | AR-20 衣物补录（5，另复用乌蚕衣） | `eq_taohuajinpao` `eq_xiyuhufu` `eq_yunjinhechang`（地上 9）；`eq_tianchanbaoyi` `eq_zixiaqingyi`（天下 10、`catalogTian`）；另复用神兵宝甲 `eq_wucanyi`。新增五件均为**（原创扩展）** |
 | AR-20 制式盔甲（8） | `eq_songxunyijia` `eq_qingzaolijia`（黄上 3）；`eq_yuanqibingjia` `eq_mingweisuojia`（玄上 6）；`eq_songjinjunburenjia` `eq_mingjinyiweijia`（地上 9）；`eq_yuansuweiqiejia` `eq_qingyulinjia`（天下 10、`catalogTian`）。均为**（原创扩展）**并必填 `lawProfile` |
