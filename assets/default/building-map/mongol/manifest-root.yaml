@@ -1,0 +1,233 @@
+- id: bld_kit_mongol_temple_hall
+  file: bld_kit_mongol_temple_hall.png
+  category: building-map
+  style: default
+  subject: 13–14世纪蒙古草原/和林/上都语境：佛寺殿堂（原创扩展；非具名文物复原）
+  prompt: 'Use case: historical-scene. Generate exactly ONE production building sprite for tianshu default building-map, Mongol grassland and Karakorum/Xanadu cultural context, 13th-14th century, historical realistic game art. Orthographic camera yaw 45 degrees elevation 30 degrees. Ground projection exactly 2:1 dimetric, visible ground axes +0.5 and -0.5 screen slope, all parallel edges remain parallel, verticals upright. South entrance faces screen LOWER LEFT. Muted earth tones, weathered tactile materials and fine natural detail density matching realistic Song city-kit assets, not a cartoon, not glossy toy rendering. Warm neutral light from SCREEN UPPER LEFT, very short soft contact shadow towards LOWER RIGHT. Flat thin ground contact rectangle with clearly readable corners, NEVER a thick diorama pedestal. Genuine RGBA transparency everywhere outside asset; no opaque white backdrop or painted checkerboard. Generous transparent margin on all sides; complete uncut silhouette. No text, labels, grid, numbers, watermark, people, modern objects or scenic background. Footprint 13 metres east-west by 10 metres north-south, axis lengths ratio 13:10. An anonymous modest Mongol-Yuan Buddhist timber temple hall, broad low grey-green clay tiled hipped gable roof, restrained upward eaves, matte dark red-brown columns and simple bracket sets, pale rammed-earth infill walls, wooden lattices, a central open south doorway, thin stone sill and three modest steps. Inspired only by Chinese timber construction and Buddhist temple evidence at Karakorum, NOT a reconstruction of the Great Hall, NOT a palace; no modern Erdene Zuu details.'
+  negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+  references: []
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed
+  created: '2026-09-30T22:07:57.380837+00:00'
+  created_time_basis: 源PNG文件mtime，不是服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-9f3a7534-0190-4ca2-81a2-5d7442802c8d.png
+  size: 832x656
+  sha256: 3912ea495a4a745745f85329742882e22194cfcd96f927112b2afbbc8f423ff0
+  status: candidate
+  building:
+    type: bld_kit_mongol_temple_hall
+    footprint: [13, 10]
+    anchor: [422.2028, 419.4592]
+    era: mongol
+  footprint_m: [13, 10]
+  footprint_basis: design/22 §3.3 temple_hall 13×10【建议值】
+  entrance: {edge: S, offset_cells: 6}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [736, 368]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_mongol_temple_hall.yaml
+  processing:
+    source_archive: sources/bld_kit_mongol_temple_hall__raw.png
+    source_sha256: e1518e1e06d4ce0c835a84c0b015baf2aa729584589ab835427b155375303fbe
+    source_size: [1430, 1100]
+    crop_box: [0, 9, 1408, 1100]
+    uniform_scale_requested: 0.5360524399126001
+    resized_size: [755, 585]
+    actual_scale_xy: [0.5362215909090909, 0.536205316223648]
+    paste_offset: [38, 35, 793, 620]
+    anchor_source_px: [716.5, 726.0]
+    alpha_edits: none
+    note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+  notes: 仅原向单视图；锚点为底面中心代理；精确接缝/碰撞/遮挡待实测；底面严格几何见meta。
+- id: bld_kit_mongol_stupa
+  file: bld_kit_mongol_stupa.png
+  category: building-map
+  style: default
+  subject: 13–14世纪蒙古草原/和林/上都语境：佛塔地标（原创扩展；非具名文物复原）
+  prompt: "Precise camera correction of this stupa sprite, preserve design and all materials. The current ground has too steep diagonals: from left=(65,787) to front=(626,1108) and right=(1188,787) gives slope0.572. REQUIRED slope is0.5, so move front ground corner UP by about40pixels to (626,1068) while left and right corners stay at y787. Re-render structure coherently at this slightly LOWER camera elevation, do not distort tower vertically. The visible square foundation must have exact 2:1 diamond geometry, equal edges with 26.565 degree slope, NOT30degree slope. Make front corner perfectly centred horizontally. Keep anonymous Buddhist Mongol dome/plinth/finial/stairs, worn cream plaster and rough stone realism. Alpha-only transparent backdrop, opaque structure, no glow, no ambient shadow, no text, no reference lines or annotations, no checkerboard. Crisp thin ground border. Complete silhouette, square canvas, margins, light upper-left."
+  negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+  references: [{"file": "sources/bld_kit_mongol_stupa__raw.png", "sha256": "832c6ac4de146dfcfcef71a3df658c8638f92fb1af7036177ddd40035d78a4c5", "role": "首轮历史输入，非本轮最终调用输入", "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-41a22c9f-f5b2-437f-bddd-c177c0f23828.png"}, {"file": "sources/bld_kit_mongol_stupa__repair2_c01.png", "sha256": "976a5226b41e93271e1831576866cfcddb87efcf46ff914c06ca99f6fb3d10c5", "role": "本轮第2候选实际image_gen编辑输入"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed
+  created: "2026-09-30T23:04:30.927786+00:00"
+  created_time_basis: "本轮归档文件mtime，不是服务端调用时间"
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f481-58f0-7ad3-9899-9cdb8c6ed48d/exec-eee4bf8d-72b0-4fd5-90cb-2289e3b088ed.png"
+  size: "528x512"
+  sha256: "7427768a30eea0b51154f17e46bf1c2eb955f3ea3aa1d98831b96d9dbd7a7829"
+  status: candidate
+  building: {"type": "bld_kit_mongol_stupa", "footprint": [7, 7], "anchor": [264.5955, 328.7818], "era": "mongol"}
+  footprint_m: [7, 7]
+  footprint_basis: design/22 §3.3 pagoda 7×7【建议值】
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_px": [448, 224], "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "ground_bbox_semantics": "ground_bbox_px是64×32理想占格目标，不是实测底面框", "ground_bbox_target_px": [448, 224], "ground_bbox_measured_px": [448.427, 223.6352]}
+  metadata: meta/bld_kit_mongol_stupa.yaml
+  processing: {"source_archive": "sources/bld_kit_mongol_stupa__repair2_c02.png", "source_sha256": "51db266fa9f2be8d37cdd9481667f8e523011b7efa78787967dd20fac18c4e3d", "source_size": [1254, 1254], "crop_box": [0, 0, 1246, 1228], "uniform_scale_requested": 0.36482084690553745, "resized_size": [455, 448], "actual_scale_xy": [0.3651685393258427, 0.36482084690553745], "paste_offset": [36, 32, 491, 480], "anchor_source_px": [626.0, 813.5], "alpha_edits": "none", "note": "仅全透明外框裁切、等比LANCZOS缩放与透明padding；整数取整亚像素差。"}
+  notes: "第2轮重出：几何通过。保持candidate。"
+  geometry_qa: {"source_corners_LFR_px": [[12, 814], [626, 1120], [1240, 813]], "source_axis_slopes": [0.498371335504886, -0.5], "axis_tolerance": 0.03, "axis_pass": true, "width_depth_ratio": 1.0, "expected_ratio": 1.0, "ratio_relative_error": 0.0, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "note": "本轮逐图读取真实L/F/R底角；没有warp或理想坐标替代测量。"}
+
+- id: bld_kit_mongol_guardhouse
+  file: bld_kit_mongol_guardhouse.png
+  category: building-map
+  style: default
+  subject: 13–14世纪蒙古草原/和林/上都语境：营门守舍（原创扩展；非具名文物复原）
+  prompt: "Use case: precise-object-edit. Rebuild this exact Mongol felt-roof guardhouse as a CLEAN TRANSPARENT game asset with corrected isometric geometry. The attached result has three defects: glowing background; roof and ground are too shallow; front width is too narrow. Fix all. Use strict classic 2:1 ISOMETRIC ground: each ground diagonal rises exactly ONE pixel for TWO horizontal pixels. CAMERA MUST BE HIGHER than reference. Footprint is 6 wide by 5 deep, so the LOWER-LEFT FACING FRONT including porch must be 1.20 times the physical length of the right side. Make front facade 20% broader relative to right side. Ground front corner shifted to screen RIGHT of centre. Natural thin dry-earth ground shape is a precise parallelogram. Landscape 1536x1024: left corner (192,550), bottom/front corner (820,864), right corner (1344,602). Do NOT keep the current ground shape. All lower structural axes and roof eaves must match the corrected parallel isometric directions. Preserve simple cabin, earth-plaster walls, dark timber, grey rope-tied felt roof, small lattice window and empty rack. Natural fine realistic material texture. NO glow, NO shadow spreading outside ground, NO brown backdrop, NO ambient haze. Fully opaque cabin and ground, alpha255 inside; completely transparent alpha0 outside physical boundary, crisp silhouette only with antialiasing. No text/no grid/no labels/no people. Do not make a diorama block. Small contact shadow only on own ground. Upper-left light."
+  negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+  references: [{"file": "sources/bld_kit_mongol_guardhouse__repair2_c01.png", "sha256": "b4c34f15016c4ec7839011ff3c01e2d6dde4da944618f11e5d6eb7d96932553b", "role": "本轮第2候选实际image_gen编辑输入"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed
+  created: "2026-09-30T23:04:30.889127+00:00"
+  created_time_basis: "本轮归档文件mtime，不是服务端调用时间"
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f481-58f0-7ad3-9899-9cdb8c6ed48d/exec-6d1d37d6-3fa6-47c9-b13c-8a3cde02626f.png"
+  size: "432x304"
+  sha256: "e2747286f29ed452cbb922bc9540e6a167d39ad90135f544ebf3a1b6e528c840"
+  status: candidate
+  building: {"type": "bld_kit_mongol_guardhouse", "footprint": [6, 5], "anchor": [220.3077, 191.9063], "era": "mongol"}
+  footprint_m: [6, 5]
+  footprint_basis: design/22 §3.2 guardhouse 6×5【建议值】
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_px": [352, 176], "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "ground_bbox_semantics": "ground_bbox_px是64×32理想占格目标，不是实测底面框", "ground_bbox_target_px": [352, 176], "ground_bbox_measured_px": [352.0342, 154.3525]}
+  metadata: meta/bld_kit_mongol_guardhouse.yaml
+  processing: {"source_archive": "sources/bld_kit_mongol_guardhouse__repair2_c02.png", "source_sha256": "c55fa9a7afb0bca3c55a0ac0471ac7b90cc396fc745f0f3bfc23a9079b077462", "source_size": [1536, 1024], "crop_box": [0, 16, 1521, 1009], "uniform_scale_requested": 0.23929299796057105, "resized_size": [364, 238], "actual_scale_xy": [0.23931623931623933, 0.23967774420946628], "paste_offset": [34, 33, 398, 271], "anchor_source_px": [778.5, 679.0], "alpha_edits": "none", "note": "仅全透明外框裁切、等比LANCZOS缩放与透明padding；整数取整亚像素差。"}
+  notes: "第2轮重出改善宽深偏差，但轴率与宽深仍不通过；保持candidate，不可视为已修复。"
+  geometry_qa: {"source_corners_LFR_px": [[43, 690], [773, 1001], [1514, 668]], "source_axis_slopes": [0.426027397260274, -0.4493927125506073], "axis_tolerance": 0.03, "axis_pass": false, "width_depth_ratio": 0.9851551956815114, "expected_ratio": 1.2, "ratio_relative_error": 0.1790373369320738, "ratio_tolerance_suggestion": 0.1, "ratio_pass": false, "measurement_uncertainty_source_px": 5, "note": "本轮逐图读取真实L/F/R底角；没有warp或理想坐标替代测量。"}
+
+- id: bld_kit_mongol_stable
+  file: bld_kit_mongol_stable.png
+  category: building-map
+  style: default
+  subject: 13–14世纪蒙古草原/和林/上都语境：拴马棚（原创扩展；非具名文物复原）
+  prompt: 'Use case: precise-object-edit. Edit this Song stable into a 13th-century Mongol steppe horse shelter sprite. PRESERVE EXACT camera, ground footprint aspect ratio8:6, isometric orientation, ground corners, building width/depth, three open stalls, troughs, scale and transparent padding. Replace the entire grey ceramic tiled roof with a plain taut muted beige wool-felt roof held by rope lashings over rough timber rafters, remove all decorative ridge finials and ceramic tiles. Replace white plaster side walls with rough dark timber slats. Keep realistic fine wood grain and weathering at same detail density. No horses or people. Left-upper light, short right-lower contact shadows. Genuine transparent RGBA outside actual silhouette. Do not change framing or lengthen the building. No text or checkerboard.'
+  negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+  references:
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_stable.png, sha256: da40c1c72f1e27b96c2a8da4d6ab0ac6f81474a6d0e049045d4ac9996eabac28, role: 实际image_gen编辑输入}
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed
+  created: '2026-09-30T22:15:08.242676+00:00'
+  created_time_basis: 源PNG文件mtime，不是服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-1d3c0b69-5125-4377-8e64-7df44437ed4b.png
+  size: 592x496
+  sha256: 355b51d4c6ac08ca9562bc80535dd9db08a4c27b36f8b296f5dcd2f31efc17d8
+  status: candidate
+  building:
+    type: bld_kit_mongol_stable
+    footprint: [8, 6]
+    anchor: [308.6176, 294.2716]
+    era: mongol
+  footprint_m: [8, 6]
+  footprint_basis: design/22 §3.2 stable 8×6【建议值】
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [448, 224]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_mongol_stable.yaml
+  processing:
+    source_archive: sources/stableRetry__raw.png
+    source_sha256: 6f7cd9bb686d3a4944b3af07fd55d31576d13aa2dd83fdfa81a7a8f2de1980da
+    source_size: [1437, 1095]
+    crop_box: [65, 20, 1425, 1095]
+    uniform_scale_requested: 0.388551604509974
+    resized_size: [528, 418]
+    actual_scale_xy: [0.38823529411764707, 0.38883720930232557]
+    paste_offset: [32, 39, 560, 457]
+    anchor_source_px: [777.5, 676.5]
+    alpha_edits: none
+    note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+  notes: 仅原向单视图；锚点为底面中心代理；精确接缝/碰撞/遮挡待实测；底面严格几何见meta。
+- id: bld_kit_mongol_warehouse
+  file: bld_kit_mongol_warehouse.png
+  category: building-map
+  style: default
+  subject: 13–14世纪蒙古草原/和林/上都语境：商旅仓屋（原创扩展；非具名文物复原）
+  prompt: 'Use case: precise-object-edit. Convert the supplied Song warehouse sprite into a Mongol grassland caravan warehouse, 13th-14th century, original regional game adaptation. Keep the EXACT 45-degree camera, 30-degree elevation, 2:1 ground projection, ground parallelogram 9 by 7 metres, base corners, doors/windows placement and realistic detail density of the reference. Replace all ceramic roof tiles and finials with plain overlapping weathered wooden shingles, simple wooden ridge capped with tied timber. Replace plaster panels with muted dark rough timber planks. Keep two open wooden south doors and stacks of rope-bound wool/felt packages inside, with a small grey felt awning over entry; no ceramic decorative jars. Keep same height and width, no added scenery. Light from upper left and short contact shadow lower right. True RGBA alpha0 outside building and thin foundation. No people, no text, no watermark, no checkerboard, no bright varnish. Entire structure inside transparent margins.'
+  negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+  references:
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_warehouse.png, sha256: ebd26707923a4b40ec80c95aca5ec8216260eefb4e3fff87efed525654f2c351, role: 实际image_gen编辑输入}
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed
+  created: '2026-09-30T22:16:10.604241+00:00'
+  created_time_basis: 源PNG文件mtime，不是服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-4f78a02c-794e-489a-b780-fb08eacd7870.png
+  size: 688x544
+  sha256: 707cb4fa37e7029e83ae951511eead124c7b5519e9890c4b2e6341d1b674665e
+  status: candidate
+  building:
+    type: bld_kit_mongol_warehouse
+    footprint: [9, 7]
+    anchor: [359.2123, 336.426]
+    era: mongol
+  footprint_m: [9, 7]
+  footprint_basis: design/22 §3.2 warehouse 9×7【建议值】
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [512, 256]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_mongol_warehouse.yaml
+  processing:
+    source_archive: sources/bld_kit_mongol_warehouse__raw.png
+    source_sha256: 86cf257a0e44ecb61d643c89650f9e80b4f25a6e47a58a748296083e25057440
+    source_size: [1437, 1095]
+    crop_box: [0, 20, 1385, 1095]
+    uniform_scale_requested: 0.4429065743944637
+    resized_size: [613, 476]
+    actual_scale_xy: [0.44259927797833937, 0.4427906976744186]
+    paste_offset: [37, 34, 650, 510]
+    anchor_source_px: [728.0, 703.0]
+    alpha_edits: none
+    note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+  notes: 仅原向单视图；锚点为底面中心代理；精确接缝/碰撞/遮挡待实测；底面严格几何见meta。
+- id: bld_kit_mongol_wharf
+  file: bld_kit_mongol_wharf.png
+  category: building-map
+  style: default
+  subject: 13–14世纪蒙古草原/和林/上都语境：河岸卸货栈台（原创扩展；非具名文物复原）
+  prompt: 'Use case: precise-object-edit. Convert this low rectangular Song stone river landing into a simple Mongol-Yuan grassland timber landing game sprite. KEEP EXACT camera, ground rectangle shape and 8:4 width-to-depth ratio, 45 degrees yaw and 30 degrees elevation, 2:1 parallel isometric axes. Replace stone slabs with broad rough weathered wooden planks and shallow square timber edge beams. Keep two low rope-tied mooring posts and the three shallow entry steps in same positions. Back long waterside edge must be continuous and unobstructed. No railings, no water, no building, no boat, no broad landscape, no additional scenery, no text. Only a slim flat platform with extremely short wooden foot blocks, not a thick plinth. Muted natural wood with fine realistic aged grain, neutral light from screen upper left and tiny soft shadow lower right. Genuine transparent RGBA outside the object; generous transparent margin, no checkerboard or drawn background. Original regional game adaptation, not a reconstruction of a named Karakorum port.'
+  negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+  references:
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_wharf.png, sha256: 03ab2096647498c835afdb58e896d604966b5c2492bb0504625677f962a912d4, role: 实际image_gen编辑输入}
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed
+  created: '2026-09-30T22:17:15.835734+00:00'
+  created_time_basis: 源PNG文件mtime，不是服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-b082a03a-f346-47bd-8763-4cee69b96a49.png
+  size: 560x560
+  sha256: ee2fe65dbbab968c9b693ab4ae4bdc67ba6bbd6a5c5a9a1005ee871fd174e055
+  status: candidate
+  building:
+    type: bld_kit_mongol_wharf
+    footprint: [8, 4]
+    anchor: [293.8248, 295.0361]
+    era: mongol
+  footprint_m: [8, 4]
+  footprint_basis: design/22 §3.2 wharf 8×4【建议值】
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [384, 192]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_mongol_wharf.yaml
+  processing:
+    source_archive: sources/bld_kit_mongol_wharf__raw.png
+    source_sha256: f326ef145031e008424a0209285c3f982b84c3bb3f833a027f2c54735b70c46d
+    source_size: [1254, 1254]
+    crop_box: [0, 21, 1210, 1212]
+    uniform_scale_requested: 0.4067796610169492
+    resized_size: [492, 484]
+    actual_scale_xy: [0.4066115702479339, 0.4063811922753988]
+    paste_offset: [34, 38, 526, 522]
+    anchor_source_px: [639.0, 653.5]
+    alpha_edits: none
+    note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+  notes: 仅原向单视图；锚点为底面中心代理；精确接缝/碰撞/遮挡待实测；底面严格几何见meta。

@@ -1,0 +1,45 @@
+id: bld_kit_mongol_wharf
+file: bld_kit_mongol_wharf.png
+category: building-map
+style: default
+subject: 13–14世纪蒙古草原/和林/上都语境：河岸卸货栈台（原创扩展；非具名文物复原）
+prompt: 'Use case: precise-object-edit. Convert this low rectangular Song stone river landing into a simple Mongol-Yuan grassland timber landing game sprite. KEEP EXACT camera, ground rectangle shape and 8:4 width-to-depth ratio, 45 degrees yaw and 30 degrees elevation, 2:1 parallel isometric axes. Replace stone slabs with broad rough weathered wooden planks and shallow square timber edge beams. Keep two low rope-tied mooring posts and the three shallow entry steps in same positions. Back long waterside edge must be continuous and unobstructed. No railings, no water, no building, no boat, no broad landscape, no additional scenery, no text. Only a slim flat platform with extremely short wooden foot blocks, not a thick plinth. Muted natural wood with fine realistic aged grain, neutral light from screen upper left and tiny soft shadow lower right. Genuine transparent RGBA outside the object; generous transparent margin, no checkerboard or drawn background. Original regional game adaptation, not a reconstruction of a named Karakorum port.'
+negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+references:
+- {file: assets/default/baseline/building-map/bld_kit_song_dali_wharf.png, sha256: 03ab2096647498c835afdb58e896d604966b5c2492bb0504625677f962a912d4, role: 实际image_gen编辑输入}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T22:17:15.835734+00:00'
+created_time_basis: 源PNG文件mtime，不是服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-b082a03a-f346-47bd-8763-4cee69b96a49.png
+size: 560x560
+sha256: ee2fe65dbbab968c9b693ab4ae4bdc67ba6bbd6a5c5a9a1005ee871fd174e055
+status: candidate
+building:
+  type: bld_kit_mongol_wharf
+  footprint: [8, 4]
+  anchor: [293.8248, 295.0361]
+  era: mongol
+footprint_m: [8, 4]
+footprint_basis: design/22 §3.2 wharf 8×4【建议值】
+entrance: {edge: S, offset_cells: 4}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [384, 192]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_mongol_wharf.yaml
+processing:
+  source_archive: sources/bld_kit_mongol_wharf__raw.png
+  source_sha256: f326ef145031e008424a0209285c3f982b84c3bb3f833a027f2c54735b70c46d
+  source_size: [1254, 1254]
+  crop_box: [0, 21, 1210, 1212]
+  uniform_scale_requested: 0.4067796610169492
+  resized_size: [492, 484]
+  actual_scale_xy: [0.4066115702479339, 0.4063811922753988]
+  paste_offset: [34, 38, 526, 522]
+  anchor_source_px: [639.0, 653.5]
+  alpha_edits: none
+  note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+notes: 仅原向单视图；锚点为底面中心代理；精确接缝/碰撞/遮挡待实测；底面严格几何见meta。

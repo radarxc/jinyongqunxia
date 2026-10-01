@@ -1,0 +1,9 @@
+{
+  "key": "bld_kit_mongol_wharf",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-b082a03a-f346-47bd-8763-4cee69b96a49.png",
+  "prompt": "Use case: precise-object-edit. Convert this low rectangular Song stone river landing into a simple Mongol-Yuan grassland timber landing game sprite. KEEP EXACT camera, ground rectangle shape and 8:4 width-to-depth ratio, 45 degrees yaw and 30 degrees elevation, 2:1 parallel isometric axes. Replace stone slabs with broad rough weathered wooden planks and shallow square timber edge beams. Keep two low rope-tied mooring posts and the three shallow entry steps in same positions. Back long waterside edge must be continuous and unobstructed. No railings, no water, no building, no boat, no broad landscape, no additional scenery, no text. Only a slim flat platform with extremely short wooden foot blocks, not a thick plinth. Muted natural wood with fine realistic aged grain, neutral light from screen upper left and tiny soft shadow lower right. Genuine transparent RGBA outside the object; generous transparent margin, no checkerboard or drawn background. Original regional game adaptation, not a reconstruction of a named Karakorum port.",
+  "references": [
+    "assets/default/baseline/building-map/bld_kit_song_dali_wharf.png"
+  ],
+  "selection": "selected"
+}

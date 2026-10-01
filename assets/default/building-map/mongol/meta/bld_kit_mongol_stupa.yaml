@@ -1,0 +1,61 @@
+id: bld_kit_mongol_stupa
+building:
+  type: bld_kit_mongol_stupa
+  footprint: [7, 7]
+  anchor: &id001 [264.5955, 328.7818]
+  era: mongol
+anchor_px: *id001
+geometry_qa:
+  source_corners_LFR_px:
+  - [12, 814]
+  - [626, 1120]
+  - [1240, 813]
+  source_axis_slopes: [0.498371335504886, -0.5]
+  axis_tolerance: 0.03
+  axis_pass: true
+  width_depth_ratio: 1.0
+  expected_ratio: 1.0
+  ratio_relative_error: 0.0
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 5
+  note: 本轮逐图读取真实L/F/R底角；没有warp或理想坐标替代测量。
+processing:
+  source_archive: sources/bld_kit_mongol_stupa__repair2_c02.png
+  source_sha256: 51db266fa9f2be8d37cdd9481667f8e523011b7efa78787967dd20fac18c4e3d
+  source_size: [1254, 1254]
+  crop_box: [0, 0, 1246, 1228]
+  uniform_scale_requested: 0.36482084690553745
+  resized_size: [455, 448]
+  actual_scale_xy: [0.3651685393258427, 0.36482084690553745]
+  paste_offset: [36, 32, 491, 480]
+  anchor_source_px: [626.0, 813.5]
+  alpha_edits: none
+  note: 仅全透明外框裁切、等比LANCZOS缩放与透明padding；整数取整亚像素差。
+views:
+- {rotation_deg: 0, file: bld_kit_mongol_stupa.png}
+allowRotation: false
+glb: null
+release_ready: false
+pixel_qa:
+  mode: RGBA
+  size: [528, 512]
+  alpha_extrema: [0, 255]
+  alpha_bbox: [38, 32, 491, 469]
+  transparent_pixels: 201384
+collision_polygon_m:
+- [0, 0]
+- [7, 0]
+- [7, 7]
+- [0, 7]
+collision_note: 候选逻辑矩形，非实墙测绘；河埠仅装饰，不创建port或旅行服务。
+historical_note: 仅地域母题有文字参考；具体屋面/门窗/彩画/塔式为原创设计，待考。
+repair_round_2: {tool: built-in image_gen, candidate_count: 2, attempt_records: sources/bld_kit_mongol_stupa__repair2_calls.json, selected_candidate: 2, geometry_pass: true, result: c02轴率/宽深均通过}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [448, 224]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  ground_bbox_semantics: ground_bbox_px是64×32理想占格目标，不是实测底面框
+  ground_bbox_target_px: [448, 224]
+  ground_bbox_measured_px: [448.427, 223.6352]

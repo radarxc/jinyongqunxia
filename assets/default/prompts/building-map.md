@@ -611,6 +611,66 @@ Keep Song-set realistic detail density and restrained weathering while changing 
 源图和成品逐张 `view_image`，另用浅底合成检查alpha。工具预览中的灰棕光晕可能只是alpha0位置的RGB，必须采样或合成核实，不据预览去清除真实半透明边缘。单朝向 `allowRotation:false`；没有四视图、GLB、真实高度或精确院内碰撞，联调 **（待实测）**。
 
 参考资料（访问2026-09-30）：[北京市合院式历史建筑修缮技术导则](https://www.beijing.gov.cn/zhengce/gfxwj/202405/W020240510514910875219.pdf)用于青砖青瓦木构；[清代北京四合院发展演变](https://wwj.beijing.gov.cn/bjww/resource/cms/article/362762/515604/2018071114320631049.pdf)用于限制普通民居的华丽门型；[沈阳故宫宫殿介绍](https://www.sypm.org.cn/xinwen_2/4.html)用于官式硬山和等级装饰；[济南市第二批历史建筑保护图则](http://nrp.jinan.gov.cn/attach/upfiles/lsjztz02.pdf)的检索摘要用于清代传统合院、砖木结构和石基砖墙母题，原站直连本轮返回504。现代修缮或存世建筑不证明每一细部均属清初，匿名组合与地方差异仍（待考）。2026-09-30下载查看的逐类历史图片仅作生成后形制复核，未作为原始 `image_gen` 输入；逐件URL与用途见套件manifest的 `historical_references`。
+## 11. 蒙古 · 草原套件 `mongol`（KIT-mongol，2026-09-30）
+
+本节新增 `building-map/mongol/` 的19件候选，不改变以上宋套件清单与历史待决项。题材为13–14世纪草原营地及和林 / 上都文化语境，**不是把两城建筑混排成同一年代实测复原图**。依 `design/22` §2.4，蒙古营帐不默认塞进江南密集街心；具体城市的时代开放和投放另读城市规格。
+
+### 11.1 年代、地域与替换
+
+- 毡帐采用圆形木架、乳白毛毡罩面、绳带、低矮木门与顶部开口意象；木料、毛毡与土石保持哑光。UNESCO 的传统工艺记录用于结构母题，不证明13世纪每一处门窗和彩绘细节。
+- 商旅区以木骨架、毡篷、货包、木栅和拴马设施区分功能；护运行、赌场、客栈帐院及山庄帐院均为 **（原创扩展）**，不写历史字号、不新造营生 ID。
+- 王府模块与佛寺可采用克制汉式木构、灰 / 灰绿陶瓦、红褐柱与简化斗拱；不要把所有建筑都画成帐篷，也不要套现代景区鲜艳装饰或清宫黄瓦。
+- 和林“大殿”按已读 DAI 研究属于13世纪佛寺，不把旧宫殿解释当成确定事实；出土中国式瓦件与装饰只支持中国式墙屋顶技术影响，不能推出本件门窗和彩画。`temple_hall` 是匿名小型殿堂。`stupa` 取元大都1279白塔的覆白覆钵体、分层基座与叠轮为时代母题，但缩成游戏地标且不复制具名文物，也不复制额尔德尼召后世寺墙塔群，属 **（原创扩展）**。
+- 河埠只作匿名木卸货台，不画水面、船只或整段河岸，也不据此开通和林水运港口。屋面、墙体、门窗、彩画和塔式的具体组合全部按美术原创处理。
+
+| `bld_kit_mongol_` 后缀（type 与文件 ID 同名） | 原功能 → 地域外观 | 占地格 | 占地依据 |
+|---|---|---:|---|
+| `house_small` | 小民居 → 小毡帐 | 7×6 | §3.4 元 `house` |
+| `house_large` | 大民居 → 大毡帐住宅 | 10×8 | 宋 `courtyard` 包络【建议值】 |
+| `courtyard` | 院落 → 木栅帐院 | 10×8 | §3.2 宋同功能【建议值】 |
+| `shop` | 单层商铺 → 木铺与毡篷 | 6×5 | §3.2 宋同功能【建议值】 |
+| `shop_two_storey` | 两层商铺 → 两层木商楼 | 8×6 | §3.3 宋 `shop_2f`【建议值】 |
+| `inn` | 客栈 → 商旅帐院 | 10×8 | §3.2 宋同功能【建议值】 |
+| `tavern` | 酒楼 / 茶肆 → 食饮帐馆 | 10×8 | §3.2 宋 `restaurant`【建议值】 |
+| `market` | 市场棚 → 毛毡铺棚 | 5×4 | §3.4 元 `market` |
+| `yamen` | 官署 → 木构议事厅与帐院 | 16×12 | §3.4 元 `yamen` |
+| `biaoju` | 镖局 → 商队护运货栈 | 14×11 | §3.4 元 `biaoju` |
+| `casino` | 赌场 → 娱乐大帐 | 9×7 | §3.2 宋同功能【建议值】 |
+| `manor` | 山庄 → 贵族帐院 | 16×13 | §3.3 宋同功能【建议值】 |
+| `wangfu` | 王府 / 宫殿模块 → 汉式宫室 | 20×16 | §3.4 元 `wangfu` |
+| `temple_hall` | 寺观 → 匿名佛寺殿堂 | 13×10 | §3.3 宋同功能【建议值】 |
+| `stupa` | 宗教地标 → 佛塔意象 | 7×7 | §3.3 宋 `pagoda`【建议值】 |
+| `guardhouse` | 城门守舍 → 木骨毡顶守舍 | 6×5 | §3.2 宋同功能【建议值】 |
+| `stable` | 马厩 → 木构毡顶拴马棚 | 8×6 | §3.2 宋同功能【建议值】 |
+| `warehouse` | 仓屋 → 木板商旅仓屋 | 9×7 | §3.2 宋同功能【建议值】 |
+| `wharf` | 河埠 → 木卸货栈台 | 8×4 | §3.2 宋同功能【建议值】 |
+
+上表章节均指 `design/22`；元骨架未列的功能按已有宋包络给地域映射默认值，不称蒙古考古尺寸。19项的 `era=mongol` 是本任务授权的资产套件标签，不扩大全局书界 / 朝代枚举。
+
+### 11.2 提示词差异与处理
+
+在§5通用投影、留白和光向模板上替换题材段：
+
+```text
+Mongol grassland / Karakorum and Xanadu cultural context, 13th–14th century.
+Anonymous original regional game adaptation, never a named monument reconstruction.
+Round timber-frame ger, off-white wool felt, rope bands, low wooden door;
+or regional timber-and-felt utility building / restrained Han-style Yuan hall, as catalogued.
+Muted matte earth, felt and wood; realistic Song-kit detail density and soft upper-left light.
+No modern tourist ger decoration, Qing palace ornament, flags with writing, actors or scenic background.
+Preserve 45-degree orthographic camera, 30-degree elevation, 2:1 ground axes and the specified footprint.
+```
+
+需要继承几何的编辑调用先查看宋同功能 PNG，再明确“保留相机、占地比例与构图，只换材质 / 地域构件”；实际输入路径与 SHA 记入 `references`。历史图片须区分“实际生成输入”和“生成后形制审校”：KIT-mongol 成品早于2026-10-01参考图下载，故后者只经 `view_image` 审校并在 manifest 明标“未作为image_gen输入”。完整实发 prompt 逐项保存在 manifest 及 `sources/`，不以本段替代调用记录。
+
+本批短边下限按任务为256px，仍以 `32(w+h)` 标定地面宽；透明扩边不改变占地。底面中心锚点随裁切 / 等比缩放变换。只有原向PNG，禁止镜像补四向；所有严格轴差、比例差保留在 `meta/`，`candidate` 不等于精确无缝或可发布。最多2候选，未消除的偏差交报告，不用拉伸 / warp 纠正。
+
+### 11.3 参考资料与未决边界
+
+访问日期均为2026-09-30：[UNESCO · Mongol Ger传统工艺](https://ich.unesco.org/en/RL/traditional-craftsmanship-of-the-mongol-ger-and-its-associated-customs-00872)取圆形木架、白毡 / 帆布与绳索；[UNESCO · Site of Xanadu](https://whc.unesco.org/en/list/1389/)取宫殿、寺院与游牧营地并存及蒙汉文化交融；[DAI · Conservation and restoration of the Great Hall of Karakorum](https://www.dainst.org/forschung/projekte/noslug/4924)取13世纪佛寺定性、中国式瓦作屋顶与藏式布局影响；[Rubin Museum · White Stupa, Attributed to Anige](https://rubinmuseum.org/projecthimalayanart/essays/white-stupa-attributed-to-nepalese-artist-anige/)取1279元代白塔的覆白覆钵体、分层基座与叠轮母题。以上均不支持本套件精确屋顶曲线、彩画、塔高、门窗或城市落点。
+2026-10-01另下载并逐张查看 Khüree 1913照片、和林博物馆模型、DAI大殿遗址/复原及妙应寺白塔照片；分别只校对帐群密度、灰顶院落、台基柱网和覆钵轮廓。逐成品URL与用途见 manifest，均属生成后审校，不倒签为生成输入。
+
+默认保留匿名原创形制、上表建议占地、单视图和 `candidate`；作者需确认整体草原风格与宗教地标选择。原著《射雕英雄传》《神雕侠侣》的具体营地描述未逐字核对，历史形制与整城拼接 **（待考 / 待实测）**。
 
 ## 本文新增术语与 ID
 
@@ -792,6 +852,8 @@ Subject: {one building type and function-specific details}. No text, people, sky
 
 清北本轮另登记§11.2的19个 `bld_kit_qing_north_*` 地域资产ID，不新增玩法规则。新建前已全仓搜索，只有任务计划中的套件键，没有同名成品；6×5小民居等同构占地依§11.2标为建议值，不扩大清初骨架定义。
 
+KIT-mongol另增§11表列19个 `bld_kit_mongol_*` 资产ID和资产套件标签 `mongol`；不新增玩法ID。
+
 ## 待决事项 / 依赖
 
 ### 替下游给出的建议值
@@ -801,6 +863,7 @@ Subject: {one building type and function-specific details}. No text, people, sky
 透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。西域成品 canvas 短边 ≥256 是本任务检查器要求，宋首批仍按 §4 的 ≥512；地面像素尺度均按 64×32 每格计算，canvas 尺寸随建筑高度 / 屋檐与留白变化，不固定所有建筑方形。
 透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。宋基线最终 canvas 短边 ≥512；§11明北方套件按本任务检查参数取短边≥256。地面像素尺度仍按 64×32 每格计算；canvas 尺寸随建筑高度 / 屋檐与留白变化，不固定所有建筑方形。
 元末江南新增建议值见§11.2；本任务建筑最短边256px、底面64×32px格和实际透明留边单独记录，不改宋基线512px门禁。
+KIT-mongol：§11映射占地、256px短边门禁与逐项锚点是本批默认；非元骨架类型需由后续 `design/22` 收口。精确底面与门前通行仍须实测。
 
 透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。最终 canvas 短边 ≥512 是现有检查器要求，地面像素尺度仍按 64×32 每格计算；canvas 尺寸随建筑高度 / 屋檐与留白变化，不固定所有建筑方形。
 清北增量的占地默认值见§11.2，短边≥256、透明留边≥16px、宽深比10%告警阈值仅为本任务制作参数。精确几何未通过的素材仍为候选；目录检查通过不批准发布。
@@ -836,6 +899,7 @@ Subject: {one building type and function-specific details}. No text, people, sky
 - 元末江南的匿名房屋细部、院落尺度和佛塔层数：默认采用§11候选与建议值；具名城市史图、真实四向、墙门孔对格和运行时遮挡另行验证，未经审批不改 `approved`。
 - 清北19建筑当前只读复验有8件至少一项告警：镖局、赌场、守舍、大民居、大院、市场棚、单层商铺、衙署；其中仅大民居仍超过严格10%比例阈值。另7件第10轮PIL仿射校正后双轴为±0.5，并沿用审核裁定的轴率0.40–0.62、比例30%容差；这不等于发布级总装通过。默认全部保持candidate并保留测点，后续精确总装前需复核，不再以非等比缩放伪修。
 - 清北套件键与既有时代枚举、19类同构占地、六层匿名砖塔的艺术选择是否采用：默认按§11交候选，不代作者批准，不修改上游枚举；见 `tools/agents/reports/KIT-qing_north.md` §4、§6。
+- KIT-mongol地域形制、白塔意象、元表缺项占地和四向能力：默认沿用§11及任务报告，全部保留candidate，仅提供原向；不把草原河埠默认绑定港口服务。
 
 - 旧“建筑占格与正式底面中心未定”：**已解决**，本批消费 `design/22` §1.4、§3 的占地与中心锚点；旧 6×4 / 6×5 自拟尺寸和临时前角锚点不再作为规范。
 - 旧“大理右影触边、两图留白 / 精确轴向 / 比例未达标”：**已解决（本次入选处置）**，ART-B 两张不直接复制入选，按新清单重出；不表示旧图已修复。留白、轴向和尺度仍需对每张新图实测。

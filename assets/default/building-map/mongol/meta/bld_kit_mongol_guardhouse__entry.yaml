@@ -1,0 +1,63 @@
+id: bld_kit_mongol_guardhouse
+file: bld_kit_mongol_guardhouse.png
+category: building-map
+style: default
+subject: 13–14世纪蒙古草原/和林/上都语境：营门守舍（原创扩展；非具名文物复原）
+prompt: 'Use case: precise-object-edit. Rebuild this exact Mongol felt-roof guardhouse as a CLEAN TRANSPARENT game asset with corrected isometric geometry. The attached result has three defects: glowing background; roof and ground are too shallow; front width is too narrow. Fix all. Use strict classic 2:1 ISOMETRIC ground: each ground diagonal rises exactly ONE pixel for TWO horizontal pixels. CAMERA MUST BE HIGHER than reference. Footprint is 6 wide by 5 deep, so the LOWER-LEFT FACING FRONT including porch must be 1.20 times the physical length of the right side. Make front facade 20% broader relative to right side. Ground front corner shifted to screen RIGHT of centre. Natural thin dry-earth ground shape is a precise parallelogram. Landscape 1536x1024: left corner (192,550), bottom/front corner (820,864), right corner (1344,602). Do NOT keep the current ground shape. All lower structural axes and roof eaves must match the corrected parallel isometric directions. Preserve simple cabin, earth-plaster walls, dark timber, grey rope-tied felt roof, small lattice window and empty rack. Natural fine realistic material texture. NO glow, NO shadow spreading outside ground, NO brown backdrop, NO ambient haze. Fully opaque cabin and ground, alpha255 inside; completely transparent alpha0 outside physical boundary, crisp silhouette only with antialiasing. No text/no grid/no labels/no people. Do not make a diorama block. Small contact shadow only on own ground. Upper-left light.'
+negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+references:
+- {file: sources/bld_kit_mongol_guardhouse__repair2_c01.png, sha256: b4c34f15016c4ec7839011ff3c01e2d6dde4da944618f11e5d6eb7d96932553b, role: 本轮第2候选实际image_gen编辑输入}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T23:04:30.889127+00:00'
+created_time_basis: 本轮归档文件mtime，不是服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f481-58f0-7ad3-9899-9cdb8c6ed48d/exec-6d1d37d6-3fa6-47c9-b13c-8a3cde02626f.png
+size: 432x304
+sha256: e2747286f29ed452cbb922bc9540e6a167d39ad90135f544ebf3a1b6e528c840
+status: candidate
+building:
+  type: bld_kit_mongol_guardhouse
+  footprint: [6, 5]
+  anchor: [220.3077, 191.9063]
+  era: mongol
+footprint_m: [6, 5]
+footprint_basis: design/22 §3.2 guardhouse 6×5【建议值】
+entrance: {edge: S, offset_cells: 3}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [352, 176]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  ground_bbox_semantics: ground_bbox_px是64×32理想占格目标，不是实测底面框
+  ground_bbox_target_px: [352, 176]
+  ground_bbox_measured_px: [352.0342, 154.3525]
+metadata: meta/bld_kit_mongol_guardhouse.yaml
+processing:
+  source_archive: sources/bld_kit_mongol_guardhouse__repair2_c02.png
+  source_sha256: c55fa9a7afb0bca3c55a0ac0471ac7b90cc396fc745f0f3bfc23a9079b077462
+  source_size: [1536, 1024]
+  crop_box: [0, 16, 1521, 1009]
+  uniform_scale_requested: 0.23929299796057105
+  resized_size: [364, 238]
+  actual_scale_xy: [0.23931623931623933, 0.23967774420946628]
+  paste_offset: [34, 33, 398, 271]
+  anchor_source_px: [778.5, 679.0]
+  alpha_edits: none
+  note: 仅全透明外框裁切、等比LANCZOS缩放与透明padding；整数取整亚像素差。
+notes: 第2轮重出改善宽深偏差，但轴率与宽深仍不通过；保持candidate，不可视为已修复。
+geometry_qa:
+  source_corners_LFR_px:
+  - [43, 690]
+  - [773, 1001]
+  - [1514, 668]
+  source_axis_slopes: [0.426027397260274, -0.4493927125506073]
+  axis_tolerance: 0.03
+  axis_pass: false
+  width_depth_ratio: 0.9851551956815114
+  expected_ratio: 1.2
+  ratio_relative_error: 0.1790373369320738
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 5
+  note: 本轮逐图读取真实L/F/R底角；没有warp或理想坐标替代测量。

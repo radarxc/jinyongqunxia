@@ -1,0 +1,26 @@
+{
+  "created": 1790831421,
+  "background": "transparent",
+  "output_format": "png",
+  "quality": "medium",
+  "size": "1536x1024",
+  "usage": {
+    "input_tokens": 1801,
+    "input_tokens_details": {
+      "image_tokens": 1384,
+      "text_tokens": 417
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 3173
+  },
+  "generation_id": "d41fe5f3-84f4-49e8-8d11-3d8c2c40e817",
+  "asset_id": "tex_town_mongol_city_gate__k4_r000_v01",
+  "round": 3,
+  "candidate": 1,
+  "prompt": "First round-3 candidate prompt: exact footprint and axes requested, with prior Mongol gate plus liao_jin_north geometry image references.",
+  "source_copy": "source/tex_town_mongol_city_gate__k4_r000_v01__r03c1.png"
+}

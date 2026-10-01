@@ -1,0 +1,672 @@
+- id: bld_kit_mongol_house_small
+  file: bld_kit_mongol_house_small.png
+  category: building-map
+  style: default
+  subject: 蒙古草原/和林13世纪意象·小型家用毡帐（原创扩展；具体年代细部待考）
+  prompt: "Edit the referenced Mongolian ger asset. Two REQUIRED changes: (1) remove ALL the golden/brown glow behind and around the object, replacing every outside pixel with fully transparent alpha=0, preserving solid opaque architecture. (2) Make the flat ground rectangle's FRONT CORNER move RIGHT until its LEFT FRONT EDGE is 7 units long and RIGHT FRONT EDGE is6 units long. Right now it is the wrong way round. BOTH front edges must have equal absolute angle26.565 degrees to horizontal, true 2:1 orthographic projection. Keep the ger smaller with more ground exposed so ground shape is perfectly legible. Floor dimensions 7 wide along left-front edge by6 deep along right-front edge. On final1536x1024 canvas ground corners approximately LEFT(180,580), FRONT(810,895), RIGHT(1350,625), REAR(720,310). The long edge has630horizontal315vertical, the short edge540horizontal270vertical. This is critical game grid alignment. Exact straight thin ground boundary, no podium. Keep historic cream felt, restrained brown ropes, rustic door, wooden chest and firewood, fine Song-style realistic asset texture, upper-left light, whole silhouette with transparent gutters. No background haze, halo, scenery, text, labels, grid or drawn guides. Output a clean opaque game sprite with TRUE transparent exterior."
+  negative: 文字、水印、人物、现代旅游毡帐、景观背景、厚底座、裁切、透视汇聚
+  references: [{"file": "sources/bld_kit_mongol_house_small__r2_c01.png", "role": "本轮第二候选的题材编辑输入", "sha256": "87dc4c1d482b842ae91a3dc82c376a994fa16e34a6a537b22a644c32e94e3a00"}, {"title": "1913 in Khüree", "url": "https://commons.wikimedia.org/wiki/File:1913_in_Khuree.jpg", "purpose": "对照低矮聚落中的毡帐轮廓与密度；照片晚于元代，不证明13世纪细部", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T22:51:13.221741+00:00"
+  created_time_basis: 源PNG文件mtime；非工具披露的服务端调用时间
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f480-f2c1-7942-ae64-7b9cd30c6036/exec-3fff70ca-afc4-458c-91ff-4da81c04dbc9.png"
+  source_sha256: "90ea9582c844753b6b9e35483222e2c33001127c7743617fbef60f58ce50ec34"
+  size: "512x512"
+  sha256: "b09c86c45266fbaccf467fb4b9c0ec5c0512321b9dfe04b7b1a7e7d23ed198c9"
+  status: candidate
+  building: {"type": "bld_kit_mongol_house_small", "footprint": [7, 6], "anchor": [267.7404, 294.5055], "era": "mongol"}
+  footprint_m: [7, 6]
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_target_px": [416, 208], "ground_width_px": 416.25, "ground_height_measured_px": 195.9416, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "projection_verified": false}
+  metadata: meta/bld_kit_mongol_house_small.yaml
+  processing: {"source_archive": "sources/bld_kit_mongol_house_small__r2_c02.png", "source_sha256": "90ea9582c844753b6b9e35483222e2c33001127c7743617fbef60f58ce50ec34", "source_size": [1536, 1024], "crop_box": [0, 8, 1456, 917], "uniform_scale_requested": 0.3047619047619048, "resized_size": [444, 277], "rounded_effective_scale": [0.30494505494505497, 0.3047304730473047], "paste_offset": [34, 117], "final_file": "bld_kit_mongol_house_small.png", "steps": ["crop alpha>0 bbox", "uniform LANCZOS resize, dimensions rounded to nearest pixel", "paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold"]}
+  notes: "design/22 §3.4 bld_kit_yuan_house；第2轮返修采用本轮候选2；轴率0.47083/-0.47134；宽深比1.17357，目标1.16667；轴率/比例检查分别True/True。仍为candidate，非3D/四向及总装验收。"
+  visual_baseline_refs:
+  - {file: assets/default/baseline/building-map/bld_kit_song_southern_shop_1f.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_inn.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  repair_round: 2
+  previous_source: {"source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-0aca-7433-8e19-29b4c1a85248/exec-b733940f-e439-4267-8adb-b0a6b7c86642.png", "source_sha256": "585f23364f865e2dde429c68847ee4dfa89a9407de2c9cf1dbec81b75aa1eb92", "source_archive": "sources/bld_kit_mongol_house_small.png", "references": []}
+  geometry_qa: {"source_corners_px": {"left": [84, 565], "front": [821, 912], "right": [1449, 616], "rear_inferred": [712, 269]}, "source_anchor_px": [766.5, 590.5], "source_axis_slopes": [0.4708276797829037, -0.4713375796178344], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.1735668789808917, "expected_width_depth_ratio": 1.1666666666666667, "ratio_relative_error": 0.005914467697907044, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "precision_note": "返修源图可见土面角人工量取约±5px；后角由L+R-F推算，锚点为L/R中点；未warp。", "edge_note": "端点轴率进入±.03；底部alpha>128轮廓线性拟合左轴0.46834、右轴-0.47021，左边略弯并超限，不能称严格投影已验收。", "edge_fit_axis_slopes": [0.468340857, -0.470207074], "edge_fit_axis_pass": false, "edge_fit_method": "source alpha>128 lower contour least squares, x=150..749 and900..1369"}
+  repair_attempts: [{"candidate": 1, "source_archive": "sources/bld_kit_mongol_house_small__r2_c01.png", "source_corners_px": [[80, 600], [745, 926], [1458, 640]], "source_axis_slopes": [0.49022556390977445, -0.4011220196353436], "axis_pass": false, "source_width_depth_ratio": 0.9326788218793829, "ratio_relative_error": 0.2005610098176719, "ratio_pass": false, "measurement_uncertainty_source_px": 5}, {"candidate": 2, "source_archive": "sources/bld_kit_mongol_house_small__r2_c02.png", "source_corners_px": [[84, 565], [821, 912], [1449, 616]], "source_axis_slopes": [0.4708276797829037, -0.4713375796178344], "axis_pass": true, "source_width_depth_ratio": 1.1735668789808917, "ratio_relative_error": 0.005914467697907044, "ratio_pass": true, "measurement_uncertainty_source_px": 5}]
+
+- id: bld_kit_mongol_house_large
+  file: bld_kit_mongol_house_large.png
+  category: building-map
+  style: default
+  subject: 蒙古草原/和林13世纪意象·大家庭双毡帐住宅（原创扩展；具体年代细部待考）
+  prompt: 'Generate a fresh single production game sprite, not a scene or photograph. A large 13th-century Mongolian ivory wool-felt family ger with one tiny storage ger beside it, weathered wood doors, low felt roofs, brown rope bands, modest timber containers; no decorated modern ger. Restrained realistic period craft textures at dense Song dynasty game-asset detail. Entire two-ger group sits on a paper-thin rectangular earthen footprint 10m wide by 8m deep. Isometric orthographic yaw45 elevation30; the ground rectangle''s two visible front edges slope exactly +0.5 and -0.5, equivalent to ±26.565 degrees, a true 2:1 projected ground diamond, NOT shallow perspective. Tiny doorstep faces lower left. Transparent isolated cutout PNG: every pixel outside the asset silhouette must have alpha0 except a very tight short contact shadow at its bottom right. Absolutely no glowing halo, no haze, no radial gradient, no cast backdrop, no vignette, no shadow behind roof. Soft upper-left sunlight and tiny lower-right contact shadow. Four ground corners readable. Do not add sky, landscape, people, text, watermark, grid, chess pattern, border, raised plinth, chimney or colored flags. Transparent margins on all four sides, uncropped whole asset.'
+  negative: 文字、水印、人物、现代旅游毡帐、景观背景、厚底座、裁切、透视汇聚
+  references: [{"title": "1913 in Khüree", "url": "https://commons.wikimedia.org/wiki/File:1913_in_Khuree.jpg", "purpose": "对照低矮聚落中的多帐组合与体量；照片晚于元代，不证明13世纪细部", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T22:10:21.887705+00:00'
+  created_time_basis: 源PNG文件mtime；非工具披露的服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f45a-0aca-7433-8e19-29b4c1a85248/exec-0a7ccded-630c-405e-8b37-6b232f725b3d.png
+  source_sha256: 29f9b665d8609a5a762150bed24a9c5fd5136bd9bac71c4c567dd62b89a40268
+  size: 617x512
+  sha256: edaf0de5aa15a3ba17c34e4dfe179686763a40cc90180eed24da362ade088d70
+  status: candidate
+  building:
+    type: bld_kit_mongol_house_large
+    footprint: [10, 8]
+    anchor: [311.1215, 297.4735]
+    era: mongol
+  footprint_m: [10, 8]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_target_px: [576, 288]
+    ground_width_px: 576
+    ground_height_measured_px: 292.8175
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+    projection_verified: false
+  metadata: meta/bld_kit_mongol_house_large.yaml
+  processing:
+    source_archive: sources/bld_kit_mongol_house_large.png
+    source_sha256: 29f9b665d8609a5a762150bed24a9c5fd5136bd9bac71c4c567dd62b89a40268
+    source_size: [1402, 1122]
+    crop_box: [0, 9, 1396, 1088]
+    uniform_scale_requested: 0.4189090909090909
+    resized_size: [585, 452]
+    rounded_effective_scale: [0.419054441260745, 0.41890639481000924]
+    paste_offset: [16, 30]
+    final_file: bld_kit_mongol_house_large.png
+    steps: [crop alpha>0 bbox, 'uniform LANCZOS resize, dimensions rounded to nearest pixel', 'paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold']
+  notes: "【建议值】复用design/22 §3.2 bld_kit_song_dali_courtyard的10×8大住宅占地；功能外观替换（原创扩展）；选第二，前两轴斜率合格；可测地面宽深比接近方形而非10:8。仅候选，未完成四向/GLB、碰撞与总装实测。 第2轮已重出2候选，轴率及占地比例综合未优于旧图；保留旧成品字节，投影仍未修复。"
+  visual_baseline_refs:
+  - {file: assets/default/baseline/building-map/bld_kit_song_southern_shop_1f.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_inn.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  repair_round: 2
+  repair_attempts: [{"candidate": 1, "source_archive": "sources/bld_kit_mongol_house_large__r2_c01.png", "source_corners_px": [[6, 568], [934, 916], [1530, 597]], "source_axis_slopes": [0.375, -0.535234899328859], "axis_pass": false, "source_width_depth_ratio": 1.5570469798657718, "ratio_relative_error": 0.24563758389261747, "ratio_pass": false, "measurement_uncertainty_source_px": 5}, {"candidate": 2, "source_archive": "sources/bld_kit_mongol_house_large__r2_c02.png", "source_corners_px": [[48, 549], [911, 930], [1492, 608]], "source_axis_slopes": [0.44148319814600234, -0.5542168674698795], "axis_pass": false, "source_width_depth_ratio": 1.4853700516351118, "ratio_relative_error": 0.1882960413080894, "ratio_pass": false, "measurement_uncertainty_source_px": 5}]
+
+- id: bld_kit_mongol_courtyard
+  file: bld_kit_mongol_courtyard.png
+  category: building-map
+  style: default
+  subject: 蒙古草原/和林13世纪意象·毡帐与木棚围合院落（原创扩展；具体年代细部待考）
+  prompt: "Use case: precise-object-edit. Image1 is the BUILDING DESIGN to preserve; Image2 is the FLOOR GEOMETRY AND CAMERA reference. Re-render the subject of Image1 on Image2's thin rectangular ground parcel. Remove Image2's ger, woodpile and chest; put only Image1's building group there. Keep exactly the geometric ground edge angles from Image2, equal26.565-degree left-front and front-right angles, screen slopes+0.5/-0.5, two sideways pixels per one vertical pixel. The first image's ground angles are WRONG; replace them with second image's. Footprint is10units along LEFT-FRONT edge and8along FRONT-RIGHT edge, ratio1.2500. Make front vertex noticeably right of the midpoint of left and right corners: the long front edge faces screen lower-left. Reference2 is7:6; adjust its rectangle slightly to this new ratio while maintaining its angles. Target on1536x1024: LEFT(150,570), FRONT(817,903), RIGHT(1350,637). Place the buildings slightly smaller WITHIN parcel to keep three front corners clearly visible. Keep Image1 historic design, fine realistic weathered materials, upper-left light, lower-right tiny contact shadow; clean transparent alpha surrounding sprite, no halo, no backdrop, no labels, grid or guide marks. Complete asset inside safe transparent margins. No new decorations."
+  negative: 文字、水印、人物、现代旅游毡帐、景观背景、厚底座、裁切、透视汇聚
+  references: [{"file": "sources/bld_kit_mongol_courtyard__r2_c01.png", "role": "本轮第二候选的题材编辑输入", "sha256": "16f686298f70a3d3bdb1574d63d4f646e0aa18b120ba6e772ca76a5dc3c8a412"}, {"file": "sources/bld_kit_mongol_house_small__r2_c02.png", "role": "第二候选的底面投影参考；其建筑内容不采用", "sha256": "90ea9582c844753b6b9e35483222e2c33001127c7743617fbef60f58ce50ec34"}, {"title": "1913 in Khüree", "url": "https://commons.wikimedia.org/wiki/File:1913_in_Khuree.jpg", "purpose": "对照毡帐、围墙和低屋混合的聚落层次；仅作后世比较", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T22:58:40.598882+00:00"
+  created_time_basis: 源PNG文件mtime；非工具披露的服务端调用时间
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f480-f2c1-7942-ae64-7b9cd30c6036/exec-8f56ab7a-841a-4493-8b73-817c9acebbaf.png"
+  source_sha256: "01a905b302ab37fb6c7ab0611c71e4ec21dc8fb0ce2b69ccb55f53ca082b32f2"
+  size: "620x512"
+  sha256: "2269e290ba33464c58dffbb9fa0829e1988073587d6a7e91aefd1f332535ae49"
+  status: candidate
+  building: {"type": "bld_kit_mongol_courtyard", "footprint": [10, 8], "anchor": [314.787, 277.1555], "era": "mongol"}
+  footprint_m: [10, 8]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_target_px": [576, 288], "ground_width_px": 576.0326, "ground_height_measured_px": 297.7731, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "projection_verified": false}
+  metadata: meta/bld_kit_mongol_courtyard.yaml
+  processing: {"source_archive": "sources/bld_kit_mongol_courtyard__r2_c02.png", "source_sha256": "01a905b302ab37fb6c7ab0611c71e4ec21dc8fb0ce2b69ccb55f53ca082b32f2", "source_size": [1536, 1024], "crop_box": [27, 38, 1501, 990], "uniform_scale_requested": 0.3988919667590028, "resized_size": [588, 380], "rounded_effective_scale": [0.3989145183175034, 0.39915966386554624], "paste_offset": [16, 66], "final_file": "bld_kit_mongol_courtyard.png", "steps": ["crop alpha>0 bbox", "uniform LANCZOS resize, dimensions rounded to nearest pixel", "paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold"]}
+  notes: "【建议值】复用design/22 §3.2 bld_kit_song_dali_courtyard；第2轮返修采用本轮候选2；轴率0.52368/-0.50877；宽深比1.11111，目标1.25000；轴率/比例检查分别True/False。仍为candidate，非3D/四向及总装验收。"
+  visual_baseline_refs:
+  - {file: assets/default/baseline/building-map/bld_kit_song_southern_shop_1f.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_inn.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  repair_round: 2
+  previous_source: {"source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-0aca-7433-8e19-29b4c1a85248/exec-ce155ea3-7bdc-4bb1-babb-ae335b4f6e26.png", "source_sha256": "9a44be99bc34b84e5e786e525ea32703e2c66320863399feecc68d93670c7354", "source_archive": "sources/bld_kit_mongol_courtyard.png", "references": [{"file": "sources/bld_kit_mongol_courtyard__edit_input.png", "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-0aca-7433-8e19-29b4c1a85248/exec-e2504d29-503c-409c-884e-acc2e69b6f72.png", "role": "第二候选image_gen编辑输入", "sha256": "4f4a49eaf28c8cd5f73ddf732a61d28143eb9ddb1a6bfe4f58852ca4535cb50b"}]}
+  geometry_qa: {"source_corners_px": {"left": [54, 542], "front": [814, 940], "right": [1498, 592], "rear_inferred": [738, 194]}, "source_anchor_px": [776.0, 567.0], "source_axis_slopes": [0.5236842105263158, -0.5087719298245614], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.1111111111111112, "expected_width_depth_ratio": 1.25, "ratio_relative_error": 0.11111111111111105, "ratio_tolerance_suggestion": 0.1, "ratio_pass": false, "measurement_uncertainty_source_px": 5, "precision_note": "返修源图可见土面角人工量取约±5px；后角由L+R-F推算，锚点为L/R中点；未warp。", "edge_note": ""}
+  repair_attempts: [{"candidate": 1, "source_archive": "sources/bld_kit_mongol_courtyard__r2_c01.png", "source_corners_px": [[50, 549], [801, 912], [1483, 574]], "source_axis_slopes": [0.4833555259653795, -0.49560117302052786], "axis_pass": true, "source_width_depth_ratio": 1.1011730205278591, "ratio_relative_error": 0.11906158357771268, "ratio_pass": false, "measurement_uncertainty_source_px": 5}, {"candidate": 2, "source_archive": "sources/bld_kit_mongol_courtyard__r2_c02.png", "source_corners_px": [[54, 542], [814, 940], [1498, 592]], "source_axis_slopes": [0.5236842105263158, -0.5087719298245614], "axis_pass": true, "source_width_depth_ratio": 1.1111111111111112, "ratio_relative_error": 0.11111111111111105, "ratio_pass": false, "measurement_uncertainty_source_px": 5}]
+
+- id: bld_kit_mongol_shop
+  file: bld_kit_mongol_shop.png
+  category: building-map
+  style: default
+  subject: 蒙古草原/和林13世纪意象·单层木铺与毡檐（原创扩展；具体年代细部待考）
+  prompt: "Use case: precise-object-edit. Image1 is the BUILDING DESIGN to preserve; Image2 is the FLOOR GEOMETRY AND CAMERA reference. Re-render the subject of Image1 on Image2's thin rectangular ground parcel. Remove Image2's ger, woodpile and chest; put only Image1's building group there. Keep exactly the geometric ground edge angles from Image2, equal26.565-degree left-front and front-right angles, screen slopes+0.5/-0.5, two sideways pixels per one vertical pixel. The first image's ground angles are WRONG; replace them with second image's. Footprint is6units along LEFT-FRONT edge and5along FRONT-RIGHT edge, ratio1.2000. Make front vertex noticeably right of the midpoint of left and right corners: the long front edge faces screen lower-left. Reference2 is7:6; adjust its rectangle slightly to this new ratio while maintaining its angles. Target on1536x1024: LEFT(150,570), FRONT(805,897), RIGHT(1350,625). Place the buildings slightly smaller WITHIN parcel to keep three front corners clearly visible. Keep Image1 historic design, fine realistic weathered materials, upper-left light, lower-right tiny contact shadow; clean transparent alpha surrounding sprite, no halo, no backdrop, no labels, grid or guide marks. Complete asset inside safe transparent margins. No new decorations."
+  negative: 文字、水印、人物、现代旅游毡帐、景观背景、厚底座、裁切、透视汇聚
+  references: [{"file": "sources/bld_kit_mongol_shop__r2_c01.png", "role": "本轮第二候选的题材编辑输入", "sha256": "1be73e24b0ee414b571a775690e4f46123c41ca1f3bad44edb435e868f300962"}, {"file": "sources/bld_kit_mongol_house_small__r2_c02.png", "role": "第二候选的底面投影参考；其建筑内容不采用", "sha256": "90ea9582c844753b6b9e35483222e2c33001127c7743617fbef60f58ce50ec34"}, {"title": "Karakorum Modell 1", "url": "https://commons.wikimedia.org/wiki/File:Karakorum_Modell_1.jpg", "purpose": "对照博物馆模型中的灰顶街屋密度与屋面体量；不当作考古定尺", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T22:59:36.199601+00:00"
+  created_time_basis: 源PNG文件mtime；非工具披露的服务端调用时间
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f480-f2c1-7942-ae64-7b9cd30c6036/exec-486af692-3f11-4473-ac4d-396eb1e9df79.png"
+  source_sha256: "608ce0627db59400066b9e608597394f0be71a8e84d203435e5de87f0d0df69c"
+  size: 512x512
+  sha256: "b9837c5c1edb3cb78b15af5b79f8726e4e5034c505a03820b6975eb9bf297f90"
+  status: candidate
+  building: {"type": "bld_kit_mongol_shop", "footprint": [6, 5], "anchor": [261.1267, 282.667], "era": "mongol"}
+  footprint_m: [6, 5]
+  entrance: {edge: S, offset_cells: 2}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_target_px": [352, 176], "ground_width_px": 351.7895, "ground_height_measured_px": 173.771, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "projection_verified": true}
+  metadata: meta/bld_kit_mongol_shop.yaml
+  processing: {"source_archive": "sources/bld_kit_mongol_shop__r2_c02.png", "source_sha256": "608ce0627db59400066b9e608597394f0be71a8e84d203435e5de87f0d0df69c", "source_size": [1536, 1024], "crop_box": [0, 38, 1492, 990], "uniform_scale_requested": 0.24478442280945759, "resized_size": [365, 233], "rounded_effective_scale": [0.24463806970509383, 0.24474789915966386], "paste_offset": [73, 139], "final_file": "bld_kit_mongol_shop.png", "steps": ["crop alpha>0 bbox", "uniform LANCZOS resize, dimensions rounded to nearest pixel", "paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold"]}
+  notes: "【建议值】复用design/22 §3.2 bld_kit_song_dali_shop；第2轮返修采用本轮候选2；轴率0.50064/-0.48545；宽深比1.20214，目标1.20000；轴率/比例检查分别True/True。仍为candidate，非3D/四向及总装验收。"
+  visual_baseline_refs:
+  - {file: assets/default/baseline/building-map/bld_kit_song_southern_shop_1f.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_inn.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  repair_round: 2
+  previous_source: {"source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-0aca-7433-8e19-29b4c1a85248/exec-7c21e13b-6e30-43f5-a573-7b128fd12239.png", "source_sha256": "6cf5816e326f7b959e929245acdf82807217dd6f7ff43c6f3a6379bb9555f37e", "source_archive": "sources/bld_kit_mongol_shop.png", "references": []}
+  geometry_qa: {"source_corners_px": {"left": [50, 587], "front": [835, 980], "right": [1488, 663], "rear_inferred": [703, 270]}, "source_anchor_px": [769.0, 625.0], "source_axis_slopes": [0.5006369426751592, -0.48545176110260335], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.2021439509954057, "expected_width_depth_ratio": 1.2, "ratio_relative_error": 0.0017866258295047288, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "precision_note": "返修源图可见土面角人工量取约±5px；后角由L+R-F推算，锚点为L/R中点；未warp。", "edge_note": ""}
+  repair_attempts: [{"candidate": 1, "source_archive": "sources/bld_kit_mongol_shop__r2_c01.png", "source_corners_px": [[48, 633], [813, 975], [1490, 662]], "source_axis_slopes": [0.4470588235294118, -0.4623338257016248], "axis_pass": false, "source_width_depth_ratio": 1.1299852289512555, "ratio_relative_error": 0.05834564254062036, "ratio_pass": true, "measurement_uncertainty_source_px": 5}, {"candidate": 2, "source_archive": "sources/bld_kit_mongol_shop__r2_c02.png", "source_corners_px": [[50, 587], [835, 980], [1488, 663]], "source_axis_slopes": [0.5006369426751592, -0.48545176110260335], "axis_pass": true, "source_width_depth_ratio": 1.2021439509954057, "ratio_relative_error": 0.0017866258295047288, "ratio_pass": true, "measurement_uncertainty_source_px": 5}]
+
+- id: bld_kit_mongol_shop_two_storey
+  file: bld_kit_mongol_shop_two_storey.png
+  category: building-map
+  style: default
+  subject: 蒙古草原/和林13世纪意象·汉式工艺影响的两层木商楼（原创扩展；具体年代细部待考）
+  prompt: "Use case: precise-object-edit. Image1 is the BUILDING DESIGN to preserve; Image2 is the FLOOR GEOMETRY AND CAMERA reference. Re-render the subject of Image1 on Image2's thin rectangular ground parcel. Remove Image2's ger, woodpile and chest; put only Image1's building group there. Keep exactly the geometric ground edge angles from Image2, equal26.565-degree left-front and front-right angles, screen slopes+0.5/-0.5, two sideways pixels per one vertical pixel. The first image's ground angles are WRONG; replace them with second image's. Footprint is8units along LEFT-FRONT edge and6along FRONT-RIGHT edge, ratio1.3333. Make front vertex noticeably right of the midpoint of left and right corners: the long front edge faces screen lower-left. Reference2 is7:6; adjust its rectangle slightly to this new ratio while maintaining its angles. Target on1536x1024: LEFT(150,570), FRONT(836,913), RIGHT(1350,656). Place the buildings slightly smaller WITHIN parcel to keep three front corners clearly visible. Keep Image1 historic design, fine realistic weathered materials, upper-left light, lower-right tiny contact shadow; clean transparent alpha surrounding sprite, no halo, no backdrop, no labels, grid or guide marks. Complete asset inside safe transparent margins. No new decorations."
+  negative: 文字、水印、人物、现代旅游毡帐、景观背景、厚底座、裁切、透视汇聚
+  references: [{"file": "sources/bld_kit_mongol_shop_two_storey__r2_c01.png", "role": "本轮第二候选的题材编辑输入", "sha256": "0bdbd49e4bce5d66b8e78fdae1d97e043e9b2637774022df8a1e9829ded88432"}, {"file": "sources/bld_kit_mongol_house_small__r2_c02.png", "role": "第二候选的底面投影参考；其建筑内容不采用", "sha256": "90ea9582c844753b6b9e35483222e2c33001127c7743617fbef60f58ce50ec34"}, {"title": "Karakorum Modell 1", "url": "https://commons.wikimedia.org/wiki/File:Karakorum_Modell_1.jpg", "purpose": "对照博物馆模型中的多层屋面、街巷尺度与密集灰顶；不当作考古定尺", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T23:01:08.579996+00:00"
+  created_time_basis: 源PNG文件mtime；非工具披露的服务端调用时间
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f480-f2c1-7942-ae64-7b9cd30c6036/exec-e663dad3-0590-4359-bf50-82f102925913.png"
+  source_sha256: "9c0b57373a62be8d4ca780b9566b44314b661eeb554eacb58cb4064f0772077b"
+  size: "512x512"
+  sha256: "8adb9b1e149a7e9748aa6f1994d80a78f1d84cfdfcb36e66ed94db19bca831a1"
+  status: candidate
+  building: {"type": "bld_kit_mongol_shop_two_storey", "footprint": [8, 6], "anchor": [255.6566, 301.589], "era": "mongol"}
+  footprint_m: [8, 6]
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_target_px": [448, 224], "ground_width_px": 447.5548, "ground_height_measured_px": 213.062, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "projection_verified": false}
+  metadata: meta/bld_kit_mongol_shop_two_storey.yaml
+  processing: {"source_archive": "sources/bld_kit_mongol_shop_two_storey__r2_c02.png", "source_sha256": "9c0b57373a62be8d4ca780b9566b44314b661eeb554eacb58cb4064f0772077b", "source_size": [1536, 1024], "crop_box": [49, 17, 1489, 1000], "uniform_scale_requested": 0.31350594821553535, "resized_size": [451, 308], "rounded_effective_scale": [0.31319444444444444, 0.3133265513733469], "paste_offset": [30, 102], "final_file": "bld_kit_mongol_shop_two_storey.png", "steps": ["crop alpha>0 bbox", "uniform LANCZOS resize, dimensions rounded to nearest pixel", "paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold"]}
+  notes: "【建议值】复用design/22 §3.3 bld_kit_song_southern_shop_2f；第2轮返修采用本轮候选2；轴率0.46248/-0.49351；宽深比1.31981，目标1.33333；轴率/比例检查分别False/True。仍为candidate，非3D/四向及总装验收。"
+  visual_baseline_refs:
+  - {file: assets/default/baseline/building-map/bld_kit_song_southern_shop_1f.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_inn.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  repair_round: 2
+  previous_source: {"source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-0aca-7433-8e19-29b4c1a85248/exec-c3e9b29e-7e36-44c2-b28e-e307679bfdfb.png", "source_sha256": "ea811bd8fd03d88b4b8ebb11bb0a0f8626ff05bdbcff29c635a6758702363866", "source_archive": "sources/bld_kit_mongol_shop_two_storey.png", "references": []}
+  geometry_qa: {"source_corners_px": {"left": [55, 618], "front": [868, 994], "right": [1484, 690], "rear_inferred": [671, 314]}, "source_anchor_px": [769.5, 654.0], "source_axis_slopes": [0.46248462484624847, -0.4935064935064935], "axis_tolerance": 0.03, "axis_pass": false, "source_width_depth_ratio": 1.3198051948051948, "expected_width_depth_ratio": 1.3333333333333333, "ratio_relative_error": 0.01014610389610393, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "precision_note": "返修源图可见土面角人工量取约±5px；后角由L+R-F推算，锚点为L/R中点；未warp。", "edge_note": ""}
+  repair_attempts: [{"candidate": 1, "source_archive": "sources/bld_kit_mongol_shop_two_storey__r2_c01.png", "source_corners_px": [[62, 657], [858, 1008], [1498, 673]], "source_axis_slopes": [0.44095477386934673, -0.5234375], "axis_pass": false, "source_width_depth_ratio": 1.24375, "ratio_relative_error": 0.06718750000000007, "ratio_pass": true, "measurement_uncertainty_source_px": 5}, {"candidate": 2, "source_archive": "sources/bld_kit_mongol_shop_two_storey__r2_c02.png", "source_corners_px": [[55, 618], [868, 994], [1484, 690]], "source_axis_slopes": [0.46248462484624847, -0.4935064935064935], "axis_pass": false, "source_width_depth_ratio": 1.3198051948051948, "ratio_relative_error": 0.01014610389610393, "ratio_pass": true, "measurement_uncertainty_source_px": 5}]
+
+- id: bld_kit_mongol_inn
+  file: bld_kit_mongol_inn.png
+  category: building-map
+  style: default
+  subject: 蒙古草原/和林13世纪意象·商旅三毡帐客院（原创扩展；具体年代细部待考）
+  prompt: "Use case: precise-object-edit. Image1 is the BUILDING DESIGN to preserve; Image2 is the FLOOR GEOMETRY AND CAMERA reference. Re-render the subject of Image1 on Image2's thin rectangular ground parcel. Remove Image2's ger, woodpile and chest; put only Image1's building group there. Keep exactly the geometric ground edge angles from Image2, equal26.565-degree left-front and front-right angles, screen slopes+0.5/-0.5, two sideways pixels per one vertical pixel. The first image's ground angles are WRONG; replace them with second image's. Footprint is10units along LEFT-FRONT edge and8along FRONT-RIGHT edge, ratio1.2500. Make front vertex noticeably right of the midpoint of left and right corners: the long front edge faces screen lower-left. Reference2 is7:6; adjust its rectangle slightly to this new ratio while maintaining its angles. Target on1536x1024: LEFT(150,570), FRONT(817,903), RIGHT(1350,637). Place the buildings slightly smaller WITHIN parcel to keep three front corners clearly visible. Keep Image1 historic design, fine realistic weathered materials, upper-left light, lower-right tiny contact shadow; clean transparent alpha surrounding sprite, no halo, no backdrop, no labels, grid or guide marks. Complete asset inside safe transparent margins. No new decorations."
+  negative: 文字、水印、人物、现代旅游毡帐、景观背景、厚底座、裁切、透视汇聚
+  references: [{"file": "sources/bld_kit_mongol_inn__r2_c01.png", "role": "本轮第二候选的题材编辑输入", "sha256": "997ea235af092a9c09f3d9ae68a5d2ae8a84b080b304deefb3e99e881b9dd253"}, {"file": "sources/bld_kit_mongol_house_small__r2_c02.png", "role": "第二候选的底面投影参考；其建筑内容不采用", "sha256": "90ea9582c844753b6b9e35483222e2c33001127c7743617fbef60f58ce50ec34"}, {"title": "1913 in Khüree", "url": "https://commons.wikimedia.org/wiki/File:1913_in_Khuree.jpg", "purpose": "对照低矮屋舍、围合空间与毡帐共存关系；仅作后世比较", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T23:01:54.592917+00:00"
+  created_time_basis: 源PNG文件mtime；非工具披露的服务端调用时间
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f480-f2c1-7942-ae64-7b9cd30c6036/exec-b05b5541-40e6-40d3-9a5e-afe7d52ed12d.png"
+  source_sha256: "40d3b0ba8d4516e7c0928ac9b2878d6bcb1cc7e3bc88eb8725f931b711f4a57b"
+  size: "647x512"
+  sha256: "d18d5175efbfa629a1f9b10522fad36a14ae7ad9625eb320b05500d2c88a749a"
+  status: candidate
+  building: {"type": "bld_kit_mongol_inn", "footprint": [10, 8], "anchor": [340.4785, 279.1682], "era": "mongol"}
+  footprint_m: [10, 8]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_target_px": [576, 288], "ground_width_px": 576.0123, "ground_height_measured_px": 294.9095, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "projection_verified": true}
+  metadata: meta/bld_kit_mongol_inn.yaml
+  processing: {"source_archive": "sources/bld_kit_mongol_inn__r2_c02.png", "source_sha256": "40d3b0ba8d4516e7c0928ac9b2878d6bcb1cc7e3bc88eb8725f931b711f4a57b", "source_size": [1536, 1024], "crop_box": [0, 19, 1467, 1024], "uniform_scale_requested": 0.4192139737991266, "resized_size": [615, 421], "rounded_effective_scale": [0.41922290388548056, 0.41890547263681593], "paste_offset": [16, 45], "final_file": "bld_kit_mongol_inn.png", "steps": ["crop alpha>0 bbox", "uniform LANCZOS resize, dimensions rounded to nearest pixel", "paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold"]}
+  notes: "【建议值】复用design/22 §3.2 bld_kit_song_dali_inn；第2轮返修采用本轮候选2；轴率0.49931/-0.52713；宽深比1.13023，目标1.25000；轴率/比例检查分别True/True。仍为candidate，非3D/四向及总装验收。"
+  visual_baseline_refs:
+  - {file: assets/default/baseline/building-map/bld_kit_song_southern_shop_1f.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_inn.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  repair_round: 2
+  previous_source: {"source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-0aca-7433-8e19-29b4c1a85248/exec-47083034-b75e-4d9f-a175-02aada7a101a.png", "source_sha256": "f3e8f82321737dd68c4fa8d55d65abb53235b5cbac5a5487391f805a3d615e70", "source_archive": "sources/bld_kit_mongol_inn.png", "references": []}
+  geometry_qa: {"source_corners_px": {"left": [87, 566], "front": [816, 930], "right": [1461, 590], "rear_inferred": [732, 226]}, "source_anchor_px": [774.0, 578.0], "source_axis_slopes": [0.4993141289437586, -0.5271317829457365], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.130232558139535, "expected_width_depth_ratio": 1.25, "ratio_relative_error": 0.09581395348837207, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "precision_note": "返修源图可见土面角人工量取约±5px；后角由L+R-F推算，锚点为L/R中点；未warp。", "edge_note": ""}
+  repair_attempts: [{"candidate": 1, "source_archive": "sources/bld_kit_mongol_inn__r2_c01.png", "source_corners_px": [[24, 548], [832, 928], [1511, 550]], "source_axis_slopes": [0.47029702970297027, -0.5567010309278351], "axis_pass": false, "source_width_depth_ratio": 1.1899852724594993, "ratio_relative_error": 0.04801178203240064, "ratio_pass": true, "measurement_uncertainty_source_px": 5}, {"candidate": 2, "source_archive": "sources/bld_kit_mongol_inn__r2_c02.png", "source_corners_px": [[87, 566], [816, 930], [1461, 590]], "source_axis_slopes": [0.4993141289437586, -0.5271317829457365], "axis_pass": true, "source_width_depth_ratio": 1.130232558139535, "ratio_relative_error": 0.09581395348837207, "ratio_pass": true, "measurement_uncertainty_source_px": 5}]
+
+- id: bld_kit_mongol_tavern
+  file: bld_kit_mongol_tavern.png
+  category: building-map
+  style: default
+  subject: 蒙古草原/和林13世纪意象·饮食酒肆毡帐（原创扩展；具体年代细部待考）
+  prompt: "Use case: precise-object-edit. Image1 is the BUILDING DESIGN to preserve; Image2 is the FLOOR GEOMETRY AND CAMERA reference. Re-render the subject of Image1 on Image2's thin rectangular ground parcel. Remove Image2's ger, woodpile and chest; put only Image1's building group there. Keep exactly the geometric ground edge angles from Image2, equal26.565-degree left-front and front-right angles, screen slopes+0.5/-0.5, two sideways pixels per one vertical pixel. The first image's ground angles are WRONG; replace them with second image's. Footprint is10units along LEFT-FRONT edge and8along FRONT-RIGHT edge, ratio1.2500. Make front vertex noticeably right of the midpoint of left and right corners: the long front edge faces screen lower-left. Reference2 is7:6; adjust its rectangle slightly to this new ratio while maintaining its angles. Target on1536x1024: LEFT(150,570), FRONT(817,903), RIGHT(1350,637). Place the buildings slightly smaller WITHIN parcel to keep three front corners clearly visible. Keep Image1 historic design, fine realistic weathered materials, upper-left light, lower-right tiny contact shadow; clean transparent alpha surrounding sprite, no halo, no backdrop, no labels, grid or guide marks. Complete asset inside safe transparent margins. No new decorations."
+  negative: 文字、水印、人物、现代旅游毡帐、景观背景、厚底座、裁切、透视汇聚
+  references: [{"file": "sources/bld_kit_mongol_tavern__r2_c01.png", "role": "本轮第二候选的题材编辑输入", "sha256": "f1ee07b7df9844541f90862506f850553200ede189dd51718a1b8b657f4a2e54"}, {"file": "sources/bld_kit_mongol_house_small__r2_c02.png", "role": "第二候选的底面投影参考；其建筑内容不采用", "sha256": "90ea9582c844753b6b9e35483222e2c33001127c7743617fbef60f58ce50ec34"}, {"title": "1913 in Khüree", "url": "https://commons.wikimedia.org/wiki/File:1913_in_Khuree.jpg", "purpose": "对照低矮聚落、屋舍与毡帐的体量关系；仅作后世比较", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T23:02:41.542737+00:00"
+  created_time_basis: 源PNG文件mtime；非工具披露的服务端调用时间
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f480-f2c1-7942-ae64-7b9cd30c6036/exec-c7e890a2-c523-487c-8b3f-2f17f437a3b0.png"
+  source_sha256: "3806b2b429003f6cc1c1fe45da0a7f445163f1c162b2d1f6065341a06ac4bc20"
+  size: "612x512"
+  sha256: "0dc55f71c34be6d7fb6f0500582d5eda1cf52aab6fc23920efc62529498ac3ee"
+  status: candidate
+  building: {"type": "bld_kit_mongol_tavern", "footprint": [10, 8], "anchor": [306.0, 268.2295], "era": "mongol"}
+  footprint_m: [10, 8]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_target_px": [576, 288], "ground_width_px": 576.022, "ground_height_measured_px": 297.1542, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "projection_verified": false}
+  metadata: meta/bld_kit_mongol_tavern.yaml
+  processing: {"source_archive": "sources/bld_kit_mongol_tavern__r2_c02.png", "source_sha256": "3806b2b429003f6cc1c1fe45da0a7f445163f1c162b2d1f6065341a06ac4bc20", "source_size": [1536, 1024], "crop_box": [47, 161, 1505, 978], "uniform_scale_requested": 0.39779005524861877, "resized_size": [580, 325], "rounded_effective_scale": [0.39780521262002744, 0.397796817625459], "paste_offset": [16, 93], "final_file": "bld_kit_mongol_tavern.png", "steps": ["crop alpha>0 bbox", "uniform LANCZOS resize, dimensions rounded to nearest pixel", "paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold"]}
+  notes: "【建议值】复用design/22 §3.2 bld_kit_song_dali_restaurant；第2轮返修采用本轮候选2；轴率0.47964/-0.55891；宽深比1.18731，目标1.25000；轴率/比例检查分别False/True。仍为candidate，非3D/四向及总装验收。"
+  visual_baseline_refs:
+  - {file: assets/default/baseline/building-map/bld_kit_song_southern_shop_1f.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_inn.png, role: 人工view_image对照材质与细节密度；未作为工具输入}
+  repair_round: 2
+  previous_source: {"source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-0aca-7433-8e19-29b4c1a85248/exec-c0d07073-24a4-44d0-9c50-88ac680ef0cd.png", "source_sha256": "02a356548949799cac7e8e7b7887b6c4006c2cd13ecba1f66a3a31e7b525f431", "source_archive": "sources/bld_kit_mongol_tavern.png", "references": []}
+  geometry_qa: {"source_corners_px": {"left": [52, 598], "front": [838, 975], "right": [1500, 605], "rear_inferred": [714, 228]}, "source_anchor_px": [776.0, 601.5], "source_axis_slopes": [0.4796437659033079, -0.5589123867069486], "axis_tolerance": 0.03, "axis_pass": false, "source_width_depth_ratio": 1.1873111782477341, "expected_width_depth_ratio": 1.25, "ratio_relative_error": 0.05015105740181269, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "precision_note": "返修源图可见土面角人工量取约±5px；后角由L+R-F推算，锚点为L/R中点；未warp。", "edge_note": ""}
+  repair_attempts: [{"candidate": 1, "source_archive": "sources/bld_kit_mongol_tavern__r2_c01.png", "source_corners_px": [[48, 628], [770, 947], [1510, 585]], "source_axis_slopes": [0.44182825484764543, -0.4891891891891892], "axis_pass": false, "source_width_depth_ratio": 0.9756756756756757, "ratio_relative_error": 0.21945945945945944, "ratio_pass": false, "measurement_uncertainty_source_px": 5}, {"candidate": 2, "source_archive": "sources/bld_kit_mongol_tavern__r2_c02.png", "source_corners_px": [[52, 598], [838, 975], [1500, 605]], "source_axis_slopes": [0.4796437659033079, -0.5589123867069486], "axis_pass": false, "source_width_depth_ratio": 1.1873111782477341, "ratio_relative_error": 0.05015105740181269, "ratio_pass": true, "measurement_uncertainty_source_px": 5}]
+
+- id: bld_kit_mongol_market
+  file: bld_kit_mongol_market.png
+  category: building-map
+  style: default
+  subject: 蒙古草原/和林—上都地域候选：草原市场毛毡铺棚
+  prompt: "TARGETED GEOMETRY REPAIR, keep market stall subject and materials. The attached first attempt has TOO SHALLOW ground angles and TOO LONG left/front width side. Rebuild floor AND entire canopy with correct camera, do not copy old camera. True orthographic game dimetric2:1; both ground boundary lines26.565deg to horizontal. In1536x1024 frame move LEFT actual contact corner to(190,520), FRONT to(830,840), RIGHT to(1342,584), BACK to(702,264). This means LEFT-to-FRONT horizontal640 vertical320, FRONT-to-RIGHT horizontal512 vertical-256. Width5 depth4, exactly ratio1.25. Front wooden counter and rear/front roof axes must follow same vectors. Keep original simple rustic Mongolian rectangular felt market canopy on four wood posts, tied ropes, rough counter, sacks, bowls and felt rolls. Original detailed realistic ancient illustration. Thin sharp rectangular packed-earth contact area, three clear corners, no thick plinth. Upper-left light, tiny lower-right contact shadow, no haze or ambient glow. All outside sprite actual alpha-zero transparency; no backdrop/checkerboard. Entire object complete with generous transparent margins. No text, labels, grid, people, flags or additions."
+  negative: 人物、现代物、文字、水印、风景背景、厚底台、清代黄瓦九龙脊、旅游装饰、非等比纠斜
+  references: [{"file": "sources/bld_kit_mongol_market__r2_c01.png", "sha256": "5e98bd94202be2790bc0110eae0a307a0c2f498629f16d3e88f3de2fe9239d2e", "role": "本轮实际传入的几何返修编辑目标；归档原字节"}, {"title": "1913 in Khüree", "url": "https://commons.wikimedia.org/wiki/File:1913_in_Khuree.jpg", "purpose": "对照城外毡帐与低矮临时构筑物尺度；市场棚设计仍属原创扩展", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T22:56:31.509500+00:00"
+  created_time_basis: 源PNG文件mtime；非服务端调用时间
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f481-26d5-7413-89d8-fc283ec7e58a/exec-7dae0c46-d950-433e-9b86-57006de39106.png"
+  size: 512x512
+  sha256: "72f857402f8c34f500942d7eb2ecff85a473cb697d8f92417a37934e22fe97db"
+  status: candidate
+  building: {"type": "bld_kit_mongol_market", "footprint": [5, 4], "anchor": [267.3254, 288.6485], "era": "mongol"}
+  metadata: meta/bld_kit_mongol_market.yaml
+  source_record: "sources/bld_kit_mongol_market__r2.json"
+  source_sha256: "af8e493645af3a48670c329b9f5c5a98fd28f0ff5ef1952ae7802d0bf0d4a61c"
+  footprint_m: [5, 4]
+  entrance: {edge: S, offset_cells: 2}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_px": [288, 144], "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "camera_requested": {"yaw_deg": 45, "pitch_deg": 30}, "measured_geometry_pass": false, "ground_bbox_semantics": "64×32网格目标包围框，非实际底面测量"}
+  notes: "第2轮返修采用候选2；轴率0.48617/-0.45025；宽深比1.27993，目标1.25000；轴率/比例检查分别False/True。保持candidate；历史细部（待考），功能布局（原创扩展）；尚未总装验收。"
+  processing: {"source_archive": "sources/bld_kit_mongol_market__r2_c02.png", "source_size": [1536, 1024], "source_sha256": "af8e493645af3a48670c329b9f5c5a98fd28f0ff5ef1952ae7802d0bf0d4a61c", "crop_box": [0, 21, 1469, 977], "uniform_scale_requested": 0.21301775147928995, "resized_size": [313, 204], "rounded_effective_scale": [0.213070115724983, 0.21338912133891214], "paste_offset": [99, 154], "steps": ["只裁alpha>0包围框外透明空白", "一次等比LANCZOS；整数宽高量化误差单列", "无mask粘贴至透明RGBA画布；不改颜色/alpha、不warp、不补画"], "anchor_formula": "(source_anchor-crop_origin)*rounded_effective_scale+paste_offset"}
+  geometry_qa: {"source_corners_px": {"left": [114, 601], "front": [873, 970], "right": [1466, 703]}, "source_anchor_px": [790.0, 652.0], "hidden_back_corner_method": "back = left + right - front；后角推算，前方三角人工读点。", "source_axis_slopes": [0.48616600790513836, -0.4502529510961214], "axis_tolerance": 0.03, "axis_pass": false, "source_width_depth_ratio": 1.2799325463743676, "expected_width_depth_ratio": 1.25, "ratio_relative_error": 0.023946037099494166, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 4, "precision_note": "人工逐张view_image读取源PNG真实可见底角，约±4px；未用目标坐标代填。", "final_measured_corners_px": {"left": [123.29, 277.7657], "front": [285.0102, 356.5063], "right": [411.3608, 299.5314]}, "observed_ground_height_px": 135.7155}
+  previous_source: {"source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-9b8c2467-4df0-45fa-bc25-e255099d0986.png", "source_sha256": "2da10a5f4fceea15e7fb75f95daddef9b6e894c0781233da596584fa3e55a728", "references": [], "previous_final_archive": "sources/bld_kit_mongol_market__r2_input.png", "previous_final_sha256": "54ec442b3e230097a0aa1f543f292ce602bdcb3e44877f38882bef7b7eaf002b", "source_record": "sources/bld_kit_mongol_market.json"}
+  repair_round: 2
+  repair_candidate_count: 2
+
+- id: bld_kit_mongol_yamen
+  file: bld_kit_mongol_yamen.png
+  category: building-map
+  style: default
+  subject: 蒙古草原/和林—上都地域候选：木构议事厅与毡帐官署
+  prompt: "Targeted camera correction of attached Yuan Mongol administrative court. Preserve all buildings, palisade, one ger, texture/style/materials. Current first attempt's base edges are TOO STEEP, about0.56; make both floor slopes0.500, flatten floor diagonal angles slightly, keep vertical building scale. Correct entire architecture consistently, orthographic2:1 dimetric yaw45/pitch30, NO PERSPECTIVE. Footprint16 wide12 deep. In a1536x1024 canvas arrange precise ground corners LEFT(80,546), FRONT(848,930), RIGHT(1424,642), BACK(656,258). Width edge left-to-front length768x384, depth front-to-right576x-288, ratio4/3. Main gate on long front-left edge. No thick plinth, simple crisp thin rectangular earth court and readable near corners. Gray-tiled simple timber hall and beige round felt ger inside wood palisade. Whole asset complete with transparent padding; upper-left light, short lower-right shadow. True RGBA alpha-zero background, no ambient halo/vignette/fog, no text/grid/people/animals/flags/modern objects. Keep weathered realistic ancient Chinese-steppe city-sprite style."
+  negative: 人物、现代物、文字、水印、风景背景、厚底台、清代黄瓦九龙脊、旅游装饰、非等比纠斜
+  references: [{"file": "sources/bld_kit_mongol_yamen__r2_c01.png", "sha256": "6ff9ae318a284ea4de251bc3ddd40a1a1f01586954dda719e2acfc20dca5afee", "role": "本轮实际传入的几何返修编辑目标；归档原字节"}, {"title": "Model of Karakorum city, Karakorum Museum (4)", "url": "https://commons.wikimedia.org/wiki/File:Model_of_Karakorum_city%3B_Karakorum_Museum%2C_Mongolia_(4).jpg", "purpose": "对照博物馆模型的院墙、门与中心厅堂层级；不当作官署定名或定尺", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T22:57:28.581124+00:00"
+  created_time_basis: 源PNG文件mtime；非服务端调用时间
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f481-26d5-7413-89d8-fc283ec7e58a/exec-ef26b863-e599-4934-94aa-54db5d96c7a0.png"
+  size: 960x640
+  sha256: "01d40d889b761fe893f6311fbe388ce45cdc4787368cb93e64d242130e78807e"
+  status: candidate
+  building: {"type": "bld_kit_mongol_yamen", "footprint": [16, 12], "anchor": [480.9427, 367.1787], "era": "mongol"}
+  metadata: meta/bld_kit_mongol_yamen.yaml
+  source_record: "sources/bld_kit_mongol_yamen__r2.json"
+  source_sha256: "e8d647bf26be82ee6b92bc79551673e579955166300addcd18c6fefa9b5b513b"
+  footprint_m: [16, 12]
+  entrance: {edge: S, offset_cells: 7}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_px": [896, 448], "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "camera_requested": {"yaw_deg": 45, "pitch_deg": 30}, "measured_geometry_pass": false, "ground_bbox_semantics": "64×32网格目标包围框，非实际底面测量"}
+  notes: "第2轮返修采用候选2；轴率0.55838/-0.56044；宽深比1.23705，目标1.33333；轴率/比例检查分别False/True。保持candidate；历史细部（待考），功能布局（原创扩展）；尚未总装验收。"
+  processing: {"source_archive": "sources/bld_kit_mongol_yamen__r2_c02.png", "source_size": [1536, 1024], "source_sha256": "e8d647bf26be82ee6b92bc79551673e579955166300addcd18c6fefa9b5b513b", "crop_box": [57, 21, 1489, 978], "uniform_scale_requested": 0.6287719298245614, "resized_size": [900, 602], "rounded_effective_scale": [0.6284916201117319, 0.6290491118077325], "paste_offset": [30, 19], "steps": ["只裁alpha>0包围框外透明空白", "一次等比LANCZOS；整数宽高量化误差单列", "无mask粘贴至透明RGBA画布；不改颜色/alpha、不warp、不补画"], "anchor_formula": "(source_anchor-crop_origin)*rounded_effective_scale+paste_offset"}
+  geometry_qa: {"source_corners_px": {"left": [62, 533], "front": [850, 973], "right": [1487, 616]}, "source_anchor_px": [774.5, 574.5], "hidden_back_corner_method": "back = left + right - front；后角推算，前方三角人工读点。", "source_axis_slopes": [0.5583756345177665, -0.5604395604395604], "axis_tolerance": 0.03, "axis_pass": false, "source_width_depth_ratio": 1.2370486656200943, "expected_width_depth_ratio": 1.3333333333333333, "ratio_relative_error": 0.07221350078492927, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 4, "precision_note": "人工逐张view_image读取源PNG真实可见底角，约±4px；未用目标坐标代填。", "final_measured_corners_px": {"left": [33.1425, 341.0731], "front": [528.3939, 617.8548], "right": [928.743, 393.2842]}, "observed_ground_height_px": 501.3522}
+  previous_source: {"source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-592122f5-c254-4d85-8d91-7bba35d72e18.png", "source_sha256": "3c165ec49cb92b753b978bf9bca8251f775fef52752ba7ec2203b2b7be85eacf", "references": [], "previous_final_archive": "sources/bld_kit_mongol_yamen__r2_input.png", "previous_final_sha256": "541aa50b3958e84ad39343497b95001254dbe41c425670384ea3995c46e89e3b", "source_record": "sources/bld_kit_mongol_yamen.json"}
+  repair_round: 2
+  repair_candidate_count: 2
+
+- id: bld_kit_mongol_biaoju
+  file: bld_kit_mongol_biaoju.png
+  category: building-map
+  style: default
+  subject: 蒙古草原/和林—上都地域候选：商队护运货栈木栅院
+  prompt: "Precise geometry correction. Attached caravan yard currently ground diagonals slightly too steep. Flatten only the ground-camera elevation about8 percent so both ground boundary slopes become +0.500 and -0.500, orthographic2:1 dimetric, vertical poles remain upright. Base footprint14m wide11m deep. On1536x1024 canvas ground corners LEFT(70,550), FRONT(854,942), RIGHT(1470,634), BACK(686,242): width horizontal784 versus depth616, ratio14/11. All four base edges straight parallel; frontmost ground corner clear, thin rectangular earth contact sheet. Reconstruct palisade and roof projections consistently with ground. Preserve Mongol caravan yard composition: one cream felt ger left, one gray-tiled wood warehouse at back, bundles/crates, simple open front wood gateway and empty hitching rail. No other objects. Preserve intricate restrained realistic weathered ancient sprite style. Upper-left light, minimal lower-right contact shadow. Entire isolated sprite on actual transparent RGBA; no glow/vignette/fog, thick pedestal, grid, letters, people, animals, flags or modern architecture."
+  negative: 人物、现代物、文字、水印、风景背景、厚底台、清代黄瓦九龙脊、旅游装饰、非等比纠斜
+  references: [{"file": "sources/bld_kit_mongol_biaoju__r2_c01.png", "sha256": "c4cd2dcd09a96e66e3a23a0f8028b696d96f3e689d8e81be8f744fe4daf0520c", "role": "本轮实际传入的几何返修编辑目标；归档原字节"}, {"title": "Karakorum Modell 1", "url": "https://commons.wikimedia.org/wiki/File:Karakorum_Modell_1.jpg", "purpose": "对照博物馆模型的街屋、院墙与货运空间体量；护运货栈功能仍属原创映射", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T22:58:27.951301+00:00"
+  created_time_basis: 源PNG文件mtime；非服务端调用时间
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f481-26d5-7413-89d8-fc283ec7e58a/exec-c9e0b83a-11bf-4317-9b02-8baf2bba6dd3.png"
+  size: "864x544"
+  sha256: "8f1e273fc47a6529eb1c10d1bd750cd931f7425ddb4669e4c7bcc4ec6d9f2174"
+  status: candidate
+  building: {"type": "bld_kit_mongol_biaoju", "footprint": [14, 11], "anchor": [431.7302, 316.5228], "era": "mongol"}
+  metadata: meta/bld_kit_mongol_biaoju.yaml
+  source_record: "sources/bld_kit_mongol_biaoju__r2.json"
+  source_sha256: "ceee9627146341499fdf3e1f9109682f410b1b39153ccc2f0c5eebd190e3fcb4"
+  footprint_m: [14, 11]
+  entrance: {edge: S, offset_cells: 6}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_px": [800, 400], "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "camera_requested": {"yaw_deg": 45, "pitch_deg": 30}, "measured_geometry_pass": true, "ground_bbox_semantics": "64×32网格目标包围框，非实际底面测量"}
+  notes: "第2轮返修采用候选2；轴率0.51316/-0.52550；宽深比1.29212，目标1.27273；轴率/比例检查分别True/True。保持candidate；历史细部（待考），功能布局（原创扩展）；尚未总装验收。"
+  processing: {"source_archive": "sources/bld_kit_mongol_biaoju__r2_c02.png", "source_size": [1536, 1024], "source_sha256": "ceee9627146341499fdf3e1f9109682f410b1b39153ccc2f0c5eebd190e3fcb4", "crop_box": [33, 19, 1523, 963], "uniform_scale_requested": 0.5394470667565745, "resized_size": [804, 509], "rounded_effective_scale": [0.5395973154362416, 0.5391949152542372], "paste_offset": [30, 17], "steps": ["只裁alpha>0包围框外透明空白", "一次等比LANCZOS；整数宽高量化误差单列", "无mask粘贴至透明RGBA画布；不改颜色/alpha、不warp、不补画"], "anchor_formula": "(source_anchor-crop_origin)*rounded_effective_scale+paste_offset"}
+  geometry_qa: {"source_corners_px": {"left": [36, 530], "front": [872, 959], "right": [1519, 619]}, "source_anchor_px": [777.5, 574.5], "hidden_back_corner_method": "back = left + right - front；后角推算，前方三角人工读点。", "source_axis_slopes": [0.5131578947368421, -0.5255023183925811], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.2921174652241112, "expected_width_depth_ratio": 1.2727272727272727, "ratio_relative_error": 0.015235151247515955, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 4, "precision_note": "人工逐张view_image读取源PNG真实可见底角，约±4px；未用目标坐标代填。", "final_measured_corners_px": {"left": [31.6188, 292.5286], "front": [482.7221, 523.8432], "right": [831.8416, 340.5169]}, "observed_ground_height_px": 414.6409}
+  previous_source: {"source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-458f41c6-45aa-4ea4-ae04-ec4be815d172.png", "source_sha256": "3ad1a2d5b8d6a3e9a2becee6581a50015c66cace75fd3f120e50e977c9c78ffd", "references": [{"file": "assets/default/baseline/building-map/bld_kit_song_southern_biaoju.png", "sha256": "d0d40ee51f57b354316add817e10429bb8aca6b107102892f04851c0bc458042", "role": "宋基线地域变体编辑参考；已view_image；不继承宋年代"}], "previous_final_archive": "sources/bld_kit_mongol_biaoju__r2_input.png", "previous_final_sha256": "4f000f2e1e663dbcb19e5883eaedbb41a3f4866222fdc1a1c5e24da8aee0ed6c", "source_record": "sources/bld_kit_mongol_biaoju.json"}
+  repair_round: 2
+  repair_candidate_count: 2
+
+- id: bld_kit_mongol_casino
+  file: bld_kit_mongol_casino.png
+  category: building-map
+  style: default
+  subject: 蒙古草原/和林—上都地域候选：娱乐大帐（原创扩展）
+  prompt: "Edit attached sprite of a broad Mongol felt ger with small wooden boardgame tables visible inside open door. Preserve original ancient realistic beige felt texture, ropes, wood frame and minimal muted brown band. Only repair base geometry to exact 2:1 orthographic dimetric yaw45 elevation30. The thin rectangular ground is9 wide by7 deep, width is LEFT-to-FRONT edge; width/depth ratio9/7. ON1536x1024 canvas ideal contact corners LEFT(192,534), FRONT(840,858), RIGHT(1344,606), BACK(696,282); both ground edges slope +/-0.5 exactly. Render a FLAT VERY THIN sharp rectangular patch below the round ger with three clear visible near corners; do not inherit reference perspective or ratio. Keep ger round in real-world space, centered on ground rectangle. Entire roof and floor visible, generous alpha-zero margins. True RGBA transparent background, upper-left light, small lower-right contact shadow. No people, animals, signs, lettering, flags, clouds, mist, vignettes, modern objects, thick pedestal. Restrained weathered tactile realism, matching historical city-map sprites."
+  negative: 人物、现代物、文字、水印、风景背景、厚底台、清代黄瓦九龙脊、旅游装饰、非等比纠斜
+  references: [{"file": "sources/bld_kit_mongol_casino__r2_input.png", "sha256": "4bd8883a7cb39d9a063452309b10e9fe33fc964c0e3fcb2a8ce4c5837649a6ff", "role": "本轮实际传入的几何返修编辑目标；归档原字节"}, {"title": "1913 in Khüree", "url": "https://commons.wikimedia.org/wiki/File:1913_in_Khuree.jpg", "purpose": "仅对照聚落中大型毡帐和低屋比例；娱乐大帐功能与细节为原创扩展", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T22:52:58.504586+00:00"
+  created_time_basis: 源PNG文件mtime；非服务端调用时间
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f481-26d5-7413-89d8-fc283ec7e58a/exec-6cebb72d-26c2-41c5-9a83-27aea189cfe2.png"
+  size: "608x512"
+  sha256: "1ba7d226e62f2177b77551b7aa0b8a526023392452bc832c61a0057ba8bac41f"
+  status: candidate
+  building: {"type": "bld_kit_mongol_casino", "footprint": [9, 7], "anchor": [310.4436, 293.125], "era": "mongol"}
+  metadata: meta/bld_kit_mongol_casino.yaml
+  source_record: "sources/bld_kit_mongol_casino__r2.json"
+  source_sha256: "253b75899858f0e1a23c79bd10d7eb6087af703e0e213aace082b5c4dd53be7c"
+  footprint_m: [9, 7]
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_px": [512, 256], "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "camera_requested": {"yaw_deg": 45, "pitch_deg": 30}, "measured_geometry_pass": false, "ground_bbox_semantics": "64×32网格目标包围框，非实际底面测量"}
+  notes: "第2轮返修采用候选1；轴率0.51040/-0.51553；宽深比1.11957，目标1.28571；轴率/比例检查分别True/False。保持candidate；历史细部（待考），功能布局（原创扩展）；尚未总装验收。"
+  processing: {"source_archive": "sources/bld_kit_mongol_casino__r2_c01.png", "source_size": [1536, 1024], "source_sha256": "253b75899858f0e1a23c79bd10d7eb6087af703e0e213aace082b5c4dd53be7c", "crop_box": [0, 38, 1516, 982], "uniform_scale_requested": 0.3750915750915751, "resized_size": [569, 354], "rounded_effective_scale": [0.37532981530343007, 0.375], "paste_offset": [19, 79], "steps": ["只裁alpha>0包围框外透明空白", "一次等比LANCZOS；整数宽高量化误差单列", "无mask粘贴至透明RGBA画布；不改颜色/alpha、不warp、不补画"], "anchor_formula": "(source_anchor-crop_origin)*rounded_effective_scale+paste_offset"}
+  geometry_qa: {"source_corners_px": {"left": [94, 591], "front": [815, 959], "right": [1459, 627]}, "source_anchor_px": [776.5, 609.0], "hidden_back_corner_method": "back = left + right - front；后角推算，前方三角人工读点。", "source_axis_slopes": [0.5104022191400832, -0.515527950310559], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.1195652173913044, "expected_width_depth_ratio": 1.2857142857142858, "ratio_relative_error": 0.12922705314009664, "ratio_tolerance_suggestion": 0.1, "ratio_pass": false, "measurement_uncertainty_source_px": 4, "precision_note": "人工逐张view_image读取源PNG真实可见底角，约±4px；未用目标坐标代填。", "final_measured_corners_px": {"left": [54.281, 286.375], "front": [324.8938, 424.375], "right": [566.6062, 299.875]}, "observed_ground_height_px": 262.5}
+  previous_source: {"source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-c2f8551c-4e56-4f33-8073-c2d828f0e3c1.png", "source_sha256": "b634946b097a054ff135dd0ad9ff907cfeed9907633740408649bce76f9da826", "references": [{"file": "assets/default/baseline/building-map/bld_kit_song_southern_casino.png", "sha256": "19bdfb75a6a17026592fef45f5b2c0fd39fb39c37b4dba7c6919c510fa6084d4", "role": "宋基线地域变体编辑参考；已view_image；不继承宋年代"}], "previous_final_archive": "sources/bld_kit_mongol_casino__r2_input.png", "previous_final_sha256": "4bd8883a7cb39d9a063452309b10e9fe33fc964c0e3fcb2a8ce4c5837649a6ff", "source_record": "sources/bld_kit_mongol_casino.json"}
+  repair_round: 2
+  repair_candidate_count: 2
+
+- id: bld_kit_mongol_manor
+  file: bld_kit_mongol_manor.png
+  category: building-map
+  style: default
+  subject: 蒙古草原/和林—上都地域候选：贵族毡帐围院（原创扩展）
+  prompt: "Edit Mongol ger manor asset. Preserve exactly subject and material language: three beige felt gers (one large, two small), simple rough timber palisade and wooden front gate, small lean-to wood store, sparse dry grass, neutral realistic antique city-sprite textures. Repair ONLY geometry. Footprint rectangle WIDTH16 DEPTH13. Strict orthographic 2:1 dimetric projection yaw45 pitch30. LEFT-to-FRONT visible ground edge is width16; FRONT-to-RIGHT is depth13, length ratio16/13. Canvas1536x1024 with clean corners LEFT(96,504), FRONT(832,872), RIGHT(1430,573), BACK(694,205). Each ground edge slope exactly +/-0.500 with no perspective convergence; front edge must not become steeper than 26.565 degrees. All four fence-bottom lines track this ground rectangle; fence posts vertical. Thin packed earth surface with explicit clean straight base outline and three visible near corners, no rock border and no thick plinth. Align all architecture to camera. Upper-left light, small lower-right contact shadow, complete object generous transparent borders. True transparent RGBA, outside footprint alpha-zero; no ambient glow/haze, backdrop, grid, labels, lettering, people, animals, flags, modern elements."
+  negative: 人物、现代物、文字、水印、风景背景、厚底台、清代黄瓦九龙脊、旅游装饰、非等比纠斜
+  references: [{"file": "sources/bld_kit_mongol_manor__r2_input.png", "sha256": "f12c43b6f6bd98cf9e618a7de6c40dc56c5a7c2fb61d94a31faaddc3e9d4f040", "role": "本轮实际传入的几何返修编辑目标；归档原字节"}, {"title": "Karakorum Modell 2", "url": "https://commons.wikimedia.org/wiki/File:Karakorum_Modell_2.jpg", "purpose": "对照博物馆模型的多重院落、灰顶厅堂与围合体量；不据此定名贵族宅邸", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T22:54:08.016484+00:00"
+  created_time_basis: 源PNG文件mtime；非服务端调用时间
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f481-26d5-7413-89d8-fc283ec7e58a/exec-bba8e263-c1f8-45c1-a035-a94617109349.png"
+  size: "1056x704"
+  sha256: "ab04eee571c396d04751e4584100a661a1ce8bc7caba0c25f66a5face5a5d21c"
+  status: candidate
+  building: {"type": "bld_kit_mongol_manor", "footprint": [16, 13], "anchor": [548.869, 382.5473], "era": "mongol"}
+  metadata: meta/bld_kit_mongol_manor.yaml
+  source_record: "sources/bld_kit_mongol_manor__r2.json"
+  source_sha256: "2eda268648b0629e413e5c0c3cda2e309e4fef48707762e61d3d1c8a4f261687"
+  footprint_m: [16, 13]
+  entrance: {edge: S, offset_cells: 7}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_px": [928, 464], "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "camera_requested": {"yaw_deg": 45, "pitch_deg": 30}, "measured_geometry_pass": false, "ground_bbox_semantics": "64×32网格目标包围框，非实际底面测量"}
+  notes: "第2轮返修采用候选1；轴率0.49811/-0.54622；宽深比1.33613，目标1.23077；轴率/比例检查分别False/True。保持candidate；历史细部（待考），功能布局（原创扩展）；尚未总装验收。"
+  processing: {"source_archive": "sources/bld_kit_mongol_manor__r2_c01.png", "source_size": [1536, 1024], "source_sha256": "2eda268648b0629e413e5c0c3cda2e309e4fef48707762e61d3d1c8a4f261687", "crop_box": [0, 16, 1496, 1000], "uniform_scale_requested": 0.6676258992805756, "resized_size": [999, 657], "rounded_effective_scale": [0.6677807486631016, 0.6676829268292683], "paste_offset": [28, 23], "steps": ["只裁alpha>0包围框外透明空白", "一次等比LANCZOS；整数宽高量化误差单列", "无mask粘贴至透明RGBA画布；不改颜色/alpha、不warp、不补画"], "anchor_formula": "(source_anchor-crop_origin)*rounded_effective_scale+paste_offset"}
+  geometry_qa: {"source_corners_px": {"left": [85, 519], "front": [880, 915], "right": [1475, 590]}, "source_anchor_px": [780.0, 554.5], "hidden_back_corner_method": "back = left + right - front；后角推算，前方三角人工读点。", "source_axis_slopes": [0.4981132075471698, -0.5462184873949579], "axis_tolerance": 0.03, "axis_pass": false, "source_width_depth_ratio": 1.3361344537815125, "expected_width_depth_ratio": 1.2307692307692308, "ratio_relative_error": 0.08560924369747891, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 4, "precision_note": "人工逐张view_image读取源PNG真实可见底角，约±4px；未用目标坐标代填。", "final_measured_corners_px": {"left": [84.7614, 358.8445], "front": [615.6471, 623.247], "right": [1012.9766, 406.25]}, "observed_ground_height_px": 481.3994}
+  previous_source: {"source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-5e88319e-8b10-43d9-9c45-7fadf3f01ed9.png", "source_sha256": "df7dd5a4559386700ea7156925746ac8e663cccc3f45cb38d3d6d416f6d53134", "references": [{"file": "assets/default/baseline/building-map/bld_kit_song_southern_manor.png", "sha256": "393cee0a325af7b793f3dec4c28a1f0e50679eef19fa2c3d70f479b2a837c994", "role": "宋基线地域变体编辑参考；已view_image；不继承宋年代"}], "previous_final_archive": "sources/bld_kit_mongol_manor__r2_input.png", "previous_final_sha256": "f12c43b6f6bd98cf9e618a7de6c40dc56c5a7c2fb61d94a31faaddc3e9d4f040", "source_record": "sources/bld_kit_mongol_manor.json"}
+  repair_round: 2
+  repair_candidate_count: 2
+
+- id: bld_kit_mongol_wangfu
+  file: bld_kit_mongol_wangfu.png
+  category: building-map
+  style: default
+  subject: 蒙古草原/和林—上都地域候选：上都风格汉式王府殿宇模块
+  prompt: "Edit attached Mongol-Yuan palace module sprite, retaining existing restrained red-brown timber column hall, simple double gray-green tile hip-gable roofs, shallow stone base and broad plain front steps. Only correct ground/camera geometry. Rectangular footprint20 wide by16 deep, WIDTH left-to-front and DEPTH front-to-right; base projected run ratio1.25. Strict orthographic2:1 dimetric yaw45 pitch30: both ground axes slopes +/-0.5. On1536x1024 canvas ground LEFT(84,536), FRONT(844,916), RIGHT(1452,612), BACK(692,232). All floor tile grid, straight eaves, plinth edges follow these directions with equal foreshortening. Base front vertex is slightly right of image center to encode20x16 rectangle. Do not retain asymmetrical reference perspective. Complete roof and steps visible within generous transparent border. Thin low stone court only, no huge diorama pedestal. Rich realistic ancient architecture texture like Song city sprite, upper-left natural neutral warm illumination, tiny lower-right contact shadow. True transparent RGBA outside building/court; no vignette, fog, halo, text, flags, people, animals, modern details, yellow roof, decorative added monuments."
+  negative: 人物、现代物、文字、水印、风景背景、厚底台、清代黄瓦九龙脊、旅游装饰、非等比纠斜
+  references: [{"file": "sources/bld_kit_mongol_wangfu__r2_input.png", "sha256": "d882f5e270f78c0814ec616ee3fd8d60c3e904957dc6b17507ce94c0a79279a7", "role": "本轮实际传入的几何返修编辑目标；归档原字节"}, {"title": "Conservation and restoration of the Great Hall of Karakorum", "url": "https://www.dainst.org/en/research/projects/noslug/4924", "purpose": "对照大殿台基、柱网施工复原及汉式屋面语汇；不复制为具名宫殿", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T22:55:20.153039+00:00"
+  created_time_basis: 源PNG文件mtime；非服务端调用时间
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f481-26d5-7413-89d8-fc283ec7e58a/exec-f0432fe8-5be3-4105-92b7-7eac22f21333.png"
+  size: "1248x832"
+  sha256: "2b4f75e4e8a0c2a39f17e1e4c5883ae7f2c13791c13928086d1e5ce009da7355"
+  status: candidate
+  building: {"type": "bld_kit_mongol_wangfu", "footprint": [20, 16], "anchor": [644.3797, 492.7209], "era": "mongol"}
+  metadata: meta/bld_kit_mongol_wangfu.yaml
+  source_record: "sources/bld_kit_mongol_wangfu__r2.json"
+  source_sha256: "dc44aa8b1e5398837d85dfadcf27a2e4f70b673e7f833e80452b44ea7cd2a937"
+  footprint_m: [20, 16]
+  entrance: {edge: S, offset_cells: 9}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_px": [1152, 576], "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "camera_requested": {"yaw_deg": 45, "pitch_deg": 30}, "measured_geometry_pass": true, "ground_bbox_semantics": "64×32网格目标包围框，非实际底面测量"}
+  notes: "第2轮返修采用候选1；轴率0.52040/-0.51266；宽深比1.28006，目标1.25000；轴率/比例检查分别True/True。保持candidate；历史细部（待考），功能布局（原创扩展）；尚未总装验收。"
+  processing: {"source_archive": "sources/bld_kit_mongol_wangfu__r2_c01.png", "source_size": [1536, 1024], "source_sha256": "dc44aa8b1e5398837d85dfadcf27a2e4f70b673e7f833e80452b44ea7cd2a937", "crop_box": [0, 29, 1504, 1000], "uniform_scale_requested": 0.7994448299791811, "resized_size": [1202, 776], "rounded_effective_scale": [0.7992021276595744, 0.7991761071060762], "paste_offset": [23, 28], "steps": ["只裁alpha>0包围框外透明空白", "一次等比LANCZOS；整数宽高量化误差单列", "无mask粘贴至透明RGBA画布；不改颜色/alpha、不warp、不补画"], "anchor_formula": "(source_anchor-crop_origin)*rounded_effective_scale+paste_offset"}
+  geometry_qa: {"source_corners_px": {"left": [57, 562], "front": [866, 983], "right": [1498, 659]}, "source_anchor_px": [777.5, 610.5], "hidden_back_corner_method": "back = left + right - front；后角推算，前方三角人工读点。", "source_axis_slopes": [0.5203955500618047, -0.5126582278481012], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.2800632911392404, "expected_width_depth_ratio": 1.25, "ratio_relative_error": 0.02405063291139231, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 4, "precision_note": "人工逐张view_image读取源PNG真实可见底角，约±4px；未用目标坐标代填。", "final_measured_corners_px": {"left": [68.5545, 453.9609], "front": [715.109, 790.414], "right": [1220.2048, 531.4809]}, "observed_ground_height_px": 595.3862}
+  previous_source: {"source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-6fff0e80-0507-4ab6-b5c8-6dd88f009edb.png", "source_sha256": "e0af2ce83f2cb3a2167da8d88102a2790b6db161781f447540fa84265f643f5c", "references": [{"file": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png", "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef", "role": "宋基线地域变体编辑参考；已view_image；不继承宋年代"}, {"file": "sources/bld_kit_mongol_wangfu__c01.png", "sha256": "4ddaf1e81214b851253abc4a71e47133721e45f0e292d129e231fd95ad5eef2e", "role": "第二候选编辑目标；仅改台基地面几何"}], "previous_final_archive": "sources/bld_kit_mongol_wangfu__r2_input.png", "previous_final_sha256": "d882f5e270f78c0814ec616ee3fd8d60c3e904957dc6b17507ce94c0a79279a7", "source_record": "sources/bld_kit_mongol_wangfu.json"}
+  repair_round: 2
+  repair_candidate_count: 1
+
+- id: bld_kit_mongol_temple_hall
+  file: bld_kit_mongol_temple_hall.png
+  category: building-map
+  style: default
+  subject: 13–14世纪蒙古草原/和林/上都语境：佛寺殿堂（原创扩展；非具名文物复原）
+  prompt: 'Use case: historical-scene. Generate exactly ONE production building sprite for tianshu default building-map, Mongol grassland and Karakorum/Xanadu cultural context, 13th-14th century, historical realistic game art. Orthographic camera yaw 45 degrees elevation 30 degrees. Ground projection exactly 2:1 dimetric, visible ground axes +0.5 and -0.5 screen slope, all parallel edges remain parallel, verticals upright. South entrance faces screen LOWER LEFT. Muted earth tones, weathered tactile materials and fine natural detail density matching realistic Song city-kit assets, not a cartoon, not glossy toy rendering. Warm neutral light from SCREEN UPPER LEFT, very short soft contact shadow towards LOWER RIGHT. Flat thin ground contact rectangle with clearly readable corners, NEVER a thick diorama pedestal. Genuine RGBA transparency everywhere outside asset; no opaque white backdrop or painted checkerboard. Generous transparent margin on all sides; complete uncut silhouette. No text, labels, grid, numbers, watermark, people, modern objects or scenic background. Footprint 13 metres east-west by 10 metres north-south, axis lengths ratio 13:10. An anonymous modest Mongol-Yuan Buddhist timber temple hall, broad low grey-green clay tiled hipped gable roof, restrained upward eaves, matte dark red-brown columns and simple bracket sets, pale rammed-earth infill walls, wooden lattices, a central open south doorway, thin stone sill and three modest steps. Inspired only by Chinese timber construction and Buddhist temple evidence at Karakorum, NOT a reconstruction of the Great Hall, NOT a palace; no modern Erdene Zuu details.'
+  negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+  references: [{"title": "Conservation and restoration of the Great Hall of Karakorum", "url": "https://www.dainst.org/en/research/projects/noslug/4924", "purpose": "对照和林大殿遗址、台基及数字复原中的柱网和瓦顶语汇；本件保持匿名佛殿", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed
+  created: '2026-09-30T22:07:57.380837+00:00'
+  created_time_basis: 源PNG文件mtime，不是服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-9f3a7534-0190-4ca2-81a2-5d7442802c8d.png
+  size: 832x656
+  sha256: 3912ea495a4a745745f85329742882e22194cfcd96f927112b2afbbc8f423ff0
+  status: candidate
+  building:
+    type: bld_kit_mongol_temple_hall
+    footprint: [13, 10]
+    anchor: [422.2028, 419.4592]
+    era: mongol
+  footprint_m: [13, 10]
+  footprint_basis: design/22 §3.3 temple_hall 13×10【建议值】
+  entrance: {edge: S, offset_cells: 6}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [736, 368]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_mongol_temple_hall.yaml
+  processing:
+    source_archive: sources/bld_kit_mongol_temple_hall__raw.png
+    source_sha256: e1518e1e06d4ce0c835a84c0b015baf2aa729584589ab835427b155375303fbe
+    source_size: [1430, 1100]
+    crop_box: [0, 9, 1408, 1100]
+    uniform_scale_requested: 0.5360524399126001
+    resized_size: [755, 585]
+    actual_scale_xy: [0.5362215909090909, 0.536205316223648]
+    paste_offset: [38, 35, 793, 620]
+    anchor_source_px: [716.5, 726.0]
+    alpha_edits: none
+    note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+  notes: 仅原向单视图；锚点为底面中心代理；精确接缝/碰撞/遮挡待实测；底面严格几何见meta。
+- id: bld_kit_mongol_stupa
+  file: bld_kit_mongol_stupa.png
+  category: building-map
+  style: default
+  subject: 13–14世纪蒙古草原/和林/上都语境：佛塔地标（原创扩展；非具名文物复原）
+  prompt: "Precise camera correction of this stupa sprite, preserve design and all materials. The current ground has too steep diagonals: from left=(65,787) to front=(626,1108) and right=(1188,787) gives slope0.572. REQUIRED slope is0.5, so move front ground corner UP by about40pixels to (626,1068) while left and right corners stay at y787. Re-render structure coherently at this slightly LOWER camera elevation, do not distort tower vertically. The visible square foundation must have exact 2:1 diamond geometry, equal edges with 26.565 degree slope, NOT30degree slope. Make front corner perfectly centred horizontally. Keep anonymous Buddhist Mongol dome/plinth/finial/stairs, worn cream plaster and rough stone realism. Alpha-only transparent backdrop, opaque structure, no glow, no ambient shadow, no text, no reference lines or annotations, no checkerboard. Crisp thin ground border. Complete silhouette, square canvas, margins, light upper-left."
+  negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+  references: [{"file": "sources/bld_kit_mongol_stupa__raw.png", "sha256": "832c6ac4de146dfcfcef71a3df658c8638f92fb1af7036177ddd40035d78a4c5", "role": "首轮历史输入，非本轮最终调用输入", "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-41a22c9f-f5b2-437f-bddd-c177c0f23828.png"}, {"file": "sources/bld_kit_mongol_stupa__repair2_c01.png", "sha256": "976a5226b41e93271e1831576866cfcddb87efcf46ff914c06ca99f6fb3d10c5", "role": "本轮第2候选实际image_gen编辑输入"}, {"title": "Beijing Baitasi (2017) A", "url": "https://commons.wikimedia.org/wiki/File:Beijing_Baitasi_(2017)_A.jpg", "purpose": "对照元代白塔的覆钵体、分层基座与刹部轮廓；不复制具名塔尺度或构图", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed
+  created: "2026-09-30T23:04:30.927786+00:00"
+  created_time_basis: "本轮归档文件mtime，不是服务端调用时间"
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f481-58f0-7ad3-9899-9cdb8c6ed48d/exec-eee4bf8d-72b0-4fd5-90cb-2289e3b088ed.png"
+  size: "528x512"
+  sha256: "7427768a30eea0b51154f17e46bf1c2eb955f3ea3aa1d98831b96d9dbd7a7829"
+  status: candidate
+  building: {"type": "bld_kit_mongol_stupa", "footprint": [7, 7], "anchor": [264.5955, 328.7818], "era": "mongol"}
+  footprint_m: [7, 7]
+  footprint_basis: design/22 §3.3 pagoda 7×7【建议值】
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_px": [448, 224], "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "ground_bbox_semantics": "ground_bbox_px是64×32理想占格目标，不是实测底面框", "ground_bbox_target_px": [448, 224], "ground_bbox_measured_px": [448.427, 223.6352]}
+  metadata: meta/bld_kit_mongol_stupa.yaml
+  processing: {"source_archive": "sources/bld_kit_mongol_stupa__repair2_c02.png", "source_sha256": "51db266fa9f2be8d37cdd9481667f8e523011b7efa78787967dd20fac18c4e3d", "source_size": [1254, 1254], "crop_box": [0, 0, 1246, 1228], "uniform_scale_requested": 0.36482084690553745, "resized_size": [455, 448], "actual_scale_xy": [0.3651685393258427, 0.36482084690553745], "paste_offset": [36, 32, 491, 480], "anchor_source_px": [626.0, 813.5], "alpha_edits": "none", "note": "仅全透明外框裁切、等比LANCZOS缩放与透明padding；整数取整亚像素差。"}
+  notes: "第2轮重出：几何通过。保持candidate。"
+  geometry_qa: {"source_corners_LFR_px": [[12, 814], [626, 1120], [1240, 813]], "source_axis_slopes": [0.498371335504886, -0.5], "axis_tolerance": 0.03, "axis_pass": true, "width_depth_ratio": 1.0, "expected_ratio": 1.0, "ratio_relative_error": 0.0, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "note": "本轮逐图读取真实L/F/R底角；没有warp或理想坐标替代测量。"}
+
+- id: bld_kit_mongol_guardhouse
+  file: bld_kit_mongol_guardhouse.png
+  category: building-map
+  style: default
+  subject: 13–14世纪蒙古草原/和林/上都语境：营门守舍（原创扩展；非具名文物复原）
+  prompt: "Use case: precise-object-edit. Rebuild this exact Mongol felt-roof guardhouse as a CLEAN TRANSPARENT game asset with corrected isometric geometry. The attached result has three defects: glowing background; roof and ground are too shallow; front width is too narrow. Fix all. Use strict classic 2:1 ISOMETRIC ground: each ground diagonal rises exactly ONE pixel for TWO horizontal pixels. CAMERA MUST BE HIGHER than reference. Footprint is 6 wide by 5 deep, so the LOWER-LEFT FACING FRONT including porch must be 1.20 times the physical length of the right side. Make front facade 20% broader relative to right side. Ground front corner shifted to screen RIGHT of centre. Natural thin dry-earth ground shape is a precise parallelogram. Landscape 1536x1024: left corner (192,550), bottom/front corner (820,864), right corner (1344,602). Do NOT keep the current ground shape. All lower structural axes and roof eaves must match the corrected parallel isometric directions. Preserve simple cabin, earth-plaster walls, dark timber, grey rope-tied felt roof, small lattice window and empty rack. Natural fine realistic material texture. NO glow, NO shadow spreading outside ground, NO brown backdrop, NO ambient haze. Fully opaque cabin and ground, alpha255 inside; completely transparent alpha0 outside physical boundary, crisp silhouette only with antialiasing. No text/no grid/no labels/no people. Do not make a diorama block. Small contact shadow only on own ground. Upper-left light."
+  negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+  references: [{"file": "sources/bld_kit_mongol_guardhouse__repair2_c01.png", "sha256": "b4c34f15016c4ec7839011ff3c01e2d6dde4da944618f11e5d6eb7d96932553b", "role": "本轮第2候选实际image_gen编辑输入"}, {"title": "Model of Karakorum city, Karakorum Museum (4)", "url": "https://commons.wikimedia.org/wiki/File:Model_of_Karakorum_city%3B_Karakorum_Museum%2C_Mongolia_(4).jpg", "purpose": "对照博物馆模型中的院门、墙与低矮守舍体量；毡顶守舍仍属原创扩展", "role": "生成后形制审校；未作为image_gen输入", "accessed": "2026-10-01"}]
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed
+  created: "2026-09-30T23:04:30.889127+00:00"
+  created_time_basis: "本轮归档文件mtime，不是服务端调用时间"
+  source_path: "/Users/bytedance/.codex/generated_images/01a0f481-58f0-7ad3-9899-9cdb8c6ed48d/exec-6d1d37d6-3fa6-47c9-b13c-8a3cde02626f.png"
+  size: "432x304"
+  sha256: "e2747286f29ed452cbb922bc9540e6a167d39ad90135f544ebf3a1b6e528c840"
+  status: candidate
+  building: {"type": "bld_kit_mongol_guardhouse", "footprint": [6, 5], "anchor": [220.3077, 191.9063], "era": "mongol"}
+  footprint_m: [6, 5]
+  footprint_basis: design/22 §3.2 guardhouse 6×5【建议值】
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract: {"tile_px": [64, 32], "ground_bbox_px": [352, 176], "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "ground_bbox_semantics": "ground_bbox_px是64×32理想占格目标，不是实测底面框", "ground_bbox_target_px": [352, 176], "ground_bbox_measured_px": [352.0342, 154.3525]}
+  metadata: meta/bld_kit_mongol_guardhouse.yaml
+  processing: {"source_archive": "sources/bld_kit_mongol_guardhouse__repair2_c02.png", "source_sha256": "c55fa9a7afb0bca3c55a0ac0471ac7b90cc396fc745f0f3bfc23a9079b077462", "source_size": [1536, 1024], "crop_box": [0, 16, 1521, 1009], "uniform_scale_requested": 0.23929299796057105, "resized_size": [364, 238], "actual_scale_xy": [0.23931623931623933, 0.23967774420946628], "paste_offset": [34, 33, 398, 271], "anchor_source_px": [778.5, 679.0], "alpha_edits": "none", "note": "仅全透明外框裁切、等比LANCZOS缩放与透明padding；整数取整亚像素差。"}
+  notes: "第2轮重出改善宽深偏差，但轴率与宽深仍不通过；保持candidate，不可视为已修复。"
+  geometry_qa: {"source_corners_LFR_px": [[43, 690], [773, 1001], [1514, 668]], "source_axis_slopes": [0.426027397260274, -0.4493927125506073], "axis_tolerance": 0.03, "axis_pass": false, "width_depth_ratio": 0.9851551956815114, "expected_ratio": 1.2, "ratio_relative_error": 0.1790373369320738, "ratio_tolerance_suggestion": 0.1, "ratio_pass": false, "measurement_uncertainty_source_px": 5, "note": "本轮逐图读取真实L/F/R底角；没有warp或理想坐标替代测量。"}
+
+- id: bld_kit_mongol_stable
+  file: bld_kit_mongol_stable.png
+  category: building-map
+  style: default
+  subject: 13–14世纪蒙古草原/和林/上都语境：拴马棚（原创扩展；非具名文物复原）
+  prompt: 'Use case: precise-object-edit. Edit this Song stable into a 13th-century Mongol steppe horse shelter sprite. PRESERVE EXACT camera, ground footprint aspect ratio8:6, isometric orientation, ground corners, building width/depth, three open stalls, troughs, scale and transparent padding. Replace the entire grey ceramic tiled roof with a plain taut muted beige wool-felt roof held by rope lashings over rough timber rafters, remove all decorative ridge finials and ceramic tiles. Replace white plaster side walls with rough dark timber slats. Keep realistic fine wood grain and weathering at same detail density. No horses or people. Left-upper light, short right-lower contact shadows. Genuine transparent RGBA outside actual silhouette. Do not change framing or lengthen the building. No text or checkerboard.'
+  negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+  references:
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_stable.png, sha256: da40c1c72f1e27b96c2a8da4d6ab0ac6f81474a6d0e049045d4ac9996eabac28, role: 实际image_gen编辑输入}
+  - {title: 1913 in Khüree, url: 'https://commons.wikimedia.org/wiki/File:1913_in_Khuree.jpg', purpose: 对照草原聚落与毡帐环境尺度；马厩构造仍属原创扩展, role: 生成后形制审校；未作为image_gen输入, accessed: '2026-10-01'}
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed
+  created: '2026-09-30T22:15:08.242676+00:00'
+  created_time_basis: 源PNG文件mtime，不是服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-1d3c0b69-5125-4377-8e64-7df44437ed4b.png
+  size: 592x496
+  sha256: 355b51d4c6ac08ca9562bc80535dd9db08a4c27b36f8b296f5dcd2f31efc17d8
+  status: candidate
+  building:
+    type: bld_kit_mongol_stable
+    footprint: [8, 6]
+    anchor: [308.6176, 294.2716]
+    era: mongol
+  footprint_m: [8, 6]
+  footprint_basis: design/22 §3.2 stable 8×6【建议值】
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [448, 224]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_mongol_stable.yaml
+  processing:
+    source_archive: sources/stableRetry__raw.png
+    source_sha256: 6f7cd9bb686d3a4944b3af07fd55d31576d13aa2dd83fdfa81a7a8f2de1980da
+    source_size: [1437, 1095]
+    crop_box: [65, 20, 1425, 1095]
+    uniform_scale_requested: 0.388551604509974
+    resized_size: [528, 418]
+    actual_scale_xy: [0.38823529411764707, 0.38883720930232557]
+    paste_offset: [32, 39, 560, 457]
+    anchor_source_px: [777.5, 676.5]
+    alpha_edits: none
+    note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+  notes: 仅原向单视图；锚点为底面中心代理；精确接缝/碰撞/遮挡待实测；底面严格几何见meta。
+- id: bld_kit_mongol_warehouse
+  file: bld_kit_mongol_warehouse.png
+  category: building-map
+  style: default
+  subject: 13–14世纪蒙古草原/和林/上都语境：商旅仓屋（原创扩展；非具名文物复原）
+  prompt: 'Use case: precise-object-edit. Convert the supplied Song warehouse sprite into a Mongol grassland caravan warehouse, 13th-14th century, original regional game adaptation. Keep the EXACT 45-degree camera, 30-degree elevation, 2:1 ground projection, ground parallelogram 9 by 7 metres, base corners, doors/windows placement and realistic detail density of the reference. Replace all ceramic roof tiles and finials with plain overlapping weathered wooden shingles, simple wooden ridge capped with tied timber. Replace plaster panels with muted dark rough timber planks. Keep two open wooden south doors and stacks of rope-bound wool/felt packages inside, with a small grey felt awning over entry; no ceramic decorative jars. Keep same height and width, no added scenery. Light from upper left and short contact shadow lower right. True RGBA alpha0 outside building and thin foundation. No people, no text, no watermark, no checkerboard, no bright varnish. Entire structure inside transparent margins.'
+  negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+  references:
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_warehouse.png, sha256: ebd26707923a4b40ec80c95aca5ec8216260eefb4e3fff87efed525654f2c351, role: 实际image_gen编辑输入}
+  - {title: Karakorum Modell 1, url: 'https://commons.wikimedia.org/wiki/File:Karakorum_Modell_1.jpg', purpose: 对照博物馆模型中的灰顶街屋与货仓体量；木板仓屋为原创地域替换, role: 生成后形制审校；未作为image_gen输入, accessed: '2026-10-01'}
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed
+  created: '2026-09-30T22:16:10.604241+00:00'
+  created_time_basis: 源PNG文件mtime，不是服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-4f78a02c-794e-489a-b780-fb08eacd7870.png
+  size: 688x544
+  sha256: 707cb4fa37e7029e83ae951511eead124c7b5519e9890c4b2e6341d1b674665e
+  status: candidate
+  building:
+    type: bld_kit_mongol_warehouse
+    footprint: [9, 7]
+    anchor: [359.2123, 336.426]
+    era: mongol
+  footprint_m: [9, 7]
+  footprint_basis: design/22 §3.2 warehouse 9×7【建议值】
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [512, 256]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_mongol_warehouse.yaml
+  processing:
+    source_archive: sources/bld_kit_mongol_warehouse__raw.png
+    source_sha256: 86cf257a0e44ecb61d643c89650f9e80b4f25a6e47a58a748296083e25057440
+    source_size: [1437, 1095]
+    crop_box: [0, 20, 1385, 1095]
+    uniform_scale_requested: 0.4429065743944637
+    resized_size: [613, 476]
+    actual_scale_xy: [0.44259927797833937, 0.4427906976744186]
+    paste_offset: [37, 34, 650, 510]
+    anchor_source_px: [728.0, 703.0]
+    alpha_edits: none
+    note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+  notes: 仅原向单视图；锚点为底面中心代理；精确接缝/碰撞/遮挡待实测；底面严格几何见meta。
+- id: bld_kit_mongol_wharf
+  file: bld_kit_mongol_wharf.png
+  category: building-map
+  style: default
+  subject: 13–14世纪蒙古草原/和林/上都语境：河岸卸货栈台（原创扩展；非具名文物复原）
+  prompt: 'Use case: precise-object-edit. Convert this low rectangular Song stone river landing into a simple Mongol-Yuan grassland timber landing game sprite. KEEP EXACT camera, ground rectangle shape and 8:4 width-to-depth ratio, 45 degrees yaw and 30 degrees elevation, 2:1 parallel isometric axes. Replace stone slabs with broad rough weathered wooden planks and shallow square timber edge beams. Keep two low rope-tied mooring posts and the three shallow entry steps in same positions. Back long waterside edge must be continuous and unobstructed. No railings, no water, no building, no boat, no broad landscape, no additional scenery, no text. Only a slim flat platform with extremely short wooden foot blocks, not a thick plinth. Muted natural wood with fine realistic aged grain, neutral light from screen upper left and tiny soft shadow lower right. Genuine transparent RGBA outside the object; generous transparent margin, no checkerboard or drawn background. Original regional game adaptation, not a reconstruction of a named Karakorum port.'
+  negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+  references:
+  - {file: assets/default/baseline/building-map/bld_kit_song_dali_wharf.png, sha256: 03ab2096647498c835afdb58e896d604966b5c2492bb0504625677f962a912d4, role: 实际image_gen编辑输入}
+  - {title: Mongolie pont bois 02, url: 'https://commons.wikimedia.org/wiki/File:20080726-0045_Mongolie_pont_bois_02.jpg', purpose: 仅对照现代蒙古木桥的板面与栏杆木作；不证明中世纪河埠形制, role: 生成后形制审校；未作为image_gen输入, accessed: '2026-10-01'}
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed
+  created: '2026-09-30T22:17:15.835734+00:00'
+  created_time_basis: 源PNG文件mtime，不是服务端调用时间
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-b082a03a-f346-47bd-8763-4cee69b96a49.png
+  size: 560x560
+  sha256: ee2fe65dbbab968c9b693ab4ae4bdc67ba6bbd6a5c5a9a1005ee871fd174e055
+  status: candidate
+  building:
+    type: bld_kit_mongol_wharf
+    footprint: [8, 4]
+    anchor: [293.8248, 295.0361]
+    era: mongol
+  footprint_m: [8, 4]
+  footprint_basis: design/22 §3.2 wharf 8×4【建议值】
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [384, 192]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_mongol_wharf.yaml
+  processing:
+    source_archive: sources/bld_kit_mongol_wharf__raw.png
+    source_sha256: f326ef145031e008424a0209285c3f982b84c3bb3f833a027f2c54735b70c46d
+    source_size: [1254, 1254]
+    crop_box: [0, 21, 1210, 1212]
+    uniform_scale_requested: 0.4067796610169492
+    resized_size: [492, 484]
+    actual_scale_xy: [0.4066115702479339, 0.4063811922753988]
+    paste_offset: [34, 38, 526, 522]
+    anchor_source_px: [639.0, 653.5]
+    alpha_edits: none
+    note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+  notes: 仅原向单视图；锚点为底面中心代理；精确接缝/碰撞/遮挡待实测；底面严格几何见meta。

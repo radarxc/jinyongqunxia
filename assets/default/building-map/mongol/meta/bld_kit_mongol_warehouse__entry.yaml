@@ -1,0 +1,45 @@
+id: bld_kit_mongol_warehouse
+file: bld_kit_mongol_warehouse.png
+category: building-map
+style: default
+subject: 13–14世纪蒙古草原/和林/上都语境：商旅仓屋（原创扩展；非具名文物复原）
+prompt: 'Use case: precise-object-edit. Convert the supplied Song warehouse sprite into a Mongol grassland caravan warehouse, 13th-14th century, original regional game adaptation. Keep the EXACT 45-degree camera, 30-degree elevation, 2:1 ground projection, ground parallelogram 9 by 7 metres, base corners, doors/windows placement and realistic detail density of the reference. Replace all ceramic roof tiles and finials with plain overlapping weathered wooden shingles, simple wooden ridge capped with tied timber. Replace plaster panels with muted dark rough timber planks. Keep two open wooden south doors and stacks of rope-bound wool/felt packages inside, with a small grey felt awning over entry; no ceramic decorative jars. Keep same height and width, no added scenery. Light from upper left and short contact shadow lower right. True RGBA alpha0 outside building and thin foundation. No people, no text, no watermark, no checkerboard, no bright varnish. Entire structure inside transparent margins.'
+negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+references:
+- {file: assets/default/baseline/building-map/bld_kit_song_dali_warehouse.png, sha256: ebd26707923a4b40ec80c95aca5ec8216260eefb4e3fff87efed525654f2c351, role: 实际image_gen编辑输入}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T22:16:10.604241+00:00'
+created_time_basis: 源PNG文件mtime，不是服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-4f78a02c-794e-489a-b780-fb08eacd7870.png
+size: 688x544
+sha256: 707cb4fa37e7029e83ae951511eead124c7b5519e9890c4b2e6341d1b674665e
+status: candidate
+building:
+  type: bld_kit_mongol_warehouse
+  footprint: [9, 7]
+  anchor: [359.2123, 336.426]
+  era: mongol
+footprint_m: [9, 7]
+footprint_basis: design/22 §3.2 warehouse 9×7【建议值】
+entrance: {edge: S, offset_cells: 4}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [512, 256]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_mongol_warehouse.yaml
+processing:
+  source_archive: sources/bld_kit_mongol_warehouse__raw.png
+  source_sha256: 86cf257a0e44ecb61d643c89650f9e80b4f25a6e47a58a748296083e25057440
+  source_size: [1437, 1095]
+  crop_box: [0, 20, 1385, 1095]
+  uniform_scale_requested: 0.4429065743944637
+  resized_size: [613, 476]
+  actual_scale_xy: [0.44259927797833937, 0.4427906976744186]
+  paste_offset: [37, 34, 650, 510]
+  anchor_source_px: [728.0, 703.0]
+  alpha_edits: none
+  note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+notes: 仅原向单视图；锚点为底面中心代理；精确接缝/碰撞/遮挡待实测；底面严格几何见meta。
