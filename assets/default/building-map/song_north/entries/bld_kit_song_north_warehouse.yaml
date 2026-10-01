@@ -3,96 +3,76 @@ file: bld_kit_song_north_warehouse.png
 category: building-map
 style: default
 subject: 北宋中原 仓屋（原创扩展；建筑细部待考）
-prompt: 'Use case: historical-scene. Generate exactly ONE isolated production city-map building sprite for tianshu, Northern Song central plains
-  Kaifeng/Luoyang around 1093. Reference images supply only realistic ancient materials and detail density; never copy reference camera mistakes
-  or southern lush vegetation. Historical realistic grey clay tile, warm grey plaster over earth and rough bricks, matte weathered timber; restrained
-  subtle ochre and red where structural. NOT toy, plastic, miniature diorama or ink wash. Orthographic yaw45 elevation30, ground axes EXACT slopes
-  +0.5/-0.5 (2:1 dimetric), parallel opposite edges, upright columns, NO perspective. South entrance faces screen LOWER LEFT. Entire isolated
-  footprint on one extremely thin flat ground-contact parallelogram with left, bottom/front and right corners clearly visible for grid calibration.
-  Only a shallow masonry contact strip, NO thick plinth. Upper-left screen illumination, short contact shadow towards lower-right. TRUE transparent
-  RGBA background, at least10% clear margins all sides. All roof ends and ground corners visible. No text, writing, signs, symbols, watermark,
-  people, surrounding city, sky, trees outside footprint, modern objects, Qing ornament, imperial yellow roofs, thick bases or checkerboard. Subject:
-  one low practical Northern Song riverside warehouse, rough grey brick and warm-grey plaster, thick sober wooden beams, broad grey tiled gable
-  roof, two large loading doors facing screen lower-left, a few rope-bound bales and ceramic jars under eave, no modern shipping crates. Footprint10m
-  east-west by8m north-south. Flat ground corner targets in1536x1024: left(90,510),front(890,910),right(1530,590),back(730,190), up to uniform
-  scale/translation. Exact slopes+0.5/-0.5. No surrounding enclosure or plants. All background alpha zero. Geometric correction is mandatory:
-  the visible RIGHT corner of the thin ground apron must be HIGHER than reference, so that the right-to-front base edge rises exactly1pixel for
-  every2pixels rightward. Avoid its shallow0.41 slope. Correct source target LEFT(100,570),FRONT(800,920),RIGHT(1360,640),BACK(660,290), all four
-  in one plane. Left-front horizontal span700,front-right horizontal span560. Set camera yaw45 elevation30 with no perspective; not a casual isometric
-  drawing. At least10% transparent margin all sides, shorten eaves if needed. One low brick warehouse.'
+prompt: 'Image 1 is the current game asset and is binding only for ID, subject, overall footprint silhouette, entrance direction, exact camera,
+  transparent margins and canvas occupancy. Images 2 and 3 are historical references; take only documented form, proportion, structure, material
+  and aging, never their composition, scenery or text. Redraw one isolated production sprite for Northern Song northern-central plains, Kaifeng/Luoyang
+  context circa 1093; anonymous gameplay module, not a named-building reconstruction. Preserve orthographic yaw 45 degrees and elevation about
+  30 degrees, exact 2:1 dimetric ground axes, vertical columns, parallel edges, entrance toward screen lower-left, upper-left light, short lower-right
+  contact shadow, genuine RGBA transparency, and the current asset''s occupied size.
+
+
+  Historical detail contract: low restrained Song roof curvature and measured rafter rise, no dramatic Qing upturn; dark-grey fired-clay pan tiles
+  with round cover tiles, individually legible eave courses, simple ridge tiles, appropriate plain ridge ends or small chiwen only when specified,
+  never dense Qing beast processions. Show the stated bracket tier/projection, column grid, stone column plinths, low masonry/rammed-earth platform,
+  exposed rafter ends, beam joinery, straight square-lattice or plank doors/windows. Walls are warm-grey lime plaster over rammed earth/adobe
+  with rough grey-brick or local stone footing; matte weathered timber, low saturation, only restrained iron-red/ochre traces on protected high-rank
+  woodwork. No southern horse-head walls, glass, fantasy joinery or imperial yellow glaze.
+
+
+  No people, readable writing, signs, calligraphy, flags, modern objects, scene background, sky, vegetation beyond the footprint, thick display
+  plinth, opaque ground island, white halo, checkerboard, watermark, perspective convergence, crop, or copied reference text.
+
+
+  Specific subject: A 10x8 five-bay granary and cargo warehouse: massive low hip-gable grey-tile roof, plain ridge caps without beasts, direct
+  heavy beams with one short utilitarian bracket arm, thick plastered rammed-earth or adobe walls, rough grey-brick high footing, raised stone
+  threshold, wide paired plank loading doors and small straight ventilation lattice; two cloth-bound loads only.'
 negative: 文字、水印、现代元素、人物、场景背景、厚底座、塑料感、清式重彩、黄琉璃宫顶、透视汇聚
 references:
-- {id: bld_kit_song_southern_warehouse, file: assets/default/baseline/building-map/bld_kit_song_southern_warehouse.png, sha256: 2f500eaee2c24c4e48a8604e495d13803b3cdb50550d3d66eea96e3a8de3875b,
-  role: 宋套件仅材质与写实细节参考；非本图几何或历史准确性背书}
-tool: built-in image_gen
-model: image_gen (underlying model not disclosed)
-effort: not exposed by image tool
-created: '2026-09-30T21:29:04.369913+00:00'
-created_time_basis: 源PNG文件mtime；非服务端披露调用时间
-source_path: /Users/bytedance/.codex/generated_images/01a0f428-8576-7390-a428-7025aed217c6/exec-0746f376-1f4e-488c-8475-e44d9bec91e6.png
-source_sha256: 24842255c0770784deda1981f57c6117e318db96d66ab5093bbe82b676b23560
+- url: https://commons.wikimedia.org/wiki/File:Qingming_shanghe_tu_bridge.jpg
+  used_detail: 虹桥木构、沿岸铺棚、商铺开间和临水构造
+- url: https://commons.wikimedia.org/wiki/File:Alongtheriver_QingMing.jpg
+  used_detail: 北宋城市中低等级屋顶尺度、街巷院落与夯土地面
+tool: Codex image edit endpoint
+model: gpt-image-2
+created: '2026-09-30'
 size: 736x496
-sha256: 8a619caf75ba41011227206ae739a3ea5f515da23355be248eca577daaa38c82
+sha256: d633aff81fae0e07db38dbba4a1d590d18a60b00b409e6e0afa28aca9739a85b
 status: candidate
 building:
   type: bld_kit_song_north_warehouse
-  footprint: [10, 8]
-  anchor: [377.623, 317.5331]
+  footprint:
+  - 10
+  - 8
+  anchor:
+  - 377.623
+  - 317.5331
   era: song_north
-footprint_m: [10, 8]
-anchor_px: [377.623, 317.5331]
+footprint_m:
+- 10
+- 8
+anchor_px:
+- 377.623
+- 317.5331
 allowRotation: false
-views: [S]
-entrance: {edge: S}
+views:
+- S
+entrance:
+  edge: S
 projection_contract:
-  tile_px: [64, 32]
-  ground_bbox_px: [576, 288]
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 576
+  - 288
   camera_target: yaw45 pitch30 orthographic 2:1
   light: screen_upper_left
   shadow: screen_lower_right_contact_only
-candidate_count: 2
-selected_candidate: 2
-source_record: sources/bld_kit_song_north_warehouse.provenance.json
-processing:
-  source_archive: sources/bld_kit_song_north_warehouse.candidate2.png
-  source_size: [1536, 1024]
-  crop_box: [0, 32, 1520, 1000]
-  uniform_scale_requested: 0.44036697247706424
-  resized_size: [669, 426]
-  rounded_effective_scale: [0.44013157894736843, 0.44008264462809915]
-  paste_offset: [33, 35, 702, 461]
-  final_canvas: [736, 496]
-  steps: [crop alpha>0 bounding box, one uniform LANCZOS resize with integer size rounding, 'pad RGBA; original alpha preserved; no thresholding,
-      repaint, warp or flip']
-geometry_qa:
-  source_corners_px:
-    left: [129, 616]
-    front: [856, 987]
-    right: [1437, 732]
-  anchor_method: (left+right)/2; rear inferred as left+right-front
-  source_axis_slopes: [0.5103163686382394, -0.4388984509466437]
-  axis_tolerance: 0.03
-  axis_pass: false
-  source_width_depth_ratio: 1.2512908777969018
-  expected_width_depth_ratio: 1.25
-  ratio_relative_error: 0.001032702237521388
-  ratio_tolerance_suggestion: 0.1
-  ratio_pass: true
-  measurement_uncertainty_source_px: 4
-  precision_note: 人工量可见薄底面三角点；后角遮挡推算，非测绘；残差不以几何变形修正
-  anchor_rounding_correction:
-    previous_anchor_px: [377.8073, 317.7156]
-    corrected_anchor_px: [377.623, 317.5331]
-    reason: 按整数resize后的sx/sy转换，避免requested scale的亚像素偏移；未改图像或底面测点
-pixel_qa:
-  mode: RGBA
-  size: [736, 496]
-  alpha_extrema: [0, 255]
-  alpha_zero_pixels: 237159
-  alpha_partial_pixels: 126864
-  alpha_opaque_pixels: 1033
-  alpha_near_opaque_pixels: 124175
-  alpha_nonzero_bbox: [33, 51, 701, 459]
-  transparent_margins_px: [33, 51, 35, 37]
-  border_alpha_max: 0
-notes: 已逐张view_image原图与最终PNG自查。第二候选木构灰瓦货仓完整，包裹与陶器无文字；右轴仍偏浅。单视图；运行时拼接待实测；形制组合为原创扩展，细部待考。
+candidate_count: 1
+selected_candidate: 1
+notes: 厚土墙仓屋、通风直棂、大板门、高砖脚和低台基。 已逐张view_image源候选与规格化成品；参考图仅取形制/材质/构造，不复制构图。
+historical_revision:
+  source_archive: sources/historical-revision/bld_kit_song_north_warehouse-candidate1.png
+  generation_record: sources/historical-revision/bld_kit_song_north_warehouse-candidate1.json
+  prompt_record: sources/historical-revision/bld_kit_song_north_warehouse-candidate1.prompt.txt
+  specification: 斜45度、俯仰约30度、2:1、左上光、真RGBA；按旧alpha包围框等比规格化，未非等比变形。

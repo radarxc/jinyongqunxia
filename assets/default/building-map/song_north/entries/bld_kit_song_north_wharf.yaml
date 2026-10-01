@@ -3,93 +3,76 @@ file: bld_kit_song_north_wharf.png
 category: building-map
 style: default
 subject: 北宋中原 浅薄河埠岸台（原创扩展；建筑细部待考）
-prompt: 'Use case: historical-scene. Generate exactly ONE isolated production city-map building sprite for tianshu, Northern Song central plains
-  Kaifeng/Luoyang around 1093. Reference images supply only realistic ancient materials and detail density; never copy reference camera mistakes
-  or southern lush vegetation. Historical realistic grey clay tile, warm grey plaster over earth and rough bricks, matte weathered timber; restrained
-  subtle ochre and red where structural. NOT toy, plastic, miniature diorama or ink wash. Orthographic yaw45 elevation30, ground axes EXACT slopes
-  +0.5/-0.5 (2:1 dimetric), parallel opposite edges, upright columns, NO perspective. South entrance faces screen LOWER LEFT. Entire isolated
-  footprint on one extremely thin flat ground-contact parallelogram with left, bottom/front and right corners clearly visible for grid calibration.
-  Only a shallow masonry contact strip, NO thick plinth. Upper-left screen illumination, short contact shadow towards lower-right. TRUE transparent
-  RGBA background, at least10% clear margins all sides. All roof ends and ground corners visible. No text, writing, signs, symbols, watermark,
-  people, surrounding city, sky, trees outside footprint, modern objects, Qing ornament, imperial yellow roofs, thick bases or checkerboard. Subject:
-  ONE extremely thin Northern Song central-plains river landing apron ONLY, narrow10m east-west by4m north-south flat grey stone strip with uneven
-  ancient rectangular slabs, two short timber mooring posts and one loose rope contained inside. Optional2 very shallow waterside steps on lower-left
-  side. NO river, water, boat, hut, buildings, plants, floating island or thick earth platform. Ground corner targets in1536x1024: left(100,400),front(1100,900),right(1500,700),back(500,200),
-  up to uniform scale/translation. Axis ratio10/4 exactly, slopes+0.5/-0.5; final canvas is NOT required to be2:1 aspect ratio, only ground projection.
-  Very low isolated attachment for later code composition. All background alpha zero.'
+prompt: 'Image 1 is the current game asset and is binding only for ID, subject, overall footprint silhouette, entrance direction, exact camera,
+  transparent margins and canvas occupancy. Images 2 and 3 are historical references; take only documented form, proportion, structure, material
+  and aging, never their composition, scenery or text. Redraw one isolated production sprite for Northern Song northern-central plains, Kaifeng/Luoyang
+  context circa 1093; anonymous gameplay module, not a named-building reconstruction. Preserve orthographic yaw 45 degrees and elevation about
+  30 degrees, exact 2:1 dimetric ground axes, vertical columns, parallel edges, entrance toward screen lower-left, upper-left light, short lower-right
+  contact shadow, genuine RGBA transparency, and the current asset''s occupied size.
+
+
+  Historical detail contract: low restrained Song roof curvature and measured rafter rise, no dramatic Qing upturn; dark-grey fired-clay pan tiles
+  with round cover tiles, individually legible eave courses, simple ridge tiles, appropriate plain ridge ends or small chiwen only when specified,
+  never dense Qing beast processions. Show the stated bracket tier/projection, column grid, stone column plinths, low masonry/rammed-earth platform,
+  exposed rafter ends, beam joinery, straight square-lattice or plank doors/windows. Walls are warm-grey lime plaster over rammed earth/adobe
+  with rough grey-brick or local stone footing; matte weathered timber, low saturation, only restrained iron-red/ochre traces on protected high-rank
+  woodwork. No southern horse-head walls, glass, fantasy joinery or imperial yellow glaze.
+
+
+  No people, readable writing, signs, calligraphy, flags, modern objects, scene background, sky, vegetation beyond the footprint, thick display
+  plinth, opaque ground island, white halo, checkerboard, watermark, perspective convergence, crop, or copied reference text.
+
+
+  Specific subject: A thin 10x4 Northern Song river landing: irregular dressed grey local-stone edge blocks with lime and earth joints, compacted
+  earth-and-gravel top rather than a modern square paving grid, two stone steps down at water edge, two weathered timber mooring posts and a rope
+  coil; no water, boats, barrels, roof, people, thick slab or modern bollards.'
 negative: 文字、水印、现代元素、人物、场景背景、厚底座、塑料感、清式重彩、黄琉璃宫顶、透视汇聚
 references:
-- {id: bld_kit_song_southern_wharf, file: assets/default/baseline/building-map/bld_kit_song_southern_wharf.png, sha256: ee6196f46d86785a78c5859e50b60ad9866e246bdb48a9dabcc238f176c79ab1,
-  role: 宋套件仅材质与写实细节参考；非本图几何或历史准确性背书}
-tool: built-in image_gen
-model: image_gen (underlying model not disclosed)
-effort: not exposed by image tool
-created: '2026-09-30T21:27:16.747208+00:00'
-created_time_basis: 源PNG文件mtime；非服务端披露调用时间
-source_path: /Users/bytedance/.codex/generated_images/01a0f428-8576-7390-a428-7025aed217c6/exec-9c88cbb1-4ebd-4595-8b31-bad3453d8a8c.png
-source_sha256: 5da9e4319b95b9f3d3e8f2110b07621d80a6fd9dd2a6da22b86063f6a8aadd08
+- url: https://commons.wikimedia.org/wiki/File:Qingming_shanghe_tu_bridge.jpg
+  used_detail: 虹桥木构、沿岸铺棚、商铺开间和临水构造
+- url: https://commons.wikimedia.org/wiki/File:Song-Imperial-Garden1.jpg
+  used_detail: 北宋界画中的殿阁、桥亭、院落和水岸关系
+tool: Codex image edit endpoint
+model: gpt-image-2
+created: '2026-09-30'
 size: 560x320
-sha256: efed852bdb33a92e9a12cb3d2a5449818ce9e764591c42d1ecf805d910edf8c4
+sha256: 790aab5164c396cc2f19c9e6e422e016dec26eb36aee4721406b3a1687bf65de
 status: candidate
 building:
   type: bld_kit_song_north_wharf
-  footprint: [10, 4]
-  anchor: [276.0056, 168.4499]
+  footprint:
+  - 10
+  - 4
+  anchor:
+  - 276.0056
+  - 168.4499
   era: song_north
-footprint_m: [10, 4]
-anchor_px: [276.0056, 168.4499]
+footprint_m:
+- 10
+- 4
+anchor_px:
+- 276.0056
+- 168.4499
 allowRotation: false
-views: [S]
-entrance: {edge: S}
+views:
+- S
+entrance:
+  edge: S
 projection_contract:
-  tile_px: [64, 32]
-  ground_bbox_px: [448, 224]
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 448
+  - 224
   camera_target: yaw45 pitch30 orthographic 2:1
   light: screen_upper_left
   shadow: screen_lower_right_contact_only
 candidate_count: 1
 selected_candidate: 1
-source_record: sources/bld_kit_song_north_wharf.provenance.json
-processing:
-  source_archive: sources/bld_kit_song_north_wharf.candidate1.png
-  source_size: [1774, 887]
-  crop_box: [57, 29, 1750, 887]
-  uniform_scale_requested: 0.291476903057905
-  resized_size: [493, 250]
-  rounded_effective_scale: [0.29119905493207326, 0.2913752913752914]
-  paste_offset: [33, 35, 526, 285]
-  final_canvas: [560, 320]
-  steps: [crop alpha>0 bounding box, one uniform LANCZOS resize with integer size rounding, 'pad RGBA; original alpha preserved; no thresholding,
-      repaint, warp or flip']
-geometry_qa:
-  source_corners_px:
-    left: [123, 334]
-    front: [1198, 881]
-    right: [1660, 640]
-  anchor_method: (left+right)/2; rear inferred as left+right-front
-  source_axis_slopes: [0.5088372093023256, -0.5216450216450217]
-  axis_tolerance: 0.03
-  axis_pass: true
-  source_width_depth_ratio: 2.326839826839827
-  expected_width_depth_ratio: 2.5
-  ratio_relative_error: 0.06926406926406925
-  ratio_tolerance_suggestion: 0.1
-  ratio_pass: true
-  measurement_uncertainty_source_px: 4
-  precision_note: 人工量可见薄底面三角点；后角遮挡推算，非测绘；残差不以几何变形修正
-  anchor_rounding_correction:
-    previous_anchor_px: [276.2375, 168.4964]
-    corrected_anchor_px: [276.0056, 168.4499]
-    reason: 按整数resize后的sx/sy转换，避免requested scale的亚像素偏移；未改图像或底面测点
-pixel_qa:
-  mode: RGBA
-  size: [560, 320]
-  alpha_extrema: [0, 255]
-  alpha_zero_pixels: 132514
-  alpha_partial_pixels: 45972
-  alpha_opaque_pixels: 714
-  alpha_near_opaque_pixels: 44597
-  alpha_nonzero_bbox: [33, 35, 503, 285]
-  transparent_margins_px: [33, 35, 57, 35]
-  border_alpha_max: 0
-notes: 已逐张view_image原图与最终PNG自查。河埠仅薄石岸台、木桩和绳索，无船无水无背景；最低石边完整，原图低alpha残迹触边，补透明余量不裁实体。单视图；运行时拼接待实测；形制组合为原创扩展，细部待考。
+notes: 不规则石岸、夯实砂砾面、下水踏步、木系缆桩。 已逐张view_image源候选与规格化成品；参考图仅取形制/材质/构造，不复制构图。
+historical_revision:
+  source_archive: sources/historical-revision/bld_kit_song_north_wharf-candidate1.png
+  generation_record: sources/historical-revision/bld_kit_song_north_wharf-candidate1.json
+  prompt_record: sources/historical-revision/bld_kit_song_north_wharf-candidate1.prompt.txt
+  specification: 斜45度、俯仰约30度、2:1、左上光、真RGBA；按旧alpha包围框等比规格化，未非等比变形。
