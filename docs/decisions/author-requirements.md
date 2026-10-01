@@ -397,3 +397,11 @@
 >    * 腰带
 >    * 暗器
 > * 每个书中主要悲剧线要设计逆天改命机会（例如乔峰不死）
+
+## AR-21 · 应用框架：整个 app 用 Next.js（2026-10-01）
+
+作者原文（2026-10-01 00:25，逐字照录）：
+
+> 补充一下，整个app用nextjs来做（或者你有别的推荐？）
+
+协调者建议（回复作者）：按作者所述用 **Next.js（App Router）+ React 19** 做整个 app 的壳与页面（首页、图鉴 / 剧情 wiki 静态页、账号与云存档、分享页），游戏本体做成纯客户端路由（`next/dynamic` + `ssr: false` 加载 Three.js 场景与确定性核心），`packages/{shared,data,core,platform,render}` 保持与框架无关；UI 层由 Vue 3.5 改为 React（尚未写任何代码，切换无成本）；Vite 不再做应用构建，Vitest 仍做各包测试。若只做游戏本体、没有站点需求，Vite + React 单页更轻更快，但收益差别不大。**执行口径**：按 Next.js + React 做；作者若改选 Vite + React，只需换 `apps/web`。技术文档同步任务 DES-tech-nextjs 负责改 `docs/tech/01/02/03/06/08`。
