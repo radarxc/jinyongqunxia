@@ -881,9 +881,18 @@ One isolated complete asset, true RGBA, generous clear margins.
 No people, text, watermark, modern glass, Qing ornament, scenery or thick pedestal.
 ```
 
-每类型最多2候选，逐张 `view_image`；常规PIL处理仅裁边、等比缩放、透明pad并保留alpha。第4轮对审核点名13项另作分段横向缩放与逐列纵移，以底面三点锁定双轴和占地比例且保持竖线竖直，证据见套件 `revisions_r4/verification.json`。原图在alpha=0处可能存灰褐RGB，须用实际alpha或合成预览判断。全部为 `candidate`，整城接缝、遮挡、四向接口仍 **（待实测）**。
+2026-10-01按作者要求以历史图片重出全套19项：每项把旧同ID图只作相机 / 朝向 / 画布引导，另把两张已下载并目检的历史图实际输入生成；不复制参考构图。共生成20个正式候选（马厩2选1，其余1选1），逐张 `view_image`；最终只按 `alpha>=2` 包围框等比LANCZOS缩放、透明pad并对齐旧主体底边和水平中心，不做非等比变形、重绘或alpha阈值改写。完整输入URL、哈希、取用细节、提示词与记录见manifest及 `ming_south/history/records/`。全部仍为 `candidate`；本轮换图后不继承旧图的几何通过结论，整城接缝、遮挡、占地和碰撞均 **（待实测）**。
 
-形制来源（访问2026-09-30）：苏州市园林局《[建筑](https://ylj.suzhou.gov.cn/szsylj/ylys/201903/484421d38f504f5787a8f307925e3ad7.shtml)》《[木窗的匠心和工艺](https://ylj.suzhou.gov.cn/szsylj/ylys/202404/613a96d3071d489d82e3b0f303e41754.shtml)》、故宫《[琉璃持钵佛像砖](https://www.dpm.org.cn/collection/impres/228949.html)》附报恩寺塔说明。仅取形制母题，不把后世修复建筑当作明代实测样本。
+### 11.3 历史细节要点（2026-10-01重出）
+
+- 民居 / 院落：取明末吴氏接待厅、明代江南村寺画卷和明式院落实物；硬山低举折、灰色板瓦筒瓦、朴素屋脊、栗褐柱架、粉墙青砖脚、直棂门窗、石铺天井，不使用清式繁密彩画。
+- 商铺 / 客栈 / 酒楼 / 市棚：取《南都繁会图》两局部；窄面阔街屋、连续浅檐、板门铺面、直棂楼窗、素木栏杆与微垂布棚，器物从简且不绘招牌文字、节庆灯海。
+- 衙署 / 镖局 / 山庄：以轴线门院厅和围合货院区分；灰瓦硬山、粉墙青砖脚、花岗石门槛与铺地，镖局仅作匿名护运货栈 **（原创扩展）**。
+- 王府 / 寺观：取玄妙观实物与斗拱近景；五开间、低台基、灰瓦歇山、短出跳两层斗拱、克制鸱吻脊兽和低饱和青绿红梁枋，不使用金瓦与清式龙饰。
+- 佛塔：取南京报恩寺塔历史图像；八角九层游戏概化、逐层收分、浅斗拱与木廊、券龛、克制琉璃色带、九环铁刹，不声称具名建筑精确复原。
+- 守舍 / 马厩 / 仓屋 / 河埠：青灰砖或土坯填充、硬山灰瓦、石防潮脚、木板门、开放马栏与石槽；河埠为青砖驳岸、花岗石压顶踏步、排水孔和系船石，不带水景。
+
+本轮实际图片来源（访问2026-10-01）：Wikimedia Commons 的[明末吴氏接待厅](https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600)、[明式院落](https://commons.wikimedia.org/wiki/File:Ming_courtyard_(6238830623).jpg)、[《南都繁会图》局部一](https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg)与[局部二](https://commons.wikimedia.org/wiki/File:%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E5%B1%80%E9%83%A8%EF%BC%88%E6%98%8E_%E4%BB%87%E8%8B%B1%EF%BC%89.jpg)、[玄妙观建筑](https://commons.wikimedia.org/wiki/File:Suzhou_Xuanmiao_Guan_2015.04.23_17-53-17.jpg)与[构件近景](https://commons.wikimedia.org/wiki/File:Suzhou_Xuanmiao_Guan_2015.04.23_18-02-22.jpg)、[报恩寺塔图一](https://commons.wikimedia.org/wiki/File:Porcelain_Tower_of_Nanjing.jpg)与[图二](https://commons.wikimedia.org/wiki/File:Nanking_Erlach.jpg)，以及 Met 的[明代江南村寺画卷](https://www.metmuseum.org/art/collection/search/45665)。只取形制、比例、材质和构造细节；现存建筑可能含后世修缮，不作为逐构件断代证据。
 
 ## 本文新增术语与 ID
 

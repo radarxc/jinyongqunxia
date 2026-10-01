@@ -1,0 +1,58 @@
+{
+  "id": "bld_kit_ming_south_market_stall",
+  "candidate": 1,
+  "returncode": 0,
+  "prompt": "You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical images control form, construction, proportion and materials; do not copy either composition.\n\nSubject: one isolated Ming dynasty Jiangnan market stall. Strong historical construction detail: four mortise-and-tenon timber or bamboo posts; tied slightly sagging muted indigo cloth canopy; plank counter, woven baskets and ceramic jars; no masonry base and transparent gaps.\n\nPreserve the guide's logical footprint 3 by 2, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match the guide's restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.\n\nTRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero. Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output only the generated image result.",
+  "guide": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south-hist/assets/default/building-map/ming_south/bld_kit_ming_south_market_stall.png",
+  "refs": [
+    "market1",
+    "market2"
+  ],
+  "ref_paths": [
+    "/private/tmp/KIT-ming_south-hist-refs/refs/market_nandu_1.jpg",
+    "/private/tmp/KIT-ming_south-hist-refs/refs/market_nandu_2.jpg"
+  ],
+  "outputs": [
+    "/private/tmp/KIT-ming_south-hist-refs/codex-homes/bld_kit_ming_south_market_stall-c1/generated_images/01a0f6f2-fd02-7a51-9972-1f34c3689584/exec-e6f70e19-6f5f-45a3-8ad8-77667b15a085.png"
+  ],
+  "selected_candidate": 1,
+  "candidate_count": 1,
+  "guide_archive": "assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_market_stall.png",
+  "guide_sha256": "d86d11260a071f4c7998447b1c8513b79a30699010578ae08303e8491b548a87",
+  "selected_source_archive": "assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_market_stall.png",
+  "selected_source_sha256": "6255eeec9725782243967e4135c6dd642f28682d542b339f1c57d01f4fec2e0c",
+  "normalization": {
+    "alpha_threshold_for_bbox": 2,
+    "source_bbox": [
+      310,
+      78,
+      1230,
+      925
+    ],
+    "guide_bbox": [
+      44,
+      66,
+      216,
+      212
+    ],
+    "uniform_scale": 0.17237308146399055,
+    "resized_size": [
+      159,
+      146
+    ],
+    "paste_offset": [
+      50,
+      66
+    ],
+    "canvas_size": [
+      256,
+      272
+    ],
+    "horizontal_alignment": "guide bbox center",
+    "vertical_alignment": "guide bbox bottom",
+    "excluded": "no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite"
+  },
+  "final_file": "assets/default/building-map/ming_south/bld_kit_ming_south_market_stall.png",
+  "final_sha256": "30e9d467c9cdbc0ff0ad9f449c9c65f16c24267a2226942add8f2d4504af0b7e",
+  "finalized_at": "2026-10-01T10:42:40.925856+00:00"
+}

@@ -1,0 +1,58 @@
+{
+  "id": "bld_kit_ming_south_restaurant",
+  "candidate": 1,
+  "returncode": 0,
+  "prompt": "You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical images control form, construction, proportion and materials; do not copy either composition.\n\nSubject: one isolated Ming dynasty Jiangnan two-storey restaurant and teahouse. Strong historical construction detail: five-bay open lower floor and upper gallery; low grey-tile hard-gable roof, white fire gables, plain timber rail and straight lattice screens; shallow blank awnings, no tower or lantern mass.\n\nPreserve the guide's logical footprint 12 by 9, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match the guide's restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.\n\nTRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero. Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output only the generated image result.",
+  "guide": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south-hist/assets/default/building-map/ming_south/bld_kit_ming_south_restaurant.png",
+  "refs": [
+    "market1",
+    "market2"
+  ],
+  "ref_paths": [
+    "/private/tmp/KIT-ming_south-hist-refs/refs/market_nandu_1.jpg",
+    "/private/tmp/KIT-ming_south-hist-refs/refs/market_nandu_2.jpg"
+  ],
+  "outputs": [
+    "/private/tmp/KIT-ming_south-hist-refs/codex-homes/bld_kit_ming_south_restaurant-c1/generated_images/01a0f6f2-fd09-7f60-9c6c-c06b2963347a/exec-9cb22b14-d6e5-4187-918b-4b8b41ffe940.png"
+  ],
+  "selected_candidate": 1,
+  "candidate_count": 1,
+  "guide_archive": "assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_restaurant.png",
+  "guide_sha256": "e7e4da124a36928dd8bf0a7c3646fd92266c14ff96cfb1e795c0afacad9f5d62",
+  "selected_source_archive": "assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_restaurant.png",
+  "selected_source_sha256": "abe422a1675d955356bd5ef8403a67ae7553d291466c924a05fb08cf500f6dd9",
+  "normalization": {
+    "alpha_threshold_for_bbox": 2,
+    "source_bbox": [
+      131,
+      30,
+      1332,
+      1064
+    ],
+    "guide_bbox": [
+      41,
+      21,
+      718,
+      647
+    ],
+    "uniform_scale": 0.5636969192339717,
+    "resized_size": [
+      677,
+      583
+    ],
+    "paste_offset": [
+      41,
+      64
+    ],
+    "canvas_size": [
+      738,
+      667
+    ],
+    "horizontal_alignment": "guide bbox center",
+    "vertical_alignment": "guide bbox bottom",
+    "excluded": "no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite"
+  },
+  "final_file": "assets/default/building-map/ming_south/bld_kit_ming_south_restaurant.png",
+  "final_sha256": "518dc9299caef6593d301ddde5bcc59c48fcac092416d0b9c8168c21cbe4c405",
+  "finalized_at": "2026-10-01T10:42:40.864813+00:00"
+}

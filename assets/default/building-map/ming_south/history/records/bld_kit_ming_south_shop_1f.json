@@ -1,0 +1,58 @@
+{
+  "id": "bld_kit_ming_south_shop_1f",
+  "candidate": 1,
+  "returncode": 0,
+  "prompt": "You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical images control form, construction, proportion and materials; do not copy either composition.\n\nSubject: one isolated Ming dynasty Jiangnan single-storey street shop. Strong historical construction detail: narrow three-bay shop from a Ming market street; hard-gable grey tile roof, plain ridge, projecting rafters without dougong; removable plank frontage, straight lattice shutters, low stone sill, one rolled blank cloth awning.\n\nPreserve the guide's logical footprint 7 by 5, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match the guide's restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.\n\nTRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero. Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output only the generated image result.",
+  "guide": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south-hist/assets/default/building-map/ming_south/bld_kit_ming_south_shop_1f.png",
+  "refs": [
+    "market1",
+    "market2"
+  ],
+  "ref_paths": [
+    "/private/tmp/KIT-ming_south-hist-refs/refs/market_nandu_1.jpg",
+    "/private/tmp/KIT-ming_south-hist-refs/refs/market_nandu_2.jpg"
+  ],
+  "outputs": [
+    "/private/tmp/KIT-ming_south-hist-refs/codex-homes/bld_kit_ming_south_shop_1f-c1/generated_images/01a0f6ef-9fb0-73c0-b6ce-8f57acff7b30/exec-c15d2b64-f291-4134-9556-9a4dd4b110d4.png"
+  ],
+  "selected_candidate": 1,
+  "candidate_count": 1,
+  "guide_archive": "assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_shop_1f.png",
+  "guide_sha256": "90bd184e25eb634964a480881187fe9ad96cef7178689795b71256f6d7fee1ba",
+  "selected_source_archive": "assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_shop_1f.png",
+  "selected_source_sha256": "64d7e0c75022e18c63f7692fddf9e55bca61f5773cbc0be5be19c9728a42abeb",
+  "normalization": {
+    "alpha_threshold_for_bbox": 2,
+    "source_bbox": [
+      176,
+      53,
+      1387,
+      979
+    ],
+    "guide_bbox": [
+      20,
+      20,
+      429,
+      347
+    ],
+    "uniform_scale": 0.33773740710156896,
+    "resized_size": [
+      409,
+      313
+    ],
+    "paste_offset": [
+      20,
+      34
+    ],
+    "canvas_size": [
+      453,
+      367
+    ],
+    "horizontal_alignment": "guide bbox center",
+    "vertical_alignment": "guide bbox bottom",
+    "excluded": "no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite"
+  },
+  "final_file": "assets/default/building-map/ming_south/bld_kit_ming_south_shop_1f.png",
+  "final_sha256": "d618269cd48f86b7a9a9766aa9d0b4f37340d7fb60e6c64e7cfb7b47b2e6b047",
+  "finalized_at": "2026-10-01T10:42:40.471040+00:00"
+}
