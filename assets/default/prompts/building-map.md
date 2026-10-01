@@ -739,14 +739,14 @@ No modern tourist ger decoration, Qing palace ornament, flags with writing, acto
 Preserve 45-degree orthographic camera, 30-degree elevation, 2:1 ground axes and the specified footprint.
 ```
 
-需要继承几何的编辑调用先查看宋同功能 PNG，再明确“保留相机、占地比例与构图，只换材质 / 地域构件”；实际输入路径与 SHA 记入 `references`。历史图片须区分“实际生成输入”和“生成后形制审校”：KIT-mongol 成品早于2026-10-01参考图下载，故后者只经 `view_image` 审校并在 manifest 明标“未作为image_gen输入”。完整实发 prompt 逐项保存在 manifest 及 `sources/`，不以本段替代调用记录。
+2026-10-01 历史细节返修中，每类先下载并用 `view_image` 查看 2–3 张历史图片，再将这些本地图片真实传入 `image_gen`；编辑候选另把候选1作为输入，但历史图仍至少2张。实际 URL、临时文件名、SHA、用途、完整实发 prompt 与候选数逐项记入 manifest，入选原始 PNG 归档于 `sources/*__hist_r5_raw.png`。不能把只读文字页面或生成后审校倒签为图像输入。
 
-本批短边下限按任务为256px，仍以 `32(w+h)` 标定地面宽；透明扩边不改变占地。底面中心锚点随裁切 / 等比缩放变换。只有原向PNG，禁止镜像补四向；所有严格轴差、比例差保留在 `meta/`，`candidate` 不等于精确无缝或可发布。最多2候选，未消除的偏差交报告，不用拉伸 / warp 纠正。
+本批短边下限按任务为256px；历史返修保持既有画布、ID、占地和锚点登记。入选图只删除模型产生的低 alpha 外围光晕、归一近不透明 alpha、裁框、一次预乘 alpha 等比 LANCZOS 缩放并补透明留白，不拉伸、不 warp、不程序补画。只有原向PNG，禁止镜像补四向；旧 `meta/` 不是本轮图像的几何实测，故 `candidate` 不等于精确无缝或可发布。每件最多2候选。
 
 ### 11.3 参考资料与未决边界
 
 访问日期均为2026-09-30：[UNESCO · Mongol Ger传统工艺](https://ich.unesco.org/en/RL/traditional-craftsmanship-of-the-mongol-ger-and-its-associated-customs-00872)取圆形木架、白毡 / 帆布与绳索；[UNESCO · Site of Xanadu](https://whc.unesco.org/en/list/1389/)取宫殿、寺院与游牧营地并存及蒙汉文化交融；[DAI · Conservation and restoration of the Great Hall of Karakorum](https://www.dainst.org/forschung/projekte/noslug/4924)取13世纪佛寺定性、中国式瓦作屋顶与藏式布局影响；[Rubin Museum · White Stupa, Attributed to Anige](https://rubinmuseum.org/projecthimalayanart/essays/white-stupa-attributed-to-nepalese-artist-anige/)取1279元代白塔的覆白覆钵体、分层基座与叠轮母题。以上均不支持本套件精确屋顶曲线、彩画、塔高、门窗或城市落点。
-2026-10-01另下载并逐张查看 Khüree 1913照片、和林博物馆模型、DAI大殿遗址/复原及妙应寺白塔照片；分别只校对帐群密度、灰顶院落、台基柱网和覆钵轮廓。逐成品URL与用途见 manifest，均属生成后审校，不倒签为生成输入。
+2026-10-01 实际图像输入包括 Khüree 1913 聚落 / 街景 / 黄宫门照片、和林博物馆模型、元上都遗址、元代《忽必烈出猎图》及妙应寺白塔多角度照片；逐项 URL、下载文件 SHA 与取用细节见 manifest。历史细节要点：毡帐须见柳条折壁、辐射椽、烟圈、毛毡重叠缝和绳带；普通土木建筑须见夯土层理 / 土坯填墙、石脚、斧斫柱、榫销斜撑、板门竖棂与手工灰色板瓦 / 筒瓦；高等级建筑用低台基、明确柱网、二至三跳以内简斗拱、浅举折灰瓦歇山、朴素脊端及克制矿物彩画；不作黄琉璃、龙饰或明清式高翘檐。白塔取覆钵、分层方台、莲瓣、叠轮、华盖和刹顶母题，不称具名塔等比例复原。
 
 默认保留匿名原创形制、上表建议占地、单视图和 `candidate`；作者需确认整体草原风格与宗教地标选择。原著《射雕英雄传》《神雕侠侣》的具体营地描述未逐字核对，历史形制与整城拼接 **（待考 / 待实测）**。
 ## 11. 吐蕃 · 藏地套件 `tubo`（KIT-tubo，2026-09-30；历史细节复核 2026-10-01）
