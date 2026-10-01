@@ -10,6 +10,10 @@
 
 `docs/tech/09-character-rig.md` §1（部件表、枢轴与子关节约定、三视图、ppm 256、z 序、描边烘焙、可 tint 部件）、§6（目录与 manifest）；`tools/rig/make_parts.py`（裁边、定枢轴、写 manifest）、`tools/rig/preview.py`（步态姿势预览条带）。画风：与建筑 / 贴片素材一致的写实古风 2.5D（光源左上、阴影右下、墨线描边清楚、低饱和），参考 `assets/default/prompts/character-{{gender}}.md` 的人物比例与服饰时代感、`docs/tech/07-asset-generation.md` §2.6–§2.7；不用演员 / 具体影视游戏造型。
 
+## 硬规则
+
+- 每张部件图必须由 `image_gen` 生成，manifest `tool` 写 image_gen 与实际模型名；禁止用 Pillow / 代码绘制或合成替代图、禁止素材目录放生成脚本；`image_gen` 不可用就停下来并在报告写明，不得伪造。
+
 ## 做法
 
 1. 先出 **三张全身参考图**（前 3/4、后 3/4、左侧；A 字站姿，手臂与躯干分开、双腿分开，透明底真 RGBA，身高 1.70 m 男 / 1.62 m 女 按 256 px/m ≈ 435 / 415 px 高，画布 512×512），确定本套的脸、发式、素色衣着与配色；三张彼此一致。
