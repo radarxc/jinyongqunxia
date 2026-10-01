@@ -78,11 +78,48 @@ def build(asset_id: str) -> str:
     return re.sub(r"\s{2,}", " ", out)
 
 
+REALISTIC = ("画风：写实古风绘画，与写实武侠人物立绘一致——真实材质质感（布料的经纬纹理、毛边与洗旧褪色，金属的冷光、锻打痕与细微锈蚀，"
+             "皮革的皱纹、磨损与油亮，木、玉、瓷、纸的真实肌理），柔和的体积光影与自然明暗，低饱和沉稳设色，手绘写实概念画质感；"
+             "不是线稿、不是平涂、不是卡通、不是照片。背景：均匀的浅暖灰纸色（约 RGB 230,225,216），带极淡的纸面纹理，无地面、无投影、无场景。")
+SHORT_NEG = "排除：人物、脸、手、人体、模特、衣架、支架、文字、伪字、印章、logo、边框、品阶框；奇幻造型、日式或欧美风格、跨朝混搭、现代材料；霓虹、魔法、粒子、发光。"
+
+
+def build_short(asset_id: str) -> str:
+    """精简版（2026-10-01 实测效果最好）：画风 + 题材 + 名录外观要点 + 类别专项 + 品阶 + 年代要求 + 短排除项，约 400–600 字。"""
+    f = find_prompt(asset_id)
+    text = f.read_text(encoding="utf-8")
+    end = text.find("\n---\n", 4)
+    fm = yaml.safe_load(text[4:end])
+    body = text[end + 5:]
+    def row(label):
+        m = re.search(r"\| " + re.escape(label) + r"[^|]*\| (.*?) \|", body)
+        return re.sub(r"\*\*|（原创扩展[^）]*）|\(原创扩展[^)]*\)", "", m.group(1)).strip() if m else ""
+    look, special, grade_line = row("外观要点"), row("类别专项"), row("品阶")
+    # 完整提示词「主体：」段的描写更细（年代形制都在里面），有就优先用它
+    full = re.search(r"## 提示词.*?```text\n(.*?)\n```", body, re.S)
+    if full:
+        m = re.search(r"主体[：:](.*?)(?=\s*(?:风格|构图|品阶表现|年代|排除项?)[：:]|$)", full.group(1), re.S)
+        if m:
+            desc = re.sub(r"具体[^。]*?(?:复原|造型)[^。]*。", "", m.group(1))
+            desc = re.sub(r"[^。]*(?:非摄影|非3D|边界清楚)[^。]*。", "", desc).strip()
+            if len(desc) > 20:
+                look = desc.rstrip("。")
+    name, sub, grade, src = fm.get("name", ""), fm.get("subcategory", ""), fm.get("grade", ""), str(fm.get("source", ""))
+    src = re.sub(r"\*\*|（原创扩展[^）]*）", "", src).strip(" ；;")
+    out = [f"生成一张 1:1 图片。{REALISTIC}",
+           f"题材：武侠游戏物品图鉴里的「{name}」（{sub}，{grade}阶{('；出处：' + src) if src and '原创' not in src else ''}），单一完整物品、无人持用，正面略三分之四视角居中，四边留白至少 12%。",
+           f"形制与外观：{look}。{special}。" if look else "",
+           f"品阶表现：{grade_line.split('（禁')[0]}；只用材质、工艺与旧化表达，不画光效。" if grade_line else "",
+           f"要一眼看出这是「{name}」这一朝代、这一兵种的制式甲：甲片形制、编缀方式、披膊 / 护心 / 甲裙等部件和主色配色都符合该朝史料，颜色克制。" if fm.get("category") == "armor" else "年代与形制符合出处书界的时代，不混搭。",
+           SHORT_NEG]
+    return re.sub(r"[；;，,]\s*。", "。", " ".join(x for x in out if x))
+
+
 def main() -> int:
     if len(sys.argv) < 2:
         print(__doc__)
         return 2
-    s = build(sys.argv[1])
+    s = build_short(sys.argv[1]) if "--short" in sys.argv else build(sys.argv[1])
     print(s if "--plain" in sys.argv else json.dumps(s, ensure_ascii=False))
     return 0
 

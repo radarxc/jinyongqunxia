@@ -1,3 +1,4 @@
+/* global window, document, location, setTimeout, MouseEvent */
 // 注入 gemini.google.com 页面的出图驱动（用 Claude in Chrome 的 javascript_tool 执行；页面是单页应用，站内跳转不丢状态，整页刷新后要重新注入）。
 // 作者 2026-10-01：不上传参考图，选「Oil painting」模板；画风要写实、和角色立绘一致。实测出图约 20 秒。
 // javascript_tool 单次调用上限 45 秒（CDP 超时），所以分两次调用：
@@ -111,4 +112,4 @@ window.__gem = (() => {
   }
   return { newImageChat, pickTemplate, setAspect, setPrompt, send, submit, waitImage, openLatestChat, runOne, download, sleep, waitFor };
 })();
-'gemini driver ready';
+// 注入后 javascript_tool 会返回 window.__gem 对象本身，无需额外返回值
