@@ -54,6 +54,33 @@ body {
   grid-column: 1 / -1;
 }
 
+#rig-demo {
+  position: fixed;
+  top: max(1rem, env(safe-area-inset-top));
+  left: max(1rem, env(safe-area-inset-left));
+  z-index: 20;
+  display: grid;
+  gap: 0.65rem;
+  width: min(21rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 0.9rem;
+  overflow: auto;
+  color: #f6ead4;
+  background: rgb(28 22 18 / 92%);
+  border: 1px solid #aa8b5f;
+  border-radius: 0.6rem;
+  box-shadow: 0 0.8rem 2rem rgb(0 0 0 / 35%);
+}
+
+#rig-demo h1 { margin: 0; font-size: 1rem; }
+#rig-demo label { display: grid; gap: 0.25rem; font-size: 0.8rem; }
+#rig-demo select,
+#rig-demo input { width: 100%; accent-color: #b86c42; }
+#rig-demo select { min-height: 2.2rem; color: inherit; background: #49372b; border: 1px solid #8e7357; }
+#rig-demo fieldset { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.35rem; margin: 0; border: 1px solid #705b45; }
+#rig-demo fieldset label { display: block; }
+#rig-demo output { white-space: pre-line; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.72rem; line-height: 1.5; }
+
 #storage-demo button {
   min-height: 2.75rem;
   color: inherit;
