@@ -1,0 +1,50 @@
+id: bld_kit_qing_south_restaurant
+file: bld_kit_qing_south_restaurant.png
+category: building-map
+style: default
+subject: 清初至清中江南·酒楼茶肆（匿名原创组合，细部待考）
+prompt: 'Use case sketch-to-render. Turn this exact blockout into a realistic Qing Jiangnan two-storey restaurant/teahouse city map sprite. Preserve the exact orthographic camera and ground-footprint parallelogram, entire building positioning and verticals. Material rendering must follow this camera, not reinterpret the camera. Exact ground edges slopes plus0.5 and minus0.5, long left-to-front edge:front-to-right edge=12:9. Keep the footprint 12 by9. Add dark gray tiled pitched hip-gabled roof, off-white limewashed brick side walls, dark carved wooden columns, lattice balcony along lower-left facade, two storeys of open dining veranda with little wooden tables and tea bowls. Fine realistic matte weathered roof tiles, stone, wood materials, muted palette same density as detailed ancient Chinese map sprites. Replace all block surfaces with architecture; solid realistic building not a model block. No writing, signage, people, modern things, logo or watermark. Steps stay inside the thin stone pad, clear visible three ground corners exactly unchanged. Full roof entirely inside image, true transparent alpha background outside, illumination upper left and small lower-right contact shadow only. No thick foundation plinth. Ground floor is the same exact plane as the supplied image, do not tip it, do not make it more diamond shaped.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、强透视、金黄屋顶泛化
+references:
+- {file: assets/default/building-map/qing_south/review2/buildings_b/restaurant.block.png, sha256: 1319e612b592153353320edcb6c080d3cdeb39221e331168a31fad31ee6dd22b, role: 本轮图生图几何块体/平面引导；非成品拼贴}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:05:46.754413+00:00'
+created_time_basis: 本轮源PNG mtime（copy2保留）；非服务端时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f450-5169-7ad2-87a6-dab5c8b3cb31/exec-38261147-1c6b-40eb-af2f-04f72f8261e5.png
+source_sha256: bafe6b3ed4e54c2bcb4e9179ce3bd38bb3c5da5391e5c6ac21ae65427b24a2f1
+size: 1056x832
+sha256: 022434d46ea9711aa383fa028fbc176d2bccc8d1d87b813bb33a684bef05bbae
+status: candidate
+building:
+  type: bld_kit_qing_south_restaurant
+  footprint: [12, 9]
+  anchor: [538.1132, 481.1765]
+  era: qing_south
+footprint_m: [12, 9]
+entrance: {edge: S, offset_cells: 5}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [672, 336]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_qing_south_restaurant.yaml
+source_record: review2/buildings_b/restaurant.source.json
+candidate_count: 2
+geometry_qa:
+  source_corners_px:
+    left: [180, 579]
+    front: [866, 941]
+    right: [1376, 667]
+  source_axis_slopes: [0.5276967930029155, -0.5372549019607843]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.3450980392156864
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.008823529411764897
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 5
+  precision_note: view_image原尺寸逐图人工读取可见薄石坪上表面外角；非提示词目标点；隐藏后角由平行四边形推算，±5源px。
+notes: 返修第2轮逐张view_image；本轮2候选选第2；灰瓦白墙木石质感与宋基线接近，完整无字无人。占地比例改善，但双轴仍超±0.03，保持candidate并明确未通过几何验收。

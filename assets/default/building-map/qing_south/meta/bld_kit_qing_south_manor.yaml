@@ -1,0 +1,78 @@
+id: bld_kit_qing_south_manor
+status: candidate
+building:
+  type: bld_kit_qing_south_manor
+  footprint: [16, 13]
+  anchor: [608.7401, 537.7825]
+  era: qing_south
+anchor_px: [608.7401, 537.7825]
+anchor_basis: 原图底面左右角中点经同一裁切和缩放映射；不是PNG底边中心。
+footprint_m: [16, 13]
+footprint_source: design/22 §3.3 bld_kit_song_southern_manor同构占地
+logical_footprint_polygon_px:
+- [144.74009999999998, 513.7825]
+- [656.7401, 769.7825]
+- [1072.7401, 561.7825]
+- [560.7401, 305.7825]
+collision_polygon_m:
+- [0, 0]
+- [16, 0]
+- [16, 13]
+- [0, 13]
+collision_note: 全占地代理，非实测墙体；院内通行需后续细化。
+occluder_proxy_px: [144, 184, 1074, 764]
+occluder_note: alpha>=192包围框，仅测量代理，不修改原alpha。
+height_m: null
+height_note: 单视图不能可靠测量实际高度，待建模实测。
+entrance: {edge: S, offset_cells: 8.0}
+entrance_note: 目录南边中点代理；门洞实际位置待总装校准。
+planning_rotations_allowed: [0, 180]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_south_manor.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [928, 464]
+  ground_width_px: 928
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [51, 581]
+    front: [826, 949]
+    right: [1466, 638]
+  source_axis_slopes: [0.47483870967741937, -0.4859375]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.2109375
+  expected_width_depth_ratio: 1.2307692307692308
+  ratio_relative_error: 0.01611328125
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 5
+  precision_note: view_image原尺寸逐图人工读取可见薄石坪上表面外角；非提示词目标点；隐藏后角由平行四边形推算，±5源px。
+pixel_qa:
+  mode: RGBA
+  size: [1248, 928]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 832907
+  alpha_partial_pixels: 324243
+  alpha_opaque_pixels: 994
+  alpha_near_opaque_pixels: 304504
+  alpha_nonzero_bbox: [142, 161, 1105, 767]
+  transparent_margins_px: [142, 161, 143, 161]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_south_manor.png
+  source_sha256: 1885a77f3968601a86678bc5918df2d99abb4357456ce93dd806229ed2bfecb5
+  source_size: [1536, 1024]
+  crop_box: [47, 35, 1515, 959]
+  uniform_scale_requested: 0.6558303886925795
+  resized_size: [963, 606]
+  rounded_effective_scale: [0.6559945504087193, 0.6558441558441559]
+  paste_offset: [142, 161, 1105, 767]
+  final_file: bld_kit_qing_south_manor.png
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize; integer rounding only, paste without mask onto RGBA canvas; no repaint/warp/threshold]
+release_ready: false

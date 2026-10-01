@@ -1,0 +1,79 @@
+id: bld_kit_qing_south_shop_2f
+status: candidate
+building:
+  type: bld_kit_qing_south_shop_2f
+  footprint: [8, 6]
+  anchor: [355.1339, 377.6107]
+  era: qing_south
+anchor_px: [355.1339, 377.6107]
+footprint_m: [8, 6]
+footprint_source: design/22 §3.3 bld_kit_song_southern_shop_2f
+logical_footprint_polygon_px:
+- [131.13389999999998, 361.6107]
+- [387.1339, 489.6107]
+- [579.1339, 393.6107]
+- [323.1339, 265.6107]
+occluder_proxy_px: [131, 157, 579, 491]
+occluder_note: alpha>=192包围框仅测量代理；不修改PNG alpha；不能替代屋顶淡出/逐像素深度。
+height_m: null
+height_note: 单视图不能可靠测量实际高度，待建模实测。
+planning_rotations_allowed: [0, 90, 180, 270]
+entrance: {edge: S, offset_cells: 3}
+entrance_note: 南边中点规划代理，非图像门洞测量（待实测）。
+collision_polygon_m:
+- [0, 0]
+- [8, 0]
+- [8, 6]
+- [0, 6]
+collision_note: 全矩形规划代理；院内通行、河埠台阶及门洞需细化，阴影不参与碰撞。
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_south_shop_2f.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+release_ready: false
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [448, 224]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [171, 589]
+    front: [853, 933]
+    right: [1365, 674]
+  source_axis_slopes: [0.5043988269794721, -0.505859375]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.33203125
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.0009765625
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 原尺寸及6倍局部view_image人工读取可见石基角；±3源px；隐藏后角未实测。guide理论点不参与实测。
+pixel_qa:
+  mode: RGBA
+  size: [672, 672]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 371163
+  alpha_partial_pixels: 79616
+  alpha_opaque_pixels: 805
+  alpha_nonzero_bbox: [67, 154, 582, 494]
+  transparent_margins_px: [67, 154, 90, 178]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_south_shop_2f.png
+  source_sha256: b83aed7c8e588aa5129dc3b05c66391e3e6b4dacd2b25157fb1149a2a4ed3d61
+  source_size: [1536, 1024]
+  crop_box: [0, 35, 1434, 1006]
+  uniform_scale_requested: 0.37520938023450584
+  resized_size: [538, 364]
+  rounded_effective_scale: [0.37517433751743373, 0.3748712667353244]
+  paste_offset: [67, 154]
+  steps: [alpha>0 bounding-box crop, uniform LANCZOS resize with integer size rounding, 'paste without mask into transparent RGBA; no warp, alpha threshold, recolor
+      or repaint']
+visual_review: 第2轮返修：第一候选基座三角双轴及宽深比通过。新源图及RGBA浅底预览已view_image；灰瓦粉墙深木、左上光和短右下影完整，无文字人物水印。单视图candidate，非release。
+final_review: 成品672×672，仅裁切等比缩小并透明留边；最终像素和可见三角详见pixel_qa/geometry_qa。 已逐张view_image(original)复查：屋檐、基脚完整，透明留白充足，无新增文字人物。
+source_request: review2/shop_2f.selected.request.json
+source_measure: review2/shop_2f.measure.json

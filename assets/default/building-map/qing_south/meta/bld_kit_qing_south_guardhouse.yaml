@@ -1,0 +1,40 @@
+id: bld_kit_qing_south_guardhouse
+status: candidate
+building:
+  type: bld_kit_qing_south_guardhouse
+  footprint: [7, 5]
+  anchor: [296.5115,293.6497]
+  era: qing_south
+anchor_px: [296.5115,293.6497]
+anchor_basis: 原图底面左右角中点经同一裁切和缩放映射；不是PNG底边中心。
+footprint_m: [7, 5]
+footprint_source: design/22 §3.3 bld_kit_song_southern_guardhouse同构占地
+logical_footprint_polygon_px: [[104.51150000000001,277.6497],[328.5115,389.6497],[488.5115,309.6497],[264.5115,197.6497]]
+collision_polygon_m:
+- [0, 0]
+- [7, 0]
+- [7, 5]
+- [0, 5]
+collision_note: 全占地代理，非实测墙体；院内通行需后续细化。
+occluder_proxy_px: [105,144,488,392]
+occluder_note: alpha>=192包围框，仅测量代理，不修改原alpha。
+height_m: null
+height_note: 单视图不能可靠测量实际高度，待建模实测。
+entrance: {edge: S, offset_cells: 3.5}
+entrance_note: 目录南边中点代理；门洞实际位置待总装校准。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_south_guardhouse.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [384, 192]
+  ground_width_px: 384
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa: {"source_corners_px":{"left":[170,580],"front":[867,933],"right":[1365,680]},"source_axis_slopes":[0.5064562410329986,-0.5080321285140562],"axis_tolerance":0.03,"axis_pass":true,"source_width_depth_ratio":1.3995983935742973,"expected_width_depth_ratio":1.4,"ratio_relative_error":0.0002868617326446943,"ratio_tolerance_suggestion":0.1,"ratio_pass":true,"measurement_uncertainty_source_px":3,"precision_note":"第2轮原图接地底缘三角人工读点±3px；不使用guide理论点；后角推算。"}
+pixel_qa: {"mode":"RGBA","size":[576,512],"alpha_extrema":[0,255],"alpha_zero_pixels":248493,"alpha_partial_pixels":45698,"alpha_opaque_pixels":721,"alpha_near_opaque_pixels":43856,"alpha_nonzero_bbox":[50,141,492,395],"transparent_margins_px":[50,141,84,117],"border_alpha_max":0}
+processing: {"source_archive":"sources/bld_kit_qing_south_guardhouse.png","source_sha256":"78a939ef425099005fa87a8e88e44c4f2ce8bc4f1c2861fb2f925e816ee1a336","source_size":[1536,1024],"crop_box":[0,22,1482,1004],"uniform_scale_requested":0.3213389121338912,"resized_size":[476,316],"rounded_effective_scale":[0.32118758434547906,0.32179226069246436],"paste_offset":[50,98,526,414],"final_file":"bld_kit_qing_south_guardhouse.png","steps":["crop to alpha>0 bbox","uniform LANCZOS resize; integer rounding only","paste without mask into transparent canvas; no warp, redraw, alpha threshold or ground-edge trimming"]}
+release_ready: false

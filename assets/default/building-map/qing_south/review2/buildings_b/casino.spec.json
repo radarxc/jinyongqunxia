@@ -1,0 +1,26 @@
+{
+  "selected": 2,
+  "files": [
+    "exec-1f8a9343-5eb3-477d-8297-cfa11b42b08f.png",
+    "exec-b7014598-ad64-440a-84f6-3c570f50ef5a.png"
+  ],
+  "corners": [
+    [
+      53,
+      561
+    ],
+    [
+      839,
+      975
+    ],
+    [
+      1517,
+      644
+    ]
+  ],
+  "prompts": [
+    "Edit this Qing Jiangnan gambling house architectural sprite to correct only its footprint geometry. KEEP the exact realistic weathered white plaster, gray roof tiles, dark wooden lattices, bamboo blinds, two-storey rear house and courtyard and absence of text/people. REDRAW the whole architecture in STRICT ORTHOGRAPHIC 2:1 DIMETRIC projection, axes exactly screen slopes +0.500 and -0.500 (26.565 degrees), verticals upright. Current ground is too square. Broaden ONLY the left-to-front axis so the visible left-to-front edge is EXACTLY 1.25 times the front-to-right edge: plan 10m frontage by 8m depth. Build the thin flat flagstone pad FIRST with visible corners L=(160,590), F=(860,940), R=(1420,660), rear=(720,310) on a 1536x1024 image. These explicit three outer ground corners must be visible and precisely located; straight ground boundary segments, no stairs protruding outside. Everything sits on this pad. All parallel building eaves align with the two ground directions. No perspective taper. Transparent outside including contact shadow, real alpha not black/checkerboard. Top left light and very short lower-right contact shadow. No giant plinth, labels, numbers, logos, people. This is a production 2:1 map sprite with engineered ground geometry. Keep full roof uncropped within canvas.",
+    "Use case historical-scene. Redraw the reference casino sprite in engineered 2:1 DIMETRIC projection for a game, same Qing Jiangnan gray tiles/white plaster/dark timber realistic weathered material detail, two-storey rear block and enclosed courtyard. Crucial: WIDER FRONTAGE and SHORTER DEPTH. Plan rectangle 10 by 8, width axis projects down-right, depth axis up-right. Ground-pad front edge must be 25% LONGER than ground-pad right edge. Current image fails: front edge too steep, depth too long. Camera must be LOWER, both axes slope exactly plus/minus 0.5, 26.565 degrees to horizontal. Ground pad corners (1536x1024): left=100,560; near/front=860,940; right=1468,636; rear=708,256. L-to-F delta=(760,380). F-to-R delta=(608,-304). These are exact pixel target positions, use them to build the scene. Place the courtyard on the exact shape, keep ground edges perfectly straight and sharply visible. Verticals upright, parallel roof and ground edges. Thin surface no thick plinth. No perspective. Real RGBA TRANSPARENT outside. Full roof and all corners uncropped, no text, no people, no symbols, no labels or dimensions. Warm neutral illumination upper-left and small lower-right contact shadow only."
+  ],
+  "generated_dir": "/Users/bytedance/.codex/generated_images/01a0f450-5169-7ad2-87a6-dab5c8b3cb31"
+}

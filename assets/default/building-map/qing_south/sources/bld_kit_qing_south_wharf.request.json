@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_qing_south_wharf",
+  "subject": "码头河埠",
+  "footprint": [
+    10,
+    4
+  ],
+  "prompt": "Use case: historical-scene. Generate ONE isolated realistic ancient-Chinese city-map building sprite, early-to-middle Qing Jiangnan region, circa 1700-1780, an original anonymous game building NOT a reconstruction of a named monument. Match the supplied Song baseline's realistic matte materials, muted palette, fine restrained texture density and scale, but change architecture to Qing Jiangnan. Orthographic map camera yaw45 elevation30, exact 2:1 dimetric ground-plane: east axis (+2,+1), north axis (+2,-1), verticals upright. Front entrance faces lower left. Thin rectangular footprint with clearly visible left, front, right ground corners; no thick diorama plinth. Complete whole building and short soft shadow fully within frame, generous transparent margins. True transparent RGBA background, object interior opaque, no painted checkerboard. Upper-left lighting, short lower-right contact shadow. White limewashed brick walls, grey small clay roof tiles, dark weathered timber, restrained Qing lattice windows, plain gables with small tile coping. No red lantern spectacle, imperial yellow roofs, exaggerated Huizhou horse-head gables everywhere, modern tourism decoration, European features, modern objects, people, text, plaques with writing, watermark, sky, landscape, vignette or detached scenery. Single standalone asset only.  IMPORTANT: ground edges have slope +0.5 and -0.5, NOT30-degree isometric lines. Exact width/depth footprint edge ratio is specified, do not enlarge the front facade at expense of depth. Subject: ONE long narrow Jiangnan stone river landing, ten meters wide and four meters deep: a rectangular grey stone platform with shallow steps descending along the long front edge toward transparent unseen water, two plain stone mooring posts, a tiny timber shelter at the rear left within footprint. No water patch, no boats, no riverbank beyond rectangle. Long horizontal front edge span must be2.5 times side-edge horizontal span. All step lines follow2:1 ground projection. Footprint 10m east-west by 4m north-south.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f961-7d03-b26f-506d2b925f40/exec-7118e261-599f-4dc9-ba84-af641f168762.png",
+  "reference": "assets/default/baseline/building-map/bld_kit_song_southern_wharf.png",
+  "candidate_count": 2,
+  "rejected_candidate": {
+    "id": "bld_kit_qing_south_wharf",
+    "subject": "码头河埠",
+    "footprint": [
+      10,
+      4
+    ],
+    "prompt": "Use case: historical-scene. Generate ONE isolated realistic ancient-Chinese city-map building sprite, early-to-middle Qing Jiangnan region, circa 1700-1780, an original anonymous game building NOT a reconstruction of a named monument. Match the supplied Song baseline's realistic matte materials, muted palette, fine restrained texture density and scale, but change architecture to Qing Jiangnan. Orthographic map camera yaw45 elevation30, exact 2:1 dimetric ground-plane: east axis (+2,+1), north axis (+2,-1), verticals upright. Front entrance faces lower left. Thin rectangular footprint with clearly visible left, front, right ground corners; no thick diorama plinth. Complete whole building and short soft shadow fully within frame, generous transparent margins. True transparent RGBA background, object interior opaque, no painted checkerboard. Upper-left lighting, short lower-right contact shadow. White limewashed brick walls, grey small clay roof tiles, dark weathered timber, restrained Qing lattice windows, plain gables with small tile coping. No red lantern spectacle, imperial yellow roofs, exaggerated Huizhou horse-head gables everywhere, modern tourism decoration, European features, modern objects, people, text, plaques with writing, watermark, sky, landscape, vignette or detached scenery. Single standalone asset only.  IMPORTANT: ground edges have slope +0.5 and -0.5, NOT30-degree isometric lines. Exact width/depth footprint edge ratio is specified, do not enlarge the front facade at expense of depth. Subject: ONE long narrow Jiangnan stone river landing, ten meters wide and four meters deep: a rectangular grey stone platform with shallow steps descending along the long front edge toward transparent unseen water, two plain stone mooring posts, a tiny timber shelter at the rear left within footprint. No water patch, no boats, no riverbank beyond rectangle. Long horizontal front edge span must be2.5 times side-edge horizontal span. All step lines follow2:1 ground projection. Footprint 10m east-west by 4m north-south. PRECISION SECOND CANDIDATE: essential that rectangular base has two ground-axis slopes +0.5 and -0.5. A2:1 flat game tile projection, not steep3D isometric and not a perspective view. Relative horizontal ground corner positions can be left(0,0), front(320,160), right(448,96); translate these positions but preserve shape. Do not draw point labels/numbers/coordinate text. True transparent RGBA and short lower-right contact shadow.",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f961-7d03-b26f-506d2b925f40/exec-ed97b310-efff-4d5e-b163-27a0f6563260.png",
+    "reference": "assets/default/baseline/building-map/bld_kit_song_southern_wharf.png",
+    "candidate_count": 2,
+    "candidate_number": 2,
+    "reason": "第2投影更浅且宽深比约3.97，与目标2.5明显不符；第1比例更接近目标。"
+  },
+  "selected_candidate_number": 1
+}

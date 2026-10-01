@@ -1,0 +1,12 @@
+{
+  "id": "bld_kit_qing_south_warehouse",
+  "subject": "仓屋",
+  "footprint": [
+    10,
+    8
+  ],
+  "prompt": "Use case: historical-scene. Generate ONE isolated realistic ancient-Chinese city-map building sprite, early-to-middle Qing Jiangnan region, circa 1700-1780, an original anonymous game building NOT a reconstruction of a named monument. Match the supplied Song baseline's realistic matte materials, muted palette, fine restrained texture density and scale, but change architecture to Qing Jiangnan. Orthographic map camera yaw45 elevation30, exact 2:1 dimetric ground-plane: east axis (+2,+1), north axis (+2,-1), verticals upright. Front entrance faces lower left. Thin rectangular footprint with clearly visible left, front, right ground corners; no thick diorama plinth. Complete whole building and short soft shadow fully within frame, generous transparent margins. True transparent RGBA background, object interior opaque, no painted checkerboard. Upper-left lighting, short lower-right contact shadow. White limewashed brick walls, grey small clay roof tiles, dark weathered timber, restrained Qing lattice windows, plain gables with small tile coping. No red lantern spectacle, imperial yellow roofs, exaggerated Huizhou horse-head gables everywhere, modern tourism decoration, European features, modern objects, people, text, plaques with writing, watermark, sky, landscape, vignette or detached scenery. Single standalone asset only.  IMPORTANT: ground edges have slope +0.5 and -0.5, NOT30-degree isometric lines. Exact width/depth footprint edge ratio is specified, do not enlarge the front facade at expense of depth. Subject: A low wide riverside Jiangnan warehouse, enclosed grey-brick and off-white plaster walls, simple grey tile gable roof, two dark heavy timber loading doors facing lower left, a few modest bundled sacks contained beneath eaves, ventilation lattice openings, stone lower wall, no actual river outside footprint. Width:depth ratio10:8. Footprint 10m east-west by 8m north-south.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f961-7d03-b26f-506d2b925f40/exec-54fb1f70-dbdf-4359-9e4b-e24371eabdd4.png",
+  "reference": "assets/default/baseline/building-map/bld_kit_song_southern_warehouse.png",
+  "candidate_count": 1
+}

@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-30",
+  "round": 2,
+  "checks": [
+    {
+      "command": "python3 tools/agents/check_assets.py assets/default/building-map/qing_south --min 18 --max 22 --min-side 256",
+      "exit_code": 0,
+      "stdout": "assets/default/building-map/qing_south：图片 19 张，条目 19 条，问题 0 个\n"
+    },
+    {
+      "command": "python3 tools/agents/check_assets.py assets/default/tile/qing_south --min 5 --max 10 --min-side 32",
+      "exit_code": 0,
+      "stdout": "assets/default/tile/qing_south：图片 7 张，条目 7 条，问题 0 个\n"
+    },
+    {
+      "command": "python3 tools/lint/check_ids.py --strict",
+      "exit_code": 0,
+      "stdout": "ID consistency report\nscanned: 115 files (111 Markdown, 4 data), 66041 occurrences, 14011 definitions\nprefixes: ach_ af_ ai_ aoe_ ap_ arch_ bf_ biz_ bs_ bsc_ cache_ ch city_ cmb_ dc_ diff_ dxl_ ea_ echo_ enc_ end_ eq_ ev_ exg_ fam_ fin_ frag_ gate_ gauge_ ins_ it_ job_ lg_ lgs_ mer_ mfr_ mv_ npc_ offmap_ origin_ pers_ poi_ port_ post_ ps_ q_ qnl_ rc_ res_ rg_ route_ rp_ rs_ rule_ rx_ save_ sc_ sect_ set_ sh_ sk_ sqj_ sv_ tal_ tg_ tj_ tmpl_ tr_ tsp_ tst_ ttl_ txp_ ue_ vid_ vow_ wk_ yy_ zt_ (Canon section 12)\n\n1. referenced but undefined: 1\n  docs/README.md:185:184  sk_babuganchan (2 refs)\n\n2. conflicting duplicate definitions: 0\n\n3. near-match ID pairs: 0\n\n4. deprecated IDs in active text: 0\n\n5. set/member asymmetry: 0\n\nset check: checked: 44 SetDef entries\nnear-match allowlist: loaded; 4 reviewed pairs (tools/lint/check_ids_near_allowlist.json)\nbaseline: loaded; known undefined/deprecated=1/0; new=0\nstrict failure count (new categories 1 + 4, all categories 2 + 5): 0\n"
+    }
+  ]
+}

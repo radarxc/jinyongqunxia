@@ -1,0 +1,78 @@
+id: bld_kit_qing_south_casino
+status: candidate
+building:
+  type: bld_kit_qing_south_casino
+  footprint: [10, 8]
+  anchor: [399.8031, 319.0048]
+  era: qing_south
+anchor_px: [399.8031, 319.0048]
+anchor_basis: 原图底面左右角中点经同一裁切和缩放映射；不是PNG底边中心。
+footprint_m: [10, 8]
+footprint_source: design/22 §3.3 bld_kit_song_southern_casino同构占地
+logical_footprint_polygon_px:
+- [111.80309999999997, 303.0048]
+- [431.8031, 463.0048]
+- [687.8031, 335.0048]
+- [367.8031, 175.0048]
+collision_polygon_m:
+- [0, 0]
+- [10, 0]
+- [10, 8]
+- [0, 8]
+collision_note: 全占地代理，非实测墙体；院内通行需后续细化。
+occluder_proxy_px: [111, 105, 688, 470]
+occluder_note: alpha>=192包围框，仅测量代理，不修改原alpha。
+height_m: null
+height_note: 单视图不能可靠测量实际高度，待建模实测。
+entrance: {edge: S, offset_cells: 5.0}
+entrance_note: 目录南边中点代理；门洞实际位置待总装校准。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_south_casino.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [576, 288]
+  ground_width_px: 576
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [53, 561]
+    front: [839, 975]
+    right: [1517, 644]
+  source_axis_slopes: [0.5267175572519084, -0.4882005899705015]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.1592920353982301
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.07256637168141589
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 5
+  precision_note: view_image原尺寸逐图人工读取可见薄石坪上表面外角；非提示词目标点；隐藏后角由平行四边形推算，±5源px。
+pixel_qa:
+  mode: RGBA
+  size: [800, 576]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 347942
+  alpha_partial_pixels: 111849
+  alpha_opaque_pixels: 1009
+  alpha_near_opaque_pixels: 109851
+  alpha_nonzero_bbox: [110, 103, 690, 472]
+  transparent_margins_px: [110, 103, 110, 104]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_south_casino.png
+  source_sha256: 0343a6fc85bb1657a36c9bc1a0dcc919c0f45ae4621954d7eb5727f21fd718e4
+  source_size: [1536, 1024]
+  crop_box: [49, 54, 1522, 991]
+  uniform_scale_requested: 0.39344262295081966
+  resized_size: [580, 369]
+  rounded_effective_scale: [0.3937542430414121, 0.39381003201707576]
+  paste_offset: [110, 103, 690, 472]
+  final_file: bld_kit_qing_south_casino.png
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize; integer rounding only, paste without mask onto RGBA canvas; no repaint/warp/threshold]
+release_ready: false

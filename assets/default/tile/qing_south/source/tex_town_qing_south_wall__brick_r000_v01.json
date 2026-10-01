@@ -1,0 +1,22 @@
+{
+  "key": "wall",
+  "id": "tex_town_qing_south_wall__brick_r000_v01",
+  "kind": "wall",
+  "variant": "brick_r000_v01",
+  "footprint": [
+    4,
+    1
+  ],
+  "subject": "清初至清中江南青砖石基城墙直段（原创扩展）",
+  "ref": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_south/assets/default/baseline/tile/tex_town_song_southern_wall__brick_r000_v01.png",
+  "source_anchor": [
+    715,
+    681
+  ],
+  "source_ground_width": 1089,
+  "height_m": 3,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f427-c8aa-7940-bc3b-27f1118f5917/exec-57b3b587-02bd-4b39-8daa-ce69dca65387.png",
+  "prompt": "Use case: historical-scene. Create ONE isolated straight city wall module for early-to-mid Qing Jiangnan 1660–1780. Reference image is ONLY a material, realistic fine detail, color and soft-light guide. Grey-blue brick facing over unobtrusive stone foundation, plain wall-walk top with low simple crenellations, no towers, no roof. Long rectangular ground footprint 4 cells length by 1 cell thickness, wall height 3 meters. Orthographic yaw45 elevation30, EXACT 2:1 ground projection, screen planar axes slopes +0.5/-0.5, upright vertical brick edges, no perspective convergence. Long wall extends from screen upper-left to lower-right with base endpoints matching a -/+0.5 isometric grid, short thickness goes lower-left to upper-right. Keep entire wall complete, straight modular end faces, clear baseline, bottom-center ground anchor. Restrained real-world brick grain at same density as reference, moderate weathering, no ruin or large cracks. Soft upper-left light, short soft lower-right shadow. True transparent RGBA outside silhouette and under short shadow, modest transparent margins. ONE sprite, no sheet, no pedestal, soil, plants, people, doors, text, watermark, logos, checkerboard background or modern objects. Original period-inspired module; not a named historical reconstruction.",
+  "created": "2026-09-30",
+  "attempts": 2
+}

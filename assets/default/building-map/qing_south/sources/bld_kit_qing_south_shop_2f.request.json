@@ -1,0 +1,12 @@
+{
+  "id": "bld_kit_qing_south_shop_2f",
+  "subject": "两层商铺",
+  "footprint": [
+    8,
+    6
+  ],
+  "prompt": "Use case: historical-scene. Generate ONE isolated realistic ancient-Chinese city-map building sprite, early-to-middle Qing Jiangnan region, circa 1700-1780, an original anonymous game building NOT a reconstruction of a named monument. Match the supplied Song baseline's realistic matte materials, muted palette, fine restrained texture density and scale, but change architecture to Qing Jiangnan. Orthographic map camera yaw45 elevation30, exact 2:1 dimetric ground-plane: east axis (+2,+1), north axis (+2,-1), verticals upright. Front entrance faces lower left. Thin rectangular footprint with clearly visible left, front, right ground corners; no thick diorama plinth. Complete whole building and short soft shadow fully within frame, generous transparent margins. True transparent RGBA background, object interior opaque, no painted checkerboard. Upper-left lighting, short lower-right contact shadow. White limewashed brick walls, grey small clay roof tiles, dark weathered timber, restrained Qing lattice windows, plain gables with small tile coping. No red lantern spectacle, imperial yellow roofs, exaggerated Huizhou horse-head gables everywhere, modern tourism decoration, European features, modern objects, people, text, plaques with writing, watermark, sky, landscape, vignette or detached scenery. Single standalone asset only.  IMPORTANT: ground edges have slope +0.5 and -0.5, NOT30-degree isometric lines. Exact width/depth footprint edge ratio is specified, do not enlarge the front facade at expense of depth. Subject: A two-storey Jiangnan shop-house, grey tiled roof and white plaster gable ends, dark timber front shop shutters, restrained carved geometric upper lattice windows, small plain railed gallery under eaves, modest storage jars and folded cloth on counter. Width:depth ratio8:6. Footprint 8m east-west by 6m north-south.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f961-7d03-b26f-506d2b925f40/exec-1ca3e30b-8743-410a-90d1-fa48723723ad.png",
+  "reference": "assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png",
+  "candidate_count": 1
+}
