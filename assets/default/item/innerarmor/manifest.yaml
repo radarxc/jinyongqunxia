@@ -1,0 +1,303 @@
+- id: eq_zhusutiejia
+  file: eq_zhusutiejia.png
+  category: item
+  style: default
+  subject: "竹丝贴甲；内甲·编织；黄阶；原创武侠器物，无指定书界"
+  prompt: |-
+    Use case: stylized-concept. Create one production item-codex illustration for tianshu/default.
+    Subject: 竹丝贴甲 (eq_zhusutiejia), inner armor / woven close-fitting armor, 黄 grade; original wuxia extension with no specific novel era. The two supplied images are style references only: borrow their clear fine deep-gray ink contours, thin translucent color washes, restrained hand-drawn brushwork, muted cool-warm palette, material separation, soft upper-left light, and warm ivory background. Do not copy, retain, transform, or include the sword, book, fittings, page shapes, or composition from either reference.
+    Main object: one complete short half-body vest woven from many narrow pale tan bamboo strips and plain hemp cord. The bamboo strips read as thin, flexible, overlapping woven slats rather than rigid boards; close regular interlacing, practical reinforced edges, simple side ties, modest signs of use. It must look lightweight, pliable, and wearable beneath clothing. This form and decoration are an original wuxia design, not an archaeological reconstruction.
+    Category construction: a close-fitting short inner vest, gently unfolded and freely presented, front face readable with a very slight three-quarter turn; show weave, edge binding, thinness, and flexible scale. It is not worn, not on a mannequin, and not shaped around an invisible body.
+    Grade language: 黄 grade is expressed only through common bamboo and hemp, practical construction, plain finishing, and slight wear. No yellow light, rarity frame, writing, icon, or magical effect.
+    Composition: square 1:1, target 1536x1536. Exactly one isolated complete object centered. The object's bounding box must occupy no more than 76 percent of the canvas width and height, with at least 12 percent clear empty margin on every side. No cropped edge. Uniform light warm gray near-ivory background approximately RGB (230,225,216), opaque, flat, untextured, with no gradient. No person, hands, mannequin, scene, room, landscape, floor, display stand, contact shadow, cast shadow, or reflection.
+    Rendering: clear fine deep-gray ink outline; thin layered translucent washes; restrained handmade strokes; crisp but not photographic; low-saturation natural tan, hemp gray, and cool shadow notes. Keep surface details legible at icon scale. Non-photographic, non-3D, no bloom and no self-luminescence.
+    Exclude: all text, pseudo-writing, characters, labels, titles, numbers, seals, signatures, logos, written watermarks, UI, rarity border, collage, multiple views, exploded view, extra objects, duplicate garments, modern materials, plastic mesh, zipper, buckle hardware, metal studs, modern stitching, fantasy plate armor, European armor, Japanese armor, full heavy armor, outer robe, long coat, rigid breastplate, wooden board cuirass, basket, oversized lames, exaggerated spikes, neon, colored beams, particles, aura, magic circle, bloom, blood, gore, people, hands, human body, mannequin, hollow invisible-person silhouette, scenery, ground, floor, pedestal, any shadow, gradient, paper texture, photographic realism, product photography, 3D rendering, anime, film or game costume replication, actor likeness, artist name, or work title. Do not remove or counterfeit any provenance mark added by the tool.
+  negative: "文字、伪字、人物、手、人体、模特、场景、地面、投影、第二件物品、现代材料、塑料网、拉链、金属钉、重甲、外袍、夸张尖刺、魔法光效、品阶框、摄影、3D、影视游戏造型复刻"
+  references:
+    - id: ref_eq_yitianjian__ch04_base01
+      path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+    - id: ref_it_miji_jiuyin_shang__ch02_base01
+      path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: "codex exec · image_gen"
+  model: gpt-6-astra
+  effort: ultra
+  created: "2026-10-01T14:16:57Z"
+  source_path: /private/tmp/codex-art-inner/generated_images/01a0f7d2-22d6-7ee1-8d3f-88ebc53b3ed6/exec-4b5f038d-e482-4ca8-ac77-e16508f89632.png
+  size: "1254x1254"
+  sha256: f29ffe3ecb285591ad64633f0e01aea8cfaeb214d43186e676406602be367e4a
+  status: candidate
+  notes: |-
+    年代依据：名录出处为（原创扩展），无指定书界；采用不归属具体朝代的前现代手工内甲语境，不冒充文物复原。
+    外观、材质组合与具体编织形制均为（原创扩展）；候选数：1。
+    view_image 自检：单一完整短背心，竹篾、麻线、薄片与半身尺度清楚；无人物、手、文字、场景、地面或投影。
+    阈值辅助测量左/上/右/下留白约 22.41/12.84/20.10/13.96%，包围框宽/高约 57.50/73.21%，满足 ≥12% 与 ≤76%。
+    外圈中位 RGB(230,225,216)；RGB PNG，无透明通道；原图直接复制，未重采样、改底或重编码。
+    本任务未开联网，无历史图片参考；model/effort 为 Codex 执行配置，image_gen 未披露底层图片模型或 seed。
+- id: eq_pirutiejia
+  file: eq_pirutiejia.png
+  category: item
+  style: default
+  subject: "皮绒贴甲；内甲·皮甲；黄阶；原创武侠器物，无指定书界"
+  prompt: |-
+    Use case: stylized-concept. Create one corrected production item-codex illustration for tianshu/default.
+    Subject: 皮绒贴甲 (eq_pirutiejia), inner armor / soft leather armor, 黄 grade; original wuxia extension with no specific novel era. Main object: one complete dark brown soft-leather short vest with a visible gray fleece lining at the turned inner edges, fine dense hand stitching, thin pliable panels, plain cloth-bound armholes and neckline, and simple side ties. Absolutely no metal studs, rivets, scales, plates, fur exterior, or bulky padding. It must read as soft close-fitting armor worn beneath clothing, not a winter gilet. Grade language: 黄 grade is expressed only through common leather and fleece, practical construction, plain finishing, modest edge wear, and intact hand stitching. No yellow light, rarity frame, writing, icon, or magical effect. This form is an original wuxia design, not an archaeological reconstruction.
+    The two supplied images are style references only: borrow their clear fine deep-gray ink contours, thin translucent color washes, restrained hand-drawn brushwork, muted cool-warm palette, precise material separation, soft upper-left light, and warm ivory background. Do not copy, retain, transform, or include the sword, book, fittings, page shapes, colors as identity cues, or composition from either reference.
+    Category construction: one close-fitting short inner armor garment, gently unfolded and freely presented, front readable with a very slight three-quarter turn. Clearly show the named weave, bindings, thinness, and flexible scale. It is not worn, not on a mannequin, and not shaped around an invisible body.
+    Critical composition correction: make the complete garment distinctly smaller and precisely centered than the previous candidate. Square 1:1, target 1536x1536. Exactly one isolated complete object. Keep the object bounding box within the central 68 percent of both canvas width and canvas height, with at least 16 percent clear empty background on every one of the four sides. No cropped edge. Uniform light warm gray near-ivory background approximately RGB (230,225,216), opaque, flat, untextured, with no gradient. No person, hands, mannequin, scene, room, landscape, floor, display stand, contact shadow, cast shadow, reflection, packaging, or accessory.
+    Rendering: clear fine deep-gray ink outline; thin layered translucent washes; restrained handmade strokes; crisp but not photographic; low-saturation natural color with cool shadow notes. Keep weave and material details legible at icon scale. Non-photographic, non-3D, no bloom and no self-luminescence.
+    Exclude: all text, pseudo-writing, characters, labels, titles, numbers, seals, signatures, logos, written watermarks, UI, rarity border, collage, multiple views, exploded view, extra objects, duplicate garments, modern materials, plastic mesh, zipper, snaps, modern buckle hardware, fantasy plate armor, European armor, Japanese armor, full heavy armor, outer robe, long coat, rigid breastplate, neon, colored beams, particles, aura, magic circle, bloom, blood, gore, people, hands, human body, mannequin, hollow invisible-person silhouette, scenery, ground, floor, pedestal, any shadow, gradient, paper texture, photographic realism, product photography, 3D rendering, anime, film or game costume replication, actor likeness, artist name, or work title. No exaggerated spikes except where explicitly requested, and even there keep them short and functional. Do not remove or counterfeit any provenance mark added by the tool.
+  negative: "文字、伪字、人物、手、人体、模特、场景、地面、投影、第二件物品、金属钉、铆钉、甲片、外露毛皮、厚棉甲、现代材料、魔法光效、品阶框、摄影、3D、影视游戏造型复刻"
+  references:
+    - id: ref_eq_yitianjian__ch04_base01
+      path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+    - id: ref_it_miji_jiuyin_shang__ch02_base01
+      path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: "codex exec · image_gen"
+  model: gpt-6-astra
+  effort: ultra
+  created: "2026-10-01T15:20:30Z"
+  source_path: /private/tmp/codex-art-inner/generated_images/01a0f80c-4b13-7f21-b93e-2d8b808afd84/exec-4421d37d-c480-452a-9dc0-0a4bbbdf26a2.png
+  size: "1254x1254"
+  sha256: 5cfac4eab34f0f521bf376a6f689ab49d17ecb1bbc6fb03f3abd7071a69a2019
+  status: candidate
+  notes: |-
+    年代依据：名录出处为（原创扩展），无指定书界；采用不归属具体朝代的前现代手工内甲语境。外观与形制均为（原创扩展）。
+    候选数：2。首稿下留白约 11.88%、包围框高约 76.08%，未达提示门槛，故按额度返修并选第 2 候选。
+    view_image 自检：单一完整软皮短背心，灰绒内衬、细缝线和无金属钉特征清楚；未见文字、人物、手、场景、地面、投影或现代扣件。
+    终稿左/上/右/下留白约 25.68/17.22/25.60/17.22%，包围框宽/高约 48.72/65.55%；外圈中位 RGB(229,223,214)，满足门槛。
+    RGB PNG，无透明通道；原图直接复制，未重采样、改底或重编码。本任务未开联网，无历史图片参考。
+    model/effort 为 Codex 执行配置；image_gen 未披露底层图片模型或 seed。
+- id: eq_tianchansiruanjia
+  file: eq_tianchansiruanjia.png
+  category: item
+  style: default
+  subject: "天蚕丝软甲；内甲·蚕丝软甲；天阶；原创武侠器物，无指定书界"
+  prompt: |-
+    Use case: stylized-concept. Create one production item-codex illustration for tianshu/default.
+    Subject: 天蚕丝软甲 (eq_tianchansiruanjia), inner armor / rare silkworm-silk soft armor, 天 grade; original wuxia extension with no specific novel era. Main object: one complete pearl-gray short close-fitting shirt woven from exceptionally fine dense celestial-silkworm silk, with short narrow sleeves, a soft slightly rolled lower corner, fine pearl-gray bindings, and subtle silver woven patterns visible only when the light catches the weave. The pattern is abstract and nonverbal, sparse and refined; the garment is silky, pliable, rollable, thin, and protective-looking through density rather than bulk. Do not make a luminous white robe, bridal garment, brocade court costume, sheer gauze, modern knit, metallic foil, chain mail, or add insects/cocoons. Grade language: 天 grade is expressed only through extremely rare uniform fibers, microscopic dense craft, unique intact silhouette, exquisite edge finishing, and cool pearly natural luster. It is explicitly rare but non-luminous: no self-glow, halo, stars, rarity frame, writing, icon, or magical effect. This form is an original wuxia design, not an archaeological reconstruction.
+    The two supplied images are style references only: borrow their clear fine deep-gray ink contours, thin translucent color washes, restrained hand-drawn brushwork, muted cool-warm palette, precise material separation, soft upper-left light, and warm ivory background. Do not copy, retain, transform, or include the sword, book, fittings, page shapes, colors as identity cues, or composition from either reference.
+    Category construction: one close-fitting short inner armor garment, gently unfolded and freely presented, front readable with a very slight three-quarter turn. Clearly show the named weave, bindings, thinness, and flexible scale. It is not worn, not on a mannequin, and not shaped around an invisible body.
+    Composition: square 1:1, target 1536x1536. Exactly one isolated complete object centered. The object's bounding box must occupy no more than 76 percent of the canvas width and height, with at least 12 percent clear empty margin on every side. No cropped edge. Uniform light warm gray near-ivory background approximately RGB (230,225,216), opaque, flat, untextured, with no gradient. No person, hands, mannequin, scene, room, landscape, floor, display stand, contact shadow, cast shadow, reflection, packaging, or accessory.
+    Rendering: clear fine deep-gray ink outline; thin layered translucent washes; restrained handmade strokes; crisp but not photographic; low-saturation natural color with cool shadow notes. Keep weave and material details legible at icon scale. Non-photographic, non-3D, no bloom and no self-luminescence.
+    Exclude: all text, pseudo-writing, characters, labels, titles, numbers, seals, signatures, logos, written watermarks, UI, rarity border, collage, multiple views, exploded view, extra objects, duplicate garments, modern materials, plastic mesh, zipper, snaps, modern buckle hardware, fantasy plate armor, European armor, Japanese armor, full heavy armor, outer robe, long coat, rigid breastplate, neon, colored beams, particles, aura, magic circle, bloom, blood, gore, people, hands, human body, mannequin, hollow invisible-person silhouette, scenery, ground, floor, pedestal, any shadow, gradient, paper texture, photographic realism, product photography, 3D rendering, anime, film or game costume replication, actor likeness, artist name, or work title. No exaggerated spikes except where explicitly requested, and even there keep them short and functional. Do not remove or counterfeit any provenance mark added by the tool.
+  negative: "文字、伪字、人物、手、人体、模特、场景、地面、投影、第二件物品、发光白袍、婚服、宫廷锦袍、透明纱、现代针织、金属箔、锁子甲、虫茧、光晕、星芒、品阶框、摄影、3D、影视游戏造型复刻"
+  references:
+    - id: ref_eq_yitianjian__ch04_base01
+      path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+    - id: ref_it_miji_jiuyin_shang__ch02_base01
+      path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: "codex exec · image_gen"
+  model: gpt-6-astra
+  effort: ultra
+  created: "2026-10-01T14:20:34Z"
+  source_path: /private/tmp/codex-art-inner/generated_images/01a0f7d5-4ab3-7da3-97f5-7fc0709725ae/exec-65499fb8-67ab-4d28-8cae-31936c63085a.png
+  size: "1254x1254"
+  sha256: 84684d6d62ec16228ee8d697feddbf2f72e5a9df5043c5f6975336eb92bfe807
+  status: candidate
+  notes: |-
+    年代依据：名录出处为（原创扩展），无指定书界；采用不归属具体朝代的前现代武侠织物语境。天蚕丝、暗纹与具体形制均为（原创扩展）；候选数：1。
+    view_image 自检：单一完整珠灰密织短衣，柔软可卷、银丝暗纹和珍稀但不发光的材质语言清楚；无文字、人物、手、场景、地面、投影、虫茧或光效。
+    左/上/右/下留白约 14.27/12.28/15.71/13.56%，包围框宽/高约 70.02/74.16%；外圈中位 RGB(229,222,212)，满足门槛。
+    RGB PNG，无透明通道；原图直接复制，未重采样、改底或重编码。本任务未开联网，无历史图片参考。
+    model/effort 为 Codex 执行配置；image_gen 未披露底层图片模型或 seed。
+- id: eq_ruanweijia
+  file: eq_ruanweijia.png
+  category: item
+  style: default
+  subject: "软猬甲；内甲·猬刺宝甲；天阶；《射雕英雄传》桃花岛宝物语境"
+  prompt: |-
+    Use case: stylized-concept. Create one corrected production item-codex illustration for tianshu/default.
+    Subject: 软猬甲 (eq_ruanweijia), inner armor / short-spiked treasure vest, 天 grade; context: 射雕英雄传, 桃花岛 treasure, Southern Song world circa 1217-1227. Main object: one complete dark-brown soft close-fitting vest whose flexible leather-textile surface is densely covered with thousands of very short, fine, dark bronze-gray protective bristles or quills. The spikes are consistently short, slender, blunt-looking at this illustration scale, functional and non-gory, following the vest surface without turning it into a porcupine animal or fantasy torture armor. Soft brown edge binding, thin profile, supple folds between bristled zones, intact unique silhouette. Catalog form is pending textual verification and the visual expression is original: do not claim an exact novel costume or historical reconstruction. Grade language: 天 grade is expressed only through extremely rare material, dense minute craft, complete distinctive silhouette, flawless preserved bindings, and cool-warm natural sheen. No self-glow, halo, stars, rarity frame, writing, icon, magic, blood, impalement, or oversized spikes.
+    The two supplied images are style references only: borrow their clear fine deep-gray ink contours, thin translucent color washes, restrained hand-drawn brushwork, muted cool-warm palette, precise material separation, soft upper-left light, and warm ivory background. Do not copy, retain, transform, or include the sword, book, fittings, page shapes, colors as identity cues, or composition from either reference.
+    Category construction: one close-fitting short inner armor garment, gently unfolded and freely presented, front readable with a very slight three-quarter turn. Clearly show the named weave, bindings, thinness, and flexible scale. It is not worn, not on a mannequin, and not shaped around an invisible body.
+    Critical composition correction: make the complete garment distinctly smaller and precisely centered than the previous candidate. Square 1:1, target 1536x1536. Exactly one isolated complete object. Keep the object bounding box within the central 68 percent of both canvas width and canvas height, with at least 16 percent clear empty background on every one of the four sides. No cropped edge. Uniform light warm gray near-ivory background approximately RGB (230,225,216), opaque, flat, untextured, with no gradient. No person, hands, mannequin, scene, room, landscape, floor, display stand, contact shadow, cast shadow, reflection, packaging, or accessory.
+    Rendering: clear fine deep-gray ink outline; thin layered translucent washes; restrained handmade strokes; crisp but not photographic; low-saturation natural color with cool shadow notes. Keep weave and material details legible at icon scale. Non-photographic, non-3D, no bloom and no self-luminescence.
+    Exclude: all text, pseudo-writing, characters, labels, titles, numbers, seals, signatures, logos, written watermarks, UI, rarity border, collage, multiple views, exploded view, extra objects, duplicate garments, modern materials, plastic mesh, zipper, snaps, modern buckle hardware, fantasy plate armor, European armor, Japanese armor, full heavy armor, outer robe, long coat, rigid breastplate, neon, colored beams, particles, aura, magic circle, bloom, blood, gore, people, hands, human body, mannequin, hollow invisible-person silhouette, scenery, ground, floor, pedestal, any shadow, gradient, paper texture, photographic realism, product photography, 3D rendering, anime, film or game costume replication, actor likeness, artist name, or work title. No exaggerated spikes except where explicitly requested, and even there keep them short and functional. Do not remove or counterfeit any provenance mark added by the tool.
+  negative: "文字、伪字、人物、手、人体、模特、场景、地面、投影、第二件物品、动物造型、酷刑甲、超长尖刺、血、刺穿、光晕、星芒、魔法光效、品阶框、摄影、3D、影视游戏造型复刻"
+  references:
+    - id: ref_eq_yitianjian__ch04_base01
+      path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+    - id: ref_it_miji_jiuyin_shang__ch02_base01
+      path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: "codex exec · image_gen"
+  model: gpt-6-astra
+  effort: ultra
+  created: "2026-10-01T15:20:33Z"
+  source_path: /private/tmp/codex-art-inner/generated_images/01a0f80c-4afd-7772-a397-425e6b04ba3b/exec-990592fa-88e2-41e0-b40a-e691e155f179.png
+  size: "1254x1254"
+  sha256: 3cea4090f811b4d4537a29d4d4ef9e7f6df248a9a974c341c05adb99a6890ff9
+  status: candidate
+  notes: |-
+    年代依据：`docs/design/02-timeline-and-world-tiers.md` §1.3.2 的射雕书界 1217–1227；只控制南宋书界语境，不作历史实物复原。
+    宝物归属沿名录；具体形制（待考），短刺视觉表现为（原创扩展）。候选数：2；首稿下留白约 11.64%、包围框高约 76.24%，未达门槛，故返修。
+    view_image 自检：第 2 候选为单一完整深褐贴身背心，刺较密但短小、功能性且无血腥；无文字、人物、手、场景、地面、投影或第二件物品。
+    终稿左/上/右/下留白约 25.68/16.99/24.88/18.66%，包围框宽/高约 49.44/64.35%；外圈中位 RGB(229,224,215)，满足门槛。
+    RGB PNG，无透明通道；原图直接复制，未重采样、改底或重编码。本任务未开联网，无历史图片参考。
+    model/effort 为 Codex 执行配置；image_gen 未披露底层图片模型或 seed。
+- id: eq_xuansuoruanjia
+  file: eq_xuansuoruanjia.png
+  category: item
+  style: default
+  subject: "玄锁软甲；内甲·锁甲；地阶；原创武侠器物，无指定书界"
+  prompt: |-
+    Use case: stylized-concept. Create one corrected production item-codex illustration for tianshu/default.
+    Subject: 玄锁软甲 (eq_xuansuoruanjia), inner armor / micro-ring mail shirt, 地 grade; original wuxia extension with no specific novel era. Main object: one complete compact short-sleeved shirt made from countless blackened micro-rings, each ring visually about rice-grain scale, tightly interlinked into a thin flexible cloth-like mesh. Dense precise ring pattern, matte blue-black iron with tiny restrained edge glints, charcoal cloth binding at neckline, sleeves, side openings and hem, and a softly rolled lower corner showing it can be rolled and folded. Do not make ordinary large chain mail, scale armor, fishnet, lace, a modern mesh shirt, or rigid black plate. Grade language: 地 grade is expressed only through rare blackened micro-rings, exceptionally fine smithing, nearly seamless links, precise cloth-bound openings, and immaculate preservation with mild age. No gold light, gems, rarity frame, writing, icon, or magical effect. This form is an original wuxia design, not an archaeological reconstruction.
+    The two supplied images are style references only: borrow their clear fine deep-gray ink contours, thin translucent color washes, restrained hand-drawn brushwork, muted cool-warm palette, precise material separation, soft upper-left light, and warm ivory background. Do not copy, retain, transform, or include the sword, book, fittings, page shapes, colors as identity cues, or composition from either reference.
+    Category construction: one close-fitting short inner armor garment, gently unfolded and freely presented, front readable with a very slight three-quarter turn. Clearly show the named weave, bindings, thinness, and flexible scale. It is not worn, not on a mannequin, and not shaped around an invisible body.
+    Critical composition correction: make the complete garment distinctly smaller and precisely centered than the previous candidate. Square 1:1, target 1536x1536. Exactly one isolated complete object. Keep the object bounding box within the central 68 percent of both canvas width and canvas height, with at least 16 percent clear empty background on every one of the four sides. No cropped edge. Uniform light warm gray near-ivory background approximately RGB (230,225,216), opaque, flat, untextured, with no gradient. No person, hands, mannequin, scene, room, landscape, floor, display stand, contact shadow, cast shadow, reflection, packaging, or accessory.
+    Rendering: clear fine deep-gray ink outline; thin layered translucent washes; restrained handmade strokes; crisp but not photographic; low-saturation natural color with cool shadow notes. Keep weave and material details legible at icon scale. Non-photographic, non-3D, no bloom and no self-luminescence.
+    Exclude: all text, pseudo-writing, characters, labels, titles, numbers, seals, signatures, logos, written watermarks, UI, rarity border, collage, multiple views, exploded view, extra objects, duplicate garments, modern materials, plastic mesh, zipper, snaps, modern buckle hardware, fantasy plate armor, European armor, Japanese armor, full heavy armor, outer robe, long coat, rigid breastplate, neon, colored beams, particles, aura, magic circle, bloom, blood, gore, people, hands, human body, mannequin, hollow invisible-person silhouette, scenery, ground, floor, pedestal, any shadow, gradient, paper texture, photographic realism, product photography, 3D rendering, anime, film or game costume replication, actor likeness, artist name, or work title. No exaggerated spikes except where explicitly requested, and even there keep them short and functional. Do not remove or counterfeit any provenance mark added by the tool.
+  negative: "文字、伪字、人物、手、人体、模特、场景、地面、投影、第二件物品、大锁环、鱼网、蕾丝、现代网衣、鳞甲、黑色板甲、金光、宝石、品阶框、摄影、3D、影视游戏造型复刻"
+  references:
+    - id: ref_eq_yitianjian__ch04_base01
+      path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+    - id: ref_it_miji_jiuyin_shang__ch02_base01
+      path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: "codex exec · image_gen"
+  model: gpt-6-astra
+  effort: ultra
+  created: "2026-10-01T15:20:41Z"
+  source_path: /private/tmp/codex-art-inner/generated_images/01a0f80c-4b10-78b3-bfe4-8e71b3140a74/exec-bcd6e336-bdec-43d8-b101-e977dd8bd906.png
+  size: "1254x1254"
+  sha256: fdcf4a7cf5253ad01eae9373be90ddde0235e6464d4c3c7f0ec0fd17fc6d38d1
+  status: candidate
+  notes: |-
+    年代依据：名录出处为（原创扩展），无指定书界；采用不归属具体朝代的前现代武侠锁甲语境。材质规格与形制均为（原创扩展）。
+    候选数：2。首稿左右留白约 11.72/11.24%、包围框宽约 77.03%，未达门槛，故按额度返修并选第 2 候选。
+    view_image 自检：单一完整乌黑细环短衫，细环、布边与可卷柔性清楚，虽环纹醒目仍读作微环短甲；无文字、人物、手、场景、地面或投影。
+    终稿左/上/右/下留白约 18.10/18.82/18.18/20.49%，包围框宽/高约 63.72/60.69%；外圈中位 RGB(229,225,216)，满足门槛。
+    RGB PNG，无透明通道；原图直接复制，未重采样、改底或重编码。本任务未开联网，无历史图片参考。
+    model/effort 为 Codex 执行配置；image_gen 未披露底层图片模型或 seed。
+- id: eq_jinsibeixin
+  file: eq_jinsibeixin.png
+  category: item
+  style: default
+  subject: "金丝背心；内甲·金丝背心；地阶；《碧血剑》木桑道人、袁承志语境"
+  prompt: |-
+    Use case: stylized-concept. Create one production item-codex illustration for tianshu/default.
+    Subject: 金丝背心 (eq_jinsibeixin), inner armor / golden-thread waistcoat, 地 grade; context: 碧血剑, late Ming transition era circa 1630-1645, associated in the catalog with 木桑道人 and 袁承志. Main object: one complete short close-fitting sleeveless vest woven from a complex intimate blend of black-gold fine wire, dark human hair, and muted tawny-gold monkey fur fibers. Show the mixed fibers as a dense soft dark-gold textile with occasional black filaments and a very short warm fuzzy nap, not as separate tufts or animal skin. Fine dark cloth binding, tiny hand-finished seams, soft drape, thin profile, and an understated late-Ming inner-waistcoat silhouette; no official-rank motifs, court dress, armor plates, or visible animal imagery. Catalog form is pending textual verification: treat this as a restrained original visual interpretation, not a quotation or archaeological reconstruction. Grade language: 地 grade is expressed only through rare blended fibers, masterfully fine dense weaving, delicate finishing, preserved edges, and subdued dark-gold natural luster. No golden light column, gems, rarity frame, writing, icon, or magical effect.
+    The two supplied images are style references only: borrow their clear fine deep-gray ink contours, thin translucent color washes, restrained hand-drawn brushwork, muted cool-warm palette, precise material separation, soft upper-left light, and warm ivory background. Do not copy, retain, transform, or include the sword, book, fittings, page shapes, colors as identity cues, or composition from either reference.
+    Category construction: one close-fitting short inner armor garment, gently unfolded and freely presented, front readable with a very slight three-quarter turn. Clearly show the named weave, bindings, thinness, and flexible scale. It is not worn, not on a mannequin, and not shaped around an invisible body.
+    Composition: square 1:1, target 1536x1536. Exactly one isolated complete object centered. The object's bounding box must occupy no more than 76 percent of the canvas width and height, with at least 12 percent clear empty margin on every side. No cropped edge. Uniform light warm gray near-ivory background approximately RGB (230,225,216), opaque, flat, untextured, with no gradient. No person, hands, mannequin, scene, room, landscape, floor, display stand, contact shadow, cast shadow, reflection, packaging, or accessory.
+    Rendering: clear fine deep-gray ink outline; thin layered translucent washes; restrained handmade strokes; crisp but not photographic; low-saturation natural color with cool shadow notes. Keep weave and material details legible at icon scale. Non-photographic, non-3D, no bloom and no self-luminescence.
+    Exclude: all text, pseudo-writing, characters, labels, titles, numbers, seals, signatures, logos, written watermarks, UI, rarity border, collage, multiple views, exploded view, extra objects, duplicate garments, modern materials, plastic mesh, zipper, snaps, modern buckle hardware, fantasy plate armor, European armor, Japanese armor, full heavy armor, outer robe, long coat, rigid breastplate, neon, colored beams, particles, aura, magic circle, bloom, blood, gore, people, hands, human body, mannequin, hollow invisible-person silhouette, scenery, ground, floor, pedestal, any shadow, gradient, paper texture, photographic realism, product photography, 3D rendering, anime, film or game costume replication, actor likeness, artist name, or work title. No exaggerated spikes except where explicitly requested, and even there keep them short and functional. Do not remove or counterfeit any provenance mark added by the tool.
+  negative: "文字、伪字、人物、手、人体、模特、场景、地面、投影、第二件物品、成束毛发、兽皮、动物图像、官服纹样、甲片、宝石、金色光柱、品阶框、摄影、3D、影视游戏造型复刻"
+  references:
+    - id: ref_eq_yitianjian__ch04_base01
+      path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+    - id: ref_it_miji_jiuyin_shang__ch02_base01
+      path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: "codex exec · image_gen"
+  model: gpt-6-astra
+  effort: ultra
+  created: "2026-10-01T14:20:52Z"
+  source_path: /private/tmp/codex-art-inner/generated_images/01a0f7d5-4ab4-7083-91b6-e1c2e1395a32/exec-e9bbfb3a-2951-484f-967b-8d1604224996.png
+  size: "1254x1254"
+  sha256: bfbb4c21cf689799b4de7b94d0b906a589703460ede51bb5128b588c4a7c65b1
+  status: candidate
+  notes: |-
+    年代依据：`docs/design/02-timeline-and-world-tiers.md` §1.3.7 的碧血书界 1630–1645；只控制克制的明末内穿背心语境，不作实物复原。
+    乌金丝、发丝、金丝猴毛混织沿名录；具体形制（待考），图像细节为（原创扩展）；候选数：1。
+    view_image 自检：单一完整暗金贴身背心，混合纤维、短绒、布包边和柔软薄形清楚；无文字、人物、手、场景、地面、投影或动物图像。
+    左/上/右/下留白约 25.20/12.60/22.49/14.67%，包围框宽/高约 52.31/72.73%；外圈中位 RGB(229,224,214)，满足门槛。
+    RGB PNG，无透明通道；原图直接复制，未重采样、改底或重编码。本任务未开联网，无历史图片参考。
+    model/effort 为 Codex 执行配置；image_gen 未披露底层图片模型或 seed。
+- id: eq_jinsijia
+  file: eq_jinsijia.png
+  category: item
+  style: default
+  subject: "金丝甲；内甲·金丝；玄阶；武侠通用意象，本作原创扩展"
+  prompt: |-
+    Use case: stylized-concept. Create one corrected production item-codex illustration for tianshu/default.
+    Subject: 金丝甲 (eq_jinsijia), inner armor / fine golden-wire weave, 玄 grade; generic wuxia imagery developed as an original extension. Main object: one complete sleeveless close-fitting vest interwoven from muted dark-gold hair-fine wire, with extremely tiny regular apertures, soft charcoal-brown cloth binding around neckline, armholes, side openings and hem, subtle overlap at the front, and enough gentle bending to read as flexible rather than rigid metal. Gold is aged, subdued, and sparse in shine; no bright jewelry look, no coins, scales, rings, brocade motifs, or gemstones. Grade language: 玄 grade is expressed only through even selected wire, precise small weave, refined seams, intact edge binding, and restrained metallic luster. No purple glow, particles, rarity frame, writing, icon, or magical effect. This exact material treatment and form are an original wuxia design, not a claimed novel reconstruction.
+    The two supplied images are style references only: borrow their clear fine deep-gray ink contours, thin translucent color washes, restrained hand-drawn brushwork, muted cool-warm palette, precise material separation, soft upper-left light, and warm ivory background. Do not copy, retain, transform, or include the sword, book, fittings, page shapes, colors as identity cues, or composition from either reference.
+    Category construction: one close-fitting short inner armor garment, gently unfolded and freely presented, front readable with a very slight three-quarter turn. Clearly show the named weave, bindings, thinness, and flexible scale. It is not worn, not on a mannequin, and not shaped around an invisible body.
+    Critical composition correction: make the complete garment distinctly smaller and precisely centered than the previous candidate. Square 1:1, target 1536x1536. Exactly one isolated complete object. Keep the object bounding box within the central 68 percent of both canvas width and canvas height, with at least 16 percent clear empty background on every one of the four sides. No cropped edge. Uniform light warm gray near-ivory background approximately RGB (230,225,216), opaque, flat, untextured, with no gradient. No person, hands, mannequin, scene, room, landscape, floor, display stand, contact shadow, cast shadow, reflection, packaging, or accessory.
+    Rendering: clear fine deep-gray ink outline; thin layered translucent washes; restrained handmade strokes; crisp but not photographic; low-saturation natural color with cool shadow notes. Keep weave and material details legible at icon scale. Non-photographic, non-3D, no bloom and no self-luminescence.
+    Exclude: all text, pseudo-writing, characters, labels, titles, numbers, seals, signatures, logos, written watermarks, UI, rarity border, collage, multiple views, exploded view, extra objects, duplicate garments, modern materials, plastic mesh, zipper, snaps, modern buckle hardware, fantasy plate armor, European armor, Japanese armor, full heavy armor, outer robe, long coat, rigid breastplate, neon, colored beams, particles, aura, magic circle, bloom, blood, gore, people, hands, human body, mannequin, hollow invisible-person silhouette, scenery, ground, floor, pedestal, any shadow, gradient, paper texture, photographic realism, product photography, 3D rendering, anime, film or game costume replication, actor likeness, artist name, or work title. No exaggerated spikes except where explicitly requested, and even there keep them short and functional. Do not remove or counterfeit any provenance mark added by the tool.
+  negative: "文字、伪字、人物、手、人体、模特、场景、地面、投影、第二件物品、亮金首饰、钱币、甲片、大锁环、锦缎纹、宝石、魔法光效、品阶框、摄影、3D、影视游戏造型复刻"
+  references:
+    - id: ref_eq_yitianjian__ch04_base01
+      path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+    - id: ref_it_miji_jiuyin_shang__ch02_base01
+      path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: "codex exec · image_gen"
+  model: gpt-6-astra
+  effort: ultra
+  created: "2026-10-01T15:20:19Z"
+  source_path: /private/tmp/codex-art-inner/generated_images/01a0f80c-4b03-78a1-a3e0-b2a0dc8f3b55/exec-3fdc7c09-1746-4272-822a-7c7f6af1c512.png
+  size: "1254x1254"
+  sha256: b1b938d9cfe5612ed65367ce42bfe201168e09c580cbb2718517b56871737404
+  status: candidate
+  notes: |-
+    年代依据：名录仅指武侠通用意象，无指定书界；暗金细丝材质、织法与形制均为（原创扩展）。
+    候选数：2。首稿上留白约 9.81%、包围框高约 80.06%，未达门槛，故按额度返修并选第 2 候选。
+    view_image 自检：单一完整暗金细丝无袖背心，细织孔、布包边与柔性清楚；未见文字、人物、手、场景、地面、投影、宝石或光效。
+    终稿左/上/右/下留白约 29.59/16.03/29.27/16.59%，包围框宽/高约 41.15/67.38%；外圈中位 RGB(229,224,214)，满足门槛。
+    RGB PNG，无透明通道；原图直接复制，未重采样、改底或重编码。本任务未开联网，无历史图片参考。
+    model/effort 为 Codex 执行配置；image_gen 未披露底层图片模型或 seed。
+- id: eq_ruansijia
+  file: eq_ruansijia.png
+  category: item
+  style: default
+  subject: "软丝甲；内甲·丝甲；玄阶；原创武侠器物，无指定书界"
+  prompt: |-
+    Use case: stylized-concept. Create one production item-codex illustration for tianshu/default.
+    Subject: 软丝甲 (eq_ruansijia), inner armor / silk-thread armor, 玄 grade; original wuxia extension with no specific novel era. Main object: one complete short close-fitting inner shirt woven from extremely dense gray-silver thread, with short narrow sleeves, soft cloth bindings at neckline, cuffs, and hem, minute regular textile weave, a faint restrained metallic sheen, and a naturally supple drape that proves it can be folded. It must remain fabric-like and flexible, never rigid chain mail, foil, knitted modern sportswear, or a glittering silver costume. Grade language: 玄 grade is expressed only through unusually even clean fibers, fine seams, precise dense weave, intact bindings, and restrained natural metallic luster. No purple glow, particles, rarity frame, writing, icon, or magical effect. This form is an original wuxia design, not an archaeological reconstruction.
+    The two supplied images are style references only: borrow their clear fine deep-gray ink contours, thin translucent color washes, restrained hand-drawn brushwork, muted cool-warm palette, precise material separation, soft upper-left light, and warm ivory background. Do not copy, retain, transform, or include the sword, book, fittings, page shapes, colors as identity cues, or composition from either reference.
+    Category construction: one close-fitting short inner armor garment, gently unfolded and freely presented, front readable with a very slight three-quarter turn. Clearly show the named weave, bindings, thinness, and flexible scale. It is not worn, not on a mannequin, and not shaped around an invisible body.
+    Composition: square 1:1, target 1536x1536. Exactly one isolated complete object centered. The object's bounding box must occupy no more than 76 percent of the canvas width and height, with at least 12 percent clear empty margin on every side. No cropped edge. Uniform light warm gray near-ivory background approximately RGB (230,225,216), opaque, flat, untextured, with no gradient. No person, hands, mannequin, scene, room, landscape, floor, display stand, contact shadow, cast shadow, reflection, packaging, or accessory.
+    Rendering: clear fine deep-gray ink outline; thin layered translucent washes; restrained handmade strokes; crisp but not photographic; low-saturation natural color with cool shadow notes. Keep weave and material details legible at icon scale. Non-photographic, non-3D, no bloom and no self-luminescence.
+    Exclude: all text, pseudo-writing, characters, labels, titles, numbers, seals, signatures, logos, written watermarks, UI, rarity border, collage, multiple views, exploded view, extra objects, duplicate garments, modern materials, plastic mesh, zipper, snaps, modern buckle hardware, fantasy plate armor, European armor, Japanese armor, full heavy armor, outer robe, long coat, rigid breastplate, neon, colored beams, particles, aura, magic circle, bloom, blood, gore, people, hands, human body, mannequin, hollow invisible-person silhouette, scenery, ground, floor, pedestal, any shadow, gradient, paper texture, photographic realism, product photography, 3D rendering, anime, film or game costume replication, actor likeness, artist name, or work title. No exaggerated spikes except where explicitly requested, and even there keep them short and functional. Do not remove or counterfeit any provenance mark added by the tool.
+  negative: "文字、伪字、人物、手、人体、模特、场景、地面、投影、第二件物品、锁子甲、金属箔、现代针织、僵硬衣壳、紫色光效、品阶框、摄影、3D、影视游戏造型复刻"
+  references:
+    - id: ref_eq_yitianjian__ch04_base01
+      path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+    - id: ref_it_miji_jiuyin_shang__ch02_base01
+      path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+      role: "作者已通过的画风基线；仅取细墨线、薄罩染、低饱和冷暖与底色，不复制物件"
+      sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  tool: "codex exec · image_gen"
+  model: gpt-6-astra
+  effort: ultra
+  created: "2026-10-01T14:20:24Z"
+  source_path: /private/tmp/codex-art-inner/generated_images/01a0f7d5-4aa8-7f13-860d-26e592d181da/exec-f8fbd65f-7752-4d1d-a176-b899ce5085cb.png
+  size: "1254x1254"
+  sha256: 612a518f8dad125b2bd3b9ce1289710403994eb3ffa69d68b8e11c807141cbe5
+  status: candidate
+  notes: |-
+    年代依据：名录出处为（原创扩展），无指定书界；采用不归属具体朝代的前现代武侠织物语境。外观与形制均为（原创扩展）；候选数：1。
+    view_image 自检：单一完整灰银密织短衣，可折叠、织物柔软且仅有克制金属感；未见文字、人物、手、场景、地面、投影或第二件物品。
+    左/上/右/下留白约 13.32/12.04/13.24/12.12%，包围框宽/高约 73.44/75.84%；外圈中位 RGB(228,222,212)，满足门槛但接近下限。
+    RGB PNG，无透明通道；原图直接复制，未重采样、改底或重编码。本任务未开联网，无历史图片参考。
+    model/effort 为 Codex 执行配置；image_gen 未披露底层图片模型或 seed。
