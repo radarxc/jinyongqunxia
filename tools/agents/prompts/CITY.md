@@ -22,6 +22,7 @@
 ## 要做的事
 
 1. **联网搜索史料**：本城在 {{year}} 前后的城址平面图 / 复原图 / 考古报告 / 地方志记载（城垣与门、主街、水系桥梁、宫城 / 衙署 / 王府、市与坊、寺观、码头）。只登记实际打开读到的页面。史料少的小城按同年代同地域的一般格局推定，逐项标（推定）/（原创扩展）。
+   **历史图片参考（作者 2026-09-30 原话：「建筑套件和城市在生成时搜一下历史图片作为参考」）**：把搜到的历史平面图 / 舆图 / 复原图图片（优先 Wikimedia Commons、地方志数字化页、考古所 / 博物馆官网）用 `curl -L -o refs/<name>.<ext> <url>` 下载到工作区 `refs/`（写集外，不入库），`view_image` 实际看图后再定城垣轮廓、门位、街道与水系走向；来源清单里注明"已看图"还是"仅文字"。下载失败（403 等）就按文字记载复原并写明。
 2. **写复原依据** `docs/design/town/history/{{city_id}}__{{band}}.md`（60–140 行：来源清单、复原依据表、缩比、剧情地点对应）。
 3. **写规格** `docs/design/town/{{city_id}}__{{ch_primary}}.yaml`（`era_kit: {{kit_id}}`；建筑类型只用该套件与基线里已有的 ID；网格按城市规模在 design/22 §1 画幅内选：大城 160×160、中城 128×128、小城 96×96）。同年代带的其他章节 {{ch_others}} 各复制一份规格只改 `chapter_id` / `book_world`（若章节文档写明该城在那个时点有变化，做最小差量并写明）。
 4. **生成、校验、平面图、渲染**：每个章节的规格各跑 `gen_layout.py` → `check_town.py --strict-assets` → `plan_view.py`（写 `docs/design/town/history/{{city_id}}__{{band}}_plan.svg/.png`，一份即可）→ `render_town.py`（全尺寸 + `--scale 0.25` 预览 + overlay）。输出 `assets/default/town/{{city_id}}__<chNN>/`：`town.png`、`preview.png`、`overlay.svg`、`layout.yaml`、`manifest.yaml`（一条，`id: town_{{city_id}}__<chNN>`，`tool: tools/town/render_town.py`，`prompt` 写实际命令，`references` 列用到的套件目录，`status: candidate`）。

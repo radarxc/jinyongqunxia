@@ -17,6 +17,7 @@
 ## 要做的事
 
 1. 读上述基线与设计；联网搜索本年代 / 地域的建筑形制（屋顶、墙体、门窗、彩画、塔式、城门形制），来源登记进报告（标题 + URL + 取用了什么）。
+   **历史图片参考（作者 2026-09-30 原话：「建筑套件和城市在生成时搜一下历史图片作为参考」）**：每类建筑搜 1–3 张历史图片——遗址 / 现存古建照片、考古复原图、古画 / 舆图里的建筑、博物馆模型照片（优先 Wikimedia Commons、博物馆 / 考古所官网、学术页面）；本任务沙箱已放开网络，用 `curl -L -o refs/<name>.<ext> <url>` 下载到工作区 `refs/`（写集外，不入库），`view_image` 看过后作为 `image_gen` 的参考输入（只取形制、比例、材质、屋顶样式，不复制整图构图，不用影视 / 游戏截图）。每张成品的 manifest `references` 登记用到的参考（URL + 用途）；下载失败（403 等）就只用文字记载，报告写明。
 2. `image_gen` 逐张出图：斜 45°、俯仰 30°、2:1，透明底真 RGBA，光源左上、阴影右下，占地底边清楚，锚点底面中心；画风与宋套件一致（写实古风、同一细节密度），只换年代 / 地域特征。每张 `view_image` 自查；最多 2 候选选 1。
 3. 规格化（PIL 纯几何：裁切、等比缩放、修边），入库 `assets/default/building-map/{{kit_id}}/`，`manifest.yaml` 每张一条（字段按 `assets/README.md` + `building: {type, footprint, anchor, era}`），`status: candidate`；贴片同理入 `assets/default/tile/{{kit_id}}/`（`tile: {kind, footprint, variant, autotile_mask}`）。
 4. 在 `assets/default/prompts/building-map.md`、`tile.md` 各加一节本套件的年代要点与提示词差异。
