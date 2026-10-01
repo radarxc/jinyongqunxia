@@ -28073,7 +28073,9 @@
      "pnpm-lock.yaml",
      "packages/core/package.json",
      "packages/platform/package.json",
-     "apps/web/package.json",
+     "packages/ui/package.json",
+     "apps/game/package.json",
+     "tools/perf/budgets.json",
      "CLAUDE.md"
     ],
     "shrink_exempt": [
@@ -28092,7 +28094,7 @@
      [
       "pnpm",
       "--filter",
-      "./apps/web",
+      "./apps/game",
       "build"
      ],
      [
@@ -28127,11 +28129,10 @@
     "services/**",
     "content/**",
     "CLAUDE.md",
-    ".env",
     ".prettierrc",
     ".prettierrc.json",
     "prettier.config.js",
-    "next-env.d.ts"
+    "tools/perf/**"
    ]
   },
   {
@@ -28181,7 +28182,7 @@
    ],
    "writes": [
     "packages/platform/**",
-    "apps/web/**",
+    "apps/game/**",
     "pnpm-lock.yaml",
     "package.json"
    ]
@@ -28432,7 +28433,7 @@
     "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
    ],
    "writes": [
-    "apps/web/**",
+    "apps/game/**",
     "packages/ui/**",
     "packages/platform/**",
     "pnpm-lock.yaml",
@@ -28454,7 +28455,7 @@
      [
       "pnpm",
       "--filter",
-      "./apps/web",
+      "./apps/game",
       "build"
      ],
      [
@@ -28484,7 +28485,7 @@
    ],
    "writes": [
     "packages/render/**",
-    "apps/web/**",
+    "apps/game/**",
     "content/**",
     "tools/content/**",
     "pnpm-lock.yaml"
@@ -28505,7 +28506,7 @@
      [
       "pnpm",
       "--filter",
-      "./apps/web",
+      "./apps/game",
       "build"
      ],
      [
@@ -28537,7 +28538,7 @@
    ],
    "writes": [
     "packages/render/**",
-    "apps/web/**",
+    "apps/game/**",
     "content/**",
     "tools/content/**",
     "pnpm-lock.yaml"
@@ -28560,7 +28561,7 @@
      [
       "pnpm",
       "--filter",
-      "./apps/web",
+      "./apps/game",
       "build"
      ],
      [
@@ -28596,7 +28597,7 @@
     "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
    ],
    "writes": [
-    "apps/web/**",
+    "apps/game/**",
     "packages/render/**",
     "pnpm-lock.yaml"
    ],
@@ -28616,7 +28617,7 @@
      [
       "pnpm",
       "--filter",
-      "./apps/web",
+      "./apps/game",
       "build"
      ],
      [
@@ -28645,7 +28646,7 @@
    ],
    "writes": [
     "packages/render/**",
-    "apps/web/**",
+    "apps/game/**",
     "content/**",
     "tools/vfx/**",
     "pnpm-lock.yaml"
@@ -28668,7 +28669,7 @@
      [
       "pnpm",
       "--filter",
-      "./apps/web",
+      "./apps/game",
       "build"
      ],
      [
@@ -28684,31 +28685,6 @@
     ]
    },
    "full_checkout": true
-  },
-  {
-   "id": "DES-tech-nextjs",
-   "title": "技术文档同步 · 应用框架改为 Next.js + React（AR-21）",
-   "phase": "PROD",
-   "wave": 11,
-   "kind": "draft",
-   "prompt": "DES-tech-nextjs.md",
-   "deps": [],
-   "review": false,
-   "web": false,
-   "vars": {},
-   "writes": [
-    "docs/tech/*.md"
-   ],
-   "validate": {
-    "exists": [],
-    "cmd": [
-     [
-      "{python}",
-      "tools/lint/check_ids.py",
-      "--strict"
-     ]
-    ]
-   }
   }
  ]
 }
