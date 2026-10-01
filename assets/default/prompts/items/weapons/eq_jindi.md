@@ -17,7 +17,7 @@ references:
   use: 画风参考（作者已审）：清楚纤细的深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底；不复制剑本身
 - path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
   use: 画风参考（作者已审）：同上；不复制书册、题签与磨损
-prompt_source: manifest:.agents/wt/ART-item-weapons/assets/default/item/weapons/manifest.yaml（任务工作区候选）
+prompt_source: manifest:assets/default/item/weapons/manifest.yaml（已入库，GPT 审核已过）
 status: ready
 ---
 
