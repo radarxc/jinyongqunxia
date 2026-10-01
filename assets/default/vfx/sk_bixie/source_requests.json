@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "requests": {
+    "family": {
+      "asset_id": "vfx_sk_bixie__family_base01",
+      "prompt": "Use case: stylized-concept. Asset type: Chinese wuxia game VFX source sprite sheet for sk_bixie (Bixie Swordplay), ONLY disembodied sword-energy traces, not a person, hand, sword, or scene. Exactly four sequential frames in a perfectly regular 2-column by 2-row sheet, canvas 1536x1024, each cell exactly 768x512. Pure solid white #FFFFFF background everywhere outside painted energy, no paper texture. Absolutely no grid lines, panel borders, labels, letters, calligraphy, symbols, shadows, landscape, character, anatomy, weapons, flowers, birds, moons, religious figures, or literal objects. Read frames top-left, top-right, bottom-left, bottom-right: gathering, release, full strength, dissipating. In EVERY cell keep one coherent effect rooted at local (96,256), direction right, with all painted marks entirely inside local x=72..680 and y=105..407, leaving broad clean-white gutters between all cells and at every outer edge. The root at x=96 is a narrow continuous 36-pixel-high ribbon that can join a sword tip; it must remain connected to the whole effect in every frame. Keep the same center axis, scale, and silhouette identity; vary only ink density, wisps, and intensity. Palette: muted deep blue-green teal and desaturated cold cyan with a little charcoal, reflecting yin nature. Traditional Chinese ink-wash atmosphere with translucent layered strokes, dry-brush gaps, fine dissolving edges, elegant empty space; no bright neon, no solid 3D object, no white painted highlight. Primary request: reusable family vocabulary for an unnaturally fast, uncanny seventy-two-route sword method: one long razor-thin forward teal ink slash with two faint offset crescent after-traces tightly braided around it, tapering sharply at the right, sparse charcoal flecks trailing behind. It should feel swift and ghostlike yet remain a single connected sword-energy gesture, not a laser beam or projectile. White background must be uniform pure white outside the effect.",
+      "tool": "Codex CLI · built-in image_gen",
+      "model": "built-in image_gen (underlying image model not disclosed)",
+      "outer_model": "gpt-6-astra",
+      "effort": "ultra",
+      "transparent_background": false,
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "source_path": "/private/tmp/vfx-codex-home/generated_images/01a0f615-19cc-76f0-8c25-20240c9b33d6/exec-610ae292-2bfb-4625-9050-9794cc659fea.png",
+      "source_sha256": "df8c56c145c004e7f5c0d99f8ec2c0760627201f56985257a0047336670243b3",
+      "output_file": "effect/family/source_sheet.png"
+    },
+    "mv_bixie_feiyanchuanliu": {
+      "asset_id": "vfx_mv_bixie_feiyanchuanliu__effect_base01",
+      "prompt": "Use case: stylized-concept. Asset type: Chinese wuxia game VFX source sprite sheet for the ultimate move mv_bixie_feiyanchuanliu, ONLY disembodied sword-energy traces, not a person, hand, sword, bird, willow, or scene. Exactly four sequential frames in a perfectly regular 2-column by 2-row sheet, canvas 1536x1024, each cell exactly 768x512. Pure solid white #FFFFFF background everywhere outside painted energy, no paper texture. Absolutely no grid lines, panel borders, labels, letters, calligraphy, symbols, shadows, landscape, character, anatomy, weapons, flowers, birds, trees, leaves, moons, religious figures, or literal objects. Read frames top-left, top-right, bottom-left, bottom-right: gathering, release, full strength, dissipating. In EVERY cell keep one coherent effect rooted near local (96,256), direction right, with all painted marks entirely inside local x=72..680 and y=105..407, leaving broad clean-white gutters between all cells and at every outer edge. The root is a narrow continuous ribbon that can join a sword tip and remains connected to the whole effect in every frame. Keep the same center axis, scale, and silhouette identity; vary only ink density, wisps, and intensity. Palette: muted deep blue-green teal and desaturated cold cyan with a little charcoal, reflecting yin nature. Traditional Chinese ink-wash atmosphere with translucent layered strokes, dry-brush gaps, fine dissolving edges, elegant empty space; no bright neon, no solid 3D object, no white painted highlight. Primary request: an ultimate high-speed piercing gesture inspired only abstractly by the name Flying Swallow Threads the Willows: one needle-thin teal thrust line shoots right through three compact alternating S-curves, like a path weaving through flexible obstacles, with a narrow swallow-tail fork at the root and two tightly crossing crescent wake trails. It must read as a single connected sword-energy thrust, not a bird, tree, laser beam, projectile, spear, or logo. At full strength the intertwined curves tighten around the central piercing line without becoming a closed ring. White background must be uniform pure white outside the effect.",
+      "tool": "Codex CLI · built-in image_gen",
+      "model": "built-in image_gen (underlying image model not disclosed)",
+      "outer_model": "gpt-6-astra",
+      "effort": "ultra",
+      "transparent_background": false,
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "source_path": "/private/tmp/vfx-codex-home/generated_images/01a0f618-17be-7c82-ac19-c0bf46657aac/exec-78efe170-a1dc-4530-af4c-460d49f452e7.png",
+      "source_sha256": "eaf50e467ccf7e45d6047cb9a9b7b8ae0869985f78fb2ebe447ccfb8f3e5d426",
+      "output_file": "effect/mv_bixie_feiyanchuanliu/source_sheet.png"
+    },
+    "mv_bixie_qunxie": {
+      "asset_id": "vfx_mv_bixie_qunxie__effect_base01",
+      "prompt": "Use case: stylized-concept. Asset type: Chinese wuxia game VFX source sprite sheet for the ultimate move mv_bixie_qunxie, ONLY disembodied sword-energy traces, not a person, hand, sword, demon, ghost, or scene. Exactly four sequential frames in a perfectly regular 2-column by 2-row sheet, canvas 1536x1024, each cell exactly 768x512. Pure solid white #FFFFFF background everywhere outside painted energy, no paper texture. Absolutely no grid lines, panel borders, labels, letters, calligraphy, symbols, shadows, landscape, character, anatomy, weapons, faces, skulls, monsters, flowers, birds, moons, religious figures, or literal objects. Read frames top-left, top-right, bottom-left, bottom-right: gathering, release, full strength, dissipating. In EVERY cell keep one coherent effect rooted near local (96,256), direction right, with all painted marks entirely inside local x=72..680 and y=88..424, leaving broad clean-white gutters between all cells and at every outer edge. The root is a narrow continuous ribbon that can join a sword tip and remains connected to the whole effect in every frame. Keep the same center axis, scale, and silhouette identity; vary only ink density, wisps, and intensity. Palette: muted deep blue-green teal and desaturated cold cyan with a little charcoal, reflecting yin nature. Traditional Chinese ink-wash atmosphere with translucent layered strokes, dry-brush gaps, fine dissolving edges, elegant empty space; no bright neon, no solid 3D object, no white painted highlight. Primary request: an ultimate local flurry inspired abstractly by the phrase Qun Xie Bi Yi: one forward teal stem rapidly splits into six uneven razor-thin hooked slash wakes, three above and three below, fanning and crossing within a compact oval attack zone before all tips turn right. All six branches remain visibly connected back to the same root through the central stem. The silhouette feels uncanny, suppressive, and many-sided, but must remain abstract sword-energy ink rather than creatures, claws, tentacles, lightning, a flower, a magic circle, or a logo. Avoid closed symmetry; use lively asymmetric spacing and sparse charcoal flecks. White background must be uniform pure white outside the effect.",
+      "tool": "Codex CLI · built-in image_gen",
+      "model": "built-in image_gen (underlying image model not disclosed)",
+      "outer_model": "gpt-6-astra",
+      "effort": "ultra",
+      "transparent_background": false,
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "source_path": "/private/tmp/vfx-codex-home/generated_images/01a0f619-ed83-7ee1-8938-2c2668fe2855/exec-af82e3ea-f516-4939-bc3d-68d25d8006bf.png",
+      "source_sha256": "5504c94bca15c1c9073944a1cc4584741b223e6e2070b60250592307deefb4d4",
+      "output_file": "effect/mv_bixie_qunxie/source_sheet.png"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+# 花开见佛：单体1·近身·3段，projection=false；三段由动作事件同步。
+# 【建议值】L=1×256=256 px；不以四张原料帧冒充三次伤害判定。
+kind: Composition
+version: 1
+asset_id: vfx_mv_bixie_huakaijianfo__base01
+subject_ref: sk_bixie
+move_ref: mv_bixie_huakaijianfo
+mode: baseline
+effect_set: ../../effect/family/effect-set.yaml
+emitter_plate: ../../../emitters/sword/emitter-plate.yaml
+canvas_px: [1536, 1024]
+background: '#EFE6D2'
+emit_at_px: [640, 512]
+angle_deg: 4
+range_hex: 1
+pixels_per_hex: 256
+length_px: 256
+scale: [1, 1.15]
+emitter_scale: 0.48
+rhythm: {charge_s: 0.1, release_s: 0.15, sustain_s: 0.25, dissipate_s: 0.1}
+transition:
+  interpolation: crossfade
+  scale_from: 0.95
+  drift_fraction: 0
+  brightness: [0.8, 1, 1, 1, 0.8]
+  directional_mask: {enabled: true, softness: 0.08}
+output:
+  fps: 20
+  loop: true
+  loop_gap_s: 0.4
+  peak_phase: 0.4166666666666667
+  preview_size_px: [768, 512]
+  html_max_bytes: 3000000
+  optional_animation: none
