@@ -1,0 +1,30 @@
+{
+  "id": "tex_town_liao_jin_north_wall__earth_r000_v01",
+  "subject": "辽金北方（11–13世纪）·夯土直墙（原创扩展；匿名年代意象，非文物复原）",
+  "key": "wall",
+  "footprint": [
+    1,
+    1
+  ],
+  "points": [
+    [
+      251,
+      1262
+    ],
+    [
+      510,
+      1433
+    ],
+    [
+      775,
+      1261
+    ]
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82c-7100-a176-3ab9a2e08c7e/exec-1ccb05b5-bc4d-4ef2-84ea-861a07854364.png",
+  "prompt": "Use case: historical-scene. ONE isolated modular straight rammed-earth wall block for Liao/Jin northern city map,11th-12th century. Reference matches realistic texture and object type. Exact square1m by1m ground footprint, wall3m tall, plain flat compacted-earth top. Strict2:1 dimetric camera yaw45 elevation30, diamond top and bottom edges slope+0.5/-0.5, vertical edges upright. Material cool grey-ochre compacted earth with subtle horizontal ramming layers, slight wear, no bricks, no crenellations, no roof, no cap, no floor or pedestal. Match Song kit realistic fine grained restrained texture, moderate contrast, matte surface; upper-left light and very short lower-right contact shadow. Entire object centered,20percent true RGBA transparent margin. No people, text, writing, watermark, checkerboard, backdrop, sky, vegetation, glow or scenery. Exactly one freestanding repeatable wall section, no sheet.",
+  "references": [
+    "assets/default/baseline/tile/tex_town_song_dali_wall__earth_r000_v01.png"
+  ],
+  "candidate_count": 1,
+  "selected_candidate": 1
+}

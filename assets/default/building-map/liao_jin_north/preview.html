@@ -1,0 +1,93 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>辽金北方套件候选审图</title>
+<style>body{font:16px system-ui;margin:24px;background:#e8e1d4;color:#28221b}button{padding:8px;margin:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px}
+article{background:#f8f4ec;padding:14px;border:1px solid #aaa;border-radius:8px;overflow:hidden}
+.art{height:290px;display:flex;justify-content:center;align-items:center;background:var(--bg,#c9c1ae);position:relative}
+img{max-height:280px;max-width:100%;object-fit:contain}h2{font-size:17px;overflow-wrap:anywhere}p{margin:8px 0}
+.warn{color:#873513}small{overflow-wrap:anywhere}</style>
+<h1>辽 · 金北方套件</h1><p>19张建筑＋7张贴片 · 全部 candidate · 单视图</p>
+<p>点击图片打开实际PNG；显示按alpha合成。卡片适配尺寸仅供审图，不能代表同屏游戏比例。</p>
+<p class="warn">精确2:1未全部通过。城门、墙件与桥有明显几何残差，不能据文件校验声明净宽对格或无缝拼接。</p>
+<button onclick="document.body.style.setProperty('--bg','#eee6d7')">浅底</button>
+<button onclick="document.body.style.setProperty('--bg','#292e32')">深底</button>
+<button onclick="document.body.style.setProperty('--bg','#7f9488')">绿底</button><main class="grid">
+<article><h2>biaoju</h2><a class="art" href="bld_kit_liao_jin_north_biaoju.png"><img loading="lazy" src="bld_kit_liao_jin_north_biaoju.png" alt="辽金北方护运货栈院落（原创扩展；不宣称时代存在具名镖局）"></a>
+<p>1056x768 · 占地 [14, 11]</p><p class="warn">底面轴线通过（仅手工量点）</p>
+<small>原图已view_image。以宋护运行作年代适配，灰瓦木构、土院、货包手车、无字大门，保持基线细节密度。无人物、无景观、无厚底台。底面人工测点在建议斜率与占地比阈值内（±3px读数不确定性）。 成品已view_image(detail=original)逐张复查：完整、透明、无文字与人物；源alpha原样保留，仅裁透明空白、等比缩放和透明padding。</small></article>
+<article><h2>casino</h2><a class="art" href="bld_kit_liao_jin_north_casino.png"><img loading="lazy" src="bld_kit_liao_jin_north_casino.png" alt="辽金北方两层赌场外观（原创扩展；无名游戏组合，细部待考）"></a>
+<p>704x608 · 占地 [10, 8]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>两候选均view_image；第二版底面较第一版接近目标但仍偏浅，选第二版。土墙木构灰瓦、内收楼廊与无字桌凳表达北方公共铺楼。几何误差保留，2候选限额已到，axis_pass=false；不是严格投影合格资产。 成品已view_image(detail=original)逐张复查：完整、透明、无文字与人物；源alpha原样保留，仅裁透明空白、等比缩放和透明padding。</small></article>
+<article><h2>courtyard</h2><a class="art" href="bld_kit_liao_jin_north_courtyard.png"><img loading="lazy" src="bld_kit_liao_jin_north_courtyard.png" alt="辽金北方·土墙院落（原创扩展；历史细部待考）"></a>
+<p>672x512 · 占地 [10, 8]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>夯土色院落、灰瓦主屋和侧厢、薄石基；原图去掉宋参考的植被。几何偏差按实测点保留。 已生成2候选对比，选第1候选，原因见rejected_candidate。 仅交单视图；历史游戏功能为原创扩展，屋架、窗棂等细部待考。</small></article>
+<article><h2>guardhouse</h2><a class="art" href="bld_kit_liao_jin_north_guardhouse.png"><img loading="lazy" src="bld_kit_liao_jin_north_guardhouse.png" alt="辽金北方城门守舍（原创扩展）"></a>
+<p>492x500 · 占地 [7, 5]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>土壁、重木构和简瓦屋面，入口左下，无人无字，与宋基线材质接近。守舍是建筑单体，不替代城门贴片。可见边缘有生成斜率残差。 已对原图执行view_image(original)。 保留第一候选，其占地宽深比更接近7:5；第二候选横向比例偏差增大，斜率仍有残差。 单45°视图，allowRotation=false。 已对规格化成品执行view_image(original)：主体完整、无字无人、透明边缘留白；形制/投影残差以geometry_qa为准，未宣称严阈全部通过。</small></article>
+<article><h2>house_large</h2><a class="art" href="bld_kit_liao_jin_north_house_large.png"><img loading="lazy" src="bld_kit_liao_jin_north_house_large.png" alt="辽金北方·大型民居（原创扩展；历史细部待考）"></a>
+<p>496x512 · 占地 [7, 6]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>三开间大民居；无现代装饰。画风与宋基线一致，屏幕轴线近传统等轴约±0.58，几何未完全通过。 已生成2候选对比，选第1候选，原因见rejected_candidate。 仅交单视图；历史游戏功能为原创扩展，屋架、窗棂等细部待考。</small></article>
+<article><h2>house_small</h2><a class="art" href="bld_kit_liao_jin_north_house_small.png"><img loading="lazy" src="bld_kit_liao_jin_north_house_small.png" alt="辽金北方·小型民居（原创扩展；历史细部待考）"></a>
+<p>480x496 · 占地 [6, 5]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>选第2候选。灰瓦、土灰墙、木构细节与宋套件一致；2:1轴斜率仍有偏差，候选保留复核。首候选未选，主要因底面不完整且前侧比例明显偏离。 仅交单视图；历史游戏功能为原创扩展，屋架、窗棂等细部待考。</small></article>
+<article><h2>inn</h2><a class="art" href="bld_kit_liao_jin_north_inn.png"><img loading="lazy" src="bld_kit_liao_jin_north_inn.png" alt="辽金北方·客栈（原创扩展；历史细部待考）"></a>
+<p>752x560 · 占地 [12, 9]</p><p class="warn">底面轴线通过（仅手工量点）</p>
+<small>两层客房环院、左下入口、灰瓦木构；与宋客栈参考保持同级细节密度，局部沿用盆栽、素灯和石铺庭院，北方差异主要在温暖土灰墙材色，不宣称全面地域复原。 仅交单视图；历史游戏功能为原创扩展，屋架、窗棂等细部待考。</small></article>
+<article><h2>manor</h2><a class="art" href="bld_kit_liao_jin_north_manor.png"><img loading="lazy" src="bld_kit_liao_jin_north_manor.png" alt="辽金北方山庄大院（原创扩展；无名游戏组合，细部待考）"></a>
+<p>1120x768 · 占地 [16, 13]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>两候选均view_image；第一版两轴总误差小于第二版，选第一版。基线单院布局与写实纹理保留，减铺装改为土院；院树仅一般北方落叶树意象，榆树树种辨认待作者确认。右轴约-.551，axis_pass=false，2候选限额已到。 成品已view_image(detail=original)逐张复查：完整、透明、无文字与人物；源alpha原样保留，仅裁透明空白、等比缩放和透明padding。</small></article>
+<article><h2>market_stall</h2><a class="art" href="bld_kit_liao_jin_north_market_stall.png"><img loading="lazy" src="bld_kit_liao_jin_north_market_stall.png" alt="辽金北方市集铺棚（原创扩展；无名游戏组合，细部待考）"></a>
+<p>512x512 · 占地 [5, 4]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>两候选均view_image；第一版材质与基线更近且底面比例更准，选第一版。主体完整、无文字，草布与木构质感匹配。底面双轴较2:1目标偏浅，已达2候选限额，保留candidate并明确axis_pass=false，不声称严格拼接几何通过。 成品已view_image(detail=original)逐张复查：完整、透明、无文字与人物；源alpha原样保留，仅裁透明空白、等比缩放和透明padding。</small></article>
+<article><h2>pagoda</h2><a class="art" href="bld_kit_liao_jin_north_pagoda.png"><img loading="lazy" src="bld_kit_liao_jin_north_pagoda.png" alt="辽金北方匿名八角密檐砖佛塔（原创扩展）"></a>
+<p>706x1036 · 占地 [7, 7]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>八角砖塔及密集收分檐层明确，无宋式木楼阁外廊；匿名艺术概化，不声明精确十三层或天宁寺实址，不提前安放1119年具名原塔。可见底面两轴轻微偏浅；静态单视图。 已对原图执行view_image(original)。 第二候选正方形地台四角更清楚，宽深比接近1；斜率仍略偏浅。 单45°视图，allowRotation=false。 已对规格化成品执行view_image(original)：主体完整、无字无人、透明边缘留白；形制/投影残差以geometry_qa为准，未宣称严阈全部通过。</small></article>
+<article><h2>restaurant</h2><a class="art" href="bld_kit_liao_jin_north_restaurant.png"><img loading="lazy" src="bld_kit_liao_jin_north_restaurant.png" alt="辽金北方·酒楼／茶肆（原创扩展；历史细部待考）"></a>
+<p>752x704 · 占地 [12, 9]</p><p class="warn">底面轴线通过（仅手工量点）</p>
+<small>两层酒楼、左下廊前桌凳与酒坛，去掉宋参考红色布幔，以朴素灰瓦土灰墙表达北方；同一写实古风密度。薄铺地轮廓清楚，无文字人物。 已生成2候选对比，选第1候选，原因见rejected_candidate。 仅交单视图；历史游戏功能为原创扩展，屋架、窗棂等细部待考。</small></article>
+<article><h2>shop_1f</h2><a class="art" href="bld_kit_liao_jin_north_shop_1f.png"><img loading="lazy" src="bld_kit_liao_jin_north_shop_1f.png" alt="辽金北方·单层商铺（原创扩展；历史细部待考）"></a>
+<p>400x400 · 占地 [6, 5]</p><p class="warn">底面轴线通过（仅手工量点）</p>
+<small>朴素单层商铺、布帘木柜及陶器；沿用宋地图件细节密度，土灰色墙体表达北方材料。地面可见，投影偏差见测量值。 仅交单视图；历史游戏功能为原创扩展，屋架、窗棂等细部待考。</small></article>
+<article><h2>shop_2f</h2><a class="art" href="bld_kit_liao_jin_north_shop_2f.png"><img loading="lazy" src="bld_kit_liao_jin_north_shop_2f.png" alt="辽金北方·两层商铺（原创扩展；历史细部待考）"></a>
+<p>512x496 · 占地 [8, 6]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>两层木构商铺、无字卷帘和陶器货柜；无宫廷彩画。地面边清楚，局部屋檐有生成式细节，不代表文物复原。 仅交单视图；历史游戏功能为原创扩展，屋架、窗棂等细部待考。</small></article>
+<article><h2>stable</h2><a class="art" href="bld_kit_liao_jin_north_stable.png"><img loading="lazy" src="bld_kit_liao_jin_north_stable.png" alt="辽金北方匿名马厩（原创扩展）"></a>
+<p>625x459 · 占地 [9, 7]</p><p class="warn">底面轴线通过（仅手工量点）</p>
+<small>前开四栏、木隔栅、土壁灰瓦与石饮槽可读；前栏朝左下，未画马或人物；非具名辽金马厩复原。底面轮廓完整，原图近底边，规格化只补透明边。 已对原图执行view_image(original)。 单45°视图，allowRotation=false。 已对规格化成品执行view_image(original)：主体完整、无字无人、透明边缘留白；形制/投影残差以geometry_qa为准，未宣称严阈全部通过。</small></article>
+<article><h2>temple_hall</h2><a class="art" href="bld_kit_liao_jin_north_temple_hall.png"><img loading="lazy" src="bld_kit_liao_jin_north_temple_hall.png" alt="辽金北方匿名佛寺殿堂（原创扩展）"></a>
+<p>926x700 · 占地 [13, 10]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>选第二候选：重檐未出现，单檐四坡屋顶、较大斗栱与灰瓦赭木符合匿名辽金寺殿表达；形制为原创组合并非善化寺或华严寺实测复原。源图地面双轴偏浅，几何不达±0.03严阈；保留candidate，未作非等比修正。 已对原图执行view_image(original)。 第二候选单檐四坡屋顶更接近需求；两候选底面均未过±0.03。 单45°视图，allowRotation=false。 已对规格化成品执行view_image(original)：主体完整、无字无人、透明边缘留白；形制/投影残差以geometry_qa为准，未宣称严阈全部通过。</small></article>
+<article><h2>wangfu</h2><a class="art" href="bld_kit_liao_jin_north_wangfu.png"><img loading="lazy" src="bld_kit_liao_jin_north_wangfu.png" alt="辽金北方王府院落模块（原创扩展；非具名王府或宫殿复原，细部待考）"></a>
+<p>1312x960 · 占地 [20, 16]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>两候选均view_image；第一版底面角度优于第二版，选第一版。灰瓦、粗壮木构斗拱、低调赤褐柱与土院呼应北方辽金意象；无明清黄瓦金饰，仍有少量基线式脊端装饰，准确年代细部待考。右轴约-.546，axis_pass=false，2候选限额已到。 成品已view_image(detail=original)逐张复查：完整、透明、无文字与人物；源alpha原样保留，仅裁透明空白、等比缩放和透明padding。</small></article>
+<article><h2>warehouse</h2><a class="art" href="bld_kit_liao_jin_north_warehouse.png"><img loading="lazy" src="bld_kit_liao_jin_north_warehouse.png" alt="辽金北方匿名仓屋（原创扩展）"></a>
+<p>691x538 · 占地 [10, 8]</p><p class="warn">底面轴线通过（仅手工量点）</p>
+<small>粗木粮仓、低石基土壁、灰瓦宽门与少量货包，入口左下；无字无人，宋套件写实材质密度一致，北方匿名功能建筑细部为艺术默认。 已对原图执行view_image(original)。 单45°视图，allowRotation=false。 已对规格化成品执行view_image(original)：主体完整、无字无人、透明边缘留白；形制/投影残差以geometry_qa为准，未宣称严阈全部通过。</small></article>
+<article><h2>wharf</h2><a class="art" href="bld_kit_liao_jin_north_wharf.png"><img loading="lazy" src="bld_kit_liao_jin_north_wharf.png" alt="辽金北方匿名石木河埠（原创扩展）"></a>
+<p>611x357 · 占地 [10, 4]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>薄石台、嵌木装卸条和两根系缆柱，未绘水面或船只；水关来源仅支持地域水系，不把本匿名河埠外观称为考古复原。可见边线存在小幅角度残差。 已对原图执行view_image(original)。 单45°视图，allowRotation=false。 已对规格化成品执行view_image(original)：主体完整、无字无人、透明边缘留白；形制/投影残差以geometry_qa为准，未宣称严阈全部通过。</small></article>
+<article><h2>yamen</h2><a class="art" href="bld_kit_liao_jin_north_yamen.png"><img loading="lazy" src="bld_kit_liao_jin_north_yamen.png" alt="辽金北方官署院落（原创扩展；非具名官署复原，细部待考）"></a>
+<p>1120x800 · 占地 [16, 12]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>两候选均view_image；第二版直接以宋官署基线作时代适配，保留构图与纹理密度，土院、灰瓦、木构、无文字且完整。底面两轴略陡于±0.5，已达2候选限额，保留candidate且axis_pass=false。 成品已view_image(detail=original)逐张复查：完整、透明、无文字与人物；源alpha原样保留，仅裁透明空白、等比缩放和透明padding。</small></article>
+<article><h2>bridge_deck__w3_l5_r000_v01</h2><a class="art" href="../../tile/liao_jin_north/tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01.png"><img loading="lazy" src="../../tile/liao_jin_north/tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01.png" alt="辽金北方（11–13世纪）·带栏木桥（原创扩展；匿名年代意象，非文物复原）"></a>
+<p>291x205 · 占地 [3, 5]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。 本张含桥栏，仅静态预览；运行时前栏遮挡须分层。</small></article>
+<article><h2>city_gate__k4_r000_v01</h2><a class="art" href="../../tile/liao_jin_north/tex_town_liao_jin_north_city_gate__k4_r000_v01.png"><img loading="lazy" src="../../tile/liao_jin_north/tex_town_liao_jin_north_city_gate__k4_r000_v01.png" alt="辽金北方（11–13世纪）·净宽4格城门（原创扩展；匿名年代意象，非文物复原）"></a>
+<p>508x346 · 占地 [8, 4]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。</small></article>
+<article><h2>city_gate__k6_r000_v01</h2><a class="art" href="../../tile/liao_jin_north/tex_town_liao_jin_north_city_gate__k6_r000_v01.png"><img loading="lazy" src="../../tile/liao_jin_north/tex_town_liao_jin_north_city_gate__k6_r000_v01.png" alt="辽金北方（11–13世纪）·净宽6格城门（原创扩展；匿名年代意象，非文物复原）"></a>
+<p>536x391 · 占地 [10, 4]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。</small></article>
+<article><h2>tree_cluster__elm_v01</h2><a class="art" href="../../tile/liao_jin_north/tex_town_liao_jin_north_tree_cluster__elm_v01.png"><img loading="lazy" src="../../tile/liao_jin_north/tex_town_liao_jin_north_tree_cluster__elm_v01.png" alt="辽金北方（11–13世纪）·榆树意象（原创扩展；匿名年代意象，非文物复原）"></a>
+<p>529x372 · 占地 [1, 1]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。 植物仅北方物种意象，辽金庭院栽植位置待考；根锚，不含碰撞定义。</small></article>
+<article><h2>tree_cluster__pine_v01</h2><a class="art" href="../../tile/liao_jin_north/tex_town_liao_jin_north_tree_cluster__pine_v01.png"><img loading="lazy" src="../../tile/liao_jin_north/tex_town_liao_jin_north_tree_cluster__pine_v01.png" alt="辽金北方（11–13世纪）·油松意象（原创扩展；匿名年代意象，非文物复原）"></a>
+<p>537x368 · 占地 [1, 1]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。 植物仅北方物种意象，辽金庭院栽植位置待考；根锚，不含碰撞定义。</small></article>
+<article><h2>wall__earth_r000_v01</h2><a class="art" href="../../tile/liao_jin_north/tex_town_liao_jin_north_wall__earth_r000_v01.png"><img loading="lazy" src="../../tile/liao_jin_north/tex_town_liao_jin_north_wall__earth_r000_v01.png" alt="辽金北方（11–13世纪）·夯土直墙（原创扩展；匿名年代意象，非文物复原）"></a>
+<p>155x217 · 占地 [1, 1]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。</small></article>
+<article><h2>wall_corner__outer_ne_v01</h2><a class="art" href="../../tile/liao_jin_north/tex_town_liao_jin_north_wall_corner__outer_ne_v01.png"><img loading="lazy" src="../../tile/liao_jin_north/tex_town_liao_jin_north_wall_corner__outer_ne_v01.png" alt="辽金北方（11–13世纪）·夯土外转角（原创扩展；匿名年代意象，非文物复原）"></a>
+<p>174x179 · 占地 [2, 2]</p><p class="warn">底面轴线待复核 / 植物不适用</p>
+<small>原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。</small></article>
+</main></html>

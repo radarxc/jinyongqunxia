@@ -1,0 +1,27 @@
+{
+  "suffix": "shop_1f",
+  "title": "单层商铺",
+  "fp": [
+    6,
+    5
+  ],
+  "path": "exec-8759cd00-c26e-431d-98bf-8b2e27f5ee5b",
+  "prompt": "Create a NEW northern Liao-Jin version of the reference Song game map building, retaining its camera, complete very thin diamond footprint, true clean transparency, entrance direction and detailed realistic ancient architectural rendering. This is a CITY MAP SPRITE, not a perspective architectural showcase. Orthographic yaw45 elevation30, 2:1 dimetric projection, ground axes +0.5 and -0.5, upright verticals, parallel lines, no perspective. Entrance screen LOWER LEFT. Both ground axes clearly readable; complete flat rectangular ground perimeter with LEFT, FRONT and RIGHT corners. Entire sprite occupies central 70 percent of canvas. Main light screen UPPER LEFT, short soft contact shadow lower right. Background alpha=0, NO glow, halo or gradient. No thick plinth, text, people, sky, landscape, neighboring structures, symbols, Ming/Qing palace ornaments or modern features. One self-contained building. Historic regional inspiration, original game interpretation rather than monument reconstruction. Subject: one single-story street shop in Liao-Jin Yanjing/Datong region, footprint6m east-west by5m north-south. Sober dark gray tile gable roof with very restrained curve; buff earthen plaster and exposed timber construction, front open wood counter with practical pottery jars and folded plain cloth, one open doorway on lower-left facade. Minimal tan cloth shade under eaves, blank no signs. Low stone doorstep and thin earth-and-stone perimeter. Northern robust construction, original unnamed general store. DO NOT replicate classical isometric 30-degree screen axes: ground edges MUST descend at 26.565 degrees = 0.5 slope, wider/flatter footprint than a standard isometric drawing. Front edge length1.2 times side edge.",
+  "ref": "bld_kit_song_southern_shop_1f",
+  "corners": {
+    "left": [
+      50,
+      783
+    ],
+    "front": [
+      695,
+      1122
+    ],
+    "right": [
+      1219,
+      861
+    ]
+  },
+  "count": 1,
+  "note": "朴素单层商铺、布帘木柜及陶器；沿用宋地图件细节密度，土灰色墙体表达北方材料。地面可见，投影偏差见测量值。"
+}

@@ -1,0 +1,119 @@
+{
+  "id": "tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01",
+  "file": "tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01.png",
+  "category": "tile",
+  "style": "default",
+  "subject": "辽金北方（11–13世纪）·带栏木桥（原创扩展；匿名年代意象，非文物复原）",
+  "prompt": "Use case: historical-scene. ONE isolated plain wooden footbridge tile for an anonymous Liao/Jin northern town watercourse,11th-12th century original game design. Reference is Song kit material detail and plank simplicity. Straight low timber beam bridge footprint3m east-west by5m north-south, visible plan shape rectangle in EXACT2:1 dimetric. Orthographic yaw45 elevation30, flat deck ground edges are26.565degrees from horizontal, slopes+0.5/-0.5; opposite edges parallel, vertical supports upright. Long span goes screen lower-left to upper-right. Three plain short square-post rail segments per side and small wood beam supports, deck broad and walkable. Weathered matte brown wood, muted low-saturation texture, no ornamental arches or covered pavilion, no stone lions, no metal hardware. Left upper light, only tiny lower-right contact shade. Match realistic Song kit density. Keep bridge as one complete independent object, no water or banks or land island, open areas between rails truly transparent. TRUE RGBA transparent background, generous15percent transparent margins, no text signage labels watermark people boat modern objects background or painted checkerboard. Not a historical named bridge.",
+  "negative": "无字、无人、无现代物、无背景、无厚地台、无假棋盘透明、无透视汇聚",
+  "references": [
+    {
+      "file": "assets/default/baseline/tile/tex_town_song_dali_bridge_deck__w3_l5_r000_v01.png",
+      "sha256": "d08816357ef2fcd590ca4b43dcb1348440762e347fc6dbab2072b7e7e7311855",
+      "role": "实际输入：写实材质、细节密度与构图参考；不继承史实断代"
+    }
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (backend undisclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T21:22:13.387186+00:00",
+  "created_time_basis": "源PNG文件mtime；非服务端回执时间",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82c-7100-a176-3ab9a2e08c7e/exec-5c4d3f84-02da-4cbd-a593-d8ee326548bd.png",
+  "size": "291x205",
+  "sha256": "80b376cb38414a686af54aa51717aee56139b0b627d7240a793932269422242e",
+  "status": "candidate",
+  "tile": {
+    "kind": "bridge_deck",
+    "footprint": [
+      3,
+      5
+    ],
+    "variant": "w3_l5_r000_v01",
+    "autotile_mask": null
+  },
+  "source_copy": "source/tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01.png",
+  "source_sha256": "52c489531cda7d5702a83c88ce6941ae21c3159be457a5b88ce88209e9ecff76",
+  "anchor_px": [
+    145.1861,
+    107.0332
+  ],
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "png_rotations_available": [
+    0
+  ],
+  "allowRotation": false,
+  "geometry_qa": {
+    "measurement_uncertainty_source_px": 5,
+    "source_corners_px": {
+      "left": [
+        285,
+        599
+      ],
+      "front": [
+        650,
+        811
+      ],
+      "right": [
+        1580,
+        322
+      ]
+    },
+    "source_axis_slopes": [
+      0.5808219178082191,
+      -0.5258064516129032
+    ],
+    "axis_tolerance": 0.03,
+    "axis_pass": false,
+    "expected_width_depth_ratio": 0.6,
+    "source_width_depth_ratio": 0.3924731182795699,
+    "ratio_relative_error": 0.34587813620071683,
+    "ratio_pass": false,
+    "measurement_note": "量可见桥面四角同高平面，anchor是桥面中心投影；桥墩落地/水面高度待装配，含栏一体图仅静态预览。"
+  },
+  "processing": {
+    "source_size": [
+      1774,
+      887
+    ],
+    "crop_box": [
+      279,
+      0,
+      1588,
+      874
+    ],
+    "uniform_scale": 0.19768339768339768,
+    "resized_size": [
+      259,
+      173
+    ],
+    "paste_offset": [
+      16,
+      16,
+      275,
+      189
+    ],
+    "steps": [
+      "alpha bbox crop",
+      "uniform LANCZOS resize with integer rounding",
+      "transparent padding; no mask, repaint, warp, rotation or alpha threshold"
+    ]
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 38754,
+    "alpha_near_opaque_pixels": 17983,
+    "alpha_nonzero_bbox": [
+      16,
+      16,
+      275,
+      189
+    ],
+    "border_alpha_max": 0
+  },
+  "notes": "原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。 本张含桥栏，仅静态预览；运行时前栏遮挡须分层。"
+}

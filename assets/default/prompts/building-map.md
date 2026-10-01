@@ -499,6 +499,51 @@ PIL只作裁切、等比缩放与透明扩边。按§4量取真实可见底面L/
 python3 tools/agents/check_assets.py assets/default/building-map/yuan_north --min 18 --max 22 --min-side 256
 python3 tools/lint/check_ids.py --strict
 ```
+## 11. 辽 · 金北方套件 · `liao_jin_north`
+
+本节只增年代提示词差异；保存目录为 `assets/default/building-map/liao_jin_north/`。参考辽南京 / 金中都、辽上京与大同的建筑语汇，所有单体均为匿名功能组合 **（原创扩展）**，不把某座现存古建或现代复建图整体倒推为辽金原貌。历史与植物来源、访问日期见 [KIT-liao_jin_north 报告](../../../tools/agents/reports/KIT-liao_jin_north.md) §7；实际发出的逐图完整提示词见本套件 `manifest.yaml`。
+
+### 11.1 年代差异与同风格约束
+
+- 延续宋套件灰陶瓦、哑光木石、低饱和色与同一细节密度；使用已查看的宋单体作真实输入参考，保留每次路径与 SHA，不只写“参考宋代”。
+- 北方夯土墙、木构与局部砖石并存。常民居采用朴素木门 / 直棂、土壁、灰瓦；具体门窗断代与统一彩画谱系 **（待考）**，不把这些艺术默认写成地域通则。
+- 官署、王府、寺殿以较厚重屋面、大斗栱和抬高台基区别等级；寺殿借鉴大同辽金木构语汇，不复制善化寺现代复建文殊阁或现存后世彩画。台基可抬高，整件不附厚沙盘地台。
+- 佛塔选匿名八角密檐砖塔；天宁寺塔只提供塔式参考。层数、雕刻与压缩比例为游戏概化，不登记为天宁寺实址，也不声称可直接放入1093年的具名地标。
+- 镖局用无字护运货栈院落，赌场用普通封闭厅院，酒楼用无名两层木楼；均属功能映射 **（原创扩展）**。不新增 `biz_*`、`sect_*`、`port_*`，河埠仍只是装饰外观。
+- 契丹、女真与汉式营造并存以土木砖、殿堂、佛塔和商旅院落体现，不靠满城营帐、民族符号贴花或明清宫门替代城市考据。
+
+### 11.2 清单、占地与提示词替换
+
+新资产前缀 `bld_kit_liao_jin_north_`，`building.type=id`、`era=liao_jin_north`。§3.4未列辽金完整表，故只借用其同功能占地接口；未覆盖项沿用§3.2–§3.3，全部为本任务制作 **【建议值】**，不是新玩法定义。19项后缀与占地如下：
+
+| 占地来源 | 后缀与 `[w,h]` |
+|---|---|
+| `design/22` §3.4元骨架 | `house_large [7,6]`、`market_stall [5,4]`、`yamen [16,12]`、`biaoju [14,11]`、`wangfu [20,16]` |
+| §3.2–§3.3宋同功能项 | `house_small [6,5]`、`courtyard [10,8]`、`shop_1f [6,5]`、`shop_2f [8,6]`、`inn [12,9]`、`restaurant [12,9]`、`casino [10,8]`、`manor [16,13]` |
+| §3.3宋同功能项 | `temple_hall [13,10]`、`pagoda [7,7]`、`guardhouse [7,5]`、`stable [9,7]`、`warehouse [10,8]`、`wharf [10,4]` |
+
+在§5模板替换题材段，并逐张指定功能和占地，不要求一张输出图集：
+
+```text
+Use case: historical-scene. ONE anonymous Liao/Jin northern Chinese city-map
+building, visual vocabulary of Yanjing/Zhongdu, Shangjing and Datong.
+Original game design, not a measured reconstruction of an existing monument.
+Reference: supplied Song kit image for matte material realism and detail density.
+Northern rammed-earth/plaster walls, muted grey clay tiles, dark weathered timber;
+restrained brown-red posts only where appropriate, substantial bracket sets for halls.
+{FUNCTION_AND_FOOTPRINT}; south entrance faces screen lower-left.
+Orthographic yaw45 elevation30, 2:1 dimetric, ground edges slopes +0.5/-0.5.
+Thin legible ground footprint, complete base and eaves, bottom-plane center anchor.
+Upper-left light, short lower-right contact shadow, true RGBA transparent background.
+No text, people, scenery, modern objects, Ming/Qing court decoration or thick plinth.
+```
+
+### 11.3 交付默认与未闭合项
+
+- 本任务建筑短边门禁为256px，沿用64×32地面标尺：底面范围 `32(w+h)×16(w+h)`；例如7×6为416×208，20×16为1152×576。画布为容纳高度与透明边另扩，不强改成2:1画布。
+- `anchor`由实际底面左右对角中心推算，原测点、等比系数和变换记录在逐件元数据。原图与成品均逐张 `view_image`，PIL只裁透明边、等比缩放、透明扩边。
+- 每类最多2候选选1，所有状态为 `candidate`。保留真实轴斜率 / 比例残差，不因文件检查通过写“精确45°验收通过”；底面与门前实际拼接 **（待实测）**。
+- 默认单视图、`allowRotation=false`。辽金年代套件接入城市目录、精确碰撞 / 遮挡、不同阶段彩画及物种辨识均待后续审核；当前不改宋清单、城市布局或上游文档。
 
 ## 本文新增术语与 ID
 

@@ -406,3 +406,42 @@ python3 tools/lint/check_ids.py --strict
 | 风格、意象年代与植物可读性 | 保持 candidate，交作者审批；未回复不视为 approved |
 | 明江南单视图的城门对格 / 直墙与转角高度 | **已解决**：两门双轴±0.500、净孔4.000/6.000格；三格L形墙角双轴±0.500、接口高124px，与直墙一致；整城接缝仍待实测 |
 | 明江南整桥与植物接口 | 整桥只供静态预览，另拆栏杆方能验证单位遮挡；柳、竹不冒充 design/22 §4.4 的双变体植物公告板 |
+
+## 10. 辽 · 金北方贴片 · `liao_jin_north`
+
+本套件保存到 `assets/default/tile/liao_jin_north/`，使用内置 `image_gen` 逐张出图，实际完整提示词、参考图和SHA逐条登记在其 `manifest.yaml`。历史依据及访问日期见 [KIT-liao_jin_north 报告](../../../tools/agents/reports/KIT-liao_jin_north.md) §7。下面是对§6模板的年代替换，不改变§4–§8的通用规范。
+
+### 10.1 年代、类型与占地
+
+- 辽上京夯土城墙与木构门楼、金中都局部包砖考古事实只作材料和结构语汇；匿名门楼为 **（原创扩展）**。使用土墩、局部灰砖护脚 / 护角、木过梁敞口和灰瓦木楼，不画明清多重箭楼、密集垛口或宫廷彩画。
+- 与宋贴片同写实密度、左上光与右下短影，年代差异以灰褐夯土、局部砖石、北方植被表现；不额外烘焙城市道路、水面或厚地台。
+- `city_gate__k4_r000_v01` / `city_gate__k6_r000_v01`：净宽目标4 / 6格；按 `design/22` §4.3，外占地 `[8,4]` / `[10,4]`，两侧门墩各2格。底面外宽分别 `32(8+4)=384`、`32(10+4)=448 px`；并非成品PNG宽度。
+- `wall__earth_r000_v01 [1,1]`、`wall_corner__outer_ne_v01 [2,2]`：灰褐夯土直墙和外角；占地沿用宋贴片 **【建议值】**，无四向扩展。
+- `bridge_deck__w3_l5_r000_v01 [3,5]`：匿名木梁桥含简栏 **（原创扩展）**；占地沿用宋桥 **【建议值】**，水关资料不证明具体木桥形制。
+- `tree_cluster__elm_v01` / `tree_cluster__pine_v01`：榆树 / 油松意象；现代植物分布支持其北方地域性，不证明辽金街道栽植。逻辑占地 `[1,1]` 只作种植点 **【建议值】**，根锚不等于树冠中心；目标视觉高度320px **【建议值】**，树冠可跨多格。
+- 上述文件ID均加前缀 `tex_town_liao_jin_north_`，只声明1个实际朝向；`autotile_mask:null` 表示本件未提供自动邻接掩码，不能假装覆盖47形。
+
+### 10.2 可复用差异提示词
+
+```text
+Use case: historical-scene. ONE Liao/Jin northern Chinese {ASSET_TYPE} sprite.
+Reference image: Song kit material realism and detail density, not historic identity.
+Muted grey-ochre rammed earth, limited grey brick foundations, dark matte timber.
+Gate: plain timber lintel, grey tiled upper hall, transparent open passage with
+front proportions 2:{CLEAR_WIDTH}:2; no floor, door, soil island or steps across gap.
+Wall: subtle horizontal rammed-earth strata, flat top, no decorative cap.
+Bridge: simple wooden beams/planks and low square-post railing; no water or banks.
+Plant: {Ulmus pumila / Pinus tabuliformis}, complete crown and visible root collar.
+Orthographic yaw45 elevation30, 2:1 dimetric ground slopes +0.5/-0.5.
+Upper-left light, short lower-right contact shadow; complete silhouette and margins.
+True RGBA transparency, no text, people, watermark, scenery or modern objects.
+Anonymous original game asset, not a measured reconstruction of a named site.
+```
+
+以上为分类型替换段；实际调用只选对应的门 / 墙 / 桥 / 植物段，禁止让模型在一张图上画整套。
+
+### 10.3 质检与默认限制
+
+本批选中7图，短边门禁32px；原图保留真实alpha，仅透明裁边、统一比例缩放、透明扩边，不重画、不强制补255alpha、不旋转或拉伸。逐件测点、锚点变换与像素检查在 `meta/`；PNG外的全透明RGB光晕不应误当实体背景，预览按alpha正常合成。
+
+全部保持 `candidate`。续作返修后，净宽4 / 6格城门的外占地边比误差约4.07% / 0.94%，但k4右轴约−0.613且视觉净孔约44.25%（目标50%），k6局部门墩仍有残差；桥边比误差约4.56%（对边均值6.58%），双前轴约+0.549/−0.560。文件检查通过不代表精确2:1、净宽对格、门孔完整掩膜或无缝墙接缝已通过。默认用于固定朝向候选审图，严格装配 **（待实测）**；每件每轮最多2候选，不用几何扭曲消除残差。桥的锚点是桥面中心投影，岸面高差及前栏遮挡须另处理；现批只交一体静态图。植物物种形态辨识、辽金栽植场景与作者风格认可仍开放，默认沿用候选意象。

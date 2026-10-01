@@ -1,0 +1,119 @@
+{
+  "id": "tex_town_liao_jin_north_wall_corner__outer_ne_v01",
+  "file": "tex_town_liao_jin_north_wall_corner__outer_ne_v01.png",
+  "category": "tile",
+  "style": "default",
+  "subject": "辽金北方（11–13世纪）·夯土外转角（原创扩展；匿名年代意象，非文物复原）",
+  "prompt": "Use case: historical-scene. ONE isolated90degree L-shaped rammed-earth outer city wall corner for Liao/Jin northern Chinese map,11th-12th century. Preserve reference type: two connected wall arms, back joint at upper center, open hollow corner faces lower center. Footprint2m by2m; arms one cell thick, wall3m high. Strict orthographic2:1 dimetric yaw45 elevation30, all horizontal planar edges slope+0.5/-0.5, verticals upright, no vanishing point. Muted cool grey-ochre rammed earth with subtle horizontal strata, plain flat wall tops, no cap, no masonry brick pattern, no battlements, no floor, no base slab or soil island. Same realistic fine matte earth material density as Song reference, north earthen city visual vocabulary, anonymous original design. Soft upper-left light, tiny lower-right contact shadow.20percent transparent margin, complete intact feet and top, TRUE RGBA outside and within open hollow. No environment sky text people labels watermark fake checkerboard glow or plants. Single asset.",
+  "negative": "无字、无人、无现代物、无背景、无厚地台、无假棋盘透明、无透视汇聚",
+  "references": [
+    {
+      "file": "assets/default/baseline/tile/tex_town_song_dali_wall_corner__outer_ne_v01.png",
+      "sha256": "e3b2a9a2e7ffe32619c939955a089baf46c08f745e058364a96f24f7af1961b5",
+      "role": "实际输入：写实材质、细节密度与构图参考；不继承史实断代"
+    }
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (backend undisclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T21:20:45.017770+00:00",
+  "created_time_basis": "源PNG文件mtime；非服务端回执时间",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82c-7100-a176-3ab9a2e08c7e/exec-b2785b08-d8e1-4337-bced-bf5a7078078c.png",
+  "size": "174x179",
+  "sha256": "908ad736e6aa6f0cd9abe32fc09e9a9cc8474532ae0d9c3480cc5e4f6bc756cb",
+  "status": "candidate",
+  "tile": {
+    "kind": "wall_corner",
+    "footprint": [
+      2,
+      2
+    ],
+    "variant": "outer_ne_v01",
+    "autotile_mask": null
+  },
+  "source_copy": "source/tex_town_liao_jin_north_wall_corner__outer_ne_v01.png",
+  "source_sha256": "48e1b2e3e2c1f72d0536b98bf7fd3a5ab7afccddedd84baf619942e714ade586",
+  "anchor_px": [
+    87.9344,
+    146.742
+  ],
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "png_rotations_available": [
+    0
+  ],
+  "allowRotation": false,
+  "geometry_qa": {
+    "measurement_uncertainty_source_px": 5,
+    "source_corners_px": {
+      "left": [
+        68,
+        1124
+      ],
+      "front": [
+        608,
+        1479
+      ],
+      "right": [
+        1165,
+        1141
+      ]
+    },
+    "source_axis_slopes": [
+      0.6574074074074074,
+      -0.6068222621184919
+    ],
+    "axis_tolerance": 0.03,
+    "axis_pass": false,
+    "expected_width_depth_ratio": 1.0,
+    "source_width_depth_ratio": 0.9694793536804309,
+    "ratio_relative_error": 0.030520646319569078,
+    "ratio_pass": true,
+    "measurement_note": "L/R为两臂外端底角；隐藏后底角B由上后角[625,26]+内角竖向高度760推算为[625,786]；F=L+R-B=[608,1479]为画外虚拟占地角；不是实物像素。"
+  },
+  "processing": {
+    "source_size": [
+      1234,
+      1275
+    ],
+    "crop_box": [
+      0,
+      12,
+      1220,
+      1275
+    ],
+    "uniform_scale": 0.11668185961713765,
+    "resized_size": [
+      142,
+      147
+    ],
+    "paste_offset": [
+      16,
+      16,
+      158,
+      163
+    ],
+    "steps": [
+      "alpha bbox crop",
+      "uniform LANCZOS resize with integer rounding",
+      "transparent padding; no mask, repaint, warp, rotation or alpha threshold"
+    ]
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 17235,
+    "alpha_near_opaque_pixels": 12675,
+    "alpha_nonzero_bbox": [
+      22,
+      16,
+      154,
+      159
+    ],
+    "border_alpha_max": 0
+  },
+  "notes": "原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。"
+}

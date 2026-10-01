@@ -1,0 +1,42 @@
+{
+  "id": "tex_town_liao_jin_north_city_gate__k6_r000_v01",
+  "subject": "辽金北方（11–13世纪）·净宽6格城门（原创扩展；匿名年代意象，非文物复原）",
+  "key": "gate6",
+  "footprint": [
+    10,
+    4
+  ],
+  "points": [
+    [
+      66,
+      738
+    ],
+    [
+      1097,
+      1046
+    ],
+    [
+      1382,
+      940
+    ]
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82c-7100-a176-3ab9a2e08c7e/exec-a735244b-8aa3-410b-ab8a-b9b52904bc9d.png",
+  "prompt": "Use case: historical-scene. ONE isolated northern Liao/Jin city gate tile sprite. Style reference: supplied Song kit is matte realistic ancient Chinese building texture ONLY, not geometry. Build a new geometric structure: orthographic yaw45 elevation30, true 2:1 dimetric, ground axes rise one screen pixel for every two horizontal pixels. Footprint10m wide east-west by4m deep north-south. South frontage faces lower-left, visible east side lower-right. Two equal piers each2m wide and4m deep, passage EMPTY6m by4m: exact front width proportions 2:6:2. Front edge screen horizontal run2.5times side edge. Make passage genuinely wide and airy. Rammed-earth grey-ochre piers with limited grey brick footings/corners, flat wooden lintel, a low dark timber upper pavilion with broad grey clay tiled hipped roof, restrained roof curve, chunky bracket supports. Northern Liao earth-town gate visual vocabulary, anonymous original game design, no claimed historic monument. Realistic finely detailed matte weathered wood earth and tile like reference, low saturation brown-red posts, no elaborate painted decorations. Upper-left light, short lower-right contact shadows. NO ground island, no threshold floor, no steps, no closed doors: alpha fully transparent under bridge lintel all the way through. Full roof and feet, centered with generous15percent transparency margins. True RGBA transparent outside and through opening. No sky scenery, people, letters numbers plaques signage, watermark, painted checkerboard, border, halo, modern objects or thick pedestal.",
+  "references": [
+    "assets/default/baseline/tile/tex_town_song_dali_city_gate__k6_r000_v01.png"
+  ],
+  "candidate_count": 2,
+  "selected_candidate": 1,
+  "pass_width": 6,
+  "passage_ratio_observed": 0.5800193986420951,
+  "alpha_probes": [
+    [
+      710,
+      760
+    ],
+    [
+      850,
+      800
+    ]
+  ]
+}

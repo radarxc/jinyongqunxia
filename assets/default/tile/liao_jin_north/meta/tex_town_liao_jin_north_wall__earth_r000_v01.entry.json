@@ -1,0 +1,119 @@
+{
+  "id": "tex_town_liao_jin_north_wall__earth_r000_v01",
+  "file": "tex_town_liao_jin_north_wall__earth_r000_v01.png",
+  "category": "tile",
+  "style": "default",
+  "subject": "辽金北方（11–13世纪）·夯土直墙（原创扩展；匿名年代意象，非文物复原）",
+  "prompt": "Use case: historical-scene. ONE isolated modular straight rammed-earth wall block for Liao/Jin northern city map,11th-12th century. Reference matches realistic texture and object type. Exact square1m by1m ground footprint, wall3m tall, plain flat compacted-earth top. Strict2:1 dimetric camera yaw45 elevation30, diamond top and bottom edges slope+0.5/-0.5, vertical edges upright. Material cool grey-ochre compacted earth with subtle horizontal ramming layers, slight wear, no bricks, no crenellations, no roof, no cap, no floor or pedestal. Match Song kit realistic fine grained restrained texture, moderate contrast, matte surface; upper-left light and very short lower-right contact shadow. Entire object centered,20percent true RGBA transparent margin. No people, text, writing, watermark, checkerboard, backdrop, sky, vegetation, glow or scenery. Exactly one freestanding repeatable wall section, no sheet.",
+  "negative": "无字、无人、无现代物、无背景、无厚地台、无假棋盘透明、无透视汇聚",
+  "references": [
+    {
+      "file": "assets/default/baseline/tile/tex_town_song_dali_wall__earth_r000_v01.png",
+      "sha256": "755d578dea3dfa959f44642f37a7d0a1e6ecfb1e9a3c5bc4f9d6446b3aaabfcf",
+      "role": "实际输入：写实材质、细节密度与构图参考；不继承史实断代"
+    }
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (backend undisclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T21:19:49.564499+00:00",
+  "created_time_basis": "源PNG文件mtime；非服务端回执时间",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82c-7100-a176-3ab9a2e08c7e/exec-1ccb05b5-bc4d-4ef2-84ea-861a07854364.png",
+  "size": "155x217",
+  "sha256": "f26479f23a365d771d93205a9784d252fe897204da821e989517e83f2809b96e",
+  "status": "candidate",
+  "tile": {
+    "kind": "wall",
+    "footprint": [
+      1,
+      1
+    ],
+    "variant": "earth_r000_v01",
+    "autotile_mask": null
+  },
+  "source_copy": "source/tex_town_liao_jin_north_wall__earth_r000_v01.png",
+  "source_sha256": "f82e1dfb3ba07a51435c6c74591fe4544ea665e963ab796d6bcc69535f04013c",
+  "anchor_px": [
+    78.6565,
+    167.7557
+  ],
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "png_rotations_available": [
+    0
+  ],
+  "allowRotation": false,
+  "geometry_qa": {
+    "measurement_uncertainty_source_px": 5,
+    "source_corners_px": {
+      "left": [
+        251,
+        1262
+      ],
+      "front": [
+        510,
+        1433
+      ],
+      "right": [
+        775,
+        1261
+      ]
+    },
+    "source_axis_slopes": [
+      0.6602316602316602,
+      -0.6490566037735849
+    ],
+    "axis_tolerance": 0.03,
+    "axis_pass": false,
+    "expected_width_depth_ratio": 1.0,
+    "source_width_depth_ratio": 0.9773584905660377,
+    "ratio_relative_error": 0.02264150943396226,
+    "ratio_pass": true,
+    "measurement_note": "人工量读底面角；非文物实测或3D相机反解，目标与实测分列。"
+  },
+  "processing": {
+    "source_size": [
+      1024,
+      1536
+    ],
+    "crop_box": [
+      0,
+      19,
+      1010,
+      1536
+    ],
+    "uniform_scale": 0.12213740458015267,
+    "resized_size": [
+      123,
+      185
+    ],
+    "paste_offset": [
+      16,
+      16,
+      139,
+      201
+    ],
+    "steps": [
+      "alpha bbox crop",
+      "uniform LANCZOS resize with integer rounding",
+      "transparent padding; no mask, repaint, warp, rotation or alpha threshold"
+    ]
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 23832,
+    "alpha_near_opaque_pixels": 8609,
+    "alpha_nonzero_bbox": [
+      24,
+      23,
+      119,
+      191
+    ],
+    "border_alpha_max": 0
+  },
+  "notes": "原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。"
+}

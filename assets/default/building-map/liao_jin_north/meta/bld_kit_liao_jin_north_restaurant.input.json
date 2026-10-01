@@ -1,0 +1,32 @@
+{
+  "suffix": "restaurant",
+  "title": "酒楼／茶肆",
+  "fp": [
+    12,
+    9
+  ],
+  "path": "exec-ba4353b9-9c39-4682-86ca-77179bf22cab",
+  "prompt": "Create a NEW northern Liao-Jin version of the reference Song game map building, retaining its camera, complete very thin diamond footprint, true clean transparency, entrance direction and detailed realistic ancient architectural rendering. This is a CITY MAP SPRITE, not a perspective architectural showcase. Orthographic yaw45 elevation30, 2:1 dimetric projection, ground axes +0.5 and -0.5, upright verticals, parallel lines, no perspective. Entrance screen LOWER LEFT. Both ground axes clearly readable; complete flat rectangular ground perimeter with LEFT, FRONT and RIGHT corners. Entire sprite occupies central 70 percent of canvas. Main light screen UPPER LEFT, short soft contact shadow lower right. Background alpha=0, NO glow, halo or gradient. No thick plinth, text, people, sky, landscape, neighboring structures, symbols, Ming/Qing palace ornaments or modern features. One self-contained building. Historic regional inspiration, original game interpretation rather than monument reconstruction. Subject: one Liao-Jin northern town wine-house and tea-shop building, footprint12m east-west by9m north-south, original unnamed game establishment in Yanjing/Datong region. Two-story broad timber commercial hall with one restrained gray tiled gabled roof, deep eaves, buff earthen plaster infill and dark wood posts, simple upstairs balcony and rectangular lattice windows. Ground-floor lower-left open veranda has three plain wood tables, benches, ceramic tea bowls and squat wine jars, NO people, no signage or characters. Narrow side service room under lower gray tile roof; thin bare-earth and stone paving strip exactly contained within footprint. Northern weathered materials, no palace ornaments, no red lanterns, no plants. Ground front edge4/3 of side, visible ground edge angles26.565 degrees =0.5 slope, flatter than classic isometric30degrees.",
+  "ref": "bld_kit_song_southern_restaurant",
+  "corners": {
+    "left": [
+      54,
+      832
+    ],
+    "front": [
+      677,
+      1161
+    ],
+    "right": [
+      1254,
+      870
+    ]
+  },
+  "count": 2,
+  "note": "两层酒楼、左下廊前桌凳与酒坛，去掉宋参考红色布幔，以朴素灰瓦土灰墙表达北方；同一写实古风密度。薄铺地轮廓清楚，无文字人物。 已生成2候选对比，选第1候选，原因见rejected_candidate。",
+  "rejected": {
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-333a-7700-b17d-ba49c7363b52/exec-cac50aea-8ab3-4b8a-a92a-703c330cdca0.png",
+    "prompt": "Generate a revised NEW northern Liao-Jin town building asset using reference only for realism, textures and type. Correct the ground footprint projection: orthographic dimetric 2:1, ground edges at exactly26.565degrees to horizontal, slopes+0.5 and-0.5. Do NOT copy the reference camera or ground shape. Transparent RGBA, no background, halo, people, writing or markings, no thick plinth. Front entrance faces screen lower-left. Screen-upper-left light, short contact shadow lower-right. All roof and ground perimeter fully contained with margins. Northern Liao/Jin11th–12th century warm buff plaster, dark timber and plain gray tile, modest broad eaves; no Ming/Qing palace decoration. ONE broad two-story wine-house and tea-shop on footprint12east-west by9north-south. CRITICAL visible thin ground polygon LEFT to FRONT projected x-distance must be1.333times FRONT to RIGHT x-distance; front facade must be visibly broader than side facade. Eliminate side extension that distorts rectangular footprint. Main gray tile gable roof, plain upstairs wood balcony and shutters, lower-left veranda with3simple tables, benches and wine jars, no red cloth or lanterns, no plants. Warm buff wall infill, sober dark timber. Exact2:1 ground slopes with full left,front,right corners.",
+    "reason": "第2候选前底面角触及源图下边，完整薄底面难以核定；选第1候选并保留其宽深比偏差。"
+  }
+}

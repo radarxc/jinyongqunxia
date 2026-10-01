@@ -1,0 +1,46 @@
+{
+  "id": "bld_kit_liao_jin_north_market_stall",
+  "footprint": [
+    5,
+    4
+  ],
+  "corners": [
+    [
+      129,
+      728
+    ],
+    [
+      768,
+      1017
+    ],
+    [
+      1287,
+      788
+    ]
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-7613-7e70-aac6-08db51d5747d/exec-15f1c3bc-cd4b-4a27-993e-3e16b052b7d3.png",
+  "subject": "辽金北方市集铺棚（原创扩展；无名游戏组合，细部待考）",
+  "prompt": "Use case: historical-scene. Generate exactly ONE new production map building sprite for tianshu/default, asset bld_kit_liao_jin_north_market_stall. This is a material-and-camera adaptation of the viewed Song town building sprites, not a copy: realistic ancient construction, restrained weathered textures at the same game asset detail density. Subject: one northern Chinese Liao-Jin period market stall, 10th–12th century Yanjing/Datong regional kit; a sturdy single open timber-frame shed with a modest weathered beige coarse-cloth canopy, packed-earth thin rectangular floor, a low wooden sales counter, two earthenware jars, small baskets and folded plain wool cloth within its bounds. Original game composition, not a reconstruction of a named historical structure. Footprint exactly 5 metres east-west by 4 metres north-south, 5:4 edge-length ratio. Orthographic camera yaw 45 degrees, elevation 30 degrees; strict 2:1 dimetric ground, east axis down-right slope +0.5 and north axis up-right slope -0.5, verticals upright and parallel edges parallel. Ground outline a flat thin parallelogram with all left, front, right contact corners clearly readable; NO raised diorama block. Sales opening and front face screen lower-left. Light from screen upper-left, only a short soft contact shadow screen lower-right. Complete isolated sprite in true transparent RGBA background, ample transparent margin on every side, no clipping. Palette earthen tan, muted wood, beige cloth, stone gray. No people, horses, writing, signs, text, flags, symbols, logo, watermark, backdrop, roads, landscape, sky, grid, checkerboard, modern objects, saturated colors, Ming-Qing tourist ornament, dramatic roof tips, chunky plinth. Reference images guide camera, material realism and detail density only; do not reproduce southern whitewash, plants or palace ornament.",
+  "negative": "人物、文字、徽记、现代物、明清旅游风、厚地台、裁切、景观背景、伪透明棋盘格、非等比拉伸",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_market_stall",
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_market_stall.png",
+      "role": "view_image视觉参考；材质、构图和密度"
+    }
+  ],
+  "candidate_count": 2,
+  "candidate_records": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-7613-7e70-aac6-08db51d5747d/exec-15f1c3bc-cd4b-4a27-993e-3e16b052b7d3.png",
+      "prompt": "Use case: historical-scene. Generate exactly ONE new production map building sprite for tianshu/default, asset bld_kit_liao_jin_north_market_stall. This is a material-and-camera adaptation of the viewed Song town building sprites, not a copy: realistic ancient construction, restrained weathered textures at the same game asset detail density. Subject: one northern Chinese Liao-Jin period market stall, 10th–12th century Yanjing/Datong regional kit; a sturdy single open timber-frame shed with a modest weathered beige coarse-cloth canopy, packed-earth thin rectangular floor, a low wooden sales counter, two earthenware jars, small baskets and folded plain wool cloth within its bounds. Original game composition, not a reconstruction of a named historical structure. Footprint exactly 5 metres east-west by 4 metres north-south, 5:4 edge-length ratio. Orthographic camera yaw 45 degrees, elevation 30 degrees; strict 2:1 dimetric ground, east axis down-right slope +0.5 and north axis up-right slope -0.5, verticals upright and parallel edges parallel. Ground outline a flat thin parallelogram with all left, front, right contact corners clearly readable; NO raised diorama block. Sales opening and front face screen lower-left. Light from screen upper-left, only a short soft contact shadow screen lower-right. Complete isolated sprite in true transparent RGBA background, ample transparent margin on every side, no clipping. Palette earthen tan, muted wood, beige cloth, stone gray. No people, horses, writing, signs, text, flags, symbols, logo, watermark, backdrop, roads, landscape, sky, grid, checkerboard, modern objects, saturated colors, Ming-Qing tourist ornament, dramatic roof tips, chunky plinth. Reference images guide camera, material realism and detail density only; do not reproduce southern whitewash, plants or palace ornament.",
+      "selected": true
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-7613-7e70-aac6-08db51d5747d/exec-7cba1cce-9c80-4ef9-982c-1e88cd27d3df.png",
+      "prompt": "Use case: historical-scene. Generate exactly ONE new production map building sprite for tianshu/default, asset bld_kit_liao_jin_north_market_stall. This is a material-and-camera adaptation of the viewed Song town building sprites, not a copy: realistic ancient construction, restrained weathered textures at the same game asset detail density. Subject: one northern Chinese Liao-Jin period market stall, 10th–12th century Yanjing/Datong regional kit; a sturdy single open timber-frame shed with a modest weathered beige coarse-cloth canopy, packed-earth thin rectangular floor, a low wooden sales counter, two earthenware jars, small baskets and folded plain wool cloth within its bounds. Original game composition, not a reconstruction of a named historical structure. Footprint exactly 5 metres east-west by 4 metres north-south, 5:4 edge-length ratio. Orthographic camera yaw 45 degrees, elevation 30 degrees; strict 2:1 dimetric ground, east axis down-right slope +0.5 and north axis up-right slope -0.5, verticals upright and parallel edges parallel. Ground outline a flat thin parallelogram with all left, front, right contact corners clearly readable; NO raised diorama block. Sales opening and front face screen lower-left. Light from screen upper-left, only a short soft contact shadow screen lower-right. Complete isolated sprite in true transparent RGBA background, ample transparent margin on every side, no clipping. Palette earthen tan, muted wood, beige cloth, stone gray. No people, horses, writing, signs, text, flags, symbols, logo, watermark, backdrop, roads, landscape, sky, grid, checkerboard, modern objects, saturated colors, Ming-Qing tourist ornament, dramatic roof tips, chunky plinth. Reference images guide camera, material realism and detail density only; do not reproduce southern whitewash, plants or palace ornament. Geometry correction for second independent candidate: floor must be STRICTLY 2:1 dimetric, not a shallow perspective rectangle. In relative screen units the visible LEFT / FRONT / RIGHT floor corners are (0,0), (5,2.5), (9,0.5). Thus both edge slopes must be exactly +0.5 and -0.5. Build the whole ground-contact shape and every parallel edge from that geometry. Keep the front and right sides of the floor fully visible beyond stall feet. Use about 80% of canvas with generous clear margin; do not put any pixels on the canvas border.",
+      "selected": false
+    }
+  ],
+  "notes": "两候选均view_image；第一版材质与基线更近且底面比例更准，选第一版。主体完整、无文字，草布与木构质感匹配。底面双轴较2:1目标偏浅，已达2候选限额，保留candidate并明确axis_pass=false，不声称严格拼接几何通过。"
+}

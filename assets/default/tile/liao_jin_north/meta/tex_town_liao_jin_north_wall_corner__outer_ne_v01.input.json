@@ -1,0 +1,31 @@
+{
+  "id": "tex_town_liao_jin_north_wall_corner__outer_ne_v01",
+  "subject": "辽金北方（11–13世纪）·夯土外转角（原创扩展；匿名年代意象，非文物复原）",
+  "key": "corner",
+  "footprint": [
+    2,
+    2
+  ],
+  "points": [
+    [
+      68,
+      1124
+    ],
+    [
+      608,
+      1479
+    ],
+    [
+      1165,
+      1141
+    ]
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82c-7100-a176-3ab9a2e08c7e/exec-b2785b08-d8e1-4337-bced-bf5a7078078c.png",
+  "prompt": "Use case: historical-scene. ONE isolated90degree L-shaped rammed-earth outer city wall corner for Liao/Jin northern Chinese map,11th-12th century. Preserve reference type: two connected wall arms, back joint at upper center, open hollow corner faces lower center. Footprint2m by2m; arms one cell thick, wall3m high. Strict orthographic2:1 dimetric yaw45 elevation30, all horizontal planar edges slope+0.5/-0.5, verticals upright, no vanishing point. Muted cool grey-ochre rammed earth with subtle horizontal strata, plain flat wall tops, no cap, no masonry brick pattern, no battlements, no floor, no base slab or soil island. Same realistic fine matte earth material density as Song reference, north earthen city visual vocabulary, anonymous original design. Soft upper-left light, tiny lower-right contact shadow.20percent transparent margin, complete intact feet and top, TRUE RGBA outside and within open hollow. No environment sky text people labels watermark fake checkerboard glow or plants. Single asset.",
+  "references": [
+    "assets/default/baseline/tile/tex_town_song_dali_wall_corner__outer_ne_v01.png"
+  ],
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "measurement_note": "L/R为两臂外端底角；隐藏后底角B由上后角[625,26]+内角竖向高度760推算为[625,786]；F=L+R-B=[608,1479]为画外虚拟占地角；不是实物像素。"
+}
