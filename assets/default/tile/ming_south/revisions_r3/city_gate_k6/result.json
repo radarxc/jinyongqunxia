@@ -1,0 +1,15 @@
+{
+"id": "tex_town_ming_south_city_gate__k6_r000_v01",
+"run": 3,
+"date": "2026-09-30",
+"tool": "image_gen built-in",
+"transparent_background": true,
+"footprint_unchanged": [10, 4],
+"attempts": 2,
+"selected_candidate": null,
+"entry": null,
+"decision": "rejected; 原成品、source、manifest与geometry逐字节保留",
+"original_sha256": "becb9e5f6cbab0695e0bd7f714794e8533143ef4862ee2be287238a78bcc1c13",
+"candidates": [{"candidate": 1, "file": "candidate_1.png", "source_path": "/Users/bytedance/.codex/generated_images/01a0f46a-e809-7922-bb5d-ad704dc7eb83/exec-500e2f55-2a50-4d51-90c7-f03645b73fca.png", "sha256": "4b0722881a2391f69c140425a4d393afca1a9ca8a6e87372cbbafa80b7f05865", "size_px": [1254, 1254], "mode": "RGBA", "alpha_range": [0, 255], "prompt_file": "prompt_1.txt", "prompt_sha256": "6ce99f39acfba0002d80ea34c642a6412f897ef5a43504a55f211201e40f3c17", "selected": false, "view_image_checked": true, "measurements": {"points_px": {"A": [81, 763], "B": [914, 1225], "C": [1175, 1087], "P": [248, 865], "Q": [741, 1119]}, "point_roles": "A左外前足/B右外前足/C右外后足/P左内前足/Q右内前足", "front_slope": 0.5546218487394958, "depth_slope": -0.5287356321839081, "width_depth_ratio": 3.1915708812260535, "target_width_depth_ratio": 2.5, "front_pier_passage_pier_cells": [2.0048019207683074, 5.918367346938775, 2.076830732292917], "provisional_anchor_px": [628.0, 925.0], "normalized": false, "formula": "slope=dy/dx;ratio=(Bx-Ax)/(Cx-Bx);width_cells=segment_dx/(Bx-Ax)*footprint_w;anchor=(A+C)/2", "alpha128_bottom_edge_line_fits_left_front_right_front_right_depth": [{"x_range": [90, 230], "slope": 0.6210796695064004, "intercept": 711.7265436591176}, {"x_range": [770, 890], "slope": 0.6163460235740418, "intercept": 662.2096599376774}, {"x_range": [960, 1160], "slope": -0.5167400620659078, "intercept": 1692.8439682774247}]}, "rejection": "底面宽深比例及双轴不符；门墩前沿拟合也不平行，不能将跨孔连线充作全部前轴合格证据。", "referenced_images": [{"file": "assets/default/tile/ming_south/tex_town_ming_south_city_gate__k6_r000_v01.png", "sha256": "becb9e5f6cbab0695e0bd7f714794e8533143ef4862ee2be287238a78bcc1c13"}, {"file": "assets/default/tile/ming_south/revisions_r3/city_gate_k4/candidate_2.png", "sha256": "9dbf78019a5d526b8176d4c0b444b8fe6c8d0cad0fa4c2f502a15a73b8059f0a"}]}, {"candidate": 2, "file": "candidate_2.png", "source_path": "/Users/bytedance/.codex/generated_images/01a0f46a-e809-7922-bb5d-ad704dc7eb83/exec-8fb4ba74-6dbf-40ea-a375-7cc678aa6859.png", "sha256": "792dcc1e4b98929aebe7ae2b3134bcb8ba063ce754f83c7bb87e14fa0814e7cd", "size_px": [1536, 1024], "mode": "RGBA", "alpha_range": [0, 254], "prompt_file": "prompt_2.txt", "prompt_sha256": "ab986eb863bb95605ed0cd5163cc08fbf97bd25b1b3fe3ef96cb96babfb3dbb5", "selected": false, "view_image_checked": true, "rejection": "右门墩底脚被源图下边截断，底行78个alpha>=128像素；底面角缺失，不能用透明补边修复。", "clipped_alpha_row": 1023, "bottom_row_alpha128_count": 78, "referenced_images": [{"file": "assets/default/tile/ming_south/revisions_r3/city_gate_k6/candidate_1.png", "sha256": "4b0722881a2391f69c140425a4d393afca1a9ca8a6e87372cbbafa80b7f05865"}]}],
+"measurement_note": "view_image逐图检查，人工底面测点约±3px；另对alpha>=128下轮廓做局部直线拟合。源图尺寸未改、未归一化。目标±0.5容差±0.03不满足，不用脚本元数据通过冒称几何通过。"
+}

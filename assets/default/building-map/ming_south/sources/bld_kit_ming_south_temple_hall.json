@@ -1,0 +1,27 @@
+{
+  "source": "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-e94bc4f9-c4ef-4e37-bd09-fad64e4aea99.png",
+  "prompt": "Use case: style-transfer. EDIT the supplied Southern Song map-building PNG into a Ming Jiangnan regional variant. Preserve its orthographic 45-degree camera, 30-degree elevation, 2:1 ground axes, footprint parallelogram silhouette, grounded scale, same fine realistic detail density, upper-left daylight, bottom-centre footprint anchor, all complete eaves and transparent margins. Preserve TRUE RGBA alpha outside silhouette; no ground halo. Change wall finish to chalk-white lime plaster, dark brown chestnut timber, simple straight-line Ming lattice windows, charcoal-grey clay tile roofs and restrained Jiangnan upward eave corners. Make an original derivative game asset, not a replica of a named historical building. No new text, signage, people, modern objects, backgrounds, sky, plinth, border, grid, checkerboard or watermarks. Keep all source clear margins. Subject: Ming Jiangnan Buddhist temple main hall, one dignified timber worship building with grey tiled hip-and-gable roof and restrained brown supporting brackets, plaster-white end walls, deep portico, open central door dimly showing only a generic altar silhouette, low pale stone base and front steps. No statues outside, garden, flags, writing or monks. Footprint 14 by 11. Keep the interior generic altar low contrast; simple straight lattice, remove outdoor incense burner to keep threshold clear. Target footprint14:11 and ground axes±0.5. Final transparent image only.",
+  "ref": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_temple_hall.png",
+  "candidate_count": 2,
+  "source_sha256": "459006bf0f2aeeee64ca580dd42a5aa5bc21bdd08d3c5319b5a09fdb56ab36ce",
+  "source_size_px": [
+    1441,
+    1091
+  ],
+  "source_mode": "RGBA",
+  "source_alpha_extrema": [
+    0,
+    255
+  ],
+  "candidate_index": 1,
+  "selected": true,
+  "selection_note": "2选1：选第一候选，第二候选台基距源图下边仅1px且更拥挤；第一候选右轴仍超建议容差",
+  "tool": "image_gen built-in",
+  "transparent_background": true,
+  "explicit_image_inputs": [
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_temple_hall.png"
+  ],
+  "image_model": "not_exposed_by_tool",
+  "image_effort": "not_exposed_by_tool",
+  "raw_view_image_inspected": true
+}

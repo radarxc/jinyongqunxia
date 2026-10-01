@@ -1,4 +1,4 @@
-# 建筑·地图拼接 · 宋套件提示词模板
+# 建筑·地图拼接 · 宋基线与明江南套件提示词模板
 
 > 归属：`assets/default` 的透明建筑地图件制作；不定义玩法、城市布局、运行时网格或相机。
 > 上游：作者 [STYLE.md](../STYLE.md)、本任务、[素材登记约定](../../README.md)；`design/22` §1–§3、§7、§10–§11；`tech/07` §1.4、§2.7、§2.9、§5.5.2。
@@ -506,6 +506,59 @@ python3 tools/lint/check_ids.py --strict
 
 §11另登记19个 `bld_kit_song_north_*` 资产ID，具体后缀与占地见§11.1；它们是本任务授权的同构套件，不新增玩法、城市、机构或营生ID。`song_north` 尚须由下游接入正式城市目录 / schema，不能假称本素材任务已完成该上游变更。
 西域新增 19 个 `bld_kit_xiyu_*` 资产 ID 见 §11.1；仅素材族，不新增 `biz_*`、`city_*` 或 `sect_*`。`xiyu` 在上游套件枚举的同步事项交 KIT-xiyu 报告 §6。
+## 11. 明 · 江南套件（`ming_south`）
+
+本节新增19个 `bld_kit_ming_south_*` 地图建筑候选，目录 `assets/default/building-map/ming_south/`，`era: ming_south`。南京、苏州、杭州地域形制组合均为 **（原创扩展）**，不是具名古建复原。明代镖局称谓与具体商帮会馆年代仍 **（待考）**，默认匿名护运货栈；不新增营生或航线入口。
+
+### 11.1 年代与地域差异
+
+- 沿用宋江南的写实木石、灰陶瓦、细节密度和克制旧化；增强粉墙黛瓦、石基、窄面阔商住、天井院落。普通民居以硬山轮廓和朴素屋脊为主，不把夸张马头墙铺满全城。
+- 木构偏栗壳褐色，窗格偏直线柳条 / 书条式；不用清中后期繁密曲线彩玻璃、通体彩画、金龙和满街红灯笼。寺观、衙门、王府保留等级差异，彩画不作为精确制度复原。
+- 单层商铺用布货和日用品；两层铺屋以高柜台、牢固门窗表现当铺意象；客栈、茶肆用客房、门廊、茶桌和酒坛区分。货栈与院落兼具商帮会馆气质，不追加 `biz_*`。
+- 宗教地标选八角佛塔，逐层收分、出檐、塔刹；不用西域清真寺或藏式殿堂。层数、尺寸为游戏概化，不命名为报恩寺塔。河埠不带水面和船；城门守舍与完整城门贴片分开。
+
+### 11.2 占地、尺度与实际提示词
+
+下表后缀均加 `bld_kit_ming_south_`；冻结项见 `design/22` §3.4，其余按 §3.3 江南同功能项给出 **【建议值】**，由后续 CitySpec 覆写。
+
+| 后缀 | 用途 | 占地 `[w,h]` | 依据 |
+|---|---|---|---|
+| house_small | 小民居 | `[7,6]` | 明民居骨架 |
+| house_large / courtyard | 大民居 / 天井院落 | `[10,8]` | 【建议值】宋江南院落 |
+| shop_1f / shop_2f | 单层 / 两层商铺 | `[7,5]` | 明商铺骨架 |
+| inn / restaurant | 客栈 / 酒楼茶肆 | `[12,9]` | 【建议值】宋江南同功能 |
+| market_stall | 市场棚 | `[3,2]` | 【建议值】宋江南同功能 |
+| yamen | 衙门官署 | `[16,13]` | 明衙门骨架 |
+| biaoju | 护运货栈 | `[15,12]` | 明镖局骨架 |
+| casino | 赌场外观 | `[10,8]` | 【建议值】宋江南同功能 |
+| manor | 山庄大院 | `[16,13]` | 【建议值】宋江南同功能 |
+| wangfu | 王府主殿模块 | `[22,18]` | 明王府骨架 |
+| temple_hall | 寺观殿堂 | `[14,11]` | 明寺观骨架 |
+| pagoda | 佛塔 | `[7,7]` | 【建议值】宋江南同功能 |
+| guardhouse / stable | 守舍 / 马厩 | `[7,5]` / `[9,7]` | 【建议值】宋江南同功能 |
+| warehouse / wharf | 仓屋 / 河埠 | `[10,8]` / `[10,4]` | 【建议值】宋江南同功能 |
+
+本任务短边≥256 px，仍按 §4 的64×32格尺度与底面中心锚点：地面范围为 `32(w+h) × 16(w+h)`，7×6民居=416×208、22×18王府=1280×640；不把整个PNG压成2:1。只声明原向单视图，不能旋转图片冒充新朝向。实际逐张全文、参考输入和候选次数保存在 manifest / 来源记录；差异模板为：
+
+```text
+Edit the supplied Song southern sprite into a Ming Jiangnan regional variant.
+Preserve realistic matte wood/stone/clay materials and fine detail density.
+White lime plaster, charcoal grey tiles, chestnut timber, straight lattice windows.
+Orthographic yaw45 elevation30, ground slopes +0.5/-0.5, footprint {w} by {h}.
+Entrance lower-left; upper-left light, short lower-right contact shadow.
+One isolated complete asset, true RGBA, generous clear margins.
+No people, text, watermark, modern glass, Qing ornament, scenery or thick pedestal.
+```
+
+每类型最多2候选，逐张 `view_image`；常规PIL处理仅裁边、等比缩放、透明pad并保留alpha。第4轮对审核点名13项另作分段横向缩放与逐列纵移，以底面三点锁定双轴和占地比例且保持竖线竖直，证据见套件 `revisions_r4/verification.json`。原图在alpha=0处可能存灰褐RGB，须用实际alpha或合成预览判断。全部为 `candidate`，整城接缝、遮挡、四向接口仍 **（待实测）**。
+
+形制来源（访问2026-09-30）：苏州市园林局《[建筑](https://ylj.suzhou.gov.cn/szsylj/ylys/201903/484421d38f504f5787a8f307925e3ad7.shtml)》《[木窗的匠心和工艺](https://ylj.suzhou.gov.cn/szsylj/ylys/202404/613a96d3071d489d82e3b0f303e41754.shtml)》、故宫《[琉璃持钵佛像砖](https://www.dpm.org.cn/collection/impres/228949.html)》附报恩寺塔说明。仅取形制母题，不把后世修复建筑当作明代实测样本。
+
+## 本文新增术语与 ID
+
+明江南新增19个 `bld_kit_ming_south_*` 资产ID，完整清单见§11；只扩展素材目录，不新增玩法定义。
+
+不新增玩法 ID；复用 §3 的38个建筑资产ID与最新§4.4的7个植物资产ID。植物文件使用`<asset_id>__v01/v02.png`，双下划线后是变体键，不是新玩法ID。`building.anchor`为最终PNG底面中心像素，`sources/`为归档生成来源，`meta/`为逐type制作元数据。它们是本批资产约定，不扩大`town/schema.yaml`的现有定义范围。
 
 ## 待决事项 / 依赖
 
@@ -535,6 +588,8 @@ python3 tools/lint/check_ids.py --strict
 - 西域地域形制是否逐朝另出变体：默认本包为通用候选意象，具体年代细部（待考）；后续具名城镇须筛选，不能以 `era: xiyu` 跳过考据。
 - 西域两候选后仍有投影偏差：第2轮已重出点名16件；大民居、棋戏院、茶肆仍有轴向超差，返修未全部通过。默认保留真实残差与原始候选，不突破每轮两候选上限，不通过非等比拉伸修饰数据；详见包内 QA 与 KIT-xiyu 报告。
 
+- 明江南补充占地与历史细部：默认§11表的 **【建议值】** 与匿名原创建筑，最终按具体城市覆写；本轮不把建议值写入 design/22。
+- 明江南严格投影与整城拼接：**已解决（点名13项）**，双轴±0.500、登记占地比例与底面中心锚点已按像素复算；仍保持单视图 `candidate`，整城接缝、碰撞与遮挡待总装实测。
 - 旧“建筑占格与正式底面中心未定”：**已解决**，本批消费 `design/22` §1.4、§3 的占地与中心锚点；旧 6×4 / 6×5 自拟尺寸和临时前角锚点不再作为规范。
 - 旧“大理右影触边、两图留白 / 精确轴向 / 比例未达标”：**已解决（本次入选处置）**，ART-B 两张不直接复制入选，按新清单重出；不表示旧图已修复。留白、轴向和尺度仍需对每张新图实测。
 - 旧参考版本漂移：保留追溯。大理当前实测 SHA 为 `35092609538a50ba60ca5e972b2671831ee9ea36378d91e207acf1cb5665661c`，与较早 `fd28…` 版本登记不同；临安为 `700627a452f23e4de98441e2eb26b23397d98735ad7b1b1914e0d2c7a0fe6d55`。当前同名文件不能证明旧调用输入，默认不作为本批图像参考或入选图。

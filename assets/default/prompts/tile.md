@@ -142,7 +142,36 @@ python3 tools/agents/check_assets.py assets/default/baseline/tile --min 40 --max
 python3 tools/lint/check_ids.py --strict
 ```
 
-## 9. 待决事项与默认值
+## 9. 明 · 江南套件（`ming_south`）
+
+本批新增7件，放 `assets/default/tile/ming_south/`，复用宋江南写实木石质感和细节密度，增强明代砖砌防务与江南石桥意象。所有条目保持 `candidate`，只交原向一张，不冒充完整四向 / 全自动接缝家族。
+
+| kind / 变体 | 内容 | 逻辑占地 | 差异 |
+|---|---|---|---|
+| city_gate / k4_r000_v01 | 净宽4格城门 | `[8,4]` | 厚灰砖门墩、石基、灰瓦楼体 |
+| city_gate / k6_r000_v01 | 净宽6格城门 | `[10,4]` | 加宽中央通行孔，不拉伸小门PNG |
+| wall / brick_r000_v01 | 直墙段 | `[1,1]` | 灰砖直墙，平顶无垛口 |
+| wall_corner / outer_ne_v01 | 城墙转角 | `[2,2]` | 与直段统一砖色，独立转角轮廓 |
+| bridge / stone_w5_l10_r000_v01 | 单孔石拱桥 | `[5,10]` | 花岗岩、分节拱券；整桥静态候选 |
+| tree_cluster / willow_v01 | 柳树 | `[3,3]` | 柔垂枝叶，无整块土地 |
+| tree_cluster / bamboo_v01 | 竹丛 | `[2,2]` | 疏密竿叶、无花盆或整块地台 |
+
+门按 `design/22` §4.3：`footprint=(k+4)×4`、`passage=k×4`，两侧各2格门墩；4格门地面外包384×192px，6格门448×224px（`32(w+h)` / `16(w+h)`）。第4轮已按控制点复算明江南两门，净孔实测4.000/6.000格；墙、桥、植物占地沿用宋贴片同构 **【建议值】**。
+
+```text
+One isolated Ming Jiangnan {gate / wall / stone arch bridge / plant} sprite.
+Match Song southern realistic matte wood, brick and stone, same detail density.
+Orthographic yaw45 elevation30, exact2:1 ground axes +0.5/-0.5.
+Upper-left light, short lower-right contact shadow, true RGBA transparency.
+Complete silhouette; gate passage and space under bridge arch stay transparent.
+No people, text, scenery, painted checkerboard, modern fittings or Qing ornament.
+```
+
+年代造型均 **（原创扩展）**：南京明城墙只提供厚城台与砖砌门道母题，不把缩小门楼冒称完整聚宝门 / 瓮城测绘；灰瓦门楼为概化重构。桥取明代江南单孔石拱桥母题。柳与竹为地方植物意象，具体历史栽植点位 **（待考）**。默认按底面 / 根部 `anchor_px` 放置；桥含栏杆的整图仅用于静态预览，单位遮挡分层、墙段连接和门洞碰撞仍 **（待实测）**。
+
+来源（访问2026-09-30）：南京城墙保护管理中心《[天下第一瓮城——南京城墙中华门](https://wlj.nanjing.gov.cn/ztzl/mcq/gzqk/202302/t20230228_3838766.html)》；苏州市地方志《[木渎古镇的桥](https://dfzb.suzhou.gov.cn/dfzb/fzxh/201009/cee41a477c3040f99780877eaf61c72d.shtml)》（搜索返回相关全文，直开失败）；苏州市园林局《[建筑](https://ylj.suzhou.gov.cn/szsylj/ylys/201903/484421d38f504f5787a8f307925e3ad7.shtml)》。本任务不引入新的技术版本、价格或浏览器支持声明。
+
+## 10. 待决事项与默认值
 
 | 事项 | 默认值 |
 |---|---|
@@ -346,3 +375,7 @@ python3 tools/lint/check_ids.py --strict
 ```
 
 文件门禁不检验透明孔、光向、年代与投影，上述项必须另列目视/像素实测结论。默认沿用本节占地、材料母题和单视图候选范围；作者尚需确认植物选择、形制、门墙尺度与残余几何偏差，具体结果见本套件manifest和任务报告。
+| 无缝颜色、门楼孔与斜率未通过 | 明江南门孔与斜率已在第4轮解决；其余套件的无缝颜色与接缝仍按各自记录后续实测 |
+| 风格、意象年代与植物可读性 | 保持 candidate，交作者审批；未回复不视为 approved |
+| 明江南单视图的城门对格 / 直墙与转角高度 | **已解决**：两门双轴±0.500、净孔4.000/6.000格；三格L形墙角双轴±0.500、接口高124px，与直墙一致；整城接缝仍待实测 |
+| 明江南整桥与植物接口 | 整桥只供静态预览，另拆栏杆方能验证单位遮挡；柳、竹不冒充 design/22 §4.4 的双变体植物公告板 |
