@@ -84,7 +84,7 @@ window.__g = {
     if (!(await this.waitFor(() => /photo/i.test(this.ph()), 6000))) return { ok: false, id, why: 'template not applied' };
     const ed = document.querySelector('rich-textarea .ql-editor'); ed.focus(); document.execCommand('selectAll', false, null); document.execCommand('insertText', false, P); await this.sleep(200);
     if (ed.innerText.trim().length < P.length * 0.9) return { ok: false, id, why: 'prompt not set' };
-    ed.focus();
+    ed.focus(); const sel = window.getSelection(); sel.selectAllChildren(ed); sel.collapseToEnd();  // 光标移到末尾，回车才会发送
     return { ok: true, id, left: q.length };
   },
   async markSent(id, ms = 20000) {
