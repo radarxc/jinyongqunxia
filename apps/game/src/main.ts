@@ -5,6 +5,7 @@ import { createGameCoreHost } from './core-host';
 import { projectTitleState } from './projection';
 import { schedulePwaRegistration } from './pwa';
 import { mountPlaceholderScene } from './render-host';
+import { mountStorageDemo } from './storage-demo';
 import './style.css';
 
 const root = document.querySelector<HTMLDivElement>('#app');
@@ -19,6 +20,11 @@ createApp(GameUi).use(pinia).mount(uiRoot);
 const ui = useUiStore(pinia);
 const host = createGameCoreHost();
 let disposeScene: (() => void) | undefined;
+let disposeStorage: (() => Promise<void>) | undefined;
+
+void mountStorageDemo(root).then((dispose) => {
+  disposeStorage = dispose;
+});
 
 void Promise.all([host.tick(), mountPlaceholderScene(canvas)])
   .then(async ([result, dispose]) => {
@@ -40,6 +46,7 @@ window.addEventListener(
   'pagehide',
   () => {
     disposeScene?.();
+    void disposeStorage?.();
     host.dispose();
   },
   { once: true },

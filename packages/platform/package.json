@@ -6,11 +6,17 @@
   "exports": "./src/index.ts",
   "scripts": {
     "test": "vitest run src",
+    "test:coverage": "vitest run src/storage --coverage --coverage.include=src/storage/**/*.ts --coverage.exclude=src/storage/**/*.test.ts --coverage.thresholds.statements=80 --coverage.thresholds.branches=80 --coverage.thresholds.functions=80 --coverage.thresholds.lines=80",
     "typecheck": "tsc -b"
   },
   "dependencies": {
     "@tianshu/core": "workspace:*",
     "@tianshu/shared": "workspace:*",
-    "comlink": "catalog:"
+    "comlink": "catalog:",
+    "dexie": "4.4.6"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "5.0.3",
+    "fake-indexeddb": "6.2.5"
   }
 }
