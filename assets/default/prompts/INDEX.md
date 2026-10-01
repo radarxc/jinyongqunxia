@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **285** 份：已入库 126、待出图 115、工作区候选 32、待重出（候选是代码画的假图） 12。**待出图队列 127 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **285** 份：已入库 150、待出图 115、待重出（候选是代码画的假图） 12、工作区候选 8。**待出图队列 127 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -253,34 +253,34 @@
 | 17 | 罗汉拳谱 | `it_miji_luohanquan` | 黄 | 秘籍·全本 | 已入库 | [it_miji_luohanquan.md](items/manuals/it_miji_luohanquan.md) | manifest |
 | 18 | 太祖长拳谱 | `it_miji_taizuchangquan` | 黄 | 秘籍·全本 | 已入库 | [it_miji_taizuchangquan.md](items/manuals/it_miji_taizuchangquan.md) | manifest |
 
-### 兵器（24）· 工作区候选 24
+### 兵器（24）· 已入库 24
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
-| 1 | 霸王枪 | `eq_bawangqiang` | 天 | 兵器·枪 | 工作区候选 | [eq_bawangqiang.md](items/weapons/eq_bawangqiang.md) | manifest |
-| 2 | 打狗棒 | `eq_dagoubang` | 天 | 兵器·棍 | 工作区候选 | [eq_dagoubang.md](items/weapons/eq_dagoubang.md) | manifest |
-| 3 | 金蛇剑 | `eq_jinshejian` | 天 | 兵器·剑 | 工作区候选 | [eq_jinshejian.md](items/weapons/eq_jinshejian.md) | manifest |
-| 4 | 屠龙刀 | `eq_tulongdao` | 天 | 兵器·重刀 | 工作区候选 | [eq_tulongdao.md](items/weapons/eq_tulongdao.md) | manifest |
-| 5 | 玄铁重剑 | `eq_xuantiejian` | 天 | 兵器·重剑 | 工作区候选 | [eq_xuantiejian.md](items/weapons/eq_xuantiejian.md) | manifest |
-| 6 | 倚天剑 | `eq_yitianjian` | 天 | 兵器·剑 | 工作区候选 | [eq_yitianjian.md](items/weapons/eq_yitianjian.md) | manifest |
-| 7 | 碧玉刀 | `eq_biyudao` | 地 | 兵器·刀 | 工作区候选 | [eq_biyudao.md](items/weapons/eq_biyudao.md) | manifest |
-| 8 | 君子剑 | `eq_junzijian` | 地 | 兵器·剑 | 工作区候选 | [eq_junzijian.md](items/weapons/eq_junzijian.md) | manifest |
-| 9 | 离别钩 | `eq_libiegou` | 地 | 兵器·奇门钩 | 工作区候选 | [eq_libiegou.md](items/weapons/eq_libiegou.md) | manifest |
-| 10 | 烈火旗 | `eq_liehuoqi` | 地 | 兵器·奇门旗 | 工作区候选 | [eq_liehuoqi.md](items/weapons/eq_liehuoqi.md) | manifest |
-| 11 | 淑女剑 | `eq_shunvjian` | 地 | 兵器·剑 | 工作区候选 | [eq_shunvjian.md](items/weapons/eq_shunvjian.md) | manifest |
-| 12 | 血刀 | `eq_xuedao` | 地 | 兵器·刀 | 工作区候选 | [eq_xuedao.md](items/weapons/eq_xuedao.md) | manifest |
-| 13 | 禅杖 | `eq_chanzhang` | 玄 | 兵器·棍杖 | 工作区候选 | [eq_chanzhang.md](items/weapons/eq_chanzhang.md) | manifest |
-| 14 | 金笛 | `eq_jindi` | 玄 | 兵器·奇门笛 | 工作区候选 | [eq_jindi.md](items/weapons/eq_jindi.md) | manifest |
-| 15 | 龙泉剑 | `eq_longquanjian` | 玄 | 兵器·剑 | 工作区候选 | [eq_longquanjian.md](items/weapons/eq_longquanjian.md) | manifest |
-| 16 | 三节棍 | `eq_sanjiegun` | 玄 | 兵器·鞭索 | 工作区候选 | [eq_sanjiegun.md](items/weapons/eq_sanjiegun.md) | manifest |
-| 17 | 铁胆 | `eq_tiedan` | 玄 | 兵器·奇门 | 工作区候选 | [eq_tiedan.md](items/weapons/eq_tiedan.md) | manifest |
-| 18 | 雁翎刀 | `eq_yanlingdao` | 玄 | 兵器·刀 | 工作区候选 | [eq_yanlingdao.md](items/weapons/eq_yanlingdao.md) | manifest |
-| 19 | 单刀 | `eq_dandao` | 黄 | 兵器·刀 | 工作区候选 | [eq_dandao.md](items/weapons/eq_dandao.md) | manifest |
-| 20 | 短匕 | `eq_duanbi` | 黄 | 兵器·奇门匕 | 工作区候选 | [eq_duanbi.md](items/weapons/eq_duanbi.md) | manifest |
-| 21 | 花枪 | `eq_huaqiang` | 黄 | 兵器·枪 | 工作区候选 | [eq_huaqiang.md](items/weapons/eq_huaqiang.md) | manifest |
-| 22 | 齐眉棍 | `eq_qimeigun` | 黄 | 兵器·棍 | 工作区候选 | [eq_qimeigun.md](items/weapons/eq_qimeigun.md) | manifest |
-| 23 | 青钢剑 | `eq_qinggangjian` | 黄 | 兵器·剑 | 工作区候选 | [eq_qinggangjian.md](items/weapons/eq_qinggangjian.md) | manifest |
-| 24 | 软鞭 | `eq_ruanbian` | 黄 | 兵器·鞭索 | 工作区候选 | [eq_ruanbian.md](items/weapons/eq_ruanbian.md) | manifest |
+| 1 | 霸王枪 | `eq_bawangqiang` | 天 | 兵器·枪 | 已入库 | [eq_bawangqiang.md](items/weapons/eq_bawangqiang.md) | manifest |
+| 2 | 打狗棒 | `eq_dagoubang` | 天 | 兵器·棍 | 已入库 | [eq_dagoubang.md](items/weapons/eq_dagoubang.md) | manifest |
+| 3 | 金蛇剑 | `eq_jinshejian` | 天 | 兵器·剑 | 已入库 | [eq_jinshejian.md](items/weapons/eq_jinshejian.md) | manifest |
+| 4 | 屠龙刀 | `eq_tulongdao` | 天 | 兵器·重刀 | 已入库 | [eq_tulongdao.md](items/weapons/eq_tulongdao.md) | manifest |
+| 5 | 玄铁重剑 | `eq_xuantiejian` | 天 | 兵器·重剑 | 已入库 | [eq_xuantiejian.md](items/weapons/eq_xuantiejian.md) | manifest |
+| 6 | 倚天剑 | `eq_yitianjian` | 天 | 兵器·剑 | 已入库 | [eq_yitianjian.md](items/weapons/eq_yitianjian.md) | manifest |
+| 7 | 碧玉刀 | `eq_biyudao` | 地 | 兵器·刀 | 已入库 | [eq_biyudao.md](items/weapons/eq_biyudao.md) | manifest |
+| 8 | 君子剑 | `eq_junzijian` | 地 | 兵器·剑 | 已入库 | [eq_junzijian.md](items/weapons/eq_junzijian.md) | manifest |
+| 9 | 离别钩 | `eq_libiegou` | 地 | 兵器·奇门钩 | 已入库 | [eq_libiegou.md](items/weapons/eq_libiegou.md) | manifest |
+| 10 | 烈火旗 | `eq_liehuoqi` | 地 | 兵器·奇门旗 | 已入库 | [eq_liehuoqi.md](items/weapons/eq_liehuoqi.md) | manifest |
+| 11 | 淑女剑 | `eq_shunvjian` | 地 | 兵器·剑 | 已入库 | [eq_shunvjian.md](items/weapons/eq_shunvjian.md) | manifest |
+| 12 | 血刀 | `eq_xuedao` | 地 | 兵器·刀 | 已入库 | [eq_xuedao.md](items/weapons/eq_xuedao.md) | manifest |
+| 13 | 禅杖 | `eq_chanzhang` | 玄 | 兵器·棍杖 | 已入库 | [eq_chanzhang.md](items/weapons/eq_chanzhang.md) | manifest |
+| 14 | 金笛 | `eq_jindi` | 玄 | 兵器·奇门笛 | 已入库 | [eq_jindi.md](items/weapons/eq_jindi.md) | manifest |
+| 15 | 龙泉剑 | `eq_longquanjian` | 玄 | 兵器·剑 | 已入库 | [eq_longquanjian.md](items/weapons/eq_longquanjian.md) | manifest |
+| 16 | 三节棍 | `eq_sanjiegun` | 玄 | 兵器·鞭索 | 已入库 | [eq_sanjiegun.md](items/weapons/eq_sanjiegun.md) | manifest |
+| 17 | 铁胆 | `eq_tiedan` | 玄 | 兵器·奇门 | 已入库 | [eq_tiedan.md](items/weapons/eq_tiedan.md) | manifest |
+| 18 | 雁翎刀 | `eq_yanlingdao` | 玄 | 兵器·刀 | 已入库 | [eq_yanlingdao.md](items/weapons/eq_yanlingdao.md) | manifest |
+| 19 | 单刀 | `eq_dandao` | 黄 | 兵器·刀 | 已入库 | [eq_dandao.md](items/weapons/eq_dandao.md) | manifest |
+| 20 | 短匕 | `eq_duanbi` | 黄 | 兵器·奇门匕 | 已入库 | [eq_duanbi.md](items/weapons/eq_duanbi.md) | manifest |
+| 21 | 花枪 | `eq_huaqiang` | 黄 | 兵器·枪 | 已入库 | [eq_huaqiang.md](items/weapons/eq_huaqiang.md) | manifest |
+| 22 | 齐眉棍 | `eq_qimeigun` | 黄 | 兵器·棍 | 已入库 | [eq_qimeigun.md](items/weapons/eq_qimeigun.md) | manifest |
+| 23 | 青钢剑 | `eq_qinggangjian` | 黄 | 兵器·剑 | 已入库 | [eq_qinggangjian.md](items/weapons/eq_qinggangjian.md) | manifest |
+| 24 | 软鞭 | `eq_ruanbian` | 黄 | 兵器·鞭索 | 已入库 | [eq_ruanbian.md](items/weapons/eq_ruanbian.md) | manifest |
 
 ### 衣物（12）· 已入库 12
 
