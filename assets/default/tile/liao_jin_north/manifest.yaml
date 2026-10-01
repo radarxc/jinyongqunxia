@@ -3,33 +3,49 @@
   category: tile
   style: default
   subject: 辽金北方（11–13世纪）·带栏木桥（原创扩展；匿名年代意象，非文物复原）
-  prompt: 'Use case: historical-scene. Make ONE isolated complete wooden bridge as a production TRANSPARENT game tile, on
-    totally clear RGBA background. OBJECT ITSELF MUST BE FULLY OPAQUE alpha255; background alpha0; absolutely NO atmospheric
-    glow, blurred backdrop, fog, gradients or scenery. Style: realistic ancient northern Chinese Liao/Jin wooden town bridge,
-    weathered desaturated pale brown wood with subtle fine grain, plain construction, roughly 11th-13th centuries original
-    game design. ONLY a BROAD SHORT rectangular timber beam deck with simple low twin horizontal wooden rails on its two long
-    sides, three square posts on each side, 8 cross-planks. Empty short ends remain fully open and visible. CRITICAL GEOMETRY:
-    Bridge physical rectangle WIDTH3 LENGTH5, WIDTH=60% of LENGTH. This is near-square broad platform, NOT long narrow footbridge.
-    Flat deck in true 2:1 game dimetric projection; 45 degree azimuth, 30 degree elevation, parallel orthographic projection;
-    every long edge goes RIGHT-UP at EXACT slope -0.5; every short edge goes RIGHT-DOWN at EXACT slope +0.5, about26.565degrees
-    from horizontal, NOT steeper standard isometric30degree ground diagonals. On the landscape1536x1024 canvas, deck outer
-    vertices should be LEFT(180,560), FRONT(630,785), RIGHT(1380,410), BACK(930,185). The near short edge''s horizontal run450
-    must be SIX-TENTHS the right long edge''s horizontal run750. These are invisible production geometry instructions; don''t
-    depict coordinates, diagram, outline, grid or dimensions. Render realistic timber texture onto that EXACT broad parallelogram.
-    Low side rails so deck corners remain evident; tiny timber feet, 40pixel deck thickness. Light upper-left and slight lower-right
-    contact shadow contained by object. No stonework, vegetation, land island, water, banks, bridge house, canopy, ornament,
-    ropes, metal, figures, text or watermark. Entire object centered comfortably with clear margins. No perspectival convergence.
-    No fake painted transparency.'
-  negative: 无字、无人、无现代物、无背景、无厚地台、无假棋盘透明、无透视汇聚
-  references: []
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin short timber bridge deck, asset tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01, registered logical footprint 3 by 5. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Broad short wooden beam bridge deck, width three and length five; repeated heavy pine cross-planks over two longitudinal girders, low twin horizontal timber rails and square posts; long low silhouette informed only by bridge references but material remains wood; roof, ridge, beasts, dougong, walls, doors and windows not applicable; weathered matte brown, simple mortise joints and iron-free pegs; fully open short ends; no piers, water or banks.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 3 by 5 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.
+
+    Tile-specific: retain exact logical footprint and keep every connection edge unobstructed. Gate aperture must be truly transparent for the full depth. Wall ends must be clean and compatible.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Marco_Polo_Bridge_(Lugou_Qiao)%2C_Peking%2C_1877_NA01-75.jpg
+    download_url: https://upload.wikimedia.org/wikipedia/commons/7/7f/Thomas_Child_-_Marco_Polo_Bridge_%28Lugou_Qiao%29%2C_Peking%2C_1877_NA01-75.jpg
+    accessed: '2026-10-01'
+    local_ref: lugou_1877.jpg
+    sha256: 77ea6e58a128a6e7032e726189bc7412fbee8c09d858a51e409d52f94e84cc2d
+    role: 历史照片中的长低桥身与低栏比例；不复制石拱材质；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_Section_4.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Along_the_River_During_the_Qingming_Festival_Section_4.jpg/1920px-Along_the_River_During_the_Qingming_Festival_Section_4.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_4.jpg
+    sha256: 4b3f8edc728f50570acdf7aab3362f9abfaff0dcf8ca1056771c23d1afa3f04c
+    role: 临水市廛、河埠和长低桥面比例；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/tile/liao_jin_north/tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: d8ae5182fec833d865ffb2e72dde4419e5e0b85707c531cd78a1a134f69b0b1f
   tool: built-in image_gen
-  model: image_gen (backend undisclosed)
+  model: image_gen (underlying model not disclosed)
   effort: not exposed by image tool
-  created: '2026-09-30T22:48:06.592783+00:00'
-  created_time_basis: 源PNG文件mtime；非服务端回执时间
-  source_path: /Users/bytedance/.codex/generated_images/01a0f47d-c7e1-7a10-88e6-83d2a533df41/exec-4125a48a-d54a-48d9-857e-6a5f93991730.png
-  size: 324x213
-  sha256: d8ae5182fec833d865ffb2e72dde4419e5e0b85707c531cd78a1a134f69b0b1f
+  created: '2026-10-01T10:48:16.216141+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: source/historical-detail/tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01.png
+  size: 310x211
+  sha256: bc7c34d7f0de083f9a69f1dcce987d556e05e7f54c963f1f4a24c58fe8400e0d
   status: candidate
   tile:
     kind: bridge_deck
@@ -38,136 +54,95 @@
     - 5
     variant: w3_l5_r000_v01
     autotile_mask: null
-  source_copy: source/tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01.repair4-candidate2.png
-  source_sha256: e7400ce8b6c4e7c36931898f332304df2b53e2840dc5905e14dc13b581f3534e
+  source_sha256: a84b5c51cf9860420a9522de4d4044d0aa273262435964cd30d090f83bdf6c71
   anchor_px:
-  - 166.334595
-  - 104.369417
-  candidate_count: 2
-  selected_candidate: repair4-candidate2
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 112
-      - 600
-      front:
-      - 593
-      - 864
-      right:
-      - 1433
-      - 394
-      back:
-      - 965
-      - 158
-    source_anchor_px:
-    - 775.75
-    - 504.0
-    source_axis_slopes:
-    - 0.5488565488565489
-    - -0.5595238095238095
-    expected_width_depth_ratio: 0.6
-    source_width_depth_ratio: 0.5726190476190476
-    ratio_relative_error: 0.045634920634920695
-    four_edge_measurement:
-      width_horizontal_px: 474.5
-      length_horizontal_px: 846.5
-      ratio: 0.5605434140578854
-      relative_error: -0.06576097657019087
-      slopes:
-        left_front: 0.5488565488565489
-        front_right: -0.5595238095238095
-        back_right: 0.5042735042735043
-        left_back: -0.5181711606096131
-    measurement_uncertainty_source_px: 5
-    measurement_note: 同高桥面四角实测；四角均值作锚，前边比及对边平均比均登记，桥墩/水面高差待装配。
-    axis_tolerance: 0.03
-    axis_pass: false
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
+  - 155.335
+  - 105.867
+  candidate_count: 1
+  selected_candidate: historical-detail-c1
   processing:
     source_size:
     - 1536
     - 1024
-    crop_box:
-    - 0
-    - 48
-    - 1508
-    - 984
-    uniform_scale: 0.19379258137774413
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 180
+    - 72
+    - 1466
+    - 948
+    old_alpha_crop:
+    - 37
+    - 16
+    - 294
+    - 192
+    target_width: 257
+    uniform_scale: 0.19984447900466562
     resized_size:
-    - 292
-    - 181
+    - 257
+    - 175
     paste_offset:
-    - 16
-    - 16
-    - 308
-    - 197
+    - 26
+    - 18
+    final_size:
+    - 310
+    - 211
+    mapped_anchor:
+    - 155.335
+    - 105.867
     steps:
-    - alpha>0 bbox crop
-    - uniform LANCZOS resize with integer rounding
-    - transparent padding; no alpha threshold, warp, painting or stretching
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 324
-    - 213
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 46516
-    alpha_partial_pixels: 21775
-    alpha_opaque_pixels: 721
-    alpha_nonzero_bbox:
-    - 35
-    - 16
-    - 306
-    - 194
-    border_alpha_max: 0
-  notes: 第4次运行选第2候选；旧源图及repair2/3保留为历史。外占地/实际源测点与剩余局部误差见geometry_qa；仅裁切、等比缩放与扩边，保持原alpha。桥面前边比误差4.56%、对边平均比误差6.58%，双前轴+0.549/-0.560仍略陡；含栏静态候选，前栏遮挡与岸面高差待联调。
-  repair_record: meta/tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01.repair4.json
-  metadata: meta/tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01.entry.json
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  notes: 2026-10-01 强历史细节重出：Broad short wooden beam bridge deck, width three and length five; repeated heavy pine cross-planks over two longitudinal girders, low twin horizontal timber rails and square posts; long low silhouette informed only by bridge references but material remains wood; roof, ridge, beasts, dougong, walls, doors and windows not applicable; weathered matte brown, simple mortise joints and iron-free pegs; fully open short ends; no piers, water or banks. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: source/historical-detail/tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01.png
 - id: tex_town_liao_jin_north_city_gate__k4_r000_v01
   file: tex_town_liao_jin_north_city_gate__k4_r000_v01.png
   category: tile
   style: default
   subject: 辽金北方（11–13世纪）·净宽4格城门（原创扩展；匿名年代意象，非文物复原）
-  prompt: 'Use case: precise-object-edit. Revise only the projected geometry of the supplied realistic northern Liao/Jin city
-    gate. Keep exactly the same ancient materials, restrained grey roof, timber details, muted earthen walls, upper-left lighting,
-    real RGBA transparency, one isolated sprite. No scenery or text.
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
 
-    There are two measurable problems to fix. FIRST: make both piers about20percent NARROWER on the long front facade, by
-    moving their INNER faces outward towards the two external ends. Keep the exterior total facade width fixed. The empty
-    central aperture must widen from about39percent to50percent of the total facade. Exact front sequence TWO units solid
-    / FOUR units EMPTY / TWO units solid. Each pier is2 wide but4 deep. There is no floor across the aperture.
 
-    SECOND: increase the whole gate DEPTH by approximately20percent in screen horizontal span. The visible right side wall
-    currently slopes too steeply upward-right. Set its ground edge slope to minus0.5, NOT minus0.64. Keep the long facade
-    ground slope plus0.5. The two footprint directions need SYMMETRIC diagonal angles to horizontal, both26.565degrees. This
-    is true 2:1 orthographic dimetric, yaw45 elevation30, with parallel edges and vertical upright columns. Physical outside
-    plan8 wide by4 deep; screen horizontal length of the facade exactly TWICE that of the depth edge.
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin city gate with four-cell opening, asset tex_town_liao_jin_north_city_gate__k4_r000_v01, registered logical footprint 8 by 4. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
 
-    In a1254px square image ground contact corners should be LEFT(80,800), FRONT(820,1170), RIGHT(1190,985), hiddenREAR(450,615).
-    The inside front feet lie at(265,892.5) and(635,1077.5). These coordinates describe the actual bottom masonry corners,
-    not shadows; never draw construction lines, numbers, labels or marks. Set the roof and upper hall consistently over this
-    deeper plan, so side roof broadens too. Keep entire roof and feet within frame and leave transparent margins. No human,
-    modern elements, inscription, checkerboard, water, platform, stairs or background. Transparent clear opening through the
-    full gate depth. ONE gate only.'
-  negative: 无字、无人、无现代物、无背景、无厚地台、无假棋盘透明、无透视汇聚
+
+    Historical construction: Single anonymous earthen city gate with measurable front ratio: exterior facade width eight units; left solid pier exactly two units, EMPTY central passage exactly four units, right solid pier exactly two units. The transparent passage is therefore HALF the exterior facade width, visibly wider than either pier, open through the full four-unit depth, with no floor slab. Low broad hip roof gatehouse with shallow ju-zhe, grey pan-and-cover tiles, curled chiwen and two tiny beasts; substantial sparse early-medieval bracket arms; dark timber columns on stone pads; thick buff rammed-earth piers with horizontal courses and rough stone foot; straight lattice upper screens, faded red-brown only; no barbican or arrow tower.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 8 by 4 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.
+
+    Tile-specific: retain exact logical footprint and keep every connection edge unobstructed. Gate aperture must be truly transparent for the full depth. Wall ends must be clean and compatible.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
   references:
-  - file: assets/default/tile/liao_jin_north/source/tex_town_liao_jin_north_city_gate__k4_r000_v01.repair3-candidate1.png
-    role: 第1候选编辑，要求加深、缩墩扩孔
-    sha256: 145541c642bc4d864e4eded1835ad3de2f331d322775d77b5491189bf31b2763
+  - url: https://commons.wikimedia.org/wiki/File:The_Shan_Gate_of_Dule_Temple.JPG
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/The_Shan_Gate_of_Dule_Temple.JPG/1920px-The_Shan_Gate_of_Dule_Temple.JPG
+    accessed: '2026-10-01'
+    local_ref: dule_gate.jpg
+    sha256: cc9f121311f356768609e82c8a349f098c7d2e7ad6277c8f1aa8a3ad42527a17
+    role: 辽山门低举折灰瓦、门楼比例与鸱尾；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg/1920px-Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    accessed: '2026-10-01'
+    local_ref: shangjing_dashun.jpg
+    sha256: 79430800d8f765bf775b03b39f9143e94851a6b9fa9c2e2254c799974ebe0959
+    role: 辽上京夯土水平层理、灰黄色与风蚀面；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/tile/liao_jin_north/tex_town_liao_jin_north_city_gate__k4_r000_v01.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: c621739812ce2100e2455408defce7ed9a33a4a131a7f8052b2590560511ecd5
   tool: built-in image_gen
-  model: image_gen (backend undisclosed)
+  model: image_gen (underlying model not disclosed)
   effort: not exposed by image tool
-  created: '2026-09-30T22:17:52.609406+00:00'
-  created_time_basis: 源PNG文件mtime；非服务端回执时间
-  source_path: /Users/bytedance/.codex/generated_images/01a0f461-ad55-7a20-9d54-a23cb5b1d853/exec-8370b45a-c7cc-4d86-891c-71cb9cc65871.png
-  size: 418x380
-  sha256: c621739812ce2100e2455408defce7ed9a33a4a131a7f8052b2590560511ecd5
+  created: '2026-10-01T10:59:34.664965+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: source/historical-detail/tex_town_liao_jin_north_city_gate__k4_r000_v01.png
+  size: 464x322
+  sha256: 6c916db080953062ba2a65fcfa8f62732d4d353324271b3040e36dfeadd15f98
   status: candidate
   tile:
     kind: city_gate
@@ -176,83 +151,46 @@
     - 4
     variant: k4_r000_v01
     autotile_mask: null
-  source_copy: source/tex_town_liao_jin_north_city_gate__k4_r000_v01.repair3-candidate2.png
-  source_sha256: de8e458ca49ef1926de5cb3c6538a6d0d87c14c5970cb5e7949e0a31ae2c3292
+  source_sha256: 9473cc8cf930a14173c0eb10fc05463a1da56e9d0828f5955c88a5d5891a8c12
   anchor_px:
-  - 208.9513
-  - 265.0768
+  - 231.951
+  - 218.102
   candidate_count: 2
-  selected_candidate: repair3-candidate2
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  geometry_qa:
-    measurement_uncertainty_source_px: 10
-    source_corners_px:
-      left:
-      - 38
-      - 842
-      front:
-      - 856
-      - 1218
-      right:
-      - 1249
-      - 977
-    source_axis_slopes:
-    - 0.45965770171149145
-    - -0.6132315521628499
-    axis_tolerance: 0.03
-    axis_pass: false
-    expected_width_depth_ratio: 2.0
-    source_width_depth_ratio: 2.0814249363867683
-    ratio_relative_error: 0.040712468193384144
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
-    measurement_note: 人工读取同层底面转角，约±10源像素；右缘仅alpha=1噪点触边，可见实体未裁切。等比规格化不修正剩余侧轴。
+  selected_candidate: historical-detail-c2
   processing:
     source_size:
-    - 1254
-    - 1254
-    crop_box:
-    - 35
-    - 124
-    - 1253
-    - 1221
-    visible_crop_alpha_threshold: 2
-    uniform_scale: 0.3170933113129645
+    - 1536
+    - 1024
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 88
+    - 47
+    - 1483
+    - 1014
+    old_alpha_crop:
+    - 16
+    - 16
+    - 401
+    - 364
+    target_width: 385
+    uniform_scale: 0.27598566308243727
     resized_size:
-    - 386
-    - 348
+    - 385
+    - 267
     paste_offset:
-    - 16
-    - 16
-    - 402
-    - 364
+    - 39
+    - 27
+    final_size:
+    - 464
+    - 322
+    mapped_anchor:
+    - 231.951
+    - 218.102
     steps:
-    - derive crop bbox from source alpha>=2; retain all pixels inside crop
-    - uniform LANCZOS resize with integer rounding
-    - transparent padding; no alpha threshold on retained pixels, warp, painting or stretching
-  pixel_qa:
-    mode: RGBA
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 79529
-    alpha_near_opaque_pixels: 75366
-    alpha_nonzero_bbox:
-    - 16
-    - 16
-    - 402
-    - 364
-    transparent_margins_px:
-    - 16
-    - 16
-    - 16
-    - 16
-    border_alpha_max: 0
-    source_view_image_completed: true
-    final_view_image_completed: true
-  notes: 第5次运行从已逐张审过的repair3两候选中重选第2张：宽深比误差由59.93%降至4.07%，视觉净孔约44.25%，右侧轴-0.613仍超±0.03；只做透明裁框、等比缩放与扩边，保持可见源alpha。 单视图candidate，门孔掩膜及总装待实测。
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  notes: '2026-10-01 强历史细节重出：Single anonymous earthen city gate with measurable front ratio: exterior facade width eight units; left solid pier exactly two units, EMPTY central passage exactly four units, right solid pier exactly two units. The transparent passage is therefore HALF the exterior facade width, visibly wider than either pier, open through the full four-unit depth, with no floor slab. Low broad hip roof gatehouse with shallow ju-zhe, grey pan-and-cover tiles, curled chiwen and two tiny beasts; substantial sparse early-medieval bracket arms; dark timber columns on stone pads; thick buff rammed-earth piers with horizontal courses and rough stone foot; straight lattice upper screens, faded red-brown only; no barbican or arrow tower. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。'
   gate_contract:
     width_cells: 4
     footprint_cells:
@@ -262,57 +200,55 @@
       w: 4
       h: 4
     passage_ratio_target: 0.5
-    passage_ratio_observed: 0.44254278728606355
-    source_opening_alpha_samples:
-    - point:
-      - 500
-      - 900
-      alpha: 0
-    passage_alignment_pass: false
-    note: 净宽逻辑目标为4/8=50%；视觉开口约44.25%，孔内采样透明，但侧轴与掩膜仍未精确对格。
-  repair_record: meta/gate4-repair3-candidates.json
-  metadata: meta/tex_town_liao_jin_north_city_gate__k4_r000_v01.entry.json
+    note: 逻辑门洞契约沿用；本轮新像素仅目视确认透明贯通，未作逐格装配测量。
+  source_archive: source/historical-detail/tex_town_liao_jin_north_city_gate__k4_r000_v01.png
 - id: tex_town_liao_jin_north_city_gate__k6_r000_v01
   file: tex_town_liao_jin_north_city_gate__k6_r000_v01.png
   category: tile
   style: default
   subject: 辽金北方（11–13世纪）·净宽6格城门（原创扩展；匿名年代意象，非文物复原）
-  prompt: 'Use case: precise-object-edit.
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
 
-    Make a PRECISE GEOMETRY CORRECTION to the attached isolated Liao/Jin gate sprite. Keep its same grey tiled roof, brown
-    timber hall, warm earth and grey masonry texture, realistic detail, upper-left lighting and transparent RGBA. One gate
-    only, no text or scenery.
 
-    Two changes are required. 1. The side ground edge rising to the right is too shallow. Reproject the whole gate so BOTH
-    long facade and short side ground edges have EXACTLY EQUAL slope magnitudes 0.5. In image coordinates long facade runs
-    down-right (2 across,1 down); side depth runs up-right (2 across,1 up). Keep world verticals upright. No perspective.
-    The physical rectangular plan is10front width by4depth, giving horizontal facade/depth runs exactly2.5. Move the back-right
-    masonry foot UP so its diagonal matches the other axis; carry this steeper depth direction through both piers, roof, side
-    walls and railings. For a1254square canvas, desired real masonry feet LEFT(65,770), FRONT(855,1165), RIGHT(1171,1007),
-    hiddenBACK(381,612). These are invisible construction points, never draw outlines, labels or geometry guides.
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin city gate with six-cell opening, asset tex_town_liao_jin_north_city_gate__k6_r000_v01, registered logical footprint 10 by 4. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
 
-    2. LEFT pier is too broad on the facade. NARROW its front face to match the right pier by moving its inner front foot
-    from about(256,911) to(223,849). Exact front sequence2units solid / 6units EMPTY / 2units solid. Full width10, clear opening6,
-    each rectangular pier2wide by4deep. Left inner foot(223,849); right inner foot(697,1086). Thus the opening is exactly60percent
-    of total front span. No broad flared pier bottoms. Piers should have straight vertical sides, all base corners crisp and
-    on same ground plane.
 
-    Keep complete roof and all feet inside image with clear transparency margins. Keep the gate airy: passage completely open,
-    alpha0 all the way beneath timber lintel and between the two piers; no floor, stair, base island, platform, door, additional
-    wall or background. Sober ancient northern original game sprite, no people, letters, labels, watermark, modern items or
-    checkerboard. Preserve realistic fine texture; only correct the above geometry.'
-  negative: 无字、无人、无现代物、无背景、无厚地台、无假棋盘透明、无透视汇聚
+    Historical construction: Single anonymous earthen city gate: outer width ten, depth four, exactly two-cell solid pier plus six-cell transparent opening plus two-cell pier; low broad hip roof gatehouse with shallow ju-zhe, grey pan-and-cover tiles, curled chiwen and two tiny beasts; substantial sparse early-medieval bracket arms; dark timber columns on stone pads; thick buff rammed-earth piers with horizontal courses and rough stone foot; straight lattice upper screens, faded red-brown only; no barbican or arrow tower.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 10 by 4 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.
+
+    Tile-specific: retain exact logical footprint and keep every connection edge unobstructed. Gate aperture must be truly transparent for the full depth. Wall ends must be clean and compatible.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
   references:
-  - file: assets/default/tile/liao_jin_north/source/tex_town_liao_jin_north_city_gate__k6_r000_v01.repair4-candidate1.png
-    sha256: 52e3aaa53d053dbc20ef50ac0e5459584067d18bf8e1216478561b92abc0395e
-    role: 第1候选精修几何
+  - url: https://commons.wikimedia.org/wiki/File:The_Shan_Gate_of_Dule_Temple.JPG
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/The_Shan_Gate_of_Dule_Temple.JPG/1920px-The_Shan_Gate_of_Dule_Temple.JPG
+    accessed: '2026-10-01'
+    local_ref: dule_gate.jpg
+    sha256: cc9f121311f356768609e82c8a349f098c7d2e7ad6277c8f1aa8a3ad42527a17
+    role: 辽山门低举折灰瓦、门楼比例与鸱尾；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg/1920px-Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    accessed: '2026-10-01'
+    local_ref: shangjing_dashun.jpg
+    sha256: 79430800d8f765bf775b03b39f9143e94851a6b9fa9c2e2254c799974ebe0959
+    role: 辽上京夯土水平层理、灰黄色与风蚀面；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/tile/liao_jin_north/tex_town_liao_jin_north_city_gate__k6_r000_v01.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 5ab656dfeed7969b0e51b209bd35dc19e2723aa21e4e80392615b76770dfe8dc
   tool: built-in image_gen
-  model: image_gen (backend undisclosed)
+  model: image_gen (underlying model not disclosed)
   effort: not exposed by image tool
-  created: '2026-09-30T22:47:52.857058+00:00'
-  created_time_basis: 源PNG文件mtime；非服务端回执时间
-  source_path: /Users/bytedance/.codex/generated_images/01a0f47c-82cf-7e63-8fcb-0c4e046331e6/exec-19aafb24-4a8a-442b-95ad-b73716cb4673.png
-  size: 521x502
+  created: '2026-10-01T10:50:39.181641+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: source/historical-detail/tex_town_liao_jin_north_city_gate__k6_r000_v01.png
+  size: 569x326
   status: candidate
   tile:
     kind: city_gate
@@ -321,82 +257,45 @@
     - 4
     variant: k6_r000_v01
     autotile_mask: null
-  source_copy: source/tex_town_liao_jin_north_city_gate__k6_r000_v01.repair4-candidate2.png
   anchor_px:
-  - 267.501779
-  - 375.316726
-  candidate_count: 2
-  selected_candidate: repair4-candidate2
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 69
-      - 846
-      front:
-      - 874
-      - 1238
-      right:
-      - 1193
-      - 1081
-    source_anchor_px:
-    - 631
-    - 963.5
-    source_axis_slopes:
-    - 0.48695652173913045
-    - -0.49216300940438873
-    source_width_depth_ratio: 2.523510971786834
-    expected_width_depth_ratio: 2.5
-    ratio_relative_error: 0.009404388714733702
-    measurement_uncertainty_source_px: 5
-    method: view_image人工读取，alpha>=32局部列底部采样辅助定位实体边缘；未修改alpha
-    local_edge_note: 两门墩短前底边约0.62，跨净孔前线略浅；整体外轮廓L/F/R接近±0.5，生成局部结构仍有残差。
-    axis_tolerance: 0.03
-    axis_pass: true
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
+  - 283.502
+  - 234.721
+  candidate_count: 1
+  selected_candidate: historical-detail-c1
   processing:
     source_size:
-    - 1254
-    - 1254
-    crop_box:
-    - 0
-    - 62
-    - 1227
-    - 1241
-    uniform_scale: 0.398576512455516
+    - 1774
+    - 887
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 140
+    - 32
+    - 1634
+    - 886
+    old_alpha_crop:
+    - 32
+    - 17
+    - 504
+    - 485
+    target_width: 472
+    uniform_scale: 0.31593038821954483
     resized_size:
-    - 489
-    - 470
+    - 472
+    - 270
     paste_offset:
-    - 16
-    - 16
-    - 505
-    - 486
+    - 48
+    - 28
+    final_size:
+    - 569
+    - 326
+    mapped_anchor:
+    - 283.502
+    - 234.721
     steps:
-    - alpha>0 bbox crop
-    - uniform LANCZOS resize with integer rounding
-    - transparent padding; no alpha threshold, warp, painting or stretching
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 521
-    - 502
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 141209
-    alpha_partial_pixels: 119124
-    alpha_opaque_pixels: 1209
-    alpha_nonzero_bbox:
-    - 30
-    - 16
-    - 505
-    - 486
-    border_alpha_max: 0
-  notes: 第4次运行选第2候选；旧源图及repair2/3保留为历史。外占地/实际源测点与剩余局部误差见geometry_qa；仅裁切、等比缩放与扩边，保持原alpha。外底比误差0.94%、净孔59.63%，局部门墩短前边仍非严格共线；单视图candidate，门孔掩膜及总装待实测。
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  notes: '2026-10-01 强历史细节重出：Single anonymous earthen city gate: outer width ten, depth four, exactly two-cell solid pier plus six-cell transparent opening plus two-cell pier; low broad hip roof gatehouse with shallow ju-zhe, grey pan-and-cover tiles, curled chiwen and two tiny beasts; substantial sparse early-medieval bracket arms; dark timber columns on stone pads; thick buff rammed-earth piers with horizontal courses and rough stone foot; straight lattice upper screens, faded red-brown only; no barbican or arrow tower. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。'
   gate_contract:
     width_cells: 6
     footprint_cells:
@@ -406,58 +305,60 @@
       w: 6
       h: 4
     passage_ratio_target: 0.6
-    passage_ratio_observed: 0.5962732919254659
-    source_opening_alpha_samples:
-    - point:
-      - 500
-      - 1000
-      alpha: 0
-    - point:
-      - 650
-      - 1050
-      alpha: 0
-    passage_alignment_pass: false
-    note: 净宽是逻辑掩膜目标；视觉孔与轴线有偏差，不能宣称精确对格；孔内透明采样不替代完整掩膜验证。
-  sha256: 5ab656dfeed7969b0e51b209bd35dc19e2723aa21e4e80392615b76770dfe8dc
-  source_sha256: 20eb8f5719b8794c420031489684f8717b97600da8e40e1461e9acdb6f7e60fe
-  gate_contract_qa:
-    front_opening_points:
-    - - 224
-      - 942
-    - - 704
-      - 1133
-    passage_ratio_target: 0.6
-    passage_ratio_observed: 0.5962732919254659
-  repair_record: meta/tex_town_liao_jin_north_city_gate__k6_r000_v01.repair4.json
-  metadata: meta/tex_town_liao_jin_north_city_gate__k6_r000_v01.entry.json
+    note: 逻辑门洞契约沿用；本轮新像素仅目视确认透明贯通，未作逐格装配测量。
+  sha256: 4230563579e9318c38b3d8e31f81227530ad2673a9b4430d88f7851be249f900
+  source_sha256: e10cffff8a118e7c1f44d8afb0f759c521d1c08b57f5d3de0f674cd89858b4ed
+  source_archive: source/historical-detail/tex_town_liao_jin_north_city_gate__k6_r000_v01.png
 - id: tex_town_liao_jin_north_tree_cluster__elm_v01
   file: tex_town_liao_jin_north_tree_cluster__elm_v01.png
   category: tile
   style: default
   subject: 辽金北方（11–13世纪）·榆树意象（原创扩展；匿名年代意象，非文物复原）
-  prompt: 'Use case: historical-scene. ONE isolated botanical game map sprite for an anonymous Liao/Jin northern China town.
-    Original landscape dressing; do not imply documented medieval street planting. Reference shows Song kit fine realistic
-    leaf/bark density only; replace species. Orthographic view yaw45 elevation30, consistent2:1 dimetric town view, upright
-    trunk. Natural matte materials and restrained olive green saturation, soft light from SCREEN UPPER LEFT, tiny short contact
-    shade at roots toward lower-right. Entire complete crown, branches and root collar visible and centered with15percent
-    transparent margins. TRUE RGBA transparent outside and through branch gaps. No soil island or pedestal, no planter, no
-    people, text, numbers, labels, watermarks, painted checkerboard, decorative border, sky, horizon or landscape. Single
-    tree not a sheet. A mature northern Chinese elm (Ulmus pumila), broad irregular oval crown of small oval subtly serrated
-    leaves, grey-brown fissured trunk and branching boughs, roughly6m high, modest spread5m. No blossoms, fruit or exaggerated
-    twisted bonsai form.'
-  negative: 无字、无人、无现代物、无背景、无厚地台、无假棋盘透明、无透视汇聚
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin Siberian elm cluster, asset tex_town_liao_jin_north_tree_cluster__elm_v01, registered logical footprint 1 by 1. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Natural northern Ulmus pumila cluster of two or three trunks from one compact root contact: grey-brown deeply fissured bark, twisting irregular limbs, broad asymmetric open crown with gaps and many small matte oval leaves; architecture fields not applicable; no clipped ornamental shape, planter, ground tile, flowers, fruit, writing or scenery.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 1 by 1 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.
+
+    Tile-specific: retain exact logical footprint and keep every connection edge unobstructed. Gate aperture must be truly transparent for the full depth. Wall ends must be clean and compatible.
+
+    Tree-specific: the logical one-by-one root contact stays visible while the crown may overhang; draw no ground tile or shadow island.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
   references:
-  - file: assets/default/baseline/tile/tex_town_song_dali_tree_cluster__broadleaf_v01.png
-    sha256: 3963e0b07a4cbb91b5472d8c2470dc4da5b6c7dab9dbdf3580ff5b8fa39d3f56
-    role: 实际输入：写实材质、细节密度与构图参考；不继承史实断代
+  - url: https://commons.wikimedia.org/wiki/File:Ulmus_pumila_(2).JPG
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Ulmus_pumila_%282%29.JPG/1920px-Ulmus_pumila_%282%29.JPG
+    accessed: '2026-10-01'
+    local_ref: ulmus_1.jpg
+    sha256: 9d63148c438c8ad5d9710d49d673d7d623065a3d91aa3652ec78be536f65b750
+    role: 榆树裂皮、曲干与小叶细部；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Ulmus_pumila_2.JPG
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Ulmus_pumila_2.JPG/1920px-Ulmus_pumila_2.JPG
+    accessed: '2026-10-01'
+    local_ref: ulmus_2.jpg
+    sha256: 041d75680ffdfd963c2f1c68839fca592e5adf391cb5077b1b0a349610fd0061
+    role: 榆树不规则疏透冠形；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/tile/liao_jin_north/tex_town_liao_jin_north_tree_cluster__elm_v01.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 4149b48390afc3e020e3d992ae39723144ef63c59bf469b36dce76bcaf7a0121
   tool: built-in image_gen
-  model: image_gen (backend undisclosed)
+  model: image_gen (underlying model not disclosed)
   effort: not exposed by image tool
-  created: '2026-09-30T21:23:24.733689+00:00'
-  created_time_basis: 源PNG文件mtime；非服务端回执时间
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f82c-7100-a176-3ab9a2e08c7e/exec-181e8462-3719-4e6a-a65f-79b5b0d12101.png
-  size: 529x372
-  sha256: 4149b48390afc3e020e3d992ae39723144ef63c59bf469b36dce76bcaf7a0121
+  created: '2026-10-01T10:54:13.138005+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: source/historical-detail/tex_town_liao_jin_north_tree_cluster__elm_v01.png
+  size: 449x326
+  sha256: 050e341dda7a50d9b94f6c19ce4c0ef21456bb15a2594aae82a3a93efdfe5ae6
   status: candidate
   tile:
     kind: tree_cluster
@@ -466,89 +367,97 @@
     - 1
     variant: elm_v01
     autotile_mask: null
-  source_copy: source/tex_town_liao_jin_north_tree_cluster__elm_v01.png
-  source_sha256: fe32488a2b62705c8d47da9bf35c77edab18629ab5cbe9daabef84b48e8f6c88
+  source_sha256: 378aae3dc8c3d3f20938692a73b98917fdb77afc610fa5d5018fbd9e9b33b6e9
   anchor_px:
-  - 288.7651
-  - 342.3202
+  - 256.765
+  - 294.124
   candidate_count: 1
-  selected_candidate: 1
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  geometry_qa:
-    measurement_uncertainty_source_px: 5
-    axis_pass: null
-    source_root_px:
-    - 853
-    - 982
-    visual_height_target_px: 320
-    note: 植物树干根锚；占地1×1是种植点包络，非树冠尺寸；无可量底面两轴。
-    measurement_note: 人工量读底面角；非文物实测或3D相机反解，目标与实测分列。
+  selected_candidate: historical-detail-c1
   processing:
     source_size:
     - 1536
     - 1024
-    crop_box:
-    - 33
-    - 1
-    - 1526
-    - 1024
-    uniform_scale: 0.33264033264033266
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 113
+    - 10
+    - 1447
+    - 980
+    old_alpha_crop:
+    - 70
+    - 21
+    - 442
+    - 347
+    target_width: 372
+    uniform_scale: 0.27886056971514245
     resized_size:
-    - 497
-    - 340
+    - 372
+    - 270
     paste_offset:
-    - 16
-    - 16
-    - 513
-    - 356
-    steps:
-    - alpha bbox crop
-    - uniform LANCZOS resize with integer rounding
-    - transparent padding; no mask, repaint, warp, rotation or alpha threshold
-  pixel_qa:
-    mode: RGBA
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 127389
-    alpha_near_opaque_pixels: 30969
-    alpha_nonzero_bbox:
+    - 38
     - 28
-    - 16
-    - 491
-    - 350
-    border_alpha_max: 0
-  notes: 原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。 植物仅北方物种意象，辽金庭院栽植位置待考；根锚，不含碰撞定义。
+    final_size:
+    - 449
+    - 326
+    mapped_anchor:
+    - 256.765
+    - 294.124
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  notes: '2026-10-01 强历史细节重出：Natural northern Ulmus pumila cluster of two or three trunks from one compact root contact: grey-brown deeply fissured bark, twisting irregular limbs, broad asymmetric open crown with gaps and many small matte oval leaves; architecture fields not applicable; no clipped ornamental shape, planter, ground tile, flowers, fruit, writing or scenery. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。'
+  source_archive: source/historical-detail/tex_town_liao_jin_north_tree_cluster__elm_v01.png
 - id: tex_town_liao_jin_north_tree_cluster__pine_v01
   file: tex_town_liao_jin_north_tree_cluster__pine_v01.png
   category: tile
   style: default
   subject: 辽金北方（11–13世纪）·油松意象（原创扩展；匿名年代意象，非文物复原）
-  prompt: 'Use case: historical-scene. ONE isolated botanical game map sprite for an anonymous Liao/Jin northern China town.
-    Original landscape dressing; do not imply documented medieval street planting. Reference shows Song kit fine realistic
-    leaf/bark density only; replace species. Orthographic view yaw45 elevation30, consistent2:1 dimetric town view, upright
-    trunk. Natural matte materials and restrained olive green saturation, soft light from SCREEN UPPER LEFT, tiny short contact
-    shade at roots toward lower-right. Entire complete crown, branches and root collar visible and centered with15percent
-    transparent margins. TRUE RGBA transparent outside and through branch gaps. No soil island or pedestal, no planter, no
-    people, text, numbers, labels, watermarks, painted checkerboard, decorative border, sky, horizon or landscape. Single
-    tree not a sheet. A mature Chinese red pine / Chinese pine (Pinus tabuliformis, yousong), irregular tiered spreading canopy
-    with distinct clusters of paired dark green needles, reddish grey fissured bark, erect central trunk, natural asymmetric
-    branching, roughly6m high with4m spread. NO broad leaves, flowers, pinecone ornaments or bonsai pot.'
-  negative: 无字、无人、无现代物、无背景、无厚地台、无假棋盘透明、无透视汇聚
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin Chinese red pine cluster, asset tex_town_liao_jin_north_tree_cluster__pine_v01, registered logical footprint 1 by 1. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Natural northern Pinus tabuliformis cluster with two weathered trunks from one compact root contact; grey-brown plated bark, irregular horizontal whorled branches, broad flattened asymmetric umbrella crown and visible paired needle tufts; architecture fields not applicable; not a conical Christmas tree, bonsai or manicured cloud form; no planter, ground tile, cones as ornaments or scenery.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 1 by 1 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.
+
+    Tile-specific: retain exact logical footprint and keep every connection edge unobstructed. Gate aperture must be truly transparent for the full depth. Wall ends must be clean and compatible.
+
+    Tree-specific: the logical one-by-one root contact stays visible while the crown may overhang; draw no ground tile or shadow island.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
   references:
-  - file: assets/default/baseline/tile/tex_town_song_dali_tree_cluster__broadleaf_v01.png
-    sha256: 3963e0b07a4cbb91b5472d8c2470dc4da5b6c7dab9dbdf3580ff5b8fa39d3f56
-    role: 实际输入：写实材质、细节密度与构图参考；不继承史实断代
+  - url: https://commons.wikimedia.org/wiki/File:Pinus_tabuliformis_Badaling.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Pinus_tabuliformis_Badaling.jpg/1920px-Pinus_tabuliformis_Badaling.jpg
+    accessed: '2026-10-01'
+    local_ref: pine_1.jpg
+    sha256: 3571eca0925076d315e1a07c215ddd64fd6afe6c3c19800f3efd2606281876fb
+    role: 油松横展枝层与不规则伞冠；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Pinus_tabuliformis-IMG_20190518_073355.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Pinus_tabuliformis-IMG_20190518_073355.jpg/1920px-Pinus_tabuliformis-IMG_20190518_073355.jpg
+    accessed: '2026-10-01'
+    local_ref: pine_2.jpg
+    sha256: 9aa4ed542275637bd05778f9a8d44d06ee6aa9a3256b5360b66db275955d8d05
+    role: 油松束针细部与枝端密度；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/tile/liao_jin_north/tex_town_liao_jin_north_tree_cluster__pine_v01.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 50b7076da576843e8f33f47408ad51058036cdce2f56aee397089bf540bdd155
   tool: built-in image_gen
-  model: image_gen (backend undisclosed)
+  model: image_gen (underlying model not disclosed)
   effort: not exposed by image tool
-  created: '2026-09-30T21:24:12.344030+00:00'
-  created_time_basis: 源PNG文件mtime；非服务端回执时间
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f82c-7100-a176-3ab9a2e08c7e/exec-48038e3a-e484-41df-ac80-d2ff916859dc.png
-  size: 537x368
-  sha256: 50b7076da576843e8f33f47408ad51058036cdce2f56aee397089bf540bdd155
+  created: '2026-10-01T10:55:22.112113+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: source/historical-detail/tex_town_liao_jin_north_tree_cluster__pine_v01.png
+  size: 470x329
+  sha256: 3e55a42659f8066955d1c09a48bafe7b61594c6c6f713a74e6704db6f1e2d61a
   status: candidate
   tile:
     kind: tree_cluster
@@ -557,87 +466,95 @@
     - 1
     variant: pine_v01
     autotile_mask: null
-  source_copy: source/tex_town_liao_jin_north_tree_cluster__pine_v01.png
-  source_sha256: ba53eb4d0cf227c345aad1c9b02d8ae8f21fe8854bd0de2e8c48903e06bdad26
+  source_sha256: b7f63e09d15d4d99089ec1a8637a0f01ff5329eef9c386336588a33db32698b7
   anchor_px:
-  - 307.0603
-  - 339.3264
+  - 267.06
+  - 297.098
   candidate_count: 1
-  selected_candidate: 1
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  geometry_qa:
-    measurement_uncertainty_source_px: 5
-    axis_pass: null
-    source_root_px:
-    - 875
-    - 987
-    visual_height_target_px: 320
-    note: 植物树干根锚；占地1×1是种植点包络，非树冠尺寸；无可量底面两轴。
-    measurement_note: 人工量读底面角；非文物实测或3D相机反解，目标与实测分列。
+  selected_candidate: historical-detail-c1
   processing:
     source_size:
-    - 1536
-    - 1024
-    crop_box:
-    - 0
-    - 15
-    - 1518
-    - 1024
-    uniform_scale: 0.33264033264033266
+    - 1516
+    - 1038
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 68
+    - 24
+    - 1453
+    - 995
+    old_alpha_crop:
+    - 80
+    - 17
+    - 470
+    - 344
+    target_width: 390
+    uniform_scale: 0.2815884476534296
     resized_size:
-    - 505
-    - 336
+    - 390
+    - 273
     paste_offset:
-    - 16
-    - 16
-    - 521
-    - 352
+    - 40
+    - 28
+    final_size:
+    - 470
+    - 329
+    mapped_anchor:
+    - 267.06
+    - 297.098
     steps:
-    - alpha bbox crop
-    - uniform LANCZOS resize with integer rounding
-    - transparent padding; no mask, repaint, warp, rotation or alpha threshold
-  pixel_qa:
-    mode: RGBA
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 131552
-    alpha_near_opaque_pixels: 34341
-    alpha_nonzero_bbox:
-    - 16
-    - 16
-    - 499
-    - 346
-    border_alpha_max: 0
-  notes: 原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。 植物仅北方物种意象，辽金庭院栽植位置待考；根锚，不含碰撞定义。
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  notes: 2026-10-01 强历史细节重出：Natural northern Pinus tabuliformis cluster with two weathered trunks from one compact root contact; grey-brown plated bark, irregular horizontal whorled branches, broad flattened asymmetric umbrella crown and visible paired needle tufts; architecture fields not applicable; not a conical Christmas tree, bonsai or manicured cloud form; no planter, ground tile, cones as ornaments or scenery. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: source/historical-detail/tex_town_liao_jin_north_tree_cluster__pine_v01.png
 - id: tex_town_liao_jin_north_wall__earth_r000_v01
   file: tex_town_liao_jin_north_wall__earth_r000_v01.png
   category: tile
   style: default
   subject: 辽金北方（11–13世纪）·夯土直墙（原创扩展；匿名年代意象，非文物复原）
-  prompt: 'Use case: historical-scene. ONE isolated modular straight rammed-earth wall block for Liao/Jin northern city map,11th-12th
-    century. Reference matches realistic texture and object type. Exact square1m by1m ground footprint, wall3m tall, plain
-    flat compacted-earth top. Strict2:1 dimetric camera yaw45 elevation30, diamond top and bottom edges slope+0.5/-0.5, vertical
-    edges upright. Material cool grey-ochre compacted earth with subtle horizontal ramming layers, slight wear, no bricks,
-    no crenellations, no roof, no cap, no floor or pedestal. Match Song kit realistic fine grained restrained texture, moderate
-    contrast, matte surface; upper-left light and very short lower-right contact shadow. Entire object centered,20percent
-    true RGBA transparent margin. No people, text, writing, watermark, checkerboard, backdrop, sky, vegetation, glow or scenery.
-    Exactly one freestanding repeatable wall section, no sheet.'
-  negative: 无字、无人、无现代物、无背景、无厚地台、无假棋盘透明、无透视汇聚
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin straight rammed-earth wall segment, asset tex_town_liao_jin_north_wall__earth_r000_v01, registered logical footprint 1 by 1. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: LOW HORIZONTAL straight defensive wall segment, never a freestanding post, pillar, tower or upright block. One complete wall run crosses the one-by-one tile along a 2:1 ground diagonal; visible length must be about 2.5 times its vertical height, matching one arm and cross-section of the corner tile. Slightly battered faces and flat narrow crown; grey-buff compacted earth in clear horizontal tamped lifts, wind-eroded chips, sparse straw and rough stone toe. Roof, ridge, beasts, dougong, columns, doors and windows not applicable; no crenellation, vegetation, gate, stairs or ground island; both vertical-cut connection ends clean and identical.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 1 by 1 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.
+
+    Tile-specific: retain exact logical footprint and keep every connection edge unobstructed. Gate aperture must be truly transparent for the full depth. Wall ends must be clean and compatible.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
   references:
-  - file: assets/default/baseline/tile/tex_town_song_dali_wall__earth_r000_v01.png
-    sha256: 755d578dea3dfa959f44642f37a7d0a1e6ecfb1e9a3c5bc4f9d6446b3aaabfcf
-    role: 实际输入：写实材质、细节密度与构图参考；不继承史实断代
+  - url: https://commons.wikimedia.org/wiki/File:Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg/1920px-Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    accessed: '2026-10-01'
+    local_ref: shangjing_dashun.jpg
+    sha256: 79430800d8f765bf775b03b39f9143e94851a6b9fa9c2e2254c799974ebe0959
+    role: 辽上京夯土水平层理、灰黄色与风蚀面；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Liao_Shangjing_2017_north_wall_cutting_west.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Liao_Shangjing_2017_north_wall_cutting_west.jpg/1920px-Liao_Shangjing_2017_north_wall_cutting_west.jpg
+    accessed: '2026-10-01'
+    local_ref: shangjing_cut.jpg
+    sha256: 8f4fe20944172c1f5722f5a2e028c18fafaada97cc3240c2f54f4a36ef21203b
+    role: 城垣剖面、低平墙顶与夯筑层次；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/tile/liao_jin_north/tex_town_liao_jin_north_wall__earth_r000_v01.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: f26479f23a365d771d93205a9784d252fe897204da821e989517e83f2809b96e
   tool: built-in image_gen
-  model: image_gen (backend undisclosed)
+  model: image_gen (underlying model not disclosed)
   effort: not exposed by image tool
-  created: '2026-09-30T21:19:49.564499+00:00'
-  created_time_basis: 源PNG文件mtime；非服务端回执时间
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f82c-7100-a176-3ab9a2e08c7e/exec-1ccb05b5-bc4d-4ef2-84ea-861a07854364.png
-  size: 155x217
-  sha256: f26479f23a365d771d93205a9784d252fe897204da821e989517e83f2809b96e
+  created: '2026-10-01T11:00:41.540942+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: source/historical-detail/tex_town_liao_jin_north_wall__earth_r000_v01.png
+  size: 82x64
+  sha256: 9d4b632b15c192fc671fe5106ef12615190d282a1b86c850e01a109d51fec3f4
   status: candidate
   tile:
     kind: wall
@@ -646,101 +563,95 @@
     - 1
     variant: earth_r000_v01
     autotile_mask: null
-  source_copy: source/tex_town_liao_jin_north_wall__earth_r000_v01.png
-  source_sha256: f82e1dfb3ba07a51435c6c74591fe4544ea665e963ab796d6bcc69535f04013c
+  source_sha256: d7b87a2b0f9dbb518019c3e739974f31bf9b32235234400cac4de8451b74093a
   anchor_px:
-  - 78.6565
-  - 167.7557
-  candidate_count: 1
-  selected_candidate: 1
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  geometry_qa:
-    measurement_uncertainty_source_px: 5
-    source_corners_px:
-      left:
-      - 251
-      - 1262
-      front:
-      - 510
-      - 1433
-      right:
-      - 775
-      - 1261
-    source_axis_slopes:
-    - 0.6602316602316602
-    - -0.6490566037735849
-    axis_tolerance: 0.03
-    axis_pass: false
-    expected_width_depth_ratio: 1.0
-    source_width_depth_ratio: 0.9773584905660377
-    ratio_relative_error: 0.02264150943396226
-    ratio_pass: true
-    measurement_note: 人工量读底面角；非文物实测或3D相机反解，目标与实测分列。
+  - 39.656
+  - 51.134
+  candidate_count: 2
+  selected_candidate: historical-detail-c2
   processing:
     source_size:
+    - 1536
     - 1024
-    - 1536
-    crop_box:
-    - 0
-    - 19
-    - 1010
-    - 1536
-    uniform_scale: 0.12213740458015267
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 310
+    - 122
+    - 1340
+    - 932
+    old_alpha_crop:
+    - 46
+    - 25
+    - 114
+    - 189
+    target_width: 68
+    uniform_scale: 0.06601941747572816
     resized_size:
-    - 123
-    - 185
+    - 68
+    - 53
     paste_offset:
-    - 16
-    - 16
-    - 139
-    - 201
+    - 7
+    - 5
+    final_size:
+    - 82
+    - 64
+    mapped_anchor:
+    - 39.656
+    - 51.134
     steps:
-    - alpha bbox crop
-    - uniform LANCZOS resize with integer rounding
-    - transparent padding; no mask, repaint, warp, rotation or alpha threshold
-  pixel_qa:
-    mode: RGBA
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 23832
-    alpha_near_opaque_pixels: 8609
-    alpha_nonzero_bbox:
-    - 24
-    - 23
-    - 119
-    - 191
-    border_alpha_max: 0
-  notes: 原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  notes: 2026-10-01 强历史细节重出：LOW HORIZONTAL straight defensive wall segment, never a freestanding post, pillar, tower or upright block. One complete wall run crosses the one-by-one tile along a 2:1 ground diagonal; visible length must be about 2.5 times its vertical height, matching one arm and cross-section of the corner tile. Slightly battered faces and flat narrow crown; grey-buff compacted earth in clear horizontal tamped lifts, wind-eroded chips, sparse straw and rough stone toe. Roof, ridge, beasts, dougong, columns, doors and windows not applicable; no crenellation, vegetation, gate, stairs or ground island; both vertical-cut connection ends clean and identical. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: source/historical-detail/tex_town_liao_jin_north_wall__earth_r000_v01.png
 - id: tex_town_liao_jin_north_wall_corner__outer_ne_v01
   file: tex_town_liao_jin_north_wall_corner__outer_ne_v01.png
   category: tile
   style: default
   subject: 辽金北方（11–13世纪）·夯土外转角（原创扩展；匿名年代意象，非文物复原）
-  prompt: 'Use case: historical-scene. ONE isolated90degree L-shaped rammed-earth outer city wall corner for Liao/Jin northern
-    Chinese map,11th-12th century. Preserve reference type: two connected wall arms, back joint at upper center, open hollow
-    corner faces lower center. Footprint2m by2m; arms one cell thick, wall3m high. Strict orthographic2:1 dimetric yaw45 elevation30,
-    all horizontal planar edges slope+0.5/-0.5, verticals upright, no vanishing point. Muted cool grey-ochre rammed earth
-    with subtle horizontal strata, plain flat wall tops, no cap, no masonry brick pattern, no battlements, no floor, no base
-    slab or soil island. Same realistic fine matte earth material density as Song reference, north earthen city visual vocabulary,
-    anonymous original design. Soft upper-left light, tiny lower-right contact shadow.20percent transparent margin, complete
-    intact feet and top, TRUE RGBA outside and within open hollow. No environment sky text people labels watermark fake checkerboard
-    glow or plants. Single asset.'
-  negative: 无字、无人、无现代物、无背景、无厚地台、无假棋盘透明、无透视汇聚
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin outer rammed-earth wall corner, asset tex_town_liao_jin_north_wall_corner__outer_ne_v01, registered logical footprint 2 by 2. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Exact ninety-degree outer corner made from two matching low rammed-earth wall arms; same height, battered section, flat crown, grey-buff horizontal tamped lifts, eroded chips and sparse rough stone toe; roof, ridge, beasts, dougong, columns, doors and windows not applicable; continuous lift lines around corner, no crenellation, tower, vegetation or ground island; two open connection ends unobstructed.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 2 by 2 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.
+
+    Tile-specific: retain exact logical footprint and keep every connection edge unobstructed. Gate aperture must be truly transparent for the full depth. Wall ends must be clean and compatible.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
   references:
-  - file: assets/default/baseline/tile/tex_town_song_dali_wall_corner__outer_ne_v01.png
-    sha256: e3b2a9a2e7ffe32619c939955a089baf46c08f745e058364a96f24f7af1961b5
-    role: 实际输入：写实材质、细节密度与构图参考；不继承史实断代
+  - url: https://commons.wikimedia.org/wiki/File:Liao_Shangjing_2017_north_wall_cutting_west.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Liao_Shangjing_2017_north_wall_cutting_west.jpg/1920px-Liao_Shangjing_2017_north_wall_cutting_west.jpg
+    accessed: '2026-10-01'
+    local_ref: shangjing_cut.jpg
+    sha256: 8f4fe20944172c1f5722f5a2e028c18fafaada97cc3240c2f54f4a36ef21203b
+    role: 城垣剖面、低平墙顶与夯筑层次；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Jin_earth_wall_at_Qingzhou_1.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Jin_earth_wall_at_Qingzhou_1.jpg/1920px-Jin_earth_wall_at_Qingzhou_1.jpg
+    accessed: '2026-10-01'
+    local_ref: qingzhou_wall_1.jpg
+    sha256: a48869378cd664629f0c1775b95ba6730179f7a70c3c11044a1d07aab8346109
+    role: 金庆州长低土垣与侵蚀轮廓；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/tile/liao_jin_north/tex_town_liao_jin_north_wall_corner__outer_ne_v01.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 908ad736e6aa6f0cd9abe32fc09e9a9cc8474532ae0d9c3480cc5e4f6bc756cb
   tool: built-in image_gen
-  model: image_gen (backend undisclosed)
+  model: image_gen (underlying model not disclosed)
   effort: not exposed by image tool
-  created: '2026-09-30T21:20:45.017770+00:00'
-  created_time_basis: 源PNG文件mtime；非服务端回执时间
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f82c-7100-a176-3ab9a2e08c7e/exec-b2785b08-d8e1-4337-bced-bf5a7078078c.png
-  size: 174x179
-  sha256: 908ad736e6aa6f0cd9abe32fc09e9a9cc8474532ae0d9c3480cc5e4f6bc756cb
+  created: '2026-10-01T10:53:06.040898+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: source/historical-detail/tex_town_liao_jin_north_wall_corner__outer_ne_v01.png
+  size: 155x91
+  sha256: d9bd7d5841d480745dc741be490ecfe5daad0df97b4abfeb35ff14dadc838fc2
   status: candidate
   tile:
     kind: wall_corner
@@ -749,71 +660,44 @@
     - 2
     variant: outer_ne_v01
     autotile_mask: null
-  source_copy: source/tex_town_liao_jin_north_wall_corner__outer_ne_v01.png
-  source_sha256: 48e1b2e3e2c1f72d0536b98bf7fd3a5ab7afccddedd84baf619942e714ade586
+  source_sha256: b3cc069c86d0f1520aad641bdd2b312e2b80142bf83570156ef48e0f2a0ccdfb
   anchor_px:
-  - 87.9344
-  - 146.742
+  - 76.934
+  - 77.505
   candidate_count: 1
-  selected_candidate: 1
-  png_rotations_available:
-  - 0
-  allowRotation: false
-  geometry_qa:
-    measurement_uncertainty_source_px: 5
-    source_corners_px:
-      left:
-      - 68
-      - 1124
-      front:
-      - 608
-      - 1479
-      right:
-      - 1165
-      - 1141
-    source_axis_slopes:
-    - 0.6574074074074074
-    - -0.6068222621184919
-    axis_tolerance: 0.03
-    axis_pass: false
-    expected_width_depth_ratio: 1.0
-    source_width_depth_ratio: 0.9694793536804309
-    ratio_relative_error: 0.030520646319569078
-    ratio_pass: true
-    measurement_note: L/R为两臂外端底角；隐藏后底角B由上后角[625,26]+内角竖向高度760推算为[625,786]；F=L+R-B=[608,1479]为画外虚拟占地角；不是实物像素。
+  selected_candidate: historical-detail-c1
   processing:
     source_size:
-    - 1234
-    - 1275
-    crop_box:
-    - 0
-    - 12
-    - 1220
-    - 1275
-    uniform_scale: 0.11668185961713765
+    - 1448
+    - 1086
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 122
+    - 195
+    - 1372
+    - 925
+    old_alpha_crop:
+    - 24
+    - 17
+    - 152
+    - 157
+    target_width: 128
+    uniform_scale: 0.1024
     resized_size:
-    - 142
-    - 147
+    - 128
+    - 75
     paste_offset:
-    - 16
-    - 16
-    - 158
-    - 163
+    - 13
+    - 8
+    final_size:
+    - 155
+    - 91
+    mapped_anchor:
+    - 76.934
+    - 77.505
     steps:
-    - alpha bbox crop
-    - uniform LANCZOS resize with integer rounding
-    - transparent padding; no mask, repaint, warp, rotation or alpha threshold
-  pixel_qa:
-    mode: RGBA
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 17235
-    alpha_near_opaque_pixels: 12675
-    alpha_nonzero_bbox:
-    - 22
-    - 16
-    - 154
-    - 159
-    border_alpha_max: 0
-  notes: 原图及成品逐张view_image；左上光/右下接触影，写实古风候选；几何残差见geometry_qa，单视图，装配待实测。
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  notes: 2026-10-01 强历史细节重出：Exact ninety-degree outer corner made from two matching low rammed-earth wall arms; same height, battered section, flat crown, grey-buff horizontal tamped lifts, eroded chips and sparse rough stone toe; roof, ridge, beasts, dougong, columns, doors and windows not applicable; continuous lift lines around corner, no crenellation, tower, vegetation or ground island; two open connection ends unobstructed. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: source/historical-detail/tex_town_liao_jin_north_wall_corner__outer_ne_v01.png
