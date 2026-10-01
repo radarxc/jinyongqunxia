@@ -1,6 +1,6 @@
 # 本任务：游戏工程 · 动效层（招式特效接入战斗界面）
 
-本任务写代码。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。沙箱已放开网络与 pnpm store 写入。先读根 `CLAUDE.md`、`packages/render/CLAUDE.md`、`apps/web/CLAUDE.md`、`tools/vfx/README.md`（若有）与 `tools/vfx/web/`。
+本任务写代码。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。沙箱已放开网络与 pnpm store 写入。先读根 `CLAUDE.md`、`packages/render/CLAUDE.md`、`apps/game/CLAUDE.md`、`tools/vfx/README.md`（若有）与 `tools/vfx/web/`。
 
 ## 作者要求
 
@@ -21,10 +21,12 @@
 
 约束：不改素材与 `bindings.yaml`；`tools/vfx/web/` 只做兼容性最小改动；每次写入 ≤ 150 行；尽量不加新依赖（并行任务改同一份 `pnpm-lock.yaml` 会冲突），必须加的写进报告。
 
+性能是作者硬要求（AR-21「性能要最好」）：特效对象池、纹理共享与图集、同屏多特效 ≥ 60 fps 桌面；懒加载按书界 / 招式分包，不进首屏 chunk；`pnpm size` 必须过。
+
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`
 - `pnpm check`
-- `pnpm --filter ./apps/web build`
+- `pnpm --filter ./apps/game build`
 - `python3 tools/vfx/export_bindings.py --check`
 - `python3 tools/lint/check_ids.py --strict`
 

@@ -22,6 +22,8 @@
 
 约束：不写 UI；每次写入 ≤ 150 行；不改 `packages/core/src/index.ts`（已预先导出各子模块）与别的任务负责的子目录；尽量不加新依赖（并行任务改同一份 `pnpm-lock.yaml` 会冲突），必须加的写进报告。
 
+性能是作者硬要求（AR-21「性能要最好」）：物品栏与店铺用 Map / 类型化数组，查询 O(1)；全局物品按场景分桶；content 生成物预排序。
+
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`
 - `pnpm check`

@@ -21,6 +21,8 @@
 
 约束：不写 UI；不改 schema（需要改写报告交 ENG-02 / DES-story-dag）；每次写入 ≤ 150 行；不改 `packages/core/src/index.ts`（已预先导出各子模块）与别的任务负责的子目录；尽量不加新依赖（并行任务改同一份 `pnpm-lock.yaml` 会冲突），必须加的写进报告。
 
+性能是作者硬要求（AR-21「性能要最好」）：条件求值预编译（不在运行时解析字符串）；时限检查按下一个到期时间排序只查队首；锚点注册表按场景分桶 O(1) 查询。
+
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`
 - `pnpm check`
