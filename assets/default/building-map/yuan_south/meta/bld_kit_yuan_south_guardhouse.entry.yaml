@@ -1,0 +1,183 @@
+id: bld_kit_yuan_south_guardhouse
+file: bld_kit_yuan_south_guardhouse.png
+category: building-map
+style: default
+subject: 元末江南约1350年城门守舍（原创扩展，细部待考）
+prompt: 'Use case: historical-scene. Create a SINGLE cutout game map asset on actual transparent background, no background pixels at all. Subject:
+  ONE single-story modest guard lodge, plain gray tile gable roof, dark timber, pale plaster over gray brick plinth, a south doorway facing lower
+  left, two narrow lattice windows and one plain weapon rack. Late Yuan Jiangnan circa1350, realistically weathered stone, wood, gray clay tiles;
+  quiet warm-neutral natural palette and fine material detail like the southern Song building sprites. CAMERA PRIORITY: orthographic 2:1 DIMETRIC
+  projection with vertical lines upright, ground diamond edges exactly26.565degrees above/below horizontal (screen slopes +0.5 and -0.5); NO perspective
+  convergence; yaw45 elevation30. Base is a THIN FLAT rectangle 7m east-west by5m north-south. Its near/left visible edge projects down-right
+  and is 7/5 times the far/right visible edge that projects up-right. Both ground edges must be equally steep26.565degrees. Precisely preserve
+  this ground geometry. Show clean unobstructed three visible corners touching ground. Entrance faces lower left. Full object must fit with15%
+  completely empty transparent border. Light upper left; TINY contact shadow lower right, tightly touching base. ABSOLUTELY NO glow, halo, mist,
+  blurred vignette, gradient, atmospheric fade, wall backdrop or ambient background shading; all empty space must have alpha zero. No people,
+  text, labels, watermark, modern item, black or white background, checkerboard, thick plinth or miniature scene.'
+negative: 文字、水印、人物、现代物、大背景、光晕、厚地台、夸张翘角、透视汇聚
+references: []
+visual_comparison_reference:
+  file: assets/default/baseline/building-map/bld_kit_song_southern_warehouse.png
+  role: 已view_image视觉比照；未作为工具图像输入
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:32:32.242290+00:00'
+created_time_basis: 源PNG文件mtime，非服务端时间回执
+source_path: /Users/bytedance/.codex/generated_images/01a0f469-0d23-7963-9f54-674c4289d810/exec-86d46066-ae55-4da4-96ba-b879c0961ea0.png
+size: 672x512
+sha256: 9c6a4d19086660d23fd77aa0a994830990b7c177b237e56597c980c930e588d8
+status: candidate
+building:
+  type: bld_kit_yuan_south_guardhouse
+  footprint:
+  - 7
+  - 5
+  anchor: &id001
+  - 346.3642
+  - 326.3689
+  era: yuan
+footprint_m:
+- 7
+- 5
+footprint_basis: 【建议值】沿用design/22 §3.3南宋guardhouse7×5，同构功能扩展
+entrance:
+  edge: S
+  offset_cells: 3
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 384
+  - 192
+  ground_width_px: 384
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  note: 最终双轴已校正；宽深比仍采用原底面读点并保留误差。
+  strict_geometry_pass: true
+metadata: meta/bld_kit_yuan_south_guardhouse.yaml
+source_record: sources/bld_kit_yuan_south_guardhouse.json
+source_sha256: 1914de516476e75efc2719b07feb4f13e4cce2dcb1aac9496f614f622b78ff88
+processing:
+  source_archive: sources/bld_kit_yuan_south_guardhouse.png
+  source_sha256: 1914de516476e75efc2719b07feb4f13e4cce2dcb1aac9496f614f622b78ff88
+  source_size:
+  - 1484
+  - 1060
+  crop_box:
+  - 0
+  - 19
+  - 1440
+  - 1060
+  uniform_scale_requested: 0.36606291706387034
+  resized_size:
+  - 527
+  - 381
+  rounded_effective_scale:
+  - 0.3659722222222222
+  - 0.3659942363112392
+  paste_offset:
+  - 72
+  - 65
+  - 599
+  - 446
+  steps:
+  - crop alpha>0 bounding rectangle
+  - uniform LANCZOS resize with integer rounding
+  - paste without mask into transparent RGBA; no alpha threshold, warp, repaint or mirror
+  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
+  reprojection:
+    kind: whole_sprite_affine_reprojection
+    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
+    forward_matrix:
+    - 1.0
+    - 0.0
+    - -0.027602588414693874
+    - 1.035295782042269
+    - -1.9588971055903812
+    inverse_matrix_for_pillow:
+    - 1.0
+    - 0.0
+    - 0.0
+    - 0.02666154821981774
+    - 0.9659075380635251
+    - 1.8921134805805704
+    pivot_anchor_px: *id001
+    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
+    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
+geometry_qa:
+  source_corners_px: &id002
+    left:
+    - 154.34375
+    - 307.7469419287564
+    front:
+    - 383.4423611111111
+    - 422.29624748431183
+    right:
+    - 538.2486111111111
+    - 344.8931224843119
+  source_axis_slopes: &id003
+  - 0.4999999999999994
+  - -0.49999999999999944
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.4799054373522458
+  expected_width_depth_ratio: 1.4
+  ratio_relative_error: 0.0570753123944614
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 5
+  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
+  measurement_space: final_png_after_affine_reprojection
+  pre_reprojection_final_corners_px:
+    left:
+    - 154.34375
+    - 303.2622478386167
+    front:
+    - 383.4423611111111
+    - 420.014409221902
+    right:
+    - 538.2486111111111
+    - 349.3775216138328
+  pre_reprojection_axis_slopes:
+  - 0.5096153172515803
+  - -0.456292220811945
+  final_corners_px: *id002
+  final_axis_slopes: *id003
+  pre_reprojection_source_corners_px:
+    left:
+    - 225
+    - 670
+    front:
+    - 851
+    - 989
+    right:
+    - 1274
+    - 796
+pixel_qa:
+  mode: RGBA
+  size:
+  - 672
+  - 512
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 263620
+  alpha_partial_pixels: 79541
+  alpha_opaque_pixels: 903
+  alpha_near_opaque_pixels: 77919
+  alpha_nonzero_bbox:
+  - 152
+  - 83
+  - 594
+  - 444
+  transparent_margins_px:
+  - 152
+  - 83
+  - 78
+  - 68
+  border_alpha_max: 0
+candidate_count: 2
+selected_candidate: 2
+notes: 第二候选外围更干净，灰瓦粉墙、木架与低石基符合本批材质，守卫用途由门前兵器架识别；兵器细部待考。正轴接近目标、负轴略浅，未做透视纠偏。

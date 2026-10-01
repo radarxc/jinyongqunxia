@@ -1,0 +1,15 @@
+{
+  "id": "shop_1f",
+  "prompt": "Use case: precise-object-edit. Edit target is the supplied new late Yuan Jiangnan shop_1f building sprite. Keep its identity, layout, muted grey tile roofs, warm wood, lime plaster, fine realistic Song-reference textures, doors, upper-left lighting and short lower-right contact shadow. Correct only footprint proportions and camera to exact 2:1 dimetric orthographic, not perspective, no vanishing points. ALL ground edges left-to-front slope +0.500 and front-to-right -0.500; vertical walls stay vertical. Rebuild the underlying whole parcel to 6m EAST-WEST frontage and 5m NORTH-SOUTH depth, horizontal spans ratio 1.2000. For example ground LEFT corner(120,720), FRONT corner(360,840), RIGHT corner(560,740) gives correct shape; scale composition to fit these ratios rather than literal pixels. The front facade faces lower left along the LONGER ground edge. Keep complete thin ground interface with clear corner edges. Full building uncropped with 12 percent true transparent empty margin; solid building should be opaque. Remove any haze, large ground shadow, glow, fake background. No words or people. ONE sprite with true transparent RGBA background.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-26d8d54e-86d6-4657-ba3c-97a9ee9d1a81.png",
+  "reference": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-70efc43d-0832-45f5-a806-e3ba89d41229.png",
+  "source_archive": "sources/bld_kit_yuan_south_shop_1f.v2.png",
+  "source_sha256": "38c469bf814217259bbcc1aebb08a8cbe65c7fc5b2628d2fd743865d187fe045",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "created": "2026-09-30T22:35:26.460370+00:00",
+  "created_time_basis": "source PNG mtime, not service-side call timestamp",
+  "reference_sha256": "407da7d190e8fac31b738d8041fb724e50737c1d29dbf6f8133d00e22674ada3"
+}

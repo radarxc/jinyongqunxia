@@ -1,0 +1,80 @@
+id: bld_kit_yuan_south_wangfu
+status: candidate
+building:
+  type: bld_kit_yuan_south_wangfu
+  footprint: &id001 [20, 16]
+  anchor: &id002 [684.1791, 688.3194]
+  era: yuan
+footprint_m: *id001
+footprint_basis: design/22 §3.4 元代王府骨架，20×16
+anchor_px: *id002
+anchor_source_px: [740.0, 748.0]
+entrance: {edge: S, offset_cells: 10.0}
+entrance_note: 逻辑南边中点【建议值】，非门洞像素测量（待实测）。
+collision_polygon_m:
+- [0, 0]
+- [20, 0]
+- *id001
+- [0, 16]
+collision_note: 全footprint保守代理【建议值】，非墙体碰撞实测；院内行走下游细化。
+height_m: null
+height_note: 未有GLB或测绘，实高待实测，不用图片估值冒充实高。
+occluder_proxy_px: [48, 53, 1264, 970]
+occluder_note: alpha非零包围框，仅离线保守代理，不等于运行时屋顶淡出多边形。
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+views:
+- rotation_deg: 0
+  file: bld_kit_yuan_south_wangfu.png
+  camera_requested: {yaw_deg: 45, pitch_deg: 30}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_target_px: [1152, 576]
+  ground_width_px: 1152
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  camera_target: {yaw_deg: 45, pitch_deg: 30}
+  strict_geometry_pass: false
+geometry_qa:
+  source_corners_px:
+    left: [70, 680]
+    front: [883, 1073]
+    right: [1410, 816]
+  source_back_corner_inferred_px: [597, 423]
+  source_axis_slopes: [0.4833948339483395, -0.4876660341555977]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.5426944971537002
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.23415559772296013
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 8
+  precision_note: view_image原尺寸人工量点，约±8px；低台外围地面三拐角；不含前阶局部凸出，宽深仍不达标。 隐藏后角按L+R-F推算，中心取(L+R)/2；非3D测绘。
+pixel_qa:
+  mode: RGBA
+  size: [1312, 1024]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 793000
+  alpha_partial_pixels: 549628
+  alpha_opaque_pixels: 860
+  alpha_nonzero_bbox: [48, 53, 1264, 970]
+  transparent_margins_px: [48, 53, 48, 54]
+  border_alpha_max: 0
+  source_border_alpha_max: 1
+  source_border_note: 仅记录原始低alpha残迹；未作抠底/阈值清除，主体view_image完整。
+processing:
+  source_archive: sources/bld_kit_yuan_south_wangfu_candidate2.png
+  source_sha256: ff24b835f170719836f4e3ed9d2a2f003c117933dacf7b94f032a8da2f46ced7
+  source_size: [1448, 1086]
+  crop_box: [0, 9, 1414, 1076]
+  uniform_scale_requested: 0.8597014925373134
+  resized_size: [1216, 917]
+  rounded_effective_scale: [0.85997171145686, 0.85941893158388]
+  paste_offset: [48, 53, 1264, 970]
+  steps: [crop alpha>0 bbox; preserve all source alpha, 'one uniform LANCZOS resize, dimensions rounded', paste without alpha mask on transparent RGBA padding]
+  scale_formula: 32*(w+h)/(source_right_x-source_left_x)
+visual_qa: {source_reviewed_with_view_image: true, final_review_pending: false
+  final_reviewed_with_view_image: true, complete_eaves_and_base: true, no_text_people_modern_objects: true, style_note: 灰瓦、褐木、暖浅灰墙、天然石阶与宋基线同密度；王府克制彩画，寺殿单檐歇山。}
+release_ready: false

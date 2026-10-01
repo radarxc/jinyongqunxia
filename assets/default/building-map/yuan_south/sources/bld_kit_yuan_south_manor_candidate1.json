@@ -1,0 +1,29 @@
+{
+  "key": "manor",
+  "id": "bld_kit_yuan_south_manor",
+  "prompt": "Use case: precise-object-edit. Produce ONE anonymous late Yuan Jiangnan estate courtyard bld_kit_yuan_south_manor16x13 planning cells from this Song Jiangnan courtyard reference. Keep EXACT layout, low perimeter wall footprint, base corners, camera orthographic2:1 yaw45 elevation30, roof directions, gate position and building dimensions. Change only central tree to a small restrained plum tree with green foliage, weather doors slightly darker, simplify gate decoration. Maintain three low halls, pale lime plaster, natural charcoal grey clay tiles, dark red-brown and brown timber and stone paving with same realistic texture density as source. Original anonymous game estate, not a named site. Ground edges slope+.5/-.5 and no perspective convergence. Fully transparent RGBA background, no surrounding glow, sky or scene; keep all eaves and ground corners inside generous transparent margins. Left upper light and short faint lower-right contact shadow. No lettering, people, signs, calligraphy, modern objects, Qing dragon ranks, yellow imperial tiles, tall late-Huizhou horse-head gables, cartoon, plastic, thick platform or sprawling landscape.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f468-db51-74b0-a8a9-3964297969a6/exec-a905cce2-620e-43a3-bf7e-e88d9f26ee34.png",
+  "source_archive": "sources/bld_kit_yuan_south_manor_candidate1.png",
+  "source_sha256": "b35b36e7fd5051c041e9f5eb271142f77cc00bb50c98d6d910940ff85e7bd025",
+  "source_size": [
+    1515,
+    1038
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T22:37:08.753480+00:00",
+  "created_time_basis": "生成后归档记录时间，非服务端生成开始时间",
+  "negative": "No text, people, modern objects, opaque background, checkerboard, Qing rank decoration, late-Huizhou horse-head gables, cartoon, thick diorama plinth or cropped eaves.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_manor.png",
+      "sha256": "393cee0a325af7b793f3dec4c28a1f0e50679eef19fa2c3d70f479b2a837c994",
+      "status": "candidate",
+      "role": "已view_image；材质、密度与受控编辑参考，不代表严格几何已通过"
+    }
+  ],
+  "selection_status": "selected_candidate",
+  "selection_reason": "第2张出现大范围黄灰晕，拒选；第1张材质与基线一致、轮廓完整。",
+  "view_image_reviewed": true
+}

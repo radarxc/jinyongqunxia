@@ -1,0 +1,238 @@
+{
+  "id": "bld_kit_yuan_south_inn",
+  "file": "bld_kit_yuan_south_inn.png",
+  "category": "building-map",
+  "style": "default",
+  "subject": "元末江南·客栈（原创扩展）",
+  "prompt": "Use case: historical-scene. Generate ONE new isolated late Yuan dynasty Jiangnan Chinese town building game sprite, circa 1350 Hangzhou/Jiqing/Pingjiang. Input image is a MATERIAL, PALETTE and CAMERA style reference only, not a historical reconstruction target. Match its realistic muted grey ceramic roof tiles, weathered warm dark timber, pale lightly weathered lime plaster, fine restrained detail density. Orthographic camera yaw 45 degrees elevation 30 degrees, dimetric ground edges slope +0.5 and -0.5 (2:1 grid), zero perspective convergence. Front south entrance faces lower left. Complete building and footprint on a TRUE transparent RGBA background, not white or checkerboard. Thin ground interface, no thick floating block. Make the left, front and right ground footprint corners clear and the entire building fit with 12% transparent margin. Lighting upper left, minimal short contact shadow lower right. Roofs plain with restrained eave curves and no extravagant upturned ornament. No people, words, lettering, signs, flags, logos, background scenery, mountains, modern materials, bright golden roofs, elaborate Qing polychromy, tourist Huizhou horse-head firewalls, cartoon outlines. Subject: modest TWO STOREY INN on a rectangular parcel12m east-west x9m north-south. L-shaped timber lodging with an open side service court still within rectangular parcel, main facade facing lower left has simple large entrance with plain undyed curtain, upstairs repeated closed wooden guest room shutters. No tavern dining terrace. Grey tiled gable roofs, pale plaster, timber stairs visible inside service court. No characters or writing. Clear three parcel corners, +/-0.5 ground slopes; east-west edge screen span 1.333 times other edge.",
+  "negative": "文字、水印、现代物、人物、清式彩画、旅游马头墙、厚底座、景观背景",
+  "references": [
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png",
+      "sha256": "bdb0d7ba47a804dc14b20c39931e2b95a6c8926cf0d3ecd10a7a808eb62d2548",
+      "role": "生成参考或第二候选编辑目标，详见调用记录"
+    }
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed",
+  "created": "2026-09-30T22:29:14.018718+00:00",
+  "created_time_basis": "source PNG mtime, not service-side call timestamp",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-20f4eb93-1699-4bd0-83f6-07acd481a59d.png",
+  "size": "752x720",
+  "sha256": "993bcea66d445b382646b7047f7262922e7005b0f1182d8f36223e840e7f572b",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_yuan_south_inn",
+    "footprint": [
+      12,
+      9
+    ],
+    "anchor": [
+      368.8065,
+      461.5521
+    ],
+    "era": "yuan"
+  },
+  "footprint_m": [
+    12,
+    9
+  ],
+  "footprint_basis": "【建议值】design/22 §3.3同功能项",
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 6
+  },
+  "projection_contract": {
+    "tile_px": [
+      64,
+      32
+    ],
+    "ground_bbox_px": [
+      672,
+      336
+    ],
+    "light": "screen_upper_left",
+    "shadow": "screen_lower_right_contact_only",
+    "strict_geometry_pass": true
+  },
+  "metadata": "meta/bld_kit_yuan_south_inn.yaml",
+  "source_record": "sources/inn.call.json",
+  "candidate_count": 2,
+  "selected_candidate": 1,
+  "selection_reason": "选第一候选：客房闭窗与侧院楼梯区别于酒楼；第二候选偏俯视浅轴，当前宽深比偏差保留。",
+  "source_sha256": "ff028a124e5b39d633d5f95092156d5a5f1d5128f4d982f205618edd7bb51ad3",
+  "processing": {
+    "source_archive": "sources/bld_kit_yuan_south_inn.png",
+    "source_sha256": "ff028a124e5b39d633d5f95092156d5a5f1d5128f4d982f205618edd7bb51ad3",
+    "source_size": [
+      1254,
+      1254
+    ],
+    "crop_box": [
+      41,
+      51,
+      1240,
+      1212
+    ],
+    "uniform_scale_requested": 0.5753424657534246,
+    "resized_size": [
+      690,
+      668
+    ],
+    "rounded_effective_scale": [
+      0.5754795663052544,
+      0.5753660637381568
+    ],
+    "paste_offset": [
+      31,
+      26,
+      721,
+      694
+    ],
+    "steps": [
+      "alpha>0矩形裁边，保留全部非零alpha",
+      "一次等比LANCZOS，尺寸取整",
+      "无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值",
+      "全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘"
+    ],
+    "reprojection": {
+      "kind": "whole_sprite_affine_reprojection",
+      "purpose": "audit repair: map measured ground axes to exact +0.50/-0.50",
+      "forward_matrix": [
+        1.0,
+        0.0,
+        -0.037494134209291374,
+        0.9974750063759015,
+        14.993496517948302
+      ],
+      "inverse_matrix_for_pillow": [
+        1.0,
+        0.0,
+        0.0,
+        0.03758904631156402,
+        1.0025313853559825,
+        -15.03145083546881
+      ],
+      "pivot_anchor_px": [
+        368.8065,
+        461.5521
+      ],
+      "resample": "BICUBIC on premultiplied RGBa; convert back to RGBA",
+      "preserves": "canvas size, x coordinates, anchor, footprint registration, transparent background"
+    }
+  },
+  "geometry_qa": {
+    "source_corners_px": {
+      "left": [
+        32.726438698915764,
+        452.3444369597573
+      ],
+      "front": [
+        387.2218515429525,
+        629.5921433817757
+      ],
+      "right": [
+        704.8865721434529,
+        470.7597830815254
+      ]
+    },
+    "source_axis_slopes": [
+      0.5000000000000002,
+      -0.5000000000000002
+    ],
+    "axis_pass": true,
+    "axis_tolerance": 0.03,
+    "source_width_depth_ratio": 1.1159420289855073,
+    "expected_width_depth_ratio": 1.3333333333333333,
+    "ratio_relative_error": 0.1630434782608695,
+    "ratio_pass": false,
+    "measurement_uncertainty_source_px": 6,
+    "precision_note": "由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。",
+    "measurement_space": "final_png_after_affine_reprojection",
+    "pre_reprojection_final_corners_px": {
+      "left": [
+        32.726438698915764,
+        439.68819982773476
+      ],
+      "front": [
+        387.2218515429525,
+        630.7097329888028
+      ],
+      "right": [
+        704.8865721434529,
+        483.41602067183464
+      ]
+    },
+    "pre_reprojection_axis_slopes": [
+      0.5388547389895553,
+      -0.46367664636642725
+    ],
+    "final_corners_px": {
+      "left": [
+        32.726438698915764,
+        452.3444369597573
+      ],
+      "front": [
+        387.2218515429525,
+        629.5921433817757
+      ],
+      "right": [
+        704.8865721434529,
+        470.7597830815254
+      ]
+    },
+    "final_axis_slopes": [
+      0.5000000000000002,
+      -0.5000000000000002
+    ],
+    "pre_reprojection_source_corners_px": {
+      "left": [
+        44,
+        770
+      ],
+      "front": [
+        660,
+        1102
+      ],
+      "right": [
+        1212,
+        846
+      ]
+    }
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      752,
+      720
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 312786,
+    "alpha_partial_pixels": 227493,
+    "alpha_opaque_pixels": 1161,
+    "alpha_near_opaque_pixels": 222561,
+    "alpha_nonzero_bbox": [
+      32,
+      27,
+      721,
+      687
+    ],
+    "transparent_margins_px": [
+      32,
+      27,
+      31,
+      33
+    ],
+    "border_alpha_max": 0
+  },
+  "png_rotations_available": [
+    0
+  ],
+  "allowRotation": false,
+  "release_ready": false,
+  "notes": "选第一候选：客房闭窗与侧院楼梯区别于酒楼；第二候选偏俯视浅轴，当前宽深比偏差保留。；原图已view_image；候选形制（原创扩展），具体元末细部（待考）；仅原向单视图，严格拼接（待实测）。"
+}

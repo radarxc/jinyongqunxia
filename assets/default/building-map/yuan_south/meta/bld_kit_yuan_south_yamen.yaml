@@ -1,0 +1,80 @@
+id: bld_kit_yuan_south_yamen
+status: candidate
+building:
+  type: bld_kit_yuan_south_yamen
+  footprint: &id001 [16, 12]
+  anchor: &id002 [558.0449, 443.518]
+  era: yuan
+footprint_m: *id001
+footprint_basis: design/22 §3.4 元代官署骨架，16×12
+anchor_px: *id002
+anchor_source_px: [764.5, 579.5]
+entrance: {edge: S, offset_cells: 8.0}
+entrance_note: 逻辑南边中点【建议值】，非门洞像素测量（待实测）。
+collision_polygon_m:
+- [0, 0]
+- [16, 0]
+- *id001
+- [0, 12]
+collision_note: 全footprint保守代理【建议值】，非墙体碰撞实测；院内行走下游细化。
+height_m: null
+height_note: 未有GLB或测绘，实高待实测，不用图片估值冒充实高。
+occluder_proxy_px: [54, 53, 1066, 778]
+occluder_note: alpha非零包围框，仅离线保守代理，不等于运行时屋顶淡出多边形。
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+views:
+- rotation_deg: 0
+  file: bld_kit_yuan_south_yamen.png
+  camera_requested: {yaw_deg: 45, pitch_deg: 30}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_target_px: [896, 448]
+  ground_width_px: 896
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  camera_target: {yaw_deg: 45, pitch_deg: 30}
+  strict_geometry_pass: true
+geometry_qa:
+  source_corners_px:
+    left: [141, 535]
+    front: [866, 884]
+    right: [1388, 624]
+  source_back_corner_inferred_px: [663, 275]
+  source_axis_slopes: [0.48137931034482756, -0.49808429118773945]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.3888888888888888
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.04166666666666674
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 8
+  precision_note: view_image原尺寸人工量点，约±8px；围墙硬质石脚三个可见拐角；薄泥土散边不计入逻辑footprint。 隐藏后角按L+R-F推算，中心取(L+R)/2；非3D测绘。
+pixel_qa:
+  mode: RGBA
+  size: [1120, 832]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 647577
+  alpha_partial_pixels: 283519
+  alpha_opaque_pixels: 744
+  alpha_nonzero_bbox: [54, 53, 1066, 778]
+  transparent_margins_px: [54, 53, 54, 54]
+  border_alpha_max: 0
+  source_border_alpha_max: 1
+  source_border_note: 仅记录原始低alpha残迹；未作抠底/阈值清除，主体view_image完整。
+processing:
+  source_archive: sources/bld_kit_yuan_south_yamen_candidate2.png
+  source_sha256: ccb76ff4f0207a38d2a5f03ade6c1306f1d91c850b9c75c19ae7c4b52d30693c
+  source_size: [1505, 1045]
+  crop_box: [63, 36, 1471, 1045]
+  uniform_scale_requested: 0.7185244587008821
+  resized_size: [1012, 725]
+  rounded_effective_scale: [0.71875, 0.7185332011892963]
+  paste_offset: [54, 53, 1066, 778]
+  steps: [crop alpha>0 bbox; preserve all source alpha, 'one uniform LANCZOS resize, dimensions rounded', paste without alpha mask on transparent RGBA padding]
+  scale_formula: 32*(w+h)/(source_right_x-source_left_x)
+visual_qa: {source_reviewed_with_view_image: true, final_review_pending: false
+  final_reviewed_with_view_image: true, complete_eaves_and_base: true, no_text_people_modern_objects: true, style_note: 灰瓦、褐木、暖浅灰墙、天然石阶与宋基线同密度；王府克制彩画，寺殿单檐歇山。}
+release_ready: false

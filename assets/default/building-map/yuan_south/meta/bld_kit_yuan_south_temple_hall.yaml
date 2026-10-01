@@ -1,0 +1,147 @@
+id: bld_kit_yuan_south_temple_hall
+status: candidate
+building:
+  type: bld_kit_yuan_south_temple_hall
+  footprint:
+  - 13
+  - 10
+  anchor: &id001
+  - 491.6529
+  - 478.2377
+  era: yuan
+footprint_m:
+- 13
+- 10
+footprint_basis: 【建议值】沿用design/22 §3.3 南宋同构temple_hall 13×10
+anchor_px: *id001
+entrance:
+  edge: S
+  offset_cells: 6.5
+png_rotations_available:
+- 0
+allowRotation: false
+release_ready: false
+metadata_repair_note: 重建既有不可解析的visual_qa流式映射；保留manifest权威字段。
+geometry_qa:
+  source_corners_px: &id002
+    left:
+    - 123.67297887836853
+    - 452.8394668733607
+    front:
+    - 542.549890750182
+    - 662.2779228092674
+    right:
+    - 859.9162418062637
+    - 503.59474728122643
+  source_back_corner_inferred_px:
+  - 648
+  - 461
+  source_axis_slopes: &id003
+  - 0.4999999999999997
+  - -0.5000000000000003
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.3198529411764706
+  expected_width_depth_ratio: 1.3
+  ratio_relative_error: 0.015271493212669629
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 8
+  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
+  measurement_space: final_png_after_affine_reprojection
+  pre_reprojection_final_corners_px:
+    left:
+    - 123.67297887836853
+    - 451.9775700934579
+    front:
+    - 542.549890750182
+    - 643.8429906542056
+    right:
+    - 859.9162418062637
+    - 504.46355140186915
+  pre_reprojection_axis_slopes:
+  - 0.45804725713663375
+  - -0.43917522695311434
+  final_corners_px: *id002
+  final_axis_slopes: *id003
+  pre_reprojection_source_corners_px:
+    left:
+    - 104
+    - 700
+    front:
+    - 822
+    - 1029
+    right:
+    - 1366
+    - 790
+pixel_qa:
+  mode: RGBA
+  size:
+  - 928
+  - 736
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 431888
+  alpha_partial_pixels: 249512
+  alpha_opaque_pixels: 1608
+  alpha_near_opaque_pixels: 244555
+  alpha_nonzero_bbox:
+  - 63
+  - 16
+  - 863
+  - 698
+  transparent_margins_px:
+  - 63
+  - 16
+  - 65
+  - 38
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_yuan_south_temple_hall_candidate1.png
+  source_sha256: ab407f4a9f078f663365fb47f1fb2afc26acdb5ae591ed8f9669e13b75d3bedb
+  source_size:
+  - 1441
+  - 1091
+  crop_box:
+  - 0
+  - 21
+  - 1373
+  - 1091
+  uniform_scale_requested: 0.5832012678288431
+  resized_size:
+  - 801
+  - 624
+  rounded_effective_scale:
+  - 0.5833940276766205
+  - 0.5831775700934579
+  paste_offset:
+  - 63
+  - 56
+  - 864
+  - 680
+  steps:
+  - crop alpha>0 bbox; preserve all source alpha
+  - one uniform LANCZOS resize, dimensions rounded
+  - paste without alpha mask on transparent RGBA padding
+  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
+  scale_formula: 32*(w+h)/(source_right_x-source_left_x)
+  reprojection:
+    kind: whole_sprite_affine_reprojection
+    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
+    forward_matrix:
+    - 1.0
+    - 0.0
+    - -0.01051691777578756
+    - 1.1145507582932699
+    - -49.61181805590189
+    inverse_matrix_for_pillow:
+    - 1.0
+    - 0.0
+    - 0.0
+    - 0.009436015091759743
+    - 0.897222484089748
+    - 44.512838636324915
+    pivot_anchor_px: *id001
+    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
+    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background

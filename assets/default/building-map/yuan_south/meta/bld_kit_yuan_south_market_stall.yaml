@@ -1,0 +1,182 @@
+id: bld_kit_yuan_south_market_stall
+status: candidate
+building:
+  type: bld_kit_yuan_south_market_stall
+  footprint:
+  - 5
+  - 4
+  anchor: &id001
+  - 265.4068
+  - 304.0847
+  era: yuan
+anchor_px: *id001
+logical_footprint_polygon_px:
+- - 121.40679999999998
+  - 296.0847
+- - 281.4068
+  - 376.0847
+- - 409.4068
+  - 312.0847
+- - 249.40679999999998
+  - 232.0847
+collision_polygon_m:
+- - 0
+  - 0
+- - 5
+  - 0
+- - 5
+  - 4
+- - 0
+  - 4
+collision_note: 完整占地逻辑代理；非实测墙体，不含阴影。河埠不启用port。
+actual_height_m: null
+height_note: 单图不能可靠反推实际高度，待后续3D建模实测。
+entrance:
+  edge: S
+  offset_cells: 2
+entrance_note: 逻辑入口中点代理，未实测门洞。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+png_rotations_available:
+- 0
+allowRotation: false
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_yuan_south_market_stall.png
+glb: null
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 288
+  - 144
+  ground_width_px: 288
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  note: 目标契约；实测残差见geometry_qa，不冒充精确反推相机。
+geometry_qa:
+  source_corners_px: &id002
+    left:
+    - 121.35177304964539
+    - 294.61680021944153
+    front:
+    - 283.6340425531915
+    - 375.7579349712146
+    right:
+    - 409.07092198581563
+    - 313.0394952549025
+  source_axis_slopes: &id003
+  - 0.5
+  - -0.5000000000000002
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.2937365010799136
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.03498920086393076
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 5
+  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
+  measurement_space: final_png_after_affine_reprojection
+  pre_reprojection_final_corners_px:
+    left:
+    - 121.35177304964539
+    - 296.53420805998127
+    front:
+    - 283.6340425531915
+    - 370.7478912839738
+    right:
+    - 409.07092198581563
+    - 311.1602624179944
+  pre_reprojection_axis_slopes:
+  - 0.4573123327090939
+  - -0.47504074667279717
+  final_corners_px: *id002
+  final_axis_slopes: *id003
+  pre_reprojection_source_corners_px:
+    left:
+    - 208
+    - 704
+    front:
+    - 807
+    - 978
+    right:
+    - 1270
+    - 758
+pixel_qa:
+  mode: RGBA
+  size:
+  - 512
+  - 512
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 213813
+  alpha_partial_pixels: 47456
+  alpha_opaque_pixels: 875
+  alpha_near_opaque_pixels: 44237
+  alpha_nonzero_bbox:
+  - 115
+  - 99
+  - 446
+  - 394
+  transparent_margins_px:
+  - 115
+  - 99
+  - 66
+  - 118
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_yuan_south_market_stall.png
+  source_sha256: b2c89ab3a0980822e56b467c7902d7895ebd85038196de86a8a19a9a3f375ce4
+  source_size:
+  - 1448
+  - 1086
+  crop_box:
+  - 0
+  - 19
+  - 1410
+  - 1086
+  uniform_scale_requested: 0.2711864406779661
+  resized_size:
+  - 382
+  - 289
+  rounded_effective_scale:
+  - 0.27092198581560284
+  - 0.27085285848172447
+  paste_offset:
+  - 65
+  - 111
+  - 447
+  - 400
+  steps:
+  - crop alpha>0 bounding rectangle
+  - uniform LANCZOS resize with integer rounding
+  - paste without mask into transparent RGBA; no alpha threshold, warp, repaint or mirror
+  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
+  reprojection:
+    kind: whole_sprite_affine_reprojection
+    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
+    forward_matrix:
+    - 1.0
+    - 0.0
+    - 0.009507349927699249
+    - 1.0725550460593276
+    - -24.586194735227707
+    inverse_matrix_for_pillow:
+    - 1.0
+    - 0.0
+    - 0.0
+    - -0.008864206981851593
+    - 0.9323530793818909
+    - 22.923014371672387
+    pivot_anchor_px: *id001
+    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
+    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
+release_ready: false

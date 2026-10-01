@@ -1,0 +1,15 @@
+{
+  "id": "inn",
+  "prompt": "Use case: historical-scene. Generate ONE new isolated late Yuan dynasty Jiangnan Chinese town building game sprite, circa 1350 Hangzhou/Jiqing/Pingjiang. Input image is a MATERIAL, PALETTE and CAMERA style reference only, not a historical reconstruction target. Match its realistic muted grey ceramic roof tiles, weathered warm dark timber, pale lightly weathered lime plaster, fine restrained detail density. Orthographic camera yaw 45 degrees elevation 30 degrees, dimetric ground edges slope +0.5 and -0.5 (2:1 grid), zero perspective convergence. Front south entrance faces lower left. Complete building and footprint on a TRUE transparent RGBA background, not white or checkerboard. Thin ground interface, no thick floating block. Make the left, front and right ground footprint corners clear and the entire building fit with 12% transparent margin. Lighting upper left, minimal short contact shadow lower right. Roofs plain with restrained eave curves and no extravagant upturned ornament. No people, words, lettering, signs, flags, logos, background scenery, mountains, modern materials, bright golden roofs, elaborate Qing polychromy, tourist Huizhou horse-head firewalls, cartoon outlines. Subject: modest TWO STOREY INN on a rectangular parcel12m east-west x9m north-south. L-shaped timber lodging with an open side service court still within rectangular parcel, main facade facing lower left has simple large entrance with plain undyed curtain, upstairs repeated closed wooden guest room shutters. No tavern dining terrace. Grey tiled gable roofs, pale plaster, timber stairs visible inside service court. No characters or writing. Clear three parcel corners, +/-0.5 ground slopes; east-west edge screen span 1.333 times other edge.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-20f4eb93-1699-4bd0-83f6-07acd481a59d.png",
+  "reference": "assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png",
+  "source_archive": "sources/bld_kit_yuan_south_inn.png",
+  "source_sha256": "ff028a124e5b39d633d5f95092156d5a5f1d5128f4d982f205618edd7bb51ad3",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "created": "2026-09-30T22:29:14.018718+00:00",
+  "created_time_basis": "source PNG mtime, not service-side call timestamp",
+  "reference_sha256": "bdb0d7ba47a804dc14b20c39931e2b95a6c8926cf0d3ecd10a7a808eb62d2548"
+}

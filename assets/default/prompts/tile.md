@@ -170,11 +170,38 @@ No people, text, scenery, painted checkerboard, modern fittings or Qing ornament
 年代造型均 **（原创扩展）**：南京明城墙只提供厚城台与砖砌门道母题，不把缩小门楼冒称完整聚宝门 / 瓮城测绘；灰瓦门楼为概化重构。桥取明代江南单孔石拱桥母题。柳与竹为地方植物意象，具体历史栽植点位 **（待考）**。默认按底面 / 根部 `anchor_px` 放置；桥含栏杆的整图仅用于静态预览，单位遮挡分层、墙段连接和门洞碰撞仍 **（待实测）**。
 
 来源（访问2026-09-30）：南京城墙保护管理中心《[天下第一瓮城——南京城墙中华门](https://wlj.nanjing.gov.cn/ztzl/mcq/gzqk/202302/t20230228_3838766.html)》；苏州市地方志《[木渎古镇的桥](https://dfzb.suzhou.gov.cn/dfzb/fzxh/201009/cee41a477c3040f99780877eaf61c72d.shtml)》（搜索返回相关全文，直开失败）；苏州市园林局《[建筑](https://ylj.suzhou.gov.cn/szsylj/ylys/201903/484421d38f504f5787a8f307925e3ad7.shtml)》。本任务不引入新的技术版本、价格或浏览器支持声明。
+## 9. 元末江南贴片 · `yuan_south`（2026-09-30）
+
+本套输出目录为 `assets/default/tile/yuan_south/`，采用 `tex_town_yuan_south_*`，每项一图、全部 `candidate`。保留宋套件朴素砖石、灰瓦、低饱和自然色和细节密度；江南旧河网不随元代标签重铺成北方城。城门、城墙与桥为匿名形制意象 **（原创扩展）**，精确元末制式 **（待考）**。
+
+| 项 | 差异与契约 |
+|---|---|
+| 城门两座 | 净宽 `k=4/6`，外占地 `(k+4)×4=8×4/10×4`，通行孔 `k×4=4×4/6×4`，两侧各2格门墩；引用 `design/22` §4.3，不将外宽当净宽 |
+| 城门造型 | 灰砖门墩、完整单体灰瓦木门楼、可见贯通孔；不照抄明清巨型瓮城群或当代复建盘门门楼；实际孔宽像素须逐图复核 |
+| 墙直段 / 转角 | 灰砖与朴素压顶、与门墩色材一致；分别交付独立直段及角件，接缝和遮挡仍待装配验证 |
+| 桥 | 沿用江南石桥母题，交付石梁桥面 `bridge_deck`；水从底图提供，本件不夹带一块水景，不冒充完整桥栏与四向桥系列 |
+| 植物两种 | 柳树与芦苇，低饱和叶色；只是河岸母题，未以当代植物分布证明元末具体栽植点或品种 |
+
+```text
+ONE late Yuan Jiangnan {kind} town-map sprite, circa 1350, anonymous historical-inspired composition.
+Match the supplied Song reference's realistic muted grey masonry, grey tiles, weathered timber and restrained detail density.
+Orthographic yaw45 elevation30; 2:1 ground grid with slopes +0.5/-0.5; {footprint} clear ground interface and bottom-plane center anchor.
+For a gate: complete tiled timber gatehouse over brick piers, ONE open passage {k} cells wide, two-cell pier on each side, depth4 cells.
+True transparent RGBA outside the object; upper-left daylight, short lower-right contact shadow; complete uncropped silhouette and transparent margins.
+No text, modern ornaments, complete landscape, opaque backdrop, copied Qing reconstruction, fake checkerboard or excessive shadow halo.
+```
+
+每项独立内置 `image_gen` 调用并启用真透明，最多2候选择1；源图、实际完整提示词、源SHA、选取理由、裁框 / 等比缩放 / 偏移和成品SHA登记。逐张 `view_image(detail=original)` 检查；本套只做几何规格化，**不沿用§8地面alpha阈值或水面仿射投影**，不镜像或扭曲墙门以冒充四向。门楼与地面通行孔的碰撞分工只引用 `design/22` §4.3；贴片 alpha 不能代替逻辑通行掩膜。
+
+城门底面目标包围宽高分别为 `32(8+4)×16(8+4)=384×192px`、`32(10+4)×16(10+4)=448×224px`；屋顶向上外扩，PNG画幅不等于占地。其他贴片占地见各条 manifest **【建议值】**。`autotile_mask:null` 表示手动选件，不能解释为完整自动拼接47形集。单视图仅用于本方向预览，墙角接缝、孔净宽、桥头接路和植物不挡门均 **（待实测）**。
+
+参考资料（2026-09-30访问）：[苏州市志办《苏州古城门之盘门》](https://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml)用于辨别现存盘门元代重建、明清续修与现代门楼的边界；[上海市青浦区博物馆《顺德桥》](http://museum.shqp.gov.cn/museum/ql/20190304/479101.html)用于确认元至正三年江南三跨石梁桥的形制记录，但本批平桥只取石梁材质母题，不复原其三跨、栏板和后世重建状态。植物来源见本任务报告§7。网页文字研究不等于图片输入，实际图像参考以各条 `references` 为准。
 
 ## 10. 待决事项与默认值
 
 | 事项 | 默认值 |
 |---|---|
+| 元末江南墙门、桥与植物是否按城市精修 | 默认匿名候选，净宽4/6遵循逻辑掩膜，具体图像孔对格与接缝后续联调；不当作精确元代复原或四向完成 |
 | 60 张上限与两城完整变体数量冲突 | 已解决：原 60 张基线继续保留；本次授权新增大理水面 4 张，共 64 张，检查上限改为 70；其他缺形仍按成图后补 |
 | 64×32 与检查器短边 512 冲突 | 已解决：短边门禁为 32，`file` 直接指原生尺寸成品，见§7–§8 |
 | 接触影必须含 255 与半透明用途冲突 | 保留半透明接触影；地面阈值不用于影子，不添加实心黑点，保持 candidate |

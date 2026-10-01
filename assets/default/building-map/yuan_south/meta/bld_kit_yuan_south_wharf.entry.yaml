@@ -1,0 +1,183 @@
+id: bld_kit_yuan_south_wharf
+file: bld_kit_yuan_south_wharf.png
+category: building-map
+style: default
+subject: 元末江南约1350年装饰河埠（原创扩展，细部待考）
+prompt: 'Use case: historical-scene. Create a SINGLE cutout game map asset on actual transparent background, no background pixels at all. Subject:
+  ONE low canal-bank unloading stone landing with THREE shallow broad steps descending the long edge facing lower left, only two small wood cargo
+  chests and one mooring bollard, NO water, bridge, boat, house or surrounding terrain. Late Yuan Jiangnan circa1350, realistically weathered
+  stone, wood, gray clay tiles; quiet warm-neutral natural palette and fine material detail like the southern Song building sprites. CAMERA PRIORITY:
+  orthographic 2:1 DIMETRIC projection with vertical lines upright, ground diamond edges exactly26.565degrees above/below horizontal (screen slopes
+  +0.5 and -0.5); NO perspective convergence; yaw45 elevation30. Base is a THIN FLAT rectangle 10m east-west by4m north-south. Its near/left visible
+  edge projects down-right and is 10/4 times the far/right visible edge that projects up-right. Both ground edges must be equally steep26.565degrees.
+  Precisely preserve this ground geometry. Show clean unobstructed three visible corners touching ground. Entrance faces lower left. Full object
+  must fit with15% completely empty transparent border. Light upper left; TINY contact shadow lower right, tightly touching base. ABSOLUTELY NO
+  glow, halo, mist, blurred vignette, gradient, atmospheric fade, wall backdrop or ambient background shading; all empty space must have alpha
+  zero. No people, text, labels, watermark, modern item, black or white background, checkerboard, thick plinth or miniature scene.'
+negative: 文字、水印、人物、现代物、大背景、光晕、厚地台、夸张翘角、透视汇聚
+references: []
+visual_comparison_reference:
+  file: assets/default/baseline/building-map/bld_kit_song_southern_warehouse.png
+  role: 已view_image视觉比照；未作为工具图像输入
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:33:12.404135+00:00'
+created_time_basis: 源PNG文件mtime，非服务端时间回执
+source_path: /Users/bytedance/.codex/generated_images/01a0f469-0d23-7963-9f54-674c4289d810/exec-4ade7080-2c16-4e09-a45b-ff7a9f9203b6.png
+size: 640x512
+sha256: 4b6783e09fb6945657e9a0c84d3ffe136b1a20aa862c5f425fe12f62301127af
+status: candidate
+building:
+  type: bld_kit_yuan_south_wharf
+  footprint:
+  - 10
+  - 4
+  anchor: &id001
+  - 316.731
+  - 282.2335
+  era: yuan
+footprint_m:
+- 10
+- 4
+footprint_basis: 【建议值】沿用design/22 §3.3南宋wharf10×4；只交装饰不启用port
+entrance:
+  edge: S
+  offset_cells: 5
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 448
+  - 224
+  ground_width_px: 448
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  note: 最终双轴已校正；宽深比仍采用原底面读点并保留误差。
+  strict_geometry_pass: true
+metadata: meta/bld_kit_yuan_south_wharf.yaml
+source_record: sources/bld_kit_yuan_south_wharf.json
+source_sha256: 1e01c965ce1c3270021d237afbb9b8e0b4720ca677b4ec4ff8a72a2a380ee73a
+processing:
+  source_archive: sources/bld_kit_yuan_south_wharf.png
+  source_sha256: 1e01c965ce1c3270021d237afbb9b8e0b4720ca677b4ec4ff8a72a2a380ee73a
+  source_size:
+  - 1774
+  - 887
+  crop_box:
+  - 0
+  - 17
+  - 1768
+  - 887
+  uniform_scale_requested: 0.28426395939086296
+  resized_size:
+  - 503
+  - 247
+  rounded_effective_scale:
+  - 0.2845022624434389
+  - 0.28390804597701147
+  paste_offset:
+  - 68
+  - 132
+  - 571
+  - 379
+  steps:
+  - crop alpha>0 bounding rectangle
+  - uniform LANCZOS resize with integer rounding
+  - paste without mask into transparent RGBA; no alpha threshold, warp, repaint or mirror
+  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
+  reprojection:
+    kind: whole_sprite_affine_reprojection
+    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
+    forward_matrix:
+    - 1.0
+    - 0.0
+    - 0.0017238201833049693
+    - 1.2342980661714615
+    - -66.67275054928155
+    inverse_matrix_for_pillow:
+    - 1.0
+    - 0.0
+    - 0.0
+    - -0.0013965995982250096
+    - 0.8101770774880934
+    - 54.016734188109595
+    pivot_anchor_px: *id001
+    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
+    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
+geometry_qa:
+  source_corners_px: &id002
+    left:
+    - 92.75169683257919
+    - 243.59388532276358
+    front:
+    - 393.75509049773757
+    - 394.0955821553427
+    right:
+    - 541.1272624434389
+    - 320.409496182492
+  source_axis_slopes: &id003
+  - 0.4999999999999997
+  - -0.5000000000000003
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 2.0424710424710426
+  expected_width_depth_ratio: 2.5
+  ratio_relative_error: 0.18301158301158293
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 5
+  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
+  measurement_space: final_png_after_affine_reprojection
+  pre_reprojection_final_corners_px:
+    left:
+    - 92.75169683257919
+    - 251.24137931034483
+    front:
+    - 393.75509049773757
+    - 372.75402298850577
+    right:
+    - 541.1272624434389
+    - 312.8494252873563
+  pre_reprojection_axis_slopes:
+  - 0.4036919391458217
+  - -0.4064851383422716
+  final_corners_px: *id002
+  final_axis_slopes: *id003
+  pre_reprojection_source_corners_px:
+    left:
+    - 87
+    - 437
+    front:
+    - 1145
+    - 865
+    right:
+    - 1663
+    - 654
+pixel_qa:
+  mode: RGBA
+  size:
+  - 640
+  - 512
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 264030
+  alpha_partial_pixels: 62738
+  alpha_opaque_pixels: 912
+  alpha_near_opaque_pixels: 60704
+  alpha_nonzero_bbox:
+  - 91
+  - 115
+  - 554
+  - 398
+  transparent_margins_px:
+  - 91
+  - 115
+  - 86
+  - 114
+  border_alpha_max: 0
+candidate_count: 2
+selected_candidate: 2
+notes: 第二候选三级石阶识别较清楚，未画船和大水面背景。灰石与宋基线材质接近。阶梯导致外轮廓非完整矩形，所选底面端点与锚点仅用于候选缩放；轴斜率已仿射校正，宽深比残差待拼接复核。不新增港口、航线或营生。

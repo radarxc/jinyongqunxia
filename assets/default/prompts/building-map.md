@@ -557,6 +557,61 @@ No people, text, watermark, modern glass, Qing ornament, scenery or thick pedest
 ## 本文新增术语与 ID
 
 明江南新增19个 `bld_kit_ming_south_*` 资产ID，完整清单见§11；只扩展素材目录，不新增玩法定义。
+## 11. 元末江南套件 · `yuan_south`（2026-09-30）
+
+本节只登记素材制作差异；布局与接口仍见 `design/22` §2.4、§3.4。素材位于 `assets/default/building-map/yuan_south/`，全部 `candidate`，各条 manifest 的 `prompt` 是实际调用全文，`sources/` 保留独立原图与调用记录。沿用宋套件写实灰瓦、木构、浅灰白抹灰与细节密度，不将江南旧城改成大都坊格或营帐聚落。
+
+### 11.1 年代与地域约束
+
+- 参考城市为杭州路、集庆路、平江路；本套为匿名功能建筑组合 **（原创扩展）**，不是三城具名古迹的测绘复原。
+- 屋顶以朴素悬山 / 歇山灰瓦为主，墙体为木骨、浅色抹灰与低石基；木板门、简洁格栅窗、竹帘表达居住与商业功能。民居门窗细纹与精确元末制式 **（待考）**，默认不画晚期旅游街式高马头墙。
+- 官署为路府围院与低彩度红褐木柱，王府为独立大院模块；不用清式金龙和玺彩画、清代品级门钉或大片金瓦。彩画默认收敛为素木和少量褪色涂饰，不声称考证了具体官署等级。
+- 寺殿取宋元江南木构延续、单檐歇山和平缓屋面的母题；佛塔取江南楼阁塔家族。塔层数与组合为原创，不把蒙古帐幕、藏式白塔或沙漠清真寺当成全江南通用宗教外观。
+- 本批宗教地标选佛塔；杭州凤凰寺说明江南存在多种宗教建筑，但不把其历代重修或2009年重建门楼直接用于元末。具名清真寺是后续城市定制项，默认不挤占本套佛塔。
+- 护运行仍用货栈外观，无“镖局”招牌；成熟镖局称谓的年代适用性 **（待考）**。赌场只用匿名营生外观；河埠只提供台阶和卸货接口，不创建 `port` 或旅行玩法。
+
+### 11.2 类型与占地差异
+
+所有建筑 ID/type 前缀为 `bld_kit_yuan_south_`，每项一张；`building.era: yuan`，地域由 ID 与套件目录区分。
+
+| 后缀 | 占地格 | 依据 |
+|---|---|---|
+| house_small | 7×6 | 元 house 骨架 |
+| house_large | 10×8 | 大民居变体，沿用南宋院落包络 **【建议值】** |
+| courtyard | 10×8 | 南宋同功能项 **【建议值】** |
+| shop_1f / shop_2f | 6×5 / 8×6 | 南宋同功能项 **【建议值】** |
+| inn / restaurant | 各12×9 | 南宋同功能项 **【建议值】** |
+| market_stall / yamen / biaoju / wangfu | 5×4 / 16×12 / 14×11 / 20×16 | 元 market / yamen / biaoju / wangfu 骨架 |
+| casino / manor / temple_hall / pagoda | 10×8 / 16×13 / 13×10 / 7×7 | 南宋同功能项 **【建议值】** |
+| guardhouse / stable / warehouse / wharf | 7×5 / 9×7 / 10×8 / 10×4 | 南宋同功能项 **【建议值】** |
+
+### 11.3 提示词差异与质检
+
+在§5通用模板上替换主题、年代、占地。如提供宋基线图像参考，只用于相机与材质；未传图的调用须记 `references: []` 并区分目视比照记录。不得把目视检查或文字查阅来源伪写成实际图像输入。
+
+```text
+ONE anonymous late Yuan Jiangnan town building, circa 1350, Hangzhou/Jiqing/Pingjiang region.
+Continue Song river-town vernacular: muted grey ceramic tiles, weathered dark timber, pale lime plaster, low stone thresholds.
+If a Song sprite is supplied, use it only as camera/material/detail-density reference; generate the requested functional building individually.
+Orthographic yaw45 elevation30, exact 2:1 ground axes +0.5/-0.5, clear rectangular footprint {w} by {h}, south entrance lower left.
+TRUE transparent RGBA background, complete eaves and ground corners with empty margins, upper-left light and short lower-right contact shadow.
+No lettering, people, modern objects, Qing imperial polychromy, tourist horse-head walls, Mongolian camp scenery, panorama or thick floating base.
+```
+
+逐张独立调用内置 `image_gen`，真透明参数开启；最多两候选选一，几何不足的第二候选定向要求双轴与宽深比例。`view_image(detail=original)` 检查原图及成品。PIL 仅透明裁边、一次等比 LANCZOS、透明扩边；不拉伸、不阈值改alpha、不补画。建筑短边门禁为本任务指定256px；小件不为凑画布而放大地面。`ground_width_px=32(w+h)`，底面中心随同裁框、缩放与偏移变换。轴向残差、宽深比、隐藏后角推定和小幅光晕如实登记，不能以检查器通过代替精确拼接验收；目前只交原向单视图。
+
+### 11.4 参考资料与边界
+
+- [金华文旅《六、景区介绍》](https://v.jhwlv.com/app/index.php?a=site&c=site&do=detail&i=3&id=654&uniacid=3)：天宁寺大殿宋元木构延续与单檐歇山母题；非本套寺殿比例和全部彩画的复原依据。
+- [上海市普陀区政府《走进真如寺，探秘大殿的建筑密码》](https://www.shpt.gov.cn/tupianxinwen/20250416/958655.html)：元代大殿单檐歇山、平缓屋面及与明清较陡屋面的差异；仅约束寺殿屋面母题，不外推民居门窗和彩画。
+- [苏州市志办《苏州古城门之盘门》](https://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml)：瑞光塔七级八面砖木楼阁式，以及现存盘门元代重建、明清续修的年代边界；本套匿名塔不冒名瑞光塔。
+- [杭州文保导览《凤凰寺》](https://wbdl.hzwbzx.cn/house?id=13)：元代重建、明清重修与2009年门楼复建，限定现代图像可用范围。
+- [故宫博物院院刊《〈营造法式〉大木作控制性尺度规律研究》](https://www.dpm.org.cn/Uploads/File/2018/06/04/u5b15212a9a148.pdf)：以现存唐至元建筑实例验证大木作控制性尺度规律；本套只取跨时期比较边界，不据此自定结构测绘尺寸。
+- [Pillow Image 文档](https://pillow.readthedocs.io/en/stable/reference/Image.html)：核实裁切、重采样与无mask粘贴语义；[W3C PNG规范](https://www.w3.org/TR/png-3/#6AlphaRepresentation)：核实alpha通道语义。以上访问日期均2026-09-30；未引入模型版本、价格或浏览器限额断言。
+
+## 本文新增术语与 ID
+
+元末江南新增§11列明的19个 `bld_kit_yuan_south_*` 资产 type；只服务素材目录，不新增玩法 ID。元骨架未列项的占地为§11.2建议值，待具体城市规格确认。
 
 不新增玩法 ID；复用 §3 的38个建筑资产ID与最新§4.4的7个植物资产ID。植物文件使用`<asset_id>__v01/v02.png`，双下划线后是变体键，不是新玩法ID。`building.anchor`为最终PNG底面中心像素，`sources/`为归档生成来源，`meta/`为逐type制作元数据。它们是本批资产约定，不扩大`town/schema.yaml`的现有定义范围。
 
@@ -568,6 +623,9 @@ No people, text, watermark, modern glass, Qing ornament, scenery or thick pedest
 
 透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。西域成品 canvas 短边 ≥256 是本任务检查器要求，宋首批仍按 §4 的 ≥512；地面像素尺度均按 64×32 每格计算，canvas 尺寸随建筑高度 / 屋檐与留白变化，不固定所有建筑方形。
 透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。宋基线最终 canvas 短边 ≥512；§11明北方套件按本任务检查参数取短边≥256。地面像素尺度仍按 64×32 每格计算；canvas 尺寸随建筑高度 / 屋檐与留白变化，不固定所有建筑方形。
+元末江南新增建议值见§11.2；本任务建筑最短边256px、底面64×32px格和实际透明留边单独记录，不改宋基线512px门禁。
+
+透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。最终 canvas 短边 ≥512 是现有检查器要求，地面像素尺度仍按 64×32 每格计算；canvas 尺寸随建筑高度 / 屋檐与留白变化，不固定所有建筑方形。
 
 新增植物的最终4px留边来自最新上游；矩形裁边时alpha≤2噪点阈值、外扩4**源**px，以及实际根偏差≤1**成品**px的额外告警均为本轮 **【建议值】**。2/255≈0.78%不透明度；只用于确定裁切矩形，不覆盖存留像素的alpha。全部原图与裁去区域统计保留，可复核或更换制作阈值。
 
@@ -590,6 +648,8 @@ No people, text, watermark, modern glass, Qing ornament, scenery or thick pedest
 
 - 明江南补充占地与历史细部：默认§11表的 **【建议值】** 与匿名原创建筑，最终按具体城市覆写；本轮不把建议值写入 design/22。
 - 明江南严格投影与整城拼接：**已解决（点名13项）**，双轴±0.500、登记占地比例与底面中心锚点已按像素复算；仍保持单视图 `candidate`，整城接缝、碰撞与遮挡待总装实测。
+- 元末江南的匿名房屋细部、院落尺度和佛塔层数：默认采用§11候选与建议值；具名城市史图、真实四向、墙门孔对格和运行时遮挡另行验证，未经审批不改 `approved`。
+
 - 旧“建筑占格与正式底面中心未定”：**已解决**，本批消费 `design/22` §1.4、§3 的占地与中心锚点；旧 6×4 / 6×5 自拟尺寸和临时前角锚点不再作为规范。
 - 旧“大理右影触边、两图留白 / 精确轴向 / 比例未达标”：**已解决（本次入选处置）**，ART-B 两张不直接复制入选，按新清单重出；不表示旧图已修复。留白、轴向和尺度仍需对每张新图实测。
 - 旧参考版本漂移：保留追溯。大理当前实测 SHA 为 `35092609538a50ba60ca5e972b2671831ee9ea36378d91e207acf1cb5665661c`，与较早 `fd28…` 版本登记不同；临安为 `700627a452f23e4de98441e2eb26b23397d98735ad7b1b1914e0d2c7a0fe6d55`。当前同名文件不能证明旧调用输入，默认不作为本批图像参考或入选图。

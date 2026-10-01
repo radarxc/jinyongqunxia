@@ -1,0 +1,238 @@
+{
+  "id": "bld_kit_yuan_south_shop_2f",
+  "file": "bld_kit_yuan_south_shop_2f.png",
+  "category": "building-map",
+  "style": "default",
+  "subject": "元末江南·两层商铺（原创扩展）",
+  "prompt": "Use case: historical-scene. Generate ONE new isolated late Yuan dynasty Jiangnan Chinese town building game sprite, circa 1350 Hangzhou/Jiqing/Pingjiang. Input image is a MATERIAL, PALETTE and CAMERA style reference only, not a historical reconstruction target. Match its realistic muted grey ceramic roof tiles, weathered warm dark timber, pale lightly weathered lime plaster, fine restrained detail density. Orthographic camera yaw 45 degrees elevation 30 degrees, dimetric ground edges slope +0.5 and -0.5 (2:1 grid), zero perspective convergence. Front south entrance faces lower left. Complete building and footprint on a TRUE transparent RGBA background, not white or checkerboard. Thin ground interface, no thick floating block. Make the left, front and right ground footprint corners clear and the entire building fit with 12% transparent margin. Lighting upper left, minimal short contact shadow lower right. Roofs plain with restrained eave curves and no extravagant upturned ornament. No people, words, lettering, signs, flags, logos, background scenery, mountains, modern materials, bright golden roofs, elaborate Qing polychromy, tourist Huizhou horse-head firewalls, cartoon outlines. Subject: narrow TWO STOREY SHOP and tea seller, 8m east-west x6m north-south (ground frontage ratio1.333). Open ground shop front with plain pottery jars and tea canisters, upstairs a modest timber verandah with bamboo blind, simple lattice railing, grey gable tile main roof. No decorative greenery. Ground front edges shall rise ONE pixel for TWO pixels of horizontal run, not 30-degree screen slopes. Example footprint corner positions on square canvas left(120,780), front(710,1075),right(1150,855). Roof need not match these exact coordinates.",
+  "negative": "文字、水印、现代物、人物、清式彩画、旅游马头墙、厚底座、景观背景",
+  "references": [
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png",
+      "sha256": "bdb0d7ba47a804dc14b20c39931e2b95a6c8926cf0d3ecd10a7a808eb62d2548",
+      "role": "生成参考或第二候选编辑目标，详见调用记录"
+    }
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed",
+  "created": "2026-09-30T22:27:51.869430+00:00",
+  "created_time_basis": "source PNG mtime, not service-side call timestamp",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-5931d3c4-050a-4f90-9206-a19c5a48c7c5.png",
+  "size": "544x496",
+  "sha256": "bd93b39ae1b670568b6f51d743dd5b6656912ae3bab2f1f8b1218d2c2bf812f4",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_yuan_south_shop_2f",
+    "footprint": [
+      8,
+      6
+    ],
+    "anchor": [
+      278.4106,
+      340.9128
+    ],
+    "era": "yuan"
+  },
+  "footprint_m": [
+    8,
+    6
+  ],
+  "footprint_basis": "【建议值】design/22 §3.3同功能项",
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 4
+  },
+  "projection_contract": {
+    "tile_px": [
+      64,
+      32
+    ],
+    "ground_bbox_px": [
+      448,
+      224
+    ],
+    "light": "screen_upper_left",
+    "shadow": "screen_lower_right_contact_only",
+    "strict_geometry_pass": true
+  },
+  "metadata": "meta/bld_kit_yuan_south_shop_2f.yaml",
+  "source_record": "sources/shop_2f.call.json",
+  "candidate_count": 2,
+  "selected_candidate": 1,
+  "selection_reason": "选第一候选：双层茶货店完整；第二候选地面过扁；当前店面宽深比偏大，需总装验证。",
+  "source_sha256": "22ab5fbce575d03920cc9e00646ab8e098feb40f0f436e76560cf5619f118ff0",
+  "processing": {
+    "source_archive": "sources/bld_kit_yuan_south_shop_2f.png",
+    "source_sha256": "22ab5fbce575d03920cc9e00646ab8e098feb40f0f436e76560cf5619f118ff0",
+    "source_size": [
+      1254,
+      1254
+    ],
+    "crop_box": [
+      0,
+      103,
+      1208,
+      1198
+    ],
+    "uniform_scale_requested": 0.4007155635062612,
+    "resized_size": [
+      484,
+      439
+    ],
+    "rounded_effective_scale": [
+      0.40066225165562913,
+      0.4009132420091324
+    ],
+    "paste_offset": [
+      30,
+      28,
+      514,
+      467
+    ],
+    "steps": [
+      "alpha>0矩形裁边，保留全部非零alpha",
+      "一次等比LANCZOS，尺寸取整",
+      "无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值",
+      "全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘"
+    ],
+    "reprojection": {
+      "kind": "whole_sprite_affine_reprojection",
+      "purpose": "audit repair: map measured ground axes to exact +0.50/-0.50",
+      "forward_matrix": [
+        1.0,
+        0.0,
+        0.009074304931435406,
+        1.0676349059386459,
+        -25.583987841824296
+      ],
+      "inverse_matrix_for_pillow": [
+        1.0,
+        0.0,
+        0.0,
+        -0.008499445719655857,
+        0.9366497802175338,
+        23.963236589132784
+      ],
+      "pivot_anchor_px": [
+        278.4106,
+        340.9128
+      ],
+      "resample": "BICUBIC on premultiplied RGBa; convert back to RGBA",
+      "preserves": "canvas size, x coordinates, anchor, footprint registration, transparent background"
+    }
+  },
+  "geometry_qa": {
+    "source_corners_px": {
+      "left": [
+        54.44039735099338,
+        314.2687446286991
+      ],
+      "front": [
+        331.69867549668874,
+        452.8978837015468
+      ],
+      "right": [
+        502.38079470198676,
+        367.5568240988978
+      ]
+    },
+    "source_axis_slopes": [
+      0.5,
+      -0.5
+    ],
+    "axis_pass": true,
+    "axis_tolerance": 0.03,
+    "source_width_depth_ratio": 1.624413145539906,
+    "expected_width_depth_ratio": 1.3333333333333333,
+    "ratio_relative_error": 0.2183098591549295,
+    "ratio_pass": false,
+    "measurement_uncertainty_source_px": 6,
+    "precision_note": "由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。",
+    "measurement_space": "final_png_after_affine_reprojection",
+    "pre_reprojection_final_corners_px": {
+      "left": [
+        54.44039735099338,
+        317.8602739726027
+      ],
+      "front": [
+        331.69867549668874,
+        445.35068493150686
+      ],
+      "right": [
+        502.38079470198676,
+        363.96529680365296
+      ]
+    },
+    "pre_reprojection_axis_slopes": [
+      0.45982544438911105,
+      -0.4768243358284227
+    ],
+    "final_corners_px": {
+      "left": [
+        54.44039735099338,
+        314.2687446286991
+      ],
+      "front": [
+        331.69867549668874,
+        452.8978837015468
+      ],
+      "right": [
+        502.38079470198676,
+        367.5568240988978
+      ]
+    },
+    "final_axis_slopes": [
+      0.5,
+      -0.5
+    ],
+    "pre_reprojection_source_corners_px": {
+      "left": [
+        61,
+        826
+      ],
+      "front": [
+        753,
+        1144
+      ],
+      "right": [
+        1179,
+        941
+      ]
+    }
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      544,
+      496
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 135644,
+    "alpha_partial_pixels": 132862,
+    "alpha_opaque_pixels": 1318,
+    "alpha_near_opaque_pixels": 130056,
+    "alpha_nonzero_bbox": [
+      30,
+      7,
+      513,
+      470
+    ],
+    "transparent_margins_px": [
+      30,
+      7,
+      31,
+      26
+    ],
+    "border_alpha_max": 0
+  },
+  "png_rotations_available": [
+    0
+  ],
+  "allowRotation": false,
+  "release_ready": false,
+  "notes": "选第一候选：双层茶货店完整；第二候选地面过扁；当前店面宽深比偏大，需总装验证。；原图已view_image；候选形制（原创扩展），具体元末细部（待考）；仅原向单视图，严格拼接（待实测）。"
+}

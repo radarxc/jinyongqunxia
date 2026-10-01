@@ -1,0 +1,182 @@
+id: bld_kit_yuan_south_guardhouse
+status: candidate
+building:
+  type: bld_kit_yuan_south_guardhouse
+  footprint:
+  - 7
+  - 5
+  anchor: &id001
+  - 346.3642
+  - 326.3689
+  era: yuan
+anchor_px: *id001
+logical_footprint_polygon_px:
+- - 154.36419999999998
+  - 310.3689
+- - 378.3642
+  - 422.3689
+- - 538.3642
+  - 342.3689
+- - 314.3642
+  - 230.3689
+collision_polygon_m:
+- - 0
+  - 0
+- - 7
+  - 0
+- - 7
+  - 5
+- - 0
+  - 5
+collision_note: 完整占地逻辑代理；非实测墙体，不含阴影。河埠不启用port。
+actual_height_m: null
+height_note: 单图不能可靠反推实际高度，待后续3D建模实测。
+entrance:
+  edge: S
+  offset_cells: 3
+entrance_note: 逻辑入口中点代理，未实测门洞。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+png_rotations_available:
+- 0
+allowRotation: false
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_yuan_south_guardhouse.png
+glb: null
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 384
+  - 192
+  ground_width_px: 384
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  note: 目标契约；实测残差见geometry_qa，不冒充精确反推相机。
+geometry_qa:
+  source_corners_px: &id002
+    left:
+    - 154.34375
+    - 307.7469419287564
+    front:
+    - 383.4423611111111
+    - 422.29624748431183
+    right:
+    - 538.2486111111111
+    - 344.8931224843119
+  source_axis_slopes: &id003
+  - 0.4999999999999994
+  - -0.49999999999999944
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.4799054373522458
+  expected_width_depth_ratio: 1.4
+  ratio_relative_error: 0.0570753123944614
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 5
+  precision_note: 由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。
+  measurement_space: final_png_after_affine_reprojection
+  pre_reprojection_final_corners_px:
+    left:
+    - 154.34375
+    - 303.2622478386167
+    front:
+    - 383.4423611111111
+    - 420.014409221902
+    right:
+    - 538.2486111111111
+    - 349.3775216138328
+  pre_reprojection_axis_slopes:
+  - 0.5096153172515803
+  - -0.456292220811945
+  final_corners_px: *id002
+  final_axis_slopes: *id003
+  pre_reprojection_source_corners_px:
+    left:
+    - 225
+    - 670
+    front:
+    - 851
+    - 989
+    right:
+    - 1274
+    - 796
+pixel_qa:
+  mode: RGBA
+  size:
+  - 672
+  - 512
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 263620
+  alpha_partial_pixels: 79541
+  alpha_opaque_pixels: 903
+  alpha_near_opaque_pixels: 77919
+  alpha_nonzero_bbox:
+  - 152
+  - 83
+  - 594
+  - 444
+  transparent_margins_px:
+  - 152
+  - 83
+  - 78
+  - 68
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_yuan_south_guardhouse.png
+  source_sha256: 1914de516476e75efc2719b07feb4f13e4cce2dcb1aac9496f614f622b78ff88
+  source_size:
+  - 1484
+  - 1060
+  crop_box:
+  - 0
+  - 19
+  - 1440
+  - 1060
+  uniform_scale_requested: 0.36606291706387034
+  resized_size:
+  - 527
+  - 381
+  rounded_effective_scale:
+  - 0.3659722222222222
+  - 0.3659942363112392
+  paste_offset:
+  - 72
+  - 65
+  - 599
+  - 446
+  steps:
+  - crop alpha>0 bounding rectangle
+  - uniform LANCZOS resize with integer rounding
+  - paste without mask into transparent RGBA; no alpha threshold, warp, repaint or mirror
+  - 全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘
+  reprojection:
+    kind: whole_sprite_affine_reprojection
+    purpose: 'audit repair: map measured ground axes to exact +0.50/-0.50'
+    forward_matrix:
+    - 1.0
+    - 0.0
+    - -0.027602588414693874
+    - 1.035295782042269
+    - -1.9588971055903812
+    inverse_matrix_for_pillow:
+    - 1.0
+    - 0.0
+    - 0.0
+    - 0.02666154821981774
+    - 0.9659075380635251
+    - 1.8921134805805704
+    pivot_anchor_px: *id001
+    resample: BICUBIC on premultiplied RGBa; convert back to RGBA
+    preserves: canvas size, x coordinates, anchor, footprint registration, transparent background
+release_ready: false

@@ -1,0 +1,238 @@
+{
+  "id": "bld_kit_yuan_south_house_large",
+  "file": "bld_kit_yuan_south_house_large.png",
+  "category": "building-map",
+  "style": "default",
+  "subject": "元末江南·大民居（原创扩展）",
+  "prompt": "Use case: historical-scene. Generate ONE new isolated late Yuan dynasty Jiangnan Chinese town building game sprite, circa 1350 Hangzhou/Jiqing/Pingjiang. Input image is a MATERIAL, PALETTE and CAMERA style reference only, not a historical reconstruction target. Match its realistic muted grey ceramic roof tiles, weathered warm dark timber, pale lightly weathered lime plaster, fine restrained detail density. Orthographic camera yaw 45 degrees elevation 30 degrees, dimetric ground edges slope +0.5 and -0.5 (2:1 grid), zero perspective convergence. Front south entrance faces lower left. Complete building and footprint on a TRUE transparent RGBA background, not white or checkerboard. Thin ground interface, no thick floating block. Make the left, front and right ground footprint corners clear and the entire building fit with 12% transparent margin. Lighting upper left, minimal short contact shadow lower right. Roofs plain with restrained eave curves and no extravagant upturned ornament. No people, words, lettering, signs, flags, logos, background scenery, mountains, modern materials, bright golden roofs, elaborate Qing polychromy, tourist Huizhou horse-head firewalls, cartoon outlines. Subject: LARGE residence, a wider two-storey merchant family home, timber upper floor with simple lattice windows, plain overhanging gable grey tiled roof, lower lime plaster infill, modest front porch. Compact rectangular building, not a courtyard compound. Parcel 10 meters east-west by 8 meters north-south, ground edge widths ratio 1.25. No balconies filled with plants, no shops.",
+  "negative": "文字、水印、现代物、人物、清式彩画、旅游马头墙、厚底座、景观背景",
+  "references": [
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+      "sha256": "0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7",
+      "role": "生成参考或第二候选编辑目标，详见调用记录"
+    }
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed",
+  "created": "2026-09-30T22:25:10.869208+00:00",
+  "created_time_basis": "source PNG mtime, not service-side call timestamp",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-ad8684c5-1c5d-4928-885a-0477ff8ed88a.png",
+  "size": "656x656",
+  "sha256": "609125896f7c618b9573f97ab12abcf3da3c0c813805d7deb3ca997db085701c",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_yuan_south_house_large",
+    "footprint": [
+      10,
+      8
+    ],
+    "anchor": [
+      320.5022,
+      433.5185
+    ],
+    "era": "yuan"
+  },
+  "footprint_m": [
+    10,
+    8
+  ],
+  "footprint_basis": "【建议值】南宋courtyard包络用于大民居变体（原创扩展）",
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 5
+  },
+  "projection_contract": {
+    "tile_px": [
+      64,
+      32
+    ],
+    "ground_bbox_px": [
+      576,
+      288
+    ],
+    "light": "screen_upper_left",
+    "shadow": "screen_lower_right_contact_only",
+    "strict_geometry_pass": true
+  },
+  "metadata": "meta/bld_kit_yuan_south_house_large.yaml",
+  "source_record": "sources/house_large.call.json",
+  "candidate_count": 2,
+  "selected_candidate": 1,
+  "selection_reason": "选第一候选：两层宅屋清楚，宽深比例较第二候选可靠；第二候选过扁，不以扁图伪作投影通过。",
+  "source_sha256": "1770b68afbf35c948c3be15f052bc3873b2f20b1c572656dbe16faa836b788c4",
+  "processing": {
+    "source_archive": "sources/bld_kit_yuan_south_house_large.png",
+    "source_sha256": "1770b68afbf35c948c3be15f052bc3873b2f20b1c572656dbe16faa836b788c4",
+    "source_size": [
+      1254,
+      1254
+    ],
+    "crop_box": [
+      66,
+      53,
+      1210,
+      1214
+    ],
+    "uniform_scale_requested": 0.5184518451845185,
+    "resized_size": [
+      593,
+      602
+    ],
+    "rounded_effective_scale": [
+      0.5183566433566433,
+      0.5185185185185185
+    ],
+    "paste_offset": [
+      31,
+      27,
+      624,
+      629
+    ],
+    "steps": [
+      "alpha>0矩形裁边，保留全部非零alpha",
+      "一次等比LANCZOS，尺寸取整",
+      "无mask粘贴到透明RGBA；无重绘、warp、旋转或alpha阈值",
+      "全图绕锚点仿射重投影，将实测两底轴解析校正为+0.50/-0.50；无局部重绘"
+    ],
+    "reprojection": {
+      "kind": "whole_sprite_affine_reprojection",
+      "purpose": "audit repair: map measured ground axes to exact +0.50/-0.50",
+      "forward_matrix": [
+        1.0,
+        0.0,
+        -0.00024183162691493454,
+        0.88433227274628,
+        50.22160718589765
+      ],
+      "inverse_matrix_for_pillow": [
+        1.0,
+        0.0,
+        0.0,
+        0.0002734624013708447,
+        1.1307966822182296,
+        -56.79042678148027
+      ],
+      "pivot_anchor_px": [
+        320.5022,
+        433.5185
+      ],
+      "resample": "BICUBIC on premultiplied RGBa; convert back to RGBA",
+      "preserves": "canvas size, x coordinates, anchor, footprint registration, transparent background"
+    }
+  },
+  "geometry_qa": {
+    "source_corners_px": {
+      "left": [
+        32.55506993006993,
+        415.2464447017534
+      ],
+      "front": [
+        357.04632867132864,
+        577.4920740723827
+      ],
+      "right": [
+        608.4493006993007,
+        451.7905880583968
+      ]
+    },
+    "source_axis_slopes": [
+      0.4999999999999999,
+      -0.49999999999999956
+    ],
+    "axis_pass": true,
+    "axis_tolerance": 0.03,
+    "source_width_depth_ratio": 1.2907216494845362,
+    "expected_width_depth_ratio": 1.25,
+    "ratio_relative_error": 0.03257731958762888,
+    "ratio_pass": true,
+    "measurement_uncertainty_source_px": 6,
+    "precision_note": "由原人工底面三点经同一全图仿射矩阵解析变换；最终轴斜率为确定值，底面读点误差仍影响宽深比。",
+    "measurement_space": "final_png_after_affine_reprojection",
+    "pre_reprojection_final_corners_px": {
+      "left": [
+        32.55506993006993,
+        412.77777777777777
+      ],
+      "front": [
+        357.04632867132864,
+        596.3333333333333
+      ],
+      "right": [
+        608.4493006993007,
+        454.25925925925924
+      ]
+    },
+    "pre_reprojection_axis_slopes": [
+      0.5656718035104857,
+      -0.5651248787077439
+    ],
+    "final_corners_px": {
+      "left": [
+        32.55506993006993,
+        415.2464447017534
+      ],
+      "front": [
+        357.04632867132864,
+        577.4920740723827
+      ],
+      "right": [
+        608.4493006993007,
+        451.7905880583968
+      ]
+    },
+    "final_axis_slopes": [
+      0.4999999999999999,
+      -0.49999999999999956
+    ],
+    "pre_reprojection_source_corners_px": {
+      "left": [
+        69,
+        797
+      ],
+      "front": [
+        695,
+        1151
+      ],
+      "right": [
+        1180,
+        877
+      ]
+    }
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      656,
+      656
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 259443,
+    "alpha_partial_pixels": 169851,
+    "alpha_opaque_pixels": 1042,
+    "alpha_near_opaque_pixels": 166866,
+    "alpha_nonzero_bbox": [
+      31,
+      115,
+      624,
+      592
+    ],
+    "transparent_margins_px": [
+      31,
+      115,
+      32,
+      64
+    ],
+    "border_alpha_max": 0
+  },
+  "png_rotations_available": [
+    0
+  ],
+  "allowRotation": false,
+  "release_ready": false,
+  "notes": "选第一候选：两层宅屋清楚，宽深比例较第二候选可靠；第二候选过扁，不以扁图伪作投影通过。；原图已view_image；候选形制（原创扩展），具体元末细部（待考）；仅原向单视图，严格拼接（待实测）。"
+}
