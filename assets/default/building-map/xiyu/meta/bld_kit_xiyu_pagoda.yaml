@@ -1,0 +1,86 @@
+id: bld_kit_xiyu_pagoda
+file: bld_kit_xiyu_pagoda.png
+category: building-map
+style: default
+subject: 西域回部城镇·砖砌邦克楼／宣礼塔（原创扩展；各年代细部待考）
+prompt: 'Use case: precise-object-edit. IMAGE1 is edit target, IMAGE2 is reference ONLY for its correct city-map camera. Preserve tall slender brick minaret
+  and small calling-gallery; REMOVE thick base slab, replace with one thin flat brick ground plane. Square footprint must be a2:1 diamond. Make IMAGE1 a
+  strict orthographic yaw45 elevation30 2:1 dimetric sprite on rectangular ground7m by7m. Ground diagonal axes screen slopes +0.5 and -0.5, no vanishing
+  points, all verticals upright. Front entrance faces screen LOWER LEFT. Match IMAGE2 camera, do not copy its stable building or objects. Keep realistic
+  historic southern Xinjiang architecture, worn ochre adobe/brick, existing restrained colors and fine detail density. Entire isolated asset and contact
+  shadow inside frame,15% empty transparent padding each side, TRUE transparent RGBA background. Upper-left light and only tiny lower-right contact shadow.
+  No people, letters, text, landscape, thick diorama base, halo or modern objects.'
+negative: 文字、伪字、人物、现代物、背景、厚地台、透视汇聚、卡通、旋转或镜像补朝向
+references:
+- {file: sources/bld_kit_xiyu_pagoda_candidate1.png, sha256: 1113857e4eee31f928c717e72cdfc5afac17c01c99f580f48a1d54c23d7f4a83, role: 第二候选编辑目标}
+- {file: sources/bld_kit_xiyu_stable.png, sha256: 623dc97485979aa860167f3e9e88d89a73d1649779f667e6e468ecbb5e098855, role: 第二候选相机参照，不复制马厩主体}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T22:26:50.924782+00:00'
+created_time_basis: 原PNG文件mtime，非服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f459-e62a-7d81-b6da-ebc5d5a1cf9c/exec-bdd2100e-94b9-4e3c-9cce-da09a04ace22.png
+size: 992x736
+sha256: dbccb42155e29b78b7457489e0538b1d546efaab340dfd2060734f2927a493fd
+status: candidate
+notes: 逐张view_image检查原图与灰底QA：主体完整，真实RGBA，入口左下、左上光、右下接触影，无文字／人物／现代物。西域通用地域语汇的原创扩展；非具名古迹复原，不证明各年代细部皆相同（待考）。占地按同功能骨架；仅等比缩放，剩余投影／比例误差见geometry_qa，不能视为严密拼接准出。
+building:
+  type: bld_kit_xiyu_pagoda
+  footprint: &id001 [7, 7]
+  anchor: [502.9141, 573.723]
+  era: xiyu
+footprint_m: *id001
+footprint_basis: design/22 §3.3 pagoda 7×7
+entrance: {edge: S, offset_cells: 3}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [448, 224]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+png_rotations_available: [0]
+allowRotation: false
+metadata: meta/bld_kit_xiyu_pagoda.yaml
+candidate_count: 2
+processing:
+  source_archive: sources/bld_kit_xiyu_pagoda.png
+  source_sha256: 0392ef5f8589904e4d42e086adc10c2cbd15e7238109d642130d70e399d32db7
+  source_size: [1536, 1024]
+  crop_box: [65, 15, 1450, 997]
+  uniform_scale_requested: 0.6588235294117647
+  resized_size: [912, 647]
+  rounded_effective_scale: [0.6584837545126354, 0.6588594704684317]
+  paste_offset: [40, 44]
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize with pixel rounding, unmasked paste into transparent canvas; no repaint/warp/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [428, 819]
+    front: [767, 991]
+    right: [1108, 819]
+  source_anchor_px: [768.0, 819.0]
+  source_axis_slopes: [0.5073746312684366, -0.5043988269794721]
+  axis_tolerance: 0.03
+  axis_pass: true
+  expected_width_depth_ratio: 1.0
+  source_width_depth_ratio: 0.9941348973607038
+  ratio_relative_error: 0.0058651026392961825
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  precision_note: 人工读取可见底面角点，约±4px；后角遮挡，非3D实测
+  footprint_is_logical: true
+  release_note: 原始角点目测误差约±4px；严格2:1与实际长宽比未同时通过者仅候选使用。
+pixel_qa:
+  mode: RGBA
+  size: [992, 736]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 628979
+  alpha_partial_pixels: 100312
+  alpha_near_opaque_pixels: 94022
+  alpha_nonzero_bbox: [40, 44, 952, 691]
+  transparent_margins_px: [40, 44, 40, 45]
+  border_alpha_max: 0
+source_record: sources/bld_kit_xiyu_pagoda_v2.json
+selected_candidate: 2
+selection_note: 共两候选；按主体完整、相机轴斜率和占地比例综合择一；原图及提示词归档。
+visual_qa: {checked_with: view_image original plus neutral-gray composite, qa_only_composite: meta/pagoda-v2-qa.jpg, no_pixel_repainting: true}
+style_review_references:
+- {file: assets/default/baseline/building-map/bld_kit_song_dali_biaoju.png, sha256: 928e60e61ff9c0d14f9691b22486b599f181e3b4f52b86182f9b0be3daa76161, role: 已view_image阅图的写实材质／细节密度参照；首候选未作图像输入}

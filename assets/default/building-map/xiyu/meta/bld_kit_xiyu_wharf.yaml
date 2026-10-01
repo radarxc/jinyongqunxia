@@ -1,0 +1,95 @@
+id: bld_kit_xiyu_wharf
+file: bld_kit_xiyu_wharf.png
+category: building-map
+style: default
+subject: 西域渠岸取水与卸货浅阶；河埠功能的地域替换（原创扩展）
+prompt: Texture this EXACT flat parallelogram into a realistic ancient Xinjiang oasis river landing platform game-map sprite. Preserve exact ground corner positions, orthographic camera,
+  slope+0.5/-0.5 and width10 depth4 ratio2.5. The long10-unit front edge runs down-right, short4-unit edge runs up-right. Fine warm tan stone paving slabs and slightly worn yellow brick
+  edges, ONE thin low course only, tiny inlet step within footprint, two terracotta water jars near back long edge. No railing, water, boats, pier or added building. Regional riverbank
+  landing decoration, original synthesis, non-maritime. Highly detailed realistic historical strategy-game materials, soft weathering, stone pores, restrained colors. Upper-left light,
+  short subtle lower-right contact shadow only. True transparent RGBA outside exactly this flat platform shape. Keep all four corners unobscured. Do NOT change dimensions or camera.
+  No background, halo, gradient, vignette, landscape, ground outside footprint, text, labels, people, or modern object.
+negative: 文字、伪字、人物、现代物、背景、厚地台、透视汇聚、卡通、旋转或镜像补朝向
+references:
+- {file: assets/default/baseline/building-map/bld_kit_song_southern_wharf.png, role: 写实石材与10×4河埠功能参考，第二候选要求沿用底面关系, sha256: ee6196f46d86785a78c5859e50b60ad9866e246bdb48a9dabcc238f176c79ab1}
+- {file: sources/bld_kit_xiyu_wharf_round2_geometry.png, sha256: 6a16f1df31adf5f236db143115d9bf4dbb4365b98aed06ab03d41b9fe1440134, role: 第2轮精确占地灰盒生成参照；不作为成品}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T23:05:12.025621+00:00'
+created_time_basis: 原PNG文件mtime，非服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-90c4903e-fb89-4cac-99c8-554856aa8ddd.png
+size: 640x576
+sha256: 3971628cdd7fbb324e93dd32a451a6500af02ae2d9dafaf3e0000c62fa1783e2
+status: candidate
+notes: 第2轮按登记占地重出；源图及成品逐张view_image、灰底alpha检查。材质与地域功能保持；仅裁切、等比缩放、透明扩边。当前测量见geometry_qa。当前底角测量通过，仍需总装实测。
+building:
+  type: bld_kit_xiyu_wharf
+  footprint: &id001
+  - 10
+  - 4
+  anchor: [323.5672, 351.8353]
+  era: xiyu
+footprint_m: *id001
+footprint_basis: design/22 §3.3 bld_kit_song_southern_wharf 10×4包络，仅装饰河埠功能；不实例化port或航线
+entrance:
+  edge: S
+  offset_cells: 4
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 448
+  - 224
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+png_rotations_available:
+- 0
+allowRotation: false
+metadata: meta/bld_kit_xiyu_wharf.yaml
+candidate_count: 1
+processing:
+  source_archive: sources/bld_kit_xiyu_wharf_round2_candidate1.png
+  source_sha256: f405b244435b63b44ae239f641e4b073c23865feef53e24e052e198b884ee32e
+  source_size: [1536, 1024]
+  crop_box: [0, 21, 1518, 1017]
+  uniform_scale_requested: 0.3755238893545683
+  resized_size: [570, 374]
+  rounded_effective_scale: [0.37549407114624506, 0.3755020080321285]
+  paste_offset: [35, 101]
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize with pixel rounding, unmasked paste into transparent canvas; no repaint/warp/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [172, 540]
+    front: [1036, 997]
+    right: [1365, 838]
+  source_anchor_px: [768.5, 689.0]
+  source_axis_slopes: [0.5289351851851852, -0.48328267477203646]
+  axis_tolerance: 0.03
+  axis_pass: true
+  expected_width_depth_ratio: 2.5
+  source_width_depth_ratio: 2.6261398176291793
+  ratio_relative_error: 0.05045592705167179
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  precision_note: 灰底view_image人工底角定位并用源alpha>200边界核对，约±4px；后角遮挡，非3D实测
+  footprint_is_logical: true
+  release_note: 第2轮重出；当前底角测量通过；约±4px人工精度，仍须总装实测。
+pixel_qa:
+  mode: RGBA
+  size: [640, 576]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 316074
+  alpha_partial_pixels: 51990
+  alpha_near_opaque_pixels: 45712
+  alpha_nonzero_bbox: [42, 106, 580, 475]
+  transparent_margins_px: [42, 106, 60, 101]
+  border_alpha_max: 0
+source_record: sources/bld_kit_xiyu_wharf_round2_candidate1.json
+selected_candidate: 1
+selection_note: 本轮最多两候选择一；历史源图及调用记录保留，未做透视或非等比修正。
+visual_qa: {checked_with: view_image original and normalized final plus neutral-gray alpha composite, no_pixel_repainting: true}
+repair_round: 2
+repair_history: {round1_source_archive: sources/bld_kit_xiyu_wharf.png, round1_source_record: sources/bld_kit_xiyu_wharf.json, round1_candidate_count: 2, round1_selected_candidate: 2,
+  round1_geometry_axis_pass: false, round1_geometry_ratio_pass: true}

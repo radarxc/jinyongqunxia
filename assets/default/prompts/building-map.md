@@ -314,18 +314,71 @@ Keep yaw45 / pitch30 / 2:1 orthographic ground axes and upper-left light of the 
 每件最多2候选选1；只做裁切、一次等比缩放和透明扩边，不用非等比变形修正几何。短边≥256、透明边≥16px为本任务门槛，区别于早期宋基线短边512；`32(w+h)`仍只标定底面宽度。保持 `candidate` 和单视图 `allowRotation=false`，精确斜率 / 占地比残差在条目中保留，不能以清单校验通过代替总装验收。
 
 历史来源及访问状态见 `tools/agents/reports/KIT-song_north.md` §7；底层图像模型 / seed / 价格未由内置工具披露，不编造版本或费用。地域风格、塔层概化与正式上游目录接纳交作者确认，默认沿用本批候选；门洞、遮挡与真机效果仍**（待实测）**。
+## 11. 西域地域套件 · `xiyu`（KIT-xiyu）
+
+本节是本次作者授权的地域扩展；不改 §3 的宋清单。输出位于 `assets/default/building-map/xiyu/`，19 类各一张，均为 `candidate`。`era: xiyu` 表示可供不同书界选择的地域素材族，不表示某个具体朝代，也不证明一套现存形制在全部年代都存在。喀什、和田、叶尔羌仅为地域参考，不建立城市新 ID 或具名古迹复原。
+
+### 11.1 与宋模板的差异
+
+| 项 | 西域提示词差异与依据 |
+|---|---|
+| 屋顶 / 墙体 | 灰瓦坡顶改为土木平顶、低女儿墙、外露木梁头、土坯及克制熟砖，灰白墙改为低饱和赭土色；不套现代旅游仿古街。 |
+| 民居 / 院落 | 小院、外廊、局部方形抬高采光体，木雕侧窗与廊柱；这些来自阿依旺地域母题，具体古代用例（待考）。 |
+| 商业 | 巴扎铜陶器、织物、布 / 芦苇遮棚；茶肆承接酒楼槽位，商队护运货栈承接镖局槽位；无伪字招牌。 |
+| 宗教 | `temple_hall` 画匿名清真寺礼拜殿，`pagoda` 承接宗教地标槽位并画邦克楼。穹顶、砖拱与塔身是（原创扩展）组合，不宣称复原艾提尕尔现貌或宋元寺院。 |
+| 其他功能 | `casino` 为独立匿名游艺茶院（原创扩展），不与宗教设施绑定；`wharf` 为渠岸作业台，不增加船、航线或港口。 |
+| 保持一致 | 宋基线的写实材质与细节密度、斜向相机、左上光、右下短接触影、真 RGBA、完整轮廓及底面中心锚点；不继承灰瓦及中式翘檐。 |
+
+占地来源明确分开，均为规划格而非历史建筑实测：
+
+| 来源 | `bld_kit_xiyu_` 后缀 / 占地 |
+|---|---|
+| `design/22` §3.4 骨架 | `house_small` 7×6；`shop_1f` 7×5；`market` 5×4；`yamen` 16×12；`biaoju` 14×11；`palace` 24×20；`temple_hall` 14×11 |
+| §3.3 同功能映射 | `courtyard` 10×8；`shop_2f` 8×6；`inn` 12×9；`restaurant` 12×9；`casino` 10×8；`manor` 16×13；`pagoda` 7×7；`guardhouse` 7×5；`stable` 9×7；`warehouse` 10×8；`wharf` 10×4 |
+| 本套件新增分型 | `house_large` 10×8 **【建议值】**，沿院落包络给大宅分型（原创扩展）；不冒称 §3.4 已定义。 |
+
+### 11.2 提示词与制作记录
+
+```text
+ONE isolated realistic historical Kashgar / Hotan / Yarkand oasis map building.
+Mudbrick, muted sandy ochre plaster, flat earth roofs, low parapets, timber joists;
+restrained carved geometric wood lattice and shaded porch, function-specific props.
+Orthographic yaw45 elevation30, 2:1 dimetric ground axes slopes +0.5 / -0.5;
+specified rectangular footprint, south door screen lower left, three base corners clear.
+True transparent RGBA, complete roof/base and generous empty margin, no thick plinth.
+Soft upper-left light, very short lower-right contact shadow, no background or halo.
+No text, pseudo-writing, people, modern goods, tiled Chinese eaves or glossy toy look.
+```
+
+以上为差异模板；**实际逐张完整提示词、真实输入图片及哈希以本包 manifest / sources 记录为准**。只阅读网页或目视宋图的部分不冒记为工具图像输入。每张最多 2 个候选，每张原图与规格化结果均检查；PIL 仅裁矩形边、等比缩放、透明扩边，灰底合成只用于 QA，不替换透明成品。
+
+本任务建筑检查短边为 ≥256 px，低于 §4 首批宋件的 ≥512 px 门槛；这是西域任务的专用检查参数，不覆盖宋基线，也不改变地面标尺。`s=32(w+h)/(Rx-Lx)`，最终锚点由底面左右对角中心随裁框 / 缩放 / padding 变换；不能按 PNG 整宽再次标定。轴向与宽深比残差逐件登记；`candidate` 不豁免双轴 ±0.03 与占地比例检查，超差即返修未通过。每件仅原向 PNG，`allowRotation:false`；四向、碰撞 / 遮挡、具名城镇总装仍（待实测）。
+
+第2轮返修以按登记占地绘制的实心几何参考为主要输入，提示“texture-only; trace ALL polygon boundaries; preserve camera and ground corners”；旧图只作材质参照，避免继承错误相机。生成后的真实底角重新量取，不把参考图坐标当作实测；alpha 轮廓直线拟合仅辅助检查，不改成品像素。每项本轮最多2候选，历史调用仍保留在原记录中；本轮记录见 `xiyu/sources/round2/`。仍超差者在 QA / 报告明确列为未完成，不能以候选状态代替修复。
+
+### 11.3 参考资料与年代边界（访问 2026-09-30）
+
+- [中国非遗网：维吾尔族民居建筑技艺（阿依旺赛来民居营造技艺）](https://www.ihchina.cn/art/detail/id/14735.html)：取敞开庭院、方形抬高采光体、侧窗木雕及几何纹；未证明各书界具体年代。
+- [喀什大学建筑学院：走进高台民居](https://jzy.ksu.edu.cn/info/1421/1871.htm)：取黄粘土与木、芦苇等营造材料，不据现代调研反推古代层数。
+- [新疆自然资源厅：莎车古勒巴格村规划经验](https://zrzyt.xinjiang.gov.cn/xjgtzy/c112467/202303/720d143cd67c489498bc45fbbaea9816.shtml)：取平屋顶使用与入口葡萄廊架的地域意象。
+- [喀什公署：艾提尕尔清真寺简介](https://www.kashi.gov.cn/ksdqxzgs/c106707/202307/28cd99dc43a244619788bda878887922.shtml)：取礼拜殿 / 木柱长廊 / 召唤阁楼的功能区别；1442 始建的资料不作为宋元复原依据。
+- [新华社：新疆喀什老城改造纪实](https://www.xinhuanet.com/politics/2015-09/26/c_1116687056.htm)：只取沿街巴扎、铜铁木作等业态母题，不照抄现代改造外观。
+- [新疆政府：汗诺依古城考古成果](https://www.xinjiang.gov.cn/xinjiang/dzdt/202201/4a664aaf2f094721adfe8fbd67338eaf.shtml)：取 10 世纪泥土垒筑城墙、南北设门的材料母题；不据此推定本包城门尺寸。
 
 ## 本文新增术语与 ID
 
 不新增玩法 ID；复用 §3 的38个建筑资产ID与最新§4.4的7个植物资产ID。植物文件使用`<asset_id>__v01/v02.png`，双下划线后是变体键，不是新玩法ID。`building.anchor`为最终PNG底面中心像素，`sources/`为归档生成来源，`meta/`为逐type制作元数据。它们是本批资产约定，不扩大`town/schema.yaml`的现有定义范围。
 
 §11另登记19个 `bld_kit_song_north_*` 资产ID，具体后缀与占地见§11.1；它们是本任务授权的同构套件，不新增玩法、城市、机构或营生ID。`song_north` 尚须由下游接入正式城市目录 / schema，不能假称本素材任务已完成该上游变更。
+西域新增 19 个 `bld_kit_xiyu_*` 资产 ID 见 §11.1；仅素材族，不新增 `biz_*`、`city_*` 或 `sect_*`。`xiyu` 在上游套件枚举的同步事项交 KIT-xiyu 报告 §6。
 
 ## 待决事项 / 依赖
 
 ### 替下游给出的建议值
 
-透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。最终 canvas 短边 ≥512 是现有检查器要求，地面像素尺度仍按 64×32 每格计算；canvas 尺寸随建筑高度 / 屋檐与留白变化，不固定所有建筑方形。
+西域大民居 10×8 分型、逐图宽深比相对误差 10% 告警为 **【建议值】**；它们不改变骨架实际占地。角点人工读数约 ±4 源像素，只作候选对齐代理，不能当作三维测量。
+
+透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。西域成品 canvas 短边 ≥256 是本任务检查器要求，宋首批仍按 §4 的 ≥512；地面像素尺度均按 64×32 每格计算，canvas 尺寸随建筑高度 / 屋檐与留白变化，不固定所有建筑方形。
 
 新增植物的最终4px留边来自最新上游；矩形裁边时alpha≤2噪点阈值、外扩4**源**px，以及实际根偏差≤1**成品**px的额外告警均为本轮 **【建议值】**。2/255≈0.78%不透明度；只用于确定裁切矩形，不覆盖存留像素的alpha。全部原图与裁去区域统计保留，可复核或更换制作阈值。
 
@@ -342,6 +395,9 @@ Keep yaw45 / pitch30 / 2:1 orthographic ground axes and upper-left light of the 
 保留旧稿问题：三联 / 广州修订版《天龙八部》的大理建筑、植物与佛教场景，《射雕英雄传》的临安茶肆描写尚未逐字核对，不编回目或引文。白族民居细部、佛龛造像、宋茶器、瓦作、斗拱、镖局称谓及地域植物史仍待考；默认历史意象与原创构图。
 
 ### 开放问题（附默认值）
+
+- 西域地域形制是否逐朝另出变体：默认本包为通用候选意象，具体年代细部（待考）；后续具名城镇须筛选，不能以 `era: xiyu` 跳过考据。
+- 西域两候选后仍有投影偏差：第2轮已重出点名16件；大民居、棋戏院、茶肆仍有轴向超差，返修未全部通过。默认保留真实残差与原始候选，不突破每轮两候选上限，不通过非等比拉伸修饰数据；详见包内 QA 与 KIT-xiyu 报告。
 
 - 旧“建筑占格与正式底面中心未定”：**已解决**，本批消费 `design/22` §1.4、§3 的占地与中心锚点；旧 6×4 / 6×5 自拟尺寸和临时前角锚点不再作为规范。
 - 旧“大理右影触边、两图留白 / 精确轴向 / 比例未达标”：**已解决（本次入选处置）**，ART-B 两张不直接复制入选，按新清单重出；不表示旧图已修复。留白、轴向和尺度仍需对每张新图实测。

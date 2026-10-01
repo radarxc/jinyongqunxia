@@ -1,0 +1,14 @@
+{
+  "id": "bld_kit_xiyu_temple_hall",
+  "candidate": 1,
+  "args": {
+    "referenced_image_paths": [
+      "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-xiyu/assets/default/building-map/xiyu/sources/bld_kit_xiyu_temple_hall_round2_geometry.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Retexture this EXACT orthographic block into a realistic historical Xinjiang mosque prayer hall game-map sprite. Preserve exact block ground geometry, bottom corners, camera and proportion. Front width14, side depth11; front edge27.27% longer than side edge. Both ground and roof axes slopes+0.5 and-0.5. Tiny weathered ochre adobe and yellow brick, main flat earthen roof with visible timbers, low rear parapets, small round earth-colored dome tucked near rear. Along the full left-facing long front facade: finely carved wood-column porch with restrained faded turquoise paint, wooden lattice doors, rugs inside porch without script. Columns and walls sit exactly on graybox footprint edges; thin brick footing but no thick platform. Tiny detailed photoreal-painterly historical strategy-game texture, no cartoon or plastic. Light from upper-left, short subtle shadow lower-right only. Entire opaque asset fully inside canvas with true transparent RGBA outside. No halo, backdrop, gradient, ground beyond footprint, environment, text, signage, calligraphy, person or modern object. Strictly preserve parallel projection of input block."
+  },
+  "path": "/Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-820303a9-e6f2-4d09-a7a4-460070af154e.png",
+  "tool": "built-in image_gen",
+  "repair_round": 2
+}

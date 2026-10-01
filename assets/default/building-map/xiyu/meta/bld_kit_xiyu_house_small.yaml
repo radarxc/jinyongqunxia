@@ -1,0 +1,45 @@
+id: bld_kit_xiyu_house_small
+file: bld_kit_xiyu_house_small.png
+category: building-map
+style: default
+subject: 西域喀什/和田小型土木平顶民居；跨年代地域组合（原创扩展），具体年代细部（待考）
+prompt: "Texture and detail this EXACT block into a realistic historical Kashgar adobe house game sprite. Keep its silhouette, ground corners, camera, wall planes and every major straight edge exactly fixed. This is a texture/detail edit, do not redesign geometry or recompose/zoom. Add a thin low parapet around the flat roof, ochre earth plaster, tiny exposed mud bricks near bottom, wooden joist ends at eaves, one plain timber door and one carved lattice window in the left wall, a small lattice in the right wall. Fine realistic weathered material, muted daylight upper-left; no new footprint ground patch, no raised pedestal, no objects outside. Single floor. Ground remains the input rectangular 7:6 footprint with both edge slopes exactly1:2. Match the three walls to the solid planes of input. Keep original transparent margins. Truly transparent background, no glow, environment, people, signage or writing."
+negative: 文字、伪字、人物、现代物、背景、厚地台、透视汇聚、卡通、旋转或镜像补朝向
+references: [{"file": "sources/round2/house_small_geometry.png", "sha256": "de3d482ccdc840373d7a09f9303b4555605ab4592494a34a9362b16a978cfa91", "role": "本轮精确几何参考；非成品或实测证据"}]
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: "2026-09-30T22:59:06.235410+00:00"
+created_time_basis: 原PNG文件mtime，非服务端调用时间
+source_path: "/Users/bytedance/.codex/generated_images/01a0f485-e749-79f3-bd62-29852f8c5efe/exec-afb93bac-e8e4-4b35-bb21-8e4907dd654c.png"
+size: 640x416
+sha256: "85990d7167f9fc48186aec798254c78f2ae58ab264a8bee59fef962fc5f86345"
+status: candidate
+notes: "本轮重出；view_image源图与灰底确认地域材质/透明轮廓，成品仅裁切等比扩边。双轴和占地比例实测在既有容差内；仍需总装实测。"
+building: {"type": "bld_kit_xiyu_house_small", "footprint": [7, 6], "anchor": [321.8701, 265.5616], "era": "xiyu"}
+footprint_m: [7, 6]
+footprint_basis: design/22 §3.4 元/明民居骨架7×6；仅复用占地
+entrance:
+  edge: S
+  offset_cells: 3
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 416
+  - 208
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+png_rotations_available:
+- 0
+allowRotation: false
+metadata: meta/bld_kit_xiyu_house_small.yaml
+candidate_count: 1
+processing: {"source_archive": "sources/round2/house_small_candidate1.png", "source_sha256": "f4cbb95f9f7d514ac90f2fcd5de1fa410fd373932578986c5c88bd9981a32c61", "source_size": [1536, 1024], "crop_box": [0, 2, 1524, 1024], "uniform_scale_requested": 0.37410071942446044, "resized_size": [570, 382], "rounded_effective_scale": [0.37401574803149606, 0.37377690802348335], "paste_offset": [35, 17], "steps": ["alpha>0 bbox crop", "uniform LANCZOS resize with pixel rounding", "unmasked paste into transparent canvas; no repaint/warp/alpha threshold"]}
+geometry_qa: {"source_corners_px": {"left": [211, 643], "front": [812, 951], "right": [1323, 691]}, "source_anchor_px": [767.0, 667.0], "source_axis_slopes": [0.5124792013311148, -0.5088062622309197], "axis_tolerance": 0.03, "axis_pass": true, "expected_width_depth_ratio": 1.1666666666666667, "source_width_depth_ratio": 1.1761252446183954, "ratio_relative_error": 0.008107352530053236, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "precision_note": "底边alpha>200轮廓直线与可见墙角交点，约±4源像素；未用参考图坐标冒充实测"}
+pixel_qa: {"mode": "RGBA", "size": [640, 416], "alpha_extrema": [0, 255], "alpha_zero_pixels": 167631, "alpha_partial_pixels": 97736, "alpha_near_opaque_pixels": 95338, "alpha_nonzero_bbox": [35, 37, 604, 379], "transparent_margins_px": [35, 37, 36, 37], "border_alpha_max": 0}
+source_record: "sources/round2/house_small_call1.json"
+visual_qa: {"checked_with": "view_image original and neutral-gray composite; final PNG", "qa_only_composite": "sources/round2/house_small_qa.jpg", "no_pixel_repainting": true}
+repair_history: {"prior_source_record": "sources/bld_kit_xiyu_house_small.json", "prior_candidate_count": 2, "prior_sha256": "277762feb498ec7ab0ea094d7336b32a8825fbfa591024b0b3d891e9ac780f5e", "round_candidate_count": 1, "selected_candidate": 1}
+repair_round: 2

@@ -1,0 +1,246 @@
+- id: tex_town_xiyu_city_gate__k4_r000_v01
+  file: tex_town_xiyu_city_gate__k4_r000_v01.png
+  category: tile
+  style: default
+  subject: 西域绿洲城镇·完整土城门·净宽4格；跨年代地域意象（原创扩展），具体城池年代归属待考
+  prompt: "TEXTURE-ONLY EDIT of supplied exact geometry. Preserve the silhouette and ALL polygon boundaries and dimensions pixel-for-pixel. Do not redesign or change camera. Image is an ancient Western Regions oasis adobe CITY GATE, full frontage8 units, depth4, two vertical piers2 units wide each and central completely open portal4 units wide. All ground-plane axes have slope+0.5/-0.5 and front-edge/depth-edge horizontal lengths800:400, exactly2:1. The supplied sketch already has correct geometry: trace it precisely. Turn the plain faces into warm buff mud plaster with realistic tiny adobe grains, subtle exposed brick courses near foot, restrained wood lintel details; realistic fine historical painted game-map style. Keep rectangular portal opening with flat timber lintel, keep flat roof, keep vertical straight piers, no battlements or additional building. Do NOT add projecting pilasters. Keep exact outer contact corners L168,600; front968,1000; R1368,800; portal jamb feet368,700 and768,900 on a1536x1024 canvas. CRITICAL the right side face is400px wide and must not be narrowed. This is a material edit, not a reconstruction. Transparent areas MUST remain alpha0: no glow, halo, ground shadow, ground plane, landscape or floor; opacity255 for wall. Light upperleft, right face muted shade. No text, labels, arrows, people, modern details. ONE complete opaque gate on truly transparent RGBA background."
+  negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
+  references:
+  - file: source/round2/gate4-geometry-reference.png
+    sha256: bc84f4e537c54907c83550c53f662fa1720bc3cc14a155e8a5dc75875e6a9e9d
+    note: round2实际输入：程序绘制的精确几何示意，仅作生成参考，非成品。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T22:58:08.549358+00:00"
+  source_path: /Users/bytedance/.codex/generated_images/01a0f486-da2c-72e2-a613-aecd5c659ce2/exec-01812c18-af40-4463-b001-ba4e84761fa1.png
+  size: 402x331
+  sha256: 3d79dbb1fbc47a0a935e5de4fee1984adcb2c35d2541794daee5cc5729253275
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 8
+    - 4
+    variant: k4_r000_v01
+    autotile_mask: null
+  source_copy: source/round2/gate4-candidate02.png
+  source_sha256: e33b130739603b1682ceab9884b5661837fd476b65ff7b15700c5ffb6e30f942
+  anchor_px:
+  - 200.679
+  - 225.645
+  notes: round2重出；仅alpha包围框裁切、等比LANCZOS缩放与8px透明边。源图真实角点/轴斜率/占地比例见source/round2/gate4-selected-qa.json；双轴±0.5容差0.03与比例3%均通过。旧source与geometry-qa.jsonl保留为历史。
+  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+  revision_round: 2
+  candidate_count: 2
+  generation_record: source/round2/gate4-candidate02-record.json
+- id: tex_town_xiyu_city_gate__k6_r000_v01
+  file: tex_town_xiyu_city_gate__k6_r000_v01.png
+  category: tile
+  style: default
+  subject: 西域绿洲城镇·完整土城门·净宽6格；跨年代地域意象（原创扩展），具体城池年代归属待考
+  prompt: "Use case: precise-object-edit. STRICT TEXTURE-ONLY EDIT of supplied exact geometry. Preserve silhouette and ALL polygon boundary pixel positions. Do not redesign or change camera. This is an ancient Western Regions oasis adobe CITY GATE, full frontage10 units, depth4, two straight vertical piers2 units wide each and central fully open portal6 units wide. Ground-plane axes slopes+0.5/-0.5, front-edge/depth-edge horizontal lengths900:360 =2.5. Supplied sketch already has correct geometry: trace precisely. Apply warm buff mud plaster, realistic tiny adobe grains, subtle exposed brick courses near foot, restrained wood lintel across doorway. Fine realistic painted historical wuxia map sprite, muted neutral earth colors. Keep flat rectangular clear portal with timber lintel, flat roof and straight piers; no battlements, no extra pilaster or building. Exact bottom footprint corners in1536x1024: L138,500; F1038,950; R1398,770. The portal front foot corners318,590 and858,860: clear60%frontage, piers20%each. Right side face must remain360px wide. Transparent areas remain alpha0, no floor/platform, no glow, no shadow, no labels/people/text. Upperleft light, right face subdued shade. Fully opaque wall, true transparent RGBA. Keep full silhouette and margins, material edit only."
+  negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
+  references:
+  - file: source/round2/gate6-geometry-reference.png
+    sha256: 4f4e32276d693521c0abe212fbd5a08af5e78e01b3b7bfd7dc8510b01e30fa96
+    note: round2实际输入：程序绘制的精确几何示意，仅作生成参考，非成品。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T22:59:53.700628+00:00"
+  source_path: /Users/bytedance/.codex/generated_images/01a0f486-da2c-72e2-a613-aecd5c659ce2/exec-218c48d2-38a2-421b-9f96-2eb6644ab767.png
+  size: 465x346
+  sha256: 819d9333835450faf845f7d4cffd65d7d6cb9f5d32a8dea2dc9c58a49358af8b
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 10
+    - 4
+    variant: k6_r000_v01
+    autotile_mask: null
+  source_copy: source/round2/gate6-candidate01.png
+  source_sha256: 402f8a543370c360431cc0c7335bc98ec1f4fc499f5b4610cd29b9a9dba3560b
+  anchor_px:
+  - 232.145
+  - 222.962
+  notes: round2重出；仅alpha包围框裁切、等比LANCZOS缩放与8px透明边。源图真实角点/轴斜率/占地比例见source/round2/gate6-selected-qa.json；双轴±0.5容差0.03与比例3%均通过。旧source与geometry-qa.jsonl保留为历史。
+  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+  revision_round: 2
+  candidate_count: 1
+  generation_record: source/round2/gate6-candidate01-record.json
+- id: tex_town_xiyu_wall__earth_r000_v01
+  file: tex_town_xiyu_wall__earth_r000_v01.png
+  category: tile
+  style: default
+  subject: 西域绿洲城镇·土坯直墙；跨年代地域意象（原创扩展），具体城池年代归属待考
+  prompt: "Strict texture-only edit: apply realistic fine pale ochre adobe/mud plaster with tiny straw grain, subtle horizontal rammed layers to the exact supplied wall-block sketch. Trace ALL polygon boundaries pixel-for-pixel. Do not change camera, scale, frame, silhouette, dimensions or height. Simple cuboid; footprint1x1m, height3m; exact2:1 dimetric projection, square bottom diamond, both axes slopes+0.5/-0.5. Native32px per ground-axis horizontal meter, vertical3m =117.58px; supplied sketch has this ratio precisely. Bottom contact L(598,875), F(768,960), R(938,875), top vertices corresponding625px higher. Preserve every coordinate, no enlarge/reframe. Fine realistic painted historical Chinese wuxia-map sprite, muted buff adobe and fine straw detail, flat flush top no cap. Upperleft light and right-face shade. True transparent RGBA, alpha0 background unchanged, no floor, shadow, halo, glow, building details, text or people. Texture only."
+  negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
+  references:
+  - file: source/round2/wall-geometry-reference02.png
+    sha256: d6f287fa97c26e77fce288154dd4c2ab0401d38656ba39860189b9d86d795877
+    note: round2实际输入：程序绘制的精确几何示意，仅作生成参考，非成品。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T23:06:30.222796+00:00"
+  source_path: /Users/bytedance/.codex/generated_images/01a0f486-da2c-72e2-a613-aecd5c659ce2/exec-70549d72-3408-4432-a57b-f4d5543b4711.png
+  size: 81x167
+  sha256: 46671222f5f683423f82b01a953e059f095c996626ab5dff78cf05e471d90b17
+  status: candidate
+  tile:
+    kind: wall
+    footprint:
+    - 1
+    - 1
+    variant: earth_r000_v01
+    autotile_mask: null
+  source_copy: source/round2/wall-candidate02.png
+  source_sha256: 6687ff3dbaf8dae5951194e9d4106833fe4cbfdeb4657e080821fd406aea73b5
+  anchor_px:
+  - 40.406
+  - 142.411
+  notes: round2重出；仅alpha包围框裁切、等比LANCZOS缩放与8px透明边。源图真实角点/轴斜率/占地比例及3m墙高见source/round2/wall-selected-qa.json；双轴±0.5容差0.03与比例3%均通过。旧source与geometry-qa.jsonl保留为历史。
+  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+  revision_round: 2
+  candidate_count: 2
+  generation_record: source/round2/wall-candidate02-record.json
+- id: tex_town_xiyu_wall_corner__outer_ne_v01
+  file: tex_town_xiyu_wall_corner__outer_ne_v01.png
+  category: tile
+  style: default
+  subject: 西域绿洲城镇·土坯外墙角；跨年代地域意象（原创扩展），具体城池年代归属待考
+  prompt: "Strict texture-only edit of exact supplied L-shaped wall-corner sketch. Trace ALL polygon boundaries pixel-for-pixel. Do not change silhouette/camera/scale/frame or any dimensions. Footprint2x2m, wall thickness1m, height3m. Exact2:1 dimetric projection, both axes slopes+0.5/-0.5. Native32px per horizontal ground-axis meter; vertical3m projects117.58px. Supplied sketch has exact correct height ratio: preserve it. Hollow V open toward bottom center, back join at top center. Bottom silhouette visible outer tips(468,750) and(1068,750), inner-front tips(618,825) and(918,825), inner meeting(768,750). Keep top polygons551px higher; do not resize. Apply pale ochre adobe with tiny straw grains, fine realistic mud plaster, subtle rammed-earth layers, same realistic restrained historical Chinese wuxia-map sprite detail. Flat flush top without cap. Upper-left lighting, right faces shaded. Transparent RGBA unchanged in hollow and outside, no floor, ground, glow, shadow, objects, text or people. Material/texture only."
+  negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
+  references:
+  - file: source/round2/corner-geometry-reference02.png
+    sha256: 6af3e623f95d22d5775f882df843501c3d77db8c9265842af05baa7a65a5db05
+    note: round2实际输入：程序绘制的精确几何示意，仅作生成参考，非成品。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T23:06:53.907358+00:00"
+  source_path: /Users/bytedance/.codex/generated_images/01a0f486-da2c-72e2-a613-aecd5c659ce2/exec-b0abc531-3e09-4918-b6e8-b5709fc0b40f.png
+  size: 145x183
+  sha256: 5921d64324aa5ab463a8b3d709ae81c4040a0af08445d329fb988de470af875c
+  status: candidate
+  tile:
+    kind: wall_corner
+    footprint:
+    - 2
+    - 2
+    variant: outer_ne_v01
+    autotile_mask: null
+  source_copy: source/round2/corner-candidate02.png
+  source_sha256: d91dd67c70b95594d00f8bb153041543e436826539510304981999961984c241
+  anchor_px:
+  - 72.286
+  - 158.514
+  notes: round2重出；仅alpha包围框裁切、等比LANCZOS缩放与8px透明边。源图真实角点/轴斜率/占地比例及3m墙高见source/round2/corner-selected-qa.json；双轴±0.5容差0.03与比例3%均通过。旧source与geometry-qa.jsonl保留为历史。
+  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+  revision_round: 2
+  candidate_count: 2
+  generation_record: source/round2/corner-candidate02-record.json
+- id: tex_town_xiyu_bridge_deck__w3_l5_r000_v01
+  file: tex_town_xiyu_bridge_deck__w3_l5_r000_v01.png
+  category: tile
+  style: default
+  subject: 西域绿洲城镇·绿洲灌渠木桥；跨年代地域意象（原创扩展），具体城池年代归属待考
+  prompt: "STRICT texture-only edit. Turn this exact bridge blockout into aged realistic timber WITHOUT moving any edges or vertices. Trace existing polygons pixel-for-pixel. In the supplied geometry bridge BOTTOM front edge runs from(148,698) to(613,930), slope232/465=0.499; side bottom runs from(613,930) to(1388,543), slope-387/775=-0.499. Preserve this exact geometry, frame and scale. DO NOT make slope0.54, no perspective, no reframe, no enlarge. Texture the unchanged deck with crosswise timber planks, the unchanged beams/rails with subtle wood grain. No additional projecting joinery, no new posts required; keep thin simple rails shown. Fine realistic hand-painted historical Chinese wuxia game-map look, ancient oasis irrigation bridge, muted natural brown wood, daylight upperleft. Keep all transparent areas alpha0; preserve correct real transparent RGBA, no floor/water/backdrop/glow/shadow, no text or people. Do not replace the sketch with a different bridge; retain this exact silhouette and all dimension ratios3:5. Material only."
+  negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
+  references:
+  - file: source/round2/bridge-geometry-reference.png
+    sha256: 1531da6978e083028b53727e0675fd501671a3258fd327076695c67b8bbadd9a
+    note: round2实际输入：程序绘制的精确几何示意，仅作生成参考，非成品。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T23:02:42.268029+00:00"
+  source_path: /Users/bytedance/.codex/generated_images/01a0f486-da2c-72e2-a613-aecd5c659ce2/exec-02c4033e-4226-4636-8934-b22275fd7929.png
+  size: 273x182
+  sha256: f23e6b0409a0a93aa7acaafcbcc52b7addb7b715646159e0374d49821b3f9692
+  status: candidate
+  tile:
+    kind: bridge_deck
+    footprint:
+    - 3
+    - 5
+    variant: w3_l5_r000_v01
+    autotile_mask: null
+  source_copy: source/round2/bridge-candidate02.png
+  source_sha256: 45cc51ca06455397a7800cd32075f54a95953a636eb00b60135962823a627a88
+  anchor_px:
+  - 136.397
+  - 107.724
+  notes: round2重出；仅alpha包围框裁切、等比LANCZOS缩放与8px透明边。源图真实角点/轴斜率/占地比例见source/round2/bridge-selected-qa.json；双轴±0.5容差0.03与比例3%均通过。旧source与geometry-qa.jsonl保留为历史。
+  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+  revision_round: 2
+  candidate_count: 2
+  generation_record: source/round2/bridge-candidate02-record.json
+- id: tex_town_xiyu_tree_cluster__huyang_v01
+  file: tex_town_xiyu_tree_cluster__huyang_v01.png
+  category: tile
+  style: default
+  subject: 西域绿洲城镇·胡杨；跨年代地域意象（原创扩展），具体城池年代归属待考
+  prompt: 'Use case: historical-scene. ONE isolated production sprite for an ancient Chinese wuxia city-map kit, Western Regions oasis towns inspired by Kashgar, Hotan and Yarkand. Realistic restrained painted architectural illustration, fine natural earthy material grain, same fine realistic detail density and neutral muted palette as the Song town kit. Strict orthographic dimetric view: yaw45 degrees, elevation30 degrees, ground axes (+32,+16) and (+32,-16), exact 2:1 ground projection, verticals vertical, no perspective convergence. Light from upper-left, extremely short soft shadow lower-right. True transparent RGBA background and transparent holes, ample margins, complete object silhouette. ONE object only, no text, watermark, labels, modern objects, people, animals, landscape, checkerboard pattern, white backdrop, ink wash, cartoon, chibi, ground platform or broad floor patch. Subject: ONE compact mature Euphrates poplar tree (Populus euphratica, Huyang), natural riparian tree of Tarim Basin oasis edge. A single gently gnarled grey-brown trunk that forks into irregular branching broad open crown; mixed small rounded and oval leaves in muted olivegreen with modest ochre highlights, no full orange autumn canopy, no flowering. Natural growth, not conical Lombardy poplar, not palm. Footprint canopy3m x3m, roots cluster around one ground registration point; height5m. See foliage top planes from30degrees down, convincing bark and fine restrained leaf texture consistent with Song map plants. No soil patch, roots do not form a floating island, no grass, rock, shrub, buildings, animals or floor. True clear transparency between leaf groups, full trunk and crown intact. No external glow, halo, fog, atmospheric gradient or solid backdrop.'
+  negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: not exposed by image tool
+  created: '2026-09-30T22:13:25.105094+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f459-ae86-75b0-b648-f4882401e6a7/exec-85620d80-5d6b-4b7e-af18-da24a549b088.png
+  size: 208x201
+  sha256: 161d87436f5dec6ed98dd6fb0ee96e3003e9ff6d0e35980e1dbc56b328bd4119
+  status: candidate
+  tile:
+    kind: tree_cluster
+    footprint:
+    - 3
+    - 3
+    variant: huyang_v01
+    autotile_mask: null
+  source_copy: source/tex_town_xiyu_tree_cluster__huyang_v01__source.png
+  source_sha256: 0dce0be8b81fd8caa6f923a2a914eb5af42d1a5aea98c1db862a4911c995e3cc
+  anchor_px:
+  - 105.094
+  - 187.835
+  notes: 纯几何裁边、等比LANCZOS缩放（整数像素取整）与8px透明边，未重绘RGB/补alpha。胡杨单列：根部锚点+3×3冠幅192px建议值；树冠包围框不能充当地面占地标定；严格斜率、占地与接缝残差见geometry-qa.jsonl，保持candidate。
+  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+- id: tex_town_xiyu_grape_arbor__w4_l3_r000_v01
+  file: tex_town_xiyu_grape_arbor__w4_l3_r000_v01.png
+  category: tile
+  style: default
+  subject: 西域绿洲城镇·葡萄架；跨年代地域意象（原创扩展），具体城池年代归属待考
+  prompt: "Use case: precise-object-edit. Render this EXACT supplied four-post grape-arbor geometry into a realistic ancient Western Regions oasis garden game-map sprite. Preserve every timber beam and vertical post coordinate, ALL post foot positions, lengths, camera and exact proportions. Do not redesign the trellis. Strict2:1 dimetric orthographic45/30 camera, ground axes slopes+0.5/-0.5. Ground full outer footprint4:3, L190.5,647.5 F850.5,977.5 R1345.5,730 on1536x1024. Exact front/depth horizontal spans660:495. Fine rough brown unpainted timber texture and mortise-lashing joinery; add delicate twisting grape vines, modest muted olivegreen leaf clusters and a few small dull purple bunches along top beams. Leaves restrained, keep all four post feet and outer beam endpoints clearly visible, do NOT enlarge base or add rocks. Light upperleft, right sides subtly shaded. Realistic fine painted historical wuxia map style, same detail density as traditional Song town sprites, no cartoon/vector flatness. True transparent RGBA background and all empty post/leaf spaces, no backdrop, no floor, no ground, no broad shadow, no glow, no people or text. Full silhouette with margin. Geometry locked, material/detail edit only."
+  negative: 无文字、水印、现代物、人物、动物、假棋盘、场景底图、地台、卡通与水墨；禁止用二维旋转冒充四向。
+  references:
+  - file: source/round2/arbor-geometry-reference.png
+    sha256: 0ff14356f335b75298c8053ed055ff931d7d48d8cee20bf63439be46b2904579
+    note: round2实际输入：程序绘制的精确几何示意，仅作生成参考，非成品。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: not exposed by image tool
+  created: "2026-09-30T23:00:46.602516+00:00"
+  source_path: /Users/bytedance/.codex/generated_images/01a0f486-da2c-72e2-a613-aecd5c659ce2/exec-317471fc-bbba-4500-86ce-a962fb7779b7.png
+  size: 252x204
+  sha256: 386684897b50dd80dade48c0a8e6e6a1a294783b5c89a1a9df2d0ca9f2152255
+  status: candidate
+  tile:
+    kind: grape_arbor
+    footprint:
+    - 4
+    - 3
+    variant: w4_l3_r000_v01
+    autotile_mask: null
+  source_copy: source/round2/arbor-candidate01.png
+  source_sha256: 865490f921b657f21af533888456881c23a262a02e715512be81457d31857dd4
+  anchor_px:
+  - 125.422
+  - 139.523
+  notes: round2重出；仅alpha包围框裁切、等比LANCZOS缩放与8px透明边。源图真实角点/轴斜率/占地比例见source/round2/arbor-selected-qa.json；双轴±0.5容差0.03与比例3%均通过。旧source与geometry-qa.jsonl保留为历史。
+  created_time_basis: 原PNG文件mtime，非服务端工具回执时间
+  revision_round: 2
+  candidate_count: 1
+  generation_record: source/round2/arbor-candidate01-record.json
