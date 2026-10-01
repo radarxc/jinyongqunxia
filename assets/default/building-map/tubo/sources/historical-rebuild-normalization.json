@@ -1,0 +1,496 @@
+{
+  "bld_kit_tubo_temple_hall": {
+    "source_size": [
+      1415,
+      1112
+    ],
+    "crop_box_alpha16": [
+      86,
+      85,
+      1383,
+      1027
+    ],
+    "uniform_scale": 0.6008492569002123,
+    "final_size": [
+      843,
+      630
+    ],
+    "margin_px": 32,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_temple_hall__raw.png"
+  },
+  "bld_kit_tubo_courtyard": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box_alpha16": [
+      41,
+      44,
+      1520,
+      971
+    ],
+    "uniform_scale": 0.42934196332254587,
+    "final_size": [
+      667,
+      430
+    ],
+    "margin_px": 16,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_courtyard__raw.png"
+  },
+  "bld_kit_tubo_biaoju": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box_alpha16": [
+      170,
+      195,
+      1375,
+      888
+    ],
+    "uniform_scale": 0.8124098124098124,
+    "final_size": [
+      1043,
+      627
+    ],
+    "margin_px": 32,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_biaoju__raw.png"
+  },
+  "bld_kit_tubo_guardhouse": {
+    "source_size": [
+      1355,
+      1161
+    ],
+    "crop_box_alpha16": [
+      88,
+      127,
+      1272,
+      1072
+    ],
+    "uniform_scale": 0.32063492063492066,
+    "final_size": [
+      428,
+      351
+    ],
+    "margin_px": 24,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_guardhouse__raw.png"
+  },
+  "bld_kit_tubo_casino": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box_alpha16": [
+      233,
+      76,
+      1370,
+      957
+    ],
+    "uniform_scale": 0.42338251986379116,
+    "final_size": [
+      545,
+      437
+    ],
+    "margin_px": 32,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_casino__raw.png"
+  },
+  "bld_kit_tubo_inn": {
+    "source_size": [
+      1402,
+      1122
+    ],
+    "crop_box_alpha16": [
+      93,
+      128,
+      1362,
+      1026
+    ],
+    "uniform_scale": 0.544543429844098,
+    "final_size": [
+      723,
+      521
+    ],
+    "margin_px": 16,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_inn__raw.png"
+  },
+  "bld_kit_tubo_manor": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box_alpha16": [
+      65,
+      69,
+      1477,
+      967
+    ],
+    "uniform_scale": 0.7093541202672605,
+    "final_size": [
+      1066,
+      701
+    ],
+    "margin_px": 32,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_manor__raw.png"
+  },
+  "bld_kit_tubo_house_large": {
+    "source_size": [
+      1355,
+      1161
+    ],
+    "crop_box_alpha16": [
+      126,
+      152,
+      1339,
+      1041
+    ],
+    "uniform_scale": 0.4499437570303712,
+    "final_size": [
+      578,
+      432
+    ],
+    "margin_px": 16,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_house_large__raw.png"
+  },
+  "bld_kit_tubo_house_small": {
+    "source_size": [
+      1374,
+      1145
+    ],
+    "crop_box_alpha16": [
+      93,
+      163,
+      1318,
+      1003
+    ],
+    "uniform_scale": 0.38095238095238093,
+    "final_size": [
+      499,
+      352
+    ],
+    "margin_px": 16,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_house_small__raw.png"
+  },
+  "bld_kit_tubo_palace_hall": {
+    "source_size": [
+      1402,
+      1122
+    ],
+    "crop_box_alpha16": [
+      67,
+      94,
+      1369,
+      1030
+    ],
+    "uniform_scale": 0.8237179487179487,
+    "final_size": [
+      1136,
+      835
+    ],
+    "margin_px": 32,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_palace_hall__raw.png"
+  },
+  "bld_kit_tubo_restaurant": {
+    "source_size": [
+      1402,
+      1122
+    ],
+    "crop_box_alpha16": [
+      89,
+      115,
+      1345,
+      1025
+    ],
+    "uniform_scale": 0.5615384615384615,
+    "final_size": [
+      737,
+      543
+    ],
+    "margin_px": 16,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_restaurant__raw.png"
+  },
+  "bld_kit_tubo_shop_1f": {
+    "source_size": [
+      1484,
+      1060
+    ],
+    "crop_box_alpha16": [
+      156,
+      113,
+      1346,
+      963
+    ],
+    "uniform_scale": 0.39176470588235296,
+    "final_size": [
+      498,
+      365
+    ],
+    "margin_px": 16,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_shop_1f__raw.png"
+  },
+  "bld_kit_tubo_market_stall": {
+    "source_size": [
+      1402,
+      1122
+    ],
+    "crop_box_alpha16": [
+      218,
+      97,
+      1207,
+      1033
+    ],
+    "uniform_scale": 0.27350427350427353,
+    "final_size": [
+      302,
+      288
+    ],
+    "margin_px": 16,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_market_stall__raw.png"
+  },
+  "bld_kit_tubo_stable": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box_alpha16": [
+      101,
+      145,
+      1478,
+      830
+    ],
+    "uniform_scale": 0.5547445255474452,
+    "final_size": [
+      812,
+      428
+    ],
+    "margin_px": 24,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_stable__raw.png"
+  },
+  "bld_kit_tubo_stupa": {
+    "source_size": [
+      1289,
+      1220
+    ],
+    "crop_box_alpha16": [
+      142,
+      46,
+      1174,
+      1149
+    ],
+    "uniform_scale": 0.4728682170542636,
+    "final_size": [
+      520,
+      554
+    ],
+    "margin_px": 16,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_stupa__raw.png"
+  },
+  "bld_kit_tubo_shop_2f": {
+    "source_size": [
+      1448,
+      1086
+    ],
+    "crop_box_alpha16": [
+      208,
+      85,
+      1285,
+      1004
+    ],
+    "uniform_scale": 0.44069640914036995,
+    "final_size": [
+      507,
+      437
+    ],
+    "margin_px": 16,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_shop_2f__raw.png"
+  },
+  "bld_kit_tubo_warehouse": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box_alpha16": [
+      165,
+      97,
+      1461,
+      929
+    ],
+    "uniform_scale": 0.45913461538461536,
+    "final_size": [
+      627,
+      414
+    ],
+    "margin_px": 16,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_warehouse__raw.png"
+  },
+  "tex_town_tubo_city_gate__k4_r000_v01": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box_alpha16": [
+      110,
+      32,
+      1462,
+      999
+    ],
+    "uniform_scale": 0.4136504653567735,
+    "final_size": [
+      591,
+      432
+    ],
+    "margin_px": 16,
+    "raw_archive": "source/historical-rebuild/tex_town_tubo_city_gate__k4_r000_v01__raw.png"
+  },
+  "bld_kit_tubo_wharf": {
+    "source_size": [
+      1774,
+      887
+    ],
+    "crop_box_alpha16": [
+      135,
+      138,
+      1737,
+      770
+    ],
+    "uniform_scale": 0.35443037974683544,
+    "final_size": [
+      600,
+      256
+    ],
+    "margin_px": 16,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_wharf__raw.png"
+  },
+  "tex_town_tubo_city_gate__k6_r000_v01": {
+    "source_size": [
+      1774,
+      887
+    ],
+    "crop_box_alpha16": [
+      155,
+      14,
+      1640,
+      874
+    ],
+    "uniform_scale": 0.5023255813953489,
+    "final_size": [
+      778,
+      464
+    ],
+    "margin_px": 16,
+    "raw_archive": "source/historical-rebuild/tex_town_tubo_city_gate__k6_r000_v01__raw.png"
+  },
+  "bld_kit_tubo_yamen": {
+    "source_size": [
+      1448,
+      1086
+    ],
+    "crop_box_alpha16": [
+      48,
+      158,
+      1404,
+      961
+    ],
+    "uniform_scale": 0.6899128268991283,
+    "final_size": [
+      1000,
+      618
+    ],
+    "margin_px": 32,
+    "raw_archive": "sources/historical-rebuild/bld_kit_tubo_yamen__raw.png"
+  },
+  "tex_town_tubo_wall_corner__outer_ne_v01": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box_alpha16": [
+      202,
+      144,
+      1357,
+      924
+    ],
+    "uniform_scale": 0.24615384615384617,
+    "final_size": [
+      300,
+      208
+    ],
+    "margin_px": 8,
+    "raw_archive": "source/historical-rebuild/tex_town_tubo_wall_corner__outer_ne_v01__raw.png"
+  },
+  "tex_town_tubo_wall__stone_r000_v01": {
+    "source_size": [
+      1312,
+      1199
+    ],
+    "crop_box_alpha16": [
+      326,
+      83,
+      1037,
+      1104
+    ],
+    "uniform_scale": 0.10126582278481013,
+    "final_size": [
+      88,
+      119
+    ],
+    "margin_px": 8,
+    "raw_archive": "source/historical-rebuild/tex_town_tubo_wall__stone_r000_v01__raw.png"
+  },
+  "tex_town_tubo_bridge_deck__w4_l8_r000_v01": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box_alpha16": [
+      83,
+      160,
+      1510,
+      898
+    ],
+    "uniform_scale": 0.33739837398373984,
+    "final_size": [
+      497,
+      265
+    ],
+    "margin_px": 8,
+    "raw_archive": "source/historical-rebuild/tex_town_tubo_bridge_deck__w4_l8_r000_v01__raw.png"
+  },
+  "tex_town_tubo_tree_cluster__willow_v01": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box_alpha16": [
+      45,
+      95,
+      1493,
+      910
+    ],
+    "uniform_scale": 0.3006134969325153,
+    "final_size": [
+      451,
+      261
+    ],
+    "margin_px": 8,
+    "raw_archive": "source/historical-rebuild/tex_town_tubo_tree_cluster__willow_v01__raw.png"
+  },
+  "tex_town_tubo_shrub__seabuckthorn_v01": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box_alpha16": [
+      133,
+      122,
+      1412,
+      905
+    ],
+    "uniform_scale": 0.09195402298850575,
+    "final_size": [
+      134,
+      88
+    ],
+    "margin_px": 8,
+    "raw_archive": "source/historical-rebuild/tex_town_tubo_shrub__seabuckthorn_v01__raw.png"
+  }
+}
