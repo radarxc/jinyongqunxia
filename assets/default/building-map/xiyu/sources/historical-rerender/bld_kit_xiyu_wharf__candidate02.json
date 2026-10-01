@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_wharf",
+  "generated_at": "2026-10-01T10:22:05.715313+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_wharf__candidate02.png",
+  "sha256": "f475e41ee0f5c8023cec46ef461379656295c6db5db01505f30196d14a9ca356",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_wharf__candidate01.png",
+      "sha256": "1253f5130689de561f0cf3270619a3233c9dc0ed6a429153cb2a559386613a93",
+      "role": "candidate01_edit_target"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/tuman_su_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:The_Tuman_Su_at_Kashgar.jpg",
+      "detail": "1915年图曼河低矮土岸、缓坡入水和木桩；不复制人物与马匹。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/niya_jumpboard.jpg",
+      "url": "http://www.igsnrr.cas.cn/cbkx/kpyd/kcsj/94nyx/202009/t20200910_5693325.html",
+      "detail": "中科院尼雅考察记录的两根接长胡杨木取水跳板及刀斧削平面；原文明确不是过河桥。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:The_Tuman_Su_at_Kashgar.jpg — 1915年图曼河低矮土岸、缓坡入水和木桩；不复制人物与马匹。\n- Historical input 3: http://www.igsnrr.cas.cn/cbkx/kpyd/kcsj/94nyx/202009/t20200910_5693325.html — 中科院尼雅考察记录的两根接长胡杨木取水跳板及刀斧削平面；原文明确不是过河桥。\n\nAsset-specific production prompt:\nTexture this EXACT flat parallelogram into a realistic ancient Xinjiang oasis river landing platform game-map sprite. Preserve exact ground corner positions, orthographic camera, slope+0.5/-0.5 and width10 depth4 ratio2.5. The long10-unit front edge runs down-right, short4-unit edge runs up-right. Fine warm tan stone paving slabs and slightly worn yellow brick edges, ONE thin low course only, tiny inlet step within footprint, two terracotta water jars near back long edge. No railing, water, boats, pier or added building. Regional riverbank landing decoration, original synthesis, non-maritime. Highly detailed realistic historical strategy-game materials, soft weathering, stone pores, restrained colors. Upper-left light, short subtle lower-right contact shadow only. True transparent RGBA outside exactly this flat platform shape. Keep all four corners unobscured. Do NOT change dimensions or camera. No background, halo, gradient, vignette, landscape, ground outside footprint, text, labels, people, or modern object.\n\nRequired historical detail summary: 保持土质渠岸、浅阶/简木跳板和取水作业尺度，不做石码头、港船或中式牌楼。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
+}

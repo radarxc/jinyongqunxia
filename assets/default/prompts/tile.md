@@ -318,6 +318,20 @@ True RGBA including open gate passage; no scenery, words, figures, checkerboard 
 - 直墙 `1×1`、墙角 `2×2`、木桥 `3×5`、胡杨 `3×3`、葡萄架 `4×3` 为装配 **【建议值】**；桥是灌渠木梁桥意象，不启用港口。葡萄架含木柱与藤蔓，属于本地植物物件，不是新玩法建筑。
 - 胡杨以塔里木河岸林物种为依据；葡萄架以绿洲庭院葡萄木架为意象。现代植物 / 庭院资料只支持地域辨识，不证明某年代城内的栽植位置或架高。
 
+### 10.1 历史图片输入与细节约束（2026-10-01）
+
+历史重出必须给 `image_gen` 同时输入旧正式图／几何引导图和每类 2–3 张已下载、已目视检查的历史／遗址／形制图片；前者锁定占地、构图与投影，历史图片只提供构造、比例、材料和表面风化，不复制原图构图、人物、水印或具名遗迹轮廓。没有实际送入生成器的来源不得混入 `references`。
+
+| 类型 | 强历史细节 | 排除与证据边界 |
+|---|---|---|
+| 两档城门 | 厚夯土／土坯门墙、水平施工层、草筋泥抹剥落、局部垛口节奏、深门洞；登记的直墩、平顶、平直木过梁和透明通道必须保持 | 不加中式楼亭、斗拱、瓦脊、鸱吻或脊兽；叶尔羌具名门和现代修缮只作旁证，不照搬尖拱或上层敞廊 |
+| 直墙／外墙角 | 暖黄褐生土、夯层和局部土坯砌块并见，墙脚轻微冲蚀、顶面平直而有圆钝风蚀；墙角材质连续 | 不加砖石包角、瓦帽、水泥勾缝；交河照片中的栈道、脚手架、护栏和加固痕迹排除 |
+| 木桥 | 未精加工胡杨／杂木纵梁、横铺粗板，木销或绳扎，表面被踩磨；栏杆保持低、薄、素木 | 1906 三原木桥与尼雅取水跳板只支持极简原木构造，不直接证明登记 3×5 带栏桥；尼雅原文明确跳板不是过河桥 |
+| 胡杨 | 灰褐粗裂、扭曲分叉树干，宽展而疏松的不规则树冠，橄榄绿小叶团及透明空隙，单一根点清楚 | 不做箭形白杨、棕榈、锥形树或满冠橙叶；参考图的 HDR 高饱和、光晕和背景排除 |
+| 葡萄架 | 粗素木柱梁、木销／绳扎、扭曲老藤、密而不封死的叶幕和少量暗紫果穗；四柱足点和外梁端清楚 | 1963–1964 年照片支持藤蔓密度、采摘尺度与绿洲田网，不直接证明四柱棚架节点；人物、远景和现代农业设施排除 |
+
+本轮已把旧正式图作为几何锁定输入，并把每类 3 张历史图片实际送入 `image_generation`：7 类共生成 10 个候选，逐张查看后同 ID 覆盖 7 张 PNG；两档城门与木桥各生成 2 个候选，其余各 1 个。候选、调用记录与重出前几何锁定图归档于 `tile/xiyu/source/historical-rerender/`，manifest 已登记实发提示、真实输入 URL、候选选择、规格化过程、新尺寸和 SHA。
+
 ```text
 Use case: historical-scene. ONE isolated Western Regions oasis town map sprite.
 Kashgar / Hotan / Yarkand material vocabulary, original game reconstruction.
@@ -340,6 +354,16 @@ No people, animals, text, modern fittings, floor platform, haze, glow or checker
 已解决：第一轮六个硬体的轴向 / 比例告警通过第2轮逐张重出修复。当前木桥 `273×182`、葡萄架 `252×204`、直墙 `81×167` px；全部双轴进入 ±0.03 容差，最大比例误差 0.38%。两门、墙角及门孔量点见包内 `QA.md` 与 `source/round2/*-selected-qa.json`；历史 `geometry-qa.jsonl` 保留第一轮数据，胡杨不改。
 
 第2轮几何差异提示：只输入按登记占地构造的实心参考，要求“texture-only; trace ALL polygon boundaries; preserve exact camera and corners”；两门为直墩、平顶土墙与木楣（原创扩展），门孔保持透明。参考图只约束生成，成图仍独立量点。直墙 / 墙角沿用名义高3 m，源图实测缩放后墙高差0.335 px；完整接缝仍待总装。
+
+### 10.2 历史图片参考（访问 2026-10-01）
+
+- [Wikimedia Commons：1915 年喀什城墙](https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg)：取厚土体量、水平施工层、小洞口与风蚀表面。
+- [Wikimedia Commons：叶尔羌喀什门](https://commons.wikimedia.org/wiki/File:Yarkand_Kashgar_Gate.jpg)与[旧城堡门](https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg)：只取深门洞、垛口节奏及厚砖／土墙，具名轮廓和现代修缮不取。
+- [Wikimedia Commons：交河遗址](https://commons.wikimedia.org/wiki/File:Jiaohe_-_Yarkhoto_ruins.jpg)与[吐鲁番遗址照片](https://commons.wikimedia.org/wiki/File:Turpan_May_2007_392.jpg)：取生土层理、圆钝边和不规则缺口，现代设施排除。
+- [微摄：1906 年黑山村三原木桥](https://www.weishoot.com/story/B6C1F090-225C-4811-BDB1-3F0899529B68.html)：只取并排原木的极简跨越构造，网页水印不取。
+- [中国科学院地理科学与资源研究所：尼雅遗址胡杨木跳板](http://www.igsnrr.cas.cn/cbkx/kpyd/kcsj/94nyx/202009/t20200910_5693325.html)：取接长胡杨木与刀斧削平面；原文明确不是过河桥。
+- [Wikimedia Commons：塔里木荒漠胡杨](https://commons.wikimedia.org/wiki/File:Tarim_Desert_Highway_-_Desert_poplars,_Xinjiang,_China.jpg)：取粗裂扭干与疏松冠形。
+- [Wikimedia Commons：1963 年吐鲁番葡萄](https://commons.wikimedia.org/wiki/File:1963-03_1963%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E7%9B%86%E5%9C%B0%E8%91%A1%E8%90%84.jpg)及[1964 年葡萄园](https://commons.wikimedia.org/wiki/File:1964-02_1964%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E8%91%A1%E8%90%84%E5%9B%AD.jpg)：取藤蔓、果穗与绿洲田网尺度，不作为棚架构造直接史证。
 
 ## 10. 明 · 北方套件 `ming_north`（2026-09-30）
 

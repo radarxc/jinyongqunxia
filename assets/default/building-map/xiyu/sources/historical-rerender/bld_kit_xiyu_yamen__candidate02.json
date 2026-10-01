@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_yamen",
+  "generated_at": "2026-10-01T10:22:08.363979+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_yamen__candidate02.png",
+  "sha256": "e1bf68da8efa7201efbe3fe539087d8523a0e69a9ab814cb1502785c6049a4bb",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_yamen__candidate01.png",
+      "sha256": "f87463d5620ef1872dbabd1afb80252f454b8724fcb9c463594c1a3efbc93d4b",
+      "role": "candidate01_edit_target"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/yarkand_old_gate.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg",
+      "detail": "厚砖门墙、尖拱套门、上层木柱敞廊；现代标牌与景观构件排除。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/school_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:A_Kashgar_School.jpg",
+      "detail": "1915年土墙院屋、深门洞和简素柱廊作为普通行政院落母体。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg — 厚砖门墙、尖拱套门、上层木柱敞廊；现代标牌与景观构件排除。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:A_Kashgar_School.jpg — 1915年土墙院屋、深门洞和简素柱廊作为普通行政院落母体。\n\nAsset-specific production prompt:\nFinish this exact 3D blockout as an ancient Xinjiang local administration courtyard. Bottom corners EXACTLY left(168,560),front(854,903),right(1368,646); preserve camera and silhouette. No zoom,recenter,elongate sides or change proportions. Front16 units, side12 units. Both ground axes slopes±0.5, no perspective. Realistic tan adobe/brick perimeter wall, central timber front gate in left-facing long wall; three low flat-roof buildings around court, rear main office with simple wood-pillared porch and lattice doors, symmetric low side offices, paved court with a few clay pots. Upper-left light and tiny lower-right contact shadow. Finely detailed historical strategy-game textures, fine wood grain and plaster chips, no cartoon/plastic. Entire opaque asset within frame, genuine transparent RGBA background. No halo,vignette,scenery,words,people,modern object or thick plinth. Exact graybox ground geometry highest priority. Right ground edge rises ONLY one pixel per two pixels right.\n\nRequired historical detail summary: 匿名官署用厚土围院、克制砖券门和木柱廊体现等级；不照搬具名宫门或清式衙署。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
+}

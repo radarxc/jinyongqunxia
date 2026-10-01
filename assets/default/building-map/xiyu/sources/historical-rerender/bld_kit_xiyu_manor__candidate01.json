@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_manor",
+  "generated_at": "2026-10-01T10:13:22.336276+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_manor__candidate01.png",
+  "sha256": "25726a00938a9c9f0532365e0ba09a9a7a4b4351470391e58aa7d46d6cb7f9c7",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_manor__geometry-lock.png",
+      "sha256": "53ee2b3f3165cbf1b43c92d7cbdc518db4b1fe648f3c8edf9b29c6a6054976b5",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/city_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:The_City_of_Kashgar.jpg",
+      "detail": "1915年厚土围墙与低层平顶院落群。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/grape_1964_a.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:1964-02_1964%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E8%91%A1%E8%90%84%E5%9B%AD.jpg",
+      "detail": "1964年绿洲葡萄田网格与防护林关系；不证明院内架式。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:The_City_of_Kashgar.jpg — 1915年厚土围墙与低层平顶院落群。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:1964-02_1964%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E8%91%A1%E8%90%84%E5%9B%AD.jpg — 1964年绿洲葡萄田网格与防护林关系；不证明院内架式。\n\nAsset-specific production prompt:\nFinish this exact 3D blockout as an ancient Xinjiang wealthy merchant manor. Keep bottom corners EXACTLY at left(168,560),front(830,891),right(1368,622). Do not zoom,recenter,change camera,elongate sides or modify ground silhouette. Both ground axes slopes±0.5,16 units front width by13 units side depth. Add realistic warm tan adobe and brick texture, flat-roof side rooms, one two-story rear main house with carved timber balcony and lattice doors; carved entrance gate on left-facing front wall, a small grape pergola and small tree inside. Detailed realistic historical strategy-game art with fine wood grain and plaster chips. Upper-left lighting, tiny lower-right contact shadow. Fully opaque architecture and genuine transparent RGBA background. No halo,scene,writing,people,modern items or raised base. Geometry precision is primary: keep bottom corners and parallel edges matching blockout. Right ground edge must rise ONLY one pixel per two pixels right.\n\nRequired historical detail summary: 大院仍以土木围合和局部葡萄阴棚为主，不做宫殿化轴线或中式瓦顶。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}

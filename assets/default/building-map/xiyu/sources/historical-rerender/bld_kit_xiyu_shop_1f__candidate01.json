@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_shop_1f",
+  "generated_at": "2026-10-01T10:15:37.914617+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_shop_1f__candidate01.png",
+  "sha256": "196b7dce1d4db3ce3c7db5461711005a9ae4d9530c1cf7c068b8b437a3c19923",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_shop_1f__geometry-lock.png",
+      "sha256": "eb12c616b29a09492c5770735ed3940eea856ba3bad36b75904fe4969e590ec6",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/market_4059.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Sunday_market_Kashgar_IGP4059.jpg",
+      "detail": "只取铜壶、木器、陶器的尺度和密集陈列；钢棚、旗帜、文字及现代乐器排除。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/school_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:A_Kashgar_School.jpg",
+      "detail": "1915年厚泥墙、深门洞和木门框作为铺屋母体。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:Sunday_market_Kashgar_IGP4059.jpg — 只取铜壶、木器、陶器的尺度和密集陈列；钢棚、旗帜、文字及现代乐器排除。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:A_Kashgar_School.jpg — 1915年厚泥墙、深门洞和木门框作为铺屋母体。\n\nAsset-specific production prompt:\nUse case: precise-object-edit. Texture this EXACT solid block into a realistic historic Kashgar single-storey shop. Input is geometry authority; preserve its camera, silhouette and every base and roof plane corner. No recompose or zoom. Footprint is7:5, ground edges diagonal26.565degrees (one unit down per two sideways). Add ochre adobe texture with worn brick bottom courses, flat earthen roof with low parapet, wooden joist ends. Left-facing front wall has open wooden shop shutters and goods recessed into wall: copper jugs, clay jars, sacks; a small canvas awning stays within the footprint, no extension. Right wall has one small lattice window. No roof tower. Fine restrained realistic materials, upper-left light, short lower-right contact shadow. Preserve the exact angular block form, depth and transparent margins. No plinth, ground patch, context, people, text, background or halo. True transparent RGBA.\n\nRequired historical detail summary: 单层平顶土铺、深门洞、木质挑棚，器物无现代包装和伪字。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}

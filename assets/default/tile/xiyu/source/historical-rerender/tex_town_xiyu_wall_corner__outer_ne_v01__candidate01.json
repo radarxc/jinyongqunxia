@@ -1,0 +1,33 @@
+{
+  "id": "tex_town_xiyu_wall_corner__outer_ne_v01",
+  "generated_at": "2026-10-01T10:27:04.239007+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "source/historical-rerender/tex_town_xiyu_wall_corner__outer_ne_v01__candidate01.png",
+  "sha256": "da92cc7e2006807c1bc169e5b06e90d998ad8719e732c792f2c78035e1843f41",
+  "generation_inputs": [
+    {
+      "file": "source/historical-rerender/tex_town_xiyu_wall_corner__outer_ne_v01__geometry-lock.png",
+      "sha256": "5921d64324aa5ab463a8b3d709ae81c4040a0af08445d329fb988de470af875c",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/city_wall_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg",
+      "detail": "1915年城墙的厚土体量、水平施工层和风蚀表面。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/jiaohe_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Jiaohe_-_Yarkhoto_ruins.jpg",
+      "detail": "交河遗址转角处生土整体感、圆钝风蚀边和不规则缺口。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/jiaohe_391.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Turpan_May_2007_391.jpg",
+      "detail": "遗址土坯砌块、抹面剥落与厚墙转折；现代栈道和加固痕迹排除。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg — 1915年城墙的厚土体量、水平施工层和风蚀表面。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Jiaohe_-_Yarkhoto_ruins.jpg — 交河遗址转角处生土整体感、圆钝风蚀边和不规则缺口。\n- Historical input 4: https://commons.wikimedia.org/wiki/File:Turpan_May_2007_391.jpg — 遗址土坯砌块、抹面剥落与厚墙转折；现代栈道和加固痕迹排除。\n\nAsset-specific production prompt:\nStrict texture-only edit of exact supplied L-shaped wall-corner sketch. Trace ALL polygon boundaries pixel-for-pixel. Do not change silhouette/camera/scale/frame or any dimensions. Footprint2x2m, wall thickness1m, height3m. Exact2:1 dimetric projection, both axes slopes+0.5/-0.5. Native32px per horizontal ground-axis meter; vertical3m projects117.58px. Supplied sketch has exact correct height ratio: preserve it. Hollow V open toward bottom center, back join at top center. Bottom silhouette visible outer tips(468,750) and(1068,750), inner-front tips(618,825) and(918,825), inner meeting(768,750). Keep top polygons551px higher; do not resize. Apply pale ochre adobe with tiny straw grains, fine realistic mud plaster, subtle rammed-earth layers, same realistic restrained historical Chinese wuxia-map sprite detail. Flat flush top without cap. Upper-left lighting, right faces shaded. Transparent RGBA unchanged in hollow and outside, no floor, ground, glow, shadow, objects, text or people. Material/texture only.\n\nRequired historical detail summary: 内外转角同用夯土/土坯层理与草筋泥抹，转角磨圆但不能改变精确 L 形边界；禁用砖石包角、瓦帽和现代加固。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
+}

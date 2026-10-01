@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_courtyard",
+  "generated_at": "2026-10-01T10:11:14.704113+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_courtyard__candidate01.png",
+  "sha256": "b2f986d85aa8771be31b5e4e6de34f4bb25c6c01e7ae5a8ec65215a5f5564944",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_courtyard__geometry-lock.png",
+      "sha256": "41db9ce63708340bc957ce3f9e233ec4c08ed3d6b7f5aa4dd208b7e8d1f752d7",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/city_wall_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg",
+      "detail": "1915年厚土墙、层层退台、平顶与小矩形通风洞。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/grape_1963.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:1963-03_1963%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E7%9B%86%E5%9C%B0%E8%91%A1%E8%90%84.jpg",
+      "detail": "历史照片只支持低矮藤蔓密度与采摘尺度，不证明本资产棚架构造。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg — 1915年厚土墙、层层退台、平顶与小矩形通风洞。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:1963-03_1963%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E7%9B%86%E5%9C%B0%E8%91%A1%E8%90%84.jpg — 历史照片只支持低矮藤蔓密度与采摘尺度，不证明本资产棚架构造。\n\nAsset-specific production prompt:\nUse case: sketch-to-render. This input is an exact orthographic production geometry blockout, NOT a mood image. Materialize it as a realistic hand-crafted ancient southern Xinjiang oasis-town map sprite. Preserve the input camera, framing, every major outer boundary and especially the three lowest footprint corners PIXEL EXACTLY. Do NOT rotate, re-project, tilt, enlarge, narrow, or reposition the blockout. Its ground axes are exactly +0.5 and -0.5 slopes, yaw45 elevation30, required for grid assembly. Add fine weathered ochre adobe, local pale stone foundation, honest timber grain and carved wood screens. Restrained highly detailed realistic historic strategy-game art; no plastic/toy look. Upper-left light, tiny lower-right contact shadow. Keep real transparent RGBA outside silhouette. No text, numbers, guide marks, border, watermark, people, animals, modern objects, landscape, or thick floating display slab. Ground is a flat thin contact surface. All new detail stays WITHIN the guide silhouette. Footprint front-to-side lengths exactly 10:8. Preserve this low wall enclosed court and single rear flat-roof house. Add wooden south gate precisely in existing gap, latticed rear-room doors, small timber grape pergola entirely inside court, tiny jars, low parapets. Keep court mainly empty. Lowest vertices left(208,580), front(830,891), right(1328,642).\n\nRequired historical detail summary: 厚土围墙、木椽土层平顶和内院葡萄；不引入瓦屋脊、斗拱、鸱吻。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}
