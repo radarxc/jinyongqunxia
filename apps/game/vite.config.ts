@@ -31,6 +31,7 @@ export default defineConfig({
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/entry-[hash].js',
         manualChunks(id) {
+          if (id.includes('/packages/render/src/rig/')) return 'rig';
           if (id.includes('/three/')) return 'render';
           if (id.includes('/packages/render/')) return 'render';
           if (id.includes('/content/chapters/')) {

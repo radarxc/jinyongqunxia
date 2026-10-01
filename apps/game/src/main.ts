@@ -21,26 +21,25 @@ const ui = useUiStore(pinia);
 const host = createGameCoreHost();
 let disposeScene: (() => void) | undefined;
 let disposeStorage: (() => Promise<void>) | undefined;
+const isRigDemo = location.pathname === '/rig-demo' || location.pathname === '/rig-demo/';
 
-void mountStorageDemo(root).then((dispose) => {
-  disposeStorage = dispose;
-});
+if (isRigDemo) {
+  uiRoot.hidden = true;
+  void import('./rig-demo').then(({ mountRigDemo }) => mountRigDemo(root, canvas)).then((dispose) => { disposeScene = dispose; }).catch((error: unknown) => { root.dataset['error'] = String(error); });
+} else {
+  void mountStorageDemo(root).then((dispose) => { disposeStorage = dispose; });
 
-void Promise.all([host.tick(), mountPlaceholderScene(canvas)])
-  .then(async ([result, dispose]) => {
-    disposeScene = dispose;
-    const state = await host.snapshot();
-    ui.replaceProjection(projectTitleState(state, result, host.mode));
-    schedulePwaRegistration();
-  })
-  .catch((error: unknown) => {
-    ui.replaceProjection({
-      title: '天书录',
-      coreVersion: '错误',
-      worldTick: 0,
-      status: String(error),
+  void Promise.all([host.tick(), mountPlaceholderScene(canvas)])
+    .then(async ([result, dispose]) => {
+      disposeScene = dispose;
+      const state = await host.snapshot();
+      ui.replaceProjection(projectTitleState(state, result, host.mode));
+      schedulePwaRegistration();
+    })
+    .catch((error: unknown) => {
+      ui.replaceProjection({ title: '天书录', coreVersion: '错误', worldTick: 0, status: String(error) });
     });
-  });
+}
 
 window.addEventListener(
   'pagehide',
