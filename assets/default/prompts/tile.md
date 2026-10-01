@@ -692,7 +692,7 @@ True RGBA transparent background, full silhouette and clear margin, no scenery, 
 No Qing palace tower, modern tourist camp, enormous flag, snow mountain, water patch or animals.
 ```
 
-逐图保留完整调用、原始PNG、选取理由与裁切 / 等比缩放参数；不得用矩形色块填门洞，也不得用代码绘制缺失墙件。预览显示的棕色像素可能位于alpha0区域，应检查RGBA和合成效果后判断；不要仅按RGB视觉误做抠底。成品短边下限32px，不把植物或墙段放大到建筑画布下限。
+2026-10-01 历史返修中，每类先下载并用 `view_image` 查看 2–3 张历史图片，再把本地图片真实传入 `image_gen`；编辑候选另以候选1作输入，但历史图仍至少2张。完整 prompt、URL、临时文件名、SHA、用途、候选数与入选原图归档路径逐项记 manifest。不得用矩形色块填门洞或程序绘制缺失墙件。入选图只清除模型产生的低 alpha 外围光晕、归一近不透明 alpha、裁框、一次预乘 alpha 等比 LANCZOS 缩放和透明留白；不拉伸、不 warp。成品短边下限32px。
 
 ### 10.3 参考资料、校验与默认值
 
@@ -701,7 +701,7 @@ No Qing palace tower, modern tourist camp, enormous flag, snow mountain, water p
 - [UNESCO · Mongol Ger传统工艺](https://ich.unesco.org/en/RL/traditional-craftsmanship-of-the-mongol-ger-and-its-associated-customs-00872)（访问2026-09-30）：取木架、毡布和绳带材质语汇；不据现代工艺名录断言全部13世纪细节。
 - [Pillow · Image module](https://pillow.readthedocs.io/en/stable/reference/Image.html)（访问2026-09-30）：核对RGBA、`crop`、`resize`与LANCZOS后处理接口；本次本机实际版本记录见任务报告，不将网页版本冒称本机版本。
 
-2026-10-01另下载并逐张查看元上都遗址、现代蒙古木桥及蒙古西部旱地灌木照片，只用于成品后的墙线环境、木作和分枝习性审校；不证明营门、桥式或古代物种。逐件URL与用途见 manifest，均明标“未作为image_gen输入”。
+本轮实际图像输入包括 Khüree 1913 街景 / 黄宫门、元上都遗址、现代蒙古木桥、蒙古旱地植物及 Khüree 聚落照片。历史细节要点：门墩见夯土层理、灰砖 / 野石脚，门楼见斧斫柱、榫销斜撑、两跳以内简斗拱、外露椽尾、手工灰瓦和朴素脊端；木栅见不规则落叶松桩、劈木横杆、木销、皮条 / 马鬃绳扎与垫石；木桥见粗板面、圆木纵梁、桩排、缺口横梁、木销交叉撑和单侧绳栏；草与灌木见风弯、枯黄灰绿和低矮疏枝。现代桥只作地域木作类比，现存植被不证明古代物种，营门也不冒称具名遗址复原。
 
 默认7件均为 `candidate`；完整门楼的四向、孔掩膜与像素孔的精确重合、墙桥连续接缝及真机遮挡 **（待实测）**。新资产 `tex_town_mongol_*` 和套件标签 `mongol` 按本任务授权创建，具体ID见manifest；元骨架以外的地域枚举需上游后续登记。上述缺口沿用§9“按样例城效果后补”的默认，不以文件校验通过代替几何验收。
 | 吐蕃7张单向件、门孔及墙缝 | 默认保留candidate，按原向装配；净宽按规划掩膜，像素接缝待城镇联调 |
