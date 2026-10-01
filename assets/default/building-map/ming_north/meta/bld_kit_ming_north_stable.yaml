@@ -1,0 +1,87 @@
+id: bld_kit_ming_north_stable
+footprint_m:
+- 8
+- 6
+footprint_basis: 【建议值】沿宋大理stable同功能8×6；design/22 §3.4未细分此项。
+anchor_px:
+- 255.3438
+- 200.7894
+entrance:
+  edge: S
+  offset_cells: 4.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 8
+  - 0
+- - 8
+  - 6
+- - 0
+  - 6
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 64
+  - 579.9447388390882
+  F:
+  - 896.8960817143858
+  - 1015.0569018640463
+  R:
+  - 1499
+  - 716.9166411522499
+source_anchor_px:
+- 781.5
+- 648.4306899956691
+target_ground_span_px: 448
+geometry:
+  crop_box:
+  - 57
+  - 114
+  - 1507
+  - 1024
+  uniform_scale: 0.3121951219512195
+  scaled_size:
+  - 453
+  - 284
+  canvas_size:
+  - 512
+  - 352
+  paste_offset:
+  - 29
+  - 34
+  - 482
+  - 318
+  raster_scales:
+  - 0.3124137931034483
+  - 0.3120879120879121
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 113861
+  alpha_partial_pixels: 65524
+  alpha_opaque_pixels: 839
+  alpha_bbox:
+  - 29
+  - 34
+  - 482
+  - 318
+  rectangular_trim_removed_nonzero: 2
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.522409
+  - -0.495164
+  source_ratio_relative_error: 0.037482
+  geometry_warning: false
+  visual_review: 第3轮逐张view_image原图、灰底及成品；两轴斜率与宽深比例通过，保留北方灰砖、瓦木/砖塔风格；仅裁切和等比Lanczos缩放。
+  limitation: Visible base lower edges fitted at alpha>200; manual lateral corner x, hidden corner inferred; runtime untested.
+source_sha256: f95395d88106f9b3636cb7ac58fc86bbeb9fcf6a0f161022bca967df43ddc981
+sha256: ac82a3f87f2a8e270843476f6fe53e2d0d31f1749a8ad25d58b238b220341314

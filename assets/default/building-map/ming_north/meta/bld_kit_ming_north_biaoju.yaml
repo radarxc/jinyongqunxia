@@ -1,0 +1,88 @@
+id: bld_kit_ming_north_biaoju
+footprint_m:
+- 15
+- 12
+footprint_basis: design/22 §3.4 明代对应骨架；本套件地域命名
+anchor_px:
+- 462.858
+- 360.4558
+entrance:
+  edge: S
+  offset_cells: 7.5
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 15
+  - 0
+- - 15
+  - 12
+- - 0
+  - 12
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 201
+  - 610.2544
+  F:
+  - 821.7637
+  - 926.8111
+  R:
+  - 1336
+  - 667.3429
+source_anchor_px:
+- 768.5
+- 638.79865
+target_ground_span_px: 864
+geometry:
+  crop_box:
+  - 196
+  - 193
+  - 1344
+  - 935
+  uniform_scale: 0.7612334801762115
+  scaled_size:
+  - 874
+  - 565
+  canvas_size:
+  - 928
+  - 608
+  paste_offset:
+  - 27
+  - 21
+  - 901
+  - 586
+  raster_scales:
+  - 0.7613240418118467
+  - 0.761455525606469
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 289835
+  alpha_partial_pixels: 273730
+  alpha_opaque_pixels: 659
+  alpha_bbox:
+  - 28
+  - 22
+  - 900
+  - 585
+  rectangular_trim_removed_nonzero: 158
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.50995
+  - -0.50457
+  source_ratio_relative_error: 0.03427
+  geometry_warning: false
+  visual_review: 原目标、几何导引及所选原图均逐张view_image；灰砖硬山、灰瓦木窗、左上光、完整轮廓与透明留边。基脚实测+0.50995/-0.50457；比例1.20716，目标1.25000。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+source_sha256: ddfd398bdb9f8f92bcf6f4b651549beebe8492e4fb9e3148585e8101c986b25b
+sha256: cbd95813a73a89a94e135582a905cd8e9bd91af95e97729c066196e684108b23

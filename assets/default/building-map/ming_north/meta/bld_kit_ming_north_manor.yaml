@@ -1,0 +1,115 @@
+id: bld_kit_ming_north_manor
+footprint_m:
+- 16
+- 13
+footprint_basis: 【建议值】design/22 §3.3 山庄16×13。
+anchor_px:
+- 494.7195
+- 483.7726
+entrance:
+  edge: S
+  offset_cells: 8.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 16
+  - 0
+- - 16
+  - 13
+- - 0
+  - 13
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 143
+  - 601.93
+  F:
+  - 812.77
+  - 958.65
+  R:
+  - 1332
+  - 654.13
+source_anchor_px:
+- 737.5
+- 628.03
+target_ground_span_px: 928
+geometry:
+  crop_box:
+  - 137
+  - 31
+  - 1340
+  - 968
+  uniform_scale: 0.7804878048780488
+  scaled_size:
+  - 939
+  - 731
+  canvas_size:
+  - 992
+  - 768
+  paste_offset:
+  - 26
+  - 18
+  - 965
+  - 749
+  raster_scales:
+  - 0.7805486284289277
+  - 0.7801494130202775
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 386366
+  alpha_partial_pixels: 374865
+  alpha_opaque_pixels: 625
+  alpha_bbox:
+  - 27
+  - 19
+  - 963
+  - 748
+  rectangular_trim_removed_nonzero: 154
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.532601
+  - -0.586484
+  source_ratio_relative_error: 0.048068
+  geometry_warning: true
+  visual_review: 第3轮两候选选2；逐张view_image及放大底角检查。保留未裁边原底；右轴仍超差，修边试验触及墙基已弃用。 修边只校正铺地外轮廓，内部砖缝/横梁未重投影；不等于完整3D投影验收。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+  final_axis_slopes:
+  - 0.532328
+  - -0.586184
+  raw_source_ratio_relative_error: 0.048068
+final_view_image_review: 第3轮两候选选2；逐张view_image及放大底角检查。保留未裁边原底；右轴仍超差，修边试验触及墙基已弃用。 修边只校正铺地外轮廓，内部砖缝/横梁未重投影；不等于完整3D投影验收。
+source_sha256: 39811c2ea188c006368d25e7191b544a7bb2d37a16b1c6e0823d8ebee503a2f2
+sha256: afc5e1b4af80df2ea1c6a63ae164d01e07d12ea456f515443673a7fd47398bb5
+raw_source_points_px:
+  L:
+  - 143
+  - 601.93
+  F:
+  - 812.77
+  - 958.65
+  R:
+  - 1332
+  - 654.13
+final_footprint_points_px:
+  L:
+  - 30.6833
+  - 463.4107
+  F:
+  - 553.4713
+  - 741.7056
+  R:
+  - 958.7556
+  - 504.1345
+edge_trim: null
+source_points_semantics: 本张未采用修边；source_points_px与raw_source_points_px均为生成原图可见石基外缘

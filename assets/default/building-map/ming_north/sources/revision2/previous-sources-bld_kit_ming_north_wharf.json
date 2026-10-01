@@ -1,0 +1,49 @@
+{
+  "id": "bld_kit_ming_north_wharf",
+  "subject": "明代北方府城·河埠（原创扩展）",
+  "footprint": [
+    8,
+    4
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-7b2d5b00-b2ce-424d-a3bb-823629b4b65a.png",
+  "prompt": "Use case: historical-scene. Generate exactly ONE isolated game building sprite for tianshu default, Ming dynasty northern Chinese prefectural city architectural kit, original anonymous composite, not a reconstruction of a named monument. Realistic ancient Chinese architecture, same natural material realism and detail density as the attached Song stable reference; reference is style ONLY, change architecture to northern Ming gray brick and gray clay tile, modest timber, restrained hard-gable yingshan roof with straight compact eaves. Orthographic 2:1 dimetric projection, yaw 45 degrees, pitch 30 degrees, NO perspective convergence. East ground axis projects down-right at slope +0.5; north ground axis up-right at slope -0.5; vertical posts stay vertical. Thin almost-flat footprint pad with clearly visible left, front, right corners, not a pedestal. Footprint proportions refer to ground axes, NOT canvas proportions. Main light from SCREEN UPPER LEFT; short soft contact shadow toward lower right. Entire object and base uncut, generous transparent margins. TRUE TRANSPARENT RGBA background, no opaque background or painted checkerboard. No people, animals, writing, pseudo-glyphs, signs, numbers, modern objects, palace ornament on common buildings, Qing imperial decoration, fantasy, neighboring buildings, sky, water, scenery, thick diorama plinth, broad shadows, tilt shift, toy plastic, cropping. Asset bld_kit_ming_north_wharf. One low river landing quay prop for a northern Ming city, 8 by 4 metre long rectangular footprint, NO BUILDING and NO ROOF. Gray brick-and-stone loading apron, only two or three shallow stone steps down the FRONT edge entirely contained inside the rectangle, a small plain timber loading platform and two mooring posts on the side, two coiled ropes. Very low profile, no massive pedestal, no cliff-like sides. NO WATER surface or river, NO BOAT, no bridge, no people or animals, no surrounding bank scenery. Clearly visible rectangular ground-contact footprint 8:4 axis ratio, left-to-front eight units and front-to-right four units, ground edges precisely +0.5/-0.5 slopes. Single anonymous functional prop in the reference material detail style.",
+  "created": "2026-09-30T21:17:39.803Z",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_stable",
+      "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_stable.png",
+      "sha256": "da40c1c72f1e27b96c2a8da4d6ab0ac6f81474a6d0e049045d4ac9996eabac28",
+      "role": "仅材质/细节密度参考；不继承宋屋型",
+      "status": "candidate"
+    }
+  ],
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "points": {
+    "L": [
+      151,
+      456
+    ],
+    "F": [
+      1048,
+      921
+    ],
+    "R": [
+      1393,
+      748
+    ]
+  },
+  "footprint_basis": "【建议值】沿宋大理wharf同功能8×4；design/22 §3.4未细分此项。",
+  "visual_review": "已view_image候选1及2。选候选1：矩形石砌河埠、台阶、装卸木台与系缆桩，无水面船只人物文字；候选2虽减薄但前角切成梯形而淘汰。入选台基仍约3皮砌块，轴长比约2.6偏离2.0；保留几何warning与台高视觉待确认，不虚称合格。",
+  "candidate_count": 2,
+  "selected_candidate": 1,
+  "measurement_uncertainty_source_px": 4,
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "dac812aa6bf415290ef6c7f17625bf7268b6092a3701dd67176a34261b9c1d56",
+  "tool": "built-in image_gen",
+  "model": "underlying model not disclosed",
+  "effort": "not exposed",
+  "final_view_image_review": "已逐张view_image规范化成品；主体完整、灰砖木构细节可读、透明边距保留；几何warning与单视图能力限制沿用。"
+}

@@ -1,0 +1,53 @@
+{
+  "id": "bld_kit_ming_north_guardhouse",
+  "subject": "明代北方府城·城门守舍（原创扩展）",
+  "prompt": "Use case: sketch-to-render. Build ONE fine realistically textured Ming northern Chinese game map building on this exact flat footprint guide. Preserve the supplied parallelogram precisely as the thin ground-contact plane, at the same corner positions and scale. Ground edges slope EXACTLY +0.500/-0.500, orthographic 2:1 dimetric, yaw45/pitch30. Do not choose a new camera or distort the footprint. Vertical lines stay vertical. No perspective convergence. Fine gray brick, gray clay tiles, weathered matte wood, natural sunlight from upper-left with short rightward contact shadow. Realistic ancient architectural sprite in restrained Song-kit material detail density. Entire roof and base corners visible and uncut, wide clear margins. TRUE transparent RGBA; opaque building and alpha0 empty padding; no glow, haze, terrain island, thick plinth, people, animals, writing, signage, grid, numbers, watermark or modern elements. Single compact city-gate guard cottage, hard-gabled yingshan roof with FLUSH solid gray brick triangular gables and straight eaves, no flying corners, low single storey, central brown wood door on lower-left-facing front, two small barred timber windows, no weapons. Thin stone paved base is 6m x5m; exact ground positions LEFT(218,760),BACK(718,510),RIGHT(1318,810),FRONT(818,1060) in1536x1536 canvas. Building entirely fits within footprint and sits with front visible aligned parallel to base. Roof top around y220.",
+  "references": [
+    {
+      "file": "assets/default/building-map/ming_north/sources/revision2/guardhouse-ground-guide.png",
+      "role": "精确底面几何输入；非成品替代",
+      "sha256": "80faaced88eaccc160d6285985b44b27f4bd07941bbb278a82f6158cc8104ec2"
+    }
+  ],
+  "created": "2026-09-30T22:05:01.175972+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44d-7517-7262-be86-045e8b9601cd/exec-5438149c-2c16-4ab2-9935-ba1aef2f5fc5.png",
+  "file": "bld_kit_ming_north_guardhouse.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "416x320",
+  "sha256": "57f34954f798b5123de201a5517d5231db67e9b75681ba7e4d660d34f5202ce9",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_guardhouse",
+    "footprint": [
+      6,
+      5
+    ],
+    "anchor": [
+      206.6293,
+      203.8484
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    6,
+    5
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 3.0
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_guardhouse.png",
+  "source_sha256": "f0509e00831daad5dbe129a34795d97cf75283de9df2da153d4381229858bd3f",
+  "meta": "meta/bld_kit_ming_north_guardhouse.yaml",
+  "notes": "（原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。",
+  "revision": 2,
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "source_record": "sources/bld_kit_ming_north_guardhouse.json"
+}

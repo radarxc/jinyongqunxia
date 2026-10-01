@@ -1,0 +1,45 @@
+{
+  "id": "bld_kit_ming_north_manor",
+  "subject": "明代北方府城：山庄大院（原创扩展）；具体构件断代（待考）。",
+  "footprint": [
+    16,
+    13
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82e-74c3-9466-90640f7d6631/exec-7e0ea2c6-e124-4ad4-b85d-be4be58c362d.png",
+  "prompt": "Use case: historical-scene. Generate exactly ONE isolated reusable building sprite for tianshu default building-map, Ming dynasty northern Chinese prefectural city (Beijing/Datong/Xian regional vocabulary), anonymous original period-inspired design, not a measured heritage reconstruction. Input image is STYLE reference only: match its restrained realistic material detail, fine grey clay roof tiles, weathered masonry and natural matte wood, and same detail density. Change architecture to Ming north as specified. Orthographic 2:1 dimetric ground projection, camera yaw45 elevation30, east axis down-right slope +0.5 and north up-right slope -0.5; parallel ground edges, vertical posts, no perspective convergence. South entrance on screen lower-left edge. Complete building on thin rectangular ground-contact footprint with readable left, front, right corners, footprint axis ratio as specified, no thick pedestal, no soil island. Neutral soft light from SCREEN UPPER LEFT, short soft contact shadow only toward lower-right. TRUE transparent RGBA background and generous blank alpha0 margins all four sides; no skyline, no surrounding scenery. No people, writing, Chinese pseudo-glyphs, text, plaques, signs, banners, watermark, grid, modern fittings, plastic render, cartoon, ink wash, oversaturation, dense lanterns, white halo or baked checkerboard. Only building and its own footprint; include all eaves and base corners uncropped. Asset ID bld_kit_ming_north_manor. Footprint 16 metres east-west by 13 metres north-south. A wealthy merchant clan compound / huiguan-compatible manor module: axial hall and two modest hard-gabled side wings surrounding a rectangular grey-brick courtyard, high grey walls, plain timber lattice windows and stout entry gate. Taller main ridge than simple houses but no imperial yellow roof, no lavish Qing painting or Suzhou garden. Restrained small stone entry plinth, material realism. The reference must NOT dictate roof silhouette: use proper NORTH CHINESE YINGSHAN hard-gabled roofs, flush grey-brick triangular gable walls rising to ridge at both ends, NO overhanging eaves at the gable end, no upward-curled corner tips. Flat thin foundation.",
+  "references": [
+    {
+      "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "role": "宋基线材质与细节密度参考；不继承年代",
+      "status": "candidate",
+      "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef"
+    }
+  ],
+  "created": "2026-09-30T21:30:20.149Z",
+  "created_basis": "生成结果接收后的入库登记时间；服务端生成时刻未公开。",
+  "points": {
+    "L": [
+      116,
+      596
+    ],
+    "F": [
+      807,
+      972
+    ],
+    "R": [
+      1377,
+      644
+    ]
+  },
+  "footprint_basis": "【建议值】design/22 §3.3 山庄16×13。",
+  "visual_review": "原图已view_image：完整轮廓、灰砖灰瓦、克制木色；左上受光，短影右下。手工三角读点；具体明代细部待考。",
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "selection_reason": "首候选形态材质可供审图；几何残差如实记录。",
+  "original_size": [
+    1470,
+    1070
+  ],
+  "source_sha256": "ff9dfce1f7278421ab7e5923c74a218d22779e4928184ad691660d0ada23e5ac",
+  "final_visual_review": "已逐张view_image成品：全轮廓与透明留边完整；底面、屋檐及缩放后细节可读；几何与形制限制仍见visual_review/meta。"
+}

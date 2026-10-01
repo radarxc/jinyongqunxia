@@ -364,10 +364,64 @@ No text, pseudo-writing, people, modern goods, tiled Chinese eaves or glossy toy
 - [喀什公署：艾提尕尔清真寺简介](https://www.kashi.gov.cn/ksdqxzgs/c106707/202307/28cd99dc43a244619788bda878887922.shtml)：取礼拜殿 / 木柱长廊 / 召唤阁楼的功能区别；1442 始建的资料不作为宋元复原依据。
 - [新华社：新疆喀什老城改造纪实](https://www.xinhuanet.com/politics/2015-09/26/c_1116687056.htm)：只取沿街巴扎、铜铁木作等业态母题，不照抄现代改造外观。
 - [新疆政府：汗诺依古城考古成果](https://www.xinjiang.gov.cn/xinjiang/dzdt/202201/4a664aaf2f094721adfe8fbd67338eaf.shtml)：取 10 世纪泥土垒筑城墙、南北设门的材料母题；不据此推定本包城门尺寸。
+## 11. 明 · 北方套件 `ming_north`（2026-09-30）
+
+本节追加19张地图建筑的年代差异；宋套件章节和既有待决条目保留。入口、投影与布局仍引用 `design/22` §1–§3，不扩充玩法规则。成品位于 `assets/default/building-map/ming_north/`，完整实发提示词见逐条 manifest / sources JSON，全部为 `candidate`。
+
+### 11.1 年代、形制与功能
+
+- 明代北方府城意象以青灰砖、灰陶瓦、灰土墙、深色木格扇和较规整合院为主；硬山民居、货栈、山庄与歇山寺殿、王府等级分开。结构、门窗、彩画细部仍 **（待考）**，匿名构图为 **（原创扩展）**。
+- 硬山差异必须写到形态：山墙与屋面端部齐收，砖砌三角山墙升至脊部，不继承宋基线的悬挑山面、显著翘角；材质和细节密度继续参照宋图。官署保留檐口装饰，不把“本套件硬山倾向”误写成全部屋顶硬山。
+- 王府主殿以克制深绿琉璃、朱木与灰瓦配房区分等级；“青琉璃”可有多种蓝绿色，不能把深绿写成明代所有王府的唯一色。只交22×18模块，非整座皇宫。
+- 佛寺殿堂取智化寺黑琉璃、朱木母题；塔取北方八角砖塔意象。塔按游戏构图压缩，入选塔的密檐间距仍偏大；不冒称慈寿寺十三级、尺寸或现存文物的精确复原。
+- 商铺可服务当铺等匿名业态，山庄大院可作会馆的美术模块；本轮不新增“当铺/会馆”玩法ID。镖局以护运货栈表现，成熟字号与组织史继续 **（待考）**。河埠仅装饰，不生成航线、船或旅行入口。
+
+| 类型 / 同构资产后缀 | 占地 `[w,h]` | 来源 |
+|---|---|---|
+| house_small / shop_1f / shop_2f | 7×6 / 7×5 / 7×5 | `design/22` §3.4 明民居 / 商铺骨架 |
+| yamen / biaoju / wangfu / temple_hall | 16×13 / 15×12 / 22×18 / 14×11 | 同节对应明骨架 |
+| house_large / courtyard | 均10×8 | **【建议值】** 借§3.3院落，区分大民居与完整合院构图 |
+| inn / restaurant / market_stall / casino / manor | 12×9 / 12×9 / 3×2 / 10×8 / 16×13 | **【建议值】** 借§3.3同功能项 |
+| guardhouse / stable / warehouse / wharf | 6×5 / 8×6 / 9×7 / 8×4 | **【建议值】** 借§3.2–§3.3同功能项 |
+| pagoda | 7×7 | **【建议值】** 借§3.2塔的占地，不继承地标身份 |
+
+本节资产ID / type均为 `bld_kit_ming_north_<上述后缀>`，`era: ming_north`；创建前已全仓检索，不覆盖通用 `bld_kit_ming_*` 骨架。19项与用户功能项一一对应，无西域 / 吐蕃 / 蒙古功能替换。
+
+### 11.2 提示词差异段
+
+在§5通用投影、光源、透明与无文字约束之后追加，具体功能以各source JSON实发版本为准：
+
+```text
+Ming dynasty northern Chinese prefectural town, anonymous original period-inspired design.
+Use the Song reference ONLY for realistic material finish and fine detail density.
+Grey brick and earth-grey plaster, matte grey clay tiles, dark timber lattice doors.
+Residential and freight roofs: NORTH CHINESE YINGSHAN hard-gabled roofs,
+flush triangular masonry gable ends rising to the ridge, no gable-end overhang,
+no upward-curled corner tips; keep palace and temple roof grades distinct.
+Princely hall: restrained dark green glazed main roof, grey tiled subordinate wings.
+Temple hall: black-grey glazed hip-and-gable roof, subdued red timber and beam paint.
+Brick pagoda: octagonal masonry shaft, closely spaced corbelled brick eaves,
+no pavilion-like ceramic roofs; do not claim an exact named heritage reconstruction.
+South entrance faces screen lower-left; exact footprint axis ratio from catalog.
+Orthographic yaw45 elevation30, 2:1 ground projection, upper-left key light,
+short lower-right contact shadow, true RGBA with clean transparent outer margins.
+No people, text, modern fittings, ornate Qing corner tower, golden fantasy palace,
+sky, scenery, huge diorama base or fake checkerboard background.
+```
+
+### 11.3 规格化、验收与默认值
+
+本套件专用 `normalize.py` 只以alpha≥3轮廓外扩4源px确定矩形裁框，断言裁去像素alpha≤2；不改变保留区alpha或RGB。原图完整归档。按可见底面L/F/R手工测点：`s=32(w+h)/(Rx−Lx)`，中心`(L+R)/2`随裁切、一次等比缩放及透明pad变换；四周至少16px，短边至少256px（本任务门禁）。整数重采样误差记录在meta；禁止按画布宽再次缩放。
+
+相机数值为目标，实际斜率与宽深比例以meta实测代理为准；`±0.5`轴容差±0.03引用上游，比例误差10%为制作告警 **【建议值】**。不做非等比/仿射纠偏。第3轮仅对审核点名10张建筑各生成1–2候选，替换9张，衙门因新候选更差保留原图；其中8张底面外轮廓及占地比例进入容差，山庄与衙门仍告警。赌场、两层商铺、客栈、王府仅裁去多余铺地外缘，保留主体；内部砖缝、横梁未重投影，底轮廓达标不等于整体3D投影验收。门前台阶、院内通行、遮挡、高度、四向和GLB均未验收。默认只作原向静态试贴，`allowRotation:false`，不能视为发布金样 **（待实测）**；旧轮问题与候选保留于sources追溯。
+
+参考资料（访问2026-09-30；网页只作文字核验，未将网页照片输入模型）：[北京传统民居——老北京四合院](https://www.beijing.gov.cn/tsbj/sxym/202007/t20200713_1946380.html)支持正房、倒座与厢房围院母题；[北京老城房屋修缮标准解读](https://www.beijing.gov.cn/zhengce/zcjd/202004/t20200426_1882617.html)只支持传统木门窗、合瓦 / 筒瓦与避免“南装北饰”，两者均不证明明代每处细部；[万寿寺修缮见闻之屋顶形式（上）](https://www.beijing.gov.cn/renwen/sy/whkb/201810/t20181009_1864550.html)支持硬山屋檐不出山墙的形态定义，不据其清代实例倒推全部明代民居；[北京市文物局：智化寺](https://wwj.beijing.gov.cn/bjww/362760/362767/2021nwhhzrycr/wwbh/10998901/index.html)支持明代彩画与黑琉璃；[慈寿寺塔](https://wwj.beijing.gov.cn/bjww/362771/362779/dqpqgzdwwbhdw/523526/index.html)支持明代八角密檐实心砖塔母题；[故宫博物院院刊：试论明代藩王所用建筑琉璃的烧造、使用与组织管理](https://www.dpm.org.cn/journal/371479.html?_list=1)支持明代藩王青琉璃的地方釉色差异，未据此宣称重建某座王府。
+
+**需作者确认，默认沿用：** 19类分工及借用占地、王府配色、塔式概化、河埠台高、整体画风；全部candidate。技术接口仅如实记录本地工具回执；底层模型与seed未公开，不填猜测版本、价格、限额；运行时效果待实测。
 
 ## 本文新增术语与 ID
 
-不新增玩法 ID；复用 §3 的38个建筑资产ID与最新§4.4的7个植物资产ID。植物文件使用`<asset_id>__v01/v02.png`，双下划线后是变体键，不是新玩法ID。`building.anchor`为最终PNG底面中心像素，`sources/`为归档生成来源，`meta/`为逐type制作元数据。它们是本批资产约定，不扩大`town/schema.yaml`的现有定义范围。
+不新增玩法 ID；宋批复用 §3 的38个建筑资产ID与最新§4.4的7个植物资产ID；§11另新增19个 `bld_kit_ming_north_*` 地域资产ID。植物文件使用`<asset_id>__v01/v02.png`，双下划线后是变体键，不是新玩法ID。`building.anchor`为最终PNG底面中心像素，`sources/`为归档生成来源，`meta/`为逐type制作元数据。它们是本批资产约定，不扩大`town/schema.yaml`的现有定义范围。
 
 §11另登记19个 `bld_kit_song_north_*` 资产ID，具体后缀与占地见§11.1；它们是本任务授权的同构套件，不新增玩法、城市、机构或营生ID。`song_north` 尚须由下游接入正式城市目录 / schema，不能假称本素材任务已完成该上游变更。
 西域新增 19 个 `bld_kit_xiyu_*` 资产 ID 见 §11.1；仅素材族，不新增 `biz_*`、`city_*` 或 `sect_*`。`xiyu` 在上游套件枚举的同步事项交 KIT-xiyu 报告 §6。
@@ -379,6 +433,7 @@ No text, pseudo-writing, people, modern goods, tiled Chinese eaves or glossy toy
 西域大民居 10×8 分型、逐图宽深比相对误差 10% 告警为 **【建议值】**；它们不改变骨架实际占地。角点人工读数约 ±4 源像素，只作候选对齐代理，不能当作三维测量。
 
 透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。西域成品 canvas 短边 ≥256 是本任务检查器要求，宋首批仍按 §4 的 ≥512；地面像素尺度均按 64×32 每格计算，canvas 尺寸随建筑高度 / 屋檐与留白变化，不固定所有建筑方形。
+透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。宋基线最终 canvas 短边 ≥512；§11明北方套件按本任务检查参数取短边≥256。地面像素尺度仍按 64×32 每格计算；canvas 尺寸随建筑高度 / 屋檐与留白变化，不固定所有建筑方形。
 
 新增植物的最终4px留边来自最新上游；矩形裁边时alpha≤2噪点阈值、外扩4**源**px，以及实际根偏差≤1**成品**px的额外告警均为本轮 **【建议值】**。2/255≈0.78%不透明度；只用于确定裁切矩形，不覆盖存留像素的alpha。全部原图与裁去区域统计保留，可复核或更换制作阈值。
 

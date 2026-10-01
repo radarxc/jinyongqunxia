@@ -1,0 +1,60 @@
+{
+  "id": "bld_kit_ming_north_house_large",
+  "subject": "明代北方大民居，10×8格，五开间灰砖硬山住宅（原创扩展；细部待考）",
+  "prompt": "Use case: sketch-to-render. This block is the PRECISE body proportions of a10-by8-metre ordinary northern Ming Chinese house. Keep all footprint edges, corners and wall plane positions IDENTICAL to reference; simply texture walls as fine aged grey brick, add a grey clay-tile hard-gable pitched roof above this volume, a plain wood double door with lattice windows on the light left-front facade. Five bays on frontage. Roof ridge parallel to left-front edge; gable side flush grey masonry, roof no upward-curled ends. Do not change width/depth proportions or camera. This base's bottom edges are exact +0.5 and-0.5 slopes and must remain EXACT. Left(200,610),front(800,910),right(1280,670),back(680,370) in1536x1024 canvas. Five-bay front should not cause widening: narrow the bays to fit exact body. Side facade is deep, close to width of frontage. Thin stone apron all around, complete visible corners. Detailed realistic historical painted game asset, muted colors, upper-left light, clean cutout. Only one single-storey residence, no yard/fence/people/text/labels. Genuine transparent RGBA exterior, opaque architecture, no halo/glow. No thick foundation, no surrounding scenery, no perspective vanishing point. Maintain guide's entire base silhouette.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+      "sha256": "0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7",
+      "role": "style only; viewed before generation"
+    },
+    {
+      "path": "assets/default/building-map/ming_north/sources/bld_kit_ming_north_house_large_r2_guide.png",
+      "sha256": "39c29e2ca219698f0c6b630deef866a1893daf06aeeb61354b7acf1e47103d7d",
+      "role": "精确几何导引，仅作image_gen输入；最终图未经仿射纠偏"
+    }
+  ],
+  "created": "2026-09-30T22:10:19.334163+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44e-8603-7d32-a4a9-8c7789f39090/exec-a745ad71-a057-4d59-81c7-ca3131f98d75.png",
+  "file": "bld_kit_ming_north_house_large.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "No text, modern objects, people, scenery, opaque background, clipped roofs.",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "640x512",
+  "sha256": "6e69ded1e17f3ac8a51a3ec0c23e0cb6df6db0f24a3368cf09d8578ddc9da587",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_house_large",
+    "footprint": [
+      10,
+      8
+    ],
+    "anchor": [
+      319.7384,
+      332.3927
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    10,
+    8
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 5.0
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_house_large.png",
+  "source_sha256": "4ad855a2135d639b974647cbad2968a979c38196aa45ef999cdb2d646efe6120",
+  "meta": "meta/bld_kit_ming_north_house_large.yaml",
+  "notes": "（原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。",
+  "source_record": "sources/bld_kit_ming_north_house_large.json",
+  "revision": 2,
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "candidate_count_basis": "仅本轮 revision=2；前轮次数见 revision_history",
+  "repair_record": "sources/bld_kit_ming_north_house_large_r2_candidates.json"
+}

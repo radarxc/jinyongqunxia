@@ -1,0 +1,22 @@
+{
+  "id": "bld_kit_ming_north_warehouse",
+  "subject": "仓屋",
+  "footprint": [
+    9,
+    7
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-d1625402-91d8-4206-b05d-a43c1a5f36d9.png",
+  "prompt": "Use case: historical-scene. Generate exactly ONE isolated game building sprite for tianshu default, Ming dynasty northern Chinese prefectural city architectural kit, original anonymous composite, not a reconstruction of a named monument. Realistic ancient Chinese architecture, same natural material realism and detail density as the attached Song stable reference; reference is style ONLY, change architecture to northern Ming gray brick and gray clay tile, modest timber, restrained hard-gable yingshan roof with straight compact eaves. Orthographic 2:1 dimetric projection, yaw 45 degrees, pitch 30 degrees, NO perspective convergence. East ground axis projects down-right at slope +0.5; north ground axis up-right at slope -0.5; vertical posts stay vertical. Thin almost-flat footprint pad with clearly visible left, front, right corners, not a pedestal. Footprint proportions refer to ground axes, NOT canvas proportions. Main light from SCREEN UPPER LEFT; short soft contact shadow toward lower right. Entire object and base uncut, generous transparent margins. TRUE TRANSPARENT RGBA background, no opaque background or painted checkerboard. No people, animals, writing, pseudo-glyphs, signs, numbers, modern objects, palace ornament on common buildings, Qing imperial decoration, fantasy, neighboring buildings, sky, water, scenery, thick diorama plinth, broad shadows, tilt shift, toy plastic, cropping. Asset bld_kit_ming_north_warehouse. One COMPACT DEEP nearly-square northern Ming warehouse with 9 by 7 metre ground footprint. Tall gray-brick side walls, one low gray tile hard-gable roof, wide heavy double wooden front doors partly open to stacked burlap grain sacks inside. A few crates entirely inside the ground pad at the side of the doorway, no cart, no animals, no writing. Realistic wood and gray masonry with restrained wear. Single building, no courtyard extensions. Ground width:depth 9:7, left-to-front edge 9 units, front-to-right edge 7 units, exactly +0.5/-0.5 slopes, explicitly NOT a long narrow rectangle.",
+  "created": "2026-09-30T21:16:30.182Z",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_stable",
+      "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_stable.png",
+      "sha256": "da40c1c72f1e27b96c2a8da4d6ab0ac6f81474a6d0e049045d4ac9996eabac28",
+      "role": "仅材质、细节密度和写实程度，屋顶年代与视角须服从本prompt",
+      "status": "candidate"
+    }
+  ],
+  "candidate": 1,
+  "rejected_reason": "首图透明边出现半透明光晕/异常边缘；底面几何与硬山轮廓进一步修正。"
+}

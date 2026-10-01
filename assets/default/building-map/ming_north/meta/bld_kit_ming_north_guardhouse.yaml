@@ -1,0 +1,88 @@
+id: bld_kit_ming_north_guardhouse
+footprint_m:
+- 6
+- 5
+footprint_basis: 【建议值】沿宋大理guardhouse同功能6×5；design/22 §3.4未细分此项。
+anchor_px:
+- 206.6293
+- 203.8484
+entrance:
+  edge: S
+  offset_cells: 3.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 6
+  - 0
+- - 6
+  - 5
+- - 0
+  - 5
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 130
+  - 737.0526040824161
+  F:
+  - 693.6904808959415
+  - 1033.2319104434473
+  R:
+  - 1140
+  - 798.6814647531627
+source_anchor_px:
+- 635.0
+- 767.8670344177895
+target_ground_span_px: 352
+geometry:
+  crop_box:
+  - 125
+  - 243
+  - 1150
+  - 1041
+  uniform_scale: 0.3485148514851485
+  scaled_size:
+  - 357
+  - 278
+  canvas_size:
+  - 416
+  - 320
+  paste_offset:
+  - 29
+  - 21
+  - 386
+  - 299
+  raster_scales:
+  - 0.34829268292682924
+  - 0.3483709273182957
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 79013
+  alpha_partial_pixels: 53414
+  alpha_opaque_pixels: 693
+  alpha_bbox:
+  - 29
+  - 21
+  - 386
+  - 299
+  rectangular_trim_removed_nonzero: 293
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.52543
+  - -0.52553
+  source_ratio_relative_error: 0.0525
+  geometry_warning: false
+  visual_review: 本轮已view_image原图及灰底合成；完整轮廓、左上光、北方灰砖/木石细节保留；源底边拟合斜率[0.52543, -0.52553]，宽深比例相对误差5.25%；不以目标值冒充实测。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+source_sha256: f0509e00831daad5dbe129a34795d97cf75283de9df2da153d4381229858bd3f
+sha256: 57f34954f798b5123de201a5517d5231db67e9b75681ba7e4d660d34f5202ce9

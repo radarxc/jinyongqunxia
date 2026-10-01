@@ -1,0 +1,51 @@
+{
+  "id": "bld_kit_ming_north_house_small",
+  "subject": "明代北方小民居，7×6格，青灰砖硬山灰瓦（原创扩展；细部待考）",
+  "footprint": [
+    7,
+    6
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-183f-7ff3-a5e9-5a982695f883/exec-bcffcb40-51a8-4fb2-8ef4-522354e88567.png",
+  "prompt": "Use case: historical-scene. Asset type: tianshu default building-map, ONE isolated reusable game building cutout, true RGBA transparent background. Image 1 is a STYLE REFERENCE ONLY: match its realistic historical painted material quality, crisp detailed grey roof tiles, believable aged masonry and wood, natural muted colors and detail density. Do not copy its building or old camera inaccuracies. This is a new Ming-era northern Chinese prefectural-town building, original game design, NOT restoration of a named monument. Camera MUST be orthographic dimetric 2:1 ground projection, yaw 45 degrees elevation 30 degrees: ground edges exact +0.5 and -0.5 slopes, all verticals upright, no vanishing point. Main frontage faces screen lower left. Ground footprint must be a thin flat rectangular apron with clearly visible straight left-to-front and front-to-right edges, front base corner visible, no thick pedestal or surrounding street. Entire eaves, ground edge and short shadow fully inside square frame with 10 percent transparent margins. Sunlight screen upper left, short soft contact shadow screen lower right. Northern Ming hard-gable YINGSHAN roof: restrained straight ridge, grey clay pantiles, solid masonry gable ends, grey brick and warm-grey plaster walls, subdued dark timber lattice doors/windows; no Qing imperial decoration. No written characters, signboards, lettering, symbols, people, background scenery, sky, horizon, mountains, labels, watermark, checkerboard, opaque floor, exaggerated curved eaves, cartoon or toy-like stylization. Generate exactly ONE asset. Subject: SMALL ordinary northern Chinese home, footprint width 7m along left-front visible edge by depth 6m along front-right visible edge. One modest single-storey three-bay residence with one central wood door, small lattice windows, no courtyard, no separate annex. ALL walls unplastered dark warm-grey exposed masonry brick, not white or cream. The gable wall reaches flush up to the roof edges (true hard-gable yingshan) without overhanging verge rafters. No transverse exposed horizontal timber bands in side wall. Grey unglazed concave-and-convex modest flat clay roof tiles. The structure is visibly DIFFERENT from the southern white plaster reference. Wooden doors and lattice windows dark brown. One plain clay storage jar beside doorway. The thin floor perimeter MUST fit a parallelogram: from left ground corner to front corner screen delta (7,+3.5), front to right delta(6,-3). Ground corner lines visible and clean. CRITICAL: exposed grey brick walls, plain restrained northern architecture, no white plaster. Correct base diamond geometry: left-to-front base vector (7,3.5) and front-to-right (6,-3), exact 1:2 vertical/horizontal slopes. Only low shallow brick ridge ends, no decorative curled horn ridges.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+      "sha256": "0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7",
+      "role": "style only; reviewed with view_image before generation"
+    }
+  ],
+  "created": "2026-09-30T21:14:53Z",
+  "created_time_basis": "接收后登记时间，非服务端生成时间",
+  "points": {
+    "L": [
+      109,
+      801
+    ],
+    "F": [
+      701,
+      1152
+    ],
+    "R": [
+      1193,
+      885
+    ]
+  },
+  "footprint_basis": "design/22 §3.4 bld_kit_ming_house 7×6；地域同构 ID",
+  "visual_review": "已 view_image 原图；第二候选入选，灰砖硬山、无字无人、左上光、完整底边。斜率约+.593/-.543超目标容差，2候选预算用尽后保留candidate，未做非等比拉伸。首稿白灰墙和悬山屋面不符地域要求已淘汰。 成品已单独view_image：缩放后材质清楚、屋檐/台基完整、透明留边保留；与原图保持同一比例。",
+  "candidate_count": 2,
+  "rejected_candidate": {
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-183f-7ff3-a5e9-5a982695f883/exec-be73d13c-ba49-4d21-bf51-3a3cc7c66db3.png",
+    "reason": "白灰墙和过度悬檐更接近南宋参考，北方硬山辨识不足"
+  },
+  "historical_sources": [
+    {
+      "title": "本市明确二环路以内老城房屋修缮标准",
+      "url": "https://www.beijing.gov.cn/zhengce/zcjd/202004/t20200426_1882617.html",
+      "accessed": "2026-09-30",
+      "use": "地域青灰材质与避免江南白墙；非明代逐项复原证据"
+    }
+  ],
+  "final_view_image_reviewed": true,
+  "measurement_uncertainty_source_px": 3,
+  "source_point_semantics": "人工读取薄地面铺装外缘L/F/R，不含投影影子；后角依平行四边形推定，中心为(L+R)/2。"
+}

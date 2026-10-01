@@ -1,0 +1,61 @@
+{
+  "id": "bld_kit_ming_north_biaoju",
+  "subject": "明代北方府城：护运货栈（原创扩展）；具体构件断代（待考）。",
+  "prompt": "Use case: sketch-to-render. Image 1 is an EXACT construction template for a game sprite. Do not change the shape or position of this quadrilateral. It is the thin rectangular stone foundation of a northern Ming escort freight courtyard. Build architecture upright on it, all walls matching this template's +0.5/-0.5 axes. Keep exact left corner(200,610), front(800,910), right(1280,670), back(680,370) on1536x1024 canvas. Do not enlarge or zoom. Projected width/depth=600/480=1.25. Strict parallel 2:1 dimetric camera. Raise low grey-brick boundary walls 120px above base, a simple secure timber double gateway centered on left-front side; rear hard-gable grey-tiled one-storey office and short side freight sheds, few burlap bales/crates inside. Realistic ancient Chinese game painted details, crisp fine clay tiles, masonry, matte dark timber matching approved Song baseline. Northern flush masonry gables, straight ridges, no curled eaves. Base perimeter must be ruler-straight and visible around walls; all construction within base. Lighting upper left with SHORT faint contact shadow only. Absolutely no ambient glow or surrounding fog. True alpha0 transparent background directly outside asset and opaque alpha255 solid architecture. No scenery, people, text, plaques, flags, labels, dots, lines, modern items, halo, thick plinth, checkerboard. A single isolated reusable PNG asset.",
+  "references": [
+    {
+      "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "role": "宋基线材质与细节密度参考；不继承年代",
+      "status": "candidate",
+      "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef"
+    },
+    {
+      "path": "assets/default/building-map/ming_north/sources/bld_kit_ming_north_biaoju_r2_guide.png",
+      "sha256": "aab871381aa4442233798a076ce4bbe38f8a613e39630b906785e0b8a8c87271",
+      "role": "精确几何导引，仅作image_gen输入；最终图未经仿射纠偏"
+    }
+  ],
+  "created": "2026-09-30T22:10:19.206114+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44e-8603-7d32-a4a9-8c7789f39090/exec-646e3964-9f09-4d9a-a515-47d1596f03c1.png",
+  "file": "bld_kit_ming_north_biaoju.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "No text, modern objects, people, scenery, opaque background, clipped roofs.",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "928x608",
+  "sha256": "cbd95813a73a89a94e135582a905cd8e9bd91af95e97729c066196e684108b23",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_biaoju",
+    "footprint": [
+      15,
+      12
+    ],
+    "anchor": [
+      462.858,
+      360.4558
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    15,
+    12
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 7.5
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_biaoju.png",
+  "source_sha256": "ddfd398bdb9f8f92bcf6f4b651549beebe8492e4fb9e3148585e8101c986b25b",
+  "meta": "meta/bld_kit_ming_north_biaoju.yaml",
+  "notes": "（原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。",
+  "source_record": "sources/bld_kit_ming_north_biaoju.json",
+  "revision": 2,
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "candidate_count_basis": "仅本轮 revision=2；前轮次数见 revision_history",
+  "repair_record": "sources/bld_kit_ming_north_biaoju_r2_candidates.json"
+}

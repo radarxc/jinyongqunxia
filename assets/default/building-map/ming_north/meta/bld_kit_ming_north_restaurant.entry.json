@@ -1,0 +1,51 @@
+{
+  "id": "bld_kit_ming_north_restaurant",
+  "subject": "明代北方酒楼茶肆，12×9格，灰砖硬山三开间二层楼（原创扩展；细部待考）",
+  "prompt": "Use case: historical-scene. Asset type: tianshu default building-map, ONE isolated reusable game building cutout, true RGBA transparent background. Image 1 is a STYLE REFERENCE ONLY: match its realistic historical painted material quality, crisp detailed grey roof tiles, believable aged masonry and wood, natural muted colors and detail density. Do not copy its building or old camera inaccuracies. This is a new Ming-era northern Chinese prefectural-town building, original game design, NOT restoration of a named monument. Camera MUST be orthographic dimetric 2:1 ground projection, yaw 45 degrees elevation 30 degrees: ground edges exact +0.5 and -0.5 slopes, all verticals upright, no vanishing point. Main frontage faces screen lower left. Ground footprint must be a thin flat rectangular apron with clearly visible straight left-to-front and front-to-right edges, front base corner visible, no thick pedestal or surrounding street. Entire eaves, ground edge and short shadow fully inside square frame with 10 percent transparent margins. Sunlight screen upper left, short soft contact shadow screen lower right. Northern Ming hard-gable YINGSHAN roof: restrained straight ridge, grey clay concave and convex roof tiles, low subtle ridge terminals, solid masonry gable ends flush with verge eaves, not overhanging timber gables, EXPOSED GREY BRICK ALL walls, NO white or cream plaster, subdued dark timber lattice doors/windows; no Qing imperial decoration. No written characters, signboards, lettering, symbols, people, background scenery, sky, horizon, mountains, labels, watermark, checkerboard, opaque floor, exaggerated curved eaves, cartoon or toy-like stylization. Generate exactly ONE asset. Subject: ONE northern Ming two-storey restaurant / tea-house module, footprint12m by9m, compact rectangular prosperous but restrained grey-brick public house. Ground level has wide open timber lattice doors revealing wooden tables, benches, unlabeled ceramic wine jars and tea kettle just inside; upper level modest open timber balcony with a few empty tables. Northern hard-gable grey clay tile roof, solid grey-brick gable side, no white plaster, no imperial decorative colors. One small plain unlettered hanging cloth at doorway only if no text-like markings; better leave it blank or omit. No inn yard or hitching post. The thin ground apron must have left-to-front and front-to-right edges exact slope+.5 and-.5 and horizontal span ratio12:9. Straight vertical supports, orthographic yaw45 pitch30; projected floor-edge angle26.565 degrees. Reference must NOT dictate roof silhouette: proper NORTH CHINESE YINGSHAN hard-gabled roofs, flush grey-brick triangular gable walls rising to ridge at both ends, NO overhanging eaves at gable ends, no upward-curled corner tips. Entire building plus short shadow fully inside generous transparent border. No people, labels or scenery. Precise projection refinement: left-to-front ground edge runs right600px and DOWN300px, exactly a1:2 slope. Front-to-right ground edge runs right450px and UP225px. A12:9 footprint should produce a symmetrical camera, not a steep left edge. Keep ground plane shallow and broad, no thick foundation sides. Main building has THREE door bays on ground and THREE open balcony dining bays above, not five, allowing a compact northern public house with visible deep right side. Roof hard-gable with NO ridge-tip curl or overhanging gable eaves. Short shadow only.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+      "sha256": "0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7",
+      "role": "style only; viewed before generation"
+    }
+  ],
+  "created": "2026-09-30T21:24:50Z",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-183f-7ff3-a5e9-5a982695f883/exec-bdba7695-182c-4e88-83dd-b1f5a58cae40.png",
+  "file": "bld_kit_ming_north_restaurant.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "No text, modern objects, people, scenery, opaque background, clipped roofs.",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "736x672",
+  "sha256": "fb141db5e8f46df2ed02b823721817cdcc89b4a40268c13a93aa46aedd1ee655",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_restaurant",
+    "footprint": [
+      12,
+      9
+    ],
+    "anchor": [
+      356.5469,
+      472.9797
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    12,
+    9
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 6.0
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_restaurant.png",
+  "source_sha256": "37064736a8d3baa3ba67ed1d813d05fc32ddaf67ab6196af3991ed5fd80c2318",
+  "meta": "meta/bld_kit_ming_north_restaurant.yaml",
+  "notes": "（原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。",
+  "candidate_count": 2,
+  "source_record": "sources/bld_kit_ming_north_restaurant.json"
+}

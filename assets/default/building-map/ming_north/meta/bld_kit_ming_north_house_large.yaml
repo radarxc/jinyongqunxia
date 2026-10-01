@@ -1,0 +1,88 @@
+id: bld_kit_ming_north_house_large
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】design/22 §3.3 宋院落10×8同级尺寸；明民居骨架仅给7×6，较大版本沿用用户明确大小两种
+anchor_px:
+- 319.7384
+- 332.3927
+entrance:
+  edge: S
+  offset_cells: 5.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 10
+  - 0
+- - 10
+  - 8
+- - 0
+  - 8
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 204
+  - 610.6863
+  F:
+  - 819.3502
+  - 928.6596
+  R:
+  - 1305
+  - 682.1476
+source_anchor_px:
+- 754.5
+- 646.41695
+target_ground_span_px: 576
+geometry:
+  crop_box:
+  - 197
+  - 61
+  - 1313
+  - 938
+  uniform_scale: 0.5231607629427792
+  scaled_size:
+  - 584
+  - 459
+  canvas_size:
+  - 640
+  - 512
+  paste_offset:
+  - 28
+  - 26
+  - 612
+  - 485
+  raster_scales:
+  - 0.5232974910394266
+  - 0.5233751425313569
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 169583
+  alpha_partial_pixels: 157115
+  alpha_opaque_pixels: 982
+  alpha_bbox:
+  - 29
+  - 26
+  - 611
+  - 484
+  rectangular_trim_removed_nonzero: 17
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.51674
+  - -0.50759
+  source_ratio_relative_error: 0.01365
+  geometry_warning: false
+  visual_review: 原目标、几何导引及所选原图均逐张view_image；灰砖硬山、灰瓦木窗、左上光、完整轮廓与透明留边。基脚实测+0.51674/-0.50759；比例1.26707，目标1.25000。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+source_sha256: 4ad855a2135d639b974647cbad2968a979c38196aa45ef999cdb2d646efe6120
+sha256: 6e69ded1e17f3ac8a51a3ec0c23e0cb6df6db0f24a3368cf09d8578ddc9da587

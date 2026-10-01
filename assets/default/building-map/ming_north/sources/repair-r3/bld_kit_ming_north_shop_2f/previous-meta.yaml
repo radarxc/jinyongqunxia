@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_shop_2f
+footprint_m:
+- 7
+- 5
+footprint_basis: design/22 §3.4 bld_kit_ming_shop 7×5；同骨架两层地域变体
+anchor_px:
+- 223.5
+- 256.7386
+entrance:
+  edge: S
+  offset_cells: 3.5
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 7
+  - 0
+- - 7
+  - 5
+- - 0
+  - 5
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 181
+  - 662
+  F:
+  - 832
+  - 1016
+  R:
+  - 1288
+  - 766
+source_anchor_px:
+- 734.5
+- 714.0
+target_ground_span_px: 384
+geometry:
+  crop_box:
+  - 174
+  - 32
+  - 1295
+  - 1023
+  uniform_scale: 0.34688346883468835
+  scaled_size:
+  - 389
+  - 344
+  canvas_size:
+  - 448
+  - 384
+  paste_offset:
+  - 29
+  - 20
+  - 418
+  - 364
+  raster_scales:
+  - 0.3470115967885816
+  - 0.34712411705348134
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 89276
+  alpha_partial_pixels: 81989
+  alpha_opaque_pixels: 767
+  alpha_bbox:
+  - 29
+  - 20
+  - 418
+  - 364
+  rectangular_trim_removed_nonzero: 77
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.54378
+  - -0.54825
+  source_ratio_relative_error: 0.01974
+  geometry_warning: true
+  visual_review: 第2轮逐张view_image两候选，选本轮整体较优图；主体、底角完整，RGBA透明，光源左上。实测斜率与宽深比见repair-r2记录，仍未同时达到审核几何阈值，保留candidate；未做仿射或透视纠偏。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+final_view_image_review: 第2轮已逐张view_image规范化成品：轮廓及底面完整，透明留边，左上光向、纹理密度可读；几何仍有已登记残差，尚不通过严格审核。
+source_sha256: af37f5f24313b5a277133d423fa1c86ca13dc7708b439b3a6fb523a576f5a543
+sha256: cdc5269b431fa8dc91ef760b284f3aea598f9a1f93f459a0e64ee2be485a8461
