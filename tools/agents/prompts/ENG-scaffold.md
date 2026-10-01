@@ -19,7 +19,7 @@
 2. 包骨架（每包 `package.json`、`tsconfig.json`、`src/index.ts`、至少 1 个单测、`CLAUDE.md` 写职责与禁止项）：
    - `packages/shared`：ID 类型（`SkillId`、`NpcId`、`ItemId`…字符串字面量模板）、bp 整数工具、稳定 JSON 规范序列化（tech/05 §4.5）；
    - `packages/data`：Zod schema 入口、content 加载器占位、`content/` 目录（按 tech/04 §2.1 建空目录与 README）；
-   - `packages/core`：§2.1 目录（每个子目录一个 `index.ts` 占位）、`createCore()` 骨架、`GameState` 根类型占位、确定性 RNG（PCG32，tech/05 §4.2 测试向量作单测）；
+   - `packages/core`：§2.1 目录（每个子目录一个 `index.ts` 占位；根 `src/index.ts` 预先 `export *` 全部子模块，后续任务只改各自子目录、不再碰根 index，避免并行冲突）、`createCore()` 骨架、`GameState` 根类型占位、确定性 RNG（PCG32，tech/05 §4.2 测试向量作单测）；
    - `packages/platform`：存储 / 输入 / 音频接口定义（实现由 ENG-storage 等后续任务做）；
    - `packages/render`：three r186 依赖、`createRenderer()` 占位；
    - `apps/web`：Vite 8 + Vue 3.5 最小页面（显示"天书录"与 core 版本），`pnpm --filter ./apps/web dev` 可起；

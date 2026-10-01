@@ -187,3 +187,13 @@
 - **文档 / 提示词线**：18 个任务已 READY 且在各自工作区 `finish` 提交（NAuF-rules / lint / book-04 / 05 / 12 / 13；ART-P-ch01–09、12–14），等主检出干净后 `step.py merge`（ART-P-ch01 需 `-X theirs`）。NAuF-rules 合入后可启动 NAuF-cat-<12 单元>（各自还依赖对应 NR5 单元，NR5 多数被暂停未跑）。
 - **已知瑕疵待下一轮**：降龙根部竖直切口（加根部羽化）；六脉偏细偏灰（等作者定是否重出原料）；城镇水面为平色贴片、西湖是矩形；大理塔与城比例偏大。
 - **驱动脚本新增**：`HOLD-VALIDATE`（同一校验失败两次即停）、`--base`、`shrink_exempt` 同时豁免删除。
+
+## 9.8 游戏工程与设计补充线（AR-19 / AR-20，2026-10-01 起）
+
+- 作者原话逐字在 `docs/decisions/author-requirements.md` AR-19（游戏工程：存储 / 数据 / 交互 / 战斗 / 动效）、AR-20（物品设定补充与逆天改命）。
+- 拆解（提示词在 `tools/agents/prompts/`，登记在 `_prod` 的 tasks.json）：设计同步 DES-qi → DES-combat；DES-story-dag；DES-items-plus；DES-destiny-ch01…14（每书一任务，只写 `docs/design/story/NN-*.md` 与 `docs/design/chapters/NN-*.md`；要加进 design/01 锚点行的引用句写在报告里，由协调者统一加，避免 14 个任务改同一张表冲突）。工程：ENG-00-scaffold → ENG-01-storage；ENG-02-models（deps ENG-00、DES-qi、DES-story-dag）→ ENG-03-qi-runtime → ENG-04-combat-core（+DES-combat）；ENG-05-story-time；ENG-06-items-world（+DES-items-plus）；ENG-07-ui-panels；ENG-08-worldmap；ENG-09-town-scene；ENG-10-battle-ui；ENG-11-vfx。
+- 池：ENG- 归 `code` 池（cap 3），DES- 走 `docs` 池（cap 5）。第二条批量线（与素材线并行）：`cd .agents/wt/_prod && nohup python3 tools/agents/batch_run.py --name eng --queue-file .agents/coord/_eng_queue.txt --parallel 9 --interval 60 >> .agents/coord/_batch/eng.log 2>&1 &`；看状态 `python3 tools/agents/batch_run.py --status --name eng --queue-file .agents/coord/_eng_queue.txt`。队列文件启动时读一次，登记新任务后要重启这条线（幂等）。
+- 审核要点：`.agents/coord/PROD/review_checks_des.md`、`review_checks_eng.md`（batch_run 按 DES- / ENG- 前缀自动带上）。
+- 工程任务跑 `pnpm`：traex 沙箱默认不能写 `~/Library/pnpm`，tasks.json 里这些任务的 `agent_args` 加了 `sandbox_workspace_write.writable_roots`；驱动的校验直接执行 `pnpm …`，所以批量线要从带 nvm PATH 的 shell 启动。
+- 稀疏检出（2026-10-01 00:00 事故）：任务工作区原是全量检出（图片目录约 2 GB / 个），9 个 DES/ENG 工作区同时建，磁盘从 16 GB 掉到 2 GB。step.py 现在对 docs / code / prompts 池任务用 `git worktree add --no-checkout` + `sparse-checkout set --no-cone`，排除 `assets/default/{baseline,building-map,tile,vfx}`（30 MB / 个）；写集涉及这些目录或任务设 `"full_checkout": true` 的仍全量（ENG-08 / 09 / 11 需要贴片 / 建筑 / 特效素材）。素材池任务未改。
+- 下游接口只靠入库文件传递：根 `CLAUDE.md`、各包 `CLAUDE.md` / `README.md`（任务报告不入库）；这些 CLAUDE.md 已列入 merge 的 markdown 自动并集，并行追加不冲突；`pnpm-lock.yaml` 冲突无法自动并集，发生时协调者取后合入方并重跑 `pnpm install` 后再提交。
