@@ -156,6 +156,27 @@ def pool_of(tid: str) -> str:
     return "assets" if tid.upper().startswith(ASSET_PREFIXES) else "docs"
 
 
+# 2026-10-01：任务工作区曾是全量检出（素材图约 2 GB / 个），同时开 20 个就把磁盘写满。文档 / 代码 / 提示词池的任务
+# 不需要图片目录，改为稀疏检出（只排除下面这些图片目录）；素材池任务仍全量。任务可用 "full_checkout": true 强制全量。
+SPARSE_EXCLUDE_DIRS = ("assets/default/baseline", "assets/default/building-map", "assets/default/tile", "assets/default/vfx")
+
+
+def sparse_checkout_for(t) -> list | None:
+    if getattr(t, "full_checkout", False) or pool_of(t.id) == "assets":
+        return None
+    if any(w.startswith(d) for w in t.writes for d in SPARSE_EXCLUDE_DIRS):
+        return None
+    return ["/*"] + [f"!/{d}/" for d in SPARSE_EXCLUDE_DIRS]
+
+
+def apply_sparse(wt: Path, patterns: list, ref: str) -> None:
+    p = R.git(["sparse-checkout", "set", "--no-cone", *patterns], wt, check=False)
+    if p.returncode != 0:  # 旧版 git 没有 --no-cone：init（默认非 cone）后 set
+        R.git(["sparse-checkout", "init"], wt)
+        R.git(["sparse-checkout", "set", *patterns], wt)
+    R.git(["checkout", "--detach", ref], wt)
+
+
 def pool_cap(g, pool: str) -> int:
     env = os.environ.get(f"TIANSHU_MAX_PARALLEL_{pool.upper()}")
     if env:
@@ -281,10 +302,13 @@ def cmd_start(a) -> int:
             print(f"  基点取自 --base {a.base}：{start_ref[:12]}")
         wt.parent.mkdir(parents=True, exist_ok=True)
         # 批量调度时 merge（cherry-pick）与新建工作区可能撞上 index.lock：失败就等几秒重试
+        sparse = sparse_checkout_for(t)
         for delay in (0, 3, 6, 12):
             time.sleep(delay)
-            p = R.git(["worktree", "add", "--detach", str(wt), start_ref], root, check=False)
+            p = R.git(["worktree", "add", "--detach", *(["--no-checkout"] if sparse else []), str(wt), start_ref], root, check=False)
             if p.returncode == 0:
+                if sparse:
+                    apply_sparse(wt, sparse, start_ref)
                 break
             if wt.exists():
                 R.git(["worktree", "remove", "--force", str(wt)], root, check=False)
@@ -463,7 +487,7 @@ def cmd_finish(a) -> int:
 
 # 多个任务都往同一份"追加型"markdown 文末加小节（各套件往 prompts/*.md 加自己的一节、FOLLOWUPS 追加条目），
 # cherry-pick 时两边都是新增行会报冲突；这类文件按"两边都保留"自动解决，其他文件冲突仍中止。
-UNION_MERGE_GLOBS = ("assets/default/prompts/*.md", "tools/agents/FOLLOWUPS.md", "assets/default/STYLE.md")
+UNION_MERGE_GLOBS = ("assets/default/prompts/*.md", "tools/agents/FOLLOWUPS.md", "assets/default/STYLE.md", "packages/*/CLAUDE.md", "apps/*/CLAUDE.md", "CLAUDE.md")
 _CONFLICT = re.compile(r"<<<<<<< [^\n]*\n(.*?)=======\n(.*?)>>>>>>> [^\n]*\n", re.S)
 
 
