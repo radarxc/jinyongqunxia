@@ -13,6 +13,7 @@
 ## 硬规则
 
 - 每张部件图必须由 `image_gen` 生成，manifest `tool` 写 image_gen 与实际模型名；禁止用 Pillow / 代码绘制或合成替代图、禁止素材目录放生成脚本；`image_gen` 不可用就停下来并在报告写明，不得伪造。
+- **出图方式按 `tools/agents/prompts/_imagegen.md`**：本执行环境没有内置 `image_gen`，要用本机 Codex CLI（`codex exec -m gpt-6-astra … -i <参考图>`）代出，每张一次调用；先读那份文件再开工。
 
 ## 做法
 
