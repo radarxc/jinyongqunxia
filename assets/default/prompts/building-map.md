@@ -550,11 +550,11 @@ No text, people, scenery, modern objects, Ming/Qing court decoration or thick pl
 
 本节交付清初至清中北方的 **19 类地图建筑**，文件位于 `assets/default/building-map/qing_north/`；每类1张入选图，全部 `candidate`。北京、盛京、济南用于建立地域范围，不把匿名组合冒充任一城市的具名文物或实测复原 **（原创扩展）**。旗民分城、胡同布局、衙署驻防位置仍由 `design/22` §2.6 的城市布局负责，不能靠单体外观表达真实行政边界。
 
-- 材质沿用宋基线的写实古风、细瓦纹、木石层次和低饱和旧化；相机目标仍为45°斜向、30°俯仰、2:1地面投影，左上光、右下短影。
-- 民居与商铺改为青灰砖墙、灰瓦硬山意象、深色木格窗和朴素门扇；不普遍添加黄琉璃、宫廷彩画、红灯笼或豪华垂花门。具体清初门窗纹样和砖瓦等级 **（待考）**。
+- 材质沿用宋基线的写实古风、细瓦纹、木石层次和低饱和旧化；相机目标仍为45°斜向、30°俯仰、2:1地面投影，左上光、右下短影。2026-09-30重出时，每类另将2张历史照片或存世古建照片与宋基线一并作为 `image_gen` 输入；历史图控制形制、比例、材质和构造，宋图只控制游戏渲染密度。
+- 民居与商铺按北京胡同、天津石家大院及晚清北京街景，落实青灰砖下碱、石基、灰色筒板瓦硬山、直棂 / 方格木窗、板门和浅布篷；普通屋脊只用素脊与砖制收头，不加脊兽、黄琉璃、宫廷彩画、红灯笼或豪华垂花门。照片多为清末或现代存世状态，不足以证明每项细部均属清初 **（待考）**。
 - 院落以北房、厢房和围墙组成简素合院。清代院落研究中早中清垂花门并不普遍，默认普通院落使用随墙门；大院与王府的装饰等级单独处理。
-- 官署与王府可有暗朱门、克制梁枋彩画和局部绿琉璃；本批选王府22×18，未另交24×20皇宫模块，也不将两者自动等同。
-- 寺殿与汉地砖佛塔作为无名宗教建筑意象；本批没有生成北海白塔、雍和宫或清真寺。塔式、构件层数和真实高度不宣称文物复原。
+- 官署取平遥县衙的中轴、五开间正厅、东西厢房、低月台与暗朱柱；王府综合恭王府院落和沈阳故宫的柱网、一级斗拱、青绿赭彩画与局部绿琉璃边饰。本批选王府22×18，未另交24×20皇宫模块，也不将两者自动等同。
+- 寺殿参考颐和园、雍和宫存世殿堂，采用五开间单檐歇山、灰筒板瓦、鸱吻、短脊兽列、一级斗拱和石台基；砖塔参考慈寿寺塔，采用八角实心塔身、十三层密檐、盲券和砖雕。均为无名组合，不是具名文物复原 **（原创扩展）**。
 - 镖局 / 货栈、赌场、酒楼均为匿名营生外观；不新增玩法绑定或历史字号。河埠只交灰石台阶与系泊设施，不自带水面、船和旅行入口。
 
 ### 11.2 类型与占地映射
@@ -587,11 +587,16 @@ No text, people, scenery, modern objects, Ming/Qing court decoration or thick pl
 
 ### 11.3 可复用提示词差异
 
-在§5模板中替换年代和主体；真实每次调用的完整提示词、参考输入与候选取舍保存在本套件 `sources/` 和 `manifest.yaml`，下列为可复用摘要，不冒充所有调用逐字相同。
+在§5模板中替换年代和主体；真实每次调用的完整提示词、历史参考URL、输入用途与候选取舍保存在本套件 `manifest.yaml`，下列为可复用摘要，不冒充所有调用逐字相同。
 
 ```text
 Use case: historical-scene. ONE isolated early-to-mid Qing NORTH CHINA building sprite.
 Anonymous Beijing/Shengjing/Jinan regional concept, not a named monument reconstruction.
+Attach 2–3 historical images of the same class plus one Song-kit baseline.
+Read the historical images for form, proportion, material and construction only;
+never copy their framing. Use the Song image only for game rendering density.
+Specify roof pitch and type, ridge/chiwen/beasts, pan-and-cover tiles, bracket tiers,
+column grid, stone or brick podium, lattice pattern, paint and masonry bond explicitly.
 Realistic aged grey brick, matte grey tiles, dark timber lattice windows, sober hard-gable roof.
 Ordinary houses use modest gates; no palace colors, lavish hanging-flower gate or gilding.
 For yamen/wangfu only: restrained dark red doors, sparse official beam painting and green tiles.
@@ -604,9 +609,9 @@ Keep Song-set realistic detail density and restrained weathering while changing 
 
 ### 11.4 规格化、实测与来源边界
 
-仅用内置 `image_gen`，每件最多2候选；实际图像引擎版本、seed和推理档位未披露，不登记虚构值。首轮PIL规格化只裁透明包围框、一次等比缩放和透明扩边，不绘制建筑、不剪切透视、不镜像；第10轮另对7件候选执行有矩阵、输入归档与哈希记录的PIL仿射几何校正。短边≥256是本任务门禁；不沿用宋基线≥512来放大地面。
+仅用内置 `image_gen`，每件纳入评审的候选不超过2张；`biaoju` 与 `market_stall` 调用各额外吐出1张，均未纳入候选或入库。实际图像引擎版本和seed未披露，不登记虚构值。PIL规格化只以 alpha≥8 排除贴边噪点后裁框、一次等比缩放和透明扩边，不绘制建筑、不剪切透视、不镜像；四边透明留白至少为画布对应边的8%。短边≥256是本任务门禁。
 
-沿用§4：地面宽=`32(w+h)`；比例=`32(w+h)/(Rx−Lx)`；源锚点=`(L+R)/2`，同步裁切、缩放与粘贴偏移。大民居目标416×208，王府1280×640，市场棚160×80；这是地面包络，PNG为高度与留白外扩。隐藏后角由平行边推定，底心为人工测点代理；几何误差如实写 `geometry_qa`，不把文件检查通过等同±0.03轴率通过。
+占地登记沿用§11.2且没有改动。为避免换图造成世界尺度突变，规格化将新图的显著主体宽度等比缩放到旧成品的 alpha 主体宽度；PNG尺寸按高度和8%透明留白外扩。`anchor` 由旧成品锚点在主体包围框中的归一化位置映射到新图，只是候选锚点；地面轴率、院内碰撞和门前拼接仍 **（待实测）**，不把文件检查通过等同精确2:1验收。
 
 源图和成品逐张 `view_image`，另用浅底合成检查alpha。工具预览中的灰棕光晕可能只是alpha0位置的RGB，必须采样或合成核实，不据预览去清除真实半透明边缘。单朝向 `allowRotation:false`；没有四视图、GLB、真实高度或精确院内碰撞，联调 **（待实测）**。
 
@@ -727,6 +732,7 @@ No named Potala replica, no modern Lhasa tourism frontage, no Chinese pitched ti
 ```
 
 每张实际发送的全文另存 `building-map/tubo/sources/`，不以本模板替代调用记录。最多两候选择一；原图保留真 alpha。裁透明外缘、等比重采样、透明扩边，不做拉伸、warp、镜像或代码补画。建筑短边门禁本任务为 256 px；地面目标宽仍 `32(w+h)`，高 `16(w+h)`，不能按 canvas 宽二次缩放。底面中心锚点从可见接地边推算，误差单列；轴超差不写成精确通过。每件只交一个朝向，默认 `allowRotation=false`，未生成 GLB 或四向图。
+历史图片（访问并下载查看于2026-09-30）：民居 / 院落用 [北京胡同院落](https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG) 与 [天津石家大院门道](https://commons.wikimedia.org/wiki/File:Shiyuan_tianjin_doorways.jpg)；铺面用 [Thomas Child北京街道](https://commons.wikimedia.org/wiki/File:Thomas_Child,_Peking_Streets.jpg) 与 [1895北京街景](https://commons.wikimedia.org/wiki/File:William_Henry_Jackson,_Street_scene,_Peking,_1895.jpg)；官署用 [平遥县衙主院](https://commons.wikimedia.org/wiki/File:Pingyao_Yamen_Main_Courtyard.jpg) 与 [县衙院落](https://commons.wikimedia.org/wiki/File:Pingyao_Yamen_courtyard.jpg)；王府用两张恭王府院落及沈阳故宫；寺塔用颐和园、雍和宫、慈寿寺塔和1920年代塔影。每件实际输入及所取细节见manifest `references`。这些图均实际作为 `image_gen` 输入；现代存世照片与晚清影像只证明可见形制，不证明所有细部均属清初。
 
 ## 本文新增术语与 ID
 

@@ -1,691 +1,76 @@
-- id: bld_kit_qing_north_biaoju
-  subject: 清初至清中北方镖局兼货栈院落（原创扩展；具体细部待考）
-  historical_references:
-  - url: 'https://bjwb-app.bjd.com.cn/content/s685cdd27e4b0aabe0a02d473.html'
-    purpose: 源顺镖局现状与前院骡马大车、后院家眷的院落分区；清末资料，仅复核复合院功能。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: precise-object-edit. Correct the supplied courtyard sprite''s projection to strict orthographic game isometric while preserving Qing gray brick walls, fine small gray roof tiles, dark wood hall and front gate, left warehouse, cart and cargo and upper-left lighting. Current bottom corner locations LEFT(59,621), FRONT(881,979), RIGHT(1494,578) are WRONG; front edge is too flat and side edge far too steep. Reconstruct the ground as EXACTLY LEFT(80,560), FRONT(830,935), RIGHT(1430,635), REAR(680,260) in a1536x1024canvas. Front horizontal span750px, side span600px, slopes+0.500/-0.500, footprint15wide by12deep ratio1.25. The right back corner must move DOWN substantially to flatten the too-steep receding boundary. Keep both perimeter edges perfectly straight at equal26.565degree inclinations and vertical masonry corners upright. Reorient all parallel wall and roof eave lines consistently with the corrected ground axes. NO perspective convergence. Entire architecture fits on thin flat footprint, no thick pedestal. Leave safe fully transparent margins around whole roof and ground. TRUE RGBA TRANSPARENCY: solid brick/roof pixels fully OPAQUE alpha255; empty outside pixels alpha0. Remove all surrounding glow/gray haze, do not paint a backdrop, retain edge antialiasing only. Anonymous original Qing northern escort courtyard, one complete sprite, same fine realistic material density. No text, coordinates, people, signs, flags, modern objects or watermark.'
-  negative: 文字、水印、现代元素、人物、景观背景、厚地台、裁切、透视汇聚、黄色帝王琉璃瓦
-  references:
-  - file: /Users/bytedance/.codex/generated_images/01a0f46e-40f8-7f82-b5c4-d14afb2d3470/exec-668e2870-de60-44d3-970a-448fce1b8847.png
-    sha256: b2ab8b7742c15f48fafd87a61328b6d6aef73bcdaeee007044fbc2f314623789
-    archive: sources/bld_kit_qing_north_biaoju__revision3_c1.png
-  source_path: /Users/bytedance/.codex/generated_images/01a0f46e-40f8-7f82-b5c4-d14afb2d3470/exec-1abd30dc-6204-49f3-b2be-df865b4d5720.png
-  created: '2026-09-30T22:38:10.091200+00:00'
-  created_time_basis: 源PNG文件mtime，非服务端时间
-  file: bld_kit_qing_north_biaoju.png
-  category: building-map
-  style: default
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  tool: built-in image_gen
-  size: 912x608
-  sha256: 63b07a057df1f7241945526875e473fcd2e5de23524f0f43a1035adb2c5b0d8b
-  status: candidate
-  building:
-    type: bld_kit_qing_north_biaoju
-    footprint:
-    - 15
-    - 12
-    anchor:
-    - 455.6981
-    - 356.5702
-    era: qing_north
-  footprint_m:
-  - 15
-  - 12
-  entrance:
-    edge: S
-    offset_cells: 7
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 864
-    - 432
-    ground_width_px: 864
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
-  metadata: meta/bld_kit_qing_north_biaoju.yaml
-  source_sha256: 54499c5b596526e71638da31cca0f6b7b1d68aea3b292d841ac3b1fcd5f489b4
-  processing:
-    source_archive: sources/bld_kit_qing_north_biaoju__revision3_c2.png
-    source_sha256: 54499c5b596526e71638da31cca0f6b7b1d68aea3b292d841ac3b1fcd5f489b4
-    source_size:
-    - 1536
-    - 1024
-    crop_box:
-    - 48
-    - 58
-    - 1492
-    - 998
-    uniform_scale_requested: 0.6037735849056604
-    resized_size:
-    - 872
-    - 568
-    rounded_effective_scale:
-    - 0.6038781163434903
-    - 0.6042553191489362
-    paste_offset:
-    - 20
-    - 20
-    final_file: bld_kit_qing_north_biaoju.png
-    steps:
-    - crop to alpha>0 bounding box
-    - uniform LANCZOS resize; dimensions rounded to nearest px
-    - paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding
-    anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 54
-      - 616
-      front:
-      - 832
-      - 994
-      right:
-      - 1485
-      - 614
-    source_axis_slopes:
-    - 0.48586118251928023
-    - -0.5819295558958653
-    axis_tolerance: 0.03
-    axis_pass: false
-    source_width_depth_ratio: 1.1914241960183767
-    expected_width_depth_ratio: 1.25
-    ratio_relative_error: 0.0468606431852987
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
-    measurement_uncertainty_source_px: 3
-    precision_note: 人工读可见底面三角点，±3px不确定性；底面中心取(L+R)/2。后角为L+R−F推算，非3D测绘；未以变形纠偏。
-    ratio_interval_with_3px_uncertainty:
-    - 1.1714719271623673
-    - 1.2117465224111283
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 912
-    - 608
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 261186
-    alpha_partial_pixels: 292306
-    alpha_opaque_pixels: 1004
-    alpha_near_opaque_pixels: 287816
-    alpha_nonzero_bbox:
-    - 20
-    - 20
-    - 892
-    - 588
-    transparent_margins_px:
-    - 20
-    - 20
-    - 20
-    - 20
-    border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_biaoju__revision3_c2.json
-  rejected_source_record: sources/bld_kit_qing_north_biaoju__rejected.json
-  notes: 第3轮仅本条重出2候选，选候选2；原图及调用提示词/参考已归档。底面宽深比1.191424，相对目标1.25偏差4.686%，通过10%建议比例阈值；双轴斜率0.485861/-0.581930，仍超过±0.03建议角度容差。仅裁切、等比缩放、20px透明留白，未改alpha、未变形；源图alpha范围[0, 254]。最终图逐张view_image复核见本轮报告，维持candidate，非发布验收。占地15×12沿用design/22 §3.4；院内陈设原创扩展。
-- id: bld_kit_qing_north_casino
-  subject: 清初至清中北方赌场（原创扩展；具体细部待考）
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG'
-    purpose: 北京胡同灰瓦、木窗与围合尺度；只复核建筑形制，不证明赌场功能。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: precise-object-edit. Keep this exact Qing gray-brick two-storey gambling-house sprite, its orthographic camera, beautiful material textures, gray tiled roofs, enclosed front court, wooden gate and lanterns. Make ONLY a measured dimensional correction. The front ground width is currently721px and right-side ground depth637px, ratio1.132; target ratio is1.250 (10m wide x8m deep). INCREASE FRONT WIDTH by10.5%, keeping SIDE DEPTH unchanged. Thus move the bottom/front corner about76px screen RIGHT and38px DOWN relative to the left corner, and move right rear corner the same offset. Extend the front boundary wall and rear hall facade / roof width together; retain the side depth and correct slopes+0.50/-0.50. The front wall must become noticeably wider than the receding side by25%, not remain square. Do not change yaw, pitch, side length or vertical wall height. Uniformly zoom out to contain entire new footprint with clear transparent margin as necessary. Do not distort pixels; rebuild the geometry with coherent bricks/windows/roof. Actual transparent RGBA background alpha0, solid materials alpha255, no haze, no halo, no background floor outside boundary, no tall plinth, no text, watermarks, people, modern objects. ONE complete single historical realistic building sprite, 10:8 rectangle footprint.'
-  negative: 文字、水印、现代元素、人物、景观背景、厚地台、裁切、透视汇聚、黄色帝王琉璃瓦
-  references:
-  - file: /Users/bytedance/.codex/generated_images/01a0f46e-40f8-7f82-b5c4-d14afb2d3470/exec-a59afe79-1662-44f5-a2c5-d9fce6e161ee.png
-    sha256: f4b207764c2693a52c27e1e3b00b05c8bbcc5ed086b965e4b2a39b142fb8d8d3
-    archive: sources/bld_kit_qing_north_casino__revision3_c1.png
-  source_path: /Users/bytedance/.codex/generated_images/01a0f46e-40f8-7f82-b5c4-d14afb2d3470/exec-2fda2e5b-a5a6-4367-b64b-3824bde5bbcc.png
-  created: '2026-09-30T22:36:53.635261+00:00'
-  created_time_basis: 源PNG文件mtime，非服务端时间
-  file: bld_kit_qing_north_casino.png
-  category: building-map
-  style: default
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  tool: built-in image_gen
-  size: 621x466
-  sha256: 718b5323c3fb82f7df7f0f6bd175d5d0148bcbc3cd6eccf03fbd8bae8430fc92
-  status: candidate
-  building:
-    type: bld_kit_qing_north_casino
-    footprint:
-    - 10
-    - 8
-    anchor:
-    - 310.0744
-    - 298.604
-    era: qing_north
-  footprint_m:
-  - 10
-  - 8
-  entrance:
-    edge: S
-    offset_cells: 4
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 576
-    - 288
-    ground_width_px: 576
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
-  metadata: meta/bld_kit_qing_north_casino.yaml
-  source_sha256: 043871af1f11ce3746f100173199186688ea6e77f607471e2feb3ce4cad2fba7
-  processing:
-    source_archive: sources/bld_kit_qing_north_casino__revision3_c2.png
-    source_sha256: 043871af1f11ce3746f100173199186688ea6e77f607471e2feb3ce4cad2fba7
-    source_size:
-    - 1402
-    - 1122
-    crop_box:
-    - 22
-    - 104
-    - 1387
-    - 1104
-    uniform_scale_requested: 0.42572062084257206
-    resized_size:
-    - 581
-    - 426
-    rounded_effective_scale:
-    - 0.4256410256410256
-    - 0.426
-    paste_offset:
-    - 20
-    - 20
-    final_file: bld_kit_qing_north_casino.png
-    steps:
-    - crop to alpha>0 bounding box
-    - uniform LANCZOS resize; dimensions rounded to nearest px
-    - paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding
-    anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 27
-      - 742
-      front:
-      - 799
-      - 1096
-      right:
-      - 1380
-      - 774
-    source_axis_slopes:
-    - 0.4585492227979275
-    - -0.5542168674698795
-    axis_tolerance: 0.03
-    axis_pass: false
-    source_width_depth_ratio: 1.3287435456110155
-    expected_width_depth_ratio: 1.25
-    ratio_relative_error: 0.06299483648881243
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
-    measurement_uncertainty_source_px: 3
-    precision_note: 人工读可见底面三角点，±3px不确定性；底面中心取(L+R)/2。后角为L+R−F推算，非3D测绘；未以变形纠偏。
-    ratio_interval_with_3px_uncertainty:
-    - 1.3049403747870527
-    - 1.3530434782608696
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 621
-    - 466
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 145353
-    alpha_partial_pixels: 143006
-    alpha_opaque_pixels: 1027
-    alpha_near_opaque_pixels: 140657
-    alpha_nonzero_bbox:
-    - 20
-    - 20
-    - 601
-    - 446
-    transparent_margins_px:
-    - 20
-    - 20
-    - 20
-    - 20
-    border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_casino__revision3_c2.json
-  rejected_source_record: sources/bld_kit_qing_north_casino__rejected.json
-  notes: 第3轮仅本条重出2候选，选候选2；原图及调用提示词/参考已归档。底面宽深比1.328744，相对目标1.25偏差6.299%，通过10%建议比例阈值；双轴斜率0.458549/-0.554217，仍超过±0.03建议角度容差。仅裁切、等比缩放、20px透明留白，未改alpha、未变形；源图alpha范围[0, 255]。最终图逐张view_image复核见本轮报告，维持candidate，非发布验收。10×8为同构功能件建议占地，赌场外观原创扩展。
-- id: bld_kit_qing_north_courtyard
-  file: bld_kit_qing_north_courtyard.png
-  category: building-map
-  style: default
-  subject: 胡同院落
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG'
-    purpose: 北京胡同院落的灰瓦木窗、围合尺度与材质层次；现代现状仅作形制复核。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: historical-scene. ONE isolated transparent sprite for a realistic historical Chinese town game. Early-to-mid Qing NORTH CHINA, anonymous Beijing/Shengjing/Jinan architectural concept, not a specific monument reconstruction. Match the attached Song asset ONLY for realistic material texture, fine detail density, restrained weathering, lighting and game sprite rendering; CHANGE architectural forms to Qing northern grey-brick, grey-tile and dark timber. Orthographic DIMETRIC, yaw45 elevation30, STRICT 2:1 ground plane, east ground axis screen lower-right slope +0.5 and north upper-right slope -0.5, parallel lines NO perspective convergence. South doorway faces screen lower-left. Draw a thin rectangular ground boundary, entire footprint with visible left, front and right corners, NO thick floating base. Keep the entire sprite and soft contact shadow inside generous 10% transparent margins. TRUE transparent RGBA background. Light from screen UPPER LEFT, short soft contact shadow lower-right. Grey fired brick, matte grey barrel tiles with straight sober ridges, northern hard-gable walls, dark brown wooden lattice windows, no Jiangnan whitewashed tourist style. No text, pseudo-writing, plaques, characters, people, flags, modern objects, sky, horizon, landscape, trees, water or road outside footprint, no saturated lighting, cartoon, plastic, borders or watermark. A compact single-storey siheyuan courtyard compound: grey brick perimeter, north main house, east/west wing rooms, small south gate, interior unobstructed courtyard with modest paving. Grey hard-gable tiled roofs, dark wood lattice windows and simple recessed brick entrance. Footprint 10m east-west by8m north-south.'
-  negative: 文字、人物、水印、现代物、背景场景、厚地台、裁边、透视汇聚
-  references:
-  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_north/assets/default/baseline/building-map/bld_kit_song_dali_house.png
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T21:14:34.081Z'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-e0c7139b-ad9c-4e9f-8358-3d231ae9e393.png
-  size: 625x391
-  sha256: 2c4f5d292cee3cd7014e0efafa6113a4652ea36fcbf5a36d6df88f8ee31957df
-  status: candidate
-  building:
-    type: bld_kit_qing_north_courtyard
-    footprint:
-    - 10
-    - 8
-    anchor:
-    - 306.5891
-    - 228.452
-    era: qing_north
-  footprint_m:
-  - 10
-  - 8
-  entrance:
-    edge: S
-    offset_cells: 4
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 576
-    - 288
-    ground_width_px: 576
-    camera_yaw_deg: 45
-    camera_elevation_deg: 30
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
-  metadata: meta/bld_kit_qing_north_courtyard.yaml
-  source_sha256: ff84c7e80d39f6b5678056e878e1d6c3ddfa781061aa0a181efdd99c9f3aa4eb
-  processing:
-    source_archive: sources/bld_kit_qing_north_courtyard.png
-    source_sha256: ff84c7e80d39f6b5678056e878e1d6c3ddfa781061aa0a181efdd99c9f3aa4eb
-    source_size:
-    - 1536
-    - 1024
-    crop_box:
-    - 65
-    - 20
-    - 1418
-    - 954
-    uniform_scale_requested: 0.46867371847030104
-    resized_size:
-    - 634
-    - 438
-    rounded_effective_scale:
-    - 0.4685883222468588
-    - 0.4689507494646681
-    paste_offset:
-    - 16
-    - 16
-    final_file: bld_kit_qing_north_courtyard.png
-    steps:
-    - crop alpha>0 bbox
-    - uniform LANCZOS resize rounded to integer dimensions
-    - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
-    - review-10 PIL affine y'=a*x+b*y+c
-    - crop alpha>0 bbox and restore transparent padding
-  geometry_qa:
-    final_corners_px:
-      left:
-      - 18.641537324464153
-      - 208.88847488484961
-      front:
-      - 345.7161862527716
-      - 372.4257993490033
-      right:
-      - 594.5365853658536
-      - 248.01559979246235
-    final_axis_slopes:
-    - 0.49999999999999983
-    - -0.49999999999999967
-    accepted_slope_range:
-    - 0.4
-    - 0.62
-    axis_pass: true
-    final_width_depth_ratio: 1.3145009416195856
-    expected_width_depth_ratio: 1.25
-    ratio_relative_error: 0.0516007532956686
-    ratio_tolerance: 0.3
-    ratio_pass: true
-    measurement_note: 审核人工测点经同一PIL仿射矩阵变换；锚点取校正后L/R底面中点。
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 625
-    - 391
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 130406
-    alpha_partial_pixels: 113171
-    alpha_opaque_pixels: 798
-    alpha_nonzero_bbox:
-    - 16
-    - 16
-    - 609
-    - 375
-    transparent_margins_px:
-    - 16
-    - 16
-    - 16
-    - 16
-    border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_courtyard.json
-  notes: 2候选选1；RGBA合成确认原图无实际光晕，第1候选轴率和占地比例更近目标，仍有严格几何残差。；匿名北方建筑组合（原创扩展），待作者审批。 第10轮按审核裁定仅作PIL仿射几何校正；双轴进入0.40–0.62，仍为candidate。
-  affine_qa:
-    input_archive: sources/bld_kit_qing_north_courtyard__before_affine_r10.png
-    input_sha256: 5f79c5fc4f886f724f27cc60cef127c33b993e346bdad4507442024fbd7886c0
-    forward_xy:
-    - 1
-    - 0
-    - 0.10237820745083831
-    - 0.81327130560653
-    - 0
-    - 0
-    work_alpha_bbox:
-    - 56
-    - 50
-    - 649
-    - 409
-    padding_px: 16
-- id: bld_kit_qing_north_guardhouse
-  subject: 清初至清中北方城门守舍（原创扩展；具体细部待考）
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Imperial_Palaces_of_the_Ming_and_Qing_Dynasties_24351-Shenyang_(49052461177).jpg'
-    purpose: 盛京官式门的红柱、灰砖与彩画等级边界；只复核门舍语汇。
-    used_as: post_generation_form_review_only
-  prompt: Classic 2:1 ISOMETRIC GAME MAP GEOMETRY with realistic architectural textures, not pixel-art. Create one isolated transparent sprite of a small Qing northern gray-brick guard shelter with plain gray tile hard-gable roof, dark timber door, one lattice window and a low wood bench. Exact orthographic45-degree azimuth30-degree elevation, both ground axes slope precisely 1 vertical unit per 2 horizontal units, front-left edge+0.5 and front-right edge-0.5. The rectangular base is 7 meters east-west by 5 meters north-south, projected front-left edge 7 units and front-right edge 5 units. South entrance faces lower-left. Draw the entire thin rectangular base with clear left/front/right corners, correct2:1 diamond form, no tall pedestal. Northern China early-to-mid Qing original historical-game module. Warm-neutral soft top-left lighting; tiny contact shadow only. Fine gray tile and gray brick material details, restrained realism matching a Song-era city-building kit. TRUE TRANSPARENT ALPHA BACKGROUND; no glow, halo, mist, shadows around silhouette, no floor, no backdrop. Keep complete silhouette comfortably inside canvas with15% fully transparent margin all sides. No visible writing, numbers, guides, modern elements, people, scenery or checkerboard. Asset bld_kit_qing_north_guardhouse.
-  negative: 文字、水印、现代元素、人物、景观背景、厚地台、裁切、透视汇聚、黄色帝王琉璃瓦
-  references: []
-  source_path: /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-939cf14a-6885-4d50-8a59-4289eea4ae09.png
-  created: '2026-09-30T21:25:56.779388+00:00'
-  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端时间
-  file: bld_kit_qing_north_guardhouse.png
-  category: building-map
-  style: default
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  tool: built-in image_gen
-  size: 526x424
-  sha256: 59f7f38b2676080cce720726f66c5ad07ac4dce2c7cc3803bde2367b04cf0772
-  status: candidate
-  building:
-    type: bld_kit_qing_north_guardhouse
-    footprint:
-    - 7
-    - 5
-    anchor:
-    - 310.0192
-    - 289.7336
-    era: qing_north
-  footprint_m:
-  - 7
-  - 5
-  entrance:
-    edge: S
-    offset_cells: 3
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 384
-    - 192
-    ground_width_px: 384
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
-  metadata: meta/bld_kit_qing_north_guardhouse.yaml
-  source_sha256: 0131fb3862a445f1e8d8bd5fd1eb463ffe64b5ae7791680180aa0dc17c8b0bba
-  processing:
-    source_archive: sources/bld_kit_qing_north_guardhouse.png
-    source_sha256: 0131fb3862a445f1e8d8bd5fd1eb463ffe64b5ae7791680180aa0dc17c8b0bba
-    source_size:
-    - 1536
-    - 1024
-    crop_box:
-    - 65
-    - 46
-    - 1264
-    - 992
-    uniform_scale_requested: 0.40549102428722283
-    resized_size:
-    - 486
-    - 384
-    rounded_effective_scale:
-    - 0.4053377814845705
-    - 0.4059196617336152
-    paste_offset:
-    - 20
-    - 20
-    final_file: bld_kit_qing_north_guardhouse.png
-    steps:
-    - crop to alpha>0 bounding box
-    - uniform LANCZOS resize; dimensions rounded to nearest px
-    - paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding
-    anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 307
-      - 675
-      front:
-      - 861
-      - 926
-      right:
-      - 1254
-      - 746
-    source_axis_slopes:
-    - 0.45306859205776173
-    - -0.4580152671755725
-    axis_tolerance: 0.03
-    axis_pass: false
-    source_width_depth_ratio: 1.4096692111959288
-    expected_width_depth_ratio: 1.4
-    ratio_relative_error: 0.006906579425663528
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
-    measurement_uncertainty_source_px: 3
-    precision_note: 人工读可见底面三角点，±3px不确定性；底面中心取(L+R)/2。后角为L+R−F推算，非3D测绘；未以变形纠偏。
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 526
-    - 424
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 134626
-    alpha_partial_pixels: 87579
-    alpha_opaque_pixels: 819
-    alpha_near_opaque_pixels: 85925
-    alpha_nonzero_bbox:
-    - 115
-    - 20
-    - 506
-    - 400
-    transparent_margins_px:
-    - 115
-    - 20
-    - 20
-    - 24
-    border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_guardhouse.json
-  rejected_source_record: sources/bld_kit_qing_north_guardhouse__rejected.json
-  notes: 已逐张view_image检查源图及浅底alpha合成诊断：主体完整、无文字人物现代物；灰砖灰瓦暗木与宋套件细节密度相近，王府绿瓦和官式红柱区分等级。直接PNG预览的灰棕晕属于透明像素RGB，浅底alpha合成无外部光晕；未改alpha。7×5为同构功能件建议占地；原创建筑，不代表具名驻防机构。 双轴/占地比例未全部通过，保留candidate供审校；不得直接当发布资产。 最终PNG已再次逐张view_image自查；历史来源统一见prompts/building-map.md清北节及tools/agents/reports/KIT-qing_north.md §7。
-- id: bld_kit_qing_north_house_large
-  file: bld_kit_qing_north_house_large.png
-  category: building-map
-  style: default
-  subject: 大民居
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG'
-    purpose: 北京胡同宅院灰瓦、木窗与院墙比例；现代现状仅作形制复核。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: historical-scene. ONE isolated transparent sprite for a realistic historical Chinese town game. Early-to-mid Qing NORTH CHINA, anonymous Beijing/Shengjing/Jinan architectural concept, not a specific monument reconstruction. Match the attached Song asset ONLY for realistic material texture, fine detail density, restrained weathering, lighting and game sprite rendering; CHANGE architectural forms to Qing northern grey-brick, grey-tile and dark timber. Orthographic DIMETRIC, yaw45 elevation30, STRICT 2:1 ground plane, east ground axis screen lower-right slope +0.5 and north upper-right slope -0.5, parallel lines NO perspective convergence. South doorway faces screen lower-left. Draw a thin rectangular ground boundary, entire footprint with visible left, front and right corners, NO thick floating base. Keep the entire sprite and soft contact shadow inside generous 10% transparent margins. TRUE transparent RGBA background. Light from screen UPPER LEFT, short soft contact shadow lower-right. Grey fired brick, matte grey barrel tiles with straight sober ridges, northern hard-gable walls, dark brown wooden lattice windows, no Jiangnan whitewashed tourist style. No text, pseudo-writing, plaques, characters, people, flags, modern objects, sky, horizon, landscape, trees, water or road outside footprint, no saturated lighting, cartoon, plastic, borders or watermark. A larger single-storey five-bay northern brick house, sober hard-gable grey tile roof, substantial grey brick end walls, dark wood lattice windows and central recessed doorway with simple stone steps, small attached side room; not a courtyard compound. Footprint 7m east-west by6m north-south.'
-  negative: 文字、人物、水印、现代物、背景场景、厚地台、裁边、透视汇聚
-  references:
-  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_north/assets/default/baseline/building-map/bld_kit_song_dali_house.png
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T21:16:29.011Z'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-d3a6c032-2b50-49eb-8b0f-df247b786295.png
-  size: 508x349
-  sha256: edab76ba9c8f8da4a89ae53513c140f1e1876fd30de14ec30860e3e5d09dfb8b
-  status: candidate
-  building:
-    type: bld_kit_qing_north_house_large
-    footprint:
-    - 7
-    - 6
-    anchor:
-    - 281.8287
-    - 226.4699
-    era: qing_north
-  footprint_m:
-  - 7
-  - 6
-  entrance:
-    edge: S
-    offset_cells: 3
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 416
-    - 208
-    ground_width_px: 416
-    camera_yaw_deg: 45
-    camera_elevation_deg: 30
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
-  metadata: meta/bld_kit_qing_north_house_large.yaml
-  source_sha256: c53c731ab4733b0a38ade07e99354bdc191c2a85ae3fdb09de474fd1505005df
-  processing:
-    source_archive: sources/bld_kit_qing_north_house_large.png
-    source_sha256: c53c731ab4733b0a38ade07e99354bdc191c2a85ae3fdb09de474fd1505005df
-    source_size:
-    - 1536
-    - 1024
-    crop_box:
-    - 0
-    - 21
-    - 1471
-    - 1000
-    uniform_scale_requested: 0.3237354085603113
-    resized_size:
-    - 476
-    - 317
-    rounded_effective_scale:
-    - 0.3235893949694086
-    - 0.3237997957099081
-    paste_offset:
-    - 16
-    - 16
-    final_file: bld_kit_qing_north_house_large.png
-    steps:
-    - crop alpha>0 bbox
-    - uniform LANCZOS resize rounded to integer dimensions
-    - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 179
-      - 624
-      front:
-      - 903
-      - 976
-      right:
-      - 1464
-      - 718
-    source_axis_slopes:
-    - 0.4861878453038674
-    - -0.45989304812834225
-    axis_tolerance: 0.03
-    axis_pass: false
-    source_width_depth_ratio: 1.2905525846702317
-    expected_width_depth_ratio: 1.1666666666666667
-    ratio_relative_error: 0.10618792971734137
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: false
-    measurement_uncertainty_source_px: 3
-    precision_note: 人工读可见底边±3px；非3D测绘；几何未通过仍保留candidate并单列告警。
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 508
-    - 349
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 108812
-    alpha_partial_pixels: 67668
-    alpha_opaque_pixels: 812
-    alpha_nonzero_bbox:
-    - 16
-    - 16
-    - 492
-    - 328
-    transparent_margins_px:
-    - 16
-    - 16
-    - 16
-    - 21
-    border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_house_large.json
-  notes: 2候选选1；第1张宽深比更接近。已view_image及RGBA浅底合成确认完整透明、无实际光晕。；匿名北方建筑组合（原创扩展），待作者审批。
 - id: bld_kit_qing_north_house_small
   file: bld_kit_qing_north_house_small.png
   category: building-map
   style: default
   subject: 小民居
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG'
-    purpose: 普通胡同民居的灰瓦、灰砖、木窗与低矮尺度；现代现状仅作形制复核。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: historical-scene. ONE isolated transparent sprite for a realistic historical Chinese town game. Early-to-mid Qing NORTH CHINA, anonymous Beijing/Shengjing/Jinan architectural concept, not a specific monument reconstruction. Match the attached Song asset ONLY for realistic material texture, fine detail density, restrained weathering, lighting and game sprite rendering; CHANGE architectural forms to Qing northern grey-brick, grey-tile and dark timber. Orthographic DIMETRIC, yaw45 elevation30, STRICT 2:1 ground plane, east ground axis screen lower-right slope +0.5 and north upper-right slope -0.5, parallel lines NO perspective convergence. South doorway faces screen lower-left. Draw a thin rectangular ground boundary, entire footprint with visible left, front and right corners, NO thick floating base. Keep the entire sprite and soft contact shadow inside generous 10% transparent margins. TRUE transparent RGBA background. Light from screen UPPER LEFT, short soft contact shadow lower-right. Grey fired brick, matte grey barrel tiles with straight sober ridges, northern hard-gable walls, dark brown wooden lattice windows, no Jiangnan whitewashed tourist style. No text, pseudo-writing, plaques, characters, people, flags, modern objects, sky, horizon, landscape, trees, water or road outside footprint, no saturated lighting, cartoon, plastic, borders or watermark. A modest single-storey northern commoner''s cottage, three bays, simple straight hard-gable grey tile roof, exposed grey brick gable walls, dark wooden door and fine lattice windows, no gilding or carved grand gateway. Footprint 6m east-west by5m north-south.'
-  negative: 文字、人物、水印、现代物、背景场景、厚地台、裁边、透视汇聚
+  prompt: 'Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese small commoner''s courtyard house map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: compact three-bay single-storey north room; low hard-gable roof, moderate shallow pitch, grey clay pan-and-cover tiles in tight courses, plain straight ridge with brick end caps and no beasts; no dougong; grey-blue fired-brick lower wall, limewashed infill, rough grey-stone footing; plain plank door, sparse square-lattice paper windows, low front wall and simple roofed gateway.
+
+
+    Registered logical footprint remains 6 by 5; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
   references:
-  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_north/assets/default/baseline/building-map/bld_kit_song_dali_house.png
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T21:12:54.116Z'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-1b6afc17-9157-4960-80f9-1e3d6e61a9c6.png
-  size: 410x348
-  sha256: 3d9e11f2d87c503a0256357dbdd7cef8fd5e4dd20c8ab28ead6ba72a6934d6ba
+  - title: File:Peking Hutong courtyard.JPG
+    url: https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG
+    used_detail: 北京胡同院落的灰瓦硬山、青砖围合、石基与院落尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Shiyuan tianjin doorways.jpg
+    url: https://commons.wikimedia.org/wiki/File:Shiyuan_tianjin_doorways.jpg
+    used_detail: 天津石家大院的门道比例、砖雕收口、青砖与石基层次
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_house.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 456x355
+  sha256: 1a915759f95eaff009b34e541d46787a0236633d22433543013782ac4c54ed04
   status: candidate
+  candidate_count: 2
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 76870dc11df598b4c7dd526518992322177627edc974e09eda02d3ccb51139a6
+  source_size:
+  - 1374
+  - 1145
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 96
+    - 130
+    - 1306
+    - 1071
+    uniform_scale: 0.31239669421487604
+    resized_size:
+    - 378
+    - 294
+    paste_offset:
+    - 39
+    - 30
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：compact three-bay single-storey north room; low hard-gable roof, moderate shallow pitch, grey clay pan-and-cover tiles in tight courses, plain straight ridge with brick end caps and no beasts; no dougong; grey-blue fired-brick lower wall, limewashed infill, rough grey-stone footing; plain plank door, sparse square-lattice paper windows, low front wall and simple roofed gateway；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
   building:
     type: bld_kit_qing_north_house_small
     footprint:
     - 6
     - 5
     anchor:
-    - 216.7143
-    - 229.8152
+    - 239.714
+    - 223.647
     era: qing_north
   footprint_m:
   - 6
@@ -693,789 +78,239 @@
   entrance:
     edge: S
     offset_cells: 2
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 352
-    - 176
-    ground_width_px: 352
-    camera_yaw_deg: 45
-    camera_elevation_deg: 30
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
-  metadata: meta/bld_kit_qing_north_house_small.yaml
-  source_sha256: 469fe12cb171a1dbe436535fa091021a88d3e981ee46e8276435a91fd67d36c0
-  processing:
-    source_archive: sources/bld_kit_qing_north_house_small.png
-    source_sha256: 469fe12cb171a1dbe436535fa091021a88d3e981ee46e8276435a91fd67d36c0
-    source_size:
-    - 1367
-    - 1151
-    crop_box:
-    - 0
-    - 21
-    - 1323
-    - 1125
-    uniform_scale_requested: 0.2859463850528026
-    resized_size:
-    - 378
-    - 316
-    rounded_effective_scale:
-    - 0.2857142857142857
-    - 0.286231884057971
-    paste_offset:
-    - 16
-    - 16
-    final_file: bld_kit_qing_north_house_small.png
-    steps:
-    - crop alpha>0 bbox
-    - uniform LANCZOS resize rounded to integer dimensions
-    - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 87
-      - 736
-      front:
-      - 772
-      - 1081
-      right:
-      - 1318
-      - 800
-    source_axis_slopes:
-    - 0.5036496350364964
-    - -0.5146520146520146
-    axis_tolerance: 0.03
-    axis_pass: true
-    source_width_depth_ratio: 1.2545787545787546
-    expected_width_depth_ratio: 1.2
-    ratio_relative_error: 0.04548229548229554
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
-    measurement_uncertainty_source_px: 3
-    precision_note: 人工读可见底边±3px；非3D测绘；几何未通过仍保留candidate并单列告警。
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 410
-    - 348
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 86835
-    alpha_partial_pixels: 55156
-    alpha_opaque_pixels: 689
-    alpha_nonzero_bbox:
-    - 16
-    - 50
-    - 394
-    - 323
-    transparent_margins_px:
-    - 16
-    - 50
-    - 16
-    - 25
-    border_alpha_max: 0
+- id: bld_kit_qing_north_house_large
+  file: bld_kit_qing_north_house_large.png
+  category: building-map
+  style: default
+  subject: 大民居
+  prompt: 'Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese large but non-elite courtyard dwelling map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: three-bay north hall plus one short side wing; hard-gable grey-tile roofs with restrained curvature, brick ridge end caps and no beasts; simple post-and-beam frame without formal dougong; grey-blue brick lower walls, limewashed upper panels, rubble-stone footing; geometric square-lattice paper windows, plain plank doors, modest screen wall and roofed street gate.
+
+
+    Registered logical footprint remains 7 by 6; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:Peking Hutong courtyard.JPG
+    url: https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG
+    used_detail: 北京胡同院落的灰瓦硬山、青砖围合、石基与院落尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Shiyuan tianjin doorways.jpg
+    url: https://commons.wikimedia.org/wiki/File:Shiyuan_tianjin_doorways.jpg
+    used_detail: 天津石家大院的门道比例、砖雕收口、青砖与石基层次
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_house.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 574x444
+  sha256: bc4052913c2f45574d70e9f3d6287066d2191e12284f5672301ae3c5da181011
+  status: candidate
   candidate_count: 1
-  source_record: sources/bld_kit_qing_north_house_small.json
-  notes: 已view_image；灰砖硬山、无字无人物，檐口完整；底面有微量草迹。；匿名北方建筑组合（原创扩展），待作者审批。
-- id: bld_kit_qing_north_inn
-  file: bld_kit_qing_north_inn.png
-  category: building-map
-  style: default
-  subject: 客栈
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Bead_Street,_Peking,_1930_(6766548719).jpg'
-    purpose: 北京街巷连续商业立面与檐下尺度；年代晚于目标，只复核街面关系。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: historical-scene. Generate ONE isolated Qing northern Chinese architectural game sprite on TRUE RGBA transparent background. Realistic matte grey-brick, grey-tile, aged dark wood with fine detail and restrained natural colors. A northern roadside courtyard inn with two-storey main guest wing, one-storey side wing and large south entrance, enclosed timber upper storey windows, grey brick enclosure, grey tile gabled roofs, several plain bedding rolls and travel baskets sheltered inside. No nameboard, no lantern rows, no extravagant balcony. Footprint 12m east-west by9m north-south. CORRECT CAMERA is orthographic 2:1 dimetric. BOTH ground axes have identical absolute slope one vertical pixel per TWO horizontal pixels. The visible front/SOUTH edge runs from left corner diagonally DOWN RIGHT with slope EXACT +0.5. The visible right/EAST edge runs from front corner UP RIGHT with slope EXACT -0.5. No perspective. Width:depth is 12:9. South facade faces lower left. Do NOT make the right side steeper or longer than specified. Whole thin base rectangular parallelogram has all front,left,right vertices clear. Topmost roof below top margin. No text or signboards, people, background, thick pedestal, scenery, floor, sky, halo, glow, watermark. Light upper left and tiny contact shadow lower-right. Generous transparent padding. Match realistic sober historical game sprites, not cartoon or toy.'
-  negative: 文字、人物、水印、现代物、背景场景、厚地台、裁边、透视汇聚
-  references: []
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T21:27:00.327Z'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-d26ecd8b-be71-429b-a167-6d6995ca392c.png
-  size: 724x541
-  sha256: d2015ffa6da2269543267134d0da8aedb3d0660e55ea8732e4d5f38773a676ed
-  status: candidate
-  building:
-    type: bld_kit_qing_north_inn
-    footprint:
-    - 12
-    - 9
-    anchor:
-    - 362.252
-    - 351.8076
-    era: qing_north
-  footprint_m:
-  - 12
-  - 9
-  entrance:
-    edge: S
-    offset_cells: 5
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 672
-    - 336
-    ground_width_px: 672
-    camera_yaw_deg: 45
-    camera_elevation_deg: 30
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
-  metadata: meta/bld_kit_qing_north_inn.yaml
-  source_sha256: da18571d42dcd3679ef4c1bf0ec103ecc427f718867ec8cdadcf26ffdfec04c3
-  processing:
-    source_archive: sources/bld_kit_qing_north_inn.png
-    source_sha256: da18571d42dcd3679ef4c1bf0ec103ecc427f718867ec8cdadcf26ffdfec04c3
-    source_size:
-    - 1448
-    - 1086
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: fb52ebedf31778903eb1eadf5a14811769993eb816ef5ea08ac7a9eca8e97e50
+  source_size:
+  - 1355
+  - 1161
+  normalization:
+    significant_alpha_threshold_for_crop: 8
     crop_box:
-    - 43
-    - 54
-    - 1416
-    - 1062
-    uniform_scale_requested: 0.5037481259370314
+    - 30
+    - 95
+    - 1320
+    - 1092
+    uniform_scale: 0.3689922480620155
     resized_size:
-    - 692
-    - 508
-    rounded_effective_scale:
-    - 0.5040058266569556
-    - 0.503968253968254
+    - 476
+    - 368
     paste_offset:
-    - 16
-    - 16
-    final_file: bld_kit_qing_north_inn.png
-    steps:
-    - crop alpha>0 bbox
-    - uniform LANCZOS resize rounded to integer dimensions
-    - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
-    - review-10 PIL affine y'=a*x+b*y+c
-    - crop alpha>0 bbox and restore transparent padding
-  geometry_qa:
-    final_corners_px:
-      left:
-      - 26.080116533139112
-      - 323.83527058330407
-      front:
-      - 418.19664967225054
-      - 519.8935371528597
-      right:
-      - 698.4238892935178
-      - 379.7799173422261
-    final_axis_slopes:
-    - 0.49999999999999983
-    - -0.4999999999999999
-    accepted_slope_range:
-    - 0.4
-    - 0.62
-    axis_pass: true
-    final_width_depth_ratio: 1.3992805755395683
-    expected_width_depth_ratio: 1.3333333333333333
-    ratio_relative_error: 0.049460431654676285
-    ratio_tolerance: 0.3
-    ratio_pass: true
-    measurement_note: 审核人工测点经同一PIL仿射矩阵变换；锚点取校正后L/R底面中点。
+    - 49
+    - 38
+    minimum_clear_margin: at least 8% per side
   pixel_qa:
     mode: RGBA
-    size:
-    - 724
-    - 541
     alpha_extrema:
     - 0
     - 255
-    alpha_zero_pixels: 182819
-    alpha_partial_pixels: 207606
-    alpha_opaque_pixels: 1259
-    alpha_nonzero_bbox:
-    - 16
-    - 16
-    - 708
-    - 525
-    transparent_margins_px:
-    - 16
-    - 16
-    - 16
-    - 16
     border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_inn.json
-  notes: 2候选选2；面向及宽深关系改善，逐张view_image，仍记录轴率残差。；匿名北方建筑组合（原创扩展），待作者审批。 第10轮按审核裁定仅作PIL仿射几何校正；双轴进入0.40–0.62，仍为candidate。
-  affine_qa:
-    input_archive: sources/bld_kit_qing_north_inn__before_affine_r10.png
-    input_sha256: a4ed8f37eec2f469b28b96245651e59e8afbfff5663c85eda7d139ca3f37d6df
-    forward_xy:
-    - 1
-    - 0
-    - 0.12060547813551176
-    - 1.039404732188628
-    - 0
-    - 0
-    work_alpha_bbox:
-    - 16
-    - 65
-    - 708
-    - 574
-    padding_px: 16
-- id: bld_kit_qing_north_manor
-  subject: 清初至清中北方大院（原创扩展；具体细部待考）
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Shiyuan_tianjin_doorways.jpg'
-    purpose: 晚清天津大院门道与砖木尺度；仅作大院入口形制辅助，不外推为清初原样。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: sketch-to-render. Texture and detail this architectural blockout into one realistic early-to-mid Qing north China manor courtyard map sprite. CRITICAL pixel-locked orthographic camera: keep EXACT same ground-contact outer quadrilateral and straight base edges as input. Do NOT reposition, enlarge, or recenter layout. On1536x1024 canvas left ground corner remains(188,540), foreground(828,860), right(1348,600), rear(708,280). Width16m depth13m, L-F=(640,320), F-R=(520,-260). Both planar axes slopes+0.5 and-0.5, no perspective convergence. The geometric silhouette is immutable. Replace flat blocks with realistic fine aged gray brick, small matte charcoal-gray hard-gable roof tiles, dark brown timber lattice doors/windows, plain stone paving. Prosperous northern domestic courtyard, one-story rear domestic hall and two short wings, a modest recessed brick front doorway. All roofs gray, no royal green/yellow tiles, no painted palace beams or gilding. Fine realistic historical construction, naturally restrained weathering and dense tiled/brick details for high-resolution Chinese RPG map, not cartoon/low-poly. Keep the foreground perimeter a SINGLE STRAIGHT LINE, no zigzag, no projecting step or doorstep; place steps entirely inside. Same fixed camera, same level rectangular ground footprint, upright verticals; only architectural surface/detail changes. Upper-left sun, minimal short lower-right contact shadow. Transparent RGBA outside building, fully opaque building interior. No surrounding scenery/floor, fog, halo, bloom, glow, background, text, logo, people or modern objects. Anonymous original northern historical interpretation, not a named monument. All tips visible with clear margins.'
-  negative: 文字、水印、现代元素、人物、景观背景、厚地台、裁切、透视汇聚、黄色帝王琉璃瓦
-  references:
-  - sources/bld_kit_qing_north_manor__revision2_c1_guide.png
-  source_path: /Users/bytedance/.codex/generated_images/01a0f44f-edf2-7572-a4e2-6e0363ecf5e8/exec-7d1dedf9-a8e9-4ffe-89fd-4f49127b268a.png
-  created: '2026-09-30T22:01:59.323534+00:00'
-  created_time_basis: 本轮归档PNG本地mtime；非工具披露的服务端时间
-  file: bld_kit_qing_north_manor.png
-  category: building-map
-  style: default
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  tool: built-in image_gen
-  size: 1060x799
-  sha256: f9aad23998adf63ecbd24aef75f2405b8505e8e8416f4532f7bce9a7bbaccccc
-  status: candidate
+  notes: 历史细节清单：three-bay north hall plus one short side wing; hard-gable grey-tile roofs with restrained curvature, brick ridge end caps and no beasts; simple post-and-beam frame without formal dougong; grey-blue brick lower walls, limewashed upper panels, rubble-stone footing; geometric square-lattice paper windows, plain plank doors, modest screen wall and roofed street gate；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
   building:
-    type: bld_kit_qing_north_manor
-    footprint:
-    - 16
-    - 13
-    anchor:
-    - 572.2096
-    - 418.0878
-    era: qing_north
-  footprint_m:
-  - 16
-  - 13
-  entrance:
-    edge: S
-    offset_cells: 7
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 928
-    - 464
-    ground_width_px: 928
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
-  metadata: meta/bld_kit_qing_north_manor.yaml
-  source_sha256: 5168f5141e134569292ff5b1d04734725bcfb2339337911d8d79f281bff2c9cc
-  processing:
-    source_archive: sources/bld_kit_qing_north_manor__revision2_c1.png
-    source_sha256: 5168f5141e134569292ff5b1d04734725bcfb2339337911d8d79f281bff2c9cc
-    source_size:
-    - 1536
-    - 1024
-    crop_box:
-    - 65
-    - 44
-    - 1382
-    - 1024
-    uniform_scale_requested: 0.7746243739565943
-    resized_size:
-    - 1020
-    - 759
-    rounded_effective_scale:
-    - 0.7744874715261959
-    - 0.7744897959183673
-    paste_offset:
-    - 20
-    - 20
-    - 1040
-    - 779
-    final_file: bld_kit_qing_north_manor.png
-    steps:
-    - crop to alpha>0 bounding box
-    - uniform LANCZOS resize; dimensions rounded to nearest px
-    - paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding
-    anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 179
-      - 517
-      front:
-      - 851
-      - 892
-      right:
-      - 1377
-      - 599
-    source_axis_slopes:
-    - 0.5580357142857143
-    - -0.5570342205323194
-    axis_tolerance: 0.03
-    axis_pass: false
-    source_width_depth_ratio: 1.2775665399239544
-    expected_width_depth_ratio: 1.2307692307692308
-    ratio_relative_error: 0.03802281368821281
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
-    measurement_uncertainty_source_px: 3
-    precision_note: 本轮独立人工读真实墙脚L/F/R，±3px；后角L+R-F推算；底心(L+R)/2。未仿射或非等比纠偏。
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 1060
-    - 799
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 509595
-    alpha_partial_pixels: 336517
-    alpha_opaque_pixels: 828
-    alpha_near_opaque_pixels: 328195
-    alpha_nonzero_bbox:
-    - 20
-    - 20
-    - 1040
-    - 779
-    transparent_margins_px:
-    - 20
-    - 20
-    - 20
-    - 20
-    border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_manor__revision2_c1.json
-  rejected_source_record: sources/bld_kit_qing_north_manor__rejected.json
-  notes: 大院底面折线已消除，16:13占地比误差3.80%；两轴+0.5580/-0.5570一致但整体俯视仍偏高，严格±0.03阈值未通过；选择比第二候选更对称且比例更准的第一候选；本轮每件2候选选1，旧源保留；匿名清北历史意象（原创扩展），candidate，非运行时总装验收。
-- id: bld_kit_qing_north_market_stall
-  file: bld_kit_qing_north_market_stall.png
-  category: building-map
-  style: default
-  subject: 市场棚
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Bead_Street,_Peking,_1930_(6766548719).jpg'
-    purpose: 老北京街市棚幌与临街摊位尺度；年代晚于目标，只复核功能可读性。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: sketch-to-render. Image 1 is a precisely measured 3-by-2 market stall BLOCKOUT, not the desired art style. TEXTURE AND DETAIL THIS PIXEL-LOCKED BLOCKOUT into a sober highly realistic Qing northern Chinese market-stall game sprite. Keep its precise ground quadrilateral and camera unchanged. Do NOT recenter, enlarge or stretch. Its ground corners LEFT(180,555), FRONT(840,885), RIGHT(1280,665), REAR(620,335). The two visible ground edges have EXACT slopes +0.5 and -0.5 and horizontal lengths660 and440: ratio3:2. Keep the top four corners and posts directly above those base corners. Replace flat tan canopy with sagging natural unbleached coarse linen tied with ropes to four plain aged dark timber posts. Sagging is permitted only between fixed corners; canopy corners remain at given geometry. Add one simple wooden table with shallow bamboo grain and vegetable baskets beneath canopy. All table edges use the same two axes. Ground pad is one thin rectangular firm-earth slab with perfectly straight edges and clear left/front/right corners. Remove all outlines through natural fine textures. Texture density and realistic warm-gray sober tones matching a historical Chinese city-map sprite kit, not cartoon, not low-poly. Soft upper-left lighting, tiny lower-right contact shadow. The rectangular plan is the key: preserve its width/depth and BOTH slopes symmetrically exactly. TRUE transparent RGBA background outside the object. Complete isolated sprite with transparent margins. No lettering, guides, diagrams, labels, people, modern objects, signage, thick pedestal, landscape, watermark, halo or glow. ONE small market stall.'
-  negative: 文字、人物、水印、现代物、背景场景、厚地台、裁边、透视汇聚
-  references:
-  - sources/bld_kit_qing_north_market_stall__revision2_guide.png
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T22:01:45.297486+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f450-fed4-71d2-8b8a-19151617b4b7/exec-98bbed2c-3400-43cf-9956-c6c460096de8.png
-  size: 256x256
-  sha256: dd2f74387a33873d49c7802299f303c04ab99bb161a6384af4776d9691147678
-  status: candidate
-  building:
-    type: bld_kit_qing_north_market_stall
-    footprint:
-    - 3
-    - 2
-    anchor:
-    - 129.2088
-    - 144.8799
-    era: qing_north
-  footprint_m:
-  - 3
-  - 2
-  entrance:
-    edge: S
-    offset_cells: 1
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 160
-    - 80
-    ground_width_px: 160
-    camera_yaw_deg: 45
-    camera_elevation_deg: 30
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
-  metadata: meta/bld_kit_qing_north_market_stall.yaml
-  source_sha256: 97b189fdf5d9b9268c78722f3bd1a6ea2a7701ff53b03af5ffb5c78f19f4b3fd
-  processing:
-    source_archive: sources/bld_kit_qing_north_market_stall__revision2.png
-    source_sha256: 97b189fdf5d9b9268c78722f3bd1a6ea2a7701ff53b03af5ffb5c78f19f4b3fd
-    source_size:
-    - 1536
-    - 1024
-    crop_box:
-    - 0
-    - 9
-    - 1504
-    - 1000
-    uniform_scale_requested: 0.13400335008375208
-    resized_size:
-    - 202
-    - 133
-    rounded_effective_scale:
-    - 0.13430851063829788
-    - 0.13420787083753785
-    paste_offset:
-    - 27
-    - 61
-    final_file: bld_kit_qing_north_market_stall.png
-    steps:
-    - crop alpha>0 bbox
-    - uniform LANCZOS resize rounded to integer dimensions
-    - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 164
-      - 557
-      front:
-      - 880
-      - 944
-      right:
-      - 1358
-      - 711
-    source_axis_slopes:
-    - 0.5405027932960894
-    - -0.4874476987447699
-    axis_tolerance: 0.03
-    axis_pass: false
-    source_width_depth_ratio: 1.497907949790795
-    expected_width_depth_ratio: 1.5
-    ratio_relative_error: 0.001394700139469962
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
-    measurement_uncertainty_source_px: 3
-    precision_note: 人工读同一地台上表面三角点，±3px不确定性；另一代理独立复核。底面中心取(L+R)/2，后角由L+R−F推算；未以变形纠偏。
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 256
-    - 256
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 53205
-    alpha_partial_pixels: 11775
-    alpha_opaque_pixels: 556
-    alpha_nonzero_bbox:
-    - 46
-    - 61
-    - 227
-    - 191
-    transparent_margins_px:
-    - 46
-    - 61
-    - 29
-    - 65
-    border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_market_stall__revision2.json
-  notes: 第2次运行返修，2候选选2；体块仅为image_gen生成参考，成品仅裁切、等比LANCZOS缩放、透明留白。逐张view_image并浅底alpha合成检查。3×2占地宽深误差0.14%；前轴斜率0.5405仍较0.5偏0.0405，超过现有±0.03阈值，保留如实告警。清北匿名功能建筑（原创扩展）；status仍为candidate。
-- id: bld_kit_qing_north_pagoda
-  subject: 清初至清中北方汉地砖佛塔意象（原创扩展；具体细部待考）
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Cishou_Temple_Pagoda.JPG'
-    purpose: 北方砖塔材质、竖向比例与檐层节奏；参考为密檐塔，成品六层楼阁式并非其复原。
-    used_as: post_generation_form_review_only
-  prompt: Classic 2:1 ISOMETRIC GAME MAP GEOMETRY with realistic architectural textures, not pixel-art. Create one isolated transparent sprite of a northern Chinese five-tier gray BRICK Buddhist pagoda with octagonal tapering shaft, corbelled masonry tier cornices and small simple finial, standing on a thin SQUARE stone footing, no Tibetan stupa form. Exact orthographic45-degree azimuth30-degree elevation, both ground axes slope precisely 1 vertical unit per 2 horizontal units, front-left edge+0.5 and front-right edge-0.5. The rectangular base is 7 meters east-west by 7 meters north-south, projected front-left edge 7 units and front-right edge 7 units. South entrance faces lower-left. Draw the entire thin rectangular base with clear left/front/right corners, correct2:1 diamond form, no tall pedestal. Northern China early-to-mid Qing original historical-game module. Warm-neutral soft top-left lighting; tiny contact shadow only. Fine gray tile and gray brick material details, restrained realism matching a Song-era city-building kit. TRUE TRANSPARENT ALPHA BACKGROUND; no glow, halo, mist, shadows around silhouette, no floor, no backdrop. Keep complete silhouette comfortably inside canvas with15% fully transparent margin all sides. No visible writing, numbers, guides, modern elements, people, scenery or checkerboard. Asset bld_kit_qing_north_pagoda.
-  negative: 文字、水印、现代元素、人物、景观背景、厚地台、裁切、透视汇聚、黄色帝王琉璃瓦
-  references: []
-  source_path: /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-51e7d194-815f-47f2-8f52-d000e6764dd7.png
-  created: '2026-09-30T21:25:26.805814+00:00'
-  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端时间
-  file: bld_kit_qing_north_pagoda.png
-  category: building-map
-  style: default
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  tool: built-in image_gen
-  size: 603x856
-  sha256: 42aaad18f986eac38cc1811c8c23636308ce7bb7d650bf9c60751cf02a89f6af
-  status: candidate
-  building:
-    type: bld_kit_qing_north_pagoda
+    type: bld_kit_qing_north_house_large
     footprint:
     - 7
-    - 7
+    - 6
     anchor:
-    - 245.4185
-    - 712.1429
+    - 314.829
+    - 286.247
     era: qing_north
   footprint_m:
   - 7
-  - 7
+  - 6
   entrance:
     edge: S
     offset_cells: 3
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 448
-    - 224
-    ground_width_px: 448
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
-  metadata: meta/bld_kit_qing_north_pagoda.yaml
-  source_sha256: edb9af96ecfbd37618fb6392d0fd8a9bbb85ba645fb784288d8d8b60ba9537a6
-  processing:
-    source_archive: sources/bld_kit_qing_north_pagoda.png
-    source_sha256: edb9af96ecfbd37618fb6392d0fd8a9bbb85ba645fb784288d8d8b60ba9537a6
-    source_size:
-    - 1295
-    - 1214
-    crop_box:
-    - 338
-    - 54
-    - 1111
-    - 1174
-    uniform_scale_requested: 0.7284552845528456
-    resized_size:
-    - 563
-    - 816
-    rounded_effective_scale:
-    - 0.7283311772315654
-    - 0.7285714285714285
-    paste_offset:
-    - 20
-    - 20
-    final_file: bld_kit_qing_north_pagoda.png
-    steps:
-    - crop to alpha>0 bounding box
-    - uniform LANCZOS resize; dimensions rounded to nearest px
-    - paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding
-    anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 340
-      - 1004
-      front:
-      - 649
-      - 1162
-      right:
-      - 955
-      - 1004
-    source_axis_slopes:
-    - 0.511326860841424
-    - -0.5163398692810458
-    axis_tolerance: 0.03
-    axis_pass: true
-    source_width_depth_ratio: 1.0098039215686274
-    expected_width_depth_ratio: 1.0
-    ratio_relative_error: 0.009803921568627416
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
-    measurement_uncertainty_source_px: 3
-    precision_note: 人工读可见底面三角点，±3px不确定性；底面中心取(L+R)/2。后角为L+R−F推算，非3D测绘；未以变形纠偏。
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 603
-    - 856
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 317816
-    alpha_partial_pixels: 197844
-    alpha_opaque_pixels: 508
-    alpha_near_opaque_pixels: 189954
-    alpha_nonzero_bbox:
-    - 20
-    - 20
-    - 583
-    - 836
-    transparent_margins_px:
-    - 20
-    - 20
-    - 20
-    - 20
-    border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_pagoda.json
-  rejected_source_record: sources/bld_kit_qing_north_pagoda__rejected.json
-  notes: 已逐张view_image检查源图及浅底alpha合成诊断：主体完整、无文字人物现代物；灰砖灰瓦暗木与宋套件细节密度相近，王府绿瓦和官式红柱区分等级。直接PNG预览的灰棕晕属于透明像素RGB，浅底alpha合成无外部光晕；未改alpha。7×7为同构功能件建议占地；六层八角汉地佛塔原创意象，不指认具体名塔或始建年代。 三角点量取在双轴±0.03/轴比10%建议容差内，仍为candidate。 最终PNG已再次逐张view_image自查；历史来源统一见prompts/building-map.md清北节及tools/agents/reports/KIT-qing_north.md §7。 提示词要求五层但候选实际六层；保留实物描述，不将提示词当成图像事实。
-- id: bld_kit_qing_north_restaurant
-  file: bld_kit_qing_north_restaurant.png
+- id: bld_kit_qing_north_courtyard
+  file: bld_kit_qing_north_courtyard.png
   category: building-map
   style: default
-  subject: 酒楼茶肆
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Bead_Street,_Peking,_1930_(6766548719).jpg'
-    purpose: 北京街巷商业立面与楼层尺度；年代晚于目标，只复核北方商业街面。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: historical-scene. ONE isolated transparent sprite for a realistic historical Chinese town game. Early-to-mid Qing NORTH CHINA, anonymous Beijing/Shengjing/Jinan architectural concept, not a specific monument reconstruction. Realistic traditional Chinese game sprite with fine natural weathered masonry, small tiled roofs, calm muted palette and believable structure. Qing northern grey-brick, grey-tile and dark timber. Orthographic DIMETRIC, yaw45 elevation30, STRICT 2:1 ground plane, east ground axis screen lower-right slope +0.5 and north upper-right slope -0.5, parallel lines NO perspective convergence. South doorway faces screen lower-left. Draw a thin rectangular ground boundary, entire footprint with visible left, front and right corners, NO thick floating base. Keep the entire sprite and soft contact shadow inside generous 10% transparent margins. TRUE transparent RGBA background. Absolutely NO ambient halo, NO glow, NO gradient floor or background of any kind. Alpha0 everywhere outside the exact object silhouette and its tiny contact shadow. Light from screen UPPER LEFT, short soft contact shadow lower-right. Grey fired brick, matte grey barrel tiles with straight sober ridges, northern hard-gable walls, dark brown wooden lattice windows, no Jiangnan whitewashed tourist style. No text, pseudo-writing, plaques, characters, people, flags, modern objects, sky, horizon, landscape, trees, water or road outside footprint, no saturated lighting, cartoon, plastic, borders or watermark. A two-storey northern tea house and restaurant, grey-brick enclosed lower walls, dark timber fine lattice windows upstairs, main grey tiled hard-gable roof with modest side wing, open front threshold reveals a few small wooden tea tables and ceramic teapots inside. No gilding, no courtyard mansion, no signboards. Footprint 12m east-west by9m north-south. CRITICAL spacious transparent framing, whole building occupies only central 75% of canvas; cropped eaves forbidden; transparent cutout no aura.'
-  negative: 文字、人物、水印、现代物、背景场景、厚地台、裁边、透视汇聚
-  references: []
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T21:20:02.351Z'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-ff497a64-5357-4fbc-a27b-c10e301acddf.png
-  size: 816x790
-  sha256: ac403c2d603fd88ca58b00f5652d88160033f018a030337bcc08190d20152dbe
+  subject: 胡同院落
+  prompt: 'Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese complete modest Beijing-style courtyard compound map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: north principal room, east and west wings and low south wall around a rectangular court; all one-storey hard-gable roofs with grey pan-and-cover tiles, plain ridges, no beasts; grey brick in running bond over stone footing; dark timber square-lattice windows and plank doors; simple roofed gateway instead of a lavish hanging-flower gate; narrow cross-shaped stone paths.
+
+
+    Registered logical footprint remains 10 by 8; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:Peking Hutong courtyard.JPG
+    url: https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG
+    used_detail: 北京胡同院落的灰瓦硬山、青砖围合、石基与院落尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Shiyuan tianjin doorways.jpg
+    url: https://commons.wikimedia.org/wiki/File:Shiyuan_tianjin_doorways.jpg
+    used_detail: 天津石家大院的门道比例、砖雕收口、青砖与石基层次
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_courtyard.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 715x555
+  sha256: a46ba2b1427daf5c67b219f48c71afd685a8aad3e648f975873d3e47e9ace1f4
   status: candidate
-  building:
-    type: bld_kit_qing_north_restaurant
-    footprint:
-    - 12
-    - 9
-    anchor:
-    - 428.3911
-    - 560.8615
-    era: qing_north
-  footprint_m:
-  - 12
-  - 9
-  entrance:
-    edge: S
-    offset_cells: 5
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 672
-    - 336
-    ground_width_px: 672
-    camera_yaw_deg: 45
-    camera_elevation_deg: 30
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
-  metadata: meta/bld_kit_qing_north_restaurant.yaml
-  source_sha256: 14826b059e961adbaba1a1a8c5f1ab74902f2fa23e54355936a57c768808020a
-  processing:
-    source_archive: sources/bld_kit_qing_north_restaurant.png
-    source_sha256: 14826b059e961adbaba1a1a8c5f1ab74902f2fa23e54355936a57c768808020a
-    source_size:
-    - 1448
-    - 1086
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 680feea2cac6aef107c01c1b7d82922e9d7024ba42f8efe243904ad6074f1c24
+  source_size:
+  - 1402
+  - 1122
+  normalization:
+    significant_alpha_threshold_for_crop: 8
     crop_box:
-    - 0
-    - 20
-    - 1401
+    - 80
+    - 81
+    - 1353
     - 1069
-    uniform_scale_requested: 0.56
+    uniform_scale: 0.46582875098193244
     resized_size:
-    - 785
-    - 587
-    rounded_effective_scale:
-    - 0.5603140613847252
-    - 0.559580552907531
+    - 593
+    - 460
     paste_offset:
-    - 16
-    - 16
-    final_file: bld_kit_qing_north_restaurant.png
-    steps:
-    - crop alpha>0 bbox
-    - uniform LANCZOS resize rounded to integer dimensions
-    - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
-    - review-10 PIL affine y'=a*x+b*y+c
-    - crop alpha>0 bbox and restore transparent padding
-  geometry_qa:
-    final_corners_px:
-      left:
-      - 92.20271234832262
-      - 525.2815261727792
-      front:
-      - 499.55103497501784
-      - 728.9556874861267
-      right:
-      - 764.5795860099928
-      - 596.4414119686393
-    final_axis_slopes:
-    - 0.49999999999999983
-    - -0.5
-    accepted_slope_range:
-    - 0.4
-    - 0.62
-    axis_pass: true
-    final_width_depth_ratio: 1.5369978858350954
-    expected_width_depth_ratio: 1.3333333333333333
-    ratio_relative_error: 0.15274841437632158
-    ratio_tolerance: 0.3
-    ratio_pass: true
-    measurement_note: 审核人工测点经同一PIL仿射矩阵变换；锚点取校正后L/R底面中点。
+    - 61
+    - 47
+    minimum_clear_margin: at least 8% per side
   pixel_qa:
     mode: RGBA
-    size:
-    - 816
-    - 790
     alpha_extrema:
     - 0
     - 255
-    alpha_zero_pixels: 351956
-    alpha_partial_pixels: 291309
-    alpha_opaque_pixels: 1375
-    alpha_nonzero_bbox:
-    - 16
-    - 16
-    - 800
-    - 774
-    transparent_margins_px:
-    - 16
-    - 16
-    - 16
-    - 16
     border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_restaurant.json
-  notes: 2候选选1；第1候选矩形底边清晰，第2候选平面凹凸且偏轴。；匿名北方建筑组合（原创扩展），待作者审批。 第10轮按审核裁定仅作PIL仿射几何校正；双轴进入0.40–0.62，仍为candidate。
-  affine_qa:
-    input_archive: sources/bld_kit_qing_north_restaurant__before_affine_r10.png
-    input_sha256: 21f5ebcaedecd0c2b2a2de965d36c2d0a83aa98a50e10b19e852668da40669fc
-    forward_xy:
-    - 1
-    - 0
-    - 0.08768593471191066
-    - 1.282671992837194
-    - 0
-    - 0
-    work_alpha_bbox:
-    - 16
-    - 72
-    - 800
-    - 830
-    padding_px: 16
+  notes: 历史细节清单：north principal room, east and west wings and low south wall around a rectangular court; all one-storey hard-gable roofs with grey pan-and-cover tiles, plain ridges, no beasts; grey brick in running bond over stone footing; dark timber square-lattice windows and plank doors; simple roofed gateway instead of a lavish hanging-flower gate; narrow cross-shaped stone paths；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_courtyard
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 351.589
+    - 319.223
+    era: qing_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 4
 - id: bld_kit_qing_north_shop_1f
   file: bld_kit_qing_north_shop_1f.png
   category: building-map
   style: default
   subject: 单层商铺
-  historical_references:
-  - url: 'http://world.people.com.cn/n1/2020/0413/c1002-31671379.html'
-    purpose: Thomas Child十九世纪七十年代北京商铺影像；只复核灰砖店面、檐口与开间。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: historical-scene. ONE isolated transparent sprite for a realistic historical Chinese town game. Early-to-mid Qing NORTH CHINA, anonymous Beijing/Shengjing/Jinan architectural concept, not a specific monument reconstruction. Realistic traditional Chinese game sprite with fine natural weathered masonry, small tiled roofs, calm muted palette and believable structure. Qing northern grey-brick, grey-tile and dark timber. Orthographic DIMETRIC, yaw45 elevation30, STRICT 2:1 ground plane, east ground axis screen lower-right slope +0.5 and north upper-right slope -0.5, parallel lines NO perspective convergence. South doorway faces screen lower-left. Draw a thin rectangular ground boundary, entire footprint with visible left, front and right corners, NO thick floating base. Keep the entire sprite and soft contact shadow inside generous 10% transparent margins. TRUE transparent RGBA background. Absolutely NO ambient halo, NO glow, NO gradient floor or background of any kind. Alpha0 everywhere outside the exact object silhouette and its tiny contact shadow. Light from screen UPPER LEFT, short soft contact shadow lower-right. Grey fired brick, matte grey barrel tiles with straight sober ridges, northern hard-gable walls, dark brown wooden lattice windows, no Jiangnan whitewashed tourist style. No text, pseudo-writing, plaques, characters, people, flags, modern objects, sky, horizon, landscape, trees, water or road outside footprint, no saturated lighting, cartoon, plastic, borders or watermark. A single-storey hutong street shop, grey brick walls with hard-gable grey tiled roof, open dark timber shopfront, small blank cloth awning, low counter and baskets of dry goods inside footprint, no labels or signs. Footprint 7m east-west by5m north-south. Background is truly fully transparent like a clean cutout product PNG, with NO glow or haze around the building.'
-  negative: 文字、人物、水印、现代物、背景场景、厚地台、裁边、透视汇聚
-  references: []
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T21:18:20.821Z'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-5123be2a-d130-451e-bbd1-a163a60d74eb.png
-  size: 477x356
-  sha256: 5614938310feb31c6bf4492b3ba276c876a346dc2e4d2cd96ab2dfa0f51d3fb8
+  prompt: 'Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese one-storey northern street shop map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: three narrow bays behind a shallow timber shopfront; hard-gable grey-tile roof, plain ridge, no beasts; grey brick side walls on stone sill; removable plank shutters and square-lattice transoms; restrained dark timber fascia with no readable sign; narrow cloth awning and counter entirely inside footprint.
+
+
+    Registered logical footprint remains 7 by 5; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:Thomas Child, Peking Streets.jpg
+    url: https://commons.wikimedia.org/wiki/File:Thomas_Child,_Peking_Streets.jpg
+    used_detail: 晚清北京街道的连续铺面、檐口高度与木作尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:William Henry Jackson, Street scene, Peking, 1895.jpg
+    url: https://commons.wikimedia.org/wiki/File:William_Henry_Jackson,_Street_scene,_Peking,_1895.jpg
+    used_detail: 1895年北京街景的双层铺屋、街面开间与遮棚关系
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_shop_1f.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 504x431
+  sha256: 6cba66e9f664f6b436bec8defbf9d12824c7213a24f45dc9c50364ec530453b9
   status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: ab1a4b872a7ec035b7504aeb6b5c8352d90f358d166759e4bd860f0b0244c8ec
+  source_size:
+  - 1484
+  - 1060
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 168
+    - 25
+    - 1352
+    - 1036
+    uniform_scale: 0.3530405405405405
+    resized_size:
+    - 418
+    - 357
+    paste_offset:
+    - 43
+    - 37
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：three narrow bays behind a shallow timber shopfront; hard-gable grey-tile roof, plain ridge, no beasts; grey brick side walls on stone sill; removable plank shutters and square-lattice transoms; restrained dark timber fascia with no readable sign; narrow cloth awning and counter entirely inside footprint；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
   building:
     type: bld_kit_qing_north_shop_1f
     footprint:
     - 7
     - 5
     anchor:
-    - 239.7217
-    - 247.5377
+    - 239.722
+    - 293.705
     era: qing_north
   footprint_m:
   - 7
@@ -1483,123 +318,79 @@
   entrance:
     edge: S
     offset_cells: 3
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 384
-    - 192
-    ground_width_px: 384
-    camera_yaw_deg: 45
-    camera_elevation_deg: 30
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
-  metadata: meta/bld_kit_qing_north_shop_1f.yaml
-  source_sha256: 46e0bb96e900edcc0ee9394811077793977c467b968ff97988753ec0841b7733
-  processing:
-    source_archive: sources/bld_kit_qing_north_shop_1f.png
-    source_sha256: 46e0bb96e900edcc0ee9394811077793977c467b968ff97988753ec0841b7733
-    source_size:
-    - 1484
-    - 1060
-    crop_box:
-    - 27
-    - 0
-    - 1484
-    - 1060
-    uniform_scale_requested: 0.3054892601431981
-    resized_size:
-    - 445
-    - 324
-    rounded_effective_scale:
-    - 0.30542210020590255
-    - 0.30566037735849055
-    paste_offset:
-    - 16
-    - 16
-    final_file: bld_kit_qing_north_shop_1f.png
-    steps:
-    - crop alpha>0 bbox
-    - uniform LANCZOS resize rounded to integer dimensions
-    - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 131
-      - 728
-      front:
-      - 867
-      - 1038
-      right:
-      - 1388
-      - 787
-    source_axis_slopes:
-    - 0.421195652173913
-    - -0.4817658349328215
-    axis_tolerance: 0.03
-    axis_pass: false
-    source_width_depth_ratio: 1.4126679462571976
-    expected_width_depth_ratio: 1.4
-    ratio_relative_error: 0.0090485330408554
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
-    measurement_uncertainty_source_px: 3
-    precision_note: 人工读可见底边±3px；非3D测绘；几何未通过仍保留candidate并单列告警。
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 477
-    - 356
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 89065
-    alpha_partial_pixels: 79957
-    alpha_opaque_pixels: 790
-    alpha_nonzero_bbox:
-    - 43
-    - 16
-    - 461
-    - 338
-    transparent_margins_px:
-    - 43
-    - 16
-    - 16
-    - 18
-    border_alpha_max: 0
-  candidate_count: 1
-  source_record: sources/bld_kit_qing_north_shop_1f.json
-  notes: 逐张view_image；主体完整，材质灰砖灰瓦、无字无人；准确轴率与比例另量，保留candidate。；匿名北方建筑组合（原创扩展），待作者审批。
 - id: bld_kit_qing_north_shop_2f
   file: bld_kit_qing_north_shop_2f.png
   category: building-map
   style: default
   subject: 两层商铺
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Bead_Street,_Peking,_1930_(6766548719).jpg'
-    purpose: 北京商业街连续立面、楼层比例与檐下关系；年代晚于目标，仅辅助复核。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: historical-scene. ONE isolated transparent sprite for a realistic historical Chinese town game. Early-to-mid Qing NORTH CHINA, anonymous Beijing/Shengjing/Jinan architectural concept, not a specific monument reconstruction. Realistic traditional Chinese game sprite with fine natural weathered masonry, small tiled roofs, calm muted palette and believable structure. Qing northern grey-brick, grey-tile and dark timber. Orthographic DIMETRIC, yaw45 elevation30, STRICT 2:1 ground plane, east ground axis screen lower-right slope +0.5 and north upper-right slope -0.5, parallel lines NO perspective convergence. South doorway faces screen lower-left. Draw a thin rectangular ground boundary, entire footprint with visible left, front and right corners, NO thick floating base. Keep the entire sprite and soft contact shadow inside generous 10% transparent margins. TRUE transparent RGBA background. Absolutely NO ambient halo, NO glow, NO gradient floor or background of any kind. Alpha0 everywhere outside the exact object silhouette and its tiny contact shadow. Light from screen UPPER LEFT, short soft contact shadow lower-right. Grey fired brick, matte grey barrel tiles with straight sober ridges, northern hard-gable walls, dark brown wooden lattice windows, no Jiangnan whitewashed tourist style. No text, pseudo-writing, plaques, characters, people, flags, modern objects, sky, horizon, landscape, trees, water or road outside footprint, no saturated lighting, cartoon, plastic, borders or watermark. A compact two-storey northern street shop, grey brick lower level and enclosed dark wooden lattice-window upper level, sober grey tile gabled roof, little open goods counter with folded cloth and pottery, simple unlettered awning, no open wraparound Jiangnan balconies. Footprint 8m east-west by6m north-south. Background is truly fully transparent like a clean cutout product PNG, with NO glow or haze around the building.'
-  negative: 文字、人物、水印、现代物、背景场景、厚地台、裁边、透视汇聚
-  references: []
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T21:17:46.546Z'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-5a688bfc-c01b-4c8b-b7e4-6f9d98342bcb.png
-  size: 489x556
-  sha256: 304fac249f72bafc09170da202840be475e981a32fab6f9c18563c35467265c0
+  prompt: 'Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese two-storey northern street shop map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: two-storey three-bay timber-and-brick shop with shallow upper gallery; separate low-pitched grey-tile hard-gable roofs, plain ridges, small brick fire walls; lower removable plank shutters, upper dense square-lattice windows, dark unpainted brackets rather than formal dougong; no readable boards.
+
+
+    Registered logical footprint remains 8 by 6; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:Thomas Child, Peking Streets.jpg
+    url: https://commons.wikimedia.org/wiki/File:Thomas_Child,_Peking_Streets.jpg
+    used_detail: 晚清北京街道的连续铺面、檐口高度与木作尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:William Henry Jackson, Street scene, Peking, 1895.jpg
+    url: https://commons.wikimedia.org/wiki/File:William_Henry_Jackson,_Street_scene,_Peking,_1895.jpg
+    used_detail: 1895年北京街景的双层铺屋、街面开间与遮棚关系
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 551x493
+  sha256: f90dd403b4afe76dfccb5e542ed61df3a2c4d81fcba5d08e4550d2fa9e549ee9
   status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 6b5bc9d89c32a1c6f41c88e60c28eb1eca4b8cb802ac61cbe7e7f92e6955bd3e
+  source_size:
+  - 1448
+  - 1086
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 175
+    - 56
+    - 1308
+    - 1071
+    uniform_scale: 0.40335392762577227
+    resized_size:
+    - 457
+    - 409
+    paste_offset:
+    - 47
+    - 42
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：two-storey three-bay timber-and-brick shop with shallow upper gallery; separate low-pitched grey-tile hard-gable roofs, plain ridges, small brick fire walls; lower removable plank shutters, upper dense square-lattice windows, dark unpainted brackets rather than formal dougong; no readable boards；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
   building:
     type: bld_kit_qing_north_shop_2f
     footprint:
     - 8
     - 6
     anchor:
-    - 246.1632
-    - 423.2556
+    - 277.163
+    - 359.877
     era: qing_north
   footprint_m:
   - 8
@@ -1607,835 +398,319 @@
   entrance:
     edge: S
     offset_cells: 3
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 448
-    - 224
-    ground_width_px: 448
-    camera_yaw_deg: 45
-    camera_elevation_deg: 30
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
-  metadata: meta/bld_kit_qing_north_shop_2f.yaml
-  source_sha256: ddb84530525b6c53ebd4c27070b790ffe455586fba0c9d42af6d97052aa0e91f
-  processing:
-    source_archive: sources/bld_kit_qing_north_shop_2f.png
-    source_sha256: ddb84530525b6c53ebd4c27070b790ffe455586fba0c9d42af6d97052aa0e91f
-    source_size:
-    - 1448
-    - 1086
-    crop_box:
-    - 0
-    - 24
-    - 1434
-    - 1086
-    uniform_scale_requested: 0.4057971014492754
-    resized_size:
-    - 582
-    - 431
-    rounded_effective_scale:
-    - 0.40585774058577406
-    - 0.4058380414312618
-    paste_offset:
-    - 16
-    - 16
-    final_file: bld_kit_qing_north_shop_2f.png
-    steps:
-    - crop alpha>0 bbox
-    - uniform LANCZOS resize rounded to integer dimensions
-    - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
-    - review-10 PIL affine y'=a*x+b*y+c
-    - crop alpha>0 bbox and restore transparent padding
-  geometry_qa:
-    final_corners_px:
-      left:
-      - 22.129707112970706
-      - 408.03591632222293
-      front:
-      - 276.60251046025104
-      - 535.2723179958631
-      right:
-      - 470.1966527196653
-      - 438.47524686615594
-    final_axis_slopes:
-    - 0.5
-    - -0.5000000000000001
-    accepted_slope_range:
-    - 0.4
-    - 0.62
-    axis_pass: true
-    final_width_depth_ratio: 1.3144654088050312
-    expected_width_depth_ratio: 1.3333333333333333
-    ratio_relative_error: 0.014150943396226578
-    ratio_tolerance: 0.3
-    ratio_pass: true
-    measurement_note: 审核人工测点经同一PIL仿射矩阵变换；锚点取校正后L/R底面中点。
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 489
-    - 556
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 105512
-    alpha_partial_pixels: 164992
-    alpha_opaque_pixels: 1380
-    alpha_nonzero_bbox:
-    - 16
-    - 16
-    - 473
-    - 540
-    transparent_margins_px:
-    - 16
-    - 16
-    - 16
-    - 16
-    border_alpha_max: 0
-  candidate_count: 1
-  source_record: sources/bld_kit_qing_north_shop_2f.json
-  notes: 逐张view_image；主体完整，材质灰砖灰瓦、无字无人；准确轴率与比例另量，保留candidate。；匿名北方建筑组合（原创扩展），待作者审批。 第10轮按审核裁定仅作PIL仿射几何校正；双轴进入0.40–0.62，仍为candidate。
-  affine_qa:
-    input_archive: sources/bld_kit_qing_north_shop_2f__before_affine_r10.png
-    input_sha256: 659e8a946e8242d7ef7973f44c348caaabfb5caa708a137fd955daf199de8de0
-    forward_xy:
-    - 1
-    - 0
-    - -0.005202168089215586
-    - 1.2422632738544688
-    - 0
-    - 4
-    work_alpha_bbox:
-    - 102
-    - 22
-    - 559
-    - 546
-    padding_px: 16
-- id: bld_kit_qing_north_stable
-  subject: 清初至清中北方马厩（原创扩展；具体细部待考）
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Shiyuan_tianjin_doorways.jpg'
-    purpose: 晚清天津大院门道与附属空间尺度；只辅助院内马厩语境，不是马厩直接证据。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: sketch-to-render. Image 1 is a precisely measured 9-by-7 footprint isometric stable BLOCKOUT, not the desired art style. TEXTURE AND DETAIL THIS PIXEL-LOCKED BLOCKOUT into a highly realistic Qing northern Chinese stable game sprite. Preserve its ground quadrilateral EXACTLY, preserve camera, do not recenter or enlarge or change width/depth or slopes. Left ground corner(180,590), front(810,905), right(1300,660), rear(670,345). The two visible base edges have slopes EXACT +0.5 and -0.5 and horizontal lengths630 and490, ratio9:7. The desired stable is almost square in plan and has a noticeably deep right side wall. Keep every structural line aligned with the blockout. Replace flat colored shapes with lifelike finely detailed aged gray brick masonry, dark weathered timber, traditional Qing northern gray terracotta roof tiles, simple unglazed clay ridge and very restrained eave curvature. Three open-front stalls face lower-left, with dark timber dividers and separate timber feeding troughs, a little straw within stalls. Front openings fit within the blockout front plane; do not stretch the front face longer. Straight thin stone ground slab, never stepped or kinked. All vertical posts perfectly vertical. This is sober realistic historical map art matching natural fine textured city sprites, not low-poly, vector or cartoon. Soft warm-neutral upper-left light, small contact shadow toward lower-right. Isolated object with TRUE RGBA transparent background. Keep complete object and transparent margins. No numbers, writing, labels, grid, guide lines, people, horses, modern objects, landscape or watermark. Remove all blockout outlines through realistic texturing but keep exact geometry.'
-  negative: 文字、水印、现代元素、人物、景观背景、厚地台、裁切、透视汇聚、黄色帝王琉璃瓦
+- id: bld_kit_qing_north_inn
+  file: bld_kit_qing_north_inn.png
+  category: building-map
+  style: default
+  subject: 客栈
+  prompt: 'Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese northern coaching inn and lodging court map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: two-storey front range with deep cart-width gateway and one-storey rear/side lodging wings around a service court; hard-gable grey-tile roofs, plain ridges, grey brick fire walls; heavy dark timber posts, plank shutters, square-lattice upper windows; stone threshold, one tether rail and stacked travel chests inside; no signs or people.
+
+
+    Registered logical footprint remains 12 by 9; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
   references:
-  - sources/bld_kit_qing_north_stable__revision2_guide.png
-  source_path: /Users/bytedance/.codex/generated_images/01a0f450-fed4-71d2-8b8a-19151617b4b7/exec-7a2c2f90-8798-451f-b51b-458fbc9af3a7.png
-  created: '2026-09-30T22:00:32.553318+00:00'
-  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端时间
-  file: bld_kit_qing_north_stable.png
-  category: building-map
-  style: default
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  tool: built-in image_gen
-  size: 668x454
-  sha256: 277dedfe14161987df6dbdfad4536e95dbd660cc9152b88375b7aef788c27366
+  - title: File:Thomas Child, Peking Streets.jpg
+    url: https://commons.wikimedia.org/wiki/File:Thomas_Child,_Peking_Streets.jpg
+    used_detail: 晚清北京街道的连续铺面、檐口高度与木作尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:William Henry Jackson, Street scene, Peking, 1895.jpg
+    url: https://commons.wikimedia.org/wiki/File:William_Henry_Jackson,_Street_scene,_Peking,_1895.jpg
+    used_detail: 1895年北京街景的双层铺屋、街面开间与遮棚关系
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_inn.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 834x585
+  sha256: 2e1f025108b6dedba2488a4d03c0a1412cf358cf7261bc769d23bdf85ece3b0c
   status: candidate
-  building:
-    type: bld_kit_qing_north_stable
-    footprint:
-    - 9
-    - 7
-    anchor:
-    - 347.8725
-    - 266.4692
-    era: qing_north
-  footprint_m:
-  - 9
-  - 7
-  entrance:
-    edge: S
-    offset_cells: 4
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 512
-    - 256
-    ground_width_px: 512
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
-  metadata: meta/bld_kit_qing_north_stable.yaml
-  source_sha256: 3032d7e31429928d7a0290032d4aa2ee55d3d9b586cda2973084e1e1b903511c
-  processing:
-    source_archive: sources/bld_kit_qing_north_stable__revision2.png
-    source_sha256: 3032d7e31429928d7a0290032d4aa2ee55d3d9b586cda2973084e1e1b903511c
-    source_size:
-    - 1536
-    - 1024
-    crop_box:
-    - 0
-    - 35
-    - 1490
-    - 1024
-    uniform_scale_requested: 0.427022518765638
-    resized_size:
-    - 636
-    - 422
-    rounded_effective_scale:
-    - 0.4268456375838926
-    - 0.42669362992922144
-    paste_offset:
-    - 16
-    - 16
-    final_file: bld_kit_qing_north_stable.png
-    steps:
-    - crop to alpha>0 bounding box
-    - uniform LANCZOS resize; dimensions rounded to nearest px
-    - paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding
-    anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 178
-      - 575
-      front:
-      - 851
-      - 926
-      right:
-      - 1377
-      - 669
-    source_axis_slopes:
-    - 0.5215453194650818
-    - -0.48859315589353614
-    axis_tolerance: 0.03
-    axis_pass: true
-    source_width_depth_ratio: 1.279467680608365
-    expected_width_depth_ratio: 1.2857142857142858
-    ratio_relative_error: 0.004858470637938428
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
-    measurement_uncertainty_source_px: 3
-    precision_note: 人工读同一地台上表面三角点，±3px不确定性；另一代理独立复核。底面中心取(L+R)/2，后角由L+R−F推算；未以变形纠偏。
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 668
-    - 454
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 181730
-    alpha_partial_pixels: 120718
-    alpha_opaque_pixels: 824
-    alpha_nonzero_bbox:
-    - 16
-    - 16
-    - 616
-    - 408
-    transparent_margins_px:
-    - 16
-    - 16
-    - 52
-    - 46
-    border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_stable__revision2.json
-  rejected_source_record: sources/bld_kit_qing_north_stable__rejected.json
-  notes: 第2次运行返修，2候选选2；体块仅为image_gen生成参考，成品仅裁切、等比LANCZOS缩放、透明留白。逐张view_image并浅底alpha合成检查。9×7占地宽深与双轴通过现有阈值。清北匿名功能建筑（原创扩展）；status仍为candidate。
-- id: bld_kit_qing_north_temple_hall
-  subject: 清初至清中北方汉地佛寺殿堂（原创扩展；具体细部待考）
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Summer_Palace_Buddhist_Temple_on_Longevity_Hill_(9864605806).jpg'
-    purpose: 北方佛寺灰瓦殿堂层级、台基与柱网；只作形制复核，不复制景区构图。
-    used_as: post_generation_form_review_only
-  prompt: Classic 2:1 ISOMETRIC GAME MAP GEOMETRY with realistic architectural textures, not pixel-art. Create one isolated transparent sprite of a northern Han Buddhist main hall, gray tiled hip-and-gable roof, dark red columns, restrained blue-green painted beam trim, gray brick side walls and lattice doors; no statues or Tibetan elements. Exact orthographic45-degree azimuth30-degree elevation, both ground axes slope precisely 1 vertical unit per 2 horizontal units, front-left edge+0.5 and front-right edge-0.5. The rectangular base is 14 meters east-west by 11 meters north-south, projected front-left edge 14 units and front-right edge 11 units. South entrance faces lower-left. Draw the entire thin rectangular base with clear left/front/right corners, correct2:1 diamond form, no tall pedestal. Northern China early-to-mid Qing original historical-game module. Warm-neutral soft top-left lighting; tiny contact shadow only. Fine gray tile and gray brick material details, restrained realism matching a Song-era city-building kit. TRUE TRANSPARENT ALPHA BACKGROUND; no glow, halo, mist, shadows around silhouette, no floor, no backdrop. Keep complete silhouette comfortably inside canvas with15% fully transparent margin all sides. No visible writing, numbers, guides, modern elements, people, scenery or checkerboard. Asset bld_kit_qing_north_temple_hall.
-  negative: 文字、水印、现代元素、人物、景观背景、厚地台、裁切、透视汇聚、黄色帝王琉璃瓦
-  references: []
-  source_path: /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-ccfa48ed-b6fc-461f-8b1e-6ee4cc82687e.png
-  created: '2026-09-30T21:24:53.092782+00:00'
-  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端时间
-  file: bld_kit_qing_north_temple_hall.png
-  category: building-map
-  style: default
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  tool: built-in image_gen
-  size: 957x777
-  sha256: 721063db56fed18f3e6d36a7e58134e1d2577b84add9df37f4aadd4ded5540be
-  status: candidate
-  building:
-    type: bld_kit_qing_north_temple_hall
-    footprint:
-    - 14
-    - 11
-    anchor:
-    - 517.6018
-    - 552.7421
-    era: qing_north
-  footprint_m:
-  - 14
-  - 11
-  entrance:
-    edge: S
-    offset_cells: 6
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 800
-    - 400
-    ground_width_px: 800
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
-  metadata: meta/bld_kit_qing_north_temple_hall.yaml
-  source_sha256: 1c9ac01647ed175284880a6d4c707676b48a726b84c575b4373a25ec56210d64
-  processing:
-    source_archive: sources/bld_kit_qing_north_temple_hall.png
-    source_sha256: 1c9ac01647ed175284880a6d4c707676b48a726b84c575b4373a25ec56210d64
-    source_size:
-    - 1536
-    - 1024
-    crop_box:
-    - 0
-    - 21
-    - 1454
-    - 998
-    uniform_scale_requested: 0.6309148264984227
-    resized_size:
-    - 917
-    - 616
-    rounded_effective_scale:
-    - 0.6306740027510316
-    - 0.6305015353121801
-    paste_offset:
-    - 20
-    - 20
-    final_file: bld_kit_qing_north_temple_hall.png
-    steps:
-    - crop to alpha>0 bounding box
-    - uniform LANCZOS resize; dimensions rounded to nearest px
-    - paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding
-    - review-10 PIL affine y'=a*x+b*y+c
-    - crop alpha>0 bbox and restore transparent padding
-    anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
-  geometry_qa:
-    final_corners_px:
-      left:
-      - 117.7544704264099
-      - 517.4243707702575
-      front:
-      - 588.2372764786794
-      - 752.6657737963922
-      right:
-      - 917.449105914718
-      - 588.0598590783729
-    final_axis_slopes:
-    - 0.49999999999999983
-    - -0.49999999999999983
-    accepted_slope_range:
-    - 0.4
-    - 0.62
-    axis_pass: true
-    final_width_depth_ratio: 1.4291187739463596
-    expected_width_depth_ratio: 1.2727272727272727
-    ratio_relative_error: 0.12287903667213973
-    ratio_tolerance: 0.3
-    ratio_pass: true
-    measurement_note: 审核人工测点经同一PIL仿射矩阵变换；锚点取校正后L/R底面中点。
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 957
-    - 777
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 383237
-    alpha_partial_pixels: 358424
-    alpha_opaque_pixels: 1928
-    alpha_nonzero_bbox:
-    - 20
-    - 20
-    - 937
-    - 757
-    transparent_margins_px:
-    - 20
-    - 20
-    - 20
-    - 20
-    border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_temple_hall.json
-  rejected_source_record: sources/bld_kit_qing_north_temple_hall__rejected.json
-  notes: 已逐张view_image检查源图及浅底alpha合成诊断：主体完整、无文字人物现代物；灰砖灰瓦暗木与宋套件细节密度相近，王府绿瓦和官式红柱区分等级。直接PNG预览的灰棕晕属于透明像素RGB，浅底alpha合成无外部光晕；未改alpha。14×11借design/22 §3.4明代寺观同构骨架，为清北建议占地；组合原创，彩画细部待考。 双轴/占地比例未全部通过，保留candidate供审校；不得直接当发布资产。 最终PNG已再次逐张view_image自查；历史来源统一见prompts/building-map.md清北节及tools/agents/reports/KIT-qing_north.md §7。 第10轮按审核裁定仅作PIL仿射几何校正；双轴进入0.40–0.62，仍为candidate。
-  affine_qa:
-    input_archive: sources/bld_kit_qing_north_temple_hall__before_affine_r10.png
-    input_sha256: 106a99e76cecc9779047e99ac6d0f2579b77961dfc56211375d60489fa721ce3
-    forward_xy:
-    - 1
-    - 0
-    - 0.04004140406965312
-    - 1.2759218294724606
-    - 0
-    - 0
-    work_alpha_bbox:
-    - 20
-    - 71
-    - 937
-    - 808
-    padding_px: 20
-- id: bld_kit_qing_north_wangfu
-  subject: 清初至清中北方王府前院模块（原创扩展；具体细部待考）
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:GongWangFu_courtyard_(2917122776).jpg'
-    purpose: 王府院落等级、灰瓦与彩画边界；现状照片只作形制复核。
-    used_as: post_generation_form_review_only
-  - url: 'https://commons.wikimedia.org/wiki/File:Imperial_Palaces_of_the_Ming_and_Qing_Dynasties_24351-Shenyang_(49052461177).jpg'
-    purpose: 盛京官式建筑红柱与屋顶层级；不将宫殿等级扩散到普通建筑。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: sketch-to-render. Texture and detail this architectural blockout into one realistic early-to-mid Qing north China princely courtyard building sprite. CRITICAL pixel-locked orthographic camera: keep EXACT same ground-contact outer quadrilateral and its straight edges as input. Do NOT reposition, enlarge or recenter the layout. On this 1536x1024 image the left ground corner stays(128,520), foreground corner(832,872), right ground corner(1408,584), rear(704,232). Width22m depth18m. Both planar axes have identical absolute 0.5 slopes. In particular front-to-right goes up by288px and right576px, never steepen it. This geometric silhouette is immutable. Replace plain blockout surfaces with photorealistic fine gray brick, small green glazed roof tiles, dark red timber lattice door/window frames, minimal blue-green beam painting, elegant stone paving. Rear hall is a Chinese tiled gable hall; two side wings; a modest decorated front gate. Fine realistic historical construction, weathering and detail density for a high-resolution Chinese RPG map, not stylized low-poly. Roof eaves modest; no dragon motifs or imperial yellow tiles. Keep front courtyard boundary a single straight line except the doorway, no projecting stairs or irregular base. Camera, entire footprint, flat base level and upright verticals fixed to input, only architectural detail changes. Upper-left sunlight, very small lower-right contact shadow. No background plane, haze, bloom, halo, atmospheric shadow, people, signs, letters, watermark or numbers. True transparent RGBA outside the silhouette with fully opaque building interior; do not add gray/black background. One complete building with all tips visible.'
-  negative: 文字、水印、现代元素、人物、景观背景、厚地台、裁切、透视汇聚、黄色帝王琉璃瓦
-  references:
-  - sources/bld_kit_qing_north_wangfu__revision2_c2_guide.png
-  source_path: /Users/bytedance/.codex/generated_images/01a0f44f-edf2-7572-a4e2-6e0363ecf5e8/exec-91d96026-27f5-40f3-8bb0-a1ec49538f32.png
-  created: '2026-09-30T22:01:59.160016+00:00'
-  created_time_basis: 本轮归档PNG本地mtime；非工具披露的服务端时间
-  file: bld_kit_qing_north_wangfu.png
-  category: building-map
-  style: default
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  tool: built-in image_gen
-  size: 1489x1016
-  sha256: 954860dbc63e1b214e9e85756e86256130c2fe0544f518cc899b5e1fc836956f
-  status: candidate
-  building:
-    type: bld_kit_qing_north_wangfu
-    footprint:
-    - 22
-    - 18
-    anchor:
-    - 782.5017
-    - 566.7179
-    era: qing_north
-  footprint_m:
-  - 22
-  - 18
-  entrance:
-    edge: S
-    offset_cells: 10
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 1280
-    - 640
-    ground_width_px: 1280
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
-  metadata: meta/bld_kit_qing_north_wangfu.yaml
-  source_sha256: b1ae69fc1c13c941f7fc1400321c834aa5b97b803bc91098e9c0255d371ae8d6
-  processing:
-    source_archive: sources/bld_kit_qing_north_wangfu__revision2_c2.png
-    source_sha256: b1ae69fc1c13c941f7fc1400321c834aa5b97b803bc91098e9c0255d371ae8d6
-    source_size:
-    - 1536
-    - 1024
-    crop_box:
-    - 0
-    - 17
-    - 1468
-    - 1006
-    uniform_scale_requested: 0.9868928296067849
-    resized_size:
-    - 1449
-    - 976
-    rounded_effective_scale:
-    - 0.9870572207084468
-    - 0.9868554095045501
-    paste_offset:
-    - 20
-    - 20
-    - 1469
-    - 996
-    final_file: bld_kit_qing_north_wangfu.png
-    steps:
-    - crop to alpha>0 bounding box
-    - uniform LANCZOS resize; dimensions rounded to nearest px
-    - paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding
-    anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 124
-      - 538
-      front:
-      - 840
-      - 907
-      right:
-      - 1421
-      - 604
-    source_axis_slopes:
-    - 0.5153631284916201
-    - -0.5215146299483648
-    axis_tolerance: 0.03
-    axis_pass: true
-    source_width_depth_ratio: 1.2323580034423407
-    expected_width_depth_ratio: 1.2222222222222223
-    ratio_relative_error: 0.008292911907369582
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
-    measurement_uncertainty_source_px: 3
-    precision_note: 本轮独立人工读真实墙脚L/F/R，±3px；后角L+R-F推算；底心(L+R)/2。未仿射或非等比纠偏。
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 1489
-    - 1016
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 879909
-    alpha_partial_pixels: 632490
-    alpha_opaque_pixels: 425
-    alpha_near_opaque_pixels: 610489
-    alpha_nonzero_bbox:
-    - 20
-    - 20
-    - 1469
-    - 996
-    transparent_margins_px:
-    - 20
-    - 20
-    - 20
-    - 20
-    border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_wangfu__revision2_c2.json
-  rejected_source_record: sources/bld_kit_qing_north_wangfu__rejected.json
-  notes: 王府右底边过陡已解决：两轴+0.5154/-0.5215，占地比22:18相对误差0.83%；view_image原图与浅底合成已查；本轮每件2候选选1，旧源保留；匿名清北历史意象（原创扩展），candidate，非运行时总装验收。
-- id: bld_kit_qing_north_warehouse
-  file: bld_kit_qing_north_warehouse.png
-  category: building-map
-  style: default
-  subject: 仓屋
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG'
-    purpose: 北方院落附属房的灰砖、硬山灰瓦与木门材质；只作形制复核。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: historical-scene. ONE isolated transparent sprite for a realistic historical Chinese town game. Early-to-mid Qing NORTH CHINA, anonymous Beijing/Shengjing/Jinan architectural concept, not a specific monument reconstruction. Realistic traditional Chinese game sprite with fine natural weathered masonry, small tiled roofs, calm muted palette and believable structure. Qing northern grey-brick, grey-tile and dark timber. Orthographic DIMETRIC, yaw45 elevation30, STRICT 2:1 ground plane, east ground axis screen lower-right slope +0.5 and north upper-right slope -0.5, parallel lines NO perspective convergence. South doorway faces screen lower-left. Draw a thin rectangular ground boundary, entire footprint with visible left, front and right corners, NO thick floating base. Keep the entire sprite and soft contact shadow inside generous 10% transparent margins. TRUE transparent RGBA background. Absolutely NO ambient halo, NO glow, NO gradient floor or background of any kind. Alpha0 everywhere outside the exact object silhouette and its tiny contact shadow. Light from screen UPPER LEFT, short soft contact shadow lower-right. Grey fired brick, matte grey barrel tiles with straight sober ridges, northern hard-gable walls, dark brown wooden lattice windows, no Jiangnan whitewashed tourist style. No text, pseudo-writing, plaques, characters, people, flags, modern objects, sky, horizon, landscape, trees, water or road outside footprint, no saturated lighting, cartoon, plastic, borders or watermark. A utilitarian northern warehouse, long closed grey-brick building, plain hard-gable grey tiled roof, two heavy timber loading doors on south face, a few grain sacks and wooden crates just under a shallow eave, no decorative gate or residential windows. Footprint10m east-west by8m north-south. CRITICAL spacious transparent framing, entire object in central75% of canvas. Clean transparent PNG cutout, no halo.'
-  negative: 文字、人物、水印、现代物、背景场景、厚地台、裁边、透视汇聚
-  references: []
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T21:22:01.348Z'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-a688e213-d285-4446-a99e-018646076816.png
-  size: 662x497
-  sha256: 79e01a26f12c0f66eaaf944ee46ec3ba719e08d10296db7c909ba8087e7394d4
-  status: candidate
-  building:
-    type: bld_kit_qing_north_warehouse
-    footprint:
-    - 10
-    - 8
-    anchor:
-    - 356.2605
-    - 330.747
-    era: qing_north
-  footprint_m:
-  - 10
-  - 8
-  entrance:
-    edge: S
-    offset_cells: 4
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 576
-    - 288
-    ground_width_px: 576
-    camera_yaw_deg: 45
-    camera_elevation_deg: 30
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
-  metadata: meta/bld_kit_qing_north_warehouse.yaml
-  source_sha256: 0a097b690dc52952a8de4f3803d52d65eb32e15fd24f7e81133440f880e6c438
-  processing:
-    source_archive: sources/bld_kit_qing_north_warehouse.png
-    source_sha256: 0a097b690dc52952a8de4f3803d52d65eb32e15fd24f7e81133440f880e6c438
-    source_size:
-    - 1536
-    - 1024
-    crop_box:
-    - 0
-    - 58
-    - 1459
-    - 990
-    uniform_scale_requested: 0.431784107946027
-    resized_size:
-    - 630
-    - 402
-    rounded_effective_scale:
-    - 0.4318026045236463
-    - 0.4313304721030043
-    paste_offset:
-    - 16
-    - 16
-    final_file: bld_kit_qing_north_warehouse.png
-    steps:
-    - crop alpha>0 bbox
-    - uniform LANCZOS resize rounded to integer dimensions
-    - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
-    - review-10 PIL affine y'=a*x+b*y+c
-    - crop alpha>0 bbox and restore transparent padding
-  geometry_qa:
-    final_corners_px:
-      left:
-      - 68.2481151473612
-      - 301.6003353151677
-      front:
-      - 414.55380397532554
-      - 474.75317972914985
-      right:
-      - 644.2727895819054
-      - 359.8936869258599
-    final_axis_slopes:
-    - 0.5
-    - -0.5
-    accepted_slope_range:
-    - 0.4
-    - 0.62
-    axis_pass: true
-    final_width_depth_ratio: 1.507518796992481
-    expected_width_depth_ratio: 1.25
-    ratio_relative_error: 0.20601503759398487
-    ratio_tolerance: 0.3
-    ratio_pass: true
-    measurement_note: 审核人工测点经同一PIL仿射矩阵变换；锚点取校正后L/R底面中点。
-  pixel_qa:
-    mode: RGBA
-    size:
-    - 662
-    - 497
-    alpha_extrema:
-    - 0
-    - 255
-    alpha_zero_pixels: 179315
-    alpha_partial_pixels: 148368
-    alpha_opaque_pixels: 1331
-    alpha_nonzero_bbox:
-    - 16
-    - 16
-    - 646
-    - 481
-    transparent_margins_px:
-    - 16
-    - 16
-    - 16
-    - 16
-    border_alpha_max: 0
   candidate_count: 1
-  source_record: sources/bld_kit_qing_north_warehouse.json
-  notes: 逐张view_image与浅底alpha合成确认完整透明。灰瓦砖仓、木门麻袋，无遮字人物；底边几何仍有残差，保持candidate。；匿名北方建筑组合（原创扩展），待作者审批。 第10轮按审核裁定仅作PIL仿射几何校正；双轴进入0.40–0.62，仍为candidate。
-  affine_qa:
-    input_archive: sources/bld_kit_qing_north_warehouse__before_affine_r10.png
-    input_sha256: bd805411b74311657e72cd07c6027dc9be5843504dd9849483eeeb87a9b7609b
-    forward_xy:
-    - 1
-    - 0
-    - 0.04688990830633549
-    - 1.1512407067069157
-    - 0
-    - 0
-    work_alpha_bbox:
-    - 16
-    - 28
-    - 646
-    - 493
-    padding_px: 16
-- id: bld_kit_qing_north_wharf
-  file: bld_kit_qing_north_wharf.png
-  category: building-map
-  style: default
-  subject: 河埠
-  historical_references:
-  - url: 'https://peking.bjd.com.cn/content/s6a86b562e4b03fa51a8328b4.html'
-    purpose: 平津闸与通惠河码头遗址的水陆转运语境；图像匹配未完全核实，仅作文字线索。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: historical-scene. ONE isolated transparent sprite for a realistic historical Chinese town game. Early-to-mid Qing NORTH CHINA, anonymous Beijing/Shengjing/Jinan architectural concept, not a specific monument reconstruction. Realistic traditional Chinese game sprite with fine natural weathered masonry, small tiled roofs, calm muted palette and believable structure. Qing northern grey-brick, grey-tile and dark timber. Orthographic DIMETRIC, yaw45 elevation30, STRICT 2:1 ground plane, east ground axis screen lower-right slope +0.5 and north upper-right slope -0.5, parallel lines NO perspective convergence. South doorway faces screen lower-left. Draw a thin rectangular ground boundary, entire footprint with visible left, front and right corners, NO thick floating base. Keep the entire sprite and soft contact shadow inside generous 10% transparent margins. TRUE transparent RGBA background. Absolutely NO ambient halo, NO glow, NO gradient floor or background of any kind. Alpha0 everywhere outside the exact object silhouette and its tiny contact shadow. Light from screen UPPER LEFT, short soft contact shadow lower-right. Grey fired brick, matte grey barrel tiles with straight sober ridges, northern hard-gable walls, dark brown wooden lattice windows, no Jiangnan whitewashed tourist style. No text, pseudo-writing, plaques, characters, people, flags, modern objects, sky, horizon, landscape, trees, water or road outside footprint, no saturated lighting, cartoon, plastic, borders or watermark. A low northern canal landing ONLY: grey stone rectangular quay with short descending steps at the south edge, timber mooring posts and low wooden unloading platform with a few bundled sacks. No building or roof, no boats, no water painted anywhere (water supplied by runtime), no surrounding bank, no thick pedestal. Exact ground footprint10m east-west by4m north-south; full front steps inside footprint. CRITICAL spacious transparent framing, entire object in central75% of canvas. Clean transparent PNG cutout, no halo.'
-  negative: 文字、人物、水印、现代物、背景场景、厚地台、裁边、透视汇聚
-  references: []
-  tool: built-in image_gen
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  created: '2026-09-30T21:22:26.916Z'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-84c45a83-5b58-434f-89ea-d12bf68f71f2.png
-  size: 485x318
-  sha256: 23b2ea85b997701dca97ccb097a2cb64dc2e5f8b27b6234fce0c508388fa3e82
-  status: candidate
-  building:
-    type: bld_kit_qing_north_wharf
-    footprint:
-    - 10
-    - 4
-    anchor:
-    - 242.5166
-    - 183.9073
-    era: qing_north
-  footprint_m:
-  - 10
-  - 4
-  entrance:
-    edge: S
-    offset_cells: 4
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 448
-    - 224
-    ground_width_px: 448
-    camera_yaw_deg: 45
-    camera_elevation_deg: 30
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
-  metadata: meta/bld_kit_qing_north_wharf.yaml
-  source_sha256: b0a16def299ab3adf45643a3a9d03e6caf524b30e00249b838aab4b14bb5d665
-  processing:
-    source_archive: sources/bld_kit_qing_north_wharf.png
-    source_sha256: b0a16def299ab3adf45643a3a9d03e6caf524b30e00249b838aab4b14bb5d665
-    source_size:
-    - 1774
-    - 887
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 8368bb7030dc37c7686f92e59fce4eb13ad16ace48a0533039571c6e312d903f
+  source_size:
+  - 1448
+  - 1086
+  normalization:
+    significant_alpha_threshold_for_crop: 8
     crop_box:
-    - 57
-    - 23
-    - 1657
-    - 887
-    uniform_scale_requested: 0.3143859649122807
+    - 43
+    - 68
+    - 1416
+    - 1030
+    uniform_scale: 0.5040058266569556
     resized_size:
-    - 503
-    - 272
-    rounded_effective_scale:
-    - 0.314375
-    - 0.3148148148148148
-    paste_offset:
-    - 16
-    - 16
-    final_file: bld_kit_qing_north_wharf.png
-    steps:
-    - crop alpha>0 bbox
-    - uniform LANCZOS resize rounded to integer dimensions
-    - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
-    - review-10 PIL affine y'=a*x+b*y+c
-    - crop alpha>0 bbox and restore transparent padding
-  geometry_qa:
-    final_corners_px:
-      left:
-      - 18.524375
-      - 125.35491703299462
-      front:
-      - 359.62125000000003
-      - 295.9033545329946
-      right:
-      - 466.50875
-      - 242.4596045329946
-    final_axis_slopes:
-    - 0.5
-    - -0.5000000000000002
-    accepted_slope_range:
-    - 0.4
-    - 0.62
-    axis_pass: true
-    final_width_depth_ratio: 3.191176470588236
-    expected_width_depth_ratio: 2.5
-    ratio_relative_error: 0.27647058823529447
-    ratio_tolerance: 0.3
-    ratio_pass: true
-    measurement_note: 审核人工测点经同一PIL仿射矩阵变换；锚点取校正后L/R底面中点。
-  pixel_qa:
-    mode: RGBA
-    size:
+    - 692
     - 485
-    - 318
+    paste_offset:
+    - 71
+    - 50
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
     alpha_extrema:
     - 0
     - 255
-    alpha_zero_pixels: 94080
-    alpha_partial_pixels: 59137
-    alpha_opaque_pixels: 1013
-    alpha_nonzero_bbox:
-    - 16
-    - 16
-    - 469
-    - 302
-    transparent_margins_px:
-    - 16
-    - 16
-    - 16
-    - 16
     border_alpha_max: 0
-  candidate_count: 1
-  source_record: sources/bld_kit_qing_north_wharf.json
-  notes: 逐张view_image；建筑/河埠轮廓完整，无字无人；保留candidate，几何另量。；匿名北方建筑组合（原创扩展），待作者审批。 第10轮按审核裁定仅作PIL仿射几何校正；双轴进入0.40–0.62，仍为candidate。
-  affine_qa:
-    input_archive: sources/bld_kit_qing_north_wharf__before_affine_r10.png
-    input_sha256: 099992c3d2f0b7302240513af3421672cc54d7c3ab50a93ff9bc082e77c6a805
-    forward_xy:
-    - 1
-    - 0
-    - 0.06582202313298113
-    - 1.2314789897706764
-    - 0
-    - 0
-    work_alpha_bbox:
-    - 49
-    - 63
-    - 502
-    - 349
-    padding_px: 16
-- id: bld_kit_qing_north_yamen
-  subject: 清初至清中北方衙署院落（原创扩展；具体细部待考）
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Pingyao_Yamen_Main_Courtyard.jpg'
-    purpose: 明清县衙中轴院落、厅堂与厢房关系；地域非目标三城，只作官署格局辅助。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: historical-scene. Create ONE isolated production building sprite for tianshu default city-map. Asset bld_kit_qing_north_yamen, early-to-mid Qing northern China, generic county government compound, footprint17m east-west x13m north-south. Northern gray brick courtyard enclosure, dark gray tile roofs with modest hard gables and official front hall, three-bay main hall at rear, small side rooms, modest dark-red painted gate and pillars, very restrained blue-green painted beam trim, central stone court and a court drum. No yellow glazed tiles, no imperial dragons. South gate faces SCREEN LOWER LEFT. Camera ORTHOGRAPHIC yaw45 elevation30, exact 2:1 dimetric ground: front-left-to-front-corner edge slope+0.5, front-corner-to-right edge slope-0.5; keep both axes parallel, ground axis length ratio17:13. Thin flat rectangular ground footprint with left, front and right base corners unambiguously readable. NOT a thick diorama plinth. Realistic historical architectural sprite, hand-finished soft weathering, warm-neutral gray masonry and realistic small tiles, same detail density as supplied Song kit reference. Supplied image is only material/rendering/projection reference; replace pale Song plaster/timber with Qing northern gray brick and restrained official paint. Fully complete asset surrounded by at least10% transparent margin. TRUE TRANSPARENT RGBA, no environment or checkerboard. Light SCREEN UPPER LEFT; tiny soft contact shadow SCREEN LOWER RIGHT. No text of any kind, no signboards, logos, characters, people, flags with symbols, modern objects, landscape, sky, horizon, roads, external trees, oversized curling eaves, perspective convergence or clipping. Original game interpretation, not a named historical monument. The 2:1 ratio describes the ground projection, not the canvas. Correction for candidate 2: Match the supplied image''s camera and size of base exactly: the rectangular foundation must have corners LEFT(220,570), FRONT(900,910), RIGHT(1420,650) on a1536x1024 canvas. Ground edge slopes exactly+0.5 and-0.5, axis lengths17:13. Make the compound fit this outline. No exterior vegetation. CRITICAL: Absolutely no surrounding smoke, glow, mist, ambient halo or broad shadow. Surrounding pixels entirely transparent, confined 5-pixel contact shadow beneath the base only. Do not reproduce black/colored reference preview background; it is transparent.'
-  negative: 文字、水印、现代元素、人物、景观背景、厚地台、裁切、透视汇聚、黄色帝王琉璃瓦
+  notes: 历史细节清单：two-storey front range with deep cart-width gateway and one-storey rear/side lodging wings around a service court; hard-gable grey-tile roofs, plain ridges, grey brick fire walls; heavy dark timber posts, plank shutters, square-lattice upper windows; stone threshold, one tether rail and stacked travel chests inside; no signs or people；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_inn
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 417.252
+    - 369.974
+    era: qing_north
+  footprint_m:
+  - 12
+  - 9
+  entrance:
+    edge: S
+    offset_cells: 5
+- id: bld_kit_qing_north_restaurant
+  file: bld_kit_qing_north_restaurant.png
+  category: building-map
+  style: default
+  subject: 酒楼茶肆
+  prompt: 'Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese two-storey northern restaurant and tea house map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: broad five-bay street facade, upper open timber gallery, lower folding plank shutters; grey-tile hard-gable roofs with restrained tips and plain ridge; grey brick fire walls, dark timber posts, square-lattice windows; shallow cloth awnings and one unlettered wooden board only; no lantern forest or palace color.
+
+
+    Registered logical footprint remains 12 by 9; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
   references:
-  - id: bld_kit_song_southern_yamen
-    file: assets/default/baseline/building-map/bld_kit_song_southern_yamen.png
-    sha256: 4a255313b6c1c776a046158f4cadb26c008500f41c304277889aea66c0b00fb0
-    role: 宋套件相机/材质参考；非清代形制证据
-  source_path: /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-458c3076-28ce-43ac-af1b-5b780b1f7a8b.png
-  created: '2026-09-30T21:13:39.501296+00:00'
-  created_time_basis: copy2保留的源PNG文件mtime；非工具披露的服务端时间
+  - title: File:Thomas Child - Market by Dongsi Pailou, Peking NA01-73.jpg
+    url: https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Market_by_Dongsi_Pailou,_Peking_NA01-73.jpg
+    used_detail: 东四牌楼市场的临时棚架、布篷与沿街摊陈设
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Thomas Child, Peking Streets.jpg
+    url: https://commons.wikimedia.org/wiki/File:Thomas_Child,_Peking_Streets.jpg
+    used_detail: 晚清北京街道的连续铺面、檐口高度与木作尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_restaurant.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 945x760
+  sha256: 02fc3185eb1d41b8fff9e6d87cb48d0222f37552b04ec79b62c1cd73a5b21207
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 5790efc2085896616d2c8d5cda0c818b167ea87c0b9025fa694189309d45c3e9
+  source_size:
+  - 1448
+  - 1086
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 71
+    - 3
+    - 1416
+    - 1084
+    uniform_scale: 0.5828996282527881
+    resized_size:
+    - 784
+    - 630
+    paste_offset:
+    - 80
+    - 65
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：broad five-bay street facade, upper open timber gallery, lower folding plank shutters; grey-tile hard-gable roofs with restrained tips and plain ridge; grey brick fire walls, dark timber posts, square-lattice windows; shallow cloth awnings and one unlettered wooden board only; no lantern forest or palace color；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_restaurant
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 492.391
+    - 517.853
+    era: qing_north
+  footprint_m:
+  - 12
+  - 9
+  entrance:
+    edge: S
+    offset_cells: 5
+- id: bld_kit_qing_north_market_stall
+  file: bld_kit_qing_north_market_stall.png
+  category: building-map
+  style: default
+  subject: 市场棚
+  prompt: 'Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese portable northern market stall map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: four rough timber posts, mortised crossbars and a slightly sagging faded indigo cotton awning tied with hemp cords; low plank counter, wicker baskets and plain ceramic jars inside footprint; no tile roof, writing, flags or permanent masonry.
+
+
+    Registered logical footprint remains 3 by 2; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:Thomas Child - Market by Dongsi Pailou, Peking NA01-73.jpg
+    url: https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Market_by_Dongsi_Pailou,_Peking_NA01-73.jpg
+    used_detail: 东四牌楼市场的临时棚架、布篷与沿街摊陈设
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:VIEW OF THE CENTRAL STREET IN THE CHINESE QUARTER OF PEKING.jpg
+    url: https://commons.wikimedia.org/wiki/File:VIEW_OF_THE_CENTRAL_STREET_IN_THE_CHINESE_QUARTER_OF_PEKING.jpg
+    used_detail: 北京华人街市场的开放式摊位密度与货筐陶器语境
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_market_stall.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 256x256
+  sha256: 19baa1f20bd1a933646e16fbf09c3a4b03de569aaa410015f7c5a0f4118635c3
+  status: candidate
+  candidate_count: 2
+  selected_candidate: 2
+  tool_excess_outputs_discarded: 1
+  source_sha256: 2ed58ac850a7b89368dc0826daa29c6d16a94505f53e0dc1080dce3815e9d31e
+  source_size:
+  - 1536
+  - 1024
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 181
+    - 39
+    - 1317
+    - 991
+    uniform_scale: 0.15933098591549297
+    resized_size:
+    - 181
+    - 152
+    paste_offset:
+    - 37
+    - 52
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：four rough timber posts, mortised crossbars and a slightly sagging faded indigo cotton awning tied with hemp cords; low plank counter, wicker baskets and plain ceramic jars inside footprint; no tile roof, writing, flags or permanent masonry；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_market_stall
+    footprint:
+    - 3
+    - 2
+    anchor:
+    - 120.209
+    - 150.075
+    era: qing_north
+  footprint_m:
+  - 3
+  - 2
+  entrance:
+    edge: S
+    offset_cells: 1
+- id: bld_kit_qing_north_yamen
   file: bld_kit_qing_north_yamen.png
   category: building-map
   style: default
-  model: image_gen (underlying model not disclosed)
-  effort: not exposed by image tool
-  tool: built-in image_gen
-  size: 1039x696
-  sha256: d4c7726a8a98080d76dc2e83de5bb621e2e8fac9b5a53dc2081cf4e5847ddb9f
+  subject: 清初至清中北方衙署院落（原创扩展；具体细部待考）
+  prompt: 'Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese northern county yamen courtyard map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: axial front gate, broad five-bay main hall and lower east-west offices around paved court; grey-tile hard-gable roofs, plain ridge beasts limited to main hall, low stone podium and central three-step stair; grey brick perimeter, muted oxblood doors and columns; sparse official blue-green-ochre beam painting, straight lattice doors; one unlettered drum stand.
+
+
+    Registered logical footprint remains 17 by 13; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:Pingyao Yamen Main Courtyard.jpg
+    url: https://commons.wikimedia.org/wiki/File:Pingyao_Yamen_Main_Courtyard.jpg
+    used_detail: 平遥县衙主院的中轴、正厅开间、灰瓦红柱与月台
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Pingyao Yamen courtyard.jpg
+    url: https://commons.wikimedia.org/wiki/File:Pingyao_Yamen_courtyard.jpg
+    used_detail: 平遥县衙院落的东西厢房、石阶和铺地层级
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_yamen.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 1204x754
+  sha256: c693d9da34bb5293926977cfe1390bba4117f4a91d2227e8ae7784eb9b084181
   status: candidate
+  candidate_count: 2
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 5b5369d9b59653766d25b5acd5ae985c1c6d284f2beab8075b6029f803926446
+  source_size:
+  - 1536
+  - 1024
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 63
+    - 70
+    - 1475
+    - 953
+    uniform_scale: 0.7075070821529745
+    resized_size:
+    - 999
+    - 625
+    paste_offset:
+    - 102
+    - 64
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：axial front gate, broad five-bay main hall and lower east-west offices around paved court; grey-tile hard-gable roofs, plain ridge beasts limited to main hall, low stone podium and central three-step stair; grey brick perimeter, muted oxblood doors and columns; sparse official blue-green-ochre beam painting, straight lattice doors; one unlettered drum stand；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
   building:
     type: bld_kit_qing_north_yamen
     footprint:
     - 17
     - 13
     anchor:
-    - 505.102
-    - 368.2925
+    - 587.102
+    - 395.834
     era: qing_north
   footprint_m:
   - 17
@@ -2443,93 +718,808 @@
   entrance:
     edge: S
     offset_cells: 8
-  projection_contract:
-    tile_px:
-    - 64
-    - 32
-    ground_bbox_px:
-    - 960
-    - 480
-    ground_width_px: 960
-    light: screen_upper_left
-    shadow: screen_lower_right_contact_only
-    contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
-  metadata: meta/bld_kit_qing_north_yamen.yaml
-  source_sha256: bc3d016d785a1dd50505e01a903742124fc175dc7f170a43a307639269c9d6d7
-  processing:
-    source_archive: sources/bld_kit_qing_north_yamen.png
-    source_sha256: bc3d016d785a1dd50505e01a903742124fc175dc7f170a43a307639269c9d6d7
-    source_size:
-    - 1536
-    - 1024
+- id: bld_kit_qing_north_biaoju
+  file: bld_kit_qing_north_biaoju.png
+  category: building-map
+  style: default
+  subject: 清初至清中北方镖局兼货栈院落（原创扩展；具体细部待考）
+  prompt: 'Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese escort agency combined with guarded freight yard map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: high grey-brick compound wall, stout roofed cart gate with heavy double plank leaves and iron studs, rear three-bay office hall, one side warehouse and open cart court; hard-gable grey pan-and-cover tile roofs, plain ridges and no beasts; dark timber, stone wheel guards, tether rail, covered wagon and tied cargo entirely inside; no readable sign.
+
+
+    Registered logical footprint remains 15 by 12; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:Peking Hutong courtyard.JPG
+    url: https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG
+    used_detail: 北京胡同院落的灰瓦硬山、青砖围合、石基与院落尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:China, Miscellaneous Scenes- Group of people, carts, and horses or ponies in a field (7454211264).jpg
+    url: https://commons.wikimedia.org/wiki/File:China,_Miscellaneous_Scenes-_Group_of_people,_carts,_and_horses_or_ponies_in_a_field_(7454211264).jpg
+    used_detail: 历史马车、挽具与货运尺度；仅作镖局和马厩功能旁证
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_biaoju.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 1051x634
+  sha256: 61fd126e15372c171bd8eba2b753121ccacb048b8134b7b6ec126525598ea376
+  status: candidate
+  candidate_count: 2
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 1
+  source_sha256: cd21cb05c60de90e8fa3605aba3cee33349a4e6d622c6fea083927c871e59130
+  source_size:
+  - 1536
+  - 1024
+  normalization:
+    significant_alpha_threshold_for_crop: 8
     crop_box:
-    - 113
-    - 93
-    - 1466
-    - 982
-    uniform_scale_requested: 0.7384615384615385
+    - 63
+    - 72
+    - 1503
+    - 940
+    uniform_scale: 0.6055555555555555
     resized_size:
-    - 999
-    - 656
-    rounded_effective_scale:
-    - 0.738359201773836
-    - 0.7379077615298087
+    - 872
+    - 526
     paste_offset:
-    - 20
-    - 20
-    final_file: bld_kit_qing_north_yamen.png
-    steps:
-    - crop to alpha>0 bounding box
-    - uniform LANCZOS resize; dimensions rounded to nearest px
-    - paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding
-    anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
-  geometry_qa:
-    source_corners_px:
-      left:
-      - 120
-      - 544
-      front:
-      - 857
-      - 919
-      right:
-      - 1420
-      - 586
-    source_axis_slopes:
-    - 0.508819538670285
-    - -0.5914742451154529
-    axis_tolerance: 0.03
-    axis_pass: false
-    source_width_depth_ratio: 1.3090586145648313
-    expected_width_depth_ratio: 1.3076923076923077
-    ratio_relative_error: 0.00104482290251795
-    ratio_tolerance_suggestion: 0.1
-    ratio_pass: true
-    measurement_uncertainty_source_px: 3
-    precision_note: 人工读可见底面三角点，±3px不确定性；底面中心取(L+R)/2。后角为L+R−F推算，非3D测绘；未以变形纠偏。
+    - 89
+    - 54
+    minimum_clear_margin: at least 8% per side
   pixel_qa:
     mode: RGBA
-    size:
-    - 1039
-    - 696
     alpha_extrema:
     - 0
     - 255
-    alpha_zero_pixels: 411868
-    alpha_partial_pixels: 310968
-    alpha_opaque_pixels: 308
-    alpha_near_opaque_pixels: 300773
-    alpha_nonzero_bbox:
-    - 20
-    - 20
-    - 1019
-    - 676
-    transparent_margins_px:
-    - 20
-    - 20
-    - 20
-    - 20
     border_alpha_max: 0
-  candidate_count: 2
-  source_record: sources/bld_kit_qing_north_yamen.json
-  rejected_source_record: sources/bld_kit_qing_north_yamen__rejected.json
-  notes: 已逐张view_image检查源图及浅底alpha合成诊断：主体完整、无文字人物现代物；灰砖灰瓦暗木与宋套件细节密度相近，王府绿瓦和官式红柱区分等级。直接PNG预览的灰棕晕属于透明像素RGB，浅底alpha合成无外部光晕；未改alpha。design/22 §3.4 清初衙署骨架17×13；单体为原创扩展。 双轴/占地比例未全部通过，保留candidate供审校；不得直接当发布资产。 最终PNG已再次逐张view_image自查；历史来源统一见prompts/building-map.md清北节及tools/agents/reports/KIT-qing_north.md §7。
+  notes: 历史细节清单：high grey-brick compound wall, stout roofed cart gate with heavy double plank leaves and iron studs, rear three-bay office hall, one side warehouse and open cart court; hard-gable grey pan-and-cover tile roofs, plain ridges and no beasts; dark timber, stone wheel guards, tether rail, covered wagon and tied cargo entirely inside; no readable sign；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_biaoju
+    footprint:
+    - 15
+    - 12
+    anchor:
+    - 524.698
+    - 365.683
+    era: qing_north
+  footprint_m:
+  - 15
+  - 12
+  entrance:
+    edge: S
+    offset_cells: 7
+- id: bld_kit_qing_north_casino
+  file: bld_kit_qing_north_casino.png
+  category: building-map
+  style: default
+  subject: 清初至清中北方赌场（原创扩展；具体细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese anonymous northern gambling-house courtyard map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: plain two-storey three-bay front house with a screened inner court; grey-tile hard-gable roof, plain ridge, grey brick fire walls, dark timber posts and dense square-lattice windows; discreet side gate, removable plank shutters and one unlettered hanging board; weathered and prosperous but not theatrical, no dice symbols or lantern display.
+
+
+    Registered logical footprint remains 10 by 8; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:Thomas Child, Peking Streets.jpg
+    url: https://commons.wikimedia.org/wiki/File:Thomas_Child,_Peking_Streets.jpg
+    used_detail: 晚清北京街道的连续铺面、檐口高度与木作尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Peking Hutong courtyard.JPG
+    url: https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG
+    used_detail: 北京胡同院落的灰瓦硬山、青砖围合、石基与院落尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_casino.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 700x529
+  sha256: 0ee7c6e65e907536888ba4a919ac273400bb9bea299cb3bfede22239febac80b
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 790cc1585b7c7de17546c8247ac3bc01ce2dea4c510bf74caf84d8fd2a924174
+  source_size:
+  - 1402
+  - 1122
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 32
+    - 64
+    - 1389
+    - 1090
+    uniform_scale: 0.4281503316138541
+    resized_size:
+    - 581
+    - 439
+    paste_offset:
+    - 59
+    - 45
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：plain two-storey three-bay front house with a screened inner court; grey-tile hard-gable roof, plain ridge, grey brick fire walls, dark timber posts and dense square-lattice windows; discreet side gate, removable plank shutters and one unlettered hanging board; weathered and prosperous but not theatrical, no dice symbols or lantern display；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_casino
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 349.074
+    - 332.106
+    era: qing_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 4
+- id: bld_kit_qing_north_manor
+  file: bld_kit_qing_north_manor.png
+  category: building-map
+  style: default
+  subject: 清初至清中北方大院（原创扩展；具体细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese wealthy northern residence compound map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: two nested courts with five-bay north hall and balanced side wings; grey-tile hard-gable roofs, molded brick ridge ends and only tiny beast figures on principal hall; carefully coursed grey brick over dressed-stone base; dark red-brown timber, geometric lattice windows, screen wall and dignified but restrained hanging-flower gateway; no imperial glazing.
+
+
+    Registered logical footprint remains 16 by 13; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:Shiyuan tianjin doorways.jpg
+    url: https://commons.wikimedia.org/wiki/File:Shiyuan_tianjin_doorways.jpg
+    used_detail: 天津石家大院的门道比例、砖雕收口、青砖与石基层次
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:GongWangFu courtyard (2917122776).jpg
+    url: https://commons.wikimedia.org/wiki/File:GongWangFu_courtyard_(2917122776).jpg
+    used_detail: 恭王府院落的官式开间、灰瓦红木与围院尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_manor.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 1229x966
+  sha256: 74ca87335596c58c9fcda38cf32c35b31952f426e3c73c560c4b848118bf5a0f
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: c09f6d9aeb1233a52873d8d601cd466ea5e39ff5c2c9f8e06815162b013446a7
+  source_size:
+  - 1392
+  - 1130
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 27
+    - 45
+    - 1366
+    - 1096
+    uniform_scale: 0.7617625093353249
+    resized_size:
+    - 1020
+    - 801
+    paste_offset:
+    - 104
+    - 82
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：two nested courts with five-bay north hall and balanced side wings; grey-tile hard-gable roofs, molded brick ridge ends and only tiny beast figures on principal hall; carefully coursed grey brick over dressed-stone base; dark red-brown timber, geometric lattice windows, screen wall and dignified but restrained hanging-flower gateway; no imperial glazing；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_manor
+    footprint:
+    - 16
+    - 13
+    anchor:
+    - 656.21
+    - 502.116
+    era: qing_north
+  footprint_m:
+  - 16
+  - 13
+  entrance:
+    edge: S
+    offset_cells: 7
+- id: bld_kit_qing_north_wangfu
+  file: bld_kit_qing_north_wangfu.png
+  category: building-map
+  style: default
+  subject: 清初至清中北方王府前院模块（原创扩展；具体细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese Qing northern prince''s mansion forecourt module map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: formal axial gate and broad principal hall with side wings around a stone-paved forecourt; principal hall five-bay single-eave hip-and-gable roof with restrained upturned corners, grey tiles with green-glazed edge trim only, chiwen and a short rank-appropriate beast train; three-step dressed-stone podium, red columns, bracket sets one tier beneath eaves, blue-green-ochre official painting and dense geometric lattice doors; secondary roofs plain grey.
+
+
+    Registered logical footprint remains 22 by 18; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:GongWangFu courtyard (2917122776).jpg
+    url: https://commons.wikimedia.org/wiki/File:GongWangFu_courtyard_(2917122776).jpg
+    used_detail: 恭王府院落的官式开间、灰瓦红木与围院尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:GongWangFu courtyard (2916271883).jpg
+    url: https://commons.wikimedia.org/wiki/File:GongWangFu_courtyard_(2916271883).jpg
+    used_detail: 恭王府门殿、石铺庭院和主次屋顶等级
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Imperial Palaces of the Ming and Qing Dynasties 24351-Shenyang (49052461177).jpg
+    url: https://commons.wikimedia.org/wiki/File:Imperial_Palaces_of_the_Ming_and_Qing_Dynasties_24351-Shenyang_(49052461177).jpg
+    used_detail: 沈阳故宫官式斗拱、梁枋彩画与局部绿琉璃边饰
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_dali_wangfu.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 1746x1237
+  sha256: 9505b7046512a136df5646ba080c606cddc9c5a59501bf8c34509fece08a982a
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: f12771ae9fd2cbdcec7f334b902efabaaeb4fcf75256ef381da0afc94fb0e5a8
+  source_size:
+  - 1388
+  - 1133
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 49
+    - 140
+    - 1343
+    - 1056
+    uniform_scale: 1.1197836166924267
+    resized_size:
+    - 1449
+    - 1026
+    paste_offset:
+    - 148
+    - 105
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：formal axial gate and broad principal hall with side wings around a stone-paved forecourt; principal hall five-bay single-eave hip-and-gable roof with restrained upturned corners, grey tiles with green-glazed edge trim only, chiwen and a short rank-appropriate beast train; three-step dressed-stone podium, red columns, bracket sets one tier beneath eaves, blue-green-ochre official painting and dense geometric lattice doors; secondary roofs plain grey；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_wangfu
+    footprint:
+    - 22
+    - 18
+    anchor:
+    - 910.502
+    - 679.726
+    era: qing_north
+  footprint_m:
+  - 22
+  - 18
+  entrance:
+    edge: S
+    offset_cells: 10
+- id: bld_kit_qing_north_temple_hall
+  file: bld_kit_qing_north_temple_hall.png
+  category: building-map
+  style: default
+  subject: 清初至清中北方汉地佛寺殿堂（原创扩展；具体细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese Qing northern Buddhist temple hall map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: broad five-bay single-eave hip-and-gable hall; grey glazed pan-and-cover tiles, curved ridge with chiwen and restrained beast train, substantial one-tier bracket sets, muted red columns, blue-green-ochre beam painting, dense straight lattice doors; dressed-grey-stone podium and central stair, one small bronze censer inside footprint; no yellow imperial roof.
+
+
+    Registered logical footprint remains 14 by 11; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:Summer Palace, Beijing (4692019546).jpg
+    url: https://commons.wikimedia.org/wiki/File:Summer_Palace,_Beijing_(4692019546).jpg
+    used_detail: 颐和园殿堂的歇山轮廓、柱网、台基与灰瓦细部
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Lascar Lama Temple (4478015544).jpg
+    url: https://commons.wikimedia.org/wiki/File:Lascar_Lama_Temple_(4478015544).jpg
+    used_detail: 雍和宫影像中的斗拱出檐、梁枋彩画与门扇节奏
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_temple_hall.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 1105x820
+  sha256: 628d3497451b92ad1627f3a8b467b7aa557fcef5367c56c707e4e43c70606008
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 8714d89c63689e3510b054197f942edd5bfbb2fcf1ba4dab157e2e0fec82493f
+  source_size:
+  - 1448
+  - 1086
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 48
+    - 54
+    - 1428
+    - 1077
+    uniform_scale: 0.6644927536231884
+    resized_size:
+    - 917
+    - 680
+    paste_offset:
+    - 94
+    - 70
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：broad five-bay single-eave hip-and-gable hall; grey glazed pan-and-cover tiles, curved ridge with chiwen and restrained beast train, substantial one-tier bracket sets, muted red columns, blue-green-ochre beam painting, dense straight lattice doors; dressed-grey-stone podium and central stair, one small bronze censer inside footprint; no yellow imperial roof；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_temple_hall
+    footprint:
+    - 14
+    - 11
+    anchor:
+    - 591.602
+    - 561.54
+    era: qing_north
+  footprint_m:
+  - 14
+  - 11
+  entrance:
+    edge: S
+    offset_cells: 6
+- id: bld_kit_qing_north_pagoda
+  file: bld_kit_qing_north_pagoda.png
+  category: building-map
+  style: default
+  subject: 清初至清中北方汉地砖佛塔意象（原创扩展；具体细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese Qing northern brick multi-eave Buddhist pagoda map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: octagonal solid brick body on low stone-and-brick base; tall first storey with recessed blind arches and restrained brick relief panels, thirteen closely stacked corbelled brick eaves diminishing upward, tiny grey tile caps, lotus-form finial and metal spire; warm weathered grey-buff brick, no timber balconies, no invented six-storey pavilion form.
+
+
+    Registered logical footprint remains 7 by 7; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:Cishou Temple Pagoda.JPG
+    url: https://commons.wikimedia.org/wiki/File:Cishou_Temple_Pagoda.JPG
+    used_detail: 慈寿寺塔的八角砖身、密檐收分、盲券和砖雕
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Pagoda on way to Summer Palace, probably marble, by Harold Stephen Bucklin, c. 1923-1924, from the Digital Commonwealth - commonwealth g445g666m.jpg
+    url: https://commons.wikimedia.org/wiki/File:Pagoda_on_way_to_Summer_Palace,_probably_marble,_by_Harold_Stephen_Bucklin,_c._1923-1924,_from_the_Digital_Commonwealth_-_commonwealth_g445g666m.jpg
+    used_detail: 约1923至1924年北京塔影的密檐整体比例与塔刹剪影
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_pagoda.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 679x1350
+  sha256: 29e4756b88aab31066f427057c1a0ff663f01de07a069837924fb022f07b7154
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: aec0218385c7a4ec14e20cc7325741dff3b456bc18f627209733d576137dc05f
+  source_size:
+  - 1024
+  - 1536
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 159
+    - 36
+    - 867
+    - 1444
+    uniform_scale: 0.7951977401129944
+    resized_size:
+    - 563
+    - 1120
+    paste_offset:
+    - 58
+    - 115
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：octagonal solid brick body on low stone-and-brick base; tall first storey with recessed blind arches and restrained brick relief panels, thirteen closely stacked corbelled brick eaves diminishing upward, tiny grey tile caps, lotus-form finial and metal spire; warm weathered grey-buff brick, no timber balconies, no invented six-storey pavilion form；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_pagoda
+    footprint:
+    - 7
+    - 7
+    anchor:
+    - 283.418
+    - 1065.0
+    era: qing_north
+  footprint_m:
+  - 7
+  - 7
+  entrance:
+    edge: S
+    offset_cells: 3
+- id: bld_kit_qing_north_guardhouse
+  file: bld_kit_qing_north_guardhouse.png
+  category: building-map
+  style: default
+  subject: 清初至清中北方城门守舍（原创扩展；具体细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese small guardhouse beside a northern city gate map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: compact one-storey three-bay duty room on grey-brick base, hard-gable grey-tile roof with straight ridge and no beasts, muted red-brown columns, plain bracket blocks and barred square-lattice windows; attached short parapet wall and weapon rack inside footprint, no tower or monumental gate.
+
+
+    Registered logical footprint remains 7 by 5; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:Thomas Child - Gate tower of Qianmen and city walls, Peking NA01-65.jpg
+    url: https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Gate_tower_of_Qianmen_and_city_walls,_Peking_NA01-65.jpg
+    used_detail: Thomas Child前门影像的灰砖城台、拱券和木门楼体量
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Front Gate, City Wall, Peking, China (4822093666).jpg
+    url: https://commons.wikimedia.org/wiki/File:Front_Gate,_City_Wall,_Peking,_China_(4822093666).jpg
+    used_detail: 北京城门历史照片的门洞比例、城台收分和楼墙衔接
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_guardhouse.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 472x350
+  sha256: d8b5fdc18ec4b05a8e1cdfb5f32cd6b6c61594da7014caf712b54283967dabce
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 2308ec588ca090074eec4fc168f292e6f14470b318df287464b87e7b6815fcad
+  source_size:
+  - 1484
+  - 1060
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 144
+    - 88
+    - 1382
+    - 1005
+    uniform_scale: 0.3158319870759289
+    resized_size:
+    - 391
+    - 290
+    paste_offset:
+    - 40
+    - 30
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：compact one-storey three-bay duty room on grey-brick base, hard-gable grey-tile roof with straight ridge and no beasts, muted red-brown columns, plain bracket blocks and barred square-lattice windows; attached short parapet wall and weapon rack inside footprint, no tower or monumental gate；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_guardhouse
+    footprint:
+    - 7
+    - 5
+    anchor:
+    - 235.019
+    - 235.849
+    era: qing_north
+  footprint_m:
+  - 7
+  - 5
+  entrance:
+    edge: S
+    offset_cells: 3
+- id: bld_kit_qing_north_stable
+  file: bld_kit_qing_north_stable.png
+  category: building-map
+  style: default
+  subject: 清初至清中北方马厩（原创扩展；具体细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese northern courtyard stable map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: broad single-storey hard-gable grey-tile roof over four open stalls; heavy unpainted pine posts and beams without dougong, grey-brick end walls on rubble footing, half-height plank partitions, tether rail, stone trough, hay rack and a small feed room; no horse, cart, sign or decorative paint.
+
+
+    Registered logical footprint remains 9 by 7; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:China, Miscellaneous Scenes- Group of people, carts, and horses or ponies in a field (7454211264).jpg
+    url: https://commons.wikimedia.org/wiki/File:China,_Miscellaneous_Scenes-_Group_of_people,_carts,_and_horses_or_ponies_in_a_field_(7454211264).jpg
+    used_detail: 历史马车、挽具与货运尺度；仅作镖局和马厩功能旁证
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Peking Hutong courtyard.JPG
+    url: https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG
+    used_detail: 北京胡同院落的灰瓦硬山、青砖围合、石基与院落尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_stable.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 723x515
+  sha256: 63c5dd0513beab232449b9028914610efdb20d8477deab986ad066eb3c82277d
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 239ed9d45d4864de964463cdc425aaa6533519c51ab589ae2c32546730a9e0e0
+  source_size:
+  - 1536
+  - 1024
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 109
+    - 76
+    - 1434
+    - 1020
+    uniform_scale: 0.4528301886792453
+    resized_size:
+    - 600
+    - 427
+    paste_offset:
+    - 61
+    - 44
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：broad single-storey hard-gable grey-tile roof over four open stalls; heavy unpainted pine posts and beams without dougong, grey-brick end walls on rubble footing, half-height plank partitions, tether rail, stone trough, hay rack and a small feed room; no horse, cart, sign or decorative paint；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_stable
+    footprint:
+    - 9
+    - 7
+    anchor:
+    - 392.872
+    - 316.833
+    era: qing_north
+  footprint_m:
+  - 9
+  - 7
+  entrance:
+    edge: S
+    offset_cells: 4
+- id: bld_kit_qing_north_warehouse
+  file: bld_kit_qing_north_warehouse.png
+  category: building-map
+  style: default
+  subject: 仓屋
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese northern grain and freight warehouse map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: long low single-storey hard-gable structure, close grey pan-and-cover tile courses and plain ridge; thick grey-blue brick walls on rough-stone base, high ventilation slots and two wide plank loading doors with simple iron straps; exposed dark timber lintels, raised threshold and a few sacks within doorway; no sign.
+
+
+    Registered logical footprint remains 10 by 8; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:Peking Hutong courtyard.JPG
+    url: https://commons.wikimedia.org/wiki/File:Peking_Hutong_courtyard.JPG
+    used_detail: 北京胡同院落的灰瓦硬山、青砖围合、石基与院落尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Thomas Child, Peking Streets.jpg
+    url: https://commons.wikimedia.org/wiki/File:Thomas_Child,_Peking_Streets.jpg
+    used_detail: 晚清北京街道的连续铺面、檐口高度与木作尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_warehouse.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 760x550
+  sha256: a88637673de8c5e4251a0f976dd63f40f1dbbb2e3cfc8a1167e3f13ab5238779
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 9e03b082f5437622c6379548935b8e7a83f1f8a89b4766bccebdce0b07bfa374
+  source_size:
+  - 1402
+  - 1122
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 140
+    - 205
+    - 1297
+    - 1042
+    uniform_scale: 0.5445116681071738
+    resized_size:
+    - 630
+    - 456
+    paste_offset:
+    - 65
+    - 47
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：long low single-storey hard-gable structure, close grey pan-and-cover tile courses and plain ridge; thick grey-blue brick walls on rough-stone base, high ventilation slots and two wide plank loading doors with simple iron straps; exposed dark timber lintels, raised threshold and a few sacks within doorway; no sign；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_warehouse
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 405.26
+    - 355.655
+    era: qing_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 4
+- id: bld_kit_qing_north_wharf
+  file: bld_kit_qing_north_wharf.png
+  category: building-map
+  style: default
+  subject: 河埠
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese northern canal stone landing map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: low rectangular granite-and-grey-brick quay, three broad worn landing steps cut inside the long water edge, coursed stone retaining face, two squat stone mooring posts and one timber bollard, hemp rope coil, narrow plank loading strip; no water, boat, building or landscaped bank; all masonry joints individually readable.
+
+
+    Registered logical footprint remains 10 by 4; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.'
+  references:
+  - title: File:On the grand canal between Tong-chow and Peking LCCN2004707951.jpg
+    url: https://commons.wikimedia.org/wiki/File:On_the_grand_canal_between_Tong-chow_and_Peking_LCCN2004707951.jpg
+    used_detail: 通州至北京运河旧照的石岸、低台与靠泊语境
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Anchorage at Tong-Chow 1817 p138.jpg
+    url: https://commons.wikimedia.org/wiki/File:Anchorage_at_Tong-Chow_1817_p138.jpg
+    used_detail: 1817年通州锚地画中的踏步、系泊和装卸关系
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/building-map/bld_kit_song_southern_wharf.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 546x311
+  sha256: a98a7fea393844603fad5bd85ecffde7532382563b996b4dfda2b1ef11c620cd
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 91179fc6be45252c1423730195aa8072b8736e6dfc2d8794719bb90ab7aa53c6
+  source_size:
+  - 1983
+  - 793
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 364
+    - 56
+    - 1610
+    - 767
+    uniform_scale: 0.3635634028892456
+    resized_size:
+    - 453
+    - 258
+    paste_offset:
+    - 46
+    - 26
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：low rectangular granite-and-grey-brick quay, three broad worn landing steps cut inside the long water edge, coursed stone retaining face, two squat stone mooring posts and one timber bollard, hemp rope coil, narrow plank loading strip; no water, boat, building or landscaped bank; all masonry joints individually readable；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
+  building:
+    type: bld_kit_qing_north_wharf
+    footprint:
+    - 10
+    - 4
+    anchor:
+    - 272.517
+    - 177.469
+    era: qing_north
+  footprint_m:
+  - 10
+  - 4
+  entrance:
+    edge: S
+    offset_cells: 4

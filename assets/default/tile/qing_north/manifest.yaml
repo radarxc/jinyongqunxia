@@ -3,24 +3,68 @@
   category: tile
   style: default
   subject: 清初至清中北方·净宽4格灰砖门楼（原创扩展）
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Gate_tower_of_Qianmen_and_city_walls,_Peking_NA01-65.jpg'
-    purpose: 十九世纪前门城台、灰砖城墙与木楼体量；成品不是正阳门复原。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: precise-object-edit. Make a small exact GEOMETRIC revision of this gate sprite, retaining all material detail, gray roof, red timber, brick pattern, height, front elevation proportions, light and transparent opening. Current total front span is about793px, side depth span347px, too shallow. Increase ONLY front-to-back DEPTH of both piers, hall, and roof by15%, toward screen upper-right; keep the front face width unchanged. Target overall FOOTPRINT8m wide by4m deep, horizontal front span divided by horizontal side span MUST BE2.00. Both individual piers are2m wide by4m deep, receding SIDE is exactly twice front width. Opening remains4m wide, front clear width half total. Keep orthographic yaw45 elevation30, ground slopes+0.5/-0.5, parallel brick courses and vertical corners. RIGHT SIDE OF RIGHT PIER MUST VISIBLY GROW15% LONGER, expanding toward upper-right, without changing the front2m face. Keep flat straight bottom edges, no flared plinth. If needed uniformly zoom out slightly to keep new far-right corner and roof fully within15% transparent margins. Preserve original 1:1 square canvas. Actual alpha0 transparent background AND ground-level passage, solid material alpha255, no floor spanning opening, no background or glow. No text, dimensions, markers, people, modern objects, watermarks. Exactly one complete gate sprite, same historical realistic style.'
-  negative: 无文字、水印、人物、现代物件、地台、背景；禁止假棋盘透明；禁止旋转单图充当四朝向。
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese Qing northern grey-brick city gate with four-cell clear passage map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: massive coursed grey-brick rectangular platform with battered lower courses, one round-headed voussoir arch whose opening occupies exactly half total front width, two solid two-cell piers, thin white-stone sill; compact two-storey timber gatehouse with double-eave hip-and-gable grey-tile roofs, chiwen and very short beast train, muted red columns, one-tier brackets and restrained blue-green painting; transparent ground-level passage.
+
+
+    Registered logical footprint remains 8 by 4; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.
+
+    Tile-specific: retain the exact logical footprint and keep connection edges unobstructed. Wall and gate masonry must align to the 2:1 ground plane; gate and bridge passage voids must be genuinely transparent.'
   references:
-  - file: /Users/bytedance/.codex/generated_images/01a0f46e-40f8-7f82-b5c4-d14afb2d3470/exec-c4586f03-aaa6-4d2e-b1fc-d7cbb5cdd4ba.png
-    sha256: db63c616c644e28d197f962a9a2d64f42ff44f7ca05d4332e09442f2eac61f31
-    archive: source/tex_town_qing_north_city_gate__k4_r000_v01__revision3_c1.png
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T22:37:04.485215+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f46e-40f8-7f82-b5c4-d14afb2d3470/exec-71fef4e8-3aa9-4bf0-b03a-2f6ee7db7b5d.png
-  size: 423x377
-  sha256: 6448333c5d003935b55b1af0ac176def8ac5370230d3614e04f74457b3f1c770
+  - title: File:Thomas Child - Gate tower of Qianmen and city walls, Peking NA01-65.jpg
+    url: https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Gate_tower_of_Qianmen_and_city_walls,_Peking_NA01-65.jpg
+    used_detail: Thomas Child前门影像的灰砖城台、拱券和木门楼体量
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Front Gate, City Wall, Peking, China (4822093666).jpg
+    url: https://commons.wikimedia.org/wiki/File:Front_Gate,_City_Wall,_Peking,_China_(4822093666).jpg
+    used_detail: 北京城门历史照片的门洞比例、城台收分和楼墙衔接
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/tile/tex_town_song_southern_city_gate__k5_r090_v01.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 484x398
+  sha256: 73560c5620d15b8191e27aa459c9b71c128ae6914420c68315d7b1fc599563bf
   status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: e611224f427f771d4e618b934e4d01b8f82613c6d6ddc3143536099a341ba09c
+  source_size:
+  - 1536
+  - 1024
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 183
+    - 25
+    - 1374
+    - 1005
+    uniform_scale: 0.33669185558354325
+    resized_size:
+    - 401
+    - 330
+    paste_offset:
+    - 41
+    - 34
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：massive coursed grey-brick rectangular platform with battered lower courses, one round-headed voussoir arch whose opening occupies exactly half total front width, two solid two-cell piers, thin white-stone sill; compact two-storey timber gatehouse with double-eave hip-and-gable grey-tile roofs, chiwen and very short beast train, muted red columns, one-tier brackets and restrained blue-green painting; transparent ground-level passage；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
   tile:
     kind: city_gate
     footprint:
@@ -28,36 +72,76 @@
     - 4
     variant: k4_r000_v01
     autotile_mask: null
-  source_copy: source/tex_town_qing_north_city_gate__k4_r000_v01__selected.png
-  source_sha256: 097c4ecb7a93dea526fa697e99789064ceba8fe3780bbf99f1eaff52b3601060
   anchor_px:
-  - 223.568
-  - 256.033
-  notes: 第3轮仅非零alpha裁切、等比LANCZOS缩放及4px透明边；宽深比2.24646，较目标2偏12.32%，未通过10%占地阈值。门孔透明，逻辑8×4仍为目标；保留candidate。
+  - 246.568
+  - 270.281
 - id: tex_town_qing_north_city_gate__k6_r000_v01
   file: tex_town_qing_north_city_gate__k6_r000_v01.png
   category: tile
   style: default
   subject: 清初至清中北方·净宽6格灰砖门楼（原创扩展）
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Gate_tower_of_Qianmen_and_city_walls,_Peking_NA01-65.jpg'
-    purpose: 十九世纪前门城台、灰砖城墙与木楼体量；成品不是正阳门复原。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: precise-object-edit. Make ONE small mathematical correction to this Qing gate asset, preserving beautiful realistic material and lighting, transparency, front elevation and front-left/front-right bottom corner positions. Increase its DEPTH toward UPPER RIGHT by13%, by extending each brick pier rearwards and extending roof width rearwards correspondingly; keep the full long front width unchanged. CURRENT ground corners are L(126,764),F(784,1095),R(1018,987). CORRECTED ground corners must be L(126,764),F(784,1093),R(1047,961),B(389,632), in the same canvas coordinate scale. Thus front horizontal delta658, side horizontal delta263; ratio2.50 exactly, both edge slopes +0.50 and -0.50. Those are construction coordinates only, never draw markers/text. TOTAL FOOTPRINT10m front by4m depth. Each pier2m front by4m depth; clear passage6m, so set its front clear edges20% and80% along total front line. Correct front inner edges to(258,830) and(652,1027), without adding any floor or projecting base. The current right-side depth face is slightly too shallow; make it visibly deeper. Keep vertical walls vertical. No camera zoom, no reframing or view-angle shift, no tapered brick base, no stylistic changes. All background and opening fully transparent alpha0; all opaque stone/wood alpha255. Whole complete asset, no clipping, no aura, no labels, no text, no humans, no watermarks. Keep same clean transparent square canvas.'
-  negative: 无文字、水印、人物、现代物件、地台、背景；禁止假棋盘透明；禁止旋转单图充当四朝向。
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese Qing northern grey-brick city gate with six-cell clear passage map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: broad coursed grey-brick rectangular platform with battered lower courses, one round-headed voussoir arch whose opening occupies exactly three-fifths total front width, two solid two-cell piers and thin white-stone sill; low two-storey timber gatehouse with double-eave hip-and-gable grey-tile roofs, chiwen and short beast train, muted red columns, one-tier brackets and restrained blue-green painting; transparent ground-level passage.
+
+
+    Registered logical footprint remains 10 by 4; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.
+
+    Tile-specific: retain the exact logical footprint and keep connection edges unobstructed. Wall and gate masonry must align to the 2:1 ground plane; gate and bridge passage voids must be genuinely transparent.'
   references:
-  - file: /Users/bytedance/.codex/generated_images/01a0f450-9592-7253-a47c-b075ec64d479/exec-0f672507-a5f3-4804-99fa-a0800bf2a31f.png
-    sha256: 8872cfa56809e70b04496e00f4bf161623e008be734d0d8fa41015d1f8b23a07
-    archive: source/tex_town_qing_north_city_gate__k6_r000_v01__repair2_input1.png
-    note: 本轮实际输入，archive保留调用时字节。
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T22:04:11.480997+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f450-9592-7253-a47c-b075ec64d479/exec-f81f0518-5079-4ae2-a8dd-0549db8067eb.png
-  size: 532x567
-  sha256: 112eeda54c4d95c269980aac73cf628d4ee02e7ca7a608622e761eab6cfd2d3c
+  - title: File:Thomas Child - Gate tower of Qianmen and city walls, Peking NA01-65.jpg
+    url: https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Gate_tower_of_Qianmen_and_city_walls,_Peking_NA01-65.jpg
+    used_detail: Thomas Child前门影像的灰砖城台、拱券和木门楼体量
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Front Gate, City Wall, Peking, China (4822093666).jpg
+    url: https://commons.wikimedia.org/wiki/File:Front_Gate,_City_Wall,_Peking,_China_(4822093666).jpg
+    used_detail: 北京城门历史照片的门洞比例、城台收分和楼墙衔接
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/tile/tex_town_song_southern_city_gate__k8_r000_v01.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 627x527
+  sha256: 677cbe7b4e2f34d927b5f76a9ffdbefb6ff023fc0f4b05644907296c969c0b73
   status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: dfd3229f1b8912933b1572e85ca1cb731a7ffe9c4a5b0d5860db86fbd5819297
+  source_size:
+  - 1536
+  - 1024
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 186
+    - 15
+    - 1366
+    - 1007
+    uniform_scale: 0.4406779661016949
+    resized_size:
+    - 520
+    - 437
+    paste_offset:
+    - 53
+    - 45
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：broad coursed grey-brick rectangular platform with battered lower courses, one round-headed voussoir arch whose opening occupies exactly three-fifths total front width, two solid two-cell piers and thin white-stone sill; low two-storey timber gatehouse with double-eave hip-and-gable grey-tile roofs, chiwen and short beast train, muted red columns, one-tier brackets and restrained blue-green painting; transparent ground-level passage；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
   tile:
     kind: city_gate
     footprint:
@@ -65,35 +149,76 @@
     - 4
     variant: k6_r000_v01
     autotile_mask: null
-  source_copy: source/tex_town_qing_north_city_gate__k6_r000_v01__selected.png
-  source_sha256: 03065b80557383af8e619632406daead1aa8ef4e5d7be678e364fc9dd0fd856e
   anchor_px:
-  - 262.748
-  - 391.626
-  notes: 仅非零alpha外接矩形裁切、等比缩放（整数尺寸舍入）、4px透明边；原alpha保留；单朝向candidate，几何残差见qa.jsonl。
+  - 311.748
+  - 350.664
 - id: tex_town_qing_north_wall__brick_r000_v01
   file: tex_town_qing_north_wall__brick_r000_v01.png
   category: tile
   style: default
   subject: 清初至清中北方·灰砖直墙（原创扩展）
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Gate_tower_of_Qianmen_and_city_walls,_Peking_NA01-65.jpg'
-    purpose: 北京城墙灰砖材质、墙台尺度与门楼衔接；仅作形制复核。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: precise-object-edit. Keep this exact ONE Qing north China grey-brick wall pillar texture, flat top, body, illumination and transparent background. Correct its measured projection: current top rhombus is too steep, with edge slopes about0.64, and vertical body too tall. Make top and base ground-plane rhombi FLATTER, exact slope+0.5/-0.5. Desired top diamond coordinates relative to width640: left(0,160),top(320,0),right(640,160),front(320,320). Keep640units projected width, reduce vertical wall extrusion to1176units exactly, giving silhouette640wide1496high. Thus world footprint1m by1m and3m tall at64x32px per grid metre. Orthographic dimetric2:1, NOT conventional isometric slope0.577 or steep0.64. Vertical edges vertical. Preserve grey masonry and upper-left illumination, no material change. Whole complete object surrounded by ample alpha0 transparent margin, body alpha255, no haze, no glow, no backdrop, no floor or terrain. No text, labels, symbols or dimension arrows. One asset.'
-  negative: 无文字、水印、人物、现代物件、地台、背景；禁止假棋盘透明；禁止旋转单图充当四朝向。
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese one-cell Qing northern city-wall segment map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: three-metre tall wall segment of large weathered grey facing bricks in regular running bond over compacted-earth core, slightly battered sides, narrow dressed-stone footing and plain flat brick coping; no crenels, roof, tower, ornament or projecting base; mortar seams and chipped brick edges clearly readable.
+
+
+    Registered logical footprint remains 1 by 1; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.
+
+    Tile-specific: retain the exact logical footprint and keep connection edges unobstructed. Wall and gate masonry must align to the 2:1 ground plane; gate and bridge passage voids must be genuinely transparent.'
   references:
-  - file: /Users/bytedance/.codex/generated_images/01a0f427-a0b9-7f20-addd-cea7a313f228/exec-0c2b7f28-8ac5-4f04-93c7-4a39cf8b04aa.png
-    sha256: 2e4f93eb8e50eb5e339fd15855cb2afd4987179ee566ddbc24d48bbcbaf45bb2
-    note: 实际输入；只保留选中原图，历史参考位置与哈希供追溯。
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T21:26:46.014761+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f427-a0b9-7f20-addd-cea7a313f228/exec-baf3f2a0-bfbc-467c-8a1b-ee8afc941c58.png
-  size: 73x132
-  sha256: ad74b3c6d02036f8490db4d21a0584df92231a993f8be735ea7a24e8476a136d
+  - title: File:Thomas Child - Gate tower of Qianmen and city walls, Peking NA01-65.jpg
+    url: https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Gate_tower_of_Qianmen_and_city_walls,_Peking_NA01-65.jpg
+    used_detail: Thomas Child前门影像的灰砖城台、拱券和木门楼体量
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Felice Beato (British, born Italy - Top of the Wall of Peking - Google Art Project.jpg
+    url: https://commons.wikimedia.org/wiki/File:Felice_Beato_(British,_born_Italy_-_Top_of_the_Wall_of_Peking_-_Google_Art_Project.jpg
+    used_detail: 北京城墙历史照片的灰砖砌筑、平顶和墙体尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/tile/tex_town_song_southern_wall__brick_r000_v01.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 79x179
+  sha256: 6010115ed95c1bab0b88cbe1fe7e33cb1b830c92b9d3b4995d25adbe1228f78f
   status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 9adbf1a63ff9e4533f0b30de960cd06a8401d773aae84a8e24cc218f0413d9fb
+  source_size:
+  - 1024
+  - 1536
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 210
+    - 66
+    - 816
+    - 1447
+    uniform_scale: 0.10726072607260725
+    resized_size:
+    - 65
+    - 148
+    paste_offset:
+    - 7
+    - 15
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：three-metre tall wall segment of large weathered grey facing bricks in regular running bond over compacted-earth core, slightly battered sides, narrow dressed-stone footing and plain flat brick coping; no crenels, roof, tower, ornament or projecting base; mortar seams and chipped brick edges clearly readable；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
   tile:
     kind: wall
     footprint:
@@ -101,35 +226,76 @@
     - 1
     variant: brick_r000_v01
     autotile_mask: null
-  source_copy: source/tex_town_qing_north_wall__brick_r000_v01__selected.png
-  source_sha256: 62dd1f91c888e136cb141a9a66660236e79e4f64819b7b71f17336ca019da1c1
   anchor_px:
-  - 36.59
-  - 111.951
-  notes: 仅非零alpha外接矩形裁切、等比缩放（整数尺寸舍入）、4px透明边；原alpha保留；单朝向candidate，几何残差见qa.jsonl。
+  - 39.59
+  - 143.845
 - id: tex_town_qing_north_wall_corner__outer_ne_v01
   file: tex_town_qing_north_wall_corner__outer_ne_v01.png
   category: tile
   style: default
   subject: 清初至清中北方·灰砖外墙角（原创扩展）
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Gate_tower_of_Qianmen_and_city_walls,_Peking_NA01-65.jpg'
-    purpose: 北京城墙灰砖材质与墙台体量；照片不提供本外角精确拼接几何。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: historical-scene. ONE reusable OUTER90degree CITY WALL CORNER sprite for early-to-mid Qing northern China. Input only style reference for fine muted grey brick masonry. A compact L in plan, outer footprint2m by2m, each arm2m long1m thick, uniform wall height3m, flat tops, no battlements, no separate coping. Far elbow at TOP CENTER; two arms extend toward image LOWER-LEFT and LOWER-RIGHT, inner hollow opens toward bottom center, genuinely transparent through inside corner. DO NOT make long courtyard walls. Orthographic yaw45 elevation30, exact2:1 ground projection, planar edges slopes+0.5/-0.5, vertical corners vertical. Target projected silhouette128units wide and182units high, with ground envelope64units high and wall vertical rise118units. Fine grey brick bonds with subtle pale lime mortar; realistic antique Chinese game asset, low saturation, restrained wear. Upper-left light with left faces lighter, right faces darker; tiny short lower-right contact shadow only. TRUE RGBA: material opaque255, empty background and hollow alpha0, no haze, aura, broad shadow or checkerboard. No terrain base or plinth, no stairs, no people, plants, labels, text, symbols, watermarks or modern items. Exactly ONE complete corner with generous transparent margins.'
-  negative: 无文字、水印、人物、现代物件、地台、背景；禁止假棋盘透明；禁止旋转单图充当四朝向。
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese Qing northern outer city-wall corner map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: true L-shaped ninety-degree outer corner, both arms two metres long and one metre thick; the wall is three metres tall, visibly about three times its one-metre thickness, and must match the attached straight wall segment''s tall upright proportions; large grey facing bricks in running bond over rammed-earth core, slightly battered faces, narrow dressed-stone footing and flat brick coping; hollow inner angle fully open and transparent, no crenels, tower or roof.
+
+
+    Registered logical footprint remains 2 by 2; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.
+
+    Tile-specific: retain the exact logical footprint and keep connection edges unobstructed. Wall and gate masonry must align to the 2:1 ground plane; gate and bridge passage voids must be genuinely transparent.'
   references:
-  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_north/assets/default/baseline/tile/tex_town_song_southern_wall__brick_r000_v01.png
-    sha256: d4b1a8a9974d5e9e79a0d60a9e502cdf5b44d69569925ad4a72015f2ed99ac14
-    note: 实际输入；只保留选中原图，历史参考位置与哈希供追溯。
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T21:16:56.327920+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f427-a0b9-7f20-addd-cea7a313f228/exec-70f27d0b-03a4-421b-9ea8-91dcbd1d4e8f.png
-  size: 143x134
-  sha256: 5aec795bdcb192b00134a9c6d0951ec8fe6971a2a6656688c93ee49b569a8000
+  - title: File:Thomas Child - Gate tower of Qianmen and city walls, Peking NA01-65.jpg
+    url: https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Gate_tower_of_Qianmen_and_city_walls,_Peking_NA01-65.jpg
+    used_detail: Thomas Child前门影像的灰砖城台、拱券和木门楼体量
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Felice Beato (British, born Italy - Top of the Wall of Peking - Google Art Project.jpg
+    url: https://commons.wikimedia.org/wiki/File:Felice_Beato_(British,_born_Italy_-_Top_of_the_Wall_of_Peking_-_Google_Art_Project.jpg
+    used_detail: 北京城墙历史照片的灰砖砌筑、平顶和墙体尺度
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/tile/tex_town_song_southern_wall_corner__outer_ne_v01.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 163x135
+  sha256: 34046a9fc4e855f23a9497814cce252b457f216be679710e14b848740265e9e5
   status: candidate
+  candidate_count: 2
+  selected_candidate: 2
+  tool_excess_outputs_discarded: 0
+  source_sha256: 9457ae03639cde2df50a63e7830b0d1e08d5f74ebaf0317dfcc9ec1be011e7b6
+  source_size:
+  - 1355
+  - 1161
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 100
+    - 81
+    - 1253
+    - 1036
+    uniform_scale: 0.1170858629661752
+    resized_size:
+    - 135
+    - 112
+    paste_offset:
+    - 14
+    - 11
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：true L-shaped ninety-degree outer corner, both arms two metres long and one metre thick; the wall is three metres tall, visibly about three times its one-metre thickness, and must match the attached straight wall segment's tall upright proportions; large grey facing bricks in running bond over rammed-earth core, slightly battered faces, narrow dressed-stone footing and flat brick coping; hollow inner angle fully open and transparent, no crenels, tower or roof；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
   tile:
     kind: wall_corner
     footprint:
@@ -137,63 +303,76 @@
     - 2
     variant: outer_ne_v01
     autotile_mask: null
-  source_copy: source/tex_town_qing_north_wall_corner__outer_ne_v01__selected.png
-  source_sha256: 2c9634bb713b082958fb991b15661d2af50226b24e4ec7cae35e2982644d3a32
   anchor_px:
-  - 69.465
-  - 119.975
-  notes: 仅非零alpha外接矩形裁切、等比缩放（整数尺寸舍入）、4px透明边；原alpha保留；单朝向candidate，几何残差见qa.jsonl。 第10轮PIL仿射校正双轴至±0.5；仍为candidate。
-  affine_qa:
-    input_archive: source/tex_town_qing_north_wall_corner__outer_ne_v01__before_affine_r10.png
-    input_sha256: 798ab78d47ae52aaccbe641d8db18bca552257f3911383eb8dce8859539d3633
-    forward_xy:
-    - 1
-    - 0
-    - -0.003279822019052081
-    - 0.7950067279234586
-    - 0
-    - 1
-    work_alpha_bbox:
-    - 4
-    - 17
-    - 139
-    - 143
-    padding_px: 4
-    final_corners_px:
-    - - 5.492462311557789
-      - 120.07659872721126
-    - - 69.26130653266331
-      - 151.961020837764
-    - - 133.43718592964825
-      - 119.87308113927153
-    final_axis_slopes:
-    - 0.4999999999999998
-    - -0.5000000000000001
-    axis_pass: true
+  - 79.465
+  - 114.089
 - id: tex_town_qing_north_bridge_deck__w4_l6_r090_v01
   file: tex_town_qing_north_bridge_deck__w4_l6_r090_v01.png
   category: tile
   style: default
   subject: 清初至清中北方·低石拱桥含栏（原创扩展）
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Wanning_Bridge_from_the_northwest_(20211008150357).jpg'
-    purpose: 北方单孔石拱、灰石栏板与桥身比例；成品尺寸和栏杆为原创概化。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: sketch-to-render. Render this EXACT bridge geometry scaffold as detailed realistic early-to-mid Qing north China grey-stone bridge game sprite. The input is a strict shape/camera template: preserve EVERY ground contact corner, footprint, deck width, length and axis directions. Only add realistic stone materials and historical detailing. Rectangular footprint LENGTH6m running down-right and WIDTH4m running up-right, length:width1.5 exactly. Ground corners in1024x1024 reference LEFT(150,550),FRONT(570,760),RIGHT(850,620),BACK(430,410); all projections slopes+0.5/-0.5 orthographic, no vanishing point. Wide cart deck, at least as broad as the guide, never turn into a narrow long bridge. Dark neutral weathered grey limestone blocks with light grout, paved top, low plain solid parapets, simple square posts with tiny stepped caps. One gentle low arch underneath, no steep hump, restrained northern Chinese civic stonework. Preserve the guide base corners and width exactly, no projecting land or decorative foundations. Fine realistic stone texture, muted palette, upper-left sunlight, subtle short lower-right contact shading only within material. All outside and through the bridge arch truly transparent alpha0, opaque stone255. Clean antialiased silhouette. No blueprints, numbers, labels, text, people, carts, animals, river, land, piers extending outside footprint, watermark or checkerboard. Whole intact bridge with transparent margins,1024x1024 canvas.'
-  negative: 无文字、水印、人物、现代物件、地台、背景；禁止假棋盘透明；禁止旋转单图充当四朝向。
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese low Qing northern single-arch stone bridge map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: broad cart deck with one low segmental arch, grey limestone voussoirs, coursed spandrel blocks and worn stone paving; plain low solid parapet panels between square posts with small lotus-bud caps, gently rising deck rather than steep hump; arch void transparent, no water, road or bank.
+
+
+    Registered logical footprint remains 4 by 6; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.
+
+    Tile-specific: retain the exact logical footprint and keep connection edges unobstructed. Wall and gate masonry must align to the 2:1 ground plane; gate and bridge passage voids must be genuinely transparent.'
   references:
-  - file: /private/tmp/qing_bridge_geometry.png
-    sha256: 45930c466fae1d27475c4233f6eb7d4fc6f1929bf1c0880a66d1b6f75cf4c89c
-    archive: source/tex_town_qing_north_bridge_deck__w4_l6_r090_v01__repair2_input1.png
-    note: 本轮实际输入，archive保留调用时字节。
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T22:02:24.833479+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f450-9592-7253-a47c-b075ec64d479/exec-b81b1387-c7bb-40c5-8140-9d27be7c2daf.png
-  size: 354x386
-  sha256: fc2219b37057edf914d0114b2bf2fea834ae9fa9054363af676ab6a19868a1e1
+  - title: File:Wanning Bridge from the northwest (20211008150357).jpg
+    url: https://commons.wikimedia.org/wiki/File:Wanning_Bridge_from_the_northwest_(20211008150357).jpg
+    used_detail: 万宁桥单孔石拱、券石、栏板和低缓桥面
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Wanning Bridge 1.jpg
+    url: https://commons.wikimedia.org/wiki/File:Wanning_Bridge_1.jpg
+    used_detail: 万宁桥石铺面、望柱与栏板连接细部
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/tile/tex_town_song_southern_bridge_deck__w5_l10_r090_v01.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 413x269
+  sha256: ae2ef8e058404136b7b8526303779b3ce068522f2cf29a47f147c63c1478cb86
   status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: 30e37437f40e1ab85545baa71e49613fd00353044a048de68b740c65a57ed2ba
+  source_size:
+  - 1536
+  - 1024
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 125
+    - 69
+    - 1480
+    - 952
+    uniform_scale: 0.2523985239852399
+    resized_size:
+    - 342
+    - 223
+    paste_offset:
+    - 35
+    - 23
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: 历史细节清单：broad cart deck with one low segmental arch, grey limestone voussoirs, coursed spandrel blocks and worn stone paving; plain low solid parapet panels between square posts with small lotus-bud caps, gently rising deck rather than steep hump; arch void transparent, no water, road or bank；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。
   tile:
     kind: bridge_deck
     footprint:
@@ -201,35 +380,76 @@
     - 6
     variant: w4_l6_r090_v01
     autotile_mask: null
-  source_copy: source/tex_town_qing_north_bridge_deck__w4_l6_r090_v01__selected.png
-  source_sha256: 63450c0c572c2279e53fda0112e15a5cfd00806f2c6370a56b05c5f2c337fbe5
   anchor_px:
-  - 186.36
-  - 229.238
-  notes: 仅非零alpha外接矩形裁切、等比缩放（整数尺寸舍入）、4px透明边；原alpha保留；单朝向candidate，几何残差见qa.jsonl。
+  - 214.36
+  - 157.696
 - id: tex_town_qing_north_tree_cluster__scholar_tree_v01
   file: tex_town_qing_north_tree_cluster__scholar_tree_v01.png
   category: tile
   style: default
   subject: 清初至清中北方·国槐候选（原创扩展）；物种可读性待审
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Sophora_japonica_JPG2Aa.jpg'
-    purpose: 国槐冠形、分枝与羽状复叶观感；只作物种外观复核。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: historical-scene. ONE isolated mature Chinese scholar tree, Styphnolobium japonicum / Sophora japonica, guohuai, for an early-to-mid Qing north China town map. Input is only STYLE reference for fine realistic leafy antique game art, not plant identity or silhouette. Rounded airy irregular deciduous crown with small pinnate green leaflets, grey-brown fissured trunk branching high, sober olive to deep green palette, no flowers, no hanging willow branches. Single tree, full crown and root contact visible; modest4m height and2m ground visual crown envelope, logical root footprint1x1m. Orthographic camera yaw45 elevation30 for a2:1 map, no perspective distortion. Upper-left light and tiny short lower-right contact shadow at trunk base only. Natural botanical detail density matches reference and low saturation. True RGBA outside foliage and in clear leaf gaps alpha0; solid trunk and leaves opaque255. NO ground mound, no dirt island, no pedestal, no pots, no stones, no scenery, no broad aura or glow, no labels, text, watermark, people or painted checkerboard. Complete isolated tree with generous empty transparent margins. Original regional vegetation concept, not a named historic tree. ONE sprite.'
-  negative: 无文字、水印、人物、现代物件、地台、背景；禁止假棋盘透明；禁止旋转单图充当四朝向。
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese mature northern Chinese scholar tree map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: Styphnolobium japonicum: stout grey-brown fissured trunk branching high, broad irregular airy rounded crown, many fine ascending and spreading twigs, small pinnate leaflets in loose olive-green sprays with visible gaps; natural mature tree, no flowers, no willow habit, no pot or ground mound.
+
+
+    Registered logical footprint remains 1 by 1; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.
+
+    Tree-specific: logical 1x1 root footprint; the crown rises above it and may be wider. Keep root contact visible and do not draw a ground tile.'
   references:
-  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_north/assets/default/baseline/tile/tex_town_song_dali_tree_cluster__broadleaf_v01.png
-    sha256: 3963e0b07a4cbb91b5472d8c2470dc4da5b6c7dab9dbdf3580ff5b8fa39d3f56
-    note: 实际输入；只保留选中原图，历史参考位置与哈希供追溯。
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T21:20:18.554227+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f427-a0b9-7f20-addd-cea7a313f228/exec-0a4a10e0-f0a8-4762-a573-133e2c007150.png
-  size: 335x170
-  sha256: 886d0e87b9f1cfec8de319d8bca872cbb1f68b6fa43b0789a06eeaf383a91744
+  - title: File:Sophora japonica JPG2Aa.jpg
+    url: https://commons.wikimedia.org/wiki/File:Sophora_japonica_JPG2Aa.jpg
+    used_detail: 国槐的羽状复叶、疏透圆冠与高分枝习性
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:Jingshan - Styphnolobium japonicum.jpg
+    url: https://commons.wikimedia.org/wiki/File:Jingshan_-_Styphnolobium_japonicum.jpg
+    used_detail: 景山古槐的裂纹树干、老枝结构与不规则树冠
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/tile/tex_town_song_dali_tree_cluster__broadleaf_v01.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 280x234
+  sha256: 8df34f8cba7a558f58221f937a5c631e02c9dd6b5b752b9388182a95549bd72d
   status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: b2b929d20208941d33f848ee65a6c9ea901d8e30acc2551c7940c038bbe68fea
+  source_size:
+  - 1491
+  - 1055
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 168
+    - 16
+    - 1348
+    - 1004
+    uniform_scale: 0.19661016949152543
+    resized_size:
+    - 232
+    - 194
+    paste_offset:
+    - 24
+    - 20
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: '历史细节清单：Styphnolobium japonicum: stout grey-brown fissured trunk branching high, broad irregular airy rounded crown, many fine ascending and spreading twigs, small pinnate leaflets in loose olive-green sprays with visible gaps; natural mature tree, no flowers, no willow habit, no pot or ground mound；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。'
   tile:
     kind: tree_cluster
     footprint:
@@ -237,35 +457,76 @@
     - 1
     variant: scholar_tree_v01
     autotile_mask: null
-  source_copy: source/tex_town_qing_north_tree_cluster__scholar_tree_v01__selected.png
-  source_sha256: bc65cbcf9de039d3e476620ac56eb4deb71ffee4f85a26326da0ca97eebbc666
   anchor_px:
-  - 185.857
-  - 162.958
-  notes: 仅非零alpha外接矩形裁切、等比缩放（整数尺寸舍入）、4px透明边；原alpha保留；单朝向candidate，几何残差见qa.jsonl。
+  - 153.857
+  - 210.357
 - id: tex_town_qing_north_tree_cluster__chinese_pine_v01
   file: tex_town_qing_north_tree_cluster__chinese_pine_v01.png
   category: tile
   style: default
   subject: 清初至清中北方·油松候选（原创扩展）；物种可读性待审
-  historical_references:
-  - url: 'https://commons.wikimedia.org/wiki/File:Pinus_tabuliformis_Badaling.jpg'
-    purpose: 油松不规则伞冠、横展枝层与针叶团块；只作物种外观复核。
-    used_as: post_generation_form_review_only
-  prompt: 'Use case: historical-scene. ONE isolated Chinese red pine / Chinese pine, Pinus tabuliformis, yousong, for early-to-mid Qing northern China town map. Input is STYLE reference for fine realistic antique Chinese game art only; REPLACE BROADLEAF TREE COMPLETELY with an unmistakable CONIFEROUS PINE. Single grey reddish-brown fissured trunk, irregular spreading horizontal branches, mature broadly domed tiered crown of dark green NEEDLES grouped into tufts, see-through branch gaps, no broad oval leaves, no flowers, not Christmas fir, not bonsai in pot. Modest4m height, visual canopy envelope2m and logical root footprint1x1m. Orthographic yaw45 elevation30 for2:1 map camera, no perspective distortion. Upper-left light, small short lower-right contact shadow directly under exposed root base only. Muted natural green and brown palette, realistic fine bark/needle density like reference. True RGBA transparent alpha0 outside silhouette and branch gaps; opaque trunk and needle tufts alpha255. No broad glow, haze, background, terrain mound, dirt island, ground platform, pot, scenery, people, labels, text, watermark or painted checkerboard. Whole natural crown and root contact visible, generous transparent margins. Original regional tree concept, no particular historic tree. ONE asset.'
-  negative: 无文字、水印、人物、现代物件、地台、背景；禁止假棋盘透明；禁止旋转单图充当四朝向。
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE. After that single call returns, stop immediately: do not inspect it, do not call view_image, do not edit it, and do not call any other tool. Strong historical-detail pass. Generate one entirely new composition; references provide form, construction and material cues only, never copy a photo''s framing. One isolated early-to-mid Qing northern Chinese mature northern Chinese pine map sprite, an anonymous original game asset rather than a named-monument reconstruction.
+
+
+    Historical construction: Pinus tabuliformis: grey reddish-brown plated fissured trunk, irregular tiered horizontal limbs, mature broad umbrella crown, paired needles gathered in dense dark olive tufts with open branch gaps; not a conical fir, bonsai or pot; root contact visible without soil island.
+
+
+    Registered logical footprint remains 1 by 1; show a paper-thin complete ground/contact boundary with readable left, front and right corners. Orthographic camera yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground projection: ground axes visually slope about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. View the whole subject from above, entrance or functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow toward lower-right only. Match the supplied Song baseline''s realistic, weathered material rendering, scale legibility and fine detail density.
+
+
+    TRUE transparent RGBA background: empty exterior and any required opening alpha zero, solid materials opaque, clean antialiasing and at least eight percent clear margin on every side. Exactly one coherent sprite. No people, readable writing, symbols, signs, flags, watermark, modern object, landscape, sky, painted checkerboard, glow, broad haze, thick floating diorama base, clipped roof or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, gold, or yellow imperial glazing.
+
+
+    Use all attached images as referenced_image_paths. The first attached historical images control architectural or botanical form and construction detail. The last attached Song sprite controls only game rendering density, camera, transparency and lighting; do not preserve its period architecture. Use transparent_background true. Output only the generated image result.
+
+    Tree-specific: logical 1x1 root footprint; the crown rises above it and may be wider. Keep root contact visible and do not draw a ground tile.'
   references:
-  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_north/assets/default/baseline/tile/tex_town_song_dali_tree_cluster__broadleaf_v01.png
-    sha256: 3963e0b07a4cbb91b5472d8c2470dc4da5b6c7dab9dbdf3580ff5b8fa39d3f56
-    note: 实际输入；只保留选中原图，历史参考位置与哈希供追溯。
-  tool: codex exec · image_gen (built-in)
-  model: image_gen (backend undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T21:21:26.714812+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f427-a0b9-7f20-addd-cea7a313f228/exec-962f40f0-27a6-447a-9cf7-9c937324bfe3.png
-  size: 246x178
-  sha256: ba4f14c6fd3c020b6c2a89ad4b9fb27dd47aaf7c9d6cd21a43b281a722441804
+  - title: File:Pinus tabuliformis Badaling.jpg
+    url: https://commons.wikimedia.org/wiki/File:Pinus_tabuliformis_Badaling.jpg
+    used_detail: 油松的横展枝层、伞状老树冠与针叶团块
+    role: image_gen_input
+    accessed: '2026-09-30'
+  - title: File:CekCung.jpg
+    url: https://commons.wikimedia.org/wiki/File:CekCung.jpg
+    used_detail: 油松的板裂树皮、扭曲主干与开放枝隙
+    role: image_gen_input
+    accessed: '2026-09-30'
+  baseline_reference: assets/default/baseline/tile/tex_town_song_dali_tree_cluster__broadleaf_v01.png
+  tool: codex exec · built-in image_gen
+  model: image_gen backend undisclosed; gpt-6-astra tool runner
+  created: '2026-09-30'
+  size: 274x200
+  sha256: 9fb51de233821f92892976a7c50723bda989dc3e2adbbc4bd17b9881c8dd4469
   status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  tool_excess_outputs_discarded: 0
+  source_sha256: eee55d224a860b2eeb1e033804d81465fc925dc29b39c14e636b68c0c7f29409
+  source_size:
+  - 1536
+  - 1024
+  normalization:
+    significant_alpha_threshold_for_crop: 8
+    crop_box:
+    - 130
+    - 30
+    - 1442
+    - 989
+    uniform_scale: 0.17301829268292682
+    resized_size:
+    - 227
+    - 166
+    paste_offset:
+    - 23
+    - 17
+    minimum_clear_margin: at least 8% per side
+  pixel_qa:
+    mode: RGBA
+    alpha_extrema:
+    - 0
+    - 255
+    border_alpha_max: 0
+  notes: '历史细节清单：Pinus tabuliformis: grey reddish-brown plated fissured trunk, irregular tiered horizontal limbs, mature broad umbrella crown, paired needles gathered in dense dark olive tufts with open branch gaps; not a conical fir, bonsai or pot; root contact visible without soil island；历史图片均实际作为 image_gen 输入；最终图已按透明棋盘联系表逐项目视复核。'
   tile:
     kind: tree_cluster
     footprint:
@@ -273,9 +534,6 @@
     - 1
     variant: chinese_pine_v01
     autotile_mask: null
-  source_copy: source/tex_town_qing_north_tree_cluster__chinese_pine_v01__selected.png
-  source_sha256: cd0410b32971ccf8ae1157c803660e27f6a3852f31cb7fcb7cbb0efd71f3f64f
   anchor_px:
-  - 145.962
-  - 164.161
-  notes: 仅非零alpha外接矩形裁切、等比缩放（整数尺寸舍入）、4px透明边；原alpha保留；单朝向candidate，几何残差见qa.jsonl。
+  - 153.962
+  - 179.114

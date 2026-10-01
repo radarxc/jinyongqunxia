@@ -496,14 +496,23 @@ Anonymous original game asset, not a measured reconstruction of a named site.
 ## 10. 清初至清中北方套件 `qing_north`
 
 - 适用北京、盛京、济南的地域意象：灰砖城墙、灰瓦门楼、克制红褐木构、朴素灰石低拱桥；不照搬名胜，不将北京皇城黄琉璃等级扩散到普通城门。具体组合为 **（原创扩展）**。
-- 延用宋套件的低饱和木石质感、细颗粒与左上光。清北门楼可提高灰砖比重、压低翘角与彩画密度；本批 k4 / k6 木构偏鲜红（k4更明显），作者未审前保留 candidate。
+- 延用宋套件的低饱和木石质感、细颗粒与左上光。2026-09-30重出时，每类将2张历史照片与宋基线一并作为 `image_gen` 输入：历史照片控制形制、比例、材料和构造，宋图只控制游戏渲染密度。清北门楼提高灰砖比重、压低翘角与彩画密度；两门均保留为 candidate。
 - 地面目标仍为 64×32 px/m、正交 yaw45 / pitch30、轴斜率±0.5；2:1指地面投影，不把门楼或树的整张画布压成2:1。首轮规格化只裁切、等比缩放和透明padding；第10轮墙角另有一项带矩阵、输入归档及哈希的PIL仿射校正。
 - `city_gate` 的 k4 / k6 分别为8×4 / 10×4格；孔为4×4 / 6×4，两侧门墩各2格。公式及通行掩膜契约见 `design/22` §4.3，不能用不透明门洞背景遮住底图道路。
 - 本批只交南向门、一个直墙方向、一个外角、一个桥方向；不能旋转或翻转一张图冒充四向。植物以国槐、油松为地域候选，单株逻辑根占地1×1；不建立 `prp_*` 的隐式alias。
 
+### 10.1 历史细节要点
+
+- 城门依据Thomas Child前门和北京城门历史照片：大块灰砖包砌城台、下部轻微收分、白石基脚、单券门洞；门楼为低矮双层重檐歇山，灰筒板瓦、鸱吻与短脊兽列，一级斗拱、暗朱柱和克制青绿彩画，不照抄正阳门构图。
+- 直墙 / 外角依据北京城墙历史照片：规则错缝灰砖面层、夯土芯、窄石基与平砖压顶，无雉堞、楼台或装饰；墙角明确3米高、两翼2×1米的L形比例，内角保持透明。
+- 桥依据万宁桥现状照片：低缓单孔石拱、清楚券石、顺砌腹墙、磨旧石铺面、低实心栏板和方望柱；拱孔透明，不烘焙水面或河岸。
+- 国槐依据国槐与景山古槐照片：灰褐纵裂树皮、高处分枝、疏透不规则圆冠和细小羽状复叶；油松依据两张油松照片：红褐板裂树干、横展层枝、深橄榄针叶簇和开敞伞冠。植物不带盆、土岛或场景底。
+
 ```text
 Use case: historical-scene. ONE isolated early-to-mid Qing NORTH CHINA {OBJECT}.
-Use Song kit input only as STYLE reference for restrained realistic antique-game materials.
+Attach 2–3 historical images of the same class and one Song-kit baseline.
+Use historical images for form, proportion, material and construction detail;
+use the Song image only for restrained realistic antique-game rendering density.
 Northern grey brick, grey ceramic tiles, dark red-brown timber, modest eaves;
 original regional architecture, not a copy of a named monument or an imperial yellow-roof gate.
 Orthographic yaw45 elevation30, exact2:1 GROUND projection, planar slopes+0.5/-0.5.
@@ -516,9 +525,9 @@ TRUE RGBA, no background or painted checkerboard, no broad haze, no text or peop
 
 植物差异：国槐提示小型羽状复叶、疏透圆冠、灰褐裂纹树皮；油松提示束生针叶、横展枝层、不规则伞冠，禁止阔叶、盆景盆与圣诞树形。树高用 `ceil(16√6×4)=157 px` 根到冠顶建议值控制，等比缩放后实际冠宽保留，不强塞入2m冠幅。
 
-记录在 `assets/default/tile/qing_north/manifest.yaml`；完整候选提示词、历史输入路径/哈希见 `generation.jsonl`，实测锚点、原始测点、透明探针、投影残差见 `qa.jsonl`。本批直墙底边斜率约0.490/0.496；门、墙角与桥仍存在投影误差，未宣称通过严格接缝或通行孔逐像素对格验收。默认只作为candidate预览素材，后续朝向与装配修正另排。
+记录在 `assets/default/tile/qing_north/manifest.yaml`；完整候选提示词、历史参考URL、输入用途、规格化数据与哈希均在各条目中。PIL只以alpha≥8排除贴边噪点后裁框、等比缩放和补足四边8%透明留白，不重绘、不旋转或做透视纠偏。门、墙、桥仍未经过整城逐像素接缝、通行孔掩膜和碰撞联调；默认只作为candidate预览素材，后续朝向与装配修正另排 **（待实测）**。
 
-2026-09-30下载查看的正阳门、万宁桥、油松与国槐照片仅作成品后验形制复核，不曾作为本批 `image_gen` 输入；逐件URL与用途登记在套件manifest的 `historical_references`，生成输入仍以 `references` 为准。
+历史图片均于2026-09-30下载、用原图查看并实际作为 `image_gen` 输入。逐件URL和取用细节见manifest `references`：城门 / 墙为[Thomas Child前门与城墙](https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Gate_tower_of_Qianmen_and_city_walls,_Peking_NA01-65.jpg)、[北京城门旧照](https://commons.wikimedia.org/wiki/File:Front_Gate,_City_Wall,_Peking,_China_(4822093666).jpg)及[北京城墙顶](https://commons.wikimedia.org/wiki/File:Felice_Beato_(British,_born_Italy_-_Top_of_the_Wall_of_Peking_-_Google_Art_Project.jpg)；桥为两张万宁桥照片；植物为两张国槐和两张油松照片。存世照片和晚清影像不等于清初逐构件测绘，匿名组合仍为 **（原创扩展）**。
 
 ## 10. 清 · 江南套件 `qing_south`（2026-09-30）
 
