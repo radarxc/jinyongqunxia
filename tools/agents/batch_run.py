@@ -36,6 +36,8 @@ CHECKS = [  # (ID 前缀, 审核要点文件)
     ("KIT-", ".agents/coord/PROD/review_checks_kit.md"),
     ("CITY-", ".agents/coord/PROD/review_checks_city.md"),
     ("TOWN-tiles-water", ".agents/coord/PROD/review_checks_tile_water.md"),
+    ("DES-", ".agents/coord/PROD/review_checks_des.md"),
+    ("ENG-", ".agents/coord/PROD/review_checks_eng.md"),
 ]
 MAX_REVALIDATE = 2
 

@@ -139,15 +139,20 @@ def is_running(root: Path, tid: str) -> bool:
 # ---------------------------------------------------------------- 并发上限（按池）
 # 文档类任务与素材类任务（ID 以 ART 开头）各自一池；上限可在 tasks.json defaults.max_parallel
 # 或环境变量 TIANSHU_MAX_PARALLEL_<POOL> 中调整。start 在文件锁内计数，满了就排队等空位。
-POOL_CAPS_DEFAULT = {"docs": 8, "assets": 8}
+POOL_CAPS_DEFAULT = {"docs": 8, "assets": 8, "code": 3}
 
 
 ASSET_PREFIXES = ("ART", "TOWN", "VFX", "SKILL", "KIT", "CITY")  # 素材线（作者 2026-09-30：优先把 assets 任务跑完）单独一池，不和文档任务抢位
 
 
+CODE_PREFIXES = ("ENG",)  # 游戏工程（作者 2026-09-30 AR-19）：写代码、装依赖，单独一池
+
+
 def pool_of(tid: str) -> str:
     if tid.upper().startswith("ART-P-"):  # 人物立绘提示词（只写文本，不出图）：单独一池，不挤占出图任务
         return "prompts"
+    if tid.upper().startswith(CODE_PREFIXES):
+        return "code"
     return "assets" if tid.upper().startswith(ASSET_PREFIXES) else "docs"
 
 
