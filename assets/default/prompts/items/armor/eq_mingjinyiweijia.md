@@ -1,0 +1,55 @@
+---
+asset_id: eq_mingjinyiweijia
+kind: item
+name: 明制锦衣卫甲
+category: armor
+category_name: 制式盔甲
+subcategory: 制式盔甲·明
+grade: 地
+source: '**（原创扩展）**'
+effect: '`grade=9; slot=body; armorWeight=medium; lawProfile={uniform:true,allowedIdentityTags:[office_ming_imperial_guard],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}`'
+output: assets/default/item/armor/eq_mingjinyiweijia.png
+manifest: assets/default/item/armor/manifest.yaml
+size: 1536x1536
+background: RGB(230,225,216) 不透明均匀浅暖灰底，无投影、无地面
+references:
+- path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+  use: 画风参考（作者已审）：清楚纤细的深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底；不复制剑本身
+- path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+  use: 画风参考（作者已审）：同上；不复制书册、题签与磨损
+prompt_source: manifest:.agents/wt/ART-item-armor/assets/default/item/armor/manifest.yaml（任务工作区候选）
+status: ready
+---
+
+# 明制锦衣卫甲（`eq_mingjinyiweijia`）· 制式盔甲 · 地阶
+
+## 物品要点
+
+| 项 | 内容 |
+|---|---|
+| 子类 | 制式盔甲·明 |
+| 品阶 | 地 —— 稀有材质或名家工艺、精细纹理、旧而妥善保存的专属匣；局部玉／银／暗金（禁：金色光柱、满屏宝石） |
+| 出处 | **（原创扩展）** |
+| 效果字段（只作理解，不画） | `grade=9; slot=body; armorWeight=medium; lawProfile={uniform:true,allowedIdentityTags:[office_ming_imperial_guard],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}` |
+| 外观要点（名录） | 明代深青曳撒式罩甲、窄金线与皮革护腰，不画飞鱼纹文字 **（原创扩展）** |
+| 类别专项 | 单套官甲正面略侧置，札片／棉甲／布衬结构完整；严格区分宋元明清，不出现军号文字 |
+
+## 提示词
+
+```text
+Use case: stylized-concept
+用途：《天书录》default 风格包的二维武侠物品图鉴插画。 题材：明制锦衣卫甲（eq_mingjinyiweijia），制式盔甲·明，地阶；明代仪卫与缉事语境，原创扩展。 主体：单一完整空甲，深青曳撒式交领罩甲轮廓、收腰、短褶下摆，罩衣内暗藏护层但不做夸张板甲；窄而旧的金色包边与结构化深褐护腰。无飞鱼、龙、动物纹、官衔补子或徽章。具体剪裁、护层、护腰与配色为原创武侠造型，不宣称文物或原著外观复原。 风格：两张输入图仅作画风参考；沿用清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖与浅暖灰近象牙底，不复制其中的剑、书或具体构图。织物、暗藏护层、皮革与窄金边边界清楚，非摄影、非3D。 构图：1:1方形，目标1536×1536；正面略三分之四视角，单套盔甲居中，四边留白至少12%，物件包围框不超过画布76%；无衣架、支架或陈列座。左上柔光，背景目标RGB约(230,225,216)，无人物、手、场景、地面、纹理、渐变或投影。 品阶表现：地阶只用优质织物、暗藏护层、复杂剪裁、结构化护腰与精细收边表达；禁止光效、品阶框、文字或数字。 年代：嘉靖《出警图》只用于理解队列服装轮廓和青红低饱和关系；本甲按名录原创演绎，不作锦衣卫实物复原。 排除项：人物、脸、头、手、人体、模特、隐形人体姿势、衣架、支架、盔帽、靴、兵器、盾、旗、飞鱼纹、龙纹、动物纹、徽章、官衔补子、文字、伪字、汉字、数字、印章、签名、logo、文字水印、UI、边框、拼贴、多视图、裁切；奇幻板甲、跨朝混搭、血污、现代徽章、现代材料、拉链、塑料；具体影视或游戏造型、演员、画师、作品名、受保护作品仿制；照片、商品摄影、3D渲染、日韩动漫、欧美奇幻、蒸汽朋克、赛博朋克；宝石、霓虹、bloom、魔法阵、粒子、自发光；场景、地面、桌面、背景纹理、渐变、接触投影或落地影。不要去除或伪造工具自身的溯源标识。
+```
+
+## 排除项
+
+人物、脸、头、手、人体、模特、隐形人体姿势、衣架、支架、盔帽、靴、兵器、盾、旗、飞鱼纹、龙纹、动物纹、徽章、官衔补子、文字、伪字、汉字、数字、印章、签名、logo、文字水印、UI、边框、拼贴、多视图、裁切；奇幻板甲、跨朝混搭、血污、现代徽章、现代材料、拉链、塑料；具体影视或游戏造型、演员、画师、作品名、受保护作品仿制；照片、商品摄影、3D渲染、日韩动漫、欧美奇幻、蒸汽朋克、赛博朋克；宝石、霓虹、bloom、魔法阵、粒子、自发光；场景、地面、桌面、背景纹理、渐变、接触投影或落地影。不要去除或伪造工具自身的溯源标识。
+
+## 质检要点
+
+- 单一完整物品居中，四边留白 ≥ 10%，无地面、无投影、无场景；背景为均匀浅暖灰近象牙底。
+- 无文字 / 伪字 / 印章 / 品阶框 / 光效 / 粒子 / 魔法特效；无人物与手。
+- 画风对两张基线：纤细深灰墨线、薄层透明罩染、低饱和、左上柔光；不是粗黑描边或平涂色块。
+- 类别专项：单套官甲正面略侧置，札片／棉甲／布衬结构完整；严格区分宋元明清，不出现军号文字；专项排除：奇幻板甲、跨朝混搭、血污、人物、现代徽章。
+- 品阶信号：稀有材质或名家工艺、精细纹理、旧而妥善保存的专属匣；局部玉／银／暗金（禁：金色光柱、满屏宝石）。
+- 对题：画面必须能辨认为“制式盔甲·明”里的“明制锦衣卫甲”，不得画成同类其他物品。

@@ -27,3 +27,8 @@ assets/
 ## 生成工具
 
 本地 Codex CLI（ChatGPT.app 自带）：`/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex`，模型 `gpt-6-astra`，推理强度 `ultra`，内置 `image_gen` 工具；原图默认保存在 `~/.codex/generated_images/…`，须复制进本目录并登记 `source_path` 与 `sha256`。
+
+## 待出图索引（2026-10-01 起）
+
+- `assets/default/prompts/INDEX.md`：物品 / 地图 / 角色部件的"每张图一份提示词"总索引，含出图位置约定与待出图队列（`python3 tools/agents/build_image_index.py --queue`）。生成：`tools/agents/extract_item_prompts.py`（物品，从 manifest 抽取）、`gen_map_prompts.py`（30 个区域局部图 + 可选全国水墨衬纸）、`gen_rig_prompts.py`（两套体型 84 份）、`build_image_index.py`（索引）。
+- `assets/default/prompts/characters/INDEX.md`：人物立绘（另一条线）。
