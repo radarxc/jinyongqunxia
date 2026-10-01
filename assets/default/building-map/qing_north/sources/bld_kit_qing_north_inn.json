@@ -1,0 +1,15 @@
+{
+  "id": "bld_kit_qing_north_inn",
+  "subject": "客栈",
+  "footprint": [
+    12,
+    9
+  ],
+  "prompt": "Use case: historical-scene. Generate ONE isolated Qing northern Chinese architectural game sprite on TRUE RGBA transparent background. Realistic matte grey-brick, grey-tile, aged dark wood with fine detail and restrained natural colors. A northern roadside courtyard inn with two-storey main guest wing, one-storey side wing and large south entrance, enclosed timber upper storey windows, grey brick enclosure, grey tile gabled roofs, several plain bedding rolls and travel baskets sheltered inside. No nameboard, no lantern rows, no extravagant balcony. Footprint 12m east-west by9m north-south. CORRECT CAMERA is orthographic 2:1 dimetric. BOTH ground axes have identical absolute slope one vertical pixel per TWO horizontal pixels. The visible front/SOUTH edge runs from left corner diagonally DOWN RIGHT with slope EXACT +0.5. The visible right/EAST edge runs from front corner UP RIGHT with slope EXACT -0.5. No perspective. Width:depth is 12:9. South facade faces lower left. Do NOT make the right side steeper or longer than specified. Whole thin base rectangular parallelogram has all front,left,right vertices clear. Topmost roof below top margin. No text or signboards, people, background, thick pedestal, scenery, floor, sky, halo, glow, watermark. Light upper left and tiny contact shadow lower-right. Generous transparent padding. Match realistic sober historical game sprites, not cartoon or toy.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-d26ecd8b-be71-429b-a167-6d6995ca392c.png",
+  "references": [],
+  "created": "2026-09-30T21:27:00.327Z",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "review": "2候选选2；面向及宽深关系改善，逐张view_image，仍记录轴率残差。"
+}

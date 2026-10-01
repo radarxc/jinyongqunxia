@@ -1,0 +1,74 @@
+id: bld_kit_qing_north_house_large
+status: candidate
+building:
+  type: bld_kit_qing_north_house_large
+  footprint: [7, 6]
+  anchor: [281.8287, 226.4699]
+  era: qing_north
+anchor_px: [281.8287, 226.4699]
+footprint_m: [7, 6]
+logical_footprint_polygon_px:
+- [73.82870000000003, 218.4699]
+- [297.8287, 330.4699]
+- [489.8287, 234.4699]
+- [265.8287, 122.4699]
+collision_polygon_m:
+- [0, 0]
+- [7, 0]
+- [7, 6]
+- [0, 6]
+collision_note: 全占地代理；非实测墙体，院内行走另需细化。
+entrance: {edge: S, offset_cells: 3}
+entrance_note: 南边中点规划代理，非门洞测量。
+height_actual_m: null
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_north_house_large.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [416, 208]
+  ground_width_px: 416
+  camera_yaw_deg: 45
+  camera_elevation_deg: 30
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
+geometry_qa:
+  source_corners_px:
+    left: [179, 624]
+    front: [903, 976]
+    right: [1464, 718]
+  source_axis_slopes: [0.4861878453038674, -0.45989304812834225]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.2905525846702317
+  expected_width_depth_ratio: 1.1666666666666667
+  ratio_relative_error: 0.10618792971734137
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底边±3px；非3D测绘；几何未通过仍保留candidate并单列告警。
+pixel_qa:
+  mode: RGBA
+  size: [508, 349]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 108812
+  alpha_partial_pixels: 67668
+  alpha_opaque_pixels: 812
+  alpha_nonzero_bbox: [16, 16, 492, 328]
+  transparent_margins_px: [16, 16, 16, 21]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_north_house_large.png
+  source_sha256: c53c731ab4733b0a38ade07e99354bdc191c2a85ae3fdb09de474fd1505005df
+  source_size: [1536, 1024]
+  crop_box: [0, 21, 1471, 1000]
+  uniform_scale_requested: 0.3237354085603113
+  resized_size: [476, 317]
+  rounded_effective_scale: [0.3235893949694086, 0.3237997957099081]
+  paste_offset: [16, 16]
+  final_file: bld_kit_qing_north_house_large.png
+  steps: [crop alpha>0 bbox, uniform LANCZOS resize rounded to integer dimensions, 'paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold']
+release_ready: false

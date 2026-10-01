@@ -1,0 +1,23 @@
+{
+  "id": "bld_kit_qing_north_wangfu",
+  "prompt": "TRANSPARENT CUTOUT GAME ASSET, isolated on alpha0. ONE Qing northern prince residence front-court module, gray brick walls, dark red gate and columns, subdued green glazed roofs and restrained blue-green painted beams, no yellow roofs, not an imperial palace. Realistic ancient architecture, finely textured brick and tiles, restrained and crisp. Correct2:1 dimetric city-map view: yaw45, pitch30. South front faces lower-left. Entire rectangular ground footprint: width 22 and depth 18; east edge slopes down-right +0.5 and north edge slopes up-right -0.5. Axes ratio22:18; no perspective. Do NOT use a cabinet projection or steep right edge. Thin flat base with visible left, front and right corners. Image subject comfortably inset with empty transparent margin. No shadow, glow, smoke, halo, floor, vignette or backdrop anywhere around asset. Transparent RGBA sticker-style isolation ONLY, retain realistic architectural materials, not a cartoon. Uniform alpha0 everywhere outside object. Light top-left. No writing, people, modern elements, garden landscape, or external objects. Asset bld_kit_qing_north_wangfu, early-to-mid Qing northern China original module, not replica of a monument.",
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "transparent_background": true,
+  "receipt": {
+    "output_hint": "Generated images are saved to /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b as /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-3a972cec-4637-41ac-b175-ab8d362c9bfd.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_data_note": "原回执image_url为PNG data URL；为避免重复base64，图像字节已原样归档为同名PNG。output_hint原文完整保存。"
+  },
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-3a972cec-4637-41ac-b175-ab8d362c9bfd.png",
+  "references": [],
+  "candidate_number": 2,
+  "selected": false,
+  "candidate_count": 2,
+  "archive_file": "bld_kit_qing_north_wangfu__rejected.png",
+  "source_sha256": "9c27aee1cd5ecede50992313233d526188ace96b14232ab843d2c2e79fd21155",
+  "source_size": [
+    1774,
+    887
+  ]
+}

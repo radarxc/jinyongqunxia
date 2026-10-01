@@ -1,0 +1,152 @@
+id: bld_kit_qing_north_restaurant
+status: candidate
+building:
+  type: bld_kit_qing_north_restaurant
+  footprint:
+  - 12
+  - 9
+  anchor: &id001
+  - 428.3911
+  - 560.8615
+  era: qing_north
+anchor_px: *id001
+footprint_m:
+- 12
+- 9
+logical_footprint_polygon_px:
+- - 92.3911
+  - 427.6335
+- - 476.3911
+  - 619.6335
+- - 764.3911
+  - 475.6335
+- - 380.3911
+  - 283.6335
+collision_polygon_m:
+- - 0
+  - 0
+- - 12
+  - 0
+- - 12
+  - 9
+- - 0
+  - 9
+collision_note: 全占地代理；非实测墙体，院内行走另需细化。
+entrance:
+  edge: S
+  offset_cells: 5
+entrance_note: 南边中点规划代理，非门洞测量。
+height_actual_m: null
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_north_restaurant.png
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 672
+  - 336
+  ground_width_px: 672
+  camera_yaw_deg: 45
+  camera_elevation_deg: 30
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
+geometry_qa:
+  final_corners_px:
+    left:
+    - 92.20271234832262
+    - 525.2815261727792
+    front:
+    - 499.55103497501784
+    - 728.9556874861267
+    right:
+    - 764.5795860099928
+    - 596.4414119686393
+  final_axis_slopes:
+  - 0.49999999999999983
+  - -0.5
+  accepted_slope_range:
+  - 0.4
+  - 0.62
+  axis_pass: true
+  final_width_depth_ratio: 1.5369978858350954
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.15274841437632158
+  ratio_tolerance: 0.3
+  ratio_pass: true
+  measurement_note: 审核人工测点经同一PIL仿射矩阵变换；锚点取校正后L/R底面中点。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 816
+  - 790
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 351956
+  alpha_partial_pixels: 291309
+  alpha_opaque_pixels: 1375
+  alpha_nonzero_bbox:
+  - 16
+  - 16
+  - 800
+  - 774
+  transparent_margins_px:
+  - 16
+  - 16
+  - 16
+  - 16
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_north_restaurant.png
+  source_sha256: 14826b059e961adbaba1a1a8c5f1ab74902f2fa23e54355936a57c768808020a
+  source_size:
+  - 1448
+  - 1086
+  crop_box:
+  - 0
+  - 20
+  - 1401
+  - 1069
+  uniform_scale_requested: 0.56
+  resized_size:
+  - 785
+  - 587
+  rounded_effective_scale:
+  - 0.5603140613847252
+  - 0.559580552907531
+  paste_offset:
+  - 16
+  - 16
+  final_file: bld_kit_qing_north_restaurant.png
+  steps:
+  - crop alpha>0 bbox
+  - uniform LANCZOS resize rounded to integer dimensions
+  - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
+  - review-10 PIL affine y'=a*x+b*y+c
+  - crop alpha>0 bbox and restore transparent padding
+release_ready: false
+affine_qa:
+  input_archive: sources/bld_kit_qing_north_restaurant__before_affine_r10.png
+  input_sha256: 21f5ebcaedecd0c2b2a2de965d36c2d0a83aa98a50e10b19e852668da40669fc
+  forward_xy:
+  - 1
+  - 0
+  - 0.08768593471191066
+  - 1.282671992837194
+  - 0
+  - 0
+  work_alpha_bbox:
+  - 16
+  - 72
+  - 800
+  - 830
+  padding_px: 16

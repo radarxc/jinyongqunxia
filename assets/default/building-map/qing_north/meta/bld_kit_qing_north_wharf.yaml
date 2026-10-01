@@ -1,0 +1,152 @@
+id: bld_kit_qing_north_wharf
+status: candidate
+building:
+  type: bld_kit_qing_north_wharf
+  footprint:
+  - 10
+  - 4
+  anchor: &id001
+  - 242.5166
+  - 183.9073
+  era: qing_north
+anchor_px: *id001
+footprint_m:
+- 10
+- 4
+logical_footprint_polygon_px:
+- - 51.51659999999998
+  - 124.77780000000001
+- - 371.5166
+  - 284.7778
+- - 499.5166
+  - 220.7778
+- - 179.51659999999998
+  - 60.77780000000001
+collision_polygon_m:
+- - 0
+  - 0
+- - 10
+  - 0
+- - 10
+  - 4
+- - 0
+  - 4
+collision_note: 全占地代理；非实测墙体，院内行走另需细化。
+entrance:
+  edge: S
+  offset_cells: 4
+entrance_note: 南边中点规划代理，非门洞测量。
+height_actual_m: null
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_north_wharf.png
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 448
+  - 224
+  ground_width_px: 448
+  camera_yaw_deg: 45
+  camera_elevation_deg: 30
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
+geometry_qa:
+  final_corners_px:
+    left:
+    - 18.524375
+    - 125.35491703299462
+    front:
+    - 359.62125000000003
+    - 295.9033545329946
+    right:
+    - 466.50875
+    - 242.4596045329946
+  final_axis_slopes:
+  - 0.5
+  - -0.5000000000000002
+  accepted_slope_range:
+  - 0.4
+  - 0.62
+  axis_pass: true
+  final_width_depth_ratio: 3.191176470588236
+  expected_width_depth_ratio: 2.5
+  ratio_relative_error: 0.27647058823529447
+  ratio_tolerance: 0.3
+  ratio_pass: true
+  measurement_note: 审核人工测点经同一PIL仿射矩阵变换；锚点取校正后L/R底面中点。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 485
+  - 318
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 94080
+  alpha_partial_pixels: 59137
+  alpha_opaque_pixels: 1013
+  alpha_nonzero_bbox:
+  - 16
+  - 16
+  - 469
+  - 302
+  transparent_margins_px:
+  - 16
+  - 16
+  - 16
+  - 16
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_north_wharf.png
+  source_sha256: b0a16def299ab3adf45643a3a9d03e6caf524b30e00249b838aab4b14bb5d665
+  source_size:
+  - 1774
+  - 887
+  crop_box:
+  - 57
+  - 23
+  - 1657
+  - 887
+  uniform_scale_requested: 0.3143859649122807
+  resized_size:
+  - 503
+  - 272
+  rounded_effective_scale:
+  - 0.314375
+  - 0.3148148148148148
+  paste_offset:
+  - 16
+  - 16
+  final_file: bld_kit_qing_north_wharf.png
+  steps:
+  - crop alpha>0 bbox
+  - uniform LANCZOS resize rounded to integer dimensions
+  - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
+  - review-10 PIL affine y'=a*x+b*y+c
+  - crop alpha>0 bbox and restore transparent padding
+release_ready: false
+affine_qa:
+  input_archive: sources/bld_kit_qing_north_wharf__before_affine_r10.png
+  input_sha256: 099992c3d2f0b7302240513af3421672cc54d7c3ab50a93ff9bc082e77c6a805
+  forward_xy:
+  - 1
+  - 0
+  - 0.06582202313298113
+  - 1.2314789897706764
+  - 0
+  - 0
+  work_alpha_bbox:
+  - 49
+  - 63
+  - 502
+  - 349
+  padding_px: 16

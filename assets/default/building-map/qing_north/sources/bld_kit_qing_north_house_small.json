@@ -1,0 +1,16 @@
+{
+  "id": "bld_kit_qing_north_house_small",
+  "subject": "小民居",
+  "footprint": [
+    6,
+    5
+  ],
+  "prompt": "Use case: historical-scene. ONE isolated transparent sprite for a realistic historical Chinese town game. Early-to-mid Qing NORTH CHINA, anonymous Beijing/Shengjing/Jinan architectural concept, not a specific monument reconstruction. Match the attached Song asset ONLY for realistic material texture, fine detail density, restrained weathering, lighting and game sprite rendering; CHANGE architectural forms to Qing northern grey-brick, grey-tile and dark timber. Orthographic DIMETRIC, yaw45 elevation30, STRICT 2:1 ground plane, east ground axis screen lower-right slope +0.5 and north upper-right slope -0.5, parallel lines NO perspective convergence. South doorway faces screen lower-left. Draw a thin rectangular ground boundary, entire footprint with visible left, front and right corners, NO thick floating base. Keep the entire sprite and soft contact shadow inside generous 10% transparent margins. TRUE transparent RGBA background. Light from screen UPPER LEFT, short soft contact shadow lower-right. Grey fired brick, matte grey barrel tiles with straight sober ridges, northern hard-gable walls, dark brown wooden lattice windows, no Jiangnan whitewashed tourist style. No text, pseudo-writing, plaques, characters, people, flags, modern objects, sky, horizon, landscape, trees, water or road outside footprint, no saturated lighting, cartoon, plastic, borders or watermark. A modest single-storey northern commoner's cottage, three bays, simple straight hard-gable grey tile roof, exposed grey brick gable walls, dark wooden door and fine lattice windows, no gilding or carved grand gateway. Footprint 6m east-west by5m north-south.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-1b6afc17-9157-4960-80f9-1e3d6e61a9c6.png",
+  "references": [
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_north/assets/default/baseline/building-map/bld_kit_song_dali_house.png"
+  ],
+  "created": "2026-09-30T21:12:54.116Z",
+  "candidate_count": 1,
+  "review": "已view_image；灰砖硬山、无字无人物，檐口完整；底面有微量草迹。"
+}

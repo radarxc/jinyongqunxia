@@ -130,7 +130,7 @@ point_final  = ((point_source_x-cx)  × s + px,
 4. 用全透明 RGBA 画布 pad，使宽高至少 512 且轮廓有安全余量；保持原 alpha，不能通过白底抠图伪装工具真透明结果。
 5. 保存根目录 `<id>.png`，分别计算处理前后 SHA。保存后再 `view_image` 检查边缘和视觉比例；PIL 再测尺寸、模式、alpha 极值、透明像素数、非零 bbox 和四边触边情况。
 
-**不允许**非等比拉伸、仿射剪切、透视 warp、旋转 / 镜像纠偏、代码补画底面或屋檐。生成视角错误应回到 `image_gen` 重出；几何后处理不把风格候选变成自动批准的正式资产。
+**默认不允许**非等比拉伸、仿射剪切、透视 warp、旋转 / 镜像纠偏、代码补画底面或屋檐。若审核明确批准仅校正地面轴线的仿射例外，必须保留输入、矩阵、输出哈希与复验测点，且仍维持candidate；生成视角错误原则上回到 `image_gen` 重出。
 
 ## 5. 可复用提示词
 
@@ -544,6 +544,73 @@ No text, people, scenery, modern objects, Ming/Qing court decoration or thick pl
 - `anchor`由实际底面左右对角中心推算，原测点、等比系数和变换记录在逐件元数据。原图与成品均逐张 `view_image`，PIL只裁透明边、等比缩放、透明扩边。
 - 每类最多2候选选1，所有状态为 `candidate`。保留真实轴斜率 / 比例残差，不因文件检查通过写“精确45°验收通过”；底面与门前实际拼接 **（待实测）**。
 - 默认单视图、`allowRotation=false`。辽金年代套件接入城市目录、精确碰撞 / 遮挡、不同阶段彩画及物种辨识均待后续审核；当前不改宋清单、城市布局或上游文档。
+## 11. 清 · 北方套件 `qing_north`（2026-09-30）
+
+### 11.1 年代与地域差异
+
+本节交付清初至清中北方的 **19 类地图建筑**，文件位于 `assets/default/building-map/qing_north/`；每类1张入选图，全部 `candidate`。北京、盛京、济南用于建立地域范围，不把匿名组合冒充任一城市的具名文物或实测复原 **（原创扩展）**。旗民分城、胡同布局、衙署驻防位置仍由 `design/22` §2.6 的城市布局负责，不能靠单体外观表达真实行政边界。
+
+- 材质沿用宋基线的写实古风、细瓦纹、木石层次和低饱和旧化；相机目标仍为45°斜向、30°俯仰、2:1地面投影，左上光、右下短影。
+- 民居与商铺改为青灰砖墙、灰瓦硬山意象、深色木格窗和朴素门扇；不普遍添加黄琉璃、宫廷彩画、红灯笼或豪华垂花门。具体清初门窗纹样和砖瓦等级 **（待考）**。
+- 院落以北房、厢房和围墙组成简素合院。清代院落研究中早中清垂花门并不普遍，默认普通院落使用随墙门；大院与王府的装饰等级单独处理。
+- 官署与王府可有暗朱门、克制梁枋彩画和局部绿琉璃；本批选王府22×18，未另交24×20皇宫模块，也不将两者自动等同。
+- 寺殿与汉地砖佛塔作为无名宗教建筑意象；本批没有生成北海白塔、雍和宫或清真寺。塔式、构件层数和真实高度不宣称文物复原。
+- 镖局 / 货栈、赌场、酒楼均为匿名营生外观；不新增玩法绑定或历史字号。河埠只交灰石台阶与系泊设施，不自带水面、船和旅行入口。
+
+### 11.2 类型与占地映射
+
+下表后缀全部加 `bld_kit_qing_north_`，`building.type` 与文件ID相同。`era: qing_north` 是本任务授权的地域套件键，使用年代为清初至清中；不冒充现有 `qing_early` 枚举已自动兼容。
+
+| ID后缀 | 类型 | 占地格 | 占地来源 |
+|---|---|---|---|
+| house_small | 小民居 | 6×5 | 【建议值】`design/22` §3.3民居 |
+| house_large | 大民居 | 7×6 | §3.4清初民居骨架 |
+| courtyard | 胡同院落 | 10×8 | 【建议值】§3.3同功能 |
+| shop_1f | 单层商铺 | 7×5 | §3.4清初商铺骨架 |
+| shop_2f | 两层商铺 | 8×6 | 【建议值】§3.3同功能 |
+| inn | 客栈 | 12×9 | 【建议值】§3.3同功能 |
+| restaurant | 酒楼 / 茶肆 | 12×9 | 【建议值】§3.3同功能 |
+| market_stall | 市场棚 | 3×2 | 【建议值】§3.3同功能 |
+| yamen | 衙署 | 17×13 | §3.4清初衙署骨架 |
+| biaoju | 镖局 / 货栈 | 15×12 | §3.4清初镖局骨架 |
+| casino | 赌场 | 10×8 | 【建议值】§3.3同功能 |
+| manor | 山庄 / 大院 | 16×13 | 【建议值】§3.3同功能 |
+| wangfu | 王府 | 22×18 | §3.4清初王府骨架 |
+| temple_hall | 寺观殿堂 | 14×11 | 【建议值】复用§3.4明代寺观骨架 |
+| pagoda | 汉地砖佛塔 | 7×7 | 【建议值】§3.3同功能 |
+| guardhouse | 城门守舍 | 7×5 | 【建议值】§3.3同功能 |
+| stable | 马厩 | 9×7 | 【建议值】§3.3同功能 |
+| warehouse | 仓屋 | 10×8 | 【建议值】§3.3同功能 |
+| wharf | 河埠 | 10×4 | 【建议值】§3.3同功能 |
+
+所有占地都是游戏规划范围，不是史料测绘尺寸。直墙、墙角、桥、植物以及净宽4/6格的完整城门见 `tile.md` 清北节；守舍不能代替完整门楼。
+
+### 11.3 可复用提示词差异
+
+在§5模板中替换年代和主体；真实每次调用的完整提示词、参考输入与候选取舍保存在本套件 `sources/` 和 `manifest.yaml`，下列为可复用摘要，不冒充所有调用逐字相同。
+
+```text
+Use case: historical-scene. ONE isolated early-to-mid Qing NORTH CHINA building sprite.
+Anonymous Beijing/Shengjing/Jinan regional concept, not a named monument reconstruction.
+Realistic aged grey brick, matte grey tiles, dark timber lattice windows, sober hard-gable roof.
+Ordinary houses use modest gates; no palace colors, lavish hanging-flower gate or gilding.
+For yamen/wangfu only: restrained dark red doors, sparse official beam painting and green tiles.
+Footprint {w}m east-west by {h}m north-south, visible thin ground edges and left/front/right corners.
+Orthographic yaw45 elevation30, 2:1 ground axes +0.5/-0.5, parallel opposite edges.
+South entrance faces lower-left; upper-left light, short lower-right contact shadow.
+TRUE transparent RGBA, generous padding; no background, people, writing, watermarks or modern objects.
+Keep Song-set realistic detail density and restrained weathering while changing period/regional forms.
+```
+
+### 11.4 规格化、实测与来源边界
+
+仅用内置 `image_gen`，每件最多2候选；实际图像引擎版本、seed和推理档位未披露，不登记虚构值。首轮PIL规格化只裁透明包围框、一次等比缩放和透明扩边，不绘制建筑、不剪切透视、不镜像；第10轮另对7件候选执行有矩阵、输入归档与哈希记录的PIL仿射几何校正。短边≥256是本任务门禁；不沿用宋基线≥512来放大地面。
+
+沿用§4：地面宽=`32(w+h)`；比例=`32(w+h)/(Rx−Lx)`；源锚点=`(L+R)/2`，同步裁切、缩放与粘贴偏移。大民居目标416×208，王府1280×640，市场棚160×80；这是地面包络，PNG为高度与留白外扩。隐藏后角由平行边推定，底心为人工测点代理；几何误差如实写 `geometry_qa`，不把文件检查通过等同±0.03轴率通过。
+
+源图和成品逐张 `view_image`，另用浅底合成检查alpha。工具预览中的灰棕光晕可能只是alpha0位置的RGB，必须采样或合成核实，不据预览去清除真实半透明边缘。单朝向 `allowRotation:false`；没有四视图、GLB、真实高度或精确院内碰撞，联调 **（待实测）**。
+
+参考资料（访问2026-09-30）：[北京市合院式历史建筑修缮技术导则](https://www.beijing.gov.cn/zhengce/gfxwj/202405/W020240510514910875219.pdf)用于青砖青瓦木构；[清代北京四合院发展演变](https://wwj.beijing.gov.cn/bjww/resource/cms/article/362762/515604/2018071114320631049.pdf)用于限制普通民居的华丽门型；[沈阳故宫宫殿介绍](https://www.sypm.org.cn/xinwen_2/4.html)用于官式硬山和等级装饰；[济南市第二批历史建筑保护图则](http://nrp.jinan.gov.cn/attach/upfiles/lsjztz02.pdf)的检索摘要用于清代传统合院、砖木结构和石基砖墙母题，原站直连本轮返回504。现代修缮或存世建筑不证明每一细部均属清初，匿名组合与地方差异仍（待考）。2026-09-30下载查看的逐类历史图片仅作生成后形制复核，未作为原始 `image_gen` 输入；逐件URL与用途见套件manifest的 `historical_references`。
 
 ## 本文新增术语与 ID
 
@@ -660,6 +727,8 @@ No lettering, people, modern objects, Qing imperial polychromy, tourist horse-he
 
 不新增玩法 ID；复用 §3 的38个建筑资产ID与最新§4.4的7个植物资产ID。植物文件使用`<asset_id>__v01/v02.png`，双下划线后是变体键，不是新玩法ID。`building.anchor`为最终PNG底面中心像素，`sources/`为归档生成来源，`meta/`为逐type制作元数据。它们是本批资产约定，不扩大`town/schema.yaml`的现有定义范围。
 
+清北本轮另登记§11.2的19个 `bld_kit_qing_north_*` 地域资产ID，不新增玩法规则。新建前已全仓搜索，只有任务计划中的套件键，没有同名成品；6×5小民居等同构占地依§11.2标为建议值，不扩大清初骨架定义。
+
 ## 待决事项 / 依赖
 
 ### 替下游给出的建议值
@@ -671,6 +740,9 @@ No lettering, people, modern objects, Qing imperial polychromy, tourist horse-he
 元末江南新增建议值见§11.2；本任务建筑最短边256px、底面64×32px格和实际透明留边单独记录，不改宋基线512px门禁。
 
 透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。最终 canvas 短边 ≥512 是现有检查器要求，地面像素尺度仍按 64×32 每格计算；canvas 尺寸随建筑高度 / 屋檐与留白变化，不固定所有建筑方形。
+清北增量的占地默认值见§11.2，短边≥256、透明留边≥16px、宽深比10%告警阈值仅为本任务制作参数。精确几何未通过的素材仍为候选；目录检查通过不批准发布。
+
+透明留边默认至少 16 px；轴斜率容差沿用上游 ±0.03。宋基线制作曾采用 canvas 短边≥512，本清北增量按任务指定使用短边≥256；地面像素尺度仍按64×32每格计算，canvas尺寸随建筑高度、屋檐与留白变化，不固定为方形。
 
 新增植物的最终4px留边来自最新上游；矩形裁边时alpha≤2噪点阈值、外扩4**源**px，以及实际根偏差≤1**成品**px的额外告警均为本轮 **【建议值】**。2/255≈0.78%不透明度；只用于确定裁切矩形，不覆盖存留像素的alpha。全部原图与裁去区域统计保留，可复核或更换制作阈值。
 
@@ -684,6 +756,8 @@ No lettering, people, modern objects, Qing imperial polychromy, tourist horse-he
 
 ### 原著考据待办
 
+清北匿名建筑未引用原著回目或文字；官式装饰、普通民居门窗、砖塔细部与年代适配默认历史意象（原创扩展 / 待考）。实际砖塔为六层楼阁式意象，慈寿寺资料仅支持北方砖佛塔在清代存续及砖石材质，不能宣称同塔式复原。
+
 保留旧稿问题：三联 / 广州修订版《天龙八部》的大理建筑、植物与佛教场景，《射雕英雄传》的临安茶肆描写尚未逐字核对，不编回目或引文。白族民居细部、佛龛造像、宋茶器、瓦作、斗拱、镖局称谓及地域植物史仍待考；默认历史意象与原创构图。
 
 ### 开放问题（附默认值）
@@ -694,6 +768,8 @@ No lettering, people, modern objects, Qing imperial polychromy, tourist horse-he
 - 明江南补充占地与历史细部：默认§11表的 **【建议值】** 与匿名原创建筑，最终按具体城市覆写；本轮不把建议值写入 design/22。
 - 明江南严格投影与整城拼接：**已解决（点名13项）**，双轴±0.500、登记占地比例与底面中心锚点已按像素复算；仍保持单视图 `candidate`，整城接缝、碰撞与遮挡待总装实测。
 - 元末江南的匿名房屋细部、院落尺度和佛塔层数：默认采用§11候选与建议值；具名城市史图、真实四向、墙门孔对格和运行时遮挡另行验证，未经审批不改 `approved`。
+- 清北19建筑当前只读复验有8件至少一项告警：镖局、赌场、守舍、大民居、大院、市场棚、单层商铺、衙署；其中仅大民居仍超过严格10%比例阈值。另7件第10轮PIL仿射校正后双轴为±0.5，并沿用审核裁定的轴率0.40–0.62、比例30%容差；这不等于发布级总装通过。默认全部保持candidate并保留测点，后续精确总装前需复核，不再以非等比缩放伪修。
+- 清北套件键与既有时代枚举、19类同构占地、六层匿名砖塔的艺术选择是否采用：默认按§11交候选，不代作者批准，不修改上游枚举；见 `tools/agents/reports/KIT-qing_north.md` §4、§6。
 
 - 旧“建筑占格与正式底面中心未定”：**已解决**，本批消费 `design/22` §1.4、§3 的占地与中心锚点；旧 6×4 / 6×5 自拟尺寸和临时前角锚点不再作为规范。
 - 旧“大理右影触边、两图留白 / 精确轴向 / 比例未达标”：**已解决（本次入选处置）**，ART-B 两张不直接复制入选，按新清单重出；不表示旧图已修复。留白、轴向和尺度仍需对每张新图实测。
