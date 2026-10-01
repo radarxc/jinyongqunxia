@@ -1,0 +1,58 @@
+{
+  "id": "tex_town_ming_south_bridge__stone_w5_l10_r000_v01",
+  "candidate": 1,
+  "returncode": 0,
+  "prompt": "You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical images control form, construction, proportion and materials; do not copy either composition.\n\nSubject: one isolated Ming dynasty Jiangnan single-span Jiangnan stone footbridge. Strong historical construction detail: low segmental arch in warm-grey granite; radiating voussoirs and rough block soffit; worn stone-paved gently humped deck; plain post-and-panel rails with square posts; arch opening entirely transparent.\n\nPreserve the guide's logical footprint 5 by 10, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match the guide's restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.\n\nTRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero. Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output only the generated image result.",
+  "guide": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south-hist/assets/default/tile/ming_south/tex_town_ming_south_bridge__stone_w5_l10_r000_v01.png",
+  "refs": [
+    "bridge1",
+    "bridge2"
+  ],
+  "ref_paths": [
+    "/private/tmp/KIT-ming_south-hist-refs/refs/bridge_fangsheng_1.jpg",
+    "/private/tmp/KIT-ming_south-hist-refs/refs/bridge_fangsheng_2.jpg"
+  ],
+  "outputs": [
+    "/private/tmp/KIT-ming_south-hist-refs/codex-homes/tex_town_ming_south_bridge__stone_w5_l10_r000_v01-c1/generated_images/01a0f6ff-e618-74a3-b25f-8fc184e4f264/exec-8c7eac13-6fd1-479a-95b8-d176dcbd9a75.png"
+  ],
+  "selected_candidate": 1,
+  "candidate_count": 1,
+  "guide_archive": "assets/default/building-map/ming_south/history/guides/tex_town_ming_south_bridge__stone_w5_l10_r000_v01.png",
+  "guide_sha256": "31dc7532fa52306685880b242ae93716ff749e2b8468899b7047c3c6070f2cef",
+  "selected_source_archive": "assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_bridge__stone_w5_l10_r000_v01.png",
+  "selected_source_sha256": "deb8818e9a34cbc430c7eb892a11bb523b17d8aa8f4fbe68280aea291dc7d025",
+  "normalization": {
+    "alpha_threshold_for_bbox": 2,
+    "source_bbox": [
+      29,
+      34,
+      1802,
+      845
+    ],
+    "guide_bbox": [
+      4,
+      4,
+      485,
+      226
+    ],
+    "uniform_scale": 0.2712915961646926,
+    "resized_size": [
+      481,
+      220
+    ],
+    "paste_offset": [
+      4,
+      6
+    ],
+    "canvas_size": [
+      489,
+      230
+    ],
+    "horizontal_alignment": "guide bbox center",
+    "vertical_alignment": "guide bbox bottom",
+    "excluded": "no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite"
+  },
+  "final_file": "assets/default/tile/ming_south/tex_town_ming_south_bridge__stone_w5_l10_r000_v01.png",
+  "final_sha256": "888c588ac988d9bcf401976e0b87f44f9051181305a0c618891510e317341150",
+  "finalized_at": "2026-10-01T10:42:43.014339+00:00"
+}

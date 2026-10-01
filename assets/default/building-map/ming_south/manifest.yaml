@@ -3,21 +3,50 @@
   category: building-map
   style: default
   subject: 明代江南小民居（原创扩展）
-  prompt: 'Use case: sketch-to-render. Replace this exact box drawing with ONE finely detailed realistic historical Ming Jiangnan one-storey house. Preserve EXACTLY the camera and the three visible ground vertices of the input; do not invent a different viewpoint, do not enlarge or move footprint. On square image ground L=(132,645), front=(541,850), right=(892,675); the front is only slightly right of center. BOTH ground edges 26.565 degrees. Ground front width7 depth6, equal pixels per metre. Put a wood lattice door and a shuttered window in left white plaster wall, plain white gable on right, a charcoal fired-clay tiled pitched roof on top, gently upturned ends, pale narrow grey stone perimeter. Fine believable weathered clay tiles, lime plaster and chestnut wood grain, matte realistic Chinese historical game sprite, soft light from upper left. Do not shift the front base corner to the right. Keep full thin base parallelogram with 7:6 ratio. Backdrop must become TRUE TRANSPARENT RGBA, object fully opaque, no haze, only tiny contact shadow. Delete all outlines and grey background, do not include drawing, text, labels, people or scenery. Single building cutout, spacious margin. This is architectural texture rendering of the locked geometry, not free reinterpretation.'
-  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan small commoner''s house. Strong historical construction detail: three bays; low hard-gable roof
+    with shallow pitch; tight grey pan-and-cover tiles; plain ridge, no beasts; no dougong; chestnut columns, white lime infill over blue-grey
+    brick foot, stone plinth; plank door and straight square lattice windows.
+
+
+    Preserve the guide''s logical footprint 7 by 6, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - path: assets/default/building-map/ming_south/revisions_r3/house_small/guide.png
-    sha256: 219299fb38ee7049a2e577717a60096dd4e9ce9dca7ba9e858421cfdf34c512b
-    role: geometry_reference
-  tool: codex exec · image_gen
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_house_small.png
+    sha256: 5d44680894eedc27e552f23115a07a662d17a8bded93904285365890cc5fcffe
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    accessed: '2026-10-01'
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    used_detail: 明末吴氏接待厅：开间比例、硬山灰瓦、木构直棂门窗与石基
+    role: historical_form_material_reference_actual_image_input
+  - url: https://www.metmuseum.org/art/collection/search/45665
+    accessed: '2026-10-01'
+    sha256: 68a345255caf9336f305bc8649b1be8836c1ca9bd7aa759ff9e370258dbb2b59
+    used_detail: 明代江南村寺画卷：低缓灰瓦屋面、粉墙聚落尺度与前后层次
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
   model: image_gen (underlying image model undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T22:42:56.168051+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f46a-82e2-7533-92ee-c092ec4d2860/exec-37aa337a-033e-4186-b778-54330a4e29a2.png
-  source_copy: revisions_r3/house_small/candidate_2.png
-  source_sha256: 7e9c9904e8b0f0911c60b191c00321056149993aff7c7e7b077f02a6401a2203
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:06:44.467371+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_house_small.png
+  source_sha256: 6bf1374e4ffcd5a571faa042838bc3c23cc10c94780f878f812389d2362ea43a
   size: 501x468
-  sha256: 5d44680894eedc27e552f23115a07a662d17a8bded93904285365890cc5fcffe
+  sha256: 16b24a21e9e5d26d13028eee6607e6ea5a0cffe5805b391b02a84ffa20b59d4d
   status: candidate
   building:
     type: bld_kit_ming_south_house_small
@@ -29,8 +58,8 @@
     - 278.6678
     era: ming_south
   footprint_basis: design/22 §3.4 明代骨架
-  candidate_count: 2
-  source_record: revisions_r4/verification.json
+  candidate_count: 1
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_house_small.json
   projection_contract:
     yaw_deg: 45
     elevation_deg: 30
@@ -40,29 +69,67 @@
     actual_views:
     - 0
     allowRotation: false
-    geometry_verified: true
-    geometry_release_ready: true
-  notes: 第4轮几何返修：按实测底面三点作分段横向缩放与逐列纵移；双轴精确±0.5、比例等于登记footprint，竖线保持竖直；底面对角线中点锚已复算。仍为candidate，待总装实测。
+    geometry_verified: false
+    geometry_release_ready: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  notes: 2026-10-01按历史图片重出；历史细节：三开间低举折硬山；灰板瓦筒瓦、素脊；无斗拱；栗褐柱架、粉墙青砖脚、石基、板门与直方格窗。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.39354839
+    paste_offset:
+    - 34
+    - 20
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_house_large
   file: bld_kit_ming_south_house_large.png
   category: building-map
   style: default
   subject: 明代江南大民居（原创扩展）
-  prompt: 'Use case: precise-object-edit. Edit the supplied Ming large residence into the following Ming Jiangnan variant. Preserve its realistic muted matte material style, fine detail density and general building layout. Larger two-storey merchant family residence, 10m east-west by8m north-south. Broad simple double-slope tiled roof, raised white gable firebreak ends, brown upper lattice windows and simple ground-floor entrance, small side service wing. Not a courtyard compound or palace. Correct ground camera so the two bottom axes are exactly +0.5 and -0.5 slopes and footprint aspect matches listed metres. White lime walls, charcoal dark grey clay tiles, restrained brown straight timber lattices. True RGBA transparent outside object, preserve clean cutout. Remove ALL surrounding beige glow, halo, fog, ambient color smudge and background shadows; outside silhouette alpha must be zero. Keep only tiny contact shadow lower right. Upper-left light. Building smaller within canvas with at least10% transparent margin on every side including highest ridge and lowest corner. Complete base clear and thin, no thick plinth, no people, signs, text, watermark, painted checkerboard, cartoon or plastic. One image one asset.'
-  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan large two-storey residence. Strong historical construction detail: five-bay timber frame; hard
+    gables rising slightly above low grey-tile roof; plain ridge; simple exposed purlin ends, no formal dougong; white lime walls, blue-grey brick
+    foot; plank doors, straight lattice windows and plain timber balcony rail.
+
+
+    Preserve the guide''s logical footprint 10 by 8, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-cbcfbb58-9243-4c45-a948-d37c2cc3d605.png
-    sha256: 7b8bed27bee0db43c1859df43d8baf0ffd87d9a12490ab50b386559f33646f19
-    role: edit_target
-  tool: codex exec · image_gen
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_house_large.png
+    sha256: fb127deb08603062c263430cdd08c074ef42775d145da1756e91dd824ba0f332
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    accessed: '2026-10-01'
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    used_detail: 明末吴氏接待厅：开间比例、硬山灰瓦、木构直棂门窗与石基
+    role: historical_form_material_reference_actual_image_input
+  - url: https://www.metmuseum.org/art/collection/search/45665
+    accessed: '2026-10-01'
+    sha256: 68a345255caf9336f305bc8649b1be8836c1ca9bd7aa759ff9e370258dbb2b59
+    used_detail: 明代江南村寺画卷：低缓灰瓦屋面、粉墙聚落尺度与前后层次
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
   model: image_gen (underlying image model undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T21:25:01.798639+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-a246cbc0-8359-4d5d-a1ff-a9e7a46133f3.png
-  source_copy: sources/bld_kit_ming_south_house_large.png
-  source_sha256: 7318a5423f235175f80a2ae30e733b80d370749a5d35c082fa1f888d814967ea
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:09:47.290642+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_house_large.png
+  source_sha256: 7c3b07000c2964d113360bdfa583c3727931bc2acc718c952a12f1fa9c63f337
   size: 651x540
-  sha256: fb127deb08603062c263430cdd08c074ef42775d145da1756e91dd824ba0f332
+  sha256: abd07308c9b4a77b61092518c0033bdfe8cb269586371c6817d6307d9b37d361
   status: candidate
   building:
     type: bld_kit_ming_south_house_large
@@ -74,8 +141,8 @@
     - 372.2329
     era: ming_south
   footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
-  candidate_count: 2
-  source_record: revisions_r4/verification.json
+  candidate_count: 1
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_house_large.json
   projection_contract:
     yaw_deg: 45
     elevation_deg: 30
@@ -85,29 +152,67 @@
     actual_views:
     - 0
     allowRotation: false
-    geometry_verified: true
-    geometry_release_ready: true
-  notes: 第4轮几何返修：按实测底面三点作分段横向缩放与逐列纵移；双轴精确±0.5、比例等于登记footprint，竖线保持竖直；底面对角线中点锚已复算。仍为candidate，待总装实测。
+    geometry_verified: false
+    geometry_release_ready: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  notes: 2026-10-01按历史图片重出；历史细节：五开间两层木构；灰瓦硬山与略高封火墙；露檩端、无正式斗拱；粉墙青砖脚、板门直棂窗与素木栏。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.47319347
+    paste_offset:
+    - 20
+    - 20
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_courtyard
   file: bld_kit_ming_south_courtyard.png
   category: building-map
   style: default
   subject: 明代江南天井院落（原创扩展）
-  prompt: Replace this exact low box with a Ming Jiangnan small walled tianjing courtyard dwelling. Camera MUST be low and ground edges flat, matching guide, no steep top-down isometric view. Keep front base corner centrally located as guide. White lime plaster outer walls, dark grey tiled single storey rear hall and left wing around small open stone paved skywell; a simple wood gate in the left-facing front wall. No stairs protruding out of footprint. Brown straight lattice windows. Realistic weathered matte historical game asset, tiny clay roof tiles, subtle wood grain, same fine detail density as prior images. Upper-left light. Exact rectangular ground footprint10 by8 metres, target ground double axes plus/minus0.5, front-screen-left length only25% longer than right. Rebuild all architecture in guide camera. Transparent RGBA, zero alpha background, opaque object, no haze, grid, outline, border, text, people or modern objects. Entire asset comfortably in square canvas. One unified compact courtyard.
-  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan enclosed courtyard residence. Strong historical construction detail: main hall and two lower wings
+    around a stone-paved tianjing; hard-gable grey tile roofs and restrained fire gables; white lime walls with grey-brick foot; straight lattice
+    doors; thin granite thresholds and plain wall gate.
+
+
+    Preserve the guide''s logical footprint 10 by 8, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - path: assets/default/building-map/ming_south/revisions_r3/courtyard/compensated_guide.png
-    sha256: ac54a20bf98ae41fecd4cf380971c15cc8d14840a3d2696c0aa7c1be5722a03a
-    role: geometry_reference
-  tool: codex exec · image_gen
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_courtyard.png
+    sha256: 1b03040ce1cfe3265a4c3c1c7929a46691314e1903a2b2086ee1bbaefa8ec505
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    accessed: '2026-10-01'
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    used_detail: 明末吴氏接待厅：开间比例、硬山灰瓦、木构直棂门窗与石基
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Ming_courtyard_(6238830623).jpg
+    accessed: '2026-10-01'
+    sha256: 908551484e453c71120b077017cb3f7773a58eba363342f5daf1c35c44c490c6
+    used_detail: 明式院落实物：合院围墙、天井铺地、硬山与青砖墙脚
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
   model: image_gen (underlying image model undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T22:42:56.245997+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f46a-82e2-7533-92ee-c092ec4d2860/exec-e3493fe6-becb-4976-a4a1-5c1ebb161781.png
-  source_copy: revisions_r3/courtyard/candidate_2.png
-  source_sha256: f8cde7b0c6de3c6ea386c642c2a6a4c895c94c355b4749742c76dbfd2d482911
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:09:32.766019+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_courtyard.png
+  source_sha256: cdcc10ad067834b4630550cef96a074e7de24313a5a94e9a60e151c30fc01baa
   size: 626x507
-  sha256: 1b03040ce1cfe3265a4c3c1c7929a46691314e1903a2b2086ee1bbaefa8ec505
+  sha256: 30672b2fe8ab2e22f50b2917cbfcb6599bd41b382f12b0c2b637ab39c8fc8a03
   status: candidate
   building:
     type: bld_kit_ming_south_courtyard
@@ -119,8 +224,8 @@
     - 266.0428
     era: ming_south
   footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
-  candidate_count: 2
-  source_record: revisions_r4/verification.json
+  candidate_count: 1
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_courtyard.json
   projection_contract:
     yaw_deg: 45
     elevation_deg: 30
@@ -130,29 +235,67 @@
     actual_views:
     - 0
     allowRotation: false
-    geometry_verified: true
-    geometry_release_ready: true
-  notes: 第4轮几何返修：按实测底面三点作分段横向缩放与逐列纵移；双轴精确±0.5、比例等于登记footprint，竖线保持竖直；底面对角线中点锚已复算。仍为candidate，待总装实测。
+    geometry_verified: false
+    geometry_release_ready: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  notes: 2026-10-01按历史图片重出；历史细节：正房两厢围石铺天井；硬山灰瓦与克制封火墙；粉墙青砖脚、直棂门、花岗石门槛与素墙门。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.40966387
+    paste_offset:
+    - 44
+    - 23
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_shop_1f
   file: bld_kit_ming_south_shop_1f.png
   category: building-map
   style: default
   subject: 明代江南单层商铺（原创扩展）
-  prompt: 'Use case sketch-to-render. The attached box is a LOCKED geometric guide: keep camera and base outline pixel-accurate. Transform it into a single-storey Ming Jiangnan shop, front facade faces lower-left, white plaster side gable faces lower-right, charcoal grey tiled gable roof on top. Three dark brown timber storefront bays with open shelves, central counter, bolts of cloth and ceramic jars, simple small plain cloth awning. No letters or signs. Realistic restrained matte detailed historical game asset, believable small clay tiles, timber grain and stone joints, not cartoon. Ground footprint7 metres front width by5 metres depth: ground edge from left to near corner is40% longer than right-to-near corner. All base edges rise ONE pixel for every TWO horizontal pixels, strictly 2:1 dimetric. Square guide base vertices L(132,628), F(575,850), R(892,692). Keep those exact relative positions, vertical posts vertical, parallel opposite sides, no perspective. Narrow grey stone ground edge complete and thin, no thick plinth. Upper-left daylight, shadow tiny to lower-right. Opaque subject and true transparent RGBA alpha0 outside, no glow or haze. Entire complete building with margins. Remove all grey guide fill and outlines. No people, writing, labels, modern objects or scenery. ONE shop.'
-  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan single-storey street shop. Strong historical construction detail: narrow three-bay shop from a
+    Ming market street; hard-gable grey tile roof, plain ridge, projecting rafters without dougong; removable plank frontage, straight lattice
+    shutters, low stone sill, one rolled blank cloth awning.
+
+
+    Preserve the guide''s logical footprint 7 by 5, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - path: assets/default/building-map/ming_south/revisions_r3/shop_1f/guide.png
-    sha256: 557324351cdea03edfc43b25bc901538bf5c521cd00775ebdafb24ef53936652
-    role: geometry_reference
-  tool: codex exec · image_gen
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_shop_1f.png
+    sha256: 90bd184e25eb634964a480881187fe9ad96cef7178689795b71256f6d7fee1ba
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    accessed: '2026-10-01'
+    sha256: 676b5a6eb5663efc45ec37c930ee9413dff06a5330883a14183e930161e85048
+    used_detail: 《南都繁会图》局部：临街铺屋、木板铺面、棚布与器具
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E5%B1%80%E9%83%A8%EF%BC%88%E6%98%8E_%E4%BB%87%E8%8B%B1%EF%BC%89.jpg
+    accessed: '2026-10-01'
+    sha256: d496e9623ddf7dadeeb4d5feb70ffab4c0a96436a20fac054db320a3b26b4be4
+    used_detail: 《南都繁会图》局部：街屋层高、连续檐口、河埠与市井尺度
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
   model: image_gen (underlying image model undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T22:42:56.308514+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f46a-82e2-7533-92ee-c092ec4d2860/exec-6eab75d7-459b-41d9-814c-8dcd0f9b7976.png
-  source_copy: revisions_r3/shop_1f/candidate_1.png
-  source_sha256: 284b929a2a25c602ce51d99f923aebe262c59d8614a6a66175a74ffb5eaed8b0
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:09:16.921571+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_shop_1f.png
+  source_sha256: 64d7e0c75022e18c63f7692fddf9e55bca61f5773cbc0be5be19c9728a42abeb
   size: 453x367
-  sha256: 90bd184e25eb634964a480881187fe9ad96cef7178689795b71256f6d7fee1ba
+  sha256: d618269cd48f86b7a9a9766aa9d0b4f37340d7fb60e6c64e7cfb7b47b2e6b047
   status: candidate
   building:
     type: bld_kit_ming_south_shop_1f
@@ -164,8 +307,8 @@
     - 247.7973
     era: ming_south
   footprint_basis: design/22 §3.4 明代骨架
-  candidate_count: 2
-  source_record: revisions_r4/verification.json
+  candidate_count: 1
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_shop_1f.json
   projection_contract:
     yaw_deg: 45
     elevation_deg: 30
@@ -175,29 +318,67 @@
     actual_views:
     - 0
     allowRotation: false
-    geometry_verified: true
-    geometry_release_ready: true
-  notes: 第4轮几何返修：按实测底面三点作分段横向缩放与逐列纵移；双轴精确±0.5、比例等于登记footprint，竖线保持竖直；底面对角线中点锚已复算。仍为candidate，待总装实测。
+    geometry_verified: false
+    geometry_release_ready: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  notes: 2026-10-01按历史图片重出；历史细节：明代市街三开间窄铺；硬山灰瓦素脊；无斗拱出椽；可卸板铺面、直棂窗、低石槛与素布棚。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.33773741
+    paste_offset:
+    - 20
+    - 34
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_shop_2f
   file: bld_kit_ming_south_shop_2f.png
   category: building-map
   style: default
   subject: 明代江南两层商铺兼当铺意象（原创扩展）
-  prompt: 'Use case: precise-object-edit. Edit the supplied Song southern building sprite into a Ming Jiangnan regional variant, preserve the layout, transparent cutout, realistic fine material detail and subdued visual density. Two-storey narrow pawn and cloth shop, 7m east-west by5m north-south. High wooden counter in open ground floor, one reinforced door, barred straight timber lattice upper windows, white plaster sidewall, dark clay simple gable roof and shallow lower eave. No money symbols, no names, no signage. Strengthen lime-white plaster gables and charcoal grey clay tiled roofs, replace decorative curved lattices with straight rectangular timber grids, muted chestnut brown wood, reduce bright orange wood and bright red fabric. Camera orthographic yaw45 elevation30, exact2:1 ground axes slope +0.5/-0.5, footprint matching listed metres. Front faces lower left, upper-left light, very short lower-right contact shadow. True transparent RGBA background; outside silhouette alpha zero. NO halo, ambient beige smudge, backdrop, fog, white matte, scenery, text, watermark, people or modern objects. Full roof and ground rim inside canvas with generous10% clear margin, one asset only.'
-  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan two-storey street shop. Strong historical construction detail: narrow timber shop house; grey-tile
+    hard-gable roof and raised white fire gables; open plank shopfront below, straight lattice windows and plain rail above; no lantern festival
+    decoration.
+
+
+    Preserve the guide''s logical footprint 7 by 5, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png
-    sha256: bdb0d7ba47a804dc14b20c39931e2b95a6c8926cf0d3ecd10a7a808eb62d2548
-    role: edit_target
-  tool: codex exec · image_gen
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_shop_2f.png
+    sha256: a65525f3a543d7c95abdc3023a104f9b0b35c5c8d9cfef2bf37bef68691aef4d
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    accessed: '2026-10-01'
+    sha256: 676b5a6eb5663efc45ec37c930ee9413dff06a5330883a14183e930161e85048
+    used_detail: 《南都繁会图》局部：临街铺屋、木板铺面、棚布与器具
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E5%B1%80%E9%83%A8%EF%BC%88%E6%98%8E_%E4%BB%87%E8%8B%B1%EF%BC%89.jpg
+    accessed: '2026-10-01'
+    sha256: d496e9623ddf7dadeeb4d5feb70ffab4c0a96436a20fac054db320a3b26b4be4
+    used_detail: 《南都繁会图》局部：街屋层高、连续檐口、河埠与市井尺度
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
   model: image_gen (underlying image model undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T21:25:02.002757+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-3295b1b3-8810-4e1c-8785-b53542cab28b.png
-  source_copy: sources/bld_kit_ming_south_shop_2f.png
-  source_sha256: 14a8d9a5d156cc480fb22752058e762aa51675e34324f2bab12b12b60abbaa14
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:09:18.559403+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_shop_2f.png
+  source_sha256: 249d3b8009cdd42e7679527c06dc572a3bf438d55096a245c8d85e96c65b5162
   size: 448x432
-  sha256: a65525f3a543d7c95abdc3023a104f9b0b35c5c8d9cfef2bf37bef68691aef4d
+  sha256: 5b948cc4a7e0ed1a6450d73b5d40ca6ac9356a01559925d49ea5407a9a43eb02
   status: candidate
   building:
     type: bld_kit_ming_south_shop_2f
@@ -210,7 +391,7 @@
     era: ming_south
   footprint_basis: design/22 §3.4 明代骨架
   candidate_count: 1
-  source_record: sources/shop_2f.json
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_shop_2f.json
   projection_contract:
     yaw_deg: 45
     elevation_deg: 30
@@ -221,27 +402,66 @@
     - 0
     allowRotation: false
     geometry_verified: false
-  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。
+    geometry_release_ready: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  notes: 2026-10-01按历史图片重出；历史细节：两层窄面阔铺屋；硬山灰瓦和粉白封火墙；下层板铺、上层直棂窗与素木栏；无灯会装饰。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.34872762
+    paste_offset:
+    - 50
+    - 41
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_inn
   file: bld_kit_ming_south_inn.png
   category: building-map
   style: default
   subject: 明代江南客栈（原创扩展）
-  prompt: 'Use case: precise-object-edit. Edit the supplied Song southern building sprite into a Ming Jiangnan regional variant, preserve the layout, transparent cutout, realistic fine material detail and subdued visual density. Two-storey traveller inn 12m east-west by9m north-south, L-shaped timber gallery building around a small forecourt, grouped guest-room lattice doors, plain broad entrance facing lower-left, white plaster gables, dark grey roof, one small blank fabric hanging. No horses or people. Strengthen lime-white plaster gables and charcoal grey clay tiled roofs, replace decorative curved lattices with straight rectangular timber grids, muted chestnut brown wood, reduce bright orange wood and bright red fabric. Camera orthographic yaw45 elevation30, exact2:1 ground axes slope +0.5/-0.5, footprint matching listed metres. Front faces lower left, upper-left light, very short lower-right contact shadow. True transparent RGBA background; outside silhouette alpha zero. NO halo, ambient beige smudge, backdrop, fog, white matte, scenery, text, watermark, people or modern objects. Full roof and ground rim inside canvas with generous10% clear margin, one asset only.'
-  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan courtyard inn. Strong historical construction detail: two-storey street lodging front with shallow
+    continuous eave and low rear wings around a small paved court; grey tiles, white fire gables, chestnut posts, straight lattice guest windows;
+    blank hanging board only.
+
+
+    Preserve the guide''s logical footprint 12 by 9, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_inn.png
-    sha256: 48a5f455d052e99af36ce4cd21169cd356b0761ffcbffd863deaf6a091133bbc
-    role: edit_target
-  tool: codex exec · image_gen
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_inn.png
+    sha256: 906570d20a1c53935b93d8fdc25d805f01226b582834cfc2e43362c6c73a7f57
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    accessed: '2026-10-01'
+    sha256: 676b5a6eb5663efc45ec37c930ee9413dff06a5330883a14183e930161e85048
+    used_detail: 《南都繁会图》局部：临街铺屋、木板铺面、棚布与器具
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E5%B1%80%E9%83%A8%EF%BC%88%E6%98%8E_%E4%BB%87%E8%8B%B1%EF%BC%89.jpg
+    accessed: '2026-10-01'
+    sha256: d496e9623ddf7dadeeb4d5feb70ffab4c0a96436a20fac054db320a3b26b4be4
+    used_detail: 《南都繁会图》局部：街屋层高、连续檐口、河埠与市井尺度
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
   model: image_gen (underlying image model undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T21:25:02.083521+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-f72a95f0-6acb-49aa-8e1a-4a2f86d403bf.png
-  source_copy: sources/bld_kit_ming_south_inn.png
-  source_sha256: a79f3c3c2ee47ecf13955b2f7e093a7e7d1cea176ecf37a0951891b93d4f5c22
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:12:54.586394+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_inn.png
+  source_sha256: 9ae820678bc02a34d37883139b8b1900ba6de0125f7634f0c26db800a0a78616
   size: 736x544
-  sha256: 906570d20a1c53935b93d8fdc25d805f01226b582834cfc2e43362c6c73a7f57
+  sha256: 8045ac604a72d6e670a6f3fc1b83a0a3fce9e80b827013312232292a1bc7dc78
   status: candidate
   building:
     type: bld_kit_ming_south_inn
@@ -254,7 +474,7 @@
     era: ming_south
   footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
   candidate_count: 1
-  source_record: sources/inn.json
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_inn.json
   projection_contract:
     yaw_deg: 45
     elevation_deg: 30
@@ -265,27 +485,66 @@
     - 0
     allowRotation: false
     geometry_verified: false
-  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。
+    geometry_release_ready: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  notes: 2026-10-01按历史图片重出；历史细节：两层临街客舍与低后翼围小院；灰瓦、白封火墙、栗褐柱、直棂客窗；只留空白吊牌。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.48085106
+    paste_offset:
+    - 52
+    - 68
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_restaurant
   file: bld_kit_ming_south_restaurant.png
   category: building-map
   style: default
   subject: 明代江南酒楼茶肆（原创扩展）
-  prompt: 'Use case: precise-object-edit. Edit the supplied Song southern building sprite into a Ming Jiangnan regional variant, preserve the layout, transparent cutout, realistic fine material detail and subdued visual density. Two-storey restaurant and tea house 12m east-west by9m north-south. Open timber front veranda with tea tables, a few clay wine jars, bamboo blinds, straight lattice upper floor, restrained tiled gable roof; clearly commercial, complete stone footprint. No invented letters. Strengthen lime-white plaster gables and charcoal grey clay tiled roofs, replace decorative curved lattices with straight rectangular timber grids, muted chestnut brown wood, reduce bright orange wood and bright red fabric. Camera orthographic yaw45 elevation30, exact2:1 ground axes slope +0.5/-0.5, footprint matching listed metres. Front faces lower left, upper-left light, very short lower-right contact shadow. True transparent RGBA background; outside silhouette alpha zero. NO halo, ambient beige smudge, backdrop, fog, white matte, scenery, text, watermark, people or modern objects. Full roof and ground rim inside canvas with generous10% clear margin, one asset only.'
-  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan two-storey restaurant and teahouse. Strong historical construction detail: five-bay open lower
+    floor and upper gallery; low grey-tile hard-gable roof, white fire gables, plain timber rail and straight lattice screens; shallow blank awnings,
+    no tower or lantern mass.
+
+
+    Preserve the guide''s logical footprint 12 by 9, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_restaurant.png
-    sha256: 8c5c9f4f6d426a0f90af43609a14f50d13314665a062d4b25d9364ceb5d0d706
-    role: edit_target
-  tool: codex exec · image_gen
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_restaurant.png
+    sha256: e7e4da124a36928dd8bf0a7c3646fd92266c14ff96cfb1e795c0afacad9f5d62
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    accessed: '2026-10-01'
+    sha256: 676b5a6eb5663efc45ec37c930ee9413dff06a5330883a14183e930161e85048
+    used_detail: 《南都繁会图》局部：临街铺屋、木板铺面、棚布与器具
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E5%B1%80%E9%83%A8%EF%BC%88%E6%98%8E_%E4%BB%87%E8%8B%B1%EF%BC%89.jpg
+    accessed: '2026-10-01'
+    sha256: d496e9623ddf7dadeeb4d5feb70ffab4c0a96436a20fac054db320a3b26b4be4
+    used_detail: 《南都繁会图》局部：街屋层高、连续檐口、河埠与市井尺度
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
   model: image_gen (underlying image model undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T21:25:02.175350+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-68a134d1-b63b-430a-9661-d73527e1aa1d.png
-  source_copy: sources/bld_kit_ming_south_restaurant.png
-  source_sha256: 00fd0117bfee5727f2dea847d581c2f748d45390ca82294287533f3582c4aac1
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:12:58.975297+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_restaurant.png
+  source_sha256: abe422a1675d955356bd5ef8403a67ae7553d291466c924a05fb08cf500f6dd9
   size: 738x667
-  sha256: e7e4da124a36928dd8bf0a7c3646fd92266c14ff96cfb1e795c0afacad9f5d62
+  sha256: 518dc9299caef6593d301ddde5bcc59c48fcac092416d0b9c8168c21cbe4c405
   status: candidate
   building:
     type: bld_kit_ming_south_restaurant
@@ -298,7 +557,7 @@
     era: ming_south
   footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
   candidate_count: 1
-  source_record: revisions_r4/verification.json
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_restaurant.json
   projection_contract:
     yaw_deg: 45
     elevation_deg: 30
@@ -308,29 +567,66 @@
     actual_views:
     - 0
     allowRotation: false
-    geometry_verified: true
-    geometry_release_ready: true
-  notes: 第4轮几何返修：按实测底面三点作分段横向缩放与逐列纵移；双轴精确±0.5、比例等于登记footprint，竖线保持竖直；底面对角线中点锚已复算。仍为candidate，待总装实测。
+    geometry_verified: false
+    geometry_release_ready: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  notes: 2026-10-01按历史图片重出；历史细节：五开间两层茶酒肆；下层敞厅、上层廊；低硬山灰瓦、白封火墙、素栏直棂与浅色素布棚。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.56369692
+    paste_offset:
+    - 41
+    - 64
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_market_stall
   file: bld_kit_ming_south_market_stall.png
   category: building-map
   style: default
   subject: 明代江南市场棚（原创扩展）
-  prompt: 'Use case: precise-object-edit. Edit supplied Song southern asset into a Ming Jiangnan variant. Keep exact camera and realistic low-saturation matte material style and fine detail density. ONE simple open market stall 3m east-west by2m north-south, four wooden posts, low neutral canvas awning sloping evenly, waist-high table with folded woven cloth and two baskets, thin stone footing. Tiny practical market furnishing, no tiled house, no oversized crates, no vendors. Preserve complete isolated shape, no environment. Exact2:1 ground axes +0.5/-0.5, yaw45 pitch30 orthographic, target footprint as listed. Upper-left light, short lower-right contact shadow only. True transparent RGBA cutout with ZERO alpha outside silhouette, NO diffuse glow or fog or halo, no white background. At least10% empty margin around all edges. No text, people, watermark, labels, grid or modern objects. One asset only.'
-  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan market stall. Strong historical construction detail: four mortise-and-tenon timber or bamboo posts;
+    tied slightly sagging muted indigo cloth canopy; plank counter, woven baskets and ceramic jars; no masonry base and transparent gaps.
+
+
+    Preserve the guide''s logical footprint 3 by 2, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_market_stall.png
-    sha256: 08668d277ee87a8738c40f904350d3715ebd5a5afd3fe7c6e9e759990ac53b2e
-    role: edit_target
-  tool: codex exec · image_gen
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_market_stall.png
+    sha256: d86d11260a071f4c7998447b1c8513b79a30699010578ae08303e8491b548a87
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    accessed: '2026-10-01'
+    sha256: 676b5a6eb5663efc45ec37c930ee9413dff06a5330883a14183e930161e85048
+    used_detail: 《南都繁会图》局部：临街铺屋、木板铺面、棚布与器具
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E5%B1%80%E9%83%A8%EF%BC%88%E6%98%8E_%E4%BB%87%E8%8B%B1%EF%BC%89.jpg
+    accessed: '2026-10-01'
+    sha256: d496e9623ddf7dadeeb4d5feb70ffab4c0a96436a20fac054db320a3b26b4be4
+    used_detail: 《南都繁会图》局部：街屋层高、连续檐口、河埠与市井尺度
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
   model: image_gen (underlying image model undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T21:25:02.230809+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-0eb039b8-6b73-4d4a-84a1-06cbd1e8d966.png
-  source_copy: sources/bld_kit_ming_south_market_stall.png
-  source_sha256: c01b83730fcd31245e57e480c3f79bbe77ac8d522d4b07c0b7763661ea5c9f3d
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:13:01.853198+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_market_stall.png
+  source_sha256: 6255eeec9725782243967e4135c6dd642f28682d542b339f1c57d01f4fec2e0c
   size: 256x272
-  sha256: d86d11260a071f4c7998447b1c8513b79a30699010578ae08303e8491b548a87
+  sha256: 30e9d467c9cdbc0ff0ad9f449c9c65f16c24267a2226942add8f2d4504af0b7e
   status: candidate
   building:
     type: bld_kit_ming_south_market_stall
@@ -343,7 +639,7 @@
     era: ming_south
   footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
   candidate_count: 1
-  source_record: sources/market_stall.json
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_market_stall.json
   projection_contract:
     yaw_deg: 45
     elevation_deg: 30
@@ -354,25 +650,67 @@
     - 0
     allowRotation: false
     geometry_verified: false
-  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。
+    geometry_release_ready: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  notes: 2026-10-01按历史图片重出；历史细节：四根榫卯木竹柱、略垂靛青布棚、板案、竹篮与陶罐；无砌筑地台，结构空隙透明。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.17237308
+    paste_offset:
+    - 50
+    - 66
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_yamen
   file: bld_kit_ming_south_yamen.png
   category: building-map
   style: default
   subject: 衙门 / 官署（明代江南；原创扩展，细部待考）
-  prompt: 'Repaint this exact shape as a fine realistic historical game sprite. Preserve its straight base and its camera: DO NOT MOVE ANY OF THE FOUR WALL CORNERS. Add Ming Chinese Jiangnan yamen buildings WITHIN the footprint: a low timber main hall to rear and two little side offices, dark grey tiled roofs, chalk white plaster, finely detailed wood and stone. Small gate halfway down long front wall, no stairs outside. Realistic hand-built textures like a high-quality historical architectural miniature, natural muted colors, upper-left sunlight. KEEP the original bottom outline precisely: BOTH visible long edges are at 26.565 degrees to horizontal, equal and opposite slopes; do not change their lengths or make one steeper. All roofs follow these SAME parallel axes. Do NOT change crop, position, camera or canvas. Preserve the shape pixel-exact, just paint realistic materials and place architecture within. No people, text, numbers, modern elements. Actual transparent alpha outside subject, no gradient halo. Low walls and low buildings, no tall towers. No lines or diagram annotations in finished image.'
-  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan county yamen compound. Strong historical construction detail: axial gate-court-hall order; five-bay
+    main hall, two low side offices, low granite platform; grey-tile hipped-gable roof with restrained ridge ends; chestnut columns, two shallow
+    bracket steps, straight lattice screens and austere earth-red beam accents.
+
+
+    Preserve the guide''s logical footprint 16 by 13, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/building-map/ming_south/revisions_r3/yamen/guide.png
-  tool: image_gen built-in
-  model: 未披露：工具返回未提供图像模型标识
-  effort: 未披露：工具未提供图像生成推理强度
-  created: '2026-09-30T15:46:32-07:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f46a-bb56-7150-8287-9df5105f0d2f/exec-a2847e0d-b504-4182-b063-a9f1a0f8f60a.png
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_yamen.png
+    sha256: 4c8cd35db75b73d6bc6a42b4403c9a9201451c513d2fb36753d868669f79e4b6
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    accessed: '2026-10-01'
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    used_detail: 明末吴氏接待厅：开间比例、硬山灰瓦、木构直棂门窗与石基
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Ming_courtyard_(6238830623).jpg
+    accessed: '2026-10-01'
+    sha256: 908551484e453c71120b077017cb3f7773a58eba363342f5daf1c35c44c490c6
+    used_detail: 明式院落实物：合院围墙、天井铺地、硬山与青砖墙脚
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:13:02.548086+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_yamen.png
   size: 981x611
-  sha256: 4c8cd35db75b73d6bc6a42b4403c9a9201451c513d2fb36753d868669f79e4b6
+  sha256: a5d3802a3e6f2eb4df2a7ad840350972ccda96be781560060a34a7c394250d16
   status: candidate
-  notes: 第4轮几何返修：按实测底面三点作分段横向缩放与逐列纵移；双轴精确±0.5、比例等于登记footprint，竖线保持竖直；底面对角线中点锚已复算。仍为candidate，待总装实测。
+  notes: 2026-10-01按历史图片重出；历史细节：门院厅轴序；五开间正厅与低侧房；花岗石低台、灰瓦歇山、两层短出跳斗拱、直棂与克制土红梁枋。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_yamen
     footprint:
@@ -394,38 +732,70 @@
     provided_views:
     - southwest_single_view
     allowRotation: false
-    geometry_release_ready: true
-    geometry_verified: true
-  metadata: revisions_r3/yamen/meta.yaml
-  candidate_count: 2
-  source_sha256: 07ad4ef6ff66d2ee45a059715e50d621bdd9eb90743f3882d8d4142697917e40
-  style_reference_chain:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_yamen.png
-    role: view_image仅查看；本次新图无显式图像输入
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_manor.png
-    role: view_image仅查看；本次新图无显式图像输入
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/building-map/ming_south/revisions_r3/yamen/guide.png
-    role: 第3轮实际image_gen输入；只提供几何/既有建筑修复参考，按实测记录保留残差
-  historical_research: major-research.json
-  source_record: revisions_r4/verification.json
+    geometry_release_ready: false
+    geometry_verified: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  candidate_count: 1
+  source_sha256: f6a7e7d0fc5699b9454d8c5dfdcfc10b3aa9724579857c2f79249e5078da4e2f
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_yamen.json
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.58358974
+    paste_offset:
+    - 33
+    - 22
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_biaoju
   file: bld_kit_ming_south_biaoju.png
   category: building-map
   style: default
   subject: 镖局 / 货栈（明代江南；原创扩展，细部待考）
-  prompt: 'Repaint the exact reference shape into a fine realistic historical game sprite: Ming Jiangnan biaoju goods depot courtyard, white plaster enclosure and dark gray tiled caps, chestnut timber low hall to rear and two little storage sheds. A wooden gate halfway down left-front wall; some cargo crates and covered cart INSIDE yard. No exterior steps. Photorealistic ancient Chinese miniature architecture, individual delicate roof tiles, woodgrain, subtly worn stone, restrained warm daylight upper left. A city map building isolated on true transparent alpha. Keep the four lower corners where they are; preserve contour and do not enlarge/reframe/recenter. Both visible base edges must be 2:1 slopes (+0.5 and -0.5); ground footprint15m wide by12m deep. Maintain verticals vertical and opposite sides parallel; no perspective convergence. No thick platform. Full complete roofs with clear margins. No diagram lines, grid, text, signs, people, modern objects, halo, backdrop or painted checkerboard. The ground floor front corner position and silhouette have priority over architecture; paint this particular shape as given.'
-  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan anonymous guarded transport yard. Strong historical construction detail: merchant courtyard with
+    high white-grey wall, iron-studded broad timber cart gate, three-bay receiving hall, short cargo shed and stone paving; low hard-gable grey
+    tiles, straight lattice windows, no battlements.
+
+
+    Preserve the guide''s logical footprint 15 by 12, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/building-map/ming_south/revisions_r3/biaoju/guide_compensated_2.png
-  tool: image_gen built-in
-  model: 未披露：工具返回未提供图像模型标识
-  effort: 未披露：工具未提供图像生成推理强度
-  created: '2026-09-30T15:46:32-07:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f46a-bb56-7150-8287-9df5105f0d2f/exec-d159091b-045f-43e5-86e1-3b0409b07569.png
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_biaoju.png
+    sha256: 9369f25c24166cfd1a4e70271721534a61e8cb468838df3ca299ae9f28760c5a
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Ming_courtyard_(6238830623).jpg
+    accessed: '2026-10-01'
+    sha256: 908551484e453c71120b077017cb3f7773a58eba363342f5daf1c35c44c490c6
+    used_detail: 明式院落实物：合院围墙、天井铺地、硬山与青砖墙脚
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    accessed: '2026-10-01'
+    sha256: 676b5a6eb5663efc45ec37c930ee9413dff06a5330883a14183e930161e85048
+    used_detail: 《南都繁会图》局部：临街铺屋、木板铺面、棚布与器具
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:15:35.550733+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_biaoju.png
   size: 922x598
-  sha256: 9369f25c24166cfd1a4e70271721534a61e8cb468838df3ca299ae9f28760c5a
+  sha256: 9e3b9c0e2a4752eb09735c800d89a2f8cd32096ddd962ef7f52112b617042d87
   status: candidate
-  notes: 第4轮几何返修：按实测底面三点作分段横向缩放与逐列纵移；双轴精确±0.5、比例等于登记footprint，竖线保持竖直；底面对角线中点锚已复算。仍为candidate，待总装实测。
+  notes: 2026-10-01按历史图片重出；历史细节：匿名护运货院；粉墙青砖脚、铁钉宽木车门、三开间接待厅、货棚与石铺地；低硬山灰瓦、无城垛。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_biaoju
     footprint:
@@ -447,36 +817,70 @@
     provided_views:
     - southwest_single_view
     allowRotation: false
-    geometry_release_ready: true
-    geometry_verified: true
-  metadata: revisions_r3/biaoju/meta.yaml
-  candidate_count: 2
-  source_sha256: fbcf42679a0ba932e0c9dbcfaea554d43d2774dad45b6dd262152b8901fe095b
-  style_reference_chain:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_biaoju.png
-    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/building-map/ming_south/revisions_r3/biaoju/guide_compensated_2.png
-    role: 第3轮实际image_gen输入；只提供几何/既有建筑修复参考，按实测记录保留残差
-  historical_research: major-research.json
-  source_record: revisions_r4/verification.json
+    geometry_release_ready: false
+    geometry_verified: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  candidate_count: 1
+  source_sha256: 2e294566a9a8c06e47b6c8e17a75db338eb6103001e79d64fdcd4e4bc0222a05
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_biaoju.json
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.57201646
+    paste_offset:
+    - 80
+    - 22
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_casino
   file: bld_kit_ming_south_casino.png
   category: building-map
   style: default
   subject: 赌场（明代江南；原创扩展，细部待考）
-  prompt: 'Use case: precise-object-edit. EDIT this transparent Ming Jiangnan game building to correct ONLY projection and retain all architectural details, white plaster, charcoal grey tiles, chestnut timber, texture detail and upper-left light. Strict 2:1 ORTHOGRAPHIC DIMETRIC, camera yaw45 elevation30. The visible ground rectangle must have slopes exactly+0.500 and-0.500; lower the camera elevation slightly versus supplied source, reduce the visible courtyard/ground depth. Front corner remains lowest ground vertex; ground long diagonal must be twice the equivalent square''s height. No perspective. Preserve entrance on screen-lower-left face, all buildings and eaves intact, generous transparent margins. No thick plinth, no additional objects, no text, no background or halo. Preserve true alpha. Logical footprint 10 by8. Output final transparent PNG only.'
-  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan anonymous gaming house disguised as an ordinary merchant residence. Strong historical construction
+    detail: three-bay deep shop-house with closed square lattice windows and heavy plank doors; hard-gable grey tiles, white fire gables and stone
+    sill; one plain interior wood table visible, no gambling symbols.
+
+
+    Preserve the guide''s logical footprint 10 by 8, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-f5043abf-0665-4f6e-858a-329921cdee52.png
-  tool: image_gen built-in
-  model: 未披露：工具返回未提供图像模型标识
-  effort: 未披露：工具未提供图像生成推理强度
-  created: '2026-09-30T14:31:15-07:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-c20f52c2-3f31-4696-b302-ab6088dfeb24.png
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_casino.png
+    sha256: 155c7500351e1557d08281e2b38f417ad965ebb8c50fb5a949abb24e8340568d
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    accessed: '2026-10-01'
+    sha256: 676b5a6eb5663efc45ec37c930ee9413dff06a5330883a14183e930161e85048
+    used_detail: 《南都繁会图》局部：临街铺屋、木板铺面、棚布与器具
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    accessed: '2026-10-01'
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    used_detail: 明末吴氏接待厅：开间比例、硬山灰瓦、木构直棂门窗与石基
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:15:56.229049+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_casino.png
   size: 624x579
-  sha256: 155c7500351e1557d08281e2b38f417ad965ebb8c50fb5a949abb24e8340568d
+  sha256: 1eedc3ccb889b5aaf34049f96e794cfc2b26a99bf57a5c5fa01cb82bb016fba8
   status: candidate
-  notes: 第4轮几何返修：按实测底面三点作分段横向缩放与逐列纵移；双轴精确±0.5、比例等于登记footprint，竖线保持竖直；底面对角线中点锚已复算。仍为candidate，待总装实测。
+  notes: 2026-10-01按历史图片重出；历史细节：普通商住外观；三开间深铺屋、闭合直棂窗和厚板门；硬山灰瓦、白封火墙、石槛；不绘赌博符号。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_casino
     footprint:
@@ -498,34 +902,70 @@
     provided_views:
     - southwest_single_view
     allowRotation: false
-    geometry_release_ready: true
-    geometry_verified: true
-  metadata: meta/bld_kit_ming_south_casino.yaml
-  candidate_count: 2
-  source_sha256: aef62c00c2783a856fa65613407e3a0e3406e4f160469bb8cd4d620f202ba553
-  style_reference_chain:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_casino.png
-    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
-  historical_research: major-research.json
-  source_record: revisions_r4/verification.json
+    geometry_release_ready: false
+    geometry_verified: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  candidate_count: 1
+  source_sha256: bd35f966689fece95d99b5418b211f4fe7401d4ae5551d92e0e5ce3db6a0bffc
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_casino.json
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.47063979
+    paste_offset:
+    - 36
+    - 21
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_manor
   file: bld_kit_ming_south_manor.png
   category: building-map
   style: default
   subject: 山庄 / 商帮大院（明代江南；原创扩展，细部待考）
-  prompt: 'Use case: precise-object-edit. EDIT this transparent Ming Jiangnan game building to correct ONLY projection and retain all architectural details, white plaster, charcoal grey tiles, chestnut timber, texture detail and upper-left light. Strict 2:1 ORTHOGRAPHIC DIMETRIC, camera yaw45 elevation30. The visible ground rectangle must have slopes exactly+0.500 and-0.500; lower the camera elevation slightly versus supplied source, reduce the visible courtyard/ground depth. Front corner remains lowest ground vertex; ground long diagonal must be twice the equivalent square''s height. No perspective. Preserve entrance on screen-lower-left face, all buildings and eaves intact, generous transparent margins. No thick plinth, no additional objects, no text, no background or halo. Preserve true alpha. Logical footprint 16 by13. Output final transparent PNG only.'
-  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan wealthy Jiangnan manor. Strong historical construction detail: two linked paved courts, axial
+    gate and screen wall, five-bay reception hall and lower side wings; grey tiles, white fire gables, chestnut column grid, straight lattice
+    doors, thin stone terraces and restrained brick door hood.
+
+
+    Preserve the guide''s logical footprint 16 by 13, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-b6200f08-bc7c-47a4-8239-515e271b8541.png
-  tool: image_gen built-in
-  model: 未披露：工具返回未提供图像模型标识
-  effort: 未披露：工具未提供图像生成推理强度
-  created: '2026-09-30T14:31:15-07:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-b404db41-47b2-4447-8e08-6ad4a241dd4a.png
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_manor.png
+    sha256: 74311eed133b8efbc150192d8ca1c706995047a9097faa333e0efe63a16d071c
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    accessed: '2026-10-01'
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    used_detail: 明末吴氏接待厅：开间比例、硬山灰瓦、木构直棂门窗与石基
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Ming_courtyard_(6238830623).jpg
+    accessed: '2026-10-01'
+    sha256: 908551484e453c71120b077017cb3f7773a58eba363342f5daf1c35c44c490c6
+    used_detail: 明式院落实物：合院围墙、天井铺地、硬山与青砖墙脚
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:15:52.791247+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_manor.png
   size: 974x603
-  sha256: 74311eed133b8efbc150192d8ca1c706995047a9097faa333e0efe63a16d071c
+  sha256: 71ed053ed19042d15d08972a49597a4d38acb6487f34fd234d0fa181a27af168
   status: candidate
-  notes: 第4轮几何返修：按实测底面三点作分段横向缩放与逐列纵移；双轴精确±0.5、比例等于登记footprint，竖线保持竖直；底面对角线中点锚已复算。仍为candidate，待总装实测。
+  notes: 2026-10-01按历史图片重出；历史细节：两进石铺院、轴线门与照壁、五开间厅及低侧翼；灰瓦白封火墙、栗褐柱网、直棂门与薄石台。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_manor
     footprint:
@@ -547,34 +987,70 @@
     provided_views:
     - southwest_single_view
     allowRotation: false
-    geometry_release_ready: true
-    geometry_verified: true
-  metadata: meta/bld_kit_ming_south_manor.yaml
-  candidate_count: 2
-  source_sha256: 6825fc6f8178d24c519bd9e67df9e790d7a1a0258e679b2c564773529f2ee533
-  style_reference_chain:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_manor.png
-    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
-  historical_research: major-research.json
-  source_record: revisions_r4/verification.json
+    geometry_release_ready: false
+    geometry_verified: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  candidate_count: 1
+  source_sha256: 49d78539f7b3b1fcb4dc773a4fe1fced3ec76c97475097e68de421c334bf7df1
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_manor.json
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.59914712
+    paste_offset:
+    - 33
+    - 20
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_wangfu
   file: bld_kit_ming_south_wangfu.png
   category: building-map
   style: default
   subject: 王府 / 宫殿主殿模块（明代江南；原创扩展，细部待考）
-  prompt: 'Use case: precise-object-edit. Edit ONLY projection and framing of this Ming Jiangnan building sprite, preserving architecture, materials, details and true RGBA. STRICT ORTHOGRAPHIC DIMETRIC yaw45 elevation30. Ground edges must slope EXACTLY+0.500 and-0.500 (26.565degree diagonal), same scale on two axes. No perspective convergence. Correct the asymmetry in existing ground axes. Logical rectangular footprint 22 by18. Bottom-centre ground anchor, thin stone base with all four footprint corners visible or inferable. Keep white lime walls, charcoal grey clay tiled roofs, brown timber, upper-left lighting and minimal lower-right contact shadow. No added objects, text, borders or background. Keep complete roofs and generous transparent margins. Final transparent image only.'
-  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan Ming princely residence main-hall module. Strong historical construction detail: deep axial forecourt
+    and five-bay formal hall; grey hipped-gable roof, plain ridge with restrained chiwen and three small ridge beasts; two-layer short-projecting
+    dougong, vermilion-brown columns, straight lattice doors, granite terrace and steps, subdued blue-green-red beam painting.
+
+
+    Preserve the guide''s logical footprint 22 by 18, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-af939ac8-6d00-4d92-b96f-0286d48f3072.png
-  tool: image_gen built-in
-  model: 未披露：工具返回未提供图像模型标识
-  effort: 未披露：工具未提供图像生成推理强度
-  created: '2026-09-30T14:31:15-07:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-ef92282b-4acb-4b65-aac1-3ed48999e0f1.png
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_wangfu.png
+    sha256: 44d926e5bfd5b247b74dc6af5fe58d23da1ebb32a88f78f518fdfbb24094c84f
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Suzhou_Xuanmiao_Guan_2015.04.23_17-53-17.jpg
+    accessed: '2026-10-01'
+    sha256: a3fe8d9f58bff0bf3e4f04b4b137286839e1839e42e77d03a2b16e4e7135992e
+    used_detail: 苏州玄妙观实物：殿堂柱网、灰瓦歇山、台基与克制脊饰
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    accessed: '2026-10-01'
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    used_detail: 明末吴氏接待厅：开间比例、硬山灰瓦、木构直棂门窗与石基
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:15:56.622982+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_wangfu.png
   size: 1322x990
-  sha256: 44d926e5bfd5b247b74dc6af5fe58d23da1ebb32a88f78f518fdfbb24094c84f
+  sha256: 6e10c6ef819e7ccdc732ab327aad19dcdd45b2974427c641285e44c17d3abd36
   status: candidate
-  notes: design/22 §3.4 冻结占地的江南同构变体；2选1：第二候选主殿基座两轴更近目标；宫殿模块等级与具体年代细部待考；真实RGBA，几何只裁切/等比重采样/透明pad。精确投影与拼接待实测。
+  notes: 2026-10-01按历史图片重出；历史细节：五开间正式殿与深前院；灰瓦歇山、克制鸱吻和三枚小脊兽；两层短出跳斗拱、朱褐柱、花岗石台与低饱和彩画。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_wangfu
     footprint:
@@ -597,31 +1073,69 @@
     - southwest_single_view
     allowRotation: false
     geometry_release_ready: false
-  metadata: meta/bld_kit_ming_south_wangfu.yaml
-  candidate_count: 2
-  source_sha256: ecfdf8172873150f818b1e53bc5d38242ca1ffcca77ee0802f6636913217c694
-  style_reference_chain:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_palace_hall.png
-    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
-  historical_research: major-research.json
+    geometry_verified: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  candidate_count: 1
+  source_sha256: d474945d985fede0c9954bb60e4236d405b461b19a4cf4ff7cba23b107eee722
+  selected_candidate: 1
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_wangfu.json
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.91266795
+    paste_offset:
+    - 18
+    - 20
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_temple_hall
   file: bld_kit_ming_south_temple_hall.png
   category: building-map
   style: default
   subject: 寺观殿堂（明代江南；原创扩展，细部待考）
-  prompt: 'Precise geometry correction of this same Ming Jiangnan Buddhist temple sprite. Preserve detailed timber, gray tiled roof, lime walls, entrance and tiny interior religious statue, restrained realistic materials, upper-left light and true alpha. Correct the camera to perfect 2:1 orthographic with both ground axes exactly +/-0.5. Current LEFT facade base is slightly too flat: steepen that ground axis from .466 to .500. Current RIGHT base slope -.515 should become -.500. For the thin rectangular stone base use LEFT(120,633), FRONT(876,1011), RIGHT(1470,714), BACK(714,336). These specify a14x11m ground parallelogram. Zoom whole output out uniformly5% for margin if necessary, no crop. All straight building axes must follow the corrected base, no perspective. Maintain exactly the same building composition; only a very slight camera rotation toward45degree yaw. Show all base corners clearly. No labels, grid, numbers, text, people, modern objects, shadows outside base, backdrop, glow or checkerboard. Actual alpha transparency.'
-  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan Jiangnan temple hall. Strong historical construction detail: five-bay hall on low granite platform;
+    low-pitch grey pan-and-cover tiled hipped-gable roof; plain ridge with restrained chiwen and two small beasts; two-layer short-projecting
+    dougong, red-brown columns, straight lattice doors and subdued red-blue-green beam painting.
+
+
+    Preserve the guide''s logical footprint 14 by 11, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/building-map/ming_south/revisions_r2/temple_hall/candidate_2.png
-  tool: image_gen built-in
-  model: 未披露：工具返回未提供图像模型标识
-  effort: 未披露：工具未提供图像生成推理强度
-  created: '2026-09-30T15:46:32-07:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f46a-bb56-7150-8287-9df5105f0d2f/exec-a1cb8650-e912-44d3-b60c-3a73d020228b.png
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_temple_hall.png
+    sha256: 042ebd6c07b10ed9a4fcaeb8e8dddaae3235a4eaf215eb498e18d409878c4c35
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Suzhou_Xuanmiao_Guan_2015.04.23_17-53-17.jpg
+    accessed: '2026-10-01'
+    sha256: a3fe8d9f58bff0bf3e4f04b4b137286839e1839e42e77d03a2b16e4e7135992e
+    used_detail: 苏州玄妙观实物：殿堂柱网、灰瓦歇山、台基与克制脊饰
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Suzhou_Xuanmiao_Guan_2015.04.23_18-02-22.jpg
+    accessed: '2026-10-01'
+    sha256: 42887af954e8aaa0b53686345baa76d8aa2f25dcdc9ec9a3283899acc5948260
+    used_detail: 苏州玄妙观构件近景：短出跳斗拱、檐下梁枋与彩画尺度
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:18:25.458279+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_temple_hall.png
   size: 847x625
-  sha256: 042ebd6c07b10ed9a4fcaeb8e8dddaae3235a4eaf215eb498e18d409878c4c35
+  sha256: 13b16f0ab5ad6836647175fdfb0d4a18fe7b636bf26a0daa59812b61e4e2749e
   status: candidate
-  notes: 第4轮几何返修：按实测底面三点作分段横向缩放与逐列纵移；双轴精确±0.5、比例等于登记footprint，竖线保持竖直；底面对角线中点锚已复算。仍为candidate，待总装实测。
+  notes: 2026-10-01按历史图片重出；历史细节：五开间殿堂、花岗石低台；低举折灰板瓦筒瓦歇山；素脊、克制鸱吻小兽；两层短出跳斗拱和低饱和彩画。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_temple_hall
     footprint:
@@ -643,36 +1157,70 @@
     provided_views:
     - southwest_single_view
     allowRotation: false
-    geometry_release_ready: true
-    geometry_verified: true
-  metadata: revisions_r3/temple_hall/meta.yaml
-  candidate_count: 2
-  source_sha256: ac7fd9cac5c3eea6726debc670a69503c5593ecfbcbf347ec17eb50c62f516ba
-  style_reference_chain:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_temple_hall.png
-    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/building-map/ming_south/revisions_r2/temple_hall/candidate_2.png
-    role: 第3轮实际image_gen输入；只提供几何/既有建筑修复参考，按实测记录保留残差
-  historical_research: major-research.json
-  source_record: revisions_r4/verification.json
+    geometry_release_ready: false
+    geometry_verified: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  candidate_count: 1
+  source_sha256: 2b2a4876e3ac5386e5d32765a2fc9b2675a2aba269d8084cc7781ddd80d26012
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_temple_hall.json
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.58673469
+    paste_offset:
+    - 20
+    - 37
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_pagoda
   file: bld_kit_ming_south_pagoda.png
   category: building-map
   style: default
   subject: 五层八角砖木佛塔（明代江南；原创扩展，细部待考）
-  prompt: 'Use case: style-transfer. EDIT the supplied Southern Song map-building PNG into a Ming Jiangnan regional variant. Preserve its orthographic 45-degree camera, 30-degree elevation, 2:1 ground axes, footprint parallelogram silhouette, grounded scale, same fine realistic detail density, upper-left daylight, bottom-centre footprint anchor, all complete eaves and transparent margins. Preserve TRUE RGBA alpha outside silhouette; no ground halo. Change wall finish to chalk-white lime plaster, dark brown chestnut timber, simple straight-line Ming lattice windows, charcoal-grey clay tile roofs and restrained Jiangnan upward eave corners. Make an original derivative game asset, not a replica of a named historical building. No new text, signage, people, modern objects, backgrounds, sky, plinth, border, grid, checkerboard or watermarks. Keep all source clear margins. Subject: Ming Jiangnan Buddhist landmark: slender five-storey octagonal brick-and-timber pagoda with dark grey gently upturned clay eaves, aged pale lime and grey-brick body, small recessed openings and modest dark timber galleries. Inspired by Jiangnan brick-and-wood pagoda typology, not an exact named monument. One thin square stone footprint 7 by 7 beneath octagonal body, NO thick pedestal. Full finial and base uncut. IMPORTANT GEOMETRY EDIT: change square tower in source to genuinely OCTAGONAL tower, eight sides, visible angled corner facets, eight roof eaves per storey. Reduce to exactly FIVE storeys. Preserve reference''s realistic stone/clay/timber material density and isolated vertical sprite composition. Pale plaster brick body, simple chestnut timber galleries, no ornate gold. Generic regional interpretation, not nine-storey glazed Baoensi reconstruction. Ground square7 by7 at axes±0.5, thin paving rather than thick plinth. Final transparent image only.'
-  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan Nanjing-inspired Ming brick-and-timber pagoda. Strong historical construction detail: octagonal
+    nine-storey tower with clear gradual taper; pale glazed-brick or lime-faced core, dark grey tiled eaves and timber galleries at each floor;
+    shallow bracket sets, arched niches, restrained colored glazed trim and iron finial with nine rings; no gold fantasy tower.
+
+
+    Preserve the guide''s logical footprint 7 by 7, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_pagoda.png
-  tool: image_gen built-in
-  model: 未披露：工具返回未提供图像模型标识
-  effort: 未披露：工具未提供图像生成推理强度
-  created: '2026-09-30T14:31:15-07:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-0c5b37a7-4c73-4955-a9bd-e493e75942fb.png
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_pagoda.png
+    sha256: 2c997a6896bda8aa1f5e84cb87c9d3415102e8a2bc99dfad65a7403ea4c56747
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Porcelain_Tower_of_Nanjing.jpg
+    accessed: '2026-10-01'
+    sha256: fd2715360c7da11edd28581443246423ece3fba0f3b29cb9410e4cfd1755f0c3
+    used_detail: 南京报恩寺塔历史图像：八角逐层收分、各层出檐与塔刹
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Nanking_Erlach.jpg
+    accessed: '2026-10-01'
+    sha256: 9a48744f5a00abd4884b622f0c23a17c667e15ea3f98ffe5e5120d9f7f3b0943
+    used_detail: 南京报恩寺塔历史图像：塔身比例、券龛、外廊及琉璃色带
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:18:20.911183+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_pagoda.png
   size: 490x1103
-  sha256: 2c997a6896bda8aa1f5e84cb87c9d3415102e8a2bc99dfad65a7403ea4c56747
+  sha256: f0f6a3a2411c330e7ab77ded2d3c1db10998124329309c2b8174fafc921cfef4
   status: candidate
-  notes: 【建议值】本任务功能补齐；沿用近类宋套件比例，待design/22登记；首候选入选；八角砖木、五层压缩为原创扩展，不复原报恩寺琉璃塔；真实RGBA，几何只裁切/等比重采样/透明pad。精确投影与拼接待实测。
+  notes: 2026-10-01按历史图片重出；历史细节：八角九层游戏概化；逐层收分、浅斗拱、灰瓦木廊、券龛、克制琉璃色带与九环铁刹；非具名塔精确复原。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_pagoda
     footprint:
@@ -695,31 +1243,69 @@
     - southwest_single_view
     allowRotation: false
     geometry_release_ready: false
-  metadata: meta/bld_kit_ming_south_pagoda.yaml
+    geometry_verified: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
   candidate_count: 1
-  source_sha256: c155939e451a6d7604140c62d248a5755a1c535c79235ed8db9edf4a55f690f5
-  style_reference_chain:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_pagoda.png
-    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
-  historical_research: major-research.json
+  source_sha256: 80c2432efb5bc0576c85e98cbecf2531b2e9a35f45b8cc304dac6224a90568d6
+  selected_candidate: 1
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_pagoda.json
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.58548653
+    paste_offset:
+    - 58
+    - 19
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_guardhouse
   file: bld_kit_ming_south_guardhouse.png
   category: building-map
   style: default
   subject: 城门守舍（明代江南；原创扩展，细部待考）
-  prompt: 'Use case: style-transfer. EDIT the supplied Southern Song map-building PNG into a Ming Jiangnan regional variant. Preserve its orthographic 45-degree camera, 30-degree elevation, 2:1 ground axes, footprint parallelogram silhouette, grounded scale, same fine realistic detail density, upper-left daylight, bottom-centre footprint anchor, all complete eaves and transparent margins. Preserve TRUE RGBA alpha outside silhouette; no ground halo. Change wall finish to chalk-white lime plaster, dark brown chestnut timber, simple straight-line Ming lattice windows, charcoal-grey clay tile roofs and restrained Jiangnan upward eave corners. Make an original derivative game asset, not a replica of a named historical building. No new text, signage, people, modern objects, backgrounds, sky, plinth, border, grid, checkerboard or watermarks. Keep all source clear margins. Subject: Ming Jiangnan small city-gate watchmen''s guardhouse, one low utilitarian white-plastered masonry room with dark grey clay gable roof, strong brown timber doorway, narrow side window and tiny recessed porch; this is a separate ordinary building, NOT an outer-city gate arch, wall segment, turret or palace. Thin stone sill, clear ground footprint 7 by 5. Remove decorative front porch balustrades, keep one sturdy front door and a plain low bench under the eaves. Target footprint7:5 and ground axes±0.5. Final transparent image only.'
-  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan small city-wall guardhouse. Strong historical construction detail: three-bay defensive service
+    house; blue-grey brick lower wall and white lime upper infill; low hard-gable grey-tile roof, plain ridge, no dougong; heavy plank door, narrow
+    straight-lattice windows and granite footing.
+
+
+    Preserve the guide''s logical footprint 7 by 5, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_guardhouse.png
-  tool: image_gen built-in
-  model: 未披露：工具返回未提供图像模型标识
-  effort: 未披露：工具未提供图像生成推理强度
-  created: '2026-09-30T14:31:15-07:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-1cf1ac8a-ca73-4a13-9971-2aa47f638c55.png
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_guardhouse.png
+    sha256: e88ff732c1fa35af47af574aa9821313615d88dd2b09b0a27186f2e8bf71957b
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Nanjing-Zhonghua-Gate-3071.jpg
+    accessed: '2026-10-01'
+    sha256: c44e42854e908977709f4cd3c5544844ab1000342453e5c3cc6ccc90d4ffe90f
+    used_detail: 南京中华门遗存：青灰城砖、花岗岩墙脚、券洞与城台体量
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    accessed: '2026-10-01'
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    used_detail: 明末吴氏接待厅：开间比例、硬山灰瓦、木构直棂门窗与石基
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:18:17.689011+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_guardhouse.png
   size: 431x324
-  sha256: e88ff732c1fa35af47af574aa9821313615d88dd2b09b0a27186f2e8bf71957b
+  sha256: dc9dcca31a600590a7e28d513e6d4c5d77842dab2b5d35eb6caef0c8b0a02d92
   status: candidate
-  notes: 第4轮几何返修：按实测底面三点作分段横向缩放与逐列纵移；双轴精确±0.5、比例等于登记footprint，竖线保持竖直；底面对角线中点锚已复算。仍为candidate，待总装实测。
+  notes: 2026-10-01按历史图片重出；历史细节：三开间守舍；青灰砖下墙、粉白上墙；低硬山灰瓦素脊、无斗拱；厚板门、窄直棂窗和花岗石脚。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_guardhouse
     footprint:
@@ -741,34 +1327,70 @@
     provided_views:
     - southwest_single_view
     allowRotation: false
-    geometry_release_ready: true
-    geometry_verified: true
-  metadata: meta/bld_kit_ming_south_guardhouse.yaml
-  candidate_count: 2
-  source_sha256: 59be04c859d0ca0bee16c54ebeb8648dbb491f27ecd9ef6cbf728a2aa7bb0c04
-  style_reference_chain:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_guardhouse.png
-    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
-  historical_research: major-research.json
-  source_record: revisions_r4/verification.json
+    geometry_release_ready: false
+    geometry_verified: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  candidate_count: 1
+  source_sha256: 8c9c0b654f1994f5e7a7eaa9829a7c89132184ea9a0e7b6d0373053c61a0c11c
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_guardhouse.json
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.3464991
+    paste_offset:
+    - 23
+    - 26
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_stable
   file: bld_kit_ming_south_stable.png
   category: building-map
   style: default
   subject: 马厩（明代江南；原创扩展，细部待考）
-  prompt: 'Use case: style-transfer. EDIT the supplied Southern Song map-building PNG into a Ming Jiangnan regional variant. Preserve its orthographic 45-degree camera, 30-degree elevation, 2:1 ground axes, footprint parallelogram silhouette, grounded scale, same fine realistic detail density, upper-left daylight, bottom-centre footprint anchor, all complete eaves and transparent margins. Preserve TRUE RGBA alpha outside silhouette; no ground halo. Change wall finish to chalk-white lime plaster, dark brown chestnut timber, simple straight-line Ming lattice windows, charcoal-grey clay tile roofs and restrained Jiangnan upward eave corners. Make an original derivative game asset, not a replica of a named historical building. No new text, signage, people, modern objects, backgrounds, sky, plinth, border, grid, checkerboard or watermarks. Keep all source clear margins. Subject: Ming Jiangnan modest stable building, one low white-plastered back wall and dark timber open-front three-bay shelter with dark grey clay tile pitched roof, straw bundles, simple low timber stall partitions and empty feeding troughs; no horses or people. Restrained working courtyard only within thin ground footprint 9 by 7. White lime wall more prominent than source, stout timber and simple roof. Target footprint9:7 and ground axes±0.5. Final transparent image only.'
-  negative: 伪透明、文字、人物、现代物、天空、厚地台、广域烘焙影、清式艳丽彩画
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan courtyard stable. Strong historical construction detail: five-bay low open-front shed; hard-gable
+    grey tiled roof on heavy unpainted chestnut posts; three open stalls, half-height plank dividers, stone trough and tether rail; earth-brick
+    rear infill and rough granite forecourt.
+
+
+    Preserve the guide''s logical footprint 9 by 7, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_stable.png
-  tool: image_gen built-in
-  model: 未披露：工具返回未提供图像模型标识
-  effort: 未披露：工具未提供图像生成推理强度
-  created: '2026-09-30T14:31:16-07:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-05192c9f-7d46-47b7-808d-ec91c74d7700.png
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_stable.png
+    sha256: c6d12cca3d27507a2d29452655ae7a17279c8ed196d380bfe4f1edb6f2ca08c4
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    accessed: '2026-10-01'
+    sha256: 676b5a6eb5663efc45ec37c930ee9413dff06a5330883a14183e930161e85048
+    used_detail: 《南都繁会图》局部：临街铺屋、木板铺面、棚布与器具
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    accessed: '2026-10-01'
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    used_detail: 明末吴氏接待厅：开间比例、硬山灰瓦、木构直棂门窗与石基
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:21:29.966830+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_stable.png
   size: 556x449
-  sha256: c6d12cca3d27507a2d29452655ae7a17279c8ed196d380bfe4f1edb6f2ca08c4
+  sha256: 7341658b3b365c079ca5e971276002b03e6674296f3659a66c0892477c72afec
   status: candidate
-  notes: 【建议值】本任务功能补齐；沿用近类宋套件比例，待design/22登记；首候选入选；空马厩不附带人物与马匹；真实RGBA，几何只裁切/等比重采样/透明pad。精确投影与拼接待实测。
+  notes: 2026-10-01按历史图片重出；历史细节：五开间低敞棚；硬山灰瓦与栗褐重柱；三开放马栏、半高板隔、石槽和系马横木；土坯后墙与粗石前场。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_stable
     footprint:
@@ -791,33 +1413,68 @@
     - southwest_single_view
     allowRotation: false
     geometry_release_ready: false
-  metadata: meta/bld_kit_ming_south_stable.yaml
-  candidate_count: 1
-  source_sha256: 0e4ec0f88da81e21191ccedd27bf82de8ffde37e5b5708c5e3bdc9c52814ed08
-  style_reference_chain:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_stable.png
-    role: 第一候选实际image_gen输入；第二候选若有则输入第一候选
-  historical_research: major-research.json
+    geometry_verified: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  candidate_count: 2
+  source_sha256: d3eebadf0b418127059feaf6f8b29b70c2efdacab6dad5280b162c0d5678751f
+  selected_candidate: 2
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_stable.json
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.36471409
+    paste_offset:
+    - 17
+    - 76
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_warehouse
   file: bld_kit_ming_south_warehouse.png
   category: building-map
   style: default
   subject: 明代江南商帮货栈仓屋（原创扩展）
-  prompt: 'Use case: precise-object-edit. Edit supplied Song southern asset into a Ming Jiangnan variant. Keep exact camera and realistic low-saturation matte material style and fine detail density. Single-storey merchant guild cargo warehouse 10m east-west by8m north-south, long solid whitewashed brick side wall, sturdy brown double wooden loading door, small high straight-lattice vents, dark grey roof, two neatly stacked grain sacks beside entrance. Generic guild cargo storage, not named historic guildhall. Preserve complete isolated shape, no environment. Exact2:1 ground axes +0.5/-0.5, yaw45 pitch30 orthographic, target footprint as listed. Upper-left light, short lower-right contact shadow only. True transparent RGBA cutout with ZERO alpha outside silhouette, NO diffuse glow or fog or halo, no white background. At least10% empty margin around all edges. No text, people, watermark, labels, grid or modern objects. One asset only.'
-  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan grain and cargo warehouse. Strong historical construction detail: broad low hard-gable grey-tile
+    roof with minimal eaves; thick blue-grey brick walls and stone damp-proof plinth; double heavy plank doors with simple iron straps and small
+    high square ventilation holes; no dougong.
+
+
+    Preserve the guide''s logical footprint 10 by 8, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - path: assets/default/baseline/building-map/bld_kit_song_southern_warehouse.png
-    sha256: 2f500eaee2c24c4e48a8604e495d13803b3cdb50550d3d66eea96e3a8de3875b
-    role: edit_target
-  tool: codex exec · image_gen
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_warehouse.png
+    sha256: 5eb15003361b5136d6dd59f3507d42739ae0353e0c604cfe9603806a4169ca2b
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    accessed: '2026-10-01'
+    sha256: 676b5a6eb5663efc45ec37c930ee9413dff06a5330883a14183e930161e85048
+    used_detail: 《南都繁会图》局部：临街铺屋、木板铺面、棚布与器具
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Nanjing-Zhonghua-Gate-3071.jpg
+    accessed: '2026-10-01'
+    sha256: c44e42854e908977709f4cd3c5544844ab1000342453e5c3cc6ccc90d4ffe90f
+    used_detail: 南京中华门遗存：青灰城砖、花岗岩墙脚、券洞与城台体量
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
   model: image_gen (underlying image model undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T21:25:02.308053+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-03b993be-7892-4112-becd-bd79a3baf93f.png
-  source_copy: sources/bld_kit_ming_south_warehouse.png
-  source_sha256: 9a2d37f1f02bf80b6da12588a3a75a5446b93525d919f10a29db3020428aa864
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:21:36.520948+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_warehouse.png
+  source_sha256: a14df11a81e52e49ef6aa3adb5e791a855de73d4cfdb54adba90c858bda031b6
   size: 692x521
-  sha256: 5eb15003361b5136d6dd59f3507d42739ae0353e0c604cfe9603806a4169ca2b
+  sha256: bfa3708e7b802a9008684f269185ed451ca15cd203f667978de5b4847f7ef97b
   status: candidate
   building:
     type: bld_kit_ming_south_warehouse
@@ -829,8 +1486,8 @@
     - 354.6588
     era: ming_south
   footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
-  candidate_count: 2
-  source_record: revisions_r4/verification.json
+  candidate_count: 1
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_warehouse.json
   projection_contract:
     yaw_deg: 45
     elevation_deg: 30
@@ -840,29 +1497,67 @@
     actual_views:
     - 0
     allowRotation: false
-    geometry_verified: true
-    geometry_release_ready: true
-  notes: 第4轮几何返修：按实测底面三点作分段横向缩放与逐列纵移；双轴精确±0.5、比例等于登记footprint，竖线保持竖直；底面对角线中点锚已复算。仍为candidate，待总装实测。
+    geometry_verified: false
+    geometry_release_ready: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  notes: 2026-10-01按历史图片重出；历史细节：宽低硬山灰瓦、最小出檐；厚青灰砖墙与石防潮脚；铁条厚双板门和高位方形通风孔；无斗拱。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.46474359
+    paste_offset:
+    - 90
+    - 78
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
 - id: bld_kit_ming_south_wharf
   file: bld_kit_ming_south_wharf.png
   category: building-map
   style: default
   subject: 明代江南河埠码头（原创扩展）
-  prompt: Texture this exact parallelogram into a Ming Jiangnan stone wharf, keeping the silhouette exactly as supplied. Do not change the four vertices or perspective. Make it realistic old pale grey stone paving with a very thin edge and two small mooring stumps with rope, no other objects. Ground footprint10:4, exact orthographic2:1 axes+0.5/-0.5. Front long edge must be2.5 times the short edge, not4 times. Upper-left light, fine ancient Chinese realistic game asset stone texture. Preserve transparent background, no environment, water, labels, grid or text. Keep exact locked input shape with wide transparent margins, NO reframing.
-  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan canal wharf and landing. Strong historical construction detail: low blue-grey brick revetment
+    with large granite coping and worn broad stone steps descending at one end; staggered brick bonding, drainage scuppers, two plain stone mooring
+    posts and coiled hemp rope; no water or scenery.
+
+
+    Preserve the guide''s logical footprint 10 by 4, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
   references:
-  - path: assets/default/building-map/ming_south/revisions_r3/wharf/ground-guide.png
-    sha256: c5e812720a0b264b3fe48d9cc94a3edd4e9c8b81953fbc8fbf0791ba102d520f
-    role: geometry_reference_only
-  tool: codex exec · image_gen
+  - file: assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_wharf.png
+    sha256: 6f53da96e265a412a2e6d60c16c7e9d9697d2c92c6008629e57237ba9425850e
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E5%B1%80%E9%83%A8%EF%BC%88%E6%98%8E_%E4%BB%87%E8%8B%B1%EF%BC%89.jpg
+    accessed: '2026-10-01'
+    sha256: d496e9623ddf7dadeeb4d5feb70ffab4c0a96436a20fac054db320a3b26b4be4
+    used_detail: 《南都繁会图》局部：街屋层高、连续檐口、河埠与市井尺度
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:The_Fangsheng_Bridge-2.jpg
+    accessed: '2026-10-01'
+    sha256: bfe71f4ed683673513993e8227490b015bf814123e34f4fdd8bef7a99ff966b5
+    used_detail: 朱家角放生桥实物：桥台石作、踏步磨损与运河尺度
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
   model: image_gen (underlying image model undisclosed)
-  effort: not_exposed
-  created: '2026-09-30T22:36:33.252834+00:00'
-  source_path: /Users/bytedance/.codex/generated_images/01a0f469-e44c-7860-95f7-ccc9729cde98/exec-ad245900-29c2-4405-9d94-e0c857484ffd.png
-  source_copy: revisions_r3/wharf/candidate_2.png
-  source_sha256: d0b1eb9eb14b996acabfe59ae1e4d3668a331c7c8e930e3fc8e64e564b4ad916
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:21:42.306919+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_wharf.png
+  source_sha256: d973764b0323420586823fbb03890019ff0b24e15f1eabf7304605853ac3e1cd
   size: 563x417
-  sha256: 6f53da96e265a412a2e6d60c16c7e9d9697d2c92c6008629e57237ba9425850e
+  sha256: e34cb09e5711790cbe12fa8121a45fa6ba6cb31ae78f9df28013acff4a8e0d1c
   status: candidate
   building:
     type: bld_kit_ming_south_wharf
@@ -874,8 +1569,8 @@
     - 248.8953
     era: ming_south
   footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
-  candidate_count: 2
-  source_record: revisions_r4/verification.json
+  candidate_count: 1
+  source_record: assets/default/building-map/ming_south/history/records/bld_kit_ming_south_wharf.json
   projection_contract:
     yaw_deg: 45
     elevation_deg: 30
@@ -885,6 +1580,15 @@
     actual_views:
     - 0
     allowRotation: false
-    geometry_verified: true
-    geometry_release_ready: true
-  notes: 第4轮几何返修：按实测底面三点作分段横向缩放与逐列纵移；双轴精确±0.5、比例等于登记footprint，竖线保持竖直；底面对角线中点锚已复算。仍为candidate，待总装实测。
+    geometry_verified: false
+    geometry_release_ready: false
+    verification_note: 历史重出后未继承旧图几何验证；待总装复测。
+  notes: 2026-10-01按历史图片重出；历史细节：青灰砖驳岸、花岗石压顶与一端磨损宽踏步；错缝砌法、排水孔、两枚素系船石和麻绳；不带水景。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  selected_candidate: 1
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.3038961
+    paste_offset:
+    - 102
+    - 130
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite

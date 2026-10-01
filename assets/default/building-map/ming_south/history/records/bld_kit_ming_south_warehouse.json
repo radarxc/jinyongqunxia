@@ -1,0 +1,58 @@
+{
+  "id": "bld_kit_ming_south_warehouse",
+  "candidate": 1,
+  "returncode": 0,
+  "prompt": "You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical images control form, construction, proportion and materials; do not copy either composition.\n\nSubject: one isolated Ming dynasty Jiangnan grain and cargo warehouse. Strong historical construction detail: broad low hard-gable grey-tile roof with minimal eaves; thick blue-grey brick walls and stone damp-proof plinth; double heavy plank doors with simple iron straps and small high square ventilation holes; no dougong.\n\nPreserve the guide's logical footprint 10 by 8, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match the guide's restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.\n\nTRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero. Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output only the generated image result.",
+  "guide": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south-hist/assets/default/building-map/ming_south/bld_kit_ming_south_warehouse.png",
+  "refs": [
+    "market1",
+    "gate1"
+  ],
+  "ref_paths": [
+    "/private/tmp/KIT-ming_south-hist-refs/refs/market_nandu_1.jpg",
+    "/private/tmp/KIT-ming_south-hist-refs/refs/gate_zhonghua_1.jpg"
+  ],
+  "outputs": [
+    "/private/tmp/KIT-ming_south-hist-refs/codex-homes/bld_kit_ming_south_warehouse-c1/generated_images/01a0f6fa-9e81-75f3-af96-3a68da6489db/exec-1d511193-00ff-4c4b-a5eb-af8a0ead2d9b.png"
+  ],
+  "selected_candidate": 1,
+  "candidate_count": 1,
+  "guide_archive": "assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_warehouse.png",
+  "guide_sha256": "5eb15003361b5136d6dd59f3507d42739ae0353e0c604cfe9603806a4169ca2b",
+  "selected_source_archive": "assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_warehouse.png",
+  "selected_source_sha256": "a14df11a81e52e49ef6aa3adb5e791a855de73d4cfdb54adba90c858bda031b6",
+  "normalization": {
+    "alpha_threshold_for_bbox": 2,
+    "source_bbox": [
+      108,
+      115,
+      1356,
+      1024
+    ],
+    "guide_bbox": [
+      90,
+      62,
+      670,
+      500
+    ],
+    "uniform_scale": 0.46474358974358976,
+    "resized_size": [
+      580,
+      422
+    ],
+    "paste_offset": [
+      90,
+      78
+    ],
+    "canvas_size": [
+      692,
+      521
+    ],
+    "horizontal_alignment": "guide bbox center",
+    "vertical_alignment": "guide bbox bottom",
+    "excluded": "no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite"
+  },
+  "final_file": "assets/default/building-map/ming_south/bld_kit_ming_south_warehouse.png",
+  "final_sha256": "bfa3708e7b802a9008684f269185ed451ca15cd203f667978de5b4847f7ef97b",
+  "finalized_at": "2026-10-01T10:42:42.507610+00:00"
+}

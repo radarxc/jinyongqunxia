@@ -158,7 +158,7 @@ python3 tools/lint/check_ids.py --strict
 | tree_cluster / willow_v01 | 柳树 | `[3,3]` | 柔垂枝叶，无整块土地 |
 | tree_cluster / bamboo_v01 | 竹丛 | `[2,2]` | 疏密竿叶、无花盆或整块地台 |
 
-门按 `design/22` §4.3：`footprint=(k+4)×4`、`passage=k×4`，两侧各2格门墩；4格门地面外包384×192px，6格门448×224px（`32(w+h)` / `16(w+h)`）。第4轮已按控制点复算明江南两门，净孔实测4.000/6.000格；墙、桥、植物占地沿用宋贴片同构 **【建议值】**。
+门按 `design/22` §4.3：`footprint=(k+4)×4`、`passage=k×4`，两侧各2格门墩；4格门地面外包384×192px，6格门448×224px（`32(w+h)` / `16(w+h)`）。2026-10-01历史重出保留上述登记、旧画布与锚点；新图门孔经alpha反相预览确认为连续透明，但尚未重新量测净宽或总装碰撞，故不继承第4轮旧图的4.000/6.000格通过结论。墙、桥、植物占地沿用宋贴片同构 **【建议值】**。
 
 ```text
 One isolated Ming Jiangnan {gate / wall / stone arch bridge / plant} sprite.
@@ -171,7 +171,15 @@ No people, text, scenery, painted checkerboard, modern fittings or Qing ornament
 
 年代造型均 **（原创扩展）**：南京明城墙只提供厚城台与砖砌门道母题，不把缩小门楼冒称完整聚宝门 / 瓮城测绘；灰瓦门楼为概化重构。桥取明代江南单孔石拱桥母题。柳与竹为地方植物意象，具体历史栽植点位 **（待考）**。默认按底面 / 根部 `anchor_px` 放置；桥含栏杆的整图仅用于静态预览，单位遮挡分层、墙段连接和门洞碰撞仍 **（待实测）**。
 
-来源（访问2026-09-30）：南京城墙保护管理中心《[天下第一瓮城——南京城墙中华门](https://wlj.nanjing.gov.cn/ztzl/mcq/gzqk/202302/t20230228_3838766.html)》；苏州市地方志《[木渎古镇的桥](https://dfzb.suzhou.gov.cn/dfzb/fzxh/201009/cee41a477c3040f99780877eaf61c72d.shtml)》（搜索返回相关全文，直开失败）；苏州市园林局《[建筑](https://ylj.suzhou.gov.cn/szsylj/ylys/201903/484421d38f504f5787a8f307925e3ad7.shtml)》。本任务不引入新的技术版本、价格或浏览器支持声明。
+### 9.1 历史细节要点（2026-10-01重出）
+
+- 城门 / 直墙 / 转角：实际输入两张南京中华门遗存照片；取青灰烧结城砖的错缝横皮、细石灰缝和窑色差，花岗石底层、放射状券砖、低女墙与低缓灰瓦门楼。门楼屋脊朴素、斗拱短浅；不复制具名瓮城布局。
+- 石桥：实际输入两张朱家角放生桥实物照片；取暖灰花岗岩分节拱券、粗石拱腹、磨损缓拱桥面和方柱素栏。生成对象改为单孔匿名江南步桥 **（原创扩展）**，不声称复原放生桥。
+- 垂柳：实际输入苏州平江路垂柳与1759年西湖图；取灰褐裂纹分叉树干、细长下垂枝幕、疏透不成实心团的冠形，根部不附土岛。具体种属与明代点位 **（待考）**。
+- 丛竹：实际输入明代夏昶墨竹与扬州竹园实物；取6–9根可见节的细竿、交替披针叶簇、根部聚生和内部透明空隙，不画花盆、石组或地台。具体种属 **（待考）**。
+- 7项共9个正式候选：两座城门各2选1，其余各1选1；逐张查看，城门和桥孔洞另作alpha反相图核验。仅按 `alpha>=2` 包围框等比缩放并透明回填，无非等比拉伸或补画。提示词、URL、哈希与取用细节见manifest和 `building-map/ming_south/history/records/`。
+
+本轮实际图片来源（访问2026-10-01）：Wikimedia Commons 的[中华门图一](https://commons.wikimedia.org/wiki/File:Nanjing-Zhonghua-Gate-3071.jpg)与[图二](https://commons.wikimedia.org/wiki/File:Nanjing-Zhonghua-Gate-3072.jpg)、[放生桥图一](https://commons.wikimedia.org/wiki/File:The_Fangsheng_Bridge-1.jpg)与[图二](https://commons.wikimedia.org/wiki/File:The_Fangsheng_Bridge-2.jpg)、[平江路垂柳](https://commons.wikimedia.org/wiki/File:A_willow_and_a_boat_in_Pingjiang_Road_(6650483501).jpg)、[1759年西湖图](https://commons.wikimedia.org/wiki/File:Hangzhou_-_West_Lake_1759.jpg)、[扬州竹园](https://commons.wikimedia.org/wiki/File:Bamb_Garden_in_Yangzhou.JPG)，以及 Met 的[明代夏昶墨竹](https://www.metmuseum.org/art/collection/search/44590)。现存建筑与植物照片只用于可见构造和地域材质，不把当代修缮或栽植年代倒推为明代事实。本任务不引入新的技术版本、价格或浏览器支持声明。
 ## 9. 元末江南贴片 · `yuan_south`（2026-09-30）
 
 本套输出目录为 `assets/default/tile/yuan_south/`，采用 `tex_town_yuan_south_*`，每项一图、全部 `candidate`。保留宋套件朴素砖石、灰瓦、低饱和自然色和细节密度；江南旧河网不随元代标签重铺成北方城。城门、城墙与桥为匿名形制意象 **（原创扩展）**，精确元末制式 **（待考）**。

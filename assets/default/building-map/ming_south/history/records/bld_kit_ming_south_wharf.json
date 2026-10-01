@@ -1,0 +1,58 @@
+{
+  "id": "bld_kit_ming_south_wharf",
+  "candidate": 1,
+  "returncode": 0,
+  "prompt": "You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical images control form, construction, proportion and materials; do not copy either composition.\n\nSubject: one isolated Ming dynasty Jiangnan canal wharf and landing. Strong historical construction detail: low blue-grey brick revetment with large granite coping and worn broad stone steps descending at one end; staggered brick bonding, drainage scuppers, two plain stone mooring posts and coiled hemp rope; no water or scenery.\n\nPreserve the guide's logical footprint 10 by 4, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match the guide's restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.\n\nTRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero. Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output only the generated image result.",
+  "guide": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south-hist/assets/default/building-map/ming_south/bld_kit_ming_south_wharf.png",
+  "refs": [
+    "market2",
+    "bridge2"
+  ],
+  "ref_paths": [
+    "/private/tmp/KIT-ming_south-hist-refs/refs/market_nandu_2.jpg",
+    "/private/tmp/KIT-ming_south-hist-refs/refs/bridge_fangsheng_2.jpg"
+  ],
+  "outputs": [
+    "/private/tmp/KIT-ming_south-hist-refs/codex-homes/bld_kit_ming_south_wharf-c1/generated_images/01a0f6fa-9f0a-7482-914f-eac325ec3969/exec-ead400ad-0dbe-441b-be34-e83bcfe8a53e.png"
+  ],
+  "selected_candidate": 1,
+  "candidate_count": 1,
+  "guide_archive": "assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_wharf.png",
+  "guide_sha256": "6f53da96e265a412a2e6d60c16c7e9d9697d2c92c6008629e57237ba9425850e",
+  "selected_source_archive": "assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_wharf.png",
+  "selected_source_sha256": "d973764b0323420586823fbb03890019ff0b24e15f1eabf7304605853ac3e1cd",
+  "normalization": {
+    "alpha_threshold_for_bbox": 2,
+    "source_bbox": [
+      205,
+      86,
+      1562,
+      856
+    ],
+    "guide_bbox": [
+      81,
+      130,
+      535,
+      364
+    ],
+    "uniform_scale": 0.3038961038961039,
+    "resized_size": [
+      412,
+      234
+    ],
+    "paste_offset": [
+      102,
+      130
+    ],
+    "canvas_size": [
+      563,
+      417
+    ],
+    "horizontal_alignment": "guide bbox center",
+    "vertical_alignment": "guide bbox bottom",
+    "excluded": "no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite"
+  },
+  "final_file": "assets/default/building-map/ming_south/bld_kit_ming_south_wharf.png",
+  "final_sha256": "e34cb09e5711790cbe12fa8121a45fa6ba6cb31ae78f9df28013acff4a8e0d1c",
+  "finalized_at": "2026-10-01T10:42:42.579977+00:00"
+}

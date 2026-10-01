@@ -1,0 +1,58 @@
+{
+  "id": "bld_kit_ming_south_house_small",
+  "candidate": 1,
+  "returncode": 0,
+  "prompt": "You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical images control form, construction, proportion and materials; do not copy either composition.\n\nSubject: one isolated Ming dynasty Jiangnan small commoner's house. Strong historical construction detail: three bays; low hard-gable roof with shallow pitch; tight grey pan-and-cover tiles; plain ridge, no beasts; no dougong; chestnut columns, white lime infill over blue-grey brick foot, stone plinth; plank door and straight square lattice windows.\n\nPreserve the guide's logical footprint 7 by 6, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match the guide's restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.\n\nTRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero. Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output only the generated image result.",
+  "guide": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south-hist/assets/default/building-map/ming_south/bld_kit_ming_south_house_small.png",
+  "refs": [
+    "domestic_wu",
+    "village"
+  ],
+  "ref_paths": [
+    "/private/tmp/KIT-ming_south-hist-refs/refs/domestic_wu.jpg",
+    "/private/tmp/KIT-ming_south-hist-refs/refs/jiangnan_village_ming.jpg"
+  ],
+  "outputs": [
+    "/private/tmp/KIT-ming_south-hist-refs/codex-homes/bld_kit_ming_south_house_small-c1/generated_images/01a0f6ec-e21b-7b81-8051-2971a62df406/exec-4d9e7cd9-6bd0-486c-b3c6-c3193fcc040b.png"
+  ],
+  "selected_candidate": 1,
+  "candidate_count": 1,
+  "guide_archive": "assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_house_small.png",
+  "guide_sha256": "5d44680894eedc27e552f23115a07a662d17a8bded93904285365890cc5fcffe",
+  "selected_source_archive": "assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_house_small.png",
+  "selected_source_sha256": "6bf1374e4ffcd5a571faa042838bc3c23cc10c94780f878f812389d2362ea43a",
+  "normalization": {
+    "alpha_threshold_for_bbox": 2,
+    "source_bbox": [
+      112,
+      144,
+      1246,
+      1074
+    ],
+    "guide_bbox": [
+      33,
+      20,
+      480,
+      386
+    ],
+    "uniform_scale": 0.3935483870967742,
+    "resized_size": [
+      446,
+      366
+    ],
+    "paste_offset": [
+      34,
+      20
+    ],
+    "canvas_size": [
+      501,
+      468
+    ],
+    "horizontal_alignment": "guide bbox center",
+    "vertical_alignment": "guide bbox bottom",
+    "excluded": "no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite"
+  },
+  "final_file": "assets/default/building-map/ming_south/bld_kit_ming_south_house_small.png",
+  "final_sha256": "16b24a21e9e5d26d13028eee6607e6ea5a0cffe5805b391b02a84ffa20b59d4d",
+  "finalized_at": "2026-10-01T10:42:40.120641+00:00"
+}

@@ -1,0 +1,58 @@
+{
+  "id": "tex_town_ming_south_wall_corner__outer_ne_v01",
+  "candidate": 1,
+  "returncode": 0,
+  "prompt": "You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical images control form, construction, proportion and materials; do not copy either composition.\n\nSubject: one isolated Ming dynasty Jiangnan outer L corner of a Ming city wall. Strong historical construction detail: two equal-height and equal-thickness blue-grey brick arms in a three-voxel L plan; continuous flat cap, interlocking corner bond, thin lime joints, granite bottom course; missing fourth square fully transparent.\n\nPreserve the guide's logical footprint 2 by 2, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match the guide's restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.\n\nTRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero. Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output only the generated image result. Corner geometry: exact 2 by 2 plan made of three 1 by 1 wall voxels; arms two units long, one unit thick and three units tall.",
+  "guide": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south-hist/assets/default/tile/ming_south/tex_town_ming_south_wall_corner__outer_ne_v01.png",
+  "refs": [
+    "gate1",
+    "gate2"
+  ],
+  "ref_paths": [
+    "/private/tmp/KIT-ming_south-hist-refs/refs/gate_zhonghua_1.jpg",
+    "/private/tmp/KIT-ming_south-hist-refs/refs/gate_zhonghua_2.jpg"
+  ],
+  "outputs": [
+    "/private/tmp/KIT-ming_south-hist-refs/codex-homes/tex_town_ming_south_wall_corner__outer_ne_v01-c1/generated_images/01a0f6fd-4531-72b2-85e1-79a6a9265503/exec-97d5eb03-8a8b-475d-9bf6-60b73ab56416.png"
+  ],
+  "selected_candidate": 1,
+  "candidate_count": 1,
+  "guide_archive": "assets/default/building-map/ming_south/history/guides/tex_town_ming_south_wall_corner__outer_ne_v01.png",
+  "guide_sha256": "78393577d08317ef04c618b2b45ea02194f84c4e705abff26cada5609dde2323",
+  "selected_source_archive": "assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_wall_corner__outer_ne_v01.png",
+  "selected_source_sha256": "8b4dbaec71c55ca40c49079296cf75ec4d07ddd12ff634fd23fa8202c16e94f6",
+  "normalization": {
+    "alpha_threshold_for_bbox": 2,
+    "source_bbox": [
+      112,
+      74,
+      1127,
+      1148
+    ],
+    "guide_bbox": [
+      21,
+      21,
+      152,
+      212
+    ],
+    "uniform_scale": 0.129064039408867,
+    "resized_size": [
+      131,
+      139
+    ],
+    "paste_offset": [
+      21,
+      73
+    ],
+    "canvas_size": [
+      172,
+      232
+    ],
+    "horizontal_alignment": "guide bbox center",
+    "vertical_alignment": "guide bbox bottom",
+    "excluded": "no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite"
+  },
+  "final_file": "assets/default/tile/ming_south/tex_town_ming_south_wall_corner__outer_ne_v01.png",
+  "final_sha256": "ccd74cdf0e2e47df29bddb97c0d6e6fb8ccb49d9b98880f0a0660672de752558",
+  "finalized_at": "2026-10-01T10:42:42.929297+00:00"
+}
