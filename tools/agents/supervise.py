@@ -183,7 +183,7 @@ def wait_run(tid: str, a) -> str:
 
 
 def start_run(tid: str, a, note: str | None) -> bool:
-    argv = ["start", tid, "--bin", a.bin, "--model", a.model, "--effort", a.effort, "--no-probe",
+    argv = ["start", tid, "--bin", a.bin, "--model", a.model, "--effort", a.effort, "--probe-sec", "75",
             "--slot-wait-min", "720"]
     if a.base:
         argv += ["--base", a.base]
@@ -367,7 +367,7 @@ def main() -> int:
     ap.add_argument("--rework-extra", help="每次返修说明末尾追加的协调者补充（文件或文本）")
     ap.add_argument("--from", dest="start_from", choices=["start", "validate", "review"], default="start")
     ap.add_argument("--bin", default=os.environ.get("TRAEX_BIN") or os.environ.get("CODEX_BIN") or TRAEX)
-    ap.add_argument("--model", default="GPT-5.6-Sol")
+    ap.add_argument("--model", default="GPT-6-Astra", help="执行模型；启动时探测，不应答回退 step.py 的 FALLBACK_MODELS（GPT-5.6-Sol）")
     ap.add_argument("--effort", default="max", help="执行推理强度（traex：max / ultra / xhigh …）")
     ap.add_argument("--review-model", default="GPT-5.6-Sol")
     ap.add_argument("--review-effort", default="xhigh", help="审核推理强度（xhigh / max）")
