@@ -39,6 +39,33 @@
   `progression/interruptMeditation`。返回的 `bf_chaqi` 仅是效果描述，具体 Buff 实例由 ENG-04 接入。
 - 回放：运气状态用 `meridian-flow-state.v2` 快照；恢复先完整校验后原子提交。所有规则量为整数，
   每 tick 热路径复用预分配 typed arrays；性能门禁为 `pnpm --filter @tianshu/core test:performance`。
+## 剧情、时间与地图交接接口（ENG-05）
+
+- 剧情命令：构造 `StoryRuntime(lines, options)` 后用 `start()`、`activateLine(lineId)`、
+  `chooseDialogue(choiceKey)`、`completeDialogue()`、`completeQuest/failQuest(questId)`、
+  `choose(choiceKey)` 与 `advanceTo(worldTick)`。
+  所有入口返回 `{ snapshot, events }`；持久化 `snapshot()`，读档用
+  `restoreStoryRuntime(lines, snapshot, ports, { epochId, epochYear })`；非 1093 时代必须传
+  epoch 配置，且不得缓存第三方 Ink 对象。
+- 对话：内联节点由 `startDialogue()` 直接投影；生产 Ink 使用
+  `new InkJsDialogueBridge(loadCompiledStory)`，loader 返回构建期产出的 story JSON。
+  `StubInkDialogueBridge` 会以 `INK_ADAPTER_REQUIRED` 快速失败。
+- 事件：消费 `StoryEvent` 的 `chapterId/lineId/nodeId/causeId/receiptId/payload`；
+  稳定类型含 `story/lineAvailable`、`nodeEntered`、`nodeCompleted`、
+  `choiceCommitted`、`nodeExpired`、`lineCompleted`。事件按 `receiptId` 幂等。
+- 条件：`compileCondition()` 在加载期编译 `design/12` §2.2 全部只读操作符；
+  host 将角色、背包、门派、同伴、地点、经营、事件与传承投影为 `ConditionFacts`，
+  缺少已引用事实时抛 `CONDITION_FACT_MISSING`，不得静默当作 `false`。
+  `time.year/period` 由运行时按 epoch 与当前 tick 重算；经营 `job.dutyRatioBp`
+  用 0..10000，DSL 的 `ratio` 仍用 0..1。
+- 时间：高层入口为 `sleepAtInn()`、`meditateShichen()`、
+  `travelByDistance()`、`travelByMinutes()`、`advanceBattleTicks()`；结果中的
+  `world/timeBoundary` 依次结算时辰、日、月、年，再把最终 tick 交给剧情 `advanceTo()`。
+- ENG-08 / ENG-09 查询：`EventAnchorRegistry.queryScene(sceneId)` 为场景整桶，
+  `query(sceneId, trigger)` 按触发类型筛选，`match(probe)` 匹配 NPC 或半径内六角格；返回项携带 NPC 或六角格位置及关联
+  `lineId/nodeId`。NPC 呈现查询用 `queryNpcPresence(state, npcId, eraLayer)`。
+- UI 只读取 `StoryRuntimeSnapshot.wait` 及事件，不自行判条件或推进节点；地图触发后
+  由 host 校验锚点与当前剧情前沿，再调用对应剧情命令。
 
 ## 验证命令
 

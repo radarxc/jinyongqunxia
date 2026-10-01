@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@tianshu/data": "workspace:*",
-    "@tianshu/shared": "workspace:*"
+    "@tianshu/shared": "workspace:*",
+    "inkjs": "2.4.0"
   }
 }
