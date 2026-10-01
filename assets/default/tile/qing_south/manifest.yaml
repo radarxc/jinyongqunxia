@@ -25,7 +25,8 @@
   source_path: history/selected-sources/bridge.png
   size: 325x217
   sha256: 7de46c073ea0a6e0d197eca686a875b79de44f07a0588408a718df5753e3a3aa
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: bridge
     footprint:
@@ -127,7 +128,8 @@
   source_path: history/selected-sources/gate_k4.png
   size: 448x480
   sha256: 6ac4df4255174bf2a76f9911d74d906c3f3f4d4be03121faa0cde6756d343299
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -254,7 +256,8 @@
   source_path: history/selected-sources/gate_k6.png
   size: 516x511
   sha256: fba51b22a889d1a0c444120a92d8e3f9cd3b6b48d68f49f1c4d94ac0e00c29cd
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -378,7 +381,8 @@
   source_path: history/selected-sources/osmanthus.png
   size: 128x95
   sha256: 74880df7c164d5075ea620ae01cb7bd372f1f22a8f7b77bf096b03e05c8a64b5
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: shrub
     footprint:
@@ -477,7 +481,8 @@
   source_path: history/selected-sources/willow.png
   size: 240x167
   sha256: 1c3d8be70a29abd8438428ed28a3e9e35f7e747fd0f7171b0e11daa03db77263
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint:
@@ -576,7 +581,8 @@
   source_path: history/selected-sources/wall.png
   size: 231x163
   sha256: c68496834dc95964e7232a7821abac4055affddd007ebef30a95b7b691ca2f73
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall
     footprint:
@@ -675,7 +681,8 @@
   source_path: history/selected-sources/wall_corner.png
   size: 169x166
   sha256: 9108b57bdd808761a0c95ec1ffa1ce6fa12f4d78eeb0cd0f65358d3851803d6f
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall_corner
     footprint:

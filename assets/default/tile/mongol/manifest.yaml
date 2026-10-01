@@ -15,7 +15,8 @@
   source_sha256: "c08d542b6ae72348fef2ae3417ae603233cb042ce3a5a4d926c3e696876ffa66"
   size: "652x591"
   sha256: "05183148a0b801350c041158650a24f02ccaa751f5044feb491634790bbe4584"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint: [8, 4]
@@ -49,7 +50,8 @@
   source_sha256: "e01da278f5a2806dcb6688db1c15cf7fce72bbabee778a1a792e576aebdda282"
   size: "652x653"
   sha256: "e26b293d0652001c561faf073e40d91d0db33e89f4c442f9526a9df54a47ccea"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint: [10, 4]
@@ -83,7 +85,8 @@
   source_sha256: "551b01f38e95a528cef548e4e310f4d4349bc3ff25bd9b974e648695ad432538"
   size: "155x108"
   sha256: "b1fccebdbfb9665e5f5b8cb7ccc6da09a8a8f59e11c1d426bc1942cdbde96e94"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall
     footprint: [1, 1]
@@ -117,7 +120,8 @@
   source_sha256: "1a0c320eda1d1423f801883af96d387dc2a5bd6c2b6a01bab309f93eb408ef95"
   size: "95x69"
   sha256: "3de4ade947f4710e66a639b68ad447ff1b26ffcf10ca01b9ae43ab6f55a04167"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall_corner
     footprint: [1, 1]
@@ -151,7 +155,8 @@
   source_sha256: "cc1acf97e328b4e1092ac70aaf00185e38c1df46f2afd747938ba335f5e1ea42"
   size: "266x181"
   sha256: "4aff8c3bab6b7e2490753d88d9ae921408826a966ec86f7323b43c9506dcf363"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: bridge
     footprint: [3, 5]
@@ -185,7 +190,8 @@
   source_sha256: "49b7b9225efc7a009feb62f165c62a715de1698c6ffc23e73b89c4fdca88c768"
   size: "84x57"
   sha256: "c09c608ded42a80d6c6e1e24bef74776f737f0abd5a186d637644e5125fd226c"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: grass_tuft
     footprint: [1, 1]
@@ -219,7 +225,8 @@
   source_sha256: "24d34ee39ce83a28f46dbb11b13136211ce7c721e826ba8ea8bc4e4f10a49428"
   size: "80x57"
   sha256: "6301676b11cc5a27b3bd7c41009381f87550fb2a60e3616d2ac973d6bbb8857a"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: shrub
     footprint: [1, 1]

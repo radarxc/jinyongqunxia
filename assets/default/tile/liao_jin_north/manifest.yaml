@@ -46,7 +46,8 @@
   source_path: source/historical-detail/tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01.png
   size: 310x211
   sha256: bc7c34d7f0de083f9a69f1dcce987d556e05e7f54c963f1f4a24c58fe8400e0d
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: bridge_deck
     footprint:
@@ -143,7 +144,8 @@
   source_path: source/historical-detail/tex_town_liao_jin_north_city_gate__k4_r000_v01.png
   size: 464x322
   sha256: 6c916db080953062ba2a65fcfa8f62732d4d353324271b3040e36dfeadd15f98
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -249,7 +251,8 @@
   created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
   source_path: source/historical-detail/tex_town_liao_jin_north_city_gate__k6_r000_v01.png
   size: 569x326
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -359,7 +362,8 @@
   source_path: source/historical-detail/tex_town_liao_jin_north_tree_cluster__elm_v01.png
   size: 449x326
   sha256: 050e341dda7a50d9b94f6c19ce4c0ef21456bb15a2594aae82a3a93efdfe5ae6
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint:
@@ -458,7 +462,8 @@
   source_path: source/historical-detail/tex_town_liao_jin_north_tree_cluster__pine_v01.png
   size: 470x329
   sha256: 3e55a42659f8066955d1c09a48bafe7b61594c6c6f713a74e6704db6f1e2d61a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint:
@@ -555,7 +560,8 @@
   source_path: source/historical-detail/tex_town_liao_jin_north_wall__earth_r000_v01.png
   size: 82x64
   sha256: 9d4b632b15c192fc671fe5106ef12615190d282a1b86c850e01a109d51fec3f4
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall
     footprint:
@@ -652,7 +658,8 @@
   source_path: source/historical-detail/tex_town_liao_jin_north_wall_corner__outer_ne_v01.png
   size: 155x91
   sha256: d9bd7d5841d480745dc741be490ecfe5daad0df97b4abfeb35ff14dadc838fc2
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall_corner
     footprint:

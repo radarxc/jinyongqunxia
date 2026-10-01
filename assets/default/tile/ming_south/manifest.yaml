@@ -47,7 +47,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_city_gate__k4_r000_v01.png
   size: 457x488
   sha256: bcabaf7cb50c50ffd47c5be0413e5908f7e60e684517c75b712faa2ea724bfa6
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -119,7 +120,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_city_gate__k6_r000_v01.png
   size: 538x477
   sha256: 0a292ea5f2c66996280cf7d1954b39ac441b463b5202e846ec2be194309c9c25
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -190,7 +192,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_wall__brick_r000_v01.png
   size: 73x173
   sha256: a52f1c5ba46f944c3841e92120301f2f2305d6c09546dcc7b978cab62c520bf9
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall
     footprint:
@@ -262,7 +265,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_wall_corner__outer_ne_v01.png
   size: 172x232
   sha256: ccd74cdf0e2e47df29bddb97c0d6e6fb8ccb49d9b98880f0a0660672de752558
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall_corner
     footprint:
@@ -333,7 +337,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_bridge__stone_w5_l10_r000_v01.png
   size: 489x230
   sha256: 888c588ac988d9bcf401976e0b87f44f9051181305a0c618891510e317341150
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: bridge
     footprint:
@@ -404,7 +409,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_tree_cluster__willow_v01.png
   size: 200x154
   sha256: c9e0ffa697c0d4232bc14862d810498d3140a575587fdadf74b64ce68f8f8e0d
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint:
@@ -475,7 +481,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_tree_cluster__bamboo_v01.png
   size: 136x171
   sha256: 69e3d7b3673b0a32dc2159dd7ebdac1878c43c3aadfe6769dbbd6e3ff9639fa3
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint:

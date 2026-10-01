@@ -19,7 +19,8 @@
   effort: not_exposed
   size: 928x608
   sha256: 1ec3351de3ad2c30bc7a6c63dcc1ee4dfd70cb3c514368b150bdbe42dce4bc2a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_biaoju
     footprint:
@@ -64,7 +65,8 @@
   effort: not_exposed
   size: 640x512
   sha256: 8f94674ac547df4648ec2481c13ee1dd31cf5bffa4bbe718b04cc055feb244c3
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_casino
     footprint:
@@ -109,7 +111,8 @@
   effort: not_exposed
   size: 640x512
   sha256: c32df68fb56b949ad364be7bff9d913daaa1e818913524ac28be73574ba11b94
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_courtyard
     footprint:
@@ -154,7 +157,8 @@
   effort: not_exposed
   size: 416x320
   sha256: 5b366a626b0fd0f36c8342063bd17440e262d424e00223966613ecd17d009356
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_guardhouse
     footprint:
@@ -199,7 +203,8 @@
   effort: not_exposed
   size: 640x512
   sha256: 22944ac03a4a57ffd9031650739b867be5bd0e7acee207bc2983ecbed0e061b8
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_house_large
     footprint:
@@ -244,7 +249,8 @@
   effort: not_exposed
   size: 480x384
   sha256: 6c4147245ffa2e7d02a5dae68b590d1f6a688da6ccee33678517e02acb77ad35
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_house_small
     footprint:
@@ -289,7 +295,8 @@
   effort: not_exposed
   size: 736x512
   sha256: a5c93329e902e01d65a01ee69e0cd38609685e87654a713add987c09fd10a81b
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_inn
     footprint:
@@ -334,7 +341,8 @@
   effort: not_exposed
   size: 992x768
   sha256: 0cc85179c1c7f3ee49a2898d9cba44a00b5215d0d4999b950aae28a9009a88d7
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_manor
     footprint:
@@ -379,7 +387,8 @@
   effort: not_exposed
   size: 256x256
   sha256: 9815fa5d89b8007b72bd0320a82c96eda4f4a043d76a7713511b20cf85e6823a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_market_stall
     footprint:
@@ -424,7 +433,8 @@
   effort: not_exposed
   size: 512x864
   sha256: 51ae4c17673999d323837c0c4086db135b2aaf3055fd485292145c6d943249b2
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_pagoda
     footprint:
@@ -469,7 +479,8 @@
   effort: not_exposed
   size: 736x672
   sha256: 04d115e7427f9ea178d40a6c2ea6bc3bd3cc1d73bee23c9a7601c45d3722304d
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_restaurant
     footprint:
@@ -514,7 +525,8 @@
   effort: not_exposed
   size: 448x384
   sha256: 4dbc0a900d67cc775bd3ac5221190d7f65cb145276a03534aa89ae02c092fbed
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_shop_1f
     footprint:
@@ -559,7 +571,8 @@
   effort: not_exposed
   size: 448x416
   sha256: 2e30f528b9d3c825c94f5f1e169e378d36a9232acc57362f896573ebc8e8b89c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_shop_2f
     footprint:
@@ -604,7 +617,8 @@
   effort: not_exposed
   size: 512x352
   sha256: 2783ac8231398bf6fdefc13323e8887541ea9140d0f9f1046095ca4d7a99b9da
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_stable
     footprint:
@@ -649,7 +663,8 @@
   effort: not_exposed
   size: 864x608
   sha256: 0661c632837c4bd1e386ea77d2bd8619cda52562dbddd341eff2f8898b4bbf80
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_temple_hall
     footprint:
@@ -694,7 +709,8 @@
   effort: not_exposed
   size: 1344x992
   sha256: 3f36b59e25f76121b17e33d0dbe7485943d122ec467d9c4910edbd9535d49fc2
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_wangfu
     footprint:
@@ -739,7 +755,8 @@
   effort: not_exposed
   size: 576x512
   sha256: 60cf1eda1be6185d31461812bac19bf0ea10179dfd308d19b2ea3af8ae26cffa
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_warehouse
     footprint:
@@ -781,7 +798,8 @@
   effort: not_exposed
   size: 448x256
   sha256: 5f5b60a1ff2879d8e7a7ab57af443f1e578334fa415f401c33178cbbfe0cdf6a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_wharf
     footprint:
@@ -826,7 +844,8 @@
   effort: not_exposed
   size: 992x640
   sha256: 90dd1d39ff85bcf4af571d0126ecdda1076f01af453de859a714b5f770b04fd8
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_north_yamen
     footprint:

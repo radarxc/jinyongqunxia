@@ -33,7 +33,8 @@
   created: '2026-09-30'
   size: 456x355
   sha256: 1a915759f95eaff009b34e541d46787a0236633d22433543013782ac4c54ed04
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 2
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -113,7 +114,8 @@
   created: '2026-09-30'
   size: 574x444
   sha256: bc4052913c2f45574d70e9f3d6287066d2191e12284f5672301ae3c5da181011
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -193,7 +195,8 @@
   created: '2026-09-30'
   size: 715x555
   sha256: a46ba2b1427daf5c67b219f48c71afd685a8aad3e648f975873d3e47e9ace1f4
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -273,7 +276,8 @@
   created: '2026-09-30'
   size: 504x431
   sha256: 6cba66e9f664f6b436bec8defbf9d12824c7213a24f45dc9c50364ec530453b9
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -353,7 +357,8 @@
   created: '2026-09-30'
   size: 551x493
   sha256: f90dd403b4afe76dfccb5e542ed61df3a2c4d81fcba5d08e4550d2fa9e549ee9
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -433,7 +438,8 @@
   created: '2026-09-30'
   size: 834x585
   sha256: 2e1f025108b6dedba2488a4d03c0a1412cf358cf7261bc769d23bdf85ece3b0c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -513,7 +519,8 @@
   created: '2026-09-30'
   size: 945x760
   sha256: 02fc3185eb1d41b8fff9e6d87cb48d0222f37552b04ec79b62c1cd73a5b21207
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -593,7 +600,8 @@
   created: '2026-09-30'
   size: 256x256
   sha256: 19baa1f20bd1a933646e16fbf09c3a4b03de569aaa410015f7c5a0f4118635c3
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 2
   selected_candidate: 2
   tool_excess_outputs_discarded: 1
@@ -673,7 +681,8 @@
   created: '2026-09-30'
   size: 1204x754
   sha256: c693d9da34bb5293926977cfe1390bba4117f4a91d2227e8ae7784eb9b084181
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 2
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -753,7 +762,8 @@
   created: '2026-09-30'
   size: 1051x634
   sha256: 61fd126e15372c171bd8eba2b753121ccacb048b8134b7b6ec126525598ea376
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 2
   selected_candidate: 1
   tool_excess_outputs_discarded: 1
@@ -833,7 +843,8 @@
   created: '2026-09-30'
   size: 700x529
   sha256: 0ee7c6e65e907536888ba4a919ac273400bb9bea299cb3bfede22239febac80b
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -913,7 +924,8 @@
   created: '2026-09-30'
   size: 1229x966
   sha256: 74ca87335596c58c9fcda38cf32c35b31952f426e3c73c560c4b848118bf5a0f
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -998,7 +1010,8 @@
   created: '2026-09-30'
   size: 1746x1237
   sha256: 9505b7046512a136df5646ba080c606cddc9c5a59501bf8c34509fece08a982a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -1078,7 +1091,8 @@
   created: '2026-09-30'
   size: 1105x820
   sha256: 628d3497451b92ad1627f3a8b467b7aa557fcef5367c56c707e4e43c70606008
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -1158,7 +1172,8 @@
   created: '2026-09-30'
   size: 679x1350
   sha256: 29e4756b88aab31066f427057c1a0ff663f01de07a069837924fb022f07b7154
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -1238,7 +1253,8 @@
   created: '2026-09-30'
   size: 472x350
   sha256: d8b5fdc18ec4b05a8e1cdfb5f32cd6b6c61594da7014caf712b54283967dabce
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -1318,7 +1334,8 @@
   created: '2026-09-30'
   size: 723x515
   sha256: 63c5dd0513beab232449b9028914610efdb20d8477deab986ad066eb3c82277d
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -1398,7 +1415,8 @@
   created: '2026-09-30'
   size: 760x550
   sha256: a88637673de8c5e4251a0f976dd63f40f1dbbb2e3cfc8a1167e3f13ab5238779
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -1478,7 +1496,8 @@
   created: '2026-09-30'
   size: 546x311
   sha256: a98a7fea393844603fad5bd85ecffde7532382563b996b4dfda2b1ef11c620cd
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0

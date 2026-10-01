@@ -45,7 +45,8 @@
   source_sha256: 08864718e21f64cba12b80a8384efaad2969d7620bdd3a477abef047b69a513e
   size: 974x592
   sha256: 5aa162b08d0617aa204e350dffe9b9af9852a8ab81516daf87918ccb36cb4564
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_biaoju
     footprint:
@@ -154,7 +155,8 @@
   source_sha256: c8f4602b20d117fee578ad8580ecfe87305d05f001b775224e92994af684c928
   size: 696x534
   sha256: 23564a80a5cbcac7816d785eeeb4d2b06cf760e446ac5d143b9e67c5e342d145
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_casino
     footprint:
@@ -263,7 +265,8 @@
   source_sha256: c03e368bdeadae28a4aa603a6cbd73af3107d2a244ab33fc44aacaeafbcd0f19
   size: 696x502
   sha256: d4ac180452f418c521a1a3e941862aa6d8b7b92229d61235ad7c62143086988c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_courtyard
     footprint:
@@ -375,7 +378,8 @@
   created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
   size: 466x352
   sha256: b0200ab5a8d013eb0f9eb30310b3b86c5ac2b0885296c9c84ae609f194917d8c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_guardhouse
     footprint:
@@ -485,7 +489,8 @@
   source_sha256: 14a813ca497f091974dd80ea5367fb610f639d6782366984057083eb1b90aee4
   size: 505x344
   sha256: 8cf5f096fb5cfb6fb0ee89f06303537a8c086e36d24756187421f8509976722b
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_house_large
     footprint:
@@ -597,7 +602,8 @@
   source_sha256: 973f993737671e5c9372c60a16d1e826298453e2beccf3d936d493905626a069
   size: 426x357
   sha256: 36968b3f1183ac49ace463fbf9d754821bcb62cb1a05e585c8a04436d30f1590
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_house_small
     footprint:
@@ -709,7 +715,8 @@
   source_sha256: df1a879fd1a045166dea503e9d7ee23094d9f004df6a2f27fe81d132b3482a6f
   size: 810x555
   sha256: 3787e8b16f4e115c415815956f62a30dc98271df9c6a21b916fa191be47121df
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_inn
     footprint:
@@ -821,7 +828,8 @@
   source_sha256: be6d2d178869f25793c92fa89441d82a7aa90ef1fa29fbe199a6b807d68f189b
   size: 1119x716
   sha256: 79ac7900573d90fae06fd842bed40705dfd1ca6ff3fc05d9b038428adea82e9e
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_manor
     footprint:
@@ -930,7 +938,8 @@
   source_sha256: d2653d4c944aef9c7733346a6aacaba327a35e93a1842b313399456c4cb8f366
   size: 347x294
   sha256: b6670f664a6a755036d172c8e5370d170b76c1902fcf1dfbe774e52935a837ac
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_market_stall
     footprint:
@@ -1039,7 +1048,8 @@
   created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
   size: 543x1215
   sha256: b21623fc26d28f066a223b8d7a7b296af0d9b26cadd1bfd178930c9fd773abf4
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_pagoda
     footprint:
@@ -1149,7 +1159,8 @@
   source_sha256: b56bdcdec605c9295161375052999e3b371cf57690f1629d81016b0900a1495c
   size: 813x692
   sha256: 3dfb9206545cb82dfbac215a5ed808b1c70d3470395139cb75ba8ad4d452a1ce
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_restaurant
     footprint:
@@ -1261,7 +1272,8 @@
   source_sha256: 033e20745b31e85aa8029af23d0372799668c4616836988c6a71f84274c05dd4
   size: 426x347
   sha256: 3aa5eda2863c1533ed3091c990de25c59030cd4a8bc538ad76e55010bd401007
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_shop_1f
     footprint:
@@ -1373,7 +1385,8 @@
   source_sha256: 9cad14c8606a4bb36125992750532de397aaa45e3ba9caf97f222273198f851a
   size: 550x435
   sha256: 01df052584f3720d488bd710dc624251f2ebf90891992f1aeaf1ed7d42f2eaab
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_shop_2f
     footprint:
@@ -1485,7 +1498,8 @@
   created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
   size: 625x450
   sha256: 597f028e406db3c659773f8b201691f5f5b96e01ba6063a4bf2e7bfa2a98d366
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_stable
     footprint:
@@ -1595,7 +1609,8 @@
   created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
   size: 909x628
   sha256: aed7b425e59a2cc67ffa44ce3237ee208cf66c761d54d98901bc707b15aaddd2
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_temple_hall
     footprint:
@@ -1705,7 +1720,8 @@
   source_sha256: 46ecbc688441f8c071782d7b3ab0d69517c022958ea036019c5b36cef62da79a
   size: 1388x903
   sha256: ce5fb088efa9bf041a9aac6252f532b89bdfcf7a3ae1a5a7b8c7d09982a9ad3c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_wangfu
     footprint:
@@ -1814,7 +1830,8 @@
   created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
   size: 696x517
   sha256: f2b7321b4772277965615c4265db5dcc435cf26e94febc1cb8092b0901fabd47
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_warehouse
     footprint:
@@ -1924,7 +1941,8 @@
   created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
   size: 541x303
   sha256: 6bf18c3134115bacd2e76347729730b18e7d4c8e2a80e4bd27466d9e140ae475
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_wharf
     footprint:
@@ -2034,7 +2052,8 @@
   source_sha256: 08414a5d45e6188a48debb1238eb8e4e7cdb81cff882f5149dd77cb185ae3031
   size: 1080x705
   sha256: 0aff3362eb6fbc254e1edef414b65ac85363d82b7dae3a8d755c9ccf28f1ea6d
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_liao_jin_north_yamen
     footprint:

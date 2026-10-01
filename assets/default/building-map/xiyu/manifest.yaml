@@ -19,7 +19,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_biaoju__candidate01.png"
   size: "992x704"
   sha256: "57f28080bb0065241d436e9f836f0e466c03d769ffa8139fef631e9e9ba1d9af"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。应保留围院货栈、土木平顶、外露椽头和简素柱廊；护运行功能与货物陈设仍属原创扩展。"
   building: {"type": "bld_kit_xiyu_biaoju", "footprint": [14, 11], "anchor": [487.9804, 375.6013], "era": "xiyu"}
   footprint_m: [14, 11]
@@ -64,7 +65,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_casino__candidate01.png"
   size: "768x544"
   sha256: "f05228e8363094f0b468474152fad5c426f5e7c7e14384cdbd51f2dbc623d874"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。应为匿名世俗小院，不加宗教标识；棋戏馆功能无对应史证，保持原创扩展。"
   building: {"type": "bld_kit_xiyu_casino", "footprint": [10, 8], "anchor": [387.211, 301.3266], "era": "xiyu"}
   footprint_m: [10, 8]
@@ -109,7 +111,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_courtyard__candidate01.png"
   size: "768x544"
   sha256: "234257c6dbb7fe04f9f0de1cd986cb649fa0796c30c9fbb398cd872b06a0def7"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。厚土围墙、木椽土层平顶和内院葡萄；不引入瓦屋脊、斗拱、鸱吻。"
   building: {"type": "bld_kit_xiyu_courtyard", "footprint": [10, 8], "anchor": [395.1334, 310.7872], "era": "xiyu"}
   footprint_m: [10, 8]
@@ -149,7 +152,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_guardhouse__candidate01.png"
   size: "512x352"
   sha256: "ea05d52230bddd184c6f2409439ba36c3afb4f069b1112ac64476ad31648781d"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。守舍应是依厚土墙附建的低矮平顶房，门窗小而深；禁用瓦顶门房。"
   building:
     type: bld_kit_xiyu_guardhouse
@@ -215,7 +219,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_house_large__candidate01.png"
   size: "800x544"
   sha256: "16989781fca52acc2bd484b4c74400052e10e9be0dc330cb483083c3a32fa8bd"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。二层只作局部木廊与挑梁，不做满立面现代阳台；土坯墙体要有厚度和不规则修补。"
   building: {"type": "bld_kit_xiyu_house_large", "footprint": [10, 8], "anchor": [422.5966, 373.8642], "era": "xiyu"}
   footprint_m: [10, 8]
@@ -258,7 +263,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_house_small__candidate01.png"
   size: "640x416"
   sha256: "28faebba9f8bdb8eb25cccaae536ea213e3bfc7346cfe99185a6b63c47ceea4c"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。单层厚墙平顶、小而深的门窗，土坯和草筋泥抹面并见；禁用齐整瓷砖和瓦檐。"
   building: {"type": "bld_kit_xiyu_house_small", "footprint": [7, 6], "anchor": [321.8701, 265.5616], "era": "xiyu"}
   footprint_m: [7, 6]
@@ -301,7 +307,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_inn__candidate01.png"
   size: "896x640"
   sha256: "634d75006958624b9a4b9d2cfd1c87b3b8e57f52949a47f8841e19c834360193"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。以厚土围院、遮阴木廊和可识别牲口/货物入口表达商旅客栈；不复制人物。"
   building: {"type": "bld_kit_xiyu_inn", "footprint": [12, 9], "anchor": [472.7282, 363.5005], "era": "xiyu"}
   footprint_m: [12, 9]
@@ -342,7 +349,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_manor__candidate01.png"
   size: "1216x832"
   sha256: "3df081f753f28d6a2a8c3a53c84e8e4fa2cc7b6031acf915c56ce70409c761a3"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。大院仍以土木围合和局部葡萄阴棚为主，不做宫殿化轴线或中式瓦顶。"
   building: {"type": "bld_kit_xiyu_manor", "footprint": [16, 13], "anchor": [616.625, 467.233], "era": "xiyu"}
   footprint_m: [16, 13]
@@ -388,7 +396,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_market__candidate01.png"
   size: "480x320"
   sha256: "1d0849a9d7b77ad1ca6acc143a0c2d6b7f1bea9a33636b77a278f9e0a55608a9"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。低矮素木/芦苇遮棚，货品以陶罐、铜器、绳索、织物为主；无招牌文字。"
   building: {"type": "bld_kit_xiyu_market", "footprint": [5, 4], "anchor": [241.6445, 185.8268], "era": "xiyu"}
   footprint_m: [5, 4]
@@ -427,7 +436,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_pagoda__candidate01.png"
   size: "992x736"
   sha256: "5672dc0f9ca9fee5d084b573fcfddb014bd5eb609b16556ec9b4b752e5af3bf4"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。匿名砖砌邦克楼取收分塔身、几何砖饰与小券洞；不设斗拱、鸱吻、脊兽。"
   building:
     type: bld_kit_xiyu_pagoda
@@ -492,7 +502,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_palace__candidate01.png"
   size: "1792x1216"
   sha256: "d26870261f126886999a63226ab3c6f829a35fd49cb1057759fcf9501f849c2e"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。王府为匿名接待院，主体仍是土木平顶；砖拱、木廊和少量蓝绿釉饰只作等级点缀。"
   building: {"type": "bld_kit_xiyu_palace", "footprint": [24, 20], "anchor": [925.0377, 684.7064], "era": "xiyu"}
   footprint_m: [24, 20]
@@ -538,7 +549,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_restaurant__candidate01.png"
   size: "864x608"
   sha256: "6c36189e3a489bec8e1f4d3cec747f7917632e4cc839ba49608564d8003de008"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。茶肆以遮阴木廊、粗木栏和土墙表达，不做中式重檐酒楼。"
   building: {"type": "bld_kit_xiyu_restaurant", "footprint": [12, 9], "anchor": [420.0688, 387.7913], "era": "xiyu"}
   footprint_m: [12, 9]
@@ -580,7 +592,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_shop_1f__candidate01.png"
   size: "608x416"
   sha256: "5cb1d6c5ce709ea865ecb7bda1b6b5799f86fa54a0594068a00a6ca9cb39578e"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。单层平顶土铺、深门洞、木质挑棚，器物无现代包装和伪字。"
   building: {"type": "bld_kit_xiyu_shop_1f", "footprint": [7, 5], "anchor": [309.3535, 281.489], "era": "xiyu"}
   footprint_m: [7, 5]
@@ -623,7 +636,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_shop_2f__candidate01.png"
   size: "672x544"
   sha256: "c7f67e68b5824562d5c36662ed362c3d0f4d6f66279c2117f040060f2168a6f5"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。下层深铺洞、上层木廊或格窗，平顶外露梁头；不做整面玻璃窗。"
   building: {"type": "bld_kit_xiyu_shop_2f", "footprint": [8, 6], "anchor": [346.8549, 372.6732], "era": "xiyu"}
   footprint_m: [8, 6]
@@ -663,7 +677,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_stable__candidate01.png"
   size: "640x448"
   sha256: "abdeaaeea9e0807f3e0bd09fdc48666dbb242f047e54d95cef592a2a94eae561"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。马厩应是土墙围栏加深檐素木棚，槽具和拴马桩克制，无瓦脊与精细彩画。"
   building:
     type: bld_kit_xiyu_stable
@@ -728,7 +743,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_temple_hall__candidate01.png"
   size: "1088x736"
   sha256: "3a1da10b6a65ab71dd3ae20116cd290fda230df7f73642701862f91063ff87a4"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。礼拜殿取平顶木柱廊和砖砌尖拱，彩绘少量且做旧；不加中式斗拱、鸱吻或脊兽。"
   building: {"type": "bld_kit_xiyu_temple_hall", "footprint": [14, 11], "anchor": [554.3656, 420.3131], "era": "xiyu"}
   footprint_m: [14, 11]
@@ -773,7 +789,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_warehouse__candidate01.png"
   size: "800x544"
   sha256: "9a547230bde2f77809ee0a60a14a351096858e5fb3bd2b002cfa46cbd31455e1"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；1候选选1。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。低矮平顶仓屋、少窗深门、厚土墙与露木梁头，货物不超出占地。"
   building: {"type": "bld_kit_xiyu_warehouse", "footprint": [10, 8], "anchor": [413.011, 320.0526], "era": "xiyu"}
   footprint_m: [10, 8]
@@ -822,7 +839,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_wharf__candidate02.png"
   size: "640x576"
   sha256: "d0a8b3db58f86889429e3b9119965ca032d9f5fc137ac476aa9d54c1e1cc7953"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；2候选选2。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。保持土质渠岸、浅阶/简木跳板和取水作业尺度，不做石码头、港船或中式牌楼。 模型两候选仍保留登记的石铺渠岸槽位，胡杨木跳板未落实，已如实列开放问题。"
   building: {"type": "bld_kit_xiyu_wharf", "footprint": [10, 4], "anchor": [323.5672, 351.8353], "era": "xiyu"}
   footprint_m: [10, 4]
@@ -865,7 +883,8 @@
   source_path: "sources/historical-rerender/bld_kit_xiyu_yamen__candidate02.png"
   size: "1152x800"
   sha256: "a4fc3736e5f8bb029ac572144d5b384ed9906324636c30e5b59579122bb6b320"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: "2026-10-01按真实历史图片重出；2候选选2。历史图实际作为image_generation输入；逐张view_image检查源图、候选、正式图与灰底总览。正式图只做alpha低值清理、裁切、单次等比LANCZOS缩放和透明扩边；未作非等比拉伸。匿名官署用厚土围院、克制砖券门和木柱廊体现等级；不照搬具名宫门或清式衙署。"
   building: {"type": "bld_kit_xiyu_yamen", "footprint": [16, 12], "anchor": [559.5631, 431.6573], "era": "xiyu"}
   footprint_m: [16, 12]

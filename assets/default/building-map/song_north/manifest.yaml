@@ -37,7 +37,8 @@
   created: '2026-09-30'
   size: 912x624
   sha256: 4772e912b3c28b51e6132c8068508f3573390a0a0f94dcdac6ceed005aac99fb
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_biaoju
     footprint:
@@ -116,7 +117,8 @@
   created: '2026-09-30'
   size: 687x578
   sha256: 9ed8556fa4a9b0bc8a47e4b57ccd96f14b051841d81b11f482e420123514f35c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_casino
     footprint:
@@ -192,7 +194,8 @@
   created: '2026-09-30'
   size: 659x512
   sha256: 7204d748988472e7d2637d1300ac67c58dd3c5ea3ee1962b4e400b6d0a447ed7
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_courtyard
     footprint:
@@ -267,7 +270,8 @@
   created: '2026-09-30'
   size: 528x368
   sha256: f9d86af7ddb4fa69c379b8591defc776cf224298dfa3eecaf5b42a8511fc9cdb
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_guardhouse
     footprint:
@@ -345,7 +349,8 @@
   created: '2026-09-30'
   size: 512x512
   sha256: 956b483bcdb1e4eff4e088f88316d5862f65933c12437537349d5258e0d5ca66
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_house_large
     footprint:
@@ -422,7 +427,8 @@
   created: '2026-09-30'
   size: 512x512
   sha256: b9af8820d16cfa7a6637678543b5cfb63948efa15758d2dcfb5e0956e8d5cacb
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_house_small
     footprint:
@@ -498,7 +504,8 @@
   created: '2026-09-30'
   size: 798x711
   sha256: f32b30824431ccb8531bfc888f01299c6bb53a55dcc57ae1caa63ccb3ce6819d
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_inn
     footprint:
@@ -574,7 +581,8 @@
   created: '2026-09-30'
   size: 1008x704
   sha256: 0afa858d2767c05054e3dd1621e6586afa53cf62b2b419bdb8b37ded7b9bdc6b
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_manor
     footprint:
@@ -652,7 +660,8 @@
   created: '2026-09-30'
   size: 512x512
   sha256: ffecc5dd92fe42a11960da3be7a51de1038397a6a4366d669fdfe51f195d1308
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_market_stall
     footprint:
@@ -728,7 +737,8 @@
   created: '2026-09-30'
   size: 816x1248
   sha256: be50a2b185e1c2135e01233ca7586eeb7fbaab2d29f04cab247b2829269d4c91
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_pagoda
     footprint:
@@ -807,7 +817,8 @@
   created: '2026-09-30'
   size: 1120x896
   sha256: d6aea5f766ea0e01b796ce2be9cc74b13ed15eceb69a5c270d0e1220ae94b96e
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_palace_hall
     footprint:
@@ -885,7 +896,8 @@
   created: '2026-09-30'
   size: 820x604
   sha256: a44c1bf70ea064cee82787e8bf538ed52ed055a969cbe446ad128a80d576f7d5
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_restaurant
     footprint:
@@ -961,7 +973,8 @@
   created: '2026-09-30'
   size: 512x512
   sha256: 1f0943c9bb77d6bbd2803184499c9dfe9192bf484cb84f71cf93fbc1ac72ba29
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_shop_1f
     footprint:
@@ -1037,7 +1050,8 @@
   created: '2026-09-30'
   size: 647x512
   sha256: af4ee59c495109c7ebb760d20602d6888ac03d79eec7f6dfb987fbe6cbfae5dd
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_shop_2f
     footprint:
@@ -1113,7 +1127,8 @@
   created: '2026-09-30'
   size: 693x512
   sha256: 56c3e490ba0f89e2471c6f95cd2f000558db5ac5da9a92e2cdbb53679084ac1a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_stable
     footprint:
@@ -1190,7 +1205,8 @@
   created: '2026-09-30'
   size: 928x624
   sha256: f66a62ac210d2ba27cde16bcdf0176df529d76b174059b50911055e5b93e76da
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_temple_hall
     footprint:
@@ -1268,7 +1284,8 @@
   created: '2026-09-30'
   size: 736x496
   sha256: d633aff81fae0e07db38dbba4a1d590d18a60b00b409e6e0afa28aca9739a85b
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_warehouse
     footprint:
@@ -1346,7 +1363,8 @@
   created: '2026-09-30'
   size: 560x320
   sha256: 790aab5164c396cc2f19c9e6e422e016dec26eb36aee4721406b3a1687bf65de
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_wharf
     footprint:
@@ -1425,7 +1443,8 @@
   created: '2026-09-30'
   size: 976x688
   sha256: a94618489676a723933733677a42738064950f0c27d2dedf75c9734747c99787
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_song_north_yamen
     footprint:

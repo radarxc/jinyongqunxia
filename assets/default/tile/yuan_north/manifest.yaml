@@ -13,7 +13,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f46f-ac3d-7492-8311-f5489c237652/exec-d9c29de0-bb66-4c02-9723-786462ad46c1.png
   size: 471x415
   sha256: 446320ce83c9c537620a922d4887ce99f2b5598439addb5fe20bc93af171d588
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -40,7 +41,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f46f-ac3d-7492-8311-f5489c237652/exec-634fab71-0ca0-41c4-98a5-90ba4f132401.png
   size: 534x448
   sha256: 1bdf2578824c8b71600fd91d8f43e055fb24dea8e56566764b951588a081f3ac
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -67,7 +69,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f44f-794b-75c3-bb25-bb0001d0e036/exec-c1f23be8-64b5-47bb-a596-737e31bfd920.png
   size: 82x168
   sha256: c34d35a07c8cca97f04530a390a25ccfac6846d793d21dd67e29c6f3d4859a40
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall
     footprint:
@@ -94,7 +97,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f44f-794b-75c3-bb25-bb0001d0e036/exec-6b07acfe-7ee3-4f60-bca3-68571fa36057.png
   size: 147x184
   sha256: f7f506fbfc458d0022fefcbf9b83ed66367dbc4da931898db39f5e593e077b15
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall_corner
     footprint:
@@ -124,7 +128,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f427-c9bf-7070-8e80-6b9763c70314/exec-11d5796c-38c9-44dc-aa56-48ab287e6af8.png
   size: 444x260
   sha256: 5cc6cb95b608112393801970320a027f6dedeb73f909376416407f62b5acc75d
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: bridge_deck
     footprint:
@@ -156,7 +161,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f427-c9bf-7070-8e80-6b9763c70314/exec-b9119080-17f1-41c2-a96c-af7f95300915.png
   size: 328x223
   sha256: a514098ab3ed49f6bbdaabfcf5f798481f4931151505ef66e47d08831a06da06
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint:
@@ -188,7 +194,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f427-c9bf-7070-8e80-6b9763c70314/exec-ae6d73bd-19bc-4992-a411-b17ecb36cc0b.png
   size: 300x215
   sha256: 599129f0db4efe3b47d5af6e7cb07e41cfdc405df3d0f27ee0dfe812a754fec0
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint:

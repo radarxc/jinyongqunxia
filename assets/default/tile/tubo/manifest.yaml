@@ -16,7 +16,8 @@
   source_path: source/historical-rebuild/tex_town_tubo_city_gate__k4_r000_v01__raw.png
   size: 591x432
   sha256: 900f6f1d1f78334e753a6117663e146e29f50db7383ae029ce659655482cb5a0
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint: [8, 4]
@@ -45,7 +46,8 @@
   source_path: source/historical-rebuild/tex_town_tubo_city_gate__k6_r000_v01__raw.png
   size: 778x464
   sha256: c4d820093912f1e585c507e3c3cbcf007d12a1f6c584d3cc967873b77eea9db7
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint: [10, 4]
@@ -74,7 +76,8 @@
   source_path: source/historical-rebuild/tex_town_tubo_wall__stone_r000_v01__raw.png
   size: 88x119
   sha256: dd14650f40af49e95ebd3eb98d4e2ef54fd178d9f77eb801003bd38c2ca8861c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall
     footprint: [1, 1]
@@ -103,7 +106,8 @@
   source_path: source/historical-rebuild/tex_town_tubo_wall_corner__outer_ne_v01__raw.png
   size: 300x208
   sha256: 89ee15c0379faa606eda72a5d2c030f3ed573c3775a0f905a043c5f47cd65521
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall_corner
     footprint: [2, 2]
@@ -132,7 +136,8 @@
   source_path: source/historical-rebuild/tex_town_tubo_bridge_deck__w4_l8_r000_v01__raw.png
   size: 497x265
   sha256: 9894b8aae0d7c5fe5ed68139980318322ed8a34b8de024e1d11f1f1046f77400
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: bridge_deck
     footprint: [4, 8]
@@ -160,7 +165,8 @@
   source_path: source/historical-rebuild/tex_town_tubo_tree_cluster__willow_v01__raw.png
   size: 451x261
   sha256: cff7f5511d98ff1462c2dac83089583de917768f4812075d11a305df089e7922
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint: [3, 3]
@@ -189,7 +195,8 @@
   source_path: source/historical-rebuild/tex_town_tubo_shrub__seabuckthorn_v01__raw.png
   size: 134x88
   sha256: 487f1c004266ba3f4cc830642234f5246b80d43bf1642608a96450debca989de
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: shrub
     footprint: [2, 2]

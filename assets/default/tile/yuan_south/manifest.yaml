@@ -16,7 +16,8 @@
   generation_id: cf07347e-fcf3-4c90-a12b-558a2221c8d6
   size: 618x433
   sha256: c5c6f2cc31020bac3a2bfedf4f66bda605b161837a5308e40006a6e3ab16e1a4
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -59,7 +60,8 @@
   generation_id: 8a33a01b-0897-45c2-a8cd-1ed91dc10711
   size: 568x382
   sha256: be46b97e6769338d9f2ec2de2f0e3b0f783d7f15a1773814116e941e99e327d9
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -102,7 +104,8 @@
   generation_id: 5218461b-62c4-49d8-ad63-a1608cc89b83
   size: 256x320
   sha256: 837134e33b2cefeb35848a98f2386141db76401e80f911e028ab097016459c06
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall
     footprint:
@@ -140,7 +143,8 @@
   generation_id: e773970e-bd37-48d3-9de0-0f5d33074c99
   size: 320x320
   sha256: 22534c7d8fb20c32bb03b4f25de5feb1cce07c9779711fd676d1cc8dfdf981e4
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall_corner
     footprint:
@@ -178,7 +182,8 @@
   generation_id: 9bb2aa1e-3bcb-47af-bf7a-3f3d38de8e7a
   size: 512x320
   sha256: 3201c8e7a29fafab6b449c1676da2733cab27f59069d1e107e2439b094710482
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: bridge_deck
     footprint:
@@ -216,7 +221,8 @@
   generation_id: f509ce2c-83fe-48fb-ab42-9120b369cb14
   size: 384x384
   sha256: f3baf0ffa56f730beca4d223cb1698465bd283c990d5e7a1540efe0adbe99a35
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint:
@@ -254,7 +260,8 @@
   generation_id: 3d09577c-7792-41a6-8f15-676ed9f832a4
   size: 192x192
   sha256: 840a9d8c7269a595a680e1d9c4e98725dd8f523c74368d46188efb8391f89181
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: reed
     footprint:

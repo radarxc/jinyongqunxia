@@ -24,7 +24,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7b3-99e6-71c3-938b-6e9c3c2c67d2/exec-312eef3c-d41d-42f7-a5b4-c1adb1b6383f.png
   size: 1254x1254
   sha256: e118d6ddb21d65471513012fd8f07306cef6b54915ff9d5edd884947b2c7cfe6
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；original generic jianghu weapon; no exact dynasty claimed。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：青钢剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 18.10/15.87/18.58/17.94%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_dandao
   file: eq_dandao.png
@@ -72,7 +73,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7b9-0366-7733-ac84-8728fe34de3f/exec-6ad3b183-57fa-4328-afdc-32ffcad32531.png
   size: 1254x1254
   sha256: 87587d74fa2862516465c4bef4d528ddc6545c2f4535667ff50ef596aa8f8c14
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；generic Song-to-Yuan jianghu context。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：单刀主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 14.51/16.19/13.56/13.64%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_qimeigun
   file: eq_qimeigun.png
@@ -119,7 +121,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7bd-fcc4-77b0-be89-ddcc09fb476a/exec-08b56031-cb09-4520-bd11-77d82b16fc18.png
   size: 1254x1254
   sha256: 6dcb647a8fa0ebd4705f03bac052e02b85bf42455c041505a6780c8e6272e7c8
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；generic premodern jianghu context。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：齐眉棍主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 18.26/21.85/18.34/21.85%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_huaqiang
   file: eq_huaqiang.png
@@ -172,7 +175,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7bd-fcc3-7bb2-91c9-7ee19f7af494/exec-ab1aed53-23e6-4d82-aaea-6bf22a95c19c.png
   size: 1254x1254
   sha256: 2c856347b3cd7535f766ebf9cc68fc3eb1d2fbe523df51957fe14f7822953d89
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；generic premodern jianghu context。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：花枪主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 19.94/17.94/20.49/19.14%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_duanbi
   file: eq_duanbi.png
@@ -220,7 +224,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7b9-039c-7dc3-8430-cbfb0056c9df/exec-0d4bd316-eeac-45c5-b024-5340694da122.png
   size: 1254x1254
   sha256: c8c82a40abafa3092dc6953dfdc291f8d7c04b4c620fecf256188d7fcd8f719c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；original generic jianghu weapon; no exact dynasty claimed。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：短匕主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 17.62/13.08/16.19/15.07%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_ruanbian
   file: eq_ruanbian.png
@@ -267,7 +272,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7bd-fca7-79d3-b6d7-5d936ca1da9b/exec-b4d2c7d1-08fc-4064-a07f-a583f93ea26c.png
   size: 1254x1254
   sha256: 15346cebf6216ed5f1680be9ceccae2656c07732ce713ffbf637c3b953f58d02
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；generic premodern jianghu context。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：软鞭主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 13.64/24.80/12.92/26.32%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_longquanjian
   file: eq_longquanjian.png
@@ -315,7 +321,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7c2-2c3b-7143-aa25-724c6951c517/exec-62886120-36dd-41ab-81b6-80262416261b.png
   size: 1254x1254
   sha256: faa19930515dd212aa2b68de7a0102e480098a361ea4b756d9c7b21dc6a0da3f
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Longquan sword tradition; this particular item is an original extension。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：龙泉剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 14.19/13.72/15.15/13.80%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_yanlingdao
   file: eq_yanlingdao.png
@@ -365,7 +372,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f814-284f-70e1-bbca-9e4d2fdca3a4/exec-9417943c-b1e2-4906-925e-182ea0a8aba6.png
   size: 1254x1254
   sha256: df60ee16ee21787521ad4de18344b094a101a2b95ef58c73abeba41c1fa31843
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Ming-Qing yanling saber form; this particular item is an original extension。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：雁翎刀主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 26.00/21.61/26.00/23.05%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_chanzhang
   file: eq_chanzhang.png
@@ -412,7 +420,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7c8-c39e-71b3-8208-e8c5fdcc1880/exec-8e866404-ea8f-47a1-a240-30cc360e5e11.png
   size: 1254x1254
   sha256: 579d7cb73a2304c9989cb87280f1ff88f76618302f4ed5e9d9c42044a00bfc0e
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；premodern Buddhist ritual staff adapted as a weapon; combat grading is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：禅杖主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 33.41/13.48/32.14/12.92%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_sanjiegun
   file: eq_sanjiegun.png
@@ -457,7 +466,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7c2-2c88-7501-9865-4e0a59422f97/exec-800afa32-eed0-4393-952e-e90c998e4ddb.png
   size: 1254x1254
   sha256: 3c51d4ddf700fa5a32e6ec61dc6186df54442f198adb47847aad4f5a7e9e4a9d
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；traditional Chinese weapon; exact dating not claimed。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：三节棍主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 19.30/18.42/19.14/17.78%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_jindi
   file: eq_jindi.png
@@ -507,7 +517,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f814-284f-7700-a3bd-c8d0629c3ebf/exec-ff469cb5-ade2-42d0-99fe-fdb40059e11a.png
   size: 1254x1254
   sha256: 1c967dea760f3ab2acac7350d4d097dc30abede76ca08c44db71fe7554b25c6b
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Book and Sword, Yu Yutong; Qing Qianlong-era story context 1753-1759, exact object form is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：金笛主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 16.67/31.98/16.51/32.22%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_tiedan
   file: eq_tiedan.png
@@ -552,7 +563,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7c2-2d27-7c11-ab3c-702ef89688b6/exec-67ae0465-8c0d-4446-8b84-48861725bf63.png
   size: 1254x1254
   sha256: 6fcdbac688bc528979e03c27e218dbb3b6ed161d8b74089875dc1a3ceadda650
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Book and Sword, Zhou Zhongying; Qing Qianlong-era story context 1753-1759; object detail pending textual verification。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：铁胆主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 19.86/30.38/19.46/30.62%，背景为浅暖灰近象牙色。原著器物细节或流转按名录保留（待考），本图不冒充逐字外观复原。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_junzijian
   file: eq_junzijian.png
@@ -602,7 +614,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7d1-1d25-76c1-9abd-5aa59ef4d947/exec-50885981-76f5-46db-a0d3-8187591be082.png
   size: 1254x1254
   sha256: e6a6ee4fdb5fe123bf9e02c3fc46983e928fb08d0ca1eb68159d3320e952faaf
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Return of the Condor Heroes, Passionless Valley; Southern Song story context 1237-1259; exact form is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：君子剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 26.32/21.13/27.19/21.77%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_shunvjian
   file: eq_shunvjian.png
@@ -652,7 +665,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7d1-1d77-7391-80e7-f4ce7c43b1b9/exec-f3806f9d-38df-47ba-9815-0cf8c3c02497.png
   size: 1254x1254
   sha256: dbb4baee0e26b2fff2c064bbb89cceaa9ce4dae47fa3cb5360510c722756c88a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Return of the Condor Heroes, Passionless Valley; Southern Song story context 1237-1259; exact form is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：淑女剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 22.65/21.77/23.52/23.37%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_xuedao
   file: eq_xuedao.png
@@ -702,7 +716,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7d1-1cba-77c2-b4c3-2503c714870d/exec-475b7bd7-d337-4592-8bc4-7921ad4da4d2.png
   size: 1254x1254
   sha256: 8bb1c811ec354e9aba0726a91fb7ebe59991ca307c9ee1f9a4612ac50b6e1bc3
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；A Deadly Secret, Blood Saber school; Qing Kangxi-era project context about 1705-1712; exact form is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：血刀主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 21.13/19.78/20.57/19.54%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_biyudao
   file: eq_biyudao.png
@@ -749,7 +764,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7d1-1d22-76c0-9fa3-f48d3f265594/exec-9479f76a-8b45-4b8d-8ecf-88d0797c115c.png
   size: 1254x1254
   sha256: a5fab8b75e4edf85ee355fa46267b6733ffa66e25f5ba0f81a8e9b34617d95a0
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Gu Long Seven Weapons tribute; no dynasty claimed。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：碧玉刀主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 26.08/18.18/23.52/20.89%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_libiegou
   file: eq_libiegou.png
@@ -794,7 +810,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7cd-a8ad-7a93-b4ea-3766c6276c6e/exec-4259143f-f89f-46ea-81af-4139d8ed1ba1.png
   size: 1254x1254
   sha256: 78dd54c42b6323cbc229b720513dac2ed9919919811129122d029dd06380ad3c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Gu Long Seven Weapons tribute; no dynasty claimed。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：离别钩主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 19.46/13.80/14.67/14.67%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_liehuoqi
   file: eq_liehuoqi.png
@@ -841,7 +858,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7d1-1d78-78b0-b805-854fb3b45d53/exec-664cef80-26c1-4a9e-9933-82e8a2867737.png
   size: 1254x1254
   sha256: 630b059297a7c73a7b98e7a4965c6d8df6f38d5d843db2998fbb8c55adc18a54
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Heaven Sword and Dragon Saber, Ming Cult Five-Element Banners; late-Yuan story context about 1336-1363; use as direct weapon pending textual verification。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：烈火旗主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 35.73/12.68/31.74/15.87%，背景为浅暖灰近象牙色。原著器物细节或流转按名录保留（待考），本图不冒充逐字外观复原。轻微偏差：旗尾旧损较明显；已达最多2张候选，保留构图与形制更合格的返修稿并待作者确认。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_yitianjian
   file: eq_yitianjian.png
@@ -889,7 +907,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7d6-b577-7a42-8108-37aa530c674e/exec-13cb992c-241f-447f-a9e5-326271f049d7.png
   size: 1254x1254
   sha256: 7e2df349badedf270de07b644101b27522c56d62dfeb2bc130eb2bc466312997
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Heaven Sword and Dragon Saber; late-Yuan story context about 1336-1363; fittings are original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 1 张候选，逐张 view_image；选首稿。自检：倚天剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 12.68/13.32/14.27/15.55%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_tulongdao
   file: eq_tulongdao.png
@@ -936,7 +955,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7de-e647-7d31-9f3d-e38df09d4fe3/exec-d853b8e3-248a-4cd4-8df5-540cff68cb73.png
   size: 1254x1254
   sha256: 699510f23e522352344e547690ff6c5d1809d5d821779005c455a88d0d2a9f1c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Heaven Sword and Dragon Saber; late-Yuan story context about 1336-1363; exact form is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：屠龙刀主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 23.05/19.86/22.89/23.68%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_xuantiejian
   file: eq_xuantiejian.png
@@ -983,7 +1003,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7de-e60a-7720-8075-69657e6d38a2/exec-d3a0af7c-b419-40f3-9d85-b4d864321444.png
   size: 1254x1254
   sha256: 21560cb35d6d32a3a4f4217d666f2171760ba397b559ab6a4792fe751d90ae90
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Return of the Condor Heroes, Dugu sword tomb; Southern Song story context 1237-1259; exact form is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：玄铁重剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 14.67/17.78/15.15/15.23%，背景为浅暖灰近象牙色。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_jinshejian
   file: eq_jinshejian.png
@@ -1033,7 +1054,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7de-e61d-73a0-a66b-e886337d4a1f/exec-7225f527-db98-4fce-950e-769edbe576d7.png
   size: 1254x1254
   sha256: d5e77eb25d79d813f482f039de24194355498a8bd0c246e02f49c5bb636685b7
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Sword Stained with Royal Blood, Golden Snake Gentleman; late-Ming story context 1630-1645; exact form pending textual verification and visual treatment is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：金蛇剑主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 23.52/22.41/23.13/24.80%，背景为浅暖灰近象牙色。原著器物细节或流转按名录保留（待考），本图不冒充逐字外观复原。首稿出现具象蛇头且尺寸偏大；唯一返修已改为无头、无眼、无完整蛇身的抽象蜿蜒金属纹。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_bawangqiang
   file: eq_bawangqiang.png
@@ -1086,7 +1108,8 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7de-e5e8-78c3-abbc-fdb987b992fe/exec-d839ef4a-200e-4b04-b1ae-6e6417948545.png
   size: 1254x1254
   sha256: 2b4e4766e368dcd905e7974cef14f2663523f10e906f4bc0bc0abf7e7d05b0a0
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Gu Long Seven Weapons tribute; no dynasty claimed; top-tier catalog exception is original。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：霸王枪主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 16.11/14.27/17.46/14.59%，背景为浅暖灰近象牙色。轻微偏差：尾端生成尖锥式鐏，名录仅明确旧铜箍；已达最多2张候选，保留整体更合格的返修稿并待作者确认。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 - id: eq_dagoubang
   file: eq_dagoubang.png
@@ -1133,6 +1156,7 @@
   source_path: /private/tmp/codex-art-home/generated_images/01a0f7de-e632-7d22-b84e-aa4edd8787e3/exec-1a1e60f6-e1ce-464d-a41d-3a6930967793.png
   size: 1254x1254
   sha256: 621ff0c724e0145269ed21e85deba7a2c72c985a9b2997d6fecc567efa713f56
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 年代/出处依据：docs/design/catalog/items-weapons.md 与 docs/design/02-timeline-and-world-tiers.md；Beggars' Sect token across Demi-Gods and Semi-Devils, Legend and Return of the Condor Heroes, and Heaven Sword; exact circulation and form pending textual verification。未有原著外观定本的材质、纹样、尺寸与本批战斗定级均为（原创扩展）。image_gen 实际生成 2 张候选，逐张 view_image；选返修稿。自检：打狗棒主体完整、单一连贯物品，无文字、人物、手、场景、地面、投影或品阶光效；阈值辅助测得左/上/右/下留白约 19.38/17.78/19.38/17.70%，背景为浅暖灰近象牙色。原著器物细节或流转按名录保留（待考），本图不冒充逐字外观复原。原图直接复制，未缩放、抠图、改底或重编码；提示请求1536×1536，工具实出1254×1254。model/effort 登记本轮 Codex 执行配置；image_gen 未回传底层图片模型或 seed。
 

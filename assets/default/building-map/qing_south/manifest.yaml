@@ -28,7 +28,8 @@
   source_sha256: b6b6b4fc78ae47f2300f65e962deaa2676e5f744ce6d29e33256ab82e807d0dc
   size: 512x512
   sha256: 6939b9d25233d0eb0be5518f85ea8cdba7d83e94cb358964794ce7f78fd64aff
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_house_small
     footprint:
@@ -94,7 +95,8 @@
   source_sha256: d54e765bfa90d3ace04522856d9e34c9d52b82c588ac58fb273e803ab2d20803
   size: 512x544
   sha256: db024f4c0ab8156544d67b64ed5363e6faf4d3a30ea41317f92770dad096719b
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_house_large
     footprint:
@@ -160,7 +162,8 @@
   source_sha256: 340b3e0404d4bc496711486ee45549039bada5483c0c5d4e6f563aace2e313dd
   size: 672x512
   sha256: 18b5e8f7d0618856a3969c4bf921d867a0223903cb7f4de6fb9338e7baf5b0d2
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_courtyard
     footprint:
@@ -226,7 +229,8 @@
   source_sha256: 84dc2f6bfafd8f22a60161f1151b680afa08953848b80755a83d46a6fe4b4c73
   size: 576x576
   sha256: 7e7941931d657af834e6842a97b3d778f2c5d4ba6b1ada59fb7b46c24e0bec90
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_shop_1f
     footprint:
@@ -290,7 +294,8 @@
   source_sha256: 46f4c837b0e4394b689dc5af57222ddda4ad0128206cb01ac108186178a2ac5e
   size: 672x672
   sha256: 10d1f10e7e434d0093aa4bb2a0c320fc2fb6b925f3bc2bb5b8475b91cf109b35
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_shop_2f
     footprint:
@@ -355,7 +360,8 @@
   source_sha256: a4b876146e659dd7d0ff6262406ab7fac229de428695c02249429cc842edec95
   size: 960x736
   sha256: 4315f837d23613372111e5dfabcb4d07dbb51ab650b66ad046afdf6119c6d945
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_inn
     footprint:
@@ -420,7 +426,8 @@
   source_sha256: c8bfdc60ce7c4e7cfc68577ec0d3af2377b5e4f2109bc97025796d29b46469a8
   size: 928x576
   sha256: 1b18a83cbf40524a0bc9a54ad3b5fb9838d978c0e8255ed618ae273bba8ce24e
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_restaurant
     footprint:
@@ -484,7 +491,8 @@
   source_sha256: 8cb13a2d3a948bfd2a7737a730f3d242a028a942ff886806451973a305769001
   size: 512x512
   sha256: 5c9af9f642f277f33038d416b3b5eae4fc6bf8ef0a8af234f82e2904e522465a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_market_stall
     footprint:
@@ -548,7 +556,8 @@
   source_path: history/selected-sources/yamen.png
   size: 1120x768
   sha256: 92d62037f5895e4f31cbd8b42bddc48ac008296b24af3bbe892b6767af438ea2
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_yamen
     footprint:
@@ -615,7 +624,8 @@
   source_path: history/selected-sources/biaoju.png
   size: 1088x832
   sha256: 6ce847120a789eeca9aa109c1032f9dc2c5d4704681ce6dc2284982de8cd9ceb
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_biaoju
     footprint:
@@ -681,7 +691,8 @@
   source_path: history/selected-sources/casino.png
   size: 800x576
   sha256: 60c757a5b505d777e1179370a4bf46925b06ce620af22e97549099c891c40c90
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_casino
     footprint:
@@ -748,7 +759,8 @@
   source_path: history/selected-sources/manor.png
   size: 1248x928
   sha256: 3c42a144a285965ca982f868affaa514ed58b190a866e8dbdd0d7762017070b5
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_manor
     footprint:
@@ -815,7 +827,8 @@
   source_path: history/selected-sources/wangfu.png
   size: 1632x1216
   sha256: 55608aa0b0d4c74dbbea09d5301f582a66e03052063705cf89c8129f8d098ca3
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_wangfu
     footprint:
@@ -882,7 +895,8 @@
   source_path: history/selected-sources/temple_hall.png
   size: 1024x736
   sha256: b4107e3796533278bca901b1354167d7eecd547197fa6fb3a5b7670237742d4f
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_temple_hall
     footprint:
@@ -949,7 +963,8 @@
   source_path: history/selected-sources/pagoda.png
   size: 928x800
   sha256: 45bfee7f0d6dcf0e95cc42ae29f9169f92e5b28d921ebd9b97f0c07a09a3ec69
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_pagoda
     footprint:
@@ -1015,7 +1030,8 @@
   source_path: history/selected-sources/guardhouse.png
   size: 576x512
   sha256: 5f9756bd348ed26fce840b826fd36811fd4e465e3ea0c2e9910d3c3922a153a6
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_guardhouse
     footprint:
@@ -1082,7 +1098,8 @@
   source_path: history/selected-sources/stable.png
   size: 640x448
   sha256: 550e39ead21f3c580610b1cbf02903510e6ccdb38c9e202609bba5bc23b90414
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_stable
     footprint:
@@ -1150,7 +1167,8 @@
   source_sha256: 7a59c8fb385e051a9f54e93e4fc3647912ce7a4e3e529043597a7e9093c5b580
   size: 864x672
   sha256: 28bf173b7d563b331a32517181d0ebe823ba4ee46bf40018b11ee9dfa35881f7
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_warehouse
     footprint:
@@ -1215,7 +1233,8 @@
   source_sha256: e55d05a0269b8e5796056e7e80c0b1cd2916dbd8af35bd8edee0eaab3d5b3c6c
   size: 736x512
   sha256: cb67b1bd1cbb1e4b3293c76fa6ab884e70416edf9afa4c6eccfaeca52b4d053b
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_qing_south_wharf
     footprint:

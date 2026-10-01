@@ -76,13 +76,26 @@ def worktree_entry(cat, aid):
     return _WT_CACHE[cat].get(aid)
 
 
+_MERGED_CACHE = {}
+
+
+def merged_entry(fm):
+    man = str(fm.get("manifest", ""))
+    if man not in _MERGED_CACHE:
+        p = ROOT / man
+        data = yaml.safe_load(p.read_text(encoding="utf-8")) if p.exists() else []
+        _MERGED_CACHE[man] = {e["id"]: e for e in (data or []) if isinstance(e, dict) and e.get("id")}
+    return _MERGED_CACHE[man].get(fm.get("asset_id"))
+
+
 def image_state(fm, redo):
     """图片状态：已入库 / 工作区候选 / 待重出 / 待出图。"""
     out = ROOT / str(fm.get("output", ""))
     if fm.get("asset_id") in redo:
         return "待重出"
     if out.exists():
-        return "已入库"
+        ent = merged_entry(fm)
+        return "已通过（作者）" if ent and str(ent.get("status")) == "approved" else "已入库"
     if fm.get("kind") == "item":
         wt = ROOT / ".agents/wt" / f"ART-item-{fm.get('category')}" / str(fm.get("output", ""))
         if wt.exists():

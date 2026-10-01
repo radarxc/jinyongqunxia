@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **285** 份：已入库 150、待出图 115、待重出（候选是代码画的假图） 12、工作区候选 8。**待出图队列 127 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **285** 份：已通过（作者） 150、待出图 115、待重出（候选是代码画的假图） 12、待重出 8。**待出图队列 135 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -28,6 +28,14 @@
 
 | 组 | asset_id | 名称 | 输出 | 状态 | 提示词 |
 |---|---|---|---|---|---|
+| items | `eq_mingjinyiweijia` | 明制锦衣卫甲 | `assets/default/item/armor/eq_mingjinyiweijia.png` | 待重出 | [eq_mingjinyiweijia.md](items/armor/eq_mingjinyiweijia.md) |
+| items | `eq_mingweisuojia` | 明制卫所甲 | `assets/default/item/armor/eq_mingweisuojia.png` | 待重出 | [eq_mingweisuojia.md](items/armor/eq_mingweisuojia.md) |
+| items | `eq_qingyulinjia` | 清制御前侍卫甲 | `assets/default/item/armor/eq_qingyulinjia.png` | 待重出 | [eq_qingyulinjia.md](items/armor/eq_qingyulinjia.md) |
+| items | `eq_qingzaolijia` | 清制皂隶衣甲 | `assets/default/item/armor/eq_qingzaolijia.png` | 待重出 | [eq_qingzaolijia.md](items/armor/eq_qingzaolijia.md) |
+| items | `eq_songjinjunburenjia` | 宋制禁军步人甲 | `assets/default/item/armor/eq_songjinjunburenjia.png` | 待重出 | [eq_songjinjunburenjia.md](items/armor/eq_songjinjunburenjia.md) |
+| items | `eq_songxunyijia` | 宋制巡役甲 | `assets/default/item/armor/eq_songxunyijia.png` | 待重出 | [eq_songxunyijia.md](items/armor/eq_songxunyijia.md) |
+| items | `eq_yuanqibingjia` | 元制骑兵札甲 | `assets/default/item/armor/eq_yuanqibingjia.png` | 待重出 | [eq_yuanqibingjia.md](items/armor/eq_yuanqibingjia.md) |
+| items | `eq_yuansuweiqiejia` | 元宿卫怯薛甲 | `assets/default/item/armor/eq_yuansuweiqiejia.png` | 待重出 | [eq_yuansuweiqiejia.md](items/armor/eq_yuansuweiqiejia.md) |
 | items | `eq_baoyulihuading` | 暴雨梨花钉 | `assets/default/item/hidden-weapons/eq_baoyulihuading.png` | 待重出（候选是代码画的假图） | [eq_baoyulihuading.md](items/hidden-weapons/eq_baoyulihuading.md) |
 | items | `eq_bingpoyinzhen` | 冰魄银针 | `assets/default/item/hidden-weapons/eq_bingpoyinzhen.png` | 待重出（候选是代码画的假图） | [eq_bingpoyinzhen.md](items/hidden-weapons/eq_bingpoyinzhen.md) |
 | items | `eq_hanshasheying` | 含沙射影 | `assets/default/item/hidden-weapons/eq_hanshasheying.png` | 待重出（候选是代码画的假图） | [eq_hanshasheying.md](items/hidden-weapons/eq_hanshasheying.md) |
@@ -160,213 +168,213 @@
 
 每张图的提示词在各文件「提示词」节。「已入库」= 图在 `assets/default/item/` 下（作者尚未审批，manifest `status: candidate`）；「工作区候选」= 图在任务工作区还没合入；作者要重出的，把 ID 写进 `items/REDO.md` 再重建索引即可进队列。
 
-### 药物 / 补品 / 药材（32）· 已入库 32
+### 药物 / 补品 / 药材（32）· 已通过（作者） 32
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
-| 1 | 九转还魂丹 | `it_jiuzhuanhuanhundan` | 天 | 药物·复活 | 已入库 | [it_jiuzhuanhuanhundan.md](items/medicine/it_jiuzhuanhuanhundan.md) | manifest |
-| 2 | 千年灵芝 | `it_qiannianlingzhi` | 天 | 药材·灵芝 | 已入库 | [it_qiannianlingzhi.md](items/medicine/it_qiannianlingzhi.md) | manifest |
-| 3 | 千年人参 | `it_qiannianrenshen` | 天 | 药材·人参 | 已入库 | [it_qiannianrenshen.md](items/medicine/it_qiannianrenshen.md) | manifest |
-| 4 | 千年雪莲 | `it_qiannianxuelian` | 天 | 药材·雪莲 | 已入库 | [it_qiannianxuelian.md](items/medicine/it_qiannianxuelian.md) | manifest |
-| 5 | 千年雪参 | `it_qiannianxueshen` | 天 | 药材·雪参 | 已入库 | [it_qiannianxueshen.md](items/medicine/it_qiannianxueshen.md) | manifest |
-| 6 | 生生造化丹 | `it_shengshengzaohuadan` | 天 | 补品·永久属性 | 已入库 | [it_shengshengzaohuadan.md](items/medicine/it_shengshengzaohuadan.md) | manifest |
-| 7 | 天髓续命露 | `it_tiansuixuminglu` | 天 | 补品·经脉疗伤 | 已入库 | [it_tiansuixuminglu.md](items/medicine/it_tiansuixuminglu.md) | manifest |
-| 8 | 雪参玉蟾丸 | `it_xueshenyuchanwan` | 天 | 补品·内力经脉 | 已入库 | [it_xueshenyuchanwan.md](items/medicine/it_xueshenyuchanwan.md) | manifest |
-| 9 | 玉龙苏合散 | `it_yulongsuheisan` | 天 | 药物·救急 | 已入库 | [it_yulongsuheisan.md](items/medicine/it_yulongsuheisan.md) | manifest |
-| 10 | 百年人参 | `it_bainianrenshen` | 地 | 药材·人参 | 已入库 | [it_bainianrenshen.md](items/medicine/it_bainianrenshen.md) | manifest |
-| 11 | 百年雪参 | `it_bainianxueshen` | 地 | 药材·雪参 | 已入库 | [it_bainianxueshen.md](items/medicine/it_bainianxueshen.md) | manifest |
-| 12 | 豹胎易筋丸 | `it_baotaiyijinwan` | 地 | 药物·控制 | 已入库 | [it_baotaiyijinwan.md](items/medicine/it_baotaiyijinwan.md) | manifest |
-| 13 | 碧灵丹 | `it_bilingdan` | 地 | 药物·疗伤解毒 | 已入库 | [it_bilingdan.md](items/medicine/it_bilingdan.md) | manifest |
-| 14 | 断肠草 | `it_duanchangcao` | 地 | 药材·毒草 | 已入库 | [it_duanchangcao.md](items/medicine/it_duanchangcao.md) | manifest |
-| 15 | 黑玉断续膏 | `it_heiyuduanxugao` | 地 | 药物·接骨外敷 | 已入库 | [it_heiyuduanxugao.md](items/medicine/it_heiyuduanxugao.md) | manifest |
-| 16 | 九花玉露丸 | `it_jiuhuayulu` | 地 | 药物·补血疗伤 | 已入库 | [it_jiuhuayulu.md](items/medicine/it_jiuhuayulu.md) | manifest |
-| 17 | 天山雪莲 | `it_tianshanxuelian` | 地 | 药材·雪莲 | 已入库 | [it_tianshanxuelian.md](items/medicine/it_tianshanxuelian.md) | manifest |
-| 18 | 天香断续胶 | `it_tianxiangduanxujiao` | 地 | 药物·接骨外敷 | 已入库 | [it_tianxiangduanxujiao.md](items/medicine/it_tianxiangduanxujiao.md) | manifest |
-| 19 | 天一神水 | `it_tianyishenshui` | 地 | 药物·奇毒 | 已入库 | [it_tianyishenshui.md](items/medicine/it_tianyishenshui.md) | manifest |
-| 20 | 通犀地龙丸 | `it_tongxidilongwan` | 地 | 补品·抗毒 | 已入库 | [it_tongxidilongwan.md](items/medicine/it_tongxidilongwan.md) | manifest |
-| 21 | 茯苓首乌丸 | `it_fulingshouwuwan` | 玄 | 药物·补气疗伤 | 已入库 | [it_fulingshouwuwan.md](items/medicine/it_fulingshouwuwan.md) | manifest |
-| 22 | 十年人参 | `it_shinianrenshen` | 玄 | 药材·人参 | 已入库 | [it_shinianrenshen.md](items/medicine/it_shinianrenshen.md) | manifest |
-| 23 | 十年雪参 | `it_shinianxueshen` | 玄 | 药材·雪参 | 已入库 | [it_shinianxueshen.md](items/medicine/it_shinianxueshen.md) | manifest |
-| 24 | 无常丹 | `it_wuchangdan` | 玄 | 药物·疗伤 | 已入库 | [it_wuchangdan.md](items/medicine/it_wuchangdan.md) | manifest |
-| 25 | 小还丹 | `it_xiaohuandan` | 玄 | 补品·疗伤 | 已入库 | [it_xiaohuandan.md](items/medicine/it_xiaohuandan.md) | manifest |
-| 26 | 紫霞养气丹 | `it_zixiaoyangqidan` | 玄 | 补品·补气修炼 | 已入库 | [it_zixiaoyangqidan.md](items/medicine/it_zixiaoyangqidan.md) | manifest |
-| 27 | 百露草膏 | `it_bailucao` | 黄 | 补品·补气 | 已入库 | [it_bailucao.md](items/medicine/it_bailucao.md) | manifest |
-| 28 | 活血丸 | `it_huoxuewan` | 黄 | 药物·补血 | 已入库 | [it_huoxuewan.md](items/medicine/it_huoxuewan.md) | manifest |
-| 29 | 金创药 | `it_jinchuangyao` | 黄 | 药物·外伤 | 已入库 | [it_jinchuangyao.md](items/medicine/it_jinchuangyao.md) | manifest |
-| 30 | 普通人参 | `it_renshen` | 黄 | 药材·人参 | 已入库 | [it_renshen.md](items/medicine/it_renshen.md) | manifest |
-| 31 | 普通雪参 | `it_xueshen` | 黄 | 药材·雪参 | 已入库 | [it_xueshen.md](items/medicine/it_xueshen.md) | manifest |
-| 32 | 养精丸 | `it_yangjingwan` | 黄 | 补品·临时属性 | 已入库 | [it_yangjingwan.md](items/medicine/it_yangjingwan.md) | manifest |
+| 1 | 九转还魂丹 | `it_jiuzhuanhuanhundan` | 天 | 药物·复活 | 已通过（作者） | [it_jiuzhuanhuanhundan.md](items/medicine/it_jiuzhuanhuanhundan.md) | manifest |
+| 2 | 千年灵芝 | `it_qiannianlingzhi` | 天 | 药材·灵芝 | 已通过（作者） | [it_qiannianlingzhi.md](items/medicine/it_qiannianlingzhi.md) | manifest |
+| 3 | 千年人参 | `it_qiannianrenshen` | 天 | 药材·人参 | 已通过（作者） | [it_qiannianrenshen.md](items/medicine/it_qiannianrenshen.md) | manifest |
+| 4 | 千年雪莲 | `it_qiannianxuelian` | 天 | 药材·雪莲 | 已通过（作者） | [it_qiannianxuelian.md](items/medicine/it_qiannianxuelian.md) | manifest |
+| 5 | 千年雪参 | `it_qiannianxueshen` | 天 | 药材·雪参 | 已通过（作者） | [it_qiannianxueshen.md](items/medicine/it_qiannianxueshen.md) | manifest |
+| 6 | 生生造化丹 | `it_shengshengzaohuadan` | 天 | 补品·永久属性 | 已通过（作者） | [it_shengshengzaohuadan.md](items/medicine/it_shengshengzaohuadan.md) | manifest |
+| 7 | 天髓续命露 | `it_tiansuixuminglu` | 天 | 补品·经脉疗伤 | 已通过（作者） | [it_tiansuixuminglu.md](items/medicine/it_tiansuixuminglu.md) | manifest |
+| 8 | 雪参玉蟾丸 | `it_xueshenyuchanwan` | 天 | 补品·内力经脉 | 已通过（作者） | [it_xueshenyuchanwan.md](items/medicine/it_xueshenyuchanwan.md) | manifest |
+| 9 | 玉龙苏合散 | `it_yulongsuheisan` | 天 | 药物·救急 | 已通过（作者） | [it_yulongsuheisan.md](items/medicine/it_yulongsuheisan.md) | manifest |
+| 10 | 百年人参 | `it_bainianrenshen` | 地 | 药材·人参 | 已通过（作者） | [it_bainianrenshen.md](items/medicine/it_bainianrenshen.md) | manifest |
+| 11 | 百年雪参 | `it_bainianxueshen` | 地 | 药材·雪参 | 已通过（作者） | [it_bainianxueshen.md](items/medicine/it_bainianxueshen.md) | manifest |
+| 12 | 豹胎易筋丸 | `it_baotaiyijinwan` | 地 | 药物·控制 | 已通过（作者） | [it_baotaiyijinwan.md](items/medicine/it_baotaiyijinwan.md) | manifest |
+| 13 | 碧灵丹 | `it_bilingdan` | 地 | 药物·疗伤解毒 | 已通过（作者） | [it_bilingdan.md](items/medicine/it_bilingdan.md) | manifest |
+| 14 | 断肠草 | `it_duanchangcao` | 地 | 药材·毒草 | 已通过（作者） | [it_duanchangcao.md](items/medicine/it_duanchangcao.md) | manifest |
+| 15 | 黑玉断续膏 | `it_heiyuduanxugao` | 地 | 药物·接骨外敷 | 已通过（作者） | [it_heiyuduanxugao.md](items/medicine/it_heiyuduanxugao.md) | manifest |
+| 16 | 九花玉露丸 | `it_jiuhuayulu` | 地 | 药物·补血疗伤 | 已通过（作者） | [it_jiuhuayulu.md](items/medicine/it_jiuhuayulu.md) | manifest |
+| 17 | 天山雪莲 | `it_tianshanxuelian` | 地 | 药材·雪莲 | 已通过（作者） | [it_tianshanxuelian.md](items/medicine/it_tianshanxuelian.md) | manifest |
+| 18 | 天香断续胶 | `it_tianxiangduanxujiao` | 地 | 药物·接骨外敷 | 已通过（作者） | [it_tianxiangduanxujiao.md](items/medicine/it_tianxiangduanxujiao.md) | manifest |
+| 19 | 天一神水 | `it_tianyishenshui` | 地 | 药物·奇毒 | 已通过（作者） | [it_tianyishenshui.md](items/medicine/it_tianyishenshui.md) | manifest |
+| 20 | 通犀地龙丸 | `it_tongxidilongwan` | 地 | 补品·抗毒 | 已通过（作者） | [it_tongxidilongwan.md](items/medicine/it_tongxidilongwan.md) | manifest |
+| 21 | 茯苓首乌丸 | `it_fulingshouwuwan` | 玄 | 药物·补气疗伤 | 已通过（作者） | [it_fulingshouwuwan.md](items/medicine/it_fulingshouwuwan.md) | manifest |
+| 22 | 十年人参 | `it_shinianrenshen` | 玄 | 药材·人参 | 已通过（作者） | [it_shinianrenshen.md](items/medicine/it_shinianrenshen.md) | manifest |
+| 23 | 十年雪参 | `it_shinianxueshen` | 玄 | 药材·雪参 | 已通过（作者） | [it_shinianxueshen.md](items/medicine/it_shinianxueshen.md) | manifest |
+| 24 | 无常丹 | `it_wuchangdan` | 玄 | 药物·疗伤 | 已通过（作者） | [it_wuchangdan.md](items/medicine/it_wuchangdan.md) | manifest |
+| 25 | 小还丹 | `it_xiaohuandan` | 玄 | 补品·疗伤 | 已通过（作者） | [it_xiaohuandan.md](items/medicine/it_xiaohuandan.md) | manifest |
+| 26 | 紫霞养气丹 | `it_zixiaoyangqidan` | 玄 | 补品·补气修炼 | 已通过（作者） | [it_zixiaoyangqidan.md](items/medicine/it_zixiaoyangqidan.md) | manifest |
+| 27 | 百露草膏 | `it_bailucao` | 黄 | 补品·补气 | 已通过（作者） | [it_bailucao.md](items/medicine/it_bailucao.md) | manifest |
+| 28 | 活血丸 | `it_huoxuewan` | 黄 | 药物·补血 | 已通过（作者） | [it_huoxuewan.md](items/medicine/it_huoxuewan.md) | manifest |
+| 29 | 金创药 | `it_jinchuangyao` | 黄 | 药物·外伤 | 已通过（作者） | [it_jinchuangyao.md](items/medicine/it_jinchuangyao.md) | manifest |
+| 30 | 普通人参 | `it_renshen` | 黄 | 药材·人参 | 已通过（作者） | [it_renshen.md](items/medicine/it_renshen.md) | manifest |
+| 31 | 普通雪参 | `it_xueshen` | 黄 | 药材·雪参 | 已通过（作者） | [it_xueshen.md](items/medicine/it_xueshen.md) | manifest |
+| 32 | 养精丸 | `it_yangjingwan` | 黄 | 补品·临时属性 | 已通过（作者） | [it_yangjingwan.md](items/medicine/it_yangjingwan.md) | manifest |
 
-### 食材 / 食品（28）· 已入库 28
-
-| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
-|---:|---|---|---|---|---|---|---|
-| 1 | 百花灵露 | `it_baihualinglu` | 天 | 食材·珍材 | 已入库 | [it_baihualinglu.md](items/food/it_baihualinglu.md) | manifest |
-| 2 | 天山灵蜜 | `it_tianshanlingmi` | 天 | 食材·珍材 | 已入库 | [it_tianshanlingmi.md](items/food/it_tianshanlingmi.md) | manifest |
-| 3 | 天香玉露羹 | `it_tianxiangyulu` | 天 | 食品·汤羹 | 已入库 | [it_tianxiangyulu.md](items/food/it_tianxiangyulu.md) | manifest |
-| 4 | 天香御宴 | `it_tianxiangyuyan` | 天 | 食品·名菜 | 已入库 | [it_tianxiangyuyan.md](items/food/it_tianxiangyuyan.md) | manifest |
-| 5 | 雪域冷膳 | `it_xueyulengchan` | 天 | 食品·腌藏 | 已入库 | [it_xueyulengchan.md](items/food/it_xueyulengchan.md) | manifest |
-| 6 | 百花糕 | `it_baihuagao` | 地 | 食品·点心 | 已入库 | [it_baihuagao.md](items/food/it_baihuagao.md) | manifest |
-| 7 | 冰湖雪藕 | `it_binghuxueou` | 地 | 食材·菜蔬 | 已入库 | [it_binghuxueou.md](items/food/it_binghuxueou.md) | manifest |
-| 8 | 二十四桥明月夜 | `it_ershisiqiaomingyueye` | 地 | 食品·名菜 | 已入库 | [it_ershisiqiaomingyueye.md](items/food/it_ershisiqiaomingyueye.md) | manifest |
-| 9 | 好逑汤 | `it_haoqiutang` | 地 | 食品·汤羹 | 已入库 | [it_haoqiutang.md](items/food/it_haoqiutang.md) | manifest |
-| 10 | 腊八粥 | `it_labazhou` | 地 | 食品·汤羹 | 已入库 | [it_labazhou.md](items/food/it_labazhou.md) | manifest |
-| 11 | 龙肝凤髓料 | `it_longganfengsui` | 地 | 食材·珍材 | 已入库 | [it_longganfengsui.md](items/food/it_longganfengsui.md) | manifest |
-| 12 | 雪山鹿脯 | `it_xueshanlufu` | 地 | 食材·肉 | 已入库 | [it_xueshanlufu.md](items/food/it_xueshanlufu.md) | manifest |
-| 13 | 玉笛谁家听落梅 | `it_yudishuijiatingluomei` | 地 | 食品·名菜 | 已入库 | [it_yudishuijiatingluomei.md](items/food/it_yudishuijiatingluomei.md) | manifest |
-| 14 | 玉露丸子 | `it_yuluwan` | 地 | 食品·点心 | 已入库 | [it_yuluwan.md](items/food/it_yuluwan.md) | manifest |
-| 15 | 御膳 | `it_yushan` | 地 | 食品·名菜 | 已入库 | [it_yushan.md](items/food/it_yushan.md) | manifest |
-| 16 | 芙蓉糕 | `it_furonggao` | 玄 | 食品·点心 | 已入库 | [it_furonggao.md](items/food/it_furonggao.md) | manifest |
-| 17 | 叫化鸡 | `it_jiaohuaji` | 玄 | 食品·菜肴 | 已入库 | [it_jiaohuaji.md](items/food/it_jiaohuaji.md) | manifest |
-| 18 | 酱香牛肉干 | `it_niurougan` | 玄 | 食品·腌藏 | 已入库 | [it_niurougan.md](items/food/it_niurougan.md) | manifest |
-| 19 | 山林香菇 | `it_xianggu` | 玄 | 食材·菜蔬 | 已入库 | [it_xianggu.md](items/food/it_xianggu.md) | manifest |
-| 20 | 雪莲子 | `it_xuelianzi` | 玄 | 食材·珍材 | 已入库 | [it_xuelianzi.md](items/food/it_xuelianzi.md) | manifest |
-| 21 | 玉雪果 | `it_yuxueguo` | 玄 | 食材·果 | 已入库 | [it_yuxueguo.md](items/food/it_yuxueguo.md) | manifest |
-| 22 | 粗面 | `it_cumian` | 黄 | 食材·谷物 | 已入库 | [it_cumian.md](items/food/it_cumian.md) | manifest |
-| 23 | 行旅干粮 | `it_ganliang` | 黄 | 食品·干粮 | 已入库 | [it_ganliang.md](items/food/it_ganliang.md) | manifest |
-| 24 | 桂酥糕 | `it_guisugao` | 黄 | 食品·点心 | 已入库 | [it_guisugao.md](items/food/it_guisugao.md) | manifest |
-| 25 | 火腿尖 | `it_huotuijian` | 黄 | 食材·肉 | 已入库 | [it_huotuijian.md](items/food/it_huotuijian.md) | manifest |
-| 26 | 酱牛肉 | `it_jiangniurou` | 黄 | 食品·菜肴 | 已入库 | [it_jiangniurou.md](items/food/it_jiangniurou.md) | manifest |
-| 27 | 精米 | `it_jingmi` | 黄 | 食材·谷物 | 已入库 | [it_jingmi.md](items/food/it_jingmi.md) | manifest |
-| 28 | 鲜鱼 | `it_xianyu` | 黄 | 食材·水产 | 已入库 | [it_xianyu.md](items/food/it_xianyu.md) | manifest |
-
-### 武学秘籍（18）· 已入库 18
+### 食材 / 食品（28）· 已通过（作者） 28
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
-| 1 | 打狗棒法残谱 | `it_miji_dagou_can` | 天 | 秘籍·残本 | 已入库 | [it_miji_dagou_can.md](items/manuals/it_miji_dagou_can.md) | manifest |
-| 2 | 斗转星移藏本 | `it_miji_douzhuan` | 天 | 秘籍·残本 | 已入库 | [it_miji_douzhuan.md](items/manuals/it_miji_douzhuan.md) | manifest |
-| 3 | 九阴真经上卷 | `it_miji_jiuyin_shang` | 天 | 秘籍·原本 | 已入库 | [it_miji_jiuyin_shang.md](items/manuals/it_miji_jiuyin_shang.md) | manifest |
-| 4 | 九阴真经下卷 | `it_miji_jiuyin_xia` | 天 | 秘籍·原本 | 已入库 | [it_miji_jiuyin_xia.md](items/manuals/it_miji_jiuyin_xia.md) | manifest |
-| 5 | 降龙十八掌残本 | `it_miji_xianglong18_can` | 天 | 秘籍·残本 | 已入库 | [it_miji_xianglong18_can.md](items/manuals/it_miji_xianglong18_can.md) | manifest |
-| 6 | 白虹掌力藏本 | `it_miji_baihongzhang` | 地 | 秘籍·残本 | 已入库 | [it_miji_baihongzhang.md](items/manuals/it_miji_baihongzhang.md) | manifest |
-| 7 | 参合指藏本 | `it_miji_canhezhi` | 地 | 秘籍·残本 | 已入库 | [it_miji_canhezhi.md](items/manuals/it_miji_canhezhi.md) | manifest |
-| 8 | 大金刚掌秘籍 | `it_miji_dajingangzhang` | 地 | 秘籍·全本 | 已入库 | [it_miji_dajingangzhang.md](items/manuals/it_miji_dajingangzhang.md) | manifest |
-| 9 | 龙爪手秘本 | `it_miji_longzhaoshou` | 地 | 秘籍·全本 | 已入库 | [it_miji_longzhaoshou.md](items/manuals/it_miji_longzhaoshou.md) | manifest |
-| 10 | 铁布衫秘籍 | `it_miji_tiebushan` | 地 | 秘籍·全本 | 已入库 | [it_miji_tiebushan.md](items/manuals/it_miji_tiebushan.md) | manifest |
-| 11 | 洗髓经藏本 | `it_miji_xisuijing` | 地 | 秘籍·残本 | 已入库 | [it_miji_xisuijing.md](items/manuals/it_miji_xisuijing.md) | manifest |
-| 12 | 白驼毒经残本 | `it_miji_baituodujing` | 玄 | 秘籍·残本 | 已入库 | [it_miji_baituodujing.md](items/manuals/it_miji_baituodujing.md) | manifest |
-| 13 | 两仪心法谱 | `it_miji_liangyixinfa` | 玄 | 秘籍·全本 | 已入库 | [it_miji_liangyixinfa.md](items/manuals/it_miji_liangyixinfa.md) | manifest |
-| 14 | 全真心法抄本 | `it_miji_quanzhenxinfa` | 玄 | 秘籍·抄本 | 已入库 | [it_miji_quanzhenxinfa.md](items/manuals/it_miji_quanzhenxinfa.md) | manifest |
-| 15 | 锁喉擒拿手遗谱 | `it_miji_suohouqinnashou` | 玄 | 秘籍·全本 | 已入库 | [it_miji_suohouqinnashou.md](items/manuals/it_miji_suohouqinnashou.md) | manifest |
-| 16 | 杨家枪法遗谱 | `it_miji_yangjiaqiangfa` | 玄 | 秘籍·全本 | 已入库 | [it_miji_yangjiaqiangfa.md](items/manuals/it_miji_yangjiaqiangfa.md) | manifest |
-| 17 | 罗汉拳谱 | `it_miji_luohanquan` | 黄 | 秘籍·全本 | 已入库 | [it_miji_luohanquan.md](items/manuals/it_miji_luohanquan.md) | manifest |
-| 18 | 太祖长拳谱 | `it_miji_taizuchangquan` | 黄 | 秘籍·全本 | 已入库 | [it_miji_taizuchangquan.md](items/manuals/it_miji_taizuchangquan.md) | manifest |
+| 1 | 百花灵露 | `it_baihualinglu` | 天 | 食材·珍材 | 已通过（作者） | [it_baihualinglu.md](items/food/it_baihualinglu.md) | manifest |
+| 2 | 天山灵蜜 | `it_tianshanlingmi` | 天 | 食材·珍材 | 已通过（作者） | [it_tianshanlingmi.md](items/food/it_tianshanlingmi.md) | manifest |
+| 3 | 天香玉露羹 | `it_tianxiangyulu` | 天 | 食品·汤羹 | 已通过（作者） | [it_tianxiangyulu.md](items/food/it_tianxiangyulu.md) | manifest |
+| 4 | 天香御宴 | `it_tianxiangyuyan` | 天 | 食品·名菜 | 已通过（作者） | [it_tianxiangyuyan.md](items/food/it_tianxiangyuyan.md) | manifest |
+| 5 | 雪域冷膳 | `it_xueyulengchan` | 天 | 食品·腌藏 | 已通过（作者） | [it_xueyulengchan.md](items/food/it_xueyulengchan.md) | manifest |
+| 6 | 百花糕 | `it_baihuagao` | 地 | 食品·点心 | 已通过（作者） | [it_baihuagao.md](items/food/it_baihuagao.md) | manifest |
+| 7 | 冰湖雪藕 | `it_binghuxueou` | 地 | 食材·菜蔬 | 已通过（作者） | [it_binghuxueou.md](items/food/it_binghuxueou.md) | manifest |
+| 8 | 二十四桥明月夜 | `it_ershisiqiaomingyueye` | 地 | 食品·名菜 | 已通过（作者） | [it_ershisiqiaomingyueye.md](items/food/it_ershisiqiaomingyueye.md) | manifest |
+| 9 | 好逑汤 | `it_haoqiutang` | 地 | 食品·汤羹 | 已通过（作者） | [it_haoqiutang.md](items/food/it_haoqiutang.md) | manifest |
+| 10 | 腊八粥 | `it_labazhou` | 地 | 食品·汤羹 | 已通过（作者） | [it_labazhou.md](items/food/it_labazhou.md) | manifest |
+| 11 | 龙肝凤髓料 | `it_longganfengsui` | 地 | 食材·珍材 | 已通过（作者） | [it_longganfengsui.md](items/food/it_longganfengsui.md) | manifest |
+| 12 | 雪山鹿脯 | `it_xueshanlufu` | 地 | 食材·肉 | 已通过（作者） | [it_xueshanlufu.md](items/food/it_xueshanlufu.md) | manifest |
+| 13 | 玉笛谁家听落梅 | `it_yudishuijiatingluomei` | 地 | 食品·名菜 | 已通过（作者） | [it_yudishuijiatingluomei.md](items/food/it_yudishuijiatingluomei.md) | manifest |
+| 14 | 玉露丸子 | `it_yuluwan` | 地 | 食品·点心 | 已通过（作者） | [it_yuluwan.md](items/food/it_yuluwan.md) | manifest |
+| 15 | 御膳 | `it_yushan` | 地 | 食品·名菜 | 已通过（作者） | [it_yushan.md](items/food/it_yushan.md) | manifest |
+| 16 | 芙蓉糕 | `it_furonggao` | 玄 | 食品·点心 | 已通过（作者） | [it_furonggao.md](items/food/it_furonggao.md) | manifest |
+| 17 | 叫化鸡 | `it_jiaohuaji` | 玄 | 食品·菜肴 | 已通过（作者） | [it_jiaohuaji.md](items/food/it_jiaohuaji.md) | manifest |
+| 18 | 酱香牛肉干 | `it_niurougan` | 玄 | 食品·腌藏 | 已通过（作者） | [it_niurougan.md](items/food/it_niurougan.md) | manifest |
+| 19 | 山林香菇 | `it_xianggu` | 玄 | 食材·菜蔬 | 已通过（作者） | [it_xianggu.md](items/food/it_xianggu.md) | manifest |
+| 20 | 雪莲子 | `it_xuelianzi` | 玄 | 食材·珍材 | 已通过（作者） | [it_xuelianzi.md](items/food/it_xuelianzi.md) | manifest |
+| 21 | 玉雪果 | `it_yuxueguo` | 玄 | 食材·果 | 已通过（作者） | [it_yuxueguo.md](items/food/it_yuxueguo.md) | manifest |
+| 22 | 粗面 | `it_cumian` | 黄 | 食材·谷物 | 已通过（作者） | [it_cumian.md](items/food/it_cumian.md) | manifest |
+| 23 | 行旅干粮 | `it_ganliang` | 黄 | 食品·干粮 | 已通过（作者） | [it_ganliang.md](items/food/it_ganliang.md) | manifest |
+| 24 | 桂酥糕 | `it_guisugao` | 黄 | 食品·点心 | 已通过（作者） | [it_guisugao.md](items/food/it_guisugao.md) | manifest |
+| 25 | 火腿尖 | `it_huotuijian` | 黄 | 食材·肉 | 已通过（作者） | [it_huotuijian.md](items/food/it_huotuijian.md) | manifest |
+| 26 | 酱牛肉 | `it_jiangniurou` | 黄 | 食品·菜肴 | 已通过（作者） | [it_jiangniurou.md](items/food/it_jiangniurou.md) | manifest |
+| 27 | 精米 | `it_jingmi` | 黄 | 食材·谷物 | 已通过（作者） | [it_jingmi.md](items/food/it_jingmi.md) | manifest |
+| 28 | 鲜鱼 | `it_xianyu` | 黄 | 食材·水产 | 已通过（作者） | [it_xianyu.md](items/food/it_xianyu.md) | manifest |
 
-### 兵器（24）· 已入库 24
-
-| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
-|---:|---|---|---|---|---|---|---|
-| 1 | 霸王枪 | `eq_bawangqiang` | 天 | 兵器·枪 | 已入库 | [eq_bawangqiang.md](items/weapons/eq_bawangqiang.md) | manifest |
-| 2 | 打狗棒 | `eq_dagoubang` | 天 | 兵器·棍 | 已入库 | [eq_dagoubang.md](items/weapons/eq_dagoubang.md) | manifest |
-| 3 | 金蛇剑 | `eq_jinshejian` | 天 | 兵器·剑 | 已入库 | [eq_jinshejian.md](items/weapons/eq_jinshejian.md) | manifest |
-| 4 | 屠龙刀 | `eq_tulongdao` | 天 | 兵器·重刀 | 已入库 | [eq_tulongdao.md](items/weapons/eq_tulongdao.md) | manifest |
-| 5 | 玄铁重剑 | `eq_xuantiejian` | 天 | 兵器·重剑 | 已入库 | [eq_xuantiejian.md](items/weapons/eq_xuantiejian.md) | manifest |
-| 6 | 倚天剑 | `eq_yitianjian` | 天 | 兵器·剑 | 已入库 | [eq_yitianjian.md](items/weapons/eq_yitianjian.md) | manifest |
-| 7 | 碧玉刀 | `eq_biyudao` | 地 | 兵器·刀 | 已入库 | [eq_biyudao.md](items/weapons/eq_biyudao.md) | manifest |
-| 8 | 君子剑 | `eq_junzijian` | 地 | 兵器·剑 | 已入库 | [eq_junzijian.md](items/weapons/eq_junzijian.md) | manifest |
-| 9 | 离别钩 | `eq_libiegou` | 地 | 兵器·奇门钩 | 已入库 | [eq_libiegou.md](items/weapons/eq_libiegou.md) | manifest |
-| 10 | 烈火旗 | `eq_liehuoqi` | 地 | 兵器·奇门旗 | 已入库 | [eq_liehuoqi.md](items/weapons/eq_liehuoqi.md) | manifest |
-| 11 | 淑女剑 | `eq_shunvjian` | 地 | 兵器·剑 | 已入库 | [eq_shunvjian.md](items/weapons/eq_shunvjian.md) | manifest |
-| 12 | 血刀 | `eq_xuedao` | 地 | 兵器·刀 | 已入库 | [eq_xuedao.md](items/weapons/eq_xuedao.md) | manifest |
-| 13 | 禅杖 | `eq_chanzhang` | 玄 | 兵器·棍杖 | 已入库 | [eq_chanzhang.md](items/weapons/eq_chanzhang.md) | manifest |
-| 14 | 金笛 | `eq_jindi` | 玄 | 兵器·奇门笛 | 已入库 | [eq_jindi.md](items/weapons/eq_jindi.md) | manifest |
-| 15 | 龙泉剑 | `eq_longquanjian` | 玄 | 兵器·剑 | 已入库 | [eq_longquanjian.md](items/weapons/eq_longquanjian.md) | manifest |
-| 16 | 三节棍 | `eq_sanjiegun` | 玄 | 兵器·鞭索 | 已入库 | [eq_sanjiegun.md](items/weapons/eq_sanjiegun.md) | manifest |
-| 17 | 铁胆 | `eq_tiedan` | 玄 | 兵器·奇门 | 已入库 | [eq_tiedan.md](items/weapons/eq_tiedan.md) | manifest |
-| 18 | 雁翎刀 | `eq_yanlingdao` | 玄 | 兵器·刀 | 已入库 | [eq_yanlingdao.md](items/weapons/eq_yanlingdao.md) | manifest |
-| 19 | 单刀 | `eq_dandao` | 黄 | 兵器·刀 | 已入库 | [eq_dandao.md](items/weapons/eq_dandao.md) | manifest |
-| 20 | 短匕 | `eq_duanbi` | 黄 | 兵器·奇门匕 | 已入库 | [eq_duanbi.md](items/weapons/eq_duanbi.md) | manifest |
-| 21 | 花枪 | `eq_huaqiang` | 黄 | 兵器·枪 | 已入库 | [eq_huaqiang.md](items/weapons/eq_huaqiang.md) | manifest |
-| 22 | 齐眉棍 | `eq_qimeigun` | 黄 | 兵器·棍 | 已入库 | [eq_qimeigun.md](items/weapons/eq_qimeigun.md) | manifest |
-| 23 | 青钢剑 | `eq_qinggangjian` | 黄 | 兵器·剑 | 已入库 | [eq_qinggangjian.md](items/weapons/eq_qinggangjian.md) | manifest |
-| 24 | 软鞭 | `eq_ruanbian` | 黄 | 兵器·鞭索 | 已入库 | [eq_ruanbian.md](items/weapons/eq_ruanbian.md) | manifest |
-
-### 衣物（12）· 已入库 12
+### 武学秘籍（18）· 已通过（作者） 18
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
-| 1 | 天蚕宝衣 | `eq_tianchanbaoyi` | 天 | 衣物·宝衣 | 已入库 | [eq_tianchanbaoyi.md](items/clothing/eq_tianchanbaoyi.md) | manifest |
-| 2 | 乌蚕衣 | `eq_wucanyi` | 天 | 衣物·宝衣 | 已入库 | [eq_wucanyi.md](items/clothing/eq_wucanyi.md) | manifest |
-| 3 | 紫霞轻衣 | `eq_zixiaqingyi` | 天 | 衣物·宝衣 | 已入库 | [eq_zixiaqingyi.md](items/clothing/eq_zixiaqingyi.md) | manifest |
-| 4 | 桃花锦袍 | `eq_taohuajinpao` | 地 | 衣物·礼服 | 已入库 | [eq_taohuajinpao.md](items/clothing/eq_taohuajinpao.md) | manifest |
-| 5 | 西域胡服 | `eq_xiyuhufu` | 地 | 衣物·骑装 | 已入库 | [eq_xiyuhufu.md](items/clothing/eq_xiyuhufu.md) | manifest |
-| 6 | 云锦鹤氅 | `eq_yunjinhechang` | 地 | 衣物·氅服 | 已入库 | [eq_yunjinhechang.md](items/clothing/eq_yunjinhechang.md) | manifest |
-| 7 | 青布道袍 | `eq_daopao` | 玄 | 衣物·袍服 | 已入库 | [eq_daopao.md](items/clothing/eq_daopao.md) | manifest |
-| 8 | 黄马褂 | `eq_huangmagua` | 玄 | 衣物·礼服 | 已入库 | [eq_huangmagua.md](items/clothing/eq_huangmagua.md) | manifest |
-| 9 | 夜行衣 | `eq_yexingyi` | 玄 | 衣物·潜行服 | 已入库 | [eq_yexingyi.md](items/clothing/eq_yexingyi.md) | manifest |
-| 10 | 粗布短褐 | `eq_buyi` | 黄 | 衣物·便服 | 已入库 | [eq_buyi.md](items/clothing/eq_buyi.md) | manifest |
-| 11 | 江湖劲装 | `eq_jinzhuang` | 黄 | 衣物·劲装 | 已入库 | [eq_jinzhuang.md](items/clothing/eq_jinzhuang.md) | manifest |
-| 12 | 素色僧衣 | `eq_sengyi` | 黄 | 衣物·袍服 | 已入库 | [eq_sengyi.md](items/clothing/eq_sengyi.md) | manifest |
+| 1 | 打狗棒法残谱 | `it_miji_dagou_can` | 天 | 秘籍·残本 | 已通过（作者） | [it_miji_dagou_can.md](items/manuals/it_miji_dagou_can.md) | manifest |
+| 2 | 斗转星移藏本 | `it_miji_douzhuan` | 天 | 秘籍·残本 | 已通过（作者） | [it_miji_douzhuan.md](items/manuals/it_miji_douzhuan.md) | manifest |
+| 3 | 九阴真经上卷 | `it_miji_jiuyin_shang` | 天 | 秘籍·原本 | 已通过（作者） | [it_miji_jiuyin_shang.md](items/manuals/it_miji_jiuyin_shang.md) | manifest |
+| 4 | 九阴真经下卷 | `it_miji_jiuyin_xia` | 天 | 秘籍·原本 | 已通过（作者） | [it_miji_jiuyin_xia.md](items/manuals/it_miji_jiuyin_xia.md) | manifest |
+| 5 | 降龙十八掌残本 | `it_miji_xianglong18_can` | 天 | 秘籍·残本 | 已通过（作者） | [it_miji_xianglong18_can.md](items/manuals/it_miji_xianglong18_can.md) | manifest |
+| 6 | 白虹掌力藏本 | `it_miji_baihongzhang` | 地 | 秘籍·残本 | 已通过（作者） | [it_miji_baihongzhang.md](items/manuals/it_miji_baihongzhang.md) | manifest |
+| 7 | 参合指藏本 | `it_miji_canhezhi` | 地 | 秘籍·残本 | 已通过（作者） | [it_miji_canhezhi.md](items/manuals/it_miji_canhezhi.md) | manifest |
+| 8 | 大金刚掌秘籍 | `it_miji_dajingangzhang` | 地 | 秘籍·全本 | 已通过（作者） | [it_miji_dajingangzhang.md](items/manuals/it_miji_dajingangzhang.md) | manifest |
+| 9 | 龙爪手秘本 | `it_miji_longzhaoshou` | 地 | 秘籍·全本 | 已通过（作者） | [it_miji_longzhaoshou.md](items/manuals/it_miji_longzhaoshou.md) | manifest |
+| 10 | 铁布衫秘籍 | `it_miji_tiebushan` | 地 | 秘籍·全本 | 已通过（作者） | [it_miji_tiebushan.md](items/manuals/it_miji_tiebushan.md) | manifest |
+| 11 | 洗髓经藏本 | `it_miji_xisuijing` | 地 | 秘籍·残本 | 已通过（作者） | [it_miji_xisuijing.md](items/manuals/it_miji_xisuijing.md) | manifest |
+| 12 | 白驼毒经残本 | `it_miji_baituodujing` | 玄 | 秘籍·残本 | 已通过（作者） | [it_miji_baituodujing.md](items/manuals/it_miji_baituodujing.md) | manifest |
+| 13 | 两仪心法谱 | `it_miji_liangyixinfa` | 玄 | 秘籍·全本 | 已通过（作者） | [it_miji_liangyixinfa.md](items/manuals/it_miji_liangyixinfa.md) | manifest |
+| 14 | 全真心法抄本 | `it_miji_quanzhenxinfa` | 玄 | 秘籍·抄本 | 已通过（作者） | [it_miji_quanzhenxinfa.md](items/manuals/it_miji_quanzhenxinfa.md) | manifest |
+| 15 | 锁喉擒拿手遗谱 | `it_miji_suohouqinnashou` | 玄 | 秘籍·全本 | 已通过（作者） | [it_miji_suohouqinnashou.md](items/manuals/it_miji_suohouqinnashou.md) | manifest |
+| 16 | 杨家枪法遗谱 | `it_miji_yangjiaqiangfa` | 玄 | 秘籍·全本 | 已通过（作者） | [it_miji_yangjiaqiangfa.md](items/manuals/it_miji_yangjiaqiangfa.md) | manifest |
+| 17 | 罗汉拳谱 | `it_miji_luohanquan` | 黄 | 秘籍·全本 | 已通过（作者） | [it_miji_luohanquan.md](items/manuals/it_miji_luohanquan.md) | manifest |
+| 18 | 太祖长拳谱 | `it_miji_taizuchangquan` | 黄 | 秘籍·全本 | 已通过（作者） | [it_miji_taizuchangquan.md](items/manuals/it_miji_taizuchangquan.md) | manifest |
 
-### 制式盔甲（8）· 工作区候选 8
-
-| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
-|---:|---|---|---|---|---|---|---|
-| 1 | 清制御前侍卫甲 | `eq_qingyulinjia` | 天 | 制式盔甲·清 | 工作区候选 | [eq_qingyulinjia.md](items/armor/eq_qingyulinjia.md) | manifest |
-| 2 | 元宿卫怯薛甲 | `eq_yuansuweiqiejia` | 天 | 制式盔甲·元 | 工作区候选 | [eq_yuansuweiqiejia.md](items/armor/eq_yuansuweiqiejia.md) | manifest |
-| 3 | 明制锦衣卫甲 | `eq_mingjinyiweijia` | 地 | 制式盔甲·明 | 工作区候选 | [eq_mingjinyiweijia.md](items/armor/eq_mingjinyiweijia.md) | manifest |
-| 4 | 宋制禁军步人甲 | `eq_songjinjunburenjia` | 地 | 制式盔甲·宋 | 工作区候选 | [eq_songjinjunburenjia.md](items/armor/eq_songjinjunburenjia.md) | manifest |
-| 5 | 明制卫所甲 | `eq_mingweisuojia` | 玄 | 制式盔甲·明 | 工作区候选 | [eq_mingweisuojia.md](items/armor/eq_mingweisuojia.md) | manifest |
-| 6 | 元制骑兵札甲 | `eq_yuanqibingjia` | 玄 | 制式盔甲·元 | 工作区候选 | [eq_yuanqibingjia.md](items/armor/eq_yuanqibingjia.md) | manifest |
-| 7 | 清制皂隶衣甲 | `eq_qingzaolijia` | 黄 | 制式盔甲·清 | 工作区候选 | [eq_qingzaolijia.md](items/armor/eq_qingzaolijia.md) | manifest |
-| 8 | 宋制巡役甲 | `eq_songxunyijia` | 黄 | 制式盔甲·宋 | 工作区候选 | [eq_songxunyijia.md](items/armor/eq_songxunyijia.md) | manifest |
-
-### 内甲（8）· 已入库 8
+### 兵器（24）· 已通过（作者） 24
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
-| 1 | 软猬甲 | `eq_ruanweijia` | 天 | 内甲·猬刺宝甲 | 已入库 | [eq_ruanweijia.md](items/innerarmor/eq_ruanweijia.md) | manifest |
-| 2 | 天蚕丝软甲 | `eq_tianchansiruanjia` | 天 | 内甲·蚕丝软甲 | 已入库 | [eq_tianchansiruanjia.md](items/innerarmor/eq_tianchansiruanjia.md) | manifest |
-| 3 | 金丝背心 | `eq_jinsibeixin` | 地 | 内甲·金丝背心 | 已入库 | [eq_jinsibeixin.md](items/innerarmor/eq_jinsibeixin.md) | manifest |
-| 4 | 玄锁软甲 | `eq_xuansuoruanjia` | 地 | 内甲·锁甲 | 已入库 | [eq_xuansuoruanjia.md](items/innerarmor/eq_xuansuoruanjia.md) | manifest |
-| 5 | 金丝甲 | `eq_jinsijia` | 玄 | 内甲·金丝 | 已入库 | [eq_jinsijia.md](items/innerarmor/eq_jinsijia.md) | manifest |
-| 6 | 软丝甲 | `eq_ruansijia` | 玄 | 内甲·丝甲 | 已入库 | [eq_ruansijia.md](items/innerarmor/eq_ruansijia.md) | manifest |
-| 7 | 皮绒贴甲 | `eq_pirutiejia` | 黄 | 内甲·皮甲 | 已入库 | [eq_pirutiejia.md](items/innerarmor/eq_pirutiejia.md) | manifest |
-| 8 | 竹丝贴甲 | `eq_zhusutiejia` | 黄 | 内甲·编织 | 已入库 | [eq_zhusutiejia.md](items/innerarmor/eq_zhusutiejia.md) | manifest |
+| 1 | 霸王枪 | `eq_bawangqiang` | 天 | 兵器·枪 | 已通过（作者） | [eq_bawangqiang.md](items/weapons/eq_bawangqiang.md) | manifest |
+| 2 | 打狗棒 | `eq_dagoubang` | 天 | 兵器·棍 | 已通过（作者） | [eq_dagoubang.md](items/weapons/eq_dagoubang.md) | manifest |
+| 3 | 金蛇剑 | `eq_jinshejian` | 天 | 兵器·剑 | 已通过（作者） | [eq_jinshejian.md](items/weapons/eq_jinshejian.md) | manifest |
+| 4 | 屠龙刀 | `eq_tulongdao` | 天 | 兵器·重刀 | 已通过（作者） | [eq_tulongdao.md](items/weapons/eq_tulongdao.md) | manifest |
+| 5 | 玄铁重剑 | `eq_xuantiejian` | 天 | 兵器·重剑 | 已通过（作者） | [eq_xuantiejian.md](items/weapons/eq_xuantiejian.md) | manifest |
+| 6 | 倚天剑 | `eq_yitianjian` | 天 | 兵器·剑 | 已通过（作者） | [eq_yitianjian.md](items/weapons/eq_yitianjian.md) | manifest |
+| 7 | 碧玉刀 | `eq_biyudao` | 地 | 兵器·刀 | 已通过（作者） | [eq_biyudao.md](items/weapons/eq_biyudao.md) | manifest |
+| 8 | 君子剑 | `eq_junzijian` | 地 | 兵器·剑 | 已通过（作者） | [eq_junzijian.md](items/weapons/eq_junzijian.md) | manifest |
+| 9 | 离别钩 | `eq_libiegou` | 地 | 兵器·奇门钩 | 已通过（作者） | [eq_libiegou.md](items/weapons/eq_libiegou.md) | manifest |
+| 10 | 烈火旗 | `eq_liehuoqi` | 地 | 兵器·奇门旗 | 已通过（作者） | [eq_liehuoqi.md](items/weapons/eq_liehuoqi.md) | manifest |
+| 11 | 淑女剑 | `eq_shunvjian` | 地 | 兵器·剑 | 已通过（作者） | [eq_shunvjian.md](items/weapons/eq_shunvjian.md) | manifest |
+| 12 | 血刀 | `eq_xuedao` | 地 | 兵器·刀 | 已通过（作者） | [eq_xuedao.md](items/weapons/eq_xuedao.md) | manifest |
+| 13 | 禅杖 | `eq_chanzhang` | 玄 | 兵器·棍杖 | 已通过（作者） | [eq_chanzhang.md](items/weapons/eq_chanzhang.md) | manifest |
+| 14 | 金笛 | `eq_jindi` | 玄 | 兵器·奇门笛 | 已通过（作者） | [eq_jindi.md](items/weapons/eq_jindi.md) | manifest |
+| 15 | 龙泉剑 | `eq_longquanjian` | 玄 | 兵器·剑 | 已通过（作者） | [eq_longquanjian.md](items/weapons/eq_longquanjian.md) | manifest |
+| 16 | 三节棍 | `eq_sanjiegun` | 玄 | 兵器·鞭索 | 已通过（作者） | [eq_sanjiegun.md](items/weapons/eq_sanjiegun.md) | manifest |
+| 17 | 铁胆 | `eq_tiedan` | 玄 | 兵器·奇门 | 已通过（作者） | [eq_tiedan.md](items/weapons/eq_tiedan.md) | manifest |
+| 18 | 雁翎刀 | `eq_yanlingdao` | 玄 | 兵器·刀 | 已通过（作者） | [eq_yanlingdao.md](items/weapons/eq_yanlingdao.md) | manifest |
+| 19 | 单刀 | `eq_dandao` | 黄 | 兵器·刀 | 已通过（作者） | [eq_dandao.md](items/weapons/eq_dandao.md) | manifest |
+| 20 | 短匕 | `eq_duanbi` | 黄 | 兵器·奇门匕 | 已通过（作者） | [eq_duanbi.md](items/weapons/eq_duanbi.md) | manifest |
+| 21 | 花枪 | `eq_huaqiang` | 黄 | 兵器·枪 | 已通过（作者） | [eq_huaqiang.md](items/weapons/eq_huaqiang.md) | manifest |
+| 22 | 齐眉棍 | `eq_qimeigun` | 黄 | 兵器·棍 | 已通过（作者） | [eq_qimeigun.md](items/weapons/eq_qimeigun.md) | manifest |
+| 23 | 青钢剑 | `eq_qinggangjian` | 黄 | 兵器·剑 | 已通过（作者） | [eq_qinggangjian.md](items/weapons/eq_qinggangjian.md) | manifest |
+| 24 | 软鞭 | `eq_ruanbian` | 黄 | 兵器·鞭索 | 已通过（作者） | [eq_ruanbian.md](items/weapons/eq_ruanbian.md) | manifest |
 
-### 护肩 / 披风 / 头饰（12）· 已入库 12
-
-| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
-|---:|---|---|---|---|---|---|---|
-| 1 | 龙鳞护肩 | `eq_longlinpijian` | 天 | 护肩·宝肩 | 已入库 | [eq_longlinpijian.md](items/accessories/eq_longlinpijian.md) | manifest |
-| 2 | 七星宝冠 | `eq_qixingbaoguan` | 天 | 头饰·宝冠 | 已入库 | [eq_qixingbaoguan.md](items/accessories/eq_qixingbaoguan.md) | manifest |
-| 3 | 天风披风 | `eq_tianfengpifeng` | 天 | 披风·宝披 | 已入库 | [eq_tianfengpifeng.md](items/accessories/eq_tianfengpifeng.md) | manifest |
-| 4 | 鹤羽大氅 | `eq_heyudachang` | 地 | 披风·大氅 | 已入库 | [eq_heyudachang.md](items/accessories/eq_heyudachang.md) | manifest |
-| 5 | 玄铁披肩 | `eq_xuantiepijian` | 地 | 护肩·金属 | 已入库 | [eq_xuantiepijian.md](items/accessories/eq_xuantiepijian.md) | manifest |
-| 6 | 紫金发冠 | `eq_zijinfaguan` | 地 | 头饰·冠 | 已入库 | [eq_zijinfaguan.md](items/accessories/eq_zijinfaguan.md) | manifest |
-| 7 | 白玉冠 | `eq_baiyuguan` | 玄 | 头饰·冠 | 已入库 | [eq_baiyuguan.md](items/accessories/eq_baiyuguan.md) | manifest |
-| 8 | 鳞片护肩 | `eq_linpijian` | 玄 | 护肩·鳞甲 | 已入库 | [eq_linpijian.md](items/accessories/eq_linpijian.md) | manifest |
-| 9 | 乌夜披风 | `eq_wuyepifeng` | 玄 | 披风·潜行 | 已入库 | [eq_wuyepifeng.md](items/accessories/eq_wuyepifeng.md) | manifest |
-| 10 | 布面披风 | `eq_bumianpifeng` | 黄 | 披风·布 | 已入库 | [eq_bumianpifeng.md](items/accessories/eq_bumianpifeng.md) | manifest |
-| 11 | 皮护肩 | `eq_pijian` | 黄 | 护肩·皮革 | 已入库 | [eq_pijian.md](items/accessories/eq_pijian.md) | manifest |
-| 12 | 青布头巾 | `eq_qingjin` | 黄 | 头饰·巾 | 已入库 | [eq_qingjin.md](items/accessories/eq_qingjin.md) | manifest |
-
-### 鞋（8）· 已入库 8
-
-| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
-|---:|---|---|---|---|---|---|---|
-| 1 | 天马履 | `eq_tianmalv` | 天 | 鞋·宝履 | 已入库 | [eq_tianmalv.md](items/shoes/eq_tianmalv.md) | manifest |
-| 2 | 无影履 | `eq_wuyinglv` | 天 | 鞋·宝履 | 已入库 | [eq_wuyinglv.md](items/shoes/eq_wuyinglv.md) | manifest |
-| 3 | 踏云履 | `eq_tayunlv` | 地 | 鞋·名履 | 已入库 | [eq_tayunlv.md](items/shoes/eq_tayunlv.md) | manifest |
-| 4 | 雪行靴 | `eq_xuexingxue` | 地 | 鞋·裘靴 | 已入库 | [eq_xuexingxue.md](items/shoes/eq_xuexingxue.md) | manifest |
-| 5 | 飞羽靴 | `eq_feiyuxue` | 玄 | 鞋·轻靴 | 已入库 | [eq_feiyuxue.md](items/shoes/eq_feiyuxue.md) | manifest |
-| 6 | 青云履 | `eq_qingyunlv` | 玄 | 鞋·布履 | 已入库 | [eq_qingyunlv.md](items/shoes/eq_qingyunlv.md) | manifest |
-| 7 | 捕快快靴 | `eq_bukuaixue` | 黄 | 鞋·布靴 | 已入库 | [eq_bukuaixue.md](items/shoes/eq_bukuaixue.md) | manifest |
-| 8 | 麻编草鞋 | `eq_caoxie` | 黄 | 鞋·草鞋 | 已入库 | [eq_caoxie.md](items/shoes/eq_caoxie.md) | manifest |
-
-### 腰带（8）· 已入库 8
+### 衣物（12）· 已通过（作者） 12
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
-| 1 | 乾坤宝带 | `eq_qiankundaidai` | 天 | 腰带·宝带 | 已入库 | [eq_qiankundaidai.md](items/belts/eq_qiankundaidai.md) | manifest |
-| 2 | 天蚕腰带 | `eq_tianchanyaodai` | 天 | 腰带·丝带 | 已入库 | [eq_tianchanyaodai.md](items/belts/eq_tianchanyaodai.md) | manifest |
-| 3 | 玄铁护腰 | `eq_xuantiedai` | 地 | 腰带·金属 | 已入库 | [eq_xuantiedai.md](items/belts/eq_xuantiedai.md) | manifest |
-| 4 | 云龙玉带 | `eq_yunlongyudai` | 地 | 腰带·玉带 | 已入库 | [eq_yunlongyudai.md](items/belts/eq_yunlongyudai.md) | manifest |
-| 5 | 百纳腰封 | `eq_baonadai` | 玄 | 腰带·布带 | 已入库 | [eq_baonadai.md](items/belts/eq_baonadai.md) | manifest |
-| 6 | 青玉束带 | `eq_qingyudai` | 玄 | 腰带·玉带 | 已入库 | [eq_qingyudai.md](items/belts/eq_qingyudai.md) | manifest |
-| 7 | 麻绳腰带 | `eq_mayaodai` | 黄 | 腰带·布绳 | 已入库 | [eq_mayaodai.md](items/belts/eq_mayaodai.md) | manifest |
-| 8 | 皮护腰 | `eq_pihudai` | 黄 | 腰带·皮革 | 已入库 | [eq_pihudai.md](items/belts/eq_pihudai.md) | manifest |
+| 1 | 天蚕宝衣 | `eq_tianchanbaoyi` | 天 | 衣物·宝衣 | 已通过（作者） | [eq_tianchanbaoyi.md](items/clothing/eq_tianchanbaoyi.md) | manifest |
+| 2 | 乌蚕衣 | `eq_wucanyi` | 天 | 衣物·宝衣 | 已通过（作者） | [eq_wucanyi.md](items/clothing/eq_wucanyi.md) | manifest |
+| 3 | 紫霞轻衣 | `eq_zixiaqingyi` | 天 | 衣物·宝衣 | 已通过（作者） | [eq_zixiaqingyi.md](items/clothing/eq_zixiaqingyi.md) | manifest |
+| 4 | 桃花锦袍 | `eq_taohuajinpao` | 地 | 衣物·礼服 | 已通过（作者） | [eq_taohuajinpao.md](items/clothing/eq_taohuajinpao.md) | manifest |
+| 5 | 西域胡服 | `eq_xiyuhufu` | 地 | 衣物·骑装 | 已通过（作者） | [eq_xiyuhufu.md](items/clothing/eq_xiyuhufu.md) | manifest |
+| 6 | 云锦鹤氅 | `eq_yunjinhechang` | 地 | 衣物·氅服 | 已通过（作者） | [eq_yunjinhechang.md](items/clothing/eq_yunjinhechang.md) | manifest |
+| 7 | 青布道袍 | `eq_daopao` | 玄 | 衣物·袍服 | 已通过（作者） | [eq_daopao.md](items/clothing/eq_daopao.md) | manifest |
+| 8 | 黄马褂 | `eq_huangmagua` | 玄 | 衣物·礼服 | 已通过（作者） | [eq_huangmagua.md](items/clothing/eq_huangmagua.md) | manifest |
+| 9 | 夜行衣 | `eq_yexingyi` | 玄 | 衣物·潜行服 | 已通过（作者） | [eq_yexingyi.md](items/clothing/eq_yexingyi.md) | manifest |
+| 10 | 粗布短褐 | `eq_buyi` | 黄 | 衣物·便服 | 已通过（作者） | [eq_buyi.md](items/clothing/eq_buyi.md) | manifest |
+| 11 | 江湖劲装 | `eq_jinzhuang` | 黄 | 衣物·劲装 | 已通过（作者） | [eq_jinzhuang.md](items/clothing/eq_jinzhuang.md) | manifest |
+| 12 | 素色僧衣 | `eq_sengyi` | 黄 | 衣物·袍服 | 已通过（作者） | [eq_sengyi.md](items/clothing/eq_sengyi.md) | manifest |
+
+### 制式盔甲（8）· 待重出 8
+
+| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
+|---:|---|---|---|---|---|---|---|
+| 1 | 清制御前侍卫甲 | `eq_qingyulinjia` | 天 | 制式盔甲·清 | 待重出 | [eq_qingyulinjia.md](items/armor/eq_qingyulinjia.md) | manifest |
+| 2 | 元宿卫怯薛甲 | `eq_yuansuweiqiejia` | 天 | 制式盔甲·元 | 待重出 | [eq_yuansuweiqiejia.md](items/armor/eq_yuansuweiqiejia.md) | manifest |
+| 3 | 明制锦衣卫甲 | `eq_mingjinyiweijia` | 地 | 制式盔甲·明 | 待重出 | [eq_mingjinyiweijia.md](items/armor/eq_mingjinyiweijia.md) | manifest |
+| 4 | 宋制禁军步人甲 | `eq_songjinjunburenjia` | 地 | 制式盔甲·宋 | 待重出 | [eq_songjinjunburenjia.md](items/armor/eq_songjinjunburenjia.md) | manifest |
+| 5 | 明制卫所甲 | `eq_mingweisuojia` | 玄 | 制式盔甲·明 | 待重出 | [eq_mingweisuojia.md](items/armor/eq_mingweisuojia.md) | manifest |
+| 6 | 元制骑兵札甲 | `eq_yuanqibingjia` | 玄 | 制式盔甲·元 | 待重出 | [eq_yuanqibingjia.md](items/armor/eq_yuanqibingjia.md) | manifest |
+| 7 | 清制皂隶衣甲 | `eq_qingzaolijia` | 黄 | 制式盔甲·清 | 待重出 | [eq_qingzaolijia.md](items/armor/eq_qingzaolijia.md) | manifest |
+| 8 | 宋制巡役甲 | `eq_songxunyijia` | 黄 | 制式盔甲·宋 | 待重出 | [eq_songxunyijia.md](items/armor/eq_songxunyijia.md) | manifest |
+
+### 内甲（8）· 已通过（作者） 8
+
+| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
+|---:|---|---|---|---|---|---|---|
+| 1 | 软猬甲 | `eq_ruanweijia` | 天 | 内甲·猬刺宝甲 | 已通过（作者） | [eq_ruanweijia.md](items/innerarmor/eq_ruanweijia.md) | manifest |
+| 2 | 天蚕丝软甲 | `eq_tianchansiruanjia` | 天 | 内甲·蚕丝软甲 | 已通过（作者） | [eq_tianchansiruanjia.md](items/innerarmor/eq_tianchansiruanjia.md) | manifest |
+| 3 | 金丝背心 | `eq_jinsibeixin` | 地 | 内甲·金丝背心 | 已通过（作者） | [eq_jinsibeixin.md](items/innerarmor/eq_jinsibeixin.md) | manifest |
+| 4 | 玄锁软甲 | `eq_xuansuoruanjia` | 地 | 内甲·锁甲 | 已通过（作者） | [eq_xuansuoruanjia.md](items/innerarmor/eq_xuansuoruanjia.md) | manifest |
+| 5 | 金丝甲 | `eq_jinsijia` | 玄 | 内甲·金丝 | 已通过（作者） | [eq_jinsijia.md](items/innerarmor/eq_jinsijia.md) | manifest |
+| 6 | 软丝甲 | `eq_ruansijia` | 玄 | 内甲·丝甲 | 已通过（作者） | [eq_ruansijia.md](items/innerarmor/eq_ruansijia.md) | manifest |
+| 7 | 皮绒贴甲 | `eq_pirutiejia` | 黄 | 内甲·皮甲 | 已通过（作者） | [eq_pirutiejia.md](items/innerarmor/eq_pirutiejia.md) | manifest |
+| 8 | 竹丝贴甲 | `eq_zhusutiejia` | 黄 | 内甲·编织 | 已通过（作者） | [eq_zhusutiejia.md](items/innerarmor/eq_zhusutiejia.md) | manifest |
+
+### 护肩 / 披风 / 头饰（12）· 已通过（作者） 12
+
+| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
+|---:|---|---|---|---|---|---|---|
+| 1 | 龙鳞护肩 | `eq_longlinpijian` | 天 | 护肩·宝肩 | 已通过（作者） | [eq_longlinpijian.md](items/accessories/eq_longlinpijian.md) | manifest |
+| 2 | 七星宝冠 | `eq_qixingbaoguan` | 天 | 头饰·宝冠 | 已通过（作者） | [eq_qixingbaoguan.md](items/accessories/eq_qixingbaoguan.md) | manifest |
+| 3 | 天风披风 | `eq_tianfengpifeng` | 天 | 披风·宝披 | 已通过（作者） | [eq_tianfengpifeng.md](items/accessories/eq_tianfengpifeng.md) | manifest |
+| 4 | 鹤羽大氅 | `eq_heyudachang` | 地 | 披风·大氅 | 已通过（作者） | [eq_heyudachang.md](items/accessories/eq_heyudachang.md) | manifest |
+| 5 | 玄铁披肩 | `eq_xuantiepijian` | 地 | 护肩·金属 | 已通过（作者） | [eq_xuantiepijian.md](items/accessories/eq_xuantiepijian.md) | manifest |
+| 6 | 紫金发冠 | `eq_zijinfaguan` | 地 | 头饰·冠 | 已通过（作者） | [eq_zijinfaguan.md](items/accessories/eq_zijinfaguan.md) | manifest |
+| 7 | 白玉冠 | `eq_baiyuguan` | 玄 | 头饰·冠 | 已通过（作者） | [eq_baiyuguan.md](items/accessories/eq_baiyuguan.md) | manifest |
+| 8 | 鳞片护肩 | `eq_linpijian` | 玄 | 护肩·鳞甲 | 已通过（作者） | [eq_linpijian.md](items/accessories/eq_linpijian.md) | manifest |
+| 9 | 乌夜披风 | `eq_wuyepifeng` | 玄 | 披风·潜行 | 已通过（作者） | [eq_wuyepifeng.md](items/accessories/eq_wuyepifeng.md) | manifest |
+| 10 | 布面披风 | `eq_bumianpifeng` | 黄 | 披风·布 | 已通过（作者） | [eq_bumianpifeng.md](items/accessories/eq_bumianpifeng.md) | manifest |
+| 11 | 皮护肩 | `eq_pijian` | 黄 | 护肩·皮革 | 已通过（作者） | [eq_pijian.md](items/accessories/eq_pijian.md) | manifest |
+| 12 | 青布头巾 | `eq_qingjin` | 黄 | 头饰·巾 | 已通过（作者） | [eq_qingjin.md](items/accessories/eq_qingjin.md) | manifest |
+
+### 鞋（8）· 已通过（作者） 8
+
+| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
+|---:|---|---|---|---|---|---|---|
+| 1 | 天马履 | `eq_tianmalv` | 天 | 鞋·宝履 | 已通过（作者） | [eq_tianmalv.md](items/shoes/eq_tianmalv.md) | manifest |
+| 2 | 无影履 | `eq_wuyinglv` | 天 | 鞋·宝履 | 已通过（作者） | [eq_wuyinglv.md](items/shoes/eq_wuyinglv.md) | manifest |
+| 3 | 踏云履 | `eq_tayunlv` | 地 | 鞋·名履 | 已通过（作者） | [eq_tayunlv.md](items/shoes/eq_tayunlv.md) | manifest |
+| 4 | 雪行靴 | `eq_xuexingxue` | 地 | 鞋·裘靴 | 已通过（作者） | [eq_xuexingxue.md](items/shoes/eq_xuexingxue.md) | manifest |
+| 5 | 飞羽靴 | `eq_feiyuxue` | 玄 | 鞋·轻靴 | 已通过（作者） | [eq_feiyuxue.md](items/shoes/eq_feiyuxue.md) | manifest |
+| 6 | 青云履 | `eq_qingyunlv` | 玄 | 鞋·布履 | 已通过（作者） | [eq_qingyunlv.md](items/shoes/eq_qingyunlv.md) | manifest |
+| 7 | 捕快快靴 | `eq_bukuaixue` | 黄 | 鞋·布靴 | 已通过（作者） | [eq_bukuaixue.md](items/shoes/eq_bukuaixue.md) | manifest |
+| 8 | 麻编草鞋 | `eq_caoxie` | 黄 | 鞋·草鞋 | 已通过（作者） | [eq_caoxie.md](items/shoes/eq_caoxie.md) | manifest |
+
+### 腰带（8）· 已通过（作者） 8
+
+| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
+|---:|---|---|---|---|---|---|---|
+| 1 | 乾坤宝带 | `eq_qiankundaidai` | 天 | 腰带·宝带 | 已通过（作者） | [eq_qiankundaidai.md](items/belts/eq_qiankundaidai.md) | manifest |
+| 2 | 天蚕腰带 | `eq_tianchanyaodai` | 天 | 腰带·丝带 | 已通过（作者） | [eq_tianchanyaodai.md](items/belts/eq_tianchanyaodai.md) | manifest |
+| 3 | 玄铁护腰 | `eq_xuantiedai` | 地 | 腰带·金属 | 已通过（作者） | [eq_xuantiedai.md](items/belts/eq_xuantiedai.md) | manifest |
+| 4 | 云龙玉带 | `eq_yunlongyudai` | 地 | 腰带·玉带 | 已通过（作者） | [eq_yunlongyudai.md](items/belts/eq_yunlongyudai.md) | manifest |
+| 5 | 百纳腰封 | `eq_baonadai` | 玄 | 腰带·布带 | 已通过（作者） | [eq_baonadai.md](items/belts/eq_baonadai.md) | manifest |
+| 6 | 青玉束带 | `eq_qingyudai` | 玄 | 腰带·玉带 | 已通过（作者） | [eq_qingyudai.md](items/belts/eq_qingyudai.md) | manifest |
+| 7 | 麻绳腰带 | `eq_mayaodai` | 黄 | 腰带·布绳 | 已通过（作者） | [eq_mayaodai.md](items/belts/eq_mayaodai.md) | manifest |
+| 8 | 皮护腰 | `eq_pihudai` | 黄 | 腰带·皮革 | 已通过（作者） | [eq_pihudai.md](items/belts/eq_pihudai.md) | manifest |
 
 ### 暗器（12）· 待重出（候选是代码画的假图） 12
 

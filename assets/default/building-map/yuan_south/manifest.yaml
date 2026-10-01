@@ -17,7 +17,8 @@
   generation_id: 1f0da54c-26cd-4e6f-a2a2-ff77727afc89
   size: 480x480
   sha256: b1a0dd4fa07e72c795735302e2a7aa5972f3964e095b0aefbfe364d6b9fa13d0
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_house_small
     footprint:
@@ -63,7 +64,8 @@
   generation_id: 68d3a326-18a6-4d0b-b277-315c3be4fe26
   size: 656x656
   sha256: 86df4a010376fdcf7c380740d434663b1f2f7dc712b12f55f6e910bc30e7fcdd
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_house_large
     footprint:
@@ -109,7 +111,8 @@
   generation_id: 22e1ba43-7ecf-42c8-afe6-982d016028d6
   size: 656x480
   sha256: a1fd6e6bc0b0e6d8e16b14df31de89a04f6e343b24749c76a3b5a5d0299f8f91
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_courtyard
     footprint:
@@ -154,7 +157,8 @@
   generation_id: b5172ed5-2a32-4ee9-900d-2dba99df5ac6
   size: 448x432
   sha256: 80d7ef6434e593e9989fb3fe2f9ce6551bbb712701c652a663fc506a178e97ea
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_shop_1f
     footprint:
@@ -200,7 +204,8 @@
   generation_id: 07483c40-5355-4bd4-86b1-bc68bf6bf01c
   size: 544x496
   sha256: f2a639caf0693a620e62c3bf91381659e755df9ea89edc32546ee9f85619d8b0
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_shop_2f
     footprint:
@@ -246,7 +251,8 @@
   generation_id: b3c61547-c0d5-4751-9937-688b13290b16
   size: 752x720
   sha256: 204e9cd38034f8ff2ca4f6d54e7171fd0dc171d669d2b86e2a8413f83ec99be5
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_inn
     footprint:
@@ -292,7 +298,8 @@
   generation_id: aa3b5656-8bfc-41d0-9314-bedf18aa53bc
   size: 768x688
   sha256: 4416848d826b0c508ca172b21618dbbcaf14b4c04507d9ba2e00acffa6bfa6c2
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_restaurant
     footprint:
@@ -338,7 +345,8 @@
   generation_id: 424ff7b5-f4da-43b3-95b5-a08cd5ae3961
   size: 1120x832
   sha256: 998fd9b465410df0e378a5b53d91db1e63201fdbc8e7744999717d1e1ff2793b
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_yamen
     footprint:
@@ -384,7 +392,8 @@
   generation_id: 3901410f-1ae3-43a3-960a-f0a44c36f37a
   size: 992x672
   sha256: a3ab33aad612ed400848c112a022e445007d0f2e66d7f64c147602d2a3468b97
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_biaoju
     footprint:
@@ -430,7 +439,8 @@
   generation_id: d1d1ffd1-e340-4ef8-90a7-0b877a72e60d
   size: 704x640
   sha256: 027ff7deff70811d5ea4fe2609176410775196f691aedb28ae1f719d2d364e13
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_casino
     footprint:
@@ -476,7 +486,8 @@
   generation_id: c7fd39da-6eec-4160-b752-9f978b9d8961
   size: 1152x800
   sha256: 10e5622efc2e67520fc8751e6ccbca070d203137810e307118dce3a9848ddd64
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_manor
     footprint:
@@ -522,7 +533,8 @@
   generation_id: f1d12ce8-e313-404b-9cde-863d9b432ea7
   size: 1312x1024
   sha256: d5003ec7bfb14ec474ea4c52836b42595b378417f8372c2c9b24c1f1b874f39a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_wangfu
     footprint:
@@ -568,7 +580,8 @@
   generation_id: 99c57db6-25da-4865-94b9-601c5e49636f
   size: 928x736
   sha256: d65e068dfc7fca5a37494a85f89dd85ff74531164a4306fe257d84a9d65b2ed3
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_temple_hall
     footprint:
@@ -613,7 +626,8 @@
   generation_id: 8d54c184-e006-4e5f-97d8-2dcb0233e19c
   size: 512x512
   sha256: f13a2867784b756a2a434ddd8dd1ba9e3120c55bc7aabad131dff5c40dc8cfba
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_market_stall
     footprint:
@@ -659,7 +673,8 @@
   generation_id: 6ada5cd5-fa8b-405e-9e50-f18239afe06d
   size: 736x544
   sha256: b2be25f0b81b754b6731fca350c59d938ba2da3c781053bd2925bfa386f65bd3
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_stable
     footprint:
@@ -705,7 +720,8 @@
   generation_id: bd36f738-214b-467a-a2cd-1680487dd577
   size: 736x544
   sha256: fc77934b3ac921713ae5f62607181058379d4a608ff98830d810f28486ca889a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_warehouse
     footprint:
@@ -751,7 +767,8 @@
   generation_id: 30dd1010-cd4a-4712-8118-0d9d4b4af044
   size: 832x1024
   sha256: f78b22e97f8aacf72555837ee36bb74fb76d10986d771c94739ba860b5b1aad2
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_pagoda
     footprint:
@@ -797,7 +814,8 @@
   generation_id: ef59628e-8292-4428-86b4-494bd4e5a2ef
   size: 672x512
   sha256: 4f69d56d7d77b1755f73d509d3aa5b2fa9557aa0abae5bc56c099983a20cf308
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_guardhouse
     footprint:
@@ -843,7 +861,8 @@
   generation_id: c9b6602e-d37b-403d-8faa-df8c57614977
   size: 640x512
   sha256: 58c17ba7dd143ad2c0cf463142f9dbb316cff10ed47112646d448190788815d7
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_south_wharf
     footprint:

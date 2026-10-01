@@ -15,7 +15,8 @@
   source_sha256: "7cd8c8dc46dbe929f2e0e41bbdb35bce95e1ae9ae700dae06705d61d7a685943"
   size: "512x512"
   sha256: "9f356b97a05c9c9c6186ec1041cc9689f8995264cc20d0f945a143d4bef8dcab"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_house_small", "footprint": [7, 6], "anchor": [267.7404, 294.5055], "era": "mongol"}
   footprint_m: [7, 6]
   entrance: {edge: S, offset_cells: 3}
@@ -53,7 +54,8 @@
   source_sha256: "fafa21064c5cac34fa65d1a88ce63ea9739aa684cb626c312316e7845f20d0b6"
   size: "617x512"
   sha256: "491c77738417178ee325eb30c752da5dd37e612bfc22c04887630a45c6285abe"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_mongol_house_large
     footprint: [10, 8]
@@ -94,7 +96,8 @@
   source_sha256: "f2fdffe3ef5212d3c7eb55a85308eb7cc33e137c3d8b321696f13b55cd6d3d43"
   size: "620x512"
   sha256: "ce9cf1833e893c4f6dd7437751c85919e29107bb6547aa7c09dcc83538dfd6e2"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_courtyard", "footprint": [10, 8], "anchor": [314.787, 277.1555], "era": "mongol"}
   footprint_m: [10, 8]
   entrance: {edge: S, offset_cells: 4}
@@ -132,7 +135,8 @@
   source_sha256: "a8076062f393d33f76a50f372e5bab3625de3df8cee7b707c489257ece38c6b8"
   size: "512x512"
   sha256: "4e7f7b3445428570e7c6da368a8e6909fcb774f8a9080cc39d7c71c355e63bf5"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_shop", "footprint": [6, 5], "anchor": [261.1267, 282.667], "era": "mongol"}
   footprint_m: [6, 5]
   entrance: {edge: S, offset_cells: 2}
@@ -170,7 +174,8 @@
   source_sha256: "da375aaee46a713ec92e9016f80c9399536c6d4fe2fed70da56307ae1a0b83ec"
   size: "512x512"
   sha256: "b82216e899ab2554b9cb2e85d09695c11f79dfd7e624b559d8b69f061c1665b6"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_shop_two_storey", "footprint": [8, 6], "anchor": [255.6566, 301.589], "era": "mongol"}
   footprint_m: [8, 6]
   entrance: {edge: S, offset_cells: 3}
@@ -208,7 +213,8 @@
   source_sha256: "6a8d6a9bfa007588cb08f2df48183aa80431c0f0b2c448f7fb90517349b49a94"
   size: "647x512"
   sha256: "95fc7c46381e2244d65d74c27091b307e969856023616f261acd931a959e621e"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_inn", "footprint": [10, 8], "anchor": [340.4785, 279.1682], "era": "mongol"}
   footprint_m: [10, 8]
   entrance: {edge: S, offset_cells: 4}
@@ -246,7 +252,8 @@
   source_sha256: "bb2cb7941956ddf31115bcbae5e7c163b0735f551a4026698901776fdc7e36c8"
   size: "612x512"
   sha256: "14c8d9988f564646f468cd0617b18e549c704df9d45e6585f362e905c150dfaf"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_tavern", "footprint": [10, 8], "anchor": [306.0, 268.2295], "era": "mongol"}
   footprint_m: [10, 8]
   entrance: {edge: S, offset_cells: 4}
@@ -283,7 +290,8 @@
   source_path: "sources/bld_kit_mongol_market__hist_r5_raw.png"
   size: "512x512"
   sha256: "009839cf6bca41a66ed0d9d69b2654be4cb73b92d15df4c2e6cf8e416688be88"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_market", "footprint": [5, 4], "anchor": [267.3254, 288.6485], "era": "mongol"}
   metadata: meta/bld_kit_mongol_market.yaml
   source_record: "sources/bld_kit_mongol_market__r2.json"
@@ -319,7 +327,8 @@
   source_path: "sources/bld_kit_mongol_yamen__hist_r5_raw.png"
   size: "960x640"
   sha256: "250cd2e768132deefa289aeea8e45b9acddf61c33ebb3eaa384cb3137876bf22"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_yamen", "footprint": [16, 12], "anchor": [480.9427, 367.1787], "era": "mongol"}
   metadata: meta/bld_kit_mongol_yamen.yaml
   source_record: "sources/bld_kit_mongol_yamen__r2.json"
@@ -355,7 +364,8 @@
   source_path: "sources/bld_kit_mongol_biaoju__hist_r5_raw.png"
   size: "864x544"
   sha256: "7247759a6d95cf886db3b0f6725eb58984a39cb119cec30084533a35bc98888e"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_biaoju", "footprint": [14, 11], "anchor": [431.7302, 316.5228], "era": "mongol"}
   metadata: meta/bld_kit_mongol_biaoju.yaml
   source_record: "sources/bld_kit_mongol_biaoju__r2.json"
@@ -391,7 +401,8 @@
   source_path: "sources/bld_kit_mongol_casino__hist_r5_raw.png"
   size: "608x512"
   sha256: "a2112b962352466ca8b8f8ae355d93c1ad2eacdef00c2570757d9f945a264da2"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_casino", "footprint": [9, 7], "anchor": [310.4436, 293.125], "era": "mongol"}
   metadata: meta/bld_kit_mongol_casino.yaml
   source_record: "sources/bld_kit_mongol_casino__r2.json"
@@ -427,7 +438,8 @@
   source_path: "sources/bld_kit_mongol_manor__hist_r5_raw.png"
   size: "1056x704"
   sha256: "ff9a20008003e32768652d9a1a701383d964ddbce8c1fb217b54a468b18ec570"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_manor", "footprint": [16, 13], "anchor": [548.869, 382.5473], "era": "mongol"}
   metadata: meta/bld_kit_mongol_manor.yaml
   source_record: "sources/bld_kit_mongol_manor__r2.json"
@@ -463,7 +475,8 @@
   source_path: "sources/bld_kit_mongol_wangfu__hist_r5_raw.png"
   size: "1248x832"
   sha256: "54ae7aec654cdbd4c305da25f4fa392ccb649b0cd26d047961a69a1e0430904f"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_wangfu", "footprint": [20, 16], "anchor": [644.3797, 492.7209], "era": "mongol"}
   metadata: meta/bld_kit_mongol_wangfu.yaml
   source_record: "sources/bld_kit_mongol_wangfu__r2.json"
@@ -499,7 +512,8 @@
   source_path: "sources/bld_kit_mongol_temple_hall__hist_r5_raw.png"
   size: "832x656"
   sha256: "541b4cf9f14593a22a54d9b240eeab86b0e2b0ff6003cd599d2b5793fd935b1c"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_mongol_temple_hall
     footprint: [13, 10]
@@ -536,7 +550,8 @@
   source_path: "sources/bld_kit_mongol_stupa__hist_r5_raw.png"
   size: "528x512"
   sha256: "b8cd01369a45201a3956a32a4f56274248bafe626e00d52fa4a036ec3bef4329"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_stupa", "footprint": [7, 7], "anchor": [264.5955, 328.7818], "era": "mongol"}
   footprint_m: [7, 7]
   footprint_basis: design/22 §3.3 pagoda 7×7【建议值】
@@ -569,7 +584,8 @@
   source_path: "sources/bld_kit_mongol_guardhouse__hist_r5_raw.png"
   size: "432x304"
   sha256: "6d4e06c0d174d39d3d554e71413403bbc1d2a965059b106e17409ce9c43b2ef4"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building: {"type": "bld_kit_mongol_guardhouse", "footprint": [6, 5], "anchor": [220.3077, 191.9063], "era": "mongol"}
   footprint_m: [6, 5]
   footprint_basis: design/22 §3.2 guardhouse 6×5【建议值】
@@ -602,7 +618,8 @@
   source_path: "sources/bld_kit_mongol_stable__hist_r5_raw.png"
   size: "592x496"
   sha256: "ba8998ae10c3a29e7d0673f7945208b0c6dd1c063cd4a03289dc9d1966bd39f8"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_mongol_stable
     footprint: [8, 6]
@@ -639,7 +656,8 @@
   source_path: "sources/bld_kit_mongol_warehouse__hist_r5_raw.png"
   size: "688x544"
   sha256: "71551e464b4963cad378efb69e050434da7a035eb45434e604f4909f589af6d0"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_mongol_warehouse
     footprint: [9, 7]
@@ -676,7 +694,8 @@
   source_path: "sources/bld_kit_mongol_wharf__hist_r5_raw.png"
   size: "560x560"
   sha256: "e355d6216eb813875bcbc18209a3ef3c87618387af27acda5969f2cf2b107626"
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_mongol_wharf
     footprint: [8, 4]

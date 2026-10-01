@@ -47,7 +47,8 @@
   source_sha256: 6bf1374e4ffcd5a571faa042838bc3c23cc10c94780f878f812389d2362ea43a
   size: 501x468
   sha256: 16b24a21e9e5d26d13028eee6607e6ea5a0cffe5805b391b02a84ffa20b59d4d
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_south_house_small
     footprint:
@@ -130,7 +131,8 @@
   source_sha256: 7c3b07000c2964d113360bdfa583c3727931bc2acc718c952a12f1fa9c63f337
   size: 651x540
   sha256: abd07308c9b4a77b61092518c0033bdfe8cb269586371c6817d6307d9b37d361
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_south_house_large
     footprint:
@@ -213,7 +215,8 @@
   source_sha256: cdcc10ad067834b4630550cef96a074e7de24313a5a94e9a60e151c30fc01baa
   size: 626x507
   sha256: 30672b2fe8ab2e22f50b2917cbfcb6599bd41b382f12b0c2b637ab39c8fc8a03
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_south_courtyard
     footprint:
@@ -296,7 +299,8 @@
   source_sha256: 64d7e0c75022e18c63f7692fddf9e55bca61f5773cbc0be5be19c9728a42abeb
   size: 453x367
   sha256: d618269cd48f86b7a9a9766aa9d0b4f37340d7fb60e6c64e7cfb7b47b2e6b047
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_south_shop_1f
     footprint:
@@ -379,7 +383,8 @@
   source_sha256: 249d3b8009cdd42e7679527c06dc572a3bf438d55096a245c8d85e96c65b5162
   size: 448x432
   sha256: 5b948cc4a7e0ed1a6450d73b5d40ca6ac9356a01559925d49ea5407a9a43eb02
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_south_shop_2f
     footprint:
@@ -462,7 +467,8 @@
   source_sha256: 9ae820678bc02a34d37883139b8b1900ba6de0125f7634f0c26db800a0a78616
   size: 736x544
   sha256: 8045ac604a72d6e670a6f3fc1b83a0a3fce9e80b827013312232292a1bc7dc78
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_south_inn
     footprint:
@@ -545,7 +551,8 @@
   source_sha256: abe422a1675d955356bd5ef8403a67ae7553d291466c924a05fb08cf500f6dd9
   size: 738x667
   sha256: 518dc9299caef6593d301ddde5bcc59c48fcac092416d0b9c8168c21cbe4c405
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_south_restaurant
     footprint:
@@ -627,7 +634,8 @@
   source_sha256: 6255eeec9725782243967e4135c6dd642f28682d542b339f1c57d01f4fec2e0c
   size: 256x272
   sha256: 30e9d467c9cdbc0ff0ad9f449c9c65f16c24267a2226942add8f2d4504af0b7e
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_south_market_stall
     footprint:
@@ -709,7 +717,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_yamen.png
   size: 981x611
   sha256: a5d3802a3e6f2eb4df2a7ad840350972ccda96be781560060a34a7c394250d16
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 2026-10-01按历史图片重出；历史细节：门院厅轴序；五开间正厅与低侧房；花岗石低台、灰瓦歇山、两层短出跳斗拱、直棂与克制土红梁枋。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_yamen
@@ -794,7 +803,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_biaoju.png
   size: 922x598
   sha256: 9e3b9c0e2a4752eb09735c800d89a2f8cd32096ddd962ef7f52112b617042d87
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 2026-10-01按历史图片重出；历史细节：匿名护运货院；粉墙青砖脚、铁钉宽木车门、三开间接待厅、货棚与石铺地；低硬山灰瓦、无城垛。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_biaoju
@@ -879,7 +889,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_casino.png
   size: 624x579
   sha256: 1eedc3ccb889b5aaf34049f96e794cfc2b26a99bf57a5c5fa01cb82bb016fba8
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 2026-10-01按历史图片重出；历史细节：普通商住外观；三开间深铺屋、闭合直棂窗和厚板门；硬山灰瓦、白封火墙、石槛；不绘赌博符号。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_casino
@@ -964,7 +975,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_manor.png
   size: 974x603
   sha256: 71ed053ed19042d15d08972a49597a4d38acb6487f34fd234d0fa181a27af168
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 2026-10-01按历史图片重出；历史细节：两进石铺院、轴线门与照壁、五开间厅及低侧翼；灰瓦白封火墙、栗褐柱网、直棂门与薄石台。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_manor
@@ -1049,7 +1061,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_wangfu.png
   size: 1322x990
   sha256: 6e10c6ef819e7ccdc732ab327aad19dcdd45b2974427c641285e44c17d3abd36
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 2026-10-01按历史图片重出；历史细节：五开间正式殿与深前院；灰瓦歇山、克制鸱吻和三枚小脊兽；两层短出跳斗拱、朱褐柱、花岗石台与低饱和彩画。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_wangfu
@@ -1134,7 +1147,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_temple_hall.png
   size: 847x625
   sha256: 13b16f0ab5ad6836647175fdfb0d4a18fe7b636bf26a0daa59812b61e4e2749e
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 2026-10-01按历史图片重出；历史细节：五开间殿堂、花岗石低台；低举折灰板瓦筒瓦歇山；素脊、克制鸱吻小兽；两层短出跳斗拱和低饱和彩画。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_temple_hall
@@ -1219,7 +1233,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_pagoda.png
   size: 490x1103
   sha256: f0f6a3a2411c330e7ab77ded2d3c1db10998124329309c2b8174fafc921cfef4
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 2026-10-01按历史图片重出；历史细节：八角九层游戏概化；逐层收分、浅斗拱、灰瓦木廊、券龛、克制琉璃色带与九环铁刹；非具名塔精确复原。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_pagoda
@@ -1304,7 +1319,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_guardhouse.png
   size: 431x324
   sha256: dc9dcca31a600590a7e28d513e6d4c5d77842dab2b5d35eb6caef0c8b0a02d92
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 2026-10-01按历史图片重出；历史细节：三开间守舍；青灰砖下墙、粉白上墙；低硬山灰瓦素脊、无斗拱；厚板门、窄直棂窗和花岗石脚。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_guardhouse
@@ -1389,7 +1405,8 @@
   source_path: assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_stable.png
   size: 556x449
   sha256: 7341658b3b365c079ca5e971276002b03e6674296f3659a66c0892477c72afec
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: 2026-10-01按历史图片重出；历史细节：五开间低敞棚；硬山灰瓦与栗褐重柱；三开放马栏、半高板隔、石槽和系马横木；土坯后墙与粗石前场。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
   building:
     type: bld_kit_ming_south_stable
@@ -1475,7 +1492,8 @@
   source_sha256: a14df11a81e52e49ef6aa3adb5e791a855de73d4cfdb54adba90c858bda031b6
   size: 692x521
   sha256: bfa3708e7b802a9008684f269185ed451ca15cd203f667978de5b4847f7ef97b
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_south_warehouse
     footprint:
@@ -1558,7 +1576,8 @@
   source_sha256: d973764b0323420586823fbb03890019ff0b24e15f1eabf7304605853ac3e1cd
   size: 563x417
   sha256: e34cb09e5711790cbe12fa8121a45fa6ba6cb31ae78f9df28013acff4a8e0d1c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_ming_south_wharf
     footprint:

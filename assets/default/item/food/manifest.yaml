@@ -35,7 +35,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_jingmi__c1.png
   size: 1254x1254
   sha256: dfa92ed97f1fd0581dcfb6d383df27306932322f4ca07bc005de1913f0c00e30
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：e6899bf4-a7f9-465d-a49d-aceb57a67557。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -79,7 +80,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_huotuijian__c1.png
   size: 1254x1254
   sha256: 61e51bd80b5e25a41ec0c8e7d5752c33faa14e9df6b896ca10ade90a48982946
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：0557d412-af7d-4b25-8ea7-fd4ef00d69ee。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -126,7 +128,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_xianyu__c3.png
   size: 1254x1254
   sha256: f903c56fa0635d9bd0d69f53a03b0af7fdf382137ad61b742d24e1b8e40109e0
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：80d8d7d6-54d1-46c8-b97b-ac78a8a28ab8。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -172,7 +175,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_cumian__c2.png
   size: 1254x1254
   sha256: d79e9dcf4c99e74518d1c58de24a4e1404192ca8f00562647224d03ebd68a74e
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：fba8932d-5bc2-4cef-9de8-f78cac7f320b。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -216,7 +220,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_xuelianzi__c1.png
   size: 1254x1254
   sha256: 3ac41aa08f9dd045c4b4324eb729a25578cb96da18b2913beaba719ec614fb9f
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：60d5b448-0dd4-4711-8393-198e7f455173。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -260,7 +265,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_yuxueguo__c1.png
   size: 1254x1254
   sha256: 6e606104dc521e5a1fbc5b5f803f2f6fa0305ef771edac2510aa63f5958e7002
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：94b099b8-271b-4589-98e5-2ccd14d56880。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -304,7 +310,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_xianggu__c1.png
   size: 1254x1254
   sha256: e44e0ecb22fa1944ae8915e7517e20de333d506bf1658813ea22291ad83a0d08
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：198d278e-4f81-429a-8027-532bf61ef6e2。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -351,7 +358,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_longganfengsui__c3.png
   size: 1254x1254
   sha256: 5d7fe0c5fd64672e17897b6050bd1511f2bebef25d5e6f3af5ad502d6ae5f8c6
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：5ae8ea7f-93de-4991-a0c5-68c409748467。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -397,7 +405,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_binghuxueou__c2.png
   size: 1254x1254
   sha256: 995a4322d84d8910bfeadd12e622c70f3a20c12a56a558990d7a2aa979ca04e1
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：008b96ee-28f0-49ed-841d-f19d9945e433。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -443,7 +452,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_xueshanlufu__c2.png
   size: 1254x1254
   sha256: 996dd97af9adbe8bf3d9b7559f6dce22f15e5b2a81a9f306b1ac1f741d778237
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：ff5559a4-fa34-47f5-9fe6-d3d588d745c6。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -489,7 +499,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_tianshanlingmi__c2.png
   size: 1254x1254
   sha256: 513a5770a4412dbcfc79d01bc8fdc99fac6a08268461184cc217fe54c56a9fdb
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：9ba7d9db-4206-4895-aac5-616d9fb78926。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -535,7 +546,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_baihualinglu__c2.png
   size: 1254x1254
   sha256: 530ee6f7871e0ccc2545b1d608bb3426621f7957211ea673cb7b4b28e0c7e580
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：19cbe0ef-fb05-4259-9036-804d479c12d4。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -581,7 +593,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_ganliang__c2.png
   size: 1254x1254
   sha256: 66d1f8354d8f56bd07be0e7db59a51dc6dc1c45ba49e1e0ebacf8024812be9b1
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：04f1fd3f-ad27-4ce8-863c-8e1c8df78434。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -625,7 +638,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_guisugao__c1.png
   size: 1254x1254
   sha256: b5fb1a4bc9ffad1f9e330b657bb528fbc3d31aea593905767706187b0d226720
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：6d8faec5-180b-437b-82cd-04a59c6fb96e。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -671,7 +685,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_niurougan__c2.png
   size: 1254x1254
   sha256: 7972e4693a83da3fa113d2eef7ad2903a5a644c6deb1168a59747899f1e3f7f2
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：1cf93216-6687-4e7b-a953-19a957fde6cd。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -715,7 +730,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_furonggao__c1.png
   size: 1254x1254
   sha256: 10291e525fbf4d81d5e81844dd42943a7117e41066d426867095472fb70b78d9
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：d55602ea-3c09-4c61-bd3d-2bd45bb6d12b。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -761,7 +777,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_baihuagao__c2.png
   size: 1254x1254
   sha256: 6ab58db024705e64019161f81880e0f5f5a5e0ac135fcad4b8c854fdd24390ec
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：8ee0aeb3-9d60-4d5e-9ae5-d6c5c625b2ee。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -807,7 +824,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_yuluwan__c2.png
   size: 1254x1254
   sha256: c461f04070992ffdd1f58b9a6bb20517ceea2fcf838b4c18caaecaea579b1329
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：56bffb26-3007-4001-bfc0-9c6552c753a7。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -853,7 +871,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_xueyulengchan__c2.png
   size: 1254x1254
   sha256: 880838ea6e5e4dba898f92e818a21ce5f678f2d3f9bda6fe7d8b34158caa74a8
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：d82d79e7-84cc-4e4f-bf97-8b1af2dbd161。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -897,7 +916,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_tianxiangyulu__c1.png
   size: 1254x1254
   sha256: 08ac079514490549a86495f02f9e5863fc8f7a0c548ae16629f4f81d0b41e26d
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：2ee4bda6-9cf0-4427-aeff-38ce0d44513a。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -943,7 +963,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_jiaohuaji__c2.png
   size: 1254x1254
   sha256: 226929e38de059c7e8d74821e75264193e1bd8cbf069ee8efd466248e8ae2fd4
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：42e527f0-d861-402c-9c2e-59d2152dae49。
     标注：原著题名/饮食语境；具体视觉细节（待考）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -989,7 +1010,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_jiangniurou__c2.png
   size: 1254x1254
   sha256: f94f4d8ac54c2b7865a06249dbb93cbc83b4e590af97fb9842db5d62d28a3739
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：12b0486d-9db9-447c-a357-506c1d002377。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -1035,7 +1057,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_haoqiutang__c2.png
   size: 1254x1254
   sha256: 9c1a89194d73f91742131a943b6f8e2c967d61fbdfac02c8902be0bfbe4a2939
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：045b9b83-d809-4499-96cf-3f8d07aa9efb。
     标注：原著题名/饮食语境；具体视觉细节（待考）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -1081,7 +1104,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_yudishuijiatingluomei__c2.png
   size: 1254x1254
   sha256: 2b11ae9764c38de362080c85dfd51c677356e1888ad7920792a757b081e104b8
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：520ad05a-f277-4ce6-acff-ab5f61c58d93。
     标注：原著题名/饮食语境；具体视觉细节（待考）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -1125,7 +1149,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_labazhou__c1.png
   size: 1254x1254
   sha256: 02d3f6fb58c718242c82d0bd95c56c42fdf750eee44ac3c26b9787cbd1dc6222
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：ffee81a0-5d4f-4000-a731-5785e71f8418。
     标注：原著题名/饮食语境；具体视觉细节（待考）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -1172,7 +1197,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_tianxiangyuyan__c3.png
   size: 1254x1254
   sha256: d8f24df12b607e42a2227917d06e6d9c214f0ef4d7da7b37cf1e5d511c3f3f1c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：561d4f6d-8ee4-4823-ab31-cced72c5bd33。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -1219,7 +1245,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_yushan__c3.png
   size: 1254x1254
   sha256: f3036ec0838cd2c8cfbd13df3ded836d2e0cad1bc9988ce1be70ce81b1407bac
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：91bbc05d-4a93-4331-a66f-1e52cb5cbe94。
     标注：（原创扩展）；按名录外观要点绘制，不更改ID、设定或效果字段。
@@ -1269,7 +1296,8 @@
   source_path: /private/tmp/art-item-food-candidates/it_ershisiqiaomingyueye__c4.png
   size: 1254x1254
   sha256: b2c9f9b98ac5ac3a371851aec609658be50791642bcfdfedd6a073a0d1d05a6e
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     合入前审核第1轮要求全量重出；本轮以两张获批基线作为唯一图片输入，经真实图像编辑端点生成，已替换旧Pillow程序图。生成ID：2138a09d-d752-487c-ba95-1a5c0c76c558。
     标注：原著题名/饮食语境；具体视觉细节（待考）；按名录外观要点绘制，不更改ID、设定或效果字段。

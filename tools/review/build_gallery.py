@@ -114,19 +114,25 @@ def main():
         seen = set()
         for e in load_manifest(merged_dir / "manifest.yaml"):
             if (merged_dir / e.get("file", "")).exists():
-                entries.append((merged_dir / e["file"], e["id"], "已入库 · 候选待作者审"))
+                entries.append((merged_dir / e["file"], e["id"], "已通过（作者 10-01）" if str(e.get("status")) == "approved" else "已入库 · 候选待作者审"))
                 seen.add(e["id"])
         for e in load_manifest(wt_dir / "manifest.yaml"):
             if e.get("id") not in seen and (wt_dir / e.get("file", "")).exists():
                 entries.append((wt_dir / e["file"], e["id"], "任务工作区 · GPT 审核中"))
-        n_m = sum(1 for _, _, s in entries if s.startswith("已入库"))
+        redo = set()
+        rp = ROOT / "assets/default/prompts/items/REDO.md"
+        if rp.exists():
+            import re as _re
+            redo = {m.group(1) for ln in rp.read_text(encoding="utf-8").splitlines() if not ln.lstrip().startswith("#") for m in [_re.search(r"`((?:it|eq)_[a-z0-9_]+)`", ln)] if m}
+        entries = [(p_, i_, ("作者要求重出：突出年代制式与颜色" if i_ in redo else s_)) for p_, i_, s_ in entries]
+        n_m = sum(1 for _, _, s in entries if s.startswith(("已入库", "已通过")))
         n_c = len(entries) - n_m
         total_merged += n_m
         total_cand += n_c
         entries.sort(key=lambda t: (GRADE_ORDER.get(rows.get(t[1], {}).get("grade", ""), 9), t[1]))
         cells = [(p, [f"{rows.get(i, {}).get('name', i)}  {rows.get(i, {}).get('grade', '')}阶", i, s]) for p, i, s in entries]
         name = f"items_{cat}.jpg"
-        dims = sheet(cells, IMG / name, title=f"{cname} · 名录 {len(rows)} 项 · 已入库 {n_m} · 工作区候选 {n_c}")
+        dims = sheet(cells, IMG / name, title=f"{cname} · 名录 {len(rows)} 项 · 已入库 {n_m} · 其他 {n_c}")
         if dims:
             files[f"img/{name}"] = f"img/{name}"
             html_items.append((cat, cname, len(rows), n_m, n_c, name))
@@ -139,7 +145,7 @@ def main():
         b = [(bdir / e["file"], [re.sub(rf"^bld_kit_{kit}_", "", e["id"]), f"占地 {e.get('building', {}).get('footprint', e.get('footprint', '—'))}" if isinstance(e.get('building', {}), dict) else ""]) for e in load_manifest(bdir / "manifest.yaml") if (bdir / e.get("file", "")).exists()]
         t = [(tdir / e["file"], [re.sub(rf"^tex_town_{kit}_", "", e["id"])[:22]]) for e in load_manifest(tdir / "manifest.yaml") if (tdir / e.get("file", "")).exists()]
         nb, nt = f"kit_{kit}.jpg", f"tiles_{kit}.jpg"
-        sheet(b, IMG / nb, cell=200, cols=7, bg=PAPER_DARK, caption_h=44, title=f"{kname}（{kit}）· 建筑 {len(b)} 栋 · 已按历史图片重出")
+        sheet(b, IMG / nb, cell=200, cols=7, bg=PAPER_DARK, caption_h=44, title=f"{kname}（{kit}）· 建筑 {len(b)} 栋 · 已按历史图片重出 · 作者 10-01 通过")
         sheet(t, IMG / nt, cell=150, cols=7, bg=PAPER_DARK, caption_h=30, title=f"{kname} 贴片 {len(t)} 张")
         files[f"img/{nb}"] = f"img/{nb}"
         files[f"img/{nt}"] = f"img/{nt}"
