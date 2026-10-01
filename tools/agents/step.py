@@ -487,7 +487,7 @@ def cmd_finish(a) -> int:
 
 # 多个任务都往同一份"追加型"markdown 文末加小节（各套件往 prompts/*.md 加自己的一节、FOLLOWUPS 追加条目），
 # cherry-pick 时两边都是新增行会报冲突；这类文件按"两边都保留"自动解决，其他文件冲突仍中止。
-UNION_MERGE_GLOBS = ("assets/default/prompts/*.md", "tools/agents/FOLLOWUPS.md", "assets/default/STYLE.md", "packages/*/CLAUDE.md", "apps/*/CLAUDE.md", "CLAUDE.md")
+UNION_MERGE_GLOBS = ("assets/default/prompts/*.md", "tools/agents/FOLLOWUPS.md", "assets/default/STYLE.md", "packages/*/CLAUDE.md", "apps/*/CLAUDE.md", "CLAUDE.md", "docs/design/10-items-and-equipment.md")  # design/10 文末 ID 登记表：并行的名录扩张任务各加一行
 _CONFLICT = re.compile(r"<<<<<<< [^\n]*\n(.*?)=======\n(.*?)>>>>>>> [^\n]*\n", re.S)
 
 
