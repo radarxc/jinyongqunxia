@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_mengguyangmaozhanxue_nan
+name: 蒙古羊毛毡靴·男
+kind: armor
+sub: shoes
+grade: 2
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+- ch04_yitian
+origin: canonExpanded
+canonRef: 蒙古毡靴 · 南宋 / 元（蒙元服饰图像）· 出现书界 ch02/ch03/ch04 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mengguyangmaozhanxue_nan
+text:
+  desc: 名录投影：鞋·毡靴；grade=2; slot=feet; wearer=male; qinggong=5; resColdPp=1。外观：男款灰白羊毛毡靴一双并置，宽圆微翘头、中高靿、褐皮包底与粗线缝口，无纹无字，成年足长、蒙古牧民尺度
+  short: 蒙古羊毛毡靴·男
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

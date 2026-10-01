@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_miji_dagou_can
+name: 打狗棒法残谱
+kind: manual
+sub: partial
+grade: 11
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》·丐帮棒法残传；实体 （原创扩展）
+price: null
+flags: []
+assets:
+  icon: item/miji_dagou_can
+text:
+  desc: 名录投影：秘籍·残本；grade=11; skill=sk_dagou; variant=partial; maxLayer=6。外观：墨绿软纸残谱，细麻线补缀，竹节纹暗压，无字 （原创扩展）
+  short: 打狗棒法残谱
+extension:
+  type: manual
+  value:
+    skill: sk_dagou
+    maxLayer: 6
+    variant: partial
+    readMul: 1

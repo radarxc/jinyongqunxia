@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_yuanmengguzhanpi_nan
+name: 元蒙古毡披·男
+kind: armor
+sub: cape
+grade: 4
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+- ch04_yitian
+origin: canonExpanded
+canonRef: 草原毡披 · 元（蒙元服饰图像）· 出现书界 ch02/ch03/ch04 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanmengguzhanpi_nan
+text:
+  desc: 名录投影：披风·毡披；grade=4; slot=cape; wearer=male; defOutK=0.025; hpMaxK=0.005; resColdPp=2。外观：男款炭灰羊毛毡披单件完整铺展，圆领、左前襟皮扣、短袖口与及膝下摆，红褐窄边无字，蒙古骑手厚实尺度
+  short: 元蒙古毡披·男
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

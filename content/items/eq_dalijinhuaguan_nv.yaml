@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_dalijinhuaguan_nv
+name: 大理鎏金花冠·女
+kind: armor
+sub: headwear
+grade: 6
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 大理国高冠与花饰 · 大理（《张胜温画卷》、剑川石窟图像）· 出现书界 ch01 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/dalijinhuaguan_nv
+text:
+  desc: 名录投影：头饰·花冠；grade=6; slot=head; wearer=female; cha=1。外观：女款大理低筒花冠独立陈列，不画人头，鎏金铜片花叶围成圆冠、白绢内衬、银簪一支，青绿点饰无字，宋代大理贵族尺度
+  short: 大理鎏金花冠·女
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

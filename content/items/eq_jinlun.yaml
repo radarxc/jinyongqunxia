@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_jinlun
+name: 金轮
+kind: weapon
+sub: exotic
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·金轮法王，以金银铜铁铅五轮为兵器
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/jinlun
+text:
+  desc: 名录投影：兵器·奇门轮；grade=9; cat=exotic; exoticKind=wheel; hands=1; unique=true; sect=sect_mizong。外观：五枚不同金属色圆轮整齐错位并置，主金轮直径约四十厘米，外缘钝刃、内圈握位清楚，旧化克制，无飞旋场景与人物 （原创扩展形制）
+  short: 金轮
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

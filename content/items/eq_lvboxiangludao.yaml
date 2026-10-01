@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_lvboxiangludao
+name: 绿波香露刀
+kind: weapon
+sub: blade
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·乌老大所使绿色宝刀；材质与来历 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/lvboxiangludao
+text:
+  desc: 名录投影：兵器·刀；grade=7; cat=blade; hands=1; unique=true; sect=sect_lingjiu。外观：通体微绿的狭长弯刀，刃约七十厘米，绿色来自钢面与装具色泽，铜镡、深木柄、旧绿鞘，完整斜置，无人物与手 （原创扩展形制）
+  short: 绿波香露刀
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

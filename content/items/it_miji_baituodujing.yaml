@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_baituodujing
+name: 白驼毒经残本
+kind: manual
+sub: partial
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_baituodujing
+text:
+  desc: 名录投影：秘籍·残本；grade=5; skill=sk_baituodujing; variant=partial; maxLayer=8。外观：西域皮纸但非硬皮封壳，墨绿细绳，夹一片干草标本，无字 （原创扩展）
+  short: 白驼毒经残本
+extension:
+  type: manual
+  value:
+    skill: sk_baituodujing
+    maxLayer: 8
+    variant: partial
+    readMul: 1

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_lihuaqiang
+name: 梨花枪
+kind: weapon
+sub: spear
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用枪术传统·明，名称与具体器形沿革 （待考）；定级 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/lihuaqiang
+text:
+  desc: 名录投影：兵器·枪；grade=6; cat=spear; hands=2; tags=long。外观：轻薄柳叶锋、白蜡韧杆约二点八米，细密红白枪缨、铜箍与铁鐏，养护良好但有握痕，完整斜置留足两端，无人物与手
+  short: 梨花枪
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

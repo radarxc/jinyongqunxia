@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_dalibaiduanqun_nv
+name: 大理白缎裙衣·女
+kind: armor
+sub: clothing
+grade: 6
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 大理国裙衣 · 大理（《张胜温画卷》服饰图像）· 出现书界 ch01 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/dalibaiduanqun_nv
+text:
+  desc: 名录投影：衣物·礼服；grade=6; slot=body; armorWeight=light; wearer=female; resMindPp=3。外观：女款月白交领右衽窄袖衫与绛红百褶长裙成套平展，青绿团花窄边、银扣，宋代大理贵族尺度，不套用现代民族服装
+  short: 大理白缎裙衣·女
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_duanchangcao
+name: 断肠草
+kind: material
+sub: toxin
+grade: 7
+stack: 999
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·杨过以毒攻毒解情花毒
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/duanchangcao
+text:
+  desc: 名录投影：药材·毒草；grade=7; apply=bf_judu; reaction=rx_yiduigongdu。外观：叶片狭长、根茎暗紫，带断崖湿土，竹夹隔离，束长半尺 （原创扩展）
+  short: 断肠草
+extension:
+  type: material
+  value:
+    family: toxin
+    resourceRef: res_ducai_di9
+    materialGrade: 7
+    rare: false

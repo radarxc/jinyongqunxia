@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_xuansushuangjian
+name: 玄素双剑
+kind: weapon
+sub: sword
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《侠客行》·石清、闵柔“黑白双剑”；器名 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/xuansushuangjian
+text:
+  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; pair=true; unique=true; sect=sect_xuansuzhuang。外观：乌黑与象牙白两柄直剑成对并置，刃约七十厘米，装具一玄一素、护手形制相同，各自完整带鞘，无人物与手 （原创扩展形制）
+  short: 玄素双剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

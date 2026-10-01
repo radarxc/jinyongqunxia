@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_songsubodai_nv
+name: 宋素帛裙带·女
+kind: armor
+sub: belt
+grade: 1
+stack: 1
+chapters:
+- ch01_tianlong
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 襦裙帛带 · 宋（宋墓女俑与服饰实物）· 出现书界 ch01/ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songsubodai_nv
+text:
+  desc: 名录投影：腰带·帛带；grade=1; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01。外观：女款灰青素帛裙带作松弧陈列，窄长软带、中央压褶与两端自然下垂，粗绢无纹无扣，宋代平民女装尺度
+  short: 宋素帛裙带·女
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

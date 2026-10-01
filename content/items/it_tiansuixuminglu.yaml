@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: it_tiansuixuminglu
+name: 天髓续命露
+kind: tonic
+sub: tonic
+grade: 10
+stack: 9
+chapters: any
+origin: expanded
+price: null
+flags: []
+use:
+  context: field
+  action: consume
+  target: self
+  effects:
+  - op: healPct
+    params:
+      valueBp: 1400
+  meridianAid:
+    rateBp: 800
+    successBp: 800
+    costReduceBp: 800
+    hours: 12
+assets:
+  icon: item/tiansuixuminglu
+text:
+  desc: 名录投影：补品·经脉疗伤；grade=10; healPct=14%; meridianAid={rateBp:800,successBp:800,costReduceBp:800,hours:12}。外观：透明微金药露盛细颈玉瓶，金丝软塞，珍稀固定奇遇感 （原创扩展）
+  short: 天髓续命露
+extension:
+  type: generic
+  value: {}

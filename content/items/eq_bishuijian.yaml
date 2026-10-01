@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_bishuijian
+name: 碧水剑
+kind: weapon
+sub: sword
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《笑傲江湖》·岳灵珊佩剑；岳不群自龙泉得来一节 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/bishuijian
+text:
+  desc: 名录投影：兵器·剑；grade=7; cat=sword; hands=1; unique=true; sect=sect_huashan。外观：水青冷光纤直钢剑，刃约七十厘米，窄云形护手、青丝缠柄与深绿鞘，刃口利落无魔法水纹，完整斜置，无人物与手 （原创扩展形制）
+  short: 碧水剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

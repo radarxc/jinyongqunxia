@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_hengshanbeijiejian
+name: 恒山戒剑
+kind: weapon
+sub: sword
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 恒山 · design/17 §6.6；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/hengshanbeijiejian
+text:
+  desc: 名录投影：兵器·剑；grade=7; cat=sword; hands=1; unique=true; sect=sect_hengshan_bei。外观：窄身直剑约六十八厘米，素铁小镡、灰布缠柄、黑漆鞘配旧铜箍，装具朴素如行脚法器，完整斜置，无人物与手
+  short: 恒山戒剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: it_zixiaoyangqidan
+name: 紫霞养气丹
+kind: tonic
+sub: tonic
+grade: 6
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: field
+  action: consume
+  target: self
+  effects:
+  - op: mpPct
+    params:
+      valueBp: 1020
+  - op: sxpBuff
+    params:
+      multiplierBp: 12000
+      durationBattles: 5
+assets:
+  icon: item/zixiaoyangqidan
+text:
+  desc: 名录投影：补品·补气修炼；grade=6; mpPct=10.2%; sxpBuff=1.20x:5battle。外观：紫褐丸药配云纹青瓷瓶，细银圈封口，掌中尺寸 （原创扩展）
+  short: 紫霞养气丹
+extension:
+  type: generic
+  value: {}

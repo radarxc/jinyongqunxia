@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_jiangniurou
+name: 酱牛肉
+kind: dish
+sub: dish
+grade: 2
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: meal
+    params:
+      value: bf_waigong_sheng:2battle
+assets:
+  icon: item/jiangniurou
+text:
+  desc: 名录投影：食品·菜肴；grade=2; meal=bf_waigong_sheng:2battle。外观：深红褐薄片整齐码盘，青花粗瓷盘，油润克制
+  short: 酱牛肉
+extension:
+  type: generic
+  value: {}

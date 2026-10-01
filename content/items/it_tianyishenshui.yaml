@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_tianyishenshui
+name: 天一神水
+kind: poison
+sub: poison
+grade: 9
+stack: 99
+chapters: any
+origin: canonExpanded
+canonRef: 古龙《楚留香传奇·画眉鸟》·神水宫；药物细节 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+use:
+  context: both
+  action: dose
+  target: enemy
+  effects:
+  - op: applyBuff
+    params:
+      value: bf_judu
+assets:
+  icon: item/tianyishenshui
+text:
+  desc: 名录投影：药物·奇毒；grade=9; action=dose; apply=bf_judu; unique=true; noCraft=true。外观：密封白玉小瓶嵌入乌木护匣，银扣与深蓝软衬，液体不外露，半掌高 （原创扩展形制）
+  short: 天一神水
+extension:
+  type: generic
+  value: {}

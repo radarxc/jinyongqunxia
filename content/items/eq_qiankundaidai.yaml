@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_qiankundaidai
+name: 乾坤宝带
+kind: armor
+sub: belt
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/qiankundaidai
+text:
+  desc: 名录投影：腰带·宝带；grade=10; slot=waist; catalogTian=true; divine=false; unique=true; price=null; hpMaxPct=5%; mpMaxPct=5%。外观：深青宽带、暗金回纹与玉扣，厚实但可弯曲，无储物魔法表现 （原创扩展）
+  short: 乾坤宝带
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true

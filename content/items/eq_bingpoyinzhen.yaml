@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_bingpoyinzhen
+name: 冰魄银针
+kind: hidden
+sub: needle
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·李莫愁
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/bingpoyinzhen
+text:
+  desc: 名录投影：暗器·名针；grade=8; hiddenKind=needle; perBattle=10; onHit=bf_judu; gloveCheck=50%。外观：银蓝细针十枚装入白瓷针管，冷色金属光、无冰魔法 （原创扩展形制）
+  short: 冰魄银针
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: needle
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

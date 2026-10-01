@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_mingyaojian
+name: 明制腰剑
+kind: weapon
+sub: sword
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·明（中国国家博物馆明代钢剑） （原创扩展定级）
+price: auto
+flags: []
+assets:
+  icon: item/mingyaojian
+text:
+  desc: 名录投影：兵器·剑；grade=2; cat=sword; hands=1。外观：钢质直身双刃，刃约七十五厘米，扁圆铁镡、木柄丝缠、黑漆木鞘，轻磨损，完整斜置，无人物与手 （原创扩展装具）
+  short: 明制腰剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

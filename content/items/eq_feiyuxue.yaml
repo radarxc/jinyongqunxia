@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_feiyuxue
+name: 飞羽靴
+kind: armor
+sub: shoes
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/feiyuxue
+text:
+  desc: 名录投影：鞋·轻靴；grade=6; slot=feet; qinggong=15; staPct=3%。外观：深褐薄皮短靴，侧面羽纹压花、轻软窄底 （原创扩展）
+  short: 飞羽靴
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

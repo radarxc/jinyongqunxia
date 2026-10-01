@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_ruansijia
+name: 软丝甲
+kind: armor
+sub: innerArmor
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/ruansijia
+text:
+  desc: 名录投影：内甲·丝甲；grade=6; slot=innerBody; weaponZ4=2%。外观：灰银丝线密织短衣，可折叠、微金属光但柔软 （原创扩展）
+  short: 软丝甲
+extension:
+  type: equipment
+  value:
+    slot: innerBody
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

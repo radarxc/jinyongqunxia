@@ -1,16 +1,24 @@
 schemaVersion: item.v1
 id: it_miji_taizuchangquan
-name: 太祖长拳拳谱
+name: 太祖长拳谱
 kind: manual
-sub: martialManual
+sub: full
 grade: 3
 stack: 1
 chapters: any
-origin: expanded
+origin: canonExpanded
+canonRef: 《天龙八部》·萧峰用太祖长拳；载体 （原创扩展）
 price: auto
-flags: [manual]
-assets: {icon: items/it_miji_taizuchangquan.webp}
-text: {desc: 记载太祖长拳通行拳路的拳谱。}
+flags: []
+assets:
+  icon: item/miji_taizuchangquan
+text:
+  desc: 名录投影：秘籍·全本；grade=3; skill=sk_taizuchangquan; variant=full; maxLayer=10。外观：靛蓝布纹纸书衣，细线装，封面空白，民间拳谱朴素感 （原创扩展）
+  short: 太祖长拳谱
 extension:
   type: manual
-  value: {skill: sk_taizuchangquan, maxLayer: 10, variant: full, readMul: 1}
+  value:
+    skill: sk_taizuchangquan
+    maxLayer: 10
+    variant: full
+    readMul: 1

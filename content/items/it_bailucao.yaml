@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_bailucao
+name: 百露草膏
+kind: tonic
+sub: tonic
+grade: 3
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: field
+  action: consume
+  target: self
+  effects:
+  - op: mpPct
+    params:
+      valueBp: 720
+assets:
+  icon: item/bailucao
+text:
+  desc: 名录投影：补品·补气；grade=3; mpPct=7.2%。外观：青绿草膏盛竹节小罐，叶脉与露痕，清新但不发光 （原创扩展）
+  short: 百露草膏
+extension:
+  type: generic
+  value: {}

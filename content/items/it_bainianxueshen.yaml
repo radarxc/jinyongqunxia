@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_bainianxueshen
+name: 百年雪参
+kind: material
+sub: herb
+grade: 9
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/bainianxueshen
+text:
+  desc: 名录投影：药材·雪参；grade=9; herbFamily=xueShen; ageYears=100; materialGrade=9。外观：肥厚雪参与密须，冰蓝绢衬，老木匣边缘磨亮 （原创扩展）
+  short: 百年雪参
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di3
+    materialGrade: 9
+    rare: false
+    herbFamily: xueShen
+    ageYears: 100

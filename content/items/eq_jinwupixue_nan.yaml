@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_jinwupixue_nan
+name: 金乌皮靴·男
+kind: armor
+sub: shoes
+grade: 3
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 乌皮靴 · 金（《金史·舆服志》）· 出现书界 ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jinwupixue_nan
+text:
+  desc: 名录投影：鞋·皮靴；grade=3; slot=feet; wearer=male; qinggong=7.5。外观：男款乌黑皮靴一双并置，圆头、高靿、单层皮底与侧缝，皮面匀净略旧无纹，成年足长、金代常服尺度
+  short: 金乌皮靴·男
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: leather
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

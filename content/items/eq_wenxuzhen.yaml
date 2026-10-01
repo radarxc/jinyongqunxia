@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_wenxuzhen
+name: 蚊须针
+kind: hidden
+sub: needle
+grade: 7
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》·殷素素
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/wenxuzhen
+text:
+  desc: 名录投影：暗器·名针；grade=7; hiddenKind=needle; perBattle=15; hit=10; onHit=bf_zhongdu。外观：极细银针束于黑绸针筒旁，针如蚊须、尺寸纤小 （原创扩展形制）
+  short: 蚊须针
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: needle
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

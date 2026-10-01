@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_songziluogongpao_nan
+name: 宋紫罗公袍·男
+kind: armor
+sub: clothing
+grade: 8
+stack: 1
+chapters:
+- ch01_tianlong
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 圆领公服 · 宋（《宋史·舆服志》）· 出现书界 ch01/ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songziluogongpao_nan
+text:
+  desc: 名录投影：衣物·官服；grade=8; slot=body; armorWeight=light; wearer=male; cha=1。外观：男款紫罗圆领大袖公袍单件平展，下施横襕、两侧整齐展袖，丝罗细密，无补子无文字，宋代高阶官服尺度
+  short: 宋紫罗公袍·男
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_songdujinaomiandai_nan
+name: 宋镀金凹面带·男
+kind: armor
+sub: belt
+grade: 6
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 镀金凹面腰带 · 北宋（《东京梦华录》）· 出现书界 ch01 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songdujinaomiandai_nan
+text:
+  desc: 名录投影：腰带·鞓带；grade=6; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01。外观：男款绯色革鞓带盘成一圈，鎏金凹面方銙连续排列、扣与铊尾完整，金面克制磨亮无字，北宋教坊盛服尺度
+  short: 宋镀金凹面带·男
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

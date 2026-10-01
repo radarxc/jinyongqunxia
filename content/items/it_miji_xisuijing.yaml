@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_xisuijing
+name: 洗髓经藏本
+kind: manual
+sub: partial
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_xisuijing
+text:
+  desc: 名录投影：秘籍·残本；grade=9; skill=sk_xisuijing; variant=partial; maxLayer=8。外观：米白经折式外观但不画经文，灰布护套，古旧藏经感 （原创扩展）
+  short: 洗髓经藏本
+extension:
+  type: manual
+  value:
+    skill: sk_xisuijing
+    maxLayer: 8
+    variant: partial
+    readMul: 1

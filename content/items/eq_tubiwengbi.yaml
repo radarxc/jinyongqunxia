@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_tubiwengbi
+name: 秃笔翁之笔
+kind: weapon
+sub: exotic
+grade: 7
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《笑傲江湖》·秃笔翁，以判官笔施书法化武功
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/tubiwengbi
+text:
+  desc: 名录投影：兵器·奇门笔；grade=7; cat=exotic; exoticKind=brush; hands=1; unique=true。外观：粗长铁判官笔约五十厘米，尖端如硬毫聚锋、铜护指、旧木色握套，杆身无可读文字，完整横置，无人物与手 （原创扩展形制）
+  short: 秃笔翁之笔
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

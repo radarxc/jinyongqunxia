@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_qixianqin
+name: 七弦琴
+kind: weapon
+sub: exotic
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《笑傲江湖》·黄钟公，以琴音为武
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/qixianqin
+text:
+  desc: 名录投影：兵器·奇门琴；grade=8; cat=exotic; exoticKind=qin; hands=2; unique=true。外观：深栗色古琴长约一百二十厘米，七弦、岳山与徽位清楚，漆面断纹和指痕克制，完整俯斜置，无人物与手 （原创扩展形制）
+  short: 七弦琴
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

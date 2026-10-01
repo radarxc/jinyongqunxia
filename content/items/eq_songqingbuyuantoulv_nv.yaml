@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_songqingbuyuantoulv_nv
+name: 宋青布圆头履·女
+kind: armor
+sub: shoes
+grade: 2
+stack: 1
+chapters:
+- ch01_tianlong
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 女子布履 · 宋（宋墓服饰与女俑）· 出现书界 ch01/ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songqingbuyuantoulv_nv
+text:
+  desc: 名录投影：鞋·布履；grade=2; slot=feet; wearer=female; qinggong=5。外观：女款青灰麻布圆头履一双并置，圆头、低鞋墙、白麻纳底与素色包边，无绣纹，成年足长、宋代平民尺度
+  short: 宋青布圆头履·女
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_songjinxiuyuntoulv_nv
+name: 宋金绣云头履·女
+kind: armor
+sub: shoes
+grade: 7
+stack: 1
+chapters:
+- ch01_tianlong
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 女履 · 宋（南宋墓葬服饰实物、宋代女俑）· 出现书界 ch01/ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songjinxiuyuntoulv_nv
+text:
+  desc: 名录投影：鞋·云头履；grade=7; slot=feet; wearer=female; qinggong=17.5。外观：女款月白罗面云头履一双并置，鞋尖含蓄上翘、薄底、金线折枝花与绛色包边，成年足长、不极端缩小，宋代贵族尺度
+  short: 宋金绣云头履·女
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

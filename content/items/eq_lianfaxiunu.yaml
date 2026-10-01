@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_lianfaxiunu
+name: 连发匣弩
+kind: hidden
+sub: bolt
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用机括·明代弩意象；连续供矢结构 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/lianfaxiunu
+text:
+  desc: 名录投影：暗器·机括弩；grade=6; hiddenKind=bolt; ammoMul=1.090; hiddenHit=5.1; perBattle=6; reloadOwnActions=1。外观：短木臂匣弩约六十厘米，上置闭合箭仓、钢弓片与黄铜扳机，六支短矢整齐并置，机括卸力闭合，无人物、手、发射或命中场景
+  short: 连发匣弩
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: bolt
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

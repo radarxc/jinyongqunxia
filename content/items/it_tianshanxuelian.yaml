@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_tianshanxuelian
+name: 天山雪莲
+kind: material
+sub: herb
+grade: 9
+stack: 999
+chapters: any
+origin: canon
+canonRef: 《书剑恩仇录》·雪山采莲情节
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tianshanxuelian
+text:
+  desc: 名录投影：药材·雪莲；grade=9; healPct=12%; dispel=poison,cold:g9; perm.resColdPp=3。外观：白瓣雪莲一朵连根，浅青叶、冰霜边缘，宽约双掌
+  short: 天山雪莲
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di1
+    materialGrade: 9
+    rare: false

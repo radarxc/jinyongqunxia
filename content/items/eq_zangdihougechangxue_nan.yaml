@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_zangdihougechangxue_nan
+name: 藏地厚革长靴·男
+kind: armor
+sub: shoes
+grade: 5
+stack: 1
+chapters:
+- ch01_tianlong
+- ch09_liancheng
+origin: canonExpanded
+canonRef: 藏靴 · 吐蕃 / 藏地（宋清藏地服饰图像）· 出现书界 ch01/ch09 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/zangdihougechangxue_nan
+text:
+  desc: 名录投影：鞋·藏靴；grade=5; slot=feet; wearer=male; qinggong=12.5; resColdPp=2。外观：男款深褐厚革藏靴一双并置，宽圆头、高靿、红蓝氆氇靴口与多层牛皮底，粗线缝合无字，成年足长、雪地行走尺度
+  short: 藏地厚革长靴·男
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

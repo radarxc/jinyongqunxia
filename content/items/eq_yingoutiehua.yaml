@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_yingoutiehua
+name: 银钩铁划
+kind: weapon
+sub: exotic
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》·张翠山，烂银虎头钩与镔铁判官笔
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/yingoutiehua
+text:
+  desc: 名录投影：兵器·奇门钩笔；grade=8; cat=exotic; exoticKind=hook; hands=1; pair=true; unique=true; sect=sect_wudang。外观：银色虎头钩与乌黑判官笔成对并置，各约半臂长，钩刃、护手与笔尖清楚，书法般线条只作装具纹，无人物与手 （原创扩展细节）
+  short: 银钩铁划
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_xueshanlufu
+name: 雪山鹿脯
+kind: material
+sub: ingredient
+grade: 9
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/xueshanlufu
+text:
+  desc: 名录投影：食材·肉；grade=9; ingredientKind=meat; materialGrade=9。外观：深红鹿肉脯两条，盐霜细薄、青麻绳束，约半臂长 （原创扩展）
+  short: 雪山鹿脯
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shoucai_di3
+    materialGrade: 9
+    rare: false
+    ingredientKind: meat

@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_daopao
+name: 青布道袍
+kind: armor
+sub: clothing
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/daopao
+text:
+  desc: 名录投影：衣物·袍服；grade=6; slot=body; armorWeight=light; effRes=2xG。外观：青灰宽袖道袍平展，黑边与布扣，无太极符号，宋元朴雅感 （原创扩展）
+  short: 青布道袍
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

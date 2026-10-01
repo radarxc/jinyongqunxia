@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_songxunyijia
+name: 宋制巡役甲
+kind: armor
+sub: officialArmor
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songxunyijia
+text:
+  desc: 名录投影：制式盔甲·宋；grade=3; slot=body; armorWeight=medium; lawProfile={uniform:true,allowedIdentityTags:[office_song_patrol],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。外观：南宋灰蓝布甲配小片札甲护胸，短摆、皮带，无文字号衣 （原创扩展）
+  short: 宋制巡役甲
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: medium
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

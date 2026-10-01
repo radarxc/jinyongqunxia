@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_heixueshenzhen
+name: 黑血神针
+kind: hidden
+sub: needle
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《笑傲江湖》·曲洋；是否淬毒及器物细节 （待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/heixueshenzhen
+text:
+  desc: 名录投影：暗器·毒针；grade=9; hiddenKind=needle; perBattle=8; onHit=bf_judu; hiddenHit=7.2。外观：乌黑钢针若干置暗红丝衬小匣，针尖细亮，无血迹 （原创扩展）
+  short: 黑血神针
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: needle
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

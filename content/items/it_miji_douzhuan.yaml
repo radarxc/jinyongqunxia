@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_miji_douzhuan
+name: 斗转星移藏本
+kind: manual
+sub: partial
+grade: 10
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·慕容氏绝学；还施水阁载体 （原创扩展）
+price: null
+flags: []
+assets:
+  icon: item/miji_douzhuan
+text:
+  desc: 名录投影：秘籍·残本；grade=10; skill=sk_douzhuan; variant=partial; maxLayer=6。外观：深蓝绢面薄册，银灰星点仅作纤维斑，不画星图或文字 （原创扩展）
+  short: 斗转星移藏本
+extension:
+  type: manual
+  value:
+    skill: sk_douzhuan
+    maxLayer: 6
+    variant: partial
+    readMul: 1

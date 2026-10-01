@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_baonadai
+name: 百纳腰封
+kind: armor
+sub: belt
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/baonadai
+text:
+  desc: 名录投影：腰带·布带；grade=6; slot=waist; hpMaxPct=2%。外观：多色旧布条细密拼缝的宽腰封，低饱和、无文字 （原创扩展）
+  short: 百纳腰封
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

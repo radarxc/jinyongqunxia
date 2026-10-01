@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_yuansuweiqiejia
+name: 元宿卫怯薛甲
+kind: armor
+sub: officialArmor
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/yuansuweiqiejia
+text:
+  desc: 名录投影：制式盔甲·元；grade=10; slot=body; armorWeight=heavy; catalogTian=true; divine=false; unique=true; price=null; lawProfile={uniform:true,allowedIdentityTags:[office_yuan_keshig],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。外观：元代精工铁札与鎏金窄边、深蓝织物衬里，宿卫威仪不奇幻 （原创扩展）
+  short: 元宿卫怯薛甲
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: heavy
+    matFamily: metal
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true

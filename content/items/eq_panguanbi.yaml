@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_panguanbi
+name: 镔铁判官笔
+kind: weapon
+sub: exotic
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·明清武术短兵，名称年代 （待考）；定级 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/panguanbi
+text:
+  desc: 名录投影：兵器·奇门笔；grade=2; cat=exotic; exoticKind=brush; hands=1。外观：一对细长镔铁笔并置，各约四十厘米，尖锥笔端、护指圆盘、尾端钝圆，乌黑磨亮，完整无人物与手
+  short: 镔铁判官笔
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_yuanzhijinzhanshidoupeng_nan
+name: 元织金战士斗篷·男
+kind: armor
+sub: cape
+grade: 8
+stack: 1
+chapters:
+- ch04_yitian
+origin: canonExpanded
+canonRef: 纳石失织金外披 · 元（《元史·舆服志》、蒙元服饰研究）· 出现书界 ch04 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanzhijinzhanshidoupeng_nan
+text:
+  desc: 名录投影：披风·斗篷；grade=8; slot=cape; wearer=male; defOutK=0.025; hpMaxK=0.005; resColdPp=4。外观：男款深蓝织金斗篷单件完整铺展，圆领铜搭扣、阔肩及膝、貂毛窄缘，几何云纹无字，元代蒙古贵族骑行尺度
+  short: 元织金战士斗篷·男
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_luochaduanchong
+name: 罗刹短铳
+kind: hidden
+sub: gun
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《鹿鼎记》罗刹火器语境；此物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/luochaduanchong
+text:
+  desc: 名录投影：暗器·火器；grade=8; hiddenKind=gun; perBattle=2; ammoMul=2.0; range=5; reloadOwnActions=1。外观：木柄短铳、黑铁短管、黄铜箍，清初火器感，无烟火场景 （原创扩展）
+  short: 罗刹短铳
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: gun
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

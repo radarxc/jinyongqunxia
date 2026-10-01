@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_huoxuewan
+name: 活血丸
+kind: pill
+sub: medicine
+grade: 2
+stack: 99
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: both
+  action: consume
+  target: self
+  effects:
+  - op: healPct
+    params:
+      valueBp: 550
+assets:
+  icon: item/huoxuewan
+text:
+  desc: 名录投影：药物·补血；grade=2; healPct=5.5%。外观：褐色小丸三枚置青瓷浅碟，蜡纸小包，朴素药铺感 （原创扩展）
+  short: 活血丸
+extension:
+  type: generic
+  value: {}

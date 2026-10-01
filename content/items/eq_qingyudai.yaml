@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_qingyudai
+name: 青玉束带
+kind: armor
+sub: belt
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingyudai
+text:
+  desc: 名录投影：腰带·玉带；grade=6; slot=waist; effRes=3; cha=1。外观：青布束带嵌三块小青玉，白铜扣，宋式雅致 （原创扩展）
+  short: 青玉束带
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: jade
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

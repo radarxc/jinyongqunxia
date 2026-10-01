@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_hetieshougou
+name: 何铁手毒钩
+kind: weapon
+sub: exotic
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《碧血剑》·何铁手左手铁钩；淬毒细节 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/hetieshougou
+text:
+  desc: 名录投影：兵器·奇门钩；grade=7; cat=exotic; exoticKind=hook; hands=1; unique=true; sect=sect_wudu。外观：前臂长乌钢义肢钩，弯刃与腕箍结构完整，内衬旧皮、表面暗绿氧化痕，不画断肢或毒液，无人物与手 （原创扩展形制）
+  short: 何铁手毒钩
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

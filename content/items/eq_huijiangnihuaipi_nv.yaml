@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_huijiangnihuaipi_nv
+name: 回疆呢花披·女
+kind: armor
+sub: cape
+grade: 4
+stack: 1
+chapters:
+- ch10_baima
+- ch12_shujian
+origin: canonExpanded
+canonRef: 绣边长衣外披 · 清（《皇清职贡图》）· 出现书界 ch10/ch12 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huijiangnihuaipi_nv
+text:
+  desc: 名录投影：披风·呢披；grade=4; slot=cape; wearer=female; defOutK=0.025; hpMaxK=0.005; resColdPp=2。外观：女款枣红羊毛呢披单件完整铺展，无袖直身、圆领对襟、蓝绿几何绣边无文字，及膝宽幅，清代回疆城镇女装尺度
+  short: 回疆呢花披·女
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

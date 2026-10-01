@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_songyuhuanxiu_nv
+name: 宋玉环绶·女
+kind: armor
+sub: belt
+grade: 6
+stack: 1
+chapters:
+- ch01_tianlong
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 玉环绶 · 宋（宋代女俑、墓葬服饰）· 出现书界 ch01/ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songyuhuanxiu_nv
+text:
+  desc: 名录投影：腰带·丝绦；grade=6; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01。外观：女款浅绛丝绦作松弧陈列，中央温润白玉圆环压裙、两端长穗对称垂落，编结细密无字，宋代士绅女装尺度
+  short: 宋玉环绶·女
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

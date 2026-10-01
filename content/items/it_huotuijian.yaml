@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_huotuijian
+name: 火腿尖
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: canonExpanded
+canonRef: 《射雕英雄传》·火腿入馔；部位定级 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/huotuijian
+text:
+  desc: 名录投影：食材·肉；grade=3; ingredientKind=meat; materialGrade=3。外观：小段风干火腿，棕红切面与麻绳，约前臂长 （原创扩展）
+  short: 火腿尖
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shoucai_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: meat

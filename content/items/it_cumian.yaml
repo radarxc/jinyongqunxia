@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_cumian
+name: 粗面
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/cumian
+text:
+  desc: 名录投影：食材·谷物；grade=3; ingredientKind=grain; materialGrade=3。外观：淡黄粗面粉盛矮陶钵，旁置小木勺与少量麦麸，约一餐份量 （原创扩展）
+  short: 粗面
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_liangshi_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: grain

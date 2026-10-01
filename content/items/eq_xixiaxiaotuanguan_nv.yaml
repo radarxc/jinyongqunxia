@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_xixiaxiaotuanguan_nv
+name: 西夏小团冠·女
+kind: armor
+sub: headwear
+grade: 2
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 女供养人小团冠 · 西夏（榆林窟第29窟）· 出现书界 ch01 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xixiaxiaotuanguan_nv
+text:
+  desc: 名录投影：头饰·冠；grade=2; slot=head; wearer=female。外观：女款赭红小团冠独立陈列，不画人头假发，低矮圆冠包棉布、青黑窄缘与两支素铜短簪，无珠翠文字，西夏城镇女子尺度
+  short: 西夏小团冠·女
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

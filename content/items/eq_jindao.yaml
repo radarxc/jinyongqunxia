@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_jindao
+name: 成吉思汗金刀
+kind: weapon
+sub: blade
+grade: 7
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·成吉思汗赐郭靖金刀
+price: auto
+flags:
+- unique
+assets:
+  icon: item/jindao
+text:
+  desc: 名录投影：兵器·刀；grade=7; cat=blade; hands=1; unique=true。外观：蒙古式浅弧腰刀，刃约七十五厘米，鎏金铜装而非金刃，短横镡、棕皮柄与双挂环鞘，风沙旧化，完整斜置，无人物与手 （原创扩展装具）
+  short: 成吉思汗金刀
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

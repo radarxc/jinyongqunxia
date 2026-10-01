@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: it_shengshengzaohuadan
+name: 生生造化丹
+kind: tonic
+sub: tonic
+grade: 10
+stack: 9
+chapters: any
+origin: canonExpanded
+canonRef: 《飞狐外传》·《药王神篇》所载丹药；改效 （原创扩展）
+price: null
+flags:
+- uniqueUse
+use:
+  context: field
+  action: consume
+  target: self
+  effects:
+  - op: breakCap
+    params:
+      value: 5
+  - op: permStat
+    params:
+      stat: chosenInnate
+      value: 2
+assets:
+  icon: item/shengshengzaohuadan
+text:
+  desc: 名录投影：补品·永久属性；grade=10; breakCap=5; permStat=2; perChapter=1。外观：翠绿丹丸置银叶形药盒，细腻蜡光，药王庄清雅工艺 （原创扩展）
+  short: 生生造化丹
+extension:
+  type: generic
+  value: {}

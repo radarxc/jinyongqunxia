@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_dugulijian
+name: 独孤利剑
+kind: weapon
+sub: sword
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·独孤剑冢第一柄无名利剑；名称为描述名
+price: auto
+flags:
+- unique
+assets:
+  icon: item/dugulijian
+text:
+  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; unique=true。外观：刚直双刃长剑，刃约八十厘米，锋线清楚、短铁护手、黑皮缠柄，朴素无铭且略有石尘旧痕，完整斜置，无人物与手 （原创扩展形制）
+  short: 独孤利剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

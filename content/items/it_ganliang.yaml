@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_ganliang
+name: 行旅干粮
+kind: food
+sub: food
+grade: 3
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: field
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1200
+assets:
+  icon: item/ganliang
+text:
+  desc: 名录投影：食品·干粮；grade=3; staPct=12%; context=field。外观：两块烤饼与油纸包，焦黄边、麻绳系，行囊尺度 （原创扩展）
+  short: 行旅干粮
+extension:
+  type: generic
+  value: {}

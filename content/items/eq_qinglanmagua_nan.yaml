@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_qinglanmagua_nan
+name: 清蓝缎马褂·男
+kind: armor
+sub: clothing
+grade: 4
+stack: 1
+chapters:
+- ch08_luding
+- ch09_liancheng
+- ch10_baima
+- ch11_yuanyang
+- ch12_shujian
+- ch13_feihu
+- ch14_xueshan
+origin: canonExpanded
+canonRef: 长袍马褂 · 清（《大清会典·冠服》及清宫服饰实物）· 出现书界 ch08/ch09/ch10/ch11/ch12/ch13/ch14 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qinglanmagua_nan
+text:
+  desc: 名录投影：衣物·便服；grade=4; slot=body; armorWeight=light; wearer=male; talk=1。外观：男款石青圆领对襟短马褂单件平展，平袖、五枚铜盘扣、暗花缎面，袍身至胯，无补子无文字，清前中期士绅尺度
+  short: 清蓝缎马褂·男
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

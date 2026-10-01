@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_miji_yangjiaqiangfa
+name: 杨家枪法遗谱
+kind: manual
+sub: full
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《射雕英雄传》·杨铁心家传枪法；遗谱 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_yangjiaqiangfa
+text:
+  desc: 名录投影：秘籍·全本；grade=6; skill=sk_yangjiaqiangfa; variant=full; maxLayer=10。外观：赭色纸册裹旧蓝布套，细长开本，边角磨白 （原创扩展）
+  short: 杨家枪法遗谱
+extension:
+  type: manual
+  value:
+    skill: sk_yangjiaqiangfa
+    maxLayer: 10
+    variant: full
+    readMul: 1

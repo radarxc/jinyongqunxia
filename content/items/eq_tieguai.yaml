@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_tieguai
+name: 铁拐
+kind: weapon
+sub: staff
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·明清民间拐杖兵器 （原创扩展定级）
+price: auto
+flags: []
+assets:
+  icon: item/tieguai
+text:
+  desc: 名录投影：兵器·棍杖；grade=5; cat=staff; hands=1; tags=blunt。外观：乌黑锻铁直拐约一百厘米，横握柄与圆钝杆端一体锻成，边缘磨亮、无雕字，完整斜置，无人物与手
+  short: 铁拐
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags:
+    - blunt
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

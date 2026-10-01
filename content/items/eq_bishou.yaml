@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_bishou
+name: 韦小宝匕首
+kind: weapon
+sub: exotic
+grade: 10
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《鹿鼎记》·韦小宝；外形 （待考）
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/bishou
+text:
+  desc: 名录投影：兵器·奇门匕；grade=10; cat=exotic; exoticKind=dagger; hands=1; divine=true; unique=true。外观：极薄锋锐短匕全长约三十厘米，冷白钢刃、小型椭圆护手、黑木柄与旧皮鞘，完整并置，无人物与手 （原创扩展形制）
+  short: 韦小宝匕首
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: true
+    catalogTian: false
+    uniqueEquipped: true

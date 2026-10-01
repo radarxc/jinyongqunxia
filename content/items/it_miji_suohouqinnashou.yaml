@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_miji_suohouqinnashou
+name: 锁喉擒拿手遗谱
+kind: manual
+sub: full
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·马大元绝技；遗谱 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_suohouqinnashou
+text:
+  desc: 名录投影：秘籍·全本；grade=6; skill=sk_suohouqinnashou; variant=full; maxLayer=10。外观：褐红薄册，边缘有翻阅毛损，布包角，无字无血迹 （原创扩展）
+  short: 锁喉擒拿手遗谱
+extension:
+  type: manual
+  value:
+    skill: sk_suohouqinnashou
+    maxLayer: 10
+    variant: full
+    readMul: 1

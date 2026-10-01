@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_dagoubang
+name: 打狗棒
+kind: weapon
+sub: staff
+grade: 11
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《射雕英雄传》《神雕侠侣》《天龙八部》丐帮信物 （待考：核各书流转与形制）
+price: null
+flags:
+- unique
+assets:
+  icon: item/dagoubang
+text:
+  desc: 名录投影：兵器·棍；grade=11; cat=staff; hands=1; divine=true; unique=true。外观：深碧竹棒，通体细直、天然竹节清楚，约齐眉长，不刻文字 （原创扩展形制）
+  short: 打狗棒
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: true
+    catalogTian: false
+    uniqueEquipped: true

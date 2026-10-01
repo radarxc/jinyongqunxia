@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_yangjingwan
+name: 养精丸
+kind: tonic
+sub: tonic
+grade: 3
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: field
+  action: consume
+  target: self
+  effects:
+  - op: applyBuff
+    params:
+      value: bf_yangsheng
+  fieldTime: 6
+assets:
+  icon: item/yangjingwan
+text:
+  desc: 名录投影：补品·临时属性；grade=3; buff=bf_yangsheng; hours=6。外观：浅褐蜜丸配竹筒，麻绳短系，寻常行旅补品感 （原创扩展）
+  short: 养精丸
+extension:
+  type: generic
+  value: {}

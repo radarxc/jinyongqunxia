@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_huanziqiang
+name: 环子枪
+kind: weapon
+sub: spear
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·北宋（《武经总要》卷十三“环子枪”） （原创扩展定级）
+price: auto
+flags: []
+assets:
+  icon: item/huanziqiang
+text:
+  desc: 名录投影：兵器·枪；grade=2; cat=spear; hands=2; tags=long。外观：菱形枪锋下设小铁环，白蜡长杆约二点三米，枪裤与尾鐏清楚，少量锈斑，完整斜置留足两端，无人物与手 （原创扩展尺度）
+  short: 环子枪
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_liangyixinfa
+name: 两仪心法谱
+kind: manual
+sub: full
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_liangyixinfa
+text:
+  desc: 名录投影：秘籍·全本；grade=5; skill=sk_liangyixinfa; variant=full; maxLayer=10。外观：黑白双色但无太极符号的软纸书衣，细订线，克制道家感 （原创扩展）
+  short: 两仪心法谱
+extension:
+  type: manual
+  value:
+    skill: sk_liangyixinfa
+    maxLayer: 10
+    variant: full
+    readMul: 1

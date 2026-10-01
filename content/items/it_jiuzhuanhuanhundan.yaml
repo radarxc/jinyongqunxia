@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: it_jiuzhuanhuanhundan
+name: 九转还魂丹
+kind: pill
+sub: medicine
+grade: 10
+stack: 9
+chapters: any
+origin: expanded
+price: null
+flags:
+- uniqueUse
+use:
+  context: battle
+  action: consume
+  target: self
+  effects:
+  - op: revive
+    params:
+      valueBp: 3000
+  battleLimit:
+    perBattle: 1
+    cooldown: 2
+assets:
+  icon: item/jiuzhuanhuanhundan
+text:
+  desc: 名录投影：药物·复活；grade=10; apply=bf_fuhuo; perBattle=1; uniqueUse=true。外观：朱红丹丸一枚置九瓣金边漆盒，温润药光，非魔法泛光 （原创扩展）
+  short: 九转还魂丹
+extension:
+  type: generic
+  value: {}

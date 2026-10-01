@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_shinianrenshen
+name: 十年人参
+kind: material
+sub: herb
+grade: 6
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/shinianrenshen
+text:
+  desc: 名录投影：药材·人参；grade=6; herbFamily=renShen; ageYears=10; materialGrade=6。外观：根体稍粗、须根繁密，黄麻绳束，木盒有轻微岁月痕 （原创扩展）
+  short: 十年人参
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan3
+    materialGrade: 6
+    rare: false
+    herbFamily: renShen
+    ageYears: 10

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_miji_xianglong18_can
+name: 降龙十八掌残本
+kind: manual
+sub: partial
+grade: 12
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》·丐帮降龙掌残传；实体 （原创扩展）
+price: null
+flags: []
+assets:
+  icon: item/miji_xianglong18_can
+text:
+  desc: 名录投影：秘籍·残本；grade=12; skill=sk_xianglong18; variant=partial; maxLayer=6。外观：旧黄纸残册，竹夹板护持，页角缺损但不散页，无文字 （原创扩展）
+  short: 降龙十八掌残本
+extension:
+  type: manual
+  value:
+    skill: sk_xianglong18
+    maxLayer: 6
+    variant: partial
+    readMul: 1

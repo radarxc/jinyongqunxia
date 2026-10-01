@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_tonghuangxiujian
+name: 铜簧袖箭
+kind: hidden
+sub: bolt
+grade: 3
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用机括·宋明袖弩意象；具体定型年代 （待考），玩法 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tonghuangxiujian
+text:
+  desc: 名录投影：暗器·弩箭；grade=3; hiddenKind=bolt; ammoMul=0.985; hiddenHit=3.6; perBattle=6。外观：前臂长竹木箭匣配黄铜簧片与皮腕带，机括完全闭合，六支短箭整齐并置，箭尖朝同向，无人物、手、发射或命中场景
+  short: 铜簧袖箭
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: bolt
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

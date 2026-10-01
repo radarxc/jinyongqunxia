@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_xuelianzi
+name: 雪莲子
+kind: material
+sub: ingredient
+grade: 6
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/xuelianzi
+text:
+  desc: 名录投影：食材·珍材；grade=6; ingredientKind=rare; materialGrade=6。外观：象牙白莲子十余颗盛浅瓷盏，淡霜粉感，指节大小 （原创扩展）
+  short: 雪莲子
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan3
+    materialGrade: 6
+    rare: false
+    ingredientKind: rare

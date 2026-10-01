@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_yuanqibingjia
+name: 元制骑兵札甲
+kind: armor
+sub: officialArmor
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanqibingjia
+text:
+  desc: 名录投影：制式盔甲·元；grade=6; slot=body; armorWeight=heavy; lawProfile={uniform:true,allowedIdentityTags:[office_yuan_army],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。外观：元代铁札甲、皮革系片、暗褐肩带，骑兵短身甲，旧而完整 （原创扩展）
+  short: 元制骑兵札甲
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: heavy
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

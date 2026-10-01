@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_yanlingdao
+name: 雁翎刀
+kind: weapon
+sub: blade
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/yanlingdao
+text:
+  desc: 名录投影：兵器·刀；grade=6; cat=blade; hands=1。外观：明清雁翎形刀身，浅弧、铜吞口、黑皮鞘，刃长约七十厘米
+  short: 雁翎刀
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_ruanjian
+name: 百炼软剑
+kind: weapon
+sub: sword
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·明清武侠语汇，历史定型 （待考）；玩法 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/ruanjian
+text:
+  desc: 名录投影：兵器·剑；grade=5; cat=sword; hands=1; tags=soft。外观：窄薄弹性钢刃自然微垂而不盘卷，刃约七十厘米，碗形小镡、黑丝缠柄、窄鞘，完整斜置，无人物与手 （原创扩展形制）
+  short: 百炼软剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags:
+    - soft
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

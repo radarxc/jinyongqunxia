@@ -1,0 +1,37 @@
+schemaVersion: item.v1
+id: it_yulongsuheisan
+name: 玉龙苏合散
+kind: pill
+sub: medicine
+grade: 10
+stack: 9
+chapters: any
+origin: canonExpanded
+canonRef: 金庸作品 （待考：核具体书名、持有人与药效）
+price: null
+flags: []
+use:
+  context: both
+  action: consume
+  target: self
+  effects:
+  - op: healPct
+    params:
+      valueBp: 1400
+  - op: mpPct
+    params:
+      valueBp: 840
+  - op: dispel
+    params:
+      tags:
+      - injury
+      - poison
+      grade: 10
+assets:
+  icon: item/yulongsuheisan
+text:
+  desc: 名录投影：药物·救急；grade=10; healPct=14%; mpPct=8.4%; dispel=injury,poison:g10。外观：羊脂玉小葫芦盛银白细粉，银塞云纹，微冷润泽，无发光 （原创扩展）
+  short: 玉龙苏合散
+extension:
+  type: generic
+  value: {}

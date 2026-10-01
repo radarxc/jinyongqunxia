@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_huoduzheshan
+name: 霍都折扇
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·霍都；扇柄机括射毒钉
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/huoduzheshan
+text:
+  desc: 名录投影：兵器·奇门扇；grade=6; cat=exotic; exoticKind=fan; hands=1; unique=true; sect=sect_mizong。外观：闭合铁骨折扇与微展扇面并置为同一件展示，长约三十五厘米，扇骨细孔机括闭合、素白纸面、旧铜扇钉，无发射场景与人物 （原创扩展形制）
+  short: 霍都折扇
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

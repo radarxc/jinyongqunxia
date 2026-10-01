@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_miji_jiuyin_shang
+name: 九阴真经上卷
+kind: manual
+sub: original
+grade: 12
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·九阴真经上下卷
+price: null
+flags:
+- runtimeProjection
+assets:
+  icon: item/miji_jiuyin_shang
+text:
+  desc: 名录投影：秘籍·原本；grade=12; skill=sk_jiuyin; variant=original; maxLayer=10; volume=upper。外观：墨青柔软纸书衣、微翘角、右侧四眼细订线、空题签，轻旧化 （原创扩展装帧）
+  short: 九阴真经上卷
+extension:
+  type: manual
+  value:
+    skill: sk_jiuyin
+    maxLayer: 10
+    variant: original
+    readMul: 1

@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_bainianrenshen
+name: 百年人参
+kind: material
+sub: herb
+grade: 9
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/bainianrenshen
+text:
+  desc: 名录投影：药材·人参；grade=9; herbFamily=renShen; ageYears=100; materialGrade=9。外观：粗壮分叉老参，深褐年纹，绢衬檀木匣，尺幅约前臂长 （原创扩展）
+  short: 百年人参
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di3
+    materialGrade: 9
+    rare: false
+    herbFamily: renShen
+    ageYears: 100

@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_bintiejiangmochu
+name: 镔铁降魔杵
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用佛教法器意象·明清；兵器化与定级 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/bintiejiangmochu
+text:
+  desc: 名录投影：兵器·奇门杵；grade=6; cat=exotic; exoticKind=pestle; hands=2; tags=heavy。外观：双手镔铁杵约一百二十厘米，中段皮缠握位、两端对称棱瓣钝首，沉黑金属有礼佛磨痕，完整斜置，无人物与手
+  short: 镔铁降魔杵
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - heavy
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

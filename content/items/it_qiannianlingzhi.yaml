@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_qiannianlingzhi
+name: 千年灵芝
+kind: material
+sub: herb
+grade: 10
+stack: 999
+chapters: any
+origin: expanded
+price: null
+flags:
+- unique
+assets:
+  icon: item/qiannianlingzhi
+text:
+  desc: 名录投影：药材·灵芝；grade=10; herbFamily=lingZhi; ageYears=1000; materialGrade=10; unique=true。外观：紫褐巨灵芝一株，层叠菌盖有深密年轮，旧檀木架托，约双掌宽 （原创扩展）
+  short: 千年灵芝
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_tian9
+    materialGrade: 10
+    rare: true
+    herbFamily: lingZhi
+    ageYears: 1000

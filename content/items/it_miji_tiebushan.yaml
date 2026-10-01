@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_tiebushan
+name: 铁布衫秘籍
+kind: manual
+sub: full
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tiebushan
+text:
+  desc: 名录投影：秘籍·全本；grade=7; skill=sk_tiebushan; variant=full; maxLayer=10。外观：土黄厚韧纸册，深褐布包边，朴实寺院练功册 （原创扩展）
+  short: 铁布衫秘籍
+extension:
+  type: manual
+  value:
+    skill: sk_tiebushan
+    maxLayer: 10
+    variant: full
+    readMul: 1

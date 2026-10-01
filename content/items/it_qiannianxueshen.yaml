@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_qiannianxueshen
+name: 千年雪参
+kind: material
+sub: herb
+grade: 10
+stack: 999
+chapters: any
+origin: expanded
+price: null
+flags:
+- unique
+assets:
+  icon: item/qiannianxueshen
+text:
+  desc: 名录投影：药材·雪参；grade=10; herbFamily=xueShen; ageYears=1000; materialGrade=10; unique=true。外观：臂长银灰老参，须根盘绕，寒玉匣有千年风化细痕 （原创扩展）
+  short: 千年雪参
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_tian9
+    materialGrade: 10
+    rare: true
+    herbFamily: xueShen
+    ageYears: 1000

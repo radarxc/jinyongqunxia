@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_jindi
+name: 金笛
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《书剑恩仇录》·余鱼同
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jindi
+text:
+  desc: 名录投影：兵器·奇门笛；grade=6; cat=exotic; exoticKind=flute; hands=1。外观：哑光旧金色横笛，七孔与细卷草纹，无文字，约两尺 （原创扩展形制）
+  short: 金笛
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

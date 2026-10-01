@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_niurougan
+name: 酱香牛肉干
+kind: food
+sub: food
+grade: 6
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1700
+  - op: applyBuff
+    params:
+      value: bf_waigong_sheng:1battle
+assets:
+  icon: item/niurougan
+text:
+  desc: 名录投影：食品·腌藏；grade=6; staPct=17%; buff=bf_waigong_sheng:1battle。外观：深褐肉条装牛皮纸包，麻绳束口，干润纤维清楚 （原创扩展）
+  short: 酱香牛肉干
+extension:
+  type: generic
+  value: {}

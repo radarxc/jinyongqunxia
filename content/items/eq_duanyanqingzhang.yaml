@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_duanyanqingzhang
+name: 段延庆钢杖
+kind: weapon
+sub: staff
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《天龙八部》·段延庆，以双杖代足并运一阳指
+price: auto
+flags:
+- unique
+assets:
+  icon: item/duanyanqingzhang
+text:
+  desc: 名录投影：兵器·棍杖；grade=8; cat=staff; hands=1; pair=true; unique=true。外观：两根细长乌钢杖平行并置，各约一百三十厘米，锥形杖尖、圆头握柄，无宝石，承重处磨亮，完整留足两端，无人物与手
+  short: 段延庆钢杖
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: pair
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

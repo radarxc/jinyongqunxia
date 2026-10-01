@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_junzijian
+name: 君子剑
+kind: weapon
+sub: sword
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·绝情谷
+price: auto
+flags:
+- unique
+assets:
+  icon: item/junzijian
+text:
+  desc: 名录投影：兵器·剑；grade=9; cat=sword; hands=1; unique=true。外观：乌黑修长直剑，方正小护手，克制银边，完整剑鞘 （原创扩展形制）
+  short: 君子剑
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

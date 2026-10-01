@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_jinsijia
+name: 金丝甲
+kind: armor
+sub: innerArmor
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jinsijia
+text:
+  desc: 名录投影：内甲·金丝；grade=6; slot=innerBody; weaponZ4=3%。外观：暗金细丝交织无袖背心，织孔极细、边缘布包条 （原创扩展）
+  short: 金丝甲
+extension:
+  type: equipment
+  value:
+    slot: innerBody
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_tayunlv
+name: 踏云履
+kind: armor
+sub: shoes
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/tayunlv
+text:
+  desc: 名录投影：鞋·名履；grade=9; slot=feet; qinggong=22.5; climbSta=-20%; unique=true。外观：月白软履配灰蓝云纹织边，薄底、完整一双，精工不发光 （原创扩展）
+  short: 踏云履
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

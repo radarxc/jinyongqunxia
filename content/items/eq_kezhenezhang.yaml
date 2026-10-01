@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_kezhenezhang
+name: 柯镇恶铁杖
+kind: weapon
+sub: staff
+grade: 5
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·柯镇恶；名称为描述名
+price: auto
+flags:
+- unique
+assets:
+  icon: item/kezhenezhang
+text:
+  desc: 名录投影：兵器·棍杖；grade=5; cat=staff; hands=1; unique=true。外观：乌铁手杖约一百二十厘米，弯曲握柄、钝重杖端与窄铁箍，表面磕痕多而无纹饰，完整斜置，无人物与手 （原创扩展形制）
+  short: 柯镇恶铁杖
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

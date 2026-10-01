@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_xixiacuzhanpi_nan
+name: 西夏粗毡披·男
+kind: armor
+sub: cape
+grade: 2
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 党项窄袍外披 · 西夏（榆林窟第29窟供养人图）· 出现书界 ch01 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xixiacuzhanpi_nan
+text:
+  desc: 名录投影：披风·毡披；grade=2; slot=cape; wearer=male; defOutK=0.025; hpMaxK=0.005; resColdPp=1。外观：男款土黄粗毡短披单件完整铺展，圆领、左前襟绳结、无袖及臀，毛毡边缘略毛糙无纹，西夏牧旅尺度
+  short: 西夏粗毡披·男
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

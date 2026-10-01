@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_xiujian
+name: 袖箭
+kind: ammo
+sub: bolt
+grade: 3
+stack: 99
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: field
+  action: load
+  target: self
+  effects: []
+assets:
+  icon: item/xiujian
+text:
+  desc: 名录投影：暗器·弩箭；grade=3; hiddenKind=bolt; ammoMul=0.985; hiddenHit=3.6。外观：小型铜木袖弩与一支短箭并置，无手臂人物，约一掌长 （原创扩展）
+  short: 袖箭
+extension:
+  type: generic
+  value: {}

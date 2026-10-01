@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_mingwushafangjin_nan
+name: 明乌纱方巾·男
+kind: armor
+sub: headwear
+grade: 3
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+- ch07_bixue
+origin: canonExpanded
+canonRef: 四方平定巾 · 明（明代宫廷与民间服饰研究）· 出现书界 ch05/ch06/ch07 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingwushafangjin_nan
+text:
+  desc: 名录投影：头饰·方巾；grade=3; slot=head; wearer=male。外观：男款乌纱四方平定巾独立陈列，不画人头，方正硬胎、四角平整、细纱透气，配素黑巾环，无字，明代士人尺度
+  short: 明乌纱方巾·男
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_jinshezhui
+name: 金蛇锥
+kind: hidden
+sub: awl
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《碧血剑》·夏雪宜遗物，二十四枚金蛇锥
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/jinshezhui
+text:
+  desc: 名录投影：暗器·名锥；grade=8; hiddenKind=awl; ammoMul=1.160; hiddenHit=6.6; perBattle=8; unique=true。外观：八枚金色蛇形短锥等距排于黑绒匣，锥长约一掌、曲柄似蛇而锋尖清楚，无文字、人物、手、发射或命中场景 （原创扩展陈设）
+  short: 金蛇锥
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: awl
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

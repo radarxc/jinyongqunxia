@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_songshaobang
+name: 宋式哨棒
+kind: weapon
+sub: staff
+grade: 1
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·宋元话本语汇，实物形制 （待考）；定级 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/songshaobang
+text:
+  desc: 名录投影：兵器·棍；grade=1; cat=staff; hands=2; tags=long。外观：枣木直棒约一百四十厘米，一端略粗、两端无金属件，麻绳握位与磕碰旧痕，完整斜置留足杆端，无人物与手 （原创扩展复原）
+  short: 宋式哨棒
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags:
+    - long
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

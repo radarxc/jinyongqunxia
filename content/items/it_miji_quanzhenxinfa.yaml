@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_miji_quanzhenxinfa
+name: 全真心法抄本
+kind: manual
+sub: copy
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《射雕英雄传》《神雕侠侣》·全真内功；载体 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_quanzhenxinfa
+text:
+  desc: 名录投影：秘籍·抄本；grade=5; skill=sk_quanzhenxinfa; variant=copy; maxLayer=8。外观：灰青软纸册，麻线细订，道观藏书轻旧化，无太极文字图案 （原创扩展）
+  short: 全真心法抄本
+extension:
+  type: manual
+  value:
+    skill: sk_quanzhenxinfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1

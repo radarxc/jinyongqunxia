@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_tiandihuiduandao
+name: 天地会短刀
+kind: weapon
+sub: blade
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 天地会 · design/17 §8.5；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/tiandihuiduandao
+text:
+  desc: 名录投影：兵器·刀；grade=7; cat=blade; hands=1; unique=true; sect=sect_tiandihui。外观：清初民间短腰刀，刃约五十五厘米，椭圆铁镡、黑布缠柄与素皮鞘，便于衣下携带且无会党文字，完整斜置，无人物与手
+  short: 天地会短刀
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

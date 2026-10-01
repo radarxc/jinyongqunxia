@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_shenquantiehutao
+name: 神拳铁护套
+kind: weapon
+sub: exotic
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 神拳门 · design/17 §8.7；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/shenquantiehutao
+text:
+  desc: 名录投影：兵器·奇门拳套；grade=7; cat=exotic; exoticKind=misc; hands=1; pair=true; unique=true; sect=sect_shenquan。外观：一对分指铁护套并置，覆盖拳背与指节、掌心留空，内衬旧皮、铁片铆接圆滑无尖刺，完整静物，无人物与手
+  short: 神拳铁护套
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

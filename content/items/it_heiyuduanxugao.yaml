@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: it_heiyuduanxugao
+name: 黑玉断续膏
+kind: pill
+sub: medicine
+grade: 9
+stack: 99
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》·西域金刚门秘药
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: consume
+  target: self
+  effects:
+  - op: dispel
+    params:
+      tags:
+      - bf_gushang
+      - bf_huagu
+assets:
+  icon: item/heiyuduanxugao
+text:
+  desc: 名录投影：药物·接骨外敷；grade=9; cure=bf_gushang,bf_huagu; storyCure=fracture。外观：墨黑膏体盛黑玉色圆盒，铜扣与厚蜡封，沉重珍药感 （原创扩展）
+  short: 黑玉断续膏
+extension:
+  type: generic
+  value: {}

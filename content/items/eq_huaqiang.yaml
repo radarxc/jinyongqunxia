@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_huaqiang
+name: 花枪
+kind: weapon
+sub: spear
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huaqiang
+text:
+  desc: 名录投影：兵器·枪；grade=3; cat=spear; hands=2; mainK=1.15。外观：柳叶枪头、红缨、白蜡长杆，整枪约人物身高一倍半
+  short: 花枪
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

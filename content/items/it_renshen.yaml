@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_renshen
+name: 普通人参
+kind: material
+sub: herb
+grade: 3
+stack: 999
+chapters: any
+origin: canon
+canonRef: 中药材通名
+price: auto
+flags: []
+assets:
+  icon: item/renshen
+text:
+  desc: 名录投影：药材·人参；grade=3; herbFamily=renShen; ageYears=0; materialGrade=3。外观：一支浅黄人参，根须完整，少量新土，约手掌长
+  short: 普通人参
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang3
+    materialGrade: 3
+    rare: false
+    herbFamily: renShen
+    ageYears: 0

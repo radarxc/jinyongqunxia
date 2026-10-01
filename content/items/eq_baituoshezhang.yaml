@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_baituoshezhang
+name: 白驼蛇杖
+kind: weapon
+sub: staff
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《射雕英雄传》·欧阳锋；杖头毒蛇与机括细节 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/baituoshezhang
+text:
+  desc: 名录投影：兵器·棍杖；grade=9; cat=staff; hands=1; unique=true; sect=sect_baituoshan。外观：乌木长杖约一人高，杖首双蛇盘绕造型与闭合暗孔、银箍和铁尾鐏，旧化克制，不画活蛇扑咬，无人物与手 （原创扩展形制）
+  short: 白驼蛇杖
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

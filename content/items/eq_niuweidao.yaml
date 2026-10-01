@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_niuweidao
+name: 牛尾刀
+kind: weapon
+sub: blade
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·晚清民间，具体定型年代 （待考）；玩法 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/niuweidao
+text:
+  desc: 名录投影：兵器·刀；grade=5; cat=blade; hands=1。外观：根窄梢宽、刀尖上扬似牛尾的单刃钢刀，刃约七十厘米，圆铜镡、木柄棉绳缠绕、旧皮鞘，完整斜置，无人物与手
+  short: 牛尾刀
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

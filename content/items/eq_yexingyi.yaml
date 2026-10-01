@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_yexingyi
+name: 夜行衣
+kind: armor
+sub: clothing
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yexingyi
+text:
+  desc: 名录投影：衣物·潜行服；grade=6; slot=body; armorWeight=light; tags=night; eva=2xG。外观：墨黑偏蓝窄袖衣裤折叠成套，哑光布、无蒙面人物 （原创扩展）
+  short: 夜行衣
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags:
+    - night
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

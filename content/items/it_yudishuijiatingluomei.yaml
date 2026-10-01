@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_yudishuijiatingluomei
+name: 玉笛谁家听落梅
+kind: dish
+sub: dish
+grade: 8
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·黄蓉五味肉条名菜
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: meal
+    params:
+      value: 5buff:3battle
+assets:
+  icon: item/yudishuijiatingluomei
+text:
+  desc: 名录投影：食品·名菜；grade=8; meal=5buff:3battle; party=4。外观：五色肉条拼成梅花状，素白大盘，色泽低饱和、份量精致
+  short: 玉笛谁家听落梅
+extension:
+  type: generic
+  value: {}

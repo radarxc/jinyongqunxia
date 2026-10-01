@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_bailagan
+name: 白蜡杆
+kind: weapon
+sub: staff
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·明清武术器材 （待考：核名称年代）；定级 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/bailagan
+text:
+  desc: 名录投影：兵器·棍；grade=2; cat=staff; hands=2; tags=long。外观：淡黄白蜡木韧杆约一百八十厘米，根粗梢细、无金属包头，握处磨亮且微弯，完整斜置留足两端，无人物与手
+  short: 白蜡杆
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags:
+    - long
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_chanzhang
+name: 禅杖
+kind: weapon
+sub: staff
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/chanzhang
+text:
+  desc: 名录投影：兵器·棍杖；grade=6; cat=staff; hands=2; tags=blunt。外观：铁环锡杖头、深木长杆，环片小而克制，约一人高
+  short: 禅杖
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags:
+    - blunt
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
