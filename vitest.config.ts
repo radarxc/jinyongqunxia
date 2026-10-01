@@ -1,5 +1,5 @@
 import vue from '@vitejs/plugin-vue';
-import { defineConfig } from 'vitest/config';
+import { configDefaults, defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [vue()],
@@ -15,6 +15,7 @@ export default defineConfig({
             'apps/**/*.test.ts',
             'tools/perf/**/*.test.mjs',
           ],
+          exclude: [...configDefaults.exclude, 'packages/render/src/rig/performance.test.ts'],
         },
       },
       {
@@ -23,6 +24,18 @@ export default defineConfig({
           name: 'ui',
           environment: 'happy-dom',
           include: ['packages/ui/**/*.test.ts'],
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: 'perf',
+          environment: 'node',
+          include: ['packages/render/src/rig/performance.test.ts'],
+          fileParallelism: false,
+          maxWorkers: 1,
+          disableConsoleIntercept: true,
+          sequence: { concurrent: false, groupOrder: 1 },
         },
       },
     ],
