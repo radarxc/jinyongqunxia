@@ -4,6 +4,7 @@
 > **上游**：AR-20、`design/10` §3.1、§4.1。
 > **引用而不重定义**：属性与词条只引用 `design/03`、`design/10` §4.6。
 > **标注约定**：本表全部具体物品、数值与外观为 **（原创扩展）**。
+> **AR-25 数值口径**：18 个矩阵条目的 `grade` 依次取 9 / 8 / 7、6 / 5 / 4、3 / 2 / 1；腰带主属性沿用 `design/10` §3.1、§4.1，即 `defOutK=0.05; hpMaxK=0.01`，不因历史身份另加魔法效果。
 
 | ID | 名称 | 子类 | 品阶 | 出处（书名 / 原创扩展） | 效果字段 | 外观要点（供出图） |
 |---|---|---|---|---|---|---|
@@ -15,3 +16,52 @@
 | `eq_yunlongyudai` | 云龙玉带 | 腰带·玉带 | 地 | **（原创扩展）** | `grade=9; slot=waist; cha=2; talk=5` | 月白锦带嵌和田玉板，云纹浅雕、不画完整龙形 **（原创扩展）** |
 | `eq_qiankundaidai` | 乾坤宝带 | 腰带·宝带 | 天 | **（原创扩展）** | `grade=10; slot=waist; catalogTian=true; divine=false; unique=true; price=null; hpMaxPct=5%; mpMaxPct=5%` | 深青宽带、暗金回纹与玉扣，厚实但可弯曲，无储物魔法表现 **（原创扩展）** |
 | `eq_tianchanyaodai` | 天蚕腰带 | 腰带·丝带 | 天 | **（原创扩展）** | `grade=10; slot=waist; catalogTian=true; divine=false; unique=true; price=null; tough=6; poisonResPp=6` | 珠灰蚕丝宽带，银线细密经纬、白玉扣，柔韧无荧光 **（原创扩展）** |
+| `eq_jinchunshuiyutuhu_nan` | 金春水玉吐鹘·男 | 腰带·玉带 | 地上 | 吐鹘束带 · 金（《金史·舆服志》）· 出现书界 ch02/ch03 **（原创扩展）** | `grade=9; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 男款深褐鞓带盘成一圈，白玉带銙大小相间、浅雕海东青逐水草的春水纹，带扣与双铊尾完整，无佩刀文字，金代贵显尺度 |
+| `eq_minghoufeijindadai_nv` | 明后妃锦大带·女 | 腰带·礼带 | 地上 | 后妃大带 · 明（《大明会典·舆服》）· 出现书界 ch05/ch06/ch07 **（原创扩展）** | `grade=9; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 女款朱红织金礼仪大带作松弧陈列，宽帛带、玉环与成对垂绅结构清楚，云花暗纹无字，明代后妃礼服尺度 |
+| `eq_mingbaiyutingdai_nan` | 明白玉鞓带·男 | 腰带·玉带 | 地中 | 一品玉带 · 明（《大明会典·舆服》）· 出现书界 ch05/ch06/ch07 **（原创扩展）** | `grade=8; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 男款青革鞓带盘成一圈，素白玉方銙均匀排列、铜鎏金扣与铊尾完整，无龙纹文字，明代高官腰带尺度 |
+| `eq_yuanhongjinyaodai_nv` | 元红锦腰带·女 | 腰带·锦带 | 地中 | 蒙古贵妇锦带 · 元（元墓壁画、蒙元服饰研究）· 出现书界 ch04 **（原创扩展）** | `grade=8; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 女款绛红织锦宽带作松弧陈列，鎏金双环扣、两端短流苏与克制卷草暗纹，无悬刀无字，元代蒙古贵妇尺度 |
+| `eq_liaoyudiexiedai_nan` | 辽玉蹀躞带·男 | 腰带·蹀躞带 | 地下 | 蹀躞带 · 辽（陈国公主墓出土带具）· 出现书界 ch01 **（原创扩展）** | `grade=7; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 男款黑褐革蹀躞带盘成一圈，鎏金玉带扣、十二带箍与方形玉銙完整，短垂带空置不挂兵器，无字，辽代贵族骑装尺度 |
+| `eq_qingxiuhuahebaodai_nv` | 清绣花荷包带·女 | 腰带·荷包带 | 地下 | 吉服带、佩囊 · 清（故宫清中期吉服带与荷包研究）· 出现书界 ch08/ch09/ch10/ch11/ch12/ch13/ch14 **（原创扩展）** | `grade=7; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 女款金黄色丝质吉服带作松弧陈列，四块白玉方版、玉环与一对扁圆花卉荷包，荷包仅作从属佩囊、无腰包体积，无字，清中期宫廷尺度 |
+| `eq_songdujinaomiandai_nan` | 宋镀金凹面带·男 | 腰带·鞓带 | 玄上 | 镀金凹面腰带 · 北宋（《东京梦华录》）· 出现书界 ch01 **（原创扩展）** | `grade=6; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 男款绯色革鞓带盘成一圈，鎏金凹面方銙连续排列、扣与铊尾完整，金面克制磨亮无字，北宋教坊盛服尺度 |
+| `eq_songyuhuanxiu_nv` | 宋玉环绶·女 | 腰带·丝绦 | 玄上 | 玉环绶 · 宋（宋代女俑、墓葬服饰）· 出现书界 ch01/ch02/ch03 **（原创扩展）** | `grade=6; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 女款浅绛丝绦作松弧陈列，中央温润白玉圆环压裙、两端长穗对称垂落，编结细密无字，宋代士绅女装尺度 |
+| `eq_yuanshutongkuaodai_nan` | 元鎏银铜銙带·男 | 腰带·金属 | 玄中 | 束带 · 元（《元史·舆服志》）· 出现书界 ch04 **（原创扩展）** | `grade=5; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 男款赤褐革束带盘成一圈，鎏银铜銙、小型金属钩与双铊尾式垂端结构清楚，无悬物无字，元代中阶武官尺度 |
+| `eq_daliyinkoujindai_nv` | 大理银扣锦带·女 | 腰带·锦带 | 玄中 | 大理国锦带 · 大理（《张胜温画卷》服饰图像）· 出现书界 ch01 **（原创扩展）** | `grade=5; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 女款青绿织锦窄带作松弧陈列，錾花银双环扣、白色短流苏与小团花暗纹，无文字，大理国士绅女装尺度 |
+| `eq_qinggedaihebao_nan` | 清革带荷包·男 | 腰带·荷包带 | 玄下 | 常服带、佩囊 · 清（故宫清宫荷包研究）· 出现书界 ch08/ch09/ch10/ch11/ch12/ch13/ch14 **（原创扩展）** | `grade=4; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 男款深蓝软革常服带作松弧陈列，黄铜双环扣与一只扁圆石青绣花荷包，荷包轻薄无腰包感，不挂兵器无字，清前中期士绅尺度 |
+| `eq_mingqingjintaosheng_nv` | 明青金桃绳·女 | 腰带·丝绦 | 玄下 | 丝绦束腰 · 明（明代服饰文献与人物画）· 出现书界 ch05/ch06/ch07 **（原创扩展）** | `grade=4; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 女款天青丝绦作松弧陈列，双股编绳、鎏金桃形绦环、两端细密穗子，无字无腰包，明代士绅女装尺度 |
+| `eq_jintongkuatuhu_nan` | 金铜銙吐鹘·男 | 腰带·金属 | 黄上 | 吐鹘束带 · 金（《金史·舆服志》）· 出现书界 ch02/ch03 **（原创扩展）** | `grade=3; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 男款黑色粗革吐鹘带盘成一圈，素铜方銙前小后大、方扣与双铊尾完整，无春水纹无悬刀，金代普通武人尺度 |
+| `eq_qinghannvsichou_nv` | 清汉女丝绸束带·女 | 腰带·丝带 | 黄上 | 汉女袄裙束带 · 清（清代风俗图像）· 出现书界 ch08/ch09/ch10/ch11/ch12/ch13/ch14 **（原创扩展）** | `grade=3; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 女款藕色丝绸束带作松弧陈列，中段略宽、两端收窄并缀短穗，折枝暗纹无字无扣，清前中期汉女日常尺度 |
+| `eq_huijianghongbudai_nan` | 回疆红布腰带·男 | 腰带·布带 | 黄中 | 红带 · 清（《皇清职贡图》）· 出现书界 ch10/ch12 **（原创扩展）** | `grade=2; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 男款暗红棉布长带盘成一圈，数层缠绕痕与素结清楚，两端短垂、边缘轻磨损，无字无扣，清代回疆民人尺度 |
+| `eq_xixiaxiubianbodai_nv` | 西夏绣边帛带·女 | 腰带·帛带 | 黄中 | 女供养人束带 · 西夏（榆林窟第29窟、武威西夏墓图像）· 出现书界 ch01 **（原创扩展）** | `grade=2; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 女款赭黄帛带作松弧陈列，蓝黑几何窄绣边、布结与两端短穗，粗绸无字无金属，西夏城镇女装尺度 |
+| `eq_songmabutaosheng_nan` | 宋麻布绦绳·男 | 腰带·布绳 | 黄下 | 士庶布带 · 宋（《宋史·舆服志》士庶服）· 出现书界 ch01/ch02/ch03 **（原创扩展）** | `grade=1; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 男款灰褐麻布绦绳盘成一圈，双股粗编、木环与简单活结，纤维毛糙轻旧，无字无悬物，宋代庶民尺度 |
+| `eq_songsubodai_nv` | 宋素帛裙带·女 | 腰带·帛带 | 黄下 | 襦裙帛带 · 宋（宋墓女俑与服饰实物）· 出现书界 ch01/ch02/ch03 **（原创扩展）** | `grade=1; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01` **（原创扩展）** | 女款灰青素帛裙带作松弧陈列，窄长软带、中央压褶与两端自然下垂，粗绢无纹无扣，宋代平民女装尺度 |
+
+## 本文新增术语与 ID
+
+- 新增 AR-25 腰带 ID 共 18 个，统一登记见 `design/10` §14。
+
+## 数据校验规则与测试用例
+
+- 18 格均须 `slot=waist; defOutK=0.05; hpMaxK=0.01`，并以松弧或盘圈方式独立出图。
+- 机器校验：`python3 tools/lint/check_item_catalog.py docs/design/catalog/items-belts.md --min 26`；跨表 ID 再跑严格检查。
+
+## 待决事项 / 依赖
+
+### 替下游给出的建议值
+
+- 荷包只作腰带从属佩囊，不表现为现代腰包；官阶材质不自动授予身份。
+
+### 本文依赖的上游事实
+
+- 小件主属性与装备词条引用 `design/10`，书界年代引用 `design/02`。
+
+### 对基准的修改提案
+
+- 同衣物表：建议补充 `wearer` 可选枚举及消费语义。
+
+### 原著考据待办
+
+- 无新增原著断言。
+
+### 开放问题（附默认值）
+
+- 天级是否扩矩阵：默认不补，保留既有天级腰带。
