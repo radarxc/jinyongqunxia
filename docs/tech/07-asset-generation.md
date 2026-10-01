@@ -3,15 +3,15 @@
 | 项 | 内容 |
 |---|---|
 | 文档归属 | `docs/tech/07-asset-generation.md`（本文件是"美术圣经、素材清单、生成工具选型、分类型生成管线、资产登记库、一致性与预算、AI 素材法律伦理"的**唯一归属文档**） |
-| 上游基准 | `docs/00-canon.md` §0（非商业、不分发、不得使用演员肖像、国风水墨＋工笔）、§4（品阶色）、§8（斜 45° 等距战棋）、§12（ID 规范）、§19（技术基线：Three.js 正交 2.5D、8 方向精灵公告板＋法线贴图、素材与代码分离、KTX2、按书界分包） |
-| 强依赖 | `tech/02`（相机、六角投影、精灵规格、法线与驻留策略）、`tech/06`（素材存储、manifest、压缩与编码规格）、`tech/03`（移动端显存/内存预算）、`design/05/06/10`（武学/Buff/物品目录）、`design/09`（六角战斗逻辑）、`design/11/12/15/16/17/18/19`（地图、门派、冲穴、资源、NPC 的需求目录）、`design/14`（UI） |
-| 版本 | v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
+| 上游基准 | `docs/decisions/author-requirements.md` AR-19/AR-21，以及本任务给出的 AR-22 作者原话；`docs/00-canon.md` §0、§4、§8、§12、§19；其中 AR-22 覆盖 §19 的整身预渲染角色帧路线 |
+| 强依赖 | `tech/02`（相机、六角投影、rig 渲染与深度）、`tech/09-character-rig`（`tianshu_rig`、装备层与代码轨迹）、`tech/06`（存储、manifest、压缩）、`tech/03`（显存/内存预算）、`design/05/06/10`（武学/Buff/物品目录）、`design/09`（六角战斗逻辑）、`design/11/12/15/16/17/18/19`、`design/14` |
+| 版本 | v1.3（2026-10-01 AR-22：角色分层部件与代码步态）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26） |
 | 读者 | 作者本人（单人开发 + AI 辅助编码）；以及后续协助编写管线脚本的 AI 编码代理 |
 
 > **审校后的执行边界**
 > 1. 作者已决定**无本地显卡、不租卡、不运行本地生成模型**；当前 AI 图像入口仅为 TraeX CLI `image_generation` 与 Gemini 网页版。§4 的其余模型/服务是截至 2026-09-26 的候选调研，不构成开通、付费或执行决定。
 > 2. OpenAI 帮助中心已有 Sora discontinuation 页面，但本次无法从页面正文闭合具体停用日；原稿“2026-09-24 API 下线”已撤回，精确日期保留**（待核实）**。云产品的地区、账号额度与输出权利须在实际账号上复核**（待实测）**。
-> 3. 战斗采用 pointy-top 六角规则空间的 6 个 `HexDir`，资产仍为完整 8 个 `Dir8` 视图；镜头允许四个 90° 预设旋转。逻辑方向、资产方向和运行时驻留量不可混写（§5.4）。
+> 3. 战斗采用 pointy-top 六角规则空间的 6 个 `HexDir`；角色资产只画 `front34/back34/side` 三视图，以镜像解析 8 个 `Dir8`。镜头允许四个 90° 预设旋转；逻辑方向、渲染方向与源图视图不可混写（§5.4）。
 > 4. 统一大地图由 `design/19` 与 `design/map/` 产出；本文只登记 4096×3072 SVG 审查源与派生预览，不再另建一套地理生成事实源。运行时正式键、三档导出和分包均引用 `tech/06`：`map/jianghu_world/base`、`map/jianghu_world/ch01`～`ch14`。
 
 ---
@@ -37,16 +37,16 @@
 
 ## 0. 结论先行（TL;DR）与关键决策
 
-**一句话**：以“**工笔为骨、水墨为气**”定风格；当前 AI 输入只走 TraeX CLI `image_generation` / Gemini 网页版，以“**审定设定卡 → 多视图参考 → 3D 中转 → Blender 脚本化正交渲染**”解决精灵一致性；所有候选都经登记、人工审核与母版哈希入库，先做《天龙八部》垂直切片验证全链路。
+**一句话**：以“**工笔为骨、水墨为气**”定风格；当前 AI 输入只走 TraeX CLI `image_generation` / Gemini 网页版；角色按“**审定设定卡 → 两体型三视图分层部件 → 代码轨迹 → 装备层确定性派生**”生产，所有候选经登记、人工审核与母版哈希入库，先做《天龙八部》垂直切片。
 
-执行时必须同时满足五个闸门：`packages/spec/` 是跨语言静态契约唯一目录；书眠成片固定为 13 条 `vid_sleep_NN_MM`、目标 24 秒；关键角色生产完整 `battle8`，固定镜头只驻留 6 视图、旋转瞬时预取至 8；地图、189 城、99 门派与 NPC/变体需求只从归属文档和 `tech/04` 引用图派生、不手抄业务清单；任何预算都不得突破 `tech/03` 的角色精灵 40/105/170/300 MB 硬上限。完整包量与真机峰值仍须 Phase 0 实测。
+执行时必须同时满足五个闸门：`packages/spec/` 是跨语言静态契约唯一目录；书眠成片固定为 13 条 `vid_sleep_NN_MM`、目标 24 秒；基础人形为 `2×3×13=78` 张源部件表，行走/待机不制作帧表；地图、189 城、99 门派与 NPC/变体需求只从归属文档和 `tech/04` 引用图派生；角色 rig 图集不得突破 `tech/03` 的 40/105/170/300 MB 硬上限。完整包量与真机峰值仍须 Phase 0 实测。
 
 | # | 决策 | 结论 | 理由（详见章节） |
 |---|---|---|---|
 | D1 | 总体风格 | 三档笔法：**S1 工笔精绘**（立绘/CG/关键原画）、**S2 水墨写意**（场景/大地图/过场背景）、**S3 游戏化工笔**（精灵/图标/UI，线条简化、2–3 阶色阶、提高明度对比） | §2.1；手机小屏可读性 |
-| D2 | 精灵生产路线 | **3D 中转**：TraeX/Gemini 多视图设定卡 → Blender 建模/清理（候选云 3D 服务默认不启用）→ 统一人形骨架 → 共享动作库 → Blender 8 向正交渲染（颜色 + 视空间法线 + 可选深度）→ 图集 | §5.4；纯 2D 逐帧生成在 8 方向×多动作下一致性不可控 |
-| D3 | 方向策略 | 规则空间为 pointy-top 六角的 **6 个 `HexDir`**；资产空间为完整 **8 个 `Dir8`**，动作集名 `battle8`；固定镜头驻留 6 视图、旋转前预取另 2 视图；关键角色不镜像，杂兵可降级镜像 | §5.4.3；C20 + AR-12；汉服右衽、持械手和法线 R 通道必须质检 |
-| D4 | 一致性核心 | 每个角色变体一张**已审定设定卡**（golden reference）＝ 当前多图参考编辑、3D 建模、视频关键帧与人工审核的共同源头 | §7 |
+| D2 | 角色生产路线 | **分层部件 + 代码轨迹**：三视图基础部件按 `tianshu_rig` 切分；物品图由 TOOL-rig-pipeline 生成图标与装备覆盖层；运行时组合，不制作行走/待机帧序列 | 2026-10-01 AR-22；`tech/09-rig`；§5.4 |
+| D3 | 方向策略 | 规则空间为 6 个 `HexDir`，渲染接口为 8 个 `Dir8`；资产空间只画 `front34/back34/side`，再镜像。0/4 用最近侧滞回；非对称内容须专用修正版 | §5.4.3、`tech/09-rig` §1.3 |
+| D4 | 一致性核心 | 每个角色变体一张**已审定设定卡**（golden reference）＝ 当前多图参考编辑、rig 身份差分、视频关键帧与人工审核的共同源头 | §7 |
 | D5 | 当前 AI 入口 | **TraeX CLI `image_generation` + Gemini 网页版**；设定卡、提示词版本、下载原文件与人工修改全部登记。不运行 Qwen/FLUX/ComfyUI/本地 LoRA，也不租 GPU | 作者决定 P02；§4、§6 |
 | D6 | 候选工具边界 | Qwen、FLUX、Seedream、Kling、Tripo、Hunyuan 等仅作为能力/迁移候选；除非作者另改 P02，不能把候选价格或许可视为当前执行授权 | §4；账号地区与配额（待实测） |
 | D7 | 视频策略 | 能用 **2.5D 视差分层动画**就不用 I2V；正式相邻书界书眠共 13 条，每条目标 24 秒（20–30 秒），首次 10 秒后可跳、重播立即可跳；其他视频按剧情选择节点复用分层与场景 | §5.7；C19、P48、AR-10 |
@@ -55,7 +55,7 @@
 | D10 | 存储三层 | `source`（可编辑源文件）/ `master`（审定母版，无损）→ 私有对象存储 + 本地盘；`runtime`（压缩产物）由 `tech/06` 构建上 CDN | §6.2 |
 | D11 | 品阶边框 | **运行时合成**（不烘焙进图标），因为外来压制会改变"显示品阶" | §5.6 |
 | D12 | 法律底线 | 仅个人自娱、不分发、不公开部署；禁演员肖像/声音、禁影视造型与配乐参考、禁在世画师风格名与具体受版权画作做图生图源；全部 AI 资产带溯源元数据 | §9 |
-| D13 | 节奏 | Phase 0 风格锁定 + 管线 MVP（含回归集与 5% 缓冲，≈ 252 h）→ Phase 1 天龙垂直切片增量（≈ 372 h；累计 ≈ 624 h）→ Phase 2 天龙全量余量（标准档另 ≈ 144 h；累计 ≈ 768 h）→ 之后每书界一个周期；标准档约 516 h/书界、精简档约 270 h/书界，必须以“资产分级 S/A/B/C”控制范围 | §3.3、§8 |
+| D13 | 节奏 | Phase 0 先完成 78 张基础源件、十一类物品样本、预览与 100 角色压测，再做天龙垂直切片；AR-22 前 252/624/768 h 与 516/270 h 仅作历史上限，不再排期，新总量待首批 P50/P80 实耗 | §3.3、§8 |
 
 ---
 
@@ -83,7 +83,8 @@ flowchart LR
     MASTER[(master 母版<br/>私有存储)]
   end
   subgraph Tech[技术文档]
-    T02[tech/02 相机·精灵·法线约定]
+    T02[tech/02 相机·rig 渲染·法线约定]
+    T09[tech/09-rig 绑定·装备层·代码轨迹]
     T06[tech/06 manifest·KTX2·编码·CDN]
     T03[tech/03 显存/内存预算]
   end
@@ -91,7 +92,8 @@ flowchart LR
   CAT --> REQ
   UI --> REQ
   D09 --> PIPE
-  T02 -- iso-camera.json / sprite-spec --> PIPE
+  T02 -- iso-camera.json / rig-spec --> PIPE
+  T09 -- manifest / 槽位模板 / 生成规则 --> PIPE
   T03 -- 预算上限 --> PIPE
   AB --> PIPE
   REQ --> PIPE --> MASTER -- 审定母版 + 元数据 --> T06
@@ -102,25 +104,26 @@ flowchart LR
 | 契约文件 | 所有者 | 消费者 | 内容 |
 |---|---|---|---|
 | `packages/spec/iso-camera.json` | tech/02 | 本文 Blender 脚本、运行时相机 | 俯仰角、四个偏航预设、六角方向映射、旋转时长 |
-| `packages/spec/sprite-spec.json` | tech/02（v1 已定稿） | 渲染脚本、图集打包、运行时精灵加载器 | 64/96/128 ppm 分档、`battle8` 页组、驻留视图、法线与锚点 |
+| `packages/spec/rig-spec.json` | tech/02（v1 已定稿） | TOOL-rig-pipeline、图集打包、运行时 rig 加载器 | 64/96/128 ppm 分档、三视图、法线、公告板与实例能力 |
+| `assets/default/rig/<set>/manifest.yaml` | `tech/09-rig`（schema/字段） | 本文管线、运行时 rig 加载器 | 13 个源 part/视图的文件、pivot、child joint、size、zOrder、tintable |
 | `packages/data` 中的 `AssetEntry`（Zod）→ 导出 `content/assets/registry/asset.schema.json` | 本文（字段）/ tech/01（schema 机制） | tech/06 `tools/asset-pipeline`（TS）、`tsgen`（Python） | 资产登记条目结构（§6.4）；文档契约已定，实际代码仍按路线图实现 |
 | `content/assets/registry/**/*.yaml` | 本文 | tech/06 | 每个资产的状态、母版路径、哈希、溯源 |
-| `packages/spec/anim-events.schema.json` | 本文 + tech/05（玩法引擎） | 运行时 | 动作帧事件（命中帧、音效帧、刀光起止） |
+| `packages/spec/anim-events.schema.json` | 本文 + tech/05（玩法引擎） | 运行时 | 战斗表现时间轴事件（命中时点、音效时点、刀光起止）；不以移动帧号计时 |
 
 ### 1.3 已定稿规格（消费 tech/02；发布编码仍归 tech/06）
 
-> 以下数值来自 `tech/02` §1.3、§2.6 的 v1 契约，集中写在 `packages/spec/*.json` 与 `tools/aigc/specs/*.yaml`；脚本只读配置、不复制第二份常量。
+> 以下数值来自 `tech/02` §1.3、§2.6 与 `tech/09-rig`；集中写在 `packages/spec/*.json`、rig manifest 与 `tools/aigc/specs/*.yaml`，脚本只读配置、不复制第二份常量。
 
 | 项 | 初值 | 说明 |
 |---|---|---|
 | 相机 | 正交；俯仰 30°；默认方位 45°，偏航预设 45°/135°/225°/315°，90° 旋转 350 ms | `allowRotation:true`；pointy-top 六角仍投影在同一 2:1 相机空间，见 `tech/02` §1.3–§1.6 |
 | 世界单位 | 1 格 = 1 m；角色身高 ≈ 1.6–1.8 m | 高度台阶 `h` 的米制由 tech/02 定 |
-| 精灵像素密度 ppm | 母版 128 px/m；低/中/高档 64/96/128 px/m，低档无正常法线页；渲染 256 px/m 后缩小 | 母版投影高 `1.75×cos30°×128≈194 px`；运行时公告板再作 `1/cos30°≈1.1547` 纵向补偿 |
-| 帧格 | 成品 256×256，脚底锚点 (128, 224)；打包时裁透明边 | 大型单位（骑马、巨汉、神雕）用 384×384 帧格 |
-| 法线 | 母版：视空间 OpenGL 三通道；运行时：UASTC normal mode（X→RGB、Y→A、重建 Z）；低档不下载法线页 | 镜像方向在运行时翻转 R/X；精灵保留 mip0+mip1 两级、帧间防渗间距 4 px |
+| 角色部件密度 ppm | 母版 256 px/m；低/中/高档 64/96/128 px/m，低档无正常法线页 | 男/女标准高 1.70/1.62 m；部件按自身 pivot 组合，公告板作 `1/cos30°≈1.1547` 纵向补偿 |
+| 部件画布 | 线段包围盒每边外扩骨长 4%，至少 4 px，最终偶数宽高；不可裁后重算 pivot | 13 个源 part/视图，运行时展开 16 个基础实例；尺寸模板见 `tech/09-rig` §1、§3.2 |
+| 法线 | 母版：可选视空间 OpenGL 三通道；运行时：UASTC normal mode（X→RGB、Y→A、重建 Z）；低档不下载法线页 | 镜像时翻转 R/X；部件保留 mip0+mip1 两级、图块间距 4 px |
 | 立绘母版 | 2048×3072（2:3）RGBA PNG，人物占画高 88–92% | 表情差分以"脸部补丁"存储（§5.2） |
 | CG 母版 | 3840×2160（16:9）PNG；运行时由 tech/06 转 1920×1080 | |
-| 图标母版 | 512×512 RGBA；运行时 128/64 | 边框运行时合成 |
+| 图标母版 | 武学/Buff/UI 为 512×512 RGBA；AR-22 物品派生小图以 256 为首档并同时出 128/64/32 | 边框运行时合成；物品路径与算法见 §5.4.7 |
 | 音频母版 | WAV 48 kHz / 24-bit | 响度规格 §5.8 |
 | 视频母版 | 1920×1080 24 fps，ProRes 422 HQ 或 FFV1 | 发布编码归 tech/06 |
 
@@ -135,8 +138,8 @@ flowchart LR
 | `por_` | 立绘 | `por_npc_guojing__ch03_prime_base`、`por_npc_guojing__ch03_prime_e_angry` |
 | `ava_` | 头像 | `ava_npc_xiaofeng__ch01` |
 | `cg_` | 剧情插图 | `cg_q_01_main_03_01` |
-| `mdl_` / `anm_` | 3D 模型 / 动作片段（中间资产） | `mdl_npc_xiaofeng__ch01`、`anm_hum_m_walk`、`anm_hum_blade_heavy` |
-| `spr_` | 精灵集（图集 + 元数据） | `spr_npc_xiaofeng__ch01` |
+| `mdl_` / `anm_` | 3D 模型 / 战斗大动作片段（可选中间资产，不用于行走/待机主线） | `mdl_npc_xiaofeng__ch01`、`anm_hum_blade_heavy` |
+| `spr_` | 非人形序列精灵或获准的战斗大动作整身帧（备选 C） | `spr_fx_bird_flight` |
 | `tex_` | 地形材质 | `tex_tr_shenshui__song` |
 | `bld_` / `prp_` | 建筑 / 物件 | `bld_kit_song_gate_01`、`prp_song_lantern_01` |
 | `ico_` | 图标（沿用对象 ID） | `ico_sk_xianglong18`、`ico_eq_yitianjian`、`ico_bf_zhongdu` |
@@ -155,7 +158,7 @@ flowchart LR
 | `assets.icon: skill/xianglong18` | `icon/sk_xianglong18/default` ⇄ `ico_sk_xianglong18` | 武学图标 |
 | `assets.art: illus/skill/tieshazhang` | `illus/sk_tieshazhang/default` ⇄ `ill_sk_tieshazhang` | 武学图鉴插画（§5.6.5） |
 | `ui.icon: buff/zhongdu` | `icon/bf_zhongdu/default` ⇄ `ico_bf_zhongdu` | Buff 图标 |
-| `anim.clip: palm_heavy` | `anm_hum_palm_heavy`（渲染进各角色 `spr_*` 的对应动作） | 通用动作（§5.4.4） |
+| `anim.clip: palm_heavy` | `anm_hum_palm_heavy`（逻辑表现片段；默认解析为分层姿势 + 代码/VFX 合成） | 通用动作语义；只有获批备选 C 才派生角色 `spr_*`（§5.4.4） |
 | `anim.vfx: fx_sand_burst` | `fx_sand_burst` 内容定义再引用 `vfx/<名>/default` | `fx_*` 本身不是素材键 |
 | `anim.sfx: sfx_palm_hard` | `sfx/palm_hard/default` ⇄ `sfx_palm_hard` | 音效 |
 | `anim.cutin: cutin/xianglong18` | `cutin/sk_xianglong18/default` ⇄ `cin_sk_xianglong18` | 绝招切入题名层；运行时与施放者 `e_battle` 立绘合成 |
@@ -191,7 +194,7 @@ flowchart LR
 | 山石/树 | 皴法笔触（S2） | 笔触纹理，不计线宽 | — | 场景不要求闭合轮廓 |
 | 线色 | 浓墨 `#2B2622`（不用纯黑 `#000`）；面部线可用赭墨 `#5A3E2E` | | | 天阶武学特效允许泥金线 `#C9A45C` |
 
-3D 中转渲染的线条来源：外轮廓用**反向外壳（inverted hull）**，内部结构线用 Blender **Line Art**（Grease Pencil 修改器），线宽以世界单位定义并随 ppm 换算，保证所有角色线宽一致（§5.4.5）。
+角色分层部件的外轮廓在 256 px/m 母版中烘焙为 2 px 浓墨线；64 ppm 包用 alpha coverage 保线。若战斗大动作专项采用 3D 中转备选，才使用反向外壳与 Blender Line Art，且须匹配同一成品线宽（§5.4.5）。
 
 ### 2.3 设色与色板
 
@@ -252,12 +255,12 @@ flowchart LR
 | 用途 | 头身比 | 规则 |
 |---|---|---|
 | 立绘 / CG（S1） | 成年男 7.5、成年女 7、少年 6–6.5、儿童 4.5–5、老者 7（佝偻者 6.5） | 写实偏理想化；眼睛**不得**超过面宽 1/5（禁止动漫大眼）；丹凤眼/柳叶眉/悬胆鼻等中国画五官语汇 |
-| 精灵 3D 模型（S3） | 统一约 **5.5 头身**"游戏比例"：身高不变、头 ×1.35（7.5 头身 ÷ 1.35 ≈ 5.5）、手 ×1.15、兵器 ×1.2，其余按设定卡 | 用 Blender 形态键（shape key）从设定比例派生，保证 194 px 高度下面部与兵器可读；立绘与精灵之间不要求比例一致，只要求**识别锚**一致（§7.2） |
+| 角色 rig 部件（S3） | 统一约 **5.5 头身**“游戏比例”：男/女模板高 1.70/1.62 m，头、手、兵器保持小屏剪影可读 | 在 `tianshu_rig` 模板上作部件轮廓与调色；立绘与地图角色不要求比例一致，只要求**识别锚**一致（§7.2、`tech/09-rig` §1） |
 | 头像 | 立绘裁切，额顶至锁骨 | 视线略偏向画面内侧 |
 
 **剪影优先**：每个主要角色必须在 64 px 高的纯黑剪影下可区分（发型/冠帽/兵器/披风四选二作为剪影特征），审核时自动生成剪影预览。
 
-**体型档**（对应 3D 骨架比例预设与待机动作）：`m_std` 男标准、`f_std` 女标准、`m_heavy` 魁梧（萧峰、谢逊、鳌拜）、`m_lean` 清瘦（黄药师、风清扬）、`elder` 老者（周伯通、张三丰晚年）、`child` 儿童（少年张无忌、少年韦小宝）、`monk_heavy` 胖僧、`dwarf`（桑土公、侏儒类）。
+**体型档**（对应 rig 比例与步态修正；仅 `m_std` / `f_std` 已在 `tianshu_rig` v1 定长）：`m_std` 男标准、`f_std` 女标准、`m_heavy` 魁梧（萧峰、谢逊、鳌拜）、`m_lean` 清瘦（黄药师、风清扬）、`elder` 老者（周伯通、张三丰晚年）、`child` 儿童（少年张无忌、少年韦小宝）、`monk_heavy` 胖僧、`dwarf`（桑土公、侏儒类）。其余六档须从标准 rig 派生并逐档验 pivot、长度和碰撞，未验前不得冒充 v1 已交付。
 
 ### 2.7 服饰时代感（审核必查）
 
@@ -276,7 +279,7 @@ flowchart LR
 
 **"交领右衽"铁律**：汉服交领为右衽（左襟压右襟，领口呈"y"字）。AI 生成常出错，且**任何水平镜像都会把右衽变左衽**。因此：
 - 立绘、CG、头像**禁止水平翻转**（包括构图调整时）；
-- 穿交领汉服的主角/队友/Boss 精灵**不做镜像方向**（§5.4.3）；
+- 穿交领汉服的主角/队友/Boss 镜像视图须提供 `mirrorSafe:false` 对称修正版，不能直接翻图（§5.4.3）；
 - 左衽仅用于契丹、女真、蒙古等族群的正确表现（需在角色卡中标注 `lapel: left`）。
 
 ### 2.8 书界色调表（与武运联动）
@@ -323,7 +326,7 @@ flowchart LR
 
 | 等级 | 定义 | 人工投入 | 例 |
 |---|---|---|---|
-| **S** | 玩家反复凝视、定义记忆点 | 多轮生成 + 手工修图 + 逐项审核 | 主角、书灵、每书界主角团与主 Boss 的立绘/精灵；锚点事件 CG；开场与结局视频 |
+| **S** | 玩家反复凝视、定义记忆点 | 多轮生成 + 手工修图 + 逐项审核 | 主角、书灵、每书界主角团与主 Boss 的立绘/rig 身份差分；锚点事件 CG；开场与结局视频 |
 | **A** | 重要但出现频次有限 | 生成 + 局部修 + 清单审核 | 次要 NPC 立绘、支线 CG、地标建筑、天级武学图标与特效 |
 | **B** | 批量、可模板化 | 模板批量生成 + 抽检 | 地/玄/黄武学图标、物品图标、杂兵、通用道具、音效 |
 | **C** | 占位/自动 | 全自动或复用 | 路人 NPC（模块化拼装）、小地图（自动渲染）、同类物品配色变体 |
@@ -334,21 +337,22 @@ flowchart LR
 
 **每书界（中型 DLC）典型需求**——依据基准 §17 模板：6–10 区域、6–10 幕主线、≥ 20 支线、≥ 6 名可招募队友、若干关键 NPC 与 Boss。
 
-> **预算边界**：下表是产能模型，不是角色、门派或玩法目录的事实源。AR-09 要求 NPC 人人可招募并记录生卒年、跨书变体，最终 `por_/mdl_/spr_` 数量必须由 `design/18` 的稳定 NPC/变体清单参数化；AR-10 的正邪双线只扩大候选 CG 和分层复用，不放宽每书界 S/A 级硬上限。主角男女两版（P05）和最近一次守卷外观复用（P16）单列在表后核算。
+> **预算边界**：下表是产能模型，不是角色、门派或玩法目录的事实源。AR-09 要求 NPC 人人可招募并记录生卒年、跨书变体，最终立绘与角色差分数量必须由 `design/18` 的稳定 NPC/变体清单参数化；AR-10 的正邪双线只扩大候选 CG 和分层复用，不放宽每书界 S/A 级硬上限。2026-10-01 AR-22 后，基础 rig 固定按部件数核算，不再按角色×动作帧数核算。
 
 | 类型 | 每书界 | 全作合计（14 书界 + 序章 + 全局） | 等级分布 | 说明 |
 |---|---|---|---|---|
 | 概念原画 `art_` | 20（区域 8、地标 6、势力 4、群像 2） | ≈ 300 | A 为主 | 概念图是场景搭建与 CG 的底稿，不一定进游戏；正式主体由引用图导出 |
-| 设定卡 `ref_` | 15–20 套 | ≈ 260 套 | S/A | 每个有立绘或独立模型的角色变体一套（多视图 + 面部特写 + 表情） |
+| 设定卡 `ref_` | 15–20 套 | ≈ 260 套 | S/A | 每个有立绘或地图身份差分的角色变体一套（多视图 + 面部特写 + 表情） |
 | 立绘 `por_`（主要） | 12 人 × 1 基础 | 基线 ≈ 170 人；以 `design/18` 的 `characterVariantCount` 重算 | S/A | 队友 6 + 关键 NPC 4 + 主 Boss 2 只是预算样本；跨书年龄/伤残/时代状态按稳定变体计，不按名字去重 |
 | 立绘表情差分 | 12 × 6 | ≈ 1,000 张脸部补丁 | S/A | 平静/喜/怒/哀/惊/战斗（+ 角色特有 1–2 个） |
 | 立绘（次要，单表情） | 15 | ≈ 210 | B | 商人、掌门、任务 NPC |
 | 头像 `ava_` | 主要角色从立绘派生；路人按需 | 基线 ≈ 380 派生 + 120 路人头像库；随 `design/18` 重算 | B/C | 人人可招募不等于人人独绘；D4/D5 路人先使用时代 × 身份模块库，升级为具名角色时沿稳定 NPC ID 派生 |
 | 剧情 CG `cg_` | 正邪候选池约 24–28；实际交付仍 ≤ 20 | 基线 ≈ 300 正式成片 | S/A | 主线 8–10、锚点 4–6、改命 2、羁绊 4、天书现世 1；互斥路线复用场景底图/人物层，未入选候选不计正式资产 |
-| 3D 角色模型 `mdl_` | 独立 12 + 模块化变体 20（样本） | 基线 ≈ 170 独立，最终由 `design/18` 参数化；另有时代模块套件 | S/A/C | 具名角色、跨书变体和人人可招募边界由 `design/18`；杂兵与路人由“体型 × 时代服装部件 × 头部 × 配色”拼装 |
+| `tianshu_rig` 基础源部件 | 不随书界增加 | **2 体型 × 3 视图 × 13 源 part = 78 张** | S | 男/女标准体型各 39 张；运行时展开 16 基础槽，见 `tech/09-rig` §1 |
+| 角色身份差分 | 由当界 `design/18 appearances` 导出 | 不预填总数 | S/A/C | 优先只做 `head`、`hair_or_headgear`、palette；伤残/特殊体型才覆写更多 part，不复制整套动作 |
 | 动物/坐骑模型 | 2–4 | ≈ 25 种 | A/B | 马、狼、蛇、雕、猿、虎、熊、骆驼、闪电貂、莽牯朱蛤…… |
-| 动作片段 `anm_` | 3–5 个书界特有 | 共享库 ≈ 80 + 特有 ≈ 60 | A | 共享人形骨架，所有角色复用（§5.4.4） |
-| 精灵集 `spr_` | 30–45 | ≈ 450（脚本批量渲染） | 自动 | 人工只做抽检 |
+| 行走/待机动作图 | **0** | **0** | 自动 | 步态由代码轨迹生成；12 fps 量化是运行参数，不是帧表 |
+| 装备覆盖层 | 当界新增物品按 `design/10` 导出 | 与可见装备 ID 数一致，不手抄总数 | B/C | 衣甲/护肩/鞋/腰带/披风/头饰与武器由 TOOL-rig-pipeline 从物品图生成；内甲、秘籍、药食不生成地图层 |
 | 地形材质 `tex_` | 10 变体 | 基础 ≈ 60 + 书界变体 ≈ 140 | B | 依 `design/08` 地形目录（`tr_*`） |
 | 建筑套件 `bld_kit_` | — | 宋、元、明、清 4 套 × ≈ 40 部件 + 他族（毡帐、回疆、藏式）3 套 × 15 | A/B | 模块化复用 |
 | 地标建筑 | 8 | ≈ 110 | S/A | 少林寺、天龙寺、灵鹫宫、桃花岛、襄阳城、古墓、光明顶、黑木崖、侠客岛石室、紫禁城…… |
@@ -366,8 +370,8 @@ flowchart LR
 
 **全局修正项与算式**
 
-- 主角采用男女两版（P05）**（原创扩展）**：`15 个时代/序章变体 × 2 = 30` 套主角设定卡、基础立绘、独立模型与精灵集；表情补丁若每套 6 个，则 `30×6=180` 个脸部补丁。主角基线不再是 15 套。
-- 书灵（P54/P55）**（原创扩展）**：只做 1 套抽象墨影主体、对话立绘框架与表情/墨迹层；使用 CSS/轻量网格动画，不进入 `mdl_`、`spr_` 或 Live2D/Spine 预算。
+- 主角采用男女两版（P05）**（原创扩展）**：`15 个时代/序章变体 × 2 = 30` 套主角设定卡与基础立绘；表情补丁若每套 6 个，则 `30×6=180` 个。地图角色复用男/女 rig，仅按时代生成衣装/头饰/装备层，不再制作 30 套整身帧。
+- 书灵（P54/P55）**（原创扩展）**：只做 1 套抽象墨影主体、对话立绘框架与表情/墨迹层；使用 CSS/轻量网格动画，不进入人形 rig 或 Live2D/Spine 预算。
 - 守卷彩蛋（P16）：不制作固定“第二套 Boss”。完成守卷结局时把 `appearanceRef + vow` 写入 `MetaProfile.lastKeeperAppearance`，下周目按最近一次审定主角外观组合白袍覆盖层；默认开启、可关闭，接口见 `design/13` §7.11、§9.4。
 - 武学目录按 Canon v1.2 §4 与 `design/05` §14 的只增不减口径，以 `51+169+459+459=1,138` 门落在约 1,100–1,150 区间；图标本体预算为 1,138 个逻辑键，但独立绘制仅天/地 `51+169=220`，玄/黄 `459+459=918` 走模板族。
 - Buff 不在本文定义。资产管线从 `design/06` §8–§9 的正式目录生成 `ico_bf_*`：当前为 `237+10=247` 个，包含 C23 补录的 19 个、AR-12 的 5 个及 15 个经脉永久 Buff；被撤回的 `bf_zhenshi` / `bf_cuidu` 不另造图标。
@@ -377,7 +381,7 @@ flowchart LR
 
 **按书界拆分（标准档；体量系数 = 相对"典型书界"的规模，依原著篇幅与人物密度估）**
 
-| 书界 | 体量 | 系数 | 主要立绘（人） | CG | 独立 3D 角色 | 地标 | 特有需求（新增） | 主要复用来源 |
+| 书界 | 体量 | 系数 | 主要立绘（人） | CG | 角色身份差分（预算样本） | 地标 | 特有需求（新增） | 主要复用来源 |
 |---|---|---|---|---|---|---|---|---|
 | ch00 越女剑（序章） | 小 | 0.3 | 3 | 4 | 4 | 2 | 春秋迷你套件（干栏、青铜剑）、白猿 | — |
 | ch01 天龙八部 | 大 | 1.3 | 16 | 26 | 16 | 10 | **宋式套件 v1**；契丹/西夏/吐蕃/大理服饰；珍珑棋局、缥缈峰云海；异兽（莽牯朱蛤、冰蚕） | — |
@@ -414,31 +418,19 @@ flowchart LR
 
 ### 3.3 个人开发节奏（先做《天龙八部》垂直切片）
 
-```mermaid
-gantt
-  title 素材生产节奏（审校基线；周数为人工预算，不绑定实际开工日）
-  dateFormat YYYY-MM-DD
-  axisFormat %Y-%m
-  section Phase 0 风格锁定
-  美术圣经·提示词基线·导入 MVP·3 个测试角色走通全链路 :p0, 2026-10-05, 118d
-  section Phase 1 天龙垂直切片
-  切片素材（1 区域·4 局部切片·1 幕主线·3 队友·1 Boss） :p1, after p0, 174d
-  section Phase 2 天龙全量
-  天龙其余区域·角色·CG·视频 :p2, after p1, 67d
-  section Phase 3+ 后续书界
-  射雕（首个复用周期，精简档） :p3, after p2, 126d
-```
+**2026-10-01 AR-22**：旧甘特图和按 252/624/768 h、516/270 h 换算的日期建立在 3D 人形与整身帧路线，不再作为承诺；当前只规定依赖顺序。每阶段工时由 §8.3 的计时桶实报后，交既有 `tech/09-roadmap` 重新排期。
 
 | 阶段 | 目标 | 交付物 | 通过标准 |
 |---|---|---|---|
-| **Phase 0 风格锁定**（基数 `200+40=240 h`；加 5% 为 **≈ 252 h / 16.8 周**） | 证明“风格可控 + 管线可跑通” | 美术圣经与回归集 40 h；`tsgen`/审核页/Blender 管线 200 h；主角男女北宋装、段誉、一个杂兵走完“TraeX/Gemini 候选 → 设定卡 → 立绘 → Blender 中转 → 8 向精灵 → 进引擎”；1 张 CG；1 组图标模板 | 在**主力手机 + 中端 Android + iPad**登记型号、OS、浏览器和 PWA 入口并验证（待实测）；精灵、立绘、图标观感一致；同一角色 10 张不同构图的识别一致性人工评分 ≥ 4/5 |
-| **Phase 1 天龙垂直切片**（路线图 P1/M2；表内交付总量 `594 h` 扣 Phase 0 的 `240 h`，增量 `354 h`；加 5% 为 **≈ 372 h / 24.8 周**；含 Phase 0 累计 ≈ 624 h） | 一个完整可玩片段的全部素材 | 仅 `rg_dali_cangshan` 1 个区域内的 4 个局部切片：`sc_01_wuliangyidao` 无量外驿、`sc_01_jianhugong` 剑湖宫、`sc_01_langhuanfudi` 外围、`sc_01_wanjiangu` 外围药径；后两处不做完整关卡。只交付 `q_01_main_01` 1 幕；角色：主角、书灵、段誉、钟灵、木婉清、南海鳄神（Boss）、无量剑派弟子/神农帮帮众（杂兵，模块化）；动物：蛇、闪电貂；共享动作库 v1（通用 + 剑 + 刀 + 指 + 掌）；宋式建筑套件 v1 + 3 地标；地形材质 12；图标 ≈ 120；签名特效 3（一阳指、六脉神剑、凌波微步残影）；BGM 5；音效 ≈ 120；视频 1（`vid_ch01_intro`） | 切片可连续游玩 30–60 分钟无占位图；管线每类资产都有 ≥ 1 次“从登记到入 manifest”的完整记录 |
-| **Phase 2 天龙全量**（标准书界内容 `491 h` 减切片内容 `354 h`，余 `137 h`；加 5% 为 **≈ 144 h / 9.6 周**；累计 ≈ 768 h） | 首个完整书界 | 其余区域（雁门关、少林、燕子坞、缥缈峰、辽国南京等）、全部队友/Boss、≈ 20 CG、开场视频、天书现世、书眠（天龙→射雕） | 天龙书界可通关；实际 Phase 1 若超出标准档范围，则以登记库差量重算，不出现负工时 |
-| **Phase 3+** | 每书界一个周期 | 逐部复用：射雕/神雕共享宋金蒙古套件与大量人物（年龄变体）；倚天复用神雕部分人物；清代 7 部共享清式套件 | 默认精简档 **≈ 270 h / 18 周**，标准档 **≈ 516 h / 34.4 周**（见 §8.3）；由 `tech/09` 排入总路线图 |
+| **Phase 0A 风格与契约** | 锁定 S1/S2/S3 与可复现输入 | 美术圣经、登记/审核 MVP、`rig-spec`/manifest 校验器、金样集 | 契约无重复常量；输入、模板、输出和哈希可追溯 |
+| **Phase 0B rig 样片** | 证明“分层 + 装备 + 代码轨迹”可跑通 | 男/女标准体型共 78 张源件；十一类物品每类至少 1 件，其中可见类产覆盖层；主角北宋满载组合；图标 256/128/64/32 | RIG-V01～V10；三视图 idle/walk/run、轻/中/重与转向条带通过；100 角色三机数据（待实测） |
+| **Phase 1 天龙垂直切片** | 一个完整可玩片段的全部素材 | 1 区域、4 个局部切片、1 幕主线、3 队友、1 Boss；角色复用 rig、身份差分与装备层；动物另走专项 | 连续游玩无占位；装备可见；每类资产至少 1 次完整登记 |
+| **Phase 2 天龙全量** | 首个完整书界 | 其余区域、人物差分、CG、开场、天书现世和天龙→射雕书眠；正式范围从上游引用图导出 | 天龙可通关；只按登记库差量排产 |
+| **Phase 3+** | 每书界一个周期 | 射雕/神雕复用宋金蒙古套件与年龄差分；倚天复用相关人物；清代各书复用清式套件 | 默认仍以精简档控制范围，但新小时数须等首批 P50/P80，不沿用旧值 |
 
 **顺序建议**：严格按基准书界顺序生产（玩到哪做到哪，也符合作者自娱的动机）；但**时代套件**（建筑/服装模块）可提前一部做，给后续书界留缓冲。
 
-> 周数按「素材工作每周 15 h」折算；与编程、策划并行时相应拉长，总体排期由 `tech/09` 路线图统筹。Phase 0 的“管线 MVP”只做 §6 中的最小集合（登记库 + TraeX/Gemini 导入 + Blender 渲染 + 打包）；ComfyUI、本地 LoRA 与租卡不在当前交付或目录树中。
+> 可用投入仍按每周 12–15 h 登记；与编程、策划并行时相应拉长。Phase 0 的“管线 MVP”只做 §6 中的最小集合（登记库 + TraeX/Gemini 导入 + 分件/物品层处理 + 打包）；Blender 只服务建筑、动物、视频或获批战斗专项。ComfyUI、本地 LoRA 与租卡不在当前交付或目录树中。
 
 ---
 
@@ -493,13 +485,15 @@ gantt
 | **TRELLIS.2 4B** | 开放权重候选 | O-Voxel，最高 1536³；官方要求至少 24 GB NVIDIA GPU | 本地/服务端 | 模型与代码 MIT；可选依赖各按自身许可 | P02 下不运行 |
 | Meshy 等云服务 | 云候选 | Meshy 可提供生成、重拓扑或绑骨 | Meshy 官方页：Free 100 credits/月；Pro $20/月、1,000 credits；其余服务不得套用此价 | Meshy Free 输出按 CC BY 4.0；Pro 标为 private license；账号地区、实际任务扣点与删除行为**（待实测）** | 不纳入当前路线 |
 
-**结论**：当前 3D 中转的确定步骤从“Blender 建模/清理”开始；图生 3D 是可替换的前置加速器，不是完成精灵管线的前提。
+**结论（2026-10-01 AR-22）**：图生 3D 与 Blender 建模不再是人形行走/待机资产的前置步骤；只在建筑、方向性物件、动物，或经样片批准的战斗大动作备选中使用。
 
-### 4.5 自动绑骨与动作
+### 4.5 自动绑骨与动作（战斗大动作备选）
+
+**2026-10-01 AR-22**：人形行走、跑步、待机、转向和披风跟随由 `tech/09-rig` 的代码轨迹实现，**不需要自动绑骨、共享移动动作库或逐帧渲染**。下表保留为攻击/受击/倒地等战斗大动作专项和动物/异形的候选调研，不是 MVP 前置依赖。
 
 | 工具 | 类型 | 要点 | 许可/可用性 | 定位 |
 |---|---|---|---|---|
-| **AccuRIG 2**（Reallusion） | 免费桌面 | 全身 + 手指绑骨；ActorCore 库 4,500+ 动作，含免费与付费 | AccuRIG 2 免费；导出/资产权益按账号条款 | 候选；须真账号验证导出流程**（待实测）** |
+| **AccuRIG 2**（Reallusion） | 免费桌面 | 全身 + 手指绑骨；ActorCore 库 4,500+ 动作，含免费与付费 | AccuRIG 2 免费；导出/资产权益按账号条款 | 战斗大动作候选；须真账号验证导出流程**（待实测）** |
 | Mixamo（Adobe） | 免费网页 | 老牌自动绑骨 + 动作库 | 需 Adobe ID；**不对中国国家码账号开放**；不得把其动作作为独立素材再分发 | 非中国区账号可用作动作来源 |
 | **UniRig**（VAST/清华） | 开源 | 自回归骨架预测 + 蒙皮权重，适用人/动物/异形 | MIT（组件逐步开源） | 动物/非标准体型绑骨 |
 | Tripo / Meshy 内置绑骨 | 云 | 生成后一键绑骨 + 预设动作 | 随计划 | 快速预览、杂兵 |
@@ -507,7 +501,7 @@ gantt
 | Rokoko Vision（视频动捕） | 云 | 手机视频 → 动作 | Starter 当前含 **30 秒/月** Vision AI；账号可用性**（待实测）** | 原稿“<15 秒免费片段”已纠正；只上传作者自录视频 |
 | Quaternius Universal Animation Library / CMU Mocap | 素材库 | CC0 动作 / 研究动捕库（需清理） | CC0 / 免费使用 | 通用移动、受击、死亡等基础动作 |
 
-**推荐**：骨架统一为“**tianshu_humanoid**”（与 Mixamo/AccuRIG 命名兼容，骨数以实际导入骨架为准）；当前动作来源优先级为可核许可素材 > 作者自录 > Blender 手工关键帧。需要账号/本地模型的候选不默认启用。
+**备选约定**：若战斗大动作专项采用 3D 中转，临时骨架统一为 `tianshu_humanoid`，动作来源优先级为可核许可素材 > 作者自录 > Blender 手工关键帧；不得与运行时 `tianshu_rig` v1 混名。需要账号/本地模型的候选不默认启用；未通过专项样片时默认继续使用分层姿势轨迹。
 
 ### 4.6 视频生成
 
@@ -579,8 +573,9 @@ gantt
 |---|---|---|---|
 | 图像生成与编辑 | TraeX CLI `image_generation`；Gemini 网页版人工攻坚 | Qwen-Image-2.0 / Edit-2511、FLUX.2 klein、Gemini API、GPT Image 2、Seedream、Kling、Midjourney | 不预设月费；逐次登记入口、账号展示额度与原文件，实际额度**（待实测）** |
 | 角色一致性 | 审定设定卡 + 多参考编辑 + 人工锚点比对 | 角色/风格 LoRA | 当前不训练模型；保留数据字段，不生成虚假的模型版本 |
-| 3D 角色/道具 | Blender 基础人体、模块套件与手工建模/清理 | Tripo、Meshy、Hunyuan3D 2.1、TRELLIS.2 | Blender 免费；云 3D 与本地权重均未启用 |
-| 绑骨 | Blender 手工绑骨与已核许可骨架 | AccuRIG 2、UniRig、云服务内置绑骨 | 账号型工具先做导出与权益实测 |
+| 人形地图角色 | `tianshu_rig` 三视图部件 + TOOL-rig-pipeline | 战斗大动作可选 Blender 中转 | 行走/待机不绑骨、不出帧表（2026-10-01 AR-22） |
+| 3D 道具/动物/战斗大动作候选 | Blender 模块套件与手工建模/清理 | Tripo、Meshy、Hunyuan3D 2.1、TRELLIS.2 | 云 3D 与本地权重均未启用 |
+| 绑骨 | 仅动物或获准战斗大动作：Blender 手工/已核许可骨架 | AccuRIG 2、UniRig、云服务内置绑骨 | 账号型工具先做导出与权益实测 |
 | 动作 | 已核许可动作 + 作者自录参考 + Blender 关键帧 | Rokoko、HY-Motion、ActorCore | 每段保存来源、许可与重定向版本；不把素材库动作单独再分发 |
 | 视频 | 审定静帧分层 + Blender/FFmpeg 2.5D 视差 | Kling、Seedance、Hailuo、LTX | 当前工具成本 0；账号型视频服务未启用 |
 | 放大/补帧 | 优先按母版尺寸直接生成/渲染；必要时用确定性缩放与剪辑 | SeedVR2、Real-ESRGAN、RIFE | 当前不运行本地 AI 模型；补帧不是默认步骤 |
@@ -678,360 +673,141 @@ flowchart TD
 | 输出规格 | 母版 512×512 RGBA；运行时 256/128（tech/06） |
 | 入库 | `ava_<id>__<variant>[_e_<emo>]`，`parent` 指向立绘；路人库 `ava_generic_<era>_<role>_<nn>` |
 
-### 5.4 精灵（`spr_`，重点）
+### 5.4 角色分层部件与装备层（重点）
 
-#### 5.4.1 路线对比：3D 中转 vs 纯 2D 逐帧生成
+#### 5.4.1 路线决策（2026-10-01 AR-22）
 
-| 维度 | **3D 中转（推荐）** | 纯 2D 生成序列帧（图像/视频模型直出精灵表） |
+| 维度 | **分层部件 + 代码轨迹（采用）** | 整身预渲染帧（备选 C） |
 |---|---|---|
-| 8 方向一致性 | 同一模型旋转渲染，**天然一致** | 每个方向独立生成，脸/服饰/兵器长度常漂移 |
-| 动作帧间一致性 | 骨骼驱动，零闪烁 | 帧间细节闪烁（"AI 抖动"），需大量手修 |
-| 与 2:1 等距相机匹配 | 用与运行时**同一份相机参数**渲染，透视与地形严丝合缝 | 靠提示词描述角度，常偏离 |
-| 法线贴图 | 渲染时直接输出视空间法线 pass | 需从颜色图推断法线（质量差、方向不稳） |
-| 动作复用 | 共享骨架 → 一套动作库驱动全部角色 | 每个角色每个动作都要生成 |
-| 换装/时代装 | 换网格或贴图后**全量自动重渲** | 全部重做 |
-| 前期成本 | 高：3D 清理、绑骨、动作库、渲染脚本 | 低：直接生成 |
-| 风格风险 | 可能"3D 塑料感"→ 用反向外壳描边 + 平涂分阶材质 + 绘制质感贴图化解 | 风格自然但一致性差 |
-| 结论 | **主角、队友、Boss、精英、杂兵全部走 3D 中转** | 仅用于：一次性小动画（飞鸟、落叶、火把）、UI 小动效、Phase 0 占位 |
+| 移动动画 | 16 个运行时 part 按闭式曲线变换；无帧表 | 每角色、动作、方向重复出帧 |
+| 换装 | 具体兵器、衣甲、头饰、鞋等替换/覆盖既有槽 | 每种组合都需重渲 |
+| 方向 | 三视图 + 镜像解析 `Dir8` | 需完整八向 |
+| 一致性 | pivot/childJoint/template 与金样约束 | 单帧完整，但批量组合成本高 |
+| 生产基数 | 两体型固定 78 张基础源图，装备层按物品增量 | 随角色数×动作数×方向数增长 |
+| 结论 | 行走、跑步、待机正式路线 | 仅战斗大动作专项样片通过后按动作采用 |
 
-> 附带收益：3D 中间资产为"将来改用实时 3D 蒙皮角色"保留了退路（§10.2 备选 A）。
+非人形动物可继续使用 3D/骨骼或序列帧专项，不得据此恢复人形移动帧。`tianshu_rig` v1 的字段、曲线和测试向量唯一见 `tech/09-rig`。
 
-#### 5.4.2 管线总览
+#### 5.4.2 管线总览与源件规格
 
 ```mermaid
 flowchart LR
-  S[设定卡 ref_*_sheet<br/>正/侧/背/3/4] --> M1[Blender 基础人体/模块套件<br/>手工建模与清理]
-  S -. 作者另行授权后 .-> M0[可选图生3D候选]
-  M0 --> M1
-  M1 --> M2[Blender 定稿<br/>重拓扑≤15k三角/合并材质/修手]
-  M2 --> M3[游戏比例形态键<br/>头1.35 手1.15 兵器1.2]
-  M3 --> M4[Blender 绑骨/重定向<br/>→ tianshu_humanoid]
-  M4 --> M5[材质风格化<br/>平涂分阶+描边+兵器插槽]
-  L[(共享动作库 anm_*)] --> R
-  M5 --> R[Blender 批渲染<br/>render_sprites.py]
-  CAM[iso-camera.json<br/>sprite-spec.json] --> R
-  R --> P1[颜色 pass PNG]
-  R --> P2[法线 pass EXR→PNG]
-  R --> P3[可选深度 pass]
-  R --> META[帧元数据 JSON<br/>锚点/包围盒/事件]
-  P1 & P2 & P3 & META --> PK[裁边+图集装箱<br/>tsgen pack]
-  PK --> OUT[spr_*.atlas.png ×N<br/>spr_*.normal.png ×N<br/>spr_*.json]
+  S[审定设定卡] --> A[ART 按模板拆三视图部件]
+  T[tech/09-rig 模板/pivot/z] --> A
+  A --> M[rig manifest + 颜色/可选法线 PNG]
+  I[design/10 物品图] --> P[TOOL-rig-pipeline]
+  T --> P
+  P --> O[图标 + 装备 layers.yaml/PNG]
+  M & O --> K[tech/06 装箱/KTX2]
+  K --> V[preview.py 姿势条带 + 真机验收]
 ```
 
-**模型准备规格**
-
-| 项 | 规格 |
+| 项 | 规格 **（初值，待 ART/ENG-12 实测）** |
 |---|---|
-| 面数 | 主要角色 ≤ 15k 三角，杂兵 ≤ 8k（只用于离线渲染，面数宽松，但影响渲染时长与绑骨质量） |
-| 拓扑 | 四边面重拓扑（Blender Quadriflow/手工；候选云服务输出也必须经此闸门）；关节处 ≥ 3 圈环线 |
-| 材质 | 合并为 ≤ 3 个材质：`skin`、`cloth`、`metal`；贴图 2048²，**平涂化**：用 Krita 或编辑模型把 PBR 基础色重绘为 2–3 阶色块，保留纹样 |
-| 兵器 | 兵器为独立对象，挂在 `hand_r`/`hand_l` 插槽骨上（便于换兵器类别与神兵外观） |
-| 尺度 | 真实比例 1.6–1.8 m 身高，脚底在原点，面朝 −Y（Blender 前视方向），`+Z` 向上 |
-| 命名 | `mdl_<id>__<variant>.blend`（源文件）+ 导出 `mdl_<id>__<variant>.glb`（交换用） |
+| 标准体型 | 男 1.70 m、女 1.62 m；超出 `[0.88,1.12]` 体型缩放另做 set |
+| 源件数量 | 每体型 `3 视图×13 源 part=39`，两体型 `2×39=78`；共享下肢源在运行时展开为 16 基础 part |
+| 视图 | `front34/back34/side`；镜像时同时交换 L/R、翻 UV 和法线 X |
+| 密度 | 256 px/m RGBA 母版；离线派生 64/96/128 ppm；低档不带法线 |
+| 枢轴 | 四肢顶端中央；躯干在骨盆点；头在颈点；裁边不得重算 |
+| 线与色 | 母版外轮廓 2 px；衣物 `clothPrimary/clothSecondary` 可 tint，皮肤默认不 tint |
+| 输出 | `assets/default/rig/<set>/<view>/<part>.png` + `manifest.yaml`；结构见 `tech/09-rig` §6 |
 
 #### 5.4.3 方向与镜像策略
 
-方向索引约定（屏幕空间，**0 = 正对观者（屏幕下方）**，按屏幕顺时针）：
+战斗仍只保存 6 个 `HexDir`，渲染先按 `tech/02` §1.5 求 `Dir8`，再按下表选择资产；本文不重定义角度舍入。
 
-```
-          4 N
-    3 NW       5 NE
-  2 W     (角色)    6 E
-    1 SW       7 SE
-          0 S
-```
-
-- 战斗规则只保存 pointy-top 六角格的 **6 个 `HexDir`**；渲染层按当前相机偏航映射为最近的 `Dir8`。精确角度、半档舍入和四个预设的映射表由 `tech/02` §1.5 唯一定义，本文不重定义。
-- 单个固定镜头下，6 个 `HexDir` 映射成 6 个不同 `Dir8`；四个 90° 预设的并集覆盖 8 个视图。因此生产包是完整 8 视图，稳态只驻留 6 视图，转镜前新增预取 2 视图，350 ms 转场后释放离开的 2 视图。
-- 镜像对为 1↔7、2↔6、3↔5；0、4 无镜像。镜像必须同时翻 UV、取反视空间法线 X（运行时压缩后为 R）并通过右衽、持械手与非对称饰物检查。
-
-| 生产预设 | 实绘 `Dir8` | 镜像 | 适用与输出契约 |
+| `Dir8` | 源视图 | 镜像 | 美术检查 |
 |---|---|---|---|
-| `loco8`（idle / walk / run） | 0–7 | 否 | 主角、队友、Boss、精英、主要 NPC；页组 `loco` |
-| `loco5m`（idle / walk） | 0–4 | 5–7 由镜像取得 | 杂兵、路人、动物；这是生产降级预设，不改变运行时 `Dir8` |
-| `battle8`（通用战斗 + 当前兵器类） | 0–7 | 否 | 主角、队友、Boss、精英；页组统一为 `battle8_*` |
-| `battle5m` | 0–4 | 5–7 由镜像取得 | 杂兵降级；输出仍写 `battle8_*` 页组和完整逻辑方向表 |
-| `static5m` | 0–4 | 5–7 由镜像取得 | 静立 NPC；镜头可旋转，不能再用只有正面/斜面的 `static2` |
+| 0 S | `front34` | 最近侧；首次否 | 正面轮廓在两侧选择下都不能跳肩 |
+| 1 SW / 7 SE | `front34` | 1 否 / 7 是 | 右衽、惯用手、单侧纹样 |
+| 2 W / 6 E | `side` | 2 否 / 6 是 | 鼻、发髻、刀鞘不可反向 |
+| 3 NW / 5 NE | `back34` | 3 否 / 5 是 | 披风纹章、斜背武器方向 |
+| 4 N | `back34` | 最近侧；首次否 | 后脑/背部中心不能偏移 |
 
-> **C20 + AR-12 已解决**：关键角色从旧 `battle4`（73×4=292 帧）改为完整 `battle8`（73×8=584 帧），battle 内容生产/下载量增加 `(584−292)/292=100%`；固定镜头驻留 6 视图为 73×6=438 帧，相对旧 4 视图增加 `(438−292)/292=50%`。逻辑六向不等于只生产六个视图。
+汉服右衽、文字、伤疤或单侧配饰必须在 manifest 标 `mirrorSafe:false` 并提供修正版；工具不得静默翻图。旋转只更换视图/镜像位，不预取方向帧。
 
-#### 5.4.4 统一骨架与共享动作库
+#### 5.4.4 代码步态与战斗大动作边界
 
-- **骨架**：`tianshu_humanoid`，使用清晰的通用 humanoid 映射表，另加 `weapon_r`、`weapon_l`、`cape_*`（飘带/披风，可选物理烘焙）。AccuRIG/Mixamo 只是候选导入源，不把账号型工具的骨名当内部契约。
-- **体型重定向**：每个体型档（§2.6）一个"重定向预设"，处理肩宽、步幅、重心高度差异；老者、胖僧有专属待机与行走片段。
-- **动作帧率**：片段以 30 fps 制作，渲染时按"一拍二/一拍三"抽帧到 10–15 fps 等效，保留传统手绘动画的顿挫感并节省帧数。
+| 动作域 | 生产物 | 本文边界 |
+|---|---|---|
+| idle / walk / run / turn | 无动作图 | 使用 `tech/09-rig` §4 的周期、关节角、呼吸与转向公式；`stepFps=12` 可关 |
+| 披风 / 手持兵器随动 | 无动作图 | 二阶披风跟随、握角与手臂摆动由代码生成 |
+| jump / glide | 姿势参数或少量专用部件（待专项） | 不得自动引用旧 `anm_hum_m_walk` |
+| 攻击 / 受击 / 格挡 / 倒地 | 分层姿势关键点为默认；整身帧为备选 C | 命中事件仍归 `design/05`/`tech/05`；本任务不定帧数 |
 
-**共享动作库 v1**（帧数为成品帧）
-
-| 组 | 片段（`anm_hum_*`） | 帧数 | 事件（写入帧元数据） |
-|---|---|---|---|
-| 通用移动 | `idle`（呼吸循环）8、`walk` 8、`run` 8 | 24 | `foot_l`、`foot_r`（脚步音效） |
-| 轻功 | `jump_up` 6、`jump_land` 4、`glide`（凌空循环）4 | 14 | `takeoff`、`land` |
-| 战斗通用 | `hit` 3、`parry` 4、`dodge` 4、`down`（倒地/死亡）8、`cast_inner`（运功循环）6、`item_use` 6、`throw`（暗器）6 | 37 | `impact`、`release` |
-| 兵器类（每类 3 片段） | `<cls>_light` 6、`<cls>_heavy` 8、`<cls>_ult`（绝招关键姿势）4；`cls` ∈ sword/blade/staff/spear/whip/exotic/fist/palm/finger/leg/grapple（`palm` 与 `fist` 同属基准 `fist` 拳掌子类，但动作不同） | 18/类 | `hit`（伤害结算帧）、`trail_on/off`（刀光）、`sfx` |
-| 演出 | `victory` 8、`meditate` 4、`talk` 4 | 16 | — |
-
-- **招式不单独做动作**：`design/05` 招式的 `anim.clip` 取值限定为 `<cls>_light|heavy|ult` 与通用片段名（如 `palm_heavy`），再配 `anim.vfx`/`anim.sfx`/`anim.cutin` 与镜头震动。天级武学的签名表现主要靠特效与立绘切入（cut-in，≤ 1.2 秒，design/05 §4.8），而非专属骨骼动作。
-- 少量无法由通用片段表达的剧情/生物动作可登记 `battle8_act_<id>` 扩展页；具体招名和动作归属以 `design/05`、各章与 `design/18` 为准，本文不凭印象新增原著招名。
+招式“几张图 + 代码合成”沿 AR-19；签名表现继续由 `anim.vfx/sfx/cutin` 和镜头调度组合。若某个大动作采用整身帧，须逐动作登记、单独核换装降级，并保持行走/待机 rig 接口不变。
 
 #### 5.4.5 渲染风格化
 
 | 手段 | 做法 |
 |---|---|
-| 描边 | 反向外壳：复制网格 + Solidify（厚度 = 线宽世界单位，法线翻转）+ 背面剔除的 `ink.nong` 材质；线宽世界单位 = 目标成品线宽 px ÷ ppm（2.5 px ÷ 128 ≈ 0.02 m） |
-| 内部线 | Line Art 修改器（褶皱、领口、兵器刃线），只在主要角色启用 |
-| 着色 | 颜色 pass 使用"**平涂 + 环境光遮蔽 + 15% 形体明暗**"的无光照材质（Emission 输出），方向光交给运行时法线计算；避免双重打光 |
-| 纹样 | 服饰纹样画在贴图上，渲染前检查 194 px 成品下是否糊成噪点，必要时简化 |
-| 抗锯齿 | 2× 分辨率渲染（512×512 帧格），Lanczos 缩小到 256；Alpha 边缘去预乘 |
+| 描边 | 在 256 px/m 源图烘焙 2 px 外轮廓；缩档以 alpha coverage 保持，不运行时扩边 |
+| 内部线 | 领口、褶皱与甲片只画能在 64 ppm 读出的一级结构线 |
+| 着色 | 2–3 阶平涂；方向光由可选法线计算，颜色图烘焙形体明暗不超过 15% |
+| 纹样 | 每个槽单独检查，不得跨 pivot/裁边依赖相邻部件；64 ppm 读不出的纹样简化 |
+| 抗锯齿 | 母版直接 256 ppm；离线预乘 alpha 后 Lanczos3 缩到 128/96/64，再还原 alpha |
 
 #### 5.4.6 显存预算（供 tech/03 决策）
 
-以下只是统一参数下的**分析估算**，不是打包实测。KTX2 转码到 ASTC 4×4 / ETC2 RGBA 按 8 bpp；半分辨率法线面积为颜色的 0.25；mip0+mip1 系数为 `1+1/4=1.25`：
+旧帧数模型全部失效，不用理论“省了多少”替代打包报告。构建按实际裁边面积 `A_i` 计算：颜色 mip0+1 约 `ΣA_i×bpp/8×1.25/η`，`η` 为装箱率；半分辨率法线再加颜色面积的 25%。**（初值，待 ENG-12 实测）**
 
-```
-每帧有效像素 ≈ 裁边后平均 110×200 ≈ 22k px（帧格 256²）
-颜色显存(MB) ≈ 帧数 × 22k × 1 B ÷ 装箱率 0.85 ÷ 1,048,576
-法线显存(MB) ≈ 颜色显存 × 0.25（半分辨率）
-高/极致包总量 ≈ 颜色 × (1+0.25 法线) × 1.25 mip = 颜色 × 1.5625
-中档包总量 ≈ 高档颜色 × 0.75² × 1.5625 = 高档颜色 × 0.87890625
-低档包总量 ≈ 高档颜色 × 0.5² × 1.25 mip = 高档颜色 × 0.3125（无法线页）
-```
+| 档 | ppm / 法线 | 角色 rig 图集硬限 | 构建与运行要求 |
+|---|---|---:|---|
+| low | 64 / 无 | 40 MB | 基础 + 当前区域装备；超限先删不可见层 |
+| mid | 96 / 有 | 105 MB | 按区域 LRU；不得降具体神兵为光色 |
+| high | 128 / 有 | 170 MB | 记录基础、装备、法线各自字节 |
+| ultra | 128 / 有 | 300 MB 名义；实际角色工作集 ≤256 MB | 服从 `tech/02`/`tech/03` 全局 512 MB |
 
-| 角色类型 | 完整包帧数 | 固定镜头驻留帧数 | 低 / 中 / 高档稳态估算 | 高档旋转瞬时峰值 |
-|---|---:|---:|---:|---:|
-| 主角/队友/Boss（`loco8` 24×8；通用37 + 两类攻击36） | `192+73×8=776` | `192+73×6=630` | **4.86 / 13.67 / 24.30 MB** | `776×22k÷0.85÷2²⁰×1.5625=29.93 MB` |
-| 精英（`loco8`；通用37 + 一类攻击18） | `192+55×8=632` | `192+55×6=522` | **4.03 / 11.32 / 20.13 MB** | **24.37 MB** |
-| 杂兵（`loco5m` 16×5；`battle5m` 55×5） | `80+275=355` | 同完整实绘源 355 | **2.74 / 7.70 / 13.69 MB** | **13.69 MB** |
-| 探索态主要 NPC（`loco8`） | 192 | 192 | **1.48 / 4.17 / 7.41 MB** | 同稳态 |
-| 静立 NPC（`static5m`，idle 8×5） | 40 | 40 | **0.31 / 0.87 / 1.54 MB** | 同稳态 |
+运行压力上限为 100 角色×20 实例=2,000 实例，动态实例数据 `2,000×56 B=112,000 B/帧`；这不是纹理显存。Phase 0 必须用 78 张基础源件、满载装备组合与三区域切换测下载、转码峰值和 GPU 工作集。
 
-- 上表把 `loco` 完整页算入战斗稳态，保守但可复算；轻功 14 帧/方向、演出和 `battle8_act_*` 扩展页未计入，必须用实际图集报告追加。所有估算均标**（待实测）**。
-- 压力例：玩家侧主角 + 5 名队友、敌方 1 Boss，共按 7 个关键角色，另有 3 种杂兵时，高档稳态为 `7×24.30+3×13.69=211.17 MB`，超过高档角色精灵硬上限 170 MB；中档包为 `7×13.67+3×7.70=118.79 MB`。因此 `GpuBudget` 必须在 170 MB 前降部分单位到中档、卸载未用 `loco`/兵器页或启用更激进群像 LOD，不能把 211 MB 当可接受目标。
-- 低档同场理论值为 `7×4.86+3×2.74=42.24 MB`，仍略超 40 MB；必须进一步只驻留当前片段/方向或减少同时常驻种类。中/高估算分别对照 `tech/03` 的 105/170 MB，上述中档场景超 105 MB 时同样触发卸页。极致虽名义上限 300 MB，但全局 512 MB 约束要求实际角色工作集 **≤256 MB**。
-- 旋转须先把目标镜头新增的 2 个视图加载成功，再开始 350 ms 转场；加载失败保持原偏航。未装备的兵器类、非当前扩展动作和已结束剧情页不得常驻。最终下载量、转码格式、装箱浪费和真机峰值由 Phase 0 生成真实图集复测**（待实测）**。
+#### 5.4.7 TOOL-rig-pipeline 的物品派生
 
-#### 5.4.7 Blender 渲染脚本关键片段
-
-调用方式（无界面批处理，Blender 4.5 LTS 基线）：
+管线实现任务名为 TOOL-rig-pipeline；本文件只说明资产生产入口，算法权威值见 `tech/09-rig` §3。
 
 ```bash
-blender -b tools/aigc/blender/stage.blend -P tools/aigc/blender/render_sprites.py -- \
-  --model  /art/master/mdl/ch01/mdl_npc_duanyu__ch01.blend \
-  --job    tools/aigc/blender/jobs/spr_npc_duanyu__ch01.yaml \
-  --camera packages/spec/iso-camera.json \
-  --spec   packages/spec/sprite-spec.json \
-  --out    /art/work/spr/spr_npc_duanyu__ch01/
+python3 tools/rig/build_item.py \
+  --input /art/master/item/eq_example.png \
+  --item-id eq_example --class weapon \
+  --rig assets/default/rig/male_std/manifest.yaml
 ```
 
-`packages/spec/iso-camera.json` 与 `packages/spec/sprite-spec.json` 均由 `tech/02` §1.3、§2.6 定稿，本文只消费，不复制第二份。脚本启动时须校验至少如下契约值；任一不符即失败，不以内部默认值继续：
+| 阶段 | 固定规则 | 产物 |
+|---|---|---|
+| 抠底 | 边界连通近象牙底 `RGB≈(230,225,216)`；ΔE76 阈值 18，10–22 羽化并去色溢 | 透明 RGBA 工作图 |
+| 裁边 | `alpha≥8/255` 包围盒；补 `ceil(8%×max(w,h))`，至少 4 px | 稳定裁边图 |
+| 图标 | 256 母图下采 128/64/32；alpha 预乘缩放 | `assets/default/item/<类>/icons/<id>_<size>.png` |
+| 武器层 | PCA 主轴摆正；按子类握点比例与名录长度/默认长度换算 ppm | `<id>__weapon_R.png`，必要时含 L |
+| 软装备层 | 槽位 SVG mask；k-means 取 3–5 主色，中心 1/3 纹理片平铺 | `assets/default/item/<类>/layers/<id>__<slot>.png` |
+| 元数据 | 每个 slot PNG 横排三视图 cell；写 slot、view、file、sourceRect、pivot、scale、zOrder、tint | 类别目录共用 `layers/layers.yaml`，以 `items[]` 分隔 |
 
-```json
-{
-  "cameraRequired": {
-    "version": 1,
-    "pitchDeg": 30,
-    "yawPresetsDeg": [45, 135, 225, 315],
-    "allowRotation": true,
-    "rotationMs": 350,
-    "battleFacingCount": 6,
-    "battleSpritePolicy": "nearest-dir8"
-  },
-  "spriteRequired": {
-    "version": 1,
-    "masterPpm": 128,
-    "mips": { "levels": 2, "pagePaddingPx": 4 },
-    "facings": {
-      "battleLogic": 6,
-      "viewIndexCount": 8,
-      "battlePageGroup": "battle8",
-      "residentViewCount": 6,
-      "rotationPrefetchViews": 2
-    }
-  }
-}
-```
+任一步触发失败条件都进入人工修图队列，不得用随机重试掩盖。相同输入哈希、配置与工具版本必须逐像素复现。
 
-关键角色 job 必须显式渲染 8 个视图；杂兵若使用 `battle5m`，也必须声明镜像检查项，不能由脚本猜测：
-
-```yaml
-id: spr_npc_duanyu__ch01
-rig: Armature
-productionPreset: critical_full8
-headBone: Head
-weaponTipBone: weapon_tip_r
-clips:
-  - anim: anm_hum_hit
-    pageGroup: battle8_common
-    dirs: [0, 1, 2, 3, 4, 5, 6, 7]
-  - anim: anm_hum_sword_light
-    pageGroup: battle8_weapon_sword
-    dirs: [0, 1, 2, 3, 4, 5, 6, 7]
-```
-
-`tools/aigc/blender/render_sprites.py`（核心路径示例；完整工具还须包含参数解析与日志）：
-
-```python
-import bpy, json, math, os, sys
-from mathutils import Euler, Vector
-from bpy_extras.object_utils import world_to_camera_view
-
-def setup_camera(scene, cam_cfg, spec, large=False):
-    cell = spec["largeCell"] if large else spec["cell"]
-    ppm_render = spec["masterPpm"] * spec["renderScale"]
-    cam_data = bpy.data.cameras.new("IsoCam")
-    cam_data.type = 'ORTHO'
-    # 正交视口宽度(米) = 渲染像素宽 / 渲染 ppm
-    cam_data.ortho_scale = (cell[0] * spec["renderScale"]) / ppm_render
-    cam = bpy.data.objects.new("IsoCam", cam_data)
-    scene.collection.objects.link(cam)
-    scene.camera = cam
-    # Blender 相机默认朝 -Z；rot_x = 90° - 俯仰角
-    cam.rotation_euler = Euler((math.radians(90 - cam_cfg["pitchDeg"]), 0.0,
-                                math.radians(cam_cfg["yawDeg"])), 'XYZ')
-    # 相机沿视线反方向后退足够距离（正交投影与距离无关，只需避免近裁面切到角色）
-    view_dir = cam.rotation_euler.to_matrix() @ Vector((0, 0, -1))
-    cam.location = -view_dir * 20.0
-    scene.render.resolution_x = cell[0] * spec["renderScale"]
-    scene.render.resolution_y = cell[1] * spec["renderScale"]
-    scene.render.resolution_percentage = 100
-    scene.render.film_transparent = True
-    # 平移相机使世界原点(脚底)投影到 anchor
-    anchor = spec["largeAnchor"] if large else spec["anchor"]
-    right = cam.rotation_euler.to_matrix() @ Vector((1, 0, 0))
-    up    = cam.rotation_euler.to_matrix() @ Vector((0, 1, 0))
-    dx = (cell[0] / 2 - anchor[0]) / spec["masterPpm"]      # 米
-    dy = (anchor[1] - cell[1] / 2) / spec["masterPpm"]
-    cam.location += right * dx + up * dy
-    return cam
-
-def facing_yaw(dir_index, model_forward_offset_deg=0.0):
-    # 方向 0=S(正对观者)，屏幕顺时针；模型默认面朝 -Y。
-    # 推导：相机方位 45° 时"朝向观者"的地面方向为 (+1,-1)/√2，即 -Y 绕 Z 转 +45°。
-    return math.radians(45.0 - 45.0 * dir_index + model_forward_offset_deg)
-
-def make_normal_override():
-    """视空间法线 AOV：Geometry.Normal → VectorTransform(World→Camera) → *0.5+0.5 → Emission。
-    Blender 相机空间 +X 右、+Y 上、+Z 朝向观者，恰为 OpenGL 视空间约定。"""
-    mat = bpy.data.materials.new("NormalView"); mat.use_nodes = True
-    nt = mat.node_tree; nt.nodes.clear()
-    geo = nt.nodes.new("ShaderNodeNewGeometry")
-    vt  = nt.nodes.new("ShaderNodeVectorTransform")
-    vt.vector_type, vt.convert_from, vt.convert_to = 'NORMAL', 'WORLD', 'CAMERA'
-    mad = nt.nodes.new("ShaderNodeVectorMath"); mad.operation = 'MULTIPLY_ADD'
-    mad.inputs[1].default_value = (0.5, 0.5, 0.5); mad.inputs[2].default_value = (0.5, 0.5, 0.5)
-    em  = nt.nodes.new("ShaderNodeEmission"); out = nt.nodes.new("ShaderNodeOutputMaterial")
-    nt.links.new(geo.outputs["Normal"], vt.inputs["Vector"])
-    nt.links.new(vt.outputs["Vector"], mad.inputs[0])
-    nt.links.new(mad.outputs["Vector"], em.inputs["Color"])
-    nt.links.new(em.outputs["Emission"], out.inputs["Surface"])
-    return mat
-
-def configure_pass(scene, pass_name, normal_mat):
-    vl = scene.view_layers[0]
-    if pass_name == "color":
-        vl.material_override = None
-        scene.view_settings.view_transform = 'Standard'   # 不用 AgX/Filmic，保证平涂色准确
-        scene.render.image_settings.file_format = 'PNG'
-        scene.render.image_settings.color_mode = 'RGBA'
-    elif pass_name == "normal":
-        vl.material_override = normal_mat                 # 描边外壳需排除，见 exclude_outline()
-        scene.render.image_settings.file_format = 'OPEN_EXR'  # 线性数据，后处理再转 8-bit PNG
-        scene.render.image_settings.color_depth = '16'
-
-def project_anchor(scene, cam, rig, render_scale, root_bone="Hips"):
-    """根骨在地面的投影 → 成品像素坐标（左上原点），用于校验锚点漂移（检测带位移的动作片段）。"""
-    p = rig.matrix_world @ rig.pose.bones[root_bone].head
-    co = world_to_camera_view(scene, cam, Vector((p.x, p.y, 0.0)))
-    w, h = scene.render.resolution_x, scene.render.resolution_y
-    return [co.x * w / render_scale, (1.0 - co.y) * h / render_scale]
-
-def render_job(job, cam_cfg, spec, out_dir):
-    scene = bpy.context.scene
-    # 4.5 LTS 基线的枚举；5.2 LTS 仍须跑端到端回归，不在版本号上猜另一枚举。
-    scene.render.engine = 'BLENDER_EEVEE_NEXT'
-    cam = setup_camera(scene, cam_cfg, spec, job.get("large", False))
-    rig = bpy.data.objects[job["rig"]]
-    normal_mat = make_normal_override()
-    meta = {"id": job["id"], "spec": "sprite-spec@1",
-            "productionPreset": job["productionPreset"], "frames": []}
-    render_passes = ["color", "normal"] + (["depth"] if spec["depth"]["enabled"] else [])
-    for clip in job["clips"]:                      # 关键角色 dirs 必须为 0..7
-        action = bpy.data.actions[clip["anim"]]
-        rig.animation_data.action = action
-        f0, f1 = map(int, action.frame_range)
-        for d in clip["dirs"]:
-            rig.rotation_euler.z = facing_yaw(d, job.get("forwardOffsetDeg", 0))
-            for f in range(f0, f1 + 1, spec["fpsStep"]):
-                scene.frame_set(f)
-                for p in render_passes:
-                    configure_pass(scene, p, normal_mat)
-                    scene.render.filepath = os.path.join(out_dir, p, f"{clip['anim']}_d{d}_f{f:03d}")
-                    bpy.ops.render.render(write_still=True)
-                meta["frames"].append({
-                    "anim": clip["anim"], "dir": d, "src": f,
-                    "pageGroup": clip["pageGroup"],
-                    "anchorPx": project_anchor(scene, cam, rig, spec["renderScale"], job.get("rootBone", "Hips")),
-                    "headPx": project_bone(scene, cam, rig, job["headBone"], spec["renderScale"]),
-                    "tipPx": project_bone(scene, cam, rig, job["weaponTipBone"], spec["renderScale"]),
-                    "events": events_at(action, f)       # helper 读取 pose_markers: hit/trail_on/sfx:*
-                })
-    with open(os.path.join(out_dir, "frames.json"), "w", encoding="utf-8") as fp:
-        json.dump(meta, fp, ensure_ascii=False, indent=2)
-```
-
-上段只展示相机、方向、pass 与元数据主路径，不能原样视为完整工具；完整实现必须补齐参数解析、目录创建、`events_at`、`project_bone`、轮廓排除和 depth pass。它应先通过 Python AST/静态检查，再分别在 Blender 4.5 LTS 与 5.2 LTS 执行一套 8 向金样本；当前未做 Blender 端到端运行**（待实测）**。
-
-脚本要点与坑：
+管线要点与失败策略：
 
 | 要点 | 说明 |
 |---|---|
-| 单一相机来源 | 相机只从 `iso-camera.json` 读取，运行时相机读同一文件，保证精灵与 3D 地形透视一致 |
-| 法线 pass 用 EXR | 避免显示变换（AgX/Filmic/sRGB）污染数据；后处理 `tsgen normals` 用 numpy 转 8-bit PNG 并用颜色 pass 的 alpha 作蒙版 |
-| 描边外壳排除 | 法线 pass 时隐藏外壳对象（否则法线图出现"黑边环"），或让外壳写入 (0.5,0.5,1.0) 平面法线 |
-| 渲染器 | 默认 EEVEE；Workbench 可做极速预览；具体每帧耗时与 Cycles 比例依设备、模型和分辨率测量，不预填旧稿“<0.5 s / 慢10×”**（待实测）** |
-| 锚点校验 | 每帧投影根骨，若与 `anchor` 偏差 > 1 px（成品）报警——常见原因是动作片段带根骨位移（需"原地"版本） |
-| 可选深度 pass | 视空间 Z 相对锚点深度，8-bit 线性编码 ±1 m；供 tech/02 若采用"深度精灵"遮挡方案时使用 |
-| 并行 | 按"角色 × 动作集"切分任务，多进程 `blender -b` 并行；显存小的卡限制 2–3 个进程 |
-| 版本 | 以 Blender 4.5 LTS 为兼容基线；5.2 LTS 跑回归，核对 EEVEE 枚举、材质覆盖、EXR 和 head/tip 投影**（待实测）** |
+| 色键只从边界连通 | 不删除物体内部的象牙色布料/骨器；边界合格种子 <40% 时转人工 |
+| pivot 为权威 | 裁边、缩档、装箱只换坐标尺度，不得重新找中心；相邻关节误差 ≤1 px |
+| 纹理采样 | 中心 1/3 区域取纹理片；遮罩前先去掉背景；不可把图标纸底平铺进衣甲 |
+| 武器尺度 | 优先消费名录长度；缺失时用子类默认长度并登记 warning；`fitScale` 超 `[0.75,1.25]` 失败 |
+| 确定性 | k-means 固定种子/色彩空间/迭代上限；输入、配置、工具版本全写 provenance |
+| 人工门 | 32 px 轮廓断裂、脸框遮挡、右衽翻转、武器握点偏移或主体被色键删 >8% 均拒绝自动发布 |
 
 #### 5.4.8 裁边、装箱与元数据
 
-1. `tsgen normals`：EXR → 线性 PNG 母版，alpha 取自颜色 pass；发布时由 tech/06 转 UASTC normal mode；
-2. `tsgen trim`：按颜色 alpha 求紧包围盒，颜色与法线使用**同一裁切框**；图块自身可外扩 2 px，装箱仍须保证相邻帧透明边之间至少 4 px；
-3. `tsgen pack`：`rectpack` 最大矩形装箱，页面 2048×2048、atlas padding 2 px；按 `loco`、`battle8_common`、`battle8_weapon_<cls>`、`battle8_act_<id>` 分页，并再按视图区块切分以支持 6 驻留 + 2 预取。颜色与法线页同布局，半分辨率法线使用相同归一化 UV；
-4. 输出元数据 `spr_<id>.json`：
-
-```json
-{
-  "id": "spr_npc_duanyu__ch01",
-  "spec": "sprite-spec@1",
-  "variant": "high", "ppm": 128,
-  "cell": [256, 256], "anchor": [128, 224],
-  "headPx": [128, 44], "footRadiusM": 0.3,
-  "facings": { "logic": 6, "views": 8, "resident": 6, "rotationPrefetch": 2 },
-  "mips": 2,
-  "pages": [
-    { "group": "loco", "viewBlock": "d0-d7", "color": "spr_npc_duanyu__ch01.loco.d0-d7.0.png", "normal": "spr_npc_duanyu__ch01.loco.d0-d7.0.n.png", "size": [2048, 2048] },
-    { "group": "battle8_common", "viewBlock": "d0-d1", "color": "spr_npc_duanyu__ch01.battle8_common.d0-d1.0.png", "normal": "spr_npc_duanyu__ch01.battle8_common.d0-d1.0.n.png", "size": [2048, 2048] }
-  ],
-  "clips": {
-    "walk": { "fps": 15, "loop": true, "mirror": false,
-      "dirs": { "0": [ { "p": 0, "x": 0, "y": 0, "w": 118, "h": 205, "ox": 69, "oy": 19,
-                         "tipPx": [184, 116], "hitPx": [184, 116], "ev": ["foot_l"] } ] } }
-  }
-}
-```
-
-（`ox/oy` 为裁切框相对帧格左上的偏移，运行时据此还原锚点；示例只展示一帧。最终字段必须通过 `tech/02` §2.6 的加载器/schema，本文不得另造平行契约。）
+1. 校验每个 rig set 恰有三视图×13 源 part，PNG 尺寸匹配 manifest，pivot/childJoint 在容差内；
+2. 颜色与可选法线用同一裁切框，图块间透明 padding 4 px；法线发布编码由 tech/06 处理；
+3. `rectpack` 按 `rig_base` / `rig_equipment` 装入同一 atlas family；超单页能力先降 ppm，不静默增加 draw call；
+4. 图集元数据从 `manifest.yaml` 与每件装备 `layers.yaml` 派生，不另造角色动作 JSON。
 
 #### 5.4.9 质检、输出与入库
 
 | 环节 | 内容 |
 |---|---|
-| 自动质检 | 锚点漂移 ≤ 1 px；每帧非空；法线图 B 通道均值 > 0.5（朝向观者）；关键角色每个 `battle8` clip 的方向集合恰为 0–7；`headPx` 必填，持械帧 `tipPx` / 命中帧 `hitPx` 必填；帧间包围盒突变报警；固定 6 视图与旋转 8 视图分别计算显存并对照 `tech/03` |
-| 人工质检 | 自动生成“8 向 × 关键帧”联系表与 GIF 预览；检查兵器穿模、手型、右衽、非对称饰物、剪影、步速和命中帧。杂兵镜像必须逐对检查 UV、法线 R/X、持械手，任一不合格即升级为完整 8 向 |
-| 输出 | `spr_*.json` + 颜色/法线 PNG 图集（母版）；KTX2 转码由 tech/06 |
-| 入库 | 精灵条目 `inputs` 字段引用 `mdl_*` 与所用 `anm_*` 版本；任何上游（模型、动作、相机、spec）版本变化 → 自动标记 `stale` 待重渲（§6.5） |
+| 自动质检 | 三视图×13 源件齐全；pivot/child ≤1 px；镜像交换 L/R 与法线 X；基础16+附加≤20；图标四档齐全；完整断言见 `tech/09-rig` RIG-V01～V09 |
+| 人工质检 | `preview.py` 输出 4 相位×3 视图条带；轻/中/重与满载装备检查断肢、滑步、右衽、穿脸、握点与披风 |
+| 输出 | rig manifest/部件 PNG、装备层 PNG/`layers.yaml`、图标 256/128/64/32；KTX2 转码由 tech/06 |
+| 入库 | 条目 `inputs` 引用设定卡、物品图、模板与 `rig-spec` 版本；任一上游变化即标 `stale` 重建（§6.5） |
 
 ### 5.5 地形材质、建筑与物件
 
@@ -1066,7 +842,7 @@ def render_job(job, cam_cfg, spec, out_dir):
 
 #### 5.6.1 总体策略
 
-1. **图标本体与边框分离**：本体是透明底 512² 母版；品阶边框、稀有度光效、数量角标全部**运行时合成**（DOM/CSS 或 WebGL 精灵层）。原因：外来压制（基准 §3）使同一物品/武学在不同书界显示不同品阶，边框必须动态。
+1. **图标本体与边框分离**：武学/Buff/UI 本体是透明底 512² 母版；AR-22 的物品/装备从审定原图确定性派生 256/128/64/32 小图（§5.4.7），不再反向放大为 512²。品阶边框、稀有度光效、数量角标全部**运行时合成**（DOM/CSS 或 WebGL 精灵层）。原因：外来压制（基准 §3）使同一物品/武学在不同书界显示不同品阶，边框必须动态。
 2. **模板化提示词**：每个子类一个模板，填入"主体意象 + 意象修饰 + 大阶氛围"，批量生成，人工只挑选。
 3. **三种生产档**：独绘（S/A）、模板族（B）、字形合成（C，招式/部分 Buff）。
 
@@ -1108,7 +884,7 @@ tier_mood:            # 仅影响本体气质，不画边框
 | `equip/<拼音>` | `icon/eq_<拼音>/default` ⇄ `ico_eq_<拼音>` | 具名装备按目录进入独绘队列，随机/锻造基底按模板族生成 |
 | `item/<拼音>` | `icon/it_<拼音>/default` ⇄ `ico_it_<拼音>` | 物品按子类模板、主体与配色参数生成；特例可提升为独绘 |
 
-`tsgen icons plan` 必须从 `design/10` 的正式目录导出需求；当前容量锚为**约 93 个独立图标、约 40 个基底模板族**，仅用于排产，实际数量以构建时目录去重结果为准。`hands: 'pair'` 的成对兵器仍是一个装备对象，但角色精灵/模型生产必须交付左右两件外观和**双手挂点**元数据；具体占槽与计件语义只引用 `design/10` §3.3。
+`tsgen icons plan` 必须从 `design/10` 的正式目录导出需求；当前容量锚为**约 93 个独立图标、约 40 个基底模板族**，仅用于排产，实际数量以构建时目录去重结果为准。`hands: 'pair'` 的成对兵器仍是一个装备对象，但角色 rig 生产必须交付左右两件外观和**双手挂点**元数据；具体占槽与计件语义只引用 `design/10` §3.3。
 
 #### 5.6.3 招式与 Buff 的字形图标
 
@@ -1121,7 +897,7 @@ tier_mood:            # 仅影响本体气质，不画边框
 | 环节 | 内容 |
 |---|---|
 | 质检 | 缩到 48 px 仍可辨（自动生成缩略联系表）；同子类图标风格一致（并排 5×5 网格审）；无文字/伪字；主体居中占 70–80%；天级与低品阶在"本体气质"上可区分 |
-| 输出 | 母版 512² RGBA；运行时 128²/64² 图集（tech/06）；边框素材 `ui_frame_grade_{1..12}`（九宫格或固定尺寸） |
+| 输出 | 武学/Buff/UI：母版 512² RGBA、运行时 128²/64² 图集（tech/06）；物品/装备：§5.4.7 的 256/128/64/32 PNG；边框素材 `ui_frame_grade_{1..12}`（九宫格或固定尺寸） |
 | 入库 | `ico_<对象ID>`；模板族条目记录 `family` 与 `tint` 参数，运行时或构建时合成 |
 
 #### 5.6.5 武学图鉴插画（秘籍图谱，`ill_`）
@@ -1205,7 +981,7 @@ ffmpeg -i vid_ch01_intro.master.mov -c:v libx264 -profile:v high -preset slow -c
 | 输入 | 音效需求表（由 `design/09` 动作事件、`design/08` 地形、UI 交互清单汇总）：`sfx_<类>_<名>_<nn>` |
 | 步骤 | ① 先查素材库并**逐文件**核对 CC0/CC-BY/CC-BY-NC 或 Sonniss 包条款 → ② 缺口优先自录；ElevenLabs 只有作者授权账号后才启用 → ③ 统一剪辑 → ④ 每种音效 3–4 个变体 → ⑤ 响度标准化 |
 | 分类 | UI（≈ 40）、脚步 × 地形（≈ 25 × 4 变体）、兵器挥击/命中/招架 × 兵器类（8 × 3 × 3）、内功/掌风/指力（≈ 30）、元素（火/寒/毒/雷/水，≈ 40）、环境循环（按生物群落 × 昼夜 × 天气，≈ 40）、生物（≈ 30）、人声非语言（呼喝、受伤、倒地 × 体型，≈ 60） |
-| 质检 | 与动作命中帧对齐（引擎内试听）；同类音效响度一致；无底噪 |
+| 质检 | 与战斗表现时间轴的命中时点对齐（引擎内试听）；同类音效响度一致；无底噪 |
 | 输出规格 | WAV 48 kHz / 24-bit（单声道为主，环境声立体声）；SFX 峰值 ≤ −1 dBTP，短音效按峰值归一化、环境循环 −24 LUFS 左右 |
 | 入库 | 记录来源库与许可证（CC0/免版税/AI/自录）与原始文件名，便于溯源 |
 
@@ -1236,7 +1012,7 @@ jinyongqunxia/                    # 主仓库（代码 + 文本类工具资产�
 │  │  └─ src/schemas/asset-entry.ts   # 资产登记条目 AssetEntry（本文 §6.4 提议字段）
 │  └─ spec/                       # 跨“工具 ↔ 运行时”的静态契约唯一目录（C18）
 │     ├─ iso-camera.json
-│     ├─ sprite-spec.json
+│     ├─ rig-spec.json
 │     └─ anim-events.schema.json
 ├─ content/
 │  └─ assets/
@@ -1252,20 +1028,20 @@ jinyongqunxia/                    # 主仓库（代码 + 文本类工具资产�
       ├─ pyproject.toml
       ├─ specs/                   # 各资产类型的规格与质检阈值（portrait.v1.yaml …）
       ├─ tsgen/
-      │  ├─ cli.py                # typer：plan / gen / review / approve / render-sprites / pack / publish …
+      │  ├─ cli.py                # typer：plan / gen / review / approve / build-rig / pack / publish …
       │  ├─ registry/             # 读写、状态机、stale 传播（Pydantic 模型由 asset.schema.json 生成）
       │  ├─ prompts/              # jinja2 模板渲染、黑名单校验
       │  ├─ providers/            # traex.py（当前自动入口）、manual_import.py（Gemini 网页结果）
       │  │                        # 其他 provider 只有作者改 P02 后才能新增并启用
       │  ├─ blender_runner.py     # blender -b 调用封装、并行调度
-      │  ├─ image/                # trim, pack(rectpack), normals, contact-sheet, tile-check
+      │  ├─ image/                # trim, pack(rectpack), rig-layers, normals, contact-sheet, tile-check
       │  ├─ audio/  video/        # loudnorm, loop, ffmpeg 封装
       │  ├─ provenance.py         # 写 PNG iTXt/XMP、MP4/WAV 元数据
       │  └─ review/               # 本地审核页后端（FastAPI）+ 静态前端
-      ├─ blender/
-      │  ├─ render_sprites.py  parallax.py  procedural_ink.py  kit_import.py
-      │  ├─ lib/ (iso_camera.py, passes.py, outline.py, events.py, retarget.py)
-      │  └─ jobs/ (spr_*.yaml，由 tsgen 生成，不入库)
+      ├─ rig/                     # TOOL-rig-pipeline：模板 SVG、物品抠底/覆盖层、preview.py
+      ├─ blender/                 # 建筑/动物/视频；战斗大动作备选
+      │  ├─ parallax.py  procedural_ink.py  kit_import.py
+      │  └─ lib/ (iso_camera.py, passes.py, outline.py)
       ├─ prompts/                 # 提示词模板库（YAML）
       │  ├─ style.yaml  era.yaml  negatives.yaml  blacklist.yaml
       │  ├─ characters/<npc_id>.yaml  scenes/<rg_id>.yaml
@@ -1416,7 +1192,7 @@ stateDiagram-v2
 | `stale` | 过期 | 上游变化，需重做；构建时仍用旧母版并告警 |
 | `deprecated` | 废弃 | 保留记录与母版哈希，不再构建 |
 
-**stale 传播**：`tsgen registry check` 构建依赖图（`inputs`），任一上游 `@版本` 变化 → 下游全部标 `stale`。例：修改段誉设定卡（`ref_…@3 → @4`）→ 立绘、头像、3D 模型、精灵、相关 CG 全部标记，并按等级给出重做工时估算。未启用 LoRA 不应出现在当前依赖图中。
+**stale 传播**：`tsgen registry check` 构建依赖图（`inputs`），任一上游 `@版本` 变化 → 下游全部标 `stale`。例：修改段誉设定卡（`ref_…@3 → @4`）→ 立绘、头像、rig 身份差分、装备预览、相关 CG 全部标记；若有获批的 3D/整身帧专项，也只标其直接依赖，并按等级给出重做工时估算。未启用 LoRA 不应出现在当前依赖图中。
 
 **溯源元数据写入文件本身**（冗余于登记库，防丢失）：PNG 写 iTXt/XMP（`tianshu:assetId`、`tianshu:ai=true`、`tianshu:provider`、`tianshu:model`），WAV 写 `INFO` 块，MP4 写 `comment` 元数据。运行时 WebP/AVIF 与 KTX2 默认不回写溯源字段；完整追溯依赖 manifest `src`、登记库与构建记录，见 `tech/06` §10。
 
@@ -1508,8 +1284,9 @@ def import_candidate(request_id: str, file: Path, displayed_model: str | None = 
 | `tsgen import-candidate <request-id> <file> [--displayed-model <name>]` | 导入 TraeX 结果或 Gemini 网页下载原文件并写哈希/溯源 |
 | `tsgen review --chapter ch01` | 启动本地审核页（候选网格、快捷键：1–4 选定、R 打回、N 备注） |
 | `tsgen approve <id>` / `tsgen reject <id> -m 原因` | 状态变更（审核页也可操作） |
-| `tsgen render-sprites --id spr_npc_duanyu__ch01 -j 3` | 生成 Blender 任务并并行渲染 |
-| `tsgen pack --id spr_…` | 裁边、法线转换、装箱、元数据 |
+| `tsgen build-rig --set male_std` | 校验三视图×13 源件、manifest、pivot/childJoint 并生成预览条带 |
+| `tsgen build-item-layers --id <eq_id>` | 调用 TOOL-rig-pipeline，派生四档图标与装备覆盖层 |
+| `tsgen pack --family rig` | 部件/装备层裁边、法线转换、装箱与元数据 |
 | `tsgen registry check` | Schema 校验、stale 传播、孤儿文件与缺失母版检查 |
 | `tsgen retry-request <request-id>` | 沿用同一输入重新请求；当前入口只保证输入可追溯，不保证逐像素复现 |
 | `tsgen budget --chapter ch01` | 按等级与状态汇总剩余人工时、候选数与账号实际支出 |
@@ -1528,13 +1305,13 @@ def import_candidate(request_id: str, file: Path, displayed_model: str | None = 
 | 风格 | 有墨线；色板在书界 LUT 内；无动漫大眼/日韩画风；无 3D 塑料感；S3 资产在小尺寸下可读 | 全部 |
 | 文字 | 无 AI 生成文字/伪字；后期排版文字零错字 | 全部 |
 | 合规 | 不像任何演员（有疑问即重做）；参考源仅为 `ref_`/自有/公有领域；提示词无黑名单词；许可证字段完整 | 全部 |
-| 游戏性 | 地形可辨识性（门禁地形）；特效不遮挡剪影；命中帧时机；图标 48 px 可辨 | 地形、特效、精灵、图标 |
+| 游戏性 | 地形可辨识性（门禁地形）；特效不遮挡剪影；战斗命中时点；图标 48 px 可辨 | 地形、特效、rig、图标 |
 
 ---
 
 ## 7. 一致性保障
 
-### 7.1 角色 ID ↔ 设定卡 ↔ 参考集 ↔ 3D 模型 ↔ 声音描述
+### 7.1 角色 ID ↔ 设定卡 ↔ 参考集 ↔ rig 身份差分 ↔ 声音描述
 
 ```mermaid
 flowchart LR
@@ -1543,11 +1320,11 @@ flowchart LR
   CARD --> V2[变体 ch03_prime]
   V1 --> R1[ref_npc_guojing__ch02_youth_sheet@N]
   V2 --> R2[ref_npc_guojing__ch03_prime_sheet@N]
-  R1 --> M1[mdl_npc_guojing__ch02]
-  R2 --> M2[mdl_npc_guojing__ch03]
+  R1 --> G1[rig 身份差分<br/>ch02_youth]
+  R2 --> G2[rig 身份差分<br/>ch03_prime]
   R1 & R2 --> P[TraeX/Gemini 多参考<br/>立绘/CG/视频关键帧]
   CARD --> VOICE[声音设计描述<br/>当前不生成 TTS]
-  M1 & M2 --> S[精灵]
+  G1 & G2 --> S[分层部件 + 装备预览]
   CARD --> QA[识别锚清单]
   QA --> P
   QA --> S
@@ -1594,9 +1371,10 @@ variants:
 |---|---|---|---|---|
 | 风格卡 | `style.yaml@主.次.补丁` | 线条、色阶、纸纹、禁用项、3 张通过样例与 3 张反例【建议值】 | 拼入请求并供人工并排审核 | 主版本变化触发全库影响分析；只强制重审 S 级 |
 | 角色卡 | `characters/<npc_id>.yaml@版本` | 3 条识别锚、配色、剪影、时代服装接口 | 每个角色唯一文字源 | 任一锚变化使该角色各媒介资产 `stale` |
-| 变体设定卡 | `ref_<npc_id>__<variant>_sheet@版本` | 正/侧/背、面部、服饰局部，均为审定母版 | 当前 TraeX/Gemini 多参考输入 | 直接依赖的立绘、CG、模型、精灵、视频关键帧 `stale` |
+| 变体设定卡 | `ref_<npc_id>__<variant>_sheet@版本` | 正/侧/背、面部、服饰局部，均为审定母版 | 当前 TraeX/Gemini 多参考输入 | 直接依赖的立绘、CG、rig 身份差分、视频关键帧 `stale` |
 | 请求快照 | `requests/<request-id>.yaml` | 展开后的提示词、参考图 ID+哈希、目标规格、入口 | 复现输入意图；网页/闭源输出仅 `best_effort` | 保留旧请求，不覆盖；重试产生新 attempt |
-| 3D 代理 | `mdl_<npc_id>__<variant>@版本` | 体型、服装、兵器、骨架映射 | 为完整 8 视图精灵提供几何一致性 | 模型或骨架变化使对应 `spr_*` `stale` |
+| rig 身份差分 | `assets/default/rig/<set>/` 中的覆盖输入版本 | 头、发/冠、配色及必要的特殊 part | 与标准体型模板组合地图角色 | 模板或设定卡变化使对应差分与预览 `stale` |
+| 3D 代理（可选） | `mdl_<npc_id>__<variant>@版本` | 动物、建筑或获准战斗大动作的几何/骨架 | 不用于人形行走/待机主线 | 只使直接依赖的备选 `spr_*` 或 3D 产物 `stale` |
 
 - **一次只改一个变量**：从设定卡生成姿势时不同时换服装；换服装时锁定脸、发型、体态和镜头。两项以上变化拆为串行请求并保留中间审定图。
 - **参考数不硬编码**：当前两个入口的实际参考图上限、文件大小、导出分辨率和跨会话保留均按账号记录**（待实测）**。若上限不足，优先顺序为“面部 + 全身 + 当前服装细节”，而不是丢失身份锚。
@@ -1616,7 +1394,7 @@ variants:
 | 人物 | 变体（书界） | 处理要点 |
 |---|---|---|
 | 郭靖 / 黄蓉 | 射雕较年轻变体（ch02）→ 神雕中年变体（ch03） | 识别锚不变；中年版用体态与少量年龄纹理表达，不凭印象固定白发比例（待考：核对《射雕英雄传》《神雕侠侣》二人跨书外貌描写） |
-| 杨过 | 神雕少年 → 青年 → **断臂后**（ch03） | 三个变体：`youth`、`prime`、`prime_onearm`；断臂后需独立 3D 模型与单臂动作子集（待考：核对断臂前后衣袖、兵器与外貌描写） |
+| 杨过 | 神雕少年 → 青年 → **断臂后**（ch03） | 三个变体：`youth`、`prime`、`prime_onearm`；断臂后需独立 rig 身份差分、隐藏对应臂部件并提供单臂姿态覆盖（待考：核对断臂前后衣袖、兵器与外貌描写） |
 | 小龙女 | 神雕前后期（ch03） | 复用同一身份锚，以服饰/神情参考集区分（待考：核对前后期外貌与服饰描写） |
 | 周伯通、黄药师、一灯、欧阳锋、洪七公 | 射雕 → 神雕 | 需要跨书老年变体；具体须发、伤病与退场前状态不在本文断言（待考：逐人核对两书描写） |
 | 张三丰 | 神雕末（少年张君宝）→ 倚天（百岁宗师） | 跨度极大：两个几乎独立的变体；识别锚以"眼神与眉形 + 道家气质"维系 |
@@ -1626,16 +1404,16 @@ variants:
 | 阿九 / 九难 | 碧血公主变体（ch07）→ 鹿鼎独臂神尼变体（ch08） | 身份、服饰、年龄、伤残均变化；识别锚尤其重要（待考：核对两书承接与外貌描写） |
 | 韦小宝 | 鹿鼎（ch08）少年 → 青年 | 两变体；清式辫发贯穿 |
 | 胡斐 / 苗人凤 | 飞狐（ch13）→ 雪山（ch14） | 分别建立跨书变体；年龄差与外貌变化以两书人物表为准（待考：核对《飞狐外传》《雪山飞狐》描写） |
-| 男女主角 | 每版各有 14 书界 + 序章时代装，面容不变（原创扩展） | 两张基础身份卡 + 各 15 套服装参考；3D 复用同版身体/骨架、换服装网格，共 `2×15=30` 套并脚本化重渲 |
+| 男女主角 | 每版各有 14 书界 + 序章时代装，面容不变（原创扩展） | 两张基础身份卡复用男女标准 rig；各 15 套服装参考派生覆盖层/调色，共 `2×15=30` 套并脚本化生成三视图预览 |
 | 书灵 | 全程同一抽象墨影主体（原创扩展） | P54/P55 已定：非战斗单位；对话立绘框架 + CSS/轻量网格动画，不做 Live2D/Spine，也不生产角色 3D/战斗精灵 |
 
-**年龄变体流程**：已审定变体 A 的设定卡 → 当前图像入口按“只改年龄段、保持身份锚”生成 **8–16 张【建议值】**候选 → 人工挑选并修正 → 登记为变体 B（`inputs` 指向 A）→ 另做正/侧/背参考 → 3D 复用可复用的骨架与动作语义，头部、体型、伤残和服装按变体调整。是否可复用身体比例必须逐角色审核，不能把“自动重定向成功”当作外观通过。
+**年龄变体流程**：已审定变体 A 的设定卡 → 当前图像入口按“只改年龄段、保持身份锚”生成 **8–16 张【建议值】**候选 → 人工挑选并修正 → 登记为变体 B（`inputs` 指向 A）→ 另做正/侧/背参考 → 复用合适体型的 `tianshu_rig`，按变体调整头、发/冠、比例、伤残可见性与服装层。身体比例能否复用必须逐角色审核，不能把“模板可装载”当作外观通过。
 
 ---
 
 ## 8. 预算与排期
 
-> 前提：个人业余开发，每周 12–15 小时；P02 已明确**无本地显卡、不跑本地生成模型、不租卡**，图像生成只走 TraeX CLI `image_generation` / Gemini 网页版。因当前账号额度、订阅与导出规格尚未实测，本节不再用第三方单价推导总费用；**真正稀缺的是人工审核、修图、3D 清理和八视图质检时间**。
+> 前提：个人业余开发，每周 12–15 小时；P02 已明确**无本地显卡、不跑本地生成模型、不租卡**，图像生成只走 TraeX CLI `image_generation` / Gemini 网页版。因当前账号额度、订阅与导出规格尚未实测，本节不再用第三方单价推导总费用；**真正稀缺的是人工审核、分件修图、关节对位、三视图与装备穿插质检时间**。
 
 ### 8.1 算力与硬件方案
 
@@ -1643,60 +1421,47 @@ variants:
 |---|---|---|---|
 | TraeX CLI `image_generation` | 当前自动图像入口 | 只登记账号实际扣量；额度与单次上限**（待实测）** | 每次请求保留请求单、返回原文件与哈希；不可用时暂停该批，不静默切换供应商 |
 | Gemini 网页版 | 当前人工图像入口 | 只登记作者实际套餐与用量；模型、额度、参考图和导出规格**（待实测）** | 手工下载 + `import-candidate`；不可批量模拟网页 API |
-| Blender / Krita / FFmpeg | 本地确定性加工 | 软件成本 0；现有机器的 CPU/GPU 类型与渲染速度**（待实测）** | Phase 0 用 8 向金样本测 `s/frame-pass`；不够快就减角色/动作范围，不租卡 |
+| Blender / Krita / FFmpeg | 本地确定性加工 | 软件成本 0；现有机器的 CPU/GPU 类型与处理速度**（待实测）** | Phase 0 用一套 78 张基础源件与一组装备覆盖层测导出、降档、装箱耗时；战斗大动作备选另测 `s/frame-pass`，不够快就缩专项范围，不租卡 |
 | 私有对象存储 | source/master 备份 | Cloudflare R2 私有桶 + 本地离线副本；实际容量与账单按月记录**（待实测）** | 不公开读；运行时只经同源 Worker |
 
 本轮明确排除：购买独显、租 GPU、部署 ComfyUI、下载 Qwen/FLUX/视频/TTS 权重、开通候选供应商付费项。日后若作者改变 P02，必须新建预算版本，不得把 §4 的候选报价混入当前基线。
 
-### 8.2 请求量、渲染量与 `battle8` 增量
+### 8.2 请求量、部件量与运行时实例
+
+**2026-10-01 AR-22**：删除 `loco8` / `battle8` 作为人形主线的帧数与 frame-pass 预算；行走、跑步和待机不再生成逐帧图。以下数量必须由 `build-rig` / `build-item-layers` 的实际报告复核。
 
 | 核算对象 | 算式 | 结果 | 用途 |
 |---|---:|---:|---|
-| 单个关键角色完整帧 | `loco8 24×8 + battle8 73×8` | `192+584=776` 帧 | 完整下载/生产量 |
-| 单个关键角色固定镜头驻留 | `192+73×6` | `630` 帧 | 6 个 `HexDir` 映射视图 |
-| 旧单版主角、旧 `battle4` | `15×(192+73×4)` | `7,260` 帧 | 仅作审校前基线对照 |
-| 男女主角、完整 `battle8` | `2×15×776` | **23,280 帧** | P05 + C20 后正式生产量 |
-| 主角固定镜头驻留 | `2×15×630` | **18,900 帧** | 运行时常驻核算，不替代完整包 |
-| 主角颜色 + 法线 pass | `23,280×2` | **46,560 frame-pass** | 可选深度再加 23,280，合计 69,840 |
-| 相对旧主角基线增量 | `23,280÷7,260−1` | **+220.7%** | 同时包含双版本与 `battle4→battle8`；单套总帧增幅为 `776÷484−1=+60.3%` |
-| 垂直切片 10 个关键角色 | `10×776`；颜色+法线再 ×2 | **7,760 帧 / 15,520 frame-pass** | Phase 0 后测本机 Blender 吞吐 |
+| 男女基础 rig 源件 | `2 体型×3 绘制视图×13 源部件` | **78 张** | 共用人体母版；左右共享源在运行时展开为 16 个基础实例 |
+| 行走 / 跑步 / 待机动作图 | 代码轨迹替代帧表 | **0 张** | 周期、关节角与一拍二量化见 `tech/09-rig` §4 |
+| 单角色基础实例 | `10 个非成对部件+3 对左右展开` | **16 个** | `tianshu_rig` v1 基础姿态 |
+| 单角色实例硬上限 | `16 基础+最多 4 附加` | **≤20 个** | 衣甲、头饰、鞋优先替换；披风/武器/护肩可占附加位，腰带与暗器囊复合采样不增实例 |
+| 100 角色基础变换 | `100×16` | **1,600 次/帧** | ENG-12 的 CPU 基线；总实例最坏为 `100×20=2,000` |
+| 最坏动态实例上传 | `2,000×56 B` | **112,000 B/帧** | 56 B/实例为 `tech/09-rig` v1 初值，待 ENG-12 实测 |
+| 装备覆盖层 | `可见装备目录项×适用 slot×3 视图` | **构建时实报** | 不预填虚假总数；镜像方向不另生成源图 |
 | 武学图标候选上限 | `1,138×4` | **4,552 张** | 每逻辑键 4 候选的上限；其中独立图鉴插画为 `220×4=880` 张候选 |
 | Buff 图标未复用上限 | `247×4` | **988 张** | 实际应按符号族复用而下降 |
 | 正式视频 | `1+1+14+14+13+3` | **46 条** | 总时长 1,180～1,810 秒，中心 1,482 秒，见 §5.7.1 |
 
-Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实测颜色/法线单个 frame-pass 中位数为 `t` 秒后，主角基础渲染时长按 `46,560×t÷3,600=12.933t` 小时；若开启深度 pass，再加 `23,280×t_depth÷3,600=6.467t_depth` 小时。日志同时记录 P50/P95，避免中位数掩盖复杂服装长尾。
+Phase 0 报告至少记录：每视图源件通过率、装备各 slot 覆盖率、色键溢色失败数、三档降采样与图集页数/字节、预览条带耗时，以及 100 角色场景的 draw call、CPU P50/P95 和动态上传字节。人形主线不再以 Blender 每帧渲染时间作为产能指标；只有获批的战斗大动作备选 C 才单独记录 frame-pass。
 
 ### 8.3 人工工时估算
 
-> 本表是排期建议值，不是已实测产能。C20 的完整 8 视图、P05 的男女主角双版，以及 P55 的轻量动画边界已计入；每完成一个批次，用登记库的实际工时重估 P50/P80，并保留旧基线。
+**2026-10-01 AR-22 重估声明**：旧表的垂直切片约 624 h、每书界标准档约 516 h、精简档约 270 h，以及据此推得的全量约 6,300/4,200 h，均建立在“3D 人形建模 + 共享动作库 + 八向整身帧质检”上，现仅作为 **AR-22 前历史基线** 保留，不能继续用于排期或对外承诺。删除旧行并不等于相同工时自动节省；分层拆件、关节对位、三视图 z 序和装备覆盖层会产生新成本。
 
-| 类型 | 单位工时（管线成熟后） | 垂直切片 | 每书界（标准档） | 每书界（精简档） |
-|---|---|---|---|---|
-| 管线开发（一次性）/ 后续维护预留 | — | **≈ 200 h**（`tsgen` 请求/导入/登记、Blender 脚本、审核页） | 维护 ≈ 10 h（从下行 5% 缓冲中优先支出，不重复叠加） | 同左 |
-| 美术圣经与回归集（一次性） | — | ≈ 40 h | — | — |
-| 概念原画 | 1 h/张 | 10 h | 20 h | 10 h |
-| 设定卡 + 立绘 + 表情（S/A） | 4 h/变体 | **28 h**（含男女主角） | 48 h（12 变体） | 24 h（6 变体） |
-| 次要立绘（B） | 1.5 h/人 | 9 h | 22 h | 10 h |
-| 剧情 CG | 2 h/张 | 10 h | 40 h（20 张） | 20 h（10 张） |
-| 3D 角色（建模/清理、绑骨、校验） | 5 h/个（S/A）；模块化变体 0.5 h | 40 h | 70 h | 40 h |
-| 动作（自录动捕、清理、重定向） | 2–3 h/片段 | 60 h（动作库 v1） | 15 h | 8 h |
-| 8 视图精灵渲染质检 | 关键角色约 1 h/套【建议值】；杂兵 0.5 h/套 | **18 h** | **34 h** | **20 h** |
-| 地形/建筑/道具 | — | 40 h（宋式套件 v1） | 55 h | 30 h |
-| 图标 | 5 min/个（模板族更低） | 10 h | 13 h | 8 h |
-| 特效 | 3 h/签名特效 | 12 h | 24 h | 12 h |
-| UI | — | 30 h（UI 套件 v1） | 5 h（书界皮肤） | 3 h |
-| 地图 | — | 10 h | 20 h | 10 h |
-| 视频 | 8–12 h/条 | 12 h | 30 h（3 条） | 15 h（精简为视差为主） |
-| 音乐/音效/配音 | — | 15 h | 25 h | 12 h |
-| 审核与集成（+15–20%） | — | 50 h | 70 h | 35 h |
-| **内容小计** | | **≈ 594 h（整列逐行相加；含上方两项一次性 240 h）** | **≈ 491 h（不重复叠加 10 h 维护预留）** | **≈ 257 h（同左）** |
-| **排期值（另加 5% 返工缓冲）** | | **≈ 624 h** | **≈ 516 h** | **≈ 270 h** |
+首批重估按以下计时桶登记，单位工时与新总量都以实际 P50/P80 回填，不先编造替代总数：
 
-标准档逐项内容为 `20+48+22+40+70+15+34+55+13+24+5+20+30+25+70=491 h`，精简档为 `10+24+10+20+40+8+20+30+8+12+3+10+15+12+35=257 h`；维护预留不是第十六项内容，而是各自 `×1.05` 后缓冲中的优先支出（标准档缓冲 `24.55 h`、精简档缓冲 `12.85 h`）。故排期取整分别为 `491×1.05=515.55≈516 h`、`257×1.05=269.85≈270 h`。若某书界维护实际超过 10 h 或挤占缓冲后返工不足，必须按登记库实耗上调，不能继续沿用 516/270 h。
+| 计时桶 | 计量单位 | 必记工作 | 首批退出条件 |
+|---|---|---|---|
+| `rig-template` | 体型×视图 | 13 源件切分、pivot/childJoint、z 序、描边、调色槽 | 男女两体型共 6 组视图、78 图全过 RIG-V01～V06 |
+| `item-layer-tool` | slot/子类 | 色键、裁边、主色/纹理采样、模板填充、武器主轴与握点 | 十一类物品至少一件端到端通过；不可见类也有明确报告 |
+| `item-layer-review` | 目录项×适用 slot | 三视图轮廓、穿插、握持、镜像、轻/中/重步态预览 | `layers.yaml` 与覆盖图齐全，失败项可追到源图 |
+| `rig-runtime-integration` | 场景 | 统一图集、实例缓冲、两段式绘制、法线开关、Dir8 转向 | ENG-12 在 100 角色基准场景出 P50/P95 |
+| `rig-preview-regression` | rig set / 装备组合 | 待机、走、跑、转向、披风/兵器二阶跟随的姿势条带 | `tools/rig/preview.py` 金样本差分通过 |
+| 非角色资产 | 沿原资产类型 | 概念图、立绘、CG、地形建筑、图标、VFX、UI、地图、音视频 | 继续沿登记库实耗计时，不受 AR-22 数量公式直接推导 |
+| 战斗大动作备选 C | 动作专项 | 若获批才做 3D/整身帧或分层关键姿势、事件对齐与换装降级 | 单独立项、单独计时，不混入移动 rig 基线 |
 
-**全量粗估**：一次性管线开发约 200 h，美术圣经/回归集约 40 h；天龙标准档约 516 h；其余 13 部按标准档复用系数 0.8，`13×516×0.8=5,366.4 h`；全局开场/结局/UI/书灵另约 200 h，合计 `200+40+516+5,366.4+200=6,322.4 h`，取 **约 6,300 h【建议值】**。精简档按 `200+40+14×270+200=4,220 h`，取 **约 4,200 h【建议值】**。因此 6,300/4,200 h 是取整的产能级估计而非逐小时承诺。按每周 15 h 分别约 `6,300÷15÷52≈8.1 年` 与 `4,200÷15÷52≈5.4 年`；这是仅素材的顺序工作量，不是发布日期承诺，也未把未来工具进步先算成收益。
-
-`battle8` 对每套关键角色的渲染帧相对旧总帧增加 60.3%，但建模、立绘、动作设计等不会同幅增加；因此本轮只在每书界新增独立的“8 视图精灵渲染质检”行，未把整张工时表机械乘 1.603。男女主角 30 套则已在全局清单单列，不能再混入每书界普通 NPC 数量重复计费。
+`tsgen budget` 在取得首批实耗前同时显示“历史基线（不可排期）”与“AR-22 新基线（采样中）”；至少完成一套男女基础 rig、每个可见装备槽一个样本及 ENG-12 场景压测后，才可发布新总工时。每周 12–15 h 的个人投入前提不变，仍默认逐书界、精简档推进。
 
 结论与建议：
 1. 这是个人项目最大的现实约束：**默认采用"精简档"作为每书界的完成线**，把"标准档"作为作者有兴趣时的扩充目标；
@@ -1723,10 +1488,10 @@ Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实�
 | 不自动开通候选服务 | provider 白名单只有 TraeX/Gemini；未授权入口硬失败 | 防止意外付费与素材外传；金额以账单实报 |
 | 视差代替 I2V | 意境镜头用审定静帧、Blender 视差与程序化墨效 | 当前视频生成服务费用为 0；减少主体漂移返工 |
 | 模板族与字形图标 | 玄/黄武学、招式、Buff 共用符号族；OFL 字体逐项留证 | 具体节省比例待首批实测，先减少独绘数量 |
-| 共享骨架与动作库 | 人形角色共享动作语义与可兼容骨架 | 避免每角色重做通用移动/受击；特殊体型仍逐项校验 |
+| 共享 rig 与代码轨迹 | 人形角色复用体型模板、步态曲线和三视图镜像 | 避免每角色重做移动帧；特殊体型、伤残和装备穿插仍逐项校验 |
 | 模块化路人 | 时代套件拼装；具名 NPC 升级时沿稳定 ID 派生 | 以 `design/18` 清单控制独立模型数，不承诺固定 80% |
 | 批处理确定性步骤 | 裁边、联系表、图集与 Blender 队列可无人值守运行 | 减少等待，不把生成入口伪装成无监督批处理 |
-| 复用跨书界 | 共享人物基卡、建筑套件和动作；服饰/年龄/伤残按变体复审 | 复用率由登记库统计，预算暂用 §8.3 的 0.8 系数【建议值】 |
+| 复用跨书界 | 共享人物基卡、rig、建筑套件和轨迹；服饰/年龄/伤残按变体复审 | 复用率由登记库统计；AR-22 新总工时发布前不再套用旧 0.8 系数 |
 
 ---
 
@@ -1793,10 +1558,10 @@ Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实�
 | 风险 | 可能性 | 影响 | 缓解 |
 |---|---|---|---|
 | 风格漂移（跨书界、跨工具版本） | 高 | 高 | 美术圣经 + 审定设定卡/参考集 + 金样本联系表回归（§7.4）；保存入口展示版本、请求与输入/输出哈希 |
-| 3D 拓扑差，绑骨后关节撕裂 | 中 | 中 | 当前 Blender 基础人体/模块套件人工清理与四边面重拓扑；设定卡要求“A 字或 T 字站姿 + 手指张开”便于绑骨；若未来启用图生 3D 仍须通过同一闸门 |
-| 武学招式动作库匮乏（通用动捕库几乎无中国武术） | 高 | 中 | 作者自录动作参考 + Blender 手工关键帧；已核许可动作只覆盖通用移动，招式靠特效与切入演出分担表现力。HY-Motion 仅是 P02 变更后的候选 |
-| "3D 塑料感"破坏水墨风格 | 中 | 高 | 平涂分阶材质 + 反向外壳描边 + 运行时纸纹/墨晕后处理；Phase 0 必须在真机验证 |
-| 精灵显存超预算（iOS Safari） | 中 | 高 | §5.4.6 分级、按需加载、降级 ppm；与 tech/03 联合压测 |
+| 部件 pivot / childJoint 不一致导致关节裂缝 | 中 | 高 | 模板坐标锁定；RIG-V01/V02 自动校验；三视图 idle/walk/run 条带逐关节审查 |
+| 装备覆盖层与身体穿插、握点漂移 | 高 | 高 | slot 模板的 forbidden 区、主轴/握点规则与满载预览；超出 `fitScale` 范围必须做专用模板 |
+| 代码步态机械或重装失去重量感 | 中 | 中 | `tech/09-rig` 固定测试向量先保确定性，再由 ART/ENG-12 只调参数并重录金样；不回退为移动帧表 |
+| 部件图集显存超预算（iOS Safari） | 中 | 高 | §5.4.6 分级、按需加载、降级 ppm；与 tech/03 联合压测 |
 | 工具停服/涨价/改条款 | 高 | 中 | 供应商适配器化；母版当场落地；当前入口不可用就暂停相应批次，不静默切换或付费；候选只在 P02 变更后评估 |
 | 账号地域、额度或输出条款不符 | 中 | 高 | TraeX/Gemini 逐账号实测并留条款快照；Mixamo 明示中国国家码不可用；任何候选不能预设“无地域限制” |
 | 人工时不足导致长期停滞 | 高 | 高 | 默认精简档；逐书界做完即玩；按等级砍需求（§8.3） |
@@ -1807,7 +1572,7 @@ Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实�
 
 | 编号 | 备选 | 何时启用 | 代价 |
 |---|---|---|---|
-| A | **实时 3D 蒙皮角色**（替代 2D 精灵公告板）：直接在 Three.js 中渲染 3D 中转得到的模型 + 卡通描边 shader | 若精灵显存或"换装/换兵器组合爆炸"成为瓶颈；或 WebGPU 普及后移动端性能充裕 | 需修改基准 §19 画面构成；需实时水墨/工笔 shader（风格一致性难度上升）；但本文 3D 中间资产可直接复用 |
+| A | **实时 3D 蒙皮角色**（替代分层公告板）：另行生产模型并在 Three.js 中使用卡通描边 shader | 若部件图集或换装组合经实测不可控，且 WebGPU/移动端性能充裕 | 需修改 AR-22 与基准 §19；当前人形主线不生产可直接复用的 3D 模型，成本与风格风险均须重新立项 |
 | B | 纯 2D 生成精灵表 | 一次性小生物、UI 动效、极少出场的角色 | 一致性差，仅限 C 级 |
 | C | 增强现有 CSS / 轻量网格立绘动画 | 书灵、主角需要更丰富的对话演出时 | 仍保持 P55 的轻量路线；增加表情层、墨迹层和状态机，不引入 Spine/Live2D 运行时 |
 | D | 外包/约稿关键立绘 | 某些 S 级角色 AI 始终不达标 | 费用；且须确认画师接受"同人非公开"用途 |
@@ -1879,7 +1644,7 @@ Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实�
 | 术语/约定 | 定义 |
 |---|---|
 | 三档笔法 `gongbi_fine` / `shuimo_scene` / `gongbi_game` | S1 工笔精绘、S2 水墨写意、S3 游戏化工笔（§2.1） |
-| 3D 中转 | 设定卡 → Blender 建模/清理（未来可插入已授权图生 3D）→ 统一骨架 → 共享动作 → 正交批渲染得到精灵的生产路线（§5.4） |
+| `tianshu_rig` v1 | 人形地图角色的 13 张源部件/16 个基础实例、三绘制视图与代码轨迹契约；定义见 `tech/09-rig` |
 | 设定卡 / golden reference | 角色某一变体的多视图 + 面部特写审定图，`ref_<id>__<variant>_sheet@版本`，一切一致性的源头 |
 | 识别锚 `identity_anchors` | 角色跨年龄/跨媒介必须保持的 3 条面部体态特征 + 配色 + 剪影特征（§7.2） |
 | 资产等级 S/A/B/C | 控制人工投入的分级（§3.1） |
@@ -1888,11 +1653,11 @@ Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实�
 | 逻辑素材键 `keys` | 登记库条目声明其服务的完整三段式 `AssetKey`（如 `icon/sk_xianglong18/default`、`cutin/sk_xianglong18/default`）；旧简写只由 tech/06 归一化（§1.4、§6.4） |
 | 全国地图资产 / 素材键 | `map_jianghu_world__base` / `map/jianghu_world/base` 与 `map_jianghu_world__ch01`～`__ch14` / `map/jianghu_world/ch01`～`ch14`；4096×3072 SVG 审查源的正式登记映射（§5.9） |
 | 引用图驱动需求 | `tsgen plan` 消费 `tech/04 content:build --emit-refs` 的 `refs.json`，再关联 `design/11/17/18/19`；不得手抄 189 城、99 门派或 NPC 生产清单（§3.2、§6.4） |
-| `HexDir` / `Dir8` | 规则空间用 6 个 pointy-top 六角方向；资产空间用 0=S（正对观者）按屏幕顺时针至 7=SE 的 8 视图。固定镜头映射驻留 6 视图，转镜预取另 2 个；镜像对 1↔7、2↔6、3↔5（§5.4.3） |
-| 动作集 | 关键角色 `loco8` / `battle8`；杂兵可用 `loco5m` / `battle5m`，静立 NPC 可用 `static5m`，但运行时仍暴露完整 `Dir8`（§5.4.3） |
-| 兵器类动作 `<cls>_light/heavy/ult` | 招式通过数据字段 `anim` 映射到兵器类通用动作，不为每招单做骨骼动画（§5.4.4） |
-| ppm / 帧格 / 锚点 | 精灵像素密度（成品 128 px/m）、帧格 256²、脚底锚点 (128,224)（§1.3） |
-| `tianshu_humanoid` | 全项目统一人形骨架（Mixamo/AccuRIG 命名兼容）（§5.4.4） |
+| `HexDir` / `Dir8` / 三绘制视图 | 规则空间用 6 个 pointy-top 六角方向；渲染接口用 0=S（正对观者）按屏幕顺时针至 7=SE 的 8 向索引；资产只画 `front34/back34/side`，以镜像及 0/4 的最近侧滞回解析（§5.4.3） |
+| 代码轨迹 | idle/walk/run 的关节角、根位移、披风与兵器跟随由相位公式生成；无移动帧表（§5.4.4、`tech/09-rig` §4） |
+| 兵器类动作 `<cls>_light/heavy/ult` | 招式通过数据字段 `anim` 映射到通用表现片段；默认由分层姿势 + VFX/SFX/cutin 合成，不为每招单做骨骼动画（§5.4.4） |
+| ppm / 部件 pivot | 256 px/m 源母版派生 64/96/128 px/m；每张部件图保存自身 pivot / childJoint，不再使用统一 256² 帧格或脚底像素锚（§1.3） |
+| `tianshu_humanoid` | 仅获批战斗大动作 3D 中转专项的临时骨架名；不是地图角色运行时 rig，不得与 `tianshu_rig` 混用（§4.5） |
 | 体型档 | `m_std f_std m_heavy m_lean elder child monk_heavy dwarf`（§2.6） |
 | 脸部补丁 | 立绘表情差分以脸部局部图 + 偏移存储（§5.2） |
 | 模板族 / 字形图标 | 玄/黄图标的底图族 + 配色；招式/Buff 用书法字形合成（§5.6） |
@@ -1902,7 +1667,7 @@ Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实�
 | stale 传播 | 上游 `inputs@版本` 变化使下游资产自动进入 `stale`（§6.5） |
 | 金样本集 | 30 条【建议值】固定请求文本 + 参考图 + 输入哈希的风格回归集；闭源入口无 seed 时不伪填（§7.4） |
 | `tsgen` | 素材生成 CLI（Python 包，位于 tech/01 预留的 `tools/aigc`）（§6） |
-| 契约文件 | 根 `packages/spec/iso-camera.json`、`sprite-spec.json`、`anim-events.schema.json`；`packages/data` 只维护 `AssetEntry` 的 Zod/schema 机制并导出 `content/assets/registry/asset.schema.json`（§1.2、C18） |
+| 契约文件 | 根 `packages/spec/iso-camera.json`、`rig-spec.json`、`anim-events.schema.json`；`packages/data` 只维护 `AssetEntry` 的 Zod/schema 机制并导出 `content/assets/registry/asset.schema.json`（§1.2、C18） |
 
 ---
 
@@ -1914,28 +1679,28 @@ Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实�
 
 | # | 事项 | 依赖/负责文档 | 状态 / 本文执行值 | 影响 |
 |---|---|---|---|---|
-| 1 | 相机俯仰/方位角、是否允许镜头旋转 | tech/02 | **已解决**：俯仰 30°；偏航 45/135/225/315°；90°/350 ms；`allowRotation:true`（见 §1.3、§5.4.3） | 已计入 8 视图生产与旋转预取 |
-| 2 | 精灵 ppm、帧格、法线编码、是否使用深度 pass | tech/02 | **部分解决**：128 ppm 母版、256²、视空间 OpenGL 法线已定；depth 仍为可选（见 §1.3、§5.4.7） | 启用 depth 会增加 `23,280` 个主角 frame-pass |
-| 3 | 移动端角色精灵显存上限与降级档 | tech/03 | **已解决规格、待实测包体**：low/mid/high/ultra 硬限 40/105/170/300 MB，ultra 实际角色工作集还须 ≤256 MB；本文估算见 §5.4.6 | 典型 7 关键角色 + 3 杂兵三档均触发卸页/LOD |
-| 4 | 战斗朝向为 4 斜向还是 8 向 | tech/02、design/09 | **已解决**：AR-12 覆盖 C20 的旧四向前提；规则 6 个 `HexDir`，资产完整 8 个 `Dir8`，动作集 `battle8`（见 §5.4.3） | 完整 battle 生产量较旧四向 +100% |
+| 1 | 相机俯仰/方位角、是否允许镜头旋转 | tech/02 | **已解决**：俯仰 30°；偏航 45/135/225/315°；90°/350 ms；`allowRotation:true`（见 §1.3、§5.4.3） | 三绘制视图 + 镜像可覆盖旋转预取 |
+| 2 | 角色 ppm、部件画布、法线编码、是否使用深度页 | tech/02、`tech/09-rig` | **部分解决**：256 px/m 源母版、64/96/128 ppm 运行包、按部件包围盒、视空间 OpenGL 法线已定；逐像素 depth 默认关闭（见 §1.3、§5.4.6） | 开启 depth 会增加一套同布局部件页，须另测图集字节与片元成本 |
+| 3 | 移动端角色部件图集显存上限与降级档 | tech/03 | **已解决规格、待实测包体**：low/mid/high/ultra 硬限 40/105/170/300 MB，ultra 实际角色工作集还须 ≤256 MB；本文估算见 §5.4.6 | 由实际图集报告决定卸页/LOD，不沿用旧整身帧估值 |
+| 4 | 战斗朝向为 4 斜向还是 8 向 | tech/02、design/09 | **已解决**：规则仍是 6 个 `HexDir`，显示仍暴露 8 个 `Dir8`；AR-22 后由 `front34/back34/side` + 镜像映射（见 §5.4.3） | 生产量从八视图帧改为三绘制视图源件 |
 | 5 | 招式数据增加 `anim` 字段（映射兵器类通用动作） | design/05、tech/05 | **已解决**：消费 `design/05` 的 `anim.clip/vfx/sfx/cutin`，本文不重定义（见 §1.4、§5.4.4） | 以共享动作控制规模 |
 | 6 | 12 级品阶边框非锚点色值与纹饰方案 | tech/02、design/14 | **已解决规格、待代码落地**：C20 已采纳 12 色，机器契约落点为 `packages/spec/palette.json`；运行时按显示品阶合成（见 §2.3、§5.6） | UI 应消费同一契约 |
-| 7 | manifest、KTX2、页尺寸、发布编码、存储桶/CDN | tech/06 | **已解决接口**：本文只定母版、登记与素材页语义；`tech/06` 已统一 `battle8`、三档图集、KTX2 / WebP / AAC / H.264、Cloudflare R2 + 同源 Worker 私有分发与正式 `AssetKey`（见 §1.2、§6.4） | 实际包体和编码质量仍待 Phase 0 实测 |
+| 7 | manifest、KTX2、页尺寸、发布编码、存储桶/CDN | tech/06 | **部分解决**：本文/`tech/09-rig` 已定母版、三档部件页和登记语义；tech/06 既有 KTX2 / WebP / AAC / H.264、Cloudflare R2 + 同源 Worker 与 `AssetKey` 继续使用 | tech/06 仍须把旧 `battle8` 页组改为 rig atlas family（见报告同步项） |
 | 8 | 后端访问控制（非公开、鉴权、`noindex`） | tech/08 | **已解决接口**：应用、API 与素材使用同源 Worker，会话 Cookie 和 `noindex` 由 `tech/08` 定义，`tech/06` 统一调用；本文只维持私用审核边界（见 §9.1） | 任何公开分发仍须另行法律重审 |
-| 9 | 主角性别与书灵形态 | design/01 | **已解决**：P05 为男女两版、每版 15 套；P54 为抽象墨影非战斗书灵；P55 禁止 Spine/Live2D 主线（见 §3.2、§7.5） | 主角共 30 套；书灵不计 3D/战斗精灵 |
-| 10 | 各书界人物/区域/Boss 最终清单 | design/story、design/chapters、design/18 | **已解决接口、数量待内容完成**：NPC 与跨书变体从 `design/18` / catalog，经 `tech/04 refs.json` 参数化生成；§3.2 只保留产能模型，不等待另抄稳定清单 | 正式任务/Boss/章节引用落齐后自动重算人物、模型、精灵与预算 |
+| 9 | 主角性别与书灵形态 | design/01 | **已解决**：P05 为男女两版、每版 15 套；P54 为抽象墨影非战斗书灵；P55 禁止 Spine/Live2D 主线（见 §3.2、§7.5） | 主角共 30 套服饰覆盖；书灵不计地图角色 rig |
+| 10 | 各书界人物/区域/Boss 最终清单 | design/story、design/chapters、design/18 | **已解决接口、数量待内容完成**：NPC 与跨书变体从 `design/18` / catalog，经 `tech/04 refs.json` 参数化生成；§3.2 只保留产能模型，不等待另抄稳定清单 | 正式引用落齐后自动重算身份差分、装备层与预算 |
 | 11 | 动态分层音乐与 iOS 音频封装 | tech/02、tech/06 | **部分解决**：AAC-LC 为发布基线，Opus 仅能力探测/实测后选用；循环偏移由编码后解码互相关修正（`tech/06` §5.7）。动态 stem 是否启用仍由音频运行时实测决定 | 封装已定；stem 数与播放策略仍开放 |
 | 12 | 显卡与工具账号地区 | 作者 / 本文 | **已解决路线、仍待账号实测**：P02 定无本地显卡、不租卡，只用 TraeX/Gemini；账号地区、额度和条款（待实测）（见 §4、§8.1） | 不再保留租卡默认方案 |
 | 13 | 候选生成工具的许可与输出权利 | 本文 | **不阻塞当前**：候选全部禁用；只有作者改变 P02 时，才按当日 tag/账号逐项重核（见 §4、§9.2） | 不得把调研表视为执行授权 |
-| 14 | Blender 4.5/5.2 LTS API 回归 | 本文 Phase 0 | **版本已核实、端到端待实测**：4.5.14 兼容基线，5.2.2 回归（见 §4.11、§5.4.7） | EEVEE、材质覆盖、EXR、投影 helper |
+| 14 | Blender 4.5/5.2 LTS API 回归 | 本文 Phase 0 | **版本已核实、端到端待实测**：4.5.14 兼容基线，5.2.2 回归（见 §4.11、§5.4） | 只验建筑/动物/获批战斗大动作专项；人形移动主线不再依赖 EEVEE 帧渲染 |
 | 15 | 大地图高程/地理数据路线 | design/19 | **已解决**：直接消费 W1 已生成的 1 张底图 + 14 张时代 SVG；本文不另采高程或重建事实源（见 §5.9） | 只做派生预览与压缩 |
 | 16 | 是否上 Live2D/Spine 级动画 | design/14、本文 | **已解决**：P55 仅 CSS / 轻量网格；增强方案仍不引入两套运行时（见 §5.2、§10.2） | 删除旧 +3–5 h/角色假设 |
 | 17 | 契约与登记库路径 | tech/01、tech/06 | **已解决接口**：C18 定跨语言静态 JSON 在根 `packages/spec/`，`packages/data` 保留 Zod/schema；登记 YAML 在 `content/assets/registry/`；`runtime.manifestKey` 只派生、不回写（见 §1.2、§6.1、§6.4）。实际代码仍按路线图实现 | 防止双份契约漂移 |
 
 ### 本文依赖的上游事实
 
-- `tech/02`：相机、`HexDir`→`Dir8` 映射、`battle8` 页组、ppm、锚点、法线和转镜预取；本文只消费。
-- `tech/03`：四档精灵显存硬限；本文的估算不可反向提高硬限。
+- `tech/02`：相机、`HexDir`→`Dir8` 映射、三视图镜像、ppm、部件公告板、法线和转镜预取；本文只消费。
+- `tech/03`：四档角色图集显存硬限；本文的估算不可反向提高硬限。
 - `design/05/06/10`：武学、Buff、物品的稳定 ID 与素材键；`design/06` §8–§9 的正式目录为 247 个 Buff（C23 的 19 个补录已包含在内），`bf_zhenshi` / `bf_cuidu` 不产生资产。
 - `design/12/15/16/17/18`：门派流程、冲穴、资源/营生、99 门派与 NPC/跨书变体正式目录；本文经 `tech/04 refs.json` 消费，不复制事实表。
 - `design/11/19` 与 `design/map/`：30 区玩法边界、189 城、99 门派落点、3 个图外节点及 4096×3072 的共享底图 + 14 个时代 SVG；当前 `design/map/*.yaml` 的 19→30 数据迁移由设计归属任务完成，本文不自行改源。
@@ -1945,7 +1710,7 @@ Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实�
 
 | 编号 | 状态 | 提案 | 理由 / 本文处理 |
 |---|---|---|---|
-| RT7-P01 | **已采纳（v1.1）** | 基准 §19 保持 8 方向精灵公告板、法线贴图与按书界分包 | 本文按完整 `Dir8`、KTX2 接口和懒加载执行；AR-12 只改变规则网格，不削减资产方向 |
+| RT7-P01 | **已采纳（v1.1），后被 AR-22 部分覆盖** | 基准 §19 原定 8 方向精灵公告板、法线贴图与按书界分包 | 公告板、可选法线、`Dir8` 接口与分包继续；2026-10-01 起人形资产改为三绘制视图 + 镜像的分层 rig，不再生产完整八向帧 |
 | RT7-P02 | **已采纳（v1.1）** | 基准 §0 明确非商业、不公开分发、不得使用演员肖像 | §2.9、§9 将其落实为素材来源、存储和发布闸门，但不解释为当然免责 |
 | RT7-P03 | **已采纳（v1.1）** | 基准 §12 的 `bs_` 专用于书眠 Ink 节点、Boss 脚本改 `bsc_` | 本文视频使用 `vid_sleep_NN_MM`，不复活旧 `vid_booksleep_*` 或 Boss `bs_*` |
 | RT7-P04 | **已采纳（Canon v1.2）** | 基准 §12 已明确“素材登记 ID 前缀由 `tech/07` §1.4 唯一定义；内容对象 ID 仍沿基准/归属文档” | `ref_/por_/spr_/vid_` 等按素材 ID 管理，规范资源键与内容哈希不升格为内容 ID |
@@ -1962,7 +1727,7 @@ Blender 机器时不再填未经实测的“0.3–0.5 秒/帧”。Phase 0 实�
 2. **当前账号契约**：默认不新增付费订阅；TraeX/Gemini 的模型展示、地区、额度、留存、输出权利、分辨率和标识行为在首次生产时逐账号留快照。
 3. **depth pass**：默认关闭；只有 tech/02 的遮挡/特效验证证明有收益且 tech/03 预算允许时启用。
 4. **标题字体**：默认系统回退；选定书法字体前逐项核 OFL 文件、版本、字形子集与嵌入许可（P04），不能只凭字体名入库。
-5. **全量工时档**：默认精简档约 4,200 h；标准档约 6,300 h 只作容量上界，首批实际数据出来后以登记库 P50/P80 重估。
+5. **AR-22 后全量工时档**：默认先不发布新的小时总数；旧精简档约 4,200 h、标准档约 6,300 h 仅显示为“历史基线（不可排期）”。完成 §3.3 Phase 0B 后，以 §8.3 计时桶的 P50/P80 实耗重估。
 6. **视频中心时长**：默认 24.7 分钟【建议值】；三条结局各以 90 秒作中心值，最终镜头时长由 `design/13` 分镜确认，但不得增加第四条正式结局成片。
 7. **禁用候选的事实缺口**：默认不启用、不计预算、不上传人物卡；作者若改变 P02，再按启用当日逐项闭合 Sora 停用日期、Tripo/Seedance/ACE-Step/Suno 的价格、API、许可、地区与账号权益，不把本轮调研快照当长期授权。
 8. **已解决：对象存储选型**。采用本地离线副本 + Cloudflare R2 私有桶 / 同源 Worker；不备案、不启用国内或香港镜像，不预填固定月费（见 `tech/06` §7）。
