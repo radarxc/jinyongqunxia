@@ -1,0 +1,26 @@
+{
+  "skill": "sk_bihai",
+  "created": "2026-09-30",
+  "generation_note": "本会话未提供 image_gen 工具；三套候选由仓库内 make_sources.py 以 Pillow 程序化绘制，未伪称模型生成。",
+  "common_brief": "纯白 #FFFFFF 背景；2x2 四帧，单格 768x512；左到右发出；仅离体音波与水纹，无人物、手、乐器、文字、边框或硬阴影；调和性质以金为主、青绿为辅；水墨意境、虚实透明；造型与颜色均为原创扩展。",
+  "requests": [
+    {
+      "asset_id": "vfx_sk_bihai__family_base01",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "brief": "五条弧形海潮纹束由宽根向右推进，近根叠三层同心音波，散落少量墨点；四帧依次初聚、增强、峰值、余韵。"
+    },
+    {
+      "asset_id": "vfx_mv_bihai_chaosheng__effect_base01",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "brief": "绝招独有：六条潮线在中段束紧后再张开，交替金青的大幅同心潮环向外扩散；不画海浪实景或全场命中格。"
+    },
+    {
+      "asset_id": "vfx_mv_bihai_dingshen__effect_base01",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "brief": "支援绝招独有：左右互补的金青圆环向中心收束，一条稳定轴线向右延伸；不画攻击冲击或角色护盾实体。"
+    }
+  ]
+}
