@@ -35,7 +35,8 @@
   created: '2026-09-30'
   size: 484x398
   sha256: 73560c5620d15b8191e27aa459c9b71c128ae6914420c68315d7b1fc599563bf
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -112,7 +113,8 @@
   created: '2026-09-30'
   size: 627x527
   sha256: 677cbe7b4e2f34d927b5f76a9ffdbefb6ff023fc0f4b05644907296c969c0b73
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -189,7 +191,8 @@
   created: '2026-09-30'
   size: 79x179
   sha256: 6010115ed95c1bab0b88cbe1fe7e33cb1b830c92b9d3b4995d25adbe1228f78f
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -266,7 +269,8 @@
   created: '2026-09-30'
   size: 163x135
   sha256: 34046a9fc4e855f23a9497814cce252b457f216be679710e14b848740265e9e5
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 2
   selected_candidate: 2
   tool_excess_outputs_discarded: 0
@@ -343,7 +347,8 @@
   created: '2026-09-30'
   size: 413x269
   sha256: ae2ef8e058404136b7b8526303779b3ce068522f2cf29a47f147c63c1478cb86
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -420,7 +425,8 @@
   created: '2026-09-30'
   size: 280x234
   sha256: 8df34f8cba7a558f58221f937a5c631e02c9dd6b5b752b9388182a95549bd72d
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0
@@ -497,7 +503,8 @@
   created: '2026-09-30'
   size: 274x200
   sha256: 9fb51de233821f92892976a7c50723bda989dc3e2adbbc4bd17b9881c8dd4469
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   candidate_count: 1
   selected_candidate: 1
   tool_excess_outputs_discarded: 0

@@ -11,7 +11,8 @@
   effort: not exposed
   created: 2026-10-01
   source_path: sources/historical-rebuild/bld_kit_tubo_biaoju__raw.png
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   file: bld_kit_tubo_biaoju.png
   category: building-map
   style: default
@@ -65,7 +66,8 @@
   effort: not exposed
   created: 2026-10-01
   source_path: sources/historical-rebuild/bld_kit_tubo_casino__raw.png
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   file: bld_kit_tubo_casino.png
   category: building-map
   style: default
@@ -127,7 +129,8 @@
   source_sha256: 047a4f9affd822144e3ab80b12f4ddd3a19c2c38e2b8511f80e730316d71a7a3
   size: 667x430
   sha256: 694e97b74f79abd29d0ca2f0bdb28ab2f688daba6c4066a0882246f69638c8ad
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_tubo_courtyard
     footprint: [10, 8]
@@ -214,7 +217,8 @@
   created_time_basis: 源文件mtime；非工具披露服务端时间
   size: 428x351
   sha256: 79984134d012a85016ce0e99f5f050f57d2bb789877dadac49755a7f94e6b5d3
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_tubo_guardhouse
     footprint: [6, 5]
@@ -286,7 +290,8 @@
   source_sha256: 066e029ab2ef5e24c96f8625f7e8405c2c7fe4faffd8516ca4cdc7e184500488
   size: 578x432
   sha256: 62f23d98223ef30e8b05c8ab61f1400d25f83baf0b3b6ca8e11dd623a15843ed
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_tubo_house_large
     footprint: [7, 6]
@@ -367,7 +372,8 @@
   source_sha256: 4c4a005ef76edff151706b46eaa753e4be5156f7a2ad72329f5870e69d498f62
   size: 499x352
   sha256: f3d55fa504e5bbf830cb7161fc18bc763f13eeaa49773e06611ae95fe9a26a36
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_tubo_house_small
     footprint: [6, 5]
@@ -453,7 +459,8 @@
   source_sha256: 97c24f93baa1e76551d1d70f294db81b920a96f3a57138a1ed39e011d27db984
   size: 723x521
   sha256: 2936592df8c2af710545c7c2bd3378bb06c67d36e467ad65af8a2d5c68fd3819
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_tubo_inn
     footprint: [10, 8]
@@ -526,7 +533,8 @@
   effort: not exposed
   created: 2026-10-01
   source_path: sources/historical-rebuild/bld_kit_tubo_manor__raw.png
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   file: bld_kit_tubo_manor.png
   category: building-map
   style: default
@@ -595,7 +603,8 @@
   created_time_basis: 源文件mtime；非工具披露服务端时间
   size: 302x288
   sha256: c917121e242de8f5fa218ee7a8123d361a2c0b2917e5d7a37380809b2c7bc81c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_tubo_market_stall
     footprint: [5, 4]
@@ -659,7 +668,8 @@
   effort: not exposed
   created: 2026-10-01
   source_path: sources/historical-rebuild/bld_kit_tubo_palace_hall__raw.png
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   file: bld_kit_tubo_palace_hall.png
   category: building-map
   style: default
@@ -728,7 +738,8 @@
   created_time_basis: 源文件mtime；非工具披露服务端时间
   size: 737x543
   sha256: 8dab3464044e88ce8f448a591854d0c89cd49c6c671ef888114b354e1a1a415b
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_tubo_restaurant
     footprint: [10, 8]
@@ -800,7 +811,8 @@
   source_sha256: 9c478775b97d51b14a81060e98a446b23c1bdc8932419241e9c93437fdc3d930
   size: 498x365
   sha256: bc9900ef1837866014ffa4f87b65128cb4f1367a4028d45057d4b9372b3b5875
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_tubo_shop_1f
     footprint: [7, 5]
@@ -886,7 +898,8 @@
   source_sha256: 8ac2d4f1291db7e615bda6550031855405d89ab6a60f83d00c31aaa9057a01a6
   size: 507x437
   sha256: 6f52744e24bfebaed6cab0af5147c8ea034610b6a6eacdfc49099088182a74d6
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_tubo_shop_2f
     footprint: [8, 6]
@@ -973,7 +986,8 @@
   created_time_basis: 源文件mtime；非工具披露服务端时间
   size: 812x428
   sha256: 01b7ddf5012a0d1346631e8473eb101c1acd3e49b2ef76aec772404052b0b3a8
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_tubo_stable
     footprint: [8, 6]
@@ -1051,7 +1065,8 @@
   created_time_basis: 源文件mtime；非工具披露服务端时间
   size: 520x554
   sha256: a955e746ed39f1d848d8ee94c92036b115143520d09334e660b942b46cf57758
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_tubo_stupa
     footprint: [7, 7]
@@ -1123,7 +1138,8 @@
   effort: not exposed
   created: 2026-10-01
   source_path: sources/historical-rebuild/bld_kit_tubo_temple_hall__raw.png
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   file: bld_kit_tubo_temple_hall.png
   category: building-map
   style: default
@@ -1199,7 +1215,8 @@
   created_time_basis: 源文件mtime；非工具披露服务端时间
   size: 627x414
   sha256: 9ade4718dedaa13f0755c92f167558acbf6d77d4f8dc201ae3e9b3ee29250135
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_tubo_warehouse
     footprint: [9, 7]
@@ -1271,7 +1288,8 @@
   source_sha256: 12807ec0664f5558d31e380458e8b7243cf2148546b227a5d9eb9c0af2b4508a
   size: 600x256
   sha256: 12aca7f86b8e4730727ab4db5d2263ff03b745929264d1314e686f0db79afa79
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_tubo_wharf
     footprint: [8, 4]
@@ -1349,7 +1367,8 @@
   effort: not exposed
   created: 2026-10-01
   source_path: sources/historical-rebuild/bld_kit_tubo_yamen__raw.png
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   file: bld_kit_tubo_yamen.png
   category: building-map
   style: default

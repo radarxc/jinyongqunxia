@@ -16,7 +16,8 @@
   source_path: "source/historical-rerender/tex_town_xiyu_city_gate__k4_r000_v01__candidate02.png"
   size: "402x331"
   sha256: "4c8336e03da9ca8ec21ca8b240b6775006212034896eb2cd949e4a8ee5fd8cc2"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -58,7 +59,8 @@
   source_path: "source/historical-rerender/tex_town_xiyu_city_gate__k6_r000_v01__candidate02.png"
   size: "465x346"
   sha256: "6c13f1f5ae37416d25de90c4be15a01587f9fe3ce2b2e8f3388ff0621fe73dd1"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -100,7 +102,8 @@
   source_path: "source/historical-rerender/tex_town_xiyu_wall__earth_r000_v01__candidate01.png"
   size: "81x167"
   sha256: "b4fffb35f31e5e09a84fa24688cf4b8036d93ce4e78358c68ea526c09527b40f"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall
     footprint:
@@ -142,7 +145,8 @@
   source_path: "source/historical-rerender/tex_town_xiyu_wall_corner__outer_ne_v01__candidate01.png"
   size: "145x183"
   sha256: "c15c83d9014c183859cc970d135a611bf19939450a678bc50ce45f12ab11aad0"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall_corner
     footprint:
@@ -184,7 +188,8 @@
   source_path: "source/historical-rerender/tex_town_xiyu_bridge_deck__w3_l5_r000_v01__candidate02.png"
   size: "273x182"
   sha256: "56b0858eeae33fbd8728c5a5d7a40e6200259ec47f6d986eeb607a93ecd11b68"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: bridge_deck
     footprint:
@@ -226,7 +231,8 @@
   source_path: "source/historical-rerender/tex_town_xiyu_tree_cluster__huyang_v01__candidate01.png"
   size: "208x201"
   sha256: "1ddcd972867c2bb988b2615789659bfda4e2489ab346c89ab197c9618b4ba4b2"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint:
@@ -267,7 +273,8 @@
   source_path: "source/historical-rerender/tex_town_xiyu_grape_arbor__w4_l3_r000_v01__candidate01.png"
   size: "252x204"
   sha256: "a8259eb6aef8f2fe5258455a951affc859d7f43af90548a80ce420f06d36030f"
-  status: "candidate"
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: grape_arbor
     footprint:

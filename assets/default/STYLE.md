@@ -151,3 +151,10 @@
 | 日期 | 素材 ID | 决定 | 作者意见（原文） |
 |---|---|---|---|
 | 2026-09-30 | `vfx_mv_xianglong18_kanglong__ch02_base01`（两段式样例，未合入） | 需修改 | 降龙十八掌里龙放大2倍，素材不变，但是特效可以放大素材 |
+
+### 第 4 轮（2026-10-01，素材总览页 https://claude.ai/artifact/1TACNarveseVhMusJxJnJ3 ，对话里给的意见）
+| 日期 | 素材 ID | 决定 | 作者意见（原文） |
+|---|---|---|---|
+| 2026-10-01 | 物品图 9 类已入库 150 张（`assets/default/item/{medicine,food,manuals,weapons,clothing,innerarmor,accessories,shoes,belts}/`）、11 套年代建筑套件 209 栋与 77 张贴片（`building-map/`、`tile/`） | 通过 | 盔甲要突出年代特色（包括制式、颜色），其他的图都通过 |
+| 2026-10-01 | 制式盔甲 8 张（`eq_songxunyijia` `eq_qingzaolijia` `eq_yuanqibingjia` `eq_mingweisuojia` `eq_songjinjunburenjia` `eq_mingjinyiweijia` `eq_yuansuweiqiejia` `eq_qingyulinjia`，任务工作区候选） | 需修改 → 重出 | 盔甲要突出年代特色（包括制式、颜色） |
+| 2026-10-01 | 暗器 12 张候选（代码画的假图，未入库） | 不计入通过，重出 | （协调者：作者说"其他的图都通过"时这 12 张在总览页上标为"任务工作区 · GPT 审核中"，但它们是 Pillow 程序图，按硬规则必须重出；已在待出图队列） |

@@ -19,7 +19,8 @@
   source_path: /private/tmp/ming-hist/gate4-c1.png
   size: 463x416
   sha256: fc7e87646c11a8411e28d08dfe04988418295c41dbc7d947c6e48745db4a9eb1
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -62,7 +63,8 @@
   source_path: /private/tmp/ming-hist/gate6-c1.png
   size: 531x467
   sha256: 6136178bfb9262c5b2fba8fe085374258fb46cf7e742eb8e2de52f6edf602d8a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -105,7 +107,8 @@
   source_path: /private/tmp/ming-hist/wall-c1.png
   size: 90x179
   sha256: 1f431461f14ae9320defcd087e80f48e82d7bddaaba6eb99cd1f216cccc498ae
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall
     footprint:
@@ -143,7 +146,8 @@
   source_path: /private/tmp/ming-hist/corner-c1.png
   size: 154x193
   sha256: 75b5dc025fae1f5984b120e6d38bb59e3434a5842c6d4c9d22dba591f300f1ef
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall_corner
     footprint:
@@ -181,7 +185,8 @@
   source_path: /private/tmp/ming-hist/bridge-c1.png
   size: 284x171
   sha256: ba7a29731ae5a612f6e4f08c878fb1d99cfe00bdd45e21432820608ff36a642e
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: bridge_deck
     footprint:
@@ -219,7 +224,8 @@
   source_path: /private/tmp/ming-hist/guohuai-c2.png
   size: 282x256
   sha256: dfe9be56b79462704500a8efdd2dee9a60b15bd265b249e40fd988ac06931fbc
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint:
@@ -257,7 +263,8 @@
   source_path: /private/tmp/ming-hist/cebai-c1.png
   size: 218x293
   sha256: c307533db279c4d60dcab752ff97284aeba7a151abb165e53aa3261a6b246660
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint:

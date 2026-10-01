@@ -45,6 +45,12 @@ COMMON_NEG = ("文字、汉字、伪字、经文、书法、标题、数字、�
               "在世或近现代画师风格名、影视剧版造型、受保护画作或剧照的复制；演员名、游戏公司名、被借鉴作品名、具体游戏兵器设计、截图或海报构图；"
               "日韩动漫、欧美奇幻、赛博朋克、蒸汽朋克；霓虹、魔法阵、bloom、满屏金光、镜面眩光、血腥、裸露、道具堆叠；"
               "复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、任何投影、地面、底纹；商品摄影、照片级写实、3D 渲染")
+# 作者看图后的类别级意见（STYLE.md 审批记录），追加进该类每张图的提示词与质检要点
+AUTHOR_NOTES = {
+    "armor": ("作者 2026-10-01：盔甲要突出年代特色（包括制式、颜色）。本件必须一眼看出是哪个朝代的哪种制式甲：写明朝代与制式名（宋步人甲 / 巡役皮甲、元蒙骑兵札甲 / 怯薛宿卫甲、明卫所布面甲 / 锦衣卫甲、清皂隶号衣 / 御前侍卫棉甲），"
+              "甲片形制（札甲甲叶的排列与系带、布面甲的铜钉与布面、锁子环、棉甲的行线与钉帽、山文甲的山字叠压）、披膊 / 护心镜 / 吊腿 / 顿项等部件是否存在，以及该朝代该军种的主色与配色（北宋朱漆札甲配铁色与皂缘；元皮甲褐黑配铜饰；明布面甲青 / 红布面配黄铜泡钉与朱漆；清棉甲按八旗色的镶边与月白 / 石青 / 明黄）；颜色要克制、符合史料，不用奇幻配色。",
+              "年代制式：朝代与制式名一眼可辨，甲片形制、部件、主色配色符合该朝史料（STYLE.md 第 4 轮作者意见）"),
+}
 # 执行器写进 manifest 的工具调用语句，与画面无关，抽取时去掉
 TOOL_NOISE = [
     r"The imagegen skill has already been read\..*?reply only with its generated PNG path\.\s*",
@@ -111,12 +117,15 @@ def synth_prompt(cat, cname, iid, row):
 def write_item(cat, cname, iid, row, entry, source_tag, status):
     rule, neg = CAT_RULES[cat]
     g = row["grade"][:1] if row["grade"] else ""
+    note = AUTHOR_NOTES.get(cat)
     if entry:
         prompt = clean_prompt(entry.get("prompt"))
         negative = clean_prompt(entry.get("negative")) or f"{COMMON_NEG}；专项排除：{neg}"
     else:
         prompt = synth_prompt(cat, cname, iid, row)
         negative = f"{COMMON_NEG}；专项排除：{neg}"
+    if note:
+        prompt = prompt.rstrip() + "\n" + note[0]
     fm = {
         "asset_id": iid, "kind": "item", "name": row["name"], "category": cat, "category_name": cname,
         "subcategory": row["sub"], "grade": row["grade"], "source": row["source"], "effect": row["effect"],
@@ -140,7 +149,8 @@ def write_item(cat, cname, iid, row, entry, source_tag, status):
         "- 画风对两张基线：纤细深灰墨线、薄层透明罩染、低饱和、左上柔光；不是粗黑描边或平涂色块。",
         f"- 类别专项：{rule}；专项排除：{neg}。",
         f"- 品阶信号：{GRADE.get(g, '按名录')}。",
-        f"- 对题：画面必须能辨认为“{row['sub']}”里的“{row['name']}”，不得画成同类其他物品。", "",
+        f"- 对题：画面必须能辨认为“{row['sub']}”里的“{row['name']}”，不得画成同类其他物品。",
+        *([f"- {note[1]}。"] if note else []), "",
     ]
     (OUT / cat).mkdir(parents=True, exist_ok=True)
     (OUT / cat / f"{iid}.md").write_text("\n".join(body), encoding="utf-8")

@@ -37,7 +37,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f725-bfda-7b31-9568-efdf9d39b1ae/exec-e925a08d-7838-4b55-89bf-126bd5e95c16.png
   size: 1254x1254
   sha256: ad267539001e7b040f6559868b0acbc95de4de4f68bd8fdd28d6e774b08c15e5
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -86,7 +87,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f728-b20c-7382-a8dd-9ea8f7acb962/exec-5e1bad48-5c89-4525-bb31-3f9ae3ecfe61.png
   size: 1254x1254
   sha256: 5d60ccdcee59c40176f019447b764764c3a56cd66cc59202b4bf6b09bf69d4c7
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -135,7 +137,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f728-b265-7ef1-984f-42a836d15162/exec-04a2c3e4-4e59-4f44-903f-c8c957d5e917.png
   size: 1254x1254
   sha256: 18fcfb723eba424487614986fa679c5b67093fd257dd1c76a161711ca5bc27df
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）；射雕书界精确年表待考。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -184,7 +187,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f728-b29d-75d0-80c6-4f79bd38a394/exec-b3178a9f-0be4-4501-9db8-f99c162d72b3.png
   size: 1254x1254
   sha256: 0d4b5a73bb4b40aabc67558799be403947a55c8ec9a44478922540bf5d4f06be
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -233,7 +237,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f72b-e18a-7672-9e06-79f199922f06/exec-9fee22c0-51ce-4735-be1e-bc18ced36a8d.png
   size: 1254x1254
   sha256: bb58d479b09349b8fbad040291779aaf168f2730d65ce0fbbc969135b452e4ed
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227；西域白驼山语境；射雕书界精确年表待考。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -282,7 +287,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f72b-e1c2-7c83-97fe-02af3b034bc1/exec-468549d3-dfc2-4764-aa1c-96bf09b8e112.png
   size: 1254x1254
   sha256: d11b4f806800622a1ffd838a57ef4c07cc4f2806bdf524fdcb2865415e7a3263
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）；射雕书界精确年表待考。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -331,7 +337,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f72b-e1ef-7623-af65-1b9d931aa6de/exec-405fb06f-bb65-4601-968a-920fa27733e6.png
   size: 1254x1254
   sha256: 05d0927000279487ba26696fa17dea152eb95c9e8405285538c7fabc8cd452f8
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch04_yitian 倚天书界代表投放语境，元末元顺帝，项目主体年代约1336–1363；具体投放为原创扩展。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -380,7 +387,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f72b-e1e6-7ae3-8667-894d43a6d0e8/exec-0712892f-c3ac-4fab-a54b-0b0673805b14.png
   size: 1254x1254
   sha256: dec505ac59617a0c0e2bed36d02f2c3d42d4d2e725ee514c9d80f63eb94b58b8
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界代表投放语境，北宋哲宗，项目主体年代1093–1094；秘籍载体为原创扩展。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -429,7 +437,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f730-61a9-7ea3-838c-2518c4d4626f/exec-08544620-2982-4b85-a667-c8deabd7a52c.png
   size: 1254x1254
   sha256: fad6e1bd4878c556d8e1e7097f1b96f5cf1c539979e91246c930d7cd1667c9b4
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界代表投放语境，北宋哲宗，项目主体年代1093–1094；武学用名待考。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）；大金刚掌/大力金刚掌用名待考。
@@ -478,7 +487,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f730-6220-7373-9aee-444462fd2055/exec-72ae63f1-bc70-4829-b06e-eebb5eb47a65.png
   size: 1254x1254
   sha256: dc708b8093600546461819eb0a6fbab9ee55d0f72a27054e4543010914fdfed5
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch04_yitian 倚天书界，元末元顺帝，项目主体年代约1336–1363。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -527,7 +537,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f730-621e-7170-be8a-080def5f4190/exec-ba8f6274-2656-42c6-961b-69f145eb0095.png
   size: 1254x1254
   sha256: 13caf5b74602dfe1fb549a4ed07b1125eadfa0b540ee4597007ea0e8a05aa2cf
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094；江南水阁藏书语境。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -576,7 +587,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f737-2be1-7223-b6ba-97f722ab1505/exec-879d9cff-8da6-4bd3-b34e-1ac1c6457be4.png
   size: 1254x1254
   sha256: ece345a5bff6909be42a6e8d09a48e250fe669edc9998fa41c7c43bb7381883f
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094；曼陀山庄藏书语境。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -625,7 +637,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f75e-922a-7b41-bd01-a7751b9e0f65/exec-0b743eb5-5cc3-4212-a52c-c7482ca405c3.png
   size: 1254x1254
   sha256: f5a5cd715fd4a96fa7c5e9fda147e1aa4c6e0775db0d8228bb302b08e4fb140f
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch08_luding 鹿鼎书界代表藏经阁投放语境，清康熙，项目主体年代1669–1690；名目与载体不冒充原著复原。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -674,7 +687,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f73d-fbe6-7d62-ba81-5264c57bc7d1/exec-2e73a3ba-42df-457c-af2c-e5568e069c9c.png
   size: 1254x1254
   sha256: 24ac8f21dee4018e423bf05f42dc185332de987afdf87851c2200eb86c38654f
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）；射雕书界精确年表待考。
     名录依据：docs/design/catalog/items-manuals.md；九阴真经原著题材不标原创；仅本图装帧与具体外观为（原创扩展）。
@@ -723,7 +737,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f73d-fc1b-7e62-abd5-49b3fd04b811/exec-aa307f98-db25-4d41-80b5-604ef60caf9c.png
   size: 1254x1254
   sha256: 57b97ddc070005ac526db88d58a1456f3de62b9ffbfae404ec076965ea017a5b
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227（精确年表待考）；射雕书界精确年表待考。
     名录依据：docs/design/catalog/items-manuals.md；九阴真经原著题材不标原创；仅本图装帧与具体外观为（原创扩展）。
@@ -772,7 +787,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f748-e45b-7633-b9ec-95ebdf409382/exec-731b706f-05ef-47c2-ba79-b9ddf0d40d72.png
   size: 1254x1254
   sha256: 8c8538257ce741b1d47ab565ea2c0356f045a83140e260d0a568122e3f527898
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch04_yitian 倚天书界，元末元顺帝，项目主体年代约1336–1363。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -821,7 +837,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f748-e41b-7793-9ae4-f15f7e1f9644/exec-6b3867ca-3230-49e3-b710-b9f2f511bb06.png
   size: 1254x1254
   sha256: 346876fd41b7ca42a45f19cbea49b38f8dd17ac35bddfbc261d384ca241d02ac
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch04_yitian 倚天书界，元末元顺帝，项目主体年代约1336–1363。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
@@ -870,7 +887,8 @@
   source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f748-e44b-75b0-8273-123d1467a8e6/exec-5d0a0018-8533-48e7-9a52-76d19eac5095.png
   size: 1254x1254
   sha256: 08a03eaec5eeb5759522f08455e67a7627897b3921fff747178e6771ea24085e
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch01_tianlong 天龙书界，北宋哲宗，项目主体年代1093–1094；还施水阁藏本语境。
     名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。

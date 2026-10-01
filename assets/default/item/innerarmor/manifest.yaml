@@ -29,7 +29,8 @@
   source_path: /private/tmp/codex-art-inner/generated_images/01a0f7d2-22d6-7ee1-8d3f-88ebc53b3ed6/exec-4b5f038d-e482-4ca8-ac77-e16508f89632.png
   size: "1254x1254"
   sha256: f29ffe3ecb285591ad64633f0e01aea8cfaeb214d43186e676406602be367e4a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：名录出处为（原创扩展），无指定书界；采用不归属具体朝代的前现代手工内甲语境，不冒充文物复原。
     外观、材质组合与具体编织形制均为（原创扩展）；候选数：1。
@@ -67,7 +68,8 @@
   source_path: /private/tmp/codex-art-inner/generated_images/01a0f80c-4b13-7f21-b93e-2d8b808afd84/exec-4421d37d-c480-452a-9dc0-0a4bbbdf26a2.png
   size: "1254x1254"
   sha256: 5cfac4eab34f0f521bf376a6f689ab49d17ecb1bbc6fb03f3abd7071a69a2019
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：名录出处为（原创扩展），无指定书界；采用不归属具体朝代的前现代手工内甲语境。外观与形制均为（原创扩展）。
     候选数：2。首稿下留白约 11.88%、包围框高约 76.08%，未达提示门槛，故按额度返修并选第 2 候选。
@@ -105,7 +107,8 @@
   source_path: /private/tmp/codex-art-inner/generated_images/01a0f7d5-4ab3-7da3-97f5-7fc0709725ae/exec-65499fb8-67ab-4d28-8cae-31936c63085a.png
   size: "1254x1254"
   sha256: 84684d6d62ec16228ee8d697feddbf2f72e5a9df5043c5f6975336eb92bfe807
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：名录出处为（原创扩展），无指定书界；采用不归属具体朝代的前现代武侠织物语境。天蚕丝、暗纹与具体形制均为（原创扩展）；候选数：1。
     view_image 自检：单一完整珠灰密织短衣，柔软可卷、银丝暗纹和珍稀但不发光的材质语言清楚；无文字、人物、手、场景、地面、投影、虫茧或光效。
@@ -142,7 +145,8 @@
   source_path: /private/tmp/codex-art-inner/generated_images/01a0f80c-4afd-7772-a397-425e6b04ba3b/exec-990592fa-88e2-41e0-b40a-e691e155f179.png
   size: "1254x1254"
   sha256: 3cea4090f811b4d4537a29d4d4ef9e7f6df248a9a974c341c05adb99a6890ff9
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：`docs/design/02-timeline-and-world-tiers.md` §1.3.2 的射雕书界 1217–1227；只控制南宋书界语境，不作历史实物复原。
     宝物归属沿名录；具体形制（待考），短刺视觉表现为（原创扩展）。候选数：2；首稿下留白约 11.64%、包围框高约 76.24%，未达门槛，故返修。
@@ -180,7 +184,8 @@
   source_path: /private/tmp/codex-art-inner/generated_images/01a0f80c-4b10-78b3-bfe4-8e71b3140a74/exec-bcd6e336-bdec-43d8-b101-e977dd8bd906.png
   size: "1254x1254"
   sha256: fdcf4a7cf5253ad01eae9373be90ddde0235e6464d4c3c7f0ec0fd17fc6d38d1
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：名录出处为（原创扩展），无指定书界；采用不归属具体朝代的前现代武侠锁甲语境。材质规格与形制均为（原创扩展）。
     候选数：2。首稿左右留白约 11.72/11.24%、包围框宽约 77.03%，未达门槛，故按额度返修并选第 2 候选。
@@ -218,7 +223,8 @@
   source_path: /private/tmp/codex-art-inner/generated_images/01a0f7d5-4ab4-7083-91b6-e1c2e1395a32/exec-e9bbfb3a-2951-484f-967b-8d1604224996.png
   size: "1254x1254"
   sha256: bfbb4c21cf689799b4de7b94d0b906a589703460ede51bb5128b588c4a7c65b1
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：`docs/design/02-timeline-and-world-tiers.md` §1.3.7 的碧血书界 1630–1645；只控制克制的明末内穿背心语境，不作实物复原。
     乌金丝、发丝、金丝猴毛混织沿名录；具体形制（待考），图像细节为（原创扩展）；候选数：1。
@@ -256,7 +262,8 @@
   source_path: /private/tmp/codex-art-inner/generated_images/01a0f80c-4b03-78a1-a3e0-b2a0dc8f3b55/exec-3fdc7c09-1746-4272-822a-7c7f6af1c512.png
   size: "1254x1254"
   sha256: b1b938d9cfe5612ed65367ce42bfe201168e09c580cbb2718517b56871737404
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：名录仅指武侠通用意象，无指定书界；暗金细丝材质、织法与形制均为（原创扩展）。
     候选数：2。首稿上留白约 9.81%、包围框高约 80.06%，未达门槛，故按额度返修并选第 2 候选。
@@ -294,7 +301,8 @@
   source_path: /private/tmp/codex-art-inner/generated_images/01a0f7d5-4aa8-7f13-860d-26e592d181da/exec-f8fbd65f-7752-4d1d-a176-b899ce5085cb.png
   size: "1254x1254"
   sha256: 612a518f8dad125b2bd3b9ce1289710403994eb3ffa69d68b8e11c807141cbe5
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   notes: |-
     年代依据：名录出处为（原创扩展），无指定书界；采用不归属具体朝代的前现代武侠织物语境。外观与形制均为（原创扩展）；候选数：1。
     view_image 自检：单一完整灰银密织短衣，可折叠、织物柔软且仅有克制金属感；未见文字、人物、手、场景、地面、投影或第二件物品。

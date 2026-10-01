@@ -17,7 +17,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f470-c3e9-75b2-a74f-f82de69d9828/exec-14ee0776-7a9e-4a1e-8528-9152e66eb46d.png
   size: 992x704
   sha256: 9d3d42ec8166aa30f8043524f4c14811d11518845a73c3a360846d617217f844
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_biaoju
     footprint: [14, 11]
@@ -119,7 +120,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f428-0a78-7231-a1a3-a08a593b4c13/exec-e26a74ea-a687-49db-b067-11803a25fef2.png
   size: 704x576
   sha256: 6aa0f431ea121ca60d757bb3a62ab081b84b860827326d626f6598a326d13776
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_casino
     footprint: [10, 8]
@@ -198,7 +200,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f470-9542-7111-8c58-d7596d688c80/exec-c9a50683-513e-4553-b769-2a0038836a08.png
   size: 736x512
   sha256: 00e41d5258d2ec8c8b1befe8437b7b596d3e6304f89952b84d213d0a7f9942ad
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_courtyard
     footprint: [10, 8]
@@ -285,7 +288,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f428-0a78-7231-a1a3-a08a593b4c13/exec-3caf894e-1dbe-4efd-9b20-046f823c91f2.png
   size: 512x512
   sha256: 70a043a9564627d2bfbbb602f411bb77635cb83da07210eec75770e17f7b8caf
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_guardhouse
     footprint: [6, 5]
@@ -364,7 +368,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f470-9542-7111-8c58-d7596d688c80/exec-73263185-480b-4b93-a9fb-aa0992b4babe.png
   size: 608x512
   sha256: 7dcee8eed4362477df81c39d1356e15a8b79719d6c3cc0af9a1bf96c01fac34b
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_house
     footprint: [7, 6]
@@ -450,7 +455,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f426-f982-78b2-9d92-dec5a0b0cec9/exec-b89f129c-ed39-4523-a351-ec5c7de06eb9.png
   size: 512x512
   sha256: 78a5af46e6005afbdfe134f91b68dfe5df2558b2225a826f1a47addd7f3f0688
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_house_small
     footprint: [6, 5]
@@ -529,7 +535,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f470-9542-7111-8c58-d7596d688c80/exec-87091f97-646e-43b6-a28b-686bb9a573cc.png
   size: 928x608
   sha256: 1010c42b2ba9da852164a07044fc0d2576cee098a97204fa5920a50f5beeee9f
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_inn
     footprint: [12, 9]
@@ -616,7 +623,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f470-c3e9-75b2-a74f-f82de69d9828/exec-c56f7741-67e5-48d0-8a08-33408b85a0a2.png
   size: 1312x928
   sha256: 1cb2656f723d0b2743d5271c165b4f7cd7bb7eb2c40fdd4c061fdc95377b4c2a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_manor
     footprint: [18, 14]
@@ -717,7 +725,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f470-f0a6-7100-b07b-0577601e3585/exec-d38d835a-ef3a-4ab0-bc54-d77726c83452.png
   size: 512x512
   sha256: f064f856cbddbe383a34a6e769d05d442aadbeaa55ae5f036984a2f6f9668030
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_market
     footprint: [5, 4]
@@ -818,7 +827,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f428-0a78-7231-a1a3-a08a593b4c13/exec-9dac6563-6312-4d27-8d35-19b54c883868.png
   size: 608x832
   sha256: 0343a2795a761858bcb1b7db480bce0eb4f8a311ea3f0f2a9b6f6bfd5c620eb3
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_pagoda
     footprint: [8, 8]
@@ -896,7 +906,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f426-f982-78b2-9d92-dec5a0b0cec9/exec-84d48b3b-2ec6-4de9-89df-2f72d5a7a9fd.png
   size: 800x864
   sha256: c79732f48b5367f15beba4fd2833aa2249f4a14dd1f33e53c294c3389cc6e66d
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_restaurant
     footprint: [12, 9]
@@ -975,7 +986,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f470-9542-7111-8c58-d7596d688c80/exec-f1636466-78db-4c19-a07c-af37d51e7f86.png
   size: 512x512
   sha256: 2c7bbed40c8406d45a11c499705ebd61ed663e6ecaa393beff250cb054fb66d2
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_shop_1f
     footprint: [6, 5]
@@ -1061,7 +1073,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f426-f982-78b2-9d92-dec5a0b0cec9/exec-393f9a44-cabc-45e3-b82e-424cb6fa4fbc.png
   size: 576x512
   sha256: fac220c5efce9f9ac1e957da1d4e0c92131f75a095632b419063a7e3230f3ac7
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_shop_2f
     footprint: [8, 6]
@@ -1140,7 +1153,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f470-f0a6-7100-b07b-0577601e3585/exec-cc35e88b-b648-4f04-90cd-c1ae8a8ed581.png
   size: 608x608
   sha256: 6a614d302d33d04187535be275dffd8fa4ef36df53d084cecf798ec795b006d4
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_stable
     footprint: [8, 6]
@@ -1230,7 +1244,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f44f-4a86-7490-86fe-6d498f37d931/exec-5fac307c-7d63-4343-acd9-63aaff6646c8.png
   size: 928x768
   sha256: 84b85b39098498d912e68acd2ce997cc6482c65132367de798590f90d06eaae4
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_temple_hall
     footprint: [14, 11]
@@ -1314,7 +1329,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f470-c3e9-75b2-a74f-f82de69d9828/exec-59029e49-52c4-40c4-959c-fe203f207bea.png
   size: 1376x928
   sha256: d39e060f2fa5e2654cf5801fc96ef286f1b7ceb9c7e9f4a544ed3dc3a4a43ffa
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_wangfu
     footprint: [20, 16]
@@ -1415,7 +1431,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f470-f0a6-7100-b07b-0577601e3585/exec-d5f5035a-d9c7-4b3b-a658-25af4f425781.png
   size: 736x736
   sha256: d521c2c2813a566fc414dca1c44a5ab19df62127d4286712f9ef868203dc13a5
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_warehouse
     footprint: [10, 8]
@@ -1506,7 +1523,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f428-0a78-7231-a1a3-a08a593b4c13/exec-f8f3c4b4-57fb-48e7-906e-595190e7e191.png
   size: 640x512
   sha256: 7d00c70ef322f1b6d28a83e37d946709642b15ed0b284c07209f1b4ede0a450d
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_north_wharf
     footprint: [10, 6]
@@ -1586,7 +1604,8 @@
   source_path: /Users/bytedance/.codex/generated_images/01a0f470-c3e9-75b2-a74f-f82de69d9828/exec-b01de091-d36d-4317-bbd3-a7ab7eb505bd.png
   size: 1152x768
   sha256: 3d7a817daa1d5c66eade7f7d71786d638e6e81ec866da62cf05341fc28cc74d7
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   building:
     type: bld_kit_yuan_yamen
     footprint: [16, 12]

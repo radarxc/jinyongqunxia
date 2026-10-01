@@ -38,7 +38,8 @@
   created: '2026-09-30'
   size: 323x237
   sha256: 62691407ffd68052a26e883377476192087ad77534b2e0241413418321b5b144
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: bridge_deck
     footprint:
@@ -99,7 +100,8 @@
   created: '2026-09-30'
   size: 589x493
   sha256: 633df79fbe7bca944703725c8854db532a4a185958e83bf248c951f7df96bdd5
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -184,7 +186,8 @@
   created: '2026-09-30'
   size: 534x435
   sha256: 9016be6ae1d9d71d9d195d0cd390b81e4d7805d7ad8e983b2c85554d44ff46ba
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: city_gate
     footprint:
@@ -268,7 +271,8 @@
   created: '2026-09-30'
   size: 300x211
   sha256: 90d1ee7d55c623d0460298c6a252156a3890c56c140a49b4594f2c20bc1e54d0
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint:
@@ -326,7 +330,8 @@
   created: '2026-09-30'
   size: 284x206
   sha256: d303c5519a1c5b701b7d296c4f7294845dc37ddbab9fee2c4eaf9a33f7354a9a
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: tree_cluster
     footprint:
@@ -385,7 +390,8 @@
   created: '2026-09-30'
   size: 127x208
   sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall
     footprint:
@@ -446,7 +452,8 @@
   created: '2026-09-30'
   size: 164x165
   sha256: 54f184e08396e26192a66a93263abb9c04927e23ab6f82d7e7e55bacb057561c
-  status: candidate
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
   tile:
     kind: wall_corner
     footprint:
