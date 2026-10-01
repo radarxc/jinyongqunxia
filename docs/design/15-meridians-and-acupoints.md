@@ -5,11 +5,13 @@
 > 引用而不重定义：属性与成长曲线见 `design/03`；伤害乘区与节奏见 `design/04`；内功性质、层数、辅运与走火分级见 `design/05`；效果原语与 Buff 本体见 `design/06`；丹药见 `design/10`；打坐与世界时间见 `design/11`；师父权限见 design/12；成长、轮回与天书见 `design/13`；界面见 design/14；战斗经脉动态、攻 / 防 / 轻功路线、护体内劲、点穴 / 擒拿与调息见 `design/21`；数据管线见 tech/04；运行时实现见 tech/05。
 > 标注约定：**（原创扩展）** = 本作游戏化规则；**（待考）** = 原著事实尚待三联/广州修订版逐字核对；**（待核实）** = 技术事实未联网确认；**（待实测）** = 需真机或真实玩法验证；**【建议值】** = 依赖其他归属文档接入，文末登记。
 
-版本：v1.1（AR-18 手部穴位归经复核，2026-09-29）；v1.0（M1，2026-09-26）；审校 M1.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）。规则与奖励均为**（原创扩展）**；穴名与经络名称采用真实术语，不把游戏效果解释为医学功效。
+版本：v1.2（AR-19 穴 / 脉强度与通量永久进度，2026-10-01）；v1.1（AR-18 手部穴位归经复核，2026-09-29）；v1.0（M1，2026-09-26）；审校 M1.R（2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27）。规则与奖励均为**（原创扩展）**；穴名与经络名称采用真实术语，不把游戏效果解释为医学功效。
 
 变更记录 v1.1：复核劳宫、合谷、后溪、外关的既有唯一 ID、标准代码、所属经脉与游戏阴阳；四穴均已正确登记，无需新增或改名。动作出口选择与路线体段判定只引用 `design/21` §2.4、§4.3.1，不在本文重定义。
 
 变更记录：经脉落地终审（2026-09-30）：按当前 `damage_sim.py` 重算 §8.4 静态敏感性锚点，澄清交会 / 借穴的游戏归属与 AR-18 消费口径、战斗快照恢复和候选图谱审校边界；不更改穴位与成长数值。
+
+变更记录 v1.2（2026-10-01，AR-19）：永久进度新增经脉 / 穴位天地玄黄十二品 × 1–9 强度、逐目标 `fluxCap` 与强化经验；完整内功周期锻炼通量，药材 / 丹药经 `MeridianTemperEffect` 强化，不再直接永久加人物等级资源。
 
 ## 0. 阅读指南
 
@@ -140,19 +142,19 @@ t 只决定关隘与失败参数，不是新武功品阶；门槛检查不读取
 
 ### 2.2 开放门槛
 
-| 路线 / 阶段 | 显示等级 Ld | 主运有效层数 | 其他前置 |
-|---|---:|---:|---|
-| 任一正经首穴 | ≥11 | ≥3 | 有可用主运内功、安全点 |
-| 同脉后续穴 | 同首穴 | 同首穴 | 前一穴已开 |
-| 任脉、督脉 | ≥21 | ≥5 | 已通任意一条正经 |
-| 冲、带、阴跷、阳跷 | ≥31 | ≥6 | 小周天 |
-| 阴维、阳维 | ≥41 | ≥6 | 小周天 |
-| 第一至第九转 | ≥41 | ≥6 | 大周天、上一转、§7 的天书本数；第四转起另须十二经周流 |
+| 路线 / 阶段 | 主运有效层数 | 经脉前置 | 其他前置 |
+|---|---:|---|---|
+| 任一正经首穴 | ≥3 | 无 | 有可用主运内功、安全点 |
+| 同脉后续穴 | 同首穴 | 前一穴已开 | 同首穴 |
+| 任脉、督脉 | ≥5 | 已通任意一条正经 | 安全点 |
+| 冲、带、阴跷、阳跷 | ≥6 | 小周天 | 安全点 |
+| 阴维、阳维 | ≥6 | 小周天 | 安全点 |
+| 第一至第九转 | ≥6 | 大周天、上一转；第四转起另须十二经周流 | §7 的天书本数 |
 
-等级边界采用基准 §5 的三流、二流、一流、绝顶起点；主运层数按 05 的有效层数读取。
+AR-19 后人物没有独立等级，故旧表 `Ld≥11/21/31/41` 不再是生产门槛，也不得改名为隐藏的派生等级继续拦截；旧档只在迁移日志保留当时满足结果。主运层数仍按 05 的有效层数读取，时代压制可以让尚未开始的高阶冲穴暂不可用。
 没有品阶最低门槛：同层黄阶内功也能完成，但更慢。资质、性别、门派身份不设隐含禁入。
 未装配主运时，即使 03 面板显示 mpNature 为调和，速率仍为 0。
-已开穴、通脉、周天或转数不会因显示等级低于上述新修门槛而关闭。
+已开穴、通脉、周天或转数不会因主运变化而关闭。
 
 ## 3. 穴道子集与逐穴奖励
 
@@ -161,9 +163,9 @@ t 只决定关隘与失败参数，不是新武功品阶；门槛检查不读取
 每行定义一个穴道；所属游戏经脉由小节标题与 ID 前段共同确定。序号即必须遵循的冲穴顺序。
 真实穴名、标准代码与标准归经在正式发布前统一按 §12 做文献审校**（待考）**；标准归经按代码前缀查 §2：LU/LI/ST/SP/HT/SI/BL/KI/PC/TE/GB/LR/CV/GV。
 `TE` 为三焦经，`CV` 为任脉，`GV` 为督脉；它们是资料索引，不是新增游戏 ID。
-`pct +0.05%` 在 03 中为 value=0.0005；`pp +0.10pp` 为 value=0.10；`flat` 进入最终属性取整前的加值池。
+`pp +0.10pp` 为 value=0.10；`flat` 进入最终属性取整前的加值池。表内 40 个旧 `hpMax/mpMax pct +0.05%` 单元格仅是 v1 迁移定位符：v2 构建不生成对应 `StatModifier`，开穴后改由该穴的 `grade×strengthLayer` 经 `design/03` §5.1 唯一资源根公式生效。
 小数穴奖先合并、再按 03 取整；不能逐穴把 0.1 点抹成 0，也不能逐穴向上取成 1。
-所有奖励都永久生效；`F(k)` 只放大本表的原始值，见 §7。
+除上述 v1 资源定位符外，其余奖励都永久生效；`F(k)` 只放大仍启用的逐穴原始值，见 §7。旧档累计资源百分比由属性迁移器折为 `legacyHpCredit/legacyMpCredit` 一次，不能与穴位强度并存双算。
 
 ### 3.2 手太阴肺经 · `mer_shoutaiyin`
 
@@ -464,19 +466,19 @@ t 只决定关隘与失败参数，不是新武功品阶；门槛检查不读取
 
 | 符号 | 来源 | 说明 |
 |---|---|---|
-| `Ld` | 03 / 当前书界 | 显示等级，不读取真实等级 `Lr` 替代 |
+| `Ce` | 03 §3.0 | 无状态的当界有效修为档，只给冲穴节奏旧曲线校准；不是人物等级或开放门槛 |
 | `g_i` | 05 | 第 i 门已装配内功的有效品阶，1–12 |
 | `n_i` | 05 | 第 i 门内功的有效层数，1–10 |
 | `r_i` | 05 | 主运为 1；辅运为该组合的 `auxRatio` |
 | `mpMax` | 03 | 当前快照的真实面板内力上限；不是当前剩余 `mp` |
-| `MPREF(Ld)` | 03 §3.5 | 同显示等级标准主角的内力上限 |
+| `MPREF(Ce)` | 03 §3.5 | 同有效校准档的旧耗内参考；只用于冲穴成本 / 速率归一 |
 | `nature_main` | 05 | 主运 `yin/yang/harmony`；没有主运则不可冲穴 |
 | `meridians_i` | 05 `inner.meridians` | 第 i 门内功专精的经脉 ID 列表 |
 | `wil` | 03 | 快照后的最终意志，用于过关而非基础工作量 |
 | `bookCount` | 13 | 本周目已取得天书数，0–14 |
 | 辅助项 | 10 / 12 / 11 | 丹药、师父指点、打坐地点；见 §5.6 |
 
-这里只读取有效品阶、有效层数，不重新实现压制。进入新书界、天道劫第六重或无天道沙盒改变压制参数时，05 先给出新的 `g_i/n_i`，03 再给出新的 `Ld/mpMax`。
+这里只读取有效品阶、有效层数，不重新实现压制。进入新书界、天道劫第六重或无天道沙盒改变压制参数时，05 先给出新的 `g_i/n_i`，03 再从同一永久快照给出新的 `Ce/mpMax`；`Ce` 不保存、不升级，也不直接生成资源。
 
 ### 4.2 单门内功的内劲贡献
 
@@ -508,16 +510,16 @@ Qi(m)     = Σ qi_i(m)
 调和对阴、阳脉没有惩罚，取得同性增益的一半，落实 AR-02；面对调和脉则视为同源。
 该表只影响成长冲穴，不改 05 §5.3 的招式 Z5 相性，也不产生寒、热或免疫标签。
 
-### 4.4 内力厚度与显示等级折算
+### 4.4 内力厚度与兼容节奏折算
 
 ```text
-M(mpMax,Ld) = sqrt(clamp(mpMax / MPREF(Ld), 0.50, 2.00))
-D(Ld)       = clamp(0.65 + 0.01×Ld, 0.75, 1.35)
+M(mpMax,Ce) = sqrt(clamp(mpMax / MPREF(Ce), 0.50, 2.00))
+D(Ce)       = clamp(0.65 + 0.01×Ce, 0.75, 1.35)
 T(b)        = 1 + 0.01×clamp(b,0,14)
 ```
 
 `M` 使用平方根且把比值钳在 0.50–2.00：面板内力深厚仍有意义，但内功已经通过 `Qi` 贡献一次，不让同一套高阶内功再按 `mpMax` 线性放大第二次。
-`D` 直接读取显示等级：Lv35 为 1.00，Lv44 为 1.09，Lv70 为 1.35。真实 Lv70 进入低武而显示 Lv44 时，不能偷偷沿用 1.35。
+`D` 读取无状态 `Ce`：35 档为 1.00，44 档为 1.09，70 档为 1.35。它只校准旧冲穴工期，不表示人物有等级；同一武功 / 经脉 / 时代快照必得同一 `Ce`。
 `T` 是“天书导引”**（原创扩展）**：每本 +1% 工作量，14 本封顶 +14%；它不是新的 `tsp_*` 战斗被动，不受温养放大。13 需在接口表登记这一读取。
 
 ### 4.5 最终速率公式
@@ -530,7 +532,7 @@ ModeRate  = steady ? 1.00 : 1.35
 Disorder  = 持有 bf_neixiwenluan ? 0.50 : 1.00
 
 RateRaw = 80 × Qi(m) × Affinity(nature_main,m)
-             × M(mpMax,Ld) × D(Ld) × T(bookCount)
+             × M(mpMax,Ce) × D(Ce) × T(bookCount)
              × (1 + AidRateBp/10000) × ModeRate × Disorder
 RateH   = max(1, roundHalfUp(RateRaw))
 ```
@@ -571,16 +573,16 @@ t6: 4,445 + 5,180 =  9,625
 
 ### 4.7 三个速率锚点
 
-先排除专精、地点、师父、丹药和内息紊乱，取同源辅运、`mpMax=MPREF(Ld)`、目标与主运同性；天书数分别取 3 / 14 / 8。
+先排除专精、地点、师父、丹药和内息紊乱，取同源辅运、`mpMax=MPREF(Ce)`、目标与主运同性；天书数分别取 3 / 14 / 8。表内“Lv”是旧夹具显示名，生产输入依次为 `Ce=35/70/44`。
 
 | 场景 | `Qi` 算式 | `D×T×相性` | 稳冲 `RateH` | 催冲 `RateH` |
 |---|---|---:|---:|---:|
-| Lv35 高武：主 g9、辅 g6×2、均 7 重 | `2.40×1.20 + 2×(1.70×1.20×0.50)=4.92` | `1.00×1.03×1.10` | `round(80×4.92×1.133)=446` | `round(446×1.35)=602` |
-| Lv70 终局：主 g12、辅 g11×2、均 10 重 | `3.50×1.50 + 2×(3.10×1.50×0.50)=9.90` | `1.35×1.14×1.10` | `1,341` | `1,810` |
-| 真实 Lv70、低武显示 Lv44：主 g8、辅 g7×2、均有效 8 重 | `2.20×1.30 + 2×(2.00×1.30×0.50)=5.46` | `1.09×1.08×1.10` | `566` | `764` |
+| `Ce35` 高武：主 g9、辅 g6×2、均 7 重 | `2.40×1.20 + 2×(1.70×1.20×0.50)=4.92` | `1.00×1.03×1.10` | `round(80×4.92×1.133)=446` | `round(446×1.35)=602` |
+| `Ce70` 终局：主 g12、辅 g11×2、均 10 重 | `3.50×1.50 + 2×(3.10×1.50×0.50)=9.90` | `1.35×1.14×1.10` | `1,341` | `1,810` |
+| `Cb70→Ce44` 低武：主 g8、辅 g7×2、均有效 8 重 | `2.20×1.30 + 2×(2.00×1.30×0.50)=5.46` | `1.09×1.08×1.10` | `566` | `764` |
 
-第一行例：`80×4.92×1.00×1.03×1.10=446.0`。第三行不是把终局 `Qi=9.90` 只乘一个折扣，而是让 05 的低武有效品阶/层数与本文的 `Ld=44` 同时生效；速率为终局 `566/1341≈42.2%`。
-实际 `mpMax/MPREF`、专精与辅助再按公式重算；本表不是玩家保证值。
+第一行例：`80×4.92×1.00×1.03×1.10=446.0`。第三行不是把终局 `Qi=9.90` 只乘一个折扣，而是让 05 的低武有效品阶 / 层数与本文的 `Ce=44` 同时生效；速率为终局 `566/1341≈42.2%`。
+实际 `mpMax/MPREF`、专精与辅助再按公式重算；本表不是玩家保证值，也不恢复人物等级。
 
 ## 5. 冲穴动作、成本、成功与失败
 
@@ -590,7 +592,7 @@ t6: 4,445 + 5,180 =  9,625
 
 1. 位于 11 认可的安全点，且该点允许盘坐；战斗、追逐、强制剧情和移动途中不可开始。
 2. 目标已解锁，脉内前一穴已开；转数目标满足 §7 前置。
-3. 有可用主运内功，并达到 §2.2 的显示等级和主运有效层数门槛。
+3. 有可用主运内功，并达到 §2.2 的主运有效层数门槛。
 4. 不持有 `bf_jingmainixing` 或 `bf_zouhuorumo`；世界日程中接下来 1 小时无不可延迟事件。
 5. 当前 `mp` 足以支付 §5.2 的完整成本；不能以降至负数换取结算。
 
@@ -610,7 +612,7 @@ TimeCost        = 1 游戏小时
 转数修炼固定按 `t=6` 计成本。稳冲每小时消耗面板内力上限 2.8%–4.3%；催冲为 4.2%–6.45%，再受至多 20% 辅助减耗。
 成本在 session 开始时扣除。动作名为“冲穴打坐”，只借用 11 的地点、时钟和打断框架：**不同时触发**普通打坐的 MP/STA 回满与 HP 至少 50% 恢复。玩家若先普通打坐恢复，再冲穴，须另花一个游戏小时。
 
-例：Lv35 `mpMax=4,697`，冲 t4 穴，稳冲成本 `ceil(4697×3.7%)=174 MP`；催冲为 `ceil(4697×3.7%×1.5)=261 MP`。若有效减耗 15%，分别为 148 / 222 MP。
+例：兼容夹具 `Ce35` 的 `mpMax=4,697`，冲 t4 穴，稳冲成本 `ceil(4697×3.7%)=174 MP`；催冲为 `ceil(4697×3.7%×1.5)=261 MP`。若有效减耗 15%，分别为 148 / 222 MP。
 
 ### 5.3 成功率（仅触及关隘时掷骰）
 
@@ -639,7 +641,7 @@ PsuccessBp = clamp(
 所有数值均为整数 bp；抽取 `u∈[0,9999]`，`u<PsuccessBp` 即成功。UI 显示到 0.1%，但不得用显示后的百分比反算。
 成功后把目标标为开启、进度置为 `H`，同一事务内派生通脉/周天/转数奖励；失败按 §5.4。每个穴道只在触及关隘时掷一次，不能通过提前保存反复刷新。
 
-Lv35 示例取主运 g9/7 重、t4、`wil=65`、3 本天书、同性、无其他辅助：
+`Ce35` 示例取主运 g9 / 7 重、t4、`wil=65`、3 本天书、同性、无其他辅助：
 `6500+180×5+100×2+25×15+300+150=8425bp=84.25%`；催冲减 1200bp，得 72.25%。
 
 ### 5.4 失败回落与伤势
@@ -719,7 +721,7 @@ failMargin        = u − PsuccessBp       // 失败时至少为 0
 
 | 属性组 | 第零转原始合计 | 第九转穴奖合计 | 03 最终上限 / 说明 |
 |---|---:|---:|---|
-| `hpMax` / `mpMax` | 各 pct +1.00% | 各 +1.45% | 进入资源上限 pct 池 |
+| v1 `hpMax` / `mpMax` 定位符 | 各 pct +1.00% | v2 不派生百分比 | 一次迁移为 03 `legacy*Credit`；生产资源改读穴位强度 |
 | `defOut` / `defIn` | 各 pct +1.00% | 各 +1.45% | 进入 MAG pct 池，不进入 Z4 |
 | `mpRegen` | +0.23pp | +0.334pp | `roundHalfUp(230×1.45)=334` milli-pp；最终 `mpRegen≤6%` |
 | `qinggong` | +1.6 | +2.32 | 最终 `qinggong≤300` |
@@ -736,7 +738,7 @@ failMargin        = u − PsuccessBp       // 失败时至少为 0
 
 | `sourceType:'meridian'` 目标 | 本系统合计上限 | 当前满九转预算 |
 |---|---:|---:|
-| 单项 `hpMax/mpMax/atkOut/atkIn/defOut/defIn` pct | +5% | 最高 `atkOut/atkIn +2.50%`，见 §7.3 |
+| 单项 `atkOut/atkIn/defOut/defIn` pct | +5% | 最高 `atkOut/atkIn +2.50%`，见 §7.3；v1 资源 pct 不计 |
 | `hpRegen/mpRegen` pp | +1.00pp | `mpRegen +0.634pp`，`hpRegen 0` |
 | 单项抗性 pp | +5pp | 最高 `resSeal +2.58pp` |
 | `counter/combo/seal` pp | +2pp | `counter +0.25pp`、`combo +1.50pp` |
@@ -792,7 +794,7 @@ failMargin        = u − PsuccessBp       // 失败时至少为 0
 
 | 里程碑 ID | 达成 | 全局静态加成 | 被动 ID 与效果 |
 |---|---|---|---|
-| `zt_xiaozhoutian` | 任、督均通 | `atkIn` pct +0.75%；`mpMax` pct +0.50%；`mpRegen` pp +0.10pp | `bf_zt_xiaozhoutian`：每次自身行动第一次消耗内力后，额外返还实扣量 7%，向下取整；与气海合计返还 10% |
+| `zt_xiaozhoutian` | 任、督均通 | `atkIn` pct +0.75%；`mpRegen` pp +0.10pp；v1 `mpMax` pct +0.50% 仅迁移 | `bf_zt_xiaozhoutian`：每次自身行动第一次消耗内力后，额外返还实扣量 7%，向下取整；与气海合计返还 10% |
 | `zt_dazhoutian` | 奇经八脉均通 | `atkOut` pct +0.75%；`resInjury/resSeal` 各 +1.00pp | `bf_zt_dazhoutian`：成功抵抗 `injury` 或 `seal` 标签效果时回复 `mpMax×0.5%`，每次自身行动周期至多 1 次 |
 | `zt_shierjingzhouliu` | 十二正经均通 | `atkOut/atkIn` pct 各 +0.75%；`qinggong` flat +1.0；`combo` pp +0.50pp | `bf_zt_shierjingzhouliu`：开战时自身集气 +30；召唤、复活或换人重挂不重复触发 |
 
@@ -802,34 +804,36 @@ failMargin        = u − PsuccessBp       // 失败时至少为 0
 ### 6.6 属性管线与乘区边界
 
 - 所有静态奖励展开为 03 的 `StatModifier`，`sourceType:'meridian'`，只用 `flat/pct/pp`；禁止 `flatLv/mult/override`。
-- `atkOut/atkIn/defOut/defIn/hpMax/mpMax` 的 pct 在 03 属性 DAG 内合并。它们间接影响 04 的 Z1/Z2，**不直接写 Z3 或 Z4**。
+- `atkOut/atkIn/defOut/defIn` 的生产 pct 在 03 属性 DAG 内合并。表内 v1 `hpMax/mpMax` pct 只供迁移，不进入生产 DAG；资源唯一读穴位 / 经脉强度。启用项间接影响 04 的 Z1/Z2，**不直接写 Z3 或 Z4**。
 - `ap*` 经 03 资质钳制后进入 04 Z5；`counter/combo` 最终还受 03 的 60pp/50pp 上限。
 - 抗性按 03 最终范围 −50pp 至 75pp；经脉收益不创造免疫，`resSeal` 也不免疫点穴。
 - 触发被动由 06 展开；本文没有 `modZone`，也不直接生成战斗乘区。AR-14 的 `Z4M / meridianDefense`、`Z5M / meridianAttack` 与经脉速度是 `design/21` §3.5、§4.4、§4.9 的独立战斗输出，不是 `StatModifier.mult`，不得折回本节重复累计。
-- 经脉奖励本身是本周目永久成长，不按外来品阶压制；压制只降低以后冲穴所用的 `Ld/g_i/n_i`。
+- 经脉奖励本身是本周目永久成长，不按外来品阶压制；压制只改变以后冲穴所用的 `Ce/g_i/n_i` 节奏输入。
 
 ### 6.7 给战斗经脉模块的只读成长投影
 
-本文只把永久修炼事实投影给 `design/21`，不在此复制其容量、流畅度、强度或乘区公式。字段与 21 §2.3–§2.6、§12.2 的输入一致：
+本文只把永久修炼事实投影给 `design/21`，不复制其战斗放气、流畅度或乘区公式。AR-19 的强度与通量也属于 `MeridianProgress` 的永久真值：
 
 | 本文事实 | 输出字段 | 精确派生 | 21 的消费边界 |
 |---|---|---|---|
 | 穴位成功开启 | `openedAcupoints` | `MeridianProgress.opened` 去重后按 `ap_*` ASCII 升序 | 决定对应 `MeridianNodeRuntime.opened`；未开穴使引用该穴的路线预检失败 |
-| 一条经脉全通 | `completeAcupoints` | 对每条 `MeridianDef.acupoints` 做全包含检查；已通经脉的全部穴并集，按 `ap_*` ASCII 升序 | 节点取得 21 所称 `allMeridians=1`：容量 +100、流畅 +400 bp；该名称不是“20 脉全通” |
-| 任、督均通 | `smallCycle` | 派生 `zt_xiaozhoutian` 是否达成 | 21 消费为容量 +50、流畅 +200 bp |
-| 奇经八脉全通 | `greatCycle` | 派生 `zt_dazhoutian` 是否达成 | 21 消费为容量 +100、流畅 +400 bp |
-| 十二正经全通 | `twelveCycle` | 派生 `zt_shierjingzhouliu` 是否达成 | 21 消费为容量 +100、流畅 +400 bp；与 `greatCycle` 是两条独立完成轴 |
-| 已完成九转 | `turns` | 直接取已校验的 `turnCompleted∈[0,9]` | 21 每转消费为容量 +20、流畅 +100 bp；不得提高攻 / 防 / 速度硬界 |
+| 穴位强度 | `acupointStats[]` | `grade 1..12 / strengthLayer 1..9 / fluxCap 1..64` | 资源根值、节点宽度与路线稳定输入 |
+| 经脉强度 | `meridianStats[]` | `grade 1..12 / strengthLayer 1..9 / fluxCap 1..96` | 与穴位宽度取较小值；不是 Buff |
+| 一条经脉全通 | `completeAcupoints` | 对每条 `MeridianDef.acupoints` 做全包含检查 | 节点取得通脉流畅加成；该名称不是“20 脉全通” |
+| 任、督均通 | `smallCycle` | 派生 `zt_xiaozhoutian` 是否达成 | 21 消费为流畅 / 路线里程碑，不直接加宽度 |
+| 奇经八脉全通 | `greatCycle` | 派生 `zt_dazhoutian` 是否达成 | 同上 |
+| 十二正经全通 | `twelveCycle` | 派生 `zt_shierjingzhouliu` 是否达成 | 同上；与 `greatCycle` 是两条独立完成轴 |
+| 已完成九转 | `turns` | 直接取 `turnCompleted∈[0,9]` | 改善流畅 / 强度，但不得抬攻 / 防 / 速度硬界 |
 
-`progressH`、`attemptOrdinal`、未完成经脉的开穴比例、冲穴模式和当时使用的内功都不进入该投影：只有一次冲关成功、事务提交并真正把穴写入 `opened` 后，下一场战斗才可把它视为开通。上表数值只是对 21 §2.3–§2.4 消费口径的引用；基础项、`mpRatioBp` 平方根、相性、配表倍率、取整及 600–2600 / 3000–10000 钳制仍唯一见 21。本文不得另填 `capacity` / `flowBp`，也不得把同一里程碑再伪装成装备或 Buff 的 `meridianCapacityBp / meridianFlowBp`。
+`progressH`、`attemptOrdinal` 与未完成开穴比例仍不进入战斗投影。宽度只读本表 `fluxCap`，不再从 `mpMax` 平方根派生；长度读静态 `lengthUnit`，战斗产气 / 速度 / 在途数量唯一见 21。旧 `capacity` 仅可按 21 §2.3 迁移一次。
 
-静态奖励与战斗投影是两条有意并存的路径：§6.1–§7 先经 03 重建面板，故 `mpMax` 可间接改变 21 的 `mpRatioBp`；本节再传开穴与里程碑，使其改善路线稳定性。二者分别对应“属性成长”和“行气通畅”，不是重复写同一个修饰器。
+资源派生与战斗投影是两条有意并存的路径：脉 / 穴 `grade×strengthLayer` 先经 03 唯一根公式生成 `hpMax/mpMax`，同一永久项的 `fluxCap` 再供 21 作宽度，二者使用不同字段。21 不再读取 `mpRatioBp` 反推宽度 / 气量，故不会把资源增长重复算成行气增长；里程碑只改善其明确登记的流畅 / 战斗输入。
 
 生命周期固定如下：
 
 1. `createBattle` 从同一份已提交 `MeridianProgress` 生成不可变快照；玩家、每名同伴各读自己的进度，绝不借用主角进度。敌人里程碑由 21 §11.9 的模板生成，不伪造玩家存档。
 2. 战斗期间不允许开始 §4–§5 的一小时冲穴 session；快照在该战斗内不因卡住、点穴、调息或胀损而变化。21 可按路线并集稀疏物化节点，但逻辑结果须等同完整快照。
-3. 战斗中的 `water/stagnationBp/backlog/ruptureDamage/sealLevel` 只存在于每单位 `MeridianFlowModule`；战斗存档由 21 / tech/05 保存，不能写入 `MeridianProgress`。
+3. 战斗中的 `dantianQi/routeFlows/packets`、节点聚合 `inFlightQi` 及 `stagnationBp/backlog/ruptureDamage/sealLevel` 只存在于每单位 `MeridianFlowModule`；战斗存档由 21 / tech/05 保存，不能写入 `MeridianProgress`。
 4. 战斗结束后按 21 §1.4 清理临时运行态；下一场战斗重新投影。剧情永久伤势走 09 / 06，不能关闭穴位、倒扣 `progressH` 或降低 `turnCompleted`。
 5. 进程内悔招、诊断及录像恢复使用 21 的实例快照，不重新读取本投影覆盖伤势；只有开始一场新战斗才重新初始化。页面终止后的玩家读档仍按 13 §9.2 / 09 §10.8 恢复最近具资格的战斗前自动档，本接口不新增跨进程中途战斗读档承诺。
 
@@ -856,7 +860,7 @@ H_turn(k) = 4,000 + 1,000×k，k∈[1,9]
 | 8 | `zt_zhuan_08` | 12 | 第七转 | 12,000 | 68,000 |
 | 9 | `zt_zhuan_09` | 14 | 第八转，且已进入正式终局容器 `ch15_guimeng` | 13,000 | 81,000 |
 
-第九转不能在雪山余韵期提前完成；取得第十四本只满足书数，仍等 13 的 `FN_ENTER` 把显示等级解压到 70。第九转完成后按钮改为“九转圆满”，不生成循环条或第十转。
+第九转不能在雪山余韵期提前完成；取得第十四本只满足书数，仍须等 13 的 `FN_ENTER` 进入正式终局容器。该门禁是剧情状态，不再借“显示等级解压到 70”解释。第九转完成后按钮改为“九转圆满”，不生成循环条或第十转。
 
 ### 7.2 放大系数与逐转被动
 
@@ -889,8 +893,8 @@ F(k) = 1 + 0.05×k，k=已完成转数 0..9
 |---|---:|---|---:|
 | `atkOut` pct | +2.50% | 大周天 0.75 + 周流 0.75 + 二转 0.50 + 五转 0.50 | 2.50pp |
 | `atkIn` pct | +2.50% | 小周天 0.75 + 周流 0.75 + 一转 0.50 + 五转 0.50 | 2.50pp |
-| `hpMax` pct | +1.45% | 穴奖 `1.00×1.45` | 3.55pp |
-| `mpMax` pct | +1.95% | 穴奖 1.45 + 小周天 0.50 | 3.05pp |
+| v1 `hpMax` pct | 生产为 0 | 旧穴奖只迁移为 `legacyHpCredit` | 不进入生产内部上限 |
+| v1 `mpMax` pct | 生产为 0 | 旧穴奖 + 小周天只迁移为 `legacyMpCredit` | 不进入生产内部上限 |
 | `defOut/defIn` pct | 各 +1.45% | 穴奖 `1.00×1.45` | 各 3.55pp |
 | `mpRegen` | +0.634pp | 穴奖 0.334 + 通脉 0.20 + 小周天 0.10 | 0.366pp |
 | `qinggong` | +3.82 | 穴奖 2.32 + 通脉 0.50 + 周流 1.00 | 6.18 |
@@ -918,16 +922,16 @@ F(k) = 1 + 0.05×k，k=已完成转数 0..9
 
 | 场景 | RateH | 180 穴 `94,045H/Rate` | 九转 `81,000H/Rate` | 合计纯行气小时 |
 |---|---:|---:|---:|---:|
-| Lv35 高武 | 446 | 210.9 | 181.6 | 392.5 |
-| Lv70 终局 | 1,341 | 70.1 | 60.4 | 130.5 |
-| 真实 Lv70、低武显示 Lv44 | 566 | 166.2 | 143.1 | 309.3 |
+| `Ce35` 高武 | 446 | 210.9 | 181.6 | 392.5 |
+| `Ce70` 终局 | 1,341 | 70.1 | 60.4 | 130.5 |
+| `Cb70→Ce44` 低武 | 566 | 166.2 | 143.1 | 309.3 |
 
 实际周目不会在单一档完成：前四高武逐步开穴，中/低武继续补足，转数又受天书门槛分段。表中未计逐穴向上取整、失败重试、普通打坐恢复和世界事件，因此是纯工作量下界，不是通关日历承诺。
 催冲把纯工作量小时约除以 1.35，但提高内力成本与失败概率，不能简单理解为总日历必定缩短 25.9%。
 
 ### 8.2 单穴成功期望例
 
-取 §5.3 的 Lv35 t4 后段穴：`H=715`、`RateH=446`、稳冲 `p=0.8425`。
+取 §5.3 的 `Ce35` t4 后段穴：`H=715`、`RateH=446`、稳冲 `p=0.8425`。
 首次触及需 `ceil(715/446)=2` 小时；失败后回到 `floor(715×0.75)=536`，每次再触及需 1 小时。几何分布的期望失败次数为：
 
 ```text
@@ -939,9 +943,9 @@ E[hours] = 2 + 0.187×1 = 2.187 游戏小时
 
 ### 8.3 内力与恢复约束核算
 
-Lv35、t4、无辅助：稳冲每小时 174 MP，`4697/174=26` 个完整 session 后余 173 MP；催冲每小时 261 MP，可做 17 个后余 260 MP。
+`Ce35`、t4、无辅助：稳冲每小时 174 MP，`4697/174=26` 个完整 session 后余 173 MP；催冲每小时 261 MP，可做 17 个后余 260 MP。
 正常打坐回满 MP 另耗 1 游戏小时（11），所以长队列存在恢复停顿；`mpRegen` 是战斗行动开始恢复，不在冲穴 session 中自动跳 1 次。
-经脉满成后 `mpMax +1.95%` 会同时提高以后冲穴成本约 1.95%，也使 `M=sqrt(mpMax/MPREF)` 提高约 `sqrt(1.0195)−1≈0.97%`；这是“内力越深厚越快、但行气也更费力”的温和反馈，而非无成本滚雪球。
+经脉满成后不再另乘旧 `mpMax +1.95%`；`mpMax` 随 03 唯一根公式中的脉 / 穴品阶和强度自然增长。因冲穴成本按真实 `mpMax` 比例收费、速率只按 `sqrt(mpMax/MPREF)` 增长，仍保持“内力越深厚越快、但行气也更费力”的温和反馈；同一穴位不能再叠旧百分比。
 
 ### 8.4 对 04 伤害与 TTK 的敏感性
 
@@ -957,20 +961,20 @@ D2'/D2 = x² / ((1−F_def) + x×F_def)
 
 | 04 基线场景 | 基线主角行动 / 命中 | 满九转敏感性（单次按 ÷1.04；单体连击再按 ÷1.0075） | 目标区间 | 结论 |
 |---|---:|---:|---:|---|
-| Lv35 天龙普通 | 4.407721 次命中 | 4.24；单体连击上界约 4.21 | 3–5 次命中 | 保持 |
-| Lv70 倚天普通 | 4.750672 行动轮 | 4.57；单体连击上界约 4.53 | 3–5 轮 | 保持 |
-| 低武鹿鼎 Lv44 普通 | 3.896640 行动轮 | 3.75；单体连击上界约 3.72 | 3–5 轮 | 保持 |
+| `Ce35` 天龙普通兼容夹具 | 4.407721 次命中 | 4.24；单体连击上界约 4.21 | 3–5 次命中 | 保持 |
+| `Ce70` 倚天普通兼容夹具 | 4.750672 行动轮 | 4.57；单体连击上界约 4.53 | 3–5 轮 | 保持 |
+| 低武鹿鼎 `Ce44` 普通兼容夹具 | 3.896640 行动轮 | 3.75；单体连击上界约 3.72 | 3–5 轮 | 保持 |
 | 鹿鼎 Boss | 23.423226 行动轮 | 约 22.52；单体连击上界约 22.35 | 12–25 轮 | 保持 |
 
 基线来自 `damage_sim.report_rows(meridian_key="none")` 的现行合法 STD / 遭遇校准，与 04 §9.2 同源；表内先用未缩位基线除以 1.04，再除以 1.0075，最后显示两位小数。此表仍是一阶估计；04 §9.3 的三档、三种内劲占比共 378 个组合与被动回放才是完整静态回归，不把本表当作具名 Boss `BattleReplayV1` 实测。
 
-防守侧只看静态量：`hpMax ×1.0145`、对应 `defOut/defIn ×1.0145`。同取 `F_def=0.65`，敌人击倒所需命中倍率约为：
+防守侧旧穴奖不再给 `hpMax ×1.0145`，只保留 `defOut/defIn ×1.0145`；气血耐久须用 03 §5.1 从该测试档的脉 / 穴强度重算，不能用固定百分比代替。若暂只隔离防御项并取 `F_def=0.65`，敌人击倒所需命中倍率约为：
 
 ```text
-1.0145 × (1.0145×(1−0.65)+0.65) ≈ 1.0196
+(1.0145×(1−0.65)+0.65) ≈ 1.0051
 ```
 
-倚天普通敌方现行基线为 9.006910 次命中，按上式未缩位倍率 `1.0196485875` 得 `9.006910×1.0196485875≈9.18`，仍在 8–12。返内、抵抗、气势、`spd +1` 和集气被动改变资源或时间轴，不直接写入这张按命中/行动数计的静态估算；实装后仍须用 04 的完整脚本加状态回放复验**（待实测）**。
+倚天普通敌方现行基线为 9.006910 次命中，隔离防御项约得 `9.006910×1.005075≈9.05`，仍在 8–12；这不是完整 AR-19 耐久结论。返内、资源根值、抵抗、气势、`spd +1` 和集气被动须以武功 / 经脉夹具重建后，用 04 的完整脚本加状态回放复验**（待实测）**。
 
 ### 8.5 节奏红线与回归动作
 
@@ -1008,25 +1012,25 @@ turnCompleted / turnTarget / turnState.progressH / turnState.attemptOrdinal
 schemaVersion / lastAppliedMigration
 ```
 
-进入下一书界后，运行时先由新 `Ld` 与新装配重算速率预览，再从同一工作量继续。已积工作量不按速率比例换算：在前世投入的 500H 到后世仍是 500H。
+进入下一书界后，运行时先由同一永久快照派生新 `Ce`，并与新装配一起重算速率预览，再从同一工作量继续。已积工作量不按速率比例换算：在前世投入的 500H 到后世仍是 500H。
 奖励从保留状态重新派生一次，不能把旧面板修饰器复制后再叠一份。书眠若净化了 1 级走火，下一界可继续冲穴；这是 06 的净化结果，不是本文额外治疗。
 
 ### 9.3 压制只影响新修炼
 
 进入中武或低武书界时：
 
-1. `Ld` 下降，§4.4 的 `D(Ld)` 同步下降；
+1. 无状态有效校准档 `Ce` 受新书界时代上限约束，§4.4 的 `D(Ce)` 同步变化；
 2. 外来内功的 `g_i/n_i` 由 05 按有效品阶、有效层数重算，`Qi` 随之下降；
-3. 真实 `mpMax` 由 03 在新显示等级与新有效内功贡献下重算，`M` 重新求值；
+3. 真实 `mpMax` 由 03 以武功真实 1–9 层与经脉强弱重算，不因 `Ce` 截断；`M` 按新 `MPREF(Ce)` 重新求值；
 4. 已开的穴、通脉、周天、转数与奖励**不回退、不打折**。
 
 因此压制形成“过去的积累仍在，继续开拓更慢”，符合永久成长边界。临时《天书现影》若能提高有效品阶/层数，只持续若干战斗行动，并非战斗外装配状态，不能用于冲穴快照。
-无天道沙盒令武学品阶压制关闭、层数上限 10，但 `Ld` 仍按书界上限，因此速率仍不会等于终局；这与 13 §5.3 一致。
+无天道沙盒令武学品阶压制关闭、层数上限 10，但 `Ce` 的兼容节奏上限仍按书界，因此速率仍不会等于终局；这不恢复人物等级。
 
 ### 9.4 余韵期
 
 所有书界取得天书后的余韵期，只要大地图仍开放、安全点可用、没有强制倒计时事件，就可正常冲穴。它是清支线与横向成长的正式窗口，不额外提高速率或成功率。
-雪山余韵期同样可补穴、通脉和完成已满足书数门槛的第一至第八转；此时显示等级仍为 58。第九转还要求进入正式终局 `ch15_guimeng`，不能借“真实等级已补 70”提前完成。
+雪山余韵期同样可补穴、通脉和完成已满足书数门槛的第一至第八转；此时仍未进入正式终局容器。第九转要求 `ch15_guimeng`，不能借旧档等级或派生 `Ce` 提前完成。
 发起书眠或进入终局前，UI 预览未完成目标与继续后预计耗时；玩家可以离开，不强迫清空进度。
 
 ### 9.5 天劫与难度模式
@@ -1035,10 +1039,10 @@ schemaVersion / lastAppliedMigration
 |---|---|
 | 江湖 / 侠客 / 宗师 | 不直接改速率、成功率或奖励；难度只通过各自已有的恢复、存档和时间压力间接影响 |
 | `tj_shi`（时劫） | 任务时限 −25% 会提高冲穴的机会成本；其“闭关收益 −20%”不扩写为冲穴速率 −20%，因为冲穴不是 05 的闭关 |
-| `tj_tiandao` 第 6 重 | 中/低武品阶压制变 3/5，05 给出更低 `g_i`；层数与 `Ld` 规则照旧，因而自然更慢 |
+| `tj_tiandao` 第 6 重 | 中/低武品阶压制变 3/5，05 给出更低 `g_i`；层数与 `Ce` 节奏规则照旧，因而自然更慢 |
 | `tj_xue`（血劫） | 不改变进度；失败伤势更难靠自然恢复，仍可按 06/11 治疗后再修 |
 | 天劫禁书眠回档 / 限制手存 | 照 13 执行； keyed RNG 仍保证回档不重掷 |
-| `rule_wutiandao` | 有效品阶与层数不受天道压制，但显示等级因子保留；奖励和九转门槛不变 |
+| `rule_wutiandao` | 有效品阶与层数不受天道压制，但 `Ce` 兼容节奏因子保留；奖励和九转门槛不变 |
 
 没有“天劫额外掉转”“失败关闭穴道”或“用轮回点买回穴位”的隐藏规则。若以后增加宿慧，只能改变开局便利或知识提示，默认不得恢复运行态奖励。
 
@@ -1177,7 +1181,6 @@ acupoints:
   - ap_renmai_danzhong
   - ap_renmai_chengjiang
 unlock:
-  minDisplayLevel: 21
   minMainInnerLayer: 5
   requiresAnyCompletedMeridian: true
 completionRewards:
@@ -1186,7 +1189,7 @@ completionRewards:
 ```
 
 ```yaml
-schemaVersion: acupoint.v1
+schemaVersion: acupoint.v2
 id: ap_renmai_qihai
 name: 气海
 gameMeridian: mer_renmai
@@ -1194,6 +1197,7 @@ standardCode: CV6
 standardMeridian: mer_renmai
 routeKind: native
 sequence: 6
+lengthUnit: 1
 barrierH: 565
 baseRewards:
   - { modifierId: qihai_resheat, stat: resHeat, op: pp, valueMilliPp: 100 }
@@ -1202,6 +1206,7 @@ sourceRef: design/15 §3.14
 ```
 
 `barrierH=200+60×4+25×(6−1)=565`。交会穴的 `standardMeridian` 与 `gameMeridian` 不同；借穴另填 `routeKind: borrowed`，但仍必须给出真实 `standardCode` 与标准归经。
+`lengthUnit` 是该穴前一段（首穴则为丹田 / 起势至首穴）的静态长度唯一真值，整数 1–12。所有引用同一穴的 `mfr_*` 路线只缓存该值，构建时必须逐项相等；不得按招式另配一条更短经脉。存量 180 穴在 `acupoint.v1→v2` 确定迁移时统一补 `lengthUnit=1`，后续内容校准必须显式改 v2 源，禁止运行时继续默认。
 内容源禁止同时填写可推导的 `completed`、周天状态或放大后奖励；这些都是运行时派生值。
 
 ### 11.3 周天与九转 YAML
@@ -1214,7 +1219,6 @@ kind: milestone
 requiresMeridians: [mer_renmai, mer_dumai]
 rewards:
   - { modifierId: xzt_atkin, stat: atkIn, op: pct, valueBp: 75 }
-  - { modifierId: xzt_mpmax, stat: mpMax, op: pct, valueBp: 50 }
   - { modifierId: xzt_mpregen, stat: mpRegen, op: pp, valueMilliPp: 100 }
 passiveBuffs: [bf_zt_xiaozhoutian]
 event: meridian/circulationAdvanced
@@ -1229,7 +1233,6 @@ turn: 9
 targetNature: harmony
 difficultyTier: 6
 barrierH: 13000
-minDisplayLevel: 41
 minMainInnerLayer: 6
 minBooks: 14
 requires: [zt_zhuan_08, zt_shierjingzhouliu]
@@ -1272,7 +1275,6 @@ interface MeridianDef {
   organRelation: string;
   acupoints: AcupointId[];
   unlock: {
-    minDisplayLevel: number;
     minMainInnerLayer: number;
     requiresAnyCompletedMeridian?: boolean;
     requiresMilestones?: CirculationId[];
@@ -1281,7 +1283,7 @@ interface MeridianDef {
 }
 
 interface AcupointDef {
-  schemaVersion: 'acupoint.v1';
+  schemaVersion: 'acupoint.v2';
   id: AcupointId;
   name: string;
   gameMeridian: MeridianId;
@@ -1289,6 +1291,7 @@ interface AcupointDef {
   standardMeridian: MeridianId;
   routeKind: RouteKind;
   sequence: number;
+  lengthUnit: 1|2|3|4|5|6|7|8|9|10|11|12;
   barrierH: number;
   baseRewards: MeridianReward[];
   passiveBuffs: BuffId[];
@@ -1306,7 +1309,6 @@ interface CirculationDef {
   targetNature?: MeridianNature;
   difficultyTier?: 1|2|3|4|5|6;
   barrierH?: number;
-  minDisplayLevel?: number;
   minMainInnerLayer?: number;
   minBooks?: number;
   requiresFinaleEntered?: boolean;
@@ -1322,14 +1324,23 @@ interface CirculationDef {
 ### 11.5 玩家进度与快照
 
 ```ts
+interface MeridianPermanentStat {
+  grade: 1|2|3|4|5|6|7|8|9|10|11|12; // 黄下至天上
+  strengthLayer: 1|2|3|4|5|6|7|8|9;
+  strengthXp: number;                 // 非负整数
+  fluxCap: number;                    // 穴 1..64；脉 1..96
+}
+
 interface TargetAttemptState {
   progressH: number;
   attemptOrdinal: number;
 }
 
 interface MeridianProgress {
-  schemaVersion: 1;
+  schemaVersion: 2;
   opened: AcupointId[];             // 规范化后按全局 registry 顺序保存
+  meridianStats: Partial<Record<MeridianId, MeridianPermanentStat>>;
+  acupointStats: Partial<Record<AcupointId, MeridianPermanentStat>>;
   targets: Partial<Record<AcupointId, TargetAttemptState>>;
   turnCompleted: 0|1|2|3|4|5|6|7|8|9;
   turnTarget?: CirculationId;
@@ -1341,7 +1352,7 @@ interface MeridianSessionSnapshot {
   sessionId: string;
   targetId: AcupointId | CirculationId;
   mode: 'steady' | 'force';
-  displayLevel: number;
+  effectiveCultivationBand: number; // Ce 1..70；节奏校准，不是人物等级
   mainInner: { skillId: SkillId; effGrade: Grade; effLayer: number; nature: MeridianNature };
   auxiliaries: { skillId: SkillId; effGrade: Grade; effLayer: number; ratioBp: number }[];
   mpMax: number;
@@ -1352,10 +1363,12 @@ interface MeridianSessionSnapshot {
   worldTickStarted: number;
 }
 
-interface MeridianBattleProjectionV1 {
-  schema: 'meridian-battle-projection.v1';
+interface MeridianBattleProjectionV2 {
+  schema: 'meridian-battle-projection.v2';
   openedAcupoints: readonly AcupointId[];
   completeAcupoints: readonly AcupointId[];
+  meridianStats: readonly { meridianId: MeridianId; grade: number; strengthLayer: number; fluxCap: number }[];
+  acupointStats: readonly { acupointId: AcupointId; grade: number; strengthLayer: number; fluxCap: number; lengthUnit: number }[];
   smallCycle: boolean;
   greatCycle: boolean;
   twelveCycle: boolean;
@@ -1363,10 +1376,23 @@ interface MeridianBattleProjectionV1 {
 }
 ```
 
+新开穴初始化：穴位 `grade` 取本次主运有效品阶、经脉取该脉已开穴品阶中位数；二者 `strengthLayer=1,strengthXp=0`，通量按 21 §2.3 的 `4+grade / 8+2grade`。完整修炼周期按 21 的递减公式增 `fluxCap`；强度经验按 `gainXp=max(1,floor(rateH/20))` 加入实际跑通目标，升级阈值 `100×strengthLayer²`，逐层扣除至 9 层。品阶后续只可由明确的药材 / 丹药强化升高，不能因换主运自动改写。
+
+药材接口只定效果槽，不定义物品：
+
+```text
+MeridianTemperEffect = { targetKind:'meridian'|'acupoint', targetRef,
+  gradeUp:0..3, strengthXp:0..5000, fluxFlat:0..16 }
+```
+
+结算顺序为校验目标已开通 → `grade=min(12,grade+gradeUp)` → 加强度经验并逐层升级 → `fluxCap` 加值后钳穴 64 / 脉 96 → 原子写事件。单件只能选一个目标；具体药名、品阶、叠加与投放归 `design/10` §8。旧 `meridianAid` 仍是当次冲穴临时辅助，不等于永久温养接口。
+
+`MeridianProgress v1→v2` 迁移按 `opened` ASCII 序执行，且幂等：为每个已开穴补穴位永久项（`grade=1,strengthLayer=1,strengthXp=0,fluxCap=5`）；一条脉第一次出现时补脉项（品阶取其已开穴品阶中位数，空集不建项；`strengthLayer=1,strengthXp=0,fluxCap=8+2×grade`）。已有合法项逐字段保留，非法范围拒绝迁移而非静默钳制；完成后写 `schemaVersion=2,lastAppliedMigration=2`。内容 `AcupointDef v1→v2` 与存档迁移互相独立，前者只补静态长度，后者只补永久强度 / 通量。
+
 玩家进度 YAML 与上列类型一一对应；示例表示已通肺经、任脉按序开到气海、正在冲任脉阴交，且尚未进入九转：
 
 ```yaml
-schemaVersion: 1
+schemaVersion: 2
 opened:
   - ap_shoutaiyin_zhongfu
   - ap_shoutaiyin_yunmen
@@ -1383,12 +1409,31 @@ opened:
   - ap_renmai_guanyuan
   - ap_renmai_shimen
   - ap_renmai_qihai
+meridianStats:
+  mer_shoutaiyin: { grade: 6, strengthLayer: 4, strengthXp: 20, fluxCap: 24 }
+  mer_renmai: { grade: 6, strengthLayer: 3, strengthXp: 10, fluxCap: 22 }
+acupointStats:
+  ap_shoutaiyin_zhongfu: { grade: 6, strengthLayer: 3, strengthXp: 10, fluxCap: 16 }
+  ap_shoutaiyin_yunmen: { grade: 6, strengthLayer: 3, strengthXp: 10, fluxCap: 16 }
+  ap_shoutaiyin_tianfu: { grade: 6, strengthLayer: 3, strengthXp: 10, fluxCap: 16 }
+  ap_shoutaiyin_xiabai: { grade: 6, strengthLayer: 3, strengthXp: 10, fluxCap: 16 }
+  ap_shoutaiyin_chize: { grade: 6, strengthLayer: 3, strengthXp: 10, fluxCap: 17 }
+  ap_shoutaiyin_kongzui: { grade: 6, strengthLayer: 3, strengthXp: 10, fluxCap: 17 }
+  ap_shoutaiyin_taiyuan: { grade: 6, strengthLayer: 4, strengthXp: 20, fluxCap: 18 }
+  ap_shoutaiyin_yuji: { grade: 6, strengthLayer: 4, strengthXp: 20, fluxCap: 18 }
+  ap_shoutaiyin_shaoshang: { grade: 6, strengthLayer: 4, strengthXp: 20, fluxCap: 18 }
+  ap_renmai_huiyin: { grade: 6, strengthLayer: 2, strengthXp: 10, fluxCap: 14 }
+  ap_renmai_qugu: { grade: 6, strengthLayer: 2, strengthXp: 10, fluxCap: 14 }
+  ap_renmai_zhongji: { grade: 6, strengthLayer: 2, strengthXp: 10, fluxCap: 15 }
+  ap_renmai_guanyuan: { grade: 6, strengthLayer: 2, strengthXp: 10, fluxCap: 15 }
+  ap_renmai_shimen: { grade: 6, strengthLayer: 3, strengthXp: 10, fluxCap: 16 }
+  ap_renmai_qihai: { grade: 6, strengthLayer: 3, strengthXp: 10, fluxCap: 16 }
 targets:
   ap_renmai_yinjiao:
     progressH: 417
     attemptOrdinal: 0
 turnCompleted: 0
-lastAppliedMigration: 1
+lastAppliedMigration: 2
 ```
 
 `completedMeridians` 和里程碑不落为独立权威字段：加载时由 `opened` 与内容表派生。可保存缓存以加速，但每次加载须与派生值比较，不一致则以派生值覆盖并记诊断。
@@ -1396,10 +1441,12 @@ lastAppliedMigration: 1
 
 ### 11.6 战斗只读投影构造
 
-`MeridianBattleProjectionV1` 是 §6.7 的具体交换值，不是第二份存档真值。构造器只接受已完成迁移和校验的 `MeridianProgress` 与当前 `MeridianDef[]`：
+`MeridianBattleProjectionV2` 是 §6.7 的具体交换值，不是第二份存档真值。构造器只接受已完成迁移和校验的 `MeridianProgress`、当前 `MeridianDef[]` 与 `AcupointDef[]`：
 
 ```text
 opened = unique(sortAscii(progress.opened))
+assert set(keys(progress.acupointStats)) == set(opened)
+project stats in ASCII id order; lengthUnit comes from AcupointDef
 completedMeridians = { m | every(ap in m.acupoints, opened.has(ap)) }
 completeAcupoints = sortAscii(union(m.acupoints for m in completedMeridians))
 smallCycle = {mer_renmai,mer_dumai} subsetOf completedMeridians
@@ -1411,7 +1458,7 @@ turns = progress.turnCompleted
 
 `openedAcupoints` 与 `completeAcupoints` 都是穴位集合，不输出一个全局 `meridianComplete` 布尔值；否则仅通一脉的玩家会被误当成 20 脉全通。21 初始化某节点时，以 `completeAcupoints.includes(acupointRef)` 得到其 `allMeridians` 布尔输入。三个周天布尔与 `turns` 必须从同一个不可变进度版本派生，禁止从面板 Buff 是否存在反推。
 
-构造函数不读取战斗 `battle` RNG，也不接收 / 返回 `water`、`capacity`、`flowBp`、`stagnationBp`、`backlog`、`ruptureDamage` 或 `sealLevel`。这些字段和 `MeridianFlowSnapshotV1` 唯一归 `design/21` §11–§12；战斗内恢复时必须恢复 21 快照，不得重建本投影覆盖现场状态。
+构造函数不读取战斗 `battle` RNG，也不接收 / 返回旧 `water/capacity`，或当前 `flowBp/stagnationBp/backlog/ruptureDamage/sealLevel`。这些运行字段和 `MeridianFlowSnapshotV2` 唯一归 `design/21` §11–§12；战斗内恢复时必须恢复 21 快照，不得重建本投影覆盖现场状态。
 
 ### 11.7 原子事务与确定性 RNG
 
@@ -1483,7 +1530,10 @@ ART-B-meridian 的图谱候选只完成艺术结构、标识和点位顺序自�
 | 稳冲 / 催冲 | 基准模式 / 高速高耗低成功模式 | §5.5 |
 | `MeridianDef` / `AcupointDef` / `CirculationDef` | 经脉、穴道、周天或转的内容实体 | §11.2–§11.4 |
 | `MeridianProgress` / `MeridianSessionSnapshot` | 本周目进度真值 / 单小时不可变结算快照 | §11.5 |
-| `MeridianBattleProjectionV1` | 从永久进度派生、供 21 初始化读取的战斗只读投影；不是存档真值 | §6.7、§11.6 |
+| 经脉 / 穴位永久强度 | `MeridianPermanentStat`：天地玄黄十二品 `grade` × 1–9 层 `strengthLayer`，另存经验与通量 | §11.5 |
+| 穴位静态长度 | `AcupointDef.lengthUnit`：穴前段长度唯一真值，1–12；路线只缓存 | §11.2、§11.4 |
+| 永久强化接口 | `MeridianTemperEffect`：单目标 `gradeUp/strengthXp/fluxFlat` 三个增量，至少一个大于 0 | §11.5 |
+| `MeridianBattleProjectionV2` | 从永久进度派生、供 21 初始化读取的战斗只读投影；不是存档真值 | §6.7、§11.6 |
 
 以上玩法术语和数据实体均为**（原创扩展）**。`mpNature`、属性 ID、Buff 原语及走火等级只引用 03、05、06，不在本文创建第二套定义。
 
@@ -1525,10 +1575,14 @@ ART-B-meridian 的图谱候选只完成艺术结构、标识和点位顺序自�
 | V15-13 | 同一 RNG 键重复结算结果一致；一次 session 要么完整提交成本、时间、进度、事件，要么全部不提交 | 失败 |
 | V15-14 | YAML 通过正式 schema；引用图无悬空边；迁移单出口、无环，且旧、新 ID 不得同时定义 | 失败 |
 | V15-15 | 20 脉走向、脏腑摘要、交会和借穴说明完成专门文献审校 | 警告（待考） |
-| V15-16 | `MeridianBattleProjectionV1` 的两数组去重并按 `ap_*` ASCII 升序；`completeAcupoints` 恰等于全部已通经脉的穴位并集；三个周天布尔与 `turns` 都可从同一进度版本复算 | 失败 |
-| V15-17 | 战斗投影不含未完成 `progressH/attemptOrdinal`，也不含 21 的 `water/capacity/flowBp/stagnationBp/backlog/ruptureDamage/sealLevel`；战斗调息不得写 `MeridianProgress` | 失败 |
+| V15-16 | `MeridianBattleProjectionV2` 的两数组去重并按 `ap_*` ASCII 升序；`completeAcupoints` 恰等于全部已通经脉的穴位并集；三个周天布尔与 `turns` 都可从同一进度版本复算 | 失败 |
+| V15-17 | 战斗投影不含未完成 `progressH/attemptOrdinal`，也不含 21 的旧 `water/capacity` 或当前 `flowBp/stagnationBp/backlog/ruptureDamage/sealLevel`；战斗调息不得写 `MeridianProgress` | 失败 |
 | V15-18 | 21 消费通脉 / 周天 / 九转时只提高强度输入；攻击 / 防守 / 速度仍受 22000 / 5000 / 13500 bp 硬界，静态奖励不得伪装成 `meridianCapacityBp/meridianFlowBp` 再算一次 | 集成失败 |
 | V15-19 | AR-18 四个动作穴 ID 各恰有一个定义；劳宫=PC8 / 手厥阴 / yin，合谷=LI4 / 手阳明 / yang，后溪=SI3 / 手太阳 / yang，外关=TE5 / 手少阳 / yang；不得另造同名 ID | 失败 |
+| V15-20 | 每个 `acupoint.v2.lengthUnit` 为整数 1–12；路线缓存值必须逐穴相等，路线总长只由其和派生 | 缺值、运行时默认、同穴异长或把 `segmentCt` 当长度均失败 |
+| V15-21 | `MeridianProgress v2` 的脉 / 穴项分别满足品阶 1–12、强度层 1–9、经验非负、通量 1–96 / 1–64；已开穴恰有穴项，出现穴的脉恰有脉项 | 失败 |
+| V15-22 | `MeridianTemperEffect` 仅含三个整数增量且至少一项 >0；结算后原子重算 03 资源，不能同时写永久资源百分比 | 失败 |
+| V15-23 | v1→v2 迁移按稳定顺序、幂等且只补缺项；重复迁移 hash 不变，非法旧值拒绝 | 失败 |
 
 ### 14.2 金标准测试用例
 
@@ -1550,12 +1604,15 @@ ART-B-meridian 的图谱候选只完成艺术结构、标识和点位顺序自�
 | T15-14 | 任督全通、奇经八脉全通、十二正经全通、第三转依次投影 | `smallCycle/greatCycle/twelveCycle=true`，`turns=3`；数组顺序固定；重建值逐字段相等 |
 | T15-15 | 战斗中对同一穴产生迟滞、胀损和 9 级点穴，再执行一次战斗调息 | 15 的投影与 `MeridianProgress` hash 不变；21 的单位实例独立变化；新战斗才按永久事实重新初始化 |
 | T15-16 | 查找劳宫 / 合谷 / 后溪 / 外关的 ID、标准代码、游戏经脉与性质 | 分别唯一得到 `PC8/手厥阴/yin`、`LI4/手阳明/yang`、`SI3/手太阳/yang`、`TE5/手少阳/yang`，总穴数仍为 180 |
+| T15-17 | 载入 180 个 `acupoint.v1` 后执行内容迁移两次 | 第一次全部补 `lengthUnit=1` 并升 v2；第二次内容 hash 不变；任一路线缓存同穴长度不等即失败 |
+| T15-18 | v1 进度仅开一个穴且无永久项；迁移两次 | 因旧档无品阶来源，穴项为默认 `1/1/0/5`，所属脉为 `1/1/0/10`，版本 / migration 均为 2；第二次 hash 不变 |
+| T15-19 | 对 6 品 / 3 层穴施加 `{gradeUp:1,strengthXp:1000,fluxFlat:4}` | 顺序得到 7 品、按阈值逐层升级且剩余经验确定、通量 `min(64,old+4)`；同事务重算 03 资源一次 |
 
 T15-06 的边界特意覆盖闭区间：失败余量 2,499 属第二行，2,500 才进入走火 2 级。完整实装还须跑 04 的无经脉／第零转／满九转三档 TTK 回归和 06 的被动事件回放**（待实测）**。
 
 ### 14.3 文档与发布闸门
 
-1. 内容变更后重跑 V15-01～V15-18、T15-01～T15-15，并核对 §6.2、§7.3、§8.1、§10.1 四张总账。
+1. 内容变更后重跑 V15-01～V15-23、T15-01～T15-19，并核对 §6.2、§7.3、§8.1、§10.1 四张总账。
 2. 公式、属性或 Buff 变化时，联合 03/04/06 的既有测试；不能只验证 schema。
 3. 合并前检查 Markdown 表列、代码围栏、标题顺序、无占位文本，并扫描 `mer_ren|mer_du|mer_chong|mer_dai` 的运行态引用。
 4. 文化审校未完成时保留“待考”和借穴说明；不得为了让警告归零而删除边界标注。
@@ -1574,7 +1631,8 @@ T15-06 的边界特意覆盖闭区间：失败余量 2,499 属第二行，2,500 
 | D15-05 | `design/13` | 每本天书速率 +1%、成功 +50bp；按 §10.1 纳入每界成长预算 | **已解决：**13 §4.1 T12 已显式登记 `bookCount` 与 `+1%/+50bp` |
 | D15-06 | `design/14` | 采用 §10.4 的经脉图、六态节点、风险确认、周天环和减少动态效果方案 | **已解决接口：**14 §4.12、§5.6、§8.3 已接入；局部布局值仍待真机实测 |
 | D15-07 | `tech/04`、`tech/05` | 将 §11 schema、remap、keyed RNG、原子事务和 §14 闸门转为实现 | **已解决（规划接口）：**`tech/04` §3.8 已接正式 schema、短 ID remap 与校验门禁，`tech/05` §11.1 已接 keyed RNG、S0–S8 原子事务和事件；量产实现与完整 golden 仍待开发验收 |
-| D15-08 | `design/21`、`tech/05` | `MeridianBattleProjectionV1` 输出 `openedAcupoints/completeAcupoints/smallCycle/greatCycle/twelveCycle/turns`；容量 / 流畅度只由 21 换算 | **已解决（规划接口）：**见 §6.7、§11.6；生产构造器、跨语言对拍仍待实现 |
+| D15-08 | `design/21`、`tech/05` | `MeridianBattleProjectionV2` 输出开穴 / 通脉里程碑及逐脉 / 逐穴品阶、强度、`fluxCap/lengthUnit`；战斗动态只由 21 换算 | **已解决（规划接口）：**见 §6.7、§11.6；生产构造器、跨语言对拍仍待实现 |
+| D15-09 | `design/03`、`design/10`、tech/04–05 | `MeridianTemperEffect` 三增量与 v1→v2 迁移；强化后原子重算资源 | **已解决（本文接口）**：§11.5、V15-21～23；具体物品投放与实现仍交归属文档 |
 
 ### 15.2 本文依赖的上游事实
 
@@ -1587,7 +1645,7 @@ T15-06 的边界特意覆盖闭区间：失败余量 2,499 属第二行，2,500 
 | `design/06` | Buff 生命周期、已有伤势/走火 ID、事件与效果原语 | §5、§6、§7、§10.3 |
 | `design/10`、`design/11` | 丹药辅助槽；安全点、1 游戏小时时钟与普通打坐边界 | §5 |
 | `design/13` | 天书数、书眠、轮回、天劫、终局和历史最高转数 | §4、§7、§9–§10 |
-| `design/21` | 战斗节点初始化、容量 / 流畅度换算、独立攻防乘区、护体内劲、经脉速度与每单位实例 | §0.2、§6.6–§6.7、§8、§10–§11 |
+| `design/21` | 战斗节点初始化、宽度 / 长度消费、在途气与流畅度、独立攻防乘区、护体内劲、经脉速度与每单位实例 | §0.2、§6.6–§6.7、§8、§10–§11 |
 | AR-02、AR-03 与 G1 | 内力性质、术语校正、穴数范围、跨书界保留及默认确认 | 全文 |
 | AR-14 作者决定 | 经脉攻防独立乘、护体内劲及轻功按经脉运行；具体曲线与硬界由 21 唯一定义 | §6.6–§6.7、§8、§11 |
 
@@ -1600,6 +1658,7 @@ T15-06 的边界特意覆盖闭区间：失败余量 2,499 属第二行，2,500 
 | M1-P03 | 基准 §3 的“永久增益跨书界保留”明确包含 `opened/progressH/turnCompleted`；同时注明轮回只留历史最高转数、不恢复奖励 | 区分同周目书眠与结局后多周目，落实 AR-03c |
 | M3-P04（沿用 21 提案） | 基准 §18 明确 15 唯一拥有永久拓扑 / 修炼事实，21 唯一拥有战斗动态、攻 / 防 / 轻功路线、护体内劲、控制严重度与调息 | 本文已按该边界输出只读投影；需由 v1.3 正式登记，且该提案取代旧 M2-P02 的 Z3 口径 |
 | NYY-P01（沿用 21 提案） | 基准登记内功按主修经脉定阴阳、路线按体段定性质及掌法动作出口 | **已采纳（Canon v1.8 V18-01～04）**；本文只复核穴位标准归经，算法唯一见 `design/05` §5.3、`design/21` §2.4 / §4.3.1 |
+| QI15-P01 | Canon / tech schema 登记逐脉 / 逐穴天地玄黄十二品 × 1–9 强度、`fluxCap` 与穴位 `lengthUnit`，并以 `MeridianProgress v2` 为永久真值 | AR-19 明定经脉 / 穴位强弱、通量与长度；避免战斗路线各存第二份真值 |
 
 基准 §6 无需新增属性：内劲 `Qi` 和关隘 `H` 是计算中间量，不能进入角色面板；奖励全部使用 03 已有属性。若后续把二者做成可装备、可交易资源，应作为新提案审议，不能沿用本文定义。
 
@@ -1623,5 +1682,6 @@ T15-06 的边界特意覆盖闭区间：失败余量 2,499 属第二行，2,500 
 | O15-04 | **已解决：**15 个新被动尚未进入正式 Buff registry | 15 项均已在 `design/06` §8.13 收录；内容构建继续对悬空引用报错 | `design/06`、`tech/04` |
 | O15-05 | 满九转真实 TTK 与资源循环是否越线 | 先采用 §8 的一阶估算与红线；实装后跑三档完整模拟，不合格时优先下调触发收益 | `design/04`、`design/06`、`tech/05` |
 | O15-06 | 20 脉与 180 穴的文化审校尚未完成 | 保留 §12 的非医疗声明、交会/借穴区分和全部待考标记 | 内容审校 |
-| O15-07 | `MeridianBattleProjectionV1` 是否在生产存档中物化 | 默认不物化，只在 `createBattle` 从 `MeridianProgress` 派生；若为性能缓存，必须带进度版本并逐次校验 | `tech/05` |
+| O15-07 | `MeridianBattleProjectionV2` 是否在生产存档中物化 | 默认不物化，只在 `createBattle` 从 `MeridianProgress` / `AcupointDef` 派生；若为性能缓存，必须带两者版本并逐次校验 | `tech/05` |
 | O15-08 | **已解决：**AR-18 使用的劳宫、合谷、后溪、外关是否缺穴或归经错误 | 四穴均复用 §3 既有唯一 ID，标准代码及阴阳见 §2.1 复核，无需新增 | `design/21` 消费 |
+| O15-09 | 180 穴的最终 `lengthUnit` 是否逐穴差异化 | 默认迁移后全为 1；后续数值审校可在 1–12 内逐穴改 v2 内容，改动须重跑全部路线旅行时间 golden | `design/15`、`design/21` |

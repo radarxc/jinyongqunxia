@@ -1,9 +1,9 @@
 # 09 · 战斗系统（Combat System）
 
 > **归属**（基准 §18）：战斗流程、六角格战场与范围模板、集气时间轴、行动经济、招式施放流程、反应机制（招架/反击/连击/援护/合击）、阵法、倒地与伤势、AI、Boss 机制、大规模战斗、战斗奖励流程、战斗难度与失败保护。
-> **版本**：v1.5（经脉落地终审，2026-09-29）；v1.4（AR-16 外放范围、选目标与 AI 接线，2026-09-28）；v1.3（绝招共享节奏与经脉 Buff 迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）。
-> **上游**：`decisions/author-requirements.md`（AR-02 阴阳、AR-03 冲穴、AR-12 六角格战棋、AR-14 经脉运行、AR-16 外放加持）、`decisions/author-decisions.md`（G1、P42–P47）、`00-canon.md` v1.5（§1 就地开战、§3 境界、§5 节奏目标、§6 属性、§8 战斗模型、§9 乘区、§10 Buff 基础、§11 轻功阈值、§20 装配栏）、`design/06-buff-system.md` v1.4、`design/21-meridian-flow-and-moves.md` v2.3。AR-12、AR-14、AR-16 与绝招追加规则均已由基准吸收；本文只承接战斗执行。
-> **引用而不重定义**：属性、基础轻功值、体力、气势、护体真气与社交检定 → `design/03-attributes.md`；伤害/命中/招架/暴击/效果命中/治疗公式、Z0–Z10 与逐乘区取整 → `design/04-damage-formula.md`；招式字段、收招 `recovery`、蓄招、绝招、位移、易运、分心二用、合击武学、实战武学经验 → `design/05-martial-arts-system.md`（六角范围模板及枚举唯一归本文 §5）；Buff 钩子、原语、叠加、结算段 S/A/E、攻击管线 P1–P8、控制递减与 Boss 豁免 → `design/06-buff-system.md`；套装 → `design/07`；六角地形、通行成本、高差、坠落/落水、轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗经脉运行、攻/防/轻功路线、经脉独立乘区、护体内劲、擒拿/点穴 1–9 级与调息 → `design/21-meridian-flow-and-moves.md`；永久穴脉、冲穴、周天与九转 → `design/15-meridians-and-acupoints.md`；物品、暗器、弹药、丹药、毒药、机关与投掷物 → `design/10-items-and-equipment.md`；巡逻、昼夜天气、区域等级 → `design/11`；羁绊、门派、声望/品德 → `design/12`；角色经验、Boss 经验系数、难度模式与结局 → `design/13-progression-and-endings.md`；手机 UI 布局 → `design/14`；武运、敌人品阶骰、掉落池、难度 D 映射 → `design/02-timeline-and-world-tiers.md`；渲染与精灵朝向 → `tech/02-rendering.md`；命令/事件、RNG 分流、Worker 与存档 → `tech/01`、`tech/05`。
+> **版本**：v1.6.1（AR-19 换路聚气与满载判定收口，2026-10-01）；v1.6（AR-19 tick 产气、急性聚气与完整周天，2026-10-01）；v1.5（经脉落地终审，2026-09-29）；v1.4（AR-16 外放范围、选目标与 AI 接线，2026-09-28）；v1.3（绝招共享节奏与经脉 Buff 迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）。
+> **上游**：`decisions/author-requirements.md`（AR-02 阴阳、AR-03 冲穴、AR-12 六角格战棋、AR-14 经脉运行、AR-16 外放加持、AR-19 单位时间运气与聚气）、`decisions/author-decisions.md`（G1、P42–P47）、`00-canon.md` v1.8（§1 就地开战、§3 境界、§5 节奏目标、§6 属性、§8 战斗模型、§9 乘区、§10 Buff 基础、§11 轻功阈值、§20 装配栏）、`design/06-buff-system.md`、`design/21-meridian-flow-and-moves.md` v2.8.1。AR-19 高于基准中旧等级 / 单招注水口径；本文只承接战斗执行。
+> **引用而不重定义**：属性、无状态 `Cb/Ce` 兼容档、基础轻功值、体力、气势、护体真气与社交检定 → `design/03-attributes.md`；伤害/命中/招架/暴击/效果命中/治疗公式、Z0–Z10 与逐乘区取整 → `design/04-damage-formula.md`；招式字段、收招 `recovery`、蓄招、绝招、位移、易运、分心二用、合击武学、实战武学经验 → `design/05-martial-arts-system.md`（六角范围模板及枚举唯一归本文 §5）；Buff 钩子、原语、叠加、结算段 S/A/E、攻击管线 P1–P8、控制递减与 Boss 豁免 → `design/06-buff-system.md`；套装 → `design/07`；六角地形、通行成本、高差、坠落/落水、轻功门禁 → `design/08-terrain-and-qinggong.md`；战斗经脉运行、攻/防/轻功路线、经脉独立乘区、护体内劲、擒拿/点穴 1–9 级与调息 → `design/21-meridian-flow-and-moves.md`；永久穴脉、冲穴、周天与九转 → `design/15-meridians-and-acupoints.md`；物品、暗器、弹药、丹药、毒药、机关与投掷物 → `design/10-items-and-equipment.md`；巡逻、昼夜天气、区域修为档 → `design/11`；羁绊、门派、声望/品德 → `design/12`；旧角色经验迁移、难度模式与结局 → `design/13-progression-and-endings.md`；手机 UI 布局 → `design/14`；武运、敌人品阶骰、掉落池、难度 D 映射 → `design/02-timeline-and-world-tiers.md`；渲染与精灵朝向 → `tech/02-rendering.md`；命令/事件、RNG 分流、Worker 与存档 → `tech/01`、`tech/05`。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术版本、API 或限额尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖他文档、本文先给出可用数值并在 §16 登记。
 > **v1.2 变更摘要**：依 AR-12 将战场从方格改为 pointy-top 六角格，确立轴/立方坐标、六向朝向、轻功移动力与首轮排序；把点、环、面、扇形范围模板及预算迁入本文；补齐运劲、战斗道具与作者点名 Buff 接口；同时按 C06/C12/C13/C20、`design/04` 定稿和 G1 作者决定审校原有反应、阵法、奖励、难度与数据契约。
 > **2026-09-27 变更摘要**：按 `design/21` v2.0 接入逐单位经脉实例、速度投影、攻防路线提交、护体内劲 settle、路线 CT、调息、解穴/挣脱与 AI 预览；不在本文复制经脉公式。
@@ -11,6 +11,8 @@
 > **v1.4 变更摘要**：接入 AR-16 的逐招外放档：按命令锁定 0 / 1 / 2 档，确定性生成扩大后的射程与六角范围，复用既有遮挡 / 地形裁剪；补齐选目标重验、额外耗内、敌我同规与 AI 多目标评分。
 > **v1.5 变更摘要（经脉落地终审，2026-09-29）**：冻结外放反击架势只扩大反击命中范围、音功 0 档与 1–2 档的表现 / AI 口径；把多人首领整场耐久与具名 Boss 固定种子回放并入生产验收，并补 `freshTurnToken` 时序字段与地位下限兜底仅供估算的口径。
 > **变更记录：经脉落地终审（2026-09-30）**：统一固定整数 / 比例分配与余数规则；接入 `commandPrefix` 摘要域，澄清洪安通静态画像与遭遇 HP；复核东方不败 122,626、绝招冷却字段及 AR-18 性质消费边界。
+> **变更记录（2026-10-01，AR-19）**：明确 `battleTick` 同时推进行动槽与丹田产气 / 在途气；满槽新增“行动 / 急性聚气”二选一，聚气跳过本回合但保留并继续积气；接入完整周天暴击事实事件。
+> **变更记录（2026-10-01，AR-19 收口）**：聚气 `routeRef` 只切换后续注入路线，旧路线气包继续推进；满载但周天未完仍可聚气，只有气量与完成度均无增长空间才拒绝。
 
 ---
 
@@ -113,7 +115,7 @@
    │
 [S8 战后处置]  §7.4、§7.8：onBattleEnd（06）→ 伤势 / 跨战 Buff → 战后至少一次经脉调息（21 §10.2）→ 销毁战斗经脉实例 → 俘虏处置
    │
-[S9 奖励]      §11：经验、武学经验、掉落、声望、品德、顿悟判定（05 §8.6）
+[S9 奖励]      §11：武学 / 经脉 / 资质成长、掉落、声望、品德、顿悟判定（05 §8.6）
    ▼
  探索中（或剧情 / 败北分支 / 重试）
 ```
@@ -122,8 +124,8 @@
 
 - `createBattle` 在单位按 `unitIndex` 稳定排序后，为每个**可独立行动**的我方人物、普通敌、精英、Boss、武学型召唤物与武学型环境行动者各调用一次 21 的 `MeridianFlowFactory.initialize`；纯投影、阵法虚位、战阵内部成员及纯地形伤害不建实例。
 - `BattleState.meridianByUnit` 以 `unitId` 对应恰好一个 `MeridianFlowModule`。同模板敌人可共享只读基底，但 `MeridianNodeRuntime`、防守预置、速度投影、擒拿与点穴镜像绝不共享。
-- 开场读取 15 的永久经脉快照和 13 已结算的 `effGrade/effLayer`；战斗模块不推进永久冲穴。成功命令中的路线状态与 Core 唯一 `battle` RNG 同事务提交，失败或回滚时二者一起复原。
-- 每次 `battleTick` 对仍在场且拥有实例的单位按 `unitIndex` 调 21 `tick`；进入 `offgrid` 前不推进，倒地或离场后停止。存档 / 录像检查点保存每单位 `MeridianFlowSnapshotV1` 及 BattleSession 唯一 RNG 状态，战后只按 21 的规则处理临时态。
+- 开场读取 15 的永久经脉快照和 05 / 13 已结算的 `effGrade/practiceLayer1To9`；战斗模块不推进永久冲穴。成功命令中的路线状态与 Core 唯一 `battle` RNG 同事务提交，失败或回滚时二者一起复原。
+- 每次 `battleTick` 对仍在场且拥有实例的单位按 `unitIndex` 调 21 `tick`；进入 `offgrid` 前不推进，倒地或离场后停止。存档 / 录像检查点保存每单位 `MeridianFlowSnapshotV2` 及 BattleSession 唯一 RNG 状态，战后只按 21 的规则处理临时态。
 - 本文只调度 21 的 `preview/commit/projectSpeed/settleInnerGuard/applyAcupointSeal/applyGrapple/regulateBreath/tick/snapshot/restore`；`FlowResult`、`MeridianProfile`、`MeridianSpeedResult`、`BreathResult` 的字段与取整均以 21 §12.3 为准。
 
 ### 1.5 单位生命周期状态（`unit.state`）
@@ -141,7 +143,7 @@
 | `fled` | 撤离 / 溃逃出场（§4.8.7、§8.7） | 否 | 否 | 否 | 是 |
 | `plunged` | 坠崖离场（进入虚空格，08 §5.4）：敌方普通 / 精英视为击败，Boss 免疫（停在边缘改受撞击）；我方离场不算死亡，战后归队 | 否 | 否 | 否 | 是 |
 
-- "击倒"（03 §5.4 的"击杀"）= 使敌方单位进入 `downed`/`surrendered`/`captured`/`plunged` 之一；气势 +15、击倒奖励、06 的 `onKill` 均按此口径（`plunged` 记给造成位移者；精英坠崖的经验与掉落 ×0.5，普通敌人非任务掉落 50% 随之遗失，08 §5.4）。
+- “击倒”（03 §5.4 的“击杀”）= 使敌方单位进入 `downed`/`surrendered`/`captured`/`plunged` 之一；气势 +15、击倒奖励、06 的 `onKill` 均按此口径（`plunged` 记给造成位移者；精英坠崖的具体成长收益与掉落 ×0.5，普通敌人非任务掉落 50% 随之遗失，08 §5.4）。
 - 阵营 `side`：`player`（玩家可操控）、`ally`（AI 控制的友军）、`enemy`、`neutral`（平民、无关者）。`player` 与 `ally` 互为友方。
 
 ---
@@ -187,7 +189,7 @@
 | 敌群自背后追上主角，且主角处于：休息 / 打坐 / 对话结束 2 s 内 / 疲惫 `bf_pibei` / 逃离同一遭遇后 10 s 内 | 被偷袭 `ambushed` |
 | 主角踏入伏兵（`hidden` 刷新点，`design/11` 与 chapters 配置）的触发区 | 被偷袭 `ambushed`（可被识破，§2.3） |
 
-- **威压回避**：敌人等级 `L ≤ Ld − 10`、非受制（`bf_shouzhi`）、非具名时，不主动追击主角；主角主动接触时弹出"速战"选项（§10.7）。
+- **威压回避**：敌人有效修为档 `Ce_enemy ≤ Ce_party − 10`、非受制（`bf_shouzhi`）、非具名时，不主动追击主角；主角主动接触时弹出"速战"选项（§10.7）。`Ce` 由 03 从武功 / 经脉快照派生，不是人物等级。
 - **撤退冷却**：从某遭遇撤退后（§4.8.7），该敌群 10 s 内不会再次触发接触，主角在地图上获得 3 s 无碰撞。
 
 ### 2.3 偷袭与被偷袭
@@ -231,7 +233,7 @@ D_local   = 区域局部难度（02 §3.3 localDifficulty；缺省为书界 D）
 1. 若区域标签 `stronghold`（山寨、据点），先放 1 名头目。
 2. 其余名额逐个生成：每个名额以 `p_elite = 2% + 0.13% × W`（02 §2.10）判精英，否则普通；预算不足 3 时不再判精英。
 3. 野外敌群精英 ≤ 1（区域标签 `perilous` 险地 ≤ 2）；敌群人数 2–6。
-4. 等级：区域等级带（`design/11`）内逐个 ±2；武学品阶按 02 §2.11 品阶骰。
+4. 修为档：区域 `cultivationBand`（`design/11` 待由旧等级带迁移）内逐个 ±2，再按 03 从生成出的武功 / 经脉模板复算 `Cb/Ce`；武学品阶按 02 §2.11 品阶骰。
 5. 精英词条数 = `⌊D/3⌋`（02 §3.3），按下表权重无放回抽取。
 
 **精英词条目录 `ea_*`**（原创扩展；全部以 06 现有 Buff 或 03 修饰器实现）：
@@ -249,7 +251,7 @@ D_local   = 区域局部难度（02 §3.3 localDifficulty；缺省为书界 D）
 | `ea_shixue` | 嗜血 | 常驻 `bf_shixue` | 6 | |
 | `ea_poji` | 破击 | `Z2` 防御穿透 +20%（同 `bf_toujin` 族，计入 `fam_z2` 上限 60%） | 6 | |
 | `ea_houfa` | 后发 | 常驻 `bf_houfa` | 5 | 高武书界权重 ×1.5 |
-| `ea_yuanjun` | 援军 | 首次 `hp ≤ 50%` 时从最近场边召来 2 名同势力普通敌人（等级 −2） | 4 | 受 06"召唤物 ≤ 3" |
+| `ea_yuanjun` | 援军 | 首次 `hp ≤ 50%` 时从最近场边召来 2 名同势力普通敌人（`cultivationBand −2`，最低 1） | 4 | 受 06“召唤物 ≤ 3” |
 
 ### 2.5 切磋（非死斗）
 
@@ -261,7 +263,7 @@ D_local   = 区域局部难度（02 §3.3 localDifficulty；缺省为书界 D）
 | 默认禁用 | 带 `poison`/`gu` 标签的招式与物品、暗器、带 `hpCost` 的代价型招式、`friendlyFire: all` 的招式；UI 灰显并注"切磋禁用" |
 | 江湖规矩例外 | 对方为邪派（`morality ≤ −40`）时其自身可能开启 `allowFoul`（chapters 配置），玩家一方仍受禁 |
 | 结束处理 | 双方移除全部非永久 Buff（不跨战斗，覆盖 06 的 `persist`）；`hp = max(hp, 50% hpMax)`、`mp = max(mp, 50% mpMax)`；无伤势 |
-| 奖励 | 无掉落；角色经验 ×0.5；武学经验正常（与师父切磋按 05 §8.4"喂招"：该武学份额 ×2、无视单场上限一次）；观摩计 3 次（05 §7.4）；好感变化归 12 |
+| 奖励 | 无掉落；AR-19 后不发角色经验；武学经验正常（与师父切磋按 05 §8.4“喂招”：该武学份额 ×2、无视单场上限一次）；观摩计 3 次（05 §7.4）；好感变化归 12 |
 | 输 | 无惩罚；被挑战方输给主角时，主角对其好感事件由 12 定 |
 
 ### 2.6 擂台与比武
@@ -481,21 +483,25 @@ S = 2.0*standRatio + 1.0*reachScore
 | 行动阈值 | `ct ≥ 1000` | 基准 §8 |
 | 收招 `rec` | 行动结束（06 E6）时 `ct := ct − rec_eff`（§3.4） | 基准 §8；05 `recovery` |
 | 冻结 `ctFrozen` | 为真时该单位推进增量为 0（§3.5） | 本文 |
+| `productionPerTick` | 每个 `battleTick` 的丹田产气；只由当前主运心法基础产气 × 1–9 熟练层曲线决定 | 21 §2.5 |
+| `qiSpeedBp` | 运气速度；决定气走完路线长度所需 tick，不等于 `spd` | 21 §2.5 |
+| `dantianQi/routeInFlightQi/totalInFlightQi` | 已产未入路 / 所选路线气量 / 单位全部路线气量；行动槽充能时同步增长，至三级承载上限停止 | 21 §2–§3 |
 
 `baseSpd` 必须由轻功值主导。属性派生唯一见 03 §4.3；本文只复列战斗核心消费的同式，便于时间轴实现：
 
 ```text
-Base_spd = 72 + 0.30*agi + 0.10*Ld + 0.14*qinggong
+Base_spd = 72 + 0.30*agi + 0.10*Ce + 0.14*qinggong
 baseSpd = clamp(floor((Base_spd + sum(flat_spd)) * max(0.2,1 + sum(pct_spd)) * product(mult_spd)), 30, 300)
 speed = MeridianFlowModule.projectSpeed({self, fieldReference, grappleMoveBp, sealed, ruptured})
 spd = speed.spd
 ctGain = spd
 ```
 
-- `qinggong` 本身已综合身法、等级、轻功武学、资质、装备、主运内功和装备负重（03 §4.5），在可成长项中贡献最大；不得再把 `Q_skill` 单独加进 `spd`，否则同一轻功被计算两次。
-- 基础派生的取整点只有一次：先合成所有 flat、pct 与独立 `mult`，最后向下取整并钳制。按 03 §3.5 / §4.9 的现行**合法 STD 高武线**精确输入重算：Lv1 `agi=50.408,qinggong=30.932`，`baseSpd=91`；Lv35 `agi=58.576,qinggong=97.794`，`baseSpd=106`；Lv70 因普通鞋按 `gGear=min(gref,9)` 封顶，`baseSpd=126`。旧值 127 使用了未封顶 11 品普通鞋，不能作为验收锚点。
+- `Ce` 是 03 §3.0 从武功 / 经脉事实无状态派生的兼容表档，不是人物等级。`qinggong` 本身已综合身法、`Ce`、轻功武学、资质、装备、主运内功和装备负重，在可成长项中贡献最大；不得再把 `Q_skill` 单独加进 `spd`，否则同一轻功被计算两次。
+- 基础派生的取整点只有一次：先合成所有 flat、pct 与独立 `mult`，最后向下取整并钳制。按 03 §3.5 / §4.9 的现行**合法 STD 兼容夹具**精确输入重算：`Ce1` 的 `agi=50.408,qinggong=30.932`，`baseSpd=91`；`Ce35` 的 `agi=58.576,qinggong=97.794`，`baseSpd=106`；`Ce70` 因普通鞋按 `gGear=min(gref,9)` 封顶，`baseSpd=126`。旧值 127 使用了未封顶 11 品普通鞋，不能作为验收锚点。
 - 经脉修正只消费 21 已归一的 `MeridianProfile`，不得再传或混入原始 `routeQualityBp`。21 先求 `meridianSpeedBp∈[6500,13500]`，再乘 1–8 级擒拿的 `grappleMoveBp` 得 `combinedSpeedBp`，最终 `spd=floor(baseSpd×combinedSpeedBp/10000)` 并钳制。纯经脉 `evadeRatingDelta` 只取 `meridianSpeedBp`；擒拿的 `evadeBp` 由 04 / 06 另算一次。
 - `spd` 决定首轮之后的长期行动频率；首轮严格用 `openingQinggong` 排序（§3.3）。经脉状态变更只把速度缓存置脏，在下一次 CT 推进前重算，不追溯已积累的 CT。
+- “人物速度”在 AR-19 中就是 `ctGain=spd`；“产气速度”是 `productionPerTick`。两者共享 `battleTick`，但互不代换：快人物行动更频繁，不会凭空提高一份内功每 tick 的产气。
 
 #### 3.1.1 同场经脉速度参考
 
@@ -544,7 +550,7 @@ function nextActor(b: BattleState): TimelineEntry {
   if (!Number.isSafeInteger(dt) || dt < 1) throw new Error('INVALID_TIMELINE_DELTA');
   for (const u of A) u.ct += gain(u) * dt;
   if (b.env) b.env.ct += 100 * dt;
-  advanceMeridianTicks(b, dt);                                      // 按 unitIndex，等价逐 tick 调 21 tick
+  advanceMeridianTicks(b, dt);                                      // 产气 + 在途气推进；按 unitIndex，等价逐 tick
   b.tick += dt;
   return nextActor(b);                                              // 至多再递归一层
 }
@@ -558,7 +564,7 @@ function nextActor(b: BattleState): TimelineEntry {
 - `stalled` 不推进状态，只表示当前没有可推进的单位、环境行动或未来定时事件；调用方必须转入 §12.5 的僵局 / 胜负检查，禁止把 `Infinity` 写入 `ct` 或 `tick`。任何全场 `ctFrozen` 的阶段演出都必须同时登记解除冻结的 `TimedEvent`；`held` 由未被冻结的擒拿者行动计数解除。构建期与回放测试覆盖这两个不变量。
 - **环境时钟 `envTick`**（采纳 08 §7.4 的建议）：战场存在可演化的地形或地表状态（可燃物、燃烧、烟雾毒雾、冰封、急流 / 大江中的游水者、摇晃的桥与甲板、机关、剧情节拍）时，`b.env = { ct: 500 }`，否则为 `null`。环境 `spd` 恒为 100，不受任何 Buff、难度、`ctShift` 影响，行动后 `ct −= 1000`（无收招波动），其行动内容按 08 §7.4 的 N1–N6 顺序确定性执行。环境行动不是"回合"：不推进任何单位的 Buff 持续与冷却，不计入 `round`。时间轴上以一枚小的"环境"图标显示其下一次行动位置（§3.7）。
 - 08 中以"tick"为单位的地形时长（燃烧计时、冰封 `2 + ⌊g/3⌋`、机关 5 次复位、余烬 1）在战斗中一律指**环境行动次数**；探索中环境时钟按实时 2 秒一跳（08 §7.4）。
-- `advanceMeridianTicks` 只对已入场且未出局的经脉实例按 `unitIndex` 执行 21 `tick`；事件驱动实现可把“每 tick 清 `water`、`backlog−1`”等价批处理，但最终快照必须与逐 tick 结果一致。点穴 / 擒拿剩余时长由 06 的自身行动时钟投影，不能在此再递减一遍。
+- `advanceMeridianTicks` 只对已入场且未出局的经脉实例按 `unitIndex` 执行 21 `tick`；每 tick 依次产气、从出口向入口推进、注入并卸 1 点 backlog。事件驱动实现可批处理，但遇到承载封顶、堵塞、换路或定时事件边界必须切段，最终快照与逐 tick 完全相同。点穴 / 擒拿剩余时长由 06 的自身行动时钟投影，不能在此再递减一遍。
 
 ### 3.3 开战首轮与先手判定
 
@@ -598,6 +604,19 @@ UI 把首轮头像显示在独立“初阵”轨道并加轻功羽标；首轮�
 
 ### 3.4 收招
 
+#### 3.4.1 满槽选择与急性聚气（AR-19）
+
+正常单位首次达到 `ct≥1000` 时进入一个确定的选择窗：
+
+| 选择 | 结算 | 经脉结果 |
+|---|---|---|
+| 行动 | 进入既有 S/A/E 段，移动并施放招式 / 其他行动 | 出招按 21 释放已到出口的气；未释放在途气保留 |
+| 急性聚气 | A 段不移动、不出招、不付 MP / 气势；发 `battle/acuteQiGathered` | 不释放气；`routeRef` 只可切换后续注入，旧路线气包仍按原路推进 |
+
+急性聚气是“跳过本回合继续积攒”，收招固定 `rec_eff=1000`，即 E6 后 `ct:=clamp(ct-1000,-1000,999)`；它计一次正常自身行动，所以 Buff、冷却与 `round` 照 §3.6 推进，也移除首轮槽。硬控跳过不是聚气；自动战斗也必须显式选择，不能在没有合法攻击时偷偷聚气。`ctFrozen` 期间不推进 CT，但世界因其他单位而经过 tick 时，该单位仍按 21 产气；只有明确“岔气 / 封丹田”状态才暂停产气。
+
+提交字段为 `{t:'acuteQiGather', routeRef}`；`routeRef` 必须是当前已开通的 attack 路线。首次选路或改路只改变后续注入：旧路线在途气按 21 §2.5 / §18.5 继续运行，不退回丹田、不跨路线瞬移，新路线从丹田入口重新注入。即使气量已达 `unitQiHardCap`，只要所选路线已有气包且 `circulationBp<10000`，仍可聚气把周天跑完；仅当所选路线既不能增加气量、也不能提高完成度时返回 `QI_CARRY_FULL`。默认 AI 在 `circulationBp<10000` 且预计完整后 Z5M 收益 ≥1500 bp、自己两次行动前生存概率 ≥50% 时聚气；否则行动。玩家 HUD 显示“再聚 X tick 可周天 / 已达承载上限”。
+
 | 行动 | `rec_base` | 说明 |
 |---|---|---|
 | 招式 | 招式 `recovery`（05：700–1500，默认 1000） | 绝招默认 1200（05 §4.8） |
@@ -607,6 +626,7 @@ UI 把首轮头像显示在独立“初阵”轨道并加轻功羽标；首轮�
 | 运劲 | 调息 1000 / 护体 900 / 蓄力 1100 / 逼毒 1000 / 疗伤 1100 / 催轻功 1000 | §4.8.4 |
 | 防御 | 700 | §4.8.5 |
 | 待机 | 未移动 700 / 已移动 800；**连续第二次起 1000** | §4.8.6，防"刷行动" |
+| 急性聚气 | 1000 | 跳过本次行动，保留在途气并继续积攒；不视为待机 |
 | 援护 | 800 | §4.8.10 |
 | 撤退失败 | 1000 | §4.8.7 |
 | 口舌（劝降、激将、离间、奉承、激励） | 900 | §4.8.8 |
@@ -695,9 +715,9 @@ E6：ct := clamp(ct − rec_eff + pendingShift, −1000, 999)      // pendingShi
 
 **例 2：迟缓**：打狗棒法（天中 11，G 3.10）的"绊字诀"施加 `bf_chihuan`：`ct −310`。若目标在 `ct` 900 时被命中 → 590，`tta` 由 1 变为 5（spd 100）。若目标正处于收招中 `ct −400` → −710（下限 −1000）。
 
-**例 3：极速**：东方不败 `spd` 216（§8.11）对主角 121（Lv60 STD）。若两者都用标准收招 1000，首次从 0 集满分别需 `ceil(1000/216)=5` 与 `ceil(1000/121)=9` tick；长期忽略溢出离散误差时，频率比为 `216/121≈1.785`，即主角每行动一次，东方约行动 1.8 次。实际招式收招不同则按 `rec_eff/spd` 重算，不能固定套用 5/9。
+**例 3：极速**：东方不败 `spd` 216（§8.11）对主角 121（`Ce60` STD 兼容夹具）。若两者都用标准收招 1000，首次从 0 集满分别需 `ceil(1000/216)=5` 与 `ceil(1000/121)=9` tick；长期忽略溢出离散误差时，频率比为 `216/121≈1.785`，即主角每行动一次，东方约行动 1.8 次。实际招式收招不同则按 `rec_eff/spd` 重算，不能固定套用 5/9。
 
-**例 4：经脉速度与擒拿分层**：Lv35 基础 `effectiveQinggong=98, baseSpd=106, baseMove=6`。同档 Profile 得 `10000 bp`，仍为 `98/106/6/0`；强档 `meridianSpeedBp=12239` 得 `119/129/7/+22`；轻功路线被 9 级点穴硬封时按 21 上限 6500 得 `63/68/4/−35`。强档再受 5 级擒拿，`combinedSpeedBp=floor(12239×6000/10000)=7343`，输出 `71/77/5/+22`；最后的 `+22` 仍是纯经脉闪避评级差，擒拿的 7500 bp 闪避倍率只由 04 / 06 另算一次。
+**例 4：经脉速度与擒拿分层**：`Ce35` 兼容夹具的基础 `effectiveQinggong=98, baseSpd=106, baseMove=6`。同档 Profile 得 `10000 bp`，仍为 `98/106/6/0`；强档 `meridianSpeedBp=12239` 得 `119/129/7/+22`；轻功路线被 9 级点穴硬封时按 21 上限 6500 得 `63/68/4/−35`。强档再受 5 级擒拿，`combinedSpeedBp=floor(12239×6000/10000)=7343`，输出 `71/77/5/+22`；最后的 `+22` 仍是纯经脉闪避评级差，擒拿的 7500 bp 闪避倍率只由 04 / 06 另算一次。
 
 ---
 
@@ -811,7 +831,7 @@ reachable(P) = pathCost(P) <= move
 | 疲惫（`sta = 0`） | 体力回到 20% `staMax` 前不能纵跃、飞越（08 Q6、03 §5.3）；战斗中每次自身行动开始体力 +10（03） |
 | 骨伤 `bf_gushang` | 不能跃上 ≥ 2 级（08 Q7） |
 
-**例**：STD Lv35（`jump` 3，qg3）：一步跃上 3 级高台（移动点 1 + 2 = 3，体力 12），借壁可上 4 级院墙；无伤跳下 5 级、带伤跳下至 8 级；跨过 3 格宽的沟（移动点 4，体力 12）；飞越一名敌人（移动点 2 + 1 = 3，体力 4）。天龙开局（`jump` 0、qg0）只能走台阶、攀 1 级低坎（移动点 3）、无伤跳下 2 级。
+**例**：兼容 STD `Ce35`（`jump` 3，qg3）：一步跃上 3 级高台（移动点 1 + 2 = 3，体力 12），借壁可上 4 级院墙；无伤跳下 5 级、带伤跳下至 8 级；跨过 3 格宽的沟（移动点 4，体力 12）；飞越一名敌人（移动点 2 + 1 = 3，体力 4）。天龙开局（`jump` 0、qg0）只能走台阶、攀 1 级低坎（移动点 3）、无伤跳下 2 级。
 
 ### 4.4 控制区（ZOC）
 
@@ -923,13 +943,13 @@ reachable(P) = pathCost(P) <= move
 |---|---|---:|---|---:|
 | 调息 | `tiaoxi` | 0 | 先按本文立即回内并施加 `bf_tiaoxi`，再以来源内功的 21 `BreathProfile` 调用 `regulateBreath(mode:'battle')`；无内功用黄下 1 重兜底 | 1000 |
 | 护体 | `huti` | 玩家选 `m=10%/20%/30% mpMax` | 既有护盾照旧；若招式挂 `purpose:defense` 路线则提交并开启 21 护体内劲，至下次正常行动 | 900 + `flowCt` |
-| 蓄力 | `xuli` | `8% MPREF(Ld)` | 施加 `bf_xuli`，下一次来源内功允许的攻击招式 Z3 `+round(8%*G*innerScale(n),1%)`，至下次自身行动结束；上限 +25% | 1100 |
-| 逼毒 | `bidu` | `8% MPREF(Ld)` | 对自身执行 06 `circulate`，优先 `poison`，驱散 1 个效果或叠层 3 层；强度为来源内功 `effGrade`，不足时按 06 削品 | 1000 |
-| 疗伤 | `liaoshang` | `12% MPREF(Ld)` | 对自身或六角距离 1 友方执行 `circulate`，优先 `injury/bleed`；并回复 `hpMax*min(0.18,0.04*G*innerScale(n))`，受治疗公式；需来源内功开放该分支 | 1100 |
-| 催轻功 | `cuiqinggong` | `8% MPREF(Ld)` | 对自身施加 `bf_minjie` 2 次自身行动；该 Buff 的建议定义见 §7.0，移动力与下一次 CT 推进即时重算 | 1000 |
-| 化解异种真气 | `huajie` | `10% MPREF(Ld)` | `bf_yizhongzhenqi` −3 层（05 §9.1.3）；作为高级内功可声明的额外分支保留 | 1000 |
+| 蓄力 | `xuli` | `8% MPREF(Ce)` | 施加 `bf_xuli`，下一次来源内功允许的攻击招式 Z3 `+round(8%*G*innerScale(n),1%)`，至下次自身行动结束；上限 +25% | 1100 |
+| 逼毒 | `bidu` | `8% MPREF(Ce)` | 对自身执行 06 `circulate`，优先 `poison`，驱散 1 个效果或叠层 3 层；强度为来源内功 `effGrade`，不足时按 06 削品 | 1000 |
+| 疗伤 | `liaoshang` | `12% MPREF(Ce)` | 对自身或六角距离 1 友方执行 `circulate`，优先 `injury/bleed`；并回复 `hpMax*min(0.18,0.04*G*innerScale(n))`，受治疗公式；需来源内功开放该分支 | 1100 |
+| 催轻功 | `cuiqinggong` | `8% MPREF(Ce)` | 对自身施加 `bf_minjie` 2 次自身行动；该 Buff 的建议定义见 §7.0，移动力与下一次 CT 推进即时重算 | 1000 |
+| 化解异种真气 | `huajie` | `10% MPREF(Ce)` | `bf_yizhongzhenqi` −3 层（05 §9.1.3）；作为高级内功可声明的额外分支保留 | 1000 |
 
-`MPREF(Ld)` 引用 03 §3.5，而调息的回复按自身 `mpMax`。所有 MP 消耗在命令验证后先扣，向上取整，至少 1；内力不足则不可选。效果中的 `G` 是 04/05 的品阶系数。内功专属招式若已经定义不同数值，以专属招式为准，不与通用运劲重复叠加。
+`MPREF(Ce)` 引用 03 §3.5；`Ce` 只选兼容耗内参考行，而调息回复按自身 `mpMax`。所有 MP 消耗在命令验证后先扣，向上取整，至少 1；内力不足则不可选。效果中的 `G` 是 04 / 05 的品阶系数。内功专属招式若已经定义不同数值，以专属招式为准，不与通用运劲重复叠加。
 
 阴阳性质仅提供小幅共鸣，属于**原创扩展**：阳性来源的护体、蓄力最终强度 ×1.10；阴性来源的逼毒、疗伤 ×1.10；调和来源所有分支 ×1.05；不符合上述共鸣者倍率 1.00。倍率在上述基础量算完后乘，向下取整；不会改变驱散品阶。AR-02 要求每门内功只能是阴 / 阳 / 调和，不存在“中性内功”；招式伤害相性仍归 05/04，不能借运劲再乘 Z5。
 
@@ -970,14 +990,14 @@ AR-18 的内功性质只读取当前主运对应 `SkillDef` 的顶层 `nature`�
 
 | 分支 | `mode` | 目标 / 前提 | `DC` | 成功 | 失败 |
 |---|---|---|---|---|---|
-| 劝降 | `persuade` | 4 格内有视线的敌方非 Boss、非受制单位；且目标士气 ≤ 60 或 `hp ≤ 50%` | `30 + 0.5·L_t + 0.4·morale_t − 20·[hp_t ≤ 30%] − 10·[敌方已出局 ≥ 50%] + 15·[精英] + 30·[头目]` | 目标 `surrendered` 离场，计为击倒；品德 +1、声望 +1；战后可得情报或财物（12） | 目标士气 +10、获 `bf_ruiyi`（锐意）1 回合；3 次行动内不可再劝 |
-| 激将 | `provoke` | 4 格内有视线的敌方（Boss 可） | `40 + 0.5·L_t + 0.3·(wil_t − 50)` | 施加嘲讽 `bf_chaofeng` 1 回合（Boss 至多 1 回合，06 §11.4） | — |
-| 离间 | `sow` | 受制单位，或剧情标记 `wavering` 的单位 | `50 + 0.5·L_t`（剧情可改） | 目标转为 `neutral` 并撤离；脚本可附加效果（洪安通"宝训"−15，§8.9） | 目标士气 +5 |
+| 劝降 | `persuade` | 4 格内有视线的敌方非 Boss、非受制单位；且目标士气 ≤ 60 或 `hp ≤ 50%` | `30 + 0.5·Ce_t + 0.4·morale_t − 20·[hp_t ≤ 30%] − 10·[敌方已出局 ≥ 50%] + 15·[精英] + 30·[头目]` | 目标 `surrendered` 离场，计为击倒；品德 +1、声望 +1；战后可得情报或财物（12） | 目标士气 +10、获 `bf_ruiyi`（锐意）1 回合；3 次行动内不可再劝 |
+| 激将 | `provoke` | 4 格内有视线的敌方（Boss 可） | `40 + 0.5·Ce_t + 0.3·(wil_t − 50)` | 施加嘲讽 `bf_chaofeng` 1 回合（Boss 至多 1 回合，06 §11.4） | — |
+| 离间 | `sow` | 受制单位，或剧情标记 `wavering` 的单位 | `50 + 0.5·Ce_t`（剧情可改） | 目标转为 `neutral` 并撤离；脚本可附加效果（洪安通“宝训”−15，§8.9） | 目标士气 +5 |
 | 奉承 | `flatter` | 仅脚本开放 | 脚本定义 | 脚本定义（§8.9） | 脚本定义 |
 | 激励 | `rally` | 自身 3 格内的友方（含 AI 友军） | `40`（群战 +10） | 3 格内友方士气 +15、气势 +10 | — |
 | 罢斗 | `withdraw` | 仅脚本开放（聚贤庄，§8.10） | 无检定 | 主角一行退出战斗，结果 `retreat`；后果由脚本定义 | — |
 
-例：劝降一名 Lv40、士气 45、气血 25% 的普通敌人：`DC = 30 + 20 + 18 − 20 = 48`；主角口才 60、魅力 60 → `speech' = 62` → `P = 0.50 + 0.025 × 14 = 0.85`。
+例：劝降一名 `Ce40`、士气 45、气血 25% 的普通敌人：`DC = 30 + 20 + 18 − 20 = 48`；主角口才 60、魅力 60 → `speech' = 62` → `P = 0.50 + 0.025 × 14 = 0.85`。
 
 **效果触发的投降**（非口舌来源；回应 10 D-06②）：鸳鸯刀专属 `ue_yuanyangdao_2`「仁者无敌」（10 §5.2：普通敌人气血 ≤ 30% 时每回合开始 15% "弃械投降"）、剧情脚本、士气崩溃中的跪地求饶，统一走下列流程：
 
@@ -986,7 +1006,7 @@ AR-18 的内功性质只读取当前主运对应 `SkillDef` 的顶层 `nature`�
 | 判定时机 | 目标自身行动的 S 段末（06 S7 之后、A 段之前）；已被硬控跳过的行动也判定；走 `battle` 流 |
 | 资格 | 敌方**普通**单位（不含精英、头目、Boss、具名 NPC、战阵单位）；受制 `bf_shouzhi` 者不投降（06：锁定士气） |
 | 结果 | 兵器落在原格（可被缴获，§11.4），单位进入 `surrendered` 离场，本次行动作废；计为击倒（胜负条件、气势 +15 记给**装备持有者**；士气 −10 波及其 4 格内友方，§8.7） |
-| 奖励 | 经验按 13 §2.4.1（降服、劝降、俘获与击杀同为 ×1.0）；声望 +1、品德 +1（同劝降）；10 §5.2 已同步为引用同一经验口径 |
+| 奖励 | 生产不发角色经验；声望 +1、品德 +1（同劝降），并按正常击倒发具体武学 / 经脉成长。旧经验 ×1.0 只供 v2 回放 |
 | 表现 | 飘字"弃械投降"；日志注明来源（鸳鸯刀 / 脚本 / 士气） |
 
 #### 4.8.9 俘获
@@ -1074,7 +1094,7 @@ Z4M / Z5M、护体内劲的数学定义和硬界唯一见 21 §3.5、§4.8；本
 ```text
 rangeMaxProjection = move.range.max + [0, 2, 4][projectionStep]
 shapeProjection    = move.projectionSpreadSteps[projectionStep]
-projectionMpExtra = round(MPREF(Ld) × [0, 0.02, 0.04][projectionStep])
+projectionMpExtra = round(MPREF(Ce) × [0, 0.02, 0.04][projectionStep])
 ```
 
 `round` 沿用 §5.7 的非负四舍五入；这里只计算外放增量一次。旧 `bf_zhenqiwaifang` 与本档增量取较大者、不相加；其余独立 Buff、失明与居高修正再接到 `range.max_eff`，但 AR-16 自身贡献绝不超过基础 `range.max+4`。`range.min` 不变；外放不改变移动、兵器 `reach`、反击距离或路线 `flowCt`。
@@ -1260,12 +1280,12 @@ AF(N) = clamp(floor(rawAF(N)*20 + 0.5)/20,0.35,1.00)
 
 | 资源 | 计算 | 不足时 |
 |---|---|---|
-| 内力 | `mpUseTotal = max(1, round(mpCost × MPREF(Ld) × (1 + Σcost))) + projectionMpExtra`：`MPREF` 取 03 §3.5（STD `mpMax`：Lv1 213、Lv35 4,697、Lv70 28,887）；`Σcost` 为 06 `cost` 族（−50% ~ +100%）；绝招的 `mpCost` 已含"大阶基准 + 2%"（05 §4.8）。外放额外耗内按 §5.2.1 独立四舍五入后相加，不再套 `Σcost` | 总额不足则所选档灰显；普攻 `mv_basic_strike` 永远可用 |
+| 内力 | `mpUseTotal = max(1, round(mpCost × MPREF(Ce) × (1 + Σcost))) + projectionMpExtra`：`MPREF` 取 03 §3.5（兼容 STD `mpMax`：`Ce1/35/70 = 213/4,697/28,887`）；`Σcost` 为 06 `cost` 族（−50% ~ +100%）；绝招的 `mpCost` 已含"大阶基准 + 2%"（05 §4.8）。外放额外耗内按 §5.2.1 独立四舍五入后相加，不再套 `Σcost` | 总额不足则所选档灰显；普攻 `mv_basic_strike` 永远可用 |
 | 气血 | `hpUse = round(hpCost × hpMax)`（05 代价型） | `hp ≤ hpUse` 时灰显（不能自杀） |
 | 气势 | 绝招 100（基准 §8） | 灰显 |
 | 弹药 | 暗器 1 份 | 灰显 |
 | 冷却 | `cd N`：此后 N 次自身行动不可用（§3.6）；"降龙大成"等冷却修正由 05 被动给出 | 灰显并显示剩余次数 |
-| 同门绝招共享冷却 | 每门已装配武学各有 `ultimateCooldown:0|1`；任一绝招在 F2 支付后置 1，时钟见 §3.6；不受 `cdMinus` 修改 | 同门全部绝招灰显并显示“本门绝招调息：1 次自身行动” |
+| 同门绝招共享冷却 | 每门已装配武学各有 `ultimateCooldown:0\|1`；任一绝招在 F2 支付后置 1，时钟见 §3.6；不受 `cdMinus` 修改 | 同门全部绝招灰显并显示“本门绝招调息：1 次自身行动” |
 
 禁用来源：穴位受封 `bf_xueweishoufeng` 按 `level` 与具体 `acupointRef` 投影——7 级禁用经过该节点的绝招，8 级禁内功招 / 护体 / 蓄力，9 级禁经过该节点的路线及全部运劲；经脉胀损 `bf_jingmaizhangsun` 的节点硬封按 21 预检；缴械 `bf_jiaoxie` 禁兵器类，封绝 `bf_miyun` 禁绝招，空手时禁整个兵器栏（05 §6.3）。`bf_jingqizhizhi` 与 `bf_jingmaizhangsun` 只是模块派生只读视图，不得由本流程 `applyBuff` 创建或重复扣数值。
 
@@ -1653,7 +1673,7 @@ Buff 到期或被驱散时同样重算。若失去轻功门禁后正站在树梢
 | ⑨ | 慈悲制服 | 造成此次击倒的武学带“慈悲 / 戒杀”被动，且目标不是 Boss、野兽或脚本禁制服单位：进入 `surrendered`，来源记为 `mercy`；玩家可在单场设置中关闭 | P47；catalog/skills-shaolin §1.3.2 |
 | ⑩ | 倒地 | 进入 `downed`（§7.2） | — |
 
-慈悲制服属于**非致死击倒**：照常满足击倒胜利条件并按 13 获得经验，可进入盘问、劝降或放走流程；不自动赋予品德奖励，也不覆盖 Boss 与剧情脚本的指定结局。单场开关缺省开启（P47），自动战斗继承该开关。
+慈悲制服属于**非致死击倒**：照常满足击倒胜利条件并获得与普通击倒同档的具体成长奖励，可进入盘问、劝降或放走流程；不发角色经验，不自动赋予品德奖励，也不覆盖 Boss 与剧情脚本的指定结局。单场开关缺省开启（P47），自动战斗继承该开关。
 
 ### 7.2 倒地的后果（战斗内）
 
@@ -1901,7 +1921,7 @@ combatScore  ：下表，本文所有
 | 锚点格 | +0.5 | Boss 脚本 `anchorTiles`（如洪安通的宝座高台，§8.9） |
 | 隐蔽 | +0.1 | t 处于敌方全部单位的视野之外（夜战、烟雾、暗处，08 §5.7）；仅 `ai_expert` 以上 |
 
-- 例：神雕·Lv40 暗器手（`arch_anqi`，`ai_expert`，`jump` 2）在城头 h6、最近敌人 h0：08 高差项按至多 4 级计 `4 × 6 × 1.5 = 36` → 0.36；遮蔽（垛口）`8 × 1.5 = 12` → 0.12；合计 0.48，高于城下平地的 0 → AI 会先上城头。若玩家方有击退招式且下回合能够到它：被击退下城 `excess = 6 − (1 + 2) = 3`，08 的"临渊"项 −25 → 0.23，AI 会改站离垛口一格、不临边的位置。
+- 例：神雕 `Ce40` 暗器手（`arch_anqi`，`ai_expert`，`jump` 2）在城头 h6、最近敌人 h0：08 高差项按至多 4 级计 `4 × 6 × 1.5 = 36` → 0.36；遮蔽（垛口）`8 × 1.5 = 12` → 0.12；合计 0.48，高于城下平地的 0 → AI 会先上城头。若玩家方有击退招式且下回合能够到它：被击退下城 `excess = 6 − (1 + 2) = 3`，08 的“临渊”项 −25 → 0.23，AI 会改站离垛口一格、不临边的位置。
 - 地形 AI 的 `aiHint`（08 §2.1：`hazardValue`、`coverValue`、`pushValue`）在关卡中覆写对应项。
 
 ### 8.7 士气与溃逃
@@ -1923,7 +1943,7 @@ combatScore  ：下表，本文所有
 | 字段 | 说明 |
 |---|---|
 | `id` | `bsc_<npc 拼音>_<场景拼音>`；`bs_*` 保留给书眠 Ink 节点（rulings-v1 §2） |
-| `npc` / `gen` / `level` / `hpMax` | NPC ID；生成方式 `full`/`template`（03 §10.1）；等级与气血按 03 口径 |
+| `npc` / `gen` / `cultivationBand` / `hpMax` | NPC ID；生成方式 `full`/`template`（03 §10.1）；兼容修为档与气血按 03 口径。旧 `level` 只在 v2 YAML 迁移时接受 |
 | `ai` | `{tier, personality, weights?, targetRules?}`：档位缺省取 02 §3.3（按局部难度） |
 | `zocRange` / `bulk` | 控制区半径（1/2）；是否不可被飞越 |
 | `gauges[]` | 场景资源槽 `gauge_*`：初值、上下限、UI、增减规则 |
@@ -2042,12 +2062,12 @@ combatScore  ：下表，本文所有
 
 **编组**（遭遇 `enc_08_shenlongdao`，脚本 `bsc_hongantong_shenlongdao`；剧情战，`noRetreat`，`onDefeat: retry`）
 
-| 单位 | 数量 | 模板 | 等级 | 要点 |
+| 单位 | 数量 | 模板 | `Ce` | 要点 |
 |---|---|---|---|---|
 | 洪安通 | 1 | Boss，`full` | 50（书界上限 44 + 6） | 静态 `hpMax` ≈ 71,300，本遭遇覆写为 `71300×0.85=60605`（§13.3）；`atkOut` ≈ 3,066、`defOut` ≈ 2,438、`spd=113`、`hit/eva` 161/131（03 §10.9：`floor((72+0.30×72+0.10×50+0.14×59)×1.06)=113`）；局部难度 8 → `ai_expert`；性格狡诈，覆写"自负"：仇恨项 `aggro ×2`（专打伤他最多的人） |
 | 洪夫人苏荃 | 1 | 头目，`full` | 46 | 美人三招；可倒戈（下） |
 | 五龙使 | 2 | 精英 | 44 | 精英词条 `⌊8/3⌋ = 2` 条 |
-| 教众战阵 | 3（+2 援军） | 战阵单位（§9.3，每阵 5 人，普通 Lv40–42） | — | 受制 `bf_shouzhi`：士气锁 100、不可撤退；专属行动"颂圣" |
+| 教众战阵 | 3（+2 援军） | 战阵单位（§9.3，每阵 5 人，普通 `Ce40–42`） | — | 受制 `bf_shouzhi`：士气锁 100、不可撤退；专属行动“颂圣” |
 
 参照：主角鹿鼎开局 `hpMax` 10,944、`atkOut` 1,713（03 §9.4）；洪安通单击约 23% 主角气血（未计 Z8 的 6 级境界差）。
 
@@ -2130,7 +2150,7 @@ UI：顶部宝训条标出 30 / 60 / 90 三条线；每次颂圣飘字"洪教主
 
 ### 8.10 Boss 示例二：萧峰（聚贤庄）——一对多
 
-**设计目标**：主角此时约 Lv24–28（天龙中段），萧峰 Lv35 是天龙最强者之一，**打不赢，也不该打赢**——锚点事件要求他被黑衣人救走。所以这不是"血量战"，而是"消耗战"：胜利条件是把萧峰拖到力竭（或压到 40% 气血），同时尽量少让群雄倒下。它同时是群战（§9）的样板：玩家队伍与 20 名左右群雄同场。
+**设计目标**：主角此时预期 `Ce24–28`（天龙中段），萧峰模板 `Ce35`，是天龙最强者之一，**打不赢，也不该打赢**——锚点事件要求他被黑衣人救走。所以这不是“血量战”，而是“消耗战”：胜利条件是把萧峰拖到力竭（或压到 40% 气血），同时尽量少让群雄倒下。它同时是群战（§9）的样板：玩家队伍与 20 名左右群雄同场。
 
 **原著依据**：乔峰身世揭破后，携重伤的阿朱赴聚贤庄求薛神医医治；游氏双雄与薛神医大宴群雄，欲共诛乔峰；乔峰与众人饮酒断义，而后独战群雄，力竭之际为黑衣人（后知为萧远山）救走。所用武功（是否以太祖长拳对敌）、在场人物与伤亡细节**待考**（另见 `design/05` 原著考据 K4）。
 
@@ -2138,9 +2158,9 @@ UI：顶部宝训条标出 30 / 60 / 90 三条线；每次颂圣飘字"洪教主
 
 **编组**（遭遇 `enc_01_juxianzhuang`，脚本 `bsc_xiaofeng_juxianzhuang`；剧情战，`noRetreat`，`onDefeat: branch`——败则萧峰突围，主角重伤，剧情照原著继续）
 
-| 单位 | 阵营 | 数量 | 等级 | 要点 |
+| 单位 | 阵营 | 数量 | `Ce` | 要点 |
 |---|---|---|---|---|
-| 萧峰 | enemy | 1 | 35 | Boss，`full`；`hpMax` ≈ 49,300（= Lv35 模板 Boss 41,103 × 1.2，03 §10.7，建议值，chapters/01 定）；降龙十八掌（天上 12，有效层 8，建议）、太祖长拳（黄上，"人强则强"，05 §13.5）、擒龙功 `sk_qinlonggong`（地上 9，catalog/skills-xiaoyao）；`spd` ≈ 118；脚本档位 `ai_expert` |
+| 萧峰 | enemy | 1 | 35 | Boss，`full`；`hpMax` ≈ 49,300（= `Ce35` 兼容模板 Boss 41,103 × 1.2，03 §10.7，建议值，chapters/01 定）；降龙十八掌（天上 12，有效层 8，建议）、太祖长拳（黄上，“人强则强”，05 §13.5）、擒龙功 `sk_qinlonggong`（地上 9，catalog/skills-xiaoyao）；`spd` ≈ 118；脚本档位 `ai_expert` |
 | 游氏双雄 | ally | 2 | 30 | 头目；聚贤庄主人 |
 | 少林高僧 | ally | 2 | 33 | 头目（出席者待考） |
 | 薛神医 | ally | 1 | 28 | 医者性格、`med 90`；萧峰不以其为目标（要他救阿朱） |
@@ -2183,10 +2203,10 @@ UI：顶部宝训条标出 30 / 60 / 90 三条线；每次颂圣飘字"洪教主
 
 **编组**（遭遇 `enc_05_heimuya`，脚本 `bsc_dongfangbubai_heimuya`；剧情战，`noRetreat`，`onDefeat: retry`；本战玩家可控上限 `partyLimit: 4`）
 
-| 单位 | 阵营 | 等级 | 要点 |
+| 单位 | 阵营 | `Ce` 校准档 | 要点 |
 |---|---|---|---|
-| 东方不败 | enemy | 64（书界上限 60 + 4，02 §3.1） | Boss，`full`；葵花宝典 `sk_kuihua`（天中 11，中武层数上限 9）；`hpMax=roundHalfUp(204,377×0.60)=122,626`（同级模板 Boss 的 `full` 合法下沿，以速度与闪避代替堆血；chapters/05 §12.4）；`spd` ≈ 216（身法 120、葵花"鬼魅身法"被动 +30%、Boss 模板 ×1.06 的推算）；`ai_expert`，覆写 `w_pos 1.5`（永远找背击位） |
-| 杨莲亭 | enemy（非战斗） | 40 | `hpMax` ≈ 8,000；谨慎性格，只移动、躲到东方身后或屏风后，不出手 |
+| 东方不败 | enemy | `Ce64`（`capExempt`：书界上限 60 + 4，02 §3.1） | Boss，`full`；葵花宝典 `sk_kuihua`（天中 11，中武层数上限 9）；遭遇耐久目标 `hpMax=122,626`（旧兼容模板算式 `roundHalfUp(204,377×0.60)` 仅校准目标；生产须先按 03 §5.1 从实配武功 / 经脉求根值，再以显式 Boss `hpMax` 修饰达到该目标，不能把 `Ce64` 当资源来源）；`spd` ≈ 216（身法 120、葵花“鬼魅身法”被动 +30%、Boss 模板 ×1.06 的推算）；`ai_expert`，覆写 `w_pos 1.5`（永远找背击位） |
+| 杨莲亭 | enemy（非战斗） | `Ce40` | 遭遇耐久目标 `hpMax≈8,000`，生产同样由 03 §5.1 根值加显式 NPC 修饰落定；谨慎性格，只移动、躲到东方身后或屏风后，不出手 |
 | 任我行、向问天 | ally | — | 剧情友军（AI）；任我行带吸星大法 |
 | 令狐冲、任盈盈 | player 或 ally | — | 已入队则为玩家可控（计入 4 人上限），否则为 AI 友军 |
 
@@ -2280,7 +2300,7 @@ UI：顶部宝训条标出 30 / 60 / 90 三条线；每次颂圣飘字"洪教主
 | 奖励 | 经验按 `nMax × 0.5` 名普通敌人；掉落 1 次普通池；击倒计 1 次 |
 | 威胁点 | 2（§2.4） |
 
-例：满编 5 人的战阵（单兵 `hpMax` 3,970，03 §10.7 天龙 Lv35 普通）→ `hpMax` 15,880，输出与单兵相同——它是"耐打的一个人"，并且是范围招式最好的靶子。
+例：满编 5 人的战阵（单兵 `hpMax` 3,970，03 §10.7 天龙 `Ce35` 兼容普通模板）→ `hpMax` 15,880，输出与单兵相同——它是“耐打的一个人”，并且是范围招式最好的靶子。
 
 ### 9.4 NPC 自动战斗与号令
 
@@ -2306,7 +2326,7 @@ UI：顶部宝训条标出 30 / 60 / 90 三条线；每次颂圣飘字"洪教主
 每轮（主角 E 段之后）对每条战线 f：
   hold_f −= max(0, pressure_f − defense_f) × k_f            // k_f 缺省 0.1；hold 0–100
   pressure_f：敌方强度（剧情给定初值，随波次上升）
-  defense_f ：守方强度 = 基础值 + 被派驻的具名友军（布阵阶段把郭靖、黄蓉等"派驻"到某门，每人 + 其等级 × 0.5）
+  defense_f ：守方强度 = 基础值 + 被派驻的具名友军（布阵阶段把郭靖、黄蓉等“派驻”到某门，每人 + floor(Ce/2)；Ce 不是人物等级）
 玩家网格内每击倒 1 TP 的敌人：全部战线的 pressure −1（"主战场的胜利鼓舞全城"）
 hold_f ≤ 30：警告；hold_f ≤ 0：破口 → 该门的敌军波次改从玩家网格边缘涌入，或触发 loseCond `frontLost`（按配置）
 ```
@@ -2448,10 +2468,10 @@ score(t) = E[dmg](t) × ( 1 + 0.3·[背击] + 0.1·[侧击] + tileScore(t) − 0
 
 | 项 | 规则 |
 |---|---|
-| 条件 | `field`/`ambush` 且满足其一：全部敌人 `L ≤ Ld − 8`；或预测胜率 ≥ 99% 且我方预计气血损失 ≤ 20% |
+| 条件 | `field`/`ambush` 且满足其一：全部敌人 `Ce_enemy ≤ Ce_party − 8`；或预测胜率 ≥ 99% 且我方预计气血损失 ≤ 20% |
 | 预测 | Worker 中以派生种子 `hash(battleSeed, 'quick')` 跑 8 次双方 `ai_basic` 的模拟 |
 | 结果 | 取中位数那一次作为正式结果（写入录像，确定性）：扣除相应气血、内力；不结算 Buff |
-| 奖励 | 经验 ×0.8（13 §2.4.1）；武学经验 ×0.5（按模拟中的使用分配）；掉落正常；无顿悟判定；无首杀奖励 |
+| 奖励 | AR-19 后不发角色经验；武学经验 ×0.5（按模拟中的使用分配）；掉落正常；无顿悟判定；无首杀奖励。旧 `battleExp×0.8` 只供 v2 回放迁移 |
 | 规则开关 | 速决 `rule_sujue`（13 §5.3，仅江湖难度）：预测胜率门槛降为 ≥ 95%，且精英遭遇也可速战；Boss、剧情战除外 |
 | 入口 | 威压回避弹窗（§2.2），或布阵阶段"速战"按钮（条件满足时出现） |
 
@@ -2466,11 +2486,13 @@ score(t) = E[dmg](t) × ( 1 + 0.3·[背击] + 0.1·[侧击] + tileScore(t) − 0
 
 ### 11.1 结算顺序
 
-角色经验 → 武学经验（05 §8.2）→ 资质经验（03 §7.2）→ 掉落 → 声望与品德 → 顿悟判定（05 §8.6）→ 合击领悟计数（05 §7.7）→ 首杀与评价。
+武学经验（05 §8.2）→ 经脉周期锻炼提交（21 §2.6）→ 资质经验（03 §7.2）→ 掉落 → 声望与品德 → 顿悟判定（05 §8.6）→ 合击领悟计数（05 §7.7）→ 首杀与评价。旧角色经验仅由 v2 迁移器读取，不在新战斗结算生成。
 
-### 11.2 角色经验（公式归 `design/13` §2.4.1）
+### 11.2 旧角色经验迁移与生产奖励
 
-角色经验的公式、系数与分配**全部以 13 §2.4.1 为准**（13 已吸收本文早期草案中的战阵 / 召唤物系数、主角状态系数与模式系数，并定稿 `expVal(L) = 10 + 5L`、Boss 系数 10、等级差阈值 −10 / −20）。本文只负责向 13 提供战斗结算事实：
+AR-19 后人物没有独立等级，Core 不再生成 `battleExp` / `characterExp`。本节旧公式只为 v2 录像 diff 与存档迁移保留，生产奖励从 §11.1 的武学、经脉、资质、掉落等具体成长轴提交；不得把其总和重命名为隐藏等级经验。
+
+下表是 v2 兼容载荷，公式与分配仍只以 13 §2.4.1 的旧规则为准；v3 可以为回放 diff 生成这些事实，但奖励事务必须忽略其角色经验含义：
 
 | 战斗事实（本文产出，写入 `BattleStats`） | 13 中的用途 |
 |---|---|
@@ -2479,8 +2501,8 @@ score(t) = E[dmg](t) × ( 1 + 0.3·[背击] + 0.1·[侧击] + tileScore(t) − 0
 | 战斗结束时主角是否仍处于 `downed`（队友取胜，仅 `mass` / `onDefeat: continue` 等允许主角倒地后继续的战斗） | 本场 ×0.5 |
 | 是否使用书灵代笔（§12.4） | ×0.5 |
 
-- 主角独得整份经验，队友不计经验（13 §2.8）；与 05 §8.2"每名我方单位各得一整份 `sxp` 池"互不干扰。
-- 等级封顶后的经验去向（修为余韵）归 13 §2.7。
+- 旧档迁移时，主角经验与修为余韵由 13 的迁移器折入具体永久事实或审计 credit；新战斗不生成二者。
+- 05 §8.2“每名我方单位各得一整份 `sxp` 池”仍是生产规则，与本兼容载荷互不干扰。
 
 ### 11.3 武学经验：使用次数的计法
 
@@ -2524,7 +2546,7 @@ score(t) = E[dmg](t) × ( 1 + 0.3·[背击] + 0.1·[侧击] + tileScore(t) − 0
 |---|---|---|
 | 击倒普通 / 精英 / 头目 | 0 / +2 / +5 | 0 |
 | 击倒具名 Boss | +20 ~ +100（按名望档） | 按剧情 |
-| 以弱胜强（敌方平均等级 ≥ 我方 + 5） | +10 | — |
+| 以弱胜强（参战敌方平均 `Ce` ≥ 我方平均 `Ce` + 5） | +10 | — |
 | 擂台每胜 / 夺魁 | +10 / +50 ~ +300 | — |
 | 切磋胜名家 | +5 ~ +20 | — |
 | 劝降成功 | +1 | +1 |
@@ -2604,7 +2626,7 @@ score(t) = E[dmg](t) × ( 1 + 0.3·[背击] + 0.1·[侧击] + tileScore(t) − 0
 |---|---|
 | 适用 | `story` 战，按难度开放（江湖次败起、侠客连败 3 次起，宗师与天劫不可，13 §5.1）；擂台的"跳过"= 弃权记负 |
 | 表现 | 书灵以旁白 + 插图讲述战况，结果 `win`，评价"丙" |
-| 奖励 | 推进剧情所需的固定奖励照发；角色经验 ×0.5（经验规则归 13）；无首杀、无顿悟、无评价奖励 |
+| 奖励 | 推进剧情所需的固定奖励照发；武学经验 ×0.5；无首杀、无顿悟、无评价奖励。v2 回放仍记录旧角色经验 ×0.5，但 v3 不发放 |
 | 恒不可跳过 | 改命战（基准 §16：改命是隐藏的高难分支，必须亲手打）；终局"天书守卷人"各卷（13 §7.4） |
 
 ### 12.5 防刷与防卡死
@@ -2613,7 +2635,7 @@ score(t) = E[dmg](t) × ( 1 + 0.3·[背击] + 0.1·[侧击] + tileScore(t) − 0
 |---|---|
 | 存读刷随机 | 战斗中不可手动存档（§10.8）；悔招回滚 RNG；重试换派生种子但从开场重来 |
 | 撤退重打刷残血敌人 | 敌群 30 s 后回满（§4.8.7） |
-| 刷低级怪 | 经验等级差系数（13 §2.4.1：低于 `Ld − 10` ×0.3、低于 `Ld − 20` 为 0）；同一刷新点重复遭遇递减（13）；速战收益 ×0.8 |
+| 刷低档敌群 | 同一刷新点重复遭遇递减（13 待按 AR-19 迁移）；敌人 `Ce` 低于队伍 `Ce−10/−20` 时，具体武学 / 经脉成长收益系数默认 ×0.3 / 0【建议值】，速战武学经验另 ×0.5 |
 | 刷行动（频繁待机） | 连续待机收招递增（§4.8.6） |
 | 物品拖死 Boss | 每名单位每场限次 `3 + ⌊med/40⌋`、同 ID 冷却 2 回合、天级丹药每场 1 次（10 §8.1，§4.8.3）；06 HOT 上限；Boss 狂暴计时（§8.8.7） |
 | 僵持 / 对峙 | §2.11：30 轮敌退、对峙转撤退、Boss 60 轮平局 |
@@ -2630,7 +2652,7 @@ score(t) = E[dmg](t) × ( 1 + 0.3·[背击] + 0.1·[侧击] + tileScore(t) − 0
 
 ```ts
 // packages/core/src/battle/types.ts
-// MeridianFlowSnapshotV1 / MeridianSpeedResult / MeridianRouteId / AcupointId
+// MeridianFlowSnapshotV2 / MeridianSpeedResult / MeridianRouteId / AcupointId
 // 直接复用 design/21 §12.3 对应生产类型；本文不复制其字段定义。
 export type SideId = 'player' | 'ally' | 'enemy' | 'neutral';
 export type UnitState = 'active' | 'hidden' | 'offgrid' | 'held' | 'downed'
@@ -2696,7 +2718,7 @@ export interface BattleState {
   seed: number; tick: number; round: number;             // tick 全局刻；round 计数者见 §1.3（主角离场后切换）
   grid: BattleGridRef;                                   // pointy-top 六角窗口 + overlay（§2.9.5）
   openingOrder: UnitId[];                                // 首轮尚未行动者，按 §3.3 固定
-  meridianByUnit: Record<UnitId, MeridianFlowSnapshotV1>; // 规范持久态；运行时每键恰好一个模块（§1.4.1）
+  meridianByUnit: Record<UnitId, MeridianFlowSnapshotV2>; // 规范持久态；运行时每键恰好一个模块（§1.4.1）
   units: BattleUnit[];                                     // 按 unitIndex 升序（D5 确定性）
   sides: Record<SideId, SideState>;                        // 士气均值、号令、编组
   gauges: Record<string, number>;                          // gauge_*
@@ -2765,6 +2787,7 @@ export type BattleAction =
   | { t: 'yunjin'; mode: YunjinMode; sourceInner?: SkillId; invest?: 0.1 | 0.2 | 0.3; buffIid?: number }
   | { t: 'guard'; routeRef?: MeridianRouteId }
   | { t: 'wait'; defenseRouteRef?: MeridianRouteId }
+  | { t: 'acuteQiGather'; routeRef: MeridianRouteId }
   | { t: 'cover' } | { t: 'flee' }
   | { t: 'talk'; mode: 'persuade' | 'provoke' | 'sow' | 'flatter' | 'rally' | 'withdraw'; target?: UnitId }
   | { t: 'capture'; target: UnitId } | { t: 'discern'; target: Target }
@@ -2796,10 +2819,12 @@ export type BattleCommand =
 export type RejectReason = 'NOT_YOUR_TURN' | 'OUT_OF_RANGE' | 'NO_LOS' | 'MP_NOT_ENOUGH' | 'ON_COOLDOWN'
   | 'DISABLED_BY_STATUS' | 'PATH_BLOCKED' | 'ILLEGAL_TARGET' | 'COMBO_UNAVAILABLE' | 'LIMIT_REACHED'
   | 'NOT_VISIBLE' | 'FREE_ACTION_USED' | 'MERIDIAN_ROUTE_BLOCKED' | 'SELF_BREATH_FORBIDDEN'
-  | 'PROJECTION_STEP_UNAVAILABLE';
+  | 'PROJECTION_STEP_UNAVAILABLE' | 'QI_ROUTE_UNAVAILABLE' | 'QI_CARRY_FULL';
 ```
 
 `BattleState.meridianByUnit` 保存可序列化快照；`BattleSession` 运行态按同一键各持一个 21 `MeridianFlowModule`，两者在事务边界同步。`activeDefense.routeId/qualityBp` 对齐 21 §11.2，保存该次提交用于后续来袭重建防守 Profile 的完成质量；09 只另存来源与到期窗口，节点态仍在对应模块中。`defendedCauseIds` 在攻击事务结束后裁剪，禁止无界增长。`openingQinggong` 与 `meridianSpeed` 是可重建缓存，但进入回放 hash，以便尽早暴露跨引擎取整漂移。
+
+`acuteQiGather` 只能作为 `battle/act.action` 提交，禁止携带 `walkTo/walkAfter`；F0 检查路线已开通，且“可继续注入气量”或“已有气包尚可提高 `circulationBp`”至少一项成立。两项都不成立才返回 `QI_CARRY_FULL`，不偷偷改成待机。成功命令不消费 RNG，E6 固定扣 1000 CT，并发 §13.5 事件；它仍进入规范 `commandPrefix`，因此聚气与普通待机即使终态偶合也有不同录像摘要。
 
 ### 13.3 遭遇定义 `EncounterDef`（YAML）
 
@@ -2827,14 +2852,14 @@ sides:
     maxOnField: 12
     units:
       - { npc: npc_hongantong, boss: bsc_hongantong_shenlongdao, pos: { q: 2, r: -5 }, facing: 5 }
-      - { npc: npc_suquan, template: tmpl_head, level: 46, pos: { q: 4, r: -4 }, facing: 4 }
-      - { template: tmpl_elite, faction: shenlongjiao, level: 44, count: 2, zone: dais_front }
-      - { squad: { template: tmpl_normal, faction: shenlongjiao, nMax: 5, level: [40, 42] }, count: 3, zone: hall_mid,
+      - { npc: npc_suquan, template: tmpl_head, cultivationBand: 46, pos: { q: 4, r: -4 }, facing: 4 }
+      - { template: tmpl_elite, faction: shenlongjiao, cultivationBand: 44, count: 2, zone: dais_front }
+      - { squad: { template: tmpl_normal, faction: shenlongjiao, nMax: 5, cultivationBand: [40, 42] }, count: 3, zone: hall_mid,
           group: jiaozhong, buffs: [ { id: bf_shouzhi, grade: 9 } ], extraMoves: [ mv_baoxun_songsheng ] }
   player: { zone: hall_gate }
 waves:
   - { id: w_p2_reinforce, trigger: { event: bossWave }, side: enemy, spawn: hall_gate_outer, entryCT: 500,
-      units: [ { squad: { template: tmpl_normal, faction: shenlongjiao, nMax: 5, level: 41 }, count: 2, group: jiaozhong } ] }
+      units: [ { squad: { template: tmpl_normal, faction: shenlongjiao, nMax: 5, cultivationBand: 41 }, count: 2, group: jiaozhong } ] }
 winCond: [ { defeatTarget: [ npc_hongantong ] } ]
 loseCond: [ { protagonistDown: true } ]
 flagsIn:                                # 直接读取正式任务完成态；前者优先级更高
@@ -2851,7 +2876,7 @@ flagsIn:                                # 直接读取正式任务完成态；�
 id: bsc_hongantong_shenlongdao
 npc: npc_hongantong
 gen: full
-level: 50
+cultivationBand: 50
 hpMax: 60605                            # 71300 静态 full × 遭遇倍率 0.85，只乘一次
 ai: { tier: ai_expert, personality: pers_jiaozha, weights: { aggro: 2.0 } }
 zocRange: 1
@@ -2974,7 +2999,9 @@ behaviors:
 | `battle/damageDealt` | 攻方、守方、段、数值、判定；开发模式含 Z0–Z10 明细（tech/01 §1.3） | 飘字 |
 | `battle/reaction` | 类型（反击 / 连击 / 追击 / 援护 / 阵友反击）、来源、目标 | 反应演出 |
 | `battle/ctShifted` | 单位、增量 | 时间轴动画 |
-| 21 经脉事件 | 原样转发 `route.committed/route.jammed/node.ruptured/meridian.attack.multiplied/meridian.defense.multiplied/innerGuard.settled/meridian.speed.changed/point.applied/grapple.applied/breath.completed` 的整数 trace、来源与 `causeId` | 路线、瓶颈、护体、速度、点穴 / 擒拿 / 调息反馈；事件名归 21 |
+| `battle/acuteQiGathered` | `unitId,routeId,dantianQi,routeInFlightQi,totalInFlightQi,routeCarryCap,unitQiHardCap,circulationBp,recEff,battleTick,causeId`；全整数，`recEff=1000` | 所选路线与全局气量分开，避免换路后歧义；不含未来 RNG |
+| `battle/fullCirculationCritResolved` | 原样转发 21 §4.4.2 的单位、目标、招式、路线、放气、承载、完成度、既有暴击掷值、文案键、因果与 tick | UI 只按 `messageKey` 展示，不重判 / 重掷 |
+| 21 其他经脉事件 | 原样转发 `route.committed/route.jammed/node.ruptured/meridian.attack.multiplied/meridian.defense.multiplied/innerGuard.settled/meridian.speed.changed/point.applied/grapple.applied/breath.completed` 的整数 trace、来源与 `causeId` | 路线、瓶颈、护体、速度、点穴 / 擒拿 / 调息反馈；事件名归 21 |
 | `buff/*` | 06 §10.6 | 图标、飘字 |
 | `battle/unitDowned` | 单位、击倒者 | 倒地 |
 | `battle/unitRescued` / `unitYielded` / `unitSurrendered` / `unitCaptured` / `unitFled` / `unitPlunged` | 单位（投降另含来源：口舌 / 鸳鸯刀 / 慈悲制服 / 脚本 / 士气；坠崖另含造成位移者） | 对应演出 |
@@ -3042,6 +3069,8 @@ behaviors:
 | 距行动刻数 | `tta` | 时间轴排布依据 | §3.7 |
 | 轻功移动力 | `move` | 境界底值 + 阶内进度 + 武学/Buff − 重甲/疲惫，钳在 1–10 | §4.2.1 |
 | 经脉速度投影 | `openingQinggong` / `meridianSpeed` / `speedDirty` | 21 以归一 Profile 输出首轮、CT、移动和纯经脉闪避修正；门禁仍读基础轻功 | §3.1–§3.3、§13.1 |
+| 单位时间 / 产气 / 运气 | `battleTick` / `productionPerTick` / `qiSpeedBp` | CT 与经脉共享 tick；人物行动槽速度 `spd` 不替代丹田产气或路线旅行速度 | §3.1–§3.2 |
+| 急性聚气 | `BattleAction.t='acuteQiGather'` | 满槽跳过本次行动、不移动 / 出招 / 付招式成本，以 1000 收招继续积气 | §3.4.1、§13.2 |
 | 即时防守恢复债务 | `reactionRecoveryDebt` | 即时防守路线已支付的 `flowCt`；下一次正常行动 E6 只消费一次 | §3.4、§6.1 |
 | 主动防守窗口 | `activeDefense` / `defendedCauseIds` | 防御 / 待机预置复用至下次正常行动的 S 段开始；同一攻击因果不重复提交路线 | §4.8.5–§4.8.6、§6.1 |
 | 软控制区 / 脱身 / 夹击位 | ZOC | 进入不停、离开加价 | §4.4 |
@@ -3116,16 +3145,16 @@ behaviors:
 | 任务 / 区域 / 场景（跨文档引用） | `q_08_faction_02`（神龙教内乱）`q_08_faction_03`（离间五龙使）`rg_donghai_islands` `sc_08_shenlongdao_dadian` | 正式键由 chapters/08 与地图文档定义；本文只读取，不重定义 |
 | 行动类型（`BattleAction.t`） | `skill` `hidden` `item` `yunjin` `guard` `wait` `cover` `flee` `talk` `capture` `discern` `unseal` `struggle` `rescue` `yiyun` `swapWeapon` `drawWeapon` `pickup` `dual` `combo`；免费动作 `order`（号令）与 `battle/free`（天书之力 / 书契技） | §4.7；旧 `meditate` 仅为读档别名 |
 | 运劲分支 | `tiaoxi` `huti` `xuli` `bidu` `liaoshang` `cuiqinggong` `huajie` | §4.8.4 |
-| 经脉对象（21 定义，本文只引用） | `MeridianFlowSnapshotV1` `MeridianProfile` `MeridianSpeedResult` `FlowResult` `BreathResult`；路线 ID `mfr_*`、点穴档 `dxl_*`、擒拿档 `qnl_*`、调息档 `txp_*` | §1.4、§13；前缀尚待 Canon v1.3 采纳，所有权归 21 |
-| 命令（扩展 tech/01） | `battle/act`（+ `order` `walkAfter` `facing`）`battle/deploy` `battle/order` `battle/free` `battle/setAuto` `battle/concede` `battle/retry` `battle/undo` | §13.2 |
-| 领域事件 | `battle/started` `battle/deployed` `battle/turnStarted` `battle/moved` `battle/actionDeclared` `battle/telegraphPlaced` `battle/telegraphReleased` `battle/damageDealt` `battle/reaction` `battle/ctShifted` `battle/unitDowned` `battle/unitRescued` `battle/unitYielded` `battle/unitSurrendered` `battle/unitCaptured` `battle/unitFled` `battle/unitPlunged` `battle/envTick` `battle/freeAction` `battle/formationChanged` `battle/comboExecuted` `battle/phaseChanged` `battle/gaugeChanged` `battle/bark` `battle/wave` `battle/frontChanged` `battle/ended` `battle/rewards` | §13.5 |
+| 经脉对象（21 定义，本文只引用） | `MeridianFlowSnapshotV2` `MeridianProfile` `MeridianSpeedResult` `FlowResult` `BreathResult`；路线 ID `mfr_*`、点穴档 `dxl_*`、擒拿档 `qnl_*`、调息档 `txp_*` | §1.4、§13；前缀已由 Canon v1.3 采纳，所有权归 21 |
+| 命令（扩展 tech/01） | `battle/act`（含 `acuteQiGather`；另加 `order` `walkAfter` `facing`）`battle/deploy` `battle/order` `battle/free` `battle/setAuto` `battle/concede` `battle/retry` `battle/undo` | §13.2 |
+| 领域事件 | 既有 `battle/*` 清单 + `battle/acuteQiGathered`、`battle/fullCirculationCritResolved`；完整字段见 §13.5 | §13.5 |
 | 查询 | `query.reachable` `query.previewPath` `query.forecast` `query.timeline` `query.dangerMap` `query.bestAttack` `query.comboOptions` `query.formationStatus` `query.quickResolveEligible` | §13.6 |
 
 #### 14.2.1 书界 Boss 脚本注册
 
 > 下表是 `BossScript` 的全局注册入口；关卡叙事、人物画像、阶段细节与数值校准仍以“出处”为准，不在本文复制第二套。除原著人物与事件骨架外，脚本机制均属**（原创扩展）**。
 
-| ID | 名称 | 类别 / 难度 | Lv / 阶段 | AI 档 | 出处与最小运行契约 |
+| ID | 名称 | 类别 / 难度 | `Ce` / 阶段 | AI 档 | 出处与最小运行契约 |
 |---|---|---|---|---|---|
 | `bsc_xiaofeng_juxianzhuang` | 萧峰·聚贤庄 | 剧情消耗战 / D3 | 35 / 3 | `ai_expert` | chapters/01 §8.6、本文 §8.10；力竭 100 或气血触及 40% 后由黑衣人救走，非致死结算 |
 | `bsc_yucanghai_fuzhou` | 余沧海·福州 | 多目标首领战 / D7 | 52 / 2–3 | `ai_expert` | chapters/05 §8.5；保护人、货与三份证物，首领不可在此被剧情处决 |
@@ -3223,6 +3252,9 @@ behaviors:
 | V42 | 外放音功 0 档表现为普通音波，1 / 2 档才显示内力外放；AI 逐档按实际收益和成本评分，同形同收益时稳定选 0，表现态不得另加数值 | 错误 |
 | V43 | §8.8.11 固定整数槽只验证合计；新增比例槽按最大余数法及稳定全序固化。不得混用末槽吞余数或在运行中重分配预算 | 错误 |
 | V44 | canonical hash 数组严格包含 §13.1 的 `commandPrefix`；仅接受命令按 seq 抽取，开场为空数组；不得混入 transport / 诊断字段，且命令独变夹具的 hash 必须不同 | 错误 |
+| V45 | `acuteQiGather` 只可由满槽单位通过 `battle/act` 提交；必须有已开 attack 路线、不得移动 / 付招式成本 / 抽 RNG；气量与完成度均无增长空间才拒绝，成功固定 `rec_eff=1000` | 错误 |
+| V46 | 每段时间推进须让 CT 与 21 tick 使用同一正整数 `dt`；事件驱动快进结果必须等于逐 tick 的丹田气、逐路线气包、节点聚合、backlog 与 hash | 错误 |
+| V47 | 完整周天暴击事件只复用 04 已消费的 `critRollBp/critChanceBp`，同一 `causeId` 每整招至多一次；UI 不得重判或抽 RNG | 错误 |
 
 ### 15.2 测试用例（玩法核心单元测试，期望值精确）
 
@@ -3278,7 +3310,7 @@ behaviors:
 | T45 | 组合范围 schema | 解析“困龙九变” `aoe_sequence`（ring r2 → around）；另输入旧 `{tpl:aoe_ring,r:2,then:aoe_around}` | 前者按 steps 顺序生成 12 格、再 6 格两段并通过 schema；后者 V26 构建失败 |
 | T46 | 静态范围与运行时朝向 | `{tpl:aoe_line,n:3}` 配 `{dirCount:6,dir:2}`；12 向 cone 分别配匹配 / 不匹配 `aim`；`dual.a/b` 给不同方向，`combo` 给定向扇形；另给静态 line 写 `dir` | 第一组枚举 3 格；匹配 cone、两段 dual 与 combo 各自按其 `aim` 枚举；不匹配被 V17 拒绝；静态 line 的多余 `dir` 被严格 schema 拒绝 |
 | T47 | 全场与地表范围 schema | `{tpl:aoe_field,side:all}`、`{tpl:aoe_ally_all}`、zone 内层 disk；另测 ally_all 带 side、zone 内层 field | 前三者通过；后二者被 V26 拒绝 |
-| T48 | 经脉速度四锚点 | Lv35 `qinggong=98,baseSpd=106,baseMove=6`；同档 / 强档 12239 / 9 级封路 / 强档加 5 级擒拿 | 依次 `98/106/6/0`、`119/129/7/+22`、`63/68/4/−35`、`71/77/5/+22`；擒拿闪避 7500 bp 另算一次 |
+| T48 | 经脉速度四锚点 | `Ce35` 兼容夹具 `qinggong=98,baseSpd=106,baseMove=6`；同档 / 强档 12239 / 9 级封路 / 强档加 5 级擒拿 | 依次 `98/106/6/0`、`119/129/7/+22`、`63/68/4/−35`、`71/77/5/+22`；擒拿闪避 7500 bp 另算一次 |
 | T49 | 同场参考中位数 | 可选敌强度 9000/11000/15000/17000；另有不可见 hidden 22000、downed 18000 | 参考为 `floor((11000+15000)/2)=13000`；排除后二者；空集为 10000 |
 | T50 | 路线 CT 与途中卡住 | 基础收招 900，路线 4×70；第 3 段卡住；另测 F0 硬封 | 前者 `flowCt=210,rec_eff=1110`；后者命令拒绝、资源 / RNG / CT 不变且 `flowCt=0` |
 | T51 | 防守路线复用 | 未移动待机提交 3×80 路线，随后同一 `causeId` 三段攻击，再受新攻击 | 待机 `rec_eff=940`；三段只复用一次、无新增 RNG/CT；新攻击若即时提交则只新增一份 `reactionRecoveryDebt` |
@@ -3301,6 +3333,9 @@ behaviors:
 | T68 | 余数与固定槽 | 按比例生成雪山 B05；读取 B06 固定整数；任意交换输入行顺序 | B05 得 `41979+10495×5+10494`，B06 保留 `56268/16880/16880/22508`；两者分别合计 104948 / 112536，行重排不改稳定键结果，运行时不再次拆槽 |
 | T69 | 录像命令前缀 | 开局采样；两条已接受命令仅 `projectionStep` 不同而终态相同；插入拒绝命令 / 预览 | 开局前缀为空；前两者 hash 不同；拒绝命令 / 预览不改变前缀、hash 或 RNG；数组域顺序与技术三文档完全一致 |
 | T70 | 点穴与毒状态禁用 | 旧封内力迁移为 8 级穴位受封；再分别测试 9 级与十香软筋散 | 8 级保留合法自行调息、禁相关内功招 / 护体 / 蓄力；9 级禁全部运劲；毒状态按其独立 `seal.mp` 禁用，不读取旧 Buff ID |
+| T71 | 急性聚气 | `ct=1000`、中档内功 / 标准脉，选当前路线聚气；另测移动、满载未周天、满载且已周天、硬控跳过 | 成功项 0 移动 / MP / 气势 / RNG、发一次事件、`ct=0`；移动拒绝，满载未周天仍推进，满载且已周天拒绝，硬控不冒充聚气 |
+| T72 | 快进等价 | 相同状态分别逐 tick 12 次与一次 `dt=12`，中途无边界；再在封顶 / A 路有气切 B / 定时事件处切段并存取档 | 两路 CT、丹田、逐路线气包、节点聚合、backlog、事件序和 hash 完全相等；A 路不因换路清空 |
+| T73 | 周天暴击表现 | 10000 / 9999 bp 运气各命中一次既有暴击；同 `causeId` 含三段伤害 | 仅完整项发一次事件且包含原掷值；UI 稳定选择六条文案之一，不改伤害 / RNG / hash |
 
 
 ## 16. 待决事项 / 依赖
@@ -3324,27 +3359,28 @@ behaviors:
 | D-08-1 | design/08 | **已解决（CN-11）**：08 §1.2–§1.4 已同步 `R=2/3 m`、轴坐标行距 `3R/2=1 m`、相邻中心距 `sqrt(3)R≈1.1547 m`；飞越边、出生区 / 窄场模板、坠崖失败接口与地形 AI 分值继续按双方对应章节核验 | §2.9.1、§4.2、§7.7、§8.6 |
 | D-05-1 | design/05、各武学图鉴 | 删除方格曼哈顿距离、8 向和 28 个旧范围模板的生产定义；招式只引用本文的六角范围模板与 `aoe_*` ID | §5.1–§5.7、§14.2 |
 | D-05-2 | design/05 | 蓄招起手 / 收招与释放时移动限制仍归 05；若涉及范围，只传本文 §13.1 的 `HexShape` | §4.8.5、§5.8 |
-| D-05-3 | design/05 | 把 Lv35 `MPREF` 从 4,559 订正为 03 §3.5 的 4,697 | §5.7 |
+| D-05-3 | design/05 | 把 `Ce35` 兼容表的 `MPREF` 从 4,559 订正为 03 §3.5 的 4,697 | §5.7 |
 | D-05-4 | design/05、各武学图鉴 | 核对本文示例所用武学、招式、内功与范围 ID；招式本体和定级归 05 / 图鉴，战斗执行只归本文 | §6.7–§6.8、§8.9–§8.11 |
 | D-03-1 | design/03 | **已解决**：03 §4.3 已切换为轻功主导 `spd`，并按有效轻功、速度、身法、`openingPriority` 等输出固定首轮排序键；气势、体力、轻功值来源与反击 / 连击接口仍由 03 提供 | §3、§4.1、§7.1 |
 | D-03-2 | design/03 | 口舌战斗检定建议复用 `speech' = speech + (cha - 50) / 5`；若 03 更改属性口径，本文只消费最终派生值 | §4.8.8 |
 | D-02-1 | design/02 | AI 档位、精英占比和 Boss 阶段数继续以 02 为准；02 可把能力定义交叉引用到本文 §8.3 | §2.4、§8.3 |
 | D-10-1 | design/10 | **已解决**：道具类别、携带、次数、同 ID 冷却、敌人用药与缴获均引用 10；`it_baotai_jieyao` 已由 10 定义 | §4.8.2–§4.8.3、§8.9 |
 | D-10-2 | design/10 | **已解决**：10 §5.2 已改为引用 13 §2.4.1；鸳鸯刀“弃械投降”的降服经验与击杀均为 ×1.0，不在装备文档另定经验 | §4.8.8、§11.2 |
-| D-11-1 | design/11 | 提供敌群感知、昼夜天气视距、`battleAnchor`、伏兵刷新点、区域等级带与 `battleProfile: narrow`；本文只消费战场截取输入 | §2.2、§2.9 |
+| D-11-1 | design/11 | 提供敌群感知、昼夜天气视距、`battleAnchor`、伏兵刷新点、区域 `cultivationBand` 与 `battleProfile: narrow`；旧等级带待按 AR-19 迁移，本文只消费战场截取输入 | §2.2、§2.9 |
 | D-12-1 | design/12、18 | **已解决（AR-09）**：羁绊 0–100 进度、0–5 等级映射与关系类型引用 18 §3.6；12 仍提供品德声望后果、俘虏处置及“了断 / 放生”。本文只定义战斗命令和结果事件 | §6.7、§7.8、§11.5 |
-| D-13-1 | design/13 | **已解决（C06）**：经验、Boss 系数、四档难度与速战倍率均引用 13；六卷追加机制可用本文 `BossScript` 表达 | §8.8、§11.2、§12 |
+| D-13-1 | design/13 | **迁移前已解决；AR-19 待同步**：旧角色经验 / Boss 系数只供 v2 迁移与回放；四档难度、重复遭遇递减与结局仍引用 13；六卷追加机制可用本文 `BossScript` 表达 | §8.8、§11.2、§12 |
 | D-14-1 | design/14 | 落地六角选格 / 吸附、6 / 12 向瞄准、移动可达区、范围格高亮、行动预览时间轴、布阵与免费动作入口 | §3.7、§5.6、§10 |
-| D-T-1 | tech/01 | `battle/act` 增加 `order`、`walkAfter`、`facing`、六角坐标与 `yunjin` / `item`；新增免费动作及倒地、坠崖、环境时钟事件 | §10.8、§13 |
+| D-T-1 | tech/01 | `battle/act` 增加 `order`、`walkAfter`、`facing`、六角坐标、`yunjin` / `item` 与 `acuteQiGather`；新增免费动作及倒地、坠崖、环境时钟 / 聚气事件 | §3.4.1、§10.8、§13 |
 | D-T-2 | tech/02、tech/03、tech/07 | **已解决（C20 经 AR-12 覆盖）**：战斗逻辑为六向 `HexDir`；完整旋转动画用 `battle8`；固定镜头资源驻留 6 个映射视图。tech/03 继续验证 mid 档活动单位 ≤24、角色精灵峰值 ≤105 MB、总 GPU 预算约 160 MB | §2.6、§4.5、§9.1 |
 | D-T-3 | tech/05 | 实现事件驱动 CT、六角寻路 / 视线、阵形匹配的 6 次旋转（仅 `mirrorable: true` 再乘两种手性）、Boss 脚本与 ≤8 ms 预测查询预算 | §3、§5、§6、§8、§10 |
 | D-UI-1 | `design/13`、`design/14`、tech/01 | **已解决**：战斗中断统一恢复最近具资格的战斗前自动档，不承诺跨进程行动开始快照；双指轻点默认不绑定，取消与倍速均保留显式按钮 | §10.2、§10.8 |
 | D-CH | chapters/01、03、04、05、08 | 核对三个 Boss 的最终数据，以及聚贤庄、光明顶、襄阳、少室山的六角地图、波次、阵营和分支标记 | §8.9–§8.11、§9.6 |
 | D-CAT-1 | catalog/skills-daojia | **已解决（C13）**：天罡北斗阵、真武七截阵均 4 个真实单位起阵；6 名真实阵员且阵主有效 10 重时才补 1 个无实体虚位。条目数值归图鉴，运行规则归本文 | §6.8.0–§6.8.2 |
 | D-CAT-2 | catalog/skills-shaolin | **已解决（C12 / P47）**：使用 `sk_jingangfumoquan`；慈悲类武学默认制服、可单场关闭。金刚伏魔圈 / 罗汉阵条目数值归图鉴，运行规则归本文 | §4.8.9、§6.8.3 |
-| D-21-1 | design/21、tech/05 | **已解决（AR-14）**：战斗经脉运行、攻防 / 轻功路线、Z4M / Z5M、护体内劲、擒拿 / 点穴与调息均由 21 v2.3 主定义；本文只接逐单位实例、事务顺序、CT / 反应 / AI 与回放接口 | §1.4.1、§3–§8、§13、§15 |
+| D-21-1 | design/21、tech/05 | **已解决（AR-14 / AR-19 设计侧）**：21 v2.8.1 主定义宽度 / 长度 / 产气 / 运气 / 周天及既有经脉战斗规则；本文只接逐单位实例、tick、急性聚气、事务、CT / 反应 / AI 与回放 | §1.4.1、§3–§8、§13、§15 |
 | D-21-2 | design/05、武学图鉴 | **已解决（Canon v1.3 澄清）**：21 定义 schema / 算法 / 共享模板与示例，各武学图鉴定义具体 `mfr_*` / `txp_*` 实例；09 只消费引用，缺失时不得以显示名猜路线。绝招只使用 `MoveDef.ultimate:true` | §5.1、§6.1、§13.2 |
-| D-21-3 | tech/05 | 实现 `rulesProtocol:2` 的逐单位 `MeridianFlowModule`、Core 唯一 `battle` RNG 注入、事务回滚、快照 / 回放 hash、预览无副作用与 Python golden 对拍 | §1.4.1、§3.2、§13.1–§13.5 |
+| D-21-3 | ENG-03 / tech/05 | 将旧 `rulesProtocol:2` 升至 AR-19 的 3：逐单位 tick 产气 / 推进、`MeridianFlowSnapshotV2`、急性聚气、两个事件、事务回滚、回放 hash 与逐 tick / 快进对拍 | §1.4.1、§3.2、§3.4.1、§13.1–§13.5 |
+| D-QI-1 | ENG-02 / tech/04 | 登记 `acuteQiGather` 命令联合、两项事件载荷、拒绝原因与 `rulesProtocol=3` 存档迁移字段；本任务仅给设计契约 | §13.2、§13.5 |
 | D-14-2 | design/14 | 战斗招式面板显示每门全部已解锁绝招、角色唯一气势、本门共享冷却与逐招禁用原因；连续同招必须显示“不能连用同一绝招” | §5.1、§5.7、§5.9、§13.1 |
 | D-T-4 | tech/01、tech/05 | 串行化 `ultimateBySkill`，并让玩家 / AI / 一键重复 / Core 共用候选过滤与 E2 冷却时钟；失败候选不扣资源、不推进 RNG | §3.6、§5.1、§8.2、§13.1 |
 | D-AR16-1 | design/14、tech/05 | **已解决（09 规则侧）**：外放档进入 `BattleAction.projectionStep`；Core / UI / AI 共用当前档的射程、形状、总耗内和结构化禁用原因，点穴 / 胀损降档后重验 | §5.1–§5.7、§8.2、§13.2、§13.6 |
@@ -3358,19 +3394,20 @@ behaviors:
 | 作者需求 AR-02 | 内力性质只有阴 / 阳 / 调和；运劲效果可读取内功品阶、层数与阴阳性质，但不在本文重定义相性伤害 |
 | 作者需求 AR-03 | “冲穴”与经脉、内劲的关系唯一归 `design/15`；本文的“运劲”只是战斗行动，不等同于冲穴 |
 | 作者需求 AR-12、G1、AR-12a / b | **已解决**：战斗改为 pointy-top 六角格；60° / 120°扇形默认 6 向，结构允许模板显式开启 12 向 |
-| 基准 §6、design/03 | 轻功值、轻功境界、`agi`、`Ld`、体力、负重来源；本文只定义它们如何转成 `spd`、移动力与行动序 |
+| 基准 §6、design/03 | 轻功值、轻功境界、`agi`、无状态 `Ce`、体力、负重来源；本文只定义它们如何转成 `spd`、移动力与行动序 |
 | 基准 §8 | CT 0→1000、收招、每次行动的自身回合、免费动作、上场 ≤6、气势、护体、环境行动者、战败规则继续有效；仅方格前提被 AR-12 覆盖 |
 | 基准 §9、design/04 | Z0–Z10、10000 bp、逐乘区取整、Z7 与反击 / 连击 / 追击倍率是伤害唯一口径，本文不复制另一套伤害公式 |
 | 基准 §10、design/06 | Buff 生命周期、钩子、原语、叠加与品阶对抗归 06；本文只定义战斗时机与 `bf_*` 接入 |
 | 基准 §11 | 轻功境界阈值为 20 / 50 / 90 / 140 / 200；本文据此计算五阶移动力区间 |
 | design/08 | 六角地形、每格 `h` / `terrain`、移动成本、跳跃 / 攀爬 / 跨越门禁、视线、高差与坠崖均为上游；§1.2–§1.4 已与 tech/02、本文 §2.9.1 同步 `R=2/3 m`、行距 1 m、六邻中心距约 1.1547 m |
 | design/10 | 丹药、暗器、毒药、机关、投掷物的类别、堆叠、携带和战斗可用性为上游 |
-| C06 / design/13 | **已解决**：`expVal(L)=10+5L`；普通 / 精英 / 头目 / Boss 系数 1 / 3 / 5 / 10；难度 ID 为 `diff_jianghu` / `diff_xiake` / `diff_zongshi` / `diff_tianjie`；速战角色经验 ×0.8、武学经验 ×0.5 |
+| C06 / design/13 | **迁移前已解决，AR-19 已覆盖**：旧 `expVal(L)` 与角色经验倍率仅供 v2 迁移 / 回放；生产不发角色经验。四档难度继续有效，速战武学经验 ×0.5 |
 | C12 / rulings-v1 | **部分解决**：生产引用使用 `tr_sheku`、`sk_jingangfumoquan`；八步赶蟾标准 ID 固定为 `sk_babuganchan`，但尚无归属图鉴卡，按 `design/08` §4.6 待收录且当前禁用；Boss 脚本用 `bsc_*`，`bs_*` 留给书眠 Ink 节点 |
 | C13 / rulings-v1 | **已解决**：天罡北斗阵、真武七截阵均 `minMembers=4`、`dissolveBelow=4`；虚位无单位、CT、攻击、追击或援护能力 |
 | C20 + AR-12 + tech/02 | **已解决**：旧“战斗四斜向”被六角格覆盖；采用逻辑六向、完整 `battle8`、固定镜头驻留 6 个映射视图 |
 | author-decisions P42–P47 | **已解决**：聚贤庄允许倒戈且保留黑衣人锚点；保留显式“了断”；保留洪安通奉承；速战武学经验 ×0.5；剧情友军默认 AI、剧情可指定可控且占 6 人名额；少林慈悲类武学默认制服且可单场关闭 |
-| 作者需求 AR-14、design/21 v2.3 | **已解决**：21 唯一定义战斗经脉动态、路线与乘区、护体内劲、擒拿 / 点穴、调息、速度投影与 AR-16 外放档上限。本文按 21 §18.6 负责实例调度、出手 / settle 次序、防守窗口、`flowCt`、首轮 / CT / 移动力、外放格集合与 AI 消费；永久穴脉仍归 15 |
+| 作者需求 AR-14、design/21 v2.8.1 | **已解决并兼容 AR-19**：21 唯一定义战斗经脉动态、路线与乘区、护体内劲、擒拿 / 点穴、调息、速度投影与外放档上限。本文负责实例调度、出手 / settle 次序、防守窗口、`flowCt`、首轮 / CT / 移动力、外放格集合与 AI 消费；永久穴脉仍归 15 |
+| 作者需求 AR-19、design/21 v2.8.1 | **本次已同步设计**：`battleTick` 同步 CT、产气与逐路线气包推进；满槽可行动或急性聚气；完整 / 不完整运气只在唯一 Z5M 结算，完整暴击由 Core 发事实事件。生产实现交 ENG-02 / ENG-03 |
 
 ### 16.3 对基准的修改提案
 
@@ -3383,12 +3420,13 @@ behaviors:
 | P-09-3 | **已采纳（v1.1 §8）** | CT 内部允许负值表达收招，下限 −1000；界面仍显示 0–1000 | 否则收招超过 1000 的重招无法与普通重招区分 |
 | P-09-4 | **已采纳（v1.1 §8）** | 行动列表引用本文 §4.7；号令、明确标为免费的天书之力 / 书契技不占行动、不耗集气并各有限次 | 避免基准短表被误作封闭枚举 |
 | P-09-5 | **已采纳（v1.1 §8）** | 气血归零为重伤倒地而非永久死亡；主角倒地即战败，剧情可覆写；坠崖离场不算倒地 | 统一 03 / 06 / 08 / 12 / 13 的战斗结果语义 |
-| P-09-6 | **已采纳（v1.2 V12-05）** | 基准 §6 / §8 已登记 `Base_spd = 72 + 0.30*agi + 0.10*Ld + 0.14*qinggong`；flat / pct / mult 后一次向下取整并钳制 30–300；首轮按有效轻功确定顺序，之后进入 CT | AR-12 要求在场按轻功出手；合法 STD 精确输入重算为 91 / 106 / 126，Lv70 的旧 127 来自违反普通鞋 g9 上限的输入 |
+| P-09-6 | **已采纳；AR-19 迁移为 `Ce` 选行** | 基准旧式 `Base_spd = 72 + 0.30*agi + 0.10*Ld + 0.14*qinggong` 在生产以无状态 `Ce` 替代 `Ld`；flat / pct / mult 后一次向下取整并钳制 30–300；首轮按有效轻功确定顺序，之后进入 CT | AR-12 要求在场按轻功出手；兼容 STD 精确输入重算为 91 / 106 / 126，`Ce70` 的旧 127 来自违反普通鞋 g9 上限的输入 |
 | P-09-7 | **已采纳（v1.2 V12-07）** | 基准 §8 已采用 pointy-top 六角格：持久化轴坐标 `(q,r)`，`tileCount≤400` 且 `qSpan≤20`、`rSpan≤20`；范围模板唯一归本文 | 落实 AR-12，并消除方格范围继续扩散的来源 |
 | P-09-8 | **已采纳（v1.2 V12-07 / V12-13）** | 基准 §8 固定 6 个 `HexDir`；§19 固定动画资源完整旋转使用 `battle8`，固定镜头常驻映射的 6 视图 | AR-12 覆盖 C20 的旧四向前提，并与 tech/02 的资源方案闭合 |
 | P-09-9 | **已采纳（v1.3 V13-02～V13-07）** | Canon §8 / §9 / §11 / §18 已接纳 21：Z4M / Z5M、护体内劲、6500–13500 bp 经脉速度、逐单位模块与唯一归属 | AR-14 的战斗接口已有 Canon 真值，本文按其调度 |
 | P-09-10 | **已采纳（v1.4 V14-02）** | 同一角色全部绝招共享 `rage 0..100`；同门共享 1 次自身行动冷却，且不能连续使用同一绝招 | 保证多绝招是战术轮换而非连续爆发；本文 §3.6、§5.9 落实运行时序 |
 | P-09-11 | **已采纳（v1.5 V15-02～04）** | AR-16 逐招外放按 0 / 1 / 2 档绑定射程 `+0/+2/+4`、预审形状与额外耗内 `0/2%/4% MPREF`；外放 Z5M 替代普通 Z5M | 本文 §5.2.1、§5.4、§8.2 负责六角格、选目标和敌我 AI；公式仍唯一归 21 |
+| P-09-12 | **提案（AR-19）** | Canon §8 登记同一 `battleTick` 推进 CT 与经脉；满槽增加急性聚气，固定 1000 收招且算一次正常自身行动 | 基准尚无 AR-19 的聚气命令与计数语义 |
 
 ### 16.4 原著考据待办
 
@@ -3424,10 +3462,11 @@ behaviors:
 | O1 | **已解决（P42）**：聚贤庄是否允许倒戈帮助萧峰 | 允许，且黑衣人仍救走萧峰，保留剧情锚点 |
 | O2 | **已解决（P43）**：是否保留对倒地敌人的“了断” | 保留，必须显式选择，不作为自动战斗默认 |
 | O3 | **已解决（P44）**：洪安通 Boss 战是否保留“奉承” | 保留，沿用口舌喜剧机制，不额外添加羞辱性表现 |
-| O4 | **已解决（P45）**：速战是否给武学经验 | 给 ×0.5；角色经验另按 ×0.8 |
+| O4 | **已解决（P45；AR-19 修订）**：速战是否给武学经验 | 给 ×0.5；生产不再发角色经验，旧 ×0.8 仅回放 |
 | O5 | **已解决（P46）**：剧情友军是否可由玩家直接控制 | 默认 AI；剧情可指定可控并占 6 人名额 |
 | O6 | 首发是否启用 12 向扇形瞄准 | 【建议值】数据结构支持；首发模板默认 6 向，仅显式写 `dirCount: 12` 的招式启用半向 |
 | O7 | 负集气下限和就绪保护是否通过长时间轴压力测试 | 【建议值】下限 −1000；就绪保护按 §3.5，联调失败时只调整下限，不改变 CT 基本语义 |
 | O8 | 六角移动力上限、mid 同屏上限和 GPU 预算是否通过真机压力测试 **（待实测）** | 【建议值】`move≤10`、活动单位 ≤24、角色精灵峰值 ≤105 MB、总 GPU 预算约 160 MB；未通过时先降非关键单位 LOD，不改规则人数 |
 | O9 | 待机预置轻防路线额度是否经实战验证 | **【建议值】**先用 ≤3 段且完整 `flowCt≤240`；若反应密度过强，先降低一次预置可覆盖的来袭次数，不改 21 的 Z4M 曲线 |
 | O10 | 仅有一记绝招、且没有任何同门非绝招的武学，是否豁免“不能连用同一绝招” | 默认保持现行规则（05 §4.8）：只有同门另一绝招或同门非绝招解除限制，**待作者确认**。若豁免，仅在共享冷却清零后允许再次施放，共享气势与冷却不变 |
+| O11 | 急性聚气 AI 阈值是否采用 1500 bp 收益 / 两行动生存 50% | **【建议值】**先按 §3.4.1；实战若拖时，先提高收益阈值或降低连续聚气权重，不改其 1000 收招与计数语义 |
