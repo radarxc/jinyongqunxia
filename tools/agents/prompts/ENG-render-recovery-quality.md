@@ -90,7 +90,7 @@
 - `pnpm --filter ./apps/game build`
 - `python3 tools/lint/check_ids.py --strict`
 
-`pnpm check` 里的 rig 100 角色性能门禁在机器高负载时可能偶发失败。若只这一项失败，在报告里写明负载和数值，**不要改门禁、阈值、vitest 配置，也不要跳过**。真机丢失恢复与帧率记「待实测」（沙箱拦 Chromium），并写出协调者在沙箱外怎么验：开发命令或控制台调 `forceContextLoss()` / `forceContextRestore()`。
+rig 100 角色性能门禁已移出 `pnpm check`（作者 AR-33），改由 `pnpm check:perf` 在负载低时单独跑；不要改门禁阈值，也不要在测试里加任何「高负载跳过」逻辑。真机丢失恢复与帧率记「待实测」（沙箱拦 Chromium），并写出协调者在沙箱外怎么验：开发命令或控制台调 `forceContextLoss()` / `forceContextRestore()`。
 
 ## 报告
 

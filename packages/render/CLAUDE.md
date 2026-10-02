@@ -43,8 +43,9 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 
 - 硬预算不变：20 名满装角色 CPU 帧 P95 < 16.67 ms；100 角色 / 1,600 个基础实例总 rig CPU P95 < 0.80 ms。不得减少角色、600 个采样帧或改分位数来过门禁。
 - 每项先预热 120 帧，再测 3 轮；每轮独立采 600 帧并计算 P95，以三轮最小 P95（best-of-3）断言。每轮日志必须带该轮 P95、最终最小值、`os.loadavg()` 与 `os.cpus().length`。
-- `performance.test.ts` 只由 Vitest 的 `perf` project 收集；普通 `node` project 显式排除它。`perf` 使用 `fileParallelism:false`、单 worker、`sequence.concurrent:false`，并以 `groupOrder:1` 等普通项目结束后再运行。
-- 负载只作诊断记录：每轮输出 `os.loadavg()` 与 CPU 数，但不得据此跳过、放宽或改写断言；20 人与 100 人门禁在任何负载下都必须通过。
+- `performance.test.ts` 只由 Vitest 的 `perf` project 收集；普通 `node` project 显式排除它。`perf` 使用 `fileParallelism:false`、单 worker、`sequence.concurrent:false`。
+- **不在 `pnpm check` 里**（作者 AR-33）：根 `test` 脚本只跑普通项目；本门禁由 `pnpm check:perf`（先打印 loadavg，再跑 `pnpm test:perf`）在机器负载低时单独跑。开发监督在每批合入后与发布前跑一次，结果与负载记进 HANDOFF。
+- 负载只作诊断记录：每轮输出 `os.loadavg()` 与 CPU 数。**禁止**在任何测试里加「高负载跳过 / 放宽」逻辑，不得改阈值、采样帧数或分位数；`check:perf` 失败一律按真实性能退化处理。
 
 ## 招式 VFX API（ENG-11）
 

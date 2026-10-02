@@ -67,7 +67,7 @@
 - 写集：`packages/data/src/schemas/region-map.ts`、`packages/data/src/schemas/index.ts`、`packages/data/src/build/**`、`packages/data/scripts/**`、`packages/data/CLAUDE.md`、`content/tiled/**`、`content/world/README.md`、`content/world/regions/**`（只放测试夹具以外的空目录说明；夹具放测试目录）。写集外的改动在提交时会被丢弃。
 - **不改**：`apps/game/**`、`packages/core/**`、`package.json`、`pnpm-lock.yaml`；序章正式地图归 CONTENT-ch00。
 - data 不做规则结算；每次写入 ≤ 150 行；不加依赖。
-- 不得放宽、跳过或改写任何门禁测试。若只因机器负载挂在 rig 门禁，在报告写明负载与数值即可。
+- 不得放宽、跳过或改写任何门禁测试。rig 100 角色性能门禁已移出 `pnpm check`（作者 AR-33），改由 `pnpm check:perf` 在负载低时单独跑；不得在测试里加任何「高负载跳过」逻辑，不得改阈值。
 
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`

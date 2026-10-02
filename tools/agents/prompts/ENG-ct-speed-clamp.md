@@ -36,7 +36,7 @@
 - 写集：`packages/core/src/battle/timeline/**`、`packages/core/src/battle/encounter/**`（只在必须时改）。写集外的改动在提交时会被丢弃。
 - ENG-16b 正在改 `battle/**` 的其他部分（行动、经脉、聚气）。本任务只动 `nextTimelineEntry` 附近与速度相关的几行，**不碰聚气适配（timeline 第 115 行一带）**，以减少合入冲突。
 - core 禁浮点、禁 DOM、禁墙钟、禁 `Math.random`；每次写入 ≤ 150 行；不加依赖。
-- 不得放宽、跳过或改写任何门禁测试。若 `pnpm check` 只因 rig 100 角色性能门禁失败（机器负载），在报告里写明负载与数值即可。
+- 不得放宽、跳过或改写任何门禁测试。rig 100 角色性能门禁已移出 `pnpm check`（作者 AR-33），改由 `pnpm check:perf` 在负载低时单独跑；不得在测试里加任何「高负载跳过」逻辑，不得改阈值。
 
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`
