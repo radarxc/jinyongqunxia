@@ -56,7 +56,8 @@ def sha256(path: Path) -> str:
 
 def parse_id(asset_id: str) -> tuple[str, str]:
     """por_npc_xiaofeng__ch01_prime_gaibang_base → (npc_xiaofeng, ch01_prime_gaibang_base)"""
-    m = re.fullmatch(r"por_(npc_[a-z0-9_]+?)__(ch\d\d_[a-z0-9_]+)", asset_id)
+    m = (re.fullmatch(r"por_(npc_[a-z0-9_]+?)__(ch\d\d_[a-z0-9_]+)", asset_id)
+         or re.fullmatch(r"por_(role_[a-z0-9_]+?)__([a-z0-9_]+)", asset_id))  # 各朝路人形象（AR-30）：por_role_<职业>__<时代>_<m|f>
     if not m:
         raise ValueError(f"无法解析立绘 ID：{asset_id}")
     return m.group(1), m.group(2)
@@ -206,7 +207,7 @@ def main() -> int:
     index.setdefault("schema", "tianshu-portrait-index.v1")
     index.setdefault("portrait", {}); index.setdefault("avatar", {}); index.setdefault("bust", {})
     jobs = []
-    for man in sorted(SRC.glob("*/*/manifest.yaml")):
+    for man in sorted([*SRC.glob("*/*/manifest.yaml"), *SRC.glob("*/commoners/*/manifest.yaml")]):
         for row in yaml.safe_load(man.read_text(encoding="utf-8")) or []:
             if a.only and a.only not in row["id"]:
                 continue
