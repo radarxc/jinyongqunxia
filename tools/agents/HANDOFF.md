@@ -631,6 +631,7 @@
     - **待澄清**：
       - 三视图用 Gemini 还是 codex（作者答「是」）；
       - UAL Pro 买不买：已解释，默认不买。
+    - **14:10 追问结果**：三视图用 codex（改了 AR-29 原定的 Gemini），UAL Pro 先不买，已补进 AR-34。
     - **顺手处理的停住任务**（开发监督因额度停着）：
       - **DES-sleep-events**：12:00–12:06 自动合入，被协调者在 `_prod` 里没提交的改动挡住了；13:58 手动 `step.py merge` 合入（5b79f03c），状态文件已改成 MERGED。教训：在 `_prod` 改文件要改完立即提交。
       - **DES-sync-baima-year**：停在 HOLD-REVIEWS，起第 1 次复审（`--from validate`，pid 94958）。
