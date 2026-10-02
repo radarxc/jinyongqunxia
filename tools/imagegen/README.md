@@ -101,6 +101,8 @@ INGEST_ARGS="--manual-title 打狗棒法" zsh tools/imagegen/ingest_commit.sh it
 
 - **单次 JS 调用有 45 秒上限**：等待逻辑都拆成 28 秒以内一段；`send()` 最长约 38 秒。
 - **预览图会冒充原图**：预览图（`rd-gg-dl …=s1024-rj`）加载失败重试时也走 fetch，曾被误存成 1024 的"原图"。所以 `patchFetch` 只认 `=s0-d`，存盘前还要核一次尺寸。偶尔 Gemini 本身只出 1024 的原图，这种照样入库，manifest 的 `source_size` 会写明。
+- **存图不依赖真实鼠标**：窗口窄（10-02 曾窄到 227 px）时图片位置随回复文字变化，按旧坐标 hover 会落空。改为在同一次 JS 调用里先 `waitGen(3000)` 把图滚到中间，再对图片派发 pointerover / mouseover / mousemove 事件，然后 `saveFull`，失败自动重试一次。这样后台标签页也能存图（存图不算提交）。
+- **后台标签页的定时器被重度节流**：在隐藏标签页里跑 `setTimeout` 轮询会拖过 45 秒上限、报渲染器无响应。等待可见要用 computer 工具的 wait（每次 ≤ 10 秒），中间只读一次 `visibilityState`。
 - **Trusted Types**：页面禁止直接 `eval`，要先 `trustedTypes.createPolicy` 再 `eval(policy.createScript(code))`。
 - **改了 `gemini_g.js` 之后**：要重新传进 `localStorage.claudeG`（各道共用，协调者的标签页下一次 eval 就会用上新代码，改动要向后兼容）。已打过补丁的页面要整页刷新，`patchFetch` 才会用新代码。
 - **限流**：页面提示上限 / 稍后再试、模式掉回 Flash-Lite（`prepareNext` 返回 `mode not Pro`）、模板卡加载不出来（返回 `no template`），都算限流。等 2 分钟再回 `/app`；连续三次就停，去 `https://gemini.google.com/usage` 看「Current usage」的重置时间，到点再继续。额度按时段计，不是按天；一个时段能出多少张各次实测差别很大，以 usage 页为准。作者要求触顶时告诉他。
