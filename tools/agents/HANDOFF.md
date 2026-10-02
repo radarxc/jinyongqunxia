@@ -253,5 +253,24 @@
     - **霍都折扇返工**：出成了带标题和标注的设定稿式图，已放回队尾重出。`gemini_prompt.SHORT_NEG` 加了「画面里不要出现任何文字……不是设定稿」，页面里剩余队列的提示词也同步补上。
     - **额度**：20:20 触到 Gemini 时段上限。表现是模型降为 Flash-Lite，`/images` 直接跳回 `/app`，模板卡加载不出来。`https://gemini.google.com/usage` 显示：Current usage 100%，20:52 重置；Weekly 7%，10-05 19:52 重置。一个时段大约能出 50–60 张，周额度很宽。已按作者要求告知，并在后台计时到 20:53 自动续跑。
     - **新坑**：`prepareNext` 失败（如 no template）时必须 throw。否则编辑框是空的，`markSent` 会把它误判为已发送并出队（牛尾刀出过一次，已放回队首）。
+  - **20:53–22:00 兵器出齐，出图交给 subagent**：
+    - **兵器**：94 / 94 入库，另有 8 张返工：带字、垫木匣、Flash-Lite 模式下出的、剑未出鞘看不到锻纹。
+    - **触顶后的模式问题**：触顶后 Gemini 会把模式留在 Flash-Lite，重置后不会自动切回 Pro，要手动切回。批处理现在每张都检查模式不是 Pro 就停。
+    - **品阶行包装说法**：品阶行里的「布套 / 木匣 / 专属匣 / 包装」会让模型给兵器垫匣子。`gemini_prompt.py` 已对兵器、甲、衣饰类去掉这些说法，改成「只画物品本身」。
+    - **作者要求**：开 subagent、两个 Chrome 标签页并行出图，协调者主要盯工程线。
+      - 驱动 `gemini_g.js` 已支持分道：每个标签页 `sessionStorage.claudeLane` 写 A / B，队列与当前 id 用 `claudeGemQueueA/B`、`claudeGemCurrentA/B`。
+      - 新增 `tools/imagegen/ingest_commit.sh`：入库 + 重建 INDEX + 逐张提交。
+      - 作者用 Chrome 分屏把两个标签页并排放（同一窗口里的后台标签页是 hidden，发不出去）。
+      - 后台 subagent 按 scratchpad 里的 `gem/subagent_prompt.md` 跑：衣物 90 → 食品 146，触顶或卡住就停下汇报。
+  - **22:00 ENG-08 大地图裁定**：
+    - **起因**：合入前审核 r1–r3 都卡在「大地图规则写在 apps/game，应进 core / data」。执行器在 r3→r4 那轮已经自行把规则迁进 `packages/core/src/world/worldmap-*.ts` 与 `packages/data/src/schemas/world-map.ts`，r4 判架构通过，但 15 个 core / data 文件不在写集内。
+    - **隐患**：旧写集下 `step.py finish` 会**静默丢弃**写集外改动。审核一旦通过，合进集成分支的代码就是坏的。
+    - **处置**：
+      - ① `tasks.json` 给 ENG-08、ENG-09 写集加 `packages/core/src/**`、`packages/data/src/**`。
+      - ② 停掉自动返工。r4 的返修说明第一条是「清除 core / data 改动」，会把迁好的代码删掉。
+      - ③ 把 ENG-08 工作区挪到集成分支 c7cd4fda（含 ENG-10），8 个文件留下冲突标记，交给执行器按「两边都保留」解决；state.json 的 base 已更新。
+      - ④ 带协调者裁定重启 supervise：`--note .agents/coord/ENG-08-worldmap/note_run6_coordinator.md --rework-extra .agents/coord/ENG-08-worldmap/coordinator_ruling.md --max-reviews 2`。
+    - **ENG-09**：提示词 `ENG-town-scene.md` 补了「分层」一节，规定寻路、可走性、建筑进入、打坐被袭判定进 core，避免重演。
+    - **ENG-11 特效**：19:13 起持续在跑（日志 58 MB 仍在增长，在调着色器 / 资源路径），未卡死。
   - **图片任务必须 `web: true`**：Codex 在无网络沙箱里报 `Reconnecting… workspace routing discovery failed`，ART-rig-parts-male / female 因此又停两次；已改登记（`_prod` 79572be），`_imagegen.md` 第 6 条记入，female 带说明 `.agents/coord/ART-rig-parts/web_note.md` 重启，male 等它当前这次（无网络）跑完停住后同样重启。
   - ⑤ 上一会话 08:00 起被自动模式分类器锁死（会话级、与操作无关，Bash 全拒）；其交接文件 `.agents/wt/_prod/.agents/coord/HANDOFF-session-20261001.md` 的要点已并入本节。GPT-6-Astra 仍未改回。作者待答复：基线两套宋套件（song_dali、song_southern）是否也按历史图片重出；各书改命报告「需作者确认（附默认）」（`tools/agents/reports/DES-destiny-chNN.md` §4）。
