@@ -89,6 +89,11 @@ PACKAGING = re.compile(r"[；;，,、]?\s*(?:布套／木匣较完整|旧而妥�
 NO_PACK_CATS = {"weapons", "hidden-weapons", "armor", "innerarmor", "clothing", "accessories", "shoes", "belts"}
 
 
+def manual_title(name: str) -> str:
+    """秘籍封面题签上写的书名：去掉藏本 / 残本 / 秘本 / 抄本 / 秘籍 / 遗谱 / 残谱等版本后缀（作者 10-02：秘籍都要写名字）。"""
+    return re.sub(r"(藏本|残本|秘本|抄本|秘籍|遗谱|残谱)$", "", name) or name
+
+
 def build_short(asset_id: str) -> str:
     """精简版（2026-10-01 实测效果最好）：画风 + 题材 + 名录外观要点 + 类别专项 + 品阶 + 年代要求 + 短排除项，约 400–600 字。"""
     f = find_prompt(asset_id)
@@ -121,6 +126,17 @@ def build_short(asset_id: str) -> str:
     if special and special.rstrip("。") in look:  # 主体段常已含类别专项原句（食品 10-02 实测每条重复两次）
         special = ""
     name, sub, grade, src = fm.get("name", ""), fm.get("subcategory", ""), fm.get("grade", ""), str(fm.get("source", ""))
+    neg = SHORT_NEG
+    if fm.get("category") == "manuals":
+        # 名录原写「空题签」，10-01 出的 18 本都没有书名；改为封面题签写书名，排除项只放行这一处文字
+        title = manual_title(name)
+        sign = f"封面题签上用端正楷书竖写书名「{title}」，墨色，字迹清楚、笔画准确"
+        look, special = (x.replace("空题签", sign) for x in (look, special))
+        if sign not in look + special:
+            special = (special + "；" if special else "") + sign
+        neg = SHORT_NEG.replace("文字、伪字、印章", "印章").replace(
+            "画面里不要出现任何文字：没有标题、标注、说明栏、引线标签（这是单独的物品图，不是设定稿）。",
+            f"除封面题签上的书名「{title}」外，不要任何其他文字、伪字、印章、标注或说明栏（这是单独的物品图，不是设定稿）。")
     src = re.sub(r"\s*（(?:原创扩展|待考)[^）]*）", "", src.replace("**", "")).strip(" ；;")
     grade_line = grade_line.split("（禁")[0]
     if fm.get("category") in NO_PACK_CATS:
@@ -133,7 +149,7 @@ def build_short(asset_id: str) -> str:
            (f"形制与外观：{look}。" + (f"{special}。" if special else "")) if look else "",
            f"品阶表现：{grade_line}；只用材质、工艺与旧化表达，不画光效。" if grade_line else "",
            f"要一眼看出这是「{name}」这一朝代、这一兵种的制式甲：甲片形制、编缀方式、披膊 / 护心 / 甲裙等部件和主色配色都符合该朝史料，颜色克制。" if fm.get("category") == "armor" else "年代与形制符合出处书界的时代，不混搭。",
-           SHORT_NEG]
+           neg]
     return re.sub(r"[；;，,]\s*。", "。", " ".join(x for x in out if x))
 
 
