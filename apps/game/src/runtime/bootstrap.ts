@@ -34,7 +34,7 @@ export function createPreviewSession(content: GameContent): SessionSnapshot {
   return { schema: 'ui-session.v1', preview: true,
     location: map && worldMap ? `${worldMapLocation(worldMap, map)} · 大地图` : '大理 · 歇脚处',
     state: { ...state, profile: { protagonist, companions: [] },
-      party: { ...state.party, inventory }, chapter: { ...state.chapter, worldMap } },
+      party: { ...state.party, inventory }, chapter: { ...state.chapter, worldMap, town: null } },
     known: [
       { npcId: 'npc_duanyu', relationship: 'befriended', affinity: 0,
         character: build?.pipeline === 'full' ? character('npc_duanyu', content, build.skills) : null },

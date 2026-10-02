@@ -15,6 +15,7 @@ const InventoryPage = defineAsyncComponent(() => import('./pages/InventoryPage.v
 const SavePage = defineAsyncComponent(() => import('./pages/SavePage.vue'));
 const BattlePage = defineAsyncComponent(() => import('./battle/BattlePage.vue'));
 const WorldMapPage = defineAsyncComponent(() => import('./pages/WorldMapPage.vue'));
+const TownPage = defineAsyncComponent(() => import('./pages/TownPage.vue'));
 const page = ref<MenuPage>('journey');
 const scene = ref<'world' | 'town' | 'ruin' | 'battle'>('world');
 const sourceScene = ref<'world' | 'town'>('world');
@@ -70,6 +71,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', keyboard));
           <BattlePage v-if="scene === 'battle' && battle" :controller="battle" :source="sourceScene" :reduced-motion="settings.reducedMotion" @returned="returned" />
           <p v-else-if="scene === 'battle'" class="paper-panel">正在展开战旗……</p>
           <WorldMapPage v-else-if="scene === 'world'" :controller="controller" @scene="openScene" />
+          <TownPage v-else-if="scene === 'town'" :controller="controller" @leave="leaveScene" />
           <ScenePlaceholder v-else :scene="scene" @leave="leaveScene" />
           <p v-if="projection.hud.preview" class="muted">{{ t('previewNote') }}</p>
         </div>

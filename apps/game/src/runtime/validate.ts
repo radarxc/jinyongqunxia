@@ -1,6 +1,7 @@
 import { CORE_VERSION, EQUIPMENT_SLOTS, InventoryRuntime, RNG_PROTOCOL, parseGameState,
   validateWorldMapState, type CharacterState } from '@tianshu/core';
 import { canonicalJson, type JsonValue } from '@tianshu/shared';
+import type { TownRuntimeDefinition } from '@tianshu/data/schemas';
 import { equipmentRules, type GameContent } from './content';
 import type { SessionSnapshot } from './contracts';
 
@@ -17,7 +18,8 @@ function validateReferences(character: CharacterState, content: GameContent): vo
     throw new Error('SAVE_CHARACTER_INVALID');
 }
 
-export function validateSession(value: SessionSnapshot, content: GameContent): SessionSnapshot {
+export function validateSession(value: SessionSnapshot, content: GameContent,
+  townDefinition?: TownRuntimeDefinition): SessionSnapshot {
   if (!value || value.schema !== 'ui-session.v1') throw new Error('SAVE_VERSION_UNSUPPORTED');
   const copy = JSON.parse(canonicalJson(value as unknown as JsonValue)) as SessionSnapshot;
   const state = parseGameState(copy.state);
@@ -90,5 +92,14 @@ export function validateSession(value: SessionSnapshot, content: GameContent): S
   const worldMap = state.chapter.worldMap;
   if ((worldMap === null) !== (map === undefined)) throw new Error('SAVE_WORLDMAP_INVALID');
   if (worldMap && map) validateWorldMapState(worldMap, map);
+  const town = state.chapter.town;
+  if (town) {
+    const definition = townDefinition ?? content.towns?.find((entry) => entry.sceneId === town.sceneId);
+    if (!definition || definition.revision !== town.townRevision ||
+        definition.chapterId !== state.chapter.chapterId.slice(0, 4) ||
+        !definition.navigation.nodes.some(([q, r]) => q === town.point[0] && r === town.point[1]) ||
+        (town.buildingId !== null && !definition.buildings.some((entry) =>
+          entry.id === town.buildingId && entry.enterable))) throw new Error('SAVE_TOWN_INVALID');
+  }
   return { ...copy, state };
 }

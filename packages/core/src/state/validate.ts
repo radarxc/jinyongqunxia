@@ -203,6 +203,20 @@ function validateWorldMapStateShape(value: unknown): void {
   if (!['walking', 'paused', 'encounter'].includes(String(journey['status'])))
     throw new TypeError('STATE_SHAPE');
 }
+function validateTownStateShape(value: unknown): void {
+  const town = object(value);
+  keys(town, ['version', 'townRevision', 'sceneId', 'point', 'buildingId', 'buildingPhase']);
+  if (town['version'] !== 1) throw new TypeError('STATE_SHAPE');
+  string(town['townRevision']); string(town['sceneId']);
+  const point = array(town['point']);
+  if (point.length !== 2) throw new TypeError('STATE_SHAPE');
+  integer(point[0], Number.MIN_SAFE_INTEGER); integer(point[1], Number.MIN_SAFE_INTEGER);
+  const phase = String(town['buildingPhase']);
+  if (!['outside', 'fading-in', 'inside', 'fading-out'].includes(phase))
+    throw new TypeError('STATE_SHAPE');
+  if (town['buildingId'] !== null) string(town['buildingId']);
+  if ((phase === 'outside') !== (town['buildingId'] === null)) throw new TypeError('STATE_SHAPE');
+}
 function validateGameStateShape(value: StateRecord): void {
   keys(value, ['meta', 'profile', 'chapter', 'party', 'transient', 'battle']);
   const meta = object(value['meta']);
@@ -219,7 +233,7 @@ function validateGameStateShape(value: StateRecord): void {
   if (profile['protagonist'] !== null) validateCharacter(profile['protagonist']);
   for (const companion of array(profile['companions'])) validateCharacter(companion);
   const chapter = object(value['chapter']);
-  keys(chapter, ['chapterId', 'worldYear', 'clock', 'story', 'worldItems', 'shops', 'worldMap']);
+  keys(chapter, ['chapterId', 'worldYear', 'clock', 'story', 'worldItems', 'shops', 'worldMap', 'town']);
   string(chapter['chapterId']); integer(chapter['worldYear'], Number.MIN_SAFE_INTEGER); validateClock(chapter['clock']);
   validateStory(chapter['story']);
   const worldItems = object(chapter['worldItems']); keys(worldItems, ['entries']);
@@ -236,6 +250,7 @@ function validateGameStateShape(value: StateRecord): void {
     }
   }
   if (chapter['worldMap'] !== null) validateWorldMapStateShape(chapter['worldMap']);
+  if (chapter['town'] !== null) validateTownStateShape(chapter['town']);
   const party = object(value['party']); keys(party, ['inventory', 'equipment', 'money']); integer(party['money']);
   const inventory = object(party['inventory']); keys(inventory, ['stacks']);
   for (const entry of array(inventory['stacks'])) { const stack = object(entry); keys(stack, ['itemId', 'count']); string(stack['itemId']); integer(stack['count'], 1); }

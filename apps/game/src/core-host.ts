@@ -19,8 +19,8 @@ export async function createGameCoreHost(): Promise<GameHost> {
     } finally { if (timeout) clearTimeout(timeout); }
   }
   // Only initialization failure can fall back. A running Worker is never silently restarted.
-  const [{ createGameSession }, { default: content }] = await Promise.all([
-    import('./runtime/session'), import('virtual:tianshu-content'),
+  const [{ createGameSession }, { default: content }, { loadTown }] = await Promise.all([
+    import('./runtime/session'), import('virtual:tianshu-content'), import('virtual:tianshu-towns'),
   ]);
-  return createProjectionMainThreadHost(createGameSession(content));
+  return createProjectionMainThreadHost(createGameSession(content, undefined, loadTown));
 }

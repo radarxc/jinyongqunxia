@@ -13,7 +13,9 @@ export interface RigInstanceBuffer {
   readonly affine2d: InstancedInterleavedBuffer; readonly affineA: InterleavedBufferAttribute;
   readonly affineB: InterleavedBufferAttribute; readonly anchorDepth: InstancedBufferAttribute;
   readonly sortTint: InstancedBufferAttribute; readonly dirtyRanges: readonly DirtyRange[];
-  write(index: number, data: RigInstanceData): boolean; flushDirtyRanges(): readonly DirtyRange[]; clear(): void;
+  write(index: number, data: RigInstanceData): boolean;
+  writeAffineBlock(baseIndex: number, source: Float32Array): void;
+  flushDirtyRanges(): readonly DirtyRange[]; clear(): void;
 }
 
 function differs(target: ArrayLike<number>, offset: number, source: ArrayLike<number>, size: number): boolean {
@@ -97,6 +99,14 @@ export function createRigInstanceBuffer(capacity = 2_000): RigInstanceBuffer {
     return ranges;
   }
 
+  function writeAffineBlock(baseIndex: number, source: Float32Array): void {
+    const count = source.length / 6;
+    if (!Number.isInteger(baseIndex) || !Number.isInteger(count)
+      || baseIndex < 0 || baseIndex + count > capacity) throw new RangeError('RIG_INSTANCE_INDEX');
+    affineArray.set(source, baseIndex * 6);
+    dirty.fill(1, baseIndex, baseIndex + count);
+  }
+
   return { capacity, uvRect, affine2d, affineA, affineB, anchorDepth, sortTint, get dirtyRanges() { return ranges; },
-    write, flushDirtyRanges, clear() { uvArray.fill(0); affineArray.fill(0); anchorArray.fill(0); sortArray.fill(0); dirty.fill(1); } };
+    write, writeAffineBlock, flushDirtyRanges, clear() { uvArray.fill(0); affineArray.fill(0); anchorArray.fill(0); sortArray.fill(0); dirty.fill(1); } };
 }

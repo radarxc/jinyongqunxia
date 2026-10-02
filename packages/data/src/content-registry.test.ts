@@ -50,6 +50,22 @@ describe('content registry', () => {
       .toThrow();
   });
 
+  it('identifies generated town runtime content by chapter and city', () => {
+    const town = { schemaVersion: 'town-runtime.v1', revision: '0'.repeat(64),
+      cityId: 'city_test', chapterId: 'ch01', sceneId: 'city_test', displayName: '测试镇',
+      historicalYear: 1093, eraKit: 'song_dali', source: { spec: 'spec', layout: 'layout',
+        sha256: '1'.repeat(64) }, grid: { width: 1, height: 1, cellM: 1, chunkCells: 32 },
+      projection: { tilePx: [64, 32], pitchDeg: 30, yawDeg: 45, elevationCmPerM: 100 },
+      assets: { tile: { baseUrl: '/', manifest: 'tile', entries: [] },
+        building: { baseUrl: '/', manifest: 'building', entries: [] } },
+      groundPalette: [{ ground: 'earth', overlay: null, elevationCm: 0, walkable: true }],
+      groundRuns: [[0, 1, 0]], edgeTiles: [], waterRuns: [], bridgeRuns: [],
+      navigation: { neighborOrder: 'axial-rq-v1', maxStepCm: 50,
+        nodes: [[0, 0, 0, 'flat']], spawn: [0, 0] }, buildings: [], anchors: [] };
+    const registry = loadContent([{ path: 'town.json', text: JSON.stringify(town) }]);
+    expect(registry.get('town', 'ch01/city_test')).toBe(registry.towns[0]);
+  });
+
   it('builds a detached frozen registry with O(1) identity lookup', () => {
     const file = { path: 'fixture.yaml', text: itemYaml };
     const registry = loadContent([file]);

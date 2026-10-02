@@ -1,6 +1,7 @@
 import { access, copyFile, mkdir, readFile, readdir } from 'node:fs/promises';
 import { dirname, join, relative, resolve } from 'node:path';
 import { parseYamlFile } from '@tianshu/data/tooling';
+import type { TownRuntimeDefinition } from '@tianshu/data/schemas';
 import type { GameContent } from '../src/runtime/content';
 
 export async function filesIn(directory: string): Promise<string[]> {
@@ -11,7 +12,25 @@ export async function filesIn(directory: string): Promise<string[]> {
 }
 
 /** Manifest availability is included in the DTO, avoiding known-missing image requests. */
-export async function readAssetManifest(root: string, copy: boolean): Promise<NonNullable<GameContent['assets']>> {
+async function copyTownAssets(root: string, source: string, copy: boolean,
+  towns: readonly TownRuntimeDefinition[]): Promise<void> {
+  if (!copy) return;
+  const files = new Set<string>();
+  for (const town of towns) for (const atlas of [town.assets.tile, town.assets.building]) {
+    const directory = resolve(root, '.' + atlas.baseUrl);
+    if (!directory.startsWith(source + '/')) throw new Error('ASSET_OUTSIDE_ROOT');
+    for (const entry of atlas.entries) files.add(resolve(directory, entry.file));
+  }
+  for (const absolute of [...files].sort()) {
+    if (!absolute.startsWith(source + '/')) throw new Error('ASSET_OUTSIDE_ROOT');
+    await access(absolute);
+    const output = join(root, 'apps/game/public/assets/default', relative(source, absolute));
+    await mkdir(dirname(output), { recursive: true }); await copyFile(absolute, output);
+  }
+}
+
+export async function readAssetManifest(root: string, copy: boolean,
+  towns: readonly TownRuntimeDefinition[] = []): Promise<NonNullable<GameContent['assets']>> {
   const source = join(root, 'assets/default');
   const result: Record<string, { icon?: string; portrait?: string; map?: string }> = {};
   const consumed = ['/item/', '/character/', '/portrait/', '/baseline/map/'];
@@ -39,6 +58,7 @@ export async function readAssetManifest(root: string, copy: boolean): Promise<No
       }
     }
   }
+  await copyTownAssets(root, source, copy, towns);
   return result;
 }
 

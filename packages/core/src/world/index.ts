@@ -8,6 +8,7 @@ export * from './worldmap-pathfinder';
 export * from './worldmap-runtime';
 export * from './worldmap-state';
 export * from './worldmap-types';
+export * from './town-runtime';
 
 export type TimeAdvanceReason = 'inn-rest' | 'meditation' | 'travel' | 'battle' | 'story';
 export interface TimeAdvance {

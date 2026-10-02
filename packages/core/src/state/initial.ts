@@ -17,7 +17,7 @@ export function createInitialGameState(input: InitialGameStateInput): GameState 
     profile: { protagonist: null, companions: [] },
     chapter: { chapterId: input.chapterId, worldYear: input.epochYear, clock,
       story: { chapterId: input.chapterId, lines: [] }, worldItems: { entries: [] }, shops: [],
-      worldMap: null },
+      worldMap: null, town: null },
     party: { inventory: { stacks: [] }, equipment: createEmptyEquipment(), money: 0 },
     transient: { pendingTimeAdvance: null, dialogue: null, battle: null },
     battle: null,

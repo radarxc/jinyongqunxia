@@ -93,6 +93,7 @@ class RigCharacter implements RigInstance {
   private worldX = 0; private worldY = 0; private worldZ = 0; private disposed = false;
   private capePhi = 0; private capeOmega = 0; private attachmentCount = 0;
   private snapshotCanvas: HTMLCanvasElement | undefined;
+  private initializedBuffers = new WeakSet<RigInstanceBuffer>();
 
   constructor(readonly rigSet: RigSet, equipment: EquipmentVisuals, readonly stableId: number) {
     this.views = [resolveView(rigSet, 'front34', false), resolveView(rigSet, 'front34', true), resolveView(rigSet, 'back34', false), resolveView(rigSet, 'back34', true), resolveView(rigSet, 'side', false), resolveView(rigSet, 'side', true)];
@@ -127,11 +128,13 @@ class RigCharacter implements RigInstance {
     await Promise.resolve();
     if (this.disposed) return;
     this.equipmentState = equipment; this.assemblies = assemblies; this.writePose();
+    this.invalidateStaticInstanceData();
   }
 
   setPosition(x: number, y: number, z: number): void {
     if (![x, y, z].every(Number.isFinite)) throw new RangeError('RIG_POSITION');
     this.worldX = x; this.worldY = y; this.worldZ = z; this.writePose();
+    this.invalidateStaticInstanceData();
   }
 
   setStepFps(stepFps: number): void {
@@ -146,13 +149,18 @@ class RigCharacter implements RigInstance {
     if (this.transition < 1) this.transition = Math.min(1, this.transition + dt / 0.16);
     if (this.turnProgress < 1) {
       const before = this.turnProgress; this.turnProgress = Math.min(1, this.turnProgress + dt / 0.16);
-      if (before < .5 && this.turnProgress >= .5) { this.mirrored = this.targetMirrored; this.viewIndex = this.targetViewIndex; }
+      if (before < .5 && this.turnProgress >= .5) {
+        this.mirrored = this.targetMirrored; this.viewIndex = this.targetViewIndex;
+        this.invalidateStaticInstanceData();
+      }
     }
     this.evaluatePose(); this.updateCape(dt); this.writePose();
   }
 
-  writeInstances(buffer: RigInstanceBuffer, baseIndex: number): void {
+  writeInstances(buffer: RigInstanceBuffer, baseIndex: number, forceStatic = false): void {
+    if (!forceStatic && this.initializedBuffers.has(buffer)) { buffer.writeAffineBlock(baseIndex, this.affine); return; }
     for (let index = 0; index < 20; index += 1) buffer.write(baseIndex + index, index < 16 + this.attachmentCount ? this.data[index]! : HIDDEN);
+    this.initializedBuffers.add(buffer);
   }
 
   snapshot(): RigSnapshot | undefined {
@@ -200,6 +208,10 @@ class RigCharacter implements RigInstance {
     context.scale((part.sortTint[3]! & 2) === 0 ? 1 : -1, -1);
     context.drawImage(source, uv[0]! * this.rigSet.atlasWidth, uv[1]! * this.rigSet.atlasHeight,
       sw, sh, -0.5, -0.5, 1, 1); context.restore();
+  }
+
+  private invalidateStaticInstanceData(): void {
+    this.initializedBuffers = new WeakSet<RigInstanceBuffer>();
   }
 
   private makeAssemblies(equipment: EquipmentVisuals): readonly EquipmentAssembly[] {

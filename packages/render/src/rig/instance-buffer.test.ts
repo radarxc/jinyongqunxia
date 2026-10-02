@@ -34,4 +34,13 @@ describe('createRigInstanceBuffer', () => {
     const buffer = createRigInstanceBuffer(1);
     expect(() => buffer.write(1, value(1))).toThrowError('RIG_INSTANCE_INDEX');
   });
+
+  it('copies a contiguous affine block without per-instance writes', () => {
+    const buffer = createRigInstanceBuffer(4);
+    const source = new Float32Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+    buffer.writeAffineBlock(1, source);
+    expect(Array.from(buffer.affine2d.array.slice(6, 18))).toEqual(Array.from(source));
+    expect(buffer.flushDirtyRanges()).toEqual([{ start: 1, count: 2 }]);
+    expect(() => buffer.writeAffineBlock(3, source)).toThrowError('RIG_INSTANCE_INDEX');
+  });
 });
