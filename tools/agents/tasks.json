@@ -30116,6 +30116,38 @@
      ]
     ]
    }
+  },
+  {
+   "phase": "PROD",
+   "wave": 14,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/tech/05-gameplay-engine.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "DES-sync-meridian-v2",
+   "title": "文档同步 · 经脉快照名与协议号按 design/21 统一（meridian-flow-state.v2；tech/01、05、08、09）",
+   "prompt": "DES-sync-meridian-v2.md",
+   "deps": [
+    "ENG-14-meridian-golden"
+   ],
+   "writes": [
+    "docs/tech/01-architecture.md",
+    "docs/tech/05-gameplay-engine.md",
+    "docs/tech/08-backend-and-online.md",
+    "docs/tech/09-roadmap.md"
+   ]
   }
  ]
 }
