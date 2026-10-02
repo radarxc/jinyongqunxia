@@ -30394,6 +30394,214 @@
      ]
     ]
    }
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/hex/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test:performance"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-16a-battle-geometry",
+   "title": "游戏工程 · 战斗补全 A（六角 A* / 可达集 / LOS / 移动与朝向 / 射程与目标合法性进 core）",
+   "prompt": "ENG-battle-geometry.md",
+   "deps": [
+    "ENG-14-meridian-golden"
+   ],
+   "writes": [
+    "packages/core/src/hex/**",
+    "packages/core/src/battle/**",
+    "packages/core/src/ai/**",
+    "packages/core/src/replay/**",
+    "packages/core/src/testing/**",
+    "packages/core/bench/**",
+    "packages/core/CLAUDE.md",
+    "apps/game/src/battle/*.ts",
+    "apps/game/CLAUDE.md"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/camera/facing.ts",
+     "packages/render/src/camera/iso-camera.ts",
+     "packages/render/src/lighting/time-of-day.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-21a-camera-daynight",
+   "title": "游戏工程 · 渲染补齐 A（战斗四偏航旋转 / 昼夜色调）",
+   "prompt": "ENG-render-camera-daynight.md",
+   "deps": [
+    "ENG-09-town-scene"
+   ],
+   "writes": [
+    "packages/render/src/camera/**",
+    "packages/render/src/lighting/**",
+    "packages/render/src/battle/**",
+    "packages/render/src/worldmap/**",
+    "packages/render/src/index.ts",
+    "packages/render/src/render.test.ts",
+    "packages/render/CLAUDE.md",
+    "apps/game/src/battle/components/BattleField.vue",
+    "apps/game/src/battle/components/BattleControls.vue",
+    "apps/game/src/battle/battle.css",
+    "packages/ui/src/i18n.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/core/context-guard.ts",
+     "packages/render/src/quality/auto-tuner.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-21b-recovery-quality",
+   "title": "游戏工程 · 渲染补齐 B（WebGL 上下文丢失恢复 / 自适应质量）",
+   "prompt": "ENG-render-recovery-quality.md",
+   "deps": [
+    "ENG-21a-camera-daynight"
+   ],
+   "writes": [
+    "packages/render/src/core/**",
+    "packages/render/src/quality/**",
+    "packages/render/src/battle/**",
+    "packages/render/src/worldmap/**",
+    "packages/render/src/vfx/stage.ts",
+    "packages/render/src/vfx/stage.test.ts",
+    "packages/render/src/frame-stats.ts",
+    "packages/render/src/index.ts",
+    "packages/render/src/render.test.ts",
+    "packages/render/CLAUDE.md",
+    "apps/game/src/render-host.ts",
+    "apps/game/src/battle/components/BattleField.vue",
+    "apps/game/src/battle/battle.css",
+    "packages/ui/src/i18n.ts"
+   ]
   }
  ]
 }
