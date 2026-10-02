@@ -42,6 +42,7 @@ CANON_WITH_PREFIXES = """# Canon
 | 资源点 | `rp_<pinyin>` |
 | 营生 | `biz_<pinyin>` |
 | 选择 | `dc_<pinyin>` |
+| 休眠事件 | `slp_<NN>_<pinyin>` |
 | 视频 | `vid_<pinyin>` |
 | 路线 | `route_<pinyin>` |
 | 经脉 | `mer_<pinyin>` |
@@ -254,6 +255,26 @@ skills:
         undefined = {item["id"] for item in report["issues"]["undefined_references"]}
         self.assertNotIn("ap_owner", undefined)
         self.assertIn("ap_non_owner", undefined)
+
+    def test_sleep_event_owner_defines_but_non_owner_only_references(self) -> None:
+        with TemporaryRepository() as repo:
+            repo.add_support_files()
+            repo.write(
+                "docs/design/story/sleep-events.md",
+                "# 休眠事件\n\n## 本文新增术语与 ID\n\n"
+                "| ID | 定义 |\n|---|---|\n| `slp_01_owner` | 正式事件 |\n",
+            )
+            repo.write(
+                "docs/design/story/01-tianlong.md",
+                "# 天龙\n\n## 本文新增术语与 ID\n\n"
+                "| ID | 定义 |\n|---|---|\n| `slp_01_non_owner` | 误放定义 |\n",
+            )
+
+            report = check_ids.build_report(repo.root, [])
+
+        undefined = {item["id"] for item in report["issues"]["undefined_references"]}
+        self.assertNotIn("slp_01_owner", undefined)
+        self.assertIn("slp_01_non_owner", undefined)
 
     def test_owner_fenced_mapping_key_defines_id(self) -> None:
         with TemporaryRepository() as repo:
