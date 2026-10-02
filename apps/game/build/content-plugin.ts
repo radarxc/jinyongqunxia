@@ -4,7 +4,7 @@ import type { Plugin } from 'vite';
 import { parseContentFile } from '@tianshu/data/tooling';
 import { mapFromRegistration, type ItemDef, type MartialArtDef,
   type NpcDef } from '@tianshu/data/schemas';
-import { filesIn, readAssetManifest } from './asset-manifest';
+import { filesIn, publishVfxRuntime, readAssetManifest } from './asset-manifest';
 
 const root = resolve(import.meta.dirname, '../../..');
 const virtualId = 'virtual:tianshu-content';
@@ -16,7 +16,9 @@ async function readDefinitions<T>(directory: string): Promise<T[]> {
 /** Build-time YAML and documentation projection: neither parser enters the browser. */
 export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugin {
   let assetManifest: ReturnType<typeof readAssetManifest> | undefined;
+  let vfxRuntime: ReturnType<typeof publishVfxRuntime> | undefined;
   const assets = () => assetManifest ??= readAssetManifest(root, options.copyAssets !== false);
+  const vfx = () => vfxRuntime ??= publishVfxRuntime(root, options.copyAssets !== false);
   return {
     name: 'tianshu-ui-content',
     resolveId(id) { return id === virtualId ? '\0' + virtualId : null; },
@@ -60,7 +62,7 @@ export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugi
       return 'export default ' + JSON.stringify({ items: [...common, ...catalog], npcs, skills, topology, factions, assets: assetMap, worldMaps }) + ';';
     },
     async buildStart() {
-      await assets();
+      await Promise.all([assets(), vfx()]);
     },
   };
 }

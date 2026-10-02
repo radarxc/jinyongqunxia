@@ -4,16 +4,21 @@ import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vu
 import type { BattleCell, BattleRenderer, ScreenPoint } from '@tianshu/render/battle';
 import type { BattleView } from '../contracts';
 import type { BattleLogEntry } from '../controller';
-const props = defineProps<{ battle: BattleView; selected: string | null; reducedMotion: boolean;
+import type { BattleController } from '../controller';
+import { bindBattleVfx } from '../vfx';
+const props = defineProps<{ controller: BattleController; battle: BattleView; selected: string | null; reducedMotion: boolean;
   floating: readonly BattleLogEntry[]; skip: boolean }>();
 const emit = defineEmits<{ cell: [cell: BattleCell]; hover: [cell: BattleCell]; select: [id: string] }>();
-const root = ref<HTMLElement>(); const canvas = ref<HTMLCanvasElement>();
+const root = ref<HTMLElement>(); const canvas = ref<HTMLCanvasElement>(); const vfxCanvas = ref<HTMLCanvasElement>();
 const failed = ref(false); const loaded = ref(false); const stats = ref('');
 type ProjectedUnit = ScreenPoint & { readonly q: number; readonly r: number; readonly height: number };
 const positions = shallowRef<ReadonlyMap<string, ProjectedUnit>>(new Map());
 let renderer: BattleRenderer | undefined; let resizeObserver: ResizeObserver | undefined;
+let vfxStage: { resize(): void; render(time: number): void } | undefined; let offVfx: (() => void) | undefined;
 let disposed = false; let frame = 0; let lastStats = 0; let hovered = '';
-const floatingVisible = ref(true); let floatTimer: ReturnType<typeof setTimeout> | undefined;
+const floatingVisible = ref(true); const floatingPending = ref(false);
+const floatDuration = ref(600); const floatCycle = ref(0);
+let floatTimer: ReturnType<typeof setTimeout> | undefined;
 const area = computed(() => new Set(props.battle.preview?.cells.map(cell => `${cell.q},${cell.r}`) ?? []));
 const directionLabels = ['东', '东北', '西北', '西', '西南', '东南'];
 function project(force = false): void {
@@ -37,12 +42,14 @@ function sync(): void { renderer?.updateUnits(props.battle.units); project(); hi
 function resize(): void {
   if (!root.value || !renderer) return;
   renderer.resize(root.value.clientWidth, root.value.clientHeight, window.devicePixelRatio); project(true);
+  vfxStage?.resize();
 }
 function draw(time: number): void {
   if (disposed) return;
   frame = requestAnimationFrame(draw);
   if (document.visibilityState === 'hidden') return;
   renderer?.render(time, props.reducedMotion || props.skip);
+  vfxStage?.render(time);
   if (renderer && time - lastStats > 1000) {
     lastStats = time; stats.value = `${renderer.stats.drawCalls} draw · CPU ${renderer.stats.cpuMs.toFixed(2)} ms · ${renderer.stats.characters} 人`;
   }
@@ -59,8 +66,9 @@ function pointer(event: PointerEvent, commit: boolean): void {
 watch(() => props.battle.units, sync);
 watch(() => [props.battle.preview, props.selected], highlights);
 watch(() => props.floating, () => {
-  floatingVisible.value = true; if (floatTimer) clearTimeout(floatTimer);
-  floatTimer = setTimeout(() => { floatingVisible.value = false; }, 1800);
+  floatingVisible.value = !floatingPending.value; if (floatTimer) clearTimeout(floatTimer);
+  if (floatingPending.value) return;
+  floatTimer = setTimeout(() => { floatingVisible.value = false; }, props.reducedMotion ? 1 : floatDuration.value);
 });
 onMounted(async () => {
   try {
@@ -69,6 +77,22 @@ onMounted(async () => {
     const world = await createBattleRenderer(canvas.value, props.battle.info.cells);
     if (disposed) { world.dispose(); return; }
     renderer = world; loaded.value = true; sync(); resize();
+    if (vfxCanvas.value) offVfx = bindBattleVfx(props.controller, vfxCanvas.value, {
+      reducedMotion: () => props.reducedMotion || props.skip,
+      snapshotActor: id => renderer?.snapshot(id),
+      onPending() {
+        floatingPending.value = true; floatingVisible.value = false; if (floatTimer) clearTimeout(floatTimer);
+      },
+      onDuration(durationMs) {
+        floatingPending.value = false; floatDuration.value = Math.max(1, durationMs);
+        floatCycle.value += 1; floatingVisible.value = true;
+        if (floatTimer) clearTimeout(floatTimer);
+        floatTimer = setTimeout(() => { floatingVisible.value = false; }, props.reducedMotion ? 1 : durationMs);
+      },
+      onReady(stage) {
+        vfxStage = stage; stage.setProjector((q, r, height, out) => renderer?.project(q, r, height, out)); stage.resize();
+      },
+    });
     if (typeof ResizeObserver === 'function') { resizeObserver = new ResizeObserver(resize); resizeObserver.observe(root.value!); }
     window.addEventListener('resize', resize); frame = requestAnimationFrame(draw);
   } catch { if (!disposed) failed.value = true; }
@@ -76,6 +100,7 @@ onMounted(async () => {
 onBeforeUnmount(() => {
   disposed = true; cancelAnimationFrame(frame); resizeObserver?.disconnect();
   window.removeEventListener('resize', resize); if (floatTimer) clearTimeout(floatTimer); renderer?.dispose();
+  offVfx?.(); vfxStage = undefined;
 });
 </script>
 
@@ -83,6 +108,7 @@ onBeforeUnmount(() => {
   <section class="battle-field-wrap" aria-label="六角战场">
     <div ref="root" class="battle-field">
       <canvas v-show="!failed" ref="canvas" aria-label="六角地形与分层角色" @pointermove="pointer($event, false)" @click="pointer($event as PointerEvent, true)" />
+      <canvas v-show="!failed" ref="vfxCanvas" class="battle-vfx" aria-hidden="true" />
       <p v-if="failed" class="field-notice">画面暂不可用，可在下方选择人物与落点继续战斗。</p>
       <p v-else-if="!loaded" class="field-notice">正在展开战场…</p>
       <button
@@ -99,8 +125,8 @@ onBeforeUnmount(() => {
       </button>
       <div v-if="floatingVisible && !skip" class="battle-floats" aria-hidden="true">
         <span
-          v-for="entry in floating" :key="entry.key" class="float-text" :class="{ still: reducedMotion }"
-          :style="{ left: `${positions.get(entry.event.target ?? entry.event.actor ?? '')?.x ?? 20}px`, top: `${(positions.get(entry.event.target ?? entry.event.actor ?? '')?.y ?? 120) - 110}px` }"
+          v-for="entry in floating" :key="`${entry.key}:${floatCycle}`" class="float-text" :class="{ still: reducedMotion }"
+          :style="{ left: `${positions.get(entry.event.target ?? entry.event.actor ?? '')?.x ?? 20}px`, top: `${(positions.get(entry.event.target ?? entry.event.actor ?? '')?.y ?? 120) - 110}px`, '--float-duration': `${floatDuration}ms` }"
         >{{ entry.text }} {{ entry.event.amount ?? '' }}</span>
       </div>
       <details class="render-stats"><summary>画面统计</summary>{{ stats }}</details>

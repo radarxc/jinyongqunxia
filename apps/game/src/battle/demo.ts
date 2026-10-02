@@ -17,6 +17,7 @@ export function createBattleDemo(source: 'world' | 'town'): BattleLaunch {
     markers: seeds.map((unit, index) => ({ id: unit.id, index,
       name: index === 0 ? '演武侠客' : '陪练', q: index, r: 0, height: 0,
       facing: index === 0 ? 0 : 3, active: true,
+      qiNature: index === 0 ? 'neutral' : 'yang',
       equipment: index === 0 ? { mainHand: { id: 'eq_qinggangjian', tint: '#a9b9c1' },
         body: { id: 'eq_buyi', tint: '#507879' } } : {},
     })),

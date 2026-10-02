@@ -25,7 +25,14 @@ export default defineConfig({
       },
       workbox: { navigateFallback: 'index.html', maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         globPatterns: ['**/*.{js,css,html,webmanifest}',
-          'assets/default/baseline/map/ref_map_jianghu__ch01_base01.png'] },
+          'assets/default/baseline/map/ref_map_jianghu__ch01_base01.png'],
+        // VFX JSON and atlases are fetched by move on first use, never during shell/PWA startup.
+        globIgnores: [
+          '**/assets/vfx-*.js',
+          '**/assets/default/vfx/**',
+          '**/assets/default/baseline/vfx/**',
+          '**/content/vfx/**',
+        ] },
     }),
   ],
   worker: { format: 'es', plugins: () => [gameContentPlugin({ copyAssets: false })], rollupOptions: { treeshake } },
@@ -39,6 +46,7 @@ export default defineConfig({
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/entry-[hash].js',
         manualChunks(id) {
+          if (id.includes('/packages/render/src/vfx/')) return 'vfx';
           if (id.includes('/packages/render/src/rig/')) return 'rig';
           if (id.includes('/three/')) return 'render';
           if (id.includes('/packages/render/')) return 'render';

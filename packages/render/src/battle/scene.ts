@@ -39,7 +39,7 @@ export async function createBattleRenderer(canvas: HTMLCanvasElement, cells: rea
   const batch = new RigBatch(rigSet, 100); batch.addTo(scene);
   const characters = new Map<string, { character: RigInstance; marker: BattleMarker }>();
   const point = new Vector3(); const mouse = new Vector2(); const raycaster = new Raycaster();
-  const center = new Vector3();
+  const center = new Vector3(); const snapshotAnchor = new Vector3(); const cameraRight = new Vector3();
   let radius = 1; let minimumX = Infinity; let maximumX = -Infinity;
   let minimumZ = Infinity; let maximumZ = -Infinity; let maxHeight = 0;
   for (const cell of cells) {
@@ -106,6 +106,21 @@ export async function createBattleRenderer(canvas: HTMLCanvasElement, cells: rea
       hexWorld(q, r, elevation, point).project(camera);
       out.x = (point.x + 1) * width / 2; out.y = (1 - point.y) * height / 2;
       out.visible = point.z >= -1 && point.z <= 1 && Math.abs(point.x) <= 1 && Math.abs(point.y) <= 1;
+    },
+    snapshot(id) {
+      const entry = characters.get(id); const snapshot = entry?.character.snapshot();
+      if (!entry || !snapshot) return undefined;
+      hexWorld(entry.marker.q, entry.marker.r, entry.marker.height, snapshotAnchor); snapshotAnchor.y += 0.02;
+      point.copy(snapshotAnchor).project(camera);
+      const anchorX = (point.x + 1) * width / 2; const anchorY = (1 - point.y) * height / 2;
+      const [left, top, right, bottom] = snapshot.localBounds;
+      cameraRight.setFromMatrixColumn(camera.matrixWorld, 0);
+      point.copy(snapshotAnchor).add(cameraRight).project(camera);
+      const dx = (point.x + 1) * width / 2 - anchorX;
+      point.copy(snapshotAnchor); point.y += 1.1547; point.project(camera);
+      const dy = (1 - point.y) * height / 2 - anchorY;
+      return { ...snapshot, sizePx: [(right - left) * Math.abs(dx), (bottom - top) * Math.abs(dy)],
+        centerOffsetPx: [(left + right) / 2 * dx, (top + bottom) / 2 * dy] };
     },
     pick(x, y) {
       mouse.set(x / width * 2 - 1, 1 - y / height * 2); raycaster.setFromCamera(mouse, camera);

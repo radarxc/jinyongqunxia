@@ -1,0 +1,1019 @@
+{
+  "schemaVersion": "event.v1",
+  "id": "ev_vfx_runtime_catalog",
+  "chapterId": "ch00_yuenv",
+  "event": "vfx/runtimeCatalog",
+  "once": false,
+  "actions": [
+    {
+      "id": "vfx_runtime_catalog",
+      "op": "vfx/loadRuntimeData",
+      "payload": {
+        "schema": "tianshu-vfx-catalog.v1",
+        "palette": {
+          "yin": "#5FB5B0",
+          "yang": "#D9483B",
+          "harmony": "#E8D6A3",
+          "neutral": "#F4F4F4"
+        },
+        "effects": {
+          "plain_strike/arc": {
+            "baseUrl": "/assets/default/vfx/templates/plain_strike/arc/",
+            "effect": {
+              "kind": "EffectSet",
+              "version": 1,
+              "asset_id": "vfx_template_plain_strike_arc",
+              "size_px": [
+                724,
+                724
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "style": "plain_strike",
+              "direction": [
+                1,
+                0
+              ],
+              "reference_length_px": 500,
+              "root_width_px": 80,
+              "blend": "normal",
+              "source": {
+                "mode": "grid",
+                "files": [
+                  "source_sheet.png"
+                ],
+                "rects": [
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      0,
+                      0,
+                      724,
+                      724
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      724,
+                      0,
+                      724,
+                      724
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      1448,
+                      0,
+                      724,
+                      724
+                    ]
+                  }
+                ],
+                "keying": {
+                  "method": "white_key",
+                  "white_cutoff_8bit": 250,
+                  "opaque_luma": 0.2,
+                  "key_full_8bit": 25,
+                  "epsilon": 0.00392156862745098,
+                  "dewhite": true
+                }
+              },
+              "frames": [
+                {
+                  "file": "frame_000.png",
+                  "anchor_px": [
+                    140,
+                    200
+                  ],
+                  "phase": 0.0
+                },
+                {
+                  "file": "frame_001.png",
+                  "anchor_px": [
+                    100,
+                    200
+                  ],
+                  "phase": 0.5
+                },
+                {
+                  "file": "frame_002.png",
+                  "anchor_px": [
+                    85,
+                    200
+                  ],
+                  "phase": 1.0
+                }
+              ]
+            }
+          },
+          "plain_strike/impact": {
+            "baseUrl": "/assets/default/vfx/templates/plain_strike/impact/",
+            "effect": {
+              "kind": "EffectSet",
+              "version": 1,
+              "asset_id": "vfx_template_plain_strike_impact",
+              "size_px": [
+                724,
+                724
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "style": "plain_strike",
+              "direction": [
+                1,
+                0
+              ],
+              "reference_length_px": 500,
+              "root_width_px": 100,
+              "blend": "normal",
+              "source": {
+                "mode": "grid",
+                "files": [
+                  "source_sheet.png"
+                ],
+                "rects": [
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      0,
+                      0,
+                      724,
+                      724
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      724,
+                      0,
+                      724,
+                      724
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      1448,
+                      0,
+                      724,
+                      724
+                    ]
+                  }
+                ],
+                "keying": {
+                  "method": "white_key",
+                  "white_cutoff_8bit": 250,
+                  "opaque_luma": 0.2,
+                  "key_full_8bit": 25,
+                  "epsilon": 0.00392156862745098,
+                  "dewhite": true
+                }
+              },
+              "frames": [
+                {
+                  "file": "frame_000.png",
+                  "anchor_px": [
+                    135,
+                    360
+                  ],
+                  "phase": 0.0
+                },
+                {
+                  "file": "frame_001.png",
+                  "anchor_px": [
+                    85,
+                    360
+                  ],
+                  "phase": 0.5
+                },
+                {
+                  "file": "frame_002.png",
+                  "anchor_px": [
+                    100,
+                    360
+                  ],
+                  "phase": 1.0
+                }
+              ]
+            }
+          },
+          "plain_strike/wave": {
+            "baseUrl": "/assets/default/vfx/templates/plain_strike/wave/",
+            "effect": {
+              "kind": "EffectSet",
+              "version": 1,
+              "asset_id": "vfx_template_plain_strike_wave",
+              "size_px": [
+                724,
+                724
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "style": "plain_strike",
+              "direction": [
+                1,
+                0
+              ],
+              "reference_length_px": 500,
+              "root_width_px": 80,
+              "blend": "normal",
+              "source": {
+                "mode": "grid",
+                "files": [
+                  "source_sheet.png"
+                ],
+                "rects": [
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      0,
+                      0,
+                      724,
+                      724
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      724,
+                      0,
+                      724,
+                      724
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      1448,
+                      0,
+                      724,
+                      724
+                    ]
+                  }
+                ],
+                "keying": {
+                  "method": "white_key",
+                  "white_cutoff_8bit": 250,
+                  "opaque_luma": 0.2,
+                  "key_full_8bit": 25,
+                  "epsilon": 0.00392156862745098,
+                  "dewhite": true
+                }
+              },
+              "frames": [
+                {
+                  "file": "frame_000.png",
+                  "anchor_px": [
+                    82,
+                    360
+                  ],
+                  "phase": 0.0
+                },
+                {
+                  "file": "frame_001.png",
+                  "anchor_px": [
+                    82,
+                    360
+                  ],
+                  "phase": 0.5
+                },
+                {
+                  "file": "frame_002.png",
+                  "anchor_px": [
+                    82,
+                    360
+                  ],
+                  "phase": 1.0
+                }
+              ]
+            }
+          },
+          "qi_projection/beam": {
+            "baseUrl": "/assets/default/vfx/templates/qi_projection/beam/",
+            "effect": {
+              "kind": "EffectSet",
+              "version": 1,
+              "asset_id": "vfx_template_qi_projection_beam",
+              "size_px": [
+                627,
+                627
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "style": "qi_projection",
+              "direction": [
+                1,
+                0
+              ],
+              "reference_length_px": 500,
+              "root_width_px": 20,
+              "blend": "screen",
+              "source": {
+                "mode": "grid",
+                "files": [
+                  "source_sheet.png"
+                ],
+                "rects": [
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      0,
+                      0,
+                      627,
+                      627
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      627,
+                      0,
+                      627,
+                      627
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      0,
+                      627,
+                      627,
+                      627
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      627,
+                      627,
+                      627,
+                      627
+                    ]
+                  }
+                ],
+                "keying": {
+                  "method": "white_key",
+                  "white_cutoff_8bit": 250,
+                  "opaque_luma": 0.2,
+                  "key_full_8bit": 25,
+                  "epsilon": 0.00392156862745098,
+                  "dewhite": true
+                }
+              },
+              "frames": [
+                {
+                  "file": "frame_000.png",
+                  "anchor_px": [
+                    52,
+                    326
+                  ],
+                  "phase": 0.0
+                },
+                {
+                  "file": "frame_001.png",
+                  "anchor_px": [
+                    52,
+                    326
+                  ],
+                  "phase": 0.3333333333333333
+                },
+                {
+                  "file": "frame_002.png",
+                  "anchor_px": [
+                    52,
+                    325
+                  ],
+                  "phase": 0.6666666666666666
+                },
+                {
+                  "file": "frame_003.png",
+                  "anchor_px": [
+                    52,
+                    325
+                  ],
+                  "phase": 1.0
+                }
+              ]
+            }
+          },
+          "qi_projection/fan": {
+            "baseUrl": "/assets/default/vfx/templates/qi_projection/fan/",
+            "effect": {
+              "kind": "EffectSet",
+              "version": 1,
+              "asset_id": "vfx_template_qi_projection_fan",
+              "size_px": [
+                627,
+                627
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "style": "qi_projection",
+              "direction": [
+                1,
+                0
+              ],
+              "reference_length_px": 500,
+              "root_width_px": 60,
+              "blend": "screen",
+              "source": {
+                "mode": "grid",
+                "files": [
+                  "source_sheet.png"
+                ],
+                "rects": [
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      0,
+                      0,
+                      627,
+                      627
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      627,
+                      0,
+                      627,
+                      627
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      0,
+                      627,
+                      627,
+                      627
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      627,
+                      627,
+                      627,
+                      627
+                    ]
+                  }
+                ],
+                "keying": {
+                  "method": "white_key",
+                  "white_cutoff_8bit": 250,
+                  "opaque_luma": 0.2,
+                  "key_full_8bit": 25,
+                  "epsilon": 0.00392156862745098,
+                  "dewhite": true
+                }
+              },
+              "frames": [
+                {
+                  "file": "frame_000.png",
+                  "anchor_px": [
+                    46,
+                    305
+                  ],
+                  "phase": 0.0
+                },
+                {
+                  "file": "frame_001.png",
+                  "anchor_px": [
+                    48,
+                    305
+                  ],
+                  "phase": 0.3333333333333333
+                },
+                {
+                  "file": "frame_002.png",
+                  "anchor_px": [
+                    44,
+                    293
+                  ],
+                  "phase": 0.6666666666666666
+                },
+                {
+                  "file": "frame_003.png",
+                  "anchor_px": [
+                    46,
+                    292
+                  ],
+                  "phase": 1.0
+                }
+              ]
+            }
+          },
+          "qi_projection/impact": {
+            "baseUrl": "/assets/default/vfx/templates/qi_projection/impact/",
+            "effect": {
+              "kind": "EffectSet",
+              "version": 1,
+              "asset_id": "vfx_template_qi_projection_impact",
+              "size_px": [
+                627,
+                627
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "style": "qi_projection",
+              "direction": [
+                1,
+                0
+              ],
+              "reference_length_px": 500,
+              "root_width_px": 100,
+              "blend": "screen",
+              "source": {
+                "mode": "grid",
+                "files": [
+                  "source_sheet.png"
+                ],
+                "rects": [
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      0,
+                      0,
+                      627,
+                      627
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      627,
+                      0,
+                      627,
+                      627
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      0,
+                      627,
+                      627,
+                      627
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      627,
+                      627,
+                      627,
+                      627
+                    ]
+                  }
+                ],
+                "keying": {
+                  "method": "white_key",
+                  "white_cutoff_8bit": 250,
+                  "opaque_luma": 0.2,
+                  "key_full_8bit": 25,
+                  "epsilon": 0.00392156862745098,
+                  "dewhite": true
+                }
+              },
+              "frames": [
+                {
+                  "file": "frame_000.png",
+                  "anchor_px": [
+                    50,
+                    339
+                  ],
+                  "phase": 0.0
+                },
+                {
+                  "file": "frame_001.png",
+                  "anchor_px": [
+                    48,
+                    336
+                  ],
+                  "phase": 0.3333333333333333
+                },
+                {
+                  "file": "frame_002.png",
+                  "anchor_px": [
+                    48,
+                    324
+                  ],
+                  "phase": 0.6666666666666666
+                },
+                {
+                  "file": "frame_003.png",
+                  "anchor_px": [
+                    48,
+                    324
+                  ],
+                  "phase": 1.0
+                }
+              ]
+            }
+          },
+          "qi_projection/rings": {
+            "baseUrl": "/assets/default/vfx/templates/qi_projection/rings/",
+            "effect": {
+              "kind": "EffectSet",
+              "version": 1,
+              "asset_id": "vfx_template_qi_projection_rings",
+              "size_px": [
+                627,
+                627
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "style": "qi_projection",
+              "direction": [
+                1,
+                0
+              ],
+              "reference_length_px": 500,
+              "root_width_px": 90,
+              "blend": "screen",
+              "source": {
+                "mode": "grid",
+                "files": [
+                  "source_sheet.png"
+                ],
+                "rects": [
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      0,
+                      0,
+                      627,
+                      627
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      627,
+                      0,
+                      627,
+                      627
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      0,
+                      627,
+                      627,
+                      627
+                    ]
+                  },
+                  {
+                    "file_index": 0,
+                    "rect_px": [
+                      627,
+                      627,
+                      627,
+                      627
+                    ]
+                  }
+                ],
+                "keying": {
+                  "method": "white_key",
+                  "white_cutoff_8bit": 250,
+                  "opaque_luma": 0.2,
+                  "key_full_8bit": 25,
+                  "epsilon": 0.00392156862745098,
+                  "dewhite": true
+                }
+              },
+              "frames": [
+                {
+                  "file": "frame_000.png",
+                  "anchor_px": [
+                    82,
+                    321
+                  ],
+                  "phase": 0.0
+                },
+                {
+                  "file": "frame_001.png",
+                  "anchor_px": [
+                    84,
+                    323
+                  ],
+                  "phase": 0.3333333333333333
+                },
+                {
+                  "file": "frame_002.png",
+                  "anchor_px": [
+                    80,
+                    328
+                  ],
+                  "phase": 0.6666666666666666
+                },
+                {
+                  "file": "frame_003.png",
+                  "anchor_px": [
+                    86,
+                    328
+                  ],
+                  "phase": 1.0
+                }
+              ]
+            }
+          }
+        },
+        "emitters": {
+          "fan": {
+            "baseUrl": "/assets/default/vfx/emitters/fan/",
+            "emitter": {
+              "kind": "EmitterPlate",
+              "version": 1,
+              "file": "source_fan.png",
+              "size_px": [
+                1254,
+                1254
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "category": "weapon_hand",
+              "emit_point_px": [
+                1205.5,
+                538.5
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "emission_width_px": 941
+            }
+          },
+          "finger": {
+            "baseUrl": "/assets/default/vfx/emitters/finger/",
+            "emitter": {
+              "kind": "EmitterPlate",
+              "version": 1,
+              "file": "source_finger.png",
+              "size_px": [
+                1254,
+                1254
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "category": "finger",
+              "emit_point_px": [
+                1178,
+                468
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "emission_width_px": 43
+            }
+          },
+          "fist": {
+            "baseUrl": "/assets/default/vfx/emitters/fist/",
+            "emitter": {
+              "kind": "EmitterPlate",
+              "version": 1,
+              "file": "source_fist.png",
+              "size_px": [
+                1254,
+                1254
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "category": "palm",
+              "emit_point_px": [
+                1050.5,
+                600.5
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "emission_width_px": 273
+            }
+          },
+          "instrument": {
+            "baseUrl": "/assets/default/vfx/emitters/instrument/",
+            "emitter": {
+              "kind": "EmitterPlate",
+              "version": 1,
+              "file": "source_instrument.png",
+              "size_px": [
+                1254,
+                1254
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "category": "instrument",
+              "emit_point_px": [
+                1137,
+                547
+              ],
+              "direction": [
+                0.9996152427470851,
+                0.027737456042074934
+              ],
+              "emission_width_px": 85
+            }
+          },
+          "leg": {
+            "baseUrl": "/assets/default/vfx/emitters/leg/",
+            "emitter": {
+              "kind": "EmitterPlate",
+              "version": 1,
+              "file": "source_leg.png",
+              "size_px": [
+                1254,
+                1254
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "category": "palm",
+              "emit_point_px": [
+                1163.5,
+                690
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "emission_width_px": 74
+            }
+          },
+          "palm": {
+            "baseUrl": "/assets/default/vfx/emitters/palm/",
+            "emitter": {
+              "kind": "EmitterPlate",
+              "version": 1,
+              "file": "source_palm.png",
+              "size_px": [
+                1254,
+                1254
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "category": "palm",
+              "emit_point_px": [
+                850,
+                704
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "emission_width_px": 320
+            }
+          },
+          "sabre": {
+            "baseUrl": "/assets/default/vfx/emitters/sabre/",
+            "emitter": {
+              "kind": "EmitterPlate",
+              "version": 1,
+              "file": "source_sabre.png",
+              "size_px": [
+                1254,
+                1254
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "category": "blade_hand",
+              "emit_point_px": [
+                1192.5,
+                606
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "emission_width_px": 24
+            }
+          },
+          "spear": {
+            "baseUrl": "/assets/default/vfx/emitters/spear/",
+            "emitter": {
+              "kind": "EmitterPlate",
+              "version": 1,
+              "file": "source_spear.png",
+              "size_px": [
+                1254,
+                1254
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "category": "weapon_hand",
+              "emit_point_px": [
+                1225.5,
+                581.5
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "emission_width_px": 15
+            }
+          },
+          "staff": {
+            "baseUrl": "/assets/default/vfx/emitters/staff/",
+            "emitter": {
+              "kind": "EmitterPlate",
+              "version": 1,
+              "file": "source_staff.png",
+              "size_px": [
+                1254,
+                1254
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "category": "weapon_hand",
+              "emit_point_px": [
+                1189.5,
+                645
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "emission_width_px": 54
+            }
+          },
+          "sword": {
+            "baseUrl": "/assets/default/vfx/emitters/sword/",
+            "emitter": {
+              "kind": "EmitterPlate",
+              "version": 1,
+              "file": "source_sword.png",
+              "size_px": [
+                1254,
+                1254
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "category": "sword_hand",
+              "emit_point_px": [
+                1229.5,
+                622
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "emission_width_px": 13
+            }
+          },
+          "throw": {
+            "baseUrl": "/assets/default/vfx/emitters/throw/",
+            "emitter": {
+              "kind": "EmitterPlate",
+              "version": 1,
+              "file": "source_throw.png",
+              "size_px": [
+                1254,
+                1254
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "category": "throw_hand",
+              "emit_point_px": [
+                1181.5,
+                419
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "emission_width_px": 40
+            }
+          },
+          "whip": {
+            "baseUrl": "/assets/default/vfx/emitters/whip/",
+            "emitter": {
+              "kind": "EmitterPlate",
+              "version": 1,
+              "file": "source_whip.png",
+              "size_px": [
+                1254,
+                1254
+              ],
+              "color_space": "srgb",
+              "alpha_mode": "straight",
+              "category": "weapon_hand",
+              "emit_point_px": [
+                1220.5,
+                603
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "emission_width_px": 5
+            }
+          }
+        }
+      }
+    }
+  ]
+}

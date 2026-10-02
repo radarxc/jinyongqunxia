@@ -1,4 +1,5 @@
 export { RigBatch, type RigBatchCharacter, type RigBatchStats } from './batch';
+export type { RigSnapshot } from './character';
 export { createRigCharacter, type RigInstance } from './character';
 export { assembleEquipment, equipmentEquals, weightClassForEquipment, type EquipmentAssembly } from './equipment';
 export {
