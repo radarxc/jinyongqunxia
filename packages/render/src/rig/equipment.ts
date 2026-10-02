@@ -50,7 +50,7 @@ function attachment(kind: AttachmentKind, ref: EquipmentRef, view: RigView, mirr
   const capeZ = view === 'back34' ? 11.5 : -2;
   const parent: RigPart = kind.startsWith('weapon') ? (nearRight ? 'hand_R' : 'hand_L')
     : kind === 'cape' ? 'torso' : nearRight ? 'upper_arm_R' : 'upper_arm_L';
-  const handIsNear = mirrored ? !nearRight : nearRight;
+  const handIsNear = mirrored ? nearRight : !nearRight;
   const zOrder = kind === 'cape' ? capeZ : kind.startsWith('weapon') ? (handIsNear ? 15.25 : 1.75)
     : isNear ? 13.35 : (view === 'front34' ? 5.85 : 6.85);
   return { kind, itemId: equipmentId(ref) ?? 'missing', parent, zOrder, tint: tintForEquipment(ref), placeholder: true };
@@ -73,8 +73,8 @@ export function assembleEquipment(equipment: EquipmentVisuals, view: RigView, mi
   const off = asset(equipment.offHand);
   if (off || main?.hands === 'pair' || main?.hands === 2) requested.push(attachment('weapon_L', off ?? main!, view, mirrored));
   const shoulder = asset(equipment.shoulder);
-  const near = mirrored ? 'pauldron_L' : 'pauldron_R';
-  const far = mirrored ? 'pauldron_R' : 'pauldron_L';
+  const near = mirrored ? 'pauldron_R' : 'pauldron_L';
+  const far = mirrored ? 'pauldron_L' : 'pauldron_R';
   if (shoulder) requested.push(attachment(near, shoulder, view, mirrored, true));
   if (equipment.cape) requested.push(attachment('cape', equipment.cape, view, mirrored));
   if (shoulder) requested.push(attachment(far, shoulder, view, mirrored));

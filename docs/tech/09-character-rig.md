@@ -3,8 +3,8 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/09-character-rig.md`（简称 `tech/09-rig`，不与 `tech/09-roadmap.md` 混写） |
-| 版本 | v1.0（2026-10-01，AR-22：分层部件贴图 + 代码轨迹） |
-| 上游基准 | `docs/decisions/author-requirements.md` AR-19/AR-21，以及本任务给出的 AR-22 作者原话；`docs/00-canon.md` §12、§18–§20；`docs/decisions/rulings-v1.md` C20/C21 |
+| 版本 | v1.1（2026-10-02，AR-29：近侧 / 解剖学左右修正 + 三视图切件旁注）；v1.0（2026-10-01，AR-22） |
+| 上游基准 | `docs/decisions/author-requirements.md` AR-19/AR-21/AR-22/AR-29；`docs/00-canon.md` §12、§18–§20；`docs/decisions/rulings-v1.md` C20/C21 |
 | 平行文档 | `tech/02`（相机、公告板、深度与合批）、`tech/03`（帧时/显存硬预算）、`tech/06`（图集、KTX2 与 manifest）、`tech/07`（美术输入与生成管线）、`design/10`（十一类物品、装备槽与负重唯一归属） |
 | 本文职责 | `tianshu_rig` v1、装备可见层、物品图派生规则、步态轨迹、运行时接口、目录/manifest、验收向量 |
 | 不在本文定义 | 物品属性与穿戴合法性、战斗移动速度、攻击/受击大动作、品阶效果、人物体型名录；分别引用 `design/10`、`design/09`、`tech/07` 与 `design/18` |
@@ -12,6 +12,7 @@
 
 > **结论先行（TL;DR）**
 >
+> 0. v1.1 统一 `_L/_R` 为角色解剖学左右：三个未镜像视图都面向画面左，近侧均为 `L`；镜像只交换左右值。关节坐标优先取三视图切件的关键点 / pivot 旁注，无旁注时按分视图比例回退。
 > 1. AR-22 覆盖旧的“角色逐帧预渲染”路线：角色由 **16 个运行时部件槽 + 最多 4 个附加装备槽**组成；每个槽只换图、调色并执行公告板平面内 2D 仿射，走代码步态，不读取行走/待机帧表。
 > 2. 基础美术只画男 1.70 m、女 1.62 m 两个标准体型的 **3 个视图 × 13 张源部件表 = 每体型 39 张、合计 78 张**；下肢三族左右共享源，运行时展开为 16 槽。`Dir8` 仍是接口，3 视图加镜像解析为 8 个方向索引。
 > 3. 衣、官甲、头饰、鞋替换或复合到既有部件实例；内甲不可见；武器左右手、成对护肩、披风最多再占 4 槽。腰带作为 `pelvis_skirt` 的第二采样层，不另增实例，故整角色综合上限为 20。
@@ -93,8 +94,8 @@ equipment ───────────────────────�
 |---|---|---|---|---:|---|---|
 | `head` | `neck` / torso | 96×80 / `(48,70)` 下中颈点 | `crown:(48,9)` | 0.24 / 0.23 | `skin`，默认不换色 | 独立 |
 | `hair_or_headgear` | `neck` / head 同矩阵 | 112×80 / `(56,72)` 下中颈点 | `crown:(56,8)` | 0.25 / 0.24 | `hair` 或装备固色 | 独立 |
-| `torso` | `pelvis` / root | 132×154 / `(66,142)` 下中骨盆点 | `neck:(66,9)`；`shoulder_L/R:(18/114,30)` | 0.52 / 0.50 | `clothPrimary` ✅ | 独立 |
-| `pelvis_skirt` | `pelvis` / root | 146×92 / `(73,8)` 上中骨盆点 | `hip_L/R:(46/100,8)`；`hem:(73,80)` | 0.28 / 0.27 | `clothSecondary` ✅ | 独立 |
+| `torso` | `pelvis` / root | 132×154 / `(66,142)` 下中骨盆点 | `neck:(66,9)`；比例回退 `shoulder_R/L:(18/114,30)` | 0.52 / 0.50 | `clothPrimary` ✅ | 独立 |
+| `pelvis_skirt` | `pelvis` / root | 146×92 / `(73,8)` 上中骨盆点 | 比例回退 `hip_R/L:(46/100,8)`；`hem:(73,80)` | 0.28 / 0.27 | `clothSecondary` ✅ | 独立 |
 | `upper_arm_L` | `shoulder_L` / torso | 58×92 / `(29,8)` 顶中 | `elbow_L:(29,85)` | 0.30 / 0.28 | `clothPrimary` ✅ | 独立 |
 | `upper_arm_R` | `shoulder_R` / torso | 58×92 / `(29,8)` 顶中 | `elbow_R:(29,85)` | 0.30 / 0.28 | `clothPrimary` ✅ | 独立 |
 | `forearm_L` | `elbow_L` / upper arm | 52×82 / `(26,8)` 顶中 | `wrist_L:(26,75)` | 0.26 / 0.245 | `clothSecondary` ✅ | 独立 |
@@ -108,17 +109,17 @@ equipment ───────────────────────�
 | `foot_L` | `ankle_L` / shin | 96×68 / `(48,8)` 顶中踝点 | `toe_L:(90,57)` | 0.25 / 0.235 | `footwear`，装备替换 | `foot_shared` |
 | `foot_R` | `ankle_R` / shin | 96×68 / `(48,8)` 顶中踝点 | `toe_R:(90,57)` | 0.25 / 0.235 | `footwear`，装备替换 | 同左 + 镜像 |
 
-上表像素只作为男 `front34` 首批模板；女模板先乘 `1.62/1.70=0.9529`，其他视图可因剪影改变画布，但关节米长不得变，正式整数坐标逐条写 manifest。`head`、`hair_or_headgear`、`torso`、`pelvis_skirt`、六个手臂/手源和三张共享下肢源合计 `4+6+3=13` 张源部件表；运行时把三张下肢源展开为左右六槽，所以是 16 个变换实例。下肢若有非对称伤残或纹样，manifest 可把 `sharedSource:false` 并提供左右图，但不得增加运行时槽数。
+上表像素是男 `front34` 的比例回退模板；女模板先乘 `1.62/1.70=0.9529`。比例回退按视图投影：`front34` 的 L 在画面右、`side` 的 L/R 横向重合、`back34` 的 L 在画面左；其他剪影可改变画布，但关节米长不得变。正式素材应先由三视图关键点确定解剖学关节，再由切件工具把坐标写入每视图 `keypoints.yaml`（默认已归一坐标）或每部件 `*.pivots.yaml`（默认裁边前 source 坐标）旁注；两者都可用 `coordinates: source|normalized` 显式覆盖。`make_parts.py` 有旁注时优先换算并逐条写入 manifest；source 坐标转换会把原图到归一图的平移量记为 `sourceOrigin`，使重复 build / `--check` 不会把旁注二次平移。没有旁注时，程序占位与正式 set 均使用已按视图修正的比例默认值；这些默认值是可运行降级，不得把 `14%/86%`、`32%/68%` 当作经关键点确认的正式关节事实。`head`、`hair_or_headgear`、`torso`、`pelvis_skirt`、六个手臂/手源和三张共享下肢源合计 `4+6+3=13` 张源部件表；运行时把三张下肢源展开为左右六槽，所以是 16 个变换实例。下肢若有非对称伤残或纹样，manifest 可把 `sharedSource:false` 并提供左右图，但不得增加运行时槽数。
 
 ### 1.3 三个绘制视图、镜像与八方向
 
 | 源视图 | 画面定义（未镜像） | 覆盖 `Dir8` | 镜像规则 |
 |---|---|---|---|
-| `front34` | 面向屏幕左下，见脸与胸腹；`nearSide:R` | 0 S、1 SW、7 SE | 1 不镜像、7 镜像；0 沿用最近的 1/7，首次默认不镜像 |
-| `side` | 面向屏幕左；`nearSide:R` | 2 W、6 E | 2 不镜像、6 镜像 |
-| `back34` | 面向屏幕左上，见后脑与背；`nearSide:R` | 3 NW、4 N、5 NE | 3 不镜像、5 镜像；4 沿用最近的 3/5，首次默认不镜像 |
+| `front34` | 面向屏幕左下，见脸与胸腹；`nearSide:L`，近侧在画面右 | 0 S、1 SW、7 SE | 1 不镜像、7 镜像；0 沿用最近的 1/7，首次默认不镜像 |
+| `side` | 面向屏幕左；`nearSide:L`，左右投影近重合于画面中间 | 2 W、6 E | 2 不镜像、6 镜像 |
+| `back34` | 面向屏幕左上，见后脑与背；`nearSide:L`，近侧在画面左 | 3 NW、4 N、5 NE | 3 不镜像、5 镜像；4 沿用最近的 3/5，首次默认不镜像 |
 
-`Dir8` 0/4 的“沿用最近侧”是仅表现的滞回：进入正南/正北扇区时保存最近的左/右侧，存档与 replay 仍只记录 core 朝向。传送或首次出现无历史时取表中默认，保证回放截图确定。镜像同时交换 `_L/_R` 关节、UV 与 `nearSide`；汉服右衽、文字、伤疤、单侧佩饰不能直接镜像，须提供 `mirrorSafe:false` 的对称修正版。
+`_L/_R` 永远按角色自身的解剖学左 / 右命名，不按观看者画面左右命名。`Dir8` 0/4 的“沿用最近侧”是仅表现的滞回：进入正南/正北扇区时保存最近的左/右侧，存档与 replay 仍只记录 core 朝向。传送或首次出现无历史时取表中默认，保证回放截图确定。镜像同时交换 `_L/_R` 关节、UV 与 `nearSide` 的值（`L↔R`）；汉服右衽、文字、伤疤、单侧佩饰不能直接镜像，须提供 `mirrorSafe:false` 的对称修正版。
 
 下表把 `tech/02` §1.5 的六角世界朝向与四个相机预设直接落到“Dir8 / 源视图 / M（镜像）”；S/N 的 `H1/H4` 仍按上段滞回，表内写首次默认。
 
@@ -148,26 +149,26 @@ equipment ───────────────────────�
 
 ### 1.4 部件 z 序与描边/调色
 
-下表是未镜像且 `nearSide:R` 时的整数 `zOrder`；数值越大越靠相机。镜像时只交换 L/R 的值。顶点实际偏移为 `uCamBack × zOrder × 0.0005 m`，基础 16 层跨度 `15×0.0005=0.0075 m`，远小于整角色综合 `depthBiasM=0.35 m`。**（初值，待 ENG-12 实测）**
+下表是未镜像且 `nearSide:L` 时的整数 `zOrder`；数值越大越靠相机。镜像时仍只交换同名 L/R 部件的值，中心部件不变；因此镜像后 `nearSide:R`。顶点实际偏移为 `uCamBack × zOrder × 0.0005 m`，基础 16 层跨度 `15×0.0005=0.0075 m`，远小于整角色综合 `depthBiasM=0.35 m`。**（初值，待 ENG-12 实测）**
 
 | part | `front34` | `back34` | `side` |
 |---|---:|---:|---:|
-| `upper_arm_L` | 0 | 1 | 0 |
-| `forearm_L` | 1 | 0 | 1 |
-| `hand_L` | 2 | 2 | 2 |
-| `thigh_L` | 3 | 3 | 3 |
-| `shin_L` | 4 | 4 | 4 |
-| `foot_L` | 5 | 5 | 5 |
+| `upper_arm_R` | 0 | 1 | 0 |
+| `forearm_R` | 1 | 0 | 1 |
+| `hand_R` | 2 | 2 | 2 |
+| `thigh_R` | 3 | 3 | 3 |
+| `shin_R` | 4 | 4 | 4 |
+| `foot_R` | 5 | 5 | 5 |
 | `pelvis_skirt` | 7 | 6 | 6 |
 | `torso` | 6 | 7 | 7 |
 | `head` | 8 | 8 | 8 |
 | `hair_or_headgear` | 9 | 12 | 9 |
-| `thigh_R` | 10 | 9 | 10 |
-| `shin_R` | 11 | 10 | 11 |
-| `foot_R` | 12 | 11 | 12 |
-| `upper_arm_R` | 13 | 13 | 13 |
-| `forearm_R` | 14 | 14 | 14 |
-| `hand_R` | 15 | 15 | 15 |
+| `thigh_L` | 10 | 9 | 10 |
+| `shin_L` | 11 | 10 | 11 |
+| `foot_L` | 12 | 11 | 12 |
+| `upper_arm_L` | 13 | 13 | 13 |
+| `forearm_L` | 14 | 14 | 14 |
+| `hand_L` | 15 | 15 | 15 |
 
 颜色母版必须已烘焙 2 px（256 px/m）浓墨外轮廓，缩到 128/96/64 ppm 时分别约 1/0.75/0.5 px；64 ppm 包用 alpha coverage 保线，不在运行时做几何描边。`clothPrimary`、`clothSecondary` 可整体 tint；shader 只对 `luma>0.16` 的像素乘色，保留墨线与铅白高光。皮肤、头发默认 `tintStrength:0`；剧情变色必须显式进 manifest palette，不能从 NPC 阵营猜色。
 
@@ -538,6 +539,7 @@ set: male_std
 ppm: 256
 heightM: 1.70
 views: [front34, back34, side]
+nearSide: L
 mirrorPolicy:
   dir8: {0: front34, 1: front34, 2: side, 3: back34, 4: back34, 5: back34, 6: side, 7: front34}
   mirrored: [5, 6, 7]
@@ -553,16 +555,20 @@ parts:
     childJoint: {wrist_L: [26, 75]}
     size: [52, 82]
     restAngle: -90.0
-    zOrder: 1
+    zOrder: 14
     tintable: clothSecondary
+    jointSource: front34/forearm_L.pivots.yaml
+    sourceOrigin: [8, 6]
 ```
 
 | 字段 | 校验 |
 |---|---|
 | `schema/set/ppm/views` | 分别精确为 `tianshu-rig.v1`、安全局部键、256、三视图全集 |
+| `nearSide` | 固定为解剖学 `L`；三个未镜像源视图都面向画面左，镜像时运行时推导为 `R` |
 | `parts[].id` | 每视图恰含 13 个 source key，无重复、无未知 part |
 | `file/view` | 文件存在、路径不越目录；实际 PNG 尺寸等于 `size` |
-| `pivot/childJoint` | 均在 `[−1,W]×[−1,H]` 容差内；相邻部件关节换算米后误差 ≤1/256 m |
+| `pivot/childJoint` | 有 `keypoints.yaml` / `*.pivots.yaml` 旁注时必须优先采用并写 `jointSource`；无旁注时按 §1.2 的分视图比例回退；均在 `[−1,W]×[−1,H]` 容差内，相邻部件关节换算米后误差 ≤1/256 m |
+| `jointSource/sourceOrigin` | `jointSource` 是 set 内安全相对路径；旁注用 source 坐标时须保存两元素有限数 `sourceOrigin`，仅当 PNG 哈希与旁注路径未变时复用，换源图即重算 |
 | `restAngle` | 可省略，默认 `0.0`；须为度数制有限数且在 `[-180,180)`；未镜像顺时针为正，前臂 v1 必须为 `-90.0` |
 | `zOrder` | 与 §1.4 对应视图一致；镜像后自动交换 L/R，不在 manifest 再抄一份 |
 | `tintable` | 只允许 `false|clothPrimary|clothSecondary|footwear|hair`；皮肤默认为 false |
@@ -587,7 +593,8 @@ parts:
 | 编号 | 输入 | 断言 | 失败等级 |
 |---|---|---|---|
 | RIG-V01 | 每个 rig set | 三视图各 13 源 part；运行映射恰为 16 part | error |
-| RIG-V02 | PNG/manifest | size 一致；pivot/child 在界内；关节误差 ≤1 px | error |
+| RIG-V02 | PNG/manifest/关节旁注 | size 一致；有旁注则记录安全 `jointSource`，无旁注则用分视图比例回退；pivot/child 在界内；关节误差 ≤1 px | error |
+| RIG-V02a | 三视图 z 与镜像 | 未镜像时三视图均为 L 侧六个肢体段在前；镜像后均为 R 侧在前 | error |
 | RIG-V03 | 镜像 | L/R 对换、UV 翻转、法线 X 取反；`mirrorSafe:false` 有修正版 | error |
 | RIG-V04 | 层文件 | 每件可见装备覆盖所有声明 slot 与三视图；不可见类没有层 | error |
 | RIG-V05 | 层预算 | 基础 16 + 附加 active ≤20；超额按 §2.2 转 `layerRecord` 复合后再验 | error |
@@ -602,7 +609,7 @@ parts:
 | 接收方 | 必须实现/交付 | 验收输入 |
 |---|---|---|
 | TOOL-rig-pipeline | 色键、羽化/去溢色、8% 裁边、四档图标、PCA 主轴/握点、模板填充、`layers.yaml`、manifest lint、预览脚本 | 1 件浅色衣、1 件双手长兵、1 件圆形暗器、1 件官甲、1 件披风的金样 |
-| ART | 男女标准体型 3×13 源表；逐部件/视图填写 `restAngle`（前臂 v1 为 −90°）；模板 SVG 的 fill/edge/forbidden；镜像不安全清单；部件/装备颜色与可选法线 | idle/walk/run 三视图条带与满载条带；静止姿势须验证修正角 |
+| ART / 三视图切件工具 | 每角色 / 体型的一张三视图设定图，经关键点与切件产出 3×13 源表和 pivot 旁注；逐部件/视图填写 `restAngle`（前臂 v1 为 −90°）；模板 SVG 的 fill/edge/forbidden；镜像不安全清单；部件/装备颜色与可选法线 | 旁注驱动的 manifest；idle/walk/run 三视图条带与满载条带；静止姿势须验证修正角 |
 | ENG-12 | 三接口、曲线/IK/弹簧、三视图解析；读取并校验 `restAngle`，按 `motionAngleDeg+restAngle` 后镜像；装备原子换层、InstancedMesh 两 pass、性能 HUD 指标 | §4.5 向量、manifest 缺省/边界/前臂 −90° 用例、RIG-V01～V10、三台实机 |
 
 ### 7.3 迁移与兼容
@@ -628,6 +635,7 @@ parts:
 | 术语 | 定义 |
 |---|---|
 | `tianshu_rig` v1 / `tianshu-rig.v1` | 本文的人形分层绑定语义 / manifest schema 名；不是全局内容 ID |
+| 解剖学 L/R / `nearSide` | `_L/_R` 只指角色自身左右；三个未镜像视图的近侧均为 `L`，镜像后为 `R`，与部件在画面左 / 右的位置无关 |
 | source part / runtime part | 美术文件中的 13 个源部件 / 展开左右共享源后的 16 个运行时变换槽 |
 | rig set | 同一体型、比例、三视图与 palette 的基础部件集合，目录局部键 |
 | equipment layer | 从物品原图与槽位模板确定性生成、挂到 rig part/关节的透明覆盖图 |
@@ -641,6 +649,7 @@ parts:
 - **已解决（2026-10-01 AR-22）**：行走/待机由“整身预渲染帧”改为“分层部件 + 代码轨迹”；装备在地图角色上可见，见 §1–§5。
 - **已解决（C20 + AR-12）**：规则六向、表现 `Dir8` 与四镜头不变；资产由八套帧改为三个绘制视图加镜像，映射见 §1.3。
 - **已解决（AR-21）**：仍采用 Three.js/WebGL2、Vue/Vite 与零每帧分配；本文接口不依赖 UI 框架。
+- **已解决（2026-10-02 AR-29）**：人物动作原型采用“2D 分层部件 + CC0 动作库驱动 + Gemini 三视图切件”；近侧改为解剖学左侧，关节优先读切件关键点旁注、缺失时按分视图比例回退，见 §1.1–§1.4、§6.2。
 
 ### 本文依赖的上游事实
 

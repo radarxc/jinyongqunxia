@@ -1,38 +1,35 @@
-# 角色分层部件 · 生成与存放规程（给出图 agent；是否现在做由作者定）
+# 角色分层部件 · 三视图切件规程（AR-29）
 
-在仓库根目录执行；路径都相对仓库根。AR-22（作者 2026-10-01）：角色在地图上行走要反映装备，行走动画用代码写轨迹、分别贴图——所以基础美术只画两个标准体型（男 1.70 m、女 1.62 m）的 **3 个视图 × 13 张源部件 = 每体型 39 张 + 3 张全身参考图**，共 84 份提示词：`rig/<set>/ref_<view>.md`、`rig/<set>/<view>/<part>.md`。规格全在 `docs/tech/09-character-rig.md`（§1 绑定与部件表、§1.3 三视图、§1.4 z 序与描边、§6 目录与 manifest）。
+在仓库根目录执行；规格以 `docs/tech/09-character-rig.md` §1、§6 和 `docs/tech/07-asset-generation.md` §5.4 为准。AR-29 已把旧的 84 份“参考图 + 逐部件出图”规程改为“Gemini 一张三视图 + 工具切件”。
 
-## 1. 先读什么
+## 1. 已定约定
 
-1. `docs/tech/09-character-rig.md` §1、§6；`docs/tech/07-asset-generation.md` §2.6（头身比）、§2.7（服饰时代感）、§2.9（禁止项）。
-2. 人物画风规则：`assets/default/prompts/character-male.md` / `character-female.md` §6–§7（比例、服饰、墨线、低饱和）；画风要与建筑 / 贴片素材一致（写实古风 2.5D、光源左上、阴影右下）。
-3. 配色（可换色区域按 tint 槽）：clothPrimary `#6B5141`、clothSecondary `#394C53`、skin `#E9CFB4`、footwear `#332B27`、hair `#211C1A`。
+- `_L/_R` 只表示角色自身的解剖学左 / 右，不表示画面左右。
+- `front34`、`side`、`back34` 都面向画面左，未镜像时近侧都是解剖学 `L`：front34 在画面右，side 投影在中间，back34 在画面左。
+- 镜像才交换 L/R、UV、法线 X 与 z 值；未镜像三视图均须让 L 侧肢体在前。
+- pivot / childJoint 优先取关键点与切件旁注；没有旁注时，`make_parts.py` 按三视图各自的 L/R 比例默认值回退。
 
-## 2. 顺序（必须先参考图、后部件）
+## 2. 正式生产顺序
 
-```bash
-python3 tools/agents/build_image_index.py --queue --group rig --json   # order=0 的是全身参考图，先做
-```
+1. 从审定设定卡生成一张 A 字三视图，顺序 `front34 | side | back34`；三栏是同一个人、同一套衣着与配色，腋下和双腿之间可见背景。主角 / S 级上传立绘前，由作者自行关闭 Gemini 活动记录；其他角色只用文字事实。
+2. 三栏拆图并归一为 256 px/m、脚底对齐；关键点检测后人工复核肩、肘、腕、髋、膝、踝，袍下髋膝不得盲信自动结果。
+3. 工具按关节胶囊分区、补被遮区域、把四肢摆正，产出每视图 13 张 PNG 与 `keypoints.yaml` / `*.pivots.yaml`。
+4. 运行：
 
-1. 每个体型集先出 3 张全身参考图（`ref_front34` / `ref_back34` / `ref_side`）：A 字站姿、四肢与躯干分开、透明底 512×512、身高按 256 px/m（男 ≈ 435 px、女 ≈ 415 px）。三张必须是同一个人、同一套衣着与配色。
-2. 再以**同视图的全身参考图为唯一图片输入**，逐部件出 13 张：只画那一个部件，衣着配色墨线与参考图一致，画布 / pivot / 子关节按各文件 frontmatter（男为 tech/09 §1.2 模板像素，女 ×0.9529），部件轴向竖直，关节两端留 6–10 px 重叠余量。
-3. 每张 2 张候选选 1 张；参考图不合格就不要开始出部件。
+   ```bash
+   python3 tools/rig/make_parts.py assets/default/rig/<set>
+   python3 tools/rig/make_parts.py assets/default/rig/<set> --check
+   python3 tools/rig/preview.py assets/default/rig/<set> --out assets/default/rig/<set>/preview.png
+   ```
 
-## 3. 存放与登记
+5. 审核三视图与镜像的关节缝、近远遮挡、右衽 / 文字 / 伤疤；正式素材不得保留 `placeholder: true`。
 
-- 参考图：`assets/default/rig/<set>/ref_<view>.png`；部件：`assets/default/rig/<set>/<view>/<part>.png`（`<set>` = `male_std` / `female_std`；`<part>` 严格用 13 个 source key：`head`、`hair_or_headgear`、`torso`、`pelvis_skirt`、`upper_arm_L/R`、`forearm_L/R`、`hand_L/R`、`thigh_shared`、`shin_shared`、`foot_shared`）。
-- 透明 RGBA（alpha 同时含 0 与 255），部件外一切像素 alpha=0；不画文字、辅助线、pivot 标记。
-- manifest `assets/default/rig/<set>/manifest.yaml`（schema `tianshu-rig.v1`，字段见 tech/09 §6.2）由工具写：
-  ```bash
-  python3 tools/rig/make_parts.py assets/default/rig/<set>              # 裁边、定枢轴、写 manifest
-  python3 tools/rig/make_parts.py assets/default/rig/<set> --check
-  python3 tools/rig/preview.py assets/default/rig/<set> --out assets/default/rig/<set>/preview.png   # 姿势条带，看关节不断裂
-  python3 tools/agents/check_assets.py assets/default/rig/<set> --min 40 --max 48 --min-side 64
-  ```
-  手工只补每张的 `prompt` / `tool` / `model` / `source_path` / `status: candidate`，不改 pivot 数值。
+## 3. 旧提示词状态
 
-## 4. 质检
+`rig/<set>/ref_<view>.md` 与 `rig/<set>/<view>/<part>.md` 是 AR-22 时期的历史队列，内含“近侧为右侧”等旧文案，**不得再执行**。逐部件出图流程作废；这些文件只保留追溯，后续由三视图切件任务统一退役，见 `tools/agents/reports/TOOL-rig-nearside.md` §7。
 
-- 透明底、单一部件、轴向竖直、pivot 位置对；2 px 墨线描边清楚；与同视图参考图衣着一致。
-- 预览条带里 walk / run / idle 三行姿势关节处无断裂、无明显错位；有问题先怀疑画布与 pivot 登记，再怀疑图。
-- 禁止用代码绘制或裁旧立绘冒充部件图；工具不可用就停下写明。
+## 4. 占位与质检
+
+- `tools/rig/make_placeholder_parts.py` 可重建 `male_std` / `female_std` 程序占位；manifest 明示 `placeholder: true`，不能冒充生成美术或发布素材。
+- 每个正式 set 必须有 `3×13=39` 条 part 记录与 `nearSide: L`；有旁注时记录来源，无旁注时人工复核比例回退；alpha、描边、色槽、镜像安全规则见 tech/09。
+- 预览里程序步态的姿势轮廓应保持原样；本修正预期只改变近远侧遮挡。

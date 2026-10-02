@@ -22,18 +22,18 @@ describe('assembleEquipment', () => {
             "itemId": "eq_demo_sword_pair",
             "kind": "weapon_R",
             "parent": "hand_R",
-            "zOrder": 15.25,
+            "zOrder": 1.75,
           },
           {
             "itemId": "eq_demo_sword_pair",
             "kind": "weapon_L",
             "parent": "hand_L",
-            "zOrder": 1.75,
+            "zOrder": 15.25,
           },
           {
             "itemId": "eq_demo_pauldron",
-            "kind": "pauldron_R",
-            "parent": "upper_arm_R",
+            "kind": "pauldron_L",
+            "parent": "upper_arm_L",
             "zOrder": 13.35,
           },
           {
@@ -54,7 +54,7 @@ describe('assembleEquipment', () => {
           },
           {
             "itemId": "eq_demo_pauldron",
-            "part": "upper_arm_L",
+            "part": "upper_arm_R",
           },
         ],
         "replacements": [
@@ -126,9 +126,20 @@ describe('assembleEquipment', () => {
 
   it('mirrors near and far shoulder priority and never renders inner armor', () => {
     const result = assembleEquipment({ shoulder: 'eq_shoulder', cape: 'eq_cape', innerBody: 'eq_inner' }, 'back34', true);
-    expect(result.attachments.map((layer) => layer.kind)).toEqual(['pauldron_L', 'cape', 'pauldron_R']);
+    expect(result.attachments.map((layer) => layer.kind)).toEqual(['pauldron_R', 'cape', 'pauldron_L']);
     expect(result.attachments.find((layer) => layer.kind === 'cape')?.zOrder).toBe(11.5);
     expect(JSON.stringify(result)).not.toContain('eq_inner');
+  });
+
+  it('swaps anatomical near-side weapons when the source view is mirrored', () => {
+    const normal = assembleEquipment({ mainHand: { id: 'eq_pair', hands: 'pair' } }, 'side', false);
+    const mirrored = assembleEquipment({ mainHand: { id: 'eq_pair', hands: 'pair' } }, 'side', true);
+    expect(normal.attachments.map(({ kind, zOrder }) => [kind, zOrder])).toEqual([
+      ['weapon_R', 1.75], ['weapon_L', 15.25],
+    ]);
+    expect(mirrored.attachments.map(({ kind, zOrder }) => [kind, zOrder])).toEqual([
+      ['weapon_R', 15.25], ['weapon_L', 1.75],
+    ]);
   });
 
   it('detects visual metadata changes and derives the load class from readonly equipment', () => {

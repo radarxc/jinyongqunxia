@@ -1,6 +1,6 @@
 import { CanvasTexture, DataTexture, LinearFilter, RGBAFormat, SRGBColorSpace, type Texture } from 'three';
 import { createPlaceholderRigManifest } from './placeholder';
-import { RIG_SOURCE_PARTS, RIG_VIEWS, type AtlasCell, type RigManifest, type RigManifestPart, type RigSet } from './types';
+import { RIG_NEAR_SIDE, RIG_SOURCE_PARTS, RIG_VIEWS, type AtlasCell, type RigManifest, type RigManifestPart, type RigSet } from './types';
 
 export type RigManifestInput = RigManifest | { readonly manifestUrl: string; readonly runtimePpm?: number };
 interface LoadedImage { readonly part: RigManifestPart; readonly image?: CanvasImageSource }
@@ -20,6 +20,7 @@ export function validateRigManifest(manifest: RigManifest): void {
   assert(manifest.schema === 'tianshu-rig.v1', 'schema');
   assert(/^[a-z][a-z0-9_-]*$/.test(manifest.set), 'set');
   assert(manifest.ppm === 256 && Number.isFinite(manifest.heightM), 'scale');
+  assert(manifest.nearSide === RIG_NEAR_SIDE, 'near-side');
   assert(manifest.views.length === 3 && new Set(manifest.views).size === 3 && RIG_VIEWS.every((view) => manifest.views.includes(view)), 'views');
   const paletteEntries = Object.entries(manifest.palette);
   assert(paletteEntries.length >= 3 && paletteEntries.length <= 8 && paletteEntries.every(([, value]) => /^#[0-9a-f]{6}$/i.test(value)), 'palette');
@@ -36,6 +37,12 @@ export function validateRigManifest(manifest: RigManifest): void {
     const rest = part.restAngle ?? 0;
     assert(Number.isFinite(rest) && rest >= -180 && rest < 180, `${key}:rest-angle`);
     assert(Number.isFinite(part.zOrder) && part.zOrder >= -2 && part.zOrder <= 15.5, `${key}:z`);
+    if (part.jointSource !== undefined) {
+      assert(!part.jointSource.startsWith('/') && !part.jointSource.split('/').includes('..'), `${key}:joint-source`);
+    }
+    if (part.sourceOrigin !== undefined) {
+      assert(part.sourceOrigin.length === 2 && part.sourceOrigin.every(Number.isFinite), `${key}:source-origin`);
+    }
     for (const [joint, point] of Object.entries(part.childJoint)) {
       assert(point[0] >= -1 && point[0] <= part.size[0] && point[1] >= -1 && point[1] <= part.size[1], `${key}:${joint}`);
     }
