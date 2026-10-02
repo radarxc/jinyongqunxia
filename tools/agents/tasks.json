@@ -30992,7 +30992,8 @@
     "ENG-18-content-build",
     "DES-prologue-v2",
     "DES-attr-v2",
-    "ENG-08b-worldmap-page"
+    "ENG-08b-worldmap-page",
+    "ENG-17a-newrun-dialogue"
    ],
    "writes": [
     "packages/core/src/progression/**",
@@ -31354,7 +31355,8 @@
    "prompt": "ENG-pwa-offline.md",
    "deps": [
     "ENG-18-content-build",
-    "ENG-15-core-bus"
+    "ENG-15-core-bus",
+    "ENG-19a-ui-shell"
    ],
    "writes": [
     "apps/game/vite.config.ts",
@@ -31451,6 +31453,287 @@
     "package.json",
     "packages/data/CLAUDE.md",
     "content/CLAUDE.md"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/dialogue/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-17a-newrun-dialogue",
+   "title": "游戏工程 · 新游戏入口与对话 / 剧情命令（身份、难度、序章模式、Ink 对话进 core；StoryRuntime 事务化，审计 H6）",
+   "prompt": "ENG-newrun-dialogue.md",
+   "deps": [
+    "ENG-15-core-bus",
+    "ENG-18-content-build",
+    "ENG-08b-worldmap-page",
+    "DES-prologue-v2"
+   ],
+   "writes": [
+    "packages/core/src/quest/**",
+    "packages/core/src/dialogue/**",
+    "packages/core/src/progression/**",
+    "packages/core/src/state/**",
+    "packages/core/src/command/**",
+    "packages/core/src/api/**",
+    "packages/core/src/world/**",
+    "packages/core/CLAUDE.md",
+    "apps/game/src/runtime/**",
+    "apps/game/src/core-host.ts",
+    "apps/game/src/core-worker.ts",
+    "apps/game/CLAUDE.md",
+    "packages/ui/src/projections.ts",
+    "packages/ui/src/ui-bus.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/pages/TitlePage.vue"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-19a-ui-shell",
+   "title": "游戏工程 · UI 主流程 A：标题、设置、错误恢复与命令排队（审计 M4、L1）",
+   "prompt": "ENG-ui-shell.md",
+   "deps": [
+    "ENG-15-core-bus",
+    "ENG-18-content-build"
+   ],
+   "writes": [
+    "packages/ui/src/components/TxTitle*",
+    "packages/ui/src/components/TxSettings*",
+    "packages/ui/src/components/TxRecovery*",
+    "packages/ui/src/components/TxRotateHint*",
+    "packages/ui/src/components/TxDialogue*",
+    "packages/ui/src/components/TxQuest*",
+    "packages/ui/src/projections.ts",
+    "packages/ui/src/index.ts",
+    "packages/ui/src/runtime.ts",
+    "packages/ui/src/i18n-flow.ts",
+    "packages/ui/src/GameUi.vue",
+    "packages/ui/CLAUDE.md",
+    "apps/game/src/main.ts",
+    "apps/game/src/App.vue",
+    "apps/game/src/game-controller.ts",
+    "apps/game/src/recovery.ts",
+    "apps/game/src/settings.ts",
+    "apps/game/src/style.css",
+    "apps/game/src/pages/TitlePage.vue",
+    "apps/game/src/pages/SettingsPage.vue",
+    "apps/game/src/pages/RecoveryPage.vue",
+    "apps/game/src/pages/QuestPage.vue",
+    "apps/game/src/storage-demo.ts",
+    "apps/game/src/*.test.ts",
+    "apps/game/CLAUDE.md",
+    "packages/platform/src/host/projection-host*.ts",
+    "packages/platform/README.md"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/pages"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-19b-ui-m1-flow",
+   "title": "游戏工程 · UI 主流程 B：M1 路径界面（创角、开场、序章模式、对话框、任务、初眠配点、白马题卡）",
+   "prompt": "ENG-ui-m1-flow.md",
+   "deps": [
+    "ENG-19a-ui-shell",
+    "ENG-17a-newrun-dialogue",
+    "ENG-17-booksleep-m1",
+    "ENG-18-content-build"
+   ],
+   "writes": [
+    "packages/ui/src/components/**",
+    "packages/ui/src/projections.ts",
+    "packages/ui/src/i18n-flow.ts",
+    "packages/ui/src/index.ts",
+    "apps/game/src/pages/**",
+    "apps/game/src/App.vue",
+    "apps/game/src/game-controller.ts",
+    "apps/game/src/flow/**",
+    "apps/game/CLAUDE.md"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "playwright.config.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "playwright",
+      "test",
+      "--list"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ]
+    ]
+   },
+   "id": "ENG-24-e2e-smoke",
+   "title": "游戏工程 · 浏览器冒烟与跨引擎确定性对拍（Playwright Chromium + WebKit；审计 M9；草稿，跑法待作者定）",
+   "prompt": "ENG-e2e-smoke.md",
+   "deps": [
+    "ENG-19b-ui-m1-flow",
+    "ENG-23a-pwa-offline",
+    "ENG-14b-meridian-golden-v3",
+    "ENG-16c-battle-session"
+   ],
+   "writes": [
+    "tests/e2e/**",
+    "playwright.config.ts",
+    "apps/game/src/dev/**",
+    "apps/game/vite.config.ts",
+    "package.json",
+    "pnpm-lock.yaml",
+    "tools/ci/**"
    ]
   }
  ]
