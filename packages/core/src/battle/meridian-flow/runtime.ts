@@ -1,13 +1,43 @@
 import { BP_SCALE, ceilDivInt, clampInt, compareCodePoints, floorDivInt, mulDivFloor } from '@tianshu/shared';
 import { chanceBp, type Rng } from '../../rng';
 import {
-  attackMeridianBp, circulationDamageBp, effectiveNodeFlowBp, finalMeridianAttackBp,
-  jamChanceBp, meridianStrengthBp, normalizeMeridianProfile, segmentTravelTicks,
+  attackMeridianBp, circulationDamageBp, defenseMeridianBp, effectiveNodeFlowBp,
+  finalMeridianAttackBp, jamChanceBp, meridianStrengthBp, normalizeMeridianProfile,
+  segmentTravelTicks, speedMeridianBp,
 } from './math';
 import type {
-  FullCycleCritEvent, MeridianFlowInput, MeridianProfile, QiFlowTraceStep, ResolveQiMoveInput,
-  ResolveQiMoveResult,
+  FullCycleCritEvent, MeridianFlowInput, MeridianFlowPreview, MeridianProfile, PreviewOptions,
+  QiFlowTraceStep, RawMeridianProfile, ResolveQiMoveInput, ResolveQiMoveResult,
 } from './types';
+
+interface MutableTraceStep {
+  readonly acupointRef: string;
+  incoming: number;
+  passed: number;
+  fluxCap: number;
+  effectiveFlowBp: number;
+  jamChanceBp: number;
+  jammed: boolean;
+}
+
+interface MutableMeridianProfile {
+  qiBp: number;
+  widthBp: number;
+  flowBp: number;
+  completionBp: number;
+}
+
+interface PreviewScratch extends Omit<MeridianFlowPreview, 'profile' | 'trace'> {
+  readonly qualitiesBp: number[];
+  readonly jamChancesBp: number[];
+  readonly arrivalBp: number[];
+  readonly profile: MutableMeridianProfile;
+  readonly trace: MutableTraceStep[];
+}
+
+const STANDARD_PROFILE: MeridianProfile = {
+  qiBp: BP_SCALE, widthBp: BP_SCALE, flowBp: BP_SCALE, completionBp: BP_SCALE,
+};
 
 interface CompiledRoute {
   readonly id: string;
@@ -19,6 +49,7 @@ interface CompiledRoute {
   readonly carryCap: number;
   readonly travelTotal: number;
   readonly releaseRate: number;
+  readonly previewReference: RawMeridianProfile;
   readonly startedAtTick: number;
   windowTicks: number;
   totalQi: number;
@@ -26,6 +57,7 @@ interface CompiledRoute {
   readonly slotFlowNodeIndexes: Int16Array;
   readonly slotNodeIndexes: Int16Array;
   readonly slotStepIndexes: Int16Array;
+  readonly preview: PreviewScratch;
 }
 
 export interface MeridianFlowSnapshot {
@@ -92,6 +124,7 @@ export class MeridianFlowRuntime {
   private readonly sealLevel: Uint8Array;
   private readonly nodeInFlight: Int32Array;
   private readonly routes: readonly CompiledRoute[];
+  private readonly routeById: ReadonlyMap<string, CompiledRoute>;
 
   get battleTick(): number { return this.tickNo; }
 
@@ -161,6 +194,12 @@ export class MeridianFlowRuntime {
       const travel = segmentTravelTicks(lengths, input.qiSpeedBp);
       const travelTotal = travel.reduce((sum, value) => sum + value, 0);
       const speedThroughput = mulDivFloor(bottleneck, input.qiSpeedBp, BP_SCALE);
+      const previewReference = route.previewReference ?? { releasedQi: carryCap,
+        meanFluxCap: bottleneck, meanFlowBp: BP_SCALE, routeQualityBp: BP_SCALE };
+      for (const value of [previewReference.releasedQi, previewReference.meanFluxCap,
+        previewReference.meanFlowBp, previewReference.routeQualityBp]) {
+        assertIntRange(value, 1, Number.MAX_SAFE_INTEGER, 'QI_PREVIEW_REFERENCE_ZERO');
+      }
       const slotFlowNodeIndexes = new Int16Array(travelTotal);
       const slotNodeIndexes = new Int16Array(travelTotal);
       const slotStepIndexes = new Int16Array(travelTotal + 1);
@@ -176,13 +215,31 @@ export class MeridianFlowRuntime {
         }
       }
       slotStepIndexes[travelTotal] = route.steps.length;
+      const preview: PreviewScratch = {
+        unitId: input.unitId, routeId: route.routeId, attempted: 0, completed: 0, flowCt: 0,
+        routeQualityBp: 0, releasedQi: 0, routeCarryCap: carryCap, circulationBp: 0,
+        blockedAt: null, blockedNode: null, disabledReason: null,
+        qualitiesBp: new Array<number>(route.steps.length).fill(0),
+        jamChancesBp: new Array<number>(route.steps.length).fill(0),
+        arrivalBp: new Array<number>(route.steps.length).fill(0),
+        stateVersion: 0,
+        profile: { ...STANDARD_PROFILE },
+        attackerStrengthBp: BP_SCALE, defenderStrengthBp: BP_SCALE,
+        meridianAttackBp: BP_SCALE, meridianDefenseBp: BP_SCALE, meridianSpeedBp: BP_SCALE,
+        trace: route.steps.map((step) => ({
+          acupointRef: step.acupointRef, incoming: 0, passed: 0, fluxCap: 0,
+          effectiveFlowBp: 0, jamChanceBp: 0, jammed: false,
+        })),
+      };
       return { id: route.routeId, purpose: route.purpose ?? 'attack',
         nodeIndexes: indexes, travelTicks: travel, segmentCt, riskBp,
         carryCap, travelTotal, releaseRate: Math.min(input.productionPerTick, bottleneck, speedThroughput),
+        previewReference,
         startedAtTick: routeOrdinal, windowTicks: 0, totalQi: 0,
         pipelineQi: new Int32Array(travelTotal + 1), slotFlowNodeIndexes, slotNodeIndexes,
-        slotStepIndexes };
+        slotStepIndexes, preview };
     });
+    this.routeById = new Map(this.routes.map((route) => [route.id, route]));
     this.unitQiHardCap = input.unitQiHardCap ?? Math.max(...this.routes.map((route) => route.carryCap));
     if (input.activeRouteId !== undefined) this.selectRoute(input.activeRouteId);
   }
@@ -202,6 +259,112 @@ export class MeridianFlowRuntime {
     this.validateRoute(routeId);
     const route = this.routes.find((candidate) => candidate.id === routeId)!;
     if (route.purpose !== 'attack') throw new RangeError('QI_ROUTE_NOT_ATTACK');
+  }
+
+  preview(routeId: string, options?: PreviewOptions): MeridianFlowPreview {
+    const rollBp = options?.previewRollBp ?? 9999;
+    assertIntRange(rollBp, 0, 9999, 'QI_PREVIEW_ROLL');
+    const route = this.routeById.get(routeId);
+    if (route === undefined) throw new RangeError('QI_ROUTE_UNKNOWN');
+    const result = route.preview;
+    result.attempted = 0; result.completed = 0; result.flowCt = 0;
+    result.routeQualityBp = 0; result.releasedQi = 0;
+    result.circulationBp = Math.min(
+      BP_SCALE, mulDivFloor(route.windowTicks, BP_SCALE, route.travelTotal),
+    );
+    result.blockedAt = null; result.blockedNode = null; result.disabledReason = null;
+    result.stateVersion = this.version;
+    for (let stepIndex = 0; stepIndex < route.nodeIndexes.length; stepIndex += 1) {
+      const nodeIndex = route.nodeIndexes[stepIndex]!;
+      result.qualitiesBp[stepIndex] = 0;
+      result.jamChancesBp[stepIndex] = 0;
+      result.arrivalBp[stepIndex] = 0;
+      const trace = result.trace[stepIndex]!;
+      trace.incoming = 0; trace.passed = 0; trace.fluxCap = 0;
+      trace.effectiveFlowBp = 0; trace.jamChanceBp = 0; trace.jammed = false;
+      const disabled = this.opened[nodeIndex] === 0 ? 'unopened_node'
+        : this.ruptureDamage[nodeIndex]! > 0 ? 'ruptured_node'
+          : this.sealLevel[nodeIndex]! >= 9 ? 'point_seal_9' : null;
+      if (disabled !== null && result.disabledReason === null) {
+        result.blockedAt = stepIndex; result.blockedNode = this.nodeIds[nodeIndex]!;
+        result.disabledReason = disabled;
+      }
+    }
+    if (result.disabledReason !== null) {
+      this.setPreviewMultipliers(route, result, options?.opponent, 0, 0);
+      return result;
+    }
+    let incoming = Math.min(
+      route.totalQi, route.carryCap, route.releaseRate * route.windowTicks, route.releaseRate,
+    );
+    let qualityTotal = 0;
+    let effectiveFlowTotal = 0;
+    let fluxTotal = 0;
+    let arrivalBp = BP_SCALE;
+    let outputLength = 0;
+    for (let stepIndex = 0; stepIndex < route.nodeIndexes.length; stepIndex += 1) {
+      const nodeIndex = route.nodeIndexes[stepIndex]!;
+      const acupointRef = this.nodeIds[nodeIndex]!;
+      result.attempted += 1;
+      result.flowCt += route.segmentCt[stepIndex]!;
+      const effectiveFlow = effectiveNodeFlowBp(
+        this.flowBp[nodeIndex]!, this.stagnationBp[nodeIndex]!, this.sealLevel[nodeIndex]!,
+      );
+      const normalPass = Math.min(
+        incoming, mulDivFloor(this.fluxCap[nodeIndex]!, effectiveFlow, BP_SCALE),
+      );
+      const chance = jamChanceBp(incoming, this.fluxCap[nodeIndex]!, this.practiceBp,
+        route.riskBp[stepIndex]!, this.stagnationBp[nodeIndex]!, this.sealLevel[nodeIndex]!);
+      const jammed = rollBp < chance;
+      const passed = jammed ? mulDivFloor(normalPass, 4000, BP_SCALE) : normalPass;
+      result.jamChancesBp[outputLength] = chance;
+      result.arrivalBp[outputLength] = arrivalBp;
+      const trace = result.trace[outputLength]!;
+      trace.incoming = incoming; trace.passed = passed; trace.fluxCap = this.fluxCap[nodeIndex]!;
+      trace.effectiveFlowBp = effectiveFlow; trace.jamChanceBp = chance; trace.jammed = jammed;
+      outputLength += 1;
+      if (jammed) {
+        result.blockedAt = stepIndex; result.blockedNode = acupointRef;
+        break;
+      }
+      const quality = mulDivFloor(
+        Math.min(BP_SCALE, mulDivFloor(passed, BP_SCALE, Math.max(1, this.fluxCap[nodeIndex]!))),
+        effectiveFlow, BP_SCALE,
+      );
+      result.qualitiesBp[result.completed] = quality;
+      qualityTotal += quality; effectiveFlowTotal += effectiveFlow;
+      fluxTotal += this.fluxCap[nodeIndex]!;
+      result.completed += 1; incoming = passed;
+      arrivalBp = mulDivFloor(arrivalBp, BP_SCALE - chance, BP_SCALE);
+    }
+    result.routeQualityBp = floorDivInt(qualityTotal, route.nodeIndexes.length);
+    result.releasedQi = result.disabledReason === null
+      ? Math.min(route.totalQi, route.carryCap, route.releaseRate * route.windowTicks) : 0;
+    this.setPreviewMultipliers(route, result, options?.opponent, effectiveFlowTotal, fluxTotal);
+    return result;
+  }
+
+  private setPreviewMultipliers(
+    route: CompiledRoute, result: PreviewScratch, opponent = STANDARD_PROFILE,
+    effectiveFlowTotal = 0, fluxTotal = 0,
+  ): void {
+    result.profile.qiBp = clampInt(mulDivFloor(
+      result.releasedQi, BP_SCALE, route.previewReference.releasedQi), 4000, 18000);
+    result.profile.widthBp = clampInt(mulDivFloor(
+      result.completed > 0 ? floorDivInt(fluxTotal, result.completed) : 1,
+      BP_SCALE, route.previewReference.meanFluxCap), 4000, 18000);
+    result.profile.flowBp = clampInt(mulDivFloor(result.completed > 0
+      ? floorDivInt(effectiveFlowTotal, result.completed) : 0,
+    BP_SCALE, route.previewReference.meanFlowBp), 4000, 18000);
+    result.profile.completionBp = clampInt(mulDivFloor(
+      result.routeQualityBp, BP_SCALE, route.previewReference.routeQualityBp), 0, 18000);
+    result.attackerStrengthBp = meridianStrengthBp(result.profile);
+    result.defenderStrengthBp = meridianStrengthBp(opponent);
+    result.meridianAttackBp = finalMeridianAttackBp(
+      attackMeridianBp(result.profile, opponent, route.nodeIndexes.length), result.circulationBp,
+    );
+    result.meridianDefenseBp = defenseMeridianBp(result.profile, opponent, route.nodeIndexes.length);
+    result.meridianSpeedBp = speedMeridianBp(result.profile, opponent);
   }
 
   selectRoute(routeId: string): void {

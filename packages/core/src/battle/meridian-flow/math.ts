@@ -5,6 +5,14 @@ const ATTACK_CURVE: readonly (readonly [number, number])[] = [
   [4000, 6500], [5000, 6500], [6500, 7200], [8000, 8600], [10000, 10000],
   [12000, 13000], [15000, 16500], [18000, 19000], [22000, 22000], [25000, 22000],
 ];
+const DEFENSE_CURVE: readonly (readonly [number, number])[] = [
+  [4000, 13000], [5000, 12500], [8000, 11000], [10000, 10000], [12000, 8800],
+  [15000, 7000], [20000, 5500], [22000, 5000], [25000, 5000],
+];
+const SPEED_CURVE: readonly (readonly [number, number])[] = [
+  [4000, 7500], [6000, 8000], [8000, 9000], [10000, 10000], [12000, 11000],
+  [15000, 12250], [18000, 13500],
+];
 const CIRCULATION_CURVE: readonly (readonly [number, number])[] = [
   [0, 5000], [2500, 6000], [5000, 7500], [7500, 9000], [9999, 10000],
 ];
@@ -24,7 +32,11 @@ function interpolate(value: number, anchors: readonly (readonly [number, number]
     const right = anchors[index]!;
     const left = anchors[index - 1]!;
     if (value <= right[0]) {
-      return left[1] + mulDivFloor(value - left[0], right[1] - left[1], right[0] - left[0]);
+      const offset = value - left[0];
+      const width = right[0] - left[0];
+      return right[1] >= left[1]
+        ? left[1] + mulDivFloor(offset, right[1] - left[1], width)
+        : left[1] - mulDivFloor(offset, left[1] - right[1], width);
     }
   }
   return last[1];
@@ -100,23 +112,43 @@ export function meridianStrengthBp(profile: MeridianProfile): number {
   return clampInt(floorDivInt(weighted, 100), 4000, 18000);
 }
 
-export function attackMeridianBp(
-  attacker: MeridianProfile, defender: MeridianProfile, routeLength: number,
+function relativeMultiplierBp(
+  self: MeridianProfile, opponent: MeridianProfile, routeLength: number,
+  anchors: readonly (readonly [number, number])[], minimum: number, maximum: number,
 ): number {
   if (routeLength < 1 || routeLength > 18) throw new RangeError('QI_ROUTE_LENGTH');
-  const attackerStrength = meridianStrengthBp(attacker);
-  const defenderStrength = meridianStrengthBp(defender);
-  const relativeBp = clampInt(mulDivFloor(attackerStrength, BP_SCALE, defenderStrength), 4000, 25000);
-  const targetBp = interpolate(relativeBp, ATTACK_CURVE);
+  const relativeBp = clampInt(mulDivFloor(
+    meridianStrengthBp(self), BP_SCALE, meridianStrengthBp(opponent),
+  ), 4000, 25000);
+  const targetBp = interpolate(relativeBp, anchors);
   const advantageCompletionBp = relativeBp >= BP_SCALE
-    ? attacker.completionBp : defender.completionBp;
+    ? self.completionBp : opponent.completionBp;
   const qualityReachBp = clampInt(5000 + floorDivInt(advantageCompletionBp, 2), 5000, 10000);
   const routeReachBp = Math.min(BP_SCALE, 3000 + floorDivInt(7000 * routeLength, 18));
   const realiseBp = mulDivFloor(routeReachBp, qualityReachBp, BP_SCALE);
   const result = targetBp >= BP_SCALE
     ? BP_SCALE + mulDivFloor(targetBp - BP_SCALE, realiseBp, BP_SCALE)
     : BP_SCALE - mulDivFloor(BP_SCALE - targetBp, realiseBp, BP_SCALE);
-  return clampInt(result, 6500, 22000);
+  return clampInt(result, minimum, maximum);
+}
+
+export function attackMeridianBp(
+  attacker: MeridianProfile, defender: MeridianProfile, routeLength: number,
+): number {
+  return relativeMultiplierBp(attacker, defender, routeLength, ATTACK_CURVE, 6500, 22000);
+}
+
+export function defenseMeridianBp(
+  defender: MeridianProfile, attacker: MeridianProfile, routeLength: number,
+): number {
+  return relativeMultiplierBp(defender, attacker, routeLength, DEFENSE_CURVE, 5000, 13000);
+}
+
+export function speedMeridianBp(self: MeridianProfile, reference: MeridianProfile): number {
+  const relativeBp = clampInt(mulDivFloor(
+    meridianStrengthBp(self), BP_SCALE, meridianStrengthBp(reference),
+  ), 4000, 18000);
+  return clampInt(interpolate(relativeBp, SPEED_CURVE), 6500, 13500);
 }
 
 export function circulationDamageBp(circulationBp: number): number {
