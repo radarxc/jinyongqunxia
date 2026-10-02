@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：待出图 445、已通过（作者） 150、已入库 24、待重出 8。**待出图队列 453 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：待出图 445、已通过（作者） 150、已入库 32。**待出图队列 445 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -64,14 +64,6 @@
 | items | `eq_yuanmengguzhanpi_nan` | 元蒙古毡披·男 | `assets/default/item/accessories/eq_yuanmengguzhanpi_nan.png` | 待出图 | [eq_yuanmengguzhanpi_nan.md](items/accessories/eq_yuanmengguzhanpi_nan.md) |
 | items | `eq_yuanqibaolimao_nan` | 元七宝钹笠帽·男 | `assets/default/item/accessories/eq_yuanqibaolimao_nan.png` | 待出图 | [eq_yuanqibaolimao_nan.md](items/accessories/eq_yuanqibaolimao_nan.md) |
 | items | `eq_yuanzhijinzhanshidoupeng_nan` | 元织金战士斗篷·男 | `assets/default/item/accessories/eq_yuanzhijinzhanshidoupeng_nan.png` | 待出图 | [eq_yuanzhijinzhanshidoupeng_nan.md](items/accessories/eq_yuanzhijinzhanshidoupeng_nan.md) |
-| items | `eq_mingjinyiweijia` | 明制锦衣卫甲 | `assets/default/item/armor/eq_mingjinyiweijia.png` | 待重出 | [eq_mingjinyiweijia.md](items/armor/eq_mingjinyiweijia.md) |
-| items | `eq_mingweisuojia` | 明制卫所甲 | `assets/default/item/armor/eq_mingweisuojia.png` | 待重出 | [eq_mingweisuojia.md](items/armor/eq_mingweisuojia.md) |
-| items | `eq_qingyulinjia` | 清制御前侍卫甲 | `assets/default/item/armor/eq_qingyulinjia.png` | 待重出 | [eq_qingyulinjia.md](items/armor/eq_qingyulinjia.md) |
-| items | `eq_qingzaolijia` | 清制皂隶衣甲 | `assets/default/item/armor/eq_qingzaolijia.png` | 待重出 | [eq_qingzaolijia.md](items/armor/eq_qingzaolijia.md) |
-| items | `eq_songjinjunburenjia` | 宋制禁军步人甲 | `assets/default/item/armor/eq_songjinjunburenjia.png` | 待重出 | [eq_songjinjunburenjia.md](items/armor/eq_songjinjunburenjia.md) |
-| items | `eq_songxunyijia` | 宋制巡役甲 | `assets/default/item/armor/eq_songxunyijia.png` | 待重出 | [eq_songxunyijia.md](items/armor/eq_songxunyijia.md) |
-| items | `eq_yuanqibingjia` | 元制骑兵札甲 | `assets/default/item/armor/eq_yuanqibingjia.png` | 待重出 | [eq_yuanqibingjia.md](items/armor/eq_yuanqibingjia.md) |
-| items | `eq_yuansuweiqiejia` | 元宿卫怯薛甲 | `assets/default/item/armor/eq_yuansuweiqiejia.png` | 待重出 | [eq_yuansuweiqiejia.md](items/armor/eq_yuansuweiqiejia.md) |
 | items | `eq_daliyinkoujindai_nv` | 大理银扣锦带·女 | `assets/default/item/belts/eq_daliyinkoujindai_nv.png` | 待出图 | [eq_daliyinkoujindai_nv.md](items/belts/eq_daliyinkoujindai_nv.md) |
 | items | `eq_huijianghongbudai_nan` | 回疆红布腰带·男 | `assets/default/item/belts/eq_huijianghongbudai_nan.png` | 待出图 | [eq_huijianghongbudai_nan.md](items/belts/eq_huijianghongbudai_nan.md) |
 | items | `eq_jinchunshuiyutuhu_nan` | 金春水玉吐鹘·男 | `assets/default/item/belts/eq_jinchunshuiyutuhu_nan.png` | 待出图 | [eq_jinchunshuiyutuhu_nan.md](items/belts/eq_jinchunshuiyutuhu_nan.md) |
@@ -883,18 +875,18 @@
 | 29 | 宋青圆领袍·男 | `eq_songqingyuanlingpao_nan` | 黄上 | 衣物·袍服 | 待出图 | [eq_songqingyuanlingpao_nan.md](items/clothing/eq_songqingyuanlingpao_nan.md) | template |
 | 30 | 藏地粗氆氇袍·男 | `eq_zangdicuobu_nan` | 黄下 | 衣物·胡服 | 待出图 | [eq_zangdicuobu_nan.md](items/clothing/eq_zangdicuobu_nan.md) | template |
 
-### 制式盔甲（8）· 待重出 8
+### 制式盔甲（8）· 已入库 8
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
-| 1 | 清制御前侍卫甲 | `eq_qingyulinjia` | 天 | 制式盔甲·清 | 待重出 | [eq_qingyulinjia.md](items/armor/eq_qingyulinjia.md) | manifest |
-| 2 | 元宿卫怯薛甲 | `eq_yuansuweiqiejia` | 天 | 制式盔甲·元 | 待重出 | [eq_yuansuweiqiejia.md](items/armor/eq_yuansuweiqiejia.md) | manifest |
-| 3 | 明制锦衣卫甲 | `eq_mingjinyiweijia` | 地 | 制式盔甲·明 | 待重出 | [eq_mingjinyiweijia.md](items/armor/eq_mingjinyiweijia.md) | manifest |
-| 4 | 宋制禁军步人甲 | `eq_songjinjunburenjia` | 地 | 制式盔甲·宋 | 待重出 | [eq_songjinjunburenjia.md](items/armor/eq_songjinjunburenjia.md) | manifest |
-| 5 | 明制卫所甲 | `eq_mingweisuojia` | 玄 | 制式盔甲·明 | 待重出 | [eq_mingweisuojia.md](items/armor/eq_mingweisuojia.md) | manifest |
-| 6 | 元制骑兵札甲 | `eq_yuanqibingjia` | 玄 | 制式盔甲·元 | 待重出 | [eq_yuanqibingjia.md](items/armor/eq_yuanqibingjia.md) | manifest |
-| 7 | 清制皂隶衣甲 | `eq_qingzaolijia` | 黄 | 制式盔甲·清 | 待重出 | [eq_qingzaolijia.md](items/armor/eq_qingzaolijia.md) | manifest |
-| 8 | 宋制巡役甲 | `eq_songxunyijia` | 黄 | 制式盔甲·宋 | 待重出 | [eq_songxunyijia.md](items/armor/eq_songxunyijia.md) | manifest |
+| 1 | 清制御前侍卫甲 | `eq_qingyulinjia` | 天 | 制式盔甲·清 | 已入库 | [eq_qingyulinjia.md](items/armor/eq_qingyulinjia.md) | manifest |
+| 2 | 元宿卫怯薛甲 | `eq_yuansuweiqiejia` | 天 | 制式盔甲·元 | 已入库 | [eq_yuansuweiqiejia.md](items/armor/eq_yuansuweiqiejia.md) | manifest |
+| 3 | 明制锦衣卫甲 | `eq_mingjinyiweijia` | 地 | 制式盔甲·明 | 已入库 | [eq_mingjinyiweijia.md](items/armor/eq_mingjinyiweijia.md) | manifest |
+| 4 | 宋制禁军步人甲 | `eq_songjinjunburenjia` | 地 | 制式盔甲·宋 | 已入库 | [eq_songjinjunburenjia.md](items/armor/eq_songjinjunburenjia.md) | manifest |
+| 5 | 明制卫所甲 | `eq_mingweisuojia` | 玄 | 制式盔甲·明 | 已入库 | [eq_mingweisuojia.md](items/armor/eq_mingweisuojia.md) | manifest |
+| 6 | 元制骑兵札甲 | `eq_yuanqibingjia` | 玄 | 制式盔甲·元 | 已入库 | [eq_yuanqibingjia.md](items/armor/eq_yuanqibingjia.md) | manifest |
+| 7 | 清制皂隶衣甲 | `eq_qingzaolijia` | 黄 | 制式盔甲·清 | 已入库 | [eq_qingzaolijia.md](items/armor/eq_qingzaolijia.md) | manifest |
+| 8 | 宋制巡役甲 | `eq_songxunyijia` | 黄 | 制式盔甲·宋 | 已入库 | [eq_songxunyijia.md](items/armor/eq_songxunyijia.md) | manifest |
 
 ### 内甲（8）· 已通过（作者） 8
 
