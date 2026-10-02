@@ -1,5 +1,8 @@
 import type { MeridianProgress, SkillInstance } from '@tianshu/data/schemas';
+import type { JsonValue } from '@tianshu/shared';
 import type { RngState, RngStreamName } from '../rng';
+import type { ConsumableTargetState } from '../economy/types';
+import type { BattleState } from '../battle/types';
 import type { WorldMapState } from '../world/worldmap-types';
 import type { TownSessionState } from '../world/town-runtime';
 
@@ -13,6 +16,7 @@ export interface CharacterState {
   readonly skills: readonly SkillState[]; readonly meridians: MeridianProgress;
   readonly legacyHpCredit: number; readonly legacyMpCredit: number;
   readonly stats: CharacterStats; readonly resources: CharacterResources;
+  readonly consumable: Omit<ConsumableTargetState, 'characterId' | 'alive' | 'hp' | 'hpMax' | 'mp' | 'mpMax' | 'meridians'>;
 }
 export interface InventoryStack { readonly itemId: string; readonly count: number; }
 export interface Inventory { readonly stacks: readonly InventoryStack[]; }
@@ -26,9 +30,39 @@ export interface ResolvedStoryWindow { readonly opensAtTick: number; readonly cl
 export interface StoryLineState { readonly lineId: string; readonly status: 'locked' | 'available' | 'active' | 'completed' | 'expired'; readonly activeNodeIds: readonly string[]; readonly completedNodeIds: readonly string[]; readonly expiredNodeIds: readonly string[]; readonly chosenOptions: Readonly<Record<string, string>>; readonly branchPath: readonly string[]; readonly resolvedWindows: Readonly<Record<string, ResolvedStoryWindow>>; readonly appliedEffectIds: readonly string[]; readonly revision: number; }
 export interface StoryState { readonly chapterId: string; readonly lines: readonly StoryLineState[]; }
 export interface GameClock { readonly epochId: string; readonly calendarSpecId: string; readonly epochYear: number; readonly elapsedTicks: number; readonly shichenIndex: number; readonly dayIndex: number; readonly monthIndex: number; readonly yearOffset: number; readonly slotInDay: number; }
-export interface MetaState { readonly coreVersion: string; readonly rngProtocol: number; readonly stateVersion: number; readonly worldTick: number; readonly nextEventSeq: number; readonly rng: Readonly<Record<RngStreamName, RngState>>; }
+export interface MetaState {
+  readonly saveSchema: number; readonly masterSeed: number; readonly runId: string;
+  readonly nextRuntimeOrdinal: number; readonly contentHash: string; readonly rulesProtocol: number;
+  readonly rngProtocol: number; readonly coreVersion: string; readonly coreBuild: string;
+  readonly stateVersion: number; readonly worldTick: number; readonly nextEventSeq: number;
+  readonly rng: Readonly<Record<RngStreamName, RngState>>; readonly debugTainted: boolean;
+}
 export interface ProfileState { readonly protagonist: CharacterState | null; readonly companions: readonly CharacterState[]; }
-export interface ChapterState { readonly chapterId: string; readonly worldYear: number; readonly clock: GameClock; readonly story: StoryState; readonly worldItems: WorldItems; readonly shops: readonly ShopState[]; readonly worldMap: WorldMapState | null; readonly town: TownSessionState | null; }
+export interface KnownCharacterState {
+  readonly npcId: string; readonly relationship: 'met' | 'befriended'; readonly affinity: number;
+  readonly character: CharacterState | null;
+}
+export interface ChapterState {
+  readonly chapterId: string; readonly worldYear: number; readonly clock: GameClock;
+  readonly story: StoryState; readonly worldItems: WorldItems; readonly shops: readonly ShopState[];
+  readonly worldMap: WorldMapState | null; readonly town: TownSessionState | null;
+  readonly npcs: readonly KnownCharacterState[]; readonly itemChapterUses: Readonly<Record<string, number>>;
+}
 export interface PartyState { readonly inventory: Inventory; readonly equipment: Equipment; readonly money: number; }
-export interface TransientState { readonly pendingTimeAdvance: { readonly remainingTicks: number; readonly reason: 'rest' | 'story' } | null; readonly dialogue: null; readonly battle: null; }
-export interface GameState { readonly meta: MetaState; readonly profile: ProfileState; readonly chapter: ChapterState; readonly party: PartyState; readonly transient: TransientState; readonly battle: null; }
+export interface WorldNavigationState {
+  readonly locationId: string; readonly selectedDestinationId: string | null;
+}
+export interface WorldState {
+  readonly navigation: WorldNavigationState;
+  readonly pendingTimeAdvance: { readonly remainingTicks: number; readonly reason: 'rest' | 'story' } | null;
+}
+export interface DialogueState {
+  readonly storyId: string; readonly storyHash: string; readonly entryKey: string;
+  readonly storyJsonState: string; readonly randomSeed: number;
+  readonly pendingIntents: readonly JsonValue[]; readonly consumedTagKeys: readonly string[];
+}
+export interface GameState {
+  readonly meta: MetaState; readonly profile: ProfileState; readonly chapter: ChapterState;
+  readonly party: PartyState; readonly world: WorldState;
+  readonly battle: BattleState | null; readonly dialogue: DialogueState | null;
+}

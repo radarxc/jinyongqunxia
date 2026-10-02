@@ -24,7 +24,7 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 
 | 路径 | 职责 |
 |---|---|
-| src/main.ts、App.vue、style.css | 装配 Pinia / controller、HUD、导航、快捷栏、键盘、无障碍设置和生命周期 |
+| src/main.ts、loop.ts、App.vue、style.css | 装配 Pinia / controller、10 Hz 探索驱动、HUD、导航、快捷栏、键盘、无障碍设置和生命周期 |
 | src/core-host.ts、core-worker.ts | Worker 握手、10 秒启动超时、Comlink 端口及启动期兼容回退 |
 | src/runtime/ | 会话聚合、命令转发、预览装配与应用快照验证；不持有大地图规则或可写边车 |
 | src/projection.ts、selectors/ | 脏标记 selector、物品分类、人物遮蔽、真实资源与经脉强度投影 |
@@ -43,14 +43,14 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 
 1. GameRemote 为 dispatch / query / snapshot / validate / restore；GameHost 另有 subscribe / dispose / mode。参数与结果必须可结构化克隆；快照仅交给存档服务。
 2. dispatch、query、snapshot、restore 共用 FIFO 队列；保存快照排在先前命令之后。订阅返回退订函数；dispose 清理 Worker、监听器并拒绝尚未完成的请求。
-3. GameUpdate 包含 accepted、changes、events 和可选 error。主线程按 changes 合并浅投影；拒绝命令不改 UI 与存档。stateVersion 由成功命令递增，worldTick 只由 core 时钟推进。
-4. GameCommand 另含 worldmap/travel、step、cancel、resume、enter、leave；step 必须携带 journeyId 与 expectedTravelledLi，Worker 拒绝过期计时器。组件经 controller 等待宿主结果后更新。
+3. GameUpdate 包含 accepted、changes、events 和可选 error。主线程按 changes 合并浅投影；拒绝命令不改 UI 与存档。stateVersion / nextEventSeq 只由 core 事务推进；session 不再拼状态或事件信封。
+4. GameCommand 的非战斗分支直接复用 core `Command` 联合（world tick、大地图、城镇 / 打坐、装备 / 使用物品）；step 必须携带 journeyId 与 expectedTravelledLi。战斗分支暂交既有 BattleRuntime，ENG-16c 再并入同一总线。
 5. dirty 分支含 hud / characters / inventory / equipment / quests / worldmap；旅行步进同时更新 hud 与 worldmap，restore 全量投影。增加玩法写入时同时登记 dirty 分支。
 6. 未遇见人物在 Worker selector 内变成无姓名、无 NPC ID、无门派、无图片路径和无详情的剪影；相遇数据变化后才开放资料。affinity 沿用 design/18 的 −100..100，不从好感数值推断结交。
-7. WorldTickedEvent 沿用 ENG-02 的顶层 seq / stateVersion / worldTick；其他 ENG-06 事实装入 RuntimeDomainEvent.payload，保留原事实字段。ENG-08 / 09 / 10 应复用 host.subscribe，禁止另开一份可写 core。
-8. SessionSnapshot 的 known / usage / itemTargets / location 是上游 GameState 缺字段时的应用聚合边车，不是新的权威玩法 schema。大地图状态已归入 `GameState.chapter.worldMap`，快照不得再保存同名顶层副本。
+7. 所有非战斗事件都使用 core 的 `seq/stateVersion/causeId/parentSeq/payload` 信封。ENG-08 / 09 / 10 应复用 host.subscribe，禁止另开一份可写 core。
+8. `SessionSnapshot` 就是唯一 `GameState`：known 在 `chapter.npcs`，chapterUses 在 `chapter.itemChapterUses`，itemTargets 已吸收进 CharacterState，location 从 `world.navigation` 投影。`ui-session.v1` 只允许出现在 schema 1 迁移和测试夹具中。
 9. ENG-08 发 `worldmap/sceneRequested`，payload 是 SceneEntry（kind / nodeId / sceneId / townSpec / templateYear / gateId / spawn / returnNodeId）。ENG-09 消费此入口并以 worldmap/leave 返回；战斗与真实相遇由 ENG-10 接入。场景显示层不直接改投影。
-10. 主线程兼容宿主也克隆边界值；运行中 Worker 报错会使操作失败，不静默重启到初态。下游若添加自动恢复，须先冻结最后成功快照及命令序号。
+10. 主线程兼容宿主也克隆边界值；运行中 Worker 或 core 内部错误会锁死玩法命令和探索 tick、显示内部错误，不静默重启到初态；存档导出仍可用。
 11. `GameProjection.battle` 是 ENG-10 增量包：进入 / query 含 `info` 与全单位，后续只含变化单位；controller 以单位 ID 合并。战斗中 snapshot / restore / 普通命令被 Worker 拒绝，结束后 `battle/leave` 返回冻结的 `returnContext`。
 12. UI 的范围、目标合法性、可达集和路径只调用 core 的 `queryMoveAt()` / `queryReachable()` /
 `queryPath()`；提交完整行动计划后由 core 再算一次。CT 预计在一次性 timeline 副本上调用 core 调度函数，不推进真实状态或 RNG。
@@ -60,6 +60,7 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 16. `town-runtime.v1`、townRevision 与存档必须一致；构建期按章读 `content/town/chNN/*.json` 并复制其 atlas 素材。大理 / 杭州是当前基线，不把全部章节城镇塞进首屏；Three 模块只在进入城镇后动态加载。
 17. NPC 出现同时要求 eraLayer、sceneId 与 presence 匹配；精确格位来自 `townNpcPlacements`。事件只读 `townEventAnchors`，不得由人物简介或城市归属猜坐标。当前生产注册表显式为空，直到内容任务提供权威锚点。
 18. 室内打坐锚点只有对应建筑处于 inside 才投影和受理。`TownRuntime.meditate()` 在 core 内原子完成敌意 NPC 筛选、是否掷骰、RNG、风险、岔气或恢复 / 练功、时钟与 `BattleSetup`；应用只提交内容事实、落盘返回状态并装配 `BattleLaunch`。战斗准备失败不提交状态或 RNG；无正式 encounter 时安全完成 600 tick 且不消费 RNG。
+19. `loop.ts` 仅用墙钟驱动 `world/tick`：固定 100 ms、帧差上限 250 ms、每帧最多 5 次；hidden、菜单、对话、战斗、加载或存档时清积压。Worker 请求未返回时不叠发，旧积压直接丢弃。场景必须显式声明是否运行探索时钟。
 
 ## 页面与持久化约定
 
@@ -73,8 +74,8 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 - 保存复用十二手动槽、一个快速槽、三个自动轮换槽。普通保存仅写手动 / 快速槽；特殊旅程检查点保留只读展示与导出，不擅自提供恢复和删除。
 - 覆盖、读档、删除、导入先在模态框确认；快速保存按钮是显式覆盖快速槽的快捷操作。操作期间阻止重复按钮提交。
 - 自动保存使用 ENG-01 的 30 秒节流与三槽轮换；变更后请求保存，30 秒轮询补落最后一次节流变更。hidden / pagehide 强制请求为尽力而为，移动端进程终止落盘仍为（待实测）。
-- 单槽文件为 TSUI v1（.tsui）：5 字节魔数 / 版本、4 字节小端头长度、JSON 头与规范快照，头上限 16 KiB、快照上限 32 MiB。SHA-256 与结构 / 引用 / 模式校验均通过后才写所选槽位。它不冒充 tech/08 的 TSAV，也不调用替换全库的 TSDB 导入。
-- 当前仅接通完整 healPct / mpPct / dispel 药效；含未接 Buff、体力、永久加值或经脉组合效果的道具会禁用，避免扣除物品却漏结算。ENG-06 战外 perBattle 计数暂由适配器隔离并保留战斗账本。
+- 单槽文件为 TSAV v1（.tsav），正文只含 schema 2 `GameState`；旧 TSUI / `ui-session.v1` 仅可导入并经 1→2 迁移，不再导出。高版本或协议不兼容不会被当作损坏而回退到更老一代。
+- 战外命令总线接通 healPct / mpPct / staPct / dispel / permStat / permMaxPct，`fieldTime` 按时辰换算；战斗专用、复活、临时 Buff 与战斗次数 / 冷却由 ENG-16c 接入活动 `BattleState`。
 - 当前生产命令已支持移动 + 招式 / 待机；战斗物品、防御、急性聚气按钮仍按 capability 显式禁用并显示原因，禁止 UI 自算规则。经脉面板仍展示 core 已提供的透劲、占穴、丹田损伤与 Buff。
 - 已有装备 schema 缺数值 modifiers / 执法配置，当前换装只改变装备与背包；不得从说明文本解析出属性、通缉或剧情奖励。正式人物 / 装备汇总接齐后才扩展面板。
 
@@ -112,8 +113,8 @@ ENG-07 当前仅复制清单中存在的 64 px 物品图与 portrait 文件，�
 ## 本文新增术语/约定
 
 - GameHost / GameRemote / GameUpdate：应用的强类型命令 / 投影宿主；packages/platform 泛型 ProjectionHost 不依赖 UI。
-- ui-session.v1：ENG-07 临时聚合快照，包含规范 GameState 及尚未归位的持久边车；restore 原子验证。
-- TSUI v1：本次单槽文件信封；正式 codec 接入时要保留迁移入口，不与 TSAV / TSDB 混用。
+- ui-session.v1 / TSUI v1：只读历史输入；由纯迁移转为 schema 2 GameState，任何无法安全归位的数据明确失败。
+- TSAV v1：当前单槽文件信封；头登记 `saveSchema/rulesProtocol/rngProtocol/coreBuild/contentHash`。
 - dirtyRevision / savedRevision：仅属 controller 的落盘追踪序号；I/O 期间若收到后续 core 事件，不会误把新变更当作已保存。它不是玩法时钟或存档 schema 字段。
 - worldmap.v1 / SceneEntry：构建期验证的大地图定义，以及交给 ENG-09 的只读场景入口；都不在渲染层推导。
 - 无新增玩法、人物、物品、穴道或槽位 ID；命名复用 canon §12 与现有内容。
@@ -126,12 +127,12 @@ ENG-07 当前仅复制清单中存在的 64 px 物品图与 portrait 文件，�
 - 已解决：Worker 默认运行、浅投影、列表虚拟化、槽位流程、大地图与素材占位已落地；验证入口见上文。桌面 Chrome 性能结果见 ENG-08 报告；真实横屏 / 竖屏、触屏、Safari / Android、PWA 离线与生命周期落盘仍为（待实测）。
 - 【建议值】演示主角初始七项先天均 50，一层黄上太祖长拳、无开穴；core 得 HP=300+(30+4×3)×1=342、MP=200。两名已遇 NPC 与零好感仅供界面演示；正式初态由 ENG-10 创角 / 剧情提供。
 - 【建议值】福缘目前随其他先天显示数值，design/03 的五档词未给出阈值；默认保持真实数值，待上游提供档位映射后改为词并提供设置切换。
-- 依赖 ENG-02 / 06 后续聚合：真实 NPC 招募 / 相遇账本、装备 modifiers / lawProfile、完整 Buff / 体力 / 经脉用药、任务中文名；默认没有配置便不创建效果或新规则。
+- 依赖后续聚合：真实 NPC 招募、装备 modifiers / lawProfile、战外临时 Buff 的持久解释、任务中文名；默认没有配置便不创建效果或新规则。
 - 已解决：移动、可达集、路径预览及移动 + 招式 / 待机已进入 core resolver；战斗物品、防御与
   `BattleState.meridianByUnit` 急性聚气仍待 ENG-16b，默认能力禁用，届时只接命令和投影。
-- 依赖正式 TSAV codec：默认演示继续用 TSUI，导入须保持 preview 模式一致；特殊检查点恢复、铁人模式与正式战斗存档条件交 ENG-09 / 10。
+- 已解决：正式 TSAV v1 与 schema 2 已接线，默认演示只导出 TSAV / JSON；旧 TSUI 保留单向迁移。特殊检查点恢复、铁人模式与正式战斗存档条件仍交后续任务。
 - 依赖章节内容装载：默认天龙三名 NPC 加主角、367 件已编译物品，不表示这些物品在正式开局可得。
-- 依赖 ENG-06 修正战外 perBattle 校验：适配器当前传入空 battleUses 做战外结算，再保留旧战斗账本；修正上游后可移除兼容分支，保留回归测试。
+- 依赖 ENG-16c：`battleUses` 只存活动 `BattleState`；战外使用传空战斗账本且只提交 `chapterUses`，不得再建应用侧账本。
 - 依赖 ENG-06 / 内容 schema：正式官服装备 lawProfile 与玩家 identityTags 尚未入当前内容；没有配置时城门仅遵循已有通缉状态，不从文案猜执法规则。
 - 依赖事件装配：EventAnchor 与随机遭遇端口已定义并发 probe / request 事件，正式会话当前未注入锚点或选择器。
 - 依赖内容装配：`townNpcPlacements` / `townEventAnchors` 当前为空，默认不显示或触发未登记 NPC/位置事件；须由 ENG-05 内容提供 scene + era + 整数格坐标后接入。

@@ -9,6 +9,9 @@ import type { createSaveService } from './storage/save-service';
 import { slotViews } from './storage/slot-views';
 
 export type GameController = ReturnType<typeof createGameController>;
+class GameplayRejection extends Error {
+  public constructor(code?: string) { super(code || 'COMMAND_REJECTED'); this.name = 'GameplayRejection'; }
+}
 export function createGameController(host: GameHost, ui: ReturnType<typeof useUiStore>) {
   const battle = shallowRef<BattleController | null>(null);
   const battleActive = shallowRef(false);
@@ -21,12 +24,17 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
     return battleLoading;
   }
   const busy = shallowRef(false);
+  const loading = shallowRef(true);
+  const saving = shallowRef(false);
+  const sceneRunsWorldTicks = shallowRef(false);
   const slots = shallowRef<readonly SaveSlotView[]>(slotViews([]));
   const storageAvailable = shallowRef(false);
   const saveStatus = shallowRef(t('loading'));
   const notice = shallowRef('');
   const settings = shallowRef({ largeText: false, reducedMotion: false });
   const worldmap = shallowRef<WorldMapProjection | null>(null);
+  const worldPaused = shallowRef(false);
+  const sessionFailed = shallowRef(false);
   const townRuntime = shallowRef<TownRuntimeDefinition | null>(null);
   const town = shallowRef<TownProjection | null>(null);
   let storage: TianshuStorage | undefined;
@@ -43,18 +51,31 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
     if (storageAvailable.value) saveStatus.value = `${saveStatus.value === t('loading') ? t('saveReady') : saveStatus.value.split(' · 持久存储：')[0]!} · 持久存储：${persisted}`;
   }
   function describe(error: unknown): string {
-    const code = error instanceof Error ? error.message : String(error);
-    if (code.includes('QUOTA') || (error as { code?: string })?.code === 'QUOTA_EXCEEDED') return '存储空间不足，请导出存档并清理可重建缓存。';
-    if (/VERSION/.test(code)) return '这个存档版本暂不兼容，原有进度已保留。';
-    if (/HASH|INVALID|STATE_/.test(code)) return '存档校验失败，原有进度已保留。';
-    if (/EQUIPMENT/.test(code)) return '此物无法放入所选装备位置。';
-    if (/ITEM_|CONSUMABLE/.test(code)) return '此刻无法使用这件物品。';
+    const message = error instanceof Error ? error.message : String(error);
+    const code = (error as { code?: unknown })?.code;
+    if (message.includes('QUOTA') || code === 'QUOTA_EXCEEDED') return '存储空间不足，请导出存档并清理可重建缓存。';
+    if (code === 'SAVE_TOO_NEW') return '这个存档由较新版本创建，请更新游戏后再读取。';
+    if (code === 'SAVE_PROTOCOL_UNSUPPORTED' || code === 'MISSING_MIGRATION' ||
+        code === 'UNSUPPORTED_VERSION' || /VERSION/.test(message))
+      return '这个存档版本暂不兼容，原有进度已保留。';
+    if (/HASH|INVALID|STATE_/.test(message)) return '存档校验失败，原有进度已保留。';
+    if (/EQUIPMENT/.test(message)) return '此物无法放入所选装备位置。';
+    if (/ITEM_|CONSUMABLE/.test(message)) return '此刻无法使用这件物品。';
     return t('error');
   }
-  async function run(work: () => Promise<void>): Promise<void> {
-    if (disposed || busy.value) return;
+  function reportInternalError(error?: unknown): void {
+    sessionFailed.value = true; sceneRunsWorldTicks.value = false;
+    notice.value = '游戏内部错误，探索已暂停；请导出存档并刷新。';
+    saveStatus.value = notice.value;
+    if (error !== undefined) console.error('Game session terminated', error);
+  }
+  async function run(work: () => Promise<void>, gameplay = false): Promise<void> {
+    if (disposed || busy.value || (gameplay && sessionFailed.value)) return;
     busy.value = true;
-    try { await work(); } catch (error) { notice.value = describe(error); saveStatus.value = notice.value; }
+    try { await work(); } catch (error) {
+      if (gameplay && !(error instanceof GameplayRejection)) reportInternalError(error);
+      else { notice.value = describe(error); saveStatus.value = notice.value; }
+    }
     finally {
       busy.value = false;
       const pending = pendingAutosave; pendingAutosave = undefined;
@@ -63,6 +84,7 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
   }
   const offHost = host.subscribe((update) => {
     if (!update.accepted) return;
+    if (update.changes.worldPaused !== undefined) worldPaused.value = update.changes.worldPaused;
     if (update.changes.worldmap !== undefined) worldmap.value = update.changes.worldmap
       ? markRaw(update.changes.worldmap) : null;
     if (update.changes.townRuntime !== undefined) townRuntime.value = update.changes.townRuntime
@@ -77,27 +99,33 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
         void ensureBattle().then(controller => controller.apply(packet));
       }
     }
-    if (update.events.length) { dirtyRevision += 1; void autosave('state-change'); }
+    if (update.events.length) {
+      dirtyRevision += 1;
+      if (update.events.some((event) => event.t !== 'world/ticked')) void autosave('state-change');
+    }
   });
   const offBus = uiBus.subscribe((intent) => {
     void run(async () => {
       const result = await host.dispatch(intent.command);
-      if (!result.accepted) throw new Error(result.error);
+      if (!result.accepted) throw new GameplayRejection(result.error);
       notice.value = '';
-    });
+    }, true);
   });
   async function autosave(trigger: string, force = false): Promise<void> {
     if (battleActive.value) return;
     if (!saves || (dirtyRevision === savedRevision && !force) || disposed) return;
     if (busy.value) { pendingAutosave = { trigger, force }; return; }
+    saving.value = true;
     await run(async () => {
       const capturedRevision = dirtyRevision;
       const result = await saves!.autosave(trigger, force);
       if (result.status === 'saved') { savedRevision = capturedRevision; saveStatus.value = '已自动保存'; await refresh(); }
     });
+    saving.value = false;
   }
   async function initialize(): Promise<void> {
-    const projection = await host.query(); worldmap.value = projection.worldmap ? markRaw(projection.worldmap) : null;
+    const projection = await host.query(); worldPaused.value = projection.worldPaused;
+    worldmap.value = projection.worldmap ? markRaw(projection.worldmap) : null;
     townRuntime.value = projection.townRuntime ? markRaw(projection.townRuntime) : null;
     town.value = projection.town ? markRaw(projection.town) : null;
     ui.replaceProjection(projection);
@@ -110,6 +138,7 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
       if (stored) settings.value = { largeText: stored.largeText === true, reducedMotion: stored.reducedMotion === true };
       await refresh(); storageAvailable.value = true; saveStatus.value = t('saveReady');
     } catch (error) { saveStatus.value = describe(error); }
+    finally { loading.value = false; }
   }
   async function saveAction(action: 'save' | 'load' | 'remove' | 'export', request: string): Promise<void> {
     const [slot, option] = request.split('|');
@@ -139,17 +168,27 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
     settings.value = { ...settings.value, [key]: value };
     void storage?.settings.set('ui.accessibility', settings.value).catch((error: unknown) => { notice.value = describe(error); });
   }
+  function setSceneRunsWorldTicks(value: boolean): void {
+    sceneRunsWorldTicks.value = value;
+  }
   async function worldMapCommand(command: WorldMapCommand): Promise<void> {
-    await run(async () => { const result = await host.dispatch(command); if (!result.accepted) throw new Error(result.error); notice.value = ''; });
+    await run(async () => { const result = await host.dispatch(command);
+      if (!result.accepted) throw new GameplayRejection(result.error); notice.value = ''; }, true);
   }
   async function townCommand(command: TownCommand): Promise<GameUpdate | undefined> {
     let update: GameUpdate | undefined;
     await run(async () => { const result = await host.dispatch(command);
-      if (!result.accepted) throw new Error(result.error); notice.value = ''; update = result; });
+      if (!result.accepted) throw new GameplayRejection(result.error); notice.value = ''; update = result; }, true);
     return update;
   }
-  return { busy, slots, storageAvailable, saveStatus, notice, settings, worldmap, townRuntime, town,
-    battle, battleActive, ensureBattle, initialize, saveAction, importFile, setSetting, autosave,
+  return { busy, slots, storageAvailable, saveStatus, notice, settings, worldmap, worldPaused,
+    townRuntime, town,
+    battle, battleActive, loading, saving, sceneRunsWorldTicks, ensureBattle, initialize,
+    saveAction, importFile, setSetting, setSceneRunsWorldTicks, autosave,
+    tick: () => host.dispatch({ t: 'world/tick' }),
+    canRunWorldTicks: () => !sessionFailed.value && sceneRunsWorldTicks.value && !busy.value && !loading.value &&
+      !saving.value && !battleActive.value && !worldPaused.value,
+    reportInternalError,
     worldMapCommand, townCommand,
     dispose() { disposed = true; battle.value?.dispose(); offHost(); offBus(); host.dispose(); void storage?.close(); },
   };

@@ -3,27 +3,26 @@ export * from './clock';
 export * from './equipment';
 export * from './initial';
 export * from './inventory';
+export * from './json';
 export * from './models';
+export * from './migrations';
 export * from './story';
+export * from './summary';
 export * from './validate';
 export * from './world-items';
 
 import type { GameState } from './models';
+import { cloneJsonValue } from './json';
 
-function cloneJsonValue<T>(value: T): T {
-  if (Array.isArray(value)) {
-    return value.map((entry) => cloneJsonValue(entry)) as unknown as T;
-  }
-  if (value !== null && typeof value === 'object') {
-    const clone: Record<string, unknown> = {};
-    for (const [key, entry] of Object.entries(value)) {
-      clone[key] = cloneJsonValue(entry);
-    }
-    return clone as T;
-  }
-  return value;
-}
-
+/**
+ * Copy the complete rule state across an ownership boundary.
+ *
+ * The implementation deliberately uses the core JSON clone rather than the
+ * host's `structuredClone`: GameState is a canonical JSON value, and keeping
+ * this operation in core gives browser, worker, and Node hosts one behavior.
+ * Command dispatch itself does not call this helper; its hot path uses the
+ * transaction journal and only clones RNG streams on first access.
+ */
 export function cloneGameState(state: GameState): GameState {
   return cloneJsonValue(state);
 }

@@ -1,9 +1,6 @@
-import type { Command, EquipmentSlot } from '@tianshu/core';
+import type { Command } from '@tianshu/core';
 
-export type UiCommand = Command
-  | { readonly t: 'inventory/equip'; readonly itemId: string; readonly slot: EquipmentSlot }
-  | { readonly t: 'inventory/unequip'; readonly slot: EquipmentSlot }
-  | { readonly t: 'inventory/use'; readonly itemId: string; readonly targetId: string };
+export type UiCommand = Command;
 
 export interface UiCommandIntent {
   readonly type: 'core-command';

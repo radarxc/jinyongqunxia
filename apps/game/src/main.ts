@@ -3,6 +3,7 @@ import { createApp } from 'vue';
 import { useUiStore } from '@tianshu/ui/runtime';
 import App from './App.vue';
 import { createGameCoreHost } from './core-host';
+import { createGameLoop } from './loop';
 import { schedulePwaRegistration } from './pwa';
 import './style.css';
 
@@ -28,8 +29,14 @@ async function start(container: HTMLElement): Promise<void> {
   const app = createApp(App, { controller }).use(pinia);
   app.mount(container);
   await controller.initialize();
+  const loop = createGameLoop({ tick: controller.tick, shouldRun: () =>
+    document.visibilityState !== 'hidden' && controller.canRunWorldTicks(),
+  onError: (error) => { console.error('World tick loop failed', error);
+    controller.reportInternalError(); } });
+  loop.start();
   schedulePwaRegistration();
   const visibility = () => {
+    loop.reset();
     if (document.visibilityState === 'hidden') void controller.autosave('hidden', true);
   };
   document.addEventListener('visibilitychange', visibility);
@@ -46,6 +53,7 @@ async function start(container: HTMLElement): Promise<void> {
       document.removeEventListener('visibilitychange', visibility);
       window.removeEventListener('pagehide', onPageHide);
       clearInterval(autosaveTimer);
+      loop.stop();
       controller.dispose();
       app.unmount();
     });

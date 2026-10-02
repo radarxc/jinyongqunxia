@@ -74,11 +74,15 @@ function statsFor(
 }
 
 export function createCharacterState(
-  character: Omit<CharacterState, 'stats' | 'resources'>,
+  character: Omit<CharacterState, 'stats' | 'resources' | 'consumable'> &
+    { readonly consumable?: CharacterState['consumable'] },
   skills: readonly ResourceSkillRef[],
 ): CharacterState {
   const stats = statsFor(character, skills);
-  return { ...character, stats, resources: { hp: stats.hpMax, mp: stats.mpMax } };
+  return { ...character, stats, resources: { hp: stats.hpMax, mp: stats.mpMax },
+    consumable: character.consumable ?? { stamina: 0, staminaMax: 0, ailments: [],
+      temporaryEffects: [], permanentBonuses: { stats: {}, hpMaxBp: 0, mpMaxBp: 0 },
+      meridianAids: [] } };
 }
 
 export function withDerivedCharacterStats(

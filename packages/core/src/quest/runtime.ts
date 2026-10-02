@@ -2,7 +2,7 @@ import { compareCodePoints, floorDivInt, type JsonValue } from '@tianshu/shared'
 import type { StoryLine } from '@tianshu/data/schemas';
 import { EMPTY_NPC_WORLD } from '../npc';
 import { createGameClock, createStoryState, TICKS_PER_MINUTE, TICKS_PER_YEAR,
-  type GameClock, type StoryLineState } from '../state';
+  cloneJsonValue, type GameClock, type StoryLineState } from '../state';
 import { compileStoryLines, type CompiledStoryLine, type CompiledStoryNode } from './compile';
 import { DeadlineQueue } from './deadlines';
 import { executeNode } from './executors';
@@ -46,7 +46,7 @@ export class StoryRuntime {
       this.#snapshot = { ...this.#snapshot, lineWindows: {} };
     this.#rebuildDeadlines();
   }
-  public snapshot(): StoryRuntimeSnapshot { return structuredClone(this.#snapshot); }
+  public snapshot(): StoryRuntimeSnapshot { return cloneJsonValue(this.#snapshot); }
 
   #compiled(lineId: string): CompiledStoryLine {
     const line = this.#lines.get(lineId);

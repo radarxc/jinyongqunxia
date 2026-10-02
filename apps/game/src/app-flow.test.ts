@@ -30,7 +30,7 @@ describe('application shell with real session and fake IndexedDB', () => {
       await wrapper.get('[data-item-id="eq_qinggangjian"]').trigger('click');
       await wrapper.get('.item-detail .primary').trigger('click');
       await vi.waitFor(() => expect(controller.busy.value).toBe(false));
-      expect((await host.snapshot()).state.party.equipment.entries[0]?.itemId).toBe('eq_qinggangjian');
+      expect((await host.snapshot()).party.equipment.entries[0]?.itemId).toBe('eq_qinggangjian');
       await click('存档');
       await vi.waitFor(() => expect(wrapper.find('.save-page').exists()).toBe(true));
       await click('保存');
@@ -41,7 +41,7 @@ describe('application shell with real session and fake IndexedDB', () => {
       await click('读取');
       await wrapper.get('[data-confirm]').trigger('click');
       await vi.waitFor(() => expect(controller.busy.value).toBe(false));
-      expect((await host.snapshot()).state.meta.worldTick).toBe(0);
+      expect((await host.snapshot()).meta.worldTick).toBe(0);
       await click('人物');
       await vi.waitFor(() => expect(wrapper.find('.character-page').exists()).toBe(true));
       expect(wrapper.text()).toContain('未遇之人'); expect(wrapper.text()).not.toContain('萧峰');

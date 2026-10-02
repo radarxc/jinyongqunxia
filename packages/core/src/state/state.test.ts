@@ -1,9 +1,10 @@
 import { describe, expect, it } from 'vitest';
+import type { JsonValue } from '@tianshu/shared';
 import { RNG_PROTOCOL, seedStream, type RngStreamName } from '../rng';
 import {
   advanceBattle, advanceGameClock, advanceInnRest, advanceMeditation, advanceTravel,
   createEmptyEquipment, createGameClock, createInitialGameState, parseGameState,
-  TICKS_PER_DAY, TICKS_PER_HOUR,
+  migrateUiSessionV1, RULES_PROTOCOL, SAVE_SCHEMA, TICKS_PER_DAY, TICKS_PER_HOUR,
 } from '.';
 
 function initialState() {
@@ -55,6 +56,64 @@ describe('GameState JSON boundary', () => {
       ...state,
       chapter: { ...state.chapter, clock: { ...state.chapter.clock, dayIndex: 1 } },
     })).toThrow('STATE_CLOCK_DERIVED');
+  });
+
+  it('owns schema, protocol, navigation and transient slots in the canonical tree', () => {
+    const state = initialState();
+    expect(state.meta).toMatchObject({ saveSchema: SAVE_SCHEMA, rulesProtocol: RULES_PROTOCOL,
+      masterSeed: 1, debugTainted: false });
+    expect(state).not.toHaveProperty('transient');
+    expect(state.world).toEqual({ navigation: { locationId: 'city_dali',
+      selectedDestinationId: null }, pendingTimeAdvance: null });
+    expect(state).toMatchObject({ battle: null, dialogue: null });
+  });
+
+  it('migrates every ui-session.v1 sidecar field without keeping the envelope', () => {
+    const state = initialState();
+    const hero = { characterId: 'npc_zhujue', status: 'active' as const,
+      innate: { con: 1, str: 1, agi: 1, wis: 1, wil: 1, luk: 1, cha: 1 }, skills: [],
+      meridians: { schemaVersion: 2 as const, opened: [], meridianStats: {},
+        acupointStats: {}, targets: {}, turnCompleted: 0, lastAppliedMigration: 0 },
+      legacyHpCredit: 0, legacyMpCredit: 0,
+      stats: { hpMax: 10, mpMax: 10, strength: 1, speed: 1, tenacity: 1, coordination: 1 },
+      resources: { hp: 7, mp: 8 } };
+    const target = { characterId: hero.characterId, alive: true, hp: 7, hpMax: 10, mp: 8,
+      mpMax: 10, stamina: 3, staminaMax: 5, ailments: [], temporaryEffects: [],
+      permanentBonuses: { stats: {}, hpMaxBp: 0, mpMaxBp: 0 }, meridianAids: [],
+      meridians: hero.meridians };
+    const npcCharacter = { ...hero, characterId: 'npc_duanyu' };
+    const npcTarget = { ...target, characterId: 'npc_duanyu' };
+    const old = { schema: 'ui-session.v1', preview: true, location: '旧显示串',
+      state: { ...state, meta: { coreVersion: '0.0.0', rngProtocol: 2, stateVersion: 0,
+        worldTick: 0, nextEventSeq: 1, rng: state.meta.rng },
+      profile: { protagonist: hero, companions: [] }, chapter: { ...state.chapter,
+        npcs: undefined, itemChapterUses: undefined }, transient: { pendingTimeAdvance: null,
+        dialogue: null, battle: null }, world: undefined, dialogue: undefined },
+      known: [{ npcId: 'npc_duanyu', relationship: 'met', affinity: 2,
+        character: npcCharacter }],
+      usage: { battleUses: {}, chapterUses: { it_old: 1 } },
+      itemTargets: { npc_zhujue: target, npc_duanyu: npcTarget } };
+    const sourceContentHash = 'a'.repeat(64);
+    const migrated = migrateUiSessionV1(JSON.parse(JSON.stringify(old)), {
+      fromContentHash: sourceContentHash, targetSchema: 2, remapVersion: 'none' }) as unknown as ReturnType<typeof initialState>;
+    expect(migrated.chapter.npcs[0]).toMatchObject({
+      npcId: 'npc_duanyu', relationship: 'met', affinity: 2,
+    });
+    expect(migrated.chapter.itemChapterUses).toEqual({ it_old: 1 });
+    expect(migrated.profile.protagonist?.consumable.stamina).toBe(3);
+    expect(migrated.chapter.npcs[0]?.character?.consumable.stamina).toBe(3);
+    expect(migrated.meta.contentHash).toBe(sourceContentHash);
+    expect(migrated).not.toHaveProperty('schema'); expect(migrated).not.toHaveProperty('location');
+    expect(parseGameState(migrated)).toEqual(migrated);
+  });
+
+  it('rejects non-empty legacy battle-use counters instead of silently dropping them', () => {
+    const state = initialState();
+    const old = { schema: 'ui-session.v1', state, known: [],
+      usage: { battleUses: { it_old: 4 }, chapterUses: {} }, itemTargets: {} };
+    expect(() => migrateUiSessionV1(old as unknown as JsonValue, { fromContentHash: '0'.repeat(64),
+      targetSchema: SAVE_SCHEMA, remapVersion: 'none' }))
+      .toThrow('MIGRATION_BATTLE_USES_ACTIVE');
   });
 });
 

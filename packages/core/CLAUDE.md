@@ -6,21 +6,32 @@
 
 | 根 | 生命周期 / 内容 |
 |---|---|
-| `meta` | 协议、状态版本、世界 tick、事件序号与五路 RNG |
+| `meta` | `saveSchema/rulesProtocol/rngProtocol/coreBuild/contentHash`、周目 seed、状态版本、世界 tick、事件序号与五路 RNG |
 | `profile` | 跨书界长期人物：主角与同伴 |
-| `chapter` | 当前书界：定年 / 日历、剧情线、世界物品、店铺 |
+| `chapter` | 当前书界：定年 / 日历、剧情线、世界物品、店铺、NPC 运行态与章节道具用量 |
 | `party` | 当前队伍：背包、十一装备槽、金钱 |
-| `transient` | 临时推进、对话与战斗占位；不得当作长期事实源 |
-| `battle` | 战斗临时态入口；ENG-02 保持 `null`，由战斗任务扩展 |
+| `world` | `navigation` 位置事实与 `pendingTimeAdvance` |
+| `dialogue` | Ink 对话临时态；非对话时为 `null` |
+| `battle` | 战斗临时态入口；完整命令总线接入由 ENG-16c 扩展 |
 
 所有规则状态必须是可规范 JSON 序列化的安全整数 / 字符串 / 布尔 / null / 稠密数组 / 普通对象。Core 源码禁止原生 `/`、`/=`；整数除法使用 `@tianshu/shared` 的 `floorDivInt()` / `ceilDivInt()`。
 
 ## 状态、推导与时间入口
 
 - 边界：`createInitialGameState()`、`parseGameState()`、`assertCanonicalGameState()`、`cloneGameState()`；`Core.serialize()` / `canonicalStateJson()` 负责规范输出。
+- 版本：当前 `SAVE_SCHEMA=2`、`RULES_PROTOCOL=3`、`RNG_PROTOCOL=2`；调用方必须从 core 导出读取。`contentHash` 在内容管线接入前为 64 个零。
+- 深拷贝：core 内只使用 `cloneJsonValue()` 处理 JSON 状态；命令热路径禁止 `structuredClone()` 和整树复制。
 - 人物：`deriveCharacterStats()` 是 `hpMax/mpMax` 唯一推导入口；`createCharacterState()` 初始化资源，`withDerivedCharacterStats()` 重算并保持资源比例。
 - 容器：`addInventoryItem()`、`createEmptyEquipment()`、`createWorldItems()`、`createShopState()`、`createStoryState()`。
 - 时间：`createGameClock()`、`advanceGameClock()`；显式入口为 `advanceInnRest()`、`advanceMeditation()`、`advanceTravel()`、`advanceBattle()`。
+
+## 命令总线与事务
+
+- 非战斗写入口统一为 `Core.dispatch(Command)`：world tick、大地图、城镇 / 打坐和装备 / 使用物品都按 `t` 查唯一 handler。成功返回 `{ ok:true,stateVersion,events }`；合法拒绝返回稳定代码 `{ ok:false,reason,at? }`。
+- handler 的 `validate` 只读且不得取 RNG；`apply` 只经 `CoreTransaction.set/splice/rng/emit/abort` 写入。journal 仅登记每个 owner/key 的首次旧值，五流 RNG 与事件均先暂存。
+- 提交前验证事件 JSON、安全整数及整棵 `GameState`；成功后才推进版本、命令序和事件序。异常或 abort 逆序回滚状态并丢弃 RNG / 事件。`TypeError`、溢出和不变量错误必须上抛，不得伪装成玩法拒绝。
+- 规范事件为 `{ t,seq,stateVersion,causeId,parentSeq,payload }`；同命令 `causeId=stateVersion:commandOrdinal`，首事件无父项，其余默认指向首事件。战斗旧事件形状只保留至 ENG-16c。
+- `migrateUiSessionV1()` 是 schema 1→2 的纯 JSON 迁移：旧 known / chapterUses / itemTargets / location 归入正式状态；非空 battleUses 明确报错，绝不静默丢弃。
 
 ## 经脉运气与养成入口
 
@@ -78,7 +89,7 @@
   `shoulder/cape/waist/feet/accessory`。
 - ENG-07 使用物品：`useConsumable()` 返回新背包、目标、`ConsumableUseState`、`fieldTime` 与事件；
   永久经脉强化唯一调用 `progression.applyMeridianBoost()`，临时冲穴药效写入 `meridianAids`。
-  UI / 战斗层负责持久化并在新战斗时清空 `battleUses`；章节结束时清空整份使用账本。
+  战外命令总线把 `chapterUses` 写入 chapter；`battleUses` 仅属于活动战斗并由 ENG-16c 接入。
 - ENG-08 探索与城镇：`WorldItemsRuntime` 按场景分桶，`get()` / `queryScene()` 应用于场景 ID、
   锚点、tick 窗口和旗标可见性，`pickup()` 原子返回背包与已取快照。`checkUniformExposure()`
   产生官甲六字段事件并返回执法状态；普通城门只调用 `canEnterNormalCityGate()`。
@@ -129,5 +140,6 @@
 
 ## 变更记录
 
+- 2026-10-02：ENG-15 统一非战斗命令总线与 mutation journal；GameState 升至 schema 2 / rules protocol 3，移除 `ui-session.v1` 边车与 `transient` 根。
 - 2026-10-01：`rngProtocol` 升至 2；`intInclusive()` 改为 16 位半字乘加的 32×32→64 位乘积高 32 位映射，保持每次公开抽样恰消费一个 `nextU32()`。协议 1 的浮点缩放结果不得作为协议 2 golden；package-local ESLint 同时禁用 `/` 与 `/=`。
 - 2026-10-01：时钟与状态校验改用 shared 的 BigInt 整数除法；根 `pnpm check` 显式执行 package-local ESLint。

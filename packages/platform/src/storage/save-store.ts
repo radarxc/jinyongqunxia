@@ -18,6 +18,13 @@ import type { StoragePersistenceController } from './persistence';
 
 const AUTO_SLOTS = ['save_auto_1', 'save_auto_2', 'save_auto_3'] as const;
 const MAX_GENERATIONS = 3;
+const NON_RECOVERABLE_LOAD_ERRORS = new Set<StorageErrorCode>([
+  StorageErrorCode.SaveTooNew,
+  StorageErrorCode.SaveProtocolUnsupported,
+  StorageErrorCode.MissingMigration,
+  StorageErrorCode.UnsupportedVersion,
+  StorageErrorCode.Unavailable,
+]);
 
 function toSummary(row: SaveRow): SaveSlotSummary {
   return {
@@ -123,10 +130,7 @@ export class IndexedDbSaveStore implements SaveStore {
               };
         } catch (error) {
           if (options.generation !== undefined) throw error;
-          if (
-            error instanceof StorageError &&
-            [StorageErrorCode.SaveTooNew, StorageErrorCode.Unavailable].includes(error.code)
-          )
+          if (error instanceof StorageError && NON_RECOVERABLE_LOAD_ERRORS.has(error.code))
             throw error;
           newestError ??= error;
           failed.push(row.generation);

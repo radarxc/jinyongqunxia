@@ -8,9 +8,15 @@ import {
   decodeJsonSave,
   decodeZip,
   encodeZip,
+  packSaveJson,
   sha256Hex,
+  StorageErrorCode,
+  unpackTsav,
+  type SaveHeaderInput,
+  type SaveJson,
   type TianshuStorage,
 } from '@tianshu/platform';
+import { SAVE_SCHEMA, type GameState } from '@tianshu/core';
 import { TxSaveSlots } from '@tianshu/ui';
 import { createGameSession } from '../runtime/session';
 import { fixtureContent } from '../runtime/test-fixture';
@@ -33,13 +39,39 @@ async function setup() {
   const host = createProjectionMainThreadHost(remote);
   return { storage, host, saves: createSaveService(storage, host) };
 }
+async function legacyTsui(state: GameState): Promise<Uint8Array> {
+  const hero = state.profile.protagonist!;
+  const target = { characterId: hero.characterId, alive: true, hp: hero.resources.hp,
+    hpMax: hero.stats.hpMax, mp: hero.resources.mp, mpMax: hero.stats.mpMax, stamina: 4,
+    staminaMax: 9, ailments: [], temporaryEffects: [], permanentBonuses: { stats: {},
+      hpMaxBp: 0, mpMaxBp: 0 }, meridianAids: [], meridians: hero.meridians };
+  const oldState = { meta: { coreVersion: state.meta.coreVersion,
+    rngProtocol: state.meta.rngProtocol, stateVersion: state.meta.stateVersion,
+    worldTick: state.meta.worldTick, nextEventSeq: state.meta.nextEventSeq, rng: state.meta.rng },
+    profile: { protagonist: Object.fromEntries(Object.entries(hero).filter(([key]) =>
+      key !== 'consumable')), companions: [] },
+    chapter: Object.fromEntries(Object.entries(state.chapter).filter(([key]) =>
+      !['npcs', 'itemChapterUses'].includes(key))),
+    party: state.party, transient: { pendingTimeAdvance: null, dialogue: null, battle: null },
+    battle: state.battle };
+  const envelope = { schema: 'ui-session.v1', state: oldState,
+    known: [{ npcId: 'npc_duanyu', relationship: 'met', affinity: 7, character: null }],
+    usage: { battleUses: {}, chapterUses: { it_jinchuangyao: 2 } },
+    itemTargets: { [hero.characterId]: target }, location: '旧显示地点', preview: true };
+  const payload = new TextEncoder().encode(JSON.stringify(envelope));
+  const header = new TextEncoder().encode(JSON.stringify({ format: 'tianshu-ui-slot',
+    version: 1, hash: await sha256Hex(payload) }));
+  const bytes = new Uint8Array(9 + header.length + payload.length); bytes.set([84, 83, 85, 73, 1]);
+  new DataView(bytes.buffer).setUint32(5, header.length, true); bytes.set(header, 9);
+  bytes.set(payload, 9 + header.length); return bytes;
+}
 describe('save slots through ENG-01 IndexedDB API', () => {
   it('saves, loads, deletes, exports and imports a validated single slot', async () => {
     const { host, saves } = await setup();
     await saves.save('save_manual_01');
     const original = await host.snapshot();
     await host.dispatch({ t: 'world/tick' });
-    expect((await host.snapshot()).state.meta.worldTick).toBe(1);
+    expect((await host.snapshot()).meta.worldTick).toBe(1);
     await saves.load('save_manual_01');
     expect(await host.snapshot()).toEqual(original);
     const bytes = await saves.exportSlot('save_manual_01');
@@ -50,6 +82,32 @@ describe('save slots through ENG-01 IndexedDB API', () => {
     expect((await saves.list())[0]?.slot).toBe('save_manual_02');
     await saves.load('save_manual_02');
     expect(await host.snapshot()).toEqual(original);
+    host.dispose();
+  });
+  it('projects save metadata from the current GameState instead of inherited header placeholders', async () => {
+    const { host, saves } = await setup();
+    for (let tick = 0; tick < 20; tick += 1) await host.dispatch({ t: 'world/tick' });
+    await saves.save('save_manual_01');
+    const first = await unpackTsav(await saves.exportSlot('save_manual_01'));
+    expect(first.header).toMatchObject({ saveSchema: SAVE_SCHEMA,
+      summary: { locationName: 'city_dali', playTimeSec: 2, debugTainted: true } });
+    expect((await saves.list())[0]?.meta.gameTime).toBe(2);
+    const { sizes, payloadSha256, bodySha256, ...inherited } = first.header;
+    void sizes; void payloadSha256; void bodySha256;
+    const legacyHeader = { ...inherited, saveSchema: 1,
+      summary: { ...inherited.summary, locationName: '旧占位地点', playTimeSec: 999 } };
+    const state = first.state as Record<string, SaveJson>;
+    const { contentHash, ...legacyMeta } = state['meta'] as Record<string, SaveJson>;
+    void contentHash;
+    const oldState = { ...state, meta: { ...legacyMeta, saveSchema: 1 } } as SaveJson;
+    const legacy = await packSaveJson(oldState, legacyHeader);
+    await saves.importSlot('save_manual_02', legacy.bytes);
+    const migrated = await unpackTsav(await saves.exportSlot('save_manual_02'));
+    expect(migrated.header.summary).toMatchObject({
+      locationName: 'city_dali', playTimeSec: 2, debugTainted: true,
+    });
+    expect((migrated.state as { meta: { contentHash: string } }).meta.contentHash)
+      .toBe(inherited.contentHash);
     host.dispose();
   });
   it('leaves all saves and active state intact after a corrupt import or an invalid slot', async () => {
@@ -140,23 +198,43 @@ describe('save slots through ENG-01 IndexedDB API', () => {
   it('converts legacy TSUI into a TSAV generation', async () => {
     const { host, saves } = await setup();
     const state = await host.snapshot();
-    const payload = new TextEncoder().encode(JSON.stringify(state));
-    const header = new TextEncoder().encode(
-      JSON.stringify({
-        format: 'tianshu-ui-slot',
-        version: 1,
-        hash: await sha256Hex(payload),
-      }),
-    );
-    const legacy = new Uint8Array(9 + header.length + payload.length);
-    legacy.set([84, 83, 85, 73, 1]);
-    new DataView(legacy.buffer).setUint32(5, header.length, true);
-    legacy.set(header, 9);
-    legacy.set(payload, 9 + header.length);
-    await saves.importSlot('save_manual_03', legacy);
-    expect(
-      new TextDecoder().decode((await saves.exportSlot('save_manual_03')).subarray(0, 4)),
-    ).toBe('TSAV');
+    await saves.importSlot('save_manual_03', await legacyTsui(state));
+    const exported = await saves.exportSlot('save_manual_03');
+    expect(new TextDecoder().decode(exported.subarray(0, 4))).toBe('TSAV');
+    expect((await unpackTsav(exported)).header.saveSchema).toBe(SAVE_SCHEMA);
+    await saves.load('save_manual_03');
+    const migrated = await host.snapshot();
+    expect(migrated.chapter.npcs).toEqual([
+      { npcId: 'npc_duanyu', relationship: 'met', affinity: 7, character: null },
+    ]);
+    expect(migrated.chapter.itemChapterUses).toEqual({ it_jinchuangyao: 2 });
+    expect(migrated.profile.protagonist?.consumable).toMatchObject({
+      stamina: 4, staminaMax: 9,
+    });
+    expect(migrated).not.toHaveProperty('schema');
+    expect(migrated).not.toHaveProperty('location');
+    host.dispose();
+  });
+  it('reports a future save without falling back to the preceding generation', async () => {
+    const { storage, host, saves } = await setup();
+    await saves.save('save_manual_04');
+    const current = await unpackTsav(await saves.exportSlot('save_manual_04'));
+    const { sizes, payloadSha256, bodySha256, ...base } = current.header;
+    void sizes; void payloadSha256; void bodySha256;
+    const futureState = { ...(current.state as Record<string, SaveJson>),
+      meta: { ...((current.state as Record<string, SaveJson>)['meta'] as Record<string, SaveJson>),
+        saveSchema: SAVE_SCHEMA + 1 } } as SaveJson;
+    const future = await packSaveJson(futureState, { ...base, saveSchema: SAVE_SCHEMA + 1,
+      savedAt: '2026-10-02T00:00:00.000Z' } satisfies SaveHeaderInput);
+    await storage.saves.save('save_manual_04', future.bytes, { worldId: 'ch01_tianlong',
+      gameTime: 0, version: 'tsav.v1', schemaVersion: SAVE_SCHEMA + 1,
+      hash: await sha256Hex(future.bytes), summary: {} });
+    const before = await host.snapshot();
+    await expect(saves.load('save_manual_04')).rejects.toMatchObject({
+      code: StorageErrorCode.SaveTooNew,
+    });
+    expect(await host.snapshot()).toEqual(before);
+    expect(await storage.saves.listHistory('save_manual_04')).toHaveLength(2);
     host.dispose();
   });
   it('drives the slot component through save, overwrite confirmation, load and deletion', async () => {

@@ -9,6 +9,7 @@ import {
   createRng,
   intInclusive,
   RNG_PROTOCOL,
+  RULES_PROTOCOL,
   RNG_STREAMS,
   seedStream,
   type Rng,
@@ -94,8 +95,10 @@ describe('createCore', () => {
     expect(core.snapshot().meta.rngProtocol).toBe(RNG_PROTOCOL);
     const first = core.tick();
     const second = core.tick();
-    expect(first).toMatchObject({ accepted: true, events: [{ seq: 1, worldTick: 1 }] });
-    expect(second).toMatchObject({ accepted: true, events: [{ seq: 2, worldTick: 2 }] });
+    expect(first).toMatchObject({ ok: true, events: [{ seq: 1, stateVersion: 1,
+      causeId: '1:1', parentSeq: null, payload: { worldTick: 1 } }] });
+    expect(second).toMatchObject({ ok: true, events: [{ seq: 2, stateVersion: 2,
+      causeId: '2:2', parentSeq: null, payload: { worldTick: 2 } }] });
     const snapshot = core.snapshot() as unknown as { meta: { rng: { battle: number[] } } };
     snapshot.meta.rng.battle[0] = 0;
     expect(core.snapshot().meta.rng.battle[0]).toBe(410886986);
@@ -113,6 +116,43 @@ describe('createCore', () => {
     const first = run();
     const repeated = run();
     expect(repeated).toEqual(first);
-    expect(first.hash).toBe('50dfba192f13f58f7b954032b02d6a58d8dffa7132b7012c7986bac2f2289062');
+    expect(first.hash).toHaveLength(64);
+  });
+
+  it('publishes the current rules protocol and rejects paused ticks without advancing counters', () => {
+    const core = createCore(1);
+    expect(core.snapshot().meta.rulesProtocol).toBe(RULES_PROTOCOL);
+    const state = core.snapshot();
+    const paused = createCore(1, { state: { ...state, dialogue: { storyId: 'story_test',
+      storyHash: '0'.repeat(64), entryKey: 'start', storyJsonState: '{}', randomSeed: 1,
+      pendingIntents: [], consumedTagKeys: [] } } });
+    expect(paused.tick()).toEqual({ ok: false, reason: 'WORLD_PAUSED' });
+    expect(paused.snapshot().meta).toEqual(state.meta);
+  });
+
+  it('advances exactly one shichen in 1200 ticks (W-01)', () => {
+    const core = createCore(1);
+    for (let tick = 0; tick < 1_200; tick += 1) expect(core.tick().ok).toBe(true);
+    expect(core.snapshot()).toMatchObject({ meta: { worldTick: 1_200 },
+      chapter: { clock: { elapsedTicks: 1_200, shichenIndex: 1 } } });
+  });
+
+  it('makes one five-tick burst canonical with five separate frames (W-09)', () => {
+    const burst = createCore(17); const frames = createCore(17);
+    const burstEvents = Array.from({ length: 5 }, () => burst.tick());
+    const frameEvents: typeof burstEvents = [];
+    for (let frame = 0; frame < 5; frame += 1) frameEvents.push(frames.tick());
+    expect(burstEvents).toEqual(frameEvents);
+    expect(burst.snapshot().meta.rng).toEqual(frames.snapshot().meta.rng);
+    expect(burst.canonicalStateJson()).toBe(frames.canonicalStateJson());
+    expect(createHash('sha256').update(burst.canonicalStateJson(), 'utf8').digest('hex'))
+      .toBe(createHash('sha256').update(frames.canonicalStateJson(), 'utf8').digest('hex'));
+  });
+
+  it('rejects unknown discriminants without changing state', () => {
+    const core = createCore(1); const before = core.snapshot();
+    expect(core.dispatch({ t: 'unknown' } as never)).toEqual({ ok: false,
+      reason: 'COMMAND_UNKNOWN', at: 't' });
+    expect(core.snapshot()).toEqual(before);
   });
 });

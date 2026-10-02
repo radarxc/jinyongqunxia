@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   createIndexedDbStorage,
   sha256Hex,
+  StorageError,
   StorageErrorCode,
   type SaveMetadata,
   type StorageClock,
@@ -200,6 +201,25 @@ describe('SaveStore', () => {
         },
       }),
     ).rejects.toThrow('migration failed');
+  });
+
+  it.each([
+    StorageErrorCode.SaveTooNew,
+    StorageErrorCode.SaveProtocolUnsupported,
+  ])('does not treat %s as corruption or fall back to an older generation', async (code) => {
+    const storage = await makeStorage();
+    for (const value of [1, 2]) {
+      const bytes = Uint8Array.of(value);
+      await storage.saves.save('save_manual_03', bytes, await makeMeta(bytes));
+    }
+    const seen: number[] = [];
+    await expect(storage.saves.load('save_manual_03', {
+      validate: (candidate) => {
+        seen.push(candidate.snapshot[0]!);
+        if (candidate.snapshot[0] === 2) throw new StorageError(code, code);
+      },
+    })).rejects.toMatchObject({ code });
+    expect(seen).toEqual([2]);
   });
 
   it('preserves the newest validation failure as the all-generations-corrupt cause', async () => {

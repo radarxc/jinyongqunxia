@@ -23,8 +23,7 @@ function replaceSkill(
 export function dispatchProgressionCommand(
   state: ProgressionState, command: ProgressionCommand,
 ): ProgressionCommandResult {
-  try {
-    switch (command.t) {
+  try { switch (command.t) {
       case 'progression/practiceInner': {
         const result = advanceInnerPractice(state.meridians, command.input);
         return { accepted: true, state: { ...state, meridians: result.progress }, events: result.events };
@@ -41,9 +40,11 @@ export function dispatchProgressionCommand(
         return { accepted: true, state: { ...state, meditation: result.state },
           events: result.event === null ? [] : [result.event] };
       }
-    }
-  } catch (error) {
-    return { accepted: false, state, events: [],
-      error: error instanceof Error ? error.message : 'PROGRESSION_COMMAND_ERROR' };
+  } } catch (error) {
+    const rejected = error instanceof RangeError && ['PROGRESSION_SKILL_UNKNOWN',
+      'PROGRESSION_NOT_MEDITATING', 'PROGRESSION_TARGET_NOT_OPEN', 'PROGRESSION_LAYER_CAP',
+      'PROGRESSION_EMPTY_BOOST'].includes(error.message);
+    if (!rejected) throw error;
+    return { accepted: false, state, events: [], error: error.message };
   }
 }

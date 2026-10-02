@@ -31,54 +31,54 @@ describe('Worker session command adapter', () => {
     expect(equipped.changes.equipment?.[0]?.item?.id).toBe('eq_qinggangjian');
     expect(equipped.changes.inventory?.some((item) => item.id === 'eq_qinggangjian')).toBe(false);
     await core.dispatch({ t: 'inventory/unequip', slot: 'mainHand' });
-    expect((await core.snapshot()).state.party).toEqual(original.state.party);
+    expect((await core.snapshot()).party).toEqual(original.party);
   });
   it('uses ENG-06 recovery, persists the ledger, and refreshes only affected projections', async () => {
     const initial = createPreviewSession(content);
-    const protagonist = initial.state.profile.protagonist!;
-    const core = createGameSession(content, { ...initial, state: { ...initial.state, profile: { protagonist: {
+    const protagonist = initial.profile.protagonist!;
+    const core = createGameSession(content, { ...initial, profile: { protagonist: {
       ...protagonist, resources: { hp: 100, mp: 100 },
-    }, companions: [] } } });
+    }, companions: [] } });
     const update = await core.dispatch({ t: 'inventory/use', itemId: 'it_jinchuangyao', targetId: protagonist.characterId });
     expect(update.accepted).toBe(true);
     expect(update.changes.hud?.hp.current).toBe(117); // 100 + floor(342 * 500 / 10000)
     expect(update.changes.inventory?.find((item) => item.id === 'it_jinchuangyao')?.count).toBe(2);
     expect(update.changes.equipment).toBeUndefined();
-    expect((await core.snapshot()).itemTargets[protagonist.characterId]?.hp).toBe(117);
+    expect((await core.snapshot()).profile.protagonist?.resources.hp).toBe(117);
   });
   it('rejects partial unsupported effects and an invalid restore without touching the active state', async () => {
     const core = createGameSession(content); const before = await core.snapshot();
     expect((await core.dispatch({ t: 'inventory/use', itemId: 'it_dahuandan', targetId: 'npc_zhujue' })).accepted).toBe(false);
     expect(await core.snapshot()).toEqual(before);
-    const corrupted = { ...before, state: { ...before.state, meta: { ...before.state.meta, rngProtocol: 999 } } };
-    await expect(core.restore(corrupted)).rejects.toThrow('SAVE_VERSION_UNSUPPORTED');
+    const corrupted = { ...before, meta: { ...before.meta, rngProtocol: 999 } };
+    await expect(core.restore(corrupted)).rejects.toThrow('SAVE_PROTOCOL_UNSUPPORTED');
     expect(await core.snapshot()).toEqual(before);
     await core.dispatch({ t: 'world/tick' }); await core.restore(before);
     expect(await core.snapshot()).toEqual(before);
   });
-  it('does not apply the previous battle cap to field use and retains that battle ledger', async () => {
-    const initial = createPreviewSession(content);
-    const core = createGameSession(content, { ...initial, usage: { battleUses: { it_jinchuangyao: 999 }, chapterUses: {} } });
+  it('does not create battle-use counters when a field item has no chapter cap', async () => {
+    const core = createGameSession(content);
     const result = await core.dispatch({ t: 'inventory/use', itemId: 'it_jinchuangyao', targetId: 'npc_zhujue' });
     expect(result.accepted).toBe(true);
-    expect((await core.snapshot()).usage.battleUses['it_jinchuangyao']).toBe(999);
+    expect((await core.snapshot()).chapter.itemChapterUses).toEqual({});
   });
   it('rejects foreign preview mode, wrong-slot equipment and malformed use state atomically', async () => {
     const core = createGameSession(content); const original = await core.snapshot();
-    await expect(core.restore({ ...original, preview: false })).rejects.toThrow('SAVE_MODE_INVALID');
-    const badEquipment = { ...original, state: { ...original.state, party: { ...original.state.party,
-      equipment: { entries: original.state.party.equipment.entries.map((entry) => entry.slot === 'feet'
-        ? { ...entry, itemId: 'eq_qinggangjian' } : entry) } } } };
+    await expect(core.restore({ ...original, meta: { ...original.meta, debugTainted: false } })).rejects.toThrow('SAVE_MODE_INVALID');
+    const badEquipment = { ...original, party: { ...original.party,
+      equipment: { entries: original.party.equipment.entries.map((entry) => entry.slot === 'feet'
+        ? { ...entry, itemId: 'eq_qinggangjian' } : entry) } } };
     await expect(core.restore(badEquipment)).rejects.toThrow('SAVE_EQUIPMENT_INVALID');
-    const badCounters = { ...original, usage: { ...original.usage, battleUses: [] } } as unknown as typeof original;
-    await expect(core.restore(badCounters)).rejects.toThrow('SAVE_USAGE_INVALID');
+    const badCounters = { ...original, chapter: { ...original.chapter, itemChapterUses: [] } } as unknown as typeof original;
+    await expect(core.restore(badCounters)).rejects.toThrow('STATE_SHAPE');
     expect(await core.snapshot()).toEqual(original);
   });
   it('keeps the published world event compatible with ENG-02 subscribers', async () => {
     const core = createGameSession(content); const before = await core.snapshot();
     const result = await core.dispatch({ t: 'world/tick' });
-    expect(result.events[0]).toEqual({ t: 'world/ticked', seq: before.state.meta.nextEventSeq,
-      stateVersion: before.state.meta.stateVersion + 1, worldTick: before.state.meta.worldTick + 1 });
+    expect(result.events[0]).toEqual({ t: 'world/ticked', seq: before.meta.nextEventSeq,
+      stateVersion: before.meta.stateVersion + 1, causeId: `${before.meta.stateVersion + 1}:${before.meta.nextRuntimeOrdinal}`,
+      parentSeq: null, payload: { worldTick: before.meta.worldTick + 1 } });
   });
   it('owns one battle, blocks journey writes and returns to the frozen source scene', async () => {
     const core = createGameSession(content);
@@ -102,17 +102,17 @@ describe('Worker session command adapter', () => {
   it('forwards map commands to core and stores no writable app sidecar', async () => {
     const core = createGameSession(content);
     const before = await core.snapshot();
-    expect(before.state.chapter.worldMap?.position).toEqual({ kind: 'node', nodeId: 'city_dali' });
+    expect(before.chapter.worldMap?.position).toEqual({ kind: 'node', nodeId: 'city_dali' });
     expect(before).not.toHaveProperty('worldmap');
     const result = await core.dispatch({ t: 'worldmap/enter' });
     expect(result.accepted).toBe(true);
     expect(result.events.some((event) => event.t === 'worldmap/sceneRequested')).toBe(true);
     const after = await core.snapshot();
     expect(after).not.toHaveProperty('worldmap');
-    expect(after.state.chapter.worldMap?.scene).toMatchObject({
+    expect(after.chapter.worldMap?.scene).toMatchObject({
       kind: 'town', nodeId: 'city_dali', gateId: 'south_gate',
     });
-    expect(after.state.chapter.town).toMatchObject({ sceneId: 'city_dali', point: [5, 88],
+    expect(after.chapter.town).toMatchObject({ sceneId: 'city_dali', point: [5, 88],
       buildingId: null, buildingPhase: 'outside' });
     expect(result.changes.townRuntime?.cityId).toBe('city_dali');
   });
@@ -148,13 +148,13 @@ describe('Worker session command adapter', () => {
     expect(shop.events.some((event) => event.t === 'town/shopRequested')).toBe(true);
     await core.dispatch({ t: 'town/exit-building' });
     await core.dispatch({ t: 'town/settle-building' });
-    expect((await core.snapshot()).state.chapter.town?.buildingPhase).toBe('outside');
+    expect((await core.snapshot()).chapter.town?.buildingPhase).toBe('outside');
   });
 
   it('forwards safe meditation and projects the core transaction', async () => {
-    const initial = createPreviewSession(content); const protagonist = initial.state.profile.protagonist!;
-    const injured = { ...initial, state: { ...initial.state, profile: { ...initial.state.profile,
-      protagonist: { ...protagonist, resources: { hp: 1, mp: 1 } } } } };
+    const initial = createPreviewSession(content); const protagonist = initial.profile.protagonist!;
+    const injured = { ...initial, profile: { ...initial.profile,
+      protagonist: { ...protagonist, resources: { hp: 1, mp: 1 } } } };
     const core = createGameSession(content, injured); await core.dispatch({ t: 'worldmap/enter' });
     await core.dispatch({ t: 'town/move', destination: [-2, 78], buildingId: 'bi_0021' });
     await core.dispatch({ t: 'town/settle-building' });
@@ -164,8 +164,8 @@ describe('Worker session command adapter', () => {
     const after = await core.snapshot();
     expect(result.accepted).toBe(true); expect(result.changes.battle).toBeUndefined();
     expect(result.events.some((event) => event.t === 'town/meditationCompleted')).toBe(true);
-    expect(result.changes.hud?.hp.current).toBe(after.state.profile.protagonist?.resources.hp);
-    expect(after.state.meta.stateVersion).toBe(before.state.meta.stateVersion + 1);
+    expect(result.changes.hud?.hp.current).toBe(after.profile.protagonist?.resources.hp);
+    expect(after.meta.stateVersion).toBe(before.meta.stateVersion + 1);
   });
 
   it('assembles the battle page from a core meditation-ambush result', async () => {
