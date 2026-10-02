@@ -310,13 +310,13 @@
 - **后台进程**：都用 `_handoff/detach_launch.py` 脱离启动（新会话，ppid=1）；执行器 traex，启动时探测 GPT-6-Astra、不应答回退 GPT-5.6-Sol。
   - eng3 batch_run：pid 39391（15:52 重启）；des33 batch_run：pid 39323（15:51）；
   - §1 表里的 supervise 驱动；
-  - 两个 Opus subagent（人物线、物品线）由协调者会话管理，会话结束就停，中断了按 §3.1 / §3.2 重新起。
+  - 三个 Opus subagent（人物线、物品线、开发监督）由协调者会话管理，会话结束就停，中断了按 §3.1 / §3.2 / `_handoff/dev_supervisor_brief_v3.md` 重新起。开发监督（作者 16:10 要求）负责 eng3 / des33 的看护与停住处理，执行器仍是 TraeX。
 - **注意**：会话草稿目录在 /private/tmp 下，会被系统清掉。续作材料已复制到 `_prod/.agents/coord/_handoff/`，以那里为准。
 
 ## 7. 10-06 额度重置后的接手顺序
 
 1. **看状态**：读本文件和 HANDOFF §9.8 的最新条目，再看 `_prod/.agents/coord/_batch/*.log` 和各任务的 `supervise.status.json`。§8 里「要作者决定的」，先请作者答。
-2. **开发监督**：eng3 / des33 在跑就只处理停住的（§5 表）；都停了就按 §6 的方式重启两个 batch_run。交接说明 `_handoff/dev_supervisor_brief_v2.md`。
+2. **开发监督**：起一个 Opus subagent，交接说明 `_handoff/dev_supervisor_brief_v3.md`（v2 的职责与坑仍有效）；eng3 / des33 在跑就只处理停住的（§5 表），都停了就按 §6 的方式重启两个 batch_run。
 3. **人物线**：没做完就重新起一个 Opus subagent（作者 15:50 分工），说明文件见 §3.1。
 4. **物品线与情景图**：先 `tabs_context_mcp(createIfEmpty)` 建 Chrome 标签组并 `navigate` 两个 `gemini.google.com/app`，请作者把窗口摆到前台，再起一个 Opus subagent 按 skill `gemini-imagegen` 出 §3.2 的物品和情景图。
 5. **三视图入库后**：把 `TOOL-rig-sheet` 加进 `_eng3_queue.txt`（ENG-12c-clip 后面），重启 eng3。
