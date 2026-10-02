@@ -1159,80 +1159,6 @@
   notes: '实际查看：辉月使为黑发浅灰眼的成年女性，正面头颈端正，米白淡紫完整衣袍与头巾、双足完整，双手分别持两枚短金属令牌，无明显多肢或重大结构问题。原生1024×1536 RGB不透明PNG保留原始字节。按作者先1张宽松自查存candidate，不声称严格原文复原或approved。偏差明确记录：面貌理想化偏年轻、妆感较明显，额饰耳饰和袍缘花纹比素净方案华丽，头巾局部轻透但躯干衣物完整覆盖；令牌露装饰刻纹且外形偏小牌而非纯无字厚令，火焰纹较大；背景亭花较丰富。双令与女使核心身份清楚，这些装备装饰细节留待用户集中审核。
 
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
-- id: por_npc_xiaozhao__ch04_youth_chained_base
-  file: por_npc_xiaozhao__ch04_youth_chained_base.png
-  category: character/female
-  style: default
-  subject: 小昭 npc_xiaozhao ch04_yitian
-  prompt: 'POSE IS PRIMARY: one FRONT-FACING person, camera level, head and neck naturally UPRIGHT, forehead–nose–chin centreline VERTICAL, eyes HORIZONTALLY LEVEL, chin neutral. No head tilt, no Dutch angle. The figure may stand or sit ONLY as specified below; never change a disabled seated character into a standing figure.
-
-
-    Create a REALISTIC full-body Chinese wuxia character portrait of 小昭. This is an ORIGINAL TEXT-DEFINED IDENTITY. Neither reference image supplies the character''s face: image 1 is palette/painting quality only, image 2 is pale ink background only. Build the distinct facial anchors below. No claim of original-game, television-actor or historical likeness.
-
-
-    身份阶段：小昭（npc_xiaozhao），《倚天屠龙记》ch04_yitian。尚未成年的少女，光明顶密道相认、手足铁链尚未解除的同行阶段；已显真容，尚非总教继任者造型。
-
-
-    原创独立面容与体态：独立原创的小瓜子脸，圆润窄下巴与柔和颊部，眉细而略呈弧形，眼距自然、眼形圆中微长，鼻梁较挺但鼻尖小而圆，唇形小巧、嘴角微有浅梨涡，机敏专注。黑发深眼色，以轻微鼻梁和眼窝区别表达主稿所述血缘，不画成现代异域模特。明显少女稚气，纤小尚未长成的自然体态，确切岁数未核，不继承成年女性参考身形。
-
-
-    服装与发式：浅杏色汉式右衽短袄、灰蓝长裙，裙内穿完整宽松长裤，平底布鞋；裙下腿部由衣裤遮蔽，裙脚足够整洁利落，使鞋与踝环连接可读，不开高衩、不露腿。黑发简洁双束后收拢，以素布带固定；完全覆盖胸腹，无透明纱、紧身舞衣或浓妆。 所有汉式交领均本人左襟压右襟、向本人右侧合拢，不水平镜像。
-
-
-    姿态、身体状态与器物：正面全身平稳站立，头颈竖直、双眼水平、下巴中性，双脚靠近但不绞缠。双腕及双踝各有朴素小铁环，腕间一段松链、踝间一段松链自然下垂，连接点清楚且允许自然小步；双手轻托腕间松链防止拖地。链条不连颈部、不绷紧、不悬挂身体、不勒出血痕；空手无兵刃，无圣火令、权杖或教主冠。
-
-
-    人物画法：完整而美观的写实国风人物插画，面孔、双手、头发、衣料与器物均为连续坚实体积，骨相和年龄自然，柔和左上漫射光、清楚轮廓、克制低饱和设色。皮肤具有自然细节；仅保留本角色上文明确设定的年龄与身体状态，不添加别的角色的浮肿、暗斑或伤肢；对于上文明示的面损或功能限制，写实与美观不等于恢复健康，也不能把未成年角色画成成年人。衣装完整、不透明、剪裁清楚，褶皱少量宽缓且有受力，不加破损、碎布或密集噪点。水墨远山、薄雾与纸纹只在背景，不侵入脸、手、衣料或辅助器物。不是照片、影视截图、三维塑料模型或换头拼贴。
-
-
-    构图背景与交付：单人、单视图、原生竖幅2:3、完整全身，所有既定头发、手足、衣摆与器物端点入画，自然留白，不按固定占高或头身数字拉伸。目标2048×3072不透明PNG，接受工具真实原生2:3尺寸并如实登记；保留原始PNG字节及元数据，不裁切、放大、旋转或重新编码。背景为暖浅灰纸底，允许极淡低对比水墨山水和薄雾，脚下或座具下少量接触阴影，无叙事场景和额外人物。只准备1张candidate；实际生成后再核验，不自动approved，不虚构两候选比较。
-
-
-    事实边界：真实清秀面容、手足链未解取自主稿指定阶段；具体解链先后与原著连接方法尚待指定版本终校。本稿腕间与踝间分别松链、环径及裙脚展示属于落实主稿的艺术选择，不宣称原著精确结构。 元末时代与当前阶段优先；项目前史及主体1336–1363不作为本图精确原著年份。未补造确岁、引文、回目或页码。
-
-
-    参考输入边界：第一输入仅为同性别项目色彩、柔和光线和绘制品质基线，不是本人身份图。不传递其脸型、五官、年龄、性别特征、体型、发式、衣服、道具或姿态；不复制男基线的破损毛边和密集粗糙衣纹。 第二输入为用户王语嫣水墨图，只取暖浅灰不透明纸底、极淡水墨远山、薄雾与留白。完全忽略其中人物面容、性别、年龄、衣裙、体型、飘带和倾头；不复制清晰亭台与前景花枝。
-
-
-    完整排除项：NO head tilt, NO Dutch angle. 不要画面文字、伪字、题款、签名、印章、logo或装饰水印；工具溯源和元数据保留。不要现代服饰、拉链、腕表、运动鞋、蕾丝、高跟鞋、数码物件。不要从基线或背景复制人物脸，不冒充未经核验的原版游戏或电视剧演员复原。不要统一网红脸、动漫大眼、偶像磨皮、浓妆、丰唇滤镜、塑料皮肤、照片写真或三维渲染。不要时代族群混搭、汉式交领左衽、清代发服、明代网巾补子、日式服制和刀具、欧式奇幻甲胄。不要多人物、分格、多视图、脸部特写框、歪头、斜镜头、仰下巴或侧脸。不要多余或缺失肢体、多指、粘指、手物融合、错接手腕、无支撑器物、失重衣带、裁断头足或器物端点。不要裸露、透明衣料、色情化、血腥特写、伤残丑化或嘲弄表情；不要加无依据伤口或抹除已设定身体状态。不要人物碎墨、飞白缺块、裂衣碎布、密集噪点、纸纹透肤透衣。不要发光武器、法阵、能量光翼、粒子或强泛光；不要喧宾夺主的清晰建筑和繁密前景。 不要成人化、婴幼儿化、成年妆容、早期歪嘴跛行伪装、后期教主冠服、圣火令、权杖、颈链、紧绷链条、悬吊或受虐姿势；不要擅自去掉手足铁链。
-
-
-    FINAL CHECK: FRONT-FACING, head upright, eyes level, chin neutral; preserve the exact age, injury state, seated or standing support, and stage props specified above.'
-  negative: NO head tilt, NO Dutch angle. 不要画面文字、伪字、题款、签名、印章、logo或装饰水印；工具溯源和元数据保留。不要现代服饰、拉链、腕表、运动鞋、蕾丝、高跟鞋、数码物件。不要从基线或背景复制人物脸，不冒充未经核验的原版游戏或电视剧演员复原。不要统一网红脸、动漫大眼、偶像磨皮、浓妆、丰唇滤镜、塑料皮肤、照片写真或三维渲染。不要时代族群混搭、汉式交领左衽、清代发服、明代网巾补子、日式服制和刀具、欧式奇幻甲胄。不要多人物、分格、多视图、脸部特写框、歪头、斜镜头、仰下巴或侧脸。不要多余或缺失肢体、多指、粘指、手物融合、错接手腕、无支撑器物、失重衣带、裁断头足或器物端点。不要裸露、透明衣料、色情化、血腥特写、伤残丑化或嘲弄表情；不要加无依据伤口或抹除已设定身体状态。不要人物碎墨、飞白缺块、裂衣碎布、密集噪点、纸纹透肤透衣。不要发光武器、法阵、能量光翼、粒子或强泛光；不要喧宾夺主的清晰建筑和繁密前景。 不要成人化、婴幼儿化、成年妆容、早期歪嘴跛行伪装、后期教主冠服、圣火令、权杖、颈链、紧绷链条、悬吊或受虐姿势；不要擅自去掉手足铁链。
-  references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 第一输入仅为同性别项目色彩、柔和光线和绘制品质基线，不是本人身份图。不传递其脸型、五官、年龄、性别特征、体型、发式、衣服、道具或姿态；不复制男基线的破损毛边和密集粗糙衣纹。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二输入为用户王语嫣水墨图，只取暖浅灰不透明纸底、极淡水墨远山、薄雾与留白。完全忽略其中人物面容、性别、年龄、衣裙、体型、飘带和倾头；不复制清晰亭台与前景花枝。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T04:25:13.442043+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-fcfa253b-cae6-4f82-860f-7b6e64d05fbb.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 785be1c7fa51a5e5667c1b5d25bc3c99711fdd9c953850b7b44e147e73d65187
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_xiaozhao__ch04_youth_chained_base/prompt-884d6413a3030393fcf39cc948b7e67b9da18323cc8d9b58970200fe64773594.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_xiaozhao__ch04_youth_chained_base/manifest-0f054dc42e49d5f62c57279ff6e9c49411b36ea440c2b78967503de8508b5c7b.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_xiaozhao__ch04_youth_chained_base.requests.json
-  notes: '实际查看唯一候选1：小昭保留少女稚气、纤小体态、浅杏衣灰蓝裙与完整宽松内裤，双腕及双踝铁环松链均可见，双手轻托链、站立稳当，头直正面全身完整，没有情色化或受虐姿势，无明显多肢或重大结构问题，宽松自查可用。偏差：衣袄变成长层且纹饰丝带较精致、梨涡不明显、眼形略理想化偏大，裤口至鞋口少量脚踝可见，腕链在手托处呈短横段与下垂段但连接基本可读；未去铁链、未换后期教主。原生1024×1536不透明PNG原始字节保存，candidate待审核，不因微服饰差异追加，不冒称原版game或演员本人。
-
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
 - id: por_npc_yinli__ch04_youth_disfigured_base
   file: por_npc_yinli__ch04_youth_disfigured_base.png
   category: character/female
@@ -1522,3 +1448,55 @@
   sha256: 3623117ee898a2dabcf160f11f041db2f59fbb57a22f1650f1e92fa2ee2e6d6c
   status: candidate
   notes: 立绘重审重出（AR-30）；S 级女主周芷若没有基础立绘（只有场景），青年场景又以童年图作身份来源而偏幼态；按原著“清丽秀雅、容色极美、出尘如仙”原创补出成年峨眉掌门，并带动青年场景重出；codex 出图（1 号出图员，AR-31）；AR-31：按经典影视造型以文字改写（原创面孔，不写演员名、不传剧照）
+- id: por_npc_xiaozhao__ch04_youth_chained_base
+  file: por_npc_xiaozhao__ch04_youth_chained_base.png
+  category: character/female
+  style: default
+  subject: 小昭（ch04_yitian）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】小昭，《倚天屠龙记》黛绮丝之女，明教光明顶上被锁着手足铁链的侍女；光明顶密道中现出真容、铁链尚未解开的阶段。温柔聪慧、恭顺体贴，心里却极有主见；日后会成为波斯明教圣女。
+
+    【身份参考】随提示词上传的第 1 张图是她的母亲黛绮丝：只借母女相似的眉眼、高鼻和面部轮廓（约六七分像）；她比母亲年轻二十岁，脸更小、更柔，是瓜子脸。不要照搬母亲的紫衫、年龄与姿势。
+
+    【年龄与体态】原著年纪还小，按本作规定画成约二十岁的成年年轻女子，身材纤秀。成年女性的五官骨相与身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+
+    【经典造型】借鉴经典武侠影视里这个角色深入人心的造型，只取发型、装束、配色、标志道具、气质和脸型类型，用原创面孔画出来，不像任何真实演员：朴素青衣的侍女，乌发挽成简单的低髻、系青布带，手腕和脚踝间连着细细的铁链；温柔乖巧、楚楚动人，眼里藏着聪慧和深情，一笑梨涡浅现。
+
+    【面容】原著写她双目湛湛有神、修眉端鼻、颊边微现梨涡，肤色奇白，鼻子比一般女子高，眼睛里隐隐有海水的蓝意，是清秀绝俗的瓜子脸。具体为：成年骨相的瓜子脸，下颌柔和；修长的眉毛；鼻梁比汉族女子高挺秀气；一双湛湛有神的眼睛，深棕瞳色里透出淡淡的海水蓝（混血标志，清楚但自然）；樱桃小口、唇色淡红，颊边一个浅浅的梨涡；肌肤雪白细腻；乌发带一点自然的微卷。以汉人面貌为主，带一点波斯血统的立体感。美丽动人、清秀绝俗，让人一见就心生怜爱。
+
+    【发式】乌发在脑后挽成一个简单的低髻，用青布带束住，鬓边几缕微卷的碎发。
+
+    【服饰】朴素的青灰色侍女衣裙：交领右衽窄袖短袄，青灰长裙（裙内有长裤），布腰带，平底布鞋；干净整洁。
+
+    【道具】两只手腕之间连着一段细铁链、两只脚踝之间也连着一段细铁链，铁环朴素，链条松松下垂，可以小步行走；不勒伤、不悬吊。
+
+    【姿态与神情】正面站立，双手轻轻托着腕间的铁链；神情温柔恭顺中透着聪慧，嘴角浅浅含笑，梨涡隐现。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要像任何真实演员或明星；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要娃娃脸、少女或儿童身材、双丫髻；不要白色仙女长裙；不要金发碧眼的外国人；不要浓妆；不要驼背歪嘴的伪装形象；不要圣火令、教主冠服。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch04/por_npc_daiqisi__ch04_prime_longwang_base.png
+    sha256: 0b27f18e00ce96cfe8125f8a45a782668239ab48298082ea5c5768aa4814784f
+    use: 身份参考：本轮新出的黛绮丝（紫衫龙王真容）（por_npc_daiqisi__ch04_prime_longwang_base，上传 codex 原图）
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T02:42:42-0700
+  source_path: .agents/coord/gemini_originals/por_npc_xiaozhao__ch04_youth_chained_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 4a234dbf5fd64f6b5b61ca6e0772cafd562cfa4898a5d87fbc7526ae0b452f79
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者点名：现图是娃娃脸白裙少女、毫无波斯血统特征；按原著“高鼻雪肤、眼中隐有海水之蓝、修眉端鼻、颊边梨涡、瓜子脸”画成成年混血女子，上传黛绮丝真容作母女相似参考；codex 出图（1 号出图员，AR-31）；AR-31：按经典影视造型以文字改写；上传本轮新出的黛绮丝真容作母女相似参考
