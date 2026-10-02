@@ -79,7 +79,7 @@ async function leave(): Promise<void> {
       </details>
       <div class="battle-layout">
         <div>
-          <BattleField :key="view.id" :battle="view" :selected="selected" :floating="floating" :reduced-motion="reducedMotion" :skip="speed === 'skip'" @cell="chooseCell" @hover="hoverCell" @select="chooseUnit" />
+          <BattleField :key="view.id" :controller="controller" :battle="view" :selected="selected" :floating="floating" :reduced-motion="reducedMotion" :skip="speed === 'skip'" @cell="chooseCell" @hover="hoverCell" @select="chooseUnit" />
           <fieldset v-if="selectedDefinition?.shape.tpl === 'aoe_line' || selectedDefinition?.shape.tpl === 'aoe_cone'" class="aim-control">
             <legend>招式朝向</legend>
             <button

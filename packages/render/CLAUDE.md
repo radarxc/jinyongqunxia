@@ -36,6 +36,16 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - `performance.test.ts` 只由 Vitest 的 `perf` project 收集；普通 `node` project 显式排除它。`perf` 使用 `fileParallelism:false`、单 worker、`sequence.concurrent:false`，并以 `groupOrder:1` 等普通项目结束后再运行。
 - 负载护栏是备用最后手段，当前未启用：只有上述隔离和 best-of-3 仍连续失败时，才可在 `os.loadavg()[0] > os.cpus().length × 1.5` 时对 100 角色门禁仅 `console.warn` 记录并跳过断言；低负载及 20 人门禁仍必须断言。
 
+## 招式 VFX API（ENG-11）
+
+- 从 `@tianshu/render/vfx` 动态导入 `createBattleVfxStage(canvas)`；VFX 单独产出 `vfx` chunk，战斗首次结算才加载。应用把 `onMoveResolved` 的只读施招者、目标与事件传给 `play()`，不得在表现层重算命中、伤害、范围或朝向。
+- `setProjector(renderer.project)` 复用 ENG-10 战场相机坐标；`resize()`、`render(timeMs)` 与战场同帧调用。`play()` 返回 composition 实际 `durationMs`，应用以它同步伤害飘字；减少动效 / 跳过时请求 1 ms 收束。
+- 运行时先从 `/content/vfx/bindings.json` 查 `mv_*`：天 / 地 bespoke 加载对应 composition；玄级使用 `qi_projection` 或 `afterimage`；黄级使用 `plain_strike`。施招者未投影内力性质时使用绑定 nature，颜色固定阴青、阳赤、调和淡金、中性素白。
+- 单透明 WebGLRenderer 使用最多 48 个 pooled slot；每 slot 共享一个 plane geometry，effect shader 内完成根部对齐的预乘 alpha 帧插值，emitter / 5 残影 / 4 附加环复用材质。各层先在线性离屏 target 合成，末次 pass 才编码 sRGB。Texture Promise 按 URL 去重，source-sheet atlas 不拆帧请求；dispose 必须释放材质、geometry、texture 和 renderer。
+- `afterimage` 在解析出模板后才调用 `BattleRenderer.snapshot(id)`，把当前分层人物与装备拍平为一次性纹理，按 28 px 间距复制 4 份；普通招不做快照。快照不可用才画程序轮廓并计入 fallback。
+- 无绑定、composition / catalog / 贴图 / 角色快照失败均不阻断战斗：退到 plain-strike 或程序色块，并按 move/reason 去重 `console.warn`，同时增加 `stage.stats.fallbacks`。命中、外放抵消、透劲入体、打穴分别是金 / 青 / 紫 / 赤的简洁目标环。
+- `/content/vfx/runtime-files.json` 是发布白名单；由 `python3 tools/vfx/export_bindings.py` 从作者 YAML 生成，包含 bindings、catalog、74 套正式 composition、2 套 baseline、source-sheet 与 emitter。构建复制到 public，但 PWA precache 明确排除，保持按招式请求。降龙亢龙直接消费 composition 的 `scale:[1,2]`，不得再乘 2。
+
 ## 下游交接
 
 - ENG-08 大地图已按上述接口接入；ENG-09 城镇区域加载时共享一个 `RigSet`/`RigBatch`，只把可见角色加入批次；超过 100 人时先把远景 C 级路人降为合成人群卡。
@@ -50,8 +60,10 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - [Three Raycaster](https://threejs.org/docs/pages/Raycaster.html)：`InstancedMesh` 命中结果携带 `instanceId`。以上访问日期 2026-10-01。
 - [OrthographicCamera](https://threejs.org/docs/pages/OrthographicCamera.html)、[TextureLoader](https://threejs.org/docs/pages/TextureLoader.html)：大地图斜视正交镜头与可选水墨底图。
 - 锁文件实际版本为 Three 0.186.1；未新增依赖。战斗专项测试覆盖方向映射、共享边裁决，根 `pnpm check` 继续执行 rig P95 和 bundle size 门禁。
+- [Three WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)、[Texture](https://threejs.org/docs/pages/Texture.html)、[TextureLoader](https://threejs.org/docs/pages/TextureLoader.html)：核实 `powerPreference`、像素比、异步贴图加载及 renderer / texture 的显式 `dispose()`；访问日期 2026-10-01。
 
 ## 待决事项 / 依赖
 
 - （待实测）WebGL2 真机的共享边触控、低端 Android GPU shader uniform 上限、横竖屏切换与上下文丢失恢复；当前提供 DOM 格列表降级，不宣称真机完成。
 - ENG-11 若增加 VFX mesh / 粒子池，必须保留战场 terrain 1 draw、rig 2 draw 的基线统计，并为新增 GPU 资源补 dispose。
+- （待实测）VFX 的 WebGL draw / GPU 帧耗时、上下文丢失恢复与低端 Android 多特效表现；当前 Node 门禁只验证 48 个并发时间轴 / 实例属性计算 P95 < 16.67 ms，不冒充 GPU 真机数据。

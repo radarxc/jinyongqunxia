@@ -25,7 +25,12 @@ export interface RigInstance extends RigBatchCharacter {
   setStepFps(stepFps: number): void;
   update(dtSeconds: number): void;
   readonly motionMode: MotionMode; readonly direction: Dir8; readonly equipment: EquipmentVisuals;
-  readonly capeAngle: number; dispose(): void;
+  readonly capeAngle: number; snapshot(): RigSnapshot | undefined; dispose(): void;
+}
+export interface RigSnapshot {
+  readonly image: HTMLCanvasElement;
+  /** Local min-x, min-y, max-x and max-y bounds in battle-world metres. */
+  readonly localBounds: readonly [number, number, number, number];
 }
 
 function sourceForPart(part: RigPart, mirrored: boolean): string {
@@ -80,6 +85,7 @@ class RigCharacter implements RigInstance {
   private targetMirrored = false; private targetViewIndex = 0; private turnProgress = 1;
   private worldX = 0; private worldY = 0; private worldZ = 0; private disposed = false;
   private capePhi = 0; private capeOmega = 0; private attachmentCount = 0;
+  private snapshotCanvas: HTMLCanvasElement | undefined;
 
   constructor(readonly rigSet: RigSet, equipment: EquipmentVisuals, readonly stableId: number) {
     this.views = [resolveView(rigSet, 'front34', false), resolveView(rigSet, 'front34', true), resolveView(rigSet, 'back34', false), resolveView(rigSet, 'back34', true), resolveView(rigSet, 'side', false), resolveView(rigSet, 'side', true)];
@@ -142,7 +148,52 @@ class RigCharacter implements RigInstance {
     for (let index = 0; index < 20; index += 1) buffer.write(baseIndex + index, index < 16 + this.attachmentCount ? this.data[index]! : HIDDEN);
   }
 
+  snapshot(): RigSnapshot | undefined {
+    if (typeof document === 'undefined') return undefined;
+    this.snapshotCanvas ??= document.createElement('canvas');
+    const canvas = this.snapshotCanvas; const context = canvas.getContext('2d');
+    if (!context) return undefined;
+    const bounds = this.snapshotBounds(); const ppm = this.rigSet.runtimePpm;
+    const nextWidth = Math.max(1, Math.ceil((bounds[2] - bounds[0]) * ppm));
+    const nextHeight = Math.max(1, Math.ceil((bounds[3] - bounds[1]) * ppm));
+    if (canvas.width !== nextWidth) canvas.width = nextWidth;
+    if (canvas.height !== nextHeight) canvas.height = nextHeight;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    const active = Array.from({ length: 16 + this.attachmentCount }, (_, index) => index)
+      .sort((left, right) => this.data[left]!.sortTint[1]! - this.data[right]!.sortTint[1]! || left - right);
+    for (const index of active)
+      this.drawSnapshotPart(context, this.data[index]!, bounds, ppm);
+    return { image: canvas, localBounds: bounds };
+  }
+
   dispose(): void { this.disposed = true; }
+
+  private snapshotBounds(): [number, number, number, number] {
+    let right = -Infinity; let bottom = -Infinity; let left = Infinity; let top = Infinity;
+    for (let index = 0; index < 16 + this.attachmentCount; index += 1) {
+      const affine = this.data[index]!.affine2d;
+      for (const x of [-0.5, 0.5]) for (const y of [-0.5, 0.5]) {
+        const px = affine[0]! * x + affine[1]! * y + affine[2]!;
+        const py = affine[3]! * x + affine[4]! * y + affine[5]!;
+        right = Math.max(right, px); bottom = Math.max(bottom, py);
+        left = Math.min(left, px); top = Math.min(top, py);
+      }
+    }
+    return [left, top, right, bottom];
+  }
+
+  private drawSnapshotPart(context: CanvasRenderingContext2D, part: RigCharacter['data'][number],
+    bounds: readonly [number, number, number, number], ppm: number): void {
+    const uv = part.uvRect; const affine = part.affine2d; const texture = this.rigSet.texture;
+    const source = texture.image as CanvasImageSource | undefined; if (!source) return;
+    const sw = uv[2]! * this.rigSet.atlasWidth; const sh = uv[3]! * this.rigSet.atlasHeight;
+    context.save(); context.setTransform(affine[0]! * ppm, -affine[3]! * ppm,
+      affine[1]! * ppm, -affine[4]! * ppm, (affine[2]! - bounds[0]) * ppm,
+      (bounds[3] - affine[5]!) * ppm);
+    context.scale((part.sortTint[3]! & 2) === 0 ? 1 : -1, -1);
+    context.drawImage(source, uv[0]! * this.rigSet.atlasWidth, uv[1]! * this.rigSet.atlasHeight,
+      sw, sh, -0.5, -0.5, 1, 1); context.restore();
+  }
 
   private makeAssemblies(equipment: EquipmentVisuals): readonly EquipmentAssembly[] {
     return [assembleEquipment(equipment, 'front34', false), assembleEquipment(equipment, 'front34', true), assembleEquipment(equipment, 'back34', false), assembleEquipment(equipment, 'back34', true), assembleEquipment(equipment, 'side', false), assembleEquipment(equipment, 'side', true)];

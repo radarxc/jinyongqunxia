@@ -41,3 +41,32 @@ export async function readAssetManifest(root: string, copy: boolean): Promise<No
   }
   return result;
 }
+
+interface VfxRuntimeManifest { readonly schema: 'tianshu-vfx-runtime.v1'; readonly files: readonly string[] }
+interface VfxRuntimeDocument {
+  readonly schemaVersion: 'event.v1';
+  readonly actions: readonly { readonly payload?: VfxRuntimeManifest }[];
+}
+
+/** Copy only exporter-approved VFX runtime files; source YAML and demo HTML stay outside public. */
+export async function publishVfxRuntime(root: string, copy: boolean): Promise<number> {
+  const manifestPath = join(root, 'content/vfx/runtime-files.json');
+  const document = JSON.parse(await readFile(manifestPath, 'utf8')) as VfxRuntimeDocument;
+  const value = document.actions[0]?.payload;
+  if (document.schemaVersion !== 'event.v1') throw new Error('VFX_RUNTIME_DOCUMENT_INVALID');
+  if (!value || value.schema !== 'tianshu-vfx-runtime.v1' || !Array.isArray(value.files))
+    throw new Error('VFX_RUNTIME_MANIFEST_INVALID');
+  const allowed = [resolve(root, 'assets/default') + '/', resolve(root, 'content/vfx') + '/'];
+  let count = 0;
+  for (const relativePath of value.files) {
+    if (typeof relativePath !== 'string' || relativePath.startsWith('/') || relativePath.split('/').includes('..'))
+      throw new Error('VFX_RUNTIME_PATH_INVALID');
+    const source = resolve(root, relativePath);
+    if (!allowed.some(prefix => source.startsWith(prefix))) throw new Error('VFX_RUNTIME_OUTSIDE_ROOT');
+    await access(source); count += 1;
+    if (!copy) continue;
+    const output = join(root, 'apps/game/public', relativePath);
+    await mkdir(dirname(output), { recursive: true }); await copyFile(source, output);
+  }
+  return count;
+}
