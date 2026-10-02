@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：已入库 248、待出图 238、已通过（作者） 141。**待出图队列 238 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：已入库 249、待出图 238、已通过（作者） 140。**待出图队列 238 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -403,7 +403,7 @@
 | 122 | 猪肚 | `it_zhudu` | 黄 | 食材·肉 | 待出图 | [it_zhudu.md](items/food/it_zhudu.md) | template |
 | 123 | 猪肉 | `it_zhurou` | 黄 | 食材·肉 | 待出图 | [it_zhurou.md](items/food/it_zhurou.md) | template |
 
-### 武学秘籍（18）· 已入库 9、已通过（作者） 9
+### 武学秘籍（18）· 已入库 10、已通过（作者） 8
 
 （已全部入库。）
 
