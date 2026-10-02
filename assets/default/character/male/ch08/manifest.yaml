@@ -57,84 +57,6 @@
   quality_standard: user_relaxed_20260930
   counts_as_complete: true
   notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际目视两张原图选第2张：男主同一面容与青年体型保持，清初剃净前额头顶、脑后黑辫可见，灰褐圆领右侧掩襟长袍与烟蓝短褂、深裤布鞋，双手空着且完整，无官印兵器。第2张右侧衣襟扣合更明确。辫尾藏于背后、领口略立、短褂开襟和轻微地面阴影、小痣不清等按宽松标准记录接受，不冒称所有细节均已目验；无明显多肢或重大结构问题，candidate待最终审核。 提示词 assets/default/prompts/characters/protagonist/npc_zhujue__m_ch08.md；tier S。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_zhujue__ch08_m_base.requests.json。生成候选2张，入选第2张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png；/Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用项目基线（真实审批状态照录）和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。
-- id: por_npc_kangxi__ch08_youth_xiaoxuanzi_base
-  file: por_npc_kangxi__ch08_youth_xiaoxuanzi_base.png
-  category: character/male
-  style: default
-  subject: 康熙 npc_kangxi ch08_luding · 1669年擒鳌拜前，宫中小玄子与布库演练的少年阶段
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference photo or drawing pose. Keep natural facial asymmetry without tilting the head.
-
-
-    Create a beautiful REALISTIC Chinese wuxia character illustration of KANGXI / 康熙, palace practice identity Xiao Xuanzi. Use image 1 as the ONLY FACIAL IDENTITY source: Steven Ma / 马浚伟 as Kangxi in the 1998 TVB The Duke of Mount Deer starring Jordan Chan. Preserve this particular character’s recognizable facial relationships, naturally adapted to the specified story age. Image 2 is ONLY a same-gender project colour/rendering sample; image 3 is ONLY the pale ink-wash background sample. No other face may enter the design.
-
-
-    身份与阶段：康熙（npc_kangxi），《鹿鼎记》ch08_luding，清初康熙时代；严格是1669年擒鳌拜前，宫中小玄子与布库演练的少年阶段。约15岁，生日界限可差1岁，未成年少年，asset的youth键不自动等于成年。
-
-
-    本人辨识锚点：第一参考的长椭圆脸、颊面平顺、下颌由颧侧自然收窄而下巴圆钝；眉形较平直、眉峰浅、眉尾略长，眼形自然开阔，清楚上眼睑、内外眼角和眉眼间距。鼻梁纤直、鼻翼较收敛，唇形整齐、浅唇峰、下唇自然略厚。保留这些有别于韦小宝的五官关系，但把成年面中长度和下颌成熟度自然适配约15岁少年，少年面颊柔和、骨架清瘦挺拔而尚未长开，无胡须。不能机械缩小成人头像，也不借令狐冲的窄长剑客脸或陈小春的较宽鼻翼方颌。神情专注好胜而克制，用平视目光表达小玄子的聪敏与自尊，不用怒瞪或成年帝王威严。参考帽子遮住发际，不能从照片推断发际线。
-
-
-    服制与发式：清初满洲宫廷少年练习便服：石青色窄袖箭衣式长袍，掩襟向穿着者本人右侧合拢、窄腰带，深灰长裤与软底深色靴。低调同色织边，衣襟闭合，衣料整片完整，没有破损、勋章、龙纹或重金绣。前额剃发、后脑留一条自然细辫，辫子垂向背后，肩后只露一小段即可；不为显辫子转头。省去帽子，清楚呈现本阶段剃额细辫；照片里的红缨宫帽、明黄华贵领口和朝珠不进入新图。具体石青选款与织边是角色稿的美术补足，不冒称史料精确复原。
-
-
-    姿态与器物：正面站稳、颈部直立、肩线自然舒展，双足微分开，两只软靴都着地，膝部只自然松弛，体态是随时可开始演练的少年。空手，左手在本人左前方腰腹高度自然摊开作低位准备，右手空着靠右腰侧，十指结构清楚、手掌不贴合为一个团；手腕与袖口连贯。手臂不遮挡面部或剃额，不用出掌、抓人、飞踢或戏剧性扭腰表现布库；画面只一个小玄子，没有摔跤对手。姿态侧别为本图美术安排，不当作小说固定招式。
-
-
-    人物画法：完整、美观、细腻的写实国风人物插画，皮肤具有可信而适龄的柔和体积，五官、手部、脚部清楚；头发、衣料与器物都是连续实体，边缘干净，布料厚薄、缝线与承重可信。衣服裁剪完整、整片连续，只用少量宽缓受力褶皱，不用密集噪点或破损表现真实。柔和左上漫射主光、连贯明暗，低饱和设色配自然暖肤色。允许细腻手绘笔触，但脸、手、头发、衣料和人物轮廓不得飞白、碎裂、变薄透纸或被背景墨痕侵蚀。这是新绘制的高级人物插画，不是照片、电视剧截图、拼贴或三维塑料模型。
-
-
-    参考主次再次限定：第二参考仅男性项目低饱和色卡、柔和明暗与连贯细腻写实手绘质感；已实际view。不可借令狐冲面孔、成年体型、胡茬、发髻网巾、明代衣装、剑或倾头站姿；manifest实际candidate，保持不变。 第三参考仅背景：极浅低对比水墨远山、暖浅灰纸底、薄雾与留白；已实际view。完全忽略其中王语嫣面孔、倾头转身、女性体态、白青薄纱裙装、发饰与飘带；墨痕纸纹不得侵入康熙的人体衣物或器物。
-
-
-    背景与交付：第三图仅提供暖浅灰不透明纸底、极浅低对比水墨远山和留白，薄雾全部留在人物之外；背景墨色及纸纹不能穿过人体、衣料、发丝或器物，不画具体宫殿或剧情陈设。脚下只有少量接触阴影。单人单视图、平视水平镜头、原生竖幅2:3、完整全身；头顶、双手、双足、发饰、衣摆、衣带和全部实际器物端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节，不插值、裁切或重新编码。默认两张独立候选由执行者比较；所有输出仍为candidate，待用户最终审核，不自动approved。
-
-
-    事实边界：年龄约15岁由年份推算，生日边界可差1岁；演员照片是成年定装照，只用于适龄转译后的身份五官。 少年便服确切剪裁、颜色、眉目及剃额细辫具体细节尚未按三联/广州修订版逐字校勘。 石青箭衣式便服、同色织边、无帽、双手低位布库准备继承角色稿并适配正面姿态。 清瘦未成年身架、五官自然少年化；不把皇帝身份表现为后期仪仗。 用户明确指定1998剧版面容覆盖旧稿禁演员脸要求，但照片年龄、衣装、姿势和场景不变成小说事实。
-
-
-    完整排除项：不要二三十岁成年马浚伟本人年龄、宽胸壮汉、健美肌肉、成年长脸与胡须胡茬；不要婴幼儿或女相化少年。不要借韦小宝、陈小春、令狐冲、萧峰或女性基线面孔。不要红缨大帽、朝珠、龙袍、帝王朝服、黄马褂、龙椅、冕旒、皇冠、仪仗、官印、刀剑、弓箭或任何兵器。不要满头长发、宋明发髻、网巾、完全无辫的僧人光头。不要照搬参考的成年骨架、黄领金绣、胸像裁切或粉紫影棚。不要把布库演练画成绝顶武者、摧山掌法、抡人、飞跃或有第二个少年。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。
-
-
-    FINAL POSE CHECK: FRONT-FACING KANGXI / 康熙, palace practice identity Xiao Xuanzi. Keep forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, head and neck naturally upright over the torso, camera level, chin neutral and gaze forward. NO head tilt and NO Dutch angle. Never inherit reference-photo head lean, sideways gaze, tilted shoulders, turned torso or cropped composition. Preserve only this role’s recognizable facial identity and the current-age full body.'
-  negative: 不要二三十岁成年马浚伟本人年龄、宽胸壮汉、健美肌肉、成年长脸与胡须胡茬；不要婴幼儿或女相化少年。不要借韦小宝、陈小春、令狐冲、萧峰或女性基线面孔。不要红缨大帽、朝珠、龙袍、帝王朝服、黄马褂、龙椅、冕旒、皇冠、仪仗、官印、刀剑、弓箭或任何兵器。不要满头长发、宋明发髻、网巾、完全无辫的僧人光头。不要照搬参考的成年骨架、黄领金绣、胸像裁切或粉紫影棚。不要把布库演练画成绝顶武者、摧山掌法、抡人、飞跃或有第二个少年。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/luding/kangxi_1998_majunwei.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/luding/kangxi_1998_majunwei.jpg
-    use: 第一且唯一面部身份：1998 TVB陈小春版《鹿鼎记》的马浚伟饰康熙，本任务已实际view并核对来源记录、SHA、尺寸。第一参考的长椭圆脸、颊面平顺、下颌由颧侧自然收窄而下巴圆钝；眉形较平直、眉峰浅、眉尾略长，眼形自然开阔，清楚上眼睑、内外眼角和眉眼间距。鼻梁纤直、鼻翼较收敛，唇形整齐、浅唇峰、下唇自然略厚。保留这些有别于韦小宝的五官关系，但把成年面中长度和下颌成熟度自然适配约15岁少年，少年面颊柔和、骨架清瘦挺拔而尚未长开，无胡须。不能机械缩小成人头像，也不借令狐冲的窄长剑客脸或陈小春的较宽鼻翼方颌。神情专注好胜而克制，用平视目光表达小玄子的聪敏与自尊，不用怒瞪或成年帝王威严。参考帽子遮住发际，不能从照片推断发际线。 本人五官适配当前阶段，绝不继承照片头倾、身体倾角、其他人物、服装、拍摄背景或半身构图；新图必须正面头颈竖直、双眼水平。
-    sha256: f61ad21c75e7208955301f763942abeb1b7fb6e97ac9391fd8741bf4b4fb1a04
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/f61ad21c75e7208955301f763942abeb1b7fb6e97ac9391fd8741bf4b4fb1a04.jpg
-    status_at_input: null
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 第二参考仅男性项目低饱和色卡、柔和明暗与连贯细腻写实手绘质感；已实际view。不可借令狐冲面孔、成年体型、胡茬、发髻网巾、明代衣装、剑或倾头站姿；manifest实际candidate，保持不变。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第三参考仅背景：极浅低对比水墨远山、暖浅灰纸底、薄雾与留白；已实际view。完全忽略其中王语嫣面孔、倾头转身、女性体态、白青薄纱裙装、发饰与飘带；墨痕纸纹不得侵入康熙的人体衣物或器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T18:35:59.653704+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-5c7e14ce-7157-48e2-80a9-e1d13dc7eefe.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 3e9a0f1189982d9e8b27c349f9f0ea183328997a1d920ef323a604604434440f
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_kangxi__ch08_youth_xiaoxuanzi_base/prompt-4ad726430780b31397a79cf95365c33ec6026dde697fcb8cf9f7acd7c22c53bf.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_kangxi__ch08_youth_xiaoxuanzi_base/manifest-37d80cac48bd39f7e8fc094c0741774cc77114fb3f87dc03f55d1503debc8458.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_kangxi__ch08_youth_xiaoxuanzi_base.requests.json
-  notes: 实际查看两张原生PNG并对照已核实1998版马浚伟康熙定装照，选择candidate 1：头颈正面端正、眼线近水平，长椭圆脸与自然圆钝下颌、平眉和鼻唇关系保留并少年化，与男性风格基线令狐冲的窄颊胡茬脸明显不同。约15岁清瘦少年观感，剃额留辫、无胡须，无帽无朝珠帝王服；石青整片衣物、空手低位演练准备、双手双靴完整可见，无明显多肢或重大手部结构问题。candidate 2也可读完整，但左手外伸更散、较弱的收敛准备姿态，比较后未选。两张衣领呈较深交叠，箭衣的具体剪裁未作精确史料复原；织边较稿更明显、衣料细纹偏密仍连续完整，以上按宽松自查如实登记，不宣称服制考据或旧严格几何通过。画面肤色与五官清楚，人物无碎墨飞白；淡水墨山水只作背景。默认2候选选1，无机械追加。实际工具原生1024x1536 RGB不透明PNG，原始字节保存，非2048x3072 RGBA正式母版；仅candidate待用户审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 - id: por_npc_chengguan__ch08_elder_base
   file: por_npc_chengguan__ch08_elder_base.png
   category: character/male
@@ -1685,3 +1607,50 @@
   sha256: aa7f6378fa8323cd9a6c92190ff1d7fdbddb65bab3d23a004cd976552725ccd5
   status: candidate
   notes: 立绘重审重出（AR-30）；现图按 13–17 岁少年设计、脸平淡没有韦小宝的油滑机灵，长袍还是汉式交领；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）。改为约二十岁成年、市井坏笑、清初圆领大襟。；codex 出图（1 号出图员，AR-31）；AR-31：按经典影视造型以文字改写（原创面孔，不写演员名、不传剧照）
+- id: por_npc_kangxi__ch08_youth_xiaoxuanzi_base
+  file: por_npc_kangxi__ch08_youth_xiaoxuanzi_base.png
+  category: character/male
+  style: default
+  subject: 康熙（ch08_luding）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：康熙，《鹿鼎记》中的少年天子，化名“小玄子”在宫中与韦小宝比武摔跤、尚未擒拿鳌拜的时期。
+
+    经典形象：要一眼认出是少年天子康熙（小玄子）——剃额长辫、石青箭袖袍配金黄腰带，摆着布库起手式；清俊英武、目光锐利而带好胜的笑，有不怒自威的帝王气度；英俊的成年青年。
+
+    年龄与体态：外观约二十岁的成年青年男子，身材修长挺拔、肩背匀称有力（常练布库摔跤）。
+
+    面容：清俊的长椭圆脸，下颌线清楚；眉毛平直浓黑、眉峰清晰；眼睛细长明亮，目光锐利而沉着，透着聪慧、自信和不怒自威的帝王气度；鼻梁高直；嘴唇薄、嘴角克制，带一丝好胜的笑；皮肤白净而有真实质感。
+
+    发式：前额和头顶前半剃光，脑后一条乌黑长辫垂在背后；不戴帽子。
+
+    服饰：清初满洲贵族的便服——石青色圆领大襟窄袖长袍（右衽、马蹄袖口），腰间束一条金黄色丝带（唯一暗示皇家身份的地方），黑色高筒软靴；衣料细密、样式简洁，不穿龙袍。
+
+    道具与姿态：空手，双脚微分、膝盖微屈，双手在身前微张，摆出布库摔跤的起手式；神情专注好胜。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要少年脸和少年身材；不要龙袍、朝冠、朝珠；不要歪头。清初男子一律穿圆领大襟（衣襟从领口斜向右腋下扣合），不要汉式交领长衫，不要明代发髻或网巾。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:17:06-0700
+  source_path: .agents/coord/gemini_originals/por_npc_kangxi__ch08_youth_xiaoxuanzi_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: be312730186629676f1b1295d09e390d882a0186d1798baa648328e5ba5b6131
+  status: candidate
+  notes: 立绘重审重出（AR-30）；现图按约 15 岁少年设计，一脸稚气，长袍又是汉式交领；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）。改为约二十岁、英武有帝王气的青年，清初满洲便服。
