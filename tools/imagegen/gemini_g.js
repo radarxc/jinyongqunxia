@@ -3,6 +3,8 @@
 // 之后每张图：整页打开 https://gemini.google.com/images → eval(localStorage.getItem('claudeG')); await __g.submit(JSON.parse(localStorage.getItem('claudeGemPrompts'))[id])
 // → await __g.waitGen()（返回生成图在页面上的 CSS 坐标，下载必须用真实鼠标：先 hover 图片中心，再点右上角下载按钮，否则会被 Chrome 的多文件下载保护拦截）。
 // 2026-10-01 实测：Gemini Apps Activity 关闭时发送后不一定跳到 /app/<会话>，所以以页面出现 model-response 为准。
+// 2026-10-02：每条可带选项 localStorage.claudeGemOpts = {id: {template, refs}}——template 缺省 'Oil painting'，'' 表示不套模板
+// （立绘、秘籍改图）；refs 是发送前要上传的参考图（仓库相对路径），事先用 stage() 存进本页 IndexedDB，prepareNext 里由 uploadRef() 挂上。
 window.__g = {
   // 分道：同时开两个标签页（各在一个可见窗口里）时，每个标签页在 sessionStorage.claudeLane 写自己的道名（A / B），
   // 队列与当前 ID 用带道名后缀的键（claudeGemQueueA、claudeGemCurrentA…），提示词表共用。不设道名时沿用旧键。
@@ -89,20 +91,40 @@ window.__g = {
     return { ...r, id, left: q.length - (r.ok ? 1 : 0) };
   },
   // 2026-10-01：JS 点发送约两成不生效；改为 prepareNext 填好提示词并聚焦输入框，由 computer 工具按真实回车发送，再 markSent 确认并出队
-  async prepareNext(template = 'Oil painting') {
+  // 2026-10-02：按 claudeGemOpts 决定套不套模板、要不要先上传参考图；template 参数显式给出时优先（'' = 不套）
+  opts(id) { const o = JSON.parse(localStorage.getItem('claudeGemOpts') || '{}')[id] || {}; return { template: o.template ?? 'Oil painting', refs: o.refs || [] }; },
+  async prepareNext(template) {
     this.patchFetch();
     const q = JSON.parse(localStorage.getItem(this.qk()) || '[]');
     const prompts = JSON.parse(localStorage.getItem('claudeGemPrompts') || '{}');
     if (!q.length) return { ok: false, done: true };
-    const id = q[0], P = prompts[id];
-    const card = await this.waitFor(() => document.querySelector(`media-gen-template-card[aria-label="${template}"]`), 20000);
-    if (!card) return { ok: false, id, why: 'no template' };
-    card.click();
-    if (!(await this.waitFor(() => this.templateOn(template), 8000))) return { ok: false, id, why: 'template not applied' };
+    const id = q[0], P = prompts[id], o = this.opts(id), t = template ?? o.template;
+    if (!P) return { ok: false, id, why: 'no prompt' };
+    if (!(await this.waitFor(() => document.querySelector('rich-textarea .ql-editor'), 20000))) return { ok: false, id, why: 'no editor' };  // 刚 navigate 完输入框还没渲染
+    if (t) {
+      const card = await this.waitFor(() => document.querySelector(`media-gen-template-card[aria-label="${t}"]`), 20000);
+      if (!card) return { ok: false, id, why: 'no template' };
+      card.click();
+      if (!(await this.waitFor(() => this.templateOn(t), 8000))) return { ok: false, id, why: 'template not applied' };
+    } else if (this.templateOn()) return { ok: false, id, why: 'template unexpectedly on' };
+    for (const r of o.refs) { const u = await this.uploadRef(r); if (!u.ok) return { ok: false, id, why: 'upload failed', ...u }; }
     const ed = document.querySelector('rich-textarea .ql-editor'); ed.focus(); document.execCommand('selectAll', false, null); document.execCommand('insertText', false, P); await this.sleep(200);
     if (ed.innerText.trim().length < P.length * 0.9) return { ok: false, id, why: 'prompt not set' };
+    if (o.refs.length) {  // 参考图传完之前发送键是灰的
+      const b = await this.waitFor(() => { const x = this.btn('Send message'); return x && !x.disabled && x.getAttribute('aria-disabled') !== 'true' ? x : null; }, 30000);
+      if (!b) return { ok: false, id, why: 'send disabled (upload unfinished)' };
+    }
     ed.focus(); const sel = window.getSelection(); sel.selectAllChildren(ed); sel.collapseToEnd();  // 光标移到末尾，回车才会发送
-    return { ok: true, id, left: q.length };
+    return { ok: true, id, left: q.length, template: t || '', refs: o.refs.length };
+  },
+  // 2026-10-02 作者：各道合计每分钟最多提交 8 次——任意两次发送至少隔 8 秒，各道共用 localStorage.claudeLastSubmitTs。
+  // 单独一次 JS 调用里跑，跑完重新把光标放到末尾，紧接着按真实回车。
+  async gate(gap = 8000) {
+    const w = gap - (Date.now() - (+localStorage.getItem('claudeLastSubmitTs') || 0));
+    if (w > 0) await this.sleep(w);
+    const ed = document.querySelector('rich-textarea .ql-editor');
+    if (ed) { ed.focus(); const s = window.getSelection(); s.selectAllChildren(ed); s.collapseToEnd(); }
+    return Math.max(0, w);
   },
   async markSent(id, ms = 20000) {
     const sent = await this.waitFor(() => document.querySelector('user-query, model-response') || (document.querySelector('rich-textarea .ql-editor')?.innerText || '').trim().length < 10, ms);
@@ -110,7 +132,8 @@ window.__g = {
     const q = JSON.parse(localStorage.getItem(this.qk()) || '[]');
     if (q[0] === id) { localStorage.setItem(this.qk(), JSON.stringify(q.slice(1))); }
     localStorage.setItem(this.ck(), id); window.__gT = Date.now();
-    return { ok: true, id, left: q.length - 1 };
+    localStorage.setItem('claudeLastSubmitTs', String(Date.now()));
+    return { ok: true, id, left: q.length - 1, userQuery: !!document.querySelector('user-query') };
   },
   async finish(ms = 36000) {
     const id = localStorage.getItem(this.ck());
@@ -130,5 +153,51 @@ window.__g = {
     if (!b) return null;
     const r = b.getBoundingClientRect();
     return [Math.round(r.left + r.width / 2), Math.round(r.top + r.height / 2)];
+  },
+  // ── 上传参考图（2026-10-02）──
+  // 参考图先暂存进本页 IndexedDB（gemini.google.com 同源共享，换页、刷新都在）：页面里插一个临时 <input type=file aria-label="claude loader">，
+  // 用 file_upload 一次塞多张（每次 ≤10 MB），再 await __g.stage() 存好；之后每张图的上传都是纯 JS，不用再调 find / file_upload。
+  // 键是文件名（仓库路径的 basename；物品 / 人物 ID 不重名）。
+  idb() {
+    return new Promise((res, rej) => { const r = indexedDB.open('claudeRefs', 1); r.onupgradeneeded = () => r.result.createObjectStore('files'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
+  },
+  async idbDo(mode, fn) {
+    const db = await this.idb();
+    return new Promise((res, rej) => { const t = db.transaction('files', mode); const q = fn(t.objectStore('files')); t.oncomplete = () => res(q && q.result); t.onerror = () => rej(t.error); });
+  },
+  idbPut(k, v) { return this.idbDo('readwrite', (s) => s.put(v, k)); },
+  idbGet(k) { return this.idbDo('readonly', (s) => s.get(k)); },
+  idbKeys() { return this.idbDo('readonly', (s) => s.getAllKeys()); },
+  async stage(input = document.querySelector('input[aria-label="claude loader"]')) {
+    const out = [];
+    for (const f of (input && input.files) || []) { await this.idbPut(f.name, f); out.push([f.name, f.size]); }
+    return out;
+  },
+  // 把暂存的一张图挂到输入框：先走页面自己的上传控件（点输入框左下「+」= Upload & tools，菜单打开时才渲染
+  // images-files-uploader 里的隐藏 <input type=file>，给它赋 files 再派发 change），不行再对编辑框派发 paste。
+  // 挂上后输入框出现「close attachment」按钮；返回时菜单已关。
+  async uploadRef(path, ms = 20000) {
+    const name = String(path).split('/').pop();
+    const f = await this.idbGet(name);
+    if (!f) return { ok: false, name, why: 'not staged' };
+    const file = new File([f], name, { type: f.type || 'image/png' });
+    const dt = new DataTransfer(); dt.items.add(file);
+    const before = document.querySelectorAll('button[aria-label="close attachment"]').length;
+    let via = 'input';
+    document.querySelector('button[aria-label="Upload & tools"]')?.click();
+    const inp = await this.waitFor(() => document.querySelector('images-files-uploader input[type=file]'), 5000);
+    if (inp) { inp.files = dt.files; inp.dispatchEvent(new Event('change', { bubbles: true })); }
+    let ok = await this.waitFor(() => document.querySelectorAll('button[aria-label="close attachment"]').length > before, inp ? 8000 : 10);
+    const closeMenu = () => { if (document.querySelector('[role=menu]')) { document.querySelector('.cdk-overlay-backdrop')?.click(); document.body.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', bubbles: true })); } };
+    closeMenu();
+    if (!ok) {
+      via = 'paste';
+      await this.sleep(300); closeMenu();
+      const ed = document.querySelector('rich-textarea .ql-editor'); ed.focus();
+      ed.dispatchEvent(new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true }));
+      ok = await this.waitFor(() => document.querySelectorAll('button[aria-label="close attachment"]').length > before, ms);
+    }
+    await this.sleep(200); closeMenu();
+    return { ok: !!ok, name, via, size: file.size };
   },
 };
