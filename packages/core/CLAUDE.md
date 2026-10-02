@@ -96,12 +96,14 @@
   `createStoryBattleSetup()`、`createMeditationAmbushBattleSetup()`，再以单位快照调用
   `createBattleState()`。`BattleSetup` 冻结参战者、阵营、胜负条件与特殊规则；战中不得扫描世界补人。
 - 推进：`advanceBattleToReady()` 推进事件驱动 CT 与逐 tick 异种气；提交
-  `BattleCommand` 给 `resolveBattleAction()`。当前生产子集为 `battle/act` 与 `battle/wait`；
+  `BattleCommand` 给 `resolveBattleAction()`。`battle/act` 原子提交 `walkTo? + skill|wait + facing?`，
+  `battle/wait` 是原地待机别名；提交时重算路径、射程、LOS 与目标，不接受预览结果。
   `acuteQiGather()` 是 ENG-03 经脉上下文适配器，完整聚合命令待 `meridianByUnit` 进入战斗态。
-- 查询：`peekReadyUnitId()` / `currentReadyUnitId()` 返回行动者；`resolveAreaCells()` 返回六角范围格；
-  `matchFormation()` 校验六向阵形；`evaluateBattleEnd()` 按败、胜、平顺序返回终局。
-- 自动：`chooseAutoCommand()` 与 `simulateAbstractBattle()` 不读取站位，仍共享
-  `resolveBattleAction()` 的伤害、Buff、外放和经脉后效；`noAuto` 会拒绝。
+- 查询：`queryReachable()` / `queryPath()` / `queryMoveAt()` / `queryLegalTargets()` 是只读棋盘规则入口，
+  `isBattleUnitVisible()` 统一 LOS、遮蔽与隐匿可见性；
+  `resolveAreaCells()` 返回六角范围格，`matchFormation()` 校验六向阵形。可达集、路径与 open set 不入状态。
+- 自动：棋盘 `chooseAutoCommand()` 通过上述查询在射程外先接近；无站位
+  `simulateAbstractBattle()` 走独立抽象候选，不读取坐标、LOS、ZOC 或高差；`noAuto` 会拒绝。
 - 回放：`runBattleReplay()` 仅记录已接受命令；`hashBattleReplay()` 接收宿主注入的 SHA-256，
   Core 不引入 Node / Web API。拒绝命令不得进入命令前缀或推进 RNG。
 
@@ -113,7 +115,7 @@
   `battle/reverseQiReleased`、`battle/unitDowned`、`battle/ended`。
 - 自动事件：`battle/autoSimulationStarted`、`battle/autoExchangeResolved`、
   `battle/autoSimulationEnded`；ENG-10 可直接按 `actionNo` 播放日志，不得据表现重算结果。
-- ENG-10：手动棋盘只把 `resolveAreaCells()` 的结果映射到单位，再提交稳定排序后的目标 ID；
+- ENG-10：手动棋盘直接显示 `queryMoveAt()` 返回的格与目标，再提交 `walkTo? + action + facing?`；
   动画、倍速和提示不回写 Core。`combat.qiRepel.message` 可显示，业务判断使用其规范事实名。
 - ENG-09：打坐被袭只传当时实际打坐者到 `meditationUnitRefs`；工厂会给这些单位创建
   `bf_chaqi` 三次自身行动并赋敌方先机，不会补入附近 NPC。

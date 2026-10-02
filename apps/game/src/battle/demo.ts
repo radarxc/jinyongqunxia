@@ -4,16 +4,22 @@ import { demoSeed } from './demo-seed';
 
 /** Existing ENG-04 golden fixture, not a chapter encounter or a balance template. */
 export function createBattleDemo(source: 'world' | 'town'): BattleLaunch {
+  const cells = hexDisk({ q: 0, r: 0 }, 3).map(cell => ({ ...cell, height: 0,
+    terrain: 'tr_pingdi', label: '平地', color: 0xc8b994 }));
+  const grid = cells.map(({ q, r, height }) => ({ q, r, height, moveCost: 1, canopy: 0,
+    los: 'none' as const, standable: true, narrow: false, dangerous: false }));
   const setup = createEncounterBattleSetup({ encounterId: 'enc_combat_fixture', setupId: 'setup-fixture',
     seed: 20261001, sourceSnapshotHash: '0'.repeat(64), sourceId: 'fixture', triggerId: 'fixture',
     worldTick: 0, sceneRef: source, anchorRef: 'anchor_fixture', participants: [
       { unitRef: 'hero', side: 'player', control: 'player', spawn: 'spawn_player', state: 'active', required: true },
       { unitRef: 'enemy_0', side: 'enemy', control: 'ai', spawn: 'spawn_enemy_0', state: 'active', required: true },
+    ], grid, initialUnits: [
+      { unitRef: 'hero', pos: { q: 0, r: 0 }, facing: 0 },
+      { unitRef: 'enemy_0', pos: { q: 1, r: 0 }, facing: 3 },
     ] });
   const seeds = [demoSeed('hero'), demoSeed('enemy_0')];
   return { setup, seeds, title: '演武场', preview: true,
-    cells: hexDisk({ q: 0, r: 0 }, 3).map(cell => ({ ...cell, height: 0,
-      terrain: 'tr_pingdi', label: '平地', color: 0xc8b994 })),
+    cells,
     markers: seeds.map((unit, index) => ({ id: unit.id, index,
       name: index === 0 ? '演武侠客' : '陪练', q: index, r: 0, height: 0,
       facing: index === 0 ? 0 : 3, active: true,

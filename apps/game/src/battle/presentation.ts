@@ -11,6 +11,7 @@ const POINTS: Readonly<Record<string, string>> = {
 const ZONES = { body: '全身', hand: '手部', leg: '腿部' } as const;
 export function projectBattleUnit(unit: BattleUnit, launch: BattleLaunch): BattleUnitView {
   const marker = launch.markers.find(row => row.id === unit.id)!;
+  const cell = launch.cells.find(row => row.q === unit.pos.q && row.r === unit.pos.r);
   const points = new Map<string, MeridianPointView>();
   for (const foreign of unit.foreignQi) {
     const id = foreign.reversePath[foreign.stepIndex]?.acupointRef ?? foreign.injectionAcupoint;
@@ -21,7 +22,8 @@ export function projectBattleUnit(unit: BattleUnit, launch: BattleLaunch): Battl
     qi: occupied.occupyingQi, state: 'occupied',
   });
   const dantian = unit.buffs.find(buff => buff.def === 'bf_dantianshousun')?.stacks ?? 0;
-  return { ...marker, active: unit.active, side: unit.side, control: unit.control,
+  return { ...marker, q: unit.pos.q, r: unit.pos.r, height: cell?.height ?? marker.height,
+    facing: unit.facing, active: unit.active, side: unit.side, control: unit.control,
     hp: unit.hp, hpMax: unit.hpMax, mp: unit.mp, mpMax: unit.mpMax, ct: unit.ct, spd: unit.spd,
     state: unit.state, statuses: unit.buffs.map(buff => ({ id: String(buff.iid),
       label: STATUS[buff.def] ?? '状态效果', detail: `${buff.stacks} 层 · 剩余 ${buff.turnsLeft} 次自身行动` })),

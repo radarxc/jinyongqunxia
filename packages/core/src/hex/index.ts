@@ -120,3 +120,6 @@ export function hexCone(
   }
   return result;
 }
+
+export * from './line';
+export * from './pathfinding';

@@ -13,6 +13,9 @@ export type HexPrimitiveShape =
   | { readonly tpl: 'aoe_self' | 'aoe_around' }
   | { readonly tpl: 'aoe_ring' | 'aoe_disk' | 'aoe_spokes'; readonly r: number }
   | { readonly tpl: 'aoe_line'; readonly n: number }
+  | { readonly tpl: 'aoe_bolt' | 'aoe_allies'; readonly r: number }
+  | { readonly tpl: 'aoe_field'; readonly side: 'enemy' | 'all' }
+  | { readonly tpl: 'aoe_ally_all' }
   | { readonly tpl: 'aoe_cone'; readonly r: number; readonly angle: 60 | 120; readonly dirCount: 6 | 12 }
   | { readonly tpl: 'aoe_zone'; readonly inner: HexZoneInner; readonly duration: number };
 
@@ -41,6 +44,16 @@ function resolveUnclipped(shape: HexPrimitiveShape, input: AreaResolveInput): He
     case 'aoe_line': {
       if (input.aim === undefined || input.aim.dirCount !== 6) throw new RangeError('HEX_AIM_REQUIRED');
       return hexLine(input.origin, input.aim.dir, shape.n);
+    }
+    case 'aoe_bolt': {
+      if (input.aim === undefined || input.aim.dirCount !== 6) throw new RangeError('HEX_AIM_REQUIRED');
+      return hexLine(input.origin, input.aim.dir, shape.r);
+    }
+    case 'aoe_allies': return hexDisk(input.origin, shape.r);
+    case 'aoe_field':
+    case 'aoe_ally_all': {
+      if (input.available === undefined) throw new RangeError('HEX_GRID_REQUIRED');
+      return [...input.available].sort((left, right) => left.r - right.r || left.q - right.q);
     }
     case 'aoe_cone': {
       if (input.aim === undefined || input.aim.dirCount !== shape.dirCount) {

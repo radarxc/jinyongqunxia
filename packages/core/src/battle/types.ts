@@ -1,6 +1,8 @@
 import type { BuffInstance } from '../buff';
 import type { ForeignQiInstance, AcupointOccupancy, HitZone } from './damage';
 import type { AttackDirection } from './damage';
+import type { HexAim, HexCoord, HexDelivery, HexDir, HexLosKind } from '../hex';
+import type { HexPrimitiveShape } from './formation';
 
 export type SideId = 'player' | 'ally' | 'enemy' | 'neutral';
 export type UnitState = 'active' | 'hidden' | 'offgrid' | 'held' | 'downed'
@@ -16,6 +18,15 @@ export interface BattleParticipant {
 }
 export interface BattleInitialEffect { readonly unitRef: string; readonly buffRef: `bf_${string}`;
   readonly stacks: number; readonly remainingOwnActions: number; readonly cause: string }
+export interface BattleGridCell extends HexCoord {
+  readonly height: number; readonly moveCost: number; readonly canopy: number;
+  readonly los: HexLosKind; readonly standable: boolean; readonly narrow: boolean;
+  readonly dangerous: boolean;
+}
+export interface BattleInitialUnit {
+  readonly unitRef: string; readonly ct: number; readonly rage: number;
+  readonly pos: HexCoord; readonly facing: HexDir;
+}
 export type BattleCondition =
   | { readonly kind: 'allHostileDown'; readonly side: SideId }
   | { readonly kind: 'unitDown'; readonly unitRef: string }
@@ -28,9 +39,10 @@ export interface BattleSetup {
     readonly worldTick: number; readonly meditationInterrupted: boolean };
   readonly participants: readonly BattleParticipant[];
   readonly relations: Readonly<Record<SideId, Partial<Record<SideId, Relation>>>>;
+  readonly grid: { readonly topology: 'hex-pointy'; readonly cells: readonly BattleGridCell[] };
   readonly start: { readonly deployment: string; readonly initiativeSide: SideId;
     readonly battleAnchor: string; readonly profile: 'normal' | 'narrow';
-    readonly initialByUnit: readonly { readonly unitRef: string; readonly ct: number; readonly rage: number }[];
+    readonly initialByUnit: readonly BattleInitialUnit[];
     readonly initialEffects: readonly BattleInitialEffect[] };
   readonly end: { readonly winCond: readonly BattleCondition[]; readonly loseCond: readonly BattleCondition[];
     readonly drawCond: readonly BattleCondition[]; readonly onDefeat: 'retry' | `branch:${string}` | 'continue' };
@@ -58,6 +70,10 @@ export interface BattleMove {
   readonly targetAcupoint?: string; readonly affectedRouteRefs?: readonly string[];
   readonly reversePath?: ForeignQiInstance['reversePath']; readonly autoTargetCap?: number;
   readonly meridianAttackBp?: number; readonly direction?: AttackDirection;
+  readonly range: { readonly min: number; readonly max: number };
+  readonly delivery: HexDelivery; readonly shape: HexPrimitiveShape;
+  readonly hTol: number; readonly target: 'enemy' | 'ally' | 'self' | 'tile' | 'any';
+  readonly friendlyFire?: 'none' | 'allies' | 'all';
 }
 export interface ZoneGuardState { qi: number; readonly carryCapacity: number;
   readonly strengthBp: number; readonly flowRatioBp: number; readonly breakGuardBp: number }
@@ -71,17 +87,26 @@ export interface BattleUnit {
   buffs: BuffInstance[]; foreignQi: ForeignQiInstance[]; acupointOccupancies: AcupointOccupancy[];
   readonly meridianDefenseBp: number; readonly qiProductionPerTick: number;
   readonly reverseQi: { readonly minFluxCap: number; readonly routeCarryCap: number } | null;
-  redirectedQi: number; ownActions: number;
+  redirectedQi: number; ownActions: number; pos: HexCoord; facing: HexDir;
+  readonly move: number; readonly jump: number; waitStreak: number;
 }
 export interface BattleEvent { readonly t: string; readonly actionNo: number; readonly actor?: string;
   readonly target?: string; readonly amount?: number; readonly shieldSpent?: number;
   readonly level?: number; readonly message?: string }
-export interface BattleActCommand { readonly t: 'battle/act'; readonly actor: string; readonly moveId: string;
-  readonly targetIds: readonly string[] }
+export type BattleAction =
+  | { readonly t: 'skill'; readonly move: string; readonly target: string | HexCoord;
+      readonly aim?: HexAim }
+  | { readonly t: 'wait' };
+export interface BattleActCommand {
+  readonly t: 'battle/act'; readonly actor: string; readonly walkTo?: HexCoord;
+  readonly action: BattleAction; readonly facing?: HexDir;
+}
 export interface BattleWaitCommand { readonly t: 'battle/wait'; readonly actor: string }
 export type BattleCommand = BattleActCommand | BattleWaitCommand;
 export interface BattleState {
-  readonly setup: BattleSetup; readonly units: BattleUnit[]; tick: number; round: number; actionNo: number;
+  readonly setup: BattleSetup; readonly grid: { readonly topology: 'hex-pointy';
+    readonly cells: readonly BattleGridCell[] }; readonly units: BattleUnit[];
+  tick: number; round: number; actionNo: number;
   phase: 'opening' | 'running' | 'ended'; result: BattleResult | null; openingOrder: string[];
   readonly events: BattleEvent[]; readonly acceptedCommands: BattleCommand[];
 }

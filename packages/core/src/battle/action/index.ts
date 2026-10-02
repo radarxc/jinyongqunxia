@@ -1,20 +1,18 @@
 import { compareCodePoints, mulDivFloor } from '@tianshu/shared';
-import type { Rng } from '../../rng';
+import { createRng, type Rng } from '../../rng';
 import { endOwnAction, executeBuffHook, qiProductionBp } from '../../buff';
+import type { HexCoord } from '../../hex';
 import {
   applyAcupointStrike, calculateZoneResistanceBp, injectPenetratingQi, resolveDamage,
   tickHostileMeridianEffects,
 } from '../damage';
 import { evaluateBattleEnd, finishBattle } from '../encounter';
+import { directionBetween, isBattleUnitVisible, queryMoveAt, queryPath } from '../geometry';
 import { nextTimelineEntry, peekReadyUnitId, settleTimelineAction, type TimelineEntry } from '../timeline';
 import type { BattleActCommand, BattleCommand, BattleMove, BattleState, BattleUnit } from '../types';
 
 export interface BattleActionResult { readonly accepted: boolean; readonly error?: string;
   readonly hpDamage: number; readonly eventsAdded: number }
-
-function hostile(state: BattleState, attacker: BattleUnit, defender: BattleUnit): boolean {
-  return state.setup.relations[attacker.side][defender.side] === 'hostile';
-}
 
 function actorFor(state: BattleState, command: BattleCommand): BattleUnit {
   if (state.phase === 'ended') throw new RangeError('BATTLE_ENDED');
@@ -24,23 +22,35 @@ function actorFor(state: BattleState, command: BattleCommand): BattleUnit {
   return actor;
 }
 
-function validateAct(state: BattleState, command: BattleActCommand):
-{ actor: BattleUnit; targets: BattleUnit[]; move: BattleMove } {
+interface ValidatedPlan {
+  readonly actor: BattleUnit; readonly move: BattleMove | null; readonly targets: readonly BattleUnit[];
+  readonly path: readonly HexCoord[]; readonly destination: HexCoord; readonly targetPos: HexCoord | null;
+}
+
+function validatePlan(state: BattleState, command: BattleActCommand): ValidatedPlan {
   const actor = actorFor(state, command);
-  const move = actor.moves.find((candidate) => candidate.id === command.moveId);
-  if (move === undefined) throw new RangeError('UNKNOWN_MOVE');
-  if (actor.mp < move.mpCost) throw new RangeError('MP_NOT_ENOUGH');
-  const unique = [...new Set(command.targetIds)];
-  if (unique.length === 0 || unique.length > Math.max(1, move.autoTargetCap ?? 1)) {
-    throw new RangeError('ILLEGAL_TARGET');
-  }
-  const targets = unique.map((id) => state.units.find((unit) => unit.id === id))
-    .filter((unit): unit is BattleUnit => unit !== undefined)
-    .sort((left, right) => left.unitIndex - right.unitIndex || compareCodePoints(left.id, right.id));
-  if (targets.length !== unique.length || targets.some((target) => !target.active || !hostile(state, actor, target))) {
-    throw new RangeError('ILLEGAL_TARGET');
-  }
-  return { actor, targets, move };
+  if (command.facing !== undefined && (!Number.isSafeInteger(command.facing)
+    || command.facing < 0 || command.facing > 5)) throw new RangeError('INVALID_FACING');
+  const destination = command.walkTo ?? actor.pos;
+  const pathResult = queryPath(state, actor.id, destination);
+  if (pathResult === null) throw new RangeError('PATH_BLOCKED');
+  const path = pathResult.path; const origin = actor.pos;
+  actor.pos = { ...destination };
+  try {
+    if (command.action.t === 'wait') {
+      return { actor, move: null, targets: [], path, destination, targetPos: null };
+    }
+    const action = command.action;
+    const move = actor.moves.find((candidate) => candidate.id === action.move);
+    if (move === undefined) throw new RangeError('UNKNOWN_MOVE');
+    if (actor.mp < move.mpCost) throw new RangeError('MP_NOT_ENOUGH');
+    const queried = queryMoveAt(state, actor.id, move.id, action.target,
+      action.aim === undefined ? {} : { aim: action.aim });
+    if (queried.reason !== null) throw new RangeError(queried.reason);
+    const targetPos = typeof action.target === 'string'
+      ? state.units.find((unit) => unit.id === action.target)?.pos ?? null : action.target;
+    return { actor, move, targets: queried.targets, path, destination, targetPos };
+  } finally { actor.pos = origin; }
 }
 
 function pushBuffEvents(state: BattleState, target: BattleUnit): 'active' | 'skipped' | 'downed' {
@@ -56,6 +66,7 @@ function pushBuffEvents(state: BattleState, target: BattleUnit): 'active' | 'ski
 
 function settleTarget(state: BattleState, actor: BattleUnit, target: BattleUnit,
   move: BattleMove, rng: Rng, segmentIndex: number): number {
+  if (target.state === 'hidden') target.state = 'active';
   const defenderMpAtHit = target.mp;
   const guard = target.zoneGuards[move.hitZone];
   const zoneFlowBp = guard.carryCapacity === 0 ? 0
@@ -177,6 +188,20 @@ function roundAnchorId(state: BattleState, actingUnitId: string): string | undef
       || compareCodePoints(left.id, right.id))[0]?.id;
 }
 
+function faceNearestEnemy(state: BattleState, actor: BattleUnit): void {
+  const nearest = state.units.filter((unit) => isBattleUnitVisible(state, actor, unit)
+    && state.setup.relations[actor.side][unit.side] === 'hostile')
+    .sort((left, right) => {
+      const leftDistance = Math.max(Math.abs(left.pos.q - actor.pos.q), Math.abs(left.pos.r - actor.pos.r),
+        Math.abs(left.pos.q + left.pos.r - actor.pos.q - actor.pos.r));
+      const rightDistance = Math.max(Math.abs(right.pos.q - actor.pos.q), Math.abs(right.pos.r - actor.pos.r),
+        Math.abs(right.pos.q + right.pos.r - actor.pos.q - actor.pos.r));
+      return leftDistance - rightDistance || left.unitIndex - right.unitIndex
+        || compareCodePoints(left.id, right.id);
+    })[0];
+  if (nearest !== undefined) actor.facing = directionBetween(actor.pos, nearest.pos, actor.facing);
+}
+
 function completeAction(state: BattleState, actor: BattleUnit, recovery: number, command: BattleCommand,
   checkEnd = true): void {
   state.actionNo += 1; actor.ownActions += 1;
@@ -187,7 +212,7 @@ function completeAction(state: BattleState, actor: BattleUnit, recovery: number,
   actor.acupointOccupancies = actor.acupointOccupancies.filter((entry) => entry.remainingOwnActions > 0);
   if (state.openingOrder[0] === actor.id) state.openingOrder.shift();
   if (state.openingOrder.length === 0 && state.phase === 'opening') state.phase = 'running';
-  state.acceptedCommands.push(command);
+  state.acceptedCommands.push(structuredClone(command));
   const end = checkEnd ? evaluateBattleEnd(state) : null; if (end !== null) finishBattle(state, end);
 }
 
@@ -217,29 +242,78 @@ export function advanceBattleToReady(state: BattleState): TimelineEntry {
 }
 
 export function resolveBattleAction(
-  state: BattleState, command: BattleCommand, rng: Rng, options: { readonly deferEndCheck?: boolean } = {},
+  state: BattleState, command: BattleCommand, rng: Rng, options: { readonly deferEndCheck?: boolean;
+    readonly ignoreGeometry?: boolean } = {},
 ): BattleActionResult {
-  const beforeEvents = state.events.length;
+  const candidate = structuredClone(state);
+  const stagedRng = createRng(rng.snapshot()); let rngCalls = 0;
+  const transactionalRng: Rng = { nextU32: () => { rngCalls += 1; return stagedRng.nextU32(); },
+    snapshot: () => stagedRng.snapshot() };
+  const beforeEvents = candidate.events.length;
   try {
-    if (command.t === 'battle/wait') {
-      const actor = actorFor(state, command); const start = pushBuffEvents(state, actor);
-      completeAction(state, actor, start === 'skipped' ? 1_000 : 700, command);
-      return { accepted: true, hpDamage: 0, eventsAdded: state.events.length - beforeEvents };
+    const planCommand: BattleActCommand = command.t === 'battle/wait'
+      ? { t: 'battle/act', actor: command.actor, action: { t: 'wait' } } : command;
+    const validated = options.ignoreGeometry === true
+      ? validateAbstractPlan(candidate, planCommand) : validatePlan(candidate, planCommand);
+    const { actor, targets, move, path, destination, targetPos } = validated;
+    const moved = path.length > 1; const start = pushBuffEvents(candidate, actor);
+    if (start === 'active') actor.pos = { ...destination };
+    if (start === 'active' && moved) {
+      actor.facing = directionBetween(path[path.length - 2]!, destination, actor.facing);
     }
-    const { actor, targets, move } = validateAct(state, command);
-    const start = pushBuffEvents(state, actor);
     let hpDamage = 0;
-    if (start === 'active') {
+    let recovery: number;
+    if (move === null) {
+      recovery = start === 'skipped' ? 1_000 : actor.waitStreak >= 1 ? 1_000 : moved ? 800 : 700;
+      actor.waitStreak += 1;
+    } else {
+      recovery = start === 'skipped' ? 1_000 : move.recovery; actor.waitStreak = 0;
+    }
+    if (start === 'active' && move !== null) {
       actor.mp -= move.mpCost;
       for (let index = 0; index < targets.length; index += 1) {
-        hpDamage += settleTarget(state, actor, targets[index]!, move, rng, index);
+        hpDamage += settleTarget(candidate, actor, targets[index]!, move, transactionalRng, index);
       }
+      if (targetPos !== null) actor.facing = directionBetween(actor.pos, targetPos, actor.facing);
     }
-    completeAction(state, actor, start === 'skipped' ? 1_000 : move.recovery, command,
+    if (start === 'active' && planCommand.facing !== undefined) actor.facing = planCommand.facing;
+    else if (start === 'active') faceNearestEnemy(candidate, actor);
+    completeAction(candidate, actor, recovery, command,
       options.deferEndCheck !== true);
+    commitCandidate(state, candidate);
+    for (let call = 0; call < rngCalls; call += 1) rng.nextU32();
     return { accepted: true, hpDamage, eventsAdded: state.events.length - beforeEvents };
   } catch (error) {
     return { accepted: false, error: error instanceof Error ? error.message : 'BATTLE_ACTION_ERROR',
       hpDamage: 0, eventsAdded: 0 };
   }
+}
+
+function commitCandidate(state: BattleState, candidate: BattleState): void {
+  for (const next of candidate.units) {
+    const current = state.units.find((unit) => unit.id === next.id);
+    if (current !== undefined) Object.assign(current, next);
+  }
+  state.tick = candidate.tick; state.round = candidate.round; state.actionNo = candidate.actionNo;
+  state.phase = candidate.phase; state.result = candidate.result;
+  state.openingOrder.splice(0, state.openingOrder.length, ...candidate.openingOrder);
+  state.events.splice(0, state.events.length, ...candidate.events);
+  state.acceptedCommands.splice(0, state.acceptedCommands.length, ...candidate.acceptedCommands);
+}
+
+function validateAbstractPlan(state: BattleState, command: BattleActCommand): ValidatedPlan {
+  const actor = actorFor(state, command);
+  if (command.facing !== undefined && (!Number.isSafeInteger(command.facing)
+    || command.facing < 0 || command.facing > 5)) throw new RangeError('INVALID_FACING');
+  if (command.action.t === 'wait') return { actor, move: null, targets: [],
+    path: [actor.pos], destination: actor.pos, targetPos: null };
+  const action = command.action;
+  const move = actor.moves.find((candidate) => candidate.id === action.move);
+  const target = typeof action.target === 'string'
+    ? state.units.find((unit) => unit.id === action.target) : undefined;
+  if (move === undefined) throw new RangeError('UNKNOWN_MOVE');
+  if (actor.mp < move.mpCost) throw new RangeError('MP_NOT_ENOUGH');
+  if (target === undefined || !target.active
+    || state.setup.relations[actor.side][target.side] !== 'hostile') throw new RangeError('INVALID_TARGET');
+  return { actor, move, targets: [target], path: [actor.pos], destination: actor.pos, targetPos: target.pos };
 }

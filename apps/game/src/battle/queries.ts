@@ -1,5 +1,5 @@
 import {
-  hexDistance, hexKey, nextTimelineEntry, peekReadyUnitId, resolveAreaCells, settleTimelineAction,
+  nextTimelineEntry, peekReadyUnitId, queryMoveAt, settleTimelineAction,
   type BattleState, type HexAim, type HexCoord, type TimelineState,
 } from '@tianshu/core';
 import type { AreaPreview, BattleLaunch, TimelineView } from './contracts';
@@ -29,26 +29,18 @@ export function queryArea(state: BattleState, launch: BattleLaunch, input: {
   readonly revision: number; readonly requestId: number;
 }): AreaPreview {
   const actor = state.units.find(unit => unit.id === input.actor);
-  const marker = launch.markers.find(unit => unit.id === input.actor);
   const move = actor?.moves.find(row => row.id === input.moveId);
-  const visual = launch.moves.find(row => row.id === input.moveId);
-  if (!actor || !marker || !move || !visual) throw new Error('BATTLE_MOVE_UNKNOWN');
+  if (!actor || !move || !launch.moves.some(row => row.id === input.moveId)) throw new Error('BATTLE_MOVE_UNKNOWN');
   if (!Number.isInteger(input.aim.dir) || ![6, 12].includes(input.aim.dirCount) ||
     input.aim.dir < 0 || input.aim.dir >= input.aim.dirCount) throw new Error('BATTLE_AIM_INVALID');
   let reason = '';
   if (peekReadyUnitId(state) !== actor.id || !actor.active || state.result) reason = '尚未轮到此人行动';
   else if (actor.mp < move.mpCost) reason = '内力不足';
-  else if (!launch.cells.some(cell => hexKey(cell) === hexKey(input.anchor))) reason = '落点在战场之外';
-  else if (hexDistance(marker, input.anchor) > visual.range) reason = '落点超出射程';
-  const cells = resolveAreaCells(visual.shape, { origin: marker, anchor: input.anchor,
-    aim: input.aim, available: launch.cells });
-  const cellKeys = new Set(cells.map(hexKey));
-  const targets = state.units.filter(unit => {
-    const position = launch.markers.find(row => row.id === unit.id);
-    return unit.active && position && cellKeys.has(hexKey(position)) &&
-      state.setup.relations[actor.side][unit.side] === 'hostile';
-  }).sort((left, right) => left.unitIndex - right.unitIndex);
-  if (!reason && targets.length === 0) reason = '范围内没有敌方单位';
-  if (!reason && targets.length > Math.max(1, move.autoTargetCap ?? 1)) reason = '命中人数超出此招可结算人数';
+  const queried = queryMoveAt(state, actor.id, move.id, input.anchor, { aim: input.aim });
+  const unitAtAnchor = state.units.find(unit => unit.pos.q === input.anchor.q && unit.pos.r === input.anchor.r);
+  const byUnit = unitAtAnchor === undefined || move.target === 'tile' ? queried
+    : queryMoveAt(state, actor.id, move.id, unitAtAnchor.id, { aim: input.aim });
+  const cells = byUnit.cells; const targets = byUnit.targets;
+  if (!reason && byUnit.reason !== null) reason = byUnit.reason;
   return { ...input, cells, targetIds: targets.map(unit => unit.id), valid: reason === '', reason };
 }
