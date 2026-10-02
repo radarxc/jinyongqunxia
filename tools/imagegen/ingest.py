@@ -115,13 +115,24 @@ def main() -> int:
         raise SystemExit(f"{src.name} 只有 {src.stat().st_size} 字节，不是原图（多半截获到了中间响应），删掉后重新保存")
     out = ROOT / str(fm["output"])
     man = ROOT / str(fm["manifest"])
-    size = str(fm.get("size") or fm.get("canvas") or "1536x1536").lower()
+    figure = str(fm["output"]).startswith(("assets/default/character/", "assets/default/scene/"))
+    default = "1024x1536" if str(fm["output"]).startswith("assets/default/character/") else "1536x1024" if figure else "1536x1536"
+    size = str(fm.get("size") or fm.get("canvas") or default).lower()
     tw, th = (int(x) for x in size.split("x"))
     im = Image.open(src).convert("RGB")
     src_size = im.size
-    im, frame = crop_frame(im)
-    if im.size != (tw, th):
-        im = im.resize((tw, th), Image.LANCZOS) if abs(im.size[0] / im.size[1] - tw / th) < 0.02 else im
+    if figure:
+        # 立绘 / 情景图：背景有淡水墨，不做画框检测；比例不符时居中裁成目标比例再缩放（AR-30 立绘重出走 Gemini）
+        frame = []
+        w, h = im.size
+        if abs(w / h - tw / th) >= 0.02:
+            cw, ch = (round(h * tw / th), h) if w / h > tw / th else (w, round(w * th / tw))
+            im = im.crop(((w - cw) // 2, (h - ch) // 2, (w - cw) // 2 + cw, (h - ch) // 2 + ch))
+        im = im.resize((tw, th), Image.LANCZOS) if im.size != (tw, th) else im
+    else:
+        im, frame = crop_frame(im)
+        if im.size != (tw, th):
+            im = im.resize((tw, th), Image.LANCZOS) if abs(im.size[0] / im.size[1] - tw / th) < 0.02 else im
     keyed = None
     if a.key or fm.get("kind") in ("rig_ref", "rig_part"):
         from tools.item.common import remove_background
@@ -134,12 +145,21 @@ def main() -> int:
         shutil.move(str(src), arch)
     prompt = json.loads(Path(a.prompt_json).read_text(encoding="utf-8")) if a.prompt_json else build_short(a.asset_id)  # 批量默认用精简版
     neg = re.search(r"排除项?[：:](.*)$", prompt)
+    refs = [str(r) for r in (fm.get("reference_upload") or [])]
+    if figure:
+        category = "/".join(Path(str(fm["output"])).parts[2:4]) if str(fm["output"]).startswith("assets/default/character/") else "scene"
+        subject = f"{fm.get('name', '')}（{fm.get('book') or fm.get('era', '')}）".replace("（）", "")
+        tool = "gemini-web · Nano Banana Pro" + (f"（上传身份参考 {len(refs)} 张）" if refs else "（无参考图上传）")
+    else:
+        category = fm.get("kind", "item")
+        subject = f"{fm.get('name', '')}（{fm.get('category_name') or fm.get('map_kind') or fm.get('set', '')}，{fm.get('grade', '')}阶）".replace("，阶）", "）")
+        tool = "gemini-web · Nano Banana（Oil painting 模板，无参考图上传）"
     entry = {
-        "id": a.asset_id, "file": out.name, "category": fm.get("kind", "item"), "style": "default",
-        "subject": f"{fm.get('name', '')}（{fm.get('category_name') or fm.get('map_kind') or fm.get('set', '')}，{fm.get('grade', '')}阶）".replace("，阶）", "）"),
+        "id": a.asset_id, "file": out.name, "category": category, "style": "default",
+        "subject": subject,
         "prompt": prompt, "negative": neg.group(1).strip() if neg else "",
-        "references": [],
-        "tool": "gemini-web · Nano Banana（Oil painting 模板，无参考图上传）",
+        "references": [{"path": r, "use": "身份参考（作者 AR-29：只上传主角与 S 级）"} for r in refs],
+        "tool": tool,
         "model": "gemini-app (Pro 订阅)",
         "created": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "source_path": str(arch.relative_to(ROOT)),
@@ -147,7 +167,7 @@ def main() -> int:
         "size": f"{im.size[0]}x{im.size[1]}",
         "sha256": hashlib.sha256(out.read_bytes()).hexdigest(),
         "status": "candidate",
-        "notes": ("写实画风（作者 2026-10-01：要跟角色图对应上）；" + (a.note or "")) + (f"；裁掉画框 {frame}" if frame else "") + (f"；抠底 {keyed}" if keyed else ""),
+        "notes": (("立绘重审重出（AR-30）；" + str(fm.get("redo_reason") or "")) if figure else ("写实画风（作者 2026-10-01：要跟角色图对应上）；" + (a.note or ""))) + (f"；裁掉画框 {frame}" if frame else "") + (f"；抠底 {keyed}" if keyed else ""),
     }
     entries = [e for e in load_manifest(man) if e.get("id") != a.asset_id] + [entry]
     man.write_text(yaml.dump(entries, Dumper=_NoAliasDumper, allow_unicode=True, sort_keys=False, width=1000), encoding="utf-8")

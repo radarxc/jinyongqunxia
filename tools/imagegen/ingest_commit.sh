@@ -8,10 +8,10 @@ setopt null_glob
 cd /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod
 for id in "$@"; do
   python3 tools/imagegen/ingest.py "$id" | cut -c1-90
-  f=$(ls assets/default/prompts/items/*/"$id".md assets/default/prompts/maps/**/"$id".md 2>/dev/null | head -1)
+  f=$(grep -rl --include='*.md' "^asset_id: $id\$" assets/default/prompts | head -1)
   name=$(sed -n 's/^name: *//p' "$f" | head -1)
   python3 tools/agents/build_image_index.py >/dev/null || true
-  png=$(git ls-files -mo -- ":(glob)assets/default/item/**/$id.png" ":(glob)assets/default/map/**/$id.png" | head -1)
+  png=$(git ls-files -mo -- ":(glob)assets/default/item/**/$id.png" ":(glob)assets/default/map/**/$id.png" ":(glob)assets/default/character/**/$id.png" ":(glob)assets/default/scene/**/$id.png" | head -1)
   if [[ -z "$png" ]]; then echo "✘ $id：找不到入库后的 PNG（ingest 失败或与已提交版本相同）"; exit 1; fi
   paths=("$png" "$(dirname "$png")/manifest.yaml" assets/default/prompts/INDEX.md)
   ok=0

@@ -84,7 +84,7 @@ def check_file(f: Path, book: str | None) -> tuple:
         problems.append(f"{f.name}：manifest 应为 `assets/default/character/{gender}/{bk[:4]}/manifest.yaml`")
     if str(fm.get("tier", "")) not in ("S", "A", "B"):
         problems.append(f"{f.name}：tier 须为 S / A / B")
-    if str(fm.get("status", "")) not in ("draft", "ready"):
+    if str(fm.get("status", "")) not in ("draft", "ready", "redo", "new"):  # redo / new：AR-30 立绘重审的重出、补出条目
         problems.append(f"{f.name}：status 须为 draft / ready")
     refs = fm.get("references")
     if not isinstance(refs, list):
