@@ -426,3 +426,16 @@
       - TOOL-rig-nearside r1 FAIL，是真问题：镜像时关节链 L/R 错配；比例回退没按视图区分，`back34` 的 L 仍在画面右；正式素材缺 `jointSource` 时会静默回退。已自动返修。
       - 它合入时预计在 `packages/render/src/rig/index.ts` 冲突：它改的导出行正挨着 ENG-11 插入的 `RigSnapshot` 导出。届时照挪基点处理。
       - DES-sync-meridian-v2 r4、r5 FAIL，都是真问题：tech/05 §3.3 还留着 `MeridianFlowSnapshotV1`；有超出范围的改写；golden 说明放错了节。在返修，docs 池满时排队。
+  - **10-02 01:50–02:05 开发监督**：
+    - **集成分支 lint 挂了，原因在出图线**：
+      - 现象：出图线 c14fd558（01:36）和 6a004a55（02:00）在 `tools/imagegen/gemini_g.js` 里用了 `indexedDB`、`File`、`DataTransfer` 等浏览器全局，`pnpm check` 因此挂在 lint。
+      - 影响：此后新建的任务工作区都会继承这个问题，校验会挂在写集外的文件上。
+      - 处置：`eslint.config.js` 忽略 `tools/imagegen/**`（9589c101）。这是注入 Gemini 网页的驱动，不属于源码，先例是已忽略的 `tools/vfx/**`。出图线的脚本没动。
+      - 结果：复跑 `pnpm check` 全绿，83 个测试文件 418 个用例；rig 100 角色门禁 min P95 0.394 ms（loadavg 16）；`size` 274.88 / 350 KB。
+    - **ENG-16a 挪基点**：它 01:49 从 c4edf1c9 建的工作区含这个 lint 问题。处置：
+      - 先置 HOLD-RUNS，停掉驱动和第 1 次运行（约 13 分钟、6 个文件的改动）；
+      - 用草稿目录的 `rebase_task.py` 挪到 c7c16925，无冲突，备份引用 `refs/agents-backup/ENG-16a-battle-geometry-pre-rebase-10020202`；
+      - 带 `.agents/coord/ENG-16a-battle-geometry/rebase_note.md` 重启，`--max-reviews 1 --max-runs 3`。
+      - 其他在途代码任务的基点都早于 c14fd558，不受影响。
+    - **ENG-09 第 1 次运行卡住**：日志 25 分钟没增长，驱动 01:53 自动终止并续作，现在是第 2 次运行。
+    - **DES-sync-meridian-v2 合入（6eb8815d）**。r6 通过；前几次合入被主检出的临时改动挡了几轮，都是等几分钟自动重试过去的。
