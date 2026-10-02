@@ -28669,6 +28669,8 @@
    "writes": [
     "packages/render/**",
     "apps/game/**",
+    "packages/data/src/**",
+    "packages/core/src/**",
     "content/**",
     "tools/content/**",
     "pnpm-lock.yaml"
@@ -28723,6 +28725,8 @@
    "writes": [
     "packages/render/**",
     "apps/game/**",
+    "packages/data/src/**",
+    "packages/core/src/**",
     "content/**",
     "tools/content/**",
     "pnpm-lock.yaml"
