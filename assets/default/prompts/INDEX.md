@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：待出图 445、已通过（作者） 150、已入库 32。**待出图队列 445 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：待出图 429、已通过（作者） 150、已入库 48。**待出图队列 429 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -264,22 +264,6 @@
 | items | `eq_yuanchijinpiqixue_nan` | 元赤金皮骑靴·男 | `assets/default/item/shoes/eq_yuanchijinpiqixue_nan.png` | 待出图 | [eq_yuanchijinpiqixue_nan.md](items/shoes/eq_yuanchijinpiqixue_nan.md) |
 | items | `eq_yuanhongzhanxue_nv` | 元红毡靴·女 | `assets/default/item/shoes/eq_yuanhongzhanxue_nv.png` | 待出图 | [eq_yuanhongzhanxue_nv.md](items/shoes/eq_yuanhongzhanxue_nv.md) |
 | items | `eq_zangdihougechangxue_nan` | 藏地厚革长靴·男 | `assets/default/item/shoes/eq_zangdihougechangxue_nan.png` | 待出图 | [eq_zangdihougechangxue_nan.md](items/shoes/eq_zangdihougechangxue_nan.md) |
-| items | `eq_bailagan` | 白蜡杆 | `assets/default/item/weapons/eq_bailagan.png` | 待出图 | [eq_bailagan.md](items/weapons/eq_bailagan.md) |
-| items | `eq_baituoshezhang` | 白驼蛇杖 | `assets/default/item/weapons/eq_baituoshezhang.png` | 待出图 | [eq_baituoshezhang.md](items/weapons/eq_baituoshezhang.md) |
-| items | `eq_bintiejiangmochu` | 镔铁降魔杵 | `assets/default/item/weapons/eq_bintiejiangmochu.png` | 待出图 | [eq_bintiejiangmochu.md](items/weapons/eq_bintiejiangmochu.md) |
-| items | `eq_bishou` | 韦小宝匕首 | `assets/default/item/weapons/eq_bishou.png` | 待出图 | [eq_bishou.md](items/weapons/eq_bishou.md) |
-| items | `eq_bishuijian` | 碧水剑 | `assets/default/item/weapons/eq_bishuijian.png` | 待出图 | [eq_bishuijian.md](items/weapons/eq_bishuijian.md) |
-| items | `eq_changlegangdao` | 长乐帮刀 | `assets/default/item/weapons/eq_changlegangdao.png` | 待出图 | [eq_changlegangdao.md](items/weapons/eq_changlegangdao.md) |
-| items | `eq_changqiang` | 素木长枪 | `assets/default/item/weapons/eq_changqiang.png` | 待出图 | [eq_changqiang.md](items/weapons/eq_changqiang.md) |
-| items | `eq_changsuo` | 牛皮长索 | `assets/default/item/weapons/eq_changsuo.png` | 待出图 | [eq_changsuo.md](items/weapons/eq_changsuo.md) |
-| items | `eq_daizongfajian` | 岱宗法剑 | `assets/default/item/weapons/eq_daizongfajian.png` | 待出图 | [eq_daizongfajian.md](items/weapons/eq_daizongfajian.md) |
-| items | `eq_duanbingmuchui` | 短柄木锤 | `assets/default/item/weapons/eq_duanbingmuchui.png` | 待出图 | [eq_duanbingmuchui.md](items/weapons/eq_duanbingmuchui.md) |
-| items | `eq_duanshihushenjian` | 段氏护身剑 | `assets/default/item/weapons/eq_duanshihushenjian.png` | 待出图 | [eq_duanshihushenjian.md](items/weapons/eq_duanshihushenjian.md) |
-| items | `eq_duanyanqingzhang` | 段延庆钢杖 | `assets/default/item/weapons/eq_duanyanqingzhang.png` | 待出图 | [eq_duanyanqingzhang.md](items/weapons/eq_duanyanqingzhang.md) |
-| items | `eq_dugulijian` | 独孤利剑 | `assets/default/item/weapons/eq_dugulijian.png` | 待出图 | [eq_dugulijian.md](items/weapons/eq_dugulijian.md) |
-| items | `eq_dugumujian` | 独孤木剑 | `assets/default/item/weapons/eq_dugumujian.png` | 待出图 | [eq_dugumujian.md](items/weapons/eq_dugumujian.md) |
-| items | `eq_emeijiejian` | 峨眉戒剑 | `assets/default/item/weapons/eq_emeijiejian.png` | 待出图 | [eq_emeijiejian.md](items/weapons/eq_emeijiejian.md) |
-| items | `eq_eweibian` | 鳄尾鞭 | `assets/default/item/weapons/eq_eweibian.png` | 待出图 | [eq_eweibian.md](items/weapons/eq_eweibian.md) |
 | items | `eq_ezuijian` | 鳄嘴剪 | `assets/default/item/weapons/eq_ezuijian.png` | 待出图 | [eq_ezuijian.md](items/weapons/eq_ezuijian.md) |
 | items | `eq_fuchen` | 李莫愁拂尘 | `assets/default/item/weapons/eq_fuchen.png` | 待出图 | [eq_fuchen.md](items/weapons/eq_fuchen.md) |
 | items | `eq_gaibangzhubang` | 丐帮竹杖 | `assets/default/item/weapons/eq_gaibangzhubang.png` | 待出图 | [eq_gaibangzhubang.md](items/weapons/eq_gaibangzhubang.md) |
@@ -717,12 +701,12 @@
 | 17 | 罗汉拳谱 | `it_miji_luohanquan` | 黄 | 秘籍·全本 | 已通过（作者） | [it_miji_luohanquan.md](items/manuals/it_miji_luohanquan.md) | manifest |
 | 18 | 太祖长拳谱 | `it_miji_taizuchangquan` | 黄 | 秘籍·全本 | 已通过（作者） | [it_miji_taizuchangquan.md](items/manuals/it_miji_taizuchangquan.md) | manifest |
 
-### 兵器（118）· 待出图 94、已通过（作者） 24
+### 兵器（118）· 待出图 78、已通过（作者） 24、已入库 16
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
 | 1 | 霸王枪 | `eq_bawangqiang` | 天 | 兵器·枪 | 已通过（作者） | [eq_bawangqiang.md](items/weapons/eq_bawangqiang.md) | manifest |
-| 2 | 韦小宝匕首 | `eq_bishou` | 天下 | 兵器·奇门匕 | 待出图 | [eq_bishou.md](items/weapons/eq_bishou.md) | template |
+| 2 | 韦小宝匕首 | `eq_bishou` | 天下 | 兵器·奇门匕 | 已入库 | [eq_bishou.md](items/weapons/eq_bishou.md) | template |
 | 3 | 打狗棒 | `eq_dagoubang` | 天 | 兵器·棍 | 已通过（作者） | [eq_dagoubang.md](items/weapons/eq_dagoubang.md) | manifest |
 | 4 | 金蛇剑 | `eq_jinshejian` | 天 | 兵器·剑 | 已通过（作者） | [eq_jinshejian.md](items/weapons/eq_jinshejian.md) | manifest |
 | 5 | 冷月宝刀 | `eq_lengyuedao` | 天下 | 兵器·刀 | 待出图 | [eq_lengyuedao.md](items/weapons/eq_lengyuedao.md) | template |
@@ -732,15 +716,15 @@
 | 9 | 倚天剑 | `eq_yitianjian` | 天 | 兵器·剑 | 已通过（作者） | [eq_yitianjian.md](items/weapons/eq_yitianjian.md) | manifest |
 | 10 | 鸳鸯刀 | `eq_yuanyangdao` | 天下 | 兵器·刀 | 待出图 | [eq_yuanyangdao.md](items/weapons/eq_yuanyangdao.md) | template |
 | 11 | 真武剑 | `eq_zhenwujian` | 天下 | 兵器·剑 | 待出图 | [eq_zhenwujian.md](items/weapons/eq_zhenwujian.md) | template |
-| 12 | 白驼蛇杖 | `eq_baituoshezhang` | 地上 | 兵器·棍杖 | 待出图 | [eq_baituoshezhang.md](items/weapons/eq_baituoshezhang.md) | template |
-| 13 | 碧水剑 | `eq_bishuijian` | 地下 | 兵器·剑 | 待出图 | [eq_bishuijian.md](items/weapons/eq_bishuijian.md) | template |
+| 12 | 白驼蛇杖 | `eq_baituoshezhang` | 地上 | 兵器·棍杖 | 已入库 | [eq_baituoshezhang.md](items/weapons/eq_baituoshezhang.md) | template |
+| 13 | 碧水剑 | `eq_bishuijian` | 地下 | 兵器·剑 | 已入库 | [eq_bishuijian.md](items/weapons/eq_bishuijian.md) | template |
 | 14 | 碧玉刀 | `eq_biyudao` | 地 | 兵器·刀 | 已通过（作者） | [eq_biyudao.md](items/weapons/eq_biyudao.md) | manifest |
-| 15 | 长乐帮刀 | `eq_changlegangdao` | 地中 | 兵器·刀 | 待出图 | [eq_changlegangdao.md](items/weapons/eq_changlegangdao.md) | template |
-| 16 | 岱宗法剑 | `eq_daizongfajian` | 地中 | 兵器·剑 | 待出图 | [eq_daizongfajian.md](items/weapons/eq_daizongfajian.md) | template |
-| 17 | 段氏护身剑 | `eq_duanshihushenjian` | 地中 | 兵器·剑 | 待出图 | [eq_duanshihushenjian.md](items/weapons/eq_duanshihushenjian.md) | template |
-| 18 | 段延庆钢杖 | `eq_duanyanqingzhang` | 地中 | 兵器·棍杖 | 待出图 | [eq_duanyanqingzhang.md](items/weapons/eq_duanyanqingzhang.md) | template |
-| 19 | 独孤利剑 | `eq_dugulijian` | 地中 | 兵器·剑 | 待出图 | [eq_dugulijian.md](items/weapons/eq_dugulijian.md) | template |
-| 20 | 峨眉戒剑 | `eq_emeijiejian` | 地中 | 兵器·剑 | 待出图 | [eq_emeijiejian.md](items/weapons/eq_emeijiejian.md) | template |
+| 15 | 长乐帮刀 | `eq_changlegangdao` | 地中 | 兵器·刀 | 已入库 | [eq_changlegangdao.md](items/weapons/eq_changlegangdao.md) | template |
+| 16 | 岱宗法剑 | `eq_daizongfajian` | 地中 | 兵器·剑 | 已入库 | [eq_daizongfajian.md](items/weapons/eq_daizongfajian.md) | template |
+| 17 | 段氏护身剑 | `eq_duanshihushenjian` | 地中 | 兵器·剑 | 已入库 | [eq_duanshihushenjian.md](items/weapons/eq_duanshihushenjian.md) | template |
+| 18 | 段延庆钢杖 | `eq_duanyanqingzhang` | 地中 | 兵器·棍杖 | 已入库 | [eq_duanyanqingzhang.md](items/weapons/eq_duanyanqingzhang.md) | template |
+| 19 | 独孤利剑 | `eq_dugulijian` | 地中 | 兵器·剑 | 已入库 | [eq_dugulijian.md](items/weapons/eq_dugulijian.md) | template |
+| 20 | 峨眉戒剑 | `eq_emeijiejian` | 地中 | 兵器·剑 | 已入库 | [eq_emeijiejian.md](items/weapons/eq_emeijiejian.md) | template |
 | 21 | 李莫愁拂尘 | `eq_fuchen` | 地下 | 兵器·鞭索 | 待出图 | [eq_fuchen.md](items/weapons/eq_fuchen.md) | template |
 | 22 | 丐帮竹杖 | `eq_gaibangzhubang` | 地下 | 兵器·棍 | 待出图 | [eq_gaibangzhubang.md](items/weapons/eq_gaibangzhubang.md) | template |
 | 23 | 鹤嘴双笔 | `eq_hebi` | 地中 | 兵器·奇门笔 | 待出图 | [eq_hebi.md](items/weapons/eq_hebi.md) | template |
@@ -785,10 +769,10 @@
 | 62 | 玉箫 | `eq_yuxiao` | 地上 | 兵器·奇门箫 | 待出图 | [eq_yuxiao.md](items/weapons/eq_yuxiao.md) | template |
 | 63 | 渔隐叉 | `eq_yuyincha` | 地下 | 兵器·奇门叉 | 待出图 | [eq_yuyincha.md](items/weapons/eq_yuyincha.md) | template |
 | 64 | 紫薇软剑 | `eq_ziweiruanjian` | 地上 | 兵器·剑 | 待出图 | [eq_ziweiruanjian.md](items/weapons/eq_ziweiruanjian.md) | template |
-| 65 | 镔铁降魔杵 | `eq_bintiejiangmochu` | 玄上 | 兵器·奇门杵 | 待出图 | [eq_bintiejiangmochu.md](items/weapons/eq_bintiejiangmochu.md) | template |
+| 65 | 镔铁降魔杵 | `eq_bintiejiangmochu` | 玄上 | 兵器·奇门杵 | 已入库 | [eq_bintiejiangmochu.md](items/weapons/eq_bintiejiangmochu.md) | template |
 | 66 | 禅杖 | `eq_chanzhang` | 玄 | 兵器·棍杖 | 已通过（作者） | [eq_chanzhang.md](items/weapons/eq_chanzhang.md) | manifest |
-| 67 | 独孤木剑 | `eq_dugumujian` | 玄上 | 兵器·剑 | 待出图 | [eq_dugumujian.md](items/weapons/eq_dugumujian.md) | template |
-| 68 | 鳄尾鞭 | `eq_eweibian` | 玄上 | 兵器·鞭索 | 待出图 | [eq_eweibian.md](items/weapons/eq_eweibian.md) | template |
+| 67 | 独孤木剑 | `eq_dugumujian` | 玄上 | 兵器·剑 | 已入库 | [eq_dugumujian.md](items/weapons/eq_dugumujian.md) | template |
+| 68 | 鳄尾鞭 | `eq_eweibian` | 玄上 | 兵器·鞭索 | 已入库 | [eq_eweibian.md](items/weapons/eq_eweibian.md) | template |
 | 69 | 鳄嘴剪 | `eq_ezuijian` | 玄上 | 兵器·奇门剪 | 待出图 | [eq_ezuijian.md](items/weapons/eq_ezuijian.md) | template |
 | 70 | 霍都折扇 | `eq_huoduzheshan` | 玄上 | 兵器·奇门扇 | 待出图 | [eq_huoduzheshan.md](items/weapons/eq_huoduzheshan.md) | template |
 | 71 | 护手双钩 | `eq_hushoushuanggou` | 玄下 | 兵器·奇门钩 | 待出图 | [eq_hushoushuanggou.md](items/weapons/eq_hushoushuanggou.md) | template |
@@ -815,12 +799,12 @@
 | 92 | 元蒙马棒 | `eq_yuanmengmabang` | 玄下 | 兵器·棍 | 待出图 | [eq_yuanmengmabang.md](items/weapons/eq_yuanmengmabang.md) | template |
 | 93 | 元蒙骑枪 | `eq_yuanmengqiqiang` | 玄下 | 兵器·枪 | 待出图 | [eq_yuanmengqiqiang.md](items/weapons/eq_yuanmengqiqiang.md) | template |
 | 94 | 竹骨铁扇 | `eq_zhugutieshan` | 玄下 | 兵器·奇门扇 | 待出图 | [eq_zhugutieshan.md](items/weapons/eq_zhugutieshan.md) | template |
-| 95 | 白蜡杆 | `eq_bailagan` | 黄中 | 兵器·棍 | 待出图 | [eq_bailagan.md](items/weapons/eq_bailagan.md) | template |
-| 96 | 素木长枪 | `eq_changqiang` | 黄上 | 兵器·枪 | 待出图 | [eq_changqiang.md](items/weapons/eq_changqiang.md) | template |
-| 97 | 牛皮长索 | `eq_changsuo` | 黄上 | 兵器·鞭索 | 待出图 | [eq_changsuo.md](items/weapons/eq_changsuo.md) | template |
+| 95 | 白蜡杆 | `eq_bailagan` | 黄中 | 兵器·棍 | 已入库 | [eq_bailagan.md](items/weapons/eq_bailagan.md) | template |
+| 96 | 素木长枪 | `eq_changqiang` | 黄上 | 兵器·枪 | 已入库 | [eq_changqiang.md](items/weapons/eq_changqiang.md) | template |
+| 97 | 牛皮长索 | `eq_changsuo` | 黄上 | 兵器·鞭索 | 已入库 | [eq_changsuo.md](items/weapons/eq_changsuo.md) | template |
 | 98 | 单刀 | `eq_dandao` | 黄 | 兵器·刀 | 已通过（作者） | [eq_dandao.md](items/weapons/eq_dandao.md) | manifest |
 | 99 | 短匕 | `eq_duanbi` | 黄 | 兵器·奇门匕 | 已通过（作者） | [eq_duanbi.md](items/weapons/eq_duanbi.md) | manifest |
-| 100 | 短柄木锤 | `eq_duanbingmuchui` | 黄下 | 兵器·奇门锤 | 待出图 | [eq_duanbingmuchui.md](items/weapons/eq_duanbingmuchui.md) | template |
+| 100 | 短柄木锤 | `eq_duanbingmuchui` | 黄下 | 兵器·奇门锤 | 已入库 | [eq_duanbingmuchui.md](items/weapons/eq_duanbingmuchui.md) | template |
 | 101 | 环子枪 | `eq_huanziqiang` | 黄中 | 兵器·枪 | 待出图 | [eq_huanziqiang.md](items/weapons/eq_huanziqiang.md) | template |
 | 102 | 花枪 | `eq_huaqiang` | 黄 | 兵器·枪 | 已通过（作者） | [eq_huaqiang.md](items/weapons/eq_huaqiang.md) | manifest |
 | 103 | 麻札刀 | `eq_mazhadao` | 黄上 | 兵器·刀 | 待出图 | [eq_mazhadao.md](items/weapons/eq_mazhadao.md) | template |
