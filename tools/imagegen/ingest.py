@@ -84,6 +84,9 @@ def main() -> int:
     ap.add_argument("--prompt-json")
     ap.add_argument("--key", action="store_true", help="抠透明底（角色部件等）")
     ap.add_argument("--note", default="")
+    ap.add_argument("--tool", help="覆盖 manifest 的 tool（如 'codex exec · image_gen'）")
+    ap.add_argument("--model", help="覆盖 manifest 的 model（如 gpt-6-astra）")
+    ap.add_argument("--prompt-file", help="本张实际用的提示词文本文件（codex 出图时提示词不在提示词库里）")
     ap.add_argument("--manual-title", default="", help="秘籍补书名（AR-30）：上传原图改图、只在题签补写这个书名；manifest 如实记改图提示词、原图与工具")
     a = ap.parse_args()
     fm, pf = frontmatter(a.asset_id)
@@ -145,7 +148,8 @@ def main() -> int:
     arch = ARCHIVE / f"{a.asset_id}{src.suffix.lower()}"
     if src.resolve() != arch.resolve():
         shutil.move(str(src), arch)
-    prompt = json.loads(Path(a.prompt_json).read_text(encoding="utf-8")) if a.prompt_json else build_short(a.asset_id)  # 批量默认用精简版
+    prompt = (Path(a.prompt_file).read_text(encoding="utf-8").strip() if a.prompt_file else
+              json.loads(Path(a.prompt_json).read_text(encoding="utf-8")) if a.prompt_json else build_short(a.asset_id))  # 批量默认用精简版
     neg = re.search(r"排除项?[：:](.*)$", prompt)
     refs = [str(r) for r in (fm.get("reference_upload") or [])]
     if figure:
@@ -161,8 +165,8 @@ def main() -> int:
         "subject": subject,
         "prompt": prompt, "negative": neg.group(1).strip() if neg else "",
         "references": [{"path": r, "use": "身份参考（作者 AR-29：只上传主角与 S 级）"} for r in refs],
-        "tool": tool,
-        "model": "gemini-app (Pro 订阅)",
+        "tool": a.tool or tool,
+        "model": a.model or "gemini-app (Pro 订阅)",
         "created": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "source_path": str(arch.relative_to(ROOT)),
         "source_size": f"{src_size[0]}x{src_size[1]}",
@@ -179,7 +183,10 @@ def main() -> int:
         entry["references"] = [{"path": str(fm["output"]), "sha256": old.get("sha256", ""), "source_path": old.get("source_path", ""),
                                 "use": "原图（上传改图：只在封面题签补写书名，其余保持不变）"}]
         entry["tool"] = "gemini-web · Nano Banana（/app 对话，开 Create image，上传原图改图，不套模板）"
-        entry["notes"] = f"秘籍补书名（AR-30）：在原图题签上补写「{a.manual_title}」，逐字放大核对无误；原图见 references（sha256 为改前版本，git 历史可取）" + (f"；裁掉画框 {frame}" if frame else "")
+        entry["notes"] = (f"秘籍补书名（AR-30）：在原图题签上补写「{a.manual_title}」，逐字放大核对无误；原图见 references（sha256 为改前版本，git 历史可取）"
+                          + (f"；{a.note}" if a.note else "") + (f"；裁掉画框 {frame}" if frame else ""))
+        if a.prompt_json:  # 重做时改过提示词：按实际发出的记
+            entry["prompt"] = json.loads(Path(a.prompt_json).read_text(encoding="utf-8"))
     entries = [e for e in load_manifest(man) if e.get("id") != a.asset_id] + [entry]
     man.write_text(yaml.dump(entries, Dumper=_NoAliasDumper, allow_unicode=True, sort_keys=False, width=1000), encoding="utf-8")
     print(f"✔ {a.asset_id} → {out.relative_to(ROOT)}（{src_size[0]}×{src_size[1]} → {im.size[0]}×{im.size[1]}，原件 {arch.relative_to(ROOT)}）")
