@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint src",
     "test": "vitest run src",
-    "test:performance": "vitest run packages/core/bench/meridian-flow.test.ts packages/core/bench/combat.test.ts --root ../..",
+    "test:performance": "vitest run packages/core/bench --root ../..",
     "bench": "vitest bench packages/core/bench/meridian-flow.bench.ts packages/core/bench/combat.bench.ts --root ../.. --run",
     "typecheck": "tsc -b"
   },
